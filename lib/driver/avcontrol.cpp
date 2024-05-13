@@ -1,3 +1,36 @@
+/*
+Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License
+
+Copyright (c) 2023-2024 openATV, jbleyel
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+1. Non-Commercial Use: You may not use the Software or any derivative works
+   for commercial purposes without obtaining explicit permission from the
+   copyright holder.
+2. Share Alike: If you distribute or publicly perform the Software or any
+   derivative works, you must do so under the same license terms, and you
+   must make the source code of any derivative works available to the
+   public.
+3. Attribution: You must give appropriate credit to the original author(s)
+   of the Software by including a prominent notice in your derivative works.
+THE SOFTWARE IS PROVIDED "AS IS," WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL
+THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR
+OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE,
+ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
+
+For more details about the CC BY-NC-SA 4.0 License, please visit:
+https://creativecommons.org/licenses/by-nc-sa/4.0/
+*/
+
+
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>
@@ -23,12 +56,14 @@ const char *proc_policy43 = "/sys/class/video/screen_mode";		 // NOSONAR
 const char *proc_videomode = "/sys/class/display/mode";			 // NOSONAR
 const char *proc_videoaspect_r = "/sys/class/video/screen_mode"; // NOSONAR
 const char *proc_videoaspect_w = "/sys/class/video/screen_mode"; // NOSONAR
+const char *proc_osd_alpha = "/sys/class/graphics/fb0/osd_plane_alpha";	 // NOSONAR
 #else
 const char *proc_policy169 = "/proc/stb/video/policy2";		 // NOSONAR
 const char *proc_policy43 = "/proc/stb/video/policy";		 // NOSONAR
 const char *proc_videomode = "/proc/stb/video/videomode";	 // NOSONAR
 const char *proc_videoaspect_r = "/proc/stb/vmpeg/0/aspect"; // NOSONAR
 const char *proc_videoaspect_w = "/proc/stb/video/aspect";	 // NOSONAR
+const char *proc_osd_alpha = "/proc/stb/video/alpha";	 // NOSONAR
 #endif
 const char *proc_videomode_50 = "/proc/stb/video/videomode_50hz"; // NOSONAR
 const char *proc_videomode_60 = "/proc/stb/video/videomode_60hz"; // NOSONAR
@@ -53,8 +88,10 @@ eAVControl::eAVControl()
 
 #ifdef DREAMNEXTGEN
 	m_b_has_proc_videomode_24 = true;
+	m_b_has_proc_osd_alpha = true;
 #else
 	m_b_has_proc_videomode_24 = (access(proc_videomode_24, W_OK) == 0);
+	m_b_has_proc_osd_alpha = (access(proc_osd_alpha, W_OK) == 0);
 #endif
 
 	m_videomode_choices = readAvailableModes();
@@ -656,5 +693,15 @@ void eAVControl::setVideoSize(int top, int left, int width, int height, int flag
 	if (flags & FLAGS_DEBUG)
 		eDebug("[%s] %s: T:%d L:%d W:%d H:%d", __MODULE__, "setVideoSize", top, left, width, height);
 }
+
+void eAVControl::setOSDAlpha(int alpha, int flags) const
+{
+#ifdef DREAMNEXTGEN
+	CFile::writeIntHex(proc_osd_alpha, alpha, __MODULE__, flags);
+#else
+	CFile::writeInt(proc_osd_alpha, alpha, __MODULE__, flags);
+#endif
+}
+
 
 eAutoInitP0<eAVControl> init_avcontrol(eAutoInitNumbers::rc, "AVControl Driver");

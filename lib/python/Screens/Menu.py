@@ -5,7 +5,7 @@ from enigma import eTimer
 
 from skin import findSkinScreen, menus
 from Components.ActionMap import HelpableNumberActionMap, HelpableActionMap
-from Components.AVSwitch import iAVSwitch
+from Components.AVSwitch import avSwitch
 from Components.config import ConfigDictionarySet, NoSave, config, configfile
 from Components.Pixmap import Pixmap
 from Components.PluginComponent import plugins
@@ -13,7 +13,6 @@ from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Plugins.Plugin import PluginDescriptor
-from Screens.HelpMenu import HelpableScreen
 from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Screen import Screen, ScreenSummary
 from Screens.Setup import Setup
@@ -109,9 +108,7 @@ def menuEntryName(name):
 	return name if len(nameSplit) < 2 else "\n".join(nameSplit)
 
 
-class Menu(Screen, HelpableScreen, ProtectedScreen):
-	ALLOW_SUSPEND = True
-
+class Menu(Screen, ProtectedScreen):
 	skin = """
 	<screen name="Menu" title="Menu"  position="center,center" size="980,600" resolution="1280,720">
 		<widget source="menu" render="Listbox" position="0,0" size="730,490">
@@ -176,8 +173,7 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 	def __init__(self, session, parentMenu):
 		self.session = session
 		self.parentMenu = parentMenu
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		self.menuList = []
 		self["menu"] = List(self.menuList)
 		self["menu"].onSelectionChanged.append(self.selectionChanged)
@@ -628,7 +624,7 @@ class Menu(Screen, HelpableScreen, ProtectedScreen):
 			self.moveAction()
 
 	def keyText(self):
-		iAVSwitch.setMode("HDMI", "720p", "50Hz")
+		avSwitch.setMode("HDMI", "720p", "50Hz")
 
 	def moveAction(self):
 		menuListCopy = list(self.menuList)

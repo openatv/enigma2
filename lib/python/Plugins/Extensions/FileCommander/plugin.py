@@ -32,7 +32,6 @@ from Plugins.Plugin import PluginDescriptor
 from Screens.ChoiceBox import ChoiceBox
 from Screens.Console import Console
 from Screens.DVD import DVDPlayer
-from Screens.HelpMenu import HelpableScreen
 from Screens.InfoBar import InfoBar
 from Screens.LocationBox import LocationBox
 from Screens.MessageBox import MessageBox
@@ -126,7 +125,8 @@ config.plugins.FileCommander.showTaskCompletedMessage = ConfigYesNo(default=True
 config.plugins.FileCommander.showScriptCompletedMessage = ConfigYesNo(default=True)
 config.plugins.FileCommander.completeMessageTimeout = ConfigSelection(default=10, choices=[(x, ngettext("%d Second", "%d Seconds", x) % x) for x in range(1, 61)])
 config.plugins.FileCommander.splitJobTasks = ConfigYesNo(default=False)
-
+config.plugins.FileCommander.legacyNavigation = ConfigYesNo(default=True)
+config.plugins.FileCommander.autoMultiSelection = ConfigYesNo(default=True)
 running = None
 
 
@@ -162,7 +162,7 @@ class StatInfo:
 		return False
 
 
-class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
+class FileCommander(Screen, NumericalTextInput, StatInfo):
 	skin = """
 	<screen name="FileCommander" title="File Commander" position="center,center" size="1200,600" resolution="1280,720">
 		<widget source="headleft" render="Listbox" position="0,0" size="590,75" foregroundColor="#00fff000" selection="0">
@@ -233,10 +233,10 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 	}
 
 	def __init__(self, session, pathLeft="", pathRight="", leftActive=None):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		NumericalTextInput.__init__(self, handleTimeout=False, mode="SearchUpper")
 		StatInfo.__init__(self)
+		self.multiSelect = None
 		self.baseTitle = self.getTitle()
 		if not self.baseTitle:
 			self.baseTitle = PROGRAM_NAME
@@ -274,7 +274,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		self["key_menu"] = StaticText(_("MENU"))
 		self["key_info"] = StaticText(_("INFO"))
 		self["key_text"] = StaticText(_("TEXT"))
-		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "FileCommanderActions", "InfoActions", "ColorActions", "NavigationActions"], {
+		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "FileCommanderActions", "InfoActions", "ColorActions"], {
 			"cancel": (self.keyExit, _("Exit File Commander")),
 			"ok": (self.keyOk, _("Enter a directory or process a file (play/view/edit/install/extract/run)")),
 			"menu": (self.keyMenu, _("Open context menu (contains settings menu)")),
@@ -282,23 +282,47 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			"redlong": (self.keySortDirectories, _("Select temporary directory sort order for the current column")),
 			"greenlong": (self.keySortFiles, _("Select temporary file sort order for the current column")),
 			"yellowlong": (self.keyParent, _("Go to parent directory of the current column")),
-			"bluelong": (self.keyRefresh, _("Refresh screen")),
+			"bluelong": (self.keyRefresh, _("Refresh screen"))
 			# "redlong": (self.keySortLeft, _("Sort left column files by name, date or size")),
 			# "greenlong": (self.keySortLeftReverse, _("Invert left file sort order")),
 			# "yellowlong": (self.keySortRightReverse, _("Invert right file sort order")),
 			# "bluelong": (self.keySortRight, _("Sort right column files by name, date or size")),
+		}, prio=0, description=_("File Commander Actions"))
+		self["navigationActions"] = HelpableActionMap(self, ["NavigationActions"], {
 			"top": (self.keyGoTop, _("Move to first line / screen")),
 			"pageUp": (self.keyGoPageUp, _("Move up a screen")),
 			"up": (self.keyGoLineUp, _("Move up a line")),
-			"panelLeft": (self.keyGoLeftColumn, _("Switch to the left column")),
-			"panelRight": (self.keyGoRightColumn, _("Switch to the right column")),
+			"first": (self.keyGoLeftColumn, _("Switch to the left column")),
+			"left": (self.keyGoLeftColumn, _("Switch to the left column")),
+			"right": (self.keyGoRightColumn, _("Switch to the right column")),
+			"last": (self.keyGoRightColumn, _("Switch to the right column")),
 			"down": (self.keyGoLineDown, _("Move down a line")),
 			"pageDown": (self.keyGoPageDown, _("Move down a screen")),
 			"bottom": (self.keyGoBottom, _("Move to last line / screen"))
-		}, prio=0, description=_("File Commander Actions"))
+		}, prio=0, description=_("File Commander Navigation Actions"))
+		self["navigationActions"].setEnabled(not config.plugins.FileCommander.legacyNavigation.value)
+		self["legacyNavigationActions"] = HelpableActionMap(self, ["FileCommanderActions", "NavigationActions"], {
+			"top": (self.keyGoTop, _("Move to first line / screen")),
+			"pageUp": (self.keyGoLeftColumn, _("Switch to the left column")),
+			"up": (self.keyGoLineUp, _("Move up a line")),
+			"left": (self.keyGoPageUp, _("Move up a screen")),
+			"right": (self.keyGoPageDown, _("Move down a screen")),
+			"down": (self.keyGoLineDown, _("Move down a line")),
+			"pageDown": (self.keyGoRightColumn, _("Switch to the right column")),
+			"bottom": (self.keyGoBottom, _("Move to last line / screen")),
+			"panelLeft": (self.keyGoLeftColumn, _("Switch to the left column")),
+			"panelRight": (self.keyGoRightColumn, _("Switch to the right column"))
+		}, prio=0, description=_("File Commander Navigation Actions"))
+		self["legacyNavigationActions"].setEnabled(config.plugins.FileCommander.legacyNavigation.value)
 		self["multiSelectAction"] = HelpableActionMap(self, ["FileCommanderActions"], {
 			"multi": (self.keyMultiSelect, _("Toggle multi-selection mode"))
 		}, prio=0, description=_("File Commander Actions"))
+		self["selectionActions"] = HelpableActionMap(self, ["FileCommanderActions", "NavigationActions"], {
+			"toggle": (self.keyToggleAll, _("Toggle selections")),
+			"first": (self.keyDeselectAll, _("Deselect all lines")),
+			"last": (self.keySelectAll, _("Select all lines"))
+		}, prio=0, description=_("File Commander Selection Actions"))
+		self["selectionActions"].setEnabled(self.multiSelect)
 		self["textEditViewAction"] = HelpableActionMap(self, ["FileCommanderActions"], {
 			"text": (self.keyViewEdit, _("View or edit files less than 1MB in size"))
 		}, prio=0, description=_("File Commander Actions"))
@@ -356,7 +380,6 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		self.quickSelectPos = -1
 		self.displayStatusTimer = eTimer()  # Initialize status display timer.
 		self.displayStatusTimer.callback.append(self.displayStatusTimeout)
-		self.multiSelect = None
 		self.enabledMenuActionMaps = []
 		global running
 		running = True
@@ -545,6 +568,7 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 		notStorageNumberAction = self.sourceColumn.getCurrentDirectory()
 		fileOnlyNumberActions = isFileOrFolder and not self.sourceColumn.getIsDir()
 		self["multiSelectAction"].setEnabled(self.sourceColumn.getCurrentDirectory())
+		self["selectionActions"].setEnabled(self.multiSelect)
 		self["directoryFileNumberActions"].setEnabled(directoryFileNumberActions)
 		self["notStorageNumberAction"].setEnabled(not config.plugins.FileCommander.useQuickSelect.value and notStorageNumberAction)
 		self["fileOnlyNumberActions"].setEnabled(not config.plugins.FileCommander.useQuickSelect.value and fileOnlyNumberActions)
@@ -657,6 +681,8 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 					self.displayStatus(_("Copy job queued."))
 					if answer == "MULTI":
 						self.sourceColumn.clearAllSelections()
+					if config.plugins.FileCommander.autoMultiSelection.value and self.multiSelect == self.sourceColumn:
+						self.keyMultiSelect()
 
 			if answer:
 				if answer == "ALL":
@@ -755,10 +781,11 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 							JobManager.AddJob(FileDeleteTask([srcPath], jobTitle), onSuccess=successCallback, onFail=failCallback)
 					else:
 						JobManager.AddJob(FileDeleteTask(srcPaths, _("File Commander Delete")), onSuccess=successCallback, onFail=failCallback)
-
 					self.displayStatus(_("Delete job queued."))
 					if answer == "MULTI":
 						self.sourceColumn.clearAllSelections()
+					if config.plugins.FileCommander.autoMultiSelection.value and self.multiSelect == self.sourceColumn:
+						self.keyMultiSelect()
 
 			if answer:
 				if answer == "ALL":
@@ -813,6 +840,9 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			else:
 				relatedFiles = self.getRelatedFiles(path)
 				checkRelatedDelete()
+
+	def keyDeselectAll(self):
+		self.sourceColumn.clearAllSelections()
 
 	def keyExit(self):
 		def getSavePath(fileList):
@@ -1004,6 +1034,12 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 					self.keySettings()
 				elif action == "info":
 					self.keyTaskList()
+				elif action == "selectAll":
+					self.sourceColumn.setAllSelections()
+				elif action == "deselectAll":
+					self.sourceColumn.clearAllSelections()
+				elif action == "toggleAll":
+					self.sourceColumn.toggleAllSelections()
 				elif action.startswith("bookmark+"):
 					self.keyManageBookmarks(action.endswith("current"))
 				else:
@@ -1053,6 +1089,10 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 				menu.append(("bullet", _("Remove current directory from bookmarks") if directory in config.plugins.FileCommander.bookmarks.value else _("Add current directory to bookmarks"), "bookmark+current"))
 			if path and path != directory and isdir(path):
 				menu.append(("bullet", _("Remove highlighted directory from bookmarks") if path in config.plugins.FileCommander.bookmarks.value else _("Add highlighted directory to bookmarks"), "bookmark+selected"))
+			if self.sourceColumn.multiSelect:
+				menu.append(("bullet", _("Select all"), "selectAll"))
+				menu.append(("bullet", _("Deselect all"), "deselectAll"))
+				menu.append(("bullet", _("Toggle selections"), "toggleAll"))
 			self.session.openWithCallback(keyMenuCallback, FileCommanderContextMenu, contexts, menu, directory, path)
 
 	def keyMove(self):
@@ -1084,6 +1124,8 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 					self.displayStatus(_("Move job queued."))
 					if answer == "MULTI":
 						self.sourceColumn.clearAllSelections()
+					if config.plugins.FileCommander.autoMultiSelection.value and self.multiSelect == self.sourceColumn:
+						self.keyMultiSelect()
 
 			if answer:
 				if answer == "ALL":
@@ -1518,6 +1560,9 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			else:
 				processRename("CURRENT")
 
+	def keySelectAll(self):
+		self.sourceColumn.setAllSelections()
+
 	def keySelectBookmark(self):
 		def selectBookmarkCallback(answer):
 			if answer:
@@ -1548,6 +1593,8 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			self["directoryFileNumberActions"].setEnabled(not config.plugins.FileCommander.useQuickSelect.value)
 			self["fileOnlyNumberActions"].setEnabled(not config.plugins.FileCommander.useQuickSelect.value)
 			self["quickSelectActions"].setEnabled(config.plugins.FileCommander.useQuickSelect.value)
+			self["navigationActions"].setEnabled(not config.plugins.FileCommander.legacyNavigation.value)
+			self["legacyNavigationActions"].setEnabled(config.plugins.FileCommander.legacyNavigation.value)
 			self.updateSort()
 			self.keyRefresh()
 
@@ -1602,6 +1649,9 @@ class FileCommander(Screen, HelpableScreen, NumericalTextInput, StatInfo):
 			progress = job.getProgress()
 			self.taskList.append((job, job.name, job.getStatustext(), progress, f"{progress} %%"))
 		self.session.open(TaskListScreen, self.taskList)
+
+	def keyToggleAll(self):
+		self.sourceColumn.toggleAllSelections()
 
 	def keyViewEdit(self, path=None):
 		if path is None:
@@ -1817,7 +1867,7 @@ class FileCommanderSetup(Setup):
 			configItem.value = path
 
 
-class FileCommanderData(Screen, HelpableScreen):
+class FileCommanderData(Screen):
 	skin = """
 	<screen name="FileCommanderData" title="File Commander Data" position="center,center" size="1000,500" resolution="1280,720">
 		<widget name="data" position="0,0" size="1000,450" conditional="data" font="Regular;20" splitPosition="300" />
@@ -1845,8 +1895,7 @@ class FileCommanderData(Screen, HelpableScreen):
 	</screen>"""
 
 	def __init__(self, session, data):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		self.skinName = ["FileCommanderData"]
 		if not isinstance(data, dict):
 			print("[FileCommander] Error: FileCommanderData screen requires a formatting dictionary!")
@@ -2088,7 +2137,7 @@ class FileCommanderArchiveView(FileCommanderArchiveBase):
 		self["navigationActions"].setEnabled(self["data"].isNavigationNeeded())
 
 
-class FileCommanderFileViewer(Screen, HelpableScreen):
+class FileCommanderFileViewer(Screen):
 	skin = """
 	<screen name="FileCommanderFileViewer" title="File Commander File Viewer" position="40,80" size="1200,610" resolution="1280,720">
 		<widget name="path" position="0,0" size="1030,50" font="Regular;20" foregroundColor="#00fff000" valign="center" />
@@ -2108,8 +2157,7 @@ class FileCommanderFileViewer(Screen, HelpableScreen):
 	</screen>"""
 
 	def __init__(self, session, path, isText=False, initialView="H"):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		self.skinName = ["FileCommanderFileViewer"]
 		if not self.getTitle():
 			self.setTitle(_("File Commander File Viewer"))
@@ -2218,7 +2266,7 @@ class FileCommanderFileViewer(Screen, HelpableScreen):
 			self["textAction"].setEnabled(False)
 
 
-class FileCommanderImageViewer(Screen, HelpableScreen):
+class FileCommanderImageViewer(Screen):
 	skin = """
 	<screen name="FileCommanderImageViewer" title="File Commander Image Viewer" position="fill" flags="wfNoBorder" resolution="1280,720">
 		<eLabel position="fill" backgroundColor="#00000000" />
@@ -2256,8 +2304,7 @@ class FileCommanderImageViewer(Screen, HelpableScreen):
 	]
 
 	def __init__(self, session, fileList, index, path, filename):  # DEBUG: path is not needed!
-		Screen.__init__(self, session, mandatoryWidgets=["infolabels"])
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, mandatoryWidgets=["infolabels"], enableHelp=True)
 		self.skinName = ["FileCommanderImageViewer"]
 		if not self.getTitle():
 			self.setTitle(_("File Commander Image Viewer"))
@@ -2596,7 +2643,7 @@ class FileCommanderMediaInfo(FileCommanderData):
 			self.processArguments(None, ["/usr/bin/ffprobe", "/usr/bin/ffprobe", "-hide_banner", self.path], None, displayFFprobe)
 
 
-class FileCommanderTextEditor(Screen, HelpableScreen):
+class FileCommanderTextEditor(Screen):
 	skin = """
 	<screen name="FileCommanderTextEditor" title="File Commander Text Editor" position="40,80" size="1200,610" resolution="1280,720">
 		<widget name="path" position="0,0" size="1030,50" font="Regular;20" foregroundColor="#00fff000" valign="center" />
@@ -2617,8 +2664,7 @@ class FileCommanderTextEditor(Screen, HelpableScreen):
 	</screen>"""
 
 	def __init__(self, session, path):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		self.skinName = ["FileCommanderTextEditor"]
 		if not self.getTitle():
 			self.setTitle(_("File Commander Text Editor"))

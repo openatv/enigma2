@@ -3,7 +3,6 @@ from Components.Sources.StaticText import StaticText
 from Components.config import config, ConfigSubsection, ConfigText, ConfigYesNo, ConfigDirectory, NoSave
 from Components.ActionMap import ActionMap
 from Screens.Screen import Screen
-from Screens.HelpMenu import HelpableScreen
 from Screens.Setup import Setup
 
 
@@ -24,14 +23,12 @@ def Load_defaults():
 Load_defaults()
 
 
-class DirectoryBrowser(Screen, HelpableScreen):
+class DirectoryBrowser(Screen):
 
 	def __init__(self, session, currDir):
-		Screen.__init__(self, session)
+		Screen.__init__(self, session, enableHelp=True)
 		# for the skin: first try MediaPlayerDirectoryBrowser, then FileBrowser, this allows individual skinning
 		self.skinName = ["MediaPlayerDirectoryBrowser", "FileBrowser"]
-
-		HelpableScreen.__init__(self)
 
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Use"))

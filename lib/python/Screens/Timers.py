@@ -21,7 +21,6 @@ from Components.Sources.Event import Event
 from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.StaticText import StaticText
 from Screens.ChoiceBox import ChoiceBox
-from Screens.HelpMenu import HelpableScreen
 from Screens.LocationBox import DEFAULT_INHIBIT_DEVICES, MovieLocationBox
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen, ScreenSummary
@@ -495,10 +494,9 @@ class RecordTimerList(TimerListBase):
 		return ("%d.%d%s%s") % (op // 10, op % 10, "\u00B0", direction)
 
 
-class TimerOverviewBase(Screen, HelpableScreen):
+class TimerOverviewBase(Screen):
 	def __init__(self, session, mode):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		self.skinName = [MODE_DATA[mode][MODE_DATA_SKIN], "TimerOverview", "TimerEditList"]  # TimerEditList is deprecated but kept for older skin compatibility.
 		self.setTitle(MODE_DATA[mode][MODE_DATA_TITLE])
 		self["key_info"] = StaticText("")
@@ -1807,7 +1805,7 @@ class SleepTimerButton(SleepTimer):
 		SleepTimer.keySave(self)
 
 
-class TimerLog(Screen, HelpableScreen):
+class TimerLog(Screen):
 	skin = """
 	<screen name="TimerLog" title="Timer Log" position="center,center" size="950,590" resolution="1280,720">
 		<widget name="log" position="0,0" size="e,e-50" font="Regular;20" />
@@ -1829,8 +1827,7 @@ class TimerLog(Screen, HelpableScreen):
 	</screen>"""
 
 	def __init__(self, session, timer):
-		Screen.__init__(self, session, mandatoryWidgets=["log"])
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, mandatoryWidgets=["log"], enableHelp=True)
 		self.timer = timer
 		self["log"] = ScrollLabel()
 		self["key_red"] = StaticText(_("Close"))

@@ -14,7 +14,6 @@ from Components.Slider import Slider
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
-from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.Screen import Screen, ScreenSummary
@@ -23,7 +22,7 @@ from Tools.Directories import SCOPE_GUISKIN, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 
 
-class SoftwareUpdate(Screen, HelpableScreen, ProtectedScreen):
+class SoftwareUpdate(Screen, ProtectedScreen):
 	FEED_UNKNOWN = 0
 	FEED_DISABLED = 1
 	FEED_UNSTABLE = 2
@@ -94,8 +93,7 @@ class SoftwareUpdate(Screen, HelpableScreen, ProtectedScreen):
 	]
 
 	def __init__(self, session, *args):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		ProtectedScreen.__init__(self)
 		Screen.setTitle(self, _("Software Update"))
 		self.onCheckTrafficLight = []
@@ -401,7 +399,7 @@ class SoftwareUpdateSummary(ScreenSummary):
 		self["value"].setText("%s %s" % (self.parent["package_text"].getText(), self.parent["package_count"].getText()))
 
 
-class RunSoftwareUpdate(Screen, HelpableScreen):
+class RunSoftwareUpdate(Screen):
 	skin = """
 	<screen name="RunSoftwareUpdate" position="center,center" size="720,435" resolution="1280,720">
 		<widget name="update" position="10,10" size="700,400" font="Regular;20" halign="center" transparent="1" valign="center" />
@@ -409,8 +407,7 @@ class RunSoftwareUpdate(Screen, HelpableScreen):
 	</screen>"""
 
 	def __init__(self, session, *args):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		self.setTitle(_("Software Update"))
 		self.onTimerTick = []
 		self["update"] = ScrollLabel(_("Software update starting, please wait.\n\n"))

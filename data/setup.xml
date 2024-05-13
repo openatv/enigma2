@@ -75,6 +75,7 @@
 		<item level="0" text="CI Boot Delay" description="Set CI Boot delay.">config.cimisc.bootDelay</item>
 	</setup>
 	<setup key="ChannelSelection" title="Channel Selection Settings" showOpenWebif="1">
+		<item level="0" text="Style" description="Set the style of the channel list.">config.channelSelection.style</item>
 		<item level="0" text="Include CI assignment" description="Set CI assignment for detection of available services.">config.misc.use_ci_assignment</item>
 		<item level="1" text="Alternative numbering mode" description="When enabled, channel numbering will start at '1' for each bouquet.">config.usage.alternative_number_mode</item>
 		<item level="1" text="Always show bouquets" description="Select 'Yes' to always show the bouquet screen first when opening the channel list. Select 'No' to open the channel list using the current bouquet.">config.usage.show_bouquetalways</item>
@@ -499,7 +500,7 @@
 		<item level="0" text="Automatically update Client/Server View" description="Automatically update Client/Server View">config.oscaminfo.autoUpdate</item>
 		<item level="0" text="Automatically update Log-Fullscreen View" description="Automatically update Log-Fullscreen View">config.oscaminfo.autoUpdateLog</item>
 	</setup>
-	<setup key="OSD3D" title="OSD 3D Settings" showOpenWebif="1">
+	<setup key="OSD3DCalibration" title="OSD 3D Settings" showOpenWebif="1" allowDefault="1">
 		<item level="0" text="3D Mode" description="This option lets you choose the 3D mode.">config.osd.threeDmode</item>
 		<item level="0" text="Depth" description="This option lets you adjust the 3D depth.">config.osd.threeDznorm</item>
 		<item level="0" text="Show in Extension Menu" description="This option lets you show the option in the Extension Menu screen.">config.osd.show3dextensions</item>
@@ -736,6 +737,10 @@
 		<item text="Latitude" description="Configure the latitude of your location.">config.sat.diseqcb</item>
 		<item text="Use power measurement" description="When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner).">config.sat.diseqcc</item>
 	</setup>
+	<setup key="Skin" title="Skin Settings">
+		<item text="GUI Skin *" description="Choose the skin to be used for the GUI interface. Press 'GREEN' to activate the skin.">config.skin.guiSkin</item>
+		<item text="LCD/Front panel *" description="Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin." requires="LCDSKINSetup">config.skin.lcdSkin</item>
+	</setup>
 	<setup key="SleepTimer" title="SleepTimer Settings" showOpenWebif="1">
 		<item text="SleepTimer activation delay" description="Configure the duration, in minutes, before the SleepTimer activates.">config.usage.sleepTimer</item>
 		<item text="SleepTimer action" description="Select the type of shutdown desired when the SleepTimer activates.">config.usage.sleepTimerAction</item>
@@ -805,7 +810,7 @@
 	<setup key="Timeshift" title="Time Shift Settings" level="1" showOpenWebif="1">
 		<item level="2" text="Time shift buffer location" description="Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations.">config.timeshift.path</item>
 		<item level="1" text="Automatically start time shift after" description="When enabled, time shift starts automatically in background after specified time.">config.timeshift.startDelay</item>
-		<item level="2" text="Enable Autorecord" description="If set to 'yes', enable autorecord for automatically background timeshift">config.timeshift.autorecord</item>
+		<item level="2" text="Enable Autorecord" description="Set to 'Yes', to enable automatic recording of the background timeshift buffer.">config.timeshift.autorecord</item>
 		<item level="1" text="Show warning when time shift is stopped" description="When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift.">config.timeshift.check</item>
 		<item level="2" text="Show status messages on switch to live TV" description="When enabled, show status or error messages.">config.timeshift.showLiveTVMsg</item>
 		<item level="2" text="Time shift save action on zap" description="Select if time shift must continue when set to record.">config.timeshift.favoriteSaveAction</item>

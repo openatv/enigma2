@@ -3,7 +3,7 @@
 # pololoko111 <peciek83@gmail.com>, 2021, 2022, 2023, 2024.
 # openATV <openatv@gmail.com>, 2021.
 # Grzegorz <grzegorz914@icloud.com>, 2021, 2022.
-# drakulis <drakulis@interia.pl>, 2022, 2023.
+# drakulis <drakulis@interia.pl>, 2022, 2023, 2024.
 # lareq <lareq@o2.pl>, 2022, 2023.
 # Karol Sz <kaolsz@interia.pl>, 2022, 2023, 2024.
 # Tomasz X <wladyslaw.lam@gmail.com>, 2022.
@@ -12,16 +12,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-18 19:03+0000\n"
-"PO-Revision-Date: 2024-04-18 22:45+0000\n"
-"Last-Translator: pololoko111 <peciek83@gmail.com>\n"
+"POT-Creation-Date: 2024-05-05 12:54+0000\n"
+"PO-Revision-Date: 2024-05-04 15:11+0000\n"
+"Last-Translator: drakulis <drakulis@interia.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.5.3\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -2686,6 +2686,9 @@ msgstr "Rozpoczęto automatyczną regulację..."
 
 msgid "Auto install log"
 msgstr "Log auto instalacji"
+
+msgid "Auto multi-selection"
+msgstr ""
 
 msgid "Auto shut down"
 msgstr "Automatyczne wyłączenie"
@@ -5979,6 +5982,12 @@ msgstr "Opis"
 msgid "Deselect"
 msgstr "Odznacz"
 
+msgid "Deselect all"
+msgstr ""
+
+msgid "Deselect all lines"
+msgstr ""
+
 msgid "Deselect all related files"
 msgstr "Odznacz wszystkie powiązane pliki"
 
@@ -7897,7 +7906,7 @@ msgid "FSBL Update Check"
 msgstr "Sprawdzenie aktualizacji FSBL"
 
 msgid "FTA"
-msgstr "Niekodowane TV(FTA)"
+msgstr "FTA"
 
 msgid "FTP"
 msgstr "FTP"
@@ -8077,6 +8086,12 @@ msgstr "File Commander: Akcje informacji o mediach"
 
 msgid "File Commander Move"
 msgstr "File Commander: Przenieś"
+
+msgid "File Commander Navigation Actions"
+msgstr ""
+
+msgid "File Commander Selection Actions"
+msgstr ""
 
 msgid "File Commander Settings"
 msgstr "File Commander: Ustawienia"
@@ -9335,9 +9350,6 @@ msgstr "Jeśli \"Tak\", ta sama komenda zostanie wysłana do TV dla zdarzeń wy�
 msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
 msgstr "Jeśli ustawiony jest na \"tak\", pozwala na używanie timeshift z alternatywnymi wtyczkami audio."
 
-msgid "If set to 'yes', enable autorecord for automatically background timeshift"
-msgstr "Jeżeli ustawione na 'tak', włączy nagrywanie automatycznie w tle z timeshiftem"
-
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Jeśli włączono obejście głębokiego czuwania, oczekuj do czasu aż system zostanie zsynchronizowany. W zależności od wymogu budzenie urządzenia będzie kontynuowane po maksymalnie 2 minutach."
 
@@ -9667,7 +9679,7 @@ msgid "Install Plugin"
 msgstr "Zainstaluj wtyczkę"
 
 msgid "Install Plugins"
-msgstr "Instalowanie wtyczek"
+msgstr "Zainstaluj wtyczki"
 
 msgid "Install a new image with a USB stick"
 msgstr "Instaluj nowe img. z pamięci USB"
@@ -10240,6 +10252,9 @@ msgstr "Na lewo od nazwy kanału"
 
 msgid "Left, wrapped"
 msgstr "lewo, owinięty"
+
+msgid "Legacy mode"
+msgstr ""
 
 msgid "Leisure hobbies"
 msgstr "Hobby/rekreacja"
@@ -12933,12 +12948,6 @@ msgstr "odtwórz w ekranie głównym"
 msgid "Play In PiP Window"
 msgstr "Odtwórz w oknie PiP"
 
-msgid "Play service with Stream Relay"
-msgstr "Odtwarzaj kanał za pomocą Stream Relay"
-
-msgid "Play service without Stream Relay"
-msgstr "Odtwarzaj kanał bez pomocy Stream Relay"
-
 msgid "Play Service With Stream Relay"
 msgstr "Odtwarzaj kanał za pomocą Stream Relay"
 
@@ -12995,6 +13004,12 @@ msgstr "Odtwórz wybraną usługę w oknie PiP"
 
 msgid "Play selected service on the main screen"
 msgstr "Odtwórz wybraną usługę na głównym ekranie"
+
+msgid "Play service with Stream Relay"
+msgstr "Odtwarzaj kanał za pomocą Stream Relay"
+
+msgid "Play service without Stream Relay"
+msgstr "Odtwarzaj kanał bez pomocy Stream Relay"
 
 msgid "Play the audio file"
 msgstr "Odtwórz plik audio"
@@ -14626,6 +14641,9 @@ msgstr "Resetuj kolejność"
 msgid "Reset and renumerate title names"
 msgstr "Resetuj i zmień numerację nazwy tytułów"
 
+msgid "Reset entries to their default values"
+msgstr ""
+
 msgid "Reset executable mode (644)"
 msgstr "Zresetuj tryb wykonywalny (644)"
 
@@ -15447,6 +15465,9 @@ msgstr "Wybierz \"Tak\", aby sprawdzić, czy połączenia sieciowe pochodzą z w
 msgid "Select 'Yes' to continuously display all images in a loop, or select 'No' to display all images once and then stop."
 msgstr "Wybierz \"Tak\", aby stale wyświetlać wszystkie obrazy w pętli, lub \"Nie\", aby wyświetlić wszystkie obrazy raz, a następnie zatrzymać."
 
+msgid "Select 'Yes' to disable multi-selection mode after each operation. Select 'No' to leave multi-selection mode active and the selections unchanged."
+msgstr ""
+
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr "Jeśli jest ustawione na 'tak' , pokazuje małe okno TV w EPG."
 
@@ -15612,6 +15633,9 @@ msgstr "Wybierz 'Tak', aby podzielić zadania na osobne działania."
 msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
 msgstr "Wybierz \"Tak\", aby użyć alternatywnego adresu IP źródła GitHub. Może to być pomocne, gdy używasz VPN, a nie można uzyskać dostępu do normalnych źródeł za pomocą opublikowanych nazw DNS."
 
+msgid "Select 'Yes' to use legacy navigation where CH+/- swaps the active column. Select 'No' to use the newer unified navigation option for consistent navigation with other screens where LEFT/RIGHT swaps the active column and CH+/- pages up and down the list."
+msgstr ""
+
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Jeśli ustawione na \"tak\", wartości sygnału (SNR itp.) będą obliczane na podstawie API V3. Jest to stara wersja API, która została już zastąpiona."
 
@@ -15763,6 +15787,12 @@ msgstr "Wybierz akcję dla timera %s:"
 
 msgid "Select additional files to backup"
 msgstr "Dodatkowe pliki kopii zapasowej"
+
+msgid "Select all"
+msgstr ""
+
+msgid "Select all lines"
+msgstr ""
 
 msgid "Select all related files"
 msgstr "Wybierz wszystkie powiązane pliki"
@@ -16655,6 +16685,9 @@ msgstr "Ustaw szybkość przewijania tekstu na wyświetlaczu. Jest używany prze
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Ustaw szybkość przewijania tekstu na przednim wyświetlaczu."
 
+msgid "Set the style of the channel list."
+msgstr ""
+
 msgid "Set the time before checking video source for resolution information."
 msgstr "Pozwala na ustawienie czasu opóźnienia przed automatyczną rozdzielczością,sprawdza źródła wideo."
 
@@ -16707,6 +16740,9 @@ msgstr "Ustaw opcje czasu"
 msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
 msgstr "Jeśli ta opcja jest wyłączona, znaki podkreślenia w nazwach plików i katalogów nie są wyświetlane i są zastępowane spacjami."
 
+msgid "Set to 'Yes', to enable automatic recording of the background timeshift buffer."
+msgstr "Jeżeli ustawione na 'tak', włączy nagrywanie automatycznie w tle z timeshiftem"
+
 msgid "Set to the desired primetime (hour)."
 msgstr "Ustaw żądany najlepszy czas (godziny)."
 
@@ -16751,9 +16787,6 @@ msgstr "Ustawienia"
 
 msgid "Settings mode"
 msgstr "Tryb konfiguracji"
-
-msgid "Settings..."
-msgstr "Ustawienia…"
 
 msgid "Setup"
 msgstr "Ustawienia"
@@ -17189,9 +17222,6 @@ msgstr "Pokaż pakiety źródłowe"
 msgid "Show Subservices Of Active Service"
 msgstr "Pokaż usługi podrzędne usługi aktywnej"
 
-msgid "Show subservices of the active service"
-msgstr "Pokaż usługi podrzędne aktywnej usługi"
-
 msgid "Show System Plugin packages"
 msgstr "Pokaż pakiety wtyczek systemowych"
 
@@ -17567,6 +17597,9 @@ msgstr "Pokaż usługi podrzędne"
 
 msgid "Show subservices *"
 msgstr "Wyświetl pod-usługi *"
+
+msgid "Show subservices of the active service"
+msgstr "Pokaż usługi podrzędne aktywnej usługi"
 
 msgid "Show subtitle quick menu"
 msgstr "Menu podręczne napisów"
@@ -18579,6 +18612,9 @@ msgstr "Akcje ustawień Stream Relay"
 msgid "Stream Relay URL"
 msgstr "URL Stream Relay"
 
+msgid "Stream Relay is active, please switch to a none Stream Relay channel."
+msgstr ""
+
 msgid "Stream Relay port"
 msgstr "Port Stream Relay"
 
@@ -18625,6 +18661,9 @@ msgstr "Ścisły DLNA"
 
 msgid "Stripes"
 msgstr "Paski Animacji"
+
+msgid "Style"
+msgstr ""
 
 msgid "Style:"
 msgstr "Styl:"
@@ -18815,6 +18854,9 @@ msgstr "Przełącz na HDMI w trybie"
 msgid "Switch to Radio"
 msgstr "Przełącz na Radio"
 
+msgid "Switch to Radio mode"
+msgstr "Przełącz w tryb radio"
+
 msgid "Switch to TV"
 msgstr "Przełącz na TV"
 
@@ -18847,9 +18889,6 @@ msgstr "Przełącz na poprzedni kanał"
 
 msgid "Switch to previous channel in history"
 msgstr "Przełącz na poprzedni kanał w historii"
-
-msgid "Switch to Radio mode"
-msgstr "Przełącz w tryb radio"
 
 msgid "Switch to the available RADIO services"
 msgstr "Przełącz na dostępne usługi RADIO"
@@ -20244,6 +20283,9 @@ msgstr "Przełącz nowe wstawianie tekstu przed lub zastępuje istniejący tekst
 msgid "Toggle selection of the current tag"
 msgstr "Przełącz wybór aktualnego znacznika"
 
+msgid "Toggle selections"
+msgstr ""
+
 msgid "Toggle service name display"
 msgstr "Przełączanie wyświetlania nazwy usługi"
 
@@ -21029,6 +21071,9 @@ msgstr "Użyj interfejsu"
 
 msgid "Use key map *"
 msgstr "Mapowanie klawiszy *"
+
+msgid "Use legacy navigation"
+msgstr ""
 
 msgid "Use logarithmic steps"
 msgstr "Użyj kroków logarytmicznych"
@@ -23632,6 +23677,9 @@ msgstr "tak (zachować kanały)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Settings..."
+#~ msgstr "Ustawienia…"
 
 #~ msgid "Mins"
 #~ msgstr "Minut"

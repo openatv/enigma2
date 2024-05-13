@@ -3,7 +3,6 @@ from Components.config import ConfigSubsection, ConfigText, config
 from Components.Label import Label
 from Components.ChoiceList import ChoiceEntryComponent, ChoiceList
 from Components.Sources.StaticText import StaticText
-from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen, ScreenSummary
 
@@ -13,10 +12,9 @@ config.misc.pluginlist.extension_order = ConfigText(default="")
 config.misc.pluginlist.fc_bookmarks_order = ConfigText(default="")
 
 
-class ChoiceBoxNew(Screen, HelpableScreen):
+class ChoiceBoxNew(Screen):
 	def __init__(self, session, text="", choiceList=None, selection=0, buttonList=None, reorderConfig=None, allowCancel=True, skinName=None, windowTitle=None):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		self.setTitle(windowTitle if windowTitle else _("Choice Box"))
 		self.skinName = ["ChoiceBox"]
 		if skinName:

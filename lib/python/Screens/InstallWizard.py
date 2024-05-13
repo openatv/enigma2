@@ -8,7 +8,6 @@ from Components.config import ConfigBoolean, ConfigIP, ConfigSelection, ConfigSu
 from Components.Network import iNetwork
 from Components.Opkg import OpkgComponent
 from Components.Sources.StaticText import StaticText
-from Screens.HelpMenu import HelpableScreen
 from Screens.Screen import Screen
 
 config.misc.installwizard = ConfigSubsection()
@@ -114,7 +113,7 @@ class InstallWizard(Screen, ConfigListScreen):
 			eDVBDB.getInstance().reloadBouquets()
 
 
-class InstallWizardSmallBox(Screen, HelpableScreen):
+class InstallWizardSmallBox(Screen):
 	skin = """
 	<screen name="InstallWizardSmallBox" position="center,center" size="520,185" resolution="1280,720">
 		<widget source="Title" render="Label" position="65,8" size="520,0" font="Regular;22" transparent="1"/>
@@ -122,8 +121,7 @@ class InstallWizardSmallBox(Screen, HelpableScreen):
 	</screen>"""
 
 	def __init__(self, session):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		self.setTitle(_("Small Box Preparation"))
 		self["actions"] = HelpableActionMap(self, ["SelectCancelActions"], {
 			"cancel": (self.close, _("Close the screen")),

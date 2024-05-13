@@ -413,7 +413,7 @@ void gPainter::setFont(gFont *font)
 	m_rc->submit(o);
 }
 
-void gPainter::renderText(const eRect &pos, const std::string &string, int flags, gRGB bordercolor, int border, int markedpos, int *offset)
+void gPainter::renderText(const eRect &pos, const std::string &string, int flags, gRGB bordercolor, int border, int markedpos, int *offset, int tabwidth)
 {
 	if (string.empty())
 		return;
@@ -430,6 +430,7 @@ void gPainter::renderText(const eRect &pos, const std::string &string, int flags
 	o.parm.renderText->bordercolor = bordercolor;
 	o.parm.renderText->markedpos = markedpos;
 	o.parm.renderText->offset = offset;
+	o.parm.renderText->tabwidth = tabwidth;
 	if (markedpos >= 0)
 		o.parm.renderText->scrollpos = eConfigManager::getConfigIntValue("config.usage.cursorscroll");
 	m_rc->submit(o);
@@ -856,7 +857,7 @@ void gDC::exec(const gOpcode *o)
 		if (markedpos != -1)
 			border = 0;
 		ASSERT(m_current_font);
-		para->setFont(m_current_font);
+		para->setFont(m_current_font, o->parm.renderText->tabwidth);
 
 		if (flags & gPainter::RT_ELLIPSIS)
 		{

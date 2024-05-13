@@ -1493,7 +1493,8 @@ def InitiVideomodeHotplug(**kwargs):
 	startHotplug()
 
 
-iAVSwitch = AVSwitchBase()  # This should be updated in Screens/InfoBarGenerics.py, Screens/VideoWizard.py and Screens/VideoMode.py.
+avSwitch = AVSwitchBase()
+iAVSwitch = avSwitch
 hotplug = None
 
 

@@ -39,6 +39,7 @@ public:
 	int getWrap() const { return m_wrap; }
 	int getNoWrap() const { return (m_wrap == 0) ? 1 : 0; } // DEPRECATED
 	void setAlphatest(int alphatest);
+	void setTabWidth(int width);
 
 	eSize calculateSize();
 	static eSize calculateTextSize(gFont *font, const std::string &string, eSize targetSize, bool nowrap = false);
@@ -59,6 +60,7 @@ private:
 	int m_text_border_width = 0;
 	int m_wrap = 1;
 	bool m_blend = false;
+	int m_tab_width = -1;
 
 	enum eLabelEvent
 	{

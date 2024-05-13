@@ -110,6 +110,7 @@ class ImageBackup(Screen):
 				imageList.append(ChoiceEntryComponent("", (_("Internal flash: %s %s as USB Recovery") % (DISTRO, DISTROVERSION), "slotCode", True)))
 			imageList.append(ChoiceEntryComponent("", (_("Internal flash:  %s %s ") % (DISTRO, DISTROVERSION), "slotCode", False)))
 		self["config"].setList(imageList)
+		index = 0
 		for index, item in enumerate(imageList):
 			if item[0][1] == str(currentImageSlot):
 				break

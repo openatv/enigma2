@@ -10,7 +10,6 @@ from Components.Label import Label
 from Components.MenuList import MenuList
 from Components.Sources.StaticText import StaticText
 from Screens.ChoiceBox import ChoiceBox
-from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.VirtualKeyBoard import VirtualKeyBoard
@@ -32,7 +31,7 @@ DEFAULT_INHIBIT_DEVICES = tuple(DEFAULT_INHIBIT_DEVICES)
 
 # Generic screen to select a path/filename combination.
 #
-class LocationBox(Screen, NumericalTextInput, HelpableScreen):
+class LocationBox(Screen, NumericalTextInput):
 	"""Simple Class similar to MessageBox / ChoiceBox but used to choose a directory/pathname combination"""
 
 	skin = """
@@ -66,9 +65,8 @@ class LocationBox(Screen, NumericalTextInput, HelpableScreen):
 	</screen>"""
 
 	def __init__(self, session, text="", filename="", currDir=None, bookmarks=None, windowTitle=_("Select Location"), minFree=None, autoAdd=False, editDir=False, inhibitDirs=None, inhibitMounts=None):
-		Screen.__init__(self, session, mandatoryWidgets=["fileheading", "quickselect"])
+		Screen.__init__(self, session, mandatoryWidgets=["fileheading", "quickselect"], enableHelp=True)
 		NumericalTextInput.__init__(self, handleTimeout=False, mode="SearchUpper")
-		HelpableScreen.__init__(self)
 		self.text = text
 		self.filename = filename  # Filename is a proposed filename to be created/used by the *calling* code, it is not created here!
 		self.bookmarks = bookmarks

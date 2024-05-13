@@ -574,6 +574,7 @@ void eListboxPythonServiceContent::setBuildArgs(int selected)
 	bool isStreamed = m_record_indicator_mode && isPlayable && checkServiceIsRecorded(ref,pNavigation::isStreaming);
 	bool isPseudoRecorded = m_record_indicator_mode && isPlayable && checkServiceIsRecorded(ref,pNavigation::isPseudoRecording);
 	bool marked = ((m_current_marked && isSelected) || (cursorValid() && isMarked(*m_service_cursor)));
+	bool isinBouquet = ref.flags & 8192;
 
 	// status bitmask
 	// 1 selected
@@ -584,8 +585,9 @@ void eListboxPythonServiceContent::setBuildArgs(int selected)
 	// 32 isStreamed
 	// 64 isPseudoRecorded
 	// 128 isFolder
+	// 256 isinBouquet
 
-    int status = (isSelected << 0) + (marked << 1) + (isMarker << 2) + (isPlayable << 3) + (isRecorded << 4) + (isStreamed << 5) + (isPseudoRecorded << 6) + (isFolder << 7);
+    int status = (isSelected << 0) + (marked << 1) + (isMarker << 2) + (isPlayable << 3) + (isRecorded << 4) + (isStreamed << 5) + (isPseudoRecorded << 6) + (isFolder << 7) + (isinBouquet << 8);
 
 	m_pArgs = PyTuple_New(2);
 	PyTuple_SET_ITEM(m_pArgs, 0, NEW_eServiceReference(ref));

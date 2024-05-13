@@ -11,7 +11,6 @@ from Components.MenuList import MenuList
 from Components.MultiContent import MultiContentEntryPixmapAlphaBlend, MultiContentEntryText
 from Components.Sources.StaticText import StaticText
 from Screens.ChoiceBox import ChoiceBox
-from Screens.HelpMenu import HelpableScreen
 from Screens.Screen import Screen
 from Tools.Directories import SCOPE_GUISKIN, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
@@ -29,7 +28,7 @@ class VirtualKeyboardList(MenuList):
 
 # For more information about using VirtualKeyboard see /doc/VIRTUALKEYBOARD.
 #
-class VirtualKeyboard(Screen, HelpableScreen):
+class VirtualKeyboard(Screen):
 	VKB_DONE_ICON = 0
 	VKB_ENTER_ICON = 1
 	VKB_OK_ICON = 2
@@ -44,8 +43,7 @@ class VirtualKeyboard(Screen, HelpableScreen):
 	TAB_GLYPH = "\u21E5"
 
 	def __init__(self, session, title=_("Virtual Keyboard Text:"), text="", maxSize=False, visibleWidth=False, type=Input.TEXT, currPos=None, allMarked=False, style=VKB_ENTER_ICON, windowTitle=None):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		self.setTitle(_("Virtual Keyboard") if windowTitle is None else windowTitle)
 		prompt = title  # Title should only be used for screen titles!
 		greenLabel, self.green = {

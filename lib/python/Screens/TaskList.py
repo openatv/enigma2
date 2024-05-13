@@ -4,12 +4,11 @@ from Components.ActionMap import HelpableActionMap
 from Components.Task import job_manager
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
-from Screens.HelpMenu import HelpableScreen
 from Screens.Screen import Screen
 from Screens.TaskView import TaskView
 
 
-class TaskList(Screen, HelpableScreen):
+class TaskList(Screen):
 	skin = ["""
 	<screen name="TaskList" title="Task List" position="center,center" size="700,350" resolution="1280,720">
 		<widget source="tasklist" render="Listbox" position="0,0" size="700,300">
@@ -46,8 +45,7 @@ class TaskList(Screen, HelpableScreen):
 	]
 
 	def __init__(self, session, tasklist):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		self.tasklist = tasklist
 		self.skinName = ["TaskList", "TaskListScreen"]
 		if not self.getTitle():

@@ -39,6 +39,7 @@ std::string urlDecode(const std::string &s);
 std::string string_to_hex(const std::string& input);
 std::string strip_non_graph(std::string s);
 std::vector<std::string> split(std::string s, const std::string& separator);
+void join_str(const std::vector<std::string>& v, char c, std::string& s);
 int strcasecmp(const std::string& s1, const std::string& s2);
 
 std::string formatNumber(size_t size, const std::string& suffix={}, bool binary = false);

@@ -70,7 +70,7 @@ int eLabel::event(int event, void *data, void *data2)
 		auto position = eRect(x, y, w, h);
 		/* if we don't have shadow, m_shadow_offset will be 0,0 */
 		auto shadowposition = eRect(position.x() - m_shadow_offset.x(), position.y() - m_shadow_offset.y(), position.width() - m_shadow_offset.x(), position.height() - m_shadow_offset.y());
-		painter.renderText(shadowposition, m_text, flags, m_text_border_color, m_text_border_width, m_pos, &m_text_offset);
+		painter.renderText(shadowposition, m_text, flags, m_text_border_color, m_text_border_width, m_pos, &m_text_offset, m_tab_width);
 
 		if (m_have_shadow_color)
 		{
@@ -79,7 +79,8 @@ int eLabel::event(int event, void *data, void *data2)
 			else
 				painter.setForegroundColor(m_foreground_color);
 			painter.setBackgroundColor(m_shadow_color);
-			painter.renderText(position, m_text, flags, gRGB(), 0, m_pos);
+			int m_dummy_offset = 0;
+			painter.renderText(position, m_text, flags, gRGB(), 0, m_pos, &m_dummy_offset, m_tab_width);
 		}
 
 		return 0;
@@ -181,6 +182,21 @@ void eLabel::clearForegroundColor()
 	{
 		m_have_foreground_color = 0;
 		invalidate();
+	}
+}
+
+void eLabel::setTabWidth(int width)
+{ 
+	if (width == -1)
+	{
+		eTextPara para(eRect(0, 0, 1000, 1000));
+		para.setFont(m_font);
+		para.renderString("W", 0);
+		m_tab_width = para.getBoundBox().size().width() * 8;
+	}
+	else
+	{
+		m_tab_width = width;
 	}
 }
 

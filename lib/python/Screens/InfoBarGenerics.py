@@ -16,7 +16,7 @@ from keyids import KEYFLAGS, KEYIDNAMES, KEYIDS
 from RecordTimer import AFTEREVENT, RecordTimer, RecordTimerEntry, findSafeRecordPath, parseEvent
 from ServiceReference import ServiceReference, getStreamRelayRef, hdmiInServiceRef, isPlayableForCur
 from Components.ActionMap import ActionMap, HelpableActionMap, HelpableNumberActionMap
-from Components.AVSwitch import iAVSwitch
+from Components.AVSwitch import avSwitch
 from Components.config import ConfigBoolean, ConfigClock, ConfigSelection, config, configfile
 from Components.Harddisk import findMountPoint, harddiskmanager
 from Components.Input import Input
@@ -36,7 +36,7 @@ from Components.Sources.Boolean import Boolean
 from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.StaticText import StaticText
 from Plugins.Plugin import PluginDescriptor
-from Screens.ChannelSelection import BouquetSelector, ChannelSelection, EpgBouquetSelector, PiPZapSelection, SilentBouquetSelector, service_types_tv
+from Screens.ChannelSelection import BouquetSelector, ChannelSelection, EpgBouquetSelector, PiPZapSelection, SilentBouquetSelector, service_types_tv, subservices_tv_ref
 from Screens.ChoiceBox import ChoiceBox
 from Screens.DateTimeInput import InstantRecordingEndTime
 from Screens.Dish import Dish
@@ -1324,6 +1324,8 @@ class InfoBarNumberZap:
 		if number == 0:
 			if isinstance(self, InfoBarPiP) and self.pipHandles0Action():
 				self.pipDoHandle0Action()
+			elif self.servicelist.history and self.servicelist.isSubservices():
+				self.servicelist.setHistoryPath()
 			elif len(self.servicelist.history) > 1 or config.usage.panicbutton.value:
 				self.checkTimeshiftRunning(self.recallPrevService)
 		else:
@@ -2062,6 +2064,10 @@ class InfoBarEPG:
 	def openBouquetEPG(self, bouquet=None, bouquets=None):
 		if bouquet:
 			self.StartBouquet = bouquet
+		elif bouquets:  # Current service not found in any bouquet so add all services
+			root = self.servicelist.getRoot()
+			if root != subservices_tv_ref:
+				bouquets.insert(0, (self.servicelist.getServiceName(root), root))
 		self.dlg_stack.append(self.session.openWithCallback(self.closed, EPGSelection, None, zapFunc=self.zapToService, EPGtype=self.EPGtype, StartBouquet=self.StartBouquet, StartRef=self.StartRef, bouquets=bouquets))
 
 	def closed(self, ret=False):
@@ -3573,16 +3579,7 @@ class InfoBarPiP:
 					self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
 					if BoxInfo.getItem("LCDMiniTVPiP") and config.lcd.modepip.value >= 1:
 						print("[InfoBarGenerics] [LCDMiniTV] enable PiP")
-						eDBoxLCD.getInstance().setLCDMode(config.lcd.modepip.value)
-						f = open("/proc/stb/vmpeg/1/dst_width", "w")
-						f.write("0")
-						f.close()
-						f = open("/proc/stb/vmpeg/1/dst_height", "w")
-						f.write("0")
-						f.close()
-						f = open("/proc/stb/vmpeg/1/dst_apply", "w")
-						f.write("1")
-						f.close()
+						eDBoxLCD.getInstance().setLCDMode(config.lcd.modepip.value, True)
 				else:
 					newservice = self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
 					if self.session.pip.playService(newservice):
@@ -3590,16 +3587,7 @@ class InfoBarPiP:
 						self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
 						if BoxInfo.getItem("LCDMiniTVPiP") and config.lcd.modepip.value >= 1:
 							print("[InfoBarGenerics] [LCDMiniTV] enable PiP")
-							eDBoxLCD.getInstance().setLCDMode(config.lcd.modepip.value)
-							f = open("/proc/stb/vmpeg/1/dst_width", "w")
-							f.write("0")
-							f.close()
-							f = open("/proc/stb/vmpeg/1/dst_height", "w")
-							f.write("0")
-							f.close()
-							f = open("/proc/stb/vmpeg/1/dst_apply", "w")
-							f.write("1")
-							f.close()
+							eDBoxLCD.getInstance().setLCDMode(config.lcd.modepip.value, True)
 					else:
 						self.lastPiPService = None
 						self.session.pipshown = False
@@ -4219,7 +4207,7 @@ class InfoBarAspectSelection:
 			aspectSwitchList = []
 			if config.av.aspectswitch.enabled.value:
 				for aspect in range(5):
-					aspectSwitchList.append((iAVSwitch.ASPECT_SWITCH_MSG[aspect], str(aspect + 100)))
+					aspectSwitchList.append((avSwitch.ASPECT_SWITCH_MSG[aspect], str(aspect + 100)))
 				aspectSwitchList.append(("--", ""))
 			aspectList = [
 				(_("Resolution"), "resolution"),
@@ -4234,7 +4222,7 @@ class InfoBarAspectSelection:
 				(_("16:9 Letterbox"), "6")
 			]
 		keys = ["green", "", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
-		aspect = iAVSwitch.getAspectRatioSetting()
+		aspect = avSwitch.getAspectRatioSetting()
 		selection = 0
 		for item in range(len(aspectList)):
 			if aspectList[item][1] == aspect:
@@ -4250,7 +4238,7 @@ class InfoBarAspectSelection:
 				elif aspect[1] == "resolution":
 					self.ExGreen_toggleGreen()
 				else:
-					iAVSwitch.setAspectRatio(int(aspect[1]))
+					avSwitch.setAspectRatio(int(aspect[1]))
 					self.ExGreen_doHide()
 		else:
 			self.ExGreen_doHide()
@@ -4271,7 +4259,7 @@ class InfoBarResolutionSelection:
 		resList.append((_("Video: ") + "%dx%d@%gHz" % (xRes, yRes, fps), ""))
 		resList.append(("--", ""))
 		# Do we need a new sorting with this way here or should we disable some choices?
-		videoModes = iAVSwitch.readPreferredModes(readOnly=True)
+		videoModes = avSwitch.readPreferredModes(readOnly=True)
 		videoModes = [x.replace("pal ", "").replace("ntsc ", "") for x in videoModes]  # Do we need this?
 		for videoMode in videoModes:
 			video = videoMode
@@ -4296,7 +4284,7 @@ class InfoBarResolutionSelection:
 				if videoMode[1] == "exit" or videoMode[1] == "" or videoMode[1] == "auto":
 					self.ExGreen_toggleGreen()
 				if videoMode[1] != "auto":
-					iAVSwitch.setVideoModeDirect(videoMode[1])
+					avSwitch.setVideoModeDirect(videoMode[1])
 					self.ExGreen_doHide()
 		else:
 			self.ExGreen_doHide()

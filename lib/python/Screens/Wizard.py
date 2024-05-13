@@ -13,13 +13,12 @@ from Components.SystemInfo import getBoxDisplayName
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
-from Screens.HelpMenu import HelpableScreen
 from Screens.Screen import Screen, ScreenSummary
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Tools.Directories import SCOPE_SKINS, resolveFilename
 
 
-class Wizard(Screen, HelpableScreen):
+class Wizard(Screen):
 	instance = None
 	buttonMap = {
 		"LEFT": "leftRightActions",
@@ -47,8 +46,7 @@ class Wizard(Screen, HelpableScreen):
 
 	# def __init__(self, session, xmlFile, showSteps=True, showStepSlider=True, showList=True, showConfig=True):
 	def __init__(self, session, showSteps=True, showStepSlider=True, showList=True, showConfig=True):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		Wizard.instance = self
 		self.showSteps = showSteps
 		self.showStepSlider = showStepSlider

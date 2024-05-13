@@ -17,7 +17,6 @@ from Components.UsageConfig import preferredTimerPath
 from Screens.ChoiceBox import ChoiceBox
 from Screens.DateTimeInput import EPGJumpTime
 from Screens.EventView import EventViewEPGSelect, EventViewSimple
-from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Screens.PictureInPicture import PictureInPicture
 from Screens.Screen import Screen
@@ -46,15 +45,14 @@ epgTypes = {
 }
 
 
-class EPGSelection(Screen, HelpableScreen):
+class EPGSelection(Screen):
 	EMPTY = 0
 	ADD_TIMER = 1
 	REMOVE_TIMER = 2
 	ZAP = 1
 
 	def __init__(self, session, service=None, zapFunc=None, eventid=None, bouquetChangeCB=None, serviceChangeCB=None, EPGtype=None, StartBouquet=None, StartRef=None, bouquets=None):
-		Screen.__init__(self, session)
-		HelpableScreen.__init__(self)
+		Screen.__init__(self, session, enableHelp=True)
 		self.setTitle(_("EPG Selection"))
 		self.zapFunc = zapFunc
 		self.serviceChangeCB = serviceChangeCB
@@ -1395,20 +1393,9 @@ class EPGSelection(Screen, HelpableScreen):
 		serviceref = cur[1]
 		if event is None:
 			return
-		eventid = event.getEventId()
-		refstr = ":".join(serviceref.ref.toString().split(":")[:11])
-		foundtimer = title = None
-		for timer in self.session.nav.RecordTimer.timer_list:
-			if ":".join(timer.service_ref.ref.toString().split(":")[:11]) == refstr and timer.eit == eventid:
-				foundtimer = timer
-				break
-		else:
-			if self.session.nav.isRecordTimerImageStandard:
-				eventBegin = event.getBeginTime()
-				eventDuration = event.getDuration()
-				x = self.session.nav.RecordTimer.isInTimer(eventid, eventBegin, eventDuration, refstr, True)
-				if x and x[1] in (2, 7, 12):
-					foundtimer = x[3]
+		serviceRefStr = serviceref.ref.toCompareString()
+		title = None
+		foundtimer = self.getRecordEvent(serviceRefStr, event)
 		if foundtimer:
 			timer = foundtimer
 			if timer.isRunning():
@@ -1667,6 +1654,20 @@ class EPGSelection(Screen, HelpableScreen):
 				self["more_button"].show()
 				self["more_button_sel"].hide()
 
+	def getRecordEvent(self, serviceRefStr, event):
+		recordEvent = None
+		eventID = event.getEventId()
+		for timer in [x for x in self.session.nav.RecordTimer.timer_list if x.eit == eventID]:
+			if timer.service_ref.ref.toCompareString() == serviceRefStr:
+				recordEvent = timer
+				break
+		else:
+			if self.session.nav.isRecordTimerImageStandard:
+				isInTimer = self.session.nav.RecordTimer.isInTimer(eventID, event.getBeginTime(), event.getDuration(), serviceRefStr, True)
+				if isInTimer and isInTimer[1] in (2, 7, 12):
+					recordEvent = isInTimer[3]
+		return recordEvent
+
 	def onSelectionChanged(self):
 		if self.type != EPG_TYPE_VERTICAL:
 			self.activeList = ""
@@ -1709,20 +1710,8 @@ class EPGSelection(Screen, HelpableScreen):
 				self.key_green_choice = self.EMPTY
 			return
 		serviceref = cur[1]
-		eventid = event.getEventId()
-		refstr = ":".join(serviceref.ref.toString().split(":")[:11])
-		isRecordEvent = False
-		for timer in self.session.nav.RecordTimer.timer_list:
-			if ":".join(timer.service_ref.ref.toString().split(":")[:11]) == refstr and timer.eit == eventid:
-				isRecordEvent = True
-				break
-		else:
-			if self.session.nav.isRecordTimerImageStandard:
-				eventBegin = event.getBeginTime()
-				eventDuration = event.getDuration()
-				x = self.session.nav.RecordTimer.isInTimer(eventid, eventBegin, eventDuration, refstr)
-				if x and x[1] in (2, 7, 12):
-					isRecordEvent = True
+		serviceRefStr = serviceref.ref.toCompareString()
+		isRecordEvent = self.getRecordEvent(serviceRefStr, event)
 		if isRecordEvent and self.key_green_choice != self.REMOVE_TIMER:
 			self.setTimerButtonText(_("Change Timer"))
 			self.key_green_choice = self.REMOVE_TIMER

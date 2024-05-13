@@ -47,7 +47,7 @@ public:
 	void setStyle(eWindowStyle *style) { m_style = style; }
 
 	virtual void setBackgroundColor(const gRGB &col);
-	void clearBackgroundColor();
+	virtual void clearBackgroundColor() { m_have_background_color = false; }
 
 	virtual void setBorderWidth(int width) { setWidgetBorderWidth(width); }
 	virtual void setBorderColor(const gRGB &color) { setWidgetBorderColor(color); }
@@ -62,8 +62,8 @@ public:
 			invalidate(); 
 		}
 
-	void setPadding(const eRect &padding) { m_padding = padding; }
-	eRect getPadding() { return m_padding; }
+	virtual void setPadding(const eRect &padding) { m_padding = padding; }
+	virtual eRect getPadding() { return m_padding; }
 
 	void setZPosition(int z);
 	void setTransparent(int transp);

@@ -4,7 +4,6 @@ from enigma import eActionMap
 
 from keyids import KEYIDS
 from Components.config import config
-from Screens.Screen import Screen
 from Tools.Directories import fileReadXML
 
 MODULE_NAME = __name__.split(".")[-1]
@@ -127,7 +126,7 @@ def parseKeymap(filename, context, actionMapInstance, device, domKeys):
 				unmapDict.update({(context, keyName, unmap): filename})
 
 
-def getKeyId(id):  # FIME Remove keytranslation.xml.
+def getKeyId(id):
 	if len(id) == 1:
 		keyid = ord(id) | 0x8000
 	elif id[0] == "\\":
@@ -145,6 +144,25 @@ def getKeyId(id):  # FIME Remove keytranslation.xml.
 	return keyid
 
 
+def parseTrans(filename, actionmap, device, keys):
+ 	for toggle in keys.findall("toggle"):
+ 		get_attr = toggle.attrib.get
+ 		toggle_key = get_attr("from")
+ 		toggle_key = getKeyId(toggle_key)
+ 		actionmap.bindToggle(filename, device, toggle_key)
+ 	for key in keys.findall("key"):
+ 		get_attr = key.attrib.get
+ 		keyin = get_attr("from")
+ 		keyout = get_attr("to")
+ 		toggle = get_attr("toggle") or "0"
+ 		assert keyin, f"[ActionMap] {filename}: must specify key to translate from '{keyin}'"
+ 		assert keyout, f"[ActionMap] {filename}: must specify key to translate to '{keyout}'"
+ 		keyin = getKeyId(keyin)
+ 		keyout = getKeyId(keyout)
+ 		toggle = int(toggle)
+ 		actionmap.bindTranslation(filename, device, keyin, keyout, toggle)
+
+
 def loadKeymap(filename, replace=False):
 	actionMapInstance = eActionMap.getInstance()
 	domKeymap = fileReadXML(filename, source=MODULE_NAME)
@@ -160,6 +178,9 @@ def loadKeymap(filename, replace=False):
 				parseKeymap(filename, context, actionMapInstance, "generic", domMap)
 				for domDevice in domMap.findall("device"):
 					parseKeymap(filename, context, actionMapInstance, domDevice.attrib.get("name"), domDevice)
+		for domMap in domKeymap.findall("translate"):
+			for domDevice in domMap.findall("device"):
+				parseTrans(filename, actionMapInstance, domDevice.attrib.get("name"), domDevice)
 
 
 def removeKeymap(filename):
@@ -177,7 +198,7 @@ class ActionMap:
 		self.execActive = False
 		self.enabled = True
 		self.legacyBound = False
-		self.parentScreen = parentScreen.__class__.__name__ if parentScreen and isinstance(parentScreen, Screen) else "N/A"
+		self.parentScreen = parentScreen.__class__.__name__ if parentScreen and [x for x in parentScreen.__class__.__mro__ if x.__name__ == "Screen"] else "N/A"
 		undefinedAction = list(self.actions.keys())
 		leftActionDefined = "left" in undefinedAction
 		rightActionDefined = "right" in undefinedAction
@@ -297,7 +318,7 @@ class NumberActionMap(ActionMap):
 # functions.  The classic ActionMap is then passed to the
 # ActionMapconstructor,	the collected help strings (with correct
 # context, action) is added to the screen's "helpList", which will
-# be picked up by the "HelpableScreen".
+# be picked up by the "Screen".
 #
 class HelpableActionMap(ActionMap):
 	def __init__(self, parent, contexts, actions=None, prio=0, description=None):

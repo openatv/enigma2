@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-18 19:03+0000\n"
+"POT-Creation-Date: 2024-05-05 12:54+0000\n"
 "PO-Revision-Date: 2024-02-19 11:02+0000\n"
 "Last-Translator: \"Mr.Servo\" <mrservo@gmx.de>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fr/>\n"
@@ -2652,6 +2652,9 @@ msgstr "Démarrage Mise au point auto ..."
 
 msgid "Auto install log"
 msgstr "Journal d’installation automatique"
+
+msgid "Auto multi-selection"
+msgstr ""
 
 msgid "Auto shut down"
 msgstr ""
@@ -5940,6 +5943,12 @@ msgstr "Description"
 msgid "Deselect"
 msgstr "Désélectionner"
 
+msgid "Deselect all"
+msgstr ""
+
+msgid "Deselect all lines"
+msgstr ""
+
 msgid "Deselect all related files"
 msgstr ""
 
@@ -8036,6 +8045,12 @@ msgstr ""
 msgid "File Commander Move"
 msgstr ""
 
+msgid "File Commander Navigation Actions"
+msgstr ""
+
+msgid "File Commander Selection Actions"
+msgstr ""
+
 msgid "File Commander Settings"
 msgstr ""
 
@@ -9294,9 +9309,6 @@ msgstr "Si ce paramètre est réglé sur 'Yes' ; les mêmes commandes seront env
 msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
 msgstr ""
 
-msgid "If set to 'yes', enable autorecord for automatically background timeshift"
-msgstr "Si mis à 'oui', active l'enregistrement auto (autorecord) pour la PauseDirect automatique en tâche de fond"
-
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Si la solution de contournement de la mise en veille profonde est activée, attendez que l'heure du système soit synchronisée. Selon les besoins, le réveil du dispositif se poursuivra après un maximum de 2 minutes."
 
@@ -10197,6 +10209,9 @@ msgstr "À la gauche du nom du service"
 
 msgid "Left, wrapped"
 msgstr "Gauche, enveloppé"
+
+msgid "Legacy mode"
+msgstr ""
 
 msgid "Leisure hobbies"
 msgstr "Passe-temps/loisirs"
@@ -12892,12 +12907,6 @@ msgstr "lire dans la fenêtre principale"
 msgid "Play In PiP Window"
 msgstr "Lire en incrustation d'image"
 
-msgid "Play service with Stream Relay"
-msgstr ""
-
-msgid "Play service without Stream Relay"
-msgstr ""
-
 msgid "Play Service With Stream Relay"
 msgstr ""
 
@@ -12953,6 +12962,12 @@ msgid "Play selected service in a PiP window"
 msgstr ""
 
 msgid "Play selected service on the main screen"
+msgstr ""
+
+msgid "Play service with Stream Relay"
+msgstr ""
+
+msgid "Play service without Stream Relay"
 msgstr ""
 
 msgid "Play the audio file"
@@ -14582,6 +14597,9 @@ msgstr ""
 msgid "Reset and renumerate title names"
 msgstr "Réinitialiser et renuméroter les titres"
 
+msgid "Reset entries to their default values"
+msgstr ""
+
 msgid "Reset executable mode (644)"
 msgstr ""
 
@@ -15402,6 +15420,9 @@ msgstr ""
 msgid "Select 'Yes' to continuously display all images in a loop, or select 'No' to display all images once and then stop."
 msgstr ""
 
+msgid "Select 'Yes' to disable multi-selection mode after each operation. Select 'No' to leave multi-selection mode active and the selections unchanged."
+msgstr ""
+
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr "Si mis à 'oui' cela affichera une petite fenêtre TV dans l'EPG."
 
@@ -15567,6 +15588,9 @@ msgstr ""
 msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
 msgstr ""
 
+msgid "Select 'Yes' to use legacy navigation where CH+/- swaps the active column. Select 'No' to use the newer unified navigation option for consistent navigation with other screens where LEFT/RIGHT swaps the active column and CH+/- pages up and down the list."
+msgstr ""
+
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Si défini à ‘oui’ les valeurs du signal (SNR,etc) seront calculés depuis l’API v3. Ceci est une ancienne version de l’API qui a maintenant été remplacée."
 
@@ -15718,6 +15742,12 @@ msgstr "Choisir une action pour le timer %s :"
 
 msgid "Select additional files to backup"
 msgstr "Choisir les fichiers additionnels à sauvegarder"
+
+msgid "Select all"
+msgstr ""
+
+msgid "Select all lines"
+msgstr ""
 
 msgid "Select all related files"
 msgstr ""
@@ -16602,6 +16632,9 @@ msgstr "Définir de défilement du texte sur la face avant, cela est utilisé pa
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Définir de défilement du texte sur la face avant."
 
+msgid "Set the style of the channel list."
+msgstr ""
+
 msgid "Set the time before checking video source for resolution information."
 msgstr "Définir le temps avant vérification de l'information de résolution de la vidéo source."
 
@@ -16651,6 +16684,9 @@ msgstr ""
 msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
 msgstr ""
 
+msgid "Set to 'Yes', to enable automatic recording of the background timeshift buffer."
+msgstr "Si mis à 'oui', active l'enregistrement auto (autorecord) pour la PauseDirect automatique en tâche de fond"
+
 msgid "Set to the desired primetime (hour)."
 msgstr "Définir le temps du primetime (heure)."
 
@@ -16692,9 +16728,6 @@ msgstr "Paramètres"
 
 msgid "Settings mode"
 msgstr "Mode de configuration"
-
-msgid "Settings..."
-msgstr "Paramètres…"
 
 msgid "Setup"
 msgstr "Paramétrer"
@@ -17130,9 +17163,6 @@ msgstr ""
 msgid "Show Subservices Of Active Service"
 msgstr ""
 
-msgid "Show subservices of the active service"
-msgstr ""
-
 msgid "Show System Plugin packages"
 msgstr ""
 
@@ -17509,6 +17539,9 @@ msgid "Show subservices"
 msgstr ""
 
 msgid "Show subservices *"
+msgstr ""
+
+msgid "Show subservices of the active service"
 msgstr ""
 
 msgid "Show subtitle quick menu"
@@ -18521,6 +18554,9 @@ msgstr ""
 msgid "Stream Relay URL"
 msgstr ""
 
+msgid "Stream Relay is active, please switch to a none Stream Relay channel."
+msgstr ""
+
 msgid "Stream Relay port"
 msgstr ""
 
@@ -18570,6 +18606,9 @@ msgstr "DLNA stricte"
 
 msgid "Stripes"
 msgstr "Bandes Verticales"
+
+msgid "Style"
+msgstr ""
 
 msgid "Style:"
 msgstr "Le style :"
@@ -18763,6 +18802,9 @@ msgstr "Basculer vers le mode HDMI-IN"
 msgid "Switch to Radio"
 msgstr "Basculer vers Radio"
 
+msgid "Switch to Radio mode"
+msgstr "Basculer en mode radio"
+
 msgid "Switch to TV"
 msgstr "Basculer vers TV"
 
@@ -18795,9 +18837,6 @@ msgstr "Basculer vers la chaîne précédente"
 
 msgid "Switch to previous channel in history"
 msgstr "Basculer vers la chaîne précédente dans l'historique"
-
-msgid "Switch to Radio mode"
-msgstr "Basculer en mode radio"
 
 msgid "Switch to the available RADIO services"
 msgstr ""
@@ -20169,6 +20208,9 @@ msgstr "Bascule les nouvelles insertions de texte avant ou écrase le texte exis
 msgid "Toggle selection of the current tag"
 msgstr "Basculer la sélection de la balise courante"
 
+msgid "Toggle selections"
+msgstr ""
+
 msgid "Toggle service name display"
 msgstr "Basculer l'affichage du nom du service"
 
@@ -20954,6 +20996,9 @@ msgstr "Utiliser l'interface"
 
 msgid "Use key map *"
 msgstr "Sélectionner le keymap à utiliser *"
+
+msgid "Use legacy navigation"
+msgstr ""
 
 msgid "Use logarithmic steps"
 msgstr ""
@@ -23522,6 +23567,9 @@ msgstr "Oui (garder feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Settings..."
+#~ msgstr "Paramètres…"
 
 #~ msgid "Mins"
 #~ msgstr "Mins"
