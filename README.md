@@ -1,10 +1,10 @@
-# openATV 7.3
+# openATV 7.4
 
 ## Build status
 
 [![enigma2 build](https://github.com/openatv/enigma2/actions/workflows/enigma2.yml/badge.svg)](https://github.com/openatv/enigma2/actions/workflows/enigma2.yml)
 
-[Active Build Status](https://images.mynonpublic.com/openatv/build_status_arm_73.html "Active Build Status") - shows which box is currently being built 
+[Active Build Status](https://images.mynonpublic.com/openatv/build_status_arm_74.html "Active Build Status") - shows which box is currently being built 
 
 ## SonarCloud status
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=openatv_enigma2&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=openatv_enigma2)
@@ -22,7 +22,7 @@
 
 ## Current OS
 
-> Ubuntu 23.10 (Kernel 6.5.0) 64-bit
+> Ubuntu 24.04 LTS (GNU/Linux 6.8.0-31-generic x86_64)
 
 ## Hardware requirements
 
@@ -36,8 +36,8 @@
 
 ## Git repositories involved
 
-* [OE Alliance Core](https://github.com/oe-alliance/oe-alliance-core/tree/5.3 "OE Alliance Core") - Core framework
-* [openATV 7.3](https://github.com/openatv/enigma2/tree/master "openATV 7.3") - openATV core
+* [OE Alliance Core](https://github.com/oe-alliance/oe-alliance-core/tree/5.4 "OE Alliance Core") - Core framework
+* [openATV 7.3](https://github.com/openatv/enigma2/tree/master "openATV 7.4") - openATV core
 * [MetrixHD](https://github.com/openatv/MetrixHD/tree/master "openATV Skin") - Default openATV skin
 * ...
 
@@ -79,6 +79,13 @@
     sudo sysctl -n -w fs.inotify.max_user_watches=524288
     ```
 
+1. Disable apparmor profile
+
+    ```sh
+    sudo apparmor_parser -R /etc/apparmor.d/unprivileged_userns
+
+    sudo  mv /etc/apparmor.d/unprivileged_userns /etc/apparmor.d/disable
+
 1. Add new user `openatvbuilder`
 
     ```sh
@@ -91,22 +98,22 @@
     su - openatvbuilder
     ```
 
-1. Create folder openatv7.3
+1. Create folder openatv7.4
 
     ```sh
-    mkdir -p openatv7.3
+    mkdir -p openatv7.4
     ```
 
-1. Switch to folder openatv7.3
+1. Switch to folder openatv7.4
 
     ```sh
-    cd openatv7.3
+    cd openatv7.4
     ```
 
 1. Clone oe-alliance repository
 
     ```sh
-    git clone https://github.com/oe-alliance/build-enviroment.git -b 5.3
+    git clone https://github.com/oe-alliance/build-enviroment.git -b 5.4
     ```
 
 1. Switch to folder build-enviroment
