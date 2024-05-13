@@ -1921,8 +1921,8 @@ class TemplateParser():
 			print(items)
 		return items
 
-	def processNone(self, widget, context):
-		pass
+	def processNone(self, widget, context):  # This is a dummy method for the XML template tag parser.
+		pass  # There is nothing to do in this case.
 
 
 class SkinError(Exception):
@@ -2082,7 +2082,7 @@ def readSkin(screen, skin, names, desktop):
 				try:
 					converterClass = my_import(".".join(("Components", "Converter", "XmlMultiContent"))).__dict__.get("XmlMultiContent")
 				except ImportError:
-					raise SkinError(f"Converter XmlMultiContent not found")
+					raise SkinError("Converter XmlMultiContent not found")
 				connection = None
 				for element in source.downstream_elements:
 					if isinstance(element, converterClass):  # and element.converter_arguments == "widgetTemplates":
