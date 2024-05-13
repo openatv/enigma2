@@ -37,7 +37,7 @@
 ## Git repositories involved
 
 * [OE Alliance Core](https://github.com/oe-alliance/oe-alliance-core/tree/5.4 "OE Alliance Core") - Core framework
-* [openATV 7.3](https://github.com/openatv/enigma2/tree/master "openATV 7.4") - openATV core
+* [openATV 7.4](https://github.com/openatv/enigma2/tree/master "openATV 7.4") - openATV core
 * [MetrixHD](https://github.com/openatv/MetrixHD/tree/master "openATV Skin") - Default openATV skin
 * ...
 
@@ -84,7 +84,7 @@
     ```sh
     sudo apparmor_parser -R /etc/apparmor.d/unprivileged_userns
 
-    sudo  mv /etc/apparmor.d/unprivileged_userns /etc/apparmor.d/disable
+    sudo mv /etc/apparmor.d/unprivileged_userns /etc/apparmor.d/disable
 
 1. Add new user `openatvbuilder`
 
