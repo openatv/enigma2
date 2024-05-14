@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-05 12:54+0000\n"
+"POT-Creation-Date: 2024-05-08 12:32+0000\n"
 "PO-Revision-Date: 2022-12-04 20:43+0000\n"
 "Last-Translator: rimasx <riks_12@hot.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -4091,6 +4091,12 @@ msgstr "Määra, mis nimega EPG fail %s %s välja lülitamisel salvestatakse. Ni
 msgid "Choose the option to correct invalid EPG data."
 msgstr ""
 
+msgid "Choose the skin to be used for the GUI interface. Press 'GREEN' to activate the skin."
+msgstr ""
+
+msgid "Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin."
+msgstr ""
+
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr ""
 
@@ -7273,9 +7279,6 @@ msgstr ""
 msgid "Enigma2 revision"
 msgstr ""
 
-msgid "Enigma2 skin selector"
-msgstr "Enigma2 kujunduse valik"
-
 msgid "Enigma2 version"
 msgstr ""
 
@@ -8597,16 +8600,12 @@ msgstr ""
 msgid "GStreamer version"
 msgstr ""
 
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to Restart the GUI now?"
+msgid "GUI Skin *"
 msgstr ""
-"Kujunduse jõustamiseks tuleb kasutajaliides taaskäivitada\n"
-"Kas teha seda kohe?"
 
 msgid ""
 "GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
+"Do you want to Restart the GUI now?"
 msgstr ""
 "Kujunduse jõustamiseks tuleb kasutajaliides taaskäivitada\n"
 "Kas teha seda kohe?"
@@ -10250,11 +10249,11 @@ msgstr "LAN ühendus"
 msgid "LCD Skin Settings"
 msgstr "LCD kujunduse seaded"
 
-msgid "LCD SkinSelector"
-msgstr "LCD kujunduse valik"
-
 msgid "LCD scroll speed"
 msgstr "Näidiku kerimise kiirus"
+
+msgid "LCD/Front panel *"
+msgstr ""
 
 msgid "LCN plugin for DVB-T/T2 services"
 msgstr "LCN plugin DVB-T/T2 kanalitele"
@@ -18287,18 +18286,14 @@ msgstr ""
 msgid "Skin Packages"
 msgstr ""
 
-#
-msgid "Skin Selector"
-msgstr "Kujunduse valik"
-
 msgid "Skin Setting"
 msgstr "Kujunduse seaded"
 
 msgid "Skin Settings"
 msgstr "Kujunduse valik"
 
-msgid "Skin setup"
-msgstr "Kujunduse valik"
+msgid "SkinSelection"
+msgstr ""
 
 msgid "SkinSelector"
 msgstr "Kujunduse valik"
@@ -20277,16 +20272,16 @@ msgstr "See valik määrab videoväljundi oleku (või lahutuse)."
 msgid "This option configures you can set Auto Volume Level."
 msgstr "Selles valikus saad määrata automaatse helitugevuse."
 
-msgid "This option lets you adjust the 3D depth."
+msgid "This option lets you adjust the 3D depth of the OSD."
 msgstr "See valik võimaldab seadistada 3D sügavust"
 
 msgid "This option lets you adjust the transparency of the user interface"
 msgstr "See valik võimaldab seadistada ekraanigraafika läbipaistvust"
 
-msgid "This option lets you choose the 3D mode."
+msgid "This option lets you choose the 3D mode of the OSD."
 msgstr "See valik võimaldab valida 3D režiimi"
 
-msgid "This option lets you show the option in the Extension Menu screen."
+msgid "This option lets you show the 3D OSD menu option in the Extension Menu screen."
 msgstr "Siin saab lubada valiku näitamise laienduste menüüs"
 
 msgid "This option moves the PVR status display from a separate window into the MoviePlayer InfoBar."
@@ -24197,6 +24192,26 @@ msgstr "Jah (säilita fiidid)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Enigma2 skin selector"
+#~ msgstr "Enigma2 kujunduse valik"
+
+#~ msgid ""
+#~ "GUI needs a restart to apply a new skin\n"
+#~ "Do you want to restart the GUI now?"
+#~ msgstr ""
+#~ "Kujunduse jõustamiseks tuleb kasutajaliides taaskäivitada\n"
+#~ "Kas teha seda kohe?"
+
+#~ msgid "LCD SkinSelector"
+#~ msgstr "LCD kujunduse valik"
+
+#
+#~ msgid "Skin Selector"
+#~ msgstr "Kujunduse valik"
+
+#~ msgid "Skin setup"
+#~ msgstr "Kujunduse valik"
 
 #~ msgid "Settings..."
 #~ msgstr "Seaded"

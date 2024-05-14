@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-05 12:54+0000\n"
+"POT-Creation-Date: 2024-05-08 12:32+0000\n"
 "PO-Revision-Date: 2023-06-04 19:16+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -4079,6 +4079,12 @@ msgstr "Pasirinkite failo, kuriame bus EPG duomenys, pavadinimą, kai %s %s išj
 msgid "Choose the option to correct invalid EPG data."
 msgstr "Pasirinkite parinktį kad ištaisyti neteisingus EPG duomenis."
 
+msgid "Choose the skin to be used for the GUI interface. Press 'GREEN' to activate the skin."
+msgstr ""
+
+msgid "Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin."
+msgstr ""
+
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr "Pasirinkite stilių / tvarką, kuria elementai rodomi žinyno languose."
 
@@ -7200,9 +7206,6 @@ msgstr "Enigma2 informacija"
 msgid "Enigma2 revision"
 msgstr "Enigma2 laida"
 
-msgid "Enigma2 skin selector"
-msgstr "Enigma2 temos parinkimas"
-
 msgid "Enigma2 version"
 msgstr "Enigma2 versija"
 
@@ -8500,19 +8503,15 @@ msgstr "GStreamer derinimo žurnalo lygis *"
 msgid "GStreamer version"
 msgstr "GStreamer versija"
 
+msgid "GUI Skin *"
+msgstr ""
+
 msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to Restart the GUI now?"
 msgstr ""
 "Reikia paleisti iš naujo grafinę aplinką ,kad patvirtinti naują temą\n"
 "Jūs norite paleisti iš naujo dabar?"
-
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
-msgstr ""
-"Naujos temos aktyvavimui grafinę aplinką reikia paleisti iš naujo\n"
-"Ar paleisti iš naujo grafinę aplinką dabar?"
 
 msgid "Gabon"
 msgstr "Gabonas"
@@ -10100,11 +10099,11 @@ msgstr "Laidinis tinklas"
 msgid "LCD Skin Settings"
 msgstr "LCD temos parametrai"
 
-msgid "LCD SkinSelector"
-msgstr "LCD išdėstymo parinkimas"
-
 msgid "LCD scroll speed"
 msgstr "LCD užrašų slinkties greitis"
+
+msgid "LCD/Front panel *"
+msgstr ""
 
 msgid "LCN plugin for DVB-T/T2 services"
 msgstr "LCN priedas DVB-T/T2 kanalams"
@@ -17856,17 +17855,14 @@ msgstr ""
 msgid "Skin Packages"
 msgstr ""
 
-msgid "Skin Selector"
-msgstr "Temos parinkėjas"
-
 msgid "Skin Setting"
 msgstr "Temos nustatyme"
 
 msgid "Skin Settings"
 msgstr "Temos parametrai"
 
-msgid "Skin setup"
-msgstr "Pasirinkite temą"
+msgid "SkinSelection"
+msgstr ""
 
 msgid "SkinSelector"
 msgstr "Temos parinkėjas"
@@ -19800,16 +19796,16 @@ msgstr "Ši parinktis leidžia nustatyti vaizdo išvesties režimą (arba rezoli
 msgid "This option configures you can set Auto Volume Level."
 msgstr "Ši parinktis leidžia nustatyti galimą automatinį garsumo lygį."
 
-msgid "This option lets you adjust the 3D depth."
+msgid "This option lets you adjust the 3D depth of the OSD."
 msgstr "Ši parinktis leidžia nustatyti 3D gylį"
 
 msgid "This option lets you adjust the transparency of the user interface"
 msgstr "Ši parinktis leidžia nustatyti skaidrumą vartotojo sąsajoje"
 
-msgid "This option lets you choose the 3D mode."
+msgid "This option lets you choose the 3D mode of the OSD."
 msgstr "Ši parinktis leidžia pasirinkti 3D režimą"
 
-msgid "This option lets you show the option in the Extension Menu screen."
+msgid "This option lets you show the 3D OSD menu option in the Extension Menu screen."
 msgstr "Ši parinktis leidžia rodyti parinktį plėtinio ekrane."
 
 msgid "This option moves the PVR status display from a separate window into the MoviePlayer InfoBar."
@@ -23625,6 +23621,25 @@ msgstr "taip (išsaugoti šaltinius)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enigma2 skin selector"
+#~ msgstr "Enigma2 temos parinkimas"
+
+#~ msgid ""
+#~ "GUI needs a restart to apply a new skin\n"
+#~ "Do you want to restart the GUI now?"
+#~ msgstr ""
+#~ "Naujos temos aktyvavimui grafinę aplinką reikia paleisti iš naujo\n"
+#~ "Ar paleisti iš naujo grafinę aplinką dabar?"
+
+#~ msgid "LCD SkinSelector"
+#~ msgstr "LCD išdėstymo parinkimas"
+
+#~ msgid "Skin Selector"
+#~ msgstr "Temos parinkėjas"
+
+#~ msgid "Skin setup"
+#~ msgstr "Pasirinkite temą"
 
 #~ msgid "Settings..."
 #~ msgstr "Nustatymai..."

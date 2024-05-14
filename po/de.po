@@ -16,16 +16,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-05 12:54+0000\n"
-"PO-Revision-Date: 2024-05-08 12:26+0000\n"
-"Last-Translator: jbleyel <jbleyel@gmx.net>\n"
+"POT-Creation-Date: 2024-05-08 12:32+0000\n"
+"PO-Revision-Date: 2024-05-13 16:50+0000\n"
+"Last-Translator: VfBFan <VfBFan@users.noreply.hosted.weblate.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5.4-rc\n"
+"X-Generator: Weblate 5.5.5\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1180,7 +1180,7 @@ msgstr "%s %s erweiterte Fernbedienung (nativ)"
 
 #, python-format
 msgid "%s %s front panel"
-msgstr "%s %s Frontpanel"
+msgstr "%s %s Display"
 
 #, python-format
 msgid "%s %s ir keyboard"
@@ -4270,6 +4270,12 @@ msgstr "Dateinamen für die EPG-Daten auswählen, wenn die %s %s ausgeschaltet w
 
 msgid "Choose the option to correct invalid EPG data."
 msgstr "Option zur Korrektur ungültiger EPG-Daten auswählen."
+
+msgid "Choose the skin to be used for the GUI interface. Press 'GREEN' to activate the skin."
+msgstr "Skin für das GUI (Graphical User Interface - Die grafische Benutzeroberfläche) auswählen und mit GRÜN aktivieren."
+
+msgid "Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin."
+msgstr "Displayskin auswählen und mit GRÜN aktivieren."
 
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr "Auswählen, wie die Beschreibung der Fernbedienungstasten-Hilfe angezeigt werden soll."
@@ -7562,9 +7568,6 @@ msgstr "Enigma2-Informationen"
 msgid "Enigma2 revision"
 msgstr "Enigma2-Revision"
 
-msgid "Enigma2 skin selector"
-msgstr "Enigma2-Skinauswahl"
-
 msgid "Enigma2 version"
 msgstr "Enigma2-Version"
 
@@ -8935,17 +8938,12 @@ msgstr "GStreamer Debug-Log Meldungstyp *"
 msgid "GStreamer version"
 msgstr "GStreamer-Version"
 
+msgid "GUI Skin *"
+msgstr "GUI-Skin *"
+
 msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to Restart the GUI now?"
-msgstr ""
-"Zur Übernahme des Skins muss die Benutzeroberfläche neu gestartet werden.\n"
-"Jetzt neu starten?"
-
-#
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
 msgstr ""
 "Zur Übernahme des Skins muss die Benutzeroberfläche neu gestartet werden.\n"
 "Jetzt neu starten?"
@@ -10608,11 +10606,11 @@ msgstr "LAN-Verbindung"
 msgid "LCD Skin Settings"
 msgstr "Displayskinauswahl"
 
-msgid "LCD SkinSelector"
-msgstr "Displayskinauswahl"
-
 msgid "LCD scroll speed"
 msgstr "Display-Scrollgeschwindigkeit"
+
+msgid "LCD/Front panel *"
+msgstr "Display *"
 
 msgid "LCN plugin for DVB-T/T2 services"
 msgstr "LCN-Plugin für DVB-T/T2-Dienste"
@@ -11262,7 +11260,7 @@ msgid "Manage and explore directories and files."
 msgstr "Dateien und Verzeichnisse durchsuchen und verwalten."
 
 msgid "Manage network mounts"
-msgstr "Netzwerklaufwerke verwalten"
+msgstr "Netzlaufwerke verwalten"
 
 #, python-format
 msgid "Manage the highlighted %s"
@@ -12313,7 +12311,7 @@ msgstr "Netzwerkeinstellungen"
 
 # MovieSelection.py
 msgid "Network mounts"
-msgstr "Netzwerklaufwerke"
+msgstr "Netzlaufwerke"
 
 msgid "Network name (SSID)"
 msgstr "Netzwerkname (SSID)"
@@ -15323,19 +15321,19 @@ msgid "Remove a mark"
 msgstr "Markierung entfernen"
 
 msgid "Remove all bouquet/tuning data"
-msgstr "Lösche alle Bouquet/Sender Daten"
+msgstr "Lösche alle Bouquet/Sender-Daten"
 
 msgid "Remove all cuts and marks"
 msgstr "Alle Markierungen und Schnitte entfernen"
 
 msgid "Remove all network mount data"
-msgstr "Lösche alle Netzwerk-Mount Daten"
+msgstr "Lösche alle Netzlaufwerk-Daten"
 
 msgid "Remove all other data"
 msgstr "Alle anderen Daten löschen"
 
 msgid "Remove all plugin setting data"
-msgstr "Lösche alle Plugin-Einstellungs Daten"
+msgstr "Lösche alle Plugin-Einstellungsdaten"
 
 msgid "Remove all resume point data"
 msgstr "Lösche alle Aufnahme-Markierungsdaten"
@@ -15344,13 +15342,13 @@ msgid "Remove all settings data"
 msgstr "Lösche alle Einstellungen"
 
 msgid "Remove all skin data"
-msgstr "Lösche alle Skin Daten"
+msgstr "Lösche alle Skin-Daten"
 
 msgid "Remove all timer data"
 msgstr "Lösche alle Timer"
 
 msgid "Remove all user interface data"
-msgstr "Lösche alle GUI Daten"
+msgstr "Lösche alle GUI-Daten"
 
 #
 msgid "Remove completed timers after"
@@ -16497,7 +16495,7 @@ msgid "Select 'Yes' to remove all media player resume data. Selecting this optio
 msgstr "'Ja' auswählen, um alle Fortsetzungsdaten des Mediaplayers zu entfernen. Es werden die Daten entfernt, mit denen die Wiedergabe von Mediendateien an der Stelle fortgesetzt werden kann, an der sie zuletzt gestoppt wurde. Die Wiedergabeposition von Aufnahmen ist davon nicht betroffen."
 
 msgid "Select 'Yes' to remove all network mount data. Selecting this option will remove all network data including automounts and network connection data including connection accounts and passwords. This could cause some Enigma2 functions to fail if they are configured to use these network resources."
-msgstr "'Ja' auswählen, um alle Netzwerk-Mount-Daten zu entfernen. Es werden alle Netzwerkdaten einschließlich Autoaktivierungen und Netzwerkverbindungsdaten inklusive Verbindungskonten und Passwörter entfernt. Dies kann dazu führen, dass einige Enigma2-Funktionen fehlschlagen, wenn sie für die Verwendung dieser Netzwerkressourcen konfiguriert sind."
+msgstr "'Ja' auswählen, um alle Netzlaufwerk-Daten zu entfernen. Es werden alle Netzwerkdaten einschließlich Autoaktivierungen und Netzwerkverbindungsdaten inklusive Verbindungskonten und Passwörter entfernt. Dies kann dazu führen, dass einige Enigma2-Funktionen fehlschlagen, wenn sie für die Verwendung dieser Netzwerkressourcen konfiguriert sind."
 
 msgid "Select 'Yes' to remove all other files and directories not covered by the options above."
 msgstr "'Ja' auswählen, um alle anderen Dateien und Verzeichnisse zu entfernen, die nicht von den oben genannten Optionen abgedeckt werden."
@@ -16921,7 +16919,7 @@ msgid "Select sort method:"
 msgstr "Sortiermethode auswählen:"
 
 msgid "Select subservices"
-msgstr "Wähle Unterkanäle"
+msgstr "Unterkanäle auswählen"
 
 msgid "Select system information to view:"
 msgstr "Die anzuzeigenden System-Informationen auswählen:"
@@ -16937,7 +16935,7 @@ msgid "Select the %s entry"
 msgstr "Eintrag %s auswählen"
 
 msgid "Select the No / False response"
-msgstr "Wähle Nein / Negative Antwort"
+msgstr "Nein / negative Antwort auswählen"
 
 #, python-format
 msgid "Select the Softcam for '%s'"
@@ -16969,7 +16967,7 @@ msgid "Select the User Band frequency to be assigned to this tuner. This is the 
 msgstr "Die User-Band-Frequenz auswählen, die diesem Tuner zugewiesen werden soll. Mit dieser Frequenz leitet der Unicable-Switch den angeforderten Transponder an den Tuner weiter."
 
 msgid "Select the Yes / True response"
-msgstr "Wähle Ja / Positive Antwort"
+msgstr "Ja / positive Antwort auswählen"
 
 #, python-format
 msgid "Select the action for '%s'"
@@ -17974,13 +17972,13 @@ msgid "Setup your local network. For Wlan you need to boot with a USB-Wlan stick
 msgstr "Konfiguration des Netzwerks. Für WLAN muss ein WLAN-USB-Stick installiert sein."
 
 msgid "Setup your mounts for network"
-msgstr "Konfiguration der Netzwerklaufwerke."
+msgstr "Konfiguration der Netzlaufwerke."
 
 msgid "Setup your network interface. If no Wlan stick is used, you only can select Lan"
 msgstr "Konfiguration der Netzwerkschnittstelle. Wenn kein WLAN-Stick verwendet wird, kann nur LAN ausgewählt werden."
 
 msgid "Setup your network mounts"
-msgstr "Konfiguration der Netzwerklaufwerke"
+msgstr "Konfiguration der Netzlaufwerke"
 
 msgid "Setup your positioner"
 msgstr "Rotor einstellen."
@@ -18977,17 +18975,13 @@ msgstr "Skinkomponenten"
 msgid "Skin Packages"
 msgstr "Skins"
 
-#
-msgid "Skin Selector"
-msgstr "Skinauswahl"
-
 msgid "Skin Setting"
 msgstr "Skin-Einstellungen"
 
 msgid "Skin Settings"
 msgstr "Skinauswahl"
 
-msgid "Skin setup"
+msgid "SkinSelection"
 msgstr "Skinauswahl"
 
 msgid "SkinSelector"
@@ -21047,16 +21041,16 @@ msgstr "Die Bildauflösung einstellen."
 msgid "This option configures you can set Auto Volume Level."
 msgstr "Die automatische Lautstärkeanpassung einstellen."
 
-msgid "This option lets you adjust the 3D depth."
+msgid "This option lets you adjust the 3D depth of the OSD."
 msgstr "Die 3D-Tiefe anpassen."
 
 msgid "This option lets you adjust the transparency of the user interface"
 msgstr "Die Transparenz der Benutzeroberfläche anpassen."
 
-msgid "This option lets you choose the 3D mode."
+msgid "This option lets you choose the 3D mode of the OSD."
 msgstr "Den 3D-Modus aktivieren."
 
-msgid "This option lets you show the option in the Extension Menu screen."
+msgid "This option lets you show the 3D OSD menu option in the Extension Menu screen."
 msgstr "Die Option unter Erweiterungen anzeigen."
 
 msgid "This option moves the PVR status display from a separate window into the MoviePlayer InfoBar."
@@ -21319,7 +21313,7 @@ msgid "Time shift save failed!"
 msgstr "Speichern von Timeshift fehlgeschlagen!"
 
 msgid "Time shift save recording (Select event)"
-msgstr "Timeshift-Aufnahme speichern (Wähle Sendung)"
+msgstr "Timeshift-Aufnahme speichern (Sendung auswählen)"
 
 msgid "Time shift save recording (Stop after current event)"
 msgstr "Timeshift-Aufnahme speichern (Stopp nach laufender Sendung)"
@@ -25202,6 +25196,27 @@ msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enigma2 skin selector"
+#~ msgstr "Enigma2-Skinauswahl"
+
+#
+#~ msgid ""
+#~ "GUI needs a restart to apply a new skin\n"
+#~ "Do you want to restart the GUI now?"
+#~ msgstr ""
+#~ "Zur Übernahme des Skins muss die Benutzeroberfläche neu gestartet werden.\n"
+#~ "Jetzt neu starten?"
+
+#~ msgid "LCD SkinSelector"
+#~ msgstr "Displayskinauswahl"
+
+#
+#~ msgid "Skin Selector"
+#~ msgstr "Skinauswahl"
+
+#~ msgid "Skin setup"
+#~ msgstr "Skinauswahl"
 
 #~ msgid "Settings..."
 #~ msgstr "Einstellungen..."

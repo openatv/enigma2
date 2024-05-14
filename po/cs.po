@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-05 12:54+0000\n"
-"PO-Revision-Date: 2024-04-19 11:14+0000\n"
+"POT-Creation-Date: 2024-05-08 12:32+0000\n"
+"PO-Revision-Date: 2024-05-11 04:00+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.5.4\n"
 
 msgid ""
 "\n"
@@ -2677,7 +2677,7 @@ msgid "Auto install log"
 msgstr "Protokol automatické instalace"
 
 msgid "Auto multi-selection"
-msgstr ""
+msgstr "Automatický výběr z více položek"
 
 msgid "Auto shut down"
 msgstr "Automatické vypnutí"
@@ -4063,6 +4063,12 @@ msgstr "Vyberte název souboru, kam se uloží EPG data, když je %s %s vypnuto.
 
 msgid "Choose the option to correct invalid EPG data."
 msgstr "Vyberte možnost opravit neplatná data EPG."
+
+msgid "Choose the skin to be used for the GUI interface. Press 'GREEN' to activate the skin."
+msgstr "Vyberte vzhled, který chcete použít pro rozhraní GUI. Stisknutím „ZELENÉ“ aktivujte pokožku."
+
+msgid "Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin."
+msgstr "Vyberte vzhled, který se má použít pro rozhraní LCD/předního panelu. Stisknutím „ZELENÉ“ aktivujte pokožku."
 
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr "Vyberte styl/pořadí, ve kterém se položky zobrazí v oknech nápovědy."
@@ -5971,10 +5977,10 @@ msgid "Deselect"
 msgstr "Odebrat"
 
 msgid "Deselect all"
-msgstr ""
+msgstr "Odznačit vše"
 
 msgid "Deselect all lines"
-msgstr ""
+msgstr "Zrušit výběr všech řádků"
 
 msgid "Deselect all related files"
 msgstr "Zrušit výběr všech souvisejících souborů"
@@ -7186,9 +7192,6 @@ msgstr "Informace o systému Enigma2"
 msgid "Enigma2 revision"
 msgstr "Revize Enigma2"
 
-msgid "Enigma2 skin selector"
-msgstr "Enigma2 výběr vzhledu"
-
 msgid "Enigma2 version"
 msgstr "Verze Enigma2"
 
@@ -8076,10 +8079,10 @@ msgid "File Commander Move"
 msgstr "File Commander přesunout"
 
 msgid "File Commander Navigation Actions"
-msgstr ""
+msgstr "Akce navigace File Commander"
 
 msgid "File Commander Selection Actions"
-msgstr ""
+msgstr "Akce výběru File Commander"
 
 msgid "File Commander Settings"
 msgstr "Nastavení File Commander"
@@ -8484,18 +8487,14 @@ msgstr "Úroveň protokolu ladění GStreamer *"
 msgid "GStreamer version"
 msgstr "Verze GStreamer"
 
+msgid "GUI Skin *"
+msgstr "Vzhled GUI *"
+
 msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to Restart the GUI now?"
 msgstr ""
 "GUI potřebuje restart, aby bylo možné použít nový vzhled\n"
-"Chcete nyní restartovat GUI?"
-
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
-msgstr ""
-"Pro aktivaci vzhledu je potřeba restartovat GUI.\n"
 "Chcete nyní restartovat GUI?"
 
 msgid "Gabon"
@@ -10084,11 +10083,11 @@ msgstr "LAN připojení"
 msgid "LCD Skin Settings"
 msgstr "Nastavení vzhledu LCD"
 
-msgid "LCD SkinSelector"
-msgstr "Výběr vzhledu LCD"
-
 msgid "LCD scroll speed"
 msgstr "Rychlost rolování LCD"
+
+msgid "LCD/Front panel *"
+msgstr "LCD/přední panel *"
 
 msgid "LCN plugin for DVB-T/T2 services"
 msgstr "LCN plugin pro DVB-T/T2 služby"
@@ -10241,7 +10240,7 @@ msgid "Left, wrapped"
 msgstr "vlevo, zalomený"
 
 msgid "Legacy mode"
-msgstr ""
+msgstr "Původní režim"
 
 msgid "Leisure hobbies"
 msgstr "Volný čas, zájmy, koníčky"
@@ -14629,7 +14628,7 @@ msgid "Reset and renumerate title names"
 msgstr "Resetovat a přepočítat titulky"
 
 msgid "Reset entries to their default values"
-msgstr ""
+msgstr "Obnovit výchozí hodnoty položek"
 
 msgid "Reset executable mode (644)"
 msgstr "Obnovit spustitelný režim (644)"
@@ -15453,7 +15452,7 @@ msgid "Select 'Yes' to continuously display all images in a loop, or select 'No'
 msgstr "Vyberte „Ano“ pro nepřetržité zobrazení všech snímků ve smyčce nebo vyberte „Ne“ pro zobrazení všech snímků jednou a poté se zastaví."
 
 msgid "Select 'Yes' to disable multi-selection mode after each operation. Select 'No' to leave multi-selection mode active and the selections unchanged."
-msgstr ""
+msgstr "Chcete-li po každé operaci deaktivovat režim vícenásobného výběru, vyberte možnost „Ano“. Chcete-li režim vícenásobného výběru ponechat aktivní a výběry nezměněny, vyberte „Ne“."
 
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr "Pokud nastavíte na 'ano' zobrazí se náhled TV obrazovky v EPG."
@@ -15621,7 +15620,7 @@ msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpf
 msgstr "Chcete-li použít alternativní adresy IP zdroje GitHub, vyberte možnost „Ano“. To může být užitečné, pokud používáte VPN a k normálním zdrojům nelze přistupovat prostřednictvím zveřejněných názvů DNS."
 
 msgid "Select 'Yes' to use legacy navigation where CH+/- swaps the active column. Select 'No' to use the newer unified navigation option for consistent navigation with other screens where LEFT/RIGHT swaps the active column and CH+/- pages up and down the list."
-msgstr ""
+msgstr "Chcete-li použít starší navigaci, kde CH+/- zamění aktivní sloupec, vyberte „Ano“. Chcete-li použít novější možnost sjednocené navigace pro konzistentní navigaci s ostatními obrazovkami, kde VLEVO/VPRAVO přepíná aktivní sloupec a CH+/- stránky v seznamu nahoru a dolů, vyberte možnost „Ne“."
 
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Chcete-li použít hodnoty signálu (SNR atd.) vypočítané ze starší verze API V3, vyberte možnost „Ano“. Tato verze API byla nyní nahrazena."
@@ -15776,10 +15775,10 @@ msgid "Select additional files to backup"
 msgstr "Přidat další soubory k zálohování"
 
 msgid "Select all"
-msgstr ""
+msgstr "Vybrat vše"
 
 msgid "Select all lines"
-msgstr ""
+msgstr "Vybrat všechny řádky"
 
 msgid "Select all related files"
 msgstr "Vyberte všechny související soubory"
@@ -16673,7 +16672,7 @@ msgid "Set the scrolling speed of text on the front display."
 msgstr "Nastavte rolování textu na čelním displeji."
 
 msgid "Set the style of the channel list."
-msgstr ""
+msgstr "Nastavení stylu seznamu kanálů."
 
 msgid "Set the time before checking video source for resolution information."
 msgstr "Nastavte čas pro zpoždění kontroly rozlišení videa."
@@ -17855,17 +17854,14 @@ msgstr "Balíčky součástí vzhledu"
 msgid "Skin Packages"
 msgstr "Balíčky vzhledu"
 
-msgid "Skin Selector"
-msgstr "Výběr vzhledu"
-
 msgid "Skin Setting"
 msgstr "Nastavení vzhledu"
 
 msgid "Skin Settings"
 msgstr "Nastavení vzhledu"
 
-msgid "Skin setup"
-msgstr "Nastavení vzhledu"
+msgid "SkinSelection"
+msgstr "Výběr skinu"
 
 msgid "SkinSelector"
 msgstr "Výběr vzhledu"
@@ -18599,7 +18595,7 @@ msgid "Stream Relay URL"
 msgstr "Adresa URL přenosu streamu"
 
 msgid "Stream Relay is active, please switch to a none Stream Relay channel."
-msgstr ""
+msgstr "Stream Relay je aktivní, prosím přepněte na žádný kanál Stream Relay."
 
 msgid "Stream Relay port"
 msgstr "Port přenosu streamu"
@@ -18649,7 +18645,7 @@ msgid "Stripes"
 msgstr "Pruhy"
 
 msgid "Style"
-msgstr ""
+msgstr "Styl"
 
 msgid "Style:"
 msgstr "Styl:"
@@ -19822,16 +19818,16 @@ msgstr "Tato volba umožňuje nastavení režimu video výstupu (nebo rozlišen�
 msgid "This option configures you can set Auto Volume Level."
 msgstr "Tato možnost konfiguruje nastavení automatické úrovně hlasitosti."
 
-msgid "This option lets you adjust the 3D depth."
+msgid "This option lets you adjust the 3D depth of the OSD."
 msgstr "Nastaví hloubku 3D."
 
 msgid "This option lets you adjust the transparency of the user interface"
 msgstr "Tato volba umožňuje nastavení průhlednosti uživatelského rozhraní"
 
-msgid "This option lets you choose the 3D mode."
+msgid "This option lets you choose the 3D mode of the OSD."
 msgstr "Tato volba umožňuje vybrat režim 3D."
 
-msgid "This option lets you show the option in the Extension Menu screen."
+msgid "This option lets you show the 3D OSD menu option in the Extension Menu screen."
 msgstr "Tato volba umožňuje zobrazit volbu v okně rozšíření."
 
 msgid "This option moves the PVR status display from a separate window into the MoviePlayer InfoBar."
@@ -20270,7 +20266,7 @@ msgid "Toggle selection of the current tag"
 msgstr "Přepnout výběr aktuální značky"
 
 msgid "Toggle selections"
-msgstr ""
+msgstr "Přepínání výběrů"
 
 msgid "Toggle service name display"
 msgstr "Přepnout zobrazení názvu služby"
@@ -21059,7 +21055,7 @@ msgid "Use key map *"
 msgstr "Použít Keymap *"
 
 msgid "Use legacy navigation"
-msgstr ""
+msgstr "Použít starší navigaci"
 
 msgid "Use logarithmic steps"
 msgstr "Použít logaritmické kroky"
@@ -23663,6 +23659,25 @@ msgstr "ano (uchovat zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enigma2 skin selector"
+#~ msgstr "Enigma2 výběr vzhledu"
+
+#~ msgid ""
+#~ "GUI needs a restart to apply a new skin\n"
+#~ "Do you want to restart the GUI now?"
+#~ msgstr ""
+#~ "Pro aktivaci vzhledu je potřeba restartovat GUI.\n"
+#~ "Chcete nyní restartovat GUI?"
+
+#~ msgid "LCD SkinSelector"
+#~ msgstr "Výběr vzhledu LCD"
+
+#~ msgid "Skin Selector"
+#~ msgstr "Výběr vzhledu"
+
+#~ msgid "Skin setup"
+#~ msgstr "Nastavení vzhledu"
 
 #~ msgid "Settings..."
 #~ msgstr "Nastavení..."

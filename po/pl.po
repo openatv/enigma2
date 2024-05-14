@@ -12,16 +12,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-05 12:54+0000\n"
-"PO-Revision-Date: 2024-05-04 15:11+0000\n"
-"Last-Translator: drakulis <drakulis@interia.pl>\n"
+"POT-Creation-Date: 2024-05-08 12:32+0000\n"
+"PO-Revision-Date: 2024-05-12 19:23+0000\n"
+"Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.5.3\n"
+"X-Generator: Weblate 5.5.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1931,7 +1931,7 @@ msgid "Add RecordTimer"
 msgstr "Dodaj timer nagrywania"
 
 msgid "Add Service To Bouquet"
-msgstr "Dodaj usługę do bukietu"
+msgstr "Dodaj kanał do bukietu"
 
 msgid "Add Service To Favorites"
 msgstr "dodaj kanał do ulubionych"
@@ -2051,7 +2051,7 @@ msgid "Add the current service to the Volume Offsets list"
 msgstr "Dodaj aktualny kanał do listy Przesunięcia głośności"
 
 msgid "Add the selected service to a bouquet or alternative"
-msgstr "Dodaj wybraną usługę do bukietu lub alternatywy"
+msgstr "Dodaj wybrany kanał do bukietu lub alternatywy"
 
 msgid "Add title"
 msgstr "Dodaj tytuł"
@@ -2688,7 +2688,7 @@ msgid "Auto install log"
 msgstr "Log auto instalacji"
 
 msgid "Auto multi-selection"
-msgstr ""
+msgstr "Automatyczny wybór wielokrotny"
 
 msgid "Auto shut down"
 msgstr "Automatyczne wyłączenie"
@@ -4074,6 +4074,12 @@ msgstr "Wybierz nazwę pliku, który przechowuje EPG gdy %s %s jest wyłączony.
 
 msgid "Choose the option to correct invalid EPG data."
 msgstr "Wybierz opcje, aby poprawić nieprawidłowe dane EPG."
+
+msgid "Choose the skin to be used for the GUI interface. Press 'GREEN' to activate the skin."
+msgstr "Wybierz skórkę, która będzie używana dla interfejsu GUI. Naciśnij „ZIELONY”, aby aktywować skórkę."
+
+msgid "Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin."
+msgstr "Wybierz skórkę, która będzie używana dla interfejsu LCD/panelu przedniego. Naciśnij „ZIELONY”, aby aktywować skórkę."
 
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr "Wybierz styl/kolejność wyświetlania elementów w oknach pomocy."
@@ -5983,10 +5989,10 @@ msgid "Deselect"
 msgstr "Odznacz"
 
 msgid "Deselect all"
-msgstr ""
+msgstr "Odznacz wszystkie"
 
 msgid "Deselect all lines"
-msgstr ""
+msgstr "Odznacz wszystkie linie"
 
 msgid "Deselect all related files"
 msgstr "Odznacz wszystkie powiązane pliki"
@@ -7198,9 +7204,6 @@ msgstr "Info o enigma2"
 msgid "Enigma2 revision"
 msgstr "Rewizja Enigmy"
 
-msgid "Enigma2 skin selector"
-msgstr "Enigma2 wybór skóry"
-
 msgid "Enigma2 version"
 msgstr "Wersja"
 
@@ -8088,10 +8091,10 @@ msgid "File Commander Move"
 msgstr "File Commander: Przenieś"
 
 msgid "File Commander Navigation Actions"
-msgstr ""
+msgstr "Akcje nawigacji w pluginie File Commander"
 
 msgid "File Commander Selection Actions"
-msgstr ""
+msgstr "Akcje selekcji File Commander"
 
 msgid "File Commander Settings"
 msgstr "File Commander: Ustawienia"
@@ -8496,18 +8499,14 @@ msgstr "Poziom logów debugowania GStreamer *"
 msgid "GStreamer version"
 msgstr "Wersja GStreamer"
 
+msgid "GUI Skin *"
+msgstr "Skórka GUI *"
+
 msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to Restart the GUI now?"
 msgstr ""
 "Interfejs wymaga ponownego uruchomienia odbiornika aby zastosować nową skórę\n"
-"Czy chcesz to zrobić teraz?"
-
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
-msgstr ""
-"Interfejs musi zostać zrestartowany, aby zastosować nową skórę\n"
 "Czy chcesz to zrobić teraz?"
 
 msgid "Gabon"
@@ -10096,11 +10095,11 @@ msgstr "Połączenie LAN"
 msgid "LCD Skin Settings"
 msgstr "Ustawienia skóry LCD"
 
-msgid "LCD SkinSelector"
-msgstr "Skóra LCD"
-
 msgid "LCD scroll speed"
 msgstr "Prędkość przewijania LCD"
+
+msgid "LCD/Front panel *"
+msgstr "LCD/Panel przedni *"
 
 msgid "LCN plugin for DVB-T/T2 services"
 msgstr "Wtyczka LCN dla usług DVB-T/T2"
@@ -10254,7 +10253,7 @@ msgid "Left, wrapped"
 msgstr "lewo, owinięty"
 
 msgid "Legacy mode"
-msgstr ""
+msgstr "Tryb legacy"
 
 msgid "Leisure hobbies"
 msgstr "Hobby/rekreacja"
@@ -14642,7 +14641,7 @@ msgid "Reset and renumerate title names"
 msgstr "Resetuj i zmień numerację nazwy tytułów"
 
 msgid "Reset entries to their default values"
-msgstr ""
+msgstr "Zresetuj wpisy do wartości domyślnych"
 
 msgid "Reset executable mode (644)"
 msgstr "Zresetuj tryb wykonywalny (644)"
@@ -15466,7 +15465,7 @@ msgid "Select 'Yes' to continuously display all images in a loop, or select 'No'
 msgstr "Wybierz \"Tak\", aby stale wyświetlać wszystkie obrazy w pętli, lub \"Nie\", aby wyświetlić wszystkie obrazy raz, a następnie zatrzymać."
 
 msgid "Select 'Yes' to disable multi-selection mode after each operation. Select 'No' to leave multi-selection mode active and the selections unchanged."
-msgstr ""
+msgstr "Wybierz opcję „Tak”, aby wyłączyć tryb wielokrotnego wyboru po każdej operacji. Wybierz opcję „Nie”, aby pozostawić aktywny tryb wielokrotnego wyboru i niezmienione wybory."
 
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr "Jeśli jest ustawione na 'tak' , pokazuje małe okno TV w EPG."
@@ -15634,7 +15633,7 @@ msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpf
 msgstr "Wybierz \"Tak\", aby użyć alternatywnego adresu IP źródła GitHub. Może to być pomocne, gdy używasz VPN, a nie można uzyskać dostępu do normalnych źródeł za pomocą opublikowanych nazw DNS."
 
 msgid "Select 'Yes' to use legacy navigation where CH+/- swaps the active column. Select 'No' to use the newer unified navigation option for consistent navigation with other screens where LEFT/RIGHT swaps the active column and CH+/- pages up and down the list."
-msgstr ""
+msgstr "Wybierz „Tak”, aby użyć starszej nawigacji, w której CH+/- zamienia aktywną kolumnę. Wybierz opcję „Nie”, aby użyć nowszej, ujednoliconej opcji nawigacji w celu spójnej nawigacji z innymi ekranami, gdzie LEWO/PRAWO zamienia aktywną kolumnę i strony CH+/- w górę i w dół listy."
 
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Jeśli ustawione na \"tak\", wartości sygnału (SNR itp.) będą obliczane na podstawie API V3. Jest to stara wersja API, która została już zastąpiona."
@@ -15789,10 +15788,10 @@ msgid "Select additional files to backup"
 msgstr "Dodatkowe pliki kopii zapasowej"
 
 msgid "Select all"
-msgstr ""
+msgstr "Zaznacz wszystko"
 
 msgid "Select all lines"
-msgstr ""
+msgstr "Wybierz wszystkie linie"
 
 msgid "Select all related files"
 msgstr "Wybierz wszystkie powiązane pliki"
@@ -16686,7 +16685,7 @@ msgid "Set the scrolling speed of text on the front display."
 msgstr "Ustaw szybkość przewijania tekstu na przednim wyświetlaczu."
 
 msgid "Set the style of the channel list."
-msgstr ""
+msgstr "Ustaw styl listy kanałów."
 
 msgid "Set the time before checking video source for resolution information."
 msgstr "Pozwala na ustawienie czasu opóźnienia przed automatyczną rozdzielczością,sprawdza źródła wideo."
@@ -16741,7 +16740,7 @@ msgid "Set to 'Disabled' to replace underscore characters, '_', in file and dire
 msgstr "Jeśli ta opcja jest wyłączona, znaki podkreślenia w nazwach plików i katalogów nie są wyświetlane i są zastępowane spacjami."
 
 msgid "Set to 'Yes', to enable automatic recording of the background timeshift buffer."
-msgstr "Jeżeli ustawione na 'tak', włączy nagrywanie automatycznie w tle z timeshiftem"
+msgstr "Jeżeli ustawione na 'tak', włączy nagrywanie automatycznie w tle z timeshiftem."
 
 msgid "Set to the desired primetime (hour)."
 msgstr "Ustaw żądany najlepszy czas (godziny)."
@@ -17868,16 +17867,13 @@ msgstr "Pakiety komponentów skórki"
 msgid "Skin Packages"
 msgstr "Pakiety skórek"
 
-msgid "Skin Selector"
-msgstr "Wybór Skórek"
-
 msgid "Skin Setting"
 msgstr "Ustawienia skóry"
 
 msgid "Skin Settings"
 msgstr "Wybór skóry"
 
-msgid "Skin setup"
+msgid "SkinSelection"
 msgstr "Wybór skóry"
 
 msgid "SkinSelector"
@@ -18613,7 +18609,7 @@ msgid "Stream Relay URL"
 msgstr "URL Stream Relay"
 
 msgid "Stream Relay is active, please switch to a none Stream Relay channel."
-msgstr ""
+msgstr "Stream Relay jest aktywny. Przełącz na kanał bez funkcji Stream Relay."
 
 msgid "Stream Relay port"
 msgstr "Port Stream Relay"
@@ -18663,7 +18659,7 @@ msgid "Stripes"
 msgstr "Paski Animacji"
 
 msgid "Style"
-msgstr ""
+msgstr "Styl"
 
 msgid "Style:"
 msgstr "Styl:"
@@ -19836,16 +19832,16 @@ msgstr "Ta opcja konfiguruje tryb wyjścia wideo (lub rozdzielczości)."
 msgid "This option configures you can set Auto Volume Level."
 msgstr "Ta opcja konfiguruje poziom głośności w trybie auto."
 
-msgid "This option lets you adjust the 3D depth."
+msgid "This option lets you adjust the 3D depth of the OSD."
 msgstr "Ta opcja umożliwia dostosowanie głębi 3D."
 
 msgid "This option lets you adjust the transparency of the user interface"
 msgstr "Ta opcja pozwala ustawić przezroczystość interfejsu użytkownika"
 
-msgid "This option lets you choose the 3D mode."
+msgid "This option lets you choose the 3D mode of the OSD."
 msgstr "Ta opcja pozwala wybrać tryb 3D."
 
-msgid "This option lets you show the option in the Extension Menu screen."
+msgid "This option lets you show the 3D OSD menu option in the Extension Menu screen."
 msgstr "Ta opcja umożliwia pokazanie tej opcji na ekranie Menu rozszerzeń."
 
 msgid "This option moves the PVR status display from a separate window into the MoviePlayer InfoBar."
@@ -20284,7 +20280,7 @@ msgid "Toggle selection of the current tag"
 msgstr "Przełącz wybór aktualnego znacznika"
 
 msgid "Toggle selections"
-msgstr ""
+msgstr "Przełącz zaznaczenia"
 
 msgid "Toggle service name display"
 msgstr "Przełączanie wyświetlania nazwy usługi"
@@ -21073,7 +21069,7 @@ msgid "Use key map *"
 msgstr "Mapowanie klawiszy *"
 
 msgid "Use legacy navigation"
-msgstr ""
+msgstr "Użyj starszej nawigacji"
 
 msgid "Use logarithmic steps"
 msgstr "Użyj kroków logarytmicznych"
@@ -23677,6 +23673,25 @@ msgstr "tak (zachować kanały)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enigma2 skin selector"
+#~ msgstr "Enigma2 wybór skóry"
+
+#~ msgid ""
+#~ "GUI needs a restart to apply a new skin\n"
+#~ "Do you want to restart the GUI now?"
+#~ msgstr ""
+#~ "Interfejs musi zostać zrestartowany, aby zastosować nową skórę\n"
+#~ "Czy chcesz to zrobić teraz?"
+
+#~ msgid "LCD SkinSelector"
+#~ msgstr "Skóra LCD"
+
+#~ msgid "Skin Selector"
+#~ msgstr "Wybór Skórek"
+
+#~ msgid "Skin setup"
+#~ msgstr "Wybór skóry"
 
 #~ msgid "Settings..."
 #~ msgstr "Ustawienia…"

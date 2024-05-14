@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-05 12:54+0000\n"
-"PO-Revision-Date: 2024-05-06 08:28+0000\n"
+"POT-Creation-Date: 2024-05-08 12:32+0000\n"
+"PO-Revision-Date: 2024-05-11 04:00+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.5.3\n"
+"X-Generator: Weblate 5.5.4\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -4069,6 +4069,12 @@ msgstr "Виберіть ім'я файлу для даних EPG, коли %s %
 msgid "Choose the option to correct invalid EPG data."
 msgstr "Виберіть опцію для виправлення невірних даних EPG."
 
+msgid "Choose the skin to be used for the GUI interface. Press 'GREEN' to activate the skin."
+msgstr "Виберіть оформлення, яке буде використовуватися для графічного інтерфейсу. Натисніть 'ЗЕЛЕНУ' кнопку, щоб активувати скін."
+
+msgid "Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin."
+msgstr "Виберіть оформлення, яке буде використовуватися для LCD панелі. Натисніть 'ЗЕЛЕНУ' кнопку, щоб активувати скін."
+
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr "Choose the style/order in which items are displayed in help windows."
 
@@ -7191,9 +7197,6 @@ msgstr "Інформація про Enigma2"
 msgid "Enigma2 revision"
 msgstr "Ревізія Enigma2"
 
-msgid "Enigma2 skin selector"
-msgstr "Enigma2 Селектор скінів"
-
 msgid "Enigma2 version"
 msgstr "Версія Enigma2"
 
@@ -8489,18 +8492,14 @@ msgstr "Рівень журналу налагодження GStreamer *"
 msgid "GStreamer version"
 msgstr "Версія GStreamer"
 
+msgid "GUI Skin *"
+msgstr "Скін Графічного інтерфейсу *"
+
 msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to Restart the GUI now?"
 msgstr ""
 "Для активації нового скіну необхідно перезавантажити інтерфейс.\n"
-"Хочете зробити це зараз?"
-
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
-msgstr ""
-"Для активації нового скіна необхідно перезавантажити інтерфейс\n"
 "Хочете зробити це зараз?"
 
 msgid "Gabon"
@@ -10089,11 +10088,11 @@ msgstr "LAN з'єднання"
 msgid "LCD Skin Settings"
 msgstr "Налаштування скіну LCD"
 
-msgid "LCD SkinSelector"
-msgstr "Вибір скіну LCD"
-
 msgid "LCD scroll speed"
 msgstr "Швидкість прокрутки на LCD"
+
+msgid "LCD/Front panel *"
+msgstr "LCD/Передня панель *"
 
 msgid "LCN plugin for DVB-T/T2 services"
 msgstr "Додаток LCN для послуг DVB-T / T2"
@@ -17860,17 +17859,14 @@ msgstr "Пакети компонентів скінів"
 msgid "Skin Packages"
 msgstr "Пакети скінів"
 
-msgid "Skin Selector"
-msgstr "Вибір Скіну"
-
 msgid "Skin Setting"
 msgstr "Налаштування скіну"
 
 msgid "Skin Settings"
 msgstr "Вибір скіну"
 
-msgid "Skin setup"
-msgstr "Налаштування скіну"
+msgid "SkinSelection"
+msgstr "Вибір Скіна"
 
 msgid "SkinSelector"
 msgstr "Вибір Скіну"
@@ -18981,7 +18977,7 @@ msgid "TMDB Search"
 msgstr "TMDB Пошук"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 06.05.2024"
+msgstr "Переклад: kvinto - 09.05.2024"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -19827,16 +19823,16 @@ msgstr "Налаштування режиму відеовиходу (або д�
 msgid "This option configures you can set Auto Volume Level."
 msgstr "Тут можете вибрати рівень автоматичного регулювання гучності."
 
-msgid "This option lets you adjust the 3D depth."
+msgid "This option lets you adjust the 3D depth of the OSD."
 msgstr "Тут можете налаштувати 3D глибину"
 
 msgid "This option lets you adjust the transparency of the user interface"
 msgstr "Тут можете налаштувати прозорість інтерфейсу користувача"
 
-msgid "This option lets you choose the 3D mode."
+msgid "This option lets you choose the 3D mode of the OSD."
 msgstr "Ця опція дозволяє режим 3D"
 
-msgid "This option lets you show the option in the Extension Menu screen."
+msgid "This option lets you show the 3D OSD menu option in the Extension Menu screen."
 msgstr "Ця опція дозволяє додати параметр в меню доповнень."
 
 msgid "This option moves the PVR status display from a separate window into the MoviePlayer InfoBar."
@@ -23668,6 +23664,25 @@ msgstr "так (зберігати фіди)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enigma2 skin selector"
+#~ msgstr "Enigma2 Селектор скінів"
+
+#~ msgid ""
+#~ "GUI needs a restart to apply a new skin\n"
+#~ "Do you want to restart the GUI now?"
+#~ msgstr ""
+#~ "Для активації нового скіна необхідно перезавантажити інтерфейс\n"
+#~ "Хочете зробити це зараз?"
+
+#~ msgid "LCD SkinSelector"
+#~ msgstr "Вибір скіну LCD"
+
+#~ msgid "Skin Selector"
+#~ msgstr "Вибір Скіну"
+
+#~ msgid "Skin setup"
+#~ msgstr "Налаштування скіну"
 
 #~ msgid "Settings..."
 #~ msgstr "Налаштування..."

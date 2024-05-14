@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-05 12:54+0000\n"
-"PO-Revision-Date: 2024-05-07 23:07+0000\n"
+"POT-Creation-Date: 2024-05-08 12:32+0000\n"
+"PO-Revision-Date: 2024-05-11 04:00+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5.4-rc\n"
+"X-Generator: Weblate 5.5.4\n"
 
 msgid ""
 "\n"
@@ -4042,6 +4042,12 @@ msgstr "Valitse tiedostonimi, jonne EPG-tiedot tallennetaan kun %s %s sammutetaa
 msgid "Choose the option to correct invalid EPG data."
 msgstr "Valitse vaihtoehto virheellisten EPG tietojen korjaamiseksi."
 
+msgid "Choose the skin to be used for the GUI interface. Press 'GREEN' to activate the skin."
+msgstr "Valitse käyttöliittymän teema. Paina 'VIHREÄÄ' aktivoidaksesi teema."
+
+msgid "Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin."
+msgstr "Valitse näyttöpaneelin teema. Paina 'VIHREÄÄ' aktivoidaksesi teeman."
+
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr "Valitse järjestys, jossa kohteet näytetään ohje ikkunoissa."
 
@@ -7160,9 +7166,6 @@ msgstr "Järjestelmä tiedot"
 msgid "Enigma2 revision"
 msgstr "Järjestelmä tiedot"
 
-msgid "Enigma2 skin selector"
-msgstr "Käyttöliittymän teeman valinta"
-
 msgid "Enigma2 version"
 msgstr "Järjestelmä Versio"
 
@@ -8458,16 +8461,12 @@ msgstr "GStreamer virheenkorjauslokin taso *"
 msgid "GStreamer version"
 msgstr "GStreamer versio"
 
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to Restart the GUI now?"
-msgstr ""
-"Järjestelmä on käynnistettävä uudelleen teeman vaihtamiseksi.\n"
-"Haluatko käynnistää järjestelmän uudelleen nyt?"
+msgid "GUI Skin *"
+msgstr "Käyttöliittymän teema *"
 
 msgid ""
 "GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
+"Do you want to Restart the GUI now?"
 msgstr ""
 "Järjestelmä on käynnistettävä uudelleen teeman vaihtamiseksi.\n"
 "Haluatko käynnistää järjestelmän uudelleen nyt?"
@@ -10062,11 +10061,11 @@ msgstr "LAN yhteys"
 msgid "LCD Skin Settings"
 msgstr "Näyttöpaneeli Teema"
 
-msgid "LCD SkinSelector"
-msgstr "LCD Teeman valinta"
-
 msgid "LCD scroll speed"
 msgstr "LCD selausnopeus"
+
+msgid "LCD/Front panel *"
+msgstr "Näyttöpaneeli *"
 
 msgid "LCN plugin for DVB-T/T2 services"
 msgstr "LCN plugin DVB-T/T2 palvelua varten"
@@ -17850,17 +17849,14 @@ msgstr "Laajennukset plugin teemat"
 msgid "Skin Packages"
 msgstr "Teemat"
 
-msgid "Skin Selector"
-msgstr "Teeman valinta"
-
 msgid "Skin Setting"
 msgstr "Teeman asetus"
 
 msgid "Skin Settings"
 msgstr "Teema asetukset"
 
-msgid "Skin setup"
-msgstr "Teeman valinta"
+msgid "SkinSelection"
+msgstr "Teeman Valinta"
 
 msgid "SkinSelector"
 msgstr "Teeman valinta"
@@ -19821,16 +19817,16 @@ msgstr "Tämä asetus määrittää videoulostulon (tai resoluution)."
 msgid "This option configures you can set Auto Volume Level."
 msgstr "Tämä asetus määrittää automaattisen äänenvoimakkuuden tason."
 
-msgid "This option lets you adjust the 3D depth."
+msgid "This option lets you adjust the 3D depth of the OSD."
 msgstr "Määrittää 3D syvyyden"
 
 msgid "This option lets you adjust the transparency of the user interface"
 msgstr "Määrittää käyttöliittymän läpinäkyvyyden"
 
-msgid "This option lets you choose the 3D mode."
+msgid "This option lets you choose the 3D mode of the OSD."
 msgstr "Tämä asetus määrittää 3D tilan"
 
-msgid "This option lets you show the option in the Extension Menu screen."
+msgid "This option lets you show the 3D OSD menu option in the Extension Menu screen."
 msgstr "Tämä asetus määrittää näytetäänkö valinta laajennusvalikko."
 
 msgid "This option moves the PVR status display from a separate window into the MoviePlayer InfoBar."
@@ -23670,6 +23666,25 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enigma2 skin selector"
+#~ msgstr "Käyttöliittymän teeman valinta"
+
+#~ msgid ""
+#~ "GUI needs a restart to apply a new skin\n"
+#~ "Do you want to restart the GUI now?"
+#~ msgstr ""
+#~ "Järjestelmä on käynnistettävä uudelleen teeman vaihtamiseksi.\n"
+#~ "Haluatko käynnistää järjestelmän uudelleen nyt?"
+
+#~ msgid "LCD SkinSelector"
+#~ msgstr "LCD Teeman valinta"
+
+#~ msgid "Skin Selector"
+#~ msgstr "Teeman valinta"
+
+#~ msgid "Skin setup"
+#~ msgstr "Teeman valinta"
 
 #~ msgid "Settings..."
 #~ msgstr "Kanavalistan asetukset"

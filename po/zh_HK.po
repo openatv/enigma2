@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-05 12:54+0000\n"
+"POT-Creation-Date: 2024-05-08 12:32+0000\n"
 "PO-Revision-Date: 2023-04-10 14:44+0000\n"
 "Last-Translator: Abel Cheung <abelcheung@gmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -4219,6 +4219,12 @@ msgstr ""
 msgid "Choose the option to correct invalid EPG data."
 msgstr ""
 
+msgid "Choose the skin to be used for the GUI interface. Press 'GREEN' to activate the skin."
+msgstr ""
+
+msgid "Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin."
+msgstr ""
+
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr ""
 
@@ -7439,9 +7445,6 @@ msgstr ""
 msgid "Enigma2 revision"
 msgstr ""
 
-msgid "Enigma2 skin selector"
-msgstr ""
-
 msgid "Enigma2 version"
 msgstr ""
 
@@ -8791,17 +8794,15 @@ msgstr ""
 msgid "GStreamer version"
 msgstr ""
 
+msgid "GUI Skin *"
+msgstr ""
+
 msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to Restart the GUI now?"
 msgstr ""
 "應用新的皮膚必須重啟Enigma2\n"
 "是否立即重啟?"
-
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
-msgstr ""
 
 msgid "Gabon"
 msgstr ""
@@ -10499,12 +10500,11 @@ msgid "LCD Skin Settings"
 msgstr "Gemini 設定"
 
 #, fuzzy
-msgid "LCD SkinSelector"
-msgstr "皮膚選擇"
-
-#, fuzzy
 msgid "LCD scroll speed"
 msgstr "最快速度"
+
+msgid "LCD/Front panel *"
+msgstr ""
 
 msgid "LCN plugin for DVB-T/T2 services"
 msgstr ""
@@ -18791,9 +18791,6 @@ msgstr ""
 msgid "Skin Packages"
 msgstr ""
 
-msgid "Skin Selector"
-msgstr "皮膚選擇"
-
 #, fuzzy
 msgid "Skin Setting"
 msgstr "OSD 設定"
@@ -18802,9 +18799,8 @@ msgstr "OSD 設定"
 msgid "Skin Settings"
 msgstr "Gemini 設定"
 
-#, fuzzy
-msgid "Skin setup"
-msgstr "設定"
+msgid "SkinSelection"
+msgstr ""
 
 #, fuzzy
 msgid "SkinSelector"
@@ -20808,16 +20804,16 @@ msgstr ""
 msgid "This option configures you can set Auto Volume Level."
 msgstr ""
 
-msgid "This option lets you adjust the 3D depth."
+msgid "This option lets you adjust the 3D depth of the OSD."
 msgstr ""
 
 msgid "This option lets you adjust the transparency of the user interface"
 msgstr ""
 
-msgid "This option lets you choose the 3D mode."
+msgid "This option lets you choose the 3D mode of the OSD."
 msgstr ""
 
-msgid "This option lets you show the option in the Extension Menu screen."
+msgid "This option lets you show the 3D OSD menu option in the Extension Menu screen."
 msgstr ""
 
 msgid "This option moves the PVR status display from a separate window into the MoviePlayer InfoBar."
@@ -24738,6 +24734,17 @@ msgstr "是 (保留)"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "LCD SkinSelector"
+#~ msgstr "皮膚選擇"
+
+#~ msgid "Skin Selector"
+#~ msgstr "皮膚選擇"
+
+#, fuzzy
+#~ msgid "Skin setup"
+#~ msgstr "設定"
 
 #, fuzzy
 #~ msgid "Settings..."

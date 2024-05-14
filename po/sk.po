@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-05 12:54+0000\n"
+"POT-Creation-Date: 2024-05-08 12:32+0000\n"
 "PO-Revision-Date: 2024-04-22 09:31+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
@@ -4066,6 +4066,12 @@ msgstr "Vyberte názov súboru na uloženie údajov EPG pri vypnutí %s %s. Mô�
 msgid "Choose the option to correct invalid EPG data."
 msgstr "Vyberte možnosť opravy neplatných údajov EPG."
 
+msgid "Choose the skin to be used for the GUI interface. Press 'GREEN' to activate the skin."
+msgstr ""
+
+msgid "Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin."
+msgstr ""
+
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr "Vyberte štýl/poradie, v ktorom sa zobrazia položky v oknách pomocníka."
 
@@ -7188,9 +7194,6 @@ msgstr "Informácie o systéme Enigma2"
 msgid "Enigma2 revision"
 msgstr "Revízia Enigma2"
 
-msgid "Enigma2 skin selector"
-msgstr "Enigma2 – výber vzhľadu"
-
 msgid "Enigma2 version"
 msgstr "Verzia Enigma2"
 
@@ -8486,16 +8489,12 @@ msgstr "Úroveň denníka pre ladenie GStreamer *"
 msgid "GStreamer version"
 msgstr "Verzia GStreamera"
 
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to Restart the GUI now?"
+msgid "GUI Skin *"
 msgstr ""
-"Nový vzhľad sa použije po reštartovaní GUI.\n"
-"Chcete GUI reštartovať hneď?"
 
 msgid ""
 "GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
+"Do you want to Restart the GUI now?"
 msgstr ""
 "Nový vzhľad sa použije po reštartovaní GUI.\n"
 "Chcete GUI reštartovať hneď?"
@@ -10086,11 +10085,11 @@ msgstr "LAN pripojenie"
 msgid "LCD Skin Settings"
 msgstr "Nastavenie vzhľadu LCD"
 
-msgid "LCD SkinSelector"
-msgstr "Výber vzhľadu LCD"
-
 msgid "LCD scroll speed"
 msgstr "Rýchlosť rolovania LCD"
+
+msgid "LCD/Front panel *"
+msgstr ""
 
 msgid "LCN plugin for DVB-T/T2 services"
 msgstr "LCN plugin pre služby DVB-T/T2"
@@ -17857,17 +17856,14 @@ msgstr "Balíčky so súčasťami vzhľadu"
 msgid "Skin Packages"
 msgstr "Balíčky vzhľadu"
 
-msgid "Skin Selector"
-msgstr "Výber vzhľadu"
-
 msgid "Skin Setting"
 msgstr "Nastavenie vzhľadu"
 
 msgid "Skin Settings"
 msgstr "Nastavenie vzhľadu"
 
-msgid "Skin setup"
-msgstr "Nastavenie vzhľadu"
+msgid "SkinSelection"
+msgstr ""
 
 msgid "SkinSelector"
 msgstr "Výber vzhľadu"
@@ -19824,16 +19820,16 @@ msgstr "Nastavenie režimu video výstupu (alebo rozlíšenia)."
 msgid "This option configures you can set Auto Volume Level."
 msgstr "Nastavenie automatickej úrovne hlasitosti."
 
-msgid "This option lets you adjust the 3D depth."
+msgid "This option lets you adjust the 3D depth of the OSD."
 msgstr "Úprava hĺbky 3D."
 
 msgid "This option lets you adjust the transparency of the user interface"
 msgstr "Nastavenie priehľadnosti používateľského rozhrania"
 
-msgid "This option lets you choose the 3D mode."
+msgid "This option lets you choose the 3D mode of the OSD."
 msgstr "Výber 3D režimu."
 
-msgid "This option lets you show the option in the Extension Menu screen."
+msgid "This option lets you show the 3D OSD menu option in the Extension Menu screen."
 msgstr "Zobrazenie možností v zozname rozšírení."
 
 msgid "This option moves the PVR status display from a separate window into the MoviePlayer InfoBar."
@@ -23665,6 +23661,25 @@ msgstr "áno (zachovať zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enigma2 skin selector"
+#~ msgstr "Enigma2 – výber vzhľadu"
+
+#~ msgid ""
+#~ "GUI needs a restart to apply a new skin\n"
+#~ "Do you want to restart the GUI now?"
+#~ msgstr ""
+#~ "Nový vzhľad sa použije po reštartovaní GUI.\n"
+#~ "Chcete GUI reštartovať hneď?"
+
+#~ msgid "LCD SkinSelector"
+#~ msgstr "Výber vzhľadu LCD"
+
+#~ msgid "Skin Selector"
+#~ msgstr "Výber vzhľadu"
+
+#~ msgid "Skin setup"
+#~ msgstr "Nastavenie vzhľadu"
 
 #~ msgid "Settings..."
 #~ msgstr "Nastavenia…"

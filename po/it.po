@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-05 12:54+0000\n"
-"PO-Revision-Date: 2024-05-06 08:28+0000\n"
+"POT-Creation-Date: 2024-05-08 12:32+0000\n"
+"PO-Revision-Date: 2024-05-09 13:55+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5.3\n"
+"X-Generator: Weblate 5.5.4-rc\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
 
 msgid ""
@@ -4032,6 +4032,12 @@ msgstr "Scegli il nome del file che contiene i dati EPG quando %s %s verrà spen
 msgid "Choose the option to correct invalid EPG data."
 msgstr "Scegli l'opzione per correggere i dati EPG non validi."
 
+msgid "Choose the skin to be used for the GUI interface. Press 'GREEN' to activate the skin."
+msgstr "Scegli la skin da usare per l'interfaccia grafica. Premi VERDE per attivare la skin."
+
+msgid "Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin."
+msgstr "Scegli la skin da usare per l'interfaccia LCD/pannello frontale. Premi VERDE per attivare la skin."
+
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr "Scegli lo stile/l'ordine in cui gli elementi vengono visualizzati nelle finestre della guida."
 
@@ -7150,9 +7156,6 @@ msgstr "Informazioni su Enigma2"
 msgid "Enigma2 revision"
 msgstr "Revisione Enigma2"
 
-msgid "Enigma2 skin selector"
-msgstr "Selettore skin Enigma2"
-
 msgid "Enigma2 version"
 msgstr "Versione Enigma2"
 
@@ -8448,16 +8451,12 @@ msgstr "Livello del registro di debug di GStreamer *"
 msgid "GStreamer version"
 msgstr "Versione GStreamer"
 
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to Restart the GUI now?"
-msgstr ""
-"La GUI ha bisogno di un riavvio per applicare una nuova skin\n"
-"Vuoi riavviare la GUI ora?"
+msgid "GUI Skin *"
+msgstr "Skin GUI *"
 
 msgid ""
 "GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
+"Do you want to Restart the GUI now?"
 msgstr ""
 "La GUI ha bisogno di un riavvio per applicare una nuova skin\n"
 "Vuoi riavviare la GUI ora?"
@@ -10047,11 +10046,11 @@ msgstr "Connessione LAN"
 msgid "LCD Skin Settings"
 msgstr "Impostazioni skin LCD"
 
-msgid "LCD SkinSelector"
-msgstr "Selettore skin LCD"
-
 msgid "LCD scroll speed"
 msgstr "Velocità scorrimento LCD"
+
+msgid "LCD/Front panel *"
+msgstr "LCD/Pannello frontale *"
 
 msgid "LCN plugin for DVB-T/T2 services"
 msgstr "Plugin LCN per servizi DVB-T/T2"
@@ -17813,20 +17812,17 @@ msgstr "Pacchetti componenti skin"
 msgid "Skin Packages"
 msgstr "Pacchetti skin"
 
-msgid "Skin Selector"
-msgstr "Selettore di skin"
-
 msgid "Skin Setting"
 msgstr "Configurazione skin"
 
 msgid "Skin Settings"
 msgstr "Impostazioni skin"
 
-msgid "Skin setup"
-msgstr "Impostazioni skin"
+msgid "SkinSelection"
+msgstr "Selezione skin"
 
 msgid "SkinSelector"
-msgstr "Selettore skin LCD"
+msgstr "Selettore skin"
 
 msgid "Skip back"
 msgstr "Salta indietro"
@@ -19778,16 +19774,16 @@ msgstr "Questa opzione configura la modalità di uscita video (o la risoluzione)
 msgid "This option configures you can set Auto Volume Level."
 msgstr "Questa opzione consente di configurare il volume automatico."
 
-msgid "This option lets you adjust the 3D depth."
+msgid "This option lets you adjust the 3D depth of the OSD."
 msgstr "Questa opzione consente di regolare la profondità 3D"
 
 msgid "This option lets you adjust the transparency of the user interface"
 msgstr "Questa opzione consente di regolare la trasparenza dell'interfaccia utente"
 
-msgid "This option lets you choose the 3D mode."
+msgid "This option lets you choose the 3D mode of the OSD."
 msgstr "Questa opzione consente di scegliere la modalità 3D"
 
-msgid "This option lets you show the option in the Extension Menu screen."
+msgid "This option lets you show the 3D OSD menu option in the Extension Menu screen."
 msgstr "Questa opzione ti consente di mostrare l'opzione nella schermata dell'estensione."
 
 msgid "This option moves the PVR status display from a separate window into the MoviePlayer InfoBar."
@@ -23618,6 +23614,25 @@ msgstr "sì (mantieni feed)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enigma2 skin selector"
+#~ msgstr "Selettore skin Enigma2"
+
+#~ msgid ""
+#~ "GUI needs a restart to apply a new skin\n"
+#~ "Do you want to restart the GUI now?"
+#~ msgstr ""
+#~ "La GUI ha bisogno di un riavvio per applicare una nuova skin\n"
+#~ "Vuoi riavviare la GUI ora?"
+
+#~ msgid "LCD SkinSelector"
+#~ msgstr "Selettore skin LCD"
+
+#~ msgid "Skin Selector"
+#~ msgstr "Selettore di skin"
+
+#~ msgid "Skin setup"
+#~ msgstr "Impostazioni skin"
 
 #~ msgid "Settings..."
 #~ msgstr "Impostazioni..."

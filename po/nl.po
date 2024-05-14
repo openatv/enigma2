@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-05 12:54+0000\n"
+"POT-Creation-Date: 2024-05-08 12:32+0000\n"
 "PO-Revision-Date: 2024-04-20 20:07+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -4044,6 +4044,12 @@ msgstr "Kies de naam van het bestand waarin de EPG-data moet worden opgeslagen w
 msgid "Choose the option to correct invalid EPG data."
 msgstr "Kies de optie om ongeldige EPG-gegevens te corrigeren."
 
+msgid "Choose the skin to be used for the GUI interface. Press 'GREEN' to activate the skin."
+msgstr ""
+
+msgid "Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin."
+msgstr ""
+
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr "Kies de stijl en volgorde van de items in de help schermen."
 
@@ -7282,9 +7288,6 @@ msgstr "Enigma2 informatie"
 msgid "Enigma2 revision"
 msgstr "Enigma2 revisie"
 
-msgid "Enigma2 skin selector"
-msgstr "Enigma2 skinkeuze"
-
 msgid "Enigma2 version"
 msgstr "Enigma2 versie"
 
@@ -8589,16 +8592,12 @@ msgstr "GStreamer debug log niveau *"
 msgid "GStreamer version"
 msgstr "GStreamer versie"
 
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to Restart the GUI now?"
+msgid "GUI Skin *"
 msgstr ""
-"De gebruikersinterface moet herstart worden om\n"
-"de nieuwe skin te activeren. Nu herstarten?"
 
 msgid ""
 "GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
+"Do you want to Restart the GUI now?"
 msgstr ""
 "De gebruikersinterface moet herstart worden om\n"
 "de nieuwe skin te activeren. Nu herstarten?"
@@ -10195,11 +10194,11 @@ msgstr "LAN-verbinding"
 msgid "LCD Skin Settings"
 msgstr "Display skin selecteren"
 
-msgid "LCD SkinSelector"
-msgstr "Display skin selecteren"
-
 msgid "LCD scroll speed"
 msgstr "Display scroll snelheid"
+
+msgid "LCD/Front panel *"
+msgstr ""
 
 msgid "LCN plugin for DVB-T/T2 services"
 msgstr "LCN plugin voor DVB-T/T2 services"
@@ -18009,17 +18008,14 @@ msgstr "Skinparts"
 msgid "Skin Packages"
 msgstr "Skins"
 
-msgid "Skin Selector"
-msgstr "Skin selecteren"
-
 msgid "Skin Setting"
 msgstr "Skin instelling"
 
 msgid "Skin Settings"
 msgstr "Skin selecteren"
 
-msgid "Skin setup"
-msgstr "Skin selecteren"
+msgid "SkinSelection"
+msgstr ""
 
 msgid "SkinSelector"
 msgstr "Skin selecteren"
@@ -19998,16 +19994,16 @@ msgstr "Hier stelt u de resolutie of video output in."
 msgid "This option configures you can set Auto Volume Level."
 msgstr "Met deze optie kunt u het automatische volumeniveau configureren."
 
-msgid "This option lets you adjust the 3D depth."
+msgid "This option lets you adjust the 3D depth of the OSD."
 msgstr "Hier kunt u de 3D-diepte instellen"
 
 msgid "This option lets you adjust the transparency of the user interface"
 msgstr "Hier kunt u de gewenste transparantie van de gebruikersinterface instellen"
 
-msgid "This option lets you choose the 3D mode."
+msgid "This option lets you choose the 3D mode of the OSD."
 msgstr "Hier kunt u de gewenste 3D-modus kiezen"
 
-msgid "This option lets you show the option in the Extension Menu screen."
+msgid "This option lets you show the 3D OSD menu option in the Extension Menu screen."
 msgstr "Hiermee stelt u in of de optie in het Extensies-menu (BLAUW-lang) wordt getoond."
 
 msgid "This option moves the PVR status display from a separate window into the MoviePlayer InfoBar."
@@ -23883,6 +23879,25 @@ msgstr "ja (bewaar feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enigma2 skin selector"
+#~ msgstr "Enigma2 skinkeuze"
+
+#~ msgid ""
+#~ "GUI needs a restart to apply a new skin\n"
+#~ "Do you want to restart the GUI now?"
+#~ msgstr ""
+#~ "De gebruikersinterface moet herstart worden om\n"
+#~ "de nieuwe skin te activeren. Nu herstarten?"
+
+#~ msgid "LCD SkinSelector"
+#~ msgstr "Display skin selecteren"
+
+#~ msgid "Skin Selector"
+#~ msgstr "Skin selecteren"
+
+#~ msgid "Skin setup"
+#~ msgstr "Skin selecteren"
 
 #~ msgid "Settings..."
 #~ msgstr "Instellingen"

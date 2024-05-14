@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-05 12:54+0000\n"
+"POT-Creation-Date: 2024-05-08 12:32+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -4077,6 +4077,12 @@ msgstr "Válassza ki az EPG adatokat tartalmazó fájl nevét, ha a %s %s leáll
 msgid "Choose the option to correct invalid EPG data."
 msgstr ""
 
+msgid "Choose the skin to be used for the GUI interface. Press 'GREEN' to activate the skin."
+msgstr ""
+
+msgid "Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin."
+msgstr ""
+
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr ""
 
@@ -7202,9 +7208,6 @@ msgstr ""
 msgid "Enigma2 revision"
 msgstr ""
 
-msgid "Enigma2 skin selector"
-msgstr "Enigma2 kinézet választó"
-
 msgid "Enigma2 version"
 msgstr ""
 
@@ -8505,16 +8508,12 @@ msgstr ""
 msgid "GStreamer version"
 msgstr ""
 
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to Restart the GUI now?"
+msgid "GUI Skin *"
 msgstr ""
-"Az új kinézet betöltéséhez újra kell indítani a kezelő felületet.\n"
-"Újra indítja most?"
 
 msgid ""
 "GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
+"Do you want to Restart the GUI now?"
 msgstr ""
 "Az új kinézet betöltéséhez újra kell indítani a kezelő felületet.\n"
 "Újra indítja most?"
@@ -10125,11 +10124,11 @@ msgstr "Helyi privát"
 msgid "LCD Skin Settings"
 msgstr "LCD kinézet beállítás"
 
-msgid "LCD SkinSelector"
-msgstr "LCD Kinézet választó (Skin)"
-
 msgid "LCD scroll speed"
 msgstr "LCD görgetési sebesség"
+
+msgid "LCD/Front panel *"
+msgstr ""
 
 msgid "LCN plugin for DVB-T/T2 services"
 msgstr "LCN bővítmény a DVB-T/T2 csatornákhoz"
@@ -17966,17 +17965,14 @@ msgstr ""
 msgid "Skin Packages"
 msgstr ""
 
-msgid "Skin Selector"
-msgstr "Kinézet választó (Skin)"
-
 msgid "Skin Setting"
 msgstr "Kinézet beállítása"
 
 msgid "Skin Settings"
 msgstr "Kinézet beállítása (Skin)"
 
-msgid "Skin setup"
-msgstr "Kijelző kinézet választás (Skin)"
+msgid "SkinSelection"
+msgstr ""
 
 msgid "SkinSelector"
 msgstr "Kinézet választó (Skin)"
@@ -19919,16 +19915,16 @@ msgstr "Beállíthatja a videó kimenet módját."
 msgid "This option configures you can set Auto Volume Level."
 msgstr "Ezzel az opcióval beállíthatja az Auto Volume Level (Automatikus hangerőszint) beállítást."
 
-msgid "This option lets you adjust the 3D depth."
+msgid "This option lets you adjust the 3D depth of the OSD."
 msgstr "Ez az opció lehetővé teszi a 3D mélység beállítását"
 
 msgid "This option lets you adjust the transparency of the user interface"
 msgstr "Ezzel az opcióval módosíthatja a felhasználói felület áttetszőségét"
 
-msgid "This option lets you choose the 3D mode."
+msgid "This option lets you choose the 3D mode of the OSD."
 msgstr "Ezzel az opcióval kiválaszthatja a 3D módot"
 
-msgid "This option lets you show the option in the Extension Menu screen."
+msgid "This option lets you show the 3D OSD menu option in the Extension Menu screen."
 msgstr "Ezzel az opcióval megjelenítheti a opciókat a kiterjesztett képernyőn"
 
 msgid "This option moves the PVR status display from a separate window into the MoviePlayer InfoBar."
@@ -23743,6 +23739,25 @@ msgstr "igen (állapotok megtartása)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enigma2 skin selector"
+#~ msgstr "Enigma2 kinézet választó"
+
+#~ msgid ""
+#~ "GUI needs a restart to apply a new skin\n"
+#~ "Do you want to restart the GUI now?"
+#~ msgstr ""
+#~ "Az új kinézet betöltéséhez újra kell indítani a kezelő felületet.\n"
+#~ "Újra indítja most?"
+
+#~ msgid "LCD SkinSelector"
+#~ msgstr "LCD Kinézet választó (Skin)"
+
+#~ msgid "Skin Selector"
+#~ msgstr "Kinézet választó (Skin)"
+
+#~ msgid "Skin setup"
+#~ msgstr "Kijelző kinézet választás (Skin)"
 
 #~ msgid "Settings..."
 #~ msgstr "Beállítások..."

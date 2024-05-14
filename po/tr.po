@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-05 12:54+0000\n"
+"POT-Creation-Date: 2024-05-08 12:32+0000\n"
 "PO-Revision-Date: 2023-10-29 13:12+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -4186,6 +4186,12 @@ msgstr "%s %s kapandığında EPG bilgisinin saklanacağı dosya adını seçin.
 msgid "Choose the option to correct invalid EPG data."
 msgstr "Geçersiz EPG verilerini düzeltme seçeneğini seçin."
 
+msgid "Choose the skin to be used for the GUI interface. Press 'GREEN' to activate the skin."
+msgstr ""
+
+msgid "Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin."
+msgstr ""
+
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr "Yardım pencerelerinde öğelerin görüntüleneceği stili/sırayı seçin."
 
@@ -7453,9 +7459,6 @@ msgstr "Enigma2 bilgileri"
 msgid "Enigma2 revision"
 msgstr "Enigma2 revizyonu"
 
-msgid "Enigma2 skin selector"
-msgstr "Enigma2 arayüz seçicisi"
-
 msgid "Enigma2 version"
 msgstr "Enigma2 versiyonu"
 
@@ -8821,20 +8824,15 @@ msgstr "GStreamer hata ayıklama günlüğü düzeyi *"
 msgid "GStreamer version"
 msgstr "Desteklenen video dosyaları için bölüm konumlarını göster. (gstreamer versiyonu 1'den büyük olmalıdır)"
 
+msgid "GUI Skin *"
+msgstr ""
+
 msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to Restart the GUI now?"
 msgstr ""
 "Yeni arayüzü etkinleştirmek için yeniden başlatma gerekiyor\n"
 "Grafik arayüzü (GUI) yeniden başlatmak istiyor musunuz?"
-
-#
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
-msgstr ""
-"Yeni görsel-arayüzü etkinleştirmek için kullanıcı arayüzünü yeniden başlatmak gerekiyor\n"
-"Kullanıcı arayüzünü yeniden başlatmak istiyor musunuz?"
 
 msgid "Gabon"
 msgstr "Gabon"
@@ -10497,11 +10495,11 @@ msgstr "Yerel ağ bağlantısı"
 msgid "LCD Skin Settings"
 msgstr "LCD Skin Kurulumu"
 
-msgid "LCD SkinSelector"
-msgstr "LCD SkinSelector"
-
 msgid "LCD scroll speed"
 msgstr "LCD kaydırma hızı"
+
+msgid "LCD/Front panel *"
+msgstr ""
 
 msgid "LCN plugin for DVB-T/T2 services"
 msgstr "DVB-T / T2 servisleri için LCN eklentisi"
@@ -18697,17 +18695,14 @@ msgstr "Cilt Bileşen Paketleri"
 msgid "Skin Packages"
 msgstr "Cilt Paketleri"
 
-msgid "Skin Selector"
-msgstr "Arayüz Seçici"
-
 msgid "Skin Setting"
 msgstr "Görsel-arayüz Ayarı"
 
 msgid "Skin Settings"
 msgstr "Arayüz Ayarları"
 
-msgid "Skin setup"
-msgstr "Görsel arayüz kurulumu"
+msgid "SkinSelection"
+msgstr ""
 
 msgid "SkinSelector"
 msgstr "SkinSelector"
@@ -20739,16 +20734,16 @@ msgstr "Bu seçenek video çıkış modunu (veya çözünürlük) yapılandırı
 msgid "This option configures you can set Auto Volume Level."
 msgstr "Bu seçenek, Otomatik Ses Seviyesini ayarlarını yapılandırır."
 
-msgid "This option lets you adjust the 3D depth."
+msgid "This option lets you adjust the 3D depth of the OSD."
 msgstr "3D derinlik ayarını sağlar"
 
 msgid "This option lets you adjust the transparency of the user interface"
 msgstr "Bu seçenek kullanıcı arayüzü saydamlık seviyesini ayarlamanızı sağlar"
 
-msgid "This option lets you choose the 3D mode."
+msgid "This option lets you choose the 3D mode of the OSD."
 msgstr "3D kipinin seçilmesini sağlar"
 
-msgid "This option lets you show the option in the Extension Menu screen."
+msgid "This option lets you show the 3D OSD menu option in the Extension Menu screen."
 msgstr "Eklentiler ekranında seçeneğin görüntülenmesini sağlar."
 
 msgid "This option moves the PVR status display from a separate window into the MoviePlayer InfoBar."
@@ -24813,6 +24808,26 @@ msgstr "evet (beslemeleri tut)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enigma2 skin selector"
+#~ msgstr "Enigma2 arayüz seçicisi"
+
+#
+#~ msgid ""
+#~ "GUI needs a restart to apply a new skin\n"
+#~ "Do you want to restart the GUI now?"
+#~ msgstr ""
+#~ "Yeni görsel-arayüzü etkinleştirmek için kullanıcı arayüzünü yeniden başlatmak gerekiyor\n"
+#~ "Kullanıcı arayüzünü yeniden başlatmak istiyor musunuz?"
+
+#~ msgid "LCD SkinSelector"
+#~ msgstr "LCD SkinSelector"
+
+#~ msgid "Skin Selector"
+#~ msgstr "Arayüz Seçici"
+
+#~ msgid "Skin setup"
+#~ msgstr "Görsel arayüz kurulumu"
 
 #~ msgid "Settings..."
 #~ msgstr "Ayarlar..."
