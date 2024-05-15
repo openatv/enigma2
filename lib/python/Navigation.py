@@ -280,7 +280,7 @@ class Navigation:
 			return 1
 		print(f"[Navigation] Playing ref '{ref and ref.toString()}'.")
 		if exists("/proc/stb/lcd/symbol_signal"):
-			signal = "1" if config.lcd.mode.value and "0:0:0:0:0:0:0:0:0" not in ref.toString() else "0"
+			signal = "1" if config.lcd.mode.value and ref and "0:0:0:0:0:0:0:0:0" not in ref.toString() else "0"
 			fileWriteLine("/proc/stb/lcd/symbol_signal", signal, source=MODULE_NAME)
 		if ref is None:
 			self.stopService()
