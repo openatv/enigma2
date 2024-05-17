@@ -1531,13 +1531,13 @@ int eServiceMP3::getInfo(int w)
 
 	switch (w)
 	{
-	case sServiceref: return m_ref;
 	case sVideoHeight: return m_height;
 	case sVideoWidth: return m_width;
 	case sFrameRate: return m_framerate;
 	case sProgressive: return m_progressive;
 	case sGamma: return m_gamma;
 	case sAspect: return m_aspect;
+	case sServiceref:
 	case sTagTitle:
 	case sTagArtist:
 	case sTagAlbum:
