@@ -16,28 +16,16 @@ MODULE_NAME = __name__.split(".")[-1]
 
 
 def InitOSDCalibration():
-	BoxInfo.setItem("CanChangeOsdPosition", access("/proc/stb/fb/dst_left", W_OK))
-	BoxInfo.setItem("CanChangeOsdPositionAML", access("/sys/class/graphics/fb0/free_scale", W_OK))  # Is this the same as BoxInfo.getItem("AmlogicFamily")?
-	BoxInfo.setItem("CanChangeOsdAlpha", eAVControl.getInstance().hasOSDAlpha())
-	BoxInfo.setItem("OSDCalibration", BoxInfo.getItem("CanChangeOsdPosition") or BoxInfo.getItem("CanChangeOsdPositionAML") or BoxInfo.getItem("CanChangeOsdAlpha"))
-	BoxInfo.setItem("OSD3DCalibration", access("/proc/stb/fb/3dmode", W_OK))
-	# BoxInfo.setItem("OsdSetup", BoxInfo.getItem("CanChangeOsdPosition"))  # This does not appear to be used.
-	if BoxInfo.getItem("CanChangeOsdPositionAML"):
-		def setPositionParameter(parameter, value):
-			value = f"{config.osd.dst_left.value} {config.osd.dst_top.value} {config.osd.dst_width.value} {config.osd.dst_height.value}"
-			fileWriteLine("/sys/class/graphics/fb0/window_axis", value, source=MODULE_NAME)
-			fileWriteLine("/sys/class/graphics/fb0/free_scale", "0x10001", source=MODULE_NAME)
-
-	elif BoxInfo.getItem("CanChangeOsdPosition"):
-		def setPositionParameter(parameter, value):
+	def setPositionParameter(parameter, value):
+		if BoxInfo.getItem("CanChangeOsdPosition"):
 			fileWriteLine(f"/proc/stb/fb/dst_{parameter}", f"{value:08x}\n", source=MODULE_NAME)
 			fileName = "/proc/stb/fb/dst_apply"
 			if exists(fileName):
 				fileWriteLine(fileName, "1", source=MODULE_NAME)
-
-	else:  # Dummy else case.
-		def setPositionParameter(parameter, value):
-			dummy = (parameter, value)  # Dummy code to make SONAR happy.
+		elif BoxInfo.getItem("CanChangeOsdPositionAML"):
+			value = f"{config.osd.dst_left.value} {config.osd.dst_top.value} {config.osd.dst_width.value} {config.osd.dst_height.value}"
+			fileWriteLine("/sys/class/graphics/fb0/window_axis", value, source=MODULE_NAME)
+			fileWriteLine("/sys/class/graphics/fb0/free_scale", "0x10001", source=MODULE_NAME)
 
 	def setLeft(configElement):
 		setPositionParameter("left", configElement.value)
@@ -77,6 +65,11 @@ def InitOSDCalibration():
 		print(f"[OSDCalibration] Setting 3D depth to {value}.")
 		fileWriteLine("/proc/stb/fb/znorm", str(value), source=MODULE_NAME)
 
+	BoxInfo.setItem("CanChangeOsdPosition", access("/proc/stb/fb/dst_left", W_OK))
+	BoxInfo.setItem("CanChangeOsdPositionAML", access("/sys/class/graphics/fb0/free_scale", W_OK))  # Is this the same as BoxInfo.getItem("AmlogicFamily")?
+	BoxInfo.setItem("CanChangeOsdAlpha", eAVControl.getInstance().hasOSDAlpha())
+	BoxInfo.setItem("OSDCalibration", BoxInfo.getItem("CanChangeOsdPosition") or BoxInfo.getItem("CanChangeOsdPositionAML") or BoxInfo.getItem("CanChangeOsdAlpha"))
+	BoxInfo.setItem("OSD3DCalibration", access("/proc/stb/fb/3dmode", W_OK))
 	print(f"[OSDCalibration] Setting OSD position to (X={config.osd.dst_left.value}, Y={config.osd.dst_top.value}) and size to (W={config.osd.dst_width.value}, H={config.osd.dst_height.value}).")
 	config.osd.dst_left.addNotifier(setLeft)
 	config.osd.dst_top.addNotifier(setTop)
@@ -162,7 +155,7 @@ class OSDCalibration(Setup):
 
 	def __init__(self, session):
 		Setup.__init__(self, session, "OSDCalibration")
-		self.skinName = ["OSDCalibration"]
+		self.skinName = ["OSDCalibration"]  # Don't use the standard Setup screen.
 		text = []
 		text.append(_("Before changing these settings try to disable any overscan settings on th TV / display screen. To calibrate the On-Screen-Display (OSD) adjust the position and size values until the red box is *just* visible and touches the edges of the screen."))
 		text.append(_("When the red box is correctly visible press the GREEN button to save the settings and exit."))
