@@ -230,7 +230,7 @@ AS_IF([test "$MACHINEBUILD" == "gbue4k"],[AC_DEFINE(HWGBUE4K, 1,[gbue4k])])
 AS_IF([test "$MACHINEBUILD" == "gbtrio4kpro"],[AC_DEFINE(HWGBTRIO4KPRO, 1,[gbtrio4kpro])])
 
 AC_ARG_WITH(accelerationthreshold,
-	AC_HELP_STRING([--with-accelerationthreshold=n], [use acceleration threshold of n bytes]),
+	AS_HELP_STRING([--with-accelerationthreshold=n], [use acceleration threshold of n bytes]),
 	[[with_accelerationthreshold=$withval]],
 	[[with_accelerationthreshold=48000]]
 )
@@ -238,7 +238,7 @@ AC_ARG_WITH(accelerationthreshold,
 AC_DEFINE_UNQUOTED(GFX_SURFACE_ACCELERATION_THRESHOLD, $with_accelerationthreshold,[Configure threshold for accelerated surfaces (in bytes)])
 
 AC_ARG_WITH(fillaccelerationthreshold,
-	AC_HELP_STRING([--with-fillaccelerationthreshold=n], [use fill acceleration threshold of n bytes]),
+	AS_HELP_STRING([--with-fillaccelerationthreshold=n], [use fill acceleration threshold of n bytes]),
 	[[with_fillaccelerationthreshold=$withval]],
 	[[with_fillaccelerationthreshold=80000]]
 )
@@ -246,7 +246,7 @@ AC_ARG_WITH(fillaccelerationthreshold,
 AC_DEFINE_UNQUOTED(GFX_SURFACE_FILL_ACCELERATION_THRESHOLD, $with_fillaccelerationthreshold,[Configure threshold for accelerated fill operations (in bytes)])
 
 AC_ARG_WITH(blitaccelerationthreshold,
-	AC_HELP_STRING([--with-blitaccelerationthreshold=n], [use blit acceleration threshold of n bytes]),
+	AS_HELP_STRING([--with-blitaccelerationthreshold=n], [use blit acceleration threshold of n bytes]),
 	[[with_blitaccelerationthreshold=$withval]],
 	[[with_blitaccelerationthreshold=0]]
 )
@@ -254,7 +254,7 @@ AC_ARG_WITH(blitaccelerationthreshold,
 AC_DEFINE_UNQUOTED(GFX_SURFACE_BLIT_ACCELERATION_THRESHOLD, $with_blitaccelerationthreshold,[Configure threshold for accelerated blit operations (in bytes)])
 
 AC_ARG_WITH(alphablendingacceleration,
-	AC_HELP_STRING([--with-alphablendingacceleration=never/always/auto], [alphablending acceleration strategy: never accelerate / always accelerate / automatically decide when to accelerate (default)]),
+	AS_HELP_STRING([--with-alphablendingacceleration=never/always/auto], [alphablending acceleration strategy: never accelerate / always accelerate / automatically decide when to accelerate (default)]),
 	[[with_alphablendingacceleration=$withval]],
 	[[with_alphablendingacceleration=auto]]
 )
@@ -266,7 +266,7 @@ elif test x"$with_alphablendingacceleration" = xalways ; then
 fi
 
 AC_ARG_WITH(accelerationaccumulation,
-	AC_HELP_STRING([--with-accelerationaccumulation], [accumulate blit/fill acceleration operations]),
+	AS_HELP_STRING([--with-accelerationaccumulation], [accumulate blit/fill acceleration operations]),
 	[[with_accelerationaccumulation=$withval]],
 	[[with_accelerationaccumulation=no]]
 )
@@ -298,7 +298,7 @@ if test x"$with_libhiaccel" != xno ; then
 fi
 
 AC_ARG_WITH(osdanimation,
-	AC_HELP_STRING([--with-osdanimation], [use osd animation, yes or no]),
+	AS_HELP_STRING([--with-osdanimation], [use osd animation, yes or no]),
 	[[withosdanimation=$withval]],
 	[[withosdanimation=no]]
 )
@@ -315,7 +315,7 @@ if test `echo "$BOXTYPE" | cut -b 1-2` == "dm" -o `echo "$BOXTYPE" | cut -b 1-5`
 fi
 
 AC_ARG_WITH(nolcd,
-	AC_HELP_STRING([--with-nolcd], [disable ascii based lcd, yes or no]),
+	AS_HELP_STRING([--with-nolcd], [disable ascii based lcd, yes or no]),
 	[[withnolcd=$withval]],
 	[[withnolcd=no]]
 )
@@ -325,7 +325,7 @@ fi
 AM_CONDITIONAL(NO_LCD, test x"$withnolcd" != xno)
 
 AC_ARG_WITH(textlcd,
-	AC_HELP_STRING([--with-textlcd], [use ascii based lcd, yes or no]),
+	AS_HELP_STRING([--with-textlcd], [use ascii based lcd, yes or no]),
 	[[withtextlcd=$withval]],
 	[[withtextlcd=no]]
 )
@@ -335,7 +335,7 @@ fi
 AM_CONDITIONAL(HAVE_TEXTLCD, test x"$withtextlcd" != xno)
 
 AC_ARG_WITH(7segment,
-	AC_HELP_STRING([--with-7segment], [use ascii based lcd, yes or no]),
+	AS_HELP_STRING([--with-7segment], [use ascii based lcd, yes or no]),
 	[[with7segment=$withval]],
 	[[with7segment=no]]
 )
@@ -345,7 +345,7 @@ fi
 AM_CONDITIONAL(HAVE_7SEGMENT, test x"$with7segment" != xno)
 
 AC_ARG_WITH(bwlcd96,
-	AC_HELP_STRING([--with-bwlcd96], [use 96x64 1bpp black and white display, yes or no]),
+	AS_HELP_STRING([--with-bwlcd96], [use 96x64 1bpp black and white display, yes or no]),
 	[[withbwlcd96=$withval]],
 	[[withbwlcd96=no]]
 )
@@ -355,7 +355,7 @@ fi
 AM_CONDITIONAL(HAVE_BWLCD96, test x"$withbwlcd96" != xno)
 
 AC_ARG_WITH(colorlcd,
-	AC_HELP_STRING([--with-colorlcd], [use 96x64 16bpp color display, yes or no]),
+	AS_HELP_STRING([--with-colorlcd], [use 96x64 16bpp color display, yes or no]),
 	[[withcolorlcd=$withval]],
 	[[withcolorlcd=no]]
 )
@@ -365,7 +365,7 @@ fi
 AM_CONDITIONAL(HAVE_COLORLCD, test x"$withcolorlcd" != xno)
 
 AC_ARG_WITH(colorlcd128,
-	AC_HELP_STRING([--with-colorlcd128], [use 128x64 16bpp color display, yes or no]),
+	AS_HELP_STRING([--with-colorlcd128], [use 128x64 16bpp color display, yes or no]),
 	[[withcolorlcd128=$withval]],
 	[[withcolorlcd128=no]]
 )
@@ -375,7 +375,7 @@ fi
 AM_CONDITIONAL(HAVE_COLORLCD128, test x"$withcolorlcd" != xno)
 
 AC_ARG_WITH(colorlcd220,
-	AC_HELP_STRING([--with-colorlcd220], [use 220x176 16bpp color display, yes or no]),
+	AS_HELP_STRING([--with-colorlcd220], [use 220x176 16bpp color display, yes or no]),
 	[[withcolorlcd220=$withval]],
 	[[withcolorlcd220=no]]
 )
@@ -385,7 +385,7 @@ fi
 AM_CONDITIONAL(HAVE_COLORLCD220, test x"$withcolorlcd220" != xno)
 
 AC_ARG_WITH(colorlcd240,
-	AC_HELP_STRING([--with-colorlcd240], [use 240x80 16bpp color display, yes or no]),
+	AS_HELP_STRING([--with-colorlcd240], [use 240x80 16bpp color display, yes or no]),
 	[[withcolorlcd240=$withval]],
 	[[withcolorlcd240=no]]
 )
@@ -395,7 +395,7 @@ fi
 AM_CONDITIONAL(HAVE_COLORLCD240, test x"$withcolorlcd240" != xno)
 
 AC_ARG_WITH(colorlcd390,
-	AC_HELP_STRING([--with-colorlcd390], [use 390x240 16bpp color display, yes or no]),
+	AS_HELP_STRING([--with-colorlcd390], [use 390x240 16bpp color display, yes or no]),
 	[[withcolorlcd390=$withval]],
 	[[withcolorlcd390=no]]
 )
@@ -406,7 +406,7 @@ fi
 AM_CONDITIONAL(HAVE_COLORLCD390, test x"$withcolorlcd390" != xno)
 
 AC_ARG_WITH(colorlcd400,
-	AC_HELP_STRING([--with-colorlcd400], [use 400x176 16bpp color display, yes or no]),
+	AS_HELP_STRING([--with-colorlcd400], [use 400x176 16bpp color display, yes or no]),
 	[[withcolorlcd400=$withval]],
 	[[withcolorlcd400=no]]
 )
@@ -417,7 +417,7 @@ fi
 AM_CONDITIONAL(HAVE_COLORLCD400, test x"$withcolorlcd400" != xno)
 
 AC_ARG_WITH(colorlcd480,
-	AC_HELP_STRING([--with-colorlcd480], [use 480x320 16bpp color display, yes or no]),
+	AS_HELP_STRING([--with-colorlcd480], [use 480x320 16bpp color display, yes or no]),
 	[[withcolorlcd480=$withval]],
 	[[withcolorlcd480=no]]
 )
@@ -428,7 +428,7 @@ fi
 AM_CONDITIONAL(HAVE_COLORLCD480, test x"$withcolorlcd480" != xno)
 
 AC_ARG_WITH(colorlcd720,
-	AC_HELP_STRING([--with-colorlcd720], [use 720x576 16bpp color display, yes or no]),
+	AS_HELP_STRING([--with-colorlcd720], [use 720x576 16bpp color display, yes or no]),
 	[[withcolorlcd720=$withval]],
 	[[withcolorlcd720=no]]
 )
@@ -439,7 +439,7 @@ fi
 AM_CONDITIONAL(HAVE_COLORLCD720, test x"$withcolorlcd720" != xno)
 
 AC_ARG_WITH(colorlcd800,
-	AC_HELP_STRING([--with-colorlcd800], [use 800x480 16bpp color display, yes or no]),
+	AS_HELP_STRING([--with-colorlcd800], [use 800x480 16bpp color display, yes or no]),
 	[[withcolorlcd800=$withval]],
 	[[withcolorlcd800=no]]
 )
@@ -450,7 +450,7 @@ fi
 AM_CONDITIONAL(HAVE_COLORLCD800, test x"$withcolorlcd800" != xno)
 
 AC_ARG_WITH(bwlcd255,
-	AC_HELP_STRING([--with-bwlcd255], [use 255x64 1bpp black and white display, yes or no]),
+	AS_HELP_STRING([--with-bwlcd255], [use 255x64 1bpp black and white display, yes or no]),
 	[[withbwlcd255=$withval]],
 	[[withbwlcd255=no]]
 )
@@ -460,7 +460,7 @@ fi
 AM_CONDITIONAL(HAVE_BWLCD255, test x"$withbwlcd255" != xno)
 
 AC_ARG_WITH(bwlcd140,
-	AC_HELP_STRING([--with-bwlcd140], [use 140x32 1bpp black and white display, yes or no]),
+	AS_HELP_STRING([--with-bwlcd140], [use 140x32 1bpp black and white display, yes or no]),
 	[[withbwlcd140=$withval]],
 	[[withbwlcd140=no]]
 )
@@ -470,7 +470,7 @@ fi
 AM_CONDITIONAL(HAVE_BWLCD140, test x"$withbwlcd140" != xno)
 
 AC_ARG_WITH(bwlcd128,
-	AC_HELP_STRING([--with-bwlcd128], [use 128x32 1bpp black and white display, yes or no]),
+	AS_HELP_STRING([--with-bwlcd128], [use 128x32 1bpp black and white display, yes or no]),
 	[[withbwlcd128=$withval]],
 	[[withbwlcd128=no]]
 )
@@ -480,7 +480,7 @@ fi
 AM_CONDITIONAL(HAVE_BWLCD128, test x"$withbwlcd128" != xno)
 
 AC_ARG_WITH(fullgraphiclcd,
-	AC_HELP_STRING([--with-fullgraphiclcd], [display right_half_vfd_icons from skin(for ultimo), yes or no]),
+	AS_HELP_STRING([--with-fullgraphiclcd], [display right_half_vfd_icons from skin(for ultimo), yes or no]),
 	[[withfullgraphiclcd=$withval]],
 	[[withfullgraphiclcd=no]]
 )
@@ -490,7 +490,7 @@ fi
 AM_CONDITIONAL(HAVE_FULLGRAPHICLCD, test x"$withfullgraphiclcd" != xno)
 
 AC_ARG_WITH(gigabluelcd,
-	AC_HELP_STRING([--with-gigabluelcd], [use fix color map in color display, yes or no]),
+	AS_HELP_STRING([--with-gigabluelcd], [use fix color map in color display, yes or no]),
 	[[withgigabluelcd=$withval]],
 	[[withgigabluelcd=no]]
 )
@@ -500,7 +500,7 @@ fi
 AM_CONDITIONAL(HAVE_GIGABLUELCD, test x"$withgigabluelcd" != xno)
 
 AC_ARG_WITH(alsa,
-	AC_HELP_STRING([--with-alsa], [Enable ALSA support]),
+	AS_HELP_STRING([--with-alsa], [Enable ALSA support]),
 	[[with_alse=$withval]],
 	[[with_alse=no]]
 )
@@ -510,7 +510,7 @@ if test x"$with_alsa" == xyes ; then
 fi
 
 AC_ARG_WITH(alsacard,
-	AC_HELP_STRING([--with-alsacard=card], [use 'card' for alsa card device, e.g. hw:0]),
+	AS_HELP_STRING([--with-alsacard=card], [use 'card' for alsa card device, e.g. hw:0]),
 	[[with_alsacard=$withval]],
 	[[with_alsacard=no]]
 )
@@ -519,7 +519,7 @@ if test x"$with_alsacard" != xno ; then
 fi
 
 AC_ARG_WITH(alsamixer,
-	AC_HELP_STRING([--with-alsamixer=mixername], [use alsa 'mixername' for volume control, e.g. Master]),
+	AS_HELP_STRING([--with-alsamixer=mixername], [use alsa 'mixername' for volume control, e.g. Master]),
 	[[with_alsamixer=$withval]],
 	[[with_alsamixer=no]]
 )
@@ -528,7 +528,7 @@ if test x"$with_alsamixer" != xno ; then
 fi
 
 AC_ARG_WITH(fbdev,
-	AC_HELP_STRING([--with-fbdev=devicename], [use devicename for framebuffer device, e.g. /dev/fb0 ]),
+	AS_HELP_STRING([--with-fbdev=devicename], [use devicename for framebuffer device, e.g. /dev/fb0 ]),
 	[[with_fbdev=$withval]],
 	[[with_fbdev=no]]
 )
@@ -537,7 +537,7 @@ if test x"$with_fbdev" != xno ; then
 fi
 
 AC_ARG_WITH(lcddev,
-	AC_HELP_STRING([--with-lcddev=devicename], [use devicename for lcd framebuffer device, e.g. /dev/fb1 ]),
+	AS_HELP_STRING([--with-lcddev=devicename], [use devicename for lcd framebuffer device, e.g. /dev/fb1 ]),
 	[[with_lcddev=$withval]],
 	[[with_lcddev=no]]
 )
@@ -546,7 +546,7 @@ if test x"$with_lcddev" != xno ; then
 fi
 
 AC_ARG_WITH(amlogic,
-	AC_HELP_STRING([--with-amlogic], [use amlogic MPEG decoder]),
+	AS_HELP_STRING([--with-amlogic], [use amlogic MPEG decoder]),
 	[[with_amlogic=$withval]],
 	[[with_amlogic=no]]
 )
@@ -561,7 +561,7 @@ if test "$BOXTYPE" == "dreamone" -o "$BOXTYPE" == "dreamtwo"; then
 fi
 
 AC_ARG_WITH(fcc,
-	AC_HELP_STRING([--with-fcc], [add FCC system plugin]),
+	AS_HELP_STRING([--with-fcc], [add FCC system plugin]),
 	[[with_fcc=$withval]],
 	[[with_fcc=no]]
 )
@@ -571,7 +571,7 @@ if test x"$with_fcc" = xyes ; then
 fi
 
 AC_ARG_WITH(subttxtabnormalptsdiffs,
-	AC_HELP_STRING([--with-subttxtabnormalptsdiffs=n], [use n/90 msec diffs for subtitle and teletext abnormal pts]),
+	AS_HELP_STRING([--with-subttxtabnormalptsdiffs=n], [use n/90 msec diffs for subtitle and teletext abnormal pts]),
 	[[with_subttxtabnormalptsdiffs=$withval]],
 	[[with_subttxtabnormalptsdiffs=1800000]]
 )
