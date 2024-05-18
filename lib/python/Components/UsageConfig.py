@@ -15,7 +15,6 @@ from Components.NimManager import nimmanager
 from Components.ServiceList import refreshServiceList
 from Components.SystemInfo import BoxInfo
 from Tools.Directories import SCOPE_HDD, SCOPE_SKINS, SCOPE_TIMESHIFT, defaultRecordingLocation, fileReadXML, fileWriteLine, resolveFilename
-from Components.AVSwitch import iAVSwitch
 
 MODULE_NAME = __name__.split(".")[-1]
 DEFAULTKEYMAP = eEnv.resolve("${datadir}/enigma2/keymap.xml")
@@ -861,10 +860,7 @@ def InitUsageConfig():
 		(_("%A %Y/%-m/%d"), _("Dayname Year/M/DD")),
 		(_("%A %Y/%-m/%-d"), _("Dayname Year/M/D"))]
 
-	if config.osd.language.value == "de_DE":
-		config.usage.date.dayfull = ConfigSelection(default=_("%A %d.%m.%Y"), choices=choicelist)
-	else:
-		config.usage.date.dayfull = ConfigSelection(default=_("%A %-d %B %Y"), choices=choicelist)
+	config.usage.date.dayfull = ConfigSelection(default=_("%A %d.%m.%Y") if config.misc.locale.value == "de_DE" else _("%A %-d %B %Y"), choices=choicelist)
 
 	# TRANSLATORS: Long date representation short dayname daynum monthname year in strftime() format! See 'man strftime'.
 	config.usage.date.shortdayfull = ConfigText(default=_("%a %-d %B %Y"))
@@ -1212,35 +1208,6 @@ def InitUsageConfig():
 		eEPGCache.getInstance().setDebug(configElement.value)
 
 	config.crash.debugEPG.addNotifier(debugEPGhanged, immediate_feedback=False, initial_call=False)
-
-	if BoxInfo.getItem("AmlogicFamily"):
-		limits = [int(x) for x in iAVSwitch.getWindowsAxis().split()]
-		config.osd.dst_left = ConfigSelectionNumber(default=limits[0], stepwidth=1, min=limits[0] - 255, max=limits[0] + 255, wraparound=False)
-		config.osd.dst_top = ConfigSelectionNumber(default=limits[1], stepwidth=1, min=limits[1] - 255, max=limits[1] + 255, wraparound=False)
-		config.osd.dst_width = ConfigSelectionNumber(default=limits[2], stepwidth=1, min=limits[2] - 255, max=limits[2] + 255, wraparound=False)
-		config.osd.dst_height = ConfigSelectionNumber(default=limits[3], stepwidth=1, min=limits[3] - 255, max=limits[3] + 255, wraparound=False)
-	else:
-		config.osd.dst_left = ConfigSelectionNumber(default=0, stepwidth=1, min=0, max=720, wraparound=False)
-		config.osd.dst_width = ConfigSelectionNumber(default=720, stepwidth=1, min=0, max=720, wraparound=False)
-		config.osd.dst_top = ConfigSelectionNumber(default=0, stepwidth=1, min=0, max=576, wraparound=False)
-		config.osd.dst_height = ConfigSelectionNumber(default=576, stepwidth=1, min=0, max=576, wraparound=False)
-
-	config.osd.alpha = ConfigSelectionNumber(default=255, stepwidth=1, min=0, max=255, wraparound=False)
-	config.osd.alpha_teletext = ConfigSelectionNumber(default=255, stepwidth=1, min=0, max=255, wraparound=False)
-	config.osd.alpha_webbrowser = ConfigSelectionNumber(default=255, stepwidth=1, min=0, max=255, wraparound=False)
-	config.av.osd_alpha = NoSave(ConfigNumber(default=255))
-	config.osd.threeDmode = ConfigSelection(default="auto", choices=[
-		("off", _("Off")),
-		("auto", _("Auto")),
-		("sidebyside", _("Side by Side")),
-		("topandbottom", _("Top and Bottom"))
-	])
-	config.osd.threeDznorm = ConfigSlider(default=50, increment=1, limits=(0, 100))
-	config.osd.show3dextensions = ConfigYesNo(default=False)
-	config.osd.threeDsetmode = ConfigSelection(default="mode1", choices=[
-		("mode1", _("Mode 1")),
-		("mode2", _("Mode 2"))
-	])
 
 	hddChoices = [("/etc/enigma2/", _("Internal Flash"))]
 	for partition in harddiskmanager.getMountedPartitions():
