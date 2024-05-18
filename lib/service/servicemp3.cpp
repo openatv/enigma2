@@ -1652,6 +1652,21 @@ std::string eServiceMP3::getInfoString(int w)
 		}
 	}
 
+	if (w == sVideoInfo)
+	{
+		char buff[100];
+		snprintf(buff, sizeof(buff), "%d|%d|%d|%d|%d|%d",
+				m_width,
+				m_height,
+				m_framerate,
+				m_progressive,
+				m_aspect,
+				m_gamma
+				);
+		std::string videoInfo = buff;
+		return videoInfo;
+	}
+
 	if ( !m_stream_tags && w < sUser && w > 26 )
 		return "";
 	const gchar *tag = 0;
