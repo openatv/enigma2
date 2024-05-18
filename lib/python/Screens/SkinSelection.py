@@ -49,14 +49,17 @@ class SkinSelection(Setup):
 		lcdDirectory, lcdSkin = split(config.skin.display_skin.value)
 		lcdSkin = lcdSkin if lcdSkin else "skin_display.xml"
 		choices = []
-		for skin in self.DISPLAY_SKINS.keys():
-			path = join(self.lcdRoot, skin)
-			if exists(path):
-				choices.append((skin, self.DISPLAY_SKINS[skin]))
-		for directory in [x for x in listdir(self.lcdRoot) if isdir(join(self.lcdRoot, x))]:
-			path = join(directory, "skin_display.xml")
-			if exists(join(self.lcdRoot, path)):
-				choices.append((path, directory))
+		if exists(self.lcdRoot):
+			for skin in self.DISPLAY_SKINS.keys():
+				path = join(self.lcdRoot, skin)
+				if exists(path):
+					choices.append((skin, self.DISPLAY_SKINS[skin]))
+			for directory in [x for x in listdir(self.lcdRoot) if isdir(join(self.lcdRoot, x))]:
+				path = join(directory, "skin_display.xml")
+				if exists(join(self.lcdRoot, path)):
+					choices.append((path, directory))
+		else:
+			choices.append((config.skin.display_skin.value, ""))
 		config.skin.lcdSkin = NoSave(ConfigSelection(default=config.skin.display_skin.value, choices=choices))
 
 	def layoutFinished(self):
