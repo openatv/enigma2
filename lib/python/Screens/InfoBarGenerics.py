@@ -4056,8 +4056,10 @@ class InfoBarSubserviceSelection:
 				possibleSubservices = possibleSubserviceGroups[0]  # If the service is in multiple groups should we return more options?
 		return possibleSubservices
 
-	def keySelectSubservice(self):
-		noSubservice = True
+	def hotkeySubserviceSelection(self):  # Used in ButtonSetup
+		self.keySelectSubservice(noSubservice=False)
+
+	def keySelectSubservice(self, noSubservice=True):
 		if config.usage.subservice.value > 1:
 			serviceReference = self.session.nav.getCurrentlyPlayingServiceReference() and self.session.nav.getCurrentlyPlayingServiceReference().toCompareString()
 			if serviceReference:
