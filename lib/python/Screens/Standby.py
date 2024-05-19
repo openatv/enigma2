@@ -21,7 +21,7 @@ import Tools.Notifications
 
 
 inStandby = None
-TVinStandby = None
+TVinStandby = None  # Maybe used in plugins.
 
 QUIT_SHUTDOWN = 1
 QUIT_REBOOT = 2
@@ -38,10 +38,10 @@ QUIT_WOLSHUTDOWN = 45
 
 class TVstate:  # load in Navigation
 	def __init__(self):
-		global TVinStandby
-		if TVinStandby is not None:
-			print("[Standby] only one TVstate instance is allowed!")
-		TVinStandby = self
+#		global TVinStandby
+#		if TVinStandby is not None:
+#			print("[Standby] only one TVstate instance is allowed!")
+#		TVinStandby = self
 
 		try:
 			import Components.HdmiCec
@@ -98,6 +98,9 @@ class TVstate:  # load in Navigation
 				self.hdmicec_instance.standbyMessages()
 
 
+tvState = TVstate()
+
+
 def setLCDModeMinitTV(value):
 	eDBoxLCD.getInstance().setLCDMode(value)
 
@@ -148,8 +151,8 @@ class Standby2(Screen):
 
 	def TVoff(self):
 		print("[Standby] TVoff")
-		TVinStandby.skipHdmiCecNow(False)
-		TVinStandby.setTVstate('standby')
+		tvState.skipHdmiCecNow(False)
+		tvState.setTVstate('standby')
 
 	def setMute(self):
 		if eDVBVolumecontrol.getInstance().isMuted():

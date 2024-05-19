@@ -245,8 +245,8 @@ class PowerKey:
 		self.doAction(action=config.usage.on_long_powerpress.value)
 
 	def doAction(self, action):
-		if Screens.Standby.TVinStandby.getTVstate("standby"):
-			Screens.Standby.TVinStandby.setTVstate("on")
+		if tvState.getTVstate("standby"):
+			tvState.setTVstate("on")
 			return
 
 		self.standbyblocked = 1
@@ -260,10 +260,10 @@ class PowerKey:
 				self.session.openWithCallback(self.MenuClosed, Menu, menu)
 				return
 		elif action == "standby":
-			Screens.Standby.TVinStandby.skipHdmiCecNow(False)
+			tvState.skipHdmiCecNow(False)
 			self.standby()
 		elif action == "standby_noTVshutdown":
-			Screens.Standby.TVinStandby.skipHdmiCecNow(True)
+			tvState.skipHdmiCecNow(True)
 			self.standby()
 		elif action == "powertimerStandby":
 			val = 3
@@ -806,6 +806,7 @@ from Screens.Screen import Screen
 Screen.globalScreen = Globals()
 
 enigma.eProfileWrite("Standby")
+from Screens.Standby import tvState
 import Screens.Standby
 from Screens.Menu import Menu, findMenu
 

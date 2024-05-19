@@ -18,6 +18,7 @@ from Components.TimerSanityCheck import TimerSanityCheck
 from Components.UsageConfig import defaultMoviePath, calcFrontendPriorityIntval
 from Screens.MessageBox import MessageBox
 import Screens.Standby
+from Screens.Standby import tvState
 from ServiceReference import ServiceReference
 from Tools.ASCIItranslit import legacyEncode
 from Tools.Directories import SCOPE_CONFIG, fileReadXML, getRecordingFilename, resolveFilename
@@ -757,7 +758,7 @@ class RecordTimerEntry(TimerEntry):
 				self.backoff = 0
 				return True
 			if self.always_zap:
-				Screens.Standby.TVinStandby.skipHdmiCecNow("zapandrecordtimer")
+				tvState.skipHdmiCecNow("zapandrecordtimer")
 				if Screens.Standby.inStandby:
 					self.wasInStandby = True
 					# Set service to zap after standby.
@@ -905,7 +906,7 @@ class RecordTimerEntry(TimerEntry):
 			if self.failed:
 				return True
 			if self.justplay:
-				Screens.Standby.TVinStandby.skipHdmiCecNow("zaptimer")
+				tvState.skipHdmiCecNow("zaptimer")
 				if Screens.Standby.inStandby:
 					self.wasInStandby = True
 					# eActionMap.getInstance().bindAction("", -maxsize - 1, self.keypress)
@@ -952,7 +953,7 @@ class RecordTimerEntry(TimerEntry):
 				self.end = self.lastend
 			NavigationInstance.instance.RecordTimer.saveTimers()
 			boxInStandby = Screens.Standby.inStandby
-			tvNotActive = Screens.Standby.TVinStandby.getTVstate("notactive")
+			tvNotActive = tvState.getTVstate("notactive")
 			isRecordTime = abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - int(time())) <= 900 or NavigationInstance.instance.RecordTimer.getStillRecording()
 			if DEBUG:
 				print("[RecordTimer] boxInStandby='%s', tvNotActive='%s', wasRecTimerWakeup='%s', self.wasInStandby='%s', self.afterEvent='%s', isRecordTime='%s'." % (boxInStandby, tvNotActive, wasRecTimerWakeup, self.wasInStandby, self.afterEvent, isRecordTime))

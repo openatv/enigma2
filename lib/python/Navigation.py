@@ -15,6 +15,7 @@ from Components.SystemInfo import BoxInfo
 from Plugins.Plugin import PluginDescriptor
 from Screens.InfoBar import InfoBar, MoviePlayer
 from Screens.InfoBarGenerics import streamrelay
+from Screens.Standby import tvState
 import Screens.Standby
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import fileWriteLine
@@ -46,7 +47,6 @@ class Navigation:
 		self.currentlyPlayingServiceReference = None
 		self.currentlyPlayingServiceOrGroup = None
 		self.currentlyPlayingService = None
-		Screens.Standby.TVstate()
 		self.skipWakeup = False
 		self.skipTVWakeup = False
 		self.firstStart = True
@@ -133,9 +133,9 @@ class Navigation:
 				self.wakeupCheck()
 				return
 		if hasFakeTime and self.wakeuptime > 0:  # Check for NTP-time sync. If no sync, wait for transponder time.
-			if Screens.Standby.TVinStandby.getTVstandby("waitfortimesync") and not wasTimerWakeup:
+			if tvState.getTVstandby("waitfortimesync") and not wasTimerWakeup:
 				self.skipTVWakeup = True
-				Screens.Standby.TVinStandby.setTVstate("power")
+				tvState.setTVstate("power")
 			self.savedOldTime = now
 			self.timesynctimer = eTimer()
 			self.timesynctimer.callback.append(self.TimeSynctimer)
@@ -185,9 +185,9 @@ class Navigation:
 					print(f"[Navigation] Timer starts at '{ctime(self.timertime)}'.")
 			# Check for standby.
 			cec = (
-				(self.wakeuptyp == 0 and (Screens.Standby.TVinStandby.getTVstandby("zapandrecordtimer"))) or
-				(self.wakeuptyp == 1 and (Screens.Standby.TVinStandby.getTVstandby("zaptimer"))) or
-				(self.wakeuptyp == 2 and (Screens.Standby.TVinStandby.getTVstandby("wakeuppowertimer")))
+				(self.wakeuptyp == 0 and (tvState.getTVstandby("zapandrecordtimer"))) or
+				(self.wakeuptyp == 1 and (tvState.getTVstandby("zaptimer"))) or
+				(self.wakeuptyp == 2 and (tvState.getTVstandby("wakeuppowertimer")))
 			)
 			if self.getstandby != 1 and ((self.wakeuptyp < 3 and self.timertime - now > 60 + stbytimer) or cec):
 				self.getstandby = 1
@@ -248,7 +248,7 @@ class Navigation:
 
 	def gotopower(self):
 		if not self.skipTVWakeup:
-			Screens.Standby.TVinStandby.setTVstate("power")
+			tvState.setTVstate("power")
 		if Screens.Standby.inStandby:
 			print("[Navigation] Now entering normal operation.")
 			Screens.Standby.inStandby.Power()

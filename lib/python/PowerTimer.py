@@ -15,6 +15,7 @@ from Components.SystemInfo import getBoxDisplayName
 from Components.TimerSanityCheck import TimerSanityCheck
 from Screens.MessageBox import MessageBox
 import Screens.Standby
+from Screens.Standby import tvState
 from Tools.Directories import SCOPE_CONFIG, fileReadLines, fileReadXML, resolveFilename
 from Tools.Notifications import AddNotification, AddNotificationWithCallback, AddPopup
 from Tools.XMLTools import stringToXML
@@ -530,7 +531,7 @@ class PowerTimerEntry(TimerEntry):
 			elif self.timerType == TIMERTYPE.WAKEUP:
 				if DEBUG:
 					print("[PowerTimer] self.timerType == TIMERTYPE.WAKEUP:")
-				Screens.Standby.TVinStandby.skipHdmiCecNow("wakeuppowertimer")
+				tvState.skipHdmiCecNow("wakeuppowertimer")
 				if Screens.Standby.inStandby:
 					Screens.Standby.inStandby.Power()
 				return True
@@ -793,7 +794,7 @@ class PowerTimerEntry(TimerEntry):
 				return True
 		elif nextState == self.StateEnded:
 			if self.afterEvent == AFTEREVENT.WAKEUP:
-				Screens.Standby.TVinStandby.skipHdmiCecNow("wakeuppowertimer")
+				tvState.skipHdmiCecNow("wakeuppowertimer")
 				if Screens.Standby.inStandby:
 					Screens.Standby.inStandby.Power()
 			elif self.afterEvent == AFTEREVENT.STANDBY:
