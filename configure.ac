@@ -958,7 +958,6 @@ lib/python/Plugins/SystemPlugins/VideoEnhancement/Makefile
 lib/python/Plugins/SystemPlugins/VideoEnhancementAML/Makefile
 lib/python/Plugins/SystemPlugins/VideoTune/Makefile
 lib/python/Plugins/SystemPlugins/WirelessLan/Makefile
-lib/python/Plugins/SystemPlugins/SkinSelector/Makefile
 lib/python/Plugins/SystemPlugins/vps/Makefile
 lib/python/Plugins/SystemPlugins/vps/src_cc/Makefile
 lib/python/Plugins/SystemPlugins/vps/src_py/Makefile
