@@ -134,6 +134,8 @@ RESULT eServiceHDMI::start()
 	m_decoder->play();
 #endif
 	m_event(this, evStart);
+	m_event((iPlayableService*)this, evVideoSizeChanged);
+	m_event((iPlayableService*)this, evVideoGammaChanged);
 	return 0;
 }
 
