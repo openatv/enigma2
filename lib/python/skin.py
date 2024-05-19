@@ -202,7 +202,7 @@ def loadSkin(filename, scope=SCOPE_SKINS, desktop=getDesktop(GUI_SKIN_ID), scree
 	return False
 
 
-# Method to load a skinTemplates.xml if exists.
+# Method to load a skinTemplates.xml if one exists.
 #
 def loadSkinTemplates(skinTemplatesFileName):
 	print(f"[Skin] Loading XML templates from '{skinTemplatesFileName}'.")
@@ -1851,10 +1851,10 @@ class TemplateParser():
 						pos = newValue
 					case "size":
 						size = newValue
+					case "value":
+						itemValue = value
 					case _:
 						skinAttributes.append((attrib, newValue))
-				if attrib == "value":
-					itemValue = value
 		if itemValue and includeItemValues and itemValue not in includeItemValues:
 			return []
 		if itemValue and excludeItemValues and itemValue in excludeItemValues:
