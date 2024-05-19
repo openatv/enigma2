@@ -915,7 +915,7 @@ void ePicLoad::thread()
 
 void ePicLoad::decodePic()
 {
-	eDebug("[ePicLoad] decode picture... %s",m_filepara->file);
+	eTrace("[ePicLoad] decode picture... %s",m_filepara->file);
 
 	switch(m_filepara->id)
 	{
@@ -1511,7 +1511,7 @@ RESULT ePicLoad::setPara(int width, int height, double aspectRatio, int as, bool
 
 	if(bg_str[0] == '#' && strlen(bg_str)==9)
 		m_conf.background = strtoul(bg_str+1, NULL, 16);
-	eDebug("[ePicLoad] setPara max-X=%d max-Y=%d aspect_ratio=%lf cache=%d resize=%d bg=#%08X",
+	eTrace("[ePicLoad] setPara max-X=%d max-Y=%d aspect_ratio=%lf cache=%d resize=%d bg=#%08X",
 			m_conf.max_x, m_conf.max_y, m_conf.aspect_ratio,
 			(int)m_conf.usecache, (int)m_conf.resizetype, m_conf.background);
 	return 1;
