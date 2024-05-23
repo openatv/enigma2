@@ -1571,7 +1571,7 @@ def InitUsageConfig():
 		("ltz", _("Luxembourgish")),
 		("nor", _("Norwegian")),
 		("pol", _("Polish")),
-		("por dub Dub DUB ud1", _("Portuguese")),
+		("por dub Dub DUB ud1 LEG", _("Portuguese")),
 		("fas per fa pes", _("Persian")),
 		("ron rum", _("Romanian")),
 		("rus", _("Russian")),
