@@ -1752,6 +1752,12 @@ class InfoBarChannelSelection:
 		if self.timeshiftEnabled() and self.isSeekable():
 			self["SeekActionsPTS"].setEnabled(True)
 
+	def volumeUp(self):  # Called from ButtonSetup
+		VolumeControl.instance.volUp()
+
+	def volumeDown(self):  # Called from ButtonSetup
+		VolumeControl.instance.volDown()
+
 
 class InfoBarMenu:
 	""" Handles a menu action, to open the (main) menu """
