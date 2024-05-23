@@ -198,11 +198,11 @@ class Console(Screen):
 			self.toggleScreenHide()
 			return
 		if force or self.run == len(self.cmdlist):
-			self.close()
 			self.container.appClosed.remove(self.runFinished)
 			self.container.dataAvail.remove(self.dataAvail)
 			if self.run != len(self.cmdlist):
 				self.container.kill()
+			self.close()
 
 	def dataAvail(self, data):
 		if isinstance(data, bytes):
