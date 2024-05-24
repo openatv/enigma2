@@ -3130,6 +3130,45 @@ class InfoBarShowMovies:
 		}, prio=0, description=_("Movie List Actions"))
 
 
+class ExtensionsList(ChoiceBox):
+	def __init__(self, session, extensions):
+		colorKeys = {
+			"red": 1,
+			"green": 2,
+			"yellow": 3,
+			"blue": 4
+		}
+		extensionListAll = []
+		for extension in extensions:
+			if extension[0] == 0:  # EXTENSION_SINGLE
+				extensionListAll.append((extension[1][0](), extension[1], extension[2], colorKeys.get(extension[2], 0)))
+			else:
+				for subExtension in extension[1]():
+					extensionListAll.append((subExtension[0][0](), subExtension[0], subExtension[1], colorKeys.get(subExtension[1], 0)))
+
+		if config.usage.sortExtensionslist.value == "alpha":
+			extensionListAll.sort(key=lambda x: (x[3], x[0]))
+		else:
+			extensionListAll.sort(key=lambda x: x[3])
+
+		allExtensions = extensionListAll[:]
+		extensionList = []
+		extensionKeys = []
+		for key in ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "red", "green", "yellow", "blue"]:
+			if allExtensions:
+				extension = allExtensions.pop(0)
+				extensionKeys.append(extension[2] if extension[2] else key)
+				extensionList.append((extension[0], extension[1]))
+
+		while allExtensions:
+			extension = allExtensions.pop(0)
+			extensionKeys.append("")
+			extensionList.append((extension[0], extension[1]))
+
+		reorderConfig = "extension_order" if config.usage.sortExtensionslist.value == "user" else ""
+		ChoiceBox.__init__(self, session, title=_("Please choose an extension..."), list=extensionList, keys=extensionKeys, reorderConfig=reorderConfig, skin_name="ExtensionsList")
+
+
 class InfoBarExtensions:
 	EXTENSION_SINGLE = 0
 	EXTENSION_LIST = 1
@@ -3252,64 +3291,9 @@ class InfoBarExtensions:
 
 	def addExtension(self, extension, key=None, type=EXTENSION_SINGLE):
 		self.list.append((type, extension, key))
-		if config.usage.sort_extensionslist.value:
-			print("[InfoBarExtensions] sort_extensionslist not supported yet")
-			# FIME: Sort extensions.
-			# self.list.sort()
-
-	def updateExtension(self, extension, key=None):
-		self.extensionsList.append(extension)
-		if key is not None:
-			if key in self.extensionKeys:
-				key = None
-		if key is None:
-			for x in self.availableKeys:
-				if x not in self.extensionKeys:
-					key = x
-					break
-		if key is not None:
-			self.extensionKeys[key] = len(self.extensionsList) - 1
-
-	def updateExtensions(self):
-		self.extensionsList = []
-		self.availableKeys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "red", "green", "yellow", "blue"]
-		self.extensionKeys = {}
-		for x in self.list:
-			if x[0] == self.EXTENSION_SINGLE:
-				self.updateExtension(x[1], x[2])
-			else:
-				for y in x[1]():
-					self.updateExtension(y[0], y[1])
 
 	def showExtensionSelection(self):
-		self.updateExtensions()
-		extensionsList = self.extensionsList[:]
-		keys = []
-		list = []
-		colorlist = []
-		for x in self.availableKeys:
-			if x in self.extensionKeys:
-				entry = self.extensionKeys[x]
-				extension = self.extensionsList[entry]
-				if extension[2]():
-					name = str(extension[0]())
-					if self.availableKeys.index(x) < 10:
-						list.append((extension[0](), extension))
-					else:
-						colorlist.append((extension[0](), extension))
-					keys.append(x)
-					extensionsList.remove(extension)
-				else:
-					extensionsList.remove(extension)
-		if config.usage.sort_extensionslist.value:
-			print("[InfoBarExtensions] sort_extensionslist not supported yet")
-			# FIME: Sort extensions.
-			# list.sort()
-		for x in colorlist:
-			list.append(x)
-		list.extend([(x[0](), x) for x in extensionsList])
-		keys += [""] * len(extensionsList)
-		self.session.openWithCallback(self.extensionCallback, ChoiceBox, title=_("Please choose an extension..."), list=list, keys=keys, skin_name="ExtensionsList")
+		self.session.openWithCallback(self.extensionCallback, ExtensionsList, self.list)
 
 	def extensionCallback(self, answer):
 		if answer is not None:
