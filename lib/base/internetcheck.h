@@ -18,7 +18,7 @@ private:
 	std::string m_host;
 	bool m_threadrunning;
 
-	eFixedMessagePump<int> msg_main, msg_thread;
+	eFixedMessagePump<int> msg_thread, msg_main;
 
 	void gotMessage(const int &message);
 	void thread();

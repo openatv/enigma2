@@ -3446,7 +3446,10 @@ void eEPGCache::crossepgImportEPGv21(std::string dbroot)
 				data_tmp += 2 + data_eit_short_event->descriptor_length;
 			}
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wmismatched-new-delete"
 			delete ldescription;
+#pragma GCC diagnostic pop
 
 			int descriptors_length = data_tmp - ((uint8_t*)data_eit_event + EIT_LOOP_SIZE);
 			data_eit_event->descriptors_loop_length_hi = descriptors_length >> 8;
