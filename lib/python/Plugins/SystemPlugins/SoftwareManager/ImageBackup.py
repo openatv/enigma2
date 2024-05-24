@@ -543,7 +543,7 @@ class ImageBackup(Screen):
 			fileWriteLines(self.runScript, cmdlist, source=MODULE_NAME)
 			chmod(self.runScript, 0o755)
 			cmdlist = [self.runScript]
-			self.session.open(Console, title=self.TITLE, cmdlist=cmdlist, finishedCallback=self.doFullBackupCB, closeOnSuccess=True)
+			self.session.openWithCallback(self.doFullBackupCB, Console, title=self.TITLE, cmdlist=cmdlist, closeOnSuccess=True)
 		else:
 			self.close()
 
@@ -722,11 +722,10 @@ class ImageBackup(Screen):
 		chmod(self.runScript, 0o755)
 		cmdlist = [self.runScript]
 
-		def consoleCallback(result=None):
+		def consoleCallback():
 			remove(self.runScript)
-			self.close(True)
+			self.close()
 
-		self["config"].setList([])  # Clear list to prevent crash
 		self.session.openWithCallback(consoleCallback, Console, title=self.TITLE, cmdlist=cmdlist, closeOnSuccess=False)
 
 	def imageInfo(self, settings, bouquetsTV, bouquetsRadio, isNotCurrent):
