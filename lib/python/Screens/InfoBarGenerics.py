@@ -3151,18 +3151,15 @@ class ExtensionsList(ChoiceBox):
 		else:
 			extensionListAll.sort(key=lambda x: x[3])
 
-		allExtensions = extensionListAll[:]
+		allkeys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
 		extensionList = []
 		extensionKeys = []
-		for key in ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "red", "green", "yellow", "blue"]:
-			if allExtensions:
-				extension = allExtensions.pop(0)
-				extensionKeys.append(extension[2] if extension[2] else key)
-				extensionList.append((extension[0], extension[1]))
 
-		while allExtensions:
-			extension = allExtensions.pop(0)
-			extensionKeys.append("")
+		for extension in extensionListAll:
+			key = extension[2]
+			if not key and allkeys:
+				key = allkeys.pop(0)
+			extensionKeys.append(key or "")
 			extensionList.append((extension[0], extension[1]))
 
 		reorderConfig = "extension_order" if config.usage.sortExtensionslist.value == "user" else ""
