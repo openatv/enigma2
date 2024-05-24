@@ -1,10 +1,9 @@
-from os.path import exists, isfile
-from time import localtime, time
+from os.path import exists, isfile, splitext
+from time import localtime
 
 from enigma import eConsoleAppContainer
 
-from Components.ActionMap import ActionMap
-from Components.Label import Label
+from Components.ActionMap import HelpableActionMap
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
@@ -17,29 +16,33 @@ class Console(Screen):
 	# Strings are executed by sh -c string, lists/tuples are executed by execvp(list[0], list).
 	#
 	def __init__(self, session, title=_("Console"), cmdlist=None, finishedCallback=None, closeOnSuccess=False):
-		Screen.__init__(self, session)
+		Screen.__init__(self, session, enableHelp=True)
 		self.finishedCallback = finishedCallback
+		if finishedCallback:
+			print("[Console] Warning: Deprecation of finishedCallback. Use openWithCallback instead.")
 		self.closeOnSuccess = closeOnSuccess
 		self.errorOcurred = False
-		self["key_red"] = Label(_("Cancel"))
-		self["key_green"] = Label(_("Hide"))
+		self["key_red"] = StaticText(_("Cancel"))
+		self["key_green"] = StaticText(_("Hide"))
 		self["text"] = ScrollLabel("")
 		self["summary_description"] = StaticText("")
-		self["actions"] = ActionMap(["WizardActions", "DirectionActions", "ColorActions"],
-		{
-			"ok": self.cancel,
-			"back": self.cancel,
-			"up": self.key_up,
-			"down": self.key_down,
-			"green": self.key_green,
-			"red": self.key_red
-		}, -1)
+
+		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "NavigationActions", "ColorActions"], {
+
+			"cancel": (self.cancel, _("Close this screen")),
+			"ok": (self.cancel, _("Close this screen")),
+			"red": (self.keyRed, _("Close this screen")),
+			"green": (self.keyGreen, _("Hide this screen")),
+			"up": (self.keyUp, _("Move up a line")),
+			"down": (self.keyDown, _("Move down a line"))
+
+		}, prio=-1, description=_("Console Actions"))
 
 		self.cmdlist = cmdlist
 		self.newtitle = title
-		self.screen_hide = False
-		self.cancel_msg = None
-		self.output_file = ""
+		self.hideScreen = False
+		self.cancelMessage = None
+		self.outputFile = ""
 		self.container = eConsoleAppContainer()
 		self.run = 0
 		self.container.appClosed.append(self.runFinished)
@@ -75,62 +78,95 @@ class Console(Screen):
 			self["key_red"].setText(_("Close"))
 			self["key_green"].setText(_("Save"))
 			self.toggleScreenHide(True)
-			if self.cancel_msg:
-				self.cancel_msg.close()
+			if self.cancelMessage:
+				self.cancelMessage.close()
 			lastpage = self["text"].isAtLastPage()
 			self["text"].appendText("\n" + _("Execution finished!!"))
 			self["summary_description"].setText("\n" + _("Execution finished!!"))
 			if self.finishedCallback is not None:
 				self.finishedCallback()
 			if not self.errorOcurred and self.closeOnSuccess:
-				self.output_file = "end"
+				self.outputFile = "end"
 				self.cancel()
 
-	def key_up(self):
-		if self.screen_hide:
+	def keyUp(self):
+		if self.hideScreen:
 			self.toggleScreenHide()
 		else:
 			self["text"].pageUp()
 
-	def key_down(self):
-		if self.screen_hide:
+	def keyDown(self):
+		if self.hideScreen:
 			self.toggleScreenHide()
 		else:
 			self["text"].pageDown()
 
-	def key_green(self):
-		if self.screen_hide:
+	def keyGreen(self):
+		if self.hideScreen:
 			self.toggleScreenHide()
 			return
-		if self.output_file == "end":
+		if self.outputFile == "end":
 			pass
-		elif self.output_file.startswith("/tmp/"):
-			self["text"].setText(self.readFile(self.output_file))
-			self["key_green"].setText(_(" "))
-			self.output_file = "end"
+		elif self.outputFile.startswith("/tmp/"):
+			self["text"].setText(self.readFile(self.outputFile))
+			self["key_green"].setText("")
+			self.outputFile = "end"
 		elif self.run == len(self.cmdlist):
 			self.saveOutputText()
 		else:
 			self.toggleScreenHide()
 
-	def key_red(self):
-		if self.screen_hide:
+	def keyRed(self):
+		def cancelCallback(ret=None):
+			self.cancelMessage = None
+			if ret:
+				self.cancel(True)
+		if self.hideScreen:
 			self.toggleScreenHide()
 			return
 		if self.run == len(self.cmdlist):
 			self.cancel()
 		else:
-			self.cancel_msg = self.session.openWithCallback(self.cancelCB, MessageBox, _("Cancel execution?"), type=MessageBox.TYPE_YESNO, default=False)
-
-	def cancelCB(self, ret=None):
-		self.cancel_msg = None
-		if ret:
-			self.cancel(True)
+			self.cancelMessage = self.session.openWithCallback(cancelCallback, MessageBox, _("Cancel execution?"), type=MessageBox.TYPE_YESNO, default=False)
 
 	def saveOutputText(self):
+		def saveOutputTextCallback(ret=None):
+			if ret:
+				failtext = _("Path to save not exist: '/tmp/'")
+				if exists("/tmp/"):
+					text = "commands ...\n\n"
+					try:
+						cmdlist = list(self.formatCmdList(self.cmdlist))
+						text += f"command line: {cmdlist[0]}\n\n"
+						scriptFileName = ""
+						for cmd in cmdlist[0].split():
+							if "." in cmd:
+								cmdPath, cmdExt = splitext(cmd)
+								if cmdExt in (".py", ".pyc" ".sh"):
+									scriptFileName = cmd
+								break
+						if scriptFileName and isfile(scriptFileName):
+							text += f"script listing: {scriptFileName}\n\n{self.readFile(scriptFileName)}\n\n"
+						if len(cmdlist) > 1:
+							text += "next commands:\n\n" + "\n".join(cmdlist[1:]) + "\n\n"
+					except Exception:
+						text += "error read commands!!!\n\n"
+					text += "-" * 50 + f"\n\noutputs ...\n\n{self['text'].getText()}"
+					try:
+						with open(self.outputFile, "w") as fd:
+							fd.write(text)
+						self["key_green"].setText(_("Load"))
+						return
+					except OSError:
+						failtext = _("File write error: '%s'") % self.outputFile
+				self.outputFile = "end"
+				self["key_green"].setText("")
+				self.session.open(MessageBox, failtext, type=MessageBox.TYPE_ERROR)
+			else:
+				self.outputFile = ""
 		lt = localtime()
-		self.output_file = "/tmp/%02d%02d%02d_console.txt" % (lt[3], lt[4], lt[5])
-		self.session.openWithCallback(self.saveOutputTextCB, MessageBox, _("Save the commands and the output to a file?\n('%s')") % self.output_file, type=MessageBox.TYPE_YESNO, default=True)
+		self.outputFile = "/tmp/%02d%02d%02d_console.txt" % (lt[3], lt[4], lt[5])
+		self.session.openWithCallback(saveOutputTextCallback, MessageBox, _("Save the commands and the output to a file?\n('%s')") % self.outputFile, type=MessageBox.TYPE_YESNO, default=True)
 
 	def formatCmdList(self, source):
 		if isinstance(source, (list, tuple)):
@@ -140,61 +176,26 @@ class Console(Screen):
 		else:
 			yield source
 
-	def saveOutputTextCB(self, ret=None):
-		if ret:
-			failtext = _("Path to save not exist: '/tmp/'")
-			if exists("/tmp/"):
-				text = "commands ...\n\n"
-				try:
-					cmdlist = list(self.formatCmdList(self.cmdlist))
-					text += f"command line: {cmdlist[0]}\n\n"
-					script = ""
-					for cmd in cmdlist[0].split():
-						if "." in cmd:
-							if cmd[-3:] in (".py", ".sh") or cmd[-4:] == ".pyc":
-								script = cmd
-							break
-					if script and isfile(script):
-						text += f"script listing: {script}\n\n{self.readFile(script)}\n\n"
-					if len(cmdlist) > 1:
-						text += "next commands:\n\n" + "\n".join(cmdlist[1:]) + "\n\n"
-				except Exception:
-					text += "error read commands!!!\n\n"
-				text += "-" * 50 + "\n\noutputs ...\n\n%s" % self["text"].getText()
-				try:
-					with open(self.output_file, "w") as fd:
-						fd.write(text)
-					self["key_green"].setText(_("Load"))
-					return
-				except OSError:
-					failtext = _("File write error: '%s'") % self.output_file
-			self.output_file = "end"
-			self["key_green"].setText("")
-			self.session.open(MessageBox, failtext, type=MessageBox.TYPE_ERROR)
-		else:
-			self.output_file = ""
-
 	def toggleScreenHide(self, setshow=False):
-		if self.screen_hide or setshow:
+		if self.hideScreen or setshow:
 			self.show()
 		else:
 			self.hide()
-		self.screen_hide = not (self.screen_hide or setshow)
+		self.hideScreen = not (self.hideScreen or setshow)
 
-	def readFile(self, file):
+	def readFile(self, fileName):
 		try:
-			with open(file) as rdfile:
-				rd = rdfile.read()
-			rdfile.close()
+			with open(fileName) as fd:
+				data = fd.read()
 		except OSError:
-			if file == self.output_file:
-				rd = self["text"].getText()
+			if fileName == self.outputFile:
+				data = self["text"].getText()
 			else:
-				rd = f"File read error: '{file}'\n"
-		return rd
+				data = f"File read error: '{fileName}'\n"
+		return data
 
 	def cancel(self, force=False):
-		if self.screen_hide:
+		if self.hideScreen:
 			self.toggleScreenHide()
 			return
 		if force or self.run == len(self.cmdlist):
