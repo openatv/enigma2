@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-08 12:32+0000\n"
-"PO-Revision-Date: 2024-05-11 04:00+0000\n"
+"POT-Creation-Date: 2024-05-18 15:15+0000\n"
+"PO-Revision-Date: 2024-05-19 21:38+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.5.4\n"
+"X-Generator: Weblate 5.6-dev\n"
 
 msgid ""
 "\n"
@@ -2964,10 +2964,10 @@ msgstr "Základní balíčky Shell"
 msgid "Base time"
 msgstr "Základní čas"
 
-msgid "Base transparency for OpenOpera web browser"
+msgid "Base transparency for OpenOpera web browser."
 msgstr "Průsvitnost základu pro web prohlížeč OpenOpera"
 
-msgid "Base transparency for teletext, more options available within teletext screen."
+msgid "Base transparency for teletext, more options are available within teletext screen."
 msgstr "Průsvitnost základu teletextu, více možností je k dispozici v obrazovce teletextu."
 
 msgid "Baseball"
@@ -2981,6 +2981,9 @@ msgstr "Basketball"
 
 msgid "Basque"
 msgstr "Baskicky"
+
+msgid "Before changing these settings try to disable any overscan settings on th TV / display screen. To calibrate the On-Screen-Display (OSD) adjust the position and size values until the red box is *just* visible and touches the edges of the screen."
+msgstr "Před změnou těchto nastavení se pokuste deaktivovat všechna nastavení přeskenování na obrazovce televizoru/obrazovky. Chcete-li kalibrovat OSD (On-Screen-Display), upravte hodnoty polohy a velikosti, dokud nebude červený rámeček *jen* vidět a nebude se dotýkat okrajů obrazovky."
 
 msgid "Begin time"
 msgstr "Čas začátku"
@@ -4030,12 +4033,6 @@ msgstr "Vyberte, kolik historie EPG (pokud existuje) chcete uchovávat v mezipam
 
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Zvolte, jak často se chcete připojovat k serveru IceTV pro kontrolu aktualizací."
-
-msgid "Choose the Display Skin and press GREEN to activate the skin."
-msgstr "Zvolte Display Skin a stiskněte ZELENÉ tlačítko pro aktivaci vzhledu."
-
-msgid "Choose the OSD Skin and press GREEN to activate the skin."
-msgstr "Vyberte vzhled OSD a stiskněte ZELENÉ tlačítko pro aktivaci vzhledu."
 
 msgid "Choose the amount of additional slots."
 msgstr "Zvolte počet dalších slotů."
@@ -5687,9 +5684,6 @@ msgstr "Výchozí posun hlasitosti"
 #, python-format
 msgid "Default: '%s'."
 msgstr "Výchozí: '%s'."
-
-msgid "Defaults"
-msgstr "Výchozí"
 
 msgid "Define Softcam For This Provider"
 msgstr "Definovat Softcam pro tohoto poskytovatele"
@@ -10080,9 +10074,6 @@ msgstr "Síťová karta"
 msgid "LAN connection"
 msgstr "LAN připojení"
 
-msgid "LCD Skin Settings"
-msgstr "Nastavení vzhledu LCD"
-
 msgid "LCD scroll speed"
 msgstr "Rychlost rolování LCD"
 
@@ -10248,7 +10239,7 @@ msgstr "Volný čas, zájmy, koníčky"
 msgid "Lesotho"
 msgstr "Lesotho"
 
-#. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
+#. TRANSLATORS: Aspect ratio policy: Black bars on top/bottom in doubt, keep English term.
 msgid "Letterbox"
 msgstr "Letterbox"
 
@@ -11398,6 +11389,9 @@ msgstr "Natáčení na západ ..."
 msgid "Mozambique"
 msgstr "Mosambik"
 
+msgid "Multi"
+msgstr "Vícenásobné"
+
 msgid "Multi EPG"
 msgstr "Multi EPG"
 
@@ -12265,9 +12259,6 @@ msgstr "OSD"
 msgid "OSD 3D Settings"
 msgstr "Nastavení 3D OSD"
 
-msgid "OSD Adjustment"
-msgstr "Nastavení OSD"
-
 msgid "OSD Calibration"
 msgstr "Pozice OSD"
 
@@ -12279,6 +12270,9 @@ msgstr "Nastavení OSD"
 
 msgid "OSD name request"
 msgstr "Požadovaný název OSD"
+
+msgid "OSD visibility"
+msgstr "Viditelnost OSD"
 
 msgid "OTT Model"
 msgstr "OTT Model"
@@ -12705,8 +12699,8 @@ msgstr "Palestina"
 msgid "Pali"
 msgstr "Páli"
 
-#. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
-#. TRANSLATORS: (aspect ratio policy: Fit width, cut/crop top and bottom (Maintain aspect ratio))
+#. TRANSLATORS: Aspect ratio policy: Cropped content on left/right in doubt, keep English term.
+#. TRANSLATORS: Aspect ratio policy: Fit width, cut/crop top and bottom (maintain aspect ratio).
 msgid "Pan&scan"
 msgstr "Pan&scan"
 
@@ -12900,7 +12894,7 @@ msgstr "Přehrávač obrázků"
 msgid "Pictures"
 msgstr "Obrázky"
 
-#. TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
+#. TRANSLATORS: Aspect ratio policy: Black bars on left/right in doubt, keep English term.
 msgid "Pillarbox"
 msgstr "Pillarbox"
 
@@ -13164,20 +13158,6 @@ msgid "Please select what to do after flash of the following image:"
 msgstr "Vyberte, co se má udělat po flashnutí následujícího obrazu:"
 
 msgid ""
-"Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
-"When you are ready press OK to continue."
-msgstr ""
-"Prosím, nastavte okraje tak aby se červené okno dotýkalo okrajů vašeho televizoru. \n"
-"Když jste připraveni stiskněte tlačítko OK pro pokračování."
-
-msgid ""
-"Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
-"When you are ready press green to continue."
-msgstr ""
-"Prosím nastavte okraje rámečku tak aby se červené pole dotýkalo okrajů vašeho televizoru. \n"
-"Po nastavení, uložte a ukončete 'Zeleným' tlačítkem."
-
-msgid ""
 "Please use direction keys to move the PiP window.\n"
 "Press Bouquet +/- to resize the window.\n"
 "Press OK to go back to the TV mode or EXIT to cancel the moving."
@@ -13374,9 +13354,6 @@ msgstr "Portugalsko"
 
 msgid "Portuguese"
 msgstr "Portugalsky"
-
-msgid "Position Setup"
-msgstr "Nastavení pozice"
 
 msgid "Position of finished Timers in Timerlist"
 msgstr "Dokončené časovače umísťovat v seznamu"
@@ -15649,9 +15626,6 @@ msgstr "Vybrat CAId(y)"
 msgid "Select Device"
 msgstr "Vyberte Zařízení"
 
-msgid "Select Display Skin"
-msgstr "Vyberte možnost Zobrazit vzhled"
-
 msgid "Select Enigma2 Skin"
 msgstr "Vyberte vzhled Enigma2"
 
@@ -15666,9 +15640,6 @@ msgstr "Vyberte složky"
 
 msgid "Select HDD"
 msgstr "Vyberte disk"
-
-msgid "Select LCD Skin"
-msgstr "Vyberte vzhled LCD"
 
 msgid "Select Lan/Wlan"
 msgstr "Vybrat LAN/Wlan"
@@ -15690,9 +15661,6 @@ msgstr "Vybrat satelity"
 
 msgid "Select Shares"
 msgstr "Vyberte Sdílené položky"
-
-msgid "Select Skin"
-msgstr "Vyberte Vzhled"
 
 msgid "Select Softcam"
 msgstr "Vyberte softcam"
@@ -16882,9 +16850,6 @@ msgstr "Nastavení vašeho harddisku"
 
 msgid "Setup your LCD"
 msgstr "Nastavení LCD"
-
-msgid "Setup your LCD Skin"
-msgstr "Nastavte vzhled svého LCD displeje"
 
 msgid "Setup your OSD"
 msgstr "Nastavení OSD"
@@ -18625,16 +18590,16 @@ msgstr "Záznam streamování skončil"
 msgid "Streaming tuner information for %s %s"
 msgstr "Informace o tuneru streamování pro %s %s"
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (force aspect))
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching all parts of the picture with the same factor (force aspect).
 msgid "Stretch full"
 msgstr "Plné natažení"
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching all parts of the picture with the same factor (all parts lose aspect).
 msgid "Stretch linear"
 msgstr "Lineární protažení"
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the top/bottom (Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch))
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right (Center 50% of picture maintain aspect, left/right 25% lose aspect heaver than on linear stretch))
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching the top/bottom. Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch.
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching the left/right. Center 50% of picture maintain aspect, left/right 25% lose aspect heaver than on linear stretch.
 msgid "Stretch nonlinear"
 msgstr "Nelineární protažení"
 
@@ -19821,7 +19786,7 @@ msgstr "Tato možnost konfiguruje nastavení automatické úrovně hlasitosti."
 msgid "This option lets you adjust the 3D depth of the OSD."
 msgstr "Nastaví hloubku 3D."
 
-msgid "This option lets you adjust the transparency of the user interface"
+msgid "This option lets you adjust the transparency of the OSD."
 msgstr "Tato volba umožňuje nastavení průhlednosti uživatelského rozhraní"
 
 msgid "This option lets you choose the 3D mode of the OSD."
@@ -21081,25 +21046,28 @@ msgstr "Použít sílu měření"
 msgid "Use small screen"
 msgstr "Použít malou obrazovku"
 
-msgid "Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size."
-msgstr "Pomocí levého/pravého tlačítka na dálkovém ovládání nastavte velikost uživatelského rozhraní OSD. (šipky -L/+P na DO)."
+msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
+msgstr "Pomocí tlačítek VLEVO/VPRAVO na dálkovém ovládání upravte výšku nabídky OSD. Tlačítko VLEVO snižuje výšku, VPRAVO zvyšuje výšku."
 
-msgid "Use the Left/Right buttons on your remote to move the user interface bottom"
+msgid "Use the LEFT/RIGHT buttons on your remote to adjust the width of the OSD. LEFT button decreases the width, RIGHT increases the width."
+msgstr "Pomocí tlačítek VLEVO/VPRAVO na dálkovém ovládání upravte šířku nabídky OSD. Tlačítko VLEVO zmenšuje šířku, VPRAVO zvyšuje šířku."
+
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD bottom."
 msgstr "Pomocí tlačítek Vlevo/Vpravo na dálkovém ovládání přesuňte uživatelské rozhraní dolů"
 
-msgid "Use the Left/Right buttons on your remote to move the user interface left"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD left."
 msgstr "Pomocí tlačítek Vlevo/Vpravo na dálkovém ovládání posuňte uživatelské rozhraní doleva"
 
-msgid "Use the Left/Right buttons on your remote to move the user interface left/right"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD left/right."
 msgstr "Posune OSD vlevo/vpravo (šipky -L/+P)"
 
-msgid "Use the Left/Right buttons on your remote to move the user interface right"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD right."
 msgstr "Pomocí tlačítek Vlevo/Vpravo na dálkovém ovládání posuňte uživatelské rozhraní doprava"
 
-msgid "Use the Left/Right buttons on your remote to move the user interface top"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD top."
 msgstr "Pomocí tlačítek Vlevo/Vpravo na dálkovém ovládání přesuňte uživatelské rozhraní nahoru"
 
-msgid "Use the Left/Right buttons on your remote to move the user interface up/down"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD up/down."
 msgstr "Posuňte OSD nahoru/dolů (šipky -L/+P na DO)"
 
 msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
@@ -21192,9 +21160,6 @@ msgstr "Uživatem definovaný transpondér"
 
 msgid "User interface settings"
 msgstr "Uživatelské rozhraní"
-
-msgid "User interface visibility"
-msgstr "Průhlednost rozhraní"
 
 msgid "User logo:"
 msgstr "Uživatelské logo:"
@@ -22016,6 +21981,9 @@ msgstr "Když vstupní kurzor dosáhne tohoto bodu (procento šířky z obou str
 
 msgid "When the receiver wakes from standby or deep standby it will send a command to the TV to bring it out of standby."
 msgstr "Když se přijímač probudí z pohotovostního režimu nebo hlubokého spánku, odešle do televizoru příkaz, aby jej z pohotovostního režimu probudil."
+
+msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
+msgstr "Když je červený rámeček správně zobrazen, stiskněte ZELENÉ tlačítko pro uložení nastavení a ukončení."
 
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
 msgstr "Při ladění programů bude systém normálně hledat transpondéry a a uloží je. Nastavte na 'ano' jen pokud jste si absolutně jisti, co děláte."
@@ -23135,9 +23103,6 @@ msgstr "film/drama (obecně)"
 msgid "multi"
 msgstr "vícenásobné"
 
-msgid "multinorm"
-msgstr "multinorma"
-
 msgid "music (general)"
 msgstr "hudba (obecně)"
 
@@ -23659,6 +23624,59 @@ msgstr "ano (uchovat zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Defaults"
+#~ msgstr "Výchozí"
+
+#~ msgid "OSD Adjustment"
+#~ msgstr "Nastavení OSD"
+
+#~ msgid ""
+#~ "Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
+#~ "When you are ready press green to continue."
+#~ msgstr ""
+#~ "Prosím nastavte okraje rámečku tak aby se červené pole dotýkalo okrajů vašeho televizoru. \n"
+#~ "Po nastavení, uložte a ukončete 'Zeleným' tlačítkem."
+
+#~ msgid "Position Setup"
+#~ msgstr "Nastavení pozice"
+
+#~ msgid "Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size."
+#~ msgstr "Pomocí levého/pravého tlačítka na dálkovém ovládání nastavte velikost uživatelského rozhraní OSD. (šipky -L/+P na DO)."
+
+#~ msgid "User interface visibility"
+#~ msgstr "Průhlednost rozhraní"
+
+#~ msgid "multinorm"
+#~ msgstr "multinorma"
+
+#~ msgid "Choose the Display Skin and press GREEN to activate the skin."
+#~ msgstr "Zvolte Display Skin a stiskněte ZELENÉ tlačítko pro aktivaci vzhledu."
+
+#~ msgid "Choose the OSD Skin and press GREEN to activate the skin."
+#~ msgstr "Vyberte vzhled OSD a stiskněte ZELENÉ tlačítko pro aktivaci vzhledu."
+
+#~ msgid "LCD Skin Settings"
+#~ msgstr "Nastavení vzhledu LCD"
+
+#~ msgid ""
+#~ "Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
+#~ "When you are ready press OK to continue."
+#~ msgstr ""
+#~ "Prosím, nastavte okraje tak aby se červené okno dotýkalo okrajů vašeho televizoru. \n"
+#~ "Když jste připraveni stiskněte tlačítko OK pro pokračování."
+
+#~ msgid "Select Display Skin"
+#~ msgstr "Vyberte možnost Zobrazit vzhled"
+
+#~ msgid "Select LCD Skin"
+#~ msgstr "Vyberte vzhled LCD"
+
+#~ msgid "Select Skin"
+#~ msgstr "Vyberte Vzhled"
+
+#~ msgid "Setup your LCD Skin"
+#~ msgstr "Nastavte vzhled svého LCD displeje"
 
 #~ msgid "Enigma2 skin selector"
 #~ msgstr "Enigma2 výběr vzhledu"

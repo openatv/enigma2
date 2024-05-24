@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-08 12:32+0000\n"
-"PO-Revision-Date: 2024-05-11 04:00+0000\n"
+"POT-Creation-Date: 2024-05-18 15:15+0000\n"
+"PO-Revision-Date: 2024-05-19 21:38+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.5.4\n"
+"X-Generator: Weblate 5.6-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -2969,10 +2969,10 @@ msgstr "Базові пакети оболонки Shell"
 msgid "Base time"
 msgstr "Базовий час"
 
-msgid "Base transparency for OpenOpera web browser"
-msgstr "Базова прозорість для веб-браузера OpenOpera"
+msgid "Base transparency for OpenOpera web browser."
+msgstr "Базова прозорість для веб-браузера OpenOpera."
 
-msgid "Base transparency for teletext, more options available within teletext screen."
+msgid "Base transparency for teletext, more options are available within teletext screen."
 msgstr "При виборі прозорості для телетексту, буде більше варіантів виведення телетексту."
 
 msgid "Baseball"
@@ -2986,6 +2986,9 @@ msgstr "Баскетбол"
 
 msgid "Basque"
 msgstr "Баскська"
+
+msgid "Before changing these settings try to disable any overscan settings on th TV / display screen. To calibrate the On-Screen-Display (OSD) adjust the position and size values until the red box is *just* visible and touches the edges of the screen."
+msgstr "Перш ніж змінити ці параметри, спробуйте вимкнути будь-які параметри надмірного сканування на екрані телевізора чи дисплея. Щоб відкалібрувати екранне меню (OSD), відрегулюйте положення та значення розміру, доки червоне поле *не стане* видимим і торкнеться країв екрана."
 
 msgid "Begin time"
 msgstr "Початок"
@@ -4035,12 +4038,6 @@ msgstr "Виберіть, скільки передач EPG, якщо така �
 
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Виберіть частоту підключення до сервера IceTV, щоб перевірити наявність оновлень."
-
-msgid "Choose the Display Skin and press GREEN to activate the skin."
-msgstr "Виберіть скін дисплея та натисніть ЗЕЛЕНУ кнопку, щоб активувати скін."
-
-msgid "Choose the OSD Skin and press GREEN to activate the skin."
-msgstr "Виберіть OSD-скін та натисніть ЗЕЛЕНУ кнопку, щоб активувати його."
 
 msgid "Choose the amount of additional slots."
 msgstr "Виберіть кількість додаткових слотів."
@@ -5692,9 +5689,6 @@ msgstr "Зміщення гучності за замовчуванням"
 #, python-format
 msgid "Default: '%s'."
 msgstr "За замовчуванням: '%s'."
-
-msgid "Defaults"
-msgstr "За замовчуванням"
 
 msgid "Define Softcam For This Provider"
 msgstr "Визначити Softcam для цього Провайдера"
@@ -10085,9 +10079,6 @@ msgstr "Мережевий адаптер"
 msgid "LAN connection"
 msgstr "LAN з'єднання"
 
-msgid "LCD Skin Settings"
-msgstr "Налаштування скіну LCD"
-
 msgid "LCD scroll speed"
 msgstr "Швидкість прокрутки на LCD"
 
@@ -10253,7 +10244,7 @@ msgstr "Відпочинок хобі"
 msgid "Lesotho"
 msgstr "Лесото"
 
-#. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
+#. TRANSLATORS: Aspect ratio policy: Black bars on top/bottom in doubt, keep English term.
 msgid "Letterbox"
 msgstr "Поштова скринька"
 
@@ -11403,6 +11394,9 @@ msgstr "Переміщення на захід..."
 msgid "Mozambique"
 msgstr "Мозамбік"
 
+msgid "Multi"
+msgstr "Багаторазовий"
+
 msgid "Multi EPG"
 msgstr "Мульти EPG"
 
@@ -12270,9 +12264,6 @@ msgstr "OSD"
 msgid "OSD 3D Settings"
 msgstr "OSD Налаштування 3D"
 
-msgid "OSD Adjustment"
-msgstr "Коригування OSD"
-
 msgid "OSD Calibration"
 msgstr "OSD Позиція"
 
@@ -12284,6 +12275,9 @@ msgstr "Налаштування OSD"
 
 msgid "OSD name request"
 msgstr "Запит OSD імені"
+
+msgid "OSD visibility"
+msgstr "Видимість OSD"
 
 msgid "OTT Model"
 msgstr "Модель OTT"
@@ -12710,8 +12704,8 @@ msgstr "Палестина, держава"
 msgid "Pali"
 msgstr "Pali"
 
-#. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
-#. TRANSLATORS: (aspect ratio policy: Fit width, cut/crop top and bottom (Maintain aspect ratio))
+#. TRANSLATORS: Aspect ratio policy: Cropped content on left/right in doubt, keep English term.
+#. TRANSLATORS: Aspect ratio policy: Fit width, cut/crop top and bottom (maintain aspect ratio).
 msgid "Pan&scan"
 msgstr "Обрізати праворуч і ліворуч"
 
@@ -12905,7 +12899,7 @@ msgstr "Перегляд зображень"
 msgid "Pictures"
 msgstr "Кіноматографія"
 
-#. TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
+#. TRANSLATORS: Aspect ratio policy: Black bars on left/right in doubt, keep English term.
 msgid "Pillarbox"
 msgstr "Поштова скринька"
 
@@ -13169,20 +13163,6 @@ msgid "Please select what to do after flash of the following image:"
 msgstr "Будь ласка, виберіть, що робити після прошивки наступного іміджу:"
 
 msgid ""
-"Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
-"When you are ready press OK to continue."
-msgstr ""
-"Відрегулювати положення користувача інтерфейсу. Краї червоної області повинні стосуватися країв екрану телевізора.\n"
-"Якщо готові, натисніть ОК для продовження."
-
-msgid ""
-"Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
-"When you are ready press green to continue."
-msgstr ""
-"Відрегулювати положення користувача інтерфейсу. Краї червоної області повинні стосуватися країв екрану телевізора.\n"
-"Якщо готові, натисніть зелену кнопку для продовження."
-
-msgid ""
 "Please use direction keys to move the PiP window.\n"
 "Press Bouquet +/- to resize the window.\n"
 "Press OK to go back to the TV mode or EXIT to cancel the moving."
@@ -13379,9 +13359,6 @@ msgstr "Португалія"
 
 msgid "Portuguese"
 msgstr "Португальська"
-
-msgid "Position Setup"
-msgstr "Налаштування положення"
 
 msgid "Position of finished Timers in Timerlist"
 msgstr "Розташування виконаних Таймерів в списку"
@@ -15654,9 +15631,6 @@ msgstr "Вибрати CAID"
 msgid "Select Device"
 msgstr "Виберіть Пристрій"
 
-msgid "Select Display Skin"
-msgstr "Вибрати Скін дисплея"
-
 msgid "Select Enigma2 Skin"
 msgstr "Вибір Enigma2 скіну"
 
@@ -15671,9 +15645,6 @@ msgstr "Виберіть теки"
 
 msgid "Select HDD"
 msgstr "Вибрати HDD"
-
-msgid "Select LCD Skin"
-msgstr "Вибір LCD скіну"
 
 msgid "Select Lan/Wlan"
 msgstr "Вибір Lan/Wi-Fi"
@@ -15695,9 +15666,6 @@ msgstr "Виберіть супутники"
 
 msgid "Select Shares"
 msgstr "Вибрати доступ"
-
-msgid "Select Skin"
-msgstr "Вибрати Скін"
 
 msgid "Select Softcam"
 msgstr "Виберіть softcam"
@@ -16887,9 +16855,6 @@ msgstr "Налаштування Вашого жорсткого диску"
 
 msgid "Setup your LCD"
 msgstr "Налаштування Вашого LCD"
-
-msgid "Setup your LCD Skin"
-msgstr "Налаштуйте свій LCD скін"
 
 msgid "Setup your OSD"
 msgstr "Налаштування Вашого OSD"
@@ -18630,16 +18595,16 @@ msgstr "Потоковий запис закінчився"
 msgid "Streaming tuner information for %s %s"
 msgstr "Інформація про потоковий тюнер для%s %s"
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (force aspect))
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching all parts of the picture with the same factor (force aspect).
 msgid "Stretch full"
 msgstr "Розтягнути повністю"
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching all parts of the picture with the same factor (all parts lose aspect).
 msgid "Stretch linear"
 msgstr "Розтягнути лінійно"
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the top/bottom (Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch))
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right (Center 50% of picture maintain aspect, left/right 25% lose aspect heaver than on linear stretch))
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching the top/bottom. Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch.
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching the left/right. Center 50% of picture maintain aspect, left/right 25% lose aspect heaver than on linear stretch.
 msgid "Stretch nonlinear"
 msgstr "Розтягнути нелінійно"
 
@@ -18977,7 +18942,7 @@ msgid "TMDB Search"
 msgstr "TMDB Пошук"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 09.05.2024"
+msgstr "Переклад: kvinto - 20.05.2024"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -19826,8 +19791,8 @@ msgstr "Тут можете вибрати рівень автоматичног
 msgid "This option lets you adjust the 3D depth of the OSD."
 msgstr "Тут можете налаштувати 3D глибину"
 
-msgid "This option lets you adjust the transparency of the user interface"
-msgstr "Тут можете налаштувати прозорість інтерфейсу користувача"
+msgid "This option lets you adjust the transparency of the OSD."
+msgstr "Тут можете налаштувати прозорість інтерфейсу користувача."
 
 msgid "This option lets you choose the 3D mode of the OSD."
 msgstr "Ця опція дозволяє режим 3D"
@@ -21086,26 +21051,29 @@ msgstr "Використовувати вимірювання потужност
 msgid "Use small screen"
 msgstr "Використовуйте міні вікно"
 
-msgid "Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size."
-msgstr "Використовуйте кнопки вліво/вправо для регулювання розміру GUI. Кнопка вліво зменшує розмір, кнопка вправо збільшує."
+msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
+msgstr "Використовуйте кнопки ВЛІВО/ВПРАВО на пульті, щоб відрегулювати висоту екранного меню. Кнопка ВЛІВО зменшує висоту, ВПРАВО збільшує висоту."
 
-msgid "Use the Left/Right buttons on your remote to move the user interface bottom"
-msgstr "Використовуйте кнопки вліво/вправо на пульті, щоб перемістити інтерфейс користувача вниз"
+msgid "Use the LEFT/RIGHT buttons on your remote to adjust the width of the OSD. LEFT button decreases the width, RIGHT increases the width."
+msgstr "Використовуйте кнопки ВЛІВО/ВПРАВО на пульті, щоб відрегулювати ширину екранного меню. Кнопка ВЛІВО зменшує ширину, ВПРАВО збільшує ширину."
 
-msgid "Use the Left/Right buttons on your remote to move the user interface left"
-msgstr "Використовуйте кнопки вліво/вправо на пульті, щоб перемістити інтерфейс користувача вліво"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD bottom."
+msgstr "Використовуйте кнопки Вліво/Вправо на пульті, щоб перемістити інтерфейс користувача вниз."
 
-msgid "Use the Left/Right buttons on your remote to move the user interface left/right"
-msgstr "Використовуйте кнопки вліво/вправо для переміщення GUI вліво і вправо"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD left."
+msgstr "Використовуйте кнопки Вліво/Вправо на пульті, щоб перемістити інтерфейс користувача вліво."
 
-msgid "Use the Left/Right buttons on your remote to move the user interface right"
-msgstr "Використовуйте кнопки вліво/вправо на пульті, щоб перемістити інтерфейс користувача вправо"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD left/right."
+msgstr "Використовуйте кнопки Вліво/Вправо для переміщення OSD вліво/вправо."
 
-msgid "Use the Left/Right buttons on your remote to move the user interface top"
-msgstr "Використовуйте кнопки вліво/вправо на пульті, щоб перемістити інтерфейс користувача вгору"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD right."
+msgstr "Використовуйте кнопки Вліво/Вправо на пульті, щоб переміститиOSD вправо."
 
-msgid "Use the Left/Right buttons on your remote to move the user interface up/down"
-msgstr "Використовуйте кнопки вліво/вправо для переміщення GUI вгору і вниз"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD top."
+msgstr "Використовуйте кнопки Вліво/Вправо на пульті, щоб перемістити OSD вгору."
+
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD up/down."
+msgstr "Використовуйте кнопки Вліво/Вправо для переміщення OSD вгору/вниз."
 
 msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
 msgstr "Використовуйте Майстер установок мережі. Майстер допоможе Вам налаштувати Вашу мережу"
@@ -21197,9 +21165,6 @@ msgstr "Транспондер вручну"
 
 msgid "User interface settings"
 msgstr "Налаштування інтерфейсу користувача"
-
-msgid "User interface visibility"
-msgstr "Видимість інтерфейсу користувача"
 
 msgid "User logo:"
 msgstr "Логін користувача:"
@@ -22021,6 +21986,9 @@ msgstr "Коли курсор введення досягає цієї точк�
 
 msgid "When the receiver wakes from standby or deep standby it will send a command to the TV to bring it out of standby."
 msgstr "Коли приймач виходить із режиму очікування, або глибокого очікування, він надсилає на телевізор команду, щоб вивести його з режиму очікування."
+
+msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
+msgstr "Коли червоне поле буде видно, натисніть ЗЕЛЕНУ кнопку, щоб зберегти налаштування та вийти."
 
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
 msgstr "При від'ємному значенні, система буде сканувати транспондер у фоновому режимі на предмет змін і зберігати їх. Виберіть 'так', якщо тільки абсолютно впевнені, що робите."
@@ -23140,9 +23108,6 @@ msgstr "фільм/драма (загальні)"
 msgid "multi"
 msgstr "мульти"
 
-msgid "multinorm"
-msgstr "мультинорма"
-
 msgid "music (general)"
 msgstr "музика (загальна)"
 
@@ -23664,6 +23629,59 @@ msgstr "так (зберігати фіди)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Defaults"
+#~ msgstr "За замовчуванням"
+
+#~ msgid "OSD Adjustment"
+#~ msgstr "Коригування OSD"
+
+#~ msgid ""
+#~ "Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
+#~ "When you are ready press green to continue."
+#~ msgstr ""
+#~ "Відрегулювати положення користувача інтерфейсу. Краї червоної області повинні стосуватися країв екрану телевізора.\n"
+#~ "Якщо готові, натисніть зелену кнопку для продовження."
+
+#~ msgid "Position Setup"
+#~ msgstr "Налаштування положення"
+
+#~ msgid "Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size."
+#~ msgstr "Використовуйте кнопки вліво/вправо для регулювання розміру GUI. Кнопка вліво зменшує розмір, кнопка вправо збільшує."
+
+#~ msgid "User interface visibility"
+#~ msgstr "Видимість інтерфейсу користувача"
+
+#~ msgid "multinorm"
+#~ msgstr "мультинорма"
+
+#~ msgid "Choose the Display Skin and press GREEN to activate the skin."
+#~ msgstr "Виберіть скін дисплея та натисніть ЗЕЛЕНУ кнопку, щоб активувати скін."
+
+#~ msgid "Choose the OSD Skin and press GREEN to activate the skin."
+#~ msgstr "Виберіть OSD-скін та натисніть ЗЕЛЕНУ кнопку, щоб активувати його."
+
+#~ msgid "LCD Skin Settings"
+#~ msgstr "Налаштування скіну LCD"
+
+#~ msgid ""
+#~ "Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
+#~ "When you are ready press OK to continue."
+#~ msgstr ""
+#~ "Відрегулювати положення користувача інтерфейсу. Краї червоної області повинні стосуватися країв екрану телевізора.\n"
+#~ "Якщо готові, натисніть ОК для продовження."
+
+#~ msgid "Select Display Skin"
+#~ msgstr "Вибрати Скін дисплея"
+
+#~ msgid "Select LCD Skin"
+#~ msgstr "Вибір LCD скіну"
+
+#~ msgid "Select Skin"
+#~ msgstr "Вибрати Скін"
+
+#~ msgid "Setup your LCD Skin"
+#~ msgstr "Налаштуйте свій LCD скін"
 
 #~ msgid "Enigma2 skin selector"
 #~ msgstr "Enigma2 Селектор скінів"

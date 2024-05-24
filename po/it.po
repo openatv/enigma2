@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-08 12:32+0000\n"
-"PO-Revision-Date: 2024-05-09 13:55+0000\n"
+"POT-Creation-Date: 2024-05-18 15:15+0000\n"
+"PO-Revision-Date: 2024-05-19 21:38+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5.4-rc\n"
+"X-Generator: Weblate 5.6-dev\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
 
 msgid ""
@@ -2932,10 +2932,10 @@ msgstr "Pacchetti base shell"
 msgid "Base time"
 msgstr "Ora base"
 
-msgid "Base transparency for OpenOpera web browser"
-msgstr "Trasparenza di base per il browser web OpenOpera"
+msgid "Base transparency for OpenOpera web browser."
+msgstr "Trasparenza di base per il browser web OpenOpera."
 
-msgid "Base transparency for teletext, more options available within teletext screen."
+msgid "Base transparency for teletext, more options are available within teletext screen."
 msgstr "Trasparenza di base per il televideo, più opzioni disponibili all'interno della schermata del televideo."
 
 msgid "Baseball"
@@ -2949,6 +2949,9 @@ msgstr "Pallacanestro"
 
 msgid "Basque"
 msgstr "Basco"
+
+msgid "Before changing these settings try to disable any overscan settings on th TV / display screen. To calibrate the On-Screen-Display (OSD) adjust the position and size values until the red box is *just* visible and touches the edges of the screen."
+msgstr "Prima di modificare queste impostazioni, prova a disabilitare le impostazioni di overscan sullo schermo della TV o del monitor. Per calibrare l'On-Screen-Display (OSD), regola i valori di posizione e dimensione fino a quando il riquadro rosso è *appena* visibile e tocca i bordi dello schermo."
 
 msgid "Begin time"
 msgstr "Ora inizio"
@@ -3998,12 +4001,6 @@ msgstr "Scegli quanta cronologia EPG, se presente, conservare nella cache EPG. Q
 
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Scegli la frequenza con cui connetterti al server IceTV per verificare la presenza di aggiornamenti."
-
-msgid "Choose the Display Skin and press GREEN to activate the skin."
-msgstr "Scegli la skin del display e premi VERDE per attivarla."
-
-msgid "Choose the OSD Skin and press GREEN to activate the skin."
-msgstr "Scegli la skin dell'OSD e premi VERDE per attivarla."
 
 msgid "Choose the amount of additional slots."
 msgstr "Scegli il numero di slot aggiuntivi."
@@ -5654,9 +5651,6 @@ msgstr "Offset predefinito volume"
 #, python-format
 msgid "Default: '%s'."
 msgstr "Predefinito: '%s'."
-
-msgid "Defaults"
-msgstr "Predefiniti"
 
 msgid "Define Softcam For This Provider"
 msgstr "Definisci softcam per questo fornitore"
@@ -10043,9 +10037,6 @@ msgstr "Adattatore LAN"
 msgid "LAN connection"
 msgstr "Connessione LAN"
 
-msgid "LCD Skin Settings"
-msgstr "Impostazioni skin LCD"
-
 msgid "LCD scroll speed"
 msgstr "Velocità scorrimento LCD"
 
@@ -10211,7 +10202,7 @@ msgstr "Interessi per il tempo libero"
 msgid "Lesotho"
 msgstr "Lesotho"
 
-#. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
+#. TRANSLATORS: Aspect ratio policy: Black bars on top/bottom in doubt, keep English term.
 msgid "Letterbox"
 msgstr "Letterbox"
 
@@ -11360,6 +11351,9 @@ msgstr "Spostamento a ovest..."
 msgid "Mozambique"
 msgstr "Mozambico"
 
+msgid "Multi"
+msgstr "Multi"
+
 msgid "Multi EPG"
 msgstr "EPG multiplo"
 
@@ -12227,9 +12221,6 @@ msgstr "OSD"
 msgid "OSD 3D Settings"
 msgstr "Impostazioni OSD 3D"
 
-msgid "OSD Adjustment"
-msgstr "Regolazione OSD"
-
 msgid "OSD Calibration"
 msgstr "Impostazioni posizione OSD"
 
@@ -12241,6 +12232,9 @@ msgstr "Configurazione OSD"
 
 msgid "OSD name request"
 msgstr "Richiesta nome OSD"
+
+msgid "OSD visibility"
+msgstr "Visibilità OSD"
 
 msgid "OTT Model"
 msgstr "Modello OTT"
@@ -12667,8 +12661,8 @@ msgstr "Palestina, Stato della"
 msgid "Pali"
 msgstr "Pali"
 
-#. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
-#. TRANSLATORS: (aspect ratio policy: Fit width, cut/crop top and bottom (Maintain aspect ratio))
+#. TRANSLATORS: Aspect ratio policy: Cropped content on left/right in doubt, keep English term.
+#. TRANSLATORS: Aspect ratio policy: Fit width, cut/crop top and bottom (maintain aspect ratio).
 msgid "Pan&scan"
 msgstr "Pan&Scan"
 
@@ -12862,7 +12856,7 @@ msgstr "Picture Player"
 msgid "Pictures"
 msgstr "Immagini"
 
-#. TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
+#. TRANSLATORS: Aspect ratio policy: Black bars on left/right in doubt, keep English term.
 msgid "Pillarbox"
 msgstr "Pillarbox"
 
@@ -13126,20 +13120,6 @@ msgid "Please select what to do after flash of the following image:"
 msgstr "Seleziona cosa fare dopo il flash della seguente immagine:"
 
 msgid ""
-"Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
-"When you are ready press OK to continue."
-msgstr ""
-"Imposta l'interfaccia utente regolando i valori finché i bordi del rettangolo rosso coincidono con i bordi della TV.\n"
-"Quando sei pronto, premi OK per continuare."
-
-msgid ""
-"Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
-"When you are ready press green to continue."
-msgstr ""
-"Imposta l'interfaccia utente regolando i valori finché i bordi del rettangolo rosso coincidono con i bordi della TV.\n"
-"Quando sei pronto, premi VERDE per continuare."
-
-msgid ""
 "Please use direction keys to move the PiP window.\n"
 "Press Bouquet +/- to resize the window.\n"
 "Press OK to go back to the TV mode or EXIT to cancel the moving."
@@ -13334,9 +13314,6 @@ msgstr "Portogallo"
 
 msgid "Portuguese"
 msgstr "Portoghese"
-
-msgid "Position Setup"
-msgstr "Impostazioni posizione"
 
 msgid "Position of finished Timers in Timerlist"
 msgstr "Posizione dei timer finiti nell'elenco dei timer"
@@ -15607,9 +15584,6 @@ msgstr "Seleziona CAId"
 msgid "Select Device"
 msgstr "Seleziona dispositivo"
 
-msgid "Select Display Skin"
-msgstr "Seleziona skin del display"
-
 msgid "Select Enigma2 Skin"
 msgstr "Seleziona skin di Enigma2"
 
@@ -15624,9 +15598,6 @@ msgstr "Seleziona cartelle"
 
 msgid "Select HDD"
 msgstr "Seleziona HDD"
-
-msgid "Select LCD Skin"
-msgstr "Seleziona skin per LCD"
 
 msgid "Select Lan/Wlan"
 msgstr "Seleziona LAN/WLAN"
@@ -15648,9 +15619,6 @@ msgstr "Seleziona satelliti"
 
 msgid "Select Shares"
 msgstr "Seleziona condivisioni"
-
-msgid "Select Skin"
-msgstr "Seleziona skin"
 
 msgid "Select Softcam"
 msgstr "Seleziona softcam"
@@ -16840,9 +16808,6 @@ msgstr "Imposta disco rigido"
 
 msgid "Setup your LCD"
 msgstr "Imposta LCD"
-
-msgid "Setup your LCD Skin"
-msgstr "Imposta skin LCD"
 
 msgid "Setup your OSD"
 msgstr "Imposta OSD"
@@ -18581,16 +18546,16 @@ msgstr "La registrazione in streaming è terminata"
 msgid "Streaming tuner information for %s %s"
 msgstr "Informazioni sul tuner in streaming per %s %s"
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (force aspect))
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching all parts of the picture with the same factor (force aspect).
 msgid "Stretch full"
 msgstr "Ridimensionamento pieno"
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching all parts of the picture with the same factor (all parts lose aspect).
 msgid "Stretch linear"
 msgstr "Ridimensionamento lineare"
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the top/bottom (Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch))
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right (Center 50% of picture maintain aspect, left/right 25% lose aspect heaver than on linear stretch))
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching the top/bottom. Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch.
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching the left/right. Center 50% of picture maintain aspect, left/right 25% lose aspect heaver than on linear stretch.
 msgid "Stretch nonlinear"
 msgstr "Ridimensionamento non lineare"
 
@@ -19593,7 +19558,7 @@ msgstr "Questo bouquet è protetto dal PIN del controllo genitori!"
 
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
-msgstr "Campo consente di cercare un symbol rate aggiuntivo fino a %s."
+msgstr "Questo campo consente di cercare un symbol rate aggiuntivo fino a %s."
 
 msgid "This function is not available as processing of large files may take too long to run on this hardware."
 msgstr "Questa funzione non è disponibile poiché l'elaborazione di file di grandi dimensioni potrebbe richiedere troppo tempo per essere eseguita su questo hardware."
@@ -19603,11 +19568,11 @@ msgstr "Questa è una soluzione alternativa per alcuni dispositivi che si riatti
 
 #, python-format
 msgid "This is the currently selected language.  [%s]"
-msgstr "Questa è la lingua attualmente selezionata. [%s]"
+msgstr "Questa è la lingua attualmente selezionata.  [%s]"
 
 #, python-format
 msgid "This is the currently selected locale.  [%s]"
-msgstr "Questa è la lingua attualmente selezionata.  [%s]"
+msgstr "Queste sono le impostazioni locali attualmente selezionate.  [%s]"
 
 msgid "This is the initial / default volume offset applied to any services added the the volume adjust list."
 msgstr "Questo è l'offset del volume iniziale/predefinito applicato a tutti i servizi aggiunti all'elenco di regolazione del volume."
@@ -19616,25 +19581,25 @@ msgid "This is the order in which DiSEqC commands are sent to the aerial system.
 msgstr "Questo è l'ordine in cui i comandi DiSEqC vengono inviati all'antenna. L'ordine deve corrispondere esattamente all'ordine in cui sono disposti i dispositivi fisici lungo il cavo del segnale (a partire dal lato del ricevitore)."
 
 msgid "This menu contains selections to display information about the receiver."
-msgstr "Con questo menu puoi visualizzare le informazioni sul ricevitore."
+msgstr "Questo menu contiene le selezioni per visualizzare le informazioni sul ricevitore."
 
 msgid "This menu offers options related managing the software on the %s %s."
-msgstr "Opzioni relative alla gestione del software del %s %s."
+msgstr "Questo menu offre opzioni relative alla gestione del software del %s %s."
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
 msgstr "Questo offset verrà usato solo se il canale non dispone di un proprio offset di volume."
 
 msgid "This option allows to reduce the block-noise in the picture. Obviously this is at the cost of the picture's sharpness."
-msgstr "Questa opzione consente di ridurre il rumore dell'immagine. Ovviamente questo è a costo della nitidezza dell'immagine."
+msgstr "Questa opzione consente di ridurre il rumore dell'immagine. Ovviamente questo va a scapito della nitidezza dell'immagine."
 
 msgid "This option allows to set the level of dynamic contrast of the picture."
 msgstr "Questa opzione consente di impostare il livello di contrasto dinamico dell'immagine."
 
 msgid "This option allows you can config the Colordepth for UHD"
-msgstr "Questa opzione ti consente di configurare la profondità del colore per UHD"
+msgstr "Questa opzione consente di configurare la profondità del colore per UHD"
 
 msgid "This option allows you can config the Colorimetry for HDR"
-msgstr "Questa opzione consente di configurare la Colorimetria per HDR"
+msgstr "Questa opzione consente di configurare la colorimetria per HDR"
 
 msgid "This option allows you can config the Colorspace from Auto to RGB"
 msgstr "Questa opzione consente di configurare lo spazio colore da Auto a RGB"
@@ -19667,7 +19632,7 @@ msgid "This option allows you choose if the display shows the time or nothing in
 msgstr "Questa opzione consente di scegliere come visualizzare l'ora o nulla in standby"
 
 msgid "This option allows you choose the background color of transparent picons."
-msgstr "Questa opzione ti consente di scegliere il colore di sfondo delle icone trasparenti."
+msgstr "Questa opzione consente di scegliere il colore di sfondo delle icone trasparenti."
 
 msgid "This option allows you choose the option for Subservice indicator or selection."
 msgstr "Questa opzione consente di scegliere l'opzione per l'indicatore o la selezione del sottoservizio."
@@ -19703,37 +19668,37 @@ msgid "This option allows you to choose from the two channel lists that are avai
 msgstr "Questa opzione consente di scegliere tra due elenchi di canali disponibili."
 
 msgid "This option allows you to choose how to display 1080p 24Hz on your TV. (as not all TV's support these resolutions)"
-msgstr "Questa opzione consente di scegliere come visualizzare 1080p 24Hz sul televisore. (poiché non tutte le TV supportano queste risoluzioni)"
+msgstr "Questa opzione consente di scegliere come visualizzare 1080p 24Hz sulla TV. Non tutte le TV supportano queste risoluzioni."
 
 msgid "This option allows you to choose how to display 1080p 25Hz on your TV. (as not all TV's support these resolutions)"
-msgstr "Questa opzione consente di scegliere come visualizzare 1080p 25Hz sul televisore. (poiché non tutte le TV supportano queste risoluzioni)"
+msgstr "Questa opzione consente di scegliere come visualizzare 1080p 25Hz sulla TV. Non tutte le TV supportano queste risoluzioni."
 
 msgid "This option allows you to choose how to display 1080p 30Hz on your TV. (as not all TV's support these resolutions)"
-msgstr "Questa opzione consente di scegliere come visualizzare 1080p 30Hz sul televisore. (poiché non tutte le TV supportano queste risoluzioni)"
+msgstr "Questa opzione consente di scegliere come visualizzare 1080p 30Hz sulla TV. Non tutte le TV supportano queste risoluzioni."
 
 msgid "This option allows you to choose how to display 2160p 24Hz on your TV. (as not all TV's support these resolutions)"
-msgstr "Questa opzione consente di scegliere come visualizzare 2160p 24Hz sul televisore. (poiché non tutte le TV supportano queste risoluzioni)"
+msgstr "Questa opzione consente di scegliere come visualizzare 2160p 24Hz sulla TV. Non tutte le TV supportano queste risoluzioni."
 
 msgid "This option allows you to choose how to display 2160p 25Hz on your TV. (as not all TV's support these resolutions)"
-msgstr "Questa opzione consente di scegliere come visualizzare 2160p 25Hz sul televisore. (poiché non tutte le TV supportano queste risoluzioni)"
+msgstr "Questa opzione consente di scegliere come visualizzare 2160p 25Hz sulla TV. Non tutte le TV supportano queste risoluzioni."
 
 msgid "This option allows you to choose how to display 2160p 30Hz on your TV. (as not all TV's support these resolutions)"
-msgstr "Questa opzione consente di scegliere come visualizzare 2160p 30Hz sul televisore. (poiché non tutte le TV supportano queste risoluzioni)"
+msgstr "Questa opzione consente di scegliere come visualizzare 2160p 30Hz sulla TV. Non tutte le TV supportano queste risoluzioni."
 
 msgid "This option allows you to choose how to display 720p 24Hz on your TV. (as not all TV's support these resolutions)"
-msgstr "Questa opzione consente di scegliere come visualizzare 720p 24Hz sul televisore. (poiché non tutte le TV supportano queste risoluzioni)"
+msgstr "Questa opzione consente di scegliere come visualizzare 720p 24Hz sulla TV. Non tutte le TV supportano queste risoluzioni."
 
 msgid "This option allows you to choose how to display SD progressive 24Hz on your TV. (as not all TV's support these resolutions)"
-msgstr "Questa opzione consente di scegliere come visualizzare SD progressivo 24Hz sul televisore. (poiché non tutte le TV supportano queste risoluzioni)"
+msgstr "Questa opzione consente di scegliere come visualizzare SD progressivo 24Hz sulla TV. Non tutte le TV supportano queste risoluzioni."
 
 msgid "This option allows you to choose how to display elapsed time, as + or -."
 msgstr "Questa opzione consente di scegliere come visualizzare il tempo trascorso come + o -"
 
 msgid "This option allows you to choose how to display standard definition video on your TV."
-msgstr "Questa opzione consente di scegliere come visualizzare i video a definizione standard sul televisore."
+msgstr "Questa opzione consente di scegliere come visualizzare i video a definizione standard sulla TV."
 
 msgid "This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first), when 'Quick Actions' preset actions are performed. "
-msgstr "Questa opzione consente di scegliere quale salto avere nell'elenco canali alla prima pressione di un tasto (cioè premendo '2' si passa prima ad 'A' oppure a '2')"
+msgstr "Questa opzione consente di scegliere quale salto avere nell'elenco canali alla prima pressione di un tasto (cioè premendo '2' si passa prima ad 'A' oppure a '2'). "
 
 msgid "This option allows you to choose whether or not to display genre information for the event."
 msgstr "Questa opzione consente di scegliere se visualizzare o meno le informazioni sul genere per l'evento."
@@ -19745,7 +19710,7 @@ msgid "This option allows you to set offset values for different Letterbox resol
 msgstr "Questa opzione consente di impostare valori di offset per diverse risoluzioni Letterbox."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
-msgstr "Questa opzione consente di ottenere l'SNR in percentuale (non tutti i ricevitori lo supportano)."
+msgstr "Questa opzione consente di avere l'SNR in percentuale (non tutti i ricevitori lo supportano)."
 
 msgid "This option allows you to use all HDMI Modes"
 msgstr "Questa opzione consente di usare tutte le modalità HDMI"
@@ -19757,10 +19722,10 @@ msgid "This option configures the general audio delay for BT Speakers."
 msgstr "Questa opzione configura il ritardo audio generale per gli altoparlanti BT."
 
 msgid "This option configures the general audio delay of Dolby Digital sound tracks."
-msgstr "Questa opzione consente di configurare il ritardo audio generale delle tracce Dolby Digital."
+msgstr "Questa opzione configura il ritardo audio generale delle tracce Dolby Digital."
 
 msgid "This option configures the general audio delay of stereo sound tracks."
-msgstr "Questa opzione consente di configurare il ritardo audio generale delle tracce audio stereo."
+msgstr "Questa opzione configura il ritardo audio generale delle tracce audio stereo."
 
 msgid "This option configures the picture sharpness."
 msgstr "Questa opzione configura la nitidezza dell'immagine."
@@ -19772,46 +19737,46 @@ msgid "This option configures the video output mode (or resolution)."
 msgstr "Questa opzione configura la modalità di uscita video (o la risoluzione)."
 
 msgid "This option configures you can set Auto Volume Level."
-msgstr "Questa opzione consente di configurare il volume automatico."
+msgstr "Questa opzione configura le impostazioni del volume automatico."
 
 msgid "This option lets you adjust the 3D depth of the OSD."
-msgstr "Questa opzione consente di regolare la profondità 3D"
+msgstr "Questa opzione consente di regolare la profondità 3D."
 
-msgid "This option lets you adjust the transparency of the user interface"
-msgstr "Questa opzione consente di regolare la trasparenza dell'interfaccia utente"
+msgid "This option lets you adjust the transparency of the OSD."
+msgstr "Questa opzione consente di regolare la trasparenza dell'interfaccia utente."
 
 msgid "This option lets you choose the 3D mode of the OSD."
-msgstr "Questa opzione consente di scegliere la modalità 3D"
+msgstr "Questa opzione consente di scegliere la modalità 3D."
 
 msgid "This option lets you show the 3D OSD menu option in the Extension Menu screen."
-msgstr "Questa opzione ti consente di mostrare l'opzione nella schermata dell'estensione."
+msgstr "Questa opzione consente di mostrare l'opzione nella schermata dell'estensione."
 
 msgid "This option moves the PVR status display from a separate window into the MoviePlayer InfoBar."
 msgstr "Questa opzione sposta lo stato PVR dalla finestra separata nella barra informazioni di MoviePlayer."
 
 msgid "This option set the level of suppression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
-msgstr "Consente di configurare il livello di soppressione del rumore. (Questo va a discapito dei dettagli dell'immagine."
+msgstr "Questa opzione imposta il livello di soppressione del rumore a blocchi (il rumore a blocchi è un artefatto casuale causato da una compressione video eccessiva). Ovviamente, questo avviene a scapito della qualità dell'immagine."
 
 msgid "This option sets  the picture contrast."
-msgstr "Consente di impostare il contrasto dell'immagine."
+msgstr "Questa opzione imposta il contrasto dell'immagine."
 
 msgid "This option sets the picture brightness."
-msgstr "Consente di impostare la luminosità dell'immagine."
+msgstr "Questa opzione imposta la luminosità dell'immagine."
 
 msgid "This option sets the picture color space."
-msgstr "Consente di impostare lo spazio colore dell'immagine."
+msgstr "Questa opzione imposta lo spazio colore dell'immagine."
 
 msgid "This option sets the picture flesh tones."
-msgstr "Consente di impostare le tonalità di colore dei visi."
+msgstr "Questa opzione imposta i toni della pelle dell'immagine."
 
 msgid "This option sets the picture hue."
-msgstr "Consente di impostare la tonalità dell'immagine."
+msgstr "Questa opzione imposta la tonalità dell'immagine."
 
 msgid "This option sets the picture saturation."
-msgstr "Consente di impostare la saturazione dell'immagine."
+msgstr "Questa opzione imposta la saturazione dell'immagine."
 
 msgid "This option sets the scaler sharpness, used when stretching picture from 4:3 to 16:9."
-msgstr "Questa opzione imposta la nitidezza dello scaler, usata quando si estende l'immagine da 4:3 a 16:9."
+msgstr "Questa opzione imposta la nitidezza dello scaler, usata quando si allunga l'immagine da 4:3 a 16:9."
 
 msgid "This option sets the suppression of false digital contours, that are the result of a limited number of discrete values."
 msgstr "Questa opzione imposta la soppressione di contorni digitali falsi, che sono il risultato di un numero limitato di valori discreti."
@@ -21037,26 +21002,29 @@ msgstr "Usa misurazione di potenza"
 msgid "Use small screen"
 msgstr "Usa schermo piatto"
 
-msgid "Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size."
-msgstr "Usa i tasti Sinistra/Destra sul telecomando per regolare le dimensioni dell'interfaccia utente. Il tasto sinistro riduce le dimensioni, il tasto destro aumenta le dimensioni."
+msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
+msgstr "Usa i tasti Sinistra/Destra sul telecomando per regolare l'altezza dell'interfaccia utente. Il pulsante Sinistra diminuisce l'altezza, il pulsante Destra aumenta l'altezza."
 
-msgid "Use the Left/Right buttons on your remote to move the user interface bottom"
-msgstr "Usa i tasti Sinistra/Destra sul telecomando per spostare l'interfaccia utente in basso"
+msgid "Use the LEFT/RIGHT buttons on your remote to adjust the width of the OSD. LEFT button decreases the width, RIGHT increases the width."
+msgstr "Usa i tasti Sinistra/Destra sul telecomando per regolare la larghezza dell'interfaccia utente. Il pulsante Sinistra diminuisce la larghezza, il pulsante Destra aumenta la larghezza."
 
-msgid "Use the Left/Right buttons on your remote to move the user interface left"
-msgstr "Usa i tasti Sinistra/Destra sul telecomando per spostare l'interfaccia utente a sinistra"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD bottom."
+msgstr "Usa i tasti Sinistra/Destra sul telecomando per spostare l'interfaccia utente in basso."
 
-msgid "Use the Left/Right buttons on your remote to move the user interface left/right"
-msgstr "Usa i tasti Sinistra/Destra sul telecomando per spostare l'interfaccia utente a sinistra/destra"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD left."
+msgstr "Usa i tasti Sinistra/Destra sul telecomando per spostare l'interfaccia utente a sinistra."
 
-msgid "Use the Left/Right buttons on your remote to move the user interface right"
-msgstr "Usa i tasti Sinistra/Destra sul telecomando per spostare l'interfaccia utente a destra"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD left/right."
+msgstr "Usa i tasti Sinistra/Destra sul telecomando per spostare l'interfaccia utente a sinistra o destra."
 
-msgid "Use the Left/Right buttons on your remote to move the user interface top"
-msgstr "Usa i tasti Sinistra/Destra sul telecomando per spostare l'interfaccia utente in alto"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD right."
+msgstr "Usa i tasti Sinistra/Destra sul telecomando per spostare l'interfaccia utente a destra."
 
-msgid "Use the Left/Right buttons on your remote to move the user interface up/down"
-msgstr "Usa i tasti Sinistra/Destra sul telecomando per spostare l'interfaccia utente su/giù"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD top."
+msgstr "Usa i tasti Sinistra/Destra sul telecomando per spostare l'interfaccia utente in alto."
+
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD up/down."
+msgstr "Usa i tasti Sinistra/Destra sul telecomando per spostare l'interfaccia utente su/giù."
 
 msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
 msgstr "Usa la procedura guidata di rete per configurare la rete. La procedura guidata ti aiuterà a configurare la rete"
@@ -21148,9 +21116,6 @@ msgstr "Transponder predefinito utente"
 
 msgid "User interface settings"
 msgstr "Configurazione Interfaccia Utente"
-
-msgid "User interface visibility"
-msgstr "Visibilità dell'interfaccia utente"
 
 msgid "User logo:"
 msgstr "Registroo utente:"
@@ -21972,6 +21937,9 @@ msgstr "Se il cursore di input raggiunge questo punto (percentuale della larghez
 
 msgid "When the receiver wakes from standby or deep standby it will send a command to the TV to bring it out of standby."
 msgstr "Se il ricevitore si riattiva dallo standby o dallo spegnimento, invierà un comando alla TV per portarla fuori dallo standby."
+
+msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
+msgstr "Quando il riquadro rosso è visibile correttamente premi il tasto VERDE per salvare le impostazioni ed uscire."
 
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
 msgstr "Se è sintonizzato su un servizio, il sistema normalmente eseguirà la scansione del transponder per eventuali modifiche e le salverà. Imposta su 'sì' solo se sei assolutamente sicuro di quello che stai facendo."
@@ -23091,9 +23059,6 @@ msgstr "film/dramma (generale)"
 msgid "multi"
 msgstr "multi"
 
-msgid "multinorm"
-msgstr "multinorma"
-
 msgid "music (general)"
 msgstr "musica (generale)"
 
@@ -23614,6 +23579,59 @@ msgstr "sì (mantieni feed)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Defaults"
+#~ msgstr "Predefiniti"
+
+#~ msgid "OSD Adjustment"
+#~ msgstr "Regolazione OSD"
+
+#~ msgid ""
+#~ "Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
+#~ "When you are ready press green to continue."
+#~ msgstr ""
+#~ "Imposta l'interfaccia utente regolando i valori finché i bordi del rettangolo rosso coincidono con i bordi della TV.\n"
+#~ "Quando sei pronto, premi VERDE per continuare."
+
+#~ msgid "Position Setup"
+#~ msgstr "Impostazioni posizione"
+
+#~ msgid "Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size."
+#~ msgstr "Usa i tasti Sinistra/Destra sul telecomando per regolare le dimensioni dell'interfaccia utente. Il tasto sinistro riduce le dimensioni, il tasto destro aumenta le dimensioni."
+
+#~ msgid "User interface visibility"
+#~ msgstr "Visibilità dell'interfaccia utente"
+
+#~ msgid "multinorm"
+#~ msgstr "multinorma"
+
+#~ msgid "Choose the Display Skin and press GREEN to activate the skin."
+#~ msgstr "Scegli la skin del display e premi VERDE per attivarla."
+
+#~ msgid "Choose the OSD Skin and press GREEN to activate the skin."
+#~ msgstr "Scegli la skin dell'OSD e premi VERDE per attivarla."
+
+#~ msgid "LCD Skin Settings"
+#~ msgstr "Impostazioni skin LCD"
+
+#~ msgid ""
+#~ "Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
+#~ "When you are ready press OK to continue."
+#~ msgstr ""
+#~ "Imposta l'interfaccia utente regolando i valori finché i bordi del rettangolo rosso coincidono con i bordi della TV.\n"
+#~ "Quando sei pronto, premi OK per continuare."
+
+#~ msgid "Select Display Skin"
+#~ msgstr "Seleziona skin del display"
+
+#~ msgid "Select LCD Skin"
+#~ msgstr "Seleziona skin per LCD"
+
+#~ msgid "Select Skin"
+#~ msgstr "Seleziona skin"
+
+#~ msgid "Setup your LCD Skin"
+#~ msgstr "Imposta skin LCD"
 
 #~ msgid "Enigma2 skin selector"
 #~ msgstr "Selettore skin Enigma2"
