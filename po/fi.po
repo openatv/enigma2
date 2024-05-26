@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-05 12:54+0000\n"
-"PO-Revision-Date: 2024-05-07 23:07+0000\n"
+"POT-Creation-Date: 2024-05-18 15:15+0000\n"
+"PO-Revision-Date: 2024-05-22 07:29+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5.4-rc\n"
+"X-Generator: Weblate 5.6-dev\n"
 
 msgid ""
 "\n"
@@ -2941,10 +2941,10 @@ msgstr "Shell paketit"
 msgid "Base time"
 msgstr "Aikaväli johon kellonajat pyöristetään"
 
-msgid "Base transparency for OpenOpera web browser"
-msgstr "Perus läpinäkyvyys OpenOpera netti selain"
+msgid "Base transparency for OpenOpera web browser."
+msgstr "Oletus läpinäkyvyys OpenOpera netti selain"
 
-msgid "Base transparency for teletext, more options available within teletext screen."
+msgid "Base transparency for teletext, more options are available within teletext screen."
 msgstr "Perus läpinäkyvyys teksti-tv:en, lisää asetuksia tekstitv valikossa."
 
 msgid "Baseball"
@@ -2958,6 +2958,9 @@ msgstr "Koripallo"
 
 msgid "Basque"
 msgstr "Baski"
+
+msgid "Before changing these settings try to disable any overscan settings on th TV / display screen. To calibrate the On-Screen-Display (OSD) adjust the position and size values until the red box is *just* visible and touches the edges of the screen."
+msgstr "Ennen näiden asetusten muuttamista yritä poistaa käytöstä kaikki zoomaus asetukset televisiosta. Kalibroidaksesi kuvaruudun (OSD) säädä sijainti ja koko arvoja, kunnes punainen laatikko on juuri ja juuri näkyvissä ja koskettaa ruudun reunoja."
 
 msgid "Begin time"
 msgstr "Aloitusaika"
@@ -4009,12 +4012,6 @@ msgstr "Valitse, kuinka paljon Ohjelmaopas historiaa EPG välimuistissa säilyte
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Valitse, kuinka usein yhteys muodostetaan IceTV palvelimeen päivitysten tarkistamiseksi."
 
-msgid "Choose the Display Skin and press GREEN to activate the skin."
-msgstr "Valitse Etupaneelin Teema ja paina Vihreä näppäintä ottaeksi teema käyttöön."
-
-msgid "Choose the OSD Skin and press GREEN to activate the skin."
-msgstr "Valitse Kuvaruudun Teema ja paina Vihreä näppäintä ottaeksi teema käyttöön."
-
 msgid "Choose the amount of additional slots."
 msgstr "Valitse lisä paikkojen määrä."
 
@@ -4041,6 +4038,12 @@ msgstr "Valitse tiedostonimi, jonne EPG-tiedot tallennetaan kun %s %s sammutetaa
 
 msgid "Choose the option to correct invalid EPG data."
 msgstr "Valitse vaihtoehto virheellisten EPG tietojen korjaamiseksi."
+
+msgid "Choose the skin to be used for the GUI interface. Press 'GREEN' to activate the skin."
+msgstr "Valitse käyttöliittymän teema. Paina 'VIHREÄÄ' aktivoidaksesi teema."
+
+msgid "Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin."
+msgstr "Valitse näyttöpaneelin teema. Paina 'VIHREÄÄ' aktivoidaksesi teeman."
 
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr "Valitse järjestys, jossa kohteet näytetään ohje ikkunoissa."
@@ -5659,9 +5662,6 @@ msgstr "Oletus äänenvoimakkuuden offsetti"
 msgid "Default: '%s'."
 msgstr "Oletus: '%s'."
 
-msgid "Defaults"
-msgstr "Oletusarvot"
-
 msgid "Define Softcam For This Provider"
 msgstr "Softcam tälle palveluntarjoajalle"
 
@@ -7160,9 +7160,6 @@ msgstr "Järjestelmä tiedot"
 msgid "Enigma2 revision"
 msgstr "Järjestelmä tiedot"
 
-msgid "Enigma2 skin selector"
-msgstr "Käyttöliittymän teeman valinta"
-
 msgid "Enigma2 version"
 msgstr "Järjestelmä Versio"
 
@@ -8458,16 +8455,12 @@ msgstr "GStreamer virheenkorjauslokin taso *"
 msgid "GStreamer version"
 msgstr "GStreamer versio"
 
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to Restart the GUI now?"
-msgstr ""
-"Järjestelmä on käynnistettävä uudelleen teeman vaihtamiseksi.\n"
-"Haluatko käynnistää järjestelmän uudelleen nyt?"
+msgid "GUI Skin *"
+msgstr "Käyttöliittymän teema *"
 
 msgid ""
 "GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
+"Do you want to Restart the GUI now?"
 msgstr ""
 "Järjestelmä on käynnistettävä uudelleen teeman vaihtamiseksi.\n"
 "Haluatko käynnistää järjestelmän uudelleen nyt?"
@@ -10059,14 +10052,11 @@ msgstr "Verkkosovitin"
 msgid "LAN connection"
 msgstr "LAN yhteys"
 
-msgid "LCD Skin Settings"
-msgstr "Näyttöpaneeli Teema"
-
-msgid "LCD SkinSelector"
-msgstr "LCD Teeman valinta"
-
 msgid "LCD scroll speed"
 msgstr "LCD selausnopeus"
+
+msgid "LCD/Front panel *"
+msgstr "Näyttöpaneeli *"
 
 msgid "LCN plugin for DVB-T/T2 services"
 msgstr "LCN plugin DVB-T/T2 palvelua varten"
@@ -10227,7 +10217,7 @@ msgstr "Vapaa-ajan harrastukset"
 msgid "Lesotho"
 msgstr "Lesotho"
 
-#. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
+#. TRANSLATORS: Aspect ratio policy: Black bars on top/bottom in doubt, keep English term.
 msgid "Letterbox"
 msgstr "Letterbox"
 
@@ -11378,6 +11368,9 @@ msgstr "Liikkuu länteen..."
 msgid "Mozambique"
 msgstr "Mozambique"
 
+msgid "Multi"
+msgstr "Moni"
+
 msgid "Multi EPG"
 msgstr "Kanavaopas"
 
@@ -12251,10 +12244,7 @@ msgstr "Kuvaruutu"
 msgid "OSD 3D Settings"
 msgstr "Kuvaruudun 3D Asetukset"
 
-msgid "OSD Adjustment"
-msgstr "Kuvaruudun Säätö"
-
-msgid "OSD Position Settings"
+msgid "OSD Calibration"
 msgstr "Kuvaruudun kohdistus"
 
 msgid "OSD Settings"
@@ -12265,6 +12255,9 @@ msgstr "Kuvaruudun Asetukset"
 
 msgid "OSD name request"
 msgstr "Kuvaruudun nimipyyntö"
+
+msgid "OSD visibility"
+msgstr "Kuvaruudun läpinäkyvyys"
 
 msgid "OTT Model"
 msgstr "OTT malli"
@@ -12691,8 +12684,8 @@ msgstr "Palestine"
 msgid "Pali"
 msgstr "Pali"
 
-#. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
-#. TRANSLATORS: (aspect ratio policy: Fit width, cut/crop top and bottom (Maintain aspect ratio))
+#. TRANSLATORS: Aspect ratio policy: Cropped content on left/right in doubt, keep English term.
+#. TRANSLATORS: Aspect ratio policy: Fit width, cut/crop top and bottom (maintain aspect ratio).
 msgid "Pan&scan"
 msgstr "Pan&Scan"
 
@@ -12886,7 +12879,7 @@ msgstr "Kuvien katselu"
 msgid "Pictures"
 msgstr "Kuvia"
 
-#. TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
+#. TRANSLATORS: Aspect ratio policy: Black bars on left/right in doubt, keep English term.
 msgid "Pillarbox"
 msgstr "Pillarbox"
 
@@ -13150,20 +13143,6 @@ msgid "Please select what to do after flash of the following image:"
 msgstr "Valitse, mitä tehdä päivityksen jälkeen:"
 
 msgid ""
-"Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
-"When you are ready press OK to continue."
-msgstr ""
-"Määritä käyttöliittymä säätämällä arvoja, kunnes punaisen ruudun reunat koskettavat television reunoja.\n"
-"Kun olet valmis, jatka painamalla OK."
-
-msgid ""
-"Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
-"When you are ready press green to continue."
-msgstr ""
-"Määritä käyttöliittymä säätämällä arvoja, kunnes punaisen ruudun reunat koskettavat television reunoja.\n"
-"Kun olet valmis, jatka painamalla vihreä."
-
-msgid ""
 "Please use direction keys to move the PiP window.\n"
 "Press Bouquet +/- to resize the window.\n"
 "Press OK to go back to the TV mode or EXIT to cancel the moving."
@@ -13358,9 +13337,6 @@ msgstr "Portugali"
 
 msgid "Portuguese"
 msgstr "Portugali"
-
-msgid "Position Setup"
-msgstr "Sijainti ja läpinäkyvyys"
 
 msgid "Position of finished Timers in Timerlist"
 msgstr "Tallennettujen ajastusten sijainti ajastusluettelossa"
@@ -15639,9 +15615,6 @@ msgstr "Valitse CAId"
 msgid "Select Device"
 msgstr "Valitse Laite"
 
-msgid "Select Display Skin"
-msgstr "Valitse Näyttöpaneelin teema"
-
 msgid "Select Enigma2 Skin"
 msgstr "Valitse järjestelmän Teema"
 
@@ -15658,9 +15631,6 @@ msgstr "Hakemiston valinta"
 
 msgid "Select HDD"
 msgstr "Valitse Kiintolevy"
-
-msgid "Select LCD Skin"
-msgstr "Valitse näyttöpaneelin teema"
 
 msgid "Select Lan/Wlan"
 msgstr "Valitse LAN/WLAN"
@@ -15682,9 +15652,6 @@ msgstr "Valitse satelliitit"
 
 msgid "Select Shares"
 msgstr "Valitse Jaot"
-
-msgid "Select Skin"
-msgstr "Valitse teema"
 
 msgid "Select Softcam"
 msgstr "Valitse softcam"
@@ -16879,9 +16846,6 @@ msgstr "Määritä kiintolevyn asetukset"
 msgid "Setup your LCD"
 msgstr "Aseta näyttöpaneelin teema"
 
-msgid "Setup your LCD Skin"
-msgstr "Aseta LCD teema"
-
 msgid "Setup your OSD"
 msgstr "Määritä kuvaruudun asetukset"
 
@@ -17850,17 +17814,14 @@ msgstr "Laajennukset plugin teemat"
 msgid "Skin Packages"
 msgstr "Teemat"
 
-msgid "Skin Selector"
-msgstr "Teeman valinta"
-
 msgid "Skin Setting"
 msgstr "Teeman asetus"
 
 msgid "Skin Settings"
 msgstr "Teema asetukset"
 
-msgid "Skin setup"
-msgstr "Teeman valinta"
+msgid "SkinSelection"
+msgstr "Teeman Valinta"
 
 msgid "SkinSelector"
 msgstr "Teeman valinta"
@@ -18622,16 +18583,16 @@ msgstr "Suoratoiston tallennus on päättynyt"
 msgid "Streaming tuner information for %s %s"
 msgstr "Etäasiakkaan virittimen tiedot: %s %s"
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (force aspect))
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching all parts of the picture with the same factor (force aspect).
 msgid "Stretch full"
 msgstr "Venytä täysin"
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching all parts of the picture with the same factor (all parts lose aspect).
 msgid "Stretch linear"
 msgstr "Venytä linear"
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the top/bottom (Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch))
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right (Center 50% of picture maintain aspect, left/right 25% lose aspect heaver than on linear stretch))
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching the top/bottom. Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch.
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching the left/right. Center 50% of picture maintain aspect, left/right 25% lose aspect heaver than on linear stretch.
 msgid "Stretch nonlinear"
 msgstr "Venytä nonlinear"
 
@@ -19821,16 +19782,16 @@ msgstr "Tämä asetus määrittää videoulostulon (tai resoluution)."
 msgid "This option configures you can set Auto Volume Level."
 msgstr "Tämä asetus määrittää automaattisen äänenvoimakkuuden tason."
 
-msgid "This option lets you adjust the 3D depth."
+msgid "This option lets you adjust the 3D depth of the OSD."
 msgstr "Määrittää 3D syvyyden"
 
-msgid "This option lets you adjust the transparency of the user interface"
+msgid "This option lets you adjust the transparency of the OSD."
 msgstr "Määrittää käyttöliittymän läpinäkyvyyden"
 
-msgid "This option lets you choose the 3D mode."
+msgid "This option lets you choose the 3D mode of the OSD."
 msgstr "Tämä asetus määrittää 3D tilan"
 
-msgid "This option lets you show the option in the Extension Menu screen."
+msgid "This option lets you show the 3D OSD menu option in the Extension Menu screen."
 msgstr "Tämä asetus määrittää näytetäänkö valinta laajennusvalikko."
 
 msgid "This option moves the PVR status display from a separate window into the MoviePlayer InfoBar."
@@ -21087,25 +21048,28 @@ msgstr "Käytä virranmittausta"
 msgid "Use small screen"
 msgstr "Käytä ohutta näyttöä"
 
-msgid "Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size."
-msgstr "Säädä käyttöliittymän kokoa kaukosäätimen vasen/oikea näppäimillä. Vasen pienentää, Oikea suurentaa kokoa."
+msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
+msgstr "Käytä VASEN/OIKEA painikkeita kaukosäätimessäsi säätääksesi kuvaruudun korkeutta. VASEN painike pienentää korkeutta, OIKEA painike kasvattaa korkeutta."
 
-msgid "Use the Left/Right buttons on your remote to move the user interface bottom"
+msgid "Use the LEFT/RIGHT buttons on your remote to adjust the width of the OSD. LEFT button decreases the width, RIGHT increases the width."
+msgstr "Käytä VASEN/OIKEA painikkeita kaukosäätimessäsi säätääksesi kuvaruudun leveyttä. VASEN painike pienentää leveyttä, OIKEA painike kasvattaa leveyttä."
+
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD bottom."
 msgstr "Käytä kaukosäätimen Vasen/Oikea painikkeita siirtääksesi käyttöliittymää alas"
 
-msgid "Use the Left/Right buttons on your remote to move the user interface left"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD left."
 msgstr "Käytä kaukosäätimen Vasen/Oikea painikkeita siirtääksesi käyttöliittymää vasemmalle"
 
-msgid "Use the Left/Right buttons on your remote to move the user interface left/right"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD left/right."
 msgstr "Säädä käyttöliittymän vaakasijaintia kaukosäätimen vasen/oikea näppäimillä"
 
-msgid "Use the Left/Right buttons on your remote to move the user interface right"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD right."
 msgstr "Käytä kaukosäätimen Vasen/Oikea painikkeita siirtääksesi käyttöliittymää oikealle"
 
-msgid "Use the Left/Right buttons on your remote to move the user interface top"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD top."
 msgstr "Käytä kaukosäätimen Vasen/Oikea painikkeita siirtääksesi käyttöliittymää ylös"
 
-msgid "Use the Left/Right buttons on your remote to move the user interface up/down"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD up/down."
 msgstr "Säädä käyttöliittymän pystysijaintia kaukosäätimen vasen/oikea näppäimillä"
 
 msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
@@ -21198,9 +21162,6 @@ msgstr "Käyttäjän määrittelemä lähetin"
 
 msgid "User interface settings"
 msgstr "Käyttöliittymän asetukset"
-
-msgid "User interface visibility"
-msgstr "Käyttöliittymän läpinäkyvyys"
 
 msgid "User logo:"
 msgstr "Käyttäjän logo:"
@@ -22022,6 +21983,9 @@ msgstr "Kun syöttökursori saavuttaa tämän pisteen (prosenttiosuus leveydest�
 
 msgid "When the receiver wakes from standby or deep standby it will send a command to the TV to bring it out of standby."
 msgstr "Kun vastaanotin herää valmiustilasta tai virransäästötilasta, se lähettää televisiolle komennon, jolla se herätetään valmiustilasta."
+
+msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
+msgstr "Kun punainen laatikko on oikein näkyvissä, paina VIHREÄÄ painiketta tallentaaksesi asetukset ja poistuaksesi."
 
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
 msgstr "Kun vaihdat kanavalle, normaalisti laite hakee lähettimen tietojen muutokset ja tallentaa ne. Valitse 'kyllä' Vain edistynemmille käyttäjille."
@@ -23147,9 +23111,6 @@ msgstr "elokuva/draama (yleinen)"
 msgid "multi"
 msgstr "moni"
 
-msgid "multinorm"
-msgstr "moninormi"
-
 msgid "music (general)"
 msgstr "musiikki(yleinen)"
 
@@ -23670,6 +23631,78 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Defaults"
+#~ msgstr "Oletusarvot"
+
+#~ msgid "OSD Adjustment"
+#~ msgstr "Kuvaruudun Säätö"
+
+#~ msgid ""
+#~ "Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
+#~ "When you are ready press green to continue."
+#~ msgstr ""
+#~ "Määritä käyttöliittymä säätämällä arvoja, kunnes punaisen ruudun reunat koskettavat television reunoja.\n"
+#~ "Kun olet valmis, jatka painamalla vihreä."
+
+#~ msgid "Position Setup"
+#~ msgstr "Sijainti ja läpinäkyvyys"
+
+#~ msgid "Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size."
+#~ msgstr "Säädä käyttöliittymän kokoa kaukosäätimen vasen/oikea näppäimillä. Vasen pienentää, Oikea suurentaa kokoa."
+
+#~ msgid "User interface visibility"
+#~ msgstr "Käyttöliittymän läpinäkyvyys"
+
+#~ msgid "multinorm"
+#~ msgstr "moninormi"
+
+#~ msgid "Choose the Display Skin and press GREEN to activate the skin."
+#~ msgstr "Valitse Etupaneelin Teema ja paina Vihreä näppäintä ottaeksi teema käyttöön."
+
+#~ msgid "Choose the OSD Skin and press GREEN to activate the skin."
+#~ msgstr "Valitse Kuvaruudun Teema ja paina Vihreä näppäintä ottaeksi teema käyttöön."
+
+#~ msgid "LCD Skin Settings"
+#~ msgstr "Näyttöpaneeli Teema"
+
+#~ msgid ""
+#~ "Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
+#~ "When you are ready press OK to continue."
+#~ msgstr ""
+#~ "Määritä käyttöliittymä säätämällä arvoja, kunnes punaisen ruudun reunat koskettavat television reunoja.\n"
+#~ "Kun olet valmis, jatka painamalla OK."
+
+#~ msgid "Select Display Skin"
+#~ msgstr "Valitse Näyttöpaneelin teema"
+
+#~ msgid "Select LCD Skin"
+#~ msgstr "Valitse näyttöpaneelin teema"
+
+#~ msgid "Select Skin"
+#~ msgstr "Valitse teema"
+
+#~ msgid "Setup your LCD Skin"
+#~ msgstr "Aseta LCD teema"
+
+#~ msgid "Enigma2 skin selector"
+#~ msgstr "Käyttöliittymän teeman valinta"
+
+#~ msgid ""
+#~ "GUI needs a restart to apply a new skin\n"
+#~ "Do you want to restart the GUI now?"
+#~ msgstr ""
+#~ "Järjestelmä on käynnistettävä uudelleen teeman vaihtamiseksi.\n"
+#~ "Haluatko käynnistää järjestelmän uudelleen nyt?"
+
+#~ msgid "LCD SkinSelector"
+#~ msgstr "LCD Teeman valinta"
+
+#~ msgid "Skin Selector"
+#~ msgstr "Teeman valinta"
+
+#~ msgid "Skin setup"
+#~ msgstr "Teeman valinta"
 
 #~ msgid "Settings..."
 #~ msgstr "Kanavalistan asetukset"

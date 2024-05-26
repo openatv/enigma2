@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-05 12:54+0000\n"
+"POT-Creation-Date: 2024-05-18 15:15+0000\n"
 "PO-Revision-Date: 2023-08-11 04:46+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -2937,10 +2937,10 @@ msgstr ""
 msgid "Base time"
 msgstr "基准时间"
 
-msgid "Base transparency for OpenOpera web browser"
+msgid "Base transparency for OpenOpera web browser."
 msgstr "web网页浏览器的基本透明度"
 
-msgid "Base transparency for teletext, more options available within teletext screen."
+msgid "Base transparency for teletext, more options are available within teletext screen."
 msgstr "图文电视基本透明度,不在图文电视屏幕的更多选项可用."
 
 msgid "Baseball"
@@ -2954,6 +2954,9 @@ msgstr "篮球"
 
 msgid "Basque"
 msgstr "巴斯克语"
+
+msgid "Before changing these settings try to disable any overscan settings on th TV / display screen. To calibrate the On-Screen-Display (OSD) adjust the position and size values until the red box is *just* visible and touches the edges of the screen."
+msgstr ""
 
 msgid "Begin time"
 msgstr "开始时间"
@@ -4004,12 +4007,6 @@ msgstr ""
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "选择连接到ICETV服务器以检查更新的频率."
 
-msgid "Choose the Display Skin and press GREEN to activate the skin."
-msgstr ""
-
-msgid "Choose the OSD Skin and press GREEN to activate the skin."
-msgstr ""
-
 msgid "Choose the amount of additional slots."
 msgstr ""
 
@@ -4035,6 +4032,12 @@ msgid "Choose the name of the file that holds the EPG data when the %s %s is shu
 msgstr "选择在关闭 %s %s 时保存EPG数据的文件名.这可以方便地区分几个机顶盒."
 
 msgid "Choose the option to correct invalid EPG data."
+msgstr ""
+
+msgid "Choose the skin to be used for the GUI interface. Press 'GREEN' to activate the skin."
+msgstr ""
+
+msgid "Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin."
 msgstr ""
 
 msgid "Choose the style/order in which items are displayed in help windows."
@@ -5648,9 +5651,6 @@ msgstr ""
 msgid "Default: '%s'."
 msgstr "默认: '%s'."
 
-msgid "Defaults"
-msgstr "默认值"
-
 msgid "Define Softcam For This Provider"
 msgstr ""
 
@@ -7147,9 +7147,6 @@ msgstr "Enigma2信息"
 msgid "Enigma2 revision"
 msgstr "Enigma2修订版"
 
-msgid "Enigma2 skin selector"
-msgstr "Enigma2皮肤选择器"
-
 msgid "Enigma2 version"
 msgstr "Enigma2版本"
 
@@ -8443,18 +8440,14 @@ msgstr ""
 msgid "GStreamer version"
 msgstr "GStreamer版本"
 
+msgid "GUI Skin *"
+msgstr ""
+
 msgid ""
 "GUI needs a restart to apply a new skin\n"
 "Do you want to Restart the GUI now?"
 msgstr ""
 "GUI需要重新启动以应用新皮肤 \n"
-"是否要立即重新启动GUI?"
-
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to restart the GUI now?"
-msgstr ""
-"GUI需要重新启动以应用新皮肤\n"
 "是否要立即重新启动GUI?"
 
 msgid "Gabon"
@@ -10039,14 +10032,11 @@ msgstr "局域网适配器"
 msgid "LAN connection"
 msgstr "局域网连接"
 
-msgid "LCD Skin Settings"
-msgstr "LCD皮肤设置"
-
-msgid "LCD SkinSelector"
-msgstr "LCD皮肤选择器"
-
 msgid "LCD scroll speed"
 msgstr "LCD滚屏速度"
+
+msgid "LCD/Front panel *"
+msgstr ""
 
 msgid "LCN plugin for DVB-T/T2 services"
 msgstr "用于DVB-T/T2频道的LCN插件"
@@ -10207,7 +10197,7 @@ msgstr "休闲爱好"
 msgid "Lesotho"
 msgstr "莱索托"
 
-#. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
+#. TRANSLATORS: Aspect ratio policy: Black bars on top/bottom in doubt, keep English term.
 msgid "Letterbox"
 msgstr "信箱模式"
 
@@ -11356,6 +11346,9 @@ msgstr "向西移动 ..."
 msgid "Mozambique"
 msgstr "莫桑比克"
 
+msgid "Multi"
+msgstr ""
+
 msgid "Multi EPG"
 msgstr "多重EPG"
 
@@ -12220,10 +12213,7 @@ msgstr "OSD菜单"
 msgid "OSD 3D Settings"
 msgstr "OSD 3D设置"
 
-msgid "OSD Adjustment"
-msgstr "OSD调整"
-
-msgid "OSD Position Settings"
+msgid "OSD Calibration"
 msgstr "OSD位置"
 
 msgid "OSD Settings"
@@ -12234,6 +12224,9 @@ msgstr "OSD设置"
 
 msgid "OSD name request"
 msgstr "OSD名称请求"
+
+msgid "OSD visibility"
+msgstr ""
 
 msgid "OTT Model"
 msgstr "OTT型号"
@@ -12660,8 +12653,8 @@ msgstr "巴勒斯坦国"
 msgid "Pali"
 msgstr "巴利语"
 
-#. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
-#. TRANSLATORS: (aspect ratio policy: Fit width, cut/crop top and bottom (Maintain aspect ratio))
+#. TRANSLATORS: Aspect ratio policy: Cropped content on left/right in doubt, keep English term.
+#. TRANSLATORS: Aspect ratio policy: Fit width, cut/crop top and bottom (maintain aspect ratio).
 msgid "Pan&scan"
 msgstr "全景扫描"
 
@@ -12855,7 +12848,7 @@ msgstr "图片播放器"
 msgid "Pictures"
 msgstr "图片"
 
-#. TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
+#. TRANSLATORS: Aspect ratio policy: Black bars on left/right in doubt, keep English term.
 msgid "Pillarbox"
 msgstr "原始大小"
 
@@ -13116,20 +13109,6 @@ msgid "Please select what to do after flash of the following image:"
 msgstr ""
 
 msgid ""
-"Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
-"When you are ready press OK to continue."
-msgstr ""
-"请设置您的用户界面,通过调整数值,直到红色方块的边缘,触摸你的电视的边缘.\n"
-"当您准备好后按OK键继续."
-
-msgid ""
-"Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
-"When you are ready press green to continue."
-msgstr ""
-"请设置您的用户界面,通过调整数值,直到红色方块的边缘,触摸你的电视的边缘.\n"
-"当你准备好后按绿色键继续."
-
-msgid ""
 "Please use direction keys to move the PiP window.\n"
 "Press Bouquet +/- to resize the window.\n"
 "Press OK to go back to the TV mode or EXIT to cancel the moving."
@@ -13324,9 +13303,6 @@ msgstr "葡萄牙"
 
 msgid "Portuguese"
 msgstr "葡萄牙语"
-
-msgid "Position Setup"
-msgstr "位置设置"
 
 msgid "Position of finished Timers in Timerlist"
 msgstr "已完成定时器在定时器列表中的位置"
@@ -15597,9 +15573,6 @@ msgstr "选择CAId"
 msgid "Select Device"
 msgstr ""
 
-msgid "Select Display Skin"
-msgstr ""
-
 msgid "Select Enigma2 Skin"
 msgstr "选择Enigma2皮肤"
 
@@ -15614,9 +15587,6 @@ msgstr "选择文件夹"
 
 msgid "Select HDD"
 msgstr "选择硬盘"
-
-msgid "Select LCD Skin"
-msgstr "选择LCD皮肤"
 
 msgid "Select Lan/Wlan"
 msgstr "选择 有线/无线网络"
@@ -15637,9 +15607,6 @@ msgid "Select Satellites"
 msgstr "选择卫星"
 
 msgid "Select Shares"
-msgstr ""
-
-msgid "Select Skin"
 msgstr ""
 
 msgid "Select Softcam"
@@ -16816,9 +16783,6 @@ msgstr "设置硬盘"
 msgid "Setup your LCD"
 msgstr "LCD显示设置"
 
-msgid "Setup your LCD Skin"
-msgstr ""
-
 msgid "Setup your OSD"
 msgstr "OSD显示设置"
 
@@ -17787,17 +17751,14 @@ msgstr ""
 msgid "Skin Packages"
 msgstr ""
 
-msgid "Skin Selector"
-msgstr "皮肤选择器"
-
 msgid "Skin Setting"
 msgstr "皮肤选项"
 
 msgid "Skin Settings"
 msgstr "皮肤设置"
 
-msgid "Skin setup"
-msgstr "皮肤设置"
+msgid "SkinSelection"
+msgstr ""
 
 msgid "SkinSelector"
 msgstr "皮肤选择器"
@@ -18560,16 +18521,16 @@ msgstr "串流录制结束"
 msgid "Streaming tuner information for %s %s"
 msgstr ""
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (force aspect))
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching all parts of the picture with the same factor (force aspect).
 msgid "Stretch full"
 msgstr "完全拉伸"
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching all parts of the picture with the same factor (all parts lose aspect).
 msgid "Stretch linear"
 msgstr "左右拉伸"
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the top/bottom (Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch))
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right (Center 50% of picture maintain aspect, left/right 25% lose aspect heaver than on linear stretch))
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching the top/bottom. Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch.
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching the left/right. Center 50% of picture maintain aspect, left/right 25% lose aspect heaver than on linear stretch.
 msgid "Stretch nonlinear"
 msgstr "非线性拉伸"
 
@@ -19720,16 +19681,16 @@ msgstr "这个选项设置视频输出模式或分辨率."
 msgid "This option configures you can set Auto Volume Level."
 msgstr "此配置选项可让你设置自动音量级别."
 
-msgid "This option lets you adjust the 3D depth."
+msgid "This option lets you adjust the 3D depth of the OSD."
 msgstr "此选项可让您调整3D景深深度"
 
-msgid "This option lets you adjust the transparency of the user interface"
+msgid "This option lets you adjust the transparency of the OSD."
 msgstr "此选项允许您调整用户界面的透明度"
 
-msgid "This option lets you choose the 3D mode."
+msgid "This option lets you choose the 3D mode of the OSD."
 msgstr "此选项可让您选择3D模式"
 
-msgid "This option lets you show the option in the Extension Menu screen."
+msgid "This option lets you show the 3D OSD menu option in the Extension Menu screen."
 msgstr "此选项允许您在附件屏幕显示选项"
 
 msgid "This option moves the PVR status display from a separate window into the MoviePlayer InfoBar."
@@ -20978,25 +20939,28 @@ msgstr "功率测量"
 msgid "Use small screen"
 msgstr "使用超薄屏幕"
 
-msgid "Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size."
-msgstr "使用遥控器上的左/右键来调整用户界面的大小.左键减小大小,右键增加大小."
-
-msgid "Use the Left/Right buttons on your remote to move the user interface bottom"
+msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr ""
 
-msgid "Use the Left/Right buttons on your remote to move the user interface left"
+msgid "Use the LEFT/RIGHT buttons on your remote to adjust the width of the OSD. LEFT button decreases the width, RIGHT increases the width."
 msgstr ""
 
-msgid "Use the Left/Right buttons on your remote to move the user interface left/right"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD bottom."
+msgstr ""
+
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD left."
+msgstr ""
+
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD left/right."
 msgstr "使用遥控器上的左/右键移动用户界面左/右键"
 
-msgid "Use the Left/Right buttons on your remote to move the user interface right"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD right."
 msgstr ""
 
-msgid "Use the Left/Right buttons on your remote to move the user interface top"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD top."
 msgstr ""
 
-msgid "Use the Left/Right buttons on your remote to move the user interface up/down"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD up/down."
 msgstr "使用遥控器上的左/右按钮来将用户界面向上/向下移动"
 
 msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
@@ -21089,9 +21053,6 @@ msgstr "用户自定义转发器"
 
 msgid "User interface settings"
 msgstr "用户界面设置"
-
-msgid "User interface visibility"
-msgstr "用户界面可见性"
 
 msgid "User logo:"
 msgstr "用户标志:"
@@ -21879,6 +21840,9 @@ msgstr "当输入光标到达该点(宽度的百分比,从任一侧)时,将文�
 
 msgid "When the receiver wakes from standby or deep standby it will send a command to the TV to bring it out of standby."
 msgstr "当接收器从待机或深度待机中唤醒时,它将向电视发送命令以使其脱离待机状态."
+
+msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
+msgstr ""
 
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
 msgstr "当调谐到频道时,系统通常将扫描转发器的任何改动并保存它们.仅当你在对确定自己在做什么时设为'是'."
@@ -22993,9 +22957,6 @@ msgstr "电影/戏剧(一般)"
 msgid "multi"
 msgstr "多个"
 
-msgid "multinorm"
-msgstr "自适应模式"
-
 msgid "music (general)"
 msgstr "音乐(一般)"
 
@@ -23516,6 +23477,63 @@ msgstr "是(保持订阅源)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Defaults"
+#~ msgstr "默认值"
+
+#~ msgid "OSD Adjustment"
+#~ msgstr "OSD调整"
+
+#~ msgid ""
+#~ "Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
+#~ "When you are ready press green to continue."
+#~ msgstr ""
+#~ "请设置您的用户界面,通过调整数值,直到红色方块的边缘,触摸你的电视的边缘.\n"
+#~ "当你准备好后按绿色键继续."
+
+#~ msgid "Position Setup"
+#~ msgstr "位置设置"
+
+#~ msgid "Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size."
+#~ msgstr "使用遥控器上的左/右键来调整用户界面的大小.左键减小大小,右键增加大小."
+
+#~ msgid "User interface visibility"
+#~ msgstr "用户界面可见性"
+
+#~ msgid "multinorm"
+#~ msgstr "自适应模式"
+
+#~ msgid "LCD Skin Settings"
+#~ msgstr "LCD皮肤设置"
+
+#~ msgid ""
+#~ "Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
+#~ "When you are ready press OK to continue."
+#~ msgstr ""
+#~ "请设置您的用户界面,通过调整数值,直到红色方块的边缘,触摸你的电视的边缘.\n"
+#~ "当您准备好后按OK键继续."
+
+#~ msgid "Select LCD Skin"
+#~ msgstr "选择LCD皮肤"
+
+#~ msgid "Enigma2 skin selector"
+#~ msgstr "Enigma2皮肤选择器"
+
+#~ msgid ""
+#~ "GUI needs a restart to apply a new skin\n"
+#~ "Do you want to restart the GUI now?"
+#~ msgstr ""
+#~ "GUI需要重新启动以应用新皮肤\n"
+#~ "是否要立即重新启动GUI?"
+
+#~ msgid "LCD SkinSelector"
+#~ msgstr "LCD皮肤选择器"
+
+#~ msgid "Skin Selector"
+#~ msgstr "皮肤选择器"
+
+#~ msgid "Skin setup"
+#~ msgstr "皮肤设置"
 
 #~ msgid "Settings..."
 #~ msgstr "设置..."

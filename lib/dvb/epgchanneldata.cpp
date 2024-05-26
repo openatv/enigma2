@@ -2689,62 +2689,8 @@ void eEPGChannelData::OPENTV_SummariesSection(const uint8_t *d)
 					// hack to fix split titles
 					std::string sTitle = m_OPENTV_descriptors_map[ote.title_crc];
 					std::string sSummary = (*summary)->getSummary();
+					undoAbbreviation(sTitle, sSummary);
 
-					if (sTitle.length() > 3 && sSummary.length() > 3)
-					{
-						// check if the title is split
-						if (sTitle.substr(sTitle.length() - 3) == "..." && sSummary.substr(0, 3) == "...")
-						{
-							// find the end of the title in the sumarry
-							std::size_t found = sSummary.find_first_of(".:!?", 4);
-
-							if (found < sSummary.length())
-							{
-								std::string sTmpTitle;
-								std::string sTmpSummary;
-
-								// strip off the ellipsis and any leading/trailing space
-								if (sTitle.substr(sTitle.length() - 4, 1) == " ")
-								{
-									sTmpTitle  = sTitle.substr(0, sTitle.length() - 4);
-								}
-								else
-								{
-									sTmpTitle = sTitle.substr(0, sTitle.length() - 3);
-								}
-
-								if (sSummary.substr(3, 1) == " ")
-								{
-									sTmpSummary  = sSummary.substr(4);
-								}
-								else
-								{
-									sTmpSummary = sSummary.substr(3);
-								}
-
-								// construct the new title and summary
-								found = sTmpSummary.find_first_of(".:!?");
-								if (found < sTmpSummary.length())
-								{
-									sTitle = sTmpTitle + " " + sTmpSummary.substr(0, found);
-									if (sTmpSummary.length() - found > 2)
-									{
-										sSummary = sTmpSummary.substr(found + 2);
-									}
-									else
-									{
-										sSummary = "";
-									}
-								}
-								else
-								{
-									// shouldn't happen, but you never know...
-									sTitle + sTmpTitle;
-									sSummary = sTmpSummary;
-								}
-							}
-						}
-					}
 					if (eEPGCache::getInstance())
 						eEPGCache::getInstance()->submitEventData(sids, chids, ote.startTime, ote.duration, sTitle.c_str(), "", sSummary.c_str(), 0, eEPGCache::OPENTV, ote.eventId);
 				}

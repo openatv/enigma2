@@ -78,9 +78,11 @@ int eLabel::event(int event, void *data, void *data2)
 				style->setStyle(painter, eWindowStyle::styleLabel);
 			else
 				painter.setForegroundColor(m_foreground_color);
+
 			painter.setBackgroundColor(m_shadow_color);
-			int m_dummy_offset = 0;
-			painter.renderText(position, m_text, flags, gRGB(), 0, m_pos, &m_dummy_offset, m_tab_width);
+
+			painter.renderText(position, m_text, flags, gRGB(), 0, m_pos, &m_text_shaddowoffset, m_tab_width);
+
 		}
 
 		return 0;

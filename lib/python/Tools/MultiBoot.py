@@ -421,6 +421,7 @@ class MultiBootClass():
 			rootDir = self.bootSlots[self.slotCode].get("rootsubdir")
 			imageDir = pathjoin(self.tempDir, rootDir) if rootDir else self.tempDir
 			infoFile = pathjoin(imageDir, "usr/lib/enigma.info")
+			infoFile1 = pathjoin(imageDir, "etc/image-version")
 			if isfile(infoFile):
 				info = self.readSlotInfo(infoFile)
 				compileDate = str(info.get("compiledate"))
@@ -431,6 +432,17 @@ class MultiBootClass():
 				self.imageList[self.slotCode]["detection"] = "Found an enigma information file"
 				self.imageList[self.slotCode]["imagename"] = "%s %s%s (%s)" % (info.get("displaydistro", info.get("distro")), info.get("imgversion"), revision, compileDate)
 				self.imageList[self.slotCode]["imagelogname"] = "%s %s%s (%s)" % (info.get("displaydistro", info.get("distro")), info.get("imgversion"), revision, compileDate)
+				self.imageList[self.slotCode]["status"] = "active"
+			elif isfile(infoFile1):
+				info = self.readSlotInfo(infoFile1)
+				compileDate = self.getCompiledate(imageDir)
+				compileDate = "%s-%s-%s" % (compileDate[0:4], compileDate[4:6], compileDate[6:8])
+				imgversion = str(info.get("version"))
+				if "." not in imgversion:
+					imgversion = "%s.%s" % (int(imgversion[0:2]), int(imgversion[3:5]))
+				self.imageList[self.slotCode]["detection"] = "Found an image version file"
+				self.imageList[self.slotCode]["imagename"] = "%s %s (%s)" % (info.get("creator").split()[0], imgversion, compileDate)
+				self.imageList[self.slotCode]["imagelogname"] = "%s %s (%s)" % (info.get("creator").split()[0], imgversion, compileDate)
 				self.imageList[self.slotCode]["status"] = "active"
 			elif isfile(pathjoin(imageDir, "usr/bin/enigma2")):
 				info = self.deriveSlotInfo(imageDir)
@@ -540,8 +552,7 @@ class MultiBootClass():
 				pass
 		return value
 
-	def deriveSlotInfo(self, path):  # Part of analyzeSlot() within getSlotImageList().
-		info = {}
+	def getCompiledate(self, path):
 		statusfile = "var/lib/opkg/status"
 		if exists(pathjoin(path, "var/lib/dpkg/status")):
 			statusfile = "var/lib/dpkg/status"
@@ -552,7 +563,11 @@ class MultiBootClass():
 			date = max(date, datetime.fromtimestamp(stat(pathjoin(path, "usr/bin/enigma2")).st_mtime).strftime("%Y%m%d"))
 		except OSError as err:
 			date = "00000000"
-		info["compiledate"] = date
+		return date
+
+	def deriveSlotInfo(self, path):  # Part of analyzeSlot() within getSlotImageList().
+		info = {}
+		info["compiledate"] = self.getCompiledate(path)
 		lines = fileReadLines(pathjoin(path, "etc/issue"), source=MODULE_NAME)
 		if lines and "vuplus" not in lines[0] and len(lines) >= 2:
 			data = lines[-2].strip()[:-6].split()

@@ -2095,6 +2095,24 @@ std::string eDVBServicePlay::getInfoString(int w)
 		demux += h.getDemuxID() + '0';
 		return demux;
 	}
+	case sVideoInfo:
+	{
+		std::string videoInfo;
+		if (m_decoder)
+		{
+			char buff[100];
+			snprintf(buff, sizeof(buff), "%d|%d|%d|%d|%d|%d",
+					m_decoder->getVideoWidth(),
+					m_decoder->getVideoHeight(),
+					m_decoder->getVideoFrameRate(),
+					m_decoder->getVideoProgressive(),
+					m_decoder->getVideoAspect(),
+					m_decoder->getVideoGamma()
+				 );
+			videoInfo = buff;
+		}
+		return videoInfo;
+	}
 	default:
 		break;
 	}
@@ -3027,8 +3045,13 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 		}
 		eDebugNoNewLine(", and the pcr pid is %04x", program.pcrPid);
 		pcrpid = program.pcrPid;
-		eDebugNoNewLine(", and the text pid is %04x\n", program.textPid);
-		tpid = program.textPid;
+		if(m_reference.path.empty())
+		{
+			eDebugNoNewLine(", and the text pid is %04x\n", program.textPid);
+			tpid = program.textPid;
+		}
+		else
+			eDebugNoNewLine(", and text pid is %04x but will be ignored\n", program.textPid);
 	}
 
 	m_have_video_pid = 0;

@@ -98,6 +98,14 @@
     su - openatvbuilder
     ```
 
+1. Add your git user and email
+
+    ```sh
+    git config --global user.email "you@example.com"
+
+    git config --global user.name "Your Name"
+    ```
+
 1. Create folder openatv7.4
 
     ```sh

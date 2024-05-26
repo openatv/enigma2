@@ -501,9 +501,28 @@
 		<item level="0" text="Automatically update Log-Fullscreen View" description="Automatically update Log-Fullscreen View">config.oscaminfo.autoUpdateLog</item>
 	</setup>
 	<setup key="OSD3DCalibration" title="OSD 3D Settings" showOpenWebif="1" allowDefault="1">
-		<item level="0" text="3D Mode" description="This option lets you choose the 3D mode.">config.osd.threeDmode</item>
-		<item level="0" text="Depth" description="This option lets you adjust the 3D depth.">config.osd.threeDznorm</item>
-		<item level="0" text="Show in Extension Menu" description="This option lets you show the option in the Extension Menu screen.">config.osd.show3dextensions</item>
+		<item level="0" text="3D Mode" description="This option lets you choose the 3D mode of the OSD.">config.osd.threeDmode</item>
+		<item level="0" text="Depth" description="This option lets you adjust the 3D depth of the OSD.">config.osd.threeDznorm</item>
+		<item level="0" text="Show in Extension Menu" description="This option lets you show the 3D OSD menu option in the Extension Menu screen.">config.osd.show3dextensions</item>
+	</setup>
+	<setup key="OSDCalibration" title="OSD Calibration Settings" showOpenWebif="1" allowDefault="1">
+		<if requires="CanChangeOsdPositionAML">
+			<item level="0" text="Left" description="Use the LEFT/RIGHT buttons on your remote to move the OSD left.">config.osd.dst_left</item>
+			<item level="0" text="Top" description="Use the LEFT/RIGHT buttons on your remote to move the OSD top.">config.osd.dst_top</item>
+			<item level="0" text="Right" description="Use the LEFT/RIGHT buttons on your remote to move the OSD right.">config.osd.dst_width</item>
+			<item level="0" text="Bottom" description="Use the LEFT/RIGHT buttons on your remote to move the OSD bottom.">config.osd.dst_height</item>
+		</if>
+		<if requires="CanChangeOsdPosition">
+			<item level="0" text="Move Left/Right" description="Use the LEFT/RIGHT buttons on your remote to move the OSD left/right.">config.osd.dst_left</item>
+			<item level="0" text="Move Up/Down" description="Use the LEFT/RIGHT buttons on your remote to move the OSD up/down.">config.osd.dst_top</item>
+			<item level="0" text="Width" description="Use the LEFT/RIGHT buttons on your remote to adjust the width of the OSD. LEFT button decreases the width, RIGHT increases the width.">config.osd.dst_width</item>
+			<item level="0" text="Height" description="Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height.">config.osd.dst_height</item>
+		</if>
+		<if requires="CanChangeOsdAlpha">
+			<item level="0" text="OSD visibility" description="This option lets you adjust the transparency of the OSD.">config.osd.alpha</item>
+			<item level="0" text="Teletext base visibility" description="Base transparency for teletext, more options are available within teletext screen.">config.osd.alpha_teletext</item>
+			<item level="0" text="Web browser base visibility" description="Base transparency for OpenOpera web browser.">config.osd.alpha_webbrowser</item>
+		</if>
 	</setup>
 	<setup key="Password" title="Password Settings">
 		<item level="0" text="New password" description="Setting a password is strongly advised if your STB is open to the Internet. You must set a password in order to be able to use network services like FTP, Telnet or SSH.">config.network.password</item>
@@ -883,7 +902,7 @@
 		<item level="0" text="Menu entry style" description="Select the display options for each menu entry item. If menu numbers are available then the number buttons can be used to select the numbered menu entries directly." requires="config.usage.menuType" value="standard">config.usage.menuEntryStyle</item>
 		<item level="0" text="Menu entry sort order" description="Select the sort order of the menu entries. User defined also allows the menu entries to be hidden.">config.usage.menuSortOrder</item>
 		<item level="1" text="Show screen menu path" description="Select if the screen menu path history is displayed and, if so, how it is to be displayed.">config.usage.showScreenPath</item>
-		<item level="1" text="Sort Extension Menu" description="Enable to display the Extension Menu screen entries alphabetically.">config.usage.sort_extensionslist</item>
+		<item level="1" text="Sort Extension Menu" description="Select the sort order of the Extension Menu entries.">config.usage.sortExtensionslist</item>
 		<item level="1" text="Show Restart Network in Extensions *" description="Enable to show the 'Restart Network' entry in the Extension Menu screen.">config.usage.show_restart_network_extensionslist</item>
 		<item level="1" text="Sort Plugin Browser" description="Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden.">config.usage.plugins_sort_mode</item>
 		<item level="1" text="Setup entry sort" description="Enable to display setup entries alphabetically.">config.usage.sort_settings</item>

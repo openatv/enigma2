@@ -51,6 +51,7 @@ protected:
 	int event(int event, void *data = 0, void *data2 = 0);
 	int m_pos;
 	int m_text_offset = 0;
+	int m_text_shaddowoffset = 0;
 
 private:
 	int m_have_foreground_color = 0;

@@ -1531,13 +1531,13 @@ int eServiceMP3::getInfo(int w)
 
 	switch (w)
 	{
-	case sServiceref: return m_ref;
 	case sVideoHeight: return m_height;
 	case sVideoWidth: return m_width;
 	case sFrameRate: return m_framerate;
 	case sProgressive: return m_progressive;
 	case sGamma: return m_gamma;
 	case sAspect: return m_aspect;
+	case sServiceref:
 	case sTagTitle:
 	case sTagArtist:
 	case sTagAlbum:
@@ -1650,6 +1650,21 @@ std::string eServiceMP3::getInfoString(int w)
 		default:
 			break;
 		}
+	}
+
+	if (w == sVideoInfo)
+	{
+		char buff[100];
+		snprintf(buff, sizeof(buff), "%d|%d|%d|%d|%d|%d",
+				m_width,
+				m_height,
+				m_framerate,
+				m_progressive,
+				m_aspect,
+				m_gamma
+				);
+		std::string videoInfo = buff;
+		return videoInfo;
 	}
 
 	if ( !m_stream_tags && w < sUser && w > 26 )

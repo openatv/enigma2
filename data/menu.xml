@@ -49,8 +49,8 @@
 			<!-- Menu / Setup / Video Menu -->
 			<menu key="video_menu" level="0" text="Video" weight="0">
 				<item key="video_setup" level="0" text="Video Settings" weight="0"><screen module="VideoMode" screen="VideoSetup" /></item>
-				<item key="osdsetup" level="1" text="OSD Position Settings" weight="50" requires="OSDCalibration"><screen module="OSDCalibration" screen="OSDCalibration" /></item>
-				<item key="setup_osd3d" level="2" text="OSD 3D Settings" weight="60" requires="OSDCalibration"><setup setupKey="OSD3DCalibration" /></item>
+				<item key="osdsetup" level="1" text="OSD Calibration" weight="50" requires="OSDCalibration"><screen module="OSDCalibration" screen="OSDCalibration" /></item>
+				<item key="setup_osd3d" level="2" text="OSD 3D Settings" weight="60" requires="OSD3DCalibration"><setup setupKey="OSD3DCalibration" /></item>
 			</menu>
 			<!-- Menu / Setup / Audio Menu -->
 			<menu key="audio_menu" level="1" text="Audio" weight="5">
@@ -163,9 +163,9 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 				<item key="software_update" level="0" text="Software Update" description="Online update of your %s %s software." weight="11"><screen module="SoftwareUpdate" screen="SoftwareUpdate" /></item>
 				<item key="software_restore" level="0" text="Software Restore" description="Restore your %s %s with a new firmware." weight="12"><plugin system="SoftwareManager" screen="ImageWizard" /></item>
 				<item key="flash_online" level="0" text="Flash Online" description="Download and flash images on your %s %s." weight="13"><screen module="FlashManager" screen="FlashManager" /></item>
-				<item key="backup_image_dflash" level="0" text="Backup Image" description="Backup your running %s %s image to HDD or USB." weight="14" requires="dFlash"><plugin extensions="dFlash" screen="dFlash" /></item>
-				<item key="backup_image_dbackup" level="0" text="Backup Image" description="Backup your running %s %s image to HDD or USB." weight="14" requires="dBackup"><plugin extensions="dBackup" screen="dBackup" /></item>
-				<item key="backup_image" level="0" text="Backup Image" description="Backup your running %s %s image to HDD or USB." weight="14" requires="ImageBackup"><plugin system="SoftwareManager" screen="ImageBackup" /></item>
+				<item key="backup_image_dflash" level="0" text="Image Backup" description="Backup your running %s %s image to HDD or USB." weight="14" requires="dFlash"><plugin extensions="dFlash" screen="dFlash" /></item>
+				<item key="backup_image_dbackup" level="0" text="Image Backup" description="Backup your running %s %s image to HDD or USB." weight="14" requires="dBackup"><plugin extensions="dBackup" screen="dBackup" /></item>
+				<item key="backup_image" level="0" text="Image Backup" description="Backup your running %s %s image to HDD or USB." weight="14" requires="ImageBackup"><plugin system="SoftwareManager" screen="ImageBackup" /></item>
 				<item key="multiboot" level="0" text="MultiBoot Manager" description="Maintain your multi boot device." weight="15" requires="canMultiBoot"><screen module="MultiBootManager" screen="MultiBootManager" /></item>
 				<item key="backup_system" level="0" text="Backup System Settings" description="Backup your %s %s settings." weight="16"><plugin system="SoftwareManager" screen="BackupHelper">1</plugin></item>
 				<item key="restore_system" level="0" text="Restore System Settings" description="Restore your %s %s settings." weight="17"><plugin system="SoftwareManager" screen="BackupHelper">2</plugin></item>

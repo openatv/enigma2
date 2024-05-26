@@ -1282,7 +1282,7 @@ class ChannelContextMenu(Screen):
 				appendWhenValid(current, menu, (_("Show Service Information"), boundFunction(self.showServiceInformations, None)), level=2)
 			else:
 				appendWhenValid(current, menu, (_("Show Transponder Information"), boundFunction(self.showServiceInformations, current)), level=2)
-		if self.subservices and current_root != subservices_tv_ref:
+		if self.subservices and not csel.isSubservices():
 			appendWhenValid(current, menu, (_("Show Subservices Of Active Service"), self.showSubservices), key="4")
 		if csel.bouquet_mark_edit == EDIT_OFF and not csel.entry_marked:
 			if not inBouquetRootList:
@@ -1323,7 +1323,7 @@ class ChannelContextMenu(Screen):
 						appendWhenValid(current, menu, (_("Don't Center DVB Subs On This Service"), self.removeCenterDVBSubsFlag))
 					else:
 						appendWhenValid(current, menu, (_("Center DVB Subs On This Service"), self.addCenterDVBSubsFlag))
-					if current_root != subservices_tv_ref:
+					if not csel.isSubservices():
 						if haveBouquets:
 							bouquets = self.csel.getBouquetList()
 							if bouquets is None:
