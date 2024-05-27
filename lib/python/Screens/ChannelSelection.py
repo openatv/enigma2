@@ -1277,7 +1277,7 @@ class ChannelContextMenu(Screen):
 		self.parentalControlEnabled = config.ParentalControl.servicepinactive.value
 		menu = []
 		menu.append(ChoiceEntryComponent(key="menu", text=(_("Settings"), boundFunction(self.keySetup))))
-		if not (current_sel_path or current_sel_flags & (eServiceReference.isDirectory | eServiceReference.isMarker)):
+		if self.session.nav.currentlyPlayingServiceReference and not (current_sel_path or current_sel_flags & (eServiceReference.isDirectory | eServiceReference.isMarker)):
 			if self.session.nav.currentlyPlayingServiceReference == current:
 				appendWhenValid(current, menu, (_("Show Service Information"), boundFunction(self.showServiceInformations, None)), level=2)
 			else:
@@ -1381,20 +1381,20 @@ class ChannelContextMenu(Screen):
 				if current_root and (f"flags == {FLAG_SERVICE_NEW_FOUND}") in current_root.getPath():
 					appendWhenValid(current, menu, (_("Remove New Found Flag"), self.removeNewFoundFlag))
 			else:
-					if self.parentalControlEnabled:
-						if parentalControl.getProtectionLevel(csel.getCurrentSelection().toCompareString()) == -1:
-							appendWhenValid(current, menu, (_("Add Bouquet To Parental Protection"), boundFunction(self.addParentalProtection, csel.getCurrentSelection())))
-						else:
-							appendWhenValid(current, menu, (_("Remove Bouquet From Parental Protection"), boundFunction(self.removeParentalProtection, csel.getCurrentSelection())))
-					menu.append(ChoiceEntryComponent(key="1", text=(_("Add Bouquet"), self.showBouquetInputBox)))
-					appendWhenValid(current, menu, (_("Rename Entry"), self.renameEntry), key="2")
-					appendWhenValid(current, menu, (_("Remove Entry"), self.removeEntry), key="8")
-					self.removeFunction = self.removeBouquet
-					for file in listdir("/etc/enigma2/"):
-						if file.startswith("userbouquet") and file.endswith(".del"):
-							appendWhenValid(current, menu, (_("Purge Deleted User Bouquets"), self.purgeDeletedBouquets))
-							appendWhenValid(current, menu, (_("Restore Deleted User Bouquets"), self.restoreDeletedBouquets))
-							break
+				if self.parentalControlEnabled:
+					if parentalControl.getProtectionLevel(csel.getCurrentSelection().toCompareString()) == -1:
+						appendWhenValid(current, menu, (_("Add Bouquet To Parental Protection"), boundFunction(self.addParentalProtection, csel.getCurrentSelection())))
+					else:
+						appendWhenValid(current, menu, (_("Remove Bouquet From Parental Protection"), boundFunction(self.removeParentalProtection, csel.getCurrentSelection())))
+				menu.append(ChoiceEntryComponent(key="1", text=(_("Add Bouquet"), self.showBouquetInputBox)))
+				appendWhenValid(current, menu, (_("Rename Entry"), self.renameEntry), key="2")
+				appendWhenValid(current, menu, (_("Remove Entry"), self.removeEntry), key="8")
+				self.removeFunction = self.removeBouquet
+				for file in listdir("/etc/enigma2/"):
+					if file.startswith("userbouquet") and file.endswith(".del"):
+						appendWhenValid(current, menu, (_("Purge Deleted User Bouquets"), self.purgeDeletedBouquets))
+						appendWhenValid(current, menu, (_("Restore Deleted User Bouquets"), self.restoreDeletedBouquets))
+						break
 		if self.inBouquet:  # Current list is editable?
 			if csel.bouquet_mark_edit == EDIT_OFF:
 				if csel.movemode:
