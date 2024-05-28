@@ -28,6 +28,7 @@ class Screen(dict):
 		self.mandatoryWidgets = mandatoryWidgets
 		className = self.__class__.__name__
 		self.skinName = className
+		self.ignoreWidgets = []
 		self.onFirstExecBegin = []
 		self.onExecBegin = []
 		self.onExecEnd = []
@@ -275,6 +276,8 @@ class Screen(dict):
 					resolution = tuple([int(x.strip()) for x in value.split(",")])
 				case "zPosition":
 					zPosition = int(value)
+				case "ignoreWidgets":
+					self.ignoreWidgets = [x.strip() for x in value.split(",")]
 		if not self.instance:
 			self.instance = eWindow(self.desktop, zPosition)
 		if "title" not in self.skinAttributes and self.screenTitle:
@@ -305,7 +308,7 @@ class Screen(dict):
 					if deprecated:
 						print(f"[Screen] WARNING: OBSOLETE COMPONENT '{key}' USED IN SKIN. USE '{deprecated[0]}' INSTEAD!")
 						print(f"[Screen] OBSOLETE COMPONENT WILL BE REMOVED {deprecated[1]}, PLEASE UPDATE!")
-				elif not deprecated:
+				elif not deprecated and key not in self.ignoreWidgets:
 					try:
 						print(f"[Screen] Warning: Skin is missing element '{key}' in {str(self)} item {str(self[key])}.")
 					except Exception:
