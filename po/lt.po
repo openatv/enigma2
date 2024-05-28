@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-18 15:15+0000\n"
+"POT-Creation-Date: 2024-05-24 20:26+0000\n"
 "PO-Revision-Date: 2023-06-04 19:16+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -1812,9 +1812,6 @@ msgstr "Apie openATV"
 msgid "About to start"
 msgstr "Netrukus prasidės"
 
-msgid "About..."
-msgstr "Apie..."
-
 msgid "Access point"
 msgstr "Prieigos taškas"
 
@@ -2084,9 +2081,6 @@ msgstr "Papildomos variklio galimybės leidžia įvesti duomenis iš jūsų vari
 
 msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move to another satellite."
 msgstr "Papildomos variklio galimybės leidžia įvesti duomenis iš jūsų variklio specifikacijų lapo, taigi \"enigma\" gali išsiaiškinti, kiek laiko reikės perkelti į kitą palydovą."
-
-msgid "Adjust 3D settings"
-msgstr "Koreguoti 3D nustatymus"
 
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr "Koreguokite spalvas taip, kad visos spalvos ir atspalviai būtų atskiriami, bet atrodytų taip prisotinti, kiek galima. Jei jūs esate patenkinti rezultatu, spauskite OK, kad užvertumėte vaizdo tikslų suderinimą, ar pasinaudokite skaičių mygtukais, kad išrinktumėte kitus bandomuosius ekranus."
@@ -2877,9 +2871,6 @@ msgstr "Atsarginė kopija"
 #, python-format
 msgid "Backup Date: %s\n"
 msgstr "Atsarginio kopijavimo data: %s\n"
-
-msgid "Backup Image"
-msgstr "Atvaizdo atsarginė kopija"
 
 msgid "Backup Location"
 msgstr "Atsarginės kopijos vieta"
@@ -4859,6 +4850,9 @@ msgstr "Ryšio informacija"
 msgid "Console"
 msgstr "Konsolė"
 
+msgid "Console Actions"
+msgstr ""
+
 msgid "Console Network Packages"
 msgstr ""
 
@@ -6567,7 +6561,7 @@ msgstr "Parsisiunčiama"
 msgid "Downloading Image"
 msgstr "Parsiunčiamas atvaizdas"
 
-msgid "Downloading latest update list.  Please wait..."
+msgid "Downloading latest update list. Please wait..."
 msgstr "Atsisiunčiamas naujausias naujinimų sąrašas.  Palaukite..."
 
 msgid "Downloading plugin information. Please wait..."
@@ -7078,9 +7072,6 @@ msgstr "Įgalinkite rodyti visas True/False, Yes/Ne, On/Off ir Enable/Disable s�
 msgid "Enable to display setup entries alphabetically."
 msgstr "Įgalinti, kad nustatymo įrašai būtų rodomi abėcėlės tvarka."
 
-msgid "Enable to display the Extension Menu screen entries alphabetically."
-msgstr "Įgalinti, kad meniu Plėtinys įrašai būtų rodomi abėcėlės tvarka."
-
 msgid "Enable to display the current value of the slider at end of the slider bar."
 msgstr "Įgalinti, kad slankiklio juostos gale būtų rodoma dabartinė slankiklio reikšmė."
 
@@ -7175,21 +7166,6 @@ msgstr "Išplėstinis filmų centras"
 
 msgid "Enigma2 (re)starts"
 msgstr "Enigma2 perkrovimai"
-
-msgid ""
-"Enigma2 Skinselector\n"
-"\n"
-"If you experience any problems please contact\n"
-"stephan@reichholf.net\n"
-"\n"
-"© 2006 - Stephan Reichholf"
-msgstr ""
-"Enigma2 temų parinkėjas\n"
-"\n"
-"Jei jūs patiriate kokias nors problemas prašome rašyti\n"
-"stephan@reichholf.net\n"
-"\n"
-"© 2006 - Stephan Reichholf"
 
 msgid "Enigma2 debug level"
 msgstr "Enigma2 derinimo lygis"
@@ -8500,13 +8476,6 @@ msgstr "GStreamer versija"
 msgid "GUI Skin *"
 msgstr ""
 
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to Restart the GUI now?"
-msgstr ""
-"Reikia paleisti iš naujo grafinę aplinką ,kad patvirtinti naują temą\n"
-"Jūs norite paleisti iš naujo dabar?"
-
 msgid "Gabon"
 msgstr "Gabonas"
 
@@ -9002,6 +8971,9 @@ msgstr ""
 
 msgid "Hide the InfoBar"
 msgstr "Nustatykite laiką, kad paslėpti info juostą."
+
+msgid "Hide this screen"
+msgstr ""
 
 msgid "Hide zap errors"
 msgstr "Paslėpti perjungimo klaidas"
@@ -10996,17 +10968,11 @@ msgstr "Mobilusis ryšys"
 msgid "Mode"
 msgstr "Režimas"
 
-msgid "Mode 1"
-msgstr "Režimas 1"
-
 msgid "Mode 12: Supports PiP but Kodi may not work"
 msgstr "12 režimas: palaiko PiP, bet Kodi gali neveikti"
 
 msgid "Mode 1: Supports Kodi but PiP may not work"
 msgstr "1 režimas: palaiko Kodi, bet PiP gali neveikti"
-
-msgid "Mode 2"
-msgstr "Režimas 2"
 
 msgid "Mode for autorestore"
 msgstr "Automatinio atkūrimo režimas"
@@ -12275,6 +12241,9 @@ msgstr "OSD 3D nustatymas"
 msgid "OSD Calibration"
 msgstr "OSD padėties parametrai"
 
+msgid "OSD Calibration Settings"
+msgstr ""
+
 msgid "OSD Settings"
 msgstr "OSD nustatymai"
 
@@ -13529,9 +13498,6 @@ msgstr "Paspauskite OK, kad pasirinktumėte daugialypį paleidimą."
 
 msgid "Press OK on your remote control to continue."
 msgstr "Paspauskite OK savo valdymo pulte ir tęskite."
-
-msgid "Press OK to activate the selected skin."
-msgstr "Pasirinktai aplinkos temai aktyvuoti, spauskite 'OK'."
 
 msgid "Press OK to activate the settings."
 msgstr "Nustatymams aktyvuoti, spauskite 'OK'."
@@ -15690,9 +15656,6 @@ msgstr "Pasirinkite atnaujinimo šaltinį"
 msgid "Select Upgrade Source To Edit"
 msgstr "Pasirinkite versijos naujinimo šaltinį, kurį norite redaguoti"
 
-msgid "Select Your Skin"
-msgstr "Pasirinkite norimą temą"
-
 msgid "Select a Softcam from the available list as the default for AutoCam."
 msgstr ""
 
@@ -16145,6 +16108,9 @@ msgstr "Pasirinkite paslinktų simbolių rinkinį tik kitam simboliui"
 
 msgid "Select the sort order for the file lines:"
 msgstr "Pasirinkite failų eilučių rūšiavimo tvarką:"
+
+msgid "Select the sort order of the Extension Menu entries."
+msgstr ""
 
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Pasirinkite papildinių naršyklės meniu įrašų rūšiavimo tvarką.  Vartotojo apibrėžtas taip pat leidžia paslėpti meniu įrašus."
@@ -17808,9 +17774,6 @@ msgstr ""
 msgid "Size descending"
 msgstr ""
 
-msgid "Skin"
-msgstr "Tema"
-
 msgid "Skin & Resolution"
 msgstr "Tema ir skiriamoji geba"
 
@@ -17828,9 +17791,6 @@ msgstr "Temos parametrai"
 
 msgid "SkinSelection"
 msgstr ""
-
-msgid "SkinSelector"
-msgstr "Temos parinkėjas"
 
 msgid "Skip back"
 msgstr "Praleisti atgal"
@@ -19547,7 +19507,7 @@ msgstr "Atsisiunčiant dabartinę regiono informaciją įvyko klaida"
 msgid "There was an error downloading the region list"
 msgstr "Atsisiunčiant regionų sąrašą įvyko klaida"
 
-msgid "There was an error downloading the update list.  Please try again."
+msgid "There was an error downloading the update list. Please try again."
 msgstr "Atsisiunčiant naujinimų sąrašą įvyko klaida.  Bandykite dar kartą."
 
 msgid "There was an error while trying to login."
@@ -20546,9 +20506,6 @@ msgstr "UBINIZE"
 
 msgid "UHD Test"
 msgstr "UHD testas"
-
-msgid "UI 3D setup"
-msgstr "3D vaizdo sąranka"
 
 msgid "UP80  (keymap.u80)"
 msgstr "UP80 (keymap.u80)"
@@ -22415,7 +22372,7 @@ msgid "Your receiver does not have an Internet connection"
 msgstr ""
 
 #, python-format
-msgid "Your receiver might be unusable now.  Please consult the manual for further assistance before rebooting your %s %s."
+msgid "Your receiver might be now be unstable. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "Jūsų imtuvas gali būti nenaudojamas dabar.  Prieš perkraudami %s %s, pasikonsultuokite su vadovu dėl tolesnės pagalbos."
 
 msgid "Youth"
@@ -23586,6 +23543,61 @@ msgstr "taip (išsaugoti šaltinius)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "About..."
+#~ msgstr "Apie..."
+
+#~ msgid "Adjust 3D settings"
+#~ msgstr "Koreguoti 3D nustatymus"
+
+#~ msgid "Backup Image"
+#~ msgstr "Atvaizdo atsarginė kopija"
+
+#~ msgid "Enable to display the Extension Menu screen entries alphabetically."
+#~ msgstr "Įgalinti, kad meniu Plėtinys įrašai būtų rodomi abėcėlės tvarka."
+
+#~ msgid ""
+#~ "Enigma2 Skinselector\n"
+#~ "\n"
+#~ "If you experience any problems please contact\n"
+#~ "stephan@reichholf.net\n"
+#~ "\n"
+#~ "© 2006 - Stephan Reichholf"
+#~ msgstr ""
+#~ "Enigma2 temų parinkėjas\n"
+#~ "\n"
+#~ "Jei jūs patiriate kokias nors problemas prašome rašyti\n"
+#~ "stephan@reichholf.net\n"
+#~ "\n"
+#~ "© 2006 - Stephan Reichholf"
+
+#~ msgid ""
+#~ "GUI needs a restart to apply a new skin\n"
+#~ "Do you want to Restart the GUI now?"
+#~ msgstr ""
+#~ "Reikia paleisti iš naujo grafinę aplinką ,kad patvirtinti naują temą\n"
+#~ "Jūs norite paleisti iš naujo dabar?"
+
+#~ msgid "Mode 1"
+#~ msgstr "Režimas 1"
+
+#~ msgid "Mode 2"
+#~ msgstr "Režimas 2"
+
+#~ msgid "Press OK to activate the selected skin."
+#~ msgstr "Pasirinktai aplinkos temai aktyvuoti, spauskite 'OK'."
+
+#~ msgid "Select Your Skin"
+#~ msgstr "Pasirinkite norimą temą"
+
+#~ msgid "Skin"
+#~ msgstr "Tema"
+
+#~ msgid "SkinSelector"
+#~ msgstr "Temos parinkėjas"
+
+#~ msgid "UI 3D setup"
+#~ msgstr "3D vaizdo sąranka"
 
 #~ msgid "Defaults"
 #~ msgstr "Numatytieji"

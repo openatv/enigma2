@@ -273,11 +273,11 @@ class SoftwareUpdate(Screen, ProtectedScreen):
 		if status == "update":
 			imagePath = resolveFilename(SCOPE_GUISKIN, "icons/upgrade.png")
 			name = _("Package list update")
-			description = _("Downloading latest update list.  Please wait...")
+			description = _("Downloading latest update list. Please wait...")
 		elif status == "error":
 			imagePath = resolveFilename(SCOPE_GUISKIN, "icons/remove.png")
 			name = _("Download error")
-			description = _("There was an error downloading the update list.  Please try again.")
+			description = _("There was an error downloading the update list. Please try again.")
 		elif status == "noupdate":
 			imagePath = resolveFilename(SCOPE_GUISKIN, "icons/installed.png")
 			name = _("Nothing to upgrade")
@@ -517,7 +517,7 @@ class RunSoftwareUpdate(Screen):
 						self["update"].appendText("%s\n" % ngettext("%d package was deselected.", "%d packages were deselected.", self.deselectCount) % self.deselectCount)
 						self["update"].appendText("\n%s\n" % _("Deselected packages usually occur because those packaged are incompatible with existing packages.  While this is mostly harmless it is possible that your %s %s may experience issues.") % getBoxDisplayName())
 				else:
-					error = _("Your receiver might be unusable now.  Please consult the manual for further assistance before rebooting your %s %s.") % getBoxDisplayName()
+					error = _("Your receiver might be now be unstable. Please consult the manual for further assistance before rebooting your %s %s.") % getBoxDisplayName()
 					if self.upgradeCount == 0:
 						error = _("No updates were available.  Please try again later.")
 					self["update"].appendText("%s: %s\n" % (_("Error"), error))

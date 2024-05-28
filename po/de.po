@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-18 15:15+0000\n"
-"PO-Revision-Date: 2024-05-22 07:29+0000\n"
+"POT-Creation-Date: 2024-05-24 20:26+0000\n"
+"PO-Revision-Date: 2024-05-25 01:17+0000\n"
 "Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -1864,10 +1864,6 @@ msgstr "Über openATV"
 msgid "About to start"
 msgstr "Startet gleich"
 
-#
-msgid "About..."
-msgstr "Über..."
-
 msgid "Access point"
 msgstr "Access Point"
 
@@ -2163,9 +2159,6 @@ msgstr "Mit zusätzlichen Motoroptionen können Details aus dem Datenblatt des M
 
 msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move to another satellite."
 msgstr "Mit zusätzlichen Motoroptionen können Details aus dem Datenblatt des Motors eingegeben werden, so dass berechnet werden kann, wie lange es dauern wird, um zu einem anderen Satelliten zu wechseln."
-
-msgid "Adjust 3D settings"
-msgstr "3D-Einstellungen anpassen"
 
 #
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
@@ -3000,9 +2993,6 @@ msgstr "Sicherung"
 #, python-format
 msgid "Backup Date: %s\n"
 msgstr "Sicherungsdatum: %s\n"
-
-msgid "Backup Image"
-msgstr "Image-Sicherung"
 
 msgid "Backup Location"
 msgstr "Speicherort für die Sicherung"
@@ -5100,6 +5090,9 @@ msgstr "Verbindungsinformationen"
 msgid "Console"
 msgstr "Konsole"
 
+msgid "Console Actions"
+msgstr "Konsole Aktionen"
+
 msgid "Console Network Packages"
 msgstr "Konsole Netzwerk Pakete"
 
@@ -6897,7 +6890,7 @@ msgstr "Herunterladen"
 msgid "Downloading Image"
 msgstr "Lade Image herunter"
 
-msgid "Downloading latest update list.  Please wait..."
+msgid "Downloading latest update list. Please wait..."
 msgstr "Herunterladen der Updates. Bitte warten..."
 
 #
@@ -7436,9 +7429,6 @@ msgstr "Bei 'Ja' werden alle Optionen für 'Wahr/Falsch', 'Ja/Nein', 'Ein/Aus' u
 msgid "Enable to display setup entries alphabetically."
 msgstr "Bei 'Ja' werden Menüpunkte in allen Menüs alphabetisch sortiert dargestellt."
 
-msgid "Enable to display the Extension Menu screen entries alphabetically."
-msgstr "Bei 'Ja' werden die Einträge im Erweiterungsmenü alphabetisch sortiert."
-
 msgid "Enable to display the current value of the slider at end of the slider bar."
 msgstr "Bei 'Ja' wird in Menüs mit Schiebereglern rechts neben dem Schieberegler der aktuell eingestellte Wert als Zahl angezeigt."
 
@@ -7538,22 +7528,6 @@ msgstr "Enhanced Movie Center"
 
 msgid "Enigma2 (re)starts"
 msgstr "Enigma2-Neustarts"
-
-#
-msgid ""
-"Enigma2 Skinselector\n"
-"\n"
-"If you experience any problems please contact\n"
-"stephan@reichholf.net\n"
-"\n"
-"© 2006 - Stephan Reichholf"
-msgstr ""
-"Enigma2-Skinauswahl\n"
-"\n"
-"Bei Problemen bitte kontaktieren:\n"
-"stephan@reichholf.net\n"
-"\n"
-"© 2006 - Stephan Reichholf"
 
 msgid "Enigma2 debug level"
 msgstr "Enigma2-Debuglevel"
@@ -8937,13 +8911,6 @@ msgstr "GStreamer-Version"
 msgid "GUI Skin *"
 msgstr "GUI-Skin *"
 
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to Restart the GUI now?"
-msgstr ""
-"Zur Übernahme des Skins muss die Benutzeroberfläche neu gestartet werden.\n"
-"Jetzt neu starten?"
-
 msgid "Gabon"
 msgstr "Gabun"
 
@@ -9454,6 +9421,9 @@ msgstr "Softcam-Servernamen verbergen"
 
 msgid "Hide the InfoBar"
 msgstr "Die Infoleiste ausblenden"
+
+msgid "Hide this screen"
+msgstr "Diesen Bildschirm ausblenden"
 
 msgid "Hide zap errors"
 msgstr "Fehler beim Umschalten unterdrücken"
@@ -11571,17 +11541,11 @@ msgstr "Mobile Verbindung"
 msgid "Mode"
 msgstr "Modus"
 
-msgid "Mode 1"
-msgstr "Modus 1"
-
 msgid "Mode 12: Supports PiP but Kodi may not work"
 msgstr "Modus 12: Bild-im-Bild ja, aber Kodi evtl. nicht"
 
 msgid "Mode 1: Supports Kodi but PiP may not work"
 msgstr "Modus 1: Kodi ja, aber Bild-im-Bild evtl. nicht"
-
-msgid "Mode 2"
-msgstr "Modus 2"
 
 # SoftwareManager/plugin.py
 msgid "Mode for autorestore"
@@ -12976,6 +12940,9 @@ msgstr "OSD-3D-Konfiguration"
 msgid "OSD Calibration"
 msgstr "OSD-Kalibrierung"
 
+msgid "OSD Calibration Settings"
+msgstr "OSD-Kalibrierung"
+
 msgid "OSD Settings"
 msgstr "OSD"
 
@@ -14335,10 +14302,6 @@ msgstr "OK drücken für die Multiboot-Auswahl."
 #
 msgid "Press OK on your remote control to continue."
 msgstr "OK drücken, um fortzufahren."
-
-#
-msgid "Press OK to activate the selected skin."
-msgstr "OK drücken, um den gewählten Skin zu aktivieren."
 
 #
 msgid "Press OK to activate the settings."
@@ -16662,9 +16625,6 @@ msgstr "Updatequelle auswählen"
 msgid "Select Upgrade Source To Edit"
 msgstr "Updatequelle zum Bearbeiten auswählen."
 
-msgid "Select Your Skin"
-msgstr "Skin auswählen"
-
 msgid "Select a Softcam from the available list as the default for AutoCam."
 msgstr "Softcam aus der verfügbaren Liste als Standard für AutoCam definieren."
 
@@ -17142,6 +17102,9 @@ msgstr "Shift nur für das nächste Zeichen benutzen"
 
 msgid "Select the sort order for the file lines:"
 msgstr "Sortierreihenfolge der Zeilen auswählen:"
+
+msgid "Select the sort order of the Extension Menu entries."
+msgstr "Sortierreihenfolge der Menüpunkte im Erweiterungsmenü einstellen."
 
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Sortierung und Sichtbarkeit (Benutzerdefiniert) der Einträge im Plugin-Manager einstellen."
@@ -18925,10 +18888,6 @@ msgstr "Größe aufsteigend"
 msgid "Size descending"
 msgstr "Größe absteigend"
 
-#
-msgid "Skin"
-msgstr "Skin"
-
 msgid "Skin & Resolution"
 msgstr "Skin & Auflösung"
 
@@ -18945,9 +18904,6 @@ msgid "Skin Settings"
 msgstr "Skinauswahl"
 
 msgid "SkinSelection"
-msgstr "Skinauswahl"
-
-msgid "SkinSelector"
 msgstr "Skinauswahl"
 
 msgid "Skip back"
@@ -20772,7 +20728,7 @@ msgstr "Beim Herunterladen der aktuellen Regionsdetails ist ein Fehler aufgetret
 msgid "There was an error downloading the region list"
 msgstr "Beim Herunterladen der Regionsliste ist ein Fehler aufgetreten!"
 
-msgid "There was an error downloading the update list.  Please try again."
+msgid "There was an error downloading the update list. Please try again."
 msgstr ""
 "Beim Herunterladen der Softwareliste ist ein Fehler aufgetreten!\n"
 "Bitte erneut versuchen."
@@ -21863,9 +21819,6 @@ msgstr "UBINIZE"
 
 msgid "UHD Test"
 msgstr "UHD-Test"
-
-msgid "UI 3D setup"
-msgstr "3D-Einstellungen"
 
 msgid "UP80  (keymap.u80)"
 msgstr "UP80 ('keymap.u80')"
@@ -23877,7 +23830,7 @@ msgid "Your receiver does not have an Internet connection"
 msgstr "Der Receiver hat keine Internetverbindung!"
 
 #, python-format
-msgid "Your receiver might be unusable now.  Please consult the manual for further assistance before rebooting your %s %s."
+msgid "Your receiver might be now be unstable. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr ""
 "Der Receiver könnte jetzt unbenutzbar sein!\n"
 "Bitte erst in das Handbuch des Receivers schauen, bevor die %s %s neu gestartet wird."
@@ -25157,6 +25110,65 @@ msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#
+#~ msgid "About..."
+#~ msgstr "Über..."
+
+#~ msgid "Adjust 3D settings"
+#~ msgstr "3D-Einstellungen anpassen"
+
+#~ msgid "Backup Image"
+#~ msgstr "Image-Sicherung"
+
+#~ msgid "Enable to display the Extension Menu screen entries alphabetically."
+#~ msgstr "Bei 'Ja' werden die Einträge im Erweiterungsmenü alphabetisch sortiert."
+
+#
+#~ msgid ""
+#~ "Enigma2 Skinselector\n"
+#~ "\n"
+#~ "If you experience any problems please contact\n"
+#~ "stephan@reichholf.net\n"
+#~ "\n"
+#~ "© 2006 - Stephan Reichholf"
+#~ msgstr ""
+#~ "Enigma2-Skinauswahl\n"
+#~ "\n"
+#~ "Bei Problemen bitte kontaktieren:\n"
+#~ "stephan@reichholf.net\n"
+#~ "\n"
+#~ "© 2006 - Stephan Reichholf"
+
+#~ msgid ""
+#~ "GUI needs a restart to apply a new skin\n"
+#~ "Do you want to Restart the GUI now?"
+#~ msgstr ""
+#~ "Zur Übernahme des Skins muss die Benutzeroberfläche neu gestartet werden.\n"
+#~ "Jetzt neu starten?"
+
+#~ msgid "Mode 1"
+#~ msgstr "Modus 1"
+
+#~ msgid "Mode 2"
+#~ msgstr "Modus 2"
+
+#
+#~ msgid "Press OK to activate the selected skin."
+#~ msgstr "OK drücken, um den gewählten Skin zu aktivieren."
+
+#~ msgid "Select Your Skin"
+#~ msgstr "Skin auswählen"
+
+#
+#~ msgid "Skin"
+#~ msgstr "Skin"
+
+#~ msgid "SkinSelector"
+#~ msgstr "Skinauswahl"
+
+#~ msgid "UI 3D setup"
+#~ msgstr "3D-Einstellungen"
 
 #~ msgid "Defaults"
 #~ msgstr "Standard"

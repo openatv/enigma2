@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-18 15:15+0000\n"
+"POT-Creation-Date: 2024-05-24 20:26+0000\n"
 "PO-Revision-Date: 2023-10-29 13:12+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -1803,10 +1803,6 @@ msgstr "OpenATV hakkında"
 msgid "About to start"
 msgstr "Başlamak üzere"
 
-#
-msgid "About..."
-msgstr "Hakkında..."
-
 msgid "Access point"
 msgstr "Erişim noktası"
 
@@ -2098,9 +2094,6 @@ msgstr "Ek motor seçenekleri, motorunuzun teknik özelliklerinden ayrıntı gir
 
 msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move to another satellite."
 msgstr "Ek motor seçenekleri, motorunuzun teknik özelliklerinden ayrıntı girmenize izin verir, böylece enigma başka bir uyduya geçmenin ne kadar süreceğini hesaplayabilir."
-
-msgid "Adjust 3D settings"
-msgstr "3B Ayarlarını düzenle"
 
 #
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
@@ -2934,9 +2927,6 @@ msgstr "Yedekle"
 #, python-format
 msgid "Backup Date: %s\n"
 msgstr "Yedek Tarihi: %s\n"
-
-msgid "Backup Image"
-msgstr "İmaj Yedekle"
 
 msgid "Backup Location"
 msgstr "Yedekleme Konumu"
@@ -4997,6 +4987,9 @@ msgstr "Bağlantı bilgileri"
 msgid "Console"
 msgstr "Konsol"
 
+msgid "Console Actions"
+msgstr ""
+
 msgid "Console Network Packages"
 msgstr ""
 
@@ -6790,7 +6783,7 @@ msgstr "İndiriliyor"
 msgid "Downloading Image"
 msgstr "Image İndirilmesi"
 
-msgid "Downloading latest update list.  Please wait..."
+msgid "Downloading latest update list. Please wait..."
 msgstr "En son güncelleme listesi indiriliyor. Lütfen bekle..."
 
 #
@@ -7323,9 +7316,6 @@ msgstr "Tüm doğru / yanlış, evet / hayır, açık / kapalı durumlarını g�
 msgid "Enable to display setup entries alphabetically."
 msgstr "Kurulum girişlerini alfabetik olarak görüntülemek için etkinleştirin."
 
-msgid "Enable to display the Extension Menu screen entries alphabetically."
-msgstr "Uzatma menüsü girişlerini alfabetik olarak görüntülemek için etkinleştirin."
-
 msgid "Enable to display the current value of the slider at end of the slider bar."
 msgstr "Kaydırıcı çubuğunun sonundaki kaydırıcının geçerli değerini etkinleştirin."
 
@@ -7428,21 +7418,6 @@ msgstr "Gelişmiş Film Merkezi"
 
 msgid "Enigma2 (re)starts"
 msgstr "Enigma2 (yeniden) başlar"
-
-msgid ""
-"Enigma2 Skinselector\n"
-"\n"
-"If you experience any problems please contact\n"
-"stephan@reichholf.net\n"
-"\n"
-"© 2006 - Stephan Reichholf"
-msgstr ""
-"Enigma2 Dış Görünüm Seçici\n"
-"\n"
-"Herhangi bir sorunla karşılaşırsanız lütfen iletişime geçin\n"
-"stephan@reichholf.net\n"
-"\n"
-"© 2006 - Stephan Reichholf"
 
 msgid "Enigma2 debug level"
 msgstr "Enigma2 hata ayıklama düzeyi"
@@ -8821,13 +8796,6 @@ msgstr "Desteklenen video dosyaları için bölüm konumlarını göster. (gstre
 msgid "GUI Skin *"
 msgstr ""
 
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to Restart the GUI now?"
-msgstr ""
-"Yeni arayüzü etkinleştirmek için yeniden başlatma gerekiyor\n"
-"Grafik arayüzü (GUI) yeniden başlatmak istiyor musunuz?"
-
 msgid "Gabon"
 msgstr "Gabon"
 
@@ -9344,6 +9312,9 @@ msgstr ""
 
 msgid "Hide the InfoBar"
 msgstr "Bilgi çubuğunu daima gizle"
+
+msgid "Hide this screen"
+msgstr ""
 
 msgid "Hide zap errors"
 msgstr "Zap hatalarını gizle"
@@ -11444,17 +11415,11 @@ msgstr "Mobil bağlantı"
 msgid "Mode"
 msgstr "Yöntem"
 
-msgid "Mode 1"
-msgstr "Mod 1"
-
 msgid "Mode 12: Supports PiP but Kodi may not work"
 msgstr "Mod 12: PiP'yi destekler ancak Kodi çalışmayabilir"
 
 msgid "Mode 1: Supports Kodi but PiP may not work"
 msgstr "Mod 1: Kodi'yi destekler ancak PiP çalışmayabilir"
-
-msgid "Mode 2"
-msgstr "Mod 2"
 
 #
 msgid "Mode for autorestore"
@@ -12822,6 +12787,9 @@ msgstr "OSD 3D Kurulum"
 msgid "OSD Calibration"
 msgstr "OSD Konumu"
 
+msgid "OSD Calibration Settings"
+msgstr ""
+
 msgid "OSD Settings"
 msgstr "OSD ayarları"
 
@@ -14152,10 +14120,6 @@ msgstr "MultiBoot seçimi için OK düğmesine basın."
 #
 msgid "Press OK on your remote control to continue."
 msgstr "Devam etmek için kumandanızın OK tuşuna basın."
-
-#
-msgid "Press OK to activate the selected skin."
-msgstr "Seçilen dış görünümü etkinleştirmek için Tamam'a basın."
 
 #
 msgid "Press OK to activate the settings."
@@ -16439,9 +16403,6 @@ msgstr "Yükseltme kaynağını seç"
 msgid "Select Upgrade Source To Edit"
 msgstr "Düzenlemek için Yükseltme Kaynağını Seçin"
 
-msgid "Select Your Skin"
-msgstr "Skin Seçin"
-
 msgid "Select a Softcam from the available list as the default for AutoCam."
 msgstr ""
 
@@ -16907,6 +16868,9 @@ msgstr "Yalnızca sonraki karakter için kaydırılmış karakter kümesini seç
 
 msgid "Select the sort order for the file lines:"
 msgstr "Dosya satırları için sıralama düzenini seçin:"
+
+msgid "Select the sort order of the Extension Menu entries."
+msgstr ""
 
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Eklenti Tarayıcısı menü girişlerinin sıralama düzenini seçin. Kullanıcı tanımlı menü girişlerinin gizlenmesine de izin verir."
@@ -18648,9 +18612,6 @@ msgstr "Artan boyut"
 msgid "Size descending"
 msgstr "Azalan boyut"
 
-msgid "Skin"
-msgstr "Arayüz"
-
 msgid "Skin & Resolution"
 msgstr "Cilt ve Çözünürlük"
 
@@ -18668,9 +18629,6 @@ msgstr "Arayüz Ayarları"
 
 msgid "SkinSelection"
 msgstr ""
-
-msgid "SkinSelector"
-msgstr "SkinSelector"
 
 msgid "Skip back"
 msgstr "Geriye Atla"
@@ -20483,7 +20441,7 @@ msgstr "Geçerli bölge ayrıntıları indirilirken bir hata oluştu"
 msgid "There was an error downloading the region list"
 msgstr "Bölge listesi indirilirken bir hata oluştu"
 
-msgid "There was an error downloading the update list.  Please try again."
+msgid "There was an error downloading the update list. Please try again."
 msgstr "Güncelleme listesi indirilirken bir hata oluştu. Lütfen tekrar deneyin."
 
 msgid "There was an error while trying to login."
@@ -21540,9 +21498,6 @@ msgstr "UBINIZE"
 
 msgid "UHD Test"
 msgstr "UHD Testi"
-
-msgid "UI 3D setup"
-msgstr "UI 3D kurulumu"
 
 msgid "UP80  (keymap.u80)"
 msgstr "Değişen keymap ( s) başarısız oldu"
@@ -23507,7 +23462,7 @@ msgid "Your receiver does not have an Internet connection"
 msgstr "Alıcınızın internet bağlantısı yok"
 
 #, python-format
-msgid "Your receiver might be unusable now.  Please consult the manual for further assistance before rebooting your %s %s."
+msgid "Your receiver might be now be unstable. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "Alıcınız şu anda kullanılamaz durumda olabilir. %s %s cihazınızı yeniden başlatmadan önce lütfen daha fazla yardım için kılavuza bakın."
 
 #
@@ -24771,6 +24726,63 @@ msgstr "evet (beslemeleri tut)"
 
 msgid "®"
 msgstr "®"
+
+#
+#~ msgid "About..."
+#~ msgstr "Hakkında..."
+
+#~ msgid "Adjust 3D settings"
+#~ msgstr "3B Ayarlarını düzenle"
+
+#~ msgid "Backup Image"
+#~ msgstr "İmaj Yedekle"
+
+#~ msgid "Enable to display the Extension Menu screen entries alphabetically."
+#~ msgstr "Uzatma menüsü girişlerini alfabetik olarak görüntülemek için etkinleştirin."
+
+#~ msgid ""
+#~ "Enigma2 Skinselector\n"
+#~ "\n"
+#~ "If you experience any problems please contact\n"
+#~ "stephan@reichholf.net\n"
+#~ "\n"
+#~ "© 2006 - Stephan Reichholf"
+#~ msgstr ""
+#~ "Enigma2 Dış Görünüm Seçici\n"
+#~ "\n"
+#~ "Herhangi bir sorunla karşılaşırsanız lütfen iletişime geçin\n"
+#~ "stephan@reichholf.net\n"
+#~ "\n"
+#~ "© 2006 - Stephan Reichholf"
+
+#~ msgid ""
+#~ "GUI needs a restart to apply a new skin\n"
+#~ "Do you want to Restart the GUI now?"
+#~ msgstr ""
+#~ "Yeni arayüzü etkinleştirmek için yeniden başlatma gerekiyor\n"
+#~ "Grafik arayüzü (GUI) yeniden başlatmak istiyor musunuz?"
+
+#~ msgid "Mode 1"
+#~ msgstr "Mod 1"
+
+#~ msgid "Mode 2"
+#~ msgstr "Mod 2"
+
+#
+#~ msgid "Press OK to activate the selected skin."
+#~ msgstr "Seçilen dış görünümü etkinleştirmek için Tamam'a basın."
+
+#~ msgid "Select Your Skin"
+#~ msgstr "Skin Seçin"
+
+#~ msgid "Skin"
+#~ msgstr "Arayüz"
+
+#~ msgid "SkinSelector"
+#~ msgstr "SkinSelector"
+
+#~ msgid "UI 3D setup"
+#~ msgstr "UI 3D kurulumu"
 
 #~ msgid "Defaults"
 #~ msgstr "Varsayılanlar"

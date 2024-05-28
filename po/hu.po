@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-18 15:15+0000\n"
+"POT-Creation-Date: 2024-05-24 20:26+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -1809,9 +1809,6 @@ msgstr ""
 msgid "About to start"
 msgstr "az indításról"
 
-msgid "About..."
-msgstr "Névjegy..."
-
 msgid "Access point"
 msgstr "Hozzáférési pont"
 
@@ -2081,9 +2078,6 @@ msgstr "A kiegészítő motoropciók lehetővé teszik, hogy adatokat írjon be 
 
 msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move to another satellite."
 msgstr "A motor kiegészítő opciói lehetővé teszik az adatok megadását a motor műszaki adatlapjáról, így a rendszer tudhatja, mennyi ideig tart a egy másik műholdra váltás."
-
-msgid "Adjust 3D settings"
-msgstr "3D beállítások"
 
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr "Állítsa be úgy a színeket, hogy a színcsíkok megkülönböztethetők legyenek, de a telítettség a lehető legmegfelelőbb legyen. Ha az eredménnyel elégedett, akkor nyomja meg az OK gombot a video finombeállítások bezárásához, vagy a számgombok segítségével válasszon másik teszt ábrát."
@@ -2878,9 +2872,6 @@ msgstr "Mentés"
 #, python-format
 msgid "Backup Date: %s\n"
 msgstr "Biztonsági mentés ideje: %s\n"
-
-msgid "Backup Image"
-msgstr "Mentési lemezkép"
 
 msgid "Backup Location"
 msgstr "Mentés helye"
@@ -4851,6 +4842,9 @@ msgstr ""
 msgid "Console"
 msgstr "Konsole"
 
+msgid "Console Actions"
+msgstr ""
+
 msgid "Console Network Packages"
 msgstr ""
 
@@ -6568,7 +6562,7 @@ msgstr "Letöltés"
 msgid "Downloading Image"
 msgstr "Kép letöltése"
 
-msgid "Downloading latest update list.  Please wait..."
+msgid "Downloading latest update list. Please wait..."
 msgstr "A legújabb frissítési lista letöltése.  Kérem, várjon..."
 
 msgid "Downloading plugin information. Please wait..."
@@ -7081,9 +7075,6 @@ msgstr "Engedélyezze az összes igaz/hamis, igen/nem, be- és kikapcsolási és
 msgid "Enable to display setup entries alphabetically."
 msgstr ""
 
-msgid "Enable to display the Extension Menu screen entries alphabetically."
-msgstr ""
-
 msgid "Enable to display the current value of the slider at end of the slider bar."
 msgstr "Engedélyezze a csúszka aktuális értékét a csúszka végén."
 
@@ -7177,21 +7168,6 @@ msgstr "Enhanced Movie Center"
 
 msgid "Enigma2 (re)starts"
 msgstr ""
-
-msgid ""
-"Enigma2 Skinselector\n"
-"\n"
-"If you experience any problems please contact\n"
-"stephan@reichholf.net\n"
-"\n"
-"© 2006 - Stephan Reichholf"
-msgstr ""
-"Enigma2 Skinselector\n"
-"\n"
-"Ha bármilyen problémát tapasztal, kérjük lépjen kapcsolatba velünk\n"
-"stephan@reichholf.net\n"
-"\n"
-"© 2006 - Stephan Reichholf"
 
 msgid "Enigma2 debug level"
 msgstr ""
@@ -8505,13 +8481,6 @@ msgstr ""
 msgid "GUI Skin *"
 msgstr ""
 
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to Restart the GUI now?"
-msgstr ""
-"Az új kinézet betöltéséhez újra kell indítani a kezelő felületet.\n"
-"Újra indítja most?"
-
 msgid "Gabon"
 msgstr "Gabon"
 
@@ -9013,6 +8982,9 @@ msgstr ""
 #, fuzzy
 msgid "Hide the InfoBar"
 msgstr "Az információs sáv elhalványodása az eltünésekor engedélyezett-e vagy nem"
+
+msgid "Hide this screen"
+msgstr ""
 
 msgid "Hide zap errors"
 msgstr "Csatornaváltási hibák elrejtése"
@@ -11040,17 +11012,11 @@ msgstr ""
 msgid "Mode"
 msgstr "Mód"
 
-msgid "Mode 1"
-msgstr "Mód 1"
-
 msgid "Mode 12: Supports PiP but Kodi may not work"
 msgstr ""
 
 msgid "Mode 1: Supports Kodi but PiP may not work"
 msgstr ""
-
-msgid "Mode 2"
-msgstr "Mód 2"
 
 msgid "Mode for autorestore"
 msgstr "Automatikus visszaállítás módja"
@@ -12346,6 +12312,9 @@ msgstr "OSD 3D beállítás"
 msgid "OSD Calibration"
 msgstr "OSD pozíció"
 
+msgid "OSD Calibration Settings"
+msgstr ""
+
 msgid "OSD Settings"
 msgstr "OSD beállítások"
 
@@ -13609,9 +13578,6 @@ msgstr ""
 
 msgid "Press OK on your remote control to continue."
 msgstr "Nyomja le az OK gombot a távirányítón a folytatáshoz."
-
-msgid "Press OK to activate the selected skin."
-msgstr "Nyomja le az OK gombot az új kinézet (Skin) aktiválásához."
 
 msgid "Press OK to activate the settings."
 msgstr "Az OK gombbal aktiválhatja a beállításokat."
@@ -15779,9 +15745,6 @@ msgstr "Válasszon szerkesztendő frissítési forrást"
 msgid "Select Upgrade Source To Edit"
 msgstr "Válasszon szerkesztendő frissítési forrást."
 
-msgid "Select Your Skin"
-msgstr "Válassza ki a kinézetet (Skin)"
-
 msgid "Select a Softcam from the available list as the default for AutoCam."
 msgstr ""
 
@@ -16237,6 +16200,9 @@ msgid "Select the shifted character set for the next character only"
 msgstr "Válassza ki a virtuális billentyűzettel eltolt karakterkészletet csak a következő karakterhez"
 
 msgid "Select the sort order for the file lines:"
+msgstr ""
+
+msgid "Select the sort order of the Extension Menu entries."
 msgstr ""
 
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
@@ -17918,9 +17884,6 @@ msgstr ""
 msgid "Size descending"
 msgstr ""
 
-msgid "Skin"
-msgstr "Kinézet"
-
 msgid "Skin & Resolution"
 msgstr ""
 
@@ -17938,9 +17901,6 @@ msgstr "Kinézet beállítása (Skin)"
 
 msgid "SkinSelection"
 msgstr ""
-
-msgid "SkinSelector"
-msgstr "Kinézet választó (Skin)"
 
 msgid "Skip back"
 msgstr "Vissza kihagyása"
@@ -19666,7 +19626,7 @@ msgstr "Hiba történt az aktuális régió részleteinek letöltésekor"
 msgid "There was an error downloading the region list"
 msgstr "Hiba történt a régiólista letöltésekor"
 
-msgid "There was an error downloading the update list.  Please try again."
+msgid "There was an error downloading the update list. Please try again."
 msgstr ""
 
 msgid "There was an error while trying to login."
@@ -20676,9 +20636,6 @@ msgstr ""
 #, fuzzy
 msgid "UHD Test"
 msgstr "FullHD teszt"
-
-msgid "UI 3D setup"
-msgstr "UI 3D beállítás"
 
 msgid "UP80  (keymap.u80)"
 msgstr "UP80  (keymap.u80)"
@@ -22530,7 +22487,7 @@ msgid "Your receiver does not have an Internet connection"
 msgstr ""
 
 #, python-format
-msgid "Your receiver might be unusable now.  Please consult the manual for further assistance before rebooting your %s %s."
+msgid "Your receiver might be now be unstable. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr ""
 
 msgid "Youth"
@@ -23704,6 +23661,58 @@ msgstr "igen (állapotok megtartása)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "About..."
+#~ msgstr "Névjegy..."
+
+#~ msgid "Adjust 3D settings"
+#~ msgstr "3D beállítások"
+
+#~ msgid "Backup Image"
+#~ msgstr "Mentési lemezkép"
+
+#~ msgid ""
+#~ "Enigma2 Skinselector\n"
+#~ "\n"
+#~ "If you experience any problems please contact\n"
+#~ "stephan@reichholf.net\n"
+#~ "\n"
+#~ "© 2006 - Stephan Reichholf"
+#~ msgstr ""
+#~ "Enigma2 Skinselector\n"
+#~ "\n"
+#~ "Ha bármilyen problémát tapasztal, kérjük lépjen kapcsolatba velünk\n"
+#~ "stephan@reichholf.net\n"
+#~ "\n"
+#~ "© 2006 - Stephan Reichholf"
+
+#~ msgid ""
+#~ "GUI needs a restart to apply a new skin\n"
+#~ "Do you want to Restart the GUI now?"
+#~ msgstr ""
+#~ "Az új kinézet betöltéséhez újra kell indítani a kezelő felületet.\n"
+#~ "Újra indítja most?"
+
+#~ msgid "Mode 1"
+#~ msgstr "Mód 1"
+
+#~ msgid "Mode 2"
+#~ msgstr "Mód 2"
+
+#~ msgid "Press OK to activate the selected skin."
+#~ msgstr "Nyomja le az OK gombot az új kinézet (Skin) aktiválásához."
+
+#~ msgid "Select Your Skin"
+#~ msgstr "Válassza ki a kinézetet (Skin)"
+
+#~ msgid "Skin"
+#~ msgstr "Kinézet"
+
+#~ msgid "SkinSelector"
+#~ msgstr "Kinézet választó (Skin)"
+
+#~ msgid "UI 3D setup"
+#~ msgstr "UI 3D beállítás"
 
 #~ msgid "Defaults"
 #~ msgstr "Alapértelmezett"
