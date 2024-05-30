@@ -112,7 +112,7 @@ def SettingsEntry(name, checked):
 
 class BackupScreen(Screen, ConfigListScreen):
 	skin = """
-		<screen position="135,144" size="350,310" title="Backup is running" >
+		<screen position="0,0" size="0,0" title="" >
 		<widget name="config" position="10,10" size="330,250" transparent="1" scrollbarMode="showOnDemand" />
 		</screen>"""
 
@@ -183,7 +183,7 @@ class BackupScreen(Screen, ConfigListScreen):
 				if exists(newFilename):
 					remove(newFilename)
 				rename(fullbackupFilename, newFilename)
-			self.session.openWithCallback(self.backupFinishedCB, Console, title=_("Backup is running..."), cmdlist=cmdList, closeOnSuccess=True)
+			self.session.openWithCallback(self.backupFinishedCB, Console, title=self.screenTitle, cmdlist=cmdList, closeOnSuccess=True)
 		except OSError:
 			self.session.openWithCallback(self.backupErrorCB, MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout=10)
 
@@ -428,7 +428,7 @@ class RestoreMenu(Screen):
 
 class RestoreScreen(Screen, ConfigListScreen):
 	skin = """
-		<screen position="135,144" size="350,310" title="Restore is running..." >
+		<screen position="0,0" size="0,0" title="" >
 		<widget name="config" position="10,10" size="330,250" transparent="1" scrollbarMode="showOnDemand" />
 		</screen>"""
 
@@ -462,7 +462,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 		restorecmdlist.append("/etc/init.d/autofs restart")
 		print("[SOFTWARE MANAGER] Restore Settings !!!!")
 
-		self.session.openWithCallback(self.restoreFinishedCB, Console, title=_("Restoring..."), cmdlist=restorecmdlist)
+		self.session.openWithCallback(self.restoreFinishedCB, Console, title=self.screenTitle, cmdlist=restorecmdlist)
 
 	def restoreFinishedCB(self, retval=None):
 		ShellCompatibleFunctions.restoreUserDB()
