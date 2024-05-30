@@ -272,12 +272,12 @@ class Screen(dict):
 		zPosition = 0
 		for (key, value) in self.skinAttributes:
 			match key:
+				case "ignoreWidgets":
+					self.ignoreWidgets = [x.strip() for x in value.split(",")]
 				case "resolution" | "baseResolution":
 					resolution = tuple([int(x.strip()) for x in value.split(",")])
 				case "zPosition":
 					zPosition = int(value)
-				case "ignoreWidgets":
-					self.ignoreWidgets = [x.strip() for x in value.split(",")]
 		if not self.instance:
 			self.instance = eWindow(self.desktop, zPosition)
 		if "title" not in self.skinAttributes and self.screenTitle:
