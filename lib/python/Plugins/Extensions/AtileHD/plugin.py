@@ -167,7 +167,7 @@ class AtileHD_Config(Screen, ConfigListScreen):
 			self["config"].onSelectionChanged.append(self.selectionChanged)
 
 		if self.start_skin == "skin.xml":
-			self.onLayoutFinish.append(self.openSkinSelectorDelayed)
+			self.onLayoutFinish.append(self.openSkinSelectionDelayed)
 		else:
 			self.createConfigList()
 
@@ -441,16 +441,16 @@ class AtileHD_Config(Screen, ConfigListScreen):
 	def keyOk(self):
 		sel = self["config"].getCurrent()
 		if sel is not None and sel == self.set_new_skin:
-			self.openSkinSelector()
+			self.openSkinSelection()
 		elif sel is not None and sel == self.find_woeid:
 			self.session.openWithCallback(self.search_weather_id_callback, InputBox, title=_("Please enter search string for your location"), text="")
 		else:
 			self.keyGreen()
 
-	def openSkinSelector(self):
+	def openSkinSelection(self):
 		self.session.openWithCallback(self.skinChanged, SkinSelection)
 
-	def openSkinSelectorDelayed(self):
+	def openSkinSelectionDelayed(self):
 		self.delaytimer = eTimer()
 		self.delaytimer.callback.append(self.openSkinSelection)
 		self.delaytimer.start(200, True)
