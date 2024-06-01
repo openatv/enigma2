@@ -44,6 +44,8 @@ def InitUsageConfig():
 
 	config.misc.usegstplaybin3 = ConfigYesNo(default=False)
 
+	config.misc.spinnerPosition = ConfigText(default="100,100")
+
 	config.workaround = ConfigSubsection()
 	config.workaround.blueswitch = ConfigSelection(default=0, choices=[
 		(0, _("QuickMenu/Extensions")),
