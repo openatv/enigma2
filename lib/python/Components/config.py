@@ -1008,7 +1008,7 @@ class ConfigSelectionNumber(ConfigSelectionInteger):
 # dates, plain integers, several helpers exist to ease this up a bit.
 #
 class ConfigSequence(ConfigElement):
-	def __init__(self, seperator, limits, default, censor="", censor_char=None):  # Should we also have a flag to select blocks on first entry?
+	def __init__(self, seperator, limits, default, censor="", zeroPad=True, censor_char=None):  # Should we also have a flag to select blocks on first entry?
 		ConfigElement.__init__(self)
 		if not isinstance(limits, list) and len(limits[0]) != 2:
 			raise TypeError("[Config] Error: Limits must be [(min, max), ...] tuple-list!")
@@ -1020,19 +1020,19 @@ class ConfigSequence(ConfigElement):
 		# 	raise ValueError("[Config] Error: Lengths of default and limits must match!")
 		if censor_char is not None:  # DEBUG: This captures the censor character from legacy code!
 			censor = censor_char
-		if censor != "" and (isinstance(censor, str) and len(censor) != 1) and (isinstance(censor, unicode) and len(censor) != 1):
+		if censor != "" and (isinstance(censor, str) and len(censor) != 1):
 			raise ValueError("[Config] Error: Censor must be a single char (or \"\")!")
 		self.seperator = seperator
 		self.limits = limits
+		self.censor = censor
+		self.zeroPad = zeroPad
 		self.blockLen = [len(str(x[1])) for x in limits]
 		self.totalLen = sum(self.blockLen) - 1
-		self.censor = censor
 		self.lastValue = self.default = default
 		self.value = shallowcopy(default)
 		self.hidden = censor != ""
 		self.endNotifier = None
 		self.markedPos = 0
-		self.zeroPad = True
 
 	def handleKey(self, key, callback=None):
 		if key == ACTIONKEY_FIRST:
@@ -1112,13 +1112,13 @@ class ConfigSequence(ConfigElement):
 		value = ""
 		mPos = self.markedPos
 		num = 0
-		for i in self._value:
+		for item in self._value:
 			if value:  # Fixme no heading separator possible!
 				value += self.seperator
 				if mPos >= len(value) - 1:
 					mPos += 1
 			if self.censor == "" or not self.hidden:
-				value += ("%0" + str(len(str(self.limits[num][1]))) + "d") % i
+				value += (f"{item:0{len(str(self.limits[num][1]))}d}")
 			else:
 				value += (self.censor * len(str(self.limits[num][1])))
 			num += 1
@@ -1132,7 +1132,7 @@ class ConfigSequence(ConfigElement):
 		return self.seperator.join([str(x) for x in value])
 
 	def toDisplayString(self, value):
-		return self.seperator.join([f"%0{str(self.blockLen[index]) if self.zeroPad else ''}d" % value for index, value in enumerate(self._value)])
+		return self.seperator.join([f"{item:0{str(self.blockLen[index])}d}" if self.zeroPad else str(item) for index, item in enumerate(value)])
 
 	def onSelect(self, session):
 		self.hidden = False
@@ -1374,7 +1374,7 @@ class ConfigPIN(ConfigInteger):
 	def __init__(self, default, pinLength=4, censor="\u2022"):
 		if not isinstance(default, int):
 			raise TypeError("[Config] Error: 'ConfigPIN' default must be an integer!")
-		if censor != "" and (isinstance(censor, str) and len(censor) != 1):  # and (isinstance(censor, unicode) and len(censor) != 1):
+		if censor != "" and (isinstance(censor, str) and len(censor) != 1):
 			raise ValueError("[Config] Error: Censor must be a single char (or \"\")!")
 		ConfigInteger.__init__(self, default=default, limits=(0, (10 ** pinLength) - 1), censor=censor)
 		self.pinLength = pinLength
@@ -1961,7 +1961,7 @@ class ConfigNumber(ConfigText):
 class ConfigPassword(ConfigText):
 	def __init__(self, default="", fixed_size=False, visible_width=False, censor="\u2022"):
 		ConfigText.__init__(self, default=default, fixed_size=fixed_size, visible_width=visible_width)
-		if censor != "" and (isinstance(censor, str) and len(censor) != 1) and (isinstance(censor, unicode) and len(censor) != 1):
+		if censor != "" and (isinstance(censor, str) and len(censor) != 1):
 			raise ValueError("[Config] Error: Censor must be a single char (or \"\")!")
 		self.censor = censor
 		self.hidden = True
