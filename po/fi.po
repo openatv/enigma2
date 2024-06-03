@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-18 15:15+0000\n"
-"PO-Revision-Date: 2024-05-22 07:29+0000\n"
+"POT-Creation-Date: 2024-05-24 20:26+0000\n"
+"PO-Revision-Date: 2024-05-29 10:09+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -1772,9 +1772,6 @@ msgstr "Tietoja OpenATV:stä"
 msgid "About to start"
 msgstr "alkaa juuri"
 
-msgid "About..."
-msgstr "Tietoja..."
-
 msgid "Access point"
 msgstr "Tukiasema"
 
@@ -2044,9 +2041,6 @@ msgstr "Lisävaihtoehdot antavat sinun syöttää moottorin tekniset tiedot, eni
 
 msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move to another satellite."
 msgstr "Syöttämällä moottorin tekniset tiedot, vastaanotin voi selvittää, kuinka kauan kestää lautasen siirtäminen toisesta satelliitista toiseen."
-
-msgid "Adjust 3D settings"
-msgstr "Muuta 3D-asetuksia"
 
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr ""
@@ -2839,9 +2833,6 @@ msgstr "Varmuuskopio"
 #, python-format
 msgid "Backup Date: %s\n"
 msgstr "Varmuuskopioi Päivä %s\n"
-
-msgid "Backup Image"
-msgstr "Varmuuskopioi Ohjelmisto"
 
 msgid "Backup Location"
 msgstr "Varmuuskopion sijainti"
@@ -4820,6 +4811,9 @@ msgstr "Yhteyden tiedot"
 msgid "Console"
 msgstr "Konsoli"
 
+msgid "Console Actions"
+msgstr "Konsoli toiminnot"
+
 msgid "Console Network Packages"
 msgstr "Konsoli verkko paketit"
 
@@ -6529,7 +6523,7 @@ msgstr "Ladataan"
 msgid "Downloading Image"
 msgstr "Ladataan Ohjelmistoa"
 
-msgid "Downloading latest update list.  Please wait..."
+msgid "Downloading latest update list. Please wait..."
 msgstr "Ladataan viimeisin päivitys listaa Odota..."
 
 msgid "Downloading plugin information. Please wait..."
@@ -7040,9 +7034,6 @@ msgstr "Laittaessasi tämän päälle, kaikki kyllä/ei, päällä/pois päält�
 msgid "Enable to display setup entries alphabetically."
 msgstr "Ota käyttöön asetusten näyttäminen aakkosjärjestyksessä."
 
-msgid "Enable to display the Extension Menu screen entries alphabetically."
-msgstr "Ota käyttöön näyttääksesi Laajennus valikon kohdat aakkosjärjestyksessä."
-
 msgid "Enable to display the current value of the slider at end of the slider bar."
 msgstr "Ota käyttöön liukusäätimen nykyinen arvo liukusäätimen päässä."
 
@@ -7135,21 +7126,6 @@ msgstr "Enhanced Movie Center"
 
 msgid "Enigma2 (re)starts"
 msgstr "Uudelleen käynnistetty"
-
-msgid ""
-"Enigma2 Skinselector\n"
-"\n"
-"If you experience any problems please contact\n"
-"stephan@reichholf.net\n"
-"\n"
-"© 2006 - Stephan Reichholf"
-msgstr ""
-"Järjestelmän teema valitsin\n"
-"\n"
-"Jos sinulla on ongelmia, ota yhteyttä\n"
-"stephan@reichholf.net\n"
-"\n"
-"© 2006 - Stephan Reichholf"
 
 msgid "Enigma2 debug level"
 msgstr "Vianmääritys taso"
@@ -8458,13 +8434,6 @@ msgstr "GStreamer versio"
 msgid "GUI Skin *"
 msgstr "Käyttöliittymän teema *"
 
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to Restart the GUI now?"
-msgstr ""
-"Järjestelmä on käynnistettävä uudelleen teeman vaihtamiseksi.\n"
-"Haluatko käynnistää järjestelmän uudelleen nyt?"
-
 msgid "Gabon"
 msgstr "Gabon"
 
@@ -8960,6 +8929,9 @@ msgstr "Piilota softcam Palvelin nimi"
 
 msgid "Hide the InfoBar"
 msgstr "Piilota Tietopalkki"
+
+msgid "Hide this screen"
+msgstr "Piilota tämä ruutu"
 
 msgid "Hide zap errors"
 msgstr "Piilota kanavanvaihdon virheilmoitukset"
@@ -10957,17 +10929,11 @@ msgstr "Mobiiliyhteys"
 msgid "Mode"
 msgstr "Tila"
 
-msgid "Mode 1"
-msgstr "Tila 1"
-
 msgid "Mode 12: Supports PiP but Kodi may not work"
 msgstr "Tila 12: Tukee PiP:tä, mutta Kodi ei ehkä toimi"
 
 msgid "Mode 1: Supports Kodi but PiP may not work"
 msgstr "Tila 1: Tukee Kodia, mutta PiP ei välttämättä toimi"
-
-msgid "Mode 2"
-msgstr "Tila 2"
 
 msgid "Mode for autorestore"
 msgstr "Automaattinen palautustila"
@@ -12247,6 +12213,9 @@ msgstr "Kuvaruudun 3D Asetukset"
 msgid "OSD Calibration"
 msgstr "Kuvaruudun kohdistus"
 
+msgid "OSD Calibration Settings"
+msgstr "OSD kalibrointi asetukset"
+
 msgid "OSD Settings"
 msgstr "Kuvaruudun asetukset"
 
@@ -13499,9 +13468,6 @@ msgstr "Valitse MultiBoot painamalla OK."
 
 msgid "Press OK on your remote control to continue."
 msgstr "Jatka painamalla OK näppäintä."
-
-msgid "Press OK to activate the selected skin."
-msgstr "Ota valittu teema käyttöön painamalla OK."
 
 msgid "Press OK to activate the settings."
 msgstr "Ota käyttöön painamalla OK."
@@ -15668,9 +15634,6 @@ msgstr "Valitse päivityksen lähdeosoite"
 msgid "Select Upgrade Source To Edit"
 msgstr "Valitse päivityksen lähde muokattavaksi"
 
-msgid "Select Your Skin"
-msgstr "Valitse teemasi"
-
 msgid "Select a Softcam from the available list as the default for AutoCam."
 msgstr "Valitse Softcam käytettävissä olevasta listassa oletusarvona CI+."
 
@@ -16128,6 +16091,9 @@ msgstr "Käytä vaihtoa vain seuraavaan merkkiin"
 
 msgid "Select the sort order for the file lines:"
 msgstr "Valitse tiedostorivien lajittelujärjestys:"
+
+msgid "Select the sort order of the Extension Menu entries."
+msgstr "Valitse Laajennusvalikon merkintöjen lajittelujärjestys."
 
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Valitse Plugin selaimen valikko lajittelujärjestys. Käyttäjän määrittelemä mahdollistaa myös valikkomerkintöjen piilottamisen."
@@ -17802,9 +17768,6 @@ msgstr "Koko nouseva"
 msgid "Size descending"
 msgstr "Koko laskeva"
 
-msgid "Skin"
-msgstr "Teema"
-
 msgid "Skin & Resolution"
 msgstr "Teema & Resoluutio"
 
@@ -17822,9 +17785,6 @@ msgstr "Teema asetukset"
 
 msgid "SkinSelection"
 msgstr "Teeman Valinta"
-
-msgid "SkinSelector"
-msgstr "Teeman valinta"
 
 msgid "Skip back"
 msgstr "Siirry taaksepäin"
@@ -18931,7 +18891,7 @@ msgstr "TMDB Haku"
 
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Suomenkielinen käännös: 7.5.2024\n"
+"Suomenkielinen käännös: 29.5.2024\n"
 "tomppaa"
 
 msgid "TS file is too large for ISO9660 level 1!"
@@ -19566,7 +19526,7 @@ msgstr "Uusimpien alue tietojen lataamisessa tapahtui virhe"
 msgid "There was an error downloading the region list"
 msgstr "Aluelistan lataamisessa tapahtui virhe"
 
-msgid "There was an error downloading the update list.  Please try again."
+msgid "There was an error downloading the update list. Please try again."
 msgstr "Virhe ladattaessa päivitys listaa. Yritä uudelleen."
 
 msgid "There was an error while trying to login."
@@ -20570,9 +20530,6 @@ msgstr "UBINIZE"
 
 msgid "UHD Test"
 msgstr "UHD Testi"
-
-msgid "UI 3D setup"
-msgstr "Kuvaruudun 3D asetukset"
 
 msgid "UP80  (keymap.u80)"
 msgstr "UP80  (keymap.u80)"
@@ -22459,7 +22416,7 @@ msgid "Your receiver does not have an Internet connection"
 msgstr "Vastaanottimella ei ole Internet yhteyttä"
 
 #, python-format
-msgid "Your receiver might be unusable now.  Please consult the manual for further assistance before rebooting your %s %s."
+msgid "Your receiver might be now be unstable. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "Vastaanottimesi saattaa olla nyt epäkunnossa. Lue käsikirjasta lisäohjeita ennen kuin uudelleen käynnistät %s %s."
 
 msgid "Youth"
@@ -23631,6 +23588,61 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "About..."
+#~ msgstr "Tietoja..."
+
+#~ msgid "Adjust 3D settings"
+#~ msgstr "Muuta 3D-asetuksia"
+
+#~ msgid "Backup Image"
+#~ msgstr "Varmuuskopioi Ohjelmisto"
+
+#~ msgid "Enable to display the Extension Menu screen entries alphabetically."
+#~ msgstr "Ota käyttöön näyttääksesi Laajennus valikon kohdat aakkosjärjestyksessä."
+
+#~ msgid ""
+#~ "Enigma2 Skinselector\n"
+#~ "\n"
+#~ "If you experience any problems please contact\n"
+#~ "stephan@reichholf.net\n"
+#~ "\n"
+#~ "© 2006 - Stephan Reichholf"
+#~ msgstr ""
+#~ "Järjestelmän teema valitsin\n"
+#~ "\n"
+#~ "Jos sinulla on ongelmia, ota yhteyttä\n"
+#~ "stephan@reichholf.net\n"
+#~ "\n"
+#~ "© 2006 - Stephan Reichholf"
+
+#~ msgid ""
+#~ "GUI needs a restart to apply a new skin\n"
+#~ "Do you want to Restart the GUI now?"
+#~ msgstr ""
+#~ "Järjestelmä on käynnistettävä uudelleen teeman vaihtamiseksi.\n"
+#~ "Haluatko käynnistää järjestelmän uudelleen nyt?"
+
+#~ msgid "Mode 1"
+#~ msgstr "Tila 1"
+
+#~ msgid "Mode 2"
+#~ msgstr "Tila 2"
+
+#~ msgid "Press OK to activate the selected skin."
+#~ msgstr "Ota valittu teema käyttöön painamalla OK."
+
+#~ msgid "Select Your Skin"
+#~ msgstr "Valitse teemasi"
+
+#~ msgid "Skin"
+#~ msgstr "Teema"
+
+#~ msgid "SkinSelector"
+#~ msgstr "Teeman valinta"
+
+#~ msgid "UI 3D setup"
+#~ msgstr "Kuvaruudun 3D asetukset"
 
 #~ msgid "Defaults"
 #~ msgstr "Oletusarvot"

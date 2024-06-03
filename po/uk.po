@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-18 15:15+0000\n"
-"PO-Revision-Date: 2024-05-19 21:38+0000\n"
+"POT-Creation-Date: 2024-05-24 20:26+0000\n"
+"PO-Revision-Date: 2024-05-29 10:09+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -1804,9 +1804,6 @@ msgstr "Про openATV"
 msgid "About to start"
 msgstr "час до запису"
 
-msgid "About..."
-msgstr "Інформація приймача..."
-
 msgid "Access point"
 msgstr "Точка доступу"
 
@@ -2076,9 +2073,6 @@ msgstr "Додаткові опції двигуна дозволяють вве
 
 msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move to another satellite."
 msgstr "Додаткові опції двигуна дозволяють ввести дані з специфікації Вашого двигуна, щоб система обчислила необхідний час для переміщення антени."
-
-msgid "Adjust 3D settings"
-msgstr "Регулювання 3D налаштувань"
 
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr "Налаштуйте параметри кольору так щоб всі відтінки були відображені, але щоб залишались насиченими, настільки наскільки це можливо. Якщо результат вас задовольняє, натисніть ОК, щоб вийти з налаштувань, або на цифрові кнопки від 1 до 6, щоб вибрати інший тестовий екран."
@@ -2867,9 +2861,6 @@ msgstr "Резервна копія"
 #, python-format
 msgid "Backup Date: %s\n"
 msgstr "Дата резервної копії: %s\n"
-
-msgid "Backup Image"
-msgstr "Бекап іміджу"
 
 msgid "Backup Location"
 msgstr "Місце збереження"
@@ -4848,6 +4839,9 @@ msgstr "Інформація про підключення"
 msgid "Console"
 msgstr "Консоль"
 
+msgid "Console Actions"
+msgstr "Дії в консолі"
+
 msgid "Console Network Packages"
 msgstr "Мережеві пакети консолі"
 
@@ -6558,8 +6552,8 @@ msgstr "Завантажується"
 msgid "Downloading Image"
 msgstr "Завантаження Іміджа"
 
-msgid "Downloading latest update list.  Please wait..."
-msgstr "Завантаження списку останніх оновлень.  Будь ласка, зачекайте..."
+msgid "Downloading latest update list. Please wait..."
+msgstr "Завантаження списку останніх оновлень. Будь ласка, зачекайте..."
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "Завантаження інформації про додатки. Зачекайте..."
@@ -7069,9 +7063,6 @@ msgstr "Увімкнути показ усіх значень типу так/н
 msgid "Enable to display setup entries alphabetically."
 msgstr "Увімкнути для відображення записів налаштування в алфавітному порядку."
 
-msgid "Enable to display the Extension Menu screen entries alphabetically."
-msgstr "Увімкніть, щоб відображати пункти меню Розширення в алфавітному порядку."
-
 msgid "Enable to display the current value of the slider at end of the slider bar."
 msgstr "Включити поточне значення повзунка в кінці Sliderbar-у."
 
@@ -7166,21 +7157,6 @@ msgstr "Розширений Медіа центр"
 
 msgid "Enigma2 (re)starts"
 msgstr "Enigma2 (пере)загрузок"
-
-msgid ""
-"Enigma2 Skinselector\n"
-"\n"
-"If you experience any problems please contact\n"
-"stephan@reichholf.net\n"
-"\n"
-"© 2006 - Stephan Reichholf"
-msgstr ""
-"Enigma2 Селектор скінів\n"
-"\n"
-"Якщо у вас виникли проблеми, будь ласка, зверніться\n"
-"stephan@reichholf.net\n"
-"\n"
-"© 2006 - Stephan Reichholf"
 
 msgid "Enigma2 debug level"
 msgstr "Рівень налагодження E2"
@@ -8489,13 +8465,6 @@ msgstr "Версія GStreamer"
 msgid "GUI Skin *"
 msgstr "Скін Графічного інтерфейсу *"
 
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to Restart the GUI now?"
-msgstr ""
-"Для активації нового скіну необхідно перезавантажити інтерфейс.\n"
-"Хочете зробити це зараз?"
-
 msgid "Gabon"
 msgstr "Габон"
 
@@ -8991,6 +8960,9 @@ msgstr "Приховати ім'я сервера softcam"
 
 msgid "Hide the InfoBar"
 msgstr "Згасання Інфобару"
+
+msgid "Hide this screen"
+msgstr "Приховати цей екран"
 
 msgid "Hide zap errors"
 msgstr "Приховати помилки перемикання"
@@ -10985,17 +10957,11 @@ msgstr "Мобільне підключення"
 msgid "Mode"
 msgstr "Режим"
 
-msgid "Mode 1"
-msgstr "Режим 1"
-
 msgid "Mode 12: Supports PiP but Kodi may not work"
 msgstr "Режим 12: підтримує PiP, але Kodi може не працювати"
 
 msgid "Mode 1: Supports Kodi but PiP may not work"
 msgstr "Режим 1: підтримує Kodi, але PiP може не працювати"
-
-msgid "Mode 2"
-msgstr "Режим 2"
 
 msgid "Mode for autorestore"
 msgstr "Режим автовідновлення"
@@ -12267,6 +12233,9 @@ msgstr "OSD Налаштування 3D"
 msgid "OSD Calibration"
 msgstr "OSD Позиція"
 
+msgid "OSD Calibration Settings"
+msgstr "Налаштування калібрування OSD"
+
 msgid "OSD Settings"
 msgstr "OSD налаштування"
 
@@ -13521,9 +13490,6 @@ msgstr "Натисніть OK, щоб вибрати MultiBoot."
 
 msgid "Press OK on your remote control to continue."
 msgstr "Натисніть ОК для продовження."
-
-msgid "Press OK to activate the selected skin."
-msgstr "Натисніть ОК для активації вибраного скіну."
 
 msgid "Press OK to activate the settings."
 msgstr "Натисніть ОК для активації налаштувань."
@@ -15682,9 +15648,6 @@ msgstr "Вибір джерела оновлення"
 msgid "Select Upgrade Source To Edit"
 msgstr "Виберіть джерело оновлення для редагування"
 
-msgid "Select Your Skin"
-msgstr "Виберіть потрібний Скін"
-
 msgid "Select a Softcam from the available list as the default for AutoCam."
 msgstr "Виберіть камеру Softcam із доступного списку, як стандартну для AutoCam."
 
@@ -16140,6 +16103,9 @@ msgstr "Виберіть набір символів клавіатури лиш
 
 msgid "Select the sort order for the file lines:"
 msgstr "Виберіть порядок сортування для рядків файлу:"
+
+msgid "Select the sort order of the Extension Menu entries."
+msgstr "Виберіть порядок сортування записів у розширеному меню."
 
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Виберіть порядок сортування пунктів меню браузера плагінів. Визначено користувачем також дозволяє приховувати пункти меню."
@@ -17812,9 +17778,6 @@ msgstr "Розмір по зростанню"
 msgid "Size descending"
 msgstr "Розмір за спаданням"
 
-msgid "Skin"
-msgstr "Скін"
-
 msgid "Skin & Resolution"
 msgstr "Скін та роздільна здатність"
 
@@ -17832,9 +17795,6 @@ msgstr "Вибір скіну"
 
 msgid "SkinSelection"
 msgstr "Вибір Скіна"
-
-msgid "SkinSelector"
-msgstr "Вибір Скіну"
 
 msgid "Skip back"
 msgstr "Перейти назад"
@@ -18942,7 +18902,7 @@ msgid "TMDB Search"
 msgstr "TMDB Пошук"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 20.05.2024"
+msgstr "Переклад: kvinto - 29.05.2024"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -19574,7 +19534,7 @@ msgstr "Під час завантаження поточної інформац
 msgid "There was an error downloading the region list"
 msgstr "Під час завантаження списку регіонів сталася помилка"
 
-msgid "There was an error downloading the update list.  Please try again."
+msgid "There was an error downloading the update list. Please try again."
 msgstr "Під час завантаження списку оновлень сталася помилка. Будь ласка, спробуйте ще раз."
 
 msgid "There was an error while trying to login."
@@ -20575,9 +20535,6 @@ msgstr "UBINIZE"
 
 msgid "UHD Test"
 msgstr "Тест UHD"
-
-msgid "UI 3D setup"
-msgstr "GUI Налаштування 3D"
 
 msgid "UP80  (keymap.u80)"
 msgstr "UP80  (keymap.u80)"
@@ -22460,7 +22417,7 @@ msgid "Your receiver does not have an Internet connection"
 msgstr "Ваш приймач не має підключення до Інтернету"
 
 #, python-format
-msgid "Your receiver might be unusable now.  Please consult the manual for further assistance before rebooting your %s %s."
+msgid "Your receiver might be now be unstable. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "Зараз Ваш приймач може бути непридатним. Будь ласка, зверніться до посібника для отримання додаткової допомоги перед перезавантаженням %s %s."
 
 msgid "Youth"
@@ -23629,6 +23586,61 @@ msgstr "так (зберігати фіди)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "About..."
+#~ msgstr "Інформація приймача..."
+
+#~ msgid "Adjust 3D settings"
+#~ msgstr "Регулювання 3D налаштувань"
+
+#~ msgid "Backup Image"
+#~ msgstr "Бекап іміджу"
+
+#~ msgid "Enable to display the Extension Menu screen entries alphabetically."
+#~ msgstr "Увімкніть, щоб відображати пункти меню Розширення в алфавітному порядку."
+
+#~ msgid ""
+#~ "Enigma2 Skinselector\n"
+#~ "\n"
+#~ "If you experience any problems please contact\n"
+#~ "stephan@reichholf.net\n"
+#~ "\n"
+#~ "© 2006 - Stephan Reichholf"
+#~ msgstr ""
+#~ "Enigma2 Селектор скінів\n"
+#~ "\n"
+#~ "Якщо у вас виникли проблеми, будь ласка, зверніться\n"
+#~ "stephan@reichholf.net\n"
+#~ "\n"
+#~ "© 2006 - Stephan Reichholf"
+
+#~ msgid ""
+#~ "GUI needs a restart to apply a new skin\n"
+#~ "Do you want to Restart the GUI now?"
+#~ msgstr ""
+#~ "Для активації нового скіну необхідно перезавантажити інтерфейс.\n"
+#~ "Хочете зробити це зараз?"
+
+#~ msgid "Mode 1"
+#~ msgstr "Режим 1"
+
+#~ msgid "Mode 2"
+#~ msgstr "Режим 2"
+
+#~ msgid "Press OK to activate the selected skin."
+#~ msgstr "Натисніть ОК для активації вибраного скіну."
+
+#~ msgid "Select Your Skin"
+#~ msgstr "Виберіть потрібний Скін"
+
+#~ msgid "Skin"
+#~ msgstr "Скін"
+
+#~ msgid "SkinSelector"
+#~ msgstr "Вибір Скіну"
+
+#~ msgid "UI 3D setup"
+#~ msgstr "GUI Налаштування 3D"
 
 #~ msgid "Defaults"
 #~ msgstr "За замовчуванням"

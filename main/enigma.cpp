@@ -396,7 +396,7 @@ int main(int argc, char **argv)
 			}
 			i++;
 		}
-		eDebug("[Enigma] Found %d spinners.", i);
+		eDebug("[Enigma] Found %d spinners. Position x=%d y=%d", i, spinnerPostionX, spinnerPostionY);
 		if (i == 0)
 			my_dc->setSpinner(eRect(spinnerPostionX, spinnerPostionY, 0, 0), wait, 1);
 		else

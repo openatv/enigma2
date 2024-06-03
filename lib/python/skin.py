@@ -89,7 +89,7 @@ def InitSkins():
 			try:
 				print(f"[Skin] RESTORE_SKIN: Restore skin from '{skin}'...")
 				skinPath, skinExt = splitext(skin)
-				if skinPath == lastPath or skinExt not in (".py", ".pyc", ".pyo"):
+				if skinPath == lastPath or skinExt not in (".py", ".pyc"):
 					print("[Skin] RESTORE_SKIN: Skip!")
 					continue
 				lastPath = skinPath
@@ -993,6 +993,9 @@ class AttributeParser:
 	def horizontalAlignment(self, value):
 		self.guiObject.setHAlign(parseHorizontalAlignment(value))
 
+	def ignoreWidgets(self, value):  # This is only used for Screens to ignore optional widgets.
+		pass
+
 	def includes(self, value):  # Same as conditional.  Created to partner new "excludes" attribute.
 		pass
 
@@ -1882,7 +1885,7 @@ class TemplateParser():
 
 	def processPanel(self, widget, context, excludeItemValues=None, includeItemValues=None):
 		if self.debug:
-			print(f"[TemplateParser] processPanel DEBUG: Position={widget.attrib.get("position")}, Size={ widget.attrib.get("size")}.")
+			print(f"[TemplateParser] processPanel DEBUG: Position={widget.attrib.get("position")}, Size={widget.attrib.get("size")}.")
 			print(f"[TemplateParser] processPanel DEBUG: Parent x={context.x}, width={context.w}.")
 		pos = [int(x.strip()) for x in widget.attrib.get("position").split(",")]
 		layout = widget.attrib.get("layout")

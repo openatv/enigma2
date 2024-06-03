@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-18 15:15+0000\n"
-"PO-Revision-Date: 2024-05-19 21:38+0000\n"
+"POT-Creation-Date: 2024-05-24 20:26+0000\n"
+"PO-Revision-Date: 2024-05-25 01:17+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -1767,9 +1767,6 @@ msgstr "Informazioni su openATV"
 msgid "About to start"
 msgstr "Sta per iniziare"
 
-msgid "About..."
-msgstr "Informazioni su..."
-
 msgid "Access point"
 msgstr "Punto di accesso"
 
@@ -2039,9 +2036,6 @@ msgstr "Ulteriori opzioni del motore ti consentono di inserire i dettagli dalla 
 
 msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move to another satellite."
 msgstr "Ulteriori opzioni del motore ti consentono di inserire i dettagli dalla scheda tecnica del motore in modo che Enigma possa capire quanto tempo ci vorrà per passare a un altro satellite."
-
-msgid "Adjust 3D settings"
-msgstr "Regola impostazioni 3D"
 
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr "Regola le impostazioni del colore in modo che tutte le sfumature di colore siano distinguibili, ma appaiano il più saturate possibile. Se sei soddisfatto del risultato, premi OK per chiudere la regolazione fine del video, oppure usa i tasti numerici per selezionare altre schermate di prova."
@@ -2830,9 +2824,6 @@ msgstr "Backup"
 #, python-format
 msgid "Backup Date: %s\n"
 msgstr "Data backup: %s\n"
-
-msgid "Backup Image"
-msgstr "Immagine backup"
 
 msgid "Backup Location"
 msgstr "Posizione backup"
@@ -4810,6 +4801,9 @@ msgstr "Informazioni sulla connessione"
 msgid "Console"
 msgstr "Console"
 
+msgid "Console Actions"
+msgstr "Azioni console"
+
 msgid "Console Network Packages"
 msgstr "Pacchetti rete per console"
 
@@ -6519,7 +6513,7 @@ msgstr "Download"
 msgid "Downloading Image"
 msgstr "Download immagine"
 
-msgid "Downloading latest update list.  Please wait..."
+msgid "Downloading latest update list. Please wait..."
 msgstr "Download elenco ultimi aggiornamenti. Attendi..."
 
 msgid "Downloading plugin information. Please wait..."
@@ -7030,9 +7024,6 @@ msgstr "Abilita visualizzazione di tutte le opzioni di configurazione Vero/Falso
 msgid "Enable to display setup entries alphabetically."
 msgstr "Abilita per visualizzare voci di configurazione in ordine alfabetico."
 
-msgid "Enable to display the Extension Menu screen entries alphabetically."
-msgstr "Abilita per visualizzare voci del menu Estensioni in ordine alfabetico."
-
 msgid "Enable to display the current value of the slider at end of the slider bar."
 msgstr "Abilita valore dispositivo di scorrimento alla fine della barra di scorrimento."
 
@@ -7125,21 +7116,6 @@ msgstr "Enhanced Movie Center"
 
 msgid "Enigma2 (re)starts"
 msgstr "Enigma2 (ri)avvio"
-
-msgid ""
-"Enigma2 Skinselector\n"
-"\n"
-"If you experience any problems please contact\n"
-"stephan@reichholf.net\n"
-"\n"
-"© 2006 - Stephan Reichholf"
-msgstr ""
-"Enigma2 Skinselector\n"
-"\n"
-"In caso di problemi contatta\n"
-"stephan@reichholf.net\n"
-"\n"
-"© 2006 - Stefan Reichhof"
 
 msgid "Enigma2 debug level"
 msgstr "Livello debug di Enigma2"
@@ -8448,13 +8424,6 @@ msgstr "Versione GStreamer"
 msgid "GUI Skin *"
 msgstr "Skin GUI *"
 
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to Restart the GUI now?"
-msgstr ""
-"La GUI ha bisogno di un riavvio per applicare una nuova skin\n"
-"Vuoi riavviare la GUI ora?"
-
 msgid "Gabon"
 msgstr "Gabon"
 
@@ -8950,6 +8919,9 @@ msgstr "Nascondi nome del server softcam"
 
 msgid "Hide the InfoBar"
 msgstr "Nascondi barra informazioni"
+
+msgid "Hide this screen"
+msgstr "Nascondi questa schermata"
 
 msgid "Hide zap errors"
 msgstr "Nascondi errori di zapping"
@@ -10942,17 +10914,11 @@ msgstr "Connessione mobile"
 msgid "Mode"
 msgstr "Modalità"
 
-msgid "Mode 1"
-msgstr "Modalità 1"
-
 msgid "Mode 12: Supports PiP but Kodi may not work"
 msgstr "Modalità 12: supporta PiP ma Kodi potrebbe non funzionare"
 
 msgid "Mode 1: Supports Kodi but PiP may not work"
 msgstr "Modalità 1: supporta Kodi ma PiP potrebbe non funzionare"
-
-msgid "Mode 2"
-msgstr "Modalità 2"
 
 msgid "Mode for autorestore"
 msgstr "Modalità per ripristino automatico"
@@ -12222,7 +12188,10 @@ msgid "OSD 3D Settings"
 msgstr "Impostazioni OSD 3D"
 
 msgid "OSD Calibration"
-msgstr "Impostazioni posizione OSD"
+msgstr "Calibrazione OSD"
+
+msgid "OSD Calibration Settings"
+msgstr "Impostazioni calibrazione OSD"
 
 msgid "OSD Settings"
 msgstr "Impostazioni OSD"
@@ -13476,9 +13445,6 @@ msgstr "Premi OK per la selezione MultiBoot."
 
 msgid "Press OK on your remote control to continue."
 msgstr "Premi OK sul telecomando per continuare."
-
-msgid "Press OK to activate the selected skin."
-msgstr "Premi OK per attivare la skin selezionata."
 
 msgid "Press OK to activate the settings."
 msgstr "Premi OK per attivare la configurazione."
@@ -15635,9 +15601,6 @@ msgstr "Seleziona sorgente aggiornamenti"
 msgid "Select Upgrade Source To Edit"
 msgstr "Seleziona sorgente aggiornamento da modificare"
 
-msgid "Select Your Skin"
-msgstr "Seleziona skin"
-
 msgid "Select a Softcam from the available list as the default for AutoCam."
 msgstr "Seleziona softcam come predefinita per AutoCam tra quelle disponibili nell'elenco."
 
@@ -16093,6 +16056,9 @@ msgstr "Seleziona set di caratteri maiuscoli solo per il carattere successivo"
 
 msgid "Select the sort order for the file lines:"
 msgstr "Seleziona ordinamento per le righe del file:"
+
+msgid "Select the sort order of the Extension Menu entries."
+msgstr "Seleziona ordinamento delle voci del menu Estensioni."
 
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Seleziona ordinamento delle voci del menu elenco plugin. Definito dall'utente consente inoltre di nascondere le voci dei menu."
@@ -17039,7 +17005,7 @@ msgid "Show Log"
 msgstr "Mostra registro"
 
 msgid "Show Log Manager in Extension Menu"
-msgstr "Mostra gestore registro nell'elenco estensioni"
+msgstr "Mostra gestore registro nel menu Estensioni"
 
 msgid "Show M2k packages"
 msgstr "Mostra pacchetti M2k"
@@ -17765,9 +17731,6 @@ msgstr "Dimensione crescente"
 msgid "Size descending"
 msgstr "Dimensione decrescente"
 
-msgid "Skin"
-msgstr "Skin"
-
 msgid "Skin & Resolution"
 msgstr "Skin e risoluzione"
 
@@ -17785,9 +17748,6 @@ msgstr "Impostazioni skin"
 
 msgid "SkinSelection"
 msgstr "Selezione skin"
-
-msgid "SkinSelector"
-msgstr "Selettore skin"
 
 msgid "Skip back"
 msgstr "Salta indietro"
@@ -19525,7 +19485,7 @@ msgstr "Si è verificato un errore durante il download dei dettagli della region
 msgid "There was an error downloading the region list"
 msgstr "Si è verificato un errore durante il download dell'elenco delle regioni"
 
-msgid "There was an error downloading the update list.  Please try again."
+msgid "There was an error downloading the update list. Please try again."
 msgstr "Si è verificato un errore durante il download dell'elenco degli aggiornamenti. Per favore riprova."
 
 msgid "There was an error while trying to login."
@@ -20526,9 +20486,6 @@ msgstr "UBINIZE"
 
 msgid "UHD Test"
 msgstr "Test UHD"
-
-msgid "UI 3D setup"
-msgstr "config UI 3D"
 
 msgid "UP80  (keymap.u80)"
 msgstr "UP80  (keymap.u80)"
@@ -22411,7 +22368,7 @@ msgid "Your receiver does not have an Internet connection"
 msgstr "Il ricevitore non dispone di una connessione a Internet"
 
 #, python-format
-msgid "Your receiver might be unusable now.  Please consult the manual for further assistance before rebooting your %s %s."
+msgid "Your receiver might be now be unstable. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "Il ricevitore potrebbe essere inusabile ora. Consulta il manuale per ulteriore assistenza prima di riavviare %s %s."
 
 msgid "Youth"
@@ -23579,6 +23536,61 @@ msgstr "sì (mantieni feed)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "About..."
+#~ msgstr "Informazioni su..."
+
+#~ msgid "Adjust 3D settings"
+#~ msgstr "Regola impostazioni 3D"
+
+#~ msgid "Backup Image"
+#~ msgstr "Immagine backup"
+
+#~ msgid "Enable to display the Extension Menu screen entries alphabetically."
+#~ msgstr "Abilita per visualizzare voci del menu Estensioni in ordine alfabetico."
+
+#~ msgid ""
+#~ "Enigma2 Skinselector\n"
+#~ "\n"
+#~ "If you experience any problems please contact\n"
+#~ "stephan@reichholf.net\n"
+#~ "\n"
+#~ "© 2006 - Stephan Reichholf"
+#~ msgstr ""
+#~ "Enigma2 Skinselector\n"
+#~ "\n"
+#~ "In caso di problemi contatta\n"
+#~ "stephan@reichholf.net\n"
+#~ "\n"
+#~ "© 2006 - Stefan Reichhof"
+
+#~ msgid ""
+#~ "GUI needs a restart to apply a new skin\n"
+#~ "Do you want to Restart the GUI now?"
+#~ msgstr ""
+#~ "La GUI ha bisogno di un riavvio per applicare una nuova skin\n"
+#~ "Vuoi riavviare la GUI ora?"
+
+#~ msgid "Mode 1"
+#~ msgstr "Modalità 1"
+
+#~ msgid "Mode 2"
+#~ msgstr "Modalità 2"
+
+#~ msgid "Press OK to activate the selected skin."
+#~ msgstr "Premi OK per attivare la skin selezionata."
+
+#~ msgid "Select Your Skin"
+#~ msgstr "Seleziona skin"
+
+#~ msgid "Skin"
+#~ msgstr "Skin"
+
+#~ msgid "SkinSelector"
+#~ msgstr "Selettore skin"
+
+#~ msgid "UI 3D setup"
+#~ msgstr "config UI 3D"
 
 #~ msgid "Defaults"
 #~ msgstr "Predefiniti"

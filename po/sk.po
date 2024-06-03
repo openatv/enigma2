@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-18 15:15+0000\n"
+"POT-Creation-Date: 2024-05-24 20:26+0000\n"
 "PO-Revision-Date: 2024-04-22 09:31+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
@@ -1801,9 +1801,6 @@ msgstr "O openATV"
 msgid "About to start"
 msgstr "sa čoskoro začne"
 
-msgid "About..."
-msgstr "O prijímači..."
-
 msgid "Access point"
 msgstr "Prístupový bod"
 
@@ -2073,9 +2070,6 @@ msgstr "Doplnkové parametre motora umožňujú zadať podrobnosti zo zoznamu š
 
 msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move to another satellite."
 msgstr "Doplnkové parametre motora umožňujú zadať podrobnosti zo zoznamu špecifikácií vášho motora, takže Enigma dokáže zistiť, koľko času zaberie presun paraboly na inú družicu."
-
-msgid "Adjust 3D settings"
-msgstr "Upraviť 3D nastavenia"
 
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr "Upravte farby tak, aby sa dali jednotlivé odtiene dobre rozlíšiť, ale súčasne boli čo najsýtejšie. Ak ste s výsledkom spokojní, tlačidlom OK ukončite nastavovanie obrazu alebo číslicovými tlačidlami zvoľte iný testovací obrazec."
@@ -2864,9 +2858,6 @@ msgstr "Záloha"
 #, python-format
 msgid "Backup Date: %s\n"
 msgstr "Dátum zálohy: %s\n"
-
-msgid "Backup Image"
-msgstr "Zálohovať image"
 
 msgid "Backup Location"
 msgstr "Umiestnenie zálohy"
@@ -4845,6 +4836,9 @@ msgstr "Informácie o pripojení"
 msgid "Console"
 msgstr "Ovládací panel"
 
+msgid "Console Actions"
+msgstr ""
+
 msgid "Console Network Packages"
 msgstr "Sieťové balíčky konzoly"
 
@@ -6555,7 +6549,7 @@ msgstr "Sťahovanie"
 msgid "Downloading Image"
 msgstr "Prebieha sťahovanie image"
 
-msgid "Downloading latest update list.  Please wait..."
+msgid "Downloading latest update list. Please wait..."
 msgstr "Sťahuje sa zoznam najnovších aktualizácií. Čakajte, prosím…"
 
 msgid "Downloading plugin information. Please wait..."
@@ -7066,9 +7060,6 @@ msgstr "Umožňuje zobraziť všetky možnosti nastavenia typu pravda/nepravda, 
 msgid "Enable to display setup entries alphabetically."
 msgstr "Umožňuje zobraziť položky nastavenia v abecednom poradí."
 
-msgid "Enable to display the Extension Menu screen entries alphabetically."
-msgstr "Umožňuje zobraziť položky ponuky Rozšírenia v abecednom poradí."
-
 msgid "Enable to display the current value of the slider at end of the slider bar."
 msgstr "Umožňuje zobraziť aktuálnu hodnotu posuvníka na konci lišty posuvníka."
 
@@ -7163,21 +7154,6 @@ msgstr "Centrum filmov (EMC)"
 
 msgid "Enigma2 (re)starts"
 msgstr "Spustenia/reštarty Enigma2"
-
-msgid ""
-"Enigma2 Skinselector\n"
-"\n"
-"If you experience any problems please contact\n"
-"stephan@reichholf.net\n"
-"\n"
-"© 2006 - Stephan Reichholf"
-msgstr ""
-"Enigma2 – výber vzhľadu\n"
-"\n"
-"V prípade problémov kontaktujte:\n"
-"stephan@reichholf.net\n"
-"\n"
-"© 2006 - Stephan Reichholf"
 
 msgid "Enigma2 debug level"
 msgstr "Úroveň ladenia Enigma2"
@@ -8486,13 +8462,6 @@ msgstr "Verzia GStreamera"
 msgid "GUI Skin *"
 msgstr ""
 
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to Restart the GUI now?"
-msgstr ""
-"Nový vzhľad sa použije po reštartovaní GUI.\n"
-"Chcete GUI reštartovať hneď?"
-
 msgid "Gabon"
 msgstr "Gabon"
 
@@ -8988,6 +8957,9 @@ msgstr "Skryť názov servera softcamu"
 
 msgid "Hide the InfoBar"
 msgstr "Nezobrazovať infolištu"
+
+msgid "Hide this screen"
+msgstr ""
 
 msgid "Hide zap errors"
 msgstr "Nezobrazovať chyby pri prepínaní"
@@ -10982,17 +10954,11 @@ msgstr "Mobilné pripojenie"
 msgid "Mode"
 msgstr "Režim"
 
-msgid "Mode 1"
-msgstr "Režim 1"
-
 msgid "Mode 12: Supports PiP but Kodi may not work"
 msgstr "Režim 12: podporuje PiP, ale nemusí fungovať Kodi"
 
 msgid "Mode 1: Supports Kodi but PiP may not work"
 msgstr "Režim 1: podporuje Kodi, ale nemusí fungovať PiP"
-
-msgid "Mode 2"
-msgstr "Režim 2"
 
 msgid "Mode for autorestore"
 msgstr "Režim pre automatické obnovenie"
@@ -12264,6 +12230,9 @@ msgstr "Nastavenie 3D OSD"
 msgid "OSD Calibration"
 msgstr "Nastavenie pozície OSD"
 
+msgid "OSD Calibration Settings"
+msgstr ""
+
 msgid "OSD Settings"
 msgstr "Nastavenia OSD"
 
@@ -13518,9 +13487,6 @@ msgstr "Pre výber MultiBoot stlačte OK."
 
 msgid "Press OK on your remote control to continue."
 msgstr "Ak chcete pokračovať, stlačte OK na diaľkovom ovládači."
-
-msgid "Press OK to activate the selected skin."
-msgstr "Stlačením OK aktivujete vybraný vzhľad."
 
 msgid "Press OK to activate the settings."
 msgstr "Stlačením OK aktivujete nastavenia."
@@ -15679,9 +15645,6 @@ msgstr "Vyberte zdroj pre aktualizáciu"
 msgid "Select Upgrade Source To Edit"
 msgstr "Vyberte zdroj aktualizácií na úpravu"
 
-msgid "Select Your Skin"
-msgstr "Vyberte vzhľad"
-
 msgid "Select a Softcam from the available list as the default for AutoCam."
 msgstr "Z dostupného zoznamu vyberte softcam, ktorý bude pre AutoCam východiskový."
 
@@ -16137,6 +16100,9 @@ msgstr "Vyberte znakovú sadu veľkých písmen len pre ďalšie písmeno"
 
 msgid "Select the sort order for the file lines:"
 msgstr "Vyberte poradie zoraďovania riadkov so súbormi:"
+
+msgid "Select the sort order of the Extension Menu entries."
+msgstr ""
 
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Vyberte poradie zoraďovania položiek menu v prehliadači pluginov. Používateľské nastavenia tiež umožňujú skrytie položiek menu."
@@ -17809,9 +17775,6 @@ msgstr "Veľkosť vzostupne"
 msgid "Size descending"
 msgstr "Veľkosť zostupne"
 
-msgid "Skin"
-msgstr "Vzhľad"
-
 msgid "Skin & Resolution"
 msgstr "Vzhľad a rozlíšenie"
 
@@ -17829,9 +17792,6 @@ msgstr "Nastavenie vzhľadu"
 
 msgid "SkinSelection"
 msgstr ""
-
-msgid "SkinSelector"
-msgstr "Výber vzhľadu"
 
 msgid "Skip back"
 msgstr "Preskočiť dozadu"
@@ -19571,7 +19531,7 @@ msgstr "Nastala chyba pri sťahovaní podrobností pre aktuálny región"
 msgid "There was an error downloading the region list"
 msgstr "Nastala chyba pri sťahovaní zoznamu regiónov"
 
-msgid "There was an error downloading the update list.  Please try again."
+msgid "There was an error downloading the update list. Please try again."
 msgstr "Pri sťahovaní zoznamu aktualizácií nastala chyba. Prosím, skúste to ešte raz."
 
 msgid "There was an error while trying to login."
@@ -20572,9 +20532,6 @@ msgstr "UBINIZE"
 
 msgid "UHD Test"
 msgstr "Test UHD"
-
-msgid "UI 3D setup"
-msgstr "Nastavenie UI 3D"
 
 msgid "UP80  (keymap.u80)"
 msgstr "UP80  (keymap.u80)"
@@ -22457,7 +22414,7 @@ msgid "Your receiver does not have an Internet connection"
 msgstr "Váš prijímač nie je pripojený k internetu"
 
 #, python-format
-msgid "Your receiver might be unusable now.  Please consult the manual for further assistance before rebooting your %s %s."
+msgid "Your receiver might be now be unstable. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "Váš prijímač sa teraz možno nebude dať používať. Pred reštartovaním zariadenia %s %s vyhľadajte ďalšie inštrukcie v návode."
 
 msgid "Youth"
@@ -23626,6 +23583,61 @@ msgstr "áno (zachovať zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "About..."
+#~ msgstr "O prijímači..."
+
+#~ msgid "Adjust 3D settings"
+#~ msgstr "Upraviť 3D nastavenia"
+
+#~ msgid "Backup Image"
+#~ msgstr "Zálohovať image"
+
+#~ msgid "Enable to display the Extension Menu screen entries alphabetically."
+#~ msgstr "Umožňuje zobraziť položky ponuky Rozšírenia v abecednom poradí."
+
+#~ msgid ""
+#~ "Enigma2 Skinselector\n"
+#~ "\n"
+#~ "If you experience any problems please contact\n"
+#~ "stephan@reichholf.net\n"
+#~ "\n"
+#~ "© 2006 - Stephan Reichholf"
+#~ msgstr ""
+#~ "Enigma2 – výber vzhľadu\n"
+#~ "\n"
+#~ "V prípade problémov kontaktujte:\n"
+#~ "stephan@reichholf.net\n"
+#~ "\n"
+#~ "© 2006 - Stephan Reichholf"
+
+#~ msgid ""
+#~ "GUI needs a restart to apply a new skin\n"
+#~ "Do you want to Restart the GUI now?"
+#~ msgstr ""
+#~ "Nový vzhľad sa použije po reštartovaní GUI.\n"
+#~ "Chcete GUI reštartovať hneď?"
+
+#~ msgid "Mode 1"
+#~ msgstr "Režim 1"
+
+#~ msgid "Mode 2"
+#~ msgstr "Režim 2"
+
+#~ msgid "Press OK to activate the selected skin."
+#~ msgstr "Stlačením OK aktivujete vybraný vzhľad."
+
+#~ msgid "Select Your Skin"
+#~ msgstr "Vyberte vzhľad"
+
+#~ msgid "Skin"
+#~ msgstr "Vzhľad"
+
+#~ msgid "SkinSelector"
+#~ msgstr "Výber vzhľadu"
+
+#~ msgid "UI 3D setup"
+#~ msgstr "Nastavenie UI 3D"
 
 #~ msgid "Defaults"
 #~ msgstr "Predvolené"

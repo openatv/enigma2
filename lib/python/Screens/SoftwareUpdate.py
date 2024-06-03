@@ -28,80 +28,65 @@ class SoftwareUpdate(Screen, ProtectedScreen):
 	FEED_UNSTABLE = 2
 	FEED_STABLE = 3
 
-	skin = ["""
-	<screen name="SoftwareUpdate" title="Software Update" position="center,center" size="%d,%d" >
-		<widget name="traffic_off" position="%d,%d" size="%d,%d" alphatest="blend" pixmap="icons/traffic_off.png" scale="1" />
-		<widget name="traffic_red" position="%d,%d" size="%d,%d" alphatest="blend" pixmap="icons/traffic_red.png" scale="1" />
-		<widget name="traffic_yellow" position="%d,%d" size="%d,%d" alphatest="blend" pixmap="icons/traffic_yellow.png" scale="1" />
-		<widget name="traffic_green" position="%d,%d" size="%d,%d" alphatest="blend" pixmap="icons/traffic_green.png" scale="1" />
-		<widget name="feedstatus_off" position="%d,%d" size="%d,%d" font="Regular;%d" transparent="1" valign="center" />
-		<widget name="feedstatus_red" position="%d,%d" size="%d,%d" font="Regular;%d" transparent="1" valign="center" />
-		<widget name="feedstatus_yellow" position="%d,%d" size="%d,%d" font="Regular;%d" transparent="1" valign="center" />
-		<widget name="feedstatus_green" position="%d,%d" size="%d,%d" font="Regular;%d" transparent="1" valign="center" />
-		<widget name="package_text" position="%d,%d" size="%d,%d" font="Regular;%d" transparent="1" valign="center" />
-		<widget name="package_count" position="%d,%d" size="%d,%d" font="Regular;%d" halign="right" transparent="1" valign="center" />
-		<widget name="feedmessage" position="%d,%d" size="%d,%d" font="Regular;%d" transparent="1" />
-		<widget name="activity" position="%d,%d" size="%d,%d" />
-		<widget source="list" render="Listbox" position="%d,%d" size="%d,%d" scrollbarMode="showOnDemand">
-			<convert type="TemplatedMultiContent">
-				{
-				"template":
-					[
-					MultiContentEntryText(pos = (%d, %d), size = (%d, %d), font=0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = 0),  # Index 0 is the name.
-					MultiContentEntryText(pos = (%d, %d), size = (%d, %d), font=1, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = 2),  # Index 2 is the description.
-					MultiContentEntryPixmapAlphaBlend(pos = (%d, %d), size = (%d, %d), flags = BT_SCALE, png = 4),  # Index 4 is the status pixmap.
-					MultiContentEntryPixmapAlphaBlend(pos = (%d, %d), size = (%d, %d), png = 5),  # Index 5 is the div pixmap
-					],
-				"fonts": [gFont("Regular", %d), gFont("Regular", %d)],
-				"itemHeight": %d
-				}
-			</convert>
+	skin = """
+	<screen name="SoftwareUpdate" title="Software Update" position="center,center" size="750,560" resolution="1280,720">
+		<widget name="traffic_off" position="0,0" size="36,97" alphatest="blend" pixmap="icons/traffic_off.png" scale="1" />
+		<widget name="traffic_red" position="0,0" size="36,97" alphatest="blend" pixmap="icons/traffic_red.png" scale="1" />
+		<widget name="traffic_yellow" position="0,0" size="36,97" alphatest="blend" pixmap="icons/traffic_yellow.png" scale="1" />
+		<widget name="traffic_green" position="0,0" size="36,97" alphatest="blend" pixmap="icons/traffic_green.png" scale="1" />
+		<widget name="feedstatus_off" position="50,36" size="250,30" font="Regular;20" transparent="1" verticalAlignment="center" />
+		<widget name="feedstatus_red" position="50,4" size="250,30" font="Regular;20" transparent="1" verticalAlignment="center" />
+		<widget name="feedstatus_yellow" position="50,36" size="250,30" font="Regular;20" transparent="1" verticalAlignment="center" />
+		<widget name="feedstatus_green" position="50,68" size="250,30" font="Regular;20" transparent="1" verticalAlignment="center" />
+		<widget name="package_text" position="330,0" size="320,30" font="Regular;25" transparent="1" verticalAlignment="center" />
+		<widget name="package_count" position="660,0" size="90,30" font="Regular;25" horizontalAlignment="right" transparent="1" verticalAlignment="center" />
+		<widget name="feedmessage" position="330,40" size="420,40" font="Regular;20" transparent="1" verticalAlignment="center" />
+		<widget name="activity" position="330,92" size="420,5" />
+		<widget source="list" render="Listbox" position="0,110" size="750,400" scrollbarMode="showOnDemand">
+			<templates>
+				<template name="Default" fonts="Regular;22,Regular;15" itemHeight="50" itemWidth="750">
+					<mode name="default">
+						<text index="Package" position="10,0" size="660,30" font="0" horizontalAlignment="left" verticalAlignment="center" />
+						<text index="Versions" position="30,30" size="640,20" font="1" horizontalAlignment="left" verticalAlignment="center" />
+						<pixmap index="UpgradeIcon" position="680,0" size="48,48" alpha="blend" scale="centerScaled" />
+						<pixmap index="Divider" position="0,48" size="750,2" alpha="blend" scale="centerScaled" />
+					</mode>
+				</template>
+			</templates>
 		</widget>
-		<widget source="key_red" render="Label" position="%d,e-%d" size="%d,%d" backgroundColor="key_red" font="Regular;%d" foregroundColor="key_text" halign="center" valign="center">
+		<widget source="key_red" render="Label" position="0,e-40" size="180,40" backgroundColor="key_red" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="key_green" render="Label" position="%d,e-%d" size="%d,%d" backgroundColor="key_green" font="Regular;%d" foregroundColor="key_text" halign="center" valign="center">
+		<widget source="key_green" render="Label" position="190,e-40" size="180,40" backgroundColor="key_green" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="key_yellow" render="Label" position="%d,e-%d" size="%d,%d" backgroundColor="key_yellow" font="Regular;%d" foregroundColor="key_text" halign="center" valign="center">
+		<widget source="key_yellow" render="Label" position="380,e-40" size="180,40" backgroundColor="key_yellow" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
-	</screen>""",
-		650, 580,  # SoftwareUpdate
-		10, 10, 36, 97,  # traffic_off
-		10, 10, 36, 97,  # traffic_red
-		10, 10, 36, 97,  # traffic_yellow
-		10, 10, 36, 97,  # traffic_green
-		60, 46, 200, 30, 20,  # feedstatus_off
-		60, 14, 200, 30, 20,  # feedstatus_red
-		60, 46, 200, 30, 20,  # feedstatus_yellow
-		60, 78, 200, 30, 20,  # feedstatus_green
-		330, 10, 250, 30, 25,  # package_text
-		590, 10, 50, 30, 25,  # package_count
-		330, 50, 310, 50, 20,  # feedmessage
-		330, 102, 310, 5,  # activity
-		10, 120, 630, 400,  # list
-		10, 0, 535, 30,  # Index 0 - name
-		20, 30, 515, 20,  # Index 2 - description
-		560, 0, 48, 48,  # Index 4 - status pixmap
-		5, 48, 630, 2,  # Index 5 - div pixmap
-		22, 15,  # fonts
-		50,  # itemHeight
-		10, 50, 180, 40, 20,  # key_red
-		200, 50, 180, 40, 20,  # key_green
-		390, 50, 180, 40, 20  # key_yellow
-	]
+		<widget source="key_help" render="Label" position="e-90,e-40" size="90,40" backgroundColor="key_back" font="Regular;20" conditional="key_help" foregroundColor="key_text" halign="center" noWrap="1" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>"""
 
 	def __init__(self, session, *args):
 		Screen.__init__(self, session, enableHelp=True)
 		ProtectedScreen.__init__(self)
-		Screen.setTitle(self, _("Software Update"))
+		self.setTitle(_("Software Update"))
 		self.onCheckTrafficLight = []
 		self.updateList = []
-		self["list"] = List(self.updateList, enableWrapAround=True)
+		indexNames = {
+			"Package": 0,
+			"OldVersion": 1,
+			"NewVersion": 6,
+			"Versions": 2,
+			"UpgradeText": 3,
+			"UpgradeIcon": 4,
+			"Divider": 5
+		}
+		self["list"] = List(self.updateList, enableWrapAround=True, indexNames=indexNames)
 		self["key_red"] = StaticText(_("Cancel"))
-		self["key_green"] = StaticText("")
-		self["key_yellow"] = StaticText("")
+		self["key_green"] = StaticText()
+		self["key_yellow"] = StaticText()
 		self["traffic_off"] = Pixmap()
 		self["traffic_red"] = Pixmap()
 		self["traffic_red"].hide()
@@ -111,30 +96,28 @@ class SoftwareUpdate(Screen, ProtectedScreen):
 		self["traffic_green"].hide()
 		self["feedstatus_off"] = Label(_("Status unavailable!"))
 		self["feedstatus_off"].hide()
-		self["feedstatus_red"] = Label("< %s" % _("Feed disabled!"))
+		self["feedstatus_red"] = Label(f"< {_("Feed disabled!")}")
 		self["feedstatus_red"].hide()
-		self["feedstatus_yellow"] = Label("< %s" % _("Feed unstable!"))
+		self["feedstatus_yellow"] = Label(f"< {_("Feed unstable!")}")
 		self["feedstatus_yellow"].hide()
-		self["feedstatus_green"] = Label("< %s" % _("Feed stable."))
+		self["feedstatus_green"] = Label(f"< {_("Feed stable.")}")
 		self["feedstatus_green"].hide()
 		self["feedmessage"] = Label()
 		self["package_text"] = Label(_("Updates available:"))
 		self["package_count"] = Label("?")
 		self["activity"] = Slider(0, 100)
 		cancelMsg = _("Cancel / Close the software update screen")
-		updateMsg = _("Proceed with the update")
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "NavigationActions"], {
 			"cancel": (self.keyCancel, cancelMsg),
 			"red": (self.keyCancel, cancelMsg),
-			"top": (self.top, _("Move to first line / screen")),
-			"pageUp": (self.pageUp, _("Move up a page / screen")),
-			"up": (self.up, _("Move up a line")),
-			# "first": (self.top, _("Move to first line / screen")),
-			# "last": (self.bottom, _("Move to last line / screen")),
-			"down": (self.down, _("Move down a line")),
-			"pageDown": (self.pageDown, _("Move down a page / screen")),
-			"bottom": (self.bottom, _("Move to last line / screen"))
+			"top": (self["list"].goTop, _("Move to first line / screen")),
+			"pageUp": (self["list"].goPageUp, _("Move up a page / screen")),
+			"up": (self["list"].goLineUp, _("Move up a line")),
+			"down": (self["list"].goLineDown, _("Move down a line")),
+			"pageDown": (self["list"].goPageDown, _("Move down a page / screen")),
+			"bottom": (self["list"].goBottom, _("Move to last line / screen"))
 		}, prio=0, description=_("Software Update Actions"))
+		updateMsg = _("Proceed with the update")
 		self["updateActions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions"], {
 			"ok": (self.keyUpdate, updateMsg),
 			"green": (self.keyUpdate, updateMsg)
@@ -161,12 +144,6 @@ class SoftwareUpdate(Screen, ProtectedScreen):
 			(not config.ParentalControl.config_sections.main_menu.value and not config.ParentalControl.config_sections.configuration.value or hasattr(self.session, "infobar") and self.session.infobar is None) and \
 			config.ParentalControl.config_sections.software_update.value
 
-	def layoutFinished(self):
-		self["list"].enableAutoNavigation(False)
-		self.setStatus("update")
-		self.opkg.startCmd(OpkgComponent.CMD_UPDATE)
-		self.timer.start(25, True)
-
 	def timeout(self):
 		if self.activity < 0:
 			self.timer.stop()
@@ -181,9 +158,9 @@ class SoftwareUpdate(Screen, ProtectedScreen):
 	def checkTrafficLight(self):
 		self.timer.callback.remove(self.checkTrafficLight)
 		try:
-#			status = dict(load(urlopen("%s/%s.php" % (BoxInfo.getItem("feedsurl"), BoxInfo.getItem("model")), timeout=5)))
-#			message = status.get("message")
-#			status = status.get("status")
+			# status = dict(load(urlopen(f"{BoxInfo.getItem("feedsurl")}/{BoxInfo.getItem("model")}.php", timeout=5)))
+			# message = status.get("message")
+			# status = status.get("status")
 			status = ""
 			message = ""
 			boxName = BoxInfo.getItem("BoxName")
@@ -220,7 +197,7 @@ class SoftwareUpdate(Screen, ProtectedScreen):
 		if self.updateFlag:
 			if event == OpkgComponent.EVENT_UPDATED and "openatv-all" in parameter:
 				self.feedOnline = True
-			if event == OpkgComponent.EVENT_ERROR and self.feedOnline:  # suppress error if openatv-all feed is online
+			if event == OpkgComponent.EVENT_ERROR and self.feedOnline:  # Suppress error if openatv-all feed is online.
 				event = OpkgComponent.EVENT_DONE
 		if event == OpkgComponent.EVENT_ERROR:
 			self.setStatus("error")
@@ -239,7 +216,7 @@ class SoftwareUpdate(Screen, ProtectedScreen):
 					for fetched in fetchedList:
 						oldVer = fetched[1] if fetched[1] else _("Current version unknown")
 						newVer = fetched[2] if fetched[2] else _("Updated version unknown")
-						self.updateList.append((fetched[0], fetched[1], f"{oldVer}  ->  {newVer}", "upgradeable", upgradeablePng, divPng))
+						self.updateList.append((fetched[0], fetched[1], f"{oldVer}  ->  {newVer}", "upgradeable", upgradeablePng, divPng, fetched[2]))
 					if self.updateList:
 						self.updateList.sort(key=lambda x: x[0])  # Sort by package name.
 						self["list"].setList(self.updateList)
@@ -269,15 +246,21 @@ class SoftwareUpdate(Screen, ProtectedScreen):
 				self["refreshActions"].setEnabled(True)
 				self.activity = -1
 
+	def layoutFinished(self):
+		self["list"].enableAutoNavigation(False)
+		self.setStatus("update")
+		self.opkg.startCmd(OpkgComponent.CMD_UPDATE)
+		self.timer.start(25, True)
+
 	def setStatus(self, status):
 		if status == "update":
 			imagePath = resolveFilename(SCOPE_GUISKIN, "icons/upgrade.png")
 			name = _("Package list update")
-			description = _("Downloading latest update list.  Please wait...")
+			description = _("Downloading latest update list. Please wait...")
 		elif status == "error":
 			imagePath = resolveFilename(SCOPE_GUISKIN, "icons/remove.png")
 			name = _("Download error")
-			description = _("There was an error downloading the update list.  Please try again.")
+			description = _("There was an error downloading the update list. Please try again.")
 		elif status == "noupdate":
 			imagePath = resolveFilename(SCOPE_GUISKIN, "icons/installed.png")
 			name = _("Nothing to upgrade")
@@ -293,10 +276,19 @@ class SoftwareUpdate(Screen, ProtectedScreen):
 		self.close()
 
 	def keyUpdate(self):
+		def keyUpdateCallback(answer):
+			match answer:
+				case 1:
+					from Screens.FlashManager import FlashManager  # This must be here to ensure the plugin is initialized.
+					self.session.open(FlashManager)
+				case 2:
+					self.session.open(RunSoftwareUpdate)
+			self.close()
+
 		self.opkg.removeCallback(self.opkgCallback)
 		updateLimit = BoxInfo.getItem("UpdateLimit", 200)
 		if self.packageCount <= updateLimit:
-			self.keyUpdateCallback(2)
+			keyUpdateCallback(2)
 		else:
 			print(f"[SoftwareUpdate] Warning: There are {self.packageCount} packages available, more than the {updateLimit} maximum recommended, for an update!")
 			message = [
@@ -311,15 +303,7 @@ class SoftwareUpdate(Screen, ProtectedScreen):
 				(_("Perform an on-line flash instead"), 1),
 				(_("Continue with the on-line update"), 2)
 			]
-			self.session.openWithCallback(self.keyUpdateCallback, MessageBox, message, list=optionList, default=0)
-
-	def keyUpdateCallback(self, answer):
-		if answer == 1:
-			from Screens.FlashManager import FlashManager  # This must be here to ensure the plugin is initialized.
-			self.session.open(FlashManager)
-		elif answer == 2:
-			self.session.open(RunSoftwareUpdate)
-		self.close()
+			self.session.openWithCallback(keyUpdateCallback, MessageBox, message, list=optionList, default=0)
 
 	def keyRefresh(self):
 		self.timer.callback.append(self.checkTrafficLight)
@@ -347,24 +331,6 @@ class SoftwareUpdate(Screen, ProtectedScreen):
 		self.opkg.startCmd(OpkgComponent.CMD_UPDATE)
 		self.timer.start(25, True)
 
-	def top(self):
-		self["list"].top()
-
-	def pageUp(self):
-		self["list"].pageUp()
-
-	def up(self):
-		self["list"].up()
-
-	def down(self):
-		self["list"].down()
-
-	def pageDown(self):
-		self["list"].pageDown()
-
-	def bottom(self):
-		self["list"].bottom()
-
 	def createSummary(self):
 		return SoftwareUpdateSummary
 
@@ -372,8 +338,8 @@ class SoftwareUpdate(Screen, ProtectedScreen):
 class SoftwareUpdateSummary(ScreenSummary):
 	def __init__(self, session, parent):
 		ScreenSummary.__init__(self, session, parent=parent)
-		self["entry"] = StaticText("")  # Use the same widget as the Setup Summary screen so the screens can be shared.
-		self["value"] = StaticText("")  # Use the same widget as the Setup Summary screen so the screens can be shared.
+		self["entry"] = StaticText()  # Use the same widget as the Setup Summary screen so the screens can be shared.
+		self["value"] = StaticText()  # Use the same widget as the Setup Summary screen so the screens can be shared.
 		self.statusText = [
 			parent["feedstatus_off"].getText(),
 			parent["feedstatus_red"].getText(),
@@ -396,7 +362,7 @@ class SoftwareUpdateSummary(ScreenSummary):
 
 	def feedStatusChanged(self):
 		self["entry"].setText(self.statusText[self.parent.feedState])
-		self["value"].setText("%s %s" % (self.parent["package_text"].getText(), self.parent["package_count"].getText()))
+		self["value"].setText(f"{self.parent["package_text"].getText()} {self.parent["package_count"].getText()}")
 
 
 class RunSoftwareUpdate(Screen):
@@ -415,18 +381,14 @@ class RunSoftwareUpdate(Screen):
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "NavigationActions"], {
 			"cancel": (self.keyCancel, _("Stop the update, if running, then exit")),
 			"ok": (self.keyCancel, _("Stop the update, if running, then exit")),
-			"top": (self.top, _("Move to first line / screen")),
-			"pageUp": (self.pageUp, _("Move up a page / screen")),
-			"up": (self.pageUp, _("Move up a page / screen")),
-			# "first": (self.top, _("Move to first line / screen")),
-			# "last": (self.bottom, _("Move to last line / screen")),
-			"down": (self.pageDown, _("Move down a page / screen")),
-			"pageDown": (self.pageDown, _("Move down a page / screen")),
-			"bottom": (self.bottom, _("Move to last line / screen"))
+			"top": (self["update"].goTop, _("Move to first line / screen")),
+			"pageUp": (self["update"].goPageUp, _("Move up a page / screen")),
+			"up": (self["update"].goLineUp, _("Move up a page / screen")),
+			"down": (self["update"].goLineDown, _("Move down a page / screen")),
+			"pageDown": (self["update"].goPageDown, _("Move down a page / screen")),
+			"bottom": (self["update"].goBottom, _("Move to last line / screen"))
 		}, prio=0, description=_("Software Update Actions"))
 		self.activity = 0
-		self.timer = eTimer()
-		self.timer.callback.append(self.timeout)
 		self.packageTotal = 0
 		self.downloadCount = 0
 		self.updateCount = 0
@@ -435,15 +397,13 @@ class RunSoftwareUpdate(Screen):
 		self.deselectCount = 0
 		self.upgradeCount = 0
 		self.configureCount = 0
-		self.errorCount = 0
 		self.updateFlag = True
+		self.metrixUpdated = False
+		self.timer = eTimer()
+		self.timer.callback.append(self.timeout)
 		self.opkg = OpkgComponent()
 		self.opkg.addCallback(self.opkgCallback)
 		self.onLayoutFinish.append(self.layoutFinished)
-
-	def layoutFinished(self):
-		self.opkg.startCmd(OpkgComponent.CMD_UPDATE)
-		self.timer.start(25, True)
 
 	def timeout(self):
 		if self.activity < 0:
@@ -462,37 +422,36 @@ class RunSoftwareUpdate(Screen):
 			callback()
 
 	def opkgCallback(self, event, parameter):
+		def modificationCallback(answer):
+			self.opkg.write("N" if answer else "Y")
+
 		if event == OpkgComponent.EVENT_DOWNLOAD:
 			self.downloadCount += 1
 			if parameter.find("_") == -1:  # Only display the downloading of the feed packages.
-				self["update"].appendText("%s: '%s'.\n" % (_("Downloading"), parameter))
+				self["update"].appendText(f"{_("Downloading")}: '{parameter}'.\n")
 		elif event == OpkgComponent.EVENT_UPDATED:
 			self.updateCount += 1
-			self["update"].appendText("%s: %s\n" % (_("Updated"), parameter))
+			self["update"].appendText(f"{_("Updated")}: {parameter}\n")
 		elif event == OpkgComponent.EVENT_UPVERSION:
 			self.upgradeCount += 1
-			self["update"].appendText("%s %s/%s: '%s'.\n" % (_("Updating"), self.upgradeCount, self.packageTotal, parameter))
+			self["update"].appendText(f"{_("Updating")} {self.upgradeCount}/{self.packageTotal}: '{parameter}'.\n")
+			if "enigma2-plugin-skins-metrix-atv" in parameter:
+				self.metrixUpdated = True
 		elif event == OpkgComponent.EVENT_INSTALL:
 			self.installCount += 1
-			self["update"].appendText("%s: '%s'.\n" % (_("Installing"), parameter))
+			self["update"].appendText(f"{_("Installing")}: '{parameter}'.\n")
 		elif event == OpkgComponent.EVENT_REMOVE:
 			self.removeCount += 1
-			self["update"].appendText("%s: '%s'.\n" % (_("Removing"), parameter))
+			self["update"].appendText(f"{_("Removing")}: '{parameter}'.\n")
 		elif event == OpkgComponent.EVENT_CONFIGURING:
 			self.configureCount += 1
-			self["update"].appendText("%s: '%s'.\n" % (_("Configuring"), parameter))
+			self["update"].appendText(f"{_("Configuring")}: '{parameter}'.\n")
 		elif event == OpkgComponent.EVENT_MODIFIED:
 			if config.plugins.softwaremanager.overwriteConfigFiles.value in ("N", "Y"):
 				self.opkg.write(True and config.plugins.softwaremanager.overwriteConfigFiles.value)
 			else:
-				self.session.openWithCallback(
-					self.modificationCallback,
-					MessageBox,
-					_("Configuration file '%s' has been modified since it was installed, would you like to keep the modified version?") % parameter
-				)
-		elif event == OpkgComponent.EVENT_ERROR:
-			self.errorCount += 1
-		elif event == OpkgComponent.EVENT_DONE:
+				self.session.openWithCallback(modificationCallback, MessageBox, _("Configuration file '%s' has been modified since it was installed, would you like to keep the modified version?") % parameter)
+		elif event in (OpkgComponent.EVENT_DONE, OpkgComponent.EVENT_ERROR):
 			if self.updateFlag:
 				self.updateFlag = False
 				self.opkg.startCmd(OpkgComponent.CMD_UPGRADE_LIST)
@@ -502,83 +461,79 @@ class RunSoftwareUpdate(Screen):
 					self.opkg.startCmd(OpkgComponent.CMD_UPGRADE, args={"testMode": False})
 				else:
 					self.activity = -1
-					self["update"].appendText("%s\n\n%s" % (_("No updates available."), _("Press OK on your remote control to continue.")))
+					self["update"].appendText(f"{_("No updates available.")}\n\n{_("Press OK on your remote control to continue.")}")
 			else:
-				if self.errorCount == 0:
-					self["update"].appendText("\n%s\n\n" % _("Update completed."))
-					self["update"].appendText("%s\n" % ngettext("%d package was identified for upgrade.", "%d packages were identified for upgrade.", self.packageTotal) % self.packageTotal)
-					self["update"].appendText("%s\n" % ngettext("%d package was downloaded.", "%d packages were downloaded.", self.downloadCount) % self.downloadCount)
-					self["update"].appendText("%s\n" % ngettext("%d feed catalog package was updated.", "%d feed catalog packages were updated.", self.updateCount) % self.updateCount)
-					self["update"].appendText("%s\n" % ngettext("%d package was installed.", "%d packages were installed.", self.installCount) % self.installCount)
-					self["update"].appendText("%s\n" % ngettext("%d package was removed.", "%d packages were removed.", self.removeCount) % self.removeCount)
-					self["update"].appendText("%s\n" % ngettext("%d package was upgraded.", "%d packages were upgraded.", self.upgradeCount) % self.upgradeCount)
-					self["update"].appendText("%s\n" % ngettext("%d package was configured.", "%d packages were configured.", self.configureCount) % self.configureCount)
-					if self.deselectCount:
-						self["update"].appendText("%s\n" % ngettext("%d package was deselected.", "%d packages were deselected.", self.deselectCount) % self.deselectCount)
-						self["update"].appendText("\n%s\n" % _("Deselected packages usually occur because those packaged are incompatible with existing packages.  While this is mostly harmless it is possible that your %s %s may experience issues.") % getBoxDisplayName())
-				else:
-					error = _("Your receiver might be unusable now.  Please consult the manual for further assistance before rebooting your %s %s.") % getBoxDisplayName()
-					if self.upgradeCount == 0:
-						error = _("No updates were available.  Please try again later.")
-					self["update"].appendText("%s: %s\n" % (_("Error"), error))
+				self["update"].appendText(f"\n{_("Update completed.")}\n\n")
+				self["update"].appendText(f"{ngettext("%d package was identified for upgrade.", "%d packages were identified for upgrade.", self.packageTotal) % self.packageTotal}\n")
+				self["update"].appendText(f"{ngettext("%d package was downloaded.", "%d packages were downloaded.", self.downloadCount) % self.downloadCount}\n")
+				self["update"].appendText(f"{ngettext("%d feed catalog package was updated.", "%d feed catalog packages were updated.", self.updateCount) % self.updateCount}\n")
+				self["update"].appendText(f"{ngettext("%d package was installed.", "%d packages were installed.", self.installCount) % self.installCount}\n")
+				self["update"].appendText(f"{ngettext("%d package was removed.", "%d packages were removed.", self.removeCount) % self.removeCount}\n")
+				self["update"].appendText(f"{ngettext("%d package was upgraded.", "%d packages were upgraded.", self.upgradeCount) % self.upgradeCount}\n")
+				self["update"].appendText(f"{ngettext("%d package was configured.", "%d packages were configured.", self.configureCount) % self.configureCount}\n")
+				if self.deselectCount:
+					self["update"].appendText(f"{ngettext("%d package was deselected.", "%d packages were deselected.", self.deselectCount) % self.deselectCount}\n")
+					self["update"].appendText(f"\n{_("Deselected packages usually occur because those packaged are incompatible with existing packages. While this is mostly harmless it is possible that your %s %s may experience issues.") % getBoxDisplayName()}\n")
+				if event == OpkgComponent.EVENT_ERROR:
+					self["update"].appendText(f"\n\n{_("Error")}:\n{_("Your receiver might be now be unstable. Please consult the manual for further assistance before rebooting your %s %s.") % getBoxDisplayName()}\n")
 				self.activity = -1
-				self["update"].appendText("\n%s" % _("Press OK on your remote control to continue."))
+				self["update"].appendText(f"\n{_("Press OK on your remote control to continue.")}")
 
-	def modificationCallback(self, answer):
-		self.opkg.write("N" if answer else "Y")
+	def layoutFinished(self):
+		self.opkg.startCmd(OpkgComponent.CMD_UPDATE)
+		self.timer.start(25, True)
+
+	# def keyCancel(self):
+	# 	def keyCancelCallback(answer):
+	# 		if answer:
+	# 			self.session.open(TryQuitMainloop, retvalue=QUIT_REBOOT)
+	# 		self.close()
+
+	# 	if self.opkg.isRunning():
+	# 		self.opkg.stop()
+	# 	self.opkg.removeCallback(self.opkgCallback)
+	# 	if self.upgradeCount != 0:
+	# 		self.session.openWithCallback(keyCancelCallback, MessageBox, f"{_("Upgrade finished.")} {_("Do you want to reboot your %s %s?") % getBoxDisplayName()}")
+	# 	else:
+	# 		self.close()
 
 	def keyCancel(self):
+		def keyCancelCallback(result=None):
+			def rebootCallback(answer):
+				if answer:
+					self.session.open(TryQuitMainloop, retvalue=QUIT_REBOOT)
+				self.close()
+
+			self.session.openWithCallback(rebootCallback, MessageBox, f"{_("Upgrade finished.")} {_("Do you want to reboot your %s %s?") % getBoxDisplayName()}")
+
 		if self.opkg.isRunning():
 			self.opkg.stop()
 		self.opkg.removeCallback(self.opkgCallback)
-		if self.upgradeCount != 0 and self.errorCount == 0:
-			self.restoreMetrixHD()
+		if config.skin.primary_skin.value == "MetrixHD/skin.MySkin.xml" and self.metrixUpdated:   # TODO: move this to Metrix Plugin.
+			try:
+				if not exists("/usr/share/enigma2/MetrixHD/skin.MySkin.xml"):
+					from Plugins.SystemPlugins.SoftwareManager.BackupRestore import RestoreMyMetrixHD
+					self.session.openWithCallback(keyCancelCallback, RestoreMyMetrixHD)
+					return
+				elif config.plugins.MyMetrixLiteOther.EHDenabled.value != "0":
+					from Plugins.Extensions.MyMetrixLite.ActivateSkinSettings import ActivateSkinSettings
+					ActivateSkinSettings().RefreshIcons()
+			except Exception:
+				pass
+		if self.upgradeCount != 0:
+			keyCancelCallback()
 		else:
 			self.close()
 
-	def keyCancelCallback(self, answer):
-		if answer:
-			self.session.open(TryQuitMainloop, retvalue=QUIT_REBOOT)
-		self.close()
-
-	def top(self):
-		self["update"].moveTop()
-
-	def pageUp(self):
-		self["update"].pageUp()
-
-	def pageDown(self):
-		self["update"].pageDown()
-
-	def bottom(self):
-		self["update"].moveBottom()
-
 	def createSummary(self):
 		return RunSoftwareUpdateSummary
-
-	def restoreMetrixHD(self):  # TODO: call this only after metrix update / move this to Metrix Plugin
-		try:
-			if config.skin.primary_skin.value == "MetrixHD/skin.MySkin.xml":
-				if not exists("/usr/share/enigma2/MetrixHD/skin.MySkin.xml"):
-					from Plugins.SystemPlugins.SoftwareManager.BackupRestore import RestoreMyMetrixHD
-					self.session.openWithCallback(self.restoreMetrixHDCallback, RestoreMyMetrixHD)
-					return
-				elif config.plugins.MyMetrixLiteOther.EHDenabled.value != '0':
-					from Plugins.Extensions.MyMetrixLite.ActivateSkinSettings import ActivateSkinSettings
-					ActivateSkinSettings().RefreshIcons()
-		except:
-			pass
-		self.restoreMetrixHDCallback()
-
-	def restoreMetrixHDCallback(self, ret=None):
-		self.session.openWithCallback(self.keyCancelCallback, MessageBox, _("Upgrade finished.") + " " + _("Do you want to reboot your %s %s?") % getBoxDisplayName())
 
 
 class RunSoftwareUpdateSummary(ScreenSummary):
 	def __init__(self, session, parent):
 		ScreenSummary.__init__(self, session, parent=parent)
-		self["entry"] = StaticText("")  # Use the same widget as the Setup Summary screen so the screens can be shared.
-		self["value"] = StaticText("")  # Use the same widget as the Setup Summary screen so the screens can be shared.
+		self["entry"] = StaticText()  # Use the same widget as the Setup Summary screen so the screens can be shared.
+		self["value"] = StaticText()  # Use the same widget as the Setup Summary screen so the screens can be shared.
 		self["activity"] = Slider(0, 100)
 		if self.addWatcher not in self.onShow:
 			self.onShow.append(self.addWatcher)

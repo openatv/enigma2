@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-18 15:15+0000\n"
-"PO-Revision-Date: 2024-05-09 13:55+0000\n"
+"POT-Creation-Date: 2024-05-24 20:26+0000\n"
+"PO-Revision-Date: 2024-05-26 14:09+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
 "Language: ru\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.5.4-rc\n"
+"X-Generator: Weblate 5.6-dev\n"
 "X-Poedit-SourceCharset: iso-8859-5\n"
 
 msgid ""
@@ -1802,9 +1802,6 @@ msgstr "Имидж openATV"
 msgid "About to start"
 msgstr "Начать"
 
-msgid "About..."
-msgstr "О программе..."
-
 msgid "Access point"
 msgstr "Точка доступа"
 
@@ -2074,9 +2071,6 @@ msgstr "Дополнительные опции мотора позволяют 
 
 msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move to another satellite."
 msgstr "Дополнительные опции мотора позволяют ввести данные из спецификации мотора, чтобы enigma могла рассчитать, сколько времени потребуется для перехода на другой спутник."
-
-msgid "Adjust 3D settings"
-msgstr "Настройте параметры 3D"
 
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr "Настройте параметры цвета так, чтобы все оттенки цветов были максимально видны, насколько это возможно. Если Вы довольны результатом, нажмите кнопку 'ОК', чтобы закрыть настройки видео, или используйте цифровые клавиши для выбора других тестов экрана ."
@@ -2866,9 +2860,6 @@ msgstr "Рез.копирование"
 msgid "Backup Date: %s\n"
 msgstr "Дата копии %s\n"
 
-msgid "Backup Image"
-msgstr "Резервное копирование"
-
 msgid "Backup Location"
 msgstr "Место сохранения"
 
@@ -2968,7 +2959,7 @@ msgid "Base time"
 msgstr "Базовое время"
 
 msgid "Base transparency for OpenOpera web browser."
-msgstr "Базовая прозрачность для веб-браузера OpenOpera"
+msgstr "Базовая прозрачность для веб-браузера OpenOpera."
 
 msgid "Base transparency for teletext, more options are available within teletext screen."
 msgstr "При выборе прозрачности для телетекста будет больше вариантов вывода телетекста."
@@ -2986,7 +2977,7 @@ msgid "Basque"
 msgstr "Баскский"
 
 msgid "Before changing these settings try to disable any overscan settings on th TV / display screen. To calibrate the On-Screen-Display (OSD) adjust the position and size values until the red box is *just* visible and touches the edges of the screen."
-msgstr ""
+msgstr "Прежде чем изменять эти настройки, попробуйте отключить любые настройки развертки на экране телевизора/дисплея. Для калибровки экранного меню (OSD) отрегулируйте значения положения и размера так, чтобы красная рамка *только* была видна и касалась краёв экрана."
 
 msgid "Begin time"
 msgstr "Время начала"
@@ -4846,6 +4837,9 @@ msgstr "Информация о подключении"
 msgid "Console"
 msgstr "Консоль"
 
+msgid "Console Actions"
+msgstr "Действия консоли"
+
 msgid "Console Network Packages"
 msgstr "Консольные сетевые пакеты"
 
@@ -6556,7 +6550,7 @@ msgstr "Загрузка"
 msgid "Downloading Image"
 msgstr "Загрузка имиджа"
 
-msgid "Downloading latest update list.  Please wait..."
+msgid "Downloading latest update list. Please wait..."
 msgstr "Скачивание последнего списка обновлений. Пожалуйста подождите..."
 
 msgid "Downloading plugin information. Please wait..."
@@ -7067,9 +7061,6 @@ msgstr "Включите отображение всех параметров tr
 msgid "Enable to display setup entries alphabetically."
 msgstr "Включите, чтобы отображать записи настройки в алфавитном порядке."
 
-msgid "Enable to display the Extension Menu screen entries alphabetically."
-msgstr "Включите, чтобы отображать пункты меню 'Расширение' в алфавитном порядке."
-
 msgid "Enable to display the current value of the slider at end of the slider bar."
 msgstr "Включить текущее значение ползунка в конце ползунка."
 
@@ -7164,21 +7155,6 @@ msgstr "Конфигурация центра фильмов"
 
 msgid "Enigma2 (re)starts"
 msgstr "Enigma2 (пере)запусков"
-
-msgid ""
-"Enigma2 Skinselector\n"
-"\n"
-"If you experience any problems please contact\n"
-"stephan@reichholf.net\n"
-"\n"
-"© 2006 - Stephan Reichholf"
-msgstr ""
-"Enigma2 селектор скинов\n"
-"\n"
-"При возникновении проблем пожалуйста сообщите\n"
-"stephan@reichholf.net\n"
-"\n"
-"© 2006 - Stephan Reichholf"
 
 msgid "Enigma2 debug level"
 msgstr "Уровень отладки Enigma2"
@@ -8487,13 +8463,6 @@ msgstr "Версия GStreamer"
 msgid "GUI Skin *"
 msgstr "Скин графического интерфейса *"
 
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to Restart the GUI now?"
-msgstr ""
-"Для применения нового скина требуется перезагрузка графического интерфейса \n"
-"Вы хотите перезапустить графический интерфейс сейчас?"
-
 msgid "Gabon"
 msgstr "Габон"
 
@@ -8989,6 +8958,9 @@ msgstr "Скрыть имя сервера softcam"
 
 msgid "Hide the InfoBar"
 msgstr "Затухание инфобара при исчезании"
+
+msgid "Hide this screen"
+msgstr "Скрыть этот экран"
 
 msgid "Hide zap errors"
 msgstr "Скрыть ошибки переключения каналов"
@@ -10983,17 +10955,11 @@ msgstr "Мобильная сеть"
 msgid "Mode"
 msgstr "Режим"
 
-msgid "Mode 1"
-msgstr "Режим 1"
-
 msgid "Mode 12: Supports PiP but Kodi may not work"
 msgstr "Режим 12: поддерживает PiP, но Kodi может не работать"
 
 msgid "Mode 1: Supports Kodi but PiP may not work"
 msgstr "Режим 1: поддерживает Kodi, но PiP может не работать"
-
-msgid "Mode 2"
-msgstr "Режим 2"
 
 msgid "Mode for autorestore"
 msgstr "Режим для автовосстановления"
@@ -11393,7 +11359,7 @@ msgid "Mozambique"
 msgstr "Мозамбик"
 
 msgid "Multi"
-msgstr ""
+msgstr "Мульти"
 
 msgid "Multi EPG"
 msgstr "Мульти ТВ-гид"
@@ -12265,6 +12231,9 @@ msgstr "Настройки 3D"
 msgid "OSD Calibration"
 msgstr "Настройки OSD"
 
+msgid "OSD Calibration Settings"
+msgstr "Настройки калибровки экранного меню"
+
 msgid "OSD Settings"
 msgstr "Общие настройки"
 
@@ -12275,7 +12244,7 @@ msgid "OSD name request"
 msgstr "Запрос OSD имени"
 
 msgid "OSD visibility"
-msgstr ""
+msgstr "Видимость экранного меню"
 
 msgid "OTT Model"
 msgstr "ОТТ-модель"
@@ -13519,9 +13488,6 @@ msgstr "Нажмите OK для выбора MultiBoot."
 
 msgid "Press OK on your remote control to continue."
 msgstr "Нажмите OK, чтобы продолжить."
-
-msgid "Press OK to activate the selected skin."
-msgstr "Нажмите OK для активации выбранного скина."
 
 msgid "Press OK to activate the settings."
 msgstr "Нажмите OK, для активации установок."
@@ -15680,9 +15646,6 @@ msgstr "Выбор источника обновления"
 msgid "Select Upgrade Source To Edit"
 msgstr "Выбор источника для редактирования"
 
-msgid "Select Your Skin"
-msgstr "Выберите свой скин"
-
 msgid "Select a Softcam from the available list as the default for AutoCam."
 msgstr "Выберите Softcam из доступного списка, который будет использоваться по умолчанию для AutoCam."
 
@@ -16138,6 +16101,9 @@ msgstr "Выберите смещённый набор символов толь
 
 msgid "Select the sort order for the file lines:"
 msgstr "Выберите порядок сортировки строк файла:"
+
+msgid "Select the sort order of the Extension Menu entries."
+msgstr "Выберите порядок сортировки записей меню расширений."
 
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Выберите порядок сортировки пунктов меню обозревателя подключаемых модулей. Определяемый пользователем также позволяет скрывать пункты меню."
@@ -17810,9 +17776,6 @@ msgstr "Размер по возрастанию"
 msgid "Size descending"
 msgstr "Размер по убыванию"
 
-msgid "Skin"
-msgstr "Сменить скин"
-
 msgid "Skin & Resolution"
 msgstr "Скин и разрешение"
 
@@ -17830,9 +17793,6 @@ msgstr "Выбор скина"
 
 msgid "SkinSelection"
 msgstr "Выбор скина"
-
-msgid "SkinSelector"
-msgstr "Плагин SkinSelector"
 
 msgid "Skip back"
 msgstr "Перейти назад"
@@ -18940,7 +18900,7 @@ msgid "TMDB Search"
 msgstr "Поиск по TMDB"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Коррекция перевода Monja 09.05.2024"
+msgstr "Коррекция перевода Monja 25.05.2024"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл слишком большой для ISO9660 уровень 1!"
@@ -19572,7 +19532,7 @@ msgstr "Произошла ошибка при загрузке сведений
 msgid "There was an error downloading the region list"
 msgstr "При загрузке списка регионов произошла ошибка"
 
-msgid "There was an error downloading the update list.  Please try again."
+msgid "There was an error downloading the update list. Please try again."
 msgstr "При загрузке списка обновлений произошла ошибка. Попробуйте ещё раз."
 
 msgid "There was an error while trying to login."
@@ -19790,7 +19750,7 @@ msgid "This option lets you adjust the 3D depth of the OSD."
 msgstr "Здесь можете настроить 3D глубину"
 
 msgid "This option lets you adjust the transparency of the OSD."
-msgstr "Здесь можете настроить прозрачность пользовательского интерфейса"
+msgstr "Здесь можете настроить прозрачность пользовательского интерфейса."
 
 msgid "This option lets you choose the 3D mode of the OSD."
 msgstr "Эта опция позволяет режим 3D"
@@ -20574,9 +20534,6 @@ msgstr "UBINIZE"
 msgid "UHD Test"
 msgstr "Тест UHD"
 
-msgid "UI 3D setup"
-msgstr "Настройка пользовательского интерфейса 3D"
-
 msgid "UP80  (keymap.u80)"
 msgstr "UP80  (keymap.u80)"
 
@@ -21050,28 +21007,28 @@ msgid "Use small screen"
 msgstr "Используйте мини окно"
 
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
-msgstr ""
+msgstr "Используйте кнопки 'ВЛЕВО'/'ВПРАВО' на пульте дистанционного управления, чтобы отрегулировать высоту экранного меню. Кнопка 'ВЛЕВО' уменьшает высоту, 'ВПРАВО' увеличивает высоту."
 
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the width of the OSD. LEFT button decreases the width, RIGHT increases the width."
-msgstr ""
+msgstr "Используйте кнопки 'ВЛЕВО'/'ВПРАВО' на пульте дистанционного управления, чтобы отрегулировать ширину экранного меню. Кнопка 'ВЛЕВО' уменьшает ширину, 'ВПРАВО' увеличивает ширину."
 
 msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD bottom."
-msgstr "Используйте кнопки Влево/Вправо на пульте дистанционного управления, чтобы переместить пользовательский интерфейс вниз"
+msgstr "Используйте кнопки 'Влево'/'Вправо' на пульте дистанционного управления, чтобы переместить пользовательский интерфейс вниз."
 
 msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD left."
-msgstr "Используйте кнопки Влево/Вправо на пульте дистанционного управления, чтобы переместить пользовательский интерфейс влево"
+msgstr "Используйте кнопки 'Влево'/'Вправо' на пульте дистанционного управления, чтобы переместить пользовательский интерфейс влево."
 
 msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD left/right."
-msgstr "Используйте кнопки влево/вправо для перемещения GUI влево и вправо"
+msgstr "Используйте кнопки 'ВЛЕВО'/'ВПРАВО' для перемещения GUI влево и вправо."
 
 msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD right."
-msgstr "Используйте кнопки Влево/Вправо на пульте дистанционного управления, чтобы переместить пользовательский интерфейс вправо"
+msgstr "Используйте кнопки 'ВЛЕВО'/'ВПРАВО' на пульте дистанционного управления, чтобы переместить пользовательский интерфейс вправо."
 
 msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD top."
-msgstr "Используйте кнопки Влево/Вправо на пульте дистанционного управления, чтобы переместить пользовательский интерфейс вверх"
+msgstr "Используйте кнопки 'ВЛЕВО'/'ВПРАВО' на пульте дистанционного управления, чтобы переместить пользовательский интерфейс вверх."
 
 msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD up/down."
-msgstr "Используйте кнопки влево/вправо для перемещения GUI вверх и вниз"
+msgstr "Используйте кнопки 'ВЛЕВО'/'ВПРАВО' для перемещения GUI вверх и вниз."
 
 msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
 msgstr "Используйте мастера настроек сети. Мастер настройки поможет Вам настроить Вашу сеть"
@@ -21986,7 +21943,7 @@ msgid "When the receiver wakes from standby or deep standby it will send a comma
 msgstr "Когда ресивер выходит из режима ожидания или глубокого ожидания, он отправляет команду на телевизор, чтобы вывести его из режима ожидания."
 
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
-msgstr ""
+msgstr "Когда красная рамка станет правильно видна, нажмите ЗЕЛЁНУЮ кнопку, чтобы сохранить настройки и выйти."
 
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
 msgstr "При отрицательном значении, система будет сканировать транспондер в фоновом режиме на предмет изменений и сохранять их. Выберите 'Да', если только абсолютно уверены, что делаете."
@@ -22458,7 +22415,7 @@ msgid "Your receiver does not have an Internet connection"
 msgstr "Ваш ресивер не имеет подключения к Интернету"
 
 #, python-format
-msgid "Your receiver might be unusable now.  Please consult the manual for further assistance before rebooting your %s %s."
+msgid "Your receiver might be now be unstable. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "Возможно, сейчас Ваш ресивер непригоден для использования. Перед перезагрузкой %s %s обратитесь к руководству за дополнительной помощью."
 
 msgid "Youth"
@@ -23627,6 +23584,61 @@ msgstr "Да (оставить фиды)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "About..."
+#~ msgstr "О программе..."
+
+#~ msgid "Adjust 3D settings"
+#~ msgstr "Настройте параметры 3D"
+
+#~ msgid "Backup Image"
+#~ msgstr "Резервное копирование"
+
+#~ msgid "Enable to display the Extension Menu screen entries alphabetically."
+#~ msgstr "Включите, чтобы отображать пункты меню 'Расширение' в алфавитном порядке."
+
+#~ msgid ""
+#~ "Enigma2 Skinselector\n"
+#~ "\n"
+#~ "If you experience any problems please contact\n"
+#~ "stephan@reichholf.net\n"
+#~ "\n"
+#~ "© 2006 - Stephan Reichholf"
+#~ msgstr ""
+#~ "Enigma2 селектор скинов\n"
+#~ "\n"
+#~ "При возникновении проблем пожалуйста сообщите\n"
+#~ "stephan@reichholf.net\n"
+#~ "\n"
+#~ "© 2006 - Stephan Reichholf"
+
+#~ msgid ""
+#~ "GUI needs a restart to apply a new skin\n"
+#~ "Do you want to Restart the GUI now?"
+#~ msgstr ""
+#~ "Для применения нового скина требуется перезагрузка графического интерфейса \n"
+#~ "Вы хотите перезапустить графический интерфейс сейчас?"
+
+#~ msgid "Mode 1"
+#~ msgstr "Режим 1"
+
+#~ msgid "Mode 2"
+#~ msgstr "Режим 2"
+
+#~ msgid "Press OK to activate the selected skin."
+#~ msgstr "Нажмите OK для активации выбранного скина."
+
+#~ msgid "Select Your Skin"
+#~ msgstr "Выберите свой скин"
+
+#~ msgid "Skin"
+#~ msgstr "Сменить скин"
+
+#~ msgid "SkinSelector"
+#~ msgstr "Плагин SkinSelector"
+
+#~ msgid "UI 3D setup"
+#~ msgstr "Настройка пользовательского интерфейса 3D"
 
 #~ msgid "Defaults"
 #~ msgstr "Сброс"
