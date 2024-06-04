@@ -1,35 +1,26 @@
 from re import search, sub
 from os.path import exists, isdir, realpath
 
-from enigma import BT_SCALE, eEnv, eListboxPythonMultiContent, gFont, pNavigation
+from enigma import BT_SCALE, eEnv, eListboxPythonMultiContent, eTimer, gFont, pNavigation
 
 import NavigationInstance
 from skin import getSkinFactor
-from Components.ActionMap import HelpableActionMap
+from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
+from Components.config import config
 from Components.Console import Console
 from Components.Label import Label
 from Components.MenuList import MenuList
 from Components.MultiContent import MultiContentEntryPixmapAlphaBlend, MultiContentEntryText
 from Components.Network import iNetwork
-from Components.NimManager import nimmanager
 from Components.Sources.StaticText import StaticText
+from Components.Sources.List import List
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, BackupSelection, RestoreScreen, getBackupFilename, getBackupPath, getOldBackupPath
-from Screens.CCcamInfo import CCcamInfoMain
-from Screens.HarddiskSetup import HarddiskConvertExt4Selection, HarddiskFsckSelection, HarddiskSelection
-from Screens.MountManager import HddMount
-from Screens.NetworkSetup import *
-from Screens.OScamInfo import OSCamInfo
+from Screens.MessageBox import MessageBox
 from Screens.ParentalControlSetup import ProtectedScreen
-from Screens.PluginBrowser import PackageAction, PluginBrowser
-from Screens.RestartNetwork import RestartNetwork
-from Screens.Satconfig import NimSelection
-from Screens.ScanSetup import ScanSimple, ScanSetup
+from Screens.PluginBrowser import PackageAction
 from Screens.Screen import Screen
 from Screens.Setup import Setup
-from Screens.SkinSelection import SkinSelection
-from Screens.SoftcamSetup import SoftcamSetup
-from Screens.VideoMode import VideoSetup
 from Tools.Directories import isPluginInstalled
 from Tools.LoadPixmap import LoadPixmap
 
@@ -48,8 +39,8 @@ def isFileSystemSupported(filesystem):
 			if fs.strip().endswith(filesystem):
 				return True
 		return False
-	except Exception as err:
-		print("[Harddisk] Failed to read /proc/filesystems: %s" % str(err))
+	except OSError as err:
+		print(f"[Harddisk] Failed to read /proc/filesystems: {str(err)}")
 
 
 class QuickMenu(Screen, ProtectedScreen):
@@ -71,7 +62,7 @@ class QuickMenu(Screen, ProtectedScreen):
 	</screen>"""
 
 	def __init__(self, session):
-		Screen.__init__(self, session)
+		Screen.__init__(self, session, enableHelp=True)
 		if config.ParentalControl.configured.value:
 			ProtectedScreen.__init__(self)
 		Screen.setTitle(self, _("Quick Launch Menu"))
@@ -91,14 +82,25 @@ class QuickMenu(Screen, ProtectedScreen):
 		self.onChangedEntry = []
 		self["list"].onSelectionChanged.append(self.selectionChanged)
 		self["sublist"].onSelectionChanged.append(self.selectionSubChanged)
-		self["NavigationActions"] = HelpableActionMap(self, ["OkCancelActions", "NavigationActions"], {
+		helpStr = _("Direct menu item selection")
+		self["NavigationActions"] = HelpableNumberActionMap(self, ["OkCancelActions", "NavigationActions", "NumberActions"], {
 			"ok": self.ok,
 			"cancel": self.keyred,
 			"left": self.goLeft,
 			"right": self.goRight,
 			"up": self.goUp,
 			"down": self.goDown,
-		}, prio=-1)
+			"1": (self.keyNumberGlobal, helpStr),
+			"2": (self.keyNumberGlobal, helpStr),
+			"3": (self.keyNumberGlobal, helpStr),
+			"4": (self.keyNumberGlobal, helpStr),
+			"5": (self.keyNumberGlobal, helpStr),
+			"6": (self.keyNumberGlobal, helpStr),
+			"7": (self.keyNumberGlobal, helpStr),
+			"8": (self.keyNumberGlobal, helpStr),
+			"9": (self.keyNumberGlobal, helpStr),
+			"0": (self.keyNumberGlobal, helpStr)
+		}, prio=-1, description=_("Menu Common Actions"))
 		self["ColorActions"] = HelpableActionMap(self, "ColorActions", {
 			"red": self.keyred,
 			"green": self.keygreen,
@@ -108,6 +110,12 @@ class QuickMenu(Screen, ProtectedScreen):
 		self.selectedList = self["list"]
 		self.selectionChanged()
 		self.onLayoutFinish.append(self.layoutFinished)
+
+	def keyNumberGlobal(self, number):  # Run a numbered shortcut.
+		count = self.selectedList.count()
+		if number and number <= count:
+			self.selectedList.setCurrentIndex(number - 1)
+			self.ok()
 
 	def isProtected(self):
 		return config.ParentalControl.setuppinactive.value and not config.ParentalControl.config_sections.main_menu.value and config.ParentalControl.config_sections.quickmenu.value
@@ -349,19 +357,19 @@ class QuickMenu(Screen, ProtectedScreen):
 			from Plugins.SystemPlugins.NetworkWizard.NetworkWizard import NetworkWizard
 			self.session.open(NetworkWizard)
 		elif item == _("Network Adapter Selection"):
-			self.session.open(NetworkAdapterSelection)
+			self.openScreen("NetworkSetup", screenName="NetworkAdapterSelection")
 		elif item == _("Network Interface"):
-			self.session.open(AdapterSetup, self.activeInterface)
+			self.openScreen("NetworkSetup", screenName="AdapterSetup", networkinfo=self.activeInterface)
 		elif item == _("Network Restart"):
-			self.session.open(RestartNetwork)
+			self.openScreen("RestartNetwork")
 		elif item == _("Network Services"):
-			self.session.open(NetworkServicesSetup)
+			self.openScreen("NetworkSetup", screenName="NetworkServicesSetup")
 		elif item == _("MiniDLNA"):
-			self.session.open(NetworkMiniDLNASetup)
+			self.openScreen("NetworkSetup", screenName="NetworkMiniDLNASetup")
 		elif item == _("Inadyn"):
-			self.session.open(NetworkInadynSetup)
+			self.openScreen("NetworkSetup", screenName="NetworkInadynSetup")
 		elif item == _("uShare"):
-			self.session.open(NetworkuShareSetup)
+			self.openScreen("NetworkSetup", screenName="NetworkuShareSetup")
 # ####### Select System Setup Menu ##############################
 		elif item == _("Customize"):
 			self.openSetup("Usage")
@@ -370,7 +378,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		elif item == _("Display Settings"):
 			self.openSetup("Display")
 		elif item == _("Skin Settings"):
-			self.session.open(SkinSelection)
+			self.openScreen("SkinSelection")
 		elif item == _("OSD Settings"):
 			self.openSetup("UserInterface")
 		elif item == _("Channel Selection"):
@@ -389,19 +397,19 @@ class QuickMenu(Screen, ProtectedScreen):
 			plugin_path_networkbrowser = eEnv.resolve("${libdir}/enigma2/python/Plugins/SystemPlugins/NetworkBrowser")
 			self.session.open(NetworkBrowser, None, plugin_path_networkbrowser)
 		elif item == _("Device Manager"):
-			self.session.open(HddMount)
+			self.openScreen("MountManager", screenName="HddMount")
 # ####### Select Softcam Menu ##############################
 		elif item == _("Softcam Settings"):
-			self.session.open(SoftcamSetup)
+			self.openScreen("SoftcamSetup")
 		elif item == _("OSCam Information"):
-			self.session.open(OSCamInfo)
+			self.openScreen("OSCamInfo")
 		elif item == _("CCcam Information"):
-			self.session.open(CCcamInfoMain)
+			self.openScreen("CCcamInfo", screenName="CCcamInfoMain")
 		elif item == _("Download Softcams"):
 			self.session.open(PackageAction, PackageAction.MODE_SOFTCAM)
 # ####### Select AV Setup Menu ##############################
 		elif item == _("Video Settings"):
-			self.session.open(VideoSetup)
+			self.openScreen("VideoMode", screenName="VideoSetup")
 		elif item == _("Audio Settings"):
 			self.openSetup("Audio")
 		elif item == _("Auto Language"):
@@ -415,23 +423,21 @@ class QuickMenu(Screen, ProtectedScreen):
 			self.session.open(VideoEnhancementSetup)
 # ####### Select TUNER Setup Menu ##############################
 		elif item == _("Tuner Configuration"):
-			self.session.open(NimSelection)
+			self.openScreen("SatConfig", screenName="NimSelection")
 		elif item == _("Positioner Setup"):
 			from Plugins.SystemPlugins.PositionerSetup.plugin import PositionerMain
 			PositionerMain(self.session)
 		elif item == _("Automatic Scan"):
-			self.session.open(ScanSimple)
+			self.openScreen("ScanSetup", screenName="ScanSimple")
 		elif item == _("Manual Scan"):
-			self.session.open(ScanSetup)
+			self.openScreen("ScanSetup")
 		elif item == _("Sat Finder"):
 			self.SatfinderMain()
 # ####### Select Software Manager Menu ##############################
 		elif item == _("Software Update"):
-			from Screens.SoftwareUpdate import SoftwareUpdate
-			self.session.open(SoftwareUpdate)
+			self.openScreen("SoftwareUpdate")
 		elif item == _("Flash Online"):
-			from Screens.FlashManager import FlashManager
-			self.session.open(FlashManager)
+			self.openScreen("FlashManager")
 		elif item == _("Complete Backup"):
 			self.CompleteBackup()
 		elif item == _("Backup Settings"):
@@ -457,7 +463,7 @@ class QuickMenu(Screen, ProtectedScreen):
 			self.openSetup("SoftwareManager")
 # ####### Select PluginDownloadBrowser Menu ##############################
 		elif item == _("Plugin Browser"):
-			self.session.open(PluginBrowser)
+			self.openScreen("PluginBrowser")
 		elif item == _("Download Plugins"):
 			self.session.open(PackageAction, PackageAction.MODE_INSTALL)
 		elif item == _("Remove Plugins"):
@@ -476,11 +482,11 @@ class QuickMenu(Screen, ProtectedScreen):
 		elif item == _("Harddisk Setup"):
 			self.openSetup("HardDisk")
 		elif item == _("Initialization"):
-			self.session.open(HarddiskSelection)
+			self.openScreen("HarddiskSetup", screenName="HarddiskSelection")
 		elif item == _("File System Check"):
-			self.session.open(HarddiskFsckSelection)
+			self.openScreen("HarddiskSetup", screenName="HarddiskFsckSelection")
 		elif item == _("Convert ext3 to ext4"):
-			self.session.open(HarddiskConvertExt4Selection)
+			self.openScreen("HarddiskSetup", screenName="HarddiskConvertExt4Selection")
 
 # ####### OPEN SETUP MENUS ####################
 	def openSetup(self, dialog):
@@ -529,6 +535,10 @@ class QuickMenu(Screen, ProtectedScreen):
 		else:
 			from Plugins.SystemPlugins.SoftwareManager.ImageBackup import ImageBackup
 			self.session.open(ImageBackup)
+
+	def openScreen(self, screenModule, screenName=None, **kwargs):
+		screenobj = __import__(f"Screens.{screenModule}", globals(), locals(), [screenName or screenModule], 0)
+		self.session.open(getattr(screenobj, screenName or screenModule), **kwargs)
 
 
 # ####### Create MENULIST format #######################
@@ -634,10 +644,10 @@ class QuickMenuDevices(Screen):
 
 	def buildMy_rec(self, device, swapdevices):
 		device2 = sub(r"[\d]", "", device)  # Strip device number.
-		deviceType = realpath("/sys/block/%s/device" % device2)
+		deviceType = realpath(f"/sys/block/{device2}/device")
 		name = "USB: "
 		myPixmap = "/usr/share/enigma2/icons/dev_usbstick.png"
-		with open("/sys/block/%s/device/model" % device2) as fd:
+		with open(f"/sys/block/{device2}/device/model") as fd:
 			model = fd.read()
 			model = str(model).replace("\n", "")
 		des = ""
@@ -671,7 +681,7 @@ class QuickMenuDevices(Screen):
 					size = int(parts[2])
 				else:
 					try:
-						with open("/sys/block/%s/%s/size" % (device2, device)) as fd:
+						with open(f"/sys/block/{device2}/{device}/size") as fd:
 							size = fd.read()
 						size = str(size).replace("\n", "")
 						size = int(size)
@@ -679,9 +689,9 @@ class QuickMenuDevices(Screen):
 					except Exception:
 						size = 0
 				if ((size / 1024) / 1024) > 1:
-					des = "%s: %s %s" % (_("Size"), str((size // 1024) // 1024), _("GB"))
+					des = f"{_("Size")}: {str(size // 1024 // 1024)} {_("GB")}"
 				else:
-					des = "%s: %s %s" % (_("Size"), str(size // 1024), _("MB"))
+					des = f"{_("Size")}: {str(size // 1024)} {_("MB")}"
 		if des != "":
 			if rw.startswith("rw"):
 				rw = " R/W"
@@ -689,6 +699,6 @@ class QuickMenuDevices(Screen):
 				rw = " R/O"
 			else:
 				rw = ""
-			des = "%s\t%s%s\n%s /dev/%s\t%s%s%s" % (des, _("Mount: "), d1, _("Device: "), device, _("Type: "), dtype, rw)
+			des = f"{des}\t{_("Mount: ")}{d1}\n{_("Device: ")} /dev/{device}\t{_("Type: ")}{dtype}{rw}"
 			png = LoadPixmap(myPixmap)
 			self.devicelist.append((name, des, png))
