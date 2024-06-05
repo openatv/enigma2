@@ -313,7 +313,6 @@ class QuickMenu(Screen, ProtectedScreen):
 # ####### Make Selection MAIN MENU LIST ##############################
 # ####################################################################
 
-
 	def okList(self):
 		item = self["list"].getCurrent()[0]
 # ####### Select Network Menu ##############################
@@ -537,8 +536,11 @@ class QuickMenu(Screen, ProtectedScreen):
 			self.session.open(ImageBackup)
 
 	def openScreen(self, screenModule, screenName=None, **kwargs):
-		screenobj = __import__(f"Screens.{screenModule}", globals(), locals(), [screenName or screenModule], 0)
-		self.session.open(getattr(screenobj, screenName or screenModule), **kwargs)
+		try:
+			screenobj = __import__(f"Screens.{screenModule}", None, None, [screenName or screenModule], 0)
+			self.session.open(getattr(screenobj, screenName or screenModule), **kwargs)
+		except (ModuleNotFoundError, AttributeError) as err:
+			print(f"[QuickMenu] Error openScreen: {err}")
 
 
 # ####### Create MENULIST format #######################
