@@ -1132,7 +1132,10 @@ class ConfigSequence(ConfigElement):
 		return self.seperator.join([str(x) for x in value])
 
 	def toDisplayString(self, value):
-		return self.seperator.join([f"{item:0{str(self.blockLen[index])}d}" if self.zeroPad else str(item) for index, item in enumerate(value)])
+		if isinstance(value, list):
+			return self.seperator.join([f"{item:0{str(self.blockLen[index])}d}" if self.zeroPad else str(item) for index, item in enumerate(value)])
+		else:
+			return f"{value:0{str(self.blockLen[0])}d}" if self.zeroPad else str(value)
 
 	def onSelect(self, session):
 		self.hidden = False
