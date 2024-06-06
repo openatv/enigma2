@@ -176,13 +176,6 @@ to generate HTML."""
 		except AttributeError:
 			pass
 
-	def enableAutoNavigation(self, value):
-		try:
-			instance = self.master.master.instance
-			instance.enableAutoNavigation(value)
-		except AttributeError:
-			pass
-
 	def goTop(self):
 		try:
 			instance = self.master.master.instance
