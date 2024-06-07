@@ -61,7 +61,7 @@ to generate HTML."""
 	def selectionEnabled(self, enabled):
 		try:
 			instance = self.master.master.instance
-			instance.selectionEnabled(enabled)
+			instance.setSelectionEnable(enabled)
 		except AttributeError:
 			pass
 
