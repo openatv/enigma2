@@ -9,7 +9,7 @@ from enigma import Misc_Options, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIG
 
 from keyids import KEYIDS
 from skin import parameters
-from Components.config import ConfigBoolean, ConfigClock, ConfigDirectory, ConfigDictionarySet, ConfigFloat, ConfigInteger, ConfigIP, ConfigLocations, ConfigNumber, ConfigSelectionNumber, ConfigPassword, ConfigSelection, ConfigSet, ConfigSlider, ConfigSubsection, ConfigText, ConfigYesNo, NoSave, config
+from Components.config import ConfigBoolean, ConfigClock, ConfigDirectory, ConfigDictionarySet, ConfigFloat, ConfigInteger, ConfigIP, ConfigLocations, ConfigNumber, ConfigSelectionNumber, ConfigPassword, ConfigSequence, ConfigSelection, ConfigSet, ConfigSlider, ConfigSubsection, ConfigText, ConfigYesNo, NoSave, config
 from Components.Harddisk import harddiskmanager
 from Components.NimManager import nimmanager
 from Components.ServiceList import refreshServiceList
@@ -44,7 +44,7 @@ def InitUsageConfig():
 
 	config.misc.usegstplaybin3 = ConfigYesNo(default=False)
 
-	config.misc.spinnerPosition = ConfigText(default="100,100")
+	config.misc.spinnerPosition = ConfigSequence(default=[50, 50], limits=[(0, 1260), (0, 700)], seperator=",")
 
 	config.workaround = ConfigSubsection()
 	config.workaround.blueswitch = ConfigSelection(default=0, choices=[
