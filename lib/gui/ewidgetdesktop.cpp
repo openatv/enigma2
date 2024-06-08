@@ -529,6 +529,10 @@ void eWidgetDesktop::resize(eSize size)
 {
 	m_screen.m_dirty_region = gRegion(eRect(ePoint(0, 0), size));
 	m_screen.m_screen_size = size;
+
+	float scale = size.width() == 1920 ? 1.5 : 1.0;
+	m_screen.m_dc->setSpinnerScale(scale);
+
 #ifdef USE_LIBVUGLES2
 	gPainter painter(m_screen.m_dc);
 	painter.setView(size);

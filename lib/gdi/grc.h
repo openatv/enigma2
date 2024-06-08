@@ -411,6 +411,7 @@ protected:
 	ePtr<gPixmap> m_spinner_saved, m_spinner_temp;
 	ePtr<gPixmap> *m_spinner_pic;
 	eRect m_spinner_pos;
+	eRect m_spinner_pos_original;
 	int m_spinner_num, m_spinner_i;
 
 public:
@@ -432,6 +433,8 @@ public:
 	virtual void disableSpinner();
 	virtual void incrementSpinner();
 	virtual void setSpinner(eRect pos, ePtr<gPixmap> *pic, int len);
+	virtual void setSpinnerScale(float scale);
+
 };
 
 #endif
