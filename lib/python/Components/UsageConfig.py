@@ -1492,7 +1492,7 @@ def InitUsageConfig():
 	])
 	config.subtitles.ttx_subtitle_colors.addNotifier(setTTXSubtitleColors)
 
-	def setTTXSubtitleOriginalPosition(configElement)
+	def setTTXSubtitleOriginalPosition(configElement):
 		eSubtitleSettings.setTTXSubtitleOriginalPosition(configElement.value)
 
 	config.subtitles.ttx_subtitle_original_position = ConfigYesNo(default=False)
