@@ -1588,6 +1588,12 @@ def InitUsageConfig():
 	config.subtitles.subtitle_bad_timing_delay = ConfigSelection(default=0, choices=choiceList)
 	config.subtitles.subtitle_bad_timing_delay.addNotifier(setSubtitleBadTimingDelay)
 
+	def setPangoSubtitleDelay(configElement):
+		eSubtitleSettings.setPangoSubtitleDelay(configElement.value)
+
+	config.subtitles.pango_subtitles_delay = ConfigSelection(default=0, choices=choiceList)
+	config.subtitles.pango_subtitles_delay.addNotifier(setPangoSubtitleDelay)
+
 	def setDVBSubtitleYellow(configElement):
 		eSubtitleSettings.setDVBSubtitleYellow(configElement.value)
 
@@ -1624,9 +1630,11 @@ def InitUsageConfig():
 		eSubtitleSettings.setPangoSubtitleFontWitch(configElement.value)
 
 	config.subtitles.pango_subtitle_fontswitch = ConfigYesNo(default=True)
-	config.subtitles.pango_subtitle_colors.addNotifier(setPangoSubtitleFontWitch)
+	config.subtitles.pango_subtitle_fontswitch.addNotifier(setPangoSubtitleFontWitch)
 
-	config.subtitles.pango_subtitles_delay = ConfigSelection(default=0, choices=choiceList)
+	def setPangoSubtitleFPS(configElement):
+		eSubtitleSettings.setPangoSubtitleFPS(configElement.value)
+
 	config.subtitles.pango_subtitles_fps = ConfigSelection(default=1, choices=[
 		(1, _("Original")),
 		(23976, "23.976"),
@@ -1635,13 +1643,19 @@ def InitUsageConfig():
 		(29970, "29.97"),
 		(30000, "30")
 	])
+	config.subtitles.pango_subtitles_fps.addNotifier(setPangoSubtitleFPS)
 
 	def setPangoSubtitleRemovehi(configElement):
 		eSubtitleSettings.setPangoSubtitleRemovehi(configElement.value)
 
 	config.subtitles.pango_subtitle_removehi = ConfigYesNo(default=False)
 	config.subtitles.pango_subtitle_removehi.addNotifier(setPangoSubtitleRemovehi)
+
+	def setPangoSubtitleAutoRun(configElement):
+		eSubtitleSettings.setPangoSubtitleAutoRun(configElement.value)
+
 	config.subtitles.pango_autoturnon = ConfigYesNo(default=True)
+	config.subtitles.pango_autoturnon.addNotifier(setPangoSubtitleAutoRun)
 
 	config.autolanguage = ConfigSubsection()
 	languageChoiceList = [

@@ -11,6 +11,9 @@ class eSubtitleSettings
         static void setPangoSubtitleRemovehi(bool value) { pango_subtitle_removehi = value; }
         static void setPangoSubtitleFontWitch(bool value) { pango_subtitle_fontswitch = value; }
         static void setPangoSubtitleColors(int value) { pango_subtitle_colors = value; }
+        static void setPangoSubtitleDelay(int value) { pango_subtitles_delay = value; }
+        static void setPangoSubtitleFPS(int value) { pango_subtitles_fps = value; }
+        static void setPangoSubtitleAutoRun(bool value) { pango_autoturnon = value; }
         static void setDVBSubtitleOriginalPosition(int value) { dvb_subtitles_original_position = value; }
         static void setDVBSubtitleBacktrans(int value) { dvb_subtitles_backtrans = value; }
         static void setDVBSubtitleYellow(bool value) { dvb_subtitles_yellow = value; }
@@ -40,6 +43,9 @@ class eSubtitleSettings
         static bool pango_subtitle_removehi;
         static bool pango_subtitle_fontswitch;
         static int pango_subtitle_colors;
+        static int pango_subtitles_delay;
+        static int pango_subtitles_fps;
+        static bool pango_autoturnon;
         static bool colorise_dialogs;
         static int subtitle_noPTSrecordingdelay;
         static int subtitle_bad_timing_delay;

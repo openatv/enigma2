@@ -17,6 +17,9 @@ int eSubtitleSettings::subtitles_backtrans = 255;
 bool eSubtitleSettings::pango_subtitle_removehi = false;
 bool eSubtitleSettings::pango_subtitle_fontswitch = false;
 int eSubtitleSettings::pango_subtitle_colors = 1;
+int eSubtitleSettings::pango_subtitles_delay = 0;
+int eSubtitleSettings::pango_subtitles_fps = 1;
+bool eSubtitleSettings::pango_autoturnon = true;
 int eSubtitleSettings::subtitle_noPTSrecordingdelay = 315000;
 int eSubtitleSettings::subtitle_bad_timing_delay = 0;
 
