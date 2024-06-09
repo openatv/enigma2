@@ -10,7 +10,7 @@ std::map<eSubtitleWidget::subfont_t, eSubtitleWidget::eSubtitleStyle> eSubtitleW
 eSubtitleWidget::eSubtitleWidget(eWidget *parent)
 	: eWidget(parent), m_hide_subtitles_timer(eTimer::create(eApp))
 {
-	setBackgroundColor(gRGB(0,0,0,255));
+	eWidget::setBackgroundColor(gRGB(0,0,0,255));
 	m_page_ok = 0;
 	m_dvb_page_ok = 0;
 	m_pango_page_ok = 0;
@@ -160,7 +160,7 @@ void eSubtitleWidget::setPage(const ePangoSubtitlePage &p)
 	
 	elements = m_pango_page.m_elements.size();
 
-	if(eSubtitleSettings::subtitle_rewrap | eSubtitleSettings::colorise_dialogs)
+	if(eSubtitleSettings::subtitle_rewrap || eSubtitleSettings::colorise_dialogs)
 	{
 		size_t ix, colorise_dialogs_current = 0;
 		std::vector<std::string> colorise_dialogs_colours;

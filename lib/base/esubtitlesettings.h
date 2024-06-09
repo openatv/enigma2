@@ -4,7 +4,7 @@
 class eSubtitleSettings
 {
     public:
-    	eSubtitleSettings();
+    	eSubtitleSettings() = default;
 
         static void setTTXSubtitleOriginalPosition(bool value) { ttx_subtitle_original_position = value; }
         static void setTTXSubtitleColors(int value) { ttx_subtitle_colors = value; }
