@@ -1,90 +1,104 @@
-from re import search, sub
-from os.path import exists, isdir, join, realpath
+from os.path import exists, isdir, join
 
-from enigma import BT_SCALE, eEnv, eListboxPythonMultiContent, eTimer, gFont, pNavigation
+from enigma import pNavigation
 
 import NavigationInstance
-from skin import getSkinFactor
 from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
 from Components.config import config
-from Components.Console import Console
 from Components.Label import Label
-from Components.MenuList import MenuList
-from Components.MultiContent import MultiContentEntryPixmapAlphaBlend, MultiContentEntryText
 from Components.Network import iNetwork
-from Components.Sources.StaticText import StaticText
-from Components.Sources.List import List
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
+from Components.Sources.List import List
+from Components.Sources.StaticText import StaticText
 from Plugins.SystemPlugins.SoftwareManager.BackupRestore import BackupScreen, BackupSelection, RestoreScreen, getBackupFilename, getBackupPath, getOldBackupPath
 from Screens.MessageBox import MessageBox
 from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.PluginBrowser import PackageAction
 from Screens.Screen import Screen
 from Screens.Setup import Setup
-from Tools.Directories import isPluginInstalled, fileReadLines
+from Tools.Directories import SCOPE_PLUGINS, SCOPE_SKIN, fileReadLines, isPluginInstalled, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 
 MODULE_NAME = __name__.split(".")[-1]
 
-NETWORKBROWSER = isPluginInstalled("NetworkBrowser")
 AUDIOSYNC = isPluginInstalled("AudioSync")
-VIDEOENH = isPluginInstalled("VideoEnhancement") and exists("/proc/stb/vmpeg/0/pep_apply")
+NETWORKBROWSER = isPluginInstalled("NetworkBrowser")
 POSSETUP = isPluginInstalled("PositionerSetup")
 SATFINDER = isPluginInstalled("Satfinder")
-
-
-def isFileSystemSupported(filesystem):
-	try:
-		for fs in open("/proc/filesystems"):
-			if fs.strip().endswith(filesystem):
-				return True
-		return False
-	except OSError as err:
-		print(f"[Harddisk] Failed to read /proc/filesystems: {str(err)}")
+VIDEOENH = isPluginInstalled("VideoEnhancement") and exists("/proc/stb/vmpeg/0/pep_apply")
 
 
 class QuickMenu(Screen, ProtectedScreen):
 	skin = """
-	<screen name="QuickMenu" position="center,center" size="1180,600" backgroundColor="black" flags="wfBorder" resolution="1280,720">
-		<widget name="list" position="21,32" size="370,400" backgroundColor="black" itemHeight="50" transparent="1" />
-		<widget name="sublist" position="410,32" size="300,400" backgroundColor="black" itemHeight="50" />
-		<eLabel position="400,30" size="2,400" backgroundColor="darkgrey" zPosition="3" />
-		<widget source="session.VideoPicture" render="Pig" position="720,30" size="450,300" backgroundColor="transparent" zPosition="1" />
-		<widget name="description" position="22,445" size="1150,110" zPosition="1" font="Regular;22" halign="center" backgroundColor="black" transparent="1" />
-		<widget name="key_red" position="20,571" size="300,26" zPosition="1" font="Regular;22" halign="center" foregroundColor="white" backgroundColor="black" transparent="1" />
-		<widget name="key_green" position="325,571" size="300,26" zPosition="1" font="Regular;22" halign="center" foregroundColor="white" backgroundColor="black" transparent="1" />
-		<widget name="key_yellow" position="630,571" size="300,26" zPosition="1" font="Regular;22" halign="center" foregroundColor="white" backgroundColor="black" transparent="1" valign="center" />
-		<eLabel name="new eLabel" position="21,567" size="300,3" zPosition="3" backgroundColor="red" />
-		<eLabel name="new eLabel" position="325,567" size="300,3" zPosition="3" backgroundColor="green" />
-		<eLabel name="new eLabel" position="630,567" size="300,3" zPosition="3" backgroundColor="yellow" />
+	<screen name="QuickMenu" title="Quick Launch Menu" position="center,center" size="1150,500" backgroundColor="#00000000" resolution="1280,720">
+		<widget source="mainlist" render="Listbox" position="0,0" size="360,450" backgroundColor="#00000000" itemHeight="50">
+			<templates>
+				<template name="Default" fonts="Regular;20,Regular;15" itemWidth="360" itemHeight="50">
+					<mode name="default">
+						<pixmap index="2" position="10,5" size="40,40" alpha="blend" scale="centerScaled"/>
+						<text index="0" position="60,0" size="e-70,30" font="0" verticalAlignment="center" />
+						<text index="1" position="80,30" size="e-90,20" font="1" verticalAlignment="center" />
+					</mode>
+				</template>
+			</templates>
+		</widget>
+		<eLabel position="369,0" size="2,450" backgroundColor="#00666666" />
+		<widget source="sublist" render="Listbox" position="380,0" size="360,450" backgroundColor="#00000000" itemHeight="50">
+			<templates>
+				<template name="Default" fonts="Regular;20,Regular;15" itemWidth="380" itemHeight="50">
+					<mode name="default">
+						<text index="0" position="10,0" size="e-20,30" font="0" verticalAlignment="center" />
+						<text index="1" position="30,30" size="e-40,20" font="1" verticalAlignment="center" />
+					</mode>
+				</template>
+			</templates>
+		</widget>
+		<widget source="session.VideoPicture" render="Pig" position="750,0" size="400,225" backgroundColor="#ff000000" />
+		<widget name="description" position="750,245" size="400,205" backgroundColor="#00000000" font="Regular;20" horizontalAlignment="center" verticalAlignment="center" />
+		<widget source="key_red" render="Label" position="0,e-40" size="180,40" backgroundColor="key_red" font="Regular;20" foregroundColor="key_text" horizontalAlignment="center" verticalAlignment="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_green" render="Label" position="190,e-40" size="180,40" backgroundColor="key_green" font="Regular;20" foregroundColor="key_text" horizontalAlignment="center" verticalAlignment="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_yellow" render="Label" position="380,e-40" size="180,40" backgroundColor="key_yellow" font="Regular;20" foregroundColor="key_text" horizontalAlignment="center" verticalAlignment="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_help" render="Label" position="e-80,e-40" size="80,40" backgroundColor="key_back" font="Regular;20" foregroundColor="key_text" horizontalAlignment="center" verticalAlignment="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
 	</screen>"""
 
 	def __init__(self, session):
-		Screen.__init__(self, session, enableHelp=True)
-		self.setTitle(_("Quick Launch Menu"))
+		Screen.__init__(self, session, enableHelp=True, mandatoryWidgets=["mainlist"])
 		ProtectedScreen.__init__(self)
-		self["key_red"] = Label(_("Exit"))
-		self["key_green"] = Label(_("System Info"))
-		self["key_yellow"] = Label(_("Devices"))
+		self.setTitle(_("Quick Launch Menu"))
+		self["key_red"] = StaticText(_("Exit"))
+		self["key_green"] = StaticText(_("System Info"))
+		self["key_yellow"] = StaticText(_("Devices"))
 		self["description"] = Label()
 		self["summary_description"] = StaticText("")
-		self.menu = 0
-		self.mainList = []
-		self["list"] = QuickMenuList(self.mainList)
-		self.subList = []
-		self["sublist"] = QuickMenuSubList(self.subList)
-		self.selectedList = []
-		self.onChangedEntry = []
-		self["list"].onSelectionChanged.append(self.selectionChanged)
+		self["mainlist"] = List()
+		self["sublist"] = List()
+		self["mainlist"].onSelectionChanged.append(self.selectionMainChanged)
 		self["sublist"].onSelectionChanged.append(self.selectionSubChanged)
+		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "NavigationActions", "ColorActions"], {
+			"ok": (self.keyOk, _("Select the current menu item")),
+			"cancel": (self.close, _("Close this screen")),
+			"red": (self.close, _("Close this screen")),
+			"green": (self.keyDistributionInformation, _("Open the Image information")),
+			"yellow": (self.keyStorageInformation, _("Open the Storage Device information")),
+			"top": (self.keyTop, _("Move to first line / screen")),
+			"pageUp": (self.keyPageUp, _("Move up a screen")),
+			"up": (self.keyLineUp, _("Move up a line")),
+			"left": (self.keyLeft, _("Switch to the left column")),
+			"right": (self.keyRight, _("Switch to the right column")),
+			"down": (self.keyLineDown, _("Move down a line")),
+			"pageDown": (self.keyPageDown, _("Move down a screen")),
+			"bottom": (self.keyBottom, _("Move to last line / screen"))
+		}, prio=0, description=_("Quick Menu Actions"))
 		helpStr = _("Direct menu item selection")
-		self["NavigationActions"] = HelpableNumberActionMap(self, ["OkCancelActions", "NavigationActions", "NumberActions"], {
-			"ok": self.ok,
-			"cancel": self.close,
-			"left": self.goLeft,
-			"right": self.goRight,
-			"up": self.goUp,
-			"down": self.goDown,
+		self["numberActions"] = HelpableNumberActionMap(self, ["NumberActions"], {
 			"1": (self.keyNumberGlobal, helpStr),
 			"2": (self.keyNumberGlobal, helpStr),
 			"3": (self.keyNumberGlobal, helpStr),
@@ -95,295 +109,112 @@ class QuickMenu(Screen, ProtectedScreen):
 			"8": (self.keyNumberGlobal, helpStr),
 			"9": (self.keyNumberGlobal, helpStr),
 			"0": (self.keyNumberGlobal, helpStr)
-		}, prio=-1, description=_("Menu Common Actions"))
-		self["ColorActions"] = HelpableActionMap(self, "ColorActions", {
-			"red": self.close,
-			"green": self.keyGreen,
-			"yellow": self.keyYellow,
-		}, prio=0)
-		self.skinFactor = getSkinFactor()
+		}, prio=0, description=_("Quick Menu Actions"))
+		self.onChangedEntry = []
+		self.menu = 0
+		self.mainList = []
+		self.subList = []
+		self.selectedList = self["mainlist"]
 		self.showMainMenu()
-		self.selectedList = self["list"]
-		self.selectionChanged()
+		self.selectionMainChanged()
 		self.onLayoutFinish.append(self.layoutFinished)
 
-	def keyNumberGlobal(self, number):  # Run a numbered shortcut.
-		count = self.selectedList.count()
-		if number and number <= count:
-			self.selectedList.setCurrentIndex(number - 1)
-			self.ok()
+	def layoutFinished(self):
+		self["mainlist"].enableAutoNavigation(False)
+		self["sublist"].enableAutoNavigation(False)
+		self["sublist"].selectionEnabled(False)
 
 	def isProtected(self):
 		return config.ParentalControl.setuppinactive.value and not config.ParentalControl.config_sections.main_menu.value and config.ParentalControl.config_sections.quickmenu.value
 
-	def createSummary(self):
-		pass
-
-	def layoutFinished(self):
-		self["sublist"].selectionEnabled(False)
-
-	def selectionChanged(self):
-		if self.selectedList == self["list"]:
-			item = self["list"].getCurrent()
-			if item:
-				self["description"].text = item[4][7]
-				self["summary_description"].text = item[0]
-				self.selectMainItem()
+	def selectionMainChanged(self):
+		if self.selectedList == self["mainlist"]:
+			item = self.mainList[self["mainlist"].getCurrentIndex()]
+			self["description"].text = item[4]
+			self["summary_description"].text = item[0]
+			self.selectMainItem()
 
 	def selectionSubChanged(self):
 		if self.selectedList == self["sublist"]:
-			item = self["sublist"].getCurrent()
-			if item:
-				self["description"].text = item[3][7]
-				self["summary_description"].text = item[0]
+			item = self.subList[self["sublist"].getCurrentIndex()]
+			self["description"].text = item[2]
+			self["summary_description"].text = item[0]
 
-	def goLeft(self):
-		if self.menu != 0:
-			self.menu = 0
-			self.selectedList = self["list"]
-			self["list"].selectionEnabled(1)
-			self["sublist"].selectionEnabled(0)
-			self.selectionChanged()
-
-	def goRight(self):
-		if self.menu == 0:
-			self.menu = 1
-			self.selectedList = self["sublist"]
-			self["sublist"].moveToIndex(0)
-			self["list"].selectionEnabled(0)
-			self["sublist"].selectionEnabled(1)
-			self.selectionSubChanged()
-
-	def goUp(self):
-		self.selectedList.up()
-
-	def goDown(self):
-		self.selectedList.down()
-
-	def keyGreen(self):
-		from Screens.Information import DistributionInformation
-		self.session.open(DistributionInformation)
-
-	def keyYellow(self):
-		self.session.open(QuickMenuDevices)
-
-# ####### Main Menu ##############################
-	def showMainMenu(self):
-		self.menu = 0
-		self.mainList = []
-		self.mainList.append(self.QuickMenuEntryComponent(0, "Software_Manager", _("Software Manager"), _("Update/Backup/Restore your box"), _("Update/Backup your firmware, Backup/Restore settings")))
-		if BoxInfo.getItem("SoftCam"):
-			self.mainList.append(self.QuickMenuEntryComponent(1, "Softcam", _("Softcam"), _("Start/stop/select cam"), _("Start/stop/select your cam, You need to install first a softcam")))
-		self.mainList.append(self.QuickMenuEntryComponent(2, "System", _("System"), _("System Setup"), _("Setup your System")))
-		self.mainList.append(self.QuickMenuEntryComponent(3, "Mounts", _("Mounts"), _("Mount Setup"), _("Setup your mounts for network")))
-		self.mainList.append(self.QuickMenuEntryComponent(4, "Network", _("Network"), _("Setup your local network"), _("Setup your local network. For Wlan you need to boot with a USB-Wlan stick")))
-		self.mainList.append(self.QuickMenuEntryComponent(5, "AV_Setup", _("AV Setup"), _("Setup Video/Audio"), _("Setup your Video Mode, Video Output and other Video Settings")))
-		self.mainList.append(self.QuickMenuEntryComponent(6, "Tuner_Setup", _("Tuner Setup"), _("Setup Tuner"), _("Setup your Tuner and search for channels")))
-		self.mainList.append(self.QuickMenuEntryComponent(7, "Plugins", _("Plugins"), _("Setup Plugins"), _("Shows available plugins. Here you can download and install them")))
-		self.mainList.append(self.QuickMenuEntryComponent(8, "Harddisk", _("Harddisk"), _("Harddisk Setup"), _("Setup your Harddisk")))
-		self["list"].setList(self.mainList)
-
-# ####### System Setup Menu ##############################
-	def subMenuSystem(self):
-		self.subList = []
-		self.subList.append(self.QuickSubMenuEntryComponent(_("Customize"), _("Setup Enigma2"), _("Customize enigma2 personal settings"), setup="Usage"))
-		self.subList.append(self.QuickSubMenuEntryComponent(_("OSD Settings"), _("OSD Setup"), _("Setup your OSD"), setup="UserInterface"))
-		self.subList.append(self.QuickSubMenuEntryComponent(_("Button Setup"), _("Button Setup"), _("Setup your remote buttons"), setup="RemoteButton"))
-		if BoxInfo.getItem("FrontpanelDisplay") and BoxInfo.getItem("Display"):
-			self.subList.append(self.QuickSubMenuEntryComponent(_("Display Settings"), _("Setup your LCD"), _("Setup your display"), setup="Display"))
-		self.subList.append(self.QuickSubMenuEntryComponent(_("Skin Settings"), _("Select Enigma2 Skin"), _("Setup your Skin"), setup="SkinSelection"))
-		self.subList.append(self.QuickSubMenuEntryComponent(_("Channel Selection"), _("Channel selection configuration"), _("Setup your Channel selection configuration"), setup="ChannelSelection"))
-		self.subList.append(self.QuickSubMenuEntryComponent(_("Recording Settings"), _("Recording Setup"), _("Setup your recording config"), setup="Recording"))
-		self.subList.append(self.QuickSubMenuEntryComponent(_("EPG Settings"), _("EPG Setup"), _("Setup your EPG config"), setup="EPG"))
-		self["sublist"].setList(self.subList)
-
-# ####### Network Menu ##############################
-	def subMenuNetwork(self):
-		def networkInterface():
-			self.openScreen("NetworkSetup", screenName="AdapterSetup", networkinfo=self.activeInterface)
-
-		def networkWizard():
-			from Plugins.SystemPlugins.NetworkWizard.NetworkWizard import NetworkWizard
-			self.session.open(NetworkWizard)
-
-		self.getNetworkInterfaces()
-		self.subList = []
-		if isPluginInstalled("NetworkWizard"):
-			self.subList.append(self.QuickSubMenuEntryComponent(_("Network Wizard"), _("Configure your Network"), _("Use the Networkwizard to configure your Network. The wizard will help you to setup your network"), callback=networkWizard))
-		if len(self.adapters) > 1:  # show only adapter selection if more as 1 adapter is installed
-			self.subList.append(self.QuickSubMenuEntryComponent(_("Network Adapter Selection"), _("Select Lan/Wlan"), _("Setup your network interface. If no Wlan stick is used, you only can select Lan"), screen="NetworkSetup", screenName="NetworkAdapterSelection"))
-		if self.activeInterface is not None:  # show only if there is already a adapter up
-			self.subList.append(self.QuickSubMenuEntryComponent(_("Network Interface"), _("Setup interface"), _("Setup network. Here you can setup DHCP, IP, DNS"), callback=networkInterface))
-		self.subList.append(self.QuickSubMenuEntryComponent(_("Network Restart"), _("Restart network to with current setup"), _("Restart network and remount connections"), screen="RestartNetwork"))
-		self.subList.append(self.QuickSubMenuEntryComponent(_("Network Services"), _("Setup Network Services"), _("Setup Network Services (Samba, Ftp, NFS, ...)"), screen="NetworkSetup", screenName="NetworkServicesSetup"))
-		self.subList.append(self.QuickSubMenuEntryComponent(_("MiniDLNA"), _("Setup MiniDLNA"), _("Setup MiniDLNA"), screen="NetworkSetup", screenName="NetworkMiniDLNASetup"))
-		self.subList.append(self.QuickSubMenuEntryComponent(_("Inadyn"), _("Setup Inadyn"), _("Setup Inadyn"), screen="NetworkSetup", screenName="NetworkInadynSetup"))
-		self.subList.append(self.QuickSubMenuEntryComponent(_("uShare"), _("Setup uShare"), _("Setup uShare"), screen="NetworkSetup", screenName="NetworkuShareSetup"))
-		self["sublist"].setList(self.subList)
-
-# ####### Mount Settings Menu ##############################
-	def subMenuMount(self):
-		def mountManager():
-			from Plugins.SystemPlugins.NetworkBrowser.MountManager import AutoMountManager
-			plugin_path_networkbrowser = eEnv.resolve("${libdir}/enigma2/python/Plugins/SystemPlugins/NetworkBrowser")
-			self.session.open(AutoMountManager, None, plugin_path_networkbrowser)
-
-		def networkBrowser():
-			from Plugins.SystemPlugins.NetworkBrowser.NetworkBrowser import NetworkBrowser
-			plugin_path_networkbrowser = eEnv.resolve("${libdir}/enigma2/python/Plugins/SystemPlugins/NetworkBrowser")
-			self.session.open(NetworkBrowser, None, plugin_path_networkbrowser)
-
-		self.subList = []
-		if NETWORKBROWSER:
-			self.subList.append(self.QuickSubMenuEntryComponent(_("Mount Manager"), _("Manage network mounts"), _("Setup your network mounts"), callback=mountManager))
-			self.subList.append(self.QuickSubMenuEntryComponent(_("Network Browser"), _("Search for network shares"), _("Search for network shares"), callback=networkBrowser))
-		self.subList.append(self.QuickSubMenuEntryComponent(_("Device Manager"), _("Mounts Devices"), _("Setup your Device mounts (USB, HDD, others...)"), screen="MountManager", screenName="HddMount"))
-		self["sublist"].setList(self.subList)
-
-# ####### Softcam Menu ##############################
-	def subMenuSoftcam(self):
-
-		def downloadSoftcams():
-			self.session.open(PackageAction, PackageAction.MODE_SOFTCAM)
-
-		self.subList = []
-		if BoxInfo.getItem("SoftCam"):  # show only when there is a softcam installed
-			self.subList.append(self.QuickSubMenuEntryComponent(_("Softcam Settings"), _("Control your Softcams"), _("Use the Softcam Panel to control your Cam. This let you start/stop/select a cam"), screen="SoftcamSetup"))
-			if BoxInfo.getItem("ShowOscamInfo"):  # show only when oscam or ncam is active
-				self.subList.append(self.QuickSubMenuEntryComponent(_("OSCam Information"), _("Show OSCam Information"), _("Show the OSCam information screen"), screen="OSCamInfo"))
-			if BoxInfo.getItem("ShowCCCamInfo"):  # show only when CCcam is active
-				self.subList.append(self.QuickSubMenuEntryComponent(_("CCcam Information"), _("Show CCcam Info"), _("Show the CCcam Info Screen"), screen="CCcamInfo", screenName="CCcamInfoMain"))
-		self.subList.append(self.QuickSubMenuEntryComponent(_("Download Softcams"), _("Download and install cam"), _("Shows available softcams. Here you can download and install them"), callback=downloadSoftcams))
-		self["sublist"].setList(self.subList)
-
-# ####### A/V Settings Menu ##############################
-	def subMenuAvsetup(self):
-		def audioSync():
-			from Plugins.Extensions.AudioSync.AC3setup import AC3LipSyncSetup
-			plugin_path_audiosync = eEnv.resolve("${libdir}/enigma2/python/Plugins/Extensions/AudioSync")
-			self.session.open(AC3LipSyncSetup, plugin_path_audiosync)
-
-		def videoEnhancement():
-			from Plugins.SystemPlugins.VideoEnhancement.plugin import VideoEnhancementSetup
-			self.session.open(VideoEnhancementSetup)
-
-		self.subList = []
-		self.subList.append(self.QuickSubMenuEntryComponent(_("Video Settings"), _("Setup Videomode"), _("Setup your Video Mode, Video Output and other Video Settings"), screen="VideoMode", screenName="VideoSetup"))
-		self.subList.append(self.QuickSubMenuEntryComponent(_("Audio Settings"), _("Setup Audiomode"), _("Setup your Audio Mode"), setup="Audio"))
-		if AUDIOSYNC:
-			self.subList.append(self.QuickSubMenuEntryComponent(_("Audio Sync"), _("Setup Audio Sync"), _("Setup Audio Sync settings"), callback=audioSync))
-		self.subList.append(self.QuickSubMenuEntryComponent(_("Auto Language"), _("Auto Language Selection"), _("Select your Language for Audio/Subtitles"), setup="AutoLanguage"))
-		if VIDEOENH:
-			self.subList.append(self.QuickSubMenuEntryComponent(_("VideoEnhancement"), _("VideoEnhancement Setup"), _("VideoEnhancement Setup"), callback=videoEnhancement))
-
-		self["sublist"].setList(self.subList)
-
-# ####### Tuner Menu ##############################
-	def subMenuTuner(self):
-		def positionerSetup():
-			from Plugins.SystemPlugins.PositionerSetup.plugin import PositionerMain
-			PositionerMain(self.session)
-
-		self.subList = []
-		self.subList.append(self.QuickSubMenuEntryComponent(_("Tuner Configuration"), _("Setup tuner(s)"), _("Setup each tuner for your satellite system"), screen="SatConfig", screenName="NimSelection"))
-		if POSSETUP:
-			self.subList.append(self.QuickSubMenuEntryComponent(_("Positioner Setup"), _("Setup rotor"), _("Setup your positioner for your satellite system"), callback=positionerSetup))
-		self.subList.append(self.QuickSubMenuEntryComponent(_("Automatic Scan"), _("Automatic Service Searching"), _("Automatic scan for services"), screen="ScanSetup", screenName="ScanSimple"))
-		self.subList.append(self.QuickSubMenuEntryComponent(_("Manual Scan"), _("Manual Service Searching"), _("Manual scan for services"), screen="ScanSetup"))
-		if SATFINDER:
-			self.subList.append(self.QuickSubMenuEntryComponent(_("Sat Finder"), _("Search Sats"), _("Search Sats, check signal and lock"), callback=self.satfinderMain))
-		self["sublist"].setList(self.subList)
-
-# ####### Software Manager Menu ##############################
-	def subMenuSoftware(self):
-		def backupSettings():
-			#self.session.openWithCallback(self.backupDone, BackupScreen, runBackup=True)
-			self.session.open(BackupScreen, runBackup=True, closeOnSuccess=False)
-
-		def restoreSettings():
-			self.backuppath = getBackupPath()
-			if not isdir(self.backuppath):
-				self.backuppath = getOldBackupPath()
-			self.backupfile = getBackupFilename()
-			self.fullbackupfilename = join(self.backuppath, self.backupfile)
-			if exists(self.fullbackupfilename):
-				self.session.openWithCallback(self.startRestore, MessageBox, _("Are you sure you want to restore your %s %s backup?\nSTB will restart after the restore") % getBoxDisplayName(), default=False)
-			else:
-				self.session.open(MessageBox, _("Sorry no backups found!"), MessageBox.TYPE_INFO, timeout=10)
-
-		def defaultBackupFiles():
-			self.session.open(BackupSelection, title=_("Default files/folders to backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs_default, readOnly=True, mode="backupfiles")
-
-		def additionalBackupFiles():
-			self.session.open(BackupSelection, title=_("Additional files/folders to backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs, readOnly=False, mode="backupfiles_addon")
-
-		def excludedBackupFiles():
-			self.session.open(BackupSelection, title=_("Files/folders to exclude from backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs_exclude, readOnly=False, mode="backupfiles_exclude")
-
-		self.subList = []
-		self.subList.append(self.QuickSubMenuEntryComponent(_("Software Update"), _("Online software update"), _("Check/Install online updates (you must have a working Internet connection)"), screen="SoftwareUpdate"))
-		self.subList.append(self.QuickSubMenuEntryComponent(_("Flash Online"), _("Flash Online a new image"), _("Flash on the fly your your Receiver software."), screen="FlashManager"))
-		self.subList.append(self.QuickSubMenuEntryComponent(_("Complete Backup"), _("Backup your current image"), _("Backup your current image to HDD or USB. This will make a 1:1 copy of your box"), callback=self.completeBackup))
-		self.subList.append(self.QuickSubMenuEntryComponent(_("Backup Settings"), _("Backup your current settings"), _("Backup your current settings. This includes E2-setup, channels, network and all selected files"), callback=backupSettings))
-		self.subList.append(self.QuickSubMenuEntryComponent(_("Restore Settings"), _("Restore settings from a backup"), _("Restore your settings back from a backup. After restore the box will restart to activated the new settings"), callback=restoreSettings))
-		self.subList.append(self.QuickSubMenuEntryComponent(_("Show Default Backup Files"), _("Show files backed up by default"), _("Here you can browse (but not modify) the files that are added to the backupfile by default (E2-setup, channels, network)."), callback=defaultBackupFiles))
-		self.subList.append(self.QuickSubMenuEntryComponent(_("Select Additional Backup Files"), _("Select additional files to backup"), _("Here you can specify additional files that should be added to the backup file."), callback=additionalBackupFiles))
-		self.subList.append(self.QuickSubMenuEntryComponent(_("Select Excluded Backup Files"), _("Select files to exclude from backup"), _("Here you can select which files should be excluded from the backup."), callback=excludedBackupFiles))
-		self.subList.append(self.QuickSubMenuEntryComponent(_("Software Manager Settings"), _("Manage your online update files"), _("Here you can select which files should be updated with a online update"), setup="SoftwareManager"))
-		self["sublist"].setList(self.subList)
-
-# ####### Plugins Menu ##############################
-	def subMenuPlugin(self):
-		def ipkInstaller():
-			try:
-				from Plugins.Extensions.MediaScanner.plugin import main
-				main(self.session)
-			except Exception:
-				self.session.open(MessageBox, _("Sorry MediaScanner is not installed!"), MessageBox.TYPE_INFO, timeout=10)
-
-		def downloadPlugins():
-			self.session.open(PackageAction, PackageAction.MODE_INSTALL)
-
-		def removePlugins():
-			self.session.open(PackageAction, PackageAction.MODE_REMOVE)
-
-		def managePlugins():
-			self.session.open(PackageAction, PackageAction.MODE_MANAGE)
-
-		self.subList = []
-		self.subList.append(self.QuickSubMenuEntryComponent(_("Plugin Browser"), _("Open the Plugin Browser"), _("Shows Plugins Browser. Here you can setup installed Plugin"), screen="PluginBrowser"))
-		self.subList.append(self.QuickSubMenuEntryComponent(_("Download Plugins"), _("Download and install Plugins"), _("Shows available plugins. Here you can download and install them"), callback=downloadPlugins))
-		self.subList.append(self.QuickSubMenuEntryComponent(_("Remove Plugins"), _("Delete Plugins"), _("Delete and uninstall Plugins. This will remove the Plugin from your box"), callback=removePlugins))
-		self.subList.append(self.QuickSubMenuEntryComponent(_("Manage Plugins"), _("Manage Plugins"), _("Manage Plugins. This will remove/install Plugins on your box"), callback=managePlugins))
-		self.subList.append(self.QuickSubMenuEntryComponent(_("Plugin Browser Settings"), _("Setup Plugin Browser"), _("Setup PluginBrowser. Here you can select which Plugins are showed in the PluginBrowser"), setup="PluginBrowser"))
-		self.subList.append(self.QuickSubMenuEntryComponent(_("IPK Installer"), _("Install Local Extension"), _("Scan for local extensions and install them"), callback=ipkInstaller))
-		self["sublist"].setList(self.subList)
-
-# ####### Harddisk Menu ##############################
-	def subMenuHarddisk(self):
-		self.subList = []
-		self.subList.append(self.QuickSubMenuEntryComponent(_("Harddisk Setup"), _("Harddisk Setup"), _("Setup your Harddisk"), setup="HardDisk"))
-		self.subList.append(self.QuickSubMenuEntryComponent(_("Initialization"), _("Format HDD"), _("Format your hard drive"), screen="HarddiskSetup", screenName="HarddiskSelection"))
-		self.subList.append(self.QuickSubMenuEntryComponent(_("File System Check"), _("Check HDD"), _("Filesystem check your hard drive"), screen="HarddiskSetup", screenName="HarddiskFsckSelection"))
-		if isFileSystemSupported("ext4"):
-			self.subList.append(self.QuickSubMenuEntryComponent(_("Convert ext3 to ext4"), _("Convert file system ext3 to ext4"), _("Convert file system ext3 to ext4"), screen="HarddiskSetup", screenName="HarddiskConvertExt4Selection"))
-		self["sublist"].setList(self.subList)
-
-	def ok(self):
+	def keyOk(self):
 		if self.menu > 0:
 			self.selectSubItem()
 		else:
-			self.goRight()
+			self.keyRight()
 
+	def keyDistributionInformation(self):
+		self.openScreen("Information", screenName="DistributionInformation")
 
-# ####################################################################
-# ####### Make Selection MAIN MENU LIST ##############################
-# ####################################################################
+	def keyStorageInformation(self):
+		self.openScreen("Information", screenName="StorageInformation")
 
+	def keyTop(self):
+		self.selectedList.goTop()
+
+	def keyPageUp(self):
+		self.selectedList.goPageUp()
+
+	def keyLineUp(self):
+		self.selectedList.goLineUp()
+
+	def keyLeft(self):
+		if self.menu != 0:
+			self.menu = 0
+			self.selectedList = self["mainlist"]
+			self["mainlist"].selectionEnabled(1)
+			self["sublist"].selectionEnabled(0)
+			self.selectionMainChanged()
+
+	def keyRight(self):
+		if self.menu == 0:
+			self.menu = 1
+			self.selectedList = self["sublist"]
+			self["sublist"].setCurrentIndex(0)
+			self["mainlist"].selectionEnabled(0)
+			self["sublist"].selectionEnabled(1)
+			self.selectionSubChanged()
+
+	def keyLineDown(self):
+		self.selectedList.goLineDown()
+
+	def keyPageDown(self):
+		self.selectedList.goPageDown()
+
+	def keyBottom(self):
+		self.selectedList.goBottom()
+
+	def keyNumberGlobal(self, number):  # Run a numbered shortcut.
+		if number and number <= self.selectedList.count():
+			self.selectedList.setCurrentIndex(number - 1)
+			self.keyOk()
+
+	def showMainMenu(self):  # Main Menu.
+		def quickMenuEntryComponent(itemIndex, pngname, name, description, longDescription=None, width=540):
+			icon = LoadPixmap(resolveFilename(SCOPE_SKIN, f"icons/{pngname}.png"))
+			if icon is None:
+				icon = LoadPixmap(resolveFilename(SCOPE_SKIN, "icons/default.png"))
+			return (name, description, icon, itemIndex, longDescription)
+
+		self.menu = 0
+		self.mainList = []
+		self.mainList.append(quickMenuEntryComponent(0, "Software_Manager", _("Software Manager"), _("Update/Backup/Restore your box"), _("Update/Backup your firmware, Backup/Restore settings")))
+		if BoxInfo.getItem("SoftCam"):
+			self.mainList.append(quickMenuEntryComponent(1, "Softcam", _("Softcam"), _("Start/stop/select cam"), _("Start/stop/select your cam, You need to install first a softcam")))
+		self.mainList.append(quickMenuEntryComponent(2, "System", _("System"), _("System Setup"), _("Setup your System")))
+		self.mainList.append(quickMenuEntryComponent(3, "Mounts", _("Mounts"), _("Mount Setup"), _("Setup your mounts for network")))
+		self.mainList.append(quickMenuEntryComponent(4, "Network", _("Network"), _("Setup your local network"), _("Setup your local network. For Wlan you need to boot with a USB-Wlan stick")))
+		self.mainList.append(quickMenuEntryComponent(5, "AV_Setup", _("AV Setup"), _("Setup Video/Audio"), _("Setup your Video Mode, Video Output and other Video Settings")))
+		self.mainList.append(quickMenuEntryComponent(6, "Tuner_Setup", _("Tuner Setup"), _("Setup Tuner"), _("Setup your Tuner and search for channels")))
+		self.mainList.append(quickMenuEntryComponent(7, "Plugins", _("Plugins"), _("Setup Plugins"), _("Shows available plugins. Here you can download and install them")))
+		self.mainList.append(quickMenuEntryComponent(8, "Harddisk", _("Harddisk"), _("Harddisk Setup"), _("Setup your Harddisk")))
+		self["mainlist"].setList([(x[0], x[1], x[2]) for x in self.mainList])
 
 	def selectMainItem(self):
-		item = self["list"].getCurrent()[0]
-		match item:
+		match self.mainList[self["mainlist"].getCurrentIndex()][3]:
 			case 0:
 				self.subMenuSoftware()
 			case 1:
@@ -395,22 +226,241 @@ class QuickMenu(Screen, ProtectedScreen):
 			case 4:
 				self.subMenuNetwork()
 			case 5:
-				self.subMenuAvsetup()
+				self.subMenuAVSetup()
 			case 6:
 				self.subMenuTuner()
 			case 7:
 				self.subMenuPlugin()
 			case 8:
 				self.subMenuHarddisk()
-
 		self["sublist"].selectionEnabled(0)
 
-# ####################################################################
-# ####### Make Selection SUB MENU LIST ##############################
-# ####################################################################
+	def subMenuSoftware(self):  # Software Manager Menu.
+		def completeBackupCallback():
+			if BoxInfo.getItem("dFlash"):
+				from Plugins.Extensions.dFlash.plugin import dFlash
+				self.session.open(dFlash)
+			elif BoxInfo.getItem("dBackup"):
+				from Plugins.Extensions.dBackup.plugin import dBackup
+				self.session.open(dBackup)
+			else:
+				from Plugins.SystemPlugins.SoftwareManager.ImageBackup import ImageBackup
+				self.session.open(ImageBackup)
+
+		def backupSettingsCallback():
+			# self.session.openWithCallback(backupDoneCallback, BackupScreen, runBackup=True)
+			self.session.open(BackupScreen, runBackup=True, closeOnSuccess=False)
+
+		# def backupDoneCallback(retval=None):
+		# 	self.session.open(MessageBox, _("Backup done.") if retval else _("Backup failed!"), MessageBox.TYPE_INFO if retval else MessageBox.TYPE_ERROR, timeout=10, windowTitle=self.getTitle())
+
+		def restoreSettingsCallback():
+			backupPath = getBackupPath()
+			if not isdir(backupPath):
+				backupPath = getOldBackupPath()
+			if exists(join(backupPath, getBackupFilename())):
+				self.session.openWithCallback(startRestoreCallback, MessageBox, _("Are you sure you want to restore your %s %s backup?\nSTB will restart after the restore") % getBoxDisplayName(), default=False, windowTitle=self.getTitle())
+			else:
+				self.session.open(MessageBox, _("Sorry no backups found!"), MessageBox.TYPE_INFO, timeout=10, windowTitle=self.getTitle())
+
+		def startRestoreCallback(answer=False):
+			if (answer is True):
+				self.exe = True
+				self.session.open(RestoreScreen, runRestore=True)
+
+		def defaultBackupFilesCallback():
+			self.session.open(BackupSelection, title=_("Default files/folders to backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs_default, readOnly=True, mode="backupfiles")
+
+		def additionalBackupFilesCallback():
+			self.session.open(BackupSelection, title=_("Additional files/folders to backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs, readOnly=False, mode="backupfiles_addon")
+
+		def excludedBackupFilesCallback():
+			self.session.open(BackupSelection, title=_("Files/folders to exclude from backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs_exclude, readOnly=False, mode="backupfiles_exclude")
+
+		self.subList = []
+		self.subList.append(self.quickSubMenuEntryComponent(_("Software Update"), _("Online software update"), _("Check/Install online updates (you must have a working Internet connection)"), screen="SoftwareUpdate"))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Flash Online"), _("Flash Online a new image"), _("Flash on the fly your your Receiver software."), screen="FlashManager"))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Complete Backup"), _("Backup your current image"), _("Backup your current image to HDD or USB. This will make a 1:1 copy of your box"), callback=completeBackupCallback))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Backup Settings"), _("Backup your current settings"), _("Backup your current settings. This includes E2-setup, channels, network and all selected files"), callback=backupSettingsCallback))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Restore Settings"), _("Restore settings from a backup"), _("Restore your settings back from a backup. After restore the box will restart to activated the new settings"), callback=restoreSettingsCallback))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Show Default Backup Files"), _("Show files backed up by default"), _("Here you can browse (but not modify) the files that are added to the backupfile by default (E2-setup, channels, network)."), callback=defaultBackupFilesCallback))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Select Additional Backup Files"), _("Select additional files to backup"), _("Here you can specify additional files that should be added to the backup file."), callback=additionalBackupFilesCallback))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Select Excluded Backup Files"), _("Select files to exclude from backup"), _("Here you can select which files should be excluded from the backup."), callback=excludedBackupFilesCallback))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Software Manager Settings"), _("Manage your online update files"), _("Here you can select which files should be updated with a online update"), setup="SoftwareManager"))
+		self.setSubList()
+
+	def subMenuSoftcam(self):  # Softcam Menu.
+		def downloadSoftcams():
+			self.session.open(PackageAction, PackageAction.MODE_SOFTCAM)
+
+		self.subList = []
+		if BoxInfo.getItem("SoftCam"):  # Show only when there is a softcam installed.
+			self.subList.append(self.quickSubMenuEntryComponent(_("Softcam Settings"), _("Control your Softcams"), _("Use the Softcam Panel to control your Cam. This let you start/stop/select a cam"), screen="SoftcamSetup"))
+			if BoxInfo.getItem("ShowOscamInfo"):  # Show only when oscam or ncam is active.
+				self.subList.append(self.quickSubMenuEntryComponent(_("OSCam Information"), _("Show OSCam Information"), _("Show the OSCam information screen"), screen="OSCamInfo"))
+			if BoxInfo.getItem("ShowCCCamInfo"):  # Show only when CCcam is active.
+				self.subList.append(self.quickSubMenuEntryComponent(_("CCcam Information"), _("Show CCcam Info"), _("Show the CCcam Info Screen"), screen="CCcamInfo", screenName="CCcamInfoMain"))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Download Softcams"), _("Download and install cam"), _("Shows available softcams. Here you can download and install them"), callback=downloadSoftcams))
+		self.setSubList()
+
+	def subMenuSystem(self):  # System Setup Menu.
+		self.subList = []
+		self.subList.append(self.quickSubMenuEntryComponent(_("Customize"), _("Setup Enigma2"), _("Customize enigma2 personal settings"), setup="Usage"))
+		self.subList.append(self.quickSubMenuEntryComponent(_("OSD Settings"), _("OSD Setup"), _("Setup your OSD"), setup="UserInterface"))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Button Setup"), _("Button Setup"), _("Setup your remote buttons"), setup="RemoteButton"))
+		if BoxInfo.getItem("FrontpanelDisplay") and BoxInfo.getItem("Display"):
+			self.subList.append(self.quickSubMenuEntryComponent(_("Display Settings"), _("Setup your LCD"), _("Setup your display"), setup="Display"))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Skin Settings"), _("Select Enigma2 Skin"), _("Setup your Skin"), setup="SkinSelection"))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Channel Selection"), _("Channel selection configuration"), _("Setup your Channel selection configuration"), setup="ChannelSelection"))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Recording Settings"), _("Recording Setup"), _("Setup your recording config"), setup="Recording"))
+		self.subList.append(self.quickSubMenuEntryComponent(_("EPG Settings"), _("EPG Setup"), _("Setup your EPG config"), setup="EPG"))
+		self.setSubList()
+
+	def subMenuMount(self):  # Mount Settings Menu.
+		def mountManager():
+			from Plugins.SystemPlugins.NetworkBrowser.MountManager import AutoMountManager
+			self.session.open(AutoMountManager, None, resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkBrowser"))
+
+		def networkBrowser():
+			from Plugins.SystemPlugins.NetworkBrowser.NetworkBrowser import NetworkBrowser
+			self.session.open(NetworkBrowser, None, resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkBrowser"))
+
+		self.subList = []
+		if NETWORKBROWSER:
+			self.subList.append(self.quickSubMenuEntryComponent(_("Mount Manager"), _("Manage network mounts"), _("Setup your network mounts"), callback=mountManager))
+			self.subList.append(self.quickSubMenuEntryComponent(_("Network Browser"), _("Search for network shares"), _("Search for network shares"), callback=networkBrowser))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Device Manager"), _("Mounts Devices"), _("Setup your Device mounts (USB, HDD, others...)"), screen="MountManager", screenName="HddMount"))
+		self.setSubList()
+
+	def subMenuNetwork(self):  # Network Menu.
+		def getNetworkInterfaces():
+			adapters = [(iNetwork.getFriendlyAdapterName(x), x) for x in iNetwork.getAdapterList()]
+			if not adapters:
+				adapters = [(iNetwork.getFriendlyAdapterName(x), x) for x in iNetwork.getConfiguredAdapters()]
+			if not adapters:
+				adapters = [(iNetwork.getFriendlyAdapterName(x), x) for x in iNetwork.getInstalledAdapters()]
+			activeInterface = None
+			for adapter in adapters:
+				if iNetwork.getAdapterAttribute(adapter[1], "up") is True:
+					activeInterface = adapter[1]
+					break
+			return adapters, activeInterface
+
+		def networkInterface():
+			self.openScreen("NetworkSetup", screenName="AdapterSetup", networkinfo=activeInterface)
+
+		def networkWizard():
+			from Plugins.SystemPlugins.NetworkWizard.NetworkWizard import NetworkWizard
+			self.session.open(NetworkWizard)
+
+		adapters, activeInterface = getNetworkInterfaces()
+		self.subList = []
+		if isPluginInstalled("NetworkWizard"):
+			self.subList.append(self.quickSubMenuEntryComponent(_("Network Wizard"), _("Configure your Network"), _("Use the Networkwizard to configure your Network. The wizard will help you to setup your network"), callback=networkWizard))
+		if len(adapters) > 1:  # Show only adapter selection if more as 1 adapter is installed.
+			self.subList.append(self.quickSubMenuEntryComponent(_("Network Adapter Selection"), _("Select Lan/Wlan"), _("Setup your network interface. If no Wlan stick is used, you only can select Lan"), screen="NetworkSetup", screenName="NetworkAdapterSelection"))
+		if activeInterface is not None:  # Show only if there is already a adapter up.
+			self.subList.append(self.quickSubMenuEntryComponent(_("Network Interface"), _("Setup interface"), _("Setup network. Here you can setup DHCP, IP, DNS"), callback=networkInterface))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Network Restart"), _("Restart network to with current setup"), _("Restart network and remount connections"), screen="RestartNetwork"))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Network Services"), _("Setup Network Services"), _("Setup Network Services (Samba, Ftp, NFS, ...)"), screen="NetworkSetup", screenName="NetworkServicesSetup"))
+		self.subList.append(self.quickSubMenuEntryComponent(_("MiniDLNA"), _("Setup MiniDLNA"), _("Setup MiniDLNA"), screen="NetworkSetup", screenName="NetworkMiniDLNASetup"))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Inadyn"), _("Setup Inadyn"), _("Setup Inadyn"), screen="NetworkSetup", screenName="NetworkInadynSetup"))
+		self.subList.append(self.quickSubMenuEntryComponent(_("uShare"), _("Setup uShare"), _("Setup uShare"), screen="NetworkSetup", screenName="NetworkuShareSetup"))
+		self.setSubList()
+
+	def subMenuAVSetup(self):  # A/V Settings Menu.
+		def audioSync():
+			from Plugins.Extensions.AudioSync.AC3setup import AC3LipSyncSetup
+			self.session.open(AC3LipSyncSetup, resolveFilename(SCOPE_PLUGINS, "Extensions/AudioSync"))
+
+		def videoEnhancement():
+			from Plugins.SystemPlugins.VideoEnhancement.plugin import VideoEnhancementSetup
+			self.session.open(VideoEnhancementSetup)
+
+		self.subList = []
+		self.subList.append(self.quickSubMenuEntryComponent(_("Video Settings"), _("Setup Videomode"), _("Setup your Video Mode, Video Output and other Video Settings"), screen="VideoMode", screenName="VideoSetup"))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Audio Settings"), _("Setup Audiomode"), _("Setup your Audio Mode"), setup="Audio"))
+		if AUDIOSYNC:
+			self.subList.append(self.quickSubMenuEntryComponent(_("Audio Sync"), _("Setup Audio Sync"), _("Setup Audio Sync settings"), callback=audioSync))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Auto Language"), _("Auto Language Selection"), _("Select your Language for Audio/Subtitles"), setup="AutoLanguage"))
+		if VIDEOENH:
+			self.subList.append(self.quickSubMenuEntryComponent(_("VideoEnhancement"), _("VideoEnhancement Setup"), _("VideoEnhancement Setup"), callback=videoEnhancement))
+		self.setSubList()
+
+	def subMenuTuner(self):  # Tuner Menu.
+		def positionerSetup():
+			from Plugins.SystemPlugins.PositionerSetup.plugin import PositionerMain
+			PositionerMain(self.session)
+
+		def satfinderMain():
+			if len(NavigationInstance.instance.getRecordings(False, pNavigation.isAnyRecording)) > 0:
+				self.session.open(MessageBox, _("A recording is currently running. Please stop the recording before trying to start the satellite finder."), MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
+			else:
+				from Plugins.SystemPlugins.Satfinder.plugin import Satfinder
+				self.session.open(Satfinder)
+
+		self.subList = []
+		self.subList.append(self.quickSubMenuEntryComponent(_("Tuner Configuration"), _("Setup tuner(s)"), _("Setup each tuner for your satellite system"), screen="SatConfig", screenName="NimSelection"))
+		if POSSETUP:
+			self.subList.append(self.quickSubMenuEntryComponent(_("Positioner Setup"), _("Setup rotor"), _("Setup your positioner for your satellite system"), callback=positionerSetup))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Automatic Scan"), _("Automatic Service Searching"), _("Automatic scan for services"), screen="ScanSetup", screenName="ScanSimple"))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Manual Scan"), _("Manual Service Searching"), _("Manual scan for services"), screen="ScanSetup"))
+		if SATFINDER:
+			self.subList.append(self.quickSubMenuEntryComponent(_("Sat Finder"), _("Search Sats"), _("Search Sats, check signal and lock"), callback=satfinderMain))
+		self.setSubList()
+
+	def subMenuPlugin(self):  # Plugin Menu.
+		def ipkInstaller():
+			try:
+				from Plugins.Extensions.MediaScanner.plugin import main
+				main(self.session)
+			except Exception:
+				self.session.open(MessageBox, _("Sorry MediaScanner is not installed!"), MessageBox.TYPE_INFO, timeout=10, windowTitle=self.getTitle())
+
+		def downloadPlugins():
+			self.session.open(PackageAction, PackageAction.MODE_INSTALL)
+
+		def removePlugins():
+			self.session.open(PackageAction, PackageAction.MODE_REMOVE)
+
+		def managePlugins():
+			self.session.open(PackageAction, PackageAction.MODE_MANAGE)
+
+		self.subList = []
+		self.subList.append(self.quickSubMenuEntryComponent(_("Plugin Browser"), _("Open the Plugin Browser"), _("Shows Plugins Browser. Here you can setup installed Plugin"), screen="PluginBrowser"))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Download Plugins"), _("Download and install Plugins"), _("Shows available plugins. Here you can download and install them"), callback=downloadPlugins))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Remove Plugins"), _("Delete Plugins"), _("Delete and uninstall Plugins. This will remove the Plugin from your box"), callback=removePlugins))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Manage Plugins"), _("Manage Plugins"), _("Manage Plugins. This will remove/install Plugins on your box"), callback=managePlugins))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Plugin Browser Settings"), _("Setup Plugin Browser"), _("Setup PluginBrowser. Here you can select which Plugins are showed in the PluginBrowser"), setup="PluginBrowser"))
+		self.subList.append(self.quickSubMenuEntryComponent(_("IPK Installer"), _("Install Local Extension"), _("Scan for local extensions and install them"), callback=ipkInstaller))
+		self.setSubList()
+
+	def subMenuHarddisk(self):  # Harddisk Menu.
+		def isFileSystemSupported(filesystem):
+			filesystems = fileReadLines("/proc/filesystems", default=[], source=MODULE_NAME)
+			found = False
+			for line in filesystems:
+				if line.endswith(filesystem):
+					found = True
+					break
+			return found
+
+		self.subList = []
+		self.subList.append(self.quickSubMenuEntryComponent(_("Harddisk Setup"), _("Harddisk Setup"), _("Setup your Harddisk"), setup="HardDisk"))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Initialization"), _("Format HDD"), _("Format your hard drive"), screen="HarddiskSetup", screenName="HarddiskSelection"))
+		self.subList.append(self.quickSubMenuEntryComponent(_("File System Check"), _("Check HDD"), _("Filesystem check your hard drive"), screen="HarddiskSetup", screenName="HarddiskFsckSelection"))
+		if isFileSystemSupported("ext4"):
+			self.subList.append(self.quickSubMenuEntryComponent(_("Convert ext3 to ext4"), _("Convert file system ext3 to ext4"), _("Convert file system ext3 to ext4"), screen="HarddiskSetup", screenName="HarddiskConvertExt4Selection"))
+		self.setSubList()
+
+	def quickSubMenuEntryComponent(self, name, description, longDescription=None, width=540, setup=None, screen=None, screenName=None, callback=None):
+		return (name, description, longDescription, setup, screen, screenName, callback)
+
+	def setSubList(self):
+		self["sublist"].setList([(x[0], x[1]) for x in self.subList])
 
 	def selectSubItem(self):
-		(setup, screen, screenName, callback) = self["sublist"].getCurrent()[0]
+		(name, description, longDescription, setup, screen, screenName, callback) = self.subList[self["sublist"].getCurrentIndex()]
 		if setup:
 			self.openSetup(setup)
 		elif screen:
@@ -418,8 +468,8 @@ class QuickMenu(Screen, ProtectedScreen):
 		elif callback and callable(callback):
 			callback()
 
-	def openSetup(self, dialog):
-		self.session.openWithCallback(self.menuClosed, Setup, dialog)
+	def openSetup(self, key):
+		self.session.open(Setup, key)
 
 	def openScreen(self, screenModule, screenName=None, **kwargs):
 		try:
@@ -428,202 +478,5 @@ class QuickMenu(Screen, ProtectedScreen):
 		except (ModuleNotFoundError, AttributeError) as err:
 			print(f"[QuickMenu] Error openScreen: {err}")
 
-	def menuClosed(self, *res):
+	def createSummary(self):
 		pass
-
-# ####### NETWORK TOOLS #######################
-	def getNetworkInterfaces(self):
-		self.adapters = [(iNetwork.getFriendlyAdapterName(x), x) for x in iNetwork.getAdapterList()]
-		if not self.adapters:
-			self.adapters = [(iNetwork.getFriendlyAdapterName(x), x) for x in iNetwork.getConfiguredAdapters()]
-		if len(self.adapters) == 0:
-			self.adapters = [(iNetwork.getFriendlyAdapterName(x), x) for x in iNetwork.getInstalledAdapters()]
-		self.activeInterface = None
-		for x in self.adapters:
-			if iNetwork.getAdapterAttribute(x[1], "up") is True:
-				self.activeInterface = x[1]
-				return
-
-# ####### TUNER TOOLS #######################
-	def satfinderMain(self):
-		if len(NavigationInstance.instance.getRecordings(False, pNavigation.isAnyRecording)) > 0:
-			self.session.open(MessageBox, _("A recording is currently running. Please stop the recording before trying to start the satellite finder."), MessageBox.TYPE_ERROR)
-		else:
-			from Plugins.SystemPlugins.Satfinder.plugin import Satfinder
-			self.session.open(Satfinder)
-
-# ####### SOFTWARE MANAGER TOOLS #######################
-	def backupDone(self, retval=None):
-		self.session.open(MessageBox, _("Backup done.") if retval else _("Backup failed!"), MessageBox.TYPE_INFO if retval else MessageBox.TYPE_ERROR, timeout=10)
-
-	def startRestore(self, ret=False):
-		if (ret is True):
-			self.exe = True
-			self.session.open(RestoreScreen, runRestore=True)
-
-	def completeBackup(self):
-		if BoxInfo.getItem("dFlash"):
-			from Plugins.Extensions.dFlash.plugin import dFlash
-			self.session.open(dFlash)
-		elif BoxInfo.getItem("dBackup"):
-			from Plugins.Extensions.dBackup.plugin import dBackup
-			self.session.open(dBackup)
-		else:
-			from Plugins.SystemPlugins.SoftwareManager.ImageBackup import ImageBackup
-			self.session.open(ImageBackup)
-
-	def QuickSubMenuEntryComponent(self, name, description, longDescription=None, width=540, setup=None, screen=None, screenName=None, callback=None):
-		sf = self.skinFactor
-		return [
-			(setup, screen, screenName, callback),
-			MultiContentEntryText(pos=(10 * sf, 2 * sf), size=((width - 10) * sf, 28 * sf), font=0, text=name),
-			MultiContentEntryText(pos=(10 * sf, 25 * sf), size=((width - 10) * sf, 22 * sf), font=1, text=description),
-			MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=longDescription)
-		]
-
-	def QuickMenuEntryComponent(self, itemIndex, pngname, name, description, longDescription=None, width=540):
-		png = LoadPixmap(f"/usr/share/enigma2/icons/{pngname}.png")
-		if png is None:
-			png = LoadPixmap("/usr/share/enigma2/icons/default.png")
-		sf = self.skinFactor
-		return [
-			itemIndex,
-			MultiContentEntryText(pos=(60 * sf, 2 * sf), size=((width - 60) * sf, 28 * sf), font=0, text=name),
-			MultiContentEntryText(pos=(60 * sf, 25 * sf), size=((width - 60) * sf, 22 * sf), font=1, text=description),
-			MultiContentEntryPixmapAlphaBlend(pos=(10 * sf, 5 * sf), size=(40 * sf, 40 * sf), flags=BT_SCALE, png=png),
-			MultiContentEntryText(pos=(0, 0), size=(0, 0), font=0, text=longDescription)
-		]
-
-
-class QuickMenuList(MenuList):
-	def __init__(self, list, enableWrapAround=True):
-		MenuList.__init__(self, list, enableWrapAround, eListboxPythonMultiContent)
-		sf = getSkinFactor()
-		self.l.setFont(0, gFont("Regular", int(19 * sf)))
-		self.l.setFont(1, gFont("Regular", int(16 * sf)))
-		self.l.setItemHeight(int(50 * sf))
-
-
-class QuickMenuSubList(QuickMenuList):
-	pass
-
-
-class QuickMenuDevices(Screen):
-	skin = """
-	<screen name="QuickMenuDevices" position="center,center" size="840,525" title="Devices" flags="wfBorder" resolution="1280,720">
-		<widget source="devicelist" render="Listbox" position="30,46" size="780,450" font="Regular;16" scrollbarMode="showOnDemand" transparent="1" backgroundColorSelected="grey" foregroundColorSelected="black">
-			<convert type="TemplatedMultiContent">
-				{"template":
-					[
-					MultiContentEntryText(pos = (90, 0), size = (600, 30), font=0, text = 0),
-					MultiContentEntryText(pos = (110, 30), size = (600, 50), font=1, flags = RT_VALIGN_TOP, text = 1),
-					MultiContentEntryPixmapAlphaBlend(pos = (0, 0), size = (80, 80), png = 2),
-					],
-				"fonts": [gFont("Regular", 24),gFont("Regular", 20)],
-				"itemHeight": 85
-				}
-			</convert>
-		</widget>
-		<widget name="lab1" zPosition="2" position="126,92" size="600,40" font="Regular;22" halign="center" backgroundColor="black" transparent="1" />
-	</screen>"""
-
-	def __init__(self, session):
-		Screen.__init__(self, session)
-		self.setTitle(_("Devices"))
-		self["lab1"] = Label()
-		self.devicelist = []
-		self["devicelist"] = List(self.devicelist)
-		self["actions"] = HelpableActionMap(self, ["CancelActions"], {
-			"cancel": self.close,
-		}, prio=0)
-		self.activityTimer = eTimer()
-		self.activityTimer.timeout.get().append(self.updateList2)
-		self.updateList()
-
-	def updateList(self, result=None, retval=None, extra_args=None):
-		scanning = _("Wait please while scanning for devices...")
-		self["lab1"].setText(scanning)
-		self.activityTimer.start(10)
-
-	def updateList2(self):
-		def buildMy_rec(device, swapdevices, partitions):
-			device2 = sub(r"[\d]", "", device)  # Strip device number.
-			deviceType = realpath(f"/sys/block/{device2}/device")
-			name = "USB: "
-			pixmapName = "dev_usbstick.png"
-			with open(f"/sys/block/{device2}/device/model") as fd:
-				model = fd.read()
-				model = str(model).replace("\n", "")
-			des = ""
-			if deviceType.find("/devices/pci") != -1:
-				name = _("HARD DISK: ")
-				pixmapName = "dev_hdd.png"
-			name = f"{name}{model}"
-			mounts = fileReadLines("/proc/mounts", [], source=MODULE_NAME)
-			if mounts:
-				for line in mounts:
-					if line.find(device) != -1:
-						parts = line.strip().split()
-						d1 = parts[1]
-						dtype = parts[2]
-						rw = parts[3]
-						break
-					else:
-						if device in swapdevices:
-							parts = line.strip().split()
-							d1 = _("None")
-							dtype = "swap"
-							rw = _("None")
-							break
-						else:
-							d1 = _("None")
-							dtype = _("unavailable")
-							rw = _("None")
-			if partitions:
-				for line in partitions:
-					if line.find(device) != -1:
-						parts = line.strip().split()
-						size = int(parts[2])
-					else:
-						try:
-							with open(f"/sys/block/{device2}/{device}/size") as fd:
-								size = fd.read()
-							size = str(size).replace("\n", "")
-							size = int(size)
-							size = size // 2
-						except Exception:
-							size = 0
-					if ((size / 1024) / 1024) > 1:
-						des = f"{_("Size")}: {str(size // 1024 // 1024)} {_("GB")}"
-					else:
-						des = f"{_("Size")}: {str(size // 1024)} {_("MB")}"
-			if des != "":
-				if rw.startswith("rw"):
-					rw = " R/W"
-				elif rw.startswith("ro"):
-					rw = " R/O"
-				else:
-					rw = ""
-				des = f"{des}\t{_("Mount: ")}{d1}\n{_("Device: ")} /dev/{device}\t{_("Type: ")}{dtype}{rw}"
-				png = LoadPixmap(join("/usr/share/enigma2/icons", pixmapName))
-				self.devicelist.append((name, des, png))
-
-		def swapCallback(data, retVal, extraArgs):
-			list2 = []
-			swapdevices = data.replace("\n", "").split("/")
-			partitions = fileReadLines("/proc/partitions", [], source=MODULE_NAME)
-			for partition in partitions:
-				parts = partition.split()
-				if parts:
-					device = parts[3]
-					if device not in list2 and search(r"^sd[a-z][1-9][\d]*$", device):
-						buildMy_rec(device, swapdevices, partitions)
-						list2.append(device)
-			self["devicelist"].list = self.devicelist
-			if len(self.devicelist) == 0:
-				self["lab1"].setText(_("No Devices Found !!"))
-			else:
-				self["lab1"].hide()
-		self.activityTimer.stop()
-		self.devicelist = []
-		Console().ePopen("sfdisk -l /dev/sd? | grep swap | awk '{print $(NF-9)}'", swapCallback)
