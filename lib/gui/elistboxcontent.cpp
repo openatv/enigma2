@@ -454,6 +454,17 @@ void eListboxPythonStringContent::setList(ePyObject list)
 		m_listbox->entryReset(false);
 }
 
+void eListboxPythonStringContent::updateEntry(int index, ePyObject entry)
+{
+	if (index < size())
+	{
+		PyList_SET_ITEM(m_list, index, entry);
+		if (m_listbox)
+			m_listbox->entryChanged(index);
+
+	}
+}
+
 void eListboxPythonStringContent::setOrientation(uint8_t orientation)
 {
 	m_orientation = orientation;

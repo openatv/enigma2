@@ -116,7 +116,7 @@ class BackupScreen(Screen, ConfigListScreen):
 		<widget name="config" position="10,10" size="330,250" transparent="1" scrollbarMode="showOnDemand" />
 		</screen>"""
 
-	def __init__(self, session, runBackup=False):
+	def __init__(self, session, runBackup=False, closeOnSuccess=True):
 		Screen.__init__(self, session)
 		self.setTitle(_("Backup is running..."))
 		self["actions"] = ActionMap(["WizardActions", "DirectionActions"],
@@ -126,6 +126,7 @@ class BackupScreen(Screen, ConfigListScreen):
 			"cancel": self.close,
 		}, -1)
 		self.finishedCallback = None
+		self.closeOnSuccess = closeOnSuccess
 		self.list = []
 		self.backuppath = getBackupPath()  # Used in ImageWizard
 		ConfigListScreen.__init__(self, self.list)  # Used in ImageWizard
@@ -183,11 +184,12 @@ class BackupScreen(Screen, ConfigListScreen):
 				if exists(newFilename):
 					remove(newFilename)
 				rename(fullbackupFilename, newFilename)
-			self.session.openWithCallback(self.backupFinishedCB, Console, title=self.screenTitle, cmdlist=cmdList, closeOnSuccess=True)
+			self.session.openWithCallback(self.backupFinishedCB, Console, title=self.screenTitle, cmdlist=cmdList, closeOnSuccess=self.closeOnSuccess)
 		except OSError:
 			self.session.openWithCallback(self.backupErrorCB, MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout=10)
 
 	def backupFinishedCB(self, retval=None):
+		print("[BackupScreen] DEBUG backupFinishedCB")
 		if self.finishedCallback:
 			self.finishedCallback()
 		else:

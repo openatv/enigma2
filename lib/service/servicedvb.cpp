@@ -19,6 +19,7 @@
 #include <lib/base/nconfig.h> // access to python config
 #include <lib/base/httpsstream.h>
 #include <lib/base/httpstream.h>
+#include <lib/base/esubtitlesettings.h>
 #include <lib/service/servicedvbfcc.h>
 #include "servicepeer.h"
 
@@ -3554,12 +3555,12 @@ void eDVBServicePlay::newSubtitlePage(const eDVBTeletextSubtitlePage &page)
 		if (m_is_pvr || m_timeshift_enabled)
 		{
 			eDebug("[eDVBServicePlay] Subtitle in recording/timeshift");
-			subtitledelay = eConfigManager::getConfigIntValue("config.subtitles.subtitle_noPTSrecordingdelay", 315000);
+			subtitledelay = eSubtitleSettings::subtitle_noPTSrecordingdelay;
 		}
 		else
 		{
 			/* check the setting for subtitle delay in live playback, either with pts, or without pts */
-			subtitledelay = eConfigManager::getConfigIntValue("config.subtitles.subtitle_bad_timing_delay", 0);
+			subtitledelay = eSubtitleSettings::subtitle_bad_timing_delay;
 		}
 
 		// eDebug("[eDVBServicePlay] Subtitle get  TTX have_pts=%d pvr=%d timeshift=%d page.pts=%lld pts=%lld delay=%d", page.m_have_pts, m_is_pvr, m_timeshift_enabled, page.m_pts, pts, subtitledelay);
@@ -3646,16 +3647,14 @@ void eDVBServicePlay::newDVBSubtitlePage(const eDVBSubtitlePage &p)
 		{
 			// Subtitles delivered over 20 seconds too late
 			eDebug("[eDVBServicePlay] Video pts:%lld, subtitle show_time:%lld, diff:%.02fs BAD TIMING", pos, p.m_show_time, (p.m_show_time - pos) / 90000.0f);
-			int subtitledelay = eConfigManager::getConfigIntValue("config.subtitles.subtitle_noPTSrecordingdelay", 315000);
-
 			eDVBSubtitlePage tmppage;
 			tmppage = p;
-			tmppage.m_show_time = pos + subtitledelay;
+			tmppage.m_show_time = pos + eSubtitleSettings::subtitle_noPTSrecordingdelay;
 			m_dvb_subtitle_pages.push_back(tmppage);
 		}
 		else
 		{
-			int subtitledelay = eConfigManager::getConfigIntValue("config.subtitles.subtitle_bad_timing_delay", 0);
+			int subtitledelay = eSubtitleSettings::subtitle_bad_timing_delay;
 			if (subtitledelay != 0)
 			{
 				eDVBSubtitlePage tmppage;

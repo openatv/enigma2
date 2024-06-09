@@ -10,7 +10,7 @@
 #include <lib/base/smartptr.h>
 #include <lib/base/eerror.h>
 #include <lib/gdi/gpixmap.h>
-#include <lib/base/nconfig.h>
+#include <lib/base/esubtitlesettings.h>
 
 void bitstream_init(bitstream *bit, const void *buffer, int size)
 {
@@ -51,7 +51,7 @@ static int extract_pts(pts_t &pts, uint8_t *pkt)
 
 void eDVBSubtitleParser::subtitle_process_line(subtitle_region *region, subtitle_region_object *object, int line, uint8_t *data, int len)
 {
-	bool subcentered = eConfigManager::getConfigBoolValue("config.subtitles.dvb_subtitles_centered");
+	bool subcentered = eSubtitleSettings::dvb_subtitles_centered;
 	int x = subcentered ? (region->width - len) /2 : object->object_horizontal_position;
 	int y = object->object_vertical_position + line;
 	if (x + len > region->width)
@@ -1024,8 +1024,8 @@ void eDVBSubtitleParser::subtitle_redraw(int page_id)
 					break;
 			}
 
-			int bcktrans = eConfigManager::getConfigIntValue("config.subtitles.dvb_subtitles_backtrans");
-			bool yellow = eConfigManager::getConfigBoolValue("config.subtitles.dvb_subtitles_yellow");
+			int bcktrans = eSubtitleSettings::dvb_subtitles_backtrans;
+			bool yellow = eSubtitleSettings::dvb_subtitles_yellow;
 
 			for (int i=0; i<clut_size; ++i)
 			{

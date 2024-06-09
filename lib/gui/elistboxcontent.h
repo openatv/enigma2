@@ -12,6 +12,7 @@ public:
 	eListboxPythonStringContent();
 	~eListboxPythonStringContent();
 
+	void updateEntry(int index, SWIG_PYOBJECT(ePyObject) entry);
 	void setList(SWIG_PYOBJECT(ePyObject) list);
 	void setOrientation(uint8_t orientation);
 	void setItemHeight(int height);

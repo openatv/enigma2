@@ -299,7 +299,7 @@ class BackupHelper(Screen):
 	def doAction(self):
 		doClose = True
 		if self.args == 1:
-			self.session.openWithCallback(self.backupDone, BackupScreen, runBackup=True)
+			self.session.openWithCallback(self.backupDone, BackupScreen, runBackup=True, closeOnSuccess=False)
 			doClose = False
 		elif self.args == 2:
 			if isfile(self.fullbackupfilename):
@@ -367,8 +367,8 @@ class BackupHelper(Screen):
 		self.close()
 
 	def backupDone(self, retval=None):
-		message = _("Backup completed.") if retval else _("Backup failed.")
-		self.session.open(MessageBox, message, MessageBox.TYPE_INFO, timeout=10)
+		#message = _("Backup completed.") if retval else _("Backup failed.")
+		#self.session.open(MessageBox, message, MessageBox.TYPE_INFO, timeout=10)
 		self.close()
 
 

@@ -435,7 +435,8 @@ class QuickMenu(Screen, ProtectedScreen):
 		elif item == _("Complete Backup"):
 			self.CompleteBackup()
 		elif item == _("Backup Settings"):
-			self.session.openWithCallback(self.backupDone, BackupScreen, runBackup=True)
+			#self.session.openWithCallback(self.backupDone, BackupScreen, runBackup=True)
+			self.session.open(BackupScreen, runBackup=True, closeOnSuccess=False)
 		elif item == _("Restore Settings"):
 			self.backuppath = getBackupPath()
 			if not isdir(self.backuppath):
