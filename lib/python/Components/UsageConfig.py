@@ -1517,7 +1517,7 @@ def InitUsageConfig():
 		("center", _("Center")),
 		("right", _("Right"))
 	])
-	config.subtitles.subtitle_position.addNotifier(setSubtitleAligment)
+	config.subtitles.subtitle_alignment.addNotifier(setSubtitleAligment)
 
 	def setSubtitleReWrap(configElement):
 		eSubtitleSettings.setSubtitleReWrap(configElement.value)
