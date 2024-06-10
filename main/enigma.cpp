@@ -400,7 +400,11 @@ int main(int argc, char **argv)
 		if (i == 0)
 			my_dc->setSpinner(eRect(spinnerPostionX, spinnerPostionY, 0, 0), wait, 1);
 		else
+		{
 			my_dc->setSpinner(eRect(ePoint(spinnerPostionX, spinnerPostionY), wait[0]->size()), wait, i);
+			float scale = my_dc->size().width() == 1920 ? 1.5 : 1.0;
+			my_dc->setSpinnerScale(scale);
+		}
 	}
 
 	gRC::getInstance()->setSpinnerDC(my_dc);
