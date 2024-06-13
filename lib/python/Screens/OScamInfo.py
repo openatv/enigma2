@@ -18,6 +18,7 @@ from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.Setup import Setup
+from Tools.BoundFunction import boundFunction
 
 # GLOBALS
 MODULE_NAME = __name__.split(".")[-1]
@@ -208,7 +209,6 @@ class OSCamInfo(Screen, OSCamGlobals):
 		Screen.__init__(self, session)
 		self.skinName = "OSCamInfo"
 		self.setTitle(_("OSCamInfo: Information"))
-		self.part = ""
 		self.rulist = []
 		self["buildinfos"] = StaticText()
 		self["timerinfos"] = StaticText()
@@ -231,8 +231,8 @@ class OSCamInfo(Screen, OSCamGlobals):
 			"ok": (self.keyOk, _("Show details")),
 			"cancel": (self.exit, _("Close the screen")),
 			"menu": (self.keyMenu, _("Open Settings")),
-			"red": (self.keyRed, _("Shutdown OSCam")),
-			"green": (self.keyGreen, _("Shutdown OSCam")),
+			"red": (self.keyShutdown, _("Shutdown OSCam")),
+			"green": (self.keyRestart, _("Restart OSCam")),
 			"blue": (self.keyBlue, _("Open Log"))
 			}, prio=1, description=_("OSCamInfo Actions"))
 		self.loop = eTimer()
@@ -371,29 +371,23 @@ class OSCamInfo(Screen, OSCamGlobals):
 	def keyMenu(self):
 		self.session.openWithCallback(self.menuCallback, OSCamInfoSetup)
 
-	def keyRed(self):
-		self.part = "shutdown"
-		self.session.openWithCallback(self.msgboxCB, MessageBox, _("Do you really want to shut down OSCam?\n\nATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"), MessageBox.TYPE_YESNO, timeout=10, default=False)
+	def keyShutdown(self):
+		self.session.openWithCallback(boundFunction(self.msgboxCB, "shutdown"), MessageBox, _("Do you really want to shut down OSCam?\n\nATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"), MessageBox.TYPE_YESNO, timeout=10, default=False)
 
-	def keyGreen(self):
-		self.part = "restart"
-		self.session.openWithCallback(self.msgboxCB, MessageBox, _("Do you really want to restart OSCam?\n\nHINT: This will take about 5 seconds!"), MessageBox.TYPE_YESNO, timeout=10, default=False)
+	def keyRestart(self):
+		self.session.openWithCallback(boundFunction(self.msgboxCB, "restart"), MessageBox, _("Do you really want to restart OSCam?\n\nHINT: This will take about 5 seconds!"), MessageBox.TYPE_YESNO, timeout=10, default=False)
 
 	def keyBlue(self):
 		self.loop.stop()
 		self.session.openWithCallback(self.keyCallback, OSCamInfoLog)
 
-	def msgboxCB(self, answer):
-		if answer is True and self.part:
+	def msgboxCB(self, action, answer):
+		if answer:
 			self.loop.stop()
-			webifok, result = self.openWebIF(part=self.part)
-			if webifok:
-				msg = {"shutdown": _("OScam will be shut down."), "restart": _("OScam will be restarted.")}.get(self.part, "")
-			else:
-				msg = _("Unexpected error accessing WebIF: %s" % result)
-			if msg:
-				self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, timeout=3, close_on_any_key=True)
-			self.keyCallback()
+			webifok, result = self.openWebIF(part=action)
+			if not webifok:
+				print("[%s] ERROR in module 'msgboxCB': %s" % (MODULE_NAME, "Unexpected error accessing WebIF: %s" % result))
+				self.session.open(MessageBox, _("Unexpected error accessing WebIF: %s" % result), MessageBox.TYPE_ERROR, timeout=3, close_on_any_key=True)
 
 	def exit(self):
 		self.loop.stop()
