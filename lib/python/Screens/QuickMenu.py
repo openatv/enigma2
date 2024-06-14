@@ -297,7 +297,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		if BoxInfo.getItem("SoftCam"):  # Show only when there is a softcam installed.
 			self.subList.append(self.quickSubMenuEntryComponent(_("Softcam Settings"), _("Control your Softcams"), _("Use the Softcam Panel to control your Cam. This let you start/stop/select a cam"), screen="SoftcamSetup"))
 			if BoxInfo.getItem("ShowOscamInfo"):  # Show only when oscam or ncam is active.
-				self.subList.append(self.quickSubMenuEntryComponent(_("OSCam Information"), _("Show OSCam Information"), _("Show the OSCam information screen"), screen="OSCamInfo"))
+				self.subList.append(self.quickSubMenuEntryComponent(_("OSCam Information"), _("Show OSCam Information"), _("Show the OSCam information screen"), screen="OScamInfo", screenName="OSCamInfo"))
 			if BoxInfo.getItem("ShowCCCamInfo"):  # Show only when CCcam is active.
 				self.subList.append(self.quickSubMenuEntryComponent(_("CCcam Information"), _("Show CCcam Info"), _("Show the CCcam Info Screen"), screen="CCcamInfo", screenName="CCcamInfoMain"))
 		self.subList.append(self.quickSubMenuEntryComponent(_("Download Softcams"), _("Download and install cam"), _("Shows available softcams. Here you can download and install them"), callback=downloadSoftcams))
