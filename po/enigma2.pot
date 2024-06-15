@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-13 14:37+0000\n"
+"POT-Creation-Date: 2024-06-15 20:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4228,6 +4228,11 @@ msgstr ""
 msgid "Command execution..."
 msgstr ""
 
+msgid "Command finished."
+msgid_plural "Commands finished."
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Command order"
 msgstr ""
 
@@ -7439,6 +7444,10 @@ msgid "Error: Unable to rename directory '%s' to '%s'!"
 msgstr ""
 
 #, python-format
+msgid "Error: Unable to write log file '%s'!"
+msgstr ""
+
+#, python-format
 msgid "Error: You can't run '%s' on '%s'!"
 msgstr ""
 
@@ -7532,12 +7541,6 @@ msgid "Exceeds dual layer medium!"
 msgstr ""
 
 msgid "Execution condition"
-msgstr ""
-
-msgid "Execution finished!!"
-msgstr ""
-
-msgid "Execution progress:"
 msgstr ""
 
 msgid "Exif"
@@ -8011,10 +8014,6 @@ msgid "File transfer was canceled by user!"
 msgstr ""
 
 msgid "File transfer was cancelled by user"
-msgstr ""
-
-#, python-format
-msgid "File write error: '%s'"
 msgstr ""
 
 msgid "Filename"
@@ -8881,10 +8880,10 @@ msgstr ""
 msgid "Hide the InfoBar"
 msgstr ""
 
-msgid "Hide this screen"
+msgid "Hide zap errors"
 msgstr ""
 
-msgid "Hide zap errors"
+msgid "Hide/Show the console screen"
 msgstr ""
 
 msgid "Hierarchy info"
@@ -11401,6 +11400,9 @@ msgstr ""
 msgid "NOTE: These %d directories/files exist and will be overwritten!"
 msgstr ""
 
+msgid "NOTE: While the console screen is hidden from view the buttons are still active. Pressing any enabled button will cause the screen to reappear but the button will not be actioned."
+msgstr ""
+
 msgid "NOW"
 msgstr ""
 
@@ -12661,9 +12663,6 @@ msgstr ""
 
 #, python-format
 msgid "Path '%s' missing!"
-msgstr ""
-
-msgid "Path to save not exist: '/tmp/'"
 msgstr ""
 
 msgid "Pause"
@@ -14791,6 +14790,10 @@ msgstr ""
 msgid "Running Myrestore script, Please wait ..."
 msgstr ""
 
+#, python-format
+msgid "Running command %d: '%s'."
+msgstr ""
+
 msgid "Russian"
 msgstr ""
 
@@ -14984,6 +14987,9 @@ msgstr ""
 msgid "Save EPG data"
 msgstr ""
 
+msgid "Save Log"
+msgstr ""
+
 msgid "Save all changed settings and exit"
 msgstr ""
 
@@ -15031,6 +15037,9 @@ msgid "Save the left column directory location on exit."
 msgstr ""
 
 msgid "Save the log changes and exit"
+msgstr ""
+
+msgid "Save the log of the console messages to a file"
 msgstr ""
 
 msgid "Save the right column directory location on exit."
