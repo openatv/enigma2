@@ -1,5 +1,6 @@
 #include <lib/gui/elabel.h>
 #include <lib/gdi/font.h>
+#include <lib/gui/ewindowstyleskinned.h>
 
 eLabel::eLabel(eWidget *parent, int markedPos) : eWidget(parent)
 {
@@ -138,6 +139,25 @@ void eLabel::setForegroundColor(const gRGB &col)
 		m_have_foreground_color = 1;
 		invalidate();
 	}
+}
+
+gRGB eLabel::getForegroundColor(int styleID)
+{
+	if (m_have_foreground_color)
+		return m_foreground_color;
+
+	ePtr<eWindowStyleManager> mgr;
+	eWindowStyleManager::getInstance(mgr);
+
+	if (mgr) {
+		ePtr<eWindowStyle> style;
+		mgr->getStyle(styleID, style);
+		if(style)
+		{
+			return style->getColor(eWindowStyleSkinned::colForeground);
+		}
+	}
+	return gRGB(0xFFFFFF);
 }
 
 void eLabel::setShadowColor(const gRGB &col)
