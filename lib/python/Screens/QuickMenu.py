@@ -310,7 +310,7 @@ class QuickMenu(Screen, ProtectedScreen):
 		self.subList.append(self.quickSubMenuEntryComponent(_("Button Setup"), _("Button Setup"), _("Setup your remote buttons"), setup="RemoteButton"))
 		if BoxInfo.getItem("FrontpanelDisplay") and BoxInfo.getItem("Display"):
 			self.subList.append(self.quickSubMenuEntryComponent(_("Display Settings"), _("Setup your LCD"), _("Setup your display"), setup="Display"))
-		self.subList.append(self.quickSubMenuEntryComponent(_("Skin Settings"), _("Select Enigma2 Skin"), _("Setup your Skin"), setup="SkinSelection"))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Skin Settings"), _("Select Enigma2 Skin"), _("Setup your Skin"), screen="SkinSelection"))
 		self.subList.append(self.quickSubMenuEntryComponent(_("Channel Selection"), _("Channel selection configuration"), _("Setup your Channel selection configuration"), setup="ChannelSelection"))
 		self.subList.append(self.quickSubMenuEntryComponent(_("Recording Settings"), _("Recording Setup"), _("Setup your recording config"), setup="Recording"))
 		self.subList.append(self.quickSubMenuEntryComponent(_("EPG Settings"), _("EPG Setup"), _("Setup your EPG config"), setup="EPG"))
@@ -400,7 +400,7 @@ class QuickMenu(Screen, ProtectedScreen):
 				self.session.open(Satfinder)
 
 		self.subList = []
-		self.subList.append(self.quickSubMenuEntryComponent(_("Tuner Configuration"), _("Setup tuner(s)"), _("Setup each tuner for your satellite system"), screen="SatConfig", screenName="NimSelection"))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Tuner Configuration"), _("Setup tuner(s)"), _("Setup each tuner for your satellite system"), screen="Satconfig", screenName="NimSelection"))
 		if POSSETUP:
 			self.subList.append(self.quickSubMenuEntryComponent(_("Positioner Setup"), _("Setup rotor"), _("Setup your positioner for your satellite system"), callback=positionerSetup))
 		self.subList.append(self.quickSubMenuEntryComponent(_("Automatic Scan"), _("Automatic Service Searching"), _("Automatic scan for services"), screen="ScanSetup", screenName="ScanSimple"))
