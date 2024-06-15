@@ -289,10 +289,10 @@ def parseOptions(options, attribute, value, default):
 		if value in options.keys():
 			value = options[value]
 		else:
-			skinError(f"The '{attribute}' value '{value}' is invalid, acceptable options are '{"', '".join(options.keys())}'")
+			skinError(f"The '{attribute}' value '{value}' is invalid, acceptable options are '{"', '".join(options.keys())}', using '{default}")
 			value = default
 	else:
-		skinError(f"The '{attribute}' parser is not correctly initialized")
+		skinError(f"The '{attribute}' parser is not correctly initialized, using '{default}'")
 		value = default
 	return value
 
@@ -329,12 +329,12 @@ def parseColor(value, default=0x00FFFFFF):
 		try:
 			value = gRGB(int(value[1:], 0x10))
 		except ValueError:
-			skinError(f"The color code '{value}' must be #aarrggbb, using #00FFFFFF (White)")
+			skinError(f"The color code '{value}' must be #aarrggbb, using #{default:08X}")
 			value = gRGB(default)
 	elif value in colors:
 		value = colors[value]
 	else:
-		skinError(f"The color '{value}' must be #aarrggbb or valid named color, using #00FFFFFF (White)")
+		skinError(f"The color '{value}' must be #aarrggbb or valid named color, using #{default:08X}")
 		value = gRGB(default)
 	return value
 
@@ -494,7 +494,7 @@ def parseInteger(value, default=0):
 	try:
 		value = int(value)
 	except (TypeError, ValueError):
-		skinError(f"The value '{value}' is not a valid integer")
+		skinError(f"The value '{value}' is not a valid integer, using {default}")
 		value = default
 	return value
 
