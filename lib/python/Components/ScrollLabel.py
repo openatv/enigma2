@@ -163,6 +163,9 @@ class ScrollLabel(GUIComponent):
 		self.setText(self.msgText)
 		return retVal
 
+	def getForegroundColor(self):
+		return self.leftText.getForegroundColor().argb()
+
 	def getText(self):
 		return self.msgText
 
