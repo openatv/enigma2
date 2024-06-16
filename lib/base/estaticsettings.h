@@ -58,8 +58,8 @@ class eUsageSettings
     public:
     	eUsageSettings() = default;
 
-        void setRemoteFallbackEnabled(bool value) { m_remote_fallback_enabled=value; }
-        void setUseCIAssignment(bool value) { m_use_ci_assignment=value; }
+        static void setRemoteFallbackEnabled(bool value) { m_remote_fallback_enabled=value; }
+        static void setUseCIAssignment(bool value) { m_use_ci_assignment=value; }
 
         static bool m_remote_fallback_enabled;
         static bool m_use_ci_assignment;
