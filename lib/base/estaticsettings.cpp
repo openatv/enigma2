@@ -1,4 +1,4 @@
-#include <lib/base/esubtitlesettings.h>
+#include <lib/base/estaticsettings.h>
 #include <lib/gdi/grc.h>
 
 bool eSubtitleSettings::ttx_subtitle_original_position = false;

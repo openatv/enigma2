@@ -19,7 +19,7 @@
 #include <lib/base/nconfig.h> // access to python config
 #include <lib/base/httpsstream.h>
 #include <lib/base/httpstream.h>
-#include <lib/base/esubtitlesettings.h>
+#include <lib/base/estaticsettings.h>
 #include <lib/service/servicedvbfcc.h>
 #include "servicepeer.h"
 

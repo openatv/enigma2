@@ -1,5 +1,5 @@
-#ifndef __esubtitlesettings_h
-#define __esubtitlesettings_h
+#ifndef __estaticsettings_h
+#define __estaticsettings_h
 
 class eSubtitleSettings
 {
