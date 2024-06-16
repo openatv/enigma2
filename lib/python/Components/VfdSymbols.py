@@ -145,7 +145,7 @@ class VFDSymbolsUpdater:
 	def setPowerSymbol(self):
 		path = self.ledConfig.get("symbol_power", None)
 		if path:
-			fileWriteLine(path, value="0" if BoxInfo.getItem("StandbyState") else "1", source=MODULE_NAME)
+			fileWriteLine(path, "0" if BoxInfo.getItem("StandbyState") else "1", source=MODULE_NAME)
 
 	def setRecording(self):
 		if self.recMode:
