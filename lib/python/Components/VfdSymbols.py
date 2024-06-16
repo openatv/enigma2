@@ -107,7 +107,7 @@ class VFDSymbolsUpdater:
 				for index in range(tracks):
 					info = audio.getTrackInfo(index)
 					description = info.getDescription()
-					if any(x in description for x in ("AC3", "AC-3", "DTS"))
+					if any(x in description for x in ("AC3", "AC-3", "DTS")):
 						value = "1"
 						break
 				fileWriteLine(path, value, source=MODULE_NAME)
