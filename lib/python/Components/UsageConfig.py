@@ -5,7 +5,7 @@ from os.path import exists, isfile, join as pathjoin, normpath, splitext
 from sys import maxsize
 from time import time
 
-from enigma import Misc_Options, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, RT_WRAP, eBackgroundFileEraser, eDVBDB, eDVBFrontend, eEnv, eEPGCache, eServiceEvent, eSubtitleSettings, setEnableTtCachingOnOff, setPreferredTuner, setSpinnerOnOff, setTunerTypePriorityOrder
+from enigma import Misc_Options, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, RT_WRAP, eActionMap, eBackgroundFileEraser, eDVBDB, eDVBFrontend, eEnv, eEPGCache, eServiceEvent, eSubtitleSettings, setEnableTtCachingOnOff, setPreferredTuner, setSpinnerOnOff, setTunerTypePriorityOrder
 
 from keyids import KEYIDS
 from skin import parameters
@@ -536,20 +536,24 @@ def InitUsageConfig():
 	config.usage.on_long_powerpress = ConfigSelection(default="show_menu", choices=choiceList)
 	config.usage.on_short_powerpress = ConfigSelection(default="standby", choices=choiceList)
 
-	config.usage.long_press_emulation_key = ConfigSelection(default="0", choices=[
-		("0", _("None")),
-		(str(KEYIDS["KEY_TV"]), _("TV")),
-		(str(KEYIDS["KEY_RADIO"]), _("RADIO")),
-		(str(KEYIDS["KEY_AUDIO"]), _("Audio")),
-		(str(KEYIDS["KEY_VIDEO"]), _("List/Fav")),
-		(str(KEYIDS["KEY_HOME"]), _("Home")),
-		(str(KEYIDS["KEY_END"]), _("End")),
-		(str(KEYIDS["KEY_HELP"]), _("Help")),
-		(str(KEYIDS["KEY_INFO"]), _("Info (EPG)")),
-		(str(KEYIDS["KEY_TEXT"]), _("Teletext")),
-		(str(KEYIDS["KEY_SUBTITLE"]), _("Subtitle")),
-		(str(KEYIDS["KEY_FAVORITES"]), _("Favorites"))
+	def setLongPressedEmulationKey(configElement):
+		eActionMap.getInstance().setLongPressedEmulationKey(configElement.value)
+
+	config.usage.long_press_emulation_key = ConfigSelection(default=0, choices=[
+		(0, _("None")),
+		(KEYIDS["KEY_TV"], _("TV")),
+		(KEYIDS["KEY_RADIO"], _("RADIO")),
+		(KEYIDS["KEY_AUDIO"], _("Audio")),
+		(KEYIDS["KEY_VIDEO"], _("List/Fav")),
+		(KEYIDS["KEY_HOME"], _("Home")),
+		(KEYIDS["KEY_END"], _("End")),
+		(KEYIDS["KEY_HELP"], _("Help")),
+		(KEYIDS["KEY_INFO"], _("Info (EPG)")),
+		(KEYIDS["KEY_TEXT"], _("Teletext")),
+		(KEYIDS["KEY_SUBTITLE"], _("Subtitle")),
+		(KEYIDS["KEY_FAVORITES"], _("Favorites"))
 	])
+	config.usage.long_press_emulation_key.addNotifier(setLongPressedEmulationKey)
 
 	config.usage.alternatives_priority = ConfigSelection(default="0", choices=[
 		("0", "DVB-S/-C/-T"),
