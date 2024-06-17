@@ -7,6 +7,7 @@
 #include <lib/base/nconfig.h>
 #include <lib/base/object.h>
 #include <lib/base/estaticsettings.h>
+#include <lib/base/esimpleconfig.h>
 #include <lib/dvb/epgcache.h>
 #include <lib/dvb/decoder.h>
 #include <lib/components/file_eraser.h>
@@ -3339,7 +3340,7 @@ void eServiceMP3::setAC3Delay(int delay)
 		 */
 		if (dvb_videosink)
 		{
-			config_delay_int += eConfigManager::getConfigIntValue("config.av.generalAC3delay");
+			config_delay_int += eSimpleConfig::getInt("config.av.generalAC3delay")
 		}
 		else
 		{
@@ -3370,7 +3371,7 @@ void eServiceMP3::setPCMDelay(int delay)
 		 */
 		if (dvb_videosink)
 		{
-			config_delay_int += eConfigManager::getConfigIntValue("config.av.generalPCMdelay");
+			config_delay_int += eSimpleConfig::getInt("config.av.generalPCMdelay")
 		}
 		else
 		{
