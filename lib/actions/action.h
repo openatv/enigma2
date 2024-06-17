@@ -40,7 +40,7 @@ public:
 
 #ifndef SWIG
 	static RESULT getInstance(ePtr<eActionMap> &);
-	int getLongPressedEmulationKey() { return m_long_press_emulation_key; }
+	int getLongPressedEmulationKey() const { return m_long_press_emulation_key; }
 private:
 	static eActionMap *instance;
 	int m_long_press_emulation_key = 0;
