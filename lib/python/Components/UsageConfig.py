@@ -5,7 +5,7 @@ from os.path import exists, isfile, join as pathjoin, normpath, splitext
 from sys import maxsize
 from time import time
 
-from enigma import Misc_Options, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, RT_WRAP, eActionMap, eBackgroundFileEraser, eDVBDB, eDVBFrontend, eEnv, eEPGCache, eServiceEvent, eSubtitleSettings, eUsageSettings, setEnableTtCachingOnOff, setPreferredTuner, setSpinnerOnOff, setTunerTypePriorityOrder
+from enigma import Misc_Options, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, RT_WRAP, eActionMap, eBackgroundFileEraser, eDVBDB, eDVBFrontend, eEnv, eEPGCache, eServiceEvent, eSubtitleSettings, eSettings, setEnableTtCachingOnOff, setPreferredTuner, setSpinnerOnOff, setTunerTypePriorityOrder
 
 from keyids import KEYIDS
 from skin import parameters
@@ -566,7 +566,7 @@ def InitUsageConfig():
 	])
 
 	def setRemoteFallbackEnabled(configElement):
-		eUsageSettings.setRemoteFallbackEnabled(configElement.value)
+		eSettings.setRemoteFallbackEnabled(configElement.value)
 
 	config.usage.remote_fallback_enabled = ConfigYesNo(default=False)
 	config.usage.remote_fallback_enabled.addNotifier(setRemoteFallbackEnabled)
@@ -817,7 +817,7 @@ def InitUsageConfig():
 	config.usage.hide_zap_errors = ConfigYesNo(default=True)
 
 	def setUseCIAssignment(configElement):
-		eUsageSettings.setUseCIAssignment(configElement.value)
+		eSettings.setUseCIAssignment(configElement.value)
 
 	config.misc.use_ci_assignment = ConfigYesNo(default=True)
 	config.misc.use_ci_assignment.addNotifier(setUseCIAssignment)
@@ -2155,10 +2155,11 @@ def InitUsageConfig():
 	# The following code temporarily maintains the deprecated timeshift_path so it is available for external plug ins.
 	config.usage.timeshift_path = NoSave(ConfigText(default=config.timeshift.path.value))
 
-	def updateOldTimeshiftPath(configElement):
+	def setTimeshiftPath(configElement):
 		config.usage.timeshift_path.value = configElement.value
+		eSettings.setTimeshiftPath(configElement.value)
 
-	config.timeshift.path.addNotifier(updateOldTimeshiftPath, immediate_feedback=False)
+	config.timeshift.path.addNotifier(setTimeshiftPath)
 
 
 def calcFrontendPriorityIntval(config_priority, config_priority_multiselect, config_priority_strictly):

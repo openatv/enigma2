@@ -1,4 +1,4 @@
-#include <lib/base/estaticsettings.h>
+#include <lib/base/esettings.h>
 #include <lib/gdi/grc.h>
 
 bool eSubtitleSettings::ttx_subtitle_original_position = false;
@@ -24,5 +24,6 @@ int eSubtitleSettings::subtitle_noPTSrecordingdelay = 315000;
 int eSubtitleSettings::subtitle_bad_timing_delay = 0;
 bool eSubtitleSettings::subtitle_usecache = true;
 
-bool eUsageSettings::m_remote_fallback_enabled = false;
-bool eUsageSettings::m_use_ci_assignment = false;
+bool eSettings::remote_fallback_enabled = false;
+bool eSettings::use_ci_assignment = false;
+std::string eSettings::timeshift_path = "";

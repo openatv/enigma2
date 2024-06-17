@@ -1,5 +1,6 @@
-#ifndef __estaticsettings_h
-#define __estaticsettings_h
+#ifndef __esettings_h
+#define __esettings_h
+#include <string>
 
 class eSubtitleSettings
 {
@@ -54,16 +55,18 @@ class eSubtitleSettings
 };
 
 
-class eUsageSettings
+class eSettings
 {
     public:
-    	eUsageSettings() = default;
+    	eSettings() = default;
 
-        static void setRemoteFallbackEnabled(bool value) { m_remote_fallback_enabled=value; }
-        static void setUseCIAssignment(bool value) { m_use_ci_assignment=value; }
+        static void setRemoteFallbackEnabled(bool value) { remote_fallback_enabled=value; }
+        static void setUseCIAssignment(bool value) { use_ci_assignment=value; }
+        static void setTimeshiftPath(std::string value) { timeshift_path=value; }
 
-        static bool m_remote_fallback_enabled;
-        static bool m_use_ci_assignment;
+        static bool remote_fallback_enabled;
+        static bool use_ci_assignment;
+        static std::string timeshift_path;
 
 };
 

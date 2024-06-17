@@ -20,7 +20,7 @@
 #include <lib/base/esimpleconfig.h>
 #include <lib/base/httpsstream.h>
 #include <lib/base/httpstream.h>
-#include <lib/base/estaticsettings.h>
+#include <lib/base/esettings.h>
 #include <lib/service/servicedvbfcc.h>
 #include "servicepeer.h"
 
@@ -1769,7 +1769,7 @@ RESULT eDVBServicePlay::timeshift(ePtr<iTimeshiftService> &ptr)
 		if (!m_timeshift_enabled)
 		{
 			/* query config path */
-			std::string tspath = eConfigManager::getConfigValue("config.timeshift.path");
+			std::string tspath = eSettings::timeshift_path;
 			if(tspath == "")
 			{
 				eDebug("[eDVBServicePlay] time shift could not query ts path from config");
@@ -2581,7 +2581,7 @@ RESULT eDVBServicePlay::startTimeshift()
 	if (!m_record)
 		return -3;
 
-	std::string tspath = eConfigManager::getConfigValue("config.timeshift.path");
+	std::string tspath = eSettings::timeshift_path;
 	if (tspath == "")
 	{
 		eDebug("[eDVBServicePlay] could not query time shift path");

@@ -8,7 +8,7 @@
 #include <lib/base/eenv.h>
 #include <lib/base/eerror.h>
 #include <lib/base/estring.h>
-#include <lib/base/estaticsettings.h>
+#include <lib/base/esettings.h>
 #include <libxml/parser.h>
 #include <libxml/tree.h>
 #include <dvbsi++/service_description_section.h>
@@ -252,7 +252,7 @@ int eDVBService::isPlayable(const eServiceReference &ref, const eServiceReferenc
 		if (res_mgr->canAllocateChannel(chid, chid_ignore, system, simulate))
 		{
 			std::string python_config_str;
-			if (eUsageSettings::m_use_ci_assignment)
+			if (eSettings::use_ci_assignment)
 			{
 				int is_ci_playable = 1;
 				PyObject *pName, *pModule, *pFunc;
@@ -284,7 +284,7 @@ int eDVBService::isPlayable(const eServiceReference &ref, const eServiceReferenc
 			}
 			return 1;
 		}
-		if (eUsageSettings::m_remote_fallback_enabled)
+		if (eSettings::remote_fallback_enabled)
 			return 2;
 	}
 
