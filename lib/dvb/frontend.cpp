@@ -706,7 +706,7 @@ int eDVBFrontend::openFrontend()
 
 	if (!m_simulate)
 	{
-		m_need_delivery_system_workaround = eSimpleConfig::getBool("config.usage.enable_delivery_system_workaround", false)
+		m_need_delivery_system_workaround = eSimpleConfig::getBool("config.usage.enable_delivery_system_workaround", false);
 		FILE *boxtype_file;
 		char boxtype_name[20];
 		if((boxtype_file = fopen("/proc/stb/info/boxtype", "r")) != NULL)
