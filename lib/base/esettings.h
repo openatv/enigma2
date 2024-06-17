@@ -29,6 +29,17 @@ class eSubtitleSettings
         static void setSubtitleNoPTSDelay(int value) { subtitle_noPTSrecordingdelay = value; }
         static void setSubtitleBadTimingDelay(int value) { subtitle_bad_timing_delay = value; }
         static void setSubtitleUseCache(bool value) { subtitle_usecache = value; }
+				static void setSubtitleLanguages(std::string autoselect1, std::string autoselect2, std::string autoselect3, std::string autoselect4)
+				{
+						subtitle_autoselect1 = autoselect1;
+						subtitle_autoselect2 = autoselect2;
+						subtitle_autoselect3 = autoselect3;
+						subtitle_autoselect4 = autoselect4;
+				}
+        static void setSubtitleHearingImpaired(bool value) { subtitle_hearingimpaired = value; }
+        static void setSubtitleDefaultImpaired(bool value) { subtitle_defaultimpaired = value; }
+        static void setSubtitleDefaultDVB(bool value) { subtitle_defaultdvb = value; }
+        static void setSubtitleEqualLanguages(int value) { equal_languages = value; }
 
         static bool ttx_subtitle_original_position;
         static bool subtitle_rewrap;
@@ -52,6 +63,16 @@ class eSubtitleSettings
         static int subtitle_noPTSrecordingdelay;
         static int subtitle_bad_timing_delay;
         static bool subtitle_usecache;
+
+        static bool subtitle_hearingimpaired;
+        static bool subtitle_defaultimpaired;
+        static bool subtitle_defaultdvb;
+        static int equal_languages;
+        static std::string subtitle_autoselect1;
+        static std::string subtitle_autoselect2;
+        static std::string subtitle_autoselect3;
+        static std::string subtitle_autoselect4;
+
 };
 
 
@@ -63,10 +84,29 @@ class eSettings
         static void setRemoteFallbackEnabled(bool value) { remote_fallback_enabled=value; }
         static void setUseCIAssignment(bool value) { use_ci_assignment=value; }
         static void setTimeshiftPath(std::string value) { timeshift_path=value; }
+				static void setAudioLanguages(std::string autoselect1, std::string autoselect2, std::string autoselect3, std::string autoselect4)
+				{
+						audio_autoselect1 = autoselect1;
+						audio_autoselect2 = autoselect2;
+						audio_autoselect3 = autoselect3;
+						audio_autoselect4 = autoselect4;
+				}
+        static void setAudioDefaultAC3(bool value) { audio_defaultac3=value; }
+        static void setAudioDefaultDDP(bool value) { audio_defaultddp=value; }
+        static void setAudioUseCache(bool value) { audio_usecache=value; }
 
         static bool remote_fallback_enabled;
         static bool use_ci_assignment;
         static std::string timeshift_path;
+				static bool audio_defaultac3;
+				static bool audio_defaultddp;
+				static bool audio_usecache;
+
+				static std::string audio_autoselect1 = "";
+				static std::string audio_autoselect2 = "";
+				static std::string audio_autoselect3 = "";
+				static std::string audio_autoselect4 = "";
+
 
 };
 

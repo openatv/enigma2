@@ -3696,7 +3696,7 @@ void eDVBServicePlay::setAC3Delay(int delay)
 		m_dvb_service->setCacheEntry(eDVBService::cAC3DELAY, delay ? delay : -1);
 	if (m_decoder)
 	{
-		int generalAC3delay = eSimpleConfig::getInt("config.av.generalAC3delay")
+		int generalAC3delay = eSimpleConfig::getInt("config.av.generalAC3delay");
 		m_decoder->setAC3Delay(delay + generalAC3delay);
 		eDebug("[eDVBServicePlay] Setting audio delay: setAC3Delay, %d + %d", delay, generalAC3delay);
 	}
@@ -3708,7 +3708,7 @@ void eDVBServicePlay::setPCMDelay(int delay)
 		m_dvb_service->setCacheEntry(eDVBService::cPCMDELAY, delay ? delay : -1);
 	if (m_decoder)
 	{
-		int generalPCMdelay = eSimpleConfig::getInt("config.av.generalPCMdelay")
+		int generalPCMdelay = eSimpleConfig::getInt("config.av.generalPCMdelay");
 		m_decoder->setPCMDelay(delay + generalPCMdelay);
 		eDebug("[eDVBServicePlay] Setting audio delay: setPCMDelay, %d + %d", delay, generalPCMdelay);
 	}

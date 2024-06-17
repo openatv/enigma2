@@ -3340,7 +3340,7 @@ void eServiceMP3::setAC3Delay(int delay)
 		 */
 		if (dvb_videosink)
 		{
-			config_delay_int += eSimpleConfig::getInt("config.av.generalAC3delay")
+			config_delay_int += eSimpleConfig::getInt("config.av.generalAC3delay");
 		}
 		else
 		{
@@ -3371,7 +3371,7 @@ void eServiceMP3::setPCMDelay(int delay)
 		 */
 		if (dvb_videosink)
 		{
-			config_delay_int += eSimpleConfig::getInt("config.av.generalPCMdelay")
+			config_delay_int += eSimpleConfig::getInt("config.av.generalPCMdelay");
 		}
 		else
 		{

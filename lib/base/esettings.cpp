@@ -24,6 +24,25 @@ int eSubtitleSettings::subtitle_noPTSrecordingdelay = 315000;
 int eSubtitleSettings::subtitle_bad_timing_delay = 0;
 bool eSubtitleSettings::subtitle_usecache = true;
 
+bool eSubtitleSettings::subtitle_hearingimpaired = false;
+bool eSubtitleSettings::subtitle_defaultimpaired = false;
+bool eSubtitleSettings::subtitle_defaultdvb = false;
+int eSubtitleSettings::equal_languages = 0;
+
+std::string eSubtitleSettings:subtitle_autoselect1 = "";
+std::string eSubtitleSettings:subtitle_autoselect2 = "";
+std::string eSubtitleSettings:subtitle_autoselect3 = "";
+std::string eSubtitleSettings:subtitle_autoselect4 = "";
+
 bool eSettings::remote_fallback_enabled = false;
 bool eSettings::use_ci_assignment = false;
 std::string eSettings::timeshift_path = "";
+
+static bool eSettings::audio_defaultac3 = false;
+static bool eSettings::audio_defaultddp = false;
+static bool eSettings::audio_usecache = true;
+
+std::string eSettings:audio_autoselect1 = "";
+std::string eSettings:audio_autoselect2 = "";
+std::string eSettings:audio_autoselect3 = "";
+std::string eSettings:audio_autoselect4 = "";

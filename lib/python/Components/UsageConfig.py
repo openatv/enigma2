@@ -1742,6 +1742,8 @@ def InitUsageConfig():
 		config.autolanguage.audio_autoselect2.setChoices([x for x in languageChoiceList if x[0] and x[0] not in getselectedlanguages((1, 3, 4)) or not x[0] and not config.autolanguage.audio_autoselect3.value])
 		config.autolanguage.audio_autoselect3.setChoices([x for x in languageChoiceList if x[0] and x[0] not in getselectedlanguages((1, 2, 4)) or not x[0] and not config.autolanguage.audio_autoselect4.value])
 		config.autolanguage.audio_autoselect4.setChoices([x for x in languageChoiceList if x[0] and x[0] not in getselectedlanguages((1, 2, 3)) or not x[0]])
+		eSettings.setAudioLanguages(config.autolanguage.audio_autoselect1.value, config.autolanguage.audio_autoselect2.value, config.autolanguage.audio_autoselect3.value, config.autolanguage.audio_autoselect4.value)
+
 	config.autolanguage.audio_autoselect1 = ConfigSelection(default="", choices=languageChoiceList)
 	config.autolanguage.audio_autoselect2 = ConfigSelection(default="", choices=languageChoiceList)
 	config.autolanguage.audio_autoselect3 = ConfigSelection(default="", choices=languageChoiceList)
@@ -1750,9 +1752,24 @@ def InitUsageConfig():
 	config.autolanguage.audio_autoselect2.addNotifier(autolanguage, initial_call=False)
 	config.autolanguage.audio_autoselect3.addNotifier(autolanguage, initial_call=False)
 	config.autolanguage.audio_autoselect4.addNotifier(autolanguage)
+
+	def setAudioDefaultAC3(configElement):
+		eSettings.setAudioDefaultAC3(configElement.value)
+
 	config.autolanguage.audio_defaultac3 = ConfigYesNo(default=False)
+	config.autolanguage.audio_defaultac3.addNotifier(setAudioDefaultAC3)
+
+	def setAudioDefaultDDP(configElement):
+		eSettings.setAudioDefaultDDP(configElement.value)
+
 	config.autolanguage.audio_defaultddp = ConfigYesNo(default=False)
+	config.autolanguage.audio_defaultddp.addNotifier(setAudioDefaultDDP)
+
+	def setAudioUseCache(configElement):
+		eSettings.setAudioUseCache(configElement.value)
+
 	config.autolanguage.audio_usecache = ConfigYesNo(default=True)
+	config.autolanguage.audio_usecache.addNotifier(setAudioUseCache)
 
 	def getselectedsublanguages(range):
 		return [eval("config.autolanguage.subtitle_autoselect%x.value" % x) for x in range]
@@ -1768,7 +1785,13 @@ def InitUsageConfig():
 		if config.autolanguage.subtitle_autoselect3.value:
 			choiceList.append((str(y + 1), _("All")))
 		config.autolanguage.equal_languages.setChoices(default="0", choices=choiceList)
-	config.autolanguage.equal_languages = ConfigSelection(default="0", choices=[str(x) for x in range(0, 16)])
+		eSubtitleSettings.setSubtitleLanguages(config.autolanguage.subtitle_autoselect1.value, config.autolanguage.subtitle_autoselect2.value, config.autolanguage.subtitle_autoselect3.value, config.autolanguage.subtitle_autoselect4.value)
+
+	def setSubtitleEqualLanguages():
+		eSubtitleSettings.setSubtitleEqualLanguages(configElement.value)
+
+	config.autolanguage.equal_languages = ConfigSelection(default=0, choices=[x for x in range(0, 16)])
+	config.autolanguage.equal_languages.addNotifier(setSubtitleEqualLanguages)
 	config.autolanguage.subtitle_autoselect1 = ConfigSelection(default="", choices=subtitleChoiceList)
 	config.autolanguage.subtitle_autoselect2 = ConfigSelection(default="", choices=subtitleChoiceList)
 	config.autolanguage.subtitle_autoselect3 = ConfigSelection(default="", choices=subtitleChoiceList)
@@ -1777,9 +1800,21 @@ def InitUsageConfig():
 	config.autolanguage.subtitle_autoselect2.addNotifier(autolanguagesub, initial_call=False)
 	config.autolanguage.subtitle_autoselect3.addNotifier(autolanguagesub, initial_call=False)
 	config.autolanguage.subtitle_autoselect4.addNotifier(autolanguagesub)
+
+	def setSubtitleHearingImpaired():
+		eSubtitleSettings.setSubtitleHearingImpaired(configElement.value)
 	config.autolanguage.subtitle_hearingimpaired = ConfigYesNo(default=False)
+	config.autolanguage.subtitle_hearingimpaired.addNotifier(setSubtitleHearingImpaired)
+
+	def setSubtitleDefaultImpaired():
+		eSubtitleSettings.setSubtitleDefaultImpaired(configElement.value)
 	config.autolanguage.subtitle_defaultimpaired = ConfigYesNo(default=False)
+	config.autolanguage.subtitle_defaultimpaired.addNotifier(setSubtitleDefaultImpaired)
+
+	def setSubtitleDefaultDVB():
+		eSubtitleSettings.setSubtitleDefaultDVB(configElement.value)
 	config.autolanguage.subtitle_defaultdvb = ConfigYesNo(default=False)
+	config.autolanguage.subtitle_defaultdvb.addNotifier(setSubtitleDefaultDVB)
 
 	def setSubtitleUseCache(configElement):
 		eSubtitleSettings.setSubtitleUseCache(configElement.value)
