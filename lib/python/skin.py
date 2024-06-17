@@ -6,7 +6,7 @@ from xml.etree.ElementTree import Element, ElementTree, fromstring
 
 from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, addFont, eLabel, eListbox, eListboxPythonMultiContent, ePixmap, ePoint, eRect, eRectangle, eSize, eSlider, eSubtitleWidget, eWidget, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gMainDC, gRGB
 
-from Components.config import ConfigSubsection, ConfigText, config
+from Components.config import ConfigSelection, ConfigSubsection, ConfigText, config
 from Components.SystemInfo import BoxInfo
 from Components.Sources.Source import ObsoleteSource
 from Tools.Directories import SCOPE_LCDSKIN, SCOPE_GUISKIN, SCOPE_FONTS, SCOPE_SKINS, pathExists, resolveFilename, fileReadXML
@@ -60,6 +60,7 @@ if not isfile(skin):
 	DEFAULT_SKIN = EMERGENCY_SKIN
 config.skin.primary_skin = ConfigText(default=DEFAULT_SKIN)
 config.skin.display_skin = ConfigText(default=DEFAULT_DISPLAY_SKIN)
+config.skin.FallbackFont = ConfigSelection(default="fallback.font", choices=[("fallback.font", "Fallback Font 1"), ("AbyssinicaSIL-Regular.ttf", "Fallback Font 2")])
 
 currentPrimarySkin = None
 currentDisplaySkin = None
@@ -288,10 +289,10 @@ def parseOptions(options, attribute, value, default):
 		if value in options.keys():
 			value = options[value]
 		else:
-			skinError(f"The '{attribute}' value '{value}' is invalid, acceptable options are '{"', '".join(options.keys())}'")
+			skinError(f"The '{attribute}' value '{value}' is invalid, acceptable options are '{"', '".join(options.keys())}', using '{default}")
 			value = default
 	else:
-		skinError(f"The '{attribute}' parser is not correctly initialized")
+		skinError(f"The '{attribute}' parser is not correctly initialized, using '{default}'")
 		value = default
 	return value
 
@@ -328,12 +329,12 @@ def parseColor(value, default=0x00FFFFFF):
 		try:
 			value = gRGB(int(value[1:], 0x10))
 		except ValueError:
-			skinError(f"The color code '{value}' must be #aarrggbb, using #00FFFFFF (White)")
+			skinError(f"The color code '{value}' must be #aarrggbb, using #{default:08X}")
 			value = gRGB(default)
 	elif value in colors:
 		value = colors[value]
 	else:
-		skinError(f"The color '{value}' must be #aarrggbb or valid named color, using #00FFFFFF (White)")
+		skinError(f"The color '{value}' must be #aarrggbb or valid named color, using #{default:08X}")
 		value = gRGB(default)
 	return value
 
@@ -493,7 +494,7 @@ def parseInteger(value, default=0):
 	try:
 		value = int(value)
 	except (TypeError, ValueError):
-		skinError(f"The value '{value}' is not a valid integer")
+		skinError(f"The value '{value}' is not a valid integer, using {default}")
 		value = default
 	return value
 
@@ -1338,7 +1339,7 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 				# print(f"[Skin] DEBUG: Font filename='{filename}', path='{resolved}', name='{name}', scale={scale}, isReplacement={isReplacement}, render={render}.")
 			else:
 				skinError(f"Tag 'font' needs an existing filename and name, got filename='{filename}' ({resolved}) and name='{name}'")
-		fallbackFont = resolveFilename(SCOPE_FONTS, "fallback.font", path_prefix=pathSkin)
+		fallbackFont = resolveFilename(SCOPE_FONTS, config.skin.FallbackFont.value, path_prefix=pathSkin)
 		if isfile(fallbackFont):
 			addFont(fallbackFont, "Fallback", 100, -1, 0)
 		for alias in tag.findall("alias"):

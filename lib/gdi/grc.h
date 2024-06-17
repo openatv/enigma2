@@ -408,10 +408,10 @@ protected:
 	std::stack<gRegion> m_clip_stack;
 	gRegion m_current_clip;
 
-	ePtr<gPixmap> m_spinner_saved, m_spinner_temp;
+	ePtr<gPixmap> m_spinner_saved_HD, m_spinner_temp_HD, m_spinner_saved_FHD, m_spinner_temp_FHD;
 	ePtr<gPixmap> *m_spinner_pic;
-	eRect m_spinner_pos;
-	eRect m_spinner_pos_original;
+	eRect m_spinner_pos_HD;
+	eRect m_spinner_pos_FHD;
 	int m_spinner_num, m_spinner_i;
 
 public:
@@ -433,7 +433,6 @@ public:
 	virtual void disableSpinner();
 	virtual void incrementSpinner();
 	virtual void setSpinner(eRect pos, ePtr<gPixmap> *pic, int len);
-	virtual void setSpinnerScale(float scale);
 
 };
 

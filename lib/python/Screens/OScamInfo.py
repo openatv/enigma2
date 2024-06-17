@@ -18,6 +18,7 @@ from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.Setup import Setup
+from Tools.BoundFunction import boundFunction
 
 # GLOBALS
 MODULE_NAME = __name__.split(".")[-1]
@@ -43,13 +44,16 @@ class OSCamGlobals():
 		if port.startswith('+'):
 			proto = "https"
 			port.replace("+", "")
+		url = ""
 		if part in ["status", "userstats"]:
 			style, appendix = ("html", "&appendlog=1") if log else (fmt, "")
 			url = "%s://%s:%s/%s.%s?part=status%s" % (proto, ip, port, api, style, appendix)  # e.g. http://127.0.0.1:8080/oscamapi.html?part=status&appendlog=1
+		elif part in ["restart", "shutdown"]:
+			url = "%s://%s:%s/shutdown.html?action=%s" % (proto, ip, port, part)  # e.g. http://127.0.0.1:8080//shutdown.html?action=restart or ...?action=shutdown
 		elif label:
 			url = "%s://%s:%s/%s.%s?part=%s&label=%s" % (proto, ip, port, api, fmt, part, label)  # e.g. http://127.0.0.1:8080/oscamapi.json?part=entitlement&label=MyReader
 		opener = build_opener(HTTPHandler)
-		if username and password:
+		if username and password and url:
 			pwman = HTTPPasswordMgrWithDefaultRealm()
 			pwman.add_password(None, url, username, password)
 			handlers = HTTPDigestAuthHandler(pwman)
@@ -184,7 +188,11 @@ class OSCamInfo(Screen, OSCamGlobals):
 			<eLabel text="OSCam" position="1108,964" size="125,42" font="Regular;27" valign="center" halign="center" foregroundColor="#FFFF30" backgroundColor="#105a5a5a" />
 			<widget source="virtuell" render="Label" position="1235,964" size="338,42" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
 			<widget source="resident" render="Label" position="1575,964" size="330,42" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
+			<eLabel name="red" position="20,1010" size="10,65" backgroundColor="red" zPosition="1" />
+			<eLabel name="green" position="320,1010" size="10,65" backgroundColor="green" zPosition="1" />
 			<eLabel name="blue" position="920,1010" size="10,65" backgroundColor="blue" zPosition="1" />
+			<widget source="key_red" render="Label" position="40,1020" size="380,42" font="Regular;30" halign="left" valign="center" foregroundColor="grey" />
+			<widget source="key_green" render="Label" position="340,1020" size="380,42" font="Regular;30" halign="left" valign="center" foregroundColor="grey" />
 			<widget source="key_blue" render="Label" position="940,1020" size="380,42" font="Regular;30" halign="left" valign="center" foregroundColor="grey" />
 			<widget source="key_OK" render="Label" position="1185,1020" size="60,42" font="Regular;30" halign="center" valign="center" foregroundColor="black" backgroundColor="grey">
 				<convert type="ConditionalShowHide" />
@@ -212,6 +220,8 @@ class OSCamInfo(Screen, OSCamGlobals):
 		self["buffer"] = StaticText()
 		self["virtuell"] = StaticText()
 		self["resident"] = StaticText()
+		self["key_red"] = StaticText(_("Shutdown OSCam"))
+		self["key_green"] = StaticText(_("Restart OSCam"))
 		self["key_blue"] = StaticText(_("Show Log"))
 		self["key_OK"] = StaticText()
 		self["key_entitlements"] = StaticText()
@@ -221,6 +231,8 @@ class OSCamInfo(Screen, OSCamGlobals):
 			"ok": (self.keyOk, _("Show details")),
 			"cancel": (self.exit, _("Close the screen")),
 			"menu": (self.keyMenu, _("Open Settings")),
+			"red": (self.keyShutdown, _("Shutdown OSCam")),
+			"green": (self.keyRestart, _("Restart OSCam")),
 			"blue": (self.keyBlue, _("Open Log"))
 			}, prio=1, description=_("OSCamInfo Actions"))
 		self.loop = eTimer()
@@ -359,9 +371,23 @@ class OSCamInfo(Screen, OSCamGlobals):
 	def keyMenu(self):
 		self.session.openWithCallback(self.menuCallback, OSCamInfoSetup)
 
+	def keyShutdown(self):
+		self.session.openWithCallback(boundFunction(self.msgboxCB, "shutdown"), MessageBox, _("Do you really want to shut down OSCam?\n\nATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"), MessageBox.TYPE_YESNO, timeout=10, default=False)
+
+	def keyRestart(self):
+		self.session.openWithCallback(boundFunction(self.msgboxCB, "restart"), MessageBox, _("Do you really want to restart OSCam?\n\nHINT: This will take about 5 seconds!"), MessageBox.TYPE_YESNO, timeout=10, default=False)
+
 	def keyBlue(self):
 		self.loop.stop()
 		self.session.openWithCallback(self.keyCallback, OSCamInfoLog)
+
+	def msgboxCB(self, action, answer):
+		if answer:
+			self.loop.stop()
+			webifok, result = self.openWebIF(part=action)
+			if not webifok:
+				print("[%s] ERROR in module 'msgboxCB': %s" % (MODULE_NAME, "Unexpected error accessing WebIF: %s" % result))
+				self.session.open(MessageBox, _("Unexpected error accessing WebIF: %s" % result), MessageBox.TYPE_ERROR, timeout=3, close_on_any_key=True)
 
 	def exit(self):
 		self.loop.stop()

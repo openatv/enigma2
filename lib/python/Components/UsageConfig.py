@@ -1567,7 +1567,7 @@ def InitUsageConfig():
 		eSubtitleSettings.setDVBSubtitleBacktrans(configElement.value)
 
 	config.subtitles.dvb_subtitles_backtrans = ConfigSelection(default=0, choices=choiceList)
-	config.subtitles.subtitles_backtrans.addNotifier(setDVBSubtitleBacktrans)
+	config.subtitles.dvb_subtitles_backtrans.addNotifier(setDVBSubtitleBacktrans)
 
 	choiceList = []
 	for x in range(-54000000, 54045000, 45000):
