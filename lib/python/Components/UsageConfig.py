@@ -1780,7 +1780,11 @@ def InitUsageConfig():
 	config.autolanguage.subtitle_hearingimpaired = ConfigYesNo(default=False)
 	config.autolanguage.subtitle_defaultimpaired = ConfigYesNo(default=False)
 	config.autolanguage.subtitle_defaultdvb = ConfigYesNo(default=False)
+
+	def setSubtitleUseCache(configElement):
+		eSubtitleSettings.setSubtitleUseCache(configElement.value)
 	config.autolanguage.subtitle_usecache = ConfigYesNo(default=True)
+	config.autolanguage.subtitle_usecache.addNotifier(setSubtitleUseCache)
 
 	config.logmanager = ConfigSubsection()
 	config.logmanager.showinextensions = ConfigYesNo(default=False)

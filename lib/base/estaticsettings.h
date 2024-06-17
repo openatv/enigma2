@@ -27,6 +27,7 @@ class eSubtitleSettings
         static void setSubtitleColoriseDialogs(bool value) { colorise_dialogs = value; }
         static void setSubtitleNoPTSDelay(int value) { subtitle_noPTSrecordingdelay = value; }
         static void setSubtitleBadTimingDelay(int value) { subtitle_bad_timing_delay = value; }
+        static void setSubtitleUseCache(bool value) { subtitle_usecache = value; }
 
         static bool ttx_subtitle_original_position;
         static bool subtitle_rewrap;
@@ -49,7 +50,7 @@ class eSubtitleSettings
         static bool colorise_dialogs;
         static int subtitle_noPTSrecordingdelay;
         static int subtitle_bad_timing_delay;
-
+        static bool subtitle_usecache;
 };
 
 

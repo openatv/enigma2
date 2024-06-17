@@ -22,6 +22,7 @@ int eSubtitleSettings::pango_subtitles_fps = 1;
 bool eSubtitleSettings::pango_autoturnon = true;
 int eSubtitleSettings::subtitle_noPTSrecordingdelay = 315000;
 int eSubtitleSettings::subtitle_bad_timing_delay = 0;
+bool eSubtitleSettings::subtitle_usecache = true;
 
 bool eUsageSettings::m_remote_fallback_enabled = false;
 bool eUsageSettings::m_use_ci_assignment = false;
