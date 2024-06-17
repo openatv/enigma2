@@ -1,6 +1,7 @@
 #include <lib/base/nconfig.h> // access to python config
 #include <lib/base/eerror.h>
 #include <lib/base/estring.h>
+#include <lib/base/esimpleconfig.h>
 #include <lib/dvb/pmt.h>
 #include <lib/dvb/cahandler.h>
 #include <lib/dvb/specs.h>
@@ -1164,9 +1165,9 @@ int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, ePtr<iTsSource> &s
 
 			if (ref.path.empty())
 			{
-				bool scandebug = eConfigManager::getConfigBoolValue("config.crash.debugDVBScan");
+				bool scandebug = eSimpleConfig::getBool("config.crash.debugDVBScan", false);
 				m_dvb_scan = new eDVBScan(m_channel, true, scandebug);
-				if (!eConfigManager::getConfigBoolValue("config.misc.disable_background_scan"))
+				if (!eSimpleConfig::getBool("config.misc.disable_background_scan", false))
 				{
 					/*
 					 * not starting a dvb scan triggers what appears to be a
