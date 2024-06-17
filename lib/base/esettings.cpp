@@ -38,9 +38,9 @@ bool eSettings::remote_fallback_enabled = false;
 bool eSettings::use_ci_assignment = false;
 std::string eSettings::timeshift_path = "";
 
-static bool eSettings::audio_defaultac3 = false;
-static bool eSettings::audio_defaultddp = false;
-static bool eSettings::audio_usecache = true;
+bool eSettings::audio_defaultac3 = false;
+bool eSettings::audio_defaultddp = false;
+bool eSettings::audio_usecache = true;
 
 std::string eSettings::audio_autoselect1 = "";
 std::string eSettings::audio_autoselect2 = "";

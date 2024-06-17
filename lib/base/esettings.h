@@ -68,6 +68,7 @@ class eSubtitleSettings
         static bool subtitle_defaultimpaired;
         static bool subtitle_defaultdvb;
         static int equal_languages;
+
         static std::string subtitle_autoselect1;
         static std::string subtitle_autoselect2;
         static std::string subtitle_autoselect3;
@@ -98,14 +99,15 @@ class eSettings
         static bool remote_fallback_enabled;
         static bool use_ci_assignment;
         static std::string timeshift_path;
+
 				static bool audio_defaultac3;
 				static bool audio_defaultddp;
 				static bool audio_usecache;
 
-				static std::string audio_autoselect1 = "";
-				static std::string audio_autoselect2 = "";
-				static std::string audio_autoselect3 = "";
-				static std::string audio_autoselect4 = "";
+				static std::string audio_autoselect1;
+				static std::string audio_autoselect2;
+				static std::string audio_autoselect3;
+				static std::string audio_autoselect4;
 
 
 };
