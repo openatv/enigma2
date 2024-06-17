@@ -29,10 +29,10 @@ bool eSubtitleSettings::subtitle_defaultimpaired = false;
 bool eSubtitleSettings::subtitle_defaultdvb = false;
 int eSubtitleSettings::equal_languages = 0;
 
-std::string eSubtitleSettings:subtitle_autoselect1 = "";
-std::string eSubtitleSettings:subtitle_autoselect2 = "";
-std::string eSubtitleSettings:subtitle_autoselect3 = "";
-std::string eSubtitleSettings:subtitle_autoselect4 = "";
+std::string eSubtitleSettings::subtitle_autoselect1 = "";
+std::string eSubtitleSettings::subtitle_autoselect2 = "";
+std::string eSubtitleSettings::subtitle_autoselect3 = "";
+std::string eSubtitleSettings::subtitle_autoselect4 = "";
 
 bool eSettings::remote_fallback_enabled = false;
 bool eSettings::use_ci_assignment = false;
@@ -42,7 +42,7 @@ static bool eSettings::audio_defaultac3 = false;
 static bool eSettings::audio_defaultddp = false;
 static bool eSettings::audio_usecache = true;
 
-std::string eSettings:audio_autoselect1 = "";
-std::string eSettings:audio_autoselect2 = "";
-std::string eSettings:audio_autoselect3 = "";
-std::string eSettings:audio_autoselect4 = "";
+std::string eSettings::audio_autoselect1 = "";
+std::string eSettings::audio_autoselect2 = "";
+std::string eSettings::audio_autoselect3 = "";
+std::string eSettings::audio_autoselect4 = "";
