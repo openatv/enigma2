@@ -5,7 +5,7 @@ from os.path import exists, isfile, join as pathjoin, normpath, splitext
 from sys import maxsize
 from time import time
 
-from enigma import Misc_Options, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, RT_WRAP, eBackgroundFileEraser, eDVBDB, eDVBFrontend, eEnv, eEPGCache, eServiceEvent, eSubtitleSettings, setEnableTtCachingOnOff, setPreferredTuner, setSpinnerOnOff, setTunerTypePriorityOrder
+from enigma import Misc_Options, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, RT_WRAP, eActionMap, eBackgroundFileEraser, eDVBDB, eDVBFrontend, eEnv, eEPGCache, eServiceEvent, eSubtitleSettings, eSettings, setEnableTtCachingOnOff, setPreferredTuner, setSpinnerOnOff, setTunerTypePriorityOrder
 
 from keyids import KEYIDS
 from skin import parameters
@@ -537,20 +537,24 @@ def InitUsageConfig():
 	config.usage.on_long_powerpress = ConfigSelection(default="show_menu", choices=choiceList)
 	config.usage.on_short_powerpress = ConfigSelection(default="standby", choices=choiceList)
 
-	config.usage.long_press_emulation_key = ConfigSelection(default="0", choices=[
-		("0", _("None")),
-		(str(KEYIDS["KEY_TV"]), _("TV")),
-		(str(KEYIDS["KEY_RADIO"]), _("RADIO")),
-		(str(KEYIDS["KEY_AUDIO"]), _("Audio")),
-		(str(KEYIDS["KEY_VIDEO"]), _("List/Fav")),
-		(str(KEYIDS["KEY_HOME"]), _("Home")),
-		(str(KEYIDS["KEY_END"]), _("End")),
-		(str(KEYIDS["KEY_HELP"]), _("Help")),
-		(str(KEYIDS["KEY_INFO"]), _("Info (EPG)")),
-		(str(KEYIDS["KEY_TEXT"]), _("Teletext")),
-		(str(KEYIDS["KEY_SUBTITLE"]), _("Subtitle")),
-		(str(KEYIDS["KEY_FAVORITES"]), _("Favorites"))
+	def setLongPressedEmulationKey(configElement):
+		eActionMap.getInstance().setLongPressedEmulationKey(configElement.value)
+
+	config.usage.long_press_emulation_key = ConfigSelection(default=0, choices=[
+		(0, _("None")),
+		(KEYIDS["KEY_TV"], _("TV")),
+		(KEYIDS["KEY_RADIO"], _("RADIO")),
+		(KEYIDS["KEY_AUDIO"], _("Audio")),
+		(KEYIDS["KEY_VIDEO"], _("List/Fav")),
+		(KEYIDS["KEY_HOME"], _("Home")),
+		(KEYIDS["KEY_END"], _("End")),
+		(KEYIDS["KEY_HELP"], _("Help")),
+		(KEYIDS["KEY_INFO"], _("Info (EPG)")),
+		(KEYIDS["KEY_TEXT"], _("Teletext")),
+		(KEYIDS["KEY_SUBTITLE"], _("Subtitle")),
+		(KEYIDS["KEY_FAVORITES"], _("Favorites"))
 	])
+	config.usage.long_press_emulation_key.addNotifier(setLongPressedEmulationKey)
 
 	config.usage.alternatives_priority = ConfigSelection(default="0", choices=[
 		("0", "DVB-S/-C/-T"),
@@ -562,10 +566,19 @@ def InitUsageConfig():
 		("127", _("No priority"))
 	])
 
+	def setRemoteFallbackEnabled(configElement):
+		eSettings.setRemoteFallbackEnabled(configElement.value)
+
 	config.usage.remote_fallback_enabled = ConfigYesNo(default=False)
+	config.usage.remote_fallback_enabled.addNotifier(setRemoteFallbackEnabled)
+
 	config.usage.remote_fallback = ConfigText(default="http://IP-ADRESS:8001", visible_width=50, fixed_size=False)
 
-	config.usage.http_startdelay = ConfigSelection(default="0", choices=[("0", _("Disabled"))] + [(str(x), _("%d ms") % x) for x in (10, 50, 100, 500, 1000, 2000)])
+	def setHttpStartDelay(configElement):
+		eSettings.setHttpStartDelay(configElement.value)
+
+	config.usage.http_startdelay = ConfigSelection(default=0, choices=[(0, _("Disabled"))] + [(x, _("%d ms") % x) for x in (10, 50, 100, 500, 1000, 2000)])
+	config.usage.http_startdelay.addNotifier(setHttpStartDelay)
 
 	config.usage.alternateGitHubDNS = ConfigYesNo(default=False)
 
@@ -807,7 +820,13 @@ def InitUsageConfig():
 	config.usage.frontend_priority_strictly.addNotifier(PreferredTunerChanged)
 
 	config.usage.hide_zap_errors = ConfigYesNo(default=True)
+
+	def setUseCIAssignment(configElement):
+		eSettings.setUseCIAssignment(configElement.value)
+
 	config.misc.use_ci_assignment = ConfigYesNo(default=True)
+	config.misc.use_ci_assignment.addNotifier(setUseCIAssignment)
+
 	config.usage.hide_ci_messages = ConfigYesNo(default=False)
 	config.usage.show_cryptoinfo = ConfigSelection(default=2, choices=[
 		(0, _("Off")),
@@ -1263,8 +1282,6 @@ def InitUsageConfig():
 	config.misc.epgratingcountry = ConfigSelection(default="", choices=choiceList)
 	config.misc.epggenrecountry = ConfigSelection(default="", choices=choiceList)
 
-	config.misc.showradiopic = ConfigYesNo(default=True)
-
 	def setHDDStandby(configElement):
 		for hdd in harddiskmanager.HDDList():
 			hdd[1].setIdleTime(int(configElement.value))
@@ -1487,6 +1504,7 @@ def InitUsageConfig():
 		eSubtitleSettings.setTTXSubtitleColors(configElement.value)
 
 	config.subtitles.ttx_subtitle_colors = ConfigSelection(default=1, choices=[
+		(0, _("Original")),
 		(1, _("White")),
 		(2, _("Yellow"))
 	])
@@ -1674,7 +1692,6 @@ def InitUsageConfig():
 		eSubtitleSettings.setAiSubtitleColors(configElement.value)
 
 	config.subtitles.ai_subtitle_colors = ConfigSelection(default=1, choices=[
-		(0, _("Original")),
 		(1, _("White")),
 		(2, _("Yellow"))
 	])
@@ -1774,6 +1791,8 @@ def InitUsageConfig():
 		config.autolanguage.audio_autoselect2.setChoices([x for x in languageChoiceList if x[0] and x[0] not in getselectedlanguages((1, 3, 4)) or not x[0] and not config.autolanguage.audio_autoselect3.value])
 		config.autolanguage.audio_autoselect3.setChoices([x for x in languageChoiceList if x[0] and x[0] not in getselectedlanguages((1, 2, 4)) or not x[0] and not config.autolanguage.audio_autoselect4.value])
 		config.autolanguage.audio_autoselect4.setChoices([x for x in languageChoiceList if x[0] and x[0] not in getselectedlanguages((1, 2, 3)) or not x[0]])
+		eSettings.setAudioLanguages(config.autolanguage.audio_autoselect1.value, config.autolanguage.audio_autoselect2.value, config.autolanguage.audio_autoselect3.value, config.autolanguage.audio_autoselect4.value)
+
 	config.autolanguage.audio_autoselect1 = ConfigSelection(default="", choices=languageChoiceList)
 	config.autolanguage.audio_autoselect2 = ConfigSelection(default="", choices=languageChoiceList)
 	config.autolanguage.audio_autoselect3 = ConfigSelection(default="", choices=languageChoiceList)
@@ -1782,9 +1801,24 @@ def InitUsageConfig():
 	config.autolanguage.audio_autoselect2.addNotifier(autolanguage, initial_call=False)
 	config.autolanguage.audio_autoselect3.addNotifier(autolanguage, initial_call=False)
 	config.autolanguage.audio_autoselect4.addNotifier(autolanguage)
+
+	def setAudioDefaultAC3(configElement):
+		eSettings.setAudioDefaultAC3(configElement.value)
+
 	config.autolanguage.audio_defaultac3 = ConfigYesNo(default=False)
+	config.autolanguage.audio_defaultac3.addNotifier(setAudioDefaultAC3)
+
+	def setAudioDefaultDDP(configElement):
+		eSettings.setAudioDefaultDDP(configElement.value)
+
 	config.autolanguage.audio_defaultddp = ConfigYesNo(default=False)
+	config.autolanguage.audio_defaultddp.addNotifier(setAudioDefaultDDP)
+
+	def setAudioUseCache(configElement):
+		eSettings.setAudioUseCache(configElement.value)
+
 	config.autolanguage.audio_usecache = ConfigYesNo(default=True)
+	config.autolanguage.audio_usecache.addNotifier(setAudioUseCache)
 
 	def getselectedsublanguages(range):
 		return [eval("config.autolanguage.subtitle_autoselect%x.value" % x) for x in range]
@@ -1800,7 +1834,13 @@ def InitUsageConfig():
 		if config.autolanguage.subtitle_autoselect3.value:
 			choiceList.append((str(y + 1), _("All")))
 		config.autolanguage.equal_languages.setChoices(default="0", choices=choiceList)
-	config.autolanguage.equal_languages = ConfigSelection(default="0", choices=[str(x) for x in range(0, 16)])
+		eSubtitleSettings.setSubtitleLanguages(config.autolanguage.subtitle_autoselect1.value, config.autolanguage.subtitle_autoselect2.value, config.autolanguage.subtitle_autoselect3.value, config.autolanguage.subtitle_autoselect4.value)
+
+	def setSubtitleEqualLanguages():
+		eSubtitleSettings.setSubtitleEqualLanguages(configElement.value)
+
+	config.autolanguage.equal_languages = ConfigSelection(default=0, choices=[x for x in range(0, 16)])
+	config.autolanguage.equal_languages.addNotifier(setSubtitleEqualLanguages)
 	config.autolanguage.subtitle_autoselect1 = ConfigSelection(default="", choices=subtitleChoiceList)
 	config.autolanguage.subtitle_autoselect2 = ConfigSelection(default="", choices=subtitleChoiceList)
 	config.autolanguage.subtitle_autoselect3 = ConfigSelection(default="", choices=subtitleChoiceList)
@@ -1809,10 +1849,26 @@ def InitUsageConfig():
 	config.autolanguage.subtitle_autoselect2.addNotifier(autolanguagesub, initial_call=False)
 	config.autolanguage.subtitle_autoselect3.addNotifier(autolanguagesub, initial_call=False)
 	config.autolanguage.subtitle_autoselect4.addNotifier(autolanguagesub)
+
+	def setSubtitleHearingImpaired():
+		eSubtitleSettings.setSubtitleHearingImpaired(configElement.value)
 	config.autolanguage.subtitle_hearingimpaired = ConfigYesNo(default=False)
+	config.autolanguage.subtitle_hearingimpaired.addNotifier(setSubtitleHearingImpaired)
+
+	def setSubtitleDefaultImpaired():
+		eSubtitleSettings.setSubtitleDefaultImpaired(configElement.value)
 	config.autolanguage.subtitle_defaultimpaired = ConfigYesNo(default=False)
+	config.autolanguage.subtitle_defaultimpaired.addNotifier(setSubtitleDefaultImpaired)
+
+	def setSubtitleDefaultDVB():
+		eSubtitleSettings.setSubtitleDefaultDVB(configElement.value)
 	config.autolanguage.subtitle_defaultdvb = ConfigYesNo(default=False)
+	config.autolanguage.subtitle_defaultdvb.addNotifier(setSubtitleDefaultDVB)
+
+	def setSubtitleUseCache(configElement):
+		eSubtitleSettings.setSubtitleUseCache(configElement.value)
 	config.autolanguage.subtitle_usecache = ConfigYesNo(default=True)
+	config.autolanguage.subtitle_usecache.addNotifier(setSubtitleUseCache)
 
 	config.logmanager = ConfigSubsection()
 	config.logmanager.showinextensions = ConfigYesNo(default=False)
@@ -2183,10 +2239,11 @@ def InitUsageConfig():
 	# The following code temporarily maintains the deprecated timeshift_path so it is available for external plug ins.
 	config.usage.timeshift_path = NoSave(ConfigText(default=config.timeshift.path.value))
 
-	def updateOldTimeshiftPath(configElement):
+	def setTimeshiftPath(configElement):
 		config.usage.timeshift_path.value = configElement.value
+		eSettings.setTimeshiftPath(configElement.value)
 
-	config.timeshift.path.addNotifier(updateOldTimeshiftPath, immediate_feedback=False)
+	config.timeshift.path.addNotifier(setTimeshiftPath)
 
 
 def calcFrontendPriorityIntval(config_priority, config_priority_multiselect, config_priority_strictly):
