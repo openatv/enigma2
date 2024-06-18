@@ -41,6 +41,8 @@ std::string eSettings::timeshift_path = "";
 bool eSettings::audio_defaultac3 = false;
 bool eSettings::audio_defaultddp = false;
 bool eSettings::audio_usecache = true;
+int eSettings::http_startdelay = 0;
+
 
 std::string eSettings::audio_autoselect1 = "";
 std::string eSettings::audio_autoselect2 = "";

@@ -2451,7 +2451,7 @@ bool eDVBServiceBase::tryFallbackTuner(eServiceReferenceDVB &service, bool &is_s
 	if (is_stream || is_pvr || simulate)
 		return false;
 
-	if (!eConfigManager::getConfigBoolValue("config.usage.remote_fallback_enabled", false))
+	if (!eSettings::remote_fallback_enabled)
 		return false;
 
 	std::string remote_fallback_url =

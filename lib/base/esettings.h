@@ -93,6 +93,7 @@ public:
   static void setAudioDefaultAC3(bool value) { audio_defaultac3 = value; }
   static void setAudioDefaultDDP(bool value) { audio_defaultddp = value; }
   static void setAudioUseCache(bool value) { audio_usecache = value; }
+  static void setHttpStartDelay(int value) { http_startdelay = value; }
 
   static bool remote_fallback_enabled;
   static bool use_ci_assignment;
@@ -101,6 +102,7 @@ public:
   static bool audio_defaultac3;
   static bool audio_defaultddp;
   static bool audio_usecache;
+  static int http_startdelay;
 
   static std::string audio_autoselect1;
   static std::string audio_autoselect2;

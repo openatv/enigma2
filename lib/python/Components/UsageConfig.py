@@ -573,7 +573,11 @@ def InitUsageConfig():
 
 	config.usage.remote_fallback = ConfigText(default="http://IP-ADRESS:8001", visible_width=50, fixed_size=False)
 
-	config.usage.http_startdelay = ConfigSelection(default="0", choices=[("0", _("Disabled"))] + [(str(x), _("%d ms") % x) for x in (10, 50, 100, 500, 1000, 2000)])
+	def setHttpStartDelay(configElement):
+		eSettings.setHttpStartDelay(configElement.value)
+
+	config.usage.http_startdelay = ConfigSelection(default=0, choices=[(0, _("Disabled"))] + [(x, _("%d ms") % x) for x in (10, 50, 100, 500, 1000, 2000)])
+	config.usage.http_startdelay.addNotifier(setHttpStartDelay)
 
 	config.usage.alternateGitHubDNS = ConfigYesNo(default=False)
 
