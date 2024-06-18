@@ -4,7 +4,7 @@
 #include <lib/gdi/font.h>
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
-#include <lib/base/nconfig.h>
+#include <lib/base/esimpleconfig.h>
 #ifdef USE_LIBVUGLES2
 #include <vuplus_gles.h>
 #endif
@@ -432,7 +432,7 @@ void gPainter::renderText(const eRect &pos, const std::string &string, int flags
 	o.parm.renderText->offset = offset;
 	o.parm.renderText->tabwidth = tabwidth;
 	if (markedpos >= 0)
-		o.parm.renderText->scrollpos = eConfigManager::getConfigIntValue("config.usage.cursorscroll");
+		o.parm.renderText->scrollpos = eSimpleConfig::getInt("config.usage.cursorscroll");
 	m_rc->submit(o);
 }
 
