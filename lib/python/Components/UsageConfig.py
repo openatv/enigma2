@@ -1828,15 +1828,15 @@ def InitUsageConfig():
 		config.autolanguage.subtitle_autoselect2.setChoices([x for x in subtitleChoiceList if x[0] and x[0] not in getselectedsublanguages((1, 3, 4)) or not x[0] and not config.autolanguage.subtitle_autoselect3.value])
 		config.autolanguage.subtitle_autoselect3.setChoices([x for x in subtitleChoiceList if x[0] and x[0] not in getselectedsublanguages((1, 2, 4)) or not x[0] and not config.autolanguage.subtitle_autoselect4.value])
 		config.autolanguage.subtitle_autoselect4.setChoices([x for x in subtitleChoiceList if x[0] and x[0] not in getselectedsublanguages((1, 2, 3)) or not x[0]])
-		choiceList = [("0", _("None"))]
+		choiceList = [(0, _("None"))]
 		for y in list(range(1, 15 if config.autolanguage.subtitle_autoselect4.value else (7 if config.autolanguage.subtitle_autoselect3.value else (4 if config.autolanguage.subtitle_autoselect2.value else (2 if config.autolanguage.subtitle_autoselect1.value else 0))))):
-			choiceList.append((str(y), ", ".join([eval("config.autolanguage.subtitle_autoselect%x.getText()" % x) for x in (y & 1, y & 2, y & 4 and 3, y & 8 and 4) if x])))
+			choiceList.append((y, ", ".join([eval("config.autolanguage.subtitle_autoselect%x.getText()" % x) for x in (y & 1, y & 2, y & 4 and 3, y & 8 and 4) if x])))
 		if config.autolanguage.subtitle_autoselect3.value:
-			choiceList.append((str(y + 1), _("All")))
-		config.autolanguage.equal_languages.setChoices(default="0", choices=choiceList)
+			choiceList.append((y + 1, _("All")))
+		config.autolanguage.equal_languages.setChoices(default=0, choices=choiceList)
 		eSubtitleSettings.setSubtitleLanguages(config.autolanguage.subtitle_autoselect1.value, config.autolanguage.subtitle_autoselect2.value, config.autolanguage.subtitle_autoselect3.value, config.autolanguage.subtitle_autoselect4.value)
 
-	def setSubtitleEqualLanguages():
+	def setSubtitleEqualLanguages(configElement):
 		eSubtitleSettings.setSubtitleEqualLanguages(configElement.value)
 
 	config.autolanguage.equal_languages = ConfigSelection(default=0, choices=[x for x in range(0, 16)])
@@ -1850,17 +1850,17 @@ def InitUsageConfig():
 	config.autolanguage.subtitle_autoselect3.addNotifier(autolanguagesub, initial_call=False)
 	config.autolanguage.subtitle_autoselect4.addNotifier(autolanguagesub)
 
-	def setSubtitleHearingImpaired():
+	def setSubtitleHearingImpaired(configElement):
 		eSubtitleSettings.setSubtitleHearingImpaired(configElement.value)
 	config.autolanguage.subtitle_hearingimpaired = ConfigYesNo(default=False)
 	config.autolanguage.subtitle_hearingimpaired.addNotifier(setSubtitleHearingImpaired)
 
-	def setSubtitleDefaultImpaired():
+	def setSubtitleDefaultImpaired(configElement):
 		eSubtitleSettings.setSubtitleDefaultImpaired(configElement.value)
 	config.autolanguage.subtitle_defaultimpaired = ConfigYesNo(default=False)
 	config.autolanguage.subtitle_defaultimpaired.addNotifier(setSubtitleDefaultImpaired)
 
-	def setSubtitleDefaultDVB():
+	def setSubtitleDefaultDVB(configElement):
 		eSubtitleSettings.setSubtitleDefaultDVB(configElement.value)
 	config.autolanguage.subtitle_defaultdvb = ConfigYesNo(default=False)
 	config.autolanguage.subtitle_defaultdvb.addNotifier(setSubtitleDefaultDVB)
