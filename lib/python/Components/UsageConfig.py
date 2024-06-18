@@ -1281,8 +1281,6 @@ def InitUsageConfig():
 	config.misc.epgratingcountry = ConfigSelection(default="", choices=choiceList)
 	config.misc.epggenrecountry = ConfigSelection(default="", choices=choiceList)
 
-	config.misc.showradiopic = ConfigYesNo(default=True)
-
 	def setHDDStandby(configElement):
 		for hdd in harddiskmanager.HDDList():
 			hdd[1].setIdleTime(int(configElement.value))

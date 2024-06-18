@@ -2,6 +2,7 @@
 #include <lib/components/file_eraser.h>
 #include <lib/dvb/decoder.h>
 #include <lib/base/nconfig.h>
+#include <lib/base/esimpleconfig.h>
 
 eDVBServiceFCCPlay::eDVBServiceFCCPlay(const eServiceReference &ref, eDVBService *service)
 	:eDVBServicePlay(ref, service, false), m_fcc_flag(0), m_fcc_mode(fcc_mode_preparing), m_fcc_mustplay(false),
@@ -392,12 +393,8 @@ void eDVBServiceFCCPlay::updateFCCDecoder(bool sendSeekableStateChanged)
 		else
 		{
 			std::string value;
-			bool showRadioBackground = eConfigManager::getConfigBoolValue("config.misc.showradiopic", true);
-			std::string radio_pic;
-			if (showRadioBackground)
-				radio_pic = eConfigManager::getConfigValue("config.misc.radiopic");
-			else
-				radio_pic = eConfigManager::getConfigValue("config.misc.blackradiopic");
+			bool showRadioBackground = eSimpleConfig::getBool("config.misc.showradiopic", true);
+			std::string radio_pic = eConfigManager::getConfigValue( showRadioBackground ? "config.misc.radiopic" : "config.misc.blackradiopic" );
 			m_decoder->setRadioPic(radio_pic);
 		}
 
