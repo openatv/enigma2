@@ -13,7 +13,7 @@
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
 #include <lib/base/wrappers.h>
-#include <lib/base/nconfig.h>
+#include <lib/base/esimpleconfig.h>
 #include <lib/base/cfile.h>
 #include <lib/base/e2avahi.h>
 
@@ -85,7 +85,7 @@ void eStreamClient::notifier(int what)
 	{
 		size_t pos;
 		size_t posdur;
-		if (eConfigManager::getConfigBoolValue("config.streaming.authentication"))
+		if (eSimpleConfig::getBool("config.streaming.authentication", false))
 		{
 			bool authenticated = false;
 			if ((pos = request.find("Authorization: Basic ")) != std::string::npos)

@@ -10,7 +10,7 @@
 #include <lib/base/smartptr.h>
 #include <lib/base/eerror.h>
 #include <lib/gdi/gpixmap.h>
-#include <lib/base/esubtitlesettings.h>
+#include <lib/base/esettings.h>
 
 void bitstream_init(bitstream *bit, const void *buffer, int size)
 {

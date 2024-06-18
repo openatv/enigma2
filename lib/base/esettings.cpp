@@ -1,4 +1,4 @@
-#include <lib/base/esubtitlesettings.h>
+#include <lib/base/esettings.h>
 #include <lib/gdi/grc.h>
 
 bool eSubtitleSettings::ttx_subtitle_original_position = false;
@@ -22,3 +22,29 @@ int eSubtitleSettings::pango_subtitles_fps = 1;
 bool eSubtitleSettings::pango_autoturnon = true;
 int eSubtitleSettings::subtitle_noPTSrecordingdelay = 315000;
 int eSubtitleSettings::subtitle_bad_timing_delay = 0;
+bool eSubtitleSettings::subtitle_usecache = true;
+
+bool eSubtitleSettings::subtitle_hearingimpaired = false;
+bool eSubtitleSettings::subtitle_defaultimpaired = false;
+bool eSubtitleSettings::subtitle_defaultdvb = false;
+int eSubtitleSettings::equal_languages = 0;
+
+std::string eSubtitleSettings::subtitle_autoselect1 = "";
+std::string eSubtitleSettings::subtitle_autoselect2 = "";
+std::string eSubtitleSettings::subtitle_autoselect3 = "";
+std::string eSubtitleSettings::subtitle_autoselect4 = "";
+
+bool eSettings::remote_fallback_enabled = false;
+bool eSettings::use_ci_assignment = false;
+std::string eSettings::timeshift_path = "";
+
+bool eSettings::audio_defaultac3 = false;
+bool eSettings::audio_defaultddp = false;
+bool eSettings::audio_usecache = true;
+int eSettings::http_startdelay = 0;
+
+
+std::string eSettings::audio_autoselect1 = "";
+std::string eSettings::audio_autoselect2 = "";
+std::string eSettings::audio_autoselect3 = "";
+std::string eSettings::audio_autoselect4 = "";
