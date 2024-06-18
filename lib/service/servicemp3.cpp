@@ -537,7 +537,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	m_aspect = m_width = m_height = m_framerate = m_progressive = m_gamma = -1;
 
 	m_state = stIdle;
-	m_gstdot = eConfigManager::getConfigBoolValue("config.crash.gstdot");
+	m_gstdot = eSimpleConfig::getBool("config.crash.gstdot", false);
 	m_coverart = false;
 	m_subtitles_paused = false;
 	// eDebug("[eServiceMP3] construct!");
@@ -758,7 +758,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	eDebug("[eServiceMP3] playbin uri=%s", uri);
 	if (suburi != NULL)
 		eDebug("[eServiceMP3] playbin suburi=%s", suburi);
-	bool useplaybin3 = eConfigManager::getConfigBoolValue("config.misc.usegstplaybin3", false);
+	bool useplaybin3 = eSimpleConfig::getBool("config.misc.usegstplaybin3", false);
 	if(useplaybin3)
 		m_gst_playbin = gst_element_factory_make("playbin3", "playbin");
 	else
@@ -2188,7 +2188,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 
 					if (!dvb_videosink || m_ref.getData(0) == 2) // show radio pic
 					{
-						bool showRadioBackground = eConfigManager::getConfigBoolValue("config.misc.showradiopic", true);
+						bool showRadioBackground = eSimpleConfig::getBool("config.misc.showradiopic", true);
 						std::string radio_pic = eConfigManager::getConfigValue(showRadioBackground ? "config.misc.radiopic" : "config.misc.blackradiopic");
 						m_decoder = new eTSMPEGDecoder(NULL, 0);
 						m_decoder->showSinglePic(radio_pic.c_str());
@@ -2640,7 +2640,7 @@ void eServiceMP3::HandleTocEntry(GstMessage *msg)
 		for (GList* i = gst_toc_get_entries(toc); i; i = i->next)
 		{
 			GstTocEntry *entry = static_cast<GstTocEntry*>(i->data);
-			if (gst_toc_entry_get_entry_type (entry) == GST_TOC_ENTRY_TYPE_EDITION && eConfigManager::getConfigBoolValue("config.usage.useChapterInfo"))
+			if (gst_toc_entry_get_entry_type (entry) == GST_TOC_ENTRY_TYPE_EDITION && eSimpleConfig::getBool("config.usage.useChapterInfo", true))
 			{
 				/* extra debug info for testing purposes should_be_removed later on */
 				//eDebug("[eServiceMP3] toc_type %s", gst_toc_entry_type_get_nick(gst_toc_entry_get_entry_type (entry)));
@@ -3448,8 +3448,8 @@ void eServiceMP3::saveCuesheet()
 
 	struct stat s;
 	bool removefile = false;
-	bool use_videocuesheet = eConfigManager::getConfigBoolValue("config.usage.useVideoCuesheet"); 
-	bool use_audiocuesheet = eConfigManager::getConfigBoolValue("config.usage.useAudioCuesheet");
+	bool use_videocuesheet = eSimpleConfig::getBool("config.usage.useVideoCuesheet", true); 
+	bool use_audiocuesheet = eSimpleConfig::getBool("config.usage.useAudioCuesheet", true);
 	bool exist_cuesheetfile = (stat(filename.c_str(), &s) == 0);
 
 	if (!exist_cuesheetfile && m_cue_entries.size() == 0)
