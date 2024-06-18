@@ -481,4 +481,7 @@ BoxInfo.setItem("inadyn", exists("/etc/init.d/inadyn-mt"))
 BoxInfo.setItem("minidlna", exists("/etc/init.d/minidlna"))
 BoxInfo.setItem("ushare", exists("/etc/init.d/ushare"))
 
+# AI
+BoxInfo.setItem("AISubs", exists("/etc/init.d/aisocket"))
+
 updateSysSoftCam()

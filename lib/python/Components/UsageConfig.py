@@ -11,6 +11,7 @@ from keyids import KEYIDS
 from skin import parameters
 from Components.config import ConfigBoolean, ConfigClock, ConfigDirectory, ConfigDictionarySet, ConfigFloat, ConfigInteger, ConfigIP, ConfigLocations, ConfigNumber, ConfigSelectionNumber, ConfigPassword, ConfigSequence, ConfigSelection, ConfigSet, ConfigSlider, ConfigSubsection, ConfigText, ConfigYesNo, NoSave, config
 from Components.Harddisk import harddiskmanager
+from Components.International import international
 from Components.NimManager import nimmanager
 from Components.ServiceList import refreshServiceList
 from Components.SystemInfo import BoxInfo
@@ -1486,7 +1487,6 @@ def InitUsageConfig():
 		eSubtitleSettings.setTTXSubtitleColors(configElement.value)
 
 	config.subtitles.ttx_subtitle_colors = ConfigSelection(default=1, choices=[
-		(0, _("Original")),
 		(1, _("White")),
 		(2, _("Yellow"))
 	])
@@ -1656,6 +1656,53 @@ def InitUsageConfig():
 
 	config.subtitles.pango_autoturnon = ConfigYesNo(default=True)
 	config.subtitles.pango_autoturnon.addNotifier(setPangoSubtitleAutoRun)
+
+	# AI start
+	def setAiEnabled(configElement):
+		eSubtitleSettings.setAiEnabled(configElement.value)
+
+	config.subtitles.ai_enabled = ConfigYesNo(default=False)
+	config.subtitles.ai_enabled.addNotifier(setAiEnabled)
+
+	def setAiSubscriptionCode(configElement):
+		eSubtitleSettings.setAiSubscriptionCode(str(configElement.value))
+
+	config.subtitles.ai_subscription_code = ConfigNumber(default=15)
+	config.subtitles.ai_subscription_code.addNotifier(setAiSubscriptionCode)
+
+	def setAiSubtitleColors(configElement):
+		eSubtitleSettings.setAiSubtitleColors(configElement.value)
+
+	config.subtitles.ai_subtitle_colors = ConfigSelection(default=1, choices=[
+		(0, _("Original")),
+		(1, _("White")),
+		(2, _("Yellow"))
+	])
+	config.subtitles.ai_subtitle_colors.addNotifier(setAiSubtitleColors)
+
+	langsAI = ['af', 'sq', 'am', 'ar', 'hy', 'az', 'eu', 'be', 'bn', 'bs', 'bg', 'ca', 'zh', 'co', 'hr', 'cs', 'da', 'nl', 'en', 'eo', 'fr', 'fi', 'fy', 'gl', 'ka', 'de', 'el', 'ht', 'ha', 'hu', 'is', 'ig', 'ga', 'it', 'ja', 'jv', 'kn', 'kk', 'km', 'rw', 'ko', 'ku', 'ky', 'lo', 'la', 'lv', 'lt', 'lb', 'mk', 'mg', 'ms', 'mt', 'mi', 'mr', 'mn', 'no', 'ny', 'or', 'ps', 'fa', 'pl', 'pt', 'ro', 'ru', 'sm', 'gd', 'sr', 'st', 'sn', 'sk', 'sl', 'so', 'es', 'su', 'sw', 'sv', 'tl', 'tg', 'te', 'th', 'tr', 'tk', 'uk', 'ur', 'ug', 'uz', 'cy', 'xh', 'yi', 'yo', 'zu']
+	langsAI = [(x, international.LANGUAGE_DATA[x][1]) for x in langsAI]
+	langsAI.append(("zh-CN", _("Chinese (Simplified)")))
+	langsAI.append(("ceb", _("Cebuano")))
+	langsAI.append(("haw", _("Hawaiian")))
+	langsAI.append(("iw", _("Hebrew")))
+	langsAI.append(("hmn", _("Hmong")))
+	langsAI.append(("ckb", _("Kurdish (Sorani)")))
+	langsAI.sort(key=lambda x: x[1])
+
+	default = config.misc.locale.value
+	default = default.split("_")[0] if "_" in default else default
+	if default == "zh":
+		default = "zh-CN"
+	if default not in [x[0] for x in langsAI]:
+		default = "en"
+
+	def setAiTranslateTo(configElement):
+		eSubtitleSettings.setAiTranslateTo(configElement.value)
+
+	config.subtitles.ai_translate_to = ConfigSelection(default=default, choices=langsAI)
+	config.subtitles.ai_translate_to.addNotifier(setAiTranslateTo)
+	# AI end
 
 	config.autolanguage = ConfigSubsection()
 	languageChoiceList = [
