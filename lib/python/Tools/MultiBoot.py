@@ -204,6 +204,12 @@ class MultiBootClass():
 								bootSlots[slotCode]["rootsubdir"] = self.getParam(line, "rootsubdir")
 							elif "sda" in line:
 								saveKernel(bootSlots, slotCode, "/dev/sda%s" % line.split("sda", 1)[1].split(" ", 1)[0])
+							elif "sdb" in line:
+								saveKernel(bootSlots, slotCode, "/dev/sdb%s" % line.split("sdb", 1)[1].split(" ", 1)[0])
+							elif "sdc" in line:
+								saveKernel(bootSlots, slotCode, "/dev/sdc%s" % line.split("sdc", 1)[1].split(" ", 1)[0])
+							elif "sdd" in line:
+								saveKernel(bootSlots, slotCode, "/dev/sdd%s" % line.split("sdd", 1)[1].split(" ", 1)[0])
 							else:
 								parts = device.split("p")
 								saveKernel(bootSlots, slotCode, "%sp%s" % (parts[0], int(parts[1]) - 1))
