@@ -199,11 +199,12 @@ class MultiBootClass():
 								bootSlots[slotCode]["ubi"] = True
 							if "UUID=" in line:
 								bootSlots[slotCode]["uuid"] = True
+							bootDevice = [x for x in ("sda", "sdb", "sdc", "sdd") if x in line]
 							if "rootsubdir" in line:
 								bootSlots[slotCode]["kernel"] = self.getParam(line, "kernel")
 								bootSlots[slotCode]["rootsubdir"] = self.getParam(line, "rootsubdir")
-							elif [x for x in ("sda", "sdb", "sdc", "sdd") if x in line]:
-								device = [x for x in ("sda", "sdb", "sdc", "sdd") if x in line][0]
+							elif bootDevice:
+								device = bootDevice[0]
 								saveKernel(bootSlots, slotCode, f"/dev/{device}{line.split(device, 1)[1].split(" ", 1)[0]}")
 							else:
 								parts = device.split("p")
