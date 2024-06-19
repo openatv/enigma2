@@ -40,7 +40,7 @@ struct eVobSubtitlePage
 struct eDVBTeletextSubtitlePage;
 struct eDVBSubtitlePage;
 
-class eSubtitleWidget: public eWidget, public iSubtitleUser, public sigc::trackable
+class eSubtitleWidget : public eWidget, public iSubtitleUser, public sigc::trackable
 {
 public:
 	eSubtitleWidget(eWidget *parent);
@@ -53,21 +53,29 @@ public:
 	void setPixmap(ePtr<gPixmap> &pixmap, gRegion changed, eRect dest = eRect(0, 0, 720, 576));
 	void destroy() { delete this; }
 
-	typedef enum { Subtitle_TTX, Subtitle_Regular, Subtitle_Bold, Subtitle_Italic, Subtitle_MAX } subfont_t;
+	typedef enum
+	{
+		Subtitle_TTX,
+		Subtitle_Regular,
+		Subtitle_Bold,
+		Subtitle_Italic,
+		Subtitle_MAX
+	} subfont_t;
 	struct eSubtitleStyle
 	{
 		subfont_t face;
 		int have_foreground_color;
 		gRGB foreground_color, border_color;
-		int  border_width;
+		int border_width;
 		ePtr<gFont> font;
 	};
 
 	static void setFontStyle(subfont_t face, gFont *font, int autoColor, const gRGB &col, const gRGB &borderCol, int borderWidth);
 
 protected:
-	int event(int event, void *data=0, void *data2=0);
-	void removeHearingImpaired(std::string& str);
+	int event(int event, void *data = 0, void *data2 = 0);
+	void removeHearingImpaired(std::string &str);
+
 private:
 	int m_page_ok;
 	eDVBTeletextSubtitlePage m_page;
@@ -84,7 +92,7 @@ private:
 
 	static std::map<subfont_t, eSubtitleStyle> subtitleStyles;
 
-	ePtr<gPixmap> m_pixmap;  // pixmap to paint on next evtPaint
+	ePtr<gPixmap> m_pixmap; // pixmap to paint on next evtPaint
 	eRect m_pixmap_dest;
 };
 
