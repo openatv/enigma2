@@ -4,7 +4,7 @@
 #include <lib/gdi/font.h>
 #include <lib/python/python.h>
 #include <lib/gdi/epng.h>
-#include <lib/base/nconfig.h>
+#include <lib/base/esimpleconfig.h>
 #include <lib/gui/ewindowstyleskinned.h>
 #include <sstream>
 
@@ -821,7 +821,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						int value_area = 0;
 
 						/* draw value at the end of the slider */
-						if (eConfigManager::getConfigBoolValue("config.usage.show_slider_value", true))
+						if (eSimpleConfig::getBool("config.usage.show_slider_value", true))
 						{
 							value_area = 100;
 							painter.setFont(fnt2);

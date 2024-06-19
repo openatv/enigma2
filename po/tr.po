@@ -5,13 +5,14 @@
 # Apachi70 <ahiles77@t-online.de>, 2023, 2024.
 # tanerkaderli <taner.kaderli@live.com>, 2023.
 # jbleyel <jbleyel@gmx.net>, 2023.
+# DreamOSat Forum <info@dreamosat-forum.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-24 20:26+0000\n"
-"PO-Revision-Date: 2024-06-02 12:02+0000\n"
-"Last-Translator: Apachi70 <ahiles77@t-online.de>\n"
+"POT-Creation-Date: 2024-06-15 20:15+0000\n"
+"PO-Revision-Date: 2024-06-14 06:41+0000\n"
+"Last-Translator: DreamOSat Forum <info@dreamosat-forum.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -1337,6 +1338,15 @@ msgstr ", "
 msgid "-"
 msgstr "-"
 
+msgid "- No space left on backup device."
+msgstr "- Yedekleme cihazında yer kalmadı."
+
+msgid "- No write permission on backup device."
+msgstr "- Yedekleme cihazında yazma izni yok."
+
+msgid "- Wrong backup destination."
+msgstr "- Yanlış yedekleme hedefi."
+
 msgid "-24 Hours"
 msgstr "24+ Saatler"
 
@@ -1445,20 +1455,6 @@ msgstr "1x"
 msgid "2"
 msgstr "2"
 
-msgid "23.976"
-msgstr "23.976"
-
-#
-msgid "24"
-msgstr "24"
-
-#
-msgid "25"
-msgstr "25"
-
-msgid "29.97"
-msgstr "29.97"
-
 msgid "2nd InfoBar"
 msgstr "2. bilgi çubuğu"
 
@@ -1488,10 +1484,6 @@ msgstr "2x, 4x, 6x, 8x"
 
 msgid "3"
 msgstr "3"
-
-#
-msgid "30"
-msgstr "30"
 
 msgid "3D Mode"
 msgstr "3D Kipi"
@@ -1583,6 +1575,9 @@ msgstr "<log bulunamadı>"
 #
 msgid "A"
 msgstr "A"
+
+msgid "A backup is now being created."
+msgstr "Şu anda bir yedekleme oluşturuluyor."
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr "'Uzantıyı filtrele'nin 'Uzantım' ayarı için kullanılacak uzantıların virgülle ayrılmış bir listesi. Uzantı adlarını başlarında nokta (.) olmadan girin."
@@ -2315,6 +2310,15 @@ msgstr "Başlık altında alfabetik sıralı"
 msgid "Alphanumeric"
 msgstr "Alfanümerik"
 
+msgid "Also import at reboot/restart enigma2"
+msgstr "Enigma2'yi yeniden başlatırken de içe aktarın"
+
+msgid "Also import from the extension menu"
+msgstr "Eklenti menüsünde göster"
+
+msgid "Also import when box is leaving standby"
+msgstr "Kutu bekleme modundan çıkarken de içe aktar"
+
 msgid "Also on standby"
 msgstr "Ayrıca beklemede"
 
@@ -2333,6 +2337,9 @@ msgstr "Alternatif 2"
 #
 msgid "Alternative Edit"
 msgstr "[alternatif düzenle]"
+
+msgid "Alternative URLs for DVB-T/C or ATSC"
+msgstr "DVB-T/C veya ATSC için alternatif URL'ler"
 
 msgid "Alternative numbering mode"
 msgstr "Alternatif numaralama kipi"
@@ -2588,6 +2595,9 @@ msgstr "Aspect anahtarı"
 
 msgid "Assamese"
 msgstr "Assamca"
+
+msgid "Assembling the image backup files."
+msgstr "İmaj yedekleme dosyalarının birleştirilmesi."
 
 #
 msgid "Assigned CAIds:"
@@ -2937,8 +2947,14 @@ msgstr "Yedekleme Günlüğü"
 msgid "Backup Mode"
 msgstr "Yedekleme Kipi"
 
+msgid "Backup Mode: Flash Online"
+msgstr "Yedekleme Modu: Flash Çevrimiçi"
+
 msgid "Backup Mode: Flash Online\n"
 msgstr "Yedekleme Modu: Çevrimiçi Flash\n"
+
+msgid "Backup Mode: USB Recovery"
+msgstr "Yedekleme Modu: USB Kurtarma"
 
 msgid "Backup Mode: USB Recovery\n"
 msgstr "Yedekleme Modu: USB Kurtarma\n"
@@ -2949,19 +2965,6 @@ msgstr "Yedekleme Ayarları"
 #
 msgid "Backup System Settings"
 msgstr "Sistem ayarlarını yedekle"
-
-msgid "Backup completed."
-msgstr "Yedekleme tamamlandı."
-
-msgid "Backup done."
-msgstr "Yedekleme bitti."
-
-msgid "Backup failed!"
-msgstr "Yedekleme başarısız!"
-
-#
-msgid "Backup failed."
-msgstr "Yedekleme başarısız."
 
 msgid "Backup images"
 msgstr "Yedek görüntüler"
@@ -2980,6 +2983,10 @@ msgstr ""
 #, python-format
 msgid "Backup to destination: %s"
 msgstr "Hedefe yedekleme: %s"
+
+#, python-format
+msgid "Backup tool for %s %s"
+msgstr "%s %s için yedekleme aracı"
 
 #
 msgid "Backup your %s %s settings."
@@ -3023,19 +3030,17 @@ msgstr "Bangladeş"
 msgid "Barbados"
 msgstr "Barbados"
 
-#, fuzzy
 msgid "Base Packages"
 msgstr "Temel Paketler"
 
-#, fuzzy
 msgid "Base Shell Packages"
-msgstr "Temel Kabuk Paketleri"
+msgstr "Temel Shell Paketleri"
 
 msgid "Base time"
 msgstr "Temel Zaman"
 
 msgid "Base transparency for OpenOpera web browser."
-msgstr "OpenOpera web tarayıcısı için temel saydamlık"
+msgstr "OpenOpera web tarayıcısı için temel saydamlık."
 
 msgid "Base transparency for teletext, more options are available within teletext screen."
 msgstr "Teleteks için temel saydamlık, teletekst ekranından daha fazla seçenek mevcuttur."
@@ -3243,7 +3248,6 @@ msgstr "Buket Seçici Eylemler"
 msgid "Bouquet Selector Navigation Actions"
 msgstr "Buket Seçici Navigasyon Eylemleri"
 
-#, fuzzy
 msgid "Bouquets"
 msgstr "Buketler"
 
@@ -3493,7 +3497,6 @@ msgstr "CI etkin"
 msgid "CI slot: "
 msgstr "CI yuvası: "
 
-#, fuzzy
 msgid "CI+ Helper*"
 msgstr "CI+ Yardımcı*"
 
@@ -3652,6 +3655,9 @@ msgstr "Zamanlayıcı yüklenemiyor"
 msgid "Can't allocate program source (e.g. tuner)"
 msgstr "Program kaynağı tahsis edilemiyor (ör. tuner)"
 
+msgid "Can't create backup directory!"
+msgstr "Yedekleme dizini oluşturulamıyor!"
+
 msgid ""
 "Can't going to live TV!\n"
 "Switch to live TV and restart time shift ?"
@@ -3728,11 +3734,9 @@ msgstr "Seçimi iptal et"
 msgid "Cancel selection and exit"
 msgstr "Seçimi iptal et ve çık"
 
-#, fuzzy
 msgid "Cancel service selection and exit"
 msgstr "Servis seçimini iptal et ve çık"
 
-#, fuzzy
 msgid "Cancel the Reset Feeds command currently being processed"
 msgstr "İşlenmekte olan akışları sıfırla komutunu iptal et"
 
@@ -3753,7 +3757,6 @@ msgstr "Görüntü seçimini iptal edin ve çıkın"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Görüntü seçimini iptal edin ve tüm menülerden çıkın"
 
-#, fuzzy
 msgid "Cancel the selection and exit"
 msgstr "Seçimi iptal et ve çık"
 
@@ -3811,7 +3814,6 @@ msgstr "Kartlar: 0"
 msgid "Cardserial"
 msgstr "Kart SN"
 
-#, fuzzy
 msgid "Cardserver Settings"
 msgstr "Kart Sunucusu Ayarları"
 
@@ -3900,11 +3902,9 @@ msgstr "Skin değiştir"
 msgid "Change step size"
 msgstr "Ayar yapılırken atlama boyutu"
 
-#, fuzzy
 msgid "Change to Radio services mode"
 msgstr "Radyo servis modunu değiştir"
 
-#, fuzzy
 msgid "Change to TV services mode"
 msgstr "TV servis modunu değiştir"
 
@@ -3953,7 +3953,6 @@ msgstr "Kanal listesi menüsü"
 msgid "Channel Selection"
 msgstr "Kanal Seçimi"
 
-#, fuzzy
 msgid "Channel Selection Actions"
 msgstr "Kanal Seçim İşlemleri"
 
@@ -3966,9 +3965,8 @@ msgstr "Kanal Listesi Bağlam Menüsü Eylemleri"
 msgid "Channel Selection Context Menu Navigation Actions"
 msgstr "Kanal Listesi Bağlam Menüsü Gezinme Eylemleri"
 
-#, fuzzy
 msgid "Channel Selection Navigation Actions"
-msgstr "Kanal seçimi gezinme işlemleri"
+msgstr "Kanal Seçiminde Gezinme Eylemleri"
 
 #
 msgid "Channel Selection Settings"
@@ -4124,19 +4122,15 @@ msgstr "Chipset: BCM%s"
 msgid "Choice Box"
 msgstr "Seçim Kutusu"
 
-#, fuzzy
 msgid "Choice List Actions"
 msgstr "Seçim Listesi Eylemleri"
 
-#, fuzzy
 msgid "Choice List Navigation Actions"
 msgstr "Seçim Listesi Gezinme Eylemleri"
 
-#, fuzzy
 msgid "Choice List Order Actions"
 msgstr "Seçim Listesi Sıralama İşlemleri"
 
-#, fuzzy
 msgid "Choice List Selection Actions"
 msgstr "Seçim Listesi Seçim Eylemleri"
 
@@ -4170,6 +4164,9 @@ msgstr "Tarihler için ekran formatlama stilini seçin. 'D' / 'DD' tarih ve 'M' 
 
 msgid "Choose the display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds.  ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Zamanlar için ekran formatlama stilini seçin. 'H' / 'HH' 24 saatlik bir saattir, 'h' / 'hh' 12 saatlik bir saattir, 'mm' dakikadır ve 'ss saniyedir. ('HH' ve 'hh', tek basamaklı değerler için önde gelen sıfırlara sahiptir.) Ekran görüntüsü seçiminize göre olacaktır ancak ciltten etkilenebilir."
+
+msgid "Choose the fallback font."
+msgstr "Yedek yazı tipini seçin."
 
 msgid "Choose the front panel display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Tarihler için ön panel ekran formatlama stilini seçin. 'D' / 'DD' tarih ve 'M' / 'MM' rakamlarla aydır. ('DD' ve 'MM', tek basamaklı değerler için önde gelen sıfırlara sahiptir.) Ekran görüntüsü seçiminize göre olacaktır ancak ciltten etkilenebilir."
@@ -4469,6 +4466,10 @@ msgstr "'%s' komutu bilinmiyor"
 msgid "Command execution..."
 msgstr "Komut çalıştırılıyor..."
 
+msgid "Command finished."
+msgid_plural "Commands finished."
+msgstr[0] ""
+
 #
 msgid "Command order"
 msgstr "Komut sıralaması"
@@ -4608,7 +4609,7 @@ msgid "Configure if service picons will be shown in the service list."
 msgstr "Servis picons'larının servicelist'de gösterilip gösterilmeyeceğini yapılandırın."
 
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
-msgstr "Altyazının normal, italik, kalın ve bolditalik arasında geçiş yapması gerekip gerekmediğini yapılandırın"
+msgstr "Altyazının normal, italik, kalın ve bolditalik arasında geçiş yapması gerekip gerekmediğini yapılandırın."
 
 #
 msgid "Configure interface"
@@ -5265,6 +5266,10 @@ msgstr "Rastgele oluşturulmuş bir şifre oluşturun"
 msgid "Create a symbolic link"
 msgstr "Sembolik bağlantı oluşturma"
 
+#, python-format
+msgid "Create recovery image backup '%s'."
+msgstr "Kurtarma görüntüsü yedeğini oluşturun '%s'."
+
 msgid "Create separate radio user bouquet"
 msgstr "Ayrı bir radyo kullanıcısı"
 
@@ -5314,7 +5319,6 @@ msgstr "Hırvatistan"
 msgid "Croatian"
 msgstr "Hırvatça"
 
-#, fuzzy
 msgid "Cron"
 msgstr "Cron"
 
@@ -5448,6 +5452,9 @@ msgstr "'7'/'9' tuşlarında atlanılacak süre"
 #
 msgid "Customize"
 msgstr "Özelleştir"
+
+msgid "Customize OpenWebIF settings for fallback tuner"
+msgstr "Geri dönüş ayarlayıcı için OpenWebIF ayarlarını özelleştirin"
 
 msgid "Customize System Settings"
 msgstr "Sistem Ayarlarını Özelleştirin"
@@ -6198,6 +6205,18 @@ msgstr "Yalnızca vurgulanan dosyanın seçimini kaldır"
 msgid "Deselected packages usually occur because those packaged are incompatible with existing packages. While this is mostly harmless it is possible that your %s %s may experience issues."
 msgstr "Seçimi kaldırılan paketler genellikle, paketlenenler mevcut paketlerle uyumlu olmadığı için oluşur. Bu çoğunlukla zararsız olsa da, %s %s cihazınızda sorunlar olabilir."
 
+msgid "Destination of fallback remote receiver"
+msgstr "Yedek cihaz URL"
+
+msgid "Destination of fallback remote receiver for ATSC"
+msgstr "Yedek cihaz URL"
+
+msgid "Destination of fallback remote receiver for DVB-C"
+msgstr "Yedek cihaz URL"
+
+msgid "Destination of fallback remote receiver for DVB-T"
+msgstr "Yedek cihaz URL"
+
 msgid "Detail of GStreamer log."
 msgstr "GStreamer günlüğünün ayrıntısı"
 
@@ -6498,6 +6517,9 @@ msgstr "Cibuti"
 msgid "Do another manual service scan?"
 msgstr "Başka kanal araması yapacak mısınız?"
 
+msgid "Do not backup the image"
+msgstr "Imageyi yedeklemeyin"
+
 #
 msgid "Do not change"
 msgstr "Değiştirme"
@@ -6591,6 +6613,24 @@ msgstr "%s için zamanlayıcıyı gerçekten silmek istiyor musunuz?"
 #, python-format
 msgid "Do you really want to remove your bookmark for '%s'?"
 msgstr "%s adlı yer imini kaldırmak istiyor musunuz?"
+
+msgid ""
+"Do you really want to restart OSCam?\n"
+"\n"
+"HINT: This will take about 5 seconds!"
+msgstr ""
+"OSCam'i gerçekten yeniden başlatmak istiyor musunuz?\n"
+"\n"
+"İPUCU: Bu işlem yaklaşık 5 saniye sürecektir!"
+
+msgid ""
+"Do you really want to shut down OSCam?\n"
+"\n"
+"ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+msgstr ""
+"OSCam'i gerçekten kapatmak istiyor musunuz?\n"
+"\n"
+"DİKKAT: OSCam'i yeniden etkinleştirmek için alıcının tamamen yeniden başlatılması gerekir!"
 
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
@@ -7257,6 +7297,9 @@ msgstr "Yedek uzaktan alıcıyı etkinleştir"
 msgid "Enable freesat EPG"
 msgstr "Freesat EPG etkinleştir"
 
+msgid "Enable import timer from fallback tuner"
+msgstr "Yedek ayarlayıcıdan içe aktarma zamanlayıcısını etkinleştir"
+
 msgid "Enable intro screen"
 msgstr "Giriş ekranını etkinleştir"
 
@@ -7458,6 +7501,9 @@ msgstr "Girmek"
 msgid "Enter DNS (Dynamic Name Server) %d's IP address."
 msgstr "DNS (Dinamik Ad Sunucusu) %d'nin IP adresini girin."
 
+msgid "Enter IP address"
+msgstr "IP adresi"
+
 msgid "Enter PIN"
 msgstr "PIN kodunu girin"
 
@@ -7605,9 +7651,9 @@ msgstr "Hata %d: İndirilen görüntü '%s' silinemiyor! (%s)"
 msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
 msgstr "Hata %d: '%s', '%s' olarak bağlanamıyor! (%s)"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Error %d: Unable to read '%s'!  (%s)"
-msgstr "Hata %d: '%s' okunamıyor!    (%s)"
+msgstr "Hata %d: '%s' okunamıyor!  (%s)"
 
 #, python-format
 msgid "Error %d: Unable to rename directory/file '%s' to '%s'!  (%s)"
@@ -7716,6 +7762,14 @@ msgstr "Hata metni:"
 #, python-format
 msgid "Error unzipping image '%s'!"
 msgstr "'%s' görüntüsü açılırken hata oluştu!"
+
+#, python-format
+msgid ""
+"Error while retrieving fallback timer information\n"
+"%s"
+msgstr ""
+"Geri dönüş zamanlayıcı bilgileri alınırken hata oluştu\n"
+"%s"
 
 msgid "Error, unknown Result!"
 msgstr "Hata, bilinmeyen Sonuç!"
@@ -7833,6 +7887,10 @@ msgid "Error: Unable to rename directory '%s' to '%s'!"
 msgstr "Hata oluştu: '%s' dizini '%s' olarak yeniden adlandırılamıyor!"
 
 #, python-format
+msgid "Error: Unable to write log file '%s'!"
+msgstr "Dosya yazma hatası: '%s'"
+
+#, python-format
 msgid "Error: You can't run '%s' on '%s'!"
 msgstr "Hata: '%s'ı '%s' üzerinde çalıştıramazsınız!"
 
@@ -7940,14 +7998,6 @@ msgid "Execution condition"
 msgstr "Yürütme koşulu"
 
 #
-msgid "Execution finished!!"
-msgstr "Uygulama bitti!!"
-
-#
-msgid "Execution progress:"
-msgstr "İşleyiş Durumu:"
-
-#
 msgid "Exif"
 msgstr "Exif"
 
@@ -7973,6 +8023,9 @@ msgstr "Quad Kanal Seçiminden Çık"
 
 msgid "Exit all menus"
 msgstr "Görüntü seçimini iptal edin ve tüm menülerden çıkın"
+
+msgid "Exit and close all screens without performing a backup"
+msgstr "Yedekleme yapmadan tüm ekranlardan çıkın ve kapatın"
 
 #
 msgid "Exit editor"
@@ -8032,6 +8085,9 @@ msgstr "Sihirbazdan çık"
 
 msgid "Exit viewer"
 msgstr "Çıkış görüntüleyici"
+
+msgid "Exit without performing a backup"
+msgstr "Yedekleme yapmadan çıkın"
 
 msgid "Expand"
 msgstr "Genişletmek"
@@ -8218,8 +8274,35 @@ msgstr "Başarısız oldu:"
 msgid "Falkland Islands (Malvinas)"
 msgstr "Falkland Adaları (Malvinas)"
 
+msgid "Fallback API did not return a valid result."
+msgstr "Geri dönüş API'si geçerli bir sonuç döndürmedi."
+
+msgid "Fallback Font *"
+msgstr "Yedek Yazı Tipi *"
+
+msgid "Fallback remote receiver"
+msgstr "Yedek cihaz URL"
+
+msgid "Fallback remote receiver IP"
+msgstr "Yedek cihaz URL"
+
+msgid "Fallback remote receiver Port"
+msgstr "Yedek cihaz URL"
+
 msgid "Fallback remote receiver URL"
 msgstr "Geri dönüş uzak alıcı URL'si"
+
+msgid "Fallback remote receiver for ATSC"
+msgstr "Yedek cihaz URL"
+
+msgid "Fallback remote receiver for DVB-C"
+msgstr "Yedek cihaz URL"
+
+msgid "Fallback remote receiver for DVB-T"
+msgstr "Yedek cihaz URL"
+
+msgid "Fallback tuner setup"
+msgstr "Yedek cihaz URL"
 
 msgid "False"
 msgstr "Yanlış"
@@ -8415,10 +8498,6 @@ msgstr "Dosya aktarımı kullanıcı tarafından iptal edildi!"
 
 msgid "File transfer was cancelled by user"
 msgstr "Dosya aktarımı kullanıcı tarafından iptal edildi"
-
-#, python-format
-msgid "File write error: '%s'"
-msgstr "Dosya yazma hatası: '%s'"
 
 #
 msgid "Filename"
@@ -9330,11 +9409,11 @@ msgstr "Softcam sunucu adını gizle"
 msgid "Hide the InfoBar"
 msgstr "Bilgi çubuğunu daima gizle"
 
-msgid "Hide this screen"
-msgstr "Bu ekranı gizle"
-
 msgid "Hide zap errors"
 msgstr "Zap hatalarını gizle"
+
+msgid "Hide/Show the console screen"
+msgstr ""
 
 msgid "Hierarchy info"
 msgstr "Hiyerarşi bilgisi"
@@ -9545,6 +9624,9 @@ msgstr "IP Adresi"
 msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr "Yalnızca Stream Relay aracılığıyla şifresi çözülebilen hizmetlerin şifresini çözmek için kullanılan Stream Relay sunucusunun IP adresi."
 
+msgid "IP of fallback remote receiver"
+msgstr "Yedek cihaz URL"
+
 msgid "IPK Installer"
 msgstr "IPK Yükleyici"
 
@@ -9754,6 +9836,13 @@ msgstr "Beklenmedik şekilde uyanmayı ihmal et ve beklemede kal"
 msgid "Image Backup"
 msgstr "Image yedekleme"
 
+msgid "Image Backup Actions"
+msgstr "İmaj Yedekleme Eylemleri"
+
+#, python-format
+msgid "Image Backup To %s"
+msgstr "Image Yedekle %s"
+
 msgid "Image Flash Actions"
 msgstr "Görüntü Flaş Eylemleri"
 
@@ -9761,8 +9850,14 @@ msgstr "Görüntü Flaş Eylemleri"
 msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
 msgstr "Görüntü üzerinde oluşturuldu: %s/%s-%s-%s-backup-%s_%s.zip"
 
+msgid "Image created:"
+msgstr "Image oluştur:"
+
 msgid "Image creation failed - "
 msgstr "Image yaratılamadı - "
+
+msgid "Image creation failed!"
+msgstr "Image oluşturma başarısız oldu!"
 
 msgid "ImageWizard"
 msgstr "Image Sihirbazı"
@@ -9776,6 +9871,21 @@ msgstr "Sihirbazdan hemen çıkın (yalnızca Hata Ayıklama modu)"
 
 msgid "Immediately restart selected devices."
 msgstr "Seçilen cihazları hemen yeniden başlatın."
+
+msgid "Import channels and/or EPG from remote receiver URL also when the receiver is getting out of standby"
+msgstr "Alıcı bekleme modundan çıkarken de uzak alıcı URL'sinden kanalları ve/veya EPG'yi içe aktarın"
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver is booted"
+msgstr "Yedek cihaz URL"
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
+msgstr "Alıcı veya enigma2 yeniden başlatıldığında, uzak alıcı URL'sinden kanalları ve/veya EPG'yi içe aktarın"
+
+msgid "Import from remote receiver URL"
+msgstr "Yedek cihaz URL"
+
+msgid "Import remote receiver URL"
+msgstr "Yedek cihaz URL"
 
 msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
 msgstr "Bir olay başlangıcındaki kontrole ek olarak, koşulların 'saat cinsinden tampon limiti' veya 'boş alanı kontrol et' daha önce algılanması için tekrarlı bir kontrol kullanılabilir."
@@ -11063,6 +11173,9 @@ msgstr "Çoklu önyükleme cihazınızı koruyun."
 msgid "Make"
 msgstr "Marka"
 
+msgid "Make it possible to manually initiate the channels import and/or EPG via the extension menu"
+msgstr "Uzantı menüsü aracılığıyla kanalların içe aktarımını ve/veya EPG'yi manuel olarak başlatmayı mümkün kılın"
+
 #
 msgid "Make this mark an 'in' point"
 msgstr "'içinde' noktası olarak işaretle"
@@ -11645,11 +11758,9 @@ msgstr "Geçerli yer işaretini aşağı taşı"
 msgid "Move the current bookmark up"
 msgstr "Geçerli yer işaretini yukarı taşı"
 
-#, fuzzy
 msgid "Move the current entry down"
 msgstr "Geçerli girişi aşağı taşı"
 
-#, fuzzy
 msgid "Move the current entry up"
 msgstr "Geçerli girişi yukarı taşı"
 
@@ -11711,19 +11822,15 @@ msgstr "Son satıra / ekrana git"
 msgid "Move to last line / screen in the panel"
 msgstr "Paneldeki son satıra/ekrana gitme"
 
-#, fuzzy
 msgid "Move to next bouquet"
 msgstr "Sonraki bukete git"
 
-#, fuzzy
 msgid "Move to next marker"
 msgstr "Sonraki işarete git"
 
-#, fuzzy
 msgid "Move to previous bouquet"
 msgstr "Önceki bukete git"
 
-#, fuzzy
 msgid "Move to previous marker"
 msgstr "Önceki işarete git"
 
@@ -11910,6 +12017,9 @@ msgstr "Çoklu Dönüştürme"
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr "Oluşturulan Multiboot Görüntüsü: %s /%s-%s-%s-backup-%s_usb.zip"
 
+msgid "Multiboot Image created:"
+msgstr "Çoklu önyükleme Image oluşturuldu:"
+
 msgid "Multimedia Packages"
 msgstr "Multimedya Paketleri"
 
@@ -11975,6 +12085,9 @@ msgstr "NOT: '%s' dizini/dosyası mevcuttur ve üzerine yazılacaktır!"
 #, python-format
 msgid "NOTE: These %d directories/files exist and will be overwritten!"
 msgstr "NOT: Bu %d dizinler/dosyalar mevcuttur ve üzerine yazılacaktır!"
+
+msgid "NOTE: While the console screen is hidden from view the buttons are still active. Pressing any enabled button will cause the screen to reappear but the button will not be actioned."
+msgstr ""
 
 msgid "NOW"
 msgstr "ŞİMDİ"
@@ -12119,7 +12232,6 @@ msgstr "Ağ Hizmetleri"
 msgid "Network Settings"
 msgstr "Ağ kurulumu"
 
-#, fuzzy
 msgid "Network Setup Actions"
 msgstr "Ağ Kurulum Eylemleri"
 
@@ -12303,9 +12415,6 @@ msgstr "Desteklenen DVDROM bulunamadı!"
 #
 msgid "No Connection"
 msgstr "Bağlantı yok"
-
-msgid "No Devices Found !!"
-msgstr "Aygıt Bulunamadı !!"
 
 #
 msgid "No ECM PIDs available"
@@ -12505,9 +12614,6 @@ msgstr "Güncelleme gerekmez!"
 msgid "No updates available."
 msgstr "Güncelleme yok."
 
-msgid "No updates were available.  Please try again later."
-msgstr "Hiçbir güncelleme mevcut değildi. Lütfen daha sonra tekrar deneyiniz."
-
 msgid "No valid device detected - Press OK"
 msgstr "Geçerli cihaz algılanmadı - Tamam'a basın"
 
@@ -12595,9 +12701,8 @@ msgstr "Yok"
 msgid "NordVPN Secure DNS"
 msgstr "NordVPN Güvenli DNS"
 
-#, fuzzy
 msgid "NordVPN Smart DNS"
-msgstr "NordVPN Akıllı DNS"
+msgstr "NordVPN Smart DNS"
 
 msgid "Norfolk Island"
 msgstr "Norfolk Adası"
@@ -12777,7 +12882,6 @@ msgstr "OScam Bilgisi"
 msgid "OSCam Information"
 msgstr "OScamInfo"
 
-#, fuzzy
 msgid "OSCam Information Settings"
 msgstr "OSCam Bilgi Ayarları"
 
@@ -12790,11 +12894,11 @@ msgstr "OSCamInfo Eylemleri"
 msgid "OSCamInfo Log Actions"
 msgstr "OSCamInfo Log Eylemleri"
 
-#, fuzzy, python-format
+#, python-format
 msgid "OSCamInfo: %s Entitlements for '%s'"
 msgstr "OSCam bilgi: '%s' için %s Yetkilendirmesi"
 
-#, fuzzy, python-format
+#, python-format
 msgid "OSCamInfo: Entitlements for '%s'"
 msgstr "OSCam bilgi: '%s' için yetkilendirmeler"
 
@@ -12813,7 +12917,6 @@ msgstr "OSD 3D Kurulum"
 msgid "OSD Calibration"
 msgstr "OSD Konumu"
 
-#, fuzzy
 msgid "OSD Calibration Settings"
 msgstr "OSD Kalibrasyon Ayarları"
 
@@ -12931,14 +13034,12 @@ msgstr "EPGSearch'ü açın"
 msgid "Open IMDb"
 msgstr "IMDb'yi aç"
 
-#, fuzzy
 msgid "Open Log"
 msgstr "Günlüğü aç"
 
 msgid "Open MediaStream"
 msgstr "MediaStream'i Açın"
 
-#, fuzzy
 msgid "Open Settings"
 msgstr "Ayarları aç"
 
@@ -12987,11 +13088,17 @@ msgstr "Servis listesini aç ve PiP için önceki kanalı seç"
 msgid "Open the Channel Selection Settings screen"
 msgstr "Kanal Seçim Ayarları ekranını açın"
 
+msgid "Open the Image information"
+msgstr "Image bilgilerini aç"
+
 msgid "Open the Plugin Browser"
 msgstr "Eklenti Tarayıcısını Aç"
 
 msgid "Open the Plugin Browser settings screen"
 msgstr "Eklenti Tarayıcı ayarları ekranını açın"
+
+msgid "Open the Storage Device information"
+msgstr "Depolama Cihazı bilgilerini açın"
 
 msgid "Open the VirtualKeyBoard for text entry"
 msgstr "Metin girişi için VirtualKeyBoard'u açın"
@@ -13209,7 +13316,6 @@ msgstr "PRIMETIME"
 msgid "PVR"
 msgstr "PVR"
 
-#, fuzzy
 msgid "Package"
 msgstr "Paket"
 
@@ -13348,9 +13454,6 @@ msgstr "Sifre değişti."
 #, python-format
 msgid "Path '%s' missing!"
 msgstr "'%s' yolu kayıp!"
-
-msgid "Path to save not exist: '/tmp/'"
-msgstr "Kaydedilecek yol mevcut değil: '/tmp/'"
 
 #
 msgid "Pause"
@@ -13511,7 +13614,6 @@ msgstr "Ana pencerede oynat"
 msgid "Play In PiP Window"
 msgstr "Resim penceresinde Resim Olarak Oynat"
 
-#, fuzzy
 msgid "Play Service With Stream Relay"
 msgstr "Servisi Stream Relay ile oynat"
 
@@ -13605,6 +13707,9 @@ msgstr "Lütfen derlemeye başlık ekleyin."
 
 msgid "Please be patient, a backup will now be made,\n"
 msgstr "Lütfen sabırlı olun, şimdi bir yedekleme yapılacaktır,\n"
+
+msgid "Please be patient."
+msgstr "Lütfen sabırlı olun."
 
 #
 msgid "Please check the manual of the receiver"
@@ -13763,6 +13868,9 @@ msgstr "Lütfen fiziksel konumunuza en yakın olan bölgeyi seçin. Bölge, alab
 #
 msgid "Please select the sub-service to record:"
 msgstr "Lütfen kaydedilecek alt hizmeti seçin:"
+
+msgid "Please select the target location to save the backup:"
+msgstr "Lütfen yedeği kaydetmek için hedef konumu seçin:"
 
 msgid "Please select what to do after flash of the following image:"
 msgstr "Lütfen aşağıdaki görüntünün flaşından sonra ne yapılacağını seçin:"
@@ -13972,6 +14080,9 @@ msgstr "Kapı D"
 msgid "Port number for the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr "Yalnızca Stream Relay aracılığıyla şifresi çözülebilen hizmetlerin şifresini çözmek için kullanılan Stream Relay sunucusunun bağlantı noktası numarası."
 
+msgid "Port of fallback remote receiver"
+msgstr "Yedek cihaz URL"
+
 #
 msgid "Portugal"
 msgstr "Portekiz"
@@ -14005,6 +14116,9 @@ msgstr "Konumlandırıcı Kurulum Günlüğü"
 #
 msgid "Positioner setup"
 msgstr "Konumlayıcı kurulumu"
+
+msgid "Possible causes could be:"
+msgstr "Olası nedenler şunlar olabilir:"
 
 msgid "Power"
 msgstr "Power"
@@ -14541,6 +14655,9 @@ msgstr "Hızlı EPG"
 
 msgid "Quick Launch Menu"
 msgstr "Hızlı Başlat Menüsü"
+
+msgid "Quick Menu Actions"
+msgstr "Hızlı Menü Eylemleri"
 
 msgid "Quick Menu..."
 msgstr "Hızlı Menü..."
@@ -15372,6 +15489,9 @@ msgstr "Ağı yeniden başlat"
 msgid "Restart Network Adapter"
 msgstr "Ağ Bağdaştırıcısını Yeniden Başlat"
 
+msgid "Restart OSCam"
+msgstr "OSCam'i yeniden başlatın"
+
 msgid "Restart enigma"
 msgstr "Enigma'yı yeniden başlat"
 
@@ -15623,6 +15743,10 @@ msgstr "Çalışıyor"
 msgid "Running Myrestore script, Please wait ..."
 msgstr "Myrestore komut dosyası çalıştırılıyor, lütfen bekleyin ..."
 
+#, python-format
+msgid "Running command %d: '%s'."
+msgstr ""
+
 #
 msgid "Russian"
 msgstr "Rusça"
@@ -15739,6 +15863,9 @@ msgstr "Samba Server"
 msgid "Same as in active"
 msgstr "Aktif ile aynı"
 
+msgid "Same as stream"
+msgstr "Testi durdur"
+
 msgid "Same behavior as current animation"
 msgstr "Mevcut animasyonla aynı davranış"
 
@@ -15828,6 +15955,9 @@ msgstr "EPG Önbelleğini Kaydet"
 msgid "Save EPG data"
 msgstr "EPG verisini kaydet"
 
+msgid "Save Log"
+msgstr ""
+
 #
 msgid "Save all changed settings and exit"
 msgstr "Değiştirilen tüm ayarları kaydedin ve çıkın"
@@ -15882,6 +16012,9 @@ msgstr "Çıkışta sol sütun dizin konumunu kaydedin."
 
 msgid "Save the log changes and exit"
 msgstr "Günlük değişikliklerini kaydedin ve çıkın"
+
+msgid "Save the log of the console messages to a file"
+msgstr ""
 
 msgid "Save the right column directory location on exit."
 msgstr "Çıkışta sağ sütun dizin konumunu kaydedin."
@@ -16323,6 +16456,9 @@ msgstr "Eklentileri İndir ekranında dış görünüm paketlerini göstermek i�
 
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
 msgstr "Eklentileri İndir ekranında kaynak 'src' paketlerini göstermek için 'Evet'i seçin."
+
+msgid "Select 'Yes' to show subscription packages in the Download Plugins screen."
+msgstr "Abonelik paketlerini Eklentileri İndir ekranında göstermek için 'Evet'i seçin."
 
 msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
 msgstr "Eklentileri İndir ekranında sistem eklenti paketlerini göstermek için 'Evet'i seçin."
@@ -16950,6 +17086,9 @@ msgstr "Bu zamanlayıcının başlayacağı zamanı seçin."
 msgid "Select the time zone within the area or region."
 msgstr "Alan veya bölge içindeki saat dilimini seçin."
 
+msgid "Select the timer from the fallback tuner by default"
+msgstr "Yedek cihaz URL"
+
 msgid "Select the tuner that controls the motorized dish."
 msgstr "Motorlu tabağı kontrol eden tuneri seçin."
 
@@ -17347,6 +17486,9 @@ msgstr "Zaman ayarı"
 msgid "Set action for 'Info' key"
 msgstr "'Bilgi' tuşu için eylemi ayarla"
 
+msgid "Set alternative fallback tuners for DVB-T/C or ATSC"
+msgstr "DVB-T/C veya ATSC için alternatif geri dönüş ayarlayıcıları ayarlayın"
+
 msgid "Set current CEC address as fixed address"
 msgstr "Mevcut CEC adresini sabit adres olarak ayarla"
 
@@ -17385,6 +17527,9 @@ msgstr "Sistemi Ayarla"
 msgid "Set the MAC address of your %s %s."
 msgstr "MAC adresinizi ayarlayın %s %s."
 
+msgid "Set the User ID of the OpenWebif from your fallback tuner"
+msgstr "edek ayarlayıcınızdan OpenWebif'in Kullanıcı Kimliğini ayarlayın"
+
 msgid "Set the aspect ratio of the service picons."
 msgstr "Servis pikonlarının en boy oranını ayarlayın."
 
@@ -17411,6 +17556,12 @@ msgstr "Arama çubuğunun atlama boyunu belirleyin."
 
 msgid "Set the number of lines to be saved for 'stout' and 'sterr' output in scripts."
 msgstr "Komut dosyalarında 'stout' ve 'sterr' çıktısı için kaydedilecek satır sayısını ayarlayın."
+
+msgid "Set the password of the OpenWebif from your fallback tuner"
+msgstr "Yedek ayarlayıcınızdan OpenWebif'in şifresini ayarlayın"
+
+msgid "Set the port of the OpenWebif from your fallback tuner"
+msgstr "OpenWebif'in bağlantı noktasını yedek ayarlayıcınızdan ayarlayın"
 
 msgid "Set the position of the recording icons."
 msgstr "Kayıt simgelerinin konumunu ayarla"
@@ -17447,6 +17598,9 @@ msgstr "İkinci bilgi çubuğunu gizlemek için zamanı ayarlayın. Çubuk ayrı
 
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, PowerTimer, SleepTimer etc."
 msgstr "Kapatma, bekleme veya yeniden başlatma mesajlarında varsayılan eylemi yürütmek için bekleme süresini ayarlayın. (ör. Zamanlayıcı, PowerTimer, Sleeptimer, ...'da kullanılır)"
+
+msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
+msgstr "Meşgul döndürücünün sol üst konumunu ayarlayın. Koordinatlar, sol üst kısım (0,0) ve sağ alt kısım (1260,700) olacak şekilde ölçeklendirilir. Konumun, döndürücünün merkezi değil, sol üst kısmı olduğunu unutmayın."
 
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Kanal seçim ekranındaki ilerleme işaretinin tipini belirleyin."
@@ -17968,6 +18122,9 @@ msgstr "Softcam paketlerini göster"
 msgid "Show Source packages"
 msgstr "Kaynak paketleri göster"
 
+msgid "Show Subscription packages"
+msgstr "Abonelik paketlerini göster"
+
 msgid "Show Subservices Of Active Service"
 msgstr "Etkin servisin alt servislerini göster"
 
@@ -18226,6 +18383,18 @@ msgstr "Sonraki servis bilgileri ekranını göster"
 
 msgid "Show next system information screen"
 msgstr "Sonraki sistem bilgi ekranını göster"
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL did not complete"
+msgstr "Uzak alıcı URL'sinden kanalları ve/veya EPG'yi içe aktarma işlemi tamamlanmadığında bildirim göster"
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL is completed"
+msgstr "Uzak alıcı URL'sinden kanalları ve/veya EPG'yi içe aktarma tamamlandığında bildirim göster"
+
+msgid "Show notification when import channels was not successful"
+msgstr "Kanalları içe aktarma başarılı olmadığında bildirim göster"
+
+msgid "Show notification when import channels was successful"
+msgstr "Kanalları içe aktarma başarılı olduğunda bildirim göster"
 
 msgid "Show or hide the extended description, (skin dependent)."
 msgstr "Geniş açıklamayı göster ya da gizle, (arayüze bağımlı)."
@@ -18528,6 +18697,9 @@ msgstr "Kapat"
 #
 msgid "Shutdown"
 msgstr "Kapat"
+
+msgid "Shutdown OSCam"
+msgstr "OSCam'i Kapat"
 
 msgid "Shutting down. Please wait..."
 msgstr "Kapatılıyor. Lütfen bekleyin..."
@@ -19106,6 +19278,9 @@ msgstr "Media Player'ı başlatırken kullanılacak dizini belirtin."
 msgid "Speed"
 msgstr "Hiz"
 
+msgid "Spinner Position"
+msgstr "Spinner Konumu"
+
 #
 msgid "Split preview mode"
 msgstr "Bölünmüş önizleme kipi"
@@ -19203,6 +19378,9 @@ msgstr "Test'i başlat"
 
 msgid "Start the Kexec initialization"
 msgstr "Kexec başlatma işlemini başlatın"
+
+msgid "Start the backup of the selected image"
+msgstr "Seçilen image yedeğini başlat"
 
 msgid "Start the highlighted plugin"
 msgstr "Vurgulanan eklentiyi başlatın"
@@ -19483,6 +19661,9 @@ msgstr "Stil"
 
 msgid "Style:"
 msgstr "Stil:"
+
+msgid "Subscription Packages"
+msgstr "Abonelik Paketleri"
 
 msgid "Subservice Actions"
 msgstr "Alt servis eylemleri"
@@ -20239,6 +20420,9 @@ msgstr ""
 "Zaman kayması için kullanılabilir disk alanı, ayarlarda belirtilenden daha azdır.\n"
 "Ne yapmak istiyorsun ?"
 
+msgid "The backup can take up to about 15 minutes to complete."
+msgstr "Yedeklemenin tamamlanması yaklaşık 15 dakika kadar sürebilir."
+
 msgid "The backup failed"
 msgstr "Yedekleme başarısız"
 
@@ -20960,6 +21144,9 @@ msgstr "Zaman-kaydırma, etkinlik sonunda saklanacak!"
 msgid "Time style"
 msgstr "Zaman tarzı"
 
+msgid "Time taken for the backup:"
+msgstr "Yedekleme için harcanan süre:"
+
 msgid "Time to execute command or script"
 msgstr "Komut veya senaryoyu uygulama zamanı"
 
@@ -21071,6 +21258,12 @@ msgstr "Başlıkseti kipi"
 
 msgid "To complete the setup the %s %s must connect to the Internet.  Connect the %s %s to the Internet now."
 msgstr "Kurulumu tamamlamak için %s %s cihazının İnternet'e bağlanması gerekir. %s %s cihazını şimdi İnternet'e bağlayın."
+
+msgid "To restore the image check the manual or documentation for the receiver."
+msgstr "Imageyi geri yüklemek için alıcının kılavuzuna veya belgelerine bakın."
+
+msgid "To restore the image use 'OnlineFlash' option in the 'SoftwareManager' menu."
+msgstr "Imageyi geri yüklemek için 'Yazılım Yöneticisi' menüsündeki 'Çevrimiçi Flash' seçeneğini kullanın."
 
 msgid "To restore the image:"
 msgstr "Görüntüyü geri yüklemek için:"
@@ -21535,6 +21728,9 @@ msgstr "Değişen keymap ( s) başarısız oldu"
 msgid "URL"
 msgstr "URL"
 
+msgid "URL of fallback remote receiver"
+msgstr "Yedek cihaz URL"
+
 msgid "URL of fallback remote receiver."
 msgstr "Yedek uzaktan kumandanın URL'si"
 
@@ -21598,6 +21794,9 @@ msgstr "Şifrelenmemiş"
 #, python-format
 msgid "Unexpected error accessing WebIF: %s"
 msgstr "%s :WebIF'e erişirken beklenmeyen hata"
+
+msgid "Unexpected error while retrieving fallback tuner's timer information"
+msgstr "Geri dönüş ayarlayıcının zamanlayıcı bilgileri alınırken beklenmeyen hata oluştu"
 
 msgid "UnhandledKey"
 msgstr "İşlenmemiş Key"
@@ -22053,6 +22252,9 @@ msgstr "Camınızı kontrol etmek için Softcam Panelini kullanın. Bu bir kam b
 msgid "Use the UP and DOWN buttons to select your locale/language then press the OK button to continue."
 msgstr "YUKARI ve AŞAĞI düğmelerini kullanarak yerel ayarınızı/dilinizi seçin ve devam etmek için OK düğmesine basın."
 
+msgid "Use the UP/DOWN buttons to select the installed image to be backed up. Press the 'Start' (GREEN) button to start the backup."
+msgstr "Yedeklenecek kurulu imageyi seçmek için YUKARI/AŞAĞI tuşlarını kullanın. Yedeklemeyi başlatmak için 'Başlat' (YEŞİL) düğmeye basın."
+
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Alternatif veya klasik radyo kipi kullan."
 
@@ -22114,6 +22316,9 @@ msgstr "Kullanıcı - buketler"
 
 msgid "User Feed URL"
 msgstr "Kullanıcı Akışı URL'si"
+
+msgid "User ID"
+msgstr "Kullanıcı tanımlı"
 
 msgid "User comments"
 msgstr "Kullanıcı Yorumları"
@@ -22827,6 +23032,15 @@ msgstr "Etkinleştirildiğinde, TV kapatıldığında alıcı otomatik olarak be
 
 msgid "When enabled the receiver will automatically wake from standby when the TV is turned on."
 msgstr "Etkinleştirildiğinde, TV açıldığında alıcı otomatik olarak bekleme modundan çıkar."
+
+msgid "When enabled the timer from the fallback tuner is imported"
+msgstr "Etkinleştirildiğinde, geri dönüş tunerindeki zamanlayıcı içe aktarılır"
+
+msgid "When enabled the timer from the fallback tuner is the default timer"
+msgstr "Etkinleştirildiğinde, geri dönüş ayarlayıcıdan gelen zamanlayıcı varsayılan zamanlayıcıdır"
+
+msgid "When enabled you can customize the OpenWebIf settings for the fallback tuner"
+msgstr "Etkinleştirildiğinde, geri dönüş ayarlayıcı için OpenWebIf ayarlarını özelleştirebilirsiniz"
 
 msgid "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
 msgstr "Etkinleşince, AIT verileri http akışına eklenir. Bu, istemci alıcısının HbbTV yi kullanmasını sağlar."
@@ -24756,6 +24970,60 @@ msgstr "evet (beslemeleri tut)"
 
 msgid "®"
 msgstr "®"
+
+msgid "Fallback Timer"
+msgstr ""
+
+#
+#~ msgid "Execution finished!!"
+#~ msgstr "Uygulama bitti!!"
+
+#
+#~ msgid "Execution progress:"
+#~ msgstr "İşleyiş Durumu:"
+
+#~ msgid "Hide this screen"
+#~ msgstr "Bu ekranı gizle"
+
+#~ msgid "Path to save not exist: '/tmp/'"
+#~ msgstr "Kaydedilecek yol mevcut değil: '/tmp/'"
+
+#~ msgid "Backup done."
+#~ msgstr "Yedekleme bitti."
+
+#~ msgid "Backup failed!"
+#~ msgstr "Yedekleme başarısız!"
+
+#~ msgid "No Devices Found !!"
+#~ msgstr "Aygıt Bulunamadı !!"
+
+#~ msgid "23.976"
+#~ msgstr "23.976"
+
+#
+#~ msgid "24"
+#~ msgstr "24"
+
+#
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "29.97"
+#~ msgstr "29.97"
+
+#
+#~ msgid "30"
+#~ msgstr "30"
+
+#~ msgid "Backup completed."
+#~ msgstr "Yedekleme tamamlandı."
+
+#
+#~ msgid "Backup failed."
+#~ msgstr "Yedekleme başarısız."
+
+#~ msgid "No updates were available.  Please try again later."
+#~ msgstr "Hiçbir güncelleme mevcut değildi. Lütfen daha sonra tekrar deneyiniz."
 
 #
 #~ msgid "About..."

@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-24 20:26+0000\n"
-"PO-Revision-Date: 2024-05-29 10:09+0000\n"
+"POT-Creation-Date: 2024-06-15 20:15+0000\n"
+"PO-Revision-Date: 2024-06-15 21:52+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -1379,6 +1379,15 @@ msgstr ", "
 msgid "-"
 msgstr "-"
 
+msgid "- No space left on backup device."
+msgstr "- На пристрої не залишилося місця."
+
+msgid "- No write permission on backup device."
+msgstr "- Немає дозволу для запису на пристрій."
+
+msgid "- Wrong backup destination."
+msgstr "- Неправильне місце призначення."
+
 msgid "-24 Hours"
 msgstr "-24 години"
 
@@ -1475,18 +1484,6 @@ msgstr "1x"
 msgid "2"
 msgstr "2"
 
-msgid "23.976"
-msgstr "23.976"
-
-msgid "24"
-msgstr "24"
-
-msgid "25"
-msgstr "25"
-
-msgid "29.97"
-msgstr "29.97"
-
 msgid "2nd InfoBar"
 msgstr "Другий Інфобар"
 
@@ -1516,9 +1513,6 @@ msgstr "2x, 4x, 6x, 8x"
 
 msgid "3"
 msgstr "3"
-
-msgid "30"
-msgstr "30"
 
 msgid "3D Mode"
 msgstr "3D Режим"
@@ -1603,6 +1597,9 @@ msgstr "<лог не знайдено"
 
 msgid "A"
 msgstr "A"
+
+msgid "A backup is now being created."
+msgstr "Створюється резервна копія."
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr "Відокремлений комами список розширень, які будуть використовуватися для параметра 'Мої розширення' параметра 'Розширення Фільтр розширень'. Введіть назви розширень без крапки на початку (.)."
@@ -2281,6 +2278,15 @@ msgstr "В алфавітному порядку"
 msgid "Alphanumeric"
 msgstr "За алфавітом"
 
+msgid "Also import at reboot/restart enigma2"
+msgstr "Також імпортуйте при перезавантаженні/перезапуску enigma2"
+
+msgid "Also import from the extension menu"
+msgstr "Також імпортуйте з меню розширення"
+
+msgid "Also import when box is leaving standby"
+msgstr "Також імпортуйте при включенні тюнера із режиму очікування"
+
 msgid "Also on standby"
 msgstr "Також і в режимі очікування"
 
@@ -2295,6 +2301,9 @@ msgstr "Альтернативний 2"
 
 msgid "Alternative Edit"
 msgstr "[редагування вибраного]"
+
+msgid "Alternative URLs for DVB-T/C or ATSC"
+msgstr "Альтернативні URL-адреси для DVB-T/C, або ATSC"
 
 msgid "Alternative numbering mode"
 msgstr "Альтернативний режим нумерації"
@@ -2543,6 +2552,9 @@ msgstr "Перемикач формату"
 
 msgid "Assamese"
 msgstr "Ассамська"
+
+msgid "Assembling the image backup files."
+msgstr "Список файлів резервної копії образів."
 
 msgid "Assigned CAIds:"
 msgstr "Призначені CAId'и:"
@@ -2871,8 +2883,14 @@ msgstr "Лог бекапу"
 msgid "Backup Mode"
 msgstr "Режим збереження"
 
+msgid "Backup Mode: Flash Online"
+msgstr "Режим резервного копіювання: Flash Online"
+
 msgid "Backup Mode: Flash Online\n"
 msgstr "Режим резервного копіювання: Повна копія\n"
+
+msgid "Backup Mode: USB Recovery"
+msgstr "Режим резервного копіювання: відновлення з USB"
 
 msgid "Backup Mode: USB Recovery\n"
 msgstr "Режим збереження: USB відновлення\n"
@@ -2882,18 +2900,6 @@ msgstr "Збереження Налаштувань"
 
 msgid "Backup System Settings"
 msgstr "Резервна копія системних налаштувань"
-
-msgid "Backup completed."
-msgstr "Бекап успішно створений."
-
-msgid "Backup done."
-msgstr "Збереження завершено."
-
-msgid "Backup failed!"
-msgstr "Помилка резервного копіювання!"
-
-msgid "Backup failed."
-msgstr "Збереження невдале."
 
 msgid "Backup images"
 msgstr "Бекап іміджей"
@@ -2911,6 +2917,10 @@ msgstr ""
 #, python-format
 msgid "Backup to destination: %s"
 msgstr "Місце збереження Резервної копії: %s"
+
+#, python-format
+msgid "Backup tool for %s %s"
+msgstr "Резервне копіювання для %s %s"
 
 msgid "Backup your %s %s settings."
 msgstr "Резервне копіювання налаштувань %s %s."
@@ -3558,6 +3568,9 @@ msgstr "Неможливо завантажити таймер"
 msgid "Can't allocate program source (e.g. tuner)"
 msgstr "Неможливо визначити джерело програми (наприклад, тюнер)"
 
+msgid "Can't create backup directory!"
+msgstr "Не вдається створити каталог резервних копій!"
+
 msgid ""
 "Can't going to live TV!\n"
 "Switch to live TV and restart time shift ?"
@@ -3889,7 +3902,7 @@ msgid "Channel name"
 msgstr "Назва каналу"
 
 msgid "Channel preview mode"
-msgstr "Режим прев'ю канала"
+msgstr "Режим прев'ю каналу"
 
 msgid "Channel selection configuration"
 msgstr "Налаштування списку каналів"
@@ -4038,6 +4051,9 @@ msgstr "Виберіть стиль відображення дат. 'D'/'DD' - 
 
 msgid "Choose the display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds.  ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Виберіть стиль відображення часу. 'H'/'HH' - час для 24-годинного годинника, 'h'/'hh' - час для 12-годинного годинника, 'mm' - хвилини, а ss - секунди. ('HH' і 'hh' мають на початку нулі для однозначних значень.) Екран буде заснований на вашому виборі, але може впливати скін."
+
+msgid "Choose the fallback font."
+msgstr "Вибрати резервний шрифт."
 
 msgid "Choose the front panel display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Виберіть стиль відображення на передній панелі для дат. 'D'/'DD' - це дата, а 'M'/'MM' - місяць у цифрах. ('DD' і 'MM' мають на початку нулі для однозначних значень.) Екран буде заснований на вашому виборі, але на нього може вплинути скін."
@@ -4324,6 +4340,12 @@ msgstr "Команда '%s' невідома"
 
 msgid "Command execution..."
 msgstr "Команда виконується..."
+
+msgid "Command finished."
+msgid_plural "Commands finished."
+msgstr[0] "Команда завершена."
+msgstr[1] "Команди завершено."
+msgstr[2] "Команд завершено."
 
 msgid "Command order"
 msgstr "Послідовність команд"
@@ -4713,7 +4735,7 @@ msgid "Configure the transparency of the black background of subtitles."
 msgstr "Налаштування прозорості для чорного фону субтитрів."
 
 msgid "Configure the tuner mode."
-msgstr "Налаштвання режиму тюнера."
+msgstr "Налаштування режиму тюнера."
 
 msgid "Configure the type of status indication icons shown in the movie list."
 msgstr "Налаштування типів значків індикації стану, при показі в списку фільмів."
@@ -4825,7 +4847,7 @@ msgid "Connected satellites"
 msgstr "Підключені супутники"
 
 msgid "Connected through another tuner"
-msgstr "Підключино через інший тюнер"
+msgstr "Підключено через інший тюнер"
 
 msgid "Connected to"
 msgstr "Під'єднано до"
@@ -5093,6 +5115,10 @@ msgstr "Створити випадково згенерований парол�
 msgid "Create a symbolic link"
 msgstr "Створити символічне посилання"
 
+#, python-format
+msgid "Create recovery image backup '%s'."
+msgstr "Створити копію іміджа для відновлення '%s'."
+
 msgid "Create separate radio user bouquet"
 msgstr "Створити окремий фаворитний радіо-список"
 
@@ -5264,6 +5290,9 @@ msgstr "Час пропуску для кнопок '7'/'9'"
 
 msgid "Customize"
 msgstr "Додаткові Налаштування"
+
+msgid "Customize OpenWebIF settings for fallback tuner"
+msgstr "Налаштуйте параметри OpenWebIF для резервного тюнера"
 
 msgid "Customize System Settings"
 msgstr "Налаштування параметрів системи"
@@ -5985,6 +6014,18 @@ msgstr "Скасувати вибір лише виділеного файлу"
 msgid "Deselected packages usually occur because those packaged are incompatible with existing packages. While this is mostly harmless it is possible that your %s %s may experience issues."
 msgstr "Скасування виділених пакетів зазвичай виникає через те, що запаковані несумісні з існуючими. Хоча це в основному нешкідливо, можливо, у Вашого %s %s можуть виникнути проблеми."
 
+msgid "Destination of fallback remote receiver"
+msgstr "Призначення віддаленого резервного приймача"
+
+msgid "Destination of fallback remote receiver for ATSC"
+msgstr "Призначення віддаленого резервного приймача для ATSC"
+
+msgid "Destination of fallback remote receiver for DVB-C"
+msgstr "Призначення віддаленого резервного приймача для DVB-C"
+
+msgid "Destination of fallback remote receiver for DVB-T"
+msgstr "Призначення віддаленого резервного приймача для DVB-T"
+
 msgid "Detail of GStreamer log."
 msgstr "Деталі журналу GStreamer"
 
@@ -6267,6 +6308,9 @@ msgstr "Джібутті"
 msgid "Do another manual service scan?"
 msgstr "Зробити ще одне ручне сканування каналів?"
 
+msgid "Do not backup the image"
+msgstr "Не створювати копію іміджа"
+
 msgid "Do not change"
 msgstr "Не змінювати"
 
@@ -6353,6 +6397,24 @@ msgstr "Ви дійсно хочете видалити таймер %s?"
 #, python-format
 msgid "Do you really want to remove your bookmark for '%s'?"
 msgstr "Ви дійсно хочете видалити Вашу закладку з %s?"
+
+msgid ""
+"Do you really want to restart OSCam?\n"
+"\n"
+"HINT: This will take about 5 seconds!"
+msgstr ""
+"Ви дійсно хочете перезапустити OSCam?\n"
+"\n"
+"УВАГА: це займе приблизно 5 секунд!"
+
+msgid ""
+"Do you really want to shut down OSCam?\n"
+"\n"
+"ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+msgstr ""
+"Ви дійсно хочете вимкнути OSCam?\n"
+"\n"
+"УВАГА: Щоб повторно активувати OSCam, необхідно виконати повний перезапуск приймача!"
 
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
@@ -6988,6 +7050,9 @@ msgstr "Включити резервний віддалений приймач"
 msgid "Enable freesat EPG"
 msgstr "Увімкнути EPG freesat"
 
+msgid "Enable import timer from fallback tuner"
+msgstr "Увімкнути таймер імпорту із резервного тюнера"
+
 msgid "Enable intro screen"
 msgstr "Включити екран введення"
 
@@ -7179,6 +7244,9 @@ msgstr "Ввести"
 #, python-format
 msgid "Enter DNS (Dynamic Name Server) %d's IP address."
 msgstr "Введіть IP-адресу DNS (сервера динамічних імен) %d."
+
+msgid "Enter IP address"
+msgstr "Введіть IP-адрес"
 
 msgid "Enter PIN"
 msgstr "Введіть Пін-код"
@@ -7433,6 +7501,14 @@ msgstr "Текст помилки:"
 msgid "Error unzipping image '%s'!"
 msgstr "Помилка розархівування іміджу '%s'!"
 
+#, python-format
+msgid ""
+"Error while retrieving fallback timer information\n"
+"%s"
+msgstr ""
+"Помилка під час отримання інформації про резервний таймер\n"
+"%s"
+
 msgid "Error, unknown Result!"
 msgstr "Помилка, невідомий результат!"
 
@@ -7543,6 +7619,10 @@ msgid "Error: Unable to rename directory '%s' to '%s'!"
 msgstr "Помилка: неможливо перейменувати каталог '%s' на '%s'!"
 
 #, python-format
+msgid "Error: Unable to write log file '%s'!"
+msgstr "Помилка запису файлу: '%s'!"
+
+#, python-format
 msgid "Error: You can't run '%s' on '%s'!"
 msgstr "Помилка: Ви не можете запустити '%s' на '%s'!"
 
@@ -7645,12 +7725,6 @@ msgstr "Перевищує розмір двошарового диску!"
 msgid "Execution condition"
 msgstr "Умова виконання"
 
-msgid "Execution finished!!"
-msgstr "Виконано!!!"
-
-msgid "Execution progress:"
-msgstr "Процес виконання:"
-
 msgid "Exif"
 msgstr "Exif"
 
@@ -7674,6 +7748,9 @@ msgstr "Вихід з вибору Чотири-екранного Вікна"
 
 msgid "Exit all menus"
 msgstr "Вийти з усіх меню"
+
+msgid "Exit and close all screens without performing a backup"
+msgstr "Вийти і закрити всі вікна, не створюючи резервну копію"
 
 msgid "Exit editor"
 msgstr "Вийти з редактора"
@@ -7726,6 +7803,9 @@ msgstr "Вийти з помічник"
 msgid "Exit viewer"
 msgstr "Вийти з програми перегляду"
 
+msgid "Exit without performing a backup"
+msgstr "Вийти і не робити резервної копії"
+
 msgid "Expand"
 msgstr "Розгорнути"
 
@@ -7733,7 +7813,7 @@ msgid "Experimental mode"
 msgstr "Експериментальний режим"
 
 msgid "Experimental: strict limitation to preferred tuners for recordings"
-msgstr "Експериментальний: суворе обмеження пріорітетних тюнерів для записів"
+msgstr "Експериментальний: суворе обмеження пріоритетних тюнерів для записів"
 
 msgid "Expert"
 msgstr "Експерт"
@@ -7901,8 +7981,35 @@ msgstr "Помилка:"
 msgid "Falkland Islands (Malvinas)"
 msgstr "Фолклендські (Мальвінські) острови"
 
+msgid "Fallback API did not return a valid result."
+msgstr "Резервний API не завантажив дійсний результат."
+
+msgid "Fallback Font *"
+msgstr "Резервний шрифт *"
+
+msgid "Fallback remote receiver"
+msgstr "Запасний віддалений приймач"
+
+msgid "Fallback remote receiver IP"
+msgstr "Запасна IP-адреса віддаленого приймача"
+
+msgid "Fallback remote receiver Port"
+msgstr "Порт віддаленого приймача"
+
 msgid "Fallback remote receiver URL"
 msgstr "URL резервного віддаленого приймача"
+
+msgid "Fallback remote receiver for ATSC"
+msgstr "Запасний віддалений приймач для ATSC"
+
+msgid "Fallback remote receiver for DVB-C"
+msgstr "Запасний віддалений приймач для DVB-C"
+
+msgid "Fallback remote receiver for DVB-T"
+msgstr "Запасний віддалений приймач для DVB-T"
+
+msgid "Fallback tuner setup"
+msgstr "Налаштування резервного тюнера"
 
 msgid "False"
 msgstr "Помилковий"
@@ -8092,10 +8199,6 @@ msgstr "Передачу файлу скасовано користувачем!
 
 msgid "File transfer was cancelled by user"
 msgstr "Передачу файлу було скасовано користувачем"
-
-#, python-format
-msgid "File write error: '%s'"
-msgstr "Помилка запису файлу: '%s'"
 
 msgid "Filename"
 msgstr "Назва файлу"
@@ -8396,7 +8499,7 @@ msgid "From :"
 msgstr "Від :"
 
 msgid "Front"
-msgstr "Спереду"
+msgstr "Вид Тюнера"
 
 msgid "Front USB"
 msgstr "Передня USB"
@@ -8961,11 +9064,11 @@ msgstr "Приховати ім'я сервера softcam"
 msgid "Hide the InfoBar"
 msgstr "Згасання Інфобару"
 
-msgid "Hide this screen"
-msgstr "Приховати цей екран"
-
 msgid "Hide zap errors"
 msgstr "Приховати помилки перемикання"
+
+msgid "Hide/Show the console screen"
+msgstr "Приховати/Показати екран консолі"
 
 msgid "Hierarchy info"
 msgstr "Інфо ієрархії"
@@ -9164,6 +9267,9 @@ msgstr "АП адреса"
 
 msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr "IP-адреса сервера Stream Relay, який використовується для розкодування каналів, які можна розшифрувати лише за допомогою Stream Relay."
+
+msgid "IP of fallback remote receiver"
+msgstr "IP резервного віддаленого приймача"
 
 msgid "IPK Installer"
 msgstr "IPK Інсталятор"
@@ -9368,6 +9474,13 @@ msgstr "Ігнорувати несподіване включення і зал
 msgid "Image Backup"
 msgstr "Бекап Іміджу"
 
+msgid "Image Backup Actions"
+msgstr "Дії резервного копіювання"
+
+#, python-format
+msgid "Image Backup To %s"
+msgstr "Резервна Копія %s"
+
 msgid "Image Flash Actions"
 msgstr "Дії з прошивкою іміджу"
 
@@ -9375,8 +9488,14 @@ msgstr "Дії з прошивкою іміджу"
 msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
 msgstr "Імідж створено: %s/%s-%s-%s-backup-%s_%s.zip"
 
+msgid "Image created:"
+msgstr "Імідж створено:"
+
 msgid "Image creation failed - "
 msgstr "Помилка створення іміджу - "
+
+msgid "Image creation failed!"
+msgstr "Помилка створення Іміджу!"
 
 msgid "ImageWizard"
 msgstr "Майстер іміджу"
@@ -9389,6 +9508,21 @@ msgstr "Негайно вийти з майстра (тільки в режим�
 
 msgid "Immediately restart selected devices."
 msgstr "Негайно перезавантажте вибрані пристрої."
+
+msgid "Import channels and/or EPG from remote receiver URL also when the receiver is getting out of standby"
+msgstr "Імпортуйте канали та/або EPG із URL-адреси коли приймач виходить із режиму очікування"
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver is booted"
+msgstr "Імпортуйте канали та/або EPG із URL-адреси при завантаженні приймача"
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
+msgstr "Імпортуйте канали та/або EPG із URL-адреси при перезапуску приймача або enigma2"
+
+msgid "Import from remote receiver URL"
+msgstr "Імпорт із URL-адреси віддаленого приймача"
+
+msgid "Import remote receiver URL"
+msgstr "Імпортувати URL-адресу віддаленого приймача"
 
 msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
 msgstr "На додаток до перевірки на початку події можна використовувати повторювану перевірку, щоб умови 'ліміт буфера в годинах' або 'перевірити вільний простір' виявлялися раніше."
@@ -10607,6 +10741,9 @@ msgstr "Підтимка Вашим пристроєм мультизавант�
 msgid "Make"
 msgstr "Модель"
 
+msgid "Make it possible to manually initiate the channels import and/or EPG via the extension menu"
+msgstr "Зробити можливим вручну ініціювати імпорт каналів та/або EPG через меню розширень"
+
 msgid "Make this mark an 'in' point"
 msgstr "Зробити цю закладку як внутрішню"
 
@@ -11397,6 +11534,9 @@ msgstr "Мульти-транскодування"
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr "Імідж Multiboot створено: %s/%s-%s-%s-backup-%s_usb.zip"
 
+msgid "Multiboot Image created:"
+msgstr "Створено Multiboot:"
+
 msgid "Multimedia Packages"
 msgstr "Мультимедійні пакети"
 
@@ -11458,6 +11598,9 @@ msgstr "ПРИМІТКА: Каталог/файл '%s' існує і буде п
 #, python-format
 msgid "NOTE: These %d directories/files exist and will be overwritten!"
 msgstr "ПРИМІТКА. Ці %d каталоги/файли існують і будуть перезаписані!"
+
+msgid "NOTE: While the console screen is hidden from view the buttons are still active. Pressing any enabled button will cause the screen to reappear but the button will not be actioned."
+msgstr "ПРИМІТКА. Поки екран консолі прихований від очей, кнопки залишаються активними. Якщо натиснути будь-яку активну кнопку, екран знову з’явиться, але кнопка не буде активована."
 
 msgid "NOW"
 msgstr "ЗАРАЗ"
@@ -11768,9 +11911,6 @@ msgstr "Ніякого (сумісного) DVDROM привода не знай�
 msgid "No Connection"
 msgstr "З'єднання відсутнє"
 
-msgid "No Devices Found !!"
-msgstr "Пристроїв не виявлено!!"
-
 msgid "No ECM PIDs available"
 msgstr "ECM PIDи відсутні"
 
@@ -11896,7 +12036,7 @@ msgid "No suitable backup locations found!"
 msgstr "Не знайдено відповідних резервних місць!"
 
 msgid "No suitable sat tuner found!"
-msgstr "Немає відповідного сат тюнера!"
+msgstr "Немає відповідного сат-тюнера!"
 
 msgid "No tags are set on these movies."
 msgstr "Теги не встановлені на цих фільмах."
@@ -11945,9 +12085,6 @@ msgstr "Немає необхідного оновлення!"
 
 msgid "No updates available."
 msgstr "Немає доступних оновлень."
-
-msgid "No updates were available.  Please try again later."
-msgstr "Немає доступних оновлень. Будь-ласка, спробуйте пізніше."
 
 msgid "No valid device detected - Press OK"
 msgstr "Не виявлено жодного дійсного пристрою - натисніть OK"
@@ -12398,11 +12535,17 @@ msgstr "Відкрити список каналів і вибрати попе�
 msgid "Open the Channel Selection Settings screen"
 msgstr "Відкрити екран налаштувань Списку каналів"
 
+msgid "Open the Image information"
+msgstr "Відкрити інформацію про Імідж"
+
 msgid "Open the Plugin Browser"
 msgstr "Відкрити Провідник додатків"
 
 msgid "Open the Plugin Browser settings screen"
 msgstr "Відкрити вікно налаштувань браузера Плагінів"
+
+msgid "Open the Storage Device information"
+msgstr "Відкрити інформацію про пристрій зберігання даних"
 
 msgid "Open the VirtualKeyBoard for text entry"
 msgstr "Відкрийте віртуальну клавіатуру для введення тексту"
@@ -12748,9 +12891,6 @@ msgstr "Пароль змінено."
 msgid "Path '%s' missing!"
 msgstr "Шлях '%s' відсутній!"
 
-msgid "Path to save not exist: '/tmp/'"
-msgstr "Шлях до збереження не існує: '/ tmp /'"
-
 msgid "Pause"
 msgstr "Пауза"
 
@@ -12989,6 +13129,9 @@ msgstr "Будь ласка, додайте назву до компіляції
 msgid "Please be patient, a backup will now be made,\n"
 msgstr "Будь ласка, будьте терпеливими, створюється резервна копія,\n"
 
+msgid "Please be patient."
+msgstr "Будь ласка, почекайте."
+
 msgid "Please check the manual of the receiver"
 msgstr "Будь ласка, прочитайте інструкцію приймача"
 
@@ -13127,6 +13270,9 @@ msgstr "Виберіть регіон, який найбільш відпові�
 
 msgid "Please select the sub-service to record:"
 msgstr "Будь ласка, виберіть підканал для запису:"
+
+msgid "Please select the target location to save the backup:"
+msgstr "Будь ласка, виберіть місце для резервної копії:"
 
 msgid "Please select what to do after flash of the following image:"
 msgstr "Будь ласка, виберіть, що робити після прошивки наступного іміджу:"
@@ -13323,6 +13469,9 @@ msgstr "Порт D"
 msgid "Port number for the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr "Номер порту для сервера Stream Relay, який використовується для розкодування каналів, які можна розшифрувати лише через Stream Relay."
 
+msgid "Port of fallback remote receiver"
+msgstr "Порт резервного віддаленого приймача"
+
 msgid "Portugal"
 msgstr "Португалія"
 
@@ -13352,6 +13501,9 @@ msgstr "Налаштування Логу позиціонера"
 
 msgid "Positioner setup"
 msgstr "Налаштування позиціонера"
+
+msgid "Possible causes could be:"
+msgstr "Можливі причини:"
 
 msgid "Power"
 msgstr "Живлення"
@@ -13435,28 +13587,28 @@ msgid "Preferred tuner"
 msgstr "Пріоритетний тюнер"
 
 msgid "Preferred tuner ATSC"
-msgstr "Приорітетний тюнер ATSC"
+msgstr "Пріоритетний тюнер ATSC"
 
 msgid "Preferred tuner ATSC for recordings"
 msgstr "Віддається перевага тюнеру ATSC для запису"
 
 msgid "Preferred tuner DVB-C"
-msgstr "Приоритетний тюнер DVB-C"
+msgstr "Пріоритетний тюнер DVB-C"
 
 msgid "Preferred tuner DVB-C for recordings"
-msgstr "Приорітетний тюнер DVB-C для записів"
+msgstr "Пріоритетний тюнер DVB-C для записів"
 
 msgid "Preferred tuner DVB-S"
-msgstr "Приорітетний тюнер DVB-S"
+msgstr "Пріоритетний тюнер DVB-S"
 
 msgid "Preferred tuner DVB-S for recordings"
-msgstr "Приорітетний тюнер DVB-S для записів"
+msgstr "Пріоритетний тюнер DVB-S для записів"
 
 msgid "Preferred tuner DVB-T"
-msgstr "Приорітетний тюнер DVB-T"
+msgstr "Пріоритетний тюнер DVB-T"
 
 msgid "Preferred tuner DVB-T for recordings"
-msgstr "Приорітетний тюнер DVB-T для записів"
+msgstr "Пріоритетний тюнер DVB-T для записів"
 
 msgid "Preferred tuner for recordings"
 msgstr "Пріоритетний тюнер для запису"
@@ -13863,6 +14015,9 @@ msgstr "Режим ЕПГ"
 msgid "Quick Launch Menu"
 msgstr "Швидкий запуск меню"
 
+msgid "Quick Menu Actions"
+msgstr "Дії Quick Menu"
+
 msgid "Quick Menu..."
 msgstr "Швидке меню..."
 
@@ -14049,7 +14204,7 @@ msgid "Receiver Information Actions"
 msgstr "Інформаційні дії приймача"
 
 msgid "Receiver does not support Quad PiP."
-msgstr "Тюнер, або драйвер не підтримують чотирьохекранний PiP."
+msgstr "Тюнер, або драйвер не підтримують чотирьох екранний PiP."
 
 #, python-format
 msgid "Receiver information for %s %s"
@@ -14639,6 +14794,9 @@ msgstr "Перезавантажити Мережу"
 msgid "Restart Network Adapter"
 msgstr "Перезапуск мережевого адаптера"
 
+msgid "Restart OSCam"
+msgstr "Перезапустити OSCam"
+
 msgid "Restart enigma"
 msgstr "Перезавантаження Enigma"
 
@@ -14875,6 +15033,10 @@ msgstr "В дії"
 msgid "Running Myrestore script, Please wait ..."
 msgstr "Запущено скрипт відновлення, будь ласка, чекайте ..."
 
+#, python-format
+msgid "Running command %d: '%s'."
+msgstr "Виконується команда %d: '%s'."
+
 msgid "Russian"
 msgstr "Російська"
 
@@ -14987,6 +15149,9 @@ msgstr "Samba Сервер"
 msgid "Same as in active"
 msgstr "Те ж, що при активності"
 
+msgid "Same as stream"
+msgstr "Те саме, що і потік"
+
 msgid "Same behavior as current animation"
 msgstr "Так, як і поточна анімація"
 
@@ -15065,6 +15230,9 @@ msgstr "Зберегти кеш EPG"
 msgid "Save EPG data"
 msgstr "Зберегти дані ЕПГ"
 
+msgid "Save Log"
+msgstr "Зберегти Лог"
+
 msgid "Save all changed settings and exit"
 msgstr "Зберегти усі змінені налаштування та вийти"
 
@@ -15115,6 +15283,9 @@ msgstr "Зберегти розташування каталогу лівого 
 
 msgid "Save the log changes and exit"
 msgstr "Зберегти зміни у денник і вийти"
+
+msgid "Save the log of the console messages to a file"
+msgstr "Зберегти лог консолі у файл"
 
 msgid "Save the right column directory location on exit."
 msgstr "Зберегти розташування каталогу правого стовпця під час виходу."
@@ -15424,7 +15595,7 @@ msgid "Select 'Yes' to enable new Zap timers to have an end time turned on and d
 msgstr "Виберіть 'Так', щоб у нових таймерах Zap увімкнути та визначити час завершення за замовчуванням."
 
 msgid "Select 'Yes' to enable preview of channels while in the EPG list."
-msgstr "Якщо вибрано 'так', в телегід буде включений перегляд каналів."
+msgstr "Якщо вибрано 'так', в телегіді буде включений перегляд каналів."
 
 msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel."
 msgstr "Якщо вибрано 'так', у списку каналів буде включений перегляд каналів. Натискання ОК відкриє канал в PiG-вікні, друге натиснення ОК закриє селектор каналів і перемкне на даний канал, натискання кнопки 'EXIT' закриє селектор каналів з поверненням на старий канал."
@@ -15542,6 +15713,9 @@ msgstr "Виберіть 'Так', щоб відобразити пакети о
 
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
 msgstr "Виберіть 'Так', щоб відобразити вихідні пакунки 'src' на екрані завантаження плагінів."
+
+msgid "Select 'Yes' to show subscription packages in the Download Plugins screen."
+msgstr "Виберіть 'Так', щоб показати пакети підписки на екрані Завантаження Плагінів."
 
 msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
 msgstr "Виберіть 'Так', щоб відобразити пакети плагінів системи на екрані завантаження плагінів."
@@ -15893,7 +16067,7 @@ msgid "Select the User Band channel to be assigned to this tuner. This is an ind
 msgstr "Виберіть Канал Користувача, який буде призначено цьому тюнеру. Це значення в таблиці частот, який використовує LNB SCR для передачі вибраного транспондера в тюнер."
 
 msgid "Select the User Band channel to be assigned to this tuner. This is an index into the table of frequencies the SCR switch uses to pass the requested transponder to the tuner."
-msgstr "Виберіть Канал Користувачаа, який буде призначено цьому тюнеру. Це значення в таблиці частот, який використовує перемикач SCR для передачі вибраного транспондера в тюнер."
+msgstr "Виберіть Канал Користувача, який буде призначено цьому тюнеру. Це значення в таблиці частот, який використовує перемикач SCR для передачі вибраного транспондера в тюнер."
 
 msgid "Select the User Band frequency to be assigned to this tuner. This is the frequency the SCR LNB uses to pass the requested transponder to the tuner."
 msgstr "Виберіть частоту Користувацької Смуги, яку буде призначено цьому тюнеру. Це частота, яку використовує LNB SCR для передачі вибраного транспондера до тюнера."
@@ -16154,6 +16328,9 @@ msgstr "Виберіть час, коли запуститься цей тайм
 
 msgid "Select the time zone within the area or region."
 msgstr "Виберіть Ваш часовий пояс у межах області чи регіону."
+
+msgid "Select the timer from the fallback tuner by default"
+msgstr "Виберіть таймер із резервного тюнера за замовчуванням"
 
 msgid "Select the tuner that controls the motorized dish."
 msgstr "Виберіть тюнер, який керує моторизованою антеною."
@@ -16534,6 +16711,9 @@ msgstr "Встановити час"
 msgid "Set action for 'Info' key"
 msgstr "Вибір дії для кнопки 'Інфо'"
 
+msgid "Set alternative fallback tuners for DVB-T/C or ATSC"
+msgstr "Встановіть альтернативні резервні тюнери для DVB-T/C або ATSC"
+
 msgid "Set current CEC address as fixed address"
 msgstr "Встановити поточну адресу CEC, як фіксовану адресу"
 
@@ -16571,6 +16751,9 @@ msgstr "Налаштування Системи"
 msgid "Set the MAC address of your %s %s."
 msgstr "Встановити MAC-адресу Вашого %s %s."
 
+msgid "Set the User ID of the OpenWebif from your fallback tuner"
+msgstr "Встановіть ідентифікатор користувача OpenWebif із резервного тюнера"
+
 msgid "Set the aspect ratio of the service picons."
 msgstr "Встановити співвідношення сторін піконів каналу."
 
@@ -16597,6 +16780,12 @@ msgstr "Встановити крок переходу для Seekbar."
 
 msgid "Set the number of lines to be saved for 'stout' and 'sterr' output in scripts."
 msgstr "Встановіть кількість рядків, які будуть збережені для виводу 'stout' і 'stderr' у скриптах."
+
+msgid "Set the password of the OpenWebif from your fallback tuner"
+msgstr "Встановіть пароль OpenWebif від резервного тюнера"
+
+msgid "Set the port of the OpenWebif from your fallback tuner"
+msgstr "Встановіть порт OpenWebif із резервного тюнера"
 
 msgid "Set the position of the recording icons."
 msgstr "Встановіть положення значка запису."
@@ -16633,6 +16822,9 @@ msgstr "Встановіть час показу другого інфобара
 
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, PowerTimer, SleepTimer etc."
 msgstr "Встановіть час очікування виконання стандартних дій у повідомленнях про завершення роботи, очікування, або перезапуск. (наприклад, використовується в різних таймерах ...)"
+
+msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
+msgstr "Встановіть верхнє ліве розташування спінера. Координати масштабуються таким чином, що верхній лівий кут знаходився на (0,0), а нижній правий — на (1260,700). Зауважте, що позиція знаходиться у верхньому лівому куті спінера, а не в його центрі."
 
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Встановіть тип відображення прогресу в меню вибору каналів."
@@ -17141,6 +17333,9 @@ msgstr "Показати пакети Softcam"
 msgid "Show Source packages"
 msgstr "Показати пакети вихідного коду"
 
+msgid "Show Subscription packages"
+msgstr "Показати пакети підписки"
+
 msgid "Show Subservices Of Active Service"
 msgstr "Показати підканали активного каналу"
 
@@ -17390,6 +17585,18 @@ msgstr "Показати наступну інформацію про канал
 
 msgid "Show next system information screen"
 msgstr "Показати наступний екран інформації про систему"
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL did not complete"
+msgstr "Показати сповіщення, коли імпорт каналів та/або EPG з URL-адреси не завершено"
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL is completed"
+msgstr "Показати сповіщення, коли імпорт каналів та/або EPG з URL-адреси завершено"
+
+msgid "Show notification when import channels was not successful"
+msgstr "Показати сповіщення, коли імпорт каналів не був успішним"
+
+msgid "Show notification when import channels was successful"
+msgstr "Показати сповіщення, коли імпорт каналів є успішним"
 
 msgid "Show or hide the extended description, (skin dependent)."
 msgstr "Показати або сховати розширений опис, (якщо скін підтримує)."
@@ -17678,6 +17885,9 @@ msgstr "вимкнути"
 
 msgid "Shutdown"
 msgstr "Вимкнути"
+
+msgid "Shutdown OSCam"
+msgstr "Зупинити OSCam"
 
 msgid "Shutting down. Please wait..."
 msgstr "Вимкнення. Будь ласка, зачекайте..."
@@ -18228,6 +18438,9 @@ msgstr "Вкажіть каталог, який використовуватим
 msgid "Speed"
 msgstr "Швидкість"
 
+msgid "Spinner Position"
+msgstr "Положення Спінера"
+
 msgid "Split preview mode"
 msgstr "Розділений режим попереднього перегляду"
 
@@ -18320,6 +18533,9 @@ msgstr "Почати тест"
 
 msgid "Start the Kexec initialization"
 msgstr "Запустити ініціалізацію Kexec"
+
+msgid "Start the backup of the selected image"
+msgstr "Запустити копіювання вибраного іміджу"
 
 msgid "Start the highlighted plugin"
 msgstr "Запустити виділений плагін"
@@ -18579,6 +18795,9 @@ msgstr "Стиль"
 
 msgid "Style:"
 msgstr "Стиль:"
+
+msgid "Subscription Packages"
+msgstr "Пакети Плагінів"
 
 msgid "Subservice Actions"
 msgstr "Дії субканалів"
@@ -18902,7 +19121,7 @@ msgid "TMDB Search"
 msgstr "TMDB Пошук"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 29.05.2024"
+msgstr "Переклад: kvinto - 16.06.2024"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -19307,6 +19526,9 @@ msgstr ""
 "Вільне місце на диску менше ніж вказано в налаштуваннях.\n"
 "Що ви хочете зробити?"
 
+msgid "The backup can take up to about 15 minutes to complete."
+msgstr "Резервне копіювання може тривати до 15 хвилин."
+
 msgid "The backup failed"
 msgstr "Помилка резервного копіювання"
 
@@ -19450,8 +19672,8 @@ msgid ""
 "The unicable connection setting is wrong.\n"
 "Maybe recursive connection of tuners."
 msgstr ""
-"Налаштування з’єднання unicable неправельне.\n"
-" Може бути рекурсивне підключення тюнерів."
+"Налаштування з’єднання unicable неправильне.\n"
+"Може бути рекурсивне підключення тюнерів."
 
 #, python-format
 msgid "The user interface of your %s %s is restarting"
@@ -20011,6 +20233,9 @@ msgstr "Файл таймшифта буде збережений в кінці 
 msgid "Time style"
 msgstr "Формат часу"
 
+msgid "Time taken for the backup:"
+msgstr "Тривалість резервного копіювання:"
+
 msgid "Time to execute command or script"
 msgstr "Час на виконання команди чи скрипта"
 
@@ -20112,6 +20337,12 @@ msgstr "Режим встановлення заголовку"
 
 msgid "To complete the setup the %s %s must connect to the Internet.  Connect the %s %s to the Internet now."
 msgstr "Щоб завершити налаштування, %s %s має підключитися до Інтернету. Підключіть %s %s до Інтернету зараз."
+
+msgid "To restore the image check the manual or documentation for the receiver."
+msgstr "Щоб відновити імідж, перегляньте посібник, або документацію до приймача."
+
+msgid "To restore the image use 'OnlineFlash' option in the 'SoftwareManager' menu."
+msgstr "Щоб відновити імідж, скористайтеся опцією 'OnlineFlash' у меню 'SoftwareManager'."
 
 msgid "To restore the image:"
 msgstr "Щоб відновити імідж:"
@@ -20542,6 +20773,9 @@ msgstr "UP80  (keymap.u80)"
 msgid "URL"
 msgstr "URL"
 
+msgid "URL of fallback remote receiver"
+msgstr "URL-адреса віддаленого резервного приймача"
+
 msgid "URL of fallback remote receiver."
 msgstr "URL-адреса віддаленого резервного приймача"
 
@@ -20603,6 +20837,9 @@ msgstr "Декодований"
 #, python-format
 msgid "Unexpected error accessing WebIF: %s"
 msgstr "Неочікувана помилка доступу до WebIF: %s"
+
+msgid "Unexpected error while retrieving fallback tuner's timer information"
+msgstr "Неочікувана помилка під час отримання інформації про таймер з резервного тюнера"
 
 msgid "UnhandledKey"
 msgstr "Неопрацьований Ключ"
@@ -21041,6 +21278,9 @@ msgstr "Використовуйте Панель емуляторів для у
 msgid "Use the UP and DOWN buttons to select your locale/language then press the OK button to continue."
 msgstr "За допомогою кнопок ВВЕРХ і ВНИЗ виберіть свій регіон/мову, потім натисніть кнопку OK для продовження."
 
+msgid "Use the UP/DOWN buttons to select the installed image to be backed up. Press the 'Start' (GREEN) button to start the backup."
+msgstr "Використовуйте кнопки ВГОРУ/ВНИЗ, щоб вибрати необхідний імідж для копіювання. Натисніть кнопку 'Пуск' (ЗЕЛЕНУ) для запуску копіювання."
+
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Можете вибрати альтернативний або нормальний режим Радіо."
 
@@ -21100,6 +21340,9 @@ msgstr "Фаворити користувача"
 
 msgid "User Feed URL"
 msgstr "фід користувача"
+
+msgid "User ID"
+msgstr "ID користувача"
 
 msgid "User comments"
 msgstr "Коментарі користувачів"
@@ -21778,6 +22021,15 @@ msgstr "Якщо ввімкнено, приймач автоматично по�
 
 msgid "When enabled the receiver will automatically wake from standby when the TV is turned on."
 msgstr "Якщо ввімкнено, приймач автоматично виходить із режиму очікування, коли телевізор увімкнено."
+
+msgid "When enabled the timer from the fallback tuner is imported"
+msgstr "Якщо увімкнено, таймер із резервного тюнера імпортується"
+
+msgid "When enabled the timer from the fallback tuner is the default timer"
+msgstr "Якщо ввімкнено, таймер із резервного тюнера є таймером за умовчанням"
+
+msgid "When enabled you can customize the OpenWebIf settings for the fallback tuner"
+msgstr "Якщо увімкнено, Ви можете налаштувати параметри OpenWebIf для резервного тюнера"
 
 msgid "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
 msgstr "Якщо задіяно, AIT дані будуть включені в HTTP-потоки. Це дозволить клієнтам приймача використовувати HbbTV."
@@ -23586,6 +23838,63 @@ msgstr "так (зберігати фіди)"
 
 msgid "®"
 msgstr "®"
+
+msgid "Fallback Timer"
+msgstr "Резервний таймер"
+
+#~ msgid "Execution finished!!"
+#~ msgstr "Виконано!!!"
+
+#~ msgid "Execution progress:"
+#~ msgstr "Процес виконання:"
+
+#~ msgid "Hide this screen"
+#~ msgstr "Приховати цей екран"
+
+#~ msgid "Path to save not exist: '/tmp/'"
+#~ msgstr "Шлях до збереження не існує: '/ tmp /'"
+
+#~ msgid "Backup done."
+#~ msgstr "Збереження завершено."
+
+#~ msgid "Backup failed!"
+#~ msgstr "Помилка резервного копіювання!"
+
+#~ msgid "No Devices Found !!"
+#~ msgstr "Пристроїв не виявлено!!"
+
+#~ msgid "23.976"
+#~ msgstr "23.976"
+
+#~ msgid "24"
+#~ msgstr "24"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "29.97"
+#~ msgstr "29.97"
+
+#~ msgid "30"
+#~ msgstr "30"
+
+#~ msgid "A backup is now being created. Please be patient as, due to"
+#~ msgstr "Зараз створюється резервна копія. Будь ласка, почекайте, тому що"
+
+#~ msgid "the number of files to be processed, the backup will take up"
+#~ msgstr "кількість файлів для обробки, які ввійдуть у копію"
+
+#~ msgid "to about 15 minutes to complete."
+#~ msgstr "приблизно до 15 хвилин."
+
+#~ msgid "Backup completed."
+#~ msgstr "Бекап успішно створений."
+
+#~ msgid "Backup failed."
+#~ msgstr "Збереження невдале."
+
+#~ msgid "No updates were available.  Please try again later."
+#~ msgstr "Немає доступних оновлень. Будь-ласка, спробуйте пізніше."
 
 #~ msgid "About..."
 #~ msgstr "Інформація приймача..."
