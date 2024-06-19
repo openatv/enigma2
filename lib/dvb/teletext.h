@@ -26,27 +26,36 @@ struct eDVBTeletextSubtitlePage
 {
 	pts_t m_pts;
 	int m_have_pts;
-	int m_timeout; /* in pts */
+	int m_timeout; // in pts
 	std::vector<eDVBTeletextSubtitlePageElement> m_elements;
 
-	void clearLine(int line) { for (unsigned int i = 0; i < m_elements.size(); ) if (m_elements[i].m_source_line == line) m_elements.erase(m_elements.begin() + i); else ++i; }
+	void clearLine(int line)
+	{
+		for (unsigned int i = 0; i < m_elements.size();)
+			if (m_elements[i].m_source_line == line)
+				m_elements.erase(m_elements.begin() + i);
+			else
+				++i;
+	}
 	void clear() { m_elements.clear(); }
 };
 
-class eDVBTeletextParser: public iObject, public ePESParser, public sigc::trackable
+class eDVBTeletextParser : public iObject, public ePESParser, public sigc::trackable
 {
 	DECLARE_REF(eDVBTeletextParser);
+
 public:
 	eDVBTeletextParser(iDVBDemux *demux);
 	virtual ~eDVBTeletextParser();
 	static const int max_id = 26;
-	static const char * const my_country_codes[];
+	static const char *const my_country_codes[];
 	int start(int pid);
-	void setPageAndMagazine(int page, int magazine, const char * lang);
+	void setPageAndMagazine(int page, int magazine, const char *lang);
 	void setMagazine(int magazine);
 	void connectNewStream(const sigc::slot0<void> &slot, ePtr<eConnection> &connection);
-	void connectNewPage(const sigc::slot1<void,const eDVBTeletextSubtitlePage &> &slot, ePtr<eConnection> &connection);
+	void connectNewPage(const sigc::slot1<void, const eDVBTeletextSubtitlePage &> &slot, ePtr<eConnection> &connection);
 	std::set<eDVBServicePMTHandler::subtitleStream> m_found_subtitle_pages;
+
 private:
 	std::map<int, unsigned int> m_modifications;
 	void processPESPacket(uint8_t *pkt, int len);
@@ -67,7 +76,7 @@ private:
 	void addSubtitleString(int color, std::string string, int source_line);
 
 	sigc::signal0<void> m_new_subtitle_stream;
-	sigc::signal1<void,const eDVBTeletextSubtitlePage&> m_new_subtitle_page;
+	sigc::signal1<void, const eDVBTeletextSubtitlePage &> m_new_subtitle_page;
 };
 
 #endif
