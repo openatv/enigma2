@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-24 20:26+0000\n"
+"POT-Creation-Date: 2024-06-15 20:15+0000\n"
 "PO-Revision-Date: 2024-04-22 09:31+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
@@ -1376,6 +1376,15 @@ msgstr ", "
 msgid "-"
 msgstr "-"
 
+msgid "- No space left on backup device."
+msgstr ""
+
+msgid "- No write permission on backup device."
+msgstr ""
+
+msgid "- Wrong backup destination."
+msgstr ""
+
 msgid "-24 Hours"
 msgstr "-24 hodín"
 
@@ -1472,18 +1481,6 @@ msgstr "1x"
 msgid "2"
 msgstr "2"
 
-msgid "23.976"
-msgstr "23,976"
-
-msgid "24"
-msgstr "24"
-
-msgid "25"
-msgstr "25"
-
-msgid "29.97"
-msgstr "29,97"
-
 msgid "2nd InfoBar"
 msgstr "2. infolišta"
 
@@ -1513,9 +1510,6 @@ msgstr "2x, 4x, 6x, 8x"
 
 msgid "3"
 msgstr "3"
-
-msgid "30"
-msgstr "30"
 
 msgid "3D Mode"
 msgstr "3D režim"
@@ -1600,6 +1594,9 @@ msgstr "<záznam denníka sa nenašiel"
 
 msgid "A"
 msgstr "A"
+
+msgid "A backup is now being created."
+msgstr ""
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr "Zoznam rozšírení (oddelených čiarkou), ktoré sa majú použiť pre nastavenie 'Moje rozšírenie' v položke 'Filtrovať rozšírenie'. Zadajte názvy rozšírení bez úvodnej bodky."
@@ -2278,6 +2275,15 @@ msgstr "Abecedne pod nadpismi"
 msgid "Alphanumeric"
 msgstr "Alfanumericky"
 
+msgid "Also import at reboot/restart enigma2"
+msgstr "Tiež importovať pri reštarte prjiímača / OS"
+
+msgid "Also import from the extension menu"
+msgstr "Importovať aj z ponuky rozšírenia"
+
+msgid "Also import when box is leaving standby"
+msgstr "Import aj pri opustení pohotovostného režimu"
+
 msgid "Also on standby"
 msgstr "Aj pri pohotov. režime"
 
@@ -2292,6 +2298,9 @@ msgstr "Alternatíva 2"
 
 msgid "Alternative Edit"
 msgstr "[úprava alternatív]"
+
+msgid "Alternative URLs for DVB-T/C or ATSC"
+msgstr "Alternatívne URL pre DVB-T/C alebo ATSC"
 
 msgid "Alternative numbering mode"
 msgstr "Alternatívne číslovanie"
@@ -2540,6 +2549,9 @@ msgstr "Prepnutie pomeru strán"
 
 msgid "Assamese"
 msgstr "asámčina"
+
+msgid "Assembling the image backup files."
+msgstr ""
 
 msgid "Assigned CAIds:"
 msgstr "Pridelené CAIds:"
@@ -2868,8 +2880,14 @@ msgstr "Denník zálohovania"
 msgid "Backup Mode"
 msgstr "Režim zálohovania"
 
+msgid "Backup Mode: Flash Online"
+msgstr ""
+
 msgid "Backup Mode: Flash Online\n"
 msgstr "Režim zálohovania: flashovanie online\n"
+
+msgid "Backup Mode: USB Recovery"
+msgstr ""
 
 msgid "Backup Mode: USB Recovery\n"
 msgstr "Režim zálohovania: obnova z USB\n"
@@ -2879,18 +2897,6 @@ msgstr "Záloha nastavení"
 
 msgid "Backup System Settings"
 msgstr "Zálohovanie nastavení systému"
-
-msgid "Backup completed."
-msgstr "Zálohovanie dokončené."
-
-msgid "Backup done."
-msgstr "Zálohovanie hotové."
-
-msgid "Backup failed!"
-msgstr "Zálohovanie bolo neúspešné!"
-
-msgid "Backup failed."
-msgstr "Zálohovanie zlyhalo."
 
 msgid "Backup images"
 msgstr "Zálohovanie image"
@@ -2908,6 +2914,10 @@ msgstr ""
 #, python-format
 msgid "Backup to destination: %s"
 msgstr "Zálohovať do cieľa: %s"
+
+#, python-format
+msgid "Backup tool for %s %s"
+msgstr ""
 
 msgid "Backup your %s %s settings."
 msgstr "Záloha nastavení vášho %s %s."
@@ -3555,6 +3565,9 @@ msgstr "Nie je možné odoslať časovač"
 msgid "Can't allocate program source (e.g. tuner)"
 msgstr "Nie je možné priradiť zdroj programu (napr. tuner)"
 
+msgid "Can't create backup directory!"
+msgstr ""
+
 msgid ""
 "Can't going to live TV!\n"
 "Switch to live TV and restart time shift ?"
@@ -4036,6 +4049,9 @@ msgstr "Vyberte si formát zobrazenía dátumov na obrazovke. 'D' / 'DD' označu
 msgid "Choose the display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds.  ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Vyberte si formát zobrazenia času na obrazovke. 'H' / 'HH' označuje 24-hodinový formát, 'h' / 'hh' označuje 12-hodinový formát, 'mm' sú minúty a 'ss' sú sekundy.   ('HH' a 'hh' obsahujú pre jednociferné hodnoty počiatočné nuly.) Zobrazenie podľa vašej voľby však môže ovplyvniť nastavený vzhľad (skin)."
 
+msgid "Choose the fallback font."
+msgstr ""
+
 msgid "Choose the front panel display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Vyberte si formát zobrazenia dátumu na obrazovke. 'D' / 'DD' označuje dátum a 'M' / 'MM' označuje mesiac v číselnom vyjadrení. ('DD' a 'MM' obsahujú pre jednociferné hodnoty počiatočné nuly.) Zobrazenie podľa vašej voľby však môže ovplyvniť nastavený vzhľad (skin)."
 
@@ -4321,6 +4337,12 @@ msgstr "Príkaz '%s' nie je známy"
 
 msgid "Command execution..."
 msgstr "Vykonávanie príkazu..."
+
+msgid "Command finished."
+msgid_plural "Commands finished."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 msgid "Command order"
 msgstr "Poradie príkazov"
@@ -5090,6 +5112,10 @@ msgstr "Vytvoriť náhodne vygenerované heslo"
 msgid "Create a symbolic link"
 msgstr "Vytvoriť symbolický odkaz"
 
+#, python-format
+msgid "Create recovery image backup '%s'."
+msgstr ""
+
 msgid "Create separate radio user bouquet"
 msgstr "Vytvoriť oddelený používateľský prehľad rádií"
 
@@ -5261,6 +5287,9 @@ msgstr "Vlastný čas skoku pre tlačidlá '7'/'9'"
 
 msgid "Customize"
 msgstr "Prispôsobiť"
+
+msgid "Customize OpenWebIF settings for fallback tuner"
+msgstr "Prispôsobiť OpenWebIF nastavenia pre záložný tuner"
 
 msgid "Customize System Settings"
 msgstr "Prispôsobiť systémové nastavenia"
@@ -5982,6 +6011,18 @@ msgstr "Zrušiť výber len zvýrazneného súboru"
 msgid "Deselected packages usually occur because those packaged are incompatible with existing packages. While this is mostly harmless it is possible that your %s %s may experience issues."
 msgstr "K zrušeniu označenia balíčkov zvyčajne dochádza preto, že tieto balíčky nie sú kompatibilné s existujúcimi balíčkami.  Hoci to obvykle nevyvoláva problémy, je možné, že sa u vášho %s %s vyskytnú problémy."
 
+msgid "Destination of fallback remote receiver"
+msgstr "Cieľ záložného vzdialeného prijímača"
+
+msgid "Destination of fallback remote receiver for ATSC"
+msgstr "Cieľ záložného vzdialeného prijímača pre ATSC"
+
+msgid "Destination of fallback remote receiver for DVB-C"
+msgstr "Cieľ záložného vzdialeného prijímača pre DVB-C"
+
+msgid "Destination of fallback remote receiver for DVB-T"
+msgstr "Cieľ záložného vzdialeného prijímača pre DVB-T"
+
 msgid "Detail of GStreamer log."
 msgstr "Podrobnosti denníka GStreamera."
 
@@ -6264,6 +6305,9 @@ msgstr "Džibutsko"
 msgid "Do another manual service scan?"
 msgstr "Chcete vykonať ďalšie manuálne skenovanie?"
 
+msgid "Do not backup the image"
+msgstr ""
+
 msgid "Do not change"
 msgstr "Nemeniť"
 
@@ -6350,6 +6394,18 @@ msgstr "Naozaj chcete odstrániť časovač pre %s?"
 #, python-format
 msgid "Do you really want to remove your bookmark for '%s'?"
 msgstr "Naozaj chcete odstrániť záložku pre %s?"
+
+msgid ""
+"Do you really want to restart OSCam?\n"
+"\n"
+"HINT: This will take about 5 seconds!"
+msgstr ""
+
+msgid ""
+"Do you really want to shut down OSCam?\n"
+"\n"
+"ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+msgstr ""
 
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
@@ -6985,6 +7041,9 @@ msgstr "Povoliť záložný vzdialený prijímač"
 msgid "Enable freesat EPG"
 msgstr "Povoliť freesat EPG"
 
+msgid "Enable import timer from fallback tuner"
+msgstr "Povoliť import časovača zo záložného tuneru"
+
 msgid "Enable intro screen"
 msgstr "Povoliť úvodnú obrazovku"
 
@@ -7176,6 +7235,9 @@ msgstr "Zadať"
 #, python-format
 msgid "Enter DNS (Dynamic Name Server) %d's IP address."
 msgstr "Zadajte IP adresu DNS (Dynamic Name Server) %d."
+
+msgid "Enter IP address"
+msgstr "IP adresa"
 
 msgid "Enter PIN"
 msgstr "Zadajte PIN"
@@ -7430,6 +7492,14 @@ msgstr "Text chyby:"
 msgid "Error unzipping image '%s'!"
 msgstr "Chyba pri rozbaľovaní image '%s'!"
 
+#, python-format
+msgid ""
+"Error while retrieving fallback timer information\n"
+"%s"
+msgstr ""
+"Chyba pri načítaní informácií o záložnom časovači\n"
+"%s"
+
 msgid "Error, unknown Result!"
 msgstr "Chyba, neznámy výsledok!"
 
@@ -7540,6 +7610,10 @@ msgid "Error: Unable to rename directory '%s' to '%s'!"
 msgstr "Chyba: Nie je možné premenovať priečinok '%s' na '%s'!"
 
 #, python-format
+msgid "Error: Unable to write log file '%s'!"
+msgstr "Chyba pri zápise súboru: '%s'"
+
+#, python-format
 msgid "Error: You can't run '%s' on '%s'!"
 msgstr "Chyba: Nie je možné spustiť '%s' na '%s'!"
 
@@ -7642,12 +7716,6 @@ msgstr "Presahuje kapacitu dvojvrstvového DVD!"
 msgid "Execution condition"
 msgstr "Podmienka spustenia"
 
-msgid "Execution finished!!"
-msgstr "Dokončené!"
-
-msgid "Execution progress:"
-msgstr "Priebeh:"
-
 msgid "Exif"
 msgstr "Exif"
 
@@ -7671,6 +7739,9 @@ msgstr "Ukončiť výber Quad-kanála"
 
 msgid "Exit all menus"
 msgstr "Ukončiť všetky ponuky a menu"
+
+msgid "Exit and close all screens without performing a backup"
+msgstr ""
 
 msgid "Exit editor"
 msgstr "Ukončiť editor"
@@ -7722,6 +7793,9 @@ msgstr "Ukončiť sprievodcu"
 
 msgid "Exit viewer"
 msgstr "Zatvoriť prehliadač"
+
+msgid "Exit without performing a backup"
+msgstr ""
 
 msgid "Expand"
 msgstr "Rozbaliť"
@@ -7898,8 +7972,35 @@ msgstr "Neúspešné:"
 msgid "Falkland Islands (Malvinas)"
 msgstr "Falklandy (Malvíny)"
 
+msgid "Fallback API did not return a valid result."
+msgstr "Záložné rozhranie API nevrátilo platný výsledok."
+
+msgid "Fallback Font *"
+msgstr ""
+
+msgid "Fallback remote receiver"
+msgstr "Záložný vzdialený prijímač"
+
+msgid "Fallback remote receiver IP"
+msgstr "IP adresa záložného vzdialeného prijímača"
+
+msgid "Fallback remote receiver Port"
+msgstr "Port záložného vzdialeného prijímača"
+
 msgid "Fallback remote receiver URL"
 msgstr "URL záložného tunera vzdialeného prijímača"
+
+msgid "Fallback remote receiver for ATSC"
+msgstr "Záložný vzdialený prijímač pre ATSC"
+
+msgid "Fallback remote receiver for DVB-C"
+msgstr "Záložný vzdialený prijímač pre DVB-C"
+
+msgid "Fallback remote receiver for DVB-T"
+msgstr "Záložný vzdialený prijímač pre DVB-T"
+
+msgid "Fallback tuner setup"
+msgstr "Nastavenie záložného tuneru"
 
 msgid "False"
 msgstr "False (Nepravda)"
@@ -8089,10 +8190,6 @@ msgstr "Prenos súboru bol zrušený používateľom!"
 
 msgid "File transfer was cancelled by user"
 msgstr "Prenos súboru bol zrušený používateľom"
-
-#, python-format
-msgid "File write error: '%s'"
-msgstr "Chyba pri zápise súboru: '%s'"
 
 msgid "Filename"
 msgstr "Názov súboru"
@@ -8958,11 +9055,11 @@ msgstr "Skryť názov servera softcamu"
 msgid "Hide the InfoBar"
 msgstr "Nezobrazovať infolištu"
 
-msgid "Hide this screen"
-msgstr ""
-
 msgid "Hide zap errors"
 msgstr "Nezobrazovať chyby pri prepínaní"
+
+msgid "Hide/Show the console screen"
+msgstr ""
 
 msgid "Hierarchy info"
 msgstr "Hierarchy info"
@@ -9161,6 +9258,9 @@ msgstr "IP adresa"
 
 msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr "IP adresa servera pre prenos streamu, používaná na dekódovanie služieb, ktoré je možné dekódovať cez prenos streamu."
+
+msgid "IP of fallback remote receiver"
+msgstr "IP adresa záložného vzdialeného prijímača"
 
 msgid "IPK Installer"
 msgstr "Inštalátor balíčkov IPK"
@@ -9365,6 +9465,13 @@ msgstr "Ignorovať neočakávané prebudenie a zostať v pohotovostnom režime"
 msgid "Image Backup"
 msgstr "Zálohovanie image"
 
+msgid "Image Backup Actions"
+msgstr ""
+
+#, python-format
+msgid "Image Backup To %s"
+msgstr ""
+
 msgid "Image Flash Actions"
 msgstr "Akcie pre flashovanie image"
 
@@ -9372,8 +9479,14 @@ msgstr "Akcie pre flashovanie image"
 msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
 msgstr "Image vytvorený: %s/%s-%s-%s-backup-%s_%s.zip"
 
+msgid "Image created:"
+msgstr ""
+
 msgid "Image creation failed - "
 msgstr "Vytvorenie image neúspešné – "
+
+msgid "Image creation failed!"
+msgstr ""
 
 msgid "ImageWizard"
 msgstr "Sprievodca pre image"
@@ -9386,6 +9499,21 @@ msgstr "Ihneď ukončiť sprievodcu (len režim ladenia)"
 
 msgid "Immediately restart selected devices."
 msgstr "Ihneď reštartovať vybrané zariadenia."
+
+msgid "Import channels and/or EPG from remote receiver URL also when the receiver is getting out of standby"
+msgstr "Importovať stanice a/alebo EPG z URL adresy vzdialeného prijímača aj vtedy, keď sa prijímač prebudí z pohotovostného režimu"
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver is booted"
+msgstr "Importovať kanály a/alebo EPG zo URL vzdialeného prijímača počas štartu prijímača"
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
+msgstr "Importovať kanály a/alebo EPG zo URL vzdialeného prijímača počas štartu prijímača alebo enigmy2"
+
+msgid "Import from remote receiver URL"
+msgstr "Importovať z URL adresy vzdialeného prijímača"
+
+msgid "Import remote receiver URL"
+msgstr "Importovať URL adresu vzdialeného prijímača"
 
 msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
 msgstr "Okrem kontroly pri začiatku udalosti je možné vykonávať kontrolu aj opakovane. Tým sa skôr zistia podmienky typu 'limit vyrovnávacej pamäte v hodinách' alebo 'kontrola voľného miesta'."
@@ -10604,6 +10732,9 @@ msgstr "Spravujte vaše multiboot zariadenie."
 msgid "Make"
 msgstr "Vykonať"
 
+msgid "Make it possible to manually initiate the channels import and/or EPG via the extension menu"
+msgstr "Umožniť manuálny import kanálov a/alebo EPG pomocou rozšíreného menu"
+
 msgid "Make this mark an 'in' point"
 msgstr "Zmeniť túto značku na vstupný bod"
 
@@ -11394,6 +11525,9 @@ msgstr "MultiTranskódovanie"
 msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
 msgstr "Multiboot image vytvorený v: %s/%s-%s-%s-backup-%s_usb.zip"
 
+msgid "Multiboot Image created:"
+msgstr ""
+
 msgid "Multimedia Packages"
 msgstr "Multimediálne balíčky"
 
@@ -11455,6 +11589,9 @@ msgstr "POZNÁMKA: Priečinok/súbor '%s' už existuje a bude prepísaný!"
 #, python-format
 msgid "NOTE: These %d directories/files exist and will be overwritten!"
 msgstr "POZNÁMKA: Priečinky/súbory (počet: %d) existujú a budú prepísané!"
+
+msgid "NOTE: While the console screen is hidden from view the buttons are still active. Pressing any enabled button will cause the screen to reappear but the button will not be actioned."
+msgstr ""
 
 msgid "NOW"
 msgstr "TERAZ"
@@ -11765,9 +11902,6 @@ msgstr "Žiadny (podporovaný) DVDROM!"
 msgid "No Connection"
 msgstr "Žiadne pripojenie"
 
-msgid "No Devices Found !!"
-msgstr "Nenašli sa žiadne zariadenia!"
-
 msgid "No ECM PIDs available"
 msgstr "Nie sú dostupné žiadne ECM PIDy"
 
@@ -11942,9 +12076,6 @@ msgstr "Nie je potrebná žiadna aktualizácia!"
 
 msgid "No updates available."
 msgstr "Nie sú dostupné žiadne aktualizácie."
-
-msgid "No updates were available.  Please try again later."
-msgstr "Neboli dostupné žiadne aktualizácie. Prosím, skúste to neskôr."
 
 msgid "No valid device detected - Press OK"
 msgstr "Nenašlo sa žiadne platné zariadenie – stlačte OK"
@@ -12395,11 +12526,17 @@ msgstr "Otvoriť zoznam staníc a vybrať predchádzajúci kanál pre PiP"
 msgid "Open the Channel Selection Settings screen"
 msgstr "Otvoriť obrazovku s nastaveniami výberu kanála"
 
+msgid "Open the Image information"
+msgstr ""
+
 msgid "Open the Plugin Browser"
 msgstr "Otvoriť prehliadač pluginov"
 
 msgid "Open the Plugin Browser settings screen"
 msgstr "Otvoriť obrazovku s nastaveniami prehliadača pluginov"
+
+msgid "Open the Storage Device information"
+msgstr ""
 
 msgid "Open the VirtualKeyBoard for text entry"
 msgstr "Otvoriť virtuálnu klávesnicu pre zadanie textu"
@@ -12745,9 +12882,6 @@ msgstr "Heslo zmenené."
 msgid "Path '%s' missing!"
 msgstr "Cesta '%s' nie je dostupná!"
 
-msgid "Path to save not exist: '/tmp/'"
-msgstr "Neexistuje cesta na uloženie: '/tmp/'"
-
 msgid "Pause"
 msgstr "Pozastavenie"
 
@@ -12986,6 +13120,9 @@ msgstr "Prosím, pridajte tituly do kompilácie."
 msgid "Please be patient, a backup will now be made,\n"
 msgstr "Prosím, buďte trpezliví, vytvára sa záloha image,\n"
 
+msgid "Please be patient."
+msgstr ""
+
 msgid "Please check the manual of the receiver"
 msgstr "Prosím, pozrite si návod na obsluhu prijímača"
 
@@ -13124,6 +13261,9 @@ msgstr "Prosím, vyberte región, ktorý najlepšie zodpovedá vašej lokalite. 
 
 msgid "Please select the sub-service to record:"
 msgstr "Prosím, vyberte podradenú službu, ktorú chcete nahrávať:"
+
+msgid "Please select the target location to save the backup:"
+msgstr ""
 
 msgid "Please select what to do after flash of the following image:"
 msgstr "Prosím, vyberte, čo sa má vykonať po flashovaní nasledujúceho image:"
@@ -13320,6 +13460,9 @@ msgstr "Port D"
 msgid "Port number for the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr "Číslo portu pre server s prenosu streamu, používaný na dekódovanie služieb, ktoré je možné dekódovať cez prenos streamu."
 
+msgid "Port of fallback remote receiver"
+msgstr "Port záložného vzdialeného prijímača"
+
 msgid "Portugal"
 msgstr "Portugalsko"
 
@@ -13349,6 +13492,9 @@ msgstr "Denník nastavení pozicionéra"
 
 msgid "Positioner setup"
 msgstr "Nastavenie pozicionéra"
+
+msgid "Possible causes could be:"
+msgstr ""
 
 msgid "Power"
 msgstr "Napájanie"
@@ -13859,6 +14005,9 @@ msgstr "Rýchle EPG"
 
 msgid "Quick Launch Menu"
 msgstr "Rýchle menu"
+
+msgid "Quick Menu Actions"
+msgstr ""
 
 msgid "Quick Menu..."
 msgstr "Rýchle menu…"
@@ -14636,6 +14785,9 @@ msgstr "Reštartovať sieť"
 msgid "Restart Network Adapter"
 msgstr "Reštart sieťového adaptéra"
 
+msgid "Restart OSCam"
+msgstr ""
+
 msgid "Restart enigma"
 msgstr "Reštart systému Enigma"
 
@@ -14872,6 +15024,10 @@ msgstr "Prebieha"
 msgid "Running Myrestore script, Please wait ..."
 msgstr "Spúšťanie skriptu Myrestore. Čakajte, prosím…"
 
+#, python-format
+msgid "Running command %d: '%s'."
+msgstr ""
+
 msgid "Russian"
 msgstr "ruština"
 
@@ -14984,6 +15140,9 @@ msgstr "Server Samba"
 msgid "Same as in active"
 msgstr "Rovnako ako pri zapnutí"
 
+msgid "Same as stream"
+msgstr "Rovnaké ako stream"
+
 msgid "Same behavior as current animation"
 msgstr "Rovnaké správanie ako aktuálna animácia"
 
@@ -15062,6 +15221,9 @@ msgstr "Uložiť vyrovnávaciu pamäť EPG"
 msgid "Save EPG data"
 msgstr "Uložiť dáta EPG"
 
+msgid "Save Log"
+msgstr ""
+
 msgid "Save all changed settings and exit"
 msgstr "Uložiť všetky zmenené nastavenia a ukončiť"
 
@@ -15112,6 +15274,9 @@ msgstr "Pri ukončení uložiť umiestnenie priečinka vľavo."
 
 msgid "Save the log changes and exit"
 msgstr "Uložiť zmeny v denníku a ukončiť"
+
+msgid "Save the log of the console messages to a file"
+msgstr ""
 
 msgid "Save the right column directory location on exit."
 msgstr "Pri ukončení uložiť umiestnenie priečinka v pravom stĺpci."
@@ -15539,6 +15704,9 @@ msgstr "Ak sa majú na obrazovke Stiahnuť pluginy zobrazovať aj balíčky so v
 
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
 msgstr "Ak sa majú na obrazovke Stiahnuť pluginy zobrazovať aj balíčky so zdrojmi, vyberte možnosť 'Áno'."
+
+msgid "Select 'Yes' to show subscription packages in the Download Plugins screen."
+msgstr ""
 
 msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
 msgstr "Ak sa majú na obrazovke Stiahnuť pluginy zobrazovať aj balíčky so systémovými pluginmi, vyberte možnosť 'Áno'."
@@ -16152,6 +16320,9 @@ msgstr "Vyberte čas, kedy sa má tento časovač spustiť."
 msgid "Select the time zone within the area or region."
 msgstr "Nastaviť časovú zónu v rámci oblasti alebo regiónu."
 
+msgid "Select the timer from the fallback tuner by default"
+msgstr "Ak je povolené, bude importovaný časovač zo záložného tuneru"
+
 msgid "Select the tuner that controls the motorized dish."
 msgstr "Vyberte tuner, ktorý ovláda parabolu vybavenú motorom."
 
@@ -16531,6 +16702,9 @@ msgstr "Nastavte čas"
 msgid "Set action for 'Info' key"
 msgstr "Nastavte akciu pre tlačidlo 'Info'"
 
+msgid "Set alternative fallback tuners for DVB-T/C or ATSC"
+msgstr "Nastaviť alternatívne záložné tunery pre DVB-T/C alebo ATSC"
+
 msgid "Set current CEC address as fixed address"
 msgstr "Nastaviť aktuálnu CEC adresu ako fixnú adresu"
 
@@ -16568,6 +16742,9 @@ msgstr "Nastavenie systému"
 msgid "Set the MAC address of your %s %s."
 msgstr "Nastavte MAC adresu pre %s %s."
 
+msgid "Set the User ID of the OpenWebif from your fallback tuner"
+msgstr "Nastavenie ID používateľa OpenWebif zo záložného tunera"
+
 msgid "Set the aspect ratio of the service picons."
 msgstr "Nastavte pomer strán pikon."
 
@@ -16594,6 +16771,12 @@ msgstr "Nastavenie veľkosti skoku v paneli posunu."
 
 msgid "Set the number of lines to be saved for 'stout' and 'sterr' output in scripts."
 msgstr "Nastavenie počtu riadkov, ktoré sa majú uložiť pre výstup 'stout' a 'sterr' v skriptoch."
+
+msgid "Set the password of the OpenWebif from your fallback tuner"
+msgstr "Nastavenie hesla OpenWebif zo záložného tunera"
+
+msgid "Set the port of the OpenWebif from your fallback tuner"
+msgstr "Nastavenie portu OpenWebif z vášho záložného tunera"
 
 msgid "Set the position of the recording icons."
 msgstr "Nastavenie pozície ikon nahrávania."
@@ -16630,6 +16813,9 @@ msgstr "Nastavte čas trvania zobrazenia druhej infolišty. Lišta zmizne aj po 
 
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, PowerTimer, SleepTimer etc."
 msgstr "Nastavenie času čakania na vykonanie predvolenej akcie v správach o vypnutí, pohotovostnom režime alebo reštarte. Používa sa napr. v časovačoch nahrávania, napájania, uspania atď."
+
+msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
+msgstr ""
 
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Nastavenie typu zobrazenia indikátora priebehu na obrazovke výberu kanála."
@@ -17138,6 +17324,9 @@ msgstr "Zobraziť balíčky obsahujúce softcam"
 msgid "Show Source packages"
 msgstr "Zobraziť zdrojové balíčky"
 
+msgid "Show Subscription packages"
+msgstr ""
+
 msgid "Show Subservices Of Active Service"
 msgstr "Zobraziť podradené služby aktívnej služby/stanice"
 
@@ -17387,6 +17576,18 @@ msgstr "Zobraziť ďalšiu obrazovku pre servisnú informáciu"
 
 msgid "Show next system information screen"
 msgstr "Zobraziť ďalšiu systémovú informačnú obrazovku"
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL did not complete"
+msgstr "Zobraziť notifikáciu v prípade, keď nebol import staníc a/alebo EPG z URL adresy vzdialeného prijímača úspešne dokončený"
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL is completed"
+msgstr "Zobraziť notifikáciu v prípade, keď bol import staníc a/alebo EPG z URL adresy vzdialeného prijímača úspešne dokončený"
+
+msgid "Show notification when import channels was not successful"
+msgstr "Zobraziť notifikáciu v prípade, keď nebol import staníc úspešne dokončený"
+
+msgid "Show notification when import channels was successful"
+msgstr "Zobraziť notifikáciu v prípade, keď bol import staníc úspešne dokončený"
 
 msgid "Show or hide the extended description, (skin dependent)."
 msgstr "Zobraziť/skryť rozšírený popis (závisí od vzhľadu)."
@@ -17675,6 +17876,9 @@ msgstr "Vypnúť"
 
 msgid "Shutdown"
 msgstr "Vypnúť"
+
+msgid "Shutdown OSCam"
+msgstr ""
 
 msgid "Shutting down. Please wait..."
 msgstr "Vypína sa. Čakajte, prosím…"
@@ -18225,6 +18429,9 @@ msgstr "Zadajte priečinok, ktorý sa použije pri spustení prehrávača médi�
 msgid "Speed"
 msgstr "Rýchlosť"
 
+msgid "Spinner Position"
+msgstr ""
+
 msgid "Split preview mode"
 msgstr "Režim rozdelenia náhľadu"
 
@@ -18317,6 +18524,9 @@ msgstr "Spustiť test"
 
 msgid "Start the Kexec initialization"
 msgstr "Spustiť inicializáciu Kexec"
+
+msgid "Start the backup of the selected image"
+msgstr ""
 
 msgid "Start the highlighted plugin"
 msgstr "Spustiť označený plugin"
@@ -18576,6 +18786,9 @@ msgstr ""
 
 msgid "Style:"
 msgstr "Štýl:"
+
+msgid "Subscription Packages"
+msgstr ""
 
 msgid "Subservice Actions"
 msgstr "Akcie pre podradenú službu/stanicu"
@@ -19304,6 +19517,9 @@ msgstr ""
 "Dostupné miesto na disku pre timeshift je menšie, ako je zadané v nastaveniach.\n"
 "Čo sa má urobiť ?"
 
+msgid "The backup can take up to about 15 minutes to complete."
+msgstr ""
+
 msgid "The backup failed"
 msgstr "Zálohovanie neúspešné"
 
@@ -20008,6 +20224,9 @@ msgstr "Timeshift sa uloží na konci udalosti."
 msgid "Time style"
 msgstr "Štýl času"
 
+msgid "Time taken for the backup:"
+msgstr ""
+
 msgid "Time to execute command or script"
 msgstr "Čas spustenia príkazu alebo skriptu"
 
@@ -20109,6 +20328,12 @@ msgstr "Režim nastavenia titulov"
 
 msgid "To complete the setup the %s %s must connect to the Internet.  Connect the %s %s to the Internet now."
 msgstr "Na dokončenie nastavovania sa musí zariadenie %s %s pripojiť k internetu. Pripojte zariadenie %s %s k internetu."
+
+msgid "To restore the image check the manual or documentation for the receiver."
+msgstr ""
+
+msgid "To restore the image use 'OnlineFlash' option in the 'SoftwareManager' menu."
+msgstr ""
 
 msgid "To restore the image:"
 msgstr "Na obnovenie image:"
@@ -20539,6 +20764,9 @@ msgstr "UP80  (keymap.u80)"
 msgid "URL"
 msgstr "URL"
 
+msgid "URL of fallback remote receiver"
+msgstr "URL záložného vzdialeného prijímača"
+
 msgid "URL of fallback remote receiver."
 msgstr "URL adresa náhradného vzdialeného prijímača."
 
@@ -20600,6 +20828,9 @@ msgstr "Nekódované"
 #, python-format
 msgid "Unexpected error accessing WebIF: %s"
 msgstr "Neočakávaná chyba pri prístupe na WebIF: %s"
+
+msgid "Unexpected error while retrieving fallback tuner's timer information"
+msgstr "Neočakávaná chyba počas načítavania informácie časovača záložného tuneru"
 
 msgid "UnhandledKey"
 msgstr "UnhandledKey"
@@ -21038,6 +21269,9 @@ msgstr "Panel Softcamu slúži na ovládanie CAMu. Umožňuje jeho spustenie/zas
 msgid "Use the UP and DOWN buttons to select your locale/language then press the OK button to continue."
 msgstr "Tlačidlami HORE a DOLU vyberte svoje miestne nastavenia/jazyk a potom pokračujte stlačením tlačidla OK."
 
+msgid "Use the UP/DOWN buttons to select the installed image to be backed up. Press the 'Start' (GREEN) button to start the backup."
+msgstr ""
+
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Použitie alternatívneho alebo bežného režimu rádia."
 
@@ -21097,6 +21331,9 @@ msgstr "Používateľské prehľady"
 
 msgid "User Feed URL"
 msgstr "URL adresa používateľského zdroja"
+
+msgid "User ID"
+msgstr "Užívateľské ID"
 
 msgid "User comments"
 msgstr "Komentáre používateľa"
@@ -21775,6 +22012,15 @@ msgstr "Ak je aktivované, prijímač sa pri vypnutí TV automaticky prepne do p
 
 msgid "When enabled the receiver will automatically wake from standby when the TV is turned on."
 msgstr "Ak je aktivované, prijímač sa pri zapnutí TV automaticky prebudí z pohotovostného režimu."
+
+msgid "When enabled the timer from the fallback tuner is imported"
+msgstr "Ak je povolené, bude importovaný časovač zo záložného tuneru"
+
+msgid "When enabled the timer from the fallback tuner is the default timer"
+msgstr "Ak je povolené, bude importovaný časovač zo záložného tuneru"
+
+msgid "When enabled you can customize the OpenWebIf settings for the fallback tuner"
+msgstr "Ak je povolené, môžete upravovať OpenWebIf nastavenia záložného tuneru"
 
 msgid "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
 msgstr "Ak je povolené, pridajú sa AIT dáta do streamu. To umožní klientskému prijímaču používať HbbTV."
@@ -23583,6 +23829,51 @@ msgstr "áno (zachovať zdroje)"
 
 msgid "®"
 msgstr "®"
+
+msgid "Fallback Timer"
+msgstr "Záložný časovač"
+
+#~ msgid "Execution finished!!"
+#~ msgstr "Dokončené!"
+
+#~ msgid "Execution progress:"
+#~ msgstr "Priebeh:"
+
+#~ msgid "Path to save not exist: '/tmp/'"
+#~ msgstr "Neexistuje cesta na uloženie: '/tmp/'"
+
+#~ msgid "Backup done."
+#~ msgstr "Zálohovanie hotové."
+
+#~ msgid "Backup failed!"
+#~ msgstr "Zálohovanie bolo neúspešné!"
+
+#~ msgid "No Devices Found !!"
+#~ msgstr "Nenašli sa žiadne zariadenia!"
+
+#~ msgid "23.976"
+#~ msgstr "23,976"
+
+#~ msgid "24"
+#~ msgstr "24"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "29.97"
+#~ msgstr "29,97"
+
+#~ msgid "30"
+#~ msgstr "30"
+
+#~ msgid "Backup completed."
+#~ msgstr "Zálohovanie dokončené."
+
+#~ msgid "Backup failed."
+#~ msgstr "Zálohovanie zlyhalo."
+
+#~ msgid "No updates were available.  Please try again later."
+#~ msgstr "Neboli dostupné žiadne aktualizácie. Prosím, skúste to neskôr."
 
 #~ msgid "About..."
 #~ msgstr "O prijímači..."
