@@ -3,7 +3,6 @@ from glob import glob
 from hashlib import md5
 from os import mkdir, rename, rmdir, stat
 from os.path import basename, exists, isdir, isfile, ismount, join as pathjoin
-from re import match
 from struct import calcsize, pack, unpack, error
 from subprocess import check_output
 from tempfile import mkdtemp
@@ -203,8 +202,8 @@ class MultiBootClass():
 							if "rootsubdir" in line:
 								bootSlots[slotCode]["kernel"] = self.getParam(line, "kernel")
 								bootSlots[slotCode]["rootsubdir"] = self.getParam(line, "rootsubdir")
-							elif match("sd[abcd]", line):
-								device = match("sd[abcd]", line).group(0)
+							elif [x for x in ("sda", "sdb", "sdc", "sdd") if x in line]:
+								device = [x for x in ("sda", "sdb", "sdc", "sdd") if x in line][0]
 								saveKernel(bootSlots, slotCode, f"/dev/{device}{line.split(device, 1)[1].split(" ", 1)[0]}")
 							else:
 								parts = device.split("p")
