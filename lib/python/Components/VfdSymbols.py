@@ -259,5 +259,5 @@ class VFDSymbolsUpdater:
 
 
 def SymbolsCheck(session, **kwargs):
-	global vfdsymbolsupdater
-	vfdsymbolsupdater = VFDSymbolsUpdater(session)
+	global vfdSymbolsUpdater
+	vfdSymbolsUpdater = VFDSymbolsUpdater(session)
