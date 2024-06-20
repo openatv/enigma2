@@ -95,7 +95,7 @@ fi
 #check for sundtek tuner helper lib
 if [ -e /opt/lib/libmediaclient.so ]; then
 	LIBS="/opt/lib/libmediaclient.so @libdir@/libopen.so.0.0.0"
-else
+elif [ ! -e /dev/amremote ]; then
 	LIBS="@libdir@/libopen.so.0.0.0"
 fi
 
