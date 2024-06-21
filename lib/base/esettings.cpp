@@ -48,3 +48,9 @@ std::string eSettings::audio_autoselect1 = "";
 std::string eSettings::audio_autoselect2 = "";
 std::string eSettings::audio_autoselect3 = "";
 std::string eSettings::audio_autoselect4 = "";
+
+//AI related parameters
+bool eSubtitleSettings::ai_enabled = false;
+std::string eSubtitleSettings::ai_translate_to = "0";
+std::string eSubtitleSettings::ai_subscription_code = "15";
+int eSubtitleSettings::ai_subtitle_colors = 1;

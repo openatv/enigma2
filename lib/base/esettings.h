@@ -73,6 +73,18 @@ public:
   static std::string subtitle_autoselect2;
   static std::string subtitle_autoselect3;
   static std::string subtitle_autoselect4;
+
+  //AI related parameters
+  static void setAiEnabled(bool value) { ai_enabled = value; }
+  static void setAiTranslateTo(std::string value) { ai_translate_to = value; }
+  static void setAiSubscriptionCode(std::string value) { ai_subscription_code = value; }
+  static void setAiSubtitleColors(int value) { ai_subtitle_colors = value; }
+  static bool ai_enabled;
+  static std::string ai_translate_to;
+  static std::string ai_subscription_code;
+  static int ai_subtitle_colors;
+
+
 };
 
 class eSettings

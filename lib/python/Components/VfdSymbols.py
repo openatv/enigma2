@@ -24,6 +24,7 @@ class VFDSymbolsUpdater:
 		self.led = False
 		self.ledConfig = self.findProcFiles()
 		self.recMode, self.recPath = self.getRecModes()
+		self.onClose = []  # This is needed for ServiceEventTracker
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 			iPlayableService.evUpdatedInfo: self.evUpdatedInfo,
 		})
