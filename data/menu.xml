@@ -170,7 +170,6 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 				<item key="backup_system" level="0" text="Backup System Settings" description="Backup your %s %s settings." weight="16"><plugin system="SoftwareManager" screen="BackupHelper">1</plugin></item>
 				<item key="restore_system" level="0" text="Restore System Settings" description="Restore your %s %s settings." weight="17"><plugin system="SoftwareManager" screen="BackupHelper">2</plugin></item>
 				<item key="install_local" level="0" text="Install Local Extension" description="Scan for local extensions and install them." weight="18"><plugin system="SoftwareManager" screen="BackupHelper">3</plugin></item>
-				<item key="backup_image" level="0" text="Image Backup (OLD)" description="Backup your running %s %s image to HDD or USB." weight="19" requires="ImageBackup"><plugin system="SoftwareManager" screen="ImageBackup" /></item>
 				<!-- Menu / Setup / Software Management / Advanced Options -->
 				<menu key="advanced_software" level="2" text="Advanced Options" description="Advanced options and settings." weight="20">
 					<item key="advanced_restore" level="2" text="Advanced Restore" description="Restore your backups by date." weight="16"><plugin system="SoftwareManager" screen="RestoreMenu" /></item>

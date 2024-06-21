@@ -244,7 +244,7 @@ class QuickMenu(Screen, ProtectedScreen):
 				from Plugins.Extensions.dBackup.plugin import dBackup
 				self.session.open(dBackup)
 			else:
-				from Plugins.SystemPlugins.SoftwareManager.ImageBackup import ImageBackup
+				from Screens.ImageBackup import ImageBackup
 				self.session.open(ImageBackup)
 
 		def backupSettingsCallback():
