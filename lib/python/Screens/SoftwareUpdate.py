@@ -397,7 +397,6 @@ class RunSoftwareUpdate(Screen):
 		self.deselectCount = 0
 		self.upgradeCount = 0
 		self.configureCount = 0
-		self.updateFlag = True
 		self.metrixUpdated = False
 		self.timer = eTimer()
 		self.timer.callback.append(self.timeout)
@@ -452,10 +451,7 @@ class RunSoftwareUpdate(Screen):
 			else:
 				self.session.openWithCallback(modificationCallback, MessageBox, _("Configuration file '%s' has been modified since it was installed, would you like to keep the modified version?") % parameter)
 		elif event in (OpkgComponent.EVENT_DONE, OpkgComponent.EVENT_ERROR):
-			if self.updateFlag:
-				self.updateFlag = False
-				self.opkg.startCmd(OpkgComponent.CMD_UPGRADE_LIST)
-			elif self.opkg.currentCommand == OpkgComponent.CMD_UPGRADE_LIST:
+			if self.opkg.currentCommand == OpkgComponent.CMD_UPGRADE_LIST:
 				self.packageTotal = len(self.opkg.getFetchedList())
 				if self.packageTotal:
 					self.opkg.startCmd(OpkgComponent.CMD_UPGRADE, args={"testMode": False})
@@ -480,7 +476,7 @@ class RunSoftwareUpdate(Screen):
 				self["update"].appendText(f"\n{_("Press OK on your remote control to continue.")}")
 
 	def layoutFinished(self):
-		self.opkg.startCmd(OpkgComponent.CMD_UPDATE)
+		self.opkg.startCmd(OpkgComponent.CMD_UPGRADE_LIST)
 		self.timer.start(25, True)
 
 	# def keyCancel(self):
