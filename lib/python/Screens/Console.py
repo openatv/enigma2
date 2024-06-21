@@ -180,7 +180,7 @@ class Console(Screen):
 		if self.showScripts:
 			if isinstance(cmd, (list, tuple)) and cmd[0].endswith((".sh", ".py")):
 				cmdLine = cmd[0]
-				lines = filereadLines(cmdLine, default=None, source=MODULE_NAME)
+				lines = fileReadLines(cmdLine, default=None, source=MODULE_NAME)
 			else:
 				cmdLine = cmd.split()[0]
 				if cmdLine.endswith((".sh", ".py")):
@@ -220,7 +220,7 @@ class Console(Screen):
 			text = ngettext("Command finished.", "Commands finished.", len(self.cmdList))
 			self["text"].appendText(f"\n{self.commandColorStart}>>> {text}{self.commandColorEnd}\n")
 			self["summary_description"].setText(text)
-			if self.finishedCallback and iscallable(self.finishedCallback):
+			if self.finishedCallback and callable(self.finishedCallback):
 				self.finishedCallback()
 			if not self.errorOcurred and self.closeOnSuccess:
 				self.keyCancel()
