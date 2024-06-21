@@ -1653,7 +1653,7 @@ class NetworkServicesSetup(Setup, NetworkDaemons):
 				choices.append((1, _("Disabled")))
 
 		cfg = ConfigSelection(default=default, choices=choices)
-		return (title, cfg, _("Select the action for '%s'" % title), daemon)
+		return (title, cfg, _("Select the action for '%s'") % title, daemon)
 
 	def createSetup(self):  # NOSONAR silence S2638
 		if not self.serviceItems:
