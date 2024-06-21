@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-15 20:15+0000\n"
-"PO-Revision-Date: 2024-06-15 21:52+0000\n"
+"POT-Creation-Date: 2024-06-19 04:08+0000\n"
+"PO-Revision-Date: 2024-06-21 14:18+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.6-dev\n"
+"X-Generator: Weblate 5.6-rc\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -100,7 +100,7 @@ msgid " (higher than rotor any auto)"
 msgstr " (вище будь-якого двигуна авто)"
 
 msgid " (lower than any auto)"
-msgstr " (нище будь-якого авто)"
+msgstr " (нижче будь-якого авто)"
 
 msgid " <No Channel>"
 msgstr " <Немає Каналу>"
@@ -1753,6 +1753,18 @@ msgstr "AC3+ транскодування"
 msgid "AFL"
 msgstr "AFL"
 
+msgid "AI-Powered translation color"
+msgstr "Колір субтитрів за допомогою AI"
+
+msgid "AI-Powered translation enabled"
+msgstr "Ввімкнути переклад за допомогою AI"
+
+msgid "AI-Powered translation language"
+msgstr "Мова перекладу на основі AI"
+
+msgid "AI-Powered translation subscription code"
+msgstr "Код підписки на переклад на основі AI"
+
 msgid "ARM"
 msgstr "ARM"
 
@@ -1889,10 +1901,10 @@ msgid "Add Bouquet"
 msgstr "додати фаворит"
 
 msgid "Add Bouquet To Parental Protection"
-msgstr "додати фаворит в батьківський контроль"
+msgstr "Додати фаворит у батьківський контроль"
 
 msgid "Add Current"
-msgstr "додати поточний"
+msgstr "Додати поточний"
 
 msgid "Add File Commander to Extensions Menu"
 msgstr "Додати File Commander до Меню розширень"
@@ -1919,10 +1931,10 @@ msgid "Add RecordTimer"
 msgstr "Додати Таймер Запису"
 
 msgid "Add Service To Bouquet"
-msgstr "додати канал до фаворитів"
+msgstr "Додати канал в фаворит"
 
 msgid "Add Service To Favorites"
-msgstr "додати канал до фаворитів"
+msgstr "Додати канал до фаворитів"
 
 msgid "Add Timer"
 msgstr "Додати Таймер"
@@ -3734,6 +3746,9 @@ msgstr "Каталонська / Валенсійська"
 msgid "Cayman Islands"
 msgstr "Кайманові острови"
 
+msgid "Cebuano"
+msgstr "Себуанська"
+
 msgid "Celsius"
 msgstr "Цельсій"
 
@@ -4001,6 +4016,9 @@ msgstr "Китай"
 
 msgid "Chinese"
 msgstr "Китайська"
+
+msgid "Chinese (Simplified)"
+msgstr "Китайська (спрощена)"
 
 #, python-format
 msgid "Chipset: BCM%s"
@@ -4497,6 +4515,9 @@ msgstr ""
 msgid "Configure remote control type"
 msgstr "Налаштування типу пульта керування"
 
+msgid "Configure the AI-Powered translation language."
+msgstr "Налаштуйте мову перекладу за допомогою AI."
+
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "Налаштування DiSEqC режиму для цього конвертора."
 
@@ -4547,6 +4568,9 @@ msgstr "Регулювання яскравості дисплея на пере
 
 msgid "Configure the brightness level of the front panel display for standby."
 msgstr "Регулювання яскравості дисплея на передній панелі."
+
+msgid "Configure the color of the AI-Powered translations."
+msgstr "Налаштуйте колір субтитрів за допомогою AI."
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
 msgstr "Налаштуйте колір зовнішніх субтитрів, альтернативний (нормальний при білому, курсив при жовтому, жирний при блакитному, підкреслений при зеленому), білий або жовтий кольори."
@@ -6902,6 +6926,9 @@ msgstr "Ввімкнути %s про:"
 msgid "Enable 5V for active antenna"
 msgstr "Подати 5В для активної антени"
 
+msgid "Enable AI-Powered translation for all teletext and DVB subtitles."
+msgstr "Увімкніть переклад за допомогою штучного інтелекту для всіх субтитрів телетексту та DVB."
+
 msgid "Enable Autorecord"
 msgstr "Активувати автозапис"
 
@@ -7313,6 +7340,9 @@ msgstr "Введіть частоту гетеродина нижнього ді
 
 msgid "Enter your personal feed URL to allow you to select packages from your personal feed."
 msgstr "Введіть URL-адресу свого особистого каналу, щоб Ви могли вибирати пакети з особистого каналу."
+
+msgid "Enter your subscription code, the unified code for trail is 15."
+msgstr "Введіть свій код підписки, уніфікований код для трейлу 15."
 
 msgid "Entertainment"
 msgstr "Розваги"
@@ -8959,6 +8989,9 @@ msgstr "Тип обладнання"
 msgid "Hausa"
 msgstr "Hausa"
 
+msgid "Hawaiian"
+msgstr "Гавайська"
+
 msgid "Heard Island and McDonald Islands"
 msgstr "Острів Херд і Макдональд"
 
@@ -9123,6 +9156,9 @@ msgstr "Вперед в історії"
 
 msgid "History zap..."
 msgstr "Історія перемикань..."
+
+msgid "Hmong"
+msgstr "Хмонгська"
 
 msgid "Hockey"
 msgstr "Хокей"
@@ -10166,6 +10202,9 @@ msgstr "Куаняма / Кваняма"
 
 msgid "Kurdish"
 msgstr "Курдська"
+
+msgid "Kurdish (Sorani)"
+msgstr "Курдська (Суранська)"
 
 msgid "Kurdistan"
 msgstr "Курдистан"
@@ -19121,7 +19160,7 @@ msgid "TMDB Search"
 msgstr "TMDB Пошук"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 16.06.2024"
+msgstr "Переклад: kvinto - 19.06.2024"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
