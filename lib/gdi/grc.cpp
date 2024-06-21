@@ -1242,7 +1242,7 @@ void gDC::incrementSpinner()
 
 	if (size().width() == 1920)
 	{
-		m_spinner_temp_FHD->blit(*m_spinner_saved_HD, eRect(0, 0, 0, 0), eRect(ePoint(0, 0), m_spinner_pos_FHD.size()), 0, 0, 0);
+		m_spinner_temp_FHD->blit(*m_spinner_saved_FHD, eRect(0, 0, 0, 0), eRect(ePoint(0, 0), m_spinner_pos_FHD.size()), 0, 0, 0);
 
 		if (m_spinner_pic[m_spinner_i])
 			m_spinner_temp_FHD->blit(*m_spinner_pic[m_spinner_i], eRect(0, 0, 0, 0), eRect(ePoint(0, 0), m_spinner_pos_FHD.size()), 0, 0, gPixmap::blitAlphaBlend);
