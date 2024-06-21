@@ -70,4 +70,4 @@ baseinclude_HEADERS = \
 	base/wrappers.h \
 	base/esimpleconfig.h \
 	base/profile.h \
-	base/esettings.cpp
+	base/esettings.h
