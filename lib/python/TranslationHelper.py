@@ -90,6 +90,7 @@ translate = _("Preferred tuner ATSC")
 translate = _("Preferred tuner ATSC for recordings")
 
 # fallback timer
+translate = _("Fallback Timer")
 translate = _("Unexpected error while retrieving fallback tuner's timer information")
 translate = _("Fallback API did not return a valid result.")
 translate = _("Error while retrieving fallback timer information\n%s")
