@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-08 12:32+0000\n"
+"POT-Creation-Date: 2024-06-21 14:25+0000\n"
 "PO-Revision-Date: 2023-08-11 04:46+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -17,15 +17,6 @@ msgstr ""
 "X-Generator: Weblate 5.0-dev\n"
 "X-SourceCharset: UTF-8\n"
 "X-Generated: TM2TURK by thawtes\n"
-
-msgid ""
-"\n"
-"\n"
-"[User - bouquets (TV)]\n"
-msgstr ""
-"\n"
-"\n"
-"[用户- 自定义组(电视)]\n"
 
 msgid ""
 "\n"
@@ -41,31 +32,8 @@ msgstr ""
 "\n"
 "正在进行录制。"
 
-msgid ""
-"\n"
-"[Installed Plugins]\n"
-msgstr ""
-"\n"
-"[已安装的插件]\n"
-
-msgid ""
-"\n"
-"[User - bouquets (RADIO)]\n"
-msgstr ""
-"\n"
-"[用户- 自定义组(广播)]\n"
-
 msgid " "
 msgstr " "
-
-msgid "     no space left on back-up device"
-msgstr "     备份设备没有剩余空间"
-
-msgid "     no writing permission on back-up device"
-msgstr "     备份设备没有写入权限"
-
-msgid "     wrong back-up destination "
-msgstr "     错误的备份路径 "
 
 msgid "  Menu key : Select quad channel"
 msgstr "  菜单键 : 选择四宫格频道"
@@ -1342,6 +1310,15 @@ msgstr ", "
 msgid "-"
 msgstr "-"
 
+msgid "- No space left on backup device."
+msgstr ""
+
+msgid "- No write permission on backup device."
+msgstr ""
+
+msgid "- Wrong backup destination."
+msgstr ""
+
 msgid "-24 Hours"
 msgstr ""
 
@@ -1438,18 +1415,6 @@ msgstr ""
 msgid "2"
 msgstr "2"
 
-msgid "23.976"
-msgstr "23.976"
-
-msgid "24"
-msgstr "24"
-
-msgid "25"
-msgstr "25"
-
-msgid "29.97"
-msgstr "29.97"
-
 msgid "2nd InfoBar"
 msgstr "第二信息栏"
 
@@ -1479,9 +1444,6 @@ msgstr "2x, 4x, 6x, 8x"
 
 msgid "3"
 msgstr "3"
-
-msgid "30"
-msgstr "30"
 
 msgid "3D Mode"
 msgstr "3D模式"
@@ -1566,6 +1528,9 @@ msgstr ""
 
 msgid "A"
 msgstr "A"
+
+msgid "A backup is now being created."
+msgstr ""
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr ""
@@ -1724,6 +1689,18 @@ msgstr "AC3+转码"
 msgid "AFL"
 msgstr "AFL"
 
+msgid "AI-Powered translation color"
+msgstr ""
+
+msgid "AI-Powered translation enabled"
+msgstr ""
+
+msgid "AI-Powered translation language"
+msgstr ""
+
+msgid "AI-Powered translation subscription code"
+msgstr ""
+
 msgid "ARM"
 msgstr "ARM"
 
@@ -1771,9 +1748,6 @@ msgstr ""
 
 msgid "About to start"
 msgstr "即将开始"
-
-msgid "About..."
-msgstr "关于..."
 
 msgid "Access point"
 msgstr "接入点"
@@ -2045,9 +2019,6 @@ msgstr "额外的电机选项允许您输入电机规格表中的详细信息,�
 msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move to another satellite."
 msgstr "额外的电机选项允许您输入电机规格表中的详细信息,这样就可以计算出从一颗卫星移动到另一颗卫星需要多长时间."
 
-msgid "Adjust 3D settings"
-msgstr "调整3D设置"
-
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr "调整颜色设置,使所有的颜色色调是可区分的,但尽可能的饱和出现.如果您对结果感到满意,请按'确定'键以关闭视频微调,或使用数字键选择其他测试屏幕."
 
@@ -2240,9 +2211,6 @@ msgstr "允许您显示/隐藏日志管理器的扩展(蓝色键)."
 msgid "Allows you to show/hide OScam/CCcam in the Extension Menu screen (BLUE button)."
 msgstr ""
 
-msgid "Almost there... "
-msgstr "即将完成... "
-
 msgid "Alpha"
 msgstr "字母表"
 
@@ -2254,6 +2222,15 @@ msgstr "标题下按字母顺序排列"
 
 msgid "Alphanumeric"
 msgstr "字母数字"
+
+msgid "Also import at reboot/restart enigma2"
+msgstr "在重新启动enigma2时导入"
+
+msgid "Also import from the extension menu"
+msgstr "同时从扩展菜单导入"
+
+msgid "Also import when box is leaving standby"
+msgstr "当接收机离开待机状态时也导入"
 
 msgid "Also on standby"
 msgstr "同时待机"
@@ -2269,6 +2246,9 @@ msgstr "备选方案 2"
 
 msgid "Alternative Edit"
 msgstr "[编辑替代项目]"
+
+msgid "Alternative URLs for DVB-T/C or ATSC"
+msgstr "DVB-T/C或ATSC替代URL地址"
 
 msgid "Alternative numbering mode"
 msgstr "可选编号模式"
@@ -2517,6 +2497,9 @@ msgstr ""
 
 msgid "Assamese"
 msgstr "阿萨姆语"
+
+msgid "Assembling the image backup files."
+msgstr ""
 
 msgid "Assigned CAIds:"
 msgstr "指定CAIds:"
@@ -2800,14 +2783,6 @@ msgstr "背面,外部 USB"
 msgid "Back, upper USB"
 msgstr "背面,上方USB插槽"
 
-#, python-format
-msgid "Back-up Tool for a %s\n"
-msgstr "用于 %s 的备份工具\n"
-
-#, python-format
-msgid "Back-up Tool for an %s\n"
-msgstr "用于 %s 的备份工具\n"
-
 msgid "Back/Recall"
 msgstr "返回/取消"
 
@@ -2832,13 +2807,6 @@ msgstr "背景:"
 msgid "Backup"
 msgstr "备份"
 
-#, python-format
-msgid "Backup Date: %s\n"
-msgstr "备份日期: %s\n"
-
-msgid "Backup Image"
-msgstr "备份镜像"
-
 msgid "Backup Location"
 msgstr "备份位置"
 
@@ -2848,29 +2816,17 @@ msgstr "备份日志"
 msgid "Backup Mode"
 msgstr "备份模式"
 
-msgid "Backup Mode: Flash Online\n"
-msgstr "备份方式: 在线刷机\n"
+msgid "Backup Mode: Flash Online"
+msgstr ""
 
-msgid "Backup Mode: USB Recovery\n"
-msgstr "备份模式: 使用U盘恢复\n"
+msgid "Backup Mode: USB Recovery"
+msgstr ""
 
 msgid "Backup Settings"
 msgstr "备份设置"
 
 msgid "Backup System Settings"
 msgstr "备份系统设置"
-
-msgid "Backup completed."
-msgstr "备份已完成."
-
-msgid "Backup done."
-msgstr "备份完成."
-
-msgid "Backup failed!"
-msgstr ""
-
-msgid "Backup failed."
-msgstr "备份失败."
 
 msgid "Backup images"
 msgstr ""
@@ -2886,8 +2842,8 @@ msgstr ""
 "是否要立即安装？"
 
 #, python-format
-msgid "Backup to destination: %s"
-msgstr "备份到:%s"
+msgid "Backup tool for %s %s"
+msgstr ""
 
 msgid "Backup your %s %s settings."
 msgstr "备份 %s %s 设置."
@@ -2937,10 +2893,10 @@ msgstr ""
 msgid "Base time"
 msgstr "基准时间"
 
-msgid "Base transparency for OpenOpera web browser"
+msgid "Base transparency for OpenOpera web browser."
 msgstr "web网页浏览器的基本透明度"
 
-msgid "Base transparency for teletext, more options available within teletext screen."
+msgid "Base transparency for teletext, more options are available within teletext screen."
 msgstr "图文电视基本透明度,不在图文电视屏幕的更多选项可用."
 
 msgid "Baseball"
@@ -2954,6 +2910,9 @@ msgstr "篮球"
 
 msgid "Basque"
 msgstr "巴斯克语"
+
+msgid "Before changing these settings try to disable any overscan settings on th TV / display screen. To calibrate the On-Screen-Display (OSD) adjust the position and size values until the red box is *just* visible and touches the edges of the screen."
+msgstr ""
 
 msgid "Begin time"
 msgstr "开始时间"
@@ -3205,10 +3164,6 @@ msgstr "构建信息"
 msgid "Build information for %s %s"
 msgstr ""
 
-#, python-format
-msgid "Build: %s"
-msgstr "版本号: %s"
-
 msgid "Bulgaria"
 msgstr "保加利亚"
 
@@ -3256,9 +3211,6 @@ msgstr ""
 
 msgid "By disk label"
 msgstr ""
-
-msgid "By openATV Image Team"
-msgstr "由openATV镜像团队提供"
 
 msgid "Bypass HDMI EDID Check"
 msgstr "绕开HDMI EDID检查"
@@ -3532,6 +3484,9 @@ msgstr "无法上传定时器"
 msgid "Can't allocate program source (e.g. tuner)"
 msgstr "无法分配程序源(例如调谐器)"
 
+msgid "Can't create backup directory!"
+msgstr ""
+
 msgid ""
 "Can't going to live TV!\n"
 "Switch to live TV and restart time shift ?"
@@ -3648,9 +3603,6 @@ msgstr "取消更新"
 msgid "Cancelled upon user request"
 msgstr "应用户要求取消"
 
-msgid "Cannot create backup directory"
-msgstr "无法创建备份目录"
-
 msgid "Cannot delete file"
 msgstr "无法删除文件"
 
@@ -3694,6 +3646,9 @@ msgstr "加泰罗尼亚语/巴伦西亚语"
 
 msgid "Cayman Islands"
 msgstr "开曼群岛"
+
+msgid "Cebuano"
+msgstr ""
 
 msgid "Celsius"
 msgstr "摄氏度"
@@ -3963,9 +3918,8 @@ msgstr "中国"
 msgid "Chinese"
 msgstr "中文"
 
-#, python-format
-msgid "Chipset: BCM%s"
-msgstr "芯片组: BCM%s"
+msgid "Chinese (Simplified)"
+msgstr ""
 
 msgid "Choice Box"
 msgstr "选择机顶盒"
@@ -4004,12 +3958,6 @@ msgstr ""
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "选择连接到ICETV服务器以检查更新的频率."
 
-msgid "Choose the Display Skin and press GREEN to activate the skin."
-msgstr ""
-
-msgid "Choose the OSD Skin and press GREEN to activate the skin."
-msgstr ""
-
 msgid "Choose the amount of additional slots."
 msgstr ""
 
@@ -4018,6 +3966,9 @@ msgstr "选择日期的显示格式样式.'D'/'DD'是日期,'M'/'MM'是月份的
 
 msgid "Choose the display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds.  ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "选择时间的显示格式样式.'H'/'HH'是24小时制,'h'/'hh'是12小时制,'mm'是 分钟,'ss'是秒,（'HH'和'hh'有前导零表示单个数字值.）屏幕显示将根 据您的选择而定,但可能受皮肤的影响."
+
+msgid "Choose the fallback font."
+msgstr ""
 
 msgid "Choose the front panel display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "为日期选择前面板显示格式样式.'D'/'DD'是日期,'M'/'MM'是月份 的数字.（'DD'和'MM'有前导零表示单个数字值.）屏幕显示 将根据您的选择而定,但可能受皮肤的影响."
@@ -4304,6 +4255,11 @@ msgstr ""
 msgid "Command execution..."
 msgstr "执行命令..."
 
+msgid "Command finished."
+msgid_plural "Commands finished."
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Command order"
 msgstr "命令顺序"
 
@@ -4453,6 +4409,9 @@ msgstr ""
 msgid "Configure remote control type"
 msgstr "配置遥控器类型"
 
+msgid "Configure the AI-Powered translation language."
+msgstr ""
+
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "为此LNB配置DiSEqC模式."
 
@@ -4500,6 +4459,9 @@ msgstr "为正常操作配置前面板显示屏的亮度级别."
 
 msgid "Configure the brightness level of the front panel display for standby."
 msgstr "配置待机前面板显示屏的亮度级别."
+
+msgid "Configure the color of the AI-Powered translations."
+msgstr ""
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
 msgstr "配置外部字幕的颜色,可选(白色为正常,黄色为斜体,青色为粗体,绿色为下划线),白色或黄色."
@@ -4814,6 +4776,9 @@ msgstr "连接信息"
 msgid "Console"
 msgstr "控制台"
 
+msgid "Console Actions"
+msgstr ""
+
 msgid "Console Network Packages"
 msgstr ""
 
@@ -5065,6 +5030,10 @@ msgstr ""
 msgid "Create a symbolic link"
 msgstr ""
 
+#, python-format
+msgid "Create recovery image backup '%s'."
+msgstr ""
+
 msgid "Create separate radio user bouquet"
 msgstr "创建单独的广播用户自定义组"
 
@@ -5076,13 +5045,6 @@ msgstr ""
 
 msgid "Create the flash expander in the selected device"
 msgstr ""
-
-msgid "Create:"
-msgstr "创建:"
-
-#, python-format
-msgid "Create: Recovery Fullbackup %s"
-msgstr "创建:恢复完整备份 %s"
 
 msgid "Creating .ap and .sc files"
 msgstr "创建AP和SC文件"
@@ -5234,6 +5196,9 @@ msgstr "自定义跳转时间7/9'键"
 
 msgid "Customize"
 msgstr "自定设置"
+
+msgid "Customize OpenWebIF settings for fallback tuner"
+msgstr "自定义备份调谐器的OpenWebIF设置"
 
 msgid "Customize System Settings"
 msgstr ""
@@ -5654,9 +5619,6 @@ msgstr ""
 msgid "Default: '%s'."
 msgstr "默认: '%s'."
 
-msgid "Defaults"
-msgstr "默认值"
-
 msgid "Define Softcam For This Provider"
 msgstr ""
 
@@ -5955,8 +5917,20 @@ msgid "Deselect only highlighted file"
 msgstr ""
 
 #, python-format
-msgid "Deselected packages usually occur because those packaged are incompatible with existing packages.  While this is mostly harmless it is possible that your %s %s may experience issues."
+msgid "Deselected packages usually occur because those packaged are incompatible with existing packages. While this is mostly harmless it is possible that your %s %s may experience issues."
 msgstr "取消选择的包通常发生,因为打包的包与现有包不兼容. 虽然这基本上是无害的,但您的 %s %s 可能会遇到问题."
+
+msgid "Destination of fallback remote receiver"
+msgstr "备用的遥控接收器目标"
+
+msgid "Destination of fallback remote receiver for ATSC"
+msgstr "ATSC远程备用接收器的目的地"
+
+msgid "Destination of fallback remote receiver for DVB-C"
+msgstr "DVB-C远程备份接收器的目的地"
+
+msgid "Destination of fallback remote receiver for DVB-T"
+msgstr "DVB-T远程备份接收器的目的地"
 
 msgid "Detail of GStreamer log."
 msgstr "GStreamer日志的详细信息"
@@ -6240,6 +6214,9 @@ msgstr "吉布提"
 msgid "Do another manual service scan?"
 msgstr ""
 
+msgid "Do not backup the image"
+msgstr ""
+
 msgid "Do not change"
 msgstr "不更改"
 
@@ -6324,6 +6301,18 @@ msgstr "是否确定要删除 %s 的定时器?"
 #, python-format
 msgid "Do you really want to remove your bookmark for '%s'?"
 msgstr "是否确定要删除 %s 的书签?"
+
+msgid ""
+"Do you really want to restart OSCam?\n"
+"\n"
+"HINT: This will take about 5 seconds!"
+msgstr ""
+
+msgid ""
+"Do you really want to shut down OSCam?\n"
+"\n"
+"ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+msgstr ""
 
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
@@ -6522,7 +6511,7 @@ msgstr "正在下载"
 msgid "Downloading Image"
 msgstr "正在下载镜像"
 
-msgid "Downloading latest update list.  Please wait..."
+msgid "Downloading latest update list. Please wait..."
 msgstr "正在下载最新更新列表,  请稍等..."
 
 msgid "Downloading plugin information. Please wait..."
@@ -6810,6 +6799,9 @@ msgstr "启用%s专业版:"
 msgid "Enable 5V for active antenna"
 msgstr "启用5V有源天线"
 
+msgid "Enable AI-Powered translation for all teletext and DVB subtitles."
+msgstr ""
+
 msgid "Enable Autorecord"
 msgstr "启用录像"
 
@@ -6958,6 +6950,9 @@ msgstr "启用备用遥控接收器"
 msgid "Enable freesat EPG"
 msgstr "启用免费EPG"
 
+msgid "Enable import timer from fallback tuner"
+msgstr "从备用调谐器启用导入定时器"
+
 msgid "Enable intro screen"
 msgstr "启用简介界面"
 
@@ -7031,9 +7026,6 @@ msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup
 msgstr "启用显示所有开/关和启用/禁用设置选项作为图形开关."
 
 msgid "Enable to display setup entries alphabetically."
-msgstr ""
-
-msgid "Enable to display the Extension Menu screen entries alphabetically."
 msgstr ""
 
 msgid "Enable to display the current value of the slider at end of the slider bar."
@@ -7129,21 +7121,6 @@ msgstr "增强电影中心"
 msgid "Enigma2 (re)starts"
 msgstr "Enigma2重启次数"
 
-msgid ""
-"Enigma2 Skinselector\n"
-"\n"
-"If you experience any problems please contact\n"
-"stephan@reichholf.net\n"
-"\n"
-"© 2006 - Stephan Reichholf"
-msgstr ""
-"Enigma2皮肤选择 \n"
-"\n"
-"如果你有任何问题请联系\n"
-"stephan@reichholf.net\n"
-"\n"
-"© 2006 - Stephan Reichholf"
-
 msgid "Enigma2 debug level"
 msgstr "Enigma2调试级别"
 
@@ -7165,6 +7142,9 @@ msgstr "输入"
 #, python-format
 msgid "Enter DNS (Dynamic Name Server) %d's IP address."
 msgstr ""
+
+msgid "Enter IP address"
+msgstr "输入IP地址"
 
 msgid "Enter PIN"
 msgstr "输入PIN"
@@ -7230,6 +7210,9 @@ msgid "Enter your low band local oscillator frequency. For more information cons
 msgstr "输入您的低频本地振荡器频率.有关更多信息,请参阅LNB的规格表."
 
 msgid "Enter your personal feed URL to allow you to select packages from your personal feed."
+msgstr ""
+
+msgid "Enter your subscription code, the unified code for trial is 15."
 msgstr ""
 
 msgid "Entertainment"
@@ -7401,12 +7384,6 @@ msgstr ""
 msgid "Error opening recording file"
 msgstr "打开录制文件时出错"
 
-msgid "Error reading bouquets.radio"
-msgstr "读取广播组时出错"
-
-msgid "Error reading bouquets.tv"
-msgstr "读取电视组时出错"
-
 msgid "Error reading webpage!"
 msgstr "读取网页时出错！"
 
@@ -7416,6 +7393,14 @@ msgstr ""
 #, python-format
 msgid "Error unzipping image '%s'!"
 msgstr ""
+
+#, python-format
+msgid ""
+"Error while retrieving fallback timer information\n"
+"%s"
+msgstr ""
+"检索备用定时器信息时出错\n"
+"%s"
 
 msgid "Error, unknown Result!"
 msgstr "错误,未知结果!"
@@ -7527,6 +7512,10 @@ msgid "Error: Unable to rename directory '%s' to '%s'!"
 msgstr ""
 
 #, python-format
+msgid "Error: Unable to write log file '%s'!"
+msgstr "文件写入错误:'%s'"
+
+#, python-format
 msgid "Error: You can't run '%s' on '%s'!"
 msgstr ""
 
@@ -7629,12 +7618,6 @@ msgstr "超过双层介质!"
 msgid "Execution condition"
 msgstr "执行条件"
 
-msgid "Execution finished!!"
-msgstr "执行完毕!!"
-
-msgid "Execution progress:"
-msgstr "执行进度:"
-
 msgid "Exif"
 msgstr "镜像信息"
 
@@ -7658,6 +7641,9 @@ msgstr "退出四画面频道选择"
 
 msgid "Exit all menus"
 msgstr "退出所有菜单"
+
+msgid "Exit and close all screens without performing a backup"
+msgstr ""
 
 msgid "Exit editor"
 msgstr "退出编辑器"
@@ -7708,6 +7694,9 @@ msgid "Exit the wizard"
 msgstr "退出此向导"
 
 msgid "Exit viewer"
+msgstr ""
+
+msgid "Exit without performing a backup"
 msgstr ""
 
 msgid "Expand"
@@ -7885,8 +7874,38 @@ msgstr "失败:"
 msgid "Falkland Islands (Malvinas)"
 msgstr "福克兰群岛(马尔维纳斯)"
 
+msgid "Fallback API did not return a valid result."
+msgstr ""
+
+msgid "Fallback Font *"
+msgstr ""
+
+msgid "Fallback remote receiver"
+msgstr "备用的远程接收器"
+
+msgid "Fallback remote receiver IP"
+msgstr "备用远程接收器IP"
+
+msgid "Fallback remote receiver Port"
+msgstr "备用远程接收器端口"
+
 msgid "Fallback remote receiver URL"
 msgstr "备用远程接收器网址"
+
+msgid "Fallback remote receiver for ATSC"
+msgstr "ATSC备用远程接收器"
+
+msgid "Fallback remote receiver for DVB-C"
+msgstr "DVB-CATSC备用远程接收器"
+
+msgid "Fallback remote receiver for DVB-T"
+msgstr "DVB-TATSC备用远程接收器"
+
+msgid "Fallback Timer"
+msgstr "备用定时器"
+
+msgid "Fallback tuner setup"
+msgstr "设置备用调谐器"
 
 msgid "False"
 msgstr "错误"
@@ -8076,10 +8095,6 @@ msgstr ""
 
 msgid "File transfer was cancelled by user"
 msgstr "文件传输已被用户取消"
-
-#, python-format
-msgid "File write error: '%s'"
-msgstr "文件写入错误:'%s'"
 
 msgid "Filename"
 msgstr "文件名"
@@ -8394,18 +8409,11 @@ msgstr "前处理器版本"
 msgid "Fulah"
 msgstr "富拉赫语"
 
-msgid "Full Image Backup "
-msgstr "完整镜像备份 "
-
 msgid "Full Range RGB"
 msgstr "全范围RGB"
 
 msgid "Full Stretch"
 msgstr ""
-
-#, python-format
-msgid "Full back-up on %s"
-msgstr "%s的完整备份"
 
 msgid "Full factory reset"
 msgstr ""
@@ -8448,13 +8456,6 @@ msgstr "GStreamer版本"
 
 msgid "GUI Skin *"
 msgstr ""
-
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to Restart the GUI now?"
-msgstr ""
-"GUI需要重新启动以应用新皮肤 \n"
-"是否要立即重新启动GUI?"
 
 msgid "Gabon"
 msgstr "加蓬"
@@ -8847,6 +8848,9 @@ msgstr "硬件类型"
 msgid "Hausa"
 msgstr "豪萨语"
 
+msgid "Hawaiian"
+msgstr ""
+
 msgid "Heard Island and McDonald Islands"
 msgstr "赫德岛和麦克唐纳群岛"
 
@@ -8955,6 +8959,9 @@ msgstr "隐藏信息栏"
 msgid "Hide zap errors"
 msgstr "隐藏换台错误"
 
+msgid "Hide/Show the console screen"
+msgstr ""
+
 msgid "Hierarchy info"
 msgstr "层次结构信息"
 
@@ -9008,6 +9015,9 @@ msgstr "接下来的历史"
 
 msgid "History zap..."
 msgstr "历史换台 ..."
+
+msgid "Hmong"
+msgstr ""
 
 msgid "Hockey"
 msgstr "曲棍球"
@@ -9152,6 +9162,9 @@ msgstr "IP地址"
 
 msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr ""
+
+msgid "IP of fallback remote receiver"
+msgstr "备用接收器IP地址"
 
 msgid "IPK Installer"
 msgstr "IPK安装器"
@@ -9356,15 +9369,21 @@ msgstr "忽略意外唤醒并保持待机状态"
 msgid "Image Backup"
 msgstr "镜像备份"
 
-msgid "Image Flash Actions"
+msgid "Image Backup Actions"
 msgstr ""
 
 #, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
+msgid "Image Backup To %s"
 msgstr ""
 
-msgid "Image creation failed - "
-msgstr "镜像创建失败 - "
+msgid "Image Flash Actions"
+msgstr ""
+
+msgid "Image created:"
+msgstr ""
+
+msgid "Image creation failed!"
+msgstr ""
 
 msgid "ImageWizard"
 msgstr "镜像向导"
@@ -9377,6 +9396,21 @@ msgstr ""
 
 msgid "Immediately restart selected devices."
 msgstr "立即重新启动选定的设备."
+
+msgid "Import channels and/or EPG from remote receiver URL also when the receiver is getting out of standby"
+msgstr "从远程接收器URL导入频道或EPG,当接收器正在退出待机状态"
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver is booted"
+msgstr "启动接收器时从远程接收器URL导入频道或EPG"
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
+msgstr "重新启动接收器时,从远程接收器URL导入频道或EPG"
+
+msgid "Import from remote receiver URL"
+msgstr "从远程接收器URL导入"
+
+msgid "Import remote receiver URL"
+msgstr "导入远程接收器URL"
 
 msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
 msgstr "除了在一个事件开始的检查,一个重复的检查可以使用,使条件'缓冲限制在小时'或'检查自由空间'之前检测到."
@@ -10020,6 +10054,9 @@ msgstr "关山"
 msgid "Kurdish"
 msgstr "库尔德语"
 
+msgid "Kurdish (Sorani)"
+msgstr ""
+
 msgid "Kurdistan"
 msgstr ""
 
@@ -10037,9 +10074,6 @@ msgstr "局域网适配器"
 
 msgid "LAN connection"
 msgstr "局域网连接"
-
-msgid "LCD Skin Settings"
-msgstr "LCD皮肤设置"
 
 msgid "LCD scroll speed"
 msgstr "LCD滚屏速度"
@@ -10206,7 +10240,7 @@ msgstr "休闲爱好"
 msgid "Lesotho"
 msgstr "莱索托"
 
-#. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
+#. TRANSLATORS: Aspect ratio policy: Black bars on top/bottom in doubt, keep English term.
 msgid "Letterbox"
 msgstr "信箱模式"
 
@@ -10596,6 +10630,9 @@ msgstr "管理和维护你的多重启动设备."
 msgid "Make"
 msgstr ""
 
+msgid "Make it possible to manually initiate the channels import and/or EPG via the extension menu"
+msgstr "可以通过以下方式手动启动通道导入EPG扩展菜单"
+
 msgid "Make this mark an 'in' point"
 msgstr "这个标记作为'入'节点"
 
@@ -10946,17 +10983,11 @@ msgstr "移动连接"
 msgid "Mode"
 msgstr "模式"
 
-msgid "Mode 1"
-msgstr "模式 1"
-
 msgid "Mode 12: Supports PiP but Kodi may not work"
 msgstr ""
 
 msgid "Mode 1: Supports Kodi but PiP may not work"
 msgstr ""
-
-msgid "Mode 2"
-msgstr "模式 2"
 
 msgid "Mode for autorestore"
 msgstr "自动存储模式"
@@ -11355,6 +11386,9 @@ msgstr "向西移动 ..."
 msgid "Mozambique"
 msgstr "莫桑比克"
 
+msgid "Multi"
+msgstr ""
+
 msgid "Multi EPG"
 msgstr "多重EPG"
 
@@ -11385,9 +11419,8 @@ msgstr "多库"
 msgid "MultiTranscoding"
 msgstr "多重转码"
 
-#, python-format
-msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
-msgstr "多启动镜像创建于: %s/%s-%s-%s-backup-%s_usb.zip"
+msgid "Multiboot Image created:"
+msgstr ""
 
 msgid "Multimedia Packages"
 msgstr ""
@@ -11449,6 +11482,9 @@ msgstr ""
 
 #, python-format
 msgid "NOTE: These %d directories/files exist and will be overwritten!"
+msgstr ""
+
+msgid "NOTE: While the console screen is hidden from view the buttons are still active. Pressing any enabled button will cause the screen to reappear but the button will not be actioned."
 msgstr ""
 
 msgid "NOW"
@@ -11757,9 +11793,6 @@ msgstr "没有发现(支持)DVDROM!"
 msgid "No Connection"
 msgstr "未连接"
 
-msgid "No Devices Found !!"
-msgstr "没有找到设备!!"
-
 msgid "No ECM PIDs available"
 msgstr "没有可用的ECM PID"
 
@@ -11935,9 +11968,6 @@ msgstr "无需更新！"
 msgid "No updates available."
 msgstr "没有可用的更新."
 
-msgid "No updates were available.  Please try again later."
-msgstr "没有可用的更新.请稍后再试."
-
 msgid "No valid device detected - Press OK"
 msgstr ""
 
@@ -11974,9 +12004,6 @@ msgstr ""
 
 msgid "No, but restart from begin"
 msgstr "否,但从重新开始启动"
-
-msgid "No, do not backup a image"
-msgstr "否,不备份映像"
 
 msgid "No, do nothing."
 msgstr "否,什么也不做."
@@ -12136,9 +12163,6 @@ msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "正在播放"
 
-msgid "Now building the Backup Image"
-msgstr "现在正在构建备份镜像"
-
 msgid "Now save time shift as movie and continues recording"
 msgstr "现在保存时移为影片并继续录像"
 
@@ -12219,11 +12243,11 @@ msgstr "OSD菜单"
 msgid "OSD 3D Settings"
 msgstr "OSD 3D设置"
 
-msgid "OSD Adjustment"
-msgstr "OSD调整"
-
 msgid "OSD Calibration"
 msgstr "OSD位置"
+
+msgid "OSD Calibration Settings"
+msgstr ""
 
 msgid "OSD Settings"
 msgstr "OSD选项"
@@ -12233,6 +12257,9 @@ msgstr "OSD设置"
 
 msgid "OSD name request"
 msgstr "OSD名称请求"
+
+msgid "OSD visibility"
+msgstr ""
 
 msgid "OTT Model"
 msgstr "OTT型号"
@@ -12384,10 +12411,16 @@ msgstr "打开频道列表并选择上一频道为画中画"
 msgid "Open the Channel Selection Settings screen"
 msgstr ""
 
+msgid "Open the Image information"
+msgstr ""
+
 msgid "Open the Plugin Browser"
 msgstr "打开插件浏览器"
 
 msgid "Open the Plugin Browser settings screen"
+msgstr ""
+
+msgid "Open the Storage Device information"
 msgstr ""
 
 msgid "Open the VirtualKeyBoard for text entry"
@@ -12659,8 +12692,8 @@ msgstr "巴勒斯坦国"
 msgid "Pali"
 msgstr "巴利语"
 
-#. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
-#. TRANSLATORS: (aspect ratio policy: Fit width, cut/crop top and bottom (Maintain aspect ratio))
+#. TRANSLATORS: Aspect ratio policy: Cropped content on left/right in doubt, keep English term.
+#. TRANSLATORS: Aspect ratio policy: Fit width, cut/crop top and bottom (maintain aspect ratio).
 msgid "Pan&scan"
 msgstr "全景扫描"
 
@@ -12733,9 +12766,6 @@ msgstr "密码已更改"
 #, python-format
 msgid "Path '%s' missing!"
 msgstr ""
-
-msgid "Path to save not exist: '/tmp/'"
-msgstr "要保存的路径不存在:'/tmp/'"
 
 msgid "Pause"
 msgstr "暂停"
@@ -12854,7 +12884,7 @@ msgstr "图片播放器"
 msgid "Pictures"
 msgstr "图片"
 
-#. TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
+#. TRANSLATORS: Aspect ratio policy: Black bars on left/right in doubt, keep English term.
 msgid "Pillarbox"
 msgstr "原始大小"
 
@@ -12972,11 +13002,8 @@ msgstr "播放暂停"
 msgid "Please add titles to the compilation."
 msgstr "请在编译时添加标题."
 
-msgid "Please be patient, a backup will now be made,\n"
-msgstr "请耐心等待,备份即将创建.\n"
-
-msgid "Please check the manual of the receiver"
-msgstr "请检查接收器的手册"
+msgid "Please be patient."
+msgstr ""
 
 msgid "Please choose an extension..."
 msgstr "请选择一个扩展..."
@@ -13051,9 +13078,6 @@ msgstr "请按OK键继续."
 msgid "Please press OK when ready"
 msgstr ""
 
-msgid "Please select a backup destination"
-msgstr "请选择备份目的地"
-
 msgid "Please select a default EPG type..."
 msgstr "请选择默认的EPG类型..."
 
@@ -13111,22 +13135,11 @@ msgstr "请选择与您的实际位置最匹配的区域.我们需要该地区�
 msgid "Please select the sub-service to record:"
 msgstr "请选择要录制的子频道..."
 
+msgid "Please select the target location to save the backup:"
+msgstr ""
+
 msgid "Please select what to do after flash of the following image:"
 msgstr ""
-
-msgid ""
-"Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
-"When you are ready press OK to continue."
-msgstr ""
-"请设置您的用户界面,通过调整数值,直到红色方块的边缘,触摸你的电视的边缘.\n"
-"当您准备好后按OK键继续."
-
-msgid ""
-"Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
-"When you are ready press green to continue."
-msgstr ""
-"请设置您的用户界面,通过调整数值,直到红色方块的边缘,触摸你的电视的边缘.\n"
-"当你准备好后按绿色键继续."
 
 msgid ""
 "Please use direction keys to move the PiP window.\n"
@@ -13231,9 +13244,6 @@ msgstr "请稍候..."
 msgid "Please wait... Loading list..."
 msgstr "请稍候,正在载入列表..."
 
-msgid "Please wait...almost ready! "
-msgstr "请稍候...即将完成! "
-
 msgid "Plug in USB device"
 msgstr ""
 
@@ -13318,14 +13328,14 @@ msgstr "端口 D"
 msgid "Port number for the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr ""
 
+msgid "Port of fallback remote receiver"
+msgstr "备用接收器端口"
+
 msgid "Portugal"
 msgstr "葡萄牙"
 
 msgid "Portuguese"
 msgstr "葡萄牙语"
-
-msgid "Position Setup"
-msgstr "位置设置"
 
 msgid "Position of finished Timers in Timerlist"
 msgstr "已完成定时器在定时器列表中的位置"
@@ -13350,6 +13360,9 @@ msgstr "极轴设置日志"
 
 msgid "Positioner setup"
 msgstr "极轴设置"
+
+msgid "Possible causes could be:"
+msgstr ""
 
 msgid "Power"
 msgstr "电源"
@@ -13489,9 +13502,6 @@ msgstr ""
 msgid "Press OK on your remote control to continue."
 msgstr "按遥控器上的OK键继续."
 
-msgid "Press OK to activate the selected skin."
-msgstr "按OK键以激活所选皮肤."
-
 msgid "Press OK to activate the settings."
 msgstr "按OK键激活设置."
 
@@ -13628,9 +13638,6 @@ msgstr "黄金时段 分钟"
 
 msgid "Priority"
 msgstr "优先次序"
-
-msgid "Probable causes could be"
-msgstr "可能的原因是"
 
 msgid "Proc model"
 msgstr "PROC模型"
@@ -13863,6 +13870,9 @@ msgstr "快速EPG"
 
 msgid "Quick Launch Menu"
 msgstr "快捷启动菜单"
+
+msgid "Quick Menu Actions"
+msgstr ""
 
 msgid "Quick Menu..."
 msgstr "快速导航菜单..."
@@ -14640,6 +14650,9 @@ msgstr "重启网络"
 msgid "Restart Network Adapter"
 msgstr "重启网络适配器"
 
+msgid "Restart OSCam"
+msgstr ""
+
 msgid "Restart enigma"
 msgstr "重启Enigma"
 
@@ -14876,6 +14889,10 @@ msgstr "运行"
 msgid "Running Myrestore script, Please wait ..."
 msgstr "正在运行Myrestore脚本,请稍等..."
 
+#, python-format
+msgid "Running command %d: '%s'."
+msgstr ""
+
 msgid "Russian"
 msgstr "俄语"
 
@@ -14988,6 +15005,9 @@ msgstr ""
 msgid "Same as in active"
 msgstr "与活动中的相同"
 
+msgid "Same as stream"
+msgstr "与流相同"
+
 msgid "Same behavior as current animation"
 msgstr "与当前动画的行为相同"
 
@@ -15066,6 +15086,9 @@ msgstr ""
 msgid "Save EPG data"
 msgstr "保存EPG数据"
 
+msgid "Save Log"
+msgstr ""
+
 msgid "Save all changed settings and exit"
 msgstr "保存所有更改的设置并退出"
 
@@ -15115,6 +15138,9 @@ msgid "Save the left column directory location on exit."
 msgstr ""
 
 msgid "Save the log changes and exit"
+msgstr ""
+
+msgid "Save the log of the console messages to a file"
 msgstr ""
 
 msgid "Save the right column directory location on exit."
@@ -15542,6 +15568,9 @@ msgstr ""
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
 msgstr ""
 
+msgid "Select 'Yes' to show subscription packages in the Download Plugins screen."
+msgstr ""
+
 msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
 msgstr ""
 
@@ -15596,9 +15625,6 @@ msgstr "选择CAId"
 msgid "Select Device"
 msgstr ""
 
-msgid "Select Display Skin"
-msgstr ""
-
 msgid "Select Enigma2 Skin"
 msgstr "选择Enigma2皮肤"
 
@@ -15613,9 +15639,6 @@ msgstr "选择文件夹"
 
 msgid "Select HDD"
 msgstr "选择硬盘"
-
-msgid "Select LCD Skin"
-msgstr "选择LCD皮肤"
 
 msgid "Select Lan/Wlan"
 msgstr "选择 有线/无线网络"
@@ -15638,9 +15661,6 @@ msgstr "选择卫星"
 msgid "Select Shares"
 msgstr ""
 
-msgid "Select Skin"
-msgstr ""
-
 msgid "Select Softcam"
 msgstr "选择softcam"
 
@@ -15655,9 +15675,6 @@ msgstr "选择升级源"
 
 msgid "Select Upgrade Source To Edit"
 msgstr "选择升级源来编辑."
-
-msgid "Select Your Skin"
-msgstr "选择你的皮肤"
 
 msgid "Select a Softcam from the available list as the default for AutoCam."
 msgstr ""
@@ -16112,6 +16129,9 @@ msgstr "仅为下一个字符选择移位字符集"
 msgid "Select the sort order for the file lines:"
 msgstr ""
 
+msgid "Select the sort order of the Extension Menu entries."
+msgstr ""
+
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
 msgstr ""
 
@@ -16159,6 +16179,9 @@ msgstr ""
 
 msgid "Select the time zone within the area or region."
 msgstr "选择区域或区域内的时区."
+
+msgid "Select the timer from the fallback tuner by default"
+msgstr "启用后,从备用调谐器导入定时器"
 
 msgid "Select the tuner that controls the motorized dish."
 msgstr "选择控制电动极轴的调谐器."
@@ -16533,6 +16556,9 @@ msgstr ""
 msgid "Set action for 'Info' key"
 msgstr "为'Info'键设置动作"
 
+msgid "Set alternative fallback tuners for DVB-T/C or ATSC"
+msgstr "DVB-T/C或ATSC备用调谐器的识别"
+
 msgid "Set current CEC address as fixed address"
 msgstr "将当前CEC地址设置为固定地址"
 
@@ -16570,6 +16596,9 @@ msgstr "系统设置"
 msgid "Set the MAC address of your %s %s."
 msgstr "设置%s %s的MAC地址."
 
+msgid "Set the User ID of the OpenWebif from your fallback tuner"
+msgstr "从备用调谐器设置OpenWebif的用户ID"
+
 msgid "Set the aspect ratio of the service picons."
 msgstr "设置频道picon的宽高比."
 
@@ -16596,6 +16625,12 @@ msgstr "设置搜索栏的跳跃大小."
 
 msgid "Set the number of lines to be saved for 'stout' and 'sterr' output in scripts."
 msgstr ""
+
+msgid "Set the password of the OpenWebif from your fallback tuner"
+msgstr "从备用调谐器设置OpenWebif的密码"
+
+msgid "Set the port of the OpenWebif from your fallback tuner"
+msgstr "从备用调谐器设置OpenWebif的端口"
 
 msgid "Set the position of the recording icons."
 msgstr "设置录像图标的位置"
@@ -16629,6 +16664,9 @@ msgstr "设置隐藏第二个信息栏的时间.该栏也会在按下'OK'时消�
 
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, PowerTimer, SleepTimer etc."
 msgstr "设置在关机,待机或重新启动消息中等待执行默认操作的时间.(例如,用于定时器、电源定时器,睡眠定时器等,...)"
+
+msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
+msgstr ""
 
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "在频道选择界面中设置进度条的类型."
@@ -16814,9 +16852,6 @@ msgstr "设置硬盘"
 
 msgid "Setup your LCD"
 msgstr "LCD显示设置"
-
-msgid "Setup your LCD Skin"
-msgstr ""
 
 msgid "Setup your OSD"
 msgstr "OSD显示设置"
@@ -17137,6 +17172,9 @@ msgstr ""
 msgid "Show Source packages"
 msgstr ""
 
+msgid "Show Subscription packages"
+msgstr ""
+
 msgid "Show Subservices Of Active Service"
 msgstr ""
 
@@ -17386,6 +17424,18 @@ msgstr ""
 
 msgid "Show next system information screen"
 msgstr ""
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL did not complete"
+msgstr "从远程接收器URL导入频道和EPG时显示通知未完成"
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL is completed"
+msgstr "从远程接收器URL导入频道和EPG时显示通知已完成"
+
+msgid "Show notification when import channels was not successful"
+msgstr "导入频道未成功时显示通知"
+
+msgid "Show notification when import channels was successful"
+msgstr "导入频道成功时显示通知"
 
 msgid "Show or hide the extended description, (skin dependent)."
 msgstr "显示或隐藏附件的描述,(依皮肤而定)."
@@ -17675,6 +17725,9 @@ msgstr "关机"
 msgid "Shutdown"
 msgstr "关机"
 
+msgid "Shutdown OSCam"
+msgstr ""
+
 msgid "Shutting down. Please wait..."
 msgstr ""
 
@@ -17774,9 +17827,6 @@ msgstr ""
 msgid "Size descending"
 msgstr ""
 
-msgid "Skin"
-msgstr "皮肤"
-
 msgid "Skin & Resolution"
 msgstr "皮肤与分辨率"
 
@@ -17794,9 +17844,6 @@ msgstr "皮肤设置"
 
 msgid "SkinSelection"
 msgstr ""
-
-msgid "SkinSelector"
-msgstr "皮肤选择器"
 
 msgid "Skip back"
 msgstr "向后快退"
@@ -17932,7 +17979,7 @@ msgstr ""
 msgid "Slot Manager Actions"
 msgstr ""
 
-msgid "Slot R: Root Slot Full Backup (Current image)"
+msgid "Slot R: Root Slot Image Backup (Current image)"
 msgstr ""
 
 msgid "Slot count"
@@ -18229,6 +18276,9 @@ msgstr ""
 msgid "Speed"
 msgstr "宽带速率"
 
+msgid "Spinner Position"
+msgstr ""
+
 msgid "Split preview mode"
 msgstr "分割预览模式"
 
@@ -18320,6 +18370,9 @@ msgid "Start test"
 msgstr "开始测试"
 
 msgid "Start the Kexec initialization"
+msgstr ""
+
+msgid "Start the backup of the selected image"
 msgstr ""
 
 msgid "Start the highlighted plugin"
@@ -18556,16 +18609,16 @@ msgstr "串流录制结束"
 msgid "Streaming tuner information for %s %s"
 msgstr ""
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (force aspect))
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching all parts of the picture with the same factor (force aspect).
 msgid "Stretch full"
 msgstr "完全拉伸"
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching all parts of the picture with the same factor (all parts lose aspect).
 msgid "Stretch linear"
 msgstr "左右拉伸"
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the top/bottom (Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch))
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right (Center 50% of picture maintain aspect, left/right 25% lose aspect heaver than on linear stretch))
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching the top/bottom. Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch.
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching the left/right. Center 50% of picture maintain aspect, left/right 25% lose aspect heaver than on linear stretch.
 msgid "Stretch nonlinear"
 msgstr "非线性拉伸"
 
@@ -18580,6 +18633,9 @@ msgstr ""
 
 msgid "Style:"
 msgstr "样式:"
+
+msgid "Subscription Packages"
+msgstr ""
 
 msgid "Subservice Actions"
 msgstr ""
@@ -18661,9 +18717,6 @@ msgstr "圣丹内斯语"
 
 msgid "Sunday"
 msgstr "星期日"
-
-msgid "Support at"
-msgstr "支持"
 
 msgid "Suriname"
 msgstr "苏里南"
@@ -19290,6 +19343,9 @@ msgstr ""
 "时移可用磁盘空间小于设置中的指定值.\n"
 "你想做什么？"
 
+msgid "The backup can take up to about 15 minutes to complete."
+msgstr ""
+
 msgid "The backup failed"
 msgstr ""
 
@@ -19502,7 +19558,7 @@ msgstr "下载当前区域详细信息时出错"
 msgid "There was an error downloading the region list"
 msgstr "下载区域列表时出错"
 
-msgid "There was an error downloading the update list.  Please try again."
+msgid "There was an error downloading the update list. Please try again."
 msgstr "下载更新列表时出错.请再试一次."
 
 msgid "There was an error while trying to login."
@@ -19719,7 +19775,7 @@ msgstr "此配置选项可让你设置自动音量级别."
 msgid "This option lets you adjust the 3D depth of the OSD."
 msgstr "此选项可让您调整3D景深深度"
 
-msgid "This option lets you adjust the transparency of the user interface"
+msgid "This option lets you adjust the transparency of the OSD."
 msgstr "此选项允许您调整用户界面的透明度"
 
 msgid "This option lets you choose the 3D mode of the OSD."
@@ -19927,10 +19983,6 @@ msgstr "快进/快退时间跳转重复间隔"
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr "时间跳转:使用正常快进速度"
 
-#, python-format
-msgid "Time required for this process: %s"
-msgstr "此过程所需的时间：%s"
-
 msgid "Time shift buffer delete after zap"
 msgstr "切换后是否删除时移缓存?"
 
@@ -19978,6 +20030,9 @@ msgstr "时移将在事件结束时保存！"
 
 msgid "Time style"
 msgstr "时间格式"
+
+msgid "Time taken for the backup:"
+msgstr ""
 
 msgid "Time to execute command or script"
 msgstr "执行命令或脚本的时间"
@@ -20079,8 +20134,11 @@ msgstr "标题设置模式"
 msgid "To complete the setup the %s %s must connect to the Internet.  Connect the %s %s to the Internet now."
 msgstr ""
 
-msgid "To restore the image:"
-msgstr "要恢复固件:"
+msgid "To restore the image check the manual or documentation for the receiver."
+msgstr ""
+
+msgid "To restore the image use 'OnlineFlash' option in the 'SoftwareManager' menu."
+msgstr ""
 
 #, python-format
 msgid "To where would you like to extract '%s'?"
@@ -20502,14 +20560,14 @@ msgstr "比尼兹"
 msgid "UHD Test"
 msgstr "超高清测试"
 
-msgid "UI 3D setup"
-msgstr "3D用户界面设置"
-
 msgid "UP80  (keymap.u80)"
 msgstr "UP80(键映射.u80)"
 
 msgid "URL"
 msgstr "网络地址"
+
+msgid "URL of fallback remote receiver"
+msgstr "备用远程接收器URL"
 
 msgid "URL of fallback remote receiver."
 msgstr "备用远程接收机地址"
@@ -20572,6 +20630,9 @@ msgstr "未加密"
 #, python-format
 msgid "Unexpected error accessing WebIF: %s"
 msgstr ""
+
+msgid "Unexpected error while retrieving fallback tuner's timer information"
+msgstr "检索备用调谐器的定时器信息时出现意外错误"
 
 msgid "UnhandledKey"
 msgstr "未处理的密钥"
@@ -20860,9 +20921,6 @@ msgstr "MHW公司EPG信息可用时使用."
 msgid "Use Netmed EPG information when it is available."
 msgstr "网络EPG信息可用时使用."
 
-msgid "Use OnlineFlash in SoftwareManager"
-msgstr "在软件管理器中使用在线刷写"
-
 msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
 msgstr ""
 
@@ -20974,25 +21032,28 @@ msgstr "功率测量"
 msgid "Use small screen"
 msgstr "使用超薄屏幕"
 
-msgid "Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size."
-msgstr "使用遥控器上的左/右键来调整用户界面的大小.左键减小大小,右键增加大小."
-
-msgid "Use the Left/Right buttons on your remote to move the user interface bottom"
+msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr ""
 
-msgid "Use the Left/Right buttons on your remote to move the user interface left"
+msgid "Use the LEFT/RIGHT buttons on your remote to adjust the width of the OSD. LEFT button decreases the width, RIGHT increases the width."
 msgstr ""
 
-msgid "Use the Left/Right buttons on your remote to move the user interface left/right"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD bottom."
+msgstr ""
+
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD left."
+msgstr ""
+
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD left/right."
 msgstr "使用遥控器上的左/右键移动用户界面左/右键"
 
-msgid "Use the Left/Right buttons on your remote to move the user interface right"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD right."
 msgstr ""
 
-msgid "Use the Left/Right buttons on your remote to move the user interface top"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD top."
 msgstr ""
 
-msgid "Use the Left/Right buttons on your remote to move the user interface up/down"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD up/down."
 msgstr "使用遥控器上的左/右按钮来将用户界面向上/向下移动"
 
 msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
@@ -21004,14 +21065,14 @@ msgstr "使用Softcam面板来控制你的CAM.这让你开始/停止/选择CAM"
 msgid "Use the UP and DOWN buttons to select your locale/language then press the OK button to continue."
 msgstr "使用向上和向下键选择您的区域设置/语言,然后按OK键继续."
 
+msgid "Use the UP/DOWN buttons to select the installed image to be backed up. Press the 'Start' (GREEN) button to start the backup."
+msgstr ""
+
 msgid "Use the alternative or the conventional radio mode."
 msgstr "使用备选或传统广播模式."
 
 msgid "Use the current selection and exit"
 msgstr ""
-
-msgid "Use the cursor keys to select an installed image and then Start button."
-msgstr "使用光标键选择已安装的镜像,然后使用开始键."
 
 msgid "Use the extended List"
 msgstr "使用扩展列表"
@@ -21064,6 +21125,9 @@ msgstr "用户 - 自定义分组"
 msgid "User Feed URL"
 msgstr "用户订阅地址"
 
+msgid "User ID"
+msgstr "用户ID"
+
 msgid "User comments"
 msgstr ""
 
@@ -21085,9 +21149,6 @@ msgstr "用户自定义转发器"
 
 msgid "User interface settings"
 msgstr "用户界面设置"
-
-msgid "User interface visibility"
-msgstr "用户界面可见性"
 
 msgid "User logo:"
 msgstr "用户标志:"
@@ -21211,16 +21272,8 @@ msgstr "委内瑞拉玻利瓦尔共和国"
 msgid "Version"
 msgstr ""
 
-#, python-format
-msgid "Version %s %s"
-msgstr "版本 %s %s"
-
 msgid "Version: "
 msgstr "版本: "
-
-#, python-format
-msgid "Version: %s"
-msgstr "镜像版本: %s"
 
 msgid "Vertical"
 msgstr "垂直"
@@ -21711,6 +21764,15 @@ msgstr "启用后,接收器将在电视关闭时自动返回待机状态."
 msgid "When enabled the receiver will automatically wake from standby when the TV is turned on."
 msgstr "启用后,接收器将在电视打开时自动从待机中唤醒."
 
+msgid "When enabled the timer from the fallback tuner is imported"
+msgstr "启用后,从备用调谐器导入定时器"
+
+msgid "When enabled the timer from the fallback tuner is the default timer"
+msgstr "启用后,从备用调谐器导入定时器"
+
+msgid "When enabled you can customize the OpenWebIf settings for the fallback tuner"
+msgstr "启用后,您可以自定义回退调谐器的OpenWebIf设置"
+
 msgid "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
 msgstr "启用后,AIT数据将包含在HTTP流.这允许一个客户端接收利用HbbTV."
 
@@ -21875,6 +21937,9 @@ msgstr "当输入光标到达该点(宽度的百分比,从任一侧)时,将文�
 
 msgid "When the receiver wakes from standby or deep standby it will send a command to the TV to bring it out of standby."
 msgstr "当接收器从待机或深度待机中唤醒时,它将向电视发送命令以使其脱离待机状态."
+
+msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
+msgstr ""
 
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
 msgstr "当调谐到频道时,系统通常将扫描转发器的任何改动并保存它们.仅当你在对确定自己在做什么时设为'是'."
@@ -22341,7 +22406,7 @@ msgid "Your receiver does not have an Internet connection"
 msgstr ""
 
 #, python-format
-msgid "Your receiver might be unusable now.  Please consult the manual for further assistance before rebooting your %s %s."
+msgid "Your receiver might be now be unstable. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "你的接收器现在可能无法使用.在重新启动 %s %s 之前,请查阅手册获得进一步的帮助."
 
 msgid "Youth"
@@ -22455,12 +22520,6 @@ msgstr "从右缩放"
 msgid "Zulu"
 msgstr "祖鲁语"
 
-msgid "[Enigma2 Settings]\n"
-msgstr "[Enigma2设置]\n"
-
-msgid "[Image Info]\n"
-msgstr "[镜像信息]\n"
-
 msgid "[Timeshift] Merging records failed!"
 msgstr "[时移]合并录像失败!"
 
@@ -22560,9 +22619,6 @@ msgstr "芭蕾舞"
 #, python-format
 msgid "bc%d"
 msgstr "bc%d"
-
-msgid "because of the used file system the back-up\n"
-msgstr "由于所使用的是文件系统备份\n"
 
 msgid "better"
 msgstr "较好"
@@ -22989,9 +23045,6 @@ msgstr "电影/戏剧(一般)"
 msgid "multi"
 msgstr "多个"
 
-msgid "multinorm"
-msgstr "自适应模式"
-
 msgid "music (general)"
 msgstr "音乐(一般)"
 
@@ -23090,9 +23143,6 @@ msgstr ""
 
 msgid "on READ ONLY medium."
 msgstr "只读介质."
-
-msgid "on how to restore the image"
-msgstr "关于如何恢复镜像"
 
 msgid "orange"
 msgstr ""
@@ -23480,9 +23530,6 @@ msgstr "白色"
 msgid "width"
 msgstr "宽度"
 
-msgid "will take about 1-15 minutes for this system\n"
-msgstr "这个系统将需要大约1-15分钟\n"
-
 msgid "winter sport"
 msgstr "冬季运动"
 
@@ -23512,6 +23559,293 @@ msgstr "是(保持订阅源)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid ""
+#~ "\n"
+#~ "\n"
+#~ "[User - bouquets (TV)]\n"
+#~ msgstr ""
+#~ "\n"
+#~ "\n"
+#~ "[用户- 自定义组(电视)]\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "[Installed Plugins]\n"
+#~ msgstr ""
+#~ "\n"
+#~ "[已安装的插件]\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "[User - bouquets (RADIO)]\n"
+#~ msgstr ""
+#~ "\n"
+#~ "[用户- 自定义组(广播)]\n"
+
+#~ msgid "     no space left on back-up device"
+#~ msgstr "     备份设备没有剩余空间"
+
+#~ msgid "     no writing permission on back-up device"
+#~ msgstr "     备份设备没有写入权限"
+
+#~ msgid "     wrong back-up destination "
+#~ msgstr "     错误的备份路径 "
+
+#~ msgid "Almost there... "
+#~ msgstr "即将完成... "
+
+#, python-format
+#~ msgid "Back-up Tool for a %s\n"
+#~ msgstr "用于 %s 的备份工具\n"
+
+#, python-format
+#~ msgid "Back-up Tool for an %s\n"
+#~ msgstr "用于 %s 的备份工具\n"
+
+#, python-format
+#~ msgid "Backup Date: %s\n"
+#~ msgstr "备份日期: %s\n"
+
+#~ msgid "Backup Mode: Flash Online\n"
+#~ msgstr "备份方式: 在线刷机\n"
+
+#~ msgid "Backup Mode: USB Recovery\n"
+#~ msgstr "备份模式: 使用U盘恢复\n"
+
+#, python-format
+#~ msgid "Backup to destination: %s"
+#~ msgstr "备份到:%s"
+
+#, python-format
+#~ msgid "Build: %s"
+#~ msgstr "版本号: %s"
+
+#~ msgid "By openATV Image Team"
+#~ msgstr "由openATV镜像团队提供"
+
+#~ msgid "Cannot create backup directory"
+#~ msgstr "无法创建备份目录"
+
+#, python-format
+#~ msgid "Chipset: BCM%s"
+#~ msgstr "芯片组: BCM%s"
+
+#~ msgid "Create:"
+#~ msgstr "创建:"
+
+#, python-format
+#~ msgid "Create: Recovery Fullbackup %s"
+#~ msgstr "创建:恢复完整备份 %s"
+
+#~ msgid "Error reading bouquets.radio"
+#~ msgstr "读取广播组时出错"
+
+#~ msgid "Error reading bouquets.tv"
+#~ msgstr "读取电视组时出错"
+
+#~ msgid "Full Image Backup "
+#~ msgstr "完整镜像备份 "
+
+#, python-format
+#~ msgid "Full back-up on %s"
+#~ msgstr "%s的完整备份"
+
+#~ msgid "Image creation failed - "
+#~ msgstr "镜像创建失败 - "
+
+#, python-format
+#~ msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
+#~ msgstr "多启动镜像创建于: %s/%s-%s-%s-backup-%s_usb.zip"
+
+#~ msgid "No, do not backup a image"
+#~ msgstr "否,不备份映像"
+
+#~ msgid "Now building the Backup Image"
+#~ msgstr "现在正在构建备份镜像"
+
+#~ msgid "Please be patient, a backup will now be made,\n"
+#~ msgstr "请耐心等待,备份即将创建.\n"
+
+#~ msgid "Please check the manual of the receiver"
+#~ msgstr "请检查接收器的手册"
+
+#~ msgid "Please select a backup destination"
+#~ msgstr "请选择备份目的地"
+
+#~ msgid "Please wait...almost ready! "
+#~ msgstr "请稍候...即将完成! "
+
+#~ msgid "Probable causes could be"
+#~ msgstr "可能的原因是"
+
+#~ msgid "Support at"
+#~ msgstr "支持"
+
+#, python-format
+#~ msgid "Time required for this process: %s"
+#~ msgstr "此过程所需的时间：%s"
+
+#~ msgid "To restore the image:"
+#~ msgstr "要恢复固件:"
+
+#~ msgid "Use OnlineFlash in SoftwareManager"
+#~ msgstr "在软件管理器中使用在线刷写"
+
+#~ msgid "Use the cursor keys to select an installed image and then Start button."
+#~ msgstr "使用光标键选择已安装的镜像,然后使用开始键."
+
+#, python-format
+#~ msgid "Version %s %s"
+#~ msgstr "版本 %s %s"
+
+#, python-format
+#~ msgid "Version: %s"
+#~ msgstr "镜像版本: %s"
+
+#~ msgid "[Enigma2 Settings]\n"
+#~ msgstr "[Enigma2设置]\n"
+
+#~ msgid "[Image Info]\n"
+#~ msgstr "[镜像信息]\n"
+
+#~ msgid "because of the used file system the back-up\n"
+#~ msgstr "由于所使用的是文件系统备份\n"
+
+#~ msgid "on how to restore the image"
+#~ msgstr "关于如何恢复镜像"
+
+#~ msgid "will take about 1-15 minutes for this system\n"
+#~ msgstr "这个系统将需要大约1-15分钟\n"
+
+#~ msgid "Execution finished!!"
+#~ msgstr "执行完毕!!"
+
+#~ msgid "Execution progress:"
+#~ msgstr "执行进度:"
+
+#~ msgid "Path to save not exist: '/tmp/'"
+#~ msgstr "要保存的路径不存在:'/tmp/'"
+
+#~ msgid "Backup done."
+#~ msgstr "备份完成."
+
+#~ msgid "No Devices Found !!"
+#~ msgstr "没有找到设备!!"
+
+#~ msgid "23.976"
+#~ msgstr "23.976"
+
+#~ msgid "24"
+#~ msgstr "24"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "29.97"
+#~ msgstr "29.97"
+
+#~ msgid "30"
+#~ msgstr "30"
+
+#~ msgid "Backup completed."
+#~ msgstr "备份已完成."
+
+#~ msgid "Backup failed."
+#~ msgstr "备份失败."
+
+#~ msgid "No updates were available.  Please try again later."
+#~ msgstr "没有可用的更新.请稍后再试."
+
+#~ msgid "About..."
+#~ msgstr "关于..."
+
+#~ msgid "Adjust 3D settings"
+#~ msgstr "调整3D设置"
+
+#~ msgid "Backup Image"
+#~ msgstr "备份镜像"
+
+#~ msgid ""
+#~ "Enigma2 Skinselector\n"
+#~ "\n"
+#~ "If you experience any problems please contact\n"
+#~ "stephan@reichholf.net\n"
+#~ "\n"
+#~ "© 2006 - Stephan Reichholf"
+#~ msgstr ""
+#~ "Enigma2皮肤选择 \n"
+#~ "\n"
+#~ "如果你有任何问题请联系\n"
+#~ "stephan@reichholf.net\n"
+#~ "\n"
+#~ "© 2006 - Stephan Reichholf"
+
+#~ msgid ""
+#~ "GUI needs a restart to apply a new skin\n"
+#~ "Do you want to Restart the GUI now?"
+#~ msgstr ""
+#~ "GUI需要重新启动以应用新皮肤 \n"
+#~ "是否要立即重新启动GUI?"
+
+#~ msgid "Mode 1"
+#~ msgstr "模式 1"
+
+#~ msgid "Mode 2"
+#~ msgstr "模式 2"
+
+#~ msgid "Press OK to activate the selected skin."
+#~ msgstr "按OK键以激活所选皮肤."
+
+#~ msgid "Select Your Skin"
+#~ msgstr "选择你的皮肤"
+
+#~ msgid "Skin"
+#~ msgstr "皮肤"
+
+#~ msgid "SkinSelector"
+#~ msgstr "皮肤选择器"
+
+#~ msgid "UI 3D setup"
+#~ msgstr "3D用户界面设置"
+
+#~ msgid "Defaults"
+#~ msgstr "默认值"
+
+#~ msgid "OSD Adjustment"
+#~ msgstr "OSD调整"
+
+#~ msgid ""
+#~ "Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
+#~ "When you are ready press green to continue."
+#~ msgstr ""
+#~ "请设置您的用户界面,通过调整数值,直到红色方块的边缘,触摸你的电视的边缘.\n"
+#~ "当你准备好后按绿色键继续."
+
+#~ msgid "Position Setup"
+#~ msgstr "位置设置"
+
+#~ msgid "Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size."
+#~ msgstr "使用遥控器上的左/右键来调整用户界面的大小.左键减小大小,右键增加大小."
+
+#~ msgid "User interface visibility"
+#~ msgstr "用户界面可见性"
+
+#~ msgid "multinorm"
+#~ msgstr "自适应模式"
+
+#~ msgid "LCD Skin Settings"
+#~ msgstr "LCD皮肤设置"
+
+#~ msgid ""
+#~ "Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
+#~ "When you are ready press OK to continue."
+#~ msgstr ""
+#~ "请设置您的用户界面,通过调整数值,直到红色方块的边缘,触摸你的电视的边缘.\n"
+#~ "当您准备好后按OK键继续."
+
+#~ msgid "Select LCD Skin"
+#~ msgstr "选择LCD皮肤"
 
 #~ msgid "Enigma2 skin selector"
 #~ msgstr "Enigma2皮肤选择器"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-08 12:32+0000\n"
+"POT-Creation-Date: 2024-06-21 14:25+0000\n"
 "PO-Revision-Date: 2016-04-02 23:16+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: jurica@dream-multimedia.eu\n"
@@ -17,12 +17,6 @@ msgstr ""
 
 msgid ""
 "\n"
-"\n"
-"[User - bouquets (TV)]\n"
-msgstr ""
-
-msgid ""
-"\n"
 "<This tuner is configured automatically>"
 msgstr ""
 
@@ -31,26 +25,7 @@ msgid ""
 "Recording in progress."
 msgstr ""
 
-msgid ""
-"\n"
-"[Installed Plugins]\n"
-msgstr ""
-
-msgid ""
-"\n"
-"[User - bouquets (RADIO)]\n"
-msgstr ""
-
 msgid " "
-msgstr ""
-
-msgid "     no space left on back-up device"
-msgstr ""
-
-msgid "     no writing permission on back-up device"
-msgstr ""
-
-msgid "     wrong back-up destination "
 msgstr ""
 
 msgid "  Menu key : Select quad channel"
@@ -1442,6 +1417,15 @@ msgstr ""
 msgid "-"
 msgstr ""
 
+msgid "- No space left on backup device."
+msgstr ""
+
+msgid "- No write permission on backup device."
+msgstr ""
+
+msgid "- Wrong backup destination."
+msgstr ""
+
 msgid "-24 Hours"
 msgstr ""
 
@@ -1551,22 +1535,6 @@ msgstr ""
 msgid "2"
 msgstr ""
 
-msgid "23.976"
-msgstr ""
-
-#
-#, fuzzy
-msgid "24"
-msgstr "2"
-
-#
-#, fuzzy
-msgid "25"
-msgstr "2"
-
-msgid "29.97"
-msgstr ""
-
 msgid "2nd InfoBar"
 msgstr ""
 
@@ -1598,11 +1566,6 @@ msgstr ""
 
 msgid "3"
 msgstr ""
-
-#
-#, fuzzy
-msgid "30"
-msgstr "0"
 
 msgid "3D Mode"
 msgstr ""
@@ -1697,6 +1660,9 @@ msgstr ""
 #
 msgid "A"
 msgstr "A"
+
+msgid "A backup is now being created."
+msgstr ""
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr ""
@@ -1859,6 +1825,18 @@ msgstr ""
 msgid "AFL"
 msgstr "PAL"
 
+msgid "AI-Powered translation color"
+msgstr ""
+
+msgid "AI-Powered translation enabled"
+msgstr ""
+
+msgid "AI-Powered translation language"
+msgstr ""
+
+msgid "AI-Powered translation subscription code"
+msgstr ""
+
 msgid "ARM"
 msgstr ""
 
@@ -1914,10 +1892,6 @@ msgstr ""
 #
 msgid "About to start"
 msgstr "spremni za početak"
-
-#
-msgid "About..."
-msgstr "O prijemniku..."
 
 msgid "Access point"
 msgstr ""
@@ -2231,9 +2205,6 @@ msgstr ""
 msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move to another satellite."
 msgstr ""
 
-msgid "Adjust 3D settings"
-msgstr ""
-
 #
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr ""
@@ -2448,9 +2419,6 @@ msgstr ""
 msgid "Allows you to show/hide OScam/CCcam in the Extension Menu screen (BLUE button)."
 msgstr ""
 
-msgid "Almost there... "
-msgstr ""
-
 #
 msgid "Alpha"
 msgstr "Alpha"
@@ -2463,6 +2431,15 @@ msgstr ""
 
 msgid "Alphanumeric"
 msgstr ""
+
+msgid "Also import at reboot/restart enigma2"
+msgstr "Uvezite nakon ponovnog pokretanja enigme2"
+
+msgid "Also import from the extension menu"
+msgstr "Također uvezite iz izbornika proširenja"
+
+msgid "Also import when box is leaving standby"
+msgstr "Uvezite pri izlasku iz stanja čekanja"
 
 msgid "Also on standby"
 msgstr ""
@@ -2485,6 +2462,9 @@ msgstr "dodaj alternative"
 #
 msgid "Alternative Edit"
 msgstr "[editiranje alternative]"
+
+msgid "Alternative URLs for DVB-T/C or ATSC"
+msgstr "Alternativni URL-ovi za DVB-T/C ili ATSC"
 
 msgid "Alternative numbering mode"
 msgstr ""
@@ -2739,6 +2719,9 @@ msgid "Aspect switch"
 msgstr ""
 
 msgid "Assamese"
+msgstr ""
+
+msgid "Assembling the image backup files."
 msgstr ""
 
 msgid "Assigned CAIds:"
@@ -3053,14 +3036,6 @@ msgstr ""
 msgid "Back, upper USB"
 msgstr ""
 
-#, python-format
-msgid "Back-up Tool for a %s\n"
-msgstr ""
-
-#, python-format
-msgid "Back-up Tool for an %s\n"
-msgstr ""
-
 msgid "Back/Recall"
 msgstr ""
 
@@ -3086,13 +3061,6 @@ msgstr ""
 msgid "Backup"
 msgstr ""
 
-#, python-format
-msgid "Backup Date: %s\n"
-msgstr ""
-
-msgid "Backup Image"
-msgstr ""
-
 msgid "Backup Location"
 msgstr ""
 
@@ -3102,10 +3070,10 @@ msgstr ""
 msgid "Backup Mode"
 msgstr ""
 
-msgid "Backup Mode: Flash Online\n"
+msgid "Backup Mode: Flash Online"
 msgstr ""
 
-msgid "Backup Mode: USB Recovery\n"
+msgid "Backup Mode: USB Recovery"
 msgstr ""
 
 msgid "Backup Settings"
@@ -3113,19 +3081,6 @@ msgstr ""
 
 #
 msgid "Backup System Settings"
-msgstr ""
-
-msgid "Backup completed."
-msgstr ""
-
-msgid "Backup done."
-msgstr ""
-
-msgid "Backup failed!"
-msgstr ""
-
-#
-msgid "Backup failed."
 msgstr ""
 
 msgid "Backup images"
@@ -3141,7 +3096,7 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid "Backup to destination: %s"
+msgid "Backup tool for %s %s"
 msgstr ""
 
 msgid "Backup your %s %s settings."
@@ -3196,10 +3151,10 @@ msgstr ""
 msgid "Base time"
 msgstr "Početno vrijeme"
 
-msgid "Base transparency for OpenOpera web browser"
+msgid "Base transparency for OpenOpera web browser."
 msgstr ""
 
-msgid "Base transparency for teletext, more options available within teletext screen."
+msgid "Base transparency for teletext, more options are available within teletext screen."
 msgstr ""
 
 msgid "Baseball"
@@ -3212,6 +3167,9 @@ msgid "Basketball"
 msgstr ""
 
 msgid "Basque"
+msgstr ""
+
+msgid "Before changing these settings try to disable any overscan settings on th TV / display screen. To calibrate the On-Screen-Display (OSD) adjust the position and size values until the red box is *just* visible and touches the edges of the screen."
 msgstr ""
 
 #
@@ -3478,10 +3436,6 @@ msgstr ""
 msgid "Build information for %s %s"
 msgstr ""
 
-#, python-format
-msgid "Build: %s"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Bulgaria"
@@ -3532,9 +3486,6 @@ msgid "By disk UUID"
 msgstr ""
 
 msgid "By disk label"
-msgstr ""
-
-msgid "By openATV Image Team"
 msgstr ""
 
 msgid "Bypass HDMI EDID Check"
@@ -3811,6 +3762,9 @@ msgstr "Promjeni pin kod"
 msgid "Can't allocate program source (e.g. tuner)"
 msgstr ""
 
+msgid "Can't create backup directory!"
+msgstr ""
+
 msgid ""
 "Can't going to live TV!\n"
 "Switch to live TV and restart time shift ?"
@@ -3938,11 +3892,6 @@ msgstr ""
 msgid "Cancelled upon user request"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Cannot create backup directory"
-msgstr "Roditeljska zaštita"
-
 msgid "Cannot delete file"
 msgstr ""
 
@@ -3985,6 +3934,9 @@ msgid "Catalan / Valencian"
 msgstr ""
 
 msgid "Cayman Islands"
+msgstr ""
+
+msgid "Cebuano"
 msgstr ""
 
 msgid "Celsius"
@@ -4284,8 +4236,7 @@ msgstr ""
 msgid "Chinese"
 msgstr ""
 
-#, python-format
-msgid "Chipset: BCM%s"
+msgid "Chinese (Simplified)"
 msgstr ""
 
 msgid "Choice Box"
@@ -4325,12 +4276,6 @@ msgstr ""
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr ""
 
-msgid "Choose the Display Skin and press GREEN to activate the skin."
-msgstr ""
-
-msgid "Choose the OSD Skin and press GREEN to activate the skin."
-msgstr ""
-
 msgid "Choose the amount of additional slots."
 msgstr ""
 
@@ -4338,6 +4283,9 @@ msgid "Choose the display formatting style for dates. 'D' / 'DD' is the date and
 msgstr ""
 
 msgid "Choose the display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds.  ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
+msgstr ""
+
+msgid "Choose the fallback font."
 msgstr ""
 
 msgid "Choose the front panel display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
@@ -4648,6 +4596,11 @@ msgstr ""
 msgid "Command execution..."
 msgstr ""
 
+msgid "Command finished."
+msgid_plural "Commands finished."
+msgstr[0] ""
+msgstr[1] ""
+
 #
 msgid "Command order"
 msgstr "Command slijed"
@@ -4810,6 +4763,9 @@ msgstr ""
 msgid "Configure remote control type"
 msgstr ""
 
+msgid "Configure the AI-Powered translation language."
+msgstr ""
+
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr ""
 
@@ -4856,6 +4812,9 @@ msgid "Configure the brightness level of the front panel display for normal oper
 msgstr ""
 
 msgid "Configure the brightness level of the front panel display for standby."
+msgstr ""
+
+msgid "Configure the color of the AI-Powered translations."
 msgstr ""
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
@@ -5178,6 +5137,9 @@ msgstr ""
 msgid "Console"
 msgstr ""
 
+msgid "Console Actions"
+msgstr ""
+
 msgid "Console Network Packages"
 msgstr ""
 
@@ -5437,6 +5399,10 @@ msgstr ""
 msgid "Create a symbolic link"
 msgstr ""
 
+#, python-format
+msgid "Create recovery image backup '%s'."
+msgstr ""
+
 msgid "Create separate radio user bouquet"
 msgstr ""
 
@@ -5447,15 +5413,6 @@ msgid "Create the additional slots on the selected device"
 msgstr ""
 
 msgid "Create the flash expander in the selected device"
-msgstr ""
-
-#
-#, fuzzy
-msgid "Create:"
-msgstr "ponavljam"
-
-#, python-format
-msgid "Create: Recovery Fullbackup %s"
 msgstr ""
 
 msgid "Creating .ap and .sc files"
@@ -5629,6 +5586,9 @@ msgstr "Podesivo vrijeme preskoka za '1'/'3'-ključa"
 #
 msgid "Customize"
 msgstr "Prilagodi"
+
+msgid "Customize OpenWebIF settings for fallback tuner"
+msgstr "Prilagoditi OpenWebIF postavke za rezervni tjuner"
 
 msgid "Customize System Settings"
 msgstr ""
@@ -6083,9 +6043,6 @@ msgstr ""
 msgid "Default: '%s'."
 msgstr ""
 
-msgid "Defaults"
-msgstr ""
-
 msgid "Define Softcam For This Provider"
 msgstr ""
 
@@ -6404,8 +6361,20 @@ msgid "Deselect only highlighted file"
 msgstr ""
 
 #, python-format
-msgid "Deselected packages usually occur because those packaged are incompatible with existing packages.  While this is mostly harmless it is possible that your %s %s may experience issues."
+msgid "Deselected packages usually occur because those packaged are incompatible with existing packages. While this is mostly harmless it is possible that your %s %s may experience issues."
 msgstr ""
+
+msgid "Destination of fallback remote receiver"
+msgstr "Odredište rezervnog daljinskog prijemnika"
+
+msgid "Destination of fallback remote receiver for ATSC"
+msgstr "Odredište rezervnog daljinskog prijemnika za ATSC"
+
+msgid "Destination of fallback remote receiver for DVB-C"
+msgstr "Odredište rezervnog daljinskog prijemnika za DVB-C"
+
+msgid "Destination of fallback remote receiver for DVB-T"
+msgstr "Odredište rezervnog daljinskog prijemnika za DVB-T"
 
 msgid "Detail of GStreamer log."
 msgstr ""
@@ -6713,6 +6682,9 @@ msgstr "O programu"
 msgid "Do another manual service scan?"
 msgstr ""
 
+msgid "Do not backup the image"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Do not change"
@@ -6801,6 +6773,18 @@ msgstr "Jeste li sigurni da želite obrisati datoteku %s?"
 #
 #, python-format
 msgid "Do you really want to remove your bookmark for '%s'?"
+msgstr ""
+
+msgid ""
+"Do you really want to restart OSCam?\n"
+"\n"
+"HINT: This will take about 5 seconds!"
+msgstr ""
+
+msgid ""
+"Do you really want to shut down OSCam?\n"
+"\n"
+"ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
 msgstr ""
 
 #, python-format
@@ -7009,7 +6993,7 @@ msgstr "Skidam"
 msgid "Downloading Image"
 msgstr "Skidam"
 
-msgid "Downloading latest update list.  Please wait..."
+msgid "Downloading latest update list. Please wait..."
 msgstr ""
 
 #
@@ -7319,6 +7303,9 @@ msgstr "Omogući"
 msgid "Enable 5V for active antenna"
 msgstr "Uključi 5V za aktivnu antenu"
 
+msgid "Enable AI-Powered translation for all teletext and DVB subtitles."
+msgstr ""
+
 msgid "Enable Autorecord"
 msgstr ""
 
@@ -7476,6 +7463,9 @@ msgstr ""
 msgid "Enable freesat EPG"
 msgstr ""
 
+msgid "Enable import timer from fallback tuner"
+msgstr "Omogućite uvoz tajmera iz rezervnog tjunera"
+
 msgid "Enable intro screen"
 msgstr ""
 
@@ -7552,9 +7542,6 @@ msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup
 msgstr ""
 
 msgid "Enable to display setup entries alphabetically."
-msgstr ""
-
-msgid "Enable to display the Extension Menu screen entries alphabetically."
 msgstr ""
 
 msgid "Enable to display the current value of the slider at end of the slider bar."
@@ -7659,15 +7646,6 @@ msgstr ""
 msgid "Enigma2 (re)starts"
 msgstr ""
 
-msgid ""
-"Enigma2 Skinselector\n"
-"\n"
-"If you experience any problems please contact\n"
-"stephan@reichholf.net\n"
-"\n"
-"© 2006 - Stephan Reichholf"
-msgstr ""
-
 msgid "Enigma2 debug level"
 msgstr ""
 
@@ -7691,6 +7669,9 @@ msgstr "Unutarnji Flash"
 #, python-format
 msgid "Enter DNS (Dynamic Name Server) %d's IP address."
 msgstr ""
+
+msgid "Enter IP address"
+msgstr "Unesite IP adresu"
 
 msgid "Enter PIN"
 msgstr ""
@@ -7759,6 +7740,9 @@ msgid "Enter your low band local oscillator frequency. For more information cons
 msgstr ""
 
 msgid "Enter your personal feed URL to allow you to select packages from your personal feed."
+msgstr ""
+
+msgid "Enter your subscription code, the unified code for trial is 15."
 msgstr ""
 
 #
@@ -7926,12 +7910,6 @@ msgstr ""
 msgid "Error opening recording file"
 msgstr ""
 
-msgid "Error reading bouquets.radio"
-msgstr ""
-
-msgid "Error reading bouquets.tv"
-msgstr ""
-
 msgid "Error reading webpage!"
 msgstr ""
 
@@ -7941,6 +7919,14 @@ msgstr ""
 #, python-format
 msgid "Error unzipping image '%s'!"
 msgstr ""
+
+#, python-format
+msgid ""
+"Error while retrieving fallback timer information\n"
+"%s"
+msgstr ""
+"Pogreška tijekom preuzimanja podataka o rezervnom tajmeru\n"
+"%s"
 
 msgid "Error, unknown Result!"
 msgstr ""
@@ -8056,6 +8042,10 @@ msgid "Error: Unable to rename directory '%s' to '%s'!"
 msgstr ""
 
 #, python-format
+msgid "Error: Unable to write log file '%s'!"
+msgstr ""
+
+#, python-format
 msgid "Error: You can't run '%s' on '%s'!"
 msgstr ""
 
@@ -8156,15 +8146,6 @@ msgid "Execution condition"
 msgstr ""
 
 #
-msgid "Execution finished!!"
-msgstr "Izvođenje završeno!!"
-
-#
-#, fuzzy
-msgid "Execution progress:"
-msgstr "Tijek izvođenja:"
-
-#
 msgid "Exif"
 msgstr ""
 
@@ -8192,6 +8173,9 @@ msgid "Exit Quad Channel Selection"
 msgstr "Sekcija kanala"
 
 msgid "Exit all menus"
+msgstr ""
+
+msgid "Exit and close all screens without performing a backup"
 msgstr ""
 
 #
@@ -8257,6 +8241,9 @@ msgid "Exit the wizard"
 msgstr "Izađite iz čarobnjaka"
 
 msgid "Exit viewer"
+msgstr ""
+
+msgid "Exit without performing a backup"
 msgstr ""
 
 msgid "Expand"
@@ -8446,8 +8433,38 @@ msgstr ""
 msgid "Falkland Islands (Malvinas)"
 msgstr ""
 
+msgid "Fallback API did not return a valid result."
+msgstr ""
+
+msgid "Fallback Font *"
+msgstr ""
+
+msgid "Fallback remote receiver"
+msgstr "Rezervni daljinski prijemnik"
+
+msgid "Fallback remote receiver IP"
+msgstr "IP rezervnog daljinskog prijemnika"
+
+msgid "Fallback remote receiver Port"
+msgstr "Port rezervnog daljinskog prijemnika"
+
 msgid "Fallback remote receiver URL"
 msgstr ""
+
+msgid "Fallback remote receiver for ATSC"
+msgstr "Rezervni daljinski prijemnik za ATSC"
+
+msgid "Fallback remote receiver for DVB-C"
+msgstr "Rezervni daljinski prijemnik za DVB-C"
+
+msgid "Fallback remote receiver for DVB-T"
+msgstr "Rezervni daljinski prijemnik za DVB-T"
+
+msgid "Fallback Timer"
+msgstr "Rezervni tajmer"
+
+msgid "Fallback tuner setup"
+msgstr "Postavljanje rezervnog tjunera"
 
 msgid "False"
 msgstr ""
@@ -8642,10 +8659,6 @@ msgid "File transfer was canceled by user!"
 msgstr ""
 
 msgid "File transfer was cancelled by user"
-msgstr ""
-
-#, python-format
-msgid "File write error: '%s'"
 msgstr ""
 
 msgid "Filename"
@@ -9006,17 +9019,10 @@ msgstr ""
 msgid "Fulah"
 msgstr ""
 
-msgid "Full Image Backup "
-msgstr ""
-
 msgid "Full Range RGB"
 msgstr ""
 
 msgid "Full Stretch"
-msgstr ""
-
-#, python-format
-msgid "Full back-up on %s"
 msgstr ""
 
 msgid "Full factory reset"
@@ -9059,11 +9065,6 @@ msgid "GStreamer version"
 msgstr ""
 
 msgid "GUI Skin *"
-msgstr ""
-
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to Restart the GUI now?"
 msgstr ""
 
 msgid "Gabon"
@@ -9490,6 +9491,9 @@ msgstr ""
 msgid "Hausa"
 msgstr ""
 
+msgid "Hawaiian"
+msgstr ""
+
 msgid "Heard Island and McDonald Islands"
 msgstr ""
 
@@ -9606,6 +9610,9 @@ msgstr ""
 msgid "Hide zap errors"
 msgstr ""
 
+msgid "Hide/Show the console screen"
+msgstr ""
+
 msgid "Hierarchy info"
 msgstr ""
 
@@ -9661,6 +9668,9 @@ msgid "History next"
 msgstr ""
 
 msgid "History zap..."
+msgstr ""
+
+msgid "Hmong"
 msgstr ""
 
 #
@@ -9821,6 +9831,9 @@ msgstr "IP Adresa"
 
 msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr ""
+
+msgid "IP of fallback remote receiver"
+msgstr "IP rezervnog daljinskog prijemnika"
 
 msgid "IPK Installer"
 msgstr ""
@@ -10034,14 +10047,20 @@ msgstr ""
 msgid "Image Backup"
 msgstr ""
 
-msgid "Image Flash Actions"
+msgid "Image Backup Actions"
 msgstr ""
 
 #, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
+msgid "Image Backup To %s"
 msgstr ""
 
-msgid "Image creation failed - "
+msgid "Image Flash Actions"
+msgstr ""
+
+msgid "Image created:"
+msgstr ""
+
+msgid "Image creation failed!"
 msgstr ""
 
 msgid "ImageWizard"
@@ -10057,6 +10076,21 @@ msgstr ""
 
 msgid "Immediately restart selected devices."
 msgstr ""
+
+msgid "Import channels and/or EPG from remote receiver URL also when the receiver is getting out of standby"
+msgstr "Uvezite kanale i/ili EPG iz URL-a udaljenog primatelja i kada prijemnik izlazi iz stanja čekanja"
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver is booted"
+msgstr "Uvoz kanala iz udaljenog URL-a primatelja kada je pokrenut."
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
+msgstr "Uvoz kanala i/ili EPG iz URL-a udaljenog primatelja kada se prijemnik ili enigma2 ponovno pokrene"
+
+msgid "Import from remote receiver URL"
+msgstr "Uvoz s URL-a daljinskog prijemnika"
+
+msgid "Import remote receiver URL"
+msgstr "Uvoz URL-a daljinskog prijemnika"
 
 msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
 msgstr ""
@@ -10763,6 +10797,9 @@ msgstr ""
 msgid "Kurdish"
 msgstr ""
 
+msgid "Kurdish (Sorani)"
+msgstr ""
+
 msgid "Kurdistan"
 msgstr ""
 
@@ -10783,9 +10820,6 @@ msgid "LAN adapter"
 msgstr ""
 
 msgid "LAN connection"
-msgstr ""
-
-msgid "LCD Skin Settings"
 msgstr ""
 
 msgid "LCD scroll speed"
@@ -10968,7 +11002,7 @@ msgid "Lesotho"
 msgstr ""
 
 #
-#. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
+#. TRANSLATORS: Aspect ratio policy: Black bars on top/bottom in doubt, keep English term.
 msgid "Letterbox"
 msgstr ""
 
@@ -11405,6 +11439,9 @@ msgstr ""
 msgid "Make"
 msgstr ""
 
+msgid "Make it possible to manually initiate the channels import and/or EPG via the extension menu"
+msgstr "Omogućite ručno pokretanje uvoza kanala i/ili EPG putem izbornika proširenja"
+
 #
 msgid "Make this mark an 'in' point"
 msgstr "Napravi ovu oznaku kao 'ulaznu' točku"
@@ -11791,16 +11828,10 @@ msgstr ""
 msgid "Mode"
 msgstr "Model:"
 
-msgid "Mode 1"
-msgstr ""
-
 msgid "Mode 12: Supports PiP but Kodi may not work"
 msgstr ""
 
 msgid "Mode 1: Supports Kodi but PiP may not work"
-msgstr ""
-
-msgid "Mode 2"
 msgstr ""
 
 msgid "Mode for autorestore"
@@ -12251,6 +12282,9 @@ msgstr "Pokreći na zapad"
 msgid "Mozambique"
 msgstr ""
 
+msgid "Multi"
+msgstr ""
+
 #
 msgid "Multi EPG"
 msgstr "Multi EPG"
@@ -12284,8 +12318,7 @@ msgstr ""
 msgid "MultiTranscoding"
 msgstr ""
 
-#, python-format
-msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
+msgid "Multiboot Image created:"
 msgstr ""
 
 msgid "Multimedia Packages"
@@ -12355,6 +12388,9 @@ msgstr ""
 
 #, python-format
 msgid "NOTE: These %d directories/files exist and will be overwritten!"
+msgstr ""
+
+msgid "NOTE: While the console screen is hidden from view the buttons are still active. Pressing any enabled button will cause the screen to reappear but the button will not be actioned."
 msgstr ""
 
 msgid "NOW"
@@ -12699,9 +12735,6 @@ msgstr ""
 msgid "No Connection"
 msgstr ""
 
-msgid "No Devices Found !!"
-msgstr ""
-
 #
 #, fuzzy
 msgid "No ECM PIDs available"
@@ -12897,9 +12930,6 @@ msgstr ""
 msgid "No updates available."
 msgstr ""
 
-msgid "No updates were available.  Please try again later."
-msgstr ""
-
 msgid "No valid device detected - Press OK"
 msgstr ""
 
@@ -12934,11 +12964,6 @@ msgstr ""
 #
 msgid "No, but restart from begin"
 msgstr "Ne, ali restartaj od početka"
-
-#
-#, fuzzy
-msgid "No, do not backup a image"
-msgstr "Ne, ništa ne čini "
 
 #
 msgid "No, do nothing."
@@ -13115,9 +13140,6 @@ msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr ""
 
-msgid "Now building the Backup Image"
-msgstr ""
-
 msgid "Now save time shift as movie and continues recording"
 msgstr ""
 
@@ -13200,10 +13222,10 @@ msgstr ""
 msgid "OSD 3D Settings"
 msgstr ""
 
-msgid "OSD Adjustment"
+msgid "OSD Calibration"
 msgstr ""
 
-msgid "OSD Calibration"
+msgid "OSD Calibration Settings"
 msgstr ""
 
 msgid "OSD Settings"
@@ -13215,6 +13237,9 @@ msgid "OSD Setup"
 msgstr "Postavi"
 
 msgid "OSD name request"
+msgstr ""
+
+msgid "OSD visibility"
 msgstr ""
 
 msgid "OTT Model"
@@ -13379,10 +13404,16 @@ msgstr ""
 msgid "Open the Channel Selection Settings screen"
 msgstr ""
 
+msgid "Open the Image information"
+msgstr ""
+
 msgid "Open the Plugin Browser"
 msgstr ""
 
 msgid "Open the Plugin Browser settings screen"
+msgstr ""
+
+msgid "Open the Storage Device information"
 msgstr ""
 
 msgid "Open the VirtualKeyBoard for text entry"
@@ -13665,8 +13696,8 @@ msgstr ""
 msgid "Pali"
 msgstr ""
 
-#. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
-#. TRANSLATORS: (aspect ratio policy: Fit width, cut/crop top and bottom (Maintain aspect ratio))
+#. TRANSLATORS: Aspect ratio policy: Cropped content on left/right in doubt, keep English term.
+#. TRANSLATORS: Aspect ratio policy: Fit width, cut/crop top and bottom (maintain aspect ratio).
 msgid "Pan&scan"
 msgstr ""
 
@@ -13743,9 +13774,6 @@ msgstr ""
 
 #, python-format
 msgid "Path '%s' missing!"
-msgstr ""
-
-msgid "Path to save not exist: '/tmp/'"
 msgstr ""
 
 #
@@ -13885,7 +13913,7 @@ msgid "Pictures"
 msgstr "sakri player"
 
 #
-#. TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
+#. TRANSLATORS: Aspect ratio policy: Black bars on left/right in doubt, keep English term.
 msgid "Pillarbox"
 msgstr ""
 
@@ -14013,13 +14041,8 @@ msgstr ""
 msgid "Please add titles to the compilation."
 msgstr ""
 
-msgid "Please be patient, a backup will now be made,\n"
+msgid "Please be patient."
 msgstr ""
-
-#
-#, fuzzy
-msgid "Please check the manual of the receiver"
-msgstr "Molim unesite ime za novu oznaku"
 
 #
 msgid "Please choose an extension..."
@@ -14104,11 +14127,6 @@ msgstr ""
 msgid "Please press OK when ready"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Please select a backup destination"
-msgstr "Odaberi film"
-
 msgid "Please select a default EPG type..."
 msgstr ""
 
@@ -14174,17 +14192,10 @@ msgstr ""
 msgid "Please select the sub-service to record:"
 msgstr "Molim odaberite uslugu za snimanje..."
 
+msgid "Please select the target location to save the backup:"
+msgstr ""
+
 msgid "Please select what to do after flash of the following image:"
-msgstr ""
-
-msgid ""
-"Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
-"When you are ready press OK to continue."
-msgstr ""
-
-msgid ""
-"Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
-"When you are ready press green to continue."
 msgstr ""
 
 #
@@ -14305,11 +14316,6 @@ msgstr ""
 msgid "Please wait... Loading list..."
 msgstr "Molim pričekajte... Učitavam listu..."
 
-#
-#, fuzzy
-msgid "Please wait...almost ready! "
-msgstr "Molim pričekajte... Učitavam listu..."
-
 msgid "Plug in USB device"
 msgstr ""
 
@@ -14401,6 +14407,9 @@ msgstr "Port D"
 msgid "Port number for the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr ""
 
+msgid "Port of fallback remote receiver"
+msgstr "Priključak rezervnog daljinskog prijemnika"
+
 #
 #, fuzzy
 msgid "Portugal"
@@ -14409,11 +14418,6 @@ msgstr "Portugalski"
 #
 msgid "Portuguese"
 msgstr "Portugalski"
-
-#
-#, fuzzy
-msgid "Position Setup"
-msgstr "Postavke Motora"
 
 msgid "Position of finished Timers in Timerlist"
 msgstr ""
@@ -14446,6 +14450,9 @@ msgstr "Postavke Motora"
 #
 msgid "Positioner setup"
 msgstr "Postavke Motora"
+
+msgid "Possible causes could be:"
+msgstr ""
 
 msgid "Power"
 msgstr ""
@@ -14593,10 +14600,6 @@ msgstr ""
 
 #
 msgid "Press OK on your remote control to continue."
-msgstr ""
-
-#
-msgid "Press OK to activate the selected skin."
 msgstr ""
 
 #
@@ -14751,9 +14754,6 @@ msgstr ""
 
 #
 msgid "Priority"
-msgstr ""
-
-msgid "Probable causes could be"
 msgstr ""
 
 msgid "Proc model"
@@ -15004,6 +15004,9 @@ msgid "Quick EPG"
 msgstr "Brzo"
 
 msgid "Quick Launch Menu"
+msgstr ""
+
+msgid "Quick Menu Actions"
 msgstr ""
 
 msgid "Quick Menu..."
@@ -15861,6 +15864,9 @@ msgstr ""
 msgid "Restart Network Adapter"
 msgstr ""
 
+msgid "Restart OSCam"
+msgstr ""
+
 msgid "Restart enigma"
 msgstr ""
 
@@ -16121,6 +16127,10 @@ msgstr ""
 msgid "Running Myrestore script, Please wait ..."
 msgstr ""
 
+#, python-format
+msgid "Running command %d: '%s'."
+msgstr ""
+
 #
 msgid "Russian"
 msgstr "Ruski"
@@ -16240,6 +16250,9 @@ msgstr ""
 msgid "Same as in active"
 msgstr ""
 
+msgid "Same as stream"
+msgstr "Isto kao i web prijenos"
+
 msgid "Same behavior as current animation"
 msgstr ""
 
@@ -16332,6 +16345,9 @@ msgstr ""
 msgid "Save EPG data"
 msgstr ""
 
+msgid "Save Log"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Save all changed settings and exit"
@@ -16384,6 +16400,9 @@ msgid "Save the left column directory location on exit."
 msgstr ""
 
 msgid "Save the log changes and exit"
+msgstr ""
+
+msgid "Save the log of the console messages to a file"
 msgstr ""
 
 msgid "Save the right column directory location on exit."
@@ -16839,6 +16858,9 @@ msgstr ""
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
 msgstr ""
 
+msgid "Select 'Yes' to show subscription packages in the Download Plugins screen."
+msgstr ""
+
 msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
 msgstr ""
 
@@ -16897,9 +16919,6 @@ msgstr "Odaberi Tvrdi Disk"
 msgid "Select Device"
 msgstr ""
 
-msgid "Select Display Skin"
-msgstr ""
-
 msgid "Select Enigma2 Skin"
 msgstr ""
 
@@ -16914,11 +16933,6 @@ msgstr ""
 
 msgid "Select HDD"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Select LCD Skin"
-msgstr "Odaberi Tvrdi Disk"
 
 msgid "Select Lan/Wlan"
 msgstr ""
@@ -16941,9 +16955,6 @@ msgstr ""
 msgid "Select Shares"
 msgstr ""
 
-msgid "Select Skin"
-msgstr ""
-
 msgid "Select Softcam"
 msgstr ""
 
@@ -16961,11 +16972,6 @@ msgstr "Odaberi film"
 #
 msgid "Select Upgrade Source To Edit"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Select Your Skin"
-msgstr "Odaberi Tvrdi Disk"
 
 msgid "Select a Softcam from the available list as the default for AutoCam."
 msgstr ""
@@ -17441,6 +17447,9 @@ msgstr ""
 msgid "Select the sort order for the file lines:"
 msgstr ""
 
+msgid "Select the sort order of the Extension Menu entries."
+msgstr ""
+
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
 msgstr ""
 
@@ -17488,6 +17497,9 @@ msgstr ""
 
 msgid "Select the time zone within the area or region."
 msgstr ""
+
+msgid "Select the timer from the fallback tuner by default"
+msgstr "Kada je omogućeno, uvozi se tajmer iz rezervnog tjunera"
 
 msgid "Select the tuner that controls the motorized dish."
 msgstr ""
@@ -17882,6 +17894,9 @@ msgstr ""
 msgid "Set action for 'Info' key"
 msgstr "Odaberi film"
 
+msgid "Set alternative fallback tuners for DVB-T/C or ATSC"
+msgstr "Postavite alternativne rezervne prijamnike za DVB-T/C ili ATSC"
+
 msgid "Set current CEC address as fixed address"
 msgstr ""
 
@@ -17922,6 +17937,9 @@ msgstr ""
 msgid "Set the MAC address of your %s %s."
 msgstr "Konfiguracija Tunera"
 
+msgid "Set the User ID of the OpenWebif from your fallback tuner"
+msgstr "Postavite korisnički ID OpenWebif sučelja iz rezervnog tjunera"
+
 msgid "Set the aspect ratio of the service picons."
 msgstr ""
 
@@ -17948,6 +17966,12 @@ msgstr ""
 
 msgid "Set the number of lines to be saved for 'stout' and 'sterr' output in scripts."
 msgstr ""
+
+msgid "Set the password of the OpenWebif from your fallback tuner"
+msgstr "Postavite lozinku OpenWebif sučelja iz rezervnog tjunera"
+
+msgid "Set the port of the OpenWebif from your fallback tuner"
+msgstr "Postavite port OpenWebif sučelja iz rezervnog tjunera"
 
 msgid "Set the position of the recording icons."
 msgstr ""
@@ -17980,6 +18004,9 @@ msgid "Set the time to hide the second infobar. The bar also disappears on press
 msgstr ""
 
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, PowerTimer, SleepTimer etc."
+msgstr ""
+
+msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
 msgstr ""
 
 msgid "Set the type of the progress indication in the channel selection screen."
@@ -18172,9 +18199,6 @@ msgid "Setup your Harddisk"
 msgstr ""
 
 msgid "Setup your LCD"
-msgstr ""
-
-msgid "Setup your LCD Skin"
 msgstr ""
 
 msgid "Setup your OSD"
@@ -18515,6 +18539,9 @@ msgstr ""
 msgid "Show Source packages"
 msgstr ""
 
+msgid "Show Subscription packages"
+msgstr ""
+
 msgid "Show Subservices Of Active Service"
 msgstr ""
 
@@ -18787,6 +18814,18 @@ msgstr ""
 
 msgid "Show next system information screen"
 msgstr ""
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL did not complete"
+msgstr "Prikažite obavijest prilikom uvoza kanala i/ili EPG s URL-a udaljenog primatelja kada nije kompletan"
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL is completed"
+msgstr "Prikažite obavijest prilikom uvoza kanala i/ili EPG s URL-a udaljenog primatelja kada je kompletan"
+
+msgid "Show notification when import channels was not successful"
+msgstr "Prikažite obavijest kada uvoz kanala nije uspio"
+
+msgid "Show notification when import channels was successful"
+msgstr "Prikažite obavijest kada je uvoz kanala uspio"
 
 msgid "Show or hide the extended description, (skin dependent)."
 msgstr ""
@@ -19116,6 +19155,9 @@ msgstr ""
 msgid "Shutdown"
 msgstr ""
 
+msgid "Shutdown OSCam"
+msgstr ""
+
 msgid "Shutting down. Please wait..."
 msgstr ""
 
@@ -19233,9 +19275,6 @@ msgstr ""
 msgid "Size descending"
 msgstr ""
 
-msgid "Skin"
-msgstr ""
-
 msgid "Skin & Resolution"
 msgstr ""
 
@@ -19252,9 +19291,6 @@ msgid "Skin Settings"
 msgstr ""
 
 msgid "SkinSelection"
-msgstr ""
-
-msgid "SkinSelector"
 msgstr ""
 
 msgid "Skip back"
@@ -19396,7 +19432,7 @@ msgstr ""
 msgid "Slot Manager Actions"
 msgstr ""
 
-msgid "Slot R: Root Slot Full Backup (Current image)"
+msgid "Slot R: Root Slot Image Backup (Current image)"
 msgstr ""
 
 msgid "Slot count"
@@ -19700,6 +19736,9 @@ msgstr ""
 msgid "Speed"
 msgstr ""
 
+msgid "Spinner Position"
+msgstr ""
+
 #
 msgid "Split preview mode"
 msgstr ""
@@ -19800,6 +19839,9 @@ msgid "Start test"
 msgstr ""
 
 msgid "Start the Kexec initialization"
+msgstr ""
+
+msgid "Start the backup of the selected image"
 msgstr ""
 
 msgid "Start the highlighted plugin"
@@ -20070,16 +20112,16 @@ msgstr "Molim promjenite završno vijeme snimanja"
 msgid "Streaming tuner information for %s %s"
 msgstr ""
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (force aspect))
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching all parts of the picture with the same factor (force aspect).
 msgid "Stretch full"
 msgstr ""
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching all parts of the picture with the same factor (all parts lose aspect).
 msgid "Stretch linear"
 msgstr ""
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the top/bottom (Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch))
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right (Center 50% of picture maintain aspect, left/right 25% lose aspect heaver than on linear stretch))
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching the top/bottom. Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch.
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching the left/right. Center 50% of picture maintain aspect, left/right 25% lose aspect heaver than on linear stretch.
 msgid "Stretch nonlinear"
 msgstr ""
 
@@ -20093,6 +20135,9 @@ msgid "Style"
 msgstr ""
 
 msgid "Style:"
+msgstr ""
+
+msgid "Subscription Packages"
 msgstr ""
 
 msgid "Subservice Actions"
@@ -20186,9 +20231,6 @@ msgstr "Nedelja"
 #
 msgid "Sunday"
 msgstr "Nedelja"
-
-msgid "Support at"
-msgstr ""
 
 msgid "Suriname"
 msgstr ""
@@ -20826,6 +20868,9 @@ msgid ""
 "What do you want to do ?"
 msgstr ""
 
+msgid "The backup can take up to about 15 minutes to complete."
+msgstr ""
+
 msgid "The backup failed"
 msgstr ""
 
@@ -21027,7 +21072,7 @@ msgstr ""
 msgid "There was an error downloading the region list"
 msgstr ""
 
-msgid "There was an error downloading the update list.  Please try again."
+msgid "There was an error downloading the update list. Please try again."
 msgstr ""
 
 msgid "There was an error while trying to login."
@@ -21245,7 +21290,7 @@ msgstr ""
 msgid "This option lets you adjust the 3D depth of the OSD."
 msgstr ""
 
-msgid "This option lets you adjust the transparency of the user interface"
+msgid "This option lets you adjust the transparency of the OSD."
 msgstr ""
 
 msgid "This option lets you choose the 3D mode of the OSD."
@@ -21440,10 +21485,6 @@ msgstr ""
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr ""
 
-#, python-format
-msgid "Time required for this process: %s"
-msgstr ""
-
 msgid "Time shift buffer delete after zap"
 msgstr ""
 
@@ -21495,6 +21536,9 @@ msgstr ""
 #, fuzzy
 msgid "Time style"
 msgstr "Korekcija vremena "
+
+msgid "Time taken for the backup:"
+msgstr ""
 
 msgid "Time to execute command or script"
 msgstr ""
@@ -21624,10 +21668,11 @@ msgstr ""
 msgid "To complete the setup the %s %s must connect to the Internet.  Connect the %s %s to the Internet now."
 msgstr ""
 
-#
-#, fuzzy
-msgid "To restore the image:"
-msgstr "Da, vratite pohranjene postavke sada"
+msgid "To restore the image check the manual or documentation for the receiver."
+msgstr ""
+
+msgid "To restore the image use 'OnlineFlash' option in the 'SoftwareManager' menu."
+msgstr ""
 
 #, python-format
 msgid "To where would you like to extract '%s'?"
@@ -22101,16 +22146,14 @@ msgstr ""
 msgid "UHD Test"
 msgstr ""
 
-#
-#, fuzzy
-msgid "UI 3D setup"
-msgstr "Postavi"
-
 msgid "UP80  (keymap.u80)"
 msgstr ""
 
 msgid "URL"
 msgstr ""
+
+msgid "URL of fallback remote receiver"
+msgstr "URL rezervnog daljinskog prijemnika"
 
 msgid "URL of fallback remote receiver."
 msgstr ""
@@ -22176,6 +22219,9 @@ msgstr ""
 #, python-format
 msgid "Unexpected error accessing WebIF: %s"
 msgstr ""
+
+msgid "Unexpected error while retrieving fallback tuner's timer information"
+msgstr "Neočekivana pogreška pri dohvaćanju podataka o rezervnom tajmeru"
 
 msgid "UnhandledKey"
 msgstr ""
@@ -22478,9 +22524,6 @@ msgstr ""
 msgid "Use Netmed EPG information when it is available."
 msgstr ""
 
-msgid "Use OnlineFlash in SoftwareManager"
-msgstr ""
-
 msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
 msgstr ""
 
@@ -22596,25 +22639,28 @@ msgstr "Koristi mjerenje snage"
 msgid "Use small screen"
 msgstr ""
 
-msgid "Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size."
+msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr ""
 
-msgid "Use the Left/Right buttons on your remote to move the user interface bottom"
+msgid "Use the LEFT/RIGHT buttons on your remote to adjust the width of the OSD. LEFT button decreases the width, RIGHT increases the width."
 msgstr ""
 
-msgid "Use the Left/Right buttons on your remote to move the user interface left"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD bottom."
 msgstr ""
 
-msgid "Use the Left/Right buttons on your remote to move the user interface left/right"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD left."
 msgstr ""
 
-msgid "Use the Left/Right buttons on your remote to move the user interface right"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD left/right."
 msgstr ""
 
-msgid "Use the Left/Right buttons on your remote to move the user interface top"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD right."
 msgstr ""
 
-msgid "Use the Left/Right buttons on your remote to move the user interface up/down"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD top."
+msgstr ""
+
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD up/down."
 msgstr ""
 
 msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
@@ -22626,13 +22672,13 @@ msgstr ""
 msgid "Use the UP and DOWN buttons to select your locale/language then press the OK button to continue."
 msgstr ""
 
+msgid "Use the UP/DOWN buttons to select the installed image to be backed up. Press the 'Start' (GREEN) button to start the backup."
+msgstr ""
+
 msgid "Use the alternative or the conventional radio mode."
 msgstr ""
 
 msgid "Use the current selection and exit"
-msgstr ""
-
-msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr ""
 
 msgid "Use the extended List"
@@ -22688,6 +22734,9 @@ msgstr ""
 msgid "User Feed URL"
 msgstr ""
 
+msgid "User ID"
+msgstr "Korisnički ID"
+
 msgid "User comments"
 msgstr ""
 
@@ -22712,9 +22761,6 @@ msgid "User defined transponder"
 msgstr "Predefinirani transponder"
 
 msgid "User interface settings"
-msgstr ""
-
-msgid "User interface visibility"
 msgstr ""
 
 msgid "User logo:"
@@ -22844,18 +22890,8 @@ msgstr ""
 msgid "Version"
 msgstr ""
 
-#
-#, fuzzy, python-format
-msgid "Version %s %s"
-msgstr "Nova verzija:"
-
 msgid "Version: "
 msgstr ""
-
-#
-#, fuzzy, python-format
-msgid "Version: %s"
-msgstr "Nova verzija:"
 
 #
 msgid "Vertical"
@@ -23389,6 +23425,15 @@ msgstr ""
 msgid "When enabled the receiver will automatically wake from standby when the TV is turned on."
 msgstr ""
 
+msgid "When enabled the timer from the fallback tuner is imported"
+msgstr "Kada je omogućeno, uvozi se tajmer iz rezervnog tjunera"
+
+msgid "When enabled the timer from the fallback tuner is the default timer"
+msgstr "Kada je omogućeno, uvozi se tajmer iz rezervnog tjunera"
+
+msgid "When enabled you can customize the OpenWebIf settings for the fallback tuner"
+msgstr "Kada je omogućeno, možete prilagoditi OpenWebIf postavke za rezervni tjuner"
+
 msgid "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
 msgstr ""
 
@@ -23552,6 +23597,9 @@ msgid "When the input cursor reaches this point (percentage of the width, from e
 msgstr ""
 
 msgid "When the receiver wakes from standby or deep standby it will send a command to the TV to bring it out of standby."
+msgstr ""
+
+msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
 msgstr ""
 
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
@@ -24024,7 +24072,7 @@ msgid "Your receiver does not have an Internet connection"
 msgstr ""
 
 #, python-format
-msgid "Your receiver might be unusable now.  Please consult the manual for further assistance before rebooting your %s %s."
+msgid "Your receiver might be now be unstable. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr ""
 
 #
@@ -24149,12 +24197,6 @@ msgstr ""
 msgid "Zulu"
 msgstr ""
 
-msgid "[Enigma2 Settings]\n"
-msgstr ""
-
-msgid "[Image Info]\n"
-msgstr ""
-
 msgid "[Timeshift] Merging records failed!"
 msgstr ""
 
@@ -24257,9 +24299,6 @@ msgstr ""
 
 #, python-format
 msgid "bc%d"
-msgstr ""
-
-msgid "because of the used file system the back-up\n"
 msgstr ""
 
 #
@@ -24730,10 +24769,6 @@ msgstr ""
 msgid "multi"
 msgstr "multinorm"
 
-#
-msgid "multinorm"
-msgstr "multinorm"
-
 msgid "music (general)"
 msgstr ""
 
@@ -24845,9 +24880,6 @@ msgstr ""
 
 #
 msgid "on READ ONLY medium."
-msgstr ""
-
-msgid "on how to restore the image"
 msgstr ""
 
 msgid "orange"
@@ -25276,9 +25308,6 @@ msgstr ""
 msgid "width"
 msgstr ""
 
-msgid "will take about 1-15 minutes for this system\n"
-msgstr ""
-
 msgid "winter sport"
 msgstr ""
 
@@ -25311,6 +25340,103 @@ msgstr "Da ( zadrži feedove)"
 
 msgid "®"
 msgstr ""
+
+#
+#, fuzzy
+#~ msgid "Cannot create backup directory"
+#~ msgstr "Roditeljska zaštita"
+
+#
+#, fuzzy
+#~ msgid "Create:"
+#~ msgstr "ponavljam"
+
+#
+#, fuzzy
+#~ msgid "No, do not backup a image"
+#~ msgstr "Ne, ništa ne čini "
+
+#
+#, fuzzy
+#~ msgid "Please check the manual of the receiver"
+#~ msgstr "Molim unesite ime za novu oznaku"
+
+#
+#, fuzzy
+#~ msgid "Please select a backup destination"
+#~ msgstr "Odaberi film"
+
+#
+#, fuzzy
+#~ msgid "Please wait...almost ready! "
+#~ msgstr "Molim pričekajte... Učitavam listu..."
+
+#
+#, fuzzy
+#~ msgid "To restore the image:"
+#~ msgstr "Da, vratite pohranjene postavke sada"
+
+#
+#, fuzzy, python-format
+#~ msgid "Version %s %s"
+#~ msgstr "Nova verzija:"
+
+#
+#, fuzzy, python-format
+#~ msgid "Version: %s"
+#~ msgstr "Nova verzija:"
+
+#
+#~ msgid "Execution finished!!"
+#~ msgstr "Izvođenje završeno!!"
+
+#
+#, fuzzy
+#~ msgid "Execution progress:"
+#~ msgstr "Tijek izvođenja:"
+
+#
+#, fuzzy
+#~ msgid "24"
+#~ msgstr "2"
+
+#
+#, fuzzy
+#~ msgid "25"
+#~ msgstr "2"
+
+#
+#, fuzzy
+#~ msgid "30"
+#~ msgstr "0"
+
+#
+#~ msgid "About..."
+#~ msgstr "O prijemniku..."
+
+#
+#, fuzzy
+#~ msgid "Select Your Skin"
+#~ msgstr "Odaberi Tvrdi Disk"
+
+#
+#, fuzzy
+#~ msgid "UI 3D setup"
+#~ msgstr "Postavi"
+
+#
+#, fuzzy
+#~ msgid "Position Setup"
+#~ msgstr "Postavke Motora"
+
+#
+#~ msgid "multinorm"
+#~ msgstr "multinorm"
+
+#
+#, fuzzy
+#~ msgid "Select LCD Skin"
+#~ msgstr "Odaberi Tvrdi Disk"
 
 #
 #, fuzzy

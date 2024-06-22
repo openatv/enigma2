@@ -18,7 +18,6 @@
 #include <lib/base/esimpleconfig.h>
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
-#include <lib/base/nconfig.h>
 #include <lib/gdi/gmaindc.h>
 #include <lib/gdi/glcddc.h>
 #include <lib/gdi/grc.h>
@@ -79,7 +78,7 @@ void keyEvent(const eRCKey &key)
 	/*eDebug("key.code : %02x \n", key.code);*/
 
 	int flags = key.flags;
-	int long_press_emulation_key = eConfigManager::getConfigIntValue("config.usage.long_press_emulation_key");
+	int long_press_emulation_key = ptr->getLongPressedEmulationKey();
 	if ((long_press_emulation_key > 0) && (key.code == long_press_emulation_key))
 	{
 		long_press_emulation_pushed = true;
@@ -340,11 +339,11 @@ int main(int argc, char **argv)
 	dsk_lcd.setRedrawTask(main);
 
 	std::string active_skin = getConfigCurrentSpinner("config.skin.primary_skin");
-	std::string spinnerPostion = eSimpleConfig::getString("config.misc.spinnerPosition", "100,100");
+	std::string spinnerPostion = eSimpleConfig::getString("config.misc.spinnerPosition", "50,50");
 	int spinnerPostionX, spinnerPostionY;
 	if (sscanf(spinnerPostion.c_str(), "%d,%d", &spinnerPostionX, &spinnerPostionY) != 2)
 	{
-		spinnerPostionX = spinnerPostionY = 100;
+		spinnerPostionX = spinnerPostionY = 50;
 	}
 
 	eDebug("[Enigma] Loading spinners.");
@@ -396,11 +395,13 @@ int main(int argc, char **argv)
 			}
 			i++;
 		}
-		eDebug("[Enigma] Found %d spinners.", i);
+		eDebug("[Enigma] Found %d spinners. Position x=%d y=%d", i, spinnerPostionX, spinnerPostionY);
 		if (i == 0)
 			my_dc->setSpinner(eRect(spinnerPostionX, spinnerPostionY, 0, 0), wait, 1);
 		else
+		{
 			my_dc->setSpinner(eRect(ePoint(spinnerPostionX, spinnerPostionY), wait[0]->size()), wait, i);
+		}
 	}
 
 	gRC::getInstance()->setSpinnerDC(my_dc);

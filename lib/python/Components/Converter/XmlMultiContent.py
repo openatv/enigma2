@@ -42,7 +42,7 @@ class MultiContentTemplateParser(TemplateParser):
 				for item in items:
 					itemsAttibutes = {}
 					for name, value in item.items():
-						itemsAttibutes[name] = int(value) if name in ("font", "index") else value
+						itemsAttibutes[name] = int(value) if name == "font" else value
 					newItems.append(itemsAttibutes)
 				modesItems[modeName] = newItems
 				modes[modeName] = attibutes
@@ -68,17 +68,16 @@ class MultiContentTemplateParser(TemplateParser):
 						modeItemHeight = modeProperties.get("itemHeight")
 						modeData = []
 						for item in modesItems[modeName]:
-							index = item.get("index")
-							if index is None:
-								index = -1
-							elif isinstance(index, str) and self.indexNames:
+							index = item.get("index", "-1")
+							if index.isdigit():
+								index = int(index)
+							elif self.indexNames:
 								index = self.indexNames.get(index, -1)
 								if index < 0 or index >= len(self.indexNames):
-									print(f"[XmlMultiContent] Error: Index must range from 0 to {len(self.indexNames) - 1}!")
-							elif not isinstance(index, int):
-								print("[XmlMultiContent] Error: Index must be a variable item number or variable name!")
+									print(f"[XmlMultiContent] Error: Index name must resolve to a number between 0 and {len(self.indexNames) - 1} inclusive!")
 							else:
-								index = int(index)
+								index = -1
+								print("[XmlMultiContent] Error: Index must be a list item number!")
 							pos = item.get("position")
 							size = item.get("size")
 							backgroundColor = item.get("backgroundColor")

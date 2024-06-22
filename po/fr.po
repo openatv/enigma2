@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-08 12:32+0000\n"
+"POT-Creation-Date: 2024-06-21 14:25+0000\n"
 "PO-Revision-Date: 2024-02-19 11:02+0000\n"
 "Last-Translator: \"Mr.Servo\" <mrservo@gmx.de>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fr/>\n"
@@ -18,15 +18,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "X-Generator: Weblate 5.4\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
-
-msgid ""
-"\n"
-"\n"
-"[User - bouquets (TV)]\n"
-msgstr ""
-"\n"
-"\n"
-"[Utilisateur - bouquets (TV)]\n"
 
 msgid ""
 "\n"
@@ -42,31 +33,8 @@ msgstr ""
 "\n"
 "Enregistrement en cours."
 
-msgid ""
-"\n"
-"[Installed Plugins]\n"
-msgstr ""
-"\n"
-"[Plugins installés]\n"
-
-msgid ""
-"\n"
-"[User - bouquets (RADIO)]\n"
-msgstr ""
-"\n"
-"[Utilisateur - bouquets (RADIO)]\n"
-
 msgid " "
 msgstr " "
-
-msgid "     no space left on back-up device"
-msgstr "     pas d'espace laissé sur le périphérique de sauvegarde"
-
-msgid "     no writing permission on back-up device"
-msgstr "     pas d'autorisation d'écriture sur le périphérique de sauvegarde"
-
-msgid "     wrong back-up destination "
-msgstr "     mauvaise destination de sauvegarde "
 
 msgid "  Menu key : Select quad channel"
 msgstr "  Touche de menu : sélectionnez le canal quadruple"
@@ -1343,6 +1311,15 @@ msgstr ", "
 msgid "-"
 msgstr "-"
 
+msgid "- No space left on backup device."
+msgstr ""
+
+msgid "- No write permission on backup device."
+msgstr ""
+
+msgid "- Wrong backup destination."
+msgstr ""
+
 msgid "-24 Hours"
 msgstr "- 24 heures"
 
@@ -1439,18 +1416,6 @@ msgstr "1x"
 msgid "2"
 msgstr "2"
 
-msgid "23.976"
-msgstr "23.976"
-
-msgid "24"
-msgstr "24"
-
-msgid "25"
-msgstr "25"
-
-msgid "29.97"
-msgstr "29.97"
-
 msgid "2nd InfoBar"
 msgstr "2ème infobarre"
 
@@ -1480,9 +1445,6 @@ msgstr "2x, 4x, 6x, 8x"
 
 msgid "3"
 msgstr "3"
-
-msgid "30"
-msgstr "30"
 
 msgid "3D Mode"
 msgstr "Mode 3D"
@@ -1567,6 +1529,9 @@ msgstr "<­no log trouvés>"
 
 msgid "A"
 msgstr "A"
+
+msgid "A backup is now being created."
+msgstr ""
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr "Une liste séparée des extensions à utiliser pour 'Mon extension' de 'Filter extension'. Entrez les noms de l'extension sans point principal (.)."
@@ -1728,6 +1693,18 @@ msgstr "AC3plus transcodage"
 msgid "AFL"
 msgstr "AFL"
 
+msgid "AI-Powered translation color"
+msgstr ""
+
+msgid "AI-Powered translation enabled"
+msgstr ""
+
+msgid "AI-Powered translation language"
+msgstr ""
+
+msgid "AI-Powered translation subscription code"
+msgstr ""
+
 msgid "ARM"
 msgstr "ARM"
 
@@ -1775,9 +1752,6 @@ msgstr "À propos d'openATV"
 
 msgid "About to start"
 msgstr "sur le point de commencer"
-
-msgid "About..."
-msgstr "À propos..."
 
 msgid "Access point"
 msgstr "Point d'accès"
@@ -2049,9 +2023,6 @@ msgstr "Les options additionnelles du moteur vous permettent d’entrer les dét
 msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move to another satellite."
 msgstr "Les options additionnelles du moteur vous permettent d’entrer les détails des spécification de votre moteur afin qu’enigma puisse calculer la durée du déplacement vers un autre satellite."
 
-msgid "Adjust 3D settings"
-msgstr "Ajuster les paramètres 3D"
-
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr "Ajustez les paramètres de couleurs de sorte que toutes les nuances de couleurs soient visibles, mais apparaissent saturées autant que possible. Si vous êtes content du résultat, appuyez sur OK pour fermer le réglage vidéo avancé, ou utilisez les touches numériques pour choisir d'autres écrans de test."
 
@@ -2244,9 +2215,6 @@ msgstr "Permet d'afficher/masquer le gestionnaire de log dans les extensions (bo
 msgid "Allows you to show/hide OScam/CCcam in the Extension Menu screen (BLUE button)."
 msgstr ""
 
-msgid "Almost there... "
-msgstr "Presque là... "
-
 msgid "Alpha"
 msgstr "Transparence"
 
@@ -2258,6 +2226,15 @@ msgstr "Alphabétique sous les en-têtes"
 
 msgid "Alphanumeric"
 msgstr "Alphanumérique"
+
+msgid "Also import at reboot/restart enigma2"
+msgstr "Importer aussi au redémarrage d’Enigma2"
+
+msgid "Also import from the extension menu"
+msgstr "Importer également depuis le menu des extensions"
+
+msgid "Also import when box is leaving standby"
+msgstr "Importer aussi lorsque le récepteur est laissé en veille"
 
 msgid "Also on standby"
 msgstr "Aussi en veille"
@@ -2273,6 +2250,9 @@ msgstr "Alternative 2"
 
 msgid "Alternative Edit"
 msgstr "[Édition alternatif]"
+
+msgid "Alternative URLs for DVB-T/C or ATSC"
+msgstr "URL alternatives pour DVB-T/C ou ATSC"
 
 msgid "Alternative numbering mode"
 msgstr "Mode de numérotation alternatif"
@@ -2521,6 +2501,9 @@ msgstr ""
 
 msgid "Assamese"
 msgstr "Assamais"
+
+msgid "Assembling the image backup files."
+msgstr ""
 
 msgid "Assigned CAIds:"
 msgstr "CAIds attribués :"
@@ -2804,14 +2787,6 @@ msgstr "USB arrière externe"
 msgid "Back, upper USB"
 msgstr "A l'arrière, USB du haut"
 
-#, python-format
-msgid "Back-up Tool for a %s\n"
-msgstr "Outil de sauvegarde pour un %s\n"
-
-#, python-format
-msgid "Back-up Tool for an %s\n"
-msgstr "Outil de secours pour un %s\n"
-
 msgid "Back/Recall"
 msgstr "Retour/Rappel"
 
@@ -2836,13 +2811,6 @@ msgstr "Le contexte :"
 msgid "Backup"
 msgstr "Sauvegarde"
 
-#, python-format
-msgid "Backup Date: %s\n"
-msgstr "Date de la sauvegarde : %s\n"
-
-msgid "Backup Image"
-msgstr "Image de sauvegarde"
-
 msgid "Backup Location"
 msgstr "Emplacement des sauvegardes"
 
@@ -2852,29 +2820,17 @@ msgstr "Log sauvegarde"
 msgid "Backup Mode"
 msgstr "Mode de sauvegarde"
 
-msgid "Backup Mode: Flash Online\n"
-msgstr "Mode de sauvegarde : Flash Online\n"
+msgid "Backup Mode: Flash Online"
+msgstr ""
 
-msgid "Backup Mode: USB Recovery\n"
-msgstr "Mode de sauvegarde : récupération USB\n"
+msgid "Backup Mode: USB Recovery"
+msgstr ""
 
 msgid "Backup Settings"
 msgstr "Sauvegarder les paramètres"
 
 msgid "Backup System Settings"
 msgstr "Sauvegarde des paramètres système"
-
-msgid "Backup completed."
-msgstr "Sauvegarde terminée."
-
-msgid "Backup done."
-msgstr "Sauvegarde terminée."
-
-msgid "Backup failed!"
-msgstr ""
-
-msgid "Backup failed."
-msgstr "Échec de la sauvegarde."
 
 msgid "Backup images"
 msgstr "Sauvegarde des images"
@@ -2890,8 +2846,8 @@ msgstr ""
 "Voulez-vous l'installer maintenant ?"
 
 #, python-format
-msgid "Backup to destination: %s"
-msgstr "Sauvegarde vers la destination : %s"
+msgid "Backup tool for %s %s"
+msgstr ""
 
 msgid "Backup your %s %s settings."
 msgstr "Sauvegarder vos %s %s paramètres."
@@ -2941,10 +2897,10 @@ msgstr ""
 msgid "Base time"
 msgstr "Heure début"
 
-msgid "Base transparency for OpenOpera web browser"
+msgid "Base transparency for OpenOpera web browser."
 msgstr "Transparence de base pour le navigateur OpenOpera"
 
-msgid "Base transparency for teletext, more options available within teletext screen."
+msgid "Base transparency for teletext, more options are available within teletext screen."
 msgstr "Transparence de base pour le télétexte, plus d'options disponibles dans l'écran de télétexte."
 
 msgid "Baseball"
@@ -2958,6 +2914,9 @@ msgstr "Basketball"
 
 msgid "Basque"
 msgstr "Basque"
+
+msgid "Before changing these settings try to disable any overscan settings on th TV / display screen. To calibrate the On-Screen-Display (OSD) adjust the position and size values until the red box is *just* visible and touches the edges of the screen."
+msgstr ""
 
 msgid "Begin time"
 msgstr "Heure de début"
@@ -3209,10 +3168,6 @@ msgstr "Informations sur la construction"
 msgid "Build information for %s %s"
 msgstr ""
 
-#, python-format
-msgid "Build: %s"
-msgstr "Compilation : %s"
-
 msgid "Bulgaria"
 msgstr "Bulgarie"
 
@@ -3260,9 +3215,6 @@ msgstr ""
 
 msgid "By disk label"
 msgstr ""
-
-msgid "By openATV Image Team"
-msgstr "Par openATV Image Team"
 
 msgid "Bypass HDMI EDID Check"
 msgstr "Contourner la vérification du HDMI EDID"
@@ -3536,6 +3488,9 @@ msgstr "Impossible de télécharger la minuterie"
 msgid "Can't allocate program source (e.g. tuner)"
 msgstr "Impossible d'allouer la source du programme (par exemple, tuner)"
 
+msgid "Can't create backup directory!"
+msgstr ""
+
 msgid ""
 "Can't going to live TV!\n"
 "Switch to live TV and restart time shift ?"
@@ -3652,9 +3607,6 @@ msgstr "Annuler la mise à jour"
 msgid "Cancelled upon user request"
 msgstr "Annulé à la demande de l’utilisateur"
 
-msgid "Cannot create backup directory"
-msgstr "Impossible de créer le répertoire de sauvegarde"
-
 msgid "Cannot delete file"
 msgstr "Impossible d'effacer le fichier"
 
@@ -3698,6 +3650,9 @@ msgstr "Catalan / Valencien"
 
 msgid "Cayman Islands"
 msgstr "Îles Caïmans"
+
+msgid "Cebuano"
+msgstr ""
 
 msgid "Celsius"
 msgstr "Celsius"
@@ -3969,9 +3924,8 @@ msgstr "Chine"
 msgid "Chinese"
 msgstr "Chinois"
 
-#, python-format
-msgid "Chipset: BCM%s"
-msgstr "Chipset : BCM%s"
+msgid "Chinese (Simplified)"
+msgstr ""
 
 msgid "Choice Box"
 msgstr "Choisir le récepteur"
@@ -4010,12 +3964,6 @@ msgstr ""
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Choisissez la fréquence de connexion au serveur IceTV pour vérifier les mises à jour."
 
-msgid "Choose the Display Skin and press GREEN to activate the skin."
-msgstr ""
-
-msgid "Choose the OSD Skin and press GREEN to activate the skin."
-msgstr ""
-
 msgid "Choose the amount of additional slots."
 msgstr ""
 
@@ -4024,6 +3972,9 @@ msgstr "Choisissez le style de mise en forme d'affichage pour les dates. 'D' / '
 
 msgid "Choose the display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds.  ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Choisissez le style de mise en forme d'affichage pour les heures. 'H' / 'HH' est l'heure pour une horloge de 24 heures, 'h' / 'hh' est l'heure pour une horloge de 12 heures, 'mm' est les minutes et 'ss' est les secondes. ('HH' et 'hh' ont des zéros non significatifs pour les valeurs à un chiffre.) L'affichage à l'écran sera basé sur votre choix mais peut être influencé par le skin."
+
+msgid "Choose the fallback font."
+msgstr ""
 
 msgid "Choose the front panel display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Choisissez le style de formatage de l'affichage du panneau avant pour les dates. 'D' / 'DD' est la date et 'M' / 'MM' est le mois en chiffres. ('DD' et 'MM' ont des zéros non significatifs pour les valeurs à un chiffre.) L'affichage à l'écran sera basé sur votre choix mais peut être influencé par le skin."
@@ -4311,6 +4262,11 @@ msgstr ""
 msgid "Command execution..."
 msgstr "Exécution de la commande..."
 
+msgid "Command finished."
+msgid_plural "Commands finished."
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Command order"
 msgstr "Ordre de la commande"
 
@@ -4460,6 +4416,9 @@ msgstr ""
 msgid "Configure remote control type"
 msgstr "Configurer le type de télécommande"
 
+msgid "Configure the AI-Powered translation language."
+msgstr ""
+
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "Configure le mode DiSEqC pour cette LNB."
 
@@ -4507,6 +4466,9 @@ msgstr "Configure le niveau de luminosité de l'affichage du panneau avant en mo
 
 msgid "Configure the brightness level of the front panel display for standby."
 msgstr "Configure le niveau de luminosité de l'affichage du panneau avant en mode veille."
+
+msgid "Configure the color of the AI-Powered translations."
+msgstr ""
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
 msgstr "Configure la couleur des sous-titres externes, Alternatif (normal en blanc, italique en jaune, gras en cyan, sous-ligné en vert), Blanc ou Jaune."
@@ -4821,6 +4783,9 @@ msgstr ""
 msgid "Console"
 msgstr "Console"
 
+msgid "Console Actions"
+msgstr ""
+
 msgid "Console Network Packages"
 msgstr ""
 
@@ -5072,6 +5037,10 @@ msgstr ""
 msgid "Create a symbolic link"
 msgstr ""
 
+#, python-format
+msgid "Create recovery image backup '%s'."
+msgstr ""
+
 msgid "Create separate radio user bouquet"
 msgstr "Créer des bouquets radio séparés"
 
@@ -5083,13 +5052,6 @@ msgstr ""
 
 msgid "Create the flash expander in the selected device"
 msgstr ""
-
-msgid "Create:"
-msgstr "Créer :"
-
-#, python-format
-msgid "Create: Recovery Fullbackup %s"
-msgstr "Créer : Sauvegarde complète de récupération %s"
 
 msgid "Creating .ap and .sc files"
 msgstr "Création des fichiers AP et SC"
@@ -5241,6 +5203,9 @@ msgstr "Personnaliser délai saut pour touches '7'/'9'"
 
 msgid "Customize"
 msgstr "Personnaliser"
+
+msgid "Customize OpenWebIF settings for fallback tuner"
+msgstr "Personnaliser les paramètres OpenWebIF pour le tuner de secours"
 
 msgid "Customize System Settings"
 msgstr ""
@@ -5661,9 +5626,6 @@ msgstr ""
 msgid "Default: '%s'."
 msgstr "Par défaut : '%s'."
 
-msgid "Defaults"
-msgstr "Défauts"
-
 msgid "Define Softcam For This Provider"
 msgstr ""
 
@@ -5962,8 +5924,20 @@ msgid "Deselect only highlighted file"
 msgstr ""
 
 #, python-format
-msgid "Deselected packages usually occur because those packaged are incompatible with existing packages.  While this is mostly harmless it is possible that your %s %s may experience issues."
+msgid "Deselected packages usually occur because those packaged are incompatible with existing packages. While this is mostly harmless it is possible that your %s %s may experience issues."
 msgstr ""
+
+msgid "Destination of fallback remote receiver"
+msgstr "Destination du récepteur distant de repli."
+
+msgid "Destination of fallback remote receiver for ATSC"
+msgstr "Destination du récepteur à distance de repli pour ATSC"
+
+msgid "Destination of fallback remote receiver for DVB-C"
+msgstr "Destination du récepteur à distance de repli pour DVB-C"
+
+msgid "Destination of fallback remote receiver for DVB-T"
+msgstr "Destination du récepteur à distance de repli pour DVB-T"
 
 msgid "Detail of GStreamer log."
 msgstr ""
@@ -6249,6 +6223,9 @@ msgstr "Djibouti"
 msgid "Do another manual service scan?"
 msgstr ""
 
+msgid "Do not backup the image"
+msgstr ""
+
 msgid "Do not change"
 msgstr "Ne pas changer"
 
@@ -6333,6 +6310,18 @@ msgstr "Voulez-vous vraiment effacer le timer %s ?"
 #, python-format
 msgid "Do you really want to remove your bookmark for '%s'?"
 msgstr "Voulez-vous vraiment supprimer votre signet de %s ?"
+
+msgid ""
+"Do you really want to restart OSCam?\n"
+"\n"
+"HINT: This will take about 5 seconds!"
+msgstr ""
+
+msgid ""
+"Do you really want to shut down OSCam?\n"
+"\n"
+"ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+msgstr ""
 
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
@@ -6532,7 +6521,7 @@ msgstr "Téléchargement en cours"
 msgid "Downloading Image"
 msgstr "Téléchargement de l'image en cours"
 
-msgid "Downloading latest update list.  Please wait..."
+msgid "Downloading latest update list. Please wait..."
 msgstr "Téléchargement de la liste des dernières mises à jour.  Veuillez patienter..."
 
 msgid "Downloading plugin information. Please wait..."
@@ -6820,6 +6809,9 @@ msgstr "Activer %s pro :"
 msgid "Enable 5V for active antenna"
 msgstr "Activer 5V pour l'antenne active"
 
+msgid "Enable AI-Powered translation for all teletext and DVB subtitles."
+msgstr ""
+
 msgid "Enable Autorecord"
 msgstr "Activer l'enregistrement automatique"
 
@@ -6968,6 +6960,9 @@ msgstr "Activer le récepteur distant de repli"
 msgid "Enable freesat EPG"
 msgstr "Activer EPG freesat"
 
+msgid "Enable import timer from fallback tuner"
+msgstr "Importer les programmations du récepteur distant de repli"
+
 msgid "Enable intro screen"
 msgstr "Activer l'écran d'accueil"
 
@@ -7041,9 +7036,6 @@ msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup
 msgstr "Activer pour afficher toutes les options de configuration vrai/faux, oui/non, marche/arrêt et activer/désactiver en tant que commutateur graphique."
 
 msgid "Enable to display setup entries alphabetically."
-msgstr ""
-
-msgid "Enable to display the Extension Menu screen entries alphabetically."
 msgstr ""
 
 msgid "Enable to display the current value of the slider at end of the slider bar."
@@ -7139,21 +7131,6 @@ msgstr "Centre de Cinéma Amélioré"
 msgid "Enigma2 (re)starts"
 msgstr ""
 
-msgid ""
-"Enigma2 Skinselector\n"
-"\n"
-"If you experience any problems please contact\n"
-"stephan@reichholf.net\n"
-"\n"
-"© 2006 - Stephan Reichholf"
-msgstr ""
-"Enigma2 SkinSelector\n"
-"\n"
-"Si vous rencontrez des problèmes merci de contacter\n"
-"stephan@reichholf.net\n"
-"\n"
-"© 2006 - Stephan Reichholf"
-
 msgid "Enigma2 debug level"
 msgstr ""
 
@@ -7175,6 +7152,9 @@ msgstr "Entrer"
 #, python-format
 msgid "Enter DNS (Dynamic Name Server) %d's IP address."
 msgstr ""
+
+msgid "Enter IP address"
+msgstr "Entrer l’adresse IP"
 
 msgid "Enter PIN"
 msgstr "Saisir le code PIN"
@@ -7240,6 +7220,9 @@ msgid "Enter your low band local oscillator frequency. For more information cons
 msgstr "Entrez votre fréquence d’oscillateur local à bande basse. Pour plus d’information consultez la fiche technique de votre LNB."
 
 msgid "Enter your personal feed URL to allow you to select packages from your personal feed."
+msgstr ""
+
+msgid "Enter your subscription code, the unified code for trial is 15."
 msgstr ""
 
 msgid "Entertainment"
@@ -7412,12 +7395,6 @@ msgstr ""
 msgid "Error opening recording file"
 msgstr "Erreur d'ouverture du fichier d'enregistrement"
 
-msgid "Error reading bouquets.radio"
-msgstr "Erreur de lecture de bouquets.radio"
-
-msgid "Error reading bouquets.tv"
-msgstr "Erreur de lecture de bouquets.tv"
-
 msgid "Error reading webpage!"
 msgstr "Erreur lors de la lecture de la page web !"
 
@@ -7427,6 +7404,14 @@ msgstr ""
 #, python-format
 msgid "Error unzipping image '%s'!"
 msgstr ""
+
+#, python-format
+msgid ""
+"Error while retrieving fallback timer information\n"
+"%s"
+msgstr ""
+"Erreur lors de la récupération des informations de programmation de repli\n"
+"%s"
 
 msgid "Error, unknown Result!"
 msgstr "Erreur, résultat inconnu !"
@@ -7538,6 +7523,10 @@ msgid "Error: Unable to rename directory '%s' to '%s'!"
 msgstr ""
 
 #, python-format
+msgid "Error: Unable to write log file '%s'!"
+msgstr "Erreur d’écriture de fichier : '%s'"
+
+#, python-format
 msgid "Error: You can't run '%s' on '%s'!"
 msgstr ""
 
@@ -7640,12 +7629,6 @@ msgstr "Dépasse le support double couche !"
 msgid "Execution condition"
 msgstr "Condition d'exécution"
 
-msgid "Execution finished!!"
-msgstr "Exécution terminée !"
-
-msgid "Execution progress:"
-msgstr "Progression de l'exécution :"
-
 msgid "Exif"
 msgstr "Exif"
 
@@ -7669,6 +7652,9 @@ msgstr "Quitter la sélection de quatre canaux"
 
 msgid "Exit all menus"
 msgstr "Quitter tous les menus"
+
+msgid "Exit and close all screens without performing a backup"
+msgstr ""
 
 msgid "Exit editor"
 msgstr "Quitter éditeur"
@@ -7719,6 +7705,9 @@ msgid "Exit the wizard"
 msgstr "Quitter l'assistant"
 
 msgid "Exit viewer"
+msgstr ""
+
+msgid "Exit without performing a backup"
 msgstr ""
 
 msgid "Expand"
@@ -7896,8 +7885,38 @@ msgstr "Échec :"
 msgid "Falkland Islands (Malvinas)"
 msgstr "Îles des Falkland (Malouines)"
 
+msgid "Fallback API did not return a valid result."
+msgstr "L'API de repli n'a pas renvoyé de résultat valide."
+
+msgid "Fallback Font *"
+msgstr ""
+
+msgid "Fallback remote receiver"
+msgstr "Récepteur distant de repli"
+
+msgid "Fallback remote receiver IP"
+msgstr "Configuration de l’IP du récepteur distant de repli"
+
+msgid "Fallback remote receiver Port"
+msgstr "Configuration du port du récepteur distant de repli"
+
 msgid "Fallback remote receiver URL"
 msgstr "URL du récepteur distant de repli"
+
+msgid "Fallback remote receiver for ATSC"
+msgstr "Récepteur à distance de repli pour ATSC"
+
+msgid "Fallback remote receiver for DVB-C"
+msgstr "Récepteur à distance de repli pour DVB-C"
+
+msgid "Fallback remote receiver for DVB-T"
+msgstr "Récepteur à distance de repli pour DVB-T"
+
+msgid "Fallback Timer"
+msgstr "Programmation de repli"
+
+msgid "Fallback tuner setup"
+msgstr "Configuration du tuner de repli"
 
 msgid "False"
 msgstr "Faux"
@@ -8087,10 +8106,6 @@ msgstr ""
 
 msgid "File transfer was cancelled by user"
 msgstr "Le transfert de fichiers a été annulé par l'utilisateur"
-
-#, python-format
-msgid "File write error: '%s'"
-msgstr "Erreur d’écriture de fichier : '%s'"
 
 msgid "Filename"
 msgstr "Nom de fichier"
@@ -8405,18 +8420,11 @@ msgstr ""
 msgid "Fulah"
 msgstr "Fulah"
 
-msgid "Full Image Backup "
-msgstr "Sauvegarde image complète "
-
 msgid "Full Range RGB"
 msgstr "Gamme complète RVB"
 
 msgid "Full Stretch"
 msgstr ""
-
-#, python-format
-msgid "Full back-up on %s"
-msgstr "Backup complet sur %s"
 
 msgid "Full factory reset"
 msgstr ""
@@ -8459,13 +8467,6 @@ msgstr ""
 
 msgid "GUI Skin *"
 msgstr ""
-
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to Restart the GUI now?"
-msgstr ""
-"L'interface utilisateur doit redémarrer pour appliquer ce thème\n"
-"Voulez-vous relancer l'interface utilisateur maintenant ?"
 
 msgid "Gabon"
 msgstr "Gabon"
@@ -8859,6 +8860,9 @@ msgstr ""
 msgid "Hausa"
 msgstr "Hausa"
 
+msgid "Hawaiian"
+msgstr ""
+
 msgid "Heard Island and McDonald Islands"
 msgstr "Îles Heard et Macdonald"
 
@@ -8967,6 +8971,9 @@ msgstr "Masquer la barre d’informations"
 msgid "Hide zap errors"
 msgstr "Cacher les erreurs de zapping"
 
+msgid "Hide/Show the console screen"
+msgstr ""
+
 msgid "Hierarchy info"
 msgstr "Info hiérarchie"
 
@@ -9020,6 +9027,9 @@ msgstr "Historique suivant"
 
 msgid "History zap..."
 msgstr "Historique du zap…"
+
+msgid "Hmong"
+msgstr ""
 
 msgid "Hockey"
 msgstr "Hockey"
@@ -9164,6 +9174,9 @@ msgstr "Adresse IP"
 
 msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr ""
+
+msgid "IP of fallback remote receiver"
+msgstr "IP du récepteur de repli distant"
 
 msgid "IPK Installer"
 msgstr "Installer IPK"
@@ -9368,15 +9381,21 @@ msgstr "Ignorer les réveils inopinés et rester en veille"
 msgid "Image Backup"
 msgstr "Sauvegarde d'image"
 
-msgid "Image Flash Actions"
+msgid "Image Backup Actions"
 msgstr ""
 
 #, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
+msgid "Image Backup To %s"
 msgstr ""
 
-msgid "Image creation failed - "
-msgstr "La création de l'image a échoué - "
+msgid "Image Flash Actions"
+msgstr ""
+
+msgid "Image created:"
+msgstr ""
+
+msgid "Image creation failed!"
+msgstr ""
 
 msgid "ImageWizard"
 msgstr "Assistant image"
@@ -9389,6 +9408,21 @@ msgstr ""
 
 msgid "Immediately restart selected devices."
 msgstr "Redémarrer immédiatement les appareils sélectionnés."
+
+msgid "Import channels and/or EPG from remote receiver URL also when the receiver is getting out of standby"
+msgstr "Importer les chaînes et/ou l’EPG depuis l’URL du récepteur distant également lorsque le récepteur sort de veille"
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver is booted"
+msgstr "Importer les chaînes et/ou l’EPG depuis l’URL du récepteur distant lorsque le récepteur est démarré"
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
+msgstr "Importer les chaînes et/ou l’EPG depuis l’URL du récepteur distant lorsque le récepteur ou Enigma2 est redémarré"
+
+msgid "Import from remote receiver URL"
+msgstr "Importer depuis l’URL du récepteur distant"
+
+msgid "Import remote receiver URL"
+msgstr "Importer l’URL du récepteur distant"
 
 msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
 msgstr "En plus de la vérification au démarrage de l'événement, un contrôle répétitif peut être utilisé de sorte que 'limite de tampon en heures' ou 'vérifier l'espace libre' soient détectés plus rapidement."
@@ -10032,6 +10066,9 @@ msgstr "Kuanyama / Kwanyama"
 msgid "Kurdish"
 msgstr "Kurde"
 
+msgid "Kurdish (Sorani)"
+msgstr ""
+
 msgid "Kurdistan"
 msgstr ""
 
@@ -10049,9 +10086,6 @@ msgstr "Adaptateur réseau local"
 
 msgid "LAN connection"
 msgstr "Connexion LAN"
-
-msgid "LCD Skin Settings"
-msgstr "Configuration du thème LCD"
 
 msgid "LCD scroll speed"
 msgstr "Vitesse de défilement du LCD"
@@ -10218,7 +10252,7 @@ msgstr "Passe-temps/loisirs"
 msgid "Lesotho"
 msgstr "Lesotho"
 
-#. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
+#. TRANSLATORS: Aspect ratio policy: Black bars on top/bottom in doubt, keep English term.
 msgid "Letterbox"
 msgstr "Letterbox"
 
@@ -10608,6 +10642,9 @@ msgstr "Entretenez votre appareil multiboot."
 msgid "Make"
 msgstr ""
 
+msgid "Make it possible to manually initiate the channels import and/or EPG via the extension menu"
+msgstr "Rend possible d’initier manuellement l’importation des chaînes et/ou l’EPG via le menu des extensions"
+
 msgid "Make this mark an 'in' point"
 msgstr "Faire de cette marque un point ‘d’entrée’"
 
@@ -10959,17 +10996,11 @@ msgstr ""
 msgid "Mode"
 msgstr "Mode"
 
-msgid "Mode 1"
-msgstr "Mode 1"
-
 msgid "Mode 12: Supports PiP but Kodi may not work"
 msgstr ""
 
 msgid "Mode 1: Supports Kodi but PiP may not work"
 msgstr ""
-
-msgid "Mode 2"
-msgstr "Mode 2"
 
 msgid "Mode for autorestore"
 msgstr "Mode d'autorestauration"
@@ -11370,6 +11401,9 @@ msgstr "Déplacement en cours vers l'ouest ..."
 msgid "Mozambique"
 msgstr "Mozambique"
 
+msgid "Multi"
+msgstr ""
+
 msgid "Multi EPG"
 msgstr "Multi EPG"
 
@@ -11400,9 +11434,8 @@ msgstr ""
 msgid "MultiTranscoding"
 msgstr ""
 
-#, python-format
-msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
-msgstr "Image multiboot créée sur : %s/%s-%s-%s-backup-%s_usb.zip"
+msgid "Multiboot Image created:"
+msgstr ""
 
 msgid "Multimedia Packages"
 msgstr ""
@@ -11464,6 +11497,9 @@ msgstr ""
 
 #, python-format
 msgid "NOTE: These %d directories/files exist and will be overwritten!"
+msgstr ""
+
+msgid "NOTE: While the console screen is hidden from view the buttons are still active. Pressing any enabled button will cause the screen to reappear but the button will not be actioned."
 msgstr ""
 
 msgid "NOW"
@@ -11772,9 +11808,6 @@ msgstr "Aucun DVDROM (supporté) n'a été trouvé !"
 msgid "No Connection"
 msgstr "Pas de connexion"
 
-msgid "No Devices Found !!"
-msgstr "Aucun périphérique trouvé !"
-
 msgid "No ECM PIDs available"
 msgstr "Aucun ECMPids disponible"
 
@@ -11950,9 +11983,6 @@ msgstr "Aucune mise à jour requise !"
 msgid "No updates available."
 msgstr ""
 
-msgid "No updates were available.  Please try again later."
-msgstr ""
-
 msgid "No valid device detected - Press OK"
 msgstr ""
 
@@ -11989,9 +12019,6 @@ msgstr ""
 
 msgid "No, but restart from begin"
 msgstr "Non, mais relancer depuis le début"
-
-msgid "No, do not backup a image"
-msgstr "Non, ne sauvegardez pas une image"
 
 msgid "No, do nothing."
 msgstr "Non, ne rien faire."
@@ -12151,9 +12178,6 @@ msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "Maintenant"
 
-msgid "Now building the Backup Image"
-msgstr "Création de l’image de sauvegarde"
-
 msgid "Now save time shift as movie and continues recording"
 msgstr "Maintenant sauvegarder le PauseDirect comme film et continuer l'enregistrement"
 
@@ -12234,11 +12258,11 @@ msgstr "OSD"
 msgid "OSD 3D Settings"
 msgstr "Configuration OSD 3D"
 
-msgid "OSD Adjustment"
-msgstr "Ajustement OSD"
-
 msgid "OSD Calibration"
 msgstr "Position de l'OSD"
+
+msgid "OSD Calibration Settings"
+msgstr ""
 
 msgid "OSD Settings"
 msgstr "Paramètres OSD"
@@ -12248,6 +12272,9 @@ msgstr "Configuration OSD"
 
 msgid "OSD name request"
 msgstr "Demande de nom de l'OSD"
+
+msgid "OSD visibility"
+msgstr ""
 
 msgid "OTT Model"
 msgstr ""
@@ -12401,10 +12428,16 @@ msgstr "Ouvrir la liste des services et sélectionner la chaîne précédente po
 msgid "Open the Channel Selection Settings screen"
 msgstr ""
 
+msgid "Open the Image information"
+msgstr ""
+
 msgid "Open the Plugin Browser"
 msgstr "Ouvrir le gestionnaire de plugin"
 
 msgid "Open the Plugin Browser settings screen"
+msgstr ""
+
+msgid "Open the Storage Device information"
 msgstr ""
 
 msgid "Open the VirtualKeyBoard for text entry"
@@ -12677,8 +12710,8 @@ msgstr "Palestine, État de"
 msgid "Pali"
 msgstr "Pali"
 
-#. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
-#. TRANSLATORS: (aspect ratio policy: Fit width, cut/crop top and bottom (Maintain aspect ratio))
+#. TRANSLATORS: Aspect ratio policy: Cropped content on left/right in doubt, keep English term.
+#. TRANSLATORS: Aspect ratio policy: Fit width, cut/crop top and bottom (maintain aspect ratio).
 msgid "Pan&scan"
 msgstr "Pan&Scan"
 
@@ -12751,9 +12784,6 @@ msgstr "Mot de passe changé."
 #, python-format
 msgid "Path '%s' missing!"
 msgstr ""
-
-msgid "Path to save not exist: '/tmp/'"
-msgstr "Le chemin d’accès à enregistrer n’existe pas : '/tmp/'"
 
 msgid "Pause"
 msgstr "Pause"
@@ -12872,7 +12902,7 @@ msgstr "Visionneuse"
 msgid "Pictures"
 msgstr "Photos"
 
-#. TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
+#. TRANSLATORS: Aspect ratio policy: Black bars on left/right in doubt, keep English term.
 msgid "Pillarbox"
 msgstr "Bandes noires"
 
@@ -12990,11 +13020,8 @@ msgstr "LecturePause"
 msgid "Please add titles to the compilation."
 msgstr "Veuillez ajouter les titres à la compilation."
 
-msgid "Please be patient, a backup will now be made,\n"
-msgstr "Soyez patient, une sauvegarde sera faite maintenant,\n"
-
-msgid "Please check the manual of the receiver"
-msgstr "Veuillez consulter le manuel du récepteur"
+msgid "Please be patient."
+msgstr ""
 
 msgid "Please choose an extension..."
 msgstr "Veuillez choisir une extension..."
@@ -13069,9 +13096,6 @@ msgstr "Veuillez appuyer sur OK pour continuer."
 msgid "Please press OK when ready"
 msgstr ""
 
-msgid "Please select a backup destination"
-msgstr "Veuillez sélectionner une destination de sauvegarde"
-
 msgid "Please select a default EPG type..."
 msgstr "Veuillez choisir le type d'EPG par défaut…"
 
@@ -13129,22 +13153,11 @@ msgstr "Veuillez sélectionner la région qui correspond le mieux à votre empla
 msgid "Please select the sub-service to record:"
 msgstr "Veuillez choisir un sous-service à enregistrer..."
 
+msgid "Please select the target location to save the backup:"
+msgstr ""
+
 msgid "Please select what to do after flash of the following image:"
 msgstr ""
-
-msgid ""
-"Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
-"When you are ready press OK to continue."
-msgstr ""
-"Veuillez configurer votre interface utilisateur en ajustant les valeurs jusqu'au moment où les boîtes rouges touchent les coins de votre TV.\n"
-"Quand vous serez prêt, appuyez OK pour continuer."
-
-msgid ""
-"Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
-"When you are ready press green to continue."
-msgstr ""
-"Veuillez configurer votre interface utilisateur en ajustant les valeurs jusqu'à ce que le bord rouge touche les bords de votre TV.\n"
-"Quand vous serez prêt, appuyez sur le bouton VERT pour continuer."
 
 msgid ""
 "Please use direction keys to move the PiP window.\n"
@@ -13249,9 +13262,6 @@ msgstr "Veuillez patienter..."
 msgid "Please wait... Loading list..."
 msgstr "Veuillez patienter... Chargement de la liste..."
 
-msgid "Please wait...almost ready! "
-msgstr "Veuillez patienter... presque prêt ! "
-
 msgid "Plug in USB device"
 msgstr ""
 
@@ -13336,14 +13346,14 @@ msgstr "Port D"
 msgid "Port number for the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr ""
 
+msgid "Port of fallback remote receiver"
+msgstr "Port du récepteur distant de repli"
+
 msgid "Portugal"
 msgstr "Portugal"
 
 msgid "Portuguese"
 msgstr "Portugais"
-
-msgid "Position Setup"
-msgstr "Paramètres positionneur"
 
 msgid "Position of finished Timers in Timerlist"
 msgstr "Position des programmations terminées dans la liste"
@@ -13368,6 +13378,9 @@ msgstr "Journal configuration positionneur"
 
 msgid "Positioner setup"
 msgstr "Paramètres positionneur"
+
+msgid "Possible causes could be:"
+msgstr ""
 
 msgid "Power"
 msgstr "Alimentation"
@@ -13507,9 +13520,6 @@ msgstr ""
 msgid "Press OK on your remote control to continue."
 msgstr "Appuyez sur OK de votre télécommande pour continuer."
 
-msgid "Press OK to activate the selected skin."
-msgstr "Appuyez sur OK pour activer le thème sélectionné."
-
 msgid "Press OK to activate the settings."
 msgstr "Appuyez sur OK pour activer les paramètres."
 
@@ -13646,9 +13656,6 @@ msgstr "Minute Prime Time"
 
 msgid "Priority"
 msgstr "Priorité"
-
-msgid "Probable causes could be"
-msgstr "Les causes probables pourraient être"
 
 msgid "Proc model"
 msgstr ""
@@ -13881,6 +13888,9 @@ msgstr "EPG rapide"
 
 msgid "Quick Launch Menu"
 msgstr "Menu de lancement rapide"
+
+msgid "Quick Menu Actions"
+msgstr ""
 
 msgid "Quick Menu..."
 msgstr "Menu rapide…"
@@ -14660,6 +14670,9 @@ msgstr "Relancer le réseau"
 msgid "Restart Network Adapter"
 msgstr "Relancer l'interface réseau"
 
+msgid "Restart OSCam"
+msgstr ""
+
 msgid "Restart enigma"
 msgstr "Redémarrer OpenPLi"
 
@@ -14897,6 +14910,10 @@ msgstr "En cours d'exécution"
 msgid "Running Myrestore script, Please wait ..."
 msgstr "Exécution du script Myrestore, veuillez patienter…"
 
+#, python-format
+msgid "Running command %d: '%s'."
+msgstr ""
+
 msgid "Russian"
 msgstr "Russe"
 
@@ -15009,6 +15026,9 @@ msgstr ""
 msgid "Same as in active"
 msgstr "Le même qu'en actif"
 
+msgid "Same as stream"
+msgstr "Sauvegarder en tant que flux (stream)"
+
 msgid "Same behavior as current animation"
 msgstr "Même comportement que l'animation actuelle"
 
@@ -15087,6 +15107,9 @@ msgstr ""
 msgid "Save EPG data"
 msgstr "Sauver les données EPG"
 
+msgid "Save Log"
+msgstr ""
+
 msgid "Save all changed settings and exit"
 msgstr "Enregistrer tous les paramètres modifiés et quitter"
 
@@ -15136,6 +15159,9 @@ msgid "Save the left column directory location on exit."
 msgstr ""
 
 msgid "Save the log changes and exit"
+msgstr ""
+
+msgid "Save the log of the console messages to a file"
 msgstr ""
 
 msgid "Save the right column directory location on exit."
@@ -15563,6 +15589,9 @@ msgstr ""
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
 msgstr ""
 
+msgid "Select 'Yes' to show subscription packages in the Download Plugins screen."
+msgstr ""
+
 msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
 msgstr ""
 
@@ -15617,9 +15646,6 @@ msgstr "Sélectionner CAId"
 msgid "Select Device"
 msgstr ""
 
-msgid "Select Display Skin"
-msgstr ""
-
 msgid "Select Enigma2 Skin"
 msgstr "Choisir un Thème Enigma2"
 
@@ -15634,9 +15660,6 @@ msgstr "Choisir les répertoires"
 
 msgid "Select HDD"
 msgstr "Sélectionner le disque dur"
-
-msgid "Select LCD Skin"
-msgstr "Choisir un Thème LCD"
 
 msgid "Select Lan/Wlan"
 msgstr "Sélection LAN/WiFi"
@@ -15659,9 +15682,6 @@ msgstr "Sélectionner les satellites"
 msgid "Select Shares"
 msgstr ""
 
-msgid "Select Skin"
-msgstr ""
-
 msgid "Select Softcam"
 msgstr "Sélectionnez softcam"
 
@@ -15676,9 +15696,6 @@ msgstr "Choisissez la source de mise à niveau"
 
 msgid "Select Upgrade Source To Edit"
 msgstr "Choisissez la source de mise à niveau à éditer."
-
-msgid "Select Your Skin"
-msgstr "Sélectionnez votre skin"
 
 msgid "Select a Softcam from the available list as the default for AutoCam."
 msgstr ""
@@ -16133,6 +16150,9 @@ msgstr "Sélectionnez le caractère décalé uniquement pour le suivant"
 msgid "Select the sort order for the file lines:"
 msgstr ""
 
+msgid "Select the sort order of the Extension Menu entries."
+msgstr ""
+
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
 msgstr ""
 
@@ -16180,6 +16200,9 @@ msgstr ""
 
 msgid "Select the time zone within the area or region."
 msgstr "Sélectionnez le fuseau horaire dans la zone ou la région."
+
+msgid "Select the timer from the fallback tuner by default"
+msgstr "Sélectionner par défaut la minuterie du tuner de repli"
 
 msgid "Select the tuner that controls the motorized dish."
 msgstr "Sélectionnez le tuner qui contrôle l’antenne motorisée."
@@ -16554,6 +16577,9 @@ msgstr ""
 msgid "Set action for 'Info' key"
 msgstr "Définir l’action pour la touche 'Info'"
 
+msgid "Set alternative fallback tuners for DVB-T/C or ATSC"
+msgstr "Définir d'autres tuners de repli pour DVB-T/C ou ATSC"
+
 msgid "Set current CEC address as fixed address"
 msgstr "Définir l'adresse CEC actuelle comme adresse fixe"
 
@@ -16592,6 +16618,9 @@ msgstr "Définir le système"
 msgid "Set the MAC address of your %s %s."
 msgstr "Définir l'adresse MAC votre %s %s."
 
+msgid "Set the User ID of the OpenWebif from your fallback tuner"
+msgstr "Définir l'ID utilisateur d’OpenWebif de votre tuner de secours"
+
 msgid "Set the aspect ratio of the service picons."
 msgstr "Définissez les proportions des picons de service."
 
@@ -16618,6 +16647,12 @@ msgstr "Définir les sauts de temps de la barre de recherche."
 
 msgid "Set the number of lines to be saved for 'stout' and 'sterr' output in scripts."
 msgstr ""
+
+msgid "Set the password of the OpenWebif from your fallback tuner"
+msgstr "Définir le mot de passe d’OpenWebif de votre tuner de secours"
+
+msgid "Set the port of the OpenWebif from your fallback tuner"
+msgstr "Définir le port d’OpenWebif de votre tuner de secours"
 
 msgid "Set the position of the recording icons."
 msgstr "Définir la position des icônes d'enregistrement"
@@ -16651,6 +16686,9 @@ msgstr "Définir la durée pour masquer la 2ème barre d'info. La barre dispara�
 
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, PowerTimer, SleepTimer etc."
 msgstr "Définissez le temps d'attente pour exécuter l'action par défaut dans les messages d'arrêt, de veille ou de redémarrage. (par exemple utilisé dans Timer, PowerTimer, Sleeptimer, ...)"
+
+msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
+msgstr ""
 
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Défini le type et la localisation de l'indicateur de progression des événements dans la sélection des chaînes. Soit barre graphe, soit en pourcentage à gauche ou à droite du nom du service."
@@ -16836,9 +16874,6 @@ msgstr "Configurer votre disque dur"
 
 msgid "Setup your LCD"
 msgstr "Configurer votre LCD"
-
-msgid "Setup your LCD Skin"
-msgstr ""
 
 msgid "Setup your OSD"
 msgstr "Configurer votre OSD"
@@ -17159,6 +17194,9 @@ msgstr ""
 msgid "Show Source packages"
 msgstr ""
 
+msgid "Show Subscription packages"
+msgstr ""
+
 msgid "Show Subservices Of Active Service"
 msgstr ""
 
@@ -17409,6 +17447,18 @@ msgstr ""
 
 msgid "Show next system information screen"
 msgstr ""
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL did not complete"
+msgstr "Afficher une notification lorsque l’import des chaînes et/ou EPG du récepteur distant n’a pas réussi"
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL is completed"
+msgstr "Afficher une notification lorsque l’import des chaînes et/ou EPG du récepteur distant est réussi"
+
+msgid "Show notification when import channels was not successful"
+msgstr "Afficher une notification lorsque l’import des chaînes n’a pas réussi"
+
+msgid "Show notification when import channels was successful"
+msgstr "Afficher une notification lorsque l’import des chaînes a réussi"
 
 msgid "Show or hide the extended description, (skin dependent)."
 msgstr "Afficher ou cacher la description étendue, (dépendant du thème/skin)."
@@ -17701,6 +17751,9 @@ msgstr "Éteindre"
 msgid "Shutdown"
 msgstr "Éteindre"
 
+msgid "Shutdown OSCam"
+msgstr ""
+
 msgid "Shutting down. Please wait..."
 msgstr ""
 
@@ -17800,9 +17853,6 @@ msgstr ""
 msgid "Size descending"
 msgstr ""
 
-msgid "Skin"
-msgstr "Thème"
-
 msgid "Skin & Resolution"
 msgstr ""
 
@@ -17820,9 +17870,6 @@ msgstr "Configurer le thème"
 
 msgid "SkinSelection"
 msgstr ""
-
-msgid "SkinSelector"
-msgstr "Sélecteur de thèmes"
 
 msgid "Skip back"
 msgstr "Retour rapide"
@@ -17959,7 +18006,7 @@ msgstr ""
 msgid "Slot Manager Actions"
 msgstr ""
 
-msgid "Slot R: Root Slot Full Backup (Current image)"
+msgid "Slot R: Root Slot Image Backup (Current image)"
 msgstr ""
 
 msgid "Slot count"
@@ -18253,6 +18300,9 @@ msgstr ""
 msgid "Speed"
 msgstr ""
 
+msgid "Spinner Position"
+msgstr ""
+
 msgid "Split preview mode"
 msgstr "Mode aperçu séparé"
 
@@ -18344,6 +18394,9 @@ msgid "Start test"
 msgstr "Lancer le test"
 
 msgid "Start the Kexec initialization"
+msgstr ""
+
+msgid "Start the backup of the selected image"
 msgstr ""
 
 msgid "Start the highlighted plugin"
@@ -18584,16 +18637,16 @@ msgstr "Fin de l’enregistrement en streaming"
 msgid "Streaming tuner information for %s %s"
 msgstr ""
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (force aspect))
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching all parts of the picture with the same factor (force aspect).
 msgid "Stretch full"
 msgstr "Étirement complet"
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching all parts of the picture with the same factor (all parts lose aspect).
 msgid "Stretch linear"
 msgstr "Étirement linéaire"
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the top/bottom (Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch))
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right (Center 50% of picture maintain aspect, left/right 25% lose aspect heaver than on linear stretch))
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching the top/bottom. Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch.
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching the left/right. Center 50% of picture maintain aspect, left/right 25% lose aspect heaver than on linear stretch.
 msgid "Stretch nonlinear"
 msgstr "Étirement non linéaire"
 
@@ -18608,6 +18661,9 @@ msgstr ""
 
 msgid "Style:"
 msgstr "Le style :"
+
+msgid "Subscription Packages"
+msgstr ""
 
 msgid "Subservice Actions"
 msgstr ""
@@ -18690,9 +18746,6 @@ msgstr "Soundanais"
 
 msgid "Sunday"
 msgstr "Dimanche"
-
-msgid "Support at"
-msgstr "Support à"
 
 msgid "Suriname"
 msgstr "Suriname"
@@ -19322,6 +19375,9 @@ msgstr ""
 "L'espace disque disponible pour le PauseDirect est en-dessous de celui spécifié dans la configuration.\n"
 "Que voulez-vous faire ?"
 
+msgid "The backup can take up to about 15 minutes to complete."
+msgstr ""
+
 msgid "The backup failed"
 msgstr ""
 
@@ -19535,7 +19591,7 @@ msgstr "Une erreur s'est produite lors du téléchargement des détails de la r�
 msgid "There was an error downloading the region list"
 msgstr "Une erreur s’est produite lors du téléchargement de la liste des régions"
 
-msgid "There was an error downloading the update list.  Please try again."
+msgid "There was an error downloading the update list. Please try again."
 msgstr "Une erreur s'est produite lors du téléchargement de la liste des mises à jour.  Veuillez réessayer."
 
 msgid "There was an error while trying to login."
@@ -19752,7 +19808,7 @@ msgstr "Cette option permet de configurer le niveau du volume auto."
 msgid "This option lets you adjust the 3D depth of the OSD."
 msgstr "Cette option vous permet de régler la profondeur 3D"
 
-msgid "This option lets you adjust the transparency of the user interface"
+msgid "This option lets you adjust the transparency of the OSD."
 msgstr "Cette option vous permet de régler la transparence de l'interface utilisateur"
 
 msgid "This option lets you choose the 3D mode of the OSD."
@@ -19962,10 +20018,6 @@ msgstr "Saut dans le temps intervalle de répétition pour avance et recul rapid
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr "Saut dans le temps : utiliser l'avance rapide pour la vitesse"
 
-#, python-format
-msgid "Time required for this process: %s"
-msgstr "Temps requis pour ce processus : %s"
-
 msgid "Time shift buffer delete after zap"
 msgstr "PauseDirect effacer le buffer après un zap ?"
 
@@ -20016,6 +20068,9 @@ msgstr "PauseDirect sera sauvegardé à la fin de l'événement !"
 
 msgid "Time style"
 msgstr "Style de temps"
+
+msgid "Time taken for the backup:"
+msgstr ""
 
 msgid "Time to execute command or script"
 msgstr "Heure démarrage des commandes ou des scripts"
@@ -20121,8 +20176,11 @@ msgstr "Mode jeu titre"
 msgid "To complete the setup the %s %s must connect to the Internet.  Connect the %s %s to the Internet now."
 msgstr ""
 
-msgid "To restore the image:"
-msgstr "Pour restaurer l'image :"
+msgid "To restore the image check the manual or documentation for the receiver."
+msgstr ""
+
+msgid "To restore the image use 'OnlineFlash' option in the 'SoftwareManager' menu."
+msgstr ""
 
 #, python-format
 msgid "To where would you like to extract '%s'?"
@@ -20548,14 +20606,14 @@ msgstr ""
 msgid "UHD Test"
 msgstr "Test UHD"
 
-msgid "UI 3D setup"
-msgstr "Configuration IU 3D"
-
 msgid "UP80  (keymap.u80)"
 msgstr "UP80  (keymap.u80)"
 
 msgid "URL"
 msgstr "URL"
+
+msgid "URL of fallback remote receiver"
+msgstr "URL du récepteur distant de repli. Spécifier l'URL complète: http:// et le numéro du port (normalement: 8001), p.e. http://second_demo:8001"
 
 msgid "URL of fallback remote receiver."
 msgstr "URL du récepteur distant de secours"
@@ -20618,6 +20676,9 @@ msgstr "Non crypté"
 #, python-format
 msgid "Unexpected error accessing WebIF: %s"
 msgstr ""
+
+msgid "Unexpected error while retrieving fallback tuner's timer information"
+msgstr "Erreur inattendue lors de la récupération des informations de programmation du récepteur de repli"
 
 msgid "UnhandledKey"
 msgstr "Clé non prise en charge"
@@ -20906,9 +20967,6 @@ msgstr "Utiliser l'information MHW EPG quand elle est disponible."
 msgid "Use Netmed EPG information when it is available."
 msgstr "Utiliser l'information Netmed EPG quand elle est disponible."
 
-msgid "Use OnlineFlash in SoftwareManager"
-msgstr "Utiliser OnlineFlash dans SoftwareManager"
-
 msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
 msgstr ""
 
@@ -21020,25 +21078,28 @@ msgstr "Utiliser la mesure de puissance"
 msgid "Use small screen"
 msgstr "Utiliser l'écran fin"
 
-msgid "Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size."
-msgstr "Utilisez les boutons gauche/droit de votre télécommande pour ajuster la taille de l'interface utilisateur. Bouton gauche diminue la taille, le droit augmente la taille."
-
-msgid "Use the Left/Right buttons on your remote to move the user interface bottom"
+msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr ""
 
-msgid "Use the Left/Right buttons on your remote to move the user interface left"
+msgid "Use the LEFT/RIGHT buttons on your remote to adjust the width of the OSD. LEFT button decreases the width, RIGHT increases the width."
 msgstr ""
 
-msgid "Use the Left/Right buttons on your remote to move the user interface left/right"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD bottom."
+msgstr ""
+
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD left."
+msgstr ""
+
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD left/right."
 msgstr "Utilisez les boutons gauche/droit de votre télécommande pour déplacer l'interface utilisateur à gauche/droite"
 
-msgid "Use the Left/Right buttons on your remote to move the user interface right"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD right."
 msgstr ""
 
-msgid "Use the Left/Right buttons on your remote to move the user interface top"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD top."
 msgstr ""
 
-msgid "Use the Left/Right buttons on your remote to move the user interface up/down"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD up/down."
 msgstr "Utilisez les boutons gauche/droit de votre télécommande pour déplacer l'interface utilisateur vers le haut/bas"
 
 msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
@@ -21050,14 +21111,14 @@ msgstr "Utilisez le panneau SoftCam pour contrôler votre CAM. Cela vous permet 
 msgid "Use the UP and DOWN buttons to select your locale/language then press the OK button to continue."
 msgstr "Utilisez les boutons HAUT et BAS pour sélectionner votre région/langue, puis appuyez sur le bouton OK pour continuer."
 
+msgid "Use the UP/DOWN buttons to select the installed image to be backed up. Press the 'Start' (GREEN) button to start the backup."
+msgstr ""
+
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Utiliser le mode radio alternatif ou conventionnel."
 
 msgid "Use the current selection and exit"
 msgstr ""
-
-msgid "Use the cursor keys to select an installed image and then Start button."
-msgstr "Utilisez les touches du curseur pour sélectionner une image installée, puis le bouton Démarrer."
 
 msgid "Use the extended List"
 msgstr "Utiliser la liste étendue"
@@ -21110,6 +21171,9 @@ msgstr "Perso - bouquets"
 msgid "User Feed URL"
 msgstr "feed url défini par l'utilisateur"
 
+msgid "User ID"
+msgstr "ID de l’utilisateur"
+
 msgid "User comments"
 msgstr ""
 
@@ -21131,9 +21195,6 @@ msgstr "Transpondeur défini par l'utilisateur"
 
 msgid "User interface settings"
 msgstr "Paramètres de l'interface utilisateur"
-
-msgid "User interface visibility"
-msgstr "Visibilité de l'interface utilisateur"
 
 msgid "User logo:"
 msgstr "Logo de l'utilisateur :"
@@ -21257,16 +21318,8 @@ msgstr "Venezuela, République bolivarienne du"
 msgid "Version"
 msgstr ""
 
-#, python-format
-msgid "Version %s %s"
-msgstr "Version %s %s"
-
 msgid "Version: "
 msgstr "Version : "
-
-#, python-format
-msgid "Version: %s"
-msgstr "Version : %s"
 
 msgid "Vertical"
 msgstr "Vertical"
@@ -21757,6 +21810,15 @@ msgstr "Lorsqu'il est activé, le récepteur retourne automatiquement en mode ve
 msgid "When enabled the receiver will automatically wake from standby when the TV is turned on."
 msgstr "Lorsque cette option est activée, le récepteur sort automatiquement de la veille lorsque le téléviseur est allumé."
 
+msgid "When enabled the timer from the fallback tuner is imported"
+msgstr "Lorsque c’est activé les programmations du récepteur de repli sont importées"
+
+msgid "When enabled the timer from the fallback tuner is the default timer"
+msgstr "Lorsqu'elle est activée, la minuterie du syntoniseur de repli est la minuterie par défaut"
+
+msgid "When enabled you can customize the OpenWebIf settings for the fallback tuner"
+msgstr "Lorsque cette option est activée, vous pouvez personnaliser les paramètres OpenWebIf pour le tuner de secours"
+
 msgid "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
 msgstr "Lorsqu'elle est activée, les données de l'AIT seront inclus dans les flux http. Cela permet à un récepteur client d'utiliser HbbTV."
 
@@ -21921,6 +21983,9 @@ msgstr "Lorsque le curseur de saisie atteint ce point (pourcentage de la largeur
 
 msgid "When the receiver wakes from standby or deep standby it will send a command to the TV to bring it out of standby."
 msgstr "Lorsque le récepteur sort de la veille ou de la veille profonde, il envoie une commande au téléviseur pour le faire sortir de la veille."
+
+msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
+msgstr ""
 
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
 msgstr "Lorsque que vous êtes sur un service le système va normalement scanner le transpondeur à la recherche de changement et les sauvegarder. Seulement le mettre sur 'oui' si vous êtes absolument certain de ce que vous faites."
@@ -22391,7 +22456,7 @@ msgid "Your receiver does not have an Internet connection"
 msgstr ""
 
 #, python-format
-msgid "Your receiver might be unusable now.  Please consult the manual for further assistance before rebooting your %s %s."
+msgid "Your receiver might be now be unstable. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr ""
 
 msgid "Youth"
@@ -22505,12 +22570,6 @@ msgstr "Zoomer de la droite"
 msgid "Zulu"
 msgstr "Zoulou"
 
-msgid "[Enigma2 Settings]\n"
-msgstr "[Paramètres Enigma2]\n"
-
-msgid "[Image Info]\n"
-msgstr "[Info Image]\n"
-
 msgid "[Timeshift] Merging records failed!"
 msgstr "[PauseDirect] La fusion des enregistrements a échoué !"
 
@@ -22611,9 +22670,6 @@ msgstr "ballet"
 #, python-format
 msgid "bc%d"
 msgstr "bc%d"
-
-msgid "because of the used file system the back-up\n"
-msgstr "à cause du système de fichier utilisé la sauvegarde\n"
 
 msgid "better"
 msgstr "meilleur"
@@ -23040,9 +23096,6 @@ msgstr "Film/Théâtre (général)"
 msgid "multi"
 msgstr "multi"
 
-msgid "multinorm"
-msgstr "Multinorme"
-
 msgid "music (general)"
 msgstr "musique (général)"
 
@@ -23141,9 +23194,6 @@ msgstr ""
 
 msgid "on READ ONLY medium."
 msgstr "Sur support en LECTURE SEULE."
-
-msgid "on how to restore the image"
-msgstr "sur la façon de restaurer l'image"
 
 msgid "orange"
 msgstr ""
@@ -23531,9 +23581,6 @@ msgstr "blanc"
 msgid "width"
 msgstr "Largeur"
 
-msgid "will take about 1-15 minutes for this system\n"
-msgstr "prendra environ 1-15 minutes pour ce système\n"
-
 msgid "winter sport"
 msgstr "Sports d'hiver"
 
@@ -23563,6 +23610,290 @@ msgstr "Oui (garder feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid ""
+#~ "\n"
+#~ "\n"
+#~ "[User - bouquets (TV)]\n"
+#~ msgstr ""
+#~ "\n"
+#~ "\n"
+#~ "[Utilisateur - bouquets (TV)]\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "[Installed Plugins]\n"
+#~ msgstr ""
+#~ "\n"
+#~ "[Plugins installés]\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "[User - bouquets (RADIO)]\n"
+#~ msgstr ""
+#~ "\n"
+#~ "[Utilisateur - bouquets (RADIO)]\n"
+
+#~ msgid "     no space left on back-up device"
+#~ msgstr "     pas d'espace laissé sur le périphérique de sauvegarde"
+
+#~ msgid "     no writing permission on back-up device"
+#~ msgstr "     pas d'autorisation d'écriture sur le périphérique de sauvegarde"
+
+#~ msgid "     wrong back-up destination "
+#~ msgstr "     mauvaise destination de sauvegarde "
+
+#~ msgid "Almost there... "
+#~ msgstr "Presque là... "
+
+#, python-format
+#~ msgid "Back-up Tool for a %s\n"
+#~ msgstr "Outil de sauvegarde pour un %s\n"
+
+#, python-format
+#~ msgid "Back-up Tool for an %s\n"
+#~ msgstr "Outil de secours pour un %s\n"
+
+#, python-format
+#~ msgid "Backup Date: %s\n"
+#~ msgstr "Date de la sauvegarde : %s\n"
+
+#~ msgid "Backup Mode: Flash Online\n"
+#~ msgstr "Mode de sauvegarde : Flash Online\n"
+
+#~ msgid "Backup Mode: USB Recovery\n"
+#~ msgstr "Mode de sauvegarde : récupération USB\n"
+
+#, python-format
+#~ msgid "Backup to destination: %s"
+#~ msgstr "Sauvegarde vers la destination : %s"
+
+#, python-format
+#~ msgid "Build: %s"
+#~ msgstr "Compilation : %s"
+
+#~ msgid "By openATV Image Team"
+#~ msgstr "Par openATV Image Team"
+
+#~ msgid "Cannot create backup directory"
+#~ msgstr "Impossible de créer le répertoire de sauvegarde"
+
+#, python-format
+#~ msgid "Chipset: BCM%s"
+#~ msgstr "Chipset : BCM%s"
+
+#~ msgid "Create:"
+#~ msgstr "Créer :"
+
+#, python-format
+#~ msgid "Create: Recovery Fullbackup %s"
+#~ msgstr "Créer : Sauvegarde complète de récupération %s"
+
+#~ msgid "Error reading bouquets.radio"
+#~ msgstr "Erreur de lecture de bouquets.radio"
+
+#~ msgid "Error reading bouquets.tv"
+#~ msgstr "Erreur de lecture de bouquets.tv"
+
+#~ msgid "Full Image Backup "
+#~ msgstr "Sauvegarde image complète "
+
+#, python-format
+#~ msgid "Full back-up on %s"
+#~ msgstr "Backup complet sur %s"
+
+#~ msgid "Image creation failed - "
+#~ msgstr "La création de l'image a échoué - "
+
+#, python-format
+#~ msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
+#~ msgstr "Image multiboot créée sur : %s/%s-%s-%s-backup-%s_usb.zip"
+
+#~ msgid "No, do not backup a image"
+#~ msgstr "Non, ne sauvegardez pas une image"
+
+#~ msgid "Now building the Backup Image"
+#~ msgstr "Création de l’image de sauvegarde"
+
+#~ msgid "Please be patient, a backup will now be made,\n"
+#~ msgstr "Soyez patient, une sauvegarde sera faite maintenant,\n"
+
+#~ msgid "Please check the manual of the receiver"
+#~ msgstr "Veuillez consulter le manuel du récepteur"
+
+#~ msgid "Please select a backup destination"
+#~ msgstr "Veuillez sélectionner une destination de sauvegarde"
+
+#~ msgid "Please wait...almost ready! "
+#~ msgstr "Veuillez patienter... presque prêt ! "
+
+#~ msgid "Probable causes could be"
+#~ msgstr "Les causes probables pourraient être"
+
+#~ msgid "Support at"
+#~ msgstr "Support à"
+
+#, python-format
+#~ msgid "Time required for this process: %s"
+#~ msgstr "Temps requis pour ce processus : %s"
+
+#~ msgid "To restore the image:"
+#~ msgstr "Pour restaurer l'image :"
+
+#~ msgid "Use OnlineFlash in SoftwareManager"
+#~ msgstr "Utiliser OnlineFlash dans SoftwareManager"
+
+#~ msgid "Use the cursor keys to select an installed image and then Start button."
+#~ msgstr "Utilisez les touches du curseur pour sélectionner une image installée, puis le bouton Démarrer."
+
+#, python-format
+#~ msgid "Version %s %s"
+#~ msgstr "Version %s %s"
+
+#, python-format
+#~ msgid "Version: %s"
+#~ msgstr "Version : %s"
+
+#~ msgid "[Enigma2 Settings]\n"
+#~ msgstr "[Paramètres Enigma2]\n"
+
+#~ msgid "[Image Info]\n"
+#~ msgstr "[Info Image]\n"
+
+#~ msgid "because of the used file system the back-up\n"
+#~ msgstr "à cause du système de fichier utilisé la sauvegarde\n"
+
+#~ msgid "on how to restore the image"
+#~ msgstr "sur la façon de restaurer l'image"
+
+#~ msgid "will take about 1-15 minutes for this system\n"
+#~ msgstr "prendra environ 1-15 minutes pour ce système\n"
+
+#~ msgid "Execution finished!!"
+#~ msgstr "Exécution terminée !"
+
+#~ msgid "Execution progress:"
+#~ msgstr "Progression de l'exécution :"
+
+#~ msgid "Path to save not exist: '/tmp/'"
+#~ msgstr "Le chemin d’accès à enregistrer n’existe pas : '/tmp/'"
+
+#~ msgid "Backup done."
+#~ msgstr "Sauvegarde terminée."
+
+#~ msgid "No Devices Found !!"
+#~ msgstr "Aucun périphérique trouvé !"
+
+#~ msgid "23.976"
+#~ msgstr "23.976"
+
+#~ msgid "24"
+#~ msgstr "24"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "29.97"
+#~ msgstr "29.97"
+
+#~ msgid "30"
+#~ msgstr "30"
+
+#~ msgid "Backup completed."
+#~ msgstr "Sauvegarde terminée."
+
+#~ msgid "Backup failed."
+#~ msgstr "Échec de la sauvegarde."
+
+#~ msgid "About..."
+#~ msgstr "À propos..."
+
+#~ msgid "Adjust 3D settings"
+#~ msgstr "Ajuster les paramètres 3D"
+
+#~ msgid "Backup Image"
+#~ msgstr "Image de sauvegarde"
+
+#~ msgid ""
+#~ "Enigma2 Skinselector\n"
+#~ "\n"
+#~ "If you experience any problems please contact\n"
+#~ "stephan@reichholf.net\n"
+#~ "\n"
+#~ "© 2006 - Stephan Reichholf"
+#~ msgstr ""
+#~ "Enigma2 SkinSelector\n"
+#~ "\n"
+#~ "Si vous rencontrez des problèmes merci de contacter\n"
+#~ "stephan@reichholf.net\n"
+#~ "\n"
+#~ "© 2006 - Stephan Reichholf"
+
+#~ msgid ""
+#~ "GUI needs a restart to apply a new skin\n"
+#~ "Do you want to Restart the GUI now?"
+#~ msgstr ""
+#~ "L'interface utilisateur doit redémarrer pour appliquer ce thème\n"
+#~ "Voulez-vous relancer l'interface utilisateur maintenant ?"
+
+#~ msgid "Mode 1"
+#~ msgstr "Mode 1"
+
+#~ msgid "Mode 2"
+#~ msgstr "Mode 2"
+
+#~ msgid "Press OK to activate the selected skin."
+#~ msgstr "Appuyez sur OK pour activer le thème sélectionné."
+
+#~ msgid "Select Your Skin"
+#~ msgstr "Sélectionnez votre skin"
+
+#~ msgid "Skin"
+#~ msgstr "Thème"
+
+#~ msgid "SkinSelector"
+#~ msgstr "Sélecteur de thèmes"
+
+#~ msgid "UI 3D setup"
+#~ msgstr "Configuration IU 3D"
+
+#~ msgid "Defaults"
+#~ msgstr "Défauts"
+
+#~ msgid "OSD Adjustment"
+#~ msgstr "Ajustement OSD"
+
+#~ msgid ""
+#~ "Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
+#~ "When you are ready press green to continue."
+#~ msgstr ""
+#~ "Veuillez configurer votre interface utilisateur en ajustant les valeurs jusqu'à ce que le bord rouge touche les bords de votre TV.\n"
+#~ "Quand vous serez prêt, appuyez sur le bouton VERT pour continuer."
+
+#~ msgid "Position Setup"
+#~ msgstr "Paramètres positionneur"
+
+#~ msgid "Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size."
+#~ msgstr "Utilisez les boutons gauche/droit de votre télécommande pour ajuster la taille de l'interface utilisateur. Bouton gauche diminue la taille, le droit augmente la taille."
+
+#~ msgid "User interface visibility"
+#~ msgstr "Visibilité de l'interface utilisateur"
+
+#~ msgid "multinorm"
+#~ msgstr "Multinorme"
+
+#~ msgid "LCD Skin Settings"
+#~ msgstr "Configuration du thème LCD"
+
+#~ msgid ""
+#~ "Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
+#~ "When you are ready press OK to continue."
+#~ msgstr ""
+#~ "Veuillez configurer votre interface utilisateur en ajustant les valeurs jusqu'au moment où les boîtes rouges touchent les coins de votre TV.\n"
+#~ "Quand vous serez prêt, appuyez OK pour continuer."
+
+#~ msgid "Select LCD Skin"
+#~ msgstr "Choisir un Thème LCD"
 
 #~ msgid "Enigma2 skin selector"
 #~ msgstr "Sélectionneur de thème (skin) Enigma2"

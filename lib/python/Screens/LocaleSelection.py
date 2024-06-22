@@ -46,42 +46,39 @@ class LocaleSelection(Screen):
 	MAX_PACK = 3
 
 	skin = """
-	<screen name="LocaleSelection" position="center,center" size="1000,560" resolution="1280,720">
+	<screen name="LocaleSelection" position="center,center" size="1000,565" resolution="1280,720">
 		<widget name="icons" position="0,0" size="30,27" pixmaps="icons/lock_off.png,icons/lock_on.png,icons/lock_error.png" alphatest="blend" />
-		<widget source="locales" render="Listbox" position="10,10" size="e-20,442" enableWrapAround="1" scrollbarMode="showOnDemand">
-			<convert type="TemplatedMultiContent">
-				{
-				"template":
-					[
-					MultiContentEntryPixmapAlphaBlend(pos = (5, 2), size = (60, 30), flags = BT_SCALE, png = 0),  # Flag.
-					MultiContentEntryText(pos = (80, 0), size = (400, 34), font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = 1),  # Language name (Native).
-					MultiContentEntryText(pos = (490, 0), size = (330, 34), font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = 2),  # Lanuage name (English).
-					# MultiContentEntryText(pos = (830, 0), size = (90, 34), font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = 3),  # Locale name.
-					MultiContentEntryText(pos = (830, 0), size = (90, 34), font = 0, flags = RT_HALIGN_LEFT | RT_VALIGN_CENTER, text = 4),  # Package name.
-					MultiContentEntryPixmapAlphaBlend(pos = (930, 3), size = (30, 27), flags = BT_SCALE, png = 5)  # Status icon.
-					],
-				"fonts": [parseFont("Regular;25")],
-				"itemHeight": 34
-				}
-			</convert>
+		<widget source="locales" render="Listbox" position="0,0" size="1000,476" enableWrapAround="1" scrollbarMode="showOnDemand">
+			<templates>
+				<template name="Default" fonts="Regular;25" itemHeight="34">
+					<mode name="default">
+						<pixmap index="Flag" position="10,2" size="60,30" alpha="blend" scale="centerScaled" />
+						<text index="Native" position="90,0" size="400,34" font="0" horizontalAlignment="left" verticalAlignment="center" />
+						<text index="Name" position="500,0" size="330,34" font="0" horizontalAlignment="left" verticalAlignment="center" />
+						<!-- text index="Locale" position="840,0" size="90,34" font="0" horizontalAlignment="left" verticalAlignment="center" / -->
+						<text index="Package" position="840,0" size="90,34" font="0" horizontalAlignment="left" verticalAlignment="center" />
+						<pixmap index="Status" position="940,3" size="30,27" alpha="blend" scale="centerScaled" />
+					</mode>
+				</template>
+			</templates>
 		</widget>
-		<widget source="description" render="Label" position="10,e-85" size="e-20,25" font="Regular;20" valign="center" />
-		<widget source="key_red" render="Label" position="10,e-50" size="140,40" backgroundColor="key_red" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+		<widget source="description" render="Label" position="0,e-75" size="e,25" font="Regular;20" verticalAlignment="center" />
+		<widget source="key_red" render="Label" position="0,e-40" size="180,40" backgroundColor="key_red" font="Regular;20" foregroundColor="key_text" horizontalAlignment="center" verticalAlignment="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="key_green" render="Label" position="160,e-50" size="140,40" backgroundColor="key_green" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+		<widget source="key_green" render="Label" position="190,e-40" size="180,40" backgroundColor="key_green" font="Regular;20" foregroundColor="key_text" horizontalAlignment="center" verticalAlignment="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="key_yellow" render="Label" position="310,e-50" size="140,40" backgroundColor="key_yellow" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+		<widget source="key_yellow" render="Label" position="380,e-40" size="180,40" backgroundColor="key_yellow" font="Regular;20" foregroundColor="key_text" horizontalAlignment="center" verticalAlignment="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="key_menu" render="Label" position="e-450,e-50" size="140,40" backgroundColor="key_back" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+		<widget source="key_menu" render="Label" position="e-260,e-40" size="80,40" backgroundColor="key_back" font="Regular;20" foregroundColor="key_text" horizontalAlignment="center" verticalAlignment="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="key_info" render="Label" position="e-300,e-50" size="140,40" backgroundColor="key_back" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+		<widget source="key_info" render="Label" position="e-170,e-40" size="80,40" backgroundColor="key_back" font="Regular;20" foregroundColor="key_text" horizontalAlignment="center" verticalAlignment="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="key_help" render="Label" position="e-150,e-50" size="140,40" backgroundColor="key_back" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+		<widget source="key_help" render="Label" position="e-80,e-40" size="80,40" backgroundColor="key_back" font="Regular;20" foregroundColor="key_text" horizontalAlignment="center" verticalAlignment="center">
 			<convert type="ConditionalShowHide" />
 		</widget>
 	</screen>"""
@@ -95,7 +92,15 @@ class LocaleSelection(Screen):
 		self["key_yellow"] = StaticText()
 		self["icons"] = MultiPixmap()
 		self["icons"].hide()
-		self["locales"] = List(None, enableWrapAround=True)
+		indexNames = {
+			"Flag": self.LIST_FLAGICON,
+			"Native": self.LIST_NATIVE,
+			"Name": self.LIST_NAME,
+			"Locale": self.LIST_LOCALE,
+			"Package": self.LIST_PACKAGE,
+			"Status": self.LIST_STATICON
+		}
+		self["locales"] = List(None, enableWrapAround=True, indexNames=indexNames)
 		self["locales"].onSelectionChanged.append(self.selectionChanged)
 		self["description"] = StaticText()
 		self["selectionActions"] = HelpableActionMap(self, "LocaleSelectionActions", {
@@ -122,17 +127,16 @@ class LocaleSelection(Screen):
 		bottomItem = _("Move down to last line")
 		bottomDesc = _("Move down to the last line in the list.")
 		self["navigationActions"] = HelpableActionMap(self, "NavigationActions", {
-			"top": (self.keyTop, (topItem, topDesc)),
-			"pageUp": (self.keyPageUp, (pageUpItem, pageUpDesc)),
-			"up": (self.keyUp, (upItem, upDesc)),
-			"first": (self.keyTop, (topItem, topDesc)),
-			"last": (self.keyBottom, (bottomItem, bottomDesc)),
-			"down": (self.keyDown, (downItem, downDesc)),
-			"pageDown": (self.keyPageDown, (pageDownItem, pageDownDesc)),
-			"bottom": (self.keyBottom, (bottomItem, bottomDesc))
+			"top": (self["locales"].goTop, (topItem, topDesc)),
+			"pageUp": (self["locales"].goPageUp, (pageUpItem, pageUpDesc)),
+			"up": (self["locales"].goLineUp, (upItem, upDesc)),
+			"down": (self["locales"].goLineDown, (downItem, downDesc)),
+			"pageDown": (self["locales"].goPageDown, (pageDownItem, pageDownDesc)),
+			"bottom": (self["locales"].goBottom, (bottomItem, bottomDesc))
 		}, prio=0, description=_("List Navigation Actions"))
 		self.initialLocale = international.getLocale()
 		self.currentLocale = self.initialLocale
+		self.switchLocale = False
 		self.refreshNeeded = True
 		self.inWizard = False
 		self.opkgComponent = OpkgComponent()
@@ -145,15 +149,14 @@ class LocaleSelection(Screen):
 		self.updateText()
 
 	def layoutFinished(self):
+		self["locales"].enableAutoNavigation(False)
 		while len(self["icons"].pixmaps) < self.MAX_PACK:
 			self["icons"].pixmaps.append(None)
 		self.updateLocaleList(self.initialLocale)
 		self.moveToLocale(self.currentLocale)
 		self.updateText()
 
-	def updateLocaleList(self, inUseLoc=None):
-		if inUseLoc is None:
-			inUseLoc = self.currentLocale
+	def updateLocaleList(self, currentEntry):
 		self.localeList = []
 		for package in international.getAvailablePackages():
 			installStatus = self.PACK_INSTALLED if package in international.getInstalledPackages() else self.PACK_AVAILABLE
@@ -167,7 +170,7 @@ class LocaleSelection(Screen):
 					png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "countries/missing.png"))
 				name = f"{international.getLanguageName(language)} ({country})"
 				icon = self["icons"].pixmaps[self.PACK_INSTALLED] if installStatus == self.PACK_INSTALLED else self["icons"].pixmaps[self.PACK_AVAILABLE]
-				if locale == inUseLoc:
+				if locale == currentEntry:
 					status = self.PACK_IN_USE
 					icon = self["icons"].pixmaps[self.PACK_IN_USE]
 				else:
@@ -175,14 +178,14 @@ class LocaleSelection(Screen):
 				self.localeList.append((png, international.getLanguageNative(language), name, locale, package, icon, status))
 				if config.locales.packageLocales.value == "P":
 					break
-		if inUseLoc not in [x[self.LIST_LOCALE] for x in self.localeList]:
-			language, country = international.splitLocale(inUseLoc)
+		if currentEntry not in [x[self.LIST_LOCALE] for x in self.localeList]:
+			language, country = international.splitLocale(currentEntry)
 			png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, f"countries/{country.lower()}.png"))
 			if png is None:
 				png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "countries/missing.png"))
 			name = f"{international.getLanguageName(language)} ({country})"
-			package = international.getPackage(inUseLoc)
-			self.localeList.append((png, international.getLanguageNative(language), name, inUseLoc, package, self["icons"].pixmaps[self.PACK_IN_USE], self.PACK_IN_USE))
+			package = international.getPackage(currentEntry)
+			self.localeList.append((png, international.getLanguageNative(language), name, currentEntry, package, self["icons"].pixmaps[self.PACK_IN_USE], self.PACK_IN_USE))
 		sortBy = int(config.locales.localesSortBy.value)
 		order = int(sortBy / 10) if sortBy > 9 else sortBy
 		reverse = True if sortBy > 9 else False
@@ -190,14 +193,13 @@ class LocaleSelection(Screen):
 		self["locales"].updateList(self.localeList)
 
 	def moveToLocale(self, locale):
-		found = False
+		location = 0
 		for index, entry in enumerate(self.localeList):
 			if entry[self.LIST_LOCALE] == locale:
-				found = True
+				location = index
 				break
-		if not found:
-			index = 0
-		self["locales"].index = index  # This will trigger an onSelectionChanged event!
+		if self["locales"].getCurrentIndex() != location:
+			self["locales"].setCurrentIndex(location)  # This will trigger an onSelectionChanged event!
 
 	def updateText(self):
 		self.setTitle(_("Locale/Language Selection"))  # These strings are specified here to allow for all the strings to be translated in real time.
@@ -259,8 +261,6 @@ class LocaleSelection(Screen):
 				self.session.open(TryQuitMainloop, retvalue=QUIT_RESTART)
 			self.close()
 
-		config.osd.language.value = self.currentLocale
-		config.osd.language.save()
 		config.misc.locale.value = self.currentLocale
 		language, country = international.splitLocale(self.currentLocale)
 		config.misc.language.value = language
@@ -268,22 +268,25 @@ class LocaleSelection(Screen):
 		config.misc.locale.save()
 		config.misc.language.save()
 		config.misc.country.save()
+		config.osd.language.value = self.currentLocale  # This setting is now deprecated but retained for plugins.
+		config.osd.language.save()
 		international.activateLocale(self.currentLocale, runCallbacks=True)
 		if not self.inWizard and self.currentLocale != self.initialLocale:
-			self.session.openWithCallback(keySaveCallback, MessageBox, _("Restart GUI now to start using the new locale/language?"), default=True, type=MessageBox.TYPE_YESNO, windowTitle=_("Question"))
+			self.session.openWithCallback(keySaveCallback, MessageBox, _("Restart GUI now to start using the new locale/language?"), default=True, type=MessageBox.TYPE_YESNO, windowTitle=self.getTitle())
 		else:
 			self.close()
 
 	def keySelect(self):
 		current = self["locales"].getCurrent()
-		self.currentLocale = current[self.LIST_LOCALE]
 		status = current[self.LIST_STATUS]
 		if status == self.PACK_AVAILABLE:
+			self.switchLocale = True
 			self.keyManage()
 		else:
+			self.currentLocale = current[self.LIST_LOCALE]
+			package = current[self.LIST_PACKAGE]
 			name = current[self.LIST_NAME]
 			native = current[self.LIST_NATIVE]
-			package = current[self.LIST_PACKAGE]
 			self.updateLocaleList(self.currentLocale)
 			if international.splitPackage(package)[1] is None:
 				if status == self.PACK_AVAILABLE:
@@ -337,12 +340,10 @@ class LocaleSelection(Screen):
 			self.opkgComponent.runCommand(self.opkgComponent.CMD_REMOVE, args=opkgArguments)
 
 		current = self["locales"].getCurrent()
-		status = current[self.LIST_STATUS]
 		if current[self.LIST_LOCALE] == self.currentLocale:
-			locale = current[self.LIST_LOCALE]
-			permanent = ", ".join(sorted(international.getPermanentLocales(locale)))
-			self.session.openWithCallback(processPurge, MessageBox, _("Do you want to purge all locales/languages except %s?") % permanent, default=False)
+			self.session.openWithCallback(processPurge, MessageBox, _("Do you want to purge all locales/languages except %s?") % ", ".join(sorted(international.getPermanentLocales(self.currentLocale))), default=False, windowTitle=self.getTitle())
 		else:
+			status = current[self.LIST_STATUS]
 			name = current[self.LIST_NAME]
 			native = current[self.LIST_NATIVE]
 			package = current[self.LIST_PACKAGE]
@@ -374,20 +375,20 @@ class LocaleSelection(Screen):
 			case self.opkgComponent.EVENT_REMOVE:
 				pass  # Ignore the removed items as they will be in the log.
 			case self.opkgComponent.EVENT_REMOVE_DONE:
-				international.updateInstalledPackages(parameter)
-				locales = "', '".join(parameter)
-				print(f"[LocaleSelection] Locale/Language '{locales}' deleted.")
+				print(f"[LocaleSelection] Locale/Language package '{"', '".join(parameter)}' deleted.")
 			case self.opkgComponent.EVENT_INSTALL | self.opkgComponent.EVENT_CONFIGURING:
 				pass  # Ignore the installing items as they will be in the log.
 			case self.opkgComponent.EVENT_INSTALL_DONE:
-				international.updateInstalledPackages(parameter)
-				locales = "', '".join(parameter)
-				print(f"[LocaleSelection] Locale/Language '{locales}' installed.")
+				print(f"[LocaleSelection] Locale/Language packages '{"', '".join(parameter)}' installed.")
 			case self.opkgComponent.EVENT_LOG:
 				pass  # Ignore the logs here as the content will be in the debug log.
 			case self.opkgComponent.EVENT_DONE:
+				international.initInternational()
 				if status == self.PACK_AVAILABLE:
 					locale = current[self.LIST_LOCALE]
+					if self.switchLocale:
+						self.currentLocale = locale
+						self.switchLocale = False
 					international.activateLocale(locale, runCallbacks=False)
 				elif status == self.PACK_INSTALLED:
 					international.activateLocale(self.currentLocale, runCallbacks=False)
@@ -397,29 +398,8 @@ class LocaleSelection(Screen):
 			case _:
 				print(f"[LocaleSelection] Error: Unexpected opkg event '{self.opkgComponent.getEventText(event)}'!")
 
-	def keyTop(self):
-		self["locales"].top()
-
-	def keyPageUp(self):
-		self["locales"].pageUp()
-
-	def keyUp(self):
-		self["locales"].up()
-
-	def keyDown(self):
-		self["locales"].down()
-
-	def keyPageDown(self):
-		self["locales"].pageDown()
-
-	def keyBottom(self):
-		self["locales"].bottom()
-
 	def run(self, justlocal=False):
 		locale = self["locales"].getCurrent()[self.LIST_LOCALE]
-		if locale != config.osd.language.value:
-			config.osd.language.value = locale
-			config.osd.language.save()
 		if locale != config.misc.locale.value:
 			config.misc.locale.value = locale
 			language, country = international.splitLocale(locale)
@@ -428,6 +408,9 @@ class LocaleSelection(Screen):
 			config.misc.locale.save()
 			config.misc.language.save()
 			config.misc.country.save()
+		if locale != config.osd.language.value:  # This setting is now deprecated but retained for plugins.
+			config.osd.language.value = locale
+			config.osd.language.save()
 		if justlocal:
 			return
 		international.activateLocale(locale, runCallbacks=True)
@@ -488,9 +471,7 @@ class LocaleWizard(LocaleSelection, ShowRemoteControl):
 		self["summarytext"] = StaticText()
 		self["text"] = Label()
 
-	def updateLocaleList(self, inUseLocale=None):
-		if inUseLocale is None:
-			inUseLocale = self.currentLocale
+	def updateLocaleList(self, currentEntry):
 		self.localeList = []
 		for package in international.getInstalledPackages():
 			locales = international.packageToLocales(package)
@@ -500,7 +481,7 @@ class LocaleWizard(LocaleSelection, ShowRemoteControl):
 				if png is None:
 					png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "countries/missing.png"))
 				name = f"{international.getLanguageName(locale)} ({country})"
-				if locale == inUseLocale:
+				if locale == currentEntry:
 					status = self.PACK_IN_USE
 					icon = self["icons"].pixmaps[self.PACK_IN_USE]
 				else:
@@ -509,14 +490,14 @@ class LocaleWizard(LocaleSelection, ShowRemoteControl):
 				self.localeList.append((png, international.getLanguageNative(locale), name, locale, package, icon, status))
 				if config.locales.packageLocales.value == "P":
 					break
-		if inUseLocale not in [x[self.LIST_LOCALE] for x in self.localeList]:
-			country = international.splitLocale(inUseLocale)[1]
+		if currentEntry not in [x[self.LIST_LOCALE] for x in self.localeList]:
+			country = international.splitLocale(currentEntry)[1]
 			png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, f"countries/{country.lower()}.png"))
 			if png is None:
 				png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "countries/missing.png"))
-			name = f"{international.getLanguageName(inUseLocale)} ({country})"
-			package = international.getPackage(inUseLocale)
-			self.localeList.append((png, international.getLanguageNative(inUseLocale), name, inUseLocale, package, self["icons"].pixmaps[self.PACK_IN_USE], self.PACK_IN_USE))
+			name = f"{international.getLanguageName(currentEntry)} ({country})"
+			package = international.getPackage(currentEntry)
+			self.localeList.append((png, international.getLanguageNative(currentEntry), name, currentEntry, package, self["icons"].pixmaps[self.PACK_IN_USE], self.PACK_IN_USE))
 		sortBy = int(config.locales.localesSortBy.value)
 		order = int(sortBy / 10) if sortBy > 9 else sortBy
 		reverse = True if sortBy > 9 else False

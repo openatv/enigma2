@@ -4,7 +4,7 @@
 #include <lib/gdi/font.h>
 #include <lib/python/python.h>
 #include <lib/gdi/epng.h>
-#include <lib/base/nconfig.h>
+#include <lib/base/esimpleconfig.h>
 #include <lib/gui/ewindowstyleskinned.h>
 #include <sstream>
 
@@ -454,6 +454,17 @@ void eListboxPythonStringContent::setList(ePyObject list)
 		m_listbox->entryReset(false);
 }
 
+void eListboxPythonStringContent::updateEntry(int index, ePyObject entry)
+{
+	if (index < size())
+	{
+		PyList_SET_ITEM(m_list, index, entry);
+		if (m_listbox)
+			m_listbox->entryChanged(index);
+
+	}
+}
+
 void eListboxPythonStringContent::setOrientation(uint8_t orientation)
 {
 	m_orientation = orientation;
@@ -810,7 +821,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 						int value_area = 0;
 
 						/* draw value at the end of the slider */
-						if (eConfigManager::getConfigBoolValue("config.usage.show_slider_value", true))
+						if (eSimpleConfig::getBool("config.usage.show_slider_value", true))
 						{
 							value_area = 100;
 							painter.setFont(fnt2);

@@ -4,7 +4,7 @@
 #include <lib/gdi/font.h>
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
-#include <lib/base/nconfig.h>
+#include <lib/base/esimpleconfig.h>
 #ifdef USE_LIBVUGLES2
 #include <vuplus_gles.h>
 #endif
@@ -432,7 +432,7 @@ void gPainter::renderText(const eRect &pos, const std::string &string, int flags
 	o.parm.renderText->offset = offset;
 	o.parm.renderText->tabwidth = tabwidth;
 	if (markedpos >= 0)
-		o.parm.renderText->scrollpos = eConfigManager::getConfigIntValue("config.usage.cursorscroll");
+		o.parm.renderText->scrollpos = eSimpleConfig::getInt("config.usage.cursorscroll");
 	m_rc->submit(o);
 }
 
@@ -1196,25 +1196,32 @@ gRGB gDC::getRGB(gColor col)
 
 void gDC::enableSpinner()
 {
-	ASSERT(m_spinner_saved);
+	ASSERT(m_spinner_saved_HD);
+	ASSERT(m_spinner_saved_FHD);
 
 	/* save the background to restore it later. We need to negative position because we want to blit from the middle of the screen. */
-	m_spinner_saved->blit(*m_pixmap, eRect(-m_spinner_pos.topLeft(), eSize()), gRegion(eRect(ePoint(0, 0), m_spinner_saved->size())), 0, 0 ,0);
+	m_spinner_saved_FHD->blit(*m_pixmap, eRect(-m_spinner_pos_FHD.topLeft(), eSize()), gRegion(eRect(ePoint(0, 0), m_spinner_saved_FHD->size())), 0, 0 ,0);
+	m_spinner_saved_HD->blit(*m_pixmap, eRect(-m_spinner_pos_HD.topLeft(), eSize()), gRegion(eRect(ePoint(0, 0), m_spinner_saved_HD->size())), 0, 0 ,0);
 
 	incrementSpinner();
 }
 
 void gDC::disableSpinner()
 {
-	ASSERT(m_spinner_saved);
+	ASSERT(m_spinner_saved_HD);
+	ASSERT(m_spinner_saved_FHD);
 
 	/* restore background */
-	m_pixmap->blit(*m_spinner_saved, eRect(m_spinner_pos.topLeft(), eSize()), gRegion(m_spinner_pos), 0, 0, 0);
+	if (size().width() == 1920)
+		m_pixmap->blit(*m_spinner_saved_FHD, eRect(m_spinner_pos_FHD.topLeft(), eSize()), gRegion(m_spinner_pos_FHD), 0, 0, 0);
+	else
+		m_pixmap->blit(*m_spinner_saved_HD, eRect(m_spinner_pos_HD.topLeft(), eSize()), gRegion(m_spinner_pos_HD), 0, 0, 0);
 }
 
 void gDC::incrementSpinner()
 {
-	ASSERT(m_spinner_saved);
+	ASSERT(m_spinner_saved_HD);
+	ASSERT(m_spinner_saved_FHD);
 
 	static int blub;
 	blub++;
@@ -1224,8 +1231,8 @@ void gDC::incrementSpinner()
 
 	for (i = 0; i < 5; ++i)
 	{
-		int x = i * 20 + m_spinner_pos.left();
-		int y = m_spinner_pos.top();
+		int x = i * 20 + m_spinner_pos_HD.left();
+		int y = m_spinner_pos_HD.top();
 
 		int col = ((blub - i) * 30) % 256;
 
@@ -1233,12 +1240,27 @@ void gDC::incrementSpinner()
 	}
 #endif
 
-	m_spinner_temp->blit(*m_spinner_saved, eRect(0, 0, 0, 0), eRect(ePoint(0, 0), m_spinner_pos.size()), 0, 0, 0);
+	if (size().width() == 1920)
+	{
+		m_spinner_temp_FHD->blit(*m_spinner_saved_FHD, eRect(0, 0, 0, 0), eRect(ePoint(0, 0), m_spinner_pos_FHD.size()), 0, 0, 0);
 
-	if (m_spinner_pic[m_spinner_i])
-		m_spinner_temp->blit(*m_spinner_pic[m_spinner_i], eRect(0, 0, 0, 0), eRect(ePoint(0, 0), m_spinner_pos.size()), 0, 0, gPixmap::blitAlphaBlend);
+		if (m_spinner_pic[m_spinner_i])
+			m_spinner_temp_FHD->blit(*m_spinner_pic[m_spinner_i], eRect(0, 0, 0, 0), eRect(ePoint(0, 0), m_spinner_pos_FHD.size()), 0, 0, gPixmap::blitAlphaBlend);
 
-	m_pixmap->blit(*m_spinner_temp, eRect(m_spinner_pos.topLeft(), eSize()), gRegion(m_spinner_pos), 0, 0, 0);
+		m_pixmap->blit(*m_spinner_temp_FHD, eRect(m_spinner_pos_FHD.topLeft(), eSize()), gRegion(m_spinner_pos_FHD), 0, 0, 0);
+
+	}
+	else
+	{
+		m_spinner_temp_HD->blit(*m_spinner_saved_HD, eRect(0, 0, 0, 0), eRect(ePoint(0, 0), m_spinner_pos_HD.size()), 0, 0, 0);
+
+		if (m_spinner_pic[m_spinner_i])
+			m_spinner_temp_HD->blit(*m_spinner_pic[m_spinner_i], eRect(0, 0, 0, 0), eRect(ePoint(0, 0), m_spinner_pos_HD.size()), 0, 0, gPixmap::blitAlphaBlend);
+
+		m_pixmap->blit(*m_spinner_temp_HD, eRect(m_spinner_pos_HD.topLeft(), eSize()), gRegion(m_spinner_pos_HD), 0, 0, 0);
+
+	}
+
 	m_spinner_i++;
 	m_spinner_i %= m_spinner_num;
 }
@@ -1247,9 +1269,14 @@ void gDC::setSpinner(eRect pos, ePtr<gPixmap> *pic, int len)
 {
 	ASSERT(m_pixmap);
 	ASSERT(m_pixmap->surface);
-	m_spinner_saved = new gPixmap(pos.size(), m_pixmap->surface->bpp);
-	m_spinner_temp = new gPixmap(pos.size(), m_pixmap->surface->bpp);
-	m_spinner_pos = pos;
+	m_spinner_saved_HD = new gPixmap(pos.size(), m_pixmap->surface->bpp);
+	m_spinner_temp_HD = new gPixmap(pos.size(), m_pixmap->surface->bpp);
+	m_spinner_saved_FHD = new gPixmap(pos.size(), m_pixmap->surface->bpp);
+	m_spinner_temp_FHD = new gPixmap(pos.size(), m_pixmap->surface->bpp);
+	m_spinner_pos_HD = pos;
+	int x = (int)(float)pos.x() * 1.5;
+	int y = (int)(float)pos.y() * 1.5;
+	m_spinner_pos_FHD = eRect(ePoint(x, y), pos.size());
 
 	m_spinner_i = 0;
 	m_spinner_num = len;

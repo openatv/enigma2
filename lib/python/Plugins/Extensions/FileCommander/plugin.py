@@ -1674,7 +1674,7 @@ class FileCommander(Screen, NumericalTextInput, StatInfo):
 	def shortcutAction(self, program):
 		def shortcutInstallCallback(answer):
 			if answer:
-				self.session.open(Console, title=f"{self.baseTitle} - {_('Console')}", cmdlist=(("/usr/bin/opkg", "update"), ("/usr/bin/opkg", "install", self.package)), finishedCallback=shortcutInstalledCallback)
+				self.session.openWithCallback(shortcutInstalledCallback, Console, title=f"{self.baseTitle} - {_('Console')}", cmdlist=(("/usr/bin/opkg", "update"), ("/usr/bin/opkg", "install", self.package)))
 
 		def shortcutInstalledCallback():
 			self.shortcutAction(program)

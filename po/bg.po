@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-08 12:32+0000\n"
+"POT-Creation-Date: 2024-06-21 14:25+0000\n"
 "PO-Revision-Date: 2023-08-06 06:22+0000\n"
 "Last-Translator: Salif Mehmed <mail@salif.eu>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/bg/>\n"
@@ -14,15 +14,6 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.0-dev\n"
 "X-SourceCharset: UTF-8\n"
-
-msgid ""
-"\n"
-"\n"
-"[User - bouquets (TV)]\n"
-msgstr ""
-"\n"
-"\n"
-"[Потребителски-букети(ТВ)]\n"
 
 msgid ""
 "\n"
@@ -38,31 +29,8 @@ msgstr ""
 "\n"
 "Записът е в ход."
 
-msgid ""
-"\n"
-"[Installed Plugins]\n"
-msgstr ""
-"\n"
-"[Инсталирани плъгини]\n"
-
-msgid ""
-"\n"
-"[User - bouquets (RADIO)]\n"
-msgstr ""
-"\n"
-"[Потребителски-букети(РАДИО)]\n"
-
 msgid " "
 msgstr ""
-
-msgid "     no space left on back-up device"
-msgstr "     не остава място на устройството за резервно копие"
-
-msgid "     no writing permission on back-up device"
-msgstr "     без разрешение за запис на резервно устройство"
-
-msgid "     wrong back-up destination "
-msgstr "     грешна дестинация на резервно копие "
 
 msgid "  Menu key : Select quad channel"
 msgstr "  Бутон за меню: Изберете четири канала"
@@ -1339,6 +1307,15 @@ msgstr ""
 msgid "-"
 msgstr ""
 
+msgid "- No space left on backup device."
+msgstr ""
+
+msgid "- No write permission on backup device."
+msgstr ""
+
+msgid "- Wrong backup destination."
+msgstr ""
+
 msgid "-24 Hours"
 msgstr ""
 
@@ -1435,18 +1412,6 @@ msgstr ""
 msgid "2"
 msgstr ""
 
-msgid "23.976"
-msgstr ""
-
-msgid "24"
-msgstr ""
-
-msgid "25"
-msgstr ""
-
-msgid "29.97"
-msgstr ""
-
 msgid "2nd InfoBar"
 msgstr ""
 
@@ -1475,9 +1440,6 @@ msgid "2x, 4x, 6x, 8x"
 msgstr ""
 
 msgid "3"
-msgstr ""
-
-msgid "30"
 msgstr ""
 
 msgid "3D Mode"
@@ -1562,6 +1524,9 @@ msgid "<no log found>"
 msgstr ""
 
 msgid "A"
+msgstr ""
+
+msgid "A backup is now being created."
 msgstr ""
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
@@ -1721,6 +1686,18 @@ msgstr ""
 msgid "AFL"
 msgstr ""
 
+msgid "AI-Powered translation color"
+msgstr ""
+
+msgid "AI-Powered translation enabled"
+msgstr ""
+
+msgid "AI-Powered translation language"
+msgstr ""
+
+msgid "AI-Powered translation subscription code"
+msgstr ""
+
 msgid "ARM"
 msgstr ""
 
@@ -1768,9 +1745,6 @@ msgstr ""
 
 msgid "About to start"
 msgstr "на път да започне"
-
-msgid "About..."
-msgstr "Относно..."
 
 msgid "Access point"
 msgstr "Точка за достъп"
@@ -2042,9 +2016,6 @@ msgstr "Допълнителните опции на двигателя ви п�
 msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move to another satellite."
 msgstr "Допълнителните опции на двигателя ви позволяват да въвеждате подробности от спецификацията на вашия двигател, така че enigma да може да разбере колко време ще отнеме да се премести към друг сателит."
 
-msgid "Adjust 3D settings"
-msgstr "Коригирайте 3D настройките"
-
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr "Регулирайте цветовите настройки, така че всички цветови нюанси да са различими, но да изглеждат възможно най-наситени. Ако сте доволни от резултата, натиснете OK, за да затворите фината настройка на видеото, или използвайте цифровите клавиши, за да изберете други тестови екрани."
 
@@ -2237,9 +2208,6 @@ msgstr "Позволява ви да показвате/скривате Log Man
 msgid "Allows you to show/hide OScam/CCcam in the Extension Menu screen (BLUE button)."
 msgstr ""
 
-msgid "Almost there... "
-msgstr "Почти там... "
-
 msgid "Alpha"
 msgstr ""
 
@@ -2251,6 +2219,15 @@ msgstr "По азбучен ред под заглавията"
 
 msgid "Alphanumeric"
 msgstr "Буквено-цифров"
+
+msgid "Also import at reboot/restart enigma2"
+msgstr "Импортиране при рестарт на приемника/enigma2"
+
+msgid "Also import from the extension menu"
+msgstr "Добави импортиране в менюто с разширенията"
+
+msgid "Also import when box is leaving standby"
+msgstr "Импортиране при изход от режим готовност"
 
 msgid "Also on standby"
 msgstr "Също в режим на готовност"
@@ -2266,6 +2243,9 @@ msgstr "Алтернативен 2"
 
 msgid "Alternative Edit"
 msgstr "[алтернативно редактиране]"
+
+msgid "Alternative URLs for DVB-T/C or ATSC"
+msgstr "Алтернативен URL за DVB-T/C или ATSC"
 
 msgid "Alternative numbering mode"
 msgstr "Алтернативен режим на номериране"
@@ -2513,6 +2493,9 @@ msgid "Aspect switch"
 msgstr ""
 
 msgid "Assamese"
+msgstr ""
+
+msgid "Assembling the image backup files."
 msgstr ""
 
 msgid "Assigned CAIds:"
@@ -2797,14 +2780,6 @@ msgstr "Назад, към външния USB"
 msgid "Back, upper USB"
 msgstr "Назад, към горния USB"
 
-#, python-format
-msgid "Back-up Tool for a %s\n"
-msgstr "Инструмент за архивиране за %s\n"
-
-#, python-format
-msgid "Back-up Tool for an %s\n"
-msgstr "Инструмент за архивиране за %s\n"
-
 msgid "Back/Recall"
 msgstr "Назад/Припомняне"
 
@@ -2829,13 +2804,6 @@ msgstr "Фон:"
 msgid "Backup"
 msgstr "Архивиране"
 
-#, python-format
-msgid "Backup Date: %s\n"
-msgstr "Дата на архивиране: %s\n"
-
-msgid "Backup Image"
-msgstr "Архивиране на имидж"
-
 msgid "Backup Location"
 msgstr "Местоположение архив"
 
@@ -2845,29 +2813,17 @@ msgstr "Дневник архив"
 msgid "Backup Mode"
 msgstr "Архивиращ режим"
 
-msgid "Backup Mode: Flash Online\n"
-msgstr "Режим на архивиране: Flash онлайн\n"
+msgid "Backup Mode: Flash Online"
+msgstr ""
 
-msgid "Backup Mode: USB Recovery\n"
-msgstr "Режим на архивиране: USB възстановяване\n"
+msgid "Backup Mode: USB Recovery"
+msgstr ""
 
 msgid "Backup Settings"
 msgstr "Архивиране насройки"
 
 msgid "Backup System Settings"
 msgstr "Архивиране на системни настройки"
-
-msgid "Backup completed."
-msgstr "Архивирането завърши."
-
-msgid "Backup done."
-msgstr "Архивиране направено."
-
-msgid "Backup failed!"
-msgstr ""
-
-msgid "Backup failed."
-msgstr "Архивирането не бе успешно."
 
 msgid "Backup images"
 msgstr ""
@@ -2883,8 +2839,8 @@ msgstr ""
 "искате ли да се инсталират сега?"
 
 #, python-format
-msgid "Backup to destination: %s"
-msgstr "Архивиране до местоназначение: %s"
+msgid "Backup tool for %s %s"
+msgstr ""
 
 msgid "Backup your %s %s settings."
 msgstr "Архивирайте настройките на %s %s."
@@ -2934,10 +2890,10 @@ msgstr ""
 msgid "Base time"
 msgstr "Основно време"
 
-msgid "Base transparency for OpenOpera web browser"
+msgid "Base transparency for OpenOpera web browser."
 msgstr "Основна прозрачност за отваряне на Opera браузър"
 
-msgid "Base transparency for teletext, more options available within teletext screen."
+msgid "Base transparency for teletext, more options are available within teletext screen."
 msgstr "Основна прозрачност за телетекст, налични опции в рамките на телетекст екрана."
 
 msgid "Baseball"
@@ -2950,6 +2906,9 @@ msgid "Basketball"
 msgstr "Баскетбол"
 
 msgid "Basque"
+msgstr ""
+
+msgid "Before changing these settings try to disable any overscan settings on th TV / display screen. To calibrate the On-Screen-Display (OSD) adjust the position and size values until the red box is *just* visible and touches the edges of the screen."
 msgstr ""
 
 msgid "Begin time"
@@ -3202,10 +3161,6 @@ msgstr "Изграждане на информация"
 msgid "Build information for %s %s"
 msgstr ""
 
-#, python-format
-msgid "Build: %s"
-msgstr "Изграждане: %s"
-
 msgid "Bulgaria"
 msgstr "България"
 
@@ -3253,9 +3208,6 @@ msgstr ""
 
 msgid "By disk label"
 msgstr ""
-
-msgid "By openATV Image Team"
-msgstr "Чрез openATV Image Team"
 
 msgid "Bypass HDMI EDID Check"
 msgstr "Изключване на проверката HDMI EDID"
@@ -3525,6 +3477,9 @@ msgstr "Не може да се качи таймер"
 msgid "Can't allocate program source (e.g. tuner)"
 msgstr "Не мога да разпределя източник на програма (напр. тунер)"
 
+msgid "Can't create backup directory!"
+msgstr ""
+
 msgid ""
 "Can't going to live TV!\n"
 "Switch to live TV and restart time shift ?"
@@ -3641,9 +3596,6 @@ msgstr "Отменете актуализацията"
 msgid "Cancelled upon user request"
 msgstr "Отменено по искане на потребителя"
 
-msgid "Cannot create backup directory"
-msgstr "Не може да се създаде директория за архивиране"
-
 msgid "Cannot delete file"
 msgstr "Не мога да изтрия файла"
 
@@ -3686,6 +3638,9 @@ msgid "Catalan / Valencian"
 msgstr ""
 
 msgid "Cayman Islands"
+msgstr ""
+
+msgid "Cebuano"
 msgstr ""
 
 msgid "Celsius"
@@ -3956,9 +3911,8 @@ msgstr ""
 msgid "Chinese"
 msgstr ""
 
-#, python-format
-msgid "Chipset: BCM%s"
-msgstr "Чипсет: BCM%s"
+msgid "Chinese (Simplified)"
+msgstr ""
 
 msgid "Choice Box"
 msgstr "Кутия за избор"
@@ -3997,12 +3951,6 @@ msgstr ""
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Изберете колко често да се свързвате със сървъра на IceTV, за да проверявате за актуализации."
 
-msgid "Choose the Display Skin and press GREEN to activate the skin."
-msgstr ""
-
-msgid "Choose the OSD Skin and press GREEN to activate the skin."
-msgstr ""
-
 msgid "Choose the amount of additional slots."
 msgstr ""
 
@@ -4011,6 +3959,9 @@ msgstr "Избиране на стила на форматиране на дис
 
 msgid "Choose the display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds.  ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Избиране на стила на форматиране на дисплея за времена. 'H' / 'HH' е часът за 24-часов часовник, 'h' / 'hh' е часът за 12-часов часовник, 'mm' са минутите и 'ss' са секундите. („HH“ и „hh“ имат водещи нули за едноцифрени стойности.) Екранният дисплей ще се основава на вашия избор, но може да бъде повлиян от кожата."
+
+msgid "Choose the fallback font."
+msgstr ""
 
 msgid "Choose the front panel display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Избиране на стила на форматиране на дисплея на предния панел за датите. „D“ / „DD“ е датата, а „M“ / „MM“ е месецът с цифри. („DD“ и „MM“ имат водещи нули за едноцифрени стойности.) Екранният дисплей ще се основава на вашия избор, но може да бъде повлиян от кожата."
@@ -4297,6 +4248,11 @@ msgstr ""
 msgid "Command execution..."
 msgstr "Изпълнение команди..."
 
+msgid "Command finished."
+msgid_plural "Commands finished."
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Command order"
 msgstr "Команден ред"
 
@@ -4446,6 +4402,9 @@ msgstr ""
 msgid "Configure remote control type"
 msgstr "Конфигуриране на типа на дистанционно управление"
 
+msgid "Configure the AI-Powered translation language."
+msgstr ""
+
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "Конфигуриране на DiSEqC режима за този LNB."
 
@@ -4493,6 +4452,9 @@ msgstr "Конфигуриране на нивото на яркост на ди
 
 msgid "Configure the brightness level of the front panel display for standby."
 msgstr "Конфигуриране на нивото на яркост на дисплея на предния панел за standby."
+
+msgid "Configure the color of the AI-Powered translations."
+msgstr ""
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
 msgstr "Конфигуриране на цвета на външните субтитрите, алтернативни (нормални в бяло, курсив в жълто, получер в циан, долна черта в зелено), бял или жълт."
@@ -4807,6 +4769,9 @@ msgstr "Информация за връзката"
 msgid "Console"
 msgstr "Конзола"
 
+msgid "Console Actions"
+msgstr ""
+
 msgid "Console Network Packages"
 msgstr ""
 
@@ -5058,6 +5023,10 @@ msgstr "Създайте произволно генерирана парола"
 msgid "Create a symbolic link"
 msgstr ""
 
+#, python-format
+msgid "Create recovery image backup '%s'."
+msgstr ""
+
 msgid "Create separate radio user bouquet"
 msgstr "Създайте отделен потребителски букет за радио"
 
@@ -5069,13 +5038,6 @@ msgstr ""
 
 msgid "Create the flash expander in the selected device"
 msgstr ""
-
-msgid "Create:"
-msgstr "Създайте:"
-
-#, python-format
-msgid "Create: Recovery Fullbackup %s"
-msgstr "Създаване: Възстановяване на пълно резервно копие %s"
 
 msgid "Creating .ap and .sc files"
 msgstr "Създаване на AP и SC файлове"
@@ -5227,6 +5189,9 @@ msgstr "Персонализирано време за прескачане на
 
 msgid "Customize"
 msgstr "Персонализиране"
+
+msgid "Customize OpenWebIF settings for fallback tuner"
+msgstr "Настройка на OpenWebIF за резервния тунер"
 
 msgid "Customize System Settings"
 msgstr "Персонализирайте системните настройки"
@@ -5647,9 +5612,6 @@ msgstr ""
 msgid "Default: '%s'."
 msgstr "По подразбиране: '%s'."
 
-msgid "Defaults"
-msgstr "По подразбиране"
-
 msgid "Define Softcam For This Provider"
 msgstr ""
 
@@ -5948,8 +5910,20 @@ msgid "Deselect only highlighted file"
 msgstr ""
 
 #, python-format
-msgid "Deselected packages usually occur because those packaged are incompatible with existing packages.  While this is mostly harmless it is possible that your %s %s may experience issues."
+msgid "Deselected packages usually occur because those packaged are incompatible with existing packages. While this is mostly harmless it is possible that your %s %s may experience issues."
 msgstr "Премахнатите от избора пакети обикновено се появяват, защото тези пакетирани са несъвместими със съществуващите пакети. Въпреки че това е почти безвредно, възможно е вашият %s %s да има проблеми."
+
+msgid "Destination of fallback remote receiver"
+msgstr "Въведете URL на резервния приемник"
+
+msgid "Destination of fallback remote receiver for ATSC"
+msgstr "Въведете URL на резервния приемник за ARSC"
+
+msgid "Destination of fallback remote receiver for DVB-C"
+msgstr "Въведете URL на резервния приемник за DVB-C"
+
+msgid "Destination of fallback remote receiver for DVB-T"
+msgstr "Въведете URL на резервния приемник за DVB-T"
 
 msgid "Detail of GStreamer log."
 msgstr "Подробности от дневника на GStreamer"
@@ -6233,6 +6207,9 @@ msgstr ""
 msgid "Do another manual service scan?"
 msgstr ""
 
+msgid "Do not backup the image"
+msgstr ""
+
 msgid "Do not change"
 msgstr "Не променяй"
 
@@ -6317,6 +6294,18 @@ msgstr "Наистина ли искате да премахнете тайме�
 #, python-format
 msgid "Do you really want to remove your bookmark for '%s'?"
 msgstr "Наистина ли искате да премахнете вашия bookmark от %s?"
+
+msgid ""
+"Do you really want to restart OSCam?\n"
+"\n"
+"HINT: This will take about 5 seconds!"
+msgstr ""
+
+msgid ""
+"Do you really want to shut down OSCam?\n"
+"\n"
+"ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+msgstr ""
 
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
@@ -6515,7 +6504,7 @@ msgstr "Изтегляне на"
 msgid "Downloading Image"
 msgstr "Изтегляне на изображение"
 
-msgid "Downloading latest update list.  Please wait..."
+msgid "Downloading latest update list. Please wait..."
 msgstr "Изтегляне на най-новия списък с актуализации.  Моля Изчакай..."
 
 msgid "Downloading plugin information. Please wait..."
@@ -6803,6 +6792,9 @@ msgstr "Разрешаване на %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "Разрешаване на 5V за активната антена"
 
+msgid "Enable AI-Powered translation for all teletext and DVB subtitles."
+msgstr ""
+
 msgid "Enable Autorecord"
 msgstr "Разрешаване на автоматичен запис"
 
@@ -6951,6 +6943,9 @@ msgstr "Разрешаване на резервния дистанционен 
 msgid "Enable freesat EPG"
 msgstr "Разрешаване на freesat EPG"
 
+msgid "Enable import timer from fallback tuner"
+msgstr "Активиране импорт на таймери от резервен тунер"
+
 msgid "Enable intro screen"
 msgstr "Разрешаване на интро екран"
 
@@ -7024,9 +7019,6 @@ msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup
 msgstr "Разрешете за показване на всички вярно/невярно, да/не, включване/изключване и активиране/деактивиране на опциите за настройка като графичен превключвател."
 
 msgid "Enable to display setup entries alphabetically."
-msgstr ""
-
-msgid "Enable to display the Extension Menu screen entries alphabetically."
 msgstr ""
 
 msgid "Enable to display the current value of the slider at end of the slider bar."
@@ -7122,21 +7114,6 @@ msgstr "Подобрен филмов център"
 msgid "Enigma2 (re)starts"
 msgstr "Enigma2 (пре)стартира"
 
-msgid ""
-"Enigma2 Skinselector\n"
-"\n"
-"If you experience any problems please contact\n"
-"stephan@reichholf.net\n"
-"\n"
-"© 2006 - Stephan Reichholf"
-msgstr ""
-"Селектор на кожи Enigma2\n"
-"\n"
-"Ако имате някакви проблеми, моля свържете се\n"
-"stephan@reichholf.net\n"
-"\n"
-"© 2006 - Стефан Райххолф"
-
 msgid "Enigma2 debug level"
 msgstr "Ниво на отстраняване на грешки Enigma2"
 
@@ -7158,6 +7135,9 @@ msgstr "Въведете"
 #, python-format
 msgid "Enter DNS (Dynamic Name Server) %d's IP address."
 msgstr "Въведете IP адреса на DNS (сървър за динамични имена) %d."
+
+msgid "Enter IP address"
+msgstr "Въведете IP адрес"
 
 msgid "Enter PIN"
 msgstr "Въведете PIN"
@@ -7223,6 +7203,9 @@ msgid "Enter your low band local oscillator frequency. For more information cons
 msgstr "Въведете честотата на локалния осцилатор в ниската лента. За повече информация направете справка със спецификациите на вашия конвертор."
 
 msgid "Enter your personal feed URL to allow you to select packages from your personal feed."
+msgstr ""
+
+msgid "Enter your subscription code, the unified code for trial is 15."
 msgstr ""
 
 msgid "Entertainment"
@@ -7394,12 +7377,6 @@ msgstr ""
 msgid "Error opening recording file"
 msgstr "Грешка при отваряне на записващия файл"
 
-msgid "Error reading bouquets.radio"
-msgstr "Грешка при четене на букети.радио"
-
-msgid "Error reading bouquets.tv"
-msgstr "Грешка при четене на bouquets.tv"
-
 msgid "Error reading webpage!"
 msgstr "Грешка при четенето на уеб страница!"
 
@@ -7409,6 +7386,14 @@ msgstr ""
 #, python-format
 msgid "Error unzipping image '%s'!"
 msgstr ""
+
+#, python-format
+msgid ""
+"Error while retrieving fallback timer information\n"
+"%s"
+msgstr ""
+"Грешка при извличане на информация за резервния таймер\n"
+"%s"
 
 msgid "Error, unknown Result!"
 msgstr "Грешка, неизвестен резултат!"
@@ -7520,6 +7505,10 @@ msgid "Error: Unable to rename directory '%s' to '%s'!"
 msgstr ""
 
 #, python-format
+msgid "Error: Unable to write log file '%s'!"
+msgstr "Грешка при запис на файл: '%s'"
+
+#, python-format
 msgid "Error: You can't run '%s' on '%s'!"
 msgstr ""
 
@@ -7622,12 +7611,6 @@ msgstr ""
 msgid "Execution condition"
 msgstr "Състояние изпълнение"
 
-msgid "Execution finished!!"
-msgstr "Изпълнението завърши !!"
-
-msgid "Execution progress:"
-msgstr "Процес на изпълнение:"
-
 msgid "Exif"
 msgstr ""
 
@@ -7651,6 +7634,9 @@ msgstr "Изход от избора на четири канала"
 
 msgid "Exit all menus"
 msgstr "Изход от всички менюта"
+
+msgid "Exit and close all screens without performing a backup"
+msgstr ""
 
 msgid "Exit editor"
 msgstr "Изход от редактора"
@@ -7701,6 +7687,9 @@ msgid "Exit the wizard"
 msgstr "Изход от помощника"
 
 msgid "Exit viewer"
+msgstr ""
+
+msgid "Exit without performing a backup"
 msgstr ""
 
 msgid "Expand"
@@ -7878,8 +7867,38 @@ msgstr "Неуспешно:"
 msgid "Falkland Islands (Malvinas)"
 msgstr ""
 
+msgid "Fallback API did not return a valid result."
+msgstr ""
+
+msgid "Fallback Font *"
+msgstr ""
+
+msgid "Fallback remote receiver"
+msgstr "Резервен отдалечен приемник"
+
+msgid "Fallback remote receiver IP"
+msgstr "IP на резервния приемник"
+
+msgid "Fallback remote receiver Port"
+msgstr "Порт на резервен отдалечен приемник"
+
 msgid "Fallback remote receiver URL"
 msgstr "URL адреса на отдалечения приемник"
+
+msgid "Fallback remote receiver for ATSC"
+msgstr "Резервен отдалечен приемник за ATSC"
+
+msgid "Fallback remote receiver for DVB-C"
+msgstr "Резервен отдалечен приемник за DVB-C"
+
+msgid "Fallback remote receiver for DVB-T"
+msgstr "Резервен отдалечен приемник за DVB-T"
+
+msgid "Fallback Timer"
+msgstr "Резервен Таймер"
+
+msgid "Fallback tuner setup"
+msgstr "Настройки на резервен тунер"
 
 msgid "False"
 msgstr "Невярно"
@@ -8069,10 +8088,6 @@ msgstr ""
 
 msgid "File transfer was cancelled by user"
 msgstr "Прехвърлянето на файл е отменено от потребителя"
-
-#, python-format
-msgid "File write error: '%s'"
-msgstr "Грешка при запис на файл: '%s'"
 
 msgid "Filename"
 msgstr "Име на файл"
@@ -8387,18 +8402,11 @@ msgstr "Предна версия на процесора"
 msgid "Fulah"
 msgstr ""
 
-msgid "Full Image Backup "
-msgstr "Пълно имидж архивиране "
-
 msgid "Full Range RGB"
 msgstr "Пълен обхват RGB"
 
 msgid "Full Stretch"
 msgstr ""
-
-#, python-format
-msgid "Full back-up on %s"
-msgstr "Пълно архивиране на %s"
 
 msgid "Full factory reset"
 msgstr "Пълно нулиране на фабричните настройки"
@@ -8441,13 +8449,6 @@ msgstr "GStreamer версия"
 
 msgid "GUI Skin *"
 msgstr ""
-
-msgid ""
-"GUI needs a restart to apply a new skin\n"
-"Do you want to Restart the GUI now?"
-msgstr ""
-"Графичният интерфеис се нуждае от рестарт за да приложи новата кожа\n"
-"Искате ли да рестартирате графичния потребителски интерфейс сега?"
 
 msgid "Gabon"
 msgstr ""
@@ -8840,6 +8841,9 @@ msgstr "Тип хардуер"
 msgid "Hausa"
 msgstr "Хауса"
 
+msgid "Hawaiian"
+msgstr ""
+
 msgid "Heard Island and McDonald Islands"
 msgstr ""
 
@@ -8948,6 +8952,9 @@ msgstr "Скрийте информационната лента"
 msgid "Hide zap errors"
 msgstr "Скриване на превключващи съобщения за грешки"
 
+msgid "Hide/Show the console screen"
+msgstr ""
+
 msgid "Hierarchy info"
 msgstr "Информация за йерархията"
 
@@ -9001,6 +9008,9 @@ msgstr "Следваща история"
 
 msgid "History zap..."
 msgstr "История на превключване..."
+
+msgid "Hmong"
+msgstr ""
 
 msgid "Hockey"
 msgstr "Хокей"
@@ -9145,6 +9155,9 @@ msgstr "IP адрес"
 
 msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr ""
+
+msgid "IP of fallback remote receiver"
+msgstr "IP на резервния отдалечен приемник"
 
 msgid "IPK Installer"
 msgstr "IPK инсталатор"
@@ -9346,15 +9359,21 @@ msgstr "Игнорирайте неочаквано събуждане и ост
 msgid "Image Backup"
 msgstr "Архивиране на имидж"
 
-msgid "Image Flash Actions"
+msgid "Image Backup Actions"
 msgstr ""
 
 #, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
+msgid "Image Backup To %s"
 msgstr ""
 
-msgid "Image creation failed - "
-msgstr "Създаването на изображение не бе успешно - "
+msgid "Image Flash Actions"
+msgstr ""
+
+msgid "Image created:"
+msgstr ""
+
+msgid "Image creation failed!"
+msgstr ""
 
 msgid "ImageWizard"
 msgstr "Съветник за имидж"
@@ -9367,6 +9386,21 @@ msgstr ""
 
 msgid "Immediately restart selected devices."
 msgstr "Незабавно рестартирайте избраните устройства."
+
+msgid "Import channels and/or EPG from remote receiver URL also when the receiver is getting out of standby"
+msgstr "Импортиране на канали/EPG от резервния приемник при изход от режим готовност"
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver is booted"
+msgstr "Импортиране на канали и/или EPG от резервния приемник при старт на приемника"
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
+msgstr "Импортиране на канали и/или EPG от резервния приемник при рестарт на приемника или enigma2"
+
+msgid "Import from remote receiver URL"
+msgstr "Импортиране от URL на резервния приемник"
+
+msgid "Import remote receiver URL"
+msgstr "Импорт от URL на резервния приемник"
 
 msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
 msgstr "В допълнение към проверката при стартиране на събитие може да се използва повтаряща се проверка, за да се открият по-рано условията за \"ограничаване на буфера в часове\" или \"проверка на свободното място\"."
@@ -10010,6 +10044,9 @@ msgstr ""
 msgid "Kurdish"
 msgstr ""
 
+msgid "Kurdish (Sorani)"
+msgstr ""
+
 msgid "Kurdistan"
 msgstr ""
 
@@ -10027,9 +10064,6 @@ msgstr "LAN адаптер"
 
 msgid "LAN connection"
 msgstr "LAN връзка"
-
-msgid "LCD Skin Settings"
-msgstr "Настройка на LCD кожа"
 
 msgid "LCD scroll speed"
 msgstr "Скорост на LCD превъртане"
@@ -10196,7 +10230,7 @@ msgstr "Развлекателни хобита"
 msgid "Lesotho"
 msgstr ""
 
-#. TRANSLATORS: (aspect ratio policy: black bars on top/bottom) in doubt, keep english term.
+#. TRANSLATORS: Aspect ratio policy: Black bars on top/bottom in doubt, keep English term.
 msgid "Letterbox"
 msgstr "Пощенска кутия"
 
@@ -10586,6 +10620,9 @@ msgstr "Поддържайте вашето устройство за много
 msgid "Make"
 msgstr ""
 
+msgid "Make it possible to manually initiate the channels import and/or EPG via the extension menu"
+msgstr "Добави импортиране в менюто с разширенията"
+
 msgid "Make this mark an 'in' point"
 msgstr "Направи тази маркировка за 'в' точка"
 
@@ -10936,17 +10973,11 @@ msgstr "Мобилна връзка"
 msgid "Mode"
 msgstr "Режим"
 
-msgid "Mode 1"
-msgstr "Режим 1"
-
 msgid "Mode 12: Supports PiP but Kodi may not work"
 msgstr ""
 
 msgid "Mode 1: Supports Kodi but PiP may not work"
 msgstr ""
-
-msgid "Mode 2"
-msgstr "Режим 2"
 
 msgid "Mode for autorestore"
 msgstr "Режим за автоматично възстановяване"
@@ -11345,6 +11376,9 @@ msgstr "Преместване на запад ..."
 msgid "Mozambique"
 msgstr ""
 
+msgid "Multi"
+msgstr ""
+
 msgid "Multi EPG"
 msgstr "Мулти EPG"
 
@@ -11375,9 +11409,8 @@ msgstr "Мулти библиотека"
 msgid "MultiTranscoding"
 msgstr "Многократно транскодиране"
 
-#, python-format
-msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
-msgstr "Изображение за множествено зареждане, създадено на: %s/%s-%s-%s-backup-%s_usb.zip"
+msgid "Multiboot Image created:"
+msgstr ""
 
 msgid "Multimedia Packages"
 msgstr ""
@@ -11439,6 +11472,9 @@ msgstr ""
 
 #, python-format
 msgid "NOTE: These %d directories/files exist and will be overwritten!"
+msgstr ""
+
+msgid "NOTE: While the console screen is hidden from view the buttons are still active. Pressing any enabled button will cause the screen to reappear but the button will not be actioned."
 msgstr ""
 
 msgid "NOW"
@@ -11747,9 +11783,6 @@ msgstr "Не (поддържа) намерен DVDROM!"
 msgid "No Connection"
 msgstr "Няма връзка"
 
-msgid "No Devices Found !!"
-msgstr "Не са намерени устройства !!"
-
 msgid "No ECM PIDs available"
 msgstr "Няма налични ECMPids"
 
@@ -11925,9 +11958,6 @@ msgstr "Не се изисква актуализация!"
 msgid "No updates available."
 msgstr "Няма налични актуализации."
 
-msgid "No updates were available.  Please try again later."
-msgstr "Няма налични актуализации. Моля, опитайте отново по-късно."
-
 msgid "No valid device detected - Press OK"
 msgstr ""
 
@@ -11964,9 +11994,6 @@ msgstr ""
 
 msgid "No, but restart from begin"
 msgstr "Не, но рестартирайте отначало"
-
-msgid "No, do not backup a image"
-msgstr "Не, не създавайте резервно копие на изображение"
 
 msgid "No, do nothing."
 msgstr "Не, не прави нищо."
@@ -12126,9 +12153,6 @@ msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr ""
 
-msgid "Now building the Backup Image"
-msgstr "Сега изградете резервното изображение"
-
 msgid "Now save time shift as movie and continues recording"
 msgstr "Сега запазете смяната на времето като филм и продължете да записвате"
 
@@ -12209,11 +12233,11 @@ msgstr ""
 msgid "OSD 3D Settings"
 msgstr "OSD 3D настройка"
 
-msgid "OSD Adjustment"
-msgstr "OSD приспособяване"
-
 msgid "OSD Calibration"
 msgstr "Позиция OSD"
+
+msgid "OSD Calibration Settings"
+msgstr ""
 
 msgid "OSD Settings"
 msgstr "OSD настройки"
@@ -12223,6 +12247,9 @@ msgstr "Настройка на OSD"
 
 msgid "OSD name request"
 msgstr "Заявка за име на OSD"
+
+msgid "OSD visibility"
+msgstr ""
 
 msgid "OTT Model"
 msgstr ""
@@ -12374,10 +12401,16 @@ msgstr "Отворете сервизния списък и изберете п�
 msgid "Open the Channel Selection Settings screen"
 msgstr ""
 
+msgid "Open the Image information"
+msgstr ""
+
 msgid "Open the Plugin Browser"
 msgstr "Отворете браузъра на плъгини"
 
 msgid "Open the Plugin Browser settings screen"
+msgstr ""
+
+msgid "Open the Storage Device information"
 msgstr ""
 
 msgid "Open the VirtualKeyBoard for text entry"
@@ -12649,8 +12682,8 @@ msgstr ""
 msgid "Pali"
 msgstr ""
 
-#. TRANSLATORS: (aspect ratio policy: cropped content on left/right) in doubt, keep english term
-#. TRANSLATORS: (aspect ratio policy: Fit width, cut/crop top and bottom (Maintain aspect ratio))
+#. TRANSLATORS: Aspect ratio policy: Cropped content on left/right in doubt, keep English term.
+#. TRANSLATORS: Aspect ratio policy: Fit width, cut/crop top and bottom (maintain aspect ratio).
 msgid "Pan&scan"
 msgstr ""
 
@@ -12723,9 +12756,6 @@ msgstr "Паролата е сменена."
 #, python-format
 msgid "Path '%s' missing!"
 msgstr ""
-
-msgid "Path to save not exist: '/tmp/'"
-msgstr "Пътят за запис не съществува: '/tmp/'"
 
 msgid "Pause"
 msgstr "Пауза"
@@ -12844,7 +12874,7 @@ msgstr "Плейър за снимки"
 msgid "Pictures"
 msgstr "Снимки"
 
-#. TRANSLATORS: (aspect ratio policy: black bars on left/right) in doubt, keep english term.
+#. TRANSLATORS: Aspect ratio policy: Black bars on left/right in doubt, keep English term.
 msgid "Pillarbox"
 msgstr ""
 
@@ -12962,11 +12992,8 @@ msgstr "Възпроизвеждане на пауза"
 msgid "Please add titles to the compilation."
 msgstr "Моля, добавете заглавия към компилацията."
 
-msgid "Please be patient, a backup will now be made,\n"
-msgstr "Моля, бъдете търпеливи, архивирането сега ще бъде направено,\n"
-
-msgid "Please check the manual of the receiver"
-msgstr "Моля, проверете ръководството на приемника"
+msgid "Please be patient."
+msgstr ""
 
 msgid "Please choose an extension..."
 msgstr "Моля, изберете разширение..."
@@ -13041,9 +13068,6 @@ msgstr "Моля, натиснете OK, за да продължите."
 msgid "Please press OK when ready"
 msgstr ""
 
-msgid "Please select a backup destination"
-msgstr "Моля, изберете дестинация за резервно копие"
-
 msgid "Please select a default EPG type..."
 msgstr "Моля, изберете тип EPG по подразбиране...."
 
@@ -13101,22 +13125,11 @@ msgstr "Моля, изберете региона, който най-много 
 msgid "Please select the sub-service to record:"
 msgstr "Моля, изберете subservice да записва .."
 
+msgid "Please select the target location to save the backup:"
+msgstr ""
+
 msgid "Please select what to do after flash of the following image:"
 msgstr ""
-
-msgid ""
-"Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
-"When you are ready press OK to continue."
-msgstr ""
-"Моля, настройте потребителския си интерфейс, като коригирате стойностите, докато краищата на червената кутия докосват краищата на вашия телевизор.\n"
-"Когато сте готови, натиснете OK, за да продължите."
-
-msgid ""
-"Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
-"When you are ready press green to continue."
-msgstr ""
-"Моля, настройте потребителския си интерфейс, като коригирате стойностите, докато краищата на червената кутия докосват краищата на вашия телевизор.\n"
-"Когато сте готови, натиснете зелено, за да продължите."
 
 msgid ""
 "Please use direction keys to move the PiP window.\n"
@@ -13221,9 +13234,6 @@ msgstr "Моля изчакайте..."
 msgid "Please wait... Loading list..."
 msgstr "Моля изчакайте...Списъка се зарежда..."
 
-msgid "Please wait...almost ready! "
-msgstr "Моля, изчакайте...почти готов! "
-
 msgid "Plug in USB device"
 msgstr ""
 
@@ -13308,14 +13318,14 @@ msgstr "Порт D"
 msgid "Port number for the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr ""
 
+msgid "Port of fallback remote receiver"
+msgstr "Порт на резервния отдалечен приемник"
+
 msgid "Portugal"
 msgstr ""
 
 msgid "Portuguese"
 msgstr "Португалски"
-
-msgid "Position Setup"
-msgstr "Настройка на позиция"
 
 msgid "Position of finished Timers in Timerlist"
 msgstr "Позиция на готовите таймери в Timerlist"
@@ -13340,6 +13350,9 @@ msgstr "Дневник за настройка на позиционера"
 
 msgid "Positioner setup"
 msgstr "Настройка на позиционер"
+
+msgid "Possible causes could be:"
+msgstr ""
 
 msgid "Power"
 msgstr "Включване"
@@ -13479,9 +13492,6 @@ msgstr ""
 msgid "Press OK on your remote control to continue."
 msgstr "Натиснете OK, на дистанционното за да продължите."
 
-msgid "Press OK to activate the selected skin."
-msgstr "Натиснете OK, за да активирате избраната кожа."
-
 msgid "Press OK to activate the settings."
 msgstr "Натиснете OK, за да активирате настройките."
 
@@ -13618,9 +13628,6 @@ msgstr "Праймтайм минута"
 
 msgid "Priority"
 msgstr "Приоритет"
-
-msgid "Probable causes could be"
-msgstr "Вероятните причини могат да бъдат"
 
 msgid "Proc model"
 msgstr ""
@@ -13853,6 +13860,9 @@ msgstr "Бързо EPG"
 
 msgid "Quick Launch Menu"
 msgstr "Бързо стартиращо меню"
+
+msgid "Quick Menu Actions"
+msgstr ""
 
 msgid "Quick Menu..."
 msgstr "Бързо меню..."
@@ -14630,6 +14640,9 @@ msgstr "Рестарт мрежа"
 msgid "Restart Network Adapter"
 msgstr "Рестарт мрежов адаптер"
 
+msgid "Restart OSCam"
+msgstr ""
+
 msgid "Restart enigma"
 msgstr "Рестарт енигма"
 
@@ -14866,6 +14879,10 @@ msgstr "Работещ"
 msgid "Running Myrestore script, Please wait ..."
 msgstr "Изпълняване скрипт на Myrestore, моля, изчакайте..."
 
+#, python-format
+msgid "Running command %d: '%s'."
+msgstr ""
+
 msgid "Russian"
 msgstr ""
 
@@ -14978,6 +14995,9 @@ msgstr ""
 msgid "Same as in active"
 msgstr "Също като в активна"
 
+msgid "Same as stream"
+msgstr "Също като стрий"
+
 msgid "Same behavior as current animation"
 msgstr "Същото поведение като текущата анимация"
 
@@ -15056,6 +15076,9 @@ msgstr ""
 msgid "Save EPG data"
 msgstr "Запази данните за EPG"
 
+msgid "Save Log"
+msgstr ""
+
 msgid "Save all changed settings and exit"
 msgstr "Запазете всички променени настройки и излезте"
 
@@ -15105,6 +15128,9 @@ msgid "Save the left column directory location on exit."
 msgstr ""
 
 msgid "Save the log changes and exit"
+msgstr ""
+
+msgid "Save the log of the console messages to a file"
 msgstr ""
 
 msgid "Save the right column directory location on exit."
@@ -15533,6 +15559,9 @@ msgstr ""
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
 msgstr ""
 
+msgid "Select 'Yes' to show subscription packages in the Download Plugins screen."
+msgstr ""
+
 msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
 msgstr ""
 
@@ -15587,9 +15616,6 @@ msgstr "Изберете CAID"
 msgid "Select Device"
 msgstr ""
 
-msgid "Select Display Skin"
-msgstr ""
-
 msgid "Select Enigma2 Skin"
 msgstr "Изберете Enigma2 кожа"
 
@@ -15604,9 +15630,6 @@ msgstr "Изберете папки"
 
 msgid "Select HDD"
 msgstr "Изберете HDD"
-
-msgid "Select LCD Skin"
-msgstr "Изберете LCD кожа"
 
 msgid "Select Lan/Wlan"
 msgstr "Изберете Lan/Wlan"
@@ -15629,9 +15652,6 @@ msgstr "Изберете сателити"
 msgid "Select Shares"
 msgstr ""
 
-msgid "Select Skin"
-msgstr ""
-
 msgid "Select Softcam"
 msgstr "Изберете softcam"
 
@@ -15646,9 +15666,6 @@ msgstr "Изберете източник за надстройване"
 
 msgid "Select Upgrade Source To Edit"
 msgstr "Изберете източник за надстройване, който да редактирате."
-
-msgid "Select Your Skin"
-msgstr "Изберете вашата кожа"
 
 msgid "Select a Softcam from the available list as the default for AutoCam."
 msgstr ""
@@ -16103,6 +16120,9 @@ msgstr "Изберете изместения набор от знаци сам�
 msgid "Select the sort order for the file lines:"
 msgstr ""
 
+msgid "Select the sort order of the Extension Menu entries."
+msgstr ""
+
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
 msgstr ""
 
@@ -16150,6 +16170,9 @@ msgstr ""
 
 msgid "Select the time zone within the area or region."
 msgstr "Изберете часовата зона в областта или региона."
+
+msgid "Select the timer from the fallback tuner by default"
+msgstr "Изберете таймера от резервния тунер по подразбиране"
 
 msgid "Select the tuner that controls the motorized dish."
 msgstr "Изберете тунера, който управлява моторизираната чиния."
@@ -16527,6 +16550,9 @@ msgstr ""
 msgid "Set action for 'Info' key"
 msgstr "Задайте действие за клавиша „Информация“"
 
+msgid "Set alternative fallback tuners for DVB-T/C or ATSC"
+msgstr "Задаване на допълнителни резервни тунери за DVB-T/C или ATSC"
+
 msgid "Set current CEC address as fixed address"
 msgstr "Задайте текущия CEC адрес като фиксиран адрес"
 
@@ -16564,6 +16590,9 @@ msgstr "Задайте система"
 msgid "Set the MAC address of your %s %s."
 msgstr "Задайте MAC-адреса на вашия %s %s."
 
+msgid "Set the User ID of the OpenWebif from your fallback tuner"
+msgstr "Задайте потребителското име на OpenWebif от своя резервен тунер"
+
 msgid "Set the aspect ratio of the service picons."
 msgstr "Задайте съотношението на иконите за услуги."
 
@@ -16590,6 +16619,12 @@ msgstr "Задайте размера на скока на seekbar."
 
 msgid "Set the number of lines to be saved for 'stout' and 'sterr' output in scripts."
 msgstr ""
+
+msgid "Set the password of the OpenWebif from your fallback tuner"
+msgstr "Задайте паролата на OpenWebif от вашия резервен тунер"
+
+msgid "Set the port of the OpenWebif from your fallback tuner"
+msgstr "Задайте порта на OpenWebif от вашия резервен тунер"
 
 msgid "Set the position of the recording icons."
 msgstr "Задайте позицията на иконите за запис"
@@ -16623,6 +16658,9 @@ msgstr "Задайте време за скриване на втория инф
 
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, PowerTimer, SleepTimer etc."
 msgstr "Задайте времето за изчакване за изпълнение на действието по подразбиране в съобщения за изключване, готовност или рестартиране. (напр. използва се в Таймер, PowerTimer, Sleeptimer, ...)"
+
+msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
+msgstr ""
 
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Задайте типа на индикацията за прогрес в екрана за избор на канал."
@@ -16808,9 +16846,6 @@ msgstr "Настройка на вашия хард диск"
 
 msgid "Setup your LCD"
 msgstr "Настройка на вашия LCD"
-
-msgid "Setup your LCD Skin"
-msgstr ""
 
 msgid "Setup your OSD"
 msgstr "Настройка на вашето OSD"
@@ -17131,6 +17166,9 @@ msgstr ""
 msgid "Show Source packages"
 msgstr ""
 
+msgid "Show Subscription packages"
+msgstr ""
+
 msgid "Show Subservices Of Active Service"
 msgstr ""
 
@@ -17380,6 +17418,18 @@ msgstr ""
 
 msgid "Show next system information screen"
 msgstr ""
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL did not complete"
+msgstr "Покажи известие когато импортирането на канали/EPG от URL на резервния приемник не завърши"
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL is completed"
+msgstr "Покажи известие когато импортирането на канали/EPG от URL на резервния приемник завърши"
+
+msgid "Show notification when import channels was not successful"
+msgstr "Покажи известие когато импортирането на канали не е успешно"
+
+msgid "Show notification when import channels was successful"
+msgstr "Покажи известие когато импортирането на канали завърши успешно"
 
 msgid "Show or hide the extended description, (skin dependent)."
 msgstr "Показване или скриване на удължено описание, (зависимо от кожата)."
@@ -17669,6 +17719,9 @@ msgstr "Изключване"
 msgid "Shutdown"
 msgstr "Изключи"
 
+msgid "Shutdown OSCam"
+msgstr ""
+
 msgid "Shutting down. Please wait..."
 msgstr ""
 
@@ -17768,9 +17821,6 @@ msgstr ""
 msgid "Size descending"
 msgstr ""
 
-msgid "Skin"
-msgstr "Кожа"
-
 msgid "Skin & Resolution"
 msgstr "Кожа и разделителна способност"
 
@@ -17788,9 +17838,6 @@ msgstr "Настройка на кожа"
 
 msgid "SkinSelection"
 msgstr ""
-
-msgid "SkinSelector"
-msgstr "Селектор на кожа"
 
 msgid "Skip back"
 msgstr "Прескачане обратно"
@@ -17926,7 +17973,7 @@ msgstr ""
 msgid "Slot Manager Actions"
 msgstr ""
 
-msgid "Slot R: Root Slot Full Backup (Current image)"
+msgid "Slot R: Root Slot Image Backup (Current image)"
 msgstr ""
 
 msgid "Slot count"
@@ -18222,6 +18269,9 @@ msgstr ""
 msgid "Speed"
 msgstr "Скорост"
 
+msgid "Spinner Position"
+msgstr ""
+
 msgid "Split preview mode"
 msgstr ""
 
@@ -18313,6 +18363,9 @@ msgid "Start test"
 msgstr "Старт на тест"
 
 msgid "Start the Kexec initialization"
+msgstr ""
+
+msgid "Start the backup of the selected image"
 msgstr ""
 
 msgid "Start the highlighted plugin"
@@ -18549,16 +18602,16 @@ msgstr "Записът на поточно предаване приключи"
 msgid "Streaming tuner information for %s %s"
 msgstr ""
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (force aspect))
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching all parts of the picture with the same factor (force aspect).
 msgid "Stretch full"
 msgstr "Разтегнете се пълно"
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching all parts of the picture with the same factor (All parts lose aspect))
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching all parts of the picture with the same factor (all parts lose aspect).
 msgid "Stretch linear"
 msgstr "Разтягане линейно"
 
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the top/bottom (Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch))
-#. TRANSLATORS: (aspect ratio policy: display as fullscreen, with stretching the left/right (Center 50% of picture maintain aspect, left/right 25% lose aspect heaver than on linear stretch))
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching the top/bottom. Center of picture maintains aspect, top/bottom lose aspect heaver than on linear stretch.
+#. TRANSLATORS: Aspect ratio policy: Display as fullscreen, with stretching the left/right. Center 50% of picture maintain aspect, left/right 25% lose aspect heaver than on linear stretch.
 msgid "Stretch nonlinear"
 msgstr "Разтягане нелинейно"
 
@@ -18573,6 +18626,9 @@ msgstr ""
 
 msgid "Style:"
 msgstr "Стил:"
+
+msgid "Subscription Packages"
+msgstr ""
 
 msgid "Subservice Actions"
 msgstr ""
@@ -18654,9 +18710,6 @@ msgstr ""
 
 msgid "Sunday"
 msgstr "Неделя"
-
-msgid "Support at"
-msgstr "Поддръжка на"
 
 msgid "Suriname"
 msgstr ""
@@ -19283,6 +19336,9 @@ msgstr ""
 "Наличното дисково пространство за TimeShift е по-малко от посочено в настройките.\n"
 "Какво искаш да направиш ?"
 
+msgid "The backup can take up to about 15 minutes to complete."
+msgstr ""
+
 msgid "The backup failed"
 msgstr ""
 
@@ -19495,7 +19551,7 @@ msgstr "Възникна грешка при изтеглянето на под�
 msgid "There was an error downloading the region list"
 msgstr "При изтеглянето на списъка с региони възникна грешка"
 
-msgid "There was an error downloading the update list.  Please try again."
+msgid "There was an error downloading the update list. Please try again."
 msgstr "Възникна грешка при изтеглянето на списъка с актуализации.  Моля, опитайте отново."
 
 msgid "There was an error while trying to login."
@@ -19712,7 +19768,7 @@ msgstr "Тази опция конфигурира задаване на Auto Vo
 msgid "This option lets you adjust the 3D depth of the OSD."
 msgstr "Тази опция ви позволява да настроите 3D дълбочината"
 
-msgid "This option lets you adjust the transparency of the user interface"
+msgid "This option lets you adjust the transparency of the OSD."
 msgstr "Тази опция ви позволява да настроите прозрачността на потребителския интерфейс"
 
 msgid "This option lets you choose the 3D mode of the OSD."
@@ -19920,10 +19976,6 @@ msgstr "Времеви скок на повторение интервал за 
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr "Времеви скок: Използвайте нормално бързо напред за скорости"
 
-#, python-format
-msgid "Time required for this process: %s"
-msgstr "Време, необходимо за този процес: %s"
-
 msgid "Time shift buffer delete after zap"
 msgstr ""
 
@@ -19971,6 +20023,9 @@ msgstr "Timeshift ще се запази в края на събитието!"
 
 msgid "Time style"
 msgstr "Стил на времето"
+
+msgid "Time taken for the backup:"
+msgstr ""
 
 msgid "Time to execute command or script"
 msgstr "Време за изпълнение на команда или скрипт"
@@ -20072,8 +20127,11 @@ msgstr ""
 msgid "To complete the setup the %s %s must connect to the Internet.  Connect the %s %s to the Internet now."
 msgstr ""
 
-msgid "To restore the image:"
-msgstr "За да възстановите изображението:"
+msgid "To restore the image check the manual or documentation for the receiver."
+msgstr ""
+
+msgid "To restore the image use 'OnlineFlash' option in the 'SoftwareManager' menu."
+msgstr ""
 
 #, python-format
 msgid "To where would you like to extract '%s'?"
@@ -20495,14 +20553,14 @@ msgstr ""
 msgid "UHD Test"
 msgstr ""
 
-msgid "UI 3D setup"
-msgstr "UI 3D настройка"
-
 msgid "UP80  (keymap.u80)"
 msgstr ""
 
 msgid "URL"
 msgstr ""
+
+msgid "URL of fallback remote receiver"
+msgstr "Въведете URL на резервния приемник"
 
 msgid "URL of fallback remote receiver."
 msgstr "URL на резервния отдалечен приемник"
@@ -20564,6 +20622,9 @@ msgstr "Нешифрован"
 
 #, python-format
 msgid "Unexpected error accessing WebIF: %s"
+msgstr ""
+
+msgid "Unexpected error while retrieving fallback tuner's timer information"
 msgstr ""
 
 msgid "UnhandledKey"
@@ -20853,9 +20914,6 @@ msgstr "Използване на MHW EPG информация когато е �
 msgid "Use Netmed EPG information when it is available."
 msgstr "Използване на Netmed EPG информация когато е на разположение."
 
-msgid "Use OnlineFlash in SoftwareManager"
-msgstr "Използвайте онлайн флаш в Мениджъра на софтуер"
-
 msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
 msgstr ""
 
@@ -20967,25 +21025,28 @@ msgstr "Използване на измерване на мощност"
 msgid "Use small screen"
 msgstr "Използване на тънък екран"
 
-msgid "Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size."
-msgstr "Използвайте бутоните ляво/дясно на дистанционното, за да коригирате размера на потребителския интерфейс. Лeвия бутон намалява размера, а десния увеличава размера."
-
-msgid "Use the Left/Right buttons on your remote to move the user interface bottom"
+msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr ""
 
-msgid "Use the Left/Right buttons on your remote to move the user interface left"
+msgid "Use the LEFT/RIGHT buttons on your remote to adjust the width of the OSD. LEFT button decreases the width, RIGHT increases the width."
 msgstr ""
 
-msgid "Use the Left/Right buttons on your remote to move the user interface left/right"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD bottom."
+msgstr ""
+
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD left."
+msgstr ""
+
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD left/right."
 msgstr "Използвайте ляв/десен бутон на дистанционно, за да преместите потребителския интерфейс наляво/надясно"
 
-msgid "Use the Left/Right buttons on your remote to move the user interface right"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD right."
 msgstr ""
 
-msgid "Use the Left/Right buttons on your remote to move the user interface top"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD top."
 msgstr ""
 
-msgid "Use the Left/Right buttons on your remote to move the user interface up/down"
+msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD up/down."
 msgstr "Използвайте ляв/десен бутон на дистанционно, за да преместите потребителския интерфейс нагоре/надолу"
 
 msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
@@ -20997,14 +21058,14 @@ msgstr "Използвайте Softcam панел за управление на
 msgid "Use the UP and DOWN buttons to select your locale/language then press the OK button to continue."
 msgstr "Използвайте бутоните НАГОРЕ и НАДОЛУ, за да изберете вашия локал/език, след което натиснете бутона OK, за да продължите."
 
+msgid "Use the UP/DOWN buttons to select the installed image to be backed up. Press the 'Start' (GREEN) button to start the backup."
+msgstr ""
+
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Използване на алтернативен или конвенционален радио режим."
 
 msgid "Use the current selection and exit"
 msgstr ""
-
-msgid "Use the cursor keys to select an installed image and then Start button."
-msgstr "Използвайте клавишите на курсора, за да изберете инсталирано изображение и след това бутона Старт."
 
 msgid "Use the extended List"
 msgstr "Използване на разширения списък"
@@ -21057,6 +21118,9 @@ msgstr "Потребителски - букети"
 msgid "User Feed URL"
 msgstr ""
 
+msgid "User ID"
+msgstr "Потребителско Име"
+
 msgid "User comments"
 msgstr ""
 
@@ -21078,9 +21142,6 @@ msgstr "Дефиниран от потребителя транспондер"
 
 msgid "User interface settings"
 msgstr "Настройки за потребителския интерфейс"
-
-msgid "User interface visibility"
-msgstr "Видимост на потребителския интерфейс"
 
 msgid "User logo:"
 msgstr "Потребителско лого:"
@@ -21204,16 +21265,8 @@ msgstr ""
 msgid "Version"
 msgstr ""
 
-#, python-format
-msgid "Version %s %s"
-msgstr "Версия %s %s"
-
 msgid "Version: "
 msgstr "Версия: "
-
-#, python-format
-msgid "Version: %s"
-msgstr "Версия: %s"
 
 msgid "Vertical"
 msgstr "Вертикален"
@@ -21704,6 +21757,15 @@ msgstr "Когато е активиран, приемникът автомат�
 msgid "When enabled the receiver will automatically wake from standby when the TV is turned on."
 msgstr "Когато е активиран, приемникът автоматично ще се събужда от режим на готовност, когато телевизорът е включен."
 
+msgid "When enabled the timer from the fallback tuner is imported"
+msgstr "Ако е включено, таймерът от резервния тунер се импортира"
+
+msgid "When enabled the timer from the fallback tuner is the default timer"
+msgstr "Ако е включено, таймерът от резервния тунер е по подразбиране"
+
+msgid "When enabled you can customize the OpenWebIf settings for the fallback tuner"
+msgstr "Ако е включено, можете да персонализирате настройките на OpenWebIf за резервния тунер"
+
 msgid "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
 msgstr "Когато е разрешено, данните за AIT ще бъдат включени в http потоци. Това позволява на клиентския приемник да използва HbbTV."
 
@@ -21868,6 +21930,9 @@ msgstr "Когато курсорът за въвеждане достигне �
 
 msgid "When the receiver wakes from standby or deep standby it will send a command to the TV to bring it out of standby."
 msgstr "Когато приемникът се събуди от режим на готовност или дълбока готовност, той ще изпрати команда до телевизора да го изведе от режим на готовност."
+
+msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
+msgstr ""
 
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
 msgstr "Когато сте настроили сервиза, системата обикновено сканира транспондера за всички промени и ги запазва. Задавайте само \"да\", ако сте абсолютно сигурни какво правите."
@@ -22334,7 +22399,7 @@ msgid "Your receiver does not have an Internet connection"
 msgstr ""
 
 #, python-format
-msgid "Your receiver might be unusable now.  Please consult the manual for further assistance before rebooting your %s %s."
+msgid "Your receiver might be now be unstable. Please consult the manual for further assistance before rebooting your %s %s."
 msgstr "Вашият приемник може да е неизползваем сега. Моля, консултирайте се с ръководството за допълнителна помощ, преди да рестартирате вашия %s %s."
 
 msgid "Youth"
@@ -22448,12 +22513,6 @@ msgstr "Мащабиране отдясно"
 msgid "Zulu"
 msgstr ""
 
-msgid "[Enigma2 Settings]\n"
-msgstr "[Enigma2 Настройки]\n"
-
-msgid "[Image Info]\n"
-msgstr "[Инфо имидж ]\n"
-
 msgid "[Timeshift] Merging records failed!"
 msgstr "[Timeshift] Неуспешно свързване записи!"
 
@@ -22553,11 +22612,6 @@ msgstr "балет"
 #, python-format
 msgid "bc%d"
 msgstr ""
-
-msgid "because of the used file system the back-up\n"
-msgstr ""
-"поради използваната файлова система архивирането\n"
-"\n"
 
 msgid "better"
 msgstr "по-добър"
@@ -22984,9 +23038,6 @@ msgstr "филм/драма (общо)"
 msgid "multi"
 msgstr ""
 
-msgid "multinorm"
-msgstr ""
-
 msgid "music (general)"
 msgstr "музика (общо)"
 
@@ -23085,9 +23136,6 @@ msgstr ""
 
 msgid "on READ ONLY medium."
 msgstr ""
-
-msgid "on how to restore the image"
-msgstr "как да възстановите изображението"
 
 msgid "orange"
 msgstr ""
@@ -23475,9 +23523,6 @@ msgstr ""
 msgid "width"
 msgstr "широчина"
 
-msgid "will take about 1-15 minutes for this system\n"
-msgstr "ще отнеме около 1-15 минути за тази система\n"
-
 msgid "winter sport"
 msgstr "зимни спортове"
 
@@ -23507,6 +23552,277 @@ msgstr "да (запази фийдове)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid ""
+#~ "\n"
+#~ "\n"
+#~ "[User - bouquets (TV)]\n"
+#~ msgstr ""
+#~ "\n"
+#~ "\n"
+#~ "[Потребителски-букети(ТВ)]\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "[Installed Plugins]\n"
+#~ msgstr ""
+#~ "\n"
+#~ "[Инсталирани плъгини]\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "[User - bouquets (RADIO)]\n"
+#~ msgstr ""
+#~ "\n"
+#~ "[Потребителски-букети(РАДИО)]\n"
+
+#~ msgid "     no space left on back-up device"
+#~ msgstr "     не остава място на устройството за резервно копие"
+
+#~ msgid "     no writing permission on back-up device"
+#~ msgstr "     без разрешение за запис на резервно устройство"
+
+#~ msgid "     wrong back-up destination "
+#~ msgstr "     грешна дестинация на резервно копие "
+
+#~ msgid "Almost there... "
+#~ msgstr "Почти там... "
+
+#, python-format
+#~ msgid "Back-up Tool for a %s\n"
+#~ msgstr "Инструмент за архивиране за %s\n"
+
+#, python-format
+#~ msgid "Back-up Tool for an %s\n"
+#~ msgstr "Инструмент за архивиране за %s\n"
+
+#, python-format
+#~ msgid "Backup Date: %s\n"
+#~ msgstr "Дата на архивиране: %s\n"
+
+#~ msgid "Backup Mode: Flash Online\n"
+#~ msgstr "Режим на архивиране: Flash онлайн\n"
+
+#~ msgid "Backup Mode: USB Recovery\n"
+#~ msgstr "Режим на архивиране: USB възстановяване\n"
+
+#, python-format
+#~ msgid "Backup to destination: %s"
+#~ msgstr "Архивиране до местоназначение: %s"
+
+#, python-format
+#~ msgid "Build: %s"
+#~ msgstr "Изграждане: %s"
+
+#~ msgid "By openATV Image Team"
+#~ msgstr "Чрез openATV Image Team"
+
+#~ msgid "Cannot create backup directory"
+#~ msgstr "Не може да се създаде директория за архивиране"
+
+#, python-format
+#~ msgid "Chipset: BCM%s"
+#~ msgstr "Чипсет: BCM%s"
+
+#~ msgid "Create:"
+#~ msgstr "Създайте:"
+
+#, python-format
+#~ msgid "Create: Recovery Fullbackup %s"
+#~ msgstr "Създаване: Възстановяване на пълно резервно копие %s"
+
+#~ msgid "Error reading bouquets.radio"
+#~ msgstr "Грешка при четене на букети.радио"
+
+#~ msgid "Error reading bouquets.tv"
+#~ msgstr "Грешка при четене на bouquets.tv"
+
+#~ msgid "Full Image Backup "
+#~ msgstr "Пълно имидж архивиране "
+
+#, python-format
+#~ msgid "Full back-up on %s"
+#~ msgstr "Пълно архивиране на %s"
+
+#~ msgid "Image creation failed - "
+#~ msgstr "Създаването на изображение не бе успешно - "
+
+#, python-format
+#~ msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
+#~ msgstr "Изображение за множествено зареждане, създадено на: %s/%s-%s-%s-backup-%s_usb.zip"
+
+#~ msgid "No, do not backup a image"
+#~ msgstr "Не, не създавайте резервно копие на изображение"
+
+#~ msgid "Now building the Backup Image"
+#~ msgstr "Сега изградете резервното изображение"
+
+#~ msgid "Please be patient, a backup will now be made,\n"
+#~ msgstr "Моля, бъдете търпеливи, архивирането сега ще бъде направено,\n"
+
+#~ msgid "Please check the manual of the receiver"
+#~ msgstr "Моля, проверете ръководството на приемника"
+
+#~ msgid "Please select a backup destination"
+#~ msgstr "Моля, изберете дестинация за резервно копие"
+
+#~ msgid "Please wait...almost ready! "
+#~ msgstr "Моля, изчакайте...почти готов! "
+
+#~ msgid "Probable causes could be"
+#~ msgstr "Вероятните причини могат да бъдат"
+
+#~ msgid "Support at"
+#~ msgstr "Поддръжка на"
+
+#, python-format
+#~ msgid "Time required for this process: %s"
+#~ msgstr "Време, необходимо за този процес: %s"
+
+#~ msgid "To restore the image:"
+#~ msgstr "За да възстановите изображението:"
+
+#~ msgid "Use OnlineFlash in SoftwareManager"
+#~ msgstr "Използвайте онлайн флаш в Мениджъра на софтуер"
+
+#~ msgid "Use the cursor keys to select an installed image and then Start button."
+#~ msgstr "Използвайте клавишите на курсора, за да изберете инсталирано изображение и след това бутона Старт."
+
+#, python-format
+#~ msgid "Version %s %s"
+#~ msgstr "Версия %s %s"
+
+#, python-format
+#~ msgid "Version: %s"
+#~ msgstr "Версия: %s"
+
+#~ msgid "[Enigma2 Settings]\n"
+#~ msgstr "[Enigma2 Настройки]\n"
+
+#~ msgid "[Image Info]\n"
+#~ msgstr "[Инфо имидж ]\n"
+
+#~ msgid "because of the used file system the back-up\n"
+#~ msgstr ""
+#~ "поради използваната файлова система архивирането\n"
+#~ "\n"
+
+#~ msgid "on how to restore the image"
+#~ msgstr "как да възстановите изображението"
+
+#~ msgid "will take about 1-15 minutes for this system\n"
+#~ msgstr "ще отнеме около 1-15 минути за тази система\n"
+
+#~ msgid "Execution finished!!"
+#~ msgstr "Изпълнението завърши !!"
+
+#~ msgid "Execution progress:"
+#~ msgstr "Процес на изпълнение:"
+
+#~ msgid "Path to save not exist: '/tmp/'"
+#~ msgstr "Пътят за запис не съществува: '/tmp/'"
+
+#~ msgid "Backup done."
+#~ msgstr "Архивиране направено."
+
+#~ msgid "No Devices Found !!"
+#~ msgstr "Не са намерени устройства !!"
+
+#~ msgid "Backup completed."
+#~ msgstr "Архивирането завърши."
+
+#~ msgid "Backup failed."
+#~ msgstr "Архивирането не бе успешно."
+
+#~ msgid "No updates were available.  Please try again later."
+#~ msgstr "Няма налични актуализации. Моля, опитайте отново по-късно."
+
+#~ msgid "About..."
+#~ msgstr "Относно..."
+
+#~ msgid "Adjust 3D settings"
+#~ msgstr "Коригирайте 3D настройките"
+
+#~ msgid "Backup Image"
+#~ msgstr "Архивиране на имидж"
+
+#~ msgid ""
+#~ "Enigma2 Skinselector\n"
+#~ "\n"
+#~ "If you experience any problems please contact\n"
+#~ "stephan@reichholf.net\n"
+#~ "\n"
+#~ "© 2006 - Stephan Reichholf"
+#~ msgstr ""
+#~ "Селектор на кожи Enigma2\n"
+#~ "\n"
+#~ "Ако имате някакви проблеми, моля свържете се\n"
+#~ "stephan@reichholf.net\n"
+#~ "\n"
+#~ "© 2006 - Стефан Райххолф"
+
+#~ msgid ""
+#~ "GUI needs a restart to apply a new skin\n"
+#~ "Do you want to Restart the GUI now?"
+#~ msgstr ""
+#~ "Графичният интерфеис се нуждае от рестарт за да приложи новата кожа\n"
+#~ "Искате ли да рестартирате графичния потребителски интерфейс сега?"
+
+#~ msgid "Mode 1"
+#~ msgstr "Режим 1"
+
+#~ msgid "Mode 2"
+#~ msgstr "Режим 2"
+
+#~ msgid "Press OK to activate the selected skin."
+#~ msgstr "Натиснете OK, за да активирате избраната кожа."
+
+#~ msgid "Select Your Skin"
+#~ msgstr "Изберете вашата кожа"
+
+#~ msgid "Skin"
+#~ msgstr "Кожа"
+
+#~ msgid "SkinSelector"
+#~ msgstr "Селектор на кожа"
+
+#~ msgid "UI 3D setup"
+#~ msgstr "UI 3D настройка"
+
+#~ msgid "Defaults"
+#~ msgstr "По подразбиране"
+
+#~ msgid "OSD Adjustment"
+#~ msgstr "OSD приспособяване"
+
+#~ msgid ""
+#~ "Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
+#~ "When you are ready press green to continue."
+#~ msgstr ""
+#~ "Моля, настройте потребителския си интерфейс, като коригирате стойностите, докато краищата на червената кутия докосват краищата на вашия телевизор.\n"
+#~ "Когато сте готови, натиснете зелено, за да продължите."
+
+#~ msgid "Position Setup"
+#~ msgstr "Настройка на позиция"
+
+#~ msgid "Use the Left/Right buttons on your remote to adjust the size of the user interface. Left button decreases the size, Right increases the size."
+#~ msgstr "Използвайте бутоните ляво/дясно на дистанционното, за да коригирате размера на потребителския интерфейс. Лeвия бутон намалява размера, а десния увеличава размера."
+
+#~ msgid "User interface visibility"
+#~ msgstr "Видимост на потребителския интерфейс"
+
+#~ msgid "LCD Skin Settings"
+#~ msgstr "Настройка на LCD кожа"
+
+#~ msgid ""
+#~ "Please setup your user interface by adjusting the values till the edges of the red box are touching the edges of your TV.\n"
+#~ "When you are ready press OK to continue."
+#~ msgstr ""
+#~ "Моля, настройте потребителския си интерфейс, като коригирате стойностите, докато краищата на червената кутия докосват краищата на вашия телевизор.\n"
+#~ "Когато сте готови, натиснете OK, за да продължите."
+
+#~ msgid "Select LCD Skin"
+#~ msgstr "Изберете LCD кожа"
 
 #~ msgid "Enigma2 skin selector"
 #~ msgstr "Селектор на кожата на Enigma2"

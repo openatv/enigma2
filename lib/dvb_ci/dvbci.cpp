@@ -861,7 +861,7 @@ void eDVBCIInterfaces::gotPMT(eDVBServicePMTHandler *pmthandler)
 {
 	// language config can only be accessed by e2 mainloop
 	if (m_language == "")
-		m_language = eConfigManager::getConfigValue("config.osd.language");
+		m_language = eConfigManager::getConfigValue("config.misc.locale");
 
 	singleLock s1(m_pmt_handler_lock);
 	singleLock s2(m_slot_lock);

@@ -23,7 +23,6 @@ from Screens.Screen import Screen
 
 from .BackupRestore import InitConfig as BackupRestore_InitConfig, BackupSelection, BackupScreen, RestoreScreen, getBackupPath, getOldBackupPath, getBackupFilename, RestoreMenu
 from .ImageWizard import ImageWizard
-from .ImageBackup import ImageBackup
 
 boxType = BoxInfo.getItem("machinebuild")
 config.plugins.configurationbackup = BackupRestore_InitConfig()
@@ -60,10 +59,6 @@ def load_cache(cache_file):  # Does a cPickle load.
 
 # Helper for menu.xml
 class ImageWizard(ImageWizard):
-	pass
-
-
-class ImageBackup(ImageBackup):
 	pass
 
 
@@ -299,7 +294,7 @@ class BackupHelper(Screen):
 	def doAction(self):
 		doClose = True
 		if self.args == 1:
-			self.session.openWithCallback(self.backupDone, BackupScreen, runBackup=True)
+			self.session.openWithCallback(self.backupDone, BackupScreen, runBackup=True, closeOnSuccess=False)
 			doClose = False
 		elif self.args == 2:
 			if isfile(self.fullbackupfilename):
@@ -367,8 +362,8 @@ class BackupHelper(Screen):
 		self.close()
 
 	def backupDone(self, retval=None):
-		message = _("Backup completed.") if retval else _("Backup failed.")
-		self.session.open(MessageBox, message, MessageBox.TYPE_INFO, timeout=10)
+		#message = _("Backup completed.") if retval else _("Backup failed.")
+		#self.session.open(MessageBox, message, MessageBox.TYPE_INFO, timeout=10)
 		self.close()
 
 

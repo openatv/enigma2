@@ -36,6 +36,11 @@ class MenuList(GUIComponent):
 		self.list = menuList
 		self.l.setList(self.list)
 
+	def updateEntry(self, index, data):
+		if self.list and index < len(self.list):
+			self.list[index] = data
+			self.l.updateEntry(index, data)
+
 	def count(self):
 		return len(self.list)
 

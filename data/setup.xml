@@ -152,10 +152,8 @@
 			<item level="1" text="Show PiP in the Front Display" description="You can Display PiP with or without OSD Menu." requires="PIPAvailable">config.lcd.modepip</item>
 			<item level="1" text="Set Framerate for MiniTV" description="Lower Framerate saves CPU Time.">config.lcd.fpsminitv</item>
 		</if>
-		<if requires="LCDSKINSetup">
-			<item level="1" text="REC Symbol in use" description="Enable blinking rec symbol on the LCD Display.">config.usage.blinking_rec_symbol_during_recording</item>
-			<item level="1" text="REC Symbol in Standby" description="Enable blinking rec symbol on the LCD Display in Standby.">config.usage.blinking_display_clock_during_recording</item>
-		</if>
+		<item level="1" text="REC Symbol in use" description="Enable blinking rec symbol on the LCD Display." requires="LCDRECUse">config.usage.blinking_rec_symbol_during_recording</item>
+		<item level="1" text="REC Symbol in Standby" description="Enable blinking rec symbol on the LCD Display in Standby." requires="LCDRECStandby">config.usage.blinking_display_clock_during_recording</item>
 		<item level="1" text="switch 12 to 8 character display mode" description="12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed." requires="XcoreVFD">config.usage.vfd_xcorevfd</item>
 		<item level="1" text="Show Display Icons" description="Allows you to enable/disable displaying icons on the front panel.">config.lcd.mode</item>
 		<if requires="ConfigDisplay">
@@ -505,6 +503,25 @@
 		<item level="0" text="Depth" description="This option lets you adjust the 3D depth of the OSD.">config.osd.threeDznorm</item>
 		<item level="0" text="Show in Extension Menu" description="This option lets you show the 3D OSD menu option in the Extension Menu screen.">config.osd.show3dextensions</item>
 	</setup>
+	<setup key="OSDCalibration" title="OSD Calibration Settings" showOpenWebif="1" allowDefault="1">
+		<if requires="CanChangeOsdPositionAML">
+			<item level="0" text="Left" description="Use the LEFT/RIGHT buttons on your remote to move the OSD left.">config.osd.dst_left</item>
+			<item level="0" text="Top" description="Use the LEFT/RIGHT buttons on your remote to move the OSD top.">config.osd.dst_top</item>
+			<item level="0" text="Right" description="Use the LEFT/RIGHT buttons on your remote to move the OSD right.">config.osd.dst_width</item>
+			<item level="0" text="Bottom" description="Use the LEFT/RIGHT buttons on your remote to move the OSD bottom.">config.osd.dst_height</item>
+		</if>
+		<if requires="CanChangeOsdPosition">
+			<item level="0" text="Move Left/Right" description="Use the LEFT/RIGHT buttons on your remote to move the OSD left/right.">config.osd.dst_left</item>
+			<item level="0" text="Move Up/Down" description="Use the LEFT/RIGHT buttons on your remote to move the OSD up/down.">config.osd.dst_top</item>
+			<item level="0" text="Width" description="Use the LEFT/RIGHT buttons on your remote to adjust the width of the OSD. LEFT button decreases the width, RIGHT increases the width.">config.osd.dst_width</item>
+			<item level="0" text="Height" description="Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height.">config.osd.dst_height</item>
+		</if>
+		<if requires="CanChangeOsdAlpha">
+			<item level="0" text="OSD visibility" description="This option lets you adjust the transparency of the OSD.">config.osd.alpha</item>
+			<item level="0" text="Teletext base visibility" description="Base transparency for teletext, more options are available within teletext screen.">config.osd.alpha_teletext</item>
+			<item level="0" text="Web browser base visibility" description="Base transparency for OpenOpera web browser.">config.osd.alpha_webbrowser</item>
+		</if>
+	</setup>
 	<setup key="Password" title="Password Settings">
 		<item level="0" text="New password" description="Setting a password is strongly advised if your STB is open to the Internet. You must set a password in order to be able to use network services like FTP, Telnet or SSH.">config.network.password</item>
 	</setup>
@@ -555,6 +572,7 @@
 		<item level="0" text="Show Display packages" description="Select 'Yes' to show LCD skin packages in the Download Plugins screen.">config.pluginfilter.display</item>
 		<item level="0" text="Show Picon packages" description="Select 'Yes' to show picon packages in the Download Plugins screen.">config.pluginfilter.picons</item>
 		<item level="0" text="Show Setting packages" description="Select 'Yes' to show settings packages in the Download Plugins screen.">config.pluginfilter.settings</item>
+		<item level="0" text="Show Subscription packages" description="Select 'Yes' to show subscription packages in the Download Plugins screen.">config.pluginfilter.subscription</item>
 		<item level="0" text="Show M2k packages" description="Select 'Yes' to show m2k packages in the Download Plugins screen.">config.pluginfilter.m2k</item>
 		<item level="0" text="Show Web Link packages" description="Select 'Yes' to show web link packages in the Download Plugins screen.">config.pluginfilter.weblinks</item>
 		<item level="0" text="Show OpenPLi packages" description="Select 'Yes' to show OpenPLi packages in the Download Plugins screen.">config.pluginfilter.pli</item>
@@ -740,6 +758,7 @@
 	<setup key="Skin" title="Skin Settings">
 		<item text="GUI Skin *" description="Choose the skin to be used for the GUI interface. Press 'GREEN' to activate the skin.">config.skin.guiSkin</item>
 		<item text="LCD/Front panel *" description="Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin." requires="LCDSKINSetup">config.skin.lcdSkin</item>
+		<item text="Fallback Font *" description="Choose the fallback font.">config.skin.FallbackFont</item>
 	</setup>
 	<setup key="SleepTimer" title="SleepTimer Settings" showOpenWebif="1">
 		<item text="SleepTimer activation delay" description="Configure the duration, in minutes, before the SleepTimer activates.">config.usage.sleepTimer</item>
@@ -775,6 +794,12 @@
 		<item level="2" text="Stream Relay switch delay" description="Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for boxes with multiple satellite tuners.">config.misc.softcam_streamrelay_delay</item>
 	</setup>
 	<setup key="Subtitle" title="Subtitle Settings" level="2" showOpenWebif="1">
+		<if requires="AISubs">
+			<item level="2" text="AI-Powered translation enabled" description="Enable AI-Powered translation for all teletext and DVB subtitles.">config.subtitles.ai_enabled</item>
+			<item level="2" text="AI-Powered translation language" description="Configure the AI-Powered translation language.">config.subtitles.ai_translate_to</item>
+			<item level="2" text="AI-Powered translation subscription code" description="Enter your subscription code, the unified code for trial is 15.">config.subtitles.ai_subscription_code</item>
+			<item level="2" text="AI-Powered translation color" description="Configure the color of the AI-Powered translations.">config.subtitles.ai_subtitle_colors</item>
+		</if>
 		<item level="2" text="Teletext subtitle color" description="Configure the color of the teletext subtitles.">config.subtitles.ttx_subtitle_colors</item>
 		<item level="2" text="Use original teletext position" description="When enabled, teletext subtitles will be displayed at their original position.">config.subtitles.ttx_subtitle_original_position</item>
 		<item level="2" text="Rewrap subtitles" description="When enabled, reformat subtitles to match the width of the screen.">config.subtitles.subtitle_rewrap</item>
@@ -883,7 +908,7 @@
 		<item level="0" text="Menu entry style" description="Select the display options for each menu entry item. If menu numbers are available then the number buttons can be used to select the numbered menu entries directly." requires="config.usage.menuType" value="standard">config.usage.menuEntryStyle</item>
 		<item level="0" text="Menu entry sort order" description="Select the sort order of the menu entries. User defined also allows the menu entries to be hidden.">config.usage.menuSortOrder</item>
 		<item level="1" text="Show screen menu path" description="Select if the screen menu path history is displayed and, if so, how it is to be displayed.">config.usage.showScreenPath</item>
-		<item level="1" text="Sort Extension Menu" description="Enable to display the Extension Menu screen entries alphabetically.">config.usage.sort_extensionslist</item>
+		<item level="1" text="Sort Extension Menu" description="Select the sort order of the Extension Menu entries.">config.usage.sortExtensionslist</item>
 		<item level="1" text="Show Restart Network in Extensions *" description="Enable to show the 'Restart Network' entry in the Extension Menu screen.">config.usage.show_restart_network_extensionslist</item>
 		<item level="1" text="Sort Plugin Browser" description="Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden.">config.usage.plugins_sort_mode</item>
 		<item level="1" text="Setup entry sort" description="Enable to display setup entries alphabetically.">config.usage.sort_settings</item>
@@ -934,6 +959,7 @@
 		<item level="2" text="Close PiP on exit" description="When enabled the PiP can be closed by the exit button." requires="PIPAvailable">config.usage.pip_hideOnExit</item>
 		<item level="2" text="Remember last service in PiP" description="Configure if and how long the latest service in the PiP will be remembered." requires="PIPAvailable">config.usage.pip_last_service_timeout</item>
 		<item level="2" text="Show VCR SCART on main menu" description="When enabled, the VCR SCART option will be shown on the main menu." requires="ScartSwitch">config.usage.show_vcr_scart</item>
+		<item level="2" text="Spinner Position" description="Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner.">config.misc.spinnerPosition</item>
 	</setup>
 	<setup key="video_setup" title="Video Settings">
 		<!-- This is just a placeholder, the Videomode plugin implements this sub menu. -->

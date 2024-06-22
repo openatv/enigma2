@@ -445,7 +445,7 @@ static void png_load(Cfilepara *filepara, unsigned int background)
 			if (num_palette)
 				filepara->palette = new gRGB[num_palette];
 
-			for (unsigned int i = 0; i < num_palette; i++)
+			for (int i = 0; i < num_palette; i++)
 			{
 				filepara->palette[i].a = 0;
 				filepara->palette[i].r = palette[i].red;
@@ -457,7 +457,7 @@ static void png_load(Cfilepara *filepara, unsigned int background)
 			{
 				png_byte *trans;
 				png_get_tRNS(png_ptr, info_ptr, &trans, &num_palette, 0);
-				for (unsigned int i = 0; i < num_palette; i++)
+				for (int i = 0; i < num_palette; i++)
 					filepara->palette[i].a = 255 - trans[i];
 			}
 		}
@@ -467,7 +467,7 @@ static void png_load(Cfilepara *filepara, unsigned int background)
 			int c_step = (256 - 1) / (c_cnt - 1);
 			filepara->palette_size = c_cnt;
 			filepara->palette = new gRGB[c_cnt];
-			for (unsigned int i = 0; i < c_cnt; i++)
+			for (int i = 0; i < c_cnt; i++)
 			{
 				filepara->palette[i].a = 0;
 				filepara->palette[i].r = i * c_step;
@@ -533,7 +533,7 @@ static void png_load(Cfilepara *filepara, unsigned int background)
 			int bg_r = (background >> 16) & 0xFF;
 			int bg_g = (background >> 8) & 0xFF;
 			int bg_b = background & 0xFF;
-			for (unsigned int i = 0; i < pixel_cnt; i++)
+			for (int i = 0; i < pixel_cnt; i++)
 			{
 				int r = (int)*src++;
 				int g = (int)*src++;
@@ -915,7 +915,7 @@ void ePicLoad::thread()
 
 void ePicLoad::decodePic()
 {
-	eDebug("[ePicLoad] decode picture... %s",m_filepara->file);
+	eTrace("[ePicLoad] decode picture... %s",m_filepara->file);
 
 	switch(m_filepara->id)
 	{
@@ -1511,7 +1511,7 @@ RESULT ePicLoad::setPara(int width, int height, double aspectRatio, int as, bool
 
 	if(bg_str[0] == '#' && strlen(bg_str)==9)
 		m_conf.background = strtoul(bg_str+1, NULL, 16);
-	eDebug("[ePicLoad] setPara max-X=%d max-Y=%d aspect_ratio=%lf cache=%d resize=%d bg=#%08X",
+	eTrace("[ePicLoad] setPara max-X=%d max-Y=%d aspect_ratio=%lf cache=%d resize=%d bg=#%08X",
 			m_conf.max_x, m_conf.max_y, m_conf.aspect_ratio,
 			(int)m_conf.usecache, (int)m_conf.resizetype, m_conf.background);
 	return 1;
