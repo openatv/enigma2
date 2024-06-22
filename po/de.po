@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-19 04:08+0000\n"
-"PO-Revision-Date: 2024-06-19 06:19+0000\n"
+"POT-Creation-Date: 2024-06-21 14:25+0000\n"
+"PO-Revision-Date: 2024-06-22 05:38+0000\n"
 "Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -25,17 +25,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6-dev\n"
+"X-Generator: Weblate 5.6-rc\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-
-msgid ""
-"\n"
-"\n"
-"[User - bouquets (TV)]\n"
-msgstr ""
-"\n"
-"\n"
-"[Benutzerbouquets (TV)]\n"
 
 msgid ""
 "\n"
@@ -49,36 +40,10 @@ msgid ""
 "Recording in progress."
 msgstr ""
 "\n"
-"Laufende Aufnahme."
-
-msgid ""
-"\n"
-"[Installed Plugins]\n"
-msgstr ""
-"\n"
-"[Installierte Plugins]\n"
-
-msgid ""
-"\n"
-"[User - bouquets (RADIO)]\n"
-msgstr ""
-"\n"
-"[Benutzerbouquets (Radio)]\n"
+"Es wird aufgenommen."
 
 msgid " "
 msgstr " "
-
-# ImageBackup.py
-msgid "     no space left on back-up device"
-msgstr "     kein Platz mehr auf dem Sicherungsgerät"
-
-# ImageBackup.py
-msgid "     no writing permission on back-up device"
-msgstr "     keine Schreibrechte für das Sicherungsgerät"
-
-# ImageBackup.py
-msgid "     wrong back-up destination "
-msgstr "     falsches Sicherungsziel "
 
 msgid "  Menu key : Select quad channel"
 msgstr "  MENU: Wähle Sendergruppe"
@@ -1807,16 +1772,16 @@ msgid "AFL"
 msgstr "AFL"
 
 msgid "AI-Powered translation color"
-msgstr ""
+msgstr "Textfarbe für KI-gestützte Übersetzung"
 
 msgid "AI-Powered translation enabled"
-msgstr ""
+msgstr "KI-gestützte Übersetzung aktiviert"
 
 msgid "AI-Powered translation language"
-msgstr ""
+msgstr "Sprache der KI-gestützten Übersetzung"
 
 msgid "AI-Powered translation subscription code"
-msgstr ""
+msgstr "Abo Code für KI-gestützte Übersetzung"
 
 msgid "ARM"
 msgstr "ARM"
@@ -2368,10 +2333,6 @@ msgstr "Die Logverwaltung unter Erweiterungen (Taste BLAU) anzeigen oder verstec
 
 msgid "Allows you to show/hide OScam/CCcam in the Extension Menu screen (BLUE button)."
 msgstr "OSCam/CCcam Info unter Erweiterungen (Taste BLAU) anzeigen."
-
-# ImageBackup.py
-msgid "Almost there... "
-msgstr "Fast geschafft... "
 
 msgid "Alpha"
 msgstr "Buchstabe"
@@ -2979,15 +2940,6 @@ msgstr "Rückseite, außen USB"
 msgid "Back, upper USB"
 msgstr "Rückseite, oberer USB-Anschluss"
 
-#
-#, python-format
-msgid "Back-up Tool for a %s\n"
-msgstr "Sicherungs-Tool für %s\n"
-
-#, python-format
-msgid "Back-up Tool for an %s\n"
-msgstr "Sicherungs-Tool für eine %s\n"
-
 msgid "Back/Recall"
 msgstr "Zurück"
 
@@ -3014,10 +2966,6 @@ msgstr "Hintergrund:"
 msgid "Backup"
 msgstr "Sicherung"
 
-#, python-format
-msgid "Backup Date: %s\n"
-msgstr "Sicherungsdatum: %s\n"
-
 msgid "Backup Location"
 msgstr "Speicherort für die Sicherung"
 
@@ -3030,16 +2978,8 @@ msgstr "Sicherungsmodus"
 msgid "Backup Mode: Flash Online"
 msgstr "Sicherungsmodus: Flash Online"
 
-#
-msgid "Backup Mode: Flash Online\n"
-msgstr "Sicherungsmodus: Flash Online\n"
-
 msgid "Backup Mode: USB Recovery"
 msgstr "Sicherungsmodus: USB-Recovery"
-
-# ImageBackup.py
-msgid "Backup Mode: USB Recovery\n"
-msgstr "Sicherungsmodus: USB-Recovery\n"
 
 msgid "Backup Settings"
 msgstr "Einstellungen sichern"
@@ -3061,10 +3001,6 @@ msgid ""
 msgstr ""
 "Gesicherte Erweiterungen gefunden!\n"
 "Diese jetzt installieren?"
-
-#, python-format
-msgid "Backup to destination: %s"
-msgstr "Sicherung nach: %s"
 
 #, python-format
 msgid "Backup tool for %s %s"
@@ -3405,10 +3341,6 @@ msgstr "Build-Informationen"
 msgid "Build information for %s %s"
 msgstr "Build-Informationen für %s %s"
 
-#, python-format
-msgid "Build: %s"
-msgstr "Build: %s"
-
 msgid "Bulgaria"
 msgstr "Bulgarien"
 
@@ -3459,9 +3391,6 @@ msgstr "Nach Datenträger-UUID"
 
 msgid "By disk label"
 msgstr "Nach Datenträgerbezeichnung"
-
-msgid "By openATV Image Team"
-msgstr "Vom openATV-Imageteam"
 
 msgid "Bypass HDMI EDID Check"
 msgstr "HDMI-EDID-Prüfung überspringen"
@@ -3871,10 +3800,6 @@ msgstr "Update abbrechen"
 msgid "Cancelled upon user request"
 msgstr "Aufgabe durch den Benutzer abgebrochen"
 
-# ImageBackup.py
-msgid "Cannot create backup directory"
-msgstr "Sicherungsverzeichnis kann nicht erstellt werden!"
-
 msgid "Cannot delete file"
 msgstr "Datei kann nicht gelöscht werden!"
 
@@ -4212,10 +4137,6 @@ msgstr "Chinesisch"
 
 msgid "Chinese (Simplified)"
 msgstr "Vereinfachtes Chinesisch"
-
-#, python-format
-msgid "Chipset: BCM%s"
-msgstr "Chipsatz: BCM%s"
 
 msgid "Choice Box"
 msgstr "Bitte eine Auswahl treffen"
@@ -4746,7 +4667,7 @@ msgid "Configure remote control type"
 msgstr "Fernbedienungstyp einstellen"
 
 msgid "Configure the AI-Powered translation language."
-msgstr ""
+msgstr "Sprache der für KI-gestützten Übersetzung auswählen."
 
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "DiSEqC-Modus für diesen LNB einstellen."
@@ -4804,7 +4725,7 @@ msgid "Configure the brightness level of the front panel display for standby."
 msgstr "Die Helligkeit für das Display im Standby einstellen."
 
 msgid "Configure the color of the AI-Powered translations."
-msgstr ""
+msgstr "Textfarbe der für KI-gestützten Übersetzung auswählen."
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
 msgstr "Farbe der externen Untertitel, Alternativ (normal in Weiß, kursiv in Gelb, fett in Cyan, Unterstriche in Grün), Weiß oder Gelb."
@@ -5411,15 +5332,6 @@ msgstr "Zusätzliche Slots auf dem ausgewählten Gerät erstellen"
 
 msgid "Create the flash expander in the selected device"
 msgstr "Den Flash-Expander im ausgewählten Gerät erstellen"
-
-# ImageBackup.py
-msgid "Create:"
-msgstr "Erstelle:"
-
-# ImageBackup.py
-#, python-format
-msgid "Create: Recovery Fullbackup %s"
-msgstr "Erstelle: Recovery Fullbackup %s"
 
 msgid "Creating .ap and .sc files"
 msgstr "Erstelle AP- und SC-Dateien"
@@ -7283,7 +7195,7 @@ msgid "Enable 5V for active antenna"
 msgstr "5V für aktive Antenne aktivieren"
 
 msgid "Enable AI-Powered translation for all teletext and DVB subtitles."
-msgstr ""
+msgstr "KI-gestützte Übersetzung für Teletext und DVB Untertitel aktivieren."
 
 msgid "Enable Autorecord"
 msgstr "Automatische Aufnahme aktivieren"
@@ -7714,7 +7626,7 @@ msgid "Enter your personal feed URL to allow you to select packages from your pe
 msgstr "Die persönliche Feed-URL eingeben, um Pakete auswählen zu können."
 
 msgid "Enter your subscription code, the unified code for trial is 15."
-msgstr ""
+msgstr "Abo Code der KI-gestützten Übersetzung eingeben. Code '15' ist für den Testmodus."
 
 #
 msgid "Entertainment"
@@ -7890,12 +7802,6 @@ msgstr ""
 
 msgid "Error opening recording file"
 msgstr "Fehler beim Öffnen der Aufnahmedatei!"
-
-msgid "Error reading bouquets.radio"
-msgstr "Fehler beim Lesen von 'bouquets.radio'!"
-
-msgid "Error reading bouquets.tv"
-msgstr "Fehler beim Lesen von 'bouquets.tv'!"
 
 msgid "Error reading webpage!"
 msgstr "Fehler beim Lesen der Webseite!"
@@ -8444,6 +8350,9 @@ msgstr "Reserve-Receiver für DVB-C"
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Reserve-Receiver für DVB-T"
 
+msgid "Fallback Timer"
+msgstr "Reserve-Timer"
+
 msgid "Fallback tuner setup"
 msgstr "Reserve-Tuner-Einstellung"
 
@@ -8981,19 +8890,11 @@ msgstr "Frontprozessor-Version"
 msgid "Fulah"
 msgstr "Fula"
 
-msgid "Full Image Backup "
-msgstr "Vollständige Image-Sicherung "
-
 msgid "Full Range RGB"
 msgstr "Full Range RGB"
 
 msgid "Full Stretch"
 msgstr "Voll gestreckt"
-
-#
-#, python-format
-msgid "Full back-up on %s"
-msgstr "Komplettsicherung auf %s"
 
 msgid "Full factory reset"
 msgstr "Vollständiges Zurücksetzen auf Werkseinstellungen"
@@ -9990,16 +9891,8 @@ msgstr "Image-Sicherung nach %s"
 msgid "Image Flash Actions"
 msgstr "Image-Flash-Aktionen"
 
-#, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
-msgstr "Image erstellt: %s/%s-%s-%s-backup-%s_%s.zip"
-
 msgid "Image created:"
 msgstr "Image erstellt:"
-
-# ImageBackup.py
-msgid "Image creation failed - "
-msgstr "Image-Erstellung fehlgeschlagen! "
 
 msgid "Image creation failed!"
 msgstr "Image-Erstellung fehlgeschlagen!"
@@ -12180,11 +12073,6 @@ msgstr "MultiLib"
 msgid "MultiTranscoding"
 msgstr "MultiTranscoding"
 
-# ImageBackup.py
-#, python-format
-msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
-msgstr "Multiboot-Image erstellt: %s/%s-%s-%s-backup-%s_usb.zip"
-
 msgid "Multiboot Image created:"
 msgstr "Multiboot-Image erstellt:"
 
@@ -12841,9 +12729,6 @@ msgstr ""
 msgid "No, but restart from begin"
 msgstr "Nein, aber vom Anfang neu beginnen"
 
-msgid "No, do not backup a image"
-msgstr "Nein, kein Image sichern"
-
 #
 msgid "No, do nothing."
 msgstr "Nein, nichts tun."
@@ -13013,10 +12898,6 @@ msgstr "Nichts tun, nur das Menü verlassen"
 msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "Jetzt"
-
-# ImageBackup.py
-msgid "Now building the Backup Image"
-msgstr "Image-Sicherung wird jetzt gebaut..."
 
 msgid "Now save time shift as movie and continues recording"
 msgstr "Jetzt Timeshift als Film speichern und die Aufnahme fortsetzen"
@@ -13925,16 +13806,8 @@ msgstr "PlayPause"
 msgid "Please add titles to the compilation."
 msgstr "Titel zur Zusammenstellung hinzufügen."
 
-#
-msgid "Please be patient, a backup will now be made,\n"
-msgstr "Bitte etwas Geduld, die Sicherung wird erstellt.\n"
-
 msgid "Please be patient."
 msgstr "Bitte warten."
-
-# ImageBackup.py
-msgid "Please check the manual of the receiver"
-msgstr "Bitte in das Handbuch des Receivers schauen,"
 
 #
 msgid "Please choose an extension..."
@@ -14018,9 +13891,6 @@ msgstr "OK drücken, um fortzufahren."
 
 msgid "Please press OK when ready"
 msgstr "OK drücken, wenn bereit"
-
-msgid "Please select a backup destination"
-msgstr "Bitte ein Sicherungsziel auswählen"
 
 msgid "Please select a default EPG type..."
 msgstr "Bitte einen Standard-EPG-Typ auswählen..."
@@ -14209,10 +14079,6 @@ msgstr "Bitte warten..."
 #
 msgid "Please wait... Loading list..."
 msgstr "Die Liste wird geladen. Bitte warten..."
-
-# ImageBackup.py
-msgid "Please wait...almost ready! "
-msgstr "Fast fertig! Bitte warten..."
 
 msgid "Plug in USB device"
 msgstr "USB-Gerät einstecken"
@@ -14649,10 +14515,6 @@ msgstr "Primetime: Minuten"
 #
 msgid "Priority"
 msgstr "Priorität"
-
-# ImageBackup.py
-msgid "Probable causes could be"
-msgstr "Mögliche Ursachen könnten sein"
 
 msgid "Proc model"
 msgstr "Treibermodell"
@@ -15178,7 +15040,7 @@ msgid "Recording finished"
 msgstr "Aufnahme beendet"
 
 msgid "Recording in progress"
-msgstr "Aufnahme läuft"
+msgstr "Es wird aufgenommen"
 
 msgid "Recording location"
 msgstr "Aufnahmeort"
@@ -20068,9 +19930,6 @@ msgstr "Sundanesisch"
 msgid "Sunday"
 msgstr "Sonntag"
 
-msgid "Support at"
-msgstr "Support bei"
-
 msgid "Suriname"
 msgstr "Suriname"
 
@@ -21447,11 +21306,6 @@ msgstr "Zeitsprünge: Wdh.-Intervall für schnellen Vor-/Rücklauf"
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr "Zeitsprünge: Normalen Vorlauf benutzen für"
 
-# ImageBackup.py
-#, python-format
-msgid "Time required for this process: %s"
-msgstr "Zeit für den gesamten Vorgang: %s"
-
 msgid "Time shift buffer delete after zap"
 msgstr "Timeshift-Puffer beim Umschalten löschen"
 
@@ -21627,10 +21481,6 @@ msgstr "Um das Image wiederherzustellen in das Handbuch des Receivers schauen."
 
 msgid "To restore the image use 'OnlineFlash' option in the 'SoftwareManager' menu."
 msgstr "Um das Image wiederherzustellen 'OnlineFlash' in der Softwareverwaltung benutzen."
-
-# ImageBackup.py
-msgid "To restore the image:"
-msgstr "Um das Image wiederherzustellen:"
 
 #, python-format
 msgid "To where would you like to extract '%s'?"
@@ -22468,10 +22318,6 @@ msgstr "Bei 'Ja' werden MHW-EPG-Informationen verwendet, wenn sie verfügbar sin
 msgid "Use Netmed EPG information when it is available."
 msgstr "Bei 'Ja' werden Netmed-EPG-Informationen verwendet, wenn sie verfügbar sind."
 
-# ImageBackup.py
-msgid "Use OnlineFlash in SoftwareManager"
-msgstr "OnlineFlash in der Softwareverwaltung verwenden"
-
 msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
 msgstr ""
 "Bei 'Ja' werden OpenTV-EPG-Informationen verwendet.\n"
@@ -22639,10 +22485,6 @@ msgstr "Bei 'Ja' wird der alternative Radiomodus verwendet, ansonsten der normal
 
 msgid "Use the current selection and exit"
 msgstr "Die aktuelle Auswahl verwenden und beenden"
-
-# ImageBackup.py
-msgid "Use the cursor keys to select an installed image and then Start button."
-msgstr "Ein installiertes Image auswählen (falls es mehrere gibt) und danach die Taste GRÜN drücken, um die Komplettsicherung zu starten."
 
 msgid "Use the extended List"
 msgstr "Die erweiterte Liste verwenden."
@@ -22874,16 +22716,8 @@ msgstr "Venezuela, Bolivarische Republik"
 msgid "Version"
 msgstr "Version"
 
-#, python-format
-msgid "Version %s %s"
-msgstr "Version %s %s"
-
 msgid "Version: "
 msgstr "Version: "
-
-#, python-format
-msgid "Version: %s"
-msgstr "Version: %s"
 
 #
 msgid "Vertical"
@@ -24237,12 +24071,6 @@ msgstr "Zoom von rechts"
 msgid "Zulu"
 msgstr "Zulu"
 
-msgid "[Enigma2 Settings]\n"
-msgstr "[Enigma2-Einstellungen]\n"
-
-msgid "[Image Info]\n"
-msgstr "[Image-Informationen]\n"
-
 msgid "[Timeshift] Merging records failed!"
 msgstr "Timeshift - Zusammenfügen der Aufnahmen fehlgeschlagen!"
 
@@ -24349,10 +24177,6 @@ msgstr "Ballett"
 #, python-format
 msgid "bc%d"
 msgstr "bc%d"
-
-#
-msgid "because of the used file system the back-up\n"
-msgstr "Abhängig vom System dauert die Sicherung\n"
 
 #
 msgid "better"
@@ -24938,10 +24762,6 @@ msgstr "Olympisches Blau"
 msgid "on READ ONLY medium."
 msgstr "Auf dem nicht beschreibbaren Medium."
 
-# ImageBackup.py
-msgid "on how to restore the image"
-msgstr "wie das Image wiederhergestellt werden kann."
-
 msgid "orange"
 msgstr "Orange"
 
@@ -25359,10 +25179,6 @@ msgstr "Weiß"
 msgid "width"
 msgstr "Breite"
 
-#
-msgid "will take about 1-15 minutes for this system\n"
-msgstr "bis zu 15 Minuten.\n"
-
 msgid "winter sport"
 msgstr "Wintersport"
 
@@ -25397,8 +25213,192 @@ msgstr "Ja (Feeds beibehalten)"
 msgid "®"
 msgstr "®"
 
-msgid "Fallback Timer"
-msgstr "Reserve-Timer"
+#~ msgid ""
+#~ "\n"
+#~ "\n"
+#~ "[User - bouquets (TV)]\n"
+#~ msgstr ""
+#~ "\n"
+#~ "\n"
+#~ "[Benutzerbouquets (TV)]\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "[Installed Plugins]\n"
+#~ msgstr ""
+#~ "\n"
+#~ "[Installierte Plugins]\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "[User - bouquets (RADIO)]\n"
+#~ msgstr ""
+#~ "\n"
+#~ "[Benutzerbouquets (Radio)]\n"
+
+# ImageBackup.py
+#~ msgid "     no space left on back-up device"
+#~ msgstr "     kein Platz mehr auf dem Sicherungsgerät"
+
+# ImageBackup.py
+#~ msgid "     no writing permission on back-up device"
+#~ msgstr "     keine Schreibrechte für das Sicherungsgerät"
+
+# ImageBackup.py
+#~ msgid "     wrong back-up destination "
+#~ msgstr "     falsches Sicherungsziel "
+
+# ImageBackup.py
+#~ msgid "Almost there... "
+#~ msgstr "Fast geschafft... "
+
+#
+#, python-format
+#~ msgid "Back-up Tool for a %s\n"
+#~ msgstr "Sicherungs-Tool für %s\n"
+
+#, python-format
+#~ msgid "Back-up Tool for an %s\n"
+#~ msgstr "Sicherungs-Tool für eine %s\n"
+
+#, python-format
+#~ msgid "Backup Date: %s\n"
+#~ msgstr "Sicherungsdatum: %s\n"
+
+#
+#~ msgid "Backup Mode: Flash Online\n"
+#~ msgstr "Sicherungsmodus: Flash Online\n"
+
+# ImageBackup.py
+#~ msgid "Backup Mode: USB Recovery\n"
+#~ msgstr "Sicherungsmodus: USB-Recovery\n"
+
+#, python-format
+#~ msgid "Backup to destination: %s"
+#~ msgstr "Sicherung nach: %s"
+
+#, python-format
+#~ msgid "Build: %s"
+#~ msgstr "Build: %s"
+
+#~ msgid "By openATV Image Team"
+#~ msgstr "Vom openATV-Imageteam"
+
+# ImageBackup.py
+#~ msgid "Cannot create backup directory"
+#~ msgstr "Sicherungsverzeichnis kann nicht erstellt werden!"
+
+#, python-format
+#~ msgid "Chipset: BCM%s"
+#~ msgstr "Chipsatz: BCM%s"
+
+# ImageBackup.py
+#~ msgid "Create:"
+#~ msgstr "Erstelle:"
+
+# ImageBackup.py
+#, python-format
+#~ msgid "Create: Recovery Fullbackup %s"
+#~ msgstr "Erstelle: Recovery Fullbackup %s"
+
+#~ msgid "Error reading bouquets.radio"
+#~ msgstr "Fehler beim Lesen von 'bouquets.radio'!"
+
+#~ msgid "Error reading bouquets.tv"
+#~ msgstr "Fehler beim Lesen von 'bouquets.tv'!"
+
+#~ msgid "Full Image Backup "
+#~ msgstr "Vollständige Image-Sicherung "
+
+#
+#, python-format
+#~ msgid "Full back-up on %s"
+#~ msgstr "Komplettsicherung auf %s"
+
+#, python-format
+#~ msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
+#~ msgstr "Image erstellt: %s/%s-%s-%s-backup-%s_%s.zip"
+
+# ImageBackup.py
+#~ msgid "Image creation failed - "
+#~ msgstr "Image-Erstellung fehlgeschlagen! "
+
+# ImageBackup.py
+#, python-format
+#~ msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
+#~ msgstr "Multiboot-Image erstellt: %s/%s-%s-%s-backup-%s_usb.zip"
+
+#~ msgid "No, do not backup a image"
+#~ msgstr "Nein, kein Image sichern"
+
+# ImageBackup.py
+#~ msgid "Now building the Backup Image"
+#~ msgstr "Image-Sicherung wird jetzt gebaut..."
+
+#
+#~ msgid "Please be patient, a backup will now be made,\n"
+#~ msgstr "Bitte etwas Geduld, die Sicherung wird erstellt.\n"
+
+# ImageBackup.py
+#~ msgid "Please check the manual of the receiver"
+#~ msgstr "Bitte in das Handbuch des Receivers schauen,"
+
+#~ msgid "Please select a backup destination"
+#~ msgstr "Bitte ein Sicherungsziel auswählen"
+
+# ImageBackup.py
+#~ msgid "Please wait...almost ready! "
+#~ msgstr "Fast fertig! Bitte warten..."
+
+# ImageBackup.py
+#~ msgid "Probable causes could be"
+#~ msgstr "Mögliche Ursachen könnten sein"
+
+#~ msgid "Support at"
+#~ msgstr "Support bei"
+
+# ImageBackup.py
+#, python-format
+#~ msgid "Time required for this process: %s"
+#~ msgstr "Zeit für den gesamten Vorgang: %s"
+
+# ImageBackup.py
+#~ msgid "To restore the image:"
+#~ msgstr "Um das Image wiederherzustellen:"
+
+# ImageBackup.py
+#~ msgid "Use OnlineFlash in SoftwareManager"
+#~ msgstr "OnlineFlash in der Softwareverwaltung verwenden"
+
+# ImageBackup.py
+#~ msgid "Use the cursor keys to select an installed image and then Start button."
+#~ msgstr "Ein installiertes Image auswählen (falls es mehrere gibt) und danach die Taste GRÜN drücken, um die Komplettsicherung zu starten."
+
+#, python-format
+#~ msgid "Version %s %s"
+#~ msgstr "Version %s %s"
+
+#, python-format
+#~ msgid "Version: %s"
+#~ msgstr "Version: %s"
+
+#~ msgid "[Enigma2 Settings]\n"
+#~ msgstr "[Enigma2-Einstellungen]\n"
+
+#~ msgid "[Image Info]\n"
+#~ msgstr "[Image-Informationen]\n"
+
+#
+#~ msgid "because of the used file system the back-up\n"
+#~ msgstr "Abhängig vom System dauert die Sicherung\n"
+
+# ImageBackup.py
+#~ msgid "on how to restore the image"
+#~ msgstr "wie das Image wiederhergestellt werden kann."
+
+#
+#~ msgid "will take about 1-15 minutes for this system\n"
+#~ msgstr "bis zu 15 Minuten.\n"
 
 #
 #~ msgid "Execution finished!!"

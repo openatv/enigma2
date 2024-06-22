@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-15 20:15+0000\n"
+"POT-Creation-Date: 2024-06-21 14:25+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -18,15 +18,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.12-dev\n"
-
-msgid ""
-"\n"
-"\n"
-"[User - bouquets (TV)]\n"
-msgstr ""
-"\n"
-"\n"
-"[Felhasználói csatornalisták (TV)]\n"
 
 msgid ""
 "\n"
@@ -42,31 +33,8 @@ msgstr ""
 "\n"
 "Felvétel folyamatban."
 
-msgid ""
-"\n"
-"[Installed Plugins]\n"
-msgstr ""
-"\n"
-"[Telepített bővítmények]\n"
-
-msgid ""
-"\n"
-"[User - bouquets (RADIO)]\n"
-msgstr ""
-"\n"
-"[Felhasználói csatornacsomagok (RADIO)]\n"
-
 msgid " "
 msgstr " "
-
-msgid "     no space left on back-up device"
-msgstr "     nincs hely a tartalék eszközön"
-
-msgid "     no writing permission on back-up device"
-msgstr "     nincs írási engedély a tartalék eszközön"
-
-msgid "     wrong back-up destination "
-msgstr "     rossz tartalék eszköz "
 
 msgid "  Menu key : Select quad channel"
 msgstr "  Menü gomb: Válassza ki a Quad csatorna üzemmódot"
@@ -1756,6 +1724,18 @@ msgstr "AC3 plusz transzkódolás"
 msgid "AFL"
 msgstr "AFL"
 
+msgid "AI-Powered translation color"
+msgstr ""
+
+msgid "AI-Powered translation enabled"
+msgstr ""
+
+msgid "AI-Powered translation language"
+msgstr ""
+
+msgid "AI-Powered translation subscription code"
+msgstr ""
+
 #, fuzzy
 msgid "ARM"
 msgstr "ARM"
@@ -2269,9 +2249,6 @@ msgstr "Engedélyezi a Log Manager megjelenítését/elrejtését a bővítmény
 
 msgid "Allows you to show/hide OScam/CCcam in the Extension Menu screen (BLUE button)."
 msgstr ""
-
-msgid "Almost there... "
-msgstr "Majdnem ott... "
 
 msgid "Alpha"
 msgstr "Betű"
@@ -2849,14 +2826,6 @@ msgstr "Vissza, külső USB"
 msgid "Back, upper USB"
 msgstr "Vissza, fentebbi USB"
 
-#, python-format
-msgid "Back-up Tool for a %s\n"
-msgstr "Mentési eszköz egy %s\n"
-
-#, python-format
-msgid "Back-up Tool for an %s\n"
-msgstr "Mentési eszköz egy %s\n"
-
 msgid "Back/Recall"
 msgstr "Vissza/Visszahívás"
 
@@ -2881,10 +2850,6 @@ msgstr "Háttér:"
 msgid "Backup"
 msgstr "Mentés"
 
-#, python-format
-msgid "Backup Date: %s\n"
-msgstr "Biztonsági mentés ideje: %s\n"
-
 msgid "Backup Location"
 msgstr "Mentés helye"
 
@@ -2897,13 +2862,7 @@ msgstr "Mentési mód"
 msgid "Backup Mode: Flash Online"
 msgstr ""
 
-msgid "Backup Mode: Flash Online\n"
-msgstr "Adatmentés: Flash Online\n"
-
 msgid "Backup Mode: USB Recovery"
-msgstr ""
-
-msgid "Backup Mode: USB Recovery\n"
 msgstr ""
 
 msgid "Backup Settings"
@@ -2924,10 +2883,6 @@ msgid ""
 msgstr ""
 "Mentett bővítményeket talált\n"
 "szeretné telepíteni most?"
-
-#, python-format
-msgid "Backup to destination: %s"
-msgstr "Biztonsági másolat célhelye: %s"
 
 #, python-format
 msgid "Backup tool for %s %s"
@@ -3256,10 +3211,6 @@ msgstr ""
 msgid "Build information for %s %s"
 msgstr ""
 
-#, python-format
-msgid "Build: %s"
-msgstr "Változat: %s"
-
 msgid "Bulgaria"
 msgstr "Bulgária"
 
@@ -3307,9 +3258,6 @@ msgstr ""
 
 msgid "By disk label"
 msgstr ""
-
-msgid "By openATV Image Team"
-msgstr "Az openATV Image Team által"
 
 msgid "Bypass HDMI EDID Check"
 msgstr "HDMI EDID ellenőrzés kihagyása"
@@ -3691,9 +3639,6 @@ msgstr ""
 msgid "Cancelled upon user request"
 msgstr "Felhasználói kérésre megszakítva"
 
-msgid "Cannot create backup directory"
-msgstr "A biztonsági másolat könyvtára nem hozható létre"
-
 msgid "Cannot delete file"
 msgstr "Nem lehet törölni a fájlt"
 
@@ -3738,6 +3683,9 @@ msgstr ""
 
 msgid "Cayman Islands"
 msgstr "Kajmán-szigetek"
+
+msgid "Cebuano"
+msgstr ""
 
 msgid "Celsius"
 msgstr "Celsius"
@@ -4010,9 +3958,8 @@ msgstr "Kína"
 msgid "Chinese"
 msgstr "Kína"
 
-#, python-format
-msgid "Chipset: BCM%s"
-msgstr "Chipset: BCM%s"
+msgid "Chinese (Simplified)"
+msgstr ""
 
 msgid "Choice Box"
 msgstr "Készülék választás"
@@ -4502,6 +4449,9 @@ msgstr ""
 msgid "Configure remote control type"
 msgstr "Távirányító típusának beállítása"
 
+msgid "Configure the AI-Powered translation language."
+msgstr ""
+
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "A DiSEqC mód beállítása ehhez a fejhez."
 
@@ -4549,6 +4499,9 @@ msgstr "A normál működés érdekében állítsa be az előlapi kijelző fény
 
 msgid "Configure the brightness level of the front panel display for standby."
 msgstr "Állítsa be az előlapi kijelző fényerőszintjét készenléti állapotban."
+
+msgid "Configure the color of the AI-Powered translations."
+msgstr ""
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
 msgstr "A külső fájlban lévő feliratok színe: fehér, sárga vagy alternatív (normál-fehér, dőlt-sárga, vastag-cián, aláhúzott-zöld)"
@@ -5135,13 +5088,6 @@ msgstr ""
 
 msgid "Create the flash expander in the selected device"
 msgstr ""
-
-msgid "Create:"
-msgstr "Létrehozva:"
-
-#, python-format
-msgid "Create: Recovery Fullbackup %s"
-msgstr "Létrehozva: a(z) %s Fullbackup helyreállítva"
 
 msgid "Creating .ap and .sc files"
 msgstr "AP és SC fájlok létrehozása"
@@ -6907,6 +6853,9 @@ msgstr "Engedélyezve a(z) %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "5V kimenet az akítv antennához engedélyezve"
 
+msgid "Enable AI-Powered translation for all teletext and DVB subtitles."
+msgstr ""
+
 msgid "Enable Autorecord"
 msgstr "Automatikus Timeshift felvétel engedélyezése"
 
@@ -7318,6 +7267,9 @@ msgstr "Adja meg az alacsony sávú helyi oszcillátor frekvenciáját. További
 msgid "Enter your personal feed URL to allow you to select packages from your personal feed."
 msgstr ""
 
+msgid "Enter your subscription code, the unified code for trial is 15."
+msgstr ""
+
 msgid "Entertainment"
 msgstr "Szórakozás"
 
@@ -7486,12 +7438,6 @@ msgstr ""
 
 msgid "Error opening recording file"
 msgstr "Hiba a felvett fájl megnyitásakor"
-
-msgid "Error reading bouquets.radio"
-msgstr "Hiba történt a bouquets.radio olvasásakor"
-
-msgid "Error reading bouquets.tv"
-msgstr "Hiba történt a bouquets.tv olvasásakor"
 
 msgid "Error reading webpage!"
 msgstr "Hiba történt a weboldal olvasásakor!"
@@ -8008,6 +7954,9 @@ msgstr "Tartalék távoli vevő DVB-C vételhez"
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Tartalék távoli vevő DVB-T vételhez"
 
+msgid "Fallback Timer"
+msgstr "Tartalék távoli időzítő"
+
 msgid "Fallback tuner setup"
 msgstr "Tartalék távoli vevő beállítása"
 
@@ -8521,18 +8470,11 @@ msgstr ""
 msgid "Fulah"
 msgstr ""
 
-msgid "Full Image Backup "
-msgstr "Teljes Lemezkép Mentés "
-
 msgid "Full Range RGB"
 msgstr "Teljes Range RGB"
 
 msgid "Full Stretch"
 msgstr ""
-
-#, python-format
-msgid "Full back-up on %s"
-msgstr "Teljes mentés az %s -on"
 
 msgid "Full factory reset"
 msgstr ""
@@ -8972,6 +8914,9 @@ msgstr ""
 msgid "Hausa"
 msgstr ""
 
+msgid "Hawaiian"
+msgstr ""
+
 msgid "Heard Island and McDonald Islands"
 msgstr "Heard-sziget és McDonald-szigetek"
 
@@ -9138,6 +9083,9 @@ msgstr "Előzmények következő"
 
 msgid "History zap..."
 msgstr "Utoljára nézett csatornák..."
+
+msgid "Hmong"
+msgstr ""
 
 msgid "Hockey"
 msgstr "Jégkorong"
@@ -9500,15 +9448,8 @@ msgstr ""
 msgid "Image Flash Actions"
 msgstr ""
 
-#, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
-msgstr ""
-
 msgid "Image created:"
 msgstr ""
-
-msgid "Image creation failed - "
-msgstr "A lemezkép létrehozása nem sikerült- "
 
 msgid "Image creation failed!"
 msgstr ""
@@ -10194,6 +10135,9 @@ msgid "Kuanyama / Kwanyama"
 msgstr ""
 
 msgid "Kurdish"
+msgstr ""
+
+msgid "Kurdish (Sorani)"
 msgstr ""
 
 msgid "Kurdistan"
@@ -11598,10 +11542,6 @@ msgstr ""
 msgid "MultiTranscoding"
 msgstr ""
 
-#, python-format
-msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
-msgstr "Multiboot lemezkép létrehozva: %s/%s-%s-%s-backup-%s_usb.zip"
-
 msgid "Multiboot Image created:"
 msgstr ""
 
@@ -12191,9 +12131,6 @@ msgstr ""
 msgid "No, but restart from begin"
 msgstr "Nem, de indítsa elölröl"
 
-msgid "No, do not backup a image"
-msgstr "Ne készítsen biztonsági másolatot egy lemezképről"
-
 msgid "No, do nothing."
 msgstr "Nem, ne csináljon semmit."
 
@@ -12355,9 +12292,6 @@ msgstr "Semmi, hagyja el ezt a menüt"
 msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "Most"
-
-msgid "Now building the Backup Image"
-msgstr "Most készítem a biztonsági másolatot"
 
 msgid "Now save time shift as movie and continues recording"
 msgstr "Timeshift mentése most és a felvétel folytatása"
@@ -13210,14 +13144,8 @@ msgstr "Szünet"
 msgid "Please add titles to the compilation."
 msgstr "Kérem, adjon a válogatáshoz hozzá tételeket."
 
-msgid "Please be patient, a backup will now be made,\n"
-msgstr "Kérem, legyen türelemmel, most készen áll egy mentés,\n"
-
 msgid "Please be patient."
 msgstr ""
-
-msgid "Please check the manual of the receiver"
-msgstr "Kérjük, ellenőrizze a vevőkészülék kézikönyvét"
 
 msgid "Please choose an extension..."
 msgstr "Kérem, válasszon egy kiterjesztést..."
@@ -13291,9 +13219,6 @@ msgstr "A folytatáshoz nyomja le az OK-t."
 
 msgid "Please press OK when ready"
 msgstr ""
-
-msgid "Please select a backup destination"
-msgstr "Válasszon biztonsági mentés célt"
 
 msgid "Please select a default EPG type..."
 msgstr "Válasszon egy alapértelmezett EPG típust..."
@@ -13460,9 +13385,6 @@ msgstr "Kérem, várjon..."
 
 msgid "Please wait... Loading list..."
 msgstr "Kérem, várjon... Lista betöltése..."
-
-msgid "Please wait...almost ready! "
-msgstr "Kérem, várjon... majdnem kész! "
 
 msgid "Plug in USB device"
 msgstr ""
@@ -13860,9 +13782,6 @@ msgstr "Fő műsoridő (perc)"
 
 msgid "Priority"
 msgstr "Prioritás"
-
-msgid "Probable causes could be"
-msgstr "Lehetséges okok lehetnek"
 
 msgid "Proc model"
 msgstr ""
@@ -18983,9 +18902,6 @@ msgstr "Vasárnap"
 msgid "Sunday"
 msgstr "Vasárnap"
 
-msgid "Support at"
-msgstr "Támogatja"
-
 msgid "Suriname"
 msgstr "Suriname"
 
@@ -20266,10 +20182,6 @@ msgstr "Időugrás a megismételt intervalluma a gyors előre/vissza lépéshez"
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr "Időugrás: Normál sebesség használata az előrelépéshez"
 
-#, python-format
-msgid "Time required for this process: %s"
-msgstr "A folyamathoz szükséges idő: %s"
-
 msgid "Time shift buffer delete after zap"
 msgstr "Csatorna váltásakor a Timeshift puffer törlődjön?"
 
@@ -20430,9 +20342,6 @@ msgstr ""
 
 msgid "To restore the image use 'OnlineFlash' option in the 'SoftwareManager' menu."
 msgstr ""
-
-msgid "To restore the image:"
-msgstr "A lemezkép visszaállítása:"
 
 #, python-format
 msgid "To where would you like to extract '%s'?"
@@ -21222,9 +21131,6 @@ msgstr "MHW EPG információk beolvasása a jelforrásból."
 msgid "Use Netmed EPG information when it is available."
 msgstr "Netmed EPG információk beolvasása a jelforrásból."
 
-msgid "Use OnlineFlash in SoftwareManager"
-msgstr "OnlineFlash használva a Szoftver kezelőben"
-
 msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
 msgstr ""
 
@@ -21377,9 +21283,6 @@ msgstr "Használja az alternatív vagy a hagyományos rádió üzemmódot."
 
 msgid "Use the current selection and exit"
 msgstr ""
-
-msgid "Use the cursor keys to select an installed image and then Start button."
-msgstr "Egy telepített lemezkép kiválasztásához használd a kurzorgombokat, majd nyomd meg a Start gombot."
 
 msgid "Use the extended List"
 msgstr "Használja a kiterjesztett listát"
@@ -21582,16 +21485,8 @@ msgstr "Venezuela"
 msgid "Version"
 msgstr ""
 
-#, python-format
-msgid "Version %s %s"
-msgstr "Verzió %s %s"
-
 msgid "Version: "
 msgstr "Verzió: "
-
-#, python-format
-msgid "Version: %s"
-msgstr "Verzió: %s"
 
 msgid "Vertical"
 msgstr "Függőleges"
@@ -22849,12 +22744,6 @@ msgstr "Nagyítás jobbról"
 msgid "Zulu"
 msgstr ""
 
-msgid "[Enigma2 Settings]\n"
-msgstr "[Enigma2 Beállítások]\n"
-
-msgid "[Image Info]\n"
-msgstr "[Lemezkép Információ]\n"
-
 msgid "[Timeshift] Merging records failed!"
 msgstr "[Timeshift] az egyesítés sikertelen!"
 
@@ -22954,9 +22843,6 @@ msgstr "balett"
 #, python-format
 msgid "bc%d"
 msgstr "bc%d"
-
-msgid "because of the used file system the back-up\n"
-msgstr "mert a használt fájlrendszer a biztonsági mentés\n"
 
 msgid "better"
 msgstr "jobb"
@@ -23484,9 +23370,6 @@ msgstr ""
 msgid "on READ ONLY medium."
 msgstr "a csak olvasható hordozón."
 
-msgid "on how to restore the image"
-msgstr "a lemezkép visszaállításának módjáról"
-
 msgid "orange"
 msgstr ""
 
@@ -23874,9 +23757,6 @@ msgstr "fehér"
 msgid "width"
 msgstr "szélesség"
 
-msgid "will take about 1-15 minutes for this system\n"
-msgstr "körülbelül 1-15 percet vesz igénybe a rendszerhez\n"
-
 msgid "winter sport"
 msgstr "téli sport"
 
@@ -23907,8 +23787,160 @@ msgstr "igen (állapotok megtartása)"
 msgid "®"
 msgstr "®"
 
-msgid "Fallback Timer"
-msgstr "Tartalék távoli időzítő"
+#~ msgid ""
+#~ "\n"
+#~ "\n"
+#~ "[User - bouquets (TV)]\n"
+#~ msgstr ""
+#~ "\n"
+#~ "\n"
+#~ "[Felhasználói csatornalisták (TV)]\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "[Installed Plugins]\n"
+#~ msgstr ""
+#~ "\n"
+#~ "[Telepített bővítmények]\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "[User - bouquets (RADIO)]\n"
+#~ msgstr ""
+#~ "\n"
+#~ "[Felhasználói csatornacsomagok (RADIO)]\n"
+
+#~ msgid "     no space left on back-up device"
+#~ msgstr "     nincs hely a tartalék eszközön"
+
+#~ msgid "     no writing permission on back-up device"
+#~ msgstr "     nincs írási engedély a tartalék eszközön"
+
+#~ msgid "     wrong back-up destination "
+#~ msgstr "     rossz tartalék eszköz "
+
+#~ msgid "Almost there... "
+#~ msgstr "Majdnem ott... "
+
+#, python-format
+#~ msgid "Back-up Tool for a %s\n"
+#~ msgstr "Mentési eszköz egy %s\n"
+
+#, python-format
+#~ msgid "Back-up Tool for an %s\n"
+#~ msgstr "Mentési eszköz egy %s\n"
+
+#, python-format
+#~ msgid "Backup Date: %s\n"
+#~ msgstr "Biztonsági mentés ideje: %s\n"
+
+#~ msgid "Backup Mode: Flash Online\n"
+#~ msgstr "Adatmentés: Flash Online\n"
+
+#, python-format
+#~ msgid "Backup to destination: %s"
+#~ msgstr "Biztonsági másolat célhelye: %s"
+
+#, python-format
+#~ msgid "Build: %s"
+#~ msgstr "Változat: %s"
+
+#~ msgid "By openATV Image Team"
+#~ msgstr "Az openATV Image Team által"
+
+#~ msgid "Cannot create backup directory"
+#~ msgstr "A biztonsági másolat könyvtára nem hozható létre"
+
+#, python-format
+#~ msgid "Chipset: BCM%s"
+#~ msgstr "Chipset: BCM%s"
+
+#~ msgid "Create:"
+#~ msgstr "Létrehozva:"
+
+#, python-format
+#~ msgid "Create: Recovery Fullbackup %s"
+#~ msgstr "Létrehozva: a(z) %s Fullbackup helyreállítva"
+
+#~ msgid "Error reading bouquets.radio"
+#~ msgstr "Hiba történt a bouquets.radio olvasásakor"
+
+#~ msgid "Error reading bouquets.tv"
+#~ msgstr "Hiba történt a bouquets.tv olvasásakor"
+
+#~ msgid "Full Image Backup "
+#~ msgstr "Teljes Lemezkép Mentés "
+
+#, python-format
+#~ msgid "Full back-up on %s"
+#~ msgstr "Teljes mentés az %s -on"
+
+#~ msgid "Image creation failed - "
+#~ msgstr "A lemezkép létrehozása nem sikerült- "
+
+#, python-format
+#~ msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
+#~ msgstr "Multiboot lemezkép létrehozva: %s/%s-%s-%s-backup-%s_usb.zip"
+
+#~ msgid "No, do not backup a image"
+#~ msgstr "Ne készítsen biztonsági másolatot egy lemezképről"
+
+#~ msgid "Now building the Backup Image"
+#~ msgstr "Most készítem a biztonsági másolatot"
+
+#~ msgid "Please be patient, a backup will now be made,\n"
+#~ msgstr "Kérem, legyen türelemmel, most készen áll egy mentés,\n"
+
+#~ msgid "Please check the manual of the receiver"
+#~ msgstr "Kérjük, ellenőrizze a vevőkészülék kézikönyvét"
+
+#~ msgid "Please select a backup destination"
+#~ msgstr "Válasszon biztonsági mentés célt"
+
+#~ msgid "Please wait...almost ready! "
+#~ msgstr "Kérem, várjon... majdnem kész! "
+
+#~ msgid "Probable causes could be"
+#~ msgstr "Lehetséges okok lehetnek"
+
+#~ msgid "Support at"
+#~ msgstr "Támogatja"
+
+#, python-format
+#~ msgid "Time required for this process: %s"
+#~ msgstr "A folyamathoz szükséges idő: %s"
+
+#~ msgid "To restore the image:"
+#~ msgstr "A lemezkép visszaállítása:"
+
+#~ msgid "Use OnlineFlash in SoftwareManager"
+#~ msgstr "OnlineFlash használva a Szoftver kezelőben"
+
+#~ msgid "Use the cursor keys to select an installed image and then Start button."
+#~ msgstr "Egy telepített lemezkép kiválasztásához használd a kurzorgombokat, majd nyomd meg a Start gombot."
+
+#, python-format
+#~ msgid "Version %s %s"
+#~ msgstr "Verzió %s %s"
+
+#, python-format
+#~ msgid "Version: %s"
+#~ msgstr "Verzió: %s"
+
+#~ msgid "[Enigma2 Settings]\n"
+#~ msgstr "[Enigma2 Beállítások]\n"
+
+#~ msgid "[Image Info]\n"
+#~ msgstr "[Lemezkép Információ]\n"
+
+#~ msgid "because of the used file system the back-up\n"
+#~ msgstr "mert a használt fájlrendszer a biztonsági mentés\n"
+
+#~ msgid "on how to restore the image"
+#~ msgstr "a lemezkép visszaállításának módjáról"
+
+#~ msgid "will take about 1-15 minutes for this system\n"
+#~ msgstr "körülbelül 1-15 percet vesz igénybe a rendszerhez\n"
 
 #~ msgid "Execution finished!!"
 #~ msgstr "Végrehajtás befejezve!"
