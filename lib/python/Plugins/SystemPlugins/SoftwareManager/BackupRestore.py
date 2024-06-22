@@ -1,5 +1,6 @@
 from datetime import date
-from os import popen, makedirs, listdir, stat, rename, remove
+from glob import glob
+from os import makedirs, listdir, stat, rename, remove
 from os.path import exists, isdir, join
 
 from enigma import eTimer, eEnv, eConsoleAppContainer, eEPGCache
@@ -659,7 +660,6 @@ class installedPlugins(Screen):
 
 
 class RestorePlugins(Screen):
-
 	def __init__(self, session, menulist, removelist=None):
 		Screen.__init__(self, session)
 		self.setTitle(_("Restore Plugins"))
@@ -678,12 +678,12 @@ class RestorePlugins(Screen):
 		self["summary_description"] = StaticText("")
 
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
-				{
-					"red": self.close,
-					"green": self.green,
-					"cancel": self.close,
-					"ok": self.ok
-				}, -2)
+		{
+			"red": self.close,
+			"green": self.green,
+			"cancel": self.close,
+			"ok": self.ok
+		}, -2)
 
 		self["menu"].setList(menulist)
 		self["menu"].setIndex(self.index)
@@ -696,51 +696,45 @@ class RestorePlugins(Screen):
 			self.green()
 
 	def green(self):
-		self.pluginlist = []
-		self.pluginlistfirst = []
-		self.myipklist = []
-		self.myipklistfirst = []
+		def searchIPKs():
+			fileNames = []
+			for searchDir in (x for x in ("/media/hdd/images/ipk", "/media/usb/images/ipk", "/media/mmc/images/ipk", "/media/cf/images/ipk") if isdir(x)):
+				fileNames.extend([x for x in glob(join(searchDir, "*.ipk"), recursive=True) if "./open-multiboot/" not in x])
+			return fileNames
+
+		pluginlist = []
+		pluginlistfirst = []
+		myipklist = []
+		myipklistfirst = []
+		ipkFileNames = searchIPKs()
 		for x in self.list:
 			if x[2]:
-				myipk = self.searchIPK(x[0])
+				myipk = [i for i in ipkFileNames if x[0] in i]
 				if myipk:
+					myipk = myipk[0]
 					if "-feed-" in myipk:
-						self.myipklistfirst.append(myipk)
+						myipklistfirst.append(myipk)
 					else:
-						self.myipklist.append(myipk)
+						myipklist.append(myipk)
 				else:
 					if "-feed-" in x[0]:
-						self.pluginlistfirst.append(x[0])
+						pluginlistfirst.append(x[0])
 					else:
-						self.pluginlist.append(x[0])
+						pluginlist.append(x[0])
 
-		# Install previously installed feeds first, they might be required for the other packages to install ...
-		if self.pluginlistfirst:
-			self.session.openWithCallback(self.installLocalIPKFeeds, Console, title=_("Installing feeds from feed ..."), cmdlist=["opkg install " + " ".join(self.pluginlistfirst) + " ; opkg update"], closeOnSuccess=True)
-		else:
-			self.installLocalIPKFeeds()
-
-	def installLocalIPKFeeds(self):
-		if self.myipklistfirst:
-			self.session.openWithCallback(self.installLocalIPK, Console, title=_("Installing feeds from IPK ..."), cmdlist=["opkg install " + " ".join(self.myipklistfirst) + " ; opkg update"], closeOnSuccess=True)
-		else:
-			self.installLocalIPK()
-
-	def installLocalIPK(self):
-		if self.myipklist:
-			self.session.openWithCallback(self.installPlugins, Console, title=_("Installing plugins from IPK ..."), cmdlist=["opkg install " + " ".join(self.myipklist)], closeOnSuccess=True)
-		else:
-			self.installPlugins()
-
-	def installPlugins(self):
-		if self.pluginlist:
-			self.session.openWithCallback(self.removePlugins, Console, title=_("Installing plugins from feed ..."), cmdlist=["opkg install " + " ".join(self.pluginlist)], closeOnSuccess=True)
-		else:
-			self.removePlugins()
-
-	def removePlugins(self):
+		cmdList = []
+		if pluginlistfirst:
+			cmdList.append("opkg install " + " ".join(pluginlistfirst) + " ; opkg update")
+		if myipklistfirst:
+			cmdList.append("opkg install " + " ".join(myipklistfirst) + " ; opkg update")
+		if myipklist:
+			cmdList.append("opkg install " + " ".join(myipklist))
+		if pluginlist:
+			cmdList.append("opkg install " + " ".join(pluginlist))
 		if self.removelist:
-			self.session.openWithCallback(self.close, Console, title=_("Remove plugins ..."), cmdlist=["opkg --autoremove --force-depends remove " + " ".join(self.removelist)], closeOnSuccess=True)
+			cmdList.append("opkg --autoremove --force-depends remove " + " ".join(self.removelist))
+		if cmdList:
+			self.session.openWithCallback(self.close, Console, title=self.getTitle(), cmdlist=cmdList, closeOnSuccess=True)
 		else:
 			self.close()
 
@@ -764,14 +758,6 @@ class RestorePlugins(Screen):
 
 	#def exitNoPlugin(self, ret):
 	#	self.close()
-
-	def searchIPK(self, ipkname):
-		ipkname = ipkname + "*"
-		search_dirs = ["/media/hdd/images/ipk", "/media/usb/images/ipk", "/media/mmc/images/ipk", "/media/cf/images/ipk"]
-		sdirs = " ".join(search_dirs)
-		cmd = f'find {sdirs} -name "{ipkname}" | grep -iv "./open-multiboot/*" | head -n 1'
-		res = popen(cmd).read()
-		return None if res == "" else res.replace("\n", "")
 
 
 class SoftwareManagerInfo(Screen):
