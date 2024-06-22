@@ -440,7 +440,7 @@ class MultiBootClass():
 				compileDate = self.getCompiledate(imageDir)
 				compileDate = f"{compileDate[0:4]}-{compileDate[4:6]}-{compileDate[6:8]}"
 				imgversion = str(info.get("version"))
-				if "." not in imgversion:
+				if "." not in imgversion and "-" not in imgversion:
 					imgversion = f"{int(imgversion[0:2])}.{int(imgversion[3:5])}"
 				self.imageList[self.slotCode]["detection"] = "Found an image version file"
 				self.imageList[self.slotCode]["imagename"] = f"{info.get('creator').split()[0]} {imgversion} ({compileDate})"
