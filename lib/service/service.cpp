@@ -89,7 +89,7 @@ std::string eServiceReference::toString() const
 
 	ret += getNum(type);
 	ret += ':';
-	ret += getNum(flags);
+	ret += getNum(flags &= ~8192); // ignore 8192 because this is only for internal use
 	for (unsigned int i = 0; i < sizeof(data)/sizeof(*data); ++i)
 	{
 		ret += ':';
