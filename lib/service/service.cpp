@@ -85,12 +85,12 @@ eServiceReference::eServiceReference(const std::string &string)
 std::string eServiceReference::toString() const
 {
 	std::string ret;
-	ret.reserve((6 * sizeof(data)/sizeof(*data)) + 8 + path.length() + name.length()); /* Estimate required space */
+	ret.reserve((6 * sizeof(data) / sizeof(*data)) + 8 + path.length() + name.length()); /* Estimate required space */
 
 	ret += getNum(type);
 	ret += ':';
-	ret += getNum(flags &= ~8192); // ignore 8192 because this is only for internal use
-	for (unsigned int i = 0; i < sizeof(data)/sizeof(*data); ++i)
+	ret += getNum(flags & ~8192); // ignore 8192 because this is only for internal use
+	for (unsigned int i = 0; i < sizeof(data) / sizeof(*data); ++i)
 	{
 		ret += ':';
 		ret += getNum(data[i], 0x10);
