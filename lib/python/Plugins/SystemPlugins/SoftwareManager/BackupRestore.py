@@ -686,11 +686,11 @@ class RestorePlugins(Screen):
 
 		self["menu"].setList(menulist)
 		self["menu"].setIndex(self.index)
-		self.onShown.append(self.setWindowTitle)
+		self.onShown.append(self.runOnce)
 
-	def setWindowTitle(self):
+	def runOnce(self):
+		self.onShown.remove(self.runOnce)
 		self.selectionChanged()
-		self.setTitle(_("Restore Plugins"))
 		if (exists("/media/hdd/images/config/plugins") and config.misc.firstrun.value) or len(self.list) == 0:
 			self.green()
 
