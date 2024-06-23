@@ -443,8 +443,13 @@ class MultiBootClass():
 				if "." not in imgversion and "-" not in imgversion:
 					imgversion = f"{int(imgversion[0:2])}.{int(imgversion[3:5])}"
 				self.imageList[self.slotCode]["detection"] = "Found an image version file"
-				self.imageList[self.slotCode]["imagename"] = f"{info.get('creator').split()[0]} {imgversion} ({compileDate})"
-				self.imageList[self.slotCode]["imagelogname"] = f"{info.get('creator').split()[0]} {imgversion} ({compileDate})"
+				creator = info.get('creator')
+				if creator is not None:
+					self.imageList[self.slotCode]["imagename"] = f"{creator.split()[0]} {imgversion} ({compileDate})"
+					self.imageList[self.slotCode]["imagelogname"] = f"{creator.split()[0]} {imgversion} ({compileDate})"
+				else:
+					self.imageList[self.slotCode]["imagename"] = f"Unknown Creator {imgversion} ({compileDate})"
+					self.imageList[self.slotCode]["imagelogname"] = f"Unknown Creator {imgversion} ({compileDate})"
 				self.imageList[self.slotCode]["status"] = "active"
 			elif isfile(pathjoin(imageDir, "usr/bin/enigma2")):
 				info = self.deriveSlotInfo(imageDir)

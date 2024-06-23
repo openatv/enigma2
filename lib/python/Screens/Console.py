@@ -202,6 +202,7 @@ class Console(Screen):
 
 	def runFinished(self, retVal):
 		if retVal:
+			print(f"[Console] Running command {self.run + 1} finsihed with '{retVal}'.")
 			self.errorOcurred = True
 			self.keyToggleHideShow(True)
 		self.run += 1

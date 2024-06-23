@@ -1122,9 +1122,9 @@ class TunerScreen(ConfigListScreen, Screen):
 		if frontendData is not None:
 			ttype = frontendData.get("tuner_type", "UNKNOWN")
 			defaultSat["system"] = frontendData.get("system", eDVBFrontendParametersSatellite.System_DVB_S)
-			defaultSat["frequency"] = frontendData.get("frequency", 0) / 1000
+			defaultSat["frequency"] = frontendData.get("frequency", 0) // 1000
 			defaultSat["inversion"] = frontendData.get("inversion", eDVBFrontendParametersSatellite.Inversion_Unknown)
-			defaultSat["symbolrate"] = frontendData.get("symbol_rate", 0) / 1000
+			defaultSat["symbolrate"] = frontendData.get("symbol_rate", 0) // 1000
 			defaultSat["polarization"] = frontendData.get("polarization", eDVBFrontendParametersSatellite.Polarisation_Horizontal)
 			if defaultSat["system"] == eDVBFrontendParametersSatellite.System_DVB_S2:
 				defaultSat["fec_s2"] = frontendData.get("fec_inner", eDVBFrontendParametersSatellite.FEC_Auto)
@@ -1262,7 +1262,7 @@ class TunerScreen(ConfigListScreen, Screen):
 			pol = "CR"
 		else:
 			pol = "??"
-		return str(tr[1] / scale) + "," + pol + "," + str(tr[2] / scale)
+		return str(tr[1] // scale) + "," + pol + "," + str(tr[2] // scale)
 
 	def updateTransponders(self):
 		if len(self.tuning.sat.choices):

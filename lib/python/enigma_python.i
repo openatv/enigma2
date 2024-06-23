@@ -540,6 +540,7 @@ extern void pauseInit(void);
 extern void resumeInit(void);
 extern int checkInternetAccess(const char* host, int timeout = 3);
 extern int getVFDSymbolsPoll();
+extern int getE2Flags();
 %}
 
 extern void addFont(const char *filename, const char *alias, int scale_factor, int is_replacement, int renderflags = 0);
@@ -563,6 +564,7 @@ extern void pauseInit(void);
 extern void resumeInit(void);
 extern int checkInternetAccess(const char* host, int timeout = 3);
 extern int getVFDSymbolsPoll();
+extern int getE2Flags();
 
 %include <lib/python/python_console.i>
 %include <lib/python/python_base.i>
