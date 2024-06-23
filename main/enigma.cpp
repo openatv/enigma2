@@ -484,6 +484,11 @@ const char *getGStreamerVersionString()
 	return gst_version_string();
 }
 
+int getE2Flags()
+{
+	return 1;
+}
+
 #include <malloc.h>
 
 void dump_malloc_stats(void)
