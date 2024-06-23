@@ -6,7 +6,7 @@ import shutil
 import os
 
 # MANDATORY_RIGHTS contains commands to ensure correct rights for certain files
-MANDATORY_RIGHTS = "chown -R root:root /home/root /etc/auto.network /etc/default/dropbear /etc/dropbear ; chmod 600 /etc/auto.network /etc/dropbear/* /home/root/.ssh/* ; chmod 700 /home/root /home/root/.ssh"
+MANDATORY_RIGHTS = "chown -R root:root /home/root /etc/auto.network /etc/default/dropbear /etc/dropbear ; chmod 600 /etc/auto.network /etc/dropbear/* /home/root/.ssh/* ; chmod 700 /home/root /home/root/.ssh ; exit 0"
 
 # BLACKLISTED lists all files/folders that MUST NOT be backed up or restored in order for the image to work properly
 BLACKLISTED = ['home/root/.cache', 'etc/passwd', 'etc/shadow', 'etc/group', 'etc/samba/distro', 'etc/samba/smb.conf', 'home/root/FastRestore.log', 'etc/enigma2/profile']
