@@ -464,8 +464,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 			restorecmdlist += ["echo 0 > /proc/stb/vmpeg/0/dst_height", "echo 0 > /proc/stb/vmpeg/0/dst_left", "echo 0 > /proc/stb/vmpeg/0/dst_top", "echo 0 > /proc/stb/vmpeg/0/dst_width"]
 		restorecmdlist.append("/etc/init.d/autofs restart")
 		print("[SOFTWARE MANAGER] Restore Settings !!!!")
-
-		self.session.openWithCallback(self.restoreFinishedCB, Console, title=self.screenTitle, cmdlist=restorecmdlist)
+		self.session.openWithCallback(self.restoreFinishedCB, Console, title=self.screenTitle, cmdlist=restorecmdlist, closeOnSuccess=True)
 
 	def restoreFinishedCB(self, retval=None):
 		ShellCompatibleFunctions.restoreUserDB()
