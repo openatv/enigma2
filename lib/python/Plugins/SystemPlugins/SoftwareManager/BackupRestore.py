@@ -33,7 +33,7 @@ def eEnv_resolve_multi(path):
 
 
 # MANDATORY_RIGHTS contains commands to ensure correct rights for certain files, shared with ShellCompatibleFunctions for FastRestore
-MANDATORY_RIGHTS = ShellCompatibleFunctions.MANDATORY_RIGHTS
+MANDATORY_RIGHTS = ShellCompatibleFunctions.MANDATORY_RIGHTS + " ; exit 0"
 
 # BLACKLISTED lists all files/folders that MUST NOT be backed up or restored in order for the image to work properly, shared with ShellCompatibleFunctions for FastRestore
 BLACKLISTED = ShellCompatibleFunctions.BLACKLISTED
@@ -185,7 +185,7 @@ class BackupScreen(Screen, ConfigListScreen):
 				if exists(newFilename):
 					remove(newFilename)
 				rename(fullbackupFilename, newFilename)
-			self.session.openWithCallback(self.backupFinishedCB, Console, title=self.screenTitle, cmdlist=cmdList, closeOnSuccess=self.closeOnSuccess)
+			self.session.openWithCallback(self.backupFinishedCB, Console, title=self.screenTitle, cmdlist=cmdList, closeOnSuccess=self.closeOnSuccess, showScripts=False)
 		except OSError:
 			self.session.openWithCallback(self.backupErrorCB, MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout=10)
 
@@ -406,7 +406,7 @@ class RestoreMenu(Screen):
 		cmds = [tarcmd, MANDATORY_RIGHTS, "/etc/init.d/autofs restart", "killall -9 enigma2"]
 		if ret:
 			cmds.insert(0, "rm -R /etc/enigma2")
-		self.session.open(Console, title=_("Restoring..."), cmdlist=cmds)
+		self.session.open(Console, title=_("Restoring..."), cmdlist=cmds, showScripts=False)
 
 	def deleteFile(self):
 		if (self.exe is False) and (self.entry is True):
@@ -464,7 +464,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 			restorecmdlist += ["echo 0 > /proc/stb/vmpeg/0/dst_height", "echo 0 > /proc/stb/vmpeg/0/dst_left", "echo 0 > /proc/stb/vmpeg/0/dst_top", "echo 0 > /proc/stb/vmpeg/0/dst_width"]
 		restorecmdlist.append("/etc/init.d/autofs restart")
 		print("[SOFTWARE MANAGER] Restore Settings !!!!")
-		self.session.openWithCallback(self.restoreFinishedCB, Console, title=self.screenTitle, cmdlist=restorecmdlist, closeOnSuccess=True)
+		self.session.openWithCallback(self.restoreFinishedCB, Console, title=self.screenTitle, cmdlist=restorecmdlist, closeOnSuccess=True, showScripts=False)
 
 	def restoreFinishedCB(self, retval=None):
 		ShellCompatibleFunctions.restoreUserDB()
@@ -493,18 +493,18 @@ class RestoreScreen(Screen, ConfigListScreen):
 				break
 
 		if startSH:
-			self.session.openWithCallback(self.restoreMetrixSkin, Console, title=_("Running Myrestore script, Please wait ..."), cmdlist=[startSH], closeOnSuccess=True)
+			self.session.openWithCallback(self.restoreMetrixSkin, Console, title=_("Running Myrestore script, Please wait ..."), cmdlist=[startSH], closeOnSuccess=True, showScripts=False)
 		else:
 			self.restoreMetrixSkin()
 
 	def restartGUI(self, ret=None):
-		self.session.open(Console, title=_("Your %s %s will Restart...") % getBoxDisplayName(), cmdlist=["killall -9 enigma2"])
+		self.session.open(Console, title=_("Your %s %s will Restart...") % getBoxDisplayName(), cmdlist=["killall -9 enigma2"], showScripts=False)
 
 	def rebootSYS(self, ret=None):
 		try:
 			with open("/tmp/rebootSYS.sh", "w") as fd:
 				fd.write("#!/bin/bash\n\nkillall -9 enigma2\nreboot\n")
-			self.session.open(Console, title=_("Your %s %s will Reboot...") % getBoxDisplayName(), cmdlist=["chmod +x /tmp/rebootSYS.sh", "/tmp/rebootSYS.sh"])
+			self.session.open(Console, title=_("Your %s %s will Reboot...") % getBoxDisplayName(), cmdlist=["chmod +x /tmp/rebootSYS.sh", "/tmp/rebootSYS.sh"], showScripts=False)
 		except Exception:
 			self.restartGUI()
 
@@ -733,7 +733,7 @@ class RestorePlugins(Screen):
 		if self.removelist:
 			cmdList.append("opkg --autoremove --force-depends remove " + " ".join(self.removelist))
 		if cmdList:
-			self.session.openWithCallback(self.close, Console, title=self.getTitle(), cmdlist=cmdList, closeOnSuccess=True)
+			self.session.openWithCallback(self.close, Console, title=self.getTitle(), cmdlist=cmdList, closeOnSuccess=True, showScripts=False)
 		else:
 			self.close()
 
