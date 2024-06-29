@@ -106,6 +106,7 @@ class RecordTimer(Timer):
 		self.onTimerAdded = []
 		self.onTimerRemoved = []
 		self.onTimerChanged = []
+		self.fallbackTimerlist = []
 
 	def loadTimers(self):
 		if exists(TIMER_XML_FILE):
@@ -449,8 +450,11 @@ class RecordTimer(Timer):
 				return True
 		return False
 
+	def getFallbackTimers(self, service):
+		return [timer for timer in self.fallbackTimerlist if timer.serviceRefString == service]
+
 	def getTimers(self, service):
-		return [timer for timer in self.timer_list if timer.serviceRefString == service]
+		return [timer for timer in self.timer_list if timer.serviceRefString == service] + self.getFallbackTimers(service)
 
 	def hasTimers(self, service):
 		return self.getTimers(service) != []
@@ -577,6 +581,9 @@ class RecordTimer(Timer):
 					break
 		return returnValue
 
+	def setFallbackTimerList(self, timerList):
+		self.fallbackTimerlist = [timer for timer in timerList if timer.state != 3]
+
 
 def findSafeRecordPath(dirname):  # Also called from InfoBarGenerics.
 	if not dirname:
@@ -700,6 +707,7 @@ class RecordTimerEntry(TimerEntry):
 		# "Filename") and not timer.justplay and not timer.justremind and timer.state == TimerEntry.StateEnded:
 		# AttributeError: 'RecordTimerEntry' object has no attribute 'justremind'
 		self.justremind = False
+		self.external = False
 		self.log_entries = []
 		self.check_justplay()
 		self.resetState()

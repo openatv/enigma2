@@ -328,6 +328,67 @@
 			<item level="0" text="Remove all other data" description="Select 'Yes' to remove all other files and directories not covered by the options above." conditional="len(self.others)">config.factory.resetOthers</item>
 		</if>
 	</setup>
+	<setup key="Fallbacktuner" title="Fallback tuner setup" level="2">
+		<item text="Enable fallback remote receiver" description="Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001.">config.usage.remote_fallback_enabled</item>
+		<item text="Import from remote receiver URL" description="Import channels and/or EPG from remote receiver URL when receiver is booted">config.usage.remote_fallback_import</item>
+		<if conditional="config.usage.remote_fallback_enabled.value">
+			<item text="Enable import timer from fallback tuner" description="When enabled the timer from the fallback tuner is imported">config.usage.remote_fallback_external_timer</item>
+			<item text="Select the timer from the fallback tuner by default" description="When enabled the timer from the fallback tuner is the default timer" conditional="config.usage.remote_fallback_external_timer.value">config.usage.remote_fallback_external_timer_default</item>
+			<item text="Fallback remote receiver" description="Destination of fallback remote receiver">self.avahiselect</item>
+			<if conditional="self.avahiselect.value == 'ip'">
+				<item text="Fallback remote receiver IP" description="IP of fallback remote receiver">self.ip</item>
+				<item text="Fallback remote receiver Port" description="Port of fallback remote receiver">self.port</item>
+			<elif conditional="self.avahiselect.value == 'url'"/>
+				<item text="Fallback remote receiver URL" description="URL of fallback remote receiver">config.usage.remote_fallback</item>
+			</if>
+			<if conditional="config.usage.remote_fallback_import.value">
+				<item text="Import remote receiver URL" description="URL of fallback remote receiver">self.avahiselect_seperate</item>
+				<if conditional="self.avahiselect_seperate.value == 'ip'">
+					<item text="Fallback remote receiver IP" description="IP of fallback remote receiver">self.ip_seperate</item>
+					<item text="Fallback remote receiver Port" description="Port of fallback remote receiver">self.port_seperate</item>
+				<elif conditional="self.avahiselect_seperate.value == 'url'"/>
+					<item text="Fallback remote receiver URL" description="URL of fallback remote receiver">config.usage.remote_fallback_import_url</item>
+				</if>
+				<item text="Also import at reboot/restart enigma2" description="Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted">config.usage.remote_fallback_import_restart</item>
+				<item text="Also import when box is leaving standby" description="Import channels and/or EPG from remote receiver URL also when the receiver is getting out of standby">config.usage.remote_fallback_import_standby</item>
+				<item text="Also import from the extension menu" description="Make it possible to manually initiate the channels import and/or EPG via the extension menu">config.usage.remote_fallback_extension_menu</item>
+				<item text="Show notification when import channels was successful" description="Show notification when import channels and/or EPG from remote receiver URL is completed">config.usage.remote_fallback_ok</item>
+				<item text="Show notification when import channels was not successful" description="Show notification when import channels and/or EPG from remote receiver URL did not complete">config.usage.remote_fallback_nok</item>
+			</if>
+			<if conditional="config.usage.remote_fallback.value">
+				<item text="Customize OpenWebIF settings for fallback tuner" description="When enabled you can customize the OpenWebIf settings for the fallback tuner">config.usage.remote_fallback_openwebif_customize</item>
+				<if conditional="config.usage.remote_fallback_openwebif_customize.value">
+					<item text="User ID" description="Set the User ID of the OpenWebif from your fallback tuner">config.usage.remote_fallback_openwebif_userid</item>
+					<item text="Password" description="Set the password of the OpenWebif from your fallback tuner">config.usage.remote_fallback_openwebif_password</item>
+					<item text="Port" description="Set the port of the OpenWebif from your fallback tuner">config.usage.remote_fallback_openwebif_port</item>
+				</if>
+				<item text="Alternative URLs for DVB-T/C or ATSC" description="Set alternative fallback tuners for DVB-T/C or ATSC">config.usage.remote_fallback_alternative</item>
+				<if conditional="config.usage.remote_fallback_alternative.value">
+					<item text="Fallback remote receiver for DVB-T" description="Destination of fallback remote receiver for DVB-T">self.avahi_dvb_t</item>
+					<if conditional="self.avahi_dvb_t.value == 'ip'">
+						<item text="Fallback remote receiver IP" description="IP of fallback remote receiver">self.ip_dvb_t</item>
+						<item text="Fallback remote receiver Port" description="Port of fallback remote receiver">self.port_dvb_t</item>
+					<elif conditional="self.avahi_dvb_t.value == 'url'"/>
+						<item text="Fallback remote receiver URL" description="URL of fallback remote receiver">config.usage.remote_fallback_dvb_t</item>
+					</if>
+					<item text="Fallback remote receiver for DVB-C" description="Destination of fallback remote receiver for DVB-C">self.avahi_dvb_c</item>
+					<if conditional="self.avahi_dvb_c.value == 'ip'">
+						<item text="Fallback remote receiver IP" description="IP of fallback remote receiver">self.ip_dvb_c</item>
+						<item text="Fallback remote receiver Port" description="Port of fallback remote receiver">self.port_dvb_c</item>
+					<elif conditional="self.avahi_dvb_c.value == 'url'"/>
+						<item text="Fallback remote receiver URL" description="URL of fallback remote receiver">config.usage.remote_fallback_dvb_c</item>
+					</if>
+					<item text="Fallback remote receiver for ATSC" description="Destination of fallback remote receiver for ATSC">self.avahi_atsc</item>
+					<if conditional="self.avahi_atsc.value == 'ip'">
+						<item text="Fallback remote receiver IP" description="IP of fallback remote receiver">self.ip_atsc</item>
+						<item text="Fallback remote receiver Port" description="Port of fallback remote receiver">self.port_atsc</item>
+					<elif conditional="self.avahi_atsc.value == 'url'"/>
+						<item text="Fallback remote receiver URL" description="URL of fallback remote receiver">config.usage.remote_fallback_atsc</item>
+					</if>
+				</if>
+			</if>
+		</if>
+	</setup>
 	<setup key="FlashExpander" title="Flash Expander">
 		<item level="0" text="Target location" description="Choose the target location for the expanded '/usr' directory.">config.flashExpander.location</item>
 	</setup>
@@ -675,6 +736,9 @@
 		<item level="2" text="Show free space in timer view" description="When 'Enabled', the timer view will show the free space on the target device. This will wake the device from sleep mode.">config.recording.timerviewshowfreespace</item>
 	</setup>
 	<setup key="RecordTimer" title="RecordTimer Settings">
+		<if conditional="config.usage.remote_fallback_external_timer.value and config.usage.remote_fallback.value">
+			<item level="0" text="Fallback Timer" description="Fallback Timer">self.timerFallback</item>
+		</if>
 		<item level="0" text="Timer type" description="Select the type of this timer.">self.timerType</item>
 		<item level="0" text="Name" description="Enter a name for this timer.">self.timerName</item>
 		<item level="0" text="Description" description="Enter a description for this timer.">self.timerDescription</item>
