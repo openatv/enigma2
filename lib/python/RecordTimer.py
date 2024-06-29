@@ -134,12 +134,12 @@ class RecordTimer(Timer):
 			if timer.dontSave:
 				continue
 			timerEntry = ["\t<timer"]
-			timerEntry.append("begin=\"%d\"" % timer.begin)
-			timerEntry.append("end=\"%d\"" % timer.end)
-			timerEntry.append("marginBefore=\"%d\"" % timer.marginBefore)
-			timerEntry.append("eventBegin=\"%d\"" % timer.eventBegin)
-			timerEntry.append("eventEnd=\"%d\"" % timer.eventEnd)
-			timerEntry.append("marginAfter=\"%d\"" % timer.marginAfter)
+			timerEntry.append(f"begin=\"{timer.begin}\"")
+			timerEntry.append(f"end=\"{timer.end}\"")
+			timerEntry.append(f"marginBefore=\"{timer.marginBefore}\"")
+			timerEntry.append(f"eventBegin=\"{timer.eventBegin}\"")
+			timerEntry.append(f"eventEnd=\"{timer.eventEnd}\"")
+			timerEntry.append(f"marginAfter=\"{timer.marginAfter}\"")
 			timerEntry.append(f"hasEndTime=\"{timer.hasEndTime}\"")
 			timerEntry.append(f"serviceref=\"{stringToXML(str(timer.service_ref))}\"")
 			if timer.eit:
@@ -180,7 +180,7 @@ class RecordTimer(Timer):
 				timerEntry.append(f"vps_time=\"{timer.vpsplugin_time if timer.vpsplugin_time else '0'}\"")
 			timerLog = []
 			for logTime, logCode, logMsg in timer.log_entries:
-				timerLog.append("\t\t<log code=\"%d\" time=\"%d\">%s</log>" % (logCode, logTime, stringToXML(logMsg)))
+				timerLog.append(f"\t\t<log code=\"{logCode}\" time=\"{int(logTime)}\">{stringToXML(logMsg)}</log>")
 			if timerLog:
 				timerList.append(f"{' '.join(timerEntry)}>")
 				timerList += timerLog

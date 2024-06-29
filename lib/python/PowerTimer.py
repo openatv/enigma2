@@ -100,12 +100,12 @@ class PowerTimer(Timer):
 			if timerDom is None:
 				AddPopup(_("The timer file '%s' is corrupt and could not be loaded.") % TIMER_XML_FILE, type=MessageBox.TYPE_ERROR, timeout=0, id="TimerLoadFailed")
 				try:
-					rename(TIMER_XML_FILE, "%s_bad" % TIMER_XML_FILE)
+					rename(TIMER_XML_FILE, f"{TIMER_XML_FILE}_bad")
 				except OSError as err:
-					print("[PowerTimer] Error %d: Unable to rename corrupt timer file out of the way!  (%s)" % (err.errno, err.strerror))
+					print(f"[PowerTimer] Error {err.errno}: Unable to rename corrupt timer file out of the way!  ({err.strerror})")
 				return
 		else:
-			print("[PowerTimer] Note: The timer file '%s' was not found!" % TIMER_XML_FILE)
+			print(f"[PowerTimer] Note: The timer file '{TIMER_XML_FILE}' was not found!")
 			return
 		check = True  # Display a message when at least one timer overlaps another one.
 		for timer in timerDom.findall("timer"):
@@ -132,9 +132,9 @@ class PowerTimer(Timer):
 				TIMERTYPE.REBOOT: "reboot",
 				TIMERTYPE.RESTART: "restart"
 			}[timer.timerType]))
-			timerEntry.append("begin=\"%d\"" % timer.begin)
-			timerEntry.append("end=\"%d\"" % timer.end)
-			timerEntry.append("repeated=\"%d\"" % timer.repeated)
+			timerEntry.append(f"begin=\"{timer.begin}\"")
+			timerEntry.append(f"end=\"{timer.end}\"")
+			timerEntry.append(f"repeated=\"{int(timer.repeated)}\"")
 			timerEntry.append("afterevent=\"%s\"" % stringToXML({
 				AFTEREVENT.NONE: "nothing",
 				AFTEREVENT.WAKEUP: "wakeup",
@@ -142,37 +142,37 @@ class PowerTimer(Timer):
 				AFTEREVENT.STANDBY: "standby",
 				AFTEREVENT.DEEPSTANDBY: "deepstandby"
 				}[timer.afterEvent]))
-			timerEntry.append("disabled=\"%d\"" % timer.disabled)
-			timerEntry.append("autosleepinstandbyonly=\"%s\"" % timer.autosleepinstandbyonly)
-			timerEntry.append("autosleepdelay=\"%s\"" % timer.autosleepdelay)
-			timerEntry.append("autosleeprepeat=\"%s\"" % timer.autosleeprepeat)
-			timerEntry.append("autosleepwindow=\"%s\"" % timer.autosleepwindow)
-			timerEntry.append("autosleepbegin=\"%d\"" % int(timer.autosleepbegin))
-			timerEntry.append("autosleepend=\"%d\"" % int(timer.autosleepend))
-			timerEntry.append("nettraffic=\"%s\"" % timer.nettraffic)
-			timerEntry.append("trafficlimit=\"%s\"" % timer.trafficlimit)
-			timerEntry.append("netip=\"%s\"" % timer.netip)
-			timerEntry.append("ipadress=\"%s\"" % timer.ipadress)
+			timerEntry.append(f"disabled=\"{int(timer.disabled)}\"")
+			timerEntry.append(f"autosleepinstandbyonly=\"{timer.autosleepinstandbyonly}\"")
+			timerEntry.append(f"autosleepdelay=\"{timer.autosleepdelay}\"")
+			timerEntry.append(f"autosleeprepeat=\"{timer.autosleeprepeat}\"")
+			timerEntry.append(f"autosleepwindow=\"{timer.autosleepwindow}\"")
+			timerEntry.append(f"autosleepbegin=\"{int(timer.autosleepbegin)}\"")
+			timerEntry.append(f"autosleepend=\"{int(timer.autosleepend)}\"")
+			timerEntry.append(f"nettraffic=\"{timer.nettraffic}\"")
+			timerEntry.append(f"trafficlimit=\"{timer.trafficlimit}\"")
+			timerEntry.append(f"netip=\"{timer.netip}\"")
+			timerEntry.append(f"ipadress=\"{timer.ipadress}\"")
 			timerLog = []
 			for logTime, logCode, logMsg in timer.log_entries:
 				if logTime > int(time()) - saveDays:
-					timerLog.append("\t\t<log code=\"%d\" time=\"%d\">%s</log>" % (logCode, logTime, stringToXML(logMsg)))
+					timerLog.append(f"\t\t<log code=\"{logCode}\" time=\"{int(logTime)}\">{stringToXML(logMsg)}</log>")
 			if timerLog:
-				timerList.append("%s>" % " ".join(timerEntry))
+				timerList.append(f"{' '.join(timerEntry)}>")
 				timerList += timerLog
 				timerList.append("\t</timer>")
 			else:
-				timerList.append("%s />" % " ".join(timerEntry))
+				timerList.append(f"{' '.join(timerEntry)} />")
 		timerList.append("</timers>")
 		timerList.append("")
 		try:
-			with open("%s.writing" % TIMER_XML_FILE, "w") as fd:
+			with open(f"{TIMER_XML_FILE}.writing", "w") as fd:
 				fd.write("\n".join(timerList))
 				fd.flush()
 				fsync(fd.fileno())
-			rename("%s.writing" % TIMER_XML_FILE, TIMER_XML_FILE)
+			rename(f"{TIMER_XML_FILE}.writing", TIMER_XML_FILE)
 		except OSError as err:
-			print("[PowerTimer] Error %d: Unable to save timer entries to '%s'!  (%s)" % (err.errno, TIMER_XML_FILE, err.strerror))
+			print(f"[PowerTimer] Error {err.errno}: Unable to save timer entries to '{TIMER_XML_FILE}'!  ({err.strerror})")
 
 	def createTimer(self, timerDom):
 		begin = int(timerDom.get("begin"))
@@ -263,7 +263,7 @@ class PowerTimer(Timer):
 				if nextAct + 3 < now:
 					continue
 				if getNextStbPowerOn and DEBUG:
-					print("[PowerTimer] Next STB power up %s." % strftime("%a, %Y/%m/%d %H:%M", localtime(nextAct)))
+					print(f"[PowerTimer] Next STB power up {strftime('%a, %Y/%m/%d %H:%M', localtime(nextAct))}.")
 				nextTimerType = None
 				nextAfterEvent = None
 				if nextPTlist[0][0] == -1:
@@ -308,7 +308,7 @@ class PowerTimer(Timer):
 				if entry[0] < now + 900:
 					ae.append(entry[2])
 				if DEBUG:
-					print("[PowerTimer] %s %s." % (ctime(entry[0]), str(entry)))
+					print(f"[PowerTimer] {ctime(entry[0])} {str(entry)}.")
 			if TIMERTYPE.RESTART not in tt:
 				RSsave = False
 			if TIMERTYPE.REBOOT not in tt:
@@ -318,7 +318,7 @@ class PowerTimer(Timer):
 			if AFTEREVENT.DEEPSTANDBY not in ae:
 				aeDSsave = False
 			if DEBUG:
-				print("[PowerTimer] RSsave=%s, RBsave=%s, DSsave=%s, aeDSsave=%s, wasTimerWakeup=%s" % (RSsave, RBsave, DSsave, aeDSsave, wasTimerWakeup))
+				print(f"[PowerTimer] RSsave={RSsave}, RBsave={RBsave}, DSsave={DSsave}, aeDSsave={aeDSsave}, wasTimerWakeup={wasTimerWakeup}")
 			if DEBUG:
 				print("[PowerTimer] +++++++++++++++")
 			if config.timeshift.isRecording.value:
@@ -347,7 +347,7 @@ class PowerTimer(Timer):
 
 	def record(self, timer, doSave=True):
 		timer.timeChanged()
-		print("[PowerTimer] Timer '%s'." % str(timer))
+		print(f"[PowerTimer] Timer '{str(timer)}'.")
 		timer.Timer = self
 		self.addTimerEntry(timer)
 		if doSave:
@@ -355,7 +355,7 @@ class PowerTimer(Timer):
 		return None
 
 	def removeEntry(self, timer):
-		print("[PowerTimer] Remove timer '%s'." % str(timer))
+		print(f"[PowerTimer] Remove timer '{str(timer)}'.")
 		timer.repeated = False  # Avoid re-queuing.
 		timer.autoincrease = False
 		timer.abort()  # Abort timer. This sets the end time to current time, so timer will be stopped.
@@ -460,9 +460,9 @@ class PowerTimerEntry(TimerEntry):
 		if getType:
 			return timertype
 		if not self.disabled:
-			return "PowerTimerEntry(type=%s, begin=%s)" % (timertype, ctime(self.begin))
+			return f"PowerTimerEntry(type={timertype}, begin={ctime(self.begin)})"
 		else:
-			return "PowerTimerEntry(type=%s, begin=%s Disabled)" % (timertype, ctime(self.begin))
+			return f"PowerTimerEntry(type={timertype}, begin={ctime(self.begin)} Disabled)"
 
 	def activate(self):
 		global DSsave, InfoBar, RBsave, RSsave, aeDSsave, wasTimerWakeup
@@ -470,12 +470,12 @@ class PowerTimerEntry(TimerEntry):
 			try:
 				from Screens.InfoBar import InfoBar
 			except Exception as err:
-				print("[PowerTimer] Import 'InfoBar' from 'Screens.InfoBar' failed!  (%s)" % str(err))
+				print(f"[PowerTimer] Import 'InfoBar' from 'Screens.InfoBar' failed!  ({str(err)})")
 		isRecTimerWakeup = breakPT = shiftPT = False
 		now = int(time())
 		nextState = self.state + 1
 		autoSleepDelay = self.autosleepdelay * 60
-		self.log(5, "Activating state %d." % nextState)
+		self.log(5, f"Activating state {nextState}.")
 		if nextState == self.StatePrepared and self.timerType in (TIMERTYPE.AUTOSTANDBY, TIMERTYPE.AUTODEEPSTANDBY):
 			eActionMap.getInstance().bindAction("", -maxsize, self.keyPressed)
 			self.keyPressHooked = True
@@ -501,18 +501,18 @@ class PowerTimerEntry(TimerEntry):
 				# First fix: Crash in getPriorityCheck (NavigationInstance.instance.PowerTimer...).
 				# Second fix: Suppress the message "A finished PowerTimer wants to ...".
 				if DEBUG:
-					print("[PowerTimer] *****NavigationInstance.instance.PowerTimer is None***** %s %s %s %s." % (self.timerType, self.state, ctime(self.begin), ctime(self.end)))
+					print(f"[PowerTimer] *****NavigationInstance.instance.PowerTimer is None***** {self.timerType} {self.state} {ctime(self.begin)} {ctime(self.end)}.")
 				return True
 			elif (nextState == self.StateRunning and abs(self.begin - now) > 900) or (nextState == self.StateEnded and abs(self.end - now) > 900):
 				if self.timerType in (TIMERTYPE.AUTODEEPSTANDBY, TIMERTYPE.AUTOSTANDBY):
-					print("[PowerTimer] Time warp detected - set new begin time for %s timer." % self.__repr__(True))
+					print(f"[PowerTimer] Time warp detected - set new begin time for {self.__repr__(True)} timer.")
 					if not self.getAutoSleepWindow():
 						return False
 					else:
 						self.begin = now + autoSleepDelay
 						self.end = self.begin
 						return False
-				print("[PowerTimer] Time warp detected - timer %s ending without action." % self.__repr__(True))
+				print(f"[PowerTimer] Time warp detected - timer {self.__repr__(True)} ending without action.")
 				return True
 			if NavigationInstance.instance.isRecordTimerImageStandard:
 				isRecTimerWakeup = NavigationInstance.instance.RecordTimer.isRecTimerWakeup()
@@ -521,7 +521,7 @@ class PowerTimerEntry(TimerEntry):
 			elif exists(TIMER_FLAG_FILE) and not wasTimerWakeup:
 				wasTimerWakeup = int(open(TIMER_FLAG_FILE).read()) and True or False
 		if nextState == self.StatePrepared:
-			self.log(6, "Prepare okay, waiting for begin %s." % ctime(self.begin))
+			self.log(6, f"Prepare okay, waiting for begin {ctime(self.begin)}.")
 			self.backoff = 0
 			return True
 		elif nextState == self.StateRunning:
@@ -885,7 +885,7 @@ class PowerTimerEntry(TimerEntry):
 		self.start_prepare = self.begin - self.prepare_time
 		self.backoff = 0
 		if oldPrepare > 60 and oldPrepare != int(self.start_prepare):
-			self.log(15, "Time changed, start preparing is now %s." % ctime(self.start_prepare))
+			self.log(15, f"Time changed, start preparing is now {ctime(self.start_prepare)}.")
 
 	def do_backoff(self):
 		if Screens.Standby.inStandby and not wasTimerWakeup or RSsave or RBsave or aeDSsave or DSsave:
@@ -897,7 +897,7 @@ class PowerTimerEntry(TimerEntry):
 				self.backoff += 300
 				if self.backoff > 900:
 					self.backoff = 900
-		self.log(10, "Backoff, retry in %d minutes." % (self.backoff // 60))
+		self.log(10, f"Backoff, retry in {int(self.backoff // 60)} minutes.")
 
 	def log(self, code, msg):
 		self.log_entries.append((int(time()), code, msg))
@@ -989,18 +989,18 @@ class PowerTimerEntry(TimerEntry):
 				continue
 			if timer[1] is None and timer[2] is None and timer[3] is None:  # Faketime.
 				if DEBUG:
-					print("[PowerTimer] Shift #2 - Timer is fake time %s %s." % (ctime(timer[0]), str(timer)))
+					print(f"[PowerTimer] Shift #2 - Timer is fake time {ctime(timer[0])} {str(timer)}.")
 				shiftPT = True
 				continue
 			if timer[0] == self.begin and timer[1] == self.timerType and timer[2] is None and timer[3] == self.state or timer[0] == self.end and timer[1] is None and timer[2] == self.afterEvent and timer[3] == self.state:  # Is timer in list itself?
 				if DEBUG:
-					print("[PowerTimer] Timer is itself %s %s." % (ctime(timer[0]), str(timer)))
+					print(f"[PowerTimer] Timer is itself {ctime(timer[0])} {str(timer)}.")
 				nextPTitself = True
 			else:
 				nextPTitself = False
 			if (timer[1] in prioPT or timer[2] in prioPTae) and not nextPTitself:
 				if DEBUG:
-					print("[PowerTimer] Break #2 <= 900 %s %s." % (ctime(timer[0]), str(timer)))
+					print(f"[PowerTimer] Break #2 <= 900 {ctime(timer[0])} {str(timer)}.")
 				breakPT = True
 				break
 		return shiftPT, breakPT
@@ -1052,11 +1052,11 @@ class PowerTimerEntry(TimerEntry):
 		if self.netip:
 			try:
 				for ip in [x.strip() for x in self.ipadress.split(",")]:
-					if call(("/bin/ping -q -w1 -c1 %s" % ip).split(" ")) == 0:
+					if call(f"/bin/ping -q -w1 -c1 {ip}".split(" ")) == 0:
 						retVal = True
 						break
 			except Exception:
-				print("[PowerTimer] Error reading IP -> %s!" % self.ipadress)
+				print(f"[PowerTimer] Error reading IP -> {self.ipadress}!")
 		return retVal
 
 	def getNetworkTraffic(self, getInitialValue=False):
@@ -1072,7 +1072,7 @@ class PowerTimerEntry(TimerEntry):
 				if getInitialValue:
 					self.netbytes = newBytes
 					self.netbytes_time = now
-					print("[PowerTimer] NetworkTraffic: Initial bytes=%d, time is %s." % (newBytes, ctime(now)))
+					print(f"[PowerTimer] NetworkTraffic: Initial bytes={newBytes}, time is {ctime(now)}.")
 					return
 				oldBytes = self.netbytes
 				seconds = now - self.netbytes_time
@@ -1083,7 +1083,7 @@ class PowerTimerEntry(TimerEntry):
 					print("[PowerTimer] NetworkTraffic: Overflow of interface counter, waiting for next value.")
 					return True
 				else:
-					print("[PowerTimer] NetworkTraffic: %0.2f Kbps (%0.2f MByte in %d seconds), actualBytes=%d, time is %s." % (diffBytes, diffBytes / 8.0 / 1024.0 * seconds, seconds, newBytes, ctime(now)))
+					print(f"[PowerTimer] NetworkTraffic: {diffBytes:0.2f} Kbps ({diffBytes / 8.0 / 1024.0 * seconds:0.2f} MByte in {seconds} seconds), actualBytes={newBytes}, time is {ctime(now)}.")
 				if diffBytes > self.trafficlimit:
 					return True
 			else:
