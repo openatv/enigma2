@@ -93,6 +93,7 @@ class ChoiceBoxNew(Screen):
 		self["summary_list"] = StaticText()  # Temporary hack to support old display skins.
 		self["summary_selection"] = StaticText()  # Temporary hack to support old display skins.
 		self.onLayoutFinish.append(self.layoutFinished)
+		self.list = self.choiceList  # Support for old skins and plugins
 
 	def layoutFinished(self):
 		self["list"].enableAutoNavigation(False)  # Override list box navigation.
@@ -281,4 +282,3 @@ class ChoiceBox(ChoiceBoxNew):
 		if allowCancel is None:
 			allowCancel = True
 		ChoiceBoxNew.__init__(self, session, text=text, choiceList=choiceList, selection=selection, buttonList=buttonList, reorderConfig=reorderConfig, allowCancel=allowCancel, skinName=skinName, windowTitle=windowTitle)
-		self.list = self.choiceList  # Support for old skins an plugins

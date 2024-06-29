@@ -7,11 +7,11 @@
 	</screen>
 	<!-- Rec Panel -->
 	<screen name="MeinRecordingPanel">
-		<widget source="session.RecordState" render="Pixmap" position="0,0" pixmap="/usr/share/enigma2/display/skin_default/record.png" transparent="1" alphatest="on" size="400,33" zPosition="1">
+		<widget source="session.RecordState" render="Pixmap" position="center,209" pixmap="/usr/share/enigma2/display/skin_default/record.png" transparent="1" alphatest="on" size="21,21" zPosition="1">
 			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide">Blink,1000</convert>
 		</widget>
-		<widget source="session.RecordState" render="Pixmap" position="0,0" pixmap="/usr/share/enigma2/display/skin_default/record.png" transparent="1" alphatest="on" size="400,33" zPosition="1">
+		<widget source="session.RecordState" render="Pixmap" position="center,209" pixmap="/usr/share/enigma2/display/skin_default/record.png" transparent="1" alphatest="on" size="21,21" zPosition="1">
 			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,False,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>

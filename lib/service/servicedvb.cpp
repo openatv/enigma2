@@ -1476,6 +1476,31 @@ RESULT eDVBServicePlay::stop()
 
 RESULT eDVBServicePlay::setTarget(int target, bool noaudio = false)
 {
+	// start/stop audio
+	if (target == 1000)
+	{
+		if (noaudio) // stop audio
+		{
+			if (m_decoder && !m_noaudio)
+			{
+				m_noaudio = true;
+				m_decoder->setSyncPCR(-1);
+				m_decoder->setAudioPID(-1, -1);
+				m_decoder->set();
+				return 0;
+			}
+		}
+		else // start audio
+		{
+			if (m_noaudio)
+			{
+				m_noaudio = false;
+				updateDecoder(m_noaudio);
+				return 0;
+			}
+		}
+		return -1;
+	}
 	m_is_primary = !target;
 	m_decoder_index = target;
 	m_noaudio = noaudio;
@@ -2173,6 +2198,9 @@ int eDVBServicePlay::getCurrentTrack()
 
 RESULT eDVBServicePlay::selectTrack(unsigned int i)
 {
+	if (m_noaudio)
+		return -1;
+
 	int ret = selectAudioStream(i);
 
 	if (m_decoder->set())
@@ -3087,13 +3115,8 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 		}
 		eDebugNoNewLine(", and the pcr pid is %04x", program.pcrPid);
 		pcrpid = program.pcrPid;
-		if(m_reference.path.empty())
-		{
-			eDebugNoNewLine(", and the text pid is %04x\n", program.textPid);
-			tpid = program.textPid;
-		}
-		else
-			eDebugNoNewLine(", and text pid is %04x but will be ignored\n", program.textPid);
+		eDebugNoNewLine(", and the text pid is %04x\n", program.textPid);
+		tpid = program.textPid;
 	}
 
 	m_have_video_pid = 0;

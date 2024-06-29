@@ -1,5 +1,6 @@
 from datetime import date
-from os import popen, makedirs, listdir, stat, rename, remove
+from glob import glob
+from os import makedirs, listdir, stat, rename, remove
 from os.path import exists, isdir, join
 
 from enigma import eTimer, eEnv, eConsoleAppContainer, eEPGCache
@@ -32,7 +33,7 @@ def eEnv_resolve_multi(path):
 
 
 # MANDATORY_RIGHTS contains commands to ensure correct rights for certain files, shared with ShellCompatibleFunctions for FastRestore
-MANDATORY_RIGHTS = ShellCompatibleFunctions.MANDATORY_RIGHTS
+MANDATORY_RIGHTS = ShellCompatibleFunctions.MANDATORY_RIGHTS + " ; exit 0"
 
 # BLACKLISTED lists all files/folders that MUST NOT be backed up or restored in order for the image to work properly, shared with ShellCompatibleFunctions for FastRestore
 BLACKLISTED = ShellCompatibleFunctions.BLACKLISTED
@@ -184,7 +185,7 @@ class BackupScreen(Screen, ConfigListScreen):
 				if exists(newFilename):
 					remove(newFilename)
 				rename(fullbackupFilename, newFilename)
-			self.session.openWithCallback(self.backupFinishedCB, Console, title=self.screenTitle, cmdlist=cmdList, closeOnSuccess=self.closeOnSuccess)
+			self.session.openWithCallback(self.backupFinishedCB, Console, title=self.screenTitle, cmdlist=cmdList, closeOnSuccess=self.closeOnSuccess, showScripts=False)
 		except OSError:
 			self.session.openWithCallback(self.backupErrorCB, MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout=10)
 
@@ -405,7 +406,7 @@ class RestoreMenu(Screen):
 		cmds = [tarcmd, MANDATORY_RIGHTS, "/etc/init.d/autofs restart", "killall -9 enigma2"]
 		if ret:
 			cmds.insert(0, "rm -R /etc/enigma2")
-		self.session.open(Console, title=_("Restoring..."), cmdlist=cmds)
+		self.session.open(Console, title=_("Restoring..."), cmdlist=cmds, showScripts=False)
 
 	def deleteFile(self):
 		if (self.exe is False) and (self.entry is True):
@@ -463,8 +464,7 @@ class RestoreScreen(Screen, ConfigListScreen):
 			restorecmdlist += ["echo 0 > /proc/stb/vmpeg/0/dst_height", "echo 0 > /proc/stb/vmpeg/0/dst_left", "echo 0 > /proc/stb/vmpeg/0/dst_top", "echo 0 > /proc/stb/vmpeg/0/dst_width"]
 		restorecmdlist.append("/etc/init.d/autofs restart")
 		print("[SOFTWARE MANAGER] Restore Settings !!!!")
-
-		self.session.openWithCallback(self.restoreFinishedCB, Console, title=self.screenTitle, cmdlist=restorecmdlist)
+		self.session.openWithCallback(self.restoreFinishedCB, Console, title=self.screenTitle, cmdlist=restorecmdlist, closeOnSuccess=True, showScripts=False)
 
 	def restoreFinishedCB(self, retval=None):
 		ShellCompatibleFunctions.restoreUserDB()
@@ -493,18 +493,18 @@ class RestoreScreen(Screen, ConfigListScreen):
 				break
 
 		if startSH:
-			self.session.openWithCallback(self.restoreMetrixSkin, Console, title=_("Running Myrestore script, Please wait ..."), cmdlist=[startSH], closeOnSuccess=True)
+			self.session.openWithCallback(self.restoreMetrixSkin, Console, title=_("Running Myrestore script, Please wait ..."), cmdlist=[startSH], closeOnSuccess=True, showScripts=False)
 		else:
 			self.restoreMetrixSkin()
 
 	def restartGUI(self, ret=None):
-		self.session.open(Console, title=_("Your %s %s will Restart...") % getBoxDisplayName(), cmdlist=["killall -9 enigma2"])
+		self.session.open(Console, title=_("Your %s %s will Restart...") % getBoxDisplayName(), cmdlist=["killall -9 enigma2"], showScripts=False)
 
 	def rebootSYS(self, ret=None):
 		try:
 			with open("/tmp/rebootSYS.sh", "w") as fd:
 				fd.write("#!/bin/bash\n\nkillall -9 enigma2\nreboot\n")
-			self.session.open(Console, title=_("Your %s %s will Reboot...") % getBoxDisplayName(), cmdlist=["chmod +x /tmp/rebootSYS.sh", "/tmp/rebootSYS.sh"])
+			self.session.open(Console, title=_("Your %s %s will Reboot...") % getBoxDisplayName(), cmdlist=["chmod +x /tmp/rebootSYS.sh", "/tmp/rebootSYS.sh"], showScripts=False)
 		except Exception:
 			self.restartGUI()
 
@@ -659,7 +659,6 @@ class installedPlugins(Screen):
 
 
 class RestorePlugins(Screen):
-
 	def __init__(self, session, menulist, removelist=None):
 		Screen.__init__(self, session)
 		self.setTitle(_("Restore Plugins"))
@@ -678,69 +677,63 @@ class RestorePlugins(Screen):
 		self["summary_description"] = StaticText("")
 
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
-				{
-					"red": self.close,
-					"green": self.green,
-					"cancel": self.close,
-					"ok": self.ok
-				}, -2)
+		{
+			"red": self.close,
+			"green": self.green,
+			"cancel": self.close,
+			"ok": self.ok
+		}, -2)
 
 		self["menu"].setList(menulist)
 		self["menu"].setIndex(self.index)
-		self.onShown.append(self.setWindowTitle)
+		self.onShown.append(self.runOnce)
 
-	def setWindowTitle(self):
+	def runOnce(self):
+		self.onShown.remove(self.runOnce)
 		self.selectionChanged()
-		self.setTitle(_("Restore Plugins"))
 		if (exists("/media/hdd/images/config/plugins") and config.misc.firstrun.value) or len(self.list) == 0:
 			self.green()
 
 	def green(self):
-		self.pluginlist = []
-		self.pluginlistfirst = []
-		self.myipklist = []
-		self.myipklistfirst = []
+		def searchIPKs():
+			fileNames = []
+			for searchDir in (x for x in ("/media/hdd/images/ipk", "/media/usb/images/ipk", "/media/mmc/images/ipk", "/media/cf/images/ipk") if isdir(x)):
+				fileNames.extend([x for x in glob(join(searchDir, "*.ipk"), recursive=True) if "./open-multiboot/" not in x])
+			return fileNames
+
+		pluginlist = []
+		pluginlistfirst = []
+		myipklist = []
+		myipklistfirst = []
+		ipkFileNames = searchIPKs()
 		for x in self.list:
 			if x[2]:
-				myipk = self.searchIPK(x[0])
+				myipk = [i for i in ipkFileNames if x[0] in i]
 				if myipk:
+					myipk = myipk[0]
 					if "-feed-" in myipk:
-						self.myipklistfirst.append(myipk)
+						myipklistfirst.append(myipk)
 					else:
-						self.myipklist.append(myipk)
+						myipklist.append(myipk)
 				else:
 					if "-feed-" in x[0]:
-						self.pluginlistfirst.append(x[0])
+						pluginlistfirst.append(x[0])
 					else:
-						self.pluginlist.append(x[0])
+						pluginlist.append(x[0])
 
-		# Install previously installed feeds first, they might be required for the other packages to install ...
-		if self.pluginlistfirst:
-			self.session.openWithCallback(self.installLocalIPKFeeds, Console, title=_("Installing feeds from feed ..."), cmdlist=["opkg install " + " ".join(self.pluginlistfirst) + " ; opkg update"], closeOnSuccess=True)
-		else:
-			self.installLocalIPKFeeds()
-
-	def installLocalIPKFeeds(self):
-		if self.myipklistfirst:
-			self.session.openWithCallback(self.installLocalIPK, Console, title=_("Installing feeds from IPK ..."), cmdlist=["opkg install " + " ".join(self.myipklistfirst) + " ; opkg update"], closeOnSuccess=True)
-		else:
-			self.installLocalIPK()
-
-	def installLocalIPK(self):
-		if self.myipklist:
-			self.session.openWithCallback(self.installPlugins, Console, title=_("Installing plugins from IPK ..."), cmdlist=["opkg install " + " ".join(self.myipklist)], closeOnSuccess=True)
-		else:
-			self.installPlugins()
-
-	def installPlugins(self):
-		if self.pluginlist:
-			self.session.openWithCallback(self.removePlugins, Console, title=_("Installing plugins from feed ..."), cmdlist=["opkg install " + " ".join(self.pluginlist)], closeOnSuccess=True)
-		else:
-			self.removePlugins()
-
-	def removePlugins(self):
+		cmdList = []
+		if pluginlistfirst:
+			cmdList.append("opkg install " + " ".join(pluginlistfirst) + " ; opkg update")
+		if myipklistfirst:
+			cmdList.append("opkg install " + " ".join(myipklistfirst) + " ; opkg update")
+		if myipklist:
+			cmdList.append("opkg install " + " ".join(myipklist))
+		if pluginlist:
+			cmdList.append("opkg install " + " ".join(pluginlist))
 		if self.removelist:
-			self.session.openWithCallback(self.close, Console, title=_("Remove plugins ..."), cmdlist=["opkg --autoremove --force-depends remove " + " ".join(self.removelist)], closeOnSuccess=True)
+			cmdList.append("opkg --autoremove --force-depends remove " + " ".join(self.removelist))
+		if cmdList:
+			self.session.openWithCallback(self.close, Console, title=self.getTitle(), cmdlist=cmdList, closeOnSuccess=True, showScripts=False)
 		else:
 			self.close()
 
@@ -764,14 +757,6 @@ class RestorePlugins(Screen):
 
 	#def exitNoPlugin(self, ret):
 	#	self.close()
-
-	def searchIPK(self, ipkname):
-		ipkname = ipkname + "*"
-		search_dirs = ["/media/hdd/images/ipk", "/media/usb/images/ipk", "/media/mmc/images/ipk", "/media/cf/images/ipk"]
-		sdirs = " ".join(search_dirs)
-		cmd = f'find {sdirs} -name "{ipkname}" | grep -iv "./open-multiboot/*" | head -n 1'
-		res = popen(cmd).read()
-		return None if res == "" else res.replace("\n", "")
 
 
 class SoftwareManagerInfo(Screen):
