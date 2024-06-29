@@ -92,7 +92,7 @@ def parseEvent(event, description=True, newTimerData=False, isZapTimer=False):  
 		cridRecommendation = cridRecommendation and cridRecommendation[0][2]  # DEBUG: (Type, Location, "Value")
 	marginBefore = (getattr(config.recording, "zap_margin_before" if isZapTimer else "margin_before").value * 60)
 	marginAfter = (getattr(config.recording, "zap_margin_after" if isZapTimer else "margin_after").value * 60)
-	# print("[RecordTimer] DEBUG: series='%s', episode='%s', recommendation='%s', before=%d, after=%d." % (cridSeries, cridEpisode, cridRecommendation, marginBefore, marginAfter))
+	# print(f"[RecordTimer] DEBUG: series='{cridSeries}', episode='{cridEpisode}', recommendation='{cridRecommendation}', before={marginBefore}, after={marginAfter}.")
 	begin = eventBegin - marginBefore
 	end = eventEnd + marginAfter
 	if newTimerData:
@@ -113,12 +113,12 @@ class RecordTimer(Timer):
 			if timerDom is None:
 				AddPopup(_("The timer file '%s' is corrupt and could not be loaded.") % TIMER_XML_FILE, type=MessageBox.TYPE_ERROR, timeout=0, id="TimerLoadFailed")
 				try:
-					rename(TIMER_XML_FILE, "%s_bad" % TIMER_XML_FILE)
+					rename(TIMER_XML_FILE, f"{TIMER_XML_FILE}_bad")
 				except OSError as err:
-					print("[RecordTimer] Error %d: Unable to rename corrupt timer file out of the way!  (%s)" % (err.errno, err.strerror))
+					print(f"[RecordTimer] Error {err.errno}: Unable to rename corrupt timer file out of the way!  ({err.strerror})")
 				return
 		else:
-			print("[RecordTimer] Note: The timer file '%s' was not found!" % TIMER_XML_FILE)
+			print(f"[RecordTimer] Note: The timer file '{TIMER_XML_FILE}' was not found!")
 			return
 		check = True  # Display a message when at least one timer overlaps another one.
 		for timer in timerDom.findall("timer"):
@@ -139,63 +139,63 @@ class RecordTimer(Timer):
 			timerEntry.append("eventBegin=\"%d\"" % timer.eventBegin)
 			timerEntry.append("eventEnd=\"%d\"" % timer.eventEnd)
 			timerEntry.append("marginAfter=\"%d\"" % timer.marginAfter)
-			timerEntry.append("hasEndTime=\"%s\"" % timer.hasEndTime)
-			timerEntry.append("serviceref=\"%s\"" % stringToXML(str(timer.service_ref)))
+			timerEntry.append(f"hasEndTime=\"{timer.hasEndTime}\"")
+			timerEntry.append(f"serviceref=\"{stringToXML(str(timer.service_ref))}\"")
 			if timer.eit:
-				timerEntry.append("eit=\"%s\"" % timer.eit)
+				timerEntry.append(f"eit=\"{timer.eit}\"")
 			if timer.cridSeries or timer.cridEpisode or timer.cridRecommendation:
-				timerEntry.append("cridSeries=\"%s\"" % timer.cridSeries)
-				timerEntry.append("cridEpisode=\"%s\"" % timer.cridEpisode)
-				timerEntry.append("cridRecommendation=\"%s\"" % timer.cridRecommendation)
-			timerEntry.append("repeated=\"%s\"" % int(timer.repeated))
-			timerEntry.append("rename_repeat=\"%s\"" % int(timer.rename_repeat))
-			timerEntry.append("name=\"%s\"" % stringToXML(timer.name))
-			timerEntry.append("description=\"%s\"" % stringToXML(timer.description))
+				timerEntry.append(f"cridSeries=\"{timer.cridSeries}\"")
+				timerEntry.append(f"cridEpisode=\"{timer.cridEpisode}\"")
+				timerEntry.append(f"cridRecommendation=\"{timer.cridRecommendation}\"")
+			timerEntry.append(f"repeated=\"{int(timer.repeated)}\"")
+			timerEntry.append(f"rename_repeat=\"{int(timer.rename_repeat)}\"")
+			timerEntry.append(f"name=\"{stringToXML(timer.name)}\"")
+			timerEntry.append(f"description=\"{stringToXML(timer.description)}\"")
 			if timer.dirname:
-				timerEntry.append("location=\"%s\"" % stringToXML(timer.dirname))
+				timerEntry.append(f"location=\"{stringToXML(timer.dirname)}\"")
 			if timer.tags:
-				timerEntry.append("tags=\"%s\"" % stringToXML(" ".join(timer.tags)))
+				timerEntry.append(f"tags=\"{stringToXML(' '.join(timer.tags))}\"")
 			timerEntry.append("afterevent=\"%s\"" % stringToXML({
 				AFTEREVENT.NONE: "nothing",
 				AFTEREVENT.STANDBY: "standby",
 				AFTEREVENT.DEEPSTANDBY: "deepstandby",
 				AFTEREVENT.AUTO: "auto"
 			}[timer.afterEvent]))
-			timerEntry.append("disabled=\"%s\"" % int(timer.disabled))
-			timerEntry.append("justplay=\"%s\"" % int(timer.justplay))
-			timerEntry.append("always_zap=\"%s\"" % int(timer.always_zap))
-			timerEntry.append("descramble=\"%s\"" % int(timer.descramble))
-			timerEntry.append("record_ecm=\"%s\"" % int(timer.record_ecm))
+			timerEntry.append(f"disabled=\"{int(timer.disabled)}\"")
+			timerEntry.append(f"justplay=\"{int(timer.justplay)}\"")
+			timerEntry.append(f"always_zap=\"{int(timer.always_zap)}\"")
+			timerEntry.append(f"descramble=\"{int(timer.descramble)}\"")
+			timerEntry.append(f"record_ecm=\"{int(timer.record_ecm)}\"")
 			if timer.failed:
 				timerEntry.append("failed=\"1\"")
 			if timer.isAutoTimer:
 				# timerEntry.append("isAutoTimer=\"True\"")
 				timerEntry.append("isAutoTimer=\"1\"")
 			if timer.ice_timer_id:
-				timerEntry.append("ice_timer_id=\"%s\"" % timer.ice_timer_id)
+				timerEntry.append(f"ice_timer_id=\"{timer.ice_timer_id}\"")
 			if timer.vpsplugin_enabled:
 				timerEntry.append("vps_enabled=\"1\"")
-				timerEntry.append("vps_overwrite=\"%s\"" % ("1" if timer.vpsplugin_overwrite else "0"))
-				timerEntry.append("vps_time=\"%s\"" % (timer.vpsplugin_time if timer.vpsplugin_time else "0"))
+				timerEntry.append(f"vps_overwrite=\"{'1' if timer.vpsplugin_overwrite else '0'}\"")
+				timerEntry.append(f"vps_time=\"{timer.vpsplugin_time if timer.vpsplugin_time else '0'}\"")
 			timerLog = []
 			for logTime, logCode, logMsg in timer.log_entries:
 				timerLog.append("\t\t<log code=\"%d\" time=\"%d\">%s</log>" % (logCode, logTime, stringToXML(logMsg)))
 			if timerLog:
-				timerList.append("%s>" % " ".join(timerEntry))
+				timerList.append(f"{' '.join(timerEntry)}>")
 				timerList += timerLog
 				timerList.append("\t</timer>")
 			else:
-				timerList.append("%s />" % " ".join(timerEntry))
+				timerList.append(f"{' '.join(timerEntry)} />")
 		timerList.append("</timers>")
 		timerList.append("")
 		try:
-			with open("%s.writing" % TIMER_XML_FILE, "w") as fd:
+			with open(f"{TIMER_XML_FILE}.writing", "w") as fd:
 				fd.write("\n".join(timerList))
 				fd.flush()
 				fsync(fd.fileno())
-			rename("%s.writing" % TIMER_XML_FILE, TIMER_XML_FILE)
+			rename(f"{TIMER_XML_FILE}.writing", TIMER_XML_FILE)
 		except OSError as err:
-			print("[RecordTimer] Error %d: Unable to save timer entries to '%s'!  (%s)" % (err.errno, TIMER_XML_FILE, err.strerror))
+			print(f"[RecordTimer] Error {err.errno}: Unable to save timer entries to '{TIMER_XML_FILE}'!  ({err.strerror})")
 
 	def saveTimer(self):  # Deprecated method name only used by some plug ins.
 		return self.saveTimers()
@@ -331,7 +331,7 @@ class RecordTimer(Timer):
 				if timer.justplay or nextAct + 3 < now:
 					continue
 				if DEBUG:
-					print("[RecordTimer] Next STB power up %s." % strftime("%a, %Y/%m/%d %H:%M", localtime(nextAct)))
+					print(f"[RecordTimer] Next STB power up {strftime('%a, %Y/%m/%d %H:%M', localtime(nextAct))}.")
 				if saveAct[0] == -1:
 					saveAct = (nextAct, int(not timer.always_zap))
 				else:
@@ -392,7 +392,7 @@ class RecordTimer(Timer):
 			print("[RecordTimer] Ignore duplicated timer.")
 			return None
 		timer.timeChanged()
-		print("[RecordTimer] Timer '%s'." % str(timer))
+		print(f"[RecordTimer] Timer '{str(timer)}'.")
 		timer.Timer = self
 		if not timer.log_entries:
 			timer.log(0, "Timer created")
@@ -404,7 +404,7 @@ class RecordTimer(Timer):
 		return None
 
 	def removeEntry(self, timer):
-		print("[RecordTimer] Remove timer '%s'." % str(timer))
+		print(f"[RecordTimer] Remove timer '{str(timer)}'.")
 		timer.repeated = False  # Avoid re-queuing.
 		timer.autoincrease = False
 		timer.abort()  # Abort timer. This sets the end time to current time, so timer will be stopped.
@@ -584,13 +584,13 @@ def findSafeRecordPath(dirname):  # Also called from InfoBarGenerics.
 	dirname = realpath(dirname)
 	mountPoint = findMountPoint(dirname)
 	if not ismount(mountPoint):
-		print("[RecordTimer] Media is not mounted for '%s'." % dirname)
+		print(f"[RecordTimer] Media is not mounted for '{dirname}'.")
 		return None
 	if not isdir(dirname):
 		try:
 			makedirs(dirname)
 		except OSError as err:
-			print("[RecordTimer] Error %d: Failed to create directory '%s'!  (%s)" % (err.errno, dirname, err.strerror))
+			print(f"[RecordTimer] Error {err.errno}: Failed to create directory '{dirname}'!  ({err.strerror})")
 			return None
 	return dirname
 
@@ -714,9 +714,9 @@ class RecordTimerEntry(TimerEntry):
 	service_ref = property(getServiceRef, setServiceRef)
 
 	def __repr__(self):
-		iceTV = ", ice_timer_id=%s" % self.ice_timer_id if self.ice_timer_id else ""
+		iceTV = f", ice_timer_id={self.ice_timer_id}" if self.ice_timer_id else ""
 		disabled = ", Disabled" if self.disabled else ""
-		return "RecordTimerEntry(name=%s, begin=%s, end=%s, serviceref=%s, justplay=%s, isAutoTimer=%s%s%s)" % (self.name, ctime(self.begin), ctime(self.end), self.service_ref, self.justplay, self.isAutoTimer, iceTV, disabled)
+		return f"RecordTimerEntry(name={self.name}, begin={ctime(self.begin)}, end={ctime(self.end)}, serviceref={self.service_ref}, justplay={self.justplay}, isAutoTimer={self.isAutoTimer}{iceTV}{disabled})"
 
 	def activate(self):
 		global InfoBar, wasRecTimerWakeup
@@ -724,12 +724,12 @@ class RecordTimerEntry(TimerEntry):
 			try:
 				from Screens.InfoBar import InfoBar
 			except Exception as err:
-				print("[RecordTimer] Error: Import 'InfoBar' from 'Screens.InfoBar' failed!  (%s)" % str(err))
+				print(f"[RecordTimer] Error: Import 'InfoBar' from 'Screens.InfoBar' failed!  ({str(err)})")
 		if exists(TIMER_FLAG_FILE) and not wasRecTimerWakeup:
 			wasRecTimerWakeup = int(open(TIMER_FLAG_FILE).read()) and True or False
 		nextState = self.state + 1
 		if DEBUG:
-			self.log(5, "Activating state %d." % nextState)
+			self.log(5, f"Activating state {nextState}.")
 		# print("[RecordTimer] Activate called", time(), nextState, self.first_try_prepare, " pending ", self.messageBoxAnswerPending, " justTried ", self.justTriedFreeingTuner, " show ", self.messageStringShow, self.messageString)  # DEBUG: remove.
 		if nextState == self.StatePrepared:
 			if self.messageBoxAnswerPending:
@@ -743,7 +743,7 @@ class RecordTimerEntry(TimerEntry):
 				if self.mountPathErrorNumber < 3 and self.mountPathRetryCounter < 3:
 					self.mountPathRetryCounter += 1
 					self.start_prepare = int(time()) + 5  # tryPrepare in 5 seconds.
-					self.log(0, "Next try in 5 seconds.  (%d/3)" % self.mountPathRetryCounter)
+					self.log(0, f"Next try in 5 seconds.  ({self.mountPathRetryCounter}/3)")
 					return False
 				message = _("Write error at start of recording. %s\n%s") % ((_("Storage device not found!"), _("Storage device not writable!"), _("Storage device full!"))[self.mountPathErrorNumber - 1], self.name)
 				if InfoBar and InfoBar.instance:
@@ -791,7 +791,7 @@ class RecordTimerEntry(TimerEntry):
 					try:
 						Trashcan.instance.cleanIfIdle()
 					except Exception as err:
-						print("[RecordTimer] Error: Failed to call Trashcan.instance.cleanIfIdle!  (%s)" % str(err))
+						print(f"[RecordTimer] Error: Failed to call Trashcan.instance.cleanIfIdle!  ({str(err)})")
 				# Fine, it worked, resources are allocated.
 				self.next_activation = self.begin
 				self.backoff = 0
@@ -928,7 +928,7 @@ class RecordTimerEntry(TimerEntry):
 				recordRes = self.record_service.start()
 				self.setRecordingPreferredTuner(setdefault=True)
 				if recordRes:
-					self.log(13, "Start recording error %d!" % recordRes)
+					self.log(13, f"Start recording error {recordRes}!")
 					self.do_backoff()
 					# Retry.
 					self.begin = int(time()) + self.backoff
@@ -937,7 +937,7 @@ class RecordTimerEntry(TimerEntry):
 		elif nextState == self.StateEnded or nextState == self.StateFailed:
 			oldEnd = self.end
 			if self.setAutoincreaseEnd():
-				self.log(12, "Auto increase recording length %d minute(s)." % int((self.end - oldEnd) / 60))
+				self.log(12, f"Auto increase recording length {int((self.end - oldEnd) / 60)} minute(s).")
 				self.state -= 1
 				return True
 			if self.justplay:
@@ -953,9 +953,11 @@ class RecordTimerEntry(TimerEntry):
 			NavigationInstance.instance.RecordTimer.saveTimers()
 			boxInStandby = Screens.Standby.inStandby
 			tvNotActive = Screens.Standby.TVinStandby.getTVstate("notactive")
-			isRecordTime = abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - int(time())) <= 900 or NavigationInstance.instance.RecordTimer.getStillRecording()
+			isStillRecording = NavigationInstance.instance.RecordTimer.getStillRecording()
+			nextRecordingTime = NavigationInstance.instance.RecordTimer.getNextRecordingTime()
+			isRecordTime = abs(nextRecordingTime - int(time())) <= 900 or isStillRecording
 			if DEBUG:
-				print("[RecordTimer] boxInStandby='%s', tvNotActive='%s', wasRecTimerWakeup='%s', self.wasInStandby='%s', self.afterEvent='%s', isRecordTime='%s'." % (boxInStandby, tvNotActive, wasRecTimerWakeup, self.wasInStandby, self.afterEvent, isRecordTime))
+				print(f"[RecordTimer] boxInStandby='{boxInStandby}', tvNotActive='{tvNotActive}', wasRecTimerWakeup='{wasRecTimerWakeup}', self.wasInStandby='{self.wasInStandby}', self.afterEvent='{self.afterEvent}', isRecordTime='{isRecordTime}', nextRecordingTime='{nextRecordingTime}', isStillRecording='{isStillRecording}'.")
 			if self.afterEvent == AFTEREVENT.STANDBY or (self.afterEvent == AFTEREVENT.AUTO and self.wasInStandby and (not wasRecTimerWakeup or (wasRecTimerWakeup and isRecordTime))):
 				if not boxInStandby and not tvNotActive:  # Not already in standby.
 					message = _("A finished record timer wants to set your\n%s %s to standby. Do that now?") % getBoxDisplayName()
@@ -1051,7 +1053,7 @@ class RecordTimerEntry(TimerEntry):
 		self.start_prepare = int(self.begin) - config.recording.prepare_time.value  # self.prepare_time
 		self.backoff = 0
 		if oldPrepare > 60 and oldPrepare != self.start_prepare:
-			self.log(15, "Record time changed, start prepare is now %s." % ctime(self.start_prepare))
+			self.log(15, f"Record time changed, start prepare is now {ctime(self.start_prepare)}.")
 
 	def do_backoff(self):
 		if self.backoff == 0:
@@ -1060,11 +1062,11 @@ class RecordTimerEntry(TimerEntry):
 			self.backoff *= 2
 			if self.backoff > 100:
 				self.backoff = 100
-		self.log(10, "Backoff, retry in %d seconds." % self.backoff)
+		self.log(10, f"Backoff, retry in {self.backoff} seconds.")
 
 	def log(self, code, msg):
 		self.log_entries.append((int(time()), code, msg))
-		print("[RecordTimer] Log: '%s'." % msg)
+		print(f"[RecordTimer] Log: '{msg}'.")
 
 	def setAutoincreaseEnd(self, entry=None):
 		if not self.autoincrease:
@@ -1116,7 +1118,7 @@ class RecordTimerEntry(TimerEntry):
 
 	def stopMountText(self, thread, cmd):
 		if thread and thread.is_alive():
-			print("[RecordTimer] Timeout thread: '%s'." % cmd)
+			print(f"[RecordTimer] Timeout thread: '{cmd}'.")
 			thread.join(timeout=1)
 		if cmd == "writeable":
 			self.mountPathErrorNumber = 2
@@ -1127,7 +1129,7 @@ class RecordTimerEntry(TimerEntry):
 		if WRITEERROR:
 			dirname = self.mountPath
 			if findSafeRecordPath(dirname) is None:
-				return ("mount '%s' is not available." % dirname, 1)
+				return (f"mount '{dirname}' is not available.", 1)
 		else:
 			self.mountPath = None
 			if not self.dirname:
@@ -1141,12 +1143,12 @@ class RecordTimerEntry(TimerEntry):
 				dirname = self.dirname
 				if not dirname:
 					dirname = defaultMoviePath() or "-"
-				self.log(0, "Mount '%s' is not available." % dirname)
+				self.log(0, f"Mount '{dirname}' is not available.")
 				self.mountPathErrorNumber = 1
 				return False
 		self.mountPathErrorNumber = 0
 		for cmd in ("writeable", "freespace"):
-			print("[RecordTimer] Starting thread: '%s'." % cmd)
+			print(f"[RecordTimer] Starting thread: '{cmd}'.")
 			processThread = Thread(target=self.mountTest, args=(dirname, cmd))
 			timerThread = ThreadTimer(5, self.stopMountText, args=(processThread, cmd))
 			timerThread.start()
@@ -1154,21 +1156,21 @@ class RecordTimerEntry(TimerEntry):
 			processThread.join()
 			timerThread.cancel()
 			if self.mountPathErrorNumber:
-				print("[RecordTimer] Break: Error number %d." % self.mountPathErrorNumber)
+				print(f"[RecordTimer] Break: Error number {self.mountPathErrorNumber}.")
 				break
-			print("[RecordTimer] Finished thread: '%s'." % cmd)
+			print(f"[RecordTimer] Finished thread: '{cmd}'.")
 		if WRITEERROR:
 			if self.mountPathErrorNumber == 2:
-				return ("mount '%s' is not writable." % dirname, 2)
+				return (f"mount '{dirname}' is not writable.", 2)
 			elif self.mountPathErrorNumber == 3:
-				return ("mount '%s' has not enough free space to record." % dirname, 3)
+				return (f"mount '{dirname}' has not enough free space to record.", 3)
 			else:
 				return ("unknown error.", 0)
 		if self.mountPathErrorNumber == 2:
-			self.log(0, "Mount '%s' is not writable." % dirname)
+			self.log(0, f"Mount '{dirname}' is not writable.")
 			return False
 		elif self.mountPathErrorNumber == 3:
-			self.log(0, "Mount '%s' has insufficient free space to record." % dirname)
+			self.log(0, f"Mount '{dirname}' has insufficient free space to record.")
 			return False
 		else:
 			if DEBUG:
@@ -1181,25 +1183,25 @@ class RecordTimerEntry(TimerEntry):
 	def calculateFilename(self, name=None):
 		beginDate = strftime("%Y%m%d %H%M", localtime(self.begin))
 		name = name or self.name
-		filename = "%s - %s" % (beginDate, self.service_ref.getServiceName())
+		filename = f"{beginDate} - {self.service_ref.getServiceName()}"
 		if name:
 			if config.recording.filename_composition.value == "veryveryshort":
 				filename = name
 			elif config.recording.filename_composition.value == "veryshort":
-				filename = "%s - %s" % (name, beginDate)
+				filename = f"{name} - {beginDate}"
 			elif config.recording.filename_composition.value == "short":
-				filename = "%s - %s" % (strftime("%Y%m%d", localtime(self.begin)), name)
+				filename = f"{strftime('%Y%m%d', localtime(self.begin))} - {name}"
 			elif config.recording.filename_composition.value == "shortwithtime":
-				filename = "%s - %s" % (strftime("%Y%m%d %H%M", localtime(self.begin)), name)
+				filename = f"{strftime('%Y%m%d %H%M', localtime(self.begin))} - {name}"
 			elif config.recording.filename_composition.value == "long":
-				filename = "%s - %s - %s" % (filename, name, self.description)
+				filename = f"{filename} - {name} - {self.description}"
 			else:
-				filename = "%s - %s" % (filename, name)  # Standard.
+				filename = f"{filename} - {name}"  # Standard.
 		if config.recording.ascii_filenames.value:
 			filename = legacyEncode(filename)
 		self.Filename = getRecordingFilename(filename, self.mountPath)
 		if DEBUG:
-			self.log(0, "Filename calculated as '%s'." % self.Filename)
+			self.log(0, f"Filename calculated as '{self.Filename}'.")
 		return self.Filename
 
 	def getEventFromEPGId(self, id=None):
@@ -1261,12 +1263,12 @@ class RecordTimerEntry(TimerEntry):
 				eventId = self.eit
 				if eventId is None:
 					eventId = -1
-			prepareResult = self.record_service.prepare("%s%s" % (self.Filename, self.record_service.getFilenameExtension()), self.begin, self.end, eventId, name.replace("\n", " "), description.replace("\n", " "), " ".join(self.tags), bool(self.descramble), bool(self.record_ecm))
+			prepareResult = self.record_service.prepare(f"{self.Filename}{self.record_service.getFilenameExtension()}", self.begin, self.end, eventId, name.replace("\n", " "), description.replace("\n", " "), " ".join(self.tags), bool(self.descramble), bool(self.record_ecm))
 			if prepareResult:
 				if prepareResult == -255:
 					self.log(4, "Failed to write meta information!")
 				else:
-					self.log(2, "The 'prepare' call failed with error %d!" % prepareResult)
+					self.log(2, f"The 'prepare' call failed with error {prepareResult}!")
 				# We must calculate only start time before stopRecordService call because in Screens/Standby.py TryQuitMainloop
 				# tries to get the next start time in evEnd event handler.
 				self.do_backoff()
@@ -1365,7 +1367,7 @@ class RecordTimerEntry(TimerEntry):
 		# DEBUG: This is not working (never true), please fix. (Comparing two swig wrapped ePtrs.)
 		if self.__record_service.__deref__() != record.__deref__():
 			return
-		# self.log(16, "Record event %d." % event)
+		# self.log(16, f"Record event {event}.")
 		if event == iRecordableService.evRecordWriteError:
 			if self.record_service:
 				NavigationInstance.instance.stopRecordService(self.record_service)
@@ -1375,8 +1377,8 @@ class RecordTimerEntry(TimerEntry):
 			self.end = int(time()) + 5
 			self.backoff = 0
 			msg, err = self.freespace(True)
-			self.log(16, "Write error while recording, %s" % msg)
-			print("[RecordTimer] Write error while recording, %s" % msg)
+			self.log(16, f"Write error while recording, {msg}")
+			print(f"[RecordTimer] Write error while recording, {msg}")
 			# Show notification. The 'id' will make sure that it will be displayed only once, even if
 			# more timers are failing at the same time which is very likely in case of disk full.
 			AddPopup(text=_("Write error while recording. %s") % (_("An unknown error occurred!"), _("Storage device not found!"), _("Storage device not writable!"), _("Storage device full!"))[err], type=MessageBox.TYPE_ERROR, timeout=0, id="DiskFullMessage")
