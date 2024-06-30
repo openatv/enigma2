@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-06-21 14:25+0000\n"
-"PO-Revision-Date: 2024-05-29 10:09+0000\n"
+"PO-Revision-Date: 2024-06-24 13:09+0000\n"
 "Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.6-dev\n"
+"X-Generator: Weblate 5.6-rc\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1325,7 +1325,7 @@ msgid "(TV)"
 msgstr "(TV)"
 
 msgid "(The file '/media/hdd/images/config/myrestore.sh' exists and will be run after the image is flashed.)"
-msgstr "(Plik '/media/hdd/images/config/myrestore.sh' istnieje i zostanie uruchomiony po flashowaniu obrazu.)"
+msgstr "(Plik '/media/hdd/images/config/myrestore.sh' istnieje i zostanie uruchomiony po flashowaniu systemu.)"
 
 msgid "(empty)"
 msgstr "(puste)"
@@ -1354,13 +1354,13 @@ msgid "-"
 msgstr "-"
 
 msgid "- No space left on backup device."
-msgstr ""
+msgstr "- Brak miejsca na urządzeniu kopii zapasowej."
 
 msgid "- No write permission on backup device."
-msgstr ""
+msgstr "- Brak uprawnień do zapisu na urządzeniu kopii zapasowej."
 
 msgid "- Wrong backup destination."
-msgstr ""
+msgstr "- Złe miejsce docelowe kopii zapasowej."
 
 msgid "-24 Hours"
 msgstr "-24 Godziny"
@@ -1573,7 +1573,7 @@ msgid "A"
 msgstr "A"
 
 msgid "A backup is now being created."
-msgstr ""
+msgstr "Trwa tworzenie kopii zapasowej."
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr "Oddzielona przecinkami lista rozszerzeń, które mają być używane w ustawieniu „Moje rozszerzenie” w „Filtruj rozszerzenie”. Wprowadź nazwy rozszerzeń bez początkowej kropki (.)."
@@ -1728,16 +1728,16 @@ msgid "AFL"
 msgstr "AFL"
 
 msgid "AI-Powered translation color"
-msgstr ""
+msgstr "Kolor tłumaczenia zasilany sztuczną inteligencją"
 
 msgid "AI-Powered translation enabled"
-msgstr ""
+msgstr "Włączono tłumaczenie oparte na sztucznej inteligencji"
 
 msgid "AI-Powered translation language"
-msgstr ""
+msgstr "Język tłumaczenia oparty na sztucznej inteligencji"
 
 msgid "AI-Powered translation subscription code"
-msgstr ""
+msgstr "Kod subskrypcji tłumaczenia obsługiwanego przez sztuczną inteligencję"
 
 msgid "ARM"
 msgstr "ARM"
@@ -2088,7 +2088,7 @@ msgid "Advanced options and settings."
 msgstr "Ustawienia i opcje zaawansowane."
 
 msgid "Advanced video enhancement setup"
-msgstr "Ustawienia zaawansowane korekcji obrazu"
+msgstr "Zaawansowana konfiguracja ulepszania wideo"
 
 msgid "Adventure"
 msgstr "Przygoda"
@@ -2537,7 +2537,7 @@ msgid "Assamese"
 msgstr "Assamski"
 
 msgid "Assembling the image backup files."
-msgstr ""
+msgstr "Składanie plików kopii zapasowych systemu."
 
 msgid "Assigned CAIds:"
 msgstr "Przypisane CAIdy:"
@@ -2855,10 +2855,10 @@ msgid "Backup Mode"
 msgstr "Tryb kopii zapasowej"
 
 msgid "Backup Mode: Flash Online"
-msgstr ""
+msgstr "Tryb kopii zapasowej: Flash Online"
 
 msgid "Backup Mode: USB Recovery"
-msgstr ""
+msgstr "Tryb kopii zapasowej: USB Recovery"
 
 msgid "Backup Settings"
 msgstr "Kopia zapasowa ustawień"
@@ -2881,7 +2881,7 @@ msgstr ""
 
 #, python-format
 msgid "Backup tool for %s %s"
-msgstr ""
+msgstr "Narzędzie do tworzenia kopii zapasowych dla %s %s"
 
 msgid "Backup your %s %s settings."
 msgstr "Wykonaj kopię zapasową ustawień %s %s."
@@ -2899,7 +2899,7 @@ msgid "Backup your current settings. This includes E2-setup, channels, network a
 msgstr "Kopia zapasowa aktualnych ustawień. Obejmuje ustawienia, kanały, sieć i wszystkie zaznaczone pliki"
 
 msgid "Backup your running %s %s image to HDD or USB."
-msgstr "Utwórz kopię zapasową działającego obrazu %s %s na dysku HDD lub urządzeniu USB."
+msgstr "Utwórz kopię zapasową działającego systemu %s %s na dysku HDD lub urządzeniu USB."
 
 msgid "Bahamas"
 msgstr "Bahamy"
@@ -3523,7 +3523,7 @@ msgid "Can't allocate program source (e.g. tuner)"
 msgstr "Nie można przydzielić źródła programu (np. tunera)"
 
 msgid "Can't create backup directory!"
-msgstr ""
+msgstr "Nie można utworzyć katalogu kopii zapasowej!"
 
 msgid ""
 "Can't going to live TV!\n"
@@ -3612,10 +3612,10 @@ msgid "Cancel the flash process and exit all menus"
 msgstr "Anuluj proces flashowania i zamknij wszystkie menu"
 
 msgid "Cancel the image selection and exit"
-msgstr "Anuluj wybór obrazu i wyjdź"
+msgstr "Anuluj wybór systemu i wyjdź"
 
 msgid "Cancel the image selection and exit all menus"
-msgstr "Anuluj wybór obrazu i zamknij wszystkie menu"
+msgstr "Anuluj wybór systemu i zamknij wszystkie menu"
 
 msgid "Cancel the selection and exit"
 msgstr "Anuluj wybór i wyjdź"
@@ -3686,7 +3686,7 @@ msgid "Cayman Islands"
 msgstr "Kajmany"
 
 msgid "Cebuano"
-msgstr ""
+msgstr "Cebuański"
 
 msgid "Celsius"
 msgstr "Celsjusz"
@@ -3957,7 +3957,7 @@ msgid "Chinese"
 msgstr "Chiński"
 
 msgid "Chinese (Simplified)"
-msgstr ""
+msgstr "Chiński (Uproszczony)"
 
 msgid "Choice Box"
 msgstr "Okno wyboru"
@@ -4006,7 +4006,7 @@ msgid "Choose the display formatting style for times. 'H' / 'HH' is the hour for
 msgstr "Wybierz styl formatowania wyświetlania dla czasów. „H” / „HH” to godzina dla zegara 24-godzinnego, „h” / „hh” to godzina dla zegara 12-godzinnego, „mm” to minuty, a „ss” to sekundy. („HH” i „hh” mają zera wiodące dla wartości jednocyfrowych.) Obraz na ekranie będzie zależał od twojego wyboru, ale skóra może na niego wpływać."
 
 msgid "Choose the fallback font."
-msgstr ""
+msgstr "Wybierz czcionkę zastępczą."
 
 msgid "Choose the front panel display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Wybierz styl formatowania wyświetlania na wyświetlaczu przednim dla dat. „D” / „DD” to data, a „M” / „MM” to miesiąc cyframi. („DD” i „MM” mają zera wiodące dla wartości jednocyfrowych.) Obraz na ekranie będzie zależał od twojego wyboru, ale skóra może na niego wpływać."
@@ -4297,9 +4297,9 @@ msgstr "Wykonywanie polecenia..."
 
 msgid "Command finished."
 msgid_plural "Commands finished."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Polecenie zakończone."
+msgstr[1] "Polecenia zakończone."
+msgstr[2] "Poleceń zakończonych."
 
 msgid "Command order"
 msgstr "Kolejność poleceń"
@@ -4452,7 +4452,7 @@ msgid "Configure remote control type"
 msgstr "Skonfiguruj typ pilota zdalnego sterowania"
 
 msgid "Configure the AI-Powered translation language."
-msgstr ""
+msgstr "Skonfiguruj język tłumaczenia oparty na sztucznej inteligencji."
 
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "Skonfiguruj tryb DiSEqC dla tego LNB."
@@ -4479,7 +4479,7 @@ msgid "Configure the amount of time that will be presented."
 msgstr "Skonfiguruj czas, który będzie wyświetlany."
 
 msgid "Configure the aspect ratio of the screen."
-msgstr "Skonfiguruj format obrazu."
+msgstr "Skonfiguruj proporcje ekranu."
 
 msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
 msgstr "Skonfiguruj zachowanie klawisza 'pauza' gdy odtwarzanie filmu jest wstrzymane."
@@ -4506,7 +4506,7 @@ msgid "Configure the brightness level of the front panel display for standby."
 msgstr "Skonfiguruj poziom jasności przedniego wyświetlacza w trybie czuwaniu."
 
 msgid "Configure the color of the AI-Powered translations."
-msgstr ""
+msgstr "Skonfiguruj kolor tłumaczeń wspomaganych przez sztuczną inteligencję."
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
 msgstr "Skonfiguruj kolor napisów zewnętrznych,alternatywne(normalnie w kolorze białym, kursywa w żółtym, pogrubienie w błękicie, podkreślenia w kolorze zielonym), białe lub żółte."
@@ -5077,7 +5077,7 @@ msgstr "Utwórz link symboliczny"
 
 #, python-format
 msgid "Create recovery image backup '%s'."
-msgstr ""
+msgstr "Utwórz kopię zapasową systemu Recovery '%s'."
 
 msgid "Create separate radio user bouquet"
 msgstr "Utwórz osobną listę kanałów dla radia"
@@ -6262,7 +6262,7 @@ msgid "Do another manual service scan?"
 msgstr "Przeprowadzić kolejne ręczne skanowanie usług?"
 
 msgid "Do not backup the image"
-msgstr ""
+msgstr "Nie twórz kopii zapasowej systemu"
 
 msgid "Do not change"
 msgstr "Nie należy zmieniać"
@@ -6356,12 +6356,18 @@ msgid ""
 "\n"
 "HINT: This will take about 5 seconds!"
 msgstr ""
+"Czy na pewno chcesz ponownie uruchomić OSCam?\n"
+"\n"
+"WSKAZÓWKA: Zajmie to około 5 sekund!"
 
 msgid ""
 "Do you really want to shut down OSCam?\n"
 "\n"
 "ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
 msgstr ""
+"Czy na pewno chcesz zamknąć OSCam?\n"
+"\n"
+"UWAGA: Aby ponownie aktywować OSCam, należy przeprowadzić całkowity restart odbiornika!"
 
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
@@ -6420,7 +6426,7 @@ msgstr "Chcesz wykonać kolejne ręczne skanowanie kanałów?"
 
 #, python-format
 msgid "Do you want to flash the image '%s'?"
-msgstr "Czy chcesz flashować obraz \"%s\"?"
+msgstr "Czy chcesz flashować system \"%s\"?"
 
 msgid "Do you want to install a channel list?"
 msgstr "Czy chcesz zainstalować listę kanałów?"
@@ -6526,7 +6532,7 @@ msgid "Down / Inactive"
 msgstr "Nieaktywny"
 
 msgid "Download Image"
-msgstr "Pobierz obraz"
+msgstr "Pobierz System"
 
 msgid "Download Plugins"
 msgstr "Pobierz wtyczki"
@@ -6547,7 +6553,7 @@ msgid "Download error"
 msgstr "Błąd pobierania"
 
 msgid "Download the selected image"
-msgstr "Pobierz wybrany obraz"
+msgstr "Pobierz wybrany system"
 
 msgid "Downloadable plugins"
 msgstr "Wtyczki do pobrania"
@@ -6850,7 +6856,7 @@ msgid "Enable 5V for active antenna"
 msgstr "Włącz 5V dla aktywnej anteny"
 
 msgid "Enable AI-Powered translation for all teletext and DVB subtitles."
-msgstr ""
+msgstr "Włącz tłumaczenie wspomagane sztuczną inteligencją dla wszystkich napisów teletekstu i DVB."
 
 msgid "Enable Autorecord"
 msgstr "Włącz nagrywanie automatyczne"
@@ -7265,7 +7271,7 @@ msgid "Enter your personal feed URL to allow you to select packages from your pe
 msgstr "Wprowadź adres URL osobistego kanału, aby umożliwić wybór pakietów z osobistego kanału."
 
 msgid "Enter your subscription code, the unified code for trial is 15."
-msgstr ""
+msgstr "Wprowadź swój kod subskrypcji, ujednolicony kod na okres próbny to 15."
 
 msgid "Entertainment"
 msgstr "Rozrywka"
@@ -7338,7 +7344,7 @@ msgstr "Błąd %d: Nie można utworzyć katalogu pakietu '%s'!  (%s)"
 
 #, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
-msgstr "Błąd %d: Nie udało się usunąć pobranego obrazu '%s'!  (%s)"
+msgstr "Błąd %d: Nie udało się usunąć pobranego systemu '%s'!  (%s)"
 
 #, python-format
 msgid "Error %d: Unable to link '%s' as '%s'!  (%s)"
@@ -7422,7 +7428,7 @@ msgstr ""
 
 #, python-format
 msgid "Error downloading image '%s'!"
-msgstr "Błąd podczas pobierania obrazu „%s”!"
+msgstr "Błąd podczas pobierania systemu „%s”!"
 
 msgid "Error executing plugin"
 msgstr "Błąd podczas uruchamiania wtyczki"
@@ -7446,7 +7452,7 @@ msgstr "Tekst błędu:"
 
 #, python-format
 msgid "Error unzipping image '%s'!"
-msgstr "Błąd przy rozpakowywaniu obrazu '%s'!"
+msgstr "Błąd przy rozpakowywaniu systemu '%s'!"
 
 #, python-format
 msgid ""
@@ -7500,7 +7506,7 @@ msgstr "Błąd: Ekran FileCommanderData wymaga słownika formatowania!"
 
 #, python-format
 msgid "Error: Image '%s' to install is invalid!"
-msgstr "Błąd: Obraz '%s' do zainstalowania jest nieprawidłowy!"
+msgstr "Błąd: System '%s' do zainstalowania jest nieprawidłowy!"
 
 msgid "Error: Interaction failure, unable to change password!"
 msgstr "Błąd: nieudana interakcja, nie można zmienić hasła!"
@@ -7567,7 +7573,7 @@ msgstr "Błąd: Nie można zmienić nazwy katalogu \"%s\" na \"%s\"!"
 
 #, python-format
 msgid "Error: Unable to write log file '%s'!"
-msgstr "Błąd zapisu pliku: '%s'"
+msgstr "Błąd: Nie można zapisać pliku log '%s'!"
 
 #, python-format
 msgid "Error: You can't run '%s' on '%s'!"
@@ -7697,7 +7703,7 @@ msgid "Exit all menus"
 msgstr "Wyjdź z wszystkich menu"
 
 msgid "Exit and close all screens without performing a backup"
-msgstr ""
+msgstr "Wyjdź i zamknij wszystkie ekrany bez wykonywania kopii zapasowej"
 
 msgid "Exit editor"
 msgstr "Wyjdź z edytora"
@@ -7751,7 +7757,7 @@ msgid "Exit viewer"
 msgstr "Zamknij przeglądarkę"
 
 msgid "Exit without performing a backup"
-msgstr ""
+msgstr "Wyjdź bez wykonywania kopii zapasowej"
 
 msgid "Expand"
 msgstr "Pokaż"
@@ -7929,10 +7935,10 @@ msgid "Falkland Islands (Malvinas)"
 msgstr "Falklandy"
 
 msgid "Fallback API did not return a valid result."
-msgstr ""
+msgstr "Zastępczy interfejs API nie zwrócił prawidłowego wyniku."
 
 msgid "Fallback Font *"
-msgstr ""
+msgstr "Czcionka zastępcza *"
 
 msgid "Fallback remote receiver"
 msgstr "Zdalny odbiornik rezerwowy"
@@ -8293,7 +8299,7 @@ msgstr "Instalowanie systemu"
 
 #, python-format
 msgid "Flashing image '%s' was not successful!"
-msgstr "Wgrywanie obrazu '%s' nie powiodło się!"
+msgstr "Wgrywanie systemu '%s' nie powiodło się!"
 
 msgid "Flashing image successful"
 msgstr "Instalowanie systemu zakończone pomyślnie"
@@ -8903,7 +8909,7 @@ msgid "Hausa"
 msgstr "Hausa"
 
 msgid "Hawaiian"
-msgstr ""
+msgstr "Hawajski"
 
 msgid "Heard Island and McDonald Islands"
 msgstr "Wyspy Heard i McDonalda"
@@ -9014,7 +9020,7 @@ msgid "Hide zap errors"
 msgstr "Ukryj komunikaty błędów przy przełączaniu"
 
 msgid "Hide/Show the console screen"
-msgstr ""
+msgstr "Ukryj/Pokaż ekran konsoli"
 
 msgid "Hierarchy info"
 msgstr "Info hierarchii"
@@ -9071,7 +9077,7 @@ msgid "History zap..."
 msgstr "Historia przełączania…"
 
 msgid "Hmong"
-msgstr ""
+msgstr "Hmong"
 
 msgid "Hockey"
 msgstr "Hokej"
@@ -9424,20 +9430,20 @@ msgid "Image Backup"
 msgstr "Kopia zapasowa systemu"
 
 msgid "Image Backup Actions"
-msgstr ""
+msgstr "Działania kopii zapasowej systemu"
 
 #, python-format
 msgid "Image Backup To %s"
-msgstr ""
+msgstr "Kopia zapasowa systemu do %s"
 
 msgid "Image Flash Actions"
 msgstr "Operacje Image Flash"
 
 msgid "Image created:"
-msgstr ""
+msgstr "Utworzono system:"
 
 msgid "Image creation failed!"
-msgstr ""
+msgstr "Tworzenie systemu nie powiodło się!"
 
 msgid "ImageWizard"
 msgstr "Kreator systemu"
@@ -10110,7 +10116,7 @@ msgid "Kurdish"
 msgstr "Kurdyjski"
 
 msgid "Kurdish (Sorani)"
-msgstr ""
+msgstr "Kurdyjski (sorani)"
 
 msgid "Kurdistan"
 msgstr "Kurdistan"
@@ -10984,7 +10990,7 @@ msgid "Middle"
 msgstr "środek"
 
 msgid "Middle - Lite image"
-msgstr "Średni - obraz w wersji Lite"
+msgstr "Średni - system w wersji Lite"
 
 msgid "Mini Series"
 msgstr "Mała Seria"
@@ -11477,7 +11483,7 @@ msgid "MultiTranscoding"
 msgstr "MultiTranskodowanie"
 
 msgid "Multiboot Image created:"
-msgstr ""
+msgstr "Utworzono system Multiboota:"
 
 msgid "Multimedia Packages"
 msgstr "Pakiety multimedialne"
@@ -11542,7 +11548,7 @@ msgid "NOTE: These %d directories/files exist and will be overwritten!"
 msgstr "INFORMACJA: Te %d katalogi/pliki istnieją i zostaną nadpisane!"
 
 msgid "NOTE: While the console screen is hidden from view the buttons are still active. Pressing any enabled button will cause the screen to reappear but the button will not be actioned."
-msgstr ""
+msgstr "UWAGA: Gdy ekran konsoli jest ukryty, przyciski są nadal aktywne. Naciśnięcie dowolnego włączonego przycisku spowoduje ponowne wyświetlenie ekranu, ale przycisk nie zostanie wykonany."
 
 msgid "NOW"
 msgstr "Teraz"
@@ -12114,7 +12120,7 @@ msgid "Normal"
 msgstr "normalny"
 
 msgid "Normal - Standard image"
-msgstr "Normalny - obraz standardowy"
+msgstr "Normalny - system standardowy"
 
 msgid "Normal No ScaleUp"
 msgstr "Normalny bez skalowania"
@@ -12379,7 +12385,7 @@ msgid "Online update of your %s %s software."
 msgstr "Aktualizacja systemu %s %s."
 
 msgid "Only Flash Backup Image"
-msgstr "Tylko obraz kopii zapasowej Flash"
+msgstr "Tylko system kopii zapasowej Flash"
 
 msgid "Only HD"
 msgstr "tylko HD"
@@ -12472,7 +12478,7 @@ msgid "Open the Channel Selection Settings screen"
 msgstr "Otwórz ekran ustawień wyboru kanału"
 
 msgid "Open the Image information"
-msgstr ""
+msgstr "Otwórz Informacje o systemie"
 
 msgid "Open the Plugin Browser"
 msgstr "Przeglądaj dostępne wtyczki"
@@ -12481,7 +12487,7 @@ msgid "Open the Plugin Browser settings screen"
 msgstr "Otwórz ekran ustawień przeglądarki wtyczek"
 
 msgid "Open the Storage Device information"
-msgstr ""
+msgstr "Otwórz informacje o urządzeniu pamięci masowej"
 
 msgid "Open the VirtualKeyBoard for text entry"
 msgstr "Otwórz wirtualną klawiaturę, aby wpisać tekst"
@@ -13063,7 +13069,7 @@ msgid "Please add titles to the compilation."
 msgstr "Dodaj tytuły do kompilacji."
 
 msgid "Please be patient."
-msgstr ""
+msgstr "Proszę być cierpliwym."
 
 msgid "Please choose an extension..."
 msgstr "Menu podręczne rozszerzeń…"
@@ -13142,7 +13148,7 @@ msgid "Please select a default EPG type..."
 msgstr "Wybierz domyślny typ EPG..."
 
 msgid "Please select a distribution from which you would like to flash an image:"
-msgstr "Wybierz dystrybucję, z której chcesz flaszować obraz:"
+msgstr "Wybierz dystrybucję, z której chcesz flaszować system:"
 
 msgid "Please select a line to edit or select add to create new line."
 msgstr "Proszę wybrać linię do edycji lub wybrać dodaj, aby utworzyć nową linię."
@@ -13199,10 +13205,10 @@ msgid "Please select the sub-service to record:"
 msgstr "Proszę wybrać podusługę do nagrania:"
 
 msgid "Please select the target location to save the backup:"
-msgstr ""
+msgstr "Wybierz lokalizację docelową, aby zapisać kopię zapasową:"
 
 msgid "Please select what to do after flash of the following image:"
-msgstr "Wybierz, co zrobić po flashowaniu następującego obrazu:"
+msgstr "Wybierz, co zrobić po flashowaniu następującego systemu:"
 
 msgid ""
 "Please use direction keys to move the PiP window.\n"
@@ -13295,7 +13301,7 @@ msgid "Please wait, flash memory is being copied to this flash expander. This co
 msgstr "Proszę czekać, kopia pamięci flash jest kopiowana do tego rozszerzacza flash. Może to potrwać kilka minut."
 
 msgid "Please wait, loading image..."
-msgstr "Proszę czekać, ładowanie obrazu..."
+msgstr "Proszę czekać, ładowanie systemu..."
 
 msgid "Please wait, swap is is being created. This could take a few minutes to complete."
 msgstr "Proszę czekać, plik wymiany jest tworzony. Może to potrwać kilka minut."
@@ -13427,7 +13433,7 @@ msgid "Positioner setup"
 msgstr "Ustawienia pozycjonera"
 
 msgid "Possible causes could be:"
-msgstr ""
+msgstr "Możliwe przyczyny mogą być następujące:"
 
 msgid "Power"
 msgstr "Zasilanie"
@@ -13937,7 +13943,7 @@ msgid "Quick Launch Menu"
 msgstr "Menu szybkiego uruchamiania"
 
 msgid "Quick Menu Actions"
-msgstr ""
+msgstr "Akcje szybkiego menu"
 
 msgid "Quick Menu..."
 msgstr "Szybkie menu..."
@@ -14716,7 +14722,7 @@ msgid "Restart Network Adapter"
 msgstr "Ponowne uruchomienie karty sieciowej"
 
 msgid "Restart OSCam"
-msgstr ""
+msgstr "Zrestartuj OSCam"
 
 msgid "Restart enigma"
 msgstr "Uruchom ponownie system"
@@ -14956,7 +14962,7 @@ msgstr "Skrypt przywracania jest wykonywany, Proszę czekać..."
 
 #, python-format
 msgid "Running command %d: '%s'."
-msgstr ""
+msgstr "Uruchamianie polecenia %d: '%s'."
 
 msgid "Russian"
 msgstr "Rosyjski"
@@ -15152,7 +15158,7 @@ msgid "Save EPG data"
 msgstr "Zapisz dane EPG"
 
 msgid "Save Log"
-msgstr ""
+msgstr "Zapisz Log"
 
 msgid "Save all changed settings and exit"
 msgstr "Zapisz wszystkie zmienione ustawienia i wyjdź"
@@ -15174,7 +15180,7 @@ msgstr "Zapisz co (w godzinach)"
 
 #, python-format
 msgid "Save image as '%s'"
-msgstr "Zapisz obraz jako '%s'"
+msgstr "Zapisz system jako '%s'"
 
 msgid "Save left directory on exit"
 msgstr "Zapisz lewy katalog przy wyjściu"
@@ -15206,7 +15212,7 @@ msgid "Save the log changes and exit"
 msgstr "Zapisz zmiany w logu i wyjdź"
 
 msgid "Save the log of the console messages to a file"
-msgstr ""
+msgstr "Zapisz Log konsoli do pliku"
 
 msgid "Save the right column directory location on exit."
 msgstr "Zapisz lokalizację katalogu w prawej kolumnie przy wyjściu."
@@ -15636,7 +15642,7 @@ msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen
 msgstr "Wybierz \"Tak\", aby wyświetlić pakiety źródłowe \"src\" na ekranie pobierania wtyczek."
 
 msgid "Select 'Yes' to show subscription packages in the Download Plugins screen."
-msgstr ""
+msgstr "Wybierz opcję „Tak”, aby wyświetlić pakiety subskrypcji na ekranie pobierania wtyczek."
 
 msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
 msgstr "Wybierz \"Tak\", aby wyświetlić pakiety wtyczek systemowych na ekranie pobierania wtyczek."
@@ -15768,7 +15774,7 @@ msgid "Select a directory from the bookmarks"
 msgstr "Wybierz katalog z zakładek"
 
 msgid "Select a distribution from where images are to be obtained"
-msgstr "Wybierz dystrybucję, z której obrazy mają zostać pobrane"
+msgstr "Wybierz dystrybucję, z której systemy mają zostać pobrane"
 
 #, python-format
 msgid "Select a location into which to extract '%s':"
@@ -16101,7 +16107,7 @@ msgid "Select the function to be assigned to this button."
 msgstr "Zezwól na przypisanie wybranej funkcji do tego przycisku."
 
 msgid "Select the highlighted image and proceed to the slot selection"
-msgstr "Wybierz podświetlony obraz i kontynuuj z wyborem slotu"
+msgstr "Wybierz podświetlony systemu i kontynuuj z wyborem slotu"
 
 msgid "Select the highlighted slot and reboot"
 msgstr "Wybierz podświetlony slot i uruchom ponownie"
@@ -16745,7 +16751,7 @@ msgid "Set the time to wait for execute the default action in shutdown, standby 
 msgstr "Ustaw czas oczekiwania na wykonanie domyślnej akcji w komunikatach o zamknięciu, gotowości lub ponownym uruchomieniu, np.: używane w RecordTimer, PowerTimer, SleepTimer itp."
 
 msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
-msgstr ""
+msgstr "Ustaw położenie lewego górnego rogu zajętego spinnera. Współrzędne są skalowane w taki sposób, że lewy górny róg to (0,0), a dolny prawy to (1260,700). Należy pamiętać, że położenie to lewy górny róg pokrętła, a nie środek spinnera."
 
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Ustaw typ postępu na ekranie wyboru kanału."
@@ -17255,7 +17261,7 @@ msgid "Show Source packages"
 msgstr "Pokaż pakiety źródłowe"
 
 msgid "Show Subscription packages"
-msgstr ""
+msgstr "Pokaż pakiety subskrypcji"
 
 msgid "Show Subservices Of Active Service"
 msgstr "Pokaż usługi podrzędne usługi aktywnej"
@@ -17808,7 +17814,7 @@ msgid "Shutdown"
 msgstr "Wyłącz"
 
 msgid "Shutdown OSCam"
-msgstr ""
+msgstr "Wyłącz OSCam"
 
 msgid "Shutting down. Please wait..."
 msgstr "Wyłączanie. Proszę czekać..."
@@ -18361,7 +18367,7 @@ msgid "Speed"
 msgstr "Prędkość"
 
 msgid "Spinner Position"
-msgstr ""
+msgstr "Pozycja spinnera"
 
 msgid "Split preview mode"
 msgstr "Tryb podzielonego podglądu"
@@ -18457,7 +18463,7 @@ msgid "Start the Kexec initialization"
 msgstr "Rozpocznij inicjowanie Kexec"
 
 msgid "Start the backup of the selected image"
-msgstr ""
+msgstr "Rozpocznij tworzenie kopii zapasowej wybranego systemu"
 
 msgid "Start the highlighted plugin"
 msgstr "Uruchom podświetloną wtyczkę"
@@ -18719,7 +18725,7 @@ msgid "Style:"
 msgstr "Styl:"
 
 msgid "Subscription Packages"
-msgstr ""
+msgstr "Pakiety subskrypcyjne"
 
 msgid "Subservice Actions"
 msgstr "Akcje podusługowe"
@@ -19446,7 +19452,7 @@ msgstr ""
 "Co chcesz robić?"
 
 msgid "The backup can take up to about 15 minutes to complete."
-msgstr ""
+msgstr "Utworzenie kopii zapasowej może zająć do około 15 minut."
 
 msgid "The backup failed"
 msgstr "Kopia zapasowa nie powiodła się"
@@ -20149,7 +20155,7 @@ msgid "Time style"
 msgstr "Styl czasu"
 
 msgid "Time taken for the backup:"
-msgstr ""
+msgstr "Czas potrzebny na wykonanie kopii zapasowej:"
 
 msgid "Time to execute command or script"
 msgstr "Czas do uruchomienia polecenia lub skryptu"
@@ -20254,10 +20260,10 @@ msgid "To complete the setup the %s %s must connect to the Internet.  Connect th
 msgstr "Aby zakończyć konfigurację %s %s musi być podłączony do internetu.  Podłącz %s %s do internetu teraz."
 
 msgid "To restore the image check the manual or documentation for the receiver."
-msgstr ""
+msgstr "Aby przywrócić system, sprawdź instrukcję lub dokumentację odbiornika."
 
 msgid "To restore the image use 'OnlineFlash' option in the 'SoftwareManager' menu."
-msgstr ""
+msgstr "Aby przywrócić system użyj opcji „Instalacja systemu online” w menu „Menadżer oprogramowania”."
 
 #, python-format
 msgid "To where would you like to extract '%s'?"
@@ -21188,7 +21194,7 @@ msgid "Use the UP and DOWN buttons to select your locale/language then press the
 msgstr "Użyj przycisków w górę lub w dół aby wybrać region/język, następnie naciśnij OK aby kontynuować."
 
 msgid "Use the UP/DOWN buttons to select the installed image to be backed up. Press the 'Start' (GREEN) button to start the backup."
-msgstr ""
+msgstr "Za pomocą przycisków GÓRA/DÓŁ wybierz zainstalowany system, którego kopię zapasową chcesz utworzyć. Naciśnij przycisk „Start” (ZIELONY), aby rozpocząć tworzenie kopii zapasowej."
 
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Użyj alternatywnego lub konwencjonalnego trybu radia."
