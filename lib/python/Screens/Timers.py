@@ -1405,6 +1405,10 @@ class RecordTimerEdit(Setup):
 
 	def fallbackResult(self, locations, default, tags):
 		self.fallbackInfo = (locations, default, tags)
+		if default not in locations:
+			locations.append(default)
+		self.timerLocation.setChoices(locations)
+		self.timerLocation.value = default
 
 	def createConfig(self):
 		days = {}
@@ -1722,8 +1726,10 @@ class RecordTimerEdit(Setup):
 			default = self.timer.dirname or defaultMoviePath()
 			locations = config.movielist.videodirs.value
 			return (default, locations)
-		elif self.fallbackInfo:
+		elif self.fallbackInfo and len(self.fallbackInfo) > 1:
 			return (self.fallbackInfo[1], self.fallbackInfo[0])
+		else:
+			return ("", [""])
 
 	def getLocation(self):
 		if not self.timer.external:  # TODO Fallback

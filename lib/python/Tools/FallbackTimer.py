@@ -20,7 +20,7 @@ class FallbackTimerList():
 		if config.usage.remote_fallback_enabled.value and config.usage.remote_fallback_external_timer.value and config.usage.remote_fallback.value:
 			self.url = config.usage.remote_fallback.value.rsplit(":", 1)[0]
 			if config.usage.remote_fallback_openwebif_customize.value:
-				self.url = "%s:%s" % (self.url, config.usage.remote_fallback_openwebif_port.value)
+				self.url = f"{self.url}:{config.usage.remote_fallback_openwebif_port.value}"
 				self.password = config.usage.remote_fallback_openwebif_password.value
 				self.userid = config.usage.remote_fallback_openwebif_userid.value
 			self.getFallbackTimerList()
@@ -50,7 +50,7 @@ class FallbackTimerList():
 
 	def getUrl(self, url):
 		print("[FallbackTimer] getURL", url)
-		return self.sendAPIcommand(("%s/%s" % (self.url, url)))
+		return self.sendAPIcommand(f"{self.url}/{url}")
 
 	def getFallbackTimerList(self):
 		self.list = []
@@ -75,81 +75,66 @@ class FallbackTimerList():
 				self.locations = jsondict.get("locations", ["/media/hdd/movie"])
 				self.tags = jsondict.get("tags", [])
 				self.default = jsondict.get("default")
-
 				self.fallback()
-
 		except Exception as e:
 			self.fallback(e)
 
-		print("[FallbackTimer] read %s timers from fallback tuner" % len(self.list))
+		print(f"[FallbackTimer] read {len(self.list)} timers from fallback tuner")
 		self.parent.session.nav.RecordTimer.setFallbackTimerList(self.list)
 
 	def removeTimer(self, timer, fallbackFunction, fallbackFunctionNOK=None):
 		self.fallbackFunction = fallbackFunction
 		self.fallbackFunctionNOK = fallbackFunctionNOK or fallbackFunction
-		self.getUrl("web/timerdelete?sRef=%s&begin=%s&end=%s" % (self.cleanServiceRef(timer.service_ref), timer.begin, timer.end)).addCallback(self.getUrlFallback).addErrback(self.fallback)
+		self.getUrl(f"api/timerdelete?sRef={self.cleanServiceRef(timer.service_ref)}&begin={timer.begin}&end={timer.end}").addCallback(self.getUrlFallback).addErrback(self.fallback)
 
 	def toggleTimer(self, timer, fallbackFunction, fallbackFunctionNOK=None):
 		self.fallbackFunction = fallbackFunction
 		self.fallbackFunctionNOK = fallbackFunctionNOK or fallbackFunction
-		self.getUrl("web/timertogglestatus?sRef=%s&begin=%s&end=%s" % (self.cleanServiceRef(timer.service_ref), timer.begin, timer.end)).addCallback(self.getUrlFallback).addErrback(self.fallback)
+		self.getUrl(f"api/timertogglestatus?sRef={self.cleanServiceRef(timer.service_ref)}&begin={timer.begin}&end={timer.end}").addCallback(self.getUrlFallback).addErrback(self.fallback)
 
 	def cleanupTimers(self, fallbackFunction, fallbackFunctionNOK=None):
 		self.fallbackFunction = fallbackFunction
 		self.fallbackFunctionNOK = fallbackFunctionNOK or fallbackFunction
 		if self.url:
-			self.getUrl("web/timercleanup?cleanup=true").addCallback(self.getUrlFallback).addErrback(self.fallback)
+			self.getUrl("api/timercleanup?cleanup=true").addCallback(self.getUrlFallback).addErrback(self.fallback)
 		else:
 			self.fallback()
+
+	def timerurldata(self, timer):
+		if timer.record_ecm and timer.descramble:
+			recordingType = "&recordingtype=descrambled+ecm"
+		elif timer.record_ecm:
+			recordingType = "&recordingtype=scrambled+ecm"
+		else:
+			recordingType = ""
+		tags = f"&tags={' '.join(timer.tags)}" if self.tags else ""
+		justplay = "&justplay=1" if timer.justplay else ""
+		always_zap = "&always_zap=1" if timer.always_zap else ""
+		repeated = f"&repeated={timer.repeated}" if timer.repeated else ""
+		hasendtime = "&hasendtime=1" if timer.hasEndTime else ""
+		# NOTE! Not all parameter are needed or working eg. vps.
+		return f"""&begin={timer.begin}&end={timer.end}&marginafter={timer.marginAfter}&marginbefore={timer.marginBefore}&eit={timer.eit}\
+&afterevent={timer.afterEvent}&name={quote(timer.name)}&description={quote(timer.description)}&dirname={timer.dirname}\
+{hasendtime}{repeated}{justplay}{always_zap}{tags}{recordingType}"""
+# Don't change this: If these both code lines are not completely left-aligned, tabs are included despite the line break separator ('\')
 
 	def addTimer(self, timer, fallbackFunction, fallbackFunctionNOK=None):
 		self.fallbackFunction = fallbackFunction
 		self.fallbackFunctionNOK = fallbackFunctionNOK or fallbackFunction
-		url = "web/timeradd?sRef=%s&begin=%s&end=%s&name=%s&description=%s&disabled=%s&justplay=%s&afterevent=%s&repeated=%s&dirname=%s&eit=%s" % (
-			self.cleanServiceRef(timer.service_ref),
-			timer.begin,
-			timer.end,
-			quote(timer.name.encode()),
-			quote(timer.description.encode()),
-			timer.disabled,
-			timer.justplay,
-			timer.afterEvent,
-			timer.repeated,
-			quote(timer.dirname),
-			timer.eit or 0,
-		)
+		url = f"api/timeradd?sRef={self.cleanServiceRef(timer.service_ref)}{self.timerurldata(timer)}"
 		self.getUrl(url).addCallback(self.getUrlFallback).addErrback(self.fallback)
 
 	def editTimer(self, timer, fallbackFunction, fallbackFunctionNOK=None):
 		self.fallbackFunction = fallbackFunction
 		self.fallbackFunctionNOK = fallbackFunctionNOK or fallbackFunction
-		url = "web/timerchange?sRef=%s&begin=%s&end=%s&name=%s&description=%s&disabled=%s&justplay=%s&afterevent=%s&repeated=%s&channelOld=%s&beginOld=%s&endOld=%s&dirname=%s&eit=%s" % (
-			self.cleanServiceRef(timer.service_ref),
-			timer.begin,
-			timer.end,
-			quote(timer.name.encode()),
-			quote(timer.description.encode()),
-			timer.disabled,
-			timer.justplay,
-			timer.afterEvent,
-			timer.repeated,
-			timer.service_ref_prev,
-			timer.begin_prev,
-			timer.end_prev,
-			quote(timer.dirname),
-			timer.eit or 0,
-		)
+		url = f"api/timerchange?sRef={self.cleanServiceRef(timer.service_ref)}&channelOld={timer.service_ref_prev}&beginOld={timer.begin_prev}&endOld={timer.end_prev}{self.timerurldata(timer)}"
 		self.getUrl(url).addCallback(self.getUrlFallback).addErrback(self.fallback)
 
 	def getUrlFallback(self, data):
-		try:
-			root = fromstring(data)
-			if root[0].text == 'True':
-				self.getFallbackTimerList()
-			else:
-				self.fallback(root[1].text)
-		except:
-				self.fallback("Unexpected Error")
+		if data.get("result"):
+			self.getFallbackTimerList()
+		else:
+			self.fallback(data.get("message", "Unexpected Error"))
 
 	def fallback(self, message=None):
 		if message:
@@ -185,7 +170,7 @@ class FallbackTimerClass(TimerObject):
 		self.state = timerdict.get("state", 0)
 		self.description = timerdict.get("description", "None")
 		self.justplay = justplay = timerdict.get("justplay", 0)
-		self.afterevent = timerdict.get("afterevent", 0)
+		self.afterEvent = timerdict.get("afterevent", 0)
 		self.dirname = timerdict.get("dirname", None)
 		tags = timerdict.get("tags", "")
 		self.tags = tags.split(" ") if tags else []
