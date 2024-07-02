@@ -1817,7 +1817,7 @@ class TemplateParser():
 				attributes[color] = translatedColor
 		return attributes
 
-	def collectAttributes(self, node, context, ignore=(), excludeItemValues=None, includeItemValues=None):
+	def collectAttributes(self, node, context, ignore=(), excludeItemIndexes=None, includeItemIndexes=None):
 		horizontalAlignments = {
 			"left": 1,
 			"center": 4,
@@ -1846,7 +1846,7 @@ class TemplateParser():
 		pos = None
 		size = None
 		skinAttributes = []
-		itemValue = ""
+		itemIndex = ""
 		for attrib, value in node.items():  # Walk all attributes.
 			if attrib not in ignore:
 				newValue = value
@@ -1855,13 +1855,14 @@ class TemplateParser():
 						pos = newValue
 					case "size":
 						size = newValue
-					case "value":
-						itemValue = value
+					case "index":
+						itemIndex = value
+						skinAttributes.append((attrib, newValue))
 					case _:
 						skinAttributes.append((attrib, newValue))
-		if itemValue and includeItemValues and itemValue not in includeItemValues:
+		if itemIndex and includeItemIndexes and itemIndex not in includeItemIndexes:
 			return []
-		if itemValue and excludeItemValues and itemValue in excludeItemValues:
+		if itemIndex and excludeItemIndexes and itemIndex in excludeItemIndexes:
 			return []
 		if pos is not None:
 			pos, size = context.parse(pos, size, None)
@@ -1884,7 +1885,7 @@ class TemplateParser():
 		attributes = self.collectColors(attributes)
 		return [attributes]
 
-	def processPanel(self, widget, context, excludeItemValues=None, includeItemValues=None):
+	def processPanel(self, widget, context, excludeItemIndexes=None, includeItemIndexes=None):
 		if self.debug:
 			print(f"[TemplateParser] processPanel DEBUG: Position={widget.attrib.get("position")}, Size={widget.attrib.get("size")}.")
 			print(f"[TemplateParser] processPanel DEBUG: Parent x={context.x}, width={context.w}.")
@@ -1909,7 +1910,7 @@ class TemplateParser():
 		items = []
 		for element in list(widget):
 			processor = self.processors.get(element.tag, self.processNone)
-			newItems = processor(element, newContext, excludeItemValues=excludeItemValues, includeItemValues=includeItemValues)
+			newItems = processor(element, newContext, excludeItemIndexes=excludeItemIndexes, includeItemIndexes=includeItemIndexes)
 			if newItems:
 				items += newItems
 		if layout == "horizontal" and newContext.w > 0:
