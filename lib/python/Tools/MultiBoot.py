@@ -245,7 +245,7 @@ class MultiBootClass():
 					if startupFile:
 						if isinstance(startupFile, dict):
 							if "" in startupFile:
-								print(f"[MultiBoot]     Startup file: '{startupFile['']}'.")
+								print(f"[MultiBoot]     Startup file: '{startupFile[""]}'.")
 							else:
 								print("[MultiBoot]     Startup files:")
 								for key in sorted(startupFile.keys()):
@@ -256,18 +256,18 @@ class MultiBootClass():
 					if commandLine:
 						if isinstance(commandLine, dict):
 							if "" in startupFile:
-								print(f"[MultiBoot]     Command line: '{startupFile['']}'.")
+								print(f"[MultiBoot]     Command line: '{startupFile[""]}'.")
 							else:
 								print("[MultiBoot]     Command lines:")
 								for key in sorted(commandLine.keys()):
 									print(f"[MultiBoot]         Mode '{key}': '{commandLine[key]}'.")
 						else:
 							print(f"[MultiBoot]     Command line: '{startupFile}'.")
-					print(f"[MultiBoot]     Kernel device: '{bootSlots[slotCode].get('kernel', 'Unknown')}'.")
-					print(f"[MultiBoot]     Root device: '{bootSlots[slotCode].get('device', 'Unknown')}'.")
-					print(f"[MultiBoot]     Root directory: '{bootSlots[slotCode].get('rootsubdir', 'Unknown')}'.")
-					print(f"[MultiBoot]     UBI device: '{'Yes' if bootSlots[slotCode].get('ubi', False) else 'No'}'.")
-					print(f"[MultiBoot]     UUID device: '{'Yes' if bootSlots[slotCode].get('uuid', False) else 'No'}'.")
+					print(f"[MultiBoot]     Kernel device: '{bootSlots[slotCode].get("kernel", "Unknown")}'.")
+					print(f"[MultiBoot]     Root device: '{bootSlots[slotCode].get("device", "Unknown")}'.")
+					print(f"[MultiBoot]     Root directory: '{bootSlots[slotCode].get("rootsubdir", "Unknown")}'.")
+					print(f"[MultiBoot]     UBI device: '{"Yes" if bootSlots[slotCode].get("ubi", False) else "No"}'.")
+					print(f"[MultiBoot]     UUID device: '{"Yes" if bootSlots[slotCode].get("uuid", False) else "No"}'.")
 				print(f"[MultiBoot] {len(bootSlots)} boot slots detected.")
 		return bootSlots, bootSlotsKeys
 
@@ -400,16 +400,16 @@ class MultiBootClass():
 			if self.debugMode:
 				for slotCode in sorted(self.imageList.keys()):
 					# print(f"[MultiBoot] findSlot DEBUG: Image slot '{slotCode}': {self.imageList[slotCode]}")
-					print(f"[MultiBoot] Slot '{slotCode}' content: '{self.imageList[slotCode].get('imagelogname', 'Unknown')}'.")
-					print(f"[MultiBoot]     Device: '{self.imageList[slotCode].get('devicelog', 'Unknown')}'.")
-					print(f"[MultiBoot]     Root: '{self.imageList[slotCode].get('rootlog', 'Unknown')}'.")
-					print(f"[MultiBoot]     Detection: '{self.imageList[slotCode].get('detection', 'Unknown')}'.")
-					print(f"[MultiBoot]     Status: '{self.imageList[slotCode].get('status', 'Unknown').capitalize()}'.")
+					print(f"[MultiBoot] Slot '{slotCode}' content: '{self.imageList[slotCode].get("imagelogname", "Unknown")}'.")
+					print(f"[MultiBoot]     Device: '{self.imageList[slotCode].get("devicelog", "Unknown")}'.")
+					print(f"[MultiBoot]     Root: '{self.imageList[slotCode].get("rootlog", "Unknown")}'.")
+					print(f"[MultiBoot]     Detection: '{self.imageList[slotCode].get("detection", "Unknown")}'.")
+					print(f"[MultiBoot]     Status: '{self.imageList[slotCode].get("status", "Unknown").capitalize()}'.")
 					modes = self.imageList[slotCode].get("bootCodes")
 					if modes and modes != [""]:
 						print(f"[MultiBoot]     Boot modes: '{"', '".join(modes)}'.")
-					print(f"[MultiBoot]     UBI device: '{'Yes' if self.imageList[slotCode].get('ubi', False) else 'No'}'.")
-					print(f"[MultiBoot]     UUID device: '{'Yes' if self.imageList[slotCode].get('uuid', False) else 'No'}'.")
+					print(f"[MultiBoot]     UBI device: '{"Yes" if self.imageList[slotCode].get("ubi", False) else "No"}'.")
+					print(f"[MultiBoot]     UUID device: '{"Yes" if self.imageList[slotCode].get("uuid", False) else "No"}'.")
 				print(f"[MultiBoot] {len(self.imageList)} boot slots detected.")
 			self.callback(self.imageList)
 
@@ -432,32 +432,32 @@ class MultiBootClass():
 				revision = "" if revision.strip() == compileDate else revision
 				compileDate = f"{compileDate[0:4]}-{compileDate[4:6]}-{compileDate[6:8]}"
 				self.imageList[self.slotCode]["detection"] = "Found an enigma information file"
-				self.imageList[self.slotCode]["imagename"] = f"{info.get('displaydistro', info.get('distro'))} {info.get('imgversion')}{revision} ({compileDate})"
-				self.imageList[self.slotCode]["imagelogname"] = f"{info.get('displaydistro', info.get('distro'))} {info.get('imgversion')}{revision} ({compileDate})"
+				self.imageList[self.slotCode]["imagename"] = f"{info.get("displaydistro", info.get("distro"))} {info.get("imgversion")}{revision} ({compileDate})"
+				self.imageList[self.slotCode]["imagelogname"] = f"{info.get("displaydistro", info.get("distro"))} {info.get("imgversion")}{revision} ({compileDate})"
 				self.imageList[self.slotCode]["status"] = "active"
 			elif isfile(infoFile1):
 				info = self.readSlotInfo(infoFile1)
 				compileDate = self.getCompiledate(imageDir)
 				compileDate = f"{compileDate[0:4]}-{compileDate[4:6]}-{compileDate[6:8]}"
-				imgversion = str(info.get("version"))
-				if "." not in imgversion and "-" not in imgversion and imgversion.isdigit():
-					imgversion = f"{int(imgversion[0:2])}.{int(imgversion[3:5])}"
+				version = str(info.get("version"))
+				if "." not in version and "-" not in version and version.isdigit():
+					version = f"{int(version[0:2])}.{int(version[3:5])}"
 				self.imageList[self.slotCode]["detection"] = "Found an image version file"
-				creator = info.get('creator')
+				creator = info.get("creator")
 				if creator is not None:
-					self.imageList[self.slotCode]["imagename"] = f"{creator.split()[0]} {imgversion} ({compileDate})"
-					self.imageList[self.slotCode]["imagelogname"] = f"{creator.split()[0]} {imgversion} ({compileDate})"
+					self.imageList[self.slotCode]["imagename"] = f"{creator.split()[0]} {version} ({compileDate})"
+					self.imageList[self.slotCode]["imagelogname"] = f"{creator.split()[0]} {version} ({compileDate})"
 				else:
-					self.imageList[self.slotCode]["imagename"] = f"Unknown Creator {imgversion} ({compileDate})"
-					self.imageList[self.slotCode]["imagelogname"] = f"Unknown Creator {imgversion} ({compileDate})"
+					self.imageList[self.slotCode]["imagename"] = f"Unknown Creator {version} ({compileDate})"
+					self.imageList[self.slotCode]["imagelogname"] = f"Unknown Creator {version} ({compileDate})"
 				self.imageList[self.slotCode]["status"] = "active"
 			elif isfile(pathjoin(imageDir, "usr/bin/enigma2")):
 				info = self.deriveSlotInfo(imageDir)
 				compileDate = str(info.get("compiledate"))
 				compileDate = f"{compileDate[0:4]}-{compileDate[4:6]}-{compileDate[6:8]}"
 				self.imageList[self.slotCode]["detection"] = "Found an enigma2 binary file"
-				self.imageList[self.slotCode]["imagename"] = f"{info.get('displaydistro', info.get('distro'))} {info.get('imgversion')} ({compileDate})"
-				self.imageList[self.slotCode]["imagelogname"] = f"{info.get('displaydistro', info.get('distro'))} {info.get('imgversion')} ({compileDate})"
+				self.imageList[self.slotCode]["imagename"] = f"{info.get("displaydistro", info.get("distro"))} {info.get("imgversion")} ({compileDate})"
+				self.imageList[self.slotCode]["imagelogname"] = f"{info.get("displaydistro", info.get("distro"))} {info.get("imgversion")} ({compileDate})"
 				self.imageList[self.slotCode]["status"] = "active"
 			else:
 				self.imageList[self.slotCode]["detection"] = "Found no enigma files"
