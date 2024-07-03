@@ -129,7 +129,7 @@ class XmlMultiContent(StringList, MultiContentTemplateParser):
 
 	def __init__(self, args):
 		StringList.__init__(self, args)
-		MultiContentTemplateParser.__init__(self, self.debug)
+		MultiContentTemplateParser.__init__(self)
 		self.activeStyle = None
 		self.activeTemplate = "Default"  # This value string is used in the UI.
 		self.dom = args.get("dom")
