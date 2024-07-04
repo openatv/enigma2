@@ -75,7 +75,6 @@
 		<item level="0" text="CI Boot Delay" description="Set CI Boot delay.">config.cimisc.bootDelay</item>
 	</setup>
 	<setup key="ChannelSelection" title="Channel Selection Settings" showOpenWebif="1">
-		<item level="0" text="Style" description="Set the style of the channel list.">config.channelSelection.style</item>
 		<item level="0" text="Include CI assignment" description="Set CI assignment for detection of available services.">config.misc.use_ci_assignment</item>
 		<item level="1" text="Alternative numbering mode" description="When enabled, channel numbering will start at '1' for each bouquet.">config.usage.alternative_number_mode</item>
 		<item level="1" text="Always show bouquets" description="Select 'Yes' to always show the bouquet screen first when opening the channel list. Select 'No' to open the channel list using the current bouquet.">config.usage.show_bouquetalways</item>
@@ -823,6 +822,8 @@
 		<item text="GUI Skin *" description="Choose the skin to be used for the GUI interface. Press 'GREEN' to activate the skin.">config.skin.guiSkin</item>
 		<item text="LCD/Front panel *" description="Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin." requires="LCDSKINSetup">config.skin.lcdSkin</item>
 		<item text="Fallback Font *" description="Choose the fallback font.">config.skin.FallbackFont</item>
+		<item text="Channel Selection Screen" description="Select the screen layout, from the options provided by the skin, to be used for the ChannelSelection screen." conditional="len(config.channelSelection.screenStyle.choices) > 1">config.channelSelection.screenStyle</item>
+		<item text="Channel Selection List" description="Select the layout of the information in the services list, from the options provided by the skin, displayed within the ChannelSelection screen." conditional="config.channelSelection.screenStyle.value">config.channelSelection.widgetStyle</item>
 	</setup>
 	<setup key="SleepTimer" title="SleepTimer Settings" showOpenWebif="1">
 		<item text="SleepTimer activation delay" description="Configure the duration, in minutes, before the SleepTimer activates.">config.usage.sleepTimer</item>
