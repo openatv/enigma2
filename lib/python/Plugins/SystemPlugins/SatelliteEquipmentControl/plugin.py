@@ -8,7 +8,7 @@ from Components.config import config
 from Components.NimManager import nimmanager as nimmgr
 
 
-class SecParameterSetup(Screen, ConfigListScreen):
+class SecParameterSetup(ConfigListScreen, Screen):
 	skin = """
 		<screen position="100,100" size="560,400" title="Satellite equipment setup" >
 			<widget name="config" position="10,10" size="540,390" />

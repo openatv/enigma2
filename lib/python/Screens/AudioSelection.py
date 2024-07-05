@@ -29,7 +29,7 @@ def getConfigMenuItem(configElementName):
 	return "", None
 
 
-class AudioSelection(Screen, ConfigListScreen):
+class AudioSelection(ConfigListScreen, Screen):
 	def __init__(self, session, infobar=None, page=PAGE_AUDIO):
 		Screen.__init__(self, session)
 

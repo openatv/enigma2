@@ -8,7 +8,7 @@ from Components.TuneTest import Tuner
 from enigma import eDVBFrontendParametersSatellite, eDVBResourceManager, eTimer
 
 
-class AutoDiseqc(Screen, ConfigListScreen):
+class AutoDiseqc(ConfigListScreen, Screen):
 	diseqc_ports = [
 		"A", "B", "C", "D"
 	]

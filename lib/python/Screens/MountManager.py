@@ -293,7 +293,7 @@ class HddMount(Screen):
 			self.selectionChanged()
 
 
-class DevicePanelConf(Screen, ConfigListScreen):
+class DevicePanelConf(ConfigListScreen, Screen):
 	skin = """
 	<screen position="center,center" size="640,460" title="Choose where to mount your devices to:">
 		<ePixmap pixmap="skin_default/buttons/red.png" position="25,0" size="140,40" alphatest="on" />

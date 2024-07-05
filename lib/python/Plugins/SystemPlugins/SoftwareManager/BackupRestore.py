@@ -111,7 +111,7 @@ def SettingsEntry(name, checked):
 	return (name, picture, checked)
 
 
-class BackupScreen(Screen, ConfigListScreen):
+class BackupScreen(ConfigListScreen, Screen):
 	skin = """
 		<screen position="0,0" size="0,0" title="" >
 		<widget name="config" position="10,10" size="330,250" transparent="1" scrollbarMode="showOnDemand" />
@@ -429,7 +429,7 @@ class RestoreMenu(Screen):
 		self["summary_description"].text = cur
 
 
-class RestoreScreen(Screen, ConfigListScreen):
+class RestoreScreen(ConfigListScreen, Screen):
 	skin = """
 		<screen position="0,0" size="0,0" title="" >
 		<widget name="config" position="10,10" size="330,250" transparent="1" scrollbarMode="showOnDemand" />

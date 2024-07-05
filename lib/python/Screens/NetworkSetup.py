@@ -382,7 +382,7 @@ class NameserverSetup(DNSSettings):
 		DNSSettings.__init__(self, session=session)
 
 
-class NetworkMacSetup(Screen, ConfigListScreen):
+class NetworkMacSetup(ConfigListScreen, Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session, enableHelp=True)
 		self.setTitle(_("MAC Address Settings"))
@@ -440,7 +440,7 @@ class NetworkMacSetup(Screen, ConfigListScreen):
 			self.session.openWithCallback(self.close, MessageBox, _("Finished configuring your network"), type=MessageBox.TYPE_INFO, timeout=10, default=False)
 
 
-class AdapterSetup(Screen, ConfigListScreen):
+class AdapterSetup(ConfigListScreen, Screen):
 	def __init__(self, session, networkinfo, essid=None):
 		Screen.__init__(self, session, enableHelp=True)
 		self.setTitle(_("Adapter Settings"))
