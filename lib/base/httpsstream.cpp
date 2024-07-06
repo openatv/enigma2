@@ -3,7 +3,7 @@
 #include <lib/base/httpsstream.h>
 #include <lib/base/eerror.h>
 #include <lib/base/wrappers.h>
-#include <lib/base/nconfig.h> // access to python config
+#include <lib/base/esettings.h>
 
 // for shutdown
 #include <sys/socket.h>
@@ -20,10 +20,10 @@ eHttpsStream::eHttpsStream()
 	tmpBufSize = 32;
 	tmpBuf = (char*)malloc(tmpBufSize);
 	startDelay = 0;
-	if (eConfigManager::getConfigBoolValue("config.usage.remote_fallback_enabled", false))
+	if (eSettings::remote_fallback_enabled)
 		startDelay = 500000;
 	else {
-		int _startDelay = eConfigManager::getConfigIntValue("config.usage.http_startdelay");
+		int _startDelay = eSettings::http_startdelay;
 		if (_startDelay > 0)
 			startDelay = _startDelay * 1000;
 	}

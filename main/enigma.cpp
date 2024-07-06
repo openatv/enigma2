@@ -18,7 +18,6 @@
 #include <lib/base/esimpleconfig.h>
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
-#include <lib/base/nconfig.h>
 #include <lib/gdi/gmaindc.h>
 #include <lib/gdi/glcddc.h>
 #include <lib/gdi/grc.h>
@@ -79,7 +78,7 @@ void keyEvent(const eRCKey &key)
 	/*eDebug("key.code : %02x \n", key.code);*/
 
 	int flags = key.flags;
-	int long_press_emulation_key = eConfigManager::getConfigIntValue("config.usage.long_press_emulation_key");
+	int long_press_emulation_key = ptr->getLongPressedEmulationKey();
 	if ((long_press_emulation_key > 0) && (key.code == long_press_emulation_key))
 	{
 		long_press_emulation_pushed = true;
@@ -402,8 +401,6 @@ int main(int argc, char **argv)
 		else
 		{
 			my_dc->setSpinner(eRect(ePoint(spinnerPostionX, spinnerPostionY), wait[0]->size()), wait, i);
-			float scale = my_dc->size().width() == 1920 ? 1.5 : 1.0;
-			my_dc->setSpinnerScale(scale);
 		}
 	}
 
@@ -485,6 +482,11 @@ int getVFDSymbolsPoll()
 const char *getGStreamerVersionString()
 {
 	return gst_version_string();
+}
+
+int getE2Flags()
+{
+	return 1;
 }
 
 #include <malloc.h>

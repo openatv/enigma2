@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-24 20:26+0000\n"
-"PO-Revision-Date: 2024-06-05 21:09+0000\n"
+"POT-Creation-Date: 2024-06-21 14:25+0000\n"
+"PO-Revision-Date: 2024-06-24 13:09+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -13,16 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6-dev\n"
-
-msgid ""
-"\n"
-"\n"
-"[User - bouquets (TV)]\n"
-msgstr ""
-"\n"
-"\n"
-"[Käyttäjä - Suosikit (TV)]\n"
+"X-Generator: Weblate 5.6-rc\n"
 
 msgid ""
 "\n"
@@ -38,31 +29,8 @@ msgstr ""
 "\n"
 "Tallennus käynnissä."
 
-msgid ""
-"\n"
-"[Installed Plugins]\n"
-msgstr ""
-"\n"
-"[Asennetut lisäosat]\n"
-
-msgid ""
-"\n"
-"[User - bouquets (RADIO)]\n"
-msgstr ""
-"\n"
-"Käyttäjä - Suosikit (RADIO)\n"
-
 msgid " "
 msgstr " "
-
-msgid "     no space left on back-up device"
-msgstr "     ei tilaa jäljellä varmuuskopio laiteessa"
-
-msgid "     no writing permission on back-up device"
-msgstr "     ei kirjoitus oikeutta varmuuskopio laiteessa"
-
-msgid "     wrong back-up destination "
-msgstr "     Väärä varmuuskopion sijainti "
 
 msgid "  Menu key : Select quad channel"
 msgstr "  MENU näppäin: Valitse 4 kanava ryhmä"
@@ -1339,6 +1307,15 @@ msgstr ", "
 msgid "-"
 msgstr "-"
 
+msgid "- No space left on backup device."
+msgstr "- Varmuuskopioinnille ei jäänyt tilaa."
+
+msgid "- No write permission on backup device."
+msgstr "- Ei kirjoitus lupaa varmuuskopioinnille."
+
+msgid "- Wrong backup destination."
+msgstr "- Väärä varmuuskopiointi sijainti."
+
 msgid "-24 Hours"
 msgstr "-24 tuntia"
 
@@ -1435,18 +1412,6 @@ msgstr "1x"
 msgid "2"
 msgstr "2"
 
-msgid "23.976"
-msgstr "23.976"
-
-msgid "24"
-msgstr "24"
-
-msgid "25"
-msgstr "25"
-
-msgid "29.97"
-msgstr "29.97"
-
 msgid "2nd InfoBar"
 msgstr "2. tietopalkki"
 
@@ -1476,9 +1441,6 @@ msgstr "2x, 4x, 6x, 8x"
 
 msgid "3"
 msgstr "3"
-
-msgid "30"
-msgstr "30"
 
 msgid "3D Mode"
 msgstr "3D tila"
@@ -1563,6 +1525,9 @@ msgstr "Loki ei löytynyt"
 
 msgid "A"
 msgstr "A"
+
+msgid "A backup is now being created."
+msgstr "Varmuuskopiontia tehdään nyt."
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr "Pilkuilla erotettu lisat laajennuksista, joita käytetään Suodatinlaajennus kohdassa \"Filtteri laajennus\" asetuksessa. Kirjoita laajennuksen nimi ilman etupistettä (.)."
@@ -1723,6 +1688,18 @@ msgstr "AC3+ uudelleenpakkaus"
 
 msgid "AFL"
 msgstr "AFL"
+
+msgid "AI-Powered translation color"
+msgstr "Tekoälyn tekstityksen käännöksen väri"
+
+msgid "AI-Powered translation enabled"
+msgstr "Tekoäly tekstitys päällä"
+
+msgid "AI-Powered translation language"
+msgstr "Tekoälyn kääntämä tekstityksen kieli"
+
+msgid "AI-Powered translation subscription code"
+msgstr "Tekoälyllä toimivan tekstityksen tilauskoodi"
 
 msgid "ARM"
 msgstr "ARM"
@@ -2238,9 +2215,6 @@ msgstr "Määrittää näytetäänkö Lokien hallinta laajennusvalikossa (sinine
 msgid "Allows you to show/hide OScam/CCcam in the Extension Menu screen (BLUE button)."
 msgstr "Näytä/Piilota OScam/CCcam valikko näytössä (Sininen painike)."
 
-msgid "Almost there... "
-msgstr "Melkein valmis... "
-
 msgid "Alpha"
 msgstr "Aakkonen"
 
@@ -2252,6 +2226,15 @@ msgstr "Aakkosjärjestyksessä otsikoiden alla"
 
 msgid "Alphanumeric"
 msgstr "Aakkosjärjestys"
+
+msgid "Also import at reboot/restart enigma2"
+msgstr "Tuo uudelleenkäynnistyksessä"
+
+msgid "Also import from the extension menu"
+msgstr "Lisää valinta laajennusvalikkoon"
+
+msgid "Also import when box is leaving standby"
+msgstr "Tuo valmiustilasta poistuttaessa"
 
 msgid "Also on standby"
 msgstr "Myös valmiustilassa"
@@ -2267,6 +2250,9 @@ msgstr "Vaihtoehtoinen"
 
 msgid "Alternative Edit"
 msgstr "[Vaihtoehtojen lisäys ja poisto]"
+
+msgid "Alternative URLs for DVB-T/C or ATSC"
+msgstr "Vaihtoehtoiset URL osoitteet DVB-T/C tai ATSC"
 
 msgid "Alternative numbering mode"
 msgstr "Vaihtoehtoinen numerointitapa"
@@ -2515,6 +2501,9 @@ msgstr "Muuta ulkonäköä"
 
 msgid "Assamese"
 msgstr "Assamese"
+
+msgid "Assembling the image backup files."
+msgstr "Ohjelmiston varmuuskopion tiedostojen kokoaminen."
 
 msgid "Assigned CAIds:"
 msgstr "Määritetyt CAId:t:"
@@ -2798,14 +2787,6 @@ msgstr "Taka, ulompi USB"
 msgid "Back, upper USB"
 msgstr "Ylempi USB"
 
-#, python-format
-msgid "Back-up Tool for a %s\n"
-msgstr "Varmuuskopionti ohjelma %s\n"
-
-#, python-format
-msgid "Back-up Tool for an %s\n"
-msgstr "Varmuuskopionti ohjelma %s\n"
-
 msgid "Back/Recall"
 msgstr "Peruuta/Uudelleen"
 
@@ -2830,10 +2811,6 @@ msgstr "Tausta:"
 msgid "Backup"
 msgstr "Varmuuskopio"
 
-#, python-format
-msgid "Backup Date: %s\n"
-msgstr "Varmuuskopioi Päivä %s\n"
-
 msgid "Backup Location"
 msgstr "Varmuuskopion sijainti"
 
@@ -2843,29 +2820,17 @@ msgstr "Varmuuskopioloki"
 msgid "Backup Mode"
 msgstr "Varmuuskopiointi tila"
 
-msgid "Backup Mode: Flash Online\n"
-msgstr "Varmuuskopioin tila: Käynnissä\n"
+msgid "Backup Mode: Flash Online"
+msgstr "Varmuuskopioin tila: Online päivitys"
 
-msgid "Backup Mode: USB Recovery\n"
-msgstr "Varmuuskopiointitila: USB Palautus\n"
+msgid "Backup Mode: USB Recovery"
+msgstr "Varmuuskopioin tila: Usb palautus"
 
 msgid "Backup Settings"
 msgstr "Varmuuskopioi asetukset"
 
 msgid "Backup System Settings"
 msgstr "Varmuuskopioi järjestelmäasetukset"
-
-msgid "Backup completed."
-msgstr "Varmuuskopiointi suoritettu."
-
-msgid "Backup done."
-msgstr "Varmuuskopiointi suoritettu."
-
-msgid "Backup failed!"
-msgstr "Varmuuskopiointi epäonnistui!"
-
-msgid "Backup failed."
-msgstr "Varmuuskopiointi epäonnistui."
 
 msgid "Backup images"
 msgstr "Varmuuskopioit ohjelmistosta"
@@ -2881,8 +2846,8 @@ msgstr ""
 "Haluatko asentaa ne nyt?"
 
 #, python-format
-msgid "Backup to destination: %s"
-msgstr "Varmuuskopion sijainti: %s"
+msgid "Backup tool for %s %s"
+msgstr "Varmuuskopiointi työkalu %s %s"
 
 msgid "Backup your %s %s settings."
 msgstr "Varmuuskopioi %s %s:n asetukset."
@@ -2933,7 +2898,7 @@ msgid "Base time"
 msgstr "Aikaväli johon kellonajat pyöristetään"
 
 msgid "Base transparency for OpenOpera web browser."
-msgstr "Oletus läpinäkyvyys OpenOpera netti selain"
+msgstr "Oletus läpinäkyvyys OpenOpera netti selain."
 
 msgid "Base transparency for teletext, more options are available within teletext screen."
 msgstr "Perus läpinäkyvyys teksti-tv:en, lisää asetuksia tekstitv valikossa."
@@ -3203,10 +3168,6 @@ msgstr "Ohjelmisto tiedot"
 msgid "Build information for %s %s"
 msgstr "Versio tiedot kohteelle %s %s"
 
-#, python-format
-msgid "Build: %s"
-msgstr "Ohjelmisto versio: %s"
-
 msgid "Bulgaria"
 msgstr "Bulgaria"
 
@@ -3254,9 +3215,6 @@ msgstr "Levyllä UUID"
 
 msgid "By disk label"
 msgstr "Levymerkintä"
-
-msgid "By openATV Image Team"
-msgstr "openATV ohjelmisto Team"
 
 msgid "Bypass HDMI EDID Check"
 msgstr "Ohita HDMI EDID tarkistus"
@@ -3531,6 +3489,9 @@ msgstr "Ajastinta ei voi ladata"
 msgid "Can't allocate program source (e.g. tuner)"
 msgstr "Ohjelma lähdettä (esim. Viritintä) ei voida määrittää"
 
+msgid "Can't create backup directory!"
+msgstr "Ei voi luoda varmuuskopio hakemistoa!"
+
 msgid ""
 "Can't going to live TV!\n"
 "Switch to live TV and restart time shift ?"
@@ -3647,9 +3608,6 @@ msgstr "Peruuta päivitys"
 msgid "Cancelled upon user request"
 msgstr "Käyttäjä peruutti tehtävän"
 
-msgid "Cannot create backup directory"
-msgstr "Varmuuskopiohakemistoa ei voi luoda"
-
 msgid "Cannot delete file"
 msgstr "Tiedostoa ei voi poistaa"
 
@@ -3693,6 +3651,9 @@ msgstr "Catalan / Valencian"
 
 msgid "Cayman Islands"
 msgstr "Cayman saaret"
+
+msgid "Cebuano"
+msgstr "Austronesialainen kieli"
 
 msgid "Celsius"
 msgstr "Celsius"
@@ -3962,9 +3923,8 @@ msgstr "Kiina"
 msgid "Chinese"
 msgstr "Kiina"
 
-#, python-format
-msgid "Chipset: BCM%s"
-msgstr "Piirisarja: BCM%s"
+msgid "Chinese (Simplified)"
+msgstr "Kiina (yksinkertaistettu)"
 
 msgid "Choice Box"
 msgstr "Kortin Tiedot"
@@ -4011,6 +3971,9 @@ msgstr "Valitse päivämäärien näyttömuoto . P ja PP ovat päiviä, K ja KK 
 
 msgid "Choose the display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds.  ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Valitse missä muodossa aika näytetään. H ja HH ovat 24h kellon aikoja, h ja hh ovat 12h kellon aikoja, mm on minuutit ja ss sekunnit. (HH ja hh sisältävät etunollat) Näkymät saattavat vaihdella riippuen mitä teemaa käytät."
+
+msgid "Choose the fallback font."
+msgstr "Valitse toissijainen fontti."
 
 msgid "Choose the front panel display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Valitse päivämäärien näyttömuoto . Näyttömuoto perustuu omaan valintaasi mutta voi muuttua riippuen teemasta."
@@ -4297,6 +4260,11 @@ msgstr "Komento '%s' on tuntematon"
 msgid "Command execution..."
 msgstr "Peruutetaanko suoritus..."
 
+msgid "Command finished."
+msgid_plural "Commands finished."
+msgstr[0] "Komento suoritettu."
+msgstr[1] "Komennot suoritettu."
+
 msgid "Command order"
 msgstr "Käskyjen järjestys"
 
@@ -4447,6 +4415,9 @@ msgstr ""
 msgid "Configure remote control type"
 msgstr "Määritä kaukosäätimen tyyppi"
 
+msgid "Configure the AI-Powered translation language."
+msgstr "Asetukset tekoälyn tekstityksen kieli."
+
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "Määritä tämän LNB:n DiSEqC-tila."
 
@@ -4497,6 +4468,9 @@ msgstr "Määrittää etupaneeliin näytön kirkkauden normaalissa tilassa."
 
 msgid "Configure the brightness level of the front panel display for standby."
 msgstr "Määrittää etupaneeliin näytön kirkkauden valmiustilassa."
+
+msgid "Configure the color of the AI-Powered translations."
+msgstr "Aseta tekoälyn tekstityksen väri."
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
 msgstr "Määrittää ulkoisen tekstityksen värin, vaihtoehtoinen (normaali valkoisella, kursivoitu keltaisella, lihavoitu sinivihreällä, alleviivattu vihreällä), valkoinen tai keltainen."
@@ -5065,6 +5039,10 @@ msgstr "Luo satunnaisesti luotu salasana"
 msgid "Create a symbolic link"
 msgstr "Luo symbolinen linkki"
 
+#, python-format
+msgid "Create recovery image backup '%s'."
+msgstr "Luo palautus varmuuskopio image '%s'."
+
 msgid "Create separate radio user bouquet"
 msgstr "Luo erillinen radio suosikkilista"
 
@@ -5076,13 +5054,6 @@ msgstr "Lisää lisäpaikat valittuun laitteeseen"
 
 msgid "Create the flash expander in the selected device"
 msgstr "Luo muistin laajennus valittuun laitteeseen"
-
-msgid "Create:"
-msgstr "Luodaan:"
-
-#, python-format
-msgid "Create: Recovery Fullbackup %s"
-msgstr "Luo: Täysivarmuuskopio %s"
 
 msgid "Creating .ap and .sc files"
 msgstr "Luodaan AP- ja SC-tiedostot"
@@ -5236,6 +5207,9 @@ msgstr "'7'/'9'-näppäimien hypyn pituus (sek)"
 
 msgid "Customize"
 msgstr "Toimintojen muokkaus"
+
+msgid "Customize OpenWebIF settings for fallback tuner"
+msgstr "Etävastaanottimen OpenWebIf asetukset"
 
 msgid "Customize System Settings"
 msgstr "Järjestelmä asetukset"
@@ -5955,7 +5929,19 @@ msgstr "Poista vain korostetun tiedoston valinta"
 
 #, python-format
 msgid "Deselected packages usually occur because those packaged are incompatible with existing packages. While this is mostly harmless it is possible that your %s %s may experience issues."
-msgstr "Valitsematta jätetyt paketit eivät ole yhteensopivia olemassa olevien pakettien kanssa.  Vaikka tämä on enimmäkseen vaaratonta, on mahdollista, että %s %s voi esiintyä ongelmia."
+msgstr "Valitsematta jätetyt paketit eivät ole yhteensopivia olemassa olevien pakettien kanssa. Vaikka tämä on enimmäkseen vaaratonta, on mahdollista, että %s %s voi esiintyä ongelmia."
+
+msgid "Destination of fallback remote receiver"
+msgstr "Etävastaanottimen kohde"
+
+msgid "Destination of fallback remote receiver for ATSC"
+msgstr "Etävastaanottimen kohde"
+
+msgid "Destination of fallback remote receiver for DVB-C"
+msgstr "Etävastaanottimen kohde DVB-C"
+
+msgid "Destination of fallback remote receiver for DVB-T"
+msgstr "Etävastaanottimen kohde DVB-T"
 
 msgid "Detail of GStreamer log."
 msgstr "Yksityiskohtaiset tiedot GStreameri lokista"
@@ -6239,6 +6225,9 @@ msgstr "Djibouti"
 msgid "Do another manual service scan?"
 msgstr "Tehdä toinen manuaalinen skannaus?"
 
+msgid "Do not backup the image"
+msgstr "Älä varmuuskopioi ohjelmistoa"
+
 msgid "Do not change"
 msgstr "Ei muutosta"
 
@@ -6325,6 +6314,24 @@ msgstr "Haluatko poistaa ajastuksen %s?"
 #, python-format
 msgid "Do you really want to remove your bookmark for '%s'?"
 msgstr "Haluatko poistaa kirjanmerkin %s?"
+
+msgid ""
+"Do you really want to restart OSCam?\n"
+"\n"
+"HINT: This will take about 5 seconds!"
+msgstr ""
+"Haluatko uudelleen käynnistää OSCam?\n"
+"\n"
+"VIHJE: Tämä kestää noin 5 sekuntia!"
+
+msgid ""
+"Do you really want to shut down OSCam?\n"
+"\n"
+"ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+msgstr ""
+"Haluatko todella sulkea OSCam?\n"
+"\n"
+"HUOMIO: Oscamin uudelleen aktivoimiseksi on tehtävä vastaanottimen uudelleenkäynnistys!"
 
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
@@ -6811,6 +6818,9 @@ msgstr "Aktivoi %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "Syötä 5 voltin käyttöjännite aktiiviantennille"
 
+msgid "Enable AI-Powered translation for all teletext and DVB subtitles."
+msgstr "Ota tekoälyn käännös käyttöön kaikille tekstitv ja DVB tekstityksille."
+
 msgid "Enable Autorecord"
 msgstr "Ota käyttöön automaattinen tallennus"
 
@@ -6958,6 +6968,9 @@ msgstr "Ota käyttöön etävastaanotin"
 
 msgid "Enable freesat EPG"
 msgstr "Ota käyttöön freesat EPG"
+
+msgid "Enable import timer from fallback tuner"
+msgstr "Tuo ajastimet etävastaaottimelta"
 
 msgid "Enable intro screen"
 msgstr "Aktivoi aloitusnäyttö"
@@ -7149,6 +7162,9 @@ msgstr "Hyväksy"
 msgid "Enter DNS (Dynamic Name Server) %d's IP address."
 msgstr "Kirjoita DNS (Dynaaminen Nimi Palvelin) %d:n IP osoite."
 
+msgid "Enter IP address"
+msgstr "Syötä IP-osoite"
+
 msgid "Enter PIN"
 msgstr "Syötä PIN"
 
@@ -7214,6 +7230,9 @@ msgstr "Syötä matalan oskillaattorin taajuus. Lisätietoja löytyy LNB: n tiet
 
 msgid "Enter your personal feed URL to allow you to select packages from your personal feed."
 msgstr "Syötä henkilökohtaisen syötteen URL osoite, jotta voit valita paketteja syötteestäsi."
+
+msgid "Enter your subscription code, the unified code for trial is 15."
+msgstr "Syötä tilauskoodisi, kokeiluaika on 15 päivää."
 
 msgid "Entertainment"
 msgstr "Viihde"
@@ -7386,12 +7405,6 @@ msgstr ""
 msgid "Error opening recording file"
 msgstr "Virhe tallennustiedoston avaamisessa\""
 
-msgid "Error reading bouquets.radio"
-msgstr "Virhe luettaessa bouquets.radio"
-
-msgid "Error reading bouquets.tv"
-msgstr "Virhe luettaessa bouquets.tv"
-
 msgid "Error reading webpage!"
 msgstr "Virhe luettaessa web-sivua!"
 
@@ -7401,6 +7414,14 @@ msgstr "Virheteksti:"
 #, python-format
 msgid "Error unzipping image '%s'!"
 msgstr "Virhe purettaessa ohjelmisto image %s!"
+
+#, python-format
+msgid ""
+"Error while retrieving fallback timer information\n"
+"%s"
+msgstr ""
+"Virhe haettaessa menneitä ajastus tietoja.\n"
+"%s"
 
 msgid "Error, unknown Result!"
 msgstr "Virhe, tuntematon tulos!"
@@ -7512,6 +7533,10 @@ msgid "Error: Unable to rename directory '%s' to '%s'!"
 msgstr "Virhe: Ei voida nimetä hakemistoa '%s' uudelleen muotoon '%s'!"
 
 #, python-format
+msgid "Error: Unable to write log file '%s'!"
+msgstr "Virhe: Lokitiedoston kirjoittaminen epäonnistui '%s'!"
+
+#, python-format
 msgid "Error: You can't run '%s' on '%s'!"
 msgstr "Virhe: Et voi suorittaa '%s'-komentoa '%s':ssä!"
 
@@ -7614,12 +7639,6 @@ msgstr "Ylittää kaksikerroslevyn tilavuuden!"
 msgid "Execution condition"
 msgstr "Suoritustila"
 
-msgid "Execution finished!!"
-msgstr "Tehtävä suoritettu, paina OK!"
-
-msgid "Execution progress:"
-msgstr "Tehtävän edistyminen:"
-
 msgid "Exif"
 msgstr "Exif"
 
@@ -7643,6 +7662,9 @@ msgstr "Poistu neljän kanavan valinnasta"
 
 msgid "Exit all menus"
 msgstr "Poistu kaikista valikoista"
+
+msgid "Exit and close all screens without performing a backup"
+msgstr "Poistu ja sulje kaikki ruudut ilman varmuuskopiointia"
 
 msgid "Exit editor"
 msgstr "Poistu editorista"
@@ -7694,6 +7716,9 @@ msgstr "Poistu ohjatusta asennustoiminnosta"
 
 msgid "Exit viewer"
 msgstr "Poistu katselusta"
+
+msgid "Exit without performing a backup"
+msgstr "Poistu ilman varmuuskopiointia"
 
 msgid "Expand"
 msgstr "Laajentaa"
@@ -7870,8 +7895,38 @@ msgstr "Epäonnistui:"
 msgid "Falkland Islands (Malvinas)"
 msgstr "Falklandinsaaret"
 
+msgid "Fallback API did not return a valid result."
+msgstr "Fallback API ei löytänyt oikeaa tulosta."
+
+msgid "Fallback Font *"
+msgstr "Toissijainen Fontti *"
+
+msgid "Fallback remote receiver"
+msgstr "Etävastaanotin"
+
+msgid "Fallback remote receiver IP"
+msgstr "Etävastaanottimen IP osoite"
+
+msgid "Fallback remote receiver Port"
+msgstr "Etävastaanottimen portti"
+
 msgid "Fallback remote receiver URL"
 msgstr "Etävastaanottimen osoite"
+
+msgid "Fallback remote receiver for ATSC"
+msgstr "Varaviritin ATSC"
+
+msgid "Fallback remote receiver for DVB-C"
+msgstr "Varaviritin DVB-C"
+
+msgid "Fallback remote receiver for DVB-T"
+msgstr "Varaviritin DVB-T"
+
+msgid "Fallback Timer"
+msgstr "Vara ajastin"
+
+msgid "Fallback tuner setup"
+msgstr "Etävastaanotin asetukset"
 
 msgid "False"
 msgstr "Epätosi"
@@ -8061,10 +8116,6 @@ msgstr "Käyttäjä peruutti tiedoston siirron!"
 
 msgid "File transfer was cancelled by user"
 msgstr "Käyttäjä peruutti tiedostonsiirron"
-
-#, python-format
-msgid "File write error: '%s'"
-msgstr "Tiedosto kirjoitus virhe: '%s'"
 
 msgid "Filename"
 msgstr "Tiedostonimi"
@@ -8379,18 +8430,11 @@ msgstr "Edustaprosessorin versio"
 msgid "Fulah"
 msgstr "Fulah"
 
-msgid "Full Image Backup "
-msgstr "Täydellinen imagen varmuuskopio "
-
 msgid "Full Range RGB"
 msgstr "Koko alue RGB"
 
 msgid "Full Stretch"
 msgstr "Kokoruutu"
-
-#, python-format
-msgid "Full back-up on %s"
-msgstr "Täysi varmuuskopio %s"
 
 msgid "Full factory reset"
 msgstr "Täydellinen tehdasasetusten palautus"
@@ -8825,6 +8869,9 @@ msgstr "Laitteen tyyppi"
 msgid "Hausa"
 msgstr "Hausa"
 
+msgid "Hawaiian"
+msgstr "Havaijin"
+
 msgid "Heard Island and McDonald Islands"
 msgstr "Heard saari ja McDonald saari"
 
@@ -8930,11 +8977,11 @@ msgstr "Piilota softcam Palvelin nimi"
 msgid "Hide the InfoBar"
 msgstr "Piilota Tietopalkki"
 
-msgid "Hide this screen"
-msgstr "Piilota tämä ruutu"
-
 msgid "Hide zap errors"
 msgstr "Piilota kanavanvaihdon virheilmoitukset"
+
+msgid "Hide/Show the console screen"
+msgstr "Piilota/Näytä konsoli ruutu"
 
 msgid "Hierarchy info"
 msgstr "Hierarkia info"
@@ -8989,6 +9036,9 @@ msgstr "Kanavanvaihtohistoria eteen"
 
 msgid "History zap..."
 msgstr "Kanavanvaihto Historia..."
+
+msgid "Hmong"
+msgstr "Hmong ihmiset"
 
 msgid "Hockey"
 msgstr "Jääkiekko"
@@ -9133,6 +9183,9 @@ msgstr "IP osoite"
 
 msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr "Striimin välitys -palvelimen IP-osoite, jota käytetään sellaisten palvelujen salauksen purkamiseen, joiden salaus voidaan purkaa vain striimin välityksen kautta."
+
+msgid "IP of fallback remote receiver"
+msgstr "IP osoite etävastaanottimelle"
 
 msgid "IPK Installer"
 msgstr "IPK Asennus"
@@ -9342,15 +9395,21 @@ msgstr "Ohita odottamaton herätys ja pysy valmiustilassa"
 msgid "Image Backup"
 msgstr "Ohjelmiston varmuuskopiointi"
 
+msgid "Image Backup Actions"
+msgstr "Varmuuskopionti Toiminnot"
+
+#, python-format
+msgid "Image Backup To %s"
+msgstr "Ohjelmiston varmuuskopionti %s"
+
 msgid "Image Flash Actions"
 msgstr "Ohjelmisto Päivitys Asetukset"
 
-#, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
-msgstr "Ohjelmisto image luotu:%s/%s-%s-%s-backup-%s_%s.zip"
+msgid "Image created:"
+msgstr "Varmuuskopio tehty:"
 
-msgid "Image creation failed - "
-msgstr "Imagen luominen epäonnistui - "
+msgid "Image creation failed!"
+msgstr "Varmuuskopionti epäonnistui!"
 
 msgid "ImageWizard"
 msgstr "Ohjelmisto Avustaja"
@@ -9363,6 +9422,21 @@ msgstr "Poistu välittömästi asennustoiminnosta (vain vianmääritystila)"
 
 msgid "Immediately restart selected devices."
 msgstr "Käynnistä valitut laitteet välittömästi uudelleen."
+
+msgid "Import channels and/or EPG from remote receiver URL also when the receiver is getting out of standby"
+msgstr "Tuo kanavat ja/tai ohjelmaopas etävastaanottimelta valmiustilasta poistuttaessa"
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver is booted"
+msgstr "Tuo kanavat ja/tai ohjelmaopas etävastaanottimelta uudelleenkäynnistyksen yhteydessä"
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
+msgstr "Tuo kanavat ja/tai ohjelmaopas etävastaanottimelta uudelleenkäynnistyksen yhteydessä"
+
+msgid "Import from remote receiver URL"
+msgstr "Tuo etävastaanottimelta"
+
+msgid "Import remote receiver URL"
+msgstr "Syötä etävastaanottimen URL-osoite"
 
 msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
 msgstr "Ohjelman alkaessa tarkistuksen lisäksi voidaan käyttää toistuvaa tarkistusta, jotta olosuhteet 'puskuriraja tunteina' tai 'tarkista vapaa tila' havaitaan aikaisemmin."
@@ -10006,6 +10080,9 @@ msgstr "Komi"
 msgid "Kurdish"
 msgstr "Kurdish"
 
+msgid "Kurdish (Sorani)"
+msgstr "Kurdi (Sorani)"
+
 msgid "Kurdistan"
 msgstr "Kurdien maa"
 
@@ -10578,6 +10655,9 @@ msgstr "Ylläpidä multiboot image paikkoja."
 
 msgid "Make"
 msgstr "Tee"
+
+msgid "Make it possible to manually initiate the channels import and/or EPG via the extension menu"
+msgstr "Lisää valinta kanavien ja/tai ohjelmaopas -tiedon tuonnille laajennusvalikkoon"
 
 msgid "Make this mark an 'in' point"
 msgstr "Tee tästä merkistä aloituspiste"
@@ -11367,9 +11447,8 @@ msgstr "MultiLib"
 msgid "MultiTranscoding"
 msgstr "Monitranskoodaus"
 
-#, python-format
-msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
-msgstr "Multiboot Image tehty: %s/%s-%s-%s-backup-%s_usb.zip"
+msgid "Multiboot Image created:"
+msgstr "Multi boot Image tehty:"
 
 msgid "Multimedia Packages"
 msgstr "Multimedia paketit"
@@ -11432,6 +11511,9 @@ msgstr "HUOMAUTUS: Hakemisto/tiedosto '%s' on olemassa ja se korvataan!"
 #, python-format
 msgid "NOTE: These %d directories/files exist and will be overwritten!"
 msgstr "HUOMAUTUS: Nämä %d hakemistot/tiedostot ovat olemassa ja ne korvataan!"
+
+msgid "NOTE: While the console screen is hidden from view the buttons are still active. Pressing any enabled button will cause the screen to reappear but the button will not be actioned."
+msgstr "HUOMAUTUS: Vaikka konsolin ruutu on piilotettu, painikkeet ovat silti aktiivisia. Minkä tahansa käytössä olevan painikkeen painaminen saa näytön ilmestymään uudelleen, mutta painiketta ei suoriteta."
 
 msgid "NOW"
 msgstr "Nyt"
@@ -11742,9 +11824,6 @@ msgstr "DVDROM-asemaa ei löytynyt!"
 msgid "No Connection"
 msgstr "Ei yhteyttä"
 
-msgid "No Devices Found !!"
-msgstr "Laitteita ei löydy !!"
-
 msgid "No ECM PIDs available"
 msgstr "Ei ECMPids saatavilla"
 
@@ -11926,9 +12005,6 @@ msgstr "Ei päivitystä!"
 msgid "No updates available."
 msgstr "Ei päivityksiä saatavilla."
 
-msgid "No updates were available.  Please try again later."
-msgstr "Päivityksiä ei ollut saatavilla.  Yritä myöhemmin uudelleen."
-
 msgid "No valid device detected - Press OK"
 msgstr "Ei kelvollista laitetta havaittu - Paina OK"
 
@@ -11965,9 +12041,6 @@ msgstr ""
 
 msgid "No, but restart from begin"
 msgstr "Ei, aloita alusta"
-
-msgid "No, do not backup a image"
-msgstr "Ei, älä varmuuskopioi"
 
 msgid "No, do nothing."
 msgstr "Ei, älä tee mitään."
@@ -12126,9 +12199,6 @@ msgstr "Ei mitään, sulje valikko"
 msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "Nyt"
-
-msgid "Now building the Backup Image"
-msgstr "Luodaan Varmuuskopiota"
 
 msgid "Now save time shift as movie and continues recording"
 msgstr "Muunna ajansiirto tallenteeksi ja jatka tallentamista"
@@ -12378,11 +12448,17 @@ msgstr "Avaa kanavalista ja valitse edellinen kanava PiP-kuvalle"
 msgid "Open the Channel Selection Settings screen"
 msgstr "Avaa Kanavanvalinta asetukset näyttö"
 
+msgid "Open the Image information"
+msgstr "Avaa ohjelmiston tiedot"
+
 msgid "Open the Plugin Browser"
 msgstr "Avaa lisäosien selaus"
 
 msgid "Open the Plugin Browser settings screen"
 msgstr "Avaa lisäsosat asetukset näytölle"
+
+msgid "Open the Storage Device information"
+msgstr "Avaa tallennus laitteen tiedot"
 
 msgid "Open the VirtualKeyBoard for text entry"
 msgstr "Avaa Virtuaalinen näppäimistö tekstin syöttämistä varten"
@@ -12728,9 +12804,6 @@ msgstr "Salasana vaihdettu."
 msgid "Path '%s' missing!"
 msgstr "Polku '%s' puuttuu!"
 
-msgid "Path to save not exist: '/tmp/'"
-msgstr "Polkua ei ole olemassa /tmp/"
-
 msgid "Pause"
 msgstr "Tauko"
 
@@ -12966,11 +13039,8 @@ msgstr "Tauko"
 msgid "Please add titles to the compilation."
 msgstr "Lisää tallenteita kokoelmaan."
 
-msgid "Please be patient, a backup will now be made,\n"
-msgstr "Odota hetki, varmuuskopiota tehdään nyt,\n"
-
-msgid "Please check the manual of the receiver"
-msgstr "Tarkista vastaanottimen ohjekirjasta"
+msgid "Please be patient."
+msgstr "Ole kärsivällinen."
 
 msgid "Please choose an extension..."
 msgstr "Valitse Lisäosa"
@@ -13045,9 +13115,6 @@ msgstr "Jatka painamalla OK."
 msgid "Please press OK when ready"
 msgstr "Paina OK kun olet valmis"
 
-msgid "Please select a backup destination"
-msgstr "Valitse varmuuskopion sijainti"
-
 msgid "Please select a default EPG type..."
 msgstr "Valitse oletus ohjelmaoppaan tyyppi."
 
@@ -13107,6 +13174,9 @@ msgstr "Valitse alue, joka vastaa parhaiten fyysistä sijaintiasi. Alue vaaditaa
 
 msgid "Please select the sub-service to record:"
 msgstr "Valitse tallennettava palvelu:"
+
+msgid "Please select the target location to save the backup:"
+msgstr "Valitse kohde paikka varmuuskopion tallentamiseksi:"
 
 msgid "Please select what to do after flash of the following image:"
 msgstr "Valitse, mitä tehdä päivityksen jälkeen:"
@@ -13214,9 +13284,6 @@ msgstr "Odota..."
 msgid "Please wait... Loading list..."
 msgstr "Odota... Luetteloa ladataan..."
 
-msgid "Please wait...almost ready! "
-msgstr "Odota hetki! melkein valmis! "
-
 msgid "Plug in USB device"
 msgstr "Liitä USB laite"
 
@@ -13301,6 +13368,9 @@ msgstr "Portti D"
 msgid "Port number for the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr "Striimin välitys palvelimen portti, jota käytetään sellaisten palvelujen salauksen purkamiseen, joiden salaus voidaan purkaa vain striimin välityksen kautta."
 
+msgid "Port of fallback remote receiver"
+msgstr "Etävastaanottimen portti"
+
 msgid "Portugal"
 msgstr "Portugali"
 
@@ -13330,6 +13400,9 @@ msgstr "Kääntömoottorin Asetukset Loki"
 
 msgid "Positioner setup"
 msgstr "Kääntömoottorin asetukset"
+
+msgid "Possible causes could be:"
+msgstr "Mahdolliset syyt voivat olla:"
 
 msgid "Power"
 msgstr "Virta"
@@ -13606,9 +13679,6 @@ msgstr "Paras katseluaika minuutit"
 msgid "Priority"
 msgstr "Prioriteetti"
 
-msgid "Probable causes could be"
-msgstr "Todennäköiset syyt voivat olla"
-
 msgid "Proc model"
 msgstr "Proc malli"
 
@@ -13840,6 +13910,9 @@ msgstr "Avaa graafinen tietopalkki EPG\""
 
 msgid "Quick Launch Menu"
 msgstr "Pikavalikko"
+
+msgid "Quick Menu Actions"
+msgstr "Pikavalikko asetukset"
 
 msgid "Quick Menu..."
 msgstr "Pikavalikko..."
@@ -14617,6 +14690,9 @@ msgstr "Käynnistä verkkoyhteydet uudelleen"
 msgid "Restart Network Adapter"
 msgstr "Verkkosovittimen uudelleenkäynnistys"
 
+msgid "Restart OSCam"
+msgstr "Uudelleenkäynnistä OSCam"
+
 msgid "Restart enigma"
 msgstr "Käynnistä Käyttöliittymä uudelleen"
 
@@ -14853,6 +14929,10 @@ msgstr "Käynnissä"
 msgid "Running Myrestore script, Please wait ..."
 msgstr "Suoritetaan Myrestore scripttiä, Odata hetki ..."
 
+#, python-format
+msgid "Running command %d: '%s'."
+msgstr "Suoritettaan komentoa %d: '%s'."
+
 msgid "Russian"
 msgstr "Venäjä"
 
@@ -14965,6 +15045,9 @@ msgstr "Samba Serveri"
 msgid "Same as in active"
 msgstr "Sama kuin aktiivinen"
 
+msgid "Same as stream"
+msgstr "Sama kuin striimi"
+
 msgid "Same behavior as current animation"
 msgstr "Sama käyttäytyminen kuin nykyinen animaatio"
 
@@ -15043,6 +15126,9 @@ msgstr "Tallenna EPG välimuisti"
 msgid "Save EPG data"
 msgstr "Tallenna EPG tietot"
 
+msgid "Save Log"
+msgstr "Tallenna Logi"
+
 msgid "Save all changed settings and exit"
 msgstr "Tallenna kaikki asetukset ja poistu"
 
@@ -15093,6 +15179,9 @@ msgstr "Tallenna vasemman sarakkeen hakemiston sijainti poistuttaessa."
 
 msgid "Save the log changes and exit"
 msgstr "Tallenna lokimuutokset ja poistu"
+
+msgid "Save the log of the console messages to a file"
+msgstr "Tallenna Konsolin viesti tiedostoon"
 
 msgid "Save the right column directory location on exit."
 msgstr "Tallenna oikean sarakkeen hakemiston sijainti poistuttaessa."
@@ -15526,6 +15615,9 @@ msgstr "Valitse 'Kyllä' näyttääksesi teemat paketit listassa."
 
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
 msgstr "Valitse 'Kyllä' näyttääksesi lähdekoodin 'src' paketit lisäosat näytössä."
+
+msgid "Select 'Yes' to show subscription packages in the Download Plugins screen."
+msgstr "Valitse \"Kyllä\" näyttämiseksi tilatut lisäosat Lataa Plugin Lisäosia ruudussa."
 
 msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
 msgstr "Valitse 'Kyllä' näyttääksesi järjestelmä lisäosat listassa."
@@ -16143,6 +16235,9 @@ msgstr "Valitse aika, jolloin ajastus käynnistyy."
 msgid "Select the time zone within the area or region."
 msgstr "Valitse aikavyöhyke."
 
+msgid "Select the timer from the fallback tuner by default"
+msgstr "Kun käytössä, ajastukset tuodaan etävastaanottimelta"
+
 msgid "Select the tuner that controls the motorized dish."
 msgstr "Valitse viritin, joka ohjaa moottoroitua lautasta."
 
@@ -16524,6 +16619,9 @@ msgstr "Aseta aika"
 msgid "Set action for 'Info' key"
 msgstr "Valitse toiminto ajastimelle"
 
+msgid "Set alternative fallback tuners for DVB-T/C or ATSC"
+msgstr "Vaihtoehtoiset etävirittimet DVB-T/C tai ATSC"
+
 msgid "Set current CEC address as fixed address"
 msgstr "Nykyisen CEC osoitteen asettaminen kiinteäksi osoitteeksi"
 
@@ -16561,6 +16659,9 @@ msgstr "Aseta järjestelmä"
 msgid "Set the MAC address of your %s %s."
 msgstr "Määritä %s %s:n MAC-osoite."
 
+msgid "Set the User ID of the OpenWebif from your fallback tuner"
+msgstr "Aseta etävastaanottimen OpenWebIf käyttäjätunnus"
+
 msgid "Set the aspect ratio of the service picons."
 msgstr "Määritä kanavatyypin kuvakkeiden kuvasuhde."
 
@@ -16587,6 +16688,12 @@ msgstr "Aseta hakupalkin hypyn pituus."
 
 msgid "Set the number of lines to be saved for 'stout' and 'sterr' output in scripts."
 msgstr "Asettaa skriptien 'stout'- ja 'sterr' tallennettavien rivien määrän."
+
+msgid "Set the password of the OpenWebif from your fallback tuner"
+msgstr "Aseta etävastaanottimen OpenWebIf salasana"
+
+msgid "Set the port of the OpenWebif from your fallback tuner"
+msgstr "Aseta etävastaanottimen OpenWebIf portti"
 
 msgid "Set the position of the recording icons."
 msgstr "Aseta tallennuskuvakkeiden sijainti."
@@ -16623,6 +16730,9 @@ msgstr "Määrittää, kuinka kauan 2. tietopalkki näytetään kuvaruudulla. Se
 
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, PowerTimer, SleepTimer etc."
 msgstr "Aseta aika joka odotettaan ennen kuin suoritettaan oletustoiminto sammutuksessa, valmiustilassa tai uudelleenkäynnistyksessä. (esim .uniajastin, ...)"
+
+msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
+msgstr "Säädä spinnerin vasenta yläkulmaa (ruutu). Ylävasen on 0,0, alhaalla oikea on 1260,700. Sijainti on spinnerin vasen yläkulma, ei sen keskusta."
 
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Määritä ohjelman pituuden osoittamisen tyyppi kanavien valintalistassa."
@@ -17131,6 +17241,9 @@ msgstr "Näytä Softcamit"
 msgid "Show Source packages"
 msgstr "Näytä lähde paketit"
 
+msgid "Show Subscription packages"
+msgstr "Katso tilatut paketit"
+
 msgid "Show Subservices Of Active Service"
 msgstr "Näytä aktiivinen kanava"
 
@@ -17380,6 +17493,18 @@ msgstr "Näytä seuraavat kanavan tiedot ruudulla"
 
 msgid "Show next system information screen"
 msgstr "Näytä seuraava järjestelmätietonäyttö"
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL did not complete"
+msgstr "Näytä ilmoitus kun kanavien ja/tai ohjelmaoppaan tuonti etävastaanottimelta ei onnistunut"
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL is completed"
+msgstr "Näytä ilmoitus kun kanavien ja/tai ohjelmaoppaan tuonti etävastaanottimelta onnistui"
+
+msgid "Show notification when import channels was not successful"
+msgstr "Näytä ilmoitus kun tuonti epäonnistui"
+
+msgid "Show notification when import channels was successful"
+msgstr "Näytä ilmoitus kun tuonti onnistui"
 
 msgid "Show or hide the extended description, (skin dependent)."
 msgstr "Näytä tai piilota laajennettu kuvaus, (teemasta riippuva)."
@@ -17668,6 +17793,9 @@ msgstr "sammuta"
 
 msgid "Shutdown"
 msgstr "Sammuta"
+
+msgid "Shutdown OSCam"
+msgstr "Sammuta OSCam"
 
 msgid "Shutting down. Please wait..."
 msgstr "Sammutetaan. Odota..."
@@ -18216,6 +18344,9 @@ msgstr "Määritä hakemisto, jota käytetään käynnistettäessä Media Soitin
 msgid "Speed"
 msgstr "Nopeus"
 
+msgid "Spinner Position"
+msgstr "Spinner positio"
+
 msgid "Split preview mode"
 msgstr "Jaettu esikatseluruutu"
 
@@ -18308,6 +18439,9 @@ msgstr "Aloita testi"
 
 msgid "Start the Kexec initialization"
 msgstr "Aloita Kexec alustus"
+
+msgid "Start the backup of the selected image"
+msgstr "Aloita valitun ohjelmiston varmuuskopiointi"
 
 msgid "Start the highlighted plugin"
 msgstr "Käynnistä korostettu lisäosa"
@@ -18568,6 +18702,9 @@ msgstr "Tyyli"
 msgid "Style:"
 msgstr "Tyyli:"
 
+msgid "Subscription Packages"
+msgstr "Tilauspaketit"
+
 msgid "Subservice Actions"
 msgstr "Alipalvelut asetukset"
 
@@ -18648,9 +18785,6 @@ msgstr "Sunnuntai"
 
 msgid "Sunday"
 msgstr "Sunnuntai"
-
-msgid "Support at"
-msgstr "Tukisivusto"
 
 msgid "Suriname"
 msgstr "Suriname"
@@ -18891,7 +19025,7 @@ msgstr "TMDB Haku"
 
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Suomenkielinen käännös: 29.5.2024\n"
+"Suomenkielinen käännös: 24.6.2024\n"
 "tomppaa"
 
 msgid "TS file is too large for ISO9660 level 1!"
@@ -19296,6 +19430,9 @@ msgid ""
 msgstr ""
 "Ajansiirtoon käytettävissä oleva tila on vähemmän kuin asetuksissa määritetty.\n"
 "Mitä haluat tehdä?"
+
+msgid "The backup can take up to about 15 minutes to complete."
+msgstr "Varmuuskopiointi voi kestää jopa 10 minuuttia."
 
 msgid "The backup failed"
 msgstr "Varmuuskopiointi epäonnistui"
@@ -19746,7 +19883,7 @@ msgid "This option lets you adjust the 3D depth of the OSD."
 msgstr "Määrittää 3D syvyyden"
 
 msgid "This option lets you adjust the transparency of the OSD."
-msgstr "Määrittää käyttöliittymän läpinäkyvyyden"
+msgstr "Määrittää käyttöliittymän läpinäkyvyyden."
 
 msgid "This option lets you choose the 3D mode of the OSD."
 msgstr "Tämä asetus määrittää 3D tilan"
@@ -19953,10 +20090,6 @@ msgstr "Aikahyppyjen toistonopeus eteen- ja taaksepäinkelauksessa"
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr "Käytä normaalia eteenpäinkelausta nopeuksille"
 
-#, python-format
-msgid "Time required for this process: %s"
-msgstr "Tähän tehtävään kulunut aika: %s"
-
 msgid "Time shift buffer delete after zap"
 msgstr "Tyhjennetäänkö ajansiirron puskuri kanavanvaihdon yhteydessä"
 
@@ -20004,6 +20137,9 @@ msgstr "Ajansiirto tallennetaan ohjelman lopussa!"
 
 msgid "Time style"
 msgstr "Ajan näyttömuoto"
+
+msgid "Time taken for the backup:"
+msgstr "Varmuuskopiointiin käytetty aika:"
 
 msgid "Time to execute command or script"
 msgstr "Käskyn tai komentojonon suoritusaika"
@@ -20107,8 +20243,11 @@ msgstr "Tila"
 msgid "To complete the setup the %s %s must connect to the Internet.  Connect the %s %s to the Internet now."
 msgstr "Asennuksen loppuun saattamiseksi %s %s on muodostettava yhteys Internetiin.  Yhdistä %s %s nyt Internetiin."
 
-msgid "To restore the image:"
-msgstr "Imagen palauttaminen:"
+msgid "To restore the image check the manual or documentation for the receiver."
+msgstr "Palauttaa ohjelmisto katso ohjeita openatv sivuilta."
+
+msgid "To restore the image use 'OnlineFlash' option in the 'SoftwareManager' menu."
+msgstr "Palauta ohjelmisto käyttämällä \"Lataa internetistä\" toimintoa ohjelmiston hallinnassa."
 
 #, python-format
 msgid "To where would you like to extract '%s'?"
@@ -20537,6 +20676,9 @@ msgstr "UP80  (keymap.u80)"
 msgid "URL"
 msgstr "Osoite"
 
+msgid "URL of fallback remote receiver"
+msgstr "Etävastaanottimen URL-osoite"
+
 msgid "URL of fallback remote receiver."
 msgstr ""
 "Etävastaanottimen IP osoite tai\n"
@@ -20600,6 +20742,9 @@ msgstr "Salaamaton"
 #, python-format
 msgid "Unexpected error accessing WebIF: %s"
 msgstr "Odottamaton virhe Internetissä WebIF: %s"
+
+msgid "Unexpected error while retrieving fallback tuner's timer information"
+msgstr "Odottamaton virhe, haettaessa etävastaanottimen ajastimen tietoja"
 
 msgid "UnhandledKey"
 msgstr "Käsittelemätön avain"
@@ -20888,9 +21033,6 @@ msgstr "Käytä MHW-ohjelmaoppaan tietoja, jos saatavilla."
 msgid "Use Netmed EPG information when it is available."
 msgstr "Käytä Netmed-ohjelmaoppaan tietoja, jos saatavilla."
 
-msgid "Use OnlineFlash in SoftwareManager"
-msgstr "Käytä Internet Päivitystä Ohjelmisto hallinnassa"
-
 msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
 msgstr "Käytä OpenTV EPG:tä. Vaatii tietyn transponderin EPG:tä."
 
@@ -21012,22 +21154,22 @@ msgid "Use the LEFT/RIGHT buttons on your remote to adjust the width of the OSD.
 msgstr "Käytä VASEN/OIKEA painikkeita kaukosäätimessäsi säätääksesi kuvaruudun leveyttä. VASEN painike pienentää leveyttä, OIKEA painike kasvattaa leveyttä."
 
 msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD bottom."
-msgstr "Käytä kaukosäätimen Vasen/Oikea painikkeita siirtääksesi käyttöliittymää alas"
+msgstr "Käytä kaukosäätimen Vasen/Oikea painikkeita siirtääksesi käyttöliittymää alas."
 
 msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD left."
-msgstr "Käytä kaukosäätimen Vasen/Oikea painikkeita siirtääksesi käyttöliittymää vasemmalle"
+msgstr "Käytä kaukosäätimen Vasen/Oikea painikkeita siirtääksesi käyttöliittymää vasemmalle."
 
 msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD left/right."
-msgstr "Säädä käyttöliittymän vaakasijaintia kaukosäätimen vasen/oikea näppäimillä"
+msgstr "Säädä käyttöliittymän vaakasijaintia kaukosäätimen vasen/oikea näppäimillä."
 
 msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD right."
-msgstr "Käytä kaukosäätimen Vasen/Oikea painikkeita siirtääksesi käyttöliittymää oikealle"
+msgstr "Käytä kaukosäätimen Vasen/Oikea painikkeita siirtääksesi käyttöliittymää oikealle."
 
 msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD top."
-msgstr "Käytä kaukosäätimen Vasen/Oikea painikkeita siirtääksesi käyttöliittymää ylös"
+msgstr "Käytä kaukosäätimen Vasen/Oikea painikkeita siirtääksesi käyttöliittymää ylös."
 
 msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD up/down."
-msgstr "Säädä käyttöliittymän pystysijaintia kaukosäätimen vasen/oikea näppäimillä"
+msgstr "Säädä käyttöliittymän pystysijaintia kaukosäätimen vasen/oikea näppäimillä."
 
 msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
 msgstr "Määritä verkkoasetukset ohjatun verkkoasennuksen avulla. Avustaja auttaa määritysten tekemisessä"
@@ -21038,14 +21180,14 @@ msgstr "Hallitse softcamin asetuksia täältä"
 msgid "Use the UP and DOWN buttons to select your locale/language then press the OK button to continue."
 msgstr "Valitse kieli ylös/alas näppäimillä ja paina OK näppäintä."
 
+msgid "Use the UP/DOWN buttons to select the installed image to be backed up. Press the 'Start' (GREEN) button to start the backup."
+msgstr "Käytä YLÖS/ALAS painikkeita valitaksesi varmuuskopioitavan ohjelmiston. Paina 'Käynnistä' (VIHREÄ) painiketta aloittaaksesi varmuuskopioinnin."
+
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Käytä vaihtoehtoista tai tavallista radiotilaa."
 
 msgid "Use the current selection and exit"
 msgstr "Käytä nykyistä valintaa ja poistu"
-
-msgid "Use the cursor keys to select an installed image and then Start button."
-msgstr "Käytä nuolinäppäimiä valitaksesi asennettu ohjelmisto ja sitten Käynnistä näppäintä."
 
 msgid "Use the extended List"
 msgstr "Käytä laajennettua listaa"
@@ -21097,6 +21239,9 @@ msgstr "Käyttäjä - Suosikit"
 
 msgid "User Feed URL"
 msgstr "käyttäjän määrittämä syöteosoite"
+
+msgid "User ID"
+msgstr "Käyttäjä"
 
 msgid "User comments"
 msgstr "Käyttäjän kommentit"
@@ -21268,16 +21413,8 @@ msgstr "Venezuela, Bolivariaaninen tasavalta"
 msgid "Version"
 msgstr "Versio"
 
-#, python-format
-msgid "Version %s %s"
-msgstr "Versio %s %s"
-
 msgid "Version: "
 msgstr "Versio: "
-
-#, python-format
-msgid "Version: %s"
-msgstr "Versio: %s"
 
 msgid "Vertical"
 msgstr "Vertikaali"
@@ -21775,6 +21912,15 @@ msgstr "Kun tämä on käytössä, vastaanotin palaa automaattisesti valmiustila
 
 msgid "When enabled the receiver will automatically wake from standby when the TV is turned on."
 msgstr "Kun tämä on käytössä, vastaanotin herää automaattisesti valmiustilasta, kun televisio kytketään päälle."
+
+msgid "When enabled the timer from the fallback tuner is imported"
+msgstr "Kun käytössä, ajastukset tuodaan etävastaanottimelta"
+
+msgid "When enabled the timer from the fallback tuner is the default timer"
+msgstr "Kun käytössä, ajastukset etävastaanottimelta ovat oletuksia"
+
+msgid "When enabled you can customize the OpenWebIf settings for the fallback tuner"
+msgstr "Käy käytössä, voit määritellä etävastaanottimen OpenWebIf asetuksia"
 
 msgid "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
 msgstr "Kun päällä, AIT-tiedot lähetetään http striimeissä. Tämä mahdollistaa HbbTV:n käyttämisen asiakasvastaanottimessa."
@@ -22534,12 +22680,6 @@ msgstr "Suurenna oikealta"
 msgid "Zulu"
 msgstr "Zulu"
 
-msgid "[Enigma2 Settings]\n"
-msgstr "Järjestelmä Asetukset\n"
-
-msgid "[Image Info]\n"
-msgstr "Tietoja ohjelmistosta\n"
-
 msgid "[Timeshift] Merging records failed!"
 msgstr "[Ajansiirto] Tallenteiden yhdistäminen epäonnistui!"
 
@@ -22639,9 +22779,6 @@ msgstr "baletti"
 #, python-format
 msgid "bc%d"
 msgstr "bc%d"
-
-msgid "because of the used file system the back-up\n"
-msgstr "Järjestelmästä riippuen varmuuskopiointi vie aikaa\n"
 
 msgid "better"
 msgstr "parempi"
@@ -23167,9 +23304,6 @@ msgstr "olympian sininen"
 msgid "on READ ONLY medium."
 msgstr "vain-luku levystä."
 
-msgid "on how to restore the image"
-msgstr "kuinka palauttaa image"
-
 msgid "orange"
 msgstr "oranssi"
 
@@ -23556,9 +23690,6 @@ msgstr "valkoinen"
 msgid "width"
 msgstr "leveys"
 
-msgid "will take about 1-15 minutes for this system\n"
-msgstr "noin 5-10 minuuttia.\n"
-
 msgid "winter sport"
 msgstr "talviurheilu"
 
@@ -23588,6 +23719,213 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid ""
+#~ "\n"
+#~ "\n"
+#~ "[User - bouquets (TV)]\n"
+#~ msgstr ""
+#~ "\n"
+#~ "\n"
+#~ "[Käyttäjä - Suosikit (TV)]\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "[Installed Plugins]\n"
+#~ msgstr ""
+#~ "\n"
+#~ "[Asennetut lisäosat]\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "[User - bouquets (RADIO)]\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Käyttäjä - Suosikit (RADIO)\n"
+
+#~ msgid "     no space left on back-up device"
+#~ msgstr "     ei tilaa jäljellä varmuuskopio laiteessa"
+
+#~ msgid "     no writing permission on back-up device"
+#~ msgstr "     ei kirjoitus oikeutta varmuuskopio laiteessa"
+
+#~ msgid "     wrong back-up destination "
+#~ msgstr "     Väärä varmuuskopion sijainti "
+
+#~ msgid "Almost there... "
+#~ msgstr "Melkein valmis... "
+
+#, python-format
+#~ msgid "Back-up Tool for a %s\n"
+#~ msgstr "Varmuuskopionti ohjelma %s\n"
+
+#, python-format
+#~ msgid "Back-up Tool for an %s\n"
+#~ msgstr "Varmuuskopionti ohjelma %s\n"
+
+#, python-format
+#~ msgid "Backup Date: %s\n"
+#~ msgstr "Varmuuskopioi Päivä %s\n"
+
+#~ msgid "Backup Mode: Flash Online\n"
+#~ msgstr "Varmuuskopioin tila: Käynnissä\n"
+
+#~ msgid "Backup Mode: USB Recovery\n"
+#~ msgstr "Varmuuskopiointitila: USB Palautus\n"
+
+#, python-format
+#~ msgid "Backup to destination: %s"
+#~ msgstr "Varmuuskopion sijainti: %s"
+
+#, python-format
+#~ msgid "Build: %s"
+#~ msgstr "Ohjelmisto versio: %s"
+
+#~ msgid "By openATV Image Team"
+#~ msgstr "openATV ohjelmisto Team"
+
+#~ msgid "Cannot create backup directory"
+#~ msgstr "Varmuuskopiohakemistoa ei voi luoda"
+
+#, python-format
+#~ msgid "Chipset: BCM%s"
+#~ msgstr "Piirisarja: BCM%s"
+
+#~ msgid "Create:"
+#~ msgstr "Luodaan:"
+
+#, python-format
+#~ msgid "Create: Recovery Fullbackup %s"
+#~ msgstr "Luo: Täysivarmuuskopio %s"
+
+#~ msgid "Error reading bouquets.radio"
+#~ msgstr "Virhe luettaessa bouquets.radio"
+
+#~ msgid "Error reading bouquets.tv"
+#~ msgstr "Virhe luettaessa bouquets.tv"
+
+#~ msgid "Full Image Backup "
+#~ msgstr "Täydellinen imagen varmuuskopio "
+
+#, python-format
+#~ msgid "Full back-up on %s"
+#~ msgstr "Täysi varmuuskopio %s"
+
+#, python-format
+#~ msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
+#~ msgstr "Ohjelmisto image luotu:%s/%s-%s-%s-backup-%s_%s.zip"
+
+#~ msgid "Image creation failed - "
+#~ msgstr "Imagen luominen epäonnistui - "
+
+#, python-format
+#~ msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
+#~ msgstr "Multiboot Image tehty: %s/%s-%s-%s-backup-%s_usb.zip"
+
+#~ msgid "No, do not backup a image"
+#~ msgstr "Ei, älä varmuuskopioi"
+
+#~ msgid "Now building the Backup Image"
+#~ msgstr "Luodaan Varmuuskopiota"
+
+#~ msgid "Please be patient, a backup will now be made,\n"
+#~ msgstr "Odota hetki, varmuuskopiota tehdään nyt,\n"
+
+#~ msgid "Please check the manual of the receiver"
+#~ msgstr "Tarkista vastaanottimen ohjekirjasta"
+
+#~ msgid "Please select a backup destination"
+#~ msgstr "Valitse varmuuskopion sijainti"
+
+#~ msgid "Please wait...almost ready! "
+#~ msgstr "Odota hetki! melkein valmis! "
+
+#~ msgid "Probable causes could be"
+#~ msgstr "Todennäköiset syyt voivat olla"
+
+#~ msgid "Support at"
+#~ msgstr "Tukisivusto"
+
+#, python-format
+#~ msgid "Time required for this process: %s"
+#~ msgstr "Tähän tehtävään kulunut aika: %s"
+
+#~ msgid "To restore the image:"
+#~ msgstr "Imagen palauttaminen:"
+
+#~ msgid "Use OnlineFlash in SoftwareManager"
+#~ msgstr "Käytä Internet Päivitystä Ohjelmisto hallinnassa"
+
+#~ msgid "Use the cursor keys to select an installed image and then Start button."
+#~ msgstr "Käytä nuolinäppäimiä valitaksesi asennettu ohjelmisto ja sitten Käynnistä näppäintä."
+
+#, python-format
+#~ msgid "Version %s %s"
+#~ msgstr "Versio %s %s"
+
+#, python-format
+#~ msgid "Version: %s"
+#~ msgstr "Versio: %s"
+
+#~ msgid "[Enigma2 Settings]\n"
+#~ msgstr "Järjestelmä Asetukset\n"
+
+#~ msgid "[Image Info]\n"
+#~ msgstr "Tietoja ohjelmistosta\n"
+
+#~ msgid "because of the used file system the back-up\n"
+#~ msgstr "Järjestelmästä riippuen varmuuskopiointi vie aikaa\n"
+
+#~ msgid "on how to restore the image"
+#~ msgstr "kuinka palauttaa image"
+
+#~ msgid "will take about 1-15 minutes for this system\n"
+#~ msgstr "noin 5-10 minuuttia.\n"
+
+#~ msgid "Execution finished!!"
+#~ msgstr "Tehtävä suoritettu, paina OK!"
+
+#~ msgid "Execution progress:"
+#~ msgstr "Tehtävän edistyminen:"
+
+#~ msgid "Hide this screen"
+#~ msgstr "Piilota tämä ruutu"
+
+#~ msgid "Path to save not exist: '/tmp/'"
+#~ msgstr "Polkua ei ole olemassa /tmp/"
+
+#~ msgid "Backup done."
+#~ msgstr "Varmuuskopiointi suoritettu."
+
+#~ msgid "Backup failed!"
+#~ msgstr "Varmuuskopiointi epäonnistui!"
+
+#~ msgid "No Devices Found !!"
+#~ msgstr "Laitteita ei löydy !!"
+
+#~ msgid "23.976"
+#~ msgstr "23.976"
+
+#~ msgid "24"
+#~ msgstr "24"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "29.97"
+#~ msgstr "29.97"
+
+#~ msgid "30"
+#~ msgstr "30"
+
+#~ msgid "Backup completed."
+#~ msgstr "Varmuuskopiointi suoritettu."
+
+#~ msgid "Backup failed."
+#~ msgstr "Varmuuskopiointi epäonnistui."
+
+#~ msgid "No updates were available.  Please try again later."
+#~ msgstr "Päivityksiä ei ollut saatavilla.  Yritä myöhemmin uudelleen."
 
 #~ msgid "About..."
 #~ msgstr "Tietoja..."

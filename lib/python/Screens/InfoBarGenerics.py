@@ -211,7 +211,7 @@ class InfoBarStreamRelay:
 					self.__services.remove(servicestring)
 				else:
 					self.__services.append(servicestring)
-					if nav.getCurrentlyPlayingServiceReference() == service:
+					if nav.getCurrentlyPlayingServiceReference() and nav.getCurrentlyPlayingServiceReference() == service:
 						nav.restartService()
 				self.write()
 
@@ -3194,6 +3194,7 @@ class InfoBarExtensions:
 				"showEventInfo": (self.SelectopenEventView, _("Show the information on current event.")),
 				"showMediaPlayer": (self.showMediaPlayer, _("Show the media player...")),
 			}, prio=1, description=_("Extension Actions"))  # Lower priority.
+		self.addExtension((lambda: _("Manually import from fallback tuner"), self.importChannels, lambda: config.usage.remote_fallback_extension_menu.value and config.usage.remote_fallback_import.value))
 		self.addExtension(extension=self.getLogManager, type=InfoBarExtensions.EXTENSION_LIST)
 		self.addExtension(extension=self.getOsd3DSetup, type=InfoBarExtensions.EXTENSION_LIST)
 		self.addExtension(extension=self.getCCcamInfo, type=InfoBarExtensions.EXTENSION_LIST)
@@ -3225,6 +3226,10 @@ class InfoBarExtensions:
 			print("[INFOBARGENERICS] QuickMenu: error pipshow, starting Quick Menu")
 		from Screens.QuickMenu import QuickMenu
 		self.session.open(QuickMenu)
+
+	def importChannels(self):
+		from Components.ImportChannels import ImportChannels
+		ImportChannels()
 
 	def SelectopenEventView(self):
 		try:
@@ -4861,9 +4866,9 @@ class InfoBarHdmi:
 		self.hdmi_enabled_pip = False
 		if BoxInfo.getItem("HDMIin"):
 			if not self.hdmi_enabled_full:
-				self.addExtension((self.getHDMIInFullScreen, self.HDMIInFull, lambda: True), "blue")
+				self.addExtension((self.getHDMIInFullScreen, self.HDMIInFull, lambda: True))
 			if BoxInfo.getItem("HDMIinPiP") and not self.hdmi_enabled_pip:
-				self.addExtension((self.getHDMIInPiPScreen, self.HDMIInPiP, lambda: True), "green")
+				self.addExtension((self.getHDMIInPiPScreen, self.HDMIInPiP, lambda: True))
 		self["HDMIActions"] = HelpableActionMap(self, "InfobarHDMIActions", {
 			"HDMIin": (self.HDMIIn, _("Switch to HDMI in mode")),
 			"HDMIinLong": (self.HDMIInLong, _("Switch to HDMI in mode")),

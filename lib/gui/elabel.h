@@ -40,7 +40,7 @@ public:
 	int getNoWrap() const { return (m_wrap == 0) ? 1 : 0; } // DEPRECATED
 	void setAlphatest(int alphatest);
 	void setTabWidth(int width);
-
+	gRGB getForegroundColor(int styleID = 0 );
 	eSize calculateSize();
 	static eSize calculateTextSize(gFont *font, const std::string &string, eSize targetSize, bool nowrap = false);
 

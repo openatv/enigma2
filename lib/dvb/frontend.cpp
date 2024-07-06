@@ -6,7 +6,7 @@
 #include <lib/base/cfile.h>
 #include <lib/base/eerror.h>
 #include <lib/base/estring.h>
-#include <lib/base/nconfig.h> // access to python config
+#include <lib/base/esimpleconfig.h>
 #include <errno.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -706,7 +706,7 @@ int eDVBFrontend::openFrontend()
 
 	if (!m_simulate)
 	{
-		m_need_delivery_system_workaround = eConfigManager::getConfigBoolValue("config.usage.enable_delivery_system_workaround", false);
+		m_need_delivery_system_workaround = eSimpleConfig::getBool("config.usage.enable_delivery_system_workaround", false);
 		FILE *boxtype_file;
 		char boxtype_name[20];
 		if((boxtype_file = fopen("/proc/stb/info/boxtype", "r")) != NULL)
@@ -1685,7 +1685,7 @@ int eDVBFrontend::readFrontendData(int type)
 				int signalquality = 0;
 				int signalqualitydb = 0;
 #if DVB_API_VERSION > 5 || DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR >= 10
-				if (m_dvbversion >= DVB_VERSION(5, 10) && !eConfigManager::getConfigBoolValue(force_legacy_signal_stats, false))
+				if (m_dvbversion >= DVB_VERSION(5, 10) && !eSimpleConfig::getBool(force_legacy_signal_stats, false))
 				{
 					dtv_property prop[1];
 					prop[0].cmd = DTV_STAT_CNR;
@@ -1752,7 +1752,7 @@ int eDVBFrontend::readFrontendData(int type)
 				if (!m_simulate)
 				{
 #if DVB_API_VERSION > 5 || DVB_API_VERSION == 5 && DVB_API_VERSION_MINOR >= 10
-					if (m_dvbversion >= DVB_VERSION(5, 10) && !eConfigManager::getConfigBoolValue(force_legacy_signal_stats, false))
+					if (m_dvbversion >= DVB_VERSION(5, 10) && !eSimpleConfig::getBool(force_legacy_signal_stats, false))
 					{
 						dtv_property prop[1];
 						memset(prop, 0, sizeof(prop));
@@ -2785,7 +2785,7 @@ void eDVBFrontend::setFrontend(bool recvEvents)
 
 			char configStr[256];
 			snprintf(configStr, sizeof(configStr), "config.Nims.%d.dvbt.terrestrial_5V", m_slotid);
-			//if (eConfigManager::getConfigBoolValue(configStr))
+			//if (eSimpleConfig::getBool(configStr, false))
 			//	p[cmdseq.num].cmd = DTV_LNA, p[cmdseq.num].u.data = 1, cmdseq.num++;
 			//else
 			//	p[cmdseq.num].cmd = DTV_LNA, p[cmdseq.num].u.data = 0, cmdseq.num++;
@@ -3340,7 +3340,7 @@ RESULT eDVBFrontend::tune(const iDVBFrontendParameters &where, bool blindscan)
 		m_sec_sequence.push_back( eSecCommand(eSecCommand::START_TUNE_TIMEOUT, timeout) );
 		char configStr[256];
 		snprintf(configStr, sizeof(configStr), "config.Nims.%d.dvbt.terrestrial_5V", m_slotid);
-		if (eConfigManager::getConfigBoolValue(configStr))
+		if (eSimpleConfig::getBool(configStr, false))
 			m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltage13) );
 		else
 			m_sec_sequence.push_back( eSecCommand(eSecCommand::SET_VOLTAGE, iDVBFrontend::voltageOff) );
@@ -3756,7 +3756,7 @@ bool eDVBFrontend::changeType(int type)
 		{
 			char configStr[255];
 			snprintf(configStr, 255, "config.Nims.%d.dvbt.terrestrial_5V", m_slotid);
-			if (eConfigManager::getConfigBoolValue(configStr))
+			if (eSimpleConfig::getBool(configStr, false))
 				 setVoltage(iDVBFrontend::voltage13);
 			else
 				 setVoltage(iDVBFrontend::voltageOff);

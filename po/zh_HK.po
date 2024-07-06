@@ -1,59 +1,33 @@
 # Abel Cheung <abelcheung@gmail.com>, 2023.
+# Ricky From Hong Kong <lamricky11@hotmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-24 20:26+0000\n"
-"PO-Revision-Date: 2023-04-10 14:44+0000\n"
-"Last-Translator: Abel Cheung <abelcheung@gmail.com>\n"
+"POT-Creation-Date: 2024-06-21 14:25+0000\n"
+"PO-Revision-Date: 2024-06-29 09:09+0000\n"
+"Last-Translator: Ricky From Hong Kong <lamricky11@hotmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
 "Language: zh_HK\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.17-dev\n"
-
-#, fuzzy
-msgid ""
-"\n"
-"\n"
-"[User - bouquets (TV)]\n"
-msgstr "自定義組 (電視)"
+"X-Generator: Weblate 5.7-dev\n"
 
 msgid ""
 "\n"
 "<This tuner is configured automatically>"
 msgstr ""
 
-#, fuzzy
 msgid ""
 "\n"
 "Recording in progress."
-msgstr "錄製位置..."
-
-#, fuzzy
-msgid ""
+msgstr ""
 "\n"
-"[Installed Plugins]\n"
-msgstr "已安裝的SoftCam"
-
-#, fuzzy
-msgid ""
-"\n"
-"[User - bouquets (RADIO)]\n"
-msgstr "自定義組 (電視)"
+"正在錄製。"
 
 msgid " "
-msgstr ""
-
-msgid "     no space left on back-up device"
-msgstr ""
-
-msgid "     no writing permission on back-up device"
-msgstr ""
-
-msgid "     wrong back-up destination "
 msgstr ""
 
 msgid "  Menu key : Select quad channel"
@@ -1354,6 +1328,15 @@ msgstr ""
 msgid "-"
 msgstr ""
 
+msgid "- No space left on backup device."
+msgstr ""
+
+msgid "- No write permission on backup device."
+msgstr ""
+
+msgid "- Wrong backup destination."
+msgstr ""
+
 msgid "-24 Hours"
 msgstr ""
 
@@ -1453,20 +1436,6 @@ msgstr ""
 msgid "2"
 msgstr "2"
 
-msgid "23.976"
-msgstr ""
-
-#, fuzzy
-msgid "24"
-msgstr "2"
-
-#, fuzzy
-msgid "25"
-msgstr "2"
-
-msgid "29.97"
-msgstr ""
-
 #, fuzzy
 msgid "2nd InfoBar"
 msgstr "資訊條"
@@ -1501,10 +1470,6 @@ msgid "2x, 4x, 6x, 8x"
 msgstr ""
 
 msgid "3"
-msgstr "3"
-
-#, fuzzy
-msgid "30"
 msgstr "3"
 
 #, fuzzy
@@ -1596,6 +1561,9 @@ msgstr ""
 
 msgid "A"
 msgstr "A"
+
+msgid "A backup is now being created."
+msgstr ""
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr ""
@@ -1760,6 +1728,18 @@ msgstr ""
 #, fuzzy
 msgid "AFL"
 msgstr "PAL"
+
+msgid "AI-Powered translation color"
+msgstr ""
+
+msgid "AI-Powered translation enabled"
+msgstr ""
+
+msgid "AI-Powered translation language"
+msgstr ""
+
+msgid "AI-Powered translation subscription code"
+msgstr ""
 
 msgid "ARM"
 msgstr ""
@@ -2306,9 +2286,6 @@ msgstr ""
 msgid "Allows you to show/hide OScam/CCcam in the Extension Menu screen (BLUE button)."
 msgstr ""
 
-msgid "Almost there... "
-msgstr ""
-
 msgid "Alpha"
 msgstr "透明度"
 
@@ -2319,6 +2296,15 @@ msgid "Alphabetical under headings"
 msgstr ""
 
 msgid "Alphanumeric"
+msgstr ""
+
+msgid "Also import at reboot/restart enigma2"
+msgstr ""
+
+msgid "Also import from the extension menu"
+msgstr ""
+
+msgid "Also import when box is leaving standby"
 msgstr ""
 
 #, fuzzy
@@ -2338,6 +2324,9 @@ msgstr "[編輯專案]"
 
 msgid "Alternative Edit"
 msgstr "[編輯專案]"
+
+msgid "Alternative URLs for DVB-T/C or ATSC"
+msgstr ""
 
 msgid "Alternative numbering mode"
 msgstr ""
@@ -2600,6 +2589,9 @@ msgid "Aspect switch"
 msgstr ""
 
 msgid "Assamese"
+msgstr ""
+
+msgid "Assembling the image backup files."
 msgstr ""
 
 msgid "Assigned CAIds:"
@@ -2910,14 +2902,6 @@ msgstr ""
 msgid "Back, upper USB"
 msgstr ""
 
-#, python-format
-msgid "Back-up Tool for a %s\n"
-msgstr ""
-
-#, python-format
-msgid "Back-up Tool for an %s\n"
-msgstr ""
-
 msgid "Back/Recall"
 msgstr ""
 
@@ -2944,10 +2928,6 @@ msgstr "後臺"
 msgid "Backup"
 msgstr "備份"
 
-#, fuzzy, python-format
-msgid "Backup Date: %s\n"
-msgstr "備份失敗!!"
-
 msgid "Backup Location"
 msgstr "備份位置"
 
@@ -2958,11 +2938,10 @@ msgstr "備份模式"
 msgid "Backup Mode"
 msgstr "備份模式"
 
-#, fuzzy
-msgid "Backup Mode: Flash Online\n"
-msgstr "顯示資訊"
+msgid "Backup Mode: Flash Online"
+msgstr ""
 
-msgid "Backup Mode: USB Recovery\n"
+msgid "Backup Mode: USB Recovery"
 msgstr ""
 
 #, fuzzy
@@ -2971,18 +2950,6 @@ msgstr "備份系統設定"
 
 msgid "Backup System Settings"
 msgstr "備份系統設定"
-
-msgid "Backup completed."
-msgstr ""
-
-msgid "Backup done."
-msgstr "備份已完成."
-
-msgid "Backup failed!"
-msgstr ""
-
-msgid "Backup failed."
-msgstr "備份失敗!!"
 
 msgid "Backup images"
 msgstr ""
@@ -2995,9 +2962,9 @@ msgid ""
 "do you want to install now?"
 msgstr ""
 
-#, fuzzy, python-format
-msgid "Backup to destination: %s"
-msgstr "跳轉到目標目錄"
+#, python-format
+msgid "Backup tool for %s %s"
+msgstr ""
 
 #, fuzzy
 msgid "Backup your %s %s settings."
@@ -3010,11 +2977,8 @@ msgstr "正在備份"
 msgid "Backup your current image to HDD or USB. This will make a 1:1 copy of your box"
 msgstr ""
 
-#, fuzzy
 msgid "Backup your current settings"
-msgstr ""
-"\n"
-"備份您的Dreambox設定。"
+msgstr "備份您現有的設定。"
 
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
 msgstr ""
@@ -3337,10 +3301,6 @@ msgstr ""
 msgid "Build information for %s %s"
 msgstr ""
 
-#, python-format
-msgid "Build: %s"
-msgstr ""
-
 #, fuzzy
 msgid "Bulgaria"
 msgstr "匈牙利語"
@@ -3392,9 +3352,6 @@ msgid "By disk UUID"
 msgstr ""
 
 msgid "By disk label"
-msgstr ""
-
-msgid "By openATV Image Team"
 msgstr ""
 
 msgid "Bypass HDMI EDID Check"
@@ -3670,6 +3627,9 @@ msgstr "調整"
 msgid "Can't allocate program source (e.g. tuner)"
 msgstr ""
 
+msgid "Can't create backup directory!"
+msgstr ""
+
 msgid ""
 "Can't going to live TV!\n"
 "Switch to live TV and restart time shift ?"
@@ -3790,10 +3750,6 @@ msgid "Cancelled upon user request"
 msgstr ""
 
 #, fuzzy
-msgid "Cannot create backup directory"
-msgstr "無法分析傳輸目錄"
-
-#, fuzzy
 msgid "Cannot delete file"
 msgstr "刪除檔"
 
@@ -3838,6 +3794,9 @@ msgid "Catalan / Valencian"
 msgstr ""
 
 msgid "Cayman Islands"
+msgstr ""
+
+msgid "Cebuano"
 msgstr ""
 
 msgid "Celsius"
@@ -4138,8 +4097,7 @@ msgstr ""
 msgid "Chinese"
 msgstr ""
 
-#, python-format
-msgid "Chipset: BCM%s"
+msgid "Chinese (Simplified)"
 msgstr ""
 
 msgid "Choice Box"
@@ -4186,6 +4144,9 @@ msgid "Choose the display formatting style for dates. 'D' / 'DD' is the date and
 msgstr ""
 
 msgid "Choose the display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds.  ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
+msgstr ""
+
+msgid "Choose the fallback font."
 msgstr ""
 
 msgid "Choose the front panel display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
@@ -4480,6 +4441,10 @@ msgstr ""
 msgid "Command execution..."
 msgstr "執行命令..."
 
+msgid "Command finished."
+msgid_plural "Commands finished."
+msgstr[0] ""
+
 msgid "Command order"
 msgstr "命令順序"
 
@@ -4633,6 +4598,9 @@ msgstr ""
 msgid "Configure remote control type"
 msgstr ""
 
+msgid "Configure the AI-Powered translation language."
+msgstr ""
+
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr ""
 
@@ -4681,6 +4649,9 @@ msgid "Configure the brightness level of the front panel display for normal oper
 msgstr ""
 
 msgid "Configure the brightness level of the front panel display for standby."
+msgstr ""
+
+msgid "Configure the color of the AI-Powered translations."
 msgstr ""
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
@@ -5264,6 +5235,10 @@ msgstr ""
 msgid "Create a symbolic link"
 msgstr ""
 
+#, python-format
+msgid "Create recovery image backup '%s'."
+msgstr ""
+
 msgid "Create separate radio user bouquet"
 msgstr ""
 
@@ -5274,14 +5249,6 @@ msgid "Create the additional slots on the selected device"
 msgstr ""
 
 msgid "Create the flash expander in the selected device"
-msgstr ""
-
-#, fuzzy
-msgid "Create:"
-msgstr "創建"
-
-#, python-format
-msgid "Create: Recovery Fullbackup %s"
 msgstr ""
 
 #, fuzzy
@@ -5446,6 +5413,9 @@ msgstr ""
 
 msgid "Customize"
 msgstr "高級設定"
+
+msgid "Customize OpenWebIF settings for fallback tuner"
+msgstr ""
 
 msgid "Customize System Settings"
 msgstr ""
@@ -6194,6 +6164,18 @@ msgstr ""
 msgid "Deselected packages usually occur because those packaged are incompatible with existing packages. While this is mostly harmless it is possible that your %s %s may experience issues."
 msgstr ""
 
+msgid "Destination of fallback remote receiver"
+msgstr ""
+
+msgid "Destination of fallback remote receiver for ATSC"
+msgstr ""
+
+msgid "Destination of fallback remote receiver for DVB-C"
+msgstr ""
+
+msgid "Destination of fallback remote receiver for DVB-T"
+msgstr ""
+
 msgid "Detail of GStreamer log."
 msgstr ""
 
@@ -6489,6 +6471,9 @@ msgstr "關於"
 msgid "Do another manual service scan?"
 msgstr ""
 
+msgid "Do not backup the image"
+msgstr ""
+
 msgid "Do not change"
 msgstr ""
 
@@ -6573,6 +6558,18 @@ msgstr " 是否刪除 %s 書簽?"
 #, python-format
 msgid "Do you really want to remove your bookmark for '%s'?"
 msgstr " 是否刪除 %s 書簽?"
+
+msgid ""
+"Do you really want to restart OSCam?\n"
+"\n"
+"HINT: This will take about 5 seconds!"
+msgstr ""
+
+msgid ""
+"Do you really want to shut down OSCam?\n"
+"\n"
+"ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+msgstr ""
 
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
@@ -7075,6 +7072,9 @@ msgstr "啟用時鐘:"
 msgid "Enable 5V for active antenna"
 msgstr "為有源天線啟用5V供電"
 
+msgid "Enable AI-Powered translation for all teletext and DVB subtitles."
+msgstr ""
+
 msgid "Enable Autorecord"
 msgstr "啟用解析度自動調整"
 
@@ -7230,6 +7230,9 @@ msgid "Enable fallback remote receiver"
 msgstr ""
 
 msgid "Enable freesat EPG"
+msgstr ""
+
+msgid "Enable import timer from fallback tuner"
 msgstr ""
 
 #, fuzzy
@@ -7427,6 +7430,9 @@ msgstr "間隔"
 msgid "Enter DNS (Dynamic Name Server) %d's IP address."
 msgstr ""
 
+msgid "Enter IP address"
+msgstr ""
+
 msgid "Enter PIN"
 msgstr ""
 
@@ -7491,6 +7497,9 @@ msgid "Enter your low band local oscillator frequency. For more information cons
 msgstr ""
 
 msgid "Enter your personal feed URL to allow you to select packages from your personal feed."
+msgstr ""
+
+msgid "Enter your subscription code, the unified code for trial is 15."
 msgstr ""
 
 msgid "Entertainment"
@@ -7656,12 +7665,6 @@ msgstr ""
 msgid "Error opening recording file"
 msgstr "標記新錄製內容"
 
-msgid "Error reading bouquets.radio"
-msgstr ""
-
-msgid "Error reading bouquets.tv"
-msgstr ""
-
 msgid "Error reading webpage!"
 msgstr ""
 
@@ -7670,6 +7673,12 @@ msgstr ""
 
 #, python-format
 msgid "Error unzipping image '%s'!"
+msgstr ""
+
+#, python-format
+msgid ""
+"Error while retrieving fallback timer information\n"
+"%s"
 msgstr ""
 
 msgid "Error, unknown Result!"
@@ -7782,6 +7791,10 @@ msgid "Error: Unable to rename directory '%s' to '%s'!"
 msgstr ""
 
 #, python-format
+msgid "Error: Unable to write log file '%s'!"
+msgstr ""
+
+#, python-format
 msgid "Error: You can't run '%s' on '%s'!"
 msgstr ""
 
@@ -7886,12 +7899,6 @@ msgstr "超過雙層介質！"
 msgid "Execution condition"
 msgstr "執行完畢！"
 
-msgid "Execution finished!!"
-msgstr "執行完畢！"
-
-msgid "Execution progress:"
-msgstr ""
-
 msgid "Exif"
 msgstr "Exif"
 
@@ -7916,6 +7923,9 @@ msgid "Exit Quad Channel Selection"
 msgstr "頻道選擇"
 
 msgid "Exit all menus"
+msgstr ""
+
+msgid "Exit and close all screens without performing a backup"
 msgstr ""
 
 msgid "Exit editor"
@@ -7967,6 +7977,9 @@ msgid "Exit the wizard"
 msgstr "退出嚮導"
 
 msgid "Exit viewer"
+msgstr ""
+
+msgid "Exit without performing a backup"
 msgstr ""
 
 msgid "Expand"
@@ -8163,7 +8176,37 @@ msgstr "失敗"
 msgid "Falkland Islands (Malvinas)"
 msgstr ""
 
+msgid "Fallback API did not return a valid result."
+msgstr ""
+
+msgid "Fallback Font *"
+msgstr ""
+
+msgid "Fallback remote receiver"
+msgstr ""
+
+msgid "Fallback remote receiver IP"
+msgstr ""
+
+msgid "Fallback remote receiver Port"
+msgstr ""
+
 msgid "Fallback remote receiver URL"
+msgstr ""
+
+msgid "Fallback remote receiver for ATSC"
+msgstr ""
+
+msgid "Fallback remote receiver for DVB-C"
+msgstr ""
+
+msgid "Fallback remote receiver for DVB-T"
+msgstr ""
+
+msgid "Fallback Timer"
+msgstr ""
+
+msgid "Fallback tuner setup"
 msgstr ""
 
 msgid "False"
@@ -8357,10 +8400,6 @@ msgid "File transfer was canceled by user!"
 msgstr ""
 
 msgid "File transfer was cancelled by user"
-msgstr ""
-
-#, python-format
-msgid "File write error: '%s'"
 msgstr ""
 
 msgid "Filename"
@@ -8704,17 +8743,10 @@ msgstr ""
 msgid "Fulah"
 msgstr ""
 
-msgid "Full Image Backup "
-msgstr ""
-
 msgid "Full Range RGB"
 msgstr ""
 
 msgid "Full Stretch"
-msgstr ""
-
-#, python-format
-msgid "Full back-up on %s"
 msgstr ""
 
 msgid "Full factory reset"
@@ -9189,6 +9221,9 @@ msgstr ""
 msgid "Hausa"
 msgstr ""
 
+msgid "Hawaiian"
+msgstr ""
+
 msgid "Heard Island and McDonald Islands"
 msgstr ""
 
@@ -9300,10 +9335,10 @@ msgstr ""
 msgid "Hide the InfoBar"
 msgstr "資訊條"
 
-msgid "Hide this screen"
+msgid "Hide zap errors"
 msgstr ""
 
-msgid "Hide zap errors"
+msgid "Hide/Show the console screen"
 msgstr ""
 
 msgid "Hierarchy info"
@@ -9364,6 +9399,9 @@ msgstr "歷史"
 #, fuzzy
 msgid "History zap..."
 msgstr "歷史"
+
+msgid "Hmong"
+msgstr ""
 
 #, fuzzy
 msgid "Hockey"
@@ -9521,6 +9559,9 @@ msgid "IP address"
 msgstr ""
 
 msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
+msgstr ""
+
+msgid "IP of fallback remote receiver"
 msgstr ""
 
 #, fuzzy
@@ -9729,16 +9770,21 @@ msgstr ""
 msgid "Image Backup"
 msgstr "備份"
 
-msgid "Image Flash Actions"
+msgid "Image Backup Actions"
 msgstr ""
 
 #, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
+msgid "Image Backup To %s"
 msgstr ""
 
-#, fuzzy
-msgid "Image creation failed - "
-msgstr "創建分區失敗"
+msgid "Image Flash Actions"
+msgstr ""
+
+msgid "Image created:"
+msgstr ""
+
+msgid "Image creation failed!"
+msgstr ""
 
 #, fuzzy
 msgid "ImageWizard"
@@ -9751,6 +9797,21 @@ msgid "Immediately exit the wizard (Debug mode only)"
 msgstr ""
 
 msgid "Immediately restart selected devices."
+msgstr ""
+
+msgid "Import channels and/or EPG from remote receiver URL also when the receiver is getting out of standby"
+msgstr ""
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver is booted"
+msgstr ""
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
+msgstr ""
+
+msgid "Import from remote receiver URL"
+msgstr ""
+
+msgid "Import remote receiver URL"
 msgstr ""
 
 msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
@@ -10438,6 +10499,9 @@ msgstr ""
 msgid "Kurdish"
 msgstr ""
 
+msgid "Kurdish (Sorani)"
+msgstr ""
+
 msgid "Kurdistan"
 msgstr ""
 
@@ -11044,6 +11108,9 @@ msgid "Maintain your multi boot device."
 msgstr ""
 
 msgid "Make"
+msgstr ""
+
+msgid "Make it possible to manually initiate the channels import and/or EPG via the extension menu"
 msgstr ""
 
 msgid "Make this mark an 'in' point"
@@ -11891,8 +11958,7 @@ msgstr ""
 msgid "MultiTranscoding"
 msgstr ""
 
-#, python-format
-msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
+msgid "Multiboot Image created:"
 msgstr ""
 
 msgid "Multimedia Packages"
@@ -11958,6 +12024,9 @@ msgstr ""
 
 #, python-format
 msgid "NOTE: These %d directories/files exist and will be overwritten!"
+msgstr ""
+
+msgid "NOTE: While the console screen is hidden from view the buttons are still active. Pressing any enabled button will cause the screen to reappear but the button will not be actioned."
 msgstr ""
 
 msgid "NOW"
@@ -12294,10 +12363,6 @@ msgid "No Connection"
 msgstr "未連接"
 
 #, fuzzy
-msgid "No Devices Found !!"
-msgstr "找到 %d 個頻道!"
-
-#, fuzzy
 msgid "No ECM PIDs available"
 msgstr "無可用資訊"
 
@@ -12477,9 +12542,6 @@ msgstr ""
 msgid "No updates available."
 msgstr ""
 
-msgid "No updates were available.  Please try again later."
-msgstr ""
-
 msgid "No valid device detected - Press OK"
 msgstr ""
 
@@ -12516,10 +12578,6 @@ msgstr ""
 
 msgid "No, but restart from begin"
 msgstr "否, 重新開始播放這個視頻"
-
-#, fuzzy
-msgid "No, do not backup a image"
-msgstr "否, 什麼也不做."
 
 msgid "No, do nothing."
 msgstr "否, 什麼也不做."
@@ -12686,9 +12744,6 @@ msgstr ""
 
 msgctxt "now/next: 'now' event label"
 msgid "Now"
-msgstr ""
-
-msgid "Now building the Backup Image"
 msgstr ""
 
 msgid "Now save time shift as movie and continues recording"
@@ -12961,11 +13016,17 @@ msgstr ""
 msgid "Open the Channel Selection Settings screen"
 msgstr ""
 
+msgid "Open the Image information"
+msgstr ""
+
 #, fuzzy
 msgid "Open the Plugin Browser"
 msgstr "流覽插件"
 
 msgid "Open the Plugin Browser settings screen"
+msgstr ""
+
+msgid "Open the Storage Device information"
 msgstr ""
 
 msgid "Open the VirtualKeyBoard for text entry"
@@ -13336,9 +13397,6 @@ msgstr ""
 msgid "Path '%s' missing!"
 msgstr ""
 
-msgid "Path to save not exist: '/tmp/'"
-msgstr ""
-
 msgid "Pause"
 msgstr ""
 
@@ -13587,12 +13645,8 @@ msgstr "暫停"
 msgid "Please add titles to the compilation."
 msgstr "請添加標題."
 
-msgid "Please be patient, a backup will now be made,\n"
+msgid "Please be patient."
 msgstr ""
-
-#, fuzzy
-msgid "Please check the manual of the receiver"
-msgstr "為新的目錄重命名"
 
 msgid "Please choose an extension..."
 msgstr "請選擇增加部分..."
@@ -13669,10 +13723,6 @@ msgid "Please press OK when ready"
 msgstr ""
 
 #, fuzzy
-msgid "Please select a backup destination"
-msgstr "請選擇作為備份的媒介"
-
-#, fuzzy
 msgid "Please select a default EPG type..."
 msgstr "請選擇要刪除的播放列表..."
 
@@ -13732,6 +13782,9 @@ msgstr ""
 
 msgid "Please select the sub-service to record:"
 msgstr "請選擇要錄製的字幕..."
+
+msgid "Please select the target location to save the backup:"
+msgstr ""
 
 msgid "Please select what to do after flash of the following image:"
 msgstr ""
@@ -13844,10 +13897,6 @@ msgstr "請稍候..."
 msgid "Please wait... Loading list..."
 msgstr "正在載入列表... 請稍候..."
 
-#, fuzzy
-msgid "Please wait...almost ready! "
-msgstr "請稍候..."
-
 msgid "Plug in USB device"
 msgstr ""
 
@@ -13934,6 +13983,9 @@ msgstr "埠 D"
 msgid "Port number for the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr ""
 
+msgid "Port of fallback remote receiver"
+msgstr ""
+
 #, fuzzy
 msgid "Portugal"
 msgstr "葡萄牙語"
@@ -13968,6 +14020,9 @@ msgstr "極軸設定(DiSEqC 1.2)"
 
 msgid "Positioner setup"
 msgstr "極軸設定(DiSEqC 1.2)"
+
+msgid "Possible causes could be:"
+msgstr ""
 
 #, fuzzy
 msgid "Power"
@@ -14272,9 +14327,6 @@ msgstr "每分鐘"
 msgid "Priority"
 msgstr "次序"
 
-msgid "Probable causes could be"
-msgstr ""
-
 msgid "Proc model"
 msgstr ""
 
@@ -14526,6 +14578,9 @@ msgid "Quick EPG"
 msgstr "快速"
 
 msgid "Quick Launch Menu"
+msgstr ""
+
+msgid "Quick Menu Actions"
 msgstr ""
 
 msgid "Quick Menu..."
@@ -15362,6 +15417,9 @@ msgstr "重啟網路"
 msgid "Restart Network Adapter"
 msgstr "選擇網卡"
 
+msgid "Restart OSCam"
+msgstr ""
+
 msgid "Restart enigma"
 msgstr ""
 
@@ -15618,6 +15676,10 @@ msgstr "正在運行"
 msgid "Running Myrestore script, Please wait ..."
 msgstr "搜尋您的網路. 請稍候..."
 
+#, python-format
+msgid "Running command %d: '%s'."
+msgstr ""
+
 msgid "Russian"
 msgstr "俄語"
 
@@ -15735,6 +15797,9 @@ msgstr ""
 msgid "Same as in active"
 msgstr "View Rass interactive"
 
+msgid "Same as stream"
+msgstr "停止測驗"
+
 msgid "Same behavior as current animation"
 msgstr ""
 
@@ -15818,6 +15883,9 @@ msgstr ""
 msgid "Save EPG data"
 msgstr "保存播放列表"
 
+msgid "Save Log"
+msgstr ""
+
 #, fuzzy
 msgid "Save all changed settings and exit"
 msgstr "退出時保存目錄"
@@ -15869,6 +15937,9 @@ msgid "Save the left column directory location on exit."
 msgstr ""
 
 msgid "Save the log changes and exit"
+msgstr ""
+
+msgid "Save the log of the console messages to a file"
 msgstr ""
 
 msgid "Save the right column directory location on exit."
@@ -15923,11 +15994,8 @@ msgstr "掃描更多 SR"
 msgid "Scan files..."
 msgstr ""
 
-#, fuzzy
 msgid "Scan for local extensions and install them"
-msgstr ""
-"\n"
-"掃描本地套裝軟體並安裝它們。"
+msgstr "掃描本地套裝軟體並安裝它們。"
 
 msgid "Scan for local extensions and install them."
 msgstr "掃描本地套裝軟體並安裝它們。"
@@ -16312,6 +16380,9 @@ msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
 msgstr ""
 
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show subscription packages in the Download Plugins screen."
 msgstr ""
 
 msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
@@ -16943,6 +17014,9 @@ msgstr ""
 msgid "Select the time zone within the area or region."
 msgstr "選擇位置來保存錄影."
 
+msgid "Select the timer from the fallback tuner by default"
+msgstr ""
+
 msgid "Select the tuner that controls the motorized dish."
 msgstr ""
 
@@ -17332,6 +17406,9 @@ msgstr ""
 msgid "Set action for 'Info' key"
 msgstr "Step in ms for arrow keys"
 
+msgid "Set alternative fallback tuners for DVB-T/C or ATSC"
+msgstr ""
+
 msgid "Set current CEC address as fixed address"
 msgstr ""
 
@@ -17372,6 +17449,9 @@ msgstr "系統設定"
 msgid "Set the MAC address of your %s %s."
 msgstr ""
 
+msgid "Set the User ID of the OpenWebif from your fallback tuner"
+msgstr ""
+
 msgid "Set the aspect ratio of the service picons."
 msgstr ""
 
@@ -17399,6 +17479,12 @@ msgid "Set the jump-size of the seekbar."
 msgstr "兩倍記憶體大小"
 
 msgid "Set the number of lines to be saved for 'stout' and 'sterr' output in scripts."
+msgstr ""
+
+msgid "Set the password of the OpenWebif from your fallback tuner"
+msgstr ""
+
+msgid "Set the port of the OpenWebif from your fallback tuner"
 msgstr ""
 
 #, fuzzy
@@ -17434,6 +17520,9 @@ msgid "Set the time to hide the second infobar. The bar also disappears on press
 msgstr ""
 
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, PowerTimer, SleepTimer etc."
+msgstr ""
+
+msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
 msgstr ""
 
 msgid "Set the type of the progress indication in the channel selection screen."
@@ -17688,11 +17777,8 @@ msgstr ""
 msgid "Setup your recording config"
 msgstr "開始錄製？"
 
-#, fuzzy
 msgid "Setup your remote buttons"
-msgstr ""
-"\n"
-"備份您的Dreambox設定。"
+msgstr "設定您的遙控器按鍵"
 
 msgid "Setup your satellite equipment"
 msgstr ""
@@ -17998,6 +18084,9 @@ msgstr ""
 msgid "Show Source packages"
 msgstr ""
 
+msgid "Show Subscription packages"
+msgstr ""
+
 msgid "Show Subservices Of Active Service"
 msgstr ""
 
@@ -18266,6 +18355,18 @@ msgid "Show next service information screen"
 msgstr ""
 
 msgid "Show next system information screen"
+msgstr ""
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL did not complete"
+msgstr ""
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL is completed"
+msgstr ""
+
+msgid "Show notification when import channels was not successful"
+msgstr ""
+
+msgid "Show notification when import channels was successful"
 msgstr ""
 
 #, fuzzy
@@ -18592,6 +18693,9 @@ msgstr "關機"
 
 msgid "Shutdown"
 msgstr "關機"
+
+msgid "Shutdown OSCam"
+msgstr ""
 
 msgid "Shutting down. Please wait..."
 msgstr ""
@@ -19169,6 +19273,9 @@ msgstr ""
 msgid "Speed"
 msgstr ""
 
+msgid "Spinner Position"
+msgstr ""
+
 msgid "Split preview mode"
 msgstr "Split 預覽模式"
 
@@ -19267,6 +19374,9 @@ msgid "Start test"
 msgstr "開始測驗"
 
 msgid "Start the Kexec initialization"
+msgstr ""
+
+msgid "Start the backup of the selected image"
 msgstr ""
 
 msgid "Start the highlighted plugin"
@@ -19544,6 +19654,9 @@ msgstr ""
 msgid "Style:"
 msgstr ""
 
+msgid "Subscription Packages"
+msgstr ""
+
 msgid "Subservice Actions"
 msgstr ""
 
@@ -19628,10 +19741,6 @@ msgstr "星期日"
 
 msgid "Sunday"
 msgstr "星期日"
-
-#, fuzzy
-msgid "Support at"
-msgstr "按日期排序"
 
 #, fuzzy
 msgid "Suriname"
@@ -20297,6 +20406,9 @@ msgid ""
 "What do you want to do ?"
 msgstr ""
 
+msgid "The backup can take up to about 15 minutes to complete."
+msgstr ""
+
 msgid "The backup failed"
 msgstr ""
 
@@ -20919,10 +21031,6 @@ msgstr ""
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr ""
 
-#, python-format
-msgid "Time required for this process: %s"
-msgstr ""
-
 msgid "Time shift buffer delete after zap"
 msgstr ""
 
@@ -20974,6 +21082,9 @@ msgstr ""
 #, fuzzy
 msgid "Time style"
 msgstr "定時類型"
+
+msgid "Time taken for the backup:"
+msgstr ""
 
 msgid "Time to execute command or script"
 msgstr ""
@@ -21084,9 +21195,11 @@ msgstr "標題設定模式"
 msgid "To complete the setup the %s %s must connect to the Internet.  Connect the %s %s to the Internet now."
 msgstr ""
 
-#, fuzzy
-msgid "To restore the image:"
-msgstr "是，立即還原設定"
+msgid "To restore the image check the manual or documentation for the receiver."
+msgstr ""
+
+msgid "To restore the image use 'OnlineFlash' option in the 'SoftwareManager' menu."
+msgstr ""
 
 #, python-format
 msgid "To where would you like to extract '%s'?"
@@ -21538,6 +21651,9 @@ msgstr ""
 msgid "URL"
 msgstr ""
 
+msgid "URL of fallback remote receiver"
+msgstr ""
+
 msgid "URL of fallback remote receiver."
 msgstr ""
 
@@ -21600,6 +21716,9 @@ msgstr ""
 
 #, python-format
 msgid "Unexpected error accessing WebIF: %s"
+msgstr ""
+
+msgid "Unexpected error while retrieving fallback tuner's timer information"
 msgstr ""
 
 msgid "UnhandledKey"
@@ -21783,11 +21902,8 @@ msgstr ""
 msgid "Update the selected plugin / list of plugins"
 msgstr ""
 
-#, fuzzy
 msgid "Update/Backup your firmware, Backup/Restore settings"
-msgstr ""
-"\n"
-"備份您的Dreambox設定。"
+msgstr "更新／備份您的韌體，備份／恢復設定"
 
 msgid "Update/Backup/Restore your box"
 msgstr ""
@@ -21899,9 +22015,6 @@ msgid "Use MHW EPG information when it is available."
 msgstr ""
 
 msgid "Use Netmed EPG information when it is available."
-msgstr ""
-
-msgid "Use OnlineFlash in SoftwareManager"
 msgstr ""
 
 msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
@@ -22054,13 +22167,13 @@ msgstr ""
 msgid "Use the UP and DOWN buttons to select your locale/language then press the OK button to continue."
 msgstr ""
 
+msgid "Use the UP/DOWN buttons to select the installed image to be backed up. Press the 'Start' (GREEN) button to start the backup."
+msgstr ""
+
 msgid "Use the alternative or the conventional radio mode."
 msgstr ""
 
 msgid "Use the current selection and exit"
-msgstr ""
-
-msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr ""
 
 #, fuzzy
@@ -22115,6 +22228,9 @@ msgstr "自定義組"
 
 #, fuzzy
 msgid "User Feed URL"
+msgstr "用戶定義"
+
+msgid "User ID"
 msgstr "用戶定義"
 
 msgid "User comments"
@@ -22267,16 +22383,8 @@ msgstr ""
 msgid "Version"
 msgstr ""
 
-#, python-format
-msgid "Version %s %s"
-msgstr ""
-
 #, fuzzy
 msgid "Version: "
-msgstr "反向:"
-
-#, fuzzy, python-format
-msgid "Version: %s"
 msgstr "反向:"
 
 msgid "Vertical"
@@ -22799,6 +22907,15 @@ msgid "When enabled the receiver will automatically return to standby when the T
 msgstr ""
 
 msgid "When enabled the receiver will automatically wake from standby when the TV is turned on."
+msgstr ""
+
+msgid "When enabled the timer from the fallback tuner is imported"
+msgstr ""
+
+msgid "When enabled the timer from the fallback tuner is the default timer"
+msgstr ""
+
+msgid "When enabled you can customize the OpenWebIf settings for the fallback tuner"
 msgstr ""
 
 msgid "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
@@ -23553,13 +23670,6 @@ msgid "Zulu"
 msgstr ""
 
 #, fuzzy
-msgid "[Enigma2 Settings]\n"
-msgstr "Softcam 設定"
-
-msgid "[Image Info]\n"
-msgstr ""
-
-#, fuzzy
 msgid "[Timeshift] Merging records failed!"
 msgstr "不能時光平移!"
 
@@ -23659,9 +23769,6 @@ msgstr ""
 
 #, python-format
 msgid "bc%d"
-msgstr ""
-
-msgid "because of the used file system the back-up\n"
 msgstr ""
 
 msgid "better"
@@ -24202,10 +24309,6 @@ msgstr ""
 msgid "on READ ONLY medium."
 msgstr "唯讀介質."
 
-#, fuzzy
-msgid "on how to restore the image"
-msgstr " 是否移出套裝軟體:\n"
-
 msgid "orange"
 msgstr ""
 
@@ -24609,9 +24712,6 @@ msgstr ""
 msgid "width"
 msgstr ""
 
-msgid "will take about 1-15 minutes for this system\n"
-msgstr ""
-
 msgid "winter sport"
 msgstr ""
 
@@ -24642,6 +24742,110 @@ msgstr "是 (保留)"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid ""
+#~ "\n"
+#~ "\n"
+#~ "[User - bouquets (TV)]\n"
+#~ msgstr "自定義組 (電視)"
+
+#, fuzzy
+#~ msgid ""
+#~ "\n"
+#~ "[Installed Plugins]\n"
+#~ msgstr "已安裝的SoftCam"
+
+#, fuzzy
+#~ msgid ""
+#~ "\n"
+#~ "[User - bouquets (RADIO)]\n"
+#~ msgstr "自定義組 (電視)"
+
+#, fuzzy, python-format
+#~ msgid "Backup Date: %s\n"
+#~ msgstr "備份失敗!!"
+
+#, fuzzy
+#~ msgid "Backup Mode: Flash Online\n"
+#~ msgstr "顯示資訊"
+
+#, fuzzy, python-format
+#~ msgid "Backup to destination: %s"
+#~ msgstr "跳轉到目標目錄"
+
+#, fuzzy
+#~ msgid "Cannot create backup directory"
+#~ msgstr "無法分析傳輸目錄"
+
+#, fuzzy
+#~ msgid "Create:"
+#~ msgstr "創建"
+
+#, fuzzy
+#~ msgid "Image creation failed - "
+#~ msgstr "創建分區失敗"
+
+#, fuzzy
+#~ msgid "No, do not backup a image"
+#~ msgstr "否, 什麼也不做."
+
+#, fuzzy
+#~ msgid "Please check the manual of the receiver"
+#~ msgstr "為新的目錄重命名"
+
+#, fuzzy
+#~ msgid "Please select a backup destination"
+#~ msgstr "請選擇作為備份的媒介"
+
+#, fuzzy
+#~ msgid "Please wait...almost ready! "
+#~ msgstr "請稍候..."
+
+#, fuzzy
+#~ msgid "Support at"
+#~ msgstr "按日期排序"
+
+#, fuzzy
+#~ msgid "To restore the image:"
+#~ msgstr "是，立即還原設定"
+
+#, fuzzy, python-format
+#~ msgid "Version: %s"
+#~ msgstr "反向:"
+
+#, fuzzy
+#~ msgid "[Enigma2 Settings]\n"
+#~ msgstr "Softcam 設定"
+
+#, fuzzy
+#~ msgid "on how to restore the image"
+#~ msgstr " 是否移出套裝軟體:\n"
+
+#~ msgid "Execution finished!!"
+#~ msgstr "執行完畢！"
+
+#~ msgid "Backup done."
+#~ msgstr "備份已完成."
+
+#, fuzzy
+#~ msgid "No Devices Found !!"
+#~ msgstr "找到 %d 個頻道!"
+
+#, fuzzy
+#~ msgid "24"
+#~ msgstr "2"
+
+#, fuzzy
+#~ msgid "25"
+#~ msgstr "2"
+
+#, fuzzy
+#~ msgid "30"
+#~ msgstr "3"
+
+#~ msgid "Backup failed."
+#~ msgstr "備份失敗!!"
 
 #~ msgid "About..."
 #~ msgstr "關於..."

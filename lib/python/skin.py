@@ -6,7 +6,7 @@ from xml.etree.ElementTree import Element, ElementTree, fromstring
 
 from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, addFont, eLabel, eListbox, eListboxPythonMultiContent, ePixmap, ePoint, eRect, eRectangle, eSize, eSlider, eSubtitleWidget, eWidget, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gMainDC, gRGB
 
-from Components.config import ConfigSubsection, ConfigText, config
+from Components.config import ConfigSelection, ConfigSubsection, ConfigText, config
 from Components.SystemInfo import BoxInfo
 from Components.Sources.Source import ObsoleteSource
 from Tools.Directories import SCOPE_LCDSKIN, SCOPE_GUISKIN, SCOPE_FONTS, SCOPE_SKINS, pathExists, resolveFilename, fileReadXML
@@ -60,6 +60,7 @@ if not isfile(skin):
 	DEFAULT_SKIN = EMERGENCY_SKIN
 config.skin.primary_skin = ConfigText(default=DEFAULT_SKIN)
 config.skin.display_skin = ConfigText(default=DEFAULT_DISPLAY_SKIN)
+config.skin.FallbackFont = ConfigSelection(default="fallback.font", choices=[("fallback.font", "Fallback Font 1"), ("AbyssinicaSIL-Regular.ttf", "Fallback Font 2")])
 
 currentPrimarySkin = None
 currentDisplaySkin = None
@@ -152,9 +153,7 @@ def InitSkins():
 		getDesktop(GUI_SKIN_ID).resize(eSize(resolution[0], resolution[1]))
 	runCallbacks = True
 	# Load all XML templates.
-	skinTemplatesFileName = resolveFilename(SCOPE_SKINS, pathjoin(dirname(currentPrimarySkin), "skinTemplates.xml"))
-	if isfile(skinTemplatesFileName):
-		loadSkinTemplates(skinTemplatesFileName)
+	reloadSkinTemplates()
 
 
 # Method to load a skin XML file into the skin data structures.
@@ -202,22 +201,39 @@ def loadSkin(filename, scope=SCOPE_SKINS, desktop=getDesktop(GUI_SKIN_ID), scree
 	return False
 
 
-# Method to load a skinTemplates.xml if one exists.
+# Method to load a skinTemplates.xml if one exists or load the templates from the screens.
 #
 def loadSkinTemplates(skinTemplatesFileName):
-	print(f"[Skin] Loading XML templates from '{skinTemplatesFileName}'.")
-	domStyles = fileReadXML(skinTemplatesFileName, source=MODULE_NAME)
-	if domStyles is not None:
-		for template in domStyles.findall("template"):
-			component = template.get("component")
-			name = template.get("name")
-			if component and name:
-				if component in componentTemplates:
-					componentTemplates[component][name] = template
-				else:
-					componentTemplates[component] = {name: template}
-		if config.crash.debugScreens.value:
-			print(f"[Skin] DEBUG: componentTemplates '{componentTemplates}'.")
+	if isfile(skinTemplatesFileName):
+		print(f"[Skin] Loading XML templates from '{skinTemplatesFileName}'.")
+		domStyles = fileReadXML(skinTemplatesFileName, source=MODULE_NAME)
+		if domStyles is not None:
+			for template in domStyles.findall("template"):
+				component = template.get("component")
+				name = template.get("name")
+				if component and name:
+					if component in componentTemplates:
+						componentTemplates[component][name] = template
+					else:
+						componentTemplates[component] = {name: template}
+	else:
+		for screen in domScreens:
+			element, path = domScreens.get(screen, (None, None))
+			for template in element.findall(".//widget/templates/template"):
+				component = template.get("component")
+				name = template.get("name")
+				if component and name:
+					if component in componentTemplates:
+						componentTemplates[component][name] = template
+					else:
+						componentTemplates[component] = {name: template}
+	if config.crash.debugScreens.value:
+		print(f"[Skin] DEBUG: componentTemplates '{componentTemplates}'.")
+
+
+def reloadSkinTemplates():
+	skinTemplatesFileName = resolveFilename(SCOPE_SKINS, pathjoin(dirname(currentPrimarySkin), "skinTemplates.xml"))
+	loadSkinTemplates(skinTemplatesFileName)
 
 
 def reloadSkins():
@@ -288,10 +304,10 @@ def parseOptions(options, attribute, value, default):
 		if value in options.keys():
 			value = options[value]
 		else:
-			skinError(f"The '{attribute}' value '{value}' is invalid, acceptable options are '{"', '".join(options.keys())}'")
+			skinError(f"The '{attribute}' value '{value}' is invalid, acceptable options are '{"', '".join(options.keys())}', using '{default}")
 			value = default
 	else:
-		skinError(f"The '{attribute}' parser is not correctly initialized")
+		skinError(f"The '{attribute}' parser is not correctly initialized, using '{default}'")
 		value = default
 	return value
 
@@ -328,12 +344,12 @@ def parseColor(value, default=0x00FFFFFF):
 		try:
 			value = gRGB(int(value[1:], 0x10))
 		except ValueError:
-			skinError(f"The color code '{value}' must be #aarrggbb, using #00FFFFFF (White)")
+			skinError(f"The color code '{value}' must be #aarrggbb, using #{default:08X}")
 			value = gRGB(default)
 	elif value in colors:
 		value = colors[value]
 	else:
-		skinError(f"The color '{value}' must be #aarrggbb or valid named color, using #00FFFFFF (White)")
+		skinError(f"The color '{value}' must be #aarrggbb or valid named color, using #{default:08X}")
 		value = gRGB(default)
 	return value
 
@@ -493,7 +509,7 @@ def parseInteger(value, default=0):
 	try:
 		value = int(value)
 	except (TypeError, ValueError):
-		skinError(f"The value '{value}' is not a valid integer")
+		skinError(f"The value '{value}' is not a valid integer, using {default}")
 		value = default
 	return value
 
@@ -1338,7 +1354,7 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 				# print(f"[Skin] DEBUG: Font filename='{filename}', path='{resolved}', name='{name}', scale={scale}, isReplacement={isReplacement}, render={render}.")
 			else:
 				skinError(f"Tag 'font' needs an existing filename and name, got filename='{filename}' ({resolved}) and name='{name}'")
-		fallbackFont = resolveFilename(SCOPE_FONTS, "fallback.font", path_prefix=pathSkin)
+		fallbackFont = resolveFilename(SCOPE_FONTS, config.skin.FallbackFont.value, path_prefix=pathSkin)
 		if isfile(fallbackFont):
 			addFont(fallbackFont, "Fallback", 100, -1, 0)
 		for alias in tag.findall("alias"):
@@ -1816,7 +1832,7 @@ class TemplateParser():
 				attributes[color] = translatedColor
 		return attributes
 
-	def collectAttributes(self, node, context, ignore=(), excludeItemValues=None, includeItemValues=None):
+	def collectAttributes(self, node, context, ignore=(), excludeItemIndexes=None, includeItemIndexes=None):
 		horizontalAlignments = {
 			"left": 1,
 			"center": 4,
@@ -1845,7 +1861,7 @@ class TemplateParser():
 		pos = None
 		size = None
 		skinAttributes = []
-		itemValue = ""
+		itemIndex = ""
 		for attrib, value in node.items():  # Walk all attributes.
 			if attrib not in ignore:
 				newValue = value
@@ -1854,13 +1870,14 @@ class TemplateParser():
 						pos = newValue
 					case "size":
 						size = newValue
-					case "value":
-						itemValue = value
+					case "index":
+						itemIndex = value
+						skinAttributes.append((attrib, newValue))
 					case _:
 						skinAttributes.append((attrib, newValue))
-		if itemValue and includeItemValues and itemValue not in includeItemValues:
+		if itemIndex and includeItemIndexes and itemIndex not in includeItemIndexes:
 			return []
-		if itemValue and excludeItemValues and itemValue in excludeItemValues:
+		if itemIndex and excludeItemIndexes and itemIndex in excludeItemIndexes:
 			return []
 		if pos is not None:
 			pos, size = context.parse(pos, size, None)
@@ -1883,7 +1900,7 @@ class TemplateParser():
 		attributes = self.collectColors(attributes)
 		return [attributes]
 
-	def processPanel(self, widget, context, excludeItemValues=None, includeItemValues=None):
+	def processPanel(self, widget, context, excludeItemIndexes=None, includeItemIndexes=None):
 		if self.debug:
 			print(f"[TemplateParser] processPanel DEBUG: Position={widget.attrib.get("position")}, Size={widget.attrib.get("size")}.")
 			print(f"[TemplateParser] processPanel DEBUG: Parent x={context.x}, width={context.w}.")
@@ -1908,7 +1925,7 @@ class TemplateParser():
 		items = []
 		for element in list(widget):
 			processor = self.processors.get(element.tag, self.processNone)
-			newItems = processor(element, newContext, excludeItemValues=excludeItemValues, includeItemValues=includeItemValues)
+			newItems = processor(element, newContext, excludeItemIndexes=excludeItemIndexes, includeItemIndexes=includeItemIndexes)
 			if newItems:
 				items += newItems
 		if layout == "horizontal" and newContext.w > 0:
@@ -2046,14 +2063,6 @@ def readSkin(screen, skin, names, desktop):
 				raise SkinError(f"Component with name '{widgetName}' was not found in skin of screen '{myName}'")
 			# assert screen[widgetName] is not Source
 			collectAttributes(attributes, widget, context, skinPath, ignore=("name",))
-			for widgetTemplate in widget.findall("template"):
-				widgetTemplateComponent = widgetTemplate.get("component")
-				widgetTemplateName = widgetTemplate.get("name")
-				if widgetTemplateComponent and widgetTemplateName:
-					if widgetTemplateComponent in componentTemplates:
-						componentTemplates[widgetTemplateComponent][widgetTemplateName] = widgetTemplateComponent
-					else:
-						componentTemplates[widgetTemplateComponent] = {widgetTemplateName: widgetTemplateComponent}
 		elif widgetSource:
 			# print(f"[Skin] DEBUG: Widget source='{widgetSource}'.")
 			while True:  # Get corresponding source until we found a non-obsolete source.

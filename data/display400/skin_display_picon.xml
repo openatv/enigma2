@@ -62,6 +62,18 @@
 			<convert type="ConditionalShowHide" />
 		</widget>
 	</screen>
+		<!-- Rec Panel -->
+	<screen name="MeinRecordingPanel">
+		<widget source="session.RecordState" render="Pixmap" position="47,21" pixmap="/usr/share/enigma2/display/skin_default/record.png" transparent="1" alphatest="on" size="21,21" zPosition="1">
+			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide">Blink,1000</convert>
+		</widget>
+		<widget source="session.RecordState" render="Pixmap" position="47,21" pixmap="/usr/share/enigma2/display/skin_default/record.png" transparent="1" alphatest="on" size="21,21" zPosition="1">
+			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,False,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>
+	
 	<!-- InfoBar -->
 	<screen name="InfoBarSummary" position="0,0" size="400,240">
 		<widget source="session.CurrentService" render="LcdPicon" position="115,10" zPosition="2" size="170,102" alphatest="on">
@@ -84,10 +96,10 @@
 			<convert type="EventTime">Remaining</convert>
 			<convert type="RemainingToText">OnlyMinute</convert>
 		</widget>
-		<panel name="MeinRecordingPanel" />
 		<widget source="global.CurrentTime" render="Label" position="center,165" size="205,75" font="FdLcD;62" halign="center" noWrap="1" transparent="1">
 			<convert type="ClockToText" />
 		</widget>
+		<panel name="MeinRecordingPanel" />
 		<panel name="MeinTunerInfoPanel" />
 	</screen>
 	<!-- channelselection -->

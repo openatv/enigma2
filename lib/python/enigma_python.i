@@ -122,7 +122,7 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/dvb/fcc.h>
 #include <lib/gdi/accel.h>
 #include <include/hardwaredb.h>
-#include <lib/base/esubtitlesettings.h>
+#include <lib/base/esettings.h>
 %}
 
 %feature("ref")   iObject "$this->AddRef(); /* eDebug(\"AddRef (%s:%d)!\", __FILE__, __LINE__); */ "
@@ -280,7 +280,7 @@ typedef long time_t;
 %include <lib/dvb/rtspstreamserver.h>
 %include <lib/dvb/metaparser.h>
 %include <lib/gdi/accel.h>
-%include <lib/base/esubtitlesettings.h>
+%include <lib/base/esettings.h>
 
 /**************  eptr  **************/
 
@@ -540,6 +540,7 @@ extern void pauseInit(void);
 extern void resumeInit(void);
 extern int checkInternetAccess(const char* host, int timeout = 3);
 extern int getVFDSymbolsPoll();
+extern int getE2Flags();
 %}
 
 extern void addFont(const char *filename, const char *alias, int scale_factor, int is_replacement, int renderflags = 0);
@@ -563,6 +564,7 @@ extern void pauseInit(void);
 extern void resumeInit(void);
 extern int checkInternetAccess(const char* host, int timeout = 3);
 extern int getVFDSymbolsPoll();
+extern int getE2Flags();
 
 %include <lib/python/python_console.i>
 %include <lib/python/python_base.i>

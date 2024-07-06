@@ -9,6 +9,7 @@ import PowerTimer
 import RecordTimer
 import ServiceReference
 from Components.config import config
+from Components.ImportChannels import ImportChannels
 from Components.ParentalControl import parentalControl
 from Components.PluginComponent import plugins
 from Components.SystemInfo import BoxInfo
@@ -144,6 +145,11 @@ class Navigation:
 			print("~" * 100)
 		else:
 			self.wakeupCheck(False)
+		# TODO
+		# if config.usage.remote_fallback_import_restart.value:
+		#	ImportChannels()
+		# if config.usage.remote_fallback_import.value and not config.usage.remote_fallback_import_restart.value:
+		#	ImportChannels()
 
 	def wakeupCheck(self, runCheck=True):
 		now = time()

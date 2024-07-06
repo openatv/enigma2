@@ -416,8 +416,6 @@ BoxInfo.setItem("LcdLiveTVPiP", fileCheck("/proc/stb/lcd/live_decoder"))
 BoxInfo.setItem("LCDMiniTV", fileExists("/proc/stb/lcd/mode"))
 BoxInfo.setItem("LCDMiniTVPiP", BoxInfo.getItem("LCDMiniTV") and MACHINEBUILD not in ("gb800ueplus", "gbquad4k", "gbue4k"))
 BoxInfo.setItem("LCDSKINSetup", fileExists("/usr/share/enigma2/display") and DISPLAYTYPE not in ("7segment",))
-BoxInfo.setItem("LCDRECUse", DISPLAYTYPE in ("7segment", "textlcd"))
-BoxInfo.setItem("LCDRECStandby", DISPLAYTYPE in ("7segment",))
 BoxInfo.setItem("LEDButtons", MACHINEBUILD == "vuultimo")
 BoxInfo.setItem("LEDColorControl", fileExists("/proc/stb/fp/led_color"))
 BoxInfo.setItem("LEDPowerColor", fileExists("/proc/stb/fp/ledpowercolor"))
@@ -452,10 +450,6 @@ BoxInfo.setItem("WakeOnLAN", fileCheck("/proc/stb/power/wol") or fileCheck("/pro
 BoxInfo.setItem("WakeOnLANType", getWakeOnLANType(BoxInfo.getItem("WakeOnLAN")))
 BoxInfo.setItem("XcoreVFD", MODEL in ("xc7346", "xc7439"))
 BoxInfo.setItem("ZapMode", fileCheck("/proc/stb/video/zapmode") or fileCheck("/proc/stb/video/zapping_mode"))
-
-BoxInfo.setItem("VFDSymbolsPoll1", MACHINEBUILD in ("osninopro", "osnino", "osninoplus", "tmtwin4k", "mbmicrov2", "revo4k", "force3uhd", "mbmicro", "e4hd", "e4hdhybrid", "dm7020hd", "dm7020hdv2", "9910lx", "9911lx", "9920lx", "dual") or MODEL in ("dags7362", "dags73625", "dags5", "ustym4kpro", "ustym4ks2ottx", "beyonwizv2", "viper4k", "sf8008", "sf8008m", "gbmv200", "sfx6008", "sx88v2", "sx888"))
-BoxInfo.setItem("VFDSymbols", BoxInfo.getItem("VFDSymbolsPoll1") or MODEL in ("u41",) or BRAND in ("fulan",) or MACHINEBUILD in ("alphatriple", "spycat4kmini", "osminiplus", "osmega", "sf3038", "spycat", "et7500", "maram9", "uniboxhd1", "uniboxhd2", "uniboxhd3", "sezam5000hd", "mbtwin", "sezam1000hd", "mbmini", "atemio5x00", "beyonwizt3"))
-
 BoxInfo.setItem("DisplaySetup", MODEL not in ("dreamone",))
 
 # Dont't sort.
@@ -480,5 +474,8 @@ for ciSlot in range(BoxInfo.getItem("CommonInterface")):
 BoxInfo.setItem("inadyn", exists("/etc/init.d/inadyn-mt"))
 BoxInfo.setItem("minidlna", exists("/etc/init.d/minidlna"))
 BoxInfo.setItem("ushare", exists("/etc/init.d/ushare"))
+
+# AI
+BoxInfo.setItem("AISubs", exists("/etc/init.d/aisocket"))
 
 updateSysSoftCam()

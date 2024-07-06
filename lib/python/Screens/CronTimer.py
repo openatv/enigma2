@@ -287,7 +287,7 @@ config.crontimers.dayofweek = NoSave(ConfigSelection(default="Monday", choices=[
 config.crontimers.dayofmonth = NoSave(ConfigInteger(default=1, limits=(1, 31)))
 
 
-class CronTimersConfig(Screen, ConfigListScreen):
+class CronTimersConfig(ConfigListScreen, Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		Screen.setTitle(self, _("Cron Manager"))

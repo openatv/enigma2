@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-24 20:26+0000\n"
+"POT-Creation-Date: 2024-06-21 14:25+0000\n"
 "PO-Revision-Date: 2023-06-04 19:16+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -18,15 +18,6 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n % 10 == 1 && (n % 100 < 11 || n % 100 > 19)) ? 0 : ((n % 10 >= 2 && n % 10 <= 9 && (n % 100 < 11 || n % 100 > 19)) ? 1 : 2);\n"
 "X-Generator: Weblate 4.18-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-
-msgid ""
-"\n"
-"\n"
-"[User - bouquets (TV)]\n"
-msgstr ""
-"\n"
-"\n"
-"[Mano TV paketai]\n"
 
 msgid ""
 "\n"
@@ -42,31 +33,8 @@ msgstr ""
 "\n"
 "Vyksta įrašymas."
 
-msgid ""
-"\n"
-"[Installed Plugins]\n"
-msgstr ""
-"\n"
-"[Įdiegti priedai]\n"
-
-msgid ""
-"\n"
-"[User - bouquets (RADIO)]\n"
-msgstr ""
-"\n"
-"[Mano RADIJO paketai]\n"
-
 msgid " "
 msgstr " "
-
-msgid "     no space left on back-up device"
-msgstr "     įrenginyje, į kurį kopijavote, pritrūko vietos"
-
-msgid "     no writing permission on back-up device"
-msgstr "     įrenginyje, į kurį kopijavote, neturite rašymo teisių"
-
-msgid "     wrong back-up destination "
-msgstr "     neteisinga atsarginės kopijos paskirties vieta "
 
 msgid "  Menu key : Select quad channel"
 msgstr "  Menu mygtukas : pasirinkite 4 PIP kanalą"
@@ -1379,6 +1347,15 @@ msgstr ", "
 msgid "-"
 msgstr "-"
 
+msgid "- No space left on backup device."
+msgstr ""
+
+msgid "- No write permission on backup device."
+msgstr ""
+
+msgid "- Wrong backup destination."
+msgstr ""
+
 msgid "-24 Hours"
 msgstr "-24 valandos"
 
@@ -1475,18 +1452,6 @@ msgstr "1x"
 msgid "2"
 msgstr "2"
 
-msgid "23.976"
-msgstr "23.976"
-
-msgid "24"
-msgstr "24"
-
-msgid "25"
-msgstr "25"
-
-msgid "29.97"
-msgstr "29.97"
-
 msgid "2nd InfoBar"
 msgstr "Antra info juosta"
 
@@ -1516,9 +1481,6 @@ msgstr "2x, 4x, 6x, 8x"
 
 msgid "3"
 msgstr "3"
-
-msgid "30"
-msgstr "30"
 
 msgid "3D Mode"
 msgstr "3D režimas"
@@ -1603,6 +1565,9 @@ msgstr ""
 
 msgid "A"
 msgstr "A"
+
+msgid "A backup is now being created."
+msgstr ""
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr "Kableliais atskirtų plėtinių, kurie turi būti naudojami nustatant 'Mano plėtinys' 'Filtro plėtinys', sąrašas. Įveskite plėtinių pavadinimus be pagrindinio taško (.)."
@@ -1763,6 +1728,18 @@ msgstr "AC3plus perkodavimas"
 
 msgid "AFL"
 msgstr "AFL"
+
+msgid "AI-Powered translation color"
+msgstr ""
+
+msgid "AI-Powered translation enabled"
+msgstr ""
+
+msgid "AI-Powered translation language"
+msgstr ""
+
+msgid "AI-Powered translation subscription code"
+msgstr ""
 
 msgid "ARM"
 msgstr "ARM"
@@ -2274,9 +2251,6 @@ msgstr "Leidžia rodyti/slėpti žurnalų valdymą plėtinių lange (MĖLYNAS my
 msgid "Allows you to show/hide OScam/CCcam in the Extension Menu screen (BLUE button)."
 msgstr ""
 
-msgid "Almost there... "
-msgstr "Beveik viskas!.. "
-
 msgid "Alpha"
 msgstr "Permatoma"
 
@@ -2288,6 +2262,15 @@ msgstr "Abėcėlės tvarka po antraštėmis"
 
 msgid "Alphanumeric"
 msgstr "Raidinis ir skaitmeninis"
+
+msgid "Also import at reboot/restart enigma2"
+msgstr "Importuoti kanalus perkraunant arba paleidžiant grafinę aplinką iš naujo"
+
+msgid "Also import from the extension menu"
+msgstr "Taip pat importuoti iš išplėstinio meniu"
+
+msgid "Also import when box is leaving standby"
+msgstr "Importuoti kanalus, kai imtuvas išeina iš budėjimo režimo"
 
 msgid "Also on standby"
 msgstr "Ir budėjimo režimą"
@@ -2303,6 +2286,9 @@ msgstr "2 alternatyva"
 
 msgid "Alternative Edit"
 msgstr "[alternatyvus redagavimas]"
+
+msgid "Alternative URLs for DVB-T/C or ATSC"
+msgstr "Alternatyvūs DVB-T/C arba ATSC URL"
 
 msgid "Alternative numbering mode"
 msgstr "Alternatyvus numeracijos režimas"
@@ -2553,6 +2539,9 @@ msgstr ""
 
 msgid "Assamese"
 msgstr "Asamų"
+
+msgid "Assembling the image backup files."
+msgstr ""
 
 msgid "Assigned CAIds:"
 msgstr "Priskirti CAIds:"
@@ -2836,14 +2825,6 @@ msgstr "Galinis, išorinis USB"
 msgid "Back, upper USB"
 msgstr "Galinis viršutinis USB lizdas"
 
-#, python-format
-msgid "Back-up Tool for a %s\n"
-msgstr "Atsarginio kopijavimo įrankis %s\n"
-
-#, python-format
-msgid "Back-up Tool for an %s\n"
-msgstr "Atsarginio kopijavimo įrankis %s\n"
-
 msgid "Back/Recall"
 msgstr "Atgal/atkurti"
 
@@ -2868,10 +2849,6 @@ msgstr "Fonas:"
 msgid "Backup"
 msgstr "Atsarginė kopija"
 
-#, python-format
-msgid "Backup Date: %s\n"
-msgstr "Atsarginio kopijavimo data: %s\n"
-
 msgid "Backup Location"
 msgstr "Atsarginės kopijos vieta"
 
@@ -2881,29 +2858,17 @@ msgstr "Atsarginės kopijos žurnalas"
 msgid "Backup Mode"
 msgstr "Atsarginio kopijavimo režimas"
 
-msgid "Backup Mode: Flash Online\n"
-msgstr "Atsarginės kopijos režimas: Įdiegti tiesiai iš interneto\n"
+msgid "Backup Mode: Flash Online"
+msgstr ""
 
-msgid "Backup Mode: USB Recovery\n"
-msgstr "Atsarginio kopijavimo režimas: Atkūrimas iš USB\n"
+msgid "Backup Mode: USB Recovery"
+msgstr ""
 
 msgid "Backup Settings"
 msgstr "Atsarginės kopijos nustatymai"
 
 msgid "Backup System Settings"
 msgstr "Atsarginė sistemos nustatymų kopija"
-
-msgid "Backup completed."
-msgstr "Atsarginė kopija padaryta."
-
-msgid "Backup done."
-msgstr "Atsarginė kopija padaryta."
-
-msgid "Backup failed!"
-msgstr ""
-
-msgid "Backup failed."
-msgstr "Atsarginė kopija nepavyko."
 
 msgid "Backup images"
 msgstr "Atsarginių kopijų kūrimo atvaizdai"
@@ -2919,8 +2884,8 @@ msgstr ""
 "norite juos įdiegti dabar?"
 
 #, python-format
-msgid "Backup to destination: %s"
-msgstr "Atsarginė kopija į paskirties vietą: %s"
+msgid "Backup tool for %s %s"
+msgstr ""
 
 msgid "Backup your %s %s settings."
 msgstr "Sukurti %s %s nustatymų atsarginę kopiją."
@@ -3241,10 +3206,6 @@ msgstr "Kurti informaciją"
 msgid "Build information for %s %s"
 msgstr "Sukurta %s %s"
 
-#, python-format
-msgid "Build: %s"
-msgstr "Sukurta: %s"
-
 msgid "Bulgaria"
 msgstr "Bulgarija"
 
@@ -3292,9 +3253,6 @@ msgstr ""
 
 msgid "By disk label"
 msgstr ""
-
-msgid "By openATV Image Team"
-msgstr "OpenATV atvaizdo komanda"
 
 msgid "Bypass HDMI EDID Check"
 msgstr "Praleisti HDMI EDID tikrinimą"
@@ -3568,6 +3526,9 @@ msgstr "Neįmanoma įkelti laikmačio"
 msgid "Can't allocate program source (e.g. tuner)"
 msgstr "Neįmanoma paskirstyti programos šaltinio (pvz., Imtuvo)"
 
+msgid "Can't create backup directory!"
+msgstr ""
+
 msgid ""
 "Can't going to live TV!\n"
 "Switch to live TV and restart time shift ?"
@@ -3684,9 +3645,6 @@ msgstr "Atšaukti naujinimą"
 msgid "Cancelled upon user request"
 msgstr "Atšauktas vartotojo"
 
-msgid "Cannot create backup directory"
-msgstr "Nepavyko sukurti atsarginių kopijų katalogo"
-
 msgid "Cannot delete file"
 msgstr "Failo ištrinti nepavyko"
 
@@ -3730,6 +3688,9 @@ msgstr "Katalonų / Valensijos"
 
 msgid "Cayman Islands"
 msgstr "Kaimanų salos"
+
+msgid "Cebuano"
+msgstr ""
 
 msgid "Celsius"
 msgstr "Pagal Celsijų"
@@ -3999,9 +3960,8 @@ msgstr "Kinija"
 msgid "Chinese"
 msgstr "Kinų"
 
-#, python-format
-msgid "Chipset: BCM%s"
-msgstr "Lustų rinkinys: BCM%s"
+msgid "Chinese (Simplified)"
+msgstr ""
 
 msgid "Choice Box"
 msgstr "Pasirinkimų langas"
@@ -4048,6 +4008,9 @@ msgstr "Pasirinkite rodomą datos formavimo stilių. 'D' / 'DD' yra data ir 'M' 
 
 msgid "Choose the display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds.  ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Pasirinkite rodomą laiko formavimo stilių. 'H' / 'HH' yra valandos 24 val. formate, 'h' / 'hh' yra valandos 12 val. formate. 'mm' yra minutės ir 'ss' yra sekundės.  ('HH' ir 'hh' prieš vieno skaitmens skaičius įrašomi nuliai.)Bus rodoma taip, kaip pasirinksite, bet gali būti įtakojamas ir naudojamos aplinkos temos."
+
+msgid "Choose the fallback font."
+msgstr ""
 
 msgid "Choose the front panel display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Pasirinkite priekinio ekranėlio rodomą datos formavimo stilių. 'D' / 'DD' yra data ir 'M' / 'MM' yra mėnuo skaitmenimis.  ('DD' ir 'MM' prieš vieno skaitmens skaičius įrašomi nuliai.) Bus rodoma taip, kaip pasirinksite, bet gali būti įtakojamas ir naudojamos aplinkos temos."
@@ -4335,6 +4298,12 @@ msgstr "Komanda '%s' nežinoma"
 msgid "Command execution..."
 msgstr "Vykdoma komanda..."
 
+msgid "Command finished."
+msgid_plural "Commands finished."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
 msgid "Command order"
 msgstr "Komandų seka"
 
@@ -4489,6 +4458,9 @@ msgstr ""
 msgid "Configure remote control type"
 msgstr "Konfigūruokite nuotolinio valdymo tipą"
 
+msgid "Configure the AI-Powered translation language."
+msgstr ""
+
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "Konfigūruokite šio LNB DiSEqC režimą."
 
@@ -4536,6 +4508,9 @@ msgstr "Konfigūruokite priekinio skydelio ekrano šviesumą, kai imtuvas veikia
 
 msgid "Configure the brightness level of the front panel display for standby."
 msgstr "Konfigūruokite priekinio skydelio ekrano šviesumą, kai imtuvas yra budėjime."
+
+msgid "Configure the color of the AI-Powered translations."
+msgstr ""
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
 msgstr "Konfigūruokite spalvas išoriniams subtitrams, alternatyvios spalvos (normali balta, geltona kursyvu, paryškinta žydra, pabraukta žalia), balta arba geltona."
@@ -5104,6 +5079,10 @@ msgstr "Atsitiktinai sugeneruoto slaptažodžio kūrimas"
 msgid "Create a symbolic link"
 msgstr "Sukurkite simbolinę nuorodą"
 
+#, python-format
+msgid "Create recovery image backup '%s'."
+msgstr ""
+
 msgid "Create separate radio user bouquet"
 msgstr "Sukurti atskirą vartotojo radijo paketą"
 
@@ -5115,13 +5094,6 @@ msgstr ""
 
 msgid "Create the flash expander in the selected device"
 msgstr ""
-
-msgid "Create:"
-msgstr "Sukurti:"
-
-#, python-format
-msgid "Create: Recovery Fullbackup %s"
-msgstr "Sukurti: atkūrimo pilną atsarginę kopiją %s"
 
 msgid "Creating .ap and .sc files"
 msgstr "Kuriami AP ir SC failai"
@@ -5275,6 +5247,9 @@ msgstr "Pasirinktinai praleisti laiką '7'/'9' mygtukams"
 
 msgid "Customize"
 msgstr "Asmeniniai pasirinkimai"
+
+msgid "Customize OpenWebIF settings for fallback tuner"
+msgstr "Pritaikykite OpenWebIF nustatymus atsarginiam imtuvui"
 
 msgid "Customize System Settings"
 msgstr "Tinkinkite sistemos nustatymus"
@@ -5996,6 +5971,18 @@ msgstr "Panaikinkite tik paryškinto failo pasirinkimą"
 msgid "Deselected packages usually occur because those packaged are incompatible with existing packages. While this is mostly harmless it is possible that your %s %s may experience issues."
 msgstr "Panaikintos pakuotės paprastai atsiranda dėl to, kad supakuotos yra nesuderinamos su esamomis pakuotėmis.  Nors tai dažniausiai nekenksminga, gali būti, kad jūsų %s %s gali susidurti su problemomis."
 
+msgid "Destination of fallback remote receiver"
+msgstr "Atsarginio nuotolinio imtuvo paskirtis"
+
+msgid "Destination of fallback remote receiver for ATSC"
+msgstr "ATSC nuotolinio atsarginio imtuvo paskirties vieta"
+
+msgid "Destination of fallback remote receiver for DVB-C"
+msgstr "DVB-C nuotolinio atsarginio imtuvo paskirties vieta"
+
+msgid "Destination of fallback remote receiver for DVB-T"
+msgstr "DVB-T nuotolinio atsarginio imtuvo paskirties vieta"
+
 msgid "Detail of GStreamer log."
 msgstr "Išsami GStreamer žurnalo informacija"
 
@@ -6278,6 +6265,9 @@ msgstr "Džibutis"
 msgid "Do another manual service scan?"
 msgstr ""
 
+msgid "Do not backup the image"
+msgstr ""
+
 msgid "Do not change"
 msgstr "Nieko nekeisti"
 
@@ -6362,6 +6352,18 @@ msgstr "Ar tikrai norite pašalinti laikmatį %s?"
 #, python-format
 msgid "Do you really want to remove your bookmark for '%s'?"
 msgstr "Ar tikrai norite pašalinti savo %s žymę?"
+
+msgid ""
+"Do you really want to restart OSCam?\n"
+"\n"
+"HINT: This will take about 5 seconds!"
+msgstr ""
+
+msgid ""
+"Do you really want to shut down OSCam?\n"
+"\n"
+"ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+msgstr ""
 
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
@@ -6849,6 +6851,9 @@ msgstr "Įjungti %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "Įjungti 5V aktyviai antenai"
 
+msgid "Enable AI-Powered translation for all teletext and DVB subtitles."
+msgstr ""
+
 msgid "Enable Autorecord"
 msgstr "Įjungti auto įrašymą"
 
@@ -6996,6 +7001,9 @@ msgstr "Įjungti atsarginį nuotolinį imtuvą"
 
 msgid "Enable freesat EPG"
 msgstr "Įjungti freesat EPG"
+
+msgid "Enable import timer from fallback tuner"
+msgstr "Įjungti importo laikmatį iš atsarginio imtuvo"
 
 msgid "Enable intro screen"
 msgstr "Įjungti įvadinį vaizdą"
@@ -7189,6 +7197,9 @@ msgstr "Įrašykite"
 msgid "Enter DNS (Dynamic Name Server) %d's IP address."
 msgstr "Įveskite DNS (dinaminis vardų serveris) %d IP adresą."
 
+msgid "Enter IP address"
+msgstr "Įrašykite IP adresą"
+
 msgid "Enter PIN"
 msgstr "Įrašykite PIN kodą"
 
@@ -7253,6 +7264,9 @@ msgid "Enter your low band local oscillator frequency. For more information cons
 msgstr "Įrašykite savo žemos juostos heterodino dažnį. Daugiau informacijos rasite LNB specifikacijų lape."
 
 msgid "Enter your personal feed URL to allow you to select packages from your personal feed."
+msgstr ""
+
+msgid "Enter your subscription code, the unified code for trial is 15."
 msgstr ""
 
 msgid "Entertainment"
@@ -7426,12 +7440,6 @@ msgstr ""
 msgid "Error opening recording file"
 msgstr "Klaida atidarant įrašymo failą"
 
-msgid "Error reading bouquets.radio"
-msgstr "Klaida skaitant bouquets.radio"
-
-msgid "Error reading bouquets.tv"
-msgstr "Klaida skaitant bouquets.tv"
-
 msgid "Error reading webpage!"
 msgstr "Įvyko klaida nuskaitant svetainę!"
 
@@ -7441,6 +7449,14 @@ msgstr "Klaidos tekstas:"
 #, python-format
 msgid "Error unzipping image '%s'!"
 msgstr "Išarchyvuojamo atvaizdo klaida '%s'!"
+
+#, python-format
+msgid ""
+"Error while retrieving fallback timer information\n"
+"%s"
+msgstr ""
+"Klaida atsisiunčiant atsarginio imtuvo laikmačio informaciją\n"
+"%s"
 
 msgid "Error, unknown Result!"
 msgstr "Klaida, nežinomas rezultatas!"
@@ -7554,6 +7570,10 @@ msgid "Error: Unable to rename directory '%s' to '%s'!"
 msgstr "Klaida: nepavyko pervardyti katalogo \"%s\" į \"%s\"!"
 
 #, python-format
+msgid "Error: Unable to write log file '%s'!"
+msgstr "Failo rašymo klaida: '%s'"
+
+#, python-format
 msgid "Error: You can't run '%s' on '%s'!"
 msgstr "Klaida: negalite paleisti \"%s\" naudodami \"%s\"!"
 
@@ -7656,12 +7676,6 @@ msgstr "Viršija dvejų sluoksnių laikmeną!"
 msgid "Execution condition"
 msgstr "Vykdymo sąlyga"
 
-msgid "Execution finished!!"
-msgstr "Vykdymas baigtas!!"
-
-msgid "Execution progress:"
-msgstr "Vykdymo eiga:"
-
 msgid "Exif"
 msgstr "Exif"
 
@@ -7685,6 +7699,9 @@ msgstr "Užverti 4 kanalų pasirinkimą"
 
 msgid "Exit all menus"
 msgstr "Išeiti iš visų meniu"
+
+msgid "Exit and close all screens without performing a backup"
+msgstr ""
 
 msgid "Exit editor"
 msgstr "Užverti redaktorių"
@@ -7736,6 +7753,9 @@ msgstr "Užverti nustatymų vedlį"
 
 msgid "Exit viewer"
 msgstr "Išeiti iš peržiūros programos"
+
+msgid "Exit without performing a backup"
+msgstr ""
 
 msgid "Expand"
 msgstr "Išskleisti"
@@ -7912,8 +7932,38 @@ msgstr "Nepavyko:"
 msgid "Falkland Islands (Malvinas)"
 msgstr "Folklando (Malvinų) Salos"
 
+msgid "Fallback API did not return a valid result."
+msgstr "Atsarginė API nepateikė galiojančio rezultato."
+
+msgid "Fallback Font *"
+msgstr ""
+
+msgid "Fallback remote receiver"
+msgstr "Atsarginis nuotolinis imtuvas"
+
+msgid "Fallback remote receiver IP"
+msgstr "Atsarginio nuotolinio imtuvo IP"
+
+msgid "Fallback remote receiver Port"
+msgstr "Atsarginio nuotolinio imtuvo jungtis"
+
 msgid "Fallback remote receiver URL"
 msgstr "Atsarginio nuotolinio imtuvo internetinis adresas"
+
+msgid "Fallback remote receiver for ATSC"
+msgstr "ATSC nuotolinis atsarginis imtuvas"
+
+msgid "Fallback remote receiver for DVB-C"
+msgstr "DVB-C nuotolinis atsarginis imtuvas"
+
+msgid "Fallback remote receiver for DVB-T"
+msgstr "DVB-T nuotolinis atsarginis imtuvas"
+
+msgid "Fallback Timer"
+msgstr "Atsarginis laikmatis"
+
+msgid "Fallback tuner setup"
+msgstr "Atsarginio imtuvo nustatymas"
 
 msgid "False"
 msgstr "Klaidingas"
@@ -8103,10 +8153,6 @@ msgstr "Failų perkėlimą atšaukė vartotojas!"
 
 msgid "File transfer was cancelled by user"
 msgstr "Failo perkėlimas atšauktas vartotojo"
-
-#, python-format
-msgid "File write error: '%s'"
-msgstr "Failo rašymo klaida: '%s'"
 
 msgid "Filename"
 msgstr "Failo pavadinimas"
@@ -8421,18 +8467,11 @@ msgstr "Priekinio procesoriaus versija"
 msgid "Fulah"
 msgstr "Fulah"
 
-msgid "Full Image Backup "
-msgstr "Pilna atvaizdo atsarginė kopija "
-
 msgid "Full Range RGB"
 msgstr "Plačios gamos RGB"
 
 msgid "Full Stretch"
 msgstr ""
-
-#, python-format
-msgid "Full back-up on %s"
-msgstr "Pilna atsarginė kopija %s"
 
 msgid "Full factory reset"
 msgstr "Pilnas gamyklinis atstatymas"
@@ -8867,6 +8906,9 @@ msgstr "Aparatūros tipas"
 msgid "Hausa"
 msgstr "Hausų"
 
+msgid "Hawaiian"
+msgstr ""
+
 msgid "Heard Island and McDonald Islands"
 msgstr "Herdo ir Makdonaldo salos"
 
@@ -8972,11 +9014,11 @@ msgstr ""
 msgid "Hide the InfoBar"
 msgstr "Nustatykite laiką, kad paslėpti info juostą."
 
-msgid "Hide this screen"
-msgstr ""
-
 msgid "Hide zap errors"
 msgstr "Paslėpti perjungimo klaidas"
+
+msgid "Hide/Show the console screen"
+msgstr ""
 
 msgid "Hierarchy info"
 msgstr "Informacijos lygis"
@@ -9031,6 +9073,9 @@ msgstr "Istorija pirmyn"
 
 msgid "History zap..."
 msgstr "Perjungimų istorija..."
+
+msgid "Hmong"
+msgstr ""
 
 msgid "Hockey"
 msgstr "Ledo ritulys"
@@ -9175,6 +9220,9 @@ msgstr "IP adresas"
 
 msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr ""
+
+msgid "IP of fallback remote receiver"
+msgstr "Atsarginio nuotolinio imtuvo IP"
 
 msgid "IPK Installer"
 msgstr "IPK įdiegėjas"
@@ -9379,15 +9427,21 @@ msgstr "Ignoruokite netikėtą pabudimą ir likite budėjimo režime"
 msgid "Image Backup"
 msgstr "Atsarginė atvaizdo kopija"
 
+msgid "Image Backup Actions"
+msgstr ""
+
+#, python-format
+msgid "Image Backup To %s"
+msgstr ""
+
 msgid "Image Flash Actions"
 msgstr "Atvaizdo įdiegimo veiksmai"
 
-#, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
-msgstr "Atvaizdas sukurtas: %s/%s-%s-%s-backup-%s_%s.zip"
+msgid "Image created:"
+msgstr ""
 
-msgid "Image creation failed - "
-msgstr "Atvaizdo sukurti nepavyko - "
+msgid "Image creation failed!"
+msgstr ""
 
 msgid "ImageWizard"
 msgstr "Atvaizdo vedlys"
@@ -9400,6 +9454,21 @@ msgstr ""
 
 msgid "Immediately restart selected devices."
 msgstr "Nedelsdami iš naujo paleiskite pasirinktus įrenginius."
+
+msgid "Import channels and/or EPG from remote receiver URL also when the receiver is getting out of standby"
+msgstr "Importuoti kanalus ir/arba EPG iš nuotolinio imtuvo URL taip pat, kai imtuvas išeina iš budėjimo režimo"
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver is booted"
+msgstr "Importuoti kanalus ir/arba EPG iš nuotolinio imtuvo URL, kai imtuvas yra paleistas"
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
+msgstr "Importuoti kanalus ir/arba EPG iš nuotolinio imtuvo URL, kai imtuvas arba enigma2 yra paleidžiami iš naujo"
+
+msgid "Import from remote receiver URL"
+msgstr "Importuoti epg iš nuotolinio imtuvo URL"
+
+msgid "Import remote receiver URL"
+msgstr "Importuoti nuotolinio imtuvo URL"
 
 msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
 msgstr "Be to, šalia tikrinimo įvykio pradžioje, gali būti naudojamas pakartotinis patikrinimas, kad sąlygų \"kaupimo riba valandomis\", arba \"tikrinti laisvą vietą\" neatitikimas būtų aptiktas anksčiau."
@@ -10044,6 +10113,9 @@ msgstr "Kuanyama / Kwanyama"
 msgid "Kurdish"
 msgstr "Kurdų"
 
+msgid "Kurdish (Sorani)"
+msgstr ""
+
 msgid "Kurdistan"
 msgstr ""
 
@@ -10617,6 +10689,9 @@ msgstr "Tvarkykite savo daugialypės terpės įkrovos įrenginį"
 
 msgid "Make"
 msgstr "Kurti"
+
+msgid "Make it possible to manually initiate the channels import and/or EPG via the extension menu"
+msgstr "Padaryti galimybę rankiniu būdu inicijuoti kanalų importavimą ir/arba EPG per išplėstinį meniu"
 
 msgid "Make this mark an 'in' point"
 msgstr "Padaryti šią žymą 'įėjimo' tašku"
@@ -11404,9 +11479,8 @@ msgstr "MultiLib"
 msgid "MultiTranscoding"
 msgstr "MultiTranskodavimas"
 
-#, python-format
-msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
-msgstr "Daugialypės įkrovos atvaizdas sukurtas: %s/%s-%s-%s-backup-%s_usb.zip"
+msgid "Multiboot Image created:"
+msgstr ""
 
 msgid "Multimedia Packages"
 msgstr ""
@@ -11469,6 +11543,9 @@ msgstr "PASTABA: Katalogas / failas \"%s\" egzistuoja ir bus perrašytas!"
 #, python-format
 msgid "NOTE: These %d directories/files exist and will be overwritten!"
 msgstr "PASTABA: Šie %d katalogai / failai egzistuoja ir bus perrašyti!"
+
+msgid "NOTE: While the console screen is hidden from view the buttons are still active. Pressing any enabled button will cause the screen to reappear but the button will not be actioned."
+msgstr ""
 
 msgid "NOW"
 msgstr "DABAR"
@@ -11776,9 +11853,6 @@ msgstr "Palaikomo DVD ROM nerasta!"
 msgid "No Connection"
 msgstr "Nėra prisijungimo"
 
-msgid "No Devices Found !!"
-msgstr "Įrenginių nerasta !!"
-
 msgid "No ECM PIDs available"
 msgstr "ECMPids nėra"
 
@@ -11954,9 +12028,6 @@ msgstr "Atnaujinimas nebūtinas!"
 msgid "No updates available."
 msgstr "Atnaujinimų nėra"
 
-msgid "No updates were available.  Please try again later."
-msgstr "Atnaujinimų nėra.  Bandykite patikrinti vėliau."
-
 msgid "No valid device detected - Press OK"
 msgstr ""
 
@@ -11993,9 +12064,6 @@ msgstr ""
 
 msgid "No, but restart from begin"
 msgstr "Ne, bet vėl pradėti nuo pradžių"
-
-msgid "No, do not backup a image"
-msgstr "Ne, nereikia atsarginės atvaizdo kopijos"
 
 msgid "No, do nothing."
 msgstr "Ne, nereikia."
@@ -12154,9 +12222,6 @@ msgstr "Nieko, tiesiog užverti šį meniu"
 msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "Dabar"
-
-msgid "Now building the Backup Image"
-msgstr "Dabar kuriama atsarginė atvaizdo kopija"
 
 msgid "Now save time shift as movie and continues recording"
 msgstr "Dabar išsaugoti laiko poslinkį, kaip filmą ir tęsti įrašymą"
@@ -12406,10 +12471,16 @@ msgstr "Atverti kanalų sąrašą ir pasirinkti ankstesnį PiP kanalą"
 msgid "Open the Channel Selection Settings screen"
 msgstr ""
 
+msgid "Open the Image information"
+msgstr ""
+
 msgid "Open the Plugin Browser"
 msgstr "Atverti priedų tvarkyklę"
 
 msgid "Open the Plugin Browser settings screen"
+msgstr ""
+
+msgid "Open the Storage Device information"
 msgstr ""
 
 msgid "Open the VirtualKeyBoard for text entry"
@@ -12756,9 +12827,6 @@ msgstr "Slaptažodis pakeistas."
 msgid "Path '%s' missing!"
 msgstr ""
 
-msgid "Path to save not exist: '/tmp/'"
-msgstr "Nėra kelio išsaugojimui: '/tmp/'"
-
 msgid "Pause"
 msgstr "Pauzė"
 
@@ -12994,11 +13062,8 @@ msgstr "Grojimo pauzė"
 msgid "Please add titles to the compilation."
 msgstr "Įtraukite į kompiliaciją pavadinimus."
 
-msgid "Please be patient, a backup will now be made,\n"
-msgstr "Būkite kantrūs, atsarginė kopija tuojau bus padaryta,\n"
-
-msgid "Please check the manual of the receiver"
-msgstr "Prašome patikrinti imtuvo vadovą"
+msgid "Please be patient."
+msgstr ""
 
 msgid "Please choose an extension..."
 msgstr "Pasirinkite plėtinį..."
@@ -13073,9 +13138,6 @@ msgstr "Spauskite 'OK', kad tęsti."
 msgid "Please press OK when ready"
 msgstr ""
 
-msgid "Please select a backup destination"
-msgstr "Pasirinkite atsarginės kopijos paskirties vietą"
-
 msgid "Please select a default EPG type..."
 msgstr "Pasirinkite numatytąjį EPG tipą..."
 
@@ -13135,6 +13197,9 @@ msgstr "Pasirinkite regioną, kuris labiausiai atitinka jūsų fizinę vietą. �
 
 msgid "Please select the sub-service to record:"
 msgstr "Pasirinkite subkanalą įrašymui..."
+
+msgid "Please select the target location to save the backup:"
+msgstr ""
 
 msgid "Please select what to do after flash of the following image:"
 msgstr "Pasirinkite, ką daryti po šio atvaizdo įdiegimo:"
@@ -13244,9 +13309,6 @@ msgstr "Palaukite..."
 msgid "Please wait... Loading list..."
 msgstr "Palaukite... užkraunamas sąrašas..."
 
-msgid "Please wait...almost ready! "
-msgstr "Palaukite... Beveik baigta! "
-
 msgid "Plug in USB device"
 msgstr ""
 
@@ -13331,6 +13393,9 @@ msgstr "Jungtis D"
 msgid "Port number for the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr ""
 
+msgid "Port of fallback remote receiver"
+msgstr "Atsarginio nuotolinio imtuvo jungtis"
+
 msgid "Portugal"
 msgstr "Portugalija"
 
@@ -13360,6 +13425,9 @@ msgstr "Pozicionieriaus nustatymo žurnalas"
 
 msgid "Positioner setup"
 msgstr "Pozicionieriaus nustatymas"
+
+msgid "Possible causes could be:"
+msgstr ""
 
 msgid "Power"
 msgstr "Įtampa"
@@ -13636,9 +13704,6 @@ msgstr "Žiūrimiausio laiko minutė"
 msgid "Priority"
 msgstr "Pirmenybė"
 
-msgid "Probable causes could be"
-msgstr "Tikėtinos priežastys gali būti"
-
 msgid "Proc model"
 msgstr "Proc modelis"
 
@@ -13870,6 +13935,9 @@ msgstr "Greitas EPG"
 
 msgid "Quick Launch Menu"
 msgstr "Greitosios paleisties meniu"
+
+msgid "Quick Menu Actions"
+msgstr ""
 
 msgid "Quick Menu..."
 msgstr "Greitasis meniu..."
@@ -14647,6 +14715,9 @@ msgstr "Paleisti tinklą iš naujo"
 msgid "Restart Network Adapter"
 msgstr "Paleisti tinklo adapterį iš naujo"
 
+msgid "Restart OSCam"
+msgstr ""
+
 msgid "Restart enigma"
 msgstr "Paleisti iš naujo Enigma2"
 
@@ -14883,6 +14954,10 @@ msgstr "Veikiantis"
 msgid "Running Myrestore script, Please wait ..."
 msgstr "Palaukite, vykdomas Mano atkūrimo scenarijus ..."
 
+#, python-format
+msgid "Running command %d: '%s'."
+msgstr ""
+
 msgid "Russian"
 msgstr "Rusų"
 
@@ -14995,6 +15070,9 @@ msgstr ""
 msgid "Same as in active"
 msgstr "Kaip ir aktyvus"
 
+msgid "Same as stream"
+msgstr "Tas pats kaip srautas"
+
 msgid "Same behavior as current animation"
 msgstr "Tokia pati elgsena kaip ir dabartinė animacija"
 
@@ -15073,6 +15151,9 @@ msgstr ""
 msgid "Save EPG data"
 msgstr "Išsaugoti EPG duomenis"
 
+msgid "Save Log"
+msgstr ""
+
 msgid "Save all changed settings and exit"
 msgstr "Įrašyti visus pakeistus parametrus ir išeiti"
 
@@ -15123,6 +15204,9 @@ msgstr "Išsaugokite kairiojo stulpelio katalogo vietą išeidami."
 
 msgid "Save the log changes and exit"
 msgstr "Išsaugokite žurnalo pakeitimus ir išeikite"
+
+msgid "Save the log of the console messages to a file"
+msgstr ""
 
 msgid "Save the right column directory location on exit."
 msgstr "Išsaugokite dešiniojo stulpelio katalogo vietą išeidami."
@@ -15549,6 +15633,9 @@ msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
 msgstr ""
 
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show subscription packages in the Download Plugins screen."
 msgstr ""
 
 msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
@@ -16160,6 +16247,9 @@ msgstr ""
 msgid "Select the time zone within the area or region."
 msgstr "Pasirinkite laiko juostą, toje teritorijoje arba regione."
 
+msgid "Select the timer from the fallback tuner by default"
+msgstr "Kai įjungta, atsarginio imtuvo laikmatis yra importuojamas"
+
 msgid "Select the tuner that controls the motorized dish."
 msgstr "Pasirinkite imtuvą, kuris kontroliuoja motorizuotą anteną."
 
@@ -16536,6 +16626,9 @@ msgstr ""
 msgid "Set action for 'Info' key"
 msgstr "Pasirinkite veiksmą 'info' mygtukui"
 
+msgid "Set alternative fallback tuners for DVB-T/C or ATSC"
+msgstr "Nustatykite alternatyvius DVB-T/C arba ATSC atsarginius imtuvus"
+
 msgid "Set current CEC address as fixed address"
 msgstr "Nustatyti dabartinį CEC adresą kaip fiksuotą adresą"
 
@@ -16573,6 +16666,9 @@ msgstr "Nustatyti sistemą"
 msgid "Set the MAC address of your %s %s."
 msgstr "Nustatykite savo %s %s MAC adresą."
 
+msgid "Set the User ID of the OpenWebif from your fallback tuner"
+msgstr "Nustatykite OpenWebif naudotojo ID iš atsarginio imtuvo"
+
 msgid "Set the aspect ratio of the service picons."
 msgstr "Nustatykite kanalų logotipų proporciją."
 
@@ -16599,6 +16695,12 @@ msgstr "Nustatykite šuolio dydį paieškos juostoje."
 
 msgid "Set the number of lines to be saved for 'stout' and 'sterr' output in scripts."
 msgstr ""
+
+msgid "Set the password of the OpenWebif from your fallback tuner"
+msgstr "Nustatykite OpenWebif slaptažodį iš atsarginio derintuvo"
+
+msgid "Set the port of the OpenWebif from your fallback tuner"
+msgstr "Nustatykite OpenWebif jungtį iš savo atsarginio imtuvo"
 
 msgid "Set the position of the recording icons."
 msgstr "Nustatyti įrašymo piktogramos poziciją"
@@ -16632,6 +16734,9 @@ msgstr "Nustatyti laiką, kad paslėpti antrą info juostą. Info juosta taip pa
 
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, PowerTimer, SleepTimer etc."
 msgstr "Nustatykite laiką, per kurį laukiama numatytojo veiksmo vykdant išjungimo, budėjimo režimą ar iš naujo paleidžiant pranešimus. (pvz., naudojami laikmatį, įtampos laikmatį, miego laikmatį ir kt.)"
+
+msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
+msgstr ""
 
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Nustatykite pasirinkto kanalo veiksmo eigos indikaciją kanalų pasirinkimo lange."
@@ -17137,6 +17242,9 @@ msgstr ""
 msgid "Show Source packages"
 msgstr ""
 
+msgid "Show Subscription packages"
+msgstr ""
+
 msgid "Show Subservices Of Active Service"
 msgstr ""
 
@@ -17386,6 +17494,18 @@ msgstr ""
 
 msgid "Show next system information screen"
 msgstr ""
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL did not complete"
+msgstr "Rodyti pranešimą, kai kanalų ir/arba EPG importas iš nuotolinio imtuvo yra nebaigtas"
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL is completed"
+msgstr "Rodyti pranešimą, kai kanalų ir/arba EPG importas iš nuotolinio imtuvo yra baigtas"
+
+msgid "Show notification when import channels was not successful"
+msgstr "Rodyti pranešimą, kai kanalų importas nepavyko"
+
+msgid "Show notification when import channels was successful"
+msgstr "Rodyti pranešimą, kai kanalų importas pavyko"
 
 msgid "Show or hide the extended description, (skin dependent)."
 msgstr "Rodyti arba slėpti išplėstą aprašymą, (priklauso nuo temos)."
@@ -17674,6 +17794,9 @@ msgstr "Išjungti"
 
 msgid "Shutdown"
 msgstr "Išjungti"
+
+msgid "Shutdown OSCam"
+msgstr ""
 
 msgid "Shutting down. Please wait..."
 msgstr ""
@@ -18224,6 +18347,9 @@ msgstr "Nurodykite katalogą, kuris bus naudojamas paleidžiant Medija leistuvą
 msgid "Speed"
 msgstr "Greitis"
 
+msgid "Spinner Position"
+msgstr ""
+
 msgid "Split preview mode"
 msgstr "Padalinto ekrano peržiūros būdas"
 
@@ -18315,6 +18441,9 @@ msgid "Start test"
 msgstr "Pradėti testą"
 
 msgid "Start the Kexec initialization"
+msgstr ""
+
+msgid "Start the backup of the selected image"
 msgstr ""
 
 msgid "Start the highlighted plugin"
@@ -18576,6 +18705,9 @@ msgstr ""
 msgid "Style:"
 msgstr "Stilius:"
 
+msgid "Subscription Packages"
+msgstr ""
+
 msgid "Subservice Actions"
 msgstr ""
 
@@ -18656,9 +18788,6 @@ msgstr "Sundanese"
 
 msgid "Sunday"
 msgstr "Sekmadienis"
-
-msgid "Support at"
-msgstr "Palaikymas"
 
 msgid "Suriname"
 msgstr "Surinamas"
@@ -19284,6 +19413,9 @@ msgid ""
 msgstr ""
 "Laisvos vietos, skirtos laiko poslinkiui, diske mažiau, nei nurodyta nustatymuose.\n"
 "Ką jūs norite daryti ?"
+
+msgid "The backup can take up to about 15 minutes to complete."
+msgstr ""
 
 msgid "The backup failed"
 msgstr ""
@@ -19932,10 +20064,6 @@ msgstr "Laiko šuolio kartojimo intervalas greitam persukimui pirmyn/atgal"
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr "Laiko šuolis: naudoti įprastą greitą prasukimą greičiams"
 
-#, python-format
-msgid "Time required for this process: %s"
-msgstr "Laikas, reikalingas šiam procesui: %s"
-
 msgid "Time shift buffer delete after zap"
 msgstr "Laiko poslinkio buferio naikinimas po perjungimo"
 
@@ -19983,6 +20111,9 @@ msgstr "Laiko poslinkis bus išsaugotas įvykio pabaigoje!"
 
 msgid "Time style"
 msgstr "Laiko stilius"
+
+msgid "Time taken for the backup:"
+msgstr ""
 
 msgid "Time to execute command or script"
 msgstr "Laikas komandai, ar scenarijui vykdyti"
@@ -20084,8 +20215,11 @@ msgstr "Pavadinimo nustatymo būdas"
 msgid "To complete the setup the %s %s must connect to the Internet.  Connect the %s %s to the Internet now."
 msgstr ""
 
-msgid "To restore the image:"
-msgstr "Kad atkurti atvaizdą:"
+msgid "To restore the image check the manual or documentation for the receiver."
+msgstr ""
+
+msgid "To restore the image use 'OnlineFlash' option in the 'SoftwareManager' menu."
+msgstr ""
 
 #, python-format
 msgid "To where would you like to extract '%s'?"
@@ -20513,6 +20647,9 @@ msgstr "UP80 (keymap.u80)"
 msgid "URL"
 msgstr "Internetinis adresas"
 
+msgid "URL of fallback remote receiver"
+msgstr "Atsarginio nuotolinio imtuvo internetinis adresas"
+
 msgid "URL of fallback remote receiver."
 msgstr "Nuotolinio imtuvo internetinis adresas"
 
@@ -20574,6 +20711,9 @@ msgstr "Nekoduotas"
 #, python-format
 msgid "Unexpected error accessing WebIF: %s"
 msgstr ""
+
+msgid "Unexpected error while retrieving fallback tuner's timer information"
+msgstr "Netikėta klaida gaunant atsarginio imtuvo laikmačio informaciją"
 
 msgid "UnhandledKey"
 msgstr "Nepalaikomas mygtukas"
@@ -20862,9 +21002,6 @@ msgstr "Naudokite MHW EPG informaciją, jei ji yra prieinama."
 msgid "Use Netmed EPG information when it is available."
 msgstr "Naudokite Netmed EPG informaciją, jei ji yra prieinama."
 
-msgid "Use OnlineFlash in SoftwareManager"
-msgstr "Naudokite internetinį diegimą programinės įrangos valdyme"
-
 msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
 msgstr ""
 
@@ -21009,14 +21146,14 @@ msgstr "Naudoti emuliatoriaus skydelį, kad kontroliuoti savo emuliatorius. Tai 
 msgid "Use the UP and DOWN buttons to select your locale/language then press the OK button to continue."
 msgstr "Norėdami pasirinkti lokalę / kalbą, naudokite mygtukus AUKŠTYN ir ŽEMYN, tada paspauskite mygtuką Gerai (OK), kad tęstumėte."
 
+msgid "Use the UP/DOWN buttons to select the installed image to be backed up. Press the 'Start' (GREEN) button to start the backup."
+msgstr ""
+
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Naudokite alternatyvų arba įprastą radijo imtuvo režimą."
 
 msgid "Use the current selection and exit"
 msgstr ""
-
-msgid "Use the cursor keys to select an installed image and then Start button."
-msgstr "Naudokite žymeklio mygtukus, kad pasirinktumėte įdiegtą atvaizdą, o tada - mygtuką Pradėti."
 
 msgid "Use the extended List"
 msgstr "Naudoti išplėstinį sąrašą"
@@ -21068,6 +21205,9 @@ msgstr "Vartotojas - paketai"
 
 msgid "User Feed URL"
 msgstr "Vartotojo šaltinių URL"
+
+msgid "User ID"
+msgstr "Vartotojo ID"
 
 msgid "User comments"
 msgstr ""
@@ -21239,16 +21379,8 @@ msgstr "Venesuelos Bolivaro Respublika"
 msgid "Version"
 msgstr ""
 
-#, python-format
-msgid "Version %s %s"
-msgstr "Versija %s %s"
-
 msgid "Version: "
 msgstr "Versija: "
-
-#, python-format
-msgid "Version: %s"
-msgstr "Versija: %s"
 
 msgid "Vertical"
 msgstr "Vertikalus"
@@ -21738,6 +21870,15 @@ msgstr "Kai įjungta, imtuvas automatiškai grįš į budėjimo režimą, kai te
 
 msgid "When enabled the receiver will automatically wake from standby when the TV is turned on."
 msgstr "Kai įjungta, imtuvas automatiškai pažadins budėjimo režimą, kai televizorius bus įjungtas."
+
+msgid "When enabled the timer from the fallback tuner is imported"
+msgstr "Kai įjungta, atsarginio imtuvo laikmatis yra importuojamas"
+
+msgid "When enabled the timer from the fallback tuner is the default timer"
+msgstr "Kai įjungta, atsarginio imtuvo laikmatis yra importuojamas"
+
+msgid "When enabled you can customize the OpenWebIf settings for the fallback tuner"
+msgstr "Kai įjungta, galite pritaikyti OpenWebIf nustatymus atsarginiam imtuvui"
 
 msgid "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
 msgstr "Kai čia įjungta, http sraute bus įtraukti ir AIT duomenys. Tai leis kliento imtuvui naudotis HbbTV."
@@ -22486,12 +22627,6 @@ msgstr "Padidinti iš dešinės"
 msgid "Zulu"
 msgstr "Zulu"
 
-msgid "[Enigma2 Settings]\n"
-msgstr "[Enigma2 nustatymai]\n"
-
-msgid "[Image Info]\n"
-msgstr "[atvaizdo informacija]\n"
-
 msgid "[Timeshift] Merging records failed!"
 msgstr "[Laiko poslinkis] įrašų sujungti nepavyko!"
 
@@ -22591,9 +22726,6 @@ msgstr "baletas"
 #, python-format
 msgid "bc%d"
 msgstr "bc%d"
-
-msgid "because of the used file system the back-up\n"
-msgstr "priklausomai nuo naudojamos failų sistemos, atsarginis kopijavimas\n"
 
 msgid "better"
 msgstr "geriau"
@@ -23119,9 +23251,6 @@ msgstr "olimpinė mėlyna"
 msgid "on READ ONLY medium."
 msgstr "diskas TIK SKAITYMUI."
 
-msgid "on how to restore the image"
-msgstr "kaip atkurti vaizdą"
-
 msgid "orange"
 msgstr "oranžinė"
 
@@ -23508,11 +23637,6 @@ msgstr "baltas"
 msgid "width"
 msgstr "plotis"
 
-msgid "will take about 1-15 minutes for this system\n"
-msgstr ""
-"šiai sistemai užtruks apie 1-15 minučių\n"
-"\n"
-
 msgid "winter sport"
 msgstr "žiemos sportas"
 
@@ -23543,6 +23667,209 @@ msgstr "taip (išsaugoti šaltinius)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid ""
+#~ "\n"
+#~ "\n"
+#~ "[User - bouquets (TV)]\n"
+#~ msgstr ""
+#~ "\n"
+#~ "\n"
+#~ "[Mano TV paketai]\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "[Installed Plugins]\n"
+#~ msgstr ""
+#~ "\n"
+#~ "[Įdiegti priedai]\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "[User - bouquets (RADIO)]\n"
+#~ msgstr ""
+#~ "\n"
+#~ "[Mano RADIJO paketai]\n"
+
+#~ msgid "     no space left on back-up device"
+#~ msgstr "     įrenginyje, į kurį kopijavote, pritrūko vietos"
+
+#~ msgid "     no writing permission on back-up device"
+#~ msgstr "     įrenginyje, į kurį kopijavote, neturite rašymo teisių"
+
+#~ msgid "     wrong back-up destination "
+#~ msgstr "     neteisinga atsarginės kopijos paskirties vieta "
+
+#~ msgid "Almost there... "
+#~ msgstr "Beveik viskas!.. "
+
+#, python-format
+#~ msgid "Back-up Tool for a %s\n"
+#~ msgstr "Atsarginio kopijavimo įrankis %s\n"
+
+#, python-format
+#~ msgid "Back-up Tool for an %s\n"
+#~ msgstr "Atsarginio kopijavimo įrankis %s\n"
+
+#, python-format
+#~ msgid "Backup Date: %s\n"
+#~ msgstr "Atsarginio kopijavimo data: %s\n"
+
+#~ msgid "Backup Mode: Flash Online\n"
+#~ msgstr "Atsarginės kopijos režimas: Įdiegti tiesiai iš interneto\n"
+
+#~ msgid "Backup Mode: USB Recovery\n"
+#~ msgstr "Atsarginio kopijavimo režimas: Atkūrimas iš USB\n"
+
+#, python-format
+#~ msgid "Backup to destination: %s"
+#~ msgstr "Atsarginė kopija į paskirties vietą: %s"
+
+#, python-format
+#~ msgid "Build: %s"
+#~ msgstr "Sukurta: %s"
+
+#~ msgid "By openATV Image Team"
+#~ msgstr "OpenATV atvaizdo komanda"
+
+#~ msgid "Cannot create backup directory"
+#~ msgstr "Nepavyko sukurti atsarginių kopijų katalogo"
+
+#, python-format
+#~ msgid "Chipset: BCM%s"
+#~ msgstr "Lustų rinkinys: BCM%s"
+
+#~ msgid "Create:"
+#~ msgstr "Sukurti:"
+
+#, python-format
+#~ msgid "Create: Recovery Fullbackup %s"
+#~ msgstr "Sukurti: atkūrimo pilną atsarginę kopiją %s"
+
+#~ msgid "Error reading bouquets.radio"
+#~ msgstr "Klaida skaitant bouquets.radio"
+
+#~ msgid "Error reading bouquets.tv"
+#~ msgstr "Klaida skaitant bouquets.tv"
+
+#~ msgid "Full Image Backup "
+#~ msgstr "Pilna atvaizdo atsarginė kopija "
+
+#, python-format
+#~ msgid "Full back-up on %s"
+#~ msgstr "Pilna atsarginė kopija %s"
+
+#, python-format
+#~ msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
+#~ msgstr "Atvaizdas sukurtas: %s/%s-%s-%s-backup-%s_%s.zip"
+
+#~ msgid "Image creation failed - "
+#~ msgstr "Atvaizdo sukurti nepavyko - "
+
+#, python-format
+#~ msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
+#~ msgstr "Daugialypės įkrovos atvaizdas sukurtas: %s/%s-%s-%s-backup-%s_usb.zip"
+
+#~ msgid "No, do not backup a image"
+#~ msgstr "Ne, nereikia atsarginės atvaizdo kopijos"
+
+#~ msgid "Now building the Backup Image"
+#~ msgstr "Dabar kuriama atsarginė atvaizdo kopija"
+
+#~ msgid "Please be patient, a backup will now be made,\n"
+#~ msgstr "Būkite kantrūs, atsarginė kopija tuojau bus padaryta,\n"
+
+#~ msgid "Please check the manual of the receiver"
+#~ msgstr "Prašome patikrinti imtuvo vadovą"
+
+#~ msgid "Please select a backup destination"
+#~ msgstr "Pasirinkite atsarginės kopijos paskirties vietą"
+
+#~ msgid "Please wait...almost ready! "
+#~ msgstr "Palaukite... Beveik baigta! "
+
+#~ msgid "Probable causes could be"
+#~ msgstr "Tikėtinos priežastys gali būti"
+
+#~ msgid "Support at"
+#~ msgstr "Palaikymas"
+
+#, python-format
+#~ msgid "Time required for this process: %s"
+#~ msgstr "Laikas, reikalingas šiam procesui: %s"
+
+#~ msgid "To restore the image:"
+#~ msgstr "Kad atkurti atvaizdą:"
+
+#~ msgid "Use OnlineFlash in SoftwareManager"
+#~ msgstr "Naudokite internetinį diegimą programinės įrangos valdyme"
+
+#~ msgid "Use the cursor keys to select an installed image and then Start button."
+#~ msgstr "Naudokite žymeklio mygtukus, kad pasirinktumėte įdiegtą atvaizdą, o tada - mygtuką Pradėti."
+
+#, python-format
+#~ msgid "Version %s %s"
+#~ msgstr "Versija %s %s"
+
+#, python-format
+#~ msgid "Version: %s"
+#~ msgstr "Versija: %s"
+
+#~ msgid "[Enigma2 Settings]\n"
+#~ msgstr "[Enigma2 nustatymai]\n"
+
+#~ msgid "[Image Info]\n"
+#~ msgstr "[atvaizdo informacija]\n"
+
+#~ msgid "because of the used file system the back-up\n"
+#~ msgstr "priklausomai nuo naudojamos failų sistemos, atsarginis kopijavimas\n"
+
+#~ msgid "on how to restore the image"
+#~ msgstr "kaip atkurti vaizdą"
+
+#~ msgid "will take about 1-15 minutes for this system\n"
+#~ msgstr ""
+#~ "šiai sistemai užtruks apie 1-15 minučių\n"
+#~ "\n"
+
+#~ msgid "Execution finished!!"
+#~ msgstr "Vykdymas baigtas!!"
+
+#~ msgid "Execution progress:"
+#~ msgstr "Vykdymo eiga:"
+
+#~ msgid "Path to save not exist: '/tmp/'"
+#~ msgstr "Nėra kelio išsaugojimui: '/tmp/'"
+
+#~ msgid "Backup done."
+#~ msgstr "Atsarginė kopija padaryta."
+
+#~ msgid "No Devices Found !!"
+#~ msgstr "Įrenginių nerasta !!"
+
+#~ msgid "23.976"
+#~ msgstr "23.976"
+
+#~ msgid "24"
+#~ msgstr "24"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "29.97"
+#~ msgstr "29.97"
+
+#~ msgid "30"
+#~ msgstr "30"
+
+#~ msgid "Backup completed."
+#~ msgstr "Atsarginė kopija padaryta."
+
+#~ msgid "Backup failed."
+#~ msgstr "Atsarginė kopija nepavyko."
+
+#~ msgid "No updates were available.  Please try again later."
+#~ msgstr "Atnaujinimų nėra.  Bandykite patikrinti vėliau."
 
 #~ msgid "About..."
 #~ msgstr "Apie..."

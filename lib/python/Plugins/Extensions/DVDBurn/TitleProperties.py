@@ -8,7 +8,7 @@ from Components.ConfigList import ConfigListScreen
 from . import Title
 
 
-class TitleProperties(Screen, ConfigListScreen):
+class TitleProperties(ConfigListScreen, Screen):
 	skin = """
 		<screen name="TitleProperties" position="center,center" size="560,445" title="Properties of current title" resolution="1280,720">
 			<ePixmap pixmap="skin_default/buttons/red.png" position="0,0" size="140,40" alphatest="on" />

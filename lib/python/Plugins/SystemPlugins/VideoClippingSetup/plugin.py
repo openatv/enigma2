@@ -9,7 +9,7 @@ config.plugins.VideoClippingSetup.clip_top = ConfigInteger(default=0)
 config.plugins.VideoClippingSetup.clip_height = ConfigInteger(default=576)
 
 
-class VideoClippingCoordinates(Screen, ConfigListScreen):
+class VideoClippingCoordinates(ConfigListScreen, Screen):
 	skin = """
 	<screen position="0,0" size="e,e" title="Video clipping setup" backgroundColor="transparent">
 		<widget name="config" position="c-175,c-75" size="350,150" foregroundColor="black" backgroundColor="transparent" />

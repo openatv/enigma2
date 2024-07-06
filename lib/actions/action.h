@@ -36,11 +36,14 @@ public:
 	void unbindKeyDomain(const std::string &domain);
 
 	void keyPressed(const std::string &device, int key, int flags);
+	void setLongPressedEmulationKey(int key) { m_long_press_emulation_key = key; }
 
 #ifndef SWIG
 	static RESULT getInstance(ePtr<eActionMap> &);
+	int getLongPressedEmulationKey() const { return m_long_press_emulation_key; }
 private:
 	static eActionMap *instance;
+	int m_long_press_emulation_key = 0;
 	struct eActionBinding
 	{
 		eActionBinding()

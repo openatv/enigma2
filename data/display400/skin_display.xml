@@ -102,9 +102,7 @@
 			<convert type="EventTime">Remaining</convert>
 			<convert type="RemainingToText"></convert>
 		</widget>
-		<widget source="session.RecordState" render="Pixmap" pixmap="record.png" position="center,205" size="30,30" zPosition="3" alphatest="blend">
-			<convert type="ConditionalShowHide">Blink</convert>
-		</widget>
+		<panel name="MeinRecordingPanel" />
 		<panel name="MeinTunerInfoPanel" />
 	</screen>
 	<!-- channelselection -->
@@ -135,9 +133,7 @@
 			<convert type="EventTime">Remaining</convert>
 			<convert type="RemainingToText"></convert>
 		</widget>
-		<widget source="session.RecordState" render="Pixmap" pixmap="record.png" position="center,205" size="30,30" zPosition="3" alphatest="blend">
-			<convert type="ConditionalShowHide">Blink</convert>
-		</widget>
+		<panel name="MeinRecordingPanel" />
 		<panel name="MeinTunerInfoPanel" />
 	</screen>
 	<!-- EPG Panel -->
@@ -168,9 +164,7 @@
 			<convert type="EventTime">Remaining</convert>
 			<convert type="RemainingToText"></convert>
 		</widget>
-		<widget source="session.RecordState" render="Pixmap" pixmap="record.png" position="center,205" size="30,30" zPosition="3" alphatest="blend">
-			<convert type="ConditionalShowHide">Blink</convert>
-		</widget>
+		<panel name="MeinRecordingPanel" />
 		<panel name="MeinTunerInfoPanel" />
 	</screen>
 	<!-- EPG panels -->

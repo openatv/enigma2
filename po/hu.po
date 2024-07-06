@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-24 20:26+0000\n"
+"POT-Creation-Date: 2024-06-21 14:25+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -18,15 +18,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 4.12-dev\n"
-
-msgid ""
-"\n"
-"\n"
-"[User - bouquets (TV)]\n"
-msgstr ""
-"\n"
-"\n"
-"[Felhasználói csatornalisták (TV)]\n"
 
 msgid ""
 "\n"
@@ -42,31 +33,8 @@ msgstr ""
 "\n"
 "Felvétel folyamatban."
 
-msgid ""
-"\n"
-"[Installed Plugins]\n"
-msgstr ""
-"\n"
-"[Telepített bővítmények]\n"
-
-msgid ""
-"\n"
-"[User - bouquets (RADIO)]\n"
-msgstr ""
-"\n"
-"[Felhasználói csatornacsomagok (RADIO)]\n"
-
 msgid " "
 msgstr " "
-
-msgid "     no space left on back-up device"
-msgstr "     nincs hely a tartalék eszközön"
-
-msgid "     no writing permission on back-up device"
-msgstr "     nincs írási engedély a tartalék eszközön"
-
-msgid "     wrong back-up destination "
-msgstr "     rossz tartalék eszköz "
 
 msgid "  Menu key : Select quad channel"
 msgstr "  Menü gomb: Válassza ki a Quad csatorna üzemmódot"
@@ -1376,6 +1344,15 @@ msgstr " "
 msgid "-"
 msgstr "-"
 
+msgid "- No space left on backup device."
+msgstr ""
+
+msgid "- No write permission on backup device."
+msgstr ""
+
+msgid "- Wrong backup destination."
+msgstr ""
+
 msgid "-24 Hours"
 msgstr ""
 
@@ -1472,18 +1449,6 @@ msgstr ""
 msgid "2"
 msgstr "2"
 
-msgid "23.976"
-msgstr "23.976"
-
-msgid "24"
-msgstr "24"
-
-msgid "25"
-msgstr "25"
-
-msgid "29.97"
-msgstr "29.97"
-
 msgid "2nd InfoBar"
 msgstr "Második információs sáv megjelenítése"
 
@@ -1514,9 +1479,6 @@ msgstr "2x, 4x, 6x, 8x"
 
 msgid "3"
 msgstr "3"
-
-msgid "30"
-msgstr "30"
 
 msgid "3D Mode"
 msgstr "3D mód"
@@ -1601,6 +1563,9 @@ msgstr ""
 
 msgid "A"
 msgstr "A"
+
+msgid "A backup is now being created."
+msgstr ""
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr ""
@@ -1758,6 +1723,18 @@ msgstr "AC3 plusz transzkódolás"
 
 msgid "AFL"
 msgstr "AFL"
+
+msgid "AI-Powered translation color"
+msgstr ""
+
+msgid "AI-Powered translation enabled"
+msgstr ""
+
+msgid "AI-Powered translation language"
+msgstr ""
+
+msgid "AI-Powered translation subscription code"
+msgstr ""
 
 #, fuzzy
 msgid "ARM"
@@ -2273,9 +2250,6 @@ msgstr "Engedélyezi a Log Manager megjelenítését/elrejtését a bővítmény
 msgid "Allows you to show/hide OScam/CCcam in the Extension Menu screen (BLUE button)."
 msgstr ""
 
-msgid "Almost there... "
-msgstr "Majdnem ott... "
-
 msgid "Alpha"
 msgstr "Betű"
 
@@ -2287,6 +2261,15 @@ msgstr "ABC-sorrendben a fejlécek alatt"
 
 msgid "Alphanumeric"
 msgstr "Alfanumerikus"
+
+msgid "Also import at reboot/restart enigma2"
+msgstr "Importáljon a készülék/kezelőfelület újraindításakor"
+
+msgid "Also import from the extension menu"
+msgstr "Importálás a bővítmények menüjéből is"
+
+msgid "Also import when box is leaving standby"
+msgstr "Importáljon akkor is, ha a készülék készenlétben van"
 
 msgid "Also on standby"
 msgstr "Készenlét alatt is"
@@ -2302,6 +2285,9 @@ msgstr "2. alternatíva"
 
 msgid "Alternative Edit"
 msgstr "[alternatív módosítás]"
+
+msgid "Alternative URLs for DVB-T/C or ATSC"
+msgstr "Alternatív URL DVB-T/C vagy ATSC vételhez"
 
 msgid "Alternative numbering mode"
 msgstr "Alternatív számozás"
@@ -2551,6 +2537,9 @@ msgid "Aspect switch"
 msgstr ""
 
 msgid "Assamese"
+msgstr ""
+
+msgid "Assembling the image backup files."
 msgstr ""
 
 msgid "Assigned CAIds:"
@@ -2837,14 +2826,6 @@ msgstr "Vissza, külső USB"
 msgid "Back, upper USB"
 msgstr "Vissza, fentebbi USB"
 
-#, python-format
-msgid "Back-up Tool for a %s\n"
-msgstr "Mentési eszköz egy %s\n"
-
-#, python-format
-msgid "Back-up Tool for an %s\n"
-msgstr "Mentési eszköz egy %s\n"
-
 msgid "Back/Recall"
 msgstr "Vissza/Visszahívás"
 
@@ -2869,10 +2850,6 @@ msgstr "Háttér:"
 msgid "Backup"
 msgstr "Mentés"
 
-#, python-format
-msgid "Backup Date: %s\n"
-msgstr "Biztonsági mentés ideje: %s\n"
-
 msgid "Backup Location"
 msgstr "Mentés helye"
 
@@ -2882,10 +2859,10 @@ msgstr "Mentési napló"
 msgid "Backup Mode"
 msgstr "Mentési mód"
 
-msgid "Backup Mode: Flash Online\n"
-msgstr "Adatmentés: Flash Online\n"
+msgid "Backup Mode: Flash Online"
+msgstr ""
 
-msgid "Backup Mode: USB Recovery\n"
+msgid "Backup Mode: USB Recovery"
 msgstr ""
 
 msgid "Backup Settings"
@@ -2893,18 +2870,6 @@ msgstr "Beállítások mentése"
 
 msgid "Backup System Settings"
 msgstr "Rendszerbeállítások mentése"
-
-msgid "Backup completed."
-msgstr "Mentés befejezve."
-
-msgid "Backup done."
-msgstr "Mentés kész."
-
-msgid "Backup failed!"
-msgstr ""
-
-msgid "Backup failed."
-msgstr "Mentés sikertelen."
 
 msgid "Backup images"
 msgstr ""
@@ -2920,8 +2885,8 @@ msgstr ""
 "szeretné telepíteni most?"
 
 #, python-format
-msgid "Backup to destination: %s"
-msgstr "Biztonsági másolat célhelye: %s"
+msgid "Backup tool for %s %s"
+msgstr ""
 
 msgid "Backup your %s %s settings."
 msgstr "A(z) %s %s készülék beállításainak mentése."
@@ -3246,10 +3211,6 @@ msgstr ""
 msgid "Build information for %s %s"
 msgstr ""
 
-#, python-format
-msgid "Build: %s"
-msgstr "Változat: %s"
-
 msgid "Bulgaria"
 msgstr "Bulgária"
 
@@ -3297,9 +3258,6 @@ msgstr ""
 
 msgid "By disk label"
 msgstr ""
-
-msgid "By openATV Image Team"
-msgstr "Az openATV Image Team által"
 
 msgid "Bypass HDMI EDID Check"
 msgstr "HDMI EDID ellenőrzés kihagyása"
@@ -3555,6 +3513,9 @@ msgstr "Nem lehet feltölteni az időzítőt"
 msgid "Can't allocate program source (e.g. tuner)"
 msgstr "Nem lehet lefoglalni a program forrását (pl. tuner)"
 
+msgid "Can't create backup directory!"
+msgstr ""
+
 msgid ""
 "Can't going to live TV!\n"
 "Switch to live TV and restart time shift ?"
@@ -3678,9 +3639,6 @@ msgstr ""
 msgid "Cancelled upon user request"
 msgstr "Felhasználói kérésre megszakítva"
 
-msgid "Cannot create backup directory"
-msgstr "A biztonsági másolat könyvtára nem hozható létre"
-
 msgid "Cannot delete file"
 msgstr "Nem lehet törölni a fájlt"
 
@@ -3725,6 +3683,9 @@ msgstr ""
 
 msgid "Cayman Islands"
 msgstr "Kajmán-szigetek"
+
+msgid "Cebuano"
+msgstr ""
 
 msgid "Celsius"
 msgstr "Celsius"
@@ -3997,9 +3958,8 @@ msgstr "Kína"
 msgid "Chinese"
 msgstr "Kína"
 
-#, python-format
-msgid "Chipset: BCM%s"
-msgstr "Chipset: BCM%s"
+msgid "Chinese (Simplified)"
+msgstr ""
 
 msgid "Choice Box"
 msgstr "Készülék választás"
@@ -4046,6 +4006,9 @@ msgstr "Válassza ki a dátum megjelenítési formázási stílusát. 'D' / 'DD 
 
 msgid "Choose the display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds.  ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Válassza ki az időpontok megjelenítési formázási stílusát. 'H' / 'HH' az óra egy 24 órás megjelenés, 'h' / 'hh' az óra egy 12 órás megjelenés, 'mm' a perc és az 'ss' a másodperc (A 'HH' és a 'hh' egy számjegynél nullával kezdődik). A képernyő kijelzője az Ön választásán alapul, de a kinézet (skin) befolyásolhatja azt."
+
+msgid "Choose the fallback font."
+msgstr ""
 
 msgid "Choose the front panel display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Válassza ki az előlapon megjelenő formázási stílust a dátumokhoz. A 'D' / 'DD' a dátum és az 'M' / 'MM' a hónap a számjegyben.  (A 'DD' és az 'MM' értéksorban van az egyszámjegyű értékekhez.) A képernyő kijelzője az Ön választásán alapul, de a kinézet (skin) befolyásolhatja azt."
@@ -4332,6 +4295,11 @@ msgstr ""
 msgid "Command execution..."
 msgstr "Parancs végrehajtása..."
 
+msgid "Command finished."
+msgid_plural "Commands finished."
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Command order"
 msgstr "Parancs sorrend"
 
@@ -4481,6 +4449,9 @@ msgstr ""
 msgid "Configure remote control type"
 msgstr "Távirányító típusának beállítása"
 
+msgid "Configure the AI-Powered translation language."
+msgstr ""
+
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "A DiSEqC mód beállítása ehhez a fejhez."
 
@@ -4528,6 +4499,9 @@ msgstr "A normál működés érdekében állítsa be az előlapi kijelző fény
 
 msgid "Configure the brightness level of the front panel display for standby."
 msgstr "Állítsa be az előlapi kijelző fényerőszintjét készenléti állapotban."
+
+msgid "Configure the color of the AI-Powered translations."
+msgstr ""
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
 msgstr "A külső fájlban lévő feliratok színe: fehér, sárga vagy alternatív (normál-fehér, dőlt-sárga, vastag-cián, aláhúzott-zöld)"
@@ -5099,6 +5073,10 @@ msgstr ""
 msgid "Create a symbolic link"
 msgstr ""
 
+#, python-format
+msgid "Create recovery image backup '%s'."
+msgstr ""
+
 msgid "Create separate radio user bouquet"
 msgstr "Különálló rádió csatornacsomag létrehozása"
 
@@ -5110,13 +5088,6 @@ msgstr ""
 
 msgid "Create the flash expander in the selected device"
 msgstr ""
-
-msgid "Create:"
-msgstr "Létrehozva:"
-
-#, python-format
-msgid "Create: Recovery Fullbackup %s"
-msgstr "Létrehozva: a(z) %s Fullbackup helyreállítva"
 
 msgid "Creating .ap and .sc files"
 msgstr "AP és SC fájlok létrehozása"
@@ -5268,6 +5239,9 @@ msgstr "Ugrás a '7'/'9' gombokkal (másodperc)"
 
 msgid "Customize"
 msgstr "Testreszabás"
+
+msgid "Customize OpenWebIF settings for fallback tuner"
+msgstr "OpenWebIf beállítások testreszabása a tartalék tunerhez"
 
 msgid "Customize System Settings"
 msgstr ""
@@ -6001,6 +5975,18 @@ msgstr ""
 msgid "Deselected packages usually occur because those packaged are incompatible with existing packages. While this is mostly harmless it is possible that your %s %s may experience issues."
 msgstr ""
 
+msgid "Destination of fallback remote receiver"
+msgstr "Tartalék távoli vevő cél"
+
+msgid "Destination of fallback remote receiver for ATSC"
+msgstr "Tartalék távoli vevő célja ATSC vételhez"
+
+msgid "Destination of fallback remote receiver for DVB-C"
+msgstr "Tartalék távoli vevő célja DVB-C vételhez"
+
+msgid "Destination of fallback remote receiver for DVB-T"
+msgstr "Tartalék távoli vevő célja DVB-T vételhez"
+
 msgid "Detail of GStreamer log."
 msgstr ""
 
@@ -6284,6 +6270,9 @@ msgstr "Dzsibuti"
 msgid "Do another manual service scan?"
 msgstr ""
 
+msgid "Do not backup the image"
+msgstr ""
+
 msgid "Do not change"
 msgstr "Ne változtassa meg"
 
@@ -6364,6 +6353,18 @@ msgstr "Tényleg el szeretné távolítani a(z) %s időzítőt?"
 #, python-format
 msgid "Do you really want to remove your bookmark for '%s'?"
 msgstr "Biztos benne, hogy el szeretné távolítani a(z) %s könyvjelzőt?"
+
+msgid ""
+"Do you really want to restart OSCam?\n"
+"\n"
+"HINT: This will take about 5 seconds!"
+msgstr ""
+
+msgid ""
+"Do you really want to shut down OSCam?\n"
+"\n"
+"ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+msgstr ""
 
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
@@ -6852,6 +6853,9 @@ msgstr "Engedélyezve a(z) %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "5V kimenet az akítv antennához engedélyezve"
 
+msgid "Enable AI-Powered translation for all teletext and DVB subtitles."
+msgstr ""
+
 msgid "Enable Autorecord"
 msgstr "Automatikus Timeshift felvétel engedélyezése"
 
@@ -6999,6 +7003,9 @@ msgstr "Engedélyezi a tartalék háttér vevőegységet"
 
 msgid "Enable freesat EPG"
 msgstr "Freesat EPG engedélyezése"
+
+msgid "Enable import timer from fallback tuner"
+msgstr "Csatornák importálása a tartalék tunerből"
 
 msgid "Enable intro screen"
 msgstr "Engedélyezi az intro-t a képernyőn"
@@ -7191,6 +7198,9 @@ msgstr "Enter"
 msgid "Enter DNS (Dynamic Name Server) %d's IP address."
 msgstr ""
 
+msgid "Enter IP address"
+msgstr "Adja meg az IP címet"
+
 msgid "Enter PIN"
 msgstr "Adja meg a PIN kódot"
 
@@ -7255,6 +7265,9 @@ msgid "Enter your low band local oscillator frequency. For more information cons
 msgstr "Adja meg az alacsony sávú helyi oszcillátor frekvenciáját. További információt az LNB műszaki adatlapján talál."
 
 msgid "Enter your personal feed URL to allow you to select packages from your personal feed."
+msgstr ""
+
+msgid "Enter your subscription code, the unified code for trial is 15."
 msgstr ""
 
 msgid "Entertainment"
@@ -7426,12 +7439,6 @@ msgstr ""
 msgid "Error opening recording file"
 msgstr "Hiba a felvett fájl megnyitásakor"
 
-msgid "Error reading bouquets.radio"
-msgstr "Hiba történt a bouquets.radio olvasásakor"
-
-msgid "Error reading bouquets.tv"
-msgstr "Hiba történt a bouquets.tv olvasásakor"
-
 msgid "Error reading webpage!"
 msgstr "Hiba történt a weboldal olvasásakor!"
 
@@ -7441,6 +7448,14 @@ msgstr ""
 #, python-format
 msgid "Error unzipping image '%s'!"
 msgstr ""
+
+#, python-format
+msgid ""
+"Error while retrieving fallback timer information\n"
+"%s"
+msgstr ""
+"Hiba történt a tartalék tuner időzítők letöltésekor\n"
+"%s"
 
 msgid "Error, unknown Result!"
 msgstr "Hiba, ismeretlen végeredmény!"
@@ -7552,6 +7567,10 @@ msgid "Error: Unable to rename directory '%s' to '%s'!"
 msgstr ""
 
 #, python-format
+msgid "Error: Unable to write log file '%s'!"
+msgstr "Fájlírási hiba: '%s'"
+
+#, python-format
 msgid "Error: You can't run '%s' on '%s'!"
 msgstr ""
 
@@ -7648,12 +7667,6 @@ msgstr "Meghaladja a kétrétegű hordozó kapacitását!"
 msgid "Execution condition"
 msgstr "Végrehajtási állapot"
 
-msgid "Execution finished!!"
-msgstr "Végrehajtás befejezve!"
-
-msgid "Execution progress:"
-msgstr "Végrehajtási állapot:"
-
 msgid "Exif"
 msgstr "Exif"
 
@@ -7677,6 +7690,9 @@ msgid "Exit Quad Channel Selection"
 msgstr "Kilépés a Quad Kép-a-Képben választásból"
 
 msgid "Exit all menus"
+msgstr ""
+
+msgid "Exit and close all screens without performing a backup"
 msgstr ""
 
 msgid "Exit editor"
@@ -7728,6 +7744,9 @@ msgid "Exit the wizard"
 msgstr "Kilépés a Varázslóból"
 
 msgid "Exit viewer"
+msgstr ""
+
+msgid "Exit without performing a backup"
 msgstr ""
 
 msgid "Expand"
@@ -7908,8 +7927,38 @@ msgstr "Sikertelen:"
 msgid "Falkland Islands (Malvinas)"
 msgstr "Falkland-szigetek"
 
+msgid "Fallback API did not return a valid result."
+msgstr ""
+
+msgid "Fallback Font *"
+msgstr ""
+
+msgid "Fallback remote receiver"
+msgstr "Tartalék távoli vevő"
+
+msgid "Fallback remote receiver IP"
+msgstr "Tartalék távoli vevő IP címe"
+
+msgid "Fallback remote receiver Port"
+msgstr "Tartalék távoli vevő portja"
+
 msgid "Fallback remote receiver URL"
 msgstr "Távoli vevőegység URL címe"
+
+msgid "Fallback remote receiver for ATSC"
+msgstr "Tartalék távoli vevő ATSC vételhez"
+
+msgid "Fallback remote receiver for DVB-C"
+msgstr "Tartalék távoli vevő DVB-C vételhez"
+
+msgid "Fallback remote receiver for DVB-T"
+msgstr "Tartalék távoli vevő DVB-T vételhez"
+
+msgid "Fallback Timer"
+msgstr "Tartalék távoli időzítő"
+
+msgid "Fallback tuner setup"
+msgstr "Tartalék távoli vevő beállítása"
 
 msgid "False"
 msgstr "Hamis"
@@ -8102,10 +8151,6 @@ msgstr ""
 
 msgid "File transfer was cancelled by user"
 msgstr "A felhasználó megszakította a fájlátvitelt"
-
-#, python-format
-msgid "File write error: '%s'"
-msgstr "Fájlírási hiba: '%s'"
 
 #, fuzzy
 msgid "Filename"
@@ -8425,18 +8470,11 @@ msgstr ""
 msgid "Fulah"
 msgstr ""
 
-msgid "Full Image Backup "
-msgstr "Teljes Lemezkép Mentés "
-
 msgid "Full Range RGB"
 msgstr "Teljes Range RGB"
 
 msgid "Full Stretch"
 msgstr ""
-
-#, python-format
-msgid "Full back-up on %s"
-msgstr "Teljes mentés az %s -on"
 
 msgid "Full factory reset"
 msgstr ""
@@ -8876,6 +8914,9 @@ msgstr ""
 msgid "Hausa"
 msgstr ""
 
+msgid "Hawaiian"
+msgstr ""
+
 msgid "Heard Island and McDonald Islands"
 msgstr "Heard-sziget és McDonald-szigetek"
 
@@ -8983,11 +9024,11 @@ msgstr ""
 msgid "Hide the InfoBar"
 msgstr "Az információs sáv elhalványodása az eltünésekor engedélyezett-e vagy nem"
 
-msgid "Hide this screen"
-msgstr ""
-
 msgid "Hide zap errors"
 msgstr "Csatornaváltási hibák elrejtése"
+
+msgid "Hide/Show the console screen"
+msgstr ""
 
 msgid "Hierarchy info"
 msgstr "Hierarchikus mód"
@@ -9042,6 +9083,9 @@ msgstr "Előzmények következő"
 
 msgid "History zap..."
 msgstr "Utoljára nézett csatornák..."
+
+msgid "Hmong"
+msgstr ""
 
 msgid "Hockey"
 msgstr "Jégkorong"
@@ -9186,6 +9230,9 @@ msgstr "IP cím"
 
 msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr ""
+
+msgid "IP of fallback remote receiver"
+msgstr "Tartalék távoli vevő IP címe"
 
 msgid "IPK Installer"
 msgstr "IPK Telepítő"
@@ -9391,15 +9438,21 @@ msgstr "Hagyja figyelmen kívül a váratlan ébredést és maradjon készenlét
 msgid "Image Backup"
 msgstr "Lemezkép Mentés"
 
-msgid "Image Flash Actions"
+msgid "Image Backup Actions"
 msgstr ""
 
 #, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
+msgid "Image Backup To %s"
 msgstr ""
 
-msgid "Image creation failed - "
-msgstr "A lemezkép létrehozása nem sikerült- "
+msgid "Image Flash Actions"
+msgstr ""
+
+msgid "Image created:"
+msgstr ""
+
+msgid "Image creation failed!"
+msgstr ""
 
 msgid "ImageWizard"
 msgstr "ImageWizard"
@@ -9412,6 +9465,21 @@ msgstr ""
 
 msgid "Immediately restart selected devices."
 msgstr ""
+
+msgid "Import channels and/or EPG from remote receiver URL also when the receiver is getting out of standby"
+msgstr "A csatornák és/vagy az EPG importálása a távoli vevő URL címéből a készülék felébredésekor"
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver is booted"
+msgstr "A csatornák és/vagy az EPG importálása a távoli vevő URL címéből a készülék bekapcsolásakor"
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
+msgstr "A csatornák és/vagy az EPG importálása a távoli vevő URL címéből a kezelőfelület újraindításakor"
+
+msgid "Import from remote receiver URL"
+msgstr "Importálás a távoli vevő URL címéből"
+
+msgid "Import remote receiver URL"
+msgstr "Távoli vevő URL címének importálása"
 
 msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
 msgstr "Ha meg van határozva az érték, akkor a Timeshift az értéknek megfelelően ellenőrzi a régebbi fájlokat (puffer határ, esemény határ, szabad hely beállítást figyelembe véve)."
@@ -10069,6 +10137,9 @@ msgstr ""
 msgid "Kurdish"
 msgstr ""
 
+msgid "Kurdish (Sorani)"
+msgstr ""
+
 msgid "Kurdistan"
 msgstr ""
 
@@ -10650,6 +10721,9 @@ msgstr "Tartsd karban a multiboot eszközt."
 
 msgid "Make"
 msgstr ""
+
+msgid "Make it possible to manually initiate the channels import and/or EPG via the extension menu"
+msgstr "Lehetővé teszik a csatornák és/vagy EPG kézi importálását a kiterjesztések menüből"
 
 msgid "Make this mark an 'in' point"
 msgstr "Legyen ez a kezdési pont"
@@ -11468,9 +11542,8 @@ msgstr ""
 msgid "MultiTranscoding"
 msgstr ""
 
-#, python-format
-msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
-msgstr "Multiboot lemezkép létrehozva: %s/%s-%s-%s-backup-%s_usb.zip"
+msgid "Multiboot Image created:"
+msgstr ""
 
 msgid "Multimedia Packages"
 msgstr ""
@@ -11532,6 +11605,9 @@ msgstr ""
 
 #, python-format
 msgid "NOTE: These %d directories/files exist and will be overwritten!"
+msgstr ""
+
+msgid "NOTE: While the console screen is hidden from view the buttons are still active. Pressing any enabled button will cause the screen to reappear but the button will not be actioned."
 msgstr ""
 
 msgid "NOW"
@@ -11843,9 +11919,6 @@ msgstr "Nincs (támogatott) DVD ROM!"
 msgid "No Connection"
 msgstr "Nincs kapcsolat"
 
-msgid "No Devices Found !!"
-msgstr "Nem található eszköz !!"
-
 #, fuzzy
 msgid "No ECM PIDs available"
 msgstr "Nem áll rendelkezésre demux"
@@ -12021,9 +12094,6 @@ msgstr "Nincs elérhető frissítés!"
 msgid "No updates available."
 msgstr ""
 
-msgid "No updates were available.  Please try again later."
-msgstr ""
-
 msgid "No valid device detected - Press OK"
 msgstr ""
 
@@ -12060,9 +12130,6 @@ msgstr ""
 
 msgid "No, but restart from begin"
 msgstr "Nem, de indítsa elölröl"
-
-msgid "No, do not backup a image"
-msgstr "Ne készítsen biztonsági másolatot egy lemezképről"
 
 msgid "No, do nothing."
 msgstr "Nem, ne csináljon semmit."
@@ -12225,9 +12292,6 @@ msgstr "Semmi, hagyja el ezt a menüt"
 msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "Most"
-
-msgid "Now building the Backup Image"
-msgstr "Most készítem a biztonsági másolatot"
 
 msgid "Now save time shift as movie and continues recording"
 msgstr "Timeshift mentése most és a felvétel folytatása"
@@ -12482,10 +12546,16 @@ msgstr "Nyissa meg a csatornalistát, és válassza ki az előző csatornát a K
 msgid "Open the Channel Selection Settings screen"
 msgstr ""
 
+msgid "Open the Image information"
+msgstr ""
+
 msgid "Open the Plugin Browser"
 msgstr "Bővítménykezelő megnyitása"
 
 msgid "Open the Plugin Browser settings screen"
+msgstr ""
+
+msgid "Open the Storage Device information"
 msgstr ""
 
 msgid "Open the VirtualKeyBoard for text entry"
@@ -12837,9 +12907,6 @@ msgstr "Jelszó módosítva."
 msgid "Path '%s' missing!"
 msgstr ""
 
-msgid "Path to save not exist: '/tmp/'"
-msgstr "A mentéshez nem létező elérési út: '/tmp/'"
-
 msgid "Pause"
 msgstr "Szünet"
 
@@ -13077,11 +13144,8 @@ msgstr "Szünet"
 msgid "Please add titles to the compilation."
 msgstr "Kérem, adjon a válogatáshoz hozzá tételeket."
 
-msgid "Please be patient, a backup will now be made,\n"
-msgstr "Kérem, legyen türelemmel, most készen áll egy mentés,\n"
-
-msgid "Please check the manual of the receiver"
-msgstr "Kérjük, ellenőrizze a vevőkészülék kézikönyvét"
+msgid "Please be patient."
+msgstr ""
 
 msgid "Please choose an extension..."
 msgstr "Kérem, válasszon egy kiterjesztést..."
@@ -13156,9 +13220,6 @@ msgstr "A folytatáshoz nyomja le az OK-t."
 msgid "Please press OK when ready"
 msgstr ""
 
-msgid "Please select a backup destination"
-msgstr "Válasszon biztonsági mentés célt"
-
 msgid "Please select a default EPG type..."
 msgstr "Válasszon egy alapértelmezett EPG típust..."
 
@@ -13215,6 +13276,9 @@ msgstr "Válassza ki azt a régiót, amely a leginkább megfelel a fizikai hely�
 
 msgid "Please select the sub-service to record:"
 msgstr "Válasszon egy alcsatornát a felvételhez..."
+
+msgid "Please select the target location to save the backup:"
+msgstr ""
 
 msgid "Please select what to do after flash of the following image:"
 msgstr ""
@@ -13322,9 +13386,6 @@ msgstr "Kérem, várjon..."
 msgid "Please wait... Loading list..."
 msgstr "Kérem, várjon... Lista betöltése..."
 
-msgid "Please wait...almost ready! "
-msgstr "Kérem, várjon... majdnem kész! "
-
 msgid "Plug in USB device"
 msgstr ""
 
@@ -13409,6 +13470,9 @@ msgstr "D port"
 msgid "Port number for the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr ""
 
+msgid "Port of fallback remote receiver"
+msgstr "Tartalék távoli vevő portja"
+
 msgid "Portugal"
 msgstr "Portugália"
 
@@ -13438,6 +13502,9 @@ msgstr "Forgatómotor beállítás napló"
 
 msgid "Positioner setup"
 msgstr "Forgatómotor beállítás"
+
+msgid "Possible causes could be:"
+msgstr ""
 
 msgid "Power"
 msgstr "Bekapcsoló"
@@ -13716,9 +13783,6 @@ msgstr "Fő műsoridő (perc)"
 msgid "Priority"
 msgstr "Prioritás"
 
-msgid "Probable causes could be"
-msgstr "Lehetséges okok lehetnek"
-
 msgid "Proc model"
 msgstr ""
 
@@ -13951,6 +14015,9 @@ msgstr "Gyors EPG mód"
 
 msgid "Quick Launch Menu"
 msgstr "Gyorsindító Menü"
+
+msgid "Quick Menu Actions"
+msgstr ""
 
 msgid "Quick Menu..."
 msgstr "Gyors menü..."
@@ -14727,6 +14794,9 @@ msgstr "Hálózat újraindítása"
 msgid "Restart Network Adapter"
 msgstr "Hálózati adapter újraindítása"
 
+msgid "Restart OSCam"
+msgstr ""
+
 msgid "Restart enigma"
 msgstr "Enigma újraindítása"
 
@@ -14965,6 +15035,10 @@ msgstr "Folyamatban"
 msgid "Running Myrestore script, Please wait ..."
 msgstr "Myrestore script fut - Kérem várjon..."
 
+#, python-format
+msgid "Running command %d: '%s'."
+msgstr ""
+
 msgid "Russian"
 msgstr "Orosz"
 
@@ -15079,6 +15153,9 @@ msgstr ""
 msgid "Same as in active"
 msgstr "Ugyanaz, mint az aktív"
 
+msgid "Same as stream"
+msgstr "Ugyanaz, mint a stream"
+
 msgid "Same behavior as current animation"
 msgstr "Ugyanaz a viselkedés, mint az aktuális animációban"
 
@@ -15159,6 +15236,9 @@ msgstr ""
 msgid "Save EPG data"
 msgstr "EPG adat mentése"
 
+msgid "Save Log"
+msgstr ""
+
 #, fuzzy
 msgid "Save all changed settings and exit"
 msgstr "Szöveg mentése / szöveg beírása és kilépés"
@@ -15209,6 +15289,9 @@ msgid "Save the left column directory location on exit."
 msgstr ""
 
 msgid "Save the log changes and exit"
+msgstr ""
+
+msgid "Save the log of the console messages to a file"
 msgstr ""
 
 msgid "Save the right column directory location on exit."
@@ -15638,6 +15721,9 @@ msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
 msgstr ""
 
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show subscription packages in the Download Plugins screen."
 msgstr ""
 
 msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
@@ -16253,6 +16339,9 @@ msgstr ""
 msgid "Select the time zone within the area or region."
 msgstr "Válassza ki az időzónát a területen vagy a régióban."
 
+msgid "Select the timer from the fallback tuner by default"
+msgstr "Ezzel engedélyezheti az időzítők importálását a tartalék tunerből"
+
 msgid "Select the tuner that controls the motorized dish."
 msgstr "Válassza ki a motorizált disht vezérlő tunert."
 
@@ -16631,6 +16720,9 @@ msgstr ""
 msgid "Set action for 'Info' key"
 msgstr "Művelet beállítása ' Info ' kulcshoz"
 
+msgid "Set alternative fallback tuners for DVB-T/C or ATSC"
+msgstr "Alternatív tartalék tuner beállítása DVB-T/C vagy ATSC vételhez"
+
 msgid "Set current CEC address as fixed address"
 msgstr ""
 
@@ -16668,6 +16760,9 @@ msgstr "Rendszer beállítása"
 msgid "Set the MAC address of your %s %s."
 msgstr "Állítsa be a MAC-címét a(z) %s %s eszköznek."
 
+msgid "Set the User ID of the OpenWebif from your fallback tuner"
+msgstr "Állítsa be az OpenWebIf felhasználói azonosítót a tartalék tunerből"
+
 msgid "Set the aspect ratio of the service picons."
 msgstr "Állítsa be a csatorna képek képarányát."
 
@@ -16694,6 +16789,12 @@ msgstr "Állítsa be a keresősáv ugrási méretét."
 
 msgid "Set the number of lines to be saved for 'stout' and 'sterr' output in scripts."
 msgstr ""
+
+msgid "Set the password of the OpenWebif from your fallback tuner"
+msgstr "Állítsa be az OpenWebIf jelszót a tartalék tunerből"
+
+msgid "Set the port of the OpenWebif from your fallback tuner"
+msgstr "Állítsa be az OpenWebIf portot a tartalék tunerből"
 
 msgid "Set the position of the recording icons."
 msgstr "Állítsa be a felvételt jelző ikon pozícióját"
@@ -16727,6 +16828,9 @@ msgstr "Állítsa be az időt a második Információs sáv elrejtéséhez. A s�
 
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, PowerTimer, SleepTimer etc."
 msgstr "Állítsa be az alapértelmezett művelet végrehajtásának várakozási idejét a leállítási, készenléti vagy újraindítási üzenetekben. (pl. használva a Timer, PowerTimer, Sleeptimer, ...)"
+
+msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
+msgstr ""
 
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Állítsa be a folyamatjelző típusát a csatornaválasztó képernyőn."
@@ -17235,6 +17339,9 @@ msgstr ""
 msgid "Show Source packages"
 msgstr ""
 
+msgid "Show Subscription packages"
+msgstr ""
+
 msgid "Show Subservices Of Active Service"
 msgstr ""
 
@@ -17486,6 +17593,18 @@ msgstr ""
 
 msgid "Show next system information screen"
 msgstr ""
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL did not complete"
+msgstr "Figyelmeztetés mutatása, ha a csatornák és/vagy az EPG importálása a távoli vevő URL-ből nem fejeződött be"
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL is completed"
+msgstr "Figyelmeztetés mutatása, ha a csatornák és/vagy az EPG importálása a távoli vevő URL-ből befejeződött"
+
+msgid "Show notification when import channels was not successful"
+msgstr "Figyelmeztetés mutatása, ha a csatornák importálása sikertelen volt"
+
+msgid "Show notification when import channels was successful"
+msgstr "Figyelmeztetés mutatása, ha a csatornák importálása sikeres volt"
 
 msgid "Show or hide the extended description, (skin dependent)."
 msgstr "Mutassa be vagy rejtse el a kiterjesztett leírást (kinézet függő)."
@@ -17783,6 +17902,9 @@ msgstr "kikapcsolás"
 
 msgid "Shutdown"
 msgstr "Kikapcsolás"
+
+msgid "Shutdown OSCam"
+msgstr ""
 
 msgid "Shutting down. Please wait..."
 msgstr ""
@@ -18335,6 +18457,9 @@ msgstr ""
 msgid "Speed"
 msgstr ""
 
+msgid "Spinner Position"
+msgstr ""
+
 msgid "Split preview mode"
 msgstr "Megosztott előnézeti mód"
 
@@ -18427,6 +18552,9 @@ msgid "Start test"
 msgstr "Teszt indítása"
 
 msgid "Start the Kexec initialization"
+msgstr ""
+
+msgid "Start the backup of the selected image"
 msgstr ""
 
 msgid "Start the highlighted plugin"
@@ -18688,6 +18816,9 @@ msgstr ""
 msgid "Style:"
 msgstr "Stílus:"
 
+msgid "Subscription Packages"
+msgstr ""
+
 msgid "Subservice Actions"
 msgstr ""
 
@@ -18770,9 +18901,6 @@ msgstr "Vasárnap"
 
 msgid "Sunday"
 msgstr "Vasárnap"
-
-msgid "Support at"
-msgstr "Támogatja"
 
 msgid "Suriname"
 msgstr "Suriname"
@@ -19414,6 +19542,9 @@ msgstr ""
 "A Timeshift-hez rendelkezésre álló lemezterület kisebb, mint a beállításokban megadott.\n"
 "Mit akar csinálni?"
 
+msgid "The backup can take up to about 15 minutes to complete."
+msgstr ""
+
 msgid "The backup failed"
 msgstr ""
 
@@ -20051,10 +20182,6 @@ msgstr "Időugrás a megismételt intervalluma a gyors előre/vissza lépéshez"
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr "Időugrás: Normál sebesség használata az előrelépéshez"
 
-#, python-format
-msgid "Time required for this process: %s"
-msgstr "A folyamathoz szükséges idő: %s"
-
 msgid "Time shift buffer delete after zap"
 msgstr "Csatorna váltásakor a Timeshift puffer törlődjön?"
 
@@ -20102,6 +20229,9 @@ msgstr "Az esemény végén lesz a Timeshift mentve!"
 
 msgid "Time style"
 msgstr "Idő stílusa"
+
+msgid "Time taken for the backup:"
+msgstr ""
 
 msgid "Time to execute command or script"
 msgstr "Mikor hajtódjon végre a parancs vagy a parancsfájl"
@@ -20207,8 +20337,11 @@ msgstr "Tétel-szett mód"
 msgid "To complete the setup the %s %s must connect to the Internet.  Connect the %s %s to the Internet now."
 msgstr ""
 
-msgid "To restore the image:"
-msgstr "A lemezkép visszaállítása:"
+msgid "To restore the image check the manual or documentation for the receiver."
+msgstr ""
+
+msgid "To restore the image use 'OnlineFlash' option in the 'SoftwareManager' menu."
+msgstr ""
 
 #, python-format
 msgid "To where would you like to extract '%s'?"
@@ -20643,6 +20776,9 @@ msgstr "UP80  (keymap.u80)"
 msgid "URL"
 msgstr "URL"
 
+msgid "URL of fallback remote receiver"
+msgstr "Tartalék távoli vevő URL címe"
+
 msgid "URL of fallback remote receiver."
 msgstr "A távoli tartalék háttér vevőegység elérhetőségének URL címe"
 
@@ -20704,6 +20840,9 @@ msgstr "Kódolatlan"
 #, python-format
 msgid "Unexpected error accessing WebIF: %s"
 msgstr ""
+
+msgid "Unexpected error while retrieving fallback tuner's timer information"
+msgstr "Váratlan hiba történt a tartalék tuner időzítők letöltésekor"
 
 msgid "UnhandledKey"
 msgstr "UnhandledKey"
@@ -20992,9 +21131,6 @@ msgstr "MHW EPG információk beolvasása a jelforrásból."
 msgid "Use Netmed EPG information when it is available."
 msgstr "Netmed EPG információk beolvasása a jelforrásból."
 
-msgid "Use OnlineFlash in SoftwareManager"
-msgstr "OnlineFlash használva a Szoftver kezelőben"
-
 msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
 msgstr ""
 
@@ -21139,14 +21275,14 @@ msgstr "Használja a Softcam Panelt a Cam vezérléséhez. Ezzel Elindíthatja/L
 msgid "Use the UP and DOWN buttons to select your locale/language then press the OK button to continue."
 msgstr ""
 
+msgid "Use the UP/DOWN buttons to select the installed image to be backed up. Press the 'Start' (GREEN) button to start the backup."
+msgstr ""
+
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Használja az alternatív vagy a hagyományos rádió üzemmódot."
 
 msgid "Use the current selection and exit"
 msgstr ""
-
-msgid "Use the cursor keys to select an installed image and then Start button."
-msgstr "Egy telepített lemezkép kiválasztásához használd a kurzorgombokat, majd nyomd meg a Start gombot."
 
 msgid "Use the extended List"
 msgstr "Használja a kiterjesztett listát"
@@ -21198,6 +21334,9 @@ msgstr "Felhasználói csatornacsomagok"
 
 msgid "User Feed URL"
 msgstr "felhasználó feed url-je"
+
+msgid "User ID"
+msgstr "Felhasználói azonosító"
 
 msgid "User comments"
 msgstr ""
@@ -21346,16 +21485,8 @@ msgstr "Venezuela"
 msgid "Version"
 msgstr ""
 
-#, python-format
-msgid "Version %s %s"
-msgstr "Verzió %s %s"
-
 msgid "Version: "
 msgstr "Verzió: "
-
-#, python-format
-msgid "Version: %s"
-msgstr "Verzió: %s"
 
 msgid "Vertical"
 msgstr "Függőleges"
@@ -21852,6 +21983,15 @@ msgstr ""
 
 msgid "When enabled the receiver will automatically wake from standby when the TV is turned on."
 msgstr ""
+
+msgid "When enabled the timer from the fallback tuner is imported"
+msgstr "Ezzel engedélyezheti az időzítők importálását a tartalék tunerből"
+
+msgid "When enabled the timer from the fallback tuner is the default timer"
+msgstr "Ezzel engedélyezheti az időzítők importálását a tartalék tunerből"
+
+msgid "When enabled you can customize the OpenWebIf settings for the fallback tuner"
+msgstr "Ha engedélyezi, testreszabhatja az OpenWebIf beállításait a tartalék tunerhez."
 
 msgid "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
 msgstr "A HTTP jelfolyamba kerüljön bele a DVB-ből származó AID adatcsomag is. Ezáltal a fogadó készülék képes lesz HbbTV-t is kezelni."
@@ -22604,12 +22744,6 @@ msgstr "Nagyítás jobbról"
 msgid "Zulu"
 msgstr ""
 
-msgid "[Enigma2 Settings]\n"
-msgstr "[Enigma2 Beállítások]\n"
-
-msgid "[Image Info]\n"
-msgstr "[Lemezkép Információ]\n"
-
 msgid "[Timeshift] Merging records failed!"
 msgstr "[Timeshift] az egyesítés sikertelen!"
 
@@ -22709,9 +22843,6 @@ msgstr "balett"
 #, python-format
 msgid "bc%d"
 msgstr "bc%d"
-
-msgid "because of the used file system the back-up\n"
-msgstr "mert a használt fájlrendszer a biztonsági mentés\n"
 
 msgid "better"
 msgstr "jobb"
@@ -23239,9 +23370,6 @@ msgstr ""
 msgid "on READ ONLY medium."
 msgstr "a csak olvasható hordozón."
 
-msgid "on how to restore the image"
-msgstr "a lemezkép visszaállításának módjáról"
-
 msgid "orange"
 msgstr ""
 
@@ -23629,9 +23757,6 @@ msgstr "fehér"
 msgid "width"
 msgstr "szélesség"
 
-msgid "will take about 1-15 minutes for this system\n"
-msgstr "körülbelül 1-15 percet vesz igénybe a rendszerhez\n"
-
 msgid "winter sport"
 msgstr "téli sport"
 
@@ -23661,6 +23786,197 @@ msgstr "igen (állapotok megtartása)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid ""
+#~ "\n"
+#~ "\n"
+#~ "[User - bouquets (TV)]\n"
+#~ msgstr ""
+#~ "\n"
+#~ "\n"
+#~ "[Felhasználói csatornalisták (TV)]\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "[Installed Plugins]\n"
+#~ msgstr ""
+#~ "\n"
+#~ "[Telepített bővítmények]\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "[User - bouquets (RADIO)]\n"
+#~ msgstr ""
+#~ "\n"
+#~ "[Felhasználói csatornacsomagok (RADIO)]\n"
+
+#~ msgid "     no space left on back-up device"
+#~ msgstr "     nincs hely a tartalék eszközön"
+
+#~ msgid "     no writing permission on back-up device"
+#~ msgstr "     nincs írási engedély a tartalék eszközön"
+
+#~ msgid "     wrong back-up destination "
+#~ msgstr "     rossz tartalék eszköz "
+
+#~ msgid "Almost there... "
+#~ msgstr "Majdnem ott... "
+
+#, python-format
+#~ msgid "Back-up Tool for a %s\n"
+#~ msgstr "Mentési eszköz egy %s\n"
+
+#, python-format
+#~ msgid "Back-up Tool for an %s\n"
+#~ msgstr "Mentési eszköz egy %s\n"
+
+#, python-format
+#~ msgid "Backup Date: %s\n"
+#~ msgstr "Biztonsági mentés ideje: %s\n"
+
+#~ msgid "Backup Mode: Flash Online\n"
+#~ msgstr "Adatmentés: Flash Online\n"
+
+#, python-format
+#~ msgid "Backup to destination: %s"
+#~ msgstr "Biztonsági másolat célhelye: %s"
+
+#, python-format
+#~ msgid "Build: %s"
+#~ msgstr "Változat: %s"
+
+#~ msgid "By openATV Image Team"
+#~ msgstr "Az openATV Image Team által"
+
+#~ msgid "Cannot create backup directory"
+#~ msgstr "A biztonsági másolat könyvtára nem hozható létre"
+
+#, python-format
+#~ msgid "Chipset: BCM%s"
+#~ msgstr "Chipset: BCM%s"
+
+#~ msgid "Create:"
+#~ msgstr "Létrehozva:"
+
+#, python-format
+#~ msgid "Create: Recovery Fullbackup %s"
+#~ msgstr "Létrehozva: a(z) %s Fullbackup helyreállítva"
+
+#~ msgid "Error reading bouquets.radio"
+#~ msgstr "Hiba történt a bouquets.radio olvasásakor"
+
+#~ msgid "Error reading bouquets.tv"
+#~ msgstr "Hiba történt a bouquets.tv olvasásakor"
+
+#~ msgid "Full Image Backup "
+#~ msgstr "Teljes Lemezkép Mentés "
+
+#, python-format
+#~ msgid "Full back-up on %s"
+#~ msgstr "Teljes mentés az %s -on"
+
+#~ msgid "Image creation failed - "
+#~ msgstr "A lemezkép létrehozása nem sikerült- "
+
+#, python-format
+#~ msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
+#~ msgstr "Multiboot lemezkép létrehozva: %s/%s-%s-%s-backup-%s_usb.zip"
+
+#~ msgid "No, do not backup a image"
+#~ msgstr "Ne készítsen biztonsági másolatot egy lemezképről"
+
+#~ msgid "Now building the Backup Image"
+#~ msgstr "Most készítem a biztonsági másolatot"
+
+#~ msgid "Please be patient, a backup will now be made,\n"
+#~ msgstr "Kérem, legyen türelemmel, most készen áll egy mentés,\n"
+
+#~ msgid "Please check the manual of the receiver"
+#~ msgstr "Kérjük, ellenőrizze a vevőkészülék kézikönyvét"
+
+#~ msgid "Please select a backup destination"
+#~ msgstr "Válasszon biztonsági mentés célt"
+
+#~ msgid "Please wait...almost ready! "
+#~ msgstr "Kérem, várjon... majdnem kész! "
+
+#~ msgid "Probable causes could be"
+#~ msgstr "Lehetséges okok lehetnek"
+
+#~ msgid "Support at"
+#~ msgstr "Támogatja"
+
+#, python-format
+#~ msgid "Time required for this process: %s"
+#~ msgstr "A folyamathoz szükséges idő: %s"
+
+#~ msgid "To restore the image:"
+#~ msgstr "A lemezkép visszaállítása:"
+
+#~ msgid "Use OnlineFlash in SoftwareManager"
+#~ msgstr "OnlineFlash használva a Szoftver kezelőben"
+
+#~ msgid "Use the cursor keys to select an installed image and then Start button."
+#~ msgstr "Egy telepített lemezkép kiválasztásához használd a kurzorgombokat, majd nyomd meg a Start gombot."
+
+#, python-format
+#~ msgid "Version %s %s"
+#~ msgstr "Verzió %s %s"
+
+#, python-format
+#~ msgid "Version: %s"
+#~ msgstr "Verzió: %s"
+
+#~ msgid "[Enigma2 Settings]\n"
+#~ msgstr "[Enigma2 Beállítások]\n"
+
+#~ msgid "[Image Info]\n"
+#~ msgstr "[Lemezkép Információ]\n"
+
+#~ msgid "because of the used file system the back-up\n"
+#~ msgstr "mert a használt fájlrendszer a biztonsági mentés\n"
+
+#~ msgid "on how to restore the image"
+#~ msgstr "a lemezkép visszaállításának módjáról"
+
+#~ msgid "will take about 1-15 minutes for this system\n"
+#~ msgstr "körülbelül 1-15 percet vesz igénybe a rendszerhez\n"
+
+#~ msgid "Execution finished!!"
+#~ msgstr "Végrehajtás befejezve!"
+
+#~ msgid "Execution progress:"
+#~ msgstr "Végrehajtási állapot:"
+
+#~ msgid "Path to save not exist: '/tmp/'"
+#~ msgstr "A mentéshez nem létező elérési út: '/tmp/'"
+
+#~ msgid "Backup done."
+#~ msgstr "Mentés kész."
+
+#~ msgid "No Devices Found !!"
+#~ msgstr "Nem található eszköz !!"
+
+#~ msgid "23.976"
+#~ msgstr "23.976"
+
+#~ msgid "24"
+#~ msgstr "24"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "29.97"
+#~ msgstr "29.97"
+
+#~ msgid "30"
+#~ msgstr "30"
+
+#~ msgid "Backup completed."
+#~ msgstr "Mentés befejezve."
+
+#~ msgid "Backup failed."
+#~ msgstr "Mentés sikertelen."
 
 #~ msgid "About..."
 #~ msgstr "Névjegy..."

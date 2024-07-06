@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-24 20:26+0000\n"
-"PO-Revision-Date: 2024-04-20 20:07+0000\n"
+"POT-Creation-Date: 2024-06-21 14:25+0000\n"
+"PO-Revision-Date: 2024-06-30 12:17+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
 "Language: nl\n"
@@ -16,18 +16,9 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.7-dev\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
-
-msgid ""
-"\n"
-"\n"
-"[User - bouquets (TV)]\n"
-msgstr ""
-"\n"
-"\n"
-"[Gebruiker - favorietenlijsten (TV)]\n"
 
 msgid ""
 "\n"
@@ -43,31 +34,8 @@ msgstr ""
 "\n"
 "Opname is bezig."
 
-msgid ""
-"\n"
-"[Installed Plugins]\n"
-msgstr ""
-"\n"
-"[Geïnstalleerde Plugins]\n"
-
-msgid ""
-"\n"
-"[User - bouquets (RADIO)]\n"
-msgstr ""
-"\n"
-"[Gebruiker - favorietenlijsten (RADIO)]\n"
-
 msgid " "
 msgstr " "
-
-msgid "     no space left on back-up device"
-msgstr "     geen ruimte over op het back-up apparaat"
-
-msgid "     no writing permission on back-up device"
-msgstr "     geen schrijf rechten voor het back-up apparaat"
-
-msgid "     wrong back-up destination "
-msgstr "     verkeerde back-up bestemming "
 
 msgid "  Menu key : Select quad channel"
 msgstr "  Menu knop : Selecteer Quad zender"
@@ -1344,6 +1312,15 @@ msgstr ", "
 msgid "-"
 msgstr "-"
 
+msgid "- No space left on backup device."
+msgstr "- Niet genoeg ruimte op het back-up apparaat."
+
+msgid "- No write permission on backup device."
+msgstr "- Geen schrijfrechten op het back-up apparaat."
+
+msgid "- Wrong backup destination."
+msgstr "- Verkeerde back-up bestemming."
+
 msgid "-24 Hours"
 msgstr "-24 uren"
 
@@ -1440,18 +1417,6 @@ msgstr "1x"
 msgid "2"
 msgstr "2"
 
-msgid "23.976"
-msgstr "23.976"
-
-msgid "24"
-msgstr "24"
-
-msgid "25"
-msgstr "25"
-
-msgid "29.97"
-msgstr "29.97"
-
 msgid "2nd InfoBar"
 msgstr "Tweede informatiebalk"
 
@@ -1481,9 +1446,6 @@ msgstr "2x, 4x, 6x, 8x"
 
 msgid "3"
 msgstr "3"
-
-msgid "30"
-msgstr "30"
 
 msgid "3D Mode"
 msgstr "3D Modus"
@@ -1568,6 +1530,9 @@ msgstr "<geen log gevonden"
 
 msgid "A"
 msgstr "A"
+
+msgid "A backup is now being created."
+msgstr "Er wordt nu een back-up gemaakt."
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr "Een door komma's gescheiden lijst van extensies, die voor de instelling van \"Mijn extensies\" in \"Extensies filteren\" gebruikt gaan worden. Geef de naam van de extensie op zonder leidende punt (.)."
@@ -1729,6 +1694,18 @@ msgstr "AC3plus transcodering"
 msgid "AFL"
 msgstr "AFL"
 
+msgid "AI-Powered translation color"
+msgstr "Kleur van de door AI vertaalde ondertiteling"
+
+msgid "AI-Powered translation enabled"
+msgstr "AI vertaling geactiveerd"
+
+msgid "AI-Powered translation language"
+msgstr "Taal voor AI vertaling"
+
+msgid "AI-Powered translation subscription code"
+msgstr "Abonnement-code voor door AI vertaalde ondertiteling"
+
 msgid "ARM"
 msgstr "ARM"
 
@@ -1775,7 +1752,7 @@ msgid "About openATV"
 msgstr "openATV"
 
 msgid "About to start"
-msgstr "Start zodadelijk"
+msgstr "Start binnenkort"
 
 msgid "Access point"
 msgstr "Access point"
@@ -2239,9 +2216,6 @@ msgstr "De Logmanager in het Extensies-menu (BLAUW-lang) tonen of verbergen."
 msgid "Allows you to show/hide OScam/CCcam in the Extension Menu screen (BLUE button)."
 msgstr "OSCam/CCcam Info in het Extensies-menu (BLAUW-lang) weergeven."
 
-msgid "Almost there... "
-msgstr "Bijna klaar... "
-
 msgid "Alpha"
 msgstr "Letter"
 
@@ -2253,6 +2227,15 @@ msgstr "Alfabetisch gesorteerd in rubrieken "
 
 msgid "Alphanumeric"
 msgstr "Alfanumeriek"
+
+msgid "Also import at reboot/restart enigma2"
+msgstr "Importeer ook bij een herstart van de ontvanger of Enigma"
+
+msgid "Also import from the extension menu"
+msgstr "Maak de import ook mogelijk via het applicatie-menu"
+
+msgid "Also import when box is leaving standby"
+msgstr "Importeer ook indien de ontvanger vanuit stand-by opstart"
 
 msgid "Also on standby"
 msgstr "Tevens bij stand-by"
@@ -2268,6 +2251,9 @@ msgstr "Alternatief 2"
 
 msgid "Alternative Edit"
 msgstr "[alternatieven bewerken]"
+
+msgid "Alternative URLs for DVB-T/C or ATSC"
+msgstr "Alternatieve URL's t.b.v. DVB-T/C of ATSC"
 
 msgid "Alternative numbering mode"
 msgstr "Alternatieve nummering"
@@ -2448,8 +2434,8 @@ msgid ""
 "Are you sure you want to restore the backup?\n"
 "Your receiver will restart after the backup has been restored!"
 msgstr ""
-"Weet u zeker dat u de back-up wilt terugplaatsen?\n"
-"Uw ontvanger zal herstarten nadat herstel van de back-up gereed is!"
+"Weet u zeker dat u de instellingen van uw ontvanger wilt herstellen?\n"
+"Uw ontvanger zal opnieuw starten nadat de back-up geïnstalleerd is!"
 
 #, python-format
 msgid ""
@@ -2515,6 +2501,9 @@ msgstr "Aspect ratio wijzigen"
 
 msgid "Assamese"
 msgstr "Assamees"
+
+msgid "Assembling the image backup files."
+msgstr "De image back-up bestanden wordt nu samengesteld."
 
 msgid "Assigned CAIds:"
 msgstr "Toegewezen CAIds:"
@@ -2648,7 +2637,7 @@ msgid "Auto install log"
 msgstr "Auto install log"
 
 msgid "Auto multi-selection"
-msgstr ""
+msgstr "Auto multi-selectie"
 
 msgid "Auto shut down"
 msgstr "Automatisch afsluiten"
@@ -2798,14 +2787,6 @@ msgstr "Achterkant, USB buiten"
 msgid "Back, upper USB"
 msgstr "Achterkant, USB boven"
 
-#, python-format
-msgid "Back-up Tool for a %s\n"
-msgstr "Back-up programma voor een %s\n"
-
-#, python-format
-msgid "Back-up Tool for an %s\n"
-msgstr "Back-up programma voor een %s\n"
-
 msgid "Back/Recall"
 msgstr "Terug/oproepen"
 
@@ -2830,10 +2811,6 @@ msgstr "Achtergrond:"
 msgid "Backup"
 msgstr "Back-up"
 
-#, python-format
-msgid "Backup Date: %s\n"
-msgstr "Back-up datum: %s\n"
-
 msgid "Backup Location"
 msgstr "Back-up locatie"
 
@@ -2843,29 +2820,17 @@ msgstr "Back-up log"
 msgid "Backup Mode"
 msgstr "Back-up modus"
 
-msgid "Backup Mode: Flash Online\n"
-msgstr "Back-up modus: flash online\n"
+msgid "Backup Mode: Flash Online"
+msgstr "Back-up modus: Flash Online"
 
-msgid "Backup Mode: USB Recovery\n"
-msgstr "Back-up modus: herstel via USB\n"
+msgid "Backup Mode: USB Recovery"
+msgstr "Back-up modus: USB Recovery"
 
 msgid "Backup Settings"
 msgstr "Back-up instellingen"
 
 msgid "Backup System Settings"
 msgstr "Back-up uw instellingen"
-
-msgid "Backup completed."
-msgstr "Back-up voltooid."
-
-msgid "Backup done."
-msgstr "Back-up is gereed."
-
-msgid "Backup failed!"
-msgstr "De back-up is mislukt!"
-
-msgid "Backup failed."
-msgstr "De back-up is mislukt."
 
 msgid "Backup images"
 msgstr "Back-up images"
@@ -2881,8 +2846,8 @@ msgstr ""
 "wilt u deze nu installeren?"
 
 #, python-format
-msgid "Backup to destination: %s"
-msgstr "Back-up naar locatie : %s"
+msgid "Backup tool for %s %s"
+msgstr "Back-up tool voor %s %s"
 
 msgid "Backup your %s %s settings."
 msgstr "Back-up uw %s %s instellingen."
@@ -2933,7 +2898,7 @@ msgid "Base time"
 msgstr "Tijdlijn indeling"
 
 msgid "Base transparency for OpenOpera web browser."
-msgstr "Basis transparantie voor browser OpenOpera"
+msgstr "Basis transparantie voor de OpenOpera web browser."
 
 msgid "Base transparency for teletext, more options are available within teletext screen."
 msgstr "Basis transparantie voor Teletekst, meer opties beschikbaar binnen het Teletekst-scherm."
@@ -2952,6 +2917,8 @@ msgstr "Baskisch"
 
 msgid "Before changing these settings try to disable any overscan settings on th TV / display screen. To calibrate the On-Screen-Display (OSD) adjust the position and size values until the red box is *just* visible and touches the edges of the screen."
 msgstr ""
+"Voor deze wijzigingen a.u.b. eerst de Overscan functie van uw TV uitschakelen. \n"
+"Daarna de GUI/OSD zo instellen dat de randen van de rode rechthoek nog net zichtbaar zijn en de hoeken van het TV-scherm raken."
 
 msgid "Begin time"
 msgstr "Starttijd"
@@ -3203,10 +3170,6 @@ msgstr "Build informatie"
 msgid "Build information for %s %s"
 msgstr "Build informatie voor %s %s"
 
-#, python-format
-msgid "Build: %s"
-msgstr "Build: %s"
-
 msgid "Bulgaria"
 msgstr "Bulgarije"
 
@@ -3254,9 +3217,6 @@ msgstr "Op schijf UUID"
 
 msgid "By disk label"
 msgstr "Op disk label"
-
-msgid "By openATV Image Team"
-msgstr "Door het openATV Image Team"
 
 msgid "Bypass HDMI EDID Check"
 msgstr "Omzeil de HDMI-EDID controle"
@@ -3485,8 +3445,8 @@ msgstr ""
 "magenta\n"
 "geel\n"
 "\n"
-"Testschermen wijzigen met de links/rechts knoppen, of rood, groen, blauw om van kleur te wisselen.\n"
-"Geel drukken om terug te keren naar deze toelichting."
+"Testschermen wijzigen met de links/rechts knoppen, of ROOD, GROEN, BLAUW om van kleur te wisselen.\n"
+"GEEL drukken om terug te keren naar deze toelichting."
 
 msgid "Can not delete timer"
 msgstr "Kan de timer niet verwijderen"
@@ -3529,6 +3489,9 @@ msgstr "Kan deze timer niet verzenden"
 
 msgid "Can't allocate program source (e.g. tuner)"
 msgstr "Kan geen programma bron vinden (bijvoorbeeld een tuner)"
+
+msgid "Can't create backup directory!"
+msgstr "Er kan geen map voor de back-up gemaakt worden!"
 
 msgid ""
 "Can't going to live TV!\n"
@@ -3646,9 +3609,6 @@ msgstr "De update annuleren"
 msgid "Cancelled upon user request"
 msgstr "Geannuleerd door de gebruiker"
 
-msgid "Cannot create backup directory"
-msgstr "Kan geen map maken voor de back-up"
-
 msgid "Cannot delete file"
 msgstr "Kan bestand niet wissen"
 
@@ -3692,6 +3652,9 @@ msgstr "Catalaans / Valenciaans"
 
 msgid "Cayman Islands"
 msgstr "Kaaiman Eilanden"
+
+msgid "Cebuano"
+msgstr "Cebuano"
 
 msgid "Celsius"
 msgstr "Celsius"
@@ -3961,9 +3924,8 @@ msgstr "China"
 msgid "Chinese"
 msgstr "Chinees"
 
-#, python-format
-msgid "Chipset: BCM%s"
-msgstr "Chipset: BCM%s"
+msgid "Chinese (Simplified)"
+msgstr "Chinees"
 
 msgid "Choice Box"
 msgstr "Opties"
@@ -4011,6 +3973,9 @@ msgstr "Selecteer hoe datums moeten worden weergegeven. 'D' / 'DD' is de datum e
 msgid "Choose the display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds.  ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Selecteer de stijl voor de tijdsweergave. 'H' / 'HH' is het uur voor een 24-uurs klok, 'h' / 'hh' is het uur voor de 12-uurs klok, 'mm' staat voor minuten en 'ss' voor seconden. ('HH' en 'hh' hebben een voorloop-nul bij een enkel getal) Uw keuze kan ook beïnvloed worden door de skin."
 
+msgid "Choose the fallback font."
+msgstr "Een reserve lettertype kiezen."
+
 msgid "Choose the front panel display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Selecteer hoe datums moeten worden weergegeven op het Display. 'D' / 'DD' is de datum en 'M' / 'MM' is de maand in cijfers. ('DD' en 'MM' hebben een voorloop nul indien die bestaat uit een enkel getal). Het resultaat zal gebaseerd zijn op uw keuze, maar kan beïnvloed worden door de gebruikte skin."
 
@@ -4033,10 +3998,10 @@ msgid "Choose the option to correct invalid EPG data."
 msgstr "Kies de optie om ongeldige EPG-gegevens te corrigeren."
 
 msgid "Choose the skin to be used for the GUI interface. Press 'GREEN' to activate the skin."
-msgstr ""
+msgstr "Kies de skin voor de gebruikersinterface (GUI) en druk op de GROENE knop om die te activeren."
 
 msgid "Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin."
-msgstr ""
+msgstr "Kies een Display skin en druk op de GROENE knop om die te activeren."
 
 msgid "Choose the style/order in which items are displayed in help windows."
 msgstr "Kies de stijl en volgorde van de items in de help schermen."
@@ -4301,6 +4266,11 @@ msgstr "Het commando '%s' bestaat niet"
 msgid "Command execution..."
 msgstr "Commando uitvoeren..."
 
+msgid "Command finished."
+msgid_plural "Commands finished."
+msgstr[0] "Commando voltooid."
+msgstr[1] "Commando's voltooid."
+
 msgid "Command order"
 msgstr "Commando volgorde"
 
@@ -4472,6 +4442,9 @@ msgstr ""
 msgid "Configure remote control type"
 msgstr "Configureer type afstandsbediening"
 
+msgid "Configure the AI-Powered translation language."
+msgstr "Taal van de AI vertaling kiezen."
+
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "Configureer de DiSEqC modus voor deze LNB."
 
@@ -4536,6 +4509,9 @@ msgstr "De helderheid van het display in uw %s %s instellen bij normaal gebruik.
 
 msgid "Configure the brightness level of the front panel display for standby."
 msgstr "De helderheid van het display in uw %s %s instellen voor Stand-by."
+
+msgid "Configure the color of the AI-Powered translations."
+msgstr "Kleur van de door AI vertaalde ondertiteling kiezen."
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
 msgstr "Kleur van de externe ondertitels: Alternatief (standaard in het wit, cursief in geel, vet in cyaan of onderstreept in groen), Wit of Geel."
@@ -4916,7 +4892,7 @@ msgid "Console"
 msgstr "Console"
 
 msgid "Console Actions"
-msgstr ""
+msgstr "Console acties"
 
 msgid "Console Network Packages"
 msgstr "Netwerk Console pakketten"
@@ -5169,6 +5145,10 @@ msgstr "Maak een willekeurig wachtwoord aan"
 msgid "Create a symbolic link"
 msgstr "Een snelkoppeling maken"
 
+#, python-format
+msgid "Create recovery image backup '%s'."
+msgstr "Maak een recovery image back-up '%s'."
+
 msgid "Create separate radio user bouquet"
 msgstr "Maak een extra favorietenlijst voor radio"
 
@@ -5180,13 +5160,6 @@ msgstr "Maak extra slots op het geselecteerde apparaat"
 
 msgid "Create the flash expander in the selected device"
 msgstr "Maak de flash-Expander in het geselecteerde apparaat"
-
-msgid "Create:"
-msgstr "Creëer:"
-
-#, python-format
-msgid "Create: Recovery Fullbackup %s"
-msgstr "Creëer: Volledige backup %s"
 
 msgid "Creating .ap and .sc files"
 msgstr "Creëer AP en SC bestanden"
@@ -5340,6 +5313,9 @@ msgstr "Aangepaste skiptijd voor de '7'/'9'-knoppen"
 
 msgid "Customize"
 msgstr "Diverse instellingen"
+
+msgid "Customize OpenWebIF settings for fallback tuner"
+msgstr "OpenWebif instellingen voor de Fallback tuner wijzigen"
 
 msgid "Customize System Settings"
 msgstr "Systeem instellingen"
@@ -6054,10 +6030,10 @@ msgid "Deselect"
 msgstr "Deselecteer"
 
 msgid "Deselect all"
-msgstr ""
+msgstr "Alles deselecteren"
 
 msgid "Deselect all lines"
-msgstr ""
+msgstr "Alles deselecteren"
 
 msgid "Deselect all related files"
 msgstr "Selectie van alle bijbehorende bestanden ongedaan maken"
@@ -6068,6 +6044,18 @@ msgstr "Selectie van het gemarkeerde bestand ongedaan maken"
 #, python-format
 msgid "Deselected packages usually occur because those packaged are incompatible with existing packages. While this is mostly harmless it is possible that your %s %s may experience issues."
 msgstr "Gedeselecteerde pakketten komen voor doordat die niet compatibel zijn met al geïnstalleerde pakketten. Hoewel dit normaal gesproken geen kwaad kan, is het mogelijk dat uw %s %s daarna problemen ondervindt."
+
+msgid "Destination of fallback remote receiver"
+msgstr "De Fallback tuner selecteren"
+
+msgid "Destination of fallback remote receiver for ATSC"
+msgstr "De Fallback tuner voor ATSC-ontvangst"
+
+msgid "Destination of fallback remote receiver for DVB-C"
+msgstr "De Fallback tuner voor DVB-C ontvangst"
+
+msgid "Destination of fallback remote receiver for DVB-T"
+msgstr "De Fallback tuner voor DVB-T ontvangst"
 
 msgid "Detail of GStreamer log."
 msgstr "Detailniveau van het GStreamer log"
@@ -6351,6 +6339,9 @@ msgstr "Djibouti"
 msgid "Do another manual service scan?"
 msgstr "Nog een handmatige zender-scan uitvoeren?"
 
+msgid "Do not backup the image"
+msgstr "Geen back-up maken van dit image"
+
 msgid "Do not change"
 msgstr "Niet wijzigen"
 
@@ -6437,6 +6428,24 @@ msgstr "Wilt u echt de timer voor %s verwijderen?"
 #, python-format
 msgid "Do you really want to remove your bookmark for '%s'?"
 msgstr "Weet u zeker dat u het bookmark van %s wilt verwijderen?"
+
+msgid ""
+"Do you really want to restart OSCam?\n"
+"\n"
+"HINT: This will take about 5 seconds!"
+msgstr ""
+"Wilt u OSCam opnieuw starten?\n"
+"\n"
+"Dat zal ongeveer 5 seconden duren!"
+
+msgid ""
+"Do you really want to shut down OSCam?\n"
+"\n"
+"ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+msgstr ""
+"Wilt u OSCam deactiveren?\n"
+"\n"
+"LET OP: voor het heractiveren van OSCam moet de ontvanger compleet opnieuw worden gestart!"
 
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
@@ -6929,6 +6938,9 @@ msgstr "Activeer %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "5V voor actieve antenne inschakelen"
 
+msgid "Enable AI-Powered translation for all teletext and DVB subtitles."
+msgstr "AI vertaling voor Teletekst en DVB ondertiteling activeren."
+
 msgid "Enable Autorecord"
 msgstr "Aktiveer automatische opname"
 
@@ -7072,10 +7084,13 @@ msgid "Enable digital downmix"
 msgstr "DD/DTS Downmix activeren"
 
 msgid "Enable fallback remote receiver"
-msgstr "Activeer de 'Fallback remote receiver' functie"
+msgstr "De Fallback tuner activeren"
 
 msgid "Enable freesat EPG"
 msgstr "Freesat EPG inschakelen"
+
+msgid "Enable import timer from fallback tuner"
+msgstr "Remote Timers van de Fallback tuner importeren"
 
 msgid "Enable intro screen"
 msgstr "Activeer intro scherm"
@@ -7271,6 +7286,9 @@ msgstr "Enter"
 msgid "Enter DNS (Dynamic Name Server) %d's IP address."
 msgstr "%de DNS (Dynamic Name Server) IP-adres invoeren."
 
+msgid "Enter IP address"
+msgstr "Voer een IPadres in"
+
 msgid "Enter PIN"
 msgstr "Voer pincode in"
 
@@ -7342,6 +7360,9 @@ msgstr "Voer de occillatorfrequentie van de lage band in. Voor meer info raadple
 
 msgid "Enter your personal feed URL to allow you to select packages from your personal feed."
 msgstr "Uw persoonlijke Feed-URL invullen zodat u uw eigen Feed kunt gebruiken."
+
+msgid "Enter your subscription code, the unified code for trial is 15."
+msgstr "Abonnement-code voor AI vertaling invoeren, de code voor de testperiode is 15."
 
 msgid "Entertainment"
 msgstr "Entertainment"
@@ -7514,12 +7535,6 @@ msgstr ""
 msgid "Error opening recording file"
 msgstr "Fout bij het openen van de opname"
 
-msgid "Error reading bouquets.radio"
-msgstr "Fout bij het lezen van bouquets.radio"
-
-msgid "Error reading bouquets.tv"
-msgstr "Fout bij het lezen van bouquets.tv"
-
 msgid "Error reading webpage!"
 msgstr "Fout bij lezen webpagina!"
 
@@ -7529,6 +7544,14 @@ msgstr "Fouttekst:"
 #, python-format
 msgid "Error unzipping image '%s'!"
 msgstr "Fout bij het uitpakken van het image '%s'!"
+
+#, python-format
+msgid ""
+"Error while retrieving fallback timer information\n"
+"%s"
+msgstr ""
+"Fout tijdens het ophalen van de Fallback timer informatie\n"
+"%s"
 
 msgid "Error, unknown Result!"
 msgstr "Fout, onbekende uitkomst!"
@@ -7643,6 +7666,10 @@ msgid "Error: Unable to rename directory '%s' to '%s'!"
 msgstr "Fout: Kan directory '%s' niet hernoemen naar '%s'!"
 
 #, python-format
+msgid "Error: Unable to write log file '%s'!"
+msgstr "Fout bij het schrijven naar het logbestand: '%s'!"
+
+#, python-format
 msgid "Error: You can't run '%s' on '%s'!"
 msgstr "Fout: U kunt '%s' niet uitvoeren op '%s'!"
 
@@ -7745,12 +7772,6 @@ msgstr "Overschrijdt een dual layer schijf!"
 msgid "Execution condition"
 msgstr "Uitvoering voorwaarde"
 
-msgid "Execution finished!!"
-msgstr "!! De volledige back-up is gereed !!"
-
-msgid "Execution progress:"
-msgstr "Voortgang extern commando:"
-
 msgid "Exif"
 msgstr "Exif"
 
@@ -7774,6 +7795,9 @@ msgstr "Verlaat Quad zender selectie"
 
 msgid "Exit all menus"
 msgstr "Exit uit alle menu's"
+
+msgid "Exit and close all screens without performing a backup"
+msgstr "Afsluiten, zonder een back-up te maken"
 
 msgid "Exit editor"
 msgstr "Editor afsluiten"
@@ -7825,6 +7849,9 @@ msgstr "Wizard afsluiten"
 
 msgid "Exit viewer"
 msgstr "Viewer afsluiten"
+
+msgid "Exit without performing a backup"
+msgstr "Afsluiten, zonder een back-up te maken"
 
 msgid "Expand"
 msgstr "Lijst openen"
@@ -8001,8 +8028,38 @@ msgstr "Mislukt:"
 msgid "Falkland Islands (Malvinas)"
 msgstr "Falkland Eilanden (Malvinas)"
 
+msgid "Fallback API did not return a valid result."
+msgstr "De Fallback-API is niet geldig."
+
+msgid "Fallback Font *"
+msgstr "Reserve lettertype *"
+
+msgid "Fallback remote receiver"
+msgstr "Fallback tuner"
+
+msgid "Fallback remote receiver IP"
+msgstr "IP-adres van de Fallback tuner"
+
+msgid "Fallback remote receiver Port"
+msgstr "Poort van de Fallback tuner"
+
 msgid "Fallback remote receiver URL"
-msgstr "URL van de 'Fallback remote receiver'"
+msgstr "URL van de Fallback tuner"
+
+msgid "Fallback remote receiver for ATSC"
+msgstr "Fallback tuner voor ATSC"
+
+msgid "Fallback remote receiver for DVB-C"
+msgstr "Fallback tuner voor DVB-C"
+
+msgid "Fallback remote receiver for DVB-T"
+msgstr "Fallback tuner voor DVB-T"
+
+msgid "Fallback Timer"
+msgstr "Fallback Timer"
+
+msgid "Fallback tuner setup"
+msgstr "Fallback tuner instellingen"
 
 msgid "False"
 msgstr "Niet correct"
@@ -8154,10 +8211,10 @@ msgid "File Commander Move"
 msgstr "File Commander Verplaatsen"
 
 msgid "File Commander Navigation Actions"
-msgstr ""
+msgstr "File Commander Navigatie Acties"
 
 msgid "File Commander Selection Actions"
-msgstr ""
+msgstr "File Commander Selectie Acties"
 
 msgid "File Commander Settings"
 msgstr "File Commander Instellingen"
@@ -8192,10 +8249,6 @@ msgstr "Bestandsoverdracht is geannuleerd door gebruiker!"
 
 msgid "File transfer was cancelled by user"
 msgstr "Bestandsoverdracht beëindigd door gebruiker"
-
-#, python-format
-msgid "File write error: '%s'"
-msgstr "Schrijffout in bestand: '%s'"
 
 msgid "Filename"
 msgstr "bestandnaam"
@@ -8510,18 +8563,11 @@ msgstr "Front processor versie"
 msgid "Fulah"
 msgstr "Fula"
 
-msgid "Full Image Backup "
-msgstr "Volledige image back-up "
-
 msgid "Full Range RGB"
 msgstr "Volledig RGB bereik"
 
 msgid "Full Stretch"
 msgstr "Volledig uitgerekt"
-
-#, python-format
-msgid "Full back-up on %s"
-msgstr "Volledige back-up op %s"
 
 msgid "Full factory reset"
 msgstr "Volledige reset naar fabrieksinstellingen"
@@ -8563,7 +8609,7 @@ msgid "GStreamer version"
 msgstr "GStreamer versie"
 
 msgid "GUI Skin *"
-msgstr ""
+msgstr "GUI skin *"
 
 msgid "Gabon"
 msgstr "Gabon"
@@ -8956,6 +9002,9 @@ msgstr "Hardware type"
 msgid "Hausa"
 msgstr "Hausa"
 
+msgid "Hawaiian"
+msgstr "Hawaïaans"
+
 msgid "Heard Island and McDonald Islands"
 msgstr "Heard- en MacDonald Eilanden"
 
@@ -9064,11 +9113,11 @@ msgstr "Softcam servernaam verbergen"
 msgid "Hide the InfoBar"
 msgstr "Informatiebalk langzaam vervagen na een time-out."
 
-msgid "Hide this screen"
-msgstr ""
-
 msgid "Hide zap errors"
 msgstr "Verberg zap fouten"
+
+msgid "Hide/Show the console screen"
+msgstr "Consolescherm verbergen/tonen"
 
 msgid "Hierarchy info"
 msgstr "Hiërarchie info"
@@ -9123,6 +9172,9 @@ msgstr "History Zap volgende >"
 
 msgid "History zap..."
 msgstr "History Zap..."
+
+msgid "Hmong"
+msgstr "Hmong"
 
 msgid "Hockey"
 msgstr "Hockey"
@@ -9267,6 +9319,9 @@ msgstr "IP-adres"
 
 msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr "IP-adres van de Stream Relay server wordt gebruikt om zenders te decoderen die alleen via Stream Relay gedecodeerd kunnen worden."
+
+msgid "IP of fallback remote receiver"
+msgstr "IP-adres van de Fallback tuner"
 
 msgid "IPK Installer"
 msgstr "IPK installeren"
@@ -9475,15 +9530,21 @@ msgstr "Negeer onvoorzien ontwaken en blijf in stand-by"
 msgid "Image Backup"
 msgstr "Image back-up"
 
+msgid "Image Backup Actions"
+msgstr "Image back-up Acties"
+
+#, python-format
+msgid "Image Backup To %s"
+msgstr "Image back-up naar %s"
+
 msgid "Image Flash Actions"
 msgstr "Image Flash Acties"
 
-#, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
-msgstr "Image gemaakt: %s/%s-%s-%s-backup-%s_%s.zip"
+msgid "Image created:"
+msgstr "Image gemaakt:"
 
-msgid "Image creation failed - "
-msgstr "Maken Image mislukt - "
+msgid "Image creation failed!"
+msgstr "Het maken van de image is mislukt!"
 
 msgid "ImageWizard"
 msgstr "Image wizard"
@@ -9496,6 +9557,21 @@ msgstr "De wizard nu afsluiten (alleen in de Debug-modus)"
 
 msgid "Immediately restart selected devices."
 msgstr "Nu de geselecteerde apparaten herstarten."
+
+msgid "Import channels and/or EPG from remote receiver URL also when the receiver is getting out of standby"
+msgstr "Importeer zenders en/of EPG van de Fallback tuner, ook wanneer die uit stand-by komt."
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver is booted"
+msgstr "Importeer zenders en/of EPG van de Fallback tuner, na het starten van de ontvanger."
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
+msgstr "Importeer zenders en/of EPG van de Fallback tuner, na het starten van de ontvanger OF Enigma2."
+
+msgid "Import from remote receiver URL"
+msgstr "Importeer data vanaf een externe ontvanger"
+
+msgid "Import remote receiver URL"
+msgstr "Locatie van de externe ontvanger"
 
 msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
 msgstr "Naast de controle bij een start van Timeshift, kan een herhaalde controle worden uitgevoerd, waardoor de ingestelde waarden bij 'limiet in uren' of 'vrije ruimte controleren' eerder worden gecontroleerd."
@@ -10139,6 +10215,9 @@ msgstr "Kuanyama / Kwanyama"
 msgid "Kurdish"
 msgstr "Koerdisch"
 
+msgid "Kurdish (Sorani)"
+msgstr "Koerdisch (Sorani)"
+
 msgid "Kurdistan"
 msgstr "Koerdistan"
 
@@ -10161,7 +10240,7 @@ msgid "LCD scroll speed"
 msgstr "Display scroll snelheid"
 
 msgid "LCD/Front panel *"
-msgstr ""
+msgstr "Displayskin *"
 
 msgid "LCN plugin for DVB-T/T2 services"
 msgstr "LCN plugin voor DVB-T/T2 services"
@@ -10314,7 +10393,7 @@ msgid "Left, wrapped"
 msgstr "Links, er omheen"
 
 msgid "Legacy mode"
-msgstr ""
+msgstr "Oude instelling"
 
 msgid "Leisure hobbies"
 msgstr "Vrijetijd hobbies"
@@ -10711,6 +10790,9 @@ msgstr "Uw multi-boot device handhaven."
 
 msgid "Make"
 msgstr "Maak"
+
+msgid "Make it possible to manually initiate the channels import and/or EPG via the extension menu"
+msgstr "Handmatig zenders en/of EPG importeren via het Extensies-menu (BLAUW-lang)."
 
 msgid "Make this mark an 'in' point"
 msgstr "Markeer dit als 'in' punt"
@@ -11466,7 +11548,7 @@ msgid "Mozambique"
 msgstr "Mozambique"
 
 msgid "Multi"
-msgstr ""
+msgstr "Multi"
 
 msgid "Multi EPG"
 msgstr "Multi-EPG"
@@ -11498,9 +11580,8 @@ msgstr "MultiLib"
 msgid "MultiTranscoding"
 msgstr "MultiTranscoding"
 
-#, python-format
-msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
-msgstr "Multiboot Image gecreëerd: %s/%s-%s-%s-backup-%s_usb.zip"
+msgid "Multiboot Image created:"
+msgstr "Multiboot image gemaakt:"
 
 msgid "Multimedia Packages"
 msgstr "Multimedia pakketten"
@@ -11563,6 +11644,9 @@ msgstr "LET OP: De map/het bestand '%s' bestaat al en wordt overschreven!"
 #, python-format
 msgid "NOTE: These %d directories/files exist and will be overwritten!"
 msgstr "LET OP: Deze %d mappen/bestanden bestaan al en worden overschreven!"
+
+msgid "NOTE: While the console screen is hidden from view the buttons are still active. Pressing any enabled button will cause the screen to reappear but the button will not be actioned."
+msgstr "OPMERKING: Ook wanneer het Consolescherm niet zichtbaar is , blijven de toetsen actief. Na het drukken van deze toetsen wordt het scherm weer zichtbaar, maar is de toets nog niet actief."
 
 msgid "NOW"
 msgstr "NU"
@@ -11873,9 +11957,6 @@ msgstr "Geen (ondersteunde) DVD-ROM gevonden!"
 msgid "No Connection"
 msgstr "Geen verbinding"
 
-msgid "No Devices Found !!"
-msgstr "!! Geen apparaten gevonden !!"
-
 msgid "No ECM PIDs available"
 msgstr "Geen ECMPids beschikbaar"
 
@@ -12051,9 +12132,6 @@ msgstr "Geen update vereist!"
 msgid "No updates available."
 msgstr "Geen updates beschikbaar."
 
-msgid "No updates were available.  Please try again later."
-msgstr "Geen updates beschikbaar. Probeer het later nog een keer."
-
 msgid "No valid device detected - Press OK"
 msgstr "Geen geschikt apparaat gevonden - Druk op OK"
 
@@ -12090,9 +12168,6 @@ msgstr ""
 
 msgid "No, but restart from begin"
 msgstr "Nee, maar herstart vanaf begin"
-
-msgid "No, do not backup a image"
-msgstr "Nee, back-up geen image"
 
 msgid "No, do nothing."
 msgstr "Nee, geen actie."
@@ -12252,9 +12327,6 @@ msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "Nu"
 
-msgid "Now building the Backup Image"
-msgstr "Back-up image wordt nu gebouwd"
-
 msgid "Now save time shift as movie and continues recording"
 msgstr "Sla Timeshift nu op als Opname en ga door met opnemen"
 
@@ -12342,7 +12414,7 @@ msgid "OSD Calibration"
 msgstr "OSD positie"
 
 msgid "OSD Calibration Settings"
-msgstr ""
+msgstr "OSD kalibratie"
 
 msgid "OSD Settings"
 msgstr "OSD"
@@ -12354,7 +12426,7 @@ msgid "OSD name request"
 msgstr "OSD naam aanvragen"
 
 msgid "OSD visibility"
-msgstr ""
+msgstr "OSD zichtbaarheid"
 
 msgid "OTT Model"
 msgstr "OTT Model"
@@ -12506,11 +12578,17 @@ msgstr "Open zenderlijst en selecteer vorige zender voor PiP"
 msgid "Open the Channel Selection Settings screen"
 msgstr "Open de Zenderlijst instellingen"
 
+msgid "Open the Image information"
+msgstr "Image informatie openen"
+
 msgid "Open the Plugin Browser"
 msgstr "Open de Plugin Browser"
 
 msgid "Open the Plugin Browser settings screen"
 msgstr "Plugin Browser instellingen"
+
+msgid "Open the Storage Device information"
+msgstr "Opslag apparaat informatie openen"
 
 msgid "Open the VirtualKeyBoard for text entry"
 msgstr "Open het Virtuele toetsenbord voor tekstinvoer"
@@ -12856,9 +12934,6 @@ msgstr "Wachtwoord gewijzigd."
 msgid "Path '%s' missing!"
 msgstr "Pad '%s' niet beschikbaar!"
 
-msgid "Path to save not exist: '/tmp/'"
-msgstr "Pad voor opslaan bestaat niet: '/tmp/'"
-
 msgid "Pause"
 msgstr "Pauze"
 
@@ -13094,11 +13169,8 @@ msgstr "Speel/pauze"
 msgid "Please add titles to the compilation."
 msgstr "Gelieve titels aan de compilatie toe te voegen."
 
-msgid "Please be patient, a backup will now be made,\n"
-msgstr "Even geduld, de back-up wordt nu gemaakt,\n"
-
-msgid "Please check the manual of the receiver"
-msgstr "Raadpleeg de handleiding van uw ontvanger, voor een"
+msgid "Please be patient."
+msgstr "Even geduld."
 
 msgid "Please choose an extension..."
 msgstr "Selecteer een plugin ..."
@@ -13174,9 +13246,6 @@ msgstr "Druk op OK om door te gaan."
 msgid "Please press OK when ready"
 msgstr "Druk op OK wanneer u klaar bent"
 
-msgid "Please select a backup destination"
-msgstr "Selecteer een back-up bestemming"
-
 msgid "Please select a default EPG type..."
 msgstr "Selecteer het standaard EPG-type..."
 
@@ -13236,6 +13305,9 @@ msgstr "Geeft u a.u.b. de regio op die het dichtst bij uw feitelijke locatie lig
 
 msgid "Please select the sub-service to record:"
 msgstr "Selecteer de sub-zender die u wil opnemen:"
+
+msgid "Please select the target location to save the backup:"
+msgstr "A.u.b. de doellocatie voor de back-up opgeven:"
 
 msgid "Please select what to do after flash of the following image:"
 msgstr "A.u.b. kiezen wat er moet gebeuren na het flashen van dit image:"
@@ -13343,9 +13415,6 @@ msgstr "Een ogenblik geduld ..."
 msgid "Please wait... Loading list..."
 msgstr "Een ogenblik geduld... De lijst wordt geladen..."
 
-msgid "Please wait...almost ready! "
-msgstr "Een ogenblik geduld... bijna klaar! "
-
 msgid "Plug in USB device"
 msgstr "Een USB-apparaat aansluiten"
 
@@ -13430,6 +13499,9 @@ msgstr "Poort D"
 msgid "Port number for the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr "Poortnummer van de Stream Relay server die wordt gebruikt om zenders te decoderen die alleen via Stream Relay gedecodeerd kunnen worden."
 
+msgid "Port of fallback remote receiver"
+msgstr "Poort van de Fallback tuner"
+
 msgid "Portugal"
 msgstr "Portugal"
 
@@ -13459,6 +13531,9 @@ msgstr "Rotor instellingen log"
 
 msgid "Positioner setup"
 msgstr "Rotor instellingen"
+
+msgid "Possible causes could be:"
+msgstr "Mogelijke oorzaken:"
 
 msgid "Power"
 msgstr "Power"
@@ -13739,9 +13814,6 @@ msgstr "Primetime minuut"
 msgid "Priority"
 msgstr "Prioriteit"
 
-msgid "Probable causes could be"
-msgstr "Mogelijke oorzaak kan zijn"
-
 msgid "Proc model"
 msgstr "Proc model"
 
@@ -13973,6 +14045,9 @@ msgstr "Quick EPG"
 
 msgid "Quick Launch Menu"
 msgstr "Snelstartmenu"
+
+msgid "Quick Menu Actions"
+msgstr "Snelstartmenu Acties"
 
 msgid "Quick Menu..."
 msgstr "Quick Menu…"
@@ -14687,7 +14762,7 @@ msgid "Reset and renumerate title names"
 msgstr "Reset en hernummertitels"
 
 msgid "Reset entries to their default values"
-msgstr ""
+msgstr "Alle waarden terugzetten naar default"
 
 msgid "Reset executable mode (644)"
 msgstr "Uitvoerbare modus resetten (644)"
@@ -14749,6 +14824,9 @@ msgstr "Netwerk herstarten"
 
 msgid "Restart Network Adapter"
 msgstr "Netwerk adapter herstarten"
+
+msgid "Restart OSCam"
+msgstr "OSCam herstarten"
 
 msgid "Restart enigma"
 msgstr "Herstart enigma"
@@ -14986,6 +15064,10 @@ msgstr "Actief"
 msgid "Running Myrestore script, Please wait ..."
 msgstr "Myrestore script wordt uitgevoerd, een ogenblik geduld..."
 
+#, python-format
+msgid "Running command %d: '%s'."
+msgstr "Commando %d: '%s' wordt uitgevoerd."
+
 msgid "Russian"
 msgstr "Russisch"
 
@@ -15098,6 +15180,9 @@ msgstr "Samba server"
 msgid "Same as in active"
 msgstr "Hetzelfde als in de actieve"
 
+msgid "Same as stream"
+msgstr "Identiek aan de stream"
+
 msgid "Same behavior as current animation"
 msgstr "Identiek gedrag als huidige animatie"
 
@@ -15176,6 +15261,9 @@ msgstr "De EPG-cache opslaan"
 msgid "Save EPG data"
 msgstr "EPG-gegevens opslaan"
 
+msgid "Save Log"
+msgstr "Log opslaan"
+
 msgid "Save all changed settings and exit"
 msgstr "Alle gewijzigde instellingen opslaan en Exit"
 
@@ -15226,6 +15314,9 @@ msgstr "De maplocatie in de linkerkolom opslaan bij het afsluiten."
 
 msgid "Save the log changes and exit"
 msgstr "Log wijzigingen opslaan en exit"
+
+msgid "Save the log of the console messages to a file"
+msgstr "Console log-meldingen opslaan"
 
 msgid "Save the right column directory location on exit."
 msgstr "De maplocatie in de rechterkolom opslaan bij het afsluiten."
@@ -15515,7 +15606,7 @@ msgid "Select 'Yes' to continuously display all images in a loop, or select 'No'
 msgstr "Selecteer 'Ja' om alle afbeeldingen continu in een lus weer te geven, of selecteer 'Nee' om alle afbeeldingen één keer weer te geven en dan te stoppen."
 
 msgid "Select 'Yes' to disable multi-selection mode after each operation. Select 'No' to leave multi-selection mode active and the selections unchanged."
-msgstr ""
+msgstr "Kies 'Ja' om de multi-selectie modus na elk gebruik te beëindigen. Kies 'Nee' om de multi-selectie modus actief te laten."
 
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr "Bij 'Ja' ziet u een Mini-TV in de EPG."
@@ -15660,6 +15751,9 @@ msgstr "Kies 'Ja' om Skins in het plugin download-scherm weer te geven."
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
 msgstr "Kies 'Ja' om 'src' pakketten in het plugin download-scherm weer te geven."
 
+msgid "Select 'Yes' to show subscription packages in the Download Plugins screen."
+msgstr "Kies 'Ja' om de Abonnementen in het plugin download-menu te tonen."
+
 msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
 msgstr "Kies 'Ja' om Systeem plugins in het plugin download-scherm weer te geven."
 
@@ -15687,7 +15781,7 @@ msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpf
 msgstr "Kies 'Ja' om alternatief GitHub-DNS feed IP-adres in te stellen. Dit kan handig zijn wanneer u een VPN gebruikt en de normale feeds niet bereikbaar zijn via de gebruikelijke DNS namen."
 
 msgid "Select 'Yes' to use legacy navigation where CH+/- swaps the active column. Select 'No' to use the newer unified navigation option for consistent navigation with other screens where LEFT/RIGHT swaps the active column and CH+/- pages up and down the list."
-msgstr ""
+msgstr "Kies 'Ja' om de oude menu-navigatie te gebruiken, waarbij CH+/- wordt gebruikt voor het selecteren van het actieve veld. Kies 'Nee' om de nieuwe navigatie te activeren, waarbij LINKS/RECHTS wordt gebruikt om van actief veld te wisselen en CH+/- voor het scrollen door de lijst."
 
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Indien 'ja' wordt gekozen, worden de signaalwaardes (SNR etc.) berekend op basis van de API V3. Dit is een oude API die nu vervangen is."
@@ -15830,10 +15924,10 @@ msgid "Select additional files to backup"
 msgstr "Selecteer extra back-up bestanden"
 
 msgid "Select all"
-msgstr ""
+msgstr "Alles selecteren"
 
 msgid "Select all lines"
-msgstr ""
+msgstr "Alles selecteren"
 
 msgid "Select all related files"
 msgstr "Alle bijbehorende bestanden selecteren"
@@ -16094,7 +16188,7 @@ msgid "Select the delay to use when closing a Stream Relay service before reallo
 msgstr "De vertraging instellen, die bij het zappen van een Stream Relay zender wordt gebruikt, voordat de tuner naar een andere zender schakelt. Het gebruik van '0' wordt alleen aanbevolen bij ontvangers met meerdere satelliet-tuners."
 
 msgid "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to toggle between the lists. Select an assigned function and click on 'OK' to deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned functions."
-msgstr "Selecteer de gewenste functie en klik op 'OK' om deze toe te wijzen. Gebruik 'Ch+/-' om te schakelen tussen de lijsten. Selecteer een toegewezen functie en klik op 'OK' om deze ongedaan te maken."
+msgstr "Selecteer de gewenste functie en klik op 'OK' om deze toe te wijzen. Gebruik 'CH+/-' om te schakelen tussen de lijsten. Selecteer een toegewezen functie en klik op 'OK' om deze ongedaan te maken."
 
 msgid "Select the directory sort order for the left column:"
 msgstr "Kies de sorteervolgorde van de mappen in de linkerkolom:"
@@ -16230,7 +16324,7 @@ msgid "Select the sort order for the file lines:"
 msgstr "Kies de sorteervolgorde voor de bestandsregels:"
 
 msgid "Select the sort order of the Extension Menu entries."
-msgstr ""
+msgstr "Kies de sorteervolgorde van de menu items in het Extensies-menu. (BLAUW-lang)"
 
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
 msgstr "Kies hier de volgorde en zichtbaarheid van de menu items in de Plugin Browser."
@@ -16279,6 +16373,9 @@ msgstr "Kies de tijd wanneer deze Timer moet starten."
 
 msgid "Select the time zone within the area or region."
 msgstr "Selecteer de tijdzone binnen uw gebied of regio."
+
+msgid "Select the timer from the fallback tuner by default"
+msgstr "Nieuwe timers altijd naar de Fallback tuner sturen (default)."
 
 msgid "Select the tuner that controls the motorized dish."
 msgstr "Selecteer de tuner die de gemotoriseerde schotel aanstuurt."
@@ -16661,6 +16758,9 @@ msgstr "Tijd instellen"
 msgid "Set action for 'Info' key"
 msgstr "Selecteer actie voor INFO-knop"
 
+msgid "Set alternative fallback tuners for DVB-T/C or ATSC"
+msgstr "Alternatieve Fallback tuners voor DVB-T/C of ATSC opgeven"
+
 msgid "Set current CEC address as fixed address"
 msgstr "Stel het huidige CEC adres in als vast adres"
 
@@ -16700,6 +16800,9 @@ msgstr ""
 "Stel het MAC-adres in\n"
 "van uw %s %s."
 
+msgid "Set the User ID of the OpenWebif from your fallback tuner"
+msgstr "De gebruikers-ID van OpenWebif voor de Fallback tuner invoeren"
+
 msgid "Set the aspect ratio of the service picons."
 msgstr "Selecteer de aspect ratio van de zender picons."
 
@@ -16727,6 +16830,12 @@ msgstr "Stel hier de grootte in van de tijdsprong van de 'seekbar' in."
 msgid "Set the number of lines to be saved for 'stout' and 'sterr' output in scripts."
 msgstr "Stel het aantal regels in dat moet worden opgeslagen voor 'stout'- en 'sterr'-uitvoer in scripts."
 
+msgid "Set the password of the OpenWebif from your fallback tuner"
+msgstr "Het wachtwoord voor OpenWebif op uw Fallback tuner invoeren"
+
+msgid "Set the port of the OpenWebif from your fallback tuner"
+msgstr "De poort van OpenWebif op uw Fallback tuner invoeren"
+
 msgid "Set the position of the recording icons."
 msgstr "Stel de positie van opname-iconen in."
 
@@ -16740,7 +16849,7 @@ msgid "Set the scrolling speed of text on the front display."
 msgstr "Stel de scroll-snelheid van tekst op het display van uw %s %s in."
 
 msgid "Set the style of the channel list."
-msgstr ""
+msgstr "Stijl van de Zenderlijst kiezen."
 
 msgid "Set the time before checking video source for resolution information."
 msgstr "Stel de tijd in voordat de videobron gecontroleerd wordt op resolutie info."
@@ -16762,6 +16871,9 @@ msgstr "Stel de tijd in waarna de tweede informatiebalk verdwijnt. Door op OK te
 
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, PowerTimer, SleepTimer etc."
 msgstr "Stel de tijdsduur in voor het uitschakelen, inschakelen van Stand-by, of het herstarten van uw ontvanger. (Deze tijdsduur wordt o.a. gebruikt voor een Timer, PowerTimer, SlaapTimer enz.)"
+
+msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
+msgstr "De links boven positie van de Spinner (ontvanger is bezig) instellen. Links boven is 0,0, rechts onder is 1260,700. Deze positie is de hoek links boven van de Spinner, niet het midden."
 
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr ""
@@ -17142,7 +17254,7 @@ msgid "Show EventView"
 msgstr "Toon programma overzicht"
 
 msgid "Show Extension packages"
-msgstr "Extensie-pakketten tonen"
+msgstr "Extensies"
 
 msgid "Show Format Setup"
 msgstr "Toon de format instellingen"
@@ -17281,6 +17393,9 @@ msgstr "Softcams"
 
 msgid "Show Source packages"
 msgstr "Broncode"
+
+msgid "Show Subscription packages"
+msgstr "Abonnementen"
 
 msgid "Show Subservices Of Active Service"
 msgstr "Sub-zenders van de actuele zender tonen"
@@ -17422,7 +17537,7 @@ msgid "Show extended description"
 msgstr "Toon uitgebreide informatie"
 
 msgid "Show extension selection"
-msgstr "Toon het extensie menu"
+msgstr "Toon het Extensies-menu"
 
 msgid "Show extensions..."
 msgstr "Toon het Extensies-menu..."
@@ -17535,6 +17650,18 @@ msgstr "Het volgende zenderinformatie scherm laten zien"
 
 msgid "Show next system information screen"
 msgstr "Toon het volgende systeeminformatie scherm"
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL did not complete"
+msgstr "Een melding weergeven wanneer de import van zenders en/of EPG vanaf de externe ontvanger mislukt is."
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL is completed"
+msgstr "Melding na succesvolle import van zenders en/of EPG."
+
+msgid "Show notification when import channels was not successful"
+msgstr "Toon een melding indien de import niet geslaagd is"
+
+msgid "Show notification when import channels was successful"
+msgstr "Toon een melding indien de import geslaagd is"
 
 msgid "Show or hide the extended description, (skin dependent)."
 msgstr "Toon of verberg de uitgebreide beschrijving (skin afhankelijk)."
@@ -17828,6 +17955,9 @@ msgstr "Afsluiten"
 msgid "Shutdown"
 msgstr "Afsluiten"
 
+msgid "Shutdown OSCam"
+msgstr "OSCam uitschakelen"
+
 msgid "Shutting down. Please wait..."
 msgstr "Afsluiten. Even geduld a.u.b..."
 
@@ -17943,7 +18073,7 @@ msgid "Skin Settings"
 msgstr "Skin selecteren"
 
 msgid "SkinSelection"
-msgstr ""
+msgstr "Skin selectie"
 
 msgid "Skip back"
 msgstr "Spring terug"
@@ -18170,7 +18300,7 @@ msgid "Software Management"
 msgstr "Softwarebeheer"
 
 msgid "Software Manager"
-msgstr "Software beheer"
+msgstr "Softwarebeheer"
 
 msgid "Software Manager Information"
 msgstr "Softwarebeheer informatie"
@@ -18374,6 +18504,9 @@ msgstr "Selecteer de map die bij het starten van de Mediaspeler geopend moet wor
 msgid "Speed"
 msgstr "Snelheid"
 
+msgid "Spinner Position"
+msgstr "Positie van de Spinner"
+
 msgid "Split preview mode"
 msgstr "Split screen voor de preview"
 
@@ -18466,6 +18599,9 @@ msgstr "Start test"
 
 msgid "Start the Kexec initialization"
 msgstr "De Kexec-initialisatie starten"
+
+msgid "Start the backup of the selected image"
+msgstr "Back-up starten van de geselecteerde image"
 
 msgid "Start the highlighted plugin"
 msgstr "Start de geselecteerde plugin"
@@ -18671,7 +18807,7 @@ msgid "Stream Relay URL"
 msgstr "Stream Relay URL"
 
 msgid "Stream Relay is active, please switch to a none Stream Relay channel."
-msgstr ""
+msgstr "Stream Relay is actief, A.u.b. naar een zender zonder Stream Relay wisselen."
 
 msgid "Stream Relay port"
 msgstr "Stream Relay poort"
@@ -18721,10 +18857,13 @@ msgid "Stripes"
 msgstr "Strepen"
 
 msgid "Style"
-msgstr ""
+msgstr "Stijl"
 
 msgid "Style:"
 msgstr "Stijl:"
+
+msgid "Subscription Packages"
+msgstr "Abonnementen"
 
 msgid "Subservice Actions"
 msgstr "Sub-zender Acties"
@@ -18806,9 +18945,6 @@ msgstr "Soedanees"
 
 msgid "Sunday"
 msgstr "Zondag"
-
-msgid "Support at"
-msgstr "Ondersteuning op"
 
 msgid "Suriname"
 msgstr "Suriname"
@@ -19110,7 +19246,7 @@ msgid "Tanzania, United Republic of"
 msgstr "Tanzania, Verenigde republiek van"
 
 msgid "Target location"
-msgstr "Doel locatie"
+msgstr "Doellocatie"
 
 #, python-format
 msgid "Task '%s' ended successfully."
@@ -19456,6 +19592,9 @@ msgid ""
 msgstr ""
 "De beschikbare schijfruimte voor Timeshift is minder dan opgegeven in de instellingen.\n"
 "Wat wilt u doen?"
+
+msgid "The backup can take up to about 15 minutes to complete."
+msgstr "Het maken van de back-up kan tot 15 minuten duren."
 
 msgid "The backup failed"
 msgstr "De back-up is mislukt"
@@ -19923,7 +20062,7 @@ msgid "This option lets you adjust the 3D depth of the OSD."
 msgstr "Hier kunt u de 3D-diepte instellen"
 
 msgid "This option lets you adjust the transparency of the OSD."
-msgstr "Hier kunt u de gewenste transparantie van de gebruikersinterface instellen"
+msgstr "Hier kunt u de gewenste transparantie van de Gebruikersinterface/OSD instellen."
 
 msgid "This option lets you choose the 3D mode of the OSD."
 msgstr "Hier kunt u de gewenste 3D-modus kiezen"
@@ -20151,10 +20290,6 @@ msgstr "Tijdsprong herhaal interval van snel voor- of achteruit"
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr "Tijdsprong: Normaal spoelen gebruiken voor"
 
-#, python-format
-msgid "Time required for this process: %s"
-msgstr "Benodigde tijd voor het maken van deze back-up was: %s"
-
 msgid "Time shift buffer delete after zap"
 msgstr "Timeshift buffer verwijderen na zenderwissel"
 
@@ -20202,6 +20337,9 @@ msgstr "Timeshift zal na afloop van het programma worden opgeslagen!"
 
 msgid "Time style"
 msgstr "Tijdstijl"
+
+msgid "Time taken for the backup:"
+msgstr "Benodigde tijd voor het maken van de back-up:"
 
 msgid "Time to execute command or script"
 msgstr "Tijdstip van uitvoeren opdracht of script"
@@ -20305,8 +20443,11 @@ msgstr "Titelset modus"
 msgid "To complete the setup the %s %s must connect to the Internet.  Connect the %s %s to the Internet now."
 msgstr "Om de installatie te voltooien moet uw %s %s verbinding maken met internet.  Verbind nu de %s %s met het internet."
 
-msgid "To restore the image:"
-msgstr "Voor het herstellen van een image:"
+msgid "To restore the image check the manual or documentation for the receiver."
+msgstr "Voor het herstellen van een image a.u.b. de handleiding van de ontvanger raadplegen."
+
+msgid "To restore the image use 'OnlineFlash' option in the 'SoftwareManager' menu."
+msgstr "Voor het herstellen van een image de 'Flash online/lokaal' optie in het 'Softwarebeheer' menu gebruiken. (BLAUW)"
 
 #, python-format
 msgid "To where would you like to extract '%s'?"
@@ -20388,7 +20529,7 @@ msgid "Toggle selection of the current tag"
 msgstr "Wissel de selectie van de huidige tag"
 
 msgid "Toggle selections"
-msgstr ""
+msgstr "Selectiemogelijkheid kiezen"
 
 msgid "Toggle service name display"
 msgstr "Weergave van de zendernaam in- of uitschakelen"
@@ -20734,8 +20875,17 @@ msgstr "UP80  (keymap.u80)"
 msgid "URL"
 msgstr "URL"
 
+msgid "URL of fallback remote receiver"
+msgstr ""
+"URL van de Fallback tuner invoeren.\n"
+"Alleen het IP-adres is voldoende:\n"
+"http:// en/of poortnummer worden standaard toegevoegd.\n"
+"Voorbeeld: http://192.168.100.202:8001"
+
 msgid "URL of fallback remote receiver."
-msgstr "Voer de complete URL in zoals hier een voorbeeld van bijgevoegd is. http:// IPadres en poortnummer (normaal ...:8001), en http://IP_tweede_box:8001"
+msgstr ""
+"URL van de Fallback tuner invoeren:\n"
+"bijvoorbeeld: http://192.168.100.202:8001, http://IP_tweede_box:8001"
 
 msgid "USALS"
 msgstr "USALS"
@@ -20795,6 +20945,9 @@ msgstr "Ongecodeerd"
 #, python-format
 msgid "Unexpected error accessing WebIF: %s"
 msgstr "Onverwachte fout bij openen van WebIF:%s"
+
+msgid "Unexpected error while retrieving fallback tuner's timer information"
+msgstr "Onverwachte fout bij het ophalen van timer-informatie van de FallBack tuner!"
 
 msgid "UnhandledKey"
 msgstr "Ongeldige knop"
@@ -21083,9 +21236,6 @@ msgstr "Indien geactiveerd kunt u, indien deze beschikbaar is, de MHW EPG inform
 msgid "Use Netmed EPG information when it is available."
 msgstr "Indien geactiveerd kunt u, indien deze beschikbaar is, de Netmed EPG informatie inschakelen."
 
-msgid "Use OnlineFlash in SoftwareManager"
-msgstr "Gebruik OnlineFlash in softwarebeheer"
-
 msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
 msgstr "Gebruik OpenTV EPG. Vereist echter wel afstemming op een specifieke transponder."
 
@@ -21174,7 +21324,7 @@ msgid "Use key map *"
 msgstr "Gebruik keymap *"
 
 msgid "Use legacy navigation"
-msgstr ""
+msgstr "Oude navigatie gebruiken"
 
 msgid "Use logarithmic steps"
 msgstr "Gebruik logaritmische stappen"
@@ -21201,28 +21351,28 @@ msgid "Use small screen"
 msgstr "Gebruik klein scherm"
 
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
-msgstr ""
+msgstr "De knoppen LINKS/RECHTS gebruiken om de hoogte van de Gebruikersinterface/OSD in te stellen. LINKS is lager, RECHTS is hoger."
 
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the width of the OSD. LEFT button decreases the width, RIGHT increases the width."
-msgstr ""
+msgstr "De knoppen LINKS/RECHTS gebruiken om de breedte van de Gebruikersinterface/OSD in te stellen. Links is smaller, RECHTS is breder."
 
 msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD bottom."
-msgstr "Gebruik de LINKS/RECHTS knoppen op uw afstandsbediening om de gebruikersinterface/OSD naar beneden te verplaatsen"
+msgstr "Gebruik de LINKS/RECHTS knoppen om de Gebruikersinterface/OSD naar beneden te verplaatsen."
 
 msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD left."
-msgstr "Gebruik de LINKS/RECHTS knoppen op uw afstandsbediening om de gebruikersinterface/OSD naar links te verplaatsen"
+msgstr "Gebruik de LINKS/RECHTS knoppen om de Gebruikersinterface/OSD naar links te verplaatsen."
 
 msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD left/right."
-msgstr "Gebruik de links/rechts knoppen op de afstandsbediening om de user interface te verplaatsen"
+msgstr "Gebruik de LINKS/RECHTS knoppen om de Gebruikersinterface/OSD te verplaatsen."
 
 msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD right."
-msgstr "Gebruik de LINKS/RECHTS knoppen op uw afstandsbediening om de gebruikersinterface naar rechts te verplaatsen"
+msgstr "Gebruik de LINKS/RECHTS knoppen om de Gebruikersinterface/OSD naar rechts te verplaatsen."
 
 msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD top."
-msgstr "Gebruik de LINKS/RECHTS knoppen op uw afstandsbediening om de gebruikersinterface/OSD naar boven te verplaatsen"
+msgstr "Gebruik de LINKS/RECHTS knoppen om de Gebruikersinterface/OSD naar boven te verplaatsen."
 
 msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD up/down."
-msgstr "Gebruik de Links/Rechts knoppen op uw AB om de interface naar boven/beneden te verplaatsen"
+msgstr "Gebruik de LINKS/RECHTS knoppen om de Gebruikersinterface/OSD naar boven of beneden te verplaatsen."
 
 msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
 msgstr "Gebruik de Netwerk Wizard om het netwerk in te stellen."
@@ -21235,14 +21385,14 @@ msgstr ""
 msgid "Use the UP and DOWN buttons to select your locale/language then press the OK button to continue."
 msgstr "Gebruik de OMHOOG/OMLAAG knoppen om uw taal te kiezen en druk op OK om door te gaan."
 
+msgid "Use the UP/DOWN buttons to select the installed image to be backed up. Press the 'Start' (GREEN) button to start the backup."
+msgstr "Met de knoppen OMHOOG/OMLAAG het geïnstalleerde image kiezen. Daarna 'Start' (GROEN) drukken, om de back-up te starten."
+
 msgid "Use the alternative or the conventional radio mode."
 msgstr "Gebruik de alternatieve of de conventionele radio modus."
 
 msgid "Use the current selection and exit"
 msgstr "De huidige selectie gebruiken en afsluiten"
-
-msgid "Use the cursor keys to select an installed image and then Start button."
-msgstr "Selecteer een geïnstalleerd image en druk op de Start knop (GROEN)."
 
 msgid "Use the extended List"
 msgstr "Gebruik de uitgebreide lijst"
@@ -21294,6 +21444,9 @@ msgstr "Gebruiker - favorietenlijst"
 
 msgid "User Feed URL"
 msgstr "Eigen Feed URL"
+
+msgid "User ID"
+msgstr "Gebruikers ID"
 
 msgid "User comments"
 msgstr "Opmerkingen van gebruikers"
@@ -21465,16 +21618,8 @@ msgstr "Bolivariaanse Republiek Venezuela"
 msgid "Version"
 msgstr "Versie"
 
-#, python-format
-msgid "Version %s %s"
-msgstr "Versie %s %s"
-
 msgid "Version: "
 msgstr "Versie: "
-
-#, python-format
-msgid "Version: %s"
-msgstr "Versie: %s"
 
 msgid "Vertical"
 msgstr "Verticaal"
@@ -21973,6 +22118,15 @@ msgstr "Wanneer geactiveerd zal de ontvanger automatisch naar Stand-by gaan wann
 msgid "When enabled the receiver will automatically wake from standby when the TV is turned on."
 msgstr "Wanneer geactiveerd zal de ontvanger automatisch ontwaken uit Stand-by wanneer de TV ingeschakeld wordt."
 
+msgid "When enabled the timer from the fallback tuner is imported"
+msgstr "Timers van de Fallback tuner importeren."
+
+msgid "When enabled the timer from the fallback tuner is the default timer"
+msgstr "Nieuwe timers altijd naar de Fallback tuner sturen (default)."
+
+msgid "When enabled you can customize the OpenWebIf settings for the fallback tuner"
+msgstr "De OpenWebif instellingen wijzigen van de Fallback tuner."
+
 msgid "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
 msgstr "Indien geactiveerd, zal de AIT data worden toegevoegd aan de http-streams. Hiermee kan een cliënt-ontvanger HbbTV gebruiken."
 
@@ -22154,7 +22308,7 @@ msgid "When the receiver wakes from standby or deep standby it will send a comma
 msgstr "Wanneer de ontvanger ontwaakt uit stand-by of deep standby zal die een commando sturen waardoor de TV ook ontwaakt uit stand-by."
 
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
-msgstr ""
+msgstr "Wanneer de randen van de rode rechthoek de randen van het TV-beeld raken, met de GROENE knop bevestigen en Exit."
 
 msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
 msgstr ""
@@ -22747,12 +22901,6 @@ msgstr "Zoom vanaf rechts"
 msgid "Zulu"
 msgstr "Zoeloe"
 
-msgid "[Enigma2 Settings]\n"
-msgstr "[Enigma2 instellingen]\n"
-
-msgid "[Image Info]\n"
-msgstr "[Afbeelding Info]\n"
-
 msgid "[Timeshift] Merging records failed!"
 msgstr "[Timeshift] Samenvoegen van opnames is mislukt!"
 
@@ -22852,9 +23000,6 @@ msgstr "ballet"
 #, python-format
 msgid "bc%d"
 msgstr "bc%d"
-
-msgid "because of the used file system the back-up\n"
-msgstr "vanwege het gebruikte bestandssysteem duurt\n"
 
 msgid "better"
 msgstr "beter"
@@ -23380,9 +23525,6 @@ msgstr "Olympisch blauw"
 msgid "on READ ONLY medium."
 msgstr "op ALLEEN LEZEN medium."
 
-msgid "on how to restore the image"
-msgstr "omschrijving hoe een image hersteld kan worden."
-
 msgid "orange"
 msgstr "Oranje"
 
@@ -23767,11 +23909,6 @@ msgstr "Wit"
 msgid "width"
 msgstr "breedte"
 
-msgid "will take about 1-15 minutes for this system\n"
-msgstr ""
-"deze voor uw ontvanger ongeveer 1 tot 15 minuten.\n"
-"\n"
-
 msgid "winter sport"
 msgstr "wintersport"
 
@@ -23801,6 +23938,212 @@ msgstr "ja (bewaar feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid ""
+#~ "\n"
+#~ "\n"
+#~ "[User - bouquets (TV)]\n"
+#~ msgstr ""
+#~ "\n"
+#~ "\n"
+#~ "[Gebruiker - favorietenlijsten (TV)]\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "[Installed Plugins]\n"
+#~ msgstr ""
+#~ "\n"
+#~ "[Geïnstalleerde Plugins]\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "[User - bouquets (RADIO)]\n"
+#~ msgstr ""
+#~ "\n"
+#~ "[Gebruiker - favorietenlijsten (RADIO)]\n"
+
+#~ msgid "     no space left on back-up device"
+#~ msgstr "     geen ruimte over op het back-up apparaat"
+
+#~ msgid "     no writing permission on back-up device"
+#~ msgstr "     geen schrijf rechten voor het back-up apparaat"
+
+#~ msgid "     wrong back-up destination "
+#~ msgstr "     verkeerde back-up bestemming "
+
+#~ msgid "Almost there... "
+#~ msgstr "Bijna klaar... "
+
+#, python-format
+#~ msgid "Back-up Tool for a %s\n"
+#~ msgstr "Back-up programma voor een %s\n"
+
+#, python-format
+#~ msgid "Back-up Tool for an %s\n"
+#~ msgstr "Back-up programma voor een %s\n"
+
+#, python-format
+#~ msgid "Backup Date: %s\n"
+#~ msgstr "Back-up datum: %s\n"
+
+#~ msgid "Backup Mode: Flash Online\n"
+#~ msgstr "Back-up modus: flash online\n"
+
+#~ msgid "Backup Mode: USB Recovery\n"
+#~ msgstr "Back-up modus: herstel via USB\n"
+
+#, python-format
+#~ msgid "Backup to destination: %s"
+#~ msgstr "Back-up naar locatie : %s"
+
+#, python-format
+#~ msgid "Build: %s"
+#~ msgstr "Build: %s"
+
+#~ msgid "By openATV Image Team"
+#~ msgstr "Door het openATV Image Team"
+
+#~ msgid "Cannot create backup directory"
+#~ msgstr "Kan geen map maken voor de back-up"
+
+#, python-format
+#~ msgid "Chipset: BCM%s"
+#~ msgstr "Chipset: BCM%s"
+
+#~ msgid "Create:"
+#~ msgstr "Creëer:"
+
+#, python-format
+#~ msgid "Create: Recovery Fullbackup %s"
+#~ msgstr "Creëer: Volledige backup %s"
+
+#~ msgid "Error reading bouquets.radio"
+#~ msgstr "Fout bij het lezen van bouquets.radio"
+
+#~ msgid "Error reading bouquets.tv"
+#~ msgstr "Fout bij het lezen van bouquets.tv"
+
+#~ msgid "Full Image Backup "
+#~ msgstr "Volledige image back-up "
+
+#, python-format
+#~ msgid "Full back-up on %s"
+#~ msgstr "Volledige back-up op %s"
+
+#, python-format
+#~ msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
+#~ msgstr "Image gemaakt: %s/%s-%s-%s-backup-%s_%s.zip"
+
+#~ msgid "Image creation failed - "
+#~ msgstr "Maken Image mislukt - "
+
+#, python-format
+#~ msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
+#~ msgstr "Multiboot Image gecreëerd: %s/%s-%s-%s-backup-%s_usb.zip"
+
+#~ msgid "No, do not backup a image"
+#~ msgstr "Nee, back-up geen image"
+
+#~ msgid "Now building the Backup Image"
+#~ msgstr "Back-up image wordt nu gebouwd"
+
+#~ msgid "Please be patient, a backup will now be made,\n"
+#~ msgstr "Even geduld, de back-up wordt nu gemaakt,\n"
+
+#~ msgid "Please check the manual of the receiver"
+#~ msgstr "Raadpleeg de handleiding van uw ontvanger, voor een"
+
+#~ msgid "Please select a backup destination"
+#~ msgstr "Selecteer een back-up bestemming"
+
+#~ msgid "Please wait...almost ready! "
+#~ msgstr "Een ogenblik geduld... bijna klaar! "
+
+#~ msgid "Probable causes could be"
+#~ msgstr "Mogelijke oorzaak kan zijn"
+
+#~ msgid "Support at"
+#~ msgstr "Ondersteuning op"
+
+#, python-format
+#~ msgid "Time required for this process: %s"
+#~ msgstr "Benodigde tijd voor het maken van deze back-up was: %s"
+
+#~ msgid "To restore the image:"
+#~ msgstr "Voor het herstellen van een image:"
+
+#~ msgid "Use OnlineFlash in SoftwareManager"
+#~ msgstr "Gebruik OnlineFlash in softwarebeheer"
+
+#~ msgid "Use the cursor keys to select an installed image and then Start button."
+#~ msgstr "Selecteer een geïnstalleerd image en druk op de Start knop (GROEN)."
+
+#, python-format
+#~ msgid "Version %s %s"
+#~ msgstr "Versie %s %s"
+
+#, python-format
+#~ msgid "Version: %s"
+#~ msgstr "Versie: %s"
+
+#~ msgid "[Enigma2 Settings]\n"
+#~ msgstr "[Enigma2 instellingen]\n"
+
+#~ msgid "[Image Info]\n"
+#~ msgstr "[Afbeelding Info]\n"
+
+#~ msgid "because of the used file system the back-up\n"
+#~ msgstr "vanwege het gebruikte bestandssysteem duurt\n"
+
+#~ msgid "on how to restore the image"
+#~ msgstr "omschrijving hoe een image hersteld kan worden."
+
+#~ msgid "will take about 1-15 minutes for this system\n"
+#~ msgstr ""
+#~ "deze voor uw ontvanger ongeveer 1 tot 15 minuten.\n"
+#~ "\n"
+
+#~ msgid "Execution finished!!"
+#~ msgstr "!! De volledige back-up is gereed !!"
+
+#~ msgid "Execution progress:"
+#~ msgstr "Voortgang extern commando:"
+
+#~ msgid "Path to save not exist: '/tmp/'"
+#~ msgstr "Pad voor opslaan bestaat niet: '/tmp/'"
+
+#~ msgid "Backup done."
+#~ msgstr "Back-up is gereed."
+
+#~ msgid "Backup failed!"
+#~ msgstr "De back-up is mislukt!"
+
+#~ msgid "No Devices Found !!"
+#~ msgstr "!! Geen apparaten gevonden !!"
+
+#~ msgid "23.976"
+#~ msgstr "23.976"
+
+#~ msgid "24"
+#~ msgstr "24"
+
+#~ msgid "25"
+#~ msgstr "25"
+
+#~ msgid "29.97"
+#~ msgstr "29.97"
+
+#~ msgid "30"
+#~ msgstr "30"
+
+#~ msgid "Backup completed."
+#~ msgstr "Back-up voltooid."
+
+#~ msgid "Backup failed."
+#~ msgstr "De back-up is mislukt."
+
+#~ msgid "No updates were available.  Please try again later."
+#~ msgstr "Geen updates beschikbaar. Probeer het later nog een keer."
 
 #~ msgid "About..."
 #~ msgstr "Over..."

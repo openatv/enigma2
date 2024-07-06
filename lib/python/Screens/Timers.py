@@ -30,6 +30,7 @@ from Tools.Alternatives import GetWithAlternative
 from Tools.BoundFunction import boundFunction
 from Tools.Conversions import fuzzyDate, scaleNumber
 from Tools.Directories import SCOPE_GUISKIN, resolveFilename
+from Tools.FallbackTimer import FallbackTimerList, FallbackTimerDirs
 from Tools.LoadPixmap import LoadPixmap
 
 # Timer modes.
@@ -817,18 +818,19 @@ class PowerTimerOverview(TimerOverviewBase):
 			self.session.nav.PowerTimer.cleanup()
 			self.reloadTimerList()
 
-	def refill(self):
-		length = len(self.timerList)
-		self.fillTimerList()
-		if length and length != len(self.timerList):
-			self["timerlist"].entryRemoved(self["timerlist"].getCurrentIndex())
-		else:
-			self["timerlist"].invalidate()
+	# def refill(self):
+	#	length = len(self.timerList)
+	#	self.fillTimerList()
+	#	if length and length != len(self.timerList):
+	#		self["timerlist"].entryRemoved(self["timerlist"].getCurrentIndex())
+	#	else:
+	#		self["timerlist"].invalidate()
 
 
 class RecordTimerOverview(TimerOverviewBase):
 	def __init__(self, session):
 		self["timerlist"] = RecordTimerList([])
+		self.fallbackTimer = FallbackTimerList(self, self.fallbackRefresh)
 		TimerOverviewBase.__init__(self, session, mode=MODE_RECORD)
 		self["Event"] = Event()
 		self["Service"] = ServiceEvent()
@@ -839,11 +841,19 @@ class RecordTimerOverview(TimerOverviewBase):
 	def doChangeCallbackRemove(self):
 		self.session.nav.RecordTimer.on_state_change.remove(self.onStateChange)
 
+	def fallbackRefresh(self):
+		self.loadTimerList()
+		self.selectionChanged()
+
 	def loadTimerList(self):
 		def condition(element):
 			return element[0].state == TimerEntry.StateEnded, element[0].begin
 
 		timerList = []
+		if self.fallbackTimer.list:
+			timerList.extend([(timer, False) for timer in self.fallbackTimer.list if timer.state != 3])
+			timerList.extend([(timer, True) for timer in self.fallbackTimer.list if timer.state == 3])
+
 		timerList.extend([(timer, False) for timer in self.session.nav.RecordTimer.timer_list])
 		timerList.extend([(timer, True) for timer in self.session.nav.RecordTimer.processed_timers])
 		if config.usage.timerlist_finished_timer_position.index:  # End of list.
@@ -942,16 +952,19 @@ class RecordTimerOverview(TimerOverviewBase):
 			return
 		if result[0]:
 			entry = result[1]
-			simulTimerList = self.session.nav.RecordTimer.record(entry)
-			if simulTimerList:
-				for timer in simulTimerList:
-					if timer.setAutoincreaseEnd(entry):
-						self.session.nav.RecordTimer.timeChanged(timer)
+			if entry.external:
+				self.fallbackTimer.addTimer(entry, self.fallbackRefresh)
+			else:
 				simulTimerList = self.session.nav.RecordTimer.record(entry)
 				if simulTimerList:
-					self.session.openWithCallback(self.addTimerCallback, ConflictTimerOverview, simulTimerList)
-			self.loadTimerList()
-			self.selectionChanged()
+					for timer in simulTimerList:
+						if timer.setAutoincreaseEnd(entry):
+							self.session.nav.RecordTimer.timeChanged(timer)
+					simulTimerList = self.session.nav.RecordTimer.record(entry)
+					if simulTimerList:
+						self.session.openWithCallback(self.addTimerCallback, ConflictTimerOverview, simulTimerList)
+				self.loadTimerList()
+				self.selectionChanged()
 
 	def doCleanupTimers(self):
 		self.session.nav.RecordTimer.cleanup()
@@ -966,9 +979,12 @@ class RecordTimerOverview(TimerOverviewBase):
 		if answer:
 			timer = self["timerlist"].getCurrent()
 			if timer:
-				timer.afterEvent = RECORD_AFTEREVENT.NONE
-				self.session.nav.RecordTimer.removeEntry(timer)
-				self.reloadTimerList()
+				if timer.external:
+					self.fallbackTimer.removeTimer(timer, self.reloadTimerList)
+				else:
+					timer.afterEvent = RECORD_AFTEREVENT.NONE
+					self.session.nav.RecordTimer.removeEntry(timer)
+					self.reloadTimerList()
 
 	def editTimer(self):
 		timer = self["timerlist"].getCurrent()
@@ -981,26 +997,29 @@ class RecordTimerOverview(TimerOverviewBase):
 			return
 		if result[0]:
 			entry = result[1]
-			timerSanityCheck = TimerSanityCheck(self.session.nav.RecordTimer.timer_list, entry)
-			success = False
-			if not timerSanityCheck.check():
-				simulTimerList = timerSanityCheck.getSimulTimerList()
-				if simulTimerList is not None:
-					for simulTimer in simulTimerList:
-						if simulTimer.setAutoincreaseEnd(entry):
-							self.session.nav.RecordTimer.timeChanged(simulTimer)
-					if not timerSanityCheck.check():
-						simulTimerList = timerSanityCheck.getSimulTimerList()
-						if simulTimerList is not None:
-							self.session.openWithCallback(self.editTimerCallback, ConflictTimerOverview, timerSanityCheck.getSimulTimerList())
-					else:
-						success = True
+			if entry.external:
+				self.fallbackTimer.editTimer(entry, self.reloadTimerList)
 			else:
-				success = True
-			if success:
-				self.session.nav.RecordTimer.timeChanged(entry)
-				print("[Timers] RecordTimer updated.")
-			self.reloadTimerList()
+				timerSanityCheck = TimerSanityCheck(self.session.nav.RecordTimer.timer_list, entry)
+				success = False
+				if not timerSanityCheck.check():
+					simulTimerList = timerSanityCheck.getSimulTimerList()
+					if simulTimerList is not None:
+						for simulTimer in simulTimerList:
+							if simulTimer.setAutoincreaseEnd(entry):
+								self.session.nav.RecordTimer.timeChanged(simulTimer)
+						if not timerSanityCheck.check():
+							simulTimerList = timerSanityCheck.getSimulTimerList()
+							if simulTimerList is not None:
+								self.session.openWithCallback(self.editTimerCallback, ConflictTimerOverview, timerSanityCheck.getSimulTimerList())
+						else:
+							success = True
+				else:
+					success = True
+				if success:
+					self.session.nav.RecordTimer.timeChanged(entry)
+					print("[Timers] RecordTimer updated.")
+				self.reloadTimerList()
 		else:
 			print("[Timers] RecordTimer not updated.")
 
@@ -1008,40 +1027,43 @@ class RecordTimerOverview(TimerOverviewBase):
 		timerChanged = True
 		timer = self["timerlist"].getCurrent()
 		if timer:
-			stateRunning = timer.state in (TimerEntry.StatePrepared, TimerEntry.StateRunning)
-			if timer.disabled and timer.repeated and stateRunning and not timer.justplay:
-				return
-			if timer.disabled:
-				print("[Timers] Try to enable RecordTimer.")
-				timer.enable()
-				timerSanityCheck = TimerSanityCheck(self.session.nav.RecordTimer.timer_list, timer)
-				if not timerSanityCheck.check():
-					timer.disable()
-					print("[Timers] Sanity check failed.")
-					simulTimerList = timerSanityCheck.getSimulTimerList()
-					if simulTimerList is not None:
-						self.session.openWithCallback(self.editTimerCallback, ConflictTimerOverview, simulTimerList)
-						timerChanged = False
-				else:
-					print("[Timers] Sanity check passed.")
-					if timerSanityCheck.doubleCheck():
-						timer.disable()
+			if timer.external:
+				self.fallbackTimer.toggleTimer(timer, self.reloadTimerList)
 			else:
-				print("[Timers] Try to disable RecordTimer.")
-				if stateRunning:
-					if timer.isRunning() and timer.repeated:
-						choiceList = (
-							(_("Stop current event but not future events"), "stoponlycurrent"),
-							(_("Stop current event and disable future events"), "stopall"),
-							(_("Don't stop current event but disable future events"), "stoponlycoming")
-						)
-						self.session.openWithCallback(boundFunction(self.toggleTimerCallback, timer), ChoiceBox, title=_("Repeating event is currently recording, what do you want to do?"), list=choiceList)
-						timerChanged = False
+				stateRunning = timer.state in (TimerEntry.StatePrepared, TimerEntry.StateRunning)
+				if timer.disabled and timer.repeated and stateRunning and not timer.justplay:
+					return
+				if timer.disabled:
+					print("[Timers] Try to enable RecordTimer.")
+					timer.enable()
+					timerSanityCheck = TimerSanityCheck(self.session.nav.RecordTimer.timer_list, timer)
+					if not timerSanityCheck.check():
+						timer.disable()
+						print("[Timers] Sanity check failed.")
+						simulTimerList = timerSanityCheck.getSimulTimerList()
+						if simulTimerList is not None:
+							self.session.openWithCallback(self.editTimerCallback, ConflictTimerOverview, simulTimerList)
+							timerChanged = False
+					else:
+						print("[Timers] Sanity check passed.")
+						if timerSanityCheck.doubleCheck():
+							timer.disable()
 				else:
-					timer.disable()
-			if timerChanged:
-				self.session.nav.RecordTimer.timeChanged(timer)
-			self.reloadTimerList()
+					print("[Timers] Try to disable RecordTimer.")
+					if stateRunning:
+						if timer.isRunning() and timer.repeated:
+							choiceList = (
+								(_("Stop current event but not future events"), "stoponlycurrent"),
+								(_("Stop current event and disable future events"), "stopall"),
+								(_("Don't stop current event but disable future events"), "stoponlycoming")
+							)
+							self.session.openWithCallback(boundFunction(self.toggleTimerCallback, timer), ChoiceBox, title=_("Repeating event is currently recording, what do you want to do?"), list=choiceList)
+							timerChanged = False
+					else:
+						timer.disable()
+				if timerChanged:
+					self.session.nav.RecordTimer.timeChanged(timer)
+				self.reloadTimerList()
 
 	def toggleTimerCallback(self, timer, choice):
 		if choice is not None and timer.isRunning():
@@ -1372,9 +1394,24 @@ class PowerTimerEdit(Setup):
 class RecordTimerEdit(Setup):
 	def __init__(self, session, timer):
 		self.timer = timer
+		self.newEntry = False  # TODO
+		self.timer.service_ref_prev = self.timer.service_ref
+		self.timer.begin_prev = self.timer.begin
+		self.timer.end_prev = self.timer.end
+		self.timer.external_prev = self.timer.external
+		self.timer.dirname_prev = self.timer.dirname
+		self.fallbackInfo = None
 		self.initEndTime = True
 		self.createConfig()
+		if self.timer.external:
+			FallbackTimerDirs(self, self.fallbackResult)
 		Setup.__init__(self, session, "RecordTimer")
+
+	def fallbackResult(self, locations, default, tags):
+		self.fallbackInfo = (locations, default, tags)
+		if self.timer.dirname and self.timer.dirname not in locations:
+			locations.append(self.timer.dirname)
+		self.timerLocation.setChoices(choices=locations, default=self.timer.dirname)
 
 	def createConfig(self):
 		days = {}
@@ -1452,6 +1489,7 @@ class RecordTimerEdit(Setup):
 		if default not in locations:
 			locations.append(default)
 		self.timerLocation = ConfigSelection(default=default, choices=locations)
+
 		self.tags = self.timer.tags[:]
 		if not self.tags:  # If no tags found, make name of event default tag set.
 			tagName = self.timer.name.strip()
@@ -1465,6 +1503,8 @@ class RecordTimerEdit(Setup):
 			(RECORDTIMER_AFTER_EVENTS.get(RECORD_AFTEREVENT.DEEPSTANDBY), RECORDTIMER_AFTER_EVENT_NAMES.get(RECORD_AFTEREVENT.DEEPSTANDBY)),
 			(RECORDTIMER_AFTER_EVENTS.get(RECORD_AFTEREVENT.AUTO), RECORDTIMER_AFTER_EVENT_NAMES.get(RECORD_AFTEREVENT.AUTO))
 		])
+		self.timerFallback = ConfigYesNo(default=self.timer.external_prev or self.newEntry and config.usage.remote_fallback_external_timer.value and config.usage.remote_fallback.value and config.usage.remote_fallback_external_timer_default.value)
+
 		for callback in onRecordTimerCreate:
 			callback(self)
 
@@ -1476,9 +1516,12 @@ class RecordTimerEdit(Setup):
 	def changedEntry(self):
 		Setup.changedEntry(self)
 		current = self["config"].getCurrent()[1]
-		if current == self.timerLocation and self.timerType.value != "zap":
+		if current == self.timerFallback:
+			self.timer.external = self.timerFallback.value
+			self.selectionChanged()  # Force getSpace()
+		elif current == self.timerLocation and self.timerType.value != "zap":
 			self.getSpace()
-		if current == self.timerType and self.timerType.value == "zap":
+		elif current == self.timerType and self.timerType.value == "zap":
 			if self.initEndTime:
 				self.initEndTime = False
 				self.timerHasEndTime.value = config.recording.zap_has_endtime.value
@@ -1489,7 +1532,7 @@ class RecordTimerEdit(Setup):
 	def selectionChanged(self):
 		Setup.selectionChanged(self)
 		if self.timerType.value != "zap":
-			self.getSpace()
+			self.getSpace()  # TODO This will be called every time on selectionChanged and that's not good
 
 	def keySelect(self):
 		current = self["config"].getCurrent()[1]
@@ -1623,29 +1666,32 @@ class RecordTimerEdit(Setup):
 	# These functions have been separated from the main code so that they can be overridden in sub-classes.
 	#
 	def getTags(self):
-		def getTagsCallback(result):
-			if result is not None:
-				self.tags = result
-				self.timerTags.setChoices([not result and "None" or " ".join(result)])
+		if not self.timer.external:  # TODO Fallback
+			def getTagsCallback(result):
+				if result is not None:
+					self.tags = result
+					self.timerTags.setChoices([not result and "None" or " ".join(result)])
 
-		self.session.openWithCallback(getTagsCallback, TagEditor, tags=self.tags)
+			self.session.openWithCallback(getTagsCallback, TagEditor, tags=self.tags)
 
 	def getChannels(self):
-		def getChannelsCallback(*result):
-			if result:
-				self.timerServiceReference = ServiceReference(result[0])
-				self.timerService.setCurrentText(self.timerServiceReference.getServiceName())
-				for callback in onRecordTimerChannelChange:
-					callback(self)
+		if not self.timer.external:  # TODO Fallback
+			def getChannelsCallback(*result):
+				if result:
+					self.timerServiceReference = ServiceReference(result[0])
+					self.timerService.setCurrentText(self.timerServiceReference.getServiceName())
+					for callback in onRecordTimerChannelChange:
+						callback(self)
 
-		from Screens.ChannelSelection import SimpleChannelSelection  # This must be here to avoid a boot loop!
-		self.session.openWithCallback(getChannelsCallback, SimpleChannelSelection, _("Select the channel from which to record:"), currentBouquet=True)
+			from Screens.ChannelSelection import SimpleChannelSelection  # This must be here to avoid a boot loop!
+			self.session.openWithCallback(getChannelsCallback, SimpleChannelSelection, _("Select the channel from which to record:"), currentBouquet=True)
 
 	def saveMovieDir(self):
-		if self.timer.dirname or self.timerLocation.value != defaultMoviePath():
-			self.timer.dirname = self.timerLocation.value
-			config.movielist.last_timer_videodir.value = self.timer.dirname
-			config.movielist.last_timer_videodir.save()
+		if not self.timer.external:
+			if self.timer.dirname or self.timerLocation.value != defaultMoviePath():
+				self.timer.dirname = self.timerLocation.value
+				config.movielist.last_timer_videodir.value = self.timer.dirname
+				config.movielist.last_timer_videodir.save()
 
 	def lookupEvent(self):
 		event = eEPGCache.getInstance().lookupEventId(self.timer.service_ref.ref, self.timer.eit)
@@ -1668,7 +1714,8 @@ class RecordTimerEdit(Setup):
 		return True
 
 	def saveTimers(self):
-		self.session.nav.RecordTimer.saveTimers()
+		if not self.timer.external:
+			self.session.nav.RecordTimer.saveTimers()
 
 	def getServiceName(self, service_ref):
 		try:  # No current service available?  (FIXME: Some service-chooser needed here!)
@@ -1678,33 +1725,42 @@ class RecordTimerEdit(Setup):
 		return serviceName
 
 	def getLocationInfo(self):
-		default = self.timer.dirname or defaultMoviePath()
-		locations = config.movielist.videodirs.value
-		return (default, locations)
+		if not self.timer.external:
+			default = self.timer.dirname or defaultMoviePath()
+			locations = config.movielist.videodirs.value
+			return (default, locations)
+		elif self.fallbackInfo and len(self.fallbackInfo) > 1:
+			return (self.fallbackInfo[1], self.fallbackInfo[0])
+		elif self.timer.dirname:
+			return (self.timer.dirname, [self.timer.dirname])
+		else:
+			return (defaultMoviePath(), [defaultMoviePath()])
 
 	def getLocation(self):
-		def getLocationCallback(result):
-			if result:
-				if config.movielist.videodirs.value != self.timerLocation.choices:
-					self.timerLocation.setChoices(config.movielist.videodirs.value, default=result)
-				self.timerLocation.value = result
-			self.getSpace()
+		if not self.timer.external:  # TODO Fallback
+			def getLocationCallback(result):
+				if result:
+					if config.movielist.videodirs.value != self.timerLocation.choices:
+						self.timerLocation.setChoices(config.movielist.videodirs.value, default=result)
+					self.timerLocation.value = result
+				self.getSpace()
 
-		self.session.openWithCallback(getLocationCallback, MovieLocationBox, _("Select the location in which to store the recording:"), self.timerLocation.value, minFree=100)  # We require at least 100MB free space.
+			self.session.openWithCallback(getLocationCallback, MovieLocationBox, _("Select the location in which to store the recording:"), self.timerLocation.value, minFree=100)  # We require at least 100MB free space.
 
 	def getSpace(self):
-		if config.recording.timerviewshowfreespace.value:
-			try:
-				device = stat(self.timerLocation.value).st_dev
-				if device in DEFAULT_INHIBIT_DEVICES:
-					self.setFootnote(_("Warning: Recordings should not be stored on the Flash disk!"))
-				else:
-					status = statvfs(self.timerLocation.value)
-					total = status.f_blocks * status.f_bsize
-					free = status.f_bavail * status.f_bsize
-					self.setFootnote(_("Space total %s, used %s, free %s (%0.f%%).") % (scaleNumber(total), scaleNumber(total - free), scaleNumber(free), 100.0 * free / total))
-			except OSError as err:
-				self.setFootnote(_("Error %d: Unable to check space!  (%s)") % (err.errno, err.strerror))
+		if not self.timer.external:
+			if config.recording.timerviewshowfreespace.value:
+				try:
+					device = stat(self.timerLocation.value).st_dev
+					if device in DEFAULT_INHIBIT_DEVICES:
+						self.setFootnote(_("Warning: Recordings should not be stored on the Flash disk!"))
+					else:
+						status = statvfs(self.timerLocation.value)
+						total = status.f_blocks * status.f_bsize
+						free = status.f_bavail * status.f_bsize
+						self.setFootnote(_("Space total %s, used %s, free %s (%0.f%%).") % (scaleNumber(total), scaleNumber(total - free), scaleNumber(free), 100.0 * free / total))
+				except OSError as err:
+					self.setFootnote(_("Error %d: Unable to check space!  (%s)") % (err.errno, err.strerror))
 	#
 	# Do not rename the methods above as they are designed to be overwritten in sub-classes.
 

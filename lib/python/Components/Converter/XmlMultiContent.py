@@ -35,7 +35,7 @@ class MultiContentTemplateParser(TemplateParser):
 				context = SkinContext(context, "0,0", f"{itemWidth},{itemHeight}")
 				for element in list(mode):
 					processor = self.processors.get(element.tag, self.processNone)
-					newItems = processor(element, context, excludeItemValues=[], includeItemValues=[])
+					newItems = processor(element, context)
 					if newItems:
 						items += newItems
 				newItems = []
@@ -129,8 +129,7 @@ class XmlMultiContent(StringList, MultiContentTemplateParser):
 
 	def __init__(self, args):
 		StringList.__init__(self, args)
-		self.debug = True
-		MultiContentTemplateParser.__init__(self, self.debug)
+		MultiContentTemplateParser.__init__(self)
 		self.activeStyle = None
 		self.activeTemplate = "Default"  # This value string is used in the UI.
 		self.dom = args.get("dom")

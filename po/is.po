@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-24 20:26+0000\n"
+"POT-Creation-Date: 2024-06-21 14:25+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/is/>\n"
@@ -18,12 +18,6 @@ msgstr ""
 
 msgid ""
 "\n"
-"\n"
-"[User - bouquets (TV)]\n"
-msgstr ""
-
-msgid ""
-"\n"
 "<This tuner is configured automatically>"
 msgstr ""
 
@@ -32,26 +26,7 @@ msgid ""
 "Recording in progress."
 msgstr ""
 
-msgid ""
-"\n"
-"[Installed Plugins]\n"
-msgstr ""
-
-msgid ""
-"\n"
-"[User - bouquets (RADIO)]\n"
-msgstr ""
-
 msgid " "
-msgstr ""
-
-msgid "     no space left on back-up device"
-msgstr ""
-
-msgid "     no writing permission on back-up device"
-msgstr ""
-
-msgid "     wrong back-up destination "
 msgstr ""
 
 msgid "  Menu key : Select quad channel"
@@ -1448,6 +1423,15 @@ msgstr ""
 msgid "-"
 msgstr ""
 
+msgid "- No space left on backup device."
+msgstr ""
+
+msgid "- No write permission on backup device."
+msgstr ""
+
+msgid "- Wrong backup destination."
+msgstr ""
+
 msgid "-24 Hours"
 msgstr ""
 
@@ -1558,22 +1542,6 @@ msgstr ""
 msgid "2"
 msgstr "2"
 
-msgid "23.976"
-msgstr ""
-
-#
-#, fuzzy
-msgid "24"
-msgstr "2"
-
-#
-#, fuzzy
-msgid "25"
-msgstr "2"
-
-msgid "29.97"
-msgstr ""
-
 msgid "2nd InfoBar"
 msgstr ""
 
@@ -1605,11 +1573,6 @@ msgstr ""
 
 msgid "3"
 msgstr "3"
-
-#
-#, fuzzy
-msgid "30"
-msgstr "0"
 
 msgid "3D Mode"
 msgstr ""
@@ -1701,6 +1664,9 @@ msgstr ""
 
 msgid "A"
 msgstr "A"
+
+msgid "A backup is now being created."
+msgstr ""
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr ""
@@ -1864,6 +1830,18 @@ msgstr ""
 #, fuzzy
 msgid "AFL"
 msgstr "PAL"
+
+msgid "AI-Powered translation color"
+msgstr ""
+
+msgid "AI-Powered translation enabled"
+msgstr ""
+
+msgid "AI-Powered translation language"
+msgstr ""
+
+msgid "AI-Powered translation subscription code"
+msgstr ""
 
 msgid "ARM"
 msgstr ""
@@ -2438,9 +2416,6 @@ msgstr ""
 msgid "Allows you to show/hide OScam/CCcam in the Extension Menu screen (BLUE button)."
 msgstr ""
 
-msgid "Almost there... "
-msgstr ""
-
 msgid "Alpha"
 msgstr "Gegnsæi"
 
@@ -2451,6 +2426,15 @@ msgid "Alphabetical under headings"
 msgstr ""
 
 msgid "Alphanumeric"
+msgstr ""
+
+msgid "Also import at reboot/restart enigma2"
+msgstr ""
+
+msgid "Also import from the extension menu"
+msgstr ""
+
+msgid "Also import when box is leaving standby"
 msgstr ""
 
 msgid "Also on standby"
@@ -2474,6 +2458,9 @@ msgstr "bæta við valkosti"
 #
 msgid "Alternative Edit"
 msgstr "[breyta valkostum]"
+
+msgid "Alternative URLs for DVB-T/C or ATSC"
+msgstr ""
 
 msgid "Alternative numbering mode"
 msgstr ""
@@ -2719,6 +2706,9 @@ msgid "Aspect switch"
 msgstr ""
 
 msgid "Assamese"
+msgstr ""
+
+msgid "Assembling the image backup files."
 msgstr ""
 
 #
@@ -3026,14 +3016,6 @@ msgstr ""
 msgid "Back, upper USB"
 msgstr ""
 
-#, python-format
-msgid "Back-up Tool for a %s\n"
-msgstr ""
-
-#, python-format
-msgid "Back-up Tool for an %s\n"
-msgstr ""
-
 msgid "Back/Recall"
 msgstr ""
 
@@ -3062,10 +3044,6 @@ msgstr "Bakgrunnur"
 msgid "Backup"
 msgstr ""
 
-#, python-format
-msgid "Backup Date: %s\n"
-msgstr ""
-
 msgid "Backup Location"
 msgstr ""
 
@@ -3075,10 +3053,10 @@ msgstr ""
 msgid "Backup Mode"
 msgstr ""
 
-msgid "Backup Mode: Flash Online\n"
+msgid "Backup Mode: Flash Online"
 msgstr ""
 
-msgid "Backup Mode: USB Recovery\n"
+msgid "Backup Mode: USB Recovery"
 msgstr ""
 
 msgid "Backup Settings"
@@ -3086,18 +3064,6 @@ msgstr ""
 
 msgid "Backup System Settings"
 msgstr "Afrita kerfis stillingar"
-
-msgid "Backup completed."
-msgstr ""
-
-msgid "Backup done."
-msgstr ""
-
-msgid "Backup failed!"
-msgstr ""
-
-msgid "Backup failed."
-msgstr "Afritun tókst ekki."
 
 msgid "Backup images"
 msgstr ""
@@ -3110,9 +3076,9 @@ msgid ""
 "do you want to install now?"
 msgstr ""
 
-#, fuzzy, python-format
-msgid "Backup to destination: %s"
-msgstr "Afrita kerfis stillingar"
+#, python-format
+msgid "Backup tool for %s %s"
+msgstr ""
 
 msgid "Backup your %s %s settings."
 msgstr ""
@@ -3443,10 +3409,6 @@ msgstr ""
 msgid "Build information for %s %s"
 msgstr ""
 
-#, python-format
-msgid "Build: %s"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Bulgaria"
@@ -3495,9 +3457,6 @@ msgid "By disk UUID"
 msgstr ""
 
 msgid "By disk label"
-msgstr ""
-
-msgid "By openATV Image Team"
 msgstr ""
 
 msgid "Bypass HDMI EDID Check"
@@ -3765,6 +3724,9 @@ msgstr "Breyta skrefa stærð"
 msgid "Can't allocate program source (e.g. tuner)"
 msgstr ""
 
+msgid "Can't create backup directory!"
+msgstr ""
+
 msgid ""
 "Can't going to live TV!\n"
 "Switch to live TV and restart time shift ?"
@@ -3884,11 +3846,6 @@ msgstr ""
 msgid "Cancelled upon user request"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Cannot create backup directory"
-msgstr "búa til möppu"
-
 msgid "Cannot delete file"
 msgstr ""
 
@@ -3931,6 +3888,9 @@ msgid "Catalan / Valencian"
 msgstr ""
 
 msgid "Cayman Islands"
+msgstr ""
+
+msgid "Cebuano"
 msgstr ""
 
 msgid "Celsius"
@@ -4213,8 +4173,7 @@ msgstr ""
 msgid "Chinese"
 msgstr ""
 
-#, python-format
-msgid "Chipset: BCM%s"
+msgid "Chinese (Simplified)"
 msgstr ""
 
 msgid "Choice Box"
@@ -4261,6 +4220,9 @@ msgid "Choose the display formatting style for dates. 'D' / 'DD' is the date and
 msgstr ""
 
 msgid "Choose the display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds.  ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
+msgstr ""
+
+msgid "Choose the fallback font."
 msgstr ""
 
 msgid "Choose the front panel display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
@@ -4559,6 +4521,11 @@ msgstr ""
 msgid "Command execution..."
 msgstr "Keyrsla skipunar..."
 
+msgid "Command finished."
+msgid_plural "Commands finished."
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Command order"
 msgstr "Röðun skipana"
 
@@ -4713,6 +4680,9 @@ msgstr ""
 msgid "Configure remote control type"
 msgstr ""
 
+msgid "Configure the AI-Powered translation language."
+msgstr ""
+
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr ""
 
@@ -4761,6 +4731,9 @@ msgid "Configure the brightness level of the front panel display for normal oper
 msgstr ""
 
 msgid "Configure the brightness level of the front panel display for standby."
+msgstr ""
+
+msgid "Configure the color of the AI-Powered translations."
 msgstr ""
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
@@ -5341,6 +5314,10 @@ msgstr ""
 msgid "Create a symbolic link"
 msgstr ""
 
+#, python-format
+msgid "Create recovery image backup '%s'."
+msgstr ""
+
 msgid "Create separate radio user bouquet"
 msgstr ""
 
@@ -5351,14 +5328,6 @@ msgid "Create the additional slots on the selected device"
 msgstr ""
 
 msgid "Create the flash expander in the selected device"
-msgstr ""
-
-#, fuzzy
-msgid "Create:"
-msgstr "Bitahraði:"
-
-#, python-format
-msgid "Create: Recovery Fullbackup %s"
 msgstr ""
 
 msgid "Creating .ap and .sc files"
@@ -5521,6 +5490,9 @@ msgstr "Stilltur stökk fyrir 7 og 9 takka"
 
 msgid "Customize"
 msgstr "Aðrar stillingar"
+
+msgid "Customize OpenWebIF settings for fallback tuner"
+msgstr ""
 
 msgid "Customize System Settings"
 msgstr ""
@@ -6286,6 +6258,18 @@ msgstr ""
 msgid "Deselected packages usually occur because those packaged are incompatible with existing packages. While this is mostly harmless it is possible that your %s %s may experience issues."
 msgstr ""
 
+msgid "Destination of fallback remote receiver"
+msgstr ""
+
+msgid "Destination of fallback remote receiver for ATSC"
+msgstr ""
+
+msgid "Destination of fallback remote receiver for DVB-C"
+msgstr ""
+
+msgid "Destination of fallback remote receiver for DVB-T"
+msgstr ""
+
 msgid "Detail of GStreamer log."
 msgstr ""
 
@@ -6591,6 +6575,9 @@ msgstr "Um"
 msgid "Do another manual service scan?"
 msgstr ""
 
+msgid "Do not backup the image"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Do not change"
@@ -6681,6 +6668,18 @@ msgstr "Viltu örugglega eyða EYÐA íforriti \"%s\"?"
 #, python-format
 msgid "Do you really want to remove your bookmark for '%s'?"
 msgstr "Viltu örugglega eyða bókamerkinu %s?"
+
+msgid ""
+"Do you really want to restart OSCam?\n"
+"\n"
+"HINT: This will take about 5 seconds!"
+msgstr ""
+
+msgid ""
+"Do you really want to shut down OSCam?\n"
+"\n"
+"ATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"
+msgstr ""
 
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
@@ -7193,6 +7192,9 @@ msgstr "Virkja"
 msgid "Enable 5V for active antenna"
 msgstr "Kveikja á 5V fyrir loftnet með magnara"
 
+msgid "Enable AI-Powered translation for all teletext and DVB subtitles."
+msgstr ""
+
 msgid "Enable Autorecord"
 msgstr ""
 
@@ -7347,6 +7349,9 @@ msgid "Enable fallback remote receiver"
 msgstr ""
 
 msgid "Enable freesat EPG"
+msgstr ""
+
+msgid "Enable import timer from fallback tuner"
 msgstr ""
 
 msgid "Enable intro screen"
@@ -7555,6 +7560,9 @@ msgstr "Innra Flash minni"
 msgid "Enter DNS (Dynamic Name Server) %d's IP address."
 msgstr ""
 
+msgid "Enter IP address"
+msgstr "IP Netfang"
+
 msgid "Enter PIN"
 msgstr ""
 
@@ -7620,6 +7628,9 @@ msgid "Enter your low band local oscillator frequency. For more information cons
 msgstr ""
 
 msgid "Enter your personal feed URL to allow you to select packages from your personal feed."
+msgstr ""
+
+msgid "Enter your subscription code, the unified code for trial is 15."
 msgstr ""
 
 #
@@ -7785,13 +7796,6 @@ msgstr ""
 msgid "Error opening recording file"
 msgstr ""
 
-msgid "Error reading bouquets.radio"
-msgstr ""
-
-#, fuzzy
-msgid "Error reading bouquets.tv"
-msgstr "Breyta rásavanda lista"
-
 msgid "Error reading webpage!"
 msgstr ""
 
@@ -7800,6 +7804,12 @@ msgstr ""
 
 #, python-format
 msgid "Error unzipping image '%s'!"
+msgstr ""
+
+#, python-format
+msgid ""
+"Error while retrieving fallback timer information\n"
+"%s"
 msgstr ""
 
 msgid "Error, unknown Result!"
@@ -7916,6 +7926,10 @@ msgid "Error: Unable to rename directory '%s' to '%s'!"
 msgstr ""
 
 #, python-format
+msgid "Error: Unable to write log file '%s'!"
+msgstr ""
+
+#, python-format
 msgid "Error: You can't run '%s' on '%s'!"
 msgstr ""
 
@@ -8016,14 +8030,6 @@ msgstr "Þarf meira en tveggja laga disk!"
 msgid "Execution condition"
 msgstr ""
 
-msgid "Execution finished!!"
-msgstr "Keyrslu lokið!!"
-
-#
-#, fuzzy
-msgid "Execution progress:"
-msgstr "Framganga keyrslu:"
-
 #
 msgid "Exif"
 msgstr "Exif"
@@ -8051,6 +8057,9 @@ msgid "Exit Quad Channel Selection"
 msgstr "Rása val"
 
 msgid "Exit all menus"
+msgstr ""
+
+msgid "Exit and close all screens without performing a backup"
 msgstr ""
 
 #
@@ -8114,6 +8123,9 @@ msgid "Exit the wizard"
 msgstr "Hætta í ráðgjafa"
 
 msgid "Exit viewer"
+msgstr ""
+
+msgid "Exit without performing a backup"
 msgstr ""
 
 msgid "Expand"
@@ -8304,7 +8316,37 @@ msgstr "Tókst ekki"
 msgid "Falkland Islands (Malvinas)"
 msgstr ""
 
+msgid "Fallback API did not return a valid result."
+msgstr ""
+
+msgid "Fallback Font *"
+msgstr ""
+
+msgid "Fallback remote receiver"
+msgstr ""
+
+msgid "Fallback remote receiver IP"
+msgstr ""
+
+msgid "Fallback remote receiver Port"
+msgstr ""
+
 msgid "Fallback remote receiver URL"
+msgstr ""
+
+msgid "Fallback remote receiver for ATSC"
+msgstr ""
+
+msgid "Fallback remote receiver for DVB-C"
+msgstr ""
+
+msgid "Fallback remote receiver for DVB-T"
+msgstr ""
+
+msgid "Fallback Timer"
+msgstr ""
+
+msgid "Fallback tuner setup"
 msgstr ""
 
 msgid "False"
@@ -8497,10 +8539,6 @@ msgid "File transfer was canceled by user!"
 msgstr ""
 
 msgid "File transfer was cancelled by user"
-msgstr ""
-
-#, python-format
-msgid "File write error: '%s'"
 msgstr ""
 
 #
@@ -8862,17 +8900,10 @@ msgstr ""
 msgid "Fulah"
 msgstr ""
 
-msgid "Full Image Backup "
-msgstr ""
-
 msgid "Full Range RGB"
 msgstr ""
 
 msgid "Full Stretch"
-msgstr ""
-
-#, python-format
-msgid "Full back-up on %s"
 msgstr ""
 
 msgid "Full factory reset"
@@ -9338,6 +9369,9 @@ msgstr ""
 msgid "Hausa"
 msgstr ""
 
+msgid "Hawaiian"
+msgstr ""
+
 msgid "Heard Island and McDonald Islands"
 msgstr ""
 
@@ -9451,10 +9485,10 @@ msgstr ""
 msgid "Hide the InfoBar"
 msgstr ""
 
-msgid "Hide this screen"
+msgid "Hide zap errors"
 msgstr ""
 
-msgid "Hide zap errors"
+msgid "Hide/Show the console screen"
 msgstr ""
 
 msgid "Hierarchy info"
@@ -9512,6 +9546,9 @@ msgid "History next"
 msgstr ""
 
 msgid "History zap..."
+msgstr ""
+
+msgid "Hmong"
 msgstr ""
 
 #
@@ -9671,6 +9708,9 @@ msgid "IP address"
 msgstr "IP Netfang"
 
 msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
+msgstr ""
+
+msgid "IP of fallback remote receiver"
 msgstr ""
 
 msgid "IPK Installer"
@@ -9887,14 +9927,20 @@ msgstr ""
 msgid "Image Backup"
 msgstr ""
 
-msgid "Image Flash Actions"
+msgid "Image Backup Actions"
 msgstr ""
 
 #, python-format
-msgid "Image created on: %s/%s-%s-%s-backup-%s_%s.zip"
+msgid "Image Backup To %s"
 msgstr ""
 
-msgid "Image creation failed - "
+msgid "Image Flash Actions"
+msgstr ""
+
+msgid "Image created:"
+msgstr ""
+
+msgid "Image creation failed!"
 msgstr ""
 
 msgid "ImageWizard"
@@ -9909,6 +9955,21 @@ msgid "Immediately exit the wizard (Debug mode only)"
 msgstr ""
 
 msgid "Immediately restart selected devices."
+msgstr ""
+
+msgid "Import channels and/or EPG from remote receiver URL also when the receiver is getting out of standby"
+msgstr ""
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver is booted"
+msgstr ""
+
+msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
+msgstr ""
+
+msgid "Import from remote receiver URL"
+msgstr ""
+
+msgid "Import remote receiver URL"
 msgstr ""
 
 msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
@@ -10621,6 +10682,9 @@ msgstr ""
 msgid "Kurdish"
 msgstr ""
 
+msgid "Kurdish (Sorani)"
+msgstr ""
+
 msgid "Kurdistan"
 msgstr ""
 
@@ -11262,6 +11326,9 @@ msgid "Maintain your multi boot device."
 msgstr ""
 
 msgid "Make"
+msgstr ""
+
+msgid "Make it possible to manually initiate the channels import and/or EPG via the extension menu"
 msgstr ""
 
 #
@@ -12149,8 +12216,7 @@ msgstr ""
 msgid "MultiTranscoding"
 msgstr ""
 
-#, python-format
-msgid "Multiboot Image created on: %s/%s-%s-%s-backup-%s_usb.zip"
+msgid "Multiboot Image created:"
 msgstr ""
 
 msgid "Multimedia Packages"
@@ -12220,6 +12286,9 @@ msgstr ""
 
 #, python-format
 msgid "NOTE: These %d directories/files exist and will be overwritten!"
+msgstr ""
+
+msgid "NOTE: While the console screen is hidden from view the buttons are still active. Pressing any enabled button will cause the screen to reappear but the button will not be actioned."
 msgstr ""
 
 msgid "NOW"
@@ -12565,9 +12634,6 @@ msgstr "Enginn (studdur) DVDROM fannst!"
 msgid "No Connection"
 msgstr "Engin tenging"
 
-msgid "No Devices Found !!"
-msgstr ""
-
 #
 #, fuzzy
 msgid "No ECM PIDs available"
@@ -12768,9 +12834,6 @@ msgstr ""
 msgid "No updates available."
 msgstr ""
 
-msgid "No updates were available.  Please try again later."
-msgstr ""
-
 msgid "No valid device detected - Press OK"
 msgstr ""
 
@@ -12811,11 +12874,6 @@ msgstr ""
 #
 msgid "No, but restart from begin"
 msgstr "Nei, en byrja frá byrjun"
-
-#
-#, fuzzy
-msgid "No, do not backup a image"
-msgstr "Nei, ekki gera neitt."
 
 #
 msgid "No, do nothing."
@@ -12991,9 +13049,6 @@ msgstr ""
 
 msgctxt "now/next: 'now' event label"
 msgid "Now"
-msgstr ""
-
-msgid "Now building the Backup Image"
 msgstr ""
 
 msgid "Now save time shift as movie and continues recording"
@@ -13264,10 +13319,16 @@ msgstr ""
 msgid "Open the Channel Selection Settings screen"
 msgstr ""
 
+msgid "Open the Image information"
+msgstr ""
+
 msgid "Open the Plugin Browser"
 msgstr ""
 
 msgid "Open the Plugin Browser settings screen"
+msgstr ""
+
+msgid "Open the Storage Device information"
 msgstr ""
 
 msgid "Open the VirtualKeyBoard for text entry"
@@ -13634,9 +13695,6 @@ msgstr ""
 msgid "Path '%s' missing!"
 msgstr ""
 
-msgid "Path to save not exist: '/tmp/'"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Pause"
@@ -13906,13 +13964,8 @@ msgstr ""
 msgid "Please add titles to the compilation."
 msgstr "Vinsamlega bætið við titlum við efnið."
 
-msgid "Please be patient, a backup will now be made,\n"
+msgid "Please be patient."
 msgstr ""
-
-#
-#, fuzzy
-msgid "Please check the manual of the receiver"
-msgstr "Sláðu inn nafn á nýju möppunni"
 
 msgid "Please choose an extension..."
 msgstr "Vinsamlega veldu viðbót..."
@@ -13995,11 +14048,6 @@ msgstr "Ýttu á OK til að halda áfram."
 msgid "Please press OK when ready"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Please select a backup destination"
-msgstr "Vinsamlega veljið tæki til að nota sem afritunar stað"
-
 msgid "Please select a default EPG type..."
 msgstr ""
 
@@ -14063,6 +14111,9 @@ msgstr ""
 #
 msgid "Please select the sub-service to record:"
 msgstr "Velja undirrás til að taka upp..."
+
+msgid "Please select the target location to save the backup:"
+msgstr ""
 
 msgid "Please select what to do after flash of the following image:"
 msgstr ""
@@ -14184,11 +14235,6 @@ msgstr "Vinsamlega bíðið..."
 msgid "Please wait... Loading list..."
 msgstr "Vinsamlega bíðið.. les inn lista..."
 
-#
-#, fuzzy
-msgid "Please wait...almost ready! "
-msgstr "Vinsamlega bíðið..."
-
 msgid "Plug in USB device"
 msgstr ""
 
@@ -14279,6 +14325,9 @@ msgstr "Tengi D"
 msgid "Port number for the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr ""
 
+msgid "Port of fallback remote receiver"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Portugal"
@@ -14318,6 +14367,9 @@ msgstr "Uppsetning mótors"
 #
 msgid "Positioner setup"
 msgstr "Uppsetning mótors"
+
+msgid "Possible causes could be:"
+msgstr ""
 
 msgid "Power"
 msgstr ""
@@ -14621,9 +14673,6 @@ msgstr ""
 msgid "Priority"
 msgstr "Forgangur"
 
-msgid "Probable causes could be"
-msgstr ""
-
 msgid "Proc model"
 msgstr ""
 
@@ -14870,6 +14919,9 @@ msgid "Quick EPG"
 msgstr "Hratt"
 
 msgid "Quick Launch Menu"
+msgstr ""
+
+msgid "Quick Menu Actions"
 msgstr ""
 
 msgid "Quick Menu..."
@@ -15736,6 +15788,9 @@ msgstr ""
 msgid "Restart Network Adapter"
 msgstr ""
 
+msgid "Restart OSCam"
+msgstr ""
+
 msgid "Restart enigma"
 msgstr ""
 
@@ -15995,6 +16050,10 @@ msgstr ""
 msgid "Running Myrestore script, Please wait ..."
 msgstr ""
 
+#, python-format
+msgid "Running command %d: '%s'."
+msgstr ""
+
 #
 msgid "Russian"
 msgstr "Rússneska"
@@ -16113,6 +16172,9 @@ msgstr ""
 msgid "Same as in active"
 msgstr ""
 
+msgid "Same as stream"
+msgstr "Stoppa prófun"
+
 msgid "Same behavior as current animation"
 msgstr ""
 
@@ -16205,6 +16267,9 @@ msgstr ""
 msgid "Save EPG data"
 msgstr ""
 
+msgid "Save Log"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Save all changed settings and exit"
@@ -16258,6 +16323,9 @@ msgid "Save the left column directory location on exit."
 msgstr ""
 
 msgid "Save the log changes and exit"
+msgstr ""
+
+msgid "Save the log of the console messages to a file"
 msgstr ""
 
 msgid "Save the right column directory location on exit."
@@ -16712,6 +16780,9 @@ msgid "Select 'Yes' to show skin packages in the Download Plugins screen."
 msgstr ""
 
 msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen."
+msgstr ""
+
+msgid "Select 'Yes' to show subscription packages in the Download Plugins screen."
 msgstr ""
 
 msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
@@ -17349,6 +17420,9 @@ msgstr ""
 msgid "Select the time zone within the area or region."
 msgstr "Samsetning nafna á upptökum"
 
+msgid "Select the timer from the fallback tuner by default"
+msgstr "velja slóð að mynd"
+
 msgid "Select the tuner that controls the motorized dish."
 msgstr ""
 
@@ -17741,6 +17815,9 @@ msgstr ""
 msgid "Set action for 'Info' key"
 msgstr "Veldu afrits skrár"
 
+msgid "Set alternative fallback tuners for DVB-T/C or ATSC"
+msgstr ""
+
 msgid "Set current CEC address as fixed address"
 msgstr ""
 
@@ -17780,6 +17857,9 @@ msgstr ""
 msgid "Set the MAC address of your %s %s."
 msgstr "Breyta nafnaþjóns stillingum %s %sins."
 
+msgid "Set the User ID of the OpenWebif from your fallback tuner"
+msgstr ""
+
 #, fuzzy
 msgid "Set the aspect ratio of the service picons."
 msgstr "Samsetning nafna á upptökum"
@@ -17806,6 +17886,12 @@ msgid "Set the jump-size of the seekbar."
 msgstr ""
 
 msgid "Set the number of lines to be saved for 'stout' and 'sterr' output in scripts."
+msgstr ""
+
+msgid "Set the password of the OpenWebif from your fallback tuner"
+msgstr ""
+
+msgid "Set the port of the OpenWebif from your fallback tuner"
 msgstr ""
 
 #, fuzzy
@@ -17840,6 +17926,9 @@ msgid "Set the time to hide the second infobar. The bar also disappears on press
 msgstr ""
 
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, PowerTimer, SleepTimer etc."
+msgstr ""
+
+msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
 msgstr ""
 
 msgid "Set the type of the progress indication in the channel selection screen."
@@ -18377,6 +18466,9 @@ msgstr ""
 msgid "Show Source packages"
 msgstr ""
 
+msgid "Show Subscription packages"
+msgstr ""
+
 msgid "Show Subservices Of Active Service"
 msgstr ""
 
@@ -18653,6 +18745,18 @@ msgid "Show next service information screen"
 msgstr ""
 
 msgid "Show next system information screen"
+msgstr ""
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL did not complete"
+msgstr ""
+
+msgid "Show notification when import channels and/or EPG from remote receiver URL is completed"
+msgstr ""
+
+msgid "Show notification when import channels was not successful"
+msgstr ""
+
+msgid "Show notification when import channels was successful"
 msgstr ""
 
 msgid "Show or hide the extended description, (skin dependent)."
@@ -18978,6 +19082,9 @@ msgstr "slökkva"
 
 msgid "Shutdown"
 msgstr "Slökkva"
+
+msgid "Shutdown OSCam"
+msgstr ""
 
 msgid "Shutting down. Please wait..."
 msgstr ""
@@ -19571,6 +19678,9 @@ msgstr ""
 msgid "Speed"
 msgstr ""
 
+msgid "Spinner Position"
+msgstr ""
+
 #
 msgid "Split preview mode"
 msgstr "Skipta forsýn"
@@ -19671,6 +19781,9 @@ msgid "Start test"
 msgstr "Byrja prófun"
 
 msgid "Start the Kexec initialization"
+msgstr ""
+
+msgid "Start the backup of the selected image"
 msgstr ""
 
 msgid "Start the highlighted plugin"
@@ -19966,6 +20079,9 @@ msgstr ""
 msgid "Style:"
 msgstr ""
 
+msgid "Subscription Packages"
+msgstr ""
+
 msgid "Subservice Actions"
 msgstr ""
 
@@ -20057,9 +20173,6 @@ msgstr "Sunnudagur"
 #
 msgid "Sunday"
 msgstr "Sunnudagur"
-
-msgid "Support at"
-msgstr ""
 
 #
 #, fuzzy
@@ -20712,6 +20825,9 @@ msgid ""
 "What do you want to do ?"
 msgstr ""
 
+msgid "The backup can take up to about 15 minutes to complete."
+msgstr ""
+
 msgid "The backup failed"
 msgstr ""
 
@@ -21359,10 +21475,6 @@ msgstr ""
 msgid "Time jump: Use normal fast forward for speeds"
 msgstr ""
 
-#, python-format
-msgid "Time required for this process: %s"
-msgstr ""
-
 msgid "Time shift buffer delete after zap"
 msgstr ""
 
@@ -21413,6 +21525,9 @@ msgstr ""
 #, fuzzy
 msgid "Time style"
 msgstr "Tímastillinga val"
+
+msgid "Time taken for the backup:"
+msgstr ""
 
 msgid "Time to execute command or script"
 msgstr ""
@@ -21541,10 +21656,11 @@ msgstr "Titla stillingar"
 msgid "To complete the setup the %s %s must connect to the Internet.  Connect the %s %s to the Internet now."
 msgstr ""
 
-#
-#, fuzzy
-msgid "To restore the image:"
-msgstr "Já, settu inn afritið núna"
+msgid "To restore the image check the manual or documentation for the receiver."
+msgstr ""
+
+msgid "To restore the image use 'OnlineFlash' option in the 'SoftwareManager' menu."
+msgstr ""
 
 #, python-format
 msgid "To where would you like to extract '%s'?"
@@ -22024,6 +22140,9 @@ msgstr ""
 msgid "URL"
 msgstr ""
 
+msgid "URL of fallback remote receiver"
+msgstr ""
+
 msgid "URL of fallback remote receiver."
 msgstr ""
 
@@ -22087,6 +22206,9 @@ msgstr "Opin rás"
 
 #, python-format
 msgid "Unexpected error accessing WebIF: %s"
+msgstr ""
+
+msgid "Unexpected error while retrieving fallback tuner's timer information"
 msgstr ""
 
 msgid "UnhandledKey"
@@ -22389,9 +22511,6 @@ msgstr ""
 msgid "Use Netmed EPG information when it is available."
 msgstr ""
 
-msgid "Use OnlineFlash in SoftwareManager"
-msgstr ""
-
 msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
 msgstr ""
 
@@ -22540,13 +22659,13 @@ msgstr ""
 msgid "Use the UP and DOWN buttons to select your locale/language then press the OK button to continue."
 msgstr ""
 
+msgid "Use the UP/DOWN buttons to select the installed image to be backed up. Press the 'Start' (GREEN) button to start the backup."
+msgstr ""
+
 msgid "Use the alternative or the conventional radio mode."
 msgstr ""
 
 msgid "Use the current selection and exit"
-msgstr ""
-
-msgid "Use the cursor keys to select an installed image and then Start button."
 msgstr ""
 
 msgid "Use the extended List"
@@ -22602,6 +22721,9 @@ msgstr ""
 
 msgid "User Feed URL"
 msgstr ""
+
+msgid "User ID"
+msgstr "Stillt af notanda"
 
 msgid "User comments"
 msgstr ""
@@ -22756,18 +22878,8 @@ msgstr ""
 msgid "Version"
 msgstr ""
 
-#
-#, fuzzy, python-format
-msgid "Version %s %s"
-msgstr "Ný útgáfa:"
-
 msgid "Version: "
 msgstr ""
-
-#
-#, fuzzy, python-format
-msgid "Version: %s"
-msgstr "Ný útgáfa:"
 
 #
 msgid "Vertical"
@@ -23301,6 +23413,15 @@ msgid "When enabled the receiver will automatically return to standby when the T
 msgstr ""
 
 msgid "When enabled the receiver will automatically wake from standby when the TV is turned on."
+msgstr ""
+
+msgid "When enabled the timer from the fallback tuner is imported"
+msgstr ""
+
+msgid "When enabled the timer from the fallback tuner is the default timer"
+msgstr ""
+
+msgid "When enabled you can customize the OpenWebIf settings for the fallback tuner"
 msgstr ""
 
 msgid "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
@@ -24073,12 +24194,6 @@ msgstr ""
 msgid "Zulu"
 msgstr ""
 
-msgid "[Enigma2 Settings]\n"
-msgstr ""
-
-msgid "[Image Info]\n"
-msgstr ""
-
 msgid "[Timeshift] Merging records failed!"
 msgstr ""
 
@@ -24181,9 +24296,6 @@ msgstr ""
 
 #, python-format
 msgid "bc%d"
-msgstr ""
-
-msgid "because of the used file system the back-up\n"
 msgstr ""
 
 #
@@ -24767,11 +24879,6 @@ msgstr ""
 msgid "on READ ONLY medium."
 msgstr "á READ ONLY disk."
 
-#
-#, fuzzy
-msgid "on how to restore the image"
-msgstr "Viltu taka út pakkann:\n"
-
 msgid "orange"
 msgstr ""
 
@@ -25197,9 +25304,6 @@ msgstr ""
 msgid "width"
 msgstr ""
 
-msgid "will take about 1-15 minutes for this system\n"
-msgstr ""
-
 msgid "winter sport"
 msgstr ""
 
@@ -25232,6 +25336,89 @@ msgstr "já (halda fæðirásum)"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy, python-format
+#~ msgid "Backup to destination: %s"
+#~ msgstr "Afrita kerfis stillingar"
+
+#
+#, fuzzy
+#~ msgid "Cannot create backup directory"
+#~ msgstr "búa til möppu"
+
+#, fuzzy
+#~ msgid "Create:"
+#~ msgstr "Bitahraði:"
+
+#, fuzzy
+#~ msgid "Error reading bouquets.tv"
+#~ msgstr "Breyta rásavanda lista"
+
+#
+#, fuzzy
+#~ msgid "No, do not backup a image"
+#~ msgstr "Nei, ekki gera neitt."
+
+#
+#, fuzzy
+#~ msgid "Please check the manual of the receiver"
+#~ msgstr "Sláðu inn nafn á nýju möppunni"
+
+#
+#, fuzzy
+#~ msgid "Please select a backup destination"
+#~ msgstr "Vinsamlega veljið tæki til að nota sem afritunar stað"
+
+#
+#, fuzzy
+#~ msgid "Please wait...almost ready! "
+#~ msgstr "Vinsamlega bíðið..."
+
+#
+#, fuzzy
+#~ msgid "To restore the image:"
+#~ msgstr "Já, settu inn afritið núna"
+
+#
+#, fuzzy, python-format
+#~ msgid "Version %s %s"
+#~ msgstr "Ný útgáfa:"
+
+#
+#, fuzzy, python-format
+#~ msgid "Version: %s"
+#~ msgstr "Ný útgáfa:"
+
+#
+#, fuzzy
+#~ msgid "on how to restore the image"
+#~ msgstr "Viltu taka út pakkann:\n"
+
+#~ msgid "Execution finished!!"
+#~ msgstr "Keyrslu lokið!!"
+
+#
+#, fuzzy
+#~ msgid "Execution progress:"
+#~ msgstr "Framganga keyrslu:"
+
+#
+#, fuzzy
+#~ msgid "24"
+#~ msgstr "2"
+
+#
+#, fuzzy
+#~ msgid "25"
+#~ msgstr "2"
+
+#
+#, fuzzy
+#~ msgid "30"
+#~ msgstr "0"
+
+#~ msgid "Backup failed."
+#~ msgstr "Afritun tókst ekki."
 
 #~ msgid "About..."
 #~ msgstr "Um..."
