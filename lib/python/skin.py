@@ -153,9 +153,7 @@ def InitSkins():
 		getDesktop(GUI_SKIN_ID).resize(eSize(resolution[0], resolution[1]))
 	runCallbacks = True
 	# Load all XML templates.
-	skinTemplatesFileName = resolveFilename(SCOPE_SKINS, pathjoin(dirname(currentPrimarySkin), "skinTemplates.xml"))
-	if isfile(skinTemplatesFileName):
-		loadSkinTemplates(skinTemplatesFileName)
+	reloadSkinTemplates()
 
 
 # Method to load a skin XML file into the skin data structures.
@@ -203,22 +201,39 @@ def loadSkin(filename, scope=SCOPE_SKINS, desktop=getDesktop(GUI_SKIN_ID), scree
 	return False
 
 
-# Method to load a skinTemplates.xml if one exists.
+# Method to load a skinTemplates.xml if one exists or load the templates from the screens.
 #
 def loadSkinTemplates(skinTemplatesFileName):
-	print(f"[Skin] Loading XML templates from '{skinTemplatesFileName}'.")
-	domStyles = fileReadXML(skinTemplatesFileName, source=MODULE_NAME)
-	if domStyles is not None:
-		for template in domStyles.findall("template"):
-			component = template.get("component")
-			name = template.get("name")
-			if component and name:
-				if component in componentTemplates:
-					componentTemplates[component][name] = template
-				else:
-					componentTemplates[component] = {name: template}
-		if config.crash.debugScreens.value:
-			print(f"[Skin] DEBUG: componentTemplates '{componentTemplates}'.")
+	if isfile(skinTemplatesFileName):
+		print(f"[Skin] Loading XML templates from '{skinTemplatesFileName}'.")
+		domStyles = fileReadXML(skinTemplatesFileName, source=MODULE_NAME)
+		if domStyles is not None:
+			for template in domStyles.findall("template"):
+				component = template.get("component")
+				name = template.get("name")
+				if component and name:
+					if component in componentTemplates:
+						componentTemplates[component][name] = template
+					else:
+						componentTemplates[component] = {name: template}
+	else:
+		for screen in domScreens:
+			element, path = domScreens.get(screen, (None, None))
+			for template in element.findall(".//widget/templates/template"):
+				component = template.get("component")
+				name = template.get("name")
+				if component and name:
+					if component in componentTemplates:
+						componentTemplates[component][name] = template
+					else:
+						componentTemplates[component] = {name: template}
+	if config.crash.debugScreens.value:
+		print(f"[Skin] DEBUG: componentTemplates '{componentTemplates}'.")
+
+
+def reloadSkinTemplates():
+	skinTemplatesFileName = resolveFilename(SCOPE_SKINS, pathjoin(dirname(currentPrimarySkin), "skinTemplates.xml"))
+	loadSkinTemplates(skinTemplatesFileName)
 
 
 def reloadSkins():
@@ -2048,14 +2063,6 @@ def readSkin(screen, skin, names, desktop):
 				raise SkinError(f"Component with name '{widgetName}' was not found in skin of screen '{myName}'")
 			# assert screen[widgetName] is not Source
 			collectAttributes(attributes, widget, context, skinPath, ignore=("name",))
-			for widgetTemplate in widget.findall("template"):
-				widgetTemplateComponent = widgetTemplate.get("component")
-				widgetTemplateName = widgetTemplate.get("name")
-				if widgetTemplateComponent and widgetTemplateName:
-					if widgetTemplateComponent in componentTemplates:
-						componentTemplates[widgetTemplateComponent][widgetTemplateName] = widgetTemplateComponent
-					else:
-						componentTemplates[widgetTemplateComponent] = {widgetTemplateName: widgetTemplateComponent}
 		elif widgetSource:
 			# print(f"[Skin] DEBUG: Widget source='{widgetSource}'.")
 			while True:  # Get corresponding source until we found a non-obsolete source.
