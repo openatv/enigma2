@@ -1,6 +1,6 @@
 from enigma import eListboxServiceContent, eListbox, eServiceCenter, eServiceReference, gFont, eRect, eSize
 
-from Components.config import config, ConfigSelection, ConfigSubsection
+from Components.config import config, ConfigYesNo, ConfigSelection, ConfigSubsection
 from Components.GUIComponent import GUIComponent
 from Components.Renderer.Picon import getPiconName
 from skin import parseColor, parseFont
@@ -11,6 +11,16 @@ from Tools.TextBoundary import getTextBoundarySize
 
 def InitServiceListSettings():
 	config.channelSelection = ConfigSubsection()
+	config.channelSelection.showNumber = ConfigYesNo(default=True)
+	config.channelSelection.showLCN = ConfigYesNo(default=False)
+	config.channelSelection.showPicon = ConfigYesNo(default=False)
+	config.channelSelection.showServiceTypeIcon = ConfigYesNo(default=False)
+	config.channelSelection.showCryptoIcon = ConfigYesNo(default=False)
+	config.channelSelection.recordIndicatorMode = ConfigSelection(default=2, choices=[
+		(0, _("None")),
+		(1, _("Record Icon")),
+		(2, _("Colored Text"))
+	])
 	choiceList = [("", _("Legacy mode"))]
 	config.channelSelection.screenStyle = ConfigSelection(default="", choices=choiceList)
 	config.channelSelection.widgetStyle = ConfigSelection(default="", choices=choiceList)

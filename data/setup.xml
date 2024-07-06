@@ -80,8 +80,10 @@
 		<item level="1" text="Always show bouquets" description="Select 'Yes' to always show the bouquet screen first when opening the channel list. Select 'No' to open the channel list using the current bouquet.">config.usage.show_bouquetalways</item>
 		<item level="1" text="Change bouquets in quickzap" description="When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels.">config.usage.quickzap_bouquet_change</item>
 		<item level="1" text="Channel list preview" description="Select 'Yes' to enable preview of channels while in the EPG list. Press 'OK' to preview the currently selected channel. Press 'OK' again to exit the EPG and zap to the selected channel. Press 'EXIT' to exit the EPG and return to the previously selected channel.">config.usage.servicelistpreview_mode</item>
-		<item level="1" text="Channel list show MiniTV*" description="Channel list show MiniTV when Skin use.">config.usage.use_pig</item>
-		<item level="1" text="Channel list service mode*" description="This option allows you to choose from the two channel lists that are available." requires="!config.usage.use_pig">config.usage.servicelist_mode</item>
+		<if conditional="config.channelSelection.screenStyle.value == ''">
+			<item level="1" text="Channel list show MiniTV*" description="Channel list show MiniTV when Skin use.">config.usage.use_pig</item>
+			<item level="1" text="Channel list service mode*" description="This option allows you to choose from the two channel lists that are available." requires="!config.usage.use_pig">config.usage.servicelist_mode</item>
+		</if>
 		<item level="1" text="Channel list on mode change" description="Select 'Yes' to show the channel list after switching between Radio and TV modes.">config.usage.show_servicelist</item>
 		<item level="1" text="Channel list cursor behavior" description="Configure the cursor behavior in the channel selection list. When opening the channel selection list you can remain on the current service or already select up/down and you are able to revert the B+/B- buttons.">config.usage.servicelist_cursor_behavior</item>
 		<item level="1" text="Enable multiple bouquets" description="Services may be grouped in bouquets. When enabled, you can use more than one bouquet.">config.usage.multibouquet</item>
@@ -91,25 +93,34 @@
 		<item level="1" text="Panic channel" description="Pressing the panic button will zap you to this channel number in your first bouquet.">config.usage.panicchannel</item>
 		<item level="2" text="show picons in quickzap" description="Configure if service picons will be shown in quickzap.">config.usage.numzappicon</item>
 		<item level="1" text="Jump first press in channel selection" description="This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first), when 'Quick Actions' preset actions are performed. ">config.usage.show_channel_jump_in_servicelist</item>
-		<item level="1" text="show picons in service list" description="Configure if service picons will be shown in the service list.">config.usage.service_icon_enable</item>
-		<item level="1" text="Service picons aspect ratio" description="Set the aspect ratio of the service picons." requires="config.usage.service_icon_enable">config.usage.servicelist_picon_ratio</item>
-		<item level="1" text="Service picons downsize" description="Reduce the size of the service picons for more line spacing between them." requires="config.usage.service_icon_enable">config.usage.servicelist_picon_downsize</item>
-		<item level="1" text="Show service type icons" description="Configure if and how service type icons will be shown.">config.usage.servicetype_icon_mode</item>
-		<item level="1" text="Show crypto icons" description="Configure if and how crypto icons will be shown in the channel selection list.">config.usage.crypto_icon_mode</item>
-		<item level="1" text="Show record indicator" description="Configure if and how the record indicator will be shown in the channel selection list.">config.usage.record_indicator_mode</item>
-		<item level="1" text="Show two lines per entry" description="Show service name and event description among each other instead of side by side. After a change, an adjustment of the number of lines is required.">config.usage.servicelist_twolines</item>
-		<item level="1" text="Alignment channel number" description="Vertical alignment for the service number." requires="config.usage.servicelist_twolines">config.usage.servicelist_servicenumber_valign</item>
-		<item level="1" text="Alignment event-progress" description="Vertical alignment for the event-progress." requires="config.usage.servicelist_twolines">config.usage.servicelist_eventprogress_valign</item>
-		<item level="0" text="Show channel numbers in channel selection" description="When enabled, show channel numbers in the channel selection screen.">config.usage.show_channel_numbers_in_servicelist</item>
-		<item level="1" text="Show event-progress in channel selection" description="Set the type of the progress indication in the channel selection screen." requires="config.usage.servicelist_twolines">config.usage.servicelist_eventprogress_view_mode</item>
-		<item level="0" text="Show event-progress in channel selection" description="Set the type of the progress indication in the channel selection screen." requires="!config.usage.servicelist_twolines">config.usage.show_event_progress_in_servicelist</item>
-		<item level="1" text="Show columns" description="Configure if and how wide the service name column will be shown in the channel selection list." requires="!config.usage.servicelist_twolines">config.usage.servicelist_column</item>
-		<item level="1" text="Number of rows" description="This allows you change the number of rows shown." requires="config.usage.servicelist_twolines">config.usage.serviceitems_per_page_twolines</item>
-		<item level="1" text="Number of rows" description="This allows you change the number of rows shown." requires="!config.usage.servicelist_twolines">config.usage.serviceitems_per_page</item>
-		<item level="1" text="Service number font size" description="This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.usage.servicenum_fontsize</item>
-		<item level="1" text="Service name font size" description="This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.usage.servicename_fontsize</item>
-		<item level="1" text="Service info font size" description="This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.usage.serviceinfo_fontsize</item>
-		<item level="1" text="Progress info font size" description="This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.usage.progressinfo_fontsize</item>
+		<if conditional="config.channelSelection.screenStyle.value == ''">
+			<item level="0" text="Show channel numbers in channel selection" description="When enabled, show channel numbers in the channel selection screen.">config.usage.show_channel_numbers_in_servicelist</item>
+			<item level="1" text="show picons in service list" description="Configure if service picons will be shown in the service list.">config.usage.service_icon_enable</item>
+			<item level="1" text="Service picons aspect ratio" description="Set the aspect ratio of the service picons." requires="config.usage.service_icon_enable">config.usage.servicelist_picon_ratio</item>
+			<item level="1" text="Service picons downsize" description="Reduce the size of the service picons for more line spacing between them." requires="config.usage.service_icon_enable">config.usage.servicelist_picon_downsize</item>
+			<item level="1" text="Show service type icons" description="Configure if and how service type icons will be shown.">config.usage.servicetype_icon_mode</item>
+			<item level="1" text="Show crypto icons" description="Configure if and how crypto icons will be shown in the channel selection list.">config.usage.crypto_icon_mode</item>
+			<item level="1" text="Show record indicator" description="Configure if and how the record indicator will be shown in the channel selection list.">config.usage.record_indicator_mode</item>
+			<item level="1" text="Show two lines per entry" description="Show service name and event description among each other instead of side by side. After a change, an adjustment of the number of lines is required.">config.usage.servicelist_twolines</item>
+			<item level="1" text="Alignment channel number" description="Vertical alignment for the service number." requires="config.usage.servicelist_twolines">config.usage.servicelist_servicenumber_valign</item>
+			<item level="1" text="Alignment event-progress" description="Vertical alignment for the event-progress." requires="config.usage.servicelist_twolines">config.usage.servicelist_eventprogress_valign</item>
+			<item level="1" text="Show event-progress in channel selection" description="Set the type of the progress indication in the channel selection screen." requires="config.usage.servicelist_twolines">config.usage.servicelist_eventprogress_view_mode</item>
+			<item level="0" text="Show event-progress in channel selection" description="Set the type of the progress indication in the channel selection screen." requires="!config.usage.servicelist_twolines">config.usage.show_event_progress_in_servicelist</item>
+			<item level="1" text="Show columns" description="Configure if and how wide the service name column will be shown in the channel selection list." requires="!config.usage.servicelist_twolines">config.usage.servicelist_column</item>
+			<item level="1" text="Number of rows" description="This allows you change the number of rows shown." requires="config.usage.servicelist_twolines">config.usage.serviceitems_per_page_twolines</item>
+			<item level="1" text="Number of rows" description="This allows you change the number of rows shown." requires="!config.usage.servicelist_twolines">config.usage.serviceitems_per_page</item>
+			<item level="1" text="Service number font size" description="This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.usage.servicenum_fontsize</item>
+			<item level="1" text="Service name font size" description="This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.usage.servicename_fontsize</item>
+			<item level="1" text="Service info font size" description="This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.usage.serviceinfo_fontsize</item>
+			<item level="1" text="Progress info font size" description="This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.usage.progressinfo_fontsize</item>
+		<else />
+			<item level="0" text="Show channel numbers in channel selection" description="When enabled, show channel numbers in the channel selection screen.">config.channelSelection.showNumber</item>
+			<item level="1" text="Show LCN in channel selection" description="When enabled, show LCN in the channel selection screen.">config.channelSelection.showLCN</item>
+			<item level="1" text="show picons in service list" description="Configure if service picons will be shown in the service list.">config.channelSelection.showPicon</item>
+			<item level="1" text="Show service type icons" description="Configure if service type icons will be shown.">config.channelSelection.showServiceTypeIcon</item>
+			<item level="1" text="Show crypto icons" description="Configure if crypto icons will be shown in the channel selection list.">config.channelSelection.showCryptoIcon</item>
+			<item level="1" text="Show record indicator" description="Configure if and how the record indicator will be shown in the channel selection list.">config.channelSelection.recordIndicatorMode</item>
+		</if>
 		<item level="1" text="Zap mode" description="Setup how to control the channel changing." requires="ZapMode">config.misc.zapmode</item>
 		<item level="2" text="Channel zap delay mode" description="Setup delay mode to zap to channels.">config.usage.numzaptimeoutmode</item>
 		<item level="2" text="Channel zap delay first button" description="User defined delay when you press the first button to zap to the channel." requires="config.usage.numzaptimeoutmode" value="userdefined">config.usage.numzaptimeout1</item>
