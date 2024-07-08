@@ -201,6 +201,30 @@ def loadSkin(filename, scope=SCOPE_SKINS, desktop=getDesktop(GUI_SKIN_ID), scree
 	return False
 
 
+def reloadSkins():
+	global colors, domScreens, fonts, menus, parameters, setups, switchPixmap
+	domScreens.clear()
+	colors.clear()
+	colors = {
+		"key_back": gRGB(0x00313131),
+		"key_blue": gRGB(0x0018188B),
+		"key_green": gRGB(0x001F771F),
+		"key_red": gRGB(0x009F1313),
+		"key_text": gRGB(0x00FFFFFF),
+		"key_yellow": gRGB(0x00A08500)
+	}
+	fonts.clear()
+	fonts = {
+		"Body": ("Regular", 18, 22, 16),
+		"ChoiceList": ("Regular", 20, 24, 18)
+	}
+	menus.clear()
+	parameters.clear()
+	setups.clear()
+	switchPixmap.clear()
+	InitSkins()
+
+
 # Method to load a skinTemplates.xml if one exists or load the templates from the screens.
 #
 def loadSkinTemplates(skinTemplatesFileName):
@@ -234,30 +258,6 @@ def loadSkinTemplates(skinTemplatesFileName):
 def reloadSkinTemplates():
 	skinTemplatesFileName = resolveFilename(SCOPE_SKINS, pathjoin(dirname(currentPrimarySkin), "skinTemplates.xml"))
 	loadSkinTemplates(skinTemplatesFileName)
-
-
-def reloadSkins():
-	global colors, domScreens, fonts, menus, parameters, setups, switchPixmap
-	domScreens.clear()
-	colors.clear()
-	colors = {
-		"key_back": gRGB(0x00313131),
-		"key_blue": gRGB(0x0018188B),
-		"key_green": gRGB(0x001F771F),
-		"key_red": gRGB(0x009F1313),
-		"key_text": gRGB(0x00FFFFFF),
-		"key_yellow": gRGB(0x00A08500)
-	}
-	fonts.clear()
-	fonts = {
-		"Body": ("Regular", 18, 22, 16),
-		"ChoiceList": ("Regular", 20, 24, 18)
-	}
-	menus.clear()
-	parameters.clear()
-	setups.clear()
-	switchPixmap.clear()
-	InitSkins()
 
 
 def addCallback(callback):
@@ -497,10 +497,10 @@ def parseGradient(value):
 
 def parseHorizontalAlignment(value):
 	options = {
-		"left": 0,
-		"center": 1,
-		"right": 2,
-		"block": 3
+		"left": 0,  # RT_HALIGN_LEFT,
+		"center": 1,  # RT_HALIGN_CENTER,
+		"right": 2,  # RT_HALIGN_RIGHT,
+		"block": 3  # RT_HALIGN_BLOCK
 	}
 	return parseOptions(options, "horizontalAlignment", value, 0)
 
@@ -773,10 +773,10 @@ def parsePadding(attribute, value):
 
 def parseVerticalAlignment(value):
 	options = {
-		"top": 0,
-		"center": 1,
-		"middle": 1,
-		"bottom": 2
+		"top": 0,  # RT_VALIGN_TOP,
+		"center": 1,  # RT_VALIGN_CENTER,
+		"middle": 1,  # RT_VALIGN_CENTER,
+		"bottom": 2  # RT_VALIGN_BOTTOM
 	}
 	return parseOptions(options, "verticalAlignment", value, 1)
 
@@ -786,10 +786,10 @@ def parseWrap(value):
 		"noWrap": 0,
 		"off": 0,
 		"0": 0,
-		"wrap": 1,
-		"on": 1,
-		"1": 1,
-		"ellipsis": 2
+		"wrap": 1,  # RT_WRAP,
+		"on": 1,  # RT_WRAP,
+		"1": 1,  # RT_WRAP,
+		"ellipsis": 2  # RT_ELLIPSIS
 	}
 	return parseOptions(options, "wrap", value, 0)
 
@@ -931,6 +931,9 @@ class AttributeParser:
 
 	def backgroundPixmap(self, value):
 		self.guiObject.setBackgroundPixmap(parsePixmap(value, self.desktop))
+
+	def base(self, value):
+		pass
 
 	def borderColor(self, value):
 		self.guiObject.setBorderColor(parseColor(value, 0x00FFFFFF))
@@ -1294,11 +1297,6 @@ def applyAllAttributes(guiObject, desktop, attributes, scale=((1, 1), (1, 1))):
 	AttributeParser(guiObject, desktop, scale).applyAll(attributes)
 
 
-def reloadWindowStyles():
-	for screenID in windowStyles:
-		loadSingleSkinData(*windowStyles[screenID])
-
-
 def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN):
 	"""Loads skin data like colors, windowstyle etc."""
 	assert domSkin.tag == "skin", "root element in skin must be 'skin'!"
@@ -1547,6 +1545,11 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 		getDesktop(parseInteger(tag.attrib.get("id", GUI_SKIN_ID))).setMargins(rectange)
 
 
+def reloadWindowStyles():
+	for screenID in windowStyles:
+		loadSingleSkinData(*windowStyles[screenID])
+
+
 class additionalWidget:
 	def __init__(self):
 		pass
@@ -1777,15 +1780,6 @@ class TemplateParser():
 			"panel": self.processPanel
 		}
 
-	def resolvePixmap(self, pixmap):
-		if isinstance(pixmap, str):
-			try:
-				return LoadPixmap(resolveFilename(SCOPE_GUISKIN, pixmap))
-			except Exception as err:
-				print(f"[MultiContent] Error: Invalid image extension!  ({str(err)})")
-			return None
-		return pixmap
-
 	def resolveColor(self, color):
 		if isinstance(color, str):
 			try:
@@ -1796,6 +1790,15 @@ class TemplateParser():
 				print("[MultiContent] Error: Resolve color '{str(err)}'!")
 			return None
 		return color
+
+	def resolvePixmap(self, pixmap):
+		if isinstance(pixmap, str):
+			try:
+				return LoadPixmap(resolveFilename(SCOPE_GUISKIN, pixmap))
+			except Exception as err:
+				print(f"[MultiContent] Error: Invalid image extension!  ({str(err)})")
+			return None
+		return pixmap
 
 	def readTemplate(self, templateName):  # Override in child class.
 		pass
@@ -1825,8 +1828,10 @@ class TemplateParser():
 			alphaBlend = gradientData[4]
 		return direction, alphaBlend, gradientStart, gradientEnd, gradientMid, gradientStartSelected, gradientEndSelected, gradientMidSelected
 
-	def collectColors(self, attributes):
-		for color in ("backgroundColor", "backgroundColorMarked", "backgroundColorMarkedAndSelected", "backgroundColorSelected", "borderColor", "foregroundColor", "foregroundColorMarked", "foregroundColorMarkedAndSelected", "foregroundColorSelected"):
+	def collectColors(self, attributes, widgetColors=None):
+		if widgetColors is None:
+			widgetColors = ()
+		for color in ("backgroundColor", "backgroundColorMarked", "backgroundColorMarkedAndSelected", "backgroundColorSelected", "borderColor", "foregroundColor", "foregroundColorMarked", "foregroundColorMarkedAndSelected", "foregroundColorSelected") + widgetColors:
 			translatedColor = self.resolveColor(attributes.get(color))
 			if translatedColor is not None:
 				attributes[color] = translatedColor
@@ -1834,25 +1839,26 @@ class TemplateParser():
 
 	def collectAttributes(self, node, context, ignore=(), excludeItemIndexes=None, includeItemIndexes=None):
 		horizontalAlignments = {
-			"left": 1,
-			"center": 4,
-			"right": 2,
-			"block": 8
+			# "bidi": 0,  # RT_HALIGN_BIDI,
+			"left": 1,  # RT_HALIGN_LEFT,
+			"center": 4,  # RT_HALIGN_CENTER,
+			"right": 2,  # RT_HALIGN_RIGHT,
+			"block": 8  # RT_HALIGN_BLOCK
 		}
 		verticalAlignments = {
-			"top": 0,
-			"center": 16,
-			"middle": 16,
-			"bottom": 32
+			"top": 0,  # RT_VALIGN_TOP,
+			"center": 16,  # RT_VALIGN_CENTER,
+			"middle": 16,  # RT_VALIGN_CENTER,
+			"bottom": 32  # RT_VALIGN_BOTTOM
 		}
 		wraps = {
 			"noWrap": 0,
 			"off": 0,
 			"0": 0,
-			"wrap": 64,
-			"on": 64,
-			"1": 64,
-			"ellipsis": 128
+			"wrap": 64,  # RT_WRAP,
+			"on": 64,  # RT_WRAP,
+			"1": 64,  # RT_WRAP,
+			"ellipsis": 128  # RT_ELLIPSIS
 		}
 		pixmapTypes = {
 			"blend": eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND,
@@ -1864,17 +1870,16 @@ class TemplateParser():
 		itemIndex = ""
 		for attrib, value in node.items():  # Walk all attributes.
 			if attrib not in ignore:
-				newValue = value
 				match attrib:
 					case "position":
-						pos = newValue
+						pos = value
 					case "size":
-						size = newValue
+						size = value
 					case "index":
 						itemIndex = value
-						skinAttributes.append((attrib, newValue))
+						skinAttributes.append((attrib, value))
 					case _:
-						skinAttributes.append((attrib, newValue))
+						skinAttributes.append((attrib, value))
 		if itemIndex and includeItemIndexes and itemIndex not in includeItemIndexes:
 			return []
 		if itemIndex and excludeItemIndexes and itemIndex in excludeItemIndexes:
