@@ -455,7 +455,7 @@ class ServiceList(GUIComponent):
 
 		rowWidth = self.instance.size().width() - self.listMarginRight
 
-		if mode == self.MODE_NORMAL or not config.usage.show_channel_numbers_in_servicelist.value:
+		if mode != self.MODE_FAVOURITES or not config.usage.show_channel_numbers_in_servicelist.value:
 			channelNumberWidth = 0
 			channelNumberSpace = self.listMarginLeft
 		else:
