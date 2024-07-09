@@ -2121,12 +2121,16 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 				int radius = 0;
 				int edges = 0;
+				int fullSize = 0;
 
 				if (size > 12)
-					radius = PyLong_AsLong(PyTuple_GET_ITEM(item, 12));
+					fullSize = PyLong_AsLong(PyTuple_GET_ITEM(item, 12));
 
 				if (size > 13)
-					edges = PyLong_AsLong(PyTuple_GET_ITEM(item, 13));
+					radius = PyLong_AsLong(PyTuple_GET_ITEM(item, 13));
+
+				if (size > 14)
+					edges = PyLong_AsLong(PyTuple_GET_ITEM(item, 14));
 
 				int x = PyFloat_Check(px) ? (int)PyFloat_AsDouble(px) : PyLong_AsLong(px);
 				int y = PyFloat_Check(py) ? (int)PyFloat_AsDouble(py) : PyLong_AsLong(py);
@@ -2167,7 +2171,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 						colors.push_back(gRGB(midcolor));
 					}
 					colors.push_back(gRGB(color1));
-					painter.setGradient(colors, direction, alphablend);
+					painter.setGradient(colors, direction, alphablend, fullSize);
 					painter.drawRectangle(rect);
 				}
 				else if (selected && pstartColorSelected && pendColorSelected)
@@ -2182,7 +2186,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 						colors.push_back(gRGB(midcolor));
 					}
 					colors.push_back(gRGB(color1));
-					painter.setGradient(colors, direction, alphablend);
+					painter.setGradient(colors, direction, alphablend, fullSize);
 					painter.drawRectangle(rect);
 				}
 
