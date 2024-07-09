@@ -4,6 +4,7 @@ from json import loads
 from os.path import exists
 from re import search, S
 from twisted.internet.reactor import callInThread
+from urllib.parse import unquote
 from urllib.request import build_opener, install_opener, urlopen, HTTPDigestAuthHandler, HTTPHandler, HTTPPasswordMgrWithDefaultRealm, Request
 from xml.etree.ElementTree import XML
 
@@ -274,7 +275,7 @@ class OSCamInfo(Screen, OSCamGlobals):
 				request = client.get("request", {})
 				times = client.get("times", {})
 				currtype = client.get("type", "")
-				readeruser = {"s": "root", "h": "root", "p": client.get("rname_enc", ""), "r": client.get("rname_enc", ""), "c": client.get("name_enc", "")}.get(currtype, na)
+				readeruser = unquote({"s": "root", "h": "root", "p": client.get("rname_enc", ""), "r": client.get("rname_enc", ""), "c": client.get("name_enc", "")}.get(currtype, na))
 				au = {"-1": "ON", "0": "OFF", "1": "ACTIVE"}.get(client.get("au", na), na)
 				ip = connection.get("ip", "")
 				if ip and config.softcam.hideServerName.value:
