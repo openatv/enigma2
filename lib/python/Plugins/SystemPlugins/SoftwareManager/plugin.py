@@ -294,7 +294,7 @@ class BackupHelper(Screen):
 	def doAction(self):
 		doClose = True
 		if self.args == 1:
-			self.session.openWithCallback(self.backupDone, BackupScreen, runBackup=True, closeOnSuccess=False)
+			self.session.openWithCallback(self.backupDone, BackupScreen, runBackup=True, closeOnSuccess=5)
 			doClose = False
 		elif self.args == 2:
 			if isfile(self.fullbackupfilename):
