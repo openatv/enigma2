@@ -249,7 +249,7 @@ class QuickMenu(Screen, ProtectedScreen):
 
 		def backupSettingsCallback():
 			# self.session.openWithCallback(backupDoneCallback, BackupScreen, runBackup=True)
-			self.session.open(BackupScreen, runBackup=True, closeOnSuccess=False)
+			self.session.open(BackupScreen, runBackup=True, closeOnSuccess=5)
 
 		# def backupDoneCallback(retval=None):
 		# 	self.session.open(MessageBox, _("Backup done.") if retval else _("Backup failed!"), MessageBox.TYPE_INFO if retval else MessageBox.TYPE_ERROR, timeout=10, windowTitle=self.getTitle())
