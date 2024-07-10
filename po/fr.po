@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-21 14:25+0000\n"
+"POT-Creation-Date: 2024-07-09 18:37+0000\n"
 "PO-Revision-Date: 2024-02-19 11:02+0000\n"
 "Last-Translator: \"Mr.Servo\" <mrservo@gmx.de>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fr/>\n"
@@ -1188,6 +1188,10 @@ msgstr "%s a été activé."
 #, python-format
 msgid "%s has been disabled."
 msgstr "%s a été désactivé."
+
+#, python-format
+msgid "%s imported from fallback tuner"
+msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -3782,7 +3786,13 @@ msgstr ""
 msgid "Channel Selection Context Menu Navigation Actions"
 msgstr ""
 
+msgid "Channel Selection List"
+msgstr ""
+
 msgid "Channel Selection Navigation Actions"
+msgstr ""
+
+msgid "Channel Selection Screen"
 msgstr ""
 
 msgid "Channel Selection Settings"
@@ -3849,6 +3859,15 @@ msgstr "Chaîne :"
 
 msgid "ChannelEPG Settings"
 msgstr "Paramètres de la chaîne EPG"
+
+msgid "Channels"
+msgstr ""
+
+msgid "Channels and EPG"
+msgstr ""
+
+msgid "Channels only"
+msgstr ""
 
 msgid "Chap."
 msgstr "Chap."
@@ -4243,6 +4262,9 @@ msgstr "Format de couleur"
 msgid "Color space"
 msgstr "Espace colorimétrique"
 
+msgid "Colored Text"
+msgstr ""
+
 msgid "Combined"
 msgstr ""
 
@@ -4389,6 +4411,9 @@ msgstr "Configure si et où l'indicateur d'enregistrement sera affiché dans la 
 msgid "Configure if and how wide the service name column will be shown in the channel selection list."
 msgstr "Configure si et avec quelle largeur les colonnes seront affichées dans la liste de sélection des chaînes."
 
+msgid "Configure if crypto icons will be shown in the channel selection list."
+msgstr ""
+
 msgid "Configure if epg.dat should be saved at all."
 msgstr "Configure si l'epg.dat doit être complétement sauvegardé."
 
@@ -4397,6 +4422,9 @@ msgstr "Choisir si on veut afficher les picons lors du zapping rapide."
 
 msgid "Configure if service picons will be shown in the service list."
 msgstr "Configure si les picons des services seront affichés dans la liste des chaînes."
+
+msgid "Configure if service type icons will be shown."
+msgstr ""
 
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
 msgstr "Configure si les sous-titres doivent basculer entre normal, italique, gras et gras-italique"
@@ -6667,6 +6695,9 @@ msgstr "Sélection de la langue EPG 2"
 msgid "EPG location"
 msgstr "Localisation EPG"
 
+msgid "EPG only"
+msgstr ""
+
 msgid "EPGSearch"
 msgstr "Recherche EPG"
 
@@ -7159,6 +7190,9 @@ msgstr "Entrer l’adresse IP"
 msgid "Enter PIN"
 msgstr "Saisir le code PIN"
 
+msgid "Enter URL"
+msgstr ""
+
 msgid "Enter a description for this timer."
 msgstr ""
 
@@ -7405,6 +7439,15 @@ msgstr ""
 msgid "Error unzipping image '%s'!"
 msgstr ""
 
+msgid "Error when writing epg.dat on the fallback receiver"
+msgstr ""
+
+msgid "Error while moving epg.dat to its destination"
+msgstr ""
+
+msgid "Error while retrieving epg.dat from the fallback receiver"
+msgstr ""
+
 #, python-format
 msgid ""
 "Error while retrieving fallback timer information\n"
@@ -7412,6 +7455,9 @@ msgid ""
 msgstr ""
 "Erreur lors de la récupération des informations de programmation de repli\n"
 "%s"
+
+msgid "Error while retrieving location of epg.dat on the fallback receiver"
+msgstr ""
 
 msgid "Error, unknown Result!"
 msgstr "Erreur, résultat inconnu !"
@@ -7891,6 +7937,9 @@ msgstr "L'API de repli n'a pas renvoyé de résultat valide."
 msgid "Fallback Font *"
 msgstr ""
 
+msgid "Fallback Timer"
+msgstr "Programmation de repli"
+
 msgid "Fallback remote receiver"
 msgstr "Récepteur distant de repli"
 
@@ -7912,8 +7961,8 @@ msgstr "Récepteur à distance de repli pour DVB-C"
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Récepteur à distance de repli pour DVB-T"
 
-msgid "Fallback Timer"
-msgstr "Programmation de repli"
+msgid "Fallback remote receiver setup"
+msgstr ""
 
 msgid "Fallback tuner setup"
 msgstr "Configuration du tuner de repli"
@@ -9418,6 +9467,10 @@ msgstr "Importer les chaînes et/ou l’EPG depuis l’URL du récepteur distant
 msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
 msgstr "Importer les chaînes et/ou l’EPG depuis l’URL du récepteur distant lorsque le récepteur ou Enigma2 est redémarré"
 
+#, python-format
+msgid "Import from fallback tuner failed, %s"
+msgstr ""
+
 msgid "Import from remote receiver URL"
 msgstr "Importer depuis l’URL du récepteur distant"
 
@@ -9710,20 +9763,8 @@ msgstr "Installation des services"
 msgid "Installing Software..."
 msgstr "Installation du logiciel..."
 
-msgid "Installing feeds from IPK ..."
-msgstr "Installation de flux à partir d’IPK ..."
-
-msgid "Installing feeds from feed ..."
-msgstr "Installation de flux à partir de flux ..."
-
 msgid "Installing package."
 msgstr ""
-
-msgid "Installing plugins from IPK ..."
-msgstr "Installation de plugins depuis IPK..."
-
-msgid "Installing plugins from feed ..."
-msgstr "Installation des plugins à partir du flux ..."
 
 msgid "Instant Recording Actions"
 msgstr ""
@@ -10728,6 +10769,9 @@ msgstr "Scan manuel des services"
 
 msgid "Manual transponder"
 msgstr "Transpondeur manuel"
+
+msgid "Manually import from fallback tuner"
+msgstr ""
 
 msgid "Manufacturer"
 msgstr "Constructeur"
@@ -11865,6 +11909,9 @@ msgstr "Aucun fichier affichable sur ce support n'a été trouvé !"
 
 msgid "No entry in lcn db. Please do a service scan."
 msgstr "Aucune entrée dans la base de données LCN. Merci de faire un scan des services."
+
+msgid "No epg.dat file found on the fallback receiver"
+msgstr ""
 
 msgid "No error"
 msgstr "Pas d'erreur"
@@ -14105,6 +14152,9 @@ msgstr "Enregistrement - identique au bouton enregistrement"
 msgid "Record Actions"
 msgstr "Actions d'enregistrement"
 
+msgid "Record Icon"
+msgstr ""
+
 msgid "Record next"
 msgstr "Enregistrer suivant"
 
@@ -14449,9 +14499,6 @@ msgstr "Supprimer le titre actuellement sélectionné"
 
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Supprimer le dossier sélectionné des favoris"
-
-msgid "Remove plugins ..."
-msgstr ""
 
 msgid "Remove service from AutoCam"
 msgstr ""
@@ -15148,12 +15195,8 @@ msgid "Save settings and EPG data."
 msgstr "Sauvegarder les paramètres et les données EPG"
 
 #, python-format
-msgid ""
-"Save the commands and the output to a file?\n"
-"('%s')"
-msgstr ""
-"Enregistrer les commandes et la sortie dans un fichier ?\n"
-"('%s')"
+msgid "Save the commands and output to the log file?"
+msgstr "Enregistrer les commandes et la sortie dans un fichier ?"
 
 msgid "Save the left column directory location on exit."
 msgstr ""
@@ -16069,6 +16112,9 @@ msgstr ""
 msgid "Select the last item in the list"
 msgstr ""
 
+msgid "Select the layout of the information in the services list, from the options provided by the skin, displayed within the ChannelSelection screen."
+msgstr ""
+
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr ""
 
@@ -16140,6 +16186,9 @@ msgstr "Sélectionnez le satellite qui est connecté sur le Port-D de votre comm
 
 msgid "Select the satellite you want to configure. Once configured you can select and configure other satellites that will be accessed using this same tuner."
 msgstr "Sélectionnez le satellite que vous voulez configurer. Lorsque ce satellite est configuré vous pouvez sélectionner et configurer les autres satellites qui seront accédés en utilisant ce même tuner."
+
+msgid "Select the screen layout, from the options provided by the skin, to be used for the ChannelSelection screen."
+msgstr ""
 
 msgid "Select the shifted character set"
 msgstr "Sélectionnez le jeu de caractères décalé"
@@ -16666,9 +16715,6 @@ msgstr "Définir de défilement du texte sur la face avant, cela est utilisé pa
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Définir de défilement du texte sur la face avant."
 
-msgid "Set the style of the channel list."
-msgstr ""
-
 msgid "Set the time before checking video source for resolution information."
 msgstr "Définir le temps avant vérification de l'information de résolution de la vidéo source."
 
@@ -17096,6 +17142,9 @@ msgid "Show Information"
 msgstr "Afficher les informations"
 
 msgid "Show Kernel packages"
+msgstr ""
+
+msgid "Show LCN in channel selection"
 msgstr ""
 
 msgid "Show Live in MiniTV"
@@ -18655,9 +18704,6 @@ msgstr "DLNA stricte"
 
 msgid "Stripes"
 msgstr "Bandes Verticales"
-
-msgid "Style"
-msgstr ""
 
 msgid "Style:"
 msgstr "Le style :"
@@ -20615,9 +20661,6 @@ msgstr "URL"
 msgid "URL of fallback remote receiver"
 msgstr "URL du récepteur distant de repli. Spécifier l'URL complète: http:// et le numéro du port (normalement: 8001), p.e. http://second_demo:8001"
 
-msgid "URL of fallback remote receiver."
-msgstr "URL du récepteur distant de secours"
-
 msgid "USALS"
 msgstr "USALS"
 
@@ -21896,6 +21939,9 @@ msgstr "Lorsqu'activé, en appuyant sur '0' cela zappera sur la première chaîn
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Lorsqu'elle est activée, reformate les sous-titres pour correspondre à la largeur de l'écran."
+
+msgid "When enabled, show LCN in the channel selection screen."
+msgstr ""
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Lorsqu'elle est activée, afficher les numéros des chaînes dans l'écran de sélection des chaînes."
@@ -23610,6 +23656,21 @@ msgstr "Oui (garder feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Installing feeds from IPK ..."
+#~ msgstr "Installation de flux à partir d’IPK ..."
+
+#~ msgid "Installing feeds from feed ..."
+#~ msgstr "Installation de flux à partir de flux ..."
+
+#~ msgid "Installing plugins from IPK ..."
+#~ msgstr "Installation de plugins depuis IPK..."
+
+#~ msgid "Installing plugins from feed ..."
+#~ msgstr "Installation des plugins à partir du flux ..."
+
+#~ msgid "URL of fallback remote receiver."
+#~ msgstr "URL du récepteur distant de secours"
 
 #~ msgid ""
 #~ "\n"

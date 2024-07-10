@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-21 14:25+0000\n"
+"POT-Creation-Date: 2024-07-09 18:37+0000\n"
 "PO-Revision-Date: 2023-12-11 00:50+0000\n"
 "Last-Translator: W L <wl@mailhole.de>\n"
 "Language-Team: Albanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sq/>\n"
@@ -1189,6 +1189,10 @@ msgstr "%s është aktivizuar."
 #, python-format
 msgid "%s has been disabled."
 msgstr "%s është çaktivizuar."
+
+#, python-format
+msgid "%s imported from fallback tuner"
+msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -3783,7 +3787,13 @@ msgstr ""
 msgid "Channel Selection Context Menu Navigation Actions"
 msgstr ""
 
+msgid "Channel Selection List"
+msgstr ""
+
 msgid "Channel Selection Navigation Actions"
+msgstr ""
+
+msgid "Channel Selection Screen"
 msgstr ""
 
 msgid "Channel Selection Settings"
@@ -3848,6 +3858,15 @@ msgstr "Kanali"
 
 msgid "ChannelEPG Settings"
 msgstr "Rregullimet ChannelEPG"
+
+msgid "Channels"
+msgstr ""
+
+msgid "Channels and EPG"
+msgstr ""
+
+msgid "Channels only"
+msgstr ""
 
 msgid "Chap."
 msgstr "Kapitull."
@@ -4241,6 +4260,9 @@ msgstr "Formati i ngjyrave"
 msgid "Color space"
 msgstr "Hapësira e ngjyrave"
 
+msgid "Colored Text"
+msgstr ""
+
 msgid "Combined"
 msgstr ""
 
@@ -4385,6 +4407,9 @@ msgstr "Konfiguro nëse dhe si do të shfaqet treguesi i regjistrimit në listë
 msgid "Configure if and how wide the service name column will be shown in the channel selection list."
 msgstr "Konfiguro nëse dhe sa gjerë do të shfaqet kolona e emrit të shërbimit në listën e përzgjedhjes së kanaleve."
 
+msgid "Configure if crypto icons will be shown in the channel selection list."
+msgstr ""
+
 msgid "Configure if epg.dat should be saved at all."
 msgstr "Konfiguro nëse epg.dat duhet të ruhet fare."
 
@@ -4393,6 +4418,9 @@ msgstr "Konfiguro nëse pikonat e shërbimit do të shfaqen në Quickzap."
 
 msgid "Configure if service picons will be shown in the service list."
 msgstr "Konfiguro nëse pikonat e shërbimit do të shfaqen në listën e shërbimit."
+
+msgid "Configure if service type icons will be shown."
+msgstr ""
 
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
 msgstr "Konfiguro nëse titrat duhet të kalojnë midis normales, italic, bold dhe bolditalic"
@@ -6660,6 +6688,9 @@ msgstr "Zgjedhja e gjuhës EPG 2"
 msgid "EPG location"
 msgstr "Vendndodhja e EPG"
 
+msgid "EPG only"
+msgstr ""
+
 msgid "EPGSearch"
 msgstr "EPGSearch"
 
@@ -7152,6 +7183,9 @@ msgstr ""
 msgid "Enter PIN"
 msgstr "Shkruaj kodin PIN"
 
+msgid "Enter URL"
+msgstr ""
+
 msgid "Enter a description for this timer."
 msgstr ""
 
@@ -7399,10 +7433,22 @@ msgstr ""
 msgid "Error unzipping image '%s'!"
 msgstr "Gabim gjatë zbërthimit të imazhit '%s'!"
 
+msgid "Error when writing epg.dat on the fallback receiver"
+msgstr ""
+
+msgid "Error while moving epg.dat to its destination"
+msgstr ""
+
+msgid "Error while retrieving epg.dat from the fallback receiver"
+msgstr ""
+
 #, python-format
 msgid ""
 "Error while retrieving fallback timer information\n"
 "%s"
+msgstr ""
+
+msgid "Error while retrieving location of epg.dat on the fallback receiver"
 msgstr ""
 
 msgid "Error, unknown Result!"
@@ -7883,6 +7929,9 @@ msgstr ""
 msgid "Fallback Font *"
 msgstr ""
 
+msgid "Fallback Timer"
+msgstr ""
+
 msgid "Fallback remote receiver"
 msgstr ""
 
@@ -7904,7 +7953,7 @@ msgstr ""
 msgid "Fallback remote receiver for DVB-T"
 msgstr ""
 
-msgid "Fallback Timer"
+msgid "Fallback remote receiver setup"
 msgstr ""
 
 msgid "Fallback tuner setup"
@@ -9409,6 +9458,10 @@ msgstr ""
 msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
 msgstr ""
 
+#, python-format
+msgid "Import from fallback tuner failed, %s"
+msgstr ""
+
 msgid "Import from remote receiver URL"
 msgstr ""
 
@@ -9701,19 +9754,7 @@ msgstr ""
 msgid "Installing Software..."
 msgstr ""
 
-msgid "Installing feeds from IPK ..."
-msgstr ""
-
-msgid "Installing feeds from feed ..."
-msgstr ""
-
 msgid "Installing package."
-msgstr ""
-
-msgid "Installing plugins from IPK ..."
-msgstr ""
-
-msgid "Installing plugins from feed ..."
 msgstr ""
 
 msgid "Instant Recording Actions"
@@ -10718,6 +10759,9 @@ msgid "Manual scan for services"
 msgstr ""
 
 msgid "Manual transponder"
+msgstr ""
+
+msgid "Manually import from fallback tuner"
 msgstr ""
 
 msgid "Manufacturer"
@@ -11845,6 +11889,9 @@ msgid "No displayable files on this medium found!"
 msgstr ""
 
 msgid "No entry in lcn db. Please do a service scan."
+msgstr ""
+
+msgid "No epg.dat file found on the fallback receiver"
 msgstr ""
 
 msgid "No error"
@@ -14059,6 +14106,9 @@ msgstr "Regjistro - njësoj si butoni i regjistrimit"
 msgid "Record Actions"
 msgstr "Regjistroni veprimet"
 
+msgid "Record Icon"
+msgstr ""
+
 msgid "Record next"
 msgstr "Regjistro më pas"
 
@@ -14400,9 +14450,6 @@ msgid "Remove currently selected title"
 msgstr "Hiq titullin e zgjedhur aktualisht"
 
 msgid "Remove highlighted directory from bookmarks"
-msgstr ""
-
-msgid "Remove plugins ..."
 msgstr ""
 
 msgid "Remove service from AutoCam"
@@ -15097,9 +15144,7 @@ msgid "Save settings and EPG data."
 msgstr ""
 
 #, python-format
-msgid ""
-"Save the commands and the output to a file?\n"
-"('%s')"
+msgid "Save the commands and output to the log file?"
 msgstr ""
 
 msgid "Save the left column directory location on exit."
@@ -16016,6 +16061,9 @@ msgstr ""
 msgid "Select the last item in the list"
 msgstr ""
 
+msgid "Select the layout of the information in the services list, from the options provided by the skin, displayed within the ChannelSelection screen."
+msgstr ""
+
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr ""
 
@@ -16086,6 +16134,9 @@ msgid "Select the satellite which is connected to Port-D of your switch. If you 
 msgstr ""
 
 msgid "Select the satellite you want to configure. Once configured you can select and configure other satellites that will be accessed using this same tuner."
+msgstr ""
+
+msgid "Select the screen layout, from the options provided by the skin, to be used for the ChannelSelection screen."
 msgstr ""
 
 msgid "Select the shifted character set"
@@ -16594,9 +16645,6 @@ msgstr ""
 msgid "Set the scrolling speed of text on the front display."
 msgstr ""
 
-msgid "Set the style of the channel list."
-msgstr ""
-
 msgid "Set the time before checking video source for resolution information."
 msgstr ""
 
@@ -17024,6 +17072,9 @@ msgid "Show Information"
 msgstr ""
 
 msgid "Show Kernel packages"
+msgstr ""
+
+msgid "Show LCN in channel selection"
 msgstr ""
 
 msgid "Show Live in MiniTV"
@@ -18568,9 +18619,6 @@ msgid "Strict DLNA"
 msgstr ""
 
 msgid "Stripes"
-msgstr ""
-
-msgid "Style"
 msgstr ""
 
 msgid "Style:"
@@ -20494,9 +20542,6 @@ msgstr ""
 msgid "URL of fallback remote receiver"
 msgstr ""
 
-msgid "URL of fallback remote receiver."
-msgstr ""
-
 msgid "USALS"
 msgstr ""
 
@@ -21768,6 +21813,9 @@ msgstr "Kur aktivizohet, shtypja e '0' do t'ju çojë në kanalin e parë në bu
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Kur aktivizohet, riformatoni titrat që të përputhen me gjerësinë e ekranit."
+
+msgid "When enabled, show LCN in the channel selection screen."
+msgstr ""
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Kur aktivizohet, shfaqni numrat e kanaleve në ekranin e zgjedhjes së kanalit."

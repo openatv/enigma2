@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-21 14:25+0000\n"
+"POT-Creation-Date: 2024-07-09 18:37+0000\n"
 "PO-Revision-Date: 2022-12-04 20:43+0000\n"
 "Last-Translator: rimasx <riks_12@hot.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -1183,6 +1183,10 @@ msgstr ""
 
 #, python-format
 msgid "%s has been disabled."
+msgstr ""
+
+#, python-format
+msgid "%s imported from fallback tuner"
 msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
@@ -3825,7 +3829,13 @@ msgstr ""
 msgid "Channel Selection Context Menu Navigation Actions"
 msgstr ""
 
+msgid "Channel Selection List"
+msgstr ""
+
 msgid "Channel Selection Navigation Actions"
+msgstr ""
+
+msgid "Channel Selection Screen"
 msgstr ""
 
 msgid "Channel Selection Settings"
@@ -3891,6 +3901,15 @@ msgstr "Kanal:"
 
 msgid "ChannelEPG Settings"
 msgstr "Kanali EPG seaded"
+
+msgid "Channels"
+msgstr ""
+
+msgid "Channels and EPG"
+msgstr ""
+
+msgid "Channels only"
+msgstr ""
 
 msgid "Chap."
 msgstr "Peatükk."
@@ -4289,6 +4308,9 @@ msgstr "Värvi vorming"
 msgid "Color space"
 msgstr "Värviruum"
 
+msgid "Colored Text"
+msgstr ""
+
 msgid "Combined"
 msgstr ""
 
@@ -4443,6 +4465,9 @@ msgstr "Määra, kas ja kuidas tähistatakse kanalinimekirjas salvestavad kanali
 msgid "Configure if and how wide the service name column will be shown in the channel selection list."
 msgstr "Määra, kas ja kui laialt kuvatakse kanalinimekirjas kanalinimesi."
 
+msgid "Configure if crypto icons will be shown in the channel selection list."
+msgstr ""
+
 msgid "Configure if epg.dat should be saved at all."
 msgstr "Määra, kas epg andmed tuleks salvestada."
 
@@ -4451,6 +4476,9 @@ msgstr "Määra, kas kanalivahetusel kuvatakse pikonid."
 
 msgid "Configure if service picons will be shown in the service list."
 msgstr "Määra, kas kanalinimekirjas kuvatakse pikonid."
+
+msgid "Configure if service type icons will be shown."
+msgstr ""
 
 # Subtitle neu 5.1
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
@@ -6766,6 +6794,9 @@ msgstr "EPG keelevalik 2"
 msgid "EPG location"
 msgstr "EPG faili asukoht"
 
+msgid "EPG only"
+msgstr ""
+
 msgid "EPGSearch"
 msgstr "EPG otsing"
 
@@ -7272,6 +7303,9 @@ msgstr "Sisesta IP-aadress"
 msgid "Enter PIN"
 msgstr "Sisesta PIN"
 
+msgid "Enter URL"
+msgstr ""
+
 msgid "Enter a description for this timer."
 msgstr ""
 
@@ -7524,10 +7558,22 @@ msgstr ""
 msgid "Error unzipping image '%s'!"
 msgstr ""
 
+msgid "Error when writing epg.dat on the fallback receiver"
+msgstr ""
+
+msgid "Error while moving epg.dat to its destination"
+msgstr ""
+
+msgid "Error while retrieving epg.dat from the fallback receiver"
+msgstr ""
+
 #, python-format
 msgid ""
 "Error while retrieving fallback timer information\n"
 "%s"
+msgstr ""
+
+msgid "Error while retrieving location of epg.dat on the fallback receiver"
 msgstr ""
 
 msgid "Error, unknown Result!"
@@ -8011,6 +8057,9 @@ msgstr ""
 msgid "Fallback Font *"
 msgstr ""
 
+msgid "Fallback Timer"
+msgstr ""
+
 msgid "Fallback remote receiver"
 msgstr "Kaugvastuvõtja"
 
@@ -8032,7 +8081,7 @@ msgstr "Kaugvastuvõtja Port"
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Kaugvastuvõtja Port"
 
-msgid "Fallback Timer"
+msgid "Fallback remote receiver setup"
 msgstr ""
 
 msgid "Fallback tuner setup"
@@ -9583,6 +9632,10 @@ msgstr "Impordi kaugvastuvõtja URL-ist"
 msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
 msgstr ""
 
+#, python-format
+msgid "Import from fallback tuner failed, %s"
+msgstr ""
+
 msgid "Import from remote receiver URL"
 msgstr "Impordi kaugvastuvõtja URL-ist"
 
@@ -9884,24 +9937,8 @@ msgstr "Teenuse paigaldamine"
 msgid "Installing Software..."
 msgstr "Tarkvara paigaldamine."
 
-#, fuzzy
-msgid "Installing feeds from IPK ..."
-msgstr "Tarkvara paigaldamine."
-
-#, fuzzy
-msgid "Installing feeds from feed ..."
-msgstr "Tarkvara paigaldamine."
-
 msgid "Installing package."
 msgstr ""
-
-#, fuzzy
-msgid "Installing plugins from IPK ..."
-msgstr "Pluginate paigaldamine."
-
-#, fuzzy
-msgid "Installing plugins from feed ..."
-msgstr "Pluginate paigaldamine."
 
 msgid "Instant Recording Actions"
 msgstr ""
@@ -10947,6 +10984,9 @@ msgstr "Kanalite käsiotsing"
 
 msgid "Manual transponder"
 msgstr "Käsitsi sisestatud transponder"
+
+msgid "Manually import from fallback tuner"
+msgstr ""
 
 msgid "Manufacturer"
 msgstr "Tootja"
@@ -12152,6 +12192,9 @@ msgstr "Sellel andmekandjal pole kuvatavaid faile!"
 
 msgid "No entry in lcn db. Please do a service scan."
 msgstr "LCN andmebaas on tühi. Soorita kanaliotsing."
+
+msgid "No epg.dat file found on the fallback receiver"
+msgstr ""
 
 #, fuzzy
 msgid "No error"
@@ -14470,6 +14513,9 @@ msgstr ""
 msgid "Record Actions"
 msgstr ""
 
+msgid "Record Icon"
+msgstr ""
+
 msgid "Record next"
 msgstr "Salvesta järgmine"
 
@@ -14827,9 +14873,6 @@ msgstr "Eemalda valitud nimetus"
 
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Eemalda valitud kataloog järjehoidjatest"
-
-msgid "Remove plugins ..."
-msgstr ""
 
 msgid "Remove service from AutoCam"
 msgstr ""
@@ -15544,12 +15587,8 @@ msgid "Save settings and EPG data."
 msgstr "Talleta sätted ja EPG andmed"
 
 #, python-format
-msgid ""
-"Save the commands and the output to a file?\n"
-"('%s')"
-msgstr ""
-"Kas salvestada käsud ja väljund faili?\n"
-"('%s')"
+msgid "Save the commands and output to the log file?"
+msgstr "Kas salvestada käsud ja väljund faili?"
 
 msgid "Save the left column directory location on exit."
 msgstr ""
@@ -16482,6 +16521,9 @@ msgstr ""
 msgid "Select the last item in the list"
 msgstr ""
 
+msgid "Select the layout of the information in the services list, from the options provided by the skin, displayed within the ChannelSelection screen."
+msgstr ""
+
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr ""
 
@@ -16554,6 +16596,9 @@ msgstr "Vali satelliit, mis on ühendatud lüliti porti D. Kui pole kindel, vali
 
 msgid "Select the satellite you want to configure. Once configured you can select and configure other satellites that will be accessed using this same tuner."
 msgstr "Vali seadistatav satelliit. Kui see satelliit on seadistatud, saab valida ja seadistada teised sama tuuneriga vastuvõetavad satelliidid."
+
+msgid "Select the screen layout, from the options provided by the skin, to be used for the ChannelSelection screen."
+msgstr ""
 
 #, fuzzy
 msgid "Select the shifted character set"
@@ -17094,9 +17139,6 @@ msgstr "Määra teksti kerimise kiirus esipaneelil. Mõni kujundus kasutab selle
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Määra esipaneeli teksti kerimise kiirus."
 
-msgid "Set the style of the channel list."
-msgstr ""
-
 msgid "Set the time before checking video source for resolution information."
 msgstr "Määra ooteaeg enne video lahutuse/värskendussageduse kontrollimist."
 
@@ -17541,6 +17583,9 @@ msgid "Show Information"
 msgstr "Saateinfo"
 
 msgid "Show Kernel packages"
+msgstr ""
+
+msgid "Show LCN in channel selection"
 msgstr ""
 
 msgid "Show Live in MiniTV"
@@ -19134,9 +19179,6 @@ msgstr "Puhas DLNA"
 
 msgid "Stripes"
 msgstr "Triibud"
-
-msgid "Style"
-msgstr ""
 
 msgid "Style:"
 msgstr "Laad:"
@@ -21148,9 +21190,6 @@ msgstr ""
 msgid "URL of fallback remote receiver"
 msgstr "Kaugvastuvõtja URL"
 
-msgid "URL of fallback remote receiver."
-msgstr "Kaugvastuvõtja URL"
-
 msgid "USALS"
 msgstr "USALS"
 
@@ -22477,6 +22516,9 @@ msgstr "Kui lubatud, viib '0' vajutus alati kanalile 1 ja kustutab kanalivahetus
 # Subtitle 5.1 ersetzt : Rewrap teletext subtitles description
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Kui lubatud, seatakse subtiitrid vastavusse ekraani laiusega."
+
+msgid "When enabled, show LCN in the channel selection screen."
+msgstr ""
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Kui lubatud, kuvatakse kanalinimekirjas kanali numbrid."
@@ -24227,6 +24269,25 @@ msgstr "Jah (säilita fiidid)"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Installing feeds from IPK ..."
+#~ msgstr "Tarkvara paigaldamine."
+
+#, fuzzy
+#~ msgid "Installing feeds from feed ..."
+#~ msgstr "Tarkvara paigaldamine."
+
+#, fuzzy
+#~ msgid "Installing plugins from IPK ..."
+#~ msgstr "Pluginate paigaldamine."
+
+#, fuzzy
+#~ msgid "Installing plugins from feed ..."
+#~ msgstr "Pluginate paigaldamine."
+
+#~ msgid "URL of fallback remote receiver."
+#~ msgstr "Kaugvastuvõtja URL"
 
 #~ msgid ""
 #~ "\n"

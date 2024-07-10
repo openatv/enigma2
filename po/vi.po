@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-21 14:25+0000\n"
+"POT-Creation-Date: 2024-07-09 18:37+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1188,6 +1188,10 @@ msgstr ""
 
 #, python-format
 msgid "%s has been disabled."
+msgstr ""
+
+#, python-format
+msgid "%s imported from fallback tuner"
 msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
@@ -3800,7 +3804,13 @@ msgstr ""
 msgid "Channel Selection Context Menu Navigation Actions"
 msgstr ""
 
+msgid "Channel Selection List"
+msgstr ""
+
 msgid "Channel Selection Navigation Actions"
+msgstr ""
+
+msgid "Channel Selection Screen"
 msgstr ""
 
 msgid "Channel Selection Settings"
@@ -3865,6 +3875,15 @@ msgstr "Kênh:"
 
 msgid "ChannelEPG Settings"
 msgstr "Cài đặt ChannelEPG"
+
+msgid "Channels"
+msgstr ""
+
+msgid "Channels and EPG"
+msgstr ""
+
+msgid "Channels only"
+msgstr ""
 
 msgid "Chap."
 msgstr "Chap."
@@ -4261,6 +4280,9 @@ msgstr "Định dạng màu"
 msgid "Color space"
 msgstr "Không gian màu"
 
+msgid "Colored Text"
+msgstr ""
+
 msgid "Combined"
 msgstr ""
 
@@ -4410,6 +4432,9 @@ msgstr "Định cấu hình nếu và cách chỉ báo bản ghi sẽ được h
 msgid "Configure if and how wide the service name column will be shown in the channel selection list."
 msgstr "Định cấu hình nếu và độ rộng của cột tên dịch vụ sẽ được hiển thị trong danh sách chọn kênh."
 
+msgid "Configure if crypto icons will be shown in the channel selection list."
+msgstr ""
+
 msgid "Configure if epg.dat should be saved at all."
 msgstr "Cấu hình nếu epg.dat nên được lưu ở tất cả."
 
@@ -4418,6 +4443,9 @@ msgstr "Cấu hình nếu picons dịch vụ sẽ được hiển thị trong qu
 
 msgid "Configure if service picons will be shown in the service list."
 msgstr "Cấu hình nếu picons dịch vụ sẽ được hiển thị trong dịch vụ."
+
+msgid "Configure if service type icons will be shown."
+msgstr ""
 
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
 msgstr "Định cấu hình nếu phụ đề nên chuyển đổi giữa bình thường, in nghiêng, in đậm và đậm"
@@ -6711,6 +6739,9 @@ msgstr "Lựa chọn ngôn ngữ EPG 2"
 msgid "EPG location"
 msgstr "Vị trí EPG"
 
+msgid "EPG only"
+msgstr ""
+
 msgid "EPGSearch"
 msgstr "Tìm kiếm EPG"
 
@@ -7213,6 +7244,9 @@ msgstr "Nhập địa chỉ IP"
 msgid "Enter PIN"
 msgstr "Nhập PIN"
 
+msgid "Enter URL"
+msgstr ""
+
 msgid "Enter a description for this timer."
 msgstr ""
 
@@ -7464,6 +7498,15 @@ msgstr ""
 msgid "Error unzipping image '%s'!"
 msgstr ""
 
+msgid "Error when writing epg.dat on the fallback receiver"
+msgstr ""
+
+msgid "Error while moving epg.dat to its destination"
+msgstr ""
+
+msgid "Error while retrieving epg.dat from the fallback receiver"
+msgstr ""
+
 #, python-format
 msgid ""
 "Error while retrieving fallback timer information\n"
@@ -7471,6 +7514,9 @@ msgid ""
 msgstr ""
 "Lỗi trong khi truy xuất thông tin hẹn giờ dự phòng\n"
 "%s"
+
+msgid "Error while retrieving location of epg.dat on the fallback receiver"
+msgstr ""
 
 msgid "Error, unknown Result!"
 msgstr "Lỗi, chưa biết kết quả!"
@@ -7947,6 +7993,9 @@ msgstr ""
 msgid "Fallback Font *"
 msgstr ""
 
+msgid "Fallback Timer"
+msgstr "Hẹn giờ dự phòng"
+
 msgid "Fallback remote receiver"
 msgstr "Dự phòng thu từ xa"
 
@@ -7968,8 +8017,8 @@ msgstr "Dự phòng thu từ xa cho DVB-C"
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Dự phòng thu từ xa cho DVB-T"
 
-msgid "Fallback Timer"
-msgstr "Hẹn giờ dự phòng"
+msgid "Fallback remote receiver setup"
+msgstr ""
 
 msgid "Fallback tuner setup"
 msgstr "Thiết lập điều chỉnh dự phòng"
@@ -9507,6 +9556,10 @@ msgstr "Nhập kênh và / hoặc EPG từ URL máy thu từ xa khi máy thu đ�
 msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
 msgstr "Nhập kênh và / hoặc EPG từ URL máy thu từ xa khi máy thu hoặc enigma2 được khởi động lại"
 
+#, python-format
+msgid "Import from fallback tuner failed, %s"
+msgstr ""
+
 msgid "Import from remote receiver URL"
 msgstr "Nhập từ URL máy thu từ xa"
 
@@ -9800,20 +9853,8 @@ msgstr "Cài đặt dịch vụ"
 msgid "Installing Software..."
 msgstr "Cài đặt phần mềm ..."
 
-msgid "Installing feeds from IPK ..."
-msgstr "Cài đặt nguồn cấp dữ liệu từ IPK ..."
-
-msgid "Installing feeds from feed ..."
-msgstr "Cài đặt nguồn cấp dữ liệu từ nguồn cấp dữ liệu ..."
-
 msgid "Installing package."
 msgstr ""
-
-msgid "Installing plugins from IPK ..."
-msgstr "Cài đặt plugin từ IPK ..."
-
-msgid "Installing plugins from feed ..."
-msgstr "Cài đặt plugin từ nguồn cấp dữ liệu ..."
 
 msgid "Instant Recording Actions"
 msgstr ""
@@ -10841,6 +10882,9 @@ msgstr "Quét thủ công các dịch vụ"
 
 msgid "Manual transponder"
 msgstr "Hướng dẫn sử dụng"
+
+msgid "Manually import from fallback tuner"
+msgstr ""
 
 msgid "Manufacturer"
 msgstr "Nhà chế tạo"
@@ -12022,6 +12066,9 @@ msgstr "Không tìm thấy tập tin nào trên phương tiện này!"
 
 msgid "No entry in lcn db. Please do a service scan."
 msgstr "Không có mục trong lcn db. Hãy làm một dịch vụ quét."
+
+msgid "No epg.dat file found on the fallback receiver"
+msgstr ""
 
 #, fuzzy
 msgid "No error"
@@ -14288,6 +14335,9 @@ msgstr "Ghi - giống như nút ghi"
 msgid "Record Actions"
 msgstr ""
 
+msgid "Record Icon"
+msgstr ""
+
 msgid "Record next"
 msgstr "Ghi lại tiếp theo"
 
@@ -14641,9 +14691,6 @@ msgstr "Xóa tiêu đề hiện được chọn"
 
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Xóa thư mục đã chọn khỏi dấu trang"
-
-msgid "Remove plugins ..."
-msgstr ""
 
 msgid "Remove service from AutoCam"
 msgstr ""
@@ -15347,12 +15394,8 @@ msgid "Save settings and EPG data."
 msgstr "Lưu cài đặt và dữ liệu EPG"
 
 #, python-format
-msgid ""
-"Save the commands and the output to a file?\n"
-"('%s')"
-msgstr ""
-"Lưu các lệnh và đầu ra vào một tập tin?\n"
-"('%s')"
+msgid "Save the commands and output to the log file?"
+msgstr "Lưu các lệnh và đầu ra vào một tập tin?"
 
 msgid "Save the left column directory location on exit."
 msgstr ""
@@ -16271,6 +16314,9 @@ msgstr ""
 msgid "Select the last item in the list"
 msgstr ""
 
+msgid "Select the layout of the information in the services list, from the options provided by the skin, displayed within the ChannelSelection screen."
+msgstr ""
+
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr ""
 
@@ -16343,6 +16389,9 @@ msgstr "Chọn vệ tinh được kết nối với Cổng-D của công tắc. 
 
 msgid "Select the satellite you want to configure. Once configured you can select and configure other satellites that will be accessed using this same tuner."
 msgstr "Chọn vệ tinh bạn muốn cấu hình. Khi vệ tinh đó được định cấu hình, bạn có thể chọn và định cấu hình các vệ tinh khác sẽ được truy cập bằng cách sử dụng cùng bộ chỉnh này."
+
+msgid "Select the screen layout, from the options provided by the skin, to be used for the ChannelSelection screen."
+msgstr ""
 
 #, fuzzy
 msgid "Select the shifted character set"
@@ -16878,9 +16927,6 @@ msgstr "Đặt tốc độ cuộn văn bản trên màn hình phía trước, đ
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Đặt tốc độ cuộn văn bản trên màn hình phía trước."
 
-msgid "Set the style of the channel list."
-msgstr ""
-
 msgid "Set the time before checking video source for resolution information."
 msgstr "Đặt thời gian trước khi kiểm tra nguồn video để biết thông tin độ phân giải."
 
@@ -17314,6 +17360,9 @@ msgid "Show Information"
 msgstr "Hiển thị thông tin..."
 
 msgid "Show Kernel packages"
+msgstr ""
+
+msgid "Show LCN in channel selection"
 msgstr ""
 
 msgid "Show Live in MiniTV"
@@ -18891,9 +18940,6 @@ msgstr "DLNA nghiêm ngặt"
 
 msgid "Stripes"
 msgstr "Sọc"
-
-msgid "Style"
-msgstr ""
 
 msgid "Style:"
 msgstr "Phong cách:"
@@ -20863,9 +20909,6 @@ msgstr ""
 msgid "URL of fallback remote receiver"
 msgstr "URL của máy thu từ xa dự phòng"
 
-msgid "URL of fallback remote receiver."
-msgstr "URL của máy thu từ xa dự phòng"
-
 msgid "USALS"
 msgstr "USALS"
 
@@ -22163,6 +22206,9 @@ msgstr "Khi được bật, nhấn '0' sẽ đưa bạn đến kênh đầu tiê
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Khi được bật, định dạng lại phụ đề cho phù hợp với chiều rộng của màn hình."
+
+msgid "When enabled, show LCN in the channel selection screen."
+msgstr ""
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Khi được bật, hiển thị số kênh trong màn hình chọn kênh."
@@ -23896,6 +23942,21 @@ msgstr "có (giữ thức ăn)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Installing feeds from IPK ..."
+#~ msgstr "Cài đặt nguồn cấp dữ liệu từ IPK ..."
+
+#~ msgid "Installing feeds from feed ..."
+#~ msgstr "Cài đặt nguồn cấp dữ liệu từ nguồn cấp dữ liệu ..."
+
+#~ msgid "Installing plugins from IPK ..."
+#~ msgstr "Cài đặt plugin từ IPK ..."
+
+#~ msgid "Installing plugins from feed ..."
+#~ msgstr "Cài đặt plugin từ nguồn cấp dữ liệu ..."
+
+#~ msgid "URL of fallback remote receiver."
+#~ msgstr "URL của máy thu từ xa dự phòng"
 
 #~ msgid ""
 #~ "\n"

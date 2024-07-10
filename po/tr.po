@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-21 14:25+0000\n"
+"POT-Creation-Date: 2024-07-09 18:37+0000\n"
 "PO-Revision-Date: 2024-06-14 06:41+0000\n"
 "Last-Translator: DreamOSat Forum <info@dreamosat-forum.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -1178,6 +1178,10 @@ msgstr "%s etkinleştirildi."
 #, python-format
 msgid "%s has been disabled."
 msgstr "%s devre dışı bırakıldı."
+
+#, python-format
+msgid "%s imported from fallback tuner"
+msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -3912,8 +3916,14 @@ msgstr "Kanal Listesi Bağlam Menüsü Eylemleri"
 msgid "Channel Selection Context Menu Navigation Actions"
 msgstr "Kanal Listesi Bağlam Menüsü Gezinme Eylemleri"
 
+msgid "Channel Selection List"
+msgstr ""
+
 msgid "Channel Selection Navigation Actions"
 msgstr "Kanal Seçiminde Gezinme Eylemleri"
+
+msgid "Channel Selection Screen"
+msgstr ""
 
 #
 msgid "Channel Selection Settings"
@@ -3980,6 +3990,15 @@ msgstr "Kanal:"
 
 msgid "ChannelEPG Settings"
 msgstr "KanalEPG ayarları"
+
+msgid "Channels"
+msgstr ""
+
+msgid "Channels and EPG"
+msgstr ""
+
+msgid "Channels only"
+msgstr ""
 
 #
 msgid "Chap."
@@ -4393,6 +4412,9 @@ msgstr "Renk biçimi"
 msgid "Color space"
 msgstr "Renk Boşluğu"
 
+msgid "Colored Text"
+msgstr ""
+
 msgid "Combined"
 msgstr "Kombine"
 
@@ -4545,6 +4567,9 @@ msgstr "Kanal seçim listesinde kayıt göstergesinin gösterilip gösterilmeyec
 msgid "Configure if and how wide the service name column will be shown in the channel selection list."
 msgstr "Kanal seçim listesinde servis adı sütununun ne kadar ve ne kadar gösterileceğini yapılandırın."
 
+msgid "Configure if crypto icons will be shown in the channel selection list."
+msgstr ""
+
 msgid "Configure if epg.dat should be saved at all."
 msgstr "Epg.dat'ın hiç kaydedilmemesi gerekip gerekmediğini yapılandırın."
 
@@ -4553,6 +4578,9 @@ msgstr "Servis pikonlarının quickzap ile gösterilip gösterilmeyeceğini yap�
 
 msgid "Configure if service picons will be shown in the service list."
 msgstr "Servis picons'larının servicelist'de gösterilip gösterilmeyeceğini yapılandırın."
+
+msgid "Configure if service type icons will be shown."
+msgstr ""
 
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
 msgstr "Altyazının normal, italik, kalın ve bolditalik arasında geçiş yapması gerekip gerekmediğini yapılandırın."
@@ -6935,6 +6963,9 @@ msgstr "EPG 2. dil seçimi"
 msgid "EPG location"
 msgstr "EPG konumu"
 
+msgid "EPG only"
+msgstr ""
+
 msgid "EPGSearch"
 msgstr "EPG Arama"
 
@@ -7455,6 +7486,9 @@ msgstr "IP adresi"
 msgid "Enter PIN"
 msgstr "PIN kodunu girin"
 
+msgid "Enter URL"
+msgstr ""
+
 msgid "Enter a description for this timer."
 msgstr "Bu zamanlayıcı için bir açıklama girin."
 
@@ -7708,6 +7742,15 @@ msgstr "Hata metni:"
 msgid "Error unzipping image '%s'!"
 msgstr "'%s' görüntüsü açılırken hata oluştu!"
 
+msgid "Error when writing epg.dat on the fallback receiver"
+msgstr ""
+
+msgid "Error while moving epg.dat to its destination"
+msgstr ""
+
+msgid "Error while retrieving epg.dat from the fallback receiver"
+msgstr ""
+
 #, python-format
 msgid ""
 "Error while retrieving fallback timer information\n"
@@ -7715,6 +7758,9 @@ msgid ""
 msgstr ""
 "Geri dönüş zamanlayıcı bilgileri alınırken hata oluştu\n"
 "%s"
+
+msgid "Error while retrieving location of epg.dat on the fallback receiver"
+msgstr ""
 
 msgid "Error, unknown Result!"
 msgstr "Hata, bilinmeyen Sonuç!"
@@ -8225,6 +8271,9 @@ msgstr "Geri dönüş API'si geçerli bir sonuç döndürmedi."
 msgid "Fallback Font *"
 msgstr "Yedek Yazı Tipi *"
 
+msgid "Fallback Timer"
+msgstr ""
+
 msgid "Fallback remote receiver"
 msgstr "Yedek cihaz URL"
 
@@ -8246,7 +8295,7 @@ msgstr "Yedek cihaz URL"
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Yedek cihaz URL"
 
-msgid "Fallback Timer"
+msgid "Fallback remote receiver setup"
 msgstr ""
 
 msgid "Fallback tuner setup"
@@ -9821,6 +9870,10 @@ msgstr "Yedek cihaz URL"
 msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
 msgstr "Alıcı veya enigma2 yeniden başlatıldığında, uzak alıcı URL'sinden kanalları ve/veya EPG'yi içe aktarın"
 
+#, python-format
+msgid "Import from fallback tuner failed, %s"
+msgstr ""
+
 msgid "Import from remote receiver URL"
 msgstr "Yedek cihaz URL"
 
@@ -10132,20 +10185,8 @@ msgstr "Kanal Yükleme"
 msgid "Installing Software..."
 msgstr "Yazılım Kuruluyor ..."
 
-msgid "Installing feeds from IPK ..."
-msgstr "IPK'dan yayın yükleniyor ..."
-
-msgid "Installing feeds from feed ..."
-msgstr "Yayınlardan yayın yükleniyor ..."
-
 msgid "Installing package."
 msgstr "Paket kuruluyor."
-
-msgid "Installing plugins from IPK ..."
-msgstr "IPK'dan eklentiler yükleniyor ..."
-
-msgid "Installing plugins from feed ..."
-msgstr "Eklentileri feed'den yükleniyor ..."
 
 msgid "Instant Recording Actions"
 msgstr "Anında Kayıt Eylemleri"
@@ -11208,6 +11249,9 @@ msgstr "Kanallar için elle arama"
 #
 msgid "Manual transponder"
 msgstr "Transponder bilgilerini elle gir"
+
+msgid "Manually import from fallback tuner"
+msgstr ""
 
 #
 msgid "Manufacturer"
@@ -12419,6 +12463,9 @@ msgstr "Bu ortamda gösterilecek dosya bulunamadı!"
 
 msgid "No entry in lcn db. Please do a service scan."
 msgstr "Lcn db'de giriş yok. Lütfen bir servis taraması yapın."
+
+msgid "No epg.dat file found on the fallback receiver"
+msgstr ""
 
 #
 msgid "No error"
@@ -14800,6 +14847,9 @@ msgstr "Kayıt - kayıt düğmesiyle aynı"
 msgid "Record Actions"
 msgstr "Eylemleri Kaydet"
 
+msgid "Record Icon"
+msgstr ""
+
 #
 msgid "Record next"
 msgstr "Sonrakini kaydet"
@@ -15164,9 +15214,6 @@ msgstr "Seçilen geçerli başlığı kaldır"
 
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Seçilen klasörü yer işaretlerinden kaldır"
-
-msgid "Remove plugins ..."
-msgstr "Eklentileri kaldır ..."
 
 msgid "Remove service from AutoCam"
 msgstr "AutoCam içinden servisi kaldır"
@@ -15916,12 +15963,8 @@ msgid "Save settings and EPG data."
 msgstr "Ayarları ve EPG verilerini kaydedin."
 
 #, python-format
-msgid ""
-"Save the commands and the output to a file?\n"
-"('%s')"
-msgstr ""
-"Komutları ve çıktıları bir dosyaya kaydetmek?\n"
-"(`%s`)"
+msgid "Save the commands and output to the log file?"
+msgstr "Komutları ve çıktıları bir dosyaya kaydetmek?"
 
 msgid "Save the left column directory location on exit."
 msgstr "Çıkışta sol sütun dizin konumunu kaydedin."
@@ -16866,6 +16909,9 @@ msgstr "Listedeki son öğeyi seçin veya metnin sonuna gidin"
 msgid "Select the last item in the list"
 msgstr "Listedeki son öğeyi seçin"
 
+msgid "Select the layout of the information in the services list, from the options provided by the skin, displayed within the ChannelSelection screen."
+msgstr ""
+
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr "Eklenti Tarayıcısı ekranında yüklü eklentilerin düzenini seçin. NOT: Değişiklik hemen gerçekleşmez ancak Eklenti Tarayıcı yeniden başlatıldığında görülecektir!"
 
@@ -16941,6 +16987,9 @@ msgstr "Anahtarınızın Port-D'sine bağlı olan uyduyu seçin. Emin değilseni
 
 msgid "Select the satellite you want to configure. Once configured you can select and configure other satellites that will be accessed using this same tuner."
 msgstr "Yapılandırmak istediğiniz uyduyu seçin. Bu uydu yapılandırıldıktan sonra, bu aynı tarayıcıyı kullanarak erişilecek diğer uyduları seçebilir ve yapılandırabilirsiniz."
+
+msgid "Select the screen layout, from the options provided by the skin, to be used for the ChannelSelection screen."
+msgstr ""
 
 msgid "Select the shifted character set"
 msgstr "Kaydırılan karakter kümesini seçin"
@@ -17491,9 +17540,6 @@ msgstr "Ön ekrandaki metin kaydırma hızını ayarlayın, bu işlem bazı deri
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Ön panelde metin kayma hızını ayarla."
 
-msgid "Set the style of the channel list."
-msgstr "Kanal listesinin stilini ayarlayın."
-
 msgid "Set the time before checking video source for resolution information."
 msgstr "Çözünürlük bilgisi için video kaynağını kontrol etmeden önceki zamanı belirleyin."
 
@@ -17938,6 +17984,9 @@ msgstr "Bilgi göster"
 
 msgid "Show Kernel packages"
 msgstr "Çekirdek paketlerini göster"
+
+msgid "Show LCN in channel selection"
+msgstr ""
 
 #
 msgid "Show Live in MiniTV"
@@ -19571,9 +19620,6 @@ msgstr "Tam DLNA"
 
 msgid "Stripes"
 msgstr "Çizgili"
-
-msgid "Style"
-msgstr "Stil"
 
 msgid "Style:"
 msgstr "Stil:"
@@ -21637,9 +21683,6 @@ msgstr "URL"
 msgid "URL of fallback remote receiver"
 msgstr "Yedek cihaz URL"
 
-msgid "URL of fallback remote receiver."
-msgstr "Yedek uzaktan kumandanın URL'si"
-
 #
 msgid "USALS"
 msgstr "DiSEqC 1.3 (USALS) (Uluslararası Oto. Uydu Kon. Sist)"
@@ -23011,6 +23054,9 @@ msgstr "Etkinleştirilince, \"0\" a basmak, zap geçmişini siler ve ilk bukette
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Etkinleştirildiğinde, ekranın genişliğine uygun altyazıları yeniden biçimlendirin."
+
+msgid "When enabled, show LCN in the channel selection screen."
+msgstr ""
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Etkinleştirilince, kanal seçim ekranında, kanal numaraları gösterilir."
@@ -24846,6 +24892,30 @@ msgstr "evet (beslemeleri tut)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Installing feeds from IPK ..."
+#~ msgstr "IPK'dan yayın yükleniyor ..."
+
+#~ msgid "Installing feeds from feed ..."
+#~ msgstr "Yayınlardan yayın yükleniyor ..."
+
+#~ msgid "Installing plugins from IPK ..."
+#~ msgstr "IPK'dan eklentiler yükleniyor ..."
+
+#~ msgid "Installing plugins from feed ..."
+#~ msgstr "Eklentileri feed'den yükleniyor ..."
+
+#~ msgid "Remove plugins ..."
+#~ msgstr "Eklentileri kaldır ..."
+
+#~ msgid "Set the style of the channel list."
+#~ msgstr "Kanal listesinin stilini ayarlayın."
+
+#~ msgid "Style"
+#~ msgstr "Stil"
+
+#~ msgid "URL of fallback remote receiver."
+#~ msgstr "Yedek uzaktan kumandanın URL'si"
 
 #~ msgid ""
 #~ "\n"

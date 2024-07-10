@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-21 14:25+0000\n"
-"PO-Revision-Date: 2024-07-05 09:09+0000\n"
+"POT-Creation-Date: 2024-07-09 18:37+0000\n"
+"PO-Revision-Date: 2024-07-10 16:29+0000\n"
 "Last-Translator: Ricky From Hong Kong <lamricky11@hotmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
 "Language: zh_HK\n"
@@ -1123,9 +1123,9 @@ msgstr ""
 msgid "%m/%d/%Y"
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "%s  (%s)"
-msgstr "%s (%s)\n"
+msgstr "%s  （%s）"
 
 #, python-format
 msgid "%s %02d.%02d."
@@ -1155,9 +1155,9 @@ msgstr "按OK鍵確認."
 msgid "%s %sB"
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "%s (%04o)"
-msgstr "%s (%s)\n"
+msgstr "%s （%04o）"
 
 #, fuzzy, python-format
 msgid "%s - Setup"
@@ -1197,6 +1197,10 @@ msgstr ""
 
 #, python-format
 msgid "%s has been disabled."
+msgstr ""
+
+#, python-format
+msgid "%s imported from fallback tuner"
 msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
@@ -2476,16 +2480,14 @@ msgstr ""
 "確定要刪除\n"
 "下列備份?\n"
 
-#, fuzzy
 msgid "Are you sure you want to delete the EPG data from:\n"
-msgstr "確定要退出此嚮導?"
+msgstr "確定要刪除這裏的EPG數據："
 
 msgid "Are you sure you want to delete this image?"
 msgstr ""
 
-#, fuzzy
 msgid "Are you sure you want to delete this log:\n"
-msgstr "確定要退出此嚮導?"
+msgstr "確定要刪除此日誌："
 
 msgid "Are you sure you want to delete this?"
 msgstr ""
@@ -3934,7 +3936,13 @@ msgstr ""
 msgid "Channel Selection Context Menu Navigation Actions"
 msgstr ""
 
+msgid "Channel Selection List"
+msgstr ""
+
 msgid "Channel Selection Navigation Actions"
+msgstr ""
+
+msgid "Channel Selection Screen"
 msgstr ""
 
 #, fuzzy
@@ -4014,6 +4022,15 @@ msgstr "頻道:"
 #, fuzzy
 msgid "ChannelEPG Settings"
 msgstr "Crashlog設定"
+
+msgid "Channels"
+msgstr ""
+
+msgid "Channels and EPG"
+msgstr ""
+
+msgid "Channels only"
+msgstr ""
 
 msgid "Chap."
 msgstr "章節."
@@ -4417,6 +4434,9 @@ msgstr ""
 msgid "Color space"
 msgstr "色彩"
 
+msgid "Colored Text"
+msgstr ""
+
 msgid "Combined"
 msgstr ""
 
@@ -4566,6 +4586,9 @@ msgstr ""
 msgid "Configure if and how wide the service name column will be shown in the channel selection list."
 msgstr ""
 
+msgid "Configure if crypto icons will be shown in the channel selection list."
+msgstr ""
+
 msgid "Configure if epg.dat should be saved at all."
 msgstr ""
 
@@ -4573,6 +4596,9 @@ msgid "Configure if service picons will be shown in quickzap."
 msgstr ""
 
 msgid "Configure if service picons will be shown in the service list."
+msgstr ""
+
+msgid "Configure if service type icons will be shown."
 msgstr ""
 
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
@@ -5358,9 +5384,9 @@ msgstr "將安裝的"
 msgid "Current location is '%s'."
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "Current mode: %s \n"
-msgstr "當前值: "
+msgstr "當前模式：%s \n"
 
 msgid "Current settings:"
 msgstr "當前設定:"
@@ -6351,9 +6377,8 @@ msgstr "禁用計時器"
 msgid "Disabled"
 msgstr "禁用"
 
-#, fuzzy
 msgid "Disabled PiP.\n"
-msgstr "禁用"
+msgstr "已禁用畫中畫。\n"
 
 msgid "Disabled or WPA/WPA2"
 msgstr ""
@@ -6910,6 +6935,9 @@ msgstr ""
 msgid "EPG location"
 msgstr "EPG 選擇"
 
+msgid "EPG only"
+msgstr ""
+
 #, fuzzy
 msgid "EPGSearch"
 msgstr "EPG 搜索"
@@ -7423,6 +7451,9 @@ msgstr ""
 msgid "Enter PIN"
 msgstr ""
 
+msgid "Enter URL"
+msgstr ""
+
 msgid "Enter a description for this timer."
 msgstr ""
 
@@ -7662,10 +7693,22 @@ msgstr ""
 msgid "Error unzipping image '%s'!"
 msgstr ""
 
+msgid "Error when writing epg.dat on the fallback receiver"
+msgstr ""
+
+msgid "Error while moving epg.dat to its destination"
+msgstr ""
+
+msgid "Error while retrieving epg.dat from the fallback receiver"
+msgstr ""
+
 #, python-format
 msgid ""
 "Error while retrieving fallback timer information\n"
 "%s"
+msgstr ""
+
+msgid "Error while retrieving location of epg.dat on the fallback receiver"
 msgstr ""
 
 msgid "Error, unknown Result!"
@@ -8169,6 +8212,9 @@ msgstr ""
 msgid "Fallback Font *"
 msgstr ""
 
+msgid "Fallback Timer"
+msgstr ""
+
 msgid "Fallback remote receiver"
 msgstr ""
 
@@ -8190,7 +8236,7 @@ msgstr ""
 msgid "Fallback remote receiver for DVB-T"
 msgstr ""
 
-msgid "Fallback Timer"
+msgid "Fallback remote receiver setup"
 msgstr ""
 
 msgid "Fallback tuner setup"
@@ -9627,9 +9673,9 @@ msgstr ""
 msgid "IceTV version %s"
 msgstr "附件管理"
 
-#, fuzzy, python-format
+#, python-format
 msgid "IceTV version %s\n"
-msgstr "附件管理"
+msgstr "IceTV版本%s\n"
 
 #, fuzzy
 msgid "Iceland"
@@ -9793,6 +9839,10 @@ msgid "Import channels and/or EPG from remote receiver URL when receiver is boot
 msgstr ""
 
 msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
+msgstr ""
+
+#, python-format
+msgid "Import from fallback tuner failed, %s"
 msgstr ""
 
 msgid "Import from remote receiver URL"
@@ -10105,24 +10155,8 @@ msgstr "正在安裝"
 msgid "Installing Software..."
 msgstr "正在安裝軟體..."
 
-#, fuzzy
-msgid "Installing feeds from IPK ..."
-msgstr "正在安裝..."
-
-#, fuzzy
-msgid "Installing feeds from feed ..."
-msgstr "正在安裝軟體..."
-
 msgid "Installing package."
 msgstr ""
-
-#, fuzzy
-msgid "Installing plugins from IPK ..."
-msgstr "正在安裝..."
-
-#, fuzzy
-msgid "Installing plugins from feed ..."
-msgstr "正在安裝..."
 
 msgid "Instant Recording Actions"
 msgstr ""
@@ -11188,6 +11222,9 @@ msgstr "在所有頻道"
 
 msgid "Manual transponder"
 msgstr "手動轉發器掃描"
+
+msgid "Manually import from fallback tuner"
+msgstr ""
 
 msgid "Manufacturer"
 msgstr "製造商"
@@ -12382,9 +12419,8 @@ msgstr "不需要備份"
 msgid "No cable tuner found!"
 msgstr ""
 
-#, fuzzy
 msgid "No card inserted!"
-msgstr "新的Softcam已啟動 !\n"
+msgstr "沒有插入卡！"
 
 #, fuzzy
 msgid "No channel"
@@ -12409,6 +12445,9 @@ msgstr "在這個媒介上未發現檔!"
 
 msgid "No entry in lcn db. Please do a service scan."
 msgstr "LCN資料庫沒有紀錄。請進行一次頻道掃瞄。"
+
+msgid "No epg.dat file found on the fallback receiver"
+msgstr ""
 
 #, fuzzy
 msgid "No error"
@@ -14798,6 +14837,9 @@ msgstr ""
 msgid "Record Actions"
 msgstr ""
 
+msgid "Record Icon"
+msgstr ""
+
 #, fuzzy
 msgid "Record next"
 msgstr "錄製"
@@ -15174,9 +15216,6 @@ msgstr "移除當前選擇的標題"
 msgid "Remove highlighted directory from bookmarks"
 msgstr "移除選定的自動計時器"
 
-msgid "Remove plugins ..."
-msgstr ""
-
 msgid "Remove service from AutoCam"
 msgstr ""
 
@@ -15416,9 +15455,8 @@ msgstr "立即重啟(Restart)?"
 msgid "Restart needed, press OK to restart"
 msgstr ""
 
-#, fuzzy
 msgid "Restart network and remount connections"
-msgstr "重啟 Dreambox網路連接.\n"
+msgstr "重啟網路連接並重新掛載連接。"
 
 msgid "Restart network to with current setup"
 msgstr ""
@@ -15914,9 +15952,7 @@ msgid "Save settings and EPG data."
 msgstr ""
 
 #, python-format
-msgid ""
-"Save the commands and the output to a file?\n"
-"('%s')"
+msgid "Save the commands and output to the log file?"
 msgstr ""
 
 msgid "Save the left column directory location on exit."
@@ -16865,6 +16901,9 @@ msgstr ""
 msgid "Select the last item in the list"
 msgstr ""
 
+msgid "Select the layout of the information in the services list, from the options provided by the skin, displayed within the ChannelSelection screen."
+msgstr ""
+
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr ""
 
@@ -16936,6 +16975,9 @@ msgid "Select the satellite which is connected to Port-D of your switch. If you 
 msgstr ""
 
 msgid "Select the satellite you want to configure. Once configured you can select and configure other satellites that will be accessed using this same tuner."
+msgstr ""
+
+msgid "Select the screen layout, from the options provided by the skin, to be used for the ChannelSelection screen."
 msgstr ""
 
 #, fuzzy
@@ -17489,9 +17531,6 @@ msgstr ""
 msgid "Set the scrolling speed of text on the front display."
 msgstr ""
 
-msgid "Set the style of the channel list."
-msgstr ""
-
 msgid "Set the time before checking video source for resolution information."
 msgstr ""
 
@@ -17965,6 +18004,9 @@ msgid "Show Information"
 msgstr "硬碟資訊..."
 
 msgid "Show Kernel packages"
+msgstr ""
+
+msgid "Show LCN in channel selection"
 msgstr ""
 
 msgid "Show Live in MiniTV"
@@ -18654,13 +18696,11 @@ msgstr ""
 msgid "Shows Plugins Browser. Here you can setup installed Plugin"
 msgstr ""
 
-#, fuzzy
 msgid "Shows available plugins. Here you can download and install them"
-msgstr "確定要下載和安裝?\n"
+msgstr "顯示可用的插件。您可以在這裡下載並安裝"
 
-#, fuzzy
 msgid "Shows available softcams. Here you can download and install them"
-msgstr "確定要下載和安裝?\n"
+msgstr "顯示可用的softcams。您可以在這裡下載並安裝它們"
 
 msgid "Shows live tv or informations on LCD."
 msgstr ""
@@ -19635,9 +19675,6 @@ msgid "Strict DLNA"
 msgstr ""
 
 msgid "Stripes"
-msgstr ""
-
-msgid "Style"
 msgstr ""
 
 msgid "Style:"
@@ -21643,9 +21680,6 @@ msgstr ""
 msgid "URL of fallback remote receiver"
 msgstr ""
 
-msgid "URL of fallback remote receiver."
-msgstr ""
-
 msgid "USALS"
 msgstr "USALS"
 
@@ -22148,7 +22182,7 @@ msgstr ""
 
 #, fuzzy
 msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
-msgstr "使用網路嚮導配置網路\n"
+msgstr "使用網路嚮導配置網路"
 
 msgid "Use the Softcam Panel to control your Cam. This let you start/stop/select a cam"
 msgstr ""
@@ -22985,6 +23019,9 @@ msgstr ""
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr ""
 
+msgid "When enabled, show LCN in the channel selection screen."
+msgstr ""
+
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr ""
 
@@ -23196,15 +23233,17 @@ msgstr ""
 msgid "Wrestling"
 msgstr "正在安裝"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Write error at start of recording. %s\n"
 "%s"
-msgstr "錄製節目時出現錯誤.磁片已滿?\n"
+msgstr ""
+"開始錄製節目時已出現錯誤。%s\n"
+"%s"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Write error while recording. %s"
-msgstr "錄製節目時出現錯誤.磁片已滿?\n"
+msgstr "錄製節目時出現錯誤。%s"
 
 msgid "Write failed!"
 msgstr "寫入失敗！"
@@ -24558,9 +24597,8 @@ msgstr ""
 msgid "stereo"
 msgstr "身歷聲"
 
-#, fuzzy
 msgid "successful"
-msgstr "安裝成功!\n"
+msgstr "安裝成功"
 
 msgid "switch 12 to 8 character display mode"
 msgstr ""
@@ -24731,6 +24769,22 @@ msgstr "是 (保留)"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Installing feeds from IPK ..."
+#~ msgstr "正在安裝..."
+
+#, fuzzy
+#~ msgid "Installing feeds from feed ..."
+#~ msgstr "正在安裝軟體..."
+
+#, fuzzy
+#~ msgid "Installing plugins from IPK ..."
+#~ msgstr "正在安裝..."
+
+#, fuzzy
+#~ msgid "Installing plugins from feed ..."
+#~ msgstr "正在安裝..."
 
 #, fuzzy
 #~ msgid ""

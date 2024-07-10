@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-21 14:25+0000\n"
+"POT-Creation-Date: 2024-07-09 18:37+0000\n"
 "PO-Revision-Date: 2024-07-09 10:09+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
@@ -1223,6 +1223,10 @@ msgstr "%s bolo aktivované."
 #, python-format
 msgid "%s has been disabled."
 msgstr "%s bolo deaktivované."
+
+#, python-format
+msgid "%s imported from fallback tuner"
+msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -3809,8 +3813,14 @@ msgstr "Akcie pre kontextové menu zoznamu kanálov"
 msgid "Channel Selection Context Menu Navigation Actions"
 msgstr "Navigačné akcie pre kontextové menu zoznamu kanálov"
 
+msgid "Channel Selection List"
+msgstr ""
+
 msgid "Channel Selection Navigation Actions"
 msgstr "Akcie navigácie pre výber kanála"
+
+msgid "Channel Selection Screen"
+msgstr ""
 
 msgid "Channel Selection Settings"
 msgstr "Nastavenia výberu staníc"
@@ -3874,6 +3884,15 @@ msgstr "Kanál:"
 
 msgid "ChannelEPG Settings"
 msgstr "Nastavenia EPG kanála"
+
+msgid "Channels"
+msgstr ""
+
+msgid "Channels and EPG"
+msgstr ""
+
+msgid "Channels only"
+msgstr ""
 
 msgid "Chap."
 msgstr "Kap."
@@ -4268,6 +4287,9 @@ msgstr "Formát farby"
 msgid "Color space"
 msgstr "Farebný priestor"
 
+msgid "Colored Text"
+msgstr ""
+
 msgid "Combined"
 msgstr "Kombinované"
 
@@ -4413,6 +4435,9 @@ msgstr "Nastavte, či a ako sa zobrazí indikátor nahrávania v zozname pre vý
 msgid "Configure if and how wide the service name column will be shown in the channel selection list."
 msgstr "Nastavte, či a aký široký sa má zobrazovať stĺpec s názvom stanice, v zozname pre výber kanála."
 
+msgid "Configure if crypto icons will be shown in the channel selection list."
+msgstr ""
+
 msgid "Configure if epg.dat should be saved at all."
 msgstr "Nastavte, či sa vo všeobecnosti má ukladať súbor epg.dat."
 
@@ -4421,6 +4446,9 @@ msgstr "Nastavte, či sa majú pri rýchlom prepnutí zobrazovať pikony staníc
 
 msgid "Configure if service picons will be shown in the service list."
 msgstr "Nastavte, čí sa majú v zozname staníc zobrazovať pikony."
+
+msgid "Configure if service type icons will be shown."
+msgstr ""
 
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
 msgstr "Nastavte, či sa majú titulky prepnúť medzi normálnymi, tučnými a tučnými s kurzívou."
@@ -6705,6 +6733,9 @@ msgstr "EPG výber jazyka 2"
 msgid "EPG location"
 msgstr "Umiestnenie EPG"
 
+msgid "EPG only"
+msgstr ""
+
 msgid "EPGSearch"
 msgstr "Vyhľadávanie v EPG"
 
@@ -7199,6 +7230,9 @@ msgstr "IP adresa"
 msgid "Enter PIN"
 msgstr "Zadajte PIN"
 
+msgid "Enter URL"
+msgstr ""
+
 msgid "Enter a description for this timer."
 msgstr "Zadajte popis pre tento časovač."
 
@@ -7446,6 +7480,15 @@ msgstr "Text chyby:"
 msgid "Error unzipping image '%s'!"
 msgstr "Chyba pri rozbaľovaní image '%s'!"
 
+msgid "Error when writing epg.dat on the fallback receiver"
+msgstr ""
+
+msgid "Error while moving epg.dat to its destination"
+msgstr ""
+
+msgid "Error while retrieving epg.dat from the fallback receiver"
+msgstr ""
+
 #, python-format
 msgid ""
 "Error while retrieving fallback timer information\n"
@@ -7453,6 +7496,9 @@ msgid ""
 msgstr ""
 "Chyba pri načítaní informácií o záložnom časovači\n"
 "%s"
+
+msgid "Error while retrieving location of epg.dat on the fallback receiver"
+msgstr ""
 
 msgid "Error, unknown Result!"
 msgstr "Chyba, neznámy výsledok!"
@@ -7932,6 +7978,9 @@ msgstr "Záložné rozhranie API nevrátilo platný výsledok."
 msgid "Fallback Font *"
 msgstr "Záložný font *"
 
+msgid "Fallback Timer"
+msgstr "Záložný časovač"
+
 msgid "Fallback remote receiver"
 msgstr "Záložný vzdialený prijímač"
 
@@ -7953,8 +8002,8 @@ msgstr "Záložný vzdialený prijímač pre DVB-C"
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Záložný vzdialený prijímač pre DVB-T"
 
-msgid "Fallback Timer"
-msgstr "Záložný časovač"
+msgid "Fallback remote receiver setup"
+msgstr ""
 
 msgid "Fallback tuner setup"
 msgstr "Nastavenie záložného tuneru"
@@ -9458,6 +9507,10 @@ msgstr "Importovať kanály a/alebo EPG zo URL vzdialeného prijímača počas �
 msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
 msgstr "Importovať kanály a/alebo EPG zo URL vzdialeného prijímača počas štartu prijímača alebo enigmy2"
 
+#, python-format
+msgid "Import from fallback tuner failed, %s"
+msgstr ""
+
 msgid "Import from remote receiver URL"
 msgstr "Importovať z URL adresy vzdialeného prijímača"
 
@@ -9750,20 +9803,8 @@ msgstr "Inštalácia služby"
 msgid "Installing Software..."
 msgstr "Inštalácia softvéru..."
 
-msgid "Installing feeds from IPK ..."
-msgstr "Inštalácia zdrojov informácií z IPK..."
-
-msgid "Installing feeds from feed ..."
-msgstr "Inštalácia zdrojov informácií zo zdroja…"
-
 msgid "Installing package."
 msgstr "Inštalácia balíčka."
-
-msgid "Installing plugins from IPK ..."
-msgstr "Inštalácia pluginov z IPK…"
-
-msgid "Installing plugins from feed ..."
-msgstr "Inštalácia pluginov z informačného zdroja…"
 
 msgid "Instant Recording Actions"
 msgstr "Akcie pre okamžité nahrávanie"
@@ -10770,6 +10811,9 @@ msgstr "Ručné vyhľadávanie staníc"
 
 msgid "Manual transponder"
 msgstr "Ručne zadaný transpondér"
+
+msgid "Manually import from fallback tuner"
+msgstr ""
 
 msgid "Manufacturer"
 msgstr "Výrobca"
@@ -11907,6 +11951,9 @@ msgstr "Na tomto médiu sa nenašli žiadne zobraziteľné súbory!"
 
 msgid "No entry in lcn db. Please do a service scan."
 msgstr "Žiadny záznam v databáze LCN. Prosím, vykonajte skenovanie staníc."
+
+msgid "No epg.dat file found on the fallback receiver"
+msgstr ""
 
 msgid "No error"
 msgstr "Žiadna chyba"
@@ -14149,6 +14196,9 @@ msgstr "Nahrať – rovnaké ako tlačidlo nahrávania"
 msgid "Record Actions"
 msgstr "Akcie nahrávania"
 
+msgid "Record Icon"
+msgstr ""
+
 msgid "Record next"
 msgstr "Nahrať nasledujúce"
 
@@ -14491,9 +14541,6 @@ msgstr "Odstrániť aktuálne zvolený titul"
 
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Odstrániť vybraný priečinok zo záložiek"
-
-msgid "Remove plugins ..."
-msgstr "Odstrániť pluginy…"
 
 msgid "Remove service from AutoCam"
 msgstr "Odstrániť stanicu z AutoCamu"
@@ -15189,12 +15236,8 @@ msgid "Save settings and EPG data."
 msgstr "Uložiť nastavenia a údaje EPG."
 
 #, python-format
-msgid ""
-"Save the commands and the output to a file?\n"
-"('%s')"
-msgstr ""
-"Uložiť príkazy a výstup do súboru?\n"
-"('%s')"
+msgid "Save the commands and output to the log file?"
+msgstr "Uložiť príkazy a výstup do súboru?"
 
 msgid "Save the left column directory location on exit."
 msgstr "Pri ukončení uložiť umiestnenie priečinka vľavo."
@@ -16112,6 +16155,9 @@ msgstr "Vyberte poslednú položku v zozname alebo sa presuňte na koniec textu"
 msgid "Select the last item in the list"
 msgstr "Vyberte poslednú položku v zozname"
 
+msgid "Select the layout of the information in the services list, from the options provided by the skin, displayed within the ChannelSelection screen."
+msgstr ""
+
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr "Vyberte rozloženie nainštalovaných pluginov, ktoré sa použije na obrazovke Prehliadača pluginov. POZNÁMKA: Táto zmena nie je okamžitá, prejaví sa až po reštartovaní prehliadača pluginov!"
 
@@ -16186,6 +16232,9 @@ msgstr "Vyberte družicu pripojenú na port D vášho prepínača. Ak si nie ste
 
 msgid "Select the satellite you want to configure. Once configured you can select and configure other satellites that will be accessed using this same tuner."
 msgstr "Vyberte družicu, ktorú chcete konfigurovať. Po nakonfigurovaní družice môžete vybrať a konfigurovať ďalšie družice, ku ktorým sa bude pristupovať s použitím rovnakého tunera."
+
+msgid "Select the screen layout, from the options provided by the skin, to be used for the ChannelSelection screen."
+msgstr ""
 
 msgid "Select the shifted character set"
 msgstr "Vyberte znakovú sadu pre veľké písmená"
@@ -16717,9 +16766,6 @@ msgstr "Nastavte rýchlosť rolovania textu na prednom displeji. Túto voľbu vy
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Nastavte rýchlosť rolovania textu na prednom displeji."
 
-msgid "Set the style of the channel list."
-msgstr "Nastavenie štýlu zoznamu kanálov."
-
 msgid "Set the time before checking video source for resolution information."
 msgstr "Nastavenie času pred kontrolou zdroja videa na informácie o rozlíšení."
 
@@ -17154,6 +17200,9 @@ msgstr "Zobraziť informácie"
 
 msgid "Show Kernel packages"
 msgstr "Zobraziť balíčky kernelu"
+
+msgid "Show LCN in channel selection"
+msgstr ""
 
 msgid "Show Live in MiniTV"
 msgstr "Zobraziť naživo v MiniTV"
@@ -18707,9 +18756,6 @@ msgstr "Striktné DLNA"
 
 msgid "Stripes"
 msgstr "Pruhy"
-
-msgid "Style"
-msgstr "Štýl"
 
 msgid "Style:"
 msgstr "Štýl:"
@@ -20684,9 +20730,6 @@ msgstr "URL"
 msgid "URL of fallback remote receiver"
 msgstr "URL záložného vzdialeného prijímača"
 
-msgid "URL of fallback remote receiver."
-msgstr "URL adresa náhradného vzdialeného prijímača."
-
 msgid "USALS"
 msgstr "USALS"
 
@@ -22002,6 +22045,9 @@ msgstr "Ak je povolené, stlačením tlačidla '0 'sa prepne prvý kanál vo va�
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Ak je povolené, titulky sa preformátujú tak, aby zodpovedali šírke obrazovky."
+
+msgid "When enabled, show LCN in the channel selection screen."
+msgstr ""
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Ak je povolené, na pobrazovke výberu kanálov sa zobrazia čísla kanálov."
@@ -23717,6 +23763,30 @@ msgstr "áno (zachovať zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Installing feeds from IPK ..."
+#~ msgstr "Inštalácia zdrojov informácií z IPK..."
+
+#~ msgid "Installing feeds from feed ..."
+#~ msgstr "Inštalácia zdrojov informácií zo zdroja…"
+
+#~ msgid "Installing plugins from IPK ..."
+#~ msgstr "Inštalácia pluginov z IPK…"
+
+#~ msgid "Installing plugins from feed ..."
+#~ msgstr "Inštalácia pluginov z informačného zdroja…"
+
+#~ msgid "Remove plugins ..."
+#~ msgstr "Odstrániť pluginy…"
+
+#~ msgid "Set the style of the channel list."
+#~ msgstr "Nastavenie štýlu zoznamu kanálov."
+
+#~ msgid "Style"
+#~ msgstr "Štýl"
+
+#~ msgid "URL of fallback remote receiver."
+#~ msgstr "URL adresa náhradného vzdialeného prijímača."
 
 #~ msgid ""
 #~ "\n"

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-21 14:25+0000\n"
+"POT-Creation-Date: 2024-07-09 18:37+0000\n"
 "PO-Revision-Date: 2024-07-05 09:09+0000\n"
 "Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
@@ -1229,6 +1229,10 @@ msgstr "%s został aktywowany."
 #, python-format
 msgid "%s has been disabled."
 msgstr "%s został wyłączony."
+
+#, python-format
+msgid "%s imported from fallback tuner"
+msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -3816,8 +3820,14 @@ msgstr "Akcje menu kontekstowego wyboru kanału"
 msgid "Channel Selection Context Menu Navigation Actions"
 msgstr "Akcje związane z nawigacją w menu kontekstowym wyboru kanału"
 
+msgid "Channel Selection List"
+msgstr ""
+
 msgid "Channel Selection Navigation Actions"
 msgstr "Akcje związane z nawigacją po wyborze kanału"
+
+msgid "Channel Selection Screen"
+msgstr ""
 
 msgid "Channel Selection Settings"
 msgstr "Ustawienia wyboru kanału"
@@ -3881,6 +3891,15 @@ msgstr "Kanał:"
 
 msgid "ChannelEPG Settings"
 msgstr "Ustawienia EPG kanału"
+
+msgid "Channels"
+msgstr ""
+
+msgid "Channels and EPG"
+msgstr ""
+
+msgid "Channels only"
+msgstr ""
 
 msgid "Chap."
 msgstr "Rozdz."
@@ -4276,6 +4295,9 @@ msgstr "Format kolorów"
 msgid "Color space"
 msgstr "Przestrzeń kolorów"
 
+msgid "Colored Text"
+msgstr ""
+
 msgid "Combined"
 msgstr "Łączny"
 
@@ -4421,6 +4443,9 @@ msgstr "Skonfigurować, czy i gdzie ma się pojawić wskaźnik nagrywania na li�
 msgid "Configure if and how wide the service name column will be shown in the channel selection list."
 msgstr "Skonfigurować, czy i jak szeroka kolumna nazwy kanału pojawi się w liście wyboru kanału."
 
+msgid "Configure if crypto icons will be shown in the channel selection list."
+msgstr ""
+
 msgid "Configure if epg.dat should be saved at all."
 msgstr "Skonfiguruj, czy w ogóle ma być zapisywany plik epg.dat."
 
@@ -4429,6 +4454,9 @@ msgstr "Skonfiguruj jeśli pikony mają być wyświetlane w quickzap."
 
 msgid "Configure if service picons will be shown in the service list."
 msgstr "Skonfiguruj jeśli pikony mają być wyświetlane w liście kanałów."
+
+msgid "Configure if service type icons will be shown."
+msgstr ""
 
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
 msgstr "Skonfiguruj, czy podtytuły mają się przełączać między normalną, kursywą, pogrubioną i pogrubioną."
@@ -6713,6 +6741,9 @@ msgstr "Preferowany język EPG 2"
 msgid "EPG location"
 msgstr "Lokalizacja EPG"
 
+msgid "EPG only"
+msgstr ""
+
 msgid "EPGSearch"
 msgstr "Wyszukiwanie EPG"
 
@@ -7207,6 +7238,9 @@ msgstr "Wprowadź adres IP"
 msgid "Enter PIN"
 msgstr "Wpisz PIN"
 
+msgid "Enter URL"
+msgstr ""
+
 msgid "Enter a description for this timer."
 msgstr "Wprowadź opis dla tego timera."
 
@@ -7454,6 +7488,15 @@ msgstr "Tekst błędu:"
 msgid "Error unzipping image '%s'!"
 msgstr "Błąd przy rozpakowywaniu systemu '%s'!"
 
+msgid "Error when writing epg.dat on the fallback receiver"
+msgstr ""
+
+msgid "Error while moving epg.dat to its destination"
+msgstr ""
+
+msgid "Error while retrieving epg.dat from the fallback receiver"
+msgstr ""
+
 #, python-format
 msgid ""
 "Error while retrieving fallback timer information\n"
@@ -7461,6 +7504,9 @@ msgid ""
 msgstr ""
 "Błąd podczas pobierania informacji o liczniku czasu awaryjnego\n"
 "%s"
+
+msgid "Error while retrieving location of epg.dat on the fallback receiver"
+msgstr ""
 
 msgid "Error, unknown Result!"
 msgstr "Błąd, nieznany wynik!"
@@ -7940,6 +7986,9 @@ msgstr "Zastępczy interfejs API nie zwrócił prawidłowego wyniku."
 msgid "Fallback Font *"
 msgstr "Czcionka zastępcza *"
 
+msgid "Fallback Timer"
+msgstr "Timer rezerwowy"
+
 msgid "Fallback remote receiver"
 msgstr "Zdalny odbiornik rezerwowy"
 
@@ -7961,8 +8010,8 @@ msgstr "Zdalny odbiornik rezerwowy dla DVB-C"
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Zdalny odbiornik rezerwowy dla DVB-T"
 
-msgid "Fallback Timer"
-msgstr "Timer rezerwowy"
+msgid "Fallback remote receiver setup"
+msgstr ""
 
 msgid "Fallback tuner setup"
 msgstr "Ustawienia tunera rezerwowego"
@@ -9466,6 +9515,10 @@ msgstr "Importuj kanały i / lub EPG ze zdalnego odbiornika wtedy, gdy odbiornik
 msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
 msgstr "Importuj kanały i / lub EPG ze zdalnego odbiornika wtedy, gdy odbiornik lub enigma się restartuje"
 
+#, python-format
+msgid "Import from fallback tuner failed, %s"
+msgstr ""
+
 msgid "Import from remote receiver URL"
 msgstr "Importuj ze zdalnego odbiornika"
 
@@ -9758,20 +9811,8 @@ msgstr "Instalowanie listy"
 msgid "Installing Software..."
 msgstr "Instalowanie systemu..."
 
-msgid "Installing feeds from IPK ..."
-msgstr "Instalowanie kanałów oprogramowania z IPK..."
-
-msgid "Installing feeds from feed ..."
-msgstr "Instalowanie kanałów oprogramowania z innego kanału..."
-
 msgid "Installing package."
 msgstr "Instalowanie pakietu."
-
-msgid "Installing plugins from IPK ..."
-msgstr "Instalowanie wtyczek z IPK..."
-
-msgid "Installing plugins from feed ..."
-msgstr "Instalowanie wtyczek z kanału oprogramowania..."
 
 msgid "Instant Recording Actions"
 msgstr "Akcje natychmiastowego nagrywania"
@@ -10779,6 +10820,9 @@ msgstr "Ręczne skanowanie kanałów"
 
 msgid "Manual transponder"
 msgstr "Własny transponder"
+
+msgid "Manually import from fallback tuner"
+msgstr ""
 
 msgid "Manufacturer"
 msgstr "Producent"
@@ -11916,6 +11960,9 @@ msgstr "Brak plików do wyświetlenia na tym nośniku!"
 
 msgid "No entry in lcn db. Please do a service scan."
 msgstr "Brak wpisu w lcn db. Wykonaj skanowanie usługi."
+
+msgid "No epg.dat file found on the fallback receiver"
+msgstr ""
 
 msgid "No error"
 msgstr "Brak błędów"
@@ -14158,6 +14205,9 @@ msgstr "Nagraj - taki sam jak przycisk nagrywania"
 msgid "Record Actions"
 msgstr "Akcje nagrywania"
 
+msgid "Record Icon"
+msgstr ""
+
 msgid "Record next"
 msgstr "Nagraj następny"
 
@@ -14500,9 +14550,6 @@ msgstr "Usuń aktualnie wybrany tytuł"
 
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Usuń wybrany folder z zakładek"
-
-msgid "Remove plugins ..."
-msgstr "Usuń wtyczki..."
 
 msgid "Remove service from AutoCam"
 msgstr "Usuń usługę z AutoCam"
@@ -15198,12 +15245,8 @@ msgid "Save settings and EPG data."
 msgstr "Zapisz ustawienia i dane EPG."
 
 #, python-format
-msgid ""
-"Save the commands and the output to a file?\n"
-"('%s')"
-msgstr ""
-"Zapisać polecenia i dane wyjściowe w pliku?\n"
-"('%s')"
+msgid "Save the commands and output to the log file?"
+msgstr "Zapisać polecenia i dane wyjściowe w pliku?"
 
 msgid "Save the left column directory location on exit."
 msgstr "Zapisz lokalizację katalogu w lewej kolumnie przy wyjściu."
@@ -16121,6 +16164,9 @@ msgstr "Wybierz ostatnią pozycję na liście lub przejdź na koniec tekstu"
 msgid "Select the last item in the list"
 msgstr "Wybierz ostatnią pozycję na liście"
 
+msgid "Select the layout of the information in the services list, from the options provided by the skin, displayed within the ChannelSelection screen."
+msgstr ""
+
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr "Wybierz układ zainstalowanych wtyczek na ekranie Przeglądarka wtyczek. UWAGA: Zmiana nie jest natychmiastowa, ale będzie widoczna po ponownym uruchomieniu przeglądarki wtyczek!"
 
@@ -16195,6 +16241,9 @@ msgstr "Wybierz satelitę podłączonego do portu D przełącznika. Jeśli nie m
 
 msgid "Select the satellite you want to configure. Once configured you can select and configure other satellites that will be accessed using this same tuner."
 msgstr "Wybierz satelitę, którą chcesz skonfigurować. Po skonfigurowaniu tego satelity możesz wybrać i skonfigurować inne satelity, które będą dostępne za pomocą tego samego tunera."
+
+msgid "Select the screen layout, from the options provided by the skin, to be used for the ChannelSelection screen."
+msgstr ""
 
 msgid "Select the shifted character set"
 msgstr "Wybierz przesunięty zestaw znaków"
@@ -16726,9 +16775,6 @@ msgstr "Ustaw szybkość przewijania tekstu na wyświetlaczu. Jest używany prze
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Ustaw szybkość przewijania tekstu na przednim wyświetlaczu."
 
-msgid "Set the style of the channel list."
-msgstr "Ustaw styl listy kanałów."
-
 msgid "Set the time before checking video source for resolution information."
 msgstr "Pozwala na ustawienie czasu opóźnienia przed automatyczną rozdzielczością,sprawdza źródła wideo."
 
@@ -17163,6 +17209,9 @@ msgstr "Pokaż informacje"
 
 msgid "Show Kernel packages"
 msgstr "Pokaż pakiety kernel"
+
+msgid "Show LCN in channel selection"
+msgstr ""
 
 msgid "Show Live in MiniTV"
 msgstr "Pokaż Na żywo w MiniTV"
@@ -18717,9 +18766,6 @@ msgstr "Ścisły DLNA"
 
 msgid "Stripes"
 msgstr "Paski Animacji"
-
-msgid "Style"
-msgstr "Styl"
 
 msgid "Style:"
 msgstr "Styl:"
@@ -20694,9 +20740,6 @@ msgstr "URL"
 msgid "URL of fallback remote receiver"
 msgstr "Adres zdalnego odbiornika rezerwowego"
 
-msgid "URL of fallback remote receiver."
-msgstr "Adres URL zastępczego zdalnego odbiornika."
-
 msgid "USALS"
 msgstr "USALS"
 
@@ -22012,6 +22055,9 @@ msgstr "Po włączeniu, wciśnięcie '0' szybko przełączy na pierwszy kanał w
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Po włączeniu sformatuj napisy w celu dopasowania do szerokości ekranu."
+
+msgid "When enabled, show LCN in the channel selection screen."
+msgstr ""
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Gdy włączone, wyświetla numery w liście wyboru kanałów."
@@ -23727,6 +23773,30 @@ msgstr "tak (zachować kanały)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Installing feeds from IPK ..."
+#~ msgstr "Instalowanie kanałów oprogramowania z IPK..."
+
+#~ msgid "Installing feeds from feed ..."
+#~ msgstr "Instalowanie kanałów oprogramowania z innego kanału..."
+
+#~ msgid "Installing plugins from IPK ..."
+#~ msgstr "Instalowanie wtyczek z IPK..."
+
+#~ msgid "Installing plugins from feed ..."
+#~ msgstr "Instalowanie wtyczek z kanału oprogramowania..."
+
+#~ msgid "Remove plugins ..."
+#~ msgstr "Usuń wtyczki..."
+
+#~ msgid "Set the style of the channel list."
+#~ msgstr "Ustaw styl listy kanałów."
+
+#~ msgid "Style"
+#~ msgstr "Styl"
+
+#~ msgid "URL of fallback remote receiver."
+#~ msgstr "Adres URL zastępczego zdalnego odbiornika."
 
 #~ msgid ""
 #~ "\n"

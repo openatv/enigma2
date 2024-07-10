@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-21 14:25+0000\n"
+"POT-Creation-Date: 2024-07-09 18:37+0000\n"
 "PO-Revision-Date: 2024-07-05 23:45+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -1188,6 +1188,10 @@ msgstr "Το %s ενεργοποιήθηκε."
 #, python-format
 msgid "%s has been disabled."
 msgstr "Το %s απενεργοποιήθηκε."
+
+#, python-format
+msgid "%s imported from fallback tuner"
+msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -3774,8 +3778,14 @@ msgstr "Ενέργειες μενού περιεχομένου λίστας κα
 msgid "Channel Selection Context Menu Navigation Actions"
 msgstr "Ενέργειες πλοήγησης μενού περιεχομένων λίστας καναλιών"
 
+msgid "Channel Selection List"
+msgstr ""
+
 msgid "Channel Selection Navigation Actions"
 msgstr "Ενέργειες πλοήγησης επιλογής καναλιών"
+
+msgid "Channel Selection Screen"
+msgstr ""
 
 msgid "Channel Selection Settings"
 msgstr "Ρυθμίσεις επιλογής καναλιών"
@@ -3839,6 +3849,15 @@ msgstr "Κανάλι:"
 
 msgid "ChannelEPG Settings"
 msgstr "Ρυθμίσεις EPG καναλιού"
+
+msgid "Channels"
+msgstr ""
+
+msgid "Channels and EPG"
+msgstr ""
+
+msgid "Channels only"
+msgstr ""
 
 msgid "Chap."
 msgstr "Κεφ."
@@ -4232,6 +4251,9 @@ msgstr "Φορμά χρώματος"
 msgid "Color space"
 msgstr "Χρωματικό εύρος"
 
+msgid "Colored Text"
+msgstr ""
+
 msgid "Combined"
 msgstr "Σε συνδυασμό"
 
@@ -4376,6 +4398,9 @@ msgstr "Ρυθμίστε εάν και πώς θα εμφανίζεται το �
 msgid "Configure if and how wide the service name column will be shown in the channel selection list."
 msgstr "Ρυθμίστε εάν και πόσο πλατιά θα εμφανίζεται η στήλη ονόματος στη λίστα επιλογής καναλιών."
 
+msgid "Configure if crypto icons will be shown in the channel selection list."
+msgstr ""
+
 msgid "Configure if epg.dat should be saved at all."
 msgstr "Ρυθμίστε αν θα αποθηκεύεται το epg.dat."
 
@@ -4384,6 +4409,9 @@ msgstr "Ρυθμίστε αν τα λογότυπα θα εμφανίζοντα�
 
 msgid "Configure if service picons will be shown in the service list."
 msgstr "Ρυθμίστε αν θα εμφανίζονται τα λογότυπα υπηρεσιών στη λίστα."
+
+msgid "Configure if service type icons will be shown."
+msgstr ""
 
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
 msgstr "Ρυθμίστε αν ο υπότιτλος θα πρέπει να αλλάζει μεταξύ του κανονικού, πλάγιου, έντονου ή έντονου πλάγιου."
@@ -6667,6 +6695,9 @@ msgstr "Επιλογή γλώσσας EPG 2"
 msgid "EPG location"
 msgstr "Τοποθεσία EPG"
 
+msgid "EPG only"
+msgstr ""
+
 msgid "EPGSearch"
 msgstr "Αναζήτηση EPG"
 
@@ -7159,6 +7190,9 @@ msgstr "Εισαγωγή διεύθυνσης IP"
 msgid "Enter PIN"
 msgstr "Εισαγωγή PIN"
 
+msgid "Enter URL"
+msgstr ""
+
 msgid "Enter a description for this timer."
 msgstr "Εισαγωγή περιγραφής για αυτόν τον χρονοδιακόπτη."
 
@@ -7406,6 +7440,15 @@ msgstr "Κείμενο σφάλματος:"
 msgid "Error unzipping image '%s'!"
 msgstr "Σφάλμα αποσυμπίεσης του image '%s'!"
 
+msgid "Error when writing epg.dat on the fallback receiver"
+msgstr ""
+
+msgid "Error while moving epg.dat to its destination"
+msgstr ""
+
+msgid "Error while retrieving epg.dat from the fallback receiver"
+msgstr ""
+
 #, python-format
 msgid ""
 "Error while retrieving fallback timer information\n"
@@ -7413,6 +7456,9 @@ msgid ""
 msgstr ""
 "Σφάλμα ανάκτησης πληροφοριών εφεδρικού χρονοδιακόπτη\n"
 "%s"
+
+msgid "Error while retrieving location of epg.dat on the fallback receiver"
+msgstr ""
 
 msgid "Error, unknown Result!"
 msgstr "Σφάλμα, άγνωστο αποτέλεσμα!"
@@ -7892,6 +7938,9 @@ msgstr "Το εφεδρικό API δεν επέστρεψε έγκυρο απο�
 msgid "Fallback Font *"
 msgstr "Εφεδρική γραμματοσειρά *"
 
+msgid "Fallback Timer"
+msgstr "Εφεδρικός χρονοδιακόπτης"
+
 msgid "Fallback remote receiver"
 msgstr "Εφεδρικός απομακρυσμένος δέκτης"
 
@@ -7913,8 +7962,8 @@ msgstr "Εφεδρικός απομακρυσμένος δέκτης για DVB-
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Εφεδρικός απομακρυσμένος δέκτης για DVB-T"
 
-msgid "Fallback Timer"
-msgstr "Εφεδρικός χρονοδιακόπτης"
+msgid "Fallback remote receiver setup"
+msgstr ""
 
 msgid "Fallback tuner setup"
 msgstr "Ρυθμίσεις εφεδρικού tuner"
@@ -9418,6 +9467,10 @@ msgstr "Εισαγωγή καναλιών ή/και EPG από τον εφεδρ
 msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
 msgstr "Εισαγωγή καναλιών ή/και EPG από την απομακρυσμένη URL δέκτη κατά την εκκίνηση του δέκτη ή του enigma2"
 
+#, python-format
+msgid "Import from fallback tuner failed, %s"
+msgstr ""
+
 msgid "Import from remote receiver URL"
 msgstr "Εισαγωγή από διεύθυνση URL απομακρυσμένου δέκτη"
 
@@ -9710,20 +9763,8 @@ msgstr "Εγκατάσταση υπηρεσίας"
 msgid "Installing Software..."
 msgstr "Εγκατάσταση λογισμικού..."
 
-msgid "Installing feeds from IPK ..."
-msgstr "Εγκατάσταση πηγών από IPK..."
-
-msgid "Installing feeds from feed ..."
-msgstr "Εγκατάσταση πηγών από πηγή..."
-
 msgid "Installing package."
 msgstr "Γίνεται εγκατάσταση του πακέτου."
-
-msgid "Installing plugins from IPK ..."
-msgstr "Εγκατάσταση προσθέτων από IPK..."
-
-msgid "Installing plugins from feed ..."
-msgstr "Εγκατάσταση προσθέτων από την πηγή..."
 
 msgid "Instant Recording Actions"
 msgstr "Ενέργειες άμεσης εγγραφής"
@@ -10728,6 +10769,9 @@ msgstr "Χειροκίνητη ανίχνευση υπηρεσιών"
 
 msgid "Manual transponder"
 msgstr "Χειροκίνητος αναμεταδότης"
+
+msgid "Manually import from fallback tuner"
+msgstr ""
 
 msgid "Manufacturer"
 msgstr "Κατασκευαστής"
@@ -11865,6 +11909,9 @@ msgstr "Δεν υπάρχουν αρχεία προς εμφάνιση σε αυ
 
 msgid "No entry in lcn db. Please do a service scan."
 msgstr "Απουσία δεδομένων στη βάση του lcn. Παρακαλώ κάντε χειροκίνητη ανίχνευση."
+
+msgid "No epg.dat file found on the fallback receiver"
+msgstr ""
 
 msgid "No error"
 msgstr "Χωρίς σφάλμα"
@@ -14105,6 +14152,9 @@ msgstr "Εγγραφή - όπως στο πλήκτρο εγγραφής"
 msgid "Record Actions"
 msgstr "Ενέργειες εγγραφής"
 
+msgid "Record Icon"
+msgstr ""
+
 msgid "Record next"
 msgstr "Εγγραφή του επόμενου"
 
@@ -14447,9 +14497,6 @@ msgstr "Διαγραφή επιλεγμένου τίτλου"
 
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Αφαίρεση του επιλεγμένου φακέλου από τους σελιδοδείκτες"
-
-msgid "Remove plugins ..."
-msgstr "Αφαίρεση προσθέτων..."
 
 msgid "Remove service from AutoCam"
 msgstr "Αφαίρεση υπηρεσίας από το αυτόματο cam"
@@ -15145,12 +15192,8 @@ msgid "Save settings and EPG data."
 msgstr "Αποθήκευση ρυθμίσεων και δεδομένων EPG."
 
 #, python-format
-msgid ""
-"Save the commands and the output to a file?\n"
-"('%s')"
-msgstr ""
-"Να γίνει αποθήκευση των εντολών και η εξαγωγή τους σε αρχείο;\n"
-"('%s')"
+msgid "Save the commands and output to the log file?"
+msgstr "Να γίνει αποθήκευση των εντολών και η εξαγωγή τους σε αρχείο;"
 
 msgid "Save the left column directory location on exit."
 msgstr "Αποθήκευση τοποθεσίας φακέλου αριστερής στήλης κατά την έξοδο."
@@ -16066,6 +16109,9 @@ msgstr "Επιλογή του τελευταίου στοιχείου της λ�
 msgid "Select the last item in the list"
 msgstr "Επιλογή του τελευταίου στοιχείου της λίστας"
 
+msgid "Select the layout of the information in the services list, from the options provided by the skin, displayed within the ChannelSelection screen."
+msgstr ""
+
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr "Επιλέξτε τη διάταξη των εγκατεστημένων πρόσθετων στην οθόνη διαχείρισης προσθέτων. ΣΗΜΕΙΩΣΗ: Η αλλαγή δεν είναι άμεση, αλλά θα φανεί μετά την επανεκκίνηση του πλοηγού προσθέτων!"
 
@@ -16140,6 +16186,9 @@ msgstr "Επιλέξτε τον δορυφόρο που έχει συνδεθε�
 
 msgid "Select the satellite you want to configure. Once configured you can select and configure other satellites that will be accessed using this same tuner."
 msgstr "Επιλέξτε τον δορυφόρο που θέλετε να ρυθμίσετε. Μετά τη ρύθμιση αυτή μπορείτε να επιλέξετε να ρυθμιστούν και άλλοι δορυφόροι για αυτό το tuner."
+
+msgid "Select the screen layout, from the options provided by the skin, to be used for the ChannelSelection screen."
+msgstr ""
 
 msgid "Select the shifted character set"
 msgstr "Επιλογή του σετ χαρακτήρων με shift"
@@ -16671,9 +16720,6 @@ msgstr "Ορισμός της ταχύτητας κύλισης του κειμ�
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Ορισμός της ταχύτητας κύλισης του κειμένου στην οθόνη πρόσοψης."
 
-msgid "Set the style of the channel list."
-msgstr "Επιλογή του στυλ της λίστας καναλιών."
-
 msgid "Set the time before checking video source for resolution information."
 msgstr "Ορισμός του χρόνου πριν ελεγχθεί η πηγή βίντεο για πληροφορίες ανάλυσης."
 
@@ -17108,6 +17154,9 @@ msgstr "Εμφάνιση πληροφοριών"
 
 msgid "Show Kernel packages"
 msgstr "Εμφάνιση πακέτων Kernel"
+
+msgid "Show LCN in channel selection"
+msgstr ""
 
 msgid "Show Live in MiniTV"
 msgstr "Εμφάνιση ζωντανής TV σε MiniTV"
@@ -18659,9 +18708,6 @@ msgstr "Αυστηρό DLNA"
 
 msgid "Stripes"
 msgstr "Ρίγες"
-
-msgid "Style"
-msgstr "Στυλ"
 
 msgid "Style:"
 msgstr "Στυλ:"
@@ -20636,9 +20682,6 @@ msgstr "Διεύθυνση"
 msgid "URL of fallback remote receiver"
 msgstr "Διεύθυνση URL του εφεδρικού απομακρυσμένου δέκτη"
 
-msgid "URL of fallback remote receiver."
-msgstr "Διεύθυνση URL του εφεδρικού απομακρυσμένου δέκτη"
-
 msgid "USALS"
 msgstr "USALS"
 
@@ -21954,6 +21997,9 @@ msgstr "Όταν είναι ενεργό, πιέζοντας το '0' θα γί�
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Όταν είναι ενεργό, οι υπότιτλοι θα αναδιπλώνονται έτσι ώστε να ταιριάζουν στο πλάτος της οθόνης."
+
+msgid "When enabled, show LCN in the channel selection screen."
+msgstr ""
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Όταν είναι ενεργό, οι αριθμοί των καναλιών θα εμφανίζονται στη λίστα επιλογής καναλιών."
@@ -23668,6 +23714,30 @@ msgstr "ναι (διατήρηση των feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Installing feeds from IPK ..."
+#~ msgstr "Εγκατάσταση πηγών από IPK..."
+
+#~ msgid "Installing feeds from feed ..."
+#~ msgstr "Εγκατάσταση πηγών από πηγή..."
+
+#~ msgid "Installing plugins from IPK ..."
+#~ msgstr "Εγκατάσταση προσθέτων από IPK..."
+
+#~ msgid "Installing plugins from feed ..."
+#~ msgstr "Εγκατάσταση προσθέτων από την πηγή..."
+
+#~ msgid "Remove plugins ..."
+#~ msgstr "Αφαίρεση προσθέτων..."
+
+#~ msgid "Set the style of the channel list."
+#~ msgstr "Επιλογή του στυλ της λίστας καναλιών."
+
+#~ msgid "Style"
+#~ msgstr "Στυλ"
+
+#~ msgid "URL of fallback remote receiver."
+#~ msgstr "Διεύθυνση URL του εφεδρικού απομακρυσμένου δέκτη"
 
 #~ msgid ""
 #~ "\n"

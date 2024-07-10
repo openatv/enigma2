@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-21 14:25+0000\n"
+"POT-Creation-Date: 2024-07-09 18:37+0000\n"
 "PO-Revision-Date: 2023-08-11 04:46+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -1186,6 +1186,10 @@ msgstr ""
 
 #, python-format
 msgid "%s has been disabled."
+msgstr ""
+
+#, python-format
+msgid "%s imported from fallback tuner"
 msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
@@ -3778,7 +3782,13 @@ msgstr ""
 msgid "Channel Selection Context Menu Navigation Actions"
 msgstr ""
 
+msgid "Channel Selection List"
+msgstr ""
+
 msgid "Channel Selection Navigation Actions"
+msgstr ""
+
+msgid "Channel Selection Screen"
 msgstr ""
 
 msgid "Channel Selection Settings"
@@ -3843,6 +3853,15 @@ msgstr "频道:"
 
 msgid "ChannelEPG Settings"
 msgstr "频道EPG设置"
+
+msgid "Channels"
+msgstr ""
+
+msgid "Channels and EPG"
+msgstr ""
+
+msgid "Channels only"
+msgstr ""
 
 msgid "Chap."
 msgstr "章."
@@ -4236,6 +4255,9 @@ msgstr "色彩格式"
 msgid "Color space"
 msgstr "色彩空间"
 
+msgid "Colored Text"
+msgstr ""
+
 msgid "Combined"
 msgstr ""
 
@@ -4382,6 +4404,9 @@ msgstr "配置录制指示器在频道选择列表中如何显示."
 msgid "Configure if and how wide the service name column will be shown in the channel selection list."
 msgstr "配置频道选择列表中显示频道名称列的宽度."
 
+msgid "Configure if crypto icons will be shown in the channel selection list."
+msgstr ""
+
 msgid "Configure if epg.dat should be saved at all."
 msgstr "配置是否应该保存epg.dat."
 
@@ -4390,6 +4415,9 @@ msgstr "配置picon图标是否将在快速切换中显示."
 
 msgid "Configure if service picons will be shown in the service list."
 msgstr "配置picon图标是否将显示在频道列表中."
+
+msgid "Configure if service type icons will be shown."
+msgstr ""
 
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
 msgstr "配置字幕是否应在正常、斜体、粗体和粗体斜体之间切换"
@@ -6657,6 +6685,9 @@ msgstr "EPG语言选择2"
 msgid "EPG location"
 msgstr "EPG位置"
 
+msgid "EPG only"
+msgstr ""
+
 msgid "EPGSearch"
 msgstr "EPG搜索"
 
@@ -7149,6 +7180,9 @@ msgstr "输入IP地址"
 msgid "Enter PIN"
 msgstr "输入PIN"
 
+msgid "Enter URL"
+msgstr ""
+
 msgid "Enter a description for this timer."
 msgstr ""
 
@@ -7394,6 +7428,15 @@ msgstr ""
 msgid "Error unzipping image '%s'!"
 msgstr ""
 
+msgid "Error when writing epg.dat on the fallback receiver"
+msgstr ""
+
+msgid "Error while moving epg.dat to its destination"
+msgstr ""
+
+msgid "Error while retrieving epg.dat from the fallback receiver"
+msgstr ""
+
 #, python-format
 msgid ""
 "Error while retrieving fallback timer information\n"
@@ -7401,6 +7444,9 @@ msgid ""
 msgstr ""
 "检索备用定时器信息时出错\n"
 "%s"
+
+msgid "Error while retrieving location of epg.dat on the fallback receiver"
+msgstr ""
 
 msgid "Error, unknown Result!"
 msgstr "错误,未知结果!"
@@ -7880,6 +7926,9 @@ msgstr ""
 msgid "Fallback Font *"
 msgstr ""
 
+msgid "Fallback Timer"
+msgstr "备用定时器"
+
 msgid "Fallback remote receiver"
 msgstr "备用的远程接收器"
 
@@ -7901,8 +7950,8 @@ msgstr "DVB-CATSC备用远程接收器"
 msgid "Fallback remote receiver for DVB-T"
 msgstr "DVB-TATSC备用远程接收器"
 
-msgid "Fallback Timer"
-msgstr "备用定时器"
+msgid "Fallback remote receiver setup"
+msgstr ""
 
 msgid "Fallback tuner setup"
 msgstr "设置备用调谐器"
@@ -9406,6 +9455,10 @@ msgstr "启动接收器时从远程接收器URL导入频道或EPG"
 msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
 msgstr "重新启动接收器时,从远程接收器URL导入频道或EPG"
 
+#, python-format
+msgid "Import from fallback tuner failed, %s"
+msgstr ""
+
 msgid "Import from remote receiver URL"
 msgstr "从远程接收器URL导入"
 
@@ -9698,20 +9751,8 @@ msgstr "安装服务"
 msgid "Installing Software..."
 msgstr "正在安装软件..."
 
-msgid "Installing feeds from IPK ..."
-msgstr "正在从IPK包中安装源..."
-
-msgid "Installing feeds from feed ..."
-msgstr "正在从源中安装源..."
-
 msgid "Installing package."
 msgstr ""
-
-msgid "Installing plugins from IPK ..."
-msgstr "正在从IPK包安装插件..."
-
-msgid "Installing plugins from feed ..."
-msgstr "正在从数据源中安装插件..."
 
 msgid "Instant Recording Actions"
 msgstr ""
@@ -10716,6 +10757,9 @@ msgstr "手动扫描频道"
 
 msgid "Manual transponder"
 msgstr "手动转发器扫描"
+
+msgid "Manually import from fallback tuner"
+msgstr ""
 
 msgid "Manufacturer"
 msgstr "制造商"
@@ -11850,6 +11894,9 @@ msgstr "在此介质上没有发现可显示的文件！"
 
 msgid "No entry in lcn db. Please do a service scan."
 msgstr "没有进入LCN输入数据库.请做一个频道扫描."
+
+msgid "No epg.dat file found on the fallback receiver"
+msgstr ""
 
 msgid "No error"
 msgstr "无错误"
@@ -14087,6 +14134,9 @@ msgstr "录制－与录制键相同"
 msgid "Record Actions"
 msgstr "录制动作"
 
+msgid "Record Icon"
+msgstr ""
+
 msgid "Record next"
 msgstr "录制下一个"
 
@@ -14429,9 +14479,6 @@ msgstr "删除当前选择的标题"
 
 msgid "Remove highlighted directory from bookmarks"
 msgstr "从书签中删除选定的文件夹"
-
-msgid "Remove plugins ..."
-msgstr ""
 
 msgid "Remove service from AutoCam"
 msgstr ""
@@ -15127,12 +15174,8 @@ msgid "Save settings and EPG data."
 msgstr "保存设置和EPG数据"
 
 #, python-format
-msgid ""
-"Save the commands and the output to a file?\n"
-"('%s')"
-msgstr ""
-"将命令和输出保存到文件中?\n"
-"('%s')"
+msgid "Save the commands and output to the log file?"
+msgstr "将命令和输出保存到文件中?"
 
 msgid "Save the left column directory location on exit."
 msgstr ""
@@ -16048,6 +16091,9 @@ msgstr ""
 msgid "Select the last item in the list"
 msgstr ""
 
+msgid "Select the layout of the information in the services list, from the options provided by the skin, displayed within the ChannelSelection screen."
+msgstr ""
+
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr ""
 
@@ -16119,6 +16165,9 @@ msgstr "选择连接到交换机端口D的卫星.如果您不确定,请选择'�
 
 msgid "Select the satellite you want to configure. Once configured you can select and configure other satellites that will be accessed using this same tuner."
 msgstr "选择要配置的卫星.一旦配置了卫星,您就可以 选择和配置将使用同一个调谐器访问的其他卫星."
+
+msgid "Select the screen layout, from the options provided by the skin, to be used for the ChannelSelection screen."
+msgstr ""
 
 msgid "Select the shifted character set"
 msgstr "选择转换后的字符集"
@@ -16644,9 +16693,6 @@ msgstr "设置前端显示屏上文本的滚动速度,用于某些皮肤中的�
 msgid "Set the scrolling speed of text on the front display."
 msgstr "设置前端显示屏上文本的滚动速度."
 
-msgid "Set the style of the channel list."
-msgstr ""
-
 msgid "Set the time before checking video source for resolution information."
 msgstr "设置在检查视频源以获取分辨率信息之前的时间."
 
@@ -17074,6 +17120,9 @@ msgid "Show Information"
 msgstr "显示信息"
 
 msgid "Show Kernel packages"
+msgstr ""
+
+msgid "Show LCN in channel selection"
 msgstr ""
 
 msgid "Show Live in MiniTV"
@@ -18627,9 +18676,6 @@ msgstr "精确DLNA"
 
 msgid "Stripes"
 msgstr "条纹"
-
-msgid "Style"
-msgstr ""
 
 msgid "Style:"
 msgstr "样式:"
@@ -20569,9 +20615,6 @@ msgstr "网络地址"
 msgid "URL of fallback remote receiver"
 msgstr "备用远程接收器URL"
 
-msgid "URL of fallback remote receiver."
-msgstr "备用远程接收机地址"
-
 msgid "USALS"
 msgstr "极轴"
 
@@ -21850,6 +21893,9 @@ msgstr "启用后,按'0'将会切换到第一个频道列表中的第一个频�
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "启用后,重新设置字幕以匹配屏幕的宽度."
+
+msgid "When enabled, show LCN in the channel selection screen."
+msgstr ""
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "启用后,在频道选择屏幕中显示频道号."
@@ -23559,6 +23605,21 @@ msgstr "是(保持订阅源)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Installing feeds from IPK ..."
+#~ msgstr "正在从IPK包中安装源..."
+
+#~ msgid "Installing feeds from feed ..."
+#~ msgstr "正在从源中安装源..."
+
+#~ msgid "Installing plugins from IPK ..."
+#~ msgstr "正在从IPK包安装插件..."
+
+#~ msgid "Installing plugins from feed ..."
+#~ msgstr "正在从数据源中安装插件..."
+
+#~ msgid "URL of fallback remote receiver."
+#~ msgstr "备用远程接收机地址"
 
 #~ msgid ""
 #~ "\n"

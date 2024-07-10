@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-21 14:25+0000\n"
+"POT-Creation-Date: 2024-07-09 18:37+0000\n"
 "PO-Revision-Date: 2024-02-10 07:43+0000\n"
 "Last-Translator: \"Mahmoud Habls (7OODA)\" <adhoda4@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ar/>\n"
@@ -1342,6 +1342,10 @@ msgstr ""
 
 #, python-format
 msgid "%s has been disabled."
+msgstr ""
+
+#, python-format
+msgid "%s imported from fallback tuner"
 msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
@@ -4069,7 +4073,13 @@ msgstr ""
 msgid "Channel Selection Context Menu Navigation Actions"
 msgstr ""
 
+msgid "Channel Selection List"
+msgstr ""
+
 msgid "Channel Selection Navigation Actions"
+msgstr ""
+
+msgid "Channel Selection Screen"
 msgstr ""
 
 #, fuzzy
@@ -4144,6 +4154,15 @@ msgstr "قناة:"
 #, fuzzy
 msgid "ChannelEPG Settings"
 msgstr "إختيار القناه"
+
+msgid "Channels"
+msgstr ""
+
+msgid "Channels and EPG"
+msgstr ""
+
+msgid "Channels only"
+msgstr ""
 
 msgid "Chap."
 msgstr "فصل."
@@ -4550,6 +4569,9 @@ msgstr "تهئية الألوان"
 msgid "Color space"
 msgstr "نسق الالـوان"
 
+msgid "Colored Text"
+msgstr ""
+
 msgid "Combined"
 msgstr ""
 
@@ -4705,6 +4727,9 @@ msgstr "إعدادات كيف سيتم عرض أيقونة التسجيل في �
 msgid "Configure if and how wide the service name column will be shown in the channel selection list."
 msgstr ""
 
+msgid "Configure if crypto icons will be shown in the channel selection list."
+msgstr ""
+
 msgid "Configure if epg.dat should be saved at all."
 msgstr ""
 
@@ -4712,6 +4737,9 @@ msgid "Configure if service picons will be shown in quickzap."
 msgstr ""
 
 msgid "Configure if service picons will be shown in the service list."
+msgstr ""
+
+msgid "Configure if service type icons will be shown."
 msgstr ""
 
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
@@ -7026,6 +7054,9 @@ msgstr "إختيار لغة دليل البرامج الإلكترونية ال�
 msgid "EPG location"
 msgstr ""
 
+msgid "EPG only"
+msgstr ""
+
 msgid "EPGSearch"
 msgstr ""
 
@@ -7564,6 +7595,9 @@ msgstr "عنوان الأيبي"
 msgid "Enter PIN"
 msgstr "أعاده إدخال الرقم السري"
 
+msgid "Enter URL"
+msgstr ""
+
 msgid "Enter a description for this timer."
 msgstr ""
 
@@ -7801,10 +7835,22 @@ msgstr ""
 msgid "Error unzipping image '%s'!"
 msgstr ""
 
+msgid "Error when writing epg.dat on the fallback receiver"
+msgstr ""
+
+msgid "Error while moving epg.dat to its destination"
+msgstr ""
+
+msgid "Error while retrieving epg.dat from the fallback receiver"
+msgstr ""
+
 #, python-format
 msgid ""
 "Error while retrieving fallback timer information\n"
 "%s"
+msgstr ""
+
+msgid "Error while retrieving location of epg.dat on the fallback receiver"
 msgstr ""
 
 msgid "Error, unknown Result!"
@@ -8290,6 +8336,9 @@ msgstr ""
 msgid "Fallback Font *"
 msgstr ""
 
+msgid "Fallback Timer"
+msgstr "ضبط مؤالف التراجع"
+
 msgid "Fallback remote receiver"
 msgstr "الريموت الإحتياطي من خلال الرابط على الرسيفر"
 
@@ -8311,8 +8360,8 @@ msgstr "الريموت الإحتياطي من خلال الرابط على ال
 msgid "Fallback remote receiver for DVB-T"
 msgstr "الريموت الإحتياطي من خلال الرابط على الرسيفر"
 
-msgid "Fallback Timer"
-msgstr "ضبط مؤالف التراجع"
+msgid "Fallback remote receiver setup"
+msgstr ""
 
 msgid "Fallback tuner setup"
 msgstr "ضبط مؤالف التراجع"
@@ -9881,6 +9930,10 @@ msgstr ""
 msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
 msgstr ""
 
+#, python-format
+msgid "Import from fallback tuner failed, %s"
+msgstr ""
+
 msgid "Import from remote receiver URL"
 msgstr "الريموت الإحتياطي من خلال الرابط على الرسيفر"
 
@@ -10192,23 +10245,8 @@ msgstr ""
 msgid "Installing Software..."
 msgstr "جارى التثبيت"
 
-#, fuzzy
-msgid "Installing feeds from IPK ..."
-msgstr "جارى التثبيت"
-
-msgid "Installing feeds from feed ..."
-msgstr ""
-
 msgid "Installing package."
 msgstr ""
-
-#, fuzzy
-msgid "Installing plugins from IPK ..."
-msgstr "جارى التثبيت"
-
-#, fuzzy
-msgid "Installing plugins from feed ..."
-msgstr "جارى التثبيت"
 
 msgid "Instant Recording Actions"
 msgstr ""
@@ -11286,6 +11324,9 @@ msgstr ""
 
 msgid "Manual transponder"
 msgstr "تردد يدوي"
+
+msgid "Manually import from fallback tuner"
+msgstr ""
 
 msgid "Manufacturer"
 msgstr "الشركة المصنعة"
@@ -12494,6 +12535,9 @@ msgid "No displayable files on this medium found!"
 msgstr "لا يوجد ملفات للعرض على هذا الوسيط !"
 
 msgid "No entry in lcn db. Please do a service scan."
+msgstr ""
+
+msgid "No epg.dat file found on the fallback receiver"
 msgstr ""
 
 #
@@ -14855,6 +14899,9 @@ msgstr ""
 msgid "Record Actions"
 msgstr ""
 
+msgid "Record Icon"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Record next"
@@ -15219,9 +15266,6 @@ msgid "Remove currently selected title"
 msgstr "حذف العنوان الحالي المختار"
 
 msgid "Remove highlighted directory from bookmarks"
-msgstr ""
-
-msgid "Remove plugins ..."
 msgstr ""
 
 msgid "Remove service from AutoCam"
@@ -15955,9 +15999,7 @@ msgid "Save settings and EPG data."
 msgstr ""
 
 #, python-format
-msgid ""
-"Save the commands and the output to a file?\n"
-"('%s')"
+msgid "Save the commands and output to the log file?"
 msgstr ""
 
 msgid "Save the left column directory location on exit."
@@ -16899,6 +16941,9 @@ msgstr ""
 msgid "Select the last item in the list"
 msgstr ""
 
+msgid "Select the layout of the information in the services list, from the options provided by the skin, displayed within the ChannelSelection screen."
+msgstr ""
+
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr ""
 
@@ -16971,6 +17016,9 @@ msgstr "حدد القمر الصناعي المتصل بالمنفذ ث من ق�
 
 msgid "Select the satellite you want to configure. Once configured you can select and configure other satellites that will be accessed using this same tuner."
 msgstr "حدد القمر الصناعي الذي تريد تكوينه. بمجرد تكوين هذا القمر الصناعي ، يمكنك تحديد وتكوين الأقمار الصناعية الأخرى التي سيتم الوصول إليها باستخدام هذا المؤالف نفسه."
+
+msgid "Select the screen layout, from the options provided by the skin, to be used for the ChannelSelection screen."
+msgstr ""
 
 #, fuzzy
 msgid "Select the shifted character set"
@@ -17510,9 +17558,6 @@ msgstr ""
 msgid "Set the scrolling speed of text on the front display."
 msgstr ""
 
-msgid "Set the style of the channel list."
-msgstr ""
-
 msgid "Set the time before checking video source for resolution information."
 msgstr ""
 
@@ -17952,6 +17997,9 @@ msgid "Show Information"
 msgstr "معلومات"
 
 msgid "Show Kernel packages"
+msgstr ""
+
+msgid "Show LCN in channel selection"
 msgstr ""
 
 #, fuzzy
@@ -19616,9 +19664,6 @@ msgid "Strict DLNA"
 msgstr ""
 
 msgid "Stripes"
-msgstr ""
-
-msgid "Style"
 msgstr ""
 
 msgid "Style:"
@@ -21634,9 +21679,6 @@ msgstr "الرابط"
 msgid "URL of fallback remote receiver"
 msgstr "تمكين الريموت الإحتياطي في الرسيفر"
 
-msgid "URL of fallback remote receiver."
-msgstr ""
-
 #
 msgid "USALS"
 msgstr "نظام مواقع الاقمار الصناعية العالمية"
@@ -22967,6 +23009,9 @@ msgstr ""
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "عند التمكين، سيعمل تهئية لعرض خط الترجمة لكي يطابق عرض الشاشة."
+
+msgid "When enabled, show LCN in the channel selection screen."
+msgstr ""
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "عند التمكين، سيعرض أرقام القنوات في شاشة اختيار القناة."
@@ -24721,6 +24766,18 @@ msgstr "نعم (الاحتفاظ بها)"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Installing feeds from IPK ..."
+#~ msgstr "جارى التثبيت"
+
+#, fuzzy
+#~ msgid "Installing plugins from IPK ..."
+#~ msgstr "جارى التثبيت"
+
+#, fuzzy
+#~ msgid "Installing plugins from feed ..."
+#~ msgstr "جارى التثبيت"
 
 #~ msgid ""
 #~ "\n"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-21 14:25+0000\n"
+"POT-Creation-Date: 2024-07-09 18:37+0000\n"
 "PO-Revision-Date: 2021-11-04 23:53+0000\n"
 "Last-Translator: T. Rylle <dk-translation@pm.me>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/da/>\n"
@@ -1183,6 +1183,10 @@ msgstr ""
 
 #, python-format
 msgid "%s has been disabled."
+msgstr ""
+
+#, python-format
+msgid "%s imported from fallback tuner"
 msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
@@ -3778,7 +3782,13 @@ msgstr ""
 msgid "Channel Selection Context Menu Navigation Actions"
 msgstr ""
 
+msgid "Channel Selection List"
+msgstr ""
+
 msgid "Channel Selection Navigation Actions"
+msgstr ""
+
+msgid "Channel Selection Screen"
 msgstr ""
 
 msgid "Channel Selection Settings"
@@ -3843,6 +3853,15 @@ msgstr "Kanal:"
 
 msgid "ChannelEPG Settings"
 msgstr "Kanal EPG indstillinger"
+
+msgid "Channels"
+msgstr ""
+
+msgid "Channels and EPG"
+msgstr ""
+
+msgid "Channels only"
+msgstr ""
 
 msgid "Chap."
 msgstr "Kap."
@@ -4237,6 +4256,9 @@ msgstr "Farveformat"
 msgid "Color space"
 msgstr "Farverum"
 
+msgid "Colored Text"
+msgstr ""
+
 msgid "Combined"
 msgstr ""
 
@@ -4384,6 +4406,9 @@ msgstr "Konfigurer om og hvordan optageindikatoren skal vises i kanalvalgslisten
 msgid "Configure if and how wide the service name column will be shown in the channel selection list."
 msgstr "Konfigurer om kanalnavne-kolonnen skal vise i kanalvalgslisten og hvor bred den så skal være."
 
+msgid "Configure if crypto icons will be shown in the channel selection list."
+msgstr ""
+
 msgid "Configure if epg.dat should be saved at all."
 msgstr "Konfigurer om epg.dat overhovedet skal gemmes."
 
@@ -4392,6 +4417,9 @@ msgstr "Konfigurer om kanal Pikoner skal vises i KvikZap."
 
 msgid "Configure if service picons will be shown in the service list."
 msgstr "Konfigurer om kanal Pikoner skal vises i kanallisten."
+
+msgid "Configure if service type icons will be shown."
+msgstr ""
 
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
 msgstr "Konfigurer om undertekst skal skifte mellem normal, kursiv, fed eller fedkursiv"
@@ -6656,6 +6684,9 @@ msgstr "EPG Sprogvalg 2"
 msgid "EPG location"
 msgstr "EPG placering"
 
+msgid "EPG only"
+msgstr ""
+
 msgid "EPGSearch"
 msgstr "EPG Søgning"
 
@@ -7148,6 +7179,9 @@ msgstr "IP adresse"
 msgid "Enter PIN"
 msgstr "Indtast PIN"
 
+msgid "Enter URL"
+msgstr ""
+
 msgid "Enter a description for this timer."
 msgstr ""
 
@@ -7393,10 +7427,22 @@ msgstr ""
 msgid "Error unzipping image '%s'!"
 msgstr ""
 
+msgid "Error when writing epg.dat on the fallback receiver"
+msgstr ""
+
+msgid "Error while moving epg.dat to its destination"
+msgstr ""
+
+msgid "Error while retrieving epg.dat from the fallback receiver"
+msgstr ""
+
 #, python-format
 msgid ""
 "Error while retrieving fallback timer information\n"
 "%s"
+msgstr ""
+
+msgid "Error while retrieving location of epg.dat on the fallback receiver"
 msgstr ""
 
 msgid "Error, unknown Result!"
@@ -7880,6 +7926,9 @@ msgstr ""
 msgid "Fallback Font *"
 msgstr ""
 
+msgid "Fallback Timer"
+msgstr ""
+
 msgid "Fallback remote receiver"
 msgstr "Fallback remote receiver URL"
 
@@ -7901,7 +7950,7 @@ msgstr "Fallback remote receiver URL"
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Fallback remote receiver URL"
 
-msgid "Fallback Timer"
+msgid "Fallback remote receiver setup"
 msgstr ""
 
 msgid "Fallback tuner setup"
@@ -9417,6 +9466,10 @@ msgstr "Fallback remote receiver URL"
 msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
 msgstr ""
 
+#, python-format
+msgid "Import from fallback tuner failed, %s"
+msgstr ""
+
 msgid "Import from remote receiver URL"
 msgstr "Fallback remote receiver URL"
 
@@ -9714,20 +9767,8 @@ msgstr "Installere Tjeneste"
 msgid "Installing Software..."
 msgstr "Installerer software..."
 
-msgid "Installing feeds from IPK ..."
-msgstr "Installere Feeds fra IPK..."
-
-msgid "Installing feeds from feed ..."
-msgstr "Installere Feeds fra feed..."
-
 msgid "Installing package."
 msgstr ""
-
-msgid "Installing plugins from IPK ..."
-msgstr "Installere Plugins fra IPK..."
-
-msgid "Installing plugins from feed ..."
-msgstr "Installere Plugins fra Feed..."
 
 msgid "Instant Recording Actions"
 msgstr ""
@@ -10755,6 +10796,9 @@ msgstr "Manuel søgning efter kanaler"
 
 msgid "Manual transponder"
 msgstr "Manuel transponder"
+
+msgid "Manually import from fallback tuner"
+msgstr ""
 
 msgid "Manufacturer"
 msgstr "Producent"
@@ -11915,6 +11959,9 @@ msgstr "Der findes ingen synlige filer på dette medie!"
 
 msgid "No entry in lcn db. Please do a service scan."
 msgstr "Ingen poster i LCN DB. Udfør venligst en kanalsøgning."
+
+msgid "No epg.dat file found on the fallback receiver"
+msgstr ""
 
 msgid "No error"
 msgstr "Ingen fejl"
@@ -14175,6 +14222,9 @@ msgstr "Optag - svare til optageknap"
 msgid "Record Actions"
 msgstr ""
 
+msgid "Record Icon"
+msgstr ""
+
 msgid "Record next"
 msgstr "Optag næste"
 
@@ -14518,9 +14568,6 @@ msgstr "Fjern nuværende valgte titel"
 
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Fjern valgte mappe fra bogmærker"
-
-msgid "Remove plugins ..."
-msgstr ""
 
 msgid "Remove service from AutoCam"
 msgstr ""
@@ -15221,12 +15268,8 @@ msgid "Save settings and EPG data."
 msgstr "Gem indstillinger og EPG data"
 
 #, python-format
-msgid ""
-"Save the commands and the output to a file?\n"
-"('%s')"
-msgstr ""
-"Gem kommandoerne og uddata til en fil?\n"
-"('%s')"
+msgid "Save the commands and output to the log file?"
+msgstr "Gem kommandoerne og uddata til en fil?"
 
 msgid "Save the left column directory location on exit."
 msgstr ""
@@ -16147,6 +16190,9 @@ msgstr ""
 msgid "Select the last item in the list"
 msgstr ""
 
+msgid "Select the layout of the information in the services list, from the options provided by the skin, displayed within the ChannelSelection screen."
+msgstr ""
+
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr ""
 
@@ -16219,6 +16265,9 @@ msgstr "Vælg satelitten som er forbundet til Port-D på din switch. Vælg 'auto
 
 msgid "Select the satellite you want to configure. Once configured you can select and configure other satellites that will be accessed using this same tuner."
 msgstr "Vælg satelitten du ønsker at konfigurere. Når denne satellit er konfigureret kan du vælge at konfigurere andre satellitter som bliver tilgået med den samme Tuner."
+
+msgid "Select the screen layout, from the options provided by the skin, to be used for the ChannelSelection screen."
+msgstr ""
 
 #, fuzzy
 msgid "Select the shifted character set"
@@ -16753,9 +16802,6 @@ msgstr "Sæt rullehastigheden af tekst på frontdisplay, dette bliver brugt af s
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Sæt rullehastigheden af tekst på frontdisplay."
 
-msgid "Set the style of the channel list."
-msgstr ""
-
 msgid "Set the time before checking video source for resolution information."
 msgstr "Sæt tiden før videokilden kontrolleres for opløsningsinformation."
 
@@ -17185,6 +17231,9 @@ msgid "Show Information"
 msgstr "Vis information..."
 
 msgid "Show Kernel packages"
+msgstr ""
+
+msgid "Show LCN in channel selection"
 msgstr ""
 
 msgid "Show Live in MiniTV"
@@ -18757,9 +18806,6 @@ msgstr "Strikt DLNA"
 
 msgid "Stripes"
 msgstr "Striber"
-
-msgid "Style"
-msgstr ""
 
 msgid "Style:"
 msgstr "Stil:"
@@ -20719,9 +20765,6 @@ msgstr "URL"
 msgid "URL of fallback remote receiver"
 msgstr "URL af fallback remote receiver"
 
-msgid "URL of fallback remote receiver."
-msgstr "URL på perifer fjernmodtager"
-
 msgid "USALS"
 msgstr "USALS"
 
@@ -22008,6 +22051,9 @@ msgstr "Når dette aktiveres, vil tryk på '0' Zappe dig til den første kanal i
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Når dette aktiveres, omformateres undertekster så de passer til bredden på skærmen."
+
+msgid "When enabled, show LCN in the channel selection screen."
+msgstr ""
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Når dette aktiveres, vises kanalnummre på kanalvalgsskærmen."
@@ -23737,6 +23783,21 @@ msgstr "ja (behold feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Installing feeds from IPK ..."
+#~ msgstr "Installere Feeds fra IPK..."
+
+#~ msgid "Installing feeds from feed ..."
+#~ msgstr "Installere Feeds fra feed..."
+
+#~ msgid "Installing plugins from IPK ..."
+#~ msgstr "Installere Plugins fra IPK..."
+
+#~ msgid "Installing plugins from feed ..."
+#~ msgstr "Installere Plugins fra Feed..."
+
+#~ msgid "URL of fallback remote receiver."
+#~ msgstr "URL på perifer fjernmodtager"
 
 #~ msgid ""
 #~ "\n"

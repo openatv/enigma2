@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-21 14:25+0000\n"
-"PO-Revision-Date: 2024-07-09 10:09+0000\n"
+"POT-Creation-Date: 2024-07-09 18:37+0000\n"
+"PO-Revision-Date: 2024-07-10 16:29+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -1224,6 +1224,10 @@ msgstr "%s активовано."
 #, python-format
 msgid "%s has been disabled."
 msgstr "%s вимкнено."
+
+#, python-format
+msgid "%s imported from fallback tuner"
+msgstr "%s імпортовано з резервного тюнера"
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -3810,8 +3814,14 @@ msgstr "Дії контекстного меню списку каналів"
 msgid "Channel Selection Context Menu Navigation Actions"
 msgstr "Дії навігації в контекстному меню списку каналів"
 
+msgid "Channel Selection List"
+msgstr "Список вибору каналів"
+
 msgid "Channel Selection Navigation Actions"
 msgstr "Навігаційні дії по вибору каналу"
+
+msgid "Channel Selection Screen"
+msgstr "Екран вибору каналу"
 
 msgid "Channel Selection Settings"
 msgstr "Налаштування списку каналів"
@@ -3875,6 +3885,15 @@ msgstr "Канал:"
 
 msgid "ChannelEPG Settings"
 msgstr "Налаштування EPG каналів"
+
+msgid "Channels"
+msgstr "Канали"
+
+msgid "Channels and EPG"
+msgstr "Канали та EPG"
+
+msgid "Channels only"
+msgstr "Лише канали"
 
 msgid "Chap."
 msgstr "Розд."
@@ -4269,6 +4288,9 @@ msgstr "Формат кольору"
 msgid "Color space"
 msgstr "Колірний простір"
 
+msgid "Colored Text"
+msgstr "Кольоровий текст"
+
 msgid "Combined"
 msgstr "Комбінований"
 
@@ -4414,6 +4436,9 @@ msgstr "Вкажіть, чи потрібно в селекторі каналі
 msgid "Configure if and how wide the service name column will be shown in the channel selection list."
 msgstr "Вкажіть, чи потрібно назву каналів в селекторі каналів показати в вигляді стовпця (по ширині)."
 
+msgid "Configure if crypto icons will be shown in the channel selection list."
+msgstr "Налаштуйте, чи відображати іконку кодування у списку вибору каналів."
+
 msgid "Configure if epg.dat should be saved at all."
 msgstr "Налаштуйте, чи потрібно взагалі зберігати epg.dat."
 
@@ -4422,6 +4447,9 @@ msgstr "Вкажіть, чи потрібно показати пікони пр
 
 msgid "Configure if service picons will be shown in the service list."
 msgstr "Вкажіть, чи потрібно показати пікони у списку каналів."
+
+msgid "Configure if service type icons will be shown."
+msgstr "Налаштуйте, чи відображати іконки типу каналів."
 
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
 msgstr "Налаштування шрифтів для зовнішніх субтитрів, чи застосовувати до них налаштування для субтитрів, що йдуть з ефіру."
@@ -6706,6 +6734,9 @@ msgstr "Вибір мови EPG 2"
 msgid "EPG location"
 msgstr "Розташування EPG"
 
+msgid "EPG only"
+msgstr "Лише EPG"
+
 msgid "EPGSearch"
 msgstr "Пошук EPG"
 
@@ -7200,6 +7231,9 @@ msgstr "Введіть IP-адрес"
 msgid "Enter PIN"
 msgstr "Введіть Пін-код"
 
+msgid "Enter URL"
+msgstr "Ввести URL"
+
 msgid "Enter a description for this timer."
 msgstr "Введіть опис для цього таймера."
 
@@ -7447,6 +7481,15 @@ msgstr "Текст помилки:"
 msgid "Error unzipping image '%s'!"
 msgstr "Помилка розархівування іміджу '%s'!"
 
+msgid "Error when writing epg.dat on the fallback receiver"
+msgstr "Помилка під час запису epg.dat на резервний приймач"
+
+msgid "Error while moving epg.dat to its destination"
+msgstr "Помилка під час переміщення epg.dat до місця призначення"
+
+msgid "Error while retrieving epg.dat from the fallback receiver"
+msgstr "Помилка під час отримання epg.dat із резервного приймача"
+
 #, python-format
 msgid ""
 "Error while retrieving fallback timer information\n"
@@ -7454,6 +7497,9 @@ msgid ""
 msgstr ""
 "Помилка під час отримання інформації про резервний таймер\n"
 "%s"
+
+msgid "Error while retrieving location of epg.dat on the fallback receiver"
+msgstr "Помилка під час отримання розташування epg.dat на резервному приймачі"
 
 msgid "Error, unknown Result!"
 msgstr "Помилка, невідомий результат!"
@@ -7933,6 +7979,9 @@ msgstr "Резервний API не завантажив дійсний резу
 msgid "Fallback Font *"
 msgstr "Резервний шрифт *"
 
+msgid "Fallback Timer"
+msgstr "Резервний таймер"
+
 msgid "Fallback remote receiver"
 msgstr "Запасний віддалений приймач"
 
@@ -7954,8 +8003,8 @@ msgstr "Запасний віддалений приймач для DVB-C"
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Запасний віддалений приймач для DVB-T"
 
-msgid "Fallback Timer"
-msgstr "Резервний таймер"
+msgid "Fallback remote receiver setup"
+msgstr "Резервне налаштування дистанційного приймача"
 
 msgid "Fallback tuner setup"
 msgstr "Налаштування резервного тюнера"
@@ -9459,6 +9508,10 @@ msgstr "Імпортуйте канали та/або EPG із URL-адреси 
 msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
 msgstr "Імпортуйте канали та/або EPG із URL-адреси при перезапуску приймача або enigma2"
 
+#, python-format
+msgid "Import from fallback tuner failed, %s"
+msgstr "Не вдалося імпортувати з резервного тюнера, %s"
+
 msgid "Import from remote receiver URL"
 msgstr "Імпорт із URL-адреси віддаленого приймача"
 
@@ -9751,20 +9804,8 @@ msgstr "Встановлення каналів"
 msgid "Installing Software..."
 msgstr "Встановлення ПЗ..."
 
-msgid "Installing feeds from IPK ..."
-msgstr "Встановлення IPK з фідів..."
-
-msgid "Installing feeds from feed ..."
-msgstr "Встановлення фідів з фіду..."
-
 msgid "Installing package."
 msgstr "Встановлення пакета."
-
-msgid "Installing plugins from IPK ..."
-msgstr "Встановлення плагінів з IPK..."
-
-msgid "Installing plugins from feed ..."
-msgstr "Встановлення плагінів з фіду..."
 
 msgid "Instant Recording Actions"
 msgstr "Дії для миттєвого запису"
@@ -10771,6 +10812,9 @@ msgstr "Ручний пошук каналів"
 
 msgid "Manual transponder"
 msgstr "Вибірковий транспондер"
+
+msgid "Manually import from fallback tuner"
+msgstr "Імпортувати вручну з резервного тюнера"
 
 msgid "Manufacturer"
 msgstr "Виробник"
@@ -11908,6 +11952,9 @@ msgstr "Потрібних файлів на цьому носії не знай
 
 msgid "No entry in lcn db. Please do a service scan."
 msgstr "Відсутній запис в lcn db. Зробіть сканування каналів."
+
+msgid "No epg.dat file found on the fallback receiver"
+msgstr "На резервному приймачі не знайдено файлу epg.dat"
 
 msgid "No error"
 msgstr "Немає помилок"
@@ -14150,6 +14197,9 @@ msgstr "Запис - так само, як кнопка запису"
 msgid "Record Actions"
 msgstr "Запис дій"
 
+msgid "Record Icon"
+msgstr "Значок запису"
+
 msgid "Record next"
 msgstr "Записати наступне"
 
@@ -14492,9 +14542,6 @@ msgstr "Видалити вибрану назву"
 
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Видалити вибрану теку зі закладок"
-
-msgid "Remove plugins ..."
-msgstr "Видалити плагіни..."
 
 msgid "Remove service from AutoCam"
 msgstr "Видалити канал з AutoCam"
@@ -15190,12 +15237,8 @@ msgid "Save settings and EPG data."
 msgstr "Зберегти налаштування та дані ЕПГ."
 
 #, python-format
-msgid ""
-"Save the commands and the output to a file?\n"
-"('%s')"
-msgstr ""
-"Зберегти команди і вивести їх у файл?\n"
-"('%s')"
+msgid "Save the commands and output to the log file?"
+msgstr "Зберегти команди і вивести їх у файл?"
 
 msgid "Save the left column directory location on exit."
 msgstr "Зберегти розташування каталогу лівого стовпця під час виходу."
@@ -16113,6 +16156,9 @@ msgstr "Виберіть останній елемент у списку, або
 msgid "Select the last item in the list"
 msgstr "Виберіть останній елемент у списку"
 
+msgid "Select the layout of the information in the services list, from the options provided by the skin, displayed within the ChannelSelection screen."
+msgstr "Виберіть потрібні дані інформації про канал, наданих шкірою, що будуть відображатися у вікні Списку Каналів."
+
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr "Виберіть макет встановлених плагінів на екрані браузера плагінів. ПРИМІТКА: Зміни не відбуваються негайно, але будуть помітні після перезапуску браузера плагінів!"
 
@@ -16187,6 +16233,9 @@ msgstr "Виберіть супутник, який підключений до 
 
 msgid "Select the satellite you want to configure. Once configured you can select and configure other satellites that will be accessed using this same tuner."
 msgstr "Виберіть супутник, який потрібно налаштувати. Після його налаштування Ви можете вибрати і налаштувати інші супутники, які будуть доступні за допомогою цього ж тюнера."
+
+msgid "Select the screen layout, from the options provided by the skin, to be used for the ChannelSelection screen."
+msgstr "Виберіть необхідні параметри, надані скіном, які будуть використовуватися для екрана Списку Каналів."
 
 msgid "Select the shifted character set"
 msgstr "Виберіть набір символів клавіатури"
@@ -16718,9 +16767,6 @@ msgstr "Вкажіть швидкість прокрутки тексту на �
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Вкажіть швидкість прокрутки тексту на дисплеї."
 
-msgid "Set the style of the channel list."
-msgstr "Встановити стиль списку каналів."
-
 msgid "Set the time before checking video source for resolution information."
 msgstr "Вкажіть затримку до перевірки роздільності екрану з джерел відео."
 
@@ -17155,6 +17201,9 @@ msgstr "Показати Інформацію"
 
 msgid "Show Kernel packages"
 msgstr "Показати пакети ядра"
+
+msgid "Show LCN in channel selection"
+msgstr "Показати LCN у виборі каналу"
 
 msgid "Show Live in MiniTV"
 msgstr "Показувати передачу в PіG-вікні"
@@ -18709,9 +18758,6 @@ msgstr "Суворий режим DLNA"
 msgid "Stripes"
 msgstr "Смуги"
 
-msgid "Style"
-msgstr "Стиль"
-
 msgid "Style:"
 msgstr "Стиль:"
 
@@ -19037,7 +19083,7 @@ msgid "TMDB Search"
 msgstr "TMDB Пошук"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Косметика перекладу: kvinto - 08.07.2024"
+msgstr "Переклад: kvinto - 10.07.2024"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -20685,9 +20731,6 @@ msgstr "URL"
 msgid "URL of fallback remote receiver"
 msgstr "URL-адреса віддаленого резервного приймача"
 
-msgid "URL of fallback remote receiver."
-msgstr "URL-адреса віддаленого резервного приймача"
-
 msgid "USALS"
 msgstr "USALS"
 
@@ -22003,6 +22046,9 @@ msgstr "Якщо включено, натискання кнопки '0' пер�
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Якщо включено, субтитри будуть форматуватися відповідно до поточної ширини екрану."
+
+msgid "When enabled, show LCN in the channel selection screen."
+msgstr "Коли ввімкнено, показувати LCN на екрані вибору каналу."
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Якщо включено, показується номер каналу у вікні вибору каналів."
@@ -23718,6 +23764,30 @@ msgstr "так (зберігати фіди)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Installing feeds from IPK ..."
+#~ msgstr "Встановлення IPK з фідів..."
+
+#~ msgid "Installing feeds from feed ..."
+#~ msgstr "Встановлення фідів з фіду..."
+
+#~ msgid "Installing plugins from IPK ..."
+#~ msgstr "Встановлення плагінів з IPK..."
+
+#~ msgid "Installing plugins from feed ..."
+#~ msgstr "Встановлення плагінів з фіду..."
+
+#~ msgid "Remove plugins ..."
+#~ msgstr "Видалити плагіни..."
+
+#~ msgid "Set the style of the channel list."
+#~ msgstr "Встановити стиль списку каналів."
+
+#~ msgid "Style"
+#~ msgstr "Стиль"
+
+#~ msgid "URL of fallback remote receiver."
+#~ msgstr "URL-адреса віддаленого резервного приймача"
 
 #~ msgid ""
 #~ "\n"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-21 14:25+0000\n"
+"POT-Creation-Date: 2024-07-09 18:37+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -1218,6 +1218,10 @@ msgstr ""
 
 #, python-format
 msgid "%s has been disabled."
+msgstr ""
+
+#, python-format
+msgid "%s imported from fallback tuner"
 msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
@@ -3816,7 +3820,13 @@ msgstr ""
 msgid "Channel Selection Context Menu Navigation Actions"
 msgstr ""
 
+msgid "Channel Selection List"
+msgstr ""
+
 msgid "Channel Selection Navigation Actions"
+msgstr ""
+
+msgid "Channel Selection Screen"
 msgstr ""
 
 msgid "Channel Selection Settings"
@@ -3881,6 +3891,15 @@ msgstr "Csatorna:"
 
 msgid "ChannelEPG Settings"
 msgstr "Csatorna EPG beállítások"
+
+msgid "Channels"
+msgstr ""
+
+msgid "Channels and EPG"
+msgstr ""
+
+msgid "Channels only"
+msgstr ""
 
 msgid "Chap."
 msgstr "Fej."
@@ -4276,6 +4295,9 @@ msgstr "Színformátum"
 msgid "Color space"
 msgstr "Színtér"
 
+msgid "Colored Text"
+msgstr ""
+
 msgid "Combined"
 msgstr ""
 
@@ -4422,6 +4444,9 @@ msgstr "A felvételi jelző megjelenítése a csatornalistában."
 msgid "Configure if and how wide the service name column will be shown in the channel selection list."
 msgstr "Állítsa be, hogy a Csatorna név oszlopa milyen mértékben jelenik meg a Csatorna kiválasztási listájában."
 
+msgid "Configure if crypto icons will be shown in the channel selection list."
+msgstr ""
+
 msgid "Configure if epg.dat should be saved at all."
 msgstr "Állítsa be, hogy az epg.dat fájl mentésre kerüljön-e."
 
@@ -4430,6 +4455,9 @@ msgstr "Jelenjenek meg a csatornák picon-jai a gyors Ugrások között."
 
 msgid "Configure if service picons will be shown in the service list."
 msgstr "A csatornák picon-jainak megjelenítése a csatornalistában."
+
+msgid "Configure if service type icons will be shown."
+msgstr ""
 
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
 msgstr "A felirat váltson-e normál, dőlt, félkövér és félkövér dőlt között"
@@ -6710,6 +6738,9 @@ msgstr "EPG nyelvválasztás 2"
 msgid "EPG location"
 msgstr "EPG helye"
 
+msgid "EPG only"
+msgstr ""
+
 msgid "EPGSearch"
 msgstr "EPGSearch"
 
@@ -7204,6 +7235,9 @@ msgstr "Adja meg az IP címet"
 msgid "Enter PIN"
 msgstr "Adja meg a PIN kódot"
 
+msgid "Enter URL"
+msgstr ""
+
 msgid "Enter a description for this timer."
 msgstr ""
 
@@ -7449,6 +7483,15 @@ msgstr ""
 msgid "Error unzipping image '%s'!"
 msgstr ""
 
+msgid "Error when writing epg.dat on the fallback receiver"
+msgstr ""
+
+msgid "Error while moving epg.dat to its destination"
+msgstr ""
+
+msgid "Error while retrieving epg.dat from the fallback receiver"
+msgstr ""
+
 #, python-format
 msgid ""
 "Error while retrieving fallback timer information\n"
@@ -7456,6 +7499,9 @@ msgid ""
 msgstr ""
 "Hiba történt a tartalék tuner időzítők letöltésekor\n"
 "%s"
+
+msgid "Error while retrieving location of epg.dat on the fallback receiver"
+msgstr ""
 
 msgid "Error, unknown Result!"
 msgstr "Hiba, ismeretlen végeredmény!"
@@ -7933,6 +7979,9 @@ msgstr ""
 msgid "Fallback Font *"
 msgstr ""
 
+msgid "Fallback Timer"
+msgstr "Tartalék távoli időzítő"
+
 msgid "Fallback remote receiver"
 msgstr "Tartalék távoli vevő"
 
@@ -7954,8 +8003,8 @@ msgstr "Tartalék távoli vevő DVB-C vételhez"
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Tartalék távoli vevő DVB-T vételhez"
 
-msgid "Fallback Timer"
-msgstr "Tartalék távoli időzítő"
+msgid "Fallback remote receiver setup"
+msgstr ""
 
 msgid "Fallback tuner setup"
 msgstr "Tartalék távoli vevő beállítása"
@@ -9475,6 +9524,10 @@ msgstr "A csatornák és/vagy az EPG importálása a távoli vevő URL címébő
 msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
 msgstr "A csatornák és/vagy az EPG importálása a távoli vevő URL címéből a kezelőfelület újraindításakor"
 
+#, python-format
+msgid "Import from fallback tuner failed, %s"
+msgstr ""
+
 msgid "Import from remote receiver URL"
 msgstr "Importálás a távoli vevő URL címéből"
 
@@ -9773,20 +9826,8 @@ msgstr "Csatorna telepítés"
 msgid "Installing Software..."
 msgstr "Szoftver telepítése..."
 
-msgid "Installing feeds from IPK ..."
-msgstr "Feeds telepítése IPK-ból..."
-
-msgid "Installing feeds from feed ..."
-msgstr "Feeds telepítése feed-ből..."
-
 msgid "Installing package."
 msgstr ""
-
-msgid "Installing plugins from IPK ..."
-msgstr "Bővítmény telepítése IPK-ból..."
-
-msgid "Installing plugins from feed ..."
-msgstr "Bővítmény telepítése Feed-ből..."
 
 msgid "Instant Recording Actions"
 msgstr ""
@@ -10813,6 +10854,9 @@ msgstr "Kézi keresése a csatornáknak"
 
 msgid "Manual transponder"
 msgstr "Kézi transzponder"
+
+msgid "Manually import from fallback tuner"
+msgstr ""
 
 msgid "Manufacturer"
 msgstr "Gyártó"
@@ -11977,6 +12021,9 @@ msgstr "A hordozón nem található lejátszható fájl!"
 
 msgid "No entry in lcn db. Please do a service scan."
 msgstr "Nincs bejegyzés lcn db-ben. Kérjük, végezzen egy csatorna keresést."
+
+msgid "No epg.dat file found on the fallback receiver"
+msgstr ""
 
 msgid "No error"
 msgstr "Nincs hiba"
@@ -14233,6 +14280,9 @@ msgstr "Felvétel - ugyanaz, mint a felvételi gomb"
 msgid "Record Actions"
 msgstr ""
 
+msgid "Record Icon"
+msgstr ""
+
 msgid "Record next"
 msgstr "Következőt felveszi"
 
@@ -14575,9 +14625,6 @@ msgstr "Kijelölt címek eltávolítása"
 
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Kijelölt mappa eltávolítása könyvjelzőkből"
-
-msgid "Remove plugins ..."
-msgstr ""
 
 msgid "Remove service from AutoCam"
 msgstr ""
@@ -15278,12 +15325,8 @@ msgid "Save settings and EPG data."
 msgstr "Beállítások és EPG-adatok mentése"
 
 #, python-format
-msgid ""
-"Save the commands and the output to a file?\n"
-"('%s')"
-msgstr ""
-"Menti a parancsokat és a kimenetet egy fájlba?\n"
-"('%s')"
+msgid "Save the commands and output to the log file?"
+msgstr "Menti a parancsokat és a kimenetet egy fájlba?"
 
 msgid "Save the left column directory location on exit."
 msgstr ""
@@ -16204,6 +16247,9 @@ msgstr ""
 msgid "Select the last item in the list"
 msgstr ""
 
+msgid "Select the layout of the information in the services list, from the options provided by the skin, displayed within the ChannelSelection screen."
+msgstr ""
+
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr ""
 
@@ -16276,6 +16322,9 @@ msgstr "Válassza ki azt a műholdat, amely a kapcsoló Port-D csatlakozik. Ha n
 
 msgid "Select the satellite you want to configure. Once configured you can select and configure other satellites that will be accessed using this same tuner."
 msgstr "Válassza ki a konfigurálni kívánt műholdat. Miután a műholdat konfigurálta, kiválaszthatja és konfigurálhatja azokat a többi műholdakat is, amelyek ugyanazzal a tunerrel lesznek elérhetők."
+
+msgid "Select the screen layout, from the options provided by the skin, to be used for the ChannelSelection screen."
+msgstr ""
 
 #, fuzzy
 msgid "Select the shifted character set"
@@ -16808,9 +16857,6 @@ msgstr "Állítsa be a szöveg görgetési sebességét az elülső kijelzőn, e
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Állítsa be a szöveg görgetési sebességét a előlapi kijelzőn."
 
-msgid "Set the style of the channel list."
-msgstr ""
-
 msgid "Set the time before checking video source for resolution information."
 msgstr "Állítsa be azt az időtartamot, ami időközönként ellenőrzi a felbontási információt a videó jelből."
 
@@ -17241,6 +17287,9 @@ msgid "Show Information"
 msgstr "Információk megjelenítése..."
 
 msgid "Show Kernel packages"
+msgstr ""
+
+msgid "Show LCN in channel selection"
 msgstr ""
 
 msgid "Show Live in MiniTV"
@@ -18809,9 +18858,6 @@ msgstr "Szigorú DLNA"
 
 msgid "Stripes"
 msgstr "Sávok"
-
-msgid "Style"
-msgstr ""
 
 msgid "Style:"
 msgstr "Stílus:"
@@ -20779,9 +20825,6 @@ msgstr "URL"
 msgid "URL of fallback remote receiver"
 msgstr "Tartalék távoli vevő URL címe"
 
-msgid "URL of fallback remote receiver."
-msgstr "A távoli tartalék háttér vevőegység elérhetőségének URL címe"
-
 msgid "USALS"
 msgstr "USALS"
 
@@ -22070,6 +22113,9 @@ msgstr "Ha engedélyezve van, a '0' megnyomásával az első csatornacsomag els�
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Ha engedélyezi, a feliratok újra lesznek tördelve, hogy illeszkedjenek a képernyő széléhez."
+
+msgid "When enabled, show LCN in the channel selection screen."
+msgstr ""
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Ha engedélyezi, a csatornaszámok meg fognak jelenni a csatornalistában."
@@ -23786,6 +23832,21 @@ msgstr "igen (állapotok megtartása)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Installing feeds from IPK ..."
+#~ msgstr "Feeds telepítése IPK-ból..."
+
+#~ msgid "Installing feeds from feed ..."
+#~ msgstr "Feeds telepítése feed-ből..."
+
+#~ msgid "Installing plugins from IPK ..."
+#~ msgstr "Bővítmény telepítése IPK-ból..."
+
+#~ msgid "Installing plugins from feed ..."
+#~ msgstr "Bővítmény telepítése Feed-ből..."
+
+#~ msgid "URL of fallback remote receiver."
+#~ msgstr "A távoli tartalék háttér vevőegység elérhetőségének URL címe"
 
 #~ msgid ""
 #~ "\n"

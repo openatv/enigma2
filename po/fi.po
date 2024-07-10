@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-21 14:25+0000\n"
-"PO-Revision-Date: 2024-06-24 13:09+0000\n"
+"POT-Creation-Date: 2024-07-09 18:37+0000\n"
+"PO-Revision-Date: 2024-07-10 16:29+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6-rc\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 msgid ""
 "\n"
@@ -1184,6 +1184,10 @@ msgstr "%s on aktivoitu."
 #, python-format
 msgid "%s has been disabled."
 msgstr "%s on poistettu käytöstä."
+
+#, python-format
+msgid "%s imported from fallback tuner"
+msgstr "%s tuotu Etävirittimeltä"
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -3783,8 +3787,14 @@ msgstr "Kanavalistan konteksti valikon Toiminnot"
 msgid "Channel Selection Context Menu Navigation Actions"
 msgstr "Kanavalistan konteksti valikon Navigointi Toiminnot"
 
+msgid "Channel Selection List"
+msgstr "Kanavan valintalista"
+
 msgid "Channel Selection Navigation Actions"
 msgstr "Kanavan valinta toiminnot"
+
+msgid "Channel Selection Screen"
+msgstr "Kanavan valinta ruutu"
 
 msgid "Channel Selection Settings"
 msgstr "Kanavalistan asetukset"
@@ -3848,6 +3858,15 @@ msgstr "Kanava:"
 
 msgid "ChannelEPG Settings"
 msgstr "Kanava EPG asetukset"
+
+msgid "Channels"
+msgstr "Kanavat"
+
+msgid "Channels and EPG"
+msgstr "Kanavat ja EPG"
+
+msgid "Channels only"
+msgstr "Vain kanavat"
 
 msgid "Chap."
 msgstr "Osa."
@@ -4241,6 +4260,9 @@ msgstr "Väriformaatti"
 msgid "Color space"
 msgstr "Väriavaruus"
 
+msgid "Colored Text"
+msgstr "Värillinen teksti"
+
 msgid "Combined"
 msgstr "Yhdistetty"
 
@@ -4385,6 +4407,9 @@ msgstr "Määrittää, kuinka tallennus näytetään kanavalistassa."
 msgid "Configure if and how wide the service name column will be shown in the channel selection list."
 msgstr "Määrittää, kuinka leveänä kanavanimet näytetään kanavalistassa."
 
+msgid "Configure if crypto icons will be shown in the channel selection list."
+msgstr "Määritä, näkyvätkö salauskuvakkeet kanavan valinta listassa."
+
 msgid "Configure if epg.dat should be saved at all."
 msgstr "Määrittää, talletetaanko epg.dat -tiedostoa."
 
@@ -4393,6 +4418,9 @@ msgstr "Määritä, näkyvätkö kanavalogot pikavaihdossa."
 
 msgid "Configure if service picons will be shown in the service list."
 msgstr "Määrittää, näytetäänkö kanavalogoja kanavalistassa."
+
+msgid "Configure if service type icons will be shown."
+msgstr "Määrittää näytetäänkö tyypin kuvakkeet kanavalistassa."
 
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
 msgstr "Muokkaa ulkoisen tekstityksen fonttia, vaihtoehtoina: normal, italic, bold ja bolditalic."
@@ -6676,6 +6704,9 @@ msgstr "Ohjelmaoppaan kielivalinta 2"
 msgid "EPG location"
 msgstr "Ohjelmaoppaan sijainti"
 
+msgid "EPG only"
+msgstr "Vain EPG"
+
 msgid "EPGSearch"
 msgstr "EPG ohjelman haku"
 
@@ -7168,6 +7199,9 @@ msgstr "Syötä IP-osoite"
 msgid "Enter PIN"
 msgstr "Syötä PIN"
 
+msgid "Enter URL"
+msgstr "Syötä URL-osoite"
+
 msgid "Enter a description for this timer."
 msgstr "Anna kuvaus tälle ajastukselle."
 
@@ -7415,6 +7449,15 @@ msgstr "Virheteksti:"
 msgid "Error unzipping image '%s'!"
 msgstr "Virhe purettaessa ohjelmisto image %s!"
 
+msgid "Error when writing epg.dat on the fallback receiver"
+msgstr "Virheitä kirjoittaessa epg.dat etävastaanottimessa"
+
+msgid "Error while moving epg.dat to its destination"
+msgstr "Virheet, siirrettäessa epg.dat"
+
+msgid "Error while retrieving epg.dat from the fallback receiver"
+msgstr ""
+
 #, python-format
 msgid ""
 "Error while retrieving fallback timer information\n"
@@ -7422,6 +7465,9 @@ msgid ""
 msgstr ""
 "Virhe haettaessa menneitä ajastus tietoja.\n"
 "%s"
+
+msgid "Error while retrieving location of epg.dat on the fallback receiver"
+msgstr ""
 
 msgid "Error, unknown Result!"
 msgstr "Virhe, tuntematon tulos!"
@@ -7901,6 +7947,9 @@ msgstr "Fallback API ei löytänyt oikeaa tulosta."
 msgid "Fallback Font *"
 msgstr "Toissijainen Fontti *"
 
+msgid "Fallback Timer"
+msgstr "Vara ajastin"
+
 msgid "Fallback remote receiver"
 msgstr "Etävastaanotin"
 
@@ -7922,8 +7971,8 @@ msgstr "Varaviritin DVB-C"
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Varaviritin DVB-T"
 
-msgid "Fallback Timer"
-msgstr "Vara ajastin"
+msgid "Fallback remote receiver setup"
+msgstr "Etävastaanottimen asetukset"
 
 msgid "Fallback tuner setup"
 msgstr "Etävastaanotin asetukset"
@@ -9432,6 +9481,10 @@ msgstr "Tuo kanavat ja/tai ohjelmaopas etävastaanottimelta uudelleenkäynnistyk
 msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
 msgstr "Tuo kanavat ja/tai ohjelmaopas etävastaanottimelta uudelleenkäynnistyksen yhteydessä"
 
+#, python-format
+msgid "Import from fallback tuner failed, %s"
+msgstr ""
+
 msgid "Import from remote receiver URL"
 msgstr "Tuo etävastaanottimelta"
 
@@ -9724,20 +9777,8 @@ msgstr "Asennetaan palvelua"
 msgid "Installing Software..."
 msgstr "Ohjelmaa asennetaan..."
 
-msgid "Installing feeds from IPK ..."
-msgstr "Asenna syötteet IPK …"
-
-msgid "Installing feeds from feed ..."
-msgstr "Syötteiden asentaminen syötteistä ..."
-
 msgid "Installing package."
 msgstr "Asenna lisäosa."
-
-msgid "Installing plugins from IPK ..."
-msgstr "Asenna lisäosa IPK: sta …"
-
-msgid "Installing plugins from feed ..."
-msgstr "Asenna lisäosia syötteestä ..."
 
 msgid "Instant Recording Actions"
 msgstr "Pikatallennuksen hakemisto"
@@ -10742,6 +10783,9 @@ msgstr "Manuaalinen kanavahaku"
 
 msgid "Manual transponder"
 msgstr "Manuaalinen lähetin"
+
+msgid "Manually import from fallback tuner"
+msgstr ""
 
 msgid "Manufacturer"
 msgstr "Valmistaja"
@@ -11881,6 +11925,9 @@ msgstr "Tiedostoja ei löytynyt!"
 
 msgid "No entry in lcn db. Please do a service scan."
 msgstr "Ei merkintää lcn db:. Suorita huolto tarkistus."
+
+msgid "No epg.dat file found on the fallback receiver"
+msgstr ""
 
 msgid "No error"
 msgstr "Ei virhettä"
@@ -14127,6 +14174,9 @@ msgstr "Tallenna - sama kuin tallennus-näppäin"
 msgid "Record Actions"
 msgstr "Tallennus Toiminnot"
 
+msgid "Record Icon"
+msgstr "Tallenus kuvake"
+
 msgid "Record next"
 msgstr "Tallenna seuraava"
 
@@ -14469,9 +14519,6 @@ msgstr "Poista valittu otsikko"
 
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Poista valittu kansio kirjanmerkeistä"
-
-msgid "Remove plugins ..."
-msgstr "Poista lisäosia"
 
 msgid "Remove service from AutoCam"
 msgstr "Poista kanava CI+"
@@ -15167,12 +15214,8 @@ msgid "Save settings and EPG data."
 msgstr "Tallenna asetukset ja EPG tiedot."
 
 #, python-format
-msgid ""
-"Save the commands and the output to a file?\n"
-"('%s')"
-msgstr ""
-"Tallennetaanko komennot ja lähtö tiedostona?\n"
-"('%s')"
+msgid "Save the commands and output to the log file?"
+msgstr "Tallennetaanko komennot ja lähtö tiedostona?"
 
 msgid "Save the left column directory location on exit."
 msgstr "Tallenna vasemman sarakkeen hakemiston sijainti poistuttaessa."
@@ -16100,6 +16143,9 @@ msgstr "Valitse listan ensimmäinen kohta tai siirry tekstin alkuun"
 msgid "Select the last item in the list"
 msgstr "Valitse listan viimeinen kohde"
 
+msgid "Select the layout of the information in the services list, from the options provided by the skin, displayed within the ChannelSelection screen."
+msgstr ""
+
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr "Valitse asennettujen lisäosien asettelu lisäosat näkymässä. HUOMAUTUS: Muutos ei ole välitön, mutta se näkyy, kun lisäosat käynnistetään uudelleen!"
 
@@ -16174,6 +16220,9 @@ msgstr "Valitse satelliitti, joka on kytkettynä kytkimen Porttiin D. Jos et ole
 
 msgid "Select the satellite you want to configure. Once configured you can select and configure other satellites that will be accessed using this same tuner."
 msgstr "Valitse satelliitti, jonka haluat määrittää. Kun kyseinen satelliitti on määritetty, voit valita ja konfiguroida muita satelliitteja, joihin pääsee tällä samalla virittimellä."
+
+msgid "Select the screen layout, from the options provided by the skin, to be used for the ChannelSelection screen."
+msgstr ""
 
 msgid "Select the shifted character set"
 msgstr "Käytä siirtymää seuraaville merkeille"
@@ -16707,9 +16756,6 @@ msgstr "Määritä tekstin vieritysnopeus etupaneelissa, ohjelmistopohjainen ren
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Määrittää tekstin vieritysnopeuden etupaneelissa."
 
-msgid "Set the style of the channel list."
-msgstr "Aseta kanavalistan tyyli."
-
 msgid "Set the time before checking video source for resolution information."
 msgstr "Määritä aika ennen kuin lähteen resoluutio tarkistetaan."
 
@@ -17144,6 +17190,9 @@ msgstr "Näytä Tietoja"
 
 msgid "Show Kernel packages"
 msgstr "Näytä Kernel paketit"
+
+msgid "Show LCN in channel selection"
+msgstr ""
 
 msgid "Show Live in MiniTV"
 msgstr "Näytä suora MiniTV:eessä"
@@ -18695,9 +18744,6 @@ msgstr "Strict DLNA"
 
 msgid "Stripes"
 msgstr "Nauhat"
-
-msgid "Style"
-msgstr "Tyyli"
 
 msgid "Style:"
 msgstr "Tyyli:"
@@ -20679,11 +20725,6 @@ msgstr "Osoite"
 msgid "URL of fallback remote receiver"
 msgstr "Etävastaanottimen URL-osoite"
 
-msgid "URL of fallback remote receiver."
-msgstr ""
-"Etävastaanottimen IP osoite tai\n"
-"http://vastaanottimennimi.local:8001"
-
 msgid "USALS"
 msgstr "USALS"
 
@@ -21999,6 +22040,9 @@ msgstr "Kun päällä, '0'-näppäin vaihtaa ensimmäisen suosikkilistan ensimm�
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Kun päällä, tekstityksen leveys sovitetaan ruudun leveyteen."
+
+msgid "When enabled, show LCN in the channel selection screen."
+msgstr "Kun päällä, näytä LCN kanavan valinta ruudussa."
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Kun päällä, näytä kanavanvalinnassa kanavanumerot."
@@ -23719,6 +23763,32 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Installing feeds from IPK ..."
+#~ msgstr "Asenna syötteet IPK …"
+
+#~ msgid "Installing feeds from feed ..."
+#~ msgstr "Syötteiden asentaminen syötteistä ..."
+
+#~ msgid "Installing plugins from IPK ..."
+#~ msgstr "Asenna lisäosa IPK: sta …"
+
+#~ msgid "Installing plugins from feed ..."
+#~ msgstr "Asenna lisäosia syötteestä ..."
+
+#~ msgid "Remove plugins ..."
+#~ msgstr "Poista lisäosia"
+
+#~ msgid "Set the style of the channel list."
+#~ msgstr "Aseta kanavalistan tyyli."
+
+#~ msgid "Style"
+#~ msgstr "Tyyli"
+
+#~ msgid "URL of fallback remote receiver."
+#~ msgstr ""
+#~ "Etävastaanottimen IP osoite tai\n"
+#~ "http://vastaanottimennimi.local:8001"
 
 #~ msgid ""
 #~ "\n"

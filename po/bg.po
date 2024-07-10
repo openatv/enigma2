@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-21 14:25+0000\n"
+"POT-Creation-Date: 2024-07-09 18:37+0000\n"
 "PO-Revision-Date: 2023-08-06 06:22+0000\n"
 "Last-Translator: Salif Mehmed <mail@salif.eu>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/bg/>\n"
@@ -1183,6 +1183,10 @@ msgstr ""
 
 #, python-format
 msgid "%s has been disabled."
+msgstr ""
+
+#, python-format
+msgid "%s imported from fallback tuner"
 msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
@@ -3771,7 +3775,13 @@ msgstr ""
 msgid "Channel Selection Context Menu Navigation Actions"
 msgstr ""
 
+msgid "Channel Selection List"
+msgstr ""
+
 msgid "Channel Selection Navigation Actions"
+msgstr ""
+
+msgid "Channel Selection Screen"
 msgstr ""
 
 msgid "Channel Selection Settings"
@@ -3836,6 +3846,15 @@ msgstr "Канал:"
 
 msgid "ChannelEPG Settings"
 msgstr "Настройки за EPG на каналите"
+
+msgid "Channels"
+msgstr ""
+
+msgid "Channels and EPG"
+msgstr ""
+
+msgid "Channels only"
+msgstr ""
 
 msgid "Chap."
 msgstr "Глава."
@@ -4229,6 +4248,9 @@ msgstr "Цветови формат"
 msgid "Color space"
 msgstr "Цветово пространство"
 
+msgid "Colored Text"
+msgstr ""
+
 msgid "Combined"
 msgstr ""
 
@@ -4375,6 +4397,9 @@ msgstr "Конфигурирайте дали и как индикаторът �
 msgid "Configure if and how wide the service name column will be shown in the channel selection list."
 msgstr "Конфигурирайте дали и как широчината на името на сервизната колона ще бъде показана в списъка с избраните канали."
 
+msgid "Configure if crypto icons will be shown in the channel selection list."
+msgstr ""
+
 msgid "Configure if epg.dat should be saved at all."
 msgstr "Конфигурирайте ако epg.dat трябва да бъде запазен във всичко."
 
@@ -4383,6 +4408,9 @@ msgstr "Конфигурирайте дали сервизните пикони 
 
 msgid "Configure if service picons will be shown in the service list."
 msgstr "Конфигурирайте дали сервизните пикони ще бъде показани в сервизният списък."
+
+msgid "Configure if service type icons will be shown."
+msgstr ""
 
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
 msgstr "Конфигурирайте ако превключвате събтитри между normal, italic, bold и bolditalic"
@@ -6650,6 +6678,9 @@ msgstr "Избор на език за EPG 2"
 msgid "EPG location"
 msgstr "Местоположение на EPG"
 
+msgid "EPG only"
+msgstr ""
+
 msgid "EPGSearch"
 msgstr "EPG Търсене"
 
@@ -7142,6 +7173,9 @@ msgstr "Въведете IP адрес"
 msgid "Enter PIN"
 msgstr "Въведете PIN"
 
+msgid "Enter URL"
+msgstr ""
+
 msgid "Enter a description for this timer."
 msgstr ""
 
@@ -7387,6 +7421,15 @@ msgstr ""
 msgid "Error unzipping image '%s'!"
 msgstr ""
 
+msgid "Error when writing epg.dat on the fallback receiver"
+msgstr ""
+
+msgid "Error while moving epg.dat to its destination"
+msgstr ""
+
+msgid "Error while retrieving epg.dat from the fallback receiver"
+msgstr ""
+
 #, python-format
 msgid ""
 "Error while retrieving fallback timer information\n"
@@ -7394,6 +7437,9 @@ msgid ""
 msgstr ""
 "Грешка при извличане на информация за резервния таймер\n"
 "%s"
+
+msgid "Error while retrieving location of epg.dat on the fallback receiver"
+msgstr ""
 
 msgid "Error, unknown Result!"
 msgstr "Грешка, неизвестен резултат!"
@@ -7873,6 +7919,9 @@ msgstr ""
 msgid "Fallback Font *"
 msgstr ""
 
+msgid "Fallback Timer"
+msgstr "Резервен Таймер"
+
 msgid "Fallback remote receiver"
 msgstr "Резервен отдалечен приемник"
 
@@ -7894,8 +7943,8 @@ msgstr "Резервен отдалечен приемник за DVB-C"
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Резервен отдалечен приемник за DVB-T"
 
-msgid "Fallback Timer"
-msgstr "Резервен Таймер"
+msgid "Fallback remote receiver setup"
+msgstr ""
 
 msgid "Fallback tuner setup"
 msgstr "Настройки на резервен тунер"
@@ -9396,6 +9445,10 @@ msgstr "Импортиране на канали и/или EPG от резерв
 msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
 msgstr "Импортиране на канали и/или EPG от резервния приемник при рестарт на приемника или enigma2"
 
+#, python-format
+msgid "Import from fallback tuner failed, %s"
+msgstr ""
+
 msgid "Import from remote receiver URL"
 msgstr "Импортиране от URL на резервния приемник"
 
@@ -9688,20 +9741,8 @@ msgstr "Инсталиране на сервизи"
 msgid "Installing Software..."
 msgstr "Инсталиране на софтуер..."
 
-msgid "Installing feeds from IPK ..."
-msgstr "Инсталиране на емисии от IPK..."
-
-msgid "Installing feeds from feed ..."
-msgstr "Инсталиране на емисии от емисии..."
-
 msgid "Installing package."
 msgstr ""
-
-msgid "Installing plugins from IPK ..."
-msgstr "Инсталиране на плъгини от IPK..."
-
-msgid "Installing plugins from feed ..."
-msgstr "Инсталиране на плъгини от емисия..."
 
 msgid "Instant Recording Actions"
 msgstr ""
@@ -10706,6 +10747,9 @@ msgstr "Ръчно сканиране за сервизи"
 
 msgid "Manual transponder"
 msgstr "Ръчен транспондер"
+
+msgid "Manually import from fallback tuner"
+msgstr ""
 
 msgid "Manufacturer"
 msgstr "Производител"
@@ -11840,6 +11884,9 @@ msgstr "Няма намерени файлове на този носител!"
 
 msgid "No entry in lcn db. Please do a service scan."
 msgstr "Няма вписване в LCN db.Моля, сканирай сервиза."
+
+msgid "No epg.dat file found on the fallback receiver"
+msgstr ""
 
 msgid "No error"
 msgstr "Няма грешка"
@@ -14077,6 +14124,9 @@ msgstr "Запис - същото като бутона за запис"
 msgid "Record Actions"
 msgstr "Записване на действия"
 
+msgid "Record Icon"
+msgstr ""
+
 msgid "Record next"
 msgstr "Запиши следващия"
 
@@ -14419,9 +14469,6 @@ msgstr "Премахване на текущото избрано заглави
 
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Премахване на избраната папка от отметките"
-
-msgid "Remove plugins ..."
-msgstr ""
 
 msgid "Remove service from AutoCam"
 msgstr ""
@@ -15117,12 +15164,8 @@ msgid "Save settings and EPG data."
 msgstr "Запазете настройките и EPG данни"
 
 #, python-format
-msgid ""
-"Save the commands and the output to a file?\n"
-"('%s')"
-msgstr ""
-"Запазете командите и изхода във файл?\n"
-"('%s')"
+msgid "Save the commands and output to the log file?"
+msgstr "Запазете командите и изхода във файл?"
 
 msgid "Save the left column directory location on exit."
 msgstr ""
@@ -16039,6 +16082,9 @@ msgstr ""
 msgid "Select the last item in the list"
 msgstr ""
 
+msgid "Select the layout of the information in the services list, from the options provided by the skin, displayed within the ChannelSelection screen."
+msgstr ""
+
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr ""
 
@@ -16110,6 +16156,9 @@ msgstr "Изберете сателита, който е свързан към P
 
 msgid "Select the satellite you want to configure. Once configured you can select and configure other satellites that will be accessed using this same tuner."
 msgstr "Изберете сателита, който искате да конфигурирате. След като този сателит е конфигуриран, можете да изберете и конфигурирате други сателити, до които ще се осъществява достъп чрез същия тунер."
+
+msgid "Select the screen layout, from the options provided by the skin, to be used for the ChannelSelection screen."
+msgstr ""
 
 msgid "Select the shifted character set"
 msgstr "Изберете изместения набор от знаци"
@@ -16638,9 +16687,6 @@ msgstr "Задайте скоростта на превъртане на тек�
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Задайте скоростта на превъртане на текст на предния дисплей."
 
-msgid "Set the style of the channel list."
-msgstr ""
-
 msgid "Set the time before checking video source for resolution information."
 msgstr "Задайте времето преди проверка на видео източника за информация на резолюцията."
 
@@ -17068,6 +17114,9 @@ msgid "Show Information"
 msgstr "Показване на информация"
 
 msgid "Show Kernel packages"
+msgstr ""
+
+msgid "Show LCN in channel selection"
 msgstr ""
 
 msgid "Show Live in MiniTV"
@@ -18620,9 +18669,6 @@ msgstr "Стриктно DLNA"
 
 msgid "Stripes"
 msgstr "Ивици"
-
-msgid "Style"
-msgstr ""
 
 msgid "Style:"
 msgstr "Стил:"
@@ -20562,9 +20608,6 @@ msgstr ""
 msgid "URL of fallback remote receiver"
 msgstr "Въведете URL на резервния приемник"
 
-msgid "URL of fallback remote receiver."
-msgstr "URL на резервния отдалечен приемник"
-
 msgid "USALS"
 msgstr ""
 
@@ -21843,6 +21886,9 @@ msgstr "Когато е разрешено, натискането на '0' ще
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Когато е разрешено, се преформатират субтитрите, за да съответстват на ширината на екрана."
+
+msgid "When enabled, show LCN in the channel selection screen."
+msgstr ""
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Когато е разрешено, се показват номерата на каналите в екрана за избор на канали."
@@ -23552,6 +23598,21 @@ msgstr "да (запази фийдове)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Installing feeds from IPK ..."
+#~ msgstr "Инсталиране на емисии от IPK..."
+
+#~ msgid "Installing feeds from feed ..."
+#~ msgstr "Инсталиране на емисии от емисии..."
+
+#~ msgid "Installing plugins from IPK ..."
+#~ msgstr "Инсталиране на плъгини от IPK..."
+
+#~ msgid "Installing plugins from feed ..."
+#~ msgstr "Инсталиране на плъгини от емисия..."
+
+#~ msgid "URL of fallback remote receiver."
+#~ msgstr "URL на резервния отдалечен приемник"
 
 #~ msgid ""
 #~ "\n"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-21 14:25+0000\n"
+"POT-Creation-Date: 2024-07-09 18:37+0000\n"
 "PO-Revision-Date: 2024-06-30 12:17+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -1189,6 +1189,10 @@ msgstr "%s is geactiveerd."
 #, python-format
 msgid "%s has been disabled."
 msgstr "%s is uitgeschakeld."
+
+#, python-format
+msgid "%s imported from fallback tuner"
+msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -3784,8 +3788,14 @@ msgstr "Zenderlijstmenu Acties"
 msgid "Channel Selection Context Menu Navigation Actions"
 msgstr "Zenderlijstmenu navigatie Acties"
 
+msgid "Channel Selection List"
+msgstr ""
+
 msgid "Channel Selection Navigation Actions"
 msgstr "Zenderlijst navigatie Acties"
+
+msgid "Channel Selection Screen"
+msgstr ""
 
 msgid "Channel Selection Settings"
 msgstr "Zenderlijst"
@@ -3849,6 +3859,15 @@ msgstr "Zender:"
 
 msgid "ChannelEPG Settings"
 msgstr "Zender EPG instellingen"
+
+msgid "Channels"
+msgstr ""
+
+msgid "Channels and EPG"
+msgstr ""
+
+msgid "Channels only"
+msgstr ""
 
 msgid "Chap."
 msgstr "Hfdst."
@@ -4247,6 +4266,9 @@ msgstr "Kleurformaat"
 msgid "Color space"
 msgstr "Kleurruimte"
 
+msgid "Colored Text"
+msgstr ""
+
 msgid "Combined"
 msgstr "Gecombineerd"
 
@@ -4408,6 +4430,9 @@ msgstr ""
 msgid "Configure if and how wide the service name column will be shown in the channel selection list."
 msgstr "Instellen of en hoe breed de zendernaam kolom moet zijn in de zenderkeuzelijst."
 
+msgid "Configure if crypto icons will be shown in the channel selection list."
+msgstr ""
+
 msgid "Configure if epg.dat should be saved at all."
 msgstr "Configureren of epg.dat moet worden opgeslagen."
 
@@ -4416,6 +4441,9 @@ msgstr "Bij 'ja' zijn Picons (zenderlogo's) zichtbaar tijdens het gebruik van Qu
 
 msgid "Configure if service picons will be shown in the service list."
 msgstr "Toon Picons (zenderlogo's) in de zenderlijst."
+
+msgid "Configure if service type icons will be shown."
+msgstr ""
 
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
 msgstr "Moet het lettertype van externe ondertitels wisselen tussen normaal, cursief, vet en vet/cursief?"
@@ -6792,6 +6820,9 @@ msgstr "EPG taalkeuze 2"
 msgid "EPG location"
 msgstr "EPG locatie"
 
+msgid "EPG only"
+msgstr ""
+
 msgid "EPGSearch"
 msgstr "EPGSearch"
 
@@ -7292,6 +7323,9 @@ msgstr "Voer een IPadres in"
 msgid "Enter PIN"
 msgstr "Voer pincode in"
 
+msgid "Enter URL"
+msgstr ""
+
 msgid "Enter a description for this timer."
 msgstr ""
 "Een omschrijving voor deze timer opgeven.\n"
@@ -7545,6 +7579,15 @@ msgstr "Fouttekst:"
 msgid "Error unzipping image '%s'!"
 msgstr "Fout bij het uitpakken van het image '%s'!"
 
+msgid "Error when writing epg.dat on the fallback receiver"
+msgstr ""
+
+msgid "Error while moving epg.dat to its destination"
+msgstr ""
+
+msgid "Error while retrieving epg.dat from the fallback receiver"
+msgstr ""
+
 #, python-format
 msgid ""
 "Error while retrieving fallback timer information\n"
@@ -7552,6 +7595,9 @@ msgid ""
 msgstr ""
 "Fout tijdens het ophalen van de Fallback timer informatie\n"
 "%s"
+
+msgid "Error while retrieving location of epg.dat on the fallback receiver"
+msgstr ""
 
 msgid "Error, unknown Result!"
 msgstr "Fout, onbekende uitkomst!"
@@ -8034,6 +8080,9 @@ msgstr "De Fallback-API is niet geldig."
 msgid "Fallback Font *"
 msgstr "Reserve lettertype *"
 
+msgid "Fallback Timer"
+msgstr "Fallback Timer"
+
 msgid "Fallback remote receiver"
 msgstr "Fallback tuner"
 
@@ -8055,8 +8104,8 @@ msgstr "Fallback tuner voor DVB-C"
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Fallback tuner voor DVB-T"
 
-msgid "Fallback Timer"
-msgstr "Fallback Timer"
+msgid "Fallback remote receiver setup"
+msgstr ""
 
 msgid "Fallback tuner setup"
 msgstr "Fallback tuner instellingen"
@@ -9567,6 +9616,10 @@ msgstr "Importeer zenders en/of EPG van de Fallback tuner, na het starten van de
 msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
 msgstr "Importeer zenders en/of EPG van de Fallback tuner, na het starten van de ontvanger OF Enigma2."
 
+#, python-format
+msgid "Import from fallback tuner failed, %s"
+msgstr ""
+
 msgid "Import from remote receiver URL"
 msgstr "Importeer data vanaf een externe ontvanger"
 
@@ -9859,20 +9912,8 @@ msgstr "Installeert service"
 msgid "Installing Software..."
 msgstr "Installeert Software..."
 
-msgid "Installing feeds from IPK ..."
-msgstr "Installeert feeds uit IPK ..."
-
-msgid "Installing feeds from feed ..."
-msgstr "Feeds installeren uit feed..."
-
 msgid "Installing package."
 msgstr "Pakket installeren."
-
-msgid "Installing plugins from IPK ..."
-msgstr "Installeer plugins uit een IPK..."
-
-msgid "Installing plugins from feed ..."
-msgstr "Installeer plugins uit de feed ..."
 
 msgid "Instant Recording Actions"
 msgstr "Directe opname Acties"
@@ -10877,6 +10918,9 @@ msgstr "Hier kunt u handmatig naar zenders zoeken."
 
 msgid "Manual transponder"
 msgstr "Transponder handmatig"
+
+msgid "Manually import from fallback tuner"
+msgstr ""
 
 msgid "Manufacturer"
 msgstr "Fabrikant"
@@ -12014,6 +12058,9 @@ msgstr "Geen weer te geven bestanden op dit medium gevonden!"
 
 msgid "No entry in lcn db. Please do a service scan."
 msgstr "Geen vermelding in lcn db. Doe een zender scan."
+
+msgid "No epg.dat file found on the fallback receiver"
+msgstr ""
 
 msgid "No error"
 msgstr "Geen fout"
@@ -14262,6 +14309,9 @@ msgstr "Record - hetzelfde als de record-knop"
 msgid "Record Actions"
 msgstr "Opname instellingen"
 
+msgid "Record Icon"
+msgstr ""
+
 msgid "Record next"
 msgstr "Neem volgende op"
 
@@ -14604,9 +14654,6 @@ msgstr "De momenteel geselecteerde titel verwijderen"
 
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Verwijder geselecteerde map van bookmarks"
-
-msgid "Remove plugins ..."
-msgstr "Plugins verwijderen..."
 
 msgid "Remove service from AutoCam"
 msgstr "Zender uit AutoCam verwijderen"
@@ -15302,12 +15349,8 @@ msgid "Save settings and EPG data."
 msgstr "Instellingen opslaan inclusief EPG-data."
 
 #, python-format
-msgid ""
-"Save the commands and the output to a file?\n"
-"('%s')"
-msgstr ""
-"Opdrachten en uitvoer opslaan in een bestand? \n"
-"('%s')"
+msgid "Save the commands and output to the log file?"
+msgstr "Opdrachten en uitvoer opslaan in een bestand?"
 
 msgid "Save the left column directory location on exit."
 msgstr "De maplocatie in de linkerkolom opslaan bij het afsluiten."
@@ -16235,6 +16278,9 @@ msgstr "Selecteer het laatste item in de lijst of ga naar het einde van de tekst
 msgid "Select the last item in the list"
 msgstr "Selecteer het laatste item in de lijst"
 
+msgid "Select the layout of the information in the services list, from the options provided by the skin, displayed within the ChannelSelection screen."
+msgstr ""
+
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr ""
 "Selecteer de lay-out van de geïnstalleerde\n"
@@ -16313,6 +16359,9 @@ msgstr "Selecteer de satelliet die met de D-poort van uw switch verbonden is. Wa
 
 msgid "Select the satellite you want to configure. Once configured you can select and configure other satellites that will be accessed using this same tuner."
 msgstr "Selecteer de satelliet die u wilt configureren. Als deze eenmaal is geconfigureerd kunt u andere satellieten kiezen en configureren die met deze tuner verbonden zijn."
+
+msgid "Select the screen layout, from the options provided by the skin, to be used for the ChannelSelection screen."
+msgstr ""
 
 msgid "Select the shifted character set"
 msgstr "Selecteer de SHIFT karakterset voor het virtuele toetsenbord"
@@ -16848,9 +16897,6 @@ msgstr "Stel de snelheid in van een scrollende tekst in het display, deze functi
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Stel de scroll-snelheid van tekst op het display van uw %s %s in."
 
-msgid "Set the style of the channel list."
-msgstr "Stijl van de Zenderlijst kiezen."
-
 msgid "Set the time before checking video source for resolution information."
 msgstr "Stel de tijd in voordat de videobron gecontroleerd wordt op resolutie info."
 
@@ -17297,6 +17343,9 @@ msgstr "Toon informatie"
 
 msgid "Show Kernel packages"
 msgstr "Kernel"
+
+msgid "Show LCN in channel selection"
+msgstr ""
 
 msgid "Show Live in MiniTV"
 msgstr "Toon Live in MiniTV"
@@ -18855,9 +18904,6 @@ msgstr "Strict DLNA"
 
 msgid "Stripes"
 msgstr "Strepen"
-
-msgid "Style"
-msgstr "Stijl"
 
 msgid "Style:"
 msgstr "Stijl:"
@@ -20882,11 +20928,6 @@ msgstr ""
 "http:// en/of poortnummer worden standaard toegevoegd.\n"
 "Voorbeeld: http://192.168.100.202:8001"
 
-msgid "URL of fallback remote receiver."
-msgstr ""
-"URL van de Fallback tuner invoeren:\n"
-"bijvoorbeeld: http://192.168.100.202:8001, http://IP_tweede_box:8001"
-
 msgid "USALS"
 msgstr "USALS"
 
@@ -22209,6 +22250,9 @@ msgstr "Indien geactiveerd, zapt '0' naar de eerste zender van de eerste favorie
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Breedte van de ondertitels automatisch aanpassen aan de breedte van het beeldscherm."
+
+msgid "When enabled, show LCN in the channel selection screen."
+msgstr ""
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Bij 'Ja' wordt een zendernummer bij elke zender in de lijst weergegeven."
@@ -23938,6 +23982,32 @@ msgstr "ja (bewaar feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Installing feeds from IPK ..."
+#~ msgstr "Installeert feeds uit IPK ..."
+
+#~ msgid "Installing feeds from feed ..."
+#~ msgstr "Feeds installeren uit feed..."
+
+#~ msgid "Installing plugins from IPK ..."
+#~ msgstr "Installeer plugins uit een IPK..."
+
+#~ msgid "Installing plugins from feed ..."
+#~ msgstr "Installeer plugins uit de feed ..."
+
+#~ msgid "Remove plugins ..."
+#~ msgstr "Plugins verwijderen..."
+
+#~ msgid "Set the style of the channel list."
+#~ msgstr "Stijl van de Zenderlijst kiezen."
+
+#~ msgid "Style"
+#~ msgstr "Stijl"
+
+#~ msgid "URL of fallback remote receiver."
+#~ msgstr ""
+#~ "URL van de Fallback tuner invoeren:\n"
+#~ "bijvoorbeeld: http://192.168.100.202:8001, http://IP_tweede_box:8001"
 
 #~ msgid ""
 #~ "\n"
