@@ -815,9 +815,11 @@ def collectAttributes(skinAttributes, node, context, skinPath=None, ignore=(), f
 			if attrib in filenames:
 				# DEBUG: Why does a SCOPE_LCDSKIN image replace the GUI image?!?!?!
 				pngFile = resolveFilename(SCOPE_GUISKIN, value, path_prefix=skinPath)
-				if not isfile(pngFile) and isfile(resolveFilename(SCOPE_LCDSKIN, value, path_prefix=skinPath)):
-					pngFile = resolveFilename(SCOPE_LCDSKIN, value, path_prefix=skinPath)
-				newValue = pngFile
+				if isfile(pngFile):
+					newValue = pngFile
+				else:
+					lcdFile = resolveFilename(SCOPE_LCDSKIN, value, path_prefix=skinPath)
+					newValue = lcdFile if isfile(lcdFile) else pngFile
 			# Bit of a hack this, really.  When a window has a flag (e.g. wfNoBorder)
 			# it needs to be set at least before the size is set, in order for the
 			# window dimensions to be calculated correctly in all situations.
@@ -1693,10 +1695,10 @@ class SkinContextVertical(SkinContext):
 			width = parseCoordinate(width, self.w, 0, font, self.scale[0])
 			height = parseCoordinate(height, self.h, 0, font, self.scale[1])
 			left = self.x
-			p = pos.split(",")
-			if len(p) == 2 and p[1] in ("top", "bottom") and p[0].isdigit():
-				left += int(int(p[0]) * self.scale[0][0] / self.scale[0][1])
-				pos = p[1]
+			positions = pos.split(",")
+			if len(positions) == 2 and positions[1] in ("top", "bottom") and positions[0].isdigit():
+				left += int(int(positions[0]) * self.scale[0][0] / self.scale[0][1])
+				pos = positions[1]
 			if pos == "bottom":
 				if self.bottomCount:
 					self.by -= self.spacing
@@ -1742,10 +1744,10 @@ class SkinContextHorizontal(SkinContext):
 			width = parseCoordinate(width, self.w, 0, font, self.scale[0])
 			height = parseCoordinate(height, self.h, 0, font, self.scale[1])
 			top = self.y
-			p = pos.split(",")
-			if len(p) == 2 and p[0] in ("left", "right") and p[1].isdigit():
-				top += int(int(p[1]) * self.scale[0][0] / self.scale[0][1])
-				pos = p[0]
+			positions = pos.split(",")
+			if len(positions) == 2 and positions[0] in ("left", "right") and positions[1].isdigit():
+				top += int(int(positions[1]) * self.scale[0][0] / self.scale[0][1])
+				pos = positions[0]
 			if pos == "left":
 				pos = (self.x, top)
 				size = (width, height)
