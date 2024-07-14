@@ -1671,7 +1671,7 @@ int eListbox::moveSelectionLineMode(bool doUp, bool doDown, int dir, int oldSel,
 		}
 		int newlinecalc = (m_selected / m_max_columns) - oldTopLeft;
 
-		if (doUp)
+		if (doUp || dir == moveLeft)
 		{
 			if (oldLine == 0 && oldTopLeft == 0)
 			{
