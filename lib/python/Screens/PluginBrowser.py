@@ -888,18 +888,23 @@ class PackageAction(Screen, NumericalTextInput):
 			"yellow": (self.keyShowLog, _("Show the last opkg command's output"))
 		}, prio=0, description=description)
 		self["logAction"].setEnabled(False)
-		self["navigationActions"] = HelpableActionMap(self, ["NavigationActions"], {
+		self["navigationActions"] = HelpableActionMap(self, ["NavigationActions", "PreviousNextActions"], {
 			"top": (self["plugins"].goTop, _("Move to the first item on the first screen")),
 			"pageUp": (self["plugins"].goPageUp, _("Move up a screen")),
 			"up": (self["plugins"].goLineUp, _("Move up a line")),
-			# "first": (self.keyTop, _("Move to the first item on the current line")),
-			"left": (self.keyPreviousCategory, _("Move to the previous category in the list")),
-			"right": (self.keyNextCategory, _("Move to the next category in the list")),
-			# "last": (self.keyBottom, _("Move to the last item on the current line")),
+			"first": (self.keyPreviousCategory, _("Move to the previous category in the list")),
+			"previous": (self.keyPreviousCategory, _("Move to the previous category in the list")),
+			"last": (self.keyNextCategory, _("Move to the next category in the list")),
+			"next": (self.keyNextCategory, _("Move to the next category in the list")),
 			"down": (self["plugins"].goLineDown, _("Move down a line")),
 			"pageDown": (self["plugins"].goPageDown, _("Move down a screen")),
 			"bottom": (self["plugins"].goBottom, _("Move to the last item on the last screen"))
 		}, prio=0, description=description)
+		self["legacyNavigationActions"] = HelpableActionMap(self, ["NavigationActions"], {
+			"left": (self.keyPreviousCategory, _("Move to the previous category in the list")),
+			"right": (self.keyNextCategory, _("Move to the next category in the list")),
+		}, prio=0, description=description)
+		self["legacyNavigationActions"].setEnabled(not config.misc.actionLeftRightToPageUpPageDown.value)
 		smsMsg = _("SMS style QuickSelect entry selection")
 		self["quickSelectActions"] = HelpableNumberActionMap(self, "NumberActions", {  # Action used by QuickSelect.
 			"1": (self.keyNumberGlobal, smsMsg),
