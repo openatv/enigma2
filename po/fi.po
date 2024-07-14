@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-09 18:37+0000\n"
-"PO-Revision-Date: 2024-07-10 16:29+0000\n"
+"POT-Creation-Date: 2024-07-10 17:04+0000\n"
+"PO-Revision-Date: 2024-07-11 06:05+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -7456,7 +7456,7 @@ msgid "Error while moving epg.dat to its destination"
 msgstr "Virheet, siirrettäessa epg.dat"
 
 msgid "Error while retrieving epg.dat from the fallback receiver"
-msgstr ""
+msgstr "Virhe haettaessa epg.dat-tiedostoa etävastaanottimelta"
 
 #, python-format
 msgid ""
@@ -7467,7 +7467,7 @@ msgstr ""
 "%s"
 
 msgid "Error while retrieving location of epg.dat on the fallback receiver"
-msgstr ""
+msgstr "Virhe haettaessa epg.dat-tiedoston sijaintia etävastaanottimelta"
 
 msgid "Error, unknown Result!"
 msgstr "Virhe, tuntematon tulos!"
@@ -9483,7 +9483,7 @@ msgstr "Tuo kanavat ja/tai ohjelmaopas etävastaanottimelta uudelleenkäynnistyk
 
 #, python-format
 msgid "Import from fallback tuner failed, %s"
-msgstr ""
+msgstr "Tuonti etävastaanottimesta epäonnistui, %s"
 
 msgid "Import from remote receiver URL"
 msgstr "Tuo etävastaanottimelta"
@@ -10785,7 +10785,7 @@ msgid "Manual transponder"
 msgstr "Manuaalinen lähetin"
 
 msgid "Manually import from fallback tuner"
-msgstr ""
+msgstr "Tuo manuaalisesti etävirittimeltä"
 
 msgid "Manufacturer"
 msgstr "Valmistaja"
@@ -11927,7 +11927,7 @@ msgid "No entry in lcn db. Please do a service scan."
 msgstr "Ei merkintää lcn db:. Suorita huolto tarkistus."
 
 msgid "No epg.dat file found on the fallback receiver"
-msgstr ""
+msgstr "Epg.dat tiedostoa ei löytynyt etävastaanottimelta"
 
 msgid "No error"
 msgstr "Ei virhettä"
@@ -15213,7 +15213,6 @@ msgstr "Tallenna oikea hakemisto poistuttaessa"
 msgid "Save settings and EPG data."
 msgstr "Tallenna asetukset ja EPG tiedot."
 
-#, python-format
 msgid "Save the commands and output to the log file?"
 msgstr "Tallennetaanko komennot ja lähtö tiedostona?"
 
@@ -16144,7 +16143,7 @@ msgid "Select the last item in the list"
 msgstr "Valitse listan viimeinen kohde"
 
 msgid "Select the layout of the information in the services list, from the options provided by the skin, displayed within the ChannelSelection screen."
-msgstr ""
+msgstr "Valitse kanava listan tietojen asettelu teeman tarjoamista vaihtoehdoista, jotka näytetään Kanavavalinta näytössä."
 
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr "Valitse asennettujen lisäosien asettelu lisäosat näkymässä. HUOMAUTUS: Muutos ei ole välitön, mutta se näkyy, kun lisäosat käynnistetään uudelleen!"
@@ -16222,7 +16221,7 @@ msgid "Select the satellite you want to configure. Once configured you can selec
 msgstr "Valitse satelliitti, jonka haluat määrittää. Kun kyseinen satelliitti on määritetty, voit valita ja konfiguroida muita satelliitteja, joihin pääsee tällä samalla virittimellä."
 
 msgid "Select the screen layout, from the options provided by the skin, to be used for the ChannelSelection screen."
-msgstr ""
+msgstr "Valitse näytön asettelu, teeman tarjoamista vaihtoehdoista, joita käytetään Kanavavalinta näytössä."
 
 msgid "Select the shifted character set"
 msgstr "Käytä siirtymää seuraaville merkeille"
@@ -17192,7 +17191,7 @@ msgid "Show Kernel packages"
 msgstr "Näytä Kernel paketit"
 
 msgid "Show LCN in channel selection"
-msgstr ""
+msgstr "LCN näytetään kanavalistan valinnassa"
 
 msgid "Show Live in MiniTV"
 msgstr "Näytä suora MiniTV:eessä"
@@ -20060,6 +20059,10 @@ msgstr ""
 
 msgid "This will go fast forward/backward with time frames of x secs."
 msgstr "Kun päällä, eteenpäin- ja taaksepäin kelauksessa käytetään aikahyppyjä. Yksittäisen hypyn pituuden voi määritellä erikseen."
+
+#, python-format
+msgid "This window will automatically close in %d seconds."
+msgstr "Tämä ikkuna sulkeutuu automaattisesti %d sekunnin kuluttua."
 
 msgid "This wizard has finished"
 msgstr "Asennus on nyt valmis"
@@ -23524,10 +23527,10 @@ msgstr "näytä kortit jossa ylöshyppy 8"
 msgid "show cards with uphop 9"
 msgstr "näytä kortit jossa ylöshyppy 9"
 
-msgid "show picons in quickzap"
+msgid "Show picons in quickzap"
 msgstr "Näytä kanavalogot pikavaihdossa"
 
-msgid "show picons in service list"
+msgid "Show picons in service list"
 msgstr "Näytä kanavalogot kanavalistassa"
 
 msgid "show program information..."

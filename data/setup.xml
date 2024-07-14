@@ -91,11 +91,11 @@
 		<item level="1" text="Hide number markers" description="When enabled, number markers will be hidden.">config.usage.hide_number_markers</item>
 		<item level="1" text="Enable panic button" description="When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history.">config.usage.panicbutton</item>
 		<item level="1" text="Panic channel" description="Pressing the panic button will zap you to this channel number in your first bouquet.">config.usage.panicchannel</item>
-		<item level="2" text="show picons in quickzap" description="Configure if service picons will be shown in quickzap.">config.usage.numzappicon</item>
+		<item level="2" text="Show picons in quickzap" description="Configure if service picons will be shown in quickzap.">config.usage.numzappicon</item>
 		<item level="1" text="Jump first press in channel selection" description="This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first), when 'Quick Actions' preset actions are performed. ">config.usage.show_channel_jump_in_servicelist</item>
 		<if conditional="config.channelSelection.screenStyle.value == ''">
 			<item level="0" text="Show channel numbers in channel selection" description="When enabled, show channel numbers in the channel selection screen.">config.usage.show_channel_numbers_in_servicelist</item>
-			<item level="1" text="show picons in service list" description="Configure if service picons will be shown in the service list.">config.usage.service_icon_enable</item>
+			<item level="1" text="Show picons in service list" description="Configure if service picons will be shown in the service list.">config.usage.service_icon_enable</item>
 			<item level="1" text="Service picons aspect ratio" description="Set the aspect ratio of the service picons." requires="config.usage.service_icon_enable">config.usage.servicelist_picon_ratio</item>
 			<item level="1" text="Service picons downsize" description="Reduce the size of the service picons for more line spacing between them." requires="config.usage.service_icon_enable">config.usage.servicelist_picon_downsize</item>
 			<item level="1" text="Show service type icons" description="Configure if and how service type icons will be shown.">config.usage.servicetype_icon_mode</item>
@@ -116,7 +116,7 @@
 		<else />
 			<item level="0" text="Show channel numbers in channel selection" description="When enabled, show channel numbers in the channel selection screen.">config.channelSelection.showNumber</item>
 			<item level="1" text="Show LCN in channel selection" description="When enabled, show LCN in the channel selection screen.">config.channelSelection.showLCN</item>
-			<item level="1" text="show picons in service list" description="Configure if service picons will be shown in the service list.">config.channelSelection.showPicon</item>
+			<item level="1" text="Show picons in service list" description="Configure if service picons will be shown in the service list.">config.channelSelection.showPicon</item>
 			<item level="1" text="Service picons aspect ratio" description="Set the aspect ratio of the service picons." requires="config.channelSelection.showPicon">config.channelSelection.piconRatio</item>
 			<item level="1" text="Show service type icons" description="Configure if service type icons will be shown.">config.channelSelection.showServiceTypeIcon</item>
 			<item level="1" text="Show crypto icons" description="Configure if crypto icons will be shown in the channel selection list.">config.channelSelection.showCryptoIcon</item>
