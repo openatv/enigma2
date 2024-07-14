@@ -61,6 +61,7 @@ class Console(Screen):
 		self.container.appClosed.append(self.runFinished)
 		self.timer = eTimer()
 		self.timer.callback.append(self.timeout)
+		self.baseTitle = self.getTitle()
 		self.screenHidden = False
 		self.cancelMessageBox = None
 		self.errorOcurred = False
@@ -215,7 +216,6 @@ class Console(Screen):
 				self.finishedCallback()
 			if not self.errorOcurred and self.closeOnSuccess:
 				if isinstance(self.closeOnSuccess, int):
-					self.baseTitle = self.getTitle()
 					self.setTitle(f"{self.baseTitle} ({self.closeOnSuccess})")
 					self.timer.start(1000)
 				else:
