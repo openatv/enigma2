@@ -1384,44 +1384,46 @@ void eListbox::moveSelection(int dir)
 	case moveUp:
 		if (isGrid && dir != moveBottom)
 		{
+
 			int newColumn = -1;
-			do
+			int wrap = 0;
+			if(m_max_rows > 1)
 			{
-				if (oldRow == 0 && m_enabled_wrap_around)
+
+				do
 				{
-					m_content->cursorEnd();
-					do
-					{
-						m_content->cursorMove(-1);
-						newSel = m_content->cursorGet();
-						newColumn = newSel % m_max_columns;
-					} while (oldColumn != newColumn);
-
-					if (m_content->currentCursorSelectable())
-						break;
-				}
-				else
 					m_content->cursorMove(-m_max_columns);
-
-				newSel = m_content->cursorGet();
-
-				if (newSel == prevSel)
-				{ // cursorMove reached top and left cursor position the same. Must wrap around ?
-					if (m_enabled_wrap_around)
+					newSel = m_content->cursorGet();
+					if (newSel < m_max_columns)
 					{
-						m_content->cursorEnd();
-						m_content->cursorMove(-1);
-						newSel = m_content->cursorGet();
+						if (m_enabled_wrap_around)
+						{
+							m_content->cursorEnd();
+							do
+							{
+								m_content->cursorMove(-1);
+								newSel = m_content->cursorGet();
+								newColumn = newSel % m_max_columns;
+							} while (oldColumn != newColumn);
+						}
+						else
+						{
+							m_content->cursorHome();
+							m_content->cursorMove(oldSel);
+							break;
+						}
+						if (wrap)
+						{
+							m_content->cursorHome();
+							m_content->cursorMove(oldSel);
+							break;
+						}
+						wrap ++;
 					}
-					else
-					{
-						m_content->cursorSet(oldSel);
-						break;
-					}
-				}
-				prevSel = newSel;
 
-			} while (newSel != oldSel && !m_content->currentCursorSelectable());
+				} while (newSel != oldSel && !m_content->currentCursorSelectable());
+
+			}
 			break;
 		}
 		[[fallthrough]];
@@ -1463,10 +1465,21 @@ void eListbox::moveSelection(int dir)
 	case moveDown:
 		if (isGrid)
 		{
+			if(dir == moveTop)
+			{
+				do
+				{
+					m_content->cursorMove(1);
+					newSel = m_content->cursorGet();
+				} while (newSel != oldSel && !m_content->currentCursorSelectable());
+				break;
+			}
+
+			int current = oldSel;
 			do
 			{
 
-				bool wrap = (oldSel + m_max_columns) >= m_content->size();
+				bool wrap = (current + m_max_columns) >= m_content->size();
 				if (wrap && m_enabled_wrap_around)
 				{
 					m_content->cursorHome();
@@ -1475,7 +1488,8 @@ void eListbox::moveSelection(int dir)
 						break;
 				}
 				else
-					m_content->cursorMove(m_max_columns);
+					m_content->cursorMove(indexChanged ? 1 : m_max_columns);
+
 				if (!m_content->cursorValid())
 				{ // cursorMove reached end and left cursor position past the list. Must wrap around ?
 					if (m_enabled_wrap_around)
@@ -1484,6 +1498,7 @@ void eListbox::moveSelection(int dir)
 						m_content->cursorSet(oldSel);
 				}
 				newSel = m_content->cursorGet();
+				current = newSel;
 			} while (newSel != oldSel && !m_content->currentCursorSelectable());
 			break;
 		}
