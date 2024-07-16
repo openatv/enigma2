@@ -495,7 +495,6 @@ int eListbox::event(int event, void *data, void *data2)
 
 		gPainter &painter = *(gPainter *)data2;
 		gRegion entryRect;
-
 		m_content->cursorSave();
 		if (m_orientation == orVertical)
 			m_content->cursorMove(m_top - m_selected);
@@ -1384,17 +1383,19 @@ void eListbox::moveSelection(int dir)
 	case moveUp:
 		if (isGrid && dir != moveBottom)
 		{
-
 			int newColumn = -1;
-			int wrap = 0;
 			if(m_max_rows > 1)
 			{
 
+				int wrap = 0;
+				int newRow = oldRow;
+				int current = oldSel;
 				do
 				{
 					m_content->cursorMove(-m_max_columns);
 					newSel = m_content->cursorGet();
-					if (newSel < m_max_columns)
+					newRow = (m_max_columns != 0) ? newSel / m_max_columns : 0;
+					if (current < m_max_columns)
 					{
 						if (m_enabled_wrap_around)
 						{
@@ -1420,7 +1421,7 @@ void eListbox::moveSelection(int dir)
 						}
 						wrap ++;
 					}
-
+					current = newSel;
 				} while (newSel != oldSel && !m_content->currentCursorSelectable());
 
 			}
@@ -1478,7 +1479,6 @@ void eListbox::moveSelection(int dir)
 			int current = oldSel;
 			do
 			{
-
 				bool wrap = (current + m_max_columns) >= m_content->size();
 				if (wrap && m_enabled_wrap_around)
 				{
@@ -1680,6 +1680,11 @@ int eListbox::moveSelectionLineMode(bool doUp, bool doDown, int dir, int oldSel,
 	if (m_orientation == orGrid)
 	{
 		int newline = (m_selected / m_max_columns);
+		int oldrow = oldSel / m_max_columns;
+		if (oldrow == newline)
+			return oldTopLeft;
+
+
 		if (!doUp && newline < m_max_rows)
 		{
 			return 0;
@@ -1699,6 +1704,9 @@ int eListbox::moveSelectionLineMode(bool doUp, bool doDown, int dir, int oldSel,
 
 			if ((oldLine > 0 && oldTopLeft > 0) || (newlinecalc > 0))
 			{
+				int newRow = m_content->cursorGet() / m_max_columns;
+				if(newRow < oldTopLeft)
+					return newRow;
 				return oldTopLeft;
 			}
 		}
