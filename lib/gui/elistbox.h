@@ -492,7 +492,7 @@ protected:
 
 private:
 	ePoint getItemPostion(int index);
-	int moveSelectionLineMode(bool doUp, bool doDown, int dir, int oldSel, int oldTopLeft, int maxItems, bool indexChanged, int pageOffset, int topLeft);
+	int moveSelectionLineMode(bool doUp, bool doDown, int dir, int oldSel, int oldTopLeft, int oldRow, int maxItems, bool indexChanged, int pageOffset, int topLeft);
 	void recalcSizeAlignment(bool scrollbarVisible);
 	int setScrollbarPosition();
 	void setItemCornerRadiusInternal(uint8_t index, int radius, uint8_t edges);

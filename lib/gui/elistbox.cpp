@@ -1621,9 +1621,9 @@ void eListbox::moveSelection(int dir)
 	if (m_scrollbar_scroll == byLine && m_content->size() > maxItems)
 	{
 		if (m_orientation == orHorizontal)
-			m_left = moveSelectionLineMode((dir == moveLeft), (dir == moveRight), dir, oldSel, oldLeft, maxItems, indexChanged, pageOffset, m_left);
+			m_left = moveSelectionLineMode((dir == moveLeft), (dir == moveRight), dir, oldSel, oldLeft, oldRow, maxItems, indexChanged, pageOffset, m_left);
 		else
-			m_top = moveSelectionLineMode((dir == moveUp), (dir == moveDown), dir, oldSel, oldTop, maxItems, indexChanged, pageOffset, m_top);
+			m_top = moveSelectionLineMode((dir == moveUp), (dir == moveDown), dir, oldSel, oldTop, oldRow, maxItems, indexChanged, pageOffset, m_top);
 	}
 
 	// if it is, then the old selection clip is irrelevant, clear it or we'll get artifacts
@@ -1672,7 +1672,7 @@ void eListbox::moveSelection(int dir)
 	}
 }
 
-int eListbox::moveSelectionLineMode(bool doUp, bool doDown, int dir, int oldSel, int oldTopLeft, int maxItems, bool indexChanged, int pageOffset, int topLeft)
+int eListbox::moveSelectionLineMode(bool doUp, bool doDown, int dir, int oldSel, int oldTopLeft, int oldRow, int maxItems, bool indexChanged, int pageOffset, int topLeft)
 {
 	int oldLine = m_content->cursorRestoreLine();
 	int max = m_content->size() - maxItems;
@@ -1680,10 +1680,14 @@ int eListbox::moveSelectionLineMode(bool doUp, bool doDown, int dir, int oldSel,
 	if (m_orientation == orGrid)
 	{
 		int newline = (m_selected / m_max_columns);
-		int oldrow = oldSel / m_max_columns;
-		if (oldrow == newline)
+		if (oldRow == newline)
 			return oldTopLeft;
 
+		if ((doDown || dir == moveRight) && newline > oldRow)
+		{
+			if ((newline - oldTopLeft) < m_max_rows)
+				return oldTopLeft;
+		}
 
 		if (!doUp && newline < m_max_rows)
 		{
