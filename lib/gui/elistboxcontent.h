@@ -23,6 +23,8 @@ public:
 	void invalidate();
 	eSize getItemSize() { return m_itemsize; }
 	int getMaxItemTextWidth();
+	uint8_t getOrientation() { return m_orientation; }
+	
 #ifndef SWIG
 protected:
 	void cursorHome();
