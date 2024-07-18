@@ -75,7 +75,7 @@ void eListboxPythonServiceContent::setRoot(const eServiceReference &root, bool j
 
 	if (justSet)
 	{
-		m_lst=0;
+		m_lst = 0;
 		return;
 	}
 	ASSERT(m_service_center);
@@ -141,7 +141,7 @@ void eListboxPythonServiceContent::getNext(eServiceReference &ref)
 		{
 			cursor = m_service_list.begin();
 		}
- 		ref = *(cursor);
+		ref = *(cursor);
 	}
 	else
 		ref = eServiceReference();
@@ -193,7 +193,8 @@ int eListboxPythonServiceContent::getPrevMarkerPos()
 	}
 
 	// if the search started from part way through the current section return now because this is the previous visible marker
-	if (cursorResolve(index) + 1 != cursorResolve(m_cursor)) return cursorResolve(index);
+	if (cursorResolve(index) + 1 != cursorResolve(m_cursor))
+		return cursorResolve(index);
 
 	// search for visible marker index of previous section
 	while (index)
@@ -213,7 +214,7 @@ int eListboxPythonServiceContent::getNextMarkerPos()
 		return 0;
 	list::iterator i(m_service_cursor);
 	int index = m_cursor;
-	while (index < (m_size-1))
+	while (index < (m_size - 1))
 	{
 		++i;
 		++index;
@@ -262,18 +263,16 @@ int eListboxPythonServiceContent::markedQueryNext(eServiceReference &ref)
 
 int eListboxPythonServiceContent::lookupService(const eServiceReference &ref)
 {
-		/* shortcut for cursor */
+	/* shortcut for cursor */
 	if (ref == *m_service_cursor)
 		return m_cursor;
-		/* otherwise, search in the list.. */
+	/* otherwise, search in the list.. */
 	int index = 0;
 	for (list::const_iterator i(m_service_list.begin()); i != m_service_list.end(); ++i, ++index);
 
-		/* this is ok even when the index was not found. */
+	/* this is ok even when the index was not found. */
 	return index;
 }
-
-
 
 void eListboxPythonServiceContent::sort()
 {
@@ -282,13 +281,12 @@ void eListboxPythonServiceContent::sort()
 	if (m_lst)
 	{
 		m_service_list.sort(iListableServiceCompare(m_lst));
-			/* FIXME: is this really required or can we somehow keep the current entry? */
+		/* FIXME: is this really required or can we somehow keep the current entry? */
 		cursorHome();
 		if (m_listbox)
 			m_listbox->entryReset();
 	}
 }
-
 
 void eListboxPythonServiceContent::swapServices(list::iterator a, list::iterator b)
 {
@@ -298,13 +296,18 @@ void eListboxPythonServiceContent::swapServices(list::iterator a, list::iterator
 	b->setChannelNum(temp);
 }
 
+bool eListboxPythonServiceContent::isServiceHidden(int flags)
+{
+	return (flags & eServiceReference::isInvisible) || (m_hide_number_marker && (flags & eServiceReference::isNumberedMarker)) || (m_hide_marker && (flags & eServiceReference::isMarker));
+}
+
 void eListboxPythonServiceContent::cursorHome()
 {
 	if (m_current_marked && m_saved_service_cursor == m_service_list.end())
 	{
 		if (m_cursor >= m_size)
 		{
-			m_cursor = m_size-1;
+			m_cursor = m_size - 1;
 			--m_service_cursor;
 		}
 		while (m_cursor)
@@ -321,7 +324,7 @@ void eListboxPythonServiceContent::cursorHome()
 		m_cursor = 0;
 		while (m_service_cursor != m_service_list.end())
 		{
-			if (!((m_hide_number_marker && (m_service_cursor->flags & eServiceReference::isNumberedMarker)) || (m_service_cursor->flags & eServiceReference::isInvisible)))
+			if (!isServiceHidden(m_service_cursor->flags))
 				break;
 			m_service_cursor++;
 			m_cursor++;
@@ -373,7 +376,7 @@ int eListboxPythonServiceContent::setCurrentMarked(bool state)
 				{
 					eServiceReference ref;
 					getCurrent(ref);
-					if(!ref)
+					if (!ref)
 						eDebug("[eListboxPythonServiceContent] no valid service selected");
 					else
 					{
@@ -403,17 +406,17 @@ int eListboxPythonServiceContent::cursorMove(int count)
 	int prev = m_cursor, last = m_cursor + count;
 	if (count > 0)
 	{
-		while(count && m_service_cursor != m_service_list.end())
+		while (count && m_service_cursor != m_service_list.end())
 		{
 			list::iterator prev_it = m_service_cursor++;
-			if ( m_current_marked && m_service_cursor != m_service_list.end() && m_saved_service_cursor == m_service_list.end() )
+			if (m_current_marked && m_service_cursor != m_service_list.end() && m_saved_service_cursor == m_service_list.end())
 			{
 				swapServices(prev_it, m_service_cursor);
-				if ( m_listbox && prev != m_cursor && last != m_cursor )
+				if (m_listbox && prev != m_cursor && last != m_cursor)
 					m_listbox->entryChanged(cursorResolve(m_cursor));
 			}
 			++m_cursor;
-			if (!(m_hide_number_marker && m_service_cursor->flags & eServiceReference::isNumberedMarker) && !(m_service_cursor->flags & eServiceReference::isInvisible))
+			if (!isServiceHidden(m_service_cursor->flags))
 				--count;
 		}
 	}
@@ -422,19 +425,19 @@ int eListboxPythonServiceContent::cursorMove(int count)
 		while (count && m_service_cursor != m_service_list.begin())
 		{
 			list::iterator prev_it = m_service_cursor--;
-			if ( m_current_marked && m_service_cursor != m_service_list.end() && prev_it != m_service_list.end() && m_saved_service_cursor == m_service_list.end() )
+			if (m_current_marked && m_service_cursor != m_service_list.end() && prev_it != m_service_list.end() && m_saved_service_cursor == m_service_list.end())
 			{
 				swapServices(prev_it, m_service_cursor);
-				if ( m_listbox && prev != m_cursor && last != m_cursor )
+				if (m_listbox && prev != m_cursor && last != m_cursor)
 					m_listbox->entryChanged(cursorResolve(m_cursor));
 			}
 			--m_cursor;
-			if (!(m_hide_number_marker && m_service_cursor->flags & eServiceReference::isNumberedMarker) && !(m_service_cursor->flags & eServiceReference::isInvisible))
+			if (!isServiceHidden(m_service_cursor->flags))
 				++count;
 		}
 		while (m_service_cursor != m_service_list.end())
 		{
-			if (!((m_hide_number_marker && (m_service_cursor->flags & eServiceReference::isNumberedMarker)) || (m_service_cursor->flags & eServiceReference::isInvisible)))
+			if (!isServiceHidden(m_service_cursor->flags))
 				break;
 			m_service_cursor++;
 			m_cursor++;
@@ -466,7 +469,7 @@ int eListboxPythonServiceContent::cursorResolve(int cursor_position)
 
 		count++;
 
-		if ((m_hide_number_marker && (i->flags & eServiceReference::isNumberedMarker)) || (i->flags & eServiceReference::isInvisible))
+		if (isServiceHidden(m_service_cursor->flags))
 			continue;
 		m_stripped_cursor++;
 	}
@@ -510,7 +513,7 @@ int eListboxPythonServiceContent::size()
 	int size = 0;
 	for (list::iterator i(m_service_list.begin()); i != m_service_list.end(); ++i)
 	{
-		if ((m_hide_number_marker && (i->flags & eServiceReference::isNumberedMarker)) || (i->flags & eServiceReference::isInvisible))
+		if (isServiceHidden(m_service_cursor->flags))
 			continue;
 		size++;
 	}
@@ -523,22 +526,23 @@ RESULT SwigFromPython(ePtr<gPixmap> &res, PyObject *obj);
 DEFINE_REF(eListboxPythonServiceContent);
 
 eListboxPythonServiceContent::eListboxPythonServiceContent()
-	: m_size(0), m_current_marked(false), m_hide_number_marker(false),m_record_indicator_mode(0)
+	: m_size(0), m_current_marked(false), m_hide_number_marker(false), m_hide_marker(false), m_record_indicator_mode(0)
 {
 	cursorHome();
 	eServiceCenter::getInstance(m_service_center);
 	m_servicelist = true;
 }
 
-inline bool compareServices(const eServiceReference &src, const eServiceReference &trg) {
+inline bool compareServices(const eServiceReference &src, const eServiceReference &trg)
+{
 	return (src.toString() == trg.alternativeurl);
 }
 
-bool eListboxPythonServiceContent::checkServiceIsRecorded(eServiceReference ref,pNavigation::RecordType type)
+bool eListboxPythonServiceContent::checkServiceIsRecorded(eServiceReference ref, pNavigation::RecordType type)
 {
-	std::map<ePtr<iRecordableService>, eServiceReference, std::less<iRecordableService*> > recordedServices;
+	std::map<ePtr<iRecordableService>, eServiceReference, std::less<iRecordableService *>> recordedServices;
 	recordedServices = eNavigation::getInstance()->getRecordingsServices(type);
-	for (std::map<ePtr<iRecordableService>, eServiceReference >::iterator it = recordedServices.begin(); it != recordedServices.end(); ++it)
+	for (std::map<ePtr<iRecordableService>, eServiceReference>::iterator it = recordedServices.begin(); it != recordedServices.end(); ++it)
 	{
 		if (ref.flags & eServiceReference::isGroup)
 		{
@@ -546,7 +550,7 @@ bool eListboxPythonServiceContent::checkServiceIsRecorded(eServiceReference ref,
 			ePtr<eDVBResourceManager> res;
 			eDVBResourceManager::getInstance(res);
 			res->getChannelList(db);
-			eBouquet *bouquet=0;
+			eBouquet *bouquet = 0;
 			db->getBouquet(ref, bouquet);
 			for (std::list<eServiceReference>::iterator i(bouquet->m_services.begin()); i != bouquet->m_services.end(); ++i)
 				if (*i == it->second || compareServices(*i, it->second))
@@ -570,9 +574,9 @@ void eListboxPythonServiceContent::setBuildArgs(int selected)
 	bool isFolder = ref.flags & eServiceReference::isDirectory;
 	bool isMarker = ref.flags & eServiceReference::isMarker;
 	bool isPlayable = !(isFolder || isMarker);
-	bool isRecorded = m_record_indicator_mode && isPlayable && checkServiceIsRecorded(ref,pNavigation::RecordType(pNavigation::isRealRecording|pNavigation::isUnknownRecording));
-	bool isStreamed = m_record_indicator_mode && isPlayable && checkServiceIsRecorded(ref,pNavigation::isStreaming);
-	bool isPseudoRecorded = m_record_indicator_mode && isPlayable && checkServiceIsRecorded(ref,pNavigation::isPseudoRecording);
+	bool isRecorded = m_record_indicator_mode && isPlayable && checkServiceIsRecorded(ref, pNavigation::RecordType(pNavigation::isRealRecording | pNavigation::isUnknownRecording));
+	bool isStreamed = m_record_indicator_mode && isPlayable && checkServiceIsRecorded(ref, pNavigation::isStreaming);
+	bool isPseudoRecorded = m_record_indicator_mode && isPlayable && checkServiceIsRecorded(ref, pNavigation::isPseudoRecording);
 	bool marked = ((m_current_marked && isSelected) || (cursorValid() && isMarked(*m_service_cursor)));
 	bool isinBouquet = ref.flags & 8192;
 
@@ -587,7 +591,7 @@ void eListboxPythonServiceContent::setBuildArgs(int selected)
 	// 128 isFolder
 	// 256 isinBouquet
 
-    int status = (isSelected << 0) + (marked << 1) + (isMarker << 2) + (isPlayable << 3) + (isRecorded << 4) + (isStreamed << 5) + (isPseudoRecorded << 6) + (isFolder << 7) + (isinBouquet << 8);
+	int status = (isSelected << 0) + (marked << 1) + (isMarker << 2) + (isPlayable << 3) + (isRecorded << 4) + (isStreamed << 5) + (isPseudoRecorded << 6) + (isFolder << 7) + (isinBouquet << 8);
 
 	m_pArgs = PyTuple_New(2);
 	PyTuple_SET_ITEM(m_pArgs, 0, NEW_eServiceReference(ref));
