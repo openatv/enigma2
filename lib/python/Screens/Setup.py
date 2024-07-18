@@ -219,7 +219,7 @@ class Setup(ConfigListScreen, Screen):
 				self["footnote"].hide()
 		else:
 			self["footnote"].setText(footnote)
-			self["footnote"].show()
+			self["footnote"].setVisible(footnote != "")
 
 	def getFootnote(self):
 		return self["footnote"].text
