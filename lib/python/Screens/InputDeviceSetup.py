@@ -189,7 +189,7 @@ class RemoteControlType(Setup):
 			("18", "F1/F3/F4/F4-TURBO/TRIPLEX"),
 			("19", "HD2400"),
 			("20", "Zgemma Star S/2S/H1/H2"),
-			("21", "Zgemma H.S/H.2S/H.2H/H5/H7"),
+			("21", "Zgemma H.S/H.2S/H.2H/H5/H7/H17"),
 			("500", "WWIO_BRE2ZE_TC"),
 			("501", "OCTAGON_SF4008"),
 			("502", "GIGABLUE Black"),
@@ -239,6 +239,7 @@ class RemoteControlType(Setup):
 			("h3", 21),
 			("h5", 21),
 			("h7", 21),
+			("h17", 21),
 			("bre2ze_tc", 500),
 			("sf4008", 501),
 			("g100", 501),
@@ -278,7 +279,7 @@ class RemoteControlType(Setup):
 			("25", "Zgemma H8/H0/H9/I55Plus old Model"),
 			("26", "Protek 4K UHD/HD61"),
 			("27", "HD60/HD66SE/Multibox/Multiboxse/Multiboxpro"),
-			("28", _("I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"))
+			("28", _("I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"))
 		]
 		defaultRcList = [
 			("default", 0),
@@ -329,6 +330,7 @@ class RemoteControlType(Setup):
 			("multiboxse", 27),
 			("multiboxpro", 27),
 			("h7", 21),  # New model.
+			("h17", 28),
 			("h9", 28),  # New model.
 			("h9se", 28),  # New model.
 			("h9combo", 28),
