@@ -1694,7 +1694,7 @@ int eListbox::moveSelectionLineMode(bool doUp, bool doDown, int dir, int oldSel,
 			return oldTopLeft - 1;
 		}
 
-		if (!doUp && newline < m_max_rows)
+		if ((!doUp && newline < m_max_rows) || newline == 0)
 		{
 			return 0;
 		}
@@ -1702,7 +1702,12 @@ int eListbox::moveSelectionLineMode(bool doUp, bool doDown, int dir, int oldSel,
 
 		if (doUp || dir == moveLeft)
 		{
-			if ((oldLine == 0 && oldTopLeft == 0) || (doUp && oldRow < newline))
+			int offset = oldRow - newline;
+			if (doUp && oldRow > newline && oldTopLeft >= offset && offset > 1)
+			{
+				return oldTopLeft - offset;
+			}
+			else if ((oldLine == 0 && oldTopLeft == 0) || (doUp && oldRow < newline))
 			{
 				return m_enabled_wrap_around ? ((m_content->size() - 1) / m_max_columns) - m_max_rows + 1 : 0;
 			}
