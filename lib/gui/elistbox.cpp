@@ -1701,8 +1701,6 @@ int eListbox::moveSelectionLineMode(bool doUp, bool doDown, int dir, int oldSel,
 		int maxLines = ((m_content->size() + m_max_columns - 1) / m_max_columns) - m_max_rows;
 
 		return std::min(std::max(oldTopLeft + (newline - oldRow),0), maxLines);
-
-		return newTopLeft;
 	}
 
 	bool jumpBottom = (dir == moveBottom);
