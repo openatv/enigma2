@@ -1623,7 +1623,16 @@ void eListbox::moveSelection(int dir)
 		if (m_orientation == orHorizontal)
 			m_left = moveSelectionLineMode((dir == moveLeft), (dir == moveRight), dir, oldSel, oldLeft, oldRow, maxItems, indexChanged, pageOffset, m_left);
 		else
-			m_top = moveSelectionLineMode((dir == moveUp), (dir == moveDown), dir, oldSel, oldTop, oldRow, maxItems, indexChanged, pageOffset, m_top);
+		{
+			if(m_orientation == orGrid && indexChanged)
+			{
+				int newline = (m_selected / m_max_columns);
+				m_top = std::max(newline - ((m_max_rows + 1) / 2) + 1, 0);
+			}
+			else
+				m_top = moveSelectionLineMode((dir == moveUp), (dir == moveDown), dir, oldSel, oldTop, oldRow, maxItems, indexChanged, pageOffset, m_top);
+		}
+
 	}
 
 	// if it is, then the old selection clip is irrelevant, clear it or we'll get artifacts
@@ -1682,55 +1691,18 @@ int eListbox::moveSelectionLineMode(bool doUp, bool doDown, int dir, int oldSel,
 		int newline = (m_selected / m_max_columns);
 		if (oldRow == newline)
 			return oldTopLeft;
+		
+		int min = oldTopLeft * m_max_columns;
+		int max = std::min(min + (m_max_rows * m_max_columns),m_content->size());
 
-		if ((doDown || dir == moveRight) && newline > oldRow)
-		{
-			if ((newline - oldTopLeft) < m_max_rows)
-				return oldTopLeft;
-		}
-
-		if (dir == moveLeft && oldLine == 0 && oldTopLeft > 1)
-		{
-			return oldTopLeft - 1;
-		}
-
-		if ((!doUp && newline < m_max_rows) || newline == 0)
-		{
-			return 0;
-		}
-		int newlinecalc = (m_selected / m_max_columns) - oldTopLeft;
-
-		if (doUp || dir == moveLeft)
-		{
-			int offset = oldRow - newline;
-			if (doUp && oldRow > newline && oldTopLeft >= offset && offset > 1)
-			{
-				return oldTopLeft - offset;
-			}
-			else if ((oldLine == 0 && oldTopLeft == 0) || (doUp && oldRow < newline))
-			{
-				return m_enabled_wrap_around ? ((m_content->size() - 1) / m_max_columns) - m_max_rows + 1 : 0;
-			}
-			else if (oldLine == 0 && oldTopLeft > 0)
-			{
-				return oldTopLeft - 1;
-			}
-
-			if ((oldLine > 0 && oldTopLeft > 0) || (newlinecalc > 0))
-			{
-				int newRow = m_content->cursorGet() / m_max_columns;
-				if(newRow < oldTopLeft)
-					return newRow;
-				return oldTopLeft;
-			}
-		}
-		if (newlinecalc == oldLine)
+		if (m_selected >= min && m_selected < max)
 			return oldTopLeft;
-		if (m_max_rows < newline)
-		{
-			return newline - m_max_rows + 1;
-		}
-		return topLeft;
+
+		int maxLines = ((m_content->size() + m_max_columns - 1) / m_max_columns) - m_max_rows;
+
+		return std::min(std::max(oldTopLeft + (newline - oldRow),0), maxLines);
+
+		return newTopLeft;
 	}
 
 	bool jumpBottom = (dir == moveBottom);
