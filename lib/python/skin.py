@@ -1957,7 +1957,7 @@ class TemplateParser():
 				if item.get("autoGrow", ""):
 					oldSize = [int(x.strip()) for x in item["size"].split(",")]
 					width = oldSize[0] + newContext.w
-					item["size"] = f"{width},{oldSize[1]}"
+					item["size"] = SizeTuple((width, oldSize[1]))
 					if self.debug:
 						print(f"[TemplateParser] DEBUG: autoGrow context={newContext.w}, oldSize={oldSize}, newsize={item["size"]}.")
 					break
