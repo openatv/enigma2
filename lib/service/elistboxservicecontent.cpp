@@ -469,7 +469,7 @@ int eListboxPythonServiceContent::cursorResolve(int cursor_position)
 
 		count++;
 
-		if (isServiceHidden(m_service_cursor->flags))
+		if (isServiceHidden(i->flags))
 			continue;
 		m_stripped_cursor++;
 	}
@@ -513,7 +513,7 @@ int eListboxPythonServiceContent::size()
 	int size = 0;
 	for (list::iterator i(m_service_list.begin()); i != m_service_list.end(); ++i)
 	{
-		if (isServiceHidden(m_service_cursor->flags))
+		if (isServiceHidden(i->flags))
 			continue;
 		size++;
 	}
