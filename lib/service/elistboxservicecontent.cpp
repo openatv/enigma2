@@ -298,7 +298,7 @@ void eListboxPythonServiceContent::swapServices(list::iterator a, list::iterator
 
 bool eListboxPythonServiceContent::isServiceHidden(int flags)
 {
-	return (flags & eServiceReference::isInvisible) || (m_hide_number_marker && (flags & eServiceReference::isNumberedMarker)) || (m_hide_marker && (flags & eServiceReference::isMarker));
+	return (flags & eServiceReference::isInvisible) || (m_marked.empty() && m_hide_number_marker && (flags & eServiceReference::isNumberedMarker)) || (m_marked.empty() && m_hide_marker && (flags & eServiceReference::isMarker));
 }
 
 void eListboxPythonServiceContent::cursorHome()
