@@ -185,6 +185,8 @@ eDVBResourceManager::eDVBResourceManager()
 		m_boxtype = GIGABLUE;
 	else if (!strncmp(tmp, "gbquad4k\n", rd))
 		m_boxtype = GIGABLUE;
+	else if (!strncmp(tmp, "gbquad4kpro\n", rd))
+		m_boxtype = GIGABLUE;
 	else if (!strncmp(tmp, "gbue4k\n", rd))
 		m_boxtype = GIGABLUE;
 	else if (!strncmp(tmp, "gbx34k\n", rd))
