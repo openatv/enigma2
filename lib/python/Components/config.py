@@ -1341,8 +1341,8 @@ class ConfigFloat(ConfigSequence):
 		return int(self.value[0] * float(self.limits[1][1] + 1) + self.value[1])
 
 	def setFloatInt(self, val):
-		self.value[0] = val / float(self.limits[1][1] + 1)
-		self.value[1] = val % float(self.limits[1][1] + 1)
+		self.value[0] = int(val / float(self.limits[1][1] + 1))
+		self.value[1] = int(val % float(self.limits[1][1] + 1))
 
 	floatint = property(getFloatInt, setFloatInt)
 
