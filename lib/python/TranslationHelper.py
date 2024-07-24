@@ -88,3 +88,5 @@ translate = _("When enabled, this setting has more weight than 'Preferred tuner'
 translate = _("When enabled, this setting has more weight than 'Preferred tuner for recordings'.")
 translate = _("Preferred tuner ATSC")
 translate = _("Preferred tuner ATSC for recordings")
+
+translate = _("Miscellaneous languages")

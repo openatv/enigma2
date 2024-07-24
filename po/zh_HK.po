@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-10 17:04+0000\n"
-"PO-Revision-Date: 2024-07-10 16:29+0000\n"
+"PO-Revision-Date: 2024-07-23 13:09+0000\n"
 "Last-Translator: Ricky From Hong Kong <lamricky11@hotmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
 "Language: zh_HK\n"
@@ -912,11 +912,10 @@ msgid_plural "%d Years"
 msgstr[0] ""
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
-#, fuzzy, python-format
+#, python-format
 msgid "%d channel found"
 msgid_plural "%d channels found"
-msgstr[0] "找到 %d 個頻道!"
-msgstr[1] "找到 %d 個頻道!"
+msgstr[0] "找到 %d 個頻道"
 
 #, python-format
 msgid "%d core"
@@ -1277,9 +1276,8 @@ msgstr ""
 msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
 msgstr ""
 
-#, fuzzy
 msgid "'WeatherPlugin' is not installed!"
-msgstr "這個插件未安裝."
+msgstr "未安裝「天氣插件」！"
 
 #, python-format
 msgid "(Access to the '%s' commit log requires an Internet connection.)"
@@ -2529,9 +2527,8 @@ msgstr ""
 "確定要保存這個網路安裝點?\n"
 "\n"
 
-#, fuzzy
 msgid "Argentina"
-msgstr "注意!"
+msgstr "阿根廷"
 
 msgid "Armenia"
 msgstr ""
@@ -3589,9 +3586,8 @@ msgstr ""
 msgid "Can not download list of regions"
 msgstr ""
 
-#, fuzzy
 msgid "Can not download timers"
-msgstr "確實要刪除計時器?"
+msgstr "無法下載計時器"
 
 msgid "Can not post PVR log information"
 msgstr ""
@@ -3682,9 +3678,8 @@ msgstr ""
 msgid "Cancel conflict resolution"
 msgstr ""
 
-#, fuzzy
 msgid "Cancel execution?"
-msgstr "頻道選擇"
+msgstr "確定取消執行？"
 
 msgid "Cancel extraction"
 msgstr ""
@@ -5189,9 +5184,9 @@ msgstr "不能裝載DVD,沒有放入DVD光碟?"
 msgid "Could not open Picture in Picture"
 msgstr "不能打開畫中畫."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Could not open the file %s!"
-msgstr "不能打開畫中畫."
+msgstr "不能打開 %s 文件！"
 
 #, python-format
 msgid "Could not record due to conflicting timer:%s"
@@ -5281,7 +5276,7 @@ msgstr ""
 
 #, fuzzy
 msgid "Creating hard link to time shift file failed!"
-msgstr "創建分區失敗"
+msgstr "創建分區失敗！"
 
 msgid "Creating partition"
 msgstr ""
@@ -5981,9 +5976,9 @@ msgstr ""
 msgid "Delete"
 msgstr "刪除"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Delete %s?"
-msgstr "刪除"
+msgstr "確定刪除%s？"
 
 #, fuzzy
 msgid "Delete Confirmation"
@@ -6053,7 +6048,7 @@ msgid "Delete entry"
 msgstr "刪除項目"
 
 msgid "Delete failed!"
-msgstr "刪除失敗."
+msgstr "刪除失敗！"
 
 msgid "Delete file"
 msgstr ""
@@ -6129,9 +6124,9 @@ msgstr ""
 msgid "Deleted"
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "Deleted %s!"
-msgstr "刪除"
+msgstr "刪除 %s！"
 
 msgid "Deleted items"
 msgstr ""
@@ -6710,9 +6705,8 @@ msgstr ""
 msgid "Don't add this recording"
 msgstr "這個錄影"
 
-#, fuzzy
 msgid "Don't ask again!"
-msgstr "是, 以後不再詢問"
+msgstr "不再詢問！"
 
 #, fuzzy
 msgid "Don't save"
@@ -7192,9 +7186,8 @@ msgstr ""
 msgid "Enable and set the duration of the second InfoBar (press 'OK' twice) that may include additional information."
 msgstr ""
 
-#, fuzzy
 msgid "Enable auto cable scan"
-msgstr "不能創建symlink!"
+msgstr "啟用自動有線掃描"
 
 #, fuzzy
 msgid "Enable auto fast scan"
@@ -7250,9 +7243,8 @@ msgstr ""
 msgid "Enable import timer from fallback tuner"
 msgstr ""
 
-#, fuzzy
 msgid "Enable intro screen"
-msgstr "不能創建symlink!"
+msgstr "啟用簡介介面"
 
 msgid "Enable multiple bouquets"
 msgstr "啟用自定義組"
@@ -7723,7 +7715,7 @@ msgstr ""
 "重試?"
 
 msgid "Error: An empty filename is illegal!"
-msgstr "一個空的檔案名是非法的."
+msgstr "錯誤：不能用空白檔案名！"
 
 msgid "Error: Cannot find any images!"
 msgstr ""
@@ -7736,7 +7728,7 @@ msgstr ""
 
 #, python-format
 msgid "Error: Creating directory '%s' failed!"
-msgstr "創建目錄%s 失敗."
+msgstr "錯誤：創建目錄 %s 失敗！"
 
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
@@ -7762,7 +7754,7 @@ msgstr ""
 
 #, python-format
 msgid "Error: Invalid directory '%s' selected!"
-msgstr "選擇了無效目錄: %s"
+msgstr "錯誤：選擇了無效目錄 %s！"
 
 #, python-format
 msgid "Error: It is not possible to run '%s' on '%s'!"
@@ -7791,7 +7783,7 @@ msgstr ""
 
 #, python-format
 msgid "Error: The path '%s' already exists!"
-msgstr "路徑 %s 已經存在."
+msgstr "錯誤：路徑 %s 已經存在！"
 
 msgid "Error: The root file system and system directories can't be deleted!"
 msgstr ""
@@ -7925,9 +7917,8 @@ msgstr "超過雙層介質！"
 msgid "Exceeds dual layer medium!"
 msgstr "超過雙層介質！"
 
-#, fuzzy
 msgid "Execution condition"
-msgstr "執行完畢！"
+msgstr "執行條件"
 
 msgid "Exif"
 msgstr "Exif"
@@ -9211,7 +9202,7 @@ msgstr ""
 
 #, fuzzy
 msgid "Handle Python crashes"
-msgstr "怎樣處理已有的crashlogs?"
+msgstr "怎樣處理已有的crashlogs"
 
 msgid "Handle input from TV"
 msgstr ""
@@ -10835,9 +10826,8 @@ msgstr ""
 msgid "Listen to the radio"
 msgstr ""
 
-#, fuzzy
 msgid "Lists reloaded!"
-msgstr "列表總是重新載入"
+msgstr "列表已經重新載入！"
 
 #, fuzzy
 msgid "Lithuania"
@@ -12463,7 +12453,7 @@ msgid "No free index available"
 msgstr ""
 
 msgid "No free tuner!"
-msgstr "沒有空閒的調諧器"
+msgstr "沒有空閒的調諧器！"
 
 msgid "No hard disks detected."
 msgstr ""
@@ -12517,16 +12507,15 @@ msgstr ""
 msgid "No suitable backup locations found!"
 msgstr ""
 
-#, fuzzy
 msgid "No suitable sat tuner found!"
-msgstr "未找到可用的USB裝置"
+msgstr "沒有合適的衛星調諧器！"
 
 msgid "No tags are set on these movies."
 msgstr ""
 
 #, fuzzy
 msgid "No time shift found to save as recording!"
-msgstr "追加錄影時間."
+msgstr "追加錄影時間！"
 
 msgid "No timeout"
 msgstr ""
@@ -12537,9 +12526,8 @@ msgstr "非全部"
 msgid "No transparency"
 msgstr ""
 
-#, fuzzy
 msgid "No tuner is available for recording a timer!"
-msgstr "檢視可用的錄影列表"
+msgstr "檢視可用的錄影列表！"
 
 msgid ""
 "No tuner is available for recording a timer!\n"
@@ -12549,7 +12537,7 @@ msgid ""
 msgstr ""
 
 msgid "No tuner is configured for use with a DiSEqC positioner!"
-msgstr "沒有配置Rotor(DiSEqC 1.2)."
+msgstr "沒有配置Rotor(DiSEqC 1.2)！"
 
 msgid ""
 "No tuner is enabled!\n"
@@ -13190,9 +13178,8 @@ msgstr ""
 msgid "Overwrite Picon Files ?"
 msgstr ""
 
-#, fuzzy
 msgid "Overwrite Setting Files ?"
-msgstr "裝置設定"
+msgstr "覆蓋設定文件？"
 
 msgid "Overwrite Spinner Files ?"
 msgstr ""
@@ -14175,7 +14162,7 @@ msgid "Preparation time for recording"
 msgstr "添加錄影 (輸入錄影結束時間)"
 
 msgid "Preparing... Please wait"
-msgstr "準備中... 請稍候!"
+msgstr "準備中...請稍候"
 
 msgid "Preschool"
 msgstr ""
@@ -14574,7 +14561,7 @@ msgstr ""
 
 #, fuzzy
 msgid "Quad PiP is not available."
-msgstr "抱歉, 視頻不可用!"
+msgstr "抱歉, 視頻不可用。"
 
 msgid "Quad9 DNS"
 msgstr ""
@@ -14927,11 +14914,10 @@ msgstr ""
 msgid "Recording(s) are in progress or coming up in few seconds!"
 msgstr "錄製正在進行中或剛開始錄製不久!"
 
-#, fuzzy
 msgid ""
 "Recording(s) are in progress or coming up in few seconds!\n"
 "Entering standby, after recording the box will shutdown."
-msgstr "錄製正在進行中或剛開始錄製不久!"
+msgstr "錄製正在進行中或剛開始錄製不久。"
 
 msgid "Recordings"
 msgstr "錄音"
@@ -15269,9 +15255,8 @@ msgstr ""
 msgid "Rename directory/file"
 msgstr ""
 
-#, fuzzy
 msgid "Rename failed!"
-msgstr "移除失敗."
+msgstr "重命名失敗！"
 
 #, fuzzy
 msgid "Rename name and description for new events"
@@ -15293,9 +15278,9 @@ msgstr ""
 msgid "Rename to:"
 msgstr "重命"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Renamed %s!"
-msgstr "重命"
+msgstr "重命名 %s！"
 
 #, fuzzy
 msgid "Renovation"
@@ -15523,7 +15508,7 @@ msgstr ""
 
 #, fuzzy
 msgid "Restrict the active time range"
-msgstr "限制 \"事件後\" 在一定時間內?"
+msgstr "限制「事件後」在一定時間內"
 
 msgid "Restricted 18+"
 msgstr ""
@@ -17800,9 +17785,8 @@ msgstr ""
 msgid "Setup your positioner for your satellite system"
 msgstr ""
 
-#, fuzzy
 msgid "Setup your recording config"
-msgstr "開始錄製？"
+msgstr "錄製設定"
 
 msgid "Setup your remote buttons"
 msgstr "設定您的遙控器按鍵"
@@ -18605,9 +18589,8 @@ msgstr "排序自動計時器"
 msgid "Show the list of timers."
 msgstr "廣播重播模式下..."
 
-#, fuzzy
 msgid "Show the media center"
-msgstr "LT 媒體中心 ！"
+msgstr "顯示媒體中心"
 
 #, fuzzy
 msgid "Show the media player"
@@ -19158,9 +19141,9 @@ msgid ""
 "\n"
 "Please choose an other one."
 msgstr ""
-"抱歉, 您的備份不存在.\n"
+"抱歉，您的備份不存在。\n"
 "\n"
-"請選擇其他的備份!"
+"請選擇其他的備份。"
 
 #, python-format
 msgid "Sorry, %s has not been installed!"
@@ -19374,9 +19357,8 @@ msgstr ""
 msgid "Start from the beginning"
 msgstr "重頭開始"
 
-#, fuzzy
 msgid "Start instant recording"
-msgstr "開始錄製？"
+msgstr "開始即時錄製"
 
 msgid "Start instant recording?"
 msgstr ""
@@ -19561,7 +19543,7 @@ msgstr ""
 
 #, fuzzy
 msgid "Stop time shift while recording"
-msgstr "在哪里保存時光平移臨時錄製的內容?"
+msgstr "在哪里保存時光平移臨時錄製的內容"
 
 #, fuzzy
 msgid "Stop timer recording"
@@ -19600,9 +19582,8 @@ msgstr ""
 msgid "Storage device not found!"
 msgstr "未找到!"
 
-#, fuzzy
 msgid "Storage device not writable!"
-msgstr "不使用"
+msgstr "磁碟不可寫！"
 
 msgid "Store position"
 msgstr "存貯位置"
@@ -20377,7 +20358,7 @@ msgstr ""
 "請先安裝."
 
 msgid "The PIN code entered is incorrect!"
-msgstr "密碼輸入有誤."
+msgstr "密碼輸入有誤！"
 
 msgid "The PIN code has been changed successfully."
 msgstr ""
@@ -20669,7 +20650,7 @@ msgstr ""
 
 #, fuzzy
 msgid "This bouquet is protected by a parental control PIN!"
-msgstr "此頻道受家長控制."
+msgstr "此頻道受家長控制密碼保護！"
 
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
@@ -20915,7 +20896,7 @@ msgid "This plugin can determine whether a programme begins earlier or lasts lon
 msgstr ""
 
 msgid "This service is protected by a parental control PIN!"
-msgstr "此頻道受家長控制."
+msgstr "此服務受家長控制密碼保護！"
 
 msgid "This sets the prefix for each line in the debug log. The 'Boot time' is the number of seconds since your %s %s was last booted."
 msgstr ""
@@ -21916,9 +21897,8 @@ msgstr ""
 msgid "Update failed!"
 msgstr "寫入失敗！"
 
-#, fuzzy
 msgid "Update finished!"
-msgstr "升級完成."
+msgstr "升級完成！"
 
 msgid ""
 "Update succeeded!\n"
@@ -22489,9 +22469,9 @@ msgstr "視頻增強設定"
 msgid "Video mode: %s"
 msgstr "選擇視頻模式."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Video mode: %s not available"
-msgstr "抱歉, 視頻不可用!"
+msgstr "影片模式：%s 不存在"
 
 msgid "Video output"
 msgstr ""
@@ -23404,7 +23384,7 @@ msgstr ""
 
 #, fuzzy
 msgid "You have no script to run."
-msgstr "您必須等待 %s !"
+msgstr "您必須等待。"
 
 #, fuzzy
 msgid "You have selected no logs to delete."
@@ -23425,9 +23405,8 @@ msgid ""
 "The %s %s will now be halted. After you have performed the update instructions from the website, the new firmware will ask you to restore the settings."
 msgstr ""
 
-#, fuzzy
 msgid "You seem to be in time shift!"
-msgstr "時光平移結束"
+msgstr "您似乎正進行時光平移！"
 
 msgid "You seem to be in time shift, Do you want to leave time shift ?"
 msgstr ""
@@ -23441,9 +23420,9 @@ msgstr ""
 msgid "YouTube"
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid "Your %s %s does not support PiP HD"
-msgstr "您的皮膚不支援第二資訊條顯示 !!!"
+msgstr "您的%s%s不支援HD畫中畫"
 
 #, python-format
 msgid "Your %s %s goes to WOL"
