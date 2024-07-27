@@ -9,6 +9,7 @@
 #include <lib/base/eerror.h>
 #include <lib/base/estring.h>
 #include <lib/base/esettings.h>
+#include <lib/base/esimpleconfig.h>
 #include <libxml/parser.h>
 #include <libxml/tree.h>
 #include <dvbsi++/service_description_section.h>
@@ -723,7 +724,33 @@ void eDVBDB::loadServicelist(const char *file)
 		return;
 	}
 
+	eDebug("[eDVBDB] lcndb");
 	char line[256];
+	m_lcnmap.clear();
+	std::string lfname = eEnv::resolve("${sysconfdir}/enigma2/lcndb");
+	CFile lf(lfname, "rt");
+	if(lf)
+	{
+		while (!feof(lf))
+		{
+			if (!fgets(line, sizeof(line), lf))
+				break;
+
+			int ns;
+			int onid;
+			int tsid;
+			int sid;
+			int lcn;
+			int signal = -1;
+			sscanf(line, "%x:%x:%x:%x:%d:%d",&ns, &onid, &tsid, &sid, &lcn, &signal);
+			if(signal > 0) {
+				eServiceReferenceDVB s = eServiceReferenceDVB(eDVBNamespace(ns), eTransportStreamID(tsid), eOriginalNetworkID(onid), eServiceID(sid), 0);
+				//eDebug("[eDVBDB] add lcndb %s / %d", s.toString().c_str(), lcn);
+				m_lcnmap.insert(std::pair<eServiceReferenceDVB, int>(s, lcn));
+			}
+		}
+	}
+
 	int version;
 	if ((!fgets(line, sizeof(line), f)) || sscanf(line, "eDVB services /%d/", &version) != 1)
 	{
@@ -1081,7 +1108,7 @@ void eDVBDB::loadBouquet(const char *path)
 		DIR *dir = opendir(p.c_str());
 		if (!dir)
 		{
-			eDebug("[eDVBDB] Cannot open directory where the userbouquets should be expected..");
+			eDebug("[eDVBDB] Error: Cannot open directory '%s' where the userbouquets should be expected.", p.c_str());
 			return;
 		}
 		dirent *entry;
@@ -1097,7 +1124,7 @@ void eDVBDB::loadBouquet(const char *path)
 	std::string bouquet_name = path;
 	if (!bouquet_name.length())
 	{
-		eDebug("[eDVBDB] Bouquet load failed.. no path given..");
+		eDebug("[eDVBDB] Error: Bouquet load failed. 'No path given.'");
 		return;
 	}
 	size_t pos = bouquet_name.rfind('/');
@@ -1105,7 +1132,7 @@ void eDVBDB::loadBouquet(const char *path)
 		bouquet_name.erase(0, pos+1);
 	if (bouquet_name.empty())
 	{
-		eDebug("[eDVBDB] Bouquet load failed.. no filename given..");
+		eDebug("[eDVBDB] Error: Bouquet load failed. 'No filename given'");
 		return;
 	}
 	eBouquet &bouquet = m_bouquets[bouquet_name];
@@ -1122,7 +1149,10 @@ void eDVBDB::loadBouquet(const char *path)
 
 	for(int index = 0; searchpath[index]; index++)
 	{
-		file_path = enigma_conf + searchpath[index] + "/" + path;
+		if(index < 2)
+			file_path = enigma_conf + searchpath[index] + "/" + path;
+		else
+			file_path = enigma_conf + path;
 
 		if (!access(file_path.c_str(), R_OK))
 		{
@@ -1154,13 +1184,13 @@ void eDVBDB::loadBouquet(const char *path)
 			}
 			else
 			{
-				eDebug("[eDVBDB] can't load bouquet %s",path);
+				eDebug("[eDVBDB] can't load bouquet %s", path);
 				return;
 			}
 		}
 	}
 
-	eDebug("[eDVBDB] loading bouquet... %s", file_path.c_str());
+	eDebug("[eDVBDB] loading bouquet %s", file_path.c_str());
 	CFile fp(file_path, "rt");
 
 	if (fp)
@@ -1319,7 +1349,7 @@ void eDVBDB::renumberBouquet()
 	renumberBouquet( m_bouquets["bouquets.radio"] );
 }
 
-void eDVBDB::setNumberingMode(bool numberingMode)
+void eDVBDB::setNumberingMode(int numberingMode)
 {
 	if (m_numbering_mode != numberingMode)
 	{
@@ -1328,9 +1358,13 @@ void eDVBDB::setNumberingMode(bool numberingMode)
 	}
 }
 
+
 int eDVBDB::renumberBouquet(eBouquet &bouquet, int startChannelNum)
 {
-	eDebug("[eDVBDB] Renumber %s, starting at %d", bouquet.m_bouquet_name.c_str(), startChannelNum);
+	if(startChannelNum == -1) // LCN
+		eDebug("[eDVBDB] Renumber %s, via LCN", bouquet.m_bouquet_name.c_str());
+	else
+		eDebug("[eDVBDB] Renumber %s, starting at %d", bouquet.m_bouquet_name.c_str(), startChannelNum);
 	std::list<eServiceReference> &list = bouquet.m_services;
 	bool addBQFlag = (bouquet.m_bouquet_name != "Last Scanned");
 
@@ -1350,16 +1384,31 @@ int eDVBDB::renumberBouquet(eBouquet &bouquet, int startChannelNum)
 					char *end = strchr(beg, endchr);
 					filename.assign(beg, end - beg);
 					eBouquet &subBouquet = m_bouquets[filename];
-					if (m_numbering_mode || filename.find("alternatives.") == 0)
+					if ((m_numbering_mode == 1) || filename.find("alternatives.") == 0)
 						renumberBouquet(subBouquet);
 					else
 						startChannelNum = renumberBouquet(subBouquet, startChannelNum);
 				}
 			}
+
 		}
-		if( !(ref.flags & (eServiceReference::isMarker|eServiceReference::isDirectory)) ||
-		   (ref.flags & eServiceReference::isNumberedMarker) )
-			ref.number = startChannelNum++;
+
+		if (!(ref.flags & (eServiceReference::isMarker | eServiceReference::isDirectory)) || (ref.flags & eServiceReference::isNumberedMarker))
+		{
+			if (m_numbering_mode == 2)
+			{
+				if (m_lcnmap.size())
+				{
+					eServiceReferenceDVB channel = eServiceReferenceDVB(ref.toString());
+					channel.setServiceType(0);
+					std::map<eServiceReferenceDVB, int>::iterator it = m_lcnmap.find(channel);
+					if (it != m_lcnmap.end())
+						ref.number = it->second;
+				}
+			}
+			else
+				ref.number = startChannelNum++;
+		}
 
 		// add is in bouquet flag to m_services
 		if(addBQFlag && ref.flags == 0)
@@ -1377,9 +1426,10 @@ int eDVBDB::renumberBouquet(eBouquet &bouquet, int startChannelNum)
 eDVBDB *eDVBDB::instance;
 
 eDVBDB::eDVBDB()
-	: m_numbering_mode(false), m_load_unlinked_userbouquets(true)
+	: m_load_unlinked_userbouquets(true)
 {
 	instance = this;
+	m_numbering_mode = eSimpleConfig::getInt("config.usage.numberMode", 0);
 	reloadServicelist();
 }
 
