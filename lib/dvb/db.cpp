@@ -1361,7 +1361,7 @@ void eDVBDB::setNumberingMode(int numberingMode)
 
 int eDVBDB::renumberBouquet(eBouquet &bouquet, int startChannelNum)
 {
-	if(startChannelNum == -1) // LCN
+	if(m_numbering_mode == 2) // LCN
 		eDebug("[eDVBDB] Renumber %s, via LCN", bouquet.m_bouquet_name.c_str());
 	else
 		eDebug("[eDVBDB] Renumber %s, starting at %d", bouquet.m_bouquet_name.c_str(), startChannelNum);
