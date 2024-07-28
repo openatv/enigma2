@@ -1,4 +1,5 @@
 #include <lib/service/listboxservice.h>
+#include <lib/base/esimpleconfig.h>
 #include <lib/service/service.h>
 #include <lib/gdi/font.h>
 #include <lib/gdi/epng.h>
@@ -344,6 +345,7 @@ eListboxServiceContent::eListboxServiceContent()
 	m_nonplayable_margins(10), m_items_distances(8), m_progress_unit("%")
 {
 	memset(m_color_set, 0, sizeof(m_color_set));
+	m_numbering_mode = eSimpleConfig::getInt("config.usage.numberMode", 0);
 	cursorHome();
 	eServiceCenter::getInstance(m_service_center);
 }
@@ -360,9 +362,12 @@ void eListboxServiceContent::setColor(int color, gRGB &col)
 void eListboxServiceContent::swapServices(list::iterator a, list::iterator b)
 {
 	std::iter_swap(a, b);
-	int temp = a->getChannelNum();
-	a->setChannelNum(b->getChannelNum());
-	b->setChannelNum(temp);
+	if(m_numbering_mode != 2)
+	{
+		int temp = a->getChannelNum();
+		a->setChannelNum(b->getChannelNum());
+		b->setChannelNum(temp);
+	}
 }
 
 void eListboxServiceContent::cursorHome()

@@ -24,6 +24,7 @@ public:
 	void setRecordIndicatorMode(int mode) { m_record_indicator_mode = mode; }
 	void setHideNumberMarker(bool doHide) { m_hide_number_marker = doHide; }
 	void setHideMarker(bool doHide) { m_hide_marker = doHide; }
+	void setNumberingMode(int numberingMode) { m_numbering_mode = numberingMode; }
 
 	void getCurrent(eServiceReference &ref);
 	void getPrev(eServiceReference &ref);
@@ -98,6 +99,7 @@ private:
 	bool isServiceHidden(int flags);
 
 	bool m_hide_number_marker, m_hide_marker, m_record_indicator_mode;
+	int m_numbering_mode;
 };
 
 #endif

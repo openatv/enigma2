@@ -1,4 +1,5 @@
 #include <lib/base/wrappers.h>
+#include <lib/base/esimpleconfig.h>
 #include <lib/gui/elistbox.h>
 #include <lib/gui/elistboxcontent.h>
 #include <lib/service/elistboxservicecontent.h>
@@ -291,9 +292,12 @@ void eListboxPythonServiceContent::sort()
 void eListboxPythonServiceContent::swapServices(list::iterator a, list::iterator b)
 {
 	std::iter_swap(a, b);
-	int temp = a->getChannelNum();
-	a->setChannelNum(b->getChannelNum());
-	b->setChannelNum(temp);
+	if(m_numbering_mode !=2 )
+	{
+		int temp = a->getChannelNum();
+		a->setChannelNum(b->getChannelNum());
+		b->setChannelNum(temp);
+	}
 }
 
 bool eListboxPythonServiceContent::isServiceHidden(int flags)
@@ -528,6 +532,7 @@ DEFINE_REF(eListboxPythonServiceContent);
 eListboxPythonServiceContent::eListboxPythonServiceContent()
 	: m_size(0), m_current_marked(false), m_hide_number_marker(false), m_hide_marker(false), m_record_indicator_mode(0)
 {
+	m_numbering_mode = eSimpleConfig::getInt("config.usage.numberMode", 0);
 	cursorHome();
 	eServiceCenter::getInstance(m_service_center);
 	m_servicelist = true;
