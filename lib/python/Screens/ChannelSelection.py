@@ -2267,23 +2267,43 @@ class SelectionEventInfo:
 		self.timer = eTimer()
 		self.timer.callback.append(self.updateEventInfo)
 		self.onShown.append(self.__selectionChanged)
-		self.currentBouquet = None
+		self.currentBouquetPath = ""
+		self.newBouquet = ""
 
 	def __selectionChanged(self):
 		if self.execing:
 			self.timer.start(100, True)
 
-	def updateBouquet(self, newBouquet):
-		if self.currentBouquet != newBouquet:
-			self.currentBouquet = newBouquet
-			service = self["Service"]
-			service.newBouquet(eServiceReference(self.currentBouquet))
+	def updateBouquetPath(self, newBouquetPath):
+		if self.currentBouquetPath != newBouquetPath:
+			self.currentBouquetPath = newBouquetPath
+			if "FROM BOUQUET" in self.currentBouquetPath:
+				currentBouquet = [x for x in self.currentBouquetPath.split(";") if x]
+				currentBouquet = currentBouquet[-1] if currentBouquet else ""
+				serviceHandler = eServiceCenter.getInstance()
+				bouquet = eServiceReference(currentBouquet)
+				info = serviceHandler.info(bouquet)
+				name = info and info.getName(bouquet) or ""
+			elif "FROM PROVIDERS" in self.currentBouquetPath:
+				name = _("Provider")
+			elif "FROM SATELLITES" in self.currentBouquetPath:
+				name = _("Satellites")
+			elif ") ORDER BY name" in self.currentBouquetPath:
+				name = _("All Services")
+			else:
+				name = "N/A"
+			if self.newBouquet != name:
+				self.newBouquet = name
+				self.session.nav.currentBouquetName = name
 
 	def updateEventInfo(self):
 		cur = self.getCurrentSelection()
 		service = self["Service"]
 		service.newService(cur)
 		self["Event"].newEvent(service.event)
+		if self.newBouquet:
+			service.newBouquetName(self.newBouquet)
+			self.newBouquet = ""
 
 
 class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelectionEPG, SelectionEventInfo):
@@ -2703,7 +2723,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				self.setModeRadio()
 			self.lastroot.value = path
 			self.lastroot.save()
-			self.updateBouquet(path.split(";")[-1] if path else "")
+			self.updateBouquetPath(path)
 
 	def restoreRoot(self):
 		tmp = [x for x in self.lastroot.value.split(";") if x != ""]
@@ -3154,7 +3174,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		if path and path != config.radio.lastroot.value:
 			config.radio.lastroot.value = path
 			config.radio.lastroot.save()
-			self.updateBouquet(path.split(";")[-1] if path else "")
+			self.updateBouquetPath(path)
 
 	def restoreRoot(self):
 		tmp = [x for x in config.radio.lastroot.value.split(";") if x != ""]
