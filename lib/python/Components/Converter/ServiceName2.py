@@ -407,7 +407,7 @@ class ServiceName2(Converter):
 		elif ".ottg." in refstr:
 			return "Glanc"
 		elif "/iptv/" in refstr:
-			return "Edem"		
+			return "Edem"
 		elif "wisp.cat" in refstr:
 			return "TvoeTV"
 		elif "4097" in refstr:
@@ -513,7 +513,7 @@ class ServiceName2(Converter):
 				return name.replace("\xc2\x86", "").replace("\xc2\x87", "")
 			case self.NUMBER:
 				try:
-					service = self.source.service if self.source and config.usage.numberMode.value == 2 and self.source.__class__.__name__ == "ServiceEvent" else self.source.serviceref
+					service = self.source.service if self.source and self.source.__class__.__name__ == "ServiceEvent" else self.source.serviceref
 					num = service and service.getChannelNum() or ""
 					return str(num)
 				except Exception:
