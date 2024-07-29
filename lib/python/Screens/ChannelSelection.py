@@ -2267,10 +2267,17 @@ class SelectionEventInfo:
 		self.timer = eTimer()
 		self.timer.callback.append(self.updateEventInfo)
 		self.onShown.append(self.__selectionChanged)
+		self.currentBouquet = None
 
 	def __selectionChanged(self):
 		if self.execing:
 			self.timer.start(100, True)
+
+	def updateBouquet(self, newBouquet):
+		if self.currentBouquet != newBouquet:
+			self.currentBouquet = newBouquet
+			service = self["Service"]
+			service.newBouquet(eServiceReference(self.currentBouquet))
 
 	def updateEventInfo(self):
 		cur = self.getCurrentSelection()
@@ -2696,6 +2703,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				self.setModeRadio()
 			self.lastroot.value = path
 			self.lastroot.save()
+			self.updateBouquet(path.split(";")[-1] if path else "")
 
 	def restoreRoot(self):
 		tmp = [x for x in self.lastroot.value.split(";") if x != ""]
@@ -3146,6 +3154,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		if path and path != config.radio.lastroot.value:
 			config.radio.lastroot.value = path
 			config.radio.lastroot.save()
+			self.updateBouquet(path.split(";")[-1] if path else "")
 
 	def restoreRoot(self):
 		tmp = [x for x in config.radio.lastroot.value.split(";") if x != ""]
