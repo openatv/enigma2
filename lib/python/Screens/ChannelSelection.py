@@ -131,6 +131,12 @@ class ChannelSelectionBase(Screen):
 		def digitHelp():
 			return _("LCN style QuickSelect entry selection") if config.usage.show_channel_jump_in_servicelist.value == "quick" else _("SMS style QuickSelect entry selection")
 
+		def leftHelp():
+			return _("Move to previous marker") if self.servicelist.isVertical() else _("Move to the previous item")
+
+		def rightHelp():
+			return _("Move to next marker") if self.servicelist.isVertical() else _("Move to the next item")
+
 		Screen.__init__(self, session, enableHelp=True)
 		self["key_red"] = StaticText(_("All Services"))
 		self["key_green"] = StaticText(_("Reception Lists"))
@@ -153,15 +159,11 @@ class ChannelSelectionBase(Screen):
 		self.pathChangeDisabled = False
 		self.movemode = False
 		self.showSatDetails = False
-		self["channelSelectBaseActions"] = HelpableNumberActionMap(self, ["ChannelSelectBaseActions", "NumberActions", "InputAsciiActions"], {
-			"showAllServices": (self.showAllServices, _("Show all available services")),
-			"showSatellites": (boundFunction(self.showSatellites, changeMode=True), _("Show list of transponders")),
-			"showProviders": (self.showProviders, _("Show list of providers")),
-			"showFavourites": (self.showFavourites, _("Show list of bouquets")),
-			"prevBouquet": (self.prevBouquet, _("Move to previous bouquet")),
-			"nextBouquet": (self.nextBouquet, _("Move to next bouquet")),
-			"prevMarker": (self.prevMarker, _("Move to previous marker")),
-			"nextMarker": (self.nextMarker, _("Move to next marker")),
+		self["channelSelectBaseActions"] = HelpableNumberActionMap(self, ["ColorActions", "NumberActions", "InputAsciiActions"], {
+			"red": (self.showAllServices, _("Show all available services")),
+			"green": (boundFunction(self.showSatellites, changeMode=True), _("Show list of transponders")),
+			"yellow": (self.showProviders, _("Show list of providers")),
+			"blue": (self.showFavourites, _("Show list of bouquets")),
 			"1": (self.keyNumberGlobal, digitHelp),
 			"2": (self.keyNumberGlobal, digitHelp),
 			"3": (self.keyNumberGlobal, digitHelp),
@@ -176,12 +178,28 @@ class ChannelSelectionBase(Screen):
 		}, prio=0, description=_("Channel Selection Actions"))
 		self["navigationActions"] = HelpableActionMap(self, ["NavigationActions"], {
 			"top": (self.servicelist.goTop, _("Move to the first line / screen")),
-			"left": (self.servicelist.goPageUp, _("Move up a screen")),
 			"up": (self.servicelist.goLineUp, _("Move up a line")),
 			"down": (self.servicelist.goLineDown, _("Move down a line")),
-			"right": (self.servicelist.goPageDown, _("Move down a screen")),
 			"bottom": (self.servicelist.goBottom, _("Move to the last line / screen"))
 		}, prio=0, description=_("Channel Selection Navigation Actions"))
+		self["legacyNavigationActions"] = HelpableActionMap(self, ["NavigationActions", "PreviousNextActions"], {
+			"pageUp": (self.prevBouquet, _("Move to previous bouquet")),
+			"previous": (self.prevMarker, _("Move to previous marker")),
+			"left": (self.servicelist.goLeft, _("Move up a screen / Move to previous item")),
+			"right": (self.servicelist.goRight, _("Move down a screen / Move to next item")),
+			"next": (self.nextMarker, _("Move to next marker")),
+			"pageDown": (self.nextBouquet, _("Move to next bouquet"))
+		}, prio=0, description=_("Channel Selection Navigation Actions"))
+		self["legacyNavigationActions"].setEnabled(config.misc.actionLeftRightToPageUpPageDown.value)
+		self["newNavigationActions"] = HelpableActionMap(self, ["NavigationActions"], {
+			"pageUp": (self.servicelist.goPageUp, _("Move up a screen")),
+			"first": (self.prevBouquet, _("Move to previous bouquet")),
+			"left": (self.moveLeft, leftHelp),
+			"right": (self.moveRight, rightHelp),
+			"last": (self.nextBouquet, _("Move to next bouquet")),
+			"pageDown": (self.servicelist.goPageDown, _("Move down a screen"))
+		}, prio=0, description=_("Channel Selection Navigation Actions"))
+		self["newNavigationActions"].setEnabled(not config.misc.actionLeftRightToPageUpPageDown.value)
 		self.mode = MODE_TV
 		self.baseTitle = _("Channel Selection")
 		self.function = EDIT_OFF
@@ -192,7 +210,7 @@ class ChannelSelectionBase(Screen):
 		self.onShown.append(self.applyKeyMap)
 
 	def layoutFinished(self):
-		self.servicelist.instance.enableAutoNavigation(False)  # Override list box navigation.
+		self.servicelist.instance.enableAutoNavigation(config.misc.actionLeftRightToPageUpPageDown.value)  # Override list box navigation.
 
 	def applyKeyMap(self):  # IanSav: Should this be a NumericalTextInput mode?
 		if config.usage.show_channel_jump_in_servicelist.value == "alpha":
@@ -238,6 +256,18 @@ class ChannelSelectionBase(Screen):
 
 	def moveUp(self):  # This is used by InfoBarGenerics.
 		self.servicelist.goLineUp()
+
+	def moveLeft(self):
+		if self.servicelist.isVertical():
+			self.prevMarker()
+		else:
+			self.servicelist.goLeft()
+
+	def moveRight(self):
+		if self.servicelist.isVertical():
+			self.nextMarker()
+		else:
+			self.servicelist.goRight()
 
 	def moveDown(self):  # This is used by InfoBarGenerics.
 		self.servicelist.goLineDown()
@@ -459,7 +489,7 @@ class ChannelSelectionBase(Screen):
 									service.setName(f"{service_name} - {service_type}")
 									self.servicelist.addService(service)
 						cur_ref = self.session.nav.getCurrentlyPlayingServiceReference()
-						self.servicelist.l.sort()
+						self.servicelist.sort()
 						if cur_ref:
 							# pos = self.service_types.rfind(":")  # DEBUG NOTE: This doesn't appear to be used.
 							ref = eServiceReference(self.service_types_ref)
@@ -479,7 +509,7 @@ class ChannelSelectionBase(Screen):
 							ref = eServiceReference(service_ref)
 							ref.setName(service_name)
 							self.servicelist.addService(ref, beforeCurrent=True)
-						self.servicelist.l.FillFinished()
+						self.servicelist.fillFinished()
 						if prev is not None:
 							self.setCurrentSelection(prev)
 						elif cur_ref:
@@ -720,7 +750,7 @@ class ChannelSelectionBase(Screen):
 		self.servicelist.setMode(ServiceList.MODE_NORMAL)  # No numbers
 		for subservice in subservices or self.getSubservices(service):
 			self.servicelist.addService(eServiceReference(subservice))
-		# self.servicelist.l.sort()
+		# self.servicelist.sort()
 		self.setCurrentSelection(service or self.session.nav.getCurrentlyPlayingServiceReference())
 
 	def isSubservices(self, path=None):
@@ -2237,16 +2267,43 @@ class SelectionEventInfo:
 		self.timer = eTimer()
 		self.timer.callback.append(self.updateEventInfo)
 		self.onShown.append(self.__selectionChanged)
+		self.currentBouquetPath = ""
+		self.newBouquet = ""
 
 	def __selectionChanged(self):
 		if self.execing:
 			self.timer.start(100, True)
+
+	def updateBouquetPath(self, newBouquetPath):
+		if self.currentBouquetPath != newBouquetPath:
+			self.currentBouquetPath = newBouquetPath
+			if "FROM BOUQUET" in self.currentBouquetPath:
+				currentBouquet = [x for x in self.currentBouquetPath.split(";") if x]
+				currentBouquet = currentBouquet[-1] if currentBouquet else ""
+				serviceHandler = eServiceCenter.getInstance()
+				bouquet = eServiceReference(currentBouquet)
+				info = serviceHandler.info(bouquet)
+				name = info and info.getName(bouquet) or ""
+			elif "FROM PROVIDERS" in self.currentBouquetPath:
+				name = _("Provider")
+			elif "FROM SATELLITES" in self.currentBouquetPath:
+				name = _("Satellites")
+			elif ") ORDER BY name" in self.currentBouquetPath:
+				name = _("All Services")
+			else:
+				name = "N/A"
+			if self.newBouquet != name:
+				self.newBouquet = name
+				self.session.nav.currentBouquetName = name
 
 	def updateEventInfo(self):
 		cur = self.getCurrentSelection()
 		service = self["Service"]
 		service.newService(cur)
 		self["Event"].newEvent(service.event)
+		if self.newBouquet:
+			service.newBouquetName(self.newBouquet)
+			self.newBouquet = ""
 
 
 class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelectionEPG, SelectionEventInfo):
@@ -2666,6 +2723,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				self.setModeRadio()
 			self.lastroot.value = path
 			self.lastroot.save()
+			self.updateBouquetPath(path)
 
 	def restoreRoot(self):
 		tmp = [x for x in self.lastroot.value.split(";") if x != ""]
@@ -3059,10 +3117,10 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		# RDS Radiotext / Rass Support begin.
 		self.infobar = infobar  # Reference to real InfoBar (the one and only).
 		self["RdsDecoder"] = self.info["RdsDecoder"]
-		self["RdsActions"] = HelpableActionMap(self, ["InfobarRdsActions"], {
+		self["rdsActions"] = HelpableActionMap(self, ["InfobarRdsActions"], {
 			"startRassInteractive": (self.startRassInteractive, _("View Rass interactive"))
 		}, prio=-1, description=_("Radio Channel Selection Actions"))
-		self["RdsActions"].setEnabled(False)
+		self["rdsActions"].setEnabled(False)
 		infobar.rds_display.onRassInteractivePossibilityChanged.append(self.RassInteractivePossibilityChanged)
 		self.onClose.append(self.__onClose)
 		self.onExecBegin.append(self.__onExecBegin)
@@ -3085,7 +3143,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		self.infobar.RassSlidePicChanged()
 
 	def RassInteractivePossibilityChanged(self, state):
-		self["RdsActions"].setEnabled(state)
+		self["rdsActions"].setEnabled(state)
 
 	def __onExecBegin(self):
 		self.info.show()
@@ -3116,6 +3174,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		if path and path != config.radio.lastroot.value:
 			config.radio.lastroot.value = path
 			config.radio.lastroot.save()
+			self.updateBouquetPath(path)
 
 	def restoreRoot(self):
 		tmp = [x for x in config.radio.lastroot.value.split(";") if x != ""]

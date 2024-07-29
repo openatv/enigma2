@@ -409,16 +409,25 @@ class ServiceList(GUIComponent):
 	def addService(self, service, beforeCurrent=False):
 		self.l.addService(service, beforeCurrent)
 
+	def fillFinished(self):
+		self.l.FillFinished()
+
 	def finishFill(self):
 		self.l.FillFinished()
 		self.l.sort()
 
+
 # stuff for multiple marks (edit mode / later multiepg)
+
+
 	def clearMarks(self):
 		self.l.initMarked()
 
 	def isMarked(self, ref):
 		return self.l.isMarked(ref)
+
+	def isVertical(self):
+		return True
 
 	def addMarked(self, ref):
 		self.l.addMarked(ref)
@@ -530,6 +539,9 @@ class ServiceList(GUIComponent):
 
 	def setHideNumberMarker(self, value):
 		self.l.setHideNumberMarker(value)
+
+	def sort(self):
+		self.l.sort()
 
 	# Navigation Actions
 	def goTop(self):
