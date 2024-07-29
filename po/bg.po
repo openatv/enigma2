@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-10 17:04+0000\n"
+"POT-Creation-Date: 2024-07-24 15:20+0000\n"
 "PO-Revision-Date: 2023-08-06 06:22+0000\n"
 "Last-Translator: Salif Mehmed <mail@salif.eu>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/bg/>\n"
@@ -1186,7 +1186,7 @@ msgid "%s has been disabled."
 msgstr ""
 
 #, python-format
-msgid "%s imported from fallback tuner"
+msgid "%s imported from remote receiver."
 msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
@@ -7421,13 +7421,13 @@ msgstr ""
 msgid "Error unzipping image '%s'!"
 msgstr ""
 
-msgid "Error when writing epg.dat on the fallback receiver"
+msgid "Error writing 'epg.dat' on the remote receiver!"
 msgstr ""
 
-msgid "Error while moving epg.dat to its destination"
+msgid "Error moving 'epg.dat' to its destination!"
 msgstr ""
 
-msgid "Error while retrieving epg.dat from the fallback receiver"
+msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr ""
 
 #, python-format
@@ -7438,7 +7438,7 @@ msgstr ""
 "Грешка при извличане на информация за резервния таймер\n"
 "%s"
 
-msgid "Error while retrieving location of epg.dat on the fallback receiver"
+msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
 msgstr ""
 
 msgid "Error, unknown Result!"
@@ -9157,7 +9157,7 @@ msgstr ""
 msgid "I/O priority for scripts"
 msgstr ""
 
-msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr ""
 
 msgid "IMDb Details"
@@ -9446,7 +9446,7 @@ msgid "Import channels and/or EPG from remote receiver URL when receiver or enig
 msgstr "Импортиране на канали и/или EPG от резервния приемник при рестарт на приемника или enigma2"
 
 #, python-format
-msgid "Import from fallback tuner failed, %s"
+msgid "Import from remote receiver failed, %s!"
 msgstr ""
 
 msgid "Import from remote receiver URL"
@@ -11000,6 +11000,9 @@ msgstr ""
 msgid "Miscellaneous"
 msgstr "Разни"
 
+msgid "Miscellaneous languages"
+msgstr ""
+
 msgid "Misconfiguration in channel allocation"
 msgstr "Неправилна конфигурация в разпределението на каналите"
 
@@ -11885,7 +11888,7 @@ msgstr "Няма намерени файлове на този носител!"
 msgid "No entry in lcn db. Please do a service scan."
 msgstr "Няма вписване в LCN db.Моля, сканирай сервиза."
 
-msgid "No epg.dat file found on the fallback receiver"
+msgid "No 'epg.dat' file found on the remote receiver!"
 msgstr ""
 
 msgid "No error"
@@ -17493,6 +17496,12 @@ msgstr "Показване на инфобара за постоянно по в
 
 msgid "Show picon background color"
 msgstr "Показване на цвета на фона на пиконите"
+
+msgid "Show picons in quickzap"
+msgstr "показване на пикони в бързо превключване"
+
+msgid "Show picons in service list"
+msgstr "показване на пикони в сервизния списък"
 
 msgid "Show picture information"
 msgstr ""
@@ -23361,12 +23370,6 @@ msgstr "показване на карти с uphop 8"
 
 msgid "show cards with uphop 9"
 msgstr "показване на карти с uphop 9"
-
-msgid "Show picons in quickzap"
-msgstr "показване на пикони в бързо превключване"
-
-msgid "Show picons in service list"
-msgstr "показване на пикони в сервизния списък"
 
 msgid "show program information..."
 msgstr "покажи информация за програмата..."

@@ -606,7 +606,7 @@ def InitUsageConfig():
 	config.usage.remote_fallback_openwebif_userid = ConfigText(default="root")
 	config.usage.remote_fallback_openwebif_password = ConfigPassword(default="default")
 	config.usage.remote_fallback_openwebif_port = ConfigInteger(default=80, limits=(0, 65535))
-	config.usage.remote_fallback_dvbt_region = ConfigText(default="fallback DVB-T/T2 Europe")
+	config.usage.remote_fallback_dvbt_region = ConfigText(default="Fallback DVB-T/T2 Europe")
 
 	def setHttpStartDelay(configElement):
 		eSettings.setHttpStartDelay(configElement.value)

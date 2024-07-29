@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-10 17:04+0000\n"
-"PO-Revision-Date: 2024-07-11 06:05+0000\n"
+"POT-Creation-Date: 2024-07-24 15:20+0000\n"
+"PO-Revision-Date: 2024-07-25 08:42+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -1189,7 +1189,7 @@ msgid "%s has been disabled."
 msgstr "%s è stato disattivato."
 
 #, python-format
-msgid "%s imported from fallback tuner"
+msgid "%s imported from remote receiver."
 msgstr "%s importato dal sintonizzatore di fallback"
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
@@ -7439,13 +7439,13 @@ msgstr "Testo dell'errore:"
 msgid "Error unzipping image '%s'!"
 msgstr "Errore durante la decompressione dell'immagine '%s'!"
 
-msgid "Error when writing epg.dat on the fallback receiver"
+msgid "Error writing 'epg.dat' on the remote receiver!"
 msgstr "Errore durante la scrittura di epg.dat sul ricevitore di fallback"
 
-msgid "Error while moving epg.dat to its destination"
+msgid "Error moving 'epg.dat' to its destination!"
 msgstr "Errore durante lo spostamento di epg.dat alla sua destinazione"
 
-msgid "Error while retrieving epg.dat from the fallback receiver"
+msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr "Errore durante il recupero di epg.dat dal ricevitore di fallback"
 
 #, python-format
@@ -7456,7 +7456,7 @@ msgstr ""
 "Errore durante il recupero delle informazioni sul timer di fallback\n"
 "%s"
 
-msgid "Error while retrieving location of epg.dat on the fallback receiver"
+msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
 msgstr "Errore durante il recupero della posizione di epg.dat sul ricevitore di fallback"
 
 msgid "Error, unknown Result!"
@@ -9175,7 +9175,7 @@ msgstr "I"
 msgid "I/O priority for scripts"
 msgstr "Priorità I/O per gli script"
 
-msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 nuovo modello"
 
 msgid "IMDb Details"
@@ -9467,7 +9467,7 @@ msgid "Import channels and/or EPG from remote receiver URL when receiver or enig
 msgstr "Importare i canali e/o l'EPG dall'URL del ricevitore remoto quando il ricevitore o Enigma2 viene riavviato"
 
 #, python-format
-msgid "Import from fallback tuner failed, %s"
+msgid "Import from remote receiver failed, %s!"
 msgstr "Importazione dal tuner di fallback non riuscita, %s"
 
 msgid "Import from remote receiver URL"
@@ -11021,6 +11021,9 @@ msgstr "Mipsel"
 msgid "Miscellaneous"
 msgstr "Varie"
 
+msgid "Miscellaneous languages"
+msgstr "Lingue varie"
+
 msgid "Misconfiguration in channel allocation"
 msgstr "Configurazione errata nell'allocazione del canale"
 
@@ -11909,7 +11912,7 @@ msgstr "Nessun file riproducibile trovato sul supporto!"
 msgid "No entry in lcn db. Please do a service scan."
 msgstr "Nessuna voce nel database LCN. Effettua una scansione dei servizi."
 
-msgid "No epg.dat file found on the fallback receiver"
+msgid "No 'epg.dat' file found on the remote receiver!"
 msgstr "Nessun file epg.dat trovato sul ricevitore di fallback"
 
 msgid "No error"
@@ -17531,6 +17534,12 @@ msgstr "Mostra barra informazioni persistente durante la pausa"
 
 msgid "Show picon background color"
 msgstr "Mostra colore di sfondo dell'icona"
+
+msgid "Show picons in quickzap"
+msgstr "Mostra picon in zap veloce"
+
+msgid "Show picons in service list"
+msgstr "Mostra picon nell'elenco servizi"
 
 msgid "Show picture information"
 msgstr "Mostra informazioni immagine"
@@ -23476,12 +23485,6 @@ msgstr "mostra schede con uphop 8"
 
 msgid "show cards with uphop 9"
 msgstr "mostra schede con uphop 9"
-
-msgid "Show picons in quickzap"
-msgstr "Mostra picon in zap veloce"
-
-msgid "Show picons in service list"
-msgstr "Mostra picon nell'elenco servizi"
 
 msgid "show program information..."
 msgstr "mostra informazioni programma..."

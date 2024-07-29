@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-10 17:04+0000\n"
-"PO-Revision-Date: 2024-07-05 23:45+0000\n"
+"POT-Creation-Date: 2024-07-24 15:20+0000\n"
+"PO-Revision-Date: 2024-07-26 22:09+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
 "Language: el\n"
@@ -1190,8 +1190,8 @@ msgid "%s has been disabled."
 msgstr "Το %s απενεργοποιήθηκε."
 
 #, python-format
-msgid "%s imported from fallback tuner"
-msgstr ""
+msgid "%s imported from remote receiver."
+msgstr "Έγινε εισαγωγή του %s από το εφεδρικό tuner"
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -3779,13 +3779,13 @@ msgid "Channel Selection Context Menu Navigation Actions"
 msgstr "Ενέργειες πλοήγησης μενού περιεχομένων λίστας καναλιών"
 
 msgid "Channel Selection List"
-msgstr ""
+msgstr "Λίστα επιλογής καναλιών"
 
 msgid "Channel Selection Navigation Actions"
 msgstr "Ενέργειες πλοήγησης επιλογής καναλιών"
 
 msgid "Channel Selection Screen"
-msgstr ""
+msgstr "Οθόνη επιλογής καναλιών"
 
 msgid "Channel Selection Settings"
 msgstr "Ρυθμίσεις επιλογής καναλιών"
@@ -3851,13 +3851,13 @@ msgid "ChannelEPG Settings"
 msgstr "Ρυθμίσεις EPG καναλιού"
 
 msgid "Channels"
-msgstr ""
+msgstr "Κανάλια"
 
 msgid "Channels and EPG"
-msgstr ""
+msgstr "Κανάλια και EPG"
 
 msgid "Channels only"
-msgstr ""
+msgstr "Μόνο κανάλια"
 
 msgid "Chap."
 msgstr "Κεφ."
@@ -4252,7 +4252,7 @@ msgid "Color space"
 msgstr "Χρωματικό εύρος"
 
 msgid "Colored Text"
-msgstr ""
+msgstr "Χρωματισμένο κείμενο"
 
 msgid "Combined"
 msgstr "Σε συνδυασμό"
@@ -4399,7 +4399,7 @@ msgid "Configure if and how wide the service name column will be shown in the ch
 msgstr "Ρυθμίστε εάν και πόσο πλατιά θα εμφανίζεται η στήλη ονόματος στη λίστα επιλογής καναλιών."
 
 msgid "Configure if crypto icons will be shown in the channel selection list."
-msgstr ""
+msgstr "Ρυθμίστε αν τα εικονίδια κρυπτοποίησης θα εμφανίζονται στη λίστα επιλογής καναλιών."
 
 msgid "Configure if epg.dat should be saved at all."
 msgstr "Ρυθμίστε αν θα αποθηκεύεται το epg.dat."
@@ -4411,7 +4411,7 @@ msgid "Configure if service picons will be shown in the service list."
 msgstr "Ρυθμίστε αν θα εμφανίζονται τα λογότυπα υπηρεσιών στη λίστα."
 
 msgid "Configure if service type icons will be shown."
-msgstr ""
+msgstr "Ρυθμίστε αν θα εμφανίζονται τα εικονίδια τύπου υπηρεσίας."
 
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
 msgstr "Ρυθμίστε αν ο υπότιτλος θα πρέπει να αλλάζει μεταξύ του κανονικού, πλάγιου, έντονου ή έντονου πλάγιου."
@@ -6696,7 +6696,7 @@ msgid "EPG location"
 msgstr "Τοποθεσία EPG"
 
 msgid "EPG only"
-msgstr ""
+msgstr "Μόνο EPG"
 
 msgid "EPGSearch"
 msgstr "Αναζήτηση EPG"
@@ -7191,7 +7191,7 @@ msgid "Enter PIN"
 msgstr "Εισαγωγή PIN"
 
 msgid "Enter URL"
-msgstr ""
+msgstr "Εισαγωγή URL"
 
 msgid "Enter a description for this timer."
 msgstr "Εισαγωγή περιγραφής για αυτόν τον χρονοδιακόπτη."
@@ -7440,14 +7440,14 @@ msgstr "Κείμενο σφάλματος:"
 msgid "Error unzipping image '%s'!"
 msgstr "Σφάλμα αποσυμπίεσης του image '%s'!"
 
-msgid "Error when writing epg.dat on the fallback receiver"
-msgstr ""
+msgid "Error writing 'epg.dat' on the remote receiver!"
+msgstr "Σφάλμα κατά την αποθήκευση του epg.dat στον εφεδρικό δέκτη"
 
-msgid "Error while moving epg.dat to its destination"
-msgstr ""
+msgid "Error moving 'epg.dat' to its destination!"
+msgstr "Σφάλμα κατά τη μετακίνηση του epg.dat στον προορισμό του"
 
-msgid "Error while retrieving epg.dat from the fallback receiver"
-msgstr ""
+msgid "Error retrieving 'epg.dat' from the remote receiver!"
+msgstr "Σφάλμα κατά την ανάκτηση του epg.dat από τον εφεδρικό δέκτη"
 
 #, python-format
 msgid ""
@@ -7457,8 +7457,8 @@ msgstr ""
 "Σφάλμα ανάκτησης πληροφοριών εφεδρικού χρονοδιακόπτη\n"
 "%s"
 
-msgid "Error while retrieving location of epg.dat on the fallback receiver"
-msgstr ""
+msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
+msgstr "Σφάλμα κατά την ανάκτηση του epg.dat στον εφεδρικό δέκτη"
 
 msgid "Error, unknown Result!"
 msgstr "Σφάλμα, άγνωστο αποτέλεσμα!"
@@ -7963,7 +7963,7 @@ msgid "Fallback remote receiver for DVB-T"
 msgstr "Εφεδρικός απομακρυσμένος δέκτης για DVB-T"
 
 msgid "Fallback remote receiver setup"
-msgstr ""
+msgstr "Ρυθμίσεις απομακρυσμένου εφεδρικού δέκτη"
 
 msgid "Fallback tuner setup"
 msgstr "Ρυθμίσεις εφεδρικού tuner"
@@ -9176,7 +9176,7 @@ msgstr "I"
 msgid "I/O priority for scripts"
 msgstr "Προτεραιότητα I/O για σενάρια ενεργειών"
 
-msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 νέο μοντέλο"
 
 msgid "IMDb Details"
@@ -9468,7 +9468,7 @@ msgid "Import channels and/or EPG from remote receiver URL when receiver or enig
 msgstr "Εισαγωγή καναλιών ή/και EPG από την απομακρυσμένη URL δέκτη κατά την εκκίνηση του δέκτη ή του enigma2"
 
 #, python-format
-msgid "Import from fallback tuner failed, %s"
+msgid "Import from remote receiver failed, %s!"
 msgstr ""
 
 msgid "Import from remote receiver URL"
@@ -10771,7 +10771,7 @@ msgid "Manual transponder"
 msgstr "Χειροκίνητος αναμεταδότης"
 
 msgid "Manually import from fallback tuner"
-msgstr ""
+msgstr "Χειροκίνητη εισαγωγή από το εφεδρικό tuner"
 
 msgid "Manufacturer"
 msgstr "Κατασκευαστής"
@@ -11021,6 +11021,9 @@ msgstr "Mipsel"
 
 msgid "Miscellaneous"
 msgstr "Διάφορα"
+
+msgid "Miscellaneous languages"
+msgstr "Λοιπές γλώσσες"
 
 msgid "Misconfiguration in channel allocation"
 msgstr "Λανθασμένες ρυθμίσεις κατανομής καναλιών"
@@ -11910,8 +11913,8 @@ msgstr "Δεν υπάρχουν αρχεία προς εμφάνιση σε αυ
 msgid "No entry in lcn db. Please do a service scan."
 msgstr "Απουσία δεδομένων στη βάση του lcn. Παρακαλώ κάντε χειροκίνητη ανίχνευση."
 
-msgid "No epg.dat file found on the fallback receiver"
-msgstr ""
+msgid "No 'epg.dat' file found on the remote receiver!"
+msgstr "Δεν βρέθηκε το αρχείο epg.dat στον εφεδρικό δέκτη"
 
 msgid "No error"
 msgstr "Χωρίς σφάλμα"
@@ -14153,7 +14156,7 @@ msgid "Record Actions"
 msgstr "Ενέργειες εγγραφής"
 
 msgid "Record Icon"
-msgstr ""
+msgstr "Εικονίδιο εγγραφής"
 
 msgid "Record next"
 msgstr "Εγγραφή του επόμενου"
@@ -17155,7 +17158,7 @@ msgid "Show Kernel packages"
 msgstr "Εμφάνιση πακέτων Kernel"
 
 msgid "Show LCN in channel selection"
-msgstr ""
+msgstr "Εμφάνιση του LCN στην επιλογή καναλιών"
 
 msgid "Show Live in MiniTV"
 msgstr "Εμφάνιση ζωντανής TV σε MiniTV"
@@ -17532,6 +17535,12 @@ msgstr "Μόνιμη εμφάνιση της μπάρας πληροφοριών
 
 msgid "Show picon background color"
 msgstr "Εμφάνιση χρώματος φόντου στα λογότυπα"
+
+msgid "Show picons in quickzap"
+msgstr "εμφάνιση λογότυπων στο γρήγορο ζάπινγκ"
+
+msgid "Show picons in service list"
+msgstr "εμφάνιση λογότυπων (picons) στη λίστα υπηρεσιών"
 
 msgid "Show picture information"
 msgstr "Εμφάνιση πληροφοριών εικόνας"
@@ -20020,7 +20029,7 @@ msgstr "Αυτό θα κάνει προώθηση εμπρός/πίσω με κ�
 
 #, python-format
 msgid "This window will automatically close in %d seconds."
-msgstr ""
+msgstr "Αυτό το παράθυρο θα κλείσει αυτόματα σε %d δευτερόλεπτα."
 
 msgid "This wizard has finished"
 msgstr "Αυτός ο οδηγός ολοκληρώθηκε"
@@ -22002,7 +22011,7 @@ msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Όταν είναι ενεργό, οι υπότιτλοι θα αναδιπλώνονται έτσι ώστε να ταιριάζουν στο πλάτος της οθόνης."
 
 msgid "When enabled, show LCN in the channel selection screen."
-msgstr ""
+msgstr "Όταν είναι ενεργό, το LCN θα εμφανίζεται στην οθόνη επιλογής καναλιών."
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Όταν είναι ενεργό, οι αριθμοί των καναλιών θα εμφανίζονται στη λίστα επιλογής καναλιών."
@@ -23477,12 +23486,6 @@ msgstr "εμφάνιση καρτών με uphop 8"
 
 msgid "show cards with uphop 9"
 msgstr "εμφάνιση καρτών με uphop 9"
-
-msgid "Show picons in quickzap"
-msgstr "εμφάνιση λογότυπων στο γρήγορο ζάπινγκ"
-
-msgid "Show picons in service list"
-msgstr "εμφάνιση λογότυπων (picons) στη λίστα υπηρεσιών"
 
 msgid "show program information..."
 msgstr "εμφάνιση πληροφοριών προγράμματος..."

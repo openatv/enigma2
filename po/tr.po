@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-10 17:04+0000\n"
+"POT-Creation-Date: 2024-07-24 15:20+0000\n"
 "PO-Revision-Date: 2024-06-14 06:41+0000\n"
 "Last-Translator: DreamOSat Forum <info@dreamosat-forum.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -1180,7 +1180,7 @@ msgid "%s has been disabled."
 msgstr "%s devre dışı bırakıldı."
 
 #, python-format
-msgid "%s imported from fallback tuner"
+msgid "%s imported from remote receiver."
 msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
@@ -7742,13 +7742,13 @@ msgstr "Hata metni:"
 msgid "Error unzipping image '%s'!"
 msgstr "'%s' görüntüsü açılırken hata oluştu!"
 
-msgid "Error when writing epg.dat on the fallback receiver"
+msgid "Error writing 'epg.dat' on the remote receiver!"
 msgstr ""
 
-msgid "Error while moving epg.dat to its destination"
+msgid "Error moving 'epg.dat' to its destination!"
 msgstr ""
 
-msgid "Error while retrieving epg.dat from the fallback receiver"
+msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr ""
 
 #, python-format
@@ -7759,7 +7759,7 @@ msgstr ""
 "Geri dönüş zamanlayıcı bilgileri alınırken hata oluştu\n"
 "%s"
 
-msgid "Error while retrieving location of epg.dat on the fallback receiver"
+msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
 msgstr ""
 
 msgid "Error, unknown Result!"
@@ -9571,7 +9571,7 @@ msgstr "I"
 msgid "I/O priority for scripts"
 msgstr "Komut dosyaları için G/Ç önceliği"
 
-msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 yeni model"
 
 msgid "IMDb Details"
@@ -9871,7 +9871,7 @@ msgid "Import channels and/or EPG from remote receiver URL when receiver or enig
 msgstr "Alıcı veya enigma2 yeniden başlatıldığında, uzak alıcı URL'sinden kanalları ve/veya EPG'yi içe aktarın"
 
 #, python-format
-msgid "Import from fallback tuner failed, %s"
+msgid "Import from remote receiver failed, %s!"
 msgstr ""
 
 msgid "Import from remote receiver URL"
@@ -11515,6 +11515,9 @@ msgstr "Mipsel"
 msgid "Miscellaneous"
 msgstr "Diğer"
 
+msgid "Miscellaneous languages"
+msgstr ""
+
 msgid "Misconfiguration in channel allocation"
 msgstr "Kanal tahsisinde yanlış yapılandırma"
 
@@ -12464,7 +12467,7 @@ msgstr "Bu ortamda gösterilecek dosya bulunamadı!"
 msgid "No entry in lcn db. Please do a service scan."
 msgstr "Lcn db'de giriş yok. Lütfen bir servis taraması yapın."
 
-msgid "No epg.dat file found on the fallback receiver"
+msgid "No 'epg.dat' file found on the remote receiver!"
 msgstr ""
 
 #
@@ -18376,6 +18379,12 @@ msgstr "Duraklatıldığında bilgi çubuğunu kalıcı olarak göster"
 
 msgid "Show picon background color"
 msgstr "Picon arka plan rengini göster"
+
+msgid "Show picons in quickzap"
+msgstr "quickzap içinde picons göster"
+
+msgid "Show picons in service list"
+msgstr "kanal listesinde pikonları göster"
 
 msgid "Show picture information"
 msgstr "Resim bilgilerini göster"
@@ -24630,12 +24639,6 @@ msgstr "kartları göster uphop 8"
 
 msgid "show cards with uphop 9"
 msgstr "kartları göster uphop 9"
-
-msgid "Show picons in quickzap"
-msgstr "quickzap içinde picons göster"
-
-msgid "Show picons in service list"
-msgstr "kanal listesinde pikonları göster"
 
 msgid "show program information..."
 msgstr "program bigisini göster..."

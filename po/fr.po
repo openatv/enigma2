@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-10 17:04+0000\n"
+"POT-Creation-Date: 2024-07-24 15:20+0000\n"
 "PO-Revision-Date: 2024-02-19 11:02+0000\n"
 "Last-Translator: \"Mr.Servo\" <mrservo@gmx.de>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fr/>\n"
@@ -1190,7 +1190,7 @@ msgid "%s has been disabled."
 msgstr "%s a été désactivé."
 
 #, python-format
-msgid "%s imported from fallback tuner"
+msgid "%s imported from remote receiver."
 msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
@@ -7439,13 +7439,13 @@ msgstr ""
 msgid "Error unzipping image '%s'!"
 msgstr ""
 
-msgid "Error when writing epg.dat on the fallback receiver"
+msgid "Error writing 'epg.dat' on the remote receiver!"
 msgstr ""
 
-msgid "Error while moving epg.dat to its destination"
+msgid "Error moving 'epg.dat' to its destination!"
 msgstr ""
 
-msgid "Error while retrieving epg.dat from the fallback receiver"
+msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr ""
 
 #, python-format
@@ -7456,7 +7456,7 @@ msgstr ""
 "Erreur lors de la récupération des informations de programmation de repli\n"
 "%s"
 
-msgid "Error while retrieving location of epg.dat on the fallback receiver"
+msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
 msgstr ""
 
 msgid "Error, unknown Result!"
@@ -9176,7 +9176,7 @@ msgstr "I"
 msgid "I/O priority for scripts"
 msgstr ""
 
-msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 nouveau modèle"
 
 msgid "IMDb Details"
@@ -9468,7 +9468,7 @@ msgid "Import channels and/or EPG from remote receiver URL when receiver or enig
 msgstr "Importer les chaînes et/ou l’EPG depuis l’URL du récepteur distant lorsque le récepteur ou Enigma2 est redémarré"
 
 #, python-format
-msgid "Import from fallback tuner failed, %s"
+msgid "Import from remote receiver failed, %s!"
 msgstr ""
 
 msgid "Import from remote receiver URL"
@@ -11023,6 +11023,9 @@ msgstr ""
 msgid "Miscellaneous"
 msgstr "Divers"
 
+msgid "Miscellaneous languages"
+msgstr ""
+
 msgid "Misconfiguration in channel allocation"
 msgstr "Mauvaise configuration de l'allocation des canaux"
 
@@ -11910,7 +11913,7 @@ msgstr "Aucun fichier affichable sur ce support n'a été trouvé !"
 msgid "No entry in lcn db. Please do a service scan."
 msgstr "Aucune entrée dans la base de données LCN. Merci de faire un scan des services."
 
-msgid "No epg.dat file found on the fallback receiver"
+msgid "No 'epg.dat' file found on the remote receiver!"
 msgstr ""
 
 msgid "No error"
@@ -17522,6 +17525,12 @@ msgstr "Afficher l'infobarre en permanence en pause"
 
 msgid "Show picon background color"
 msgstr "Afficher la couleur de fond des picons"
+
+msgid "Show picons in quickzap"
+msgstr "Afficher picons en zapping rapide"
+
+msgid "Show picons in service list"
+msgstr "Afficher picons dans la liste des services"
 
 msgid "Show picture information"
 msgstr ""
@@ -23419,12 +23428,6 @@ msgstr "afficher les cartes jusqu'à 8 hops"
 
 msgid "show cards with uphop 9"
 msgstr "afficher les cartes jusqu'à 9 hops"
-
-msgid "Show picons in quickzap"
-msgstr "Afficher picons en zapping rapide"
-
-msgid "Show picons in service list"
-msgstr "Afficher picons dans la liste des services"
 
 msgid "show program information..."
 msgstr "Afficher les informations du programme…"

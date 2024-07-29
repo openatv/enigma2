@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-10 17:04+0000\n"
+"POT-Creation-Date: 2024-07-24 15:20+0000\n"
 "PO-Revision-Date: 2024-07-09 10:09+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
@@ -1225,7 +1225,7 @@ msgid "%s has been disabled."
 msgstr "%s bolo deaktivované."
 
 #, python-format
-msgid "%s imported from fallback tuner"
+msgid "%s imported from remote receiver."
 msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
@@ -7480,13 +7480,13 @@ msgstr "Text chyby:"
 msgid "Error unzipping image '%s'!"
 msgstr "Chyba pri rozbaľovaní image '%s'!"
 
-msgid "Error when writing epg.dat on the fallback receiver"
+msgid "Error writing 'epg.dat' on the remote receiver!"
 msgstr ""
 
-msgid "Error while moving epg.dat to its destination"
+msgid "Error moving 'epg.dat' to its destination!"
 msgstr ""
 
-msgid "Error while retrieving epg.dat from the fallback receiver"
+msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr ""
 
 #, python-format
@@ -7497,7 +7497,7 @@ msgstr ""
 "Chyba pri načítaní informácií o záložnom časovači\n"
 "%s"
 
-msgid "Error while retrieving location of epg.dat on the fallback receiver"
+msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
 msgstr ""
 
 msgid "Error, unknown Result!"
@@ -9216,7 +9216,7 @@ msgstr "I"
 msgid "I/O priority for scripts"
 msgstr "I/O priorita pre skripty"
 
-msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 nový model"
 
 msgid "IMDb Details"
@@ -9508,7 +9508,7 @@ msgid "Import channels and/or EPG from remote receiver URL when receiver or enig
 msgstr "Importovať kanály a/alebo EPG zo URL vzdialeného prijímača počas štartu prijímača alebo enigmy2"
 
 #, python-format
-msgid "Import from fallback tuner failed, %s"
+msgid "Import from remote receiver failed, %s!"
 msgstr ""
 
 msgid "Import from remote receiver URL"
@@ -11064,6 +11064,9 @@ msgstr "Mipsel"
 msgid "Miscellaneous"
 msgstr "Rôzne"
 
+msgid "Miscellaneous languages"
+msgstr ""
+
 msgid "Misconfiguration in channel allocation"
 msgstr "Nespráva konfigurácia prideľovania kanálov"
 
@@ -11952,7 +11955,7 @@ msgstr "Na tomto médiu sa nenašli žiadne zobraziteľné súbory!"
 msgid "No entry in lcn db. Please do a service scan."
 msgstr "Žiadny záznam v databáze LCN. Prosím, vykonajte skenovanie staníc."
 
-msgid "No epg.dat file found on the fallback receiver"
+msgid "No 'epg.dat' file found on the remote receiver!"
 msgstr ""
 
 msgid "No error"
@@ -17578,6 +17581,12 @@ msgstr "Zobrazovať infolištu nepretržite aj počas pozastavenia"
 
 msgid "Show picon background color"
 msgstr "Zobraziť farbu pozadia pikon"
+
+msgid "Show picons in quickzap"
+msgstr "zobraziť pikony pri rýchlom prepínaní"
+
+msgid "Show picons in service list"
+msgstr "zobraziť pikony v zozname staníc"
 
 msgid "Show picture information"
 msgstr "Zobraziť informácie o obrázku"
@@ -23525,12 +23534,6 @@ msgstr "zobraziť karty s uphop 8"
 
 msgid "show cards with uphop 9"
 msgstr "zobraziť karty s uphop 9"
-
-msgid "Show picons in quickzap"
-msgstr "zobraziť pikony pri rýchlom prepínaní"
-
-msgid "Show picons in service list"
-msgstr "zobraziť pikony v zozname staníc"
 
 msgid "show program information..."
 msgstr "zobraziť informácie o programe…"

@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-10 17:04+0000\n"
-"PO-Revision-Date: 2024-07-20 09:35+0000\n"
+"POT-Creation-Date: 2024-07-24 15:20+0000\n"
+"PO-Revision-Date: 2024-07-25 08:42+0000\n"
 "Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -1208,7 +1208,7 @@ msgid "%s has been disabled."
 msgstr "%s wurde deaktiviert."
 
 #, python-format
-msgid "%s imported from fallback tuner"
+msgid "%s imported from remote receiver."
 msgstr "%s vom Reserve-Tuner importiert"
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
@@ -7847,13 +7847,13 @@ msgstr "Fehlertext:"
 msgid "Error unzipping image '%s'!"
 msgstr "Fehler beim Entpacken des Images '%s'!"
 
-msgid "Error when writing epg.dat on the fallback receiver"
+msgid "Error writing 'epg.dat' on the remote receiver!"
 msgstr "Fehler beim Schreiben der 'epg.dat' Datei auf den Reserve-Receiver!"
 
-msgid "Error while moving epg.dat to its destination"
+msgid "Error moving 'epg.dat' to its destination!"
 msgstr "Fehler beim Verschieben der 'epg.dat' Datei!"
 
-msgid "Error while retrieving epg.dat from the fallback receiver"
+msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr "Fehler beim Empfang der 'epg.dat' Datei vom Reserve-Receiver!"
 
 #, python-format
@@ -7864,7 +7864,7 @@ msgstr ""
 "Fehler beim Abrufen der Informationen des Reserve-Timers\n"
 "%s"
 
-msgid "Error while retrieving location of epg.dat on the fallback receiver"
+msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
 msgstr "Fehler beim Abrufen des Standorts der 'epg.dat' Datei des Reserve-Timers!"
 
 msgid "Error, unknown Result!"
@@ -9669,7 +9669,7 @@ msgstr "I"
 msgid "I/O priority for scripts"
 msgstr "I/O-Priorität für Skripte"
 
-msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 neues Modell"
 
 msgid "IMDb Details"
@@ -9971,7 +9971,7 @@ msgid "Import channels and/or EPG from remote receiver URL when receiver or enig
 msgstr "Kanäle und / oder EPG von der Remote-Receiver-URL importieren wenn der Receiver oder Enigma2 neu gestartet wird."
 
 #, python-format
-msgid "Import from fallback tuner failed, %s"
+msgid "Import from remote receiver failed, %s!"
 msgstr "Import vom Reserve-Tuner fehlgeschlagen! %s"
 
 msgid "Import from remote receiver URL"
@@ -11631,6 +11631,9 @@ msgstr "Mipsel"
 msgid "Miscellaneous"
 msgstr "Sonstiges"
 
+msgid "Miscellaneous languages"
+msgstr "Verschiedene Sprachen"
+
 msgid "Misconfiguration in channel allocation"
 msgstr "Fehlkonfiguration bei der Kanalzuweisung"
 
@@ -12600,7 +12603,7 @@ msgstr ""
 "Kein Eintrag in der LCN DB!\n"
 "Bitte einen Suchlauf durchführen."
 
-msgid "No epg.dat file found on the fallback receiver"
+msgid "No 'epg.dat' file found on the remote receiver!"
 msgstr "Keine 'epg.dat' Datei auf dem Reserve-Receiver!"
 
 msgid "No error"
@@ -18640,6 +18643,12 @@ msgstr "Infoleiste während Pause permanent anzeigen"
 
 msgid "Show picon background color"
 msgstr "Hintergrundfarbe der Senderlogos (Picons)"
+
+msgid "Show picons in quickzap"
+msgstr "Senderlogos (Picons), falls vorhanden, beim QuickZap anzeigen"
+
+msgid "Show picons in service list"
+msgstr "Senderlogos (Picons), falls vorhanden, anzeigen"
 
 msgid "Show picture information"
 msgstr "Bildinformationen anzeigen"
@@ -24996,12 +25005,6 @@ msgstr "Cards mit Uphop 8 anzeigen"
 
 msgid "show cards with uphop 9"
 msgstr "Cards mit Uphop 9 anzeigen"
-
-msgid "Show picons in quickzap"
-msgstr "Senderlogos (Picons), falls vorhanden, beim QuickZap anzeigen"
-
-msgid "Show picons in service list"
-msgstr "Senderlogos (Picons), falls vorhanden, anzeigen"
 
 msgid "show program information..."
 msgstr "Programm-Informationen anzeigen"

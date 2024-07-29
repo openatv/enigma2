@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-10 17:04+0000\n"
-"PO-Revision-Date: 2024-07-17 12:09+0000\n"
-"Last-Translator: Fqwe1 <Fqwe1@users.noreply.hosted.weblate.org>\n"
+"POT-Creation-Date: 2024-07-24 15:20+0000\n"
+"PO-Revision-Date: 2024-07-25 08:42+0000\n"
+"Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -1227,7 +1227,7 @@ msgid "%s has been disabled."
 msgstr "%s вимкнено."
 
 #, python-format
-msgid "%s imported from fallback tuner"
+msgid "%s imported from remote receiver."
 msgstr "%s імпортовано з резервного тюнера"
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
@@ -7482,13 +7482,13 @@ msgstr "Текст помилки:"
 msgid "Error unzipping image '%s'!"
 msgstr "Помилка розархівування іміджу '%s'!"
 
-msgid "Error when writing epg.dat on the fallback receiver"
+msgid "Error writing 'epg.dat' on the remote receiver!"
 msgstr "Помилка під час запису epg.dat на резервний приймач"
 
-msgid "Error while moving epg.dat to its destination"
+msgid "Error moving 'epg.dat' to its destination!"
 msgstr "Помилка під час переміщення epg.dat до місця призначення"
 
-msgid "Error while retrieving epg.dat from the fallback receiver"
+msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr "Помилка під час отримання epg.dat із резервного приймача"
 
 #, python-format
@@ -7499,7 +7499,7 @@ msgstr ""
 "Помилка під час отримання інформації про резервний таймер\n"
 "%s"
 
-msgid "Error while retrieving location of epg.dat on the fallback receiver"
+msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
 msgstr "Помилка під час отримання розташування epg.dat на резервному приймачі"
 
 msgid "Error, unknown Result!"
@@ -9218,7 +9218,7 @@ msgstr "I"
 msgid "I/O priority for scripts"
 msgstr "Пріоритет введення/виведення для скриптів"
 
-msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 нові Моделі"
 
 msgid "IMDb Details"
@@ -9510,7 +9510,7 @@ msgid "Import channels and/or EPG from remote receiver URL when receiver or enig
 msgstr "Імпортуйте канали та/або EPG із URL-адреси при перезапуску приймача або enigma2"
 
 #, python-format
-msgid "Import from fallback tuner failed, %s"
+msgid "Import from remote receiver failed, %s!"
 msgstr "Не вдалося імпортувати з резервного тюнера, %s"
 
 msgid "Import from remote receiver URL"
@@ -11066,6 +11066,9 @@ msgstr "Mipsel"
 msgid "Miscellaneous"
 msgstr "Різне"
 
+msgid "Miscellaneous languages"
+msgstr "Інші мови"
+
 msgid "Misconfiguration in channel allocation"
 msgstr "Неправильна конфігурація в розподілі каналу"
 
@@ -11954,7 +11957,7 @@ msgstr "Потрібних файлів на цьому носії не знай
 msgid "No entry in lcn db. Please do a service scan."
 msgstr "Відсутній запис в lcn db. Зробіть сканування каналів."
 
-msgid "No epg.dat file found on the fallback receiver"
+msgid "No 'epg.dat' file found on the remote receiver!"
 msgstr "На резервному приймачі не знайдено файлу epg.dat"
 
 msgid "No error"
@@ -17580,6 +17583,12 @@ msgstr "Показувати Інфобар постійно під час па�
 
 msgid "Show picon background color"
 msgstr "Показати фоновий колір для піконів"
+
+msgid "Show picons in quickzap"
+msgstr "Показати пікони при швидкому перемиканні"
+
+msgid "Show picons in service list"
+msgstr "Показати пікони в списку каналів"
 
 msgid "Show picture information"
 msgstr "Показати інформацію про зображення"
@@ -23527,12 +23536,6 @@ msgstr "показати картки з uphop 8"
 
 msgid "show cards with uphop 9"
 msgstr "показати картки з uphop 9"
-
-msgid "Show picons in quickzap"
-msgstr "Показати пікони при швидкому перемиканні"
-
-msgid "Show picons in service list"
-msgstr "Показати пікони в списку каналів"
 
 msgid "show program information..."
 msgstr "показати інформацію про програму..."

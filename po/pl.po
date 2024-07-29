@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-10 17:04+0000\n"
-"PO-Revision-Date: 2024-07-22 11:09+0000\n"
+"POT-Creation-Date: 2024-07-24 15:20+0000\n"
+"PO-Revision-Date: 2024-07-25 08:42+0000\n"
 "Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -1231,7 +1231,7 @@ msgid "%s has been disabled."
 msgstr "%s został wyłączony."
 
 #, python-format
-msgid "%s imported from fallback tuner"
+msgid "%s imported from remote receiver."
 msgstr "%s zaimportowany z tunera zastępczego"
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
@@ -7488,13 +7488,13 @@ msgstr "Tekst błędu:"
 msgid "Error unzipping image '%s'!"
 msgstr "Błąd przy rozpakowywaniu systemu '%s'!"
 
-msgid "Error when writing epg.dat on the fallback receiver"
+msgid "Error writing 'epg.dat' on the remote receiver!"
 msgstr "Błąd podczas zapisywania pliku epg.dat na odbiorniku zastępczym"
 
-msgid "Error while moving epg.dat to its destination"
+msgid "Error moving 'epg.dat' to its destination!"
 msgstr "Błąd podczas przenoszenia pliku epg.dat do miejsca docelowego"
 
-msgid "Error while retrieving epg.dat from the fallback receiver"
+msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr "Błąd podczas pobierania pliku epg.dat z odbiornika zastępczego"
 
 #, python-format
@@ -7505,7 +7505,7 @@ msgstr ""
 "Błąd podczas pobierania informacji o liczniku czasu awaryjnego\n"
 "%s"
 
-msgid "Error while retrieving location of epg.dat on the fallback receiver"
+msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
 msgstr "Błąd podczas pobierania lokalizacji pliku epg.dat na odbiorniku zastępczym"
 
 msgid "Error, unknown Result!"
@@ -9224,7 +9224,7 @@ msgstr "I"
 msgid "I/O priority for scripts"
 msgstr "Priorytet I/O dla skryptów"
 
-msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 nowy Model"
 
 msgid "IMDb Details"
@@ -9516,7 +9516,7 @@ msgid "Import channels and/or EPG from remote receiver URL when receiver or enig
 msgstr "Importuj kanały i / lub EPG ze zdalnego odbiornika wtedy, gdy odbiornik lub enigma się restartuje"
 
 #, python-format
-msgid "Import from fallback tuner failed, %s"
+msgid "Import from remote receiver failed, %s!"
 msgstr "Import z tunera zastępczego nie powiódł się, %s"
 
 msgid "Import from remote receiver URL"
@@ -11073,6 +11073,9 @@ msgstr "Mipsel"
 msgid "Miscellaneous"
 msgstr "Różne"
 
+msgid "Miscellaneous languages"
+msgstr "Różne języki"
+
 msgid "Misconfiguration in channel allocation"
 msgstr "Błędna konfiguracja przydziału kanałów"
 
@@ -11961,7 +11964,7 @@ msgstr "Brak plików do wyświetlenia na tym nośniku!"
 msgid "No entry in lcn db. Please do a service scan."
 msgstr "Brak wpisu w lcn db. Wykonaj skanowanie usługi."
 
-msgid "No epg.dat file found on the fallback receiver"
+msgid "No 'epg.dat' file found on the remote receiver!"
 msgstr "W odbiorniku zastępczym nie znaleziono pliku epg.dat"
 
 msgid "No error"
@@ -17587,6 +17590,12 @@ msgstr "Pokaż pasek informacyjny na stałe w trybie pauzy"
 
 msgid "Show picon background color"
 msgstr "Pokaż kolor tła pikonów"
+
+msgid "Show picons in quickzap"
+msgstr "Pokaż pikony w quickzap"
+
+msgid "Show picons in service list"
+msgstr "Pokaż pikony na liście kanałów"
 
 msgid "Show picture information"
 msgstr "Pokaż informacje o obrazie"
@@ -23535,12 +23544,6 @@ msgstr "pokaż karty z uphop 8"
 
 msgid "show cards with uphop 9"
 msgstr "pokaż karty z uphop 9"
-
-msgid "Show picons in quickzap"
-msgstr "Pokaż pikony w quickzap"
-
-msgid "Show picons in service list"
-msgstr "Pokaż pikony na liście kanałów"
 
 msgid "show program information..."
 msgstr "Pokaż informacje o programie..."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-10 17:04+0000\n"
+"POT-Creation-Date: 2024-07-24 15:20+0000\n"
 "PO-Revision-Date: 2021-09-13 18:30+0000\n"
 "Last-Translator: Josep Belda <josepmaulet1707@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ca/>\n"
@@ -1296,7 +1296,7 @@ msgid "%s has been disabled."
 msgstr ""
 
 #, python-format
-msgid "%s imported from fallback tuner"
+msgid "%s imported from remote receiver."
 msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
@@ -7939,13 +7939,13 @@ msgstr ""
 msgid "Error unzipping image '%s'!"
 msgstr ""
 
-msgid "Error when writing epg.dat on the fallback receiver"
+msgid "Error writing 'epg.dat' on the remote receiver!"
 msgstr ""
 
-msgid "Error while moving epg.dat to its destination"
+msgid "Error moving 'epg.dat' to its destination!"
 msgstr ""
 
-msgid "Error while retrieving epg.dat from the fallback receiver"
+msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr ""
 
 #, python-format
@@ -7956,7 +7956,7 @@ msgstr ""
 "S’ha produït un error en recuperar la informació del programador de reserva\n"
 "%s"
 
-msgid "Error while retrieving location of epg.dat on the fallback receiver"
+msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
 msgstr ""
 
 msgid "Error, unknown Result!"
@@ -9794,7 +9794,7 @@ msgstr ""
 msgid "I/O priority for scripts"
 msgstr ""
 
-msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr ""
 
 msgid "IMDb Details"
@@ -10100,7 +10100,7 @@ msgid "Import channels and/or EPG from remote receiver URL when receiver or enig
 msgstr "Importar canals i/o EPG des de l’URL del receptor remot quan es reiniciï el receptor o l’enigma2"
 
 #, python-format
-msgid "Import from fallback tuner failed, %s"
+msgid "Import from remote receiver failed, %s!"
 msgstr ""
 
 msgid "Import from remote receiver URL"
@@ -11783,6 +11783,9 @@ msgstr ""
 msgid "Miscellaneous"
 msgstr ""
 
+msgid "Miscellaneous languages"
+msgstr ""
+
 msgid "Misconfiguration in channel allocation"
 msgstr ""
 
@@ -12761,7 +12764,7 @@ msgstr "No s’ha trobat fitxers que es mostrin en aquest mitjà"
 msgid "No entry in lcn db. Please do a service scan."
 msgstr ""
 
-msgid "No epg.dat file found on the fallback receiver"
+msgid "No 'epg.dat' file found on the remote receiver!"
 msgstr ""
 
 #
@@ -18763,6 +18766,16 @@ msgstr "Mostrar la barra en canviar el programa"
 
 msgid "Show picon background color"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Show picons in quickzap"
+msgstr "Canviar al subservei anterior"
+
+#
+#, fuzzy
+msgid "Show picons in service list"
+msgstr "Canviar al subservei anterior"
 
 msgid "Show picture information"
 msgstr ""
@@ -24966,16 +24979,6 @@ msgstr ""
 
 msgid "show cards with uphop 9"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Show picons in quickzap"
-msgstr "Canviar al subservei anterior"
-
-#
-#, fuzzy
-msgid "Show picons in service list"
-msgstr "Canviar al subservei anterior"
 
 msgid "show program information..."
 msgstr ""

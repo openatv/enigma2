@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-10 17:04+0000\n"
+"POT-Creation-Date: 2024-07-24 15:20+0000\n"
 "PO-Revision-Date: 2023-08-11 04:46+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -1189,7 +1189,7 @@ msgid "%s has been disabled."
 msgstr ""
 
 #, python-format
-msgid "%s imported from fallback tuner"
+msgid "%s imported from remote receiver."
 msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
@@ -7428,13 +7428,13 @@ msgstr ""
 msgid "Error unzipping image '%s'!"
 msgstr ""
 
-msgid "Error when writing epg.dat on the fallback receiver"
+msgid "Error writing 'epg.dat' on the remote receiver!"
 msgstr ""
 
-msgid "Error while moving epg.dat to its destination"
+msgid "Error moving 'epg.dat' to its destination!"
 msgstr ""
 
-msgid "Error while retrieving epg.dat from the fallback receiver"
+msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr ""
 
 #, python-format
@@ -7445,7 +7445,7 @@ msgstr ""
 "检索备用定时器信息时出错\n"
 "%s"
 
-msgid "Error while retrieving location of epg.dat on the fallback receiver"
+msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
 msgstr ""
 
 msgid "Error, unknown Result!"
@@ -9164,7 +9164,7 @@ msgstr "I"
 msgid "I/O priority for scripts"
 msgstr ""
 
-msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11新款"
 
 msgid "IMDb Details"
@@ -9456,7 +9456,7 @@ msgid "Import channels and/or EPG from remote receiver URL when receiver or enig
 msgstr "重新启动接收器时,从远程接收器URL导入频道或EPG"
 
 #, python-format
-msgid "Import from fallback tuner failed, %s"
+msgid "Import from remote receiver failed, %s!"
 msgstr ""
 
 msgid "Import from remote receiver URL"
@@ -11010,6 +11010,9 @@ msgstr "Mipsel架构"
 msgid "Miscellaneous"
 msgstr "其他"
 
+msgid "Miscellaneous languages"
+msgstr ""
+
 msgid "Misconfiguration in channel allocation"
 msgstr "频道分配中的错误配置"
 
@@ -11895,7 +11898,7 @@ msgstr "在此介质上没有发现可显示的文件！"
 msgid "No entry in lcn db. Please do a service scan."
 msgstr "没有进入LCN输入数据库.请做一个频道扫描."
 
-msgid "No epg.dat file found on the fallback receiver"
+msgid "No 'epg.dat' file found on the remote receiver!"
 msgstr ""
 
 msgid "No error"
@@ -17499,6 +17502,12 @@ msgstr "暂停时一直显示信息栏"
 
 msgid "Show picon background color"
 msgstr "显示台标背景颜色"
+
+msgid "Show picons in quickzap"
+msgstr "快速切换显示台标"
+
+msgid "Show picons in service list"
+msgstr "在频道列表上显示台标"
 
 msgid "Show picture information"
 msgstr ""
@@ -23368,12 +23377,6 @@ msgstr "使用UPHOP 8显示卡片"
 
 msgid "show cards with uphop 9"
 msgstr "使用UPHOP 9显示卡片"
-
-msgid "Show picons in quickzap"
-msgstr "快速切换显示台标"
-
-msgid "Show picons in service list"
-msgstr "在频道列表上显示台标"
 
 msgid "show program information..."
 msgstr "显示程序信息..."

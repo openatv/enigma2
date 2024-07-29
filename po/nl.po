@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-10 17:04+0000\n"
-"PO-Revision-Date: 2024-07-21 10:09+0000\n"
+"POT-Creation-Date: 2024-07-24 15:20+0000\n"
+"PO-Revision-Date: 2024-07-25 08:42+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
 "Language: nl\n"
@@ -1191,7 +1191,7 @@ msgid "%s has been disabled."
 msgstr "%s is uitgeschakeld."
 
 #, python-format
-msgid "%s imported from fallback tuner"
+msgid "%s imported from remote receiver."
 msgstr "%s van de Fallback tuner geïmporteerd"
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
@@ -7579,13 +7579,13 @@ msgstr "Fouttekst:"
 msgid "Error unzipping image '%s'!"
 msgstr "Fout bij het uitpakken van het image '%s'!"
 
-msgid "Error when writing epg.dat on the fallback receiver"
+msgid "Error writing 'epg.dat' on the remote receiver!"
 msgstr "Fout bij het schrijven van epg.dat naar de Fallback tuner!"
 
-msgid "Error while moving epg.dat to its destination"
+msgid "Error moving 'epg.dat' to its destination!"
 msgstr "Fout bij het verplaatsen van epg.dat !"
 
-msgid "Error while retrieving epg.dat from the fallback receiver"
+msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr "Fout bij het lezen van epg.dat vanaf de Fallback tuner!"
 
 #, python-format
@@ -7596,7 +7596,7 @@ msgstr ""
 "Fout tijdens het ophalen van de Fallback timer informatie\n"
 "%s"
 
-msgid "Error while retrieving location of epg.dat on the fallback receiver"
+msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
 msgstr "Fout bij het lezen van de epg.dat locatie op de Fallback tuner!"
 
 msgid "Error, unknown Result!"
@@ -9321,7 +9321,7 @@ msgstr "I"
 msgid "I/O priority for scripts"
 msgstr "I/O prioriteit voor scripts"
 
-msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 nieuw Model"
 
 msgid "IMDb Details"
@@ -9617,7 +9617,7 @@ msgid "Import channels and/or EPG from remote receiver URL when receiver or enig
 msgstr "Importeer zenders en/of EPG van de Fallback tuner, na het starten van de ontvanger OF Enigma2."
 
 #, python-format
-msgid "Import from fallback tuner failed, %s"
+msgid "Import from remote receiver failed, %s!"
 msgstr "Import vanaf de Fallback tuner mislukt! %s"
 
 msgid "Import from remote receiver URL"
@@ -11171,6 +11171,9 @@ msgstr "Mipsel"
 msgid "Miscellaneous"
 msgstr "Diversen"
 
+msgid "Miscellaneous languages"
+msgstr "Diverse talen"
+
 msgid "Misconfiguration in channel allocation"
 msgstr "Configuratiefout in de zender toewijzing"
 
@@ -12059,7 +12062,7 @@ msgstr "Geen weer te geven bestanden op dit medium gevonden!"
 msgid "No entry in lcn db. Please do a service scan."
 msgstr "Geen vermelding in lcn db. Doe een zender scan."
 
-msgid "No epg.dat file found on the fallback receiver"
+msgid "No 'epg.dat' file found on the remote receiver!"
 msgstr "Geen epg.dat gevonden op de Fallback tuner!"
 
 msgid "No error"
@@ -17725,6 +17728,12 @@ msgstr "Informatiebalk continu zichtbaar tijdens een Pauze"
 
 msgid "Show picon background color"
 msgstr "Toon achtergrond-kleur voor picons"
+
+msgid "Show picons in quickzap"
+msgstr "Toon Picons tijdens Quickzap"
+
+msgid "Show picons in service list"
+msgstr "Toon Picons in de zenderlijst"
 
 msgid "Show picture information"
 msgstr "Afbeeldingsinformatie weergeven"
@@ -23745,12 +23754,6 @@ msgstr "Toon kaarten met uphop 8"
 
 msgid "show cards with uphop 9"
 msgstr "Toon kaarten met uphop 9"
-
-msgid "Show picons in quickzap"
-msgstr "Toon Picons tijdens Quickzap"
-
-msgid "Show picons in service list"
-msgstr "Toon Picons in de zenderlijst"
 
 msgid "show program information..."
 msgstr "Toon programma informatie..."

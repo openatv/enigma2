@@ -58,9 +58,9 @@ class ImportChannels:
 		def importChannelsDone(SuccessFlag, message):
 			rmtree(tmpDir, True)
 			if SuccessFlag:
-				AddNotificationWithID("ChannelsImportOK", MessageBox, _("%s imported from fallback tuner"), type=MessageBox.TYPE_INFO, timeout=5)
+				AddNotificationWithID("ChannelsImportOK", MessageBox, _("%s imported from remote receiver.") % message, type=MessageBox.TYPE_INFO, timeout=5)
 			else:
-				AddNotificationWithID("ChannelsImportNOK", MessageBox, _("Import from fallback tuner failed, %s") % message, type=MessageBox.TYPE_ERROR, timeout=5)
+				AddNotificationWithID("ChannelsImportNOK", MessageBox, message, type=MessageBox.TYPE_ERROR, timeout=5)
 
 		global THREAD_STOPPED
 		THREAD_STOPPED = False
@@ -77,9 +77,9 @@ class ImportChannels:
 		#
 		fallbackSetting = getFallbackSettingsValue(settings, ".terrestrial")
 		if "Australia" in fallbackSetting:
-			config.usage.remote_fallback_dvbt_region.value = "fallback DVB-T/T2 Australia"
+			config.usage.remote_fallback_dvbt_region.value = "Fallback DVB-T/T2 Australia"
 		elif "Europe" in fallbackSetting:
-			config.usage.remote_fallback_dvbt_region.value = "fallback DVB-T/T2 Europe"
+			config.usage.remote_fallback_dvbt_region.value = "Fallback DVB-T/T2 Europe"
 		#
 		tmpDir = mkdtemp(prefix="FallbackReceiver_")
 		if "epg" in remoteFallbackImport:
@@ -89,10 +89,10 @@ class ImportChannels:
 				if response:
 					success = loads(response)
 					if success and not success.get("result", False):
-						importChannelsDone(False, _("Error when writing 'epg.dat' on the fallback receiver"))
+						importChannelsDone(False, _("Error writing 'epg.dat' on the remote receiver!"))
 			except Exception as err:
 				print(f"[ImportChannels] Error: Unable to save server 'epg.dat'!  ({err})")
-				importChannelsDone(False, _("Exception Error when writing /etc/enigma2/epg.dat on the fallback receiver"))
+				importChannelsDone(False, _("Error writing '/etc/enigma2/epg.dat' on the remote receiver!"))
 				return
 			print("[ImportChannels] Fetching EPG location.")
 			epgLocation = None
@@ -110,7 +110,7 @@ class ImportChannels:
 				epgLocation = files[0] if files else None
 			except Exception as err:
 				print(f"[ImportChannels] Error: Unable to fetch remote directory list!  ({err})")
-				importChannelsDone(False, _("Error while retrieving location of 'epg.dat' on the fallback receiver"))
+				importChannelsDone(False, _("Error retrieving location of 'epg.dat' on the remote receiver!"))
 				return
 			if epgLocation:
 				print("[ImportChannels] Copy EPG file.")
@@ -120,7 +120,7 @@ class ImportChannels:
 						open(join(tmpDir, "epg.dat"), "wb").write(response)
 				except Exception as err:
 					print(f"[ImportChannels] Error: Unable to fetch remote 'epg.dat' file!  ({err})")
-					importChannelsDone(False, _("Error while retrieving epg.dat from the fallback receiver"))
+					importChannelsDone(False, _("Error retrieving 'epg.dat' from the remote receiver!"))
 					return
 				try:
 					move(join(tmpDir, "epg.dat"), config.misc.epgcache_filename.value)
@@ -129,11 +129,11 @@ class ImportChannels:
 						move(join(tmpDir, "epg.dat"), "/epg.dat")
 					except OSError as err:
 						print(f"[ImportChannels] Error: Unable to move 'epg.dat' file!  ({err})")
-						importChannelsDone(False, _("Error while moving 'epg.dat' to its destination"))
+						importChannelsDone(False, _("Error moving 'epg.dat' to its destination!"))
 						return
 				print("[ImportChannels] EPG files successfully overwritten on local receiver.")
 			else:
-				importChannelsDone(False, _("No 'epg.dat' file found on the fallback receiver"))
+				importChannelsDone(False, _("No 'epg.dat' file found on the remote receiver!"))
 		if "channels" in remoteFallbackImport:
 			print("[ImportChannels] Creating channel-files (tar) on server.")
 			cmd = f"{self.url}/bouqueteditor/api/backup?Filename={self.IMPORT_FILE}"  # Create tar-file on server.

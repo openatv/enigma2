@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-10 17:04+0000\n"
+"POT-Creation-Date: 2024-07-24 15:20+0000\n"
 "PO-Revision-Date: 2023-06-04 19:16+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -1224,7 +1224,7 @@ msgid "%s has been disabled."
 msgstr "%s buvo išjungtas."
 
 #, python-format
-msgid "%s imported from fallback tuner"
+msgid "%s imported from remote receiver."
 msgstr ""
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
@@ -7484,13 +7484,13 @@ msgstr "Klaidos tekstas:"
 msgid "Error unzipping image '%s'!"
 msgstr "Išarchyvuojamo atvaizdo klaida '%s'!"
 
-msgid "Error when writing epg.dat on the fallback receiver"
+msgid "Error writing 'epg.dat' on the remote receiver!"
 msgstr ""
 
-msgid "Error while moving epg.dat to its destination"
+msgid "Error moving 'epg.dat' to its destination!"
 msgstr ""
 
-msgid "Error while retrieving epg.dat from the fallback receiver"
+msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr ""
 
 #, python-format
@@ -7501,7 +7501,7 @@ msgstr ""
 "Klaida atsisiunčiant atsarginio imtuvo laikmačio informaciją\n"
 "%s"
 
-msgid "Error while retrieving location of epg.dat on the fallback receiver"
+msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
 msgstr ""
 
 msgid "Error, unknown Result!"
@@ -9222,7 +9222,7 @@ msgstr "I"
 msgid "I/O priority for scripts"
 msgstr "Scenarijų įvesties / išvesties prioritetas"
 
-msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 naujas modelis"
 
 msgid "IMDb Details"
@@ -9514,7 +9514,7 @@ msgid "Import channels and/or EPG from remote receiver URL when receiver or enig
 msgstr "Importuoti kanalus ir/arba EPG iš nuotolinio imtuvo URL, kai imtuvas arba enigma2 yra paleidžiami iš naujo"
 
 #, python-format
-msgid "Import from fallback tuner failed, %s"
+msgid "Import from remote receiver failed, %s!"
 msgstr ""
 
 msgid "Import from remote receiver URL"
@@ -11070,6 +11070,9 @@ msgstr "Mipsel"
 msgid "Miscellaneous"
 msgstr "Įvairios kalbos"
 
+msgid "Miscellaneous languages"
+msgstr ""
+
 msgid "Misconfiguration in channel allocation"
 msgstr "Netinkama konfigūracija paskirstant kanalą"
 
@@ -11955,7 +11958,7 @@ msgstr "Jokių failų čia nerasta!"
 msgid "No entry in lcn db. Please do a service scan."
 msgstr "Lcn db įrašo nėra. Atlikite kanalų paiešką."
 
-msgid "No epg.dat file found on the fallback receiver"
+msgid "No 'epg.dat' file found on the remote receiver!"
 msgstr ""
 
 msgid "No error"
@@ -17569,6 +17572,12 @@ msgstr "Pauzės metu, visą laiką rodyti info juostą"
 
 msgid "Show picon background color"
 msgstr "Rodyti piktogramos fono spalvą"
+
+msgid "Show picons in quickzap"
+msgstr "rodyti logotipus greitame jungime"
+
+msgid "Show picons in service list"
+msgstr "kanalų pasirinkimo sąraše rodyti kanalų logotipus"
 
 msgid "Show picture information"
 msgstr ""
@@ -23475,12 +23484,6 @@ msgstr "rodyti korteles su uphop 8"
 
 msgid "show cards with uphop 9"
 msgstr "rodyti korteles su uphop 9"
-
-msgid "Show picons in quickzap"
-msgstr "rodyti logotipus greitame jungime"
-
-msgid "Show picons in service list"
-msgstr "kanalų pasirinkimo sąraše rodyti kanalų logotipus"
 
 msgid "show program information..."
 msgstr "rodyti programos informaciją..."
