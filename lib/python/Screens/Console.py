@@ -242,14 +242,14 @@ class ConsoleScrollLabel(ScrollLabel):
 			match attribute:
 				case "commandColor":
 					self.skinAttributes.remove((attribute, value))
-					self.commandColor = f"\c{parseColor(value, 0x00FFFF00).argb():08X}"
+					self.commandColor = rf"\c{parseColor(value, 0x00FFFF00).argb():08X}"
 				case "scriptColor":
 					self.skinAttributes.remove((attribute, value))
-					self.scriptColor = f"\c{parseColor(value, 0x0000FFFF).argb():08X}"
+					self.scriptColor = rf"\c{parseColor(value, 0x0000FFFF).argb():08X}"
 		return ScrollLabel.applySkin(self, desktop, parent)
 
 	def getColors(self):
-		defaultColor = f"\c{self.getForegroundColor():08X}"
+		defaultColor = rf"\c{self.getForegroundColor():08X}"
 		commandColorStart = self.commandColor if hasattr(self, "commandColor") else ""
 		commandColorEnd = defaultColor if commandColorStart else ""
 		scriptColorStart = self.scriptColor if hasattr(self, "scriptColor") else ""
