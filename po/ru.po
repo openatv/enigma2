@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-24 15:20+0000\n"
+"POT-Creation-Date: 2024-07-29 19:27+0000\n"
 "PO-Revision-Date: 2024-07-25 08:42+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
@@ -2284,9 +2284,6 @@ msgstr "[Альтернативное редактирование]"
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr "Альтернативные URL для DVB-T/C или ATSC"
 
-msgid "Alternative numbering mode"
-msgstr "Альтернативный режим нумерации"
-
 msgid "Alternative radio mode"
 msgstr "Альтернативный радио режим"
 
@@ -3126,6 +3123,9 @@ msgstr "Действия навигации по выбору букетов"
 
 msgid "Bouquets"
 msgstr "Букеты"
+
+msgid "Bouquets start at 1"
+msgstr ""
 
 msgid "Bouvet Island"
 msgstr "Остров Буве"
@@ -7466,11 +7466,20 @@ msgstr ""
 "Ошибка получения ссылки через %s\n"
 "%s"
 
+msgid "Error moving 'epg.dat' to its destination!"
+msgstr "Ошибка при перемещении epg.dat в место назначения"
+
 msgid "Error opening recording file"
 msgstr "Ошибка открытия файла записи"
 
 msgid "Error reading webpage!"
 msgstr "Ошибка чтения страницы!"
+
+msgid "Error retrieving 'epg.dat' from the remote receiver!"
+msgstr "Ошибка при извлечении epg.dat из резервного ресивера"
+
+msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
+msgstr "Ошибка при получении местоположения epg.dat на резервном ресивере"
 
 msgid "Error text:"
 msgstr "Текст ошибки:"
@@ -7478,15 +7487,6 @@ msgstr "Текст ошибки:"
 #, python-format
 msgid "Error unzipping image '%s'!"
 msgstr "Ошибка при распаковке имиджа '%s'!"
-
-msgid "Error writing 'epg.dat' on the remote receiver!"
-msgstr "Ошибка при записи epg.dat на резервный ресивер"
-
-msgid "Error moving 'epg.dat' to its destination!"
-msgstr "Ошибка при перемещении epg.dat в место назначения"
-
-msgid "Error retrieving 'epg.dat' from the remote receiver!"
-msgstr "Ошибка при извлечении epg.dat из резервного ресивера"
 
 #, python-format
 msgid ""
@@ -7496,8 +7496,11 @@ msgstr ""
 "Ошибка получения информации о резервных таймерах\n"
 "%s"
 
-msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
-msgstr "Ошибка при получении местоположения epg.dat на резервном ресивере"
+msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
+msgstr ""
+
+msgid "Error writing 'epg.dat' on the remote receiver!"
+msgstr "Ошибка при записи epg.dat на резервный ресивер"
 
 msgid "Error, unknown Result!"
 msgstr "Ошибка, неизвестный результат!"
@@ -9506,10 +9509,6 @@ msgstr "Импортировать каналы и/или EPG из удален�
 msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
 msgstr "Импортировать каналы/EPG после рестарта enigma2"
 
-#, python-format
-msgid "Import from remote receiver failed, %s!"
-msgstr "Импорт из резервного тюнера не удался, %s"
-
 msgid "Import from remote receiver URL"
 msgstr "Импорт из URL удаленного ресивера"
 
@@ -10173,6 +10172,9 @@ msgstr "Скорость прокрутки на LCD"
 
 msgid "LCD/Front panel *"
 msgstr "ЖК-дисплей/Передняя панель *"
+
+msgid "LCN numbering"
+msgstr ""
 
 msgid "LCN plugin for DVB-T/T2 services"
 msgstr "LCN-плагин для каналов DVB-T/T2"
@@ -11233,6 +11235,9 @@ msgstr "Перейти вниз на страницу/экран"
 msgid "Move down a screen"
 msgstr "Переместиться вниз по экрану"
 
+msgid "Move down a screen / Move to next item"
+msgstr ""
+
 msgid "Move down a screen in the panel"
 msgstr "Перейти на экран вниз в панели"
 
@@ -11378,11 +11383,17 @@ msgstr "Перейти к последней строке/экрану"
 msgid "Move to the next category in the list"
 msgstr "Перейти к следующей категории в списке"
 
+msgid "Move to the next item"
+msgstr ""
+
 msgid "Move to the next item in the list"
 msgstr "Перейти к следующему элементу в списке"
 
 msgid "Move to the previous category in the list"
 msgstr "Перейти к предыдущей категории в списке"
+
+msgid "Move to the previous item"
+msgstr ""
 
 msgid "Move to the previous item in list"
 msgstr "Перейти к предыдущему элементу в списке"
@@ -11401,6 +11412,9 @@ msgstr "Перейти вверх на страницу/экран"
 
 msgid "Move up a screen"
 msgstr "Переместиться вверх по экрану"
+
+msgid "Move up a screen / Move to previous item"
+msgstr ""
 
 msgid "Move up a screen in the panel"
 msgstr "Перейти на экран вверх в панели"
@@ -11890,6 +11904,9 @@ msgstr "Ниуэ"
 msgid "No"
 msgstr "Нет"
 
+msgid "No 'epg.dat' file found on the remote receiver!"
+msgstr "Файл epg.dat на резервном ресивере не найден"
+
 msgid "No (supported) DVDROM found!"
 msgstr "Не найден (Поддерживаемый) DVDROM!"
 
@@ -11953,9 +11970,6 @@ msgstr "Нет отображаемых файлов на этом носите�
 
 msgid "No entry in lcn db. Please do a service scan."
 msgstr "Файл lcn db пуст. Пожалуйста выполните поиск каналов."
-
-msgid "No 'epg.dat' file found on the remote receiver!"
-msgstr "Файл epg.dat на резервном ресивере не найден"
 
 msgid "No error"
 msgstr "Нет ошибки"
@@ -12292,6 +12306,9 @@ msgstr "Количество строк для отображения."
 
 msgid "Number or SMS style data entry"
 msgstr "Ввод данных в стиле номера или SMS"
+
+msgid "Numbering mode"
+msgstr ""
 
 msgid "OEM model"
 msgstr "OEM-модель"
@@ -15502,6 +15519,9 @@ msgstr "Выберите 'поляризацию', если использует
 msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
 msgstr "Выберите 'провайдер' для сканирования из предварительно определённого списка кабельных мультиплексов. Выберите 'группы', чтобы сканировать только определённые части спектра. Выберите 'шаги' для пошагового сканирования определённой полосы частот."
 
+msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
+msgstr ""
+
 msgid "Select 'Yes' if an end time is required for this timer."
 msgstr "Выберите 'Да', если для этого таймера требуется время окончания."
 
@@ -17201,9 +17221,6 @@ msgstr "Показать информацию"
 
 msgid "Show Kernel packages"
 msgstr "Показать пакеты ядра"
-
-msgid "Show LCN in channel selection"
-msgstr "Показать LCN при выборе канала"
 
 msgid "Show Live in MiniTV"
 msgstr "MiniTV в главном меню"
@@ -20824,6 +20841,9 @@ msgstr "Unicable Matrix"
 msgid "Uninstall"
 msgstr "Удалить"
 
+msgid "Unique numbering"
+msgstr ""
+
 msgid "United Arab Emirates"
 msgstr "ОАЭ"
 
@@ -22015,9 +22035,6 @@ msgstr "Если этот параметр включен, всегда деск
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Если включено, требуется аутентификация для просмотра HTTP потока."
 
-msgid "When enabled, channel numbering will start at '1' for each bouquet."
-msgstr "Если включено, нумерация каналов в каждом фаворитном списке будет начинаться с '1'."
-
 msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
 msgstr "Если эта функция включена, содержимое с соотношением сторон 4:3 будет растягиваться в соответствии с размером экрана."
 
@@ -22056,9 +22073,6 @@ msgstr "Если включено, нажатие кнопки '0' перекл�
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Если включено, субтитры будут форматироваться в соответствии с текущей шириной экрана."
-
-msgid "When enabled, show LCN in the channel selection screen."
-msgstr "Если включено, отображать LCN на экране выбора канала."
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Если включено, показывается номер канала в окне выбора каналов."
@@ -23768,6 +23782,22 @@ msgstr "Да (оставить фиды)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Alternative numbering mode"
+#~ msgstr "Альтернативный режим нумерации"
+
+#, python-format
+#~ msgid "Import from remote receiver failed, %s!"
+#~ msgstr "Импорт из резервного тюнера не удался, %s"
+
+#~ msgid "Show LCN in channel selection"
+#~ msgstr "Показать LCN при выборе канала"
+
+#~ msgid "When enabled, channel numbering will start at '1' for each bouquet."
+#~ msgstr "Если включено, нумерация каналов в каждом фаворитном списке будет начинаться с '1'."
+
+#~ msgid "When enabled, show LCN in the channel selection screen."
+#~ msgstr "Если включено, отображать LCN на экране выбора канала."
 
 #~ msgid "Installing feeds from IPK ..."
 #~ msgstr "Установка фидов из IPK ..."

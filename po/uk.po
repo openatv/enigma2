@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-24 15:20+0000\n"
-"PO-Revision-Date: 2024-07-25 08:42+0000\n"
+"POT-Creation-Date: 2024-07-29 19:27+0000\n"
+"PO-Revision-Date: 2024-07-30 17:04+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -1228,7 +1228,7 @@ msgstr "%s вимкнено."
 
 #, python-format
 msgid "%s imported from remote receiver."
-msgstr "%s імпортовано з резервного тюнера"
+msgstr "%s імпортовано з резервного тюнера."
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -2287,9 +2287,6 @@ msgstr "[редагування вибраного]"
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr "Альтернативні URL-адреси для DVB-T/C, або ATSC"
 
-msgid "Alternative numbering mode"
-msgstr "Альтернативний режим нумерації"
-
 msgid "Alternative radio mode"
 msgstr "Альтернативний радіо режим"
 
@@ -3129,6 +3126,9 @@ msgstr "Навігація у Селекторі фаворитів"
 
 msgid "Bouquets"
 msgstr "Фаворити"
+
+msgid "Bouquets start at 1"
+msgstr "Фаворити починаються з 1"
 
 msgid "Bouvet Island"
 msgstr "Острів Буве"
@@ -7469,11 +7469,20 @@ msgstr ""
 "Помилка отримання посилання через %s\n"
 "%s"
 
+msgid "Error moving 'epg.dat' to its destination!"
+msgstr "Помилка під час переміщення 'epg.dat' до місця призначення!"
+
 msgid "Error opening recording file"
 msgstr "Помилка відкриття файлу запису"
 
 msgid "Error reading webpage!"
 msgstr "Помилка читання веб-сторінки!"
+
+msgid "Error retrieving 'epg.dat' from the remote receiver!"
+msgstr "Помилка під час отримання 'epg.dat' із резервного приймача!"
+
+msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
+msgstr "Помилка під час отримання розташування 'epg.dat' на резервному приймачі!"
 
 msgid "Error text:"
 msgstr "Текст помилки:"
@@ -7481,15 +7490,6 @@ msgstr "Текст помилки:"
 #, python-format
 msgid "Error unzipping image '%s'!"
 msgstr "Помилка розархівування іміджу '%s'!"
-
-msgid "Error writing 'epg.dat' on the remote receiver!"
-msgstr "Помилка під час запису epg.dat на резервний приймач"
-
-msgid "Error moving 'epg.dat' to its destination!"
-msgstr "Помилка під час переміщення epg.dat до місця призначення"
-
-msgid "Error retrieving 'epg.dat' from the remote receiver!"
-msgstr "Помилка під час отримання epg.dat із резервного приймача"
 
 #, python-format
 msgid ""
@@ -7499,8 +7499,11 @@ msgstr ""
 "Помилка під час отримання інформації про резервний таймер\n"
 "%s"
 
-msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
-msgstr "Помилка під час отримання розташування epg.dat на резервному приймачі"
+msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
+msgstr "Помилка запису '/etc/enigma2/epg.dat' на віддаленому приймачі!"
+
+msgid "Error writing 'epg.dat' on the remote receiver!"
+msgstr "Помилка під час запису 'epg.dat' на резервний приймач!"
 
 msgid "Error, unknown Result!"
 msgstr "Помилка, невідомий результат!"
@@ -9509,10 +9512,6 @@ msgstr "Імпортуйте канали та/або EPG із URL-адреси 
 msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
 msgstr "Імпортуйте канали та/або EPG із URL-адреси при перезапуску приймача або enigma2"
 
-#, python-format
-msgid "Import from remote receiver failed, %s!"
-msgstr "Не вдалося імпортувати з резервного тюнера, %s"
-
 msgid "Import from remote receiver URL"
 msgstr "Імпорт із URL-адреси віддаленого приймача"
 
@@ -10176,6 +10175,9 @@ msgstr "Швидкість прокрутки на LCD"
 
 msgid "LCD/Front panel *"
 msgstr "LCD/Передня панель *"
+
+msgid "LCN numbering"
+msgstr "Нумерація LCN"
 
 msgid "LCN plugin for DVB-T/T2 services"
 msgstr "Додаток LCN для послуг DVB-T / T2"
@@ -11236,6 +11238,9 @@ msgstr "Перейти вниз на сторінку/екран"
 msgid "Move down a screen"
 msgstr "Переміщення вниз по вікну"
 
+msgid "Move down a screen / Move to next item"
+msgstr "Перейти на екран вниз / Перейти до наступного пункту"
+
 msgid "Move down a screen in the panel"
 msgstr "Перемістіть екран вниз на панелі"
 
@@ -11381,11 +11386,17 @@ msgstr "Перейти до останнього рядка / екрану"
 msgid "Move to the next category in the list"
 msgstr "Перейти до наступної категорії в списку"
 
+msgid "Move to the next item"
+msgstr "Перейти до наступного пункту"
+
 msgid "Move to the next item in the list"
 msgstr "Перехід до наступного елемента в списку"
 
 msgid "Move to the previous category in the list"
 msgstr "Перейти до попередньої категорії в списку"
+
+msgid "Move to the previous item"
+msgstr "Перейти до попереднього пункту"
 
 msgid "Move to the previous item in list"
 msgstr "Перейти до попереднього елемента в списку"
@@ -11404,6 +11415,9 @@ msgstr "Перейти вверх на сторінку/екран"
 
 msgid "Move up a screen"
 msgstr "Переміститися на екран вгору"
+
+msgid "Move up a screen / Move to previous item"
+msgstr "Перейти на екран вгору / Перейти до попереднього пункту"
 
 msgid "Move up a screen in the panel"
 msgstr "Переміщення на екран панелі вгору"
@@ -11893,6 +11907,9 @@ msgstr "Niue"
 msgid "No"
 msgstr "Ні"
 
+msgid "No 'epg.dat' file found on the remote receiver!"
+msgstr "На резервному приймачі не знайдено файлу 'epg.dat'!"
+
 msgid "No (supported) DVDROM found!"
 msgstr "Ніякого (сумісного) DVDROM привода не знайдено!"
 
@@ -11956,9 +11973,6 @@ msgstr "Потрібних файлів на цьому носії не знай
 
 msgid "No entry in lcn db. Please do a service scan."
 msgstr "Відсутній запис в lcn db. Зробіть сканування каналів."
-
-msgid "No 'epg.dat' file found on the remote receiver!"
-msgstr "На резервному приймачі не знайдено файлу epg.dat"
 
 msgid "No error"
 msgstr "Немає помилок"
@@ -12295,6 +12309,9 @@ msgstr "Кількість рядків для відображення."
 
 msgid "Number or SMS style data entry"
 msgstr "Введення даних по номеру, як SMS"
+
+msgid "Numbering mode"
+msgstr "Режим нумерації"
 
 msgid "OEM model"
 msgstr "Модель OEM"
@@ -15505,6 +15522,9 @@ msgstr "Виберіть 'поляризацію', якщо використов
 msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
 msgstr "Виберіть 'провайдер' для сканування з попередньо визначеного списку кабельних операторів. Виберіть 'смуга', щоб сканувати лише частину частот. Виберіть 'крок' для сканування з певним кроком смуги частот."
 
+msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
+msgstr "Виберіть 'Унікальна нумерація', щоб призначити унікальні номери для кожного каналу в кожному фавориті. Використовуйте 'Фаворити починаються з 1', щоб почати нумерацію кожного фаворита з 1. Використовуйте 'Нумерацію LCN', щоб використовувати послідовні LCN канали, де б ці канали не використовувалися."
+
 msgid "Select 'Yes' if an end time is required for this timer."
 msgstr "Виберіть 'Так', якщо для цього таймера потрібен час завершення."
 
@@ -17204,9 +17224,6 @@ msgstr "Показати Інформацію"
 
 msgid "Show Kernel packages"
 msgstr "Показати пакети ядра"
-
-msgid "Show LCN in channel selection"
-msgstr "Показати LCN у виборі каналу"
 
 msgid "Show Live in MiniTV"
 msgstr "Показати передачу в PіG-вікні"
@@ -19092,7 +19109,7 @@ msgid "TMDB Search"
 msgstr "TMDB Пошук"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 15.07.2024"
+msgstr "Переклад: kvinto - 30.07.2024"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -20827,6 +20844,9 @@ msgstr "Unicable Matrix"
 msgid "Uninstall"
 msgstr "Видалити"
 
+msgid "Unique numbering"
+msgstr "Унікальна нумерація"
+
 msgid "United Arab Emirates"
 msgstr "Об'єднані Арабські Емірати"
 
@@ -22018,9 +22038,6 @@ msgstr "Якщо включено, завжди розшифровується �
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Якщо включено, потрібна авторизація для перегляду http потоків."
 
-msgid "When enabled, channel numbering will start at '1' for each bouquet."
-msgstr "Якщо включено, нумерація каналів в кожному фаворитному списку буде починатися з '1'."
-
 msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
 msgstr "Якщо включено, зображення із співвідношенням сторін 4:3 буде розтягнуто до розмірів екрану."
 
@@ -22059,9 +22076,6 @@ msgstr "Якщо включено, натискання кнопки '0' пер�
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Якщо включено, субтитри будуть форматуватися відповідно до поточної ширини екрану."
-
-msgid "When enabled, show LCN in the channel selection screen."
-msgstr "Коли ввімкнено, показати LCN на екрані вибору каналу."
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Якщо включено, показується номер каналу у вікні вибору каналів."
@@ -23771,6 +23785,22 @@ msgstr "так (зберігати фіди)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Alternative numbering mode"
+#~ msgstr "Альтернативний режим нумерації"
+
+#, python-format
+#~ msgid "Import from remote receiver failed, %s!"
+#~ msgstr "Не вдалося імпортувати з резервного тюнера, %s"
+
+#~ msgid "Show LCN in channel selection"
+#~ msgstr "Показати LCN у виборі каналу"
+
+#~ msgid "When enabled, channel numbering will start at '1' for each bouquet."
+#~ msgstr "Якщо включено, нумерація каналів в кожному фаворитному списку буде починатися з '1'."
+
+#~ msgid "When enabled, show LCN in the channel selection screen."
+#~ msgstr "Коли ввімкнено, показати LCN на екрані вибору каналу."
 
 #~ msgid "Installing feeds from IPK ..."
 #~ msgstr "Встановлення IPK з фідів..."

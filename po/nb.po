@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-24 15:20+0000\n"
+"POT-Creation-Date: 2024-07-29 19:27+0000\n"
 "PO-Revision-Date: 2021-08-19 14:13+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nb_NO/>\n"
@@ -2231,9 +2231,6 @@ msgstr "[rediger]"
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr "Alternative nettadresser for DVB-T/C eller ATSC"
 
-msgid "Alternative numbering mode"
-msgstr "Alternativt nummervalg"
-
 msgid "Alternative radio mode"
 msgstr ""
 
@@ -3068,6 +3065,9 @@ msgid "Bouquet Selector Navigation Actions"
 msgstr ""
 
 msgid "Bouquets"
+msgstr ""
+
+msgid "Bouquets start at 1"
 msgstr ""
 
 msgid "Bouvet Island"
@@ -7341,10 +7341,19 @@ msgid ""
 "%s"
 msgstr ""
 
+msgid "Error moving 'epg.dat' to its destination!"
+msgstr ""
+
 msgid "Error opening recording file"
 msgstr ""
 
 msgid "Error reading webpage!"
+msgstr ""
+
+msgid "Error retrieving 'epg.dat' from the remote receiver!"
+msgstr ""
+
+msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
 msgstr ""
 
 msgid "Error text:"
@@ -7352,15 +7361,6 @@ msgstr ""
 
 #, python-format
 msgid "Error unzipping image '%s'!"
-msgstr ""
-
-msgid "Error writing 'epg.dat' on the remote receiver!"
-msgstr ""
-
-msgid "Error moving 'epg.dat' to its destination!"
-msgstr ""
-
-msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr ""
 
 #, python-format
@@ -7371,7 +7371,10 @@ msgstr ""
 "Feil under henting av reserve timer informasjon\n"
 "%s"
 
-msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
+msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
+msgstr ""
+
+msgid "Error writing 'epg.dat' on the remote receiver!"
 msgstr ""
 
 msgid "Error, unknown Result!"
@@ -9369,10 +9372,6 @@ msgstr "Importer kanaler og/eller EPG fra ekstern mottakeradresse når mottakere
 msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
 msgstr "Importer kanaler og/eller EPG fra ekstern mottakeradresse når mottakeren eller enigma2 har startet på nytt"
 
-#, python-format
-msgid "Import from remote receiver failed, %s!"
-msgstr ""
-
 msgid "Import from remote receiver URL"
 msgstr "Importer fra ekstern mottakeradresse"
 
@@ -10029,6 +10028,9 @@ msgid "LCD scroll speed"
 msgstr ""
 
 msgid "LCD/Front panel *"
+msgstr ""
+
+msgid "LCN numbering"
 msgstr ""
 
 msgid "LCN plugin for DVB-T/T2 services"
@@ -11087,6 +11089,9 @@ msgstr ""
 msgid "Move down a screen"
 msgstr ""
 
+msgid "Move down a screen / Move to next item"
+msgstr ""
+
 msgid "Move down a screen in the panel"
 msgstr ""
 
@@ -11232,10 +11237,16 @@ msgstr ""
 msgid "Move to the next category in the list"
 msgstr ""
 
+msgid "Move to the next item"
+msgstr ""
+
 msgid "Move to the next item in the list"
 msgstr ""
 
 msgid "Move to the previous category in the list"
+msgstr ""
+
+msgid "Move to the previous item"
 msgstr ""
 
 msgid "Move to the previous item in list"
@@ -11254,6 +11265,9 @@ msgid "Move up a page / screen"
 msgstr ""
 
 msgid "Move up a screen"
+msgstr ""
+
+msgid "Move up a screen / Move to previous item"
 msgstr ""
 
 msgid "Move up a screen in the panel"
@@ -11741,6 +11755,9 @@ msgstr "Niue"
 msgid "No"
 msgstr "Nei"
 
+msgid "No 'epg.dat' file found on the remote receiver!"
+msgstr ""
+
 msgid "No (supported) DVDROM found!"
 msgstr "Ingen (støttet) DVD-ROM funnet!"
 
@@ -11800,9 +11817,6 @@ msgid "No displayable files on this medium found!"
 msgstr "Ingen visbare filer på dette mediet funnet!"
 
 msgid "No entry in lcn db. Please do a service scan."
-msgstr ""
-
-msgid "No 'epg.dat' file found on the remote receiver!"
 msgstr ""
 
 msgid "No error"
@@ -12131,6 +12145,9 @@ msgstr ""
 
 msgid "Number or SMS style data entry"
 msgstr "Tall eller SMS-stil"
+
+msgid "Numbering mode"
+msgstr ""
 
 msgid "OEM model"
 msgstr ""
@@ -15325,6 +15342,9 @@ msgstr "Velg 'polarisering' hvis du bruker en universal LNB ellers les din LNB b
 msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
 msgstr "Velg \"leverandør\" for å skanne fra den forhåndsdefinerte listen over kabel multiplekser. Velg \"bånd\" for å bare skanne bestemte deler av spekteret. Velg \"trinn\" for å skanne i trinn med en bestemt frekvensbåndbredde."
 
+msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
+msgstr ""
+
 msgid "Select 'Yes' if an end time is required for this timer."
 msgstr ""
 
@@ -16996,9 +17016,6 @@ msgid "Show Information"
 msgstr ""
 
 msgid "Show Kernel packages"
-msgstr ""
-
-msgid "Show LCN in channel selection"
 msgstr ""
 
 msgid "Show Live in MiniTV"
@@ -20535,6 +20552,9 @@ msgstr ""
 msgid "Uninstall"
 msgstr ""
 
+msgid "Unique numbering"
+msgstr ""
+
 msgid "United Arab Emirates"
 msgstr "Arabiske Emirater"
 
@@ -21677,9 +21697,6 @@ msgstr ""
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Hvis aktivert, vil autentisering kreves for å se på http strømmer."
 
-msgid "When enabled, channel numbering will start at '1' for each bouquet."
-msgstr "Hvis aktivert, vil kanal nummer starte på '1' i hver enkelt kanalliste."
-
 msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
 msgstr "Hvis aktivert, vil et 4:3 bilde strekkes ut for å tilpasse seg skjermen."
 
@@ -21718,9 +21735,6 @@ msgstr ""
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Hvis aktivert, vil undertekst tilpasses skjermbredden."
-
-msgid "When enabled, show LCN in the channel selection screen."
-msgstr ""
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Hvis aktivert, vil kanal nummer vises i kanallistene."
@@ -23393,6 +23407,12 @@ msgstr "ja (behold feeder)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Alternative numbering mode"
+#~ msgstr "Alternativt nummervalg"
+
+#~ msgid "When enabled, channel numbering will start at '1' for each bouquet."
+#~ msgstr "Hvis aktivert, vil kanal nummer starte på '1' i hver enkelt kanalliste."
 
 #~ msgid "URL of fallback remote receiver."
 #~ msgstr "URL for ekstra eksternmottaker"

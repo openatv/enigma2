@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-24 15:20+0000\n"
-"PO-Revision-Date: 2024-07-26 22:09+0000\n"
+"POT-Creation-Date: 2024-07-29 19:27+0000\n"
+"PO-Revision-Date: 2024-07-31 15:37+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
@@ -1222,7 +1222,7 @@ msgstr "%s byl zakázán."
 
 #, python-format
 msgid "%s imported from remote receiver."
-msgstr "%s importováno ze záložního tuneru"
+msgstr "%s importováno ze záložního tuneru."
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -2281,9 +2281,6 @@ msgstr "[ÚPRAVA ALTERNATIV]"
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr "Alternativní záložní přijímače pro DVB-T/C nebo ATSC"
 
-msgid "Alternative numbering mode"
-msgstr "Alternativní způsob číslování"
-
 msgid "Alternative radio mode"
 msgstr "Alternativní radio mód"
 
@@ -3123,6 +3120,9 @@ msgstr "Akce navigace pro výběr přehledu"
 
 msgid "Bouquets"
 msgstr "Seznamy"
+
+msgid "Bouquets start at 1"
+msgstr "Seznamy začínají od 1"
 
 msgid "Bouvet Island"
 msgstr "Bouvetův ostrov"
@@ -7463,11 +7463,20 @@ msgstr ""
 "Chyba při získávání odkazu přes %s\n"
 "%s"
 
+msgid "Error moving 'epg.dat' to its destination!"
+msgstr "Chyba při přesunu souboru epg.dat na místo určení!"
+
 msgid "Error opening recording file"
 msgstr "Chyba při otevírání souboru záznamu"
 
 msgid "Error reading webpage!"
 msgstr "Chyba načtení webu!"
+
+msgid "Error retrieving 'epg.dat' from the remote receiver!"
+msgstr "Chyba při načítání 'epg.dat' ze vzdáleného přijímače!"
+
+msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
+msgstr "Chyba při načítání umístění 'epg.dat' na vzdáleném přijímači!"
 
 msgid "Error text:"
 msgstr "Text chyby:"
@@ -7475,15 +7484,6 @@ msgstr "Text chyby:"
 #, python-format
 msgid "Error unzipping image '%s'!"
 msgstr "Chyba při rozbalování obrazu '%s'!"
-
-msgid "Error writing 'epg.dat' on the remote receiver!"
-msgstr "Chyba při zápisu epg.dat na záložním přijímači"
-
-msgid "Error moving 'epg.dat' to its destination!"
-msgstr "Při přesouvání souboru epg.dat do cíle došlo k chybě"
-
-msgid "Error retrieving 'epg.dat' from the remote receiver!"
-msgstr "Chyba při načítání souboru epg.dat ze záložního přijímače"
 
 #, python-format
 msgid ""
@@ -7493,8 +7493,11 @@ msgstr ""
 "Chyba při získávání informací ze záložního časovače\n"
 "%s"
 
-msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
-msgstr "Chyba při načítání umístění epg.dat na záložním přijímači"
+msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
+msgstr "Chyba při zápisu '/etc/enigma2/epg.dat' na vzdáleném přijímači!"
+
+msgid "Error writing 'epg.dat' on the remote receiver!"
+msgstr "Chyba při zápisu 'epg.dat' na vzdáleném přijímači!"
 
 msgid "Error, unknown Result!"
 msgstr "Chyba, neznámý výsledek!"
@@ -9503,10 +9506,6 @@ msgstr "Ze záložního přijímače se importují programy a/nebo EPG po spušt
 msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
 msgstr "Ze záložního přijímače se importují programy a/nebo EPG také v případě, že jsou přijímač nebo enigma2 zrestartovány"
 
-#, python-format
-msgid "Import from remote receiver failed, %s!"
-msgstr "Import ze záložního tuneru se nezdařil, %s"
-
 msgid "Import from remote receiver URL"
 msgstr "Importovat ze záložního přijímače"
 
@@ -10170,6 +10169,9 @@ msgstr "Rychlost rolování LCD"
 
 msgid "LCD/Front panel *"
 msgstr "LCD/přední panel *"
+
+msgid "LCN numbering"
+msgstr "Číslování LCN"
 
 msgid "LCN plugin for DVB-T/T2 services"
 msgstr "LCN plugin pro DVB-T/T2 služby"
@@ -11230,6 +11232,9 @@ msgstr "Posunout stránku/obrazovku dolů"
 msgid "Move down a screen"
 msgstr "Posunout obrazovku dolů"
 
+msgid "Move down a screen / Move to next item"
+msgstr "Posun o obrazovku dolů / přechod na další položku"
+
 msgid "Move down a screen in the panel"
 msgstr "Posunout se v panelu o obrazovku dolů"
 
@@ -11375,11 +11380,17 @@ msgstr "Přejít na poslední řádek / obrazovku"
 msgid "Move to the next category in the list"
 msgstr "Přejít na další kategorii v seznamu"
 
+msgid "Move to the next item"
+msgstr "Přejděte na další položku"
+
 msgid "Move to the next item in the list"
 msgstr "Přejít na další položku v seznamu"
 
 msgid "Move to the previous category in the list"
 msgstr "Přejít na předchozí kategorii v seznamu"
+
+msgid "Move to the previous item"
+msgstr "Přejít na předchozí položku"
 
 msgid "Move to the previous item in list"
 msgstr "Přejít na předchozí položku v seznamu"
@@ -11398,6 +11409,9 @@ msgstr "Posunout o stránku/obrazovku nahoru"
 
 msgid "Move up a screen"
 msgstr "Posunout o obrazovku nahoru"
+
+msgid "Move up a screen / Move to previous item"
+msgstr "Posun o obrazovku nahoru / přechod na předchozí položku"
 
 msgid "Move up a screen in the panel"
 msgstr "Posunout se v panelu o obrazovku nahoru"
@@ -11887,6 +11901,9 @@ msgstr "Niue"
 msgid "No"
 msgstr "Ne"
 
+msgid "No 'epg.dat' file found on the remote receiver!"
+msgstr "Na vzdáleném přijímači nebyl nalezen žádný soubor 'epg.dat'!"
+
 msgid "No (supported) DVDROM found!"
 msgstr "Nenalezena žádná (podporovaná) DVDROM!"
 
@@ -11950,9 +11967,6 @@ msgstr "Žádné zobrazitelné soubory na tomto médiu nebyly nalezeny!"
 
 msgid "No entry in lcn db. Please do a service scan."
 msgstr "Žádný záznam v lcn db. Proveďte prosím servisní sken."
-
-msgid "No 'epg.dat' file found on the remote receiver!"
-msgstr "Na záložním přijímači nebyl nalezen žádný soubor epg.dat"
 
 msgid "No error"
 msgstr "Bez chyby"
@@ -12289,6 +12303,9 @@ msgstr "Počet zobrazených řádků."
 
 msgid "Number or SMS style data entry"
 msgstr "Zadání dat ve stylu čísla nebo SMS"
+
+msgid "Numbering mode"
+msgstr "Režim číslování"
 
 msgid "OEM model"
 msgstr "OEM model"
@@ -15499,6 +15516,9 @@ msgstr "Pokud používáte 'univerzální' LNB, zvolte 'polarizaci', v opačném
 msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
 msgstr "Vyberte 'poskytovatele' pro skenování z předdefinovaného seznamu kabelových multiplexů. Chcete-li skenovat pouze určité části spektra, vyberte „pásma“. Vyberte „kroky“ pro skenování v krocích určité šířky frekvenčního pásma."
 
+msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
+msgstr "Vyberte 'Unikátní číslování' pro přiřazení jedinečných čísel pro každou službu v každém seznamu. Použijte 'Seznamy začínají na 1', chcete-li začít číslovat každý seznam od 1. Použijte 'Číslování LCN' k použití konzistentních LCN služeb, kdekoli se tato služba používá."
+
 msgid "Select 'Yes' if an end time is required for this timer."
 msgstr "Vyberte „Ano“, pokud je pro tento časovač vyžadován čas ukončení."
 
@@ -17198,9 +17218,6 @@ msgstr "Zobrazit informace"
 
 msgid "Show Kernel packages"
 msgstr "Zobrazit balíčky jádra"
-
-msgid "Show LCN in channel selection"
-msgstr "Zobrazit LCN ve výběru kanálu"
 
 msgid "Show Live in MiniTV"
 msgstr "Zobrazit živé vysílání v MiniTV"
@@ -20821,6 +20838,9 @@ msgstr "Unicable matice"
 msgid "Uninstall"
 msgstr "Odinstalovat"
 
+msgid "Unique numbering"
+msgstr "Jedinečné číslování"
+
 msgid "United Arab Emirates"
 msgstr "Spojené arabské emiráty"
 
@@ -22012,9 +22032,6 @@ msgstr "Pokud je tato možnost povolena, vždy dekódujte příjem http streamů
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Při povolení bude vyžadováno ověření dohledu http streamů."
 
-msgid "When enabled, channel numbering will start at '1' for each bouquet."
-msgstr "Při povolení bude číslování kanálů začínat pro každý přehled od čísla '1'."
-
 msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
 msgstr "Jestliže je povoleno, pak obsah s poměrem stran 4:3 bude roztažen na celou obrazovku."
 
@@ -22053,9 +22070,6 @@ msgstr "Je-li povoleno, stisknutím '0' přepnete na první kanál ve vašem prv
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Pokud je toto povoleno tak budou titulky formátovány tak aby odpovídaly šířce obrazovky."
-
-msgid "When enabled, show LCN in the channel selection screen."
-msgstr "Je-li povoleno, zobrazí se na obrazovce výběru kanálu LCN."
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Při povolení zobrazuje čísla kanálů ve výběru programů."
@@ -23765,6 +23779,22 @@ msgstr "ano (uchovat zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Alternative numbering mode"
+#~ msgstr "Alternativní způsob číslování"
+
+#, python-format
+#~ msgid "Import from remote receiver failed, %s!"
+#~ msgstr "Import ze záložního tuneru se nezdařil, %s"
+
+#~ msgid "Show LCN in channel selection"
+#~ msgstr "Zobrazit LCN ve výběru kanálu"
+
+#~ msgid "When enabled, channel numbering will start at '1' for each bouquet."
+#~ msgstr "Při povolení bude číslování kanálů začínat pro každý přehled od čísla '1'."
+
+#~ msgid "When enabled, show LCN in the channel selection screen."
+#~ msgstr "Je-li povoleno, zobrazí se na obrazovce výběru kanálu LCN."
 
 #~ msgid "Installing feeds from IPK ..."
 #~ msgstr "Instalace zdrojů z IPK..."

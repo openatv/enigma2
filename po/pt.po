@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-24 15:20+0000\n"
+"POT-Creation-Date: 2024-07-29 19:27+0000\n"
 "PO-Revision-Date: 2024-03-28 13:02+0000\n"
 "Last-Translator: ssantos <ssantos@web.de>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pt/>\n"
@@ -2357,9 +2357,6 @@ msgstr "[edição alternativa]"
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr ""
 
-msgid "Alternative numbering mode"
-msgstr "Modo de numeração alternativo"
-
 msgid "Alternative radio mode"
 msgstr "Modo de rádio alternativo"
 
@@ -3247,6 +3244,9 @@ msgid "Bouquet Selector Navigation Actions"
 msgstr "Ações de navegação do seletor do Bouquet"
 
 msgid "Bouquets"
+msgstr ""
+
+msgid "Bouquets start at 1"
 msgstr ""
 
 msgid "Bouvet Island"
@@ -7733,10 +7733,19 @@ msgid ""
 "%s"
 msgstr ""
 
+msgid "Error moving 'epg.dat' to its destination!"
+msgstr ""
+
 msgid "Error opening recording file"
 msgstr ""
 
 msgid "Error reading webpage!"
+msgstr ""
+
+msgid "Error retrieving 'epg.dat' from the remote receiver!"
+msgstr ""
+
+msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
 msgstr ""
 
 msgid "Error text:"
@@ -7746,22 +7755,16 @@ msgstr ""
 msgid "Error unzipping image '%s'!"
 msgstr ""
 
-msgid "Error writing 'epg.dat' on the remote receiver!"
-msgstr ""
-
-msgid "Error moving 'epg.dat' to its destination!"
-msgstr ""
-
-msgid "Error retrieving 'epg.dat' from the remote receiver!"
-msgstr ""
-
 #, python-format
 msgid ""
 "Error while retrieving fallback timer information\n"
 "%s"
 msgstr ""
 
-msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
+msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
+msgstr ""
+
+msgid "Error writing 'epg.dat' on the remote receiver!"
 msgstr ""
 
 msgid "Error, unknown Result!"
@@ -9871,10 +9874,6 @@ msgstr ""
 msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
 msgstr ""
 
-#, python-format
-msgid "Import from remote receiver failed, %s!"
-msgstr ""
-
 msgid "Import from remote receiver URL"
 msgstr ""
 
@@ -10572,6 +10571,9 @@ msgid "LCD scroll speed"
 msgstr ""
 
 msgid "LCD/Front panel *"
+msgstr ""
+
+msgid "LCN numbering"
 msgstr ""
 
 msgid "LCN plugin for DVB-T/T2 services"
@@ -11701,6 +11703,9 @@ msgstr ""
 msgid "Move down a screen"
 msgstr ""
 
+msgid "Move down a screen / Move to next item"
+msgstr ""
+
 msgid "Move down a screen in the panel"
 msgstr ""
 
@@ -11849,10 +11854,16 @@ msgstr ""
 msgid "Move to the next category in the list"
 msgstr ""
 
+msgid "Move to the next item"
+msgstr ""
+
 msgid "Move to the next item in the list"
 msgstr ""
 
 msgid "Move to the previous category in the list"
+msgstr ""
+
+msgid "Move to the previous item"
 msgstr ""
 
 msgid "Move to the previous item in list"
@@ -11871,6 +11882,9 @@ msgid "Move up a page / screen"
 msgstr ""
 
 msgid "Move up a screen"
+msgstr ""
+
+msgid "Move up a screen / Move to previous item"
 msgstr ""
 
 msgid "Move up a screen in the panel"
@@ -12398,6 +12412,9 @@ msgstr ""
 msgid "No"
 msgstr "Não"
 
+msgid "No 'epg.dat' file found on the remote receiver!"
+msgstr ""
+
 #
 msgid "No (supported) DVDROM found!"
 msgstr "Nenhum DVDROM (suportado) encontrado!"
@@ -12467,9 +12484,6 @@ msgid "No displayable files on this medium found!"
 msgstr "Não foram encontrados ficheiros reproduzíveis!"
 
 msgid "No entry in lcn db. Please do a service scan."
-msgstr ""
-
-msgid "No 'epg.dat' file found on the remote receiver!"
 msgstr ""
 
 #
@@ -12836,6 +12850,9 @@ msgid "Number of rows to display."
 msgstr "Número de filas a mostrar."
 
 msgid "Number or SMS style data entry"
+msgstr ""
+
+msgid "Numbering mode"
 msgstr ""
 
 msgid "OEM model"
@@ -16259,6 +16276,9 @@ msgstr ""
 msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
 msgstr ""
 
+msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
+msgstr ""
+
 msgid "Select 'Yes' if an end time is required for this timer."
 msgstr ""
 
@@ -17984,9 +18004,6 @@ msgid "Show Information"
 msgstr "Mostrar informações"
 
 msgid "Show Kernel packages"
-msgstr ""
-
-msgid "Show LCN in channel selection"
 msgstr ""
 
 #
@@ -21736,6 +21753,9 @@ msgstr ""
 msgid "Uninstall"
 msgstr ""
 
+msgid "Unique numbering"
+msgstr ""
+
 msgid "United Arab Emirates"
 msgstr ""
 
@@ -22944,9 +22964,6 @@ msgstr ""
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Quando activado, é necessária autenticação para assistir a Streams HTTP."
 
-msgid "When enabled, channel numbering will start at '1' for each bouquet."
-msgstr "Quando activado, a numeração de canais começa em '1' para cada Bouquet."
-
 msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
 msgstr "Quando activado, o conteúdo com uma proporção de 4:3 será esticado para caber no ecrã."
 
@@ -22984,9 +23001,6 @@ msgid "When enabled, pressing '0' will zap you to the first channel in your firs
 msgstr ""
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
-msgstr ""
-
-msgid "When enabled, show LCN in the channel selection screen."
 msgstr ""
 
 msgid "When enabled, show channel numbers in the channel selection screen."
@@ -24816,6 +24830,12 @@ msgstr "sim (mantenha os feeds)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Alternative numbering mode"
+#~ msgstr "Modo de numeração alternativo"
+
+#~ msgid "When enabled, channel numbering will start at '1' for each bouquet."
+#~ msgstr "Quando activado, a numeração de canais começa em '1' para cada Bouquet."
 
 #~ msgid "Installing feeds from IPK ..."
 #~ msgstr "Instalar feeds do IPK ..."

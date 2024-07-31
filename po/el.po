@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-24 15:20+0000\n"
+"POT-Creation-Date: 2024-07-29 19:27+0000\n"
 "PO-Revision-Date: 2024-07-26 22:09+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -2250,9 +2250,6 @@ msgstr "[επεξεργασία εναλλακτικών]"
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr "Εναλλακτικές διευθύνσεις URL για DVB-T/C ή ATSC"
 
-msgid "Alternative numbering mode"
-msgstr "Εναλλακτική λειτουργία αρίθμησης"
-
 msgid "Alternative radio mode"
 msgstr "Εναλλακτική λειτουργία ραδιοφώνου"
 
@@ -3092,6 +3089,9 @@ msgstr "Ενέργειες πλοήγησης επιλογής μπουκέτο�
 
 msgid "Bouquets"
 msgstr "Μπουκέτα"
+
+msgid "Bouquets start at 1"
+msgstr ""
 
 msgid "Bouvet Island"
 msgstr "Μπουβέ"
@@ -7427,11 +7427,20 @@ msgstr ""
 "Σφάλμα λήψης συνδέσμου μέσω %s\n"
 "%s"
 
+msgid "Error moving 'epg.dat' to its destination!"
+msgstr "Σφάλμα κατά τη μετακίνηση του epg.dat στον προορισμό του"
+
 msgid "Error opening recording file"
 msgstr "Σφάλμα ανοίγματος αρχείου εγγραφής"
 
 msgid "Error reading webpage!"
 msgstr "Σφάλμα ανάγνωσης ιστοσελίδας!"
+
+msgid "Error retrieving 'epg.dat' from the remote receiver!"
+msgstr "Σφάλμα κατά την ανάκτηση του epg.dat από τον εφεδρικό δέκτη"
+
+msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
+msgstr "Σφάλμα κατά την ανάκτηση του epg.dat στον εφεδρικό δέκτη"
 
 msgid "Error text:"
 msgstr "Κείμενο σφάλματος:"
@@ -7439,15 +7448,6 @@ msgstr "Κείμενο σφάλματος:"
 #, python-format
 msgid "Error unzipping image '%s'!"
 msgstr "Σφάλμα αποσυμπίεσης του image '%s'!"
-
-msgid "Error writing 'epg.dat' on the remote receiver!"
-msgstr "Σφάλμα κατά την αποθήκευση του epg.dat στον εφεδρικό δέκτη"
-
-msgid "Error moving 'epg.dat' to its destination!"
-msgstr "Σφάλμα κατά τη μετακίνηση του epg.dat στον προορισμό του"
-
-msgid "Error retrieving 'epg.dat' from the remote receiver!"
-msgstr "Σφάλμα κατά την ανάκτηση του epg.dat από τον εφεδρικό δέκτη"
 
 #, python-format
 msgid ""
@@ -7457,8 +7457,11 @@ msgstr ""
 "Σφάλμα ανάκτησης πληροφοριών εφεδρικού χρονοδιακόπτη\n"
 "%s"
 
-msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
-msgstr "Σφάλμα κατά την ανάκτηση του epg.dat στον εφεδρικό δέκτη"
+msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
+msgstr ""
+
+msgid "Error writing 'epg.dat' on the remote receiver!"
+msgstr "Σφάλμα κατά την αποθήκευση του epg.dat στον εφεδρικό δέκτη"
 
 msgid "Error, unknown Result!"
 msgstr "Σφάλμα, άγνωστο αποτέλεσμα!"
@@ -9467,10 +9470,6 @@ msgstr "Εισαγωγή καναλιών ή/και EPG από τον εφεδρ
 msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
 msgstr "Εισαγωγή καναλιών ή/και EPG από την απομακρυσμένη URL δέκτη κατά την εκκίνηση του δέκτη ή του enigma2"
 
-#, python-format
-msgid "Import from remote receiver failed, %s!"
-msgstr ""
-
 msgid "Import from remote receiver URL"
 msgstr "Εισαγωγή από διεύθυνση URL απομακρυσμένου δέκτη"
 
@@ -10133,6 +10132,9 @@ msgstr "Ταχύτητα κύλισης LCD"
 
 msgid "LCD/Front panel *"
 msgstr "LCD/οθόνη πρόσοψης *"
+
+msgid "LCN numbering"
+msgstr ""
 
 msgid "LCN plugin for DVB-T/T2 services"
 msgstr "Πρόσθετο LCN για υπηρεσίες DVB-T/T2"
@@ -11192,6 +11194,9 @@ msgstr "Μετακίνηση μία σελίδα / οθόνη κάτω"
 msgid "Move down a screen"
 msgstr "Μετακίνηση μία οθόνη κάτω"
 
+msgid "Move down a screen / Move to next item"
+msgstr ""
+
 msgid "Move down a screen in the panel"
 msgstr "Μετακίνηση μία οθόνη κάτω στον πίνακα"
 
@@ -11337,11 +11342,17 @@ msgstr "Μετακίνηση στην τελευταία γραμμή / οθόν
 msgid "Move to the next category in the list"
 msgstr "Μετάβαση στην επόμενη κατηγορία στη λίστα"
 
+msgid "Move to the next item"
+msgstr ""
+
 msgid "Move to the next item in the list"
 msgstr "Μετάβαση στο επόμενο στοιχείο της λίστας"
 
 msgid "Move to the previous category in the list"
 msgstr "Μετάβαση στην προηγούμενη κατηγορία στη λίστα"
+
+msgid "Move to the previous item"
+msgstr ""
 
 msgid "Move to the previous item in list"
 msgstr "Μετάβαση στο προηγούμενο στοιχείο της λίστας"
@@ -11360,6 +11371,9 @@ msgstr "Μετακίνηση μία σελίδα / οθόνη επάνω"
 
 msgid "Move up a screen"
 msgstr "Μετακίνηση μία οθόνη επάνω"
+
+msgid "Move up a screen / Move to previous item"
+msgstr ""
 
 msgid "Move up a screen in the panel"
 msgstr "Μετακίνηση μία οθόνη επάνω στον πίνακα"
@@ -11849,6 +11863,9 @@ msgstr "Νιούε"
 msgid "No"
 msgstr "Όχι"
 
+msgid "No 'epg.dat' file found on the remote receiver!"
+msgstr "Δεν βρέθηκε το αρχείο epg.dat στον εφεδρικό δέκτη"
+
 msgid "No (supported) DVDROM found!"
 msgstr "Δεν βρέθηκε (υποστηριζόμενο) DVD-ROM!"
 
@@ -11912,9 +11929,6 @@ msgstr "Δεν υπάρχουν αρχεία προς εμφάνιση σε αυ
 
 msgid "No entry in lcn db. Please do a service scan."
 msgstr "Απουσία δεδομένων στη βάση του lcn. Παρακαλώ κάντε χειροκίνητη ανίχνευση."
-
-msgid "No 'epg.dat' file found on the remote receiver!"
-msgstr "Δεν βρέθηκε το αρχείο epg.dat στον εφεδρικό δέκτη"
 
 msgid "No error"
 msgstr "Χωρίς σφάλμα"
@@ -12251,6 +12265,9 @@ msgstr "Αριθμός γραμμών προς εμφάνιση."
 
 msgid "Number or SMS style data entry"
 msgstr "Στυλ εισόδου ως αριθμός ή SMS"
+
+msgid "Numbering mode"
+msgstr ""
 
 msgid "OEM model"
 msgstr "OEM μοντέλο"
@@ -15457,6 +15474,9 @@ msgstr "Επιλέξτε 'πόλωση' αν χρησιμοποιείτε ένα
 msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
 msgstr "Επιλέξτε 'πάροχο' για να γίνει ανίχνευση από μία προρυθμισμένη λίστα καλωδιακών πολυπλεξιών. Επιλέξτε 'μπάντες' για να γίνει ανίχνευση συγκεκριμένου εύρους του φάσματος. Επιλέξτε 'βήματα' για να γίνει ανίχνευση σε βήματα ενός συγκεκριμένου εύρους ζώνης."
 
+msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
+msgstr ""
+
 msgid "Select 'Yes' if an end time is required for this timer."
 msgstr "Επιλέξτε 'ναι' αν απαιτείται ώρα λήξης για αυτό τον χρονοδιακόπτη."
 
@@ -17156,9 +17176,6 @@ msgstr "Εμφάνιση πληροφοριών"
 
 msgid "Show Kernel packages"
 msgstr "Εμφάνιση πακέτων Kernel"
-
-msgid "Show LCN in channel selection"
-msgstr "Εμφάνιση του LCN στην επιλογή καναλιών"
 
 msgid "Show Live in MiniTV"
 msgstr "Εμφάνιση ζωντανής TV σε MiniTV"
@@ -20777,6 +20794,9 @@ msgstr "Unicable Matrix"
 msgid "Uninstall"
 msgstr "Απεγκατάσταση"
 
+msgid "Unique numbering"
+msgstr ""
+
 msgid "United Arab Emirates"
 msgstr "Ηνωμένα Αραβικά Εμιράτα"
 
@@ -21968,9 +21988,6 @@ msgstr "Όταν είναι ενεργό, οι λαμβανόμενες ροές
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Όταν είναι ενεργό, απαιτείται πιστοποίηση για την παρακολούθηση ροών http."
 
-msgid "When enabled, channel numbering will start at '1' for each bouquet."
-msgstr "Όταν είναι ενεργό, η αρίθμηση των καναλιών θα ξεκινά από το '1' για κάθε μπουκέτο."
-
 msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
 msgstr "Όταν είναι ενεργό, περιεχόμενο με λόγο πλευρών 4:3 θα επεκταθεί ώστε να ταιριάξει στην οθόνη."
 
@@ -22009,9 +22026,6 @@ msgstr "Όταν είναι ενεργό, πιέζοντας το '0' θα γί�
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Όταν είναι ενεργό, οι υπότιτλοι θα αναδιπλώνονται έτσι ώστε να ταιριάζουν στο πλάτος της οθόνης."
-
-msgid "When enabled, show LCN in the channel selection screen."
-msgstr "Όταν είναι ενεργό, το LCN θα εμφανίζεται στην οθόνη επιλογής καναλιών."
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Όταν είναι ενεργό, οι αριθμοί των καναλιών θα εμφανίζονται στη λίστα επιλογής καναλιών."
@@ -23720,6 +23734,18 @@ msgstr "ναι (διατήρηση των feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Alternative numbering mode"
+#~ msgstr "Εναλλακτική λειτουργία αρίθμησης"
+
+#~ msgid "Show LCN in channel selection"
+#~ msgstr "Εμφάνιση του LCN στην επιλογή καναλιών"
+
+#~ msgid "When enabled, channel numbering will start at '1' for each bouquet."
+#~ msgstr "Όταν είναι ενεργό, η αρίθμηση των καναλιών θα ξεκινά από το '1' για κάθε μπουκέτο."
+
+#~ msgid "When enabled, show LCN in the channel selection screen."
+#~ msgstr "Όταν είναι ενεργό, το LCN θα εμφανίζεται στην οθόνη επιλογής καναλιών."
 
 #~ msgid "Installing feeds from IPK ..."
 #~ msgstr "Εγκατάσταση πηγών από IPK..."

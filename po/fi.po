@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-24 15:20+0000\n"
-"PO-Revision-Date: 2024-07-26 22:09+0000\n"
+"POT-Creation-Date: 2024-07-29 19:27+0000\n"
+"PO-Revision-Date: 2024-07-30 17:04+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -1187,7 +1187,7 @@ msgstr "%s on poistettu käytöstä."
 
 #, python-format
 msgid "%s imported from remote receiver."
-msgstr "%s tuotu Etävirittimeltä"
+msgstr "%s tuotu etävastaanottimelta."
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -2258,9 +2258,6 @@ msgstr "[Vaihtoehtojen lisäys ja poisto]"
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr "Vaihtoehtoiset URL osoitteet DVB-T/C tai ATSC"
 
-msgid "Alternative numbering mode"
-msgstr "Vaihtoehtoinen numerointitapa"
-
 msgid "Alternative radio mode"
 msgstr "TV tyylinen radiokanavien selaus"
 
@@ -3100,6 +3097,9 @@ msgstr "Suosikki valinnan navigointi toiminnot"
 
 msgid "Bouquets"
 msgstr "Suosikkilistat"
+
+msgid "Bouquets start at 1"
+msgstr "Kanavalistan numerointi alkaa numerolla 1"
 
 msgid "Bouvet Island"
 msgstr "Bouvet saaret"
@@ -7436,11 +7436,20 @@ msgstr ""
 "Virhe linkiä hakiessa %s\n"
 "%s"
 
+msgid "Error moving 'epg.dat' to its destination!"
+msgstr "Virheet, siirrettäessa epg.dat!"
+
 msgid "Error opening recording file"
 msgstr "Virhe tallennustiedoston avaamisessa\""
 
 msgid "Error reading webpage!"
 msgstr "Virhe luettaessa web-sivua!"
+
+msgid "Error retrieving 'epg.dat' from the remote receiver!"
+msgstr "Virhe haettaessa epg.dat tiedostoa etävastaanottimelta!"
+
+msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
+msgstr "Virhe haettaessa epg.dat tiedoston sijaintia etävastaanottimelta!"
 
 msgid "Error text:"
 msgstr "Virheteksti:"
@@ -7448,15 +7457,6 @@ msgstr "Virheteksti:"
 #, python-format
 msgid "Error unzipping image '%s'!"
 msgstr "Virhe purettaessa ohjelmisto image %s!"
-
-msgid "Error writing 'epg.dat' on the remote receiver!"
-msgstr "Virheitä kirjoittaessa epg.dat etävastaanottimessa"
-
-msgid "Error moving 'epg.dat' to its destination!"
-msgstr "Virheet, siirrettäessa epg.dat"
-
-msgid "Error retrieving 'epg.dat' from the remote receiver!"
-msgstr "Virhe haettaessa epg.dat-tiedostoa etävastaanottimelta"
 
 #, python-format
 msgid ""
@@ -7466,8 +7466,11 @@ msgstr ""
 "Virhe haettaessa menneitä ajastus tietoja.\n"
 "%s"
 
-msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
-msgstr "Virhe haettaessa epg.dat-tiedoston sijaintia etävastaanottimelta"
+msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
+msgstr "Virheiden kirjoittaessa \"/etc/enigma2/epg.dat\" etävastaanottimella!"
+
+msgid "Error writing 'epg.dat' on the remote receiver!"
+msgstr "Virheitä kirjoittaessa epg.dat etävastaanottimessa!"
 
 msgid "Error, unknown Result!"
 msgstr "Virhe, tuntematon tulos!"
@@ -9481,10 +9484,6 @@ msgstr "Tuo kanavat ja/tai ohjelmaopas etävastaanottimelta uudelleenkäynnistyk
 msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
 msgstr "Tuo kanavat ja/tai ohjelmaopas etävastaanottimelta uudelleenkäynnistyksen yhteydessä"
 
-#, python-format
-msgid "Import from remote receiver failed, %s!"
-msgstr "Tuonti etävastaanottimesta epäonnistui, %s"
-
 msgid "Import from remote receiver URL"
 msgstr "Tuo etävastaanottimelta"
 
@@ -10147,6 +10146,9 @@ msgstr "LCD selausnopeus"
 
 msgid "LCD/Front panel *"
 msgstr "Näyttöpaneeli *"
+
+msgid "LCN numbering"
+msgstr "LCN numerointi"
 
 msgid "LCN plugin for DVB-T/T2 services"
 msgstr "LCN plugin DVB-T/T2 palvelua varten"
@@ -11206,6 +11208,9 @@ msgstr "Siirrä sivua/näyttöä alaspäin"
 msgid "Move down a screen"
 msgstr "Siirry ruutua alaspäin"
 
+msgid "Move down a screen / Move to next item"
+msgstr "Siirrä näyttöä alaspäin / Siirry seuraavaan kohtaan"
+
 msgid "Move down a screen in the panel"
 msgstr "Siirrä riviä alaspäin paneelissa"
 
@@ -11353,11 +11358,17 @@ msgstr "Siirry viimeiselle riville/näytölle"
 msgid "Move to the next category in the list"
 msgstr "Siirry seuraavaan kategoriaan listalla"
 
+msgid "Move to the next item"
+msgstr "Siirry seuraavaan kohtaan"
+
 msgid "Move to the next item in the list"
 msgstr "Siirry seuraavaan kohteenseen listalla"
 
 msgid "Move to the previous category in the list"
 msgstr "Siirry edelliseen kategoriaan listalla"
+
+msgid "Move to the previous item"
+msgstr "Siirry edelliseen kohtaan"
 
 msgid "Move to the previous item in list"
 msgstr "Siirry edelliseen kategoriaan listalla"
@@ -11376,6 +11387,9 @@ msgstr "Siirrä sivua/näyttöä ylöspäin"
 
 msgid "Move up a screen"
 msgstr "Siirry ylös näyttöön"
+
+msgid "Move up a screen / Move to previous item"
+msgstr "Siirrä näyttöä ylöspäin / Liiku edelliseen kohtaan"
 
 msgid "Move up a screen in the panel"
 msgstr "Siirrä riviä alaspäin paneelissa"
@@ -11865,6 +11879,9 @@ msgstr "Niue"
 msgid "No"
 msgstr "Ei"
 
+msgid "No 'epg.dat' file found on the remote receiver!"
+msgstr "Epg.dat tiedostoa ei löytynyt etävastaanottimelta!"
+
 msgid "No (supported) DVDROM found!"
 msgstr "DVDROM-asemaa ei löytynyt!"
 
@@ -11928,9 +11945,6 @@ msgstr "Tiedostoja ei löytynyt!"
 
 msgid "No entry in lcn db. Please do a service scan."
 msgstr "Ei merkintää lcn db:. Suorita huolto tarkistus."
-
-msgid "No 'epg.dat' file found on the remote receiver!"
-msgstr "Epg.dat tiedostoa ei löytynyt etävastaanottimelta"
 
 msgid "No error"
 msgstr "Ei virhettä"
@@ -12273,6 +12287,9 @@ msgstr "Näytettävien rivien määrä."
 
 msgid "Number or SMS style data entry"
 msgstr "Numerot tai tekstiviestien syöttötapa"
+
+msgid "Numbering mode"
+msgstr "Numerointitila"
 
 msgid "OEM model"
 msgstr "Malli"
@@ -15483,6 +15500,9 @@ msgstr ""
 msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
 msgstr "Valitse skannataksesi ennalta määritetystä kaapelin tarjoaja luettelosta. Valitse taajuudet, jos haluat skannata vain tiettyjä taajuuksia. Valitse skannataksesi tietyn taajuuskaistanleveyden välein."
 
+msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
+msgstr "Valitse 'Yksilöllinen numerointi' antaaksesi jokaiselle kanavalle yksilöllinen numero jokaisessa kanavalistassa. Käytä 'Kanavalistat alkavat numerosta 1 jokaisessa kanavalistassa' Käytä operaattorin tarjoavaa LCN \"Loogiset kanavanumerot\"esim Yle tv1 on kanavanumero 1 jne."
+
 msgid "Select 'Yes' if an end time is required for this timer."
 msgstr "Valitse \"Kyllä\", jos tälle ajastimelle tarvitaan päättymisaika."
 
@@ -17192,9 +17212,6 @@ msgstr "Näytä Tietoja"
 
 msgid "Show Kernel packages"
 msgstr "Näytä Kernel paketit"
-
-msgid "Show LCN in channel selection"
-msgstr "LCN näytetään kanavalistan valinnassa"
 
 msgid "Show Live in MiniTV"
 msgstr "Näytä suora MiniTV:eessä"
@@ -19079,7 +19096,7 @@ msgstr "TMDB Haku"
 
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Suomenkielinen käännös: 23.7.2024\n"
+"Suomenkielinen käännös: 30.7.2024\n"
 "tomppaa"
 
 msgid "TS file is too large for ISO9660 level 1!"
@@ -20820,6 +20837,9 @@ msgstr "Unicable matriisi"
 msgid "Uninstall"
 msgstr "Poista asennus"
 
+msgid "Unique numbering"
+msgstr "Yksilöllinen numeronti"
+
 msgid "United Arab Emirates"
 msgstr "United Arab Emirates"
 
@@ -22011,9 +22031,6 @@ msgstr "Kun valittu, pura vastaanotettavat http streamit. Tämä vaatii enemmän
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Kun päällä, hyväksyntä vaaditaan katsottaessa http palveluita."
 
-msgid "When enabled, channel numbering will start at '1' for each bouquet."
-msgstr "Kun päällä, kanavanumerointi alkaa jokaisessa suosikkilistassa alusta. Jos pois päältä, kanavanumerointi jatkuu yhtenäisenä, vaikka suosikkilista vaihtuu."
-
 msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
 msgstr "Kun päällä, 4:3 kuvasuhteen kuva venytetään koko näytölle."
 
@@ -22052,9 +22069,6 @@ msgstr "Kun päällä, '0'-näppäin vaihtaa ensimmäisen suosikkilistan ensimm�
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Kun päällä, tekstityksen leveys sovitetaan ruudun leveyteen."
-
-msgid "When enabled, show LCN in the channel selection screen."
-msgstr "Kun päällä, näytä LCN kanavan valinta ruudussa."
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Kun päällä, näytä kanavanvalinnassa kanavanumerot."
@@ -23769,6 +23783,22 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Alternative numbering mode"
+#~ msgstr "Vaihtoehtoinen numerointitapa"
+
+#, python-format
+#~ msgid "Import from remote receiver failed, %s!"
+#~ msgstr "Tuonti etävastaanottimesta epäonnistui, %s"
+
+#~ msgid "Show LCN in channel selection"
+#~ msgstr "LCN näytetään kanavalistan valinnassa"
+
+#~ msgid "When enabled, channel numbering will start at '1' for each bouquet."
+#~ msgstr "Kun päällä, kanavanumerointi alkaa jokaisessa suosikkilistassa alusta. Jos pois päältä, kanavanumerointi jatkuu yhtenäisenä, vaikka suosikkilista vaihtuu."
+
+#~ msgid "When enabled, show LCN in the channel selection screen."
+#~ msgstr "Kun päällä, näytä LCN kanavan valinta ruudussa."
 
 #~ msgid "Installing feeds from IPK ..."
 #~ msgstr "Asenna syötteet IPK …"

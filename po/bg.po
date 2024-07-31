@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-24 15:20+0000\n"
+"POT-Creation-Date: 2024-07-29 19:27+0000\n"
 "PO-Revision-Date: 2023-08-06 06:22+0000\n"
 "Last-Translator: Salif Mehmed <mail@salif.eu>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/bg/>\n"
@@ -2251,9 +2251,6 @@ msgstr "[алтернативно редактиране]"
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr "Алтернативен URL за DVB-T/C или ATSC"
 
-msgid "Alternative numbering mode"
-msgstr "Алтернативен режим на номериране"
-
 msgid "Alternative radio mode"
 msgstr "Алтернативен радио режим"
 
@@ -3092,6 +3089,9 @@ msgid "Bouquet Selector Navigation Actions"
 msgstr ""
 
 msgid "Bouquets"
+msgstr ""
+
+msgid "Bouquets start at 1"
 msgstr ""
 
 msgid "Bouvet Island"
@@ -7408,26 +7408,26 @@ msgid ""
 "%s"
 msgstr ""
 
+msgid "Error moving 'epg.dat' to its destination!"
+msgstr ""
+
 msgid "Error opening recording file"
 msgstr "Грешка при отваряне на записващия файл"
 
 msgid "Error reading webpage!"
 msgstr "Грешка при четенето на уеб страница!"
 
+msgid "Error retrieving 'epg.dat' from the remote receiver!"
+msgstr ""
+
+msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
+msgstr ""
+
 msgid "Error text:"
 msgstr ""
 
 #, python-format
 msgid "Error unzipping image '%s'!"
-msgstr ""
-
-msgid "Error writing 'epg.dat' on the remote receiver!"
-msgstr ""
-
-msgid "Error moving 'epg.dat' to its destination!"
-msgstr ""
-
-msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr ""
 
 #, python-format
@@ -7438,7 +7438,10 @@ msgstr ""
 "Грешка при извличане на информация за резервния таймер\n"
 "%s"
 
-msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
+msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
+msgstr ""
+
+msgid "Error writing 'epg.dat' on the remote receiver!"
 msgstr ""
 
 msgid "Error, unknown Result!"
@@ -9445,10 +9448,6 @@ msgstr "Импортиране на канали и/или EPG от резерв
 msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
 msgstr "Импортиране на канали и/или EPG от резервния приемник при рестарт на приемника или enigma2"
 
-#, python-format
-msgid "Import from remote receiver failed, %s!"
-msgstr ""
-
 msgid "Import from remote receiver URL"
 msgstr "Импортиране от URL на резервния приемник"
 
@@ -10110,6 +10109,9 @@ msgid "LCD scroll speed"
 msgstr "Скорост на LCD превъртане"
 
 msgid "LCD/Front panel *"
+msgstr ""
+
+msgid "LCN numbering"
 msgstr ""
 
 msgid "LCN plugin for DVB-T/T2 services"
@@ -11170,6 +11172,9 @@ msgstr "Премести надолу в страницата/екран"
 msgid "Move down a screen"
 msgstr "Премести надолу по екрана"
 
+msgid "Move down a screen / Move to next item"
+msgstr ""
+
 msgid "Move down a screen in the panel"
 msgstr ""
 
@@ -11315,10 +11320,16 @@ msgstr ""
 msgid "Move to the next category in the list"
 msgstr ""
 
+msgid "Move to the next item"
+msgstr ""
+
 msgid "Move to the next item in the list"
 msgstr ""
 
 msgid "Move to the previous category in the list"
+msgstr ""
+
+msgid "Move to the previous item"
 msgstr ""
 
 msgid "Move to the previous item in list"
@@ -11338,6 +11349,9 @@ msgstr "Премести страница/екран нагоре"
 
 msgid "Move up a screen"
 msgstr "Премести нагоре екран"
+
+msgid "Move up a screen / Move to previous item"
+msgstr ""
 
 msgid "Move up a screen in the panel"
 msgstr ""
@@ -11824,6 +11838,9 @@ msgstr ""
 msgid "No"
 msgstr "Не"
 
+msgid "No 'epg.dat' file found on the remote receiver!"
+msgstr ""
+
 msgid "No (supported) DVDROM found!"
 msgstr "Не (поддържа) намерен DVDROM!"
 
@@ -11887,9 +11904,6 @@ msgstr "Няма намерени файлове на този носител!"
 
 msgid "No entry in lcn db. Please do a service scan."
 msgstr "Няма вписване в LCN db.Моля, сканирай сервиза."
-
-msgid "No 'epg.dat' file found on the remote receiver!"
-msgstr ""
 
 msgid "No error"
 msgstr "Няма грешка"
@@ -12226,6 +12240,9 @@ msgstr "Брой редове за показване"
 
 msgid "Number or SMS style data entry"
 msgstr "Въвеждане на данни в стил на номер или SMS"
+
+msgid "Numbering mode"
+msgstr ""
 
 msgid "OEM model"
 msgstr "OEM модел"
@@ -15429,6 +15446,9 @@ msgstr "Изберете „поляризация“, ако използват
 msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
 msgstr "Изберете „доставчик“, за да сканирате от предварително дефинирания списък с кабелни мултиплекси. Изберете „ленти“, за да сканирате само определени части от спектъра. Изберете „стъпки“, за да сканирате на стъпки от определена честотна лента."
 
+msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
+msgstr ""
+
 msgid "Select 'Yes' if an end time is required for this timer."
 msgstr ""
 
@@ -17116,9 +17136,6 @@ msgid "Show Information"
 msgstr "Показване на информация"
 
 msgid "Show Kernel packages"
-msgstr ""
-
-msgid "Show LCN in channel selection"
 msgstr ""
 
 msgid "Show Live in MiniTV"
@@ -20703,6 +20720,9 @@ msgstr ""
 msgid "Uninstall"
 msgstr ""
 
+msgid "Unique numbering"
+msgstr ""
+
 msgid "United Arab Emirates"
 msgstr ""
 
@@ -21857,9 +21877,6 @@ msgstr "Когато е активирано, винаги декодирайт�
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Когато е разрешено, е необходимо удостоверяване за гледане на http потоци."
 
-msgid "When enabled, channel numbering will start at '1' for each bouquet."
-msgstr "Когато е разрешено, номерирането на каналите ще започне от '1' за всеки букет."
-
 msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
 msgstr "Когато е разрешено, съдържанието със съотношение 4:3 ще бъде опънато, за да се побере на екрана."
 
@@ -21898,9 +21915,6 @@ msgstr "Когато е разрешено, натискането на '0' ще
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Когато е разрешено, се преформатират субтитрите, за да съответстват на ширината на екрана."
-
-msgid "When enabled, show LCN in the channel selection screen."
-msgstr ""
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Когато е разрешено, се показват номерата на каналите в екрана за избор на канали."
@@ -23604,6 +23618,12 @@ msgstr "да (запази фийдове)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Alternative numbering mode"
+#~ msgstr "Алтернативен режим на номериране"
+
+#~ msgid "When enabled, channel numbering will start at '1' for each bouquet."
+#~ msgstr "Когато е разрешено, номерирането на каналите ще започне от '1' за всеки букет."
 
 #~ msgid "Installing feeds from IPK ..."
 #~ msgstr "Инсталиране на емисии от IPK..."

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-24 15:20+0000\n"
-"PO-Revision-Date: 2024-07-25 08:42+0000\n"
+"POT-Creation-Date: 2024-07-29 19:27+0000\n"
+"PO-Revision-Date: 2024-07-30 17:04+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
 "Language: nl\n"
@@ -2259,9 +2259,6 @@ msgstr "[alternatieven bewerken]"
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr "Alternatieve URL's t.b.v. DVB-T/C of ATSC"
 
-msgid "Alternative numbering mode"
-msgstr "Alternatieve nummering"
-
 msgid "Alternative radio mode"
 msgstr "Alternatieve radio modus"
 
@@ -3102,6 +3099,9 @@ msgstr "Favorietenlijst navigatie Acties"
 
 msgid "Bouquets"
 msgstr "Favorietenlijsten"
+
+msgid "Bouquets start at 1"
+msgstr "Favorieten beginnen bij 1"
 
 msgid "Bouvet Island"
 msgstr "Bouvet Eilanden"
@@ -7566,11 +7566,20 @@ msgstr ""
 "Fout bij het ophalen van een link via %s\n"
 "%s"
 
+msgid "Error moving 'epg.dat' to its destination!"
+msgstr "Fout bij het verplaatsen van epg.dat !"
+
 msgid "Error opening recording file"
 msgstr "Fout bij het openen van de opname"
 
 msgid "Error reading webpage!"
 msgstr "Fout bij lezen webpagina!"
+
+msgid "Error retrieving 'epg.dat' from the remote receiver!"
+msgstr "Fout bij het lezen van epg.dat vanaf de Fallback tuner!"
+
+msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
+msgstr "Fout bij het lezen van de epg.dat locatie op de Fallback tuner!"
 
 msgid "Error text:"
 msgstr "Fouttekst:"
@@ -7578,15 +7587,6 @@ msgstr "Fouttekst:"
 #, python-format
 msgid "Error unzipping image '%s'!"
 msgstr "Fout bij het uitpakken van het image '%s'!"
-
-msgid "Error writing 'epg.dat' on the remote receiver!"
-msgstr "Fout bij het schrijven van epg.dat naar de Fallback tuner!"
-
-msgid "Error moving 'epg.dat' to its destination!"
-msgstr "Fout bij het verplaatsen van epg.dat !"
-
-msgid "Error retrieving 'epg.dat' from the remote receiver!"
-msgstr "Fout bij het lezen van epg.dat vanaf de Fallback tuner!"
 
 #, python-format
 msgid ""
@@ -7596,8 +7596,11 @@ msgstr ""
 "Fout tijdens het ophalen van de Fallback timer informatie\n"
 "%s"
 
-msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
-msgstr "Fout bij het lezen van de epg.dat locatie op de Fallback tuner!"
+msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
+msgstr "Fout bij het schrijven van '/etc/enigma2/epg.dat' naar de remote receiver!"
+
+msgid "Error writing 'epg.dat' on the remote receiver!"
+msgstr "Fout bij het schrijven van epg.dat naar de Fallback tuner!"
 
 msgid "Error, unknown Result!"
 msgstr "Fout, onbekende uitkomst!"
@@ -9616,10 +9619,6 @@ msgstr "Importeer zenders en/of EPG van de Fallback tuner, na het starten van de
 msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
 msgstr "Importeer zenders en/of EPG van de Fallback tuner, na het starten van de ontvanger OF Enigma2."
 
-#, python-format
-msgid "Import from remote receiver failed, %s!"
-msgstr "Import vanaf de Fallback tuner mislukt! %s"
-
 msgid "Import from remote receiver URL"
 msgstr "Importeer data vanaf een externe ontvanger"
 
@@ -10282,6 +10281,9 @@ msgstr "Display scroll snelheid"
 
 msgid "LCD/Front panel *"
 msgstr "Displayskin *"
+
+msgid "LCN numbering"
+msgstr "LCN nummering"
 
 msgid "LCN plugin for DVB-T/T2 services"
 msgstr "LCN plugin voor DVB-T/T2 services"
@@ -11341,6 +11343,9 @@ msgstr "Een scherm naar beneden"
 msgid "Move down a screen"
 msgstr "Een scherm naar beneden"
 
+msgid "Move down a screen / Move to next item"
+msgstr "Volgend scherm / Naar volgend item"
+
 msgid "Move down a screen in the panel"
 msgstr "Een beeldscherm naar beneden"
 
@@ -11486,11 +11491,17 @@ msgstr "Ga naar de laatste regel / het laatste beeldscherm"
 msgid "Move to the next category in the list"
 msgstr "Ga naar de volgende categorie in de lijst"
 
+msgid "Move to the next item"
+msgstr "Naar het volgende item gaan"
+
 msgid "Move to the next item in the list"
 msgstr "Ga naar het volgende item in de lijst"
 
 msgid "Move to the previous category in the list"
 msgstr "Ga naar de vorige categorie in de lijst"
+
+msgid "Move to the previous item"
+msgstr "Naar het vorige item gaan"
 
 msgid "Move to the previous item in list"
 msgstr "Ga naar het vorige item in de lijst"
@@ -11509,6 +11520,9 @@ msgstr "Een scherm naar boven"
 
 msgid "Move up a screen"
 msgstr "Een scherm naar boven"
+
+msgid "Move up a screen / Move to previous item"
+msgstr "Vorig scherm / Naar het vorige item"
 
 msgid "Move up a screen in the panel"
 msgstr "Een beeldscherm omhoog"
@@ -11998,6 +12012,9 @@ msgstr "Niue"
 msgid "No"
 msgstr "Nee"
 
+msgid "No 'epg.dat' file found on the remote receiver!"
+msgstr "Geen epg.dat gevonden op de Fallback tuner!"
+
 msgid "No (supported) DVDROM found!"
 msgstr "Geen (ondersteunde) DVD-ROM gevonden!"
 
@@ -12061,9 +12078,6 @@ msgstr "Geen weer te geven bestanden op dit medium gevonden!"
 
 msgid "No entry in lcn db. Please do a service scan."
 msgstr "Geen vermelding in lcn db. Doe een zender scan."
-
-msgid "No 'epg.dat' file found on the remote receiver!"
-msgstr "Geen epg.dat gevonden op de Fallback tuner!"
 
 msgid "No error"
 msgstr "Geen fout"
@@ -12403,6 +12417,9 @@ msgstr "Aantal rijen om weer te geven."
 
 msgid "Number or SMS style data entry"
 msgstr "Nummer of SMS stijl gegevens invoer"
+
+msgid "Numbering mode"
+msgstr "Nummering stijl"
 
 msgid "OEM model"
 msgstr "OEM model"
@@ -15618,6 +15635,9 @@ msgstr "Selecteer 'polarisatie als u een universele LNB gebruikt. Consulteer de 
 msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
 msgstr "Selecteer 'provider' om te scannen vanuit de voor gedefinieerde lijst van kabel multiplexen. Kies 'band' om alleen een deel van het spectrum te scannen. Kies 'stappen' om in stappen een bepaald deel van het spectrum te scannen."
 
+msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
+msgstr "Kies 'Unieke nummering' om een uniek nummer aan elke zender in elke favorietenlijst toe te kennen. Gebruik 'Favorieten beginnen bij 1' om in elke favorietenlijst te beginnen bij 1. Gebruik 'LCN nummering' om een logische zender volgorde toe te passen waar deze LCN-service wordt aangeboden."
+
 msgid "Select 'Yes' if an end time is required for this timer."
 msgstr "Kies 'Ja' wanneer een eindtijd noodzakelijk is voor deze timer."
 
@@ -17345,9 +17365,6 @@ msgstr "Toon informatie"
 
 msgid "Show Kernel packages"
 msgstr "Kernel"
-
-msgid "Show LCN in channel selection"
-msgstr "LCN in de zenderlijst tonen"
 
 msgid "Show Live in MiniTV"
 msgstr "Toon Live in MiniTV"
@@ -21023,6 +21040,9 @@ msgstr "Unicable matrix"
 msgid "Uninstall"
 msgstr "Verwijderen"
 
+msgid "Unique numbering"
+msgstr "Unieke nummering"
+
 msgid "United Arab Emirates"
 msgstr "Verenigde Arabische Emiraten"
 
@@ -22218,9 +22238,6 @@ msgstr "Wanneer geactiveerd, zullen ontvangen http-streams altijd gedecodeerd wo
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Bij 'Ja', moet een wachtwoord worden opgegeven om http-streams te kunnen zien."
 
-msgid "When enabled, channel numbering will start at '1' for each bouquet."
-msgstr "Indien geactiveerd, dan zullen de zendernummers van iedere favorietenlijst beginnen bij '1'."
-
 msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
 msgstr "Indien geactiveerd, dan zal een 4:3 weergave omgezet worden tot een passend beeld op het scherm."
 
@@ -22262,9 +22279,6 @@ msgstr "Indien geactiveerd, zapt '0' naar de eerste zender van de eerste favorie
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Breedte van de ondertitels automatisch aanpassen aan de breedte van het beeldscherm."
-
-msgid "When enabled, show LCN in the channel selection screen."
-msgstr "Bij 'Ja' wordt LCN in de zenderlijst getoond. (Logical Channel Numbering)"
 
 msgid "When enabled, show channel numbers in the channel selection screen."
 msgstr "Bij 'Ja' wordt een zendernummer bij elke zender in de lijst weergegeven."
@@ -23988,6 +24002,22 @@ msgstr "ja (bewaar feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Alternative numbering mode"
+#~ msgstr "Alternatieve nummering"
+
+#, python-format
+#~ msgid "Import from remote receiver failed, %s!"
+#~ msgstr "Import vanaf de Fallback tuner mislukt! %s"
+
+#~ msgid "Show LCN in channel selection"
+#~ msgstr "LCN in de zenderlijst tonen"
+
+#~ msgid "When enabled, channel numbering will start at '1' for each bouquet."
+#~ msgstr "Indien geactiveerd, dan zullen de zendernummers van iedere favorietenlijst beginnen bij '1'."
+
+#~ msgid "When enabled, show LCN in the channel selection screen."
+#~ msgstr "Bij 'Ja' wordt LCN in de zenderlijst getoond. (Logical Channel Numbering)"
 
 #~ msgid "Installing feeds from IPK ..."
 #~ msgstr "Installeert feeds uit IPK ..."
