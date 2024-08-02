@@ -96,11 +96,11 @@ def parseKeymap(filename, context, actionMapInstance, device, domKeys):
 		mapto = key.attrib.get("mapto")
 		unmap = key.attrib.get("unmap")
 		if mapto is None and unmap is None:
-			print("[ActionMap] Error: At least one of the attributes 'mapto' or 'unmap' in context '{context}' id '{keyName}' ({keyId}) in file '{filename}' must be specified!")
+			print(f"[ActionMap] Error: At least one of the attributes 'mapto' or 'unmap' in context '{context}' id '{keyName}' ({keyId}) in file '{filename}' must be specified!")
 			error = True
 		flags = key.attrib.get("flags")
 		if flags is None:
-			print("[ActionMap] Error: Attribute 'flag' in context '{context}' id '{keyName}' ({keyId}) in file '{filename}' must be specified!")
+			print(f"[ActionMap] Error: Attribute 'flag' in context '{context}' id '{keyName}' ({keyId}) in file '{filename}' must be specified!")
 			error = True
 		else:
 			flagToValue = lambda x: {
@@ -145,22 +145,22 @@ def getKeyId(id):
 
 
 def parseTrans(filename, actionmap, device, keys):
- 	for toggle in keys.findall("toggle"):
- 		get_attr = toggle.attrib.get
- 		toggle_key = get_attr("from")
- 		toggle_key = getKeyId(toggle_key)
- 		actionmap.bindToggle(filename, device, toggle_key)
- 	for key in keys.findall("key"):
- 		get_attr = key.attrib.get
- 		keyin = get_attr("from")
- 		keyout = get_attr("to")
- 		toggle = get_attr("toggle") or "0"
- 		assert keyin, f"[ActionMap] {filename}: must specify key to translate from '{keyin}'"
- 		assert keyout, f"[ActionMap] {filename}: must specify key to translate to '{keyout}'"
- 		keyin = getKeyId(keyin)
- 		keyout = getKeyId(keyout)
- 		toggle = int(toggle)
- 		actionmap.bindTranslation(filename, device, keyin, keyout, toggle)
+	for toggle in keys.findall("toggle"):
+		get_attr = toggle.attrib.get
+		toggle_key = get_attr("from")
+		toggle_key = getKeyId(toggle_key)
+		actionmap.bindToggle(filename, device, toggle_key)
+	for key in keys.findall("key"):
+		get_attr = key.attrib.get
+		keyin = get_attr("from")
+		keyout = get_attr("to")
+		toggle = get_attr("toggle") or "0"
+		assert keyin, f"[ActionMap] {filename}: must specify key to translate from '{keyin}'"
+		assert keyout, f"[ActionMap] {filename}: must specify key to translate to '{keyout}'"
+		keyin = getKeyId(keyin)
+		keyout = getKeyId(keyout)
+		toggle = int(toggle)
+		actionmap.bindTranslation(filename, device, keyin, keyout, toggle)
 
 
 def loadKeymap(filename, replace=False):
@@ -168,6 +168,7 @@ def loadKeymap(filename, replace=False):
 	domKeymap = fileReadXML(filename, source=MODULE_NAME)
 	if domKeymap is not None:
 		replace = replace or (domKeymap.get("load", "") == "replace")
+		print(f"[ActionMap] LoadKeymap '{filename}' with replace {replace}.")
 		for domMap in domKeymap.findall("map"):
 			context = domMap.attrib.get("context")
 			if context is None:
