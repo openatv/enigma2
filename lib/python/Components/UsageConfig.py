@@ -178,7 +178,7 @@ def InitUsageConfig():
 
 	def setNumberModeChange(configElement):
 		eDVBDB.getInstance().setNumberingMode(configElement.value)
-		config.usage.alternative_number_mode.value = config.usage.numberMode != 0
+		config.usage.alternative_number_mode.value = config.usage.numberMode.value != 0
 		refreshServiceList()
 
 	config.usage.numberMode = ConfigSelection(default=0, choices=[
@@ -189,7 +189,7 @@ def InitUsageConfig():
 	config.usage.numberMode.addNotifier(setNumberModeChange, initial_call=False)
 
 	# Fallback old settigs will be removed later because this setting is probably used in plugins
-	config.usage.alternative_number_mode = ConfigYesNo(default=config.usage.numberMode != 0)
+	config.usage.alternative_number_mode = ConfigYesNo(default=config.usage.numberMode.value != 0)
 
 	config.usage.hide_number_markers = ConfigYesNo(default=True)
 	config.usage.hide_number_markers.addNotifier(refreshServiceList)
