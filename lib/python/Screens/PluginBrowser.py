@@ -1039,8 +1039,8 @@ class PackageAction(Screen, NumericalTextInput):
 				plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 			if self.reloadSettings:
 				self["description"].setText(_("Reloading bouquets and services."))
-				eDVBDB.getInstance().reloadBouquets()
 				eDVBDB.getInstance().reloadServicelist()
+				eDVBDB.getInstance().reloadBouquets()
 			pluginComponent.readPluginList(resolveFilename(SCOPE_PLUGINS))
 		self.close()
 
