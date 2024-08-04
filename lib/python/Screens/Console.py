@@ -209,13 +209,13 @@ class Console(Screen):
 				self.cancelMessageBox.close(None)
 			text = ngettext("Command finished.", "Commands finished.", len(self.cmdList))
 			self["text"].appendText(f"\n{self.commandColorStart}>>> {text}{self.commandColorEnd}\n")
-			if not self.errorOcurred and isinstance(self.closeOnSuccess, int):
+			if not self.errorOcurred and not isinstance(self.closeOnSuccess, bool) and self.closeOnSuccess:
 				self["text"].appendText(f"\n{self.commandColorStart}>>> {_("This window will automatically close in %d seconds.") % self.closeOnSuccess}{self.commandColorEnd}\n")
 			self["summary_description"].setText(text)
 			if self.finishedCallback and callable(self.finishedCallback):
 				self.finishedCallback()
 			if not self.errorOcurred and self.closeOnSuccess:
-				if isinstance(self.closeOnSuccess, int):
+				if not isinstance(self.closeOnSuccess, bool):
 					self.setTitle(f"{self.baseTitle} ({self.closeOnSuccess})")
 					self.timer.start(1000)
 				else:
