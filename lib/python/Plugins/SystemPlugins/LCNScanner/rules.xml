@@ -1,21 +1,34 @@
-<rules>
-	<ruleset name="default">
-		<!-- no "renumber" rules... keep the exact order from original lcn -->
-		<rule type="marker" position="16635">Duplicates</rule>
-	</ruleset>
-	<ruleset name="Italia">
-		<!-- "renumber" rules are applied sequentially keeping the original order -->
-		<rule type="renumber" range="0-99999">value * 10</rule>
-		<rule type="renumber" range="1010-1990">value - 995</rule>
-		<rule type="renumber" range="2010-2990">value - 1995</rule>
-		<rule type="renumber" range="5010-5990">value - 5005</rule>
-		<rule type="marker" position="0">Intrattenimento</rule>
-		<rule type="marker" position="395">Bambini e ragazzi</rule>
-		<rule type="marker" position="475">Informazione e cultura</rule>
-		<rule type="marker" position="565">Sport</rule>
-		<rule type="marker" position="655">Musica</rule>
-		<rule type="marker" position="2995">Pay TV</rule>
-		<rule type="marker" position="7995">Servizi On Demand</rule>
-		<rule type="marker" position="166350">Duplicati</rule>
-	</ruleset>
-</rules>
+<rulesxml>
+	<rules name="Default">
+		<rule type="duplicate" mode="All" range="10001">Duplicates</rule>
+	</rules>
+	<rules name="Australia">
+		<rule type="duplicate" mode="All" range="350-399">Duplicated Services</rule>
+	</rules>
+	<rules name="Germany">
+		<rule type="duplicate" mode="All" range="900-999">Duplicated Services</rule>
+		<rule type="marker" mode="TV" position="220">Sky</rule>
+		<rule type="marker" mode="TV" position="240">Sport</rule>
+		<rule type="marker" mode="TV" position="301">SD</rule>
+		<rule type="marker" mode="TV" position="329">Regional</rule>
+		<rule type="marker" mode="TV" position="570">International</rule>
+		<rule type="marker" mode="TV" position="700">Sky Movie</rule>
+		<rule type="marker" mode="TV" position="750">Sky Sport</rule>
+	</rules>
+	<rules name="Italia">
+		<rule type="duplicate" mode="All" range="16635">Duplicati</rule>
+		<!--
+		<rule type="renumber" mode="TV" range="0-99999">LCN * 10</rule>
+		<rule type="renumber" mode="TV" range="1010-1990">LCN - 995</rule>
+		<rule type="renumber" mode="TV" range="2010-2990">LCN - 1995</rule>
+		<rule type="renumber" mode="TV" range="5010-5990">LCN - 5005</rule>
+		-->
+		<rule type="marker" mode="TV" position="0">Intrattenimento</rule>
+		<rule type="marker" mode="TV" position="395">Bambini e ragazzi</rule>
+		<rule type="marker" mode="TV" position="475">Informazione e cultura</rule>
+		<rule type="marker" mode="TV" position="565">Sport</rule>
+		<rule type="marker" mode="TV" position="655">Musica</rule>
+		<rule type="marker" mode="TV" position="2995">Pay TV</rule>
+		<rule type="marker" mode="TV" position="7995">Servizi On Demand</rule>
+	</rules>
+</rulesxml>
