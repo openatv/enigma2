@@ -178,8 +178,8 @@ class MultiPixmap(Pixmap):
 		return GUIComponent.applySkin(self, desktop, screen)
 
 	def setPixmapNum(self, index):
-		if self.instance:
+		if self.instance and self.pixmaps:
 			if len(self.pixmaps) > index:
 				self.instance.setPixmap(self.pixmaps[index])
 			else:
-				print("[Pixmap] setPixmapNum(%d) failed!  Defined pixmaps: %s." % (index, str(self.pixmaps)))
+				print(f"[Pixmap] setPixmapNum({index}) failed!  Defined pixmaps: {str(self.pixmaps)}.")
