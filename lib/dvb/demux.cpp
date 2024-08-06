@@ -264,7 +264,7 @@ RESULT eDVBSectionReader::start(const eDVBSectionFilterMask &mask)
 	if (fd < 0)
 		return -ENODEV;
 
-	eDebug("[eDVBSectionReader] DMX_SET_FILTER pid=%d", mask.pid);
+	eTrace("[eDVBSectionReader] DMX_SET_FILTER pid=%d", mask.pid);
 	notifier->start();
 
 	dmx_sct_filter_params sct;
