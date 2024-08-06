@@ -263,7 +263,7 @@ void eEPGChannelData::startEPG()
 			isRunning |= eEPGCache::OPENTV;
 		}
 		else
-			eDebug("[eEPGChannelData] abort non avail OpenTV EIT reading");
+			eTrace("[eEPGChannelData] abort non avail OpenTV EIT reading");
 	}
 #endif
 	if (eEPGCache::getInstance()->getEpgSources() & eEPGCache::VIASAT && m_ViasatReader)
@@ -561,21 +561,21 @@ void eEPGChannelData::abortNonAvail()
 	{
 		if ( !(haveData & eEPGCache::NOWNEXT) && (isRunning & eEPGCache::NOWNEXT) )
 		{
-			eDebug("[eEPGChannelData] abort non avail nownext reading");
+			eTrace("[eEPGChannelData] abort non avail nownext reading");
 			isRunning &= ~eEPGCache::NOWNEXT;
 			m_NowNextReader->stop();
 			m_NowNextConn=0;
 		}
 		if ( !(haveData & eEPGCache::SCHEDULE) && (isRunning & eEPGCache::SCHEDULE) )
 		{
-			eDebug("[eEPGChannelData] abort non avail schedule reading");
+			eTrace("[eEPGChannelData] abort non avail schedule reading");
 			isRunning &= ~eEPGCache::SCHEDULE;
 			m_ScheduleReader->stop();
 			m_ScheduleConn=0;
 		}
 		if ( !(haveData & eEPGCache::SCHEDULE_OTHER) && (isRunning & eEPGCache::SCHEDULE_OTHER) )
 		{
-			eDebug("[eEPGChannelData] abort non avail schedule other reading");
+			eTrace("[eEPGChannelData] abort non avail schedule other reading");
 			isRunning &= ~eEPGCache::SCHEDULE_OTHER;
 			m_ScheduleOtherReader->stop();
 			m_ScheduleOtherConn=0;
@@ -583,14 +583,14 @@ void eEPGChannelData::abortNonAvail()
 #ifdef ENABLE_VIRGIN
 		if ( !(haveData & eEPGCache::VIRGIN_NOWNEXT) && (isRunning & eEPGCache::VIRGIN_NOWNEXT) )
 		{
-			eDebug("[eEPGChannelData] abort non avail virgin nownext reading");
+			eTrace("[eEPGChannelData] abort non avail virgin nownext reading");
 			isRunning &= ~eEPGCache::VIRGIN_NOWNEXT;
 			m_VirginNowNextReader->stop();
 			m_VirginNowNextConn=0;
 		}
 		if ( !(haveData & eEPGCache::VIRGIN_SCHEDULE) && (isRunning & eEPGCache::VIRGIN_SCHEDULE) )
 		{
-			eDebug("[eEPGChannelData] abort non avail virgin schedule reading");
+			eTrace("[eEPGChannelData] abort non avail virgin schedule reading");
 			isRunning &= ~eEPGCache::VIRGIN_SCHEDULE;
 			m_VirginScheduleReader->stop();
 			m_VirginScheduleConn=0;
@@ -599,14 +599,14 @@ void eEPGChannelData::abortNonAvail()
 #ifdef ENABLE_NETMED
 		if ( !(haveData & eEPGCache::NETMED_SCHEDULE) && (isRunning & eEPGCache::NETMED_SCHEDULE) )
 		{
-			eDebug("[eEPGChannelData] abort non avail netmed schedule reading");
+			eTrace("[eEPGChannelData] abort non avail netmed schedule reading");
 			isRunning &= ~eEPGCache::NETMED_SCHEDULE;
 			m_NetmedScheduleReader->stop();
 			m_NetmedScheduleConn=0;
 		}
 		if ( !(haveData & eEPGCache::NETMED_SCHEDULE_OTHER) && (isRunning & eEPGCache::NETMED_SCHEDULE_OTHER) )
 		{
-			eDebug("[eEPGChannelData] abort non avail netmed schedule other reading");
+			eTrace("[eEPGChannelData] abort non avail netmed schedule other reading");
 			isRunning &= ~eEPGCache::NETMED_SCHEDULE_OTHER;
 			m_NetmedScheduleOtherReader->stop();
 			m_NetmedScheduleOtherConn=0;
@@ -615,7 +615,7 @@ void eEPGChannelData::abortNonAvail()
 #ifdef ENABLE_FREESAT
 		if ( !(haveData & eEPGCache::FREESAT_SCHEDULE_OTHER) && (isRunning & eEPGCache::FREESAT_SCHEDULE_OTHER) )
 		{
-			eDebug("[eEPGChannelData] abort non avail FreeSat schedule_other reading");
+			eTrace("[eEPGChannelData] abort non avail FreeSat schedule_other reading");
 			isRunning &= ~eEPGCache::FREESAT_SCHEDULE_OTHER;
 			m_FreeSatScheduleOtherReader->stop();
 			m_FreeSatScheduleOtherReader2->stop();
@@ -626,7 +626,7 @@ void eEPGChannelData::abortNonAvail()
 #endif
 		if ( !(haveData & eEPGCache::VIASAT) && (isRunning & eEPGCache::VIASAT) )
 		{
-			eDebug("[eEPGChannelData] abort non avail viasat reading");
+			eTrace("[eEPGChannelData] abort non avail viasat reading");
 			isRunning &= ~eEPGCache::VIASAT;
 			m_ViasatReader->stop();
 			m_ViasatConn=0;
@@ -634,7 +634,7 @@ void eEPGChannelData::abortNonAvail()
 #ifdef ENABLE_MHW_EPG
 		if ( !(haveData & eEPGCache::MHW) && (isRunning & eEPGCache::MHW) )
 		{
-			eDebug("[eEPGChannelData] abort non avail mhw reading");
+			eTrace("[eEPGChannelData] abort non avail mhw reading");
 			isRunning &= ~eEPGCache::MHW;
 			m_MHWReader->stop();
 			m_MHWConn=0;
@@ -645,7 +645,7 @@ void eEPGChannelData::abortNonAvail()
 #ifdef ENABLE_ATSC
 		if (!(haveData & eEPGCache::ATSC_EIT) && (isRunning & eEPGCache::ATSC_EIT))
 		{
-			eDebug("[eEPGChannelData] abort non avail ATSC EIT reading");
+			eTrace("[eEPGChannelData] abort non avail ATSC EIT reading");
 			isRunning &= ~eEPGCache::ATSC_EIT;
 			cleanupATSC();
 		}
@@ -653,7 +653,7 @@ void eEPGChannelData::abortNonAvail()
 #ifdef ENABLE_OPENTV
 		if (!(haveData & eEPGCache::OPENTV) && (isRunning & eEPGCache::OPENTV))
 		{
-			eDebug("[eEPGChannelData] abort non avail OpenTV EIT reading");
+			eTrace("[eEPGChannelData] abort non avail OpenTV EIT reading");
 			isRunning &= ~eEPGCache::OPENTV;
 			cleanupOPENTV();
 		}
