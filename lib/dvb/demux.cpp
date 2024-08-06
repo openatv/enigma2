@@ -81,8 +81,11 @@ int eDVBDemux::openDemux(void)
 {
 	char filename[32];
 	snprintf(filename, sizeof(filename), "/dev/dvb/adapter%d/demux%d", adapter, demux);
-	eDebug("[eDVBDemux] open demux %s", filename);
-	return ::open(filename, O_RDWR | O_CLOEXEC);
+	eTrace("[eDVBDemux] Open demux '%s'.", filename);
+	int fd = ::open(filename, O_RDWR | O_CLOEXEC);
+	if (fd < 0)
+		eDebug("[eDVBDemux] Error: Unable to open demux '%s'!", filename);
+	return fd;
 }
 
 int eDVBDemux::openDVR(int flags)
