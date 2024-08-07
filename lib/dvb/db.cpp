@@ -1112,7 +1112,7 @@ void eDVBDB::saveServicelist(const char *file)
 				fprintf(g, ",C:%x", *ca);
 		}
 
-		int sflags = i->second->m_flags &= ~8192; // ignore in bouquet flag
+		int sflags = i->second->m_flags &= ~eDVBService::dxIntIsinBouquet; // ignore in bouquet flag
 
 		if (sflags) {
 			fprintf(f, ",f:%x", sflags);
@@ -1483,7 +1483,7 @@ int eDVBDB::renumberBouquet(eBouquet &bouquet, int startChannelNum)
 			eServiceReferenceDVB &service = (eServiceReferenceDVB&)ref;
 			std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator it(m_services.find(service));
 			if (it != m_services.end())
-				it->second->m_flags |= 8192;
+				it->second->m_flags |= eDVBService::dxIntIsinBouquet;
 		}
 
 	}
@@ -2676,8 +2676,8 @@ RESULT eDVBDBQuery::getNextResult(eServiceReferenceDVB &ref)
 		else
 		{
 			ref = m_cursor->first;
-			if (service->m_flags & 8192)
-				ref.flags |= 8192;
+			if (service->m_flags & eDVBService::dxIntIsinBouquet)
+				ref.flags |= eDVBService::dxIntIsinBouquet;
 
 			if (lcn)
 				ref.number = service->getLCN();

@@ -373,6 +373,13 @@ public:
 		dxNoEIT=4096,
 	};
 
+	enum
+	{
+		dxIntIsinBouquet=8192,
+		dxIntNewServiceName=16384,
+		dxIntNewProvider=32768,
+	};
+
 	bool usePMT() const { return !(m_flags & dxNoDVB); }
 	bool isHidden() const { return (m_flags & dxDontshow || m_flags & dxIsParentalProtected); }
 	bool isDedicated3D() const { return m_flags & dxIsDedicated3D; }

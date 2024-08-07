@@ -1495,9 +1495,22 @@ void eDVBScan::insertInto(iDVBChannelList *db, bool backgroundscanresult)
 				continue;
 			if (!(dvb_service->m_flags & eDVBService::dxHoldName))
 			{
+				if(!dvb_service->m_service_display_name.empty())
+				{
+					if(dvb_service->m_service_name != service->second->m_service_name)
+						dvb_service->m_flags |= eDVBService::dxIntNewServiceName;
+				}
+
 				dvb_service->m_service_name = service->second->m_service_name;
 				dvb_service->m_service_name_sort = service->second->m_service_name_sort;
 			}
+
+			if(!dvb_service->m_provider_display_name.empty())
+			{
+				if(dvb_service->m_provider_name != service->second->m_provider_name)
+					dvb_service->m_flags |= eDVBService::dxIntNewProvider;
+			}
+
 			dvb_service->m_provider_name = service->second->m_provider_name;
 			if (!service->second->m_default_authority.empty())
 			{
