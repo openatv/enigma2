@@ -42,7 +42,7 @@
 			<item key="crontimer_edit" level="0" text="Cron Timers" weight="10"><screen module="CronTimer" screen="CronTimers" /></item>
 			<item key="sleep" level="0" text="Sleep Timers" weight="20" requires="DeepstandbySupport"><screen module="SleepTimer" screen="SleepTimer" /></item>
 		</menu>
-		<item key="plugin_selection" level="1" text="Plugins" weight="10"><screen module="PluginBrowser" screen="PluginBrowser" /></item>
+		<item key="plugin_selection" level="1" text="Plugin Browser" weight="10"><screen module="PluginBrowser" screen="PluginBrowser" /></item>
 		<item key="scart_switch" level="1" text="VCR Scart Settings" weight="15" conditional="config.usage.show_vcr_scart.value" requires="ScartSwitch"><code>self.session.scart.VCRSbChanged(3)</code></item>
 		<!-- Menu / Setup -->
 		<menu key="setup" level="0" text="Setup" weight="20" flushConfigOnClose="1">
@@ -140,7 +140,7 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 				</item>
 			</menu>
 			<!-- Menu / Setup / Service Searching -->
-			<menu key="scan" level="0" text="Reception" weight="25">
+			<menu key="scan" level="0" text="Tuners, Scanning &amp; Reception" weight="25">
 				<item key="tuner_setup" level="0" text="Tuner Configuration" weight="0"><screen module="Satconfig" screen="NimSelection" /></item>
 				<item key="tuner_basic_settings" level="1" text="Tuner Settings" weight="1"><setup setupKey="Tuner" /></item>
 				<item key="auto_scan" level="0" text="Automatic Scan" weight="5"><screen module="ScanSetup" screen="ScanSimple" /></item>
