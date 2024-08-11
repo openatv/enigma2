@@ -2,442 +2,1415 @@
 <skin>
 	<!-- Rec Panel -->
 	<screen name="MeinRecordingPanel">
-		<widget source="session.RecordState" render="Pixmap" position="0,0" pixmap="/usr/share/enigma2/display/skin_default/record.png" transparent="1" alphatest="on" size="480,33" zPosition="1">
+
+<!-- ###########
+#####		Wird nur von skin_display_picon.xml aufgerufen - zeigt blinkendes "R" mit Groesse 33 oben links in der Ecke - kaum zu sehen
+#####
+#####		<widget source="session.RecordState" render="Pixmap" position="0,0" pixmap="/usr/share/enigma2/display/skin_default/record.png" transparent="1" alphatest="on" size="480,33" zPosition="1">
+#####
+#####		"R" bei Aufnahmen blinkend mittig im Fortschrittsbalken - Groesse 33x33 - je 1 Pixel ueber und unter 40er Font
+############ -->
+
+		<widget source="session.RecordState" render="Pixmap" position="center,179" pixmap="/usr/share/enigma2/display/skin_default/record.png" alphatest="blend" size="31,31" zPosition="1">
 			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide">Blink,1000</convert>
 		</widget>
-		<widget source="session.RecordState" render="Pixmap" position="0,0" pixmap="/usr/share/enigma2/display/skin_default/record.png" transparent="1" alphatest="on" size="480,33" zPosition="1">
+
+<!-- ###########
+#####		Zeigt permanentes "R" oben links in der Ecke - kaum zu sehen
+#####
+#####		<widget source="session.RecordState" render="Pixmap" position="0,0" pixmap="/usr/share/enigma2/display/skin_default/record.png" transparent="1" alphatest="on" size="480,33" zPosition="1">
+#####
+#####		"R" bei Aufnahmen blinkend mittig im Fortschrittsbalken - Groesse 31x31 - je 1 Pixel ueber unter 40er Font
+############ -->
+
+		<widget source="session.RecordState" render="Pixmap" position="center,180" pixmap="/usr/share/enigma2/display/skin_default/record.png" alphatest="blend" size="31,31" zPosition="1">
 			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,False,CheckSourceBoolean</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
 	</screen>
+
+
+	<!-- NEU: "TheRecordingPanel" - wird von verschiedenen Screens aufgerufen - Blinkendes oder permanentes "R" unten mittig - je 1 Pixel ueber und unter 40er Font -->
+	<screen name="TheRecordingPanel">
+		<widget source="session.RecordState" render="Pixmap" position="center,265" pixmap="/usr/share/enigma2/display/skin_default/record.png" alphatest="blend" size="31,31">
+			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide">Blink,1000</convert>
+		</widget>
+		<widget source="session.RecordState" render="Pixmap" position="center,265" pixmap="/usr/share/enigma2/display/skin_default/record.png" alphatest="blend" size="31,31">
+			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,False,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+	</screen>
+
+
+	<!-- NEU: "TheRecordingPanel2" - Blinkendes oder permanentes "R" unten mittig - je 1 Pixel ueber und unter 40er Font -->
+	<!--      Wird von verschiedenen Screens aufgerufen, bei denen das "R" etwas tiefer (9 Pixel) sein muss -->
+	<screen name="TheRecordingPanel2">
+		<widget source="session.RecordState" render="Pixmap" position="center,274" pixmap="/usr/share/enigma2/display/skin_default/record.png" alphatest="blend" size="31,31">
+			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide">Blink,1000</convert>
+		</widget>
+		<widget source="session.RecordState" render="Pixmap" position="center,274" pixmap="/usr/share/enigma2/display/skin_default/record.png" alphatest="blend" size="31,31">
+			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,False,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+	</screen>
+
+
+	<!-- NEU: "SummaryClockPanel2" - Uhrzeit unten rechts - mittig mit dem 31x31er "R" aus "TheRecordingPanel" - 20 Pixel vom rechten Rand -->
+	<!--      Weil die Uhrzeit im Picon Skin riesig und mittig ist, im Normalen Skin dagegen rechts unten sein sollte -->
+	<screen name="SummaryClockPanel2">
+		<widget source="global.CurrentTime" render="Label" position="320,258" size="140,46" font="FdLcD;40" halign="right" >
+			<convert type="ClockToText" />
+		</widget>
+	</screen>
+
+
 	<!-- Tuner Panel -->
 	<screen name="MeinTunerInfoPanel">
-		<widget source="session.FrontendInfo" render="FixedLabel" position="5,252" size="30,40" text="A" foregroundColor="#04B404" font="FdLcD;35" zPosition="1" transparent="1" halign="center">
+
+<!-- ###########
+#####		Wird nur von skin_display_picon.xml aufgerufen
+#####
+#####		<widget source="session.FrontendInfo" render="FixedLabel" position="5,252" size="30,40" text="A" foregroundColor="#04B404" font="FdLcD;35" zPosition="1" transparent="1" halign="center">
+#####
+#####		Gibt nur die Tunerbuchstaben "A" bis "D" aus - 10 Pixel von links - mittig mit Uhrzeit
+############ -->
+
+		<widget source="session.FrontendInfo" render="FixedLabel" position="10,246" size="30,40" text="A" foregroundColor="#04B404" font="FdLcD;40" zPosition="1" transparent="1">
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">0,0</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="35,252" size="30,40" text="B" foregroundColor="#04B404" font="FdLcD;35" zPosition="1" transparent="1" halign="center">
+		<widget source="session.FrontendInfo" render="FixedLabel" position="40,246" size="30,40" text="B" foregroundColor="#04B404" font="FdLcD;40" zPosition="1" transparent="1">
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">1,1</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="65,252" size="30,40" text="C" foregroundColor="#04B404" font="FdLcD;35" zPosition="1" transparent="1" halign="center">
+		<widget source="session.FrontendInfo" render="FixedLabel" position="70,246" size="30,40" text="C" foregroundColor="#04B404" font="FdLcD;40" zPosition="1" transparent="1">
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">2,2</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="95,252" size="30,40" text="D" foregroundColor="#04B404" font="FdLcD;35" zPosition="1" transparent="1" halign="center">
+		<widget source="session.FrontendInfo" render="FixedLabel" position="100,246" size="30,40" text="D" foregroundColor="#04B404" font="FdLcD;40" zPosition="1" transparent="1">
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">3,3</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.TunerInfo" render="FixedLabel" position="5,252" size="30,40" text="A" foregroundColor="#708090" font="FdLcD;35" zPosition="0" transparent="1" halign="center">
+
+<!-- ###########
+#####		Weitere Tunerbuchstaben, falls auf anderen Tunern aufgenommen wird
+#####
+#####		<widget source="session.TunerInfo" render="FixedLabel" position="5,252" size="30,40" text="A" foregroundColor="#708090" font="FdLcD;35" zPosition="0" transparent="1" halign="center">
+#####
+#####		Weitere Tunerbuchstaben, falls auf anderen Tunern aufgenommen wird - 10 Pixel von links - mittig mit Uhrzeit
+############ -->
+
+		<widget source="session.TunerInfo" render="FixedLabel" position="10,246" size="30,40" text="A" foregroundColor="#708090" font="FdLcD;40" zPosition="0" transparent="1">
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">1</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.TunerInfo" render="FixedLabel" position="35,252" size="30,40" text="B" foregroundColor="#708090" font="FdLcD;35" zPosition="0" transparent="1" halign="center">
+		<widget source="session.TunerInfo" render="FixedLabel" position="40,246" size="30,40" text="B" foregroundColor="#708090" font="FdLcD;40" zPosition="0" transparent="1">
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">2</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.TunerInfo" render="FixedLabel" position="65,252" size="30,40" text="C" foregroundColor="#708090" font="FdLcD;35" zPosition="0" transparent="1" halign="center">
+		<widget source="session.TunerInfo" render="FixedLabel" position="70,246" size="30,40" text="C" foregroundColor="#708090" font="FdLcD;40" zPosition="0" transparent="1">
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">4</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.TunerInfo" render="FixedLabel" position="95,252" size="30,40" text="D" foregroundColor="#708090" font="FdLcD;35" zPosition="0" transparent="1" halign="center">
+		<widget source="session.TunerInfo" render="FixedLabel" position="100,246" size="30,40" text="D" foregroundColor="#708090" font="FdLcD;40" zPosition="0" transparent="1">
 			<convert type="TunerInfo">TunerUseMask</convert>
 			<convert type="ValueBitTest">8</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
 	</screen>
+
+
 	<!-- standby -->
 	<screen name="StandbySummary" position="0,0" size="480,320">
-		<widget source="global.CurrentTime" render="Label" position="center,67" size="265,133" font="FdLcD;85" halign="center" transparent="1" noWrap="1">
+
+<!-- ###########
+#####		Uhrzeit - nur hier "center"
+#####
+#####		<widget source="global.CurrentTime" render="Label" position="center,67" size="265,133" font="FdLcD;85" halign="center" transparent="1" noWrap="1">
+#####
+#####		Uhrzeit etwas hoeher und mittig
+############ -->
+
+		<widget source="global.CurrentTime" render="Label" position="0,50" size="480,85" font="FdLcD;85" halign="center">
 			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
-		<eLabel position="118,200" size="236,2" backgroundColor="#BDBDBD" />
-		<widget source="global.CurrentTime" render="Label" position="0,220" size="480,45" font="FdLcD;34" halign="center" transparent="1" noWrap="1">
+
+<!-- ###########
+#####		Trennstrich - 118 + 236 ist 354 - Es sind dann links 118 bis zum Strich, rechts 126 vom Strich bis zum Rand - also nicht mittig
+#####
+#####		<eLabel position="118,200" size="236,2" backgroundColor="#BDBDBD" />
+#####
+#####		Trennstrich 3 Pixel dick mit Laenge 240 mittig und mit gleichem Abstand zur Uhrzeit und zum Datum
+############ -->
+
+		<eLabel position="120,167" size="240,3" backgroundColor="#BDBDBD" />
+
+<!-- ###########
+#####		<widget source="global.CurrentTime" render="Label" position="0,220" size="480,45" font="FdLcD;34" halign="center" transparent="1" noWrap="1">
+#####
+#####		Datum - Gleicher Abstand zum Trennstrich nach oben wie Uhrzeit zum Trennstrich nach unten - etwas groesser
+############ -->
+
+		<widget source="global.CurrentTime" render="Label" position="0,202" size="480,46" font="FdLcD;40" halign="center">
 			<convert type="ClockToText">Format:%d.%m.%Y</convert>
 		</widget>
-		<panel name="MeinRecordingPanel" />
+
+<!-- ###########
+#####		Holt blinkendes "R" nach 0,0 wie in skin_display_picon.xml - dort aber kaum zu sehen
+#####
+#####		<panel name="MeinRecordingPanel" />
+#####
+#####		Blinkendes oder permanentes "R" wird unten mittig ausgegeben
+############ -->
+
+		<panel name="TheRecordingPanel" />
 	</screen>
-	<!-- Movieplayer-->
+
+
+	<!-- Movieplayer - Filme abspielen, wenn nicht das EMC genommen wird -->
 	<screen name="InfoBarMoviePlayerSummary" position="0,0" size="480,320">
-		<widget source="session.CurrentService" render="Label" position="5,0" size="470,210" font="FdLcD;44" halign="center" valign="center" transparent="1" zPosition="2">
+
+<!-- ###########
+#####		Zu hoch, deshalb sind die Punkte vom Ue im Display gar nicht zu sehen
+#####
+#####		<widget source="session.CurrentService" render="Label" position="5,0" size="470,210" font="FdLcD;44" halign="center" valign="center" transparent="1" zPosition="2">
+#####			<convert type="ServiceName">Name</convert>
+#####		</widget>
+#####		<eLabel position="5,215" size="470,3" backgroundColor="#BDBDBD" zPosition="3" />
+#####		<widget source="session.CurrentService" render="Progress" position="5,220" size="470,30" transparent="1">
+#####			<convert type="ServicePosition">Position</convert>
+#####		</widget>
+#####		<eLabel position="5,252" size="470,3" backgroundColor="#BDBDBD" zPosition="3" />
+#####		<widget source="session.CurrentService" render="Label" position="10,260" size="220,60" font="FdLcD;50" foregroundColor="#A9E2F3" zPosition="0" halign="left" transparent="1">
+#####			<convert type="ServicePosition">Remaining,ShowNoSeconds,Negate</convert>
+#####		</widget>
+#####
+#####		Text weiter nach unten damit komplett sichtbar
+#####		42er statt 44er Text - maximal 4 Zeilen mittig
+#####		Striche, Balken, Uhrzeit und Restzeit je 20 vom Rand
+############ -->
+
+	<!-- Aufnahmename maximal 4 Zeilen mittig - 42er Font -->
+		<widget source="session.CurrentService" render="Label" position="0,15" size="480,192" font="FdLcD;42" halign="center" valign="center">
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<eLabel position="5,215" size="470,3" backgroundColor="#BDBDBD" zPosition="3" />
-		<widget source="session.CurrentService" render="Progress" position="5,220" size="470,30" transparent="1">
+
+	<!-- Trennstrich -->
+		<eLabel position="20,216" size="440,3" backgroundColor="#BDBDBD" />
+
+	<!-- Fortschrittsbalken -->
+		<widget source="session.CurrentService" render="Progress" position="20,221" size="440,30">
 			<convert type="ServicePosition">Position</convert>
 		</widget>
-		<eLabel position="5,252" size="470,3" backgroundColor="#BDBDBD" zPosition="3" />
-		<widget source="session.CurrentService" render="Label" position="10,260" size="220,60" font="FdLcD;50" foregroundColor="#A9E2F3" zPosition="0" halign="left" transparent="1">
-			<convert type="ServicePosition">Remaining,ShowNoSeconds,Negate</convert>
+
+	<!-- Trennstrich -->
+		<eLabel position="20,253" size="440,3" backgroundColor="#BDBDBD" />
+
+	<!-- Restlaenge in Minuten -->
+		<widget source="session.CurrentService" render="Label" position="20,258" size="190,46" font="FdLcD;40" foregroundColor="#A9E2F3" halign="left">
+			<convert type="ServicePosition">Remaining</convert>
 		</widget>
-		<panel name="MeinRecordingPanel" />
-		<widget source="global.CurrentTime" render="Label" position="310,260" size="160,60" font="FdLcD;50" halign="center" valign="center" noWrap="1">
-			<convert type="ClockToText" />
-		</widget>
+
+<!-- ###########
+#####		Holt blinkendes oder permanentes "R" nach 0,0 wie in skin_display_picon.xml - sollte aber unten und mittig ausgeben werden
+#####		<panel name="MeinRecordingPanel" />
+#####
+#####		Zu gross und zu weit vom rechten Rand
+#####		<widget source="global.CurrentTime" render="Label" position="310,260" size="160,60" font="FdLcD;50" halign="center" valign="center" noWrap="1">
+#####
+#####		40er statt 50er Font - 20 vom rechten Rand
+#####		Blinkendes oder permanentes "R" mittig zwischen Restzeit und Uhrzeit und auf gleicher Hoehe
+############ -->
+
+	<!-- Blinkendes oder permanentes "R" unten mittig -->
+		<panel name="TheRecordingPanel" />
+
+	<!-- Aktuelle Uhrzeit unten rechts - 20 vom rechten Rand -->
+		<panel name="SummaryClockPanel2" />
 	</screen>
-	<!-- MovieContextMenuSummary -->
-	<screen name="MovieContextMenuSummary" position="0,0" size="480,320">
-		<widget source="parent.Title" render="Label" position="0,0" size="480,130" font="FdLcD;55" halign="center" valign="center" foregroundColor="#87CEFA" />
-		<widget source="selected" render="Label" position="0,140" size="480,180" font="FdLcD;55" halign="center" valign="center" />
-		<eLabel position="0,134" size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
-	</screen>
-	<!-- MovieSelectionSummary -->
-	<screen name="MovieSelectionSummary" position="0,0" size="480,320" flags="wfNoBorder">
-		<widget source="parent.Title" render="Label" position="0,0" size="480,50" font="FdLcD;44" foregroundColor="#87CEFA" halign="center" valign="center" zPosition="14" />
-		<eLabel position="5,55" size="470,2" backgroundColor="#BDBDBD" />
-		<eLabel position="5,270" size="470,2" backgroundColor="#BDBDBD" />
-		<widget source="name" render="Label" position="5,60" size="470,210" font="FdLcD;44" halign="center" valign="center" />
-		<widget source="parent.Service" render="Label" position="5,275" size="470,45" font="FdLcD;44" halign="left" transparent="1">
-			<convert type="ServiceTime">Duration</convert>
-			<convert type="ClockToText">AsLength</convert>
-		</widget>
-		<widget source="parent.Service" render="Label" position="5,275" size="470,45" font="FdLcD;44" halign="right" transparent="1">
-			<convert type="MovieInfo">FileSize</convert>
-		</widget>
-	</screen>
-	<!-- EMCSelection -->
-	<screen name="EMCSelectionSummary" position="0,0" size="480,320">
-		<widget source="parent.Title" render="Label" position="5,0" size="470,90" font="FdLcD;36" foregroundColor="#87CEFA" halign="center" valign="center" />
-		<widget source="parent.Service" render="Label" position="5,92" size="470,182" font="FdLcD;40" halign="center" valign="center">
-			<convert type="ServiceName">Name</convert>
-		</widget>
-		<eLabel position="5,90" size="470,2" backgroundColor="#BDBDBD" />
-		<eLabel position="5,275" size="470,2" backgroundColor="#BDBDBD" />
-		<widget source="parent.Service" render="Label" position="5,280" size="470,40" font="FdLcD;40" halign="left" transparent="1">
-			<convert type="ServiceTime">Duration</convert>
-			<convert type="ClockToText">AsLength</convert>
-		</widget>
-		<widget source="parent.Service" render="Label" position="5,280" size="470,40" font="FdLcD;40" halign="right" transparent="1">
-			<convert type="MovieInfo">FileSize</convert>
-		</widget>
-	</screen>
+
+
 	<!-- EMCMoviePlayer -->
 	<screen name="EMCMoviePlayerSummary" position="0,0" size="480,320">
-		<widget source="session.CurrentService" render="Label" position="5,0" size="470,215" font="FdLcD;44" halign="center" valign="center" transparent="1">
+
+<!-- ###########
+#####		<widget source="session.CurrentService" render="Label" position="5,0" size="470,215" font="FdLcD;44" halign="center" valign="center" transparent="1">
+#####			<convert type="ServiceName">Name</convert>
+#####		</widget>
+#####		<widget source="Service" render="Progress" position="5,226" size="470,30" zPosition="2" borderWidth="1" transparent="1">
+#####			<convert type="EMCServicePosition">Position</convert>
+#####		</widget>
+#####		<widget source="global.CurrentTime" render="Label" position="10,270" size="460,50" font="FdLcD;50" halign="left" transparent="1">
+#####			<convert type="ClockToText">Format:%H:%M</convert>
+##########		</widget>
+#####		<widget source="session.CurrentService" render="Label" position="10,270" size="460,50" font="FdLcD;50" halign="right" transparent="1">
+#####			<convert type="ServicePosition">Remaining,Negate</convert>
+#####		</widget>
+#####
+#####		"session.RecordState" wird am Ende abgefragt
+#####
+#####		<widget source="session.RecordState" render="Pixmap" position="10,10" pixmap="/usr/share/enigma2/display/skin_default/record.png" transparent="1" alphatest="on" size="30,30" zPosition="1">
+#####			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
+#####			<convert type="ConditionalShowHide">Blink,1000</convert>
+#####		</widget>
+#####		<widget source="session.RecordState" render="Pixmap" position="10,10" pixmap="/usr/share/enigma2/display/skin_default/record.png" transparent="1" alphatest="on" size="30,30" zPosition="1">
+#####			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,False,CheckSourceBoolean</convert>
+#####			<convert type="ConditionalShowHide" />
+#####		</widget>
+#####		<eLabel position="5,219" size="470,2" backgroundColor="#BDBDBD" />
+#####		<eLabel position="5,260" size="470,2" backgroundColor="#BDBDBD" />
+#####
+#####		Aufbau genau wie "InfoBarMoviePlayerSummary"
+############ -->
+
+		<widget source="session.CurrentService" render="Label" position="0,15" size="480,192" font="FdLcD;42" halign="center" valign="center">
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="Service" render="Progress" position="5,226" size="470,30" zPosition="2" borderWidth="1" transparent="1">
+		<eLabel position="20,216" size="440,3" backgroundColor="#BDBDBD" />
+		<widget source="Service" render="Progress" position="20,221" size="440,30">
 			<convert type="EMCServicePosition">Position</convert>
 		</widget>
-		<widget source="global.CurrentTime" render="Label" position="10,270" size="460,50" font="FdLcD;50" halign="left" transparent="1">
-			<convert type="ClockToText">Format:%H:%M</convert>
+		<eLabel position="20,253" size="440,3" backgroundColor="#BDBDBD" />
+		<widget source="session.CurrentService" render="Label" position="20,258" size="190,46" font="FdLcD;40" foregroundColor="#A9E2F3" halign="left">
+			<convert type="ServicePosition">Remaining</convert>
 		</widget>
-		<widget source="session.CurrentService" render="Label" position="10,270" size="460,50" font="FdLcD;50" halign="right" transparent="1">
-			<convert type="ServicePosition">Remaining,Negate</convert>
-		</widget>
-		<widget source="session.RecordState" render="Pixmap" position="10,10" pixmap="/usr/share/enigma2/display/skin_default/record.png" transparent="1" alphatest="on" size="30,30" zPosition="1">
-			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
-			<convert type="ConditionalShowHide">Blink,1000</convert>
-		</widget>
-		<widget source="session.RecordState" render="Pixmap" position="10,10" pixmap="/usr/share/enigma2/display/skin_default/record.png" transparent="1" alphatest="on" size="30,30" zPosition="1">
-			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,False,CheckSourceBoolean</convert>
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<eLabel position="5,219" size="470,2" backgroundColor="#BDBDBD" />
-		<eLabel position="5,260" size="470,2" backgroundColor="#BDBDBD" />
+		<panel name="TheRecordingPanel" />
+		<panel name="SummaryClockPanel2" />
 	</screen>
-	<!-- Mediaplayer -->
-	<screen name="MediaPlayerLCDScreen" position="0,0" size="480,320">
-		<widget name="text1" position="0,0" size="480,43" font="FdLcD;38" noWrap="1" halign="center" valign="center" transparent="1" zPosition="2" />
-		<widget name="text3" position="0,47" size="480,43" font="FdLcD;38" noWrap="1" halign="center" valign="center" transparent="1" zPosition="2" />
-		<widget name="text4" position="0,93" size="480,43" font="FdLcD;38" noWrap="1" halign="center" valign="center" transparent="1" zPosition="2" />
-		<eLabel position="0,175" size="480,3" backgroundColor="#BDBDBD" zPosition="3" />
-		<widget source="session.CurrentService" render="Progress" position="0,184" size="480,33" transparent="1">
-			<convert type="ServicePosition">Position</convert>
+
+
+	<!-- MovieSelectionSummary - VIDEO/PVR Taste - Filmauswahl -->
+
+<!-- ###########
+#####	<screen name="MovieSelectionSummary" position="0,0" size="480,320" flags="wfNoBorder">
+#####
+#####		<widget source="parent.Title" render="Label" position="0,0" size="480,50" font="FdLcD;44" foregroundColor="#87CEFA" halign="center" valign="center" zPosition="14" />
+#####		<eLabel position="5,55" size="470,2" backgroundColor="#BDBDBD" />
+#####		<eLabel position="5,270" size="470,2" backgroundColor="#BDBDBD" />
+#####		<widget source="name" render="Label" position="5,60" size="470,210" font="FdLcD;44" halign="center" valign="center" />
+#####		<widget source="parent.Service" render="Label" position="5,275" size="470,45" font="FdLcD;44" halign="left" transparent="1">
+#####			<convert type="ServiceTime">Duration</convert>
+#####			<convert type="ClockToText">AsLength</convert>
+#####		</widget>
+#####		<widget source="parent.Service" render="Label" position="5,275" size="470,45" font="FdLcD;44" halign="right" transparent="1">
+#####			<convert type="MovieInfo">FileSize</convert>
+#####		</widget>
+#####
+#####		flags="wfNoBorder" entfernt
+#####		Anordnung wie bei INFO / PVR unter "EventViewSummary"
+#####		Ueberschrift etwas kleiner und tiefer, sonst fehlt oben was im Display
+#####		Filmlaenge und Filmgroesse je 10 vom Rand
+#####		Filmname maximal 4 statt 3 Zeilen und mittig zwischen den Strichen
+#####		Trennstriche 3 statt 2 dick
+##### 		Blinkendes "R" unten mittig - keine Uhrzeit, weil unten rechts Filmlaenge angezeigt wird
+############ -->
+
+	<screen name="MovieSelectionSummary" position="0,0" size="480,320">
+
+	<!-- Ueberschrift "/media/hdd/movie/" -->
+		<widget source="parent.Title" render="Label" position="0,8" size="480,46" font="FdLcD;40" foregroundColor="#87CEFA" halign="center" />
+
+	<!-- Trennstrich -->
+		<eLabel position="10,55" size="460,3" backgroundColor="#BDBDBD" />
+
+	<!-- Aufnahmename maximal 4 Zeilen mittig - 42er Font -->
+		<widget source="name" render="Label" position="0,64" size="480,192" font="FdLcD;42" halign="center" valign="center" />
+
+	<!-- Trennstrich -->
+		<eLabel position="10,262" size="460,3" backgroundColor="#BDBDBD" />
+
+	<!-- Zeit in Minuten - unten 10 von links - 10 vom Trennstrich -->
+		<widget source="parent.Service" render="Label" position="10,267" size="210,46" font="FdLcD;40" halign="left" >
+			<convert type="ServiceTime">Duration</convert>
+			<convert type="ClockToText">AsLength</convert>
 		</widget>
-		<eLabel position="0,224" size="480,3" backgroundColor="#BDBDBD" zPosition="3" />
-		<widget source="session.CurrentService" render="Label" position="353,247" size="118,53" font="FdLcD;40" foregroundColor="#A9E2F3" zPosition="0" halign="right" transparent="1">
-			<convert type="ServicePosition">Remaining,ShowNoSeconds,OnlyMinute</convert>
+
+	<!-- Groesse - unten 10 von rechts - 10 vom Trennstrich -->
+		<widget source="parent.Service" render="Label" position="260,267" size="210,46" font="FdLcD;40" halign="right" >
+			<convert type="MovieInfo">FileSize</convert>
 		</widget>
-		<panel name="MeinRecordingPanel" />
-		<panel name="SummaryClockPanel" />
+
+	<!-- Blinkendes "R" unten mittig -->
+		<panel name="TheRecordingPanel2" />
 	</screen>
-	<!-- RadioChannelselection  -->
-	<screen name="ChannelSelectionRadioSummary" position="0,0" size="480,320">
-		<widget source="session.CurrentService" render="Label" position="0,0" size="480,53" foregroundColor="#87CEFA" font="FdLcD;38" halign="center">
+
+
+	<!-- EMCSelection -->
+	<screen name="EMCSelectionSummary" position="0,0" size="480,320">
+
+<!-- ###########
+#####		<widget source="parent.Title" render="Label" position="5,0" size="470,90" font="FdLcD;36" foregroundColor="#87CEFA" halign="center" valign="center" />
+#####		<widget source="parent.Service" render="Label" position="5,92" size="470,182" font="FdLcD;40" halign="center" valign="center">
+#####			<convert type="ServiceName">Name</convert>
+#####		</widget>
+#####		<eLabel position="5,90" size="470,2" backgroundColor="#BDBDBD" />
+#####		<eLabel position="5,275" size="470,2" backgroundColor="#BDBDBD" />
+#####		<widget source="parent.Service" render="Label" position="5,280" size="470,40" font="FdLcD;40" halign="left" transparent="1">
+#####			<convert type="ServiceTime">Duration</convert>
+#####			<convert type="ClockToText">AsLength</convert>
+#####		</widget>
+#####		<widget source="parent.Service" render="Label" position="5,280" size="470,40" font="FdLcD;40" halign="right" transparent="1">
+#####			<convert type="MovieInfo">FileSize</convert>
+#####		</widget>
+#####
+#####		Aufbau genau wie "MovieSelectionSummary"
+############ -->
+
+		<widget source="parent.Title" render="Label" position="0,8" size="480,46" font="FdLcD;40" foregroundColor="#87CEFA" halign="center" />
+		<eLabel position="10,55" size="460,3" backgroundColor="#BDBDBD" />
+		<widget source="parent.Service" render="Label" position="0,64" size="480,192" font="FdLcD;42" halign="center" valign="center" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="parent.RdsDecoder" render="Label" position="0,60" size="480,167" font="FdLcD;42" halign="center" valign="center">
+		<eLabel position="10,262" size="460,3" backgroundColor="#BDBDBD" />
+		<widget source="parent.Service" render="Label" position="10,267" size="210,46" font="FdLcD;40" halign="left" >
+			<convert type="ServiceTime">Duration</convert>
+			<convert type="ClockToText">AsLength</convert>
+		</widget>
+		<widget source="parent.Service" render="Label" position="260,267" size="210,46" font="FdLcD;40" halign="right" >
+			<convert type="MovieInfo">FileSize</convert>
+		</widget>
+		<panel name="TheRecordingPanel2" />
+	</screen>
+
+
+	<!-- MovieContextMenuSummary -->
+	<screen name="MovieContextMenuSummary" position="0,0" size="480,320">
+
+<!-- ###########
+#####		VIDEO/PVR Taste, dann MENU in der Liste der Aufnahmen gedrueckt - Einstellungen - OK - Videoeinstellungen vornehmen
+#####		Schrift VIEL zu gross - Trennstrich VIEL zu dick
+#####
+#####		<widget source="parent.Title" render="Label" position="0,0" size="480,130" font="FdLcD;55" halign="center" valign="center" foregroundColor="#87CEFA" />
+#####		<widget source="selected" render="Label" position="0,140" size="480,180" font="FdLcD;55" halign="center" valign="center" />
+#####		<eLabel position="0,134" size="480,22" backgroundColor="#BDBDBD" zPosition="10" />
+#####
+#####		Ueberschrift und Menueoption je 30 Pixel zum Trennstrich (Wenn ohne Ue oder g) - Trennstrich 3 Pixel dick
+############ -->
+
+	<!-- Ueberschrift "Filmauswahl - Einstellungen"- maximal 2 Zeilen -->
+		<widget source="parent.Title" render="Label" position="0,20" size="480,92" font="FdLcD;40" halign="center" foregroundColor="#87CEFA" />
+
+	<!-- Trennstrich -->
+		<eLabel position="10,133" size="460,3" backgroundColor="#BDBDBD" />
+
+	<!-- Menuepunkt - maximal 3 Zeilen moeglich - sind aber eh nur 2 Zeilen -->
+		<widget source="selected" render="Label" position="0,158" size="480,138" font="FdLcD;40" halign="center" />
+	</screen>
+
+
+	<!-- Mediaplayer -->
+	<screen name="MediaPlayerLCDScreen" position="0,0" size="480,320">
+
+<!-- ###########
+#####		Wer ruft das hier auf ???
+#####		Gibt es keinen "text2" ???
+#####
+#####		Trennstriche ueber Fortschrittsbalken 9 Pixel, unter ihm 6 Pixel
+#####		Holt blinkendes "R" nach 0,0 wie in skin_display_picon.xml - sollte aber unten und mittig ausgeben werden
+#####
+#####		<widget name="text1" position="0,0" size="480,43" font="FdLcD;38" noWrap="1" halign="center" valign="center" transparent="1" zPosition="2" />
+#####		<widget name="text3" position="0,47" size="480,43" font="FdLcD;38" noWrap="1" halign="center" valign="center" transparent="1" zPosition="2" />
+#####		<widget name="text4" position="0,93" size="480,43" font="FdLcD;38" noWrap="1" halign="center" valign="center" transparent="1" zPosition="2" />
+#####		<eLabel position="0,175" size="480,3" backgroundColor="#BDBDBD" zPosition="3" />
+#####		<widget source="session.CurrentService" render="Progress" position="0,184" size="480,33" transparent="1">
+#####			<convert type="ServicePosition">Position</convert>
+#####		</widget>
+#####		<eLabel position="0,223" size="480,3" backgroundColor="#BDBDBD" zPosition="3" />
+#####		<widget source="session.CurrentService" render="Label" position="353,247" size="118,53" font="FdLcD;40" foregroundColor="#A9E2F3" zPosition="0" halign="right" transparent="1">
+#####			<convert type="ServicePosition">Remaining,ShowNoSeconds,OnlyMinute</convert>
+#####		</widget>
+#####		<panel name="MeinRecordingPanel" />
+#####
+#####		40er Font
+#####		Blinkendes "R" unten mittig - TheRecordingPanel2" weil das "R" hier tiefer (9 Pixel) sein muss
+#####		Keine Uhrzeit, weil unten rechts die Restzeit angezeigt wird
+############ -->
+
+	<!-- Text 1 Zeile -->
+		<widget name="text1" position="0,10" size="480,46" font="FdLcD;40" noWrap="1" halign="center" valign="center" />
+
+	<!-- Text 1 Zeile -->
+		<widget name="text3" position="0,66" size="480,46" font="FdLcD;40" noWrap="1" halign="center" valign="center" />
+
+	<!-- Text 1 Zeile -->
+		<widget name="text4" position="0,122" size="480,46" font="FdLcD;40" noWrap="1" halign="center" valign="center"  />
+
+	<!-- Trennstrich -->
+		<eLabel position="20,180" size="440,3" backgroundColor="#BDBDBD" />
+
+	<!-- Fortschrittsbalken -->
+		<widget source="session.CurrentService" render="Progress" position="20,186" size="440,33">
+			<convert type="ServicePosition">Position</convert>
+		</widget>
+
+	<!-- Trennstrich -->
+		<eLabel position="20,222" size="440,3" backgroundColor="#BDBDBD" />
+
+	<!-- Restzeit 20 vom rechten Rand -->
+		<widget source="session.CurrentService" render="Label" position="280,267" size="180,46" font="FdLcD;40" foregroundColor="#A9E2F3" halign="right" >
+			<convert type="ServicePosition">Remaining</convert>
+		</widget>
+
+	<!-- Blinkendes oder permanentes "R" unten mittig -->
+		<panel name="TheRecordingPanel2" />
+	</screen>
+
+
+	<!-- RadioChannelselection  -->
+	<screen name="ChannelSelectionRadioSummary" position="0,0" size="480,320">
+
+<!-- ###########
+#####		Radiosender werden wie Fernsehsender aufgerufen - aber nicht hier ?!?
+#####
+#####		<widget source="session.CurrentService" render="Label" position="0,0" size="480,53" foregroundColor="#87CEFA" font="FdLcD;38" halign="center">
+#####			<convert type="ServiceName">Name</convert>
+#####		</widget>
+#####		<widget source="parent.RdsDecoder" render="Label" position="0,60" size="480,167" font="FdLcD;42" halign="center" valign="center">
+#####			<convert type="RdsInfo">RadioText</convert>
+#####		</widget>
+#####		<panel name="SummaryClockPanel" />
+#####
+#####		Blinkendes "R" unten mittig und aktuelle Uhrzeit unten rechts
+############ -->
+
+	<!-- Ueberschrift -->
+		<widget source="session.CurrentService" render="Label" position="0,8" size="480,46" foregroundColor="#87CEFA" font="FdLcD;40" halign="center">
+			<convert type="ServiceName">Name</convert>
+		</widget>
+
+	<!-- Trennstrich -->
+		<eLabel position="10,55" size="460,3" backgroundColor="#BDBDBD" />
+
+	<!-- Sendername? - maximal 4 Zeilen mittig -->
+		<widget source="parent.RdsDecoder" render="Label" position="0,64" size="480,192" font="FdLcD;42" halign="center" valign="center">
 			<convert type="RdsInfo">RadioText</convert>
 		</widget>
-		<panel name="SummaryClockPanel" />
+
+	<!-- Blinkendes "R" unten mittig und aktuelle Uhrzeit unten rechts -->
+		<panel name="TheRecordingPanel" />
+		<panel name="SummaryClockPanel2" />
 	</screen>
+
+
 	<!-- EPG Screens -->
 	<screen name="EventViewSummary" position="0,0" size="480,320">
-		<widget source="parent.Title" render="RunningText" position="5,0" size="470,52" font="FdLcD;42" options="movetype=running,direction=left,startpoint=0,steptime=25,startdelay=600,wrap=1,always=0,repeat=2,oneshot=1" foregroundColor="#87CEFA" valign="center" halign="center" noWrap="1" />
-		<!-- <widget source="parent.summary_description" render="Label" position="5,59" size="470,201" font="FdLcD;42" valign="center" halign="center" /> -->
-		<widget source="parent.summary_description" position="5,59" size="470,201" font="FdLcD;42" render="RunningText" options="movetype=running,direction=top,startpoint=0,steptime=25,startdelay=600,wrap=1,always=0,repeat=2,oneshot=1" valign="center" halign="center" />
-		<eLabel position="5,52" size="470,3" backgroundColor="#BDBDBD" />
-		<eLabel position="5,265" size="470,3" backgroundColor="#BDBDBD" />
-		<widget source="parent.Event" render="Label" position="10,269" size="250,51" font="FdLcD;42" transparent="1" valign="center" halign="left">
+
+<!-- ###########
+#####		INFO (HELP bei Vu+) gedrueckt
+#####
+#####		<widget source="parent.Title" render="RunningText" position="5,0" size="470,52" font="FdLcD;42" options="movetype=running,direction=left,startpoint=0,steptime=25,startdelay=600,wrap=1,always=0,repeat=2,oneshot=1" foregroundColor="#87CEFA" valign="center" halign="center" noWrap="1" />
+#####		<widget source="parent.summary_description" position="5,59" size="470,201" font="FdLcD;42" render="RunningText" options="movetype=running,direction=top,startpoint=0,steptime=25,startdelay=600,wrap=1,always=0,repeat=2,oneshot=1" valign="center" halign="center" />
+#####		<eLabel position="5,52" size="470,3" backgroundColor="#BDBDBD" />
+#####		<eLabel position="5,265" size="470,3" backgroundColor="#BDBDBD" />
+#####		<widget source="parent.Event" render="Label" position="10,269" size="250,51" font="FdLcD;42" transparent="1" valign="center" halign="left">
+#####			<convert type="EventTime">StartTime</convert>
+#####			<convert type="ClockToText" />
+#####		</widget>
+#####		<eLabel name="" text="-" position="126,267" size="20,51" font="FdLcD;42" valign="center" halign="center" transparent="1" />
+#####		<widget source="parent.Event" render="Label" position="10,269" size="250,51" font="FdLcD;42" transparent="1" valign="center" halign="right">
+#####			<convert type="EventTime">EndTime</convert>
+#####			<convert type="ClockToText" />
+#####		</widget>
+#####		<widget source="parent.Event" render="Label" position="265,269" size="210,51" font="FdLcD;42" transparent="1" halign="right" valign="center">
+#####			<convert type="EventTime">Remaining</convert>
+#####			<convert type="RemainingToText"></convert>
+#####		</widget>
+#####
+#####		Die Ueberschrift scrollt nicht - zu viel Irritation fuer die Augen - 10 Pixel von links und rechts
+#####		Die Beschreibung beginnt nach 2400 statt 600 und etwas langsamer (40 statt 25) zu scrollen, damit man die ersten Zeilen erstmal in Ruhe lesen kann
+#####		Alle Ausgaben mit 40er Font ausser 35er fuer die Beschreibung
+#####		Die Beschreibung beim Scrollen je 2 Pixel oben und unten von den Trennstrichen entfernt
+############ -->
+
+	<!-- Sendungsueberschrift -->
+		<widget source="parent.Title" render="Label" position="10,8" size="460,46" font="FdLcD;40" foregroundColor="#87CEFA" halign="left" noWrap="1" />
+
+	<!-- Trennstrich -->
+		<eLabel position="10,55" size="460,3" backgroundColor="#BDBDBD" />
+
+	<!-- Beschreibung - scrollt 6 Zeilen von unten nach oben - 10 von Raendern -->
+		<widget source="parent.summary_description" position="10,60" size="460,200" font="FdLcD;35" render="RunningText" options="movetype=running,direction=top,startpoint=0,steptime=40,startdelay=2400,wrap=1,always=0,repeat=2,oneshot=1" valign="center" />
+
+	<!-- Trennstrich -->
+		<eLabel position="10,262" size="460,3" backgroundColor="#BDBDBD" />
+
+	<!-- Startzeit 10 von links - 10 vom Trennstrich -->
+		<widget source="parent.Event" render="Label" position="10,267" size="110,46" font="FdLcD;40" transparent="1" halign="left">
 			<convert type="EventTime">StartTime</convert>
 			<convert type="ClockToText" />
 		</widget>
-		<eLabel name="" text="-" position="126,267" size="20,51" font="FdLcD;42" valign="center" halign="center" transparent="1" />
-		<widget source="parent.Event" render="Label" position="10,269" size="250,51" font="FdLcD;42" transparent="1" valign="center" halign="right">
+
+	<!-- "-" -->
+		<eLabel name="" text="-" position="117,264" size="20,46" font="FdLcD;40" halign="left" transparent="1" />
+
+	<!-- Endzeit 10 von rechts - 10 vom Trennstrich -->
+		<widget source="parent.Event" render="Label" position="128,267" size="110,46" font="FdLcD;40" transparent="1" halign="right">
 			<convert type="EventTime">EndTime</convert>
 			<convert type="ClockToText" />
 		</widget>
-		<widget source="parent.Event" render="Label" position="265,269" size="210,51" font="FdLcD;42" transparent="1" halign="right" valign="center">
+
+	<!-- Restminuten 10 von rechts - 10 vom Trennstrich -->
+		<widget source="parent.Event" render="Label" position="290,267" size="180,46" font="FdLcD;40" transparent="1" halign="right">
 			<convert type="EventTime">Remaining</convert>
 			<convert type="RemainingToText"></convert>
 		</widget>
 	</screen>
+
+
 	<screen name="EventViewSimpleSummary" position="0,0" size="480,320">
 		<panel name="EventViewSummary" />
 	</screen>
+
+
 	<!-- Numberzap -->
 	<screen name="NumberZapSummary" position="0,0" size="480,320">
-		<widget source="parent.number_summary" render="Label" position="0,0" size="480,132" font="FdLcD;105" halign="center" valign="center" transparent="1" />
-		<widget source="parent.service_summary" render="Label" position="0,135" size="480,185" font="FdLcD;55" halign="center" valign="center" transparent="1" />
+
+<!-- ###########
+#####		Sendernummer mit den Tasten der Fernbedienung eingeben
+#####
+#####		<widget source="parent.number_summary" render="Label" position="0,0" size="480,132" font="FdLcD;105" halign="center" valign="center" transparent="1" />
+#####		<widget source="parent.service_summary" render="Label" position="0,135" size="480,185" font="FdLcD;55" halign="center" valign="center" transparent="1" />
+#####
+#####		Sendername in der Farbe wie auch im Einschaltscreen
+############ -->
+
+	<!-- Die Zahl(en) sehr gross - bei 0,0 faengt die Zahl selbst im Display bei 0,23 an -->
+		<widget source="parent.number_summary" render="Label" position="0,0" size="480,120" font="FdLcD;120" halign="center"/>
+
+	<!-- Sendername - maximal 3 Zeilen -->
+		<widget source="parent.service_summary" render="Label" position="0,140" size="480,174" font="FdLcD;50" foregroundColor="#87CEFA" halign="center"/>
 	</screen>
+
+
 	<screen name="NumberZapPiconSummary" position="0,0" size="480,320">
 		<panel name="NumberZapSummary" />
 	</screen>
+
 	<screen name="NumberZapExtSummary" position="0,0" size="480,320">
 		<panel name="NumberZapSummary" />
 	</screen>
+
+
 	<!-- IMDbLCDScreen -->
 	<screen name="IMDbLCDScreen" position="0,0" size="480,320">
-		<widget name="headline" position="0,0" size="480,237" font="FdLcD;44" foregroundColor="#87CEFA" halign="center" valign="center" />
-		<panel name="SummaryClockPanel" />
+
+<!-- ###########
+#####		Bei 237 koennten 4 1/2 44er Zeilen angezeigt werden 
+#####
+#####		<widget name="headline" position="0,0" size="480,237" font="FdLcD;44" foregroundColor="#87CEFA" halign="center" valign="center" />
+#####
+#####		5 Zeilen 44er sind 255 hoch - 1 Zeile mehr - mittig
+#####		Blinkendes "R" unten mittig und aktuelle Uhrzeit unten rechts
+############ -->
+
+		<widget name="headline" position="0,0" size="480,255" font="FdLcD;44" foregroundColor="#87CEFA" halign="center" valign="center" />
+		<panel name="TheRecordingPanel" />
+		<panel name="SummaryClockPanel2" />
 	</screen>
-	<!-- menus-->
-	<screen name="MenuSummary" position="0,0" size="480,320">
-		<widget source="Title" render="Label" position="0,0" size="480,130" font="FdLcD;55" halign="center" valign="center" foregroundColor="#87CEFA" />
-		<widget source="entry" render="Label" position="0,140" size="480,180" font="FdLcD;55" halign="center" valign="center" />
-		<eLabel position="0,134" size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
+
+
+	<!-- LocationBox -->
+	<screen name="LocationBoxSummary" position="0,0" size="480,320">
+
+<!-- ###########
+#####		Bei 237 koennten 5 1/2 40er Zeilen angezeigt werden 
+#####
+#####		<widget source="parent.text" render="Label" position="0,0" size="480,237" font="FdLcD;40" foregroundColor="#87CEFA" halign="center" valign="center" />
+#####
+#####		5 Zeilen 44er sind 255 hoch - 1 Zeile mehr - mittig
+#####		Blinkendes "R" unten mittig und aktuelle Uhrzeit unten rechts
+############ -->
+
+		<widget source="parent.text" render="Label" position="0,0" size="480,255" font="FdLcD;44" foregroundColor="#87CEFA" halign="center" valign="center" />
+		<panel name="TheRecordingPanel" />
+		<panel name="SummaryClockPanel2" />
 	</screen>
-	<!-- setup-->
-	<screen name="SetupSummary" position="0,0" size="480,320">
-		<widget source="Title" render="Label" position="0,0" size="480,60" font="FdLcD;46" halign="center" valign="top" />
-		<widget source="entry" render="Label" position="0,62" size="480,170" font="FdLcD;46" foregroundColor="#87CEFA" halign="left" valign="center" transparent="1" zPosition="1" />
-		<widget source="value" render="Label" position="0,233" size="480,90" font="FdLcD;40" valign="center" halign="left" />
-		<eLabel position="0,60" size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
-		<eLabel position="0,232" size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
+
+
+	<!-- misc -->
+	<screen name="ScreenSummary" position="0,0" size="480,320">
+
+<!-- ###########
+#####		Bei 237 koennten 5 1/2 38er Zeilen angezeigt werden 
+#####
+#####		<widget source="Title" render="Label" position="0,0" size="480,237" font="FdLcD;38" foregroundColor="#87CEFA" halign="center" valign="center" />
+#####
+#####		5 Zeilen 44er sind 255 hoch - 1 Zeile mehr - mittig
+#####		Blinkendes "R" unten mittig und aktuelle Uhrzeit unten rechts
+############ -->
+
+		<widget source="Title" render="Label" position="0,0" size="480,255" font="FdLcD;44" foregroundColor="#87CEFA" halign="center" valign="center" />
+		<panel name="TheRecordingPanel" />
+		<panel name="SummaryClockPanel2" />
 	</screen>
-	<!-- Schnellstartmenue -->
-	<screen name="QuickMenuSummary" position="0,0" size="480,320">
-		<widget source="parent.Title" render="Label" position="0,0" size="480,130" font="FdLcD;55" halign="center" valign="center" foregroundColor="#87CEFA" />
-		<widget source="parent.summary_description" render="Label" position="0,140" size="480,180" font="FdLcD;55" halign="center" valign="center" />
-		<eLabel position="0,134" size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
-	</screen>
+
+
 	<!-- Metrix-Menu -->
 	<screen name="MainSettingsViewSummary" position="0,0" size="480,320">
-		<widget source="parent.titleText" render="Label" position="0,0" size="480,237" font="FdLcD;44" foregroundColor="#87CEFA" halign="center" valign="center" />
-		<panel name="SummaryClockPanel" />
+
+<!-- ###########
+#####		Bei 237 koennten 4 1/2 Zeilen angezeigt werden 
+#####
+#####		<widget source="parent.titleText" render="Label" position="0,0" size="480,237" font="FdLcD;44" foregroundColor="#87CEFA" halign="center" valign="center" />
+#####
+#####		5 Zeilen 44er sind 255 hoch - 1 Zeile mehr - mittig
+#####		Blinkendes "R" unten mittig und aktuelle Uhrzeit unten rechts
+############ -->
+
+		<widget source="parent.titleText" position="0,0" size="480,255" font="FdLcD;44" foregroundColor="#87CEFA" halign="center" valign="center" />
+		<panel name="TheRecordingPanel" />
+		<panel name="SummaryClockPanel2" />
 	</screen>
-	<!-- Servicescan -->
+
+
+	<!-- menus -->
+	<screen name="MenuSummary" position="0,0" size="480,320">
+
+<!-- ###########
+#####		55er Font viel zu gross
+#####
+#####		<widget source="Title" render="Label" position="0,0" size="480,130" font="FdLcD;55" halign="center" valign="center" foregroundColor="#87CEFA" />
+#####		<widget source="entry" render="Label" position="0,140" size="480,180" font="FdLcD;55" halign="center" valign="center" />
+#####		<eLabel position="0,134" size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
+#####
+#####		Trennstrich je 10 vom Rand - 3 statt 2 dick
+#####		Das Feld fuer die zwei Zeilen je 15 Pixel ueber bzw. unter dem Trennstrich
+#####		44er Font
+#####		Blinkendes "R" unten mittig und aktuelle Uhrzeit unten rechts
+############ -->
+
+	<!-- Ueberschrift - maximal 2 Zeilen - 15 Pixel ueber Trennstrich (wenn ohne "g") -->
+		<widget source="Title" render="Label" position="0,10" size="480,102" font="FdLcD;44" halign="center" valign="center" foregroundColor="#87CEFA" />
+
+	<!-- Trennstrich mittig -->
+		<eLabel position="10,116" size="460,3" backgroundColor="#BDBDBD" />
+
+	<!-- Menuepunkt - maximal 2 Zeilen - 15 Pixel unter Trennstrich (wenn ohne "Ue") -->
+		<widget source="entry" render="Label" position="0,126" size="480,102" font="FdLcD;44" halign="center" valign="center" />
+
+	<!-- Blinkendes "R" unten mittig und aktuelle Uhrzeit unten rechts -->
+		<panel name="TheRecordingPanel" />
+		<panel name="SummaryClockPanel2" />
+	</screen>
+
+
+	<!-- setup -->
+	<screen name="SetupSummary" position="0,0" size="480,320">
+
+<!-- ###########
+#####		<widget source="Title" render="Label" position="0,0" size="480,60" font="FdLcD;46" halign="center" valign="top" />
+#####		<widget source="entry" render="Label" position="0,62" size="480,170" font="FdLcD;46" foregroundColor="#87CEFA" halign="left" valign="center" transparent="1" zPosition="1" />
+#####		<widget source="value" render="Label" position="0,233" size="480,90" font="FdLcD;40" valign="center" halign="left" />
+#####		<eLabel position="0,60" size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
+#####		<eLabel position="0,232" size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
+#####
+#####		z.B. "Aufnahmetimer-Einstellungen" oder "Skinauswahl"
+#####		Alle Ausgaben 40er Font
+#####		Alle Ausgaben (ausser Ueberschrift) 10 Pixel von den Raendern
+#####		Ueberschrift tiefer, da sonst oben im Display selbst nicht ganz zu sehen
+#####		Ueberschrift 2 Zeilen wegen z.B. "Aufnahmetimer-Einstellungen"
+############ -->
+
+	<!--  Ueberschrift - 2 Zeilen -->
+		<widget source="Title" render="Label" position="0,8" size="480,92" font="FdLcD;40" halign="center" valign="center" />
+
+	<!--  Trennstrich -->
+		<eLabel position="10,102" size="460,3" backgroundColor="#BDBDBD" />
+
+	<!--  Menuepunkt - 2 Zeilen -->
+		<widget source="entry" render="Label" position="10,105" size="460,92" font="FdLcD;40" foregroundColor="#87CEFA" halign="left" valign="center" transparent="1" zPosition="1" />
+
+	<!--  Trennstrich -->
+		<eLabel position="10,197" size="460,3" backgroundColor="#BDBDBD" />
+
+	<!--  Menueoption - 2 Zeilen -->
+		<widget source="value" render="Label" position="10,200" size="460,92" font="FdLcD;40" halign="left" valign="center" />
+	</screen>
+
+
+	<!-- Schnellstartmenue -->
+	<screen name="QuickMenuSummary" position="0,0" size="480,320">
+
+<!-- ###########
+#####		BLAU gedrueckt - Ueberschrift "Schnellstartmenue"
+#####		Schrift VIEL zu gross - vor allen Dingen bei den Menuepunkten
+#####
+#####		<widget source="parent.Title" render="Label" position="0,0" size="480,130" font="FdLcD;55" halign="center" valign="center" foregroundColor="#87CEFA" />
+#####		<widget source="parent.summary_description" render="Label" position="0,140" size="480,180" font="FdLcD;55" halign="center" valign="center" />
+#####		<eLabel position="0,134" size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
+#####
+#####		42er Font - maximal 3 Zeilen
+#####		Blinkendes "R" unten mittig und aktuelle Uhrzeit unten rechts
+############ -->
+
+	<!-- Ueberschrift "Schnellstartmenue" -->
+		<widget source="parent.Title" render="Label" position="0,10" size="480,48" font="FdLcD;42" foregroundColor="#87CEFA" halign="center" />
+
+	<!-- Trennstrich -->
+		<eLabel position="10,59" size="460,3" backgroundColor="#BDBDBD" />
+
+	<!-- Menuepunkt - maximal 3 Zeilen mittig -->
+		<widget source="parent.summary_description" render="Label" position="0,66" size="480,144" font="FdLcD;42" halign="center" valign="center" />
+
+	<!-- Blinkendes "R" unten mittig und aktuelle Uhrzeit unten rechts -->
+		<panel name="TheRecordingPanel" />
+		<panel name="SummaryClockPanel2" />
+	</screen>
+
+	<!-- TimerLog_summary -->
+
+<!-- ###########
+#####	<screen name="TimerLogSummary" position="0,0" size="480,320" flags="wfNoBorder">
+#####		<widget source="parent.Title" render="Label" position="5,0" size="470,51" font="FdLcD;42" foregroundColor="#87CEFA" halign="center" noWrap="1" />
+#####		<eLabel position="0,53" size="480,2" backgroundColor="#BDBDBD" />
+#####		<widget source="parent.summary_description" render="Label" position="0,65" size="480,255" font="FdLcD;42" transparent="1" halign="center" valign="center" />
+#####
+#####		flags="wfNoBorder" entfernt
+#####		Genau wie "QuickMenuSummary", aber ohne "R" und Uhrzeit weil maximal 5 Zeilen mit 42er Font
+############ -->
+
+	<screen name="TimerLogSummary" position="0,0" size="480,320">
+		<widget source="parent.Title" render="Label" position="0,10" size="480,48" font="FdLcD;42" foregroundColor="#87CEFA" halign="center" />
+		<eLabel position="10,59" size="460,3" backgroundColor="#BDBDBD" />
+		<widget source="parent.summary_description" render="Label" position="0,66" size="480,240" font="FdLcD;42" halign="center" valign="center" />
+	</screen>
+
+
+	<!-- AutoTimer -->
+
+<!-- ###########
+#####	<screen name="AutoTimerOverviewSummary" position="0,0" size="480,320" flags="wfNoBorder">
+#####		<widget source="parent.Title" render="Label" position="5,0" size="470,51" font="FdLcD;42" foregroundColor="#87CEFA" halign="center" noWrap="1" />
+#####		<eLabel position="0,53" size="480,2" backgroundColor="#BDBDBD" />
+#####		<widget source="entry" render="Label" position="0,65" size="480,255" font="FdLcD;42" transparent="1" halign="center" valign="center" />
+#####
+#####		flags="wfNoBorder" entfernt
+#####		Genau wie "QuickMenuSummary", aber ohne "R" und Uhrzeit weil maximal 5 Zeilen mit 42er Font
+############ -->
+
+	<screen name="AutoTimerOverviewSummary" position="0,0" size="480,320">
+		<widget source="parent.Title" render="Label" position="0,10" size="480,48" font="FdLcD;42" foregroundColor="#87CEFA" halign="center" />
+		<eLabel position="10,59" size="460,3" backgroundColor="#BDBDBD" />
+		<widget source="entry" render="Label" position="0,66" size="480,240" font="FdLcD;42" halign="center" valign="center" />
+	</screen>
+
+
+	<!-- SoftwareUpdateChanges -->
+
+<!-- ###########
+#####		4te Zeile in 55er unten abgescnitten
+#####
+#####		<widget source="parent.title_summary" render="Label" position="0,0"  size="480,70"  font="FdLcD;55" halign="center" valign="center" foregroundColor="#87CEFA" />
+#####		<widget source="parent.text_summary" render="Label"  position="0,80" size="480,240" font="FdLcD;55" halign="center" valign="center" />
+#####		<eLabel position="0,72" size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
+#####
+#####		Genau wie "QuickMenuSummary", aber ohne "R" und Uhrzeit weil maximal 5 Zeilen mit 42er Font
+############ -->
+
+	<screen name="SoftwareUpdateChangesSummary" position="0,0" size="480,320">
+		<widget source="parent.title_summary" render="Label" position="0,10" size="480,48" font="FdLcD;42" foregroundColor="#87CEFA" halign="center" />
+		<eLabel position="10,59" size="460,3" backgroundColor="#BDBDBD" />
+		<widget source="parent.text_summary" render="Label" position="0,66" size="480,240" font="FdLcD;42" halign="center" valign="center" />
+	</screen>
+
+
+	<!-- ServiceScan -->
 	<screen name="ServiceScanSummary" position="0,0" size="480,320">
-		<widget name="Title" position="0,0" size="480,113" font="FdLcD;48" foregroundColor="#87CEFA" halign="center" valign="center" />
-		<widget name="scan_progress" position="0,132" size="480,47" borderWidth="2" />
-		<widget name="Service" position="0,200" size="480,113" font="FdLcD;48" halign="center" valign="center" />
+
+<!-- ###########
+#####		<widget name="Title" position="0,0" size="480,113" font="FdLcD;48" foregroundColor="#87CEFA" halign="center" valign="center" />
+#####		<widget name="scan_progress" position="0,132" size="480,47" borderWidth="2" />
+#####		<widget name="Service" position="0,200" size="480,113" font="FdLcD;48" halign="center" valign="center" />
+#####
+#####		Ueberschrift und aktueller Sender je 26 Pixel vom Fortschrittsbalken entfernt
+############ -->
+
+	<!--  Ueberschrift "Kanalsuche" -->
+		<widget name="Title" position="0,40" size="480,55" font="FdLcD;48" foregroundColor="#87CEFA" halign="center" />
+
+	<!--  Fortschrittsbalken - je 10 Pixel von den Raendern -->
+		<widget name="scan_progress" position="10,110" size="460,50" borderWidth="2" />
+
+	<!--  Aktuelle gefundener Sender - maximal 2 Zeilen -->
+		<widget name="Service" position="0,177" size="480,110" font="FdLcD;48" halign="center" />
 	</screen>
+
+
 	<!-- NetworkServices -->
 	<screen name="NetworkServicesSummary" position="0,0" size="480,320">
-		<widget source="title" render="Label" position="0,0" size="480,113" font="FdLcD;38" halign="center" valign="center" />
-		<eLabel position="0,116" size="480,2" backgroundColor="#BDBDBD" />
-		<widget source="status_summary" render="Label" position="0,120" size="480,133" zPosition="1" font="FdLcD;35" foregroundColor="#87CEFA" halign="center" valign="center" />
-		<widget source="autostartstatus_summary" render="Label" position="0,253" size="480,67" font="FdLcD;30" halign="center" valign="center" transparent="1" />
+
+<!-- ###########
+#####		3 verschiedene Schriftgroessen
+#####		133 bei 38er sind maximal 2 Zeilen (88)
+#####		133 bei 35er sind maximal 3 Zeilen (120)
+#####		 67 bei 30er ist maximal 1 Zeile (35)
+#####
+#####		<widget source="title" render="Label" position="0,0" size="480,113" font="FdLcD;38" halign="center" valign="center" />
+#####		<eLabel position="0,116" size="480,2" backgroundColor="#BDBDBD" />
+#####		<widget source="status_summary" render="Label" position="0,120" size="480,133" zPosition="1" font="FdLcD;35" foregroundColor="#87CEFA" halign="center" valign="center" />
+#####		<widget source="autostartstatus_summary" render="Label" position="0,253" size="480,67" font="FdLcD;30" halign="center" valign="center" transparent="1" />
+#####
+#####		Alles in 40er Font - Sollte mehr Text in den Zeilen ausgegeben werden muesste die Fontgroesse verkleinert werden
+#####		Trennstrich weg - Unterscheidung durch: Erster Text weiss - Zweiter blau - Dritter wieder weiss
+#####		Je 10 von den Raendern, damit 'schneller' zweizeilig dargestellt wird statt an den Rand gequetscht
+############ -->
+
+	<!-- Text - 2 Zeilen mittig -->
+		<widget source="title" render="Label" position="10,15" size="460,92" font="FdLcD;40" halign="center" valign="center" />
+
+	<!-- Text 3 Zeilen mittig blau -->
+		<widget source="status_summary" render="Label" position="10,107" size="460,138" font="FdLcD;40" halign="center" valign="center" foregroundColor="#87CEFA" />
+
+	<!-- Text 1 Zeile mittig -->
+		<widget source="autostartstatus_summary" render="Label" position="10,245" size="460,46" font="FdLcD;40" halign="center" valign="center" />
 	</screen>
-	<!-- misc-->
-	<screen name="ScreenSummary" position="0,0" size="480,320">
-		<widget source="Title" render="Label" position="0,0" size="480,237" font="FdLcD;38" foregroundColor="#87CEFA" halign="center" valign="center" />
-		<panel name="SummaryClockPanel" />
-	</screen>
-	<!-- SwapSummary -->
+
+
+	<!-- Swap -->
 	<screen name="SwapSummary" position="0,0" size="480,320">
-		<widget source="parent.Title" render="Label" position="0,0" size="480,60" font="FdLcD;48" halign="center" valign="top" />
-		<widget source="parent.swapname_summary" render="Label" position="0,63" size="480,60" font="FdLcD;48" foregroundColor="#87CEFA" halign="left" valign="center" transparent="1" zPosition="1" />
-		<widget source="parent.swapactive_summary" render="Label" position="0,125" size="480,195" font="FdLcD;42" valign="center" halign="left" />
-		<eLabel position="0,60" size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
-		<eLabel position="0,124" size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
+
+<!-- ###########
+#####		<widget source="parent.Title" render="Label" position="0,0" size="480,60" font="FdLcD;48" halign="center" valign="top" />
+#####		<widget source="parent.swapname_summary" render="Label" position="0,63" size="480,60" font="FdLcD;48" foregroundColor="#87CEFA" halign="left" valign="center" transparent="1" zPosition="1" />
+#####		<widget source="parent.swapactive_summary" render="Label" position="0,125" size="480,195" font="FdLcD;42" valign="center" halign="left" />
+#####		<eLabel position="0,60" size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
+#####		<eLabel position="0,124" size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
+############ -->
+
+	<!-- Ueberschrift -->
+		<widget source="parent.Title" render="Label" position="0,40" size="480,55" font="FdLcD;48" halign="center" />
+
+	<!-- Trennstrich -->
+		<eLabel position="10,110" size="460,3" backgroundColor="#BDBDBD" />
+
+	<!-- Swapname -->
+		<widget source="parent.swapname_summary" render="Label" position="0,63" size="480,55" font="FdLcD;48" foregroundColor="#87CEFA" halign="center"  />
+
+	<!-- Trennstrich -->
+		<eLabel position="10,124" size="460,3" backgroundColor="#BDBDBD" />
+
+	<!-- Activ - maximal 4 Zeilen -->
+		<widget source="parent.swapactive_summary" render="Label" position="0,125" size="480,192" font="FdLcD;42" valign="center" halign="center" />
 	</screen>
+
+
 	<!-- DevicesPanel -->
 	<screen name="DevicesPanelSummary" position="0,0" size="480,320">
+
+<!-- ###########
+#####		<widget source="parent.Title" render="Label" position="0,0" size="480,60" font="FdLcD;48" halign="center" valign="top" />
+#####		<widget source="entry" render="Label" position="0,63" size="480,60" font="FdLcD;48" foregroundColor="#87CEFA" halign="left" valign="center" transparent="1" zPosition="1" />
+#####		<widget source="desc" render="Label" position="0,125" size="480,195" font="FdLcD;42" valign="center" halign="left" />
+#####		<eLabel position="0,60" size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
+#####		<eLabel position="0,124" size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
+############ -->
+
+	<!-- Ueberschrift -->
 		<widget source="parent.Title" render="Label" position="0,0" size="480,60" font="FdLcD;48" halign="center" valign="top" />
+
+	<!-- Trennstrich -->
+		<eLabel position="10,60" size="460,3" backgroundColor="#BDBDBD" />
+
 		<widget source="entry" render="Label" position="0,63" size="480,60" font="FdLcD;48" foregroundColor="#87CEFA" halign="left" valign="center" transparent="1" zPosition="1" />
+
+	<!-- Trennstrich -->
+		<eLabel position="10,124" size="460,3" backgroundColor="#BDBDBD" />
+
 		<widget source="desc" render="Label" position="0,125" size="480,195" font="FdLcD;42" valign="center" halign="left" />
-		<eLabel position="0,60" size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
-		<eLabel position="0,124" size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
 	</screen>
-	<!-- Plugin browser -->
+
+
+	<!-- PluginBrowser -->
 	<screen name="PluginBrowserSummary" position="0,0" size="480,320">
-		<widget source="Title" render="Label" position="0,0" size="480,60" font="FdLcD;48" halign="center" valign="top" />
-		<widget source="entry" render="Label" position="0,63" size="480,110" font="FdLcD;48" foregroundColor="#87CEFA" halign="left" valign="center" transparent="1" zPosition="1" />
-		<eLabel position="0,60" size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
-		<eLabel position="0,174" size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
-		<widget source="value" render="Label" position="0,175" size="480,145" font="FdLcD;36" valign="center" halign="left" />
+
+<!-- ###########
+#####		GRUEN gedrueckt - Plugins anzeigen
+#####
+#####		<widget source="Title" render="Label" position="0,0" size="480,60" font="FdLcD;48" halign="center" valign="top" />
+#####		<widget source="entry" render="Label" position="0,63" size="480,110" font="FdLcD;48" foregroundColor="#87CEFA" halign="left" valign="center" transparent="1" zPosition="1" />
+#####		<eLabel position="0,60" size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
+#####		<eLabel position="0,174" size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
+#####		<widget source="value" render="Label" position="0,175" size="480,145" font="FdLcD;36" valign="center" halign="left" />
+#####
+#####		Alle Texte 40er Font
+############ -->
+
+	<!-- Ueberschrift "Erweiterungen" -->
+		<widget source="Title" render="Label" position="0,8" size="480,46" font="FdLcD;40" halign="center" />
+
+	<!-- Trennstrich -->
+		<eLabel position="10,55" size="460,3" backgroundColor="#BDBDBD" />
+
+	<!-- Pluginname maximal 2 Zeilen -->
+		<widget source="entry" render="Label" position="10,60" size="460,92" font="FdLcD;40" foregroundColor="#87CEFA" halign="center" valign="center" />
+
+	<!-- Trennstrich -->
+		<eLabel position="10,153" size="460,3" backgroundColor="#BDBDBD" />
+
+	<!-- Erklaerung - maximal 3 Zeilen -->
+		<widget source="value" render="Label" position="10,160" size="460,138" font="FdLcD;40" halign="center" valign="center" />
 	</screen>
-	<!-- JobView TaskView Summary -->
+
+
+	<!-- PackageAction -->
+	<screen name="PackageActionSummary" position="0,0" size="480,320">
+
+<!-- ###########
+#####		GRUEN-GRUEN gedrueckt - "Plugins installieren" oder "Plugins entfernen"
+#####
+#####		Die eLabel machen ueberhaupt KEINEN Sinn - 368 und 393 sind ausserhalb des Screens!!!
+#####
+#####		<widget source="Title" render="Label" position="0,0" size="480,50" font="FdLcD;40" halign="center" valign="top" />
+#####		<widget source="category" render="Label" position="0,52" size="480,50" font="FdLcD;40" foregroundColor="#87CEFA" halign="left" valign="center" transparent="1" zPosition="1" />
+#####		<widget source="name" render="Label" position="0,102" size="480,50" font="FdLcD;42" valign="center" halign="left" />
+#####		<widget source="description" render="Label" position="0,158" size="480,162" font="FdLcD;34" foregroundColor="grey" valign="center" halign="left" />
+#####		<eLabel position="28,368" size="480,2" backgroundColor="#BDBDBD" zPosition="2" />
+#####		<eLabel position="58,393" size="480,2" backgroundColor="#BDBDBD" zPosition="2" />
+#####		<eLabel position="0,49" size="480,2" backgroundColor="#BDBDBD" zPosition="2" />
+############ -->
+
+	<!-- Ueberschrift "Plugins installieren" -->
+		<widget source="Title" render="Label" position="0,8" size="480,46" font="FdLcD;40" halign="center" />
+
+	<!-- Trennstrich -->
+		<eLabel position="10,55" size="460,3" backgroundColor="#BDBDBD" />
+
+	<!-- Abteilung z.B. "Abo-Pakete" - 1 Zeile -->
+		<widget source="category" render="Label" position="10,58" size="460,46" font="FdLcD;40" foregroundColor="#87CEFA" halign="center" />
+
+	<!-- Trennstrich -->
+		<eLabel position="10,105" size="460,3" backgroundColor="#BDBDBD" />
+
+	<!-- Pluginname 1 Zeile -->
+		<widget source="name" render="Label" position="10,108" size="460,39" font="FdLcD;34" halign="center" />
+
+	<!-- Trennstrich -->
+		<eLabel position="10,148" size="460,3" backgroundColor="#BDBDBD" />
+
+	<!-- Beschreibung maximal 4 Zeilen - Grau wie die Trennstriche -->
+		<widget source="description" render="Label" position="10,153" size="460,156" font="FdLcD;34" foregroundColor="#BDBDBD" halign="center" valign="center" />
+	</screen>
+
+
+	<!-- JobView TaskView -->
 	<screen name="TaskViewSummary" position="0,0" size="480,320">
-		<widget source="parent.summary_job_progress" render="Label" position="5,0" size="470,60" font="FdLcD;50" zposition="1" halign="center" valign="center" foregroundColor="#87CEFA" transparent="1">
+
+<!-- ###########
+#####		z.B. MENU - Einstellungen - System - Speichergeraete - Dateisystemueberpruefung
+#####
+#####		<widget source="parent.summary_job_progress" render="Label" position="5,0" size="470,60" font="FdLcD;50" zposition="1" halign="center" valign="center" foregroundColor="#87CEFA" transparent="1">
+#####			<convert type="ProgressToText" />
+#####		</widget>
+#####		<widget source="parent.summary_job_progress" render="Progress" foregroundColor="#87CEFA" position="5,65" size="470,30" borderWidth="1" zPosition="1" borderColor="#87CEFA" />
+#####		<widget source="parent.summary_job_name" render="Label" position="5,100" size="470,150" font="FdLcD;42" halign="left" valign="center" />
+#####		<widget source="parent.summary_job_task" render="Label" position="5,260" size="470,60" font="FdLcD;42" halign="left" />
+#####		<eLabel position="5,255" size="470,3" backgroundColor="#BDBDBD" />
+#####
+#####		40er Font - Texte und Fortschrittsbalken je 20 voneinander entfernt
+#####		Fortschrittsbalken 20 vom Rand - Trennstrich auch
+#####		Ueberschrift statt Fortschrittsbalken in blau wie sonst meistens auch
+#####		Ueberschrift 10 von den Raendern, dadurch z.B. "Ueberpruefe Dateisystem..." nicht an die Raender gedrueckt, sondern in zwei Zeilen
+############ -->
+
+	<!-- Ueberschrift z.B. "Ueberpruefe Dateisystem" - maximal 2 Zeilen mittig -->
+		<widget source="parent.summary_job_name" render="Label" position="10,20" size="460,92" font="FdLcD;40" halign="center" valign="center" foregroundColor="#87CEFA" />
+
+	<!-- Trennstrich diesmal ab 20 wie der Fortschrittsbalken -->
+		<eLabel position="20,123" size="440,3" backgroundColor="#BDBDBD" />
+
+	<!-- Taskname z.B. "Mount" - 1 Zeile mittig -->
+		<widget source="parent.summary_job_task" render="Label" position="0,138" size="480,46" font="FdLcD;40" halign="center" />
+
+	<!-- Fortschrittsbalken ab 20 -->
+		<widget source="parent.summary_job_progress" render="Progress" position="20,195" size="440,30" borderWidth="2" />
+
+	<!-- Fortschritt z.B. "50 / 100" mittig -->
+		<widget source="parent.summary_job_progress" render="Label" position="0,237" size="480,46" font="FdLcD;40" halign="center" >
 			<convert type="ProgressToText" />
 		</widget>
-		<widget source="parent.summary_job_progress" render="Progress" foregroundColor="#87CEFA" position="5,65" size="470,30" borderWidth="1" zPosition="1" borderColor="#87CEFA" />
-		<widget source="parent.summary_job_name" render="Label" position="5,100" size="470,150" font="FdLcD;42" halign="left" valign="center" />
-		<widget source="parent.summary_job_task" render="Label" position="5,260" size="470,60" font="FdLcD;42" halign="left" />
-		<eLabel position="5,255" size="470,3" backgroundColor="#BDBDBD" />
 	</screen>
-	<!-- SoftwareUpdate -->
-	<screen name="UpdatePluginSummary" position="0,0" size="480,320">
-		<widget source="parent.Title" render="Label" position="0,0" size="480,60" font="FdLcD;48" halign="center" valign="top" />
-		<widget source="parent.package" render="Label" position="0,63" size="480,110" font="FdLcD;48" foregroundColor="#87CEFA" halign="left" valign="center" transparent="1" zPosition="1" />
-		<widget source="parent.status" render="Label" position="0,175" size="480,145" font="FdLcD;42" valign="center" halign="left" />
-		<eLabel position="0,60" size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
-		<eLabel position="0,174" size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
-	</screen>
-	<!-- SoftwareUpdateChanges -->
-	<screen name="SoftwareUpdateChangesSummary" position="0,0" size="480,320">
-		<widget source="parent.title_summary" render="Label" position="0,0" size="480,70" font="FdLcD;55" halign="center" valign="center" foregroundColor="#87CEFA" />
-		<widget source="parent.text_summary" render="Label" position="0,80" size="480,240" font="FdLcD;55" halign="center" valign="center" />
-		<eLabel position="0,72" size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
-	</screen>
+
+
 	<!-- Wizard -->
 	<screen name="WizardSummary" position="0,0" size="480,320">
-		<widget source="text" render="Label" position="0,0" size="480,73" font="FdLcD;38" foregroundColor="#87CEFA" halign="center" />
-		<widget source="parent.list" render="Label" position="0,80" size="480,240" font="FdLcD;38" halign="center">
+
+<!-- ###########
+#####		Zum Beispiel MENU - Einstellungen - Netzwerk - LAN-Verbindung - Netzwerkassistent
+#####
+#####		<widget source="text" render="Label" position="0,0" size="480,73" font="FdLcD;38" foregroundColor="#87CEFA" halign="center" />
+#####		<widget source="parent.list" render="Label" position="0,80" size="480,240" font="FdLcD;38" halign="center">
+#####			<convert type="StringListSelection" />
+#####		</widget>
+#####		<eLabel position="0,73" size="480,2" backgroundColor="#BDBDBD" />
+############ -->
+
+	<!-- Ueberschrift - 1 Zeile 40er mittig -->
+		<widget source="text" render="Label" position="0,8" size="480,46" font="FdLcD;40" foregroundColor="#87CEFA" halign="center" />
+
+	<!-- Fortschrittsbalken -->
+		<eLabel position="10,55" size="460,3" backgroundColor="#BDBDBD" />
+
+	<!-- Text - maximal 5 Zeilen 42er horizontal mittig -->
+		<widget source="parent.list" render="Label" position="0,64" size="480,240" font="FdLcD;42" halign="center">
 			<convert type="StringListSelection" />
 		</widget>
-		<eLabel position="0,73" size="480,2" backgroundColor="#BDBDBD" />
 	</screen>
+
+
 	<!-- ChoiceBox -->
 	<screen name="ChoiceBoxSummary" position="0,0" size="480,320">
-		<widget source="parent.summary_list" render="Label" position="5,5" size="470,310" font="FdLcD;32" />
-	</screen>
+
+<!-- ###########
+#####		32er Font zu gross - bei 5,5 fehlt oben im Display etwas
+#####		<widget source="parent.summary_list" render="Label" position="5,5" size="470,310" font="FdLcD;32" />
+#####
+#####		Aufnahme beenden oder Filmwiedergabe beenden ? - "1 Ja" - "2 Ja Film loeschen" etc. - maximal 9 Zeilen
+#####
+#####		#### Es wird aber - noch - NICHT vernuenftig dargestellt - Text huepft nach oben! ####
+#####
+#####		Wenn der Font 30 gross ist:
+#####		Im Screenshot ist bei 10,5 - 470,315 das unterste "g" komplett zu sehen - im Display aber fehlt die unterste Zeile vom "g"
+#####		Im Screenshot ist bei 10,4 - 470,316 das oberste "f" komplett zu sehen - im Display aber fehlt die oberste Zeile vom "f"
+#####		Also 29er Font - 9 Zeilen
+############ -->
+
+		<widget source="parent.summary_list" render="Label" position="10,10" size="470,300" font="FdLcD;29" />
+ 	</screen>
+
+
 	<!-- MessageBox -->
 	<screen name="MessageBoxSummary" position="0,0" size="480,320">
-		<widget source="text" render="Label" position="0,0" size="480,225" font="FdLcD;48" halign="center" valign="center" />
-		<widget source="option" render="Label" position="0,230" size="480,90" font="FdLcD;44" foregroundColor="#87CEFA" halign="center" valign="center" noWrap="1" />
-		<eLabel position="0,227" size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
+
+<!-- ###########
+#####		Messagebox - maximal 4 Zeilen - Frage z.B. "Die Wiedergabe an der selben Stelle fortsetzen?" - Option "Ja"/"Nein"
+#####		Oder z.B. "Eine Aufnahme wurde gestartet und Name der Aufnahme" - ohne Option
+#####
+#####		<widget source="text" render="Label" position="0,0" size="480,225" font="FdLcD;48" halign="center" valign="center" />
+#####		<widget source="option" render="Label" position="0,230" size="480,90" font="FdLcD;44" foregroundColor="#87CEFA" halign="center" valign="center" noWrap="1" />
+#####		<eLabel position="0,227" size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
+#####
+#####		Schrift tiefer, damit im Display oben alles zu sehen ist
+#####		Schrift kleiner, damit mehr reinpasst - jetzt maximal 5 Zeilen
+#####		Option "Ja" / "Nein" groesser
+############ -->
+
+	<!-- Nachricht oder Frage - maximal 5 Zeilen mittig -->
+		<widget source="text" render="Label" position="0,10" size="480,230" font="FdLcD;40" halign="center" valign="center" />
+
+	<!-- Trennstrich -->
+		<eLabel position="10,240" size="460,3" backgroundColor="#BDBDBD" />
+
+	<!-- Option - 1 Zeile -->
+		<widget source="option" render="Label" position="0,245" size="480,55" font="FdLcD;48" foregroundColor="#87CEFA" halign="center" />
 	</screen>
+
+
 	<screen name="MessageBoxSimpleSummary" position="0,0" size="480,320">
 		<panel name="MessageBoxSummary" />
 	</screen>
-	<!-- LocationBox_summary -->
-	<screen name="LocationBoxSummary" position="0,0" size="480,320">
-		<widget source="parent.text" render="Label" position="0,0" size="480,237" font="FdLcD;40" foregroundColor="#87CEFA" halign="center" valign="center" />
-		<panel name="SummaryClockPanel" />
+
+
+	<!--  TimerOverview -->
+<!-- ###########
+#####	<screen name="TimerOverviewSummary" position="0,0" size="480,320" flags="wfNoBorder">
+#####
+#####		Viele verschiedene Fontgroessen
+#####
+#####		<widget source="parent.Title" render="Label" position="0,0" size="480,46" font="FdLcD;40" foregroundColor="#87CEFA" halign="center" noWrap="1" />
+#####		<widget source="service" render="Label" position="5,280" size="470,40" font="FdLcD;32" foregroundColor="#FFFF00" halign="right" noWrap="1" transparent="1" />
+#####		<widget source="name" render="Label" position="5,60" size="470,150" font="FdLcD;42" halign="center" valign="center" />
+#####		<widget source="time" render="Label" position="5,230" size="470,40" font="FdLcD;36" halign="left" transparent="1" />
+#####		<widget source="duration" render="Label" position="5,280" size="470,40" font="FdLcD;34" foregroundColor="#87CEFA" halign="left" transparent="1" />
+#####		<widget source="state" render="Label" position="5,230" size="470,40" font="FdLcD;34" foregroundColor="green" halign="right" transparent="1" />
+#####		<eLabel position="5,50" size="470,3" backgroundColor="#BDBDBD" zPosition="2" />
+#####		<eLabel position="5,220" size="470,3" backgroundColor="#BDBDBD" zPosition="2" />
+#####
+#####		flags="wfNoBorder" entfernt
+#####		Alle Ausgaben, ausser Ueberschrift und Beschreibung, gleicher 34er Font
+#####		Alle Ausgaben ausser Beschreibung 10 Pixel vom Rand
+#####		Beschreibung 3-zeilig mittig und von Rand zu Rand
+#####		Ueberschrift mittig und tiefer, da sonst oben im Display selbst nicht ganz zu sehen
+#####		"green" durch gruene Farbe der Tunerbuchstaben ersetzt
+#####		Sendername legt sich, wenn er sehr lang ist, ueber "123 Minuten" (mittels zPosition)
+#####		Zeit / Wartet/Fertig / 123 Min / Sendername (falls mit "Ue" und "g") je 13 Pixel vom Trennstrich und untereinander
+############ -->
+
+	<screen name="TimerOverviewSummary" position="0,0" size="480,320">
+
+	<!-- Ueberschrift "Timeruebersicht" -->
+		<widget source="parent.Title" render="Label" position="0,8" size="480,46" font="FdLcD;40" foregroundColor="#87CEFA" halign="center" />
+
+	<!-- Trennstrich -->
+		<eLabel position="10,55" size="460,3" backgroundColor="#BDBDBD" />
+
+	<!-- Timername 3 Zeilen - Uepunkte 13 unter, g 13 ueber Strich -->
+		<widget source="name" render="Label" position="0,69" size="480,144" font="FdLcD;42" halign="center" valign="center" />
+
+	<!-- Trennstrich -->
+		<eLabel position="10,225" size="460,3" backgroundColor="#BDBDBD" />
+
+	<!-- Zeit von - bis 13 unter Strich linksbuendig -->
+		<widget source="time" render="Label" position="10,235" size="460,39" font="FdLcD;34" halign="left" transparent="1" />
+
+	<!-- Wartet/Fertig - 13 unter Trennstrich - ueberschreibt Zeit von - bis, falls diese zu lang ist (z.B. in Englisch) -->
+		<widget source="state" render="Label" position="10,235" size="460,39" font="FdLcD;34" foregroundColor="#04B404" halign="right" transparent="1" zPosition="1" />
+
+	<!-- 123 Min unten links liksbuendig - 13 unter Wartet/Fertig -->
+		<widget source="duration" render="Label" position="10,273" size="160,39" font="FdLcD;34" foregroundColor="#87CEFA" halign="left" transparent="1" />
+
+	<!-- Sendername unten rechts rechtsbuendig - 13 unter Wartet/Fertig - ueberschreibt 123 Min falls er sehr lang ist (z.B. "ServusTV HD Oestereich") -->
+		<widget source="service" render="Label" position="10,273" size="460,39" font="FdLcD;34" foregroundColor="#FFFF00" halign="right" noWrap="1" transparent="1" zPosition="1" />
 	</screen>
+
+
+	<!--  TimerEditList -->
+
+<!-- ###########
+#####	<screen name="TimerEditListSummary" position="0,0" size="480,320" flags="wfNoBorder">
+#####		<widget source="service" render="Label"  position="5,280" size="470,40"  font="FdLcD;32" foregroundColor="#FFFF00" halign="right" noWrap="1" transparent="1" />
+#####		<widget source="name" render="Label"     position="5,60"  size="470,150" font="FdLcD;42" halign="center" valign="center" />
+#####		<widget source="time" render="Label"     position="5,230" size="470,40"  font="FdLcD;36" halign="left" transparent="1" />
+#####		<widget source="duration" render="Label" position="5,280" size="470,40"  font="FdLcD;34" foregroundColor="#87CEFA" halign="left" transparent="1" />
+#####		<widget source="state" render="Label"    position="5,230" size="470,40"  font="FdLcD;34" foregroundColor="green" halign="right" transparent="1" />
+#####		<eLabel position="5,50" size="470,3" backgroundColor="#BDBDBD" zPosition="2" />
+#####		<eLabel position="5,220" size="470,3" backgroundColor="#BDBDBD" zPosition="2" />
+#####
+#####		Genau wie "TimerOverviewSummary"
+############ -->
+
+	<screen name="TimerEditListSummary" position="0,0" size="480,320">
+		<widget source="parent.Title" render="Label" position="0,8" size="480,46" font="FdLcD;40" foregroundColor="#87CEFA" halign="center" />
+		<eLabel position="10,55" size="460,3" backgroundColor="#BDBDBD" />
+		<widget source="name" render="Label" position="0,69" size="480,144" font="FdLcD;42" halign="center" valign="center" />
+		<eLabel position="10,225" size="460,3" backgroundColor="#BDBDBD" />
+		<widget source="time" render="Label" position="10,235" size="460,39" font="FdLcD;34" halign="left" transparent="1" />
+		<widget source="state" render="Label" position="10,235" size="460,39" font="FdLcD;34" foregroundColor="#04B404" halign="right" transparent="1" zPosition="1" />
+		<widget source="duration" render="Label" position="10,273" size="160,39" font="FdLcD;34" foregroundColor="#87CEFA" halign="left" transparent="1" />
+		<widget source="service" render="Label" position="10,273" size="460,39" font="FdLcD;34" foregroundColor="#FFFF00" halign="right" noWrap="1" transparent="1" zPosition="1" />
+	</screen>
+
+
+	<!-- new_templateSummary1 -->
+	<screen name="_templateSummary1" position="0,0" size="480,320">
+
+<!-- ###########
+#####		BLAU - z.B. Softwareverwaltung - OK - Standardliste gesicherter Dateien - OK
+#####
+#####		<widget source="parent.Title" render="Label" position="0,0" size="480,140" font="FdLcD;38" foregroundColor="#87CEFA" halign="center" valign="center" />
+#####		<eLabel position="0,141" size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
+#####		<widget source="parent.summary_description" render="Label" position="0,143" size="480,177" zPosition="1" font="FdLcD;35" halign="center" valign="center" />
+#####
+#####		Nur 40er Font
+#####		Ueberschrift und Option je 10 Pixel zum Trennstrich
+############ -->
+
+	<!-- Ueberschrift - maximal 2 Zeilen mittig -->
+		<widget source="parent.Title" render="Label" position="0,8" size="480,92" font="FdLcD;40" foregroundColor="#87CEFA" halign="center" valign="center" />
+
+	<!-- Trennstrich -->
+		<eLabel position="10,102" size="460,3" backgroundColor="#BDBDBD" />
+
+	<!-- Option - maximal 4 Zeilen -->
+		<widget source="parent.summary_description" render="Label" position="10,108" size="460,184" font="FdLcD;40" halign="center" />
+	</screen>
+
+
 	<!-- console -->
 	<screen name="ConsoleSummary" position="0,0" size="480,320">
-		<widget source="parent.Title" render="Label" position="0,0" size="480,100" font="FdLcD;44" halign="center" valign="center" foregroundColor="#87CEFA" />
-		<widget source="parent.summary_description" render="Label" position="0,105" size="480,215" font="FdLcD;44" halign="center" valign="center" />
-		<eLabel position="0,100" size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
+
+<!-- ###########
+#####		<widget source="parent.Title" render="Label" position="0,0" size="480,100" font="FdLcD;44" halign="center" valign="center" foregroundColor="#87CEFA" />
+#####		<widget source="parent.summary_description" render="Label" position="0,105" size="480,215" font="FdLcD;44" halign="center" valign="center" />
+#####		<eLabel position="0,100" size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
+#####
+#####		Genau wie "_templateSummary1"
+############ -->
+
+		<widget source="parent.Title" render="Label" position="0,8" size="480,92" font="FdLcD;40" halign="center" valign="center" foregroundColor="#87CEFA" />
+		<eLabel position="10,102" size="460,3" backgroundColor="#BDBDBD" />
+		<widget source="parent.summary_description" render="Label" position="10,108" size="460,184" font="FdLcD;40" halign="center" />
 	</screen>
-	<!--  TimerEditList -->
-	<screen name="TimerEditListSummary" position="0,0" size="480,320" flags="wfNoBorder">
-		<widget source="parent.Title" render="Label" position="0,0" size="480,46" font="FdLcD;40" foregroundColor="#87CEFA" halign="center" noWrap="1" />
-		<widget source="service" render="Label" position="5,280" size="470,40" font="FdLcD;32" foregroundColor="#FFFF00" halign="right" noWrap="1" transparent="1" />
-		<widget source="name" render="Label" position="5,60" size="470,150" font="FdLcD;42" halign="center" valign="center" />
-		<widget source="time" render="Label" position="5,230" size="470,40" font="FdLcD;36" halign="left" transparent="1" />
-		<widget source="duration" render="Label" position="5,280" size="470,40" font="FdLcD;34" foregroundColor="#87CEFA" halign="left" transparent="1" />
-		<widget source="state" render="Label" position="5,230" size="470,40" font="FdLcD;34" foregroundColor="green" halign="right" transparent="1" />
-		<eLabel position="5,50" size="470,3" backgroundColor="#BDBDBD" zPosition="2" />
-		<eLabel position="5,220" size="470,3" backgroundColor="#BDBDBD" zPosition="2" />
-	</screen>
-	<!--  TimerEditList -->
-	<screen name="TimerOverviewSummary" position="0,0" size="480,320" flags="wfNoBorder">
-		<widget source="parent.Title" render="Label" position="0,0" size="480,46" font="FdLcD;40" foregroundColor="#87CEFA" halign="center" noWrap="1" />
-		<widget source="service" render="Label" position="5,280" size="470,40" font="FdLcD;32" foregroundColor="#FFFF00" halign="right" noWrap="1" transparent="1" />
-		<widget source="name" render="Label" position="5,60" size="470,150" font="FdLcD;42" halign="center" valign="center" />
-		<widget source="time" render="Label" position="5,230" size="470,40" font="FdLcD;36" halign="left" transparent="1" />
-		<widget source="duration" render="Label" position="5,280" size="470,40" font="FdLcD;34" foregroundColor="#87CEFA" halign="left" transparent="1" />
-		<widget source="state" render="Label" position="5,230" size="470,40" font="FdLcD;34" foregroundColor="green" halign="right" transparent="1" />
-		<eLabel position="5,50" size="470,3" backgroundColor="#BDBDBD" zPosition="2" />
-		<eLabel position="5,220" size="470,3" backgroundColor="#BDBDBD" zPosition="2" />
-	</screen>
-	<!-- TimerLog_summary -->
-	<screen name="TimerLogSummary" position="0,0" size="480,320" flags="wfNoBorder">
-		<widget source="parent.Title" render="Label" position="5,0" size="470,51" font="FdLcD;42" foregroundColor="#87CEFA" halign="center" noWrap="1" />
-		<eLabel position="0,53" size="480,2" backgroundColor="#BDBDBD" />
-		<widget source="parent.summary_description" render="Label" position="0,65" size="480,255" font="FdLcD;42" transparent="1" halign="center" valign="center" />
-	</screen>
-	<!-- AutoTimer -->
-	<screen name="AutoTimerOverviewSummary" position="0,0" size="480,320" flags="wfNoBorder">
-		<widget source="parent.Title" render="Label" position="5,0" size="470,51" font="FdLcD;42" foregroundColor="#87CEFA" halign="center" noWrap="1" />
-		<eLabel position="0,53" size="480,2" backgroundColor="#BDBDBD" />
-		<widget source="entry" render="Label" position="0,65" size="480,255" font="FdLcD;42" transparent="1" halign="center" valign="center" />
-	</screen>
-	<!-- Neu -->
-	<!-- PackageAction -->
-	<screen name="PackageActionSummary" position="0,0" size="480,320">
-		<widget source="Title" render="Label" position="0,0" size="480,50" font="FdLcD;40" halign="center" valign="top" />
-		<widget source="category" render="Label" position="0,52" size="480,50" font="FdLcD;40" foregroundColor="#87CEFA" halign="left" valign="center" transparent="1" zPosition="1" />
-		<widget source="name" render="Label" position="0,102" size="480,50" font="FdLcD;42" valign="center" halign="left" />
-		<widget source="description" render="Label" position="0,158" size="480,162" font="FdLcD;34" foregroundColor="grey" valign="center" halign="left" />
-		<eLabel position="28,368" size="480,2" backgroundColor="#BDBDBD" zPosition="2" />
-		<eLabel position="58,393" size="480,2" backgroundColor="#BDBDBD" zPosition="2" />
-		<eLabel position="0,49" size="480,2" backgroundColor="#BDBDBD" zPosition="2" />
-	</screen>
+
+
 	<!-- new_template -->
 	<screen name="BackupSelectionSummary" position="0,0" size="480,320">
 		<panel name="_templateSummary1" />
 	</screen>
+
 	<screen name="RestoreScreenSummary" position="0,0" size="480,320">
 		<panel name="_templateSummary1" />
 	</screen>
+
 	<screen name="installedPluginsSummary" position="0,0" size="480,320">
 		<panel name="_templateSummary1" />
 	</screen>
+
 	<screen name="RestartNetworkSummary" position="0,0" size="480,320">
 		<panel name="_templateSummary1" />
 	</screen>
+
 	<screen name="RestorePluginsSummary" position="0,0" size="480,320">
 		<panel name="_templateSummary1" />
 	</screen>
+
 	<screen name="RestoreMenuSummary" position="0,0" size="480,320">
 		<panel name="_templateSummary1" />
 	</screen>
-	<!-- new_templateSummary1 -->
-	<screen name="_templateSummary1" position="0,0" size="480,320">
-		<widget source="parent.Title" render="Label" position="0,0" size="480,140" font="FdLcD;38" foregroundColor="#87CEFA" halign="center" valign="center" />
-		<eLabel position="0,141" size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
-		<widget source="parent.summary_description" render="Label" position="0,143" size="480,177" zPosition="1" font="FdLcD;35" halign="center" valign="center" />
+
+
+	<!-- SoftwareUpdate -->
+	<screen name="UpdatePluginSummary" position="0,0" size="480,320">
+
+<!-- ###########
+#####		3 gleiche Ausgaben: "UpdatePluginSummary", "CrossEPG_DownloaderSummary" und "AutoBouquetsMaker_MenuSummary"
+#####		Text ein bischen gross, wuerde bis an den untersten Rand gehen
+#####
+#####		<widget source="parent.Title" render="Label"   position="0,0"   size="480,60"  font="FdLcD;48" halign="center" valign="top" />
+#####		<widget source="parent.package" render="Label" position="0,63"  size="480,110" font="FdLcD;48" foregroundColor="#87CEFA" halign="left" valign="center" transparent="1" zPosition="1" />
+#####		<widget source="parent.status" render="Label"  position="0,175" size="480,145" font="FdLcD;42" valign="center" halign="left" />
+#####		<eLabel position="0,60"  size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
+#####		<eLabel position="0,174" size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
+#####
+#####		Texte (ausser Ueberschrift, die ist mittig und in Blau) und Trennstriche je 10 von den Raendern
+#####		Alles mit 40er Font damit es passt
+############ -->
+
+	<!-- Ueberschrift - 1 Zeile mittig -->
+		<widget source="parent.Title" render="Label" position="0,8" size="480,46" font="FdLcD;40" foregroundColor="#87CEFA" halign="center" />
+
+	<!-- Trennstrich -->
+		<eLabel position="10,55" size="460,3" backgroundColor="#BDBDBD" />
+
+	<!-- Text - maximal 2 Zeilen linksbuendig -->
+		<widget source="parent.package" render="Label" position="10,58" size="460,92" font="FdLcD;40" halign="left" />
+
+	<!-- Trennstrich -->
+		<eLabel position="10,150" size="460,3" backgroundColor="#BDBDBD" />
+
+	<!-- Text - maximal 3 Zeilen linksbuendig -->
+		<widget source="parent.status" render="Label" position="10,153" size="460,138" font="FdLcD;40" halign="left" />
 	</screen>
-	<!-- DVD nicht getestet-->
-	<screen name="DVDSummary" position="0,0" size="480,320">
-		<widget source="session.CurrentService" render="Label" position="top" size="*,28" font="FdLcD;12">
-			<convert type="ServiceName">Name</convert>
-		</widget>
-		<widget source="session.CurrentService" render="Progress" position="top" size="*,4" borderWidth="1">
-			<convert type="ServicePosition">Position</convert>
-		</widget>
-		<panel position="fill">
-			<widget source="session.CurrentService" render="Label" position="left" size="60,*" font="FdLcD;12" halign="left">
-				<convert type="ServicePosition">Position</convert>
-			</widget>
-			<widget name="Chapter" position="fill" font="FdLcD;12" halign="left" />
-		</panel>
-	</screen>
-	<!-- Shoutcast -->
-	<screen name="SHOUTcastLCDScreen" position="0,0" size="480,320">
-		<widget name="text1" position="0,0" size="480,75" font="FdLcD;24" halign="center" valign="center" />
-		<widget name="text2" position="0,80" size="480,133" font="FdLcD;30" halign="center" valign="center" />
-		<panel name="SummaryClockPanel" />
-	</screen>
+
+
 	<!-- CrossEPG -->
 	<screen name="CrossEPG_DownloaderSummary" position="0,0" size="480,320">
-		<widget source="parent.Title" render="Label" position="0,0" size="480,60" font="FdLcD;48" foregroundColor="#87CEFA" halign="center" valign="top" />
-		<widget source="parent.summary_action" render="Label" position="0,63" size="480,110" font="FdLcD;48" halign="left" valign="center" transparent="1" zPosition="1" />
-		<widget source="parent.summary_status" render="Label" position="0,175" size="480,145" font="FdLcD;42" foregroundColor="#87CEFA" valign="center" halign="left" />
-		<eLabel position="0,60" size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
-		<eLabel position="0,174" size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
+
+<!-- ###########
+#####		<widget source="parent.Title" render="Label"          position="0,0"   size="480,60"  font="FdLcD;48" foregroundColor="#87CEFA" halign="center" valign="top" />
+#####		<widget source="parent.summary_action" render="Label" position="0,63"  size="480,110" font="FdLcD;48" halign="left" valign="center" transparent="1" zPosition="1" />
+#####		<widget source="parent.summary_status" render="Label" position="0,175" size="480,145" font="FdLcD;42" foregroundColor="#87CEFA" valign="center" halign="left" />
+#####		<eLabel position="0,60"  size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
+#####		<eLabel position="0,174" size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
+#####
+#####		Genau wie "UpdatePluginSummary"
+############ -->
+		<widget source="parent.Title" render="Label" position="0,8" size="480,46" font="FdLcD;40" foregroundColor="#87CEFA" halign="center" />
+		<eLabel position="10,55" size="460,3" backgroundColor="#BDBDBD" />
+		<widget source="parent.summary_action" render="Label" position="10,58" size="460,92" font="FdLcD;40" halign="left" />
+		<eLabel position="10,150" size="460,3" backgroundColor="#BDBDBD" />
+		<widget source="parent.summary_status" render="Label" position="10,153" size="460,138" font="FdLcD;40" halign="left" />
 	</screen>
+
+
 	<!-- AutoBouquetsMaker -->
 	<screen name="AutoBouquetsMaker_MenuSummary" position="0,0" size="480,320">
-		<widget source="SetupTitle" render="Label" position="0,0" size="480,60" font="FdLcD;48" foregroundColor="#87CEFA" halign="center" valign="top" />
-		<widget source="SetupEntry" render="Label" position="0,63" size="480,110" font="FdLcD;48" halign="left" valign="center" transparent="1" zPosition="1" />
-		<widget source="SetupValue" render="Label" position="0,175" size="480,145" font="FdLcD;42" foregroundColor="#87CEFA" valign="center" halign="left" />
-		<eLabel position="0,60" size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
-		<eLabel position="0,174" size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
+
+<!-- ###########
+#####		<widget source="SetupTitle" render="Label" position="0,0"   size="480,60"  font="FdLcD;48" foregroundColor="#87CEFA" halign="center" valign="top" />
+#####		<widget source="SetupEntry" render="Label" position="0,63"  size="480,110" font="FdLcD;48" halign="left" valign="center" transparent="1" zPosition="1" />
+#####		<widget source="SetupValue" render="Label" position="0,175" size="480,145" font="FdLcD;42" foregroundColor="#87CEFA" valign="center" halign="left" />
+#####		<eLabel position="0,60"  size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
+#####		<eLabel position="0,174" size="480,2" backgroundColor="#BDBDBD" zPosition="10" />
+#####
+#####		Genau wie "UpdatePluginSummary"
+############ -->
+		<widget source="SetupTitle" render="Label" position="0,8" size="480,46" font="FdLcD;40" foregroundColor="#87CEFA" halign="center" />
+		<eLabel position="10,55" size="460,3" backgroundColor="#BDBDBD" />
+		<widget source="SetupEntry" render="Label" position="10,58" size="460,92" font="FdLcD;40" halign="center" />
+		<eLabel position="10,150" size="460,3" backgroundColor="#BDBDBD" />
+		<widget source="SetupValue" render="Label" position="10,153" size="460,138" font="FdLcD;40" halign="center" />
 	</screen>
-</skin>										
+
+
+	<!-- DVD nicht getestet -->
+	<screen name="DVDSummary" position="0,0" size="480,320">
+
+<!-- ###########
+#####		12er Font - 2 Zeilen ?
+#####		Fortschrittsbalken 4 Pixel dick?
+#####		12er Font * - wieviele Zeilen?
+#####		"Chapter" mit "fill" - Fill von wo nach wo?
+#####		
+#####		<widget source="session.CurrentService" render="Label" position="top" size="*,28" font="FdLcD;12">
+#####			<convert type="ServiceName">Name</convert>
+#####		</widget>
+#####		<widget source="session.CurrentService" render="Progress" position="top" size="*,4" borderWidth="1">
+#####			<convert type="ServicePosition">Position</convert>
+#####		</widget>
+#####		<panel position="fill">
+#####			<widget source="session.CurrentService" render="Label" position="left" size="60,*" font="FdLcD;12" halign="left">
+#####				<convert type="ServicePosition">Position</convert>
+#####			</widget>
+#####			<widget name="Chapter" position="fill" font="FdLcD;12" halign="left" />
+#####		</panel>
+#####
+#####		Schrift ueberall 40er
+############ -->
+
+	<!-- Text 2 Zeilen mittig -->
+		<widget source="session.CurrentService" render="Label" position="0,8" size="480,92" font="FdLcD;40" halign="center" valign="center">
+			<convert type="ServiceName">Name</convert>
+		</widget>
+
+	<!-- Fortschrittsbalken -->
+		<widget source="session.CurrentService" render="Progress" position="20,103" size="440,20">
+			<convert type="ServicePosition">Position</convert>
+		</widget>
+
+	<!-- Text 2 Zeilen mittig -->
+		<panel position="fill">
+			<widget source="session.CurrentService" render="Label" position="0,126" size="480,92" font="FdLcD;40" halign="center" valign="center">
+				<convert type="ServicePosition">Position</convert>
+			</widget>
+
+	<!-- Text 2 Zeilen mittig -->
+			<widget name="Chapter" position="0,221" size="480,46" font="FdLcD;40" halign="center" valign="center"/>
+		</panel>
+	</screen>
+
+
+	<!-- Shoutcast -->
+	<screen name="SHOUTcastLCDScreen" position="0,0" size="480,320">
+
+<!-- ###########
+#####		75 Hoehe fuer 24er waeren maximal 2 Zeilen
+#####		133 Hoehe fuer 30er waeren maximal 3 Zeilen
+#####
+#####		<widget name="text1" position="0,0"  size="480,75"  font="FdLcD;24" halign="center" valign="center" />
+#####		<widget name="text2" position="0,80" size="480,133" font="FdLcD;30" halign="center" valign="center" />
+#####
+#####		Es ist aber Platz fuer groessere Texte
+#####		Beide Texte 40er Font - Zeilen mittig mit Trennstrich dazwischen
+#####		Blinkendes "R" unten mittig und Uhrzeit unten rechts
+############ -->
+
+	<!-- Text 1 - maximal 2 Zeilen mittig -->
+		<widget name="text1" position="0,20" size="480,92" font="FdLcD;40" halign="center" valign="center" />
+
+	<!-- Trennstrich -->
+		<eLabel position="10,121" size="460,3" backgroundColor="#BDBDBD" />
+
+	<!-- Text 2 - maximal 3 Zeilen -->
+		<widget name="text2" position="0,140" size="480,138" font="FdLcD;40" halign="center" valign="center" />
+	</screen>
+</skin>

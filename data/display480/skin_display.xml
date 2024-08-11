@@ -18,15 +18,26 @@
 		<!-- pick a funky name for the font, so we don't conflict  -->
 		<font filename="nmsbd.ttf" name="FdLcD" scale="100" />
 	</fonts>
+
 	<!-- template -->
 	<screen name="SummaryClockPanel">
-		<widget source="global.CurrentTime" render="Label" position="320,260" size="160,60" font="FdLcD;40" halign="center" valign="center" noWrap="1">
+
+<!-- ###########
+#####		<widget source="global.CurrentTime" render="Label" position="320,260" size="160,60" font="FdLcD;40" halign="center" valign="center" noWrap="1">
+#####
+#####		Uhrzeit rechtsbuendig mit dem Fortschrittsbalken, 20 Pixel vom Rand
+#####		Im Gegensatz zum Picon Skin, wo die Uhrzeit riesig unten in der Mitte steht
+############ -->
+
+		<widget source="global.CurrentTime" render="Label" position="320,258" size="140,46" font="FdLcD;40" halign="right" >
 			<convert type="ClockToText" />
 		</widget>
 	</screen>
-	<!-- InfoBar -->
+
+
+	<!-- InfoBar - Einschaltscreen -->
 	<screen name="InfoBarSummary" position="0,0" size="480,320">
-		<widget source="session.CurrentService" render="Label" position="0,5" size="480,70" font="FdLcD;55" halign="center" valign="center" foregroundColor="#87CEFA">
+		<widget source="session.CurrentService" render="Label" position="0,8" size="480,63" font="FdLcD;55" halign="center" foregroundColor="#87CEFA">
 			<convert type="ServiceName">Name</convert>
 		</widget>
 		<widget source="session.Event_Now" render="Label" position="0,70" size="480,95" font="FdLcD;40" halign="center" valign="center">
@@ -35,78 +46,123 @@
 		<widget source="session.Event_Now" render="Progress" position="20,175" size="440,20" borderWidth="1">
 			<convert type="EventTime">Progress</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Label" position="20,210" size="130,40" font="FdLcD;40" halign="center" valign="center">
+
+<!-- ###########
+#####		<widget source="session.Event_Now" render="Label" position="20,210" size="130,40" font="FdLcD;40" halign="center" valign="center">
+#####
+#####		Abstand Sendername zur 2-zeiligen Sendungsbeschreibung 21 Pixel
+#####		Abstand unten der 2-zeiligen Sendungsbeschreibung zum Fortschrittsbalken 21
+#####		Abstand Start- Endzeit und Restminuten 21 zum Fortschrittsbalken
+#####		Abstand "TUNER:" und altuelle Uhrzeit 21 zu Start- Endzeit und Restminuten
+#####		Startzeit linksbuendig mit dem Fortschrittsbalken
+#####		Restminuten und aktuelle Uhrzeit rechsbuendig mit Fortschrittsbalken
+############ -->
+
+		<widget source="session.Event_Now" render="Label" position="20,208" size="110,40" font="FdLcD;40" halign="left">
 			<convert type="EventTime">StartTime</convert>
 			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Label" position="150,210" size="130,40" font="FdLcD;40" halign="center" valign="center">
+
+<!-- ###########
+#####		<widget source="session.Event_Now" render="Label" position="150,210" size="130,40" font="FdLcD;40" halign="center" valign="center">
+#####
+#####		Das "-" bei der Endzeit mittig zwischen Startzeit und Endzeit und gleicher Abstand nach oben zum Fortschrittsbalken und nach unten zum "TUNER:" Text
+############ -->
+
+		<widget source="session.Event_Now" render="Label" position="134,208" size="130,40" font="FdLcD;40" halign="left">
 			<convert type="EventTime">EndTime</convert>
 			<convert type="ClockToText">Format:- %H:%M</convert>
 		</widget>
-		<widget source="session.Event_Now" render="Label" position="350,210" size="100,40" font="FdLcD;40" halign="right" valign="center">
+
+<!-- ###########
+#####		<widget source="session.Event_Now" render="Label" position="350,210" size="100,40" font="FdLcD;40" halign="center" valign="center">
+#####
+#####		Restminuten mit "Min" rechtsbuendig mit dem Fortschrittsbalken und in gleicher Hoehe wie die Start/Endzeit
+############ -->
+
+		<widget source="session.Event_Now" render="Label" position="280,208" size="180,40" font="FdLcD;40" halign="right">
 			<convert type="EventTime">Remaining</convert>
 			<convert type="RemainingToText"></convert>
 		</widget>
-		<eLabel text="TUNER:" position="20,260" size="160,60" halign="center" valign="center" font="FdLcD;40" />
-		<widget source="session.FrontendInfo" render="FixedLabel" position="180,260" size="60,60" text="A" foregroundColor="#04B404" font="FdLcD;40" halign="center" valign="center">
+
+		<!-- "TUNER:" und den Tunerbuchstaben unten links -->
+		<panel name="TheTunerPanel" />
+
+		<!-- Blinkendes oder stehendes "R" unten in der Mitte -->
+		<panel name="TheRecordingPanel" />
+
+		<!-- Aktuelle Uhrzeit unten rechts -->
+		<panel name="SummaryClockPanel" />
+	</screen>
+
+
+	<!-- NEU: "TheTunerPanel" - wird von "InfoBarSummary", "ChannelSelectionSummary" und "EPGSelectionSummary" aufgerufen -->
+	<screen name="TheTunerPanel" position="0,0" size="480,320">
+
+<!-- ###########
+#####		<eLabel text="TUNER:" position="20,260" size="160,60" halign="center" valign="center" font="FdLcD;40" />
+#####		<widget source="session.FrontendInfo" render="FixedLabel" position="180,260" size="60,60" text="A" foregroundColor="#04B404" font="FdLcD;40" halign="center" valign="center">
+#####
+#####		"TUNER:" linksbuendig zm Fortschrittsbalken. Tunerbuchstabe naeher am Doppelpunkt, dadurch kann das Aufnahme "R" dann genau in die Screenmitte.
+############ -->
+
+		<eLabel text="TUNER:" position="20,251" size="160,60" halign="left" valign="center" font="FdLcD;40" />
+		<widget source="session.FrontendInfo" render="FixedLabel" position="180,251" size="60,60" text="A" foregroundColor="#04B404" font="FdLcD;40" halign="left" valign="center">
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">0,0</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="180,260" size="60,60" text="B" foregroundColor="#04B404" font="FdLcD;40" halign="center" valign="center">
+		<widget source="session.FrontendInfo" render="FixedLabel" position="180,251" size="60,60" text="B" foregroundColor="#04B404" font="FdLcD;40" halign="left" valign="center">
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">1,1</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="180,260" size="60,60" text="C" foregroundColor="#04B404" font="FdLcD;40" halign="center" valign="center">
+		<widget source="session.FrontendInfo" render="FixedLabel" position="180,251" size="60,60" text="C" foregroundColor="#04B404" font="FdLcD;40" halign="left" valign="center">
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">2,2</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="180,260" size="60,60" text="D" foregroundColor="#04B404" font="FdLcD;40" halign="center" valign="center">
+		<widget source="session.FrontendInfo" render="FixedLabel" position="180,251" size="60,60" text="D" foregroundColor="#04B404" font="FdLcD;40" halign="left" valign="center">
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">3,3</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<!--text="E" results "O" -> text="E " results "E"-->
-		<widget source="session.FrontendInfo" render="FixedLabel" position="180,260" size="60,60" text="E " foregroundColor="#04B404" font="FdLcD;40" halign="center" valign="center">
+		<widget source="session.FrontendInfo" render="FixedLabel" position="180,251" size="60,60" text="E" foregroundColor="#04B404" font="FdLcD;40" halign="left" valign="center">
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">4,4</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="180,260" size="60,60" text="F" foregroundColor="#04B404" font="FdLcD;40" halign="center" valign="center">
+		<widget source="session.FrontendInfo" render="FixedLabel" position="180,251" size="60,60" text="F" foregroundColor="#04B404" font="FdLcD;40" halign="left" valign="center">
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">5,5</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="180,260" size="60,60" text="G" foregroundColor="#04B404" font="FdLcD;40" halign="center" valign="center">
+		<widget source="session.FrontendInfo" render="FixedLabel" position="180,251" size="60,60" text="G" foregroundColor="#04B404" font="FdLcD;40" halign="left" valign="center">
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">6,6</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="180,260" size="60,60" text="H" foregroundColor="#04B404" font="FdLcD;40" halign="center" valign="center">
+		<widget source="session.FrontendInfo" render="FixedLabel" position="180,251" size="60,60" text="H" foregroundColor="#04B404" font="FdLcD;40" halign="left" valign="center">
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">7,7</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="180,260" size="60,60" text="I" foregroundColor="#04B404" font="FdLcD;40" halign="center" valign="center">
+		<widget source="session.FrontendInfo" render="FixedLabel" position="180,251" size="60,60" text="I" foregroundColor="#04B404" font="FdLcD;40" halign="left" valign="center">
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">8,8</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="180,260" size="60,60" text="J" foregroundColor="#04B404" font="FdLcD;40" halign="center" valign="center">
+		<widget source="session.FrontendInfo" render="FixedLabel" position="180,251" size="60,60" text="J" foregroundColor="#04B404" font="FdLcD;40" halign="left" valign="center">
 			<convert type="FrontendInfo">NUMBER</convert>
 			<convert type="ValueRange">9,9</convert>
 			<convert type="ConditionalShowHide" />
 		</widget>
-		<widget source="session.RecordState" render="Pixmap" pixmap="record.png" position="285,270" size="30,30" zPosition="3" alphatest="blend">
-			<convert type="ConditionalShowHide">Blink</convert>
-		</widget>
-		<panel name="SummaryClockPanel" />
 	</screen>
+
+
 	<!-- ChannelSelection  -->
 	<screen name="ChannelSelectionSummary" position="0,0" size="480,320">
-		<widget source="parent.ServiceEvent" render="Label" position="0,5" size="480,70" font="FdLcD;55" halign="center" valign="center" foregroundColor="#87CEFA">
+		<widget source="parent.ServiceEvent" render="Label" position="0,8" size="480,63" font="FdLcD;55" halign="center" foregroundColor="#87CEFA">
 			<convert type="ServiceName">Name</convert>
 		</widget>
 		<widget source="parent.ServiceEvent" render="Label" position="0,70" size="480,95" font="FdLcD;40" halign="center" valign="center">
@@ -115,78 +171,54 @@
 		<widget source="parent.ServiceEvent" render="Progress" position="20,175" size="440,20" borderWidth="1">
 			<convert type="EventTime">Progress</convert>
 		</widget>
-		<widget source="parent.ServiceEvent" render="Label" position="20,210" size="130,40" font="FdLcD;40" halign="center" valign="center">
+
+<!-- ###########
+#####		<widget source="parent.ServiceEvent" render="Label" position="20,210" size="130,40" font="FdLcD;40" halign="center" valign="center">
+#####
+#####		Startzeit linksbuendig mit dem Fortschrittsbalken und gleicher Abstand nach oben zum Fortschrittsbalken und nach unten zum "TUNER:" Text
+############ -->
+
+		<widget source="parent.ServiceEvent" render="Label" position="20,208" size="110,40" font="FdLcD;40" halign="left">
 			<convert type="EventTime">StartTime</convert>
 			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
-		<widget source="parent.ServiceEvent" render="Label" position="150,210" size="130,40" font="FdLcD;40" halign="center" valign="center">
+
+<!-- ###########
+#####		<widget source="parent.ServiceEvent" render="Label" position="150,210" size="130,40" font="FdLcD;40" halign="center" valign="center">
+#####
+#####		Das "-" der Endzeit mittig zwischen Startzeit und Endzeit und gleicher Abstand nach oben zum Fortschrittsbalken und nach unten zum "TUNER:" Text
+############ -->
+
+		<widget source="parent.ServiceEvent" render="Label" position="134,208" size="130,40" font="FdLcD;40" halign="left">
 			<convert type="EventTime">EndTime</convert>
 			<convert type="ClockToText">Format:- %H:%M</convert>
 		</widget>
-		<widget source="parent.ServiceEvent" render="Label" position="350,210" size="100,40" font="FdLcD;40" halign="right" valign="center">
+
+<!-- ###########
+#####		<widget source="parent.ServiceEvent" render="Label" position="350,210" size="100,40" font="FdLcD;40" halign="right" valign="center">
+#####
+#####		Restminuten mit "Min" rechtsbuendig mit dem Fortschrittsbalken und in gleicher Hoehe wie die Start/Endzeit
+############ -->
+
+		<widget source="parent.ServiceEvent" render="Label" position="280,208" size="180,40" font="FdLcD;40" halign="right">
 			<convert type="EventTime">Remaining</convert>
 			<convert type="RemainingToText"></convert>
 		</widget>
-		<eLabel text="TUNER:" position="20,260" size="160,60" halign="center" valign="center" font="FdLcD;40" />
-		<widget source="session.FrontendInfo" render="FixedLabel" position="180,260" size="60,60" text="A" foregroundColor="#04B404" font="FdLcD;40" halign="center" valign="center">
-			<convert type="FrontendInfo">NUMBER</convert>
-			<convert type="ValueRange">0,0</convert>
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="180,260" size="60,60" text="B" foregroundColor="#04B404" font="FdLcD;40" halign="center" valign="center">
-			<convert type="FrontendInfo">NUMBER</convert>
-			<convert type="ValueRange">1,1</convert>
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="180,260" size="60,60" text="C" foregroundColor="#04B404" font="FdLcD;40" halign="center" valign="center">
-			<convert type="FrontendInfo">NUMBER</convert>
-			<convert type="ValueRange">2,2</convert>
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="180,260" size="60,60" text="D" foregroundColor="#04B404" font="FdLcD;40" halign="center" valign="center">
-			<convert type="FrontendInfo">NUMBER</convert>
-			<convert type="ValueRange">3,3</convert>
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<!--text="E" results "O" -> text="E " results "E"-->
-		<widget source="session.FrontendInfo" render="FixedLabel" position="180,260" size="60,60" text="E " foregroundColor="#04B404" font="FdLcD;40" halign="center" valign="center">
-			<convert type="FrontendInfo">NUMBER</convert>
-			<convert type="ValueRange">4,4</convert>
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="180,260" size="60,60" text="F" foregroundColor="#04B404" font="FdLcD;40" halign="center" valign="center">
-			<convert type="FrontendInfo">NUMBER</convert>
-			<convert type="ValueRange">5,5</convert>
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="180,260" size="60,60" text="G" foregroundColor="#04B404" font="FdLcD;40" halign="center" valign="center">
-			<convert type="FrontendInfo">NUMBER</convert>
-			<convert type="ValueRange">6,6</convert>
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="180,260" size="60,60" text="H" foregroundColor="#04B404" font="FdLcD;40" halign="center" valign="center">
-			<convert type="FrontendInfo">NUMBER</convert>
-			<convert type="ValueRange">7,7</convert>
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="180,260" size="60,60" text="I" foregroundColor="#04B404" font="FdLcD;40" halign="center" valign="center">
-			<convert type="FrontendInfo">NUMBER</convert>
-			<convert type="ValueRange">8,8</convert>
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="180,260" size="60,60" text="J" foregroundColor="#04B404" font="FdLcD;40" halign="center" valign="center">
-			<convert type="FrontendInfo">NUMBER</convert>
-			<convert type="ValueRange">9,9</convert>
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="session.RecordState" render="Pixmap" pixmap="record.png" position="285,270" size="30,30" zPosition="3" alphatest="blend">
-			<convert type="ConditionalShowHide">Blink</convert>
-		</widget>
+
+		<!-- "TUNER:" und den Tunerbuchstaben unten links -->
+		<panel name="TheTunerPanel" />
+
+		<!-- Blinkendes oder stehendes "R" unten in der Mitte -->
+		<panel name="TheRecordingPanel" />
+
+		<!-- Aktuelle Uhrzeit unten rechts -->
 		<panel name="SummaryClockPanel" />
 	</screen>
+
+
 	<!-- EPG Screens -->
 	<screen name="EPGSelectionSummary" position="0,0" size="480,320">
-		<widget source="parent.Service" render="Label" position="0,5" size="480,70" font="FdLcD;55" halign="center" valign="center" foregroundColor="#87CEFA">
+		<widget source="parent.Service" render="Label" position="0,8" size="480,63" font="FdLcD;55" halign="center" foregroundColor="#87CEFA">
 			<convert type="ServiceName">Name</convert>
 		</widget>
 		<widget source="parent.Event" render="Label" position="0,70" size="480,95" font="FdLcD;40" halign="center" valign="center">
@@ -195,74 +227,51 @@
 		<widget source="parent.Event" render="Progress" position="20,175" size="440,20" borderWidth="1">
 			<convert type="EventTime">Progress</convert>
 		</widget>
-		<widget source="parent.Event" render="Label" position="20,210" size="130,40" font="FdLcD;40" halign="center" valign="center">
+
+<!-- ###########
+#####		<widget source="parent.Event" render="Label" position="20,210" size="130,40" font="FdLcD;40" halign="center" valign="center">
+#####
+#####		Startzeit linksbuendig mit dem Fortschrittsbalken und gleicher Abstand zum Fortschrittsbalken und zum "TUNER:" Text
+############ -->
+
+		<widget source="parent.Event" render="Label" position="20,208" size="110,40" font="FdLcD;40" halign="left">
 			<convert type="EventTime">StartTime</convert>
 			<convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
-		<widget source="parent.Event" render="Label" position="150,210" size="130,40" font="FdLcD;40" halign="center" valign="center">
+
+<!-- ###########
+#####		<widget source="parent.Event" render="Label" position="150,210" size="130,40" font="FdLcD;40" halign="center" valign="center">
+#####
+#####		Das "-" der Endzeit mittig zwischen Startzeit und Endzeit und gleicher Abstand nach oben zum Fortschrittsbalken und nach unten zum "TUNER:" Text
+############ -->
+
+		<widget source="parent.Event" render="Label" position="134,208" size="130,40" font="FdLcD;40" halign="left">
 			<convert type="EventTime">EndTime</convert>
 			<convert type="ClockToText">Format:- %H:%M</convert>
 		</widget>
-		<widget source="parent.Event" render="Label" position="350,210" size="100,40" font="FdLcD;40" halign="right" valign="center">
+
+<!-- ###########
+#####		<widget source="parent.Event" render="Label" position="350,210" size="100,40" font="FdLcD;40" halign="right" valign="center">
+#####
+#####		Restminuten mit "Min" rechtsbuendig mit dem Fortschrittsbalken und in gleicher Hoehe wie die Start/Endzeit
+############ -->
+
+		<widget source="parent.Event" render="Label" position="280,208" size="180,40" font="FdLcD;40" halign="right">
 			<convert type="EventTime">Remaining</convert>
 			<convert type="RemainingToText"></convert>
 		</widget>
-		<eLabel text="TUNER:" position="20,260" size="160,60" halign="center" valign="center" font="FdLcD;40" />
-		<widget source="session.FrontendInfo" render="FixedLabel" position="180,260" size="60,60" text="A" foregroundColor="#04B404" font="FdLcD;40" halign="center" valign="center">
-			<convert type="FrontendInfo">NUMBER</convert>
-			<convert type="ValueRange">0,0</convert>
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="180,260" size="60,60" text="B" foregroundColor="#04B404" font="FdLcD;40" halign="center" valign="center">
-			<convert type="FrontendInfo">NUMBER</convert>
-			<convert type="ValueRange">1,1</convert>
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="180,260" size="60,60" text="C" foregroundColor="#04B404" font="FdLcD;40" halign="center" valign="center">
-			<convert type="FrontendInfo">NUMBER</convert>
-			<convert type="ValueRange">2,2</convert>
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="180,260" size="60,60" text="D" foregroundColor="#04B404" font="FdLcD;40" halign="center" valign="center">
-			<convert type="FrontendInfo">NUMBER</convert>
-			<convert type="ValueRange">3,3</convert>
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="180,260" size="60,60" text="E" foregroundColor="#04B404" font="FdLcD;40" halign="center" valign="center">
-			<convert type="FrontendInfo">NUMBER</convert>
-			<convert type="ValueRange">4,4</convert>
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="180,260" size="60,60" text="F" foregroundColor="#04B404" font="FdLcD;40" halign="center" valign="center">
-			<convert type="FrontendInfo">NUMBER</convert>
-			<convert type="ValueRange">5,5</convert>
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="180,260" size="60,60" text="G" foregroundColor="#04B404" font="FdLcD;40" halign="center" valign="center">
-			<convert type="FrontendInfo">NUMBER</convert>
-			<convert type="ValueRange">6,6</convert>
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="180,260" size="60,60" text="H" foregroundColor="#04B404" font="FdLcD;40" halign="center" valign="center">
-			<convert type="FrontendInfo">NUMBER</convert>
-			<convert type="ValueRange">7,7</convert>
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="180,260" size="60,60" text="I" foregroundColor="#04B404" font="FdLcD;40" halign="center" valign="center">
-			<convert type="FrontendInfo">NUMBER</convert>
-			<convert type="ValueRange">8,8</convert>
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="session.FrontendInfo" render="FixedLabel" position="180,260" size="60,60" text="J" foregroundColor="#04B404" font="FdLcD;40" halign="center" valign="center">
-			<convert type="FrontendInfo">NUMBER</convert>
-			<convert type="ValueRange">9,9</convert>
-			<convert type="ConditionalShowHide" />
-		</widget>
-		<widget source="session.RecordState" render="Pixmap" pixmap="record.png" position="285,270" size="30,30" zPosition="3" alphatest="blend">
-			<convert type="ConditionalShowHide">Blink</convert>
-		</widget>
+
+		<!-- "TUNER:" und den Tunerbuchstaben unten links -->
+		<panel name="TheTunerPanel" />
+
+		<!-- Blinkendes oder stehendes "R" unten in der Mitte -->
+		<panel name="TheRecordingPanel" />
+
+		<!-- Aktuelle Uhrzeit unten rechts -->
 		<panel name="SummaryClockPanel" />
 	</screen>
+
+
 	<!-- EPG Panels -->
 	<screen name="QuickEPGSummary" position="0,0" size="480,320">
 		<panel name="EPGSelectionSummary" />
@@ -282,5 +291,6 @@
 	<screen name="EPGverticalSummary" position="0,0" size="480,320">
 		<panel name="EPGSelectionSummary" />
 	</screen>
+
 	<include filename="/usr/share/enigma2/display/skin_display_templates.xml"/>
 </skin>
