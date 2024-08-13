@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-29 19:27+0000\n"
+"POT-Creation-Date: 2024-08-04 16:49+0000\n"
 "PO-Revision-Date: 2024-02-19 11:02+0000\n"
 "Last-Translator: \"Mr.Servo\" <mrservo@gmx.de>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fr/>\n"
@@ -1982,6 +1982,12 @@ msgstr "Ajouter un enregistrement (stopper après l'émission)"
 msgid "Add service"
 msgstr "Ajouter service"
 
+msgid "Add service names"
+msgstr ""
+
+msgid "Add service names to each #SERVICE entry."
+msgstr ""
+
 msgid "Add service to AutoCam"
 msgstr "Ajouter le service à AutoCam"
 
@@ -2242,6 +2248,9 @@ msgstr "Importer aussi lorsque le récepteur est laissé en veille"
 
 msgid "Also on standby"
 msgstr "Aussi en veille"
+
+msgid "Also use a #DESCRIPTION line after each #SERVICE line to hold the service's name."
+msgstr ""
 
 msgid "Alternative"
 msgstr "Ajouter les alternatifs"
@@ -7021,9 +7030,6 @@ msgstr "Permet d'essayer de syntoniser un récepteur enigma2 distant sur des ser
 msgid "Enable teletext caching"
 msgstr "Activer la mise en cache du télétexte"
 
-msgid "Enable terrestrial LCN:"
-msgstr "Activer le LCN terrestre :"
-
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "Activez les options de réglage avancées HDMI-CEC."
 
@@ -10133,14 +10139,23 @@ msgstr "Vitesse de défilement du LCD"
 msgid "LCD/Front panel *"
 msgstr ""
 
+msgid "LCN Scanner"
+msgstr ""
+
+msgid "LCN Scanner Actions"
+msgstr ""
+
+msgid "LCN Scanner Settings"
+msgstr ""
+
+msgid "LCN Scanner plugin for DVB-C/T/T2 services"
+msgstr ""
+
 msgid "LCN numbering"
 msgstr ""
 
-msgid "LCN plugin for DVB-T/T2 services"
-msgstr "Plugin LCN pour les services DVB-T/T2"
-
-msgid "LCN rules:"
-msgstr "Règles LCN :"
+msgid "LCN rules"
+msgstr ""
 
 msgid "LCN style QuickSelect entry selection"
 msgstr ""
@@ -11927,9 +11942,6 @@ msgstr "Aucun demux disponible"
 msgid "No displayable files on this medium found!"
 msgstr "Aucun fichier affichable sur ce support n'a été trouvé !"
 
-msgid "No entry in lcn db. Please do a service scan."
-msgstr "Aucune entrée dans la base de données LCN. Merci de faire un scan des services."
-
 msgid "No error"
 msgstr "Pas d'erreur"
 
@@ -13241,6 +13253,9 @@ msgstr "Veuillez patienter"
 msgid "Please wait for activation of your network configuration..."
 msgstr "Veuillez attendre l'activation de votre configuration réseau..."
 
+msgid "Please wait while LCN bouquets are created/updated..."
+msgstr ""
+
 msgid "Please wait while feeds are updated..."
 msgstr ""
 
@@ -14125,12 +14140,6 @@ msgstr ""
 
 msgid "Reboot"
 msgstr "Redémarrer"
-
-msgid "Rebuild"
-msgstr "Reconstruire"
-
-msgid "Rebuild LCN bouquet now?"
-msgstr "Reconstruire le bouquet LCN maintenant ?"
 
 msgid "Rec"
 msgstr "Enr"
@@ -15283,6 +15292,9 @@ msgstr "Scanner les extensions locales et les installer"
 msgid "Scan for local extensions and install them."
 msgstr "Scanner les extensions locales et les installer."
 
+msgid "Scan for terrestrial LCNs and create LCN bouquets"
+msgstr ""
+
 msgid "Scan wireless networks"
 msgstr "Rechercher les réseaux sans fil"
 
@@ -15670,6 +15682,9 @@ msgid "Select 'Yes' to show the channel list after switching between Radio and T
 msgstr "Si mis à 'oui' la liste des chaînes sera affichée après avoir basculé entre les modes radio et TV."
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
+msgstr ""
+
+msgid "Select 'Yes' to show this plugin in the Plugin Browser."
 msgstr ""
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
@@ -16140,6 +16155,9 @@ msgstr ""
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr ""
 
+msgid "Select the list of LCN rules to be applied to the scan."
+msgstr ""
+
 msgid "Select the locale from a menu"
 msgstr "Sélectionnez les paramètres régionaux à partir d’un menu"
 
@@ -16511,6 +16529,9 @@ msgstr "Numéro de service et nom de service"
 
 msgid "Service Number, Picon and Service Name"
 msgstr "Numéro de service, Picon et nom du service"
+
+msgid "Service Scan"
+msgstr ""
 
 msgid "Service Selection Actions"
 msgstr "Actions de sélection de service"
@@ -17440,6 +17461,9 @@ msgstr ""
 
 msgid "Show in Extension Menu"
 msgstr "Afficher dans la liste des extensions ?"
+
+msgid "Show in Plugin Browser"
+msgstr ""
 
 msgid "Show in Standby"
 msgstr "Afficher en veille"
@@ -19223,9 +19247,6 @@ msgstr "Tennis"
 
 msgid "Terrestrial"
 msgstr "Terrestre"
-
-msgid "Terrestrial bouquet:"
-msgstr "Bouquet terrestre :"
 
 msgid "Test"
 msgstr ""
@@ -21096,6 +21117,9 @@ msgstr "Utiliser un LNB circulaire"
 msgid "Use defaults"
 msgstr "Utiliser les défauts"
 
+msgid "Use description lines"
+msgstr ""
+
 msgid "Use extended List"
 msgstr "Utiliser la liste étendue"
 
@@ -21152,6 +21176,12 @@ msgstr "Utiliser la mesure de puissance"
 
 msgid "Use small screen"
 msgstr "Utiliser l'écran fin"
+
+msgid "Use spacer lines"
+msgstr ""
+
+msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
+msgstr ""
 
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr ""
@@ -23676,6 +23706,27 @@ msgstr "Oui (garder feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enable terrestrial LCN:"
+#~ msgstr "Activer le LCN terrestre :"
+
+#~ msgid "LCN plugin for DVB-T/T2 services"
+#~ msgstr "Plugin LCN pour les services DVB-T/T2"
+
+#~ msgid "LCN rules:"
+#~ msgstr "Règles LCN :"
+
+#~ msgid "No entry in lcn db. Please do a service scan."
+#~ msgstr "Aucune entrée dans la base de données LCN. Merci de faire un scan des services."
+
+#~ msgid "Rebuild"
+#~ msgstr "Reconstruire"
+
+#~ msgid "Rebuild LCN bouquet now?"
+#~ msgstr "Reconstruire le bouquet LCN maintenant ?"
+
+#~ msgid "Terrestrial bouquet:"
+#~ msgstr "Bouquet terrestre :"
 
 #~ msgid "Alternative numbering mode"
 #~ msgstr "Mode de numérotation alternatif"

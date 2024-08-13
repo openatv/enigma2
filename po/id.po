@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-29 19:27+0000\n"
+"POT-Creation-Date: 2024-08-04 16:49+0000\n"
 "PO-Revision-Date: 2024-01-13 10:34+0000\n"
 "Last-Translator: Reza Almanda <rezaalmanda27@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/id/>\n"
@@ -2127,6 +2127,12 @@ msgstr "Tambah rekaman (berhenti setelah acara saat ini)"
 msgid "Add service"
 msgstr "Tambah layanan"
 
+msgid "Add service names"
+msgstr ""
+
+msgid "Add service names to each #SERVICE entry."
+msgstr ""
+
 msgid "Add service to AutoCam"
 msgstr ""
 
@@ -2395,6 +2401,9 @@ msgstr "Impor juga ketika Rx menuju standby"
 
 msgid "Also on standby"
 msgstr "Juga saat standby"
+
+msgid "Also use a #DESCRIPTION line after each #SERVICE line to hold the service's name."
+msgstr ""
 
 msgid "Alternative"
 msgstr "Alternatif"
@@ -7247,9 +7256,6 @@ msgstr "Enable remote enigma2 receiver to be tried to tune into services that ca
 msgid "Enable teletext caching"
 msgstr "Enable teletext caching"
 
-msgid "Enable terrestrial LCN:"
-msgstr "Enable terrestrial LCN:"
-
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr ""
 
@@ -10443,14 +10449,23 @@ msgstr "LCD scroll speed"
 msgid "LCD/Front panel *"
 msgstr ""
 
+msgid "LCN Scanner"
+msgstr ""
+
+msgid "LCN Scanner Actions"
+msgstr ""
+
+msgid "LCN Scanner Settings"
+msgstr ""
+
+msgid "LCN Scanner plugin for DVB-C/T/T2 services"
+msgstr ""
+
 msgid "LCN numbering"
 msgstr ""
 
-msgid "LCN plugin for DVB-T/T2 services"
-msgstr "LCN plugin for DVB-T/T2 services"
-
-msgid "LCN rules:"
-msgstr "LCN rules:"
+msgid "LCN rules"
+msgstr ""
 
 msgid "LCN style QuickSelect entry selection"
 msgstr ""
@@ -12296,9 +12311,6 @@ msgstr "No free index available"
 msgid "No displayable files on this medium found!"
 msgstr "No displayable files on this medium found!"
 
-msgid "No entry in lcn db. Please do a service scan."
-msgstr "No entry in lcn db. Please do a service scan."
-
 #, fuzzy
 msgid "No error"
 msgstr "unknown error"
@@ -13643,6 +13655,9 @@ msgstr "Please wait."
 msgid "Please wait for activation of your network configuration..."
 msgstr "Please wait for activation of your network configuration..."
 
+msgid "Please wait while LCN bouquets are created/updated..."
+msgstr ""
+
 msgid "Please wait while feeds are updated..."
 msgstr ""
 
@@ -14550,12 +14565,6 @@ msgstr ""
 
 msgid "Reboot"
 msgstr "Reboot"
-
-msgid "Rebuild"
-msgstr "Rebuild"
-
-msgid "Rebuild LCN bouquet now?"
-msgstr "Rebuild LCN bouquet now?"
 
 msgid "Rec"
 msgstr "Rec"
@@ -15735,6 +15744,9 @@ msgstr "Scan for local extensions and install them"
 msgid "Scan for local extensions and install them."
 msgstr "Scan for local extensions and install them."
 
+msgid "Scan for terrestrial LCNs and create LCN bouquets"
+msgstr ""
+
 msgid "Scan wireless networks"
 msgstr "Scan wireless networks"
 
@@ -16126,6 +16138,9 @@ msgid "Select 'Yes' to show the channel list after switching between Radio and T
 msgstr "Select 'Yes' to show the channel list after switching between Radio and TV modes."
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
+msgstr ""
+
+msgid "Select 'Yes' to show this plugin in the Plugin Browser."
 msgstr ""
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
@@ -16596,6 +16611,9 @@ msgstr ""
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr ""
 
+msgid "Select the list of LCN rules to be applied to the scan."
+msgstr ""
+
 #, fuzzy
 msgid "Select the locale from a menu"
 msgstr "Select files to exclude from backup"
@@ -16977,6 +16995,9 @@ msgstr "Picon and Service Name"
 #, fuzzy
 msgid "Service Number, Picon and Service Name"
 msgstr "Picon and Service Name"
+
+msgid "Service Scan"
+msgstr ""
 
 #, fuzzy
 msgid "Service Selection Actions"
@@ -17929,6 +17950,9 @@ msgstr ""
 
 msgid "Show in Extension Menu"
 msgstr "Show in Extension Menu"
+
+msgid "Show in Plugin Browser"
+msgstr ""
 
 #, fuzzy
 msgid "Show in Standby"
@@ -19757,9 +19781,6 @@ msgstr "Finnish"
 
 msgid "Terrestrial"
 msgstr "Terrestrial"
-
-msgid "Terrestrial bouquet:"
-msgstr "Terrestrial bouquet:"
 
 msgid "Test"
 msgstr ""
@@ -21651,6 +21672,9 @@ msgstr "Use circular LNB"
 msgid "Use defaults"
 msgstr ""
 
+msgid "Use description lines"
+msgstr ""
+
 msgid "Use extended List"
 msgstr "Use extended List"
 
@@ -21707,6 +21731,12 @@ msgstr "Use power measurement"
 
 msgid "Use small screen"
 msgstr "Use small screen"
+
+msgid "Use spacer lines"
+msgstr ""
+
+msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
+msgstr ""
 
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr ""
@@ -24292,6 +24322,27 @@ msgstr "yes (keep feeds)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Enable terrestrial LCN:"
+#~ msgstr "Enable terrestrial LCN:"
+
+#~ msgid "LCN plugin for DVB-T/T2 services"
+#~ msgstr "LCN plugin for DVB-T/T2 services"
+
+#~ msgid "LCN rules:"
+#~ msgstr "LCN rules:"
+
+#~ msgid "No entry in lcn db. Please do a service scan."
+#~ msgstr "No entry in lcn db. Please do a service scan."
+
+#~ msgid "Rebuild"
+#~ msgstr "Rebuild"
+
+#~ msgid "Rebuild LCN bouquet now?"
+#~ msgstr "Rebuild LCN bouquet now?"
+
+#~ msgid "Terrestrial bouquet:"
+#~ msgstr "Terrestrial bouquet:"
 
 #~ msgid "Alternative numbering mode"
 #~ msgstr "Mode penomoran alternatif"

@@ -5,13 +5,14 @@
 # Milan Šalka <salka.milan@googlemail.com>, 2023, 2024.
 # HS <enosat@yahoo.com>, 2024.
 # Marian Turba <puki247@gmail.com>, 2024.
+# Marcel <inigo0@centrum.sk>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-29 19:27+0000\n"
-"PO-Revision-Date: 2024-08-03 21:09+0000\n"
-"Last-Translator: Atec <dr.atec@gmail.com>\n"
+"POT-Creation-Date: 2024-08-04 16:49+0000\n"
+"PO-Revision-Date: 2024-08-11 20:09+0000\n"
+"Last-Translator: Marcel <inigo0@centrum.sk>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
@@ -2009,6 +2010,12 @@ msgstr "Pridať nahrávanie (ukončiť po tejto udalosti)"
 msgid "Add service"
 msgstr "Pridať stanicu"
 
+msgid "Add service names"
+msgstr ""
+
+msgid "Add service names to each #SERVICE entry."
+msgstr ""
+
 msgid "Add service to AutoCam"
 msgstr "Pridať stanicu do AutoCam"
 
@@ -2269,6 +2276,9 @@ msgstr "Import aj pri opustení pohotovostného režimu"
 
 msgid "Also on standby"
 msgstr "Aj pri pohotov. režime"
+
+msgid "Also use a #DESCRIPTION line after each #SERVICE line to hold the service's name."
+msgstr ""
 
 msgid "Alternative"
 msgstr "Alternatíva"
@@ -7059,9 +7069,6 @@ msgstr "Povoliť vzdialený prijímač so systémom enigma2, aby sa pokúsil nal
 msgid "Enable teletext caching"
 msgstr "Povoliť vyrovnávaciu pamäť teletextu"
 
-msgid "Enable terrestrial LCN:"
-msgstr "Povoliť terestriálne LCN:"
-
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "Povoliť pokročilé možnosti nastavenia HDMI-CEC."
 
@@ -10174,14 +10181,23 @@ msgstr "Rýchlosť rolovania LCD"
 msgid "LCD/Front panel *"
 msgstr "LCD/Predný panel *"
 
+msgid "LCN Scanner"
+msgstr ""
+
+msgid "LCN Scanner Actions"
+msgstr ""
+
+msgid "LCN Scanner Settings"
+msgstr ""
+
+msgid "LCN Scanner plugin for DVB-C/T/T2 services"
+msgstr ""
+
 msgid "LCN numbering"
 msgstr "LCN číslovanie"
 
-msgid "LCN plugin for DVB-T/T2 services"
-msgstr "LCN plugin pre služby DVB-T/T2"
-
-msgid "LCN rules:"
-msgstr "Pravidlá LCN:"
+msgid "LCN rules"
+msgstr ""
 
 msgid "LCN style QuickSelect entry selection"
 msgstr "Štýl LCN – výber záznamu QuickSelect"
@@ -11526,7 +11542,7 @@ msgid "MultiBoot startup file"
 msgstr "Spúšťací súbor MultiBoot"
 
 msgid "MultiEPG Settings"
-msgstr "Nstavenie MultiEPG"
+msgstr "Nastavenia MultiEPG"
 
 msgid "MultiLib"
 msgstr "MultiLib"
@@ -11968,9 +11984,6 @@ msgstr "Nie je dostupný žiadny demultiplexer"
 
 msgid "No displayable files on this medium found!"
 msgstr "Na tomto médiu sa nenašli žiadne zobraziteľné súbory!"
-
-msgid "No entry in lcn db. Please do a service scan."
-msgstr "Žiadny záznam v databáze LCN. Prosím, vykonajte skenovanie staníc."
 
 msgid "No error"
 msgstr "Žiadna chyba"
@@ -13283,6 +13296,9 @@ msgstr "Čakajte, prosím"
 msgid "Please wait for activation of your network configuration..."
 msgstr "Aktivuje sa konfiguácia siete. Čakajte, prosím…"
 
+msgid "Please wait while LCN bouquets are created/updated..."
+msgstr ""
+
 msgid "Please wait while feeds are updated..."
 msgstr "Prosím, počkajte na aktualizáciu zdrojov informácií…"
 
@@ -14169,12 +14185,6 @@ msgstr "Zadná strana"
 
 msgid "Reboot"
 msgstr "Reštartovať"
-
-msgid "Rebuild"
-msgstr "Opätovné zostavenie"
-
-msgid "Rebuild LCN bouquet now?"
-msgstr "Opätovne zostaviť prehľad LCN?"
 
 msgid "Rec"
 msgstr "Nahrávanie"
@@ -15324,6 +15334,9 @@ msgstr "Vyhľadať lokálne rozšírenia a nainštalovať ich"
 msgid "Scan for local extensions and install them."
 msgstr "Vyhľadať lokálne rozšírenia a nainštalovať ich."
 
+msgid "Scan for terrestrial LCNs and create LCN bouquets"
+msgstr ""
+
 msgid "Scan wireless networks"
 msgstr "Vyhľadať bezdrôtové siete"
 
@@ -15714,6 +15727,9 @@ msgstr "Ak je nastavené na 'áno', po prepnutí medzi rádiami/TV kanálmi sa z
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
 msgstr "Ak chcete v zozname priečinkov zobraziť aktuálny priečinok, vyberte možnosť 'Áno'. Táto zmena sa uplatní až po reštartovaní Správcu súborov."
+
+msgid "Select 'Yes' to show this plugin in the Plugin Browser."
+msgstr ""
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Ak sa majú na obrazovke Stiahnuť pluginy zobrazovať aj balíčky webových odkazov, vyberte možnosť 'Áno'."
@@ -16183,6 +16199,9 @@ msgstr "Rozloženie informácií na obrazovke výberu kanála vyberte pomocou mo
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr "Vyberte rozloženie nainštalovaných pluginov, ktoré sa použije na obrazovke Prehliadača pluginov. POZNÁMKA: Táto zmena nie je okamžitá, prejaví sa až po reštartovaní prehliadača pluginov!"
 
+msgid "Select the list of LCN rules to be applied to the scan."
+msgstr ""
+
 msgid "Select the locale from a menu"
 msgstr "Vyberte miestne nastavenia z z menu"
 
@@ -16563,6 +16582,9 @@ msgstr "Číslo stanice a názov stanice"
 
 msgid "Service Number, Picon and Service Name"
 msgstr "Číslo stanice, pikona a názov stanice"
+
+msgid "Service Scan"
+msgstr ""
 
 msgid "Service Selection Actions"
 msgstr "Akcie výberu stanice"
@@ -17496,6 +17518,9 @@ msgstr "Zobraziť obrázok/image a uložiť ako '%s'"
 
 msgid "Show in Extension Menu"
 msgstr "Zobraziť v zozname rozšírení"
+
+msgid "Show in Plugin Browser"
+msgstr ""
 
 msgid "Show in Standby"
 msgstr "Zobraziť v pohotovostnom režime"
@@ -19271,9 +19296,6 @@ msgstr "Tenis"
 
 msgid "Terrestrial"
 msgstr "Pozemné"
-
-msgid "Terrestrial bouquet:"
-msgstr "Terestriálny prehľad:"
 
 msgid "Test"
 msgstr "Test"
@@ -21168,6 +21190,9 @@ msgstr "Použiť LNB s kruhovou polarizáciou (circular LNB)"
 msgid "Use defaults"
 msgstr "Použiť predvolené"
 
+msgid "Use description lines"
+msgstr ""
+
 msgid "Use extended List"
 msgstr "Použiť rozšírený zoznam"
 
@@ -21224,6 +21249,12 @@ msgstr "Použiť meranie spotreby"
 
 msgid "Use small screen"
 msgstr "Použiť malú obrazovku"
+
+msgid "Use spacer lines"
+msgstr ""
+
+msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
+msgstr ""
 
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr "Na úpravu výšky OSD použite tlačidlá DOĽAVA/DOPRAVA na diaľkovom ovládači. Tlačidlom DOĽAVA sa dá výška zmenšiť, tlačidlom DOPRAVA sa dá zväčšiť."
@@ -23783,6 +23814,27 @@ msgstr "áno (zachovať zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enable terrestrial LCN:"
+#~ msgstr "Povoliť terestriálne LCN:"
+
+#~ msgid "LCN plugin for DVB-T/T2 services"
+#~ msgstr "LCN plugin pre služby DVB-T/T2"
+
+#~ msgid "LCN rules:"
+#~ msgstr "Pravidlá LCN:"
+
+#~ msgid "No entry in lcn db. Please do a service scan."
+#~ msgstr "Žiadny záznam v databáze LCN. Prosím, vykonajte skenovanie staníc."
+
+#~ msgid "Rebuild"
+#~ msgstr "Opätovné zostavenie"
+
+#~ msgid "Rebuild LCN bouquet now?"
+#~ msgstr "Opätovne zostaviť prehľad LCN?"
+
+#~ msgid "Terrestrial bouquet:"
+#~ msgstr "Terestriálny prehľad:"
 
 #~ msgid "Alternative numbering mode"
 #~ msgstr "Alternatívne číslovanie"

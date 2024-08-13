@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-29 19:27+0000\n"
+"POT-Creation-Date: 2024-08-04 16:49+0000\n"
 "PO-Revision-Date: 2024-07-23 13:09+0000\n"
 "Last-Translator: Ricky From Hong Kong <lamricky11@hotmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -2030,6 +2030,12 @@ msgstr ""
 msgid "Add service"
 msgstr ""
 
+msgid "Add service names"
+msgstr ""
+
+msgid "Add service names to each #SERVICE entry."
+msgstr ""
+
 msgid "Add service to AutoCam"
 msgstr ""
 
@@ -2307,6 +2313,9 @@ msgstr ""
 #, fuzzy
 msgid "Also on standby"
 msgstr "待機"
+
+msgid "Also use a #DESCRIPTION line after each #SERVICE line to hold the service's name."
+msgstr ""
 
 msgid "Alternative"
 msgstr ""
@@ -7272,9 +7281,6 @@ msgstr ""
 msgid "Enable teletext caching"
 msgstr ""
 
-msgid "Enable terrestrial LCN:"
-msgstr ""
-
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr ""
 
@@ -10540,13 +10546,22 @@ msgstr "最快速度"
 msgid "LCD/Front panel *"
 msgstr ""
 
+msgid "LCN Scanner"
+msgstr ""
+
+msgid "LCN Scanner Actions"
+msgstr ""
+
+msgid "LCN Scanner Settings"
+msgstr ""
+
+msgid "LCN Scanner plugin for DVB-C/T/T2 services"
+msgstr ""
+
 msgid "LCN numbering"
 msgstr ""
 
-msgid "LCN plugin for DVB-T/T2 services"
-msgstr ""
-
-msgid "LCN rules:"
+msgid "LCN rules"
 msgstr ""
 
 msgid "LCN style QuickSelect entry selection"
@@ -12453,9 +12468,6 @@ msgstr "無可用資訊"
 msgid "No displayable files on this medium found!"
 msgstr "在這個媒介上未發現檔!"
 
-msgid "No entry in lcn db. Please do a service scan."
-msgstr "LCN資料庫沒有紀錄。請進行一次頻道掃瞄。"
-
 #, fuzzy
 msgid "No error"
 msgstr "未知頻道"
@@ -13837,6 +13849,9 @@ msgstr "請稍候..."
 msgid "Please wait for activation of your network configuration..."
 msgstr "請等待網路配置啟動..."
 
+msgid "Please wait while LCN bouquets are created/updated..."
+msgstr ""
+
 msgid "Please wait while feeds are updated..."
 msgstr ""
 
@@ -14795,12 +14810,6 @@ msgstr ""
 
 msgid "Reboot"
 msgstr "重新啟動"
-
-msgid "Rebuild"
-msgstr ""
-
-msgid "Rebuild LCN bouquet now?"
-msgstr ""
 
 msgid "Rec"
 msgstr ""
@@ -16026,6 +16035,9 @@ msgstr "掃描本地套裝軟體並安裝它們。"
 msgid "Scan for local extensions and install them."
 msgstr "掃描本地套裝軟體並安裝它們。"
 
+msgid "Scan for terrestrial LCNs and create LCN bouquets"
+msgstr ""
+
 msgid "Scan wireless networks"
 msgstr ""
 
@@ -16427,6 +16439,9 @@ msgid "Select 'Yes' to show the channel list after switching between Radio and T
 msgstr ""
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
+msgstr ""
+
+msgid "Select 'Yes' to show this plugin in the Plugin Browser."
 msgstr ""
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
@@ -16914,6 +16929,9 @@ msgstr ""
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr ""
 
+msgid "Select the list of LCN rules to be applied to the scan."
+msgstr ""
+
 #, fuzzy
 msgid "Select the locale from a menu"
 msgstr "選擇要備份的檔/目錄"
@@ -17291,6 +17309,9 @@ msgid "Service Number and Service Name"
 msgstr ""
 
 msgid "Service Number, Picon and Service Name"
+msgstr ""
+
+msgid "Service Scan"
 msgstr ""
 
 #, fuzzy
@@ -18308,6 +18329,9 @@ msgid "Show image and save as '%s'"
 msgstr ""
 
 msgid "Show in Extension Menu"
+msgstr ""
+
+msgid "Show in Plugin Browser"
 msgstr ""
 
 #, fuzzy
@@ -20208,10 +20232,6 @@ msgstr "芬蘭"
 msgid "Terrestrial"
 msgstr "地面波"
 
-#, fuzzy
-msgid "Terrestrial bouquet:"
-msgstr "地面波"
-
 msgid "Test"
 msgstr ""
 
@@ -22110,6 +22130,9 @@ msgstr "左旋"
 msgid "Use defaults"
 msgstr ""
 
+msgid "Use description lines"
+msgstr ""
+
 #, fuzzy
 msgid "Use extended List"
 msgstr "隱藏說明"
@@ -22169,6 +22192,12 @@ msgstr "使用功率測量"
 #, fuzzy
 msgid "Use small screen"
 msgstr "螢幕調整插件"
+
+msgid "Use spacer lines"
+msgstr ""
+
+msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
+msgstr ""
 
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr ""
@@ -24768,6 +24797,13 @@ msgstr "是 (保留)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "No entry in lcn db. Please do a service scan."
+#~ msgstr "LCN資料庫沒有紀錄。請進行一次頻道掃瞄。"
+
+#, fuzzy
+#~ msgid "Terrestrial bouquet:"
+#~ msgstr "地面波"
 
 #, fuzzy
 #~ msgid "Installing feeds from IPK ..."

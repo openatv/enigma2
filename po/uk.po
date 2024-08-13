@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-29 19:27+0000\n"
-"PO-Revision-Date: 2024-08-02 09:09+0000\n"
+"POT-Creation-Date: 2024-08-04 16:49+0000\n"
+"PO-Revision-Date: 2024-08-06 09:09+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -2011,6 +2011,12 @@ msgstr "Почати запис (зупинити після цієї перед
 msgid "Add service"
 msgstr "Додати канал"
 
+msgid "Add service names"
+msgstr "Додати назву каналу"
+
+msgid "Add service names to each #SERVICE entry."
+msgstr "Додайте до назви каналу запис #SERVICE."
+
 msgid "Add service to AutoCam"
 msgstr "Додати канал до AutoCam"
 
@@ -2271,6 +2277,9 @@ msgstr "Також імпортуйте при включенні тюнера �
 
 msgid "Also on standby"
 msgstr "Також і в режимі очікування"
+
+msgid "Also use a #DESCRIPTION line after each #SERVICE line to hold the service's name."
+msgstr "Використовуйте рядок #DESCRIPTION після кожного рядка #SERVICE, щоб містити назву каналу."
 
 msgid "Alternative"
 msgstr "Альтернативний"
@@ -7061,9 +7070,6 @@ msgstr "Включити віддалений приймач enigma2, щоб с�
 msgid "Enable teletext caching"
 msgstr "Включити кешування телетексту"
 
-msgid "Enable terrestrial LCN:"
-msgstr "Включити наземний LCN:"
-
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "Ввімкнути розширені параметри налаштування HDMI-CEC."
 
@@ -10176,14 +10182,23 @@ msgstr "Швидкість прокрутки на LCD"
 msgid "LCD/Front panel *"
 msgstr "LCD/Передня панель *"
 
+msgid "LCN Scanner"
+msgstr "Сканер LCN"
+
+msgid "LCN Scanner Actions"
+msgstr "Дії сканера LCN"
+
+msgid "LCN Scanner Settings"
+msgstr "Налаштування сканера LCN"
+
+msgid "LCN Scanner plugin for DVB-C/T/T2 services"
+msgstr "Плагін LCN Scanner для послуг DVB-C/T/T2"
+
 msgid "LCN numbering"
 msgstr "Нумерація LCN"
 
-msgid "LCN plugin for DVB-T/T2 services"
-msgstr "Додаток LCN для послуг DVB-T / T2"
-
-msgid "LCN rules:"
-msgstr "Правила LCN:"
+msgid "LCN rules"
+msgstr "Правила LCN"
 
 msgid "LCN style QuickSelect entry selection"
 msgstr "Вибір запису QuickSelect у стилі LCN"
@@ -11971,9 +11986,6 @@ msgstr "Немає демуксиплексу"
 msgid "No displayable files on this medium found!"
 msgstr "Потрібних файлів на цьому носії не знайдено!"
 
-msgid "No entry in lcn db. Please do a service scan."
-msgstr "Відсутній запис в lcn db. Зробіть сканування каналів."
-
 msgid "No error"
 msgstr "Немає помилок"
 
@@ -13285,6 +13297,9 @@ msgstr "Будь ласка, почекайте"
 msgid "Please wait for activation of your network configuration..."
 msgstr "Будь ласка, почекайте на активацію налаштувань мережі..."
 
+msgid "Please wait while LCN bouquets are created/updated..."
+msgstr "Зачекайте, поки буде створено/оновлено фаворити LCN..."
+
 msgid "Please wait while feeds are updated..."
 msgstr "Зачекайте, поки оновляться фіди..."
 
@@ -14171,12 +14186,6 @@ msgstr "Тиловий"
 
 msgid "Reboot"
 msgstr "Перезавантажити"
-
-msgid "Rebuild"
-msgstr "Перебудувати"
-
-msgid "Rebuild LCN bouquet now?"
-msgstr "Перебудувати LCN фаворит заново?"
 
 msgid "Rec"
 msgstr "Запис"
@@ -15326,6 +15335,9 @@ msgstr "Пошук і встановлення локальних розшире
 msgid "Scan for local extensions and install them."
 msgstr "Пошук і встановлення локальних розширень."
 
+msgid "Scan for terrestrial LCNs and create LCN bouquets"
+msgstr "Пошук наземних LCN і створення фаворитів LCN"
+
 msgid "Scan wireless networks"
 msgstr "Пошук Wі-Fі мереж"
 
@@ -15716,6 +15728,9 @@ msgstr "Якщо вибрано 'так', список каналів буде �
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
 msgstr "Виберіть 'Так', щоб показати поточний каталог у списку каталогів. Зауважте, що File Commander потрібно перезапустити, щоб ця зміна набула чинності."
+
+msgid "Select 'Yes' to show this plugin in the Plugin Browser."
+msgstr "Виберіть 'Так', щоб відобразити цей плагін у браузері плагінів."
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Виберіть 'Так', щоб відобразити пакети веб-посилань на екрані завантаження плагінів."
@@ -16185,6 +16200,9 @@ msgstr "Виберіть потрібні дані інформації про �
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr "Виберіть макет встановлених плагінів на екрані браузера плагінів. ПРИМІТКА: Зміни не відбуваються негайно, але будуть помітні після перезапуску браузера плагінів!"
 
+msgid "Select the list of LCN rules to be applied to the scan."
+msgstr "Виберіть список правил LCN, які будуть застосовані до сканування."
+
 msgid "Select the locale from a menu"
 msgstr "Виберіть необхідну мову в меню"
 
@@ -16565,6 +16583,9 @@ msgstr "Номер каналу і Назва каналу"
 
 msgid "Service Number, Picon and Service Name"
 msgstr "Номер каналу, Пікон і Назва каналу"
+
+msgid "Service Scan"
+msgstr "Пошук Каналів"
 
 msgid "Service Selection Actions"
 msgstr "Дії для Вибіру Каналів"
@@ -17498,6 +17519,9 @@ msgstr "Показати зображення та зберегти як '%s'"
 
 msgid "Show in Extension Menu"
 msgstr "Показати в списку розширень"
+
+msgid "Show in Plugin Browser"
+msgstr "Показати в Браузері плагінів"
 
 msgid "Show in Standby"
 msgstr "Показати в Режимі очікування"
@@ -19109,7 +19133,7 @@ msgid "TMDB Search"
 msgstr "TMDB Пошук"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 30.07.2024"
+msgstr "Переклад: kvinto - 05.08.2024"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -19273,9 +19297,6 @@ msgstr "Теніс"
 
 msgid "Terrestrial"
 msgstr "Наземний"
-
-msgid "Terrestrial bouquet:"
-msgstr "Наземний фаворит:"
 
 msgid "Test"
 msgstr "Тест"
@@ -21170,6 +21191,9 @@ msgstr "Використовувати круговий LNB"
 msgid "Use defaults"
 msgstr "Параметри за замовчуванням"
 
+msgid "Use description lines"
+msgstr "Використовуйте рядки опису"
+
 msgid "Use extended List"
 msgstr "Використовувати розширений список"
 
@@ -21226,6 +21250,12 @@ msgstr "Використовувати вимірювання потужност
 
 msgid "Use small screen"
 msgstr "Використовуйте міні вікно"
+
+msgid "Use spacer lines"
+msgstr "Використовуйте роздільні лінії"
+
+msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
+msgstr "Використовуйте роздільні лінії, щоб заповнити фаворит і номери рядків #SERVICE збігалися з LCN."
 
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr "Використовуйте кнопки ВЛІВО/ВПРАВО на пульті, щоб відрегулювати висоту екранного меню. Кнопка ВЛІВО зменшує висоту, ВПРАВО збільшує висоту."
@@ -23785,6 +23815,27 @@ msgstr "так (зберігати фіди)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enable terrestrial LCN:"
+#~ msgstr "Включити наземний LCN:"
+
+#~ msgid "LCN plugin for DVB-T/T2 services"
+#~ msgstr "Додаток LCN для послуг DVB-T / T2"
+
+#~ msgid "LCN rules:"
+#~ msgstr "Правила LCN:"
+
+#~ msgid "No entry in lcn db. Please do a service scan."
+#~ msgstr "Відсутній запис в lcn db. Зробіть сканування каналів."
+
+#~ msgid "Rebuild"
+#~ msgstr "Перебудувати"
+
+#~ msgid "Rebuild LCN bouquet now?"
+#~ msgstr "Перебудувати LCN фаворит заново?"
+
+#~ msgid "Terrestrial bouquet:"
+#~ msgstr "Наземний фаворит:"
 
 #~ msgid "Alternative numbering mode"
 #~ msgstr "Альтернативний режим нумерації"

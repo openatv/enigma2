@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-29 19:27+0000\n"
+"POT-Creation-Date: 2024-08-04 16:49+0000\n"
 "PO-Revision-Date: 2024-08-04 16:47+0000\n"
 "Last-Translator: Tmp341 <tmp341@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -2028,6 +2028,12 @@ msgstr "Kayıt ekle (şimdiki programdan sonra dursun)"
 msgid "Add service"
 msgstr "Kanal ekle"
 
+msgid "Add service names"
+msgstr ""
+
+msgid "Add service names to each #SERVICE entry."
+msgstr ""
+
 msgid "Add service to AutoCam"
 msgstr "AutoCam'e hizmet ekle"
 
@@ -2303,6 +2309,9 @@ msgstr "Kutu bekleme modundan çıkarken de içe aktar"
 
 msgid "Also on standby"
 msgstr "Ayrıca beklemede"
+
+msgid "Also use a #DESCRIPTION line after each #SERVICE line to hold the service's name."
+msgstr ""
 
 #
 msgid "Alternative"
@@ -7308,9 +7317,6 @@ msgstr "Yerel enigma2 alıcısının yerel olarak ayarlanamayan servislere ayarl
 msgid "Enable teletext caching"
 msgstr "Teletext önbelleğini etkinleştir"
 
-msgid "Enable terrestrial LCN:"
-msgstr "Karasal LCN'yi etkinleştir:"
-
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "Gelişmiş HDMI-CEC ayar seçeneklerini etkinleştirin."
 
@@ -10574,14 +10580,23 @@ msgstr "LCD kaydırma hızı"
 msgid "LCD/Front panel *"
 msgstr "LCD/Ön panel *"
 
+msgid "LCN Scanner"
+msgstr ""
+
+msgid "LCN Scanner Actions"
+msgstr ""
+
+msgid "LCN Scanner Settings"
+msgstr ""
+
+msgid "LCN Scanner plugin for DVB-C/T/T2 services"
+msgstr ""
+
 msgid "LCN numbering"
 msgstr ""
 
-msgid "LCN plugin for DVB-T/T2 services"
-msgstr "DVB-T / T2 servisleri için LCN eklentisi"
-
-msgid "LCN rules:"
-msgstr "LCN kuralları:"
+msgid "LCN rules"
+msgstr ""
 
 msgid "LCN style QuickSelect entry selection"
 msgstr "LCN tarzı QuickSelect giriş seçimi"
@@ -12482,9 +12497,6 @@ msgstr "Demux yok"
 msgid "No displayable files on this medium found!"
 msgstr "Bu ortamda gösterilecek dosya bulunamadı!"
 
-msgid "No entry in lcn db. Please do a service scan."
-msgstr "Lcn db'de giriş yok. Lütfen bir servis taraması yapın."
-
 #
 msgid "No error"
 msgstr "Hata yok"
@@ -13883,6 +13895,9 @@ msgstr "Lütfen bekle"
 msgid "Please wait for activation of your network configuration..."
 msgstr "Lütfen ağ yapılandırmanızın etkinleştirilmesi için bekleyin..."
 
+msgid "Please wait while LCN bouquets are created/updated..."
+msgstr ""
+
 msgid "Please wait while feeds are updated..."
 msgstr "Lütfen beslemeler güncellenirken bekleyin..."
 
@@ -14820,12 +14835,6 @@ msgstr "Arka"
 #
 msgid "Reboot"
 msgstr "Sistemi yeniden başlat"
-
-msgid "Rebuild"
-msgstr "Yeniden inşa etmek"
-
-msgid "Rebuild LCN bouquet now?"
-msgstr "LCN buketi şimdi yeniden oluşturuluyor mu?"
 
 msgid "Rec"
 msgstr "Kayıt"
@@ -16058,6 +16067,9 @@ msgstr "Yerel uzantıları tarayın ve yükleyin"
 msgid "Scan for local extensions and install them."
 msgstr "Yerel eklentileri inceleyin ve kurun."
 
+msgid "Scan for terrestrial LCNs and create LCN bouquets"
+msgstr ""
+
 #
 msgid "Scan wireless networks"
 msgstr "Kablosuz Ağları Tara"
@@ -16456,6 +16468,9 @@ msgstr "'evet' Radyo ve TV kipleri arasındaki geçişlerde kanal listesi görü
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
 msgstr "Dizinler listesinde geçerli dizini göstermek için 'Evet'i seçin. Bu değişikliğin etkili olması için File Commander'ın yeniden başlatılması gerektiğini unutmayın."
+
+msgid "Select 'Yes' to show this plugin in the Plugin Browser."
+msgstr ""
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Eklentileri İndir ekranında web bağlantı paketlerini göstermek için 'Evet'i seçin."
@@ -16938,6 +16953,9 @@ msgstr ""
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr "Eklenti Tarayıcısı ekranında yüklü eklentilerin düzenini seçin. NOT: Değişiklik hemen gerçekleşmez ancak Eklenti Tarayıcı yeniden başlatıldığında görülecektir!"
 
+msgid "Select the list of LCN rules to be applied to the scan."
+msgstr ""
+
 msgid "Select the locale from a menu"
 msgstr "Bir menüden yerel ayarı seçin"
 
@@ -17331,6 +17349,9 @@ msgstr "Servis Numarası ve Servis Adı"
 
 msgid "Service Number, Picon and Service Name"
 msgstr "Servis Numarası, Picon ve Servis Adı"
+
+msgid "Service Scan"
+msgstr ""
 
 msgid "Service Selection Actions"
 msgstr "Hizmet Seçimi Eylemleri"
@@ -18290,6 +18311,9 @@ msgstr "Görüntüyü göster ve '%s' olarak kaydet"
 
 msgid "Show in Extension Menu"
 msgstr "Eklentiler listesinde göster"
+
+msgid "Show in Plugin Browser"
+msgstr ""
 
 msgid "Show in Standby"
 msgstr "Bekleme modunda göster"
@@ -20159,9 +20183,6 @@ msgstr "Tenis"
 #
 msgid "Terrestrial"
 msgstr "Karasal"
-
-msgid "Terrestrial bouquet:"
-msgstr "Karasal buketi:"
 
 msgid "Test"
 msgstr "Test"
@@ -22139,6 +22160,9 @@ msgstr "Dairesel LNB kullan"
 msgid "Use defaults"
 msgstr "Varsayılanları kullan"
 
+msgid "Use description lines"
+msgstr ""
+
 msgid "Use extended List"
 msgstr "Genişletilmiş Listeyi kullan"
 
@@ -22197,6 +22221,12 @@ msgstr "Güç ölçümü kullan"
 
 msgid "Use small screen"
 msgstr "İnce ekran kullan"
+
+msgid "Use spacer lines"
+msgstr ""
+
+msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
+msgstr ""
 
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr "OSD'nin yüksekliğini ayarlamak için uzaktan kumandanızdaki SOL/SAĞ düğmelerini kullanın. SOL düğme yüksekliği azaltır, SAĞ düğme ise yüksekliği artırır."
@@ -24913,6 +24943,27 @@ msgstr "evet (beslemeleri tut)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enable terrestrial LCN:"
+#~ msgstr "Karasal LCN'yi etkinleştir:"
+
+#~ msgid "LCN plugin for DVB-T/T2 services"
+#~ msgstr "DVB-T / T2 servisleri için LCN eklentisi"
+
+#~ msgid "LCN rules:"
+#~ msgstr "LCN kuralları:"
+
+#~ msgid "No entry in lcn db. Please do a service scan."
+#~ msgstr "Lcn db'de giriş yok. Lütfen bir servis taraması yapın."
+
+#~ msgid "Rebuild"
+#~ msgstr "Yeniden inşa etmek"
+
+#~ msgid "Rebuild LCN bouquet now?"
+#~ msgstr "LCN buketi şimdi yeniden oluşturuluyor mu?"
+
+#~ msgid "Terrestrial bouquet:"
+#~ msgstr "Karasal buketi:"
 
 #~ msgid "Alternative numbering mode"
 #~ msgstr "Alternatif numaralama kipi"

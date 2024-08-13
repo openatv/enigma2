@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-29 19:27+0000\n"
+"POT-Creation-Date: 2024-08-04 16:49+0000\n"
 "PO-Revision-Date: 2023-08-11 04:46+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -1978,6 +1978,12 @@ msgstr "添加录制(当前事件后停止)"
 msgid "Add service"
 msgstr "添加频道"
 
+msgid "Add service names"
+msgstr ""
+
+msgid "Add service names to each #SERVICE entry."
+msgstr ""
+
 msgid "Add service to AutoCam"
 msgstr ""
 
@@ -2238,6 +2244,9 @@ msgstr "当接收机离开待机状态时也导入"
 
 msgid "Also on standby"
 msgstr "同时待机"
+
+msgid "Also use a #DESCRIPTION line after each #SERVICE line to hold the service's name."
+msgstr ""
 
 msgid "Alternative"
 msgstr "备选方案"
@@ -7011,9 +7020,6 @@ msgstr "允许远程enigma2接收器尝试调谐到本地无法调谐到的频�
 msgid "Enable teletext caching"
 msgstr "启用图文电视缓存"
 
-msgid "Enable terrestrial LCN:"
-msgstr "启用地面波LCN:"
-
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "启用高级HDMI-CEC设置选项."
 
@@ -10121,14 +10127,23 @@ msgstr "LCD滚屏速度"
 msgid "LCD/Front panel *"
 msgstr ""
 
+msgid "LCN Scanner"
+msgstr ""
+
+msgid "LCN Scanner Actions"
+msgstr ""
+
+msgid "LCN Scanner Settings"
+msgstr ""
+
+msgid "LCN Scanner plugin for DVB-C/T/T2 services"
+msgstr ""
+
 msgid "LCN numbering"
 msgstr ""
 
-msgid "LCN plugin for DVB-T/T2 services"
-msgstr "用于DVB-T/T2频道的LCN插件"
-
-msgid "LCN rules:"
-msgstr "LCN规则:"
+msgid "LCN rules"
+msgstr ""
 
 msgid "LCN style QuickSelect entry selection"
 msgstr ""
@@ -11912,9 +11927,6 @@ msgstr "没有可用的解析器"
 msgid "No displayable files on this medium found!"
 msgstr "在此介质上没有发现可显示的文件！"
 
-msgid "No entry in lcn db. Please do a service scan."
-msgstr "没有进入LCN输入数据库.请做一个频道扫描."
-
 msgid "No error"
 msgstr "无错误"
 
@@ -13223,6 +13235,9 @@ msgstr "请稍候"
 msgid "Please wait for activation of your network configuration..."
 msgstr "正在激活网络配置,请稍候..."
 
+msgid "Please wait while LCN bouquets are created/updated..."
+msgstr ""
+
 msgid "Please wait while feeds are updated..."
 msgstr ""
 
@@ -14107,12 +14122,6 @@ msgstr "后部"
 
 msgid "Reboot"
 msgstr "重启"
-
-msgid "Rebuild"
-msgstr "重建"
-
-msgid "Rebuild LCN bouquet now?"
-msgstr "是否重建LCN自定义组?"
 
 msgid "Rec"
 msgstr "录制"
@@ -15262,6 +15271,9 @@ msgstr "扫描本地附件包并安装它们"
 msgid "Scan for local extensions and install them."
 msgstr "扫描本地扩展并安装它们."
 
+msgid "Scan for terrestrial LCNs and create LCN bouquets"
+msgstr ""
+
 msgid "Scan wireless networks"
 msgstr "扫描无线网络"
 
@@ -15649,6 +15661,9 @@ msgid "Select 'Yes' to show the channel list after switching between Radio and T
 msgstr "如果设置为'是'的频道列表将显示在广播和电视模式之间切换."
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
+msgstr ""
+
+msgid "Select 'Yes' to show this plugin in the Plugin Browser."
 msgstr ""
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
@@ -16119,6 +16134,9 @@ msgstr ""
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr ""
 
+msgid "Select the list of LCN rules to be applied to the scan."
+msgstr ""
+
 msgid "Select the locale from a menu"
 msgstr "从菜单中选择区域设置"
 
@@ -16490,6 +16508,9 @@ msgstr "频道号和频道名"
 
 msgid "Service Number, Picon and Service Name"
 msgstr "频道编号,picon和频道名称"
+
+msgid "Service Scan"
+msgstr ""
 
 msgid "Service Selection Actions"
 msgstr "频道选择操作"
@@ -17417,6 +17438,9 @@ msgstr ""
 
 msgid "Show in Extension Menu"
 msgstr "显示在扩展列表中？"
+
+msgid "Show in Plugin Browser"
+msgstr ""
 
 msgid "Show in Standby"
 msgstr "在待机状态下显示"
@@ -19191,9 +19215,6 @@ msgstr "网球"
 
 msgid "Terrestrial"
 msgstr "地面波"
-
-msgid "Terrestrial bouquet:"
-msgstr "地面波频道组:"
 
 msgid "Test"
 msgstr ""
@@ -21050,6 +21071,9 @@ msgstr "使用圆极化高频头"
 msgid "Use defaults"
 msgstr "使用默认值"
 
+msgid "Use description lines"
+msgstr ""
+
 msgid "Use extended List"
 msgstr "使用扩展列表"
 
@@ -21106,6 +21130,12 @@ msgstr "功率测量"
 
 msgid "Use small screen"
 msgstr "使用超薄屏幕"
+
+msgid "Use spacer lines"
+msgstr ""
+
+msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
+msgstr ""
 
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr ""
@@ -23625,6 +23655,27 @@ msgstr "是(保持订阅源)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enable terrestrial LCN:"
+#~ msgstr "启用地面波LCN:"
+
+#~ msgid "LCN plugin for DVB-T/T2 services"
+#~ msgstr "用于DVB-T/T2频道的LCN插件"
+
+#~ msgid "LCN rules:"
+#~ msgstr "LCN规则:"
+
+#~ msgid "No entry in lcn db. Please do a service scan."
+#~ msgstr "没有进入LCN输入数据库.请做一个频道扫描."
+
+#~ msgid "Rebuild"
+#~ msgstr "重建"
+
+#~ msgid "Rebuild LCN bouquet now?"
+#~ msgstr "是否重建LCN自定义组?"
+
+#~ msgid "Terrestrial bouquet:"
+#~ msgstr "地面波频道组:"
 
 #~ msgid "Alternative numbering mode"
 #~ msgstr "可选编号模式"

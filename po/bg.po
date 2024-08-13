@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-29 19:27+0000\n"
+"POT-Creation-Date: 2024-08-04 16:49+0000\n"
 "PO-Revision-Date: 2023-08-06 06:22+0000\n"
 "Last-Translator: Salif Mehmed <mail@salif.eu>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/bg/>\n"
@@ -1975,6 +1975,12 @@ msgstr "Добавяне на запис (спиране след текущо �
 msgid "Add service"
 msgstr "Добавяне на сервиз"
 
+msgid "Add service names"
+msgstr ""
+
+msgid "Add service names to each #SERVICE entry."
+msgstr ""
+
 msgid "Add service to AutoCam"
 msgstr ""
 
@@ -2235,6 +2241,9 @@ msgstr "Импортиране при изход от режим готовно�
 
 msgid "Also on standby"
 msgstr "Също в режим на готовност"
+
+msgid "Also use a #DESCRIPTION line after each #SERVICE line to hold the service's name."
+msgstr ""
 
 msgid "Alternative"
 msgstr "Алтернативен"
@@ -7004,9 +7013,6 @@ msgstr "Разрешаване на отдалечения приемник на
 msgid "Enable teletext caching"
 msgstr "Разрешаване на телетекст кеширане"
 
-msgid "Enable terrestrial LCN:"
-msgstr "Разрешаване на наземно LCN:"
-
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "Разрешаване на разширените опции за настройка на HDMI-CEC."
 
@@ -10111,14 +10117,23 @@ msgstr "Скорост на LCD превъртане"
 msgid "LCD/Front panel *"
 msgstr ""
 
+msgid "LCN Scanner"
+msgstr ""
+
+msgid "LCN Scanner Actions"
+msgstr ""
+
+msgid "LCN Scanner Settings"
+msgstr ""
+
+msgid "LCN Scanner plugin for DVB-C/T/T2 services"
+msgstr ""
+
 msgid "LCN numbering"
 msgstr ""
 
-msgid "LCN plugin for DVB-T/T2 services"
-msgstr "LCN плъгин за DVB-T/T2 сервизи"
-
-msgid "LCN rules:"
-msgstr "LCN правила:"
+msgid "LCN rules"
+msgstr ""
 
 msgid "LCN style QuickSelect entry selection"
 msgstr ""
@@ -11902,9 +11917,6 @@ msgstr "Няма наличен демукс"
 msgid "No displayable files on this medium found!"
 msgstr "Няма намерени файлове на този носител!"
 
-msgid "No entry in lcn db. Please do a service scan."
-msgstr "Няма вписване в LCN db.Моля, сканирай сервиза."
-
 msgid "No error"
 msgstr "Няма грешка"
 
@@ -13213,6 +13225,9 @@ msgstr "Моля изчакайте"
 msgid "Please wait for activation of your network configuration..."
 msgstr "Моля, изчакайте активиране на вашата мрежова конфигурация ..."
 
+msgid "Please wait while LCN bouquets are created/updated..."
+msgstr ""
+
 msgid "Please wait while feeds are updated..."
 msgstr ""
 
@@ -14097,12 +14112,6 @@ msgstr ""
 
 msgid "Reboot"
 msgstr "Рестарт"
-
-msgid "Rebuild"
-msgstr "Възстанови"
-
-msgid "Rebuild LCN bouquet now?"
-msgstr "Възстановяване на LCN букет сега?"
 
 msgid "Rec"
 msgstr "Запис"
@@ -15252,6 +15261,9 @@ msgstr "Сканиране за местни разширения и ги инс
 msgid "Scan for local extensions and install them."
 msgstr "Сканиране за местни разширения и инсталиране."
 
+msgid "Scan for terrestrial LCNs and create LCN bouquets"
+msgstr ""
+
 msgid "Scan wireless networks"
 msgstr "Сканиране на безжични мрежи"
 
@@ -15640,6 +15652,9 @@ msgid "Select 'Yes' to show the channel list after switching between Radio and T
 msgstr "Ако е зададено 'да', списъкът на каналите ще се покаже след превключване между режимите на радиото и телевизор."
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
+msgstr ""
+
+msgid "Select 'Yes' to show this plugin in the Plugin Browser."
 msgstr ""
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
@@ -16110,6 +16125,9 @@ msgstr ""
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr ""
 
+msgid "Select the list of LCN rules to be applied to the scan."
+msgstr ""
+
 msgid "Select the locale from a menu"
 msgstr "Изберете локала от меню"
 
@@ -16484,6 +16502,9 @@ msgstr "Номер и име на сервиза"
 
 msgid "Service Number, Picon and Service Name"
 msgstr "Номер, иконка и име на сервиза"
+
+msgid "Service Scan"
+msgstr ""
 
 msgid "Service Selection Actions"
 msgstr "Действия за избор на сервиз"
@@ -17411,6 +17432,9 @@ msgstr ""
 
 msgid "Show in Extension Menu"
 msgstr "Показване в списъка с разширения"
+
+msgid "Show in Plugin Browser"
+msgstr ""
 
 msgid "Show in Standby"
 msgstr "Показване в режим на готовност"
@@ -19184,9 +19208,6 @@ msgstr "Тенис"
 
 msgid "Terrestrial"
 msgstr "Наземен"
-
-msgid "Terrestrial bouquet:"
-msgstr "Наземен букет:"
 
 msgid "Test"
 msgstr ""
@@ -21043,6 +21064,9 @@ msgstr "Използване на кръгово LNB"
 msgid "Use defaults"
 msgstr "Използвайте настройки по подразбиране"
 
+msgid "Use description lines"
+msgstr ""
+
 msgid "Use extended List"
 msgstr "Използване на разширен списък"
 
@@ -21099,6 +21123,12 @@ msgstr "Използване на измерване на мощност"
 
 msgid "Use small screen"
 msgstr "Използване на тънък екран"
+
+msgid "Use spacer lines"
+msgstr ""
+
+msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
+msgstr ""
 
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr ""
@@ -23618,6 +23648,27 @@ msgstr "да (запази фийдове)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Enable terrestrial LCN:"
+#~ msgstr "Разрешаване на наземно LCN:"
+
+#~ msgid "LCN plugin for DVB-T/T2 services"
+#~ msgstr "LCN плъгин за DVB-T/T2 сервизи"
+
+#~ msgid "LCN rules:"
+#~ msgstr "LCN правила:"
+
+#~ msgid "No entry in lcn db. Please do a service scan."
+#~ msgstr "Няма вписване в LCN db.Моля, сканирай сервиза."
+
+#~ msgid "Rebuild"
+#~ msgstr "Възстанови"
+
+#~ msgid "Rebuild LCN bouquet now?"
+#~ msgstr "Възстановяване на LCN букет сега?"
+
+#~ msgid "Terrestrial bouquet:"
+#~ msgstr "Наземен букет:"
 
 #~ msgid "Alternative numbering mode"
 #~ msgstr "Алтернативен режим на номериране"

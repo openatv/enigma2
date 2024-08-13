@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-29 19:27+0000\n"
+"POT-Creation-Date: 2024-08-04 16:49+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -2015,6 +2015,12 @@ msgstr "Felvétel készítése (csak az adott műsor felvétele)"
 msgid "Add service"
 msgstr "Csatorna hozzáadása"
 
+msgid "Add service names"
+msgstr ""
+
+msgid "Add service names to each #SERVICE entry."
+msgstr ""
+
 msgid "Add service to AutoCam"
 msgstr ""
 
@@ -2277,6 +2283,9 @@ msgstr "Importáljon akkor is, ha a készülék készenlétben van"
 
 msgid "Also on standby"
 msgstr "Készenlét alatt is"
+
+msgid "Also use a #DESCRIPTION line after each #SERVICE line to hold the service's name."
+msgstr ""
 
 msgid "Alternative"
 msgstr "Alternatív"
@@ -7065,9 +7074,6 @@ msgstr "Lehetővé teszi, hogy egy távoli enigma2 készülékről próbálja me
 msgid "Enable teletext caching"
 msgstr "Teletext gyorsítótárazása"
 
-msgid "Enable terrestrial LCN:"
-msgstr "A földi LCN engedélyezése:"
-
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr ""
 
@@ -10204,14 +10210,23 @@ msgstr "LCD görgetési sebesség"
 msgid "LCD/Front panel *"
 msgstr ""
 
+msgid "LCN Scanner"
+msgstr ""
+
+msgid "LCN Scanner Actions"
+msgstr ""
+
+msgid "LCN Scanner Settings"
+msgstr ""
+
+msgid "LCN Scanner plugin for DVB-C/T/T2 services"
+msgstr ""
+
 msgid "LCN numbering"
 msgstr ""
 
-msgid "LCN plugin for DVB-T/T2 services"
-msgstr "LCN bővítmény a DVB-T/T2 csatornákhoz"
-
-msgid "LCN rules:"
-msgstr "LCN szabályok:"
+msgid "LCN rules"
+msgstr ""
 
 msgid "LCN style QuickSelect entry selection"
 msgstr ""
@@ -12039,9 +12054,6 @@ msgstr "Nem áll rendelkezésre demux"
 msgid "No displayable files on this medium found!"
 msgstr "A hordozón nem található lejátszható fájl!"
 
-msgid "No entry in lcn db. Please do a service scan."
-msgstr "Nincs bejegyzés lcn db-ben. Kérjük, végezzen egy csatorna keresést."
-
 msgid "No error"
 msgstr "Nincs hiba"
 
@@ -13365,6 +13377,9 @@ msgstr "Kérlek várj"
 msgid "Please wait for activation of your network configuration..."
 msgstr "Kérem várjon, ameddig a hálózati konfiguráció élesedik..."
 
+msgid "Please wait while LCN bouquets are created/updated..."
+msgstr ""
+
 msgid "Please wait while feeds are updated..."
 msgstr ""
 
@@ -14253,12 +14268,6 @@ msgstr ""
 
 msgid "Reboot"
 msgstr "Újraindítás"
-
-msgid "Rebuild"
-msgstr "Újraépítés"
-
-msgid "Rebuild LCN bouquet now?"
-msgstr "Újjáépíti LCN csatornacsomagot most?"
 
 msgid "Rec"
 msgstr "Felvétel"
@@ -15413,6 +15422,9 @@ msgstr "Helyileg bemásolt bővítmények keresése, telepítése"
 msgid "Scan for local extensions and install them."
 msgstr "Helyileg bemásolt bővítmények keresése, telepítése."
 
+msgid "Scan for terrestrial LCNs and create LCN bouquets"
+msgstr ""
+
 msgid "Scan wireless networks"
 msgstr "Vezeték nélküli hálózat keresése"
 
@@ -15804,6 +15816,9 @@ msgid "Select 'Yes' to show the channel list after switching between Radio and T
 msgstr "Ha az 'igen'-t választja, a csatorna lista megjelenik a rádió és a TV mód közötti váltás után."
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
+msgstr ""
+
+msgid "Select 'Yes' to show this plugin in the Plugin Browser."
 msgstr ""
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
@@ -16275,6 +16290,9 @@ msgstr ""
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr ""
 
+msgid "Select the list of LCN rules to be applied to the scan."
+msgstr ""
+
 #, fuzzy
 msgid "Select the locale from a menu"
 msgstr "A virtuális billentyűzet területi beállításának kiválasztása menüből"
@@ -16651,6 +16669,9 @@ msgstr "Csatorna száma és Csatorna neve"
 
 msgid "Service Number, Picon and Service Name"
 msgstr "Csatorna száma, Picon és Csatorna neve"
+
+msgid "Service Scan"
+msgstr ""
 
 #, fuzzy
 msgid "Service Selection Actions"
@@ -17586,6 +17607,9 @@ msgstr ""
 
 msgid "Show in Extension Menu"
 msgstr "Megjelenjen a bővítmények listájában?"
+
+msgid "Show in Plugin Browser"
+msgstr ""
 
 msgid "Show in Standby"
 msgstr "Készenléti állapotban"
@@ -19390,9 +19414,6 @@ msgstr "Tenisz"
 
 msgid "Terrestrial"
 msgstr "Földi"
-
-msgid "Terrestrial bouquet:"
-msgstr "Földi csatornacsomag:"
 
 msgid "Test"
 msgstr ""
@@ -21260,6 +21281,9 @@ msgstr "Körpoláros fej használata"
 msgid "Use defaults"
 msgstr ""
 
+msgid "Use description lines"
+msgstr ""
+
 msgid "Use extended List"
 msgstr "Használjon kiterjesztett listát"
 
@@ -21316,6 +21340,12 @@ msgstr "Teljesítmény-felvétel mérése"
 
 msgid "Use small screen"
 msgstr "Használjon vékony képernyőt"
+
+msgid "Use spacer lines"
+msgstr ""
+
+msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
+msgstr ""
 
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr ""
@@ -23852,6 +23882,27 @@ msgstr "igen (állapotok megtartása)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enable terrestrial LCN:"
+#~ msgstr "A földi LCN engedélyezése:"
+
+#~ msgid "LCN plugin for DVB-T/T2 services"
+#~ msgstr "LCN bővítmény a DVB-T/T2 csatornákhoz"
+
+#~ msgid "LCN rules:"
+#~ msgstr "LCN szabályok:"
+
+#~ msgid "No entry in lcn db. Please do a service scan."
+#~ msgstr "Nincs bejegyzés lcn db-ben. Kérjük, végezzen egy csatorna keresést."
+
+#~ msgid "Rebuild"
+#~ msgstr "Újraépítés"
+
+#~ msgid "Rebuild LCN bouquet now?"
+#~ msgstr "Újjáépíti LCN csatornacsomagot most?"
+
+#~ msgid "Terrestrial bouquet:"
+#~ msgstr "Földi csatornacsomag:"
 
 #~ msgid "Alternative numbering mode"
 #~ msgstr "Alternatív számozás"

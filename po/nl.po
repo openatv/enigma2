@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-29 19:27+0000\n"
-"PO-Revision-Date: 2024-08-02 09:09+0000\n"
+"POT-Creation-Date: 2024-08-04 16:49+0000\n"
+"PO-Revision-Date: 2024-08-06 09:09+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
 "Language: nl\n"
@@ -1983,6 +1983,12 @@ msgstr "Voeg een opname toe (stop na huidige uitzending)"
 msgid "Add service"
 msgstr "Zender toevoegen"
 
+msgid "Add service names"
+msgstr "Zendernamen toevoegen"
+
+msgid "Add service names to each #SERVICE entry."
+msgstr "Zendernamen aan elke #ZENDER invoer toevoegen."
+
 msgid "Add service to AutoCam"
 msgstr "Zender aan AutoCam toevoegen"
 
@@ -2244,6 +2250,9 @@ msgstr "Importeer ook indien de ontvanger vanuit stand-by opstart"
 msgid "Also on standby"
 msgstr "Tevens bij stand-by"
 
+msgid "Also use a #DESCRIPTION line after each #SERVICE line to hold the service's name."
+msgstr "Ook een #OMSCHRIJVING na elke #ZENDER toevoegen om de zendernaam te behouden."
+
 msgid "Alternative"
 msgstr "Alternatieven"
 
@@ -2381,7 +2390,7 @@ msgid "Are you sure to remove all cable services?"
 msgstr "Wilt u definitief alle kabel (DVB-C) zenders verwijderen?"
 
 msgid "Are you sure to remove all terrestrial services?"
-msgstr "Wilt u definitief alle terrestrische (DVB-T) zenders verwijderen?"
+msgstr "Wilt u definitief alle DVB-T zenders verwijderen?"
 
 msgid "Are you sure to remove this entry?"
 msgstr "Weet u zeker dat u dit item wilt verwijderen?"
@@ -7150,9 +7159,6 @@ msgstr "Indien geactiveerd, wordt een verbinding met een externe enigma2 ontvang
 msgid "Enable teletext caching"
 msgstr "Teletekst caching inschakelen"
 
-msgid "Enable terrestrial LCN:"
-msgstr "Activeer DVB-T LCN:"
-
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "Activeer de geavanceerde instellingen voor HDMI-CEC."
 
@@ -10282,14 +10288,23 @@ msgstr "Display scroll snelheid"
 msgid "LCD/Front panel *"
 msgstr "Displayskin *"
 
+msgid "LCN Scanner"
+msgstr "LCN Scanner"
+
+msgid "LCN Scanner Actions"
+msgstr "LCN Scanner Acties"
+
+msgid "LCN Scanner Settings"
+msgstr "LCN Scanner instellingen"
+
+msgid "LCN Scanner plugin for DVB-C/T/T2 services"
+msgstr "LCN Scanner plugin voor DVB-C/T/T2 zenders"
+
 msgid "LCN numbering"
 msgstr "LCN nummering"
 
-msgid "LCN plugin for DVB-T/T2 services"
-msgstr "LCN plugin voor DVB-T/T2 services"
-
-msgid "LCN rules:"
-msgstr "LCN regels:"
+msgid "LCN rules"
+msgstr "LCN regels"
 
 msgid "LCN style QuickSelect entry selection"
 msgstr "Quickselect via zendernummer"
@@ -12076,9 +12091,6 @@ msgstr "Geen demux beschikbaar"
 msgid "No displayable files on this medium found!"
 msgstr "Geen weer te geven bestanden op dit medium gevonden!"
 
-msgid "No entry in lcn db. Please do a service scan."
-msgstr "Geen vermelding in lcn db. Doe een zender scan."
-
 msgid "No error"
 msgstr "Geen fout"
 
@@ -13394,6 +13406,9 @@ msgstr "Even geduld"
 msgid "Please wait for activation of your network configuration..."
 msgstr "Even geduld uw netwerkconfiguratie wordt nu geactiveerd..."
 
+msgid "Please wait while LCN bouquets are created/updated..."
+msgstr "A.u.b. wachten tot de LCN-Favorietenlijsten zijn gecreëerd/geactualiseerd..."
+
 msgid "Please wait while feeds are updated..."
 msgstr "Een ogenblik geduld terwijl de feeds worden bijgewerkt..."
 
@@ -14283,12 +14298,6 @@ msgstr "Achter"
 msgid "Reboot"
 msgstr "Herstarten"
 
-msgid "Rebuild"
-msgstr "Opnieuw opbouwen"
-
-msgid "Rebuild LCN bouquet now?"
-msgstr "LCN-favorietenlijst nu opnieuw maken?"
-
 msgid "Rec"
 msgstr "Rec"
 
@@ -14625,7 +14634,7 @@ msgid "Remove Service"
 msgstr "Verwijder service"
 
 msgid "Remove Terrestrial Services"
-msgstr "Terrestrische zenders verwijderen"
+msgstr "DVB-T zenders verwijderen"
 
 msgid "Remove a DNS entry"
 msgstr "DNS invoer verwijderen"
@@ -15439,6 +15448,9 @@ msgstr ""
 msgid "Scan for local extensions and install them."
 msgstr "Naar lokale plugins zoeken en die installeren."
 
+msgid "Scan for terrestrial LCNs and create LCN bouquets"
+msgstr "DVB-T LCN's scannen en daarmee LCN-Favorietenlijsten maken"
+
 msgid "Scan wireless networks"
 msgstr "Zoek naar WiFi netwerken"
 
@@ -15835,6 +15847,9 @@ msgstr "Bij 'ja' wordt altijd eerst de zenderlijst getoond na het overschakelen 
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
 msgstr "Selecteer 'Ja' om de huidige map in de lijst met mappen weer te geven. Merk op dat File Commander opnieuw moet worden opgestart om deze wijziging door te voeren."
+
+msgid "Select 'Yes' to show this plugin in the Plugin Browser."
+msgstr "Kies 'Ja' om deze plugin in de Plugin Browser in te tonen."
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Kies 'Ja' om Weblinks in het plugin download-scherm weer te geven."
@@ -16310,6 +16325,9 @@ msgstr ""
 "LET OP: De wijziging is pas zichtbaar nadat\n"
 "de Plugin Browser opnieuw is gestart!"
 
+msgid "Select the list of LCN rules to be applied to the scan."
+msgstr "Kies de lijst met LCN-regels die op de scan toegepast moeten worden."
+
 msgid "Select the locale from a menu"
 msgstr "Selecteer de landinstellingen voor het virtuele toetsenbord in het menu"
 
@@ -16692,6 +16710,9 @@ msgstr "Zendernummer en zendernaam"
 
 msgid "Service Number, Picon and Service Name"
 msgstr "Zendernummer, Picon en zendernaam"
+
+msgid "Service Scan"
+msgstr "Zenders scannen"
 
 msgid "Service Selection Actions"
 msgstr "Zender selectie acties"
@@ -17643,6 +17664,9 @@ msgstr "Afbeelding weergeven en opslaan als '%s'"
 
 msgid "Show in Extension Menu"
 msgstr "Weergeven in het Extensies-menu? (BLAUW-lang)"
+
+msgid "Show in Plugin Browser"
+msgstr "In de Plugin Browser tonen"
 
 msgid "Show in Standby"
 msgstr "Toon in stand-by"
@@ -19420,10 +19444,7 @@ msgid "Tennis"
 msgstr "Tennis"
 
 msgid "Terrestrial"
-msgstr "Terrestrial"
-
-msgid "Terrestrial bouquet:"
-msgstr "Terrestrische favorietenlijst:"
+msgstr "DVB-T"
 
 msgid "Test"
 msgstr "Test"
@@ -20757,7 +20778,7 @@ msgid "Try to find used transponders in cable network.. please wait..."
 msgstr "Probeert gebruikte transponders op het kabelnetwerk te vinden. Een ogenblik ..."
 
 msgid "Try to find used transponders in terrestrial network.. please wait..."
-msgstr "Probeer gebruikte transponders te vinden in het Terrestrische netwerk... Een ogenblik geduld..."
+msgstr "Probeer gebruikte transponders te vinden in het DVB-T netwerk... Een ogenblik geduld..."
 
 msgid "Try to prevent reboots for software errors and maintain of the availability for the receiver."
 msgstr "Probeer herstarten te voorkomen voor software fouten, en behoud de beschikbaarheid van de ontvanger."
@@ -21366,6 +21387,9 @@ msgstr "Gebruik de circulaire LNB"
 msgid "Use defaults"
 msgstr "Default waarden"
 
+msgid "Use description lines"
+msgstr "Gebruik omschrijvingen"
+
 msgid "Use extended List"
 msgstr "Uitgebreide lijst gebruiken"
 
@@ -21422,6 +21446,12 @@ msgstr "Meet stroom verbruik"
 
 msgid "Use small screen"
 msgstr "Gebruik klein scherm"
+
+msgid "Use spacer lines"
+msgstr "Gebruik koppeltekens"
+
+msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
+msgstr "Gebruik koppeltekens bij het vullen van de Favorietenlijst om de #ZENDER nummers overeen te laten komen met de LCN."
 
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr "De knoppen LINKS/RECHTS gebruiken om de hoogte van de Gebruikersinterface/OSD in te stellen. LINKS is lager, RECHTS is hoger."
@@ -24002,6 +24032,27 @@ msgstr "ja (bewaar feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enable terrestrial LCN:"
+#~ msgstr "Activeer DVB-T LCN:"
+
+#~ msgid "LCN plugin for DVB-T/T2 services"
+#~ msgstr "LCN plugin voor DVB-T/T2 services"
+
+#~ msgid "LCN rules:"
+#~ msgstr "LCN regels:"
+
+#~ msgid "No entry in lcn db. Please do a service scan."
+#~ msgstr "Geen vermelding in lcn db. Doe een zender scan."
+
+#~ msgid "Rebuild"
+#~ msgstr "Opnieuw opbouwen"
+
+#~ msgid "Rebuild LCN bouquet now?"
+#~ msgstr "LCN-favorietenlijst nu opnieuw maken?"
+
+#~ msgid "Terrestrial bouquet:"
+#~ msgstr "Terrestrische favorietenlijst:"
 
 #~ msgid "Alternative numbering mode"
 #~ msgstr "Alternatieve nummering"

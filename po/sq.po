@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-29 19:27+0000\n"
+"POT-Creation-Date: 2024-08-04 16:49+0000\n"
 "PO-Revision-Date: 2023-12-11 00:50+0000\n"
 "Last-Translator: W L <wl@mailhole.de>\n"
 "Language-Team: Albanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sq/>\n"
@@ -1983,6 +1983,12 @@ msgstr "Shto regjistrimin (ndalo pas ngjarjes aktuale)"
 msgid "Add service"
 msgstr "Shto shërbim"
 
+msgid "Add service names"
+msgstr ""
+
+msgid "Add service names to each #SERVICE entry."
+msgstr ""
+
 msgid "Add service to AutoCam"
 msgstr ""
 
@@ -2243,6 +2249,9 @@ msgstr ""
 
 msgid "Also on standby"
 msgstr "Gjithashtu në gadishmëri"
+
+msgid "Also use a #DESCRIPTION line after each #SERVICE line to hold the service's name."
+msgstr ""
 
 msgid "Alternative"
 msgstr "Alternativë"
@@ -7014,9 +7023,6 @@ msgstr "Aktivizo marrësin e largët enigma2 që të tentohet të sintonizohet m
 msgid "Enable teletext caching"
 msgstr "Aktivizo memorien e teletekstit"
 
-msgid "Enable terrestrial LCN:"
-msgstr "Aktivizo LCN tokësore:"
-
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "Aktivizo opsionet e avancuara të cilësimeve HDMI-CEC."
 
@@ -10124,13 +10130,22 @@ msgstr ""
 msgid "LCD/Front panel *"
 msgstr ""
 
+msgid "LCN Scanner"
+msgstr ""
+
+msgid "LCN Scanner Actions"
+msgstr ""
+
+msgid "LCN Scanner Settings"
+msgstr ""
+
+msgid "LCN Scanner plugin for DVB-C/T/T2 services"
+msgstr ""
+
 msgid "LCN numbering"
 msgstr ""
 
-msgid "LCN plugin for DVB-T/T2 services"
-msgstr ""
-
-msgid "LCN rules:"
+msgid "LCN rules"
 msgstr ""
 
 msgid "LCN style QuickSelect entry selection"
@@ -11908,9 +11923,6 @@ msgstr ""
 msgid "No displayable files on this medium found!"
 msgstr ""
 
-msgid "No entry in lcn db. Please do a service scan."
-msgstr ""
-
 msgid "No error"
 msgstr ""
 
@@ -13195,6 +13207,9 @@ msgstr ""
 msgid "Please wait for activation of your network configuration..."
 msgstr ""
 
+msgid "Please wait while LCN bouquets are created/updated..."
+msgstr ""
+
 msgid "Please wait while feeds are updated..."
 msgstr ""
 
@@ -14079,12 +14094,6 @@ msgstr "E pasme"
 
 msgid "Reboot"
 msgstr "Rindezje"
-
-msgid "Rebuild"
-msgstr "Rindërtoni"
-
-msgid "Rebuild LCN bouquet now?"
-msgstr "Rindërtoni buqetën LCN tani?"
 
 msgid "Rec"
 msgstr "Rec"
@@ -15232,6 +15241,9 @@ msgstr ""
 msgid "Scan for local extensions and install them."
 msgstr "Kërkoni për zgjerime në pajisje dhe instalojini ato."
 
+msgid "Scan for terrestrial LCNs and create LCN bouquets"
+msgstr ""
+
 msgid "Scan wireless networks"
 msgstr ""
 
@@ -15619,6 +15631,9 @@ msgid "Select 'Yes' to show the channel list after switching between Radio and T
 msgstr "Nëse vendoset në 'po', lista e kanaleve do të shfaqet pas kalimit ndërmjet modalitetit të radios dhe televizorit."
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
+msgstr ""
+
+msgid "Select 'Yes' to show this plugin in the Plugin Browser."
 msgstr ""
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
@@ -16089,6 +16104,9 @@ msgstr ""
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr ""
 
+msgid "Select the list of LCN rules to be applied to the scan."
+msgstr ""
+
 msgid "Select the locale from a menu"
 msgstr ""
 
@@ -16447,6 +16465,9 @@ msgid "Service Number and Service Name"
 msgstr ""
 
 msgid "Service Number, Picon and Service Name"
+msgstr ""
+
+msgid "Service Scan"
 msgstr ""
 
 msgid "Service Selection Actions"
@@ -17368,6 +17389,9 @@ msgid "Show image and save as '%s'"
 msgstr ""
 
 msgid "Show in Extension Menu"
+msgstr ""
+
+msgid "Show in Plugin Browser"
 msgstr ""
 
 msgid "Show in Standby"
@@ -19135,9 +19159,6 @@ msgstr "Tenis"
 
 msgid "Terrestrial"
 msgstr "Tokësore"
-
-msgid "Terrestrial bouquet:"
-msgstr "Buqetë tokësore:"
 
 msgid "Test"
 msgstr ""
@@ -20970,6 +20991,9 @@ msgstr ""
 msgid "Use defaults"
 msgstr ""
 
+msgid "Use description lines"
+msgstr ""
+
 msgid "Use extended List"
 msgstr ""
 
@@ -21025,6 +21049,12 @@ msgid "Use power measurement"
 msgstr ""
 
 msgid "Use small screen"
+msgstr ""
+
+msgid "Use spacer lines"
+msgstr ""
+
+msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
 msgstr ""
 
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
@@ -23539,6 +23569,18 @@ msgstr "Po (mbani ushqim)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enable terrestrial LCN:"
+#~ msgstr "Aktivizo LCN tokësore:"
+
+#~ msgid "Rebuild"
+#~ msgstr "Rindërtoni"
+
+#~ msgid "Rebuild LCN bouquet now?"
+#~ msgstr "Rindërtoni buqetën LCN tani?"
+
+#~ msgid "Terrestrial bouquet:"
+#~ msgstr "Buqetë tokësore:"
 
 #~ msgid "Alternative numbering mode"
 #~ msgstr "Modaliteti alternativ i numrave"

@@ -16,9 +16,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-29 19:27+0000\n"
-"PO-Revision-Date: 2024-07-31 20:26+0000\n"
-"Last-Translator: jbleyel <jbleyel@gmx.net>\n"
+"POT-Creation-Date: 2024-08-04 16:49+0000\n"
+"PO-Revision-Date: 2024-08-04 20:46+0000\n"
+"Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -2092,6 +2092,12 @@ msgstr "Aufnahme hinzufügen (aktuelle Sendung)"
 msgid "Add service"
 msgstr "Kanal hinzufügen"
 
+msgid "Add service names"
+msgstr ""
+
+msgid "Add service names to each #SERVICE entry."
+msgstr ""
+
 msgid "Add service to AutoCam"
 msgstr "Sender zu AutoCam hinzufügen"
 
@@ -2362,6 +2368,9 @@ msgstr "Auch imporieren, wenn die Box aus dem Standby kommt"
 # ChannelSelection.py
 msgid "Also on standby"
 msgstr "Auch im Standby"
+
+msgid "Also use a #DESCRIPTION line after each #SERVICE line to hold the service's name."
+msgstr ""
 
 msgid "Alternative"
 msgstr "Alternative"
@@ -6585,7 +6594,7 @@ msgid "Djibouti"
 msgstr "Dschibuti"
 
 msgid "Do another manual service scan?"
-msgstr "Einen weiteren manuellen Service-Scan durchführen?"
+msgstr "Einen weiteren manuellen Suchlauf durchführen?"
 
 msgid "Do not backup the image"
 msgstr "Das Image nicht sichern"
@@ -6758,7 +6767,7 @@ msgstr "Jetzt nach Sendern suchen?"
 
 #
 msgid "Do you want to do another manual service scan?"
-msgstr "Eine weitere manuelle Suche durchführen?"
+msgstr "Einen weiteren manuellen Suchlauf durchführen?"
 
 #, python-format
 msgid "Do you want to flash the image '%s'?"
@@ -7412,9 +7421,6 @@ msgstr "Mit 'Ja' Remote-Enigma2-Receiver aktivieren, der versucht wird, wenn ein
 
 msgid "Enable teletext caching"
 msgstr "Videotext-Zwischenspeicher aktivieren"
-
-msgid "Enable terrestrial LCN:"
-msgstr "Terrestrisches LCN aktivieren:"
 
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "Erweiterte HDMI-CEC-Einstellungsoptionen aktivieren."
@@ -10676,14 +10682,23 @@ msgstr "Display-Scrollgeschwindigkeit"
 msgid "LCD/Front panel *"
 msgstr "Displayskin *"
 
+msgid "LCN Scanner"
+msgstr "LCN-Scanner"
+
+msgid "LCN Scanner Actions"
+msgstr "LCN-Scanner Aktionen"
+
+msgid "LCN Scanner Settings"
+msgstr "LCN-Scanner Einstellungen"
+
+msgid "LCN Scanner plugin for DVB-C/T/T2 services"
+msgstr "LCN-Scanner-Plugin für DVB-C/T/T2 Sender"
+
 msgid "LCN numbering"
 msgstr "LCN-Nummerierung"
 
-msgid "LCN plugin for DVB-T/T2 services"
-msgstr "LCN-Plugin für DVB-T/T2-Dienste"
-
-msgid "LCN rules:"
-msgstr "LCN-Regeln:"
+msgid "LCN rules"
+msgstr "LCN-Regeln"
 
 msgid "LCN style QuickSelect entry selection"
 msgstr "Schnellauswahl via Sendernummer"
@@ -12615,11 +12630,6 @@ msgstr "Kein Demux verfügbar!"
 msgid "No displayable files on this medium found!"
 msgstr "Keine anzeigbaren Dateien auf diesem Medium gefunden!"
 
-msgid "No entry in lcn db. Please do a service scan."
-msgstr ""
-"Kein Eintrag in der LCN DB!\n"
-"Bitte einen Suchlauf durchführen."
-
 msgid "No error"
 msgstr "Kein Fehler"
 
@@ -14052,6 +14062,9 @@ msgstr "Bitte warten"
 msgid "Please wait for activation of your network configuration..."
 msgstr "Die Netzwerkkonfiguration wird aktiviert. Bitte warten..."
 
+msgid "Please wait while LCN bouquets are created/updated..."
+msgstr ""
+
 msgid "Please wait while feeds are updated..."
 msgstr "Feeds werden aktualisiert. Bitte warten..."
 
@@ -15005,12 +15018,6 @@ msgstr "Rückseite"
 #
 msgid "Reboot"
 msgstr "Neustart"
-
-msgid "Rebuild"
-msgstr "Neuerstellung"
-
-msgid "Rebuild LCN bouquet now?"
-msgstr "LCN-Bouquet jetzt neu erstellen?"
 
 msgid "Rec"
 msgstr "Aufnahme"
@@ -16255,6 +16262,9 @@ msgstr "Nach lokalen Erweiterungen suchen, die installiert werden können."
 msgid "Scan for local extensions and install them."
 msgstr "Nach lokalen Erweiterungen suchen, die installiert werden können."
 
+msgid "Scan for terrestrial LCNs and create LCN bouquets"
+msgstr ""
+
 #
 msgid "Scan wireless networks"
 msgstr "WLAN-Netzwerke suchen"
@@ -16664,6 +16674,9 @@ msgid "Select 'Yes' to show the current directory in the list of directories. No
 msgstr ""
 "'Ja' auswählen, um das aktuelle Verzeichnis in der Verzeichnisliste anzuzeigen.\n"
 "Achtung: File Commander muss dafür neu gestartet werden!"
+
+msgid "Select 'Yes' to show this plugin in the Plugin Browser."
+msgstr "'Ja' auswählen, um dieses Plugin im Plugin-Manager anzuzeigen."
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Bei 'Ja' werden Weblink-Pakete in der Downloadliste angezeigt."
@@ -17156,6 +17169,9 @@ msgstr ""
 "Aussehen der installierten Plugins im Plugin-Manager einstellen.\n"
 "Achtung: Eine Änderung ist erst zu sehen, wenn der Plugin-Manager neu gestartet wird!"
 
+msgid "Select the list of LCN rules to be applied to the scan."
+msgstr "Auswählen, welche LCN-Regeln beim Suchlauf angewendet werden sollen."
+
 #
 msgid "Select the locale from a menu"
 msgstr "Ein anderes Tastaturlayout auswählen"
@@ -17554,6 +17570,9 @@ msgstr "Sendernummer und Sendername"
 msgid "Service Number, Picon and Service Name"
 msgstr "Sendernummer, Picon und Sendername"
 
+msgid "Service Scan"
+msgstr "Sendersuche"
+
 msgid "Service Selection Actions"
 msgstr "Kanalauswahl-Aktionen"
 
@@ -17623,7 +17642,7 @@ msgstr "Service-Referenz"
 
 #
 msgid "Service scan"
-msgstr "Kanalsuche"
+msgstr "Sendersuche"
 
 msgid "Service selection canceled."
 msgstr "Senderauswahl abgebrochen."
@@ -18553,6 +18572,9 @@ msgstr "Bild anzeigen und als '%s' speichern"
 
 msgid "Show in Extension Menu"
 msgstr "Im Erweiterungsmenü anzeigen"
+
+msgid "Show in Plugin Browser"
+msgstr "Im Plugin-Manager anzeigen"
 
 msgid "Show in Standby"
 msgstr "Im Standby anzeigen"
@@ -20430,9 +20452,6 @@ msgstr "Tennis"
 #
 msgid "Terrestrial"
 msgstr "Terrestrisch"
-
-msgid "Terrestrial bouquet:"
-msgstr "Terrestrisches Bouquet:"
 
 msgid "Test"
 msgstr "Test"
@@ -22454,6 +22473,9 @@ msgstr "Circularen LNB verwenden"
 msgid "Use defaults"
 msgstr "Standard verwenden"
 
+msgid "Use description lines"
+msgstr ""
+
 msgid "Use extended List"
 msgstr "Erweiterte Liste verwenden"
 
@@ -22514,6 +22536,12 @@ msgstr "Stromaufnahme messen"
 
 msgid "Use small screen"
 msgstr "Small-Screen benutzen"
+
+msgid "Use spacer lines"
+msgstr ""
+
+msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
+msgstr ""
 
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr "Die Tasten Links/Rechts benutzen, um die Höhe der Benutzeroberfläche/OSD einzustellen. LINKS verringert, RECHTS erhöht sie."
@@ -25278,6 +25306,29 @@ msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enable terrestrial LCN:"
+#~ msgstr "Terrestrisches LCN aktivieren:"
+
+#~ msgid "LCN plugin for DVB-T/T2 services"
+#~ msgstr "LCN-Plugin für DVB-T/T2-Dienste"
+
+#~ msgid "LCN rules:"
+#~ msgstr "LCN-Regeln:"
+
+#~ msgid "No entry in lcn db. Please do a service scan."
+#~ msgstr ""
+#~ "Kein Eintrag in der LCN DB!\n"
+#~ "Bitte einen Suchlauf durchführen."
+
+#~ msgid "Rebuild"
+#~ msgstr "Neuerstellung"
+
+#~ msgid "Rebuild LCN bouquet now?"
+#~ msgstr "LCN-Bouquet jetzt neu erstellen?"
+
+#~ msgid "Terrestrial bouquet:"
+#~ msgstr "Terrestrisches Bouquet:"
 
 #~ msgid "Alternative numbering mode"
 #~ msgstr "Alternative Nummerierung"

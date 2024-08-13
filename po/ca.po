@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-29 19:27+0000\n"
+"POT-Creation-Date: 2024-08-04 16:49+0000\n"
 "PO-Revision-Date: 2021-09-13 18:30+0000\n"
 "Last-Translator: Josep Belda <josepmaulet1707@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ca/>\n"
@@ -2162,6 +2162,12 @@ msgstr "Afegeix gravació (aturar-se després de l'esdeveniment actual)"
 msgid "Add service"
 msgstr "Afegeix canal"
 
+msgid "Add service names"
+msgstr ""
+
+msgid "Add service names to each #SERVICE entry."
+msgstr ""
+
 msgid "Add service to AutoCam"
 msgstr ""
 
@@ -2446,6 +2452,9 @@ msgstr "Importar també quan el receptor surti del mode standby"
 
 msgid "Also on standby"
 msgstr "També en espera"
+
+msgid "Also use a #DESCRIPTION line after each #SERVICE line to hold the service's name."
+msgstr ""
 
 #
 msgid "Alternative"
@@ -7513,9 +7522,6 @@ msgstr "Habiliteu el receptor enigma2 remot per intentar sintonitzar serveis que
 msgid "Enable teletext caching"
 msgstr "Activa la memòria catxe del teletext"
 
-msgid "Enable terrestrial LCN:"
-msgstr ""
-
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr ""
 
@@ -10813,13 +10819,22 @@ msgstr ""
 msgid "LCD/Front panel *"
 msgstr ""
 
+msgid "LCN Scanner"
+msgstr ""
+
+msgid "LCN Scanner Actions"
+msgstr ""
+
+msgid "LCN Scanner Settings"
+msgstr ""
+
+msgid "LCN Scanner plugin for DVB-C/T/T2 services"
+msgstr ""
+
 msgid "LCN numbering"
 msgstr ""
 
-msgid "LCN plugin for DVB-T/T2 services"
-msgstr ""
-
-msgid "LCN rules:"
+msgid "LCN rules"
 msgstr ""
 
 msgid "LCN style QuickSelect entry selection"
@@ -12778,9 +12793,6 @@ msgstr "Alguns plugins no estan disponibles:\n"
 msgid "No displayable files on this medium found!"
 msgstr "No s’ha trobat fitxers que es mostrin en aquest mitjà"
 
-msgid "No entry in lcn db. Please do a service scan."
-msgstr ""
-
 #
 #, fuzzy
 msgid "No error"
@@ -14192,6 +14204,9 @@ msgstr "Espereu"
 msgid "Please wait for activation of your network configuration..."
 msgstr "Espereu l’activació de la configuració de la xarxa …"
 
+msgid "Please wait while LCN bouquets are created/updated..."
+msgstr ""
+
 msgid "Please wait while feeds are updated..."
 msgstr ""
 
@@ -15156,12 +15171,6 @@ msgstr ""
 #
 msgid "Reboot"
 msgstr "Reinicieu"
-
-msgid "Rebuild"
-msgstr ""
-
-msgid "Rebuild LCN bouquet now?"
-msgstr ""
 
 msgid "Rec"
 msgstr ""
@@ -16423,6 +16432,9 @@ msgstr ""
 msgid "Scan for local extensions and install them."
 msgstr ""
 
+msgid "Scan for terrestrial LCNs and create LCN bouquets"
+msgstr ""
+
 msgid "Scan wireless networks"
 msgstr "Escaneig de xarxes sense fil"
 
@@ -16830,6 +16842,9 @@ msgid "Select 'Yes' to show the channel list after switching between Radio and T
 msgstr ""
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
+msgstr ""
+
+msgid "Select 'Yes' to show this plugin in the Plugin Browser."
 msgstr ""
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
@@ -17317,6 +17332,9 @@ msgstr ""
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr ""
 
+msgid "Select the list of LCN rules to be applied to the scan."
+msgstr ""
+
 #
 msgid "Select the locale from a menu"
 msgstr "Seleccioneu la configuració regional d’un menú"
@@ -17692,6 +17710,9 @@ msgid "Service Number and Service Name"
 msgstr ""
 
 msgid "Service Number, Picon and Service Name"
+msgstr ""
+
+msgid "Service Scan"
 msgstr ""
 
 #
@@ -18670,6 +18691,9 @@ msgid "Show image and save as '%s'"
 msgstr ""
 
 msgid "Show in Extension Menu"
+msgstr ""
+
+msgid "Show in Plugin Browser"
 msgstr ""
 
 #
@@ -20586,9 +20610,6 @@ msgstr "Finlandès"
 #
 msgid "Terrestrial"
 msgstr "Terrestre"
-
-msgid "Terrestrial bouquet:"
-msgstr ""
 
 msgid "Test"
 msgstr ""
@@ -22515,6 +22536,9 @@ msgstr "Utilitzeu LNB circular"
 msgid "Use defaults"
 msgstr ""
 
+msgid "Use description lines"
+msgstr ""
+
 msgid "Use extended List"
 msgstr ""
 
@@ -22572,6 +22596,12 @@ msgid "Use power measurement"
 msgstr "Utilitza les mesures de corrent"
 
 msgid "Use small screen"
+msgstr ""
+
+msgid "Use spacer lines"
+msgstr ""
+
+msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
 msgstr ""
 
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."

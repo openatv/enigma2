@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-29 19:27+0000\n"
-"PO-Revision-Date: 2024-08-03 21:09+0000\n"
+"POT-Creation-Date: 2024-08-04 16:49+0000\n"
+"PO-Revision-Date: 2024-08-07 20:09+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -1973,6 +1973,12 @@ msgstr "Aggiungi registrazione (interrompi dopo l'evento in corso)"
 msgid "Add service"
 msgstr "Aggiungi servizio"
 
+msgid "Add service names"
+msgstr "Aggiungi nomi dei servizi"
+
+msgid "Add service names to each #SERVICE entry."
+msgstr "Aggiungi nomi dei servizi a ciascuna voce #SERVICE."
+
 msgid "Add service to AutoCam"
 msgstr "Aggiungi servizio ad AutoCam"
 
@@ -2223,7 +2229,7 @@ msgid "Alphanumeric"
 msgstr "Alfanumerico"
 
 msgid "Also import at reboot/restart enigma2"
-msgstr "Importare anche in fase di Avvio/Riavvio di Enigma2"
+msgstr "Importa anche in fase di Avvio/Riavvio di Enigma2"
 
 msgid "Also import from the extension menu"
 msgstr "Importare anche dal menu delle estensioni"
@@ -2233,6 +2239,9 @@ msgstr "Importare anche quando il ricevitore sta uscendo dalla sospensione"
 
 msgid "Also on standby"
 msgstr "Anche in standby"
+
+msgid "Also use a #DESCRIPTION line after each #SERVICE line to hold the service's name."
+msgstr "Usa anche una riga #DESCRIPTION dopo ogni riga #SERVICE per contenere il nome del servizio."
 
 msgid "Alternative"
 msgstr "Alternativa"
@@ -7020,9 +7029,6 @@ msgstr "Abilita il ricevitore Enigma2 remoto a provare a sintonizzarsi su serviz
 msgid "Enable teletext caching"
 msgstr "Abilita cache televideo"
 
-msgid "Enable terrestrial LCN:"
-msgstr "Abilita LCN terrestre:"
-
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "Abilita opzioni avanzate di impostazione HDMI-CEC."
 
@@ -9322,7 +9328,7 @@ msgid "Ido"
 msgstr "Ido"
 
 msgid "If 'never', will force restart despite that after 100 crashes."
-msgstr "Se \"mai\", sarà comunque forzato il riavvio dopo 100 crash."
+msgstr "Se 'mai', sarà comunque forzato il riavvio dopo 100 crash."
 
 msgid "If 'never', will write crash log despite that for the first crash."
 msgstr "Se \"mai\", sarà comunque scritto il registro dei crash per il primo crash."
@@ -10132,14 +10138,23 @@ msgstr "Velocità scorrimento LCD"
 msgid "LCD/Front panel *"
 msgstr "LCD/Pannello frontale *"
 
+msgid "LCN Scanner"
+msgstr "Scanner LCN"
+
+msgid "LCN Scanner Actions"
+msgstr "Azioni Scanner LCN"
+
+msgid "LCN Scanner Settings"
+msgstr "Impostazioni Scanner LCN"
+
+msgid "LCN Scanner plugin for DVB-C/T/T2 services"
+msgstr "Plugin Scanner LCN per servizi DVB-C/T/T2"
+
 msgid "LCN numbering"
 msgstr "Numerazione LCN"
 
-msgid "LCN plugin for DVB-T/T2 services"
-msgstr "Plugin LCN per servizi DVB-T/T2"
-
-msgid "LCN rules:"
-msgstr "Regole LCN:"
+msgid "LCN rules"
+msgstr "Regole LCN"
 
 msgid "LCN style QuickSelect entry selection"
 msgstr "Selezione voce Selezione rapida in stile LCN"
@@ -11926,9 +11941,6 @@ msgstr "Nessun demux disponibile"
 msgid "No displayable files on this medium found!"
 msgstr "Nessun file riproducibile trovato sul supporto!"
 
-msgid "No entry in lcn db. Please do a service scan."
-msgstr "Nessuna voce nel database LCN. Effettua una scansione dei servizi."
-
 msgid "No error"
 msgstr "Nessun errore"
 
@@ -13240,6 +13252,9 @@ msgstr "Attendi"
 msgid "Please wait for activation of your network configuration..."
 msgstr "Attendi attivazione della configurazione di rete..."
 
+msgid "Please wait while LCN bouquets are created/updated..."
+msgstr "Attendi mentre i bouquet LCN vengono creati/aggiornati..."
+
 msgid "Please wait while feeds are updated..."
 msgstr "Attendi aggiornamento dei feed..."
 
@@ -14124,12 +14139,6 @@ msgstr "Posteriore"
 
 msgid "Reboot"
 msgstr "Riavvio completo"
-
-msgid "Rebuild"
-msgstr "Ricostruisci"
-
-msgid "Rebuild LCN bouquet now?"
-msgstr "Ricostruire bouquet LCN adesso?"
 
 msgid "Rec"
 msgstr "Rec"
@@ -15274,10 +15283,13 @@ msgid "Scan files..."
 msgstr "Scansione file..."
 
 msgid "Scan for local extensions and install them"
-msgstr "Ricerca ipk locali ed installa"
+msgstr "Cerca estensioni locali e installale"
 
 msgid "Scan for local extensions and install them."
-msgstr "Cerca le estensioni locali e installale."
+msgstr "Cerca estensioni locali e installale."
+
+msgid "Scan for terrestrial LCNs and create LCN bouquets"
+msgstr "Cerca LCN terrestri e crea bouquet LCN"
 
 msgid "Scan wireless networks"
 msgstr "Scansione reti wireless"
@@ -15667,6 +15679,9 @@ msgstr "Seleziona 'Sì' per mostrare l'elenco dei canali dopo il passaggio tra l
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
 msgstr "Seleziona 'Sì' per mostrare la cartella attuale nell'elenco delle cartelle. Si noti che File Commander deve essere riavviato affinché questa modifica abbia effetto."
+
+msgid "Select 'Yes' to show this plugin in the Plugin Browser."
+msgstr "Seleziona 'Sì' per mostrare questo plugin nell'elenco plugin."
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Seleziona 'Sì' per mostrare i pacchetti di collegamenti web nella schermata Scarica plugin."
@@ -16136,6 +16151,9 @@ msgstr "Seleziona disposizione delle informazioni nell'elenco dei servizi, dalle
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr "Seleziona disposizione plugin installati nella schermata elenco plugin. NOTA: la modifica non è immediata ma sarà visibile al riavvio di elenco plugin!"
 
+msgid "Select the list of LCN rules to be applied to the scan."
+msgstr "Seleziona elenco delle regole LCN da applicare alla scansione."
+
 msgid "Select the locale from a menu"
 msgstr "Seleziona impostazioni locali da un menu"
 
@@ -16516,6 +16534,9 @@ msgstr "Numero del servizio e Nome del servizio"
 
 msgid "Service Number, Picon and Service Name"
 msgstr "Numero del servizio, Picon e Nome del servizio"
+
+msgid "Service Scan"
+msgstr "Scansione servizio"
 
 msgid "Service Selection Actions"
 msgstr "Azioni di selezione del servizio"
@@ -17449,6 +17470,9 @@ msgstr "Mostra immagine e salva come '%s'"
 
 msgid "Show in Extension Menu"
 msgstr "Mostra nell'elenco estensioni"
+
+msgid "Show in Plugin Browser"
+msgstr "Mostra nell'elenco plugin"
 
 msgid "Show in Standby"
 msgstr "Mostra in Standby"
@@ -19222,9 +19246,6 @@ msgstr "Tennis"
 
 msgid "Terrestrial"
 msgstr "Terrestre"
-
-msgid "Terrestrial bouquet:"
-msgstr "Bouquet terrestri:"
 
 msgid "Test"
 msgstr "Test"
@@ -21119,6 +21140,9 @@ msgstr "Usa LNB circolare"
 msgid "Use defaults"
 msgstr "Usa predefinite"
 
+msgid "Use description lines"
+msgstr "Usa linee descrittive"
+
 msgid "Use extended List"
 msgstr "Usa l'elenco esteso"
 
@@ -21175,6 +21199,12 @@ msgstr "Usa misurazione di potenza"
 
 msgid "Use small screen"
 msgstr "Usa schermo piatto"
+
+msgid "Use spacer lines"
+msgstr "Usa linee spaziatrici"
+
+msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
+msgstr "Usa linee spaziatrici per riempire il bouquet in modo che i numeri della riga #SERVICE corrispondano all'LCN."
 
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr "Usa i tasti Sinistra/Destra sul telecomando per regolare l'altezza dell'interfaccia utente. Il pulsante Sinistra diminuisce l'altezza, il pulsante Destra aumenta l'altezza."
@@ -23733,6 +23763,27 @@ msgstr "sì (mantieni feed)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enable terrestrial LCN:"
+#~ msgstr "Abilita LCN terrestre:"
+
+#~ msgid "LCN plugin for DVB-T/T2 services"
+#~ msgstr "Plugin LCN per servizi DVB-T/T2"
+
+#~ msgid "LCN rules:"
+#~ msgstr "Regole LCN:"
+
+#~ msgid "No entry in lcn db. Please do a service scan."
+#~ msgstr "Nessuna voce nel database LCN. Effettua una scansione dei servizi."
+
+#~ msgid "Rebuild"
+#~ msgstr "Ricostruisci"
+
+#~ msgid "Rebuild LCN bouquet now?"
+#~ msgstr "Ricostruire bouquet LCN adesso?"
+
+#~ msgid "Terrestrial bouquet:"
+#~ msgstr "Bouquet terrestri:"
 
 #~ msgid "Alternative numbering mode"
 #~ msgstr "Modalità di numerazione alternativa"

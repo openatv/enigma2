@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-29 19:27+0000\n"
+"POT-Creation-Date: 2024-08-04 16:49+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Thai <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/th/>\n"
@@ -2033,6 +2033,12 @@ msgstr ""
 msgid "Add service"
 msgstr "เพิ่มบริการ"
 
+msgid "Add service names"
+msgstr ""
+
+msgid "Add service names to each #SERVICE entry."
+msgstr ""
+
 msgid "Add service to AutoCam"
 msgstr ""
 
@@ -2304,6 +2310,9 @@ msgid "Also import when box is leaving standby"
 msgstr ""
 
 msgid "Also on standby"
+msgstr ""
+
+msgid "Also use a #DESCRIPTION line after each #SERVICE line to hold the service's name."
 msgstr ""
 
 #, fuzzy
@@ -7153,9 +7162,6 @@ msgstr ""
 msgid "Enable teletext caching"
 msgstr ""
 
-msgid "Enable terrestrial LCN:"
-msgstr ""
-
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr ""
 
@@ -10330,13 +10336,22 @@ msgstr ""
 msgid "LCD/Front panel *"
 msgstr ""
 
+msgid "LCN Scanner"
+msgstr ""
+
+msgid "LCN Scanner Actions"
+msgstr ""
+
+msgid "LCN Scanner Settings"
+msgstr ""
+
+msgid "LCN Scanner plugin for DVB-C/T/T2 services"
+msgstr ""
+
 msgid "LCN numbering"
 msgstr ""
 
-msgid "LCN plugin for DVB-T/T2 services"
-msgstr ""
-
-msgid "LCN rules:"
+msgid "LCN rules"
 msgstr ""
 
 msgid "LCN style QuickSelect entry selection"
@@ -12198,9 +12213,6 @@ msgstr "ไม่มีรายละเอียดเพิ่มเติม
 msgid "No displayable files on this medium found!"
 msgstr "ไม่พบชนิดไฟล์ที่สามารถเล่นได้ในสื่อบันทีกนี้!"
 
-msgid "No entry in lcn db. Please do a service scan."
-msgstr ""
-
 #, fuzzy
 msgid "No error"
 msgstr "ไม่ทราบชนิดบริการ"
@@ -13546,6 +13558,9 @@ msgstr "กรุณารอสักครู่..."
 msgid "Please wait for activation of your network configuration..."
 msgstr "กำลังเริ่มใช้งานเครือข่ายที่ตั้ง... กรุณารอสักครู่"
 
+msgid "Please wait while LCN bouquets are created/updated..."
+msgstr ""
+
 msgid "Please wait while feeds are updated..."
 msgstr ""
 
@@ -14453,12 +14468,6 @@ msgstr ""
 
 msgid "Reboot"
 msgstr "เริ่มระบบใหม่ (Reboot)"
-
-msgid "Rebuild"
-msgstr ""
-
-msgid "Rebuild LCN bouquet now?"
-msgstr ""
 
 msgid "Rec"
 msgstr ""
@@ -15642,6 +15651,9 @@ msgstr ""
 msgid "Scan for local extensions and install them."
 msgstr ""
 
+msgid "Scan for terrestrial LCNs and create LCN bouquets"
+msgstr ""
+
 #, fuzzy
 msgid "Scan wireless networks"
 msgstr "ค้นหาเครือข่ายไร้สาย"
@@ -16038,6 +16050,9 @@ msgid "Select 'Yes' to show the channel list after switching between Radio and T
 msgstr ""
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
+msgstr ""
+
+msgid "Select 'Yes' to show this plugin in the Plugin Browser."
 msgstr ""
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
@@ -16515,6 +16530,9 @@ msgstr ""
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr ""
 
+msgid "Select the list of LCN rules to be applied to the scan."
+msgstr ""
+
 #, fuzzy
 msgid "Select the locale from a menu"
 msgstr "เลือกพาธของภาพยนต์"
@@ -16881,6 +16899,9 @@ msgid "Service Number and Service Name"
 msgstr ""
 
 msgid "Service Number, Picon and Service Name"
+msgstr ""
+
+msgid "Service Scan"
 msgstr ""
 
 #, fuzzy
@@ -17837,6 +17858,9 @@ msgid "Show image and save as '%s'"
 msgstr ""
 
 msgid "Show in Extension Menu"
+msgstr ""
+
+msgid "Show in Plugin Browser"
 msgstr ""
 
 #, fuzzy
@@ -19678,9 +19702,6 @@ msgstr "จบการทำงาน"
 
 msgid "Terrestrial"
 msgstr "ภาคพื้นดิน"
-
-msgid "Terrestrial bouquet:"
-msgstr ""
 
 msgid "Test"
 msgstr ""
@@ -21530,6 +21551,9 @@ msgstr ""
 msgid "Use defaults"
 msgstr ""
 
+msgid "Use description lines"
+msgstr ""
+
 msgid "Use extended List"
 msgstr ""
 
@@ -21586,6 +21610,12 @@ msgid "Use power measurement"
 msgstr "ใช้ power measurement"
 
 msgid "Use small screen"
+msgstr ""
+
+msgid "Use spacer lines"
+msgstr ""
+
+msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
 msgstr ""
 
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."

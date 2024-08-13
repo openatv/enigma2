@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-29 19:27+0000\n"
+"POT-Creation-Date: 2024-08-04 16:49+0000\n"
 "PO-Revision-Date: 2022-12-04 20:43+0000\n"
 "Last-Translator: rimasx <riks_12@hot.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -1993,6 +1993,12 @@ msgstr "Salvesta (selle saate lõpuni)"
 msgid "Add service"
 msgstr "Lisa kanal"
 
+msgid "Add service names"
+msgstr ""
+
+msgid "Add service names to each #SERVICE entry."
+msgstr ""
+
 msgid "Add service to AutoCam"
 msgstr ""
 
@@ -2258,6 +2264,9 @@ msgstr ""
 # ChannelSelection.py
 msgid "Also on standby"
 msgstr "Ka ooteseisundis"
+
+msgid "Also use a #DESCRIPTION line after each #SERVICE line to hold the service's name."
+msgstr ""
 
 msgid "Alternative"
 msgstr "Alternatiivne"
@@ -7133,9 +7142,6 @@ msgstr "Luba kasutada enigma2 kaugvastuvõtjat häälestumiseks kanalitele, mida
 msgid "Enable teletext caching"
 msgstr "Teleteksti puhverdamine"
 
-msgid "Enable terrestrial LCN:"
-msgstr "Luba dvb-t LCN:"
-
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr ""
 
@@ -10319,14 +10325,23 @@ msgstr "Näidiku kerimise kiirus"
 msgid "LCD/Front panel *"
 msgstr ""
 
+msgid "LCN Scanner"
+msgstr ""
+
+msgid "LCN Scanner Actions"
+msgstr ""
+
+msgid "LCN Scanner Settings"
+msgstr ""
+
+msgid "LCN Scanner plugin for DVB-C/T/T2 services"
+msgstr ""
+
 msgid "LCN numbering"
 msgstr ""
 
-msgid "LCN plugin for DVB-T/T2 services"
-msgstr "LCN plugin DVB-T/T2 kanalitele"
-
-msgid "LCN rules:"
-msgstr "LCN reeglid:"
+msgid "LCN rules"
+msgstr ""
 
 msgid "LCN style QuickSelect entry selection"
 msgstr ""
@@ -12210,9 +12225,6 @@ msgstr "Vaba indeks puudub"
 msgid "No displayable files on this medium found!"
 msgstr "Sellel andmekandjal pole kuvatavaid faile!"
 
-msgid "No entry in lcn db. Please do a service scan."
-msgstr "LCN andmebaas on tühi. Soorita kanaliotsing."
-
 #, fuzzy
 msgid "No error"
 msgstr "Tundmatu tõrge"
@@ -13576,6 +13588,9 @@ msgstr "Palun oota"
 msgid "Please wait for activation of your network configuration..."
 msgstr "Võrguseaded aktiveeritakse..."
 
+msgid "Please wait while LCN bouquets are created/updated..."
+msgstr ""
+
 msgid "Please wait while feeds are updated..."
 msgstr ""
 
@@ -14485,12 +14500,6 @@ msgstr ""
 
 msgid "Reboot"
 msgstr "Taaskäivitus"
-
-msgid "Rebuild"
-msgstr "Loo uuesti"
-
-msgid "Rebuild LCN bouquet now?"
-msgstr "Kas luua LCN lemmiknimekiri uuesti?"
 
 msgid "Rec"
 msgstr "Rec"
@@ -15678,6 +15687,9 @@ msgstr "Otsi ja paigalda IPK faile"
 msgid "Scan for local extensions and install them."
 msgstr "Otsi ja paigalda IPK faile."
 
+msgid "Scan for terrestrial LCNs and create LCN bouquets"
+msgstr ""
+
 msgid "Scan wireless networks"
 msgstr "Traadita võrkude otsing"
 
@@ -16071,6 +16083,9 @@ msgid "Select 'Yes' to show the channel list after switching between Radio and T
 msgstr "Kui lubatud, avatakse TV ja raadio režiimi vahetudes kanalinimekiri."
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
+msgstr ""
+
+msgid "Select 'Yes' to show this plugin in the Plugin Browser."
 msgstr ""
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
@@ -16549,6 +16564,9 @@ msgstr ""
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr ""
 
+msgid "Select the list of LCN rules to be applied to the scan."
+msgstr ""
+
 #, fuzzy
 msgid "Select the locale from a menu"
 msgstr "Vali varukoopiast välja jäetavad failid"
@@ -16928,6 +16946,9 @@ msgstr "Kanali number ja kanali nimi"
 
 msgid "Service Number, Picon and Service Name"
 msgstr "Kanali number, pikon ja kanali nimi"
+
+msgid "Service Scan"
+msgstr ""
 
 #, fuzzy
 msgid "Service Selection Actions"
@@ -17887,6 +17908,9 @@ msgstr ""
 
 msgid "Show in Extension Menu"
 msgstr "Kas kuvada laienduste menüüs?"
+
+msgid "Show in Plugin Browser"
+msgstr ""
 
 msgid "Show in Standby"
 msgstr "Kuva ooteseisundis"
@@ -19717,9 +19741,6 @@ msgstr "Soome"
 
 msgid "Terrestrial"
 msgstr "Maapealne TV (DVB-T)"
-
-msgid "Terrestrial bouquet:"
-msgstr "DVB-T lemmiknimekiri:"
 
 msgid "Test"
 msgstr ""
@@ -21637,6 +21658,9 @@ msgstr "Ringpolar LNB kasutamine"
 msgid "Use defaults"
 msgstr ""
 
+msgid "Use description lines"
+msgstr ""
+
 msgid "Use extended List"
 msgstr "Kasuta laiendatud vaadet"
 
@@ -21694,6 +21718,12 @@ msgstr "Kasuta voolutarbe mõõtmist"
 
 msgid "Use small screen"
 msgstr "Kasuta kitsast vaadet"
+
+msgid "Use spacer lines"
+msgstr ""
+
+msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
+msgstr ""
 
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr ""
@@ -24289,6 +24319,27 @@ msgstr "Jah (säilita fiidid)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Enable terrestrial LCN:"
+#~ msgstr "Luba dvb-t LCN:"
+
+#~ msgid "LCN plugin for DVB-T/T2 services"
+#~ msgstr "LCN plugin DVB-T/T2 kanalitele"
+
+#~ msgid "LCN rules:"
+#~ msgstr "LCN reeglid:"
+
+#~ msgid "No entry in lcn db. Please do a service scan."
+#~ msgstr "LCN andmebaas on tühi. Soorita kanaliotsing."
+
+#~ msgid "Rebuild"
+#~ msgstr "Loo uuesti"
+
+#~ msgid "Rebuild LCN bouquet now?"
+#~ msgstr "Kas luua LCN lemmiknimekiri uuesti?"
+
+#~ msgid "Terrestrial bouquet:"
+#~ msgstr "DVB-T lemmiknimekiri:"
 
 #~ msgid "Alternative numbering mode"
 #~ msgstr "Alternatiivne numeratsioon"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-29 19:27+0000\n"
+"POT-Creation-Date: 2024-08-04 16:49+0000\n"
 "PO-Revision-Date: 2023-06-04 19:16+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -2018,6 +2018,12 @@ msgstr "Pradėti įrašymą (stabdyti po šio įvykio)"
 msgid "Add service"
 msgstr "Pridėti kanalą"
 
+msgid "Add service names"
+msgstr ""
+
+msgid "Add service names to each #SERVICE entry."
+msgstr ""
+
 msgid "Add service to AutoCam"
 msgstr ""
 
@@ -2278,6 +2284,9 @@ msgstr "Importuoti kanalus, kai imtuvas išeina iš budėjimo režimo"
 
 msgid "Also on standby"
 msgstr "Ir budėjimo režimą"
+
+msgid "Also use a #DESCRIPTION line after each #SERVICE line to hold the service's name."
+msgstr ""
 
 msgid "Alternative"
 msgstr "Alternatyvus"
@@ -7063,9 +7072,6 @@ msgstr "Įjungti nuotolinį enigma2 imtuvą, kad žiūrėti kanalus, kurie negal
 msgid "Enable teletext caching"
 msgstr "Įjungti teleteksto kaupimą"
 
-msgid "Enable terrestrial LCN:"
-msgstr "Įjungti antžeminę LCN:"
-
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "Įjunkite išplėstines HDMI-CEC parametrų parinktis."
 
@@ -10180,14 +10186,23 @@ msgstr "LCD užrašų slinkties greitis"
 msgid "LCD/Front panel *"
 msgstr ""
 
+msgid "LCN Scanner"
+msgstr ""
+
+msgid "LCN Scanner Actions"
+msgstr ""
+
+msgid "LCN Scanner Settings"
+msgstr ""
+
+msgid "LCN Scanner plugin for DVB-C/T/T2 services"
+msgstr ""
+
 msgid "LCN numbering"
 msgstr ""
 
-msgid "LCN plugin for DVB-T/T2 services"
-msgstr "LCN priedas DVB-T/T2 kanalams"
-
-msgid "LCN rules:"
-msgstr "LCN taisyklės:"
+msgid "LCN rules"
+msgstr ""
 
 msgid "LCN style QuickSelect entry selection"
 msgstr ""
@@ -11972,9 +11987,6 @@ msgstr "Nėra demux"
 msgid "No displayable files on this medium found!"
 msgstr "Jokių failų čia nerasta!"
 
-msgid "No entry in lcn db. Please do a service scan."
-msgstr "Lcn db įrašo nėra. Atlikite kanalų paiešką."
-
 msgid "No error"
 msgstr "Jokios klaidos"
 
@@ -13286,6 +13298,9 @@ msgstr "Palaukite"
 msgid "Please wait for activation of your network configuration..."
 msgstr "Palaukite, kol aktyvuosis jūsų tinklo konfigūracija..."
 
+msgid "Please wait while LCN bouquets are created/updated..."
+msgstr ""
+
 msgid "Please wait while feeds are updated..."
 msgstr ""
 
@@ -14172,12 +14187,6 @@ msgstr "Galinis"
 
 msgid "Reboot"
 msgstr "Paleisti iš naujo"
-
-msgid "Rebuild"
-msgstr "Atstatyti"
-
-msgid "Rebuild LCN bouquet now?"
-msgstr "Atstatyti LCN paketą dabar?"
 
 msgid "Rec"
 msgstr "Rec"
@@ -15327,6 +15336,9 @@ msgstr "Ieškoti vietinių išplėtimų ir juos įdiegti"
 msgid "Scan for local extensions and install them."
 msgstr "Ieškoti vietinių išplėtimų ir juos įdiegti."
 
+msgid "Scan for terrestrial LCNs and create LCN bouquets"
+msgstr ""
+
 msgid "Scan wireless networks"
 msgstr "Ieškoti belaidžių tinklų"
 
@@ -15717,6 +15729,9 @@ msgstr "Jei nustatyta 'taip', po perjungimo tarp radijo ir TV režimų bus rodom
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
 msgstr "Pasirinkite \"Taip\", kad katalogų sąraše būtų rodomas dabartinis katalogas. Atminkite, kad failų vadas turi būti paleistas iš naujo, kad šis pakeitimas įsigaliotų."
+
+msgid "Select 'Yes' to show this plugin in the Plugin Browser."
+msgstr ""
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr ""
@@ -16186,6 +16201,9 @@ msgstr ""
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr ""
 
+msgid "Select the list of LCN rules to be applied to the scan."
+msgstr ""
+
 msgid "Select the locale from a menu"
 msgstr "Pasirinkite lokalę iš meniu"
 
@@ -16560,6 +16578,9 @@ msgstr "Kanalo numeris ir kanalo pavadinimas"
 
 msgid "Service Number, Picon and Service Name"
 msgstr "Kanalo numeris, logotipas ir kanalo pavadinimas"
+
+msgid "Service Scan"
+msgstr ""
 
 msgid "Service Selection Actions"
 msgstr "Aptarnavimo pasirinkimo veiksmai"
@@ -17487,6 +17508,9 @@ msgstr ""
 
 msgid "Show in Extension Menu"
 msgstr "Rodyti plėtinių sąraše"
+
+msgid "Show in Plugin Browser"
+msgstr ""
 
 msgid "Show in Standby"
 msgstr "Rodyti budėjimo režime"
@@ -19262,9 +19286,6 @@ msgstr "Tenisas"
 
 msgid "Terrestrial"
 msgstr "Antžeminė TV"
-
-msgid "Terrestrial bouquet:"
-msgstr "Antžeminės TV paketas:"
 
 msgid "Test"
 msgstr ""
@@ -21131,6 +21152,9 @@ msgstr "Naudoti apskritiminę LNB"
 msgid "Use defaults"
 msgstr "Naudoti numatytąsias reikšmes"
 
+msgid "Use description lines"
+msgstr ""
+
 msgid "Use extended List"
 msgstr "Naudoti išplėstinį sąrašą"
 
@@ -21187,6 +21211,12 @@ msgstr "Naudoti galios matavimą"
 
 msgid "Use small screen"
 msgstr "Naudoti mažą ekraną"
+
+msgid "Use spacer lines"
+msgstr ""
+
+msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
+msgstr ""
 
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr ""
@@ -23733,6 +23763,27 @@ msgstr "taip (išsaugoti šaltinius)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enable terrestrial LCN:"
+#~ msgstr "Įjungti antžeminę LCN:"
+
+#~ msgid "LCN plugin for DVB-T/T2 services"
+#~ msgstr "LCN priedas DVB-T/T2 kanalams"
+
+#~ msgid "LCN rules:"
+#~ msgstr "LCN taisyklės:"
+
+#~ msgid "No entry in lcn db. Please do a service scan."
+#~ msgstr "Lcn db įrašo nėra. Atlikite kanalų paiešką."
+
+#~ msgid "Rebuild"
+#~ msgstr "Atstatyti"
+
+#~ msgid "Rebuild LCN bouquet now?"
+#~ msgstr "Atstatyti LCN paketą dabar?"
+
+#~ msgid "Terrestrial bouquet:"
+#~ msgstr "Antžeminės TV paketas:"
 
 #~ msgid "Alternative numbering mode"
 #~ msgstr "Alternatyvus numeracijos režimas"

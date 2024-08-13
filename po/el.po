@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-29 19:27+0000\n"
+"POT-Creation-Date: 2024-08-04 16:49+0000\n"
 "PO-Revision-Date: 2024-07-26 22:09+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -1974,6 +1974,12 @@ msgstr "Εγγραφή ως το τέλος του τρέχοντος προγρ
 msgid "Add service"
 msgstr "Προσθήκη υπηρεσίας"
 
+msgid "Add service names"
+msgstr ""
+
+msgid "Add service names to each #SERVICE entry."
+msgstr ""
+
 msgid "Add service to AutoCam"
 msgstr "Προσθήκη υπηρεσίας στο αυτόματο cam"
 
@@ -2234,6 +2240,9 @@ msgstr "Επίσης εισαγωγή κατά την έξοδο του δέκτ
 
 msgid "Also on standby"
 msgstr "Επίσης στην αναμονή"
+
+msgid "Also use a #DESCRIPTION line after each #SERVICE line to hold the service's name."
+msgstr ""
 
 msgid "Alternative"
 msgstr "Προσθήκη εναλλακτικών"
@@ -7021,9 +7030,6 @@ msgstr "Χρήση απομακρυσμένου enigma2 δέκτη για υπη
 msgid "Enable teletext caching"
 msgstr "Ενεργοποίηση αποθήκευσης τηλεκειμένου"
 
-msgid "Enable terrestrial LCN:"
-msgstr "Ενεργοποίηση επίγειου LCN:"
-
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "Ενεργοποίηση των προχωρημένων επιλογών ρύθμισης HDMI-CEC."
 
@@ -10133,14 +10139,23 @@ msgstr "Ταχύτητα κύλισης LCD"
 msgid "LCD/Front panel *"
 msgstr "LCD/οθόνη πρόσοψης *"
 
+msgid "LCN Scanner"
+msgstr ""
+
+msgid "LCN Scanner Actions"
+msgstr ""
+
+msgid "LCN Scanner Settings"
+msgstr ""
+
+msgid "LCN Scanner plugin for DVB-C/T/T2 services"
+msgstr ""
+
 msgid "LCN numbering"
 msgstr ""
 
-msgid "LCN plugin for DVB-T/T2 services"
-msgstr "Πρόσθετο LCN για υπηρεσίες DVB-T/T2"
-
-msgid "LCN rules:"
-msgstr "Κανόνες LCN:"
+msgid "LCN rules"
+msgstr ""
 
 msgid "LCN style QuickSelect entry selection"
 msgstr "Στυλ LCN στοιχείου επιλογής γρήγορης επιλογής"
@@ -11927,9 +11942,6 @@ msgstr "Μη διαθέσιμη απόπλεξη"
 msgid "No displayable files on this medium found!"
 msgstr "Δεν υπάρχουν αρχεία προς εμφάνιση σε αυτό το μέσο!"
 
-msgid "No entry in lcn db. Please do a service scan."
-msgstr "Απουσία δεδομένων στη βάση του lcn. Παρακαλώ κάντε χειροκίνητη ανίχνευση."
-
 msgid "No error"
 msgstr "Χωρίς σφάλμα"
 
@@ -13241,6 +13253,9 @@ msgstr "Παρακαλώ περιμένετε"
 msgid "Please wait for activation of your network configuration..."
 msgstr "Παρακαλώ περιμένετε, ενεργοποίηση ρύθμισης δικτύου..."
 
+msgid "Please wait while LCN bouquets are created/updated..."
+msgstr ""
+
 msgid "Please wait while feeds are updated..."
 msgstr "Περιμένετε μέχρι να ενημερωθούν οι πηγές..."
 
@@ -14125,12 +14140,6 @@ msgstr "Πλαϊνό"
 
 msgid "Reboot"
 msgstr "Επανεκκίνηση"
-
-msgid "Rebuild"
-msgstr "Επαναδημιουργία"
-
-msgid "Rebuild LCN bouquet now?"
-msgstr "Επαναδημιουργία του μπουκέτου LCN τώρα;"
 
 msgid "Rec"
 msgstr "Εγγραφή"
@@ -15280,6 +15289,9 @@ msgstr "Ανίχνευση και εγκατάσταση επεκτάσεων τ
 msgid "Scan for local extensions and install them."
 msgstr "Αναζήτηση και εγκατάσταση επεκτάσεων τοπικά."
 
+msgid "Scan for terrestrial LCNs and create LCN bouquets"
+msgstr ""
+
 msgid "Scan wireless networks"
 msgstr "Ανίχνευση ασύρματων δικτύων"
 
@@ -15668,6 +15680,9 @@ msgstr "Επιλέξτε 'ναι' για εμφάνιση της λίστας κ
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
 msgstr "Επιλέξτε 'ναι' για να εμφανίζεται ο τρέχον φάκελος στη λίστα των καταλόγων. Σημειώστε ότι πρέπει να γίνει επανεκκίνηση του File Commander για να εφαρμοστεί αυτή η αλλαγή."
+
+msgid "Select 'Yes' to show this plugin in the Plugin Browser."
+msgstr ""
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Επιλέξτε 'ναι' για να εμφανιστούν τα πακέτα διαδικτυακών συνδέσμων στην οθόνη λήψης προσθέτων."
@@ -16137,6 +16152,9 @@ msgstr ""
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr "Επιλέξτε τη διάταξη των εγκατεστημένων πρόσθετων στην οθόνη διαχείρισης προσθέτων. ΣΗΜΕΙΩΣΗ: Η αλλαγή δεν είναι άμεση, αλλά θα φανεί μετά την επανεκκίνηση του πλοηγού προσθέτων!"
 
+msgid "Select the list of LCN rules to be applied to the scan."
+msgstr ""
+
 msgid "Select the locale from a menu"
 msgstr "Επιλογή της γλώσσας του πληκτρολογίου μέσω μενού"
 
@@ -16517,6 +16535,9 @@ msgstr "Αριθμός και όνομα υπηρεσίας"
 
 msgid "Service Number, Picon and Service Name"
 msgstr "Αριθμός, λογότυπο και όνομα υπηρεσίας"
+
+msgid "Service Scan"
+msgstr ""
 
 msgid "Service Selection Actions"
 msgstr "Ενέργειες επιλογής υπηρεσιών"
@@ -17450,6 +17471,9 @@ msgstr "Εμφάνιση εικόνας και αποθήκευση ως '%s'"
 
 msgid "Show in Extension Menu"
 msgstr "Εμφάνιση στη λίστα επεκτάσεων"
+
+msgid "Show in Plugin Browser"
+msgstr ""
 
 msgid "Show in Standby"
 msgstr "Εμφάνιση κατά την αναμονή"
@@ -19223,9 +19247,6 @@ msgstr "Τένις"
 
 msgid "Terrestrial"
 msgstr "Επίγειο"
-
-msgid "Terrestrial bouquet:"
-msgstr "Επίγειο μπουκέτο:"
 
 msgid "Test"
 msgstr "Δοκιμή"
@@ -21120,6 +21141,9 @@ msgstr "Χρήση LNB κυκλικής πόλωσης"
 msgid "Use defaults"
 msgstr "Χρήση προεπιλογών"
 
+msgid "Use description lines"
+msgstr ""
+
 msgid "Use extended List"
 msgstr "Χρήση εκτεταμένης λίστας"
 
@@ -21176,6 +21200,12 @@ msgstr "Χρήση μέτρησης ισχύος"
 
 msgid "Use small screen"
 msgstr "Χρήση μικρής οθόνης"
+
+msgid "Use spacer lines"
+msgstr ""
+
+msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
+msgstr ""
 
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr "Χρησιμοποιήστε τα πλήκτρα ΑΡΙΣΤΕΡΑ/ΔΕΞΙΑ στο τηλεχειριστήριο για να ρυθμίσετε το ύψος του OSD. Το ΑΡΙΣΤΕΡΟ μειώνει το ύψος, το ΔΕΞΙ το αυξάνει."
@@ -23734,6 +23764,27 @@ msgstr "ναι (διατήρηση των feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enable terrestrial LCN:"
+#~ msgstr "Ενεργοποίηση επίγειου LCN:"
+
+#~ msgid "LCN plugin for DVB-T/T2 services"
+#~ msgstr "Πρόσθετο LCN για υπηρεσίες DVB-T/T2"
+
+#~ msgid "LCN rules:"
+#~ msgstr "Κανόνες LCN:"
+
+#~ msgid "No entry in lcn db. Please do a service scan."
+#~ msgstr "Απουσία δεδομένων στη βάση του lcn. Παρακαλώ κάντε χειροκίνητη ανίχνευση."
+
+#~ msgid "Rebuild"
+#~ msgstr "Επαναδημιουργία"
+
+#~ msgid "Rebuild LCN bouquet now?"
+#~ msgstr "Επαναδημιουργία του μπουκέτου LCN τώρα;"
+
+#~ msgid "Terrestrial bouquet:"
+#~ msgstr "Επίγειο μπουκέτο:"
 
 #~ msgid "Alternative numbering mode"
 #~ msgstr "Εναλλακτική λειτουργία αρίθμησης"

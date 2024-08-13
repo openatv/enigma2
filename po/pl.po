@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-29 19:27+0000\n"
-"PO-Revision-Date: 2024-07-31 15:38+0000\n"
+"POT-Creation-Date: 2024-08-04 16:49+0000\n"
+"PO-Revision-Date: 2024-08-08 23:09+0000\n"
 "Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -2016,6 +2016,12 @@ msgstr "Dodaj nagrywanie (stop po aktualnym wydarzeniu)"
 msgid "Add service"
 msgstr "Dodaj usługę"
 
+msgid "Add service names"
+msgstr "Dodaj nazwy usług"
+
+msgid "Add service names to each #SERVICE entry."
+msgstr "Dodaj nazwy usług do każdego wpisu #SERVICE."
+
 msgid "Add service to AutoCam"
 msgstr "Dodaj usługę do AutoCam"
 
@@ -2276,6 +2282,9 @@ msgstr "Importuj także przy wyjściu ze standby"
 
 msgid "Also on standby"
 msgstr "Również w trybie czuwania"
+
+msgid "Also use a #DESCRIPTION line after each #SERVICE line to hold the service's name."
+msgstr "Użyj także linii #DESCRIPTION po każdej linii #SERVICE, aby zapisać nazwę usługi."
 
 msgid "Alternative"
 msgstr "Alternatywne"
@@ -3133,7 +3142,7 @@ msgid "Bouquets"
 msgstr "Listy kanałów"
 
 msgid "Bouquets start at 1"
-msgstr "Bukiety zaczynają się od 1"
+msgstr "Listy kanałów zaczynają się od 1"
 
 msgid "Bouvet Island"
 msgstr "Wyspa Bouveta"
@@ -7067,9 +7076,6 @@ msgstr "Włącz zdalny odbiornik enigma2, aby spróbować dostroić się do usł
 msgid "Enable teletext caching"
 msgstr "Włącz pamięć telegazety"
 
-msgid "Enable terrestrial LCN:"
-msgstr "Włącz naziemną LCN:"
-
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "Włącz zaawansowane opcje HDMI-CEC."
 
@@ -10182,14 +10188,23 @@ msgstr "Prędkość przewijania LCD"
 msgid "LCD/Front panel *"
 msgstr "LCD/Panel przedni *"
 
+msgid "LCN Scanner"
+msgstr "Skaner LCN"
+
+msgid "LCN Scanner Actions"
+msgstr "Działania skanera LCN"
+
+msgid "LCN Scanner Settings"
+msgstr "Ustawienia skanera LCN"
+
+msgid "LCN Scanner plugin for DVB-C/T/T2 services"
+msgstr "Wtyczka skanera LCN dla usług DVB-C/T/T2"
+
 msgid "LCN numbering"
 msgstr "Numeracja LCN"
 
-msgid "LCN plugin for DVB-T/T2 services"
-msgstr "Wtyczka LCN dla usług DVB-T/T2"
-
-msgid "LCN rules:"
-msgstr "Zasady LCN:"
+msgid "LCN rules"
+msgstr "Zasady LCN"
 
 msgid "LCN style QuickSelect entry selection"
 msgstr "Wybór wpisu w stylu LCN w trybie QuickSelect"
@@ -11978,9 +11993,6 @@ msgstr "Brak dostępnego demux"
 msgid "No displayable files on this medium found!"
 msgstr "Brak plików do wyświetlenia na tym nośniku!"
 
-msgid "No entry in lcn db. Please do a service scan."
-msgstr "Brak wpisu w lcn db. Wykonaj skanowanie usługi."
-
 msgid "No error"
 msgstr "Brak błędów"
 
@@ -13292,6 +13304,9 @@ msgstr "Proszę czekać"
 msgid "Please wait for activation of your network configuration..."
 msgstr "Czekaj na aktywację Twojej konfiguracji sieci..."
 
+msgid "Please wait while LCN bouquets are created/updated..."
+msgstr "Proszę czekać, trwa tworzenie/aktualizacja list kanałów LCN..."
+
 msgid "Please wait while feeds are updated..."
 msgstr "Proszę czekać, trwa aktualizacja feed..."
 
@@ -14178,12 +14193,6 @@ msgstr "Tył"
 
 msgid "Reboot"
 msgstr "Uruchom ponownie"
-
-msgid "Rebuild"
-msgstr "Odnów"
-
-msgid "Rebuild LCN bouquet now?"
-msgstr "Czy przebudować listę kanałów LCN?"
 
 msgid "Rec"
 msgstr "Nagrywanie"
@@ -15333,6 +15342,9 @@ msgstr "Skanowanie lokalnych rozszerzeń i ich instalacja"
 msgid "Scan for local extensions and install them."
 msgstr "Szukaj lokalnych rozszerzeń i je zainstaluj."
 
+msgid "Scan for terrestrial LCNs and create LCN bouquets"
+msgstr "Skanuj w poszukiwaniu naziemnych LCN i stwórz listy kanałów"
+
 msgid "Scan wireless networks"
 msgstr "Skanuj sieci bezprzewodowe"
 
@@ -15530,10 +15542,10 @@ msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. 
 msgstr "Wybierz opcję „Dostawca”, aby skanować z predefiniowanej listy multipleksów kablowych. Wybierz „Pasma”, aby skanować tylko określone części widma. Wybierz „Kroki”, aby skanować krokowo dla określonego pasma częstotliwości."
 
 msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
-msgstr "Wybierz opcję „Unikalna numeracja”, aby przypisać unikalne numery do każdej usługi w każdym bukiecie. Użyj opcji „Bukiety zaczynają się od 1”, aby rozpocząć numerację każdego bukietu od 1. Użyj opcji „Numerowanie LCN”, aby używać spójnych numerów LCN usług wszędzie tam, gdzie używana jest ta usługa."
+msgstr "Wybierz opcję „Unikalna numeracja”, aby przypisać unikalne numery do każdej usługi w każdym bukiecie. Użyj opcji „Listy kanałów zaczynają się od 1”, aby rozpocząć numerację każdej listy od 1. Użyj opcji „Numerowanie LCN”, aby używać spójnych numerów LCN usług wszędzie tam, gdzie używana jest ta usługa."
 
 msgid "Select 'Yes' if an end time is required for this timer."
-msgstr "Wybierz \"Tak\", jeśli czas zakończenia jest wymagany dla tego timera."
+msgstr "Wybierz opcję „Tak”, jeśli dla tego timera wymagana jest godzina zakończenia."
 
 msgid "Select 'Yes' if network traffic should be checked before activating the timer."
 msgstr "Wybierz \"Tak\", jeśli ruch sieciowy powinien być sprawdzony przed aktywacją timera."
@@ -15724,8 +15736,11 @@ msgstr "Jeśli jest ustawione na 'tak', lista kanałów pojawi się po przełąc
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
 msgstr "Wybierz \"Tak\", aby wyświetlić bieżący katalog na liście katalogów. Należy pamiętać, że aby ta zmiana zaczęła obowiązywać, należy ponownie uruchomić File Commander."
 
+msgid "Select 'Yes' to show this plugin in the Plugin Browser."
+msgstr "Wybierz opcję „Tak”, aby wyświetlić tę wtyczkę w przeglądarce wtyczek."
+
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
-msgstr "Wybierz \"Tak\", aby wyświetlić pakiety linków internetowych na ekranie pobierania wtyczek."
+msgstr "Wybierz opcję „Tak”, aby wyświetlić pakiety łączy internetowych na ekranie pobierania wtyczek."
 
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr "Wybierz 'Tak', aby podzielić zadania na osobne działania."
@@ -16192,6 +16207,9 @@ msgstr "Wybierz układ informacji na liście kanałów spośród opcji dostępny
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr "Wybierz układ zainstalowanych wtyczek na ekranie Przeglądarka wtyczek. UWAGA: Zmiana nie jest natychmiastowa, ale będzie widoczna po ponownym uruchomieniu przeglądarki wtyczek!"
 
+msgid "Select the list of LCN rules to be applied to the scan."
+msgstr "Wybierz listę reguł LCN, które mają zostać zastosowane do skanowania."
+
 msgid "Select the locale from a menu"
 msgstr "Wybierz ustawienia regionalne z menu"
 
@@ -16572,6 +16590,9 @@ msgstr "Numer i nazwa kanału"
 
 msgid "Service Number, Picon and Service Name"
 msgstr "Pikona, numer i nazwa kanału"
+
+msgid "Service Scan"
+msgstr "Skanowanie serwisowe"
 
 msgid "Service Selection Actions"
 msgstr "Akcje wyboru usługi"
@@ -17505,6 +17526,9 @@ msgstr "Wyświetl obraz i zapisz jako '%s'"
 
 msgid "Show in Extension Menu"
 msgstr "Pokaż w Menu rozszerzenia"
+
+msgid "Show in Plugin Browser"
+msgstr "Pokaż w przeglądarce wtyczek"
 
 msgid "Show in Standby"
 msgstr "Pokaż w trybie czuwania"
@@ -19281,9 +19305,6 @@ msgstr "Tenis"
 
 msgid "Terrestrial"
 msgstr "Naziemny"
-
-msgid "Terrestrial bouquet:"
-msgstr "Lista kanałów naziemnych:"
 
 msgid "Test"
 msgstr "Test"
@@ -21178,6 +21199,9 @@ msgstr "Użyj kołowego LNB"
 msgid "Use defaults"
 msgstr "Ust. domyślne"
 
+msgid "Use description lines"
+msgstr "Użyj linii opisu"
+
 msgid "Use extended List"
 msgstr "Użyj rozszerzonej listy"
 
@@ -21233,7 +21257,13 @@ msgid "Use power measurement"
 msgstr "Użyj pomiaru mocy"
 
 msgid "Use small screen"
-msgstr "Użyj wąskiego ekranu"
+msgstr "Użyj małego ekranu"
+
+msgid "Use spacer lines"
+msgstr "Użyj linii dystansowych"
+
+msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
+msgstr "Użyj linii dystansowych, aby wypełnić bukiet, aby numery linii #SERVICE odpowiadały numerowi LCN."
 
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr "Użyj przycisków LEWO/PRAWO na pilocie, aby wyregulować wysokość OSD. Przycisk LEWY zmniejsza wysokość, PRAWY zwiększa wysokość."
@@ -23793,6 +23823,27 @@ msgstr "tak (zachować kanały)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enable terrestrial LCN:"
+#~ msgstr "Włącz naziemną LCN:"
+
+#~ msgid "LCN plugin for DVB-T/T2 services"
+#~ msgstr "Wtyczka LCN dla usług DVB-T/T2"
+
+#~ msgid "LCN rules:"
+#~ msgstr "Zasady LCN:"
+
+#~ msgid "No entry in lcn db. Please do a service scan."
+#~ msgstr "Brak wpisu w lcn db. Wykonaj skanowanie usługi."
+
+#~ msgid "Rebuild"
+#~ msgstr "Odnów"
+
+#~ msgid "Rebuild LCN bouquet now?"
+#~ msgstr "Czy przebudować listę kanałów LCN?"
+
+#~ msgid "Terrestrial bouquet:"
+#~ msgstr "Lista kanałów naziemnych:"
 
 #~ msgid "Alternative numbering mode"
 #~ msgstr "Alternatywny tryb numeracji"

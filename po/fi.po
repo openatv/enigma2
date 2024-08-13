@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-07-29 19:27+0000\n"
-"PO-Revision-Date: 2024-07-30 17:04+0000\n"
+"POT-Creation-Date: 2024-08-04 16:49+0000\n"
+"PO-Revision-Date: 2024-08-11 20:09+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -1978,6 +1978,12 @@ msgstr "Tallenna (Lopeta nykyisen ohjelman jälkeen)"
 msgid "Add service"
 msgstr "Lisää kanava"
 
+msgid "Add service names"
+msgstr "Lisää kanavan nimi"
+
+msgid "Add service names to each #SERVICE entry."
+msgstr "Lisätään kanava nimet jokaiseen kanavalistaan."
+
 msgid "Add service to AutoCam"
 msgstr "Lisää kanava CI+"
 
@@ -2242,6 +2248,9 @@ msgstr "Tuo valmiustilasta poistuttaessa"
 
 msgid "Also on standby"
 msgstr "Myös valmiustilassa"
+
+msgid "Also use a #DESCRIPTION line after each #SERVICE line to hold the service's name."
+msgstr ""
 
 msgid "Alternative"
 msgstr "Vaihtoehtoinen"
@@ -7030,9 +7039,6 @@ msgstr "Salli vastaanottimen virittyä ulkopuolisiin vastaanottimiin (esim. jos 
 msgid "Enable teletext caching"
 msgstr "Ota käyttöön teksti-tv:n välimuisti"
 
-msgid "Enable terrestrial LCN:"
-msgstr "Aktivoi antenni LCN:"
-
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "Ota käyttöön HDMI CEC:n laajennetut asetus vaihtoehdot."
 
@@ -10147,13 +10153,22 @@ msgstr "LCD selausnopeus"
 msgid "LCD/Front panel *"
 msgstr "Näyttöpaneeli *"
 
+msgid "LCN Scanner"
+msgstr "LCN Scanneri"
+
+msgid "LCN Scanner Actions"
+msgstr "LCN Scanneri toiminnot"
+
+msgid "LCN Scanner Settings"
+msgstr "LCN Skannaus asetukset"
+
+msgid "LCN Scanner plugin for DVB-C/T/T2 services"
+msgstr "LCN Skanner lisäosa DVB-C/T/T2 kanaviin"
+
 msgid "LCN numbering"
 msgstr "LCN numerointi"
 
-msgid "LCN plugin for DVB-T/T2 services"
-msgstr "LCN plugin DVB-T/T2 palvelua varten"
-
-msgid "LCN rules:"
+msgid "LCN rules"
 msgstr "LCN säännöt:"
 
 msgid "LCN style QuickSelect entry selection"
@@ -11943,9 +11958,6 @@ msgstr "Ei demux saatavilla"
 msgid "No displayable files on this medium found!"
 msgstr "Tiedostoja ei löytynyt!"
 
-msgid "No entry in lcn db. Please do a service scan."
-msgstr "Ei merkintää lcn db:. Suorita huolto tarkistus."
-
 msgid "No error"
 msgstr "Ei virhettä"
 
@@ -13263,6 +13275,9 @@ msgstr "Odota"
 msgid "Please wait for activation of your network configuration..."
 msgstr "Odota, verkkoasetuksia aktivoidaan..."
 
+msgid "Please wait while LCN bouquets are created/updated..."
+msgstr "Ole hyvä ja odota, että LCN lisäosa asennetaan/päivitetään..."
+
 msgid "Please wait while feeds are updated..."
 msgstr "Odota, kunnes syötteet on päivitetty..."
 
@@ -14147,12 +14162,6 @@ msgstr "Takana"
 
 msgid "Reboot"
 msgstr "Käynnistä uudelleen"
-
-msgid "Rebuild"
-msgstr "Luodaan"
-
-msgid "Rebuild LCN bouquet now?"
-msgstr "Luodaanko LCN lista nyt?"
 
 msgid "Rec"
 msgstr "Tallennus"
@@ -15302,6 +15311,9 @@ msgstr "Etsi paikallisia laajennuksia ja asenna ne"
 msgid "Scan for local extensions and install them."
 msgstr "Etsi paikallisia lisäosia ja asenna ne."
 
+msgid "Scan for terrestrial LCNs and create LCN bouquets"
+msgstr "Skannaa antenni kanavat ja luo LCN kanavalista"
+
 msgid "Scan wireless networks"
 msgstr "Hae langattomia verkkoja"
 
@@ -15698,6 +15710,9 @@ msgstr "'Kyllä' valinnalla kanavalista näytetään, kun vaihdetaan radio- ja T
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
 msgstr "Valitse 'Kyllä', jos haluat näyttää nykyisen hakemiston hakemistoluettelossa. Huomaa, että tiedostonhallinta on käynnistettävä uudelleen, jotta tämä muutos tulee voimaan."
+
+msgid "Select 'Yes' to show this plugin in the Plugin Browser."
+msgstr "Valitse \"Kyllä\" näyttääksesi tämän lisäosat valikossa."
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Valitse 'Kyllä' näyttääksesi Netti sivut listassa."
@@ -16171,6 +16186,9 @@ msgstr "Valitse kanava listan tietojen asettelu teeman tarjoamista vaihtoehdoist
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr "Valitse asennettujen lisäosien asettelu lisäosat näkymässä. HUOMAUTUS: Muutos ei ole välitön, mutta se näkyy, kun lisäosat käynnistetään uudelleen!"
 
+msgid "Select the list of LCN rules to be applied to the scan."
+msgstr "Valitse, mitä LCN-sääntöjä käytetään kanava haun aikana."
+
 msgid "Select the locale from a menu"
 msgstr "Valitse alue valikosta"
 
@@ -16551,6 +16569,9 @@ msgstr "Kanavan Numero ja Palvelu Nimi"
 
 msgid "Service Number, Picon and Service Name"
 msgstr "Kanavan Numero. Logo ja Palvelu Nimi"
+
+msgid "Service Scan"
+msgstr "Kanavahaku"
 
 msgid "Service Selection Actions"
 msgstr "Palvelu valinta toiminnot"
@@ -17486,6 +17507,9 @@ msgstr "Näytä kuva ja tallenna nimellä '%s'"
 
 msgid "Show in Extension Menu"
 msgstr "Näytä laajennukset lista"
+
+msgid "Show in Plugin Browser"
+msgstr "Näytä lisäosa luottelossa"
 
 msgid "Show in Standby"
 msgstr "Näytä valmiustilassa"
@@ -19261,9 +19285,6 @@ msgstr "Tennis"
 
 msgid "Terrestrial"
 msgstr "Antennivastaanotto"
-
-msgid "Terrestrial bouquet:"
-msgstr "Antenni suosikkilista:"
 
 msgid "Test"
 msgstr "Testi"
@@ -21163,6 +21184,9 @@ msgstr "Kiertopolarisaatio"
 msgid "Use defaults"
 msgstr "Käytä oletusarvoja"
 
+msgid "Use description lines"
+msgstr "Käytä tyhjiä rivejä"
+
 msgid "Use extended List"
 msgstr "Käytä laajennettua luetteloa"
 
@@ -21219,6 +21243,12 @@ msgstr "Käytä virranmittausta"
 
 msgid "Use small screen"
 msgstr "Käytä ohutta näyttöä"
+
+msgid "Use spacer lines"
+msgstr "Käytä väli rivijä"
+
+msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
+msgstr "Käytä tyhjiä välirivejä kanavalistassa pitääksesi looginen kanavanumerointi."
 
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr "Käytä VASEN/OIKEA painikkeita kaukosäätimessäsi säätääksesi kuvaruudun korkeutta. VASEN painike pienentää korkeutta, OIKEA painike kasvattaa korkeutta."
@@ -23783,6 +23813,27 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enable terrestrial LCN:"
+#~ msgstr "Aktivoi antenni LCN:"
+
+#~ msgid "LCN plugin for DVB-T/T2 services"
+#~ msgstr "LCN plugin DVB-T/T2 palvelua varten"
+
+#~ msgid "LCN rules:"
+#~ msgstr "LCN säännöt:"
+
+#~ msgid "No entry in lcn db. Please do a service scan."
+#~ msgstr "Ei merkintää lcn db:. Suorita huolto tarkistus."
+
+#~ msgid "Rebuild"
+#~ msgstr "Luodaan"
+
+#~ msgid "Rebuild LCN bouquet now?"
+#~ msgstr "Luodaanko LCN lista nyt?"
+
+#~ msgid "Terrestrial bouquet:"
+#~ msgstr "Antenni suosikkilista:"
 
 #~ msgid "Alternative numbering mode"
 #~ msgstr "Vaihtoehtoinen numerointitapa"
