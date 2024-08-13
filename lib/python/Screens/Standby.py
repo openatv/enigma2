@@ -7,6 +7,7 @@ from Components.AVSwitch import AVSwitch
 from Components.config import config
 from Components.Console import Console
 from Components.Harddisk import harddiskmanager
+from Components.ImportChannels import ImportChannels
 from Components.Label import Label
 import Components.RecordingConfig
 from Components.Sources.StreamService import StreamServiceList
@@ -255,6 +256,8 @@ class Standby2(Screen):
 		globalActionMap.setEnabled(True)
 		for hdd in harddiskmanager.HDDList():
 			hdd[1].setIdleTime(int(config.usage.hdd_standby.value))  # HDD standby timer value (box active)
+		if config.usage.remote_fallback_import_standby.value:
+			ImportChannels()
 
 	def __onFirstExecBegin(self):
 		global inStandby

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-21 14:25+0000\n"
+"POT-Creation-Date: 2024-08-04 16:49+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1190,6 +1190,10 @@ msgstr ""
 msgid "%s has been disabled."
 msgstr ""
 
+#, python-format
+msgid "%s imported from remote receiver."
+msgstr ""
+
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
 msgid "%s is no longer used. Should it be deleted?"
@@ -1980,6 +1984,12 @@ msgstr "Thêm ghi âm (dừng sau sự kiện hiện tại)"
 msgid "Add service"
 msgstr "Thêm dịch vụ"
 
+msgid "Add service names"
+msgstr ""
+
+msgid "Add service names to each #SERVICE entry."
+msgstr ""
+
 msgid "Add service to AutoCam"
 msgstr ""
 
@@ -2245,6 +2255,9 @@ msgstr "Cũng nhập khi hộp rời khỏi chế độ chờ"
 msgid "Also on standby"
 msgstr "Ngoài ra ở chế độ chờ"
 
+msgid "Also use a #DESCRIPTION line after each #SERVICE line to hold the service's name."
+msgstr ""
+
 msgid "Alternative"
 msgstr "Thay thế"
 
@@ -2259,9 +2272,6 @@ msgstr "[chỉnh sửa thay thế]"
 
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr "URL thay thế cho DVB-T / C hoặc ATSC"
-
-msgid "Alternative numbering mode"
-msgstr "Chế độ đánh số thay thế"
 
 msgid "Alternative radio mode"
 msgstr "Chế độ radio thay thế"
@@ -3116,6 +3126,9 @@ msgstr ""
 msgid "Bouquets"
 msgstr ""
 
+msgid "Bouquets start at 1"
+msgstr ""
+
 msgid "Bouvet Island"
 msgstr "Đảo Bouvet"
 
@@ -3800,7 +3813,13 @@ msgstr ""
 msgid "Channel Selection Context Menu Navigation Actions"
 msgstr ""
 
+msgid "Channel Selection List"
+msgstr ""
+
 msgid "Channel Selection Navigation Actions"
+msgstr ""
+
+msgid "Channel Selection Screen"
 msgstr ""
 
 msgid "Channel Selection Settings"
@@ -3865,6 +3884,15 @@ msgstr "Kênh:"
 
 msgid "ChannelEPG Settings"
 msgstr "Cài đặt ChannelEPG"
+
+msgid "Channels"
+msgstr ""
+
+msgid "Channels and EPG"
+msgstr ""
+
+msgid "Channels only"
+msgstr ""
 
 msgid "Chap."
 msgstr "Chap."
@@ -4261,6 +4289,9 @@ msgstr "Định dạng màu"
 msgid "Color space"
 msgstr "Không gian màu"
 
+msgid "Colored Text"
+msgstr ""
+
 msgid "Combined"
 msgstr ""
 
@@ -4410,6 +4441,9 @@ msgstr "Định cấu hình nếu và cách chỉ báo bản ghi sẽ được h
 msgid "Configure if and how wide the service name column will be shown in the channel selection list."
 msgstr "Định cấu hình nếu và độ rộng của cột tên dịch vụ sẽ được hiển thị trong danh sách chọn kênh."
 
+msgid "Configure if crypto icons will be shown in the channel selection list."
+msgstr ""
+
 msgid "Configure if epg.dat should be saved at all."
 msgstr "Cấu hình nếu epg.dat nên được lưu ở tất cả."
 
@@ -4418,6 +4452,9 @@ msgstr "Cấu hình nếu picons dịch vụ sẽ được hiển thị trong qu
 
 msgid "Configure if service picons will be shown in the service list."
 msgstr "Cấu hình nếu picons dịch vụ sẽ được hiển thị trong dịch vụ."
+
+msgid "Configure if service type icons will be shown."
+msgstr ""
 
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
 msgstr "Định cấu hình nếu phụ đề nên chuyển đổi giữa bình thường, in nghiêng, in đậm và đậm"
@@ -6711,6 +6748,9 @@ msgstr "Lựa chọn ngôn ngữ EPG 2"
 msgid "EPG location"
 msgstr "Vị trí EPG"
 
+msgid "EPG only"
+msgstr ""
+
 msgid "EPGSearch"
 msgstr "Tìm kiếm EPG"
 
@@ -7045,9 +7085,6 @@ msgstr "Cho phép máy thu enigma2 từ xa cố gắng điều chỉnh các dị
 msgid "Enable teletext caching"
 msgstr "Kích hoạt bộ đệm ẩn teletext"
 
-msgid "Enable terrestrial LCN:"
-msgstr "Kích hoạt LCN trên mặt đất:"
-
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr ""
 
@@ -7212,6 +7249,9 @@ msgstr "Nhập địa chỉ IP"
 
 msgid "Enter PIN"
 msgstr "Nhập PIN"
+
+msgid "Enter URL"
+msgstr ""
 
 msgid "Enter a description for this timer."
 msgstr ""
@@ -7450,12 +7490,21 @@ msgid ""
 "%s"
 msgstr ""
 
+msgid "Error moving 'epg.dat' to its destination!"
+msgstr ""
+
 #, fuzzy
 msgid "Error opening recording file"
 msgstr "ghi âm thật hay giả"
 
 msgid "Error reading webpage!"
 msgstr "Lỗi đọc trang web!"
+
+msgid "Error retrieving 'epg.dat' from the remote receiver!"
+msgstr ""
+
+msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
+msgstr ""
 
 msgid "Error text:"
 msgstr ""
@@ -7471,6 +7520,12 @@ msgid ""
 msgstr ""
 "Lỗi trong khi truy xuất thông tin hẹn giờ dự phòng\n"
 "%s"
+
+msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
+msgstr ""
+
+msgid "Error writing 'epg.dat' on the remote receiver!"
+msgstr ""
 
 msgid "Error, unknown Result!"
 msgstr "Lỗi, chưa biết kết quả!"
@@ -7947,6 +8002,9 @@ msgstr ""
 msgid "Fallback Font *"
 msgstr ""
 
+msgid "Fallback Timer"
+msgstr "Hẹn giờ dự phòng"
+
 msgid "Fallback remote receiver"
 msgstr "Dự phòng thu từ xa"
 
@@ -7968,8 +8026,8 @@ msgstr "Dự phòng thu từ xa cho DVB-C"
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Dự phòng thu từ xa cho DVB-T"
 
-msgid "Fallback Timer"
-msgstr "Hẹn giờ dự phòng"
+msgid "Fallback remote receiver setup"
+msgstr ""
 
 msgid "Fallback tuner setup"
 msgstr "Thiết lập điều chỉnh dự phòng"
@@ -9211,7 +9269,7 @@ msgstr "IP"
 msgid "I/O priority for scripts"
 msgstr ""
 
-msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr ""
 
 msgid "IMDb Details"
@@ -9800,20 +9858,8 @@ msgstr "Cài đặt dịch vụ"
 msgid "Installing Software..."
 msgstr "Cài đặt phần mềm ..."
 
-msgid "Installing feeds from IPK ..."
-msgstr "Cài đặt nguồn cấp dữ liệu từ IPK ..."
-
-msgid "Installing feeds from feed ..."
-msgstr "Cài đặt nguồn cấp dữ liệu từ nguồn cấp dữ liệu ..."
-
 msgid "Installing package."
 msgstr ""
-
-msgid "Installing plugins from IPK ..."
-msgstr "Cài đặt plugin từ IPK ..."
-
-msgid "Installing plugins from feed ..."
-msgstr "Cài đặt plugin từ nguồn cấp dữ liệu ..."
 
 msgid "Instant Recording Actions"
 msgstr ""
@@ -10190,11 +10236,23 @@ msgstr "Tốc độ cuộn LCD"
 msgid "LCD/Front panel *"
 msgstr ""
 
-msgid "LCN plugin for DVB-T/T2 services"
-msgstr "Plugin LCN cho các dịch vụ DVB-T / T2"
+msgid "LCN Scanner"
+msgstr ""
 
-msgid "LCN rules:"
-msgstr "Quy tắc LCN:"
+msgid "LCN Scanner Actions"
+msgstr ""
+
+msgid "LCN Scanner Settings"
+msgstr ""
+
+msgid "LCN Scanner plugin for DVB-C/T/T2 services"
+msgstr ""
+
+msgid "LCN numbering"
+msgstr ""
+
+msgid "LCN rules"
+msgstr ""
 
 msgid "LCN style QuickSelect entry selection"
 msgstr ""
@@ -10842,6 +10900,9 @@ msgstr "Quét thủ công các dịch vụ"
 msgid "Manual transponder"
 msgstr "Hướng dẫn sử dụng"
 
+msgid "Manually import from fallback tuner"
+msgstr ""
+
 msgid "Manufacturer"
 msgstr "Nhà chế tạo"
 
@@ -11100,6 +11161,9 @@ msgstr ""
 msgid "Miscellaneous"
 msgstr ""
 
+msgid "Miscellaneous languages"
+msgstr ""
+
 msgid "Misconfiguration in channel allocation"
 msgstr ""
 
@@ -11271,6 +11335,9 @@ msgstr ""
 msgid "Move down a screen"
 msgstr ""
 
+msgid "Move down a screen / Move to next item"
+msgstr ""
+
 msgid "Move down a screen in the panel"
 msgstr ""
 
@@ -11428,10 +11495,16 @@ msgstr ""
 msgid "Move to the next category in the list"
 msgstr ""
 
+msgid "Move to the next item"
+msgstr ""
+
 msgid "Move to the next item in the list"
 msgstr ""
 
 msgid "Move to the previous category in the list"
+msgstr ""
+
+msgid "Move to the previous item"
 msgstr ""
 
 msgid "Move to the previous item in list"
@@ -11451,6 +11524,9 @@ msgid "Move up a page / screen"
 msgstr ""
 
 msgid "Move up a screen"
+msgstr ""
+
+msgid "Move up a screen / Move to previous item"
 msgstr ""
 
 msgid "Move up a screen in the panel"
@@ -11956,6 +12032,9 @@ msgstr "Niue"
 msgid "No"
 msgstr "Không"
 
+msgid "No 'epg.dat' file found on the remote receiver!"
+msgstr ""
+
 msgid "No (supported) DVDROM found!"
 msgstr "Không tìm thấy (hỗ trợ) DVDROM!"
 
@@ -12019,9 +12098,6 @@ msgstr "Không có chỉ số miễn phí có sẵn"
 
 msgid "No displayable files on this medium found!"
 msgstr "Không tìm thấy tập tin nào trên phương tiện này!"
-
-msgid "No entry in lcn db. Please do a service scan."
-msgstr "Không có mục trong lcn db. Hãy làm một dịch vụ quét."
 
 #, fuzzy
 msgid "No error"
@@ -12363,6 +12439,9 @@ msgstr "Số lượng hàng để hiển thị"
 
 msgid "Number or SMS style data entry"
 msgstr "Nhập dữ liệu kiểu số hoặc SMS"
+
+msgid "Numbering mode"
+msgstr ""
 
 msgid "OEM model"
 msgstr ""
@@ -13347,6 +13426,9 @@ msgstr "Xin vui lòng chờ"
 msgid "Please wait for activation of your network configuration..."
 msgstr "Vui lòng đợi kích hoạt cấu hình mạng của bạn ..."
 
+msgid "Please wait while LCN bouquets are created/updated..."
+msgstr ""
+
 msgid "Please wait while feeds are updated..."
 msgstr ""
 
@@ -14242,12 +14324,6 @@ msgstr ""
 msgid "Reboot"
 msgstr "Khởi động lại"
 
-msgid "Rebuild"
-msgstr "Tái tạo"
-
-msgid "Rebuild LCN bouquet now?"
-msgstr "Tái tạo gói kênh LCN bây giờ?"
-
 msgid "Rec"
 msgstr "Ghi"
 
@@ -14286,6 +14362,9 @@ msgid "Record - same as record button"
 msgstr "Ghi - giống như nút ghi"
 
 msgid "Record Actions"
+msgstr ""
+
+msgid "Record Icon"
 msgstr ""
 
 msgid "Record next"
@@ -14641,9 +14720,6 @@ msgstr "Xóa tiêu đề hiện được chọn"
 
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Xóa thư mục đã chọn khỏi dấu trang"
-
-msgid "Remove plugins ..."
-msgstr ""
 
 msgid "Remove service from AutoCam"
 msgstr ""
@@ -15346,13 +15422,8 @@ msgstr ""
 msgid "Save settings and EPG data."
 msgstr "Lưu cài đặt và dữ liệu EPG"
 
-#, python-format
-msgid ""
-"Save the commands and the output to a file?\n"
-"('%s')"
-msgstr ""
-"Lưu các lệnh và đầu ra vào một tập tin?\n"
-"('%s')"
+msgid "Save the commands and output to the log file?"
+msgstr "Lưu các lệnh và đầu ra vào một tập tin?"
 
 msgid "Save the left column directory location on exit."
 msgstr ""
@@ -15419,6 +15490,9 @@ msgstr "Quét các tiện ích mở rộng cục bộ và cài đặt chúng"
 
 msgid "Scan for local extensions and install them."
 msgstr "Quét các tiện ích mở rộng cục bộ và cài đặt chúng."
+
+msgid "Scan for terrestrial LCNs and create LCN bouquets"
+msgstr ""
 
 msgid "Scan wireless networks"
 msgstr "Quét mạng không dây"
@@ -15616,6 +15690,9 @@ msgstr "Chọn 'phân cực' nếu sử dụng LNB 'phổ quát', nếu không h
 msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
 msgstr "Chọn 'nhà cung cấp' để quét từ danh sách ghép kênh cáp được xác định trước. Chọn 'dải' để chỉ quét một số phần nhất định của phổ. Chọn 'bước' để quét theo các bước của băng thông tần số cụ thể."
 
+msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
+msgstr ""
+
 msgid "Select 'Yes' if an end time is required for this timer."
 msgstr ""
 
@@ -15806,6 +15883,9 @@ msgid "Select 'Yes' to show the channel list after switching between Radio and T
 msgstr "Nếu được đặt thành 'có', danh sách kênh sẽ được hiển thị sau khi chuyển đổi giữa chế độ radio và TV."
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
+msgstr ""
+
+msgid "Select 'Yes' to show this plugin in the Plugin Browser."
 msgstr ""
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
@@ -16271,7 +16351,13 @@ msgstr ""
 msgid "Select the last item in the list"
 msgstr ""
 
+msgid "Select the layout of the information in the services list, from the options provided by the skin, displayed within the ChannelSelection screen."
+msgstr ""
+
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
+msgstr ""
+
+msgid "Select the list of LCN rules to be applied to the scan."
 msgstr ""
 
 #, fuzzy
@@ -16343,6 +16429,9 @@ msgstr "Chọn vệ tinh được kết nối với Cổng-D của công tắc. 
 
 msgid "Select the satellite you want to configure. Once configured you can select and configure other satellites that will be accessed using this same tuner."
 msgstr "Chọn vệ tinh bạn muốn cấu hình. Khi vệ tinh đó được định cấu hình, bạn có thể chọn và định cấu hình các vệ tinh khác sẽ được truy cập bằng cách sử dụng cùng bộ chỉnh này."
+
+msgid "Select the screen layout, from the options provided by the skin, to be used for the ChannelSelection screen."
+msgstr ""
 
 #, fuzzy
 msgid "Select the shifted character set"
@@ -16650,6 +16739,9 @@ msgstr "Số dịch vụ và tên dịch vụ"
 msgid "Service Number, Picon and Service Name"
 msgstr "Số dịch vụ, Picon và Tên dịch vụ"
 
+msgid "Service Scan"
+msgstr ""
+
 #, fuzzy
 msgid "Service Selection Actions"
 msgstr "Hiển thị lựa chọn dịch vụ phụ"
@@ -16877,9 +16969,6 @@ msgstr "Đặt tốc độ cuộn văn bản trên màn hình phía trước, đ
 
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Đặt tốc độ cuộn văn bản trên màn hình phía trước."
-
-msgid "Set the style of the channel list."
-msgstr ""
 
 msgid "Set the time before checking video source for resolution information."
 msgstr "Đặt thời gian trước khi kiểm tra nguồn video để biết thông tin độ phân giải."
@@ -17593,6 +17682,9 @@ msgstr ""
 msgid "Show in Extension Menu"
 msgstr "Hiển thị trong danh sách mở rộng?"
 
+msgid "Show in Plugin Browser"
+msgstr ""
+
 msgid "Show in Standby"
 msgstr "Hiển thị trong chế độ chờ"
 
@@ -17694,6 +17786,12 @@ msgstr "Hiển thị infobar vĩnh viễn trong khi tạm dừng"
 
 msgid "Show picon background color"
 msgstr "Hiển thị màu nền picon"
+
+msgid "Show picons in quickzap"
+msgstr "hiển thị picons trong quickzap"
+
+msgid "Show picons in service list"
+msgstr "hiển thị picons trong danh sách dịch vụ"
 
 msgid "Show picture information"
 msgstr ""
@@ -18892,9 +18990,6 @@ msgstr "DLNA nghiêm ngặt"
 msgid "Stripes"
 msgstr "Sọc"
 
-msgid "Style"
-msgstr ""
-
 msgid "Style:"
 msgstr "Phong cách:"
 
@@ -19396,9 +19491,6 @@ msgstr "Phần Lan"
 
 msgid "Terrestrial"
 msgstr "TH mặt đất"
-
-msgid "Terrestrial bouquet:"
-msgstr "Gói kênh TH mặt đất:"
 
 msgid "Test"
 msgstr ""
@@ -20187,6 +20279,10 @@ msgstr ""
 msgid "This will go fast forward/backward with time frames of x secs."
 msgstr "Điều này sẽ tiến nhanh / lùi với các khung thời gian là x giây"
 
+#, python-format
+msgid "This window will automatically close in %d seconds."
+msgstr ""
+
 msgid "This wizard has finished"
 msgstr ""
 
@@ -20863,9 +20959,6 @@ msgstr ""
 msgid "URL of fallback remote receiver"
 msgstr "URL của máy thu từ xa dự phòng"
 
-msgid "URL of fallback remote receiver."
-msgstr "URL của máy thu từ xa dự phòng"
-
 msgid "USALS"
 msgstr "USALS"
 
@@ -20948,6 +21041,9 @@ msgid "Unicable Matrix"
 msgstr "Uni cáp Matrix"
 
 msgid "Uninstall"
+msgstr ""
+
+msgid "Unique numbering"
 msgstr ""
 
 msgid "United Arab Emirates"
@@ -21273,6 +21369,9 @@ msgstr "Sử dụng LNB tròn"
 msgid "Use defaults"
 msgstr ""
 
+msgid "Use description lines"
+msgstr ""
+
 msgid "Use extended List"
 msgstr "Sử dụng danh sách mở rộng"
 
@@ -21329,6 +21428,12 @@ msgstr "Sử dụng đo năng lượng"
 
 msgid "Use small screen"
 msgstr "Sử dụng màn hình mỏng"
+
+msgid "Use spacer lines"
+msgstr ""
+
+msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
+msgstr ""
 
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr ""
@@ -22121,9 +22226,6 @@ msgstr "Khi được bật, luôn luôn giải mã các luồng http. Điều n�
 
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Khi được bật, cần xác thực để xem luồng http."
-
-msgid "When enabled, channel numbering will start at '1' for each bouquet."
-msgstr "Khi được bật, đánh số kênh sẽ bắt đầu ở '1' cho mỗi bó hoa."
 
 msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
 msgstr "Khi được bật, nội dung có tỷ lệ khung hình 4: 3 sẽ được kéo dài để vừa với màn hình."
@@ -23655,12 +23757,6 @@ msgstr "xuất trình thẻ với uphop 8"
 msgid "show cards with uphop 9"
 msgstr "xuất trình thẻ với uphop 9"
 
-msgid "show picons in quickzap"
-msgstr "hiển thị picons trong quickzap"
-
-msgid "show picons in service list"
-msgstr "hiển thị picons trong danh sách dịch vụ"
-
 msgid "show program information..."
 msgstr "hiển thị thông tin chương trình ..."
 
@@ -23896,6 +23992,48 @@ msgstr "có (giữ thức ăn)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Enable terrestrial LCN:"
+#~ msgstr "Kích hoạt LCN trên mặt đất:"
+
+#~ msgid "LCN plugin for DVB-T/T2 services"
+#~ msgstr "Plugin LCN cho các dịch vụ DVB-T / T2"
+
+#~ msgid "LCN rules:"
+#~ msgstr "Quy tắc LCN:"
+
+#~ msgid "No entry in lcn db. Please do a service scan."
+#~ msgstr "Không có mục trong lcn db. Hãy làm một dịch vụ quét."
+
+#~ msgid "Rebuild"
+#~ msgstr "Tái tạo"
+
+#~ msgid "Rebuild LCN bouquet now?"
+#~ msgstr "Tái tạo gói kênh LCN bây giờ?"
+
+#~ msgid "Terrestrial bouquet:"
+#~ msgstr "Gói kênh TH mặt đất:"
+
+#~ msgid "Alternative numbering mode"
+#~ msgstr "Chế độ đánh số thay thế"
+
+#~ msgid "When enabled, channel numbering will start at '1' for each bouquet."
+#~ msgstr "Khi được bật, đánh số kênh sẽ bắt đầu ở '1' cho mỗi bó hoa."
+
+#~ msgid "Installing feeds from IPK ..."
+#~ msgstr "Cài đặt nguồn cấp dữ liệu từ IPK ..."
+
+#~ msgid "Installing feeds from feed ..."
+#~ msgstr "Cài đặt nguồn cấp dữ liệu từ nguồn cấp dữ liệu ..."
+
+#~ msgid "Installing plugins from IPK ..."
+#~ msgstr "Cài đặt plugin từ IPK ..."
+
+#~ msgid "Installing plugins from feed ..."
+#~ msgstr "Cài đặt plugin từ nguồn cấp dữ liệu ..."
+
+#~ msgid "URL of fallback remote receiver."
+#~ msgstr "URL của máy thu từ xa dự phòng"
 
 #~ msgid ""
 #~ "\n"

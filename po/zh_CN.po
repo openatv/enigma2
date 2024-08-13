@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-21 14:25+0000\n"
+"POT-Creation-Date: 2024-08-04 16:49+0000\n"
 "PO-Revision-Date: 2023-08-11 04:46+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -1188,6 +1188,10 @@ msgstr ""
 msgid "%s has been disabled."
 msgstr ""
 
+#, python-format
+msgid "%s imported from remote receiver."
+msgstr ""
+
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
 msgid "%s is no longer used. Should it be deleted?"
@@ -1974,6 +1978,12 @@ msgstr "添加录制(当前事件后停止)"
 msgid "Add service"
 msgstr "添加频道"
 
+msgid "Add service names"
+msgstr ""
+
+msgid "Add service names to each #SERVICE entry."
+msgstr ""
+
 msgid "Add service to AutoCam"
 msgstr ""
 
@@ -2235,6 +2245,9 @@ msgstr "当接收机离开待机状态时也导入"
 msgid "Also on standby"
 msgstr "同时待机"
 
+msgid "Also use a #DESCRIPTION line after each #SERVICE line to hold the service's name."
+msgstr ""
+
 msgid "Alternative"
 msgstr "备选方案"
 
@@ -2249,9 +2262,6 @@ msgstr "[编辑替代项目]"
 
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr "DVB-T/C或ATSC替代URL地址"
-
-msgid "Alternative numbering mode"
-msgstr "可选编号模式"
 
 msgid "Alternative radio mode"
 msgstr "可选广播模式"
@@ -3093,6 +3103,9 @@ msgstr ""
 msgid "Bouquets"
 msgstr ""
 
+msgid "Bouquets start at 1"
+msgstr ""
+
 msgid "Bouvet Island"
 msgstr "布韦岛"
 
@@ -3778,7 +3791,13 @@ msgstr ""
 msgid "Channel Selection Context Menu Navigation Actions"
 msgstr ""
 
+msgid "Channel Selection List"
+msgstr ""
+
 msgid "Channel Selection Navigation Actions"
+msgstr ""
+
+msgid "Channel Selection Screen"
 msgstr ""
 
 msgid "Channel Selection Settings"
@@ -3843,6 +3862,15 @@ msgstr "频道:"
 
 msgid "ChannelEPG Settings"
 msgstr "频道EPG设置"
+
+msgid "Channels"
+msgstr ""
+
+msgid "Channels and EPG"
+msgstr ""
+
+msgid "Channels only"
+msgstr ""
 
 msgid "Chap."
 msgstr "章."
@@ -4236,6 +4264,9 @@ msgstr "色彩格式"
 msgid "Color space"
 msgstr "色彩空间"
 
+msgid "Colored Text"
+msgstr ""
+
 msgid "Combined"
 msgstr ""
 
@@ -4382,6 +4413,9 @@ msgstr "配置录制指示器在频道选择列表中如何显示."
 msgid "Configure if and how wide the service name column will be shown in the channel selection list."
 msgstr "配置频道选择列表中显示频道名称列的宽度."
 
+msgid "Configure if crypto icons will be shown in the channel selection list."
+msgstr ""
+
 msgid "Configure if epg.dat should be saved at all."
 msgstr "配置是否应该保存epg.dat."
 
@@ -4390,6 +4424,9 @@ msgstr "配置picon图标是否将在快速切换中显示."
 
 msgid "Configure if service picons will be shown in the service list."
 msgstr "配置picon图标是否将显示在频道列表中."
+
+msgid "Configure if service type icons will be shown."
+msgstr ""
 
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
 msgstr "配置字幕是否应在正常、斜体、粗体和粗体斜体之间切换"
@@ -6657,6 +6694,9 @@ msgstr "EPG语言选择2"
 msgid "EPG location"
 msgstr "EPG位置"
 
+msgid "EPG only"
+msgstr ""
+
 msgid "EPGSearch"
 msgstr "EPG搜索"
 
@@ -6980,9 +7020,6 @@ msgstr "允许远程enigma2接收器尝试调谐到本地无法调谐到的频�
 msgid "Enable teletext caching"
 msgstr "启用图文电视缓存"
 
-msgid "Enable terrestrial LCN:"
-msgstr "启用地面波LCN:"
-
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "启用高级HDMI-CEC设置选项."
 
@@ -7148,6 +7185,9 @@ msgstr "输入IP地址"
 
 msgid "Enter PIN"
 msgstr "输入PIN"
+
+msgid "Enter URL"
+msgstr ""
 
 msgid "Enter a description for this timer."
 msgstr ""
@@ -7381,11 +7421,20 @@ msgid ""
 "%s"
 msgstr ""
 
+msgid "Error moving 'epg.dat' to its destination!"
+msgstr ""
+
 msgid "Error opening recording file"
 msgstr "打开录制文件时出错"
 
 msgid "Error reading webpage!"
 msgstr "读取网页时出错！"
+
+msgid "Error retrieving 'epg.dat' from the remote receiver!"
+msgstr ""
+
+msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
+msgstr ""
 
 msgid "Error text:"
 msgstr ""
@@ -7401,6 +7450,12 @@ msgid ""
 msgstr ""
 "检索备用定时器信息时出错\n"
 "%s"
+
+msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
+msgstr ""
+
+msgid "Error writing 'epg.dat' on the remote receiver!"
+msgstr ""
 
 msgid "Error, unknown Result!"
 msgstr "错误,未知结果!"
@@ -7880,6 +7935,9 @@ msgstr ""
 msgid "Fallback Font *"
 msgstr ""
 
+msgid "Fallback Timer"
+msgstr "备用定时器"
+
 msgid "Fallback remote receiver"
 msgstr "备用的远程接收器"
 
@@ -7901,8 +7959,8 @@ msgstr "DVB-CATSC备用远程接收器"
 msgid "Fallback remote receiver for DVB-T"
 msgstr "DVB-TATSC备用远程接收器"
 
-msgid "Fallback Timer"
-msgstr "备用定时器"
+msgid "Fallback remote receiver setup"
+msgstr ""
 
 msgid "Fallback tuner setup"
 msgstr "设置备用调谐器"
@@ -9115,7 +9173,7 @@ msgstr "I"
 msgid "I/O priority for scripts"
 msgstr ""
 
-msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11新款"
 
 msgid "IMDb Details"
@@ -9698,20 +9756,8 @@ msgstr "安装服务"
 msgid "Installing Software..."
 msgstr "正在安装软件..."
 
-msgid "Installing feeds from IPK ..."
-msgstr "正在从IPK包中安装源..."
-
-msgid "Installing feeds from feed ..."
-msgstr "正在从源中安装源..."
-
 msgid "Installing package."
 msgstr ""
-
-msgid "Installing plugins from IPK ..."
-msgstr "正在从IPK包安装插件..."
-
-msgid "Installing plugins from feed ..."
-msgstr "正在从数据源中安装插件..."
 
 msgid "Instant Recording Actions"
 msgstr ""
@@ -10081,11 +10127,23 @@ msgstr "LCD滚屏速度"
 msgid "LCD/Front panel *"
 msgstr ""
 
-msgid "LCN plugin for DVB-T/T2 services"
-msgstr "用于DVB-T/T2频道的LCN插件"
+msgid "LCN Scanner"
+msgstr ""
 
-msgid "LCN rules:"
-msgstr "LCN规则:"
+msgid "LCN Scanner Actions"
+msgstr ""
+
+msgid "LCN Scanner Settings"
+msgstr ""
+
+msgid "LCN Scanner plugin for DVB-C/T/T2 services"
+msgstr ""
+
+msgid "LCN numbering"
+msgstr ""
+
+msgid "LCN rules"
+msgstr ""
 
 msgid "LCN style QuickSelect entry selection"
 msgstr ""
@@ -10717,6 +10775,9 @@ msgstr "手动扫描频道"
 msgid "Manual transponder"
 msgstr "手动转发器扫描"
 
+msgid "Manually import from fallback tuner"
+msgstr ""
+
 msgid "Manufacturer"
 msgstr "制造商"
 
@@ -10966,6 +11027,9 @@ msgstr "Mipsel架构"
 msgid "Miscellaneous"
 msgstr "其他"
 
+msgid "Miscellaneous languages"
+msgstr ""
+
 msgid "Misconfiguration in channel allocation"
 msgstr "频道分配中的错误配置"
 
@@ -11133,6 +11197,9 @@ msgstr "向下移动一个页面/屏幕"
 msgid "Move down a screen"
 msgstr "向下移动一个屏幕"
 
+msgid "Move down a screen / Move to next item"
+msgstr ""
+
 msgid "Move down a screen in the panel"
 msgstr ""
 
@@ -11278,10 +11345,16 @@ msgstr ""
 msgid "Move to the next category in the list"
 msgstr ""
 
+msgid "Move to the next item"
+msgstr ""
+
 msgid "Move to the next item in the list"
 msgstr ""
 
 msgid "Move to the previous category in the list"
+msgstr ""
+
+msgid "Move to the previous item"
 msgstr ""
 
 msgid "Move to the previous item in list"
@@ -11301,6 +11374,9 @@ msgstr "向上移动页面/屏幕"
 
 msgid "Move up a screen"
 msgstr "向上移动一页"
+
+msgid "Move up a screen / Move to previous item"
+msgstr ""
 
 msgid "Move up a screen in the panel"
 msgstr ""
@@ -11787,6 +11863,9 @@ msgstr "纽埃"
 msgid "No"
 msgstr "否"
 
+msgid "No 'epg.dat' file found on the remote receiver!"
+msgstr ""
+
 msgid "No (supported) DVDROM found!"
 msgstr "没有发现(支持)DVDROM!"
 
@@ -11847,9 +11926,6 @@ msgstr "没有可用的解析器"
 
 msgid "No displayable files on this medium found!"
 msgstr "在此介质上没有发现可显示的文件！"
-
-msgid "No entry in lcn db. Please do a service scan."
-msgstr "没有进入LCN输入数据库.请做一个频道扫描."
 
 msgid "No error"
 msgstr "无错误"
@@ -12186,6 +12262,9 @@ msgstr "要显示的行数"
 
 msgid "Number or SMS style data entry"
 msgstr "数字或短信样式数据输入"
+
+msgid "Numbering mode"
+msgstr ""
 
 msgid "OEM model"
 msgstr "原装型号"
@@ -13156,6 +13235,9 @@ msgstr "请稍候"
 msgid "Please wait for activation of your network configuration..."
 msgstr "正在激活网络配置,请稍候..."
 
+msgid "Please wait while LCN bouquets are created/updated..."
+msgstr ""
+
 msgid "Please wait while feeds are updated..."
 msgstr ""
 
@@ -14041,12 +14123,6 @@ msgstr "后部"
 msgid "Reboot"
 msgstr "重启"
 
-msgid "Rebuild"
-msgstr "重建"
-
-msgid "Rebuild LCN bouquet now?"
-msgstr "是否重建LCN自定义组?"
-
 msgid "Rec"
 msgstr "录制"
 
@@ -14086,6 +14162,9 @@ msgstr "录制－与录制键相同"
 
 msgid "Record Actions"
 msgstr "录制动作"
+
+msgid "Record Icon"
+msgstr ""
 
 msgid "Record next"
 msgstr "录制下一个"
@@ -14429,9 +14508,6 @@ msgstr "删除当前选择的标题"
 
 msgid "Remove highlighted directory from bookmarks"
 msgstr "从书签中删除选定的文件夹"
-
-msgid "Remove plugins ..."
-msgstr ""
 
 msgid "Remove service from AutoCam"
 msgstr ""
@@ -15126,13 +15202,8 @@ msgstr ""
 msgid "Save settings and EPG data."
 msgstr "保存设置和EPG数据"
 
-#, python-format
-msgid ""
-"Save the commands and the output to a file?\n"
-"('%s')"
-msgstr ""
-"将命令和输出保存到文件中?\n"
-"('%s')"
+msgid "Save the commands and output to the log file?"
+msgstr "将命令和输出保存到文件中?"
 
 msgid "Save the left column directory location on exit."
 msgstr ""
@@ -15199,6 +15270,9 @@ msgstr "扫描本地附件包并安装它们"
 
 msgid "Scan for local extensions and install them."
 msgstr "扫描本地扩展并安装它们."
+
+msgid "Scan for terrestrial LCNs and create LCN bouquets"
+msgstr ""
 
 msgid "Scan wireless networks"
 msgstr "扫描无线网络"
@@ -15394,6 +15468,9 @@ msgstr "如果使用'通用'高频头,请选择'极化',否则请查阅LNB规格
 msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
 msgstr "从电缆复用器的预定义列表中选择'供应商'进行扫描.选择'频段'仅扫描频谱的某些部分.选择'频率步长'以特定频率带宽进行扫描."
 
+msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
+msgstr ""
+
 msgid "Select 'Yes' if an end time is required for this timer."
 msgstr ""
 
@@ -15584,6 +15661,9 @@ msgid "Select 'Yes' to show the channel list after switching between Radio and T
 msgstr "如果设置为'是'的频道列表将显示在广播和电视模式之间切换."
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
+msgstr ""
+
+msgid "Select 'Yes' to show this plugin in the Plugin Browser."
 msgstr ""
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
@@ -16048,7 +16128,13 @@ msgstr ""
 msgid "Select the last item in the list"
 msgstr ""
 
+msgid "Select the layout of the information in the services list, from the options provided by the skin, displayed within the ChannelSelection screen."
+msgstr ""
+
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
+msgstr ""
+
+msgid "Select the list of LCN rules to be applied to the scan."
 msgstr ""
 
 msgid "Select the locale from a menu"
@@ -16119,6 +16205,9 @@ msgstr "选择连接到交换机端口D的卫星.如果您不确定,请选择'�
 
 msgid "Select the satellite you want to configure. Once configured you can select and configure other satellites that will be accessed using this same tuner."
 msgstr "选择要配置的卫星.一旦配置了卫星,您就可以 选择和配置将使用同一个调谐器访问的其他卫星."
+
+msgid "Select the screen layout, from the options provided by the skin, to be used for the ChannelSelection screen."
+msgstr ""
 
 msgid "Select the shifted character set"
 msgstr "选择转换后的字符集"
@@ -16420,6 +16509,9 @@ msgstr "频道号和频道名"
 msgid "Service Number, Picon and Service Name"
 msgstr "频道编号,picon和频道名称"
 
+msgid "Service Scan"
+msgstr ""
+
 msgid "Service Selection Actions"
 msgstr "频道选择操作"
 
@@ -16643,9 +16735,6 @@ msgstr "设置前端显示屏上文本的滚动速度,用于某些皮肤中的�
 
 msgid "Set the scrolling speed of text on the front display."
 msgstr "设置前端显示屏上文本的滚动速度."
-
-msgid "Set the style of the channel list."
-msgstr ""
 
 msgid "Set the time before checking video source for resolution information."
 msgstr "设置在检查视频源以获取分辨率信息之前的时间."
@@ -17350,6 +17439,9 @@ msgstr ""
 msgid "Show in Extension Menu"
 msgstr "显示在扩展列表中？"
 
+msgid "Show in Plugin Browser"
+msgstr ""
+
 msgid "Show in Standby"
 msgstr "在待机状态下显示"
 
@@ -17451,6 +17543,12 @@ msgstr "暂停时一直显示信息栏"
 
 msgid "Show picon background color"
 msgstr "显示台标背景颜色"
+
+msgid "Show picons in quickzap"
+msgstr "快速切换显示台标"
+
+msgid "Show picons in service list"
+msgstr "在频道列表上显示台标"
 
 msgid "Show picture information"
 msgstr ""
@@ -18628,9 +18726,6 @@ msgstr "精确DLNA"
 msgid "Stripes"
 msgstr "条纹"
 
-msgid "Style"
-msgstr ""
-
 msgid "Style:"
 msgstr "样式:"
 
@@ -19120,9 +19215,6 @@ msgstr "网球"
 
 msgid "Terrestrial"
 msgstr "地面波"
-
-msgid "Terrestrial bouquet:"
-msgstr "地面波频道组:"
 
 msgid "Test"
 msgstr ""
@@ -19908,6 +20000,10 @@ msgstr ""
 msgid "This will go fast forward/backward with time frames of x secs."
 msgstr "这将以x秒的时间范围快进/快退"
 
+#, python-format
+msgid "This window will automatically close in %d seconds."
+msgstr ""
+
 msgid "This wizard has finished"
 msgstr ""
 
@@ -20569,9 +20665,6 @@ msgstr "网络地址"
 msgid "URL of fallback remote receiver"
 msgstr "备用远程接收器URL"
 
-msgid "URL of fallback remote receiver."
-msgstr "备用远程接收机地址"
-
 msgid "USALS"
 msgstr "极轴"
 
@@ -20653,6 +20746,9 @@ msgid "Unicable Matrix"
 msgstr "单一同轴电缆多输出"
 
 msgid "Uninstall"
+msgstr ""
+
+msgid "Unique numbering"
 msgstr ""
 
 msgid "United Arab Emirates"
@@ -20975,6 +21071,9 @@ msgstr "使用圆极化高频头"
 msgid "Use defaults"
 msgstr "使用默认值"
 
+msgid "Use description lines"
+msgstr ""
+
 msgid "Use extended List"
 msgstr "使用扩展列表"
 
@@ -21031,6 +21130,12 @@ msgstr "功率测量"
 
 msgid "Use small screen"
 msgstr "使用超薄屏幕"
+
+msgid "Use spacer lines"
+msgstr ""
+
+msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
+msgstr ""
 
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr ""
@@ -21808,9 +21913,6 @@ msgstr "启用后,请始终解密接收的HTTP流.这会占用更多资源(解�
 
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "启用后,需要进行身份验证才能观看流媒体."
-
-msgid "When enabled, channel numbering will start at '1' for each bouquet."
-msgstr "启用后,每一个自定义组的频道序号都从'1'开始."
 
 msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
 msgstr "启用后,宽高比为4:3的内容将被拉伸以适合屏幕."
@@ -23320,12 +23422,6 @@ msgstr "使用UPHOP 8显示卡片"
 msgid "show cards with uphop 9"
 msgstr "使用UPHOP 9显示卡片"
 
-msgid "show picons in quickzap"
-msgstr "快速切换显示台标"
-
-msgid "show picons in service list"
-msgstr "在频道列表上显示台标"
-
 msgid "show program information..."
 msgstr "显示程序信息..."
 
@@ -23559,6 +23655,48 @@ msgstr "是(保持订阅源)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enable terrestrial LCN:"
+#~ msgstr "启用地面波LCN:"
+
+#~ msgid "LCN plugin for DVB-T/T2 services"
+#~ msgstr "用于DVB-T/T2频道的LCN插件"
+
+#~ msgid "LCN rules:"
+#~ msgstr "LCN规则:"
+
+#~ msgid "No entry in lcn db. Please do a service scan."
+#~ msgstr "没有进入LCN输入数据库.请做一个频道扫描."
+
+#~ msgid "Rebuild"
+#~ msgstr "重建"
+
+#~ msgid "Rebuild LCN bouquet now?"
+#~ msgstr "是否重建LCN自定义组?"
+
+#~ msgid "Terrestrial bouquet:"
+#~ msgstr "地面波频道组:"
+
+#~ msgid "Alternative numbering mode"
+#~ msgstr "可选编号模式"
+
+#~ msgid "When enabled, channel numbering will start at '1' for each bouquet."
+#~ msgstr "启用后,每一个自定义组的频道序号都从'1'开始."
+
+#~ msgid "Installing feeds from IPK ..."
+#~ msgstr "正在从IPK包中安装源..."
+
+#~ msgid "Installing feeds from feed ..."
+#~ msgstr "正在从源中安装源..."
+
+#~ msgid "Installing plugins from IPK ..."
+#~ msgstr "正在从IPK包安装插件..."
+
+#~ msgid "Installing plugins from feed ..."
+#~ msgstr "正在从数据源中安装插件..."
+
+#~ msgid "URL of fallback remote receiver."
+#~ msgstr "备用远程接收机地址"
 
 #~ msgid ""
 #~ "\n"

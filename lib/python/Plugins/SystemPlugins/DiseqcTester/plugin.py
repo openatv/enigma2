@@ -571,7 +571,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 			self["CmdText"].setText(_("Press OK to get further details for %s") % str(self["progress_list"].getCurrent()[1]))
 
 
-class DiseqcTesterTestTypeSelection(Screen, ConfigListScreen):
+class DiseqcTesterTestTypeSelection(ConfigListScreen, Screen):
 
 	def __init__(self, session, feid):
 		Screen.__init__(self, session)

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-21 14:25+0000\n"
+"POT-Creation-Date: 2024-08-04 16:49+0000\n"
 "PO-Revision-Date: 2021-11-04 23:53+0000\n"
 "Last-Translator: T. Rylle <dk-translation@pm.me>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/da/>\n"
@@ -1185,6 +1185,10 @@ msgstr ""
 msgid "%s has been disabled."
 msgstr ""
 
+#, python-format
+msgid "%s imported from remote receiver."
+msgstr ""
+
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
 msgid "%s is no longer used. Should it be deleted?"
@@ -1971,6 +1975,12 @@ msgstr "Tilføj optagelse (stop efter nuværende begivenhed)"
 msgid "Add service"
 msgstr "Tilføj kanal"
 
+msgid "Add service names"
+msgstr ""
+
+msgid "Add service names to each #SERVICE entry."
+msgstr ""
+
 msgid "Add service to AutoCam"
 msgstr ""
 
@@ -2232,6 +2242,9 @@ msgstr ""
 msgid "Also on standby"
 msgstr "Også ved standby"
 
+msgid "Also use a #DESCRIPTION line after each #SERVICE line to hold the service's name."
+msgstr ""
+
 msgid "Alternative"
 msgstr "Alternativ"
 
@@ -2246,9 +2259,6 @@ msgstr "[alternativ redigering]"
 
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr ""
-
-msgid "Alternative numbering mode"
-msgstr "Alternativ nummereringstilstand"
 
 msgid "Alternative radio mode"
 msgstr "Alternativ Radiotype"
@@ -3093,6 +3103,9 @@ msgstr ""
 msgid "Bouquets"
 msgstr ""
 
+msgid "Bouquets start at 1"
+msgstr ""
+
 msgid "Bouvet Island"
 msgstr "Bouvetøen"
 
@@ -3778,7 +3791,13 @@ msgstr ""
 msgid "Channel Selection Context Menu Navigation Actions"
 msgstr ""
 
+msgid "Channel Selection List"
+msgstr ""
+
 msgid "Channel Selection Navigation Actions"
+msgstr ""
+
+msgid "Channel Selection Screen"
 msgstr ""
 
 msgid "Channel Selection Settings"
@@ -3843,6 +3862,15 @@ msgstr "Kanal:"
 
 msgid "ChannelEPG Settings"
 msgstr "Kanal EPG indstillinger"
+
+msgid "Channels"
+msgstr ""
+
+msgid "Channels and EPG"
+msgstr ""
+
+msgid "Channels only"
+msgstr ""
 
 msgid "Chap."
 msgstr "Kap."
@@ -4237,6 +4265,9 @@ msgstr "Farveformat"
 msgid "Color space"
 msgstr "Farverum"
 
+msgid "Colored Text"
+msgstr ""
+
 msgid "Combined"
 msgstr ""
 
@@ -4384,6 +4415,9 @@ msgstr "Konfigurer om og hvordan optageindikatoren skal vises i kanalvalgslisten
 msgid "Configure if and how wide the service name column will be shown in the channel selection list."
 msgstr "Konfigurer om kanalnavne-kolonnen skal vise i kanalvalgslisten og hvor bred den så skal være."
 
+msgid "Configure if crypto icons will be shown in the channel selection list."
+msgstr ""
+
 msgid "Configure if epg.dat should be saved at all."
 msgstr "Konfigurer om epg.dat overhovedet skal gemmes."
 
@@ -4392,6 +4426,9 @@ msgstr "Konfigurer om kanal Pikoner skal vises i KvikZap."
 
 msgid "Configure if service picons will be shown in the service list."
 msgstr "Konfigurer om kanal Pikoner skal vises i kanallisten."
+
+msgid "Configure if service type icons will be shown."
+msgstr ""
 
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
 msgstr "Konfigurer om undertekst skal skifte mellem normal, kursiv, fed eller fedkursiv"
@@ -6656,6 +6693,9 @@ msgstr "EPG Sprogvalg 2"
 msgid "EPG location"
 msgstr "EPG placering"
 
+msgid "EPG only"
+msgstr ""
+
 msgid "EPGSearch"
 msgstr "EPG Søgning"
 
@@ -6979,9 +7019,6 @@ msgstr "Aktiver at Enigma2 fjernmodtager forsøges til at finde kanaler der ikke
 msgid "Enable teletext caching"
 msgstr "Aktiver Tekst-TV mellemlagring"
 
-msgid "Enable terrestrial LCN:"
-msgstr "Aktiver antenne LCN:"
-
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr ""
 
@@ -7147,6 +7184,9 @@ msgstr "IP adresse"
 
 msgid "Enter PIN"
 msgstr "Indtast PIN"
+
+msgid "Enter URL"
+msgstr ""
 
 msgid "Enter a description for this timer."
 msgstr ""
@@ -7380,11 +7420,20 @@ msgid ""
 "%s"
 msgstr ""
 
+msgid "Error moving 'epg.dat' to its destination!"
+msgstr ""
+
 msgid "Error opening recording file"
 msgstr "Fejl ved åbning af optagelsesfil"
 
 msgid "Error reading webpage!"
 msgstr "Fejl ved læsning webside!"
+
+msgid "Error retrieving 'epg.dat' from the remote receiver!"
+msgstr ""
+
+msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
+msgstr ""
 
 msgid "Error text:"
 msgstr ""
@@ -7397,6 +7446,12 @@ msgstr ""
 msgid ""
 "Error while retrieving fallback timer information\n"
 "%s"
+msgstr ""
+
+msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
+msgstr ""
+
+msgid "Error writing 'epg.dat' on the remote receiver!"
 msgstr ""
 
 msgid "Error, unknown Result!"
@@ -7880,6 +7935,9 @@ msgstr ""
 msgid "Fallback Font *"
 msgstr ""
 
+msgid "Fallback Timer"
+msgstr ""
+
 msgid "Fallback remote receiver"
 msgstr "Fallback remote receiver URL"
 
@@ -7901,7 +7959,7 @@ msgstr "Fallback remote receiver URL"
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Fallback remote receiver URL"
 
-msgid "Fallback Timer"
+msgid "Fallback remote receiver setup"
 msgstr ""
 
 msgid "Fallback tuner setup"
@@ -9123,7 +9181,7 @@ msgstr "IP"
 msgid "I/O priority for scripts"
 msgstr ""
 
-msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 ny model"
 
 msgid "IMDb Details"
@@ -9714,20 +9772,8 @@ msgstr "Installere Tjeneste"
 msgid "Installing Software..."
 msgstr "Installerer software..."
 
-msgid "Installing feeds from IPK ..."
-msgstr "Installere Feeds fra IPK..."
-
-msgid "Installing feeds from feed ..."
-msgstr "Installere Feeds fra feed..."
-
 msgid "Installing package."
 msgstr ""
-
-msgid "Installing plugins from IPK ..."
-msgstr "Installere Plugins fra IPK..."
-
-msgid "Installing plugins from feed ..."
-msgstr "Installere Plugins fra Feed..."
 
 msgid "Instant Recording Actions"
 msgstr ""
@@ -10106,11 +10152,23 @@ msgstr "LCD rullehastighed"
 msgid "LCD/Front panel *"
 msgstr ""
 
-msgid "LCN plugin for DVB-T/T2 services"
-msgstr "LCN Plugin for DVB-T/T2 kanaler"
+msgid "LCN Scanner"
+msgstr ""
 
-msgid "LCN rules:"
-msgstr "LCN regler:"
+msgid "LCN Scanner Actions"
+msgstr ""
+
+msgid "LCN Scanner Settings"
+msgstr ""
+
+msgid "LCN Scanner plugin for DVB-C/T/T2 services"
+msgstr ""
+
+msgid "LCN numbering"
+msgstr ""
+
+msgid "LCN rules"
+msgstr ""
 
 msgid "LCN style QuickSelect entry selection"
 msgstr ""
@@ -10756,6 +10814,9 @@ msgstr "Manuel søgning efter kanaler"
 msgid "Manual transponder"
 msgstr "Manuel transponder"
 
+msgid "Manually import from fallback tuner"
+msgstr ""
+
 msgid "Manufacturer"
 msgstr "Producent"
 
@@ -11015,6 +11076,9 @@ msgstr ""
 msgid "Miscellaneous"
 msgstr "Diverse"
 
+msgid "Miscellaneous languages"
+msgstr ""
+
 msgid "Misconfiguration in channel allocation"
 msgstr "Fejlkonfiguration i kanaltildeling"
 
@@ -11184,6 +11248,9 @@ msgstr ""
 msgid "Move down a screen"
 msgstr "Flyt en skærm ned"
 
+msgid "Move down a screen / Move to next item"
+msgstr ""
+
 msgid "Move down a screen in the panel"
 msgstr ""
 
@@ -11333,10 +11400,16 @@ msgstr ""
 msgid "Move to the next category in the list"
 msgstr ""
 
+msgid "Move to the next item"
+msgstr ""
+
 msgid "Move to the next item in the list"
 msgstr ""
 
 msgid "Move to the previous category in the list"
+msgstr ""
+
+msgid "Move to the previous item"
 msgstr ""
 
 msgid "Move to the previous item in list"
@@ -11356,6 +11429,9 @@ msgstr ""
 
 msgid "Move up a screen"
 msgstr "Flyt en skærm op"
+
+msgid "Move up a screen / Move to previous item"
+msgstr ""
 
 msgid "Move up a screen in the panel"
 msgstr ""
@@ -11851,6 +11927,9 @@ msgstr "Niue"
 msgid "No"
 msgstr "Nej"
 
+msgid "No 'epg.dat' file found on the remote receiver!"
+msgstr ""
+
 msgid "No (supported) DVDROM found!"
 msgstr "Ingen (understøttet) DVDROM fundet!"
 
@@ -11912,9 +11991,6 @@ msgstr "Ingen demux tilgængelig"
 
 msgid "No displayable files on this medium found!"
 msgstr "Der findes ingen synlige filer på dette medie!"
-
-msgid "No entry in lcn db. Please do a service scan."
-msgstr "Ingen poster i LCN DB. Udfør venligst en kanalsøgning."
 
 msgid "No error"
 msgstr "Ingen fejl"
@@ -12254,6 +12330,9 @@ msgstr "Antal rækker der skal vises."
 
 msgid "Number or SMS style data entry"
 msgstr "Nummer eller SMS stil data post"
+
+msgid "Numbering mode"
+msgstr ""
 
 msgid "OEM model"
 msgstr ""
@@ -13239,6 +13318,9 @@ msgstr "Vent venligst"
 msgid "Please wait for activation of your network configuration..."
 msgstr "Vent venligt på aktivering af din netværksopsætning..."
 
+msgid "Please wait while LCN bouquets are created/updated..."
+msgstr ""
+
 msgid "Please wait while feeds are updated..."
 msgstr ""
 
@@ -14129,12 +14211,6 @@ msgstr ""
 msgid "Reboot"
 msgstr "Genstart"
 
-msgid "Rebuild"
-msgstr "Genopbyg"
-
-msgid "Rebuild LCN bouquet now?"
-msgstr "Genopbyg LCN Bukket nu ?"
-
 msgid "Rec"
 msgstr "REC"
 
@@ -14173,6 +14249,9 @@ msgid "Record - same as record button"
 msgstr "Optag - svare til optageknap"
 
 msgid "Record Actions"
+msgstr ""
+
+msgid "Record Icon"
 msgstr ""
 
 msgid "Record next"
@@ -14518,9 +14597,6 @@ msgstr "Fjern nuværende valgte titel"
 
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Fjern valgte mappe fra bogmærker"
-
-msgid "Remove plugins ..."
-msgstr ""
 
 msgid "Remove service from AutoCam"
 msgstr ""
@@ -15220,13 +15296,8 @@ msgstr ""
 msgid "Save settings and EPG data."
 msgstr "Gem indstillinger og EPG data"
 
-#, python-format
-msgid ""
-"Save the commands and the output to a file?\n"
-"('%s')"
-msgstr ""
-"Gem kommandoerne og uddata til en fil?\n"
-"('%s')"
+msgid "Save the commands and output to the log file?"
+msgstr "Gem kommandoerne og uddata til en fil?"
 
 msgid "Save the left column directory location on exit."
 msgstr ""
@@ -15293,6 +15364,9 @@ msgstr "Søg efter lokale udvidelser og installer dem"
 
 msgid "Scan for local extensions and install them."
 msgstr "Søg efter lokale udvidelser og installer dem."
+
+msgid "Scan for terrestrial LCNs and create LCN bouquets"
+msgstr ""
 
 msgid "Scan wireless networks"
 msgstr "Søg trådløse netværk"
@@ -15493,6 +15567,9 @@ msgstr "Vælg 'polarisering' hvis der bruges en 'universal' LNB, hvis ikke konsu
 msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
 msgstr "Vælg 'udbyder' for at søge fra den foruddefinerede liste af multipleksere. Vælg 'bånd' for kun at søge en bestemt del af området. Vælg 'trin' for kun at søge i trin på en bestemt frekvensbåndbredde."
 
+msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
+msgstr ""
+
 msgid "Select 'Yes' if an end time is required for this timer."
 msgstr ""
 
@@ -15683,6 +15760,9 @@ msgid "Select 'Yes' to show the channel list after switching between Radio and T
 msgstr "Hvis sat til'Ja' vil kanallisten blive vist når der skiftes mellem Radio og TV tilstande."
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
+msgstr ""
+
+msgid "Select 'Yes' to show this plugin in the Plugin Browser."
 msgstr ""
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
@@ -16147,7 +16227,13 @@ msgstr ""
 msgid "Select the last item in the list"
 msgstr ""
 
+msgid "Select the layout of the information in the services list, from the options provided by the skin, displayed within the ChannelSelection screen."
+msgstr ""
+
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
+msgstr ""
+
+msgid "Select the list of LCN rules to be applied to the scan."
 msgstr ""
 
 #, fuzzy
@@ -16219,6 +16305,9 @@ msgstr "Vælg satelitten som er forbundet til Port-D på din switch. Vælg 'auto
 
 msgid "Select the satellite you want to configure. Once configured you can select and configure other satellites that will be accessed using this same tuner."
 msgstr "Vælg satelitten du ønsker at konfigurere. Når denne satellit er konfigureret kan du vælge at konfigurere andre satellitter som bliver tilgået med den samme Tuner."
+
+msgid "Select the screen layout, from the options provided by the skin, to be used for the ChannelSelection screen."
+msgstr ""
 
 #, fuzzy
 msgid "Select the shifted character set"
@@ -16524,6 +16613,9 @@ msgstr "Kanal nr. og Kanalnavn"
 msgid "Service Number, Picon and Service Name"
 msgstr "Kanal Nummer, Pikon og Kanalnavn"
 
+msgid "Service Scan"
+msgstr ""
+
 #, fuzzy
 msgid "Service Selection Actions"
 msgstr "IceTV - Kanalvalg"
@@ -16752,9 +16844,6 @@ msgstr "Sæt rullehastigheden af tekst på frontdisplay, dette bliver brugt af s
 
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Sæt rullehastigheden af tekst på frontdisplay."
-
-msgid "Set the style of the channel list."
-msgstr ""
 
 msgid "Set the time before checking video source for resolution information."
 msgstr "Sæt tiden før videokilden kontrolleres for opløsningsinformation."
@@ -17464,6 +17553,9 @@ msgstr ""
 msgid "Show in Extension Menu"
 msgstr "Vis i Udvidelsesliste ?"
 
+msgid "Show in Plugin Browser"
+msgstr ""
+
 msgid "Show in Standby"
 msgstr "Vis i Standby"
 
@@ -17565,6 +17657,12 @@ msgstr "Vis Infobjælke vedvarende ved pause"
 
 msgid "Show picon background color"
 msgstr "Vis Pikon baggrundsfarve"
+
+msgid "Show picons in quickzap"
+msgstr "Vis Pikoner i KvikZap"
+
+msgid "Show picons in service list"
+msgstr "Vis Pikoner i kanalliste"
 
 msgid "Show picture information"
 msgstr ""
@@ -18758,9 +18856,6 @@ msgstr "Strikt DLNA"
 msgid "Stripes"
 msgstr "Striber"
 
-msgid "Style"
-msgstr ""
-
 msgid "Style:"
 msgstr "Stil:"
 
@@ -19263,9 +19358,6 @@ msgstr "Tenis"
 
 msgid "Terrestrial"
 msgstr "DVB-T"
-
-msgid "Terrestrial bouquet:"
-msgstr "DVB-T buket:"
 
 msgid "Test"
 msgstr ""
@@ -20051,6 +20143,10 @@ msgstr ""
 msgid "This will go fast forward/backward with time frames of x secs."
 msgstr "Dette vil gå hurtig frem/tibage med tidsrammer på X sekunder."
 
+#, python-format
+msgid "This window will automatically close in %d seconds."
+msgstr ""
+
 msgid "This wizard has finished"
 msgstr ""
 
@@ -20719,9 +20815,6 @@ msgstr "URL"
 msgid "URL of fallback remote receiver"
 msgstr "URL af fallback remote receiver"
 
-msgid "URL of fallback remote receiver."
-msgstr "URL på perifer fjernmodtager"
-
 msgid "USALS"
 msgstr "USALS"
 
@@ -20803,6 +20896,9 @@ msgid "Unicable Matrix"
 msgstr "Unicable Matriks"
 
 msgid "Uninstall"
+msgstr ""
+
+msgid "Unique numbering"
 msgstr ""
 
 msgid "United Arab Emirates"
@@ -21128,6 +21224,9 @@ msgstr "Brug cirkulær LBN"
 msgid "Use defaults"
 msgstr ""
 
+msgid "Use description lines"
+msgstr ""
+
 msgid "Use extended List"
 msgstr "Brug udvidet liste"
 
@@ -21184,6 +21283,12 @@ msgstr "Brug Strømmåling"
 
 msgid "Use small screen"
 msgstr "Brug slank skærm"
+
+msgid "Use spacer lines"
+msgstr ""
+
+msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
+msgstr ""
 
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr ""
@@ -21966,9 +22071,6 @@ msgstr "Når dette aktiveres, dekrypteres modtagne http-Streams. Dette kræver f
 
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Når dette aktiveres, kræves der godkendelse for at se http-Streams."
-
-msgid "When enabled, channel numbering will start at '1' for each bouquet."
-msgstr "Når dette aktiveres, vil kanalnumerering starte ved '1' for hver Buket."
 
 msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
 msgstr "Når aktiverer, vil indhold med et billedformat på 4:3 blive strukket for at passe til skærmen."
@@ -23498,12 +23600,6 @@ msgstr "show cards with uphop 8"
 msgid "show cards with uphop 9"
 msgstr "show cards with uphop 9"
 
-msgid "show picons in quickzap"
-msgstr "Vis Pikoner i KvikZap"
-
-msgid "show picons in service list"
-msgstr "Vis Pikoner i kanalliste"
-
 msgid "show program information..."
 msgstr "Vis udsendelsesinformation..."
 
@@ -23737,6 +23833,48 @@ msgstr "ja (behold feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enable terrestrial LCN:"
+#~ msgstr "Aktiver antenne LCN:"
+
+#~ msgid "LCN plugin for DVB-T/T2 services"
+#~ msgstr "LCN Plugin for DVB-T/T2 kanaler"
+
+#~ msgid "LCN rules:"
+#~ msgstr "LCN regler:"
+
+#~ msgid "No entry in lcn db. Please do a service scan."
+#~ msgstr "Ingen poster i LCN DB. Udfør venligst en kanalsøgning."
+
+#~ msgid "Rebuild"
+#~ msgstr "Genopbyg"
+
+#~ msgid "Rebuild LCN bouquet now?"
+#~ msgstr "Genopbyg LCN Bukket nu ?"
+
+#~ msgid "Terrestrial bouquet:"
+#~ msgstr "DVB-T buket:"
+
+#~ msgid "Alternative numbering mode"
+#~ msgstr "Alternativ nummereringstilstand"
+
+#~ msgid "When enabled, channel numbering will start at '1' for each bouquet."
+#~ msgstr "Når dette aktiveres, vil kanalnumerering starte ved '1' for hver Buket."
+
+#~ msgid "Installing feeds from IPK ..."
+#~ msgstr "Installere Feeds fra IPK..."
+
+#~ msgid "Installing feeds from feed ..."
+#~ msgstr "Installere Feeds fra feed..."
+
+#~ msgid "Installing plugins from IPK ..."
+#~ msgstr "Installere Plugins fra IPK..."
+
+#~ msgid "Installing plugins from feed ..."
+#~ msgstr "Installere Plugins fra Feed..."
+
+#~ msgid "URL of fallback remote receiver."
+#~ msgstr "URL på perifer fjernmodtager"
 
 #~ msgid ""
 #~ "\n"

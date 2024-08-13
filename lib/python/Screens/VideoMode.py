@@ -58,7 +58,7 @@ def setProgressiveRate(vid_rate, new_rate, new_res, config_res, config_rate):
 	return new_rate
 
 
-class VideoSetup(Screen, ConfigListScreen):
+class VideoSetup(ConfigListScreen, Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		# for the skin: first try VideoSetup, then Setup, this allows individual skinning

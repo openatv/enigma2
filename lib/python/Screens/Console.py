@@ -209,13 +209,13 @@ class Console(Screen):
 				self.cancelMessageBox.close(None)
 			text = ngettext("Command finished.", "Commands finished.", len(self.cmdList))
 			self["text"].appendText(f"\n{self.commandColorStart}>>> {text}{self.commandColorEnd}\n")
-			if not self.errorOcurred and isinstance(self.closeOnSuccess, int):
+			if not self.errorOcurred and not isinstance(self.closeOnSuccess, bool) and self.closeOnSuccess:
 				self["text"].appendText(f"\n{self.commandColorStart}>>> {_("This window will automatically close in %d seconds.") % self.closeOnSuccess}{self.commandColorEnd}\n")
 			self["summary_description"].setText(text)
 			if self.finishedCallback and callable(self.finishedCallback):
 				self.finishedCallback()
 			if not self.errorOcurred and self.closeOnSuccess:
-				if isinstance(self.closeOnSuccess, int):
+				if not isinstance(self.closeOnSuccess, bool):
 					self.setTitle(f"{self.baseTitle} ({self.closeOnSuccess})")
 					self.timer.start(1000)
 				else:
@@ -242,14 +242,14 @@ class ConsoleScrollLabel(ScrollLabel):
 			match attribute:
 				case "commandColor":
 					self.skinAttributes.remove((attribute, value))
-					self.commandColor = f"\c{parseColor(value, 0x00FFFF00).argb():08X}"
+					self.commandColor = rf"\c{parseColor(value, 0x00FFFF00).argb():08X}"
 				case "scriptColor":
 					self.skinAttributes.remove((attribute, value))
-					self.scriptColor = f"\c{parseColor(value, 0x0000FFFF).argb():08X}"
+					self.scriptColor = rf"\c{parseColor(value, 0x0000FFFF).argb():08X}"
 		return ScrollLabel.applySkin(self, desktop, parent)
 
 	def getColors(self):
-		defaultColor = f"\c{self.getForegroundColor():08X}"
+		defaultColor = rf"\c{self.getForegroundColor():08X}"
 		commandColorStart = self.commandColor if hasattr(self, "commandColor") else ""
 		commandColorEnd = defaultColor if commandColorStart else ""
 		scriptColorStart = self.scriptColor if hasattr(self, "scriptColor") else ""

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-21 14:25+0000\n"
+"POT-Creation-Date: 2024-08-04 16:49+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Thai <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/th/>\n"
@@ -1232,6 +1232,10 @@ msgstr ""
 msgid "%s has been disabled."
 msgstr ""
 
+#, python-format
+msgid "%s imported from remote receiver."
+msgstr ""
+
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
 msgid "%s is no longer used. Should it be deleted?"
@@ -2029,6 +2033,12 @@ msgstr ""
 msgid "Add service"
 msgstr "เพิ่มบริการ"
 
+msgid "Add service names"
+msgstr ""
+
+msgid "Add service names to each #SERVICE entry."
+msgstr ""
+
 msgid "Add service to AutoCam"
 msgstr ""
 
@@ -2302,6 +2312,9 @@ msgstr ""
 msgid "Also on standby"
 msgstr ""
 
+msgid "Also use a #DESCRIPTION line after each #SERVICE line to hold the service's name."
+msgstr ""
+
 #, fuzzy
 msgid "Alternative"
 msgstr "เพิ่มทางเลือกอื่น"
@@ -2318,9 +2331,6 @@ msgid "Alternative Edit"
 msgstr "[แก้ไขอื่น]"
 
 msgid "Alternative URLs for DVB-T/C or ATSC"
-msgstr ""
-
-msgid "Alternative numbering mode"
 msgstr ""
 
 msgid "Alternative radio mode"
@@ -3180,6 +3190,9 @@ msgstr ""
 msgid "Bouquets"
 msgstr ""
 
+msgid "Bouquets start at 1"
+msgstr ""
+
 msgid "Bouvet Island"
 msgstr ""
 
@@ -3864,7 +3877,13 @@ msgstr ""
 msgid "Channel Selection Context Menu Navigation Actions"
 msgstr ""
 
+msgid "Channel Selection List"
+msgstr ""
+
 msgid "Channel Selection Navigation Actions"
+msgstr ""
+
+msgid "Channel Selection Screen"
 msgstr ""
 
 #, fuzzy
@@ -3934,6 +3953,15 @@ msgstr "ช่องรายการ:"
 #, fuzzy
 msgid "ChannelEPG Settings"
 msgstr "เลือกช่องรายการ"
+
+msgid "Channels"
+msgstr ""
+
+msgid "Channels and EPG"
+msgstr ""
+
+msgid "Channels only"
+msgstr ""
 
 msgid "Chap."
 msgstr "ตอน"
@@ -4336,6 +4364,9 @@ msgstr ""
 msgid "Color space"
 msgstr "ระบบสี"
 
+msgid "Colored Text"
+msgstr ""
+
 msgid "Combined"
 msgstr ""
 
@@ -4486,6 +4517,9 @@ msgstr ""
 msgid "Configure if and how wide the service name column will be shown in the channel selection list."
 msgstr ""
 
+msgid "Configure if crypto icons will be shown in the channel selection list."
+msgstr ""
+
 msgid "Configure if epg.dat should be saved at all."
 msgstr ""
 
@@ -4493,6 +4527,9 @@ msgid "Configure if service picons will be shown in quickzap."
 msgstr ""
 
 msgid "Configure if service picons will be shown in the service list."
+msgstr ""
+
+msgid "Configure if service type icons will be shown."
 msgstr ""
 
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
@@ -6788,6 +6825,9 @@ msgstr ""
 msgid "EPG location"
 msgstr ""
 
+msgid "EPG only"
+msgstr ""
+
 msgid "EPGSearch"
 msgstr ""
 
@@ -7122,9 +7162,6 @@ msgstr ""
 msgid "Enable teletext caching"
 msgstr ""
 
-msgid "Enable terrestrial LCN:"
-msgstr ""
-
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr ""
 
@@ -7293,6 +7330,9 @@ msgid "Enter IP address"
 msgstr "IP Address"
 
 msgid "Enter PIN"
+msgstr ""
+
+msgid "Enter URL"
 msgstr ""
 
 msgid "Enter a description for this timer."
@@ -7519,10 +7559,19 @@ msgid ""
 "%s"
 msgstr ""
 
+msgid "Error moving 'epg.dat' to its destination!"
+msgstr ""
+
 msgid "Error opening recording file"
 msgstr ""
 
 msgid "Error reading webpage!"
+msgstr ""
+
+msgid "Error retrieving 'epg.dat' from the remote receiver!"
+msgstr ""
+
+msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
 msgstr ""
 
 msgid "Error text:"
@@ -7536,6 +7585,12 @@ msgstr ""
 msgid ""
 "Error while retrieving fallback timer information\n"
 "%s"
+msgstr ""
+
+msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
+msgstr ""
+
+msgid "Error writing 'epg.dat' on the remote receiver!"
 msgstr ""
 
 msgid "Error, unknown Result!"
@@ -8022,6 +8077,9 @@ msgstr ""
 msgid "Fallback Font *"
 msgstr ""
 
+msgid "Fallback Timer"
+msgstr ""
+
 msgid "Fallback remote receiver"
 msgstr ""
 
@@ -8043,7 +8101,7 @@ msgstr ""
 msgid "Fallback remote receiver for DVB-T"
 msgstr ""
 
-msgid "Fallback Timer"
+msgid "Fallback remote receiver setup"
 msgstr ""
 
 msgid "Fallback tuner setup"
@@ -9296,7 +9354,7 @@ msgstr ""
 msgid "I/O priority for scripts"
 msgstr ""
 
-msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr ""
 
 msgid "IMDb Details"
@@ -9889,23 +9947,8 @@ msgstr ""
 msgid "Installing Software..."
 msgstr "กำลังติดตั้ง"
 
-#, fuzzy
-msgid "Installing feeds from IPK ..."
-msgstr "กำลังติดตั้ง"
-
-msgid "Installing feeds from feed ..."
-msgstr ""
-
 msgid "Installing package."
 msgstr ""
-
-#, fuzzy
-msgid "Installing plugins from IPK ..."
-msgstr "กำลังติดตั้ง"
-
-#, fuzzy
-msgid "Installing plugins from feed ..."
-msgstr "กำลังติดตั้ง"
 
 msgid "Instant Recording Actions"
 msgstr ""
@@ -10293,10 +10336,22 @@ msgstr ""
 msgid "LCD/Front panel *"
 msgstr ""
 
-msgid "LCN plugin for DVB-T/T2 services"
+msgid "LCN Scanner"
 msgstr ""
 
-msgid "LCN rules:"
+msgid "LCN Scanner Actions"
+msgstr ""
+
+msgid "LCN Scanner Settings"
+msgstr ""
+
+msgid "LCN Scanner plugin for DVB-C/T/T2 services"
+msgstr ""
+
+msgid "LCN numbering"
+msgstr ""
+
+msgid "LCN rules"
 msgstr ""
 
 msgid "LCN style QuickSelect entry selection"
@@ -10953,6 +11008,9 @@ msgstr ""
 msgid "Manual transponder"
 msgstr "ป้อนทรานสปอนเดอร์เอง"
 
+msgid "Manually import from fallback tuner"
+msgstr ""
+
 msgid "Manufacturer"
 msgstr "ผู้ผลิต"
 
@@ -11214,6 +11272,9 @@ msgstr ""
 msgid "Miscellaneous"
 msgstr ""
 
+msgid "Miscellaneous languages"
+msgstr ""
+
 msgid "Misconfiguration in channel allocation"
 msgstr ""
 
@@ -11386,6 +11447,9 @@ msgstr ""
 msgid "Move down a screen"
 msgstr ""
 
+msgid "Move down a screen / Move to next item"
+msgstr ""
+
 msgid "Move down a screen in the panel"
 msgstr ""
 
@@ -11535,10 +11599,16 @@ msgstr ""
 msgid "Move to the next category in the list"
 msgstr ""
 
+msgid "Move to the next item"
+msgstr ""
+
 msgid "Move to the next item in the list"
 msgstr ""
 
 msgid "Move to the previous category in the list"
+msgstr ""
+
+msgid "Move to the previous item"
 msgstr ""
 
 msgid "Move to the previous item in list"
@@ -11558,6 +11628,9 @@ msgid "Move up a page / screen"
 msgstr ""
 
 msgid "Move up a screen"
+msgstr ""
+
+msgid "Move up a screen / Move to previous item"
 msgstr ""
 
 msgid "Move up a screen in the panel"
@@ -12075,6 +12148,9 @@ msgstr ""
 msgid "No"
 msgstr "ไม่"
 
+msgid "No 'epg.dat' file found on the remote receiver!"
+msgstr ""
+
 msgid "No (supported) DVDROM found!"
 msgstr "ไม่พบดีวีดีรอมที่ใช้งานได้!"
 
@@ -12136,9 +12212,6 @@ msgstr "ไม่มีรายละเอียดเพิ่มเติม
 
 msgid "No displayable files on this medium found!"
 msgstr "ไม่พบชนิดไฟล์ที่สามารถเล่นได้ในสื่อบันทีกนี้!"
-
-msgid "No entry in lcn db. Please do a service scan."
-msgstr ""
 
 #, fuzzy
 msgid "No error"
@@ -12480,6 +12553,9 @@ msgid "Number of rows to display."
 msgstr ""
 
 msgid "Number or SMS style data entry"
+msgstr ""
+
+msgid "Numbering mode"
 msgstr ""
 
 msgid "OEM model"
@@ -13482,6 +13558,9 @@ msgstr "กรุณารอสักครู่..."
 msgid "Please wait for activation of your network configuration..."
 msgstr "กำลังเริ่มใช้งานเครือข่ายที่ตั้ง... กรุณารอสักครู่"
 
+msgid "Please wait while LCN bouquets are created/updated..."
+msgstr ""
+
 msgid "Please wait while feeds are updated..."
 msgstr ""
 
@@ -14390,12 +14469,6 @@ msgstr ""
 msgid "Reboot"
 msgstr "เริ่มระบบใหม่ (Reboot)"
 
-msgid "Rebuild"
-msgstr ""
-
-msgid "Rebuild LCN bouquet now?"
-msgstr ""
-
 msgid "Rec"
 msgstr ""
 
@@ -14435,6 +14508,9 @@ msgid "Record - same as record button"
 msgstr ""
 
 msgid "Record Actions"
+msgstr ""
+
+msgid "Record Icon"
 msgstr ""
 
 #, fuzzy
@@ -14790,9 +14866,6 @@ msgid "Remove currently selected title"
 msgstr "ลบเชื่อเรื่องที่เลือกออก"
 
 msgid "Remove highlighted directory from bookmarks"
-msgstr ""
-
-msgid "Remove plugins ..."
 msgstr ""
 
 msgid "Remove service from AutoCam"
@@ -15507,10 +15580,7 @@ msgstr ""
 msgid "Save settings and EPG data."
 msgstr ""
 
-#, python-format
-msgid ""
-"Save the commands and the output to a file?\n"
-"('%s')"
+msgid "Save the commands and output to the log file?"
 msgstr ""
 
 msgid "Save the left column directory location on exit."
@@ -15579,6 +15649,9 @@ msgid "Scan for local extensions and install them"
 msgstr ""
 
 msgid "Scan for local extensions and install them."
+msgstr ""
+
+msgid "Scan for terrestrial LCNs and create LCN bouquets"
 msgstr ""
 
 #, fuzzy
@@ -15784,6 +15857,9 @@ msgstr ""
 msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
 msgstr ""
 
+msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
+msgstr ""
+
 msgid "Select 'Yes' if an end time is required for this timer."
 msgstr ""
 
@@ -15974,6 +16050,9 @@ msgid "Select 'Yes' to show the channel list after switching between Radio and T
 msgstr ""
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
+msgstr ""
+
+msgid "Select 'Yes' to show this plugin in the Plugin Browser."
 msgstr ""
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
@@ -16445,7 +16524,13 @@ msgstr ""
 msgid "Select the last item in the list"
 msgstr ""
 
+msgid "Select the layout of the information in the services list, from the options provided by the skin, displayed within the ChannelSelection screen."
+msgstr ""
+
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
+msgstr ""
+
+msgid "Select the list of LCN rules to be applied to the scan."
 msgstr ""
 
 #, fuzzy
@@ -16517,6 +16602,9 @@ msgid "Select the satellite which is connected to Port-D of your switch. If you 
 msgstr ""
 
 msgid "Select the satellite you want to configure. Once configured you can select and configure other satellites that will be accessed using this same tuner."
+msgstr ""
+
+msgid "Select the screen layout, from the options provided by the skin, to be used for the ChannelSelection screen."
 msgstr ""
 
 #, fuzzy
@@ -16813,6 +16901,9 @@ msgstr ""
 msgid "Service Number, Picon and Service Name"
 msgstr ""
 
+msgid "Service Scan"
+msgstr ""
+
 #, fuzzy
 msgid "Service Selection Actions"
 msgstr "เลือกการตั้งเวลา"
@@ -17042,9 +17133,6 @@ msgid "Set the scrolling speed of text on the front display, this is used by sof
 msgstr ""
 
 msgid "Set the scrolling speed of text on the front display."
-msgstr ""
-
-msgid "Set the style of the channel list."
 msgstr ""
 
 msgid "Set the time before checking video source for resolution information."
@@ -17772,6 +17860,9 @@ msgstr ""
 msgid "Show in Extension Menu"
 msgstr ""
 
+msgid "Show in Plugin Browser"
+msgstr ""
+
 #, fuzzy
 msgid "Show in Standby"
 msgstr "Standby"
@@ -17880,6 +17971,14 @@ msgstr "แสดงแถบรายการเมื่อมีการเ
 
 msgid "Show picon background color"
 msgstr ""
+
+#, fuzzy
+msgid "Show picons in quickzap"
+msgstr "ช่องนี้ไม่มีการให้บริการ"
+
+#, fuzzy
+msgid "Show picons in service list"
+msgstr "ช่องนี้ไม่มีการให้บริการ"
 
 msgid "Show picture information"
 msgstr ""
@@ -19100,9 +19199,6 @@ msgstr ""
 msgid "Stripes"
 msgstr ""
 
-msgid "Style"
-msgstr ""
-
 msgid "Style:"
 msgstr ""
 
@@ -19606,9 +19702,6 @@ msgstr "จบการทำงาน"
 
 msgid "Terrestrial"
 msgstr "ภาคพื้นดิน"
-
-msgid "Terrestrial bouquet:"
-msgstr ""
 
 msgid "Test"
 msgstr ""
@@ -20362,6 +20455,10 @@ msgstr ""
 msgid "This will go fast forward/backward with time frames of x secs."
 msgstr ""
 
+#, python-format
+msgid "This window will automatically close in %d seconds."
+msgstr ""
+
 msgid "This wizard has finished"
 msgstr ""
 
@@ -21049,9 +21146,6 @@ msgstr ""
 msgid "URL of fallback remote receiver"
 msgstr ""
 
-msgid "URL of fallback remote receiver."
-msgstr ""
-
 msgid "USALS"
 msgstr "USALS"
 
@@ -21135,6 +21229,9 @@ msgid "Unicable Matrix"
 msgstr ""
 
 msgid "Uninstall"
+msgstr ""
+
+msgid "Unique numbering"
 msgstr ""
 
 msgid "United Arab Emirates"
@@ -21454,6 +21551,9 @@ msgstr ""
 msgid "Use defaults"
 msgstr ""
 
+msgid "Use description lines"
+msgstr ""
+
 msgid "Use extended List"
 msgstr ""
 
@@ -21510,6 +21610,12 @@ msgid "Use power measurement"
 msgstr "ใช้ power measurement"
 
 msgid "Use small screen"
+msgstr ""
+
+msgid "Use spacer lines"
+msgstr ""
+
+msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
 msgstr ""
 
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
@@ -22302,9 +22408,6 @@ msgid "When enabled, always unscramble receiving http streams. This takes up mor
 msgstr ""
 
 msgid "When enabled, authentication is required to watch http streams."
-msgstr ""
-
-msgid "When enabled, channel numbering will start at '1' for each bouquet."
 msgstr ""
 
 msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
@@ -23809,14 +23912,6 @@ msgstr ""
 msgid "show cards with uphop 9"
 msgstr ""
 
-#, fuzzy
-msgid "show picons in quickzap"
-msgstr "ช่องนี้ไม่มีการให้บริการ"
-
-#, fuzzy
-msgid "show picons in service list"
-msgstr "ช่องนี้ไม่มีการให้บริการ"
-
 msgid "show program information..."
 msgstr ""
 
@@ -24056,6 +24151,18 @@ msgstr "ใช่ (เก็บฟีดนี้ไว้)"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Installing feeds from IPK ..."
+#~ msgstr "กำลังติดตั้ง"
+
+#, fuzzy
+#~ msgid "Installing plugins from IPK ..."
+#~ msgstr "กำลังติดตั้ง"
+
+#, fuzzy
+#~ msgid "Installing plugins from feed ..."
+#~ msgstr "กำลังติดตั้ง"
 
 #, fuzzy, python-format
 #~ msgid "Backup to destination: %s"

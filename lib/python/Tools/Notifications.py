@@ -53,10 +53,9 @@ def AddNotificationWithUniqueIDCallback(fnc, id, screen, *args, **kwargs):
 
 def RemovePopup(id):
 	# remove similiar notifications
-	print("[Notifications] RemovePopup id = %s" % id)
 	for x in notifications:
 		if x[4] and x[4] == id:
-			print("[Notifications] found in notifications")
+			print("[Notifications] RemovePopup id = %s" % id)
 			notifications.remove(x)
 
 	for x in current_notifications:

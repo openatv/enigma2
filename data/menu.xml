@@ -20,7 +20,7 @@
 		<menu key="information" level="0" text="Information" description="This menu contains selections to display information about the receiver." weight="5">
 			<item key="distribution_info_screen" level="0" text="About openATV" weight="5"><screen module="Information" screen="DistributionInformation" /></item>
 			<item key="receiver_info_screen" level="0" text="Receiver" weight="10"><screen module="Information" screen="ReceiverInformation" /></item>
-			<!--item key="picture_info_screen" level="0" text="Pictures" weight="15"><screen module="Information" screen="PictureInformation" /></item-->
+			<item key="picture_info_screen" level="0" text="Pictures" weight="15" conditional="config.usage.informationShowAllMenuScreens.value"><screen module="Information" screen="PictureInformation" /></item>
 			<item key="tuner_info_screen" level="0" text="Tuners" weight="20"><screen module="Information" screen="TunerInformation" /></item>
 			<item key="storage_info_screen" level="0" text="Storage / Disks" weight="25"><screen module="Information" screen="StorageInformation" /></item>
 			<item key="memory_info_screen" level="0" text="Memory" weight="30"><screen module="Information" screen="MemoryInformation" /></item>
@@ -28,11 +28,11 @@
 			<item key="multiboot_info_screen" level="0" text="MultiBoot" weight="40" requires="canMultiBoot"><screen module="Information" screen="MultiBootInformation" /></item>
 			<item key="streaming_info_screen" level="2" text="Streaming" weight="45"><screen module="Information" screen="StreamingInformation" /></item>
 			<item key="geolocation_info_screen" level="0" text="Geolocation" weight="50"><screen module="Information" screen="GeolocationInformation" /></item>
-			<!--item key="build_info_screen" level="2" text="Build" weight="55"><screen module="Information" screen="BuildInformation" /></item-->
-			<!--item key="system_info_screen" level="2" text="System" weight="60"><screen module="Information" screen="SystemInformation" /></item-->
-			<!--item key="commit_info_screen" level="2" text="Commit" weight="65"><screen module="Information" screen="CommitInformation" /></item-->
-			<!--item key="debug_info_screen" level="2" text="Debug" weight="70"><screen module="Information" screen="DebugInformation" /></item-->
-			<!--item key="translation_info_screen" level="2" text="Translation" weight="75"><screen module="Information" screen="TranslationInformation" /></item-->
+			<item key="build_info_screen" level="2" text="Build" weight="55" conditional="config.usage.informationShowAllMenuScreens.value"><screen module="Information" screen="BuildInformation" /></item>
+			<item key="system_info_screen" level="2" text="System" weight="60" conditional="config.usage.informationShowAllMenuScreens.value"><screen module="Information" screen="SystemInformation" /></item>
+			<item key="commit_info_screen" level="2" text="Commit" weight="65" conditional="config.usage.informationShowAllMenuScreens.value"><screen module="Information" screen="CommitInformation" /></item>
+			<item key="debug_info_screen" level="2" text="Debug" weight="70" conditional="config.usage.informationShowAllMenuScreens.value"><screen module="Information" screen="DebugInformation" /></item>
+			<item key="translation_info_screen" level="2" text="Translation" weight="75" conditional="config.usage.informationShowAllMenuScreens.value"><screen module="Information" screen="TranslationInformation" /></item>
 			<item key="service_info_screen" level="1" text="Service" weight="80"><screen module="Information" screen="ServiceInformation" /></item>
 		</menu>
 		<!-- Menu / Timer -->
@@ -42,7 +42,7 @@
 			<item key="crontimer_edit" level="0" text="Cron Timers" weight="10"><screen module="CronTimer" screen="CronTimers" /></item>
 			<item key="sleep" level="0" text="Sleep Timers" weight="20" requires="DeepstandbySupport"><screen module="SleepTimer" screen="SleepTimer" /></item>
 		</menu>
-		<item key="plugin_selection" level="1" text="Plugins" weight="10"><screen module="PluginBrowser" screen="PluginBrowser" /></item>
+		<item key="plugin_selection" level="1" text="Plugin Browser" weight="10"><screen module="PluginBrowser" screen="PluginBrowser" /></item>
 		<item key="scart_switch" level="1" text="VCR Scart Settings" weight="15" conditional="config.usage.show_vcr_scart.value" requires="ScartSwitch"><code>self.session.scart.VCRSbChanged(3)</code></item>
 		<!-- Menu / Setup -->
 		<menu key="setup" level="0" text="Setup" weight="20" flushConfigOnClose="1">
@@ -140,11 +140,12 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 				</item>
 			</menu>
 			<!-- Menu / Setup / Service Searching -->
-			<menu key="scan" level="0" text="Reception" weight="25">
+			<menu key="scan" level="0" text="Tuners, Scanning &amp; Reception" weight="25">
 				<item key="tuner_setup" level="0" text="Tuner Configuration" weight="0"><screen module="Satconfig" screen="NimSelection" /></item>
 				<item key="tuner_basic_settings" level="1" text="Tuner Settings" weight="1"><setup setupKey="Tuner" /></item>
 				<item key="auto_scan" level="0" text="Automatic Scan" weight="5"><screen module="ScanSetup" screen="ScanSimple" /></item>
 				<item key="manual_scan" level="0" text="Manual Scan" weight="10"><screen module="ScanSetup" /></item>
+				<item key="fallbacktuner_settings" text="Fallback remote receiver setup"><screen module="SetupFallbacktuner"/></item>
 			</menu>
 			<!-- Menu / Setup / Common interface -->
 			<menu key="cam" level="1" text="Decryption &amp; Parental Control" weight="30">

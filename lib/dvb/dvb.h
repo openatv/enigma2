@@ -360,6 +360,7 @@ private:
 	ePtr<iDVBDemux> m_tsid_onid_demux;
 	ePtr<eTable<ServiceDescriptionSection> > m_SDT;
 	void SDTready(int err);
+	static int m_debug;
 };
 #endif // SWIG
 

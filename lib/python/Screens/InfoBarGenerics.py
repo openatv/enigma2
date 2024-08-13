@@ -3142,10 +3142,12 @@ class ExtensionsList(ChoiceBox):
 		extensionListAll = []
 		for extension in extensions:
 			if extension[0] == 0:  # EXTENSION_SINGLE
-				extensionListAll.append((extension[1][0](), extension[1], extension[2], colorKeys.get(extension[2], 0)))
+				if extension[1][2]():
+					extensionListAll.append((extension[1][0](), extension[1], extension[2], colorKeys.get(extension[2], 0)))
 			else:
 				for subExtension in extension[1]():
-					extensionListAll.append((subExtension[0][0](), subExtension[0], subExtension[1], colorKeys.get(subExtension[1], 0)))
+					if subExtension[0][2]():
+						extensionListAll.append((subExtension[0][0](), subExtension[0], subExtension[1], colorKeys.get(subExtension[1], 0)))
 
 		if config.usage.sortExtensionslist.value == "alpha":
 			extensionListAll.sort(key=lambda x: (x[3], x[0]))
@@ -3195,6 +3197,7 @@ class InfoBarExtensions:
 				"showEventInfo": (self.SelectopenEventView, _("Show the information on current event.")),
 				"showMediaPlayer": (self.showMediaPlayer, _("Show the media player...")),
 			}, prio=1, description=_("Extension Actions"))  # Lower priority.
+		self.addExtension((lambda: _("Manually import from fallback tuner"), self.importChannels, lambda: config.usage.remote_fallback_extension_menu.value and config.usage.remote_fallback_import.value))
 		self.addExtension(extension=self.getLogManager, type=InfoBarExtensions.EXTENSION_LIST)
 		self.addExtension(extension=self.getOsd3DSetup, type=InfoBarExtensions.EXTENSION_LIST)
 		self.addExtension(extension=self.getCCcamInfo, type=InfoBarExtensions.EXTENSION_LIST)
@@ -3226,6 +3229,10 @@ class InfoBarExtensions:
 			print("[INFOBARGENERICS] QuickMenu: error pipshow, starting Quick Menu")
 		from Screens.QuickMenu import QuickMenu
 		self.session.open(QuickMenu)
+
+	def importChannels(self):
+		from Components.ImportChannels import ImportChannels
+		ImportChannels()
 
 	def SelectopenEventView(self):
 		try:

@@ -109,6 +109,7 @@ public:
 	void setItemsDistances(int value) { m_items_distances = value; }
 
 	void setProgressUnit(const std::string &string) { m_progress_unit = string; }
+	void setNumberingMode(int numberingMode) { m_numbering_mode = numberingMode; }
 
 	static void setGetPiconNameFunc(SWIG_PYOBJECT(ePyObject) func);
 
@@ -213,6 +214,7 @@ private:
 	int m_items_distances;
 
 	std::string m_progress_unit;
+	int m_numbering_mode;
 };
 
 #endif

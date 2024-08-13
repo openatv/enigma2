@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-21 14:25+0000\n"
+"POT-Creation-Date: 2024-08-04 16:49+0000\n"
 "PO-Revision-Date: 2023-06-04 19:16+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -1223,6 +1223,10 @@ msgstr "%s suaktyvintas."
 msgid "%s has been disabled."
 msgstr "%s buvo išjungtas."
 
+#, python-format
+msgid "%s imported from remote receiver."
+msgstr ""
+
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
 msgid "%s is no longer used. Should it be deleted?"
@@ -2014,6 +2018,12 @@ msgstr "Pradėti įrašymą (stabdyti po šio įvykio)"
 msgid "Add service"
 msgstr "Pridėti kanalą"
 
+msgid "Add service names"
+msgstr ""
+
+msgid "Add service names to each #SERVICE entry."
+msgstr ""
+
 msgid "Add service to AutoCam"
 msgstr ""
 
@@ -2275,6 +2285,9 @@ msgstr "Importuoti kanalus, kai imtuvas išeina iš budėjimo režimo"
 msgid "Also on standby"
 msgstr "Ir budėjimo režimą"
 
+msgid "Also use a #DESCRIPTION line after each #SERVICE line to hold the service's name."
+msgstr ""
+
 msgid "Alternative"
 msgstr "Alternatyvus"
 
@@ -2289,9 +2302,6 @@ msgstr "[alternatyvus redagavimas]"
 
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr "Alternatyvūs DVB-T/C arba ATSC URL"
-
-msgid "Alternative numbering mode"
-msgstr "Alternatyvus numeracijos režimas"
 
 msgid "Alternative radio mode"
 msgstr "Alternatyvus radijo režimas"
@@ -3135,6 +3145,9 @@ msgstr ""
 msgid "Bouquets"
 msgstr ""
 
+msgid "Bouquets start at 1"
+msgstr ""
+
 msgid "Bouvet Island"
 msgstr "Buveto sala"
 
@@ -3820,7 +3833,13 @@ msgstr ""
 msgid "Channel Selection Context Menu Navigation Actions"
 msgstr ""
 
+msgid "Channel Selection List"
+msgstr ""
+
 msgid "Channel Selection Navigation Actions"
+msgstr ""
+
+msgid "Channel Selection Screen"
 msgstr ""
 
 msgid "Channel Selection Settings"
@@ -3885,6 +3904,15 @@ msgstr "Kanalas:"
 
 msgid "ChannelEPG Settings"
 msgstr "Kanalo EPG nustatymai"
+
+msgid "Channels"
+msgstr ""
+
+msgid "Channels and EPG"
+msgstr ""
+
+msgid "Channels only"
+msgstr ""
 
 msgid "Chap."
 msgstr "Skyr."
@@ -4279,6 +4307,9 @@ msgstr "Spalvų formatas"
 msgid "Color space"
 msgstr "Spalvų erdvė"
 
+msgid "Colored Text"
+msgstr ""
+
 msgid "Combined"
 msgstr ""
 
@@ -4431,6 +4462,9 @@ msgstr "Nustatykite, ar ir kaip kanalų pasirinkimo sąrašo lange bus rodoma į
 msgid "Configure if and how wide the service name column will be shown in the channel selection list."
 msgstr "Konfigūruokite, ar ir kokio pločio kanalų pasirinkimo sąrašo lange bus rodomas fiksuotas kanalo pavadinimo stulpelis."
 
+msgid "Configure if crypto icons will be shown in the channel selection list."
+msgstr ""
+
 msgid "Configure if epg.dat should be saved at all."
 msgstr "Konfigūruokite, ar išvis turi būti išsaugotas epg.dat."
 
@@ -4439,6 +4473,9 @@ msgstr "Nustatykite, ar kanalų logotipai bus rodomi greitame jungime."
 
 msgid "Configure if service picons will be shown in the service list."
 msgstr "Konfigūruoti, jei kanalo logotipas bus rodomas kanalų sąraše."
+
+msgid "Configure if service type icons will be shown."
+msgstr ""
 
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
 msgstr "Konfigūruokite jei subtitrai turėtų persijungti tarp normalaus, pasvirusių raidžių, arba paryškintų ir paryškintų pasvirusių raidžių"
@@ -6709,6 +6746,9 @@ msgstr "2-a pasirinkta EPG kalba"
 msgid "EPG location"
 msgstr "EPG vieta"
 
+msgid "EPG only"
+msgstr ""
+
 msgid "EPGSearch"
 msgstr "EPG paieška"
 
@@ -7032,9 +7072,6 @@ msgstr "Įjungti nuotolinį enigma2 imtuvą, kad žiūrėti kanalus, kurie negal
 msgid "Enable teletext caching"
 msgstr "Įjungti teleteksto kaupimą"
 
-msgid "Enable terrestrial LCN:"
-msgstr "Įjungti antžeminę LCN:"
-
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "Įjunkite išplėstines HDMI-CEC parametrų parinktis."
 
@@ -7202,6 +7239,9 @@ msgstr "Įrašykite IP adresą"
 
 msgid "Enter PIN"
 msgstr "Įrašykite PIN kodą"
+
+msgid "Enter URL"
+msgstr ""
 
 msgid "Enter a description for this timer."
 msgstr "Įveskite šio laikmačio aprašą."
@@ -7437,11 +7477,20 @@ msgstr ""
 "Klaida gaunant saitą per %s\n"
 "%s"
 
+msgid "Error moving 'epg.dat' to its destination!"
+msgstr ""
+
 msgid "Error opening recording file"
 msgstr "Klaida atidarant įrašymo failą"
 
 msgid "Error reading webpage!"
 msgstr "Įvyko klaida nuskaitant svetainę!"
+
+msgid "Error retrieving 'epg.dat' from the remote receiver!"
+msgstr ""
+
+msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
+msgstr ""
 
 msgid "Error text:"
 msgstr "Klaidos tekstas:"
@@ -7457,6 +7506,12 @@ msgid ""
 msgstr ""
 "Klaida atsisiunčiant atsarginio imtuvo laikmačio informaciją\n"
 "%s"
+
+msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
+msgstr ""
+
+msgid "Error writing 'epg.dat' on the remote receiver!"
+msgstr ""
 
 msgid "Error, unknown Result!"
 msgstr "Klaida, nežinomas rezultatas!"
@@ -7938,6 +7993,9 @@ msgstr "Atsarginė API nepateikė galiojančio rezultato."
 msgid "Fallback Font *"
 msgstr ""
 
+msgid "Fallback Timer"
+msgstr "Atsarginis laikmatis"
+
 msgid "Fallback remote receiver"
 msgstr "Atsarginis nuotolinis imtuvas"
 
@@ -7959,8 +8017,8 @@ msgstr "DVB-C nuotolinis atsarginis imtuvas"
 msgid "Fallback remote receiver for DVB-T"
 msgstr "DVB-T nuotolinis atsarginis imtuvas"
 
-msgid "Fallback Timer"
-msgstr "Atsarginis laikmatis"
+msgid "Fallback remote receiver setup"
+msgstr ""
 
 msgid "Fallback tuner setup"
 msgstr "Atsarginio imtuvo nustatymas"
@@ -9173,7 +9231,7 @@ msgstr "I"
 msgid "I/O priority for scripts"
 msgstr "Scenarijų įvesties / išvesties prioritetas"
 
-msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 naujas modelis"
 
 msgid "IMDb Details"
@@ -9756,20 +9814,8 @@ msgstr "Įdiegiama paslauga"
 msgid "Installing Software..."
 msgstr "Programinės įrangos diegimas ..."
 
-msgid "Installing feeds from IPK ..."
-msgstr "Šaltinių diegimas iš IPK ..."
-
-msgid "Installing feeds from feed ..."
-msgstr "Šaltinių diegimas iš šaltinių ..."
-
 msgid "Installing package."
 msgstr ""
-
-msgid "Installing plugins from IPK ..."
-msgstr "Priedų diegimas iš IPK ..."
-
-msgid "Installing plugins from feed ..."
-msgstr "Priedų diegimas iš šaltinių ..."
 
 msgid "Instant Recording Actions"
 msgstr ""
@@ -10140,11 +10186,23 @@ msgstr "LCD užrašų slinkties greitis"
 msgid "LCD/Front panel *"
 msgstr ""
 
-msgid "LCN plugin for DVB-T/T2 services"
-msgstr "LCN priedas DVB-T/T2 kanalams"
+msgid "LCN Scanner"
+msgstr ""
 
-msgid "LCN rules:"
-msgstr "LCN taisyklės:"
+msgid "LCN Scanner Actions"
+msgstr ""
+
+msgid "LCN Scanner Settings"
+msgstr ""
+
+msgid "LCN Scanner plugin for DVB-C/T/T2 services"
+msgstr ""
+
+msgid "LCN numbering"
+msgstr ""
+
+msgid "LCN rules"
+msgstr ""
 
 msgid "LCN style QuickSelect entry selection"
 msgstr ""
@@ -10777,6 +10835,9 @@ msgstr "Rankinė kanalų paieška"
 msgid "Manual transponder"
 msgstr "Rankinis transponderio pasirinkimas"
 
+msgid "Manually import from fallback tuner"
+msgstr ""
+
 msgid "Manufacturer"
 msgstr "Gamintojas"
 
@@ -11026,6 +11087,9 @@ msgstr "Mipsel"
 msgid "Miscellaneous"
 msgstr "Įvairios kalbos"
 
+msgid "Miscellaneous languages"
+msgstr ""
+
 msgid "Misconfiguration in channel allocation"
 msgstr "Netinkama konfigūracija paskirstant kanalą"
 
@@ -11193,6 +11257,9 @@ msgstr "Perkelti žemyn puslapį / ekraną"
 msgid "Move down a screen"
 msgstr "Pereiti vienu ekranu žemyn"
 
+msgid "Move down a screen / Move to next item"
+msgstr ""
+
 msgid "Move down a screen in the panel"
 msgstr "Pereiti žemyn skydelio ekranu"
 
@@ -11338,10 +11405,16 @@ msgstr "Pereiti į paskutinę eilutę / ekraną"
 msgid "Move to the next category in the list"
 msgstr ""
 
+msgid "Move to the next item"
+msgstr ""
+
 msgid "Move to the next item in the list"
 msgstr ""
 
 msgid "Move to the previous category in the list"
+msgstr ""
+
+msgid "Move to the previous item"
 msgstr ""
 
 msgid "Move to the previous item in list"
@@ -11361,6 +11434,9 @@ msgstr "Perkelti puslapį / ekraną"
 
 msgid "Move up a screen"
 msgstr "Pereiti vienu ekranu aukštyn"
+
+msgid "Move up a screen / Move to previous item"
+msgstr ""
 
 msgid "Move up a screen in the panel"
 msgstr "Perkelti ekraną aukštyn skydelyje"
@@ -11847,6 +11923,9 @@ msgstr "Niujė"
 msgid "No"
 msgstr "Ne"
 
+msgid "No 'epg.dat' file found on the remote receiver!"
+msgstr ""
+
 msgid "No (supported) DVDROM found!"
 msgstr "Palaikomo DVD ROM nerasta!"
 
@@ -11907,9 +11986,6 @@ msgstr "Nėra demux"
 
 msgid "No displayable files on this medium found!"
 msgstr "Jokių failų čia nerasta!"
-
-msgid "No entry in lcn db. Please do a service scan."
-msgstr "Lcn db įrašo nėra. Atlikite kanalų paiešką."
 
 msgid "No error"
 msgstr "Jokios klaidos"
@@ -12246,6 +12322,9 @@ msgstr "Rodytinų eilučių skaičius."
 
 msgid "Number or SMS style data entry"
 msgstr "Skaičių ar SMS stiliaus duomenų įvedimas"
+
+msgid "Numbering mode"
+msgstr ""
 
 msgid "OEM model"
 msgstr "OĮG modelis"
@@ -13219,6 +13298,9 @@ msgstr "Palaukite"
 msgid "Please wait for activation of your network configuration..."
 msgstr "Palaukite, kol aktyvuosis jūsų tinklo konfigūracija..."
 
+msgid "Please wait while LCN bouquets are created/updated..."
+msgstr ""
+
 msgid "Please wait while feeds are updated..."
 msgstr ""
 
@@ -14106,12 +14188,6 @@ msgstr "Galinis"
 msgid "Reboot"
 msgstr "Paleisti iš naujo"
 
-msgid "Rebuild"
-msgstr "Atstatyti"
-
-msgid "Rebuild LCN bouquet now?"
-msgstr "Atstatyti LCN paketą dabar?"
-
 msgid "Rec"
 msgstr "Rec"
 
@@ -14151,6 +14227,9 @@ msgstr "Įrašas - tas pats kaip įrašymo mygtukas"
 
 msgid "Record Actions"
 msgstr "Įrašyti veiksmus"
+
+msgid "Record Icon"
+msgstr ""
 
 msgid "Record next"
 msgstr "Įrašyti sekantį"
@@ -14494,9 +14573,6 @@ msgstr "Pašalinti dabartinį pasirinktą pavadinimą"
 
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Pašalinkite pasirinktą aplanką iš žymių"
-
-msgid "Remove plugins ..."
-msgstr ""
 
 msgid "Remove service from AutoCam"
 msgstr ""
@@ -15191,13 +15267,8 @@ msgstr "Išsaugokite dešinįjį katalogą išeidami"
 msgid "Save settings and EPG data."
 msgstr "Įrašykite parametrus ir EPG duomenis."
 
-#, python-format
-msgid ""
-"Save the commands and the output to a file?\n"
-"('%s')"
-msgstr ""
-"Išsaugokite komandas ir išvestį į failą?\n"
-"('%s')"
+msgid "Save the commands and output to the log file?"
+msgstr "Išsaugokite komandas ir išvestį į failą?"
 
 msgid "Save the left column directory location on exit."
 msgstr "Išsaugokite kairiojo stulpelio katalogo vietą išeidami."
@@ -15264,6 +15335,9 @@ msgstr "Ieškoti vietinių išplėtimų ir juos įdiegti"
 
 msgid "Scan for local extensions and install them."
 msgstr "Ieškoti vietinių išplėtimų ir juos įdiegti."
+
+msgid "Scan for terrestrial LCNs and create LCN bouquets"
+msgstr ""
 
 msgid "Scan wireless networks"
 msgstr "Ieškoti belaidžių tinklų"
@@ -15461,6 +15535,9 @@ msgstr "Jei naudojate 'universalią' LNB, pasirinkite 'polarizacija', kitaip kre
 msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
 msgstr "Pasirinkite 'teikėjas', kad skenuoti iš anksto nustatyto kabelių multipleksų sąrašo. Pasirinkite 'juostos', kad tik skenuoti tam tikras spektro dalis. Pasirinkite 'žingsniai', kad skenuotumėte tam tikros dažnių juostos plotyje."
 
+msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
+msgstr ""
+
 msgid "Select 'Yes' if an end time is required for this timer."
 msgstr "Pasirinkite 'Taip', jei šiam laikmačiui reikalingas pabaigos laikas."
 
@@ -15652,6 +15729,9 @@ msgstr "Jei nustatyta 'taip', po perjungimo tarp radijo ir TV režimų bus rodom
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
 msgstr "Pasirinkite \"Taip\", kad katalogų sąraše būtų rodomas dabartinis katalogas. Atminkite, kad failų vadas turi būti paleistas iš naujo, kad šis pakeitimas įsigaliotų."
+
+msgid "Select 'Yes' to show this plugin in the Plugin Browser."
+msgstr ""
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr ""
@@ -16115,7 +16195,13 @@ msgstr ""
 msgid "Select the last item in the list"
 msgstr ""
 
+msgid "Select the layout of the information in the services list, from the options provided by the skin, displayed within the ChannelSelection screen."
+msgstr ""
+
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
+msgstr ""
+
+msgid "Select the list of LCN rules to be applied to the scan."
 msgstr ""
 
 msgid "Select the locale from a menu"
@@ -16186,6 +16272,9 @@ msgstr "Pasirinkite palydovą, kuris yra prijungtas prie D-jungties. Jei nesate 
 
 msgid "Select the satellite you want to configure. Once configured you can select and configure other satellites that will be accessed using this same tuner."
 msgstr "Pasirinkite palydovą, kurį norite konfigūruoti. Kai šis palydovas bus sukonfigūruotas, galėsite pasirinkti ir konfigūruoti kitus palydovus, kurie bus galimi naudojant tą patį imtuvą."
+
+msgid "Select the screen layout, from the options provided by the skin, to be used for the ChannelSelection screen."
+msgstr ""
 
 msgid "Select the shifted character set"
 msgstr "Pasirinkite perkeltą simbolių rinkinį"
@@ -16490,6 +16579,9 @@ msgstr "Kanalo numeris ir kanalo pavadinimas"
 msgid "Service Number, Picon and Service Name"
 msgstr "Kanalo numeris, logotipas ir kanalo pavadinimas"
 
+msgid "Service Scan"
+msgstr ""
+
 msgid "Service Selection Actions"
 msgstr "Aptarnavimo pasirinkimo veiksmai"
 
@@ -16713,9 +16805,6 @@ msgstr "Nustatyti teksto slinkties greitį priekiniame monitoriuje, tai kai kuri
 
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Nustatykite teksto slinkties greitį priekiniame monitoriuje."
-
-msgid "Set the style of the channel list."
-msgstr ""
 
 msgid "Set the time before checking video source for resolution information."
 msgstr "Nustatykite laiką prieš tikrindami vaizdo šaltinį, skirtą raiškos informacijai."
@@ -17420,6 +17509,9 @@ msgstr ""
 msgid "Show in Extension Menu"
 msgstr "Rodyti plėtinių sąraše"
 
+msgid "Show in Plugin Browser"
+msgstr ""
+
 msgid "Show in Standby"
 msgstr "Rodyti budėjimo režime"
 
@@ -17521,6 +17613,12 @@ msgstr "Pauzės metu, visą laiką rodyti info juostą"
 
 msgid "Show picon background color"
 msgstr "Rodyti piktogramos fono spalvą"
+
+msgid "Show picons in quickzap"
+msgstr "rodyti logotipus greitame jungime"
+
+msgid "Show picons in service list"
+msgstr "kanalų pasirinkimo sąraše rodyti kanalų logotipus"
 
 msgid "Show picture information"
 msgstr ""
@@ -18699,9 +18797,6 @@ msgstr "Тikslus DLNA"
 msgid "Stripes"
 msgstr "Juostos"
 
-msgid "Style"
-msgstr ""
-
 msgid "Style:"
 msgstr "Stilius:"
 
@@ -19191,9 +19286,6 @@ msgstr "Tenisas"
 
 msgid "Terrestrial"
 msgstr "Antžeminė TV"
-
-msgid "Terrestrial bouquet:"
-msgstr "Antžeminės TV paketas:"
 
 msgid "Test"
 msgstr ""
@@ -19989,6 +20081,10 @@ msgstr ""
 msgid "This will go fast forward/backward with time frames of x secs."
 msgstr "Tai leis pereiti greitai pirmyn/atgal su laiko momentais, x secs"
 
+#, python-format
+msgid "This window will automatically close in %d seconds."
+msgstr ""
+
 msgid "This wizard has finished"
 msgstr ""
 
@@ -20650,9 +20746,6 @@ msgstr "Internetinis adresas"
 msgid "URL of fallback remote receiver"
 msgstr "Atsarginio nuotolinio imtuvo internetinis adresas"
 
-msgid "URL of fallback remote receiver."
-msgstr "Nuotolinio imtuvo internetinis adresas"
-
 msgid "USALS"
 msgstr "USALS"
 
@@ -20734,6 +20827,9 @@ msgid "Unicable Matrix"
 msgstr "Kelių kabelių Matrix"
 
 msgid "Uninstall"
+msgstr ""
+
+msgid "Unique numbering"
 msgstr ""
 
 msgid "United Arab Emirates"
@@ -21056,6 +21152,9 @@ msgstr "Naudoti apskritiminę LNB"
 msgid "Use defaults"
 msgstr "Naudoti numatytąsias reikšmes"
 
+msgid "Use description lines"
+msgstr ""
+
 msgid "Use extended List"
 msgstr "Naudoti išplėstinį sąrašą"
 
@@ -21112,6 +21211,12 @@ msgstr "Naudoti galios matavimą"
 
 msgid "Use small screen"
 msgstr "Naudoti mažą ekraną"
+
+msgid "Use spacer lines"
+msgstr ""
+
+msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
+msgstr ""
 
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr ""
@@ -21915,9 +22020,6 @@ msgstr "Kai čia įjungta, gaunamas http srautas bus visada iškoduojamas. Tai p
 
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Kai čia įjungta, http srautų žiūrėjimui turėsite nurodyti savo autentifikacijos duomenis."
-
-msgid "When enabled, channel numbering will start at '1' for each bouquet."
-msgstr "Kai čia įjungta, kanalų numeracija kiekvieno paketo viduje prasidės nuo '1'."
 
 msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
 msgstr "Kai čia įjungta, 4:3 kraštinių santykio vaizdas bus išplėstas, įterpiant per visą ekraną, t.y. vaizdas bus iškreiptas."
@@ -23427,12 +23529,6 @@ msgstr "rodyti korteles su uphop 8"
 msgid "show cards with uphop 9"
 msgstr "rodyti korteles su uphop 9"
 
-msgid "show picons in quickzap"
-msgstr "rodyti logotipus greitame jungime"
-
-msgid "show picons in service list"
-msgstr "kanalų pasirinkimo sąraše rodyti kanalų logotipus"
-
 msgid "show program information..."
 msgstr "rodyti programos informaciją..."
 
@@ -23667,6 +23763,48 @@ msgstr "taip (išsaugoti šaltinius)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enable terrestrial LCN:"
+#~ msgstr "Įjungti antžeminę LCN:"
+
+#~ msgid "LCN plugin for DVB-T/T2 services"
+#~ msgstr "LCN priedas DVB-T/T2 kanalams"
+
+#~ msgid "LCN rules:"
+#~ msgstr "LCN taisyklės:"
+
+#~ msgid "No entry in lcn db. Please do a service scan."
+#~ msgstr "Lcn db įrašo nėra. Atlikite kanalų paiešką."
+
+#~ msgid "Rebuild"
+#~ msgstr "Atstatyti"
+
+#~ msgid "Rebuild LCN bouquet now?"
+#~ msgstr "Atstatyti LCN paketą dabar?"
+
+#~ msgid "Terrestrial bouquet:"
+#~ msgstr "Antžeminės TV paketas:"
+
+#~ msgid "Alternative numbering mode"
+#~ msgstr "Alternatyvus numeracijos režimas"
+
+#~ msgid "When enabled, channel numbering will start at '1' for each bouquet."
+#~ msgstr "Kai čia įjungta, kanalų numeracija kiekvieno paketo viduje prasidės nuo '1'."
+
+#~ msgid "Installing feeds from IPK ..."
+#~ msgstr "Šaltinių diegimas iš IPK ..."
+
+#~ msgid "Installing feeds from feed ..."
+#~ msgstr "Šaltinių diegimas iš šaltinių ..."
+
+#~ msgid "Installing plugins from IPK ..."
+#~ msgstr "Priedų diegimas iš IPK ..."
+
+#~ msgid "Installing plugins from feed ..."
+#~ msgstr "Priedų diegimas iš šaltinių ..."
+
+#~ msgid "URL of fallback remote receiver."
+#~ msgstr "Nuotolinio imtuvo internetinis adresas"
 
 #~ msgid ""
 #~ "\n"

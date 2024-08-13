@@ -83,6 +83,7 @@ class eDVBLocalTimeHandler: public sigc::trackable
 	std::map<eDVBChannelID,int> m_timeOffsetMap;
 	ePtr<eConnection> m_chanAddedConn;
 	bool m_time_ready;
+	bool m_time_debug;
 	int m_time_difference;
 	int m_last_tp_time_difference;
 	int m_SyncTimeUsing;

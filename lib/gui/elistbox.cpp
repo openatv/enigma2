@@ -495,7 +495,6 @@ int eListbox::event(int event, void *data, void *data2)
 
 		gPainter &painter = *(gPainter *)data2;
 		gRegion entryRect;
-
 		m_content->cursorSave();
 		if (m_orientation == orVertical)
 			m_content->cursorMove(m_top - m_selected);
@@ -1385,43 +1384,47 @@ void eListbox::moveSelection(int dir)
 		if (isGrid && dir != moveBottom)
 		{
 			int newColumn = -1;
-			do
+			if(m_max_rows > 1)
 			{
-				if (oldRow == 0 && m_enabled_wrap_around)
+
+				int wrap = 0;
+				int newRow = oldRow;
+				int current = oldSel;
+				do
 				{
-					m_content->cursorEnd();
-					do
-					{
-						m_content->cursorMove(-1);
-						newSel = m_content->cursorGet();
-						newColumn = newSel % m_max_columns;
-					} while (oldColumn != newColumn);
-
-					if (m_content->currentCursorSelectable())
-						break;
-				}
-				else
 					m_content->cursorMove(-m_max_columns);
-
-				newSel = m_content->cursorGet();
-
-				if (newSel == prevSel)
-				{ // cursorMove reached top and left cursor position the same. Must wrap around ?
-					if (m_enabled_wrap_around)
+					newSel = m_content->cursorGet();
+					newRow = (m_max_columns != 0) ? newSel / m_max_columns : 0;
+					if (current < m_max_columns)
 					{
-						m_content->cursorEnd();
-						m_content->cursorMove(-1);
-						newSel = m_content->cursorGet();
+						if (m_enabled_wrap_around)
+						{
+							m_content->cursorEnd();
+							do
+							{
+								m_content->cursorMove(-1);
+								newSel = m_content->cursorGet();
+								newColumn = newSel % m_max_columns;
+							} while (oldColumn != newColumn);
+						}
+						else
+						{
+							m_content->cursorHome();
+							m_content->cursorMove(oldSel);
+							break;
+						}
+						if (wrap)
+						{
+							m_content->cursorHome();
+							m_content->cursorMove(oldSel);
+							break;
+						}
+						wrap ++;
 					}
-					else
-					{
-						m_content->cursorSet(oldSel);
-						break;
-					}
-				}
-				prevSel = newSel;
+					current = newSel;
+				} while (newSel != oldSel && !m_content->currentCursorSelectable());
 
-			} while (newSel != oldSel && !m_content->currentCursorSelectable());
+			}
 			break;
 		}
 		[[fallthrough]];
@@ -1463,10 +1466,20 @@ void eListbox::moveSelection(int dir)
 	case moveDown:
 		if (isGrid)
 		{
+			if(dir == moveTop)
+			{
+				do
+				{
+					m_content->cursorMove(1);
+					newSel = m_content->cursorGet();
+				} while (newSel != oldSel && !m_content->currentCursorSelectable());
+				break;
+			}
+
+			int current = oldSel;
 			do
 			{
-
-				bool wrap = (oldSel + m_max_columns) >= m_content->size();
+				bool wrap = (current + m_max_columns) >= m_content->size();
 				if (wrap && m_enabled_wrap_around)
 				{
 					m_content->cursorHome();
@@ -1475,7 +1488,8 @@ void eListbox::moveSelection(int dir)
 						break;
 				}
 				else
-					m_content->cursorMove(m_max_columns);
+					m_content->cursorMove(indexChanged ? 1 : m_max_columns);
+
 				if (!m_content->cursorValid())
 				{ // cursorMove reached end and left cursor position past the list. Must wrap around ?
 					if (m_enabled_wrap_around)
@@ -1484,6 +1498,7 @@ void eListbox::moveSelection(int dir)
 						m_content->cursorSet(oldSel);
 				}
 				newSel = m_content->cursorGet();
+				current = newSel;
 			} while (newSel != oldSel && !m_content->currentCursorSelectable());
 			break;
 		}
@@ -1606,9 +1621,18 @@ void eListbox::moveSelection(int dir)
 	if (m_scrollbar_scroll == byLine && m_content->size() > maxItems)
 	{
 		if (m_orientation == orHorizontal)
-			m_left = moveSelectionLineMode((dir == moveLeft), (dir == moveRight), dir, oldSel, oldLeft, maxItems, indexChanged, pageOffset, m_left);
+			m_left = moveSelectionLineMode((dir == moveLeft), (dir == moveRight), dir, oldSel, oldLeft, oldRow, maxItems, indexChanged, pageOffset, m_left);
 		else
-			m_top = moveSelectionLineMode((dir == moveUp), (dir == moveDown), dir, oldSel, oldTop, maxItems, indexChanged, pageOffset, m_top);
+		{
+			if(m_orientation == orGrid && indexChanged)
+			{
+				int newline = (m_selected / m_max_columns);
+				m_top = std::max(newline - ((m_max_rows + 1) / 2) + 1, 0);
+			}
+			else
+				m_top = moveSelectionLineMode((dir == moveUp), (dir == moveDown), dir, oldSel, oldTop, oldRow, maxItems, indexChanged, pageOffset, m_top);
+		}
+
 	}
 
 	// if it is, then the old selection clip is irrelevant, clear it or we'll get artifacts
@@ -1657,7 +1681,7 @@ void eListbox::moveSelection(int dir)
 	}
 }
 
-int eListbox::moveSelectionLineMode(bool doUp, bool doDown, int dir, int oldSel, int oldTopLeft, int maxItems, bool indexChanged, int pageOffset, int topLeft)
+int eListbox::moveSelectionLineMode(bool doUp, bool doDown, int dir, int oldSel, int oldTopLeft, int oldRow, int maxItems, bool indexChanged, int pageOffset, int topLeft)
 {
 	int oldLine = m_content->cursorRestoreLine();
 	int max = m_content->size() - maxItems;
@@ -1665,35 +1689,18 @@ int eListbox::moveSelectionLineMode(bool doUp, bool doDown, int dir, int oldSel,
 	if (m_orientation == orGrid)
 	{
 		int newline = (m_selected / m_max_columns);
-		if (!doUp && newline < m_max_rows)
-		{
-			return 0;
-		}
-		int newlinecalc = (m_selected / m_max_columns) - oldTopLeft;
-
-		if (doUp)
-		{
-			if (oldLine == 0 && oldTopLeft == 0)
-			{
-				return m_enabled_wrap_around ? ((m_content->size() - 1) / m_max_columns) - m_max_rows + 1 : 0;
-			}
-			else if (oldLine == 0 && oldTopLeft > 0)
-			{
-				return oldTopLeft - 1;
-			}
-
-			if ((oldLine > 0 && oldTopLeft > 0) || (newlinecalc > 0))
-			{
-				return oldTopLeft;
-			}
-		}
-		if (newlinecalc == oldLine)
+		if (oldRow == newline)
 			return oldTopLeft;
-		if (m_max_rows < newline)
-		{
-			return newline - m_max_rows + 1;
-		}
-		return topLeft;
+		
+		int min = oldTopLeft * m_max_columns;
+		int max = std::min(min + (m_max_rows * m_max_columns),m_content->size());
+
+		if (m_selected >= min && m_selected < max)
+			return oldTopLeft;
+
+		int maxLines = ((m_content->size() + m_max_columns - 1) / m_max_columns) - m_max_rows;
+
+		return std::min(std::max(oldTopLeft + (newline - oldRow),0), maxLines);
 	}
 
 	bool jumpBottom = (dir == moveBottom);

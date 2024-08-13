@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-21 14:25+0000\n"
-"PO-Revision-Date: 2024-06-22 05:38+0000\n"
+"POT-Creation-Date: 2024-08-04 16:49+0000\n"
+"PO-Revision-Date: 2024-08-04 20:46+0000\n"
 "Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6-rc\n"
+"X-Generator: Weblate 5.7-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1207,6 +1207,10 @@ msgstr "%s wurde aktiviert."
 msgid "%s has been disabled."
 msgstr "%s wurde deaktiviert."
 
+#, python-format
+msgid "%s imported from remote receiver."
+msgstr "%s vom Reserve-Receiver importiert."
+
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
 msgid "%s is no longer used. Should it be deleted?"
@@ -1302,7 +1306,7 @@ msgid "(TV)"
 msgstr "(TV)"
 
 msgid "(The file '/media/hdd/images/config/myrestore.sh' exists and will be run after the image is flashed.)"
-msgstr "(Die Datei '/media/hdd/images/config/myrestore.sh' existiert und wird nach dem Flash des Images ausgeführt.)"
+msgstr "(Die Datei '/media/hdd/images/config/myrestore.sh' existiert und wird nach dem Flashen des Images ausgeführt.)"
 
 #
 msgid "(empty)"
@@ -2088,6 +2092,12 @@ msgstr "Aufnahme hinzufügen (aktuelle Sendung)"
 msgid "Add service"
 msgstr "Kanal hinzufügen"
 
+msgid "Add service names"
+msgstr ""
+
+msgid "Add service names to each #SERVICE entry."
+msgstr ""
+
 msgid "Add service to AutoCam"
 msgstr "Sender zu AutoCam hinzufügen"
 
@@ -2359,6 +2369,9 @@ msgstr "Auch imporieren, wenn die Box aus dem Standby kommt"
 msgid "Also on standby"
 msgstr "Auch im Standby"
 
+msgid "Also use a #DESCRIPTION line after each #SERVICE line to hold the service's name."
+msgstr ""
+
 msgid "Alternative"
 msgstr "Alternative"
 
@@ -2373,9 +2386,6 @@ msgstr "Alternativen-Bearbeitung"
 
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr "Alternative URLs für DVB-T / C oder ATSC"
-
-msgid "Alternative numbering mode"
-msgstr "Alternative Nummerierung"
 
 msgid "Alternative radio mode"
 msgstr "Alternativer Radiomodus"
@@ -3269,8 +3279,11 @@ msgstr "Favoritenauswahl Navigationsaktionen"
 msgid "Bouquets"
 msgstr "Favoriten"
 
+msgid "Bouquets start at 1"
+msgstr "Favoriten beginnen bei 1"
+
 msgid "Bouvet Island"
-msgstr "Bouvet Insel"
+msgstr "Bouvetinsel"
 
 msgid "Boxing"
 msgstr "Boxen"
@@ -3984,8 +3997,14 @@ msgstr "Kontextmenü-Aktionen der Senderliste"
 msgid "Channel Selection Context Menu Navigation Actions"
 msgstr "Senderliste-Kontextmenü Navigationsaktionen"
 
+msgid "Channel Selection List"
+msgstr "Senderliste / Liste"
+
 msgid "Channel Selection Navigation Actions"
 msgstr "Senderlisten Navigationsaktionen"
+
+msgid "Channel Selection Screen"
+msgstr "Senderliste / Bildschirm"
 
 #
 msgid "Channel Selection Settings"
@@ -4055,6 +4074,15 @@ msgstr "Kanal:"
 
 msgid "ChannelEPG Settings"
 msgstr "Sender-EPG-Einstellungen"
+
+msgid "Channels"
+msgstr "Sender"
+
+msgid "Channels and EPG"
+msgstr "Sender und EPG"
+
+msgid "Channels only"
+msgstr "Nur Sender"
 
 #
 msgid "Chap."
@@ -4471,6 +4499,9 @@ msgstr "Farbformat"
 msgid "Color space"
 msgstr "Farbraum"
 
+msgid "Colored Text"
+msgstr "Farbiger Text"
+
 msgid "Combined"
 msgstr "Kombiniert"
 
@@ -4635,6 +4666,9 @@ msgstr "Die Anzeige des Aufnahmeindikators in der Senderliste einstellen."
 msgid "Configure if and how wide the service name column will be shown in the channel selection list."
 msgstr "Die Anzeige des Sendernamens in der Senderliste einstellen."
 
+msgid "Configure if crypto icons will be shown in the channel selection list."
+msgstr "Auswählen, ob Verschlüsselungssymbole in der Senderliste angezeigt werden sollen."
+
 msgid "Configure if epg.dat should be saved at all."
 msgstr "'Ja' erlaubt die Speicherung der EPG-Daten."
 
@@ -4643,6 +4677,9 @@ msgstr "Bei 'Ja' werden Senderlogos (Picons), falls vorhanden, beim QuickZap (Um
 
 msgid "Configure if service picons will be shown in the service list."
 msgstr "Bei 'Ja' werden Senderlogos (Picons), falls vorhanden, in der Senderliste angezeigt."
+
+msgid "Configure if service type icons will be shown."
+msgstr "Auswählen, ob Sendertyp-Symbole angezeigt werden sollen."
 
 # Subtitle neu 5.1
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
@@ -6557,7 +6594,7 @@ msgid "Djibouti"
 msgstr "Dschibuti"
 
 msgid "Do another manual service scan?"
-msgstr "Einen weiteren manuellen Service-Scan durchführen?"
+msgstr "Einen weiteren manuellen Suchlauf durchführen?"
 
 msgid "Do not backup the image"
 msgstr "Das Image nicht sichern"
@@ -6730,7 +6767,7 @@ msgstr "Jetzt nach Sendern suchen?"
 
 #
 msgid "Do you want to do another manual service scan?"
-msgstr "Eine weitere manuelle Suche durchführen?"
+msgstr "Einen weiteren manuellen Suchlauf durchführen?"
 
 #, python-format
 msgid "Do you want to flash the image '%s'?"
@@ -7036,6 +7073,9 @@ msgstr "EPG-Sprache 2"
 
 msgid "EPG location"
 msgstr "EPG-Speicherort"
+
+msgid "EPG only"
+msgstr "Nur EPG"
 
 msgid "EPGSearch"
 msgstr "EPG-Suche"
@@ -7382,9 +7422,6 @@ msgstr "Mit 'Ja' Remote-Enigma2-Receiver aktivieren, der versucht wird, wenn ein
 msgid "Enable teletext caching"
 msgstr "Videotext-Zwischenspeicher aktivieren"
 
-msgid "Enable terrestrial LCN:"
-msgstr "Terrestrisches LCN aktivieren:"
-
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "Erweiterte HDMI-CEC-Einstellungsoptionen aktivieren."
 
@@ -7558,6 +7595,9 @@ msgstr "Die IP-Adresse eingeben"
 
 msgid "Enter PIN"
 msgstr "PIN eingeben"
+
+msgid "Enter URL"
+msgstr "URL eingeben"
 
 msgid "Enter a description for this timer."
 msgstr "Eine Beschreibung für diesen Timer eingeben."
@@ -7800,11 +7840,20 @@ msgstr ""
 "Fehler beim Abrufen des Links über %s\n"
 "%s!"
 
+msgid "Error moving 'epg.dat' to its destination!"
+msgstr "Fehler beim Verschieben der Datei 'epg.dat'!"
+
 msgid "Error opening recording file"
 msgstr "Fehler beim Öffnen der Aufnahmedatei!"
 
 msgid "Error reading webpage!"
 msgstr "Fehler beim Lesen der Webseite!"
+
+msgid "Error retrieving 'epg.dat' from the remote receiver!"
+msgstr "Fehler beim Empfangen der Datei 'epg.dat' vom Reserve-Receiver!"
+
+msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
+msgstr "Fehler beim Abrufen des Standorts der Datei 'epg.dat' des Reserve-Receivers!"
 
 msgid "Error text:"
 msgstr "Fehlertext:"
@@ -7820,6 +7869,12 @@ msgid ""
 msgstr ""
 "Fehler beim Abrufen der Informationen des Reserve-Timers\n"
 "%s"
+
+msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
+msgstr "Fehler beim Schreiben der Datei '/etc/enigma2/epg.dat' auf den Reserve-Receiver!"
+
+msgid "Error writing 'epg.dat' on the remote receiver!"
+msgstr "Fehler beim Schreiben der Datei 'epg.dat' auf den Reserve-Receiver!"
 
 msgid "Error, unknown Result!"
 msgstr "Fehler: Unbekanntes Ergebnis!"
@@ -8329,6 +8384,9 @@ msgstr "Reserve-API lieferte fehlerhafte Ergebnisse!"
 msgid "Fallback Font *"
 msgstr "Ersatz-Schriftart *"
 
+msgid "Fallback Timer"
+msgstr "Reserve-Timer"
+
 msgid "Fallback remote receiver"
 msgstr "Reserve-Receiver"
 
@@ -8350,8 +8408,8 @@ msgstr "Reserve-Receiver für DVB-C"
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Reserve-Receiver für DVB-T"
 
-msgid "Fallback Timer"
-msgstr "Reserve-Timer"
+msgid "Fallback remote receiver setup"
+msgstr "Reserve-Receiver Einstellungen"
 
 msgid "Fallback tuner setup"
 msgstr "Reserve-Tuner-Einstellung"
@@ -9620,7 +9678,7 @@ msgstr "I"
 msgid "I/O priority for scripts"
 msgstr "I/O-Priorität für Skripte"
 
-msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 neues Modell"
 
 msgid "IMDb Details"
@@ -9916,16 +9974,16 @@ msgid "Import channels and/or EPG from remote receiver URL also when the receive
 msgstr "Kanäle und / oder EPG von der Empfänger-URL importieren, auch wenn der Receiver den Standby-Modus verlässt."
 
 msgid "Import channels and/or EPG from remote receiver URL when receiver is booted"
-msgstr "Kanäle und / oder den EPG von der Receiver-URL des Remote-Receivers beim Booten des Receivers importieren."
+msgstr "Kanäle und/oder den EPG von der Receiver-URL des Reserve-Receivers beim Booten des Receivers importieren."
 
 msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
-msgstr "Kanäle und / oder EPG von der Remote-Receiver-URL importieren wenn der Receiver oder Enigma2 neu gestartet wird."
+msgstr "Kanäle und/oder EPG von der Reserve-Receiver-URL importieren wenn der Receiver oder Enigma2 neu gestartet wird."
 
 msgid "Import from remote receiver URL"
-msgstr "Import der Remote-Receiver-URL"
+msgstr "Import der Reserve-Receiver-URL"
 
 msgid "Import remote receiver URL"
-msgstr "Remote-Receiver-URL importieren"
+msgstr "Reserve-Receiver-URL importieren"
 
 msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
 msgstr "Zusätzlich zur Überprüfung bei Beginn eines Ereignisses kann diese Einstellung verwendet werden, um die Bedingung 'Puffer Limit in Stunden' oder 'Überprüfung auf freien Speicherplatz eher zu erkennen."
@@ -10235,20 +10293,8 @@ msgstr "Dienst wird installiert"
 msgid "Installing Software..."
 msgstr "Installiere Software..."
 
-msgid "Installing feeds from IPK ..."
-msgstr "Installiere Feeds aus IPK..."
-
-msgid "Installing feeds from feed ..."
-msgstr "Installiere Feeds vom Feed..."
-
 msgid "Installing package."
 msgstr "Installiere Paket."
-
-msgid "Installing plugins from IPK ..."
-msgstr "Installiere Plugins aus IPK..."
-
-msgid "Installing plugins from feed ..."
-msgstr "Installiere Plugins vom Feed..."
 
 msgid "Instant Recording Actions"
 msgstr "Sofortaufnahme-Aktionen"
@@ -10636,11 +10682,23 @@ msgstr "Display-Scrollgeschwindigkeit"
 msgid "LCD/Front panel *"
 msgstr "Displayskin *"
 
-msgid "LCN plugin for DVB-T/T2 services"
-msgstr "LCN-Plugin für DVB-T/T2-Dienste"
+msgid "LCN Scanner"
+msgstr "LCN-Scanner"
 
-msgid "LCN rules:"
-msgstr "LCN-Regeln:"
+msgid "LCN Scanner Actions"
+msgstr "LCN-Scanner Aktionen"
+
+msgid "LCN Scanner Settings"
+msgstr "LCN-Scanner Einstellungen"
+
+msgid "LCN Scanner plugin for DVB-C/T/T2 services"
+msgstr "LCN-Scanner-Plugin für DVB-C/T/T2 Sender"
+
+msgid "LCN numbering"
+msgstr "LCN-Nummerierung"
+
+msgid "LCN rules"
+msgstr "LCN-Regeln"
 
 msgid "LCN style QuickSelect entry selection"
 msgstr "Schnellauswahl via Sendernummer"
@@ -11319,6 +11377,9 @@ msgstr "Manueller Suchlauf"
 msgid "Manual transponder"
 msgstr "Manueller Transponder"
 
+msgid "Manually import from fallback tuner"
+msgstr "Manueller Import vom Reserve-Tuner"
+
 #
 msgid "Manufacturer"
 msgstr "Hersteller"
@@ -11587,6 +11648,9 @@ msgstr "Mipsel"
 msgid "Miscellaneous"
 msgstr "Sonstiges"
 
+msgid "Miscellaneous languages"
+msgstr "Verschiedene Sprachen"
+
 msgid "Misconfiguration in channel allocation"
 msgstr "Fehlkonfiguration bei der Kanalzuweisung"
 
@@ -11768,6 +11832,9 @@ msgstr "Eine Seite / Bildschirm nach unten"
 msgid "Move down a screen"
 msgstr "Einen Bildschirm nach unten gehen"
 
+msgid "Move down a screen / Move to next item"
+msgstr "Einen Bildschirm nach unten gehen / Zum nächsten Eintrag gehen"
+
 msgid "Move down a screen in the panel"
 msgstr "Einen Bildschirm nach unten gehen"
 
@@ -11882,7 +11949,7 @@ msgid "Move to first line / screen in the panel"
 msgstr "Zur ersten Zeile / Bildschirm wechseln"
 
 msgid "Move to home of list"
-msgstr "Springe zum Anfang der Liste"
+msgstr "Zum Anfang der Liste wechseln"
 
 msgid "Move to last line"
 msgstr "Zur letzten Zeile wechseln"
@@ -11926,11 +11993,17 @@ msgstr "Zur letzten Zeile / Bildschirm wechseln"
 msgid "Move to the next category in the list"
 msgstr "Zur nächsten Kategorie in der Liste gehen"
 
+msgid "Move to the next item"
+msgstr "Zum nächsten Eintrag gehen"
+
 msgid "Move to the next item in the list"
 msgstr "Zum nächsten Eintrag in der Liste gehen"
 
 msgid "Move to the previous category in the list"
 msgstr "Zur vorherigen Kategorie in der Liste gehen"
+
+msgid "Move to the previous item"
+msgstr "Zum vorherigen Eintrag gehen"
 
 msgid "Move to the previous item in list"
 msgstr "Zum vorherigen Eintrag in der Liste gehen"
@@ -11950,6 +12023,9 @@ msgstr "Eine Seite / Bildschirm nach oben"
 
 msgid "Move up a screen"
 msgstr "Einen Bildschirm nach oben gehen"
+
+msgid "Move up a screen / Move to previous item"
+msgstr "Einen Bildschirm nach oben gehen / Zum vorherigen Eintrag gehen"
 
 msgid "Move up a screen in the panel"
 msgstr "Einen Bildschirm nach oben gehen"
@@ -12484,6 +12560,9 @@ msgstr "Niue"
 msgid "No"
 msgstr "Nein"
 
+msgid "No 'epg.dat' file found on the remote receiver!"
+msgstr "Die Datei 'epg.dat' wurde auf dem Reserve-Receiver nicht gefunden!"
+
 #
 msgid "No (supported) DVDROM found!"
 msgstr "Kein (unterstütztes) DVD-Laufwerk gefunden!"
@@ -12550,11 +12629,6 @@ msgstr "Kein Demux verfügbar!"
 #
 msgid "No displayable files on this medium found!"
 msgstr "Keine anzeigbaren Dateien auf diesem Medium gefunden!"
-
-msgid "No entry in lcn db. Please do a service scan."
-msgstr ""
-"Kein Eintrag in der LCN DB!\n"
-"Bitte einen Suchlauf durchführen."
 
 msgid "No error"
 msgstr "Kein Fehler"
@@ -12927,6 +13001,9 @@ msgstr "Die Anzahl der anzuzeigenden Zeilen."
 #
 msgid "Number or SMS style data entry"
 msgstr "Zahlen- oder SMS-Eingabemethode"
+
+msgid "Numbering mode"
+msgstr "Nummerierungsmodus"
 
 msgid "OEM model"
 msgstr "OEM-Modell"
@@ -13966,7 +14043,7 @@ msgid "Please select the target location to save the backup:"
 msgstr "Zielverzeichnis für die Sicherung angeben:"
 
 msgid "Please select what to do after flash of the following image:"
-msgstr "Auswählen, was nach dem Flashen mit folgendem Image passieren soll:"
+msgstr "Auswählen, wie folgendes Image geflasht werden soll:"
 
 # PiPSetup.py
 msgid ""
@@ -13984,6 +14061,9 @@ msgstr "Bitte warten"
 #
 msgid "Please wait for activation of your network configuration..."
 msgstr "Die Netzwerkkonfiguration wird aktiviert. Bitte warten..."
+
+msgid "Please wait while LCN bouquets are created/updated..."
+msgstr ""
 
 msgid "Please wait while feeds are updated..."
 msgstr "Feeds werden aktualisiert. Bitte warten..."
@@ -14939,12 +15019,6 @@ msgstr "Rückseite"
 msgid "Reboot"
 msgstr "Neustart"
 
-msgid "Rebuild"
-msgstr "Neuerstellung"
-
-msgid "Rebuild LCN bouquet now?"
-msgstr "LCN-Bouquet jetzt neu erstellen?"
-
 msgid "Rec"
 msgstr "Aufnahme"
 
@@ -14985,6 +15059,9 @@ msgstr "Aufnahme - wie Aufnahmetaste"
 
 msgid "Record Actions"
 msgstr "Record Aktionen"
+
+msgid "Record Icon"
+msgstr "Aufnahmesymbol"
 
 msgid "Record next"
 msgstr "Nächste Sendung aufnehmen"
@@ -15230,7 +15307,7 @@ msgid "Remote Control Code Settings"
 msgstr "Fernbedienungscode"
 
 msgid "Remote box"
-msgstr "Remote-Receiver"
+msgstr "Reserve-Receiver"
 
 msgid "Remote control information"
 msgstr "Informationen zur Fernbedienung"
@@ -15352,9 +15429,6 @@ msgstr "Entferne aktuell ausgewählten Titel"
 
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Ausgewählten Ordner aus Lesezeichen entfernen"
-
-msgid "Remove plugins ..."
-msgstr "Entferne Plugins..."
 
 msgid "Remove service from AutoCam"
 msgstr "Sender von AutoCam entfernen"
@@ -15480,7 +15554,7 @@ msgstr "Wiederholungen"
 
 # Subtitle neu 5.1
 msgid "Replace `- ` in dialogs with colored text per speaker (like teletext subtitles for the hearing impaired)."
-msgstr "Diese Option ersetzt '- ' durch farbigen Text je Sprecher in Dialogen (so wie bei Videotext-Untertitel für Hörgeschädigte)."
+msgstr "Diese Option ersetzt '- ' durch farbigen Text je Sprecher in Dialogen (so wie bei Videotext-Untertiteln für Hörgeschädigte)."
 
 #, python-format
 msgid ""
@@ -15608,7 +15682,7 @@ msgid "Restart needed, press OK to restart"
 msgstr "Neustart erforderlich! Dazu jetzt OK drücken."
 
 msgid "Restart network and remount connections"
-msgstr "Netzwerk neu starten und Verbindungen neu aufbauen"
+msgstr "Netzwerk neu starten und Verbindungen neu aufbauen."
 
 msgid "Restart network to with current setup"
 msgstr "Netzwerk neu starten"
@@ -16111,13 +16185,8 @@ msgstr "Verzeichnis der rechten Spalte beim Beenden speichern"
 msgid "Save settings and EPG data."
 msgstr "Einstellungen und EPG-Daten speichern."
 
-#, python-format
-msgid ""
-"Save the commands and the output to a file?\n"
-"('%s')"
-msgstr ""
-"Speichere die Befehle und die Ausgaben als Datei?\n"
-"('%s')"
+msgid "Save the commands and output to the log file?"
+msgstr "Befehle und Ausgaben in die Log-Datei speichern?"
 
 msgid "Save the left column directory location on exit."
 msgstr "Verzeichnis der linken Spalte beim Beenden speichern."
@@ -16187,11 +16256,14 @@ msgid "Scan files..."
 msgstr "Dateien durchsuchen..."
 
 msgid "Scan for local extensions and install them"
-msgstr "Nach lokalen Erweiterungen suchen, die installieren werden können"
+msgstr "Nach lokalen Erweiterungen suchen, die installiert werden können."
 
 #
 msgid "Scan for local extensions and install them."
-msgstr "Nach lokalen Erweiterungen suchen, die installieren werden können."
+msgstr "Nach lokalen Erweiterungen suchen, die installiert werden können."
+
+msgid "Scan for terrestrial LCNs and create LCN bouquets"
+msgstr ""
 
 #
 msgid "Scan wireless networks"
@@ -16405,6 +16477,9 @@ msgstr "'Polarisation' auswählen, wenn ein 'Universal LNB' verwendet wird, ande
 msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
 msgstr "'Provider' auswählen, um aus der vordefinierten Liste von Kabelmultiplexen zu scannen, 'Bänder', um nur bestimmte Teile des Spektrums zu scannen, oder 'Schritte', um in Schritten einer bestimmten Frequenzbandbreite zu scannen."
 
+msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
+msgstr "'Eindeutige Nummerierung' auswählen, um allen Sendern in allen Bouquets eine eindeutige Nummer zuzuweisen. Bei 'Favoriten beginnen bei 1' beginnen die Sendernummern in jedem Bouquet mit der Nummer 1. 'LCN-Nummerierung' auswählen, um konsistente Sender-LCNs zu verwenden, wo immer dieser Dienst verwendet wird."
+
 msgid "Select 'Yes' if an end time is required for this timer."
 msgstr "'Ja' auswählen, wenn eine Endzeit für diesen Timer erforderlich ist."
 
@@ -16599,6 +16674,9 @@ msgid "Select 'Yes' to show the current directory in the list of directories. No
 msgstr ""
 "'Ja' auswählen, um das aktuelle Verzeichnis in der Verzeichnisliste anzuzeigen.\n"
 "Achtung: File Commander muss dafür neu gestartet werden!"
+
+msgid "Select 'Yes' to show this plugin in the Plugin Browser."
+msgstr "'Ja' auswählen, um dieses Plugin im Plugin-Manager anzuzeigen."
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Bei 'Ja' werden Weblink-Pakete in der Downloadliste angezeigt."
@@ -17083,10 +17161,16 @@ msgstr "Den letzten Eintrag in der Liste auswählen oder an das Textende springe
 msgid "Select the last item in the list"
 msgstr "Den letzten Eintrag in der Liste auswählen"
 
+msgid "Select the layout of the information in the services list, from the options provided by the skin, displayed within the ChannelSelection screen."
+msgstr "Das Layout für Informationen im Senderauswahl-Bildschirm anhand der Skin-Optionen auswählen."
+
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr ""
 "Aussehen der installierten Plugins im Plugin-Manager einstellen.\n"
 "Achtung: Eine Änderung ist erst zu sehen, wenn der Plugin-Manager neu gestartet wird!"
+
+msgid "Select the list of LCN rules to be applied to the scan."
+msgstr "Auswählen, welche LCN-Regeln beim Suchlauf angewendet werden sollen."
 
 #
 msgid "Select the locale from a menu"
@@ -17161,6 +17245,9 @@ msgstr "Den Satelliten auswählen, der an Port D des Switches angeschlossen ist.
 
 msgid "Select the satellite you want to configure. Once configured you can select and configure other satellites that will be accessed using this same tuner."
 msgstr "Den Satelliten auswählen, der konfiguriert werden soll. Sobald dieser konfiguriert ist, können andere Satelliten ausgewählt und konfiguriert werden, auf die mit demselben Tuner zugegriffen wird."
+
+msgid "Select the screen layout, from the options provided by the skin, to be used for the ChannelSelection screen."
+msgstr "Das Layout für den Senderauswahl-Bildschirm anhand der Skin-Optionen auswählen."
 
 #
 msgid "Select the shifted character set"
@@ -17483,6 +17570,9 @@ msgstr "Sendernummer und Sendername"
 msgid "Service Number, Picon and Service Name"
 msgstr "Sendernummer, Picon und Sendername"
 
+msgid "Service Scan"
+msgstr "Sendersuche"
+
 msgid "Service Selection Actions"
 msgstr "Kanalauswahl-Aktionen"
 
@@ -17552,7 +17642,7 @@ msgstr "Service-Referenz"
 
 #
 msgid "Service scan"
-msgstr "Kanalsuche"
+msgstr "Sendersuche"
 
 msgid "Service selection canceled."
 msgstr "Senderauswahl abgebrochen."
@@ -17736,9 +17826,6 @@ msgstr "Die Scrollgeschwindigkeit für Text im Display einstellen (wird vom Soft
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Die Scrollgeschwindigkeit für Text im Display einstellen."
 
-msgid "Set the style of the channel list."
-msgstr "Stil der Senderliste auswählen."
-
 msgid "Set the time before checking video source for resolution information."
 msgstr "Die Verzögerungszeit einstellen, bevor die automatische Auflösung die Videoquelle prüft."
 
@@ -17884,7 +17971,7 @@ msgid "Setup Network Services"
 msgstr "Konfiguration Netzwerkserver"
 
 msgid "Setup Network Services (Samba, Ftp, NFS, ...)"
-msgstr "Konfiguration der Netzwerkserver (Samba, FTP, NFS usw.)"
+msgstr "Konfigurieren der Netzwerkserver (Samba, FTP, NFS usw.)"
 
 msgid "Setup Plugin Browser"
 msgstr "Plugin-Manager einstellen"
@@ -17953,7 +18040,7 @@ msgid "Setup your EPG config"
 msgstr "EPG-Einstellungen konfigurieren"
 
 msgid "Setup your Harddisk"
-msgstr "Konfiguration der Festplatte."
+msgstr "Konfigurieren der Festplatte"
 
 msgid "Setup your LCD"
 msgstr "Display einrichten"
@@ -17970,7 +18057,7 @@ msgid "Setup your System"
 msgstr "Einstellen des Systems"
 
 msgid "Setup your Tuner and search for channels"
-msgstr "Einstellungen Tuner und Sendersuche"
+msgstr "Einstellen der Tuner und Sendersuche."
 
 msgid "Setup your Video Mode, Video Output and other Video Settings"
 msgstr "Videomodus, Videoausgang und andere Videoeinstellungen."
@@ -17983,16 +18070,16 @@ msgid "Setup your local network"
 msgstr "Konfiguration des Netzwerks"
 
 msgid "Setup your local network. For Wlan you need to boot with a USB-Wlan stick"
-msgstr "Konfiguration des Netzwerks. Für WLAN muss ein WLAN-USB-Stick installiert sein."
+msgstr "Konfigurieren des Netzwerks. Für WLAN muss ein WLAN-USB-Stick installiert sein."
 
 msgid "Setup your mounts for network"
-msgstr "Konfiguration der Netzlaufwerke."
+msgstr "Konfigurieren der Netzlaufwerke."
 
 msgid "Setup your network interface. If no Wlan stick is used, you only can select Lan"
 msgstr "Konfiguration der Netzwerkschnittstelle. Wenn kein WLAN-Stick verwendet wird, kann nur LAN ausgewählt werden."
 
 msgid "Setup your network mounts"
-msgstr "Konfiguration der Netzlaufwerke"
+msgstr "Konfigurieren der Netzlaufwerke"
 
 msgid "Setup your positioner"
 msgstr "Rotor einstellen."
@@ -18393,7 +18480,7 @@ msgid "Show crash info on screen and write crash log for x times"
 msgstr "Wie oft Absturz-Info anzeigen und Crash-Log erstellen"
 
 msgid "Show crypto icons"
-msgstr "Zeige Verschlüsselungslogos"
+msgstr "Zeige Verschlüsselungssymbole"
 
 msgid "Show crypto info in InfoBar"
 msgstr "Verschlüsselungsdetails in der Infoleiste anzeigen"
@@ -18486,6 +18573,9 @@ msgstr "Bild anzeigen und als '%s' speichern"
 msgid "Show in Extension Menu"
 msgstr "Im Erweiterungsmenü anzeigen"
 
+msgid "Show in Plugin Browser"
+msgstr "Im Plugin-Manager anzeigen"
+
 msgid "Show in Standby"
 msgstr "Im Standby anzeigen"
 
@@ -18566,10 +18656,10 @@ msgid "Show next system information screen"
 msgstr "Nächsten Systeminformationsbildschirm anzeigen"
 
 msgid "Show notification when import channels and/or EPG from remote receiver URL did not complete"
-msgstr "Benachrichtigung anzeigen, wenn Importkanäle und / oder EPG von der Remote-Receiver-URL nicht abgeschlossen wurden."
+msgstr "Benachrichtigung anzeigen, wenn Importkanäle und/oder EPG von der Reserve-Receiver-URL nicht abgeschlossen wurden."
 
 msgid "Show notification when import channels and/or EPG from remote receiver URL is completed"
-msgstr "Benachrichtigung anzeigen, wenn Importkanäle und / oder EPG von der Remote-Receiver-URL abgeschlossen sind."
+msgstr "Benachrichtigung anzeigen, wenn Importkanäle und/oder EPG von der Reserve-Receiver-URL abgeschlossen sind."
 
 msgid "Show notification when import channels was not successful"
 msgstr "Benachrichtigung anzeigen, wenn Importkanäle nicht erfolgreich waren"
@@ -18592,6 +18682,12 @@ msgstr "Infoleiste während Pause permanent anzeigen"
 
 msgid "Show picon background color"
 msgstr "Hintergrundfarbe der Senderlogos (Picons)"
+
+msgid "Show picons in quickzap"
+msgstr "Senderlogos (Picons), falls vorhanden, beim QuickZap anzeigen"
+
+msgid "Show picons in service list"
+msgstr "Senderlogos (Picons), falls vorhanden, anzeigen"
 
 msgid "Show picture information"
 msgstr "Bildinformationen anzeigen"
@@ -19834,9 +19930,6 @@ msgstr "Striktes DLNA"
 msgid "Stripes"
 msgstr "Streifen"
 
-msgid "Style"
-msgstr "Stil"
-
 msgid "Style:"
 msgstr "Farbe:"
 
@@ -20359,9 +20452,6 @@ msgstr "Tennis"
 #
 msgid "Terrestrial"
 msgstr "Terrestrisch"
-
-msgid "Terrestrial bouquet:"
-msgstr "Terrestrisches Bouquet:"
 
 msgid "Test"
 msgstr "Test"
@@ -21220,6 +21310,10 @@ msgstr ""
 msgid "This will go fast forward/backward with time frames of x secs."
 msgstr "Bei 'Ja' werden beim schnellen Vorlauf/Rücklauf Zeitsprünge von x Sekunden benutzt."
 
+#, python-format
+msgid "This window will automatically close in %d seconds."
+msgstr "Das Fenster schließt sich automatisch in %d Sekunden."
+
 msgid "This wizard has finished"
 msgstr "Dieser Assistent wurde beendet"
 
@@ -21942,10 +22036,7 @@ msgid "URL"
 msgstr "URL"
 
 msgid "URL of fallback remote receiver"
-msgstr "URL vom Reserve-Receiver."
-
-msgid "URL of fallback remote receiver."
-msgstr "URL des Remote-Receivers."
+msgstr "URL vom Reserve-Receiver"
 
 #
 msgid "USALS"
@@ -22035,6 +22126,9 @@ msgstr "Unicable-Matrix"
 
 msgid "Uninstall"
 msgstr "Entfernen"
+
+msgid "Unique numbering"
+msgstr "Eindeutige Nummerierung"
 
 msgid "United Arab Emirates"
 msgstr "Vereinigte Arabische Emirate"
@@ -22199,7 +22293,7 @@ msgid "Update the selected plugin / list of plugins"
 msgstr "Gewähltes Plugin oder Pluginliste aktualisieren"
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
-msgstr "Sichern/Wiederherstellen des Images oder der Einstellungen."
+msgstr "Sichern/Wiederherstellen des Images oder der Einstellungen"
 
 msgid "Update/Backup/Restore your box"
 msgstr "Update/Sicherung/Wiederherstellung"
@@ -22379,6 +22473,9 @@ msgstr "Circularen LNB verwenden"
 msgid "Use defaults"
 msgstr "Standard verwenden"
 
+msgid "Use description lines"
+msgstr ""
+
 msgid "Use extended List"
 msgstr "Erweiterte Liste verwenden"
 
@@ -22440,6 +22537,12 @@ msgstr "Stromaufnahme messen"
 msgid "Use small screen"
 msgstr "Small-Screen benutzen"
 
+msgid "Use spacer lines"
+msgstr ""
+
+msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
+msgstr ""
+
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr "Die Tasten Links/Rechts benutzen, um die Höhe der Benutzeroberfläche/OSD einzustellen. LINKS verringert, RECHTS erhöht sie."
 
@@ -22466,7 +22569,7 @@ msgid "Use the LEFT/RIGHT buttons on your remote to move the OSD up/down."
 msgstr "Die Tasten Links/Rechts benutzen, um die Benutzeroberfläche/OSD nach oben oder unten zu verschieben."
 
 msgid "Use the Networkwizard to configure your Network. The wizard will help you to setup your network"
-msgstr "Den Netzwerkassistenten verwenden, um das Netzwerk zu konfigurieren"
+msgstr "Den Netzwerkassistenten verwenden, um das Netzwerk zu konfigurieren."
 
 msgid "Use the Softcam Panel to control your Cam. This let you start/stop/select a cam"
 msgstr "Softcam-Panel für die Cam-Einstellungen, Start/Stop/Auswählen des Cams."
@@ -23305,9 +23408,6 @@ msgstr "Bei 'Ja' werden empfangene HTTP-Streams immer entschlüsselt. Dies verbr
 
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Bei 'Ja' ist eine Authentifizierung erforderlich, um HTTP-Streams anzusehen."
-
-msgid "When enabled, channel numbering will start at '1' for each bouquet."
-msgstr "Bei 'Ja' fangen die Sendernummern in jeder Favoritenliste mit '1' an."
 
 msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
 msgstr "Wenn aktiviert, werden Videoinhalte mit einem Seitenverhältnis von 4:3 gestreckt dargestellt, um den Bildschirm zu füllen."
@@ -24948,12 +25048,6 @@ msgstr "Cards mit Uphop 8 anzeigen"
 msgid "show cards with uphop 9"
 msgstr "Cards mit Uphop 9 anzeigen"
 
-msgid "show picons in quickzap"
-msgstr "Senderlogos (Picons), falls vorhanden, beim QuickZap anzeigen"
-
-msgid "show picons in service list"
-msgstr "Senderlogos (Picons), falls vorhanden, anzeigen"
-
 msgid "show program information..."
 msgstr "Programm-Informationen anzeigen"
 
@@ -25212,6 +25306,69 @@ msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enable terrestrial LCN:"
+#~ msgstr "Terrestrisches LCN aktivieren:"
+
+#~ msgid "LCN plugin for DVB-T/T2 services"
+#~ msgstr "LCN-Plugin für DVB-T/T2-Dienste"
+
+#~ msgid "LCN rules:"
+#~ msgstr "LCN-Regeln:"
+
+#~ msgid "No entry in lcn db. Please do a service scan."
+#~ msgstr ""
+#~ "Kein Eintrag in der LCN DB!\n"
+#~ "Bitte einen Suchlauf durchführen."
+
+#~ msgid "Rebuild"
+#~ msgstr "Neuerstellung"
+
+#~ msgid "Rebuild LCN bouquet now?"
+#~ msgstr "LCN-Bouquet jetzt neu erstellen?"
+
+#~ msgid "Terrestrial bouquet:"
+#~ msgstr "Terrestrisches Bouquet:"
+
+#~ msgid "Alternative numbering mode"
+#~ msgstr "Alternative Nummerierung"
+
+#, python-format
+#~ msgid "Import from remote receiver failed, %s!"
+#~ msgstr "Import vom Reserve-Tuner fehlgeschlagen! %s"
+
+#~ msgid "Show LCN in channel selection"
+#~ msgstr "LCN in Senderlistenauswahl anzeigen"
+
+#~ msgid "When enabled, channel numbering will start at '1' for each bouquet."
+#~ msgstr "Bei 'Ja' fangen die Sendernummern in jeder Favoritenliste mit '1' an."
+
+#~ msgid "When enabled, show LCN in the channel selection screen."
+#~ msgstr "Bei 'Ja' wird LCN in der Senderlistenauswahl angezeigt."
+
+#~ msgid "Installing feeds from IPK ..."
+#~ msgstr "Installiere Feeds aus IPK..."
+
+#~ msgid "Installing feeds from feed ..."
+#~ msgstr "Installiere Feeds vom Feed..."
+
+#~ msgid "Installing plugins from IPK ..."
+#~ msgstr "Installiere Plugins aus IPK..."
+
+#~ msgid "Installing plugins from feed ..."
+#~ msgstr "Installiere Plugins vom Feed..."
+
+#~ msgid "Remove plugins ..."
+#~ msgstr "Entferne Plugins..."
+
+#~ msgid "Set the style of the channel list."
+#~ msgstr "Stil der Senderliste auswählen."
+
+#~ msgid "Style"
+#~ msgstr "Stil"
+
+#~ msgid "URL of fallback remote receiver."
+#~ msgstr "URL des Remote-Receivers."
 
 #~ msgid ""
 #~ "\n"

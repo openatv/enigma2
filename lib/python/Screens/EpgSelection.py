@@ -764,6 +764,9 @@ class EPGSelection(Screen):
 			self["list"].instance.moveSelectionTo(0)
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			self["list"].fillGraphEPG(None, self.ask_time, True)
+			serviceref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			if serviceref:
+				self["list"].moveToService(serviceref)
 		self.setTitle(self["bouquetlist"].getCurrentBouquet())
 		self.BouquetlistHide(False)
 

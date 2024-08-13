@@ -109,6 +109,7 @@ def InitUsageConfig():
 	config.usage.unhandledKeyTimeout = ConfigSelection(default=2, choices=[(x, ngettext("%d Second", "%d Seconds", x) % x) for x in range(1, 6)])
 	config.usage.show_spinner = ConfigYesNo(default=True)
 	config.usage.screen_saver = ConfigSelection(default="0", choices=[(0, _("Disabled"))] + [(x, _("%d Seconds") % x) for x in (5, 30)] + [(x * 60, ngettext("%d Minute", "%d Minutes", x) % x) for x in (1, 5, 10, 15, 20, 30, 45, 60)])
+	config.usage.informationShowAllMenuScreens = ConfigYesNo(default=False)
 	config.usage.informationExtraSpacing = ConfigYesNo(False)
 
 	# Settings for servicemp3 and handling from cue sheet file.
@@ -176,13 +177,20 @@ def InitUsageConfig():
 	])
 	config.usage.correct_invalid_epgdata.addNotifier(correctInvalidEPGDataChange)
 
-	config.usage.alternative_number_mode = ConfigYesNo(default=False)
-
-	def alternativeNumberModeChange(configElement):
+	def setNumberModeChange(configElement):
 		eDVBDB.getInstance().setNumberingMode(configElement.value)
+		config.usage.alternative_number_mode.value = config.usage.numberMode.value != 0
 		refreshServiceList()
 
-	config.usage.alternative_number_mode.addNotifier(alternativeNumberModeChange)
+	config.usage.numberMode = ConfigSelection(default=0, choices=[
+		(0, _("Unique numbering")),
+		(1, _("Bouquets start at 1")),
+		(2, _("LCN numbering"))
+	])
+	config.usage.numberMode.addNotifier(setNumberModeChange, initial_call=False)
+
+	# Fallback old settigs will be removed later because this setting is probably used in plugins
+	config.usage.alternative_number_mode = ConfigYesNo(default=config.usage.numberMode.value != 0)
 
 	config.usage.hide_number_markers = ConfigYesNo(default=True)
 	config.usage.hide_number_markers.addNotifier(refreshServiceList)
@@ -572,7 +580,34 @@ def InitUsageConfig():
 	config.usage.remote_fallback_enabled = ConfigYesNo(default=False)
 	config.usage.remote_fallback_enabled.addNotifier(setRemoteFallbackEnabled)
 
-	config.usage.remote_fallback = ConfigText(default="http://IP-ADRESS:8001", visible_width=50, fixed_size=False)
+	def remote_fallback_changed(configElement):
+		if configElement.value:
+			configElement.value = "%s%s" % (not configElement.value.startswith("http://") and "http://" or "", configElement.value)
+			configElement.value = "%s%s" % (configElement.value, configElement.value.count(":") == 1 and ":8001" or "")
+	config.usage.remote_fallback = ConfigText(default="", fixed_size=False)
+	config.usage.remote_fallback.addNotifier(remote_fallback_changed, immediate_feedback=False)
+	config.usage.remote_fallback_import_url = ConfigText(default="", fixed_size=False)
+	config.usage.remote_fallback_import_url.addNotifier(remote_fallback_changed, immediate_feedback=False)
+	config.usage.remote_fallback_alternative = ConfigYesNo(default=False)
+	config.usage.remote_fallback_dvb_t = ConfigText(default="", fixed_size=False)
+	config.usage.remote_fallback_dvb_t.addNotifier(remote_fallback_changed, immediate_feedback=False)
+	config.usage.remote_fallback_dvb_c = ConfigText(default="", fixed_size=False)
+	config.usage.remote_fallback_dvb_c.addNotifier(remote_fallback_changed, immediate_feedback=False)
+	config.usage.remote_fallback_atsc = ConfigText(default="", fixed_size=False)
+	config.usage.remote_fallback_atsc.addNotifier(remote_fallback_changed, immediate_feedback=False)
+	config.usage.remote_fallback_import = ConfigSelection(default="", choices=[("", _("No")), ("channels", _("Channels only")), ("channels_epg", _("Channels and EPG")), ("epg", _("EPG only"))])
+	config.usage.remote_fallback_import_restart = ConfigYesNo(default=False)
+	config.usage.remote_fallback_import_standby = ConfigYesNo(default=False)
+	config.usage.remote_fallback_ok = ConfigYesNo(default=False)
+	config.usage.remote_fallback_nok = ConfigYesNo(default=False)
+	config.usage.remote_fallback_extension_menu = ConfigYesNo(default=False)
+	config.usage.remote_fallback_external_timer = ConfigYesNo(default=False)
+	config.usage.remote_fallback_external_timer_default = ConfigYesNo(default=True)
+	config.usage.remote_fallback_openwebif_customize = ConfigYesNo(default=False)
+	config.usage.remote_fallback_openwebif_userid = ConfigText(default="root")
+	config.usage.remote_fallback_openwebif_password = ConfigPassword(default="default")
+	config.usage.remote_fallback_openwebif_port = ConfigInteger(default=80, limits=(0, 65535))
+	config.usage.remote_fallback_dvbt_region = ConfigText(default="Fallback DVB-T/T2 Europe")
 
 	def setHttpStartDelay(configElement):
 		eSettings.setHttpStartDelay(configElement.value)

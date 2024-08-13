@@ -1,0 +1,17 @@
+<setupxml>
+	<setup key="LCNScanner" title="LCN Scanner Settings" showOpenWebif="1">
+		<item level="0" text="Show in Plugin Browser" description="Select 'Yes' to show this plugin in the Plugin Browser.">config.plugins.LCNScanner.showInPluginsList</item>
+		<!-- These options are not currently needed but are being kept in case needs change.
+		<item level="0" text="Cable TV bouquet" description="Cable TV bouquet to be used to store the scanned cable TV services.">config.plugins.LCNScanner.cableBouquetTV</item>
+		<item level="0" text="Cable Radio bouquet" description="Cable Radio bouquet to be used to store the scanned cable Radio services.">config.plugins.LCNScanner.cableBouquetRadio</item>
+		<item level="0" text="Satellite TV bouquet" description="Satellite TV bouquet to be used to store the scanned satellite TV services.">config.plugins.LCNScanner.satelliteBouquetTV</item>
+		<item level="0" text="Satellite Radio bouquet" description="Satellite Radio bouquet to be used to store the scanned satellite radio services.">config.plugins.LCNScanner.satelliteBouquetRadio</item>
+		<item level="0" text="Terrestrial TV bouquet" description="Terrestrial TV bouquet to be used to store the scanned terrestrial TV services.">config.plugins.LCNScanner.terrestrialBouquetTV</item>
+		<item level="0" text="Terrestrial Radio bouquet" description="Terrestrial Radio bouquet to be used to store the scanned terrestrial radio services.">config.plugins.LCNScanner.terrestrialBouquetRadio</item>
+		-->
+		<item level="0" text="LCN rules" description="Select the list of LCN rules to be applied to the scan.">config.plugins.LCNScanner.rules</item>
+		<item level="0" text="Use spacer lines" description="Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN.">config.plugins.LCNScanner.useSpacerLines</item>
+		<item level="0" text="Add service names" description="Add service names to each #SERVICE entry.">config.plugins.LCNScanner.addServiceNames</item>
+		<item level="0" text="Use description lines" description="Also use a #DESCRIPTION line after each #SERVICE line to hold the service's name." conditional="config.plugins.LCNScanner.addServiceNames.value">config.plugins.LCNScanner.useDescriptionLines</item>
+	</setup>
+</setupxml>

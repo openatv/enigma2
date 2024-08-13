@@ -9,9 +9,10 @@
 #include <set>
 #include <lib/nav/core.h>
 
-class eListboxPythonServiceContent: public eListboxPythonMultiContent
+class eListboxPythonServiceContent : public eListboxPythonMultiContent
 {
 	DECLARE_REF(eListboxPythonServiceContent);
+
 public:
 	eListboxPythonServiceContent();
 
@@ -22,6 +23,8 @@ public:
 	void setRoot(const eServiceReference &ref, bool justSet = false);
 	void setRecordIndicatorMode(int mode) { m_record_indicator_mode = mode; }
 	void setHideNumberMarker(bool doHide) { m_hide_number_marker = doHide; }
+	void setHideMarker(bool doHide) { m_hide_marker = doHide; }
+	void setNumberingMode(int numberingMode) { m_numbering_mode = numberingMode; }
 
 	void getCurrent(eServiceReference &ref);
 	void getPrev(eServiceReference &ref);
@@ -70,7 +73,7 @@ protected:
 private:
 	typedef std::list<eServiceReference> list;
 
-	bool checkServiceIsRecorded(eServiceReference ref,pNavigation::RecordType type);
+	bool checkServiceIsRecorded(eServiceReference ref, pNavigation::RecordType type);
 
 	std::map<int, ePtr<gFont>> m_fonts;
 
@@ -93,7 +96,10 @@ private:
 	bool m_current_marked;
 	void swapServices(list::iterator, list::iterator);
 
-	bool m_hide_number_marker, m_record_indicator_mode;
+	bool isServiceHidden(int flags);
+
+	bool m_hide_number_marker, m_hide_marker, m_record_indicator_mode;
+	int m_numbering_mode;
 };
 
 #endif

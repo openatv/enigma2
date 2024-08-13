@@ -278,6 +278,8 @@ int eAVControl::getFrameRate(int defaultVal, int flags) const
 
 #ifdef DREAMNEXTGEN
 	const char *fileName = "/proc/stb/vmpeg/0/frame_rate";
+#elif DREAMBOX
+	const char *fileName = "/proc/stb/vmpeg/0/fallback_framerate";
 #else
 	const char *fileName = "/proc/stb/vmpeg/0/framerate";
 #endif

@@ -115,7 +115,7 @@ class WeatherLocationChoiceList(Screen):
 		self.close(None)
 
 
-class AtileHD_Config(Screen, ConfigListScreen):
+class AtileHD_Config(ConfigListScreen, Screen):
 
 	skin = """
 		<screen name="AtileHD_Config" position="center,center" size="1280,720" title="AtileHD Setup" resolution="1280,720">

@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-21 14:25+0000\n"
-"PO-Revision-Date: 2024-06-18 06:09+0000\n"
+"POT-Creation-Date: 2024-08-04 16:49+0000\n"
+"PO-Revision-Date: 2024-08-13 19:39+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.6-dev\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 msgid ""
 "\n"
@@ -1220,6 +1220,10 @@ msgstr "%s byl aktivován."
 msgid "%s has been disabled."
 msgstr "%s byl zakázán."
 
+#, python-format
+msgid "%s imported from remote receiver."
+msgstr "%s importováno ze záložního tuneru."
+
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
 msgid "%s is no longer used. Should it be deleted?"
@@ -1717,16 +1721,16 @@ msgid "AFL"
 msgstr "AFL"
 
 msgid "AI-Powered translation color"
-msgstr ""
+msgstr "Barva překladu s technologií AI"
 
 msgid "AI-Powered translation enabled"
-msgstr ""
+msgstr "Překlad pomocí AI povolen"
 
 msgid "AI-Powered translation language"
-msgstr ""
+msgstr "Překladatelský jazyk založený na AI"
 
 msgid "AI-Powered translation subscription code"
-msgstr ""
+msgstr "Kód předplatného překladu s podporou AI"
 
 msgid "ARM"
 msgstr "ARM"
@@ -2001,6 +2005,12 @@ msgstr "Přidat nahrávání (ukončit po současné události)"
 msgid "Add service"
 msgstr "Přidat program"
 
+msgid "Add service names"
+msgstr "Přidat názvy služeb"
+
+msgid "Add service names to each #SERVICE entry."
+msgstr "Ke každé položce #SERVICE přidejte názvy služeb."
+
 msgid "Add service to AutoCam"
 msgstr "Přidání služby do AutoCam"
 
@@ -2262,6 +2272,9 @@ msgstr "Importovat též při přechodu ze standby"
 msgid "Also on standby"
 msgstr "Zahrnout také start z pohotovosti"
 
+msgid "Also use a #DESCRIPTION line after each #SERVICE line to hold the service's name."
+msgstr "Po každém řádku #SERVICE použijte také řádek #DESCRIPTION, který obsahuje název služby."
+
 msgid "Alternative"
 msgstr "Alternativní"
 
@@ -2276,9 +2289,6 @@ msgstr "[ÚPRAVA ALTERNATIV]"
 
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr "Alternativní záložní přijímače pro DVB-T/C nebo ATSC"
-
-msgid "Alternative numbering mode"
-msgstr "Alternativní způsob číslování"
 
 msgid "Alternative radio mode"
 msgstr "Alternativní radio mód"
@@ -3120,6 +3130,9 @@ msgstr "Akce navigace pro výběr přehledu"
 msgid "Bouquets"
 msgstr "Seznamy"
 
+msgid "Bouquets start at 1"
+msgstr "Seznamy začínají od 1"
+
 msgid "Bouvet Island"
 msgstr "Bouvetův ostrov"
 
@@ -3675,7 +3688,7 @@ msgid "Cayman Islands"
 msgstr "Kajmanské ostrovy"
 
 msgid "Cebuano"
-msgstr ""
+msgstr "Cebuano"
 
 msgid "Celsius"
 msgstr "Celsia"
@@ -3805,8 +3818,14 @@ msgstr "Akce kontextové nabídky seznamu kanálů"
 msgid "Channel Selection Context Menu Navigation Actions"
 msgstr "Akce navigace kontextové nabídky seznamu kanálů"
 
+msgid "Channel Selection List"
+msgstr "Seznam pro výběr kanálů"
+
 msgid "Channel Selection Navigation Actions"
 msgstr "Akce navigace pro výběr kanálu"
+
+msgid "Channel Selection Screen"
+msgstr "Obrazovka výběru kanálu"
 
 msgid "Channel Selection Settings"
 msgstr "Nastavení výběru kanálu"
@@ -3870,6 +3889,15 @@ msgstr "Kanál:"
 
 msgid "ChannelEPG Settings"
 msgstr "Nastavení kanálu-EPG"
+
+msgid "Channels"
+msgstr "Kanály"
+
+msgid "Channels and EPG"
+msgstr "Kanály a EPG"
+
+msgid "Channels only"
+msgstr "Pouze kanály"
 
 msgid "Chap."
 msgstr "Kap."
@@ -3946,7 +3974,7 @@ msgid "Chinese"
 msgstr "Čínština"
 
 msgid "Chinese (Simplified)"
-msgstr ""
+msgstr "Zjednodušená čínština"
 
 msgid "Choice Box"
 msgstr "Vyberte si"
@@ -4264,6 +4292,9 @@ msgstr "Formát barev"
 msgid "Color space"
 msgstr "Barevný prostor"
 
+msgid "Colored Text"
+msgstr "Barevný Text"
+
 msgid "Combined"
 msgstr "Kombinovaný"
 
@@ -4409,6 +4440,9 @@ msgstr "Nastavte, zda a jak budou zobrazovány ikony nahrávání ve výběru se
 msgid "Configure if and how wide the service name column will be shown in the channel selection list."
 msgstr "Nastavte, zda a jak široké sloupce se zobrazí ve výběru seznamu kanálů."
 
+msgid "Configure if crypto icons will be shown in the channel selection list."
+msgstr "Nakonfigurujte, zda se budou v seznamu pro výběr kanálů zobrazovat krypto ikony."
+
 msgid "Configure if epg.dat should be saved at all."
 msgstr "Konfigurace údajů EPG, které mají být uloženy."
 
@@ -4417,6 +4451,9 @@ msgstr "Nakonfigurujte, zda se v rychlém přepínání budou zobrazovat pikony 
 
 msgid "Configure if service picons will be shown in the service list."
 msgstr "Nastavte, zda a jak budou picony zobrazeny v seznamu kanálů."
+
+msgid "Configure if service type icons will be shown."
+msgstr "Nakonfigurujte, zda se budou zobrazovat ikony typu služby."
 
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
 msgstr "Nastavit možnost přepínání titulků mezi normální, kurzíva, tučné a tučná kurzíva."
@@ -4440,7 +4477,7 @@ msgid "Configure remote control type"
 msgstr "Nastavit typ dálkového ovládání"
 
 msgid "Configure the AI-Powered translation language."
-msgstr ""
+msgstr "Nakonfigurujte jazyk překladu AI."
 
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "Nastavuje DiSEqC mód pro tento LNB."
@@ -4494,7 +4531,7 @@ msgid "Configure the brightness level of the front panel display for standby."
 msgstr "Nastavuje úroveň jasu předního displeje v pohotovostním režimu."
 
 msgid "Configure the color of the AI-Powered translations."
-msgstr ""
+msgstr "Nakonfigurujte barvu překladů s technologií AI."
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
 msgstr "Nastavuje barvy externích titulků - alternativní (normální bíle, kurzíva žlutě, tučné azurově, podtržené zeleně), bílá nebo žlutá."
@@ -6701,6 +6738,9 @@ msgstr "EPG jazyk 2"
 msgid "EPG location"
 msgstr "Umístění EPG"
 
+msgid "EPG only"
+msgstr "Pouze EPG"
+
 msgid "EPGSearch"
 msgstr "Vyhledávání EPG"
 
@@ -6844,7 +6884,7 @@ msgid "Enable 5V for active antenna"
 msgstr "Povolit 5V pro aktivní anténu"
 
 msgid "Enable AI-Powered translation for all teletext and DVB subtitles."
-msgstr ""
+msgstr "Povolit překlad s technologií AI pro všechny teletextové a DVB titulky."
 
 msgid "Enable Autorecord"
 msgstr "Povolit Auto-nahrávání"
@@ -7024,9 +7064,6 @@ msgstr "K naladění služeb, které nemohou být naladěny místně povolte vzd
 msgid "Enable teletext caching"
 msgstr "Povolit vyrovnávací paměť teletextu"
 
-msgid "Enable terrestrial LCN:"
-msgstr "Povolit pozemní LCN:"
-
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "Povolit pokročilé možnosti nastavení HDMI-CEC."
 
@@ -7195,6 +7232,9 @@ msgstr "Zadejte IP adresu"
 msgid "Enter PIN"
 msgstr "Zadejte PIN"
 
+msgid "Enter URL"
+msgstr "Zadejte URL adresu"
+
 msgid "Enter a description for this timer."
 msgstr "Zadejte popis tohoto časovače."
 
@@ -7259,7 +7299,7 @@ msgid "Enter your personal feed URL to allow you to select packages from your pe
 msgstr "Zadejte adresu URL vašeho osobního zdroje, abyste si mohli vybrat balíčky z vašeho osobního zdroje."
 
 msgid "Enter your subscription code, the unified code for trial is 15."
-msgstr ""
+msgstr "Zadejte svůj předplatitelský kód, jednotný zkušební kód je 15."
 
 msgid "Entertainment"
 msgstr "Zábava"
@@ -7429,11 +7469,20 @@ msgstr ""
 "Chyba při získávání odkazu přes %s\n"
 "%s"
 
+msgid "Error moving 'epg.dat' to its destination!"
+msgstr "Chyba při přesunu souboru epg.dat na místo určení!"
+
 msgid "Error opening recording file"
 msgstr "Chyba při otevírání souboru záznamu"
 
 msgid "Error reading webpage!"
 msgstr "Chyba načtení webu!"
+
+msgid "Error retrieving 'epg.dat' from the remote receiver!"
+msgstr "Chyba při načítání 'epg.dat' ze vzdáleného přijímače!"
+
+msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
+msgstr "Chyba při načítání umístění 'epg.dat' na vzdáleném přijímači!"
 
 msgid "Error text:"
 msgstr "Text chyby:"
@@ -7449,6 +7498,12 @@ msgid ""
 msgstr ""
 "Chyba při získávání informací ze záložního časovače\n"
 "%s"
+
+msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
+msgstr "Chyba při zápisu '/etc/enigma2/epg.dat' na vzdáleném přijímači!"
+
+msgid "Error writing 'epg.dat' on the remote receiver!"
+msgstr "Chyba při zápisu 'epg.dat' na vzdáleném přijímači!"
 
 msgid "Error, unknown Result!"
 msgstr "Chyba, neznámý výsledek!"
@@ -7928,6 +7983,9 @@ msgstr "Záložní API nevrátilo platný výsledek."
 msgid "Fallback Font *"
 msgstr "Záložná font *"
 
+msgid "Fallback Timer"
+msgstr "Záložní časovač"
+
 msgid "Fallback remote receiver"
 msgstr "Záložní přijímač"
 
@@ -7949,8 +8007,8 @@ msgstr "Záložní přijímač pro DVB-C"
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Záložní přijímač pro DVB-T"
 
-msgid "Fallback Timer"
-msgstr "Záložní časovač"
+msgid "Fallback remote receiver setup"
+msgstr "Nastavení záložního dálkového přijímače"
 
 msgid "Fallback tuner setup"
 msgstr "Nastavení záložního tuneru"
@@ -8897,7 +8955,7 @@ msgid "Hausa"
 msgstr "Hausa"
 
 msgid "Hawaiian"
-msgstr ""
+msgstr "Havajský"
 
 msgid "Heard Island and McDonald Islands"
 msgstr "Heardův ostrov a McDonaldovy ostrovy"
@@ -9065,7 +9123,7 @@ msgid "History zap..."
 msgstr "Historie přepínání..."
 
 msgid "Hmong"
-msgstr ""
+msgstr "Hmongové"
 
 msgid "Hockey"
 msgstr "Hokej"
@@ -9163,7 +9221,7 @@ msgstr "I"
 msgid "I/O priority for scripts"
 msgstr "Priorita I/O pro skripty"
 
-msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 nový model"
 
 msgid "IMDb Details"
@@ -9746,20 +9804,8 @@ msgstr "Instalace služby"
 msgid "Installing Software..."
 msgstr "Instalace Software..."
 
-msgid "Installing feeds from IPK ..."
-msgstr "Instalace zdrojů z IPK..."
-
-msgid "Installing feeds from feed ..."
-msgstr "Instalace zdrojů z kanálu..."
-
 msgid "Installing package."
 msgstr "Instalace balíčku."
-
-msgid "Installing plugins from IPK ..."
-msgstr "Instalace pluginů z IPK..."
-
-msgid "Installing plugins from feed ..."
-msgstr "Instalace pluginů z kanálu..."
 
 msgid "Instant Recording Actions"
 msgstr "Akce okamžitého nahrávání"
@@ -10104,7 +10150,7 @@ msgid "Kurdish"
 msgstr "Kurdština"
 
 msgid "Kurdish (Sorani)"
-msgstr ""
+msgstr "Kurdština (Soranština)"
 
 msgid "Kurdistan"
 msgstr "Kurdistán"
@@ -10130,11 +10176,23 @@ msgstr "Rychlost rolování LCD"
 msgid "LCD/Front panel *"
 msgstr "LCD/přední panel *"
 
-msgid "LCN plugin for DVB-T/T2 services"
-msgstr "LCN plugin pro DVB-T/T2 služby"
+msgid "LCN Scanner"
+msgstr "LCN skener"
 
-msgid "LCN rules:"
-msgstr "Pravidla LCN:"
+msgid "LCN Scanner Actions"
+msgstr "Akce LCN skeneru"
+
+msgid "LCN Scanner Settings"
+msgstr "Nastavení LCN skeneru"
+
+msgid "LCN Scanner plugin for DVB-C/T/T2 services"
+msgstr "Plugin LCN Scanner pro služby DVB-C/T/T2"
+
+msgid "LCN numbering"
+msgstr "Číslování LCN"
+
+msgid "LCN rules"
+msgstr "LCN pravidla"
 
 msgid "LCN style QuickSelect entry selection"
 msgstr "Výběr položky QuickSelect ve stylu LCN"
@@ -10767,6 +10825,9 @@ msgstr "Ruční vyhledávání programů"
 msgid "Manual transponder"
 msgstr "Ručně definovaný transpondér"
 
+msgid "Manually import from fallback tuner"
+msgstr "Ruční import ze záložního tuneru"
+
 msgid "Manufacturer"
 msgstr "Výrobce"
 
@@ -11016,6 +11077,9 @@ msgstr "Mipsel"
 msgid "Miscellaneous"
 msgstr "Různé"
 
+msgid "Miscellaneous languages"
+msgstr "Různé jazyky"
+
 msgid "Misconfiguration in channel allocation"
 msgstr "Špatná konfigurace v přidělování kanálů"
 
@@ -11183,6 +11247,9 @@ msgstr "Posunout stránku/obrazovku dolů"
 msgid "Move down a screen"
 msgstr "Posunout obrazovku dolů"
 
+msgid "Move down a screen / Move to next item"
+msgstr "Posun o obrazovku dolů / přechod na další položku"
+
 msgid "Move down a screen in the panel"
 msgstr "Posunout se v panelu o obrazovku dolů"
 
@@ -11328,11 +11395,17 @@ msgstr "Přejít na poslední řádek / obrazovku"
 msgid "Move to the next category in the list"
 msgstr "Přejít na další kategorii v seznamu"
 
+msgid "Move to the next item"
+msgstr "Přejděte na další položku"
+
 msgid "Move to the next item in the list"
 msgstr "Přejít na další položku v seznamu"
 
 msgid "Move to the previous category in the list"
 msgstr "Přejít na předchozí kategorii v seznamu"
+
+msgid "Move to the previous item"
+msgstr "Přejít na předchozí položku"
 
 msgid "Move to the previous item in list"
 msgstr "Přejít na předchozí položku v seznamu"
@@ -11351,6 +11424,9 @@ msgstr "Posunout o stránku/obrazovku nahoru"
 
 msgid "Move up a screen"
 msgstr "Posunout o obrazovku nahoru"
+
+msgid "Move up a screen / Move to previous item"
+msgstr "Posun o obrazovku nahoru / přechod na předchozí položku"
 
 msgid "Move up a screen in the panel"
 msgstr "Posunout se v panelu o obrazovku nahoru"
@@ -11840,6 +11916,9 @@ msgstr "Niue"
 msgid "No"
 msgstr "Ne"
 
+msgid "No 'epg.dat' file found on the remote receiver!"
+msgstr "Na vzdáleném přijímači nebyl nalezen žádný soubor 'epg.dat'!"
+
 msgid "No (supported) DVDROM found!"
 msgstr "Nenalezena žádná (podporovaná) DVDROM!"
 
@@ -11900,9 +11979,6 @@ msgstr "Není k dispozici žádný demux"
 
 msgid "No displayable files on this medium found!"
 msgstr "Žádné zobrazitelné soubory na tomto médiu nebyly nalezeny!"
-
-msgid "No entry in lcn db. Please do a service scan."
-msgstr "Žádný záznam v lcn db. Proveďte prosím servisní sken."
 
 msgid "No error"
 msgstr "Bez chyby"
@@ -12239,6 +12315,9 @@ msgstr "Počet zobrazených řádků."
 
 msgid "Number or SMS style data entry"
 msgstr "Zadání dat ve stylu čísla nebo SMS"
+
+msgid "Numbering mode"
+msgstr "Režim číslování"
 
 msgid "OEM model"
 msgstr "OEM model"
@@ -13212,6 +13291,9 @@ msgstr "Prosím, čekejte"
 msgid "Please wait for activation of your network configuration..."
 msgstr "Čekejte prosím na aktivaci Vaší síťové konfigurace..."
 
+msgid "Please wait while LCN bouquets are created/updated..."
+msgstr "Počkejte prosím, než budou vytvořeny/aktualizovány seznamy LCN..."
+
 msgid "Please wait while feeds are updated..."
 msgstr "Čekejte prosím na aktualizaci zdrojů..."
 
@@ -14099,12 +14181,6 @@ msgstr "Zadní"
 msgid "Reboot"
 msgstr "Restartovat"
 
-msgid "Rebuild"
-msgstr "Obnovit"
-
-msgid "Rebuild LCN bouquet now?"
-msgstr "Chcete nyní znovu vytvořit LCN přehled?"
-
 msgid "Rec"
 msgstr "Rec"
 
@@ -14144,6 +14220,9 @@ msgstr "Záznam – stejné jako tlačítko záznamu"
 
 msgid "Record Actions"
 msgstr "Akce nahrávání"
+
+msgid "Record Icon"
+msgstr "Ikona záznamu"
 
 msgid "Record next"
 msgstr "Nahrát další"
@@ -14487,9 +14566,6 @@ msgstr "Odstranit vybraný titul"
 
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Odstranit vybranou složku ze záložek"
-
-msgid "Remove plugins ..."
-msgstr "Odstranit pluginy..."
 
 msgid "Remove service from AutoCam"
 msgstr "Odebrat službu z AutoCam"
@@ -15184,13 +15260,8 @@ msgstr "Uložit pravý adresář při ukončení"
 msgid "Save settings and EPG data."
 msgstr "Uložit nastavení a EPG data."
 
-#, python-format
-msgid ""
-"Save the commands and the output to a file?\n"
-"('%s')"
-msgstr ""
-"Uložit příkazy a výstup do souboru?\n"
-"('%s')"
+msgid "Save the commands and output to the log file?"
+msgstr "Uložit příkazy a výstup do souboru?"
 
 msgid "Save the left column directory location on exit."
 msgstr "Při ukončení uložit umístění adresáře levého sloupce."
@@ -15257,6 +15328,9 @@ msgstr "Prohlédne disky pro instalaci místních rozšíření"
 
 msgid "Scan for local extensions and install them."
 msgstr "Vyhledá a nainstaluje místní rozšíření."
+
+msgid "Scan for terrestrial LCNs and create LCN bouquets"
+msgstr "Vyhledejte pozemní LCN a vytvořte LCN seznamy"
 
 msgid "Scan wireless networks"
 msgstr "Vyhledat bezdrátové sítě"
@@ -15454,6 +15528,9 @@ msgstr "Pokud používáte 'univerzální' LNB, zvolte 'polarizaci', v opačném
 msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
 msgstr "Vyberte 'poskytovatele' pro skenování z předdefinovaného seznamu kabelových multiplexů. Chcete-li skenovat pouze určité části spektra, vyberte „pásma“. Vyberte „kroky“ pro skenování v krocích určité šířky frekvenčního pásma."
 
+msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
+msgstr "Vyberte 'Unikátní číslování' pro přiřazení jedinečných čísel pro každou službu v každém seznamu. Použijte 'Seznamy začínají na 1', chcete-li začít číslovat každý seznam od 1. Použijte 'Číslování LCN' k použití konzistentních LCN služeb, kdekoli se tato služba používá."
+
 msgid "Select 'Yes' if an end time is required for this timer."
 msgstr "Vyberte „Ano“, pokud je pro tento časovač vyžadován čas ukončení."
 
@@ -15645,6 +15722,9 @@ msgstr "Pokud je nastaveno na 'ano' zobrazí se seznam kanálů po přepnutí me
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
 msgstr "Vyberte 'Ano' pro zobrazení aktuálního adresáře v seznamu adresářů. Pamatujte, že aby se tato změna projevila, musí být File Commander restartován."
+
+msgid "Select 'Yes' to show this plugin in the Plugin Browser."
+msgstr "Chcete-li tento plugin zobrazit v prohlížeči pluginů, vyberte 'Ano'."
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Vyberte 'Ano', chcete-li zobrazit balíčky webových odkazů na obrazovce Stáhnout pluginy."
@@ -16108,8 +16188,14 @@ msgstr "Vyberte poslední položku v seznamu nebo se posuňte na konec textu"
 msgid "Select the last item in the list"
 msgstr "Vyberte poslední položku v seznamu"
 
+msgid "Select the layout of the information in the services list, from the options provided by the skin, displayed within the ChannelSelection screen."
+msgstr "Vyberte rozvržení informací v seznamu služeb z možností, které poskytuje vzhled zobrazený na obrazovce Výběr programu."
+
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr "Vyberte rozložení nainstalovaných pluginů na obrazovce Prohlížeč zásuvných modulů. POZNÁMKA: Změna není okamžitá, ale bude vidět po restartu prohlížeče pluginů!"
+
+msgid "Select the list of LCN rules to be applied to the scan."
+msgstr "Vyberte seznam pravidel LCN, která se mají použít na skenování."
 
 msgid "Select the locale from a menu"
 msgstr "Z nabídky vyberte národní prostředí"
@@ -16182,6 +16268,9 @@ msgstr "Vyberte satelit, který je připojen k portu-D vašeho přepínače. Pok
 
 msgid "Select the satellite you want to configure. Once configured you can select and configure other satellites that will be accessed using this same tuner."
 msgstr "Vyberte satelit, který chcete konfigurovat. Jakmile je satelit nakonfigurován, můžete vybrat a nakonfigurovat další satelity, ke kterým bude přistupovat pomocí stejného tuneru."
+
+msgid "Select the screen layout, from the options provided by the skin, to be used for the ChannelSelection screen."
+msgstr "Vyberte rozvržení obrazovky z možností nabízených vzhledem, které se má použít pro obrazovku Výběr kanálu."
 
 msgid "Select the shifted character set"
 msgstr "Vyberte posunutou sadu znaků"
@@ -16489,6 +16578,9 @@ msgstr "Číslo programu a název programu"
 msgid "Service Number, Picon and Service Name"
 msgstr "Číslo programu, pikona a název programu"
 
+msgid "Service Scan"
+msgstr "Skenování služby"
+
 msgid "Service Selection Actions"
 msgstr "Akce pro výběr služeb"
 
@@ -16712,9 +16804,6 @@ msgstr "Nastavení rychlosti rolování textu na předním displeji, Provedení 
 
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Nastavte rolování textu na čelním displeji."
-
-msgid "Set the style of the channel list."
-msgstr "Nastavení stylu seznamu kanálů."
 
 msgid "Set the time before checking video source for resolution information."
 msgstr "Nastavte čas pro zpoždění kontroly rozlišení videa."
@@ -17425,6 +17514,9 @@ msgstr "Zobrazit obrázek a uložit jako '%s'"
 msgid "Show in Extension Menu"
 msgstr "Zobrazit v rozšířené nabídce (modré tlačítko)"
 
+msgid "Show in Plugin Browser"
+msgstr "Zobrazit v prohlížeči pluginů"
+
 msgid "Show in Standby"
 msgstr "Zobrazit v pohotovostním režimu"
 
@@ -17526,6 +17618,12 @@ msgstr "Při pozastavení zobrazovat trvalý informační panel"
 
 msgid "Show picon background color"
 msgstr "Zobrazit barvu pozadí piconů"
+
+msgid "Show picons in quickzap"
+msgstr "Zobrazit pikony v rychlém přepínání"
+
+msgid "Show picons in service list"
+msgstr "Zobrazit pikony v seznamu programů"
 
 msgid "Show picture information"
 msgstr "Zobrazit informace o obrázku"
@@ -18704,9 +18802,6 @@ msgstr "Přímo DLNA"
 msgid "Stripes"
 msgstr "Pruhy"
 
-msgid "Style"
-msgstr "Styl"
-
 msgid "Style:"
 msgstr "Styl:"
 
@@ -19196,9 +19291,6 @@ msgstr "Tenis"
 
 msgid "Terrestrial"
 msgstr "Pozemní"
-
-msgid "Terrestrial bouquet:"
-msgstr "Pozemní skupina programů:"
 
 msgid "Test"
 msgstr "Test"
@@ -20017,6 +20109,10 @@ msgstr ""
 msgid "This will go fast forward/backward with time frames of x secs."
 msgstr "Přeskočí rychle vpřed/vzad o časový index x sekund."
 
+#, python-format
+msgid "This window will automatically close in %d seconds."
+msgstr "Toto okno se automaticky zavře za %d sekund."
+
 msgid "This wizard has finished"
 msgstr "Tento průvodce byl dokončen"
 
@@ -20680,9 +20776,6 @@ msgstr "URL"
 msgid "URL of fallback remote receiver"
 msgstr "URL pro záložní vzdálený přijímač"
 
-msgid "URL of fallback remote receiver."
-msgstr "URL adresa vzdáleného přijímače."
-
 msgid "USALS"
 msgstr "USALS"
 
@@ -20765,6 +20858,9 @@ msgstr "Unicable matice"
 
 msgid "Uninstall"
 msgstr "Odinstalovat"
+
+msgid "Unique numbering"
+msgstr "Jedinečné číslování"
 
 msgid "United Arab Emirates"
 msgstr "Spojené arabské emiráty"
@@ -21089,6 +21185,9 @@ msgstr "Použít kruhové LNB"
 msgid "Use defaults"
 msgstr "Použít výchozí"
 
+msgid "Use description lines"
+msgstr "Použijte řádky popisu"
+
 msgid "Use extended List"
 msgstr "Použít rozšířený seznam"
 
@@ -21145,6 +21244,12 @@ msgstr "Použít sílu měření"
 
 msgid "Use small screen"
 msgstr "Použít malou obrazovku"
+
+msgid "Use spacer lines"
+msgstr "Použijte vymezovací čáry"
+
+msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
+msgstr "K vyplnění seznamu použijte vymezovací čáry, aby čísla řádků #SERVICE odpovídala LCN."
 
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr "Pomocí tlačítek VLEVO/VPRAVO na dálkovém ovládání upravte výšku nabídky OSD. Tlačítko VLEVO snižuje výšku, VPRAVO zvyšuje výšku."
@@ -21956,9 +22061,6 @@ msgstr "Pokud je tato možnost povolena, vždy dekódujte příjem http streamů
 
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Při povolení bude vyžadováno ověření dohledu http streamů."
-
-msgid "When enabled, channel numbering will start at '1' for each bouquet."
-msgstr "Při povolení bude číslování kanálů začínat pro každý přehled od čísla '1'."
 
 msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
 msgstr "Jestliže je povoleno, pak obsah s poměrem stran 4:3 bude roztažen na celou obrazovku."
@@ -23473,12 +23575,6 @@ msgstr "zobrazit karty s uphop 8"
 msgid "show cards with uphop 9"
 msgstr "zobrazit karty s uphop 9"
 
-msgid "show picons in quickzap"
-msgstr "Zobrazit pikony v rychlém přepínání"
-
-msgid "show picons in service list"
-msgstr "Zobrazit pikony v seznamu programů"
-
 msgid "show program information..."
 msgstr "zobrazit informace o programu..."
 
@@ -23713,6 +23809,67 @@ msgstr "ano (uchovat zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enable terrestrial LCN:"
+#~ msgstr "Povolit pozemní LCN:"
+
+#~ msgid "LCN plugin for DVB-T/T2 services"
+#~ msgstr "LCN plugin pro DVB-T/T2 služby"
+
+#~ msgid "LCN rules:"
+#~ msgstr "Pravidla LCN:"
+
+#~ msgid "No entry in lcn db. Please do a service scan."
+#~ msgstr "Žádný záznam v lcn db. Proveďte prosím servisní sken."
+
+#~ msgid "Rebuild"
+#~ msgstr "Obnovit"
+
+#~ msgid "Rebuild LCN bouquet now?"
+#~ msgstr "Chcete nyní znovu vytvořit LCN přehled?"
+
+#~ msgid "Terrestrial bouquet:"
+#~ msgstr "Pozemní skupina programů:"
+
+#~ msgid "Alternative numbering mode"
+#~ msgstr "Alternativní způsob číslování"
+
+#, python-format
+#~ msgid "Import from remote receiver failed, %s!"
+#~ msgstr "Import ze záložního tuneru se nezdařil, %s"
+
+#~ msgid "Show LCN in channel selection"
+#~ msgstr "Zobrazit LCN ve výběru kanálu"
+
+#~ msgid "When enabled, channel numbering will start at '1' for each bouquet."
+#~ msgstr "Při povolení bude číslování kanálů začínat pro každý přehled od čísla '1'."
+
+#~ msgid "When enabled, show LCN in the channel selection screen."
+#~ msgstr "Je-li povoleno, zobrazí se na obrazovce výběru kanálu LCN."
+
+#~ msgid "Installing feeds from IPK ..."
+#~ msgstr "Instalace zdrojů z IPK..."
+
+#~ msgid "Installing feeds from feed ..."
+#~ msgstr "Instalace zdrojů z kanálu..."
+
+#~ msgid "Installing plugins from IPK ..."
+#~ msgstr "Instalace pluginů z IPK..."
+
+#~ msgid "Installing plugins from feed ..."
+#~ msgstr "Instalace pluginů z kanálu..."
+
+#~ msgid "Remove plugins ..."
+#~ msgstr "Odstranit pluginy..."
+
+#~ msgid "Set the style of the channel list."
+#~ msgstr "Nastavení stylu seznamu kanálů."
+
+#~ msgid "Style"
+#~ msgstr "Styl"
+
+#~ msgid "URL of fallback remote receiver."
+#~ msgstr "URL adresa vzdáleného přijímače."
 
 #~ msgid ""
 #~ "\n"

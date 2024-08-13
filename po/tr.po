@@ -6,20 +6,21 @@
 # tanerkaderli <taner.kaderli@live.com>, 2023.
 # jbleyel <jbleyel@gmx.net>, 2023.
 # DreamOSat Forum <info@dreamosat-forum.com>, 2024.
+# Tmp341 <tmp341@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-21 14:25+0000\n"
-"PO-Revision-Date: 2024-06-14 06:41+0000\n"
-"Last-Translator: DreamOSat Forum <info@dreamosat-forum.com>\n"
+"POT-Creation-Date: 2024-08-04 16:49+0000\n"
+"PO-Revision-Date: 2024-08-04 16:47+0000\n"
+"Last-Translator: Tmp341 <tmp341@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.6-dev\n"
+"X-Generator: Weblate 5.7-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Bookmarks: 2450,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
@@ -1179,6 +1180,10 @@ msgstr "%s etkinleştirildi."
 msgid "%s has been disabled."
 msgstr "%s devre dışı bırakıldı."
 
+#, python-format
+msgid "%s imported from remote receiver."
+msgstr "%s uzak alıcıdan getirildi."
+
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
 msgid "%s is no longer used. Should it be deleted?"
@@ -1712,16 +1717,16 @@ msgid "AFL"
 msgstr "AFL"
 
 msgid "AI-Powered translation color"
-msgstr ""
+msgstr "Yapay zeka destekli tercüme rengi"
 
 msgid "AI-Powered translation enabled"
-msgstr ""
+msgstr "Yapay zeka destekli tercüme etkinleştirildi"
 
 msgid "AI-Powered translation language"
-msgstr ""
+msgstr "Yapay zeka destekli tercüme dili"
 
 msgid "AI-Powered translation subscription code"
-msgstr ""
+msgstr "Yapay zeka destekli tercüme abonelik kodu"
 
 msgid "ARM"
 msgstr "KOL"
@@ -2023,6 +2028,12 @@ msgstr "Kayıt ekle (şimdiki programdan sonra dursun)"
 msgid "Add service"
 msgstr "Kanal ekle"
 
+msgid "Add service names"
+msgstr ""
+
+msgid "Add service names to each #SERVICE entry."
+msgstr ""
+
 msgid "Add service to AutoCam"
 msgstr "AutoCam'e hizmet ekle"
 
@@ -2299,6 +2310,9 @@ msgstr "Kutu bekleme modundan çıkarken de içe aktar"
 msgid "Also on standby"
 msgstr "Ayrıca beklemede"
 
+msgid "Also use a #DESCRIPTION line after each #SERVICE line to hold the service's name."
+msgstr ""
+
 #
 msgid "Alternative"
 msgstr "Alternatif"
@@ -2317,9 +2331,6 @@ msgstr "[alternatif düzenle]"
 
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr "DVB-T/C veya ATSC için alternatif URL'ler"
-
-msgid "Alternative numbering mode"
-msgstr "Alternatif numaralama kipi"
 
 msgid "Alternative radio mode"
 msgstr "Alternatif radyo kipi"
@@ -3206,6 +3217,9 @@ msgstr "Buket Seçici Navigasyon Eylemleri"
 msgid "Bouquets"
 msgstr "Buketler"
 
+msgid "Bouquets start at 1"
+msgstr "Buketler 1'de başlar"
+
 msgid "Bouvet Island"
 msgstr "Bouvet Adası"
 
@@ -3774,7 +3788,7 @@ msgid "Cayman Islands"
 msgstr "Cayman Adaları"
 
 msgid "Cebuano"
-msgstr ""
+msgstr "Cebuano"
 
 msgid "Celsius"
 msgstr "Selsius"
@@ -3912,8 +3926,14 @@ msgstr "Kanal Listesi Bağlam Menüsü Eylemleri"
 msgid "Channel Selection Context Menu Navigation Actions"
 msgstr "Kanal Listesi Bağlam Menüsü Gezinme Eylemleri"
 
+msgid "Channel Selection List"
+msgstr "Kanal Seçme Listesi"
+
 msgid "Channel Selection Navigation Actions"
 msgstr "Kanal Seçiminde Gezinme Eylemleri"
+
+msgid "Channel Selection Screen"
+msgstr "Kanal Seçme Ekranı"
 
 #
 msgid "Channel Selection Settings"
@@ -3980,6 +4000,15 @@ msgstr "Kanal:"
 
 msgid "ChannelEPG Settings"
 msgstr "KanalEPG ayarları"
+
+msgid "Channels"
+msgstr "Kanallar"
+
+msgid "Channels and EPG"
+msgstr "Kanallar ve EPG"
+
+msgid "Channels only"
+msgstr "Sadece Kanallar"
 
 #
 msgid "Chap."
@@ -4063,7 +4092,7 @@ msgid "Chinese"
 msgstr "Çince"
 
 msgid "Chinese (Simplified)"
-msgstr ""
+msgstr "Çince (Basitleştirilmiş)"
 
 msgid "Choice Box"
 msgstr "Seçim Kutusu"
@@ -4393,6 +4422,9 @@ msgstr "Renk biçimi"
 msgid "Color space"
 msgstr "Renk Boşluğu"
 
+msgid "Colored Text"
+msgstr "Renkli Yazı"
+
 msgid "Combined"
 msgstr "Kombine"
 
@@ -4414,7 +4446,7 @@ msgstr "Komut çalıştırılıyor..."
 
 msgid "Command finished."
 msgid_plural "Commands finished."
-msgstr[0] ""
+msgstr[0] "Komutlar Tamamlandı."
 
 #
 msgid "Command order"
@@ -4545,6 +4577,9 @@ msgstr "Kanal seçim listesinde kayıt göstergesinin gösterilip gösterilmeyec
 msgid "Configure if and how wide the service name column will be shown in the channel selection list."
 msgstr "Kanal seçim listesinde servis adı sütununun ne kadar ve ne kadar gösterileceğini yapılandırın."
 
+msgid "Configure if crypto icons will be shown in the channel selection list."
+msgstr "Şifreleme simgeleri kanal listesinde görünsün mü diye ayarlayın."
+
 msgid "Configure if epg.dat should be saved at all."
 msgstr "Epg.dat'ın hiç kaydedilmemesi gerekip gerekmediğini yapılandırın."
 
@@ -4553,6 +4588,9 @@ msgstr "Servis pikonlarının quickzap ile gösterilip gösterilmeyeceğini yap�
 
 msgid "Configure if service picons will be shown in the service list."
 msgstr "Servis picons'larının servicelist'de gösterilip gösterilmeyeceğini yapılandırın."
+
+msgid "Configure if service type icons will be shown."
+msgstr "Servis türü simgeleri görünsün mü diye ayarlayın."
 
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
 msgstr "Altyazının normal, italik, kalın ve bolditalik arasında geçiş yapması gerekip gerekmediğini yapılandırın."
@@ -4577,7 +4615,7 @@ msgid "Configure remote control type"
 msgstr "Uzaktan kumanda tipini yapılandır"
 
 msgid "Configure the AI-Powered translation language."
-msgstr ""
+msgstr "Yapay zeka destekli tercüme dilini ayarlayın."
 
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "Bu LNB için doğru DiSEqC kipini seçin."
@@ -4631,7 +4669,7 @@ msgid "Configure the brightness level of the front panel display for standby."
 msgstr "Bekleme için ön panel ekranının parlaklık düzeyini yapılandırın."
 
 msgid "Configure the color of the AI-Powered translations."
-msgstr ""
+msgstr "Yapay zeka destekli tercüme rengini ayarlayın."
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
 msgstr "Altyazı rengini belirleyin, seçenekler (siyah normal, sarı italik, camgöbeği dik, yeşil altı çizili) beyaz veya sarı."
@@ -6935,6 +6973,9 @@ msgstr "EPG 2. dil seçimi"
 msgid "EPG location"
 msgstr "EPG konumu"
 
+msgid "EPG only"
+msgstr "Sadece EPG"
+
 msgid "EPGSearch"
 msgstr "EPG Arama"
 
@@ -7276,9 +7317,6 @@ msgstr "Yerel enigma2 alıcısının yerel olarak ayarlanamayan servislere ayarl
 msgid "Enable teletext caching"
 msgstr "Teletext önbelleğini etkinleştir"
 
-msgid "Enable terrestrial LCN:"
-msgstr "Karasal LCN'yi etkinleştir:"
-
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "Gelişmiş HDMI-CEC ayar seçeneklerini etkinleştirin."
 
@@ -7454,6 +7492,9 @@ msgstr "IP adresi"
 
 msgid "Enter PIN"
 msgstr "PIN kodunu girin"
+
+msgid "Enter URL"
+msgstr ""
 
 msgid "Enter a description for this timer."
 msgstr "Bu zamanlayıcı için bir açıklama girin."
@@ -7695,11 +7736,20 @@ msgstr ""
 "%s\n"
 "%s üzerinden bağlantı alınırken hata oluştu"
 
+msgid "Error moving 'epg.dat' to its destination!"
+msgstr ""
+
 msgid "Error opening recording file"
 msgstr "Kayıt dosyası açılırken hata oluştu"
 
 msgid "Error reading webpage!"
 msgstr "Web sayfa okuma hatası!"
+
+msgid "Error retrieving 'epg.dat' from the remote receiver!"
+msgstr ""
+
+msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
+msgstr ""
 
 msgid "Error text:"
 msgstr "Hata metni:"
@@ -7715,6 +7765,12 @@ msgid ""
 msgstr ""
 "Geri dönüş zamanlayıcı bilgileri alınırken hata oluştu\n"
 "%s"
+
+msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
+msgstr ""
+
+msgid "Error writing 'epg.dat' on the remote receiver!"
+msgstr ""
 
 msgid "Error, unknown Result!"
 msgstr "Hata, bilinmeyen Sonuç!"
@@ -8225,6 +8281,9 @@ msgstr "Geri dönüş API'si geçerli bir sonuç döndürmedi."
 msgid "Fallback Font *"
 msgstr "Yedek Yazı Tipi *"
 
+msgid "Fallback Timer"
+msgstr ""
+
 msgid "Fallback remote receiver"
 msgstr "Yedek cihaz URL"
 
@@ -8246,7 +8305,7 @@ msgstr "Yedek cihaz URL"
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Yedek cihaz URL"
 
-msgid "Fallback Timer"
+msgid "Fallback remote receiver setup"
 msgstr ""
 
 msgid "Fallback tuner setup"
@@ -9522,7 +9581,7 @@ msgstr "I"
 msgid "I/O priority for scripts"
 msgstr "Komut dosyaları için G/Ç önceliği"
 
-msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 yeni model"
 
 msgid "IMDb Details"
@@ -10132,20 +10191,8 @@ msgstr "Kanal Yükleme"
 msgid "Installing Software..."
 msgstr "Yazılım Kuruluyor ..."
 
-msgid "Installing feeds from IPK ..."
-msgstr "IPK'dan yayın yükleniyor ..."
-
-msgid "Installing feeds from feed ..."
-msgstr "Yayınlardan yayın yükleniyor ..."
-
 msgid "Installing package."
 msgstr "Paket kuruluyor."
-
-msgid "Installing plugins from IPK ..."
-msgstr "IPK'dan eklentiler yükleniyor ..."
-
-msgid "Installing plugins from feed ..."
-msgstr "Eklentileri feed'den yükleniyor ..."
 
 msgid "Instant Recording Actions"
 msgstr "Anında Kayıt Eylemleri"
@@ -10533,11 +10580,23 @@ msgstr "LCD kaydırma hızı"
 msgid "LCD/Front panel *"
 msgstr "LCD/Ön panel *"
 
-msgid "LCN plugin for DVB-T/T2 services"
-msgstr "DVB-T / T2 servisleri için LCN eklentisi"
+msgid "LCN Scanner"
+msgstr ""
 
-msgid "LCN rules:"
-msgstr "LCN kuralları:"
+msgid "LCN Scanner Actions"
+msgstr ""
+
+msgid "LCN Scanner Settings"
+msgstr ""
+
+msgid "LCN Scanner plugin for DVB-C/T/T2 services"
+msgstr ""
+
+msgid "LCN numbering"
+msgstr ""
+
+msgid "LCN rules"
+msgstr ""
 
 msgid "LCN style QuickSelect entry selection"
 msgstr "LCN tarzı QuickSelect giriş seçimi"
@@ -11209,6 +11268,9 @@ msgstr "Kanallar için elle arama"
 msgid "Manual transponder"
 msgstr "Transponder bilgilerini elle gir"
 
+msgid "Manually import from fallback tuner"
+msgstr ""
+
 #
 msgid "Manufacturer"
 msgstr "Üretici"
@@ -11471,6 +11533,9 @@ msgstr "Mipsel"
 msgid "Miscellaneous"
 msgstr "Diğer"
 
+msgid "Miscellaneous languages"
+msgstr ""
+
 msgid "Misconfiguration in channel allocation"
 msgstr "Kanal tahsisinde yanlış yapılandırma"
 
@@ -11650,6 +11715,9 @@ msgstr "Bir sayfa / ekran aşağı git"
 msgid "Move down a screen"
 msgstr "Ekranda aşağı hareket et"
 
+msgid "Move down a screen / Move to next item"
+msgstr ""
+
 msgid "Move down a screen in the panel"
 msgstr "Panelde bir ekran aşağı gitme"
 
@@ -11798,11 +11866,17 @@ msgstr "Son satıra / ekrana git"
 msgid "Move to the next category in the list"
 msgstr "Listedeki bir sonraki kategoriye geçme"
 
+msgid "Move to the next item"
+msgstr ""
+
 msgid "Move to the next item in the list"
 msgstr "Listedeki bir sonraki öğeye geçme"
 
 msgid "Move to the previous category in the list"
 msgstr "Listede bir önceki kategoriye geçme"
+
+msgid "Move to the previous item"
+msgstr ""
 
 msgid "Move to the previous item in list"
 msgstr "Listede bir önceki öğeye git"
@@ -11821,6 +11895,9 @@ msgstr "Bir sayfayı / ekranı yukarı taşı"
 
 msgid "Move up a screen"
 msgstr "Bir ekran yukarı taşı"
+
+msgid "Move up a screen / Move to previous item"
+msgstr ""
 
 msgid "Move up a screen in the panel"
 msgstr "Panelde bir ekran yukarı gitme"
@@ -12347,6 +12424,9 @@ msgstr "Niue"
 msgid "No"
 msgstr "Hayır"
 
+msgid "No 'epg.dat' file found on the remote receiver!"
+msgstr ""
+
 #
 msgid "No (supported) DVDROM found!"
 msgstr "Desteklenen DVDROM bulunamadı!"
@@ -12416,9 +12496,6 @@ msgstr "Demux yok"
 #
 msgid "No displayable files on this medium found!"
 msgstr "Bu ortamda gösterilecek dosya bulunamadı!"
-
-msgid "No entry in lcn db. Please do a service scan."
-msgstr "Lcn db'de giriş yok. Lütfen bir servis taraması yapın."
 
 #
 msgid "No error"
@@ -12788,6 +12865,9 @@ msgstr "Görüntülenecek satır sayısı."
 
 msgid "Number or SMS style data entry"
 msgstr "Numara veya SMS tarzı veri girişi"
+
+msgid "Numbering mode"
+msgstr ""
 
 msgid "OEM model"
 msgstr "OEM Modeli"
@@ -13815,6 +13895,9 @@ msgstr "Lütfen bekle"
 msgid "Please wait for activation of your network configuration..."
 msgstr "Lütfen ağ yapılandırmanızın etkinleştirilmesi için bekleyin..."
 
+msgid "Please wait while LCN bouquets are created/updated..."
+msgstr ""
+
 msgid "Please wait while feeds are updated..."
 msgstr "Lütfen beslemeler güncellenirken bekleyin..."
 
@@ -14753,12 +14836,6 @@ msgstr "Arka"
 msgid "Reboot"
 msgstr "Sistemi yeniden başlat"
 
-msgid "Rebuild"
-msgstr "Yeniden inşa etmek"
-
-msgid "Rebuild LCN bouquet now?"
-msgstr "LCN buketi şimdi yeniden oluşturuluyor mu?"
-
 msgid "Rec"
 msgstr "Kayıt"
 
@@ -14799,6 +14876,9 @@ msgstr "Kayıt - kayıt düğmesiyle aynı"
 
 msgid "Record Actions"
 msgstr "Eylemleri Kaydet"
+
+msgid "Record Icon"
+msgstr ""
 
 #
 msgid "Record next"
@@ -15164,9 +15244,6 @@ msgstr "Seçilen geçerli başlığı kaldır"
 
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Seçilen klasörü yer işaretlerinden kaldır"
-
-msgid "Remove plugins ..."
-msgstr "Eklentileri kaldır ..."
 
 msgid "Remove service from AutoCam"
 msgstr "AutoCam içinden servisi kaldır"
@@ -15915,13 +15992,8 @@ msgstr "Çıkışta doğru dizini kaydet"
 msgid "Save settings and EPG data."
 msgstr "Ayarları ve EPG verilerini kaydedin."
 
-#, python-format
-msgid ""
-"Save the commands and the output to a file?\n"
-"('%s')"
-msgstr ""
-"Komutları ve çıktıları bir dosyaya kaydetmek?\n"
-"(`%s`)"
+msgid "Save the commands and output to the log file?"
+msgstr "Komutları ve çıktıları bir dosyaya kaydetmek?"
 
 msgid "Save the left column directory location on exit."
 msgstr "Çıkışta sol sütun dizin konumunu kaydedin."
@@ -15994,6 +16066,9 @@ msgstr "Yerel uzantıları tarayın ve yükleyin"
 #
 msgid "Scan for local extensions and install them."
 msgstr "Yerel eklentileri inceleyin ve kurun."
+
+msgid "Scan for terrestrial LCNs and create LCN bouquets"
+msgstr ""
 
 #
 msgid "Scan wireless networks"
@@ -16199,6 +16274,9 @@ msgstr "Eğer bir 'evrensel' LNB kullanıyorsanız 'polarizasyonu' seçin, aksi 
 msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
 msgstr "Önceden tanımlanmış kablo çoklama listesinden taramak için 'sağlayıcı'yı seçin. Spektrumun yalnızca belirli kısımlarını taramak için 'bantları' seçin. Belirli bir frekans bant genişliğinin adımlarında taramak için 'adımları' seçin."
 
+msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
+msgstr ""
+
 msgid "Select 'Yes' if an end time is required for this timer."
 msgstr "Bu zamanlayıcı için bir bitiş zamanı gerekiyorsa 'Evet'i seçin."
 
@@ -16390,6 +16468,9 @@ msgstr "'evet' Radyo ve TV kipleri arasındaki geçişlerde kanal listesi görü
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
 msgstr "Dizinler listesinde geçerli dizini göstermek için 'Evet'i seçin. Bu değişikliğin etkili olması için File Commander'ın yeniden başlatılması gerektiğini unutmayın."
+
+msgid "Select 'Yes' to show this plugin in the Plugin Browser."
+msgstr ""
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Eklentileri İndir ekranında web bağlantı paketlerini göstermek için 'Evet'i seçin."
@@ -16866,8 +16947,14 @@ msgstr "Listedeki son öğeyi seçin veya metnin sonuna gidin"
 msgid "Select the last item in the list"
 msgstr "Listedeki son öğeyi seçin"
 
+msgid "Select the layout of the information in the services list, from the options provided by the skin, displayed within the ChannelSelection screen."
+msgstr ""
+
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr "Eklenti Tarayıcısı ekranında yüklü eklentilerin düzenini seçin. NOT: Değişiklik hemen gerçekleşmez ancak Eklenti Tarayıcı yeniden başlatıldığında görülecektir!"
+
+msgid "Select the list of LCN rules to be applied to the scan."
+msgstr ""
 
 msgid "Select the locale from a menu"
 msgstr "Bir menüden yerel ayarı seçin"
@@ -16941,6 +17028,9 @@ msgstr "Anahtarınızın Port-D'sine bağlı olan uyduyu seçin. Emin değilseni
 
 msgid "Select the satellite you want to configure. Once configured you can select and configure other satellites that will be accessed using this same tuner."
 msgstr "Yapılandırmak istediğiniz uyduyu seçin. Bu uydu yapılandırıldıktan sonra, bu aynı tarayıcıyı kullanarak erişilecek diğer uyduları seçebilir ve yapılandırabilirsiniz."
+
+msgid "Select the screen layout, from the options provided by the skin, to be used for the ChannelSelection screen."
+msgstr ""
 
 msgid "Select the shifted character set"
 msgstr "Kaydırılan karakter kümesini seçin"
@@ -17260,6 +17350,9 @@ msgstr "Servis Numarası ve Servis Adı"
 msgid "Service Number, Picon and Service Name"
 msgstr "Servis Numarası, Picon ve Servis Adı"
 
+msgid "Service Scan"
+msgstr ""
+
 msgid "Service Selection Actions"
 msgstr "Hizmet Seçimi Eylemleri"
 
@@ -17490,9 +17583,6 @@ msgstr "Ön ekrandaki metin kaydırma hızını ayarlayın, bu işlem bazı deri
 
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Ön panelde metin kayma hızını ayarla."
-
-msgid "Set the style of the channel list."
-msgstr "Kanal listesinin stilini ayarlayın."
 
 msgid "Set the time before checking video source for resolution information."
 msgstr "Çözünürlük bilgisi için video kaynağını kontrol etmeden önceki zamanı belirleyin."
@@ -18222,6 +18312,9 @@ msgstr "Görüntüyü göster ve '%s' olarak kaydet"
 msgid "Show in Extension Menu"
 msgstr "Eklentiler listesinde göster"
 
+msgid "Show in Plugin Browser"
+msgstr ""
+
 msgid "Show in Standby"
 msgstr "Bekleme modunda göster"
 
@@ -18328,6 +18421,12 @@ msgstr "Duraklatıldığında bilgi çubuğunu kalıcı olarak göster"
 
 msgid "Show picon background color"
 msgstr "Picon arka plan rengini göster"
+
+msgid "Show picons in quickzap"
+msgstr "quickzap içinde picons göster"
+
+msgid "Show picons in service list"
+msgstr "kanal listesinde pikonları göster"
 
 msgid "Show picture information"
 msgstr "Resim bilgilerini göster"
@@ -19572,9 +19671,6 @@ msgstr "Tam DLNA"
 msgid "Stripes"
 msgstr "Çizgili"
 
-msgid "Style"
-msgstr "Stil"
-
 msgid "Style:"
 msgstr "Stil:"
 
@@ -20087,9 +20183,6 @@ msgstr "Tenis"
 #
 msgid "Terrestrial"
 msgstr "Karasal"
-
-msgid "Terrestrial bouquet:"
-msgstr "Karasal buketi:"
 
 msgid "Test"
 msgstr "Test"
@@ -20924,6 +21017,10 @@ msgstr ""
 msgid "This will go fast forward/backward with time frames of x secs."
 msgstr "Bu x saniye zaman dilimleri ile ileri / geri hızlı gidecek"
 
+#, python-format
+msgid "This window will automatically close in %d seconds."
+msgstr ""
+
 msgid "This wizard has finished"
 msgstr "Bu sihirbaz tamamlandı"
 
@@ -21637,9 +21734,6 @@ msgstr "URL"
 msgid "URL of fallback remote receiver"
 msgstr "Yedek cihaz URL"
 
-msgid "URL of fallback remote receiver."
-msgstr "Yedek uzaktan kumandanın URL'si"
-
 #
 msgid "USALS"
 msgstr "DiSEqC 1.3 (USALS) (Uluslararası Oto. Uydu Kon. Sist)"
@@ -21726,6 +21820,9 @@ msgstr "Unicable Matrix"
 
 msgid "Uninstall"
 msgstr "Kaldır"
+
+msgid "Unique numbering"
+msgstr ""
 
 msgid "United Arab Emirates"
 msgstr "Birleşik Arap Emirlikleri"
@@ -22063,6 +22160,9 @@ msgstr "Dairesel LNB kullan"
 msgid "Use defaults"
 msgstr "Varsayılanları kullan"
 
+msgid "Use description lines"
+msgstr ""
+
 msgid "Use extended List"
 msgstr "Genişletilmiş Listeyi kullan"
 
@@ -22121,6 +22221,12 @@ msgstr "Güç ölçümü kullan"
 
 msgid "Use small screen"
 msgstr "İnce ekran kullan"
+
+msgid "Use spacer lines"
+msgstr ""
+
+msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
+msgstr ""
 
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr "OSD'nin yüksekliğini ayarlamak için uzaktan kumandanızdaki SOL/SAĞ düğmelerini kullanın. SOL düğme yüksekliği azaltır, SAĞ düğme ise yüksekliği artırır."
@@ -22969,9 +23075,6 @@ msgstr "Etkinleştirildiğinde, alınan http akışlarının şifresini her zama
 
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Etkinleştirildiğinde, http akışlarını izlemek için kimlik doğrulaması gereklidir."
-
-msgid "When enabled, channel numbering will start at '1' for each bouquet."
-msgstr "Etkinleştirildiğinde, her buket için kanal numaralandırma '1' de başlayacaktır."
 
 msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
 msgstr "Etkinleşince 4:3 görüntü oranı ekranı dolduracak şekilde genişler."
@@ -24582,12 +24685,6 @@ msgstr "kartları göster uphop 8"
 msgid "show cards with uphop 9"
 msgstr "kartları göster uphop 9"
 
-msgid "show picons in quickzap"
-msgstr "quickzap içinde picons göster"
-
-msgid "show picons in service list"
-msgstr "kanal listesinde pikonları göster"
-
 msgid "show program information..."
 msgstr "program bigisini göster..."
 
@@ -24846,6 +24943,57 @@ msgstr "evet (beslemeleri tut)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enable terrestrial LCN:"
+#~ msgstr "Karasal LCN'yi etkinleştir:"
+
+#~ msgid "LCN plugin for DVB-T/T2 services"
+#~ msgstr "DVB-T / T2 servisleri için LCN eklentisi"
+
+#~ msgid "LCN rules:"
+#~ msgstr "LCN kuralları:"
+
+#~ msgid "No entry in lcn db. Please do a service scan."
+#~ msgstr "Lcn db'de giriş yok. Lütfen bir servis taraması yapın."
+
+#~ msgid "Rebuild"
+#~ msgstr "Yeniden inşa etmek"
+
+#~ msgid "Rebuild LCN bouquet now?"
+#~ msgstr "LCN buketi şimdi yeniden oluşturuluyor mu?"
+
+#~ msgid "Terrestrial bouquet:"
+#~ msgstr "Karasal buketi:"
+
+#~ msgid "Alternative numbering mode"
+#~ msgstr "Alternatif numaralama kipi"
+
+#~ msgid "When enabled, channel numbering will start at '1' for each bouquet."
+#~ msgstr "Etkinleştirildiğinde, her buket için kanal numaralandırma '1' de başlayacaktır."
+
+#~ msgid "Installing feeds from IPK ..."
+#~ msgstr "IPK'dan yayın yükleniyor ..."
+
+#~ msgid "Installing feeds from feed ..."
+#~ msgstr "Yayınlardan yayın yükleniyor ..."
+
+#~ msgid "Installing plugins from IPK ..."
+#~ msgstr "IPK'dan eklentiler yükleniyor ..."
+
+#~ msgid "Installing plugins from feed ..."
+#~ msgstr "Eklentileri feed'den yükleniyor ..."
+
+#~ msgid "Remove plugins ..."
+#~ msgstr "Eklentileri kaldır ..."
+
+#~ msgid "Set the style of the channel list."
+#~ msgstr "Kanal listesinin stilini ayarlayın."
+
+#~ msgid "Style"
+#~ msgstr "Stil"
+
+#~ msgid "URL of fallback remote receiver."
+#~ msgstr "Yedek uzaktan kumandanın URL'si"
 
 #~ msgid ""
 #~ "\n"

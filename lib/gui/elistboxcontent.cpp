@@ -1782,14 +1782,14 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 						  pheight = PyTuple_GET_ITEM(item, 4),
 						  pfilled_perc = PyTuple_GET_ITEM(item, 5),
 						  ppixmap, pborderWidth, pforeColor, pforeColorSelected, pbackColor, pbackColorSelected,
-						  pstartColor, pmidColor, pendColor, pstartColorSelected, pmidColorSelected, pendColorSelected;
+						  pstartColor, pmidColor, pendColor, pstartColorSelected, pmidColorSelected, pendColorSelected, pborderColor, pborderColorSelected;
 
 				int idx = 6;
 				if (type == TYPE_PROGRESS)
 				{
 					if (!(px && py && pwidth && pheight && pfilled_perc))
 					{
-						eDebug("[eListboxPythonMultiContent] tuple too small (must be (TYPE_PROGRESS, x, y, width, height, filled percent [, borderWidth, color, colorSelected, backColor, backColorSelected]))");
+						eDebug("[eListboxPythonMultiContent] tuple too small (must be (TYPE_PROGRESS, x, y, width, height, filled percent [, borderWidth, color, colorSelected, backColor, backColorSelected, borderColor, borderColorSelected]))");
 						goto error_out;
 					}
 				}
@@ -1800,7 +1800,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 						continue;
 					if (!(px && py && pwidth && pheight && pfilled_perc, ppixmap))
 					{
-						eDebug("[eListboxPythonMultiContent] tuple too small (must be (TYPE_PROGRESS_PIXMAP, x, y, width, height, filled percent, pixmap, [,borderWidth, color, colorSelected, backColor, backColorSelected]))");
+						eDebug("[eListboxPythonMultiContent] tuple too small (must be (TYPE_PROGRESS_PIXMAP, x, y, width, height, filled percent, pixmap, [,borderWidth, color, colorSelected, backColor, backColorSelected, borderColor, borderColorSelected]))");
 						goto error_out;
 					}
 				}
@@ -1835,6 +1835,12 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					if (!pbackColorSelected || pbackColorSelected == Py_None)
 						pbackColorSelected = ePyObject();
 				}
+
+				if (size > idx)
+					pborderColor = lookupColor(PyTuple_GET_ITEM(item, idx++), data);
+
+				if (size > idx)
+					pborderColorSelected = lookupColor(PyTuple_GET_ITEM(item, idx++), data);
 
 				int radius = 0;
 				int edges = 0;
@@ -1966,6 +1972,11 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					}
 					else
 					{
+						if (pborderColor) {
+							uint32_t color = PyLong_AsUnsignedLongMask((selected && pborderColorSelected) ? pborderColorSelected : pborderColor);
+							painter.setForegroundColor(gRGB(color));
+						}
+
 						rect.setRect(x, y, width, bwidth);
 						painter.fill(rect);
 
@@ -1977,6 +1988,23 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 						rect.setRect(x + width - bwidth, y + bwidth, bwidth, height - bwidth);
 						painter.fill(rect);
+
+						if (pborderColor) {
+							if (selected && pforeColorSelected)
+							{
+								uint32_t color = PyLong_AsUnsignedLongMask(pforeColorSelected);
+								painter.setForegroundColor(gRGB(color));
+							}
+							else if (pforeColor)
+							{
+								uint32_t color = PyLong_AsUnsignedLongMask(pforeColor);
+								painter.setForegroundColor(gRGB(color));
+							}
+							else
+							{
+								painter.setForegroundColor(defaultForeColor);
+							}
+						}
 					}
 				}
 
@@ -2093,12 +2121,16 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 				int radius = 0;
 				int edges = 0;
+				int fullSize = 0;
 
 				if (size > 12)
-					radius = PyLong_AsLong(PyTuple_GET_ITEM(item, 12));
+					fullSize = PyLong_AsLong(PyTuple_GET_ITEM(item, 12));
 
 				if (size > 13)
-					edges = PyLong_AsLong(PyTuple_GET_ITEM(item, 13));
+					radius = PyLong_AsLong(PyTuple_GET_ITEM(item, 13));
+
+				if (size > 14)
+					edges = PyLong_AsLong(PyTuple_GET_ITEM(item, 14));
 
 				int x = PyFloat_Check(px) ? (int)PyFloat_AsDouble(px) : PyLong_AsLong(px);
 				int y = PyFloat_Check(py) ? (int)PyFloat_AsDouble(py) : PyLong_AsLong(py);
@@ -2139,7 +2171,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 						colors.push_back(gRGB(midcolor));
 					}
 					colors.push_back(gRGB(color1));
-					painter.setGradient(colors, direction, alphablend);
+					painter.setGradient(colors, direction, alphablend, fullSize);
 					painter.drawRectangle(rect);
 				}
 				else if (selected && pstartColorSelected && pendColorSelected)
@@ -2154,7 +2186,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 						colors.push_back(gRGB(midcolor));
 					}
 					colors.push_back(gRGB(color1));
-					painter.setGradient(colors, direction, alphablend);
+					painter.setGradient(colors, direction, alphablend, fullSize);
 					painter.drawRectangle(rect);
 				}
 

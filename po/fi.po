@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-21 14:25+0000\n"
-"PO-Revision-Date: 2024-06-15 20:12+0000\n"
+"POT-Creation-Date: 2024-08-04 16:49+0000\n"
+"PO-Revision-Date: 2024-08-11 20:09+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6-dev\n"
+"X-Generator: Weblate 5.7-dev\n"
 
 msgid ""
 "\n"
@@ -1185,6 +1185,10 @@ msgstr "%s on aktivoitu."
 msgid "%s has been disabled."
 msgstr "%s on poistettu käytöstä."
 
+#, python-format
+msgid "%s imported from remote receiver."
+msgstr "%s tuotu etävastaanottimelta."
+
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
 msgid "%s is no longer used. Should it be deleted?"
@@ -1690,16 +1694,16 @@ msgid "AFL"
 msgstr "AFL"
 
 msgid "AI-Powered translation color"
-msgstr ""
+msgstr "Tekstityksen väri tekoäly avusteisessa käännöksessä"
 
 msgid "AI-Powered translation enabled"
-msgstr ""
+msgstr "Tekoäly käännös käytössä"
 
 msgid "AI-Powered translation language"
-msgstr ""
+msgstr "Tekoälyn käännöksen kieli"
 
 msgid "AI-Powered translation subscription code"
-msgstr ""
+msgstr "Tekoälyllä toimivan tekstityksen tilauskoodi"
 
 msgid "ARM"
 msgstr "ARM"
@@ -1974,6 +1978,12 @@ msgstr "Tallenna (Lopeta nykyisen ohjelman jälkeen)"
 msgid "Add service"
 msgstr "Lisää kanava"
 
+msgid "Add service names"
+msgstr "Lisää kanavan nimi"
+
+msgid "Add service names to each #SERVICE entry."
+msgstr "Lisätään kanava nimet jokaiseen kanavalistaan."
+
 msgid "Add service to AutoCam"
 msgstr "Lisää kanava CI+"
 
@@ -2239,6 +2249,9 @@ msgstr "Tuo valmiustilasta poistuttaessa"
 msgid "Also on standby"
 msgstr "Myös valmiustilassa"
 
+msgid "Also use a #DESCRIPTION line after each #SERVICE line to hold the service's name."
+msgstr ""
+
 msgid "Alternative"
 msgstr "Vaihtoehtoinen"
 
@@ -2253,9 +2266,6 @@ msgstr "[Vaihtoehtojen lisäys ja poisto]"
 
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr "Vaihtoehtoiset URL osoitteet DVB-T/C tai ATSC"
-
-msgid "Alternative numbering mode"
-msgstr "Vaihtoehtoinen numerointitapa"
 
 msgid "Alternative radio mode"
 msgstr "TV tyylinen radiokanavien selaus"
@@ -3097,6 +3107,9 @@ msgstr "Suosikki valinnan navigointi toiminnot"
 msgid "Bouquets"
 msgstr "Suosikkilistat"
 
+msgid "Bouquets start at 1"
+msgstr "Kanavalistan numerointi alkaa numerolla 1"
+
 msgid "Bouvet Island"
 msgstr "Bouvet saaret"
 
@@ -3653,7 +3666,7 @@ msgid "Cayman Islands"
 msgstr "Cayman saaret"
 
 msgid "Cebuano"
-msgstr ""
+msgstr "Austronesialainen kieli"
 
 msgid "Celsius"
 msgstr "Celsius"
@@ -3783,8 +3796,14 @@ msgstr "Kanavalistan konteksti valikon Toiminnot"
 msgid "Channel Selection Context Menu Navigation Actions"
 msgstr "Kanavalistan konteksti valikon Navigointi Toiminnot"
 
+msgid "Channel Selection List"
+msgstr "Kanavan valintalista"
+
 msgid "Channel Selection Navigation Actions"
 msgstr "Kanavan valinta toiminnot"
+
+msgid "Channel Selection Screen"
+msgstr "Kanavan valinta ruutu"
 
 msgid "Channel Selection Settings"
 msgstr "Kanavalistan asetukset"
@@ -3848,6 +3867,15 @@ msgstr "Kanava:"
 
 msgid "ChannelEPG Settings"
 msgstr "Kanava EPG asetukset"
+
+msgid "Channels"
+msgstr "Kanavat"
+
+msgid "Channels and EPG"
+msgstr "Kanavat ja EPG"
+
+msgid "Channels only"
+msgstr "Vain kanavat"
 
 msgid "Chap."
 msgstr "Osa."
@@ -3924,7 +3952,7 @@ msgid "Chinese"
 msgstr "Kiina"
 
 msgid "Chinese (Simplified)"
-msgstr ""
+msgstr "Kiina (yksinkertaistettu)"
 
 msgid "Choice Box"
 msgstr "Kortin Tiedot"
@@ -4241,6 +4269,9 @@ msgstr "Väriformaatti"
 msgid "Color space"
 msgstr "Väriavaruus"
 
+msgid "Colored Text"
+msgstr "Värillinen teksti"
+
 msgid "Combined"
 msgstr "Yhdistetty"
 
@@ -4262,8 +4293,8 @@ msgstr "Peruutetaanko suoritus..."
 
 msgid "Command finished."
 msgid_plural "Commands finished."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Komento suoritettu."
+msgstr[1] "Komennot suoritettu."
 
 msgid "Command order"
 msgstr "Käskyjen järjestys"
@@ -4385,6 +4416,9 @@ msgstr "Määrittää, kuinka tallennus näytetään kanavalistassa."
 msgid "Configure if and how wide the service name column will be shown in the channel selection list."
 msgstr "Määrittää, kuinka leveänä kanavanimet näytetään kanavalistassa."
 
+msgid "Configure if crypto icons will be shown in the channel selection list."
+msgstr "Määritä, näkyvätkö salauskuvakkeet kanavan valinta listassa."
+
 msgid "Configure if epg.dat should be saved at all."
 msgstr "Määrittää, talletetaanko epg.dat -tiedostoa."
 
@@ -4393,6 +4427,9 @@ msgstr "Määritä, näkyvätkö kanavalogot pikavaihdossa."
 
 msgid "Configure if service picons will be shown in the service list."
 msgstr "Määrittää, näytetäänkö kanavalogoja kanavalistassa."
+
+msgid "Configure if service type icons will be shown."
+msgstr "Määrittää näytetäänkö tyypin kuvakkeet kanavalistassa."
 
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
 msgstr "Muokkaa ulkoisen tekstityksen fonttia, vaihtoehtoina: normal, italic, bold ja bolditalic."
@@ -4416,7 +4453,7 @@ msgid "Configure remote control type"
 msgstr "Määritä kaukosäätimen tyyppi"
 
 msgid "Configure the AI-Powered translation language."
-msgstr ""
+msgstr "Valitse tekoälyn tekstityksen käännöksen kieli."
 
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "Määritä tämän LNB:n DiSEqC-tila."
@@ -4470,7 +4507,7 @@ msgid "Configure the brightness level of the front panel display for standby."
 msgstr "Määrittää etupaneeliin näytön kirkkauden valmiustilassa."
 
 msgid "Configure the color of the AI-Powered translations."
-msgstr ""
+msgstr "Valitse tekstin väri tekoälyavusteiselle käännökselle."
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
 msgstr "Määrittää ulkoisen tekstityksen värin, vaihtoehtoinen (normaali valkoisella, kursivoitu keltaisella, lihavoitu sinivihreällä, alleviivattu vihreällä), valkoinen tai keltainen."
@@ -6676,6 +6713,9 @@ msgstr "Ohjelmaoppaan kielivalinta 2"
 msgid "EPG location"
 msgstr "Ohjelmaoppaan sijainti"
 
+msgid "EPG only"
+msgstr "Vain EPG"
+
 msgid "EPGSearch"
 msgstr "EPG ohjelman haku"
 
@@ -6819,7 +6859,7 @@ msgid "Enable 5V for active antenna"
 msgstr "Syötä 5 voltin käyttöjännite aktiiviantennille"
 
 msgid "Enable AI-Powered translation for all teletext and DVB subtitles."
-msgstr ""
+msgstr "Ota tekoälyn käännös käyttöön teksti-tv:lle ja DVB-tekstityksille."
 
 msgid "Enable Autorecord"
 msgstr "Ota käyttöön automaattinen tallennus"
@@ -6999,9 +7039,6 @@ msgstr "Salli vastaanottimen virittyä ulkopuolisiin vastaanottimiin (esim. jos 
 msgid "Enable teletext caching"
 msgstr "Ota käyttöön teksti-tv:n välimuisti"
 
-msgid "Enable terrestrial LCN:"
-msgstr "Aktivoi antenni LCN:"
-
 msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "Ota käyttöön HDMI CEC:n laajennetut asetus vaihtoehdot."
 
@@ -7168,6 +7205,9 @@ msgstr "Syötä IP-osoite"
 msgid "Enter PIN"
 msgstr "Syötä PIN"
 
+msgid "Enter URL"
+msgstr "Syötä URL-osoite"
+
 msgid "Enter a description for this timer."
 msgstr "Anna kuvaus tälle ajastukselle."
 
@@ -7232,7 +7272,7 @@ msgid "Enter your personal feed URL to allow you to select packages from your pe
 msgstr "Syötä henkilökohtaisen syötteen URL osoite, jotta voit valita paketteja syötteestäsi."
 
 msgid "Enter your subscription code, the unified code for trial is 15."
-msgstr ""
+msgstr "Syötä tilauskoodisi, kokeiluaika on 15 päivää."
 
 msgid "Entertainment"
 msgstr "Viihde"
@@ -7402,11 +7442,20 @@ msgstr ""
 "Virhe linkiä hakiessa %s\n"
 "%s"
 
+msgid "Error moving 'epg.dat' to its destination!"
+msgstr "Virheet, siirrettäessa epg.dat!"
+
 msgid "Error opening recording file"
 msgstr "Virhe tallennustiedoston avaamisessa\""
 
 msgid "Error reading webpage!"
 msgstr "Virhe luettaessa web-sivua!"
+
+msgid "Error retrieving 'epg.dat' from the remote receiver!"
+msgstr "Virhe haettaessa epg.dat tiedostoa etävastaanottimelta!"
+
+msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
+msgstr "Virhe haettaessa epg.dat tiedoston sijaintia etävastaanottimelta!"
 
 msgid "Error text:"
 msgstr "Virheteksti:"
@@ -7422,6 +7471,12 @@ msgid ""
 msgstr ""
 "Virhe haettaessa menneitä ajastus tietoja.\n"
 "%s"
+
+msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
+msgstr "Virheiden kirjoittaessa \"/etc/enigma2/epg.dat\" etävastaanottimella!"
+
+msgid "Error writing 'epg.dat' on the remote receiver!"
+msgstr "Virheitä kirjoittaessa epg.dat etävastaanottimessa!"
 
 msgid "Error, unknown Result!"
 msgstr "Virhe, tuntematon tulos!"
@@ -7534,7 +7589,7 @@ msgstr "Virhe: Ei voida nimetä hakemistoa '%s' uudelleen muotoon '%s'!"
 
 #, python-format
 msgid "Error: Unable to write log file '%s'!"
-msgstr "Tiedosto kirjoitus virhe: '%s'"
+msgstr "Virhe: Lokitiedoston kirjoittaminen epäonnistui '%s'!"
 
 #, python-format
 msgid "Error: You can't run '%s' on '%s'!"
@@ -7901,6 +7956,9 @@ msgstr "Fallback API ei löytänyt oikeaa tulosta."
 msgid "Fallback Font *"
 msgstr "Toissijainen Fontti *"
 
+msgid "Fallback Timer"
+msgstr "Vara ajastin"
+
 msgid "Fallback remote receiver"
 msgstr "Etävastaanotin"
 
@@ -7922,8 +7980,8 @@ msgstr "Varaviritin DVB-C"
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Varaviritin DVB-T"
 
-msgid "Fallback Timer"
-msgstr "Vara ajastin"
+msgid "Fallback remote receiver setup"
+msgstr "Etävastaanottimen asetukset"
 
 msgid "Fallback tuner setup"
 msgstr "Etävastaanotin asetukset"
@@ -8870,7 +8928,7 @@ msgid "Hausa"
 msgstr "Hausa"
 
 msgid "Hawaiian"
-msgstr ""
+msgstr "Havaijin"
 
 msgid "Heard Island and McDonald Islands"
 msgstr "Heard saari ja McDonald saari"
@@ -8981,7 +9039,7 @@ msgid "Hide zap errors"
 msgstr "Piilota kanavanvaihdon virheilmoitukset"
 
 msgid "Hide/Show the console screen"
-msgstr ""
+msgstr "Piilota/Näytä konsoli ruutu"
 
 msgid "Hierarchy info"
 msgstr "Hierarkia info"
@@ -9038,7 +9096,7 @@ msgid "History zap..."
 msgstr "Kanavanvaihto Historia..."
 
 msgid "Hmong"
-msgstr ""
+msgstr "Hmong ihmiset"
 
 msgid "Hockey"
 msgstr "Jääkiekko"
@@ -9136,7 +9194,7 @@ msgstr "I"
 msgid "I/O priority for scripts"
 msgstr "I/O-prioriteetti skripteille"
 
-msgid "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
+msgid "I55SE/H7/H17/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 new Model"
 msgstr "I55SE/H7/H9/H9SE/H9COMBO/H9COMBOSE/H10/H11 uusi malli"
 
 msgid "IMDb Details"
@@ -9724,20 +9782,8 @@ msgstr "Asennetaan palvelua"
 msgid "Installing Software..."
 msgstr "Ohjelmaa asennetaan..."
 
-msgid "Installing feeds from IPK ..."
-msgstr "Asenna syötteet IPK …"
-
-msgid "Installing feeds from feed ..."
-msgstr "Syötteiden asentaminen syötteistä ..."
-
 msgid "Installing package."
 msgstr "Asenna lisäosa."
-
-msgid "Installing plugins from IPK ..."
-msgstr "Asenna lisäosa IPK: sta …"
-
-msgid "Installing plugins from feed ..."
-msgstr "Asenna lisäosia syötteestä ..."
 
 msgid "Instant Recording Actions"
 msgstr "Pikatallennuksen hakemisto"
@@ -10081,7 +10127,7 @@ msgid "Kurdish"
 msgstr "Kurdish"
 
 msgid "Kurdish (Sorani)"
-msgstr ""
+msgstr "Kurdi (Sorani)"
 
 msgid "Kurdistan"
 msgstr "Kurdien maa"
@@ -10107,10 +10153,22 @@ msgstr "LCD selausnopeus"
 msgid "LCD/Front panel *"
 msgstr "Näyttöpaneeli *"
 
-msgid "LCN plugin for DVB-T/T2 services"
-msgstr "LCN plugin DVB-T/T2 palvelua varten"
+msgid "LCN Scanner"
+msgstr "LCN Scanneri"
 
-msgid "LCN rules:"
+msgid "LCN Scanner Actions"
+msgstr "LCN Scanneri toiminnot"
+
+msgid "LCN Scanner Settings"
+msgstr "LCN Skannaus asetukset"
+
+msgid "LCN Scanner plugin for DVB-C/T/T2 services"
+msgstr "LCN Skanner lisäosa DVB-C/T/T2 kanaviin"
+
+msgid "LCN numbering"
+msgstr "LCN numerointi"
+
+msgid "LCN rules"
 msgstr "LCN säännöt:"
 
 msgid "LCN style QuickSelect entry selection"
@@ -10743,6 +10801,9 @@ msgstr "Manuaalinen kanavahaku"
 msgid "Manual transponder"
 msgstr "Manuaalinen lähetin"
 
+msgid "Manually import from fallback tuner"
+msgstr "Tuo manuaalisesti etävirittimeltä"
+
 msgid "Manufacturer"
 msgstr "Valmistaja"
 
@@ -10992,6 +11053,9 @@ msgstr "Mipsel"
 msgid "Miscellaneous"
 msgstr "Sekalaiset"
 
+msgid "Miscellaneous languages"
+msgstr "Eri kieliä"
+
 msgid "Misconfiguration in channel allocation"
 msgstr "Virheellinen määritys kanavamäärityksessä"
 
@@ -11159,6 +11223,9 @@ msgstr "Siirrä sivua/näyttöä alaspäin"
 msgid "Move down a screen"
 msgstr "Siirry ruutua alaspäin"
 
+msgid "Move down a screen / Move to next item"
+msgstr "Siirrä näyttöä alaspäin / Siirry seuraavaan kohtaan"
+
 msgid "Move down a screen in the panel"
 msgstr "Siirrä riviä alaspäin paneelissa"
 
@@ -11306,11 +11373,17 @@ msgstr "Siirry viimeiselle riville/näytölle"
 msgid "Move to the next category in the list"
 msgstr "Siirry seuraavaan kategoriaan listalla"
 
+msgid "Move to the next item"
+msgstr "Siirry seuraavaan kohtaan"
+
 msgid "Move to the next item in the list"
 msgstr "Siirry seuraavaan kohteenseen listalla"
 
 msgid "Move to the previous category in the list"
 msgstr "Siirry edelliseen kategoriaan listalla"
+
+msgid "Move to the previous item"
+msgstr "Siirry edelliseen kohtaan"
 
 msgid "Move to the previous item in list"
 msgstr "Siirry edelliseen kategoriaan listalla"
@@ -11329,6 +11402,9 @@ msgstr "Siirrä sivua/näyttöä ylöspäin"
 
 msgid "Move up a screen"
 msgstr "Siirry ylös näyttöön"
+
+msgid "Move up a screen / Move to previous item"
+msgstr "Siirrä näyttöä ylöspäin / Liiku edelliseen kohtaan"
 
 msgid "Move up a screen in the panel"
 msgstr "Siirrä riviä alaspäin paneelissa"
@@ -11513,7 +11589,7 @@ msgid "NOTE: These %d directories/files exist and will be overwritten!"
 msgstr "HUOMAUTUS: Nämä %d hakemistot/tiedostot ovat olemassa ja ne korvataan!"
 
 msgid "NOTE: While the console screen is hidden from view the buttons are still active. Pressing any enabled button will cause the screen to reappear but the button will not be actioned."
-msgstr ""
+msgstr "HUOMAUTUS: Vaikka konsolin ruutu on piilotettu, painikkeet ovat silti aktiivisia. Minkä tahansa käytössä olevan painikkeen painaminen saa näytön ilmestymään uudelleen, mutta painiketta ei suoriteta."
 
 msgid "NOW"
 msgstr "Nyt"
@@ -11818,6 +11894,9 @@ msgstr "Niue"
 msgid "No"
 msgstr "Ei"
 
+msgid "No 'epg.dat' file found on the remote receiver!"
+msgstr "Epg.dat tiedostoa ei löytynyt etävastaanottimelta!"
+
 msgid "No (supported) DVDROM found!"
 msgstr "DVDROM-asemaa ei löytynyt!"
 
@@ -11878,9 +11957,6 @@ msgstr "Ei demux saatavilla"
 
 msgid "No displayable files on this medium found!"
 msgstr "Tiedostoja ei löytynyt!"
-
-msgid "No entry in lcn db. Please do a service scan."
-msgstr "Ei merkintää lcn db:. Suorita huolto tarkistus."
 
 msgid "No error"
 msgstr "Ei virhettä"
@@ -12223,6 +12299,9 @@ msgstr "Näytettävien rivien määrä."
 
 msgid "Number or SMS style data entry"
 msgstr "Numerot tai tekstiviestien syöttötapa"
+
+msgid "Numbering mode"
+msgstr "Numerointitila"
 
 msgid "OEM model"
 msgstr "Malli"
@@ -13196,6 +13275,9 @@ msgstr "Odota"
 msgid "Please wait for activation of your network configuration..."
 msgstr "Odota, verkkoasetuksia aktivoidaan..."
 
+msgid "Please wait while LCN bouquets are created/updated..."
+msgstr "Ole hyvä ja odota, että LCN lisäosa asennetaan/päivitetään..."
+
 msgid "Please wait while feeds are updated..."
 msgstr "Odota, kunnes syötteet on päivitetty..."
 
@@ -14081,12 +14163,6 @@ msgstr "Takana"
 msgid "Reboot"
 msgstr "Käynnistä uudelleen"
 
-msgid "Rebuild"
-msgstr "Luodaan"
-
-msgid "Rebuild LCN bouquet now?"
-msgstr "Luodaanko LCN lista nyt?"
-
 msgid "Rec"
 msgstr "Tallennus"
 
@@ -14126,6 +14202,9 @@ msgstr "Tallenna - sama kuin tallennus-näppäin"
 
 msgid "Record Actions"
 msgstr "Tallennus Toiminnot"
+
+msgid "Record Icon"
+msgstr "Tallenus kuvake"
 
 msgid "Record next"
 msgstr "Tallenna seuraava"
@@ -14469,9 +14548,6 @@ msgstr "Poista valittu otsikko"
 
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Poista valittu kansio kirjanmerkeistä"
-
-msgid "Remove plugins ..."
-msgstr "Poista lisäosia"
 
 msgid "Remove service from AutoCam"
 msgstr "Poista kanava CI+"
@@ -14931,7 +15007,7 @@ msgstr "Suoritetaan Myrestore scripttiä, Odata hetki ..."
 
 #, python-format
 msgid "Running command %d: '%s'."
-msgstr ""
+msgstr "Suoritettaan komentoa %d: '%s'."
 
 msgid "Russian"
 msgstr "Venäjä"
@@ -15127,7 +15203,7 @@ msgid "Save EPG data"
 msgstr "Tallenna EPG tietot"
 
 msgid "Save Log"
-msgstr ""
+msgstr "Tallenna Logi"
 
 msgid "Save all changed settings and exit"
 msgstr "Tallenna kaikki asetukset ja poistu"
@@ -15166,13 +15242,8 @@ msgstr "Tallenna oikea hakemisto poistuttaessa"
 msgid "Save settings and EPG data."
 msgstr "Tallenna asetukset ja EPG tiedot."
 
-#, python-format
-msgid ""
-"Save the commands and the output to a file?\n"
-"('%s')"
-msgstr ""
-"Tallennetaanko komennot ja lähtö tiedostona?\n"
-"('%s')"
+msgid "Save the commands and output to the log file?"
+msgstr "Tallennetaanko komennot ja lähtö tiedostona?"
 
 msgid "Save the left column directory location on exit."
 msgstr "Tallenna vasemman sarakkeen hakemiston sijainti poistuttaessa."
@@ -15181,7 +15252,7 @@ msgid "Save the log changes and exit"
 msgstr "Tallenna lokimuutokset ja poistu"
 
 msgid "Save the log of the console messages to a file"
-msgstr ""
+msgstr "Tallenna Konsolin viesti tiedostoon"
 
 msgid "Save the right column directory location on exit."
 msgstr "Tallenna oikean sarakkeen hakemiston sijainti poistuttaessa."
@@ -15239,6 +15310,9 @@ msgstr "Etsi paikallisia laajennuksia ja asenna ne"
 
 msgid "Scan for local extensions and install them."
 msgstr "Etsi paikallisia lisäosia ja asenna ne."
+
+msgid "Scan for terrestrial LCNs and create LCN bouquets"
+msgstr "Skannaa antenni kanavat ja luo LCN kanavalista"
 
 msgid "Scan wireless networks"
 msgstr "Hae langattomia verkkoja"
@@ -15438,6 +15512,9 @@ msgstr ""
 msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. Select 'Bands' to only scan certain parts of the spectrum. Select 'Steps' to scan in steps of a particular frequency bandwidth."
 msgstr "Valitse skannataksesi ennalta määritetystä kaapelin tarjoaja luettelosta. Valitse taajuudet, jos haluat skannata vain tiettyjä taajuuksia. Valitse skannataksesi tietyn taajuuskaistanleveyden välein."
 
+msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
+msgstr "Valitse 'Yksilöllinen numerointi' antaaksesi jokaiselle kanavalle yksilöllinen numero jokaisessa kanavalistassa. Käytä 'Kanavalistat alkavat numerosta 1 jokaisessa kanavalistassa' Käytä operaattorin tarjoavaa LCN \"Loogiset kanavanumerot\"esim Yle tv1 on kanavanumero 1 jne."
+
 msgid "Select 'Yes' if an end time is required for this timer."
 msgstr "Valitse \"Kyllä\", jos tälle ajastimelle tarvitaan päättymisaika."
 
@@ -15633,6 +15710,9 @@ msgstr "'Kyllä' valinnalla kanavalista näytetään, kun vaihdetaan radio- ja T
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
 msgstr "Valitse 'Kyllä', jos haluat näyttää nykyisen hakemiston hakemistoluettelossa. Huomaa, että tiedostonhallinta on käynnistettävä uudelleen, jotta tämä muutos tulee voimaan."
+
+msgid "Select 'Yes' to show this plugin in the Plugin Browser."
+msgstr "Valitse \"Kyllä\" näyttääksesi tämän lisäosat valikossa."
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Valitse 'Kyllä' näyttääksesi Netti sivut listassa."
@@ -16100,8 +16180,14 @@ msgstr "Valitse listan ensimmäinen kohta tai siirry tekstin alkuun"
 msgid "Select the last item in the list"
 msgstr "Valitse listan viimeinen kohde"
 
+msgid "Select the layout of the information in the services list, from the options provided by the skin, displayed within the ChannelSelection screen."
+msgstr "Valitse kanava listan tietojen asettelu teeman tarjoamista vaihtoehdoista, jotka näytetään Kanavavalinta näytössä."
+
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr "Valitse asennettujen lisäosien asettelu lisäosat näkymässä. HUOMAUTUS: Muutos ei ole välitön, mutta se näkyy, kun lisäosat käynnistetään uudelleen!"
+
+msgid "Select the list of LCN rules to be applied to the scan."
+msgstr "Valitse, mitä LCN-sääntöjä käytetään kanava haun aikana."
 
 msgid "Select the locale from a menu"
 msgstr "Valitse alue valikosta"
@@ -16174,6 +16260,9 @@ msgstr "Valitse satelliitti, joka on kytkettynä kytkimen Porttiin D. Jos et ole
 
 msgid "Select the satellite you want to configure. Once configured you can select and configure other satellites that will be accessed using this same tuner."
 msgstr "Valitse satelliitti, jonka haluat määrittää. Kun kyseinen satelliitti on määritetty, voit valita ja konfiguroida muita satelliitteja, joihin pääsee tällä samalla virittimellä."
+
+msgid "Select the screen layout, from the options provided by the skin, to be used for the ChannelSelection screen."
+msgstr "Valitse näytön asettelu, teeman tarjoamista vaihtoehdoista, joita käytetään Kanavavalinta näytössä."
 
 msgid "Select the shifted character set"
 msgstr "Käytä siirtymää seuraaville merkeille"
@@ -16481,6 +16570,9 @@ msgstr "Kanavan Numero ja Palvelu Nimi"
 msgid "Service Number, Picon and Service Name"
 msgstr "Kanavan Numero. Logo ja Palvelu Nimi"
 
+msgid "Service Scan"
+msgstr "Kanavahaku"
+
 msgid "Service Selection Actions"
 msgstr "Palvelu valinta toiminnot"
 
@@ -16706,9 +16798,6 @@ msgstr "Määritä tekstin vieritysnopeus etupaneelissa, ohjelmistopohjainen ren
 
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Määrittää tekstin vieritysnopeuden etupaneelissa."
-
-msgid "Set the style of the channel list."
-msgstr "Aseta kanavalistan tyyli."
 
 msgid "Set the time before checking video source for resolution information."
 msgstr "Määritä aika ennen kuin lähteen resoluutio tarkistetaan."
@@ -17419,6 +17508,9 @@ msgstr "Näytä kuva ja tallenna nimellä '%s'"
 msgid "Show in Extension Menu"
 msgstr "Näytä laajennukset lista"
 
+msgid "Show in Plugin Browser"
+msgstr "Näytä lisäosa luottelossa"
+
 msgid "Show in Standby"
 msgstr "Näytä valmiustilassa"
 
@@ -17520,6 +17612,12 @@ msgstr "Näytä tietopalkki pysyvästi tauon aikana"
 
 msgid "Show picon background color"
 msgstr "Kanavalogojen taustaväri"
+
+msgid "Show picons in quickzap"
+msgstr "Näytä kanavalogot pikavaihdossa"
+
+msgid "Show picons in service list"
+msgstr "Näytä kanavalogot kanavalistassa"
 
 msgid "Show picture information"
 msgstr "Näytä kuvan tiedot"
@@ -18696,9 +18794,6 @@ msgstr "Strict DLNA"
 msgid "Stripes"
 msgstr "Nauhat"
 
-msgid "Style"
-msgstr "Tyyli"
-
 msgid "Style:"
 msgstr "Tyyli:"
 
@@ -19025,7 +19120,7 @@ msgstr "TMDB Haku"
 
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Suomenkielinen käännös: 29.5.2024\n"
+"Suomenkielinen käännös: 30.7.2024\n"
 "tomppaa"
 
 msgid "TS file is too large for ISO9660 level 1!"
@@ -19190,9 +19285,6 @@ msgstr "Tennis"
 
 msgid "Terrestrial"
 msgstr "Antennivastaanotto"
-
-msgid "Terrestrial bouquet:"
-msgstr "Antenni suosikkilista:"
 
 msgid "Test"
 msgstr "Testi"
@@ -20015,6 +20107,10 @@ msgstr ""
 msgid "This will go fast forward/backward with time frames of x secs."
 msgstr "Kun päällä, eteenpäin- ja taaksepäin kelauksessa käytetään aikahyppyjä. Yksittäisen hypyn pituuden voi määritellä erikseen."
 
+#, python-format
+msgid "This window will automatically close in %d seconds."
+msgstr "Tämä ikkuna sulkeutuu automaattisesti %d sekunnin kuluttua."
+
 msgid "This wizard has finished"
 msgstr "Asennus on nyt valmis"
 
@@ -20679,11 +20775,6 @@ msgstr "Osoite"
 msgid "URL of fallback remote receiver"
 msgstr "Etävastaanottimen URL-osoite"
 
-msgid "URL of fallback remote receiver."
-msgstr ""
-"Etävastaanottimen IP osoite tai\n"
-"http://vastaanottimennimi.local:8001"
-
 msgid "USALS"
 msgstr "USALS"
 
@@ -20766,6 +20857,9 @@ msgstr "Unicable matriisi"
 
 msgid "Uninstall"
 msgstr "Poista asennus"
+
+msgid "Unique numbering"
+msgstr "Yksilöllinen numeronti"
 
 msgid "United Arab Emirates"
 msgstr "United Arab Emirates"
@@ -21090,6 +21184,9 @@ msgstr "Kiertopolarisaatio"
 msgid "Use defaults"
 msgstr "Käytä oletusarvoja"
 
+msgid "Use description lines"
+msgstr "Käytä tyhjiä rivejä"
+
 msgid "Use extended List"
 msgstr "Käytä laajennettua luetteloa"
 
@@ -21146,6 +21243,12 @@ msgstr "Käytä virranmittausta"
 
 msgid "Use small screen"
 msgstr "Käytä ohutta näyttöä"
+
+msgid "Use spacer lines"
+msgstr "Käytä väli rivijä"
+
+msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
+msgstr "Käytä tyhjiä välirivejä kanavalistassa pitääksesi looginen kanavanumerointi."
 
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr "Käytä VASEN/OIKEA painikkeita kaukosäätimessäsi säätääksesi kuvaruudun korkeutta. VASEN painike pienentää korkeutta, OIKEA painike kasvattaa korkeutta."
@@ -21957,9 +22060,6 @@ msgstr "Kun valittu, pura vastaanotettavat http streamit. Tämä vaatii enemmän
 
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Kun päällä, hyväksyntä vaaditaan katsottaessa http palveluita."
-
-msgid "When enabled, channel numbering will start at '1' for each bouquet."
-msgstr "Kun päällä, kanavanumerointi alkaa jokaisessa suosikkilistassa alusta. Jos pois päältä, kanavanumerointi jatkuu yhtenäisenä, vaikka suosikkilista vaihtuu."
 
 msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
 msgstr "Kun päällä, 4:3 kuvasuhteen kuva venytetään koko näytölle."
@@ -23480,12 +23580,6 @@ msgstr "näytä kortit jossa ylöshyppy 8"
 msgid "show cards with uphop 9"
 msgstr "näytä kortit jossa ylöshyppy 9"
 
-msgid "show picons in quickzap"
-msgstr "Näytä kanavalogot pikavaihdossa"
-
-msgid "show picons in service list"
-msgstr "Näytä kanavalogot kanavalistassa"
-
 msgid "show program information..."
 msgstr "Näytä ohjelman tiedot"
 
@@ -23719,6 +23813,69 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enable terrestrial LCN:"
+#~ msgstr "Aktivoi antenni LCN:"
+
+#~ msgid "LCN plugin for DVB-T/T2 services"
+#~ msgstr "LCN plugin DVB-T/T2 palvelua varten"
+
+#~ msgid "LCN rules:"
+#~ msgstr "LCN säännöt:"
+
+#~ msgid "No entry in lcn db. Please do a service scan."
+#~ msgstr "Ei merkintää lcn db:. Suorita huolto tarkistus."
+
+#~ msgid "Rebuild"
+#~ msgstr "Luodaan"
+
+#~ msgid "Rebuild LCN bouquet now?"
+#~ msgstr "Luodaanko LCN lista nyt?"
+
+#~ msgid "Terrestrial bouquet:"
+#~ msgstr "Antenni suosikkilista:"
+
+#~ msgid "Alternative numbering mode"
+#~ msgstr "Vaihtoehtoinen numerointitapa"
+
+#, python-format
+#~ msgid "Import from remote receiver failed, %s!"
+#~ msgstr "Tuonti etävastaanottimesta epäonnistui, %s"
+
+#~ msgid "Show LCN in channel selection"
+#~ msgstr "LCN näytetään kanavalistan valinnassa"
+
+#~ msgid "When enabled, channel numbering will start at '1' for each bouquet."
+#~ msgstr "Kun päällä, kanavanumerointi alkaa jokaisessa suosikkilistassa alusta. Jos pois päältä, kanavanumerointi jatkuu yhtenäisenä, vaikka suosikkilista vaihtuu."
+
+#~ msgid "When enabled, show LCN in the channel selection screen."
+#~ msgstr "Kun päällä, näytä LCN kanavan valinta ruudussa."
+
+#~ msgid "Installing feeds from IPK ..."
+#~ msgstr "Asenna syötteet IPK …"
+
+#~ msgid "Installing feeds from feed ..."
+#~ msgstr "Syötteiden asentaminen syötteistä ..."
+
+#~ msgid "Installing plugins from IPK ..."
+#~ msgstr "Asenna lisäosa IPK: sta …"
+
+#~ msgid "Installing plugins from feed ..."
+#~ msgstr "Asenna lisäosia syötteestä ..."
+
+#~ msgid "Remove plugins ..."
+#~ msgstr "Poista lisäosia"
+
+#~ msgid "Set the style of the channel list."
+#~ msgstr "Aseta kanavalistan tyyli."
+
+#~ msgid "Style"
+#~ msgstr "Tyyli"
+
+#~ msgid "URL of fallback remote receiver."
+#~ msgstr ""
+#~ "Etävastaanottimen IP osoite tai\n"
+#~ "http://vastaanottimennimi.local:8001"
 
 #~ msgid ""
 #~ "\n"

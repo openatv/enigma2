@@ -97,11 +97,10 @@ class eDVBScan: public sigc::trackable, public iObject
 	int m_networkid;
 	bool m_usePAT;
 	bool m_scan_debug;
-	
-	FILE *m_lcn_file;
+	bool m_updateLCN;
+
 	std::map<eDVBChannelID, uint32_t> m_aus_da_flags;
 	std::map<eDVBChannelID, std::string> m_default_authorities;
-	void addLcnToDB(eDVBNamespace ns, eOriginalNetworkID onid, eTransportStreamID tsid, eServiceID sid, uint16_t lcn, uint32_t signal);
 public:
 	eDVBScan(iDVBChannel *channel, bool usePAT=true, bool debug=true );
 	~eDVBScan();
