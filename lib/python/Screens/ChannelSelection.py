@@ -3120,7 +3120,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		self["rdsActions"] = HelpableActionMap(self, ["InfobarRdsActions"], {
 			"startRassInteractive": (self.startRassInteractive, _("View Rass interactive"))
 		}, prio=-1, description=_("Radio Channel Selection Actions"))
-		self["RdsActions"].setEnabled(False)
+		self["rdsActions"].setEnabled(False)
 		infobar.rds_display.onRassInteractivePossibilityChanged.append(self.RassInteractivePossibilityChanged)
 		self.onClose.append(self.__onClose)
 		self.onExecBegin.append(self.__onExecBegin)
@@ -3143,7 +3143,7 @@ class ChannelSelectionRadio(ChannelSelectionBase, ChannelSelectionEdit, ChannelS
 		self.infobar.RassSlidePicChanged()
 
 	def RassInteractivePossibilityChanged(self, state):
-		self["RdsActions"].setEnabled(state)
+		self["rdsActions"].setEnabled(state)
 
 	def __onExecBegin(self):
 		self.info.show()
