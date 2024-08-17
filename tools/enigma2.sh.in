@@ -118,10 +118,16 @@ fi
 if [ ! -e /etc/enigma2/settings ]; then
 	touch /etc/enigma2/settings
 	ENIGMA_DEBUG=1
-fi
-
-if [ "$(grep -i config.crash.enabledebug=true /etc/enigma2/settings)" != "" ]; then
+	DEBUG_LVL=4
+elif [ "$(grep -i config.crash.debugLevel=4 /etc/enigma2/settings)" != "" ]; then
 	ENIGMA_DEBUG=1
+	DEBUG_LVL=4
+elif [ "$(grep -i config.crash.debugLevel=5 /etc/enigma2/settings)" != "" ]; then
+	ENIGMA_DEBUG=1
+	DEBUG_LVL=5
+elif [ "$(grep -i config.crash.enabledebug=true /etc/enigma2/settings)" != "" ]; then
+	ENIGMA_DEBUG=1
+	DEBUG_LVL=4
 fi
 
 #check for default sat settings
@@ -204,7 +210,6 @@ fi
 
 # Start enigma2 with or without debug
 if [ -n "$ENIGMA_DEBUG" ]; then
-	DEBUG_LVL='4'
 	(LD_PRELOAD=$LIBS ENIGMA_DEBUG_LVL=$DEBUG_LVL ENIGMA_DEBUG_TIME="${DEBUG_TIME}" @bindir@/enigma2 &> ${LOGFOLDER}$(date +%Y%m%d-%H%M%S)-enigma2-debug.log) &
 else
 	(LD_PRELOAD=$LIBS ENIGMA_DEBUG_LVL=$DEBUG_LVL ENIGMA_DEBUG_TIME="${DEBUG_TIME}" @bindir@/enigma2) &

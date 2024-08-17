@@ -485,7 +485,7 @@
 		<item level="2" text="Handle Python crashes" description="Try to prevent reboots for software errors and maintain of the availability for the receiver.">config.crash.bsodpython</item>
 		<item level="2" text="Show crash info on screen and write crash log for x times" description="If 'never', will write crash log despite that for the first crash." requires="config.crash.bsodpython">config.crash.bsodhide</item>
 		<item level="2" text="Restart GUI after x crashes" description="If 'never', will force restart despite that after 100 crashes." requires="config.crash.bsodpython">config.crash.bsodmax</item>
-		<item level="2" text="Enable debug log *" description="Allows you to enable the debug log. They contain very detailed information of everything the system does.">config.crash.enabledebug</item>
+		<item level="2" text="Enable debug log *" description="Allows you to enable the debug log. They contain very detailed information of everything the system does.">config.crash.debugLevel</item>
 		<item level="2" text="Include international data *" description="Enable this option to add international language and country load information detected during system boot to the debug log file.">config.crash.debugInternational</item>
 		<item level="2" text="Include MultiBoot data *" description="Enable this option to add MultiBoot information detected during system boot to the debug log file.">config.crash.debugMultiBoot</item>
 		<item level="2" text="Include keyboard data" description="Enable this option to add keyboard key map data to the debug log file.">config.crash.debugKeyboards</item>
@@ -977,7 +977,7 @@
 		<item level="2" text="Enable cut file support for non *.ts files" description="Enable cut file support for non *.ts files, e.g. mp4.">config.usage.useVideoCuesheet</item>
 		<item level="2" text="Enable cut file support for audio files" description="Enable cut file support for audio files, e.g. mp3.">config.usage.useAudioCuesheet</item>
 		<item level="2" text="Enable chapter support for video files" description="Show chapter positions for supported video files. (gstreamer version must be greather than 1)">config.usage.useChapterInfo</item>
-		<item level="2" text="Enable new GStreamer playback" description="If enabled, the new GStreamer playback engine will be used.">config.misc.usegstplaybin3</item>
+		<!--<item level="2" text="Enable new GStreamer playback" description="If enabled, the new GStreamer playback engine will be used.">config.misc.usegstplaybin3</item-->
 	</setup>
 	<setup key="UserInterface" title="OSD Settings" showOpenWebif="1">
 		<item level="0" text="Menu style" description="Select the display design for menus.">config.usage.menuType</item>

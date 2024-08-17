@@ -1407,6 +1407,18 @@ def InitUsageConfig():
 	config.crash.bsodmax = ConfigSelection(default="3", choices=choiceList)
 
 	config.crash.enabledebug = ConfigYesNo(default=False)
+	config.crash.debugLevel = ConfigSelection(default=0, choices=[
+		(0, _("Disabled")),
+		(4, _("Enabled")),
+		(5, _("Verbose"))
+	])
+
+	# Migrate old debug
+	if config.crash.enabledebug.value:
+		config.crash.debugLevel.value = 4
+		config.crash.enabledebug.value = False
+		config.crash.enabledebug.save()
+
 	config.crash.debugloglimit = ConfigSelectionNumber(min=1, max=10, stepwidth=1, default=4, wraparound=True)
 	config.crash.daysloglimit = ConfigSelectionNumber(min=1, max=30, stepwidth=1, default=8, wraparound=True)
 	config.crash.sizeloglimit = ConfigSelectionNumber(min=1, max=250, stepwidth=1, default=10, wraparound=True)
