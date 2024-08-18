@@ -10,16 +10,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-04 16:49+0000\n"
-"PO-Revision-Date: 2024-08-11 20:09+0000\n"
-"Last-Translator: Marcel <inigo0@centrum.sk>\n"
+"POT-Creation-Date: 2024-08-08 08:13+0000\n"
+"PO-Revision-Date: 2024-08-17 14:09+0000\n"
+"Last-Translator: Atec <dr.atec@gmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.7\n"
 
 msgid ""
 "\n"
@@ -2011,10 +2011,10 @@ msgid "Add service"
 msgstr "Pridať stanicu"
 
 msgid "Add service names"
-msgstr ""
+msgstr "Pridať názov služby"
 
 msgid "Add service names to each #SERVICE entry."
-msgstr ""
+msgstr "Pridať názov služby ku každej položke #SERVICE."
 
 msgid "Add service to AutoCam"
 msgstr "Pridať stanicu do AutoCam"
@@ -2278,7 +2278,7 @@ msgid "Also on standby"
 msgstr "Aj pri pohotov. režime"
 
 msgid "Also use a #DESCRIPTION line after each #SERVICE line to hold the service's name."
-msgstr ""
+msgstr "Po každom riadku #SERVICE použiť tiež riadok #DESCRIPTION."
 
 msgid "Alternative"
 msgstr "Alternatíva"
@@ -3192,6 +3192,9 @@ msgstr "Ukladanie do vyrovnávacej pamäte %d%%"
 
 msgid "Buffers"
 msgstr "Vyrovnávacie pamäte"
+
+msgid "Build"
+msgstr "Zostavenie"
 
 msgid "Build Brand"
 msgstr "Zostavenie pre značku"
@@ -4333,6 +4336,9 @@ msgstr "Príkaz na spustenie"
 
 msgid "Command type"
 msgstr "Typ príkazu"
+
+msgid "Commit"
+msgstr "Commit"
 
 msgid "Commit Information Actions"
 msgstr "Akcie pre odovzdanie informácií"
@@ -7078,8 +7084,14 @@ msgstr "Aktiváciou tejto možnosti pridáte informácie o systéme MultiBoot zi
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "Aktiváciou tejto možnosti pridáte do súboru denníka ladenia údaje mapy akcií / mapovania vzdialeného ovládania."
 
+msgid "Enable this option to add extra DVB details to the debug log file."
+msgstr "Povolením tejto možnosti sa do súboru protokolu pridajú ďalšie podrobnosti o DVB."
+
 msgid "Enable this option to add extra DVB scan data to the debug log file."
 msgstr "Túto možnosť aktivujte, ak chcete do súboru denníka ladenia pridať ďalšie údaje o skenovaní DVB."
+
+msgid "Enable this option to add extra DVB time sync data to the debug log file."
+msgstr "Povolením tejto možnosti sa do súboru protokolu pridajú ďalšie údaje o synchronizácii času DVB."
 
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr "Túto možnosť aktivujte, ak chcete pridať ďalšie údaje EPG do súboru denníka ladenia."
@@ -7101,6 +7113,9 @@ msgstr "Aktiváciou tejto možnosti pridáte do súboru denníka ladenia názvy 
 
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Aktiváciou tejto možnosti pridáte do súboru denníka ladenia údaje ladenia časovača."
+
+msgid "Enable this option to show all the available Information screens in the Information menu item list."
+msgstr "Po aktivácii tejto možnosti sa zobrazia všetky dostupné informačné obrazovky v zozname položiek ponuky Informácie."
 
 msgid "Enable this setting if your aerial system needs power."
 msgstr "Ak váš anténny systém vyžaduje napájanie, aktivujte toto nastavenie."
@@ -9575,8 +9590,14 @@ msgstr "Zahrnúť AIT do nahrávok"
 msgid "Include CI assignment"
 msgstr "Zahrnúť priradenie CI"
 
+msgid "Include DVB details"
+msgstr "Zahrnúť podrobnosti o DVB"
+
 msgid "Include DVB scan data"
 msgstr "Zahrnúť údaje skenovania DVB"
+
+msgid "Include DVB timesync data"
+msgstr "Zahrnúť údaje časovej synchronizácie DVB"
 
 msgid "Include ECM in http streams"
 msgstr "Zahrnúť ECM do http streamov"
@@ -10182,22 +10203,22 @@ msgid "LCD/Front panel *"
 msgstr "LCD/Predný panel *"
 
 msgid "LCN Scanner"
-msgstr ""
+msgstr "LCN skener"
 
 msgid "LCN Scanner Actions"
-msgstr ""
+msgstr "Akcie LCN skenera"
 
 msgid "LCN Scanner Settings"
-msgstr ""
+msgstr "Nastavenia LCN skenera"
 
 msgid "LCN Scanner plugin for DVB-C/T/T2 services"
-msgstr ""
+msgstr "Plugin LCN skener pre DVB-C/T/T2 služby"
 
 msgid "LCN numbering"
 msgstr "LCN číslovanie"
 
 msgid "LCN rules"
-msgstr ""
+msgstr "LCN pravidlá"
 
 msgid "LCN style QuickSelect entry selection"
 msgstr "Štýl LCN – výber záznamu QuickSelect"
@@ -12269,7 +12290,7 @@ msgid "Not required"
 msgstr "Nevyžaduje sa"
 
 msgid "Not running"
-msgstr "Nebeží"
+msgstr "Nespustené"
 
 msgid "Not tested:"
 msgstr "Netestované:"
@@ -13297,7 +13318,7 @@ msgid "Please wait for activation of your network configuration..."
 msgstr "Aktivuje sa konfiguácia siete. Čakajte, prosím…"
 
 msgid "Please wait while LCN bouquets are created/updated..."
-msgstr ""
+msgstr "Čakajte, prosím, vytvárajú/aktualizujú sa LCN prehľady..."
 
 msgid "Please wait while feeds are updated..."
 msgstr "Prosím, počkajte na aktualizáciu zdrojov informácií…"
@@ -14208,9 +14229,6 @@ msgstr "Informácie o prijímači %s %s"
 msgid "Receiver name"
 msgstr "Názov prijímača"
 
-msgid "Reception"
-msgstr "Príjem"
-
 msgid "Reception Lists"
 msgstr "Družice"
 
@@ -14364,7 +14382,7 @@ msgid ""
 "This may take a few minutes"
 msgstr ""
 "Prebieha opätovné flashovanie.\n"
-"Prosím, počkajte, kým sa %s %s nereštartuje.\n"
+"Prosím, vyčkajte, kým sa %s %s nereštartuje.\n"
 "Môže to trvať niekoľko minút"
 
 msgid "Refresh"
@@ -15023,14 +15041,14 @@ msgid "Rundi"
 msgstr "rundi"
 
 msgid "Running"
-msgstr "Prebieha"
+msgstr "Spustené"
 
 msgid "Running Myrestore script, Please wait ..."
 msgstr "Spúšťanie skriptu Myrestore. Čakajte, prosím…"
 
 #, python-format
 msgid "Running command %d: '%s'."
-msgstr "Prebiehajúci príkaz %d: '%s'."
+msgstr "Spustený príkaz %d: '%s'."
 
 msgid "Russian"
 msgstr "ruština"
@@ -15335,7 +15353,7 @@ msgid "Scan for local extensions and install them."
 msgstr "Vyhľadať lokálne rozšírenia a nainštalovať ich."
 
 msgid "Scan for terrestrial LCNs and create LCN bouquets"
-msgstr ""
+msgstr "Vyhľadanie pozemných LCN a vytvorenie súborov LCN"
 
 msgid "Scan wireless networks"
 msgstr "Vyhľadať bezdrôtové siete"
@@ -15729,7 +15747,7 @@ msgid "Select 'Yes' to show the current directory in the list of directories. No
 msgstr "Ak chcete v zozname priečinkov zobraziť aktuálny priečinok, vyberte možnosť 'Áno'. Táto zmena sa uplatní až po reštartovaní Správcu súborov."
 
 msgid "Select 'Yes' to show this plugin in the Plugin Browser."
-msgstr ""
+msgstr "Ak sa má tento plugin zobrazovať v prehliadači pluginov, vyberte 'Áno'."
 
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Ak sa majú na obrazovke Stiahnuť pluginy zobrazovať aj balíčky webových odkazov, vyberte možnosť 'Áno'."
@@ -16200,7 +16218,7 @@ msgid "Select the layout of the installed plugins in the Plugin Browser screen. 
 msgstr "Vyberte rozloženie nainštalovaných pluginov, ktoré sa použije na obrazovke Prehliadača pluginov. POZNÁMKA: Táto zmena nie je okamžitá, prejaví sa až po reštartovaní prehliadača pluginov!"
 
 msgid "Select the list of LCN rules to be applied to the scan."
-msgstr ""
+msgstr "Vyberte zoznam pravidiel LCN, ktoré sa použijú pri vyhľadávaní."
 
 msgid "Select the locale from a menu"
 msgstr "Vyberte miestne nastavenia z z menu"
@@ -16584,7 +16602,7 @@ msgid "Service Number, Picon and Service Name"
 msgstr "Číslo stanice, pikona a názov stanice"
 
 msgid "Service Scan"
-msgstr ""
+msgstr "Vyhľadávanie služby"
 
 msgid "Service Selection Actions"
 msgstr "Akcie výberu stanice"
@@ -17386,6 +17404,9 @@ msgstr "Zobraziť pokročilé nastavenia"
 msgid "Show all"
 msgstr "Zobraziť všetko"
 
+msgid "Show all Information screens"
+msgstr "Zobraziť všetky informačné obrazovky"
+
 msgid "Show all available services"
 msgstr "Zobraziť všetky dostupné služby/stanice"
 
@@ -17520,7 +17541,7 @@ msgid "Show in Extension Menu"
 msgstr "Zobraziť v zozname rozšírení"
 
 msgid "Show in Plugin Browser"
-msgstr ""
+msgstr "Zobraziť v prehliadači pluginov"
 
 msgid "Show in Standby"
 msgstr "Zobraziť v pohotovostnom režime"
@@ -18688,7 +18709,7 @@ msgid "Stop testing plane after # successful transponders"
 msgstr "Zastaviť testovanie po # úspešných transpondéroch"
 
 msgid "Stop the update, if running, then exit"
-msgstr "Zastaviť aktualizáciu ak prebieha, potom ukončiť"
+msgstr "Zastaviť aktualizáciu (ak prebieha), potom ukončiť"
 
 msgid "Stop time shift"
 msgstr "Ukončiť timeshift"
@@ -18712,7 +18733,7 @@ msgid "Stopping Softcam"
 msgstr "Zastavuje sa softcam"
 
 msgid "Stops time shift being used if a recording is in progress. (Advisable for USB sticks.)"
-msgstr "Zastaviť prebiehajúci timeshift ak prebieha nahrávanie. (Odporúča sa pre USB kľúče.)"
+msgstr "Zastaviť spustený timeshift ak prebieha nahrávanie. (Odporúča sa pre USB kľúče.)"
 
 msgid "Storage / Disk Information"
 msgstr "Informácie o úložisku/disku"
@@ -20679,6 +20700,9 @@ msgstr "Typ tunera %s"
 msgid "Tuners"
 msgstr "Tunery"
 
+msgid "Tuners, Scanning & Reception"
+msgstr "Tunery, vyhľadávanie a príjem"
+
 msgid "Tuning algorithm"
 msgstr "Algoritmus ladenia"
 
@@ -21191,7 +21215,7 @@ msgid "Use defaults"
 msgstr "Použiť predvolené"
 
 msgid "Use description lines"
-msgstr ""
+msgstr "Použiť riadky s popisom"
 
 msgid "Use extended List"
 msgstr "Použiť rozšírený zoznam"
@@ -21251,10 +21275,10 @@ msgid "Use small screen"
 msgstr "Použiť malú obrazovku"
 
 msgid "Use spacer lines"
-msgstr ""
+msgstr "Použiť oddeľovacie riadky"
 
 msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
-msgstr ""
+msgstr "Použite oddeľovacie riadky tak, aby v zozname zodpovedali čísla riadkov #SERVICE s LCN."
 
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr "Na úpravu výšky OSD použite tlačidlá DOĽAVA/DOPRAVA na diaľkovom ovládači. Tlačidlom DOĽAVA sa dá výška zmenšiť, tlačidlom DOPRAVA sa dá zväčšiť."
@@ -23814,6 +23838,9 @@ msgstr "áno (zachovať zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Reception"
+#~ msgstr "Príjem"
 
 #~ msgid "Enable terrestrial LCN:"
 #~ msgstr "Povoliť terestriálne LCN:"

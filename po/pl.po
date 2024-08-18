@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-04 16:49+0000\n"
-"PO-Revision-Date: 2024-08-08 23:09+0000\n"
+"POT-Creation-Date: 2024-08-08 08:13+0000\n"
+"PO-Revision-Date: 2024-08-14 12:42+0000\n"
 "Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -3199,6 +3199,9 @@ msgstr "Buforowanie %d%%"
 msgid "Buffers"
 msgstr "Bufory"
 
+msgid "Build"
+msgstr "Kompilacja"
+
 msgid "Build Brand"
 msgstr "Marka"
 
@@ -4340,6 +4343,9 @@ msgstr "Polecenie do uruchomienia"
 
 msgid "Command type"
 msgstr "Wpisz polecenie"
+
+msgid "Commit"
+msgstr "Commit"
 
 msgid "Commit Information Actions"
 msgstr "Akcje informacji o commicie"
@@ -7085,8 +7091,14 @@ msgstr "Włącz tę opcję, aby dodać informacje MultiBoot wykryte podczas uruc
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "Włącz tę opcję, aby dodać dane map akcji / mapowania zdalnego sterowania do pliku dziennika debugowania."
 
+msgid "Enable this option to add extra DVB details to the debug log file."
+msgstr "Włącz tę opcję, aby dodać dodatkowe szczegóły DVB do pliku dziennika debugowania."
+
 msgid "Enable this option to add extra DVB scan data to the debug log file."
 msgstr "Włącz tę opcję, aby dodać dodatkowe dane skanowania DVB do pliku dziennika debugowania."
+
+msgid "Enable this option to add extra DVB time sync data to the debug log file."
+msgstr "Włącz tę opcję, aby dodać dodatkowe dane synchronizacji czasu DVB do pliku dziennika debugowania."
 
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr "Włącz tę opcję, aby dodać dodatkowe dane EPG do pliku dziennika debugowania."
@@ -7108,6 +7120,9 @@ msgstr "Włącz tę opcję, aby dodać nazwy ekranów i dane rozdzielczości do 
 
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Włącz tę opcję, aby dodać dane debugowania timera do pliku dziennika debugowania."
+
+msgid "Enable this option to show all the available Information screens in the Information menu item list."
+msgstr "Włącz tę opcję, aby wyświetlić wszystkie dostępne ekrany informacyjne na liście pozycji menu Informacje."
 
 msgid "Enable this setting if your aerial system needs power."
 msgstr "Włącz to ustawienie, jeśli Twój system antenowy potrzebuje zasilania."
@@ -9582,8 +9597,14 @@ msgstr "Dołącz AIT w nagraniach"
 msgid "Include CI assignment"
 msgstr "Dołącz przydział CI"
 
+msgid "Include DVB details"
+msgstr "Dołącz szczegóły DVB"
+
 msgid "Include DVB scan data"
 msgstr "Dołącz dane skanowania DVB"
+
+msgid "Include DVB timesync data"
+msgstr "Dołącz dane synchronizacji czasu DVB"
 
 msgid "Include ECM in http streams"
 msgstr "Dołącz ECMy w strumieniach http"
@@ -13027,7 +13048,7 @@ msgid "Picture player"
 msgstr "Odtwarzacz zdjęć"
 
 msgid "Pictures"
-msgstr "Kino"
+msgstr "Zdjęcia"
 
 #. TRANSLATORS: Aspect ratio policy: Black bars on left/right in doubt, keep English term.
 msgid "Pillarbox"
@@ -14215,9 +14236,6 @@ msgstr "Informacje o odbiorniku dla %s %s"
 
 msgid "Receiver name"
 msgstr "Nazwa odbiornika"
-
-msgid "Reception"
-msgstr "Tuner i wyszukiwanie kanałów"
 
 msgid "Reception Lists"
 msgstr "Satelity"
@@ -17393,6 +17411,9 @@ msgstr "Pokaż ustawienia zaawansowane"
 
 msgid "Show all"
 msgstr "Pokaż wszystko"
+
+msgid "Show all Information screens"
+msgstr "Pokaż wszystkie ekrany informacyjne"
 
 msgid "Show all available services"
 msgstr "Pokaż wszystkie dostępne usługi"
@@ -20688,6 +20709,9 @@ msgstr "Typ tunera %s"
 msgid "Tuners"
 msgstr "Tunery"
 
+msgid "Tuners, Scanning & Reception"
+msgstr "Tunery i skanowanie"
+
 msgid "Tuning algorithm"
 msgstr "Algorytm strojenia"
 
@@ -23823,6 +23847,9 @@ msgstr "tak (zachować kanały)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Reception"
+#~ msgstr "Tuner i wyszukiwanie kanałów"
 
 #~ msgid "Enable terrestrial LCN:"
 #~ msgstr "Włącz naziemną LCN:"

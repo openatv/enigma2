@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-04 16:49+0000\n"
-"PO-Revision-Date: 2024-08-13 19:39+0000\n"
+"POT-Creation-Date: 2024-08-08 08:13+0000\n"
+"PO-Revision-Date: 2024-08-14 17:23+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
@@ -3188,6 +3188,9 @@ msgstr "Načítání %d%%"
 msgid "Buffers"
 msgstr "Buffery"
 
+msgid "Build"
+msgstr "Sestavení"
+
 msgid "Build Brand"
 msgstr "Značka buildu"
 
@@ -4328,6 +4331,9 @@ msgstr "Příkaz spustit"
 
 msgid "Command type"
 msgstr "Příkaz typu"
+
+msgid "Commit"
+msgstr "Commit"
 
 msgid "Commit Information Actions"
 msgstr "Akce s informacemi commitu"
@@ -7073,8 +7079,14 @@ msgstr "Povolením této možnosti přidáte do souboru protokolu ladění infor
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "Tuto možnost povolte, chcete-li do souboru protokolu ladění přidat data mapování akcí / vzdáleného ovládání."
 
+msgid "Enable this option to add extra DVB details to the debug log file."
+msgstr "Povolením této možnosti přidáte další podrobnosti DVB do souboru protokolu ladění."
+
 msgid "Enable this option to add extra DVB scan data to the debug log file."
 msgstr "Tuto možnost povolte, chcete-li do souboru protokolu ladění přidat další data skenování DVB."
+
+msgid "Enable this option to add extra DVB time sync data to the debug log file."
+msgstr "Povolením této možnosti přidáte do souboru protokolu ladění další data synchronizace času DVB."
 
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr "Povolením této možnosti přidáte do souboru protokolu ladění další data EPG."
@@ -7096,6 +7108,9 @@ msgstr "Tuto možnost povolte, chcete-li do souboru protokolu ladění přidat n
 
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Tuto možnost povolte, chcete-li do souboru protokolu ladění přidat údaje o ladění časovače."
+
+msgid "Enable this option to show all the available Information screens in the Information menu item list."
+msgstr "Povolením této možnosti zobrazíte všechny dostupné informační obrazovky v seznamu položek nabídky Informace."
 
 msgid "Enable this setting if your aerial system needs power."
 msgstr "Povolte toto nastavení, pokud váš anténní systém potřebuje napájení."
@@ -9570,8 +9585,14 @@ msgstr "Zahrnout AIT do nahrávek"
 msgid "Include CI assignment"
 msgstr "Zahrnout přidělení CI"
 
+msgid "Include DVB details"
+msgstr "Zahrnout podrobnosti o DVB"
+
 msgid "Include DVB scan data"
 msgstr "Zahrnout data skenování DVB"
+
+msgid "Include DVB timesync data"
+msgstr "Zahrnout data časové synchronizace DVB"
 
 msgid "Include ECM in http streams"
 msgstr "Zahrnout ECM do http streamů"
@@ -14203,9 +14224,6 @@ msgstr "Informace o přijímači %s %s"
 msgid "Receiver name"
 msgstr "Jméno přijímače"
 
-msgid "Reception"
-msgstr "Nastavení příjmu"
-
 msgid "Reception Lists"
 msgstr "Satelity"
 
@@ -17380,6 +17398,9 @@ msgstr "Zobrazit pokročilé nastavení"
 
 msgid "Show all"
 msgstr "Ukázat vše"
+
+msgid "Show all Information screens"
+msgstr "Zobrazit všechny informační obrazovky"
 
 msgid "Show all available services"
 msgstr "Zobrazit všechny dostupné služby"
@@ -20674,6 +20695,9 @@ msgstr "Typ tuneru %s"
 msgid "Tuners"
 msgstr "Tunery"
 
+msgid "Tuners, Scanning & Reception"
+msgstr "Tunery, skenování a příjem"
+
 msgid "Tuning algorithm"
 msgstr "Ladicí algoritmus"
 
@@ -23809,6 +23833,9 @@ msgstr "ano (uchovat zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Reception"
+#~ msgstr "Nastavení příjmu"
 
 #~ msgid "Enable terrestrial LCN:"
 #~ msgstr "Povolit pozemní LCN:"

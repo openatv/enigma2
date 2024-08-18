@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-04 16:49+0000\n"
-"PO-Revision-Date: 2024-08-04 20:46+0000\n"
+"POT-Creation-Date: 2024-08-08 08:13+0000\n"
+"PO-Revision-Date: 2024-08-15 13:26+0000\n"
 "Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.7\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -2093,10 +2093,10 @@ msgid "Add service"
 msgstr "Kanal hinzufügen"
 
 msgid "Add service names"
-msgstr ""
+msgstr "Sendername hinzufügen"
 
 msgid "Add service names to each #SERVICE entry."
-msgstr ""
+msgstr "Servicename an jeden #SERVICE-Eintrag hinzufügen."
 
 msgid "Add service to AutoCam"
 msgstr "Sender zu AutoCam hinzufügen"
@@ -2370,7 +2370,7 @@ msgid "Also on standby"
 msgstr "Auch im Standby"
 
 msgid "Also use a #DESCRIPTION line after each #SERVICE line to hold the service's name."
-msgstr ""
+msgstr "Auch eine #DESCRIPTION-Zeile nach jeder #SERVICE-Zeile einfügen."
 
 msgid "Alternative"
 msgstr "Alternative"
@@ -3337,6 +3337,9 @@ msgstr "Pufferung %d%%"
 
 msgid "Buffers"
 msgstr "Puffer"
+
+msgid "Build"
+msgstr "Build"
 
 msgid "Build Brand"
 msgstr "OEM-Hersteller"
@@ -4536,6 +4539,9 @@ msgstr "Auszuführender Befehl"
 msgid "Command type"
 msgstr "Befehlsart"
 
+msgid "Commit"
+msgstr "Commit"
+
 msgid "Commit Information Actions"
 msgstr "Commit-Informationsaktionen"
 
@@ -4799,7 +4805,7 @@ msgid "Configure the end coordinate in y of the teletext display area."
 msgstr "Bestimmt die Y-Endkoordinate des Anzeigebereichs für Videotext."
 
 msgid "Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row."
-msgstr "Die Schrittweite (von 1 bis 10) für die Lautstärke im Schnellmodus einstellen. Wird aktiviert, wenn die Lautstärketaste permanent oder mehrfach schnell hintereinander gedrückt wird."
+msgstr "Die Schrittweite (von 1 bis 10) für die Lautstärke im Schnellmodus einstellen. Wird aktiviert, wenn die Lautstärketaste dauerhaft oder mehrfach schnell hintereinander gedrückt wird."
 
 msgid "Configure the first audio language (highest priority)."
 msgstr "Ton-Sprachauswahl 1 (höchste Priorität) einstellen."
@@ -7350,10 +7356,10 @@ msgid "Enable auto fast scan for %s"
 msgstr "Automatische Schnellsuche aktivieren für %s"
 
 msgid "Enable blinking rec symbol on the LCD Display in Standby."
-msgstr "Bei 'Ja' wird das blinkende Aufnahmesymbol im Display auch im Standby aktiviert (nicht alle Receiver unterstützen das)."
+msgstr "Bei 'Ja' blinkt das Aufnahmesymbol bei Aufnahmen im Standby, bei 'Nein' wird es dauerhaft angezeigt (nicht alle Receiver unterstützen das)."
 
 msgid "Enable blinking rec symbol on the LCD Display."
-msgstr "Bei 'Ja' wird das blinkende Aufnahmesymbol im Display aktiviert."
+msgstr "Bei 'Ja' blinkt das Aufnahmesymbol bei Aufnahmen im Betrieb, bei 'Nein' wird es dauerhaft angezeigt."
 
 msgid "Enable chapter support for video files"
 msgstr "Kapitelunterstützung für Videodateien aktivieren"
@@ -7431,11 +7437,17 @@ msgstr "Aktivieren, um dem Debug-Log während des Systemstarts erkannte Multiboo
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "Aktivieren, um dem Debug-Log Action-Map-Daten hinzuzufügen."
 
+msgid "Enable this option to add extra DVB details to the debug log file."
+msgstr "Aktivieren, um dem Debug-Log zusätzlich DVB-Details hinzuzufügen."
+
 msgid "Enable this option to add extra DVB scan data to the debug log file."
-msgstr "Aktivieren, um dem Debug-Log DVB-Scan-Daten hinzuzufügen."
+msgstr "Aktivieren, um dem Debug-Log zusätzlich DVB-Scan-Daten hinzuzufügen."
+
+msgid "Enable this option to add extra DVB time sync data to the debug log file."
+msgstr "Aktivieren, um dem Debug-Log zusätzlich DVB-Timesync-Daten hinzuzufügen."
 
 msgid "Enable this option to add extra EPG data to the debug log file."
-msgstr "Aktivieren, um dem Debug-Log extra EPG-Daten hinzuzufügen."
+msgstr "Aktivieren, um dem Debug-Log zusätzlich EPG-Daten hinzuzufügen."
 
 msgid "Enable this option to add international language and country load information detected during system boot to the debug log file."
 msgstr "Aktivieren, um dem Debug-Log internationale Sprach- und Länderinformationen hinzuzufügen, die während des Systemstarts erkannt wurden."
@@ -7454,6 +7466,9 @@ msgstr "Aktivieren, um dem Debug-Log Bildschirmnamen und Auflösungsdaten hinzuz
 
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Aktivieren, um dem Debug-Log Timer-Daten hinzuzufügen."
+
+msgid "Enable this option to show all the available Information screens in the Information menu item list."
+msgstr "Aktivieren, um alle verfügbaren Informations-Bildschirme in der Informations-Menü-Liste anzuzeigen."
 
 msgid "Enable this setting if your aerial system needs power."
 msgstr "Diese Einstellung aktivieren, wenn das Antennensystem Strom benötigt."
@@ -8730,10 +8745,10 @@ msgid "Flash Online a new image"
 msgstr "Online/Offline flashen"
 
 msgid "Flash and restore settings and no plugins"
-msgstr "Flashen und wiederherstellen der Einstellungen, ohne Plugins"
+msgstr "Flashen und Einstellungen wiederherstellen, ohne Plugins."
 
 msgid "Flash and restore settings and selected plugins (Ask user)"
-msgstr "Flashen und wiederherstellen der Einstellungen, Plugins abfragen"
+msgstr "Flashen, Einstellungen wiederherstellen und Plugins abfragen."
 
 #, python-format
 msgid "Flash directory '%s' not allowed!"
@@ -10039,8 +10054,14 @@ msgstr "AIT-Daten in Aufnahmen integrieren"
 msgid "Include CI assignment"
 msgstr "Berücksichtigung der CI-Zuweisung"
 
+msgid "Include DVB details"
+msgstr "Inklusive DVB-Details"
+
 msgid "Include DVB scan data"
 msgstr "Inklusive DVB-Scan-Daten"
+
+msgid "Include DVB timesync data"
+msgstr "Inklusive DVB-Timesync-Daten"
 
 msgid "Include ECM in http streams"
 msgstr "ECM in HTTP-Streams integrieren"
@@ -11833,7 +11854,7 @@ msgid "Move down a screen"
 msgstr "Einen Bildschirm nach unten gehen"
 
 msgid "Move down a screen / Move to next item"
-msgstr "Einen Bildschirm nach unten gehen / Zum nächsten Eintrag gehen"
+msgstr "Einen Bildschirm nach unten / Zum nächsten Eintrag gehen"
 
 msgid "Move down a screen in the panel"
 msgstr "Einen Bildschirm nach unten gehen"
@@ -12025,7 +12046,7 @@ msgid "Move up a screen"
 msgstr "Einen Bildschirm nach oben gehen"
 
 msgid "Move up a screen / Move to previous item"
-msgstr "Einen Bildschirm nach oben gehen / Zum vorherigen Eintrag gehen"
+msgstr "Einen Bildschirm nach oben / Zum vorherigen Eintrag gehen"
 
 msgid "Move up a screen in the panel"
 msgstr "Einen Bildschirm nach oben gehen"
@@ -14063,7 +14084,7 @@ msgid "Please wait for activation of your network configuration..."
 msgstr "Die Netzwerkkonfiguration wird aktiviert. Bitte warten..."
 
 msgid "Please wait while LCN bouquets are created/updated..."
-msgstr ""
+msgstr "Bitte warten während LCN-Bouquets erstellt/aktualisiert werden..."
 
 msgid "Please wait while feeds are updated..."
 msgstr "Feeds werden aktualisiert. Bitte warten..."
@@ -14903,10 +14924,10 @@ msgid "REC Symbol"
 msgstr "Aufnahmesymbol"
 
 msgid "REC Symbol in Standby"
-msgstr "Aufnahmesymbol im Standby"
+msgstr "Blinkendes Aufnahmesymbol im Standby"
 
 msgid "REC Symbol in use"
-msgstr "Aufnahmesymbol im Betrieb"
+msgstr "Blinkendes Aufnahmesymbol im Betrieb"
 
 msgid "RED button"
 msgstr "Taste ROT"
@@ -15040,9 +15061,6 @@ msgstr "Receiver-Informationen für %s %s"
 
 msgid "Receiver name"
 msgstr "Receivername"
-
-msgid "Reception"
-msgstr "Empfang"
 
 msgid "Reception Lists"
 msgstr "Empfangslisten"
@@ -16263,7 +16281,7 @@ msgid "Scan for local extensions and install them."
 msgstr "Nach lokalen Erweiterungen suchen, die installiert werden können."
 
 msgid "Scan for terrestrial LCNs and create LCN bouquets"
-msgstr ""
+msgstr "Suche nach terrestrischen LCNs und LCN-Bouquets erstellen"
 
 #
 msgid "Scan wireless networks"
@@ -16496,7 +16514,7 @@ msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port
 msgstr "Wenn ein Multiswitch verwendet wird, der ein DiSEqC-Port-A-Befehlssignal benötigt 'Ja' auswählen, ansonsten 'Nein'."
 
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
-msgstr "Bei 'Ja' wird die Infoleiste im pausierten Zustand nicht ausgeblendet, sondern permanent angezeigt."
+msgstr "Bei 'Ja' wird die Infoleiste im pausierten Zustand nicht ausgeblendet, sondern dauerhaft angezeigt."
 
 msgid "Select 'Yes' to allow use of the seek bar to jump to a selected point within the event."
 msgstr "Bei 'Ja' kann innerhalb der Suchleiste zu jedem beliebigen Zeitpunkt vor- oder zurückgesprungen werden."
@@ -18436,6 +18454,9 @@ msgstr "Erweiterte Einstellungen anzeigen"
 msgid "Show all"
 msgstr "Alles anzeigen"
 
+msgid "Show all Information screens"
+msgstr "Alle Informations-Bildschirme anzeigen"
+
 msgid "Show all available services"
 msgstr "Alle verfügbaren Sender anzeigen"
 
@@ -18678,7 +18699,7 @@ msgstr "Bei 'Ja' werden Trennlinien zwischen den Sendungen angezeigt."
 
 #
 msgid "Show persistent InfoBar while paused"
-msgstr "Infoleiste während Pause permanent anzeigen"
+msgstr "Infoleiste während Pause dauerhaft anzeigen"
 
 msgid "Show picon background color"
 msgstr "Hintergrundfarbe der Senderlogos (Picons)"
@@ -21927,6 +21948,9 @@ msgstr "Tuner-Art %s"
 msgid "Tuners"
 msgstr "Tuner"
 
+msgid "Tuners, Scanning & Reception"
+msgstr "Empfang"
+
 msgid "Tuning algorithm"
 msgstr "Tuning-Algorithmus"
 
@@ -22319,7 +22343,7 @@ msgid "Updating package list."
 msgstr "Paketliste aktualisieren."
 
 msgid "Upgrade (Flash & restore all)"
-msgstr "Aktualisierung (Flashen und alles wiederherstellen)"
+msgstr "Aktualisierung. Flashen und alles wiederherstellen."
 
 #
 msgid "Upgrade finished."
@@ -22474,7 +22498,7 @@ msgid "Use defaults"
 msgstr "Standard verwenden"
 
 msgid "Use description lines"
-msgstr ""
+msgstr "Beschreibungszeilen"
 
 msgid "Use extended List"
 msgstr "Erweiterte Liste verwenden"
@@ -22538,10 +22562,10 @@ msgid "Use small screen"
 msgstr "Small-Screen benutzen"
 
 msgid "Use spacer lines"
-msgstr ""
+msgstr "Separatorzeilen"
 
 msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
-msgstr ""
+msgstr "Separatorzeilen benutzen, um Zeilennummer mit den LCN übereinstimmen zu lassen."
 
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr "Die Tasten Links/Rechts benutzen, um die Höhe der Benutzeroberfläche/OSD einzustellen. LINKS verringert, RECHTS erhöht sie."
@@ -25306,6 +25330,9 @@ msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Reception"
+#~ msgstr "Empfang"
 
 #~ msgid "Enable terrestrial LCN:"
 #~ msgstr "Terrestrisches LCN aktivieren:"

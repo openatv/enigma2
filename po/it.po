@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-04 16:49+0000\n"
-"PO-Revision-Date: 2024-08-07 20:09+0000\n"
+"POT-Creation-Date: 2024-08-08 08:13+0000\n"
+"PO-Revision-Date: 2024-08-14 12:42+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -3156,6 +3156,9 @@ msgstr "Buffer %d%%"
 msgid "Buffers"
 msgstr "Buffer"
 
+msgid "Build"
+msgstr "Build"
+
 msgid "Build Brand"
 msgstr "Brand build"
 
@@ -4294,6 +4297,9 @@ msgstr "Comando da eseguire"
 
 msgid "Command type"
 msgstr "Tipo comando"
+
+msgid "Commit"
+msgstr "Commit"
 
 msgid "Commit Information Actions"
 msgstr "Azioni sulle informazioni di commit"
@@ -7038,8 +7044,14 @@ msgstr "Abilita questa opzione per aggiungere le informazioni MultiBoot rilevate
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "Abilita questa opzione per aggiungere dati di mappatura delle azioni/controllo remoto al file di registro di debug."
 
+msgid "Enable this option to add extra DVB details to the debug log file."
+msgstr "Abilita questa opzione per aggiungere ulteriori dettagli DVB al file di registro di debug."
+
 msgid "Enable this option to add extra DVB scan data to the debug log file."
 msgstr "Abilita questa opzione per aggiungere dati di scansione DVB extra al file di registro di debug."
+
+msgid "Enable this option to add extra DVB time sync data to the debug log file."
+msgstr "Abilita questa opzione per aggiungere ulteriori dati di sincronizzazione temporale DVB al file di registro di debug."
 
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr "Abilita questa opzione per aggiungere dati EPG extra al file di registro di debug."
@@ -7061,6 +7073,9 @@ msgstr "Abilita questa opzione per aggiungere nomi di schermate e dati di risolu
 
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Abilita questa opzione per aggiungere dati di debug del timer al file di registro di debug."
+
+msgid "Enable this option to show all the available Information screens in the Information menu item list."
+msgstr "Abilita questa opzione per mostrare tutte le schermate Informazioni disponibili nell'elenco delle voci del menu Informazioni."
 
 msgid "Enable this setting if your aerial system needs power."
 msgstr "Abilita questa impostazione se l'antenna necessita di alimentazione."
@@ -9533,8 +9548,14 @@ msgstr "Includi AIT nelle registrazioni"
 msgid "Include CI assignment"
 msgstr "Includi assegnazione CI"
 
+msgid "Include DVB details"
+msgstr "Includi dettagli DVB"
+
 msgid "Include DVB scan data"
 msgstr "Includi dati scansione DVB"
+
+msgid "Include DVB timesync data"
+msgstr "Includi dati sincronizzazione temporale DVB"
 
 msgid "Include ECM in http streams"
 msgstr "Includi ECM nei flussi http"
@@ -14162,9 +14183,6 @@ msgstr "Informazioni sul ricevitore %s %s"
 msgid "Receiver name"
 msgstr "Nome del ricevitore"
 
-msgid "Reception"
-msgstr "Ricezione servizi"
-
 msgid "Reception Lists"
 msgstr "Elenchi di ricezione"
 
@@ -17337,6 +17355,9 @@ msgstr "Mostra impostazioni avanzate"
 
 msgid "Show all"
 msgstr "Mostra tutto"
+
+msgid "Show all Information screens"
+msgstr "Mostra tutte le schermate informative"
 
 msgid "Show all available services"
 msgstr "Mostra tutti i servizi disponibili"
@@ -20629,6 +20650,9 @@ msgstr "Tipo di tuner %s"
 msgid "Tuners"
 msgstr "Tuner"
 
+msgid "Tuners, Scanning & Reception"
+msgstr "Tuner, scansione e ricezione"
+
 msgid "Tuning algorithm"
 msgstr "Algoritmo di sintonizzazione"
 
@@ -23763,6 +23787,9 @@ msgstr "sì (mantieni feed)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Reception"
+#~ msgstr "Ricezione servizi"
 
 #~ msgid "Enable terrestrial LCN:"
 #~ msgstr "Abilita LCN terrestre:"
