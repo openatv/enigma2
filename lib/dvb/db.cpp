@@ -181,8 +181,10 @@ eDVBService::~eDVBService()
 eDVBService &eDVBService::operator=(const eDVBService &s)
 {
 	m_service_name = s.m_service_name;
+	m_service_display_name = s.m_service_display_name;
 	m_service_name_sort = s.m_service_name_sort;
 	m_provider_name = s.m_provider_name;
+	m_provider_display_name = s.m_provider_display_name;
 	m_default_authority = s.m_default_authority;
 	m_aus_da_flag = s.m_aus_da_flag;
 	m_flags = s.m_flags;
@@ -306,10 +308,10 @@ int eDVBService::checkFilter(const eServiceReferenceDVB &ref, const eDVBChannelQ
 		}
 		case eDVBChannelQuery::tProvider:
 		{
-			if (query.m_string == "Unknown" && m_provider_name.empty())
+			if (query.m_string == "Unknown" && m_provider_display_name.empty())
 				res = 1;
 			else
-				res = m_provider_name == query.m_string;
+				res = m_provider_display_name == query.m_string;
 			break;
 		}
 		case eDVBChannelQuery::tType:
@@ -455,7 +457,10 @@ void eDVBDB::parseServiceData(ePtr<eDVBService> s, std::string str)
 		}
 		// eDebug("[eDVBDB] %c ... %s", p, v.c_str());
 		if (p == 'p')
-			s->m_provider_name=v;
+		{
+			s->m_provider_name = v;
+			s->m_provider_display_name = v;
+		}
 		else if (p == 'f')
 		{
 			sscanf(v.c_str(), "%x", &s->m_flags);
@@ -872,7 +877,10 @@ void eDVBDB::loadServicelist(const char *file)
 		if (len > 0 && line[len - 1 ] == '\n')
 			line[len - 1] = '\0';
 		if (line[1] != ':')	// old ... (only service_provider)
+		{
 			s->m_provider_name = line;
+			s->m_provider_display_name = line;
+		}
 		else
 			parseServiceData(s, line);
 
@@ -886,8 +894,8 @@ void eDVBDB::loadServicelist(const char *file)
 				s->m_lcn = it->second.getLCN();
 				if(!it->second.getServiceNameGui().empty())
 					s->m_service_display_name = it->second.getServiceNameGui();
-				if(!it->second.geProviderNameGui().empty())
-					s->m_provider_display_name = it->second.geProviderNameGui();
+				if(!it->second.getProviderNameGui().empty())
+					s->m_provider_display_name = it->second.getProviderNameGui();
 			}
 		}
 		addService(ref, s);
@@ -2646,7 +2654,7 @@ int eDVBDBQueryBase::compareLessEqual(const eServiceReferenceDVB &a, const eServ
 			return aa < bb;
 		}
 	case eDVBChannelQuery::tProvider:
-		return a_service->m_provider_name < b_service->m_provider_name;
+		return a_service->m_provider_display_name < b_service->m_provider_display_name;
 	case eDVBChannelQuery::tType:
 		return a.getServiceType() < b.getServiceType();
 	case eDVBChannelQuery::tBouquet:
@@ -2816,9 +2824,7 @@ eDVBDBProvidersQuery::eDVBDBProvidersQuery(eDVBDB *db, const eServiceReference &
 		int res = !it->second->isHidden() && it->second->checkFilter(it->first, *query);
 		if (res)
 		{
-			const char *provider_name = it->second->m_provider_name.length() ?
-				it->second->m_provider_name.c_str() :
-				"Unknown";
+			const char *provider_name = it->second->m_provider_display_name.length() ? it->second->m_provider_display_name.c_str() : "Unknown";
 			if (found.find(std::string(provider_name)) == found.end())
 			{
 				found.insert(std::string(provider_name));
