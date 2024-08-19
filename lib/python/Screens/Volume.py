@@ -6,11 +6,10 @@ from Screens.Screen import Screen
 class Volume(Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		self.volumeBar = VolumeBar()
-		self["Volume"] = self.volumeBar
-		self["VolumeText"] = Label("")
+		self["Volume"] = VolumeBar()
+		self["VolumeText"] = Label()
 
 	def setValue(self, volume):
-		print("[Volume] Volume set to %d." % volume)
-		self.volumeBar.setValue(volume)
-		self["VolumeText"].text = str(volume)
+		print(f"[Volume] Volume set to {volume}.")
+		self["Volume"].setValue(volume)
+		self["VolumeText"].setText(str(volume))
