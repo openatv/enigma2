@@ -1,12 +1,12 @@
 from glob import glob
-from os.path import dirname, isfile, join as pathjoin, splitext
+from os.path import dirname, getmtime, isfile, join as pathjoin, splitext
 from os import listdir, unlink
 from traceback import print_exc
 from xml.etree.ElementTree import Element, ElementTree, fromstring
 
 from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, addFont, eLabel, eListbox, eListboxPythonMultiContent, ePixmap, ePoint, eRect, eRectangle, eSize, eSlider, eSubtitleWidget, eWidget, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gMainDC, gRGB
 
-from Components.config import ConfigSelection, ConfigSubsection, ConfigText, config
+from Components.config import ConfigEnableDisable, ConfigSelection, ConfigSubsection, ConfigText, config
 from Components.SystemInfo import BoxInfo
 from Components.Sources.Source import ObsoleteSource
 from Tools.Directories import SCOPE_LCDSKIN, SCOPE_GUISKIN, SCOPE_FONTS, SCOPE_SKINS, pathExists, resolveFilename, fileReadXML
@@ -47,7 +47,6 @@ switchPixmap = {}  # Dictionary of switch images.
 windowStyles = {}  # Dictionary of window styles for each screen ID.
 resolutions = {}  # Dictionary of screen resolutions for each screen ID.
 scrollLabelStyle = {}  # Dictionary of scrollLabel widget defaults.
-componentTemplates = {}  # Dictionary of template data for each component.
 constantWidgets = {}
 layouts = {}
 variables = {}
@@ -61,7 +60,7 @@ if not isfile(skin):
 config.skin.primary_skin = ConfigText(default=DEFAULT_SKIN)
 config.skin.display_skin = ConfigText(default=DEFAULT_DISPLAY_SKIN)
 config.skin.FallbackFont = ConfigSelection(default="fallback.font", choices=[("fallback.font", "Fallback Font 1"), ("AbyssinicaSIL-Regular.ttf", "Fallback Font 2")])
-
+config.skin.autorefresh = ConfigEnableDisable(default=False)
 currentPrimarySkin = None
 currentDisplaySkin = None
 callbacks = []
@@ -233,26 +232,14 @@ def loadSkinTemplates(skinTemplatesFileName):
 		domStyles = fileReadXML(skinTemplatesFileName, source=MODULE_NAME)
 		if domStyles is not None:
 			for template in domStyles.findall("template"):
-				component = template.get("component")
-				name = template.get("name")
-				if component and name:
-					if component in componentTemplates:
-						componentTemplates[component][name] = template
-					else:
-						componentTemplates[component] = {name: template}
+				componentTemplates.add(template, skinTemplatesFileName)
 	else:
 		for screen in domScreens:
 			element, path = domScreens.get(screen, (None, None))
 			for template in element.findall(".//widget/templates/template"):
-				component = template.get("component")
-				name = template.get("name")
-				if component and name:
-					if component in componentTemplates:
-						componentTemplates[component][name] = template
-					else:
-						componentTemplates[component] = {name: template}
+				componentTemplates.add(template, None)
 	if config.crash.debugScreens.value:
-		print(f"[Skin] DEBUG: componentTemplates '{componentTemplates}'.")
+		print(f"[Skin] DEBUG: componentTemplates '{componentTemplates.templates}'.")
 
 
 def reloadSkinTemplates():
@@ -1560,6 +1547,46 @@ class additionalWidget:
 		pass
 
 
+class ComponentTemplates():
+	def __init__(self):
+		self.changedTimes = {}
+		self.templates = {}
+
+	def add(self, template, fileName):
+		if fileName and fileName not in self.changedTimes:
+			try:
+				self.changedTimes[fileName] = getmtime(fileName)
+			except OSError:
+				self.changedTimes[fileName] = None
+		component = template.get("component")
+		name = template.get("name")
+		if component and name:
+			if component in self.templates:
+				self.templates[component][name] = template
+			else:
+				self.templates[component] = {name: template}
+
+	def get(self, component, name):
+		if component in self.templates and self.templates[component][name] is not None:
+			return self.templates[component][name]
+		return None
+
+	def names(self, component):
+		if component in self.templates:
+			return list(self.templates[component].keys())
+		return None
+
+	def changedFiles(self):
+		fileNames = []
+		for fileName in self.changedTimes:
+			if getmtime(fileName) != self.changedTimes[fileName]:
+				fileNames.append(fileName)
+		return fileNames
+
+
+componentTemplates = ComponentTemplates()
+
+
 # Class that makes a tuple look like something else. Some plugins just assume
 # that size is a string and try to parse it. This class makes that work.
 #
@@ -2327,18 +2354,14 @@ def findWidgets(name):
 # Return the XML formatting and style template for a multi content listbox.
 #
 def getcomponentTemplate(component, name):
-	if component in componentTemplates and componentTemplates[component][name] is not None:
-		return componentTemplates[component][name]
-	return None
+	return componentTemplates.get(component, name)
 
 
 # Return a list of all styles defined within an XML formatting and style
 # template as used in a multi content listbox.
 #
 def getcomponentTemplateNames(component):
-	if component in componentTemplates:
-		return list(componentTemplates[component].keys())
-	return None
+	return componentTemplates.names(component)
 
 
 # This method emulates the C++ methods available to get Scrollbar style elements.
