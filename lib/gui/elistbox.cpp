@@ -42,6 +42,7 @@ eListbox::eListbox(eWidget *parent) : eWidget(parent), m_prev_scrollbar_page(-1)
 	m_style.m_selection_height = m_itemheight;
 	m_style.m_scrollbar_radius = eListbox::defaultScrollbarRadius;
 	m_style.m_scrollbar_edges = eListbox::defaultScrollbarRadiusEdges;
+	m_style.m_separator_size = eRect(1, -1, -1, 1);
 
 	for (uint8_t x = 0; x < 4; x++)
 	{

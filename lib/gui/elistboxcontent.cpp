@@ -667,32 +667,6 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 			/* handle left part. get item from tuple, convert to string, display. */
 			text = PyTuple_GET_ITEM(item, 0);
 
-			if (PyTuple_Size(item) == 1 && PyTuple_Check(text))
-			{
-				ePyObject plen = PyTuple_GET_ITEM(text, 0);
-				ePyObject pleft;
-				ePyObject pheight;
-				ePyObject ptop;
-				if (PyTuple_Size(text) > 1)
-					pleft = PyTuple_GET_ITEM(text, 1);
-				if (PyTuple_Size(text) > 1)
-					pheight = PyTuple_GET_ITEM(text, 2);
-				if (PyTuple_Size(text) > 2)
-					ptop = PyTuple_GET_ITEM(text, 3);
-
-				if (plen && PyLong_Check(plen))
-				{
-					int len = PyLong_AsLong(plen);
-					int height = (pheight && PyLong_Check(pheight)) ? PyLong_AsLong(pheight) : 2;
-					int top = (ptop && PyLong_Check(ptop)) ? PyLong_AsLong(ptop) : -1;
-					top = (top != -1) ? top : (m_itemsize.height() / 2) - (height / 2);
-					int left = (pleft && PyLong_Check(pleft)) ? PyLong_AsLong(pleft) : 0;
-					painter.fill(eRect(ePoint(offset.x() + left, offset.y() + top), eSize(len, height)));
-				}
-				painter.clippop();
-				return;
-			}
-
 			text = PyObject_Str(text); /* creates a new object - old object was borrowed! */
 			const char *string = (text && PyUnicode_Check(text)) ? PyUnicode_AsUTF8(text) : "<not-a-string>";
 			Py_XDECREF(text);
@@ -705,6 +679,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 			if (PyTuple_Size(item) >= 2) // when no 2nd entry is in tuple this is a non selectable entry without config part
 				value = PyTuple_GET_ITEM(item, 1);
 
+			ePtr<gFont> fnt3;
 			int leftOffset = style.getValue(eWindowStyleSkinned::valueEntryLeftOffset);
 
 			if (value)
@@ -722,9 +697,8 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 				/* the PyInt was stolen. */
 				painter.setFont(fnt);
 			}
-			else {
-
-				ePtr<gFont> fnt3;
+			else
+			{
 
 				if(local_style)
 					fnt3 = local_style->m_headerfont;
@@ -734,7 +708,41 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 
 				leftOffset = style.getValue(eWindowStyleSkinned::valueHeaderLeftOffset);
 				painter.setFont(fnt3);
+
+				if (local_style->is_set.header_color)
+					painter.setForegroundColor(local_style->m_header_color);
+
 			}
+
+			// Separator
+			if (!strcmp(string,"---") && PyTuple_Size(item) == 1 && local_style) 
+			{
+
+				if (local_style->is_set.separator_color)
+					painter.setForegroundColor(local_style->m_separator_color);
+
+				eRect sep_sz = local_style->m_separator_size;
+
+				int top = sep_sz.y();
+				if ( top > m_itemsize.height() )
+					top = -1;
+				top = (top != -1) ? top : (m_itemsize.height() / 2) - (sep_sz.height() / 2);
+
+				int width = sep_sz.width();
+				int left = sep_sz.x();
+				if(left > m_itemsize.width())
+					left = 0;
+				if(width == -1)
+				{
+					left = offset.x() + leftOffset;
+					width = m_itemsize.width() - left * 2;
+				}
+				
+				painter.fill(eRect(ePoint(left, offset.y() + top), eSize(width, sep_sz.height())));
+				painter.clippop();
+				return;
+			}
+
 
 			eRect labelrect(ePoint(offset.x() + leftOffset, offset.y()), m_itemsize);
 			painter.renderText(labelrect, string, alphablendflag | gPainter::RT_HALIGN_LEFT | gPainter::RT_VALIGN_CENTER, border_color, border_size);

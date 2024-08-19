@@ -743,6 +743,29 @@ def parseScrollbarScroll(value):
 	return parseOptions(options, "scrollbarScroll", value, 0)
 
 
+def parseSeparator(attribute, value):
+	"""
+		left, top, width, height
+		top, height
+		height
+
+		width=-1 -> full width - margin ( default )
+		top=-1 -> center ( default )
+	"""
+	if value in variables:
+		value = variables[value]
+	values = [parseInteger(x.strip()) for x in value.split(",")]
+	count = len(values)
+	if count == 1:
+		return [-1, -1, -1, values[0]]
+	elif count == 2:
+		return [-1, values[0], -1, values[1]]
+	elif count != 4:
+		print(f"[Skin] Error: Attribute '{attribute}' with value '{value}' is invalid!  Attribute must have 1, 2 or 4 values.")
+		values = [-1, -1, -1, 1]
+	return values
+
+
 def parsePadding(attribute, value):
 	if value in variables:
 		value = variables[value]
@@ -998,6 +1021,9 @@ class AttributeParser:
 	def headerFont(self, value):
 		self.guiObject.setHeaderFont(parseFont(value, self.scaleTuple))
 
+	def headerForegroundColor(self, value):
+		self.guiObject.setHeaderColor(parseColor(value, 0x00000000))
+
 	def horizontalAlignment(self, value):
 		self.guiObject.setHAlign(parseHorizontalAlignment(value))
 
@@ -1211,6 +1237,12 @@ class AttributeParser:
 		size = parseValuePair(f"{data[0]},{data[1]}", self.scaleTuple, self.guiObject, self.desktop)
 		mode = parseZoom(data[2], "selectionZoomSize") if len(data) == 3 else eListbox.zoomContentZoom
 		self.guiObject.setSelectionZoomSize(size[0], size[1], mode)
+
+	def separatorSize(self, value):
+		self.guiObject.setSeparatorSize(eRect(*parseSeparator("separatorSize", value)))
+
+	def separatorColor(self, value):
+		self.guiObject.setSeparatorColor(parseColor(value, 0x00000000))
 
 	def shadowColor(self, value):
 		self.guiObject.setShadowColor(parseColor(value, 0x00000000))
