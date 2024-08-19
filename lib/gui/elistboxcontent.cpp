@@ -709,7 +709,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 				leftOffset = style.getValue(eWindowStyleSkinned::valueHeaderLeftOffset);
 				painter.setFont(fnt3);
 
-				if (local_style->is_set.header_color)
+				if (local_style && local_style->is_set.header_color)
 					painter.setForegroundColor(local_style->m_header_color);
 
 			}
