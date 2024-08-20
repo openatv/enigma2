@@ -11,7 +11,7 @@
 class iFilePushScatterGather
 {
 public:
-	virtual void getNextSourceSpan(off_t current_offset, size_t bytes_read, off_t &start, size_t &size, int blocksize)=0;
+	virtual void getNextSourceSpan(off_t current_offset, size_t bytes_read, off_t &start, size_t &size, int blocksize, int &sof)=0;
 	virtual ~iFilePushScatterGather() {}
 };
 
@@ -48,6 +48,7 @@ private:
 	int m_fd_dest;
 	int m_send_pvr_commit;
 	int m_stream_mode;
+	int m_sof;
 	int m_blocksize;
 	size_t m_buffersize;
 	unsigned char* m_buffer;
