@@ -1583,9 +1583,11 @@ class ComponentTemplates():
 	def __init__(self):
 		self.changedTimes = {}
 		self.templates = {}
+		BoxInfo.setMutableItem("CanRefreshTemplates", False)
 
 	def add(self, template, fileName):
 		if fileName and fileName not in self.changedTimes:
+			BoxInfo.setMutableItem("CanRefreshTemplates", True)
 			try:
 				self.changedTimes[fileName] = getmtime(fileName)
 			except OSError:
@@ -1608,12 +1610,11 @@ class ComponentTemplates():
 			return list(self.templates[component].keys())
 		return None
 
-	def changedFiles(self):
-		fileNames = []
+	def isChanged(self):
 		for fileName in self.changedTimes:
 			if getmtime(fileName) != self.changedTimes[fileName]:
-				fileNames.append(fileName)
-		return fileNames
+				return True
+		return False
 
 
 componentTemplates = ComponentTemplates()

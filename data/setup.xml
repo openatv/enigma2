@@ -837,7 +837,7 @@
 		<item text="Fallback Font *" description="Choose the fallback font.">config.skin.FallbackFont</item>
 		<item text="Channel Selection Screen" description="Select the screen layout, from the options provided by the skin, to be used for the ChannelSelection screen." conditional="len(config.channelSelection.screenStyle.choices) > 1">config.channelSelection.screenStyle</item>
 		<item text="Channel Selection List" description="Select the layout of the information in the services list, from the options provided by the skin, displayed within the ChannelSelection screen." conditional="config.channelSelection.screenStyle.value">config.channelSelection.widgetStyle</item>
-		<item text="AutoRefresh" description="Enable autorefresh templates." conditional="config.channelSelection.screenStyle.value">config.skin.autorefresh</item>
+		<item text="AutoRefresh" description="Enable autorefresh templates." requires="CanRefreshTemplates">config.skin.autorefresh</item>
 	</setup>
 	<setup key="SleepTimer" title="SleepTimer Settings" showOpenWebif="1">
 		<item text="SleepTimer activation delay" description="Configure the duration, in minutes, before the SleepTimer activates.">config.usage.sleepTimer</item>
