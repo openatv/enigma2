@@ -58,12 +58,13 @@ void eFilePushThread::thread()
 		size_t bytes_read = 0;
 		off_t current_span_offset = 0;
 		size_t current_span_remaining = 0;
+		m_sof = 0;
 
 		while (!m_stop)
 		{
 			if (m_sg && !current_span_remaining)
 			{
-				m_sg->getNextSourceSpan(m_current_position, bytes_read, current_span_offset, current_span_remaining, m_blocksize);
+				m_sg->getNextSourceSpan(m_current_position, bytes_read, current_span_offset, current_span_remaining, m_blocksize, m_sof);
 				ASSERT(!(current_span_remaining % m_blocksize));
 				m_current_position = current_span_offset;
 				bytes_read = 0;
@@ -78,7 +79,7 @@ void eFilePushThread::thread()
 			/* align to blocksize */
 			maxread -= maxread % m_blocksize;
 
-			if (maxread)
+			if (maxread && !m_sof)
 			{
 #ifdef SHOW_WRITE_TIME
 				struct timeval starttime;
@@ -118,7 +119,7 @@ void eFilePushThread::thread()
 			if (d)
 				buf_end -= d;
 
-			if (buf_end == 0)
+			if (buf_end == 0 || m_sof == 1)
 			{
 				/* on EOF, try COMMITting once. */
 				if (m_send_pvr_commit)
@@ -149,7 +150,10 @@ void eFilePushThread::thread()
 				   over and over until somebody responds.
 
 				   in stream_mode, think of evtEOF as "buffer underrun occurred". */
-				sendEvent(evtEOF);
+				if (m_sof == 0)
+					sendEvent(evtEOF);
+				else
+					sendEvent(evtUser); // start of file event
 
 				if (m_stream_mode)
 				{
