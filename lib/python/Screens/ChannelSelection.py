@@ -200,6 +200,18 @@ class ChannelSelectionBase(Screen):
 			"pageDown": (self.servicelist.goPageDown, _("Move down a screen"))
 		}, prio=0, description=_("Channel Selection Navigation Actions"))
 		self["newNavigationActions"].setEnabled(not config.misc.actionLeftRightToPageUpPageDown.value)
+		if "keymap.ntr" in config.usage.keymap.value:
+			self["legacyNavigationActions"].setEnabled(False)
+			self["newNavigationActions"].setEnabled(False)
+			self["neutrinoNavigationActions"] = HelpableActionMap(self, ["NavigationActions", "PreviousNextActions"], {
+				"pageUp": (self.servicelist.goPageUp, _("Move up a screen")),
+				"previous": (self.prevMarker, _("Move to previous marker")),
+				"right": (self.nextBouquet, _("Move to next bouquet")),
+				"left": (self.prevBouquet, _("Move to previous bouquet")),
+				"next": (self.nextMarker, _("Move to next marker")),
+				"pageDown": (self.servicelist.goPageDown, _("Move down a screen"))
+			}, prio=0, description=_("Channel Selection Navigation Actions"))
+
 		self.mode = MODE_TV
 		self.baseTitle = _("Channel Selection")
 		self.function = EDIT_OFF
@@ -210,7 +222,7 @@ class ChannelSelectionBase(Screen):
 		self.onShown.append(self.applyKeyMap)
 
 	def layoutFinished(self):
-		self.servicelist.instance.enableAutoNavigation(config.misc.actionLeftRightToPageUpPageDown.value)  # Override list box navigation.
+		self.servicelist.instance.enableAutoNavigation(config.misc.actionLeftRightToPageUpPageDown.value or ("keymap.ntr" in config.usage.keymap.value))  # Override list box navigation.
 
 	def applyKeyMap(self):  # IanSav: Should this be a NumericalTextInput mode?
 		if config.usage.show_channel_jump_in_servicelist.value == "alpha":
