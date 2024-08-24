@@ -279,6 +279,29 @@ def InitUsageConfig():
 	config.usage.multiepg_ask_bouquet = ConfigYesNo(default=False)
 	config.usage.showpicon = ConfigYesNo(default=True)
 
+	# New ServiceList
+	config.channelSelection = ConfigSubsection()
+	config.channelSelection.showNumber = ConfigYesNo(default=True)
+	config.channelSelection.showPicon = ConfigYesNo(default=False)
+	config.channelSelection.showServiceTypeIcon = ConfigYesNo(default=False)
+	config.channelSelection.showCryptoIcon = ConfigYesNo(default=False)
+	config.channelSelection.recordIndicatorMode = ConfigSelection(default=2, choices=[
+		(0, _("None")),
+		(1, _("Record Icon")),
+		(2, _("Colored Text"))
+	])
+	config.channelSelection.piconRatio = ConfigSelection(default=167, choices=[
+		(167, _("XPicon, ZZZPicon")),
+		(235, _("ZZPicon")),
+		(250, _("ZPicon"))
+	])
+
+	config.channelSelection.showTimers = ConfigYesNo(default=False)
+
+	screenChoiceList = [("", _("Legacy mode"))]
+	config.channelSelection.screenStyle = ConfigSelection(default="", choices=screenChoiceList)
+	config.channelSelection.widgetStyle = ConfigSelection(default="", choices=screenChoiceList)
+
 	# ########  Workaround for VTI Skins   ##############
 	config.usage.picon_dir = ConfigDirectory(default="/usr/share/enigma2/picon")
 	config.usage.movielist_show_picon = ConfigYesNo(default=False)
