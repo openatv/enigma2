@@ -1,11 +1,11 @@
 <!--
 	Flag meanings in <key /> elements:
-	"m": Action active on key "Make".
-	"b": Action active on key "Break".
-	"r": Action active on key repeats.
-	"l": Action on long key press.
+	"m": Action active on key "Make" event.
+	"b": Action active on key "Break" event.
+	"r": Action active on key "Repeat" event (when a button repeats).
+	"l": Action active on key "Long" event (when a button has been held down).
+	"s": Action active on key "Stop" event (when a long pressed button is released).
 -->
-
 <keymap>
 	<!--
 		These key map actions are global to all screens.  These
