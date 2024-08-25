@@ -226,25 +226,38 @@ def reloadSkins():
 
 # Method to load a skinTemplates.xml if one exists or load the templates from the screens.
 #
-def loadSkinTemplates(skinTemplatesFileName):
-	if isfile(skinTemplatesFileName):
-		print(f"[Skin] Loading XML templates from '{skinTemplatesFileName}'.")
-		domStyles = fileReadXML(skinTemplatesFileName, source=MODULE_NAME)
-		if domStyles is not None:
-			for template in domStyles.findall("template"):
-				componentTemplates.add(template, skinTemplatesFileName)
+def loadSkinTemplates(skinTemplatesFileNames):
+	def addTemplate(template, fileName):
+		if template.get("component", "") in ("serviceList",):  # Only serviceList now more comming
+			componentTemplates.add(template, fileName)
+
+	if skinTemplatesFileNames:
+		for skinTemplatesFileName in skinTemplatesFileNames:
+			print(f"[Skin] Loading XML templates from '{skinTemplatesFileName}'.")
+			domStyles = fileReadXML(skinTemplatesFileName, source=MODULE_NAME)
+			if domStyles is not None:
+				for template in domStyles.findall("template"):
+					addTemplate(template, skinTemplatesFileName)
 	else:
 		for screen in domScreens:
 			element, path = domScreens.get(screen, (None, None))
 			for template in element.findall(".//widget/templates/template"):
-				componentTemplates.add(template, None)
+				addTemplate(template, None)
 	if config.crash.debugScreens.value:
 		print(f"[Skin] DEBUG: componentTemplates '{componentTemplates.templates}'.")
 
 
-def reloadSkinTemplates():
-	skinTemplatesFileName = resolveFilename(SCOPE_SKINS, pathjoin(dirname(currentPrimarySkin), "skinTemplates.xml"))
-	loadSkinTemplates(skinTemplatesFileName)
+def reloadSkinTemplates(clear=False):
+	if clear:
+		componentTemplates.clear()
+	skinTemplatesFileName = resolveFilename(SCOPE_GUISKIN, pathjoin(dirname(currentPrimarySkin), "skinTemplates.xml"))
+	skinTemplatesFileNames = []
+	if isfile(skinTemplatesFileName):
+		skinTemplatesFileNames.append(skinTemplatesFileName)
+	skinTemplatesFileName = resolveFilename(SCOPE_GUISKIN, "skinUserTemplates.xml")
+	if isfile(skinTemplatesFileName):
+		skinTemplatesFileNames.append(skinTemplatesFileName)
+	loadSkinTemplates(skinTemplatesFileNames)
 
 
 def addCallback(callback):
@@ -1599,6 +1612,10 @@ class ComponentTemplates():
 				self.templates[component][name] = template
 			else:
 				self.templates[component] = {name: template}
+
+	def clear(self):
+		self.templates = {}
+		self.changedTimes = {}
 
 	def get(self, component, name):
 		if component in self.templates and self.templates[component][name] is not None:
