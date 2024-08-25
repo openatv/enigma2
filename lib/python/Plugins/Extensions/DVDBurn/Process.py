@@ -1,3 +1,4 @@
+from os import remove
 from Components.Task import Task, Job, DiskspacePrecondition, Condition, ToolExistsPrecondition
 from Components.Harddisk import harddiskmanager
 from Screens.MessageBox import MessageBox
@@ -149,9 +150,9 @@ class DemuxTask(Task):
 			self.mplex_videofile = file
 
 	def haveProgress(self, progress):
-		#print "PROGRESS [%s]" % progress
+		# print(f"PROGRESS [{progress}]"
 		MSG_CHECK = "check & synchronize audio file"
-		MSG_DONE = "done..."
+		# MSG_DONE = "done..."
 		if progress == "preparing collection(s)...":
 			self.prog_state = 0
 		elif progress[:len(MSG_CHECK)] == MSG_CHECK:
@@ -166,18 +167,15 @@ class DemuxTask(Task):
 				pass
 
 	def writeCutfile(self):
-		f = open(self.cutfile, "w")
-		f.write("CollectionPanel.CutMode=4\n")
-		for p in self.cutlist:
-			s = p / 90000
-			m = s / 60
-			h = m / 60
-
-			m %= 60
-			s %= 60
-
-			f.write("%02d:%02d:%02d\n" % (h, m, s))
-		f.close()
+		with open(self.cutfile, "w") as fd:
+			fd.write("CollectionPanel.CutMode=4\n")
+			for p in self.cutlist:
+				s = p / 90000
+				m = s / 60
+				h = m / 60
+				m %= 60
+				s %= 60
+				fd.write("%02d:%02d:%02d\n" % (h, m, s))
 
 	def cleanup(self, failed):
 		print("[DemuxTask::cleanup]")
@@ -188,10 +186,9 @@ class DemuxTask(Task):
 		print(self.mplex_streamfiles)
 
 		if failed:
-			import os
 			for file in self.generated_files:
 				try:
-					os.remove(file)
+					remove(file)
 				except OSError:
 					pass
 
@@ -274,7 +271,7 @@ class DVDAuthorTask(Task):
 				if progress:
 					self.job.mplextask.progress = progress
 					print("[DVDAuthorTask] update mplextask progress:", self.job.mplextask.progress, "of", self.job.mplextask.end)
-			except:
+			except Exception:
 				print("couldn't set mux progress")
 
 
@@ -418,7 +415,7 @@ class CheckDiskspaceTask(Task):
 	def run(self, callback):
 		self.callback = callback
 		failed_preconditions = self.checkPreconditions(True) + self.checkPreconditions(False)
-		if len(failed_preconditions):
+		if failed_preconditions:
 			callback(self, failed_preconditions)
 			return
 		Task.processFinished(self, 0)

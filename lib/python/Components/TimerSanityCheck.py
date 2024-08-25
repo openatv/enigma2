@@ -155,7 +155,7 @@ class TimerSanityCheck:
 		newTimerTunerType = None
 		cnt = 0
 		idx = 0
-		is_ci_use = 0
+		# is_ci_use = 0
 		is_ci_timer_conflict = 0
 		overlaplist = []
 		ci_timer = False
@@ -172,7 +172,7 @@ class TimerSanityCheck:
 			cnt += event[1]
 			timer = self.newtimer if event[2] == -1 else self.timerlist[event[2]]  # New timer.
 			if event[1] == self.bflag:
-				tunerType = []
+				tunerTypes = []
 				if timer.service_ref.ref and timer.service_ref.ref.flags & eServiceReference.isGroup:
 					fakeRecService = NavigationInstance.instance.recordService(getBestPlayableServiceReference(timer.service_ref.ref, eServiceReference(), True), True)
 				else:
@@ -185,17 +185,17 @@ class TimerSanityCheck:
 				if not fakeRecResult:  # Tune okay.
 					# feinfo = fakeRecService.frontendInfo()
 					# if feinfo:
-					# 	tunerType.append(feinfo.getFrontendData().get("tuner_type"))
+					# 	tunerTypes.append(feinfo.getFrontendData().get("tuner_type"))
 					if hasattr(fakeRecService, "frontendInfo") and hasattr(fakeRecService.frontendInfo(), "getFrontendData"):
 						feinfo = fakeRecService.frontendInfo().getFrontendData()
 						if "tuner_number" in feinfo:
 							nim = nimmanager.nim_slots[int(feinfo.get("tuner_number"))]
 							if nim.isCompatible("DVB-T"):
-								tunerType.append("DVB-T")
+								tunerTypes.append("DVB-T")
 							elif nim.isCompatible("DVB-C"):
-								tunerType.append("DVB-C")
-						if not tunerType:
-							tunerType.append(feinfo.get("tuner_type"))
+								tunerTypes.append("DVB-C")
+						if not tunerTypes:
+							tunerTypes.append(feinfo.get("tuner_type"))
 				else:  # Tune failed. We must go another way to get service type (DVB-S, DVB-T, DVB-C).
 					def getServiceType(ref):  # Helper function to get a service type of a service reference.
 						serviceInfo = serviceHandler.info(ref)
@@ -207,19 +207,19 @@ class TimerSanityCheck:
 						serviceList = serviceHandler.list(ref)  # Get all alternative services.
 						if serviceList:
 							for ref in serviceList.getContent("R"):  # Iterate over all group service references.
-								type = getServiceType(ref)
-								if type not in tunerType:  # Just add single time.
-									tunerType.append(type)
+								tunerType = getServiceType(ref)
+								if tunerType not in tunerTypes:  # Just add single time.
+									tunerTypes.append(tunerType)
 					else:
-						tunerType.append(getServiceType(ref))
+						tunerTypes.append(getServiceType(ref))
 				if event[2] == -1:  # New timer.
-					newTimerTunerType = tunerType
-				overlaplist.append((fakeRecResult, timer, tunerType))
+					newTimerTunerType = tunerTypes
+				overlaplist.append((fakeRecResult, timer, tunerTypes))
 				fakeRecList.append((timer, fakeRecService))
 				if fakeRecResult:
 					if ConflictTimer is None:  # Just take care of the first conflict.
 						ConflictTimer = timer
-						ConflictTunerType = tunerType
+						ConflictTunerType = tunerTypes
 			elif event[1] == self.eflag:
 				for fakeRec in fakeRecList:
 					if timer == fakeRec[0] and fakeRec[1]:
@@ -247,7 +247,7 @@ class TimerSanityCheck:
 				if is_ci_timer_conflict == 1:
 					if ConflictTimer is None:
 						ConflictTimer = timer
-						ConflictTunerType = tunerType
+						ConflictTunerType = tunerTypes
 			self.nrep_eventlist[idx] = (event[0], event[1], event[2], cnt, overlaplist[:])  # Insert a duplicate into current overlap list.
 			idx += 1
 		if ConflictTimer is None:  # No conflict found. :)

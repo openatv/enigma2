@@ -6,7 +6,9 @@
 #it without source code (this version and your modifications).
 #This means you also have to distribute
 #source code of your modifications.
-
+from os import listdir, readlink, remove, rename, symlink, chdir, makedirs, mkdir
+from os.path import basename, exists, isdir, islink, realpath
+from shutil import rmtree
 from enigma import eTimer
 from Components.ActionMap import ActionMap
 from Components.config import config, getConfigListEntry, ConfigSubsection, ConfigSelection, ConfigYesNo, NoSave, ConfigNothing, ConfigNumber
@@ -22,11 +24,9 @@ from Screens.InputBox import InputBox
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.Standby import TryQuitMainloop
-from Tools.Directories import *
+from Tools.Directories import resolveFilename, SCOPE_SKINS
 from Tools.LoadPixmap import LoadPixmap
 from Tools.WeatherID import get_woeid_from_yahoo
-from os import listdir, remove, rename, path, symlink, chdir, makedirs, mkdir
-import shutil
 
 cur_skin = config.skin.primary_skin.value.replace('/skin.xml', '')
 
@@ -82,10 +82,9 @@ class WeatherLocationChoiceList(Screen):
 
 	def __init__(self, session, location_list):
 		self.location_list = location_list
-		list = []
 		Screen.__init__(self, session)
 		self.title = _("Location list")
-		self["choicelist"] = MenuList(list)
+		self["choicelist"] = MenuList([])
 		self["key_red"] = Label(_("Cancel"))
 		self["key_green"] = Label(_("OK"))
 		self["myActionMap"] = ActionMap(["SetupActions", "ColorActions"],
@@ -98,11 +97,11 @@ class WeatherLocationChoiceList(Screen):
 		self.createChoiceList()
 
 	def createChoiceList(self):
-		list = []
+		choiceList = []
 		print(self.location_list)
 		for x in self.location_list:
-			list.append((str(x[1]), str(x[0])))
-		self["choicelist"].l.setList(list)
+			choiceList.append((str(x[1]), str(x[0])))
+		self["choicelist"].l.setList(choiceList)
 
 	def keyOk(self):
 		returnValue = self["choicelist"].l.getCurrentSelection()[1]
@@ -175,7 +174,7 @@ class AtileHD_Config(ConfigListScreen, Screen):
 		try:
 			from Plugins.Extensions.WeatherPlugin.setup import MSNWeatherPluginEntriesListConfigScreen
 			self.session.open(MSNWeatherPluginEntriesListConfigScreen)
-		except:
+		except ImportError:
 			self.session.open(MessageBox, _("'WeatherPlugin' is not installed!"), MessageBox.TYPE_INFO)
 
 	def getInitConfig(self):
@@ -261,12 +260,12 @@ class AtileHD_Config(ConfigListScreen, Screen):
 		# possible setting
 		choices = []
 		files = listdir(self.skin_base_dir)
-		if path.exists(self.skin_base_dir + 'allScreens/%s/' % styp):
+		if exists(self.skin_base_dir + 'allScreens/%s/' % styp):
 			files += listdir(self.skin_base_dir + 'allScreens/%s/' % styp)
 		for f in sorted(files, key=str.lower):
 			if f.endswith('.xml') and f.startswith(search_str):
 				friendly_name = f.replace(search_str, "").replace(".xml", "").replace("_", " ")
-				if path.exists(self.skin_base_dir + 'allScreens/%s/%s' % (styp, f)):
+				if exists(self.skin_base_dir + 'allScreens/%s/%s' % (styp, f)):
 					choices.append((self.skin_base_dir + 'allScreens/%s/%s' % (styp, f), friendly_name))
 				else:
 					choices.append((self.skin_base_dir + f, friendly_name))
@@ -275,14 +274,14 @@ class AtileHD_Config(ConfigListScreen, Screen):
 		# current setting
 		myfile = self.skin_base_dir + user_file
 		current = ''
-		if not path.exists(myfile):
-			if path.exists(self.skin_base_dir + default_file):
-				if path.islink(myfile):
+		if not exists(myfile):
+			if exists(self.skin_base_dir + default_file):
+				if islink(myfile):
 					remove(myfile)
 				chdir(self.skin_base_dir)
 				symlink(default_file, user_file)
-			elif path.exists(self.skin_base_dir + 'allScreens/%s/%s' % (styp, default_file)):
-				if path.islink(myfile):
+			elif exists(self.skin_base_dir + 'allScreens/%s/%s' % (styp, default_file)):
+				if islink(myfile):
 					remove(myfile)
 				chdir(self.skin_base_dir)
 				symlink(self.skin_base_dir + 'allScreens/%s/%s' % (styp, default_file), user_file)
@@ -291,8 +290,8 @@ class AtileHD_Config(ConfigListScreen, Screen):
 		if current is None:
 			current = default
 		else:
-			filename = path.realpath(myfile)
-			friendly_name = path.basename(filename).replace(search_str, "").replace(".xml", "").replace("_", " ")
+			filename = realpath(myfile)
+			friendly_name = basename(filename).replace(search_str, "").replace(".xml", "").replace("_", " ")
 			current = (filename, friendly_name)
 
 		return current[0], choices
@@ -418,7 +417,7 @@ class AtileHD_Config(ConfigListScreen, Screen):
 
 	def getmyAtileState(self):
 		chdir(self.skin_base_dir)
-		if path.exists("mySkin"):
+		if exists("mySkin"):
 			return True
 		else:
 			return False
@@ -426,7 +425,7 @@ class AtileHD_Config(ConfigListScreen, Screen):
 	def setPicture(self, f):
 		pic = f.split('/')[-1].replace(".xml", ".png")
 		preview = self.skin_base_dir + "preview/preview_" + pic
-		if path.exists(preview):
+		if exists(preview):
 			self["Picture"].instance.setPixmapFromFile(preview)
 			self["Picture"].show()
 		else:
@@ -509,19 +508,19 @@ class AtileHD_Config(ConfigListScreen, Screen):
 			# ul
 			self.makeSettings(self.myAtileHD_ul, self.ul_file)
 
-			if not path.exists("mySkin_off"):
+			if not exists("mySkin_off"):
 				mkdir("mySkin_off")
 				print("makedir mySkin_off")
 			if self.myAtileHD_active.value:
-				if not path.exists("mySkin") and path.exists("mySkin_off"):
+				if not exists("mySkin") and exists("mySkin_off"):
 					symlink("mySkin_off", "mySkin")
 			else:
-				if path.exists("mySkin"):
-					if path.exists("mySkin_off"):
-						if path.islink("mySkin"):
+				if exists("mySkin"):
+					if exists("mySkin_off"):
+						if islink("mySkin"):
 							remove("mySkin")
 						else:
-							shutil.rmtree("mySkin")
+							rmtree("mySkin")
 					else:
 						rename("mySkin", "mySkin_off")
 			self.restartGUI()
@@ -534,7 +533,7 @@ class AtileHD_Config(ConfigListScreen, Screen):
 				self.close()
 
 	def makeSettings(self, config_entry, user_file):
-		if path.exists(user_file) or path.islink(user_file):
+		if exists(user_file) or islink(user_file):
 			remove(user_file)
 		if config_entry.value != 'default':
 			symlink(config_entry.value, user_file)
@@ -634,11 +633,11 @@ class AtileHDScreens(Screen):
 		self.skinparts_dir = "skinparts"
 		self.file_dir = "mySkin_off"
 		my_path = resolveFilename(SCOPE_SKINS, "%s/icons/lock_on.png" % cur_skin)
-		if not path.exists(my_path):
+		if not exists(my_path):
 			my_path = resolveFilename(SCOPE_SKINS, "skin_default/icons/lock_on.png")
 		self.enabled_pic = LoadPixmap(cached=True, path=my_path)
 		my_path = resolveFilename(SCOPE_SKINS, "%s/icons/lock_off.png" % cur_skin)
-		if not path.exists(my_path):
+		if not exists(my_path):
 			my_path = resolveFilename(SCOPE_SKINS, "skin_default/icons/lock_off.png")
 		self.disabled_pic = LoadPixmap(cached=True, path=my_path)
 
@@ -660,34 +659,34 @@ class AtileHDScreens(Screen):
 		chdir(self.skin_base_dir)
 		f_list = []
 		dir_path = self.skin_base_dir + self.screen_dir
-		if not path.exists(dir_path):
+		if not exists(dir_path):
 			makedirs(dir_path)
 		dir_skinparts_path = self.skin_base_dir + self.skinparts_dir
-		if not path.exists(dir_skinparts_path):
+		if not exists(dir_skinparts_path):
 			makedirs(dir_skinparts_path)
 		file_dir_path = self.skin_base_dir + self.file_dir
-		if not path.exists(file_dir_path):
+		if not exists(file_dir_path):
 			makedirs(file_dir_path)
 		dir_global_skinparts = resolveFilename(SCOPE_SKINS, "skinparts")
-		if path.exists(dir_global_skinparts):
+		if exists(dir_global_skinparts):
 			for pack in listdir(dir_global_skinparts):
-				if path.isdir(dir_global_skinparts + "/" + pack):
+				if isdir(dir_global_skinparts + "/" + pack):
 					for f in listdir(dir_global_skinparts + "/" + pack):
-						if path.exists(dir_global_skinparts + "/" + pack + "/" + f + "/" + f + "_Atile.xml"):
-							if not path.exists(dir_path + "/skin_" + f + ".xml"):
+						if exists(dir_global_skinparts + "/" + pack + "/" + f + "/" + f + "_Atile.xml"):
+							if not exists(dir_path + "/skin_" + f + ".xml"):
 								symlink(dir_global_skinparts + "/" + pack + "/" + f + "/" + f + "_Atile.xml", dir_path + "/skin_" + f + ".xml")
-							if not path.exists(dir_skinparts_path + "/" + f):
+							if not exists(dir_skinparts_path + "/" + f):
 								symlink(dir_global_skinparts + "/" + pack + "/" + f, dir_skinparts_path + "/" + f)
 		list_dir = sorted(listdir(dir_path), key=str.lower)
 		for f in list_dir:
 			if f.endswith('.xml') and f.startswith('skin_'):
-				if (not path.islink(dir_path + "/" + f)) or os.path.exists(os.readlink(dir_path + "/" + f)):
+				if (not islink(dir_path + "/" + f)) or exists(readlink(dir_path + "/" + f)):
 					friendly_name = f.replace("skin_", "")
 					friendly_name = friendly_name.replace(".xml", "")
 					friendly_name = friendly_name.replace("_", " ")
 					linked_file = file_dir_path + "/" + f
-					if path.exists(linked_file):
-						if path.islink(linked_file):
+					if exists(linked_file):
+						if islink(linked_file):
 							pic = self.enabled_pic
 						else:
 							remove(linked_file)
@@ -697,7 +696,7 @@ class AtileHDScreens(Screen):
 						pic = self.disabled_pic
 					f_list.append((f, friendly_name, pic))
 				else:
-					if path.islink(dir_path + "/" + f):
+					if islink(dir_path + "/" + f):
 						remove(dir_path + "/" + f)
 		menu_list = []
 		for entry in f_list:
@@ -708,7 +707,7 @@ class AtileHDScreens(Screen):
 	def setPicture(self, f):
 		pic = f.replace(".xml", ".png")
 		preview = self.skin_base_dir + "preview/preview_" + pic
-		if path.exists(preview):
+		if exists(preview):
 			self["Picture"].instance.setPixmapFromFile(preview)
 			self["Picture"].show()
 		else:

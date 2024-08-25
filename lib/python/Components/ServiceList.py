@@ -179,7 +179,7 @@ class ServiceListTemplateParser(TemplateParser):
 
 					newitems = []
 					if self.debug:
-						print(f"[ServiceListTemplateParser] DEBUG newitems")
+						print("[ServiceListTemplateParser] DEBUG newitems")
 						print(items)
 					for item in items:
 						itemsAttibutes = {}
@@ -970,8 +970,8 @@ class ServiceList(ServiceListBase, ServiceListTemplateParser):
 
 		addtimedisplayWidth = 0
 		addtimedisplay = ""
-		textTpl = ""
-		maxTimeValue = 9999
+		# textTpl = ""
+		# maxTimeValue = 9999
 
 		match mode:
 			case 1:  # Title
@@ -1066,7 +1066,7 @@ class ServiceList(ServiceListBase, ServiceListTemplateParser):
 
 	def buildOptionEntryServiceResolutionPixmap(self, service):  # TODO Resolution type icon
 		pixmap = None
-		resolutionType = service.getUnsignedData(2)
+		# resolutionType = service.getUnsignedData(2)
 		return pixmap
 
 	def buildOptioncheckHasRecordings(self, service, isPlayable):
@@ -1403,7 +1403,7 @@ class ServiceList(ServiceListBase, ServiceListTemplateParser):
 						borderColorSelected = item.get("borderColorSelected", defaults.get("borderColorSelected")) if borderWidth else None
 						res.append((MultiContentEntryProgress(pos=pos, size=size, percent=percent, borderWidth=borderWidth, foreColor=foregroundColor, foreColorSelected=foregroundColorSelected, backColor=backgroundColor, backColorSelected=backgroundColor, borderColor=borderColor, borderColorSelected=borderColorSelected, startColor=gradientStart, midColor=gradientMid, endColor=gradientEnd, startColorSelected=gradientStartSelected, midColorSelected=gradientMidSelected, endColorSelected=gradientEndSelected, cornerRadius=cornerRadius, cornerEdges=cornerEdges)))
 
-		except Exception as error:
+		except Exception:
 			import traceback
 			traceback.print_exception()
 
