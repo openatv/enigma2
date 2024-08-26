@@ -134,8 +134,8 @@ class RecordTimer(Timer):
 			if timer.dontSave:
 				continue
 			timerEntry = ["\t<timer"]
-			timerEntry.append(f"begin=\"{timer.begin}\"")
-			timerEntry.append(f"end=\"{timer.end}\"")
+			timerEntry.append(f"begin=\"{int(timer.begin)}\"")
+			timerEntry.append(f"end=\"{int(timer.end)}\"")
 			timerEntry.append(f"marginBefore=\"{timer.marginBefore}\"")
 			timerEntry.append(f"eventBegin=\"{timer.eventBegin}\"")
 			timerEntry.append(f"eventEnd=\"{timer.eventEnd}\"")
