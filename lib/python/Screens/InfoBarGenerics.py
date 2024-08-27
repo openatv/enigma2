@@ -10,7 +10,7 @@ from socket import AF_UNIX, SOCK_STREAM, socket
 from sys import maxsize
 from time import localtime, strftime, time
 
-from enigma import eActionMap, eAVControl, eDBoxLCD, eDVBDB, eDVBServicePMTHandler, eDVBVolumecontrol, eEPGCache, eServiceCenter, eServiceReference, eTimer, getBsodCounter, getDesktop, iPlayableService, iServiceInformation, quitMainloop, resetBsodCounter, eDVBVolumecontrol
+from enigma import eActionMap, eAVControl, eDBoxLCD, eDVBDB, eDVBServicePMTHandler, eDVBVolumecontrol, eEPGCache, eServiceCenter, eServiceReference, eTimer, getBsodCounter, getDesktop, iPlayableService, iServiceInformation, quitMainloop, resetBsodCounter
 
 from keyids import KEYFLAGS, KEYIDNAMES, KEYIDS
 from RecordTimer import AFTEREVENT, RecordTimer, RecordTimerEntry, findSafeRecordPath, parseEvent
@@ -1756,10 +1756,10 @@ class InfoBarChannelSelection:
 			self["SeekActionsPTS"].setEnabled(True)
 
 	def volumeUp(self):  # Called from ButtonSetup
-		VolumeControl.instance.volUp()
+		VolumeControl.instance.keyVolumeUp()
 
 	def volumeDown(self):  # Called from ButtonSetup
-		VolumeControl.instance.volDown()
+		VolumeControl.instance.keyVolumeDown()
 
 
 class InfoBarMenu:

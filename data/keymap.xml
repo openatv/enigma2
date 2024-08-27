@@ -15,7 +15,11 @@
 
 	<map context="GlobalActions">
 		<key id="KEY_VOLUMEUP" mapto="volumeUp" flags="mr" />
+		<key id="KEY_VOLUMEUP" mapto="volumeUpLong" flags="l" />
+		<key id="KEY_VOLUMEUP" mapto="volumeUpStop" flags="s" />
 		<key id="KEY_VOLUMEDOWN" mapto="volumeDown" flags="mr" />
+		<key id="KEY_VOLUMEDOWN" mapto="volumeDownLong" flags="l" />
+		<key id="KEY_VOLUMEDOWN" mapto="volumeDownStop" flags="s" />
 		<key id="KEY_MUTE" mapto="volumeMute" flags="m" />
 		<key id="KEY_MUTE" mapto="volumeMuteLong" flags="l" />
 		<key id="KEY_POWER" mapto="power_long" flags="l" />
