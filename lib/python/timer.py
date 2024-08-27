@@ -294,7 +294,7 @@ class TimerEntry:
 			return self.end <= time() and (self.state == TimerEntry.StateWaiting or self.state == TimerEntry.StateFailed)
 
 	def abort(self):
-		self.end = time()
+		self.end = int(time())
 		if self.begin > self.end:  # In case timer has not yet started, but gets aborted (so it's preparing), set begin to now.
 			self.begin = self.end
 		self.cancelled = True
