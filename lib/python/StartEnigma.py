@@ -559,6 +559,7 @@ def runScreenTest():
 	print("=" * 100)
 	session.nav.stopService()
 	session.nav.shutdown()
+	VolumeControl.instance.saveVolumeState()
 	configfile.save()
 	from Screens.InfoBarGenerics import saveResumePoints
 	saveResumePoints()

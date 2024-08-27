@@ -3,6 +3,9 @@
 		<!-- This is just a placeholder, the Videomode plugin implements this sub menu. -->
 	</setup>
 	<setup key="Audio" title="Audio Settings" level="1" showOpenWebif="1">
+		<item level="1" text="Volume steps" description="Select the size of the volume step when the VOLUME buttons are pressed.">config.volumeControl.pressStep</item>
+		<item level="1" text="Long press volume steps" description="Select the size of the volume steps when the VOLUME buttons are held down.">config.volumeControl.longStep</item>
+		<item level="1" text="Volume/Mute display timer" description="Select how long, in seconds, that the volume and mute displays are shown before they automatically hide.">config.volumeControl.hideTimer</item>
 		<item level="1" text="PCM Multichannel" description="Choose whether multi channel sound tracks should be output as PCM." requires="CanPcmMultichannel">config.av.pcm_multichannel</item>
 		<item level="1" text="AC3 downmix" description="Choose whether AC3 sound tracks should be downmixed to stereo." requires="CanDownmixAC3">config.av.downmix_ac3</item>
 		<item level="1" text="AC3 plus transcoding" description="Choose whether AC3 Plus sound tracks should be transcoded to AC3." requires="CanAC3plusTranscode">config.av.transcodeac3plus</item>
@@ -18,11 +21,6 @@
 		<item level="1" text="3D Surround" description="This option allows you to enable 3D Surround Sound." requires="Can3DSurround">config.av.surround_3d</item>
 		<item level="1" text="3D Surround Speaker Position" description="This option allows you to change the virtual loudspeaker position." requires="Can3DSpeaker" conditional="config.av.surround_3d.value != 'none'">config.av.surround_3d_speaker</item>
 		<item level="1" text="Audio Auto Volume Level" description="This option configures you can set Auto Volume Level." requires="CanAutoVolume">config.av.autovolume</item>
-		<item level="1" text="Audio volume step size" description="Configure the general audio volume step size (limit 1-10).">config.av.volume_stepsize</item>
-		<item level="1" text="Audio volume step size fast mode" description="Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row.">config.av.volume_stepsize_fastmode</item>
-		<item level="1" text="Use logarithmic steps" description="Select to use logarithmic step size with more steps at the lower volume levels.">config.audio.volumeLogSteps</item>
-		<item level="1" text="Volume display timer" description="Select how long, in seconds, that the volume display is shown before it automatically hides.">config.audio.volumeHideTimer</item>
-		<item level="1" text="Hide mute notification" description="If muted, hide mute icon or mute information after few seconds.">config.av.volume_hide_mute</item>
 		<item level="1" text="Enable BT Audio" description="This Option allows you to switch Audio to BT Speakers." requires="CanBTAudio">config.av.btaudio</item>
 		<item level="1" text="General BT Audio delay" description="This option configures the general audio delay for BT Speakers." requires="CanBTAudioDelay">config.av.btaudiodelay</item>
 	</setup>
