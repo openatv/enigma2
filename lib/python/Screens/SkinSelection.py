@@ -98,8 +98,8 @@ class SkinSelection(Setup):
 			config.skin.display_skin.save()
 
 		if config.channelSelection.screenStyle.isChanged() or config.channelSelection.widgetStyle.isChanged():
-			from Screens.ChannelSelection.ChannelSelectionSetup import updateSettings
-			updateSettings(self.session)
+			from Screens.ChannelSelection import ChannelSelectionSetup
+			ChannelSelectionSetup.updateSettings(self.session)
 
 		Setup.keySave(self)
 

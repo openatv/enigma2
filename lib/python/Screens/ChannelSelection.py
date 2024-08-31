@@ -3456,9 +3456,10 @@ class ChannelSelectionSetup(Setup):
 		self.onClose.append(self.clearSaveNotifiers)
 
 	def onUpdateSettings(self):
-		self.updateSettings(self.session)
+		ChannelSelectionSetup.updateSettings(self.session)
 
-	def updateSettings(self, session):
+	@staticmethod
+	def updateSettings(session):
 		styleChanged = False
 		styleScreenChanged = config.channelSelection.screenStyle.isChanged() or config.channelSelection.widgetStyle.isChanged()
 		if not styleScreenChanged:
