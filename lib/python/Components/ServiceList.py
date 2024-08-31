@@ -131,7 +131,8 @@ class ServiceListTemplateParser(TemplateParser):
 
 				for mode in template.findall("mode"):
 
-					serviceName = "EntryName" if mode == "other" else "ServiceName"
+					modeName = mode.get("name")
+					serviceName = "EntryName" if modeName == "other" else "ServiceName"
 					subModeName = f"{subMode}Name" if subMode else ""
 
 					includeItemIndexes = []
@@ -148,7 +149,6 @@ class ServiceListTemplateParser(TemplateParser):
 						optionalExcludeItemIndexes.append("FolderImage")
 
 					items = []
-					modeName = mode.get("name")
 					if modeName == "services":
 						if subMode:
 							continue
