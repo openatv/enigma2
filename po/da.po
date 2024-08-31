@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-08 08:13+0000\n"
+"POT-Creation-Date: 2024-08-27 13:46+0000\n"
 "PO-Revision-Date: 2021-11-04 23:53+0000\n"
 "Last-Translator: T. Rylle <dk-translation@pm.me>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/da/>\n"
@@ -2583,12 +2583,6 @@ msgstr "Lydsprog valg 4"
 msgid "Audio options..."
 msgstr "Lydmuligheder..."
 
-msgid "Audio volume step size"
-msgstr "Lydstyrke trinstørrelse"
-
-msgid "Audio volume step size fast mode"
-msgstr "Lydstyrke trinstørrelse hurtigtilstand"
-
 msgid "Australia"
 msgstr "Australien"
 
@@ -2670,6 +2664,9 @@ msgstr ""
 #, fuzzy
 msgid "AutoMountManager"
 msgstr "AutoMountManager"
+
+msgid "AutoRefresh"
+msgstr ""
 
 msgid "AutoTimer"
 msgstr ""
@@ -4541,9 +4538,6 @@ msgstr "Konfigurer slutkoordinat i X af Tekst-TVs visningsområde."
 msgid "Configure the end coordinate in y of the teletext display area."
 msgstr "Konfigurer slutkoordinat i Y af Tekst-TVs visningsområde."
 
-msgid "Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row."
-msgstr "Konfigurer trinstørrelse for hurtig lydstyrke tilstand (grænse 1-10). Aktiveres ved vedvarende lydstyrke tastetryk eller hurtige tryk efter hinanden."
-
 msgid "Configure the first audio language (highest priority)."
 msgstr "Konfigurere det første lydsprog (højest prioritet)."
 
@@ -4576,9 +4570,6 @@ msgstr ""
 
 msgid "Configure the gateway."
 msgstr "Konfigurer en Gateway."
-
-msgid "Configure the general audio volume step size (limit 1-10)."
-msgstr "Konfigurere den generelle lysstyrke trinstørrelse (grænse 1-10)."
 
 msgid "Configure the hard disk drive to go to standby after the specified idle time when the box is in standby."
 msgstr "Konfigurer harddisken til at gå i Standby efter den angivne inaktivitetstid når boksen er i Standby."
@@ -6953,6 +6944,9 @@ msgstr "Aktiver auto hurtigsøg"
 msgid "Enable auto fast scan for %s"
 msgstr "Aktiver auto hurtigsøg for %s"
 
+msgid "Enable autorefresh templates."
+msgstr ""
+
 msgid "Enable blinking rec symbol on the LCD Display in Standby."
 msgstr "Vis Optag på LCD Displayet i Standby"
 
@@ -9017,9 +9011,6 @@ msgstr ""
 msgid "Hide known extensions"
 msgstr "Skjul kendte udvidelser"
 
-msgid "Hide mute notification"
-msgstr "Skjul lyd slukket meddelser"
-
 msgid "Hide number markers"
 msgstr "Skjul nummermærker"
 
@@ -9379,9 +9370,6 @@ msgstr "Hvis aktiveret, bruger Timeren et tidsrum til at opdage en opvågning fr
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Hvis logge bruger den maksimale tilladte plads, vil den ældste blive slettet."
-
-msgid "If muted, hide mute icon or mute information after few seconds."
-msgstr "Skjul ikon for lyd slukket eller information efter få sekunder, hvis lyd slukkes."
 
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
 msgstr ""
@@ -10631,6 +10619,9 @@ msgstr "Lange filnavne"
 
 msgid "Long press emulation with button"
 msgstr "Emuler lang tryk med knap"
+
+msgid "Long press volume steps"
+msgstr ""
 
 #, python-format
 msgid "Long press: %s"
@@ -15603,6 +15594,15 @@ msgstr ""
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Vælg kun 'Ja' hvid du bruger en multiswitch som kræver en DiSEqC Port-A kommandosignal. Til alle andre opsætninger vælges 'Nej'."
 
+msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' power timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr ""
+
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Hvis sat til 'Ja' bliver Infobjælken vist vedvarende i 'pauset' tilstand (ingen tidsudløb)."
 
@@ -15983,7 +15983,7 @@ msgstr ""
 msgid "Select how long to display the task and script message pop up."
 msgstr ""
 
-msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
+msgid "Select how long, in seconds, that the volume and mute displays are shown before they automatically hide."
 msgstr ""
 
 msgid "Select how often this timer is to be repeated."
@@ -16335,6 +16335,12 @@ msgstr "Vælg det skiftet tegnsæt"
 msgid "Select the shifted character set for the next character only"
 msgstr "Vælg kun skiftet tegnsæt for det næste tegn"
 
+msgid "Select the size of the volume step when the VOLUME buttons are pressed."
+msgstr ""
+
+msgid "Select the size of the volume steps when the VOLUME buttons are held down."
+msgstr ""
+
 msgid "Select the sort order for the file lines:"
 msgstr ""
 
@@ -16426,9 +16432,6 @@ msgid ""
 "Select the wireless network to which you want to connect.\n"
 "\n"
 "Press OK to continue."
-msgstr ""
-
-msgid "Select to use logarithmic step size with more steps at the lower volume levels."
 msgstr ""
 
 msgid "Select update source location"
@@ -21284,9 +21287,6 @@ msgstr "Brug tastekort *"
 msgid "Use legacy navigation"
 msgstr ""
 
-msgid "Use logarithmic steps"
-msgstr ""
-
 msgid "Use official channel numbering"
 msgstr "Brug officel kanalnumerering"
 
@@ -21553,6 +21553,9 @@ msgstr ""
 msgid "Venezuela, Bolivarian Republic of"
 msgstr "Venezuela (Den Bolivariske Republik)"
 
+msgid "Verbose"
+msgstr ""
+
 msgid "Version"
 msgstr ""
 
@@ -21781,17 +21784,20 @@ msgstr ""
 msgid "Volume Adjust Settings"
 msgstr ""
 
-msgid "Volume display timer"
-msgstr ""
-
 msgid "Volume down"
 msgstr "Lydstyrke ned"
 
 msgid "Volume keys on the receiver remote will control the TV volume. If this feature is not supported the volume keys have no function!"
 msgstr ""
 
+msgid "Volume steps"
+msgstr ""
+
 msgid "Volume up"
 msgstr "Lydstyrke op"
+
+msgid "Volume/Mute display timer"
+msgstr ""
 
 msgid "Vu+ MultiBoot"
 msgstr ""
@@ -23857,6 +23863,24 @@ msgstr "ja (behold feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Audio volume step size"
+#~ msgstr "Lydstyrke trinstørrelse"
+
+#~ msgid "Audio volume step size fast mode"
+#~ msgstr "Lydstyrke trinstørrelse hurtigtilstand"
+
+#~ msgid "Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row."
+#~ msgstr "Konfigurer trinstørrelse for hurtig lydstyrke tilstand (grænse 1-10). Aktiveres ved vedvarende lydstyrke tastetryk eller hurtige tryk efter hinanden."
+
+#~ msgid "Configure the general audio volume step size (limit 1-10)."
+#~ msgstr "Konfigurere den generelle lysstyrke trinstørrelse (grænse 1-10)."
+
+#~ msgid "Hide mute notification"
+#~ msgstr "Skjul lyd slukket meddelser"
+
+#~ msgid "If muted, hide mute icon or mute information after few seconds."
+#~ msgstr "Skjul ikon for lyd slukket eller information efter få sekunder, hvis lyd slukkes."
 
 #~ msgid "Reception"
 #~ msgstr "Modtagelse"

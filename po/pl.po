@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-08 08:13+0000\n"
-"PO-Revision-Date: 2024-08-19 12:09+0000\n"
+"POT-Creation-Date: 2024-08-27 13:46+0000\n"
+"PO-Revision-Date: 2024-08-29 21:09+0000\n"
 "Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.7\n"
+"X-Generator: Weblate 5.7.1-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -2514,7 +2514,7 @@ msgid "Aruba"
 msgstr "Aruba"
 
 msgid "As plugin in extended bar"
-msgstr "jako wtyczki w rozszerzonym pasku"
+msgstr "Jako wtyczki w rozszerzonym pasku"
 
 msgid "Ascending"
 msgstr "Rosnąco"
@@ -2623,12 +2623,6 @@ msgstr "Wybór języka audio 4"
 msgid "Audio options..."
 msgstr "Opcje dźwięku..."
 
-msgid "Audio volume step size"
-msgstr "Rozmiar skoku regulacji głośności"
-
-msgid "Audio volume step size fast mode"
-msgstr "Rozmiar skoku regulacji głośności w trybie szybkim"
-
 msgid "Australia"
 msgstr "Australia"
 
@@ -2709,6 +2703,9 @@ msgstr "AutoFS"
 
 msgid "AutoMountManager"
 msgstr "Menadżer auto montowania"
+
+msgid "AutoRefresh"
+msgstr "Automatyczne odświeżanie"
 
 msgid "AutoTimer"
 msgstr "Auto Timer"
@@ -4584,9 +4581,6 @@ msgstr "Skonfiguruj współrzędną końcową w x obszaru wyświetlania telegaze
 msgid "Configure the end coordinate in y of the teletext display area."
 msgstr "Skonfiguruj współrzędną końcową w y obszarze wyświetlania telegazety."
 
-msgid "Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row."
-msgstr "Określ rozmiar kroku głośności dźwięku w trybie szybkim (max 10). Aktywowany, poprzez długie wciśnięcie przycisku głośności lub wciskany szybko raz za razem."
-
 msgid "Configure the first audio language (highest priority)."
 msgstr "Skonfiguruj pierwszy język ścieżki audio (najwyższy priorytet)."
 
@@ -4619,9 +4613,6 @@ msgstr "Skonfiguruj funkcję przycisków < i >."
 
 msgid "Configure the gateway."
 msgstr "Skonfiguruj ustawienia 'bramy'."
-
-msgid "Configure the general audio volume step size (limit 1-10)."
-msgstr "Skonfiguruj ogólny rozmiar kroku głośności dźwięku (limit 1-10)."
 
 msgid "Configure the hard disk drive to go to standby after the specified idle time when the box is in standby."
 msgstr "Skonfiguruj dysk twardy tak, aby przechodził w stan wstrzymania po określonym czasie bezczynności, gdy urządzenie jest w stanie wstrzymania."
@@ -5835,7 +5826,7 @@ msgid "Delete Line"
 msgstr "Usuń linię"
 
 msgid "Delete Plugins"
-msgstr "Usuń lub odinstaluj wtyczki"
+msgstr "Usuń wtyczki"
 
 msgid "Delete Timer"
 msgstr "Usuń timer"
@@ -7009,6 +7000,9 @@ msgstr "Włącz automatyczny fastscan"
 #, python-format
 msgid "Enable auto fast scan for %s"
 msgstr "Włącz automatyczny fastscan dla %s"
+
+msgid "Enable autorefresh templates."
+msgstr "Włącz automatyczne odświeżanie szablonów."
 
 msgid "Enable blinking rec symbol on the LCD Display in Standby."
 msgstr "Włącz migający symbol nagrywania na wyświetlaczu LCD w trybie gotowości."
@@ -9071,9 +9065,6 @@ msgstr "Ukryj komunikaty o błędach z modułu CI."
 msgid "Hide known extensions"
 msgstr "Ukryj rozszerzenia znanych plików"
 
-msgid "Hide mute notification"
-msgstr "Ukryj znaczek wyciszenia na ekranie"
-
 msgid "Hide number markers"
 msgstr "Ukryj znaczniki liczb"
 
@@ -9429,9 +9420,6 @@ msgstr "Jeśli jest włączona, używanie okna czasowego do wykrywania wybudzeni
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Jeśli zostanie przekroczona przestrzeń maksymalna,najstarsze zostaną usunięte."
-
-msgid "If muted, hide mute icon or mute information after few seconds."
-msgstr "Jeśli odbiornik jest wyciszony, ukryj ikonę/informacje o wyciszeniu po kilku sekundach."
 
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
 msgstr "Jeśli to możliwe, x minut przed uruchomieniem timera Wtyczka VPS będzie kontrolować, czy program rozpocznie się wcześniej. (0 wyłącza funkcję)"
@@ -10662,6 +10650,9 @@ msgstr "Długie nazwy plików"
 
 msgid "Long press emulation with button"
 msgstr "Emuluj długie wciśnięcie dla przycisku"
+
+msgid "Long press volume steps"
+msgstr "Długie wciśnięcie skoków głośności"
 
 #, python-format
 msgid "Long press: %s"
@@ -15577,6 +15568,15 @@ msgstr "Wybierz opcję 'Tak', jeśli regulacja głośności ma być stosowana do
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Wybierz „tak” tylko, jeśli używasz multiswich, który wymaga sygnału polecenia DiSEqC Port-A. Dla wszystkich innych ustawień wybierz „nie”."
 
+msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' power timer is starting."
+msgstr "Wybierz opcję „Tak”, jeśli chcesz wybudzić telewizor na czas uruchomienia timera zasilania „Wybudzanie”."
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
+msgstr "Wybierz opcję „Tak”, jeśli chcesz wybudzić telewizor na czas rozpoczęcia timera nagrywania „Przełącz i Nagraj”."
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr "Wybierz opcję „Tak”, jeśli chcesz wybudzić telewizor na rozpoczęcie nagrywania przez timer „Przełącz”."
+
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Jeśli jest ustawione na 'tak' pasek informacyjny pozostanie wyświetlany na stałe w stanie 'pauzy' (bez timeoutu)."
 
@@ -15957,8 +15957,8 @@ msgstr "Wybierz, jak długo ma być wyświetlane okienko błędu przycisku. Wpro
 msgid "Select how long to display the task and script message pop up."
 msgstr "Wybierz, jak długo ma być wyświetlane zadanie i komunikat o skrypcie."
 
-msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
-msgstr "Wybierz, jak długo (w sekundach) wyświetlacz głośności będzie widoczny, zanim zostanie automatycznie ukryty."
+msgid "Select how long, in seconds, that the volume and mute displays are shown before they automatically hide."
+msgstr "Wybierz, jak długo (w sekundach) mają być wyświetlane wskaźniki głośności i wyciszenia, zanim zostaną automatycznie ukryte."
 
 msgid "Select how often this timer is to be repeated."
 msgstr "Wybierz, jak często ten timer ma być powtarzany."
@@ -16309,6 +16309,12 @@ msgstr "Wybierz przesunięty zestaw znaków"
 msgid "Select the shifted character set for the next character only"
 msgstr "Wybierz przesunięty zestaw znaków tylko dla następnego znaku"
 
+msgid "Select the size of the volume step when the VOLUME buttons are pressed."
+msgstr "Wybierz wielkość skoku głośności po naciśnięciu przycisków GŁOŚNOŚĆ."
+
+msgid "Select the size of the volume steps when the VOLUME buttons are held down."
+msgstr "Wybierz wielkość skoków głośności, gdy przyciski GŁOŚNOŚĆ są wciśnięte."
+
 msgid "Select the sort order for the file lines:"
 msgstr "Wybierz kolejność sortowania linii plików:"
 
@@ -16404,9 +16410,6 @@ msgstr ""
 "Wybierz sieć bezprzewodową, do której chcesz się podłączyć.\n"
 "\n"
 "Naciśnij OK, aby kontynuować."
-
-msgid "Select to use logarithmic step size with more steps at the lower volume levels."
-msgstr "Wybierz, aby używać logarytmicznej wielkości kroku z większą ilością kroków przy niższych poziomach głośności."
 
 msgid "Select update source location"
 msgstr "Wybierz lokalizację źródła aktualizacji"
@@ -21259,9 +21262,6 @@ msgstr "Mapowanie klawiszy *"
 msgid "Use legacy navigation"
 msgstr "Użyj starszej nawigacji"
 
-msgid "Use logarithmic steps"
-msgstr "Użyj kroków logarytmicznych"
-
 msgid "Use official channel numbering"
 msgstr "Użyj oficjalnej numeracji kanałów"
 
@@ -21552,6 +21552,9 @@ msgstr "Venda"
 msgid "Venezuela, Bolivarian Republic of"
 msgstr "Wenezuela (Boliwariańska Republika)"
 
+msgid "Verbose"
+msgstr "Gadatliwy"
+
 msgid "Version"
 msgstr "Wersja"
 
@@ -21783,17 +21786,20 @@ msgstr "Regulacja głośności Wybór usługi"
 msgid "Volume Adjust Settings"
 msgstr "Ustawienia regulacji głośności"
 
-msgid "Volume display timer"
-msgstr "Licznik czasu wyświetlania głośności"
-
 msgid "Volume down"
 msgstr "Ciszej"
 
 msgid "Volume keys on the receiver remote will control the TV volume. If this feature is not supported the volume keys have no function!"
 msgstr "Klawisze głośności na pilocie odbiornika będą kontrolować głośność telewizora. Jeśli ta funkcja jest obsługiwana!"
 
+msgid "Volume steps"
+msgstr "Skoki głośności"
+
 msgid "Volume up"
 msgstr "Głośniej"
+
+msgid "Volume/Mute display timer"
+msgstr "Timer wyświetlania głośności/wyciszenia"
 
 msgid "Vu+ MultiBoot"
 msgstr "Vu+ MultiBoot"
@@ -23847,6 +23853,36 @@ msgstr "tak (zachować kanały)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Audio volume step size"
+#~ msgstr "Rozmiar skoku regulacji głośności"
+
+#~ msgid "Audio volume step size fast mode"
+#~ msgstr "Rozmiar skoku regulacji głośności w trybie szybkim"
+
+#~ msgid "Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row."
+#~ msgstr "Określ rozmiar kroku głośności dźwięku w trybie szybkim (max 10). Aktywowany, poprzez długie wciśnięcie przycisku głośności lub wciskany szybko raz za razem."
+
+#~ msgid "Configure the general audio volume step size (limit 1-10)."
+#~ msgstr "Skonfiguruj ogólny rozmiar kroku głośności dźwięku (limit 1-10)."
+
+#~ msgid "Hide mute notification"
+#~ msgstr "Ukryj znaczek wyciszenia na ekranie"
+
+#~ msgid "If muted, hide mute icon or mute information after few seconds."
+#~ msgstr "Jeśli odbiornik jest wyciszony, ukryj ikonę/informacje o wyciszeniu po kilku sekundach."
+
+#~ msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
+#~ msgstr "Wybierz, jak długo (w sekundach) wyświetlacz głośności będzie widoczny, zanim zostanie automatycznie ukryty."
+
+#~ msgid "Select to use logarithmic step size with more steps at the lower volume levels."
+#~ msgstr "Wybierz, aby używać logarytmicznej wielkości kroku z większą ilością kroków przy niższych poziomach głośności."
+
+#~ msgid "Use logarithmic steps"
+#~ msgstr "Użyj kroków logarytmicznych"
+
+#~ msgid "Volume display timer"
+#~ msgstr "Licznik czasu wyświetlania głośności"
 
 #~ msgid "Reception"
 #~ msgstr "Tuner i wyszukiwanie kanałów"

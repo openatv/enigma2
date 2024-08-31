@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-08 08:13+0000\n"
-"PO-Revision-Date: 2024-08-15 07:17+0000\n"
+"POT-Creation-Date: 2024-08-27 13:46+0000\n"
+"PO-Revision-Date: 2024-08-31 12:52+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
 "Language: nl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.8-dev\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SearchPath-0: ..\n"
 
@@ -2589,12 +2589,6 @@ msgstr "Audio taalkeuze 4"
 msgid "Audio options..."
 msgstr "Audio opties..."
 
-msgid "Audio volume step size"
-msgstr "Audio volume stap grootte"
-
-msgid "Audio volume step size fast mode"
-msgstr "Audio volume - stap grootte in de fast mode"
-
 msgid "Australia"
 msgstr "Australië"
 
@@ -2675,6 +2669,9 @@ msgstr "AutoFS"
 
 msgid "AutoMountManager"
 msgstr "Auto mount beheer"
+
+msgid "AutoRefresh"
+msgstr "AutoRefresh"
 
 msgid "AutoTimer"
 msgstr "AutoTimer"
@@ -4593,9 +4590,6 @@ msgstr "Configureer de eind-coördinaat in x van het weergavegebied van Teleteks
 msgid "Configure the end coordinate in y of the teletext display area."
 msgstr "Configureer de eind-coördinaat in y van het weergavegebied van Teletekst."
 
-msgid "Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row."
-msgstr "Configureer de snel-modus audiovolume stap-grootte (maximum 1-10). Geactiveerd wanneer de volume knop permanent wordt ingedrukt of druk snel achter elkaar."
-
 msgid "Configure the first audio language (highest priority)."
 msgstr "De eerste audiotaal instellen (hoogste prioriteit)."
 
@@ -4642,9 +4636,6 @@ msgstr "De functie van de < en > knoppen instellen."
 
 msgid "Configure the gateway."
 msgstr "Configureer uw gateway."
-
-msgid "Configure the general audio volume step size (limit 1-10)."
-msgstr "Configureer de standaard audio volume stap grootte (maximaal 1-10)."
 
 msgid "Configure the hard disk drive to go to standby after the specified idle time when the box is in standby."
 msgstr "Configureer de harde schijf om in stand-by te gaan, na de verstreken inactieve tijd als de box al in stand-by staat."
@@ -7093,6 +7084,9 @@ msgstr "Auto Fastscan inschakelen"
 msgid "Enable auto fast scan for %s"
 msgstr "Activeer snelle auto scan voor %s"
 
+msgid "Enable autorefresh templates."
+msgstr "AutoRefresh sjablonen activeren."
+
 msgid "Enable blinking rec symbol on the LCD Display in Standby."
 msgstr "Toon tijdens stand-by een knipperend REC-symbool op het display (dit is niet alle ontvangers mogelijk) ."
 
@@ -9168,9 +9162,6 @@ msgstr "Foutmeldingen van de Common Interface-module verbergen."
 msgid "Hide known extensions"
 msgstr "Verberg extensies van bekende bestandsformaten"
 
-msgid "Hide mute notification"
-msgstr "Verberg mute-icon"
-
 msgid "Hide number markers"
 msgstr "Verberg de numerieke markeringen"
 
@@ -9526,9 +9517,6 @@ msgstr "Bij 'Ja' wordt een tijdsvenster gebruikt om het uit deep stand-by ontwak
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Maximale ruimte die de logs in beslag mogen nemen. Als dat overschreden wordt, worden de oudste het eerste verwijderd."
-
-msgid "If muted, hide mute icon or mute information after few seconds."
-msgstr "Wanneer het geluid wordt gedempt, verdwijnt het mute-icon of mute-informatie na enkele seconden."
 
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
 msgstr "Indien mogelijk zal de plugin x minuten voor de ingestelde starttijd controleren of een programma eerder begint. (0 schakelt deze optie uit)"
@@ -10760,6 +10748,9 @@ msgstr "Lange bestandsnamen"
 
 msgid "Long press emulation with button"
 msgstr "Lang indrukken emuleren met knop"
+
+msgid "Long press volume steps"
+msgstr "Geluidsvolume bij VOLUME +/- lang"
 
 #, python-format
 msgid "Long press: %s"
@@ -15683,6 +15674,15 @@ msgstr "Kies 'Ja' wanneer de volumewijzigingen toegepast moeten worden op het Do
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Selecteer alleen 'ja' als u een multiswich gebruikt die een DiSEqC Port-A commando gebruikt. In alle andere gevallen kiest u 'nee'."
 
+msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' power timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr ""
+
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Bij 'ja' zal de informatiebalk continu worden getoond wanneer het afspelen is gepauzeerd."
 
@@ -16069,8 +16069,8 @@ msgstr "Selecteer hoe lang de pop-up voor een toetsfout moet worden weergegeven.
 msgid "Select how long to display the task and script message pop up."
 msgstr "Selecteer hoe lang taak- en het scriptberichten moeten worden weergegeven."
 
-msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
-msgstr "Kies hoe lang (in seconden) het volume symbool wordt getoond voor dat deze automatisch verdwijnt."
+msgid "Select how long, in seconds, that the volume and mute displays are shown before they automatically hide."
+msgstr ""
 
 msgid "Select how often this timer is to be repeated."
 msgstr "Opgeven hoe vaak deze timer herhaald moet worden."
@@ -16427,6 +16427,12 @@ msgstr "Selecteer de SHIFT karakterset voor het virtuele toetsenbord"
 msgid "Select the shifted character set for the next character only"
 msgstr "Selecteer de SHIFT karakterset voor het virtuele toetsenbord alleen voor de volgende letter"
 
+msgid "Select the size of the volume step when the VOLUME buttons are pressed."
+msgstr ""
+
+msgid "Select the size of the volume steps when the VOLUME buttons are held down."
+msgstr ""
+
 msgid "Select the sort order for the file lines:"
 msgstr "Kies de sorteervolgorde voor de bestandsregels:"
 
@@ -16522,9 +16528,6 @@ msgstr ""
 "Selecteer het draadloze netwerk waarmee u verbinding wilt maken.\n"
 "\n"
 "Druk op OK om verder te gaan."
-
-msgid "Select to use logarithmic step size with more steps at the lower volume levels."
-msgstr "Selecteer of bij een laag volume het aantal stappen logaritmisch moet worden vergroot."
 
 msgid "Select update source location"
 msgstr "Selecteer de locatie waar de updates zijn opgeslagen"
@@ -21447,9 +21450,6 @@ msgstr "Gebruik keymap *"
 msgid "Use legacy navigation"
 msgstr "Oude navigatie gebruiken"
 
-msgid "Use logarithmic steps"
-msgstr "Gebruik logaritmische stappen"
-
 msgid "Use official channel numbering"
 msgstr "Gebruik officiële zendernummers"
 
@@ -21742,6 +21742,9 @@ msgstr "Venda"
 msgid "Venezuela, Bolivarian Republic of"
 msgstr "Bolivariaanse Republiek Venezuela"
 
+msgid "Verbose"
+msgstr ""
+
 msgid "Version"
 msgstr "Versie"
 
@@ -21973,17 +21976,20 @@ msgstr "Volume aanpassing zender selectie"
 msgid "Volume Adjust Settings"
 msgstr "Volume Offset instellingen"
 
-msgid "Volume display timer"
-msgstr "Volume symbool timer"
-
 msgid "Volume down"
 msgstr "Volume -"
 
 msgid "Volume keys on the receiver remote will control the TV volume. If this feature is not supported the volume keys have no function!"
 msgstr "U kunt het volume van de TV instellen via de volume knoppen op de afstandsbediening van uw ontvanger. Wanneer deze optie niet wordt ondersteund hebben de volumeknoppen geen functie!"
 
+msgid "Volume steps"
+msgstr ""
+
 msgid "Volume up"
 msgstr "Volume +"
+
+msgid "Volume/Mute display timer"
+msgstr ""
 
 msgid "Vu+ MultiBoot"
 msgstr "Vu+ MultiBoot"
@@ -24056,6 +24062,36 @@ msgstr "ja (bewaar feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Audio volume step size"
+#~ msgstr "Audio volume stap grootte"
+
+#~ msgid "Audio volume step size fast mode"
+#~ msgstr "Audio volume - stap grootte in de fast mode"
+
+#~ msgid "Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row."
+#~ msgstr "Configureer de snel-modus audiovolume stap-grootte (maximum 1-10). Geactiveerd wanneer de volume knop permanent wordt ingedrukt of druk snel achter elkaar."
+
+#~ msgid "Configure the general audio volume step size (limit 1-10)."
+#~ msgstr "Configureer de standaard audio volume stap grootte (maximaal 1-10)."
+
+#~ msgid "Hide mute notification"
+#~ msgstr "Verberg mute-icon"
+
+#~ msgid "If muted, hide mute icon or mute information after few seconds."
+#~ msgstr "Wanneer het geluid wordt gedempt, verdwijnt het mute-icon of mute-informatie na enkele seconden."
+
+#~ msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
+#~ msgstr "Kies hoe lang (in seconden) het volume symbool wordt getoond voor dat deze automatisch verdwijnt."
+
+#~ msgid "Select to use logarithmic step size with more steps at the lower volume levels."
+#~ msgstr "Selecteer of bij een laag volume het aantal stappen logaritmisch moet worden vergroot."
+
+#~ msgid "Use logarithmic steps"
+#~ msgstr "Gebruik logaritmische stappen"
+
+#~ msgid "Volume display timer"
+#~ msgstr "Volume symbool timer"
 
 #~ msgid "Reception"
 #~ msgstr "Ontvangst"

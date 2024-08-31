@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-08 08:13+0000\n"
+"POT-Creation-Date: 2024-08-27 13:46+0000\n"
 "PO-Revision-Date: 2023-06-04 19:16+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -2627,12 +2627,6 @@ msgstr "4-a pasirinkta garso kalba"
 msgid "Audio options..."
 msgstr "Garso parinktys..."
 
-msgid "Audio volume step size"
-msgstr "Garso stiprumo žingsnio dydis"
-
-msgid "Audio volume step size fast mode"
-msgstr "Garso garsumo žingsnio dydžio greitas režimas"
-
 msgid "Australia"
 msgstr "Australija"
 
@@ -2713,6 +2707,9 @@ msgstr ""
 
 msgid "AutoMountManager"
 msgstr "Automatinių pajungimų valdymas"
+
+msgid "AutoRefresh"
+msgstr ""
 
 msgid "AutoTimer"
 msgstr "Auto laikmatis"
@@ -4588,9 +4585,6 @@ msgstr "Konfigūruokite baigimo koordinates x teleteksto ekrano pločiui."
 msgid "Configure the end coordinate in y of the teletext display area."
 msgstr "Konfigūruokite baigimo koordinates y teleteksto ekrano pločiui."
 
-msgid "Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row."
-msgstr "Nustatykite bendrą garso stiprumo žingsnio dydį (riba 1-10). Aktyvus, kai garso klavišą spausite pastoviai arba greitai spausite iš eilės."
-
 msgid "Configure the first audio language (highest priority)."
 msgstr "Konfigūruokite pagrindinę garso kalbą (didžiausias prioritetas)."
 
@@ -4623,9 +4617,6 @@ msgstr "Konfigūruoti mygtukų < ir > funkciją."
 
 msgid "Configure the gateway."
 msgstr "Konfigūruokite tinklo šliuzą."
-
-msgid "Configure the general audio volume step size (limit 1-10)."
-msgstr "Nustatykite bendrą garso stiprumo žingsnio dydį (riba 1-10)."
 
 msgid "Configure the hard disk drive to go to standby after the specified idle time when the box is in standby."
 msgstr "Konfigūruokite, kiek laiko lauks kietas diskas, kad pereiti į budėjimo režimą, kai imtuvas budėjimo režime."
@@ -7006,6 +6997,9 @@ msgstr "Įjungti automatinę greitą paiešką"
 msgid "Enable auto fast scan for %s"
 msgstr "Įjungti automatinę greitą paiešką %s"
 
+msgid "Enable autorefresh templates."
+msgstr ""
+
 msgid "Enable blinking rec symbol on the LCD Display in Standby."
 msgstr "LCD ekrane rodomas laukimo režimas"
 
@@ -9069,9 +9063,6 @@ msgstr ""
 msgid "Hide known extensions"
 msgstr "Paslėpti žinomus plėtinius"
 
-msgid "Hide mute notification"
-msgstr "Slėpti pranešimą apie nutildymą"
-
 msgid "Hide number markers"
 msgstr "Slėpti numerių žymeklius"
 
@@ -9427,9 +9418,6 @@ msgstr "Jei įjungta, naudokite laiko langą, kad nustatytumėte gilaus budėjim
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Jei žurnalai jau išnaudoja maksimalią jiems skirtą erdvę, įkeliant naują, seniausias bus ištrintas."
-
-msgid "If muted, hide mute icon or mute information after few seconds."
-msgstr "Jei nutildyta, paslėpti nutildymo piktogramą arba po kelių sekundžių nutildyti informaciją."
 
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
 msgstr "Jeigu galima, X minučių prieš laikmačio pradžią, VPS įskiepis patikrins, ar programa neprasideda anksčiau (0 - funkcija išjungta)"
@@ -10659,6 +10647,9 @@ msgstr "Ilgi failų pavadinimai"
 
 msgid "Long press emulation with button"
 msgstr "Ilgas paspaudimas, emuliacija su mygtuku"
+
+msgid "Long press volume steps"
+msgstr ""
 
 #, python-format
 msgid "Long press: %s"
@@ -15571,6 +15562,15 @@ msgstr "Pasirinkite 'Taip', jei Dolby garso takeliams turėtų būti taikomi gar
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Pasirinkite tik \"taip\", jei naudojate \"multiswich\", kurio komandinis signalas \"DiSEqC Port-A\" reikalingas. Visoms kitoms sąrankoms pasirinkite \"ne\"."
 
+msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' power timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr ""
+
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Jeigu nustatyta 'taip; info juosta bus rodoma visą laiką \"pauzės\" būsenoje (be pertraukos)."
 
@@ -15951,8 +15951,8 @@ msgstr "Pasirinkite, kiek laiko norite rodyti iššokantį mygtuko klaidos lang�
 msgid "Select how long to display the task and script message pop up."
 msgstr "Pasirinkite, kiek laiko bus rodomas užduoties ir scenarijaus pranešimas."
 
-msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
-msgstr "Pasirinkite, kiek laiko (sekundėmis) bus rodomas garsumo ekranas, kol jis automatiškai pasislėps."
+msgid "Select how long, in seconds, that the volume and mute displays are shown before they automatically hide."
+msgstr ""
 
 msgid "Select how often this timer is to be repeated."
 msgstr "Pasirinkite, kaip dažnai šis laikmatis turi būti kartojamas."
@@ -16300,6 +16300,12 @@ msgstr "Pasirinkite perkeltą simbolių rinkinį"
 msgid "Select the shifted character set for the next character only"
 msgstr "Pasirinkite paslinktų simbolių rinkinį tik kitam simboliui"
 
+msgid "Select the size of the volume step when the VOLUME buttons are pressed."
+msgstr ""
+
+msgid "Select the size of the volume steps when the VOLUME buttons are held down."
+msgstr ""
+
 msgid "Select the sort order for the file lines:"
 msgstr "Pasirinkite failų eilučių rūšiavimo tvarką:"
 
@@ -16391,9 +16397,6 @@ msgid ""
 "Select the wireless network to which you want to connect.\n"
 "\n"
 "Press OK to continue."
-msgstr ""
-
-msgid "Select to use logarithmic step size with more steps at the lower volume levels."
 msgstr ""
 
 msgid "Select update source location"
@@ -21212,9 +21215,6 @@ msgstr "Naudoti mygtukų išdėstymą *"
 msgid "Use legacy navigation"
 msgstr ""
 
-msgid "Use logarithmic steps"
-msgstr ""
-
 msgid "Use official channel numbering"
 msgstr "Naudokite oficialų kanalų numeravimą"
 
@@ -21505,6 +21505,9 @@ msgstr "Venda"
 msgid "Venezuela, Bolivarian Republic of"
 msgstr "Venesuelos Bolivaro Respublika"
 
+msgid "Verbose"
+msgstr ""
+
 msgid "Version"
 msgstr ""
 
@@ -21731,17 +21734,20 @@ msgstr "Garsumo reguliavimo paslaugos pasirinkimas"
 msgid "Volume Adjust Settings"
 msgstr "Garsumo reguliavimo nustatymai"
 
-msgid "Volume display timer"
-msgstr ""
-
 msgid "Volume down"
 msgstr "Sumažinti garsumą"
 
 msgid "Volume keys on the receiver remote will control the TV volume. If this feature is not supported the volume keys have no function!"
 msgstr "Imtuvo nuotolinio valdymo pulto garsumo klavišai valdys televizoriaus garsumą. Jei ši funkcija nepalaikoma, garsumo klavišai neturi funkcijos!"
 
+msgid "Volume steps"
+msgstr ""
+
 msgid "Volume up"
 msgstr "Padidinti garsumą"
+
+msgid "Volume/Mute display timer"
+msgstr ""
 
 msgid "Vu+ MultiBoot"
 msgstr ""
@@ -23787,6 +23793,27 @@ msgstr "taip (išsaugoti šaltinius)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Audio volume step size"
+#~ msgstr "Garso stiprumo žingsnio dydis"
+
+#~ msgid "Audio volume step size fast mode"
+#~ msgstr "Garso garsumo žingsnio dydžio greitas režimas"
+
+#~ msgid "Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row."
+#~ msgstr "Nustatykite bendrą garso stiprumo žingsnio dydį (riba 1-10). Aktyvus, kai garso klavišą spausite pastoviai arba greitai spausite iš eilės."
+
+#~ msgid "Configure the general audio volume step size (limit 1-10)."
+#~ msgstr "Nustatykite bendrą garso stiprumo žingsnio dydį (riba 1-10)."
+
+#~ msgid "Hide mute notification"
+#~ msgstr "Slėpti pranešimą apie nutildymą"
+
+#~ msgid "If muted, hide mute icon or mute information after few seconds."
+#~ msgstr "Jei nutildyta, paslėpti nutildymo piktogramą arba po kelių sekundžių nutildyti informaciją."
+
+#~ msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
+#~ msgstr "Pasirinkite, kiek laiko (sekundėmis) bus rodomas garsumo ekranas, kol jis automatiškai pasislėps."
 
 #~ msgid "Reception"
 #~ msgstr "Priėmimas"

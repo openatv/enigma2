@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-08 08:13+0000\n"
+"POT-Creation-Date: 2024-08-27 13:46+0000\n"
 "PO-Revision-Date: 2024-04-18 22:45+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/es/>\n"
@@ -2713,13 +2713,6 @@ msgstr "Selección de idioma de audio 4"
 msgid "Audio options..."
 msgstr "Opciones de audio..."
 
-# A/V Settings
-msgid "Audio volume step size"
-msgstr "Tamaño de la etapa de volumen del audio"
-
-msgid "Audio volume step size fast mode"
-msgstr "Modo rápido del tamaño de la etapa de volumen del audio"
-
 # Language
 msgid "Australia"
 msgstr "Australia"
@@ -2808,6 +2801,9 @@ msgstr ""
 #
 msgid "AutoMountManager"
 msgstr "Administrador de automontaje"
+
+msgid "AutoRefresh"
+msgstr ""
 
 msgid "AutoTimer"
 msgstr "Temporizador automático"
@@ -4756,9 +4752,6 @@ msgstr "Configure la coordenada final en x del área de visualización de telete
 msgid "Configure the end coordinate in y of the teletext display area."
 msgstr "Configure la coordenada final en y del área de visualización de teletexto."
 
-msgid "Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row."
-msgstr "Configura el tamaño de la etapa de volumen del audio en modo rápido (límite 1-10). Se activa cuando se pulsa permanentemente la tecla de volumen o se pulsa rápidamente de forma consecutiva."
-
 msgid "Configure the first audio language (highest priority)."
 msgstr "Configurar el primer idioma de audio (primera prioridad)."
 
@@ -4793,9 +4786,6 @@ msgstr "Configurar la función de los botones < y >."
 
 msgid "Configure the gateway."
 msgstr "Configurar la puerta de enlace."
-
-msgid "Configure the general audio volume step size (limit 1-10)."
-msgstr "Configure el tamaño de la etapa de volumen de audio general (límite 1-10)."
 
 msgid "Configure the hard disk drive to go to standby after the specified idle time when the box is in standby."
 msgstr "Configura el disco duro para que vaya a modo de espera tras el tiempo de inactividad especificado cuando el decodificador está en modo de espera."
@@ -7305,6 +7295,9 @@ msgstr "Habilitar exploración rápida automática"
 msgid "Enable auto fast scan for %s"
 msgstr "Habilitar escaneo rápido automático para %s"
 
+msgid "Enable autorefresh templates."
+msgstr ""
+
 msgid "Enable blinking rec symbol on the LCD Display in Standby."
 msgstr "En el registro de espera en la pantalla LCD"
 
@@ -9475,9 +9468,6 @@ msgstr ""
 msgid "Hide known extensions"
 msgstr "Ocultar extensiones conocidas"
 
-msgid "Hide mute notification"
-msgstr "Ocultar la notificación de silencio"
-
 #
 msgid "Hide number markers"
 msgstr "Ocultar los marcadores numéricos"
@@ -9855,9 +9845,6 @@ msgstr "Si está activado, utiliza una ventana de tiempo para detectar un desper
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Si los historiales están usando el espacio máximo asignado, se borrarán los más antiguos."
-
-msgid "If muted, hide mute icon or mute information after few seconds."
-msgstr "Si se silencia, ocultar el icono de silencio o silenciar la información después de unos segundos."
 
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
 msgstr "Si es posible, x minutos antes de que comience un temporizador VPS-Plugin controlará si el programa comienza antes. (0 desactiva la función)"
@@ -11166,6 +11153,9 @@ msgstr "Nombres de archivos largos"
 
 msgid "Long press emulation with button"
 msgstr "Simulación de pulsación larga con botón"
+
+msgid "Long press volume steps"
+msgstr ""
 
 #, python-format
 msgid "Long press: %s"
@@ -16463,6 +16453,15 @@ msgstr "Seleccione \"Sí\" si los ajustes de volumen deben aplicarse a las pista
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Seleccione \"Sí\" si está utilizando un multiswitch que requiere una señal de comando DiSEqC en el Puerto-A. Seleccione 'No' para todas las demás configuraciones."
 
+msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' power timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr ""
+
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Seleccione \"Sí\" para mantener la barra de información en pantalla, sin tiempo de espera, mientras la reproducción multimedia está en pausa."
 
@@ -16854,8 +16853,8 @@ msgstr "Seleccione cuánto tiempo se mostrará la ventana emergente de error del
 msgid "Select how long to display the task and script message pop up."
 msgstr ""
 
-msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
-msgstr "Seleccione el tiempo, en segundos, que se muestra la pantalla de volumen antes de que se oculte automáticamente."
+msgid "Select how long, in seconds, that the volume and mute displays are shown before they automatically hide."
+msgstr ""
 
 msgid "Select how often this timer is to be repeated."
 msgstr "Seleccione la frecuencia con la que se debe repetir este temporizador."
@@ -17211,6 +17210,12 @@ msgstr "Seleccione el juego de caracteres desplazado"
 msgid "Select the shifted character set for the next character only"
 msgstr ""
 
+msgid "Select the size of the volume step when the VOLUME buttons are pressed."
+msgstr ""
+
+msgid "Select the size of the volume steps when the VOLUME buttons are held down."
+msgstr ""
+
 msgid "Select the sort order for the file lines:"
 msgstr ""
 
@@ -17303,9 +17308,6 @@ msgid ""
 "Select the wireless network to which you want to connect.\n"
 "\n"
 "Press OK to continue."
-msgstr ""
-
-msgid "Select to use logarithmic step size with more steps at the lower volume levels."
 msgstr ""
 
 msgid "Select update source location"
@@ -22522,9 +22524,6 @@ msgstr "Usar mapa del teclado *"
 msgid "Use legacy navigation"
 msgstr ""
 
-msgid "Use logarithmic steps"
-msgstr ""
-
 msgid "Use official channel numbering"
 msgstr "Usar la numeración oficial de canales"
 
@@ -22809,6 +22808,9 @@ msgstr ""
 msgid "Venezuela, Bolivarian Republic of"
 msgstr ""
 
+msgid "Verbose"
+msgstr ""
+
 msgid "Version"
 msgstr ""
 
@@ -23076,17 +23078,20 @@ msgstr ""
 msgid "Volume Adjust Settings"
 msgstr ""
 
-msgid "Volume display timer"
-msgstr ""
-
 msgid "Volume down"
 msgstr "Bajar volumen"
 
 msgid "Volume keys on the receiver remote will control the TV volume. If this feature is not supported the volume keys have no function!"
 msgstr ""
 
+msgid "Volume steps"
+msgstr ""
+
 msgid "Volume up"
 msgstr "Subir volumen"
+
+msgid "Volume/Mute display timer"
+msgstr ""
 
 msgid "Vu+ MultiBoot"
 msgstr ""
@@ -25333,6 +25338,28 @@ msgstr "Sí (conservar fuentes)"
 
 msgid "®"
 msgstr "®"
+
+# A/V Settings
+#~ msgid "Audio volume step size"
+#~ msgstr "Tamaño de la etapa de volumen del audio"
+
+#~ msgid "Audio volume step size fast mode"
+#~ msgstr "Modo rápido del tamaño de la etapa de volumen del audio"
+
+#~ msgid "Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row."
+#~ msgstr "Configura el tamaño de la etapa de volumen del audio en modo rápido (límite 1-10). Se activa cuando se pulsa permanentemente la tecla de volumen o se pulsa rápidamente de forma consecutiva."
+
+#~ msgid "Configure the general audio volume step size (limit 1-10)."
+#~ msgstr "Configure el tamaño de la etapa de volumen de audio general (límite 1-10)."
+
+#~ msgid "Hide mute notification"
+#~ msgstr "Ocultar la notificación de silencio"
+
+#~ msgid "If muted, hide mute icon or mute information after few seconds."
+#~ msgstr "Si se silencia, ocultar el icono de silencio o silenciar la información después de unos segundos."
+
+#~ msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
+#~ msgstr "Seleccione el tiempo, en segundos, que se muestra la pantalla de volumen antes de que se oculte automáticamente."
 
 #~ msgid "Reception"
 #~ msgstr "Recepción"

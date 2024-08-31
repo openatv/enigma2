@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-08 08:13+0000\n"
+"POT-Creation-Date: 2024-08-27 13:46+0000\n"
 "PO-Revision-Date: 2024-08-04 16:47+0000\n"
 "Last-Translator: Tmp341 <tmp341@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -2664,12 +2664,6 @@ msgstr "4. Ses dili seçimi"
 msgid "Audio options..."
 msgstr "Ses seçenekleri..."
 
-msgid "Audio volume step size"
-msgstr "Ses hacmi adım boyutu"
-
-msgid "Audio volume step size fast mode"
-msgstr "Ses seviyesi adım boyutu hızlı mod"
-
 #
 msgid "Australia"
 msgstr "Avustralya"
@@ -2760,6 +2754,9 @@ msgstr "OtoFS"
 
 msgid "AutoMountManager"
 msgstr "Otomatik Montaj Yöneticisi"
+
+msgid "AutoRefresh"
+msgstr ""
 
 msgid "AutoTimer"
 msgstr "Otomatik Zamanlayıcıya Genel Bakış"
@@ -4710,9 +4707,6 @@ msgstr "Bitiş koordinatını teletekst görüntüleme alanının x değerinde y
 msgid "Configure the end coordinate in y of the teletext display area."
 msgstr "Bitiş koordinatını teletekst görüntüleme alanının y değerinde yapılandırın."
 
-msgid "Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row."
-msgstr "Hızlı mod ses seviyesi adım boyutunu yapılandırın (sınır 1-10). Ses seviyesi tuşu sürekli basıldığında veya art arda hızlı basıldığında etkinleşir."
-
 msgid "Configure the first audio language (highest priority)."
 msgstr "İlk ses dilini yapılandırın (en öncelikli)."
 
@@ -4745,9 +4739,6 @@ msgstr "< ve > düğmelerinin işlevini yapılandırın."
 
 msgid "Configure the gateway."
 msgstr "Ağ geçidini yapılandırın."
-
-msgid "Configure the general audio volume step size (limit 1-10)."
-msgstr "Genel ses seviyesi adım boyutunu yapılandırın (sınır 1-10)."
 
 msgid "Configure the hard disk drive to go to standby after the specified idle time when the box is in standby."
 msgstr "Kutu bekleme modundayken belirtilen boşta kalma süresinden sonra bekleme moduna geçmek için sabit disk sürücüsünü yapılandırın."
@@ -7250,6 +7241,9 @@ msgstr "Otomatik hızlı taramayı etkinleştir"
 msgid "Enable auto fast scan for %s"
 msgstr "İçin otomatik hızlı taramayı etkinleştir %s"
 
+msgid "Enable autorefresh templates."
+msgstr ""
+
 msgid "Enable blinking rec symbol on the LCD Display in Standby."
 msgstr "LCD Ekrandaki Bekleme Kayıtlarında"
 
@@ -9407,9 +9401,6 @@ msgstr "Ortak Arayüz modülünden gelen hata mesajlarını gizleyin."
 msgid "Hide known extensions"
 msgstr "Bilinen uzantıları gizle"
 
-msgid "Hide mute notification"
-msgstr "Sessiz bildirimini gizle"
-
 #
 msgid "Hide number markers"
 msgstr "Gizle numarası işaretçileri"
@@ -9782,9 +9773,6 @@ msgstr "Etkinleştirildiğinde, bir zamanlayıcı tarafından derin bekleme modu
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Günlükler kullanılan maksimum alanı kullanıyorsa, en büyük silinecektir."
-
-msgid "If muted, hide mute icon or mute information after few seconds."
-msgstr "Ses kapalıysa, birkaç saniye sonra sessiz simgesini gizleyin veya bilgileri kapatın."
 
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
 msgstr "Mümkünse, bir zamanlayıcı başlamadan x dakika önce VPS-Plugin programın daha erken başlayıp başlamayacağını kontrol edecektir. (0 özelliği devre dışı bırakır)"
@@ -11082,6 +11070,9 @@ msgstr "Uzun dosya adı"
 
 msgid "Long press emulation with button"
 msgstr "Düğmeli uzun basma emülasyonu"
+
+msgid "Long press volume steps"
+msgstr ""
 
 #
 #, python-format
@@ -16310,6 +16301,15 @@ msgstr "Dolby ses parçalarına ses ayarı yapılması gerekiyorsa 'Evet'i seçi
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "DiSEqC Port-A komut sinyali gerektiren bir multiswich kullanıyorsanız, yalnızca 'evet'i seçin. Diğer tüm kurulumlar için 'hayır' seçeneğini seçin."
 
+msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' power timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr ""
+
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Eğer 'evet' olarak ayarlandıysa; bilgi çubuğu 'duraklatıldı' durumunda kalıcı olarak gösterilmeye devam edecek (zaman aşımı yok)."
 
@@ -16698,8 +16698,8 @@ msgstr "Düğme hatası açılır penceresinin ne kadar süreyle görüntülenec
 msgid "Select how long to display the task and script message pop up."
 msgstr "Görevin ve komut dosyası mesajının ne kadar süreyle görüntüleneceğini seçin."
 
-msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
-msgstr "Ses seviyesi ekranının otomatik olarak gizlenmeden önce ne kadar süreyle gösterileceğini saniye cinsinden seçin."
+msgid "Select how long, in seconds, that the volume and mute displays are shown before they automatically hide."
+msgstr ""
 
 msgid "Select how often this timer is to be repeated."
 msgstr "Bu zamanlayıcının ne sıklıkta tekrarlanacağını seçin."
@@ -17056,6 +17056,12 @@ msgstr "Kaydırılan karakter kümesini seçin"
 msgid "Select the shifted character set for the next character only"
 msgstr "Yalnızca sonraki karakter için kaydırılmış karakter kümesini seçin"
 
+msgid "Select the size of the volume step when the VOLUME buttons are pressed."
+msgstr ""
+
+msgid "Select the size of the volume steps when the VOLUME buttons are held down."
+msgstr ""
+
 msgid "Select the sort order for the file lines:"
 msgstr "Dosya satırları için sıralama düzenini seçin:"
 
@@ -17151,9 +17157,6 @@ msgstr ""
 "Bağlanmak istediğiniz kablosuz ağı seçin.\n"
 "\n"
 "Devam etmek için OK tuşuna basın."
-
-msgid "Select to use logarithmic step size with more steps at the lower volume levels."
-msgstr "Düşük ses seviyelerinde daha fazla adımla logaritmik adım boyutunu kullanmak için seçin."
 
 msgid "Select update source location"
 msgstr "Güncelleme kaynağı konumunu seçin"
@@ -22221,9 +22224,6 @@ msgstr "Anahtar Eşlemeyi Kullan *"
 msgid "Use legacy navigation"
 msgstr "Geleneksel navigasyon kullanın"
 
-msgid "Use logarithmic steps"
-msgstr "Logaritmik adımları kullanın"
-
 msgid "Use official channel numbering"
 msgstr "Resmi kanal numaralama kullan"
 
@@ -22523,6 +22523,9 @@ msgstr "Venda"
 msgid "Venezuela, Bolivarian Republic of"
 msgstr "Venezuela, Bolivarian Cumhuriyeti"
 
+msgid "Verbose"
+msgstr ""
+
 msgid "Version"
 msgstr "Versiyon"
 
@@ -22768,17 +22771,20 @@ msgstr "Ses Ayarı Servis Seçimi"
 msgid "Volume Adjust Settings"
 msgstr "Ses Ayarı Ayarları"
 
-msgid "Volume display timer"
-msgstr "Ses seviyesi gösterge zamanlayıcısı"
-
 msgid "Volume down"
 msgstr "Ses azalt"
 
 msgid "Volume keys on the receiver remote will control the TV volume. If this feature is not supported the volume keys have no function!"
 msgstr "Alıcının uzaktan kumandasındaki ses seviyesi tuşları, TV sesini kontrol edecektir. Bu özellik desteklenmiyorsa, ses seviyesi tuşlarının işlevi yoktur!"
 
+msgid "Volume steps"
+msgstr ""
+
 msgid "Volume up"
 msgstr "Ses yükselt"
+
+msgid "Volume/Mute display timer"
+msgstr ""
 
 msgid "Vu+ MultiBoot"
 msgstr "Vu+ MultiBoot"
@@ -24967,6 +24973,36 @@ msgstr "evet (beslemeleri tut)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Audio volume step size"
+#~ msgstr "Ses hacmi adım boyutu"
+
+#~ msgid "Audio volume step size fast mode"
+#~ msgstr "Ses seviyesi adım boyutu hızlı mod"
+
+#~ msgid "Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row."
+#~ msgstr "Hızlı mod ses seviyesi adım boyutunu yapılandırın (sınır 1-10). Ses seviyesi tuşu sürekli basıldığında veya art arda hızlı basıldığında etkinleşir."
+
+#~ msgid "Configure the general audio volume step size (limit 1-10)."
+#~ msgstr "Genel ses seviyesi adım boyutunu yapılandırın (sınır 1-10)."
+
+#~ msgid "Hide mute notification"
+#~ msgstr "Sessiz bildirimini gizle"
+
+#~ msgid "If muted, hide mute icon or mute information after few seconds."
+#~ msgstr "Ses kapalıysa, birkaç saniye sonra sessiz simgesini gizleyin veya bilgileri kapatın."
+
+#~ msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
+#~ msgstr "Ses seviyesi ekranının otomatik olarak gizlenmeden önce ne kadar süreyle gösterileceğini saniye cinsinden seçin."
+
+#~ msgid "Select to use logarithmic step size with more steps at the lower volume levels."
+#~ msgstr "Düşük ses seviyelerinde daha fazla adımla logaritmik adım boyutunu kullanmak için seçin."
+
+#~ msgid "Use logarithmic steps"
+#~ msgstr "Logaritmik adımları kullanın"
+
+#~ msgid "Volume display timer"
+#~ msgstr "Ses seviyesi gösterge zamanlayıcısı"
 
 #~ msgid "Reception"
 #~ msgstr "Resepsiyon"

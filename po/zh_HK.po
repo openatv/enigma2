@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-08 08:13+0000\n"
+"POT-Creation-Date: 2024-08-27 13:46+0000\n"
 "PO-Revision-Date: 2024-07-23 13:09+0000\n"
 "Last-Translator: Ricky From Hong Kong <lamricky11@hotmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -2673,12 +2673,6 @@ msgstr ""
 msgid "Audio options..."
 msgstr ""
 
-msgid "Audio volume step size"
-msgstr ""
-
-msgid "Audio volume step size fast mode"
-msgstr ""
-
 msgid "Australia"
 msgstr "澳大利亞"
 
@@ -2768,6 +2762,9 @@ msgstr ""
 #, fuzzy
 msgid "AutoMountManager"
 msgstr "安裝(Mount)管理"
+
+msgid "AutoRefresh"
+msgstr ""
 
 msgid "AutoTimer"
 msgstr ""
@@ -4718,9 +4715,6 @@ msgstr ""
 msgid "Configure the end coordinate in y of the teletext display area."
 msgstr ""
 
-msgid "Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row."
-msgstr ""
-
 msgid "Configure the first audio language (highest priority)."
 msgstr ""
 
@@ -4752,9 +4746,6 @@ msgid "Configure the function of the < and > buttons."
 msgstr ""
 
 msgid "Configure the gateway."
-msgstr ""
-
-msgid "Configure the general audio volume step size (limit 1-10)."
 msgstr ""
 
 msgid "Configure the hard disk drive to go to standby after the specified idle time when the box is in standby."
@@ -7212,6 +7203,9 @@ msgstr "啟用解析度自動調整"
 msgid "Enable auto fast scan for %s"
 msgstr ""
 
+msgid "Enable autorefresh templates."
+msgstr ""
+
 msgid "Enable blinking rec symbol on the LCD Display in Standby."
 msgstr ""
 
@@ -9363,9 +9357,6 @@ msgstr ""
 msgid "Hide known extensions"
 msgstr "檢視增加部分..."
 
-msgid "Hide mute notification"
-msgstr ""
-
 #, fuzzy
 msgid "Hide number markers"
 msgstr "在這裏標記"
@@ -9747,9 +9738,6 @@ msgid "If enabled, using a time window to detect a wake up from deep standby by 
 msgstr ""
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
-msgstr ""
-
-msgid "If muted, hide mute icon or mute information after few seconds."
 msgstr ""
 
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
@@ -11041,6 +11029,9 @@ msgid "Long filenames"
 msgstr ""
 
 msgid "Long press emulation with button"
+msgstr ""
+
+msgid "Long press volume steps"
 msgstr ""
 
 #, fuzzy, python-format
@@ -16281,6 +16272,15 @@ msgstr ""
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr ""
 
+msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' power timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr ""
+
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr ""
 
@@ -16674,7 +16674,7 @@ msgstr ""
 msgid "Select how long to display the task and script message pop up."
 msgstr ""
 
-msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
+msgid "Select how long, in seconds, that the volume and mute displays are shown before they automatically hide."
 msgstr ""
 
 msgid "Select how often this timer is to be repeated."
@@ -17029,6 +17029,12 @@ msgstr "定時休眠:"
 msgid "Select the shifted character set for the next character only"
 msgstr ""
 
+msgid "Select the size of the volume step when the VOLUME buttons are pressed."
+msgstr ""
+
+msgid "Select the size of the volume steps when the VOLUME buttons are held down."
+msgstr ""
+
 msgid "Select the sort order for the file lines:"
 msgstr ""
 
@@ -17121,9 +17127,6 @@ msgid ""
 "Select the wireless network to which you want to connect.\n"
 "\n"
 "Press OK to continue."
-msgstr ""
-
-msgid "Select to use logarithmic step size with more steps at the lower volume levels."
 msgstr ""
 
 msgid "Select update source location"
@@ -22191,9 +22194,6 @@ msgstr "鍵盤佈局 *"
 msgid "Use legacy navigation"
 msgstr ""
 
-msgid "Use logarithmic steps"
-msgstr ""
-
 msgid "Use official channel numbering"
 msgstr ""
 
@@ -22469,6 +22469,9 @@ msgstr ""
 msgid "Venezuela, Bolivarian Republic of"
 msgstr ""
 
+msgid "Verbose"
+msgstr ""
+
 msgid "Version"
 msgstr ""
 
@@ -22719,9 +22722,6 @@ msgstr ""
 msgid "Volume Adjust Settings"
 msgstr ""
 
-msgid "Volume display timer"
-msgstr ""
-
 #, fuzzy
 msgid "Volume down"
 msgstr "音量"
@@ -22729,9 +22729,15 @@ msgstr "音量"
 msgid "Volume keys on the receiver remote will control the TV volume. If this feature is not supported the volume keys have no function!"
 msgstr ""
 
+msgid "Volume steps"
+msgstr ""
+
 #, fuzzy
 msgid "Volume up"
 msgstr "音量"
+
+msgid "Volume/Mute display timer"
+msgstr ""
 
 msgid "Vu+ MultiBoot"
 msgstr ""

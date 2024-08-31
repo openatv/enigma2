@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-08 08:13+0000\n"
+"POT-Creation-Date: 2024-08-27 13:46+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -2627,12 +2627,6 @@ msgstr "Negyedleges előnyben részesített hangsáv"
 msgid "Audio options..."
 msgstr "Hang beállítások..."
 
-msgid "Audio volume step size"
-msgstr "Audió hangerő léptetés mértéke"
-
-msgid "Audio volume step size fast mode"
-msgstr "Audió hangerő léptetés mértékének gyors módja"
-
 msgid "Australia"
 msgstr "Ausztrália"
 
@@ -2713,6 +2707,9 @@ msgstr ""
 
 msgid "AutoMountManager"
 msgstr "Csatlakozás kezelő"
+
+msgid "AutoRefresh"
+msgstr ""
 
 msgid "AutoTimer"
 msgstr ""
@@ -4579,9 +4576,6 @@ msgstr "Állítsa be a teletext kijelzési területének \"x\" befejezési koord
 msgid "Configure the end coordinate in y of the teletext display area."
 msgstr "Állítsa be a teletext kijelzési területének \"x\" befejezési koordinátáját."
 
-msgid "Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row."
-msgstr "Állítsa be a gyors módú hangerő lépésméretet (1-10). Aktiválva van, ha a hangerőszabályzó folyamatosan nyomva van, vagy gyorsan egymás után le van nyomva."
-
 msgid "Configure the first audio language (highest priority)."
 msgstr "Többnyelvű csatornáknál ezt a hangsávot választja automatikusan, legmagasabb prioritással."
 
@@ -4614,9 +4608,6 @@ msgstr ""
 
 msgid "Configure the gateway."
 msgstr "Átjáró beállítása."
-
-msgid "Configure the general audio volume step size (limit 1-10)."
-msgstr "A hangerő léptékének mértékét (1-10) tudja itt beállítani."
 
 msgid "Configure the hard disk drive to go to standby after the specified idle time when the box is in standby."
 msgstr "Beállíthatja, hogy a merevlemez leálljon készenléti állapotába a beállításnak megfelelően miután a készülék készenléti állapotba kerül."
@@ -7008,6 +6999,9 @@ msgstr "Automatikus gyorskeresés engedélyezése"
 msgid "Enable auto fast scan for %s"
 msgstr "Automatikus gyorskeresés engedélyezése ehhez: %s"
 
+msgid "Enable autorefresh templates."
+msgstr ""
+
 msgid "Enable blinking rec symbol on the LCD Display in Standby."
 msgstr "Felvétel jelzése az LCD kijelzőn készenléti módban"
 
@@ -9078,9 +9072,6 @@ msgstr ""
 msgid "Hide known extensions"
 msgstr "Ismert fájlkiterjesztések elrejtése"
 
-msgid "Hide mute notification"
-msgstr "Értesítés némításának elrejtése"
-
 msgid "Hide number markers"
 msgstr "Számjelölők elrejtése"
 
@@ -9438,9 +9429,6 @@ msgstr "Ha engedélyezve van, akkor egy időablak segítségével érzékelheti 
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Ha a naplók a beállított maximális hely értékét túllépik, akkor a legidősebb napló törlődik."
-
-msgid "If muted, hide mute icon or mute information after few seconds."
-msgstr "Ha némítva van, akkor rejtse el a némító ikont vagy az információkat néhány másodperc múlva."
 
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
 msgstr ""
@@ -10689,6 +10677,9 @@ msgstr "Hosszú fájlnevek"
 
 msgid "Long press emulation with button"
 msgstr "Emulációhoz a gombot hosszan nyomja"
+
+msgid "Long press volume steps"
+msgstr ""
 
 #, fuzzy, python-format
 msgid "Long press: %s"
@@ -15659,6 +15650,15 @@ msgstr ""
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Csak akkor válassza az 'igen' beállítást, ha multiswich-t használ, amelyhez DiSEqC Port-A parancs jelet igényel. Az összes többi beállításhoz válassza a 'nem' lehetőséget."
 
+msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' power timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr ""
+
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Ha az 'igen'-t választja, az Információs sáv folyamatosan 'szüneteltetett' állapotban marad (nincs időkorlát)."
 
@@ -16039,7 +16039,7 @@ msgstr ""
 msgid "Select how long to display the task and script message pop up."
 msgstr ""
 
-msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
+msgid "Select how long, in seconds, that the volume and mute displays are shown before they automatically hide."
 msgstr ""
 
 msgid "Select how often this timer is to be repeated."
@@ -16392,6 +16392,12 @@ msgstr "Válassza ki a virtuális billentyűzettel eltolt karakterkészletét"
 msgid "Select the shifted character set for the next character only"
 msgstr "Válassza ki a virtuális billentyűzettel eltolt karakterkészletet csak a következő karakterhez"
 
+msgid "Select the size of the volume step when the VOLUME buttons are pressed."
+msgstr ""
+
+msgid "Select the size of the volume steps when the VOLUME buttons are held down."
+msgstr ""
+
 msgid "Select the sort order for the file lines:"
 msgstr ""
 
@@ -16483,9 +16489,6 @@ msgid ""
 "Select the wireless network to which you want to connect.\n"
 "\n"
 "Press OK to continue."
-msgstr ""
-
-msgid "Select to use logarithmic step size with more steps at the lower volume levels."
 msgstr ""
 
 msgid "Select update source location"
@@ -21341,9 +21344,6 @@ msgstr "Melyik Keymapot választja *"
 msgid "Use legacy navigation"
 msgstr ""
 
-msgid "Use logarithmic steps"
-msgstr ""
-
 msgid "Use official channel numbering"
 msgstr "Hivatalos csatornaszámozás használata"
 
@@ -21611,6 +21611,9 @@ msgstr ""
 msgid "Venezuela, Bolivarian Republic of"
 msgstr "Venezuela"
 
+msgid "Verbose"
+msgstr ""
+
 msgid "Version"
 msgstr ""
 
@@ -21842,17 +21845,20 @@ msgstr ""
 msgid "Volume Adjust Settings"
 msgstr ""
 
-msgid "Volume display timer"
-msgstr ""
-
 msgid "Volume down"
 msgstr "Hangerő le"
 
 msgid "Volume keys on the receiver remote will control the TV volume. If this feature is not supported the volume keys have no function!"
 msgstr ""
 
+msgid "Volume steps"
+msgstr ""
+
 msgid "Volume up"
 msgstr "Hangerő fel"
+
+msgid "Volume/Mute display timer"
+msgstr ""
 
 msgid "Vu+ MultiBoot"
 msgstr ""
@@ -23906,6 +23912,24 @@ msgstr "igen (állapotok megtartása)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Audio volume step size"
+#~ msgstr "Audió hangerő léptetés mértéke"
+
+#~ msgid "Audio volume step size fast mode"
+#~ msgstr "Audió hangerő léptetés mértékének gyors módja"
+
+#~ msgid "Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row."
+#~ msgstr "Állítsa be a gyors módú hangerő lépésméretet (1-10). Aktiválva van, ha a hangerőszabályzó folyamatosan nyomva van, vagy gyorsan egymás után le van nyomva."
+
+#~ msgid "Configure the general audio volume step size (limit 1-10)."
+#~ msgstr "A hangerő léptékének mértékét (1-10) tudja itt beállítani."
+
+#~ msgid "Hide mute notification"
+#~ msgstr "Értesítés némításának elrejtése"
+
+#~ msgid "If muted, hide mute icon or mute information after few seconds."
+#~ msgstr "Ha némítva van, akkor rejtse el a némító ikont vagy az információkat néhány másodperc múlva."
 
 #~ msgid "Reception"
 #~ msgstr "Vétel beállítása"

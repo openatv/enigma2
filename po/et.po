@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-08 08:13+0000\n"
+"POT-Creation-Date: 2024-08-27 13:46+0000\n"
 "PO-Revision-Date: 2022-12-04 20:43+0000\n"
 "Last-Translator: rimasx <riks_12@hot.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -2614,12 +2614,6 @@ msgstr "Heli keelevalik 4"
 msgid "Audio options..."
 msgstr "Heli valikud"
 
-msgid "Audio volume step size"
-msgstr "Helitugevuse sammu suurus"
-
-msgid "Audio volume step size fast mode"
-msgstr "Helitugevuse sammu suurus kiirrežiimis"
-
 msgid "Australia"
 msgstr "Austraalia"
 
@@ -2704,6 +2698,9 @@ msgstr ""
 #
 msgid "AutoMountManager"
 msgstr "Automaatne haakimine"
+
+msgid "AutoRefresh"
+msgstr ""
 
 msgid "AutoTimer"
 msgstr ""
@@ -4601,9 +4598,6 @@ msgstr "Määra x-koordinaadi lõpp teleteksti kuvaalas."
 msgid "Configure the end coordinate in y of the teletext display area."
 msgstr "Määra y-koordinaadi lõpp teleteksti kuvaalas."
 
-msgid "Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row."
-msgstr "Seadista helitugevuse kiirrežiimi sammu suurus (vahemikus 1-10). Aktiveeritakse helitugevuse nupu pikal või kiirel järjestikusel vajutusel."
-
 msgid "Configure the first audio language (highest priority)."
 msgstr "Määra heli keele esimene eelistus."
 
@@ -4636,9 +4630,6 @@ msgstr ""
 
 msgid "Configure the gateway."
 msgstr "Seadista lüüs."
-
-msgid "Configure the general audio volume step size (limit 1-10)."
-msgstr "Seadista helitugevuse muutuse sammu suurus (vahemik 1-10)."
 
 msgid "Configure the hard disk drive to go to standby after the specified idle time when the box is in standby."
 msgstr "Määra kõvaketta seiskamise aeg pärast määratud jõudeolekut, kui vastuvõtja on ooteseisundis."
@@ -7074,6 +7065,9 @@ msgstr "Luba automaatne kiirotsing"
 msgid "Enable auto fast scan for %s"
 msgstr "Kiire automaatotsing %s jaoks"
 
+msgid "Enable autorefresh templates."
+msgstr ""
+
 msgid "Enable blinking rec symbol on the LCD Display in Standby."
 msgstr "Ooteseisundis Rec-sümbol esipaneelil"
 
@@ -9171,9 +9165,6 @@ msgstr ""
 msgid "Hide known extensions"
 msgstr "Peida tuntud laiendid"
 
-msgid "Hide mute notification"
-msgstr "Peida vaigistamise sümbol"
-
 #, fuzzy
 msgid "Hide number markers"
 msgstr "Pane märk siia"
@@ -9545,9 +9536,6 @@ msgstr "Kui lubatud, kasutatakse ajaakent tuvastamaks puhkeseisundist äratamist
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Kui logidele määratud kettaruumi ülempiir on saavutatud, siis vanimad kustutatakse."
-
-msgid "If muted, hide mute icon or mute information after few seconds."
-msgstr "Heli vaigistamisel peida vaigistamise ikoon või info mõne sekundi pärast."
 
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
 msgstr ""
@@ -10813,6 +10801,9 @@ msgstr "Pikad failinimed"
 
 msgid "Long press emulation with button"
 msgstr "Pika nupuvajutuse emuleerimine"
+
+msgid "Long press volume steps"
+msgstr ""
 
 # Help
 #, fuzzy, python-format
@@ -15924,6 +15915,15 @@ msgstr ""
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Vali 'jah' ainult juhul, kui kasutatav multiswich lüliti nõuab DiSEqC Port-A käsu signaali. Kõigil teistel juhtudel vali 'ei'."
 
+msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' power timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr ""
+
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Kui lubatud, kuvatakse pausil olles inforiba pidevalt."
 
@@ -16310,7 +16310,7 @@ msgstr ""
 msgid "Select how long to display the task and script message pop up."
 msgstr ""
 
-msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
+msgid "Select how long, in seconds, that the volume and mute displays are shown before they automatically hide."
 msgstr ""
 
 msgid "Select how often this timer is to be repeated."
@@ -16665,6 +16665,12 @@ msgstr "Vali unetaimeri tegevus."
 msgid "Select the shifted character set for the next character only"
 msgstr "Kustuta teksti puhvri kursori alla jääv tähemärk"
 
+msgid "Select the size of the volume step when the VOLUME buttons are pressed."
+msgstr ""
+
+msgid "Select the size of the volume steps when the VOLUME buttons are held down."
+msgstr ""
+
 msgid "Select the sort order for the file lines:"
 msgstr ""
 
@@ -16757,9 +16763,6 @@ msgid ""
 "Select the wireless network to which you want to connect.\n"
 "\n"
 "Press OK to continue."
-msgstr ""
-
-msgid "Select to use logarithmic step size with more steps at the lower volume levels."
 msgstr ""
 
 msgid "Select update source location"
@@ -21718,9 +21721,6 @@ msgstr "Kasuta nupuasetust *"
 msgid "Use legacy navigation"
 msgstr ""
 
-msgid "Use logarithmic steps"
-msgstr ""
-
 msgid "Use official channel numbering"
 msgstr "Kasuta ametlikku kanalinumeratsiooni"
 
@@ -21992,6 +21992,9 @@ msgstr ""
 msgid "Venezuela, Bolivarian Republic of"
 msgstr "Venezuela"
 
+msgid "Verbose"
+msgstr ""
+
 msgid "Version"
 msgstr ""
 
@@ -22231,17 +22234,20 @@ msgstr ""
 msgid "Volume Adjust Settings"
 msgstr ""
 
-msgid "Volume display timer"
-msgstr ""
-
 msgid "Volume down"
 msgstr "Heli maha"
 
 msgid "Volume keys on the receiver remote will control the TV volume. If this feature is not supported the volume keys have no function!"
 msgstr ""
 
+msgid "Volume steps"
+msgstr ""
+
 msgid "Volume up"
 msgstr "Heli juurde"
+
+msgid "Volume/Mute display timer"
+msgstr ""
 
 msgid "Vu+ MultiBoot"
 msgstr ""
@@ -24342,6 +24348,24 @@ msgstr "Jah (säilita fiidid)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Audio volume step size"
+#~ msgstr "Helitugevuse sammu suurus"
+
+#~ msgid "Audio volume step size fast mode"
+#~ msgstr "Helitugevuse sammu suurus kiirrežiimis"
+
+#~ msgid "Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row."
+#~ msgstr "Seadista helitugevuse kiirrežiimi sammu suurus (vahemikus 1-10). Aktiveeritakse helitugevuse nupu pikal või kiirel järjestikusel vajutusel."
+
+#~ msgid "Configure the general audio volume step size (limit 1-10)."
+#~ msgstr "Seadista helitugevuse muutuse sammu suurus (vahemik 1-10)."
+
+#~ msgid "Hide mute notification"
+#~ msgstr "Peida vaigistamise sümbol"
+
+#~ msgid "If muted, hide mute icon or mute information after few seconds."
+#~ msgstr "Heli vaigistamisel peida vaigistamise ikoon või info mõne sekundi pärast."
 
 #, fuzzy
 #~ msgid "Reception"

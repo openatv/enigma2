@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-08 08:13+0000\n"
+"POT-Creation-Date: 2024-08-27 13:46+0000\n"
 "PO-Revision-Date: 2024-01-13 10:34+0000\n"
 "Last-Translator: Reza Almanda <rezaalmanda27@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/id/>\n"
@@ -2752,13 +2752,6 @@ msgstr "Audio language selection 4"
 msgid "Audio options..."
 msgstr "Audio options..."
 
-msgid "Audio volume step size"
-msgstr "Audio volume step size"
-
-#, fuzzy
-msgid "Audio volume step size fast mode"
-msgstr "Audio volume step size"
-
 msgid "Australia"
 msgstr "Australia"
 
@@ -2841,6 +2834,9 @@ msgstr ""
 
 msgid "AutoMountManager"
 msgstr "AutoMountManager"
+
+msgid "AutoRefresh"
+msgstr ""
 
 msgid "AutoTimer"
 msgstr ""
@@ -4736,9 +4732,6 @@ msgstr "Configure the end coordinate in x of the teletext display area."
 msgid "Configure the end coordinate in y of the teletext display area."
 msgstr "Configure the end coordinate in y of the teletext display area."
 
-msgid "Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row."
-msgstr ""
-
 msgid "Configure the first audio language (highest priority)."
 msgstr "Configure the first audio language (highest priority)."
 
@@ -4772,9 +4765,6 @@ msgstr ""
 
 msgid "Configure the gateway."
 msgstr "Configure the gateway."
-
-msgid "Configure the general audio volume step size (limit 1-10)."
-msgstr "Configure the general audio volume step size (limit 1-10)."
 
 msgid "Configure the hard disk drive to go to standby after the specified idle time when the box is in standby."
 msgstr "Configure the hard disk drive to go to standby after the specified idle time when the box is in standby."
@@ -7188,6 +7178,9 @@ msgstr "Enable auto fast scan"
 msgid "Enable auto fast scan for %s"
 msgstr "Enable auto fast scan for %s"
 
+msgid "Enable autorefresh templates."
+msgstr ""
+
 #, fuzzy
 msgid "Enable blinking rec symbol on the LCD Display in Standby."
 msgstr "In the Standby blinking Clock on the LCD Display"
@@ -9298,9 +9291,6 @@ msgstr ""
 msgid "Hide known extensions"
 msgstr "Hide known extensions"
 
-msgid "Hide mute notification"
-msgstr ""
-
 #, fuzzy
 msgid "Hide number markers"
 msgstr "insert mark here"
@@ -9671,9 +9661,6 @@ msgstr ""
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "If logs are using the set maximum space used the eldest will be deleted."
-
-msgid "If muted, hide mute icon or mute information after few seconds."
-msgstr ""
 
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
 msgstr ""
@@ -10930,6 +10917,9 @@ msgstr "Long filenames"
 
 msgid "Long press emulation with button"
 msgstr "Long press emulation with button"
+
+msgid "Long press volume steps"
+msgstr ""
 
 #, fuzzy, python-format
 msgid "Long press: %s"
@@ -15980,6 +15970,15 @@ msgstr ""
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr ""
 
+msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' power timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr ""
+
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 
@@ -16360,7 +16359,7 @@ msgstr ""
 msgid "Select how long to display the task and script message pop up."
 msgstr ""
 
-msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
+msgid "Select how long, in seconds, that the volume and mute displays are shown before they automatically hide."
 msgstr ""
 
 msgid "Select how often this timer is to be repeated."
@@ -16711,6 +16710,12 @@ msgstr "Select the sleep timer action."
 msgid "Select the shifted character set for the next character only"
 msgstr ""
 
+msgid "Select the size of the volume step when the VOLUME buttons are pressed."
+msgstr ""
+
+msgid "Select the size of the volume steps when the VOLUME buttons are held down."
+msgstr ""
+
 msgid "Select the sort order for the file lines:"
 msgstr ""
 
@@ -16803,9 +16808,6 @@ msgid ""
 "Select the wireless network to which you want to connect.\n"
 "\n"
 "Press OK to continue."
-msgstr ""
-
-msgid "Select to use logarithmic step size with more steps at the lower volume levels."
 msgstr ""
 
 msgid "Select update source location"
@@ -21731,9 +21733,6 @@ msgstr "Use key map *"
 msgid "Use legacy navigation"
 msgstr ""
 
-msgid "Use logarithmic steps"
-msgstr ""
-
 msgid "Use official channel numbering"
 msgstr "Use official channel numbering"
 
@@ -22004,6 +22003,9 @@ msgstr ""
 msgid "Venezuela, Bolivarian Republic of"
 msgstr "Venezuela (Bolivarian Republic of)"
 
+msgid "Verbose"
+msgstr ""
+
 msgid "Version"
 msgstr ""
 
@@ -22240,17 +22242,20 @@ msgstr ""
 msgid "Volume Adjust Settings"
 msgstr ""
 
-msgid "Volume display timer"
-msgstr ""
-
 msgid "Volume down"
 msgstr "Volume down"
 
 msgid "Volume keys on the receiver remote will control the TV volume. If this feature is not supported the volume keys have no function!"
 msgstr ""
 
+msgid "Volume steps"
+msgstr ""
+
 msgid "Volume up"
 msgstr "Volume up"
+
+msgid "Volume/Mute display timer"
+msgstr ""
 
 msgid "Vu+ MultiBoot"
 msgstr ""
@@ -24345,6 +24350,16 @@ msgstr "yes (keep feeds)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Audio volume step size"
+#~ msgstr "Audio volume step size"
+
+#, fuzzy
+#~ msgid "Audio volume step size fast mode"
+#~ msgstr "Audio volume step size"
+
+#~ msgid "Configure the general audio volume step size (limit 1-10)."
+#~ msgstr "Configure the general audio volume step size (limit 1-10)."
 
 #, fuzzy
 #~ msgid "Reception"

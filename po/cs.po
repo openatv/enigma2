@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-08 08:13+0000\n"
+"POT-Creation-Date: 2024-08-27 13:46+0000\n"
 "PO-Revision-Date: 2024-08-14 17:23+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
@@ -2612,12 +2612,6 @@ msgstr "Volba jazyka zvuku 4"
 msgid "Audio options..."
 msgstr "Zvukové možnosti..."
 
-msgid "Audio volume step size"
-msgstr "Velikost kroku hlasitosti zvuku"
-
-msgid "Audio volume step size fast mode"
-msgstr "Velikost kroku hlasitosti při rychlém režimu"
-
 msgid "Australia"
 msgstr "Austrálie"
 
@@ -2698,6 +2692,9 @@ msgstr "AutoFS"
 
 msgid "AutoMountManager"
 msgstr "Správce připojení"
+
+msgid "AutoRefresh"
+msgstr ""
 
 msgid "AutoTimer"
 msgstr "Automatický časovač"
@@ -4572,9 +4569,6 @@ msgstr "Nakonfigurujte koncovou souřadnici v x oblasti zobrazení teletextu."
 msgid "Configure the end coordinate in y of the teletext display area."
 msgstr "Nakonfigurujte koncovou souřadnici v y oblasti zobrazení teletextu."
 
-msgid "Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row."
-msgstr "Nakonfigurujte velikost kroku hlasitosti zvuku v rychlém režimu (limit 1-10). Aktivuje se při trvalém stisknutí tlačítka hlasitosti nebo rychlém stisknutí za sebou."
-
 msgid "Configure the first audio language (highest priority)."
 msgstr "Nastavuje první jazyk zvuku (nejvyšší priorita)."
 
@@ -4607,9 +4601,6 @@ msgstr "Nakonfigurujte funkci tlačítek < a >."
 
 msgid "Configure the gateway."
 msgstr "Nastavuje bránu."
-
-msgid "Configure the general audio volume step size (limit 1-10)."
-msgstr "Nakonfigurujte velikost obecného kroku hlasitosti zvuku (limit 1-10)."
 
 msgid "Configure the hard disk drive to go to standby after the specified idle time when the box is in standby."
 msgstr "Nastavuje čas nečinnosti, po kterém přejde pevný disk do úsporného režimu (jestliže je přijímač vypnutý)."
@@ -6998,6 +6989,9 @@ msgstr "Povolit automatické rychlé ladění (Fast Scan)"
 msgid "Enable auto fast scan for %s"
 msgstr "Povolit automatické rychlé vyhledávání pro %s"
 
+msgid "Enable autorefresh templates."
+msgstr ""
+
 msgid "Enable blinking rec symbol on the LCD Display in Standby."
 msgstr "V pohotovostním režimu nahrávání na LCD displeji."
 
@@ -9059,9 +9053,6 @@ msgstr "Skrýt chybové zprávy z modulu Common Interface."
 msgid "Hide known extensions"
 msgstr "Nezobrazovat známé přípony"
 
-msgid "Hide mute notification"
-msgstr "Skrýt ztlumené oznámení"
-
 msgid "Hide number markers"
 msgstr "Skrýt číslo značky"
 
@@ -9417,9 +9408,6 @@ msgstr "Je-li povoleno, pomocí časového okna detekovat probuzení z hlubokéh
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Pokud používáte zprávy a je nastaven max. využitý prostor,budou nejstarší smazány."
-
-msgid "If muted, hide mute icon or mute information after few seconds."
-msgstr "Je-li ztlumeno, po několika sekundách skryjte ikonu ztlumení nebo informace o ztlumení."
 
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
 msgstr "Pokud je to možné, kontroluje se x minut před skutečným začátkem, zda program nezačíná dříve. (0 deaktivuje tuto možnost)"
@@ -10649,6 +10637,9 @@ msgstr "Dlouhé názvy souborů"
 
 msgid "Long press emulation with button"
 msgstr "Emulace dlouhého stisku tlačítka"
+
+msgid "Long press volume steps"
+msgstr ""
 
 #, python-format
 msgid "Long press: %s"
@@ -15564,6 +15555,15 @@ msgstr "Vyberte 'Ano', pokud mají být úpravy hlasitosti aplikovány na zvukov
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Pokud používáte multipřepínač, který vyžaduje příkazový signál DiSEqC Port-A, vyberte „Ano“. Vyberte 'Ne' pro všechna ostatní nastavení."
 
+msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' power timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr ""
+
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Vyberte 'Ano', aby byl informační panel zobrazen bez časového limitu, zatímco je přehrávání médií pozastaveno."
 
@@ -15944,8 +15944,8 @@ msgstr "Vyberte, jak dlouho se má zobrazovat vyskakovací okno s chybou tlačí
 msgid "Select how long to display the task and script message pop up."
 msgstr "Vyberte, jak dlouho se má úloha a zpráva skriptu zobrazovat."
 
-msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
-msgstr "Vyberte, jak dlouho (v sekundách) má být zobrazen displej hlasitosti, než se automaticky skryje."
+msgid "Select how long, in seconds, that the volume and mute displays are shown before they automatically hide."
+msgstr ""
 
 msgid "Select how often this timer is to be repeated."
 msgstr "Vyberte, jak často se má tento časovač opakovat."
@@ -16296,6 +16296,12 @@ msgstr "Vyberte posunutou sadu znaků"
 msgid "Select the shifted character set for the next character only"
 msgstr "Vyberte posunutou znakovou sadu pouze pro další znak"
 
+msgid "Select the size of the volume step when the VOLUME buttons are pressed."
+msgstr ""
+
+msgid "Select the size of the volume steps when the VOLUME buttons are held down."
+msgstr ""
+
 msgid "Select the sort order for the file lines:"
 msgstr "Vybrat pořadí řazení řádků souborů:"
 
@@ -16391,9 +16397,6 @@ msgstr ""
 "Vyberte bezdrátovou síť, ke které se chcete připojit.\n"
 "\n"
 "Pokračujte stisknutím OK."
-
-msgid "Select to use logarithmic step size with more steps at the lower volume levels."
-msgstr "Vyberte, chcete-li použít logaritmickou velikost kroku s více kroky při nižších úrovních hlasitosti."
 
 msgid "Select update source location"
 msgstr "Vyberte zdroj aktualizace"
@@ -21245,9 +21248,6 @@ msgstr "Použít Keymap *"
 msgid "Use legacy navigation"
 msgstr "Použít starší navigaci"
 
-msgid "Use logarithmic steps"
-msgstr "Použít logaritmické kroky"
-
 msgid "Use official channel numbering"
 msgstr "Použít ofciální číslování kanálů"
 
@@ -21538,6 +21538,9 @@ msgstr "Venda"
 msgid "Venezuela, Bolivarian Republic of"
 msgstr "Venezuela, Bolívarská republika"
 
+msgid "Verbose"
+msgstr ""
+
 msgid "Version"
 msgstr "Verze"
 
@@ -21769,17 +21772,20 @@ msgstr "Volba služby nastavení hlasitosti"
 msgid "Volume Adjust Settings"
 msgstr "Nastavení hlasitosti"
 
-msgid "Volume display timer"
-msgstr "Časovač zobrazení hlasitosti"
-
 msgid "Volume down"
 msgstr "Hlasitost -"
 
 msgid "Volume keys on the receiver remote will control the TV volume. If this feature is not supported the volume keys have no function!"
 msgstr "Tlačítka hlasitosti na dálkovém ovladači budou ovládat hlasitost televizoru. Pokud tato funkce není podporována, tlačítka hlasitosti nemají žádnou funkci!"
 
+msgid "Volume steps"
+msgstr ""
+
 msgid "Volume up"
 msgstr "Hlasitost +"
+
+msgid "Volume/Mute display timer"
+msgstr ""
 
 msgid "Vu+ MultiBoot"
 msgstr "Vu+ MultiBoot"
@@ -23833,6 +23839,36 @@ msgstr "ano (uchovat zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Audio volume step size"
+#~ msgstr "Velikost kroku hlasitosti zvuku"
+
+#~ msgid "Audio volume step size fast mode"
+#~ msgstr "Velikost kroku hlasitosti při rychlém režimu"
+
+#~ msgid "Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row."
+#~ msgstr "Nakonfigurujte velikost kroku hlasitosti zvuku v rychlém režimu (limit 1-10). Aktivuje se při trvalém stisknutí tlačítka hlasitosti nebo rychlém stisknutí za sebou."
+
+#~ msgid "Configure the general audio volume step size (limit 1-10)."
+#~ msgstr "Nakonfigurujte velikost obecného kroku hlasitosti zvuku (limit 1-10)."
+
+#~ msgid "Hide mute notification"
+#~ msgstr "Skrýt ztlumené oznámení"
+
+#~ msgid "If muted, hide mute icon or mute information after few seconds."
+#~ msgstr "Je-li ztlumeno, po několika sekundách skryjte ikonu ztlumení nebo informace o ztlumení."
+
+#~ msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
+#~ msgstr "Vyberte, jak dlouho (v sekundách) má být zobrazen displej hlasitosti, než se automaticky skryje."
+
+#~ msgid "Select to use logarithmic step size with more steps at the lower volume levels."
+#~ msgstr "Vyberte, chcete-li použít logaritmickou velikost kroku s více kroky při nižších úrovních hlasitosti."
+
+#~ msgid "Use logarithmic steps"
+#~ msgstr "Použít logaritmické kroky"
+
+#~ msgid "Volume display timer"
+#~ msgstr "Časovač zobrazení hlasitosti"
 
 #~ msgid "Reception"
 #~ msgstr "Nastavení příjmu"

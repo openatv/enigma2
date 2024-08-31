@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-08 08:13+0000\n"
-"PO-Revision-Date: 2024-08-19 12:09+0000\n"
+"POT-Creation-Date: 2024-08-27 13:46+0000\n"
+"PO-Revision-Date: 2024-08-29 21:09+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7\n"
+"X-Generator: Weblate 5.7.1-dev\n"
 
 msgid ""
 "\n"
@@ -2589,12 +2589,6 @@ msgstr "Äänen kielivalinta 4"
 msgid "Audio options..."
 msgstr "Ääni asetukset..."
 
-msgid "Audio volume step size"
-msgstr "Äänenvoimakkuuden askelkokoa"
-
-msgid "Audio volume step size fast mode"
-msgstr "Äänenvoimakkuuden askelkokoa nopeassa tilassa"
-
 msgid "Australia"
 msgstr "Austraalia"
 
@@ -2675,6 +2669,9 @@ msgstr "AutoFS"
 
 msgid "AutoMountManager"
 msgstr "Laitehallinta"
+
+msgid "AutoRefresh"
+msgstr "Automaattinen Päivitys"
 
 msgid "AutoTimer"
 msgstr "Automaattiajastukset"
@@ -4548,9 +4545,6 @@ msgstr "Määritä loppukoordinaatti tekstitv:een X leveys."
 msgid "Configure the end coordinate in y of the teletext display area."
 msgstr "Määritä loppukoordinaatti tekstitv:een Y korkeus."
 
-msgid "Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row."
-msgstr "Määritä äänenvoimakkuuden porraskoko (1-10) pikatilassa. Aktivoituu, kun äänenvoimakkuusnäppäintä painetaan jatkuvasti tai nopeasti peräkkäin."
-
 msgid "Configure the first audio language (highest priority)."
 msgstr "Määrittää ensisijaisen äänen kielen (korkein prioriteetti)."
 
@@ -4583,9 +4577,6 @@ msgstr "Määritä toiminto < ja > näppäimille."
 
 msgid "Configure the gateway."
 msgstr "Määritä verkon yhdyskäytävä."
-
-msgid "Configure the general audio volume step size (limit 1-10)."
-msgstr "Määritä yleinen äänenvoimakkuuden askelkoko (raja 1-10)."
 
 msgid "Configure the hard disk drive to go to standby after the specified idle time when the box is in standby."
 msgstr "Määrittää, sammutetaanko myös kiintolevy tietyn ajan jälkeen, kun itse laite on mennyt valmiustilaan."
@@ -6973,6 +6964,9 @@ msgstr "Ota käyttöön autom. pikahaku"
 msgid "Enable auto fast scan for %s"
 msgstr "Ota automaattinen pikahaku kohteelle %s"
 
+msgid "Enable autorefresh templates."
+msgstr "Ota automaattiset päivitykset käyttöön."
+
 msgid "Enable blinking rec symbol on the LCD Display in Standby."
 msgstr "Jos 'Kyllä' Tallennus symboli vilkkuu laitteen näytössä valmiustilassa (kaikki vastaanottimet eivät tue tätä)"
 
@@ -9032,9 +9026,6 @@ msgstr "Piilota virheilmoitukset CI moduulista."
 msgid "Hide known extensions"
 msgstr "Piilota tunnetut tiedostopäätteet"
 
-msgid "Hide mute notification"
-msgstr "Piilota mykistysilmoitus"
-
 msgid "Hide number markers"
 msgstr "Piilota numeromerkit"
 
@@ -9392,9 +9383,6 @@ msgstr "Kyllä asetuksella aikaikkuna asettaan herätys valmiustilasta ajastimen
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Jos lokit käyttävät enemmän levytilaa kuin mitä maksimiarvoksi on määritetty, vanhimmat lokit poistetaan."
-
-msgid "If muted, hide mute icon or mute information after few seconds."
-msgstr "Määrittää piilotetaanko mykystys symboli tai mykistystiedot muutaman sekunnin kuluttua."
 
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
 msgstr "Jos mahdollista, x minuuttia ennen ajastuksen käynnistymistä VPS Plugin, alkaako ohjelma aikaisemmin. (0 poistaa toiminnon käytöstä)"
@@ -10625,6 +10613,9 @@ msgstr "Pitkät tiedostonimet"
 
 msgid "Long press emulation with button"
 msgstr "Pitkä painallus emulointi painikkeella"
+
+msgid "Long press volume steps"
+msgstr "Pitkä painallus äänenvoimakkuuden askelkoko"
 
 #, python-format
 msgid "Long press: %s"
@@ -15552,6 +15543,15 @@ msgstr ""
 "Valitse 'kyllä', jos käytät monikytkintä, joka vaatii DiSEqC portti-A\n"
 "komentosignaalin. Kaikille muille kokoonpanoille valitse 'ei'."
 
+msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' power timer is starting."
+msgstr "Valitse \"Kyllä\", jos haluat herätää television kun Virta ajastus käynnistyy."
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
+msgstr "Valitse \"Kyllä\", jos haluat herätää television kun vaihda kanavaa ja tallenna alkaa."
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr "Valitse \"Kyllä\", jos haluat herätää television Vaihda kanavaa ajastus alkaa."
+
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "'Kyllä' valinnalla tietopalkki näytetään, pysyvästi keskeytetyssä tilassa (ei aikakatkaisua)."
 
@@ -15934,8 +15934,8 @@ msgstr "Valitse, kuinka kauan painikevirhe ponnahtaa näkyviin. Painikkeiden sy�
 msgid "Select how long to display the task and script message pop up."
 msgstr "Valitse, kuinka kauan tehtävä- ja komentosarjaviestin ponnahdusikkuna näytetään."
 
-msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
-msgstr "Valitse, kuinka kauan (sekunteina) äänenvoimakkuuden näyttö näkyy ennen kuin se piilotetaan automaattisesti."
+msgid "Select how long, in seconds, that the volume and mute displays are shown before they automatically hide."
+msgstr "Valitse, kuinka kauan sekunneissa äänenvoimakkuus ja mykistys näyttö näkyvät ennen kuin ne piiloutuvat automaattisesti."
 
 msgid "Select how often this timer is to be repeated."
 msgstr "Valitse, kuinka usein tämä ajastin toistetaan."
@@ -16288,6 +16288,12 @@ msgstr "Käytä siirtymää seuraaville merkeille"
 msgid "Select the shifted character set for the next character only"
 msgstr "Käytä vaihtoa vain seuraavaan merkkiin"
 
+msgid "Select the size of the volume step when the VOLUME buttons are pressed."
+msgstr "Valitse Äänenvoimakkuuden askelkoko kun äänenvoimakkuus painiketta painetaan."
+
+msgid "Select the size of the volume steps when the VOLUME buttons are held down."
+msgstr "Valitse Äänenvoimakkuuden askelkoko kun äänenvoimakkuus näppäintä pidetään pohjassa."
+
 msgid "Select the sort order for the file lines:"
 msgstr "Valitse tiedostorivien lajittelujärjestys:"
 
@@ -16383,9 +16389,6 @@ msgstr ""
 "Valitse langaton verkko, johon haluat muodostaa yhteyden.\n"
 "\n"
 "Jatka painamalla OK."
-
-msgid "Select to use logarithmic step size with more steps at the lower volume levels."
-msgstr "Valitse äänenvoimakkuuden askelkoko, jolloin pienemmillä äänenvoimakkuustasoilla on enemmän askelia."
 
 msgid "Select update source location"
 msgstr "Valitse päivityksen lähde"
@@ -19141,7 +19144,7 @@ msgstr "TMDB Haku"
 
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Suomenkielinen käännös: 18.8.2024\n"
+"Suomenkielinen käännös: 28.8.2024\n"
 "tomppaa"
 
 msgid "TS file is too large for ISO9660 level 1!"
@@ -21244,9 +21247,6 @@ msgstr "Käytä näppäimistökarttaa *"
 msgid "Use legacy navigation"
 msgstr "Käytä vanhaa navigointia"
 
-msgid "Use logarithmic steps"
-msgstr "Käytä logaritmisia askeleita"
-
 msgid "Use official channel numbering"
 msgstr "Käytä virallista kanavanumerointia"
 
@@ -21537,6 +21537,9 @@ msgstr "Venda"
 msgid "Venezuela, Bolivarian Republic of"
 msgstr "Venezuela, Bolivariaaninen tasavalta"
 
+msgid "Verbose"
+msgstr "Yksityiskohtainen"
+
 msgid "Version"
 msgstr "Versio"
 
@@ -21768,17 +21771,20 @@ msgstr "Äänenvoimakkuuden säätö valinta palvelu"
 msgid "Volume Adjust Settings"
 msgstr "Äänenvoimakkuuden säätö asetukset"
 
-msgid "Volume display timer"
-msgstr "Äänenvoimakkuuden näyttö aika"
-
 msgid "Volume down"
 msgstr "Äänenvoimakkuus -"
 
 msgid "Volume keys on the receiver remote will control the TV volume. If this feature is not supported the volume keys have no function!"
 msgstr "Vastaanottimen kaukosäätimen äänenvoimakkuusnäppäimet ohjaavat television äänenvoimakkuutta. Jos tätä ominaisuutta ei tueta, äänenvoimakkuusnäppäimillä ei ole mitään toimintaa!"
 
+msgid "Volume steps"
+msgstr "Äänenvoimakkuuden askelkoko"
+
 msgid "Volume up"
 msgstr "Äänenvoimakkuus +"
+
+msgid "Volume/Mute display timer"
+msgstr "Äänenvoimakkuuden/mykistyksen näytön ajastin"
 
 msgid "Vu+ MultiBoot"
 msgstr "Vu+ MultiBootti"
@@ -23837,6 +23843,36 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Audio volume step size"
+#~ msgstr "Äänenvoimakkuuden askelkokoa"
+
+#~ msgid "Audio volume step size fast mode"
+#~ msgstr "Äänenvoimakkuuden askelkokoa nopeassa tilassa"
+
+#~ msgid "Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row."
+#~ msgstr "Määritä äänenvoimakkuuden porraskoko (1-10) pikatilassa. Aktivoituu, kun äänenvoimakkuusnäppäintä painetaan jatkuvasti tai nopeasti peräkkäin."
+
+#~ msgid "Configure the general audio volume step size (limit 1-10)."
+#~ msgstr "Määritä yleinen äänenvoimakkuuden askelkoko (raja 1-10)."
+
+#~ msgid "Hide mute notification"
+#~ msgstr "Piilota mykistysilmoitus"
+
+#~ msgid "If muted, hide mute icon or mute information after few seconds."
+#~ msgstr "Määrittää piilotetaanko mykystys symboli tai mykistystiedot muutaman sekunnin kuluttua."
+
+#~ msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
+#~ msgstr "Valitse, kuinka kauan (sekunteina) äänenvoimakkuuden näyttö näkyy ennen kuin se piilotetaan automaattisesti."
+
+#~ msgid "Select to use logarithmic step size with more steps at the lower volume levels."
+#~ msgstr "Valitse äänenvoimakkuuden askelkoko, jolloin pienemmillä äänenvoimakkuustasoilla on enemmän askelia."
+
+#~ msgid "Use logarithmic steps"
+#~ msgstr "Käytä logaritmisia askeleita"
+
+#~ msgid "Volume display timer"
+#~ msgstr "Äänenvoimakkuuden näyttö aika"
 
 #~ msgid "Reception"
 #~ msgstr "Virittimien asetukset"

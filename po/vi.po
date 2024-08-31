@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-08 08:13+0000\n"
+"POT-Creation-Date: 2024-08-27 13:46+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -2602,12 +2602,6 @@ msgstr "Lựa chọn ngôn ngữ âm thanh 4"
 msgid "Audio options..."
 msgstr "Tùy chọn âm thanh ..."
 
-msgid "Audio volume step size"
-msgstr "Mức âm lượng có thể điều chỉnh"
-
-msgid "Audio volume step size fast mode"
-msgstr "Mức âm lượng có thể điều chỉnh"
-
 msgid "Australia"
 msgstr "Australia"
 
@@ -2689,6 +2683,9 @@ msgstr ""
 
 msgid "AutoMountManager"
 msgstr "Trình quản lý tự động"
+
+msgid "AutoRefresh"
+msgstr ""
 
 msgid "AutoTimer"
 msgstr ""
@@ -4567,9 +4564,6 @@ msgstr "Định cấu hình tọa độ kết thúc theo x của vùng hiển th
 msgid "Configure the end coordinate in y of the teletext display area."
 msgstr "Định cấu hình tọa độ cuối trong y của vùng hiển thị teletext."
 
-msgid "Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row."
-msgstr "Định cấu hình kích thước bước âm lượng chế độ âm thanh nhanh (giới hạn 1-10). Kích hoạt khi phím âm lượng nhấn vĩnh viễn hoặc bấm nhanh liên tiếp."
-
 msgid "Configure the first audio language (highest priority)."
 msgstr "Cấu hình ngôn ngữ âm thanh đầu tiên (ưu tiên cao nhất)."
 
@@ -4602,9 +4596,6 @@ msgstr ""
 
 msgid "Configure the gateway."
 msgstr "Cấu hình cổng."
-
-msgid "Configure the general audio volume step size (limit 1-10)."
-msgstr "Định cấu hình kích thước bước âm lượng chung (giới hạn 1-10)."
 
 msgid "Configure the hard disk drive to go to standby after the specified idle time when the box is in standby."
 msgstr "Định cấu hình ổ đĩa cứng để chuyển sang chế độ chờ sau thời gian rảnh được chỉ định khi hộp ở chế độ chờ."
@@ -7018,6 +7009,9 @@ msgstr "Cho phép tự động quét nhanh"
 msgid "Enable auto fast scan for %s"
 msgstr "Cho phép tự động quét nhanh cho%s"
 
+msgid "Enable autorefresh templates."
+msgstr ""
+
 msgid "Enable blinking rec symbol on the LCD Display in Standby."
 msgstr "Trong Bản ghi chờ trên màn hình LCD"
 
@@ -9099,9 +9093,6 @@ msgstr ""
 msgid "Hide known extensions"
 msgstr "Ẩn các tiện ích mở rộng đã biết"
 
-msgid "Hide mute notification"
-msgstr "Ẩn thông báo tắt tiếng"
-
 #, fuzzy
 msgid "Hide number markers"
 msgstr "chèn dấu ở đây"
@@ -9470,9 +9461,6 @@ msgstr "Nếu được bật, sử dụng cửa sổ thời gian để phát hi�
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Nếu các bản ghi đang sử dụng không gian tối đa đã đặt, phần lớn nhất sẽ bị xóa."
-
-msgid "If muted, hide mute icon or mute information after few seconds."
-msgstr "Nếu tắt tiếng, ẩn biểu tượng tắt tiếng hoặc tắt thông tin sau vài giây."
 
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
 msgstr ""
@@ -10716,6 +10704,9 @@ msgstr "Tên tập tin dài"
 
 msgid "Long press emulation with button"
 msgstr "Nhấn mô phỏng dài với nút"
+
+msgid "Long press volume steps"
+msgstr ""
 
 #, fuzzy, python-format
 msgid "Long press: %s"
@@ -15726,6 +15717,15 @@ msgstr ""
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Chỉ chọn 'có' nếu bạn đang sử dụng đa tín hiệu yêu cầu tín hiệu lệnh DiSEqC Port-A. Đối với tất cả các thiết lập khác, chọn 'không'."
 
+msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' power timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr ""
+
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Nếu được đặt thành 'có; infobar sẽ vẫn hiển thị vĩnh viễn ở trạng thái 'tạm dừng' (không có thời gian chờ)."
 
@@ -16106,7 +16106,7 @@ msgstr ""
 msgid "Select how long to display the task and script message pop up."
 msgstr ""
 
-msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
+msgid "Select how long, in seconds, that the volume and mute displays are shown before they automatically hide."
 msgstr ""
 
 msgid "Select how often this timer is to be repeated."
@@ -16459,6 +16459,12 @@ msgstr "Chọn bộ ký tự dịch chuyển bàn phím ảo"
 msgid "Select the shifted character set for the next character only"
 msgstr "Chọn bộ ký tự dịch chuyển bàn phím ảo cho chỉ ký tự tiếp theo"
 
+msgid "Select the size of the volume step when the VOLUME buttons are pressed."
+msgstr ""
+
+msgid "Select the size of the volume steps when the VOLUME buttons are held down."
+msgstr ""
+
 msgid "Select the sort order for the file lines:"
 msgstr ""
 
@@ -16551,9 +16557,6 @@ msgid ""
 "Select the wireless network to which you want to connect.\n"
 "\n"
 "Press OK to continue."
-msgstr ""
-
-msgid "Select to use logarithmic step size with more steps at the lower volume levels."
 msgstr ""
 
 msgid "Select update source location"
@@ -21429,9 +21432,6 @@ msgstr "Sử dụng Keymap *"
 msgid "Use legacy navigation"
 msgstr ""
 
-msgid "Use logarithmic steps"
-msgstr ""
-
 msgid "Use official channel numbering"
 msgstr "Sử dụng đánh số kênh chính thức"
 
@@ -21700,6 +21700,9 @@ msgstr ""
 msgid "Venezuela, Bolivarian Republic of"
 msgstr "Venezuela (Cộng hòa Bolivar)"
 
+msgid "Verbose"
+msgstr ""
+
 msgid "Version"
 msgstr ""
 
@@ -21932,17 +21935,20 @@ msgstr ""
 msgid "Volume Adjust Settings"
 msgstr ""
 
-msgid "Volume display timer"
-msgstr ""
-
 msgid "Volume down"
 msgstr "Giảm âm lượng"
 
 msgid "Volume keys on the receiver remote will control the TV volume. If this feature is not supported the volume keys have no function!"
 msgstr ""
 
+msgid "Volume steps"
+msgstr ""
+
 msgid "Volume up"
 msgstr "Tăng âm lượng"
+
+msgid "Volume/Mute display timer"
+msgstr ""
 
 msgid "Vu+ MultiBoot"
 msgstr ""
@@ -24016,6 +24022,24 @@ msgstr "có (giữ thức ăn)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Audio volume step size"
+#~ msgstr "Mức âm lượng có thể điều chỉnh"
+
+#~ msgid "Audio volume step size fast mode"
+#~ msgstr "Mức âm lượng có thể điều chỉnh"
+
+#~ msgid "Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row."
+#~ msgstr "Định cấu hình kích thước bước âm lượng chế độ âm thanh nhanh (giới hạn 1-10). Kích hoạt khi phím âm lượng nhấn vĩnh viễn hoặc bấm nhanh liên tiếp."
+
+#~ msgid "Configure the general audio volume step size (limit 1-10)."
+#~ msgstr "Định cấu hình kích thước bước âm lượng chung (giới hạn 1-10)."
+
+#~ msgid "Hide mute notification"
+#~ msgstr "Ẩn thông báo tắt tiếng"
+
+#~ msgid "If muted, hide mute icon or mute information after few seconds."
+#~ msgstr "Nếu tắt tiếng, ẩn biểu tượng tắt tiếng hoặc tắt thông tin sau vài giây."
 
 #~ msgid "Reception"
 #~ msgstr "Tiếp nhận"

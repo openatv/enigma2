@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-08 08:13+0000\n"
+"POT-Creation-Date: 2024-08-27 13:46+0000\n"
 "PO-Revision-Date: 2023-12-11 00:50+0000\n"
 "Last-Translator: W L <wl@mailhole.de>\n"
 "Language-Team: Albanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sq/>\n"
@@ -2590,12 +2590,6 @@ msgstr "Përzgjedhja e gjuhës audio 4"
 msgid "Audio options..."
 msgstr "Opsionet e audios..."
 
-msgid "Audio volume step size"
-msgstr "Madhësia e hapit të volumit të audios"
-
-msgid "Audio volume step size fast mode"
-msgstr "Modaliteti i shpejtë i madhësisë së hapit të vëllimit të audios"
-
 msgid "Australia"
 msgstr "Australia"
 
@@ -2676,6 +2670,9 @@ msgstr ""
 
 msgid "AutoMountManager"
 msgstr "AutoMountManager"
+
+msgid "AutoRefresh"
+msgstr ""
 
 msgid "AutoTimer"
 msgstr ""
@@ -4542,9 +4539,6 @@ msgstr "Konfiguro koordinatën e fundit në x të zonës së shfaqjes së telete
 msgid "Configure the end coordinate in y of the teletext display area."
 msgstr "Konfiguro koordinatat fund në y të zonës së shfaqjes së teletekstit."
 
-msgid "Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row."
-msgstr "Konfiguro madhësinë e hapit të volumit të audios në modalitet të shpejtë (kufiri 1-10). Aktivizohet kur tasti i volumit shtypet ose shtypet me shpejtësi me radhë."
-
 msgid "Configure the first audio language (highest priority)."
 msgstr "Konfiguro gjuhën e parë audio (përparësia më e lartë)."
 
@@ -4577,9 +4571,6 @@ msgstr "Konfiguro funksionin e butonave < dhe >."
 
 msgid "Configure the gateway."
 msgstr "Konfiguro portën."
-
-msgid "Configure the general audio volume step size (limit 1-10)."
-msgstr "Konfiguro madhësinë e hapit të vëllimit të përgjithshëm të audios (kufiri 1-10)."
 
 msgid "Configure the hard disk drive to go to standby after the specified idle time when the box is in standby."
 msgstr "Konfiguroni hard diskun që të shkojë në gatishmëri pas kohës së caktuar të boshllëkut kur kutia është në gatishmëri."
@@ -6957,6 +6948,9 @@ msgstr "Aktivizo skanimin automatik të shpejtë"
 msgid "Enable auto fast scan for %s"
 msgstr "Aktivizo skanimin automatik të shpejtë për %s"
 
+msgid "Enable autorefresh templates."
+msgstr ""
+
 msgid "Enable blinking rec symbol on the LCD Display in Standby."
 msgstr "Në Regjistrin e gatishmërisë në ekranin LCD"
 
@@ -9014,9 +9008,6 @@ msgstr ""
 msgid "Hide known extensions"
 msgstr "Fshih shtesat e njohura"
 
-msgid "Hide mute notification"
-msgstr "Fshih njoftimin e heshtjes"
-
 msgid "Hide number markers"
 msgstr "Fshih shënuesit e numrave"
 
@@ -9372,9 +9363,6 @@ msgstr "Po të jetë e mundur, duke përdorur një dritare kohore për të zbulu
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Nëse regjistrat përdorin hapësirën maksimale të vendosur, më i madhi do të fshihet."
-
-msgid "If muted, hide mute icon or mute information after few seconds."
-msgstr "Nëse është në heshtje, fshihni ikonën e heshtjes ose heshtni informacionin pas disa sekondash."
 
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
 msgstr ""
@@ -10601,6 +10589,9 @@ msgid "Long filenames"
 msgstr ""
 
 msgid "Long press emulation with button"
+msgstr ""
+
+msgid "Long press volume steps"
 msgstr ""
 
 #, python-format
@@ -15474,6 +15465,15 @@ msgstr ""
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr ""
 
+msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' power timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr ""
+
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Nëse vendoset në 'po; shiriti i informacionit do të mbetet i shfaqur përgjithmonë në gjendje \"të ndërprerë\" (pa afat kohor)."
 
@@ -15854,7 +15854,7 @@ msgstr ""
 msgid "Select how long to display the task and script message pop up."
 msgstr ""
 
-msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
+msgid "Select how long, in seconds, that the volume and mute displays are shown before they automatically hide."
 msgstr ""
 
 msgid "Select how often this timer is to be repeated."
@@ -16203,6 +16203,12 @@ msgstr ""
 msgid "Select the shifted character set for the next character only"
 msgstr ""
 
+msgid "Select the size of the volume step when the VOLUME buttons are pressed."
+msgstr ""
+
+msgid "Select the size of the volume steps when the VOLUME buttons are held down."
+msgstr ""
+
 msgid "Select the sort order for the file lines:"
 msgstr ""
 
@@ -16294,9 +16300,6 @@ msgid ""
 "Select the wireless network to which you want to connect.\n"
 "\n"
 "Press OK to continue."
-msgstr ""
-
-msgid "Select to use logarithmic step size with more steps at the lower volume levels."
 msgstr ""
 
 msgid "Select update source location"
@@ -21051,9 +21054,6 @@ msgstr ""
 msgid "Use legacy navigation"
 msgstr ""
 
-msgid "Use logarithmic steps"
-msgstr ""
-
 msgid "Use official channel numbering"
 msgstr ""
 
@@ -21318,6 +21318,9 @@ msgstr ""
 msgid "Venezuela, Bolivarian Republic of"
 msgstr ""
 
+msgid "Verbose"
+msgstr ""
+
 msgid "Version"
 msgstr ""
 
@@ -21544,17 +21547,20 @@ msgstr "Volumi Rregullo Përzgjedhjen e Shërbimit"
 msgid "Volume Adjust Settings"
 msgstr "Cilësimet e rregullimit të volumit"
 
-msgid "Volume display timer"
-msgstr ""
-
 msgid "Volume down"
 msgstr "Ule volumin"
 
 msgid "Volume keys on the receiver remote will control the TV volume. If this feature is not supported the volume keys have no function!"
 msgstr "Tastet e volumit në telekomandën e marrësit do të kontrollojnë volumin e televizorit. Nëse kjo veçori nuk mbështetet, butonat e volumit nuk kanë funksion!"
 
+msgid "Volume steps"
+msgstr ""
+
 msgid "Volume up"
 msgstr "Rrit volumin"
+
+msgid "Volume/Mute display timer"
+msgstr ""
 
 msgid "Vu+ MultiBoot"
 msgstr ""
@@ -23593,6 +23599,24 @@ msgstr "Po (mbani ushqim)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Audio volume step size"
+#~ msgstr "Madhësia e hapit të volumit të audios"
+
+#~ msgid "Audio volume step size fast mode"
+#~ msgstr "Modaliteti i shpejtë i madhësisë së hapit të vëllimit të audios"
+
+#~ msgid "Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row."
+#~ msgstr "Konfiguro madhësinë e hapit të volumit të audios në modalitet të shpejtë (kufiri 1-10). Aktivizohet kur tasti i volumit shtypet ose shtypet me shpejtësi me radhë."
+
+#~ msgid "Configure the general audio volume step size (limit 1-10)."
+#~ msgstr "Konfiguro madhësinë e hapit të vëllimit të përgjithshëm të audios (kufiri 1-10)."
+
+#~ msgid "Hide mute notification"
+#~ msgstr "Fshih njoftimin e heshtjes"
+
+#~ msgid "If muted, hide mute icon or mute information after few seconds."
+#~ msgstr "Nëse është në heshtje, fshihni ikonën e heshtjes ose heshtni informacionin pas disa sekondash."
 
 #~ msgid "Reception"
 #~ msgstr "Recepsion"

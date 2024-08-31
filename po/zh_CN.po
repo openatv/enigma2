@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-08 08:13+0000\n"
+"POT-Creation-Date: 2024-08-27 13:46+0000\n"
 "PO-Revision-Date: 2023-08-11 04:46+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -2585,12 +2585,6 @@ msgstr "选择第4音频语言"
 msgid "Audio options..."
 msgstr "音频选项..."
 
-msgid "Audio volume step size"
-msgstr "音频音量大小"
-
-msgid "Audio volume step size fast mode"
-msgstr "音频音量大小固定模式"
-
 msgid "Australia"
 msgstr "澳大利亚"
 
@@ -2671,6 +2665,9 @@ msgstr ""
 
 msgid "AutoMountManager"
 msgstr "自动挂载管理器"
+
+msgid "AutoRefresh"
+msgstr ""
 
 msgid "AutoTimer"
 msgstr ""
@@ -4539,9 +4536,6 @@ msgstr "配置图文电视显示区域的x端坐标."
 msgid "Configure the end coordinate in y of the teletext display area."
 msgstr "配置图文显示区域在y方向的终点坐标."
 
-msgid "Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row."
-msgstr "配置固定模式音频音量大小(限制1-10).当音量键永久按下或连续快速按下时激活."
-
 msgid "Configure the first audio language (highest priority)."
 msgstr "配置第一种音频语言(最高优先级)."
 
@@ -4574,9 +4568,6 @@ msgstr ""
 
 msgid "Configure the gateway."
 msgstr "配置网关."
-
-msgid "Configure the general audio volume step size (limit 1-10)."
-msgstr "配置一般音频音量大小(限制1-10)."
 
 msgid "Configure the hard disk drive to go to standby after the specified idle time when the box is in standby."
 msgstr "配置当机顶盒待机时硬盘驱动器在指定的空闲时间后进入待机状态."
@@ -6954,6 +6945,9 @@ msgstr "启用自动快速扫描"
 msgid "Enable auto fast scan for %s"
 msgstr "为%s启用快速自动扫描"
 
+msgid "Enable autorefresh templates."
+msgstr ""
+
 msgid "Enable blinking rec symbol on the LCD Display in Standby."
 msgstr "待机录像时LCD屏显示的录制符号"
 
@@ -9011,9 +9005,6 @@ msgstr ""
 msgid "Hide known extensions"
 msgstr "隐藏已知扩展名"
 
-msgid "Hide mute notification"
-msgstr "隐藏静音通知"
-
 msgid "Hide number markers"
 msgstr "隐藏数字标记"
 
@@ -9369,9 +9360,6 @@ msgstr "如果启用,使用时间窗口检测定时器从深度待机 状态唤�
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "如果日志文件设置了最大空间,旧有的将会删除."
-
-msgid "If muted, hide mute icon or mute information after few seconds."
-msgstr "如果静音,几秒钟后将隐藏静音图标或静音信息."
 
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
 msgstr ""
@@ -10599,6 +10587,9 @@ msgstr "长文件名"
 
 msgid "Long press emulation with button"
 msgstr "长按模拟按键"
+
+msgid "Long press volume steps"
+msgstr ""
 
 #, python-format
 msgid "Long press: %s"
@@ -15504,6 +15495,15 @@ msgstr ""
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "仅当您使用需要DiSEqC Port-A命令信号的多路开关时才选择'是'.对于所有其他设置,请选择'否'."
 
+msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' power timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr ""
+
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "如果信息栏显示设置为'是'；将保持永久的暂停状态(无超时)."
 
@@ -15884,7 +15884,7 @@ msgstr ""
 msgid "Select how long to display the task and script message pop up."
 msgstr ""
 
-msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
+msgid "Select how long, in seconds, that the volume and mute displays are shown before they automatically hide."
 msgstr ""
 
 msgid "Select how often this timer is to be repeated."
@@ -16233,6 +16233,12 @@ msgstr "选择转换后的字符集"
 msgid "Select the shifted character set for the next character only"
 msgstr "仅为下一个字符选择移位字符集"
 
+msgid "Select the size of the volume step when the VOLUME buttons are pressed."
+msgstr ""
+
+msgid "Select the size of the volume steps when the VOLUME buttons are held down."
+msgstr ""
+
 msgid "Select the sort order for the file lines:"
 msgstr ""
 
@@ -16324,9 +16330,6 @@ msgid ""
 "Select the wireless network to which you want to connect.\n"
 "\n"
 "Press OK to continue."
-msgstr ""
-
-msgid "Select to use logarithmic step size with more steps at the lower volume levels."
 msgstr ""
 
 msgid "Select update source location"
@@ -21131,9 +21134,6 @@ msgstr "使用键盘映射 *"
 msgid "Use legacy navigation"
 msgstr ""
 
-msgid "Use logarithmic steps"
-msgstr ""
-
 msgid "Use official channel numbering"
 msgstr "使用官方频道编号"
 
@@ -21398,6 +21398,9 @@ msgstr "文达"
 msgid "Venezuela, Bolivarian Republic of"
 msgstr "委内瑞拉玻利瓦尔共和国"
 
+msgid "Verbose"
+msgstr ""
+
 msgid "Version"
 msgstr ""
 
@@ -21624,17 +21627,20 @@ msgstr ""
 msgid "Volume Adjust Settings"
 msgstr ""
 
-msgid "Volume display timer"
-msgstr ""
-
 msgid "Volume down"
 msgstr "音量减小"
 
 msgid "Volume keys on the receiver remote will control the TV volume. If this feature is not supported the volume keys have no function!"
 msgstr "接收器遥控器上的音量键将控制电视音量. 如果不支持此功能,音量键将不起作用!"
 
+msgid "Volume steps"
+msgstr ""
+
 msgid "Volume up"
 msgstr "音量增大"
+
+msgid "Volume/Mute display timer"
+msgstr ""
 
 msgid "Vu+ MultiBoot"
 msgstr ""
@@ -23679,6 +23685,24 @@ msgstr "是(保持订阅源)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Audio volume step size"
+#~ msgstr "音频音量大小"
+
+#~ msgid "Audio volume step size fast mode"
+#~ msgstr "音频音量大小固定模式"
+
+#~ msgid "Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row."
+#~ msgstr "配置固定模式音频音量大小(限制1-10).当音量键永久按下或连续快速按下时激活."
+
+#~ msgid "Configure the general audio volume step size (limit 1-10)."
+#~ msgstr "配置一般音频音量大小(限制1-10)."
+
+#~ msgid "Hide mute notification"
+#~ msgstr "隐藏静音通知"
+
+#~ msgid "If muted, hide mute icon or mute information after few seconds."
+#~ msgstr "如果静音,几秒钟后将隐藏静音图标或静音信息."
 
 #~ msgid "Reception"
 #~ msgstr "接收器"

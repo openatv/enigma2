@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-08 08:13+0000\n"
-"PO-Revision-Date: 2024-08-16 04:37+0000\n"
+"POT-Creation-Date: 2024-08-27 13:46+0000\n"
+"PO-Revision-Date: 2024-08-29 21:09+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
 "Language: ru\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.7\n"
+"X-Generator: Weblate 5.7.1-dev\n"
 "X-Poedit-SourceCharset: iso-8859-5\n"
 
 msgid ""
@@ -2615,12 +2615,6 @@ msgstr "Выбор языка аудио 4"
 msgid "Audio options..."
 msgstr "Настройки аудио..."
 
-msgid "Audio volume step size"
-msgstr "Шаг громкости звука"
-
-msgid "Audio volume step size fast mode"
-msgstr "Размер шага громкости звука в быстром режиме"
-
 msgid "Australia"
 msgstr "Австралия"
 
@@ -2701,6 +2695,9 @@ msgstr "AutoFS"
 
 msgid "AutoMountManager"
 msgstr "Установки автомонтирования"
+
+msgid "AutoRefresh"
+msgstr "Автоматическое обновление"
 
 msgid "AutoTimer"
 msgstr "Автотаймер"
@@ -4575,9 +4572,6 @@ msgstr "Установите конечную координату по X обл
 msgid "Configure the end coordinate in y of the teletext display area."
 msgstr "Установите конечную координату по Y области отображения телетекста."
 
-msgid "Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row."
-msgstr "Настройте размер шага громкости звука в быстром режиме (ограничение 1-10). Активируется при постоянном нажатии кнопки громкости или быстром нажатии подряд."
-
 msgid "Configure the first audio language (highest priority)."
 msgstr "Настройка первого языка аудио (высокий приоритет)."
 
@@ -4610,9 +4604,6 @@ msgstr "Настройте функции кнопок < и >."
 
 msgid "Configure the gateway."
 msgstr "Настройка шлюза."
-
-msgid "Configure the general audio volume step size (limit 1-10)."
-msgstr "Укажите шаг громкости звука (von 1-10)."
 
 msgid "Configure the hard disk drive to go to standby after the specified idle time when the box is in standby."
 msgstr "Укажите, через какое время нахождения ресивера в режиме ожидания или неиспользования, переводить жёсткий диск в режим ожидания."
@@ -7001,6 +6992,9 @@ msgstr "Быстрый автопоиск"
 msgid "Enable auto fast scan for %s"
 msgstr "Включить автоматический быстрый поиск для %s"
 
+msgid "Enable autorefresh templates."
+msgstr "Включить автоматическое обновление шаблонов."
+
 msgid "Enable blinking rec symbol on the LCD Display in Standby."
 msgstr "Во время записи в режиме ожидания часы на экране ресивера будут мигать"
 
@@ -9062,9 +9056,6 @@ msgstr "Скрыть сообщения об ошибках из модуля о
 msgid "Hide known extensions"
 msgstr "Скрыть расширения файлов"
 
-msgid "Hide mute notification"
-msgstr "Скрыть уведомление о выключении звука"
-
 msgid "Hide number markers"
 msgstr "Скрыть маркеры чисел"
 
@@ -9420,9 +9411,6 @@ msgstr "Если включено, использование временног
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Если логи занимают слишком много памяти, будут удаляться самые старые файлы."
-
-msgid "If muted, hide mute icon or mute information after few seconds."
-msgstr "Если звук отключен, скрыть значок отключения звука или отключить информацию через несколько секунд."
 
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
 msgstr "Если возможно, за Х минут до запуска таймера VPS-плагин будет контролировать, начнётся ли программа раньше. (0 отключает функцию)"
@@ -10652,6 +10640,9 @@ msgstr "Длинные названия файлов"
 
 msgid "Long press emulation with button"
 msgstr "Эмулировать долгое нажатие кнопкой"
+
+msgid "Long press volume steps"
+msgstr "Длинное нажатие, шаги громкости"
 
 #, python-format
 msgid "Long press: %s"
@@ -15567,6 +15558,15 @@ msgstr "Выберите 'ДА', если к звуковым дорожкам D
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Выбирайте 'да' только в том случае, если Вы используете мультисвич, для которого требуется командный сигнал DiSEqC Port A. Для всех остальных настроек выберите 'нет'."
 
+msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' power timer is starting."
+msgstr "Выберите 'Да', если Вы хотите вывести телевизор из спящего режима, так как таймер 'Пробуждения' уже запущен."
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
+msgstr "Выберите 'Да', если Вы хотите вывести телевизор из спящего режима для запуска таймера записи 'Zap and Record'."
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr "Выберите 'Да', если Вы хотите вывести телевизор из спящего режима для запуска таймера записи 'Zap'."
+
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Если выберите 'да', во время паузы инфобар будет отображен постоянно (без таймаута)."
 
@@ -15947,8 +15947,8 @@ msgstr "Выберите, как долго будет отображаться 
 msgid "Select how long to display the task and script message pop up."
 msgstr "Выберите, как долго отображать задание и всплывающее сообщение скрипта."
 
-msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
-msgstr "Выберите, как долго в секундах отображается отображение громкости, прежде чем оно автоматически скроется."
+msgid "Select how long, in seconds, that the volume and mute displays are shown before they automatically hide."
+msgstr "Выберите, как долго (в секундах) будут отображаться индикаторы громкости и отключения звука, прежде чем они автоматически исчезнут."
 
 msgid "Select how often this timer is to be repeated."
 msgstr "Выберите, как часто этот таймер должен повторяться."
@@ -16299,6 +16299,12 @@ msgstr "Выберите действие таймера сна"
 msgid "Select the shifted character set for the next character only"
 msgstr "Выберите смещённый набор символов только для следующего символа"
 
+msgid "Select the size of the volume step when the VOLUME buttons are pressed."
+msgstr "Выберите размер шага громкости при нажатии кнопок VOLUME."
+
+msgid "Select the size of the volume steps when the VOLUME buttons are held down."
+msgstr "Выберите размер шага регулировки громкости при удерживании кнопок VOLUME."
+
 msgid "Select the sort order for the file lines:"
 msgstr "Выберите порядок сортировки строк файла:"
 
@@ -16394,9 +16400,6 @@ msgstr ""
 "Выберите беспроводную сеть, к которой вы хотите подключиться.\n"
 "\n"
 "Нажмите OK, чтобы продолжить."
-
-msgid "Select to use logarithmic step size with more steps at the lower volume levels."
-msgstr "Выберите, чтобы использовать логарифмический размер шага с большим количеством шагов при более низких уровнях громкости."
 
 msgid "Select update source location"
 msgstr "Выберите расположение источника обновления"
@@ -19151,7 +19154,7 @@ msgid "TMDB Search"
 msgstr "Поиск по TMDB"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Коррекция перевода Monja 15.08.2024"
+msgstr "Коррекция перевода Monja 29.08.2024"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл слишком большой для ISO9660 уровень 1!"
@@ -21248,9 +21251,6 @@ msgstr "Использовать раскладку *"
 msgid "Use legacy navigation"
 msgstr "Используйте устаревшую навигацию"
 
-msgid "Use logarithmic steps"
-msgstr "Используйте логарифмические шаги"
-
 msgid "Use official channel numbering"
 msgstr "Использовать обычную нумерацию каналов"
 
@@ -21541,6 +21541,9 @@ msgstr "Венда"
 msgid "Venezuela, Bolivarian Republic of"
 msgstr "Венесуэла (Боливарианская Республика)"
 
+msgid "Verbose"
+msgstr "Подробный"
+
 msgid "Version"
 msgstr "Версия"
 
@@ -21772,17 +21775,20 @@ msgstr "Выбор канала регулировки громкости"
 msgid "Volume Adjust Settings"
 msgstr "Настройки регулировки громкости"
 
-msgid "Volume display timer"
-msgstr "Таймер отображения громкости"
-
 msgid "Volume down"
 msgstr "Громкость ниже"
 
 msgid "Volume keys on the receiver remote will control the TV volume. If this feature is not supported the volume keys have no function!"
 msgstr "Клавиши громкости на пульте ДУ ресивера будут регулировать громкость телевизора. Если эта функция не поддерживается, клавиши регулировки громкости не работают!"
 
+msgid "Volume steps"
+msgstr "Шаги громкости"
+
 msgid "Volume up"
 msgstr "Громкость выше"
+
+msgid "Volume/Mute display timer"
+msgstr "Таймер отображения громкости/отключения звука"
 
 msgid "Vu+ MultiBoot"
 msgstr "Мультизагрузка Vu+"
@@ -23836,6 +23842,36 @@ msgstr "Да (оставить фиды)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Audio volume step size"
+#~ msgstr "Шаг громкости звука"
+
+#~ msgid "Audio volume step size fast mode"
+#~ msgstr "Размер шага громкости звука в быстром режиме"
+
+#~ msgid "Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row."
+#~ msgstr "Настройте размер шага громкости звука в быстром режиме (ограничение 1-10). Активируется при постоянном нажатии кнопки громкости или быстром нажатии подряд."
+
+#~ msgid "Configure the general audio volume step size (limit 1-10)."
+#~ msgstr "Укажите шаг громкости звука (von 1-10)."
+
+#~ msgid "Hide mute notification"
+#~ msgstr "Скрыть уведомление о выключении звука"
+
+#~ msgid "If muted, hide mute icon or mute information after few seconds."
+#~ msgstr "Если звук отключен, скрыть значок отключения звука или отключить информацию через несколько секунд."
+
+#~ msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
+#~ msgstr "Выберите, как долго в секундах отображается отображение громкости, прежде чем оно автоматически скроется."
+
+#~ msgid "Select to use logarithmic step size with more steps at the lower volume levels."
+#~ msgstr "Выберите, чтобы использовать логарифмический размер шага с большим количеством шагов при более низких уровнях громкости."
+
+#~ msgid "Use logarithmic steps"
+#~ msgstr "Используйте логарифмические шаги"
+
+#~ msgid "Volume display timer"
+#~ msgstr "Таймер отображения громкости"
 
 #~ msgid "Reception"
 #~ msgstr "Настройки приёма"

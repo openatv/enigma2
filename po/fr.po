@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-08 08:13+0000\n"
+"POT-Creation-Date: 2024-08-27 13:46+0000\n"
 "PO-Revision-Date: 2024-02-19 11:02+0000\n"
 "Last-Translator: \"Mr.Servo\" <mrservo@gmx.de>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fr/>\n"
@@ -2589,12 +2589,6 @@ msgstr "Sélection de la langue audio 4"
 msgid "Audio options..."
 msgstr "Options audio…"
 
-msgid "Audio volume step size"
-msgstr "Taille du pas du volume audio"
-
-msgid "Audio volume step size fast mode"
-msgstr "Mode rapide de taille de pas de volume audio"
-
 msgid "Australia"
 msgstr "Australie"
 
@@ -2675,6 +2669,9 @@ msgstr ""
 
 msgid "AutoMountManager"
 msgstr "Gestionnaire AutoMount"
+
+msgid "AutoRefresh"
+msgstr ""
 
 msgid "AutoTimer"
 msgstr ""
@@ -4546,9 +4543,6 @@ msgstr "Configure la fin de coordonnées en x de la zone d'affichage du téléte
 msgid "Configure the end coordinate in y of the teletext display area."
 msgstr "Configure la fin de coordonnées en y de la zone d'affichage du télétexte."
 
-msgid "Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row."
-msgstr "Configurez la taille du pas de volume audio en mode rapide (limite 1-10). Activé lors de l'appui permanent sur la touche de volume ou d'un appui rapide consécutif."
-
 msgid "Configure the first audio language (highest priority)."
 msgstr "Configure la première langue audio (priorité la plus élevée)."
 
@@ -4581,9 +4575,6 @@ msgstr ""
 
 msgid "Configure the gateway."
 msgstr "Configure la passerelle."
-
-msgid "Configure the general audio volume step size (limit 1-10)."
-msgstr "Configure la taille du pas du volume audio général (limite 1-10)."
 
 msgid "Configure the hard disk drive to go to standby after the specified idle time when the box is in standby."
 msgstr "Configure le disque dur pour passer en mode veille après la durée spécifiée d'inactivité lorsque le récepteur est en veille."
@@ -6964,6 +6955,9 @@ msgstr "Activer le scan rapide automatique"
 msgid "Enable auto fast scan for %s"
 msgstr "Activer le scan rapide automatique pour %s"
 
+msgid "Enable autorefresh templates."
+msgstr ""
+
 msgid "Enable blinking rec symbol on the LCD Display in Standby."
 msgstr "Dans l'enregistrement de veille sur l'écran LCD"
 
@@ -9023,9 +9017,6 @@ msgstr ""
 msgid "Hide known extensions"
 msgstr "Cacher les extensions connues"
 
-msgid "Hide mute notification"
-msgstr "Masquer la notification de mise en sourdine"
-
 msgid "Hide number markers"
 msgstr "Cacher les nombres des marqueurs"
 
@@ -9381,9 +9372,6 @@ msgstr "Si activé, utilisation d'une fenêtre de temps pour détecter un révei
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Si les logs utilisent le maximum d'espace le plus vieux sera supprimé."
-
-msgid "If muted, hide mute icon or mute information after few seconds."
-msgstr "En cas de mise en sourdine, l'icône de mise en sourdine ou les informations relatives à la mise en sourdine sont masquées après quelques secondes."
 
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
 msgstr ""
@@ -10611,6 +10599,9 @@ msgstr "Nom de fichiers long"
 
 msgid "Long press emulation with button"
 msgstr "Émulation de pression prolongée avec bouton"
+
+msgid "Long press volume steps"
+msgstr ""
 
 #, python-format
 msgid "Long press: %s"
@@ -15525,6 +15516,15 @@ msgstr ""
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Choisir ‘oui’ uniquement si vous utilisez un multiswitch qui requière un signal de commande DiSEqC Port-A. Pour toutes les autres configuration choisir ‘non’."
 
+msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' power timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr ""
+
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Si défini sur 'oui' : l'infobarre reste affichée en permanence 'en pause' (aucun délai d'attente)."
 
@@ -15905,7 +15905,7 @@ msgstr ""
 msgid "Select how long to display the task and script message pop up."
 msgstr ""
 
-msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
+msgid "Select how long, in seconds, that the volume and mute displays are shown before they automatically hide."
 msgstr ""
 
 msgid "Select how often this timer is to be repeated."
@@ -16254,6 +16254,12 @@ msgstr "Sélectionnez le jeu de caractères décalé"
 msgid "Select the shifted character set for the next character only"
 msgstr "Sélectionnez le caractère décalé uniquement pour le suivant"
 
+msgid "Select the size of the volume step when the VOLUME buttons are pressed."
+msgstr ""
+
+msgid "Select the size of the volume steps when the VOLUME buttons are held down."
+msgstr ""
+
 msgid "Select the sort order for the file lines:"
 msgstr ""
 
@@ -16345,9 +16351,6 @@ msgid ""
 "Select the wireless network to which you want to connect.\n"
 "\n"
 "Press OK to continue."
-msgstr ""
-
-msgid "Select to use logarithmic step size with more steps at the lower volume levels."
 msgstr ""
 
 msgid "Select update source location"
@@ -21177,9 +21180,6 @@ msgstr "Sélectionner le keymap à utiliser *"
 msgid "Use legacy navigation"
 msgstr ""
 
-msgid "Use logarithmic steps"
-msgstr ""
-
 msgid "Use official channel numbering"
 msgstr "Utiliser la numérotation officielle des chaînes"
 
@@ -21444,6 +21444,9 @@ msgstr "Venda"
 msgid "Venezuela, Bolivarian Republic of"
 msgstr "Venezuela, République bolivarienne du"
 
+msgid "Verbose"
+msgstr ""
+
 msgid "Version"
 msgstr ""
 
@@ -21670,17 +21673,20 @@ msgstr ""
 msgid "Volume Adjust Settings"
 msgstr ""
 
-msgid "Volume display timer"
-msgstr ""
-
 msgid "Volume down"
 msgstr "Volume bas"
 
 msgid "Volume keys on the receiver remote will control the TV volume. If this feature is not supported the volume keys have no function!"
 msgstr "Les touches de volume de la télécommande du récepteur permettent de contrôler le volume du téléviseur. Si cette fonction n'est pas prise en charge, les touches de volume n'ont aucune fonction !"
 
+msgid "Volume steps"
+msgstr ""
+
 msgid "Volume up"
 msgstr "Volume haut"
+
+msgid "Volume/Mute display timer"
+msgstr ""
 
 msgid "Vu+ MultiBoot"
 msgstr ""
@@ -23730,6 +23736,24 @@ msgstr "Oui (garder feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Audio volume step size"
+#~ msgstr "Taille du pas du volume audio"
+
+#~ msgid "Audio volume step size fast mode"
+#~ msgstr "Mode rapide de taille de pas de volume audio"
+
+#~ msgid "Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row."
+#~ msgstr "Configurez la taille du pas de volume audio en mode rapide (limite 1-10). Activé lors de l'appui permanent sur la touche de volume ou d'un appui rapide consécutif."
+
+#~ msgid "Configure the general audio volume step size (limit 1-10)."
+#~ msgstr "Configure la taille du pas du volume audio général (limite 1-10)."
+
+#~ msgid "Hide mute notification"
+#~ msgstr "Masquer la notification de mise en sourdine"
+
+#~ msgid "If muted, hide mute icon or mute information after few seconds."
+#~ msgstr "En cas de mise en sourdine, l'icône de mise en sourdine ou les informations relatives à la mise en sourdine sont masquées après quelques secondes."
 
 #~ msgid "Reception"
 #~ msgstr "Réception"
