@@ -36,7 +36,7 @@ from enigma import eLabel, eRect, eSize, eServiceReference, gFont, eListbox, eSe
 
 from Components.GUIComponent import GUIComponent
 from Components.config import config
-from Components.MultiContent import __resolveColor, MultiContentEntryProgress, MultiContentEntryText, MultiContentEntryRectangle, MultiContentEntryLinearGradient, MultiContentEntryLinearGradientAlphaBlend
+from Components.MultiContent import MultiContentEntryProgress, MultiContentEntryText, MultiContentEntryRectangle, MultiContentEntryLinearGradient, MultiContentEntryLinearGradientAlphaBlend
 from Components.Renderer.Picon import getPiconName
 import NavigationInstance
 from ServiceReference import ServiceReference
@@ -1203,6 +1203,15 @@ class ServiceList(ServiceListBase, ServiceListTemplateParser):
 		# 128 isFolder
 		# 256 isInBouquet
 
+		def resolveColor(color):
+			if isinstance(color, str):
+				try:
+					return parseColor(color).argb()
+				except Exception as err:
+					print(f"[ServiceList] Error: Resolve color '{err}'")
+				return None
+			return color
+
 		def getRecordColors(foreColor, foreColorSelected, status, defaults, attributes):
 			if self.recordIndicatorMode == 2 and (status & 2) == 0:  # don't set extra colors if marked
 				isRecorded = status & 16
@@ -1365,9 +1374,9 @@ class ServiceList(ServiceListBase, ServiceListTemplateParser):
 					pixmapFlags = item.get("pixmapFlags", 0)
 
 					if backgroundColor:
-						backgroundColor = __resolveColor(backgroundColor)
+						backgroundColor = resolveColor(backgroundColor)
 					if backgroundColorSelected:
-						backgroundColorSelected = __resolveColor(backgroundColorSelected)
+						backgroundColorSelected = resolveColor(backgroundColorSelected)
 
 					if itemIndex == 2:  # Picon
 						picon = self.buildOptionEntryServicePicon(service)
@@ -1405,6 +1414,6 @@ class ServiceList(ServiceListBase, ServiceListTemplateParser):
 
 		except Exception:
 			import traceback
-			traceback.print_exception()
+			traceback.print_exc()
 
 		return res
