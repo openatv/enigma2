@@ -67,19 +67,16 @@ class VolumeControl:
 	def keyVolumeStop(self):
 		self.dvbVolumeControl.setVolumeSteps(config.volumeControl.pressStep.value)
 
-	def keyVolumeMute(self):  # This will toggle the current mute status. Mute will not be activated if the volume is at 0.
-		volume = self.dvbVolumeControl.getVolume()
-		isMuted = self.dvbVolumeControl.isMuted()
-		if volume or (volume == 0 and isMuted):
-			self.dvbVolumeControl.volumeToggleMute()
-			if self.dvbVolumeControl.isMuted():
-				self.muteDialog.show()
-				self.volumeDialog.hide()
-			else:
-				self.muteDialog.hide()
-				self.volumeDialog.setValue(volume)
-				self.volumeDialog.show()
-			self.hideTimer.start(config.volumeControl.hideTimer.value * 1000, True)
+	def keyVolumeMute(self):  # This will toggle the current mute status.
+		self.dvbVolumeControl.volumeToggleMute()
+		if self.dvbVolumeControl.isMuted():
+			self.muteDialog.show()
+			self.volumeDialog.hide()
+		else:
+			self.muteDialog.hide()
+			self.volumeDialog.setValue(self.dvbVolumeControl.getVolume())
+			self.volumeDialog.show()
+		self.hideTimer.start(config.volumeControl.hideTimer.value * 1000, True)
 
 	def keyVolumeMuteLong(self):  # Long press MUTE will keep the mute icon on-screen without a timeout.
 		if self.dvbVolumeControl.isMuted():
@@ -89,7 +86,10 @@ class VolumeControl:
 		if self.dvbVolumeControl.isMuted():
 			self.keyVolumeMute()  # Unmute.
 		else:
-			self.volumeDialog.setValue(self.dvbVolumeControl.getVolume())
+			volume = self.dvbVolumeControl.getVolume()
+			if volume == 0:  # Some receivers do not suppress the volume at a volume level of 0!
+				self.dvbVolumeControl.volumeMute()
+			self.volumeDialog.setValue(volume)
 			self.volumeDialog.show()
 			self.hideTimer.start(config.volumeControl.hideTimer.value * 1000, True)
 
