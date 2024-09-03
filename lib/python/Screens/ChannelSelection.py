@@ -267,7 +267,10 @@ class ChannelSelectionBase(Screen):
 		self.servicelist.goTop()
 
 	def moveUp(self):  # This is used by InfoBarGenerics.
-		self.servicelist.goLineUp()
+		if self.servicelist.isVertical():
+			self.servicelist.goLineUp()
+		else:
+			self.servicelist.goLeft()
 
 	def moveLeft(self):
 		if self.servicelist.isVertical():
@@ -282,7 +285,10 @@ class ChannelSelectionBase(Screen):
 			self.servicelist.goRight()
 
 	def moveDown(self):  # This is used by InfoBarGenerics.
-		self.servicelist.goLineDown()
+		if self.servicelist.isVertical():
+			self.servicelist.goLineDown()
+		else:
+			self.servicelist.goRight()
 
 	def moveEnd(self):  # This is used by InfoBarGenerics.
 		self.servicelist.goBottom()
