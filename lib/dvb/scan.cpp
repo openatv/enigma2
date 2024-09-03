@@ -1278,11 +1278,6 @@ void eDVBScan::start(const eSmartPtrList<iDVBFrontendParameters> &known_transpon
 	m_new_services.clear();
 	m_last_service = m_new_services.end();
 		
-	if (m_flags & scanRemoveServices)
-	{
-		eDVBDB::getInstance()->resetLcnDB();
-	}
-
 	if (m_flags & scanBlindSearch)
 	{
 		/*
