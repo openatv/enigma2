@@ -1215,7 +1215,7 @@ int eTSMPEGDecoder::setState()
 			m_audio->stop();
 		m_audio = 0;
 	}
-	if (m_changed & changeText)
+	if ((m_changed & changeText) || m_state == 1)
 	{
 		if (m_text)
 		{
