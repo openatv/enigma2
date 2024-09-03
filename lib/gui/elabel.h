@@ -35,6 +35,7 @@ public:
 	void setTextBorderWidth(int width) { m_text_border_width = width; }
 	void setWrap(int wrap);
 	void setNoWrap(int nowrap) { setWrap((nowrap == 1) ? 0 : 1); } // DEPRECATED
+	void setUnderline(bool underline);
 	void clearForegroundColor();
 	int getWrap() const { return m_wrap; }
 	int getNoWrap() const { return (m_wrap == 0) ? 1 : 0; } // DEPRECATED
@@ -61,6 +62,7 @@ private:
 	int m_text_border_width = 0;
 	int m_wrap = 1;
 	bool m_blend = false;
+	bool m_underline = false;
 	int m_tab_width = -1;
 
 	enum eLabelEvent

@@ -146,6 +146,7 @@ private:
 #define RT_WRAP 64
 #define RT_ELLIPSIS 128
 #define RT_BLEND 256
+#define RT_UNDERLINE 512
 #define BT_ALPHATEST 1
 #define BT_ALPHABLEND 2
 #define BT_SCALE 4
