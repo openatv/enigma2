@@ -86,10 +86,7 @@ class VolumeControl:
 		if self.dvbVolumeControl.isMuted():
 			self.keyVolumeMute()  # Unmute.
 		else:
-			volume = self.dvbVolumeControl.getVolume()
-			if volume == 0:  # Some receivers do not suppress the volume at a volume level of 0!
-				self.dvbVolumeControl.volumeMute()
-			self.volumeDialog.setValue(volume)
+			self.volumeDialog.setValue(self.dvbVolumeControl.getVolume())
 			self.volumeDialog.show()
 			self.hideTimer.start(config.volumeControl.hideTimer.value * 1000, True)
 
