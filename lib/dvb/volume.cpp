@@ -176,15 +176,13 @@ void eDVBVolumecontrol::setVolume(int left, int right)
 		}
 #endif
 		closeMixer(fd);
-		return;
 	}
 	else
 	{
-		eDebug("[eDVBVolumecontrol] Error: Unable to open mixer!  (%m)");
+		eTrace("[eDVBVolumecontrol] Error: Unable to open mixer!  (%m)");
+		// Workaround because the mixer is opened exclusive in the driver
+		CFile::writeInt("/proc/stb/avs/0/volume", left); /* in -1dB */
 	}
-
-	// HACK?
-	CFile::writeInt("/proc/stb/avs/0/volume", left); /* in -1dB */
 #endif
 }
 
@@ -206,7 +204,7 @@ void eDVBVolumecontrol::volumeMute()
 	}
 	muted = true;
 
-	// HACK?
+	// Workaround because the mixer is opened exclusive in the driver
 	CFile::writeInt("/proc/stb/audio/j1_mute", 1);
 #endif
 }
@@ -229,7 +227,7 @@ void eDVBVolumecontrol::volumeUnMute()
 	}
 	muted = false;
 
-	// HACK?
+	// Workaround because the mixer is opened exclusive in the driver
 	CFile::writeInt("/proc/stb/audio/j1_mute", 0);
 #endif
 }
