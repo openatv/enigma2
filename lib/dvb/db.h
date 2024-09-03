@@ -18,6 +18,7 @@ private:
 	int LCN_BROADCAST;
 	int LCN_GUI;
 	int LCN_SCANNED;
+	int NS;
 	std::string PROVIDER;
 	std::string PROVIDER_GUI;
 	std::string SERVICENAME;
@@ -46,11 +47,11 @@ public:
 		SERVICENAME = "";
 		SERVICENAME_GUI = "";
 		FOUND = true;
+		NS = 0;
 	}
 
 	eServiceReferenceDVB parse(const char *line, int version)
 	{
-		int ns;
 		int onid;
 		int tsid;
 		int sid;
@@ -60,13 +61,13 @@ public:
 		// will be removed
 		if (version == 1)
 		{
-			if (sscanf(line, "%x:%x:%x:%x:%d:%d", &ns, &onid, &tsid, &sid, &LCN_BROADCAST, &SIGNAL) == 6)
-				return eServiceReferenceDVB(eDVBNamespace(ns), eTransportStreamID(tsid), eOriginalNetworkID(onid), eServiceID(sid), 0);
+			if (sscanf(line, "%x:%x:%x:%x:%d:%d", &NS, &onid, &tsid, &sid, &LCN_BROADCAST, &SIGNAL) == 6)
+				return eServiceReferenceDVB(eDVBNamespace(NS), eTransportStreamID(tsid), eOriginalNetworkID(onid), eServiceID(sid), 0);
 			else
 				return eServiceReferenceDVB();
 		}
 
-		if (sscanf(line, "%x:%x:%x:%x:%d:%d:%d:%d:%[^\n]", &sid, &tsid, &onid, &ns, &SIGNAL, &LCN_BROADCAST, &LCN_SCANNED, &LCN_GUI, buffer) == 9)
+		if (sscanf(line, "%x:%x:%x:%x:%d:%d:%d:%d:%[^\n]", &sid, &tsid, &onid, &NS, &SIGNAL, &LCN_BROADCAST, &LCN_SCANNED, &LCN_GUI, buffer) == 9)
 		{
 			// eDebug("[eDVBDB] LCNData parse %X:%X:%X:%X: LCN_BROADCAST %d LCN_SCANNED %d LCN_GUI %d", sid, tsid, onid, ns, LCN_BROADCAST, LCN_SCANNED, LCN_GUI);
 			auto Data = split_str(buffer);
@@ -80,7 +81,7 @@ public:
 					SERVICENAME_GUI = Data[3];
 				}
 			}
-			return eServiceReferenceDVB(eDVBNamespace(ns), eTransportStreamID(tsid), eOriginalNetworkID(onid), eServiceID(sid), 0);
+			return eServiceReferenceDVB(eDVBNamespace(NS), eTransportStreamID(tsid), eOriginalNetworkID(onid), eServiceID(sid), 0);
 		}
 		return eServiceReferenceDVB();
 	}
@@ -120,9 +121,10 @@ public:
 		}
 	}
 
-	void resetFound()
+	void resetFound(int dvb_namespace)
 	{
-		FOUND = false;
+		if(dvb_namespace == 0 || NS == dvb_namespace)
+			FOUND = false;
 	}
 
 };
@@ -201,9 +203,9 @@ public:
 	virtual ~eDVBDB();
 	int renumberBouquet(eBouquet &bouquet, int startChannelNum = 1);
 	void addLcnToDB(int ns, int onid, int tsid, int sid, uint16_t lcn, uint32_t signal);
-	void resetLcnDB();
 	void saveLcnDB();
 #endif
+	void resetLcnDB(int dvb_namespace=0);
 	eServiceReference searchReference(int tsid, int onid, int sid);
 	void setNumberingMode(int numberingMode);
 	void setLoadUnlinkedUserbouquets(bool value) { m_load_unlinked_userbouquets=value; }
