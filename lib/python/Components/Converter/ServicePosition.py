@@ -128,6 +128,9 @@ class ServicePosition(Poll, Converter):
 			p /= 90000
 			r /= 90000
 
+		if l == 0 and p > 0:  # Set position to 0 if length = 0 and pos > 0
+			p = 0
+
 		if self.negate:
 			l = -l
 			p = -p
