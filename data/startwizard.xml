@@ -268,7 +268,7 @@ self.condition = nimmanager.somethingConnected() and not config.misc.installwiza
 from Components.NimManager import nimmanager
 self.condition = nimmanager.somethingConnected() and not config.misc.installwizard.channellistdownloaded.value
 		</condition>
-		<buttons enable="OK,LEFT,RIGHT" />
+		<buttons enable="OK,UP,DOWN,LEFT,RIGHT" />
 		<text value="What do you want to scan?" />
 		<displaytext value="What do you want to scan?" />
 		<config screen="ScanSimple" module="ScanSetup" type="ConfigList" />
