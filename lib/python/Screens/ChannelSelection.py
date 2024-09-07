@@ -222,7 +222,7 @@ class ChannelSelectionBase(Screen):
 		self.onShown.append(self.applyKeyMap)
 
 	def layoutFinished(self):
-		self.servicelist.instance.enableAutoNavigation(config.misc.actionLeftRightToPageUpPageDown.value or ("keymap.ntr" in config.usage.keymap.value))  # Override list box navigation.
+		self.servicelist.instance.enableAutoNavigation(config.misc.actionLeftRightToPageUpPageDown.value and ("keymap.ntr" not in config.usage.keymap.value))  # Override list box navigation.
 
 	def applyKeyMap(self):  # IanSav: Should this be a NumericalTextInput mode?
 		if config.usage.show_channel_jump_in_servicelist.value == "alpha":
