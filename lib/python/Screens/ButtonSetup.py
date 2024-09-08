@@ -708,8 +708,8 @@ class InfoBarButtonSetup():
 					self.session.open(BluetoothSetup)
 			elif selected[0] == "YoutubeTV":
 				if isPluginInstalled("Chromium"):
-					from Plugins.Extensions.Chromium.youtube import YoutubeTVWindow
-					self.session.open(YoutubeTVWindow)
+					from Plugins.Extensions.Chromium.plugin import start_youtubetv_main
+					start_youtubetv_main(self.session)
 
 	def showServiceListOrMovies(self):
 		if hasattr(self, "openServiceList"):
