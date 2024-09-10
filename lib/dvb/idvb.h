@@ -371,13 +371,14 @@ public:
 		dxIsScrambledPMT=1024,
 		dxCenterDVBSubs=2048,
 		dxNoEIT=4096,
+		dxNoAITranslation=8192
 	};
 
 	enum
 	{
-		dxIntIsinBouquet=8192,
-		dxIntNewServiceName=16384,
-		dxIntNewProvider=32768,
+		dxIntIsinBouquet=16384,
+		dxIntNewServiceName=32768,
+		dxIntNewProvider=65536,
 	};
 
 	bool usePMT() const { return !(m_flags & dxNoDVB); }
@@ -386,6 +387,7 @@ public:
 	bool doHideVBI() const { return m_flags & dxHideVBI; }
 	bool doCenterDVBSubs() const { return m_flags & dxCenterDVBSubs; }
 	bool useEIT() const { return !(m_flags & dxNoEIT); }
+	bool noAITranslation() const { return m_flags & dxNoAITranslation; }
 
 	CAID_LIST m_ca;
 

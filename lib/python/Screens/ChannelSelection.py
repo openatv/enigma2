@@ -58,6 +58,7 @@ FLAG_SERVICE_NEW_FOUND = 64
 FLAG_IS_DEDICATED_3D = 128
 FLAG_HIDE_VBI = 512
 FLAG_CENTER_DVB_SUBS = 2048  # Defined in lib/dvb/idvb.h as dxNewFound = 64 and dxIsDedicated3D = 128.
+FLAG_NO_AI_TRANSLATION = 8192
 
 # Values for csel.bouquet_mark_edit:
 OFF = 0
@@ -1371,6 +1372,13 @@ class ChannelContextMenu(Screen):
 						appendWhenValid(current, menu, (_("Don't Center DVB Subs On This Service"), self.removeCenterDVBSubsFlag))
 					else:
 						appendWhenValid(current, menu, (_("Center DVB Subs On This Service"), self.addCenterDVBSubsFlag))
+
+					if BoxInfo.getItem("AISubs"):
+						if eDVBDB.getInstance().getFlag(eServiceReference(current.toString())) & FLAG_NO_AI_TRANSLATION:
+							appendWhenValid(current, menu, (_("Translate Subs On This Service"), self.removeNoAITranslationFlag))
+						else:
+							appendWhenValid(current, menu, (_("Don't Translate Subs On This Service"), self.addNoAITranslationFlag))
+
 					if not csel.isSubservices():
 						if haveBouquets:
 							bouquets = self.csel.getBouquetList()
@@ -1633,6 +1641,16 @@ class ChannelContextMenu(Screen):
 		eDVBDB.getInstance().removeFlag(eServiceReference(self.csel.getCurrentSelection().toString()), FLAG_CENTER_DVB_SUBS)
 		eDVBDB.getInstance().reloadBouquets()
 		config.subtitles.dvb_subtitles_centered.value = False
+		self.close()
+
+	def addNoAITranslationFlag(self):
+		eDVBDB.getInstance().addFlag(eServiceReference(self.csel.getCurrentSelection().toString()), FLAG_NO_AI_TRANSLATION)
+		eDVBDB.getInstance().reloadBouquets()
+		self.close()
+
+	def removeNoAITranslationFlag(self):
+		eDVBDB.getInstance().removeFlag(eServiceReference(self.csel.getCurrentSelection().toString()), FLAG_NO_AI_TRANSLATION)
+		eDVBDB.getInstance().reloadBouquets()
 		self.close()
 
 	def addServiceToBouquetOrAlternative(self):
