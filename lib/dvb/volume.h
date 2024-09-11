@@ -28,6 +28,7 @@ private:
 	int openMixer();
 	void closeMixer(int fd);
 
+	bool mute_zero;
 	bool muted;
 	int leftVol, rightVol;
 	int m_volsteps;
