@@ -54,12 +54,10 @@ class VolumeControl:
 			self.hideVolTimer = self.hideTimer
 
 	def keyVolumeUp(self):
-		self.dvbVolumeControl.volumeUp(0, 0)
-		self.updateVolume()
+		self.updateVolume(self.dvbVolumeControl.volumeUp(0, 0))
 
 	def keyVolumeDown(self):
-		self.dvbVolumeControl.volumeDown(0, 0)
-		self.updateVolume()
+		self.updateVolume(self.dvbVolumeControl.volumeDown(0, 0))
 
 	def keyVolumeLong(self):
 		self.dvbVolumeControl.setVolumeSteps(config.volumeControl.longStep.value)
@@ -82,11 +80,11 @@ class VolumeControl:
 		if self.dvbVolumeControl.isMuted():
 			self.hideTimer.stop()
 
-	def updateVolume(self):
+	def updateVolume(self, volume):
 		if self.dvbVolumeControl.isMuted():
 			self.keyVolumeMute()  # Unmute.
 		else:
-			self.volumeDialog.setValue(self.dvbVolumeControl.getVolume())
+			self.volumeDialog.setValue(volume)
 			self.volumeDialog.show()
 			self.hideTimer.start(config.volumeControl.hideTimer.value * 1000, True)
 
