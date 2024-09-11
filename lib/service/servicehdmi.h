@@ -48,23 +48,23 @@ public:
 	RESULT stop();
 	RESULT setTarget(int target, bool noaudio);
 
-	RESULT pause(ePtr<iPauseableService> &ptr) { ptr = 0; return -1; }
-	RESULT seek(ePtr<iSeekableService> &ptr) { ptr = 0; return -1; }
-	RESULT audioTracks(ePtr<iAudioTrackSelection> &ptr) { ptr = 0; return -1; }
-	RESULT audioChannel(ePtr<iAudioChannelSelection> &ptr) { ptr = 0; return -1; }
-	RESULT subtitle(ePtr<iSubtitleOutput> &ptr) { ptr = 0; return -1; }
-	RESULT audioDelay(ePtr<iAudioDelay> &ptr) { ptr = 0; return -1; }
+	RESULT pause(ePtr<iPauseableService> &ptr) { ptr = nullptr; return -1; }
+	RESULT seek(ePtr<iSeekableService> &ptr) { ptr = nullptr; return -1; }
+	RESULT audioTracks(ePtr<iAudioTrackSelection> &ptr) { ptr = nullptr; return -1; }
+	RESULT audioChannel(ePtr<iAudioChannelSelection> &ptr) { ptr = nullptr; return -1; }
+	RESULT subtitle(ePtr<iSubtitleOutput> &ptr) { ptr = nullptr; return -1; }
+	RESULT audioDelay(ePtr<iAudioDelay> &ptr) { ptr = nullptr; return -1; }
 
-	RESULT frontendInfo(ePtr<iFrontendInformation> &ptr) { ptr = 0; return -1; }
-	RESULT subServices(ePtr<iSubserviceList> &ptr) { ptr = 0; return -1; }
-	RESULT timeshift(ePtr<iTimeshiftService> &ptr) { ptr = 0; return -1; }
-	RESULT tap(ePtr<iTapService> &ptr) { ptr = 0; return -1; };
-	RESULT cueSheet(ePtr<iCueSheet> &ptr) { ptr = 0; return -1; }
+	RESULT frontendInfo(ePtr<iFrontendInformation> &ptr) { ptr = nullptr; return -1; }
+	RESULT subServices(ePtr<iSubserviceList> &ptr) { ptr = nullptr; return -1; }
+	RESULT timeshift(ePtr<iTimeshiftService> &ptr) { ptr = nullptr; return -1; }
+	RESULT tap(ePtr<iTapService> &ptr) { ptr = nullptr; return -1; };
+	RESULT cueSheet(ePtr<iCueSheet> &ptr) { ptr = nullptr; return -1; }
 
-	RESULT rdsDecoder(ePtr<iRdsDecoder> &ptr) { ptr = 0; return -1; }
-	RESULT keys(ePtr<iServiceKeys> &ptr) { ptr = 0; return -1; }
-	RESULT stream(ePtr<iStreamableService> &ptr) { ptr = 0; return -1; }
-	RESULT streamed(ePtr<iStreamedService> &ptr) { ptr = 0; return -1; }
+	RESULT rdsDecoder(ePtr<iRdsDecoder> &ptr) { ptr = nullptr; return -1; }
+	RESULT keys(ePtr<iServiceKeys> &ptr) { ptr = nullptr; return -1; }
+	RESULT stream(ePtr<iStreamableService> &ptr) { ptr = nullptr; return -1; }
+	RESULT streamed(ePtr<iStreamedService> &ptr) { ptr = nullptr; return -1; }
 
 	RESULT info(ePtr<iServiceInformation>&);
 

@@ -48,13 +48,13 @@ RESULT eServiceFactoryXine::play(const eServiceReference &ref, ePtr<iPlayableSer
 
 RESULT eServiceFactoryXine::record(const eServiceReference &ref, ePtr<iRecordableService> &ptr)
 {
-	ptr=0;
+	ptr = nullptr;
 	return -1;
 }
 
 RESULT eServiceFactoryXine::list(const eServiceReference &, ePtr<iListableService> &ptr)
 {
-	ptr=0;
+	ptr = nullptr;
 	return -1;
 }
 
@@ -66,7 +66,7 @@ RESULT eServiceFactoryXine::info(const eServiceReference &ref, ePtr<iStaticServi
 
 RESULT eServiceFactoryXine::offlineOperations(const eServiceReference &, ePtr<iServiceOfflineOperations> &ptr)
 {
-	ptr = 0;
+	ptr = nullptr;
 	return -1;
 }
 
@@ -214,7 +214,7 @@ RESULT eServiceXine::stop()
 
 RESULT eServiceXine::pause(ePtr<iPauseableService> &ptr)
 {
-	ptr=this;
+	ptr = this;
 	return 0;
 }
 

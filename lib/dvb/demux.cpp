@@ -36,11 +36,10 @@ enum dmx_source {
 #define DMX_SET_SOURCE _IOW('o', 49, enum dmx_source)
 #endif
 
-
 //#define SHOW_WRITE_TIME
 static int determineBufferCount()
 {
-	struct sysinfo si;
+	struct sysinfo si = {};
 	if (sysinfo(&si) != 0)
 	{
 		return 6; // Default to small
@@ -79,7 +78,7 @@ eDVBDemux::~eDVBDemux()
 
 int eDVBDemux::openDemux(void)
 {
-	char filename[32];
+	char filename[32] = {};
 	snprintf(filename, sizeof(filename), "/dev/dvb/adapter%d/demux%d", adapter, demux);
 	eTrace("[eDVBDemux] Open demux '%s'.", filename);
 	int fd = ::open(filename, O_RDWR | O_CLOEXEC);
@@ -105,9 +104,7 @@ RESULT eDVBDemux::setSourceFrontend(int fenum)
 	int n = DMX_SOURCE_FRONT0 + fenum;
 	int res = ::ioctl(fd, DMX_SET_SOURCE, &n);
 	if (res)
-	{
 		eDebug("[eDVBDemux] DMX_SET_SOURCE Frontend%d failed: %m", fenum);
-	}
 	else
 		source = fenum;
 	::close(fd);
@@ -167,7 +164,7 @@ RESULT eDVBDemux::getSTC(pts_t &pts, int num)
 	if (fd < 0)
 		return -ENODEV;
 
-	struct dmx_stc stc;
+	struct dmx_stc stc = {};
 	stc.num = num;
 	stc.base = 1;
 
@@ -202,7 +199,7 @@ RESULT eDVBDemux::connectEvent(const sigc::slot1<void,int> &event, ePtr<eConnect
 
 void eDVBSectionReader::data(int)
 {
-	uint8_t data[4096]; // max. section size
+	uint8_t data[4096] = {}; // max. section size
 	int r;
 	r = ::read(fd, data, 4096);
 	if(r < 0)
@@ -267,7 +264,7 @@ RESULT eDVBSectionReader::start(const eDVBSectionFilterMask &mask)
 	eTrace("[eDVBSectionReader] DMX_SET_FILTER pid=%d", mask.pid);
 	notifier->start();
 
-	dmx_sct_filter_params sct;
+	dmx_sct_filter_params sct = {};
 	memset(&sct, 0, sizeof(sct));
 	sct.pid     = mask.pid;
 	sct.timeout = 0;
@@ -315,7 +312,7 @@ void eDVBPESReader::data(int)
 {
 	while (1)
 	{
-		uint8_t buffer[16384];
+		uint8_t buffer[16384] = {};
 		int r;
 		r = ::read(m_fd, buffer, 16384);
 		if (!r)
@@ -380,7 +377,7 @@ RESULT eDVBPESReader::start(int pid)
 	eDebug("[eDVBPESReader] DMX_SET_PES_FILTER pid=%04x", pid);
 	m_notifier->start();
 
-	dmx_pes_filter_params flt;
+	dmx_pes_filter_params flt = {};
 	memset(&flt, 0, sizeof(flt));
 
 	flt.pes_type = DMX_PES_OTHER;
@@ -548,8 +545,8 @@ int eDVBRecordFileThread::AsyncIO::start(int fd, off_t offset, size_t nbytes, vo
 int eDVBRecordFileThread::asyncWrite(int len)
 {
 #ifdef SHOW_WRITE_TIME
-	struct timeval starttime;
-	struct timeval now;
+	struct timeval starttime = {};
+	struct timeval now = {};
 	suseconds_t diff;
 	gettimeofday(&starttime, NULL);
 #endif
@@ -612,7 +609,7 @@ int eDVBRecordFileThread::writeData(int len)
 {
 	if(m_sync_mode)
 	{
-		struct pollfd pfd;
+		struct pollfd pfd = {};
 
 		pfd.fd = m_fd_dest;
 		pfd.events = POLLOUT;
@@ -686,7 +683,7 @@ int eDVBRecordStreamThread::writeData(int len)
 {
 	if(m_sync_mode)
 	{
-		struct pollfd pfd;
+		struct pollfd pfd = {};
 
 		pfd.fd = m_fd_dest;
 		pfd.events = POLLOUT;
@@ -821,7 +818,7 @@ RESULT eDVBTSRecorder::start()
 
 	setBufferSize(1024*1024);
 
-	dmx_pes_filter_params flt;
+	dmx_pes_filter_params flt = {};
 	memset(&flt, 0, sizeof(flt));
 
 	flt.pes_type = DMX_PES_OTHER;

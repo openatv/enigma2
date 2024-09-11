@@ -166,7 +166,7 @@ RESULT eServiceCenter::play(const eServiceReference &ref, ePtr<iPlayableService>
 	std::map<int,ePtr<iServiceHandler> >::iterator i = handler.find(ref.type);
 	if (i == handler.end())
 	{
-		ptr = 0;
+		ptr = nullptr;
 		return -1;
 	}
 	return i->second->play(ref, ptr);
@@ -177,7 +177,7 @@ RESULT eServiceCenter::record(const eServiceReference &ref, ePtr<iRecordableServ
 	std::map<int,ePtr<iServiceHandler> >::iterator i = handler.find(ref.type);
 	if (i == handler.end())
 	{
-		ptr = 0;
+		ptr = nullptr;
 		return -1;
 	}
 	return i->second->record(ref, ptr);
@@ -188,7 +188,7 @@ RESULT eServiceCenter::list(const eServiceReference &ref, ePtr<iListableService>
 	std::map<int,ePtr<iServiceHandler> >::iterator i = handler.find(ref.type);
 	if (i == handler.end())
 	{
-		ptr = 0;
+		ptr = nullptr;
 		return -1;
 	}
 	return i->second->list(ref, ptr);
@@ -199,7 +199,7 @@ RESULT eServiceCenter::info(const eServiceReference &ref, ePtr<iStaticServiceInf
 	std::map<int,ePtr<iServiceHandler> >::iterator i = handler.find(ref.type);
 	if (i == handler.end())
 	{
-		ptr = 0;
+		ptr = nullptr;
 		return -1;
 	}
 	return i->second->info(ref, ptr);
@@ -210,7 +210,7 @@ RESULT eServiceCenter::offlineOperations(const eServiceReference &ref, ePtr<iSer
 	std::map<int,ePtr<iServiceHandler> >::iterator i = handler.find(ref.type);
 	if (i == handler.end())
 	{
-		ptr = 0;
+		ptr = nullptr;
 		return -1;
 	}
 	return i->second->offlineOperations(ref, ptr);
@@ -274,7 +274,7 @@ int eServiceCenter::getServiceTypeForExtension(const std::string &str)
 	/* default handlers */
 RESULT iServiceHandler::info(const eServiceReference &, ePtr<iStaticServiceInformation> &ptr)
 {
-	ptr = 0;
+	ptr = nullptr;
 	return -1;
 }
 

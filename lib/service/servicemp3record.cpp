@@ -479,7 +479,7 @@ gboolean eServiceMP3Record::handleAutoPlugCont(GstElement *bin, GstPad *pad, Gst
 
 RESULT eServiceMP3Record::frontendInfo(ePtr<iFrontendInformation> &ptr)
 {
-	ptr = 0;
+	ptr = nullptr;
 	return -1;
 }
 
@@ -491,12 +491,12 @@ RESULT eServiceMP3Record::connectEvent(const sigc::slot2<void,iRecordableService
 
 RESULT eServiceMP3Record::stream(ePtr<iStreamableService> &ptr)
 {
-	ptr = 0;
+	ptr = nullptr;
 	return -1;
 }
 
 RESULT eServiceMP3Record::subServices(ePtr<iSubserviceList> &ptr)
 {
-	ptr = 0;
+	ptr = nullptr;
 	return -1;
 }

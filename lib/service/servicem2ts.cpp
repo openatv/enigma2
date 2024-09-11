@@ -83,7 +83,7 @@ int eStaticServiceM2TSInformation::getLength(const eServiceReference &ref)
 
 	eDVBTSTools tstools;
 
-	struct stat s;
+	struct stat s = {};
 	stat(ref.path.c_str(), &s);
 
 	eM2TSFile *file = new eM2TSFile(ref.path.c_str());
@@ -368,25 +368,25 @@ RESULT eServiceFactoryM2TS::play(const eServiceReference &ref, ePtr<iPlayableSer
 
 RESULT eServiceFactoryM2TS::record(const eServiceReference &ref, ePtr<iRecordableService> &ptr)
 {
-	ptr=0;
+	ptr = nullptr;
 	return -1;
 }
 
 RESULT eServiceFactoryM2TS::list(const eServiceReference &ref, ePtr<iListableService> &ptr)
 {
-	ptr=0;
+	ptr = nullptr;
 	return -1;
 }
 
 RESULT eServiceFactoryM2TS::info(const eServiceReference &ref, ePtr<iStaticServiceInformation> &ptr)
 {
-	ptr=new eStaticServiceM2TSInformation(ref);
+	ptr = new eStaticServiceM2TSInformation(ref);
 	return 0;
 }
 
 RESULT eServiceFactoryM2TS::offlineOperations(const eServiceReference &ref, ePtr<iServiceOfflineOperations> &ptr)
 {
-	ptr = 0;
+	ptr = nullptr;
 	return -1;
 }
 

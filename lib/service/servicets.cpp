@@ -51,25 +51,25 @@ RESULT eServiceFactoryTS::play(const eServiceReference &ref, ePtr<iPlayableServi
 
 RESULT eServiceFactoryTS::record(const eServiceReference &ref, ePtr<iRecordableService> &ptr)
 {
-	ptr=0;
+	ptr = nullptr;
 	return -1;
 }
 
 RESULT eServiceFactoryTS::list(const eServiceReference &, ePtr<iListableService> &ptr)
 {
-	ptr=0;
+	ptr = nullptr;
 	return -1;
 }
 
 RESULT eServiceFactoryTS::info(const eServiceReference &ref, ePtr<iStaticServiceInformation> &ptr)
 {
-	ptr = 0;
+	ptr = nullptr;
 	return -1;
 }
 
 RESULT eServiceFactoryTS::offlineOperations(const eServiceReference &, ePtr<iServiceOfflineOperations> &ptr)
 {
-	ptr = 0;
+	ptr = nullptr;
 	return -1;
 }
 
@@ -178,7 +178,7 @@ int eServiceTS::openHttpConnection(std::string url)
 	if (fd == -1)
 		return -1;
 
-	struct sockaddr_in addr;
+	struct sockaddr_in addr = {};
 	addr.sin_family = AF_INET;
 	addr.sin_addr.s_addr = *((in_addr_t*)h->h_addr_list[0]);
 	addr.sin_port = htons(port);
@@ -625,7 +625,7 @@ void eStreamThread::thread() {
 	bool eof = false;
 	fd_set rfds;
 	fd_set wfds;
-	struct timeval timeout;
+	struct timeval timeout = {};
 	int rc,r,w,maxfd;
 	time_t next_scantime = 0;
 	bool sosSend = false;

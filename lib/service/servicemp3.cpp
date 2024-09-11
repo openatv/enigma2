@@ -217,13 +217,13 @@ RESULT eServiceFactoryMP3::record(const eServiceReference &ref, ePtr<iRecordable
 		ptr = new eServiceMP3Record((eServiceReference&)ref);
 		return 0;
 	}
-	ptr=0;
+	ptr = nullptr;
 	return -1;
 }
 
 RESULT eServiceFactoryMP3::list(const eServiceReference &, ePtr<iListableService> &ptr)
 {
-	ptr=0;
+	ptr = nullptr;
 	return -1;
 }
 

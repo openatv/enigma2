@@ -144,23 +144,23 @@ public:
 	RESULT subtitle(ePtr<iSubtitleOutput> &ptr);
 	RESULT audioDelay(ePtr<iAudioDelay> &ptr);
 	RESULT cueSheet(ePtr<iCueSheet> &ptr);
-	RESULT tap(ePtr<iTapService> &ptr) { ptr = 0; return -1; };
+	RESULT tap(ePtr<iTapService> &ptr) { ptr = nullptr; return -1; };
 
 		// not implemented (yet)
 	RESULT setTarget(int target, bool noaudio = false) { return -1; }
-	RESULT frontendInfo(ePtr<iFrontendInformation> &ptr) { ptr = 0; return -1; }
-	RESULT subServices(ePtr<iSubserviceList> &ptr) { ptr = 0; return -1; }
-	RESULT timeshift(ePtr<iTimeshiftService> &ptr) { ptr = 0; return -1; }
-//	RESULT cueSheet(ePtr<iCueSheet> &ptr) { ptr = 0; return -1; }
+	RESULT frontendInfo(ePtr<iFrontendInformation> &ptr) { ptr = nullptr; return -1; }
+	RESULT subServices(ePtr<iSubserviceList> &ptr) { ptr = nullptr; return -1; }
+	RESULT timeshift(ePtr<iTimeshiftService> &ptr) { ptr = nullptr; return -1; }
+//	RESULT cueSheet(ePtr<iCueSheet> &ptr) { ptr = nullptr; return -1; }
 
 		// iCueSheet
 	PyObject *getCutList();
 	void setCutList(SWIG_PYOBJECT(ePyObject));
 	void setCutListEnable(int enable);
 
-	RESULT rdsDecoder(ePtr<iRdsDecoder> &ptr) { ptr = 0; return -1; }
-	RESULT keys(ePtr<iServiceKeys> &ptr) { ptr = 0; return -1; }
-	RESULT stream(ePtr<iStreamableService> &ptr) { ptr = 0; return -1; }
+	RESULT rdsDecoder(ePtr<iRdsDecoder> &ptr) { ptr = nullptr; return -1; }
+	RESULT keys(ePtr<iServiceKeys> &ptr) { ptr = nullptr; return -1; }
+	RESULT stream(ePtr<iStreamableService> &ptr) { ptr = nullptr; return -1; }
 
 	void setQpipMode(bool value, bool audio) { }
 

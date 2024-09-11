@@ -54,7 +54,7 @@ RESULT eServiceFactoryHDMI::record(const eServiceReference &ref, ePtr<iRecordabl
 
 RESULT eServiceFactoryHDMI::list(const eServiceReference &, ePtr<iListableService> &ptr)
 {
-	ptr = 0;
+	ptr = nullptr;
 	return -1;
 }
 
@@ -66,7 +66,7 @@ RESULT eServiceFactoryHDMI::info(const eServiceReference &ref, ePtr<iStaticServi
 
 RESULT eServiceFactoryHDMI::offlineOperations(const eServiceReference &, ePtr<iServiceOfflineOperations> &ptr)
 {
-	ptr = 0;
+	ptr = nullptr;
 	return -1;
 }
 
@@ -355,13 +355,13 @@ int eServiceHDMIRecord::doRecord()
 
 RESULT eServiceHDMIRecord::stream(ePtr<iStreamableService> &ptr)
 {
-	ptr = NULL;
+	ptr = nullptr;
 	return -1;
 }
 
 RESULT eServiceHDMIRecord::subServices(ePtr<iSubserviceList> &ptr)
 {
-	ptr = NULL;
+	ptr = nullptr;
 	return -1;
 }
 

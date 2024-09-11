@@ -3215,7 +3215,7 @@ void eDVBServicePlay::updateDecoder(bool sendSeekableStateChanged)
 			m_subtitle_parser->connectNewPage(sigc::mem_fun(*this, &eDVBServicePlay::newDVBSubtitlePage), m_new_dvb_subtitle_page_connection);
 			if (m_timeshift_changed)
 			{
-				struct SubtitleTrack track;
+				struct SubtitleTrack track = {};
 				if (getCachedSubtitle(track) >= 0)
 				{
 					if (track.type == 0) // dvb
