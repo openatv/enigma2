@@ -38,10 +38,10 @@ public:
 	static eDVBVolumecontrol *getInstance();
 
 	void setVolumeSteps(int steps) { m_volsteps = steps; }
-	void volumeUp(int left = 0, int right = 0);
-	void volumeDown(int left = 0, int right = 0);
+	int volumeUp(int left = 0, int right = 0);
+	int volumeDown(int left = 0, int right = 0);
 
-	void setVolume(int left, int right);
+	int setVolume(int left, int right);
 
 	void volumeMute();
 	void volumeUnMute();
