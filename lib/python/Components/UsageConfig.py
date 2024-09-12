@@ -1777,9 +1777,22 @@ def InitUsageConfig():
 
 	config.subtitles.ai_subtitle_colors = ConfigSelection(default=1, choices=[
 		(1, _("White")),
-		(2, _("Yellow"))
+		(2, _("Yellow")),
+		(3, _("Red")),
+		(4, _("Green")),
+		(5, _("Blue"))
 	])
 	config.subtitles.ai_subtitle_colors.addNotifier(setAiSubtitleColors)
+
+	def setAiConnectionSpeed(configElement):
+		eSubtitleSettings.setAiConnectionSpeed(configElement.value)
+
+	config.subtitles.ai_connection_speed = ConfigSelection(default=1, choices=[
+		(1, _("Up to 50 Mbps")),
+		(2, _("50-200 Mbps")),
+		(3, _("Above 200 Mbps"))
+	])
+	config.subtitles.ai_connection_speed.addNotifier(setAiConnectionSpeed)
 
 	langsAI = ['af', 'sq', 'am', 'ar', 'hy', 'az', 'eu', 'be', 'bn', 'bs', 'bg', 'ca', 'zh', 'co', 'hr', 'cs', 'da', 'nl', 'en', 'eo', 'fr', 'fi', 'fy', 'gl', 'ka', 'de', 'el', 'ht', 'ha', 'hu', 'is', 'ig', 'ga', 'it', 'ja', 'jv', 'kn', 'kk', 'km', 'rw', 'ko', 'ku', 'ky', 'lo', 'la', 'lv', 'lt', 'lb', 'mk', 'mg', 'ms', 'mt', 'mi', 'mr', 'mn', 'no', 'ny', 'or', 'ps', 'fa', 'pl', 'pt', 'ro', 'ru', 'sm', 'gd', 'sr', 'st', 'sn', 'sk', 'sl', 'so', 'es', 'su', 'sw', 'sv', 'tl', 'tg', 'te', 'th', 'tr', 'tk', 'uk', 'ur', 'ug', 'uz', 'cy', 'xh', 'yi', 'yo', 'zu']
 	langsAI = [(x, international.LANGUAGE_DATA[x][1]) for x in langsAI]
@@ -1788,7 +1801,10 @@ def InitUsageConfig():
 	langsAI.append(("haw", _("Hawaiian")))
 	langsAI.append(("iw", _("Hebrew")))
 	langsAI.append(("hmn", _("Hmong")))
-	langsAI.append(("ckb", _("Kurdish (Sorani)")))
+	langsAI.append(("ar_eg", _("Arabic (Egyptian)")))
+	langsAI.append(("ar_ma", _("Arabic (Moroccan)")))
+	langsAI.append(("ar_sy", _("Arabic (Syro-Lebanese)")))
+	langsAI.append(("ar_tn", _("Arabic (Tunisian)")))
 	langsAI.sort(key=lambda x: x[1])
 
 	default = config.misc.locale.value
