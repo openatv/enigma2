@@ -1,12 +1,13 @@
 # Petr Turek <turekdesign99@gmail.com>, 2022, 2023, 2024.
 # jbleyel <jbleyel@gmx.net>, 2023.
 # Jiří Engelthaler <engycz@gmail.com>, 2023, 2024.
+# vlkan “vlkanboy” vlkan1 <vlkanboy@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-08-27 13:46+0000\n"
-"PO-Revision-Date: 2024-08-14 17:23+0000\n"
+"PO-Revision-Date: 2024-09-06 08:09+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
@@ -14,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.8-dev\n"
 
 msgid ""
 "\n"
@@ -90,7 +91,7 @@ msgid " of "
 msgstr " z "
 
 msgid " updated"
-msgstr " ktualizace"
+msgstr " aktualizováno"
 
 msgid "!! Boot loader Upgrade !!"
 msgstr "!! Upgrade zavaděče!!"
@@ -238,7 +239,7 @@ msgstr "%03d MB"
 
 #, python-format
 msgid "%2.1f Seconds"
-msgstr "%2.1f Seconds"
+msgstr "%2.1f Sekund"
 
 msgid "%A"
 msgstr "%A"
@@ -752,7 +753,7 @@ msgstr "%d %b %Y"
 #, python-format
 msgid "%d + %d + %d Minute"
 msgid_plural "%d + %d + %d Minutes"
-msgstr[0] "%d + %d + %d Minut"
+msgstr[0] "%d + %d + %d Minuta"
 msgstr[1] "%d + %d + %d Minuty"
 msgstr[2] "%d + %d + %d Minut"
 
@@ -774,9 +775,9 @@ msgstr[2] "%d Dní"
 #, python-format
 msgid "%d Digit"
 msgid_plural "%d Digits"
-msgstr[0] "%d Číslice"
-msgstr[1] "%d Číslic"
-msgstr[2] "%d Číslic"
+msgstr[0] "%d Číslo"
+msgstr[1] "%d Čísla"
+msgstr[2] "%d Čísel"
 
 #, python-format
 msgid "%d Event"
@@ -792,9 +793,9 @@ msgstr "%d GB"
 #, python-format
 msgid "%d Hour"
 msgid_plural "%d Hours"
-msgstr[0] "%d hodina"
-msgstr[1] "%d hodiny"
-msgstr[2] "%d hodin"
+msgstr[0] "%d Hodina"
+msgstr[1] "%d Hodiny"
+msgstr[2] "%d Hodin"
 
 #, python-format
 msgid "%d Hours"
@@ -832,9 +833,9 @@ msgstr "%d MHz"
 #, python-format
 msgid "%d Min"
 msgid_plural "%d Mins"
-msgstr[0] "%d minuta"
-msgstr[1] "%d minuty"
-msgstr[2] "%d minut"
+msgstr[0] "%d Minuta"
+msgstr[1] "%d Minuty"
+msgstr[2] "%d Minut"
 
 #, python-format
 msgid "%d Minute"
@@ -864,7 +865,7 @@ msgstr[2] "%d Pixelů"
 #, python-format
 msgid "%d Pixel wide"
 msgid_plural "%d Pixels wide"
-msgstr[0] "Šířka %d pixel"
+msgstr[0] "Šířka %d pixelu"
 msgstr[1] "Šířka %d pixelů"
 msgstr[2] "Šířka %d pixelů"
 
@@ -875,9 +876,9 @@ msgstr "%d Pixelů"
 #, python-format
 msgid "%d Second"
 msgid_plural "%d Seconds"
-msgstr[0] "%d sekunda"
-msgstr[1] "%d sekundy"
-msgstr[2] "%d sekund"
+msgstr[0] "%d Sekunda"
+msgstr[1] "%d Sekundy"
+msgstr[2] "%d Sekund"
 
 #, python-format
 msgid "%d Seconds"
@@ -902,14 +903,14 @@ msgstr[2] "%d Roků"
 msgid "%d channel found"
 msgid_plural "%d channels found"
 msgstr[0] "%d kanál nalezen"
-msgstr[1] "%d programy nalezeny"
-msgstr[2] "%d programů nalezeno"
+msgstr[1] "%d kanály nalezeny"
+msgstr[2] "%d kanálů nalezeno"
 
 #, python-format
 msgid "%d core"
 msgid_plural "%d cores"
 msgstr[0] "%d jádro"
-msgstr[1] "%d jader"
+msgstr[1] "%d jádra"
 msgstr[2] "%d jader"
 
 #, python-format
@@ -1190,7 +1191,7 @@ msgstr "%s Spravovat akce prohlížeče"
 
 #, python-format
 msgid "%s GHz"
-msgstr "%s"
+msgstr "%sGHz"
 
 #, python-format
 msgid "%s Information"
@@ -1251,19 +1252,19 @@ msgstr "%s/%s: %s"
 
 #, python-format
 msgid "%sMode for FHD (up to 1080p)"
-msgstr "%sRežim pro FHD (až 1080p)"
+msgstr "%sRežim pro FHD (do 1080p)"
 
 #, python-format
 msgid "%sMode for HD (up to 720p)"
-msgstr "%sRežim pro HD (až 720p)"
+msgstr "%sRežim pro HD (do 720p)"
 
 #, python-format
 msgid "%sMode for SD (up to 576p)"
-msgstr "%sRežim pro SD (až 576p)"
+msgstr "%sRežim pro SD (do 576p)"
 
 #, python-format
 msgid "%sMode for UHD (up to 2160p)"
-msgstr "%sRežim pro UHD (až 2160p)"
+msgstr "%sRežim pro UHD (do 2160p)"
 
 #, python-format
 msgid "%sRefresh rate for FHD"
@@ -1287,7 +1288,7 @@ msgstr "%szobrazit 1080i jako 1080p"
 
 #, python-format
 msgid "'%s' contains %d file(s) and %d sub-directories.\n"
-msgstr "'%s' obsahuje %d soubor(ů) a %d pod adresářů.\n"
+msgstr "'%s' obsahuje %d soubor(ů) a %d podadresářů.\n"
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "'Buffer v hodinách' nebo 'počet posledních událostí'. Pro smazání starších Timeshift souborů. Stav, který nastal dčíve má prioritu."
@@ -1720,16 +1721,16 @@ msgstr "Překódování AC3 plus"
 msgid "AFL"
 msgstr "AFL"
 
-msgid "AI-Powered translation color"
+msgid "AI-Powered Translation color"
 msgstr "Barva překladu s technologií AI"
 
-msgid "AI-Powered translation enabled"
+msgid "AI-Powered Translation enabled"
 msgstr "Překlad pomocí AI povolen"
 
-msgid "AI-Powered translation language"
+msgid "AI-Powered Translation language"
 msgstr "Překladatelský jazyk založený na AI"
 
-msgid "AI-Powered translation subscription code"
+msgid "AI-Powered Translation subscription code"
 msgstr "Kód předplatného překladu s podporou AI"
 
 msgid "ARM"
@@ -1865,10 +1866,10 @@ msgid "Add Bookmark"
 msgstr "K oblíbeným"
 
 msgid "Add Bouquet"
-msgstr "přidat přehled"
+msgstr "Přidat přehled"
 
 msgid "Add Bouquet To Parental Protection"
-msgstr "přidat přehled do rodičovské kontroly"
+msgstr "Přidat přehled do rodičovské kontroly"
 
 msgid "Add Current"
 msgstr "Přidat aktuální"
@@ -2694,7 +2695,7 @@ msgid "AutoMountManager"
 msgstr "Správce připojení"
 
 msgid "AutoRefresh"
-msgstr ""
+msgstr "Automatické obnovení"
 
 msgid "AutoTimer"
 msgstr "Automatický časovač"
@@ -2703,7 +2704,7 @@ msgid "AutoUpdate"
 msgstr "Automatická aktualizace"
 
 msgid "Automatic"
-msgstr "Automatické"
+msgstr "Automatický"
 
 msgid "Automatic Scan"
 msgstr "Automatické ladění programů"
@@ -4479,7 +4480,7 @@ msgstr ""
 msgid "Configure remote control type"
 msgstr "Nastavit typ dálkového ovládání"
 
-msgid "Configure the AI-Powered translation language."
+msgid "Select the AI-Powered Translation target language."
 msgstr "Nakonfigurujte jazyk překladu AI."
 
 msgid "Configure the DiSEqC mode for this LNB."
@@ -4533,7 +4534,7 @@ msgstr "Nastavuje úroveň jasu předního displeje v běžném provozu."
 msgid "Configure the brightness level of the front panel display for standby."
 msgstr "Nastavuje úroveň jasu předního displeje v pohotovostním režimu."
 
-msgid "Configure the color of the AI-Powered translations."
+msgid "Select the color to be used for the AI-Powered Translation text."
 msgstr "Nakonfigurujte barvu překladů s technologií AI."
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
@@ -6880,7 +6881,7 @@ msgstr "Povolit %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "Povolit 5V pro aktivní anténu"
 
-msgid "Enable AI-Powered translation for all teletext and DVB subtitles."
+msgid "Select 'Yes' to enable AI-Powered Translation for all teletext and DVB subtitles."
 msgstr "Povolit překlad s technologií AI pro všechny teletextové a DVB titulky."
 
 msgid "Enable Autorecord"
@@ -6990,7 +6991,7 @@ msgid "Enable auto fast scan for %s"
 msgstr "Povolit automatické rychlé vyhledávání pro %s"
 
 msgid "Enable autorefresh templates."
-msgstr ""
+msgstr "Povolit automatické obnovování šablon."
 
 msgid "Enable blinking rec symbol on the LCD Display in Standby."
 msgstr "V pohotovostním režimu nahrávání na LCD displeji."
@@ -7307,7 +7308,7 @@ msgstr "Zadejte frekvenci nízkopásmového lokálního oscilátoru. Další inf
 msgid "Enter your personal feed URL to allow you to select packages from your personal feed."
 msgstr "Zadejte adresu URL vašeho osobního zdroje, abyste si mohli vybrat balíčky z vašeho osobního zdroje."
 
-msgid "Enter your subscription code, the unified code for trial is 15."
+msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
 msgstr "Zadejte svůj předplatitelský kód, jednotný zkušební kód je 15."
 
 msgid "Entertainment"
@@ -10639,7 +10640,7 @@ msgid "Long press emulation with button"
 msgstr "Emulace dlouhého stisku tlačítka"
 
 msgid "Long press volume steps"
-msgstr ""
+msgstr "Kroky hlasitosti při dlouhém stisknutí"
 
 #, python-format
 msgid "Long press: %s"
@@ -15556,13 +15557,13 @@ msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port
 msgstr "Pokud používáte multipřepínač, který vyžaduje příkazový signál DiSEqC Port-A, vyberte „Ano“. Vyberte 'Ne' pro všechna ostatní nastavení."
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' power timer is starting."
-msgstr ""
+msgstr "Vyberte 'Ano' pokud chcete probudit TV aby se spustil časovač napájení 'Probuzení'."
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
-msgstr ""
+msgstr "Vyberte „Ano“, pokud chcete probudit televizor, aby se spustil časovač nahrávání."
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
-msgstr ""
+msgstr "Vyberte „Ano“, pokud chcete probudit televizor, aby se spustil časovač nahrávání."
 
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Vyberte 'Ano', aby byl informační panel zobrazen bez časového limitu, zatímco je přehrávání médií pozastaveno."
@@ -15945,7 +15946,7 @@ msgid "Select how long to display the task and script message pop up."
 msgstr "Vyberte, jak dlouho se má úloha a zpráva skriptu zobrazovat."
 
 msgid "Select how long, in seconds, that the volume and mute displays are shown before they automatically hide."
-msgstr ""
+msgstr "Vyberte, jak dlouho (v sekundách) se mají displej hlasitosti a ztlumení zobrazovat, než se automaticky skryjí."
 
 msgid "Select how often this timer is to be repeated."
 msgstr "Vyberte, jak často se má tento časovač opakovat."
@@ -16297,10 +16298,10 @@ msgid "Select the shifted character set for the next character only"
 msgstr "Vyberte posunutou znakovou sadu pouze pro další znak"
 
 msgid "Select the size of the volume step when the VOLUME buttons are pressed."
-msgstr ""
+msgstr "Vyberte velikost kroku hlasitosti při stisknutí tlačítek VOLUME."
 
 msgid "Select the size of the volume steps when the VOLUME buttons are held down."
-msgstr ""
+msgstr "Vyberte velikost kroků hlasitosti při podržení tlačítek VOLUME."
 
 msgid "Select the sort order for the file lines:"
 msgstr "Vybrat pořadí řazení řádků souborů:"
@@ -21539,7 +21540,7 @@ msgid "Venezuela, Bolivarian Republic of"
 msgstr "Venezuela, Bolívarská republika"
 
 msgid "Verbose"
-msgstr ""
+msgstr "Upovídaný"
 
 msgid "Version"
 msgstr "Verze"
@@ -21779,13 +21780,13 @@ msgid "Volume keys on the receiver remote will control the TV volume. If this fe
 msgstr "Tlačítka hlasitosti na dálkovém ovladači budou ovládat hlasitost televizoru. Pokud tato funkce není podporována, tlačítka hlasitosti nemají žádnou funkci!"
 
 msgid "Volume steps"
-msgstr ""
+msgstr "Kroky hlasitosti"
 
 msgid "Volume up"
 msgstr "Hlasitost +"
 
 msgid "Volume/Mute display timer"
-msgstr ""
+msgstr "Časovač zobrazení hlasitosti/ztlumení"
 
 msgid "Vu+ MultiBoot"
 msgstr "Vu+ MultiBoot"

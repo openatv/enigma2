@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-08-27 13:46+0000\n"
-"PO-Revision-Date: 2024-08-31 12:52+0000\n"
+"PO-Revision-Date: 2024-09-02 09:09+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
 "Language: nl\n"
@@ -1698,16 +1698,16 @@ msgstr "AC3plus transcodering"
 msgid "AFL"
 msgstr "AFL"
 
-msgid "AI-Powered translation color"
+msgid "AI-Powered Translation color"
 msgstr "Kleur van de door AI vertaalde ondertiteling"
 
-msgid "AI-Powered translation enabled"
+msgid "AI-Powered Translation enabled"
 msgstr "AI vertaling geactiveerd"
 
-msgid "AI-Powered translation language"
+msgid "AI-Powered Translation language"
 msgstr "Taal voor AI vertaling"
 
-msgid "AI-Powered translation subscription code"
+msgid "AI-Powered Translation subscription code"
 msgstr "Abonnement-code voor door AI vertaalde ondertiteling"
 
 msgid "ARM"
@@ -4058,10 +4058,10 @@ msgid "Choose whether AAC sound tracks should be transcoded."
 msgstr "Selecteer of AAC geluid moet worden getranscodeerd."
 
 msgid "Choose whether AC3 Plus sound tracks should be transcoded to AC3."
-msgstr "Selecteer of AC3 Plus geluidssporen getranscodeerd moeten worden naar AC3."
+msgstr "Selecteer of AC3 Plus geluidssporen omgezet moeten worden naar AC3."
 
 msgid "Choose whether AC3 sound tracks should be downmixed to stereo."
-msgstr "Selecteer of AC3 geluidsspoor moet worden teruggebracht naar stereo."
+msgstr "Selecteer of een AC3 geluidsspoor (Dolby Digital) moet worden teruggebracht naar stereo."
 
 msgid "Choose whether DTS channel sound tracks should be downmixed or transcoded."
 msgstr "Selecteer of DTS-geluid moeten worden gedownmixed of getranscodeerd."
@@ -4482,7 +4482,7 @@ msgstr ""
 msgid "Configure remote control type"
 msgstr "Configureer type afstandsbediening"
 
-msgid "Configure the AI-Powered translation language."
+msgid "Select the AI-Powered Translation target language."
 msgstr "Taal van de AI vertaling kiezen."
 
 msgid "Configure the DiSEqC mode for this LNB."
@@ -4550,7 +4550,7 @@ msgstr "De helderheid van het display in uw %s %s instellen bij normaal gebruik.
 msgid "Configure the brightness level of the front panel display for standby."
 msgstr "De helderheid van het display in uw %s %s instellen voor Stand-by."
 
-msgid "Configure the color of the AI-Powered translations."
+msgid "Select the color to be used for the AI-Powered Translation text."
 msgstr "Kleur van de door AI vertaalde ondertiteling kiezen."
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
@@ -6975,7 +6975,7 @@ msgstr "Activeer %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "5V voor actieve antenne inschakelen"
 
-msgid "Enable AI-Powered translation for all teletext and DVB subtitles."
+msgid "Select 'Yes' to enable AI-Powered Translation for all teletext and DVB subtitles."
 msgstr "AI vertaling voor Teletekst en DVB ondertiteling activeren."
 
 msgid "Enable Autorecord"
@@ -7410,7 +7410,7 @@ msgstr "Voer de occillatorfrequentie van de lage band in. Voor meer info raadple
 msgid "Enter your personal feed URL to allow you to select packages from your personal feed."
 msgstr "Uw persoonlijke Feed-URL invullen zodat u uw eigen Feed kunt gebruiken."
 
-msgid "Enter your subscription code, the unified code for trial is 15."
+msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
 msgstr "Abonnement-code voor AI vertaling invoeren, de code voor de testperiode is 15."
 
 msgid "Entertainment"
@@ -15675,13 +15675,13 @@ msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port
 msgstr "Selecteer alleen 'ja' als u een multiswich gebruikt die een DiSEqC Port-A commando gebruikt. In alle andere gevallen kiest u 'nee'."
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' power timer is starting."
-msgstr ""
+msgstr "Kies 'Ja' wanneer de TV door een PowerTimer moet worden ingeschakeld."
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
-msgstr ""
+msgstr "Kies 'Ja' wanneer u de TV wil inschakelen bij het starten van een 'Zappen en Opnemen' timer."
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
-msgstr ""
+msgstr "Kies 'Ja' wanneer de TV bij het starten van een 'Zappen en Opnemen' timer moet worden ingeschakeld."
 
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Bij 'ja' zal de informatiebalk continu worden getoond wanneer het afspelen is gepauzeerd."
@@ -16070,7 +16070,7 @@ msgid "Select how long to display the task and script message pop up."
 msgstr "Selecteer hoe lang taak- en het scriptberichten moeten worden weergegeven."
 
 msgid "Select how long, in seconds, that the volume and mute displays are shown before they automatically hide."
-msgstr ""
+msgstr "Hoeveel seconden moet het Volume en Mute symbool worden getoond."
 
 msgid "Select how often this timer is to be repeated."
 msgstr "Opgeven hoe vaak deze timer herhaald moet worden."
@@ -16428,10 +16428,10 @@ msgid "Select the shifted character set for the next character only"
 msgstr "Selecteer de SHIFT karakterset voor het virtuele toetsenbord alleen voor de volgende letter"
 
 msgid "Select the size of the volume step when the VOLUME buttons are pressed."
-msgstr ""
+msgstr "Selecteer het aantal volumestappen bij het indrukken van de VOLUME +/- toetsen."
 
 msgid "Select the size of the volume steps when the VOLUME buttons are held down."
-msgstr ""
+msgstr "Selecteer het aantal volumestappen bij het LANG indrukken van de VOLUME +/- toetsen."
 
 msgid "Select the sort order for the file lines:"
 msgstr "Kies de sorteervolgorde voor de bestandsregels:"
@@ -21743,7 +21743,7 @@ msgid "Venezuela, Bolivarian Republic of"
 msgstr "Bolivariaanse Republiek Venezuela"
 
 msgid "Verbose"
-msgstr ""
+msgstr "Uitgebreid"
 
 msgid "Version"
 msgstr "Versie"
@@ -21983,13 +21983,13 @@ msgid "Volume keys on the receiver remote will control the TV volume. If this fe
 msgstr "U kunt het volume van de TV instellen via de volume knoppen op de afstandsbediening van uw ontvanger. Wanneer deze optie niet wordt ondersteund hebben de volumeknoppen geen functie!"
 
 msgid "Volume steps"
-msgstr ""
+msgstr "Volumestappen"
 
 msgid "Volume up"
 msgstr "Volume +"
 
 msgid "Volume/Mute display timer"
-msgstr ""
+msgstr "Tijdsduur voor Volume en Mute symbool"
 
 msgid "Vu+ MultiBoot"
 msgstr "Vu+ MultiBoot"
@@ -22951,7 +22951,7 @@ msgid "Zap Up/Down"
 msgstr "Zap Omhoog/Omlaag"
 
 msgid "Zap and record"
-msgstr "Opname en zap"
+msgstr "Zappen en opnemen"
 
 msgid "Zap back to previously tuned service?"
 msgstr "Wilt u terug naar de vorige zender?"
@@ -22996,7 +22996,7 @@ msgid "Zap up"
 msgstr "Zap omhoog"
 
 msgid "Zap+Record next"
-msgstr "Opname+ZAP volgende"
+msgstr "Naar de volgende uitzending Zappen en Opnemen"
 
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7 oud model"
