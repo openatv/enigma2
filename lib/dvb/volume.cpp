@@ -256,10 +256,11 @@ void eDVBVolumecontrol::volumeUnMute()
 #endif
 }
 
-void eDVBVolumecontrol::volumeToggleMute()
+bool eDVBVolumecontrol::volumeToggleMute()
 {
 	if (isMuted())
 		volumeUnMute();
 	else
 		volumeMute();
+	return muted;
 }

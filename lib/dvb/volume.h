@@ -46,7 +46,7 @@ public:
 
 	void volumeMute();
 	void volumeUnMute();
-	void volumeToggleMute();
+	bool volumeToggleMute();
 
 	int getVolume() { return leftVol; }
 	int getVolumeLeft() { return leftVol; }
