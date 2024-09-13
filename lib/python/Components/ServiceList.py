@@ -150,6 +150,8 @@ class ServiceListTemplateParser(TemplateParser):
 
 					items = []
 					if modeName == "services":
+						if config.channelSelection.showNumber.value and config.usage.numberMode != 2:
+							excludeItemIndexes.append("Number")
 						if subMode:
 							continue
 					else:
@@ -1285,12 +1287,12 @@ class ServiceList(ServiceListBase, ServiceListTemplateParser):
 			maxEvents = defaults.get("maxevents")
 			if not isMarker and maxEvents:
 				events = eEPGCache.getInstance().lookupEvent(["BDTS%d" % maxEvents, (service.toString(), 0, -1, 360)])
-				serviceNumber = str(service.getChannelNum())
+				serviceNumber = service.getChannelNum()
 		elif self.mode == self.MODE_SERVICES:
 			events = eEPGCache.getInstance().lookupEvent(["BDTS1", (service.toString(), 0, -1, 360)])
 			defaults = self.templateDefaultsServices
 			templateItems = self.templateDataServices
-			serviceNumber = str(service.getChannelNum())
+			serviceNumber = service.getChannelNum()
 		else:
 			defaults = self.templateDefaultsOther
 			if isMarker:
@@ -1355,7 +1357,7 @@ class ServiceList(ServiceListBase, ServiceListTemplateParser):
 					foregroundColorRecord, foregroundColorSelected = getRecordColors(foregroundColor, foregroundColorSelected, status, defaults, item)
 
 					if itemIndex == 0 and serviceNumber:  # Number
-						res.append((MultiContentEntryText(pos=pos, size=size, font=font, flags=flags, text=serviceNumber, color=foregroundColorRecord, color_sel=foregroundColorSelected, backcolor=backgroundColor, backcolor_sel=backgroundColorSelected)))
+						res.append((MultiContentEntryText(pos=pos, size=size, font=font, flags=flags, text=str(serviceNumber), color=foregroundColorRecord, color_sel=foregroundColorSelected, backcolor=backgroundColor, backcolor_sel=backgroundColorSelected)))
 					if itemIndex == 1 and serviceName:  # ServiceName
 						res.append((MultiContentEntryText(pos=pos, size=size, font=font, flags=flags, text=serviceName, color=foregroundColorRecord, color_sel=foregroundColorSelected, backcolor=backgroundColor, backcolor_sel=backgroundColorSelected)))
 
