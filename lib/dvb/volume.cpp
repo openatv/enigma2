@@ -50,6 +50,7 @@ eDVBVolumecontrol::eDVBVolumecontrol()
 	mainVolume = NULL;
 	openMixer();
 #endif
+	mute_zero = false;
 	volumeUnMute();
 	setVolume(100, 100);
 }
