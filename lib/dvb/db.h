@@ -219,7 +219,7 @@ public:
 	bool isValidService(int tsid, int onid, int sid);
 	void parseServiceData(ePtr<eDVBService> s, std::string str);
 	int getMaxNumber() const { return m_max_number; }
-	PyObject *getAllServicesRaw();
+	PyObject *getAllServicesRaw(int type=0);
 };
 
 #ifndef SWIG

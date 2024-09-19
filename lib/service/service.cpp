@@ -138,6 +138,18 @@ std::string eServiceReference::toReferenceString() const
 	return ret;
 }
 
+std::string eServiceReference::toLCNReferenceString() const
+{
+	std::string ret;
+	ret.reserve((4 * sizeof(data)/sizeof(*data)) + 8); /* Estimate required space */
+
+	for (unsigned int i=1; i<5; ++i)
+	{
+		ret += getNum(data[i], 0x10);
+		ret += ':';
+	}
+	return ret;
+}
 
 eServiceCenter *eServiceCenter::instance;
 

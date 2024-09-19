@@ -2606,24 +2606,48 @@ void eDVBDB::searchAllReferences(std::vector<eServiceReference> &result, int tsi
 	}
 }
 
-PyObject *eDVBDB::getAllServicesRaw()
+PyObject *eDVBDB::getAllServicesRaw(int type)
 {
 
 	ePyObject serviceList = PyDict_New();
 	if (serviceList)
 	{
-		for (std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator sit(m_services.begin());
-			sit != m_services.end(); ++sit)
+
+		switch (type)
 		{
-			ePyObject tuple = PyTuple_New(5);
-			ePtr<eDVBService> service = sit->second;
-			PyTuple_SET_ITEM(tuple, 0, PyUnicode_FromString(service->m_service_name.c_str()));
-			PyTuple_SET_ITEM(tuple, 1, PyUnicode_FromString(!service->m_service_display_name.empty() ? service->m_service_display_name.c_str() : service->m_service_name.c_str()));
-			PyTuple_SET_ITEM(tuple, 2, PyUnicode_FromString(service->m_provider_name.c_str()));
-			PyTuple_SET_ITEM(tuple, 3, PyUnicode_FromString(service->m_provider_display_name.c_str()));
-			PyTuple_SET_ITEM(tuple, 4, PyLong_FromLongLong(service->m_flags));
-			PyDict_SetItemString(serviceList, sit->first.toReferenceString().c_str(), tuple);
-			Py_DECREF(tuple);
+		case 1:
+			for (std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator sit(m_services.begin()); sit != m_services.end(); ++sit)
+			{
+				ePyObject tuple = PyTuple_New(6);
+				ePtr<eDVBService> service = sit->second;
+				
+				PyTuple_SET_ITEM(tuple, 0, PyUnicode_FromString(sit->first.toReferenceString().c_str()));
+				PyTuple_SET_ITEM(tuple, 1, PyUnicode_FromString(service->m_provider_name.c_str()));
+				PyTuple_SET_ITEM(tuple, 2, PyUnicode_FromString(service->m_provider_display_name.c_str()));
+				PyTuple_SET_ITEM(tuple, 3, PyUnicode_FromString(service->m_service_name.c_str()));
+				PyTuple_SET_ITEM(tuple, 4, PyUnicode_FromString(!service->m_service_display_name.empty() ? service->m_service_display_name.c_str() : service->m_service_name.c_str()));
+				int flags = (service->m_flags & (eDVBService::dxIntNewServiceName | eDVBService::dxIntNewProvider)) >> 14;
+				PyTuple_SET_ITEM(tuple, 5, PyLong_FromLongLong(flags));
+				PyDict_SetItemString(serviceList, sit->first.toLCNReferenceString().c_str(), tuple);
+				Py_DECREF(tuple);
+			}
+			break;
+		
+		default:
+			for (std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator sit(m_services.begin()); sit != m_services.end(); ++sit)
+			{
+				ePyObject tuple = PyTuple_New(5);
+				ePtr<eDVBService> service = sit->second;
+				PyTuple_SET_ITEM(tuple, 0, PyUnicode_FromString(service->m_service_name.c_str()));
+				PyTuple_SET_ITEM(tuple, 1, PyUnicode_FromString(!service->m_service_display_name.empty() ? service->m_service_display_name.c_str() : service->m_service_name.c_str()));
+				PyTuple_SET_ITEM(tuple, 2, PyUnicode_FromString(service->m_provider_name.c_str()));
+				PyTuple_SET_ITEM(tuple, 3, PyUnicode_FromString(service->m_provider_display_name.c_str()));
+				int flags = (service->m_flags & (eDVBService::dxIntNewServiceName | eDVBService::dxIntNewProvider)) >> 14;
+				PyTuple_SET_ITEM(tuple, 4, PyLong_FromLongLong(flags));
+				PyDict_SetItemString(serviceList, sit->first.toReferenceString().c_str(), tuple);
+				Py_DECREF(tuple);
+			}
+			break;
 		}
 
 	} 
