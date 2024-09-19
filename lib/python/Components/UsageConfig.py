@@ -587,17 +587,19 @@ def InitUsageConfig():
 
 	config.usage.long_press_emulation_key = ConfigSelection(default=0, choices=[
 		(0, _("None")),
-		(KEYIDS["KEY_TV"], _("TV")),
-		(KEYIDS["KEY_RADIO"], _("RADIO")),
-		(KEYIDS["KEY_AUDIO"], _("Audio")),
-		(KEYIDS["KEY_VIDEO"], _("List/Fav")),
-		(KEYIDS["KEY_HOME"], _("Home")),
-		(KEYIDS["KEY_END"], _("End")),
-		(KEYIDS["KEY_HELP"], _("Help")),
-		(KEYIDS["KEY_INFO"], _("Info (EPG)")),
-		(KEYIDS["KEY_TEXT"], _("Teletext")),
-		(KEYIDS["KEY_SUBTITLE"], _("Subtitle")),
-		(KEYIDS["KEY_FAVORITES"], _("Favorites"))
+		(KEYIDS["KEY_AUDIO"], "AUDIO"),
+		(KEYIDS["KEY_END"], "END"),
+		(KEYIDS["KEY_EPG"], "EPG"),
+		(KEYIDS["KEY_FAVORITES"], "FAV"),
+		(KEYIDS["KEY_HELP"], "HELP"),
+		(KEYIDS["KEY_HOME"], "HOME"),
+		(KEYIDS["KEY_INFO"], "INFO"),
+		(KEYIDS["KEY_LIST"], "LIST"),
+		(KEYIDS["KEY_RADIO"], "RADIO"),
+		(KEYIDS["KEY_SUBTITLE"], "SUBTITLE"),
+		(KEYIDS["KEY_TEXT"], "TEXT"),
+		(KEYIDS["KEY_TV"], "TV"),
+		(KEYIDS["KEY_VIDEO"], "MEDIA")
 	])
 	config.usage.long_press_emulation_key.addNotifier(setLongPressedEmulationKey)
 
