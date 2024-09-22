@@ -177,7 +177,7 @@ public:
 	std::string toString() const;
 	std::string toCompareString() const;
 	std::string toReferenceString() const;
-	std::string toLCNReferenceString() const;
+	std::string toLCNReferenceString(bool trailing=true) const;
 #ifndef SWIG
 	operator bool() const
 	{

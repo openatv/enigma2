@@ -2628,7 +2628,7 @@ PyObject *eDVBDB::getAllServicesRaw(int type)
 				PyTuple_SET_ITEM(tuple, 4, PyUnicode_FromString(!service->m_service_display_name.empty() ? service->m_service_display_name.c_str() : service->m_service_name.c_str()));
 				int flags = (service->m_flags & (eDVBService::dxIntNewServiceName | eDVBService::dxIntNewProvider)) >> 14;
 				PyTuple_SET_ITEM(tuple, 5, PyLong_FromLongLong(flags));
-				PyDict_SetItemString(serviceList, sit->first.toLCNReferenceString().c_str(), tuple);
+				PyDict_SetItemString(serviceList, sit->first.toLCNReferenceString(false).c_str(), tuple);
 				Py_DECREF(tuple);
 			}
 			break;

@@ -138,16 +138,16 @@ std::string eServiceReference::toReferenceString() const
 	return ret;
 }
 
-std::string eServiceReference::toLCNReferenceString() const
+std::string eServiceReference::toLCNReferenceString(bool trailing) const
 {
-	std::string ret;
-	ret.reserve((4 * sizeof(data)/sizeof(*data)) + 8); /* Estimate required space */
-
-	for (unsigned int i=1; i<5; ++i)
-	{
-		ret += getNum(data[i], 0x10);
-		ret += ':';
-	}
+    std::string ret;
+    ret.reserve(24); /* Estimate required space */
+    char buf[24];
+    if(trailing)
+        snprintf(buf, 24, "%X:%X:%X:%X:", data[1], data[2], data[3], data[4]);
+    else
+        snprintf(buf, 24, "%X:%X:%X:%X", data[1], data[2], data[3], data[4]);
+    ret.assign(buf);
 	return ret;
 }
 
