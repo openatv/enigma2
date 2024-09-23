@@ -95,7 +95,7 @@ void eBackgroundFileEraser::gotMessage(const Message &msg )
 		if ((((erase_flags & ERASE_FLAG_HDD) != 0) && (strncmp(c_filename, "/media/hdd/", 11) == 0)) ||
 		    ((erase_flags & ERASE_FLAG_OTHER) != 0))
 		{
-			struct stat st = {}
+			struct stat st = {};
 			int i = ::stat(c_filename, &st);
 			// truncate only if the file exists and does not have any hard links
 			if ((i == 0) && (st.st_nlink == 1))
