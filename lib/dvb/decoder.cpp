@@ -79,7 +79,7 @@ int eDVBAudio::startPid(int pid, int type)
 {
 	if (m_fd_demux >= 0)
 	{
-		dmx_pes_filter_params pes;
+		dmx_pes_filter_params pes = {};
 		memset(&pes, 0, sizeof(pes));
 
 		pes.pid      = pid;
@@ -376,7 +376,7 @@ eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev, bool fcc_enable)
 	if (eDVBVideo::m_debug < 0)
 		eDVBVideo::m_debug = eSimpleConfig::getBool("config.crash.debugDVB", false) ? 1 : 0;
 
-	char filename[128];
+	char filename[128] = {};
 	sprintf(filename, "/dev/dvb/adapter%d/video%d", demux ? demux->adapter : 0, dev);
 	m_fd = ::open(filename, O_RDWR | O_CLOEXEC);
 	if (m_fd < 0)
@@ -431,8 +431,6 @@ eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev, bool fcc_enable)
 		readApiSize(m_fd, m_width, m_height, m_aspect);
 		m_close_invalidates_attributes = (m_width == -1) ? 1 : 0;
 	}
-
-
 }
 
 // not finally values i think.. !!
@@ -504,7 +502,7 @@ int eDVBVideo::startPid(int pid, int type)
 
 	if (m_fd_demux >= 0)
 	{
-		dmx_pes_filter_params pes;
+		dmx_pes_filter_params pes = {};
 		memset(&pes, 0, sizeof(pes));
 
 		pes.pid      = pid;
@@ -727,13 +725,13 @@ void eDVBVideo::video_event(int)
 	while (m_fd >= 0)
 	{
 		int retval;
-		pollfd pfd[1];
+		pollfd pfd[1] = {};
 		pfd[0].fd = m_fd;
 		pfd[0].events = POLLPRI;
 		retval = ::poll(pfd, 1, 0);
 		if (retval < 0 && errno == EINTR) continue;
 		if (retval <= 0) break;
-		struct video_event evt;
+		struct video_event evt = {};
 		if(eDVBVideo::m_debug)
 			eDebugNoNewLineStart("[eDVBVideo%d] VIDEO_GET_EVENT ", m_dev);
 		if (::ioctl(m_fd, VIDEO_GET_EVENT, &evt) < 0)
@@ -989,7 +987,7 @@ int eDVBVideo::getGamma()
 	{
 		if (m_gamma == -1)
 		{
-			char tmp[64];
+			char tmp[64] = {};
 			sprintf(tmp, "/proc/stb/vmpeg/%d/gamma", m_dev);
 			CFile::parseIntHex(&m_gamma, tmp);
 		}
@@ -1093,7 +1091,7 @@ int eDVBTText::m_debug = -1;
 eDVBTText::eDVBTText(eDVBDemux *demux, int dev)
     :m_demux(demux), m_dev(dev)
 {
-	char filename[128];
+	char filename[128] = {};
 	sprintf(filename, "/dev/dvb/adapter%d/demux%d", demux->adapter, demux->demux);
 	m_fd_demux = ::open(filename, O_RDWR | O_CLOEXEC);
 	if (m_fd_demux < 0)
@@ -1106,7 +1104,7 @@ int eDVBTText::startPid(int pid)
 {
 	if (m_fd_demux < 0)
 		return -1;
-	dmx_pes_filter_params pes;
+	dmx_pes_filter_params pes = {};
 	memset(&pes, 0, sizeof(pes));
 
 	pes.pid      = pid;
@@ -1599,7 +1597,7 @@ RESULT eTSMPEGDecoder::showSinglePic(const char *filename)
 		int f = open(filename, O_RDONLY);
 		if (f >= 0)
 		{
-			struct stat s;
+			struct stat s = {};
 			fstat(f, &s);
 #if HAVE_HISILICON
 			if (m_video_clip_fd >= 0)

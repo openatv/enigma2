@@ -14,7 +14,7 @@ eFCCDecoder::eFCCDecoder()
 	eDebug("[eFCCDecoder] Scanning for FCC device files..");
 	while(1)
 	{
-		struct stat s;
+		struct stat s = {};
 		char filename[128];
 		sprintf(filename, "/dev/fcc%d", index);
 		if (stat(filename, &s))

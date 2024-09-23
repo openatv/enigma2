@@ -1143,7 +1143,7 @@ void eEPGChannelData::log_add (const char *message, ...)
 	va_list args;
 	char msg[16*1024];
 	time_t now_time;
-	struct tm loctime;
+	struct tm loctime = {};
 
 	now_time = time (NULL);
 	localtime_r(&now_time, &loctime);
@@ -1227,7 +1227,7 @@ void eEPGChannelData::readMHWData(const uint8_t *data)
 
 		char dated[22];
 		time_t now_time;
-		struct tm loctime;
+		struct tm loctime = {};
 		now_time = time (NULL);
 		localtime_r(&now_time, &loctime);
 		strftime (dated, 21, "%d/%m/%Y %H:%M:%S", &loctime);
@@ -1451,7 +1451,7 @@ void eEPGChannelData::readMHWData2(const uint8_t *data)
 
 		char dated[22];
 		time_t now_time;
-		struct tm loctime;
+		struct tm loctime = {};
 		now_time = time (NULL);
 		localtime_r(&now_time, &loctime);
 		strftime (dated, 21, "%d/%m/%Y %H:%M:%S", &loctime);
@@ -1764,7 +1764,7 @@ void eEPGChannelData::readMHWData2(const uint8_t *data)
 
 									int chid = it->second.channel_id - 1;
 									time_t ndate, edate;
-									struct tm next_date;
+									struct tm next_date = {};
 									u_char mhw2_mjd_hi = data[pos+10];
 									u_char mhw2_mjd_lo = data[pos+11];
 									u_char mhw2_hours = data[pos+12];
@@ -1877,7 +1877,7 @@ void eEPGChannelData::readMHWData2_old(const uint8_t *data)
 
 		char dated[22];
 		time_t now_time;
-		struct tm loctime;
+		struct tm loctime = {};
 		now_time = time (NULL);
 		localtime_r(&now_time, &loctime);
 		strftime (dated, 21, "%d/%m/%Y %H:%M:%S", &loctime);
@@ -2166,7 +2166,7 @@ void eEPGChannelData::readMHWData2_old(const uint8_t *data)
 								char const *const days[] = {"D", "L", "M", "M", "J", "V", "S", "D"};
 
 								time_t ndate, edate;
-								struct tm next_date;
+								struct tm next_date = {};
 								ndate = replay_time[n];
 								edate = MjdToEpochTime(itTitle->second.mhw2_mjd) 
 									+ (((itTitle->second.mhw2_hours&0xf0)>>4)*10+(itTitle->second.mhw2_hours&0x0f)) * 3600 
@@ -2457,7 +2457,7 @@ void eEPGChannelData::ATSC_EITsection(const uint8_t *d)
 		uint32_t etm = ((eit.getTableIdExtension() & 0xffff) << 16) | (((*ev)->getEventId() & 0x3fff) << 2) | 0x2;
 		if (m_ATSC_EIT_map.find(etm) == m_ATSC_EIT_map.end())
 		{
-			struct atsc_event event;
+			struct atsc_event event = {};
 			event.title = (*ev)->getTitle("---");
 			event.eventId = (*ev)->getEventId();
 			event.startTime = (*ev)->getStartTime() + (time_t)315964800; /* ATSC GPS system time epoch is 00:00 Jan 6th 1980 */
@@ -2623,7 +2623,7 @@ void eEPGChannelData::OPENTV_ChannelsSection(const uint8_t *d)
 	{
 		if (m_OPENTV_channels_map.find((*channel)->getChannelId()) == m_OPENTV_channels_map.end())
 		{
-			struct opentv_channel otc;
+			struct opentv_channel otc = {};
 			otc.originalNetworkId = (*channel)->getOriginalNetworkId();
 			otc.transportStreamId = (*channel)->getTransportStreamId();
 			otc.serviceId = (*channel)->getServiceId();
@@ -2644,7 +2644,7 @@ void eEPGChannelData::OPENTV_TitlesSection(const uint8_t *d)
 
 		if (m_OPENTV_EIT_map.find(etm) == m_OPENTV_EIT_map.end())
 		{
-			struct opentv_event ote;
+			struct opentv_event ote = {};
 			ote.eventId = (*title)->getEventId();
 			ote.startTime = (*title)->getStartTime();
 			ote.duration = (*title)->getDuration();

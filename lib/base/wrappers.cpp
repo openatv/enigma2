@@ -18,7 +18,7 @@ int Select(int maxfd, fd_set *readfds, fd_set *writefds, fd_set *exceptfds, stru
 {
 	int retval;
 	fd_set rset, wset, xset;
-	timeval interval;
+	timeval interval = {};
 
 	/* make a backup of all fd_set's and timeval struct */
 	if (readfds) rset = *readfds;
@@ -64,7 +64,7 @@ ssize_t singleRead(int fd, void *buf, size_t count)
 		if (retval < 0)
 		{
 			if (errno == EINTR) continue;
-			eDebug("[singleRead] error: %m");
+			eDebug("[singleRead] error: %d (%m)", errno);
 		}
 		return retval;
 	}
@@ -73,7 +73,7 @@ ssize_t singleRead(int fd, void *buf, size_t count)
 ssize_t timedRead(int fd, void *buf, size_t count, int initialtimeout, int interbytetimeout)
 {
 	fd_set rset;
-	struct timeval timeout;
+	struct timeval timeout = {};
 	int result;
 	size_t totalread = 0;
 
@@ -132,7 +132,7 @@ int Connect(const char *hostname, int port, int timeoutsec)
 	int sd = -1;
 	std::vector<struct addrinfo *> addresses;
 	struct addrinfo *info = NULL;
-	struct addrinfo hints;
+	struct addrinfo hints = {};
 	memset(&hints, 0, sizeof(hints));
 	hints.ai_family = AF_UNSPEC; /* both ipv4 and ipv6 */
 	hints.ai_socktype = SOCK_STREAM;
@@ -188,7 +188,7 @@ int Connect(const char *hostname, int port, int timeoutsec)
 				{
 					int error;
 					socklen_t len = sizeof(error);
-					timeval timeout;
+					timeval timeout = {};
 					fd_set wset;
 					FD_ZERO(&wset);
 					FD_SET(sd, &wset);

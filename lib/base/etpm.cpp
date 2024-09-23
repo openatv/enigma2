@@ -14,7 +14,7 @@
 
 eTPM::eTPM()
 {
-	struct sockaddr_un addr;
+	struct sockaddr_un addr = {};
 	unsigned char buf[8];
 	unsigned int tag;
 	size_t len;

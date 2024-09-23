@@ -82,8 +82,8 @@ void eFilePushThread::thread()
 			if (maxread && !m_sof)
 			{
 #ifdef SHOW_WRITE_TIME
-				struct timeval starttime;
-				struct timeval now;
+				struct timeval starttime = {};
+				struct timeval now = {};
 				gettimeofday(&starttime, NULL);
 #endif
 				buf_end = m_source->read(m_current_position, m_buffer, maxread);
@@ -124,7 +124,7 @@ void eFilePushThread::thread()
 				/* on EOF, try COMMITting once. */
 				if (m_send_pvr_commit)
 				{
-					struct pollfd pfd;
+					struct pollfd pfd = {};
 					pfd.fd = m_fd_dest;
 					pfd.events = POLLIN;
 					switch (poll(&pfd, 1, 250)) // wait for 250ms
@@ -325,7 +325,7 @@ eFilePushThreadRecorder::eFilePushThreadRecorder(unsigned char *buffer, size_t b
 																							 m_buffer(buffer),
 																							 m_overflow_count(0),
 																							 m_stop(1),
-																							 m_messagepump(eApp, 0)
+																							 m_messagepump(eApp, 0, "eFilePushThreadRecorder")
 {
 	m_protocol = m_stream_id = m_session_id = m_packet_no = 0;
 	CONNECT(m_messagepump.recv_msg, eFilePushThreadRecorder::recvEvent);
@@ -357,7 +357,7 @@ static int errs;
 
 int64_t eFilePushThreadRecorder::getTick()
 { //ms
-	struct timespec ts;
+	struct timespec ts = {};
 	clock_gettime(CLOCK_MONOTONIC, &ts);
 	return (ts.tv_nsec / 1000000) + (ts.tv_sec * 1000);
 }
@@ -393,6 +393,7 @@ int eFilePushThreadRecorder::read_ts(int fd, unsigned char *buf, int size)
 
 	return bytes;
 }
+
 int eFilePushThreadRecorder::read_dmx(int fd, void *m_buffer, int size)
 {
 	unsigned char *buf;
@@ -481,7 +482,7 @@ void eFilePushThreadRecorder::thread()
 	eDebug("[eFilePushThreadRecorder] THREAD START");
 
 	/* we set the signal to not restart syscalls, so we can detect our signal. */
-	struct sigaction act;
+	struct sigaction act = {};
 	memset(&act, 0, sizeof(act));
 	act.sa_handler = signal_handler; // no, SIG_IGN doesn't do it. we want to receive the -EINTR
 	act.sa_flags = 0;
@@ -530,8 +531,8 @@ void eFilePushThreadRecorder::thread()
 		}
 
 #ifdef SHOW_WRITE_TIME
-		struct timeval starttime;
-		struct timeval now;
+		struct timeval starttime = {};
+		struct timeval now = {};
 		gettimeofday(&starttime, NULL);
 #endif
 		int w = writeData(bytes);

@@ -846,7 +846,7 @@ int eDVBCICcSession::generate_SAK_SEK()
 
 bool eDVBCICcSession::sac_check_auth(const uint8_t *data, unsigned int len)
 {
-	struct aes_xcbc_mac_ctx ctx;
+	struct aes_xcbc_mac_ctx ctx = {};
 	uint8_t calced_signature[16];
 
 	if (len < 16)
@@ -873,7 +873,7 @@ bool eDVBCICcSession::sac_check_auth(const uint8_t *data, unsigned int len)
 
 int eDVBCICcSession::sac_gen_auth(uint8_t *out, uint8_t *in, unsigned int len)
 {
-	struct aes_xcbc_mac_ctx ctx;
+	struct aes_xcbc_mac_ctx ctx = {};
 
 	aes_xcbc_mac_init(&ctx, m_sak);
 	aes_xcbc_mac_process(&ctx, (uint8_t *)"\x04", 1); /* header len */

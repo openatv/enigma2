@@ -253,7 +253,7 @@ static void sigterm_handler(int num)
 
 void catchTermSignal()
 {
-	struct sigaction act;
+	struct sigaction act = {};
 
 	act.sa_handler = sigterm_handler;
 	act.sa_flags = SA_RESTART;
@@ -360,7 +360,7 @@ int main(int argc, char **argv)
 		snprintf(filename, sizeof(filename), "%s/wait%d.png", userpath.c_str(), i + 1);
 		rfilename = eEnv::resolve(filename);
 
-		struct stat st;
+		struct stat st = {};
 		if (::stat(rfilename.c_str(), &st) == 0)
 		{
 			def = true;

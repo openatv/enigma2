@@ -55,7 +55,7 @@ int eThread::runAsync(int prio, int policy)
 
 	if (prio || policy)
 	{
-		struct sched_param p;
+		struct sched_param p = {};
 		p.__sched_priority=prio;
 		pthread_attr_setschedpolicy(&attr, policy);
 		pthread_attr_setschedparam(&attr, &p);

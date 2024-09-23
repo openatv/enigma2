@@ -143,8 +143,8 @@ int formatTime(char *buf, int bufferSize, int flags)
 	{
 		if (debugTime & 6)
 		{
-			struct tm loctime;
-			struct timeval tim;
+			struct tm loctime = {};
+			struct timeval tim = {};
 			gettimeofday(&tim, NULL);
 			localtime_r(&tim.tv_sec, &loctime);
 			if (debugTime & 4)
@@ -159,7 +159,7 @@ int formatTime(char *buf, int bufferSize, int flags)
 		}
 		if (debugTime & 1)
 		{
-			struct timespec tp;
+			struct timespec tp = {};
 			clock_gettime(CLOCK_MONOTONIC, &tp);
 			// Cast to (long long) is to cater for older 32-bit time fields
 			pos += snprintf(buf + pos, bufferSize - pos, "<%6lld.%06lld> ", (long long)tp.tv_sec, (long long)tp.tv_nsec / 1000);

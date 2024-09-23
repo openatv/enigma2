@@ -215,7 +215,7 @@ public:
 	eRCDeviceDreambox2Init()
 	 : m_driver(NULL), m_device(NULL), m_buttondriver(NULL), m_buttondevice(NULL)
 	{
-		struct stat s;
+		struct stat s = {};
 		if (::access("/dev/rawir2", R_OK) >= 0)
 		{
 			m_driver = new eRCShortDriver("/dev/rawir2");

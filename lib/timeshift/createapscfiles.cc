@@ -206,7 +206,7 @@ int do_movie(char* inname)
 {
 	int f_ts=-1, f_sc=-1, f_ap=-1, f_tmp=-1;
 	unsigned long long filesize;
-	struct stat fp;
+	struct stat fp = {};
 
 	const char *innameext = getext(inname);
 

@@ -24,7 +24,7 @@ DEFINE_REF(ePicLoad);
 
 static std::string getSize(const char* file)
 {
-	struct stat64 s;
+	struct stat64 s = {};
 	if (stat64(file, &s) < 0)
 		return "";
 	char tmp[21];
@@ -570,9 +570,9 @@ void jpeg_cb_error_exit(j_common_ptr cinfo)
 
 static unsigned char *jpeg_load(const char *file, int *ox, int *oy, unsigned int max_x, unsigned int max_y)
 {
-	struct jpeg_decompress_struct cinfo;
+	struct jpeg_decompress_struct cinfo = {};
 	struct jpeg_decompress_struct *ciptr = &cinfo;
-	struct r_jpeg_error_mgr emgr;
+	struct r_jpeg_error_mgr emgr = {};
 	unsigned char *pic_buffer=NULL;
 	CFile fh(file, "rb");
 
@@ -630,8 +630,8 @@ static unsigned char *jpeg_load(const char *file, int *ox, int *oy, unsigned int
 
 static int jpeg_save(const char * filename, int ox, int oy, unsigned char *pic_buffer)
 {
-	struct jpeg_compress_struct cinfo;
-	struct jpeg_error_mgr jerr;
+	struct jpeg_compress_struct cinfo = {};
+	struct jpeg_error_mgr jerr = {};
 	JSAMPROW row_pointer[1];
 	int row_stride;
 	CFile outfile(filename, "wb");

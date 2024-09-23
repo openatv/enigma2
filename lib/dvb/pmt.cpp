@@ -449,7 +449,7 @@ void eDVBServicePMTHandler::AITready(int error)
 				if(!hbbtvUrl.empty())
 				{
 					const char* uu = hbbtvUrl.c_str();
-					struct aitInfo aitinfo;
+					struct aitInfo aitinfo = {};
 					aitinfo.id = appid;
 					aitinfo.name = applicationName;
 					aitinfo.url = hbbtvUrl;

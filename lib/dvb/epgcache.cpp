@@ -1094,7 +1094,7 @@ void eEPGCache::save()
 		if(m_debug)
 			eDebug("[eEPGCache] Store EPG to realpath '%s'.", buf);
 
-		struct statfs st;
+		struct statfs st = {};
 		off64_t tmp;
 		if (statfs(buf, &st) < 0) {
 			eDebug("[eEPGCache] Applying statfs '%s' failed in save!  (%m)", buf);

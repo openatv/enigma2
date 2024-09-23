@@ -109,7 +109,7 @@ class eAUTable: public eAUGTable
 	eMainloop *ml;
 
 	/* needed to detect broken table version handling (seen on some m2ts files) */
-	struct timespec m_prev_table_update;
+	struct timespec m_prev_table_update = {};
 	int m_table_cnt;
 
 	void begin(eMainloop *m)
