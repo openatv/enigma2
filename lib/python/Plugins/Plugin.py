@@ -67,7 +67,7 @@ class PluginDescriptor:
 	# Argument: session
 	WHERE_BUTTONSETUP = 25
 
-	def __init__(self, name="Plugin", where=None, description="", icon=None, fnc=None, wakeupfnc=None, needsRestart=None, internal=False, weight=0):
+	def __init__(self, name="Plugin", where=None, description="", icon=None, fnc=None, wakeupfnc=None, needsRestart=None, internal=False, weight=0, pluginId=""):
 		self.name = name
 		if not where:
 			where = []
@@ -85,6 +85,7 @@ class PluginDescriptor:
 		self.internal = internal
 		self.weight = weight
 		self.path = None
+		self.pluginId = pluginId or name
 
 	def __call__(self, *args, **kwargs):
 		if callable(self.function):
