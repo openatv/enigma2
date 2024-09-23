@@ -664,6 +664,7 @@ void eDVBTeletextParser::setPageAndMagazine(int page, int magazine, const char *
 		m_page_X &= 0xFF;
 }
 
+#if SIGCXX_MAJOR_VERSION == 2
 void eDVBTeletextParser::connectNewStream(const sigc::slot0<void> &slot, ePtr<eConnection> &connection)
 {
 	connection = new eConnection(this, m_new_subtitle_stream.connect(slot));
@@ -673,7 +674,17 @@ void eDVBTeletextParser::connectNewPage(const sigc::slot1<void, const eDVBTelete
 {
 	connection = new eConnection(this, m_new_subtitle_page.connect(slot));
 }
+#else
+void eDVBTeletextParser::connectNewStream(const sigc::slot<void()> &slot, ePtr<eConnection> &connection)
+{
+	connection = new eConnection(this, m_new_subtitle_stream.connect(slot));
+}
 
+void eDVBTeletextParser::connectNewPage(const sigc::slot<void(const eDVBTeletextSubtitlePage&)> &slot, ePtr<eConnection> &connection)
+{
+	connection = new eConnection(this, m_new_subtitle_page.connect(slot));
+}
+#endif
 void eDVBTeletextParser::addSubtitleString(int color, std::string string, int source_line)
 {
 	const gRGB pal[8] = {gRGB(102, 102, 102), gRGB(255, 0, 0), gRGB(0, 255, 0), gRGB(255, 255, 0),

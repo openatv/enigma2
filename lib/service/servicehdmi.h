@@ -43,7 +43,11 @@ class eServiceHDMI: public iPlayableService, public iServiceInformation, public 
 public:
 	virtual ~eServiceHDMI();
 
+#if SIGCXX_MAJOR_VERSION == 2
 	RESULT connectEvent(const sigc::slot2<void, iPlayableService*, int> &event, ePtr<eConnection> &connection);
+#else
+	RESULT connectEvent(const sigc::slot<void(iPlayableService*,int)> &event, ePtr<eConnection> &connection);
+#endif
 	RESULT start();
 	RESULT stop();
 	RESULT setTarget(int target, bool noaudio);
@@ -78,7 +82,11 @@ public:
 private:
 	friend class eServiceFactoryHDMI;
 	eServiceHDMI(eServiceReference ref);
+#if SIGCXX_MAJOR_VERSION == 2
 	sigc::signal2<void,iPlayableService*, int> m_event;
+#else
+	sigc::signal<void(iPlayableService*,int)> m_event;
+#endif
 	eServiceReference m_ref;
 	int m_decoder_index;
 	bool m_noaudio;
@@ -91,7 +99,11 @@ class eServiceHDMIRecord: public eDVBServiceBase, public iRecordableService, pub
 	DECLARE_REF(eServiceHDMIRecord);
 public:
 	eServiceHDMIRecord(const eServiceReference &ref);
+#if SIGCXX_MAJOR_VERSION == 2
 	RESULT connectEvent(const sigc::slot2<void,iRecordableService*,int> &event, ePtr<eConnection> &connection);
+#else
+	RESULT connectEvent(const sigc::slot<void(iRecordableService*,int)> &event, ePtr<eConnection> &connection);
+#endif
 	RESULT prepare(const char *filename, time_t begTime, time_t endTime, int eit_event_id, const char *name, const char *descr, const char *tags, bool descramble, bool recordecm, int packetsize);
 	RESULT prepareStreaming(bool descramble = true, bool includeecm = false);
 	RESULT start(bool simulate=false);
@@ -120,7 +132,11 @@ private:
 	int doRecord();
 
 	/* events */
+#if SIGCXX_MAJOR_VERSION == 2
 	sigc::signal2<void,iRecordableService*,int> m_event;
+#else
+	sigc::signal<void(iRecordableService*,int)> m_event;
+#endif
 
 	/* recorder events */
 	void recordEvent(int event);

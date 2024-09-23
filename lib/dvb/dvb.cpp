@@ -1542,7 +1542,11 @@ RESULT eDVBResourceManager::removeChannel(eDVBChannel *ch)
 	return -ENOENT;
 }
 
+#if SIGCXX_MAJOR_VERSION == 2
 RESULT eDVBResourceManager::connectChannelAdded(const sigc::slot1<void,eDVBChannel*> &channelAdded, ePtr<eConnection> &connection)
+#else
+RESULT eDVBResourceManager::connectChannelAdded(const sigc::slot<void(eDVBChannel*)> &channelAdded, ePtr<eConnection> &connection)
+#endif
 {
 	connection = new eConnection((eDVBResourceManager*)this, m_channelAdded.connect(channelAdded));
 	return 0;
@@ -2355,13 +2359,21 @@ RESULT eDVBChannel::setChannel(const eDVBChannelID &channelid, ePtr<iDVBFrontend
 	return 0;
 }
 
+#if SIGCXX_MAJOR_VERSION == 2
 RESULT eDVBChannel::connectStateChange(const sigc::slot1<void,iDVBChannel*> &stateChange, ePtr<eConnection> &connection)
+#else
+RESULT eDVBChannel::connectStateChange(const sigc::slot<void(iDVBChannel*)> &stateChange, ePtr<eConnection> &connection)
+#endif
 {
 	connection = new eConnection((iDVBChannel*)this, m_stateChanged.connect(stateChange));
 	return 0;
 }
 
+#if SIGCXX_MAJOR_VERSION == 2
 RESULT eDVBChannel::connectEvent(const sigc::slot2<void,iDVBChannel*,int> &event, ePtr<eConnection> &connection)
+#else
+RESULT eDVBChannel::connectEvent(const sigc::slot<void(iDVBChannel*,int)> &event, ePtr<eConnection> &connection)
+#endif
 {
 	connection = new eConnection((iDVBChannel*)this, m_event.connect(event));
 	return 0;
@@ -2705,7 +2717,11 @@ void eCueSheet::setDecodingDemux(iDVBDemux *demux, iTSMPEGDecoder *decoder)
 	m_decoder = decoder;
 }
 
+#if SIGCXX_MAJOR_VERSION == 2
 RESULT eCueSheet::connectEvent(const sigc::slot1<void,int> &event, ePtr<eConnection> &connection)
+#else
+RESULT eCueSheet::connectEvent(const sigc::slot<void(int)> &event, ePtr<eConnection> &connection)
+#endif
 {
 	connection = new eConnection(this, m_event.connect(event));
 	return 0;

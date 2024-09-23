@@ -49,7 +49,11 @@ public:
 	virtual ~eServiceXine();
 
 		// iPlayableService
-	RESULT connectEvent(const sigc::slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection);
+#if SIGCXX_MAJOR_VERSION == 2
+	RESULT connectEvent(const sigc::slot2<void, iPlayableService*, int> &event, ePtr<eConnection> &connection);
+#else
+	RESULT connectEvent(const sigc::slot<void(iPlayableService*,int)> &event, ePtr<eConnection> &connection);
+#endif
 	RESULT start();
 	RESULT stop();
 
@@ -95,7 +99,11 @@ private:
 	friend class eServiceFactoryXine;
 	std::string m_filename;
 	eServiceXine(const char *filename);
+#if SIGCXX_MAJOR_VERSION == 2
 	sigc::signal2<void,iPlayableService*,int> m_event;
+#else
+	sigc::signal<void(iPlayableService*,int)> m_event;
+#endif
 
 	xine_stream_t *stream;
 	xine_video_port_t *vo_port;

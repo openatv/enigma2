@@ -404,7 +404,7 @@ int eStaticServiceDVBPVRInformation::getLength(const eServiceReference &ref)
 	if (tstools.openFile(ref.path.c_str(), 1))
 		return 0;
 
-	struct stat s;
+	struct stat s = {};
 	stat(ref.path.c_str(), &s);
 
 			/* check if cached data is still valid */
@@ -1511,7 +1511,11 @@ RESULT eDVBServicePlay::setTarget(int target, bool noaudio = false)
 	return 0;
 }
 
+#if SIGCXX_MAJOR_VERSION == 2
 RESULT eDVBServicePlay::connectEvent(const sigc::slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)
+#else
+RESULT eDVBServicePlay::connectEvent(const sigc::slot<void(iPlayableService*,int)> &event, ePtr<eConnection> &connection)
+#endif
 {
 	connection = new eConnection((iPlayableService*)this, m_event.connect(event));
 	return 0;
@@ -1806,7 +1810,7 @@ RESULT eDVBServicePlay::timeshift(ePtr<iTimeshiftService> &ptr)
 			}
 			tspath.append("/");
 			/* we need enough diskspace */
-			struct statfs fs;
+			struct statfs fs = {};
 			if (statfs(tspath.c_str(), &fs) < 0)
 			{
 				eDebug("[eDVBServicePlay] time shift %s statfs failed: %m", tspath.c_str());
@@ -3548,7 +3552,7 @@ RESULT eDVBServicePlay::getSubtitleList(std::vector<SubtitleTrack> &subtitlelist
 		for (std::vector<eDVBServicePMTHandler::subtitleStream>::iterator it(program.subtitleStreams.begin());
 			it != program.subtitleStreams.end(); ++it)
 		{
-			struct SubtitleTrack track;
+			struct SubtitleTrack track = {};
 			switch(it->subtitling_type)
 			{
 				case 0x01: // ebu teletext subtitles
@@ -3591,7 +3595,7 @@ RESULT eDVBServicePlay::getSubtitleList(std::vector<SubtitleTrack> &subtitlelist
 		int hash = magazine_number << 8 | page_number;
 		if (added_ttx_pages.find(hash) == added_ttx_pages.end())
 		{
-			struct SubtitleTrack track;
+			struct SubtitleTrack track = {};
 			track.type = 1;
 			track.pid = it->pid;
 			track.page_number = page_number;

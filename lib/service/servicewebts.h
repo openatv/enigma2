@@ -79,7 +79,11 @@ public:
 	virtual ~eServiceWebTS();
 
 	// iPlayableService
-	RESULT connectEvent(const sigc::slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection);
+#if SIGCXX_MAJOR_VERSION == 2
+	RESULT connectEvent(const sigc::slot2<void, iPlayableService*, int> &event, ePtr<eConnection> &connection);
+#else
+	RESULT connectEvent(const sigc::slot<void(iPlayableService*,int)> &event, ePtr<eConnection> &connection);
+#endif
 	RESULT start();
 	RESULT stop();
 	RESULT pause(ePtr<iPauseableService> &ptr);
@@ -147,7 +151,11 @@ private:
 	eServiceWebTS(const eServiceReference &url);
 	int openHttpConnection(std::string url);
 
+#if SIGCXX_MAJOR_VERSION == 2
 	sigc::signal2<void,iPlayableService*,int> m_event;
+#else
+	sigc::signal<void(iPlayableService*,int)> m_event;
+#endif
 	eFixedMessagePump<int> m_pump;
 	void recv_event(int evt);
 	void setAudioPid(int pid, int type);
@@ -168,7 +176,11 @@ public:
 	RESULT getAudioInfo(ePtr<TSAudioInfoWeb> &ptr);
 
 	enum { evtEOS, evtSOS, evtReadError, evtWriteError, evtUser, evtStreamInfo };
-	sigc::signal1<void,int> m_event;
+#if SIGCXX_MAJOR_VERSION == 2
+	sigc::signal1<void, int> m_event;
+#else
+	sigc::signal<void(int)> m_event;
+#endif
 private:
 	bool m_stop;
 	bool m_running;

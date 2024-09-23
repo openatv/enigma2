@@ -600,7 +600,11 @@ public:
 	virtual int closeFrontend(bool force = false, bool no_delayed = false)=0;
 	virtual void reopenFrontend()=0;
 #ifndef SWIG
+#if SIGCXX_MAJOR_VERSION == 2
 	virtual RESULT connectStateChange(const sigc::slot1<void,iDVBFrontend*> &stateChange, ePtr<eConnection> &connection)=0;
+#else
+	virtual RESULT connectStateChange(const sigc::slot<void(iDVBFrontend*)> &stateChange, ePtr<eConnection> &connection)=0;
+#endif
 #endif
 	virtual RESULT getState(int &SWIG_OUTPUT)=0;
 	virtual RESULT setTone(int tone)=0;
@@ -678,8 +682,13 @@ public:
 	{
 		evtPreStart, evtEOF, evtSOF, evtFailed, evtStopped
 	};
+#if SIGCXX_MAJOR_VERSION == 2
 	virtual RESULT connectStateChange(const sigc::slot1<void,iDVBChannel*> &stateChange, ePtr<eConnection> &connection)=0;
 	virtual RESULT connectEvent(const sigc::slot2<void,iDVBChannel*,int> &eventChange, ePtr<eConnection> &connection)=0;
+#else
+	virtual RESULT connectStateChange(const sigc::slot<void(iDVBChannel*)> &stateChange, ePtr<eConnection> &connection)=0;
+	virtual RESULT connectEvent(const sigc::slot<void(iDVBChannel*,int)> &eventChange, ePtr<eConnection> &connection)=0;
+#endif
 
 		/* demux capabilities */
 	enum
@@ -730,12 +739,20 @@ public:
 
 			/* backend */
 	enum { evtSeek, evtSkipmode, evtSpanChanged };
+#if SIGCXX_MAJOR_VERSION == 2
 	RESULT connectEvent(const sigc::slot1<void, int> &event, ePtr<eConnection> &connection);
+#else
+	RESULT connectEvent(const sigc::slot<void(int)> &event, ePtr<eConnection> &connection);
+#endif
 
 	std::list<std::pair<pts_t,pts_t> > m_spans;	/* begin, end */
 	std::list<std::pair<int, pts_t> > m_seek_requests; /* relative, delta */
 	pts_t m_skipmode_ratio;
+#if SIGCXX_MAJOR_VERSION == 2
 	sigc::signal1<void,int> m_event;
+#else
+	sigc::signal<void(int)> m_event;
+#endif
 	ePtr<iDVBDemux> m_decoding_demux;
 	ePtr<iTSMPEGDecoder> m_decoder;
 };
@@ -868,7 +885,11 @@ public:
 		unsigned short gamma;
 	};
 
+#if SIGCXX_MAJOR_VERSION == 2
 	virtual RESULT connectVideoEvent(const sigc::slot1<void, struct videoEvent> &event, ePtr<eConnection> &connection) = 0;
+#else
+	virtual RESULT connectVideoEvent(const sigc::slot<void(struct videoEvent)> &event, ePtr<eConnection> &connection) = 0;
+#endif
 
 	virtual int getVideoWidth() = 0;
 	virtual int getVideoHeight() = 0;

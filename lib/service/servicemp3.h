@@ -130,7 +130,11 @@ public:
 	virtual ~eServiceMP3();
 
 		// iPlayableService
-	RESULT connectEvent(const sigc::slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection);
+#if SIGCXX_MAJOR_VERSION == 2
+	RESULT connectEvent(const sigc::slot2<void, iPlayableService*, int> &event, ePtr<eConnection> &connection);
+#else
+	RESULT connectEvent(const sigc::slot<void(iPlayableService*,int)> &event, ePtr<eConnection> &connection);
+#endif
 	RESULT start();
 	RESULT stop();
 
@@ -326,7 +330,11 @@ private:
 	errorInfo m_errorInfo;
 	std::string m_download_buffer_path;
 	eServiceMP3(eServiceReference ref);
+#if SIGCXX_MAJOR_VERSION == 2
 	sigc::signal2<void,iPlayableService*,int> m_event;
+#else
+	sigc::signal<void(iPlayableService*,int)> m_event;
+#endif
 	enum
 	{
 		stIdle, stRunning, stStopped,

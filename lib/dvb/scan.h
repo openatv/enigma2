@@ -89,7 +89,11 @@ class eDVBScan: public sigc::trackable, public iObject
 
 	void channelDone();
 
-	sigc::signal1<void,int> m_event;
+#if SIGCXX_MAJOR_VERSION == 2
+	sigc::signal1<void, int> m_event;
+#else
+	sigc::signal<void(int)> m_event;
+#endif
 	RESULT processSDT(eDVBNamespace dvbnamespace, const ServiceDescriptionSection &sdt);
 	RESULT processVCT(eDVBNamespace dvbnamespace, const VirtualChannelTableSection &vct, int onid);
 
@@ -115,7 +119,11 @@ public:
 	void start(const eSmartPtrList<iDVBFrontendParameters> &known_transponders, int flags, int networkid = 0);
 
 	enum { evtUpdate, evtNewService, evtFinish, evtFail };
+#if SIGCXX_MAJOR_VERSION == 2
 	RESULT connectEvent(const sigc::slot1<void,int> &event, ePtr<eConnection> &connection);
+#else
+	RESULT connectEvent(const sigc::slot<void(int)> &event, ePtr<eConnection> &connection);
+#endif
 	void insertInto(iDVBChannelList *db, bool backgroundscanresult=false);
 
 	void getStats(int &transponders_done, int &transponders_total, int &services);

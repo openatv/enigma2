@@ -848,7 +848,11 @@ static int64_t get_pts_video()
 }
 #endif
 
+#if SIGCXX_MAJOR_VERSION == 2
 RESULT eDVBVideo::connectEvent(const sigc::slot1<void, struct iTSMPEGDecoder::videoEvent> &event, ePtr<eConnection> &conn)
+#else
+RESULT eDVBVideo::connectEvent(const sigc::slot<void(struct iTSMPEGDecoder::videoEvent)> &event, ePtr<eConnection> &conn)
+#endif
 {
 	conn = new eConnection(this, m_event.connect(event));
 	return 0;
@@ -1725,7 +1729,11 @@ void eTSMPEGDecoder::parseVideoInfo()
 }
 #endif
 
+#if SIGCXX_MAJOR_VERSION == 2
 RESULT eTSMPEGDecoder::connectVideoEvent(const sigc::slot1<void, struct videoEvent> &event, ePtr<eConnection> &conn)
+#else
+RESULT eTSMPEGDecoder::connectVideoEvent(const sigc::slot<void(struct videoEvent)> &event, ePtr<eConnection> &conn)
+#endif
 {
 	conn = new eConnection(this, m_video_event.connect(event));
 	return 0;

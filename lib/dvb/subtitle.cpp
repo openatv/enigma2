@@ -1111,7 +1111,11 @@ int eDVBSubtitleParser::start(int pid, int composition_page_id, int ancillary_pa
 	return -1;
 }
 
+#if SIGCXX_MAJOR_VERSION == 2
 void eDVBSubtitleParser::connectNewPage(const sigc::slot1<void, const eDVBSubtitlePage&> &slot, ePtr<eConnection> &connection)
+#else
+void eDVBSubtitleParser::connectNewPage(const sigc::slot<void(const eDVBSubtitlePage&)> &slot, ePtr<eConnection> &connection)
+#endif
 {
 	connection = new eConnection(this, m_new_subtitle_page.connect(slot));
 }

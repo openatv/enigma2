@@ -185,7 +185,7 @@ void *gRC::thread()
 
 				/* when the main thread is non-idle for a too long time without any display output,
 				   we want to display a spinner. */
-				struct timespec timeout;
+				struct timespec timeout = {};
 				clock_gettime(CLOCK_REALTIME, &timeout);
 
 				if (m_spinner_enabled)

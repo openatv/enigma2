@@ -520,7 +520,11 @@ RESULT eDVBServiceRecord::frontendInfo(ePtr<iFrontendInformation> &ptr)
 	return 0;
 }
 
+#if SIGCXX_MAJOR_VERSION == 2
 RESULT eDVBServiceRecord::connectEvent(const sigc::slot2<void,iRecordableService*,int> &event, ePtr<eConnection> &connection)
+#else
+RESULT eDVBServiceRecord::connectEvent(const sigc::slot<void(iRecordableService*,int)> &event, ePtr<eConnection> &connection)
+#endif
 {
 	connection = new eConnection((iRecordableService*)this, m_event.connect(event));
 	return 0;
