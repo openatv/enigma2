@@ -1,4 +1,4 @@
-from os.path import dirname, isdir, join
+from os.path import basename, isdir, join, normpath
 
 from Tools.LoadPixmap import LoadPixmap
 
@@ -102,7 +102,7 @@ class PluginDescriptor:
 	def updateIcon(self, path):
 		self.path = path
 		if isdir(path):
-			self.key = dirname(path)
+			self.key = basename(normpath(path))
 
 	def getWakeupTime(self):
 		return self.wakeupfnc and self.wakeupfnc() or -1
