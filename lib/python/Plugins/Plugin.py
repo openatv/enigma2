@@ -1,4 +1,4 @@
-from os.path import join
+from os.path import basename, isdir, join, normpath
 
 from Tools.LoadPixmap import LoadPixmap
 
@@ -85,6 +85,7 @@ class PluginDescriptor:
 		self.internal = internal
 		self.weight = weight
 		self.path = None
+		self.key = name
 
 	def __call__(self, *args, **kwargs):
 		if callable(self.function):
@@ -100,6 +101,8 @@ class PluginDescriptor:
 
 	def updateIcon(self, path):
 		self.path = path
+		if isdir(path):
+			self.key = basename(normpath(path))
 
 	def getWakeupTime(self):
 		return self.wakeupfnc and self.wakeupfnc() or -1

@@ -25,8 +25,10 @@ class PluginComponent:
 	def setPluginPrefix(self, prefix):
 		self.prefix = prefix
 
-	def addPlugin(self, plugin):
+	def addPlugin(self, plugin, path=None):
 		if self.firstRun or not plugin.needsRestart:
+			if path:
+				plugin.updateIcon(path)
 			self.pluginList.append(plugin)
 			for where in plugin.where:
 				insort(self.plugins.setdefault(where, []), plugin)
@@ -79,7 +81,6 @@ class PluginComponent:
 					if not isinstance(plugins, list):
 						plugins = [plugins]
 					for plugin in plugins:
-						plugin.path = path
 						plugin.updateIcon(path)
 						newPlugins.append(plugin)
 					keymap = join(path, "keymap.xml")
