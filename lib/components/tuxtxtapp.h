@@ -28,7 +28,7 @@ public:
 	~eTuxtxtApp();
 	static eTuxtxtApp *getInstance() { return instance; }
 	int startUi();
-	void initCache();
+	void initCache(bool debug=false);
 	void freeCache();
 	void startCaching( int tpid, int tdemux );
 	void stopCaching();

@@ -1318,7 +1318,8 @@ int eTSMPEGDecoder::setState()
 }
 
 int eTSMPEGDecoder::m_pcm_delay=-1,
-	eTSMPEGDecoder::m_ac3_delay=-1;
+	eTSMPEGDecoder::m_ac3_delay=-1,
+	eTSMPEGDecoder::m_debugTXT=-1;
 
 RESULT eTSMPEGDecoder::setHwPCMDelay(int delay)
 {
@@ -1374,8 +1375,12 @@ eTSMPEGDecoder::eTSMPEGDecoder(eDVBDemux *demux, int decoder)
 	sprintf(filename, "/dev/dvb/adapter%d/audio%d", m_demux ? m_demux->adapter : 0, m_decoder);
 	m_has_audio = !access(filename, W_OK);
 
+	if (eTSMPEGDecoder::m_debugTXT < 0)
+		eTSMPEGDecoder::m_debugTXT = eSimpleConfig::getBool("config.crash.debugTeletext", false) ? 1 : 0;
+
+
 	if (m_demux && m_decoder == 0)	// Tuxtxt caching actions only on primary decoder
-		eTuxtxtApp::getInstance()->initCache();
+		eTuxtxtApp::getInstance()->initCache(eTSMPEGDecoder::m_debugTXT == 1);
 }
 
 eTSMPEGDecoder::~eTSMPEGDecoder()

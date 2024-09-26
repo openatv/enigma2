@@ -112,6 +112,7 @@ private:
 	static int m_pcm_delay;
 	static int m_ac3_delay;
 	static int m_audio_channel;
+	static int m_debugTXT;
 	std::string m_radio_pic;
 	ePtr<eDVBDemux> m_demux;
 	ePtr<eDVBAudio> m_audio;
