@@ -131,7 +131,6 @@ class ServiceScan(Screen):
 			callback(serviceName)
 
 	def statusChanged(self):
-		print(f"[ServiceScan] statusChanged DEBUG: Starting an update.")
 		errorCode = 0
 		if self.state == self.RUNNING:
 			transponderType = ""
