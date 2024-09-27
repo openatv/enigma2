@@ -150,7 +150,7 @@ class ServiceListTemplateParser(TemplateParser):
 
 					items = []
 					if modeName == "services":
-						if config.channelSelection.showNumber.value and config.usage.numberMode != 2:
+						if config.channelSelection.showNumber.value and config.usage.numberMode.value != 2:
 							optionalExcludeItemIndexes.append("Number")
 						if subMode:
 							continue
