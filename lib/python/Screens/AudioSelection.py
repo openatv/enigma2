@@ -265,11 +265,8 @@ class AudioSelection(ConfigListScreen, Screen):
 					def __call__(self, *args, **kwargs):
 						self.fnc(*self.args)
 
-				Plugins = [(p.name, PluginCaller(self.infobar.runPlugin, p)) for p in plugins.getPlugins(where=PluginDescriptor.WHERE_AUDIOMENU)]
-				if len(Plugins):
-					for x in Plugins:
-						if x[0] != 'AudioEffect':  # always make AudioEffect Blue button.
-							conflist.append(getConfigListEntry(x[0], ConfigNothing(), x[1]))
+				for item in [(p.name, PluginCaller(self.infobar.runPlugin, p)) for p in plugins.getPlugins(where=PluginDescriptor.WHERE_AUDIOMENU) if p.key != "AudioEffect"]:  # Ignore AudioEffect because it's always Blue button.
+					conflist.append(getConfigListEntry(item[0], ConfigNothing(), item[1]))
 
 		elif self.settings.menupage.value == PAGE_SUBTITLES:
 
