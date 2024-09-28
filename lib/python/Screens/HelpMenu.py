@@ -10,34 +10,69 @@ from Components.config import config
 from Components.InputDevice import remoteControl
 from Components.Label import Label
 from Components.Pixmap import MovingPixmap, Pixmap
-from Components.SystemInfo import BoxInfo
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Screens.Screen import Screen
 from Tools.LoadPixmap import LoadPixmap
 
 
-class HelpableScreen:  # Stub for deprecated manual help definitions used by old screens and plugins.
-	def __init__(self):
-		if "helpActions" not in self:
-			self["helpActions"] = ActionMap(["HelpActions"], {
-				"displayHelp": self.showHelp
-			}, prio=0)
-			self["key_help"] = StaticText(_("HELP"))
-
-
 class ShowRemoteControl:
+	MAX_BUTTON_INDICATORS = 16
+
+	class KeyIndicator:
+		class KeyIndicatorPixmap(MovingPixmap):
+			def __init__(self, activeYPos, pixmap):
+				MovingPixmap.__init__(self)
+				self.activeYPos = activeYPos
+				self.pixmapName = pixmap
+
+		def __init__(self, owner, activeYPos, pixmaps):
+			self.pixmaps = []
+			for yPos, pixmap in zip(activeYPos, pixmaps):
+				indicatorPixmap = self.KeyIndicatorPixmap(yPos, pixmap)
+				owner[pixmap] = indicatorPixmap
+				self.pixmaps.append(indicatorPixmap)
+			self.pixmaps.sort(key=lambda x: x.activeYPos)
+
+		def moveTo(self, pos, rcPos, moveFrom=None, time=20):
+			foundActive = False
+			for index, pixmap in enumerate(self.pixmaps):
+				fromX, fromY = pixmap.getPosition()
+				if moveFrom:
+					fromX, fromY = moveFrom.pixmaps[index].getPosition()
+				toX = pos[0] + rcPos[0]
+				toY = pos[1] + rcPos[1]
+				if pos[1] <= pixmap.activeYPos and not foundActive:
+					pixmap.move(fromX, fromY)
+					pixmap.moveTo(toX, toY, self.slideTime((fromX, fromY), (toX, toY), time))
+					pixmap.show()
+					pixmap.startMoving()
+					foundActive = True
+				else:
+					pixmap.move(toX, toY)
+
+		def slideTime(self, start, end, time=20):
+			result = time
+			if self.pixmaps:
+				dist = ((end[0] - start[0]) ** 2 + (end[1] - start[1]) ** 2) ** 0.5
+				slide = int(round(dist / self.pixmaps[-1].activeYPos * time))
+				result = slide if slide > 0 else 1
+			return result
+
+		def hide(self):
+			for pixmap in self.pixmaps:
+				pixmap.hide()
+
 	def __init__(self):
 		self["rc"] = Pixmap()
 		self["label"] = Label()
 		self.rcPosition = None
-		buttonImages = 16
 		rcHeights = (500,) * 2
-		self.selectPics = []
-		for indicator in range(buttonImages):
-			self.selectPics.append(self.KeyIndicator(self, rcHeights, ("indicatorU%d" % indicator, "indicatorL%d" % indicator)))
-		self.nSelectedKeys = 0
-		self.oldNSelectedKeys = 0
+		self.selectPixmaps = []
+		for indicator in range(self.MAX_BUTTON_INDICATORS):
+			self.selectPixmaps.append(self.KeyIndicator(self, rcHeights, (f"indicatorU{indicator}", f"indicatorL{indicator}")))
+		self.selectedKeys = 0
+		self.selectedKeysPrevious = 0
 		self.clearSelectedKeys()
 		self.wizardConversion = {  # This dictionary converts named buttons in the Wizards to keyIds.
 			"OK": KEYIDS.get("KEY_OK"),
@@ -53,85 +88,39 @@ class ShowRemoteControl:
 		}
 		self.onLayoutFinish.append(self.initRemoteControl)
 
-	class KeyIndicator:
-
-		class KeyIndicatorPixmap(MovingPixmap):
-			def __init__(self, activeYPos, pixmap):
-				MovingPixmap.__init__(self)
-				self.activeYPos = activeYPos
-				self.pixmapName = pixmap
-
-		def __init__(self, owner, activeYPos, pixmaps):
-			self.pixmaps = []
-			for actYpos, pixmap in zip(activeYPos, pixmaps):
-				pm = self.KeyIndicatorPixmap(actYpos, pixmap)
-				owner[pixmap] = pm
-				self.pixmaps.append(pm)
-			self.pixmaps.sort(key=lambda x: x.activeYPos)
-
-		def slideTime(self, start, end, time=20):
-			if not self.pixmaps:
-				return time
-			dist = ((end[0] - start[0]) ** 2 + (end[1] - start[1]) ** 2) ** 0.5
-			slide = int(round(dist / self.pixmaps[-1].activeYPos * time))
-			return slide if slide > 0 else 1
-
-		def moveTo(self, pos, rcPos, moveFrom=None, time=20):
-			foundActive = False
-			for index, pixmap in enumerate(self.pixmaps):
-				fromX, fromY = pixmap.getPosition()
-				if moveFrom:
-					fromX, fromY = moveFrom.pixmaps[index].getPosition()
-				x = pos[0] + rcPos[0]
-				y = pos[1] + rcPos[1]
-				if pos[1] <= pixmap.activeYPos and not foundActive:
-					pixmap.move(fromX, fromY)
-					pixmap.moveTo(x, y, self.slideTime((fromX, fromY), (x, y), time))
-					pixmap.show()
-					pixmap.startMoving()
-					foundActive = True
-				else:
-					pixmap.move(x, y)
-
-		def hide(self):
-			for pixmap in self.pixmaps:
-				pixmap.hide()
-
 	def initRemoteControl(self):
-		rc = LoadPixmap(BoxInfo.getItem("RCImage"))
-		if rc:
-			self["rc"].instance.setPixmap(rc)
+		rcPixmap = LoadPixmap(remoteControl.getRemoteControlPixmap())
+		if rcPixmap:
+			self["rc"].instance.setPixmap(rcPixmap)
 			self.rcPosition = self["rc"].getPosition()
 			rcHeight = self["rc"].getSize()[1]
-			for selectPic in self.selectPics:
-				nBreaks = len(selectPic.pixmaps)
-				roundup = nBreaks - 1
-				n = 1
-				for pic in selectPic.pixmaps:
-					pic.activeYPos = (rcHeight * n + roundup) / nBreaks
-					n += 1
+			for selectPixmap in self.selectPixmaps:
+				breaks = len(selectPixmap.pixmaps)
+				roundup = breaks - 1
+				for index, pixmap in enumerate(selectPixmap.pixmaps, start=1):
+					pixmap.activeYPos = (rcHeight * index + roundup) // breaks
 
 	def selectKey(self, keyId):
 		if self.rcPosition:
 			if isinstance(keyId, str):  # This test looks for named buttons in the Wizards and converts them to keyIds.
 				keyId = self.wizardConversion.get(keyId, 0)
 			pos = remoteControl.getRemoteControlKeyPos(keyId)
-			if pos and self.nSelectedKeys < len(self.selectPics):
-				selectPic = self.selectPics[self.nSelectedKeys]
-				self.nSelectedKeys += 1
-				if self.oldNSelectedKeys > 0 and self.nSelectedKeys > self.oldNSelectedKeys:
-					selectPic.moveTo(pos, self.rcPosition, moveFrom=self.selectPics[self.oldNSelectedKeys - 1], time=int(config.usage.helpAnimationSpeed.value))
+			if pos and self.selectedKeys < len(self.selectPixmaps):
+				selectPixmap = self.selectPixmaps[self.selectedKeys]
+				self.selectedKeys += 1
+				if self.selectedKeysPrevious > 0 and self.selectedKeys > self.selectedKeysPrevious:
+					selectPixmap.moveTo(pos, self.rcPosition, moveFrom=self.selectPixmaps[self.selectedKeysPrevious - 1], time=config.usage.helpAnimationSpeed.value)
 				else:
-					selectPic.moveTo(pos, self.rcPosition, time=int(config.usage.helpAnimationSpeed.value))
+					selectPixmap.moveTo(pos, self.rcPosition, time=config.usage.helpAnimationSpeed.value)
 
 	def clearSelectedKeys(self):
-		self.hideSelectPics()
-		self.oldNSelectedKeys = self.nSelectedKeys
-		self.nSelectedKeys = 0
+		self.hideSelectPixmaps()
+		self.selectedKeysPrevious = self.selectedKeys
+		self.selectedKeys = 0
 
-	def hideSelectPics(self):
-		for selectPic in self.selectPics:
-			selectPic.hide()
+	def hideSelectPixmaps(self):
+		for selectPixmap in self.selectPixmaps:
+			selectPixmap.hide()
 
 	# Visits all the buttons in turn, sliding between them.  Starts with
 	# the top left button and finishes on the bottom right button.
@@ -148,26 +137,26 @@ class ShowRemoteControl:
 				pixmap.clearPath()
 				pixmap.addMovePoint(rcPos[0] + pos[0], rcPos[1] + pos[1], time=5)
 				pixmap.startMoving(startTimer)
-				self["label"].setText("%s: %s\n%s: %s" % (_("Key"), KEYIDNAMES.get(keyId, _("Unknown")), _("Label"), remoteControl.getRemoteControlKeyLabel(keyId)))
+				self["label"].setText(f"{_("Key")}: {KEYIDNAMES.get(keyId, _("Unknown"))}\n{_("Label")}: {remoteControl.getRemoteControlKeyLabel(keyId)}")
 				pixmap.addMovePoint(rcPos[0] + pos[0], rcPos[1] + pos[1], time=15)
 				pixmap.startMoving(startTimer)
 			else:
 				self["label"].setText("")
-				callback()
+				if callable(callback):
+					callback()
 
 		def startTimer():
 			timer.start(0, True)
 
-		if not self.selectPics or not self.selectPics[0].pixmaps:
-			return
-		self.hideSelectPics()
-		pixmap = self.selectPics[0].pixmaps[0]
-		pixmap.show()
-		rcPos = self["rc"].getPosition()
-		buttons = remoteControl.getRemoteControlKeyList()[:]
-		timer = eTimer()
-		timer.callback.append(timeout)
-		timer.start(500, True)
+		if self.selectPixmaps and self.selectPixmaps[0].pixmaps:
+			self.hideSelectPixmaps()
+			pixmap = self.selectPixmaps[0].pixmaps[0]
+			pixmap.show()
+			rcPos = self["rc"].getPosition()
+			buttons = remoteControl.getRemoteControlKeyList()[:]
+			timer = eTimer()
+			timer.callback.append(timeout)
+			timer.start(500, True)
 
 
 class HelpMenu(Screen, ShowRemoteControl):
@@ -181,46 +170,20 @@ class HelpMenu(Screen, ShowRemoteControl):
 		self["description"] = Label("")
 		self["key_help"] = StaticText(_("HELP"))
 		self["helpActions"] = ActionMap(["HelpActions"], {
-			"cancel": self.close,  # self.closeHelp,
-			"select": self.selectItem,
+			"cancel": self.close,
+			"select": self["list"].select,
 			"displayHelp": self.showHelp,
 			"displayHelpLong": self.showButtons
 		}, prio=-1)
-		# Wildcard binding with slightly higher priority than the
-		# wildcard bindings in InfoBarGenerics.InfoBarUnhandledKey,
-		# but with a gap so that other wildcards can be interposed
-		# if needed.
+		# Wildcard binding with slightly higher priority than the wildcard bindings in
+		# InfoBarGenerics.InfoBarUnhandledKey, but with a gap so that other wildcards
+		# can be interposed if needed.
 		eActionMap.getInstance().bindAction("", maxsize - 100, self["list"].handleButton)
-		# Ignore keypress breaks for the keys in the ListboxActions context.
-		self["listboxFilterActions"] = ActionMap(["HelpMenuListboxActions"], {
+		self["listboxFilterActions"] = ActionMap(["HelpMenuListboxActions"], {  # Ignore keypress breaks for the keys in the ListboxActions context.
 			"ignore": lambda: 1
 		}, prio=1)
 		self.onClose.append(self.closeHelp)
 		self.onLayoutFinish.append(self.selectionChanged)
-
-	def selectItem(self):
-		self["list"].select()
-
-	def closeHelp(self):
-		eActionMap.getInstance().unbindAction("", self["list"].handleButton)
-		self["list"].onSelectionChanged.remove(self.selectionChanged)
-
-	def showHelp(self):
-		# MessageBox import deferred so that MessageBox's import of HelpMenu doesn't cause an import loop.
-		from Screens.MessageBox import MessageBox
-		helpText = "\n\n".join([
-			_("HELP provides brief information for buttons in your current context."),
-			_("Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."),
-			_("Other buttons will jump to the help information for that button, if there is help available."),
-			_("If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."),
-			_("A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."),
-			_("Configuration options for the HELP screen can be found in 'MENU > Setup > Usage & User Interface > Settings'."),
-			_("Press EXIT to return to the help screen.")
-		])
-		self.session.open(MessageBox, helpText, type=MessageBox.TYPE_INFO, title=_("Help Screen Information"))
-
-	def showButtons(self):
-		self.testHighlights(self.selectionChanged)
 
 	def selectionChanged(self):
 		self.clearSelectedKeys()
@@ -253,15 +216,35 @@ class HelpMenu(Screen, ShowRemoteControl):
 			helpText = selection[4]
 			self["description"].setText(isinstance(helpText, (list, tuple)) and len(helpText) > 1 and helpText[1] or "")
 
+	def closeHelp(self):
+		eActionMap.getInstance().unbindAction("", self["list"].handleButton)
+		self["list"].onSelectionChanged.remove(self.selectionChanged)
+
+	def showHelp(self):
+		from Screens.MessageBox import MessageBox  # MessageBox import deferred so that MessageBox's import of HelpMenu doesn't cause an import loop.
+		helpText = "\n\n".join([
+			_("HELP provides brief information for buttons in your current context."),
+			_("Navigate up/down with UP/DOWN buttons and page up/down with LEFT/RIGHT. OK to perform the action described in the currently highlighted help."),
+			_("Other buttons will jump to the help information for that button, if there is help available."),
+			_("If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."),
+			_("A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."),
+			_("Configuration options for the HELP screen can be found in 'MENU > Setup > Usage & User Interface > Settings'."),
+			_("Press EXIT to return to the help screen.")
+		])
+		self.session.open(MessageBox, helpText, type=MessageBox.TYPE_INFO, title=_("Help Screen Information"))
+
+	def showButtons(self):
+		self.testHighlights(self.selectionChanged)
+
 
 # Helplist structure:
-# [ ( actionmap, context, [(action, help), (action, help), ...] ), (actionmap, ... ), ... ]
+# [ ( actionMap, context, [(action, helpTest), (action, helpTest), ...] ), (actionMap, ... ), ... ]
 #
 # The helplist is ordered by the order that the Helpable[Number]ActionMaps
-# are initialised.
+# are initialized.
 #
 # The lookup of actions is by searching the HelpableActionMaps by priority,
-# then my order of initialisation.
+# then my order of initialization.
 #
 # The lookup of actions for a key press also stops at the first valid action
 # encountered.
@@ -270,7 +253,7 @@ class HelpMenu(Screen, ShowRemoteControl):
 # and the search finishes when the first action/help matching matching
 # the key is found.
 #
-# The code recognises that more than one button can map to an action and
+# The code recognizes that more than one button can map to an action and
 # places a button name list instead of a single button in the help entry.
 #
 # In the template for HelpMenuList:
@@ -293,52 +276,99 @@ class HelpMenuList(List):
 	EXTENDED = 2
 
 	def __init__(self, helpList, callback):
+		def compare(valueA, valueB):
+			return (valueA > valueB) - (valueA < valueB)
+
+		def sortKeyAlpha(helpData):  # Convert normal help to extended help format for comparison and ignore case.
+			return list(map(str.lower, helpData[1] if isinstance(helpData[1], (tuple, list)) else [helpData[1], ""]))
+
+		def sortCmpPos(posA, posB):
+			def getMinPos(pos):  # Reverse the coordinate tuple, too, to (y, x) to get ordering by y then x.
+				# return min(map(lambda x: tuple(reversed(self.rcPos.getRcKeyPos(x[0]))), pos))
+				return min(map(lambda x: tuple(reversed(remoteControl.getRemoteControlKeyPos(x[0]))), pos))
+
+			return compare(getMinPos(posA[0][3]), getMinPos(posB[0][3]))
+
+		def sortCmpInd(indexA, indexB):
+			# Sort order "Flat by key group on remote" is really "Sort in order of buttons in
+			# rcpositions.xml", and so the buttons need to be grouped sensibly in that file for
+			# this to work properly.
+			#
+			def getMinInd(index):
+				return min(map(lambda x: self.rcKeyIndex[x[0]], index))
+
+			return compare(getMinInd(indexA[0][3]), getMinInd(indexB[0][3]))
+
+		def getActionMapId():
+			return getattr(actionMap, "description", None) or id(actionMap)
+
+		def filterHelpList(item, seen):
+			def mergeButtonLists(buttonList1, buttonList2):
+				buttonList1.extend([x for x in buttonList2 if x not in buttonList1])
+
+			helpItem = tuple(item[1]) if isinstance(item[1], (tuple, list)) else (item[1],)
+			if helpItem in seen:
+				mergeButtonLists(seen[helpItem], item[0][3])
+				result = False
+			else:
+				seen[helpItem] = item[0][3]
+				result = True
+			return result
+
+		def addListBoxContext(actionMapHelp, formatFlags):
+			extended = (formatFlags & self.EXTENDED) >> 1
+			headings = formatFlags & self.HEADINGS
+			for index, entry in enumerate(actionMapHelp):
+				helpItem = entry[1]
+				entry[1:] = [None] * (1 + headings + extended)
+				if isinstance(helpItem, (tuple, list)):
+					entry[1 + headings] = helpItem[0]
+					entry[2 + headings] = helpItem[1]
+				else:
+					entry[1 + headings] = helpItem
+				actionMapHelp[index] = tuple(entry)
+
 		List.__init__(self)
-		self.callback = callback
+		self.callback = callback  # This assumes that callback is always a valid method!
 		self.rcKeyIndex = None
 		self.buttonMap = {}
 		self.longSeen = False
 		formatFlags = 0
-
-		def actMapId():
-			return getattr(actionmap, "description", None) or id(actionmap)
-
 		headings, sortCmp, sortKey = {
-			"headings+alphabetic": (True, None, self._sortKeyAlpha),
-			"flat+alphabetic": (False, None, self._sortKeyAlpha),
-			"flat+remotepos": (False, self._sortCmpPos, None),
-			"flat+remotegroups": (False, self._sortCmpInd, None)
+			"headings+alphabetic": (True, None, sortKeyAlpha),
+			"flat+alphabetic": (False, None, sortKeyAlpha),
+			"flat+remotepos": (False, sortCmpPos, None),
+			"flat+remotegroups": (False, sortCmpInd, None)
 		}.get(config.usage.helpSortOrder.value, (False, None, None))
 		if remoteControl is None:
-			if sortCmp in (self._sortCmpPos, self._sortCmpInd):
+			if sortCmp in (sortCmpPos, sortCmpInd):
 				sortCmp = None
 		else:
-			if sortCmp == self._sortCmpInd:
+			if sortCmp == sortCmpInd:
 				self.rcKeyIndex = dict((x[1], x[0]) for x in enumerate(remoteControl.getRemoteControlKeyList()))
 		buttonsProcessed = set()
 		helpSeen = defaultdict(list)
-		sortedHelpList = sorted(helpList, key=lambda hle: hle[0].prio)
+		sortedHelpList = sorted(helpList, key=lambda x: x[0].prio)
 		actionMapHelp = defaultdict(list)
-		for (actionmap, context, actions) in sortedHelpList:
-			# print("[HelpMenu] HelpMenuList DEBUG: actionmap='%s', context='%s', actions='%s'." % (str(actionmap), context, str(actions)))
-			if not actionmap.enabled:
+		for (actionMap, context, actions) in sortedHelpList:
+			# print(f"[HelpMenu] HelpMenuList DEBUG: actionMap='{str(actionMap)}', context='{context}', actions='{str(actions)}'.")
+			if not actionMap.enabled:
 				# print("[HelpMenu] Action map disabled.")
 				continue
-			amId = actMapId()
-			if headings and actionmap.description and not (formatFlags & self.HEADINGS):
+			if headings and actionMap.description and not (formatFlags & self.HEADINGS):
 				# print("[HelpMenu] HelpMenuList DEBUG: Headings found.")
 				formatFlags |= self.HEADINGS
-			for (action, help) in actions:  # DEBUG: Should help be response?
+			for (action, helpText) in actions:  # DEBUG: Should helpText be response?
 				helpTags = []  # if mapFlag else [pgettext("Abbreviation of 'Disabled'", "Disabled")]
-				if callable(help):
-					help = help()
+				if callable(helpText):
+					helpText = helpText()
 					helpTags.append(pgettext("Abbreviation of 'Configurable'", "Configurable"))
-				if help is None:
+				if helpText is None:
 					# print("[HelpMenu] HelpMenuList DEBUG: No help text found.")
-					# help = _("No help text available")
+					# helpText = _("No help text available")
 					continue
 				buttons = queryKeyBinding(context, action)
-				# print("[HelpMenu] HelpMenuList DEBUG: queryKeyBinding buttons=%s." % str(buttons))
+				# print(f"[HelpMenu] HelpMenuList DEBUG: queryKeyBinding buttons={str(buttons)}.")
 				if not buttons:  # Do not display entries which are not accessible from keys.
 					# print("[HelpMenu] HelpMenuList DEBUG: No buttons allocated.")
 					# helpTags.append(pgettext("Abbreviation of 'Unassigned'", "Unassigned"))
@@ -351,45 +381,43 @@ class HelpMenuList(List):
 					# print("[HelpMenu] HelpMenuList DEBUG: Button not available on current remote control.")
 					# helpTags.append(pgettext("Abbreviation of 'No Button'", "No Button"))
 					continue
-				isExtended = isinstance(help, (list, tuple))
+				isExtended = isinstance(helpText, (list, tuple))
 				if isExtended and not (formatFlags & self.EXTENDED):
 					# print("[HelpMenu] HelpMenuList DEBUG: Extended help entry found.")
 					formatFlags |= self.EXTENDED
 				if helpTags:
-					helpStr = help[0] if isExtended else help
-					tagsStr = pgettext("Text list separator", ", ").join(helpTags)
-					helpStr = _("%s  (%s)") % (helpStr, tagsStr)
-					help = [helpStr, help[1]] if isExtended else helpStr
-				entry = [(actionmap, context, action, buttonLabels, help), help]
-				if self._filterHelpList(entry, helpSeen):
-					actionMapHelp[actMapId()].append(entry)
+					helpStr = f"{helpText[0] if isExtended else helpText}  ({pgettext("Text list separator", ", ").join(helpTags)})"
+					helpText = [helpStr, helpText[1]] if isExtended else helpStr
+				entry = [(actionMap, context, action, buttonLabels, helpText), helpText]
+				if filterHelpList(entry, helpSeen):
+					actionMapHelp[getActionMapId()].append(entry)
 		helpMenuList = []
 		extendedPadding = (None,) if formatFlags & self.EXTENDED else ()
-		for (actionmap, context, actions) in helpList:
-			amId = actMapId()
-			if headings and amId in actionMapHelp and getattr(actionmap, "description", None):
+		for (actionMap, context, actions) in helpList:
+			actionMapId = getActionMapId()
+			if headings and actionMapId in actionMapHelp and getattr(actionMap, "description", None):
 				if sortCmp:
-					actionMapHelp[amId].sort(key=cmp_to_key(sortCmp))
+					actionMapHelp[actionMapId].sort(key=cmp_to_key(sortCmp))
 				elif sortKey:
-					actionMapHelp[amId].sort(key=sortKey)
-				self.addListBoxContext(actionMapHelp[amId], formatFlags)
-				helpMenuList.append((None, actionmap.description, None) + extendedPadding)
-				helpMenuList.extend(actionMapHelp[amId])
-				del actionMapHelp[amId]
+					actionMapHelp[actionMapId].sort(key=sortKey)
+				addListBoxContext(actionMapHelp[actionMapId], formatFlags)
+				helpMenuList.append((None, actionMap.description, None) + extendedPadding)
+				helpMenuList.extend(actionMapHelp[actionMapId])
+				del actionMapHelp[actionMapId]
 		if actionMapHelp:
-			if formatFlags & self.HEADINGS:  # Add a header if other actionmaps have descriptions.
+			if formatFlags & self.HEADINGS:  # Add a header if other actionMaps have descriptions.
 				helpMenuList.append((None, _("Other Actions"), None) + extendedPadding)
 			otherHelp = []
-			for (actionmap, context, actions) in helpList:
-				amId = actMapId()
-				if amId in actionMapHelp:
-					otherHelp.extend(actionMapHelp[amId])
-					del actionMapHelp[amId]
+			for (actionMap, context, actions) in helpList:
+				actionMapId = getActionMapId()
+				if actionMapId in actionMapHelp:
+					otherHelp.extend(actionMapHelp[actionMapId])
+					del actionMapHelp[actionMapId]
 			if sortCmp:
 				otherHelp.sort(key=cmp_to_key(sortCmp))
 			elif sortKey:
 				otherHelp.sort(key=sortKey)
-			self.addListBoxContext(otherHelp, formatFlags)
+			addListBoxContext(otherHelp, formatFlags)
 			helpMenuList.extend(otherHelp)
 		ignoredKeyIds = (KEYIDS.get("KEY_OK"), KEYIDS.get("KEY_EXIT"))
 		for index, entry in enumerate(helpMenuList):
@@ -403,83 +431,36 @@ class HelpMenuList(List):
 			"extended",
 			"extended+headings",
 		)[formatFlags]
-		# [(actionmap, context, [(action, help), (action, help), ...]), ...]
+		# [(actionMap, context, [(action, helpText), (action, helpText), ...]), ...]
 		# [((ActionMap, Context, Action, [(Button, Device/Long), ...], HelpText), HelpText), ...]
-		self.list = helpMenuList
-
-	# Convert normal help to extended help form for comparison and ignore case.
-	#
-	def _sortKeyAlpha(self, hlp):
-		return list(map(str.lower, hlp[1] if isinstance(hlp[1], (tuple, list)) else [hlp[1], ""]))
-
-	def _cmp(self, a, b):
-		return (a > b) - (a < b)
-
-	def _sortCmpPos(self, a, b):
-		return self._cmp(self._getMinPos(a[0][3]), self._getMinPos(b[0][3]))
-
-	# Reverse the coordinate tuple, too, to (y, x) to get ordering by y then x.
-	#
-	def _getMinPos(self, a):
-		# return min(map(lambda x: tuple(reversed(self.rcPos.getRcKeyPos(x[0]))), a))
-		return min(map(lambda x: tuple(reversed(remoteControl.getRemoteControlKeyPos(x[0]))), a))
-
-	def _sortCmpInd(self, a, b):
-		return self._cmp(self._getMinInd(a[0][3]), self._getMinInd(b[0][3]))
-
-	# Sort order "Flat by key group on remote" is really
-	# "Sort in order of buttons in rcpositions.xml", and so
-	# the buttons need to be grouped sensibly in that file for
-	# this to work properly.
-	#
-	def _getMinInd(self, a):
-		return min(map(lambda x: self.rcKeyIndex[x[0]], a))
-
-	def _filterHelpList(self, ent, seen):
-		hlp = tuple(ent[1]) if isinstance(ent[1], (tuple, list)) else (ent[1],)
-		if hlp in seen:
-			self._mergeButLists(seen[hlp], ent[0][3])
-			return False
-		else:
-			seen[hlp] = ent[0][3]
-			return True
-
-	def _mergeButLists(self, bl1, bl2):
-		bl1.extend([b for b in bl2 if b not in bl1])
-
-	def addListBoxContext(self, actionMapHelp, formatFlags):
-		extended = (formatFlags & self.EXTENDED) >> 1
-		headings = formatFlags & self.HEADINGS
-		for index, entry in enumerate(actionMapHelp):
-			help = entry[1]
-			entry[1:] = [None] * (1 + headings + extended)
-			if isinstance(help, (tuple, list)):
-				entry[1 + headings] = help[0]
-				entry[2 + headings] = help[1]
-			else:
-				entry[1 + headings] = help
-			actionMapHelp[index] = tuple(entry)
+		self.setList(helpMenuList)
 
 	def getCurrent(self):
 		selection = super(HelpMenuList, self).getCurrent()
 		return selection and selection[0]
 
 	def handleButton(self, keyId, flag):
+		result = 0  # Report keyId not handled.
 		button = (keyId, "LONG") if flag == 3 else (keyId,)
 		if button in self.buttonMap:
 			if flag == 3 or flag == 1 and not self.longSeen:  # Show help for pressed button for long press, or for Break if it's not a Long press.
 				self.longSeen = flag == 3
 				self.setIndex(self.buttonMap[button])
-				return 1  # Report keyId handled.
+				result = 1  # Report keyId handled.
 			if flag == 0:  # Reset the long press flag on Make.
 				self.longSeen = False
-		return 0  # Report keyId not handled.
+		return result
 
 	def select(self):
-		# A list entry has a "private" tuple as first entry...
-		item = self.getCurrent()
-		if item is None:
-			return
-		# ...containing (Actionmap, Context, Action, Buttondata).
-		# We returns this tuple to the callback.
-		self.callback(item[0], item[1], item[2])
+		item = self.getCurrent()  # A list entry has a "private" tuple as first entry...
+		if item is not None:
+			self.callback(item[0], item[1], item[2])  # ...containing (Actionmap, Context, Action, Buttondata). We returns this tuple to the callback.
+
+
+class HelpableScreen:  # Stub for deprecated manual help definitions used by old screens and plugins.
+	def __init__(self):
+		if "helpActions" not in self:
+			self["helpActions"] = ActionMap(["HelpActions"], {
+				"displayHelp": self.showHelp
+			}, prio=0)
+			self["key_help"] = StaticText(_("HELP"))
