@@ -355,7 +355,6 @@ class HelpMenuList(List):
 			if not actionMap.enabled:
 				# print("[HelpMenu] Action map disabled.")
 				continue
-			actionMapId = getActionMapId()
 			if headings and actionMap.description and not (formatFlags & self.HEADINGS):
 				# print("[HelpMenu] HelpMenuList DEBUG: Headings found.")
 				formatFlags |= self.HEADINGS
