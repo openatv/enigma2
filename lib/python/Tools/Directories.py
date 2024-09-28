@@ -1,6 +1,10 @@
+# Planned changes:
+# 	Improve resolveFilename efficiency by not constantly processing directories in resolveLists known not to exist.
+# 	Add callback for skin changes to rebuild the resolveLists.
+
 from errno import ENOENT, EXDEV
 from os import F_OK, R_OK, W_OK, access, chmod, link, listdir, makedirs, mkdir, readlink, remove, rename, rmdir, sep, stat, statvfs, symlink, utime, walk
-from os.path import basename, dirname, exists, getsize, isdir, isfile, islink, join as pathjoin, normpath, splitext
+from os.path import basename, dirname, exists, getsize, isdir, isfile, islink, join, normpath, splitext
 from re import compile
 from shutil import copy2
 from stat import S_IMODE
@@ -37,6 +41,7 @@ SCOPE_HDD = 17
 SCOPE_TIMESHIFT = 18
 SCOPE_DEFAULTDIR = 19
 SCOPE_LIBDIR = 20
+SCOPE_HARDWARE = 21
 
 # Deprecated scopes:
 SCOPE_ACTIVE_LCDSKIN = SCOPE_LCDSKIN
@@ -51,6 +56,10 @@ SCOPE_USERETC = SCOPE_HOME
 PATH_CREATE = 0
 PATH_DONTCREATE = 1
 
+# ${sysconfdir} = /etc/enigma2
+# ${libdir} = /usr/lib
+# ${datadir} = /usr/share
+#
 defaultPaths = {
 	SCOPE_HOME: ("", PATH_DONTCREATE),  # User home directory
 	SCOPE_LANGUAGE: (eEnv.resolve("${datadir}/enigma2/po/"), PATH_DONTCREATE),
@@ -72,7 +81,8 @@ defaultPaths = {
 	SCOPE_HDD: ("/media/hdd/movie/", PATH_DONTCREATE),
 	SCOPE_TIMESHIFT: ("/media/hdd/timeshift/", PATH_DONTCREATE),
 	SCOPE_DEFAULTDIR: (eEnv.resolve("${datadir}/enigma2/defaults/"), PATH_CREATE),
-	SCOPE_LIBDIR: (eEnv.resolve("${libdir}/"), PATH_DONTCREATE)
+	SCOPE_LIBDIR: (eEnv.resolve("${libdir}/"), PATH_DONTCREATE),
+	SCOPE_HARDWARE: (eEnv.resolve("${datadir}/enigma2/hardware/"), PATH_CREATE)
 }
 
 scopeConfig = defaultPaths[SCOPE_CONFIG][0]
@@ -87,22 +97,22 @@ def InitDefaultPaths():
 
 
 def resolveFilename(scope, base="", path_prefix=None):
-	if str(base).startswith("~%s" % sep):  # You can only use the ~/ if we have a prefix directory.
+	if str(base).startswith(f"~{sep}"):  # You can only use the ~/ if we have a prefix directory.
 		if path_prefix:
-			base = pathjoin(path_prefix, base[2:])
+			base = join(path_prefix, base[2:])
 		else:
-			print("[Directories] Warning: resolveFilename called with base starting with '~%s' but 'path_prefix' is None!" % sep)
+			print(f"[Directories] Warning: resolveFilename called with base starting with '~{sep}' but 'path_prefix' is None!")
 	if str(base).startswith(sep):  # Don't further resolve absolute paths.
 		return normpath(base)
 	if scope not in defaultPaths:  # If an invalid scope is specified log an error and return None.
-		print("[Directories] Error: Invalid scope=%s provided to resolveFilename!" % scope)
+		print(f"[Directories] Error: Invalid scope={scope} provided to resolveFilename!")
 		return None
 	path, flag = defaultPaths[scope]  # Ensure that the defaultPath directory that should exist for this scope does exist.
 	if flag == PATH_CREATE and not pathExists(path):
 		try:
 			makedirs(path)
 		except OSError as err:
-			print("[Directories] Error %d: Couldn't create directory '%s'!  (%s)" % (err.errno, path, err.strerror))
+			print(f"[Directories] Error {err.errno}: Couldn't create directory '{path}'!  ({err.strerror})")
 			return None
 	suffix = None  # Remove any suffix data and restore it at the end.
 	data = base.split(":", 1)
@@ -115,12 +125,12 @@ def resolveFilename(scope, base="", path_prefix=None):
 		# Disable png / svg interchange code for now.  SVG files are very CPU intensive.
 		# baseList = [base]
 		# if base.endswith(".png"):
-		# 	baseList.append("%s%s" % (base[:-3], "svg"))
+		# 	baseList.append(f"{base[:-3]}svg")
 		# elif base.endswith(".svg"):
-		# 	baseList.append("%s%s" % (base[:-3], "png"))
+		# 	baseList.append(f"{base[:-3]}png")
 		for item in resolveList:
 			# for base in baseList:
-			file = pathjoin(item, base)
+			file = join(item, base)
 			if pathExists(file):
 				return file
 		return base
@@ -130,7 +140,7 @@ def resolveFilename(scope, base="", path_prefix=None):
 		if scope == SCOPE_GUISKIN:  # If the scope is SCOPE_GUISKIN append the current skin to the scope path.
 			from Components.config import config  # This import must be here as this module finds the config file as part of the config initialisation.
 			skin = dirname(config.skin.primary_skin.value)
-			path = pathjoin(path, skin)
+			path = join(path, skin)
 		elif scope in (SCOPE_PLUGIN_ABSOLUTE, SCOPE_PLUGIN_RELATIVE):
 			callingCode = normpath(getframe(1).f_code.co_filename)
 			plugins = normpath(scopePlugins)
@@ -138,18 +148,17 @@ def resolveFilename(scope, base="", path_prefix=None):
 			if comparePaths(plugins, callingCode):
 				pluginCode = callingCode[len(plugins) + 1:].split(sep)
 				if len(pluginCode) > 2:
-					relative = "%s%s%s" % (pluginCode[0], sep, pluginCode[1])
-					path = pathjoin(plugins, relative)
+					path = join(plugins, pluginCode[0], pluginCode[1])
 	elif scope == SCOPE_GUISKIN:
 		from Components.config import config  # This import must be here as this module finds the config file as part of the config initialisation.
 		skin = dirname(config.skin.primary_skin.value)
 		resolveList = [
-			pathjoin(scopeConfig, skin),
-			pathjoin(scopeConfig, "skin_common"),
+			join(scopeConfig, skin),
+			join(scopeConfig, "skin_common"),
 			scopeConfig,  # Can we deprecate top level of SCOPE_CONFIG directory to allow a clean up?
-			pathjoin(scopeGUISkin, skin),
-			pathjoin(scopeGUISkin, "skin_fallback_%d" % getDesktop(0).size().height()),
-			pathjoin(scopeGUISkin, "skin_default"),
+			join(scopeGUISkin, skin),
+			join(scopeGUISkin, f"skin_fallback_{getDesktop(0).size().height()}"),
+			join(scopeGUISkin, "skin_default"),
 			scopeGUISkin  # Can we deprecate top level of SCOPE_GUISKIN directory to allow a clean up?
 		]
 		path = itemExists(resolveList, base)
@@ -157,12 +166,12 @@ def resolveFilename(scope, base="", path_prefix=None):
 		from Components.config import config  # This import must be here as this module finds the config file as part of the config initialisation.
 		skin = dirname(config.skin.display_skin.value) if hasattr(config.skin, "display_skin") else ""
 		resolveList = [
-			pathjoin(scopeConfig, "display", skin),
-			pathjoin(scopeConfig, "display", "skin_common"),
+			join(scopeConfig, "display", skin),
+			join(scopeConfig, "display", "skin_common"),
 			scopeConfig,  # Can we deprecate top level of SCOPE_CONFIG directory to allow a clean up?
-			pathjoin(scopeLCDSkin, skin),
-			pathjoin(scopeLCDSkin, "skin_fallback_%s" % getDesktop(1).size().height()),
-			pathjoin(scopeLCDSkin, "skin_default"),
+			join(scopeLCDSkin, skin),
+			join(scopeLCDSkin, f"skin_fallback_{getDesktop(1).size().height()}"),
+			join(scopeLCDSkin, "skin_default"),
 			scopeLCDSkin  # Can we deprecate top level of SCOPE_LCDSKIN directory to allow a clean up?
 		]
 		path = itemExists(resolveList, base)
@@ -171,29 +180,29 @@ def resolveFilename(scope, base="", path_prefix=None):
 		skin = dirname(config.skin.primary_skin.value)
 		display = dirname(config.skin.display_skin.value) if hasattr(config.skin, "display_skin") else None
 		resolveList = [
-			pathjoin(scopeConfig, "fonts"),
-			pathjoin(scopeConfig, skin, "fonts"),
-			pathjoin(scopeConfig, skin)
+			join(scopeConfig, "fonts"),
+			join(scopeConfig, skin, "fonts"),
+			join(scopeConfig, skin)
 		]
 		if display:
-			resolveList.append(pathjoin(scopeConfig, "display", display, "fonts"))
-			resolveList.append(pathjoin(scopeConfig, "display", display))
-		resolveList.append(pathjoin(scopeConfig, "skin_common", "fonts"))
-		resolveList.append(pathjoin(scopeConfig, "skin_common"))
+			resolveList.append(join(scopeConfig, "display", display, "fonts"))
+			resolveList.append(join(scopeConfig, "display", display))
+		resolveList.append(join(scopeConfig, "skin_common", "fonts"))
+		resolveList.append(join(scopeConfig, "skin_common"))
 		resolveList.append(scopeConfig)  # Can we deprecate top level of SCOPE_CONFIG directory to allow a clean up?
-		resolveList.append(pathjoin(scopeGUISkin, skin, "fonts"))
-		resolveList.append(pathjoin(scopeGUISkin, skin))
-		resolveList.append(pathjoin(scopeGUISkin, "skin_default", "fonts"))
-		resolveList.append(pathjoin(scopeGUISkin, "skin_default"))
+		resolveList.append(join(scopeGUISkin, skin, "fonts"))
+		resolveList.append(join(scopeGUISkin, skin))
+		resolveList.append(join(scopeGUISkin, "skin_default", "fonts"))
+		resolveList.append(join(scopeGUISkin, "skin_default"))
 		if display:
-			resolveList.append(pathjoin(scopeLCDSkin, display, "fonts"))
-			resolveList.append(pathjoin(scopeLCDSkin, display))
-		resolveList.append(pathjoin(scopeLCDSkin, "skin_default", "fonts"))
-		resolveList.append(pathjoin(scopeLCDSkin, "skin_default"))
+			resolveList.append(join(scopeLCDSkin, display, "fonts"))
+			resolveList.append(join(scopeLCDSkin, display))
+		resolveList.append(join(scopeLCDSkin, "skin_default", "fonts"))
+		resolveList.append(join(scopeLCDSkin, "skin_default"))
 		resolveList.append(scopeFonts)
 		path = itemExists(resolveList, base)
 	elif scope == SCOPE_PLUGIN:
-		file = pathjoin(scopePlugins, base)
+		file = join(scopePlugins, base)
 		if pathExists(file):
 			path = file
 	elif scope in (SCOPE_PLUGIN_ABSOLUTE, SCOPE_PLUGIN_RELATIVE):
@@ -203,18 +212,17 @@ def resolveFilename(scope, base="", path_prefix=None):
 		if comparePaths(plugins, callingCode):
 			pluginCode = callingCode[len(plugins) + 1:].split(sep)
 			if len(pluginCode) > 2:
-				relative = pathjoin("%s%s%s" % (pluginCode[0], sep, pluginCode[1]), base)
-				path = pathjoin(plugins, relative)
+				path = join(plugins, pluginCode[0], pluginCode[1], base)
 	else:
 		path, flags = defaultPaths.get(scope)
-		path = pathjoin(path, base)
+		path = join(path, base)
 	path = normpath(path)
 	if isdir(path) and not path.endswith(sep):  # If the path is a directory then ensure that it ends with a "/".
-		path = "%s%s" % (path, sep)
+		path = join(path, "")
 	if scope == SCOPE_PLUGIN_RELATIVE:
 		path = path[len(plugins) + 1:]
 	if suffix is not None:  # If a suffix was supplier restore it.
-		path = "%s:%s" % (path, suffix)
+		path = f"{path}:{suffix}"
 	return path
 
 
@@ -226,11 +234,11 @@ def fileReadLine(filename, default=None, source=DEFAULT_MODULE_NAME, debug=False
 		msg = "Read"
 	except OSError as err:
 		if err.errno != ENOENT:  # ENOENT - No such file or directory.
-			print("[%s] Error %d: Unable to read a line from file '%s'!  (%s)" % (source, err.errno, filename, err.strerror))
+			print(f"[{source}] Error {err.errno}: Unable to read a line from file '{filename}'!  ({err.strerror})")
 		line = default
 		msg = "Default"
 	if debug or forceDebug:
-		print("[%s] Line %d: %s '%s' from file '%s'." % (source, getframe(1).f_lineno, msg, line, filename))
+		print(f"[{source}] Line {getframe(1).f_lineno}: {msg} '{line}' from file '{filename}'.")
 	return line
 
 
@@ -241,11 +249,11 @@ def fileWriteLine(filename, line, source=DEFAULT_MODULE_NAME, debug=False):
 		msg = "Wrote"
 		result = 1
 	except OSError as err:
-		print("[%s] Error %d: Unable to write a line to file '%s'!  (%s)" % (source, err.errno, filename, err.strerror))
+		print(f"[{source}] Error {err.errno}: Unable to write a line to file '{filename}'!  ({err.strerror})")
 		msg = "Failed to write"
 		result = 0
 	if debug or forceDebug:
-		print("[%s] Line %d: %s '%s' to file '%s'." % (source, getframe(1).f_lineno, msg, line, filename))
+		print(f"[{source}] Line {getframe(1).f_lineno}: {msg} '{line}' to file '{filename}'.")
 	return result
 
 
@@ -263,12 +271,12 @@ def fileReadLines(filename, default=None, source=DEFAULT_MODULE_NAME, debug=Fals
 		msg = "Read"
 	except OSError as err:
 		if err.errno != ENOENT:  # ENOENT - No such file or directory.
-			print("[%s] Error %d: Unable to read lines from file '%s'!  (%s)" % (source, err.errno, filename, err.strerror))
+			print(f"[{source}] Error {err.errno}: Unable to read lines from file '{filename}'!  ({err.strerror})")
 		lines = default
 		msg = "Default"
 	if debug or forceDebug:
 		length = len(lines) if lines else 0
-		print("[%s] Line %d: %s %d lines from file '%s'." % (source, getframe(1).f_lineno, msg, length, filename))
+		print(f"[{source}] Line {getframe(1).f_lineno}: {msg} {length} lines from file '{filename}'.")
 	return lines
 
 
@@ -282,11 +290,11 @@ def fileWriteLines(filename, lines, source=DEFAULT_MODULE_NAME, debug=False):
 		msg = "Wrote"
 		result = 1
 	except OSError as err:
-		print("[%s] Error %d: Unable to write %d lines to file '%s'!  (%s)" % (source, err.errno, len(lines), filename, err.strerror))
+		print(f"[{source}] Error {err.errno}: Unable to write {len(lines)} lines to file '{filename}'!  ({err.strerror})")
 		msg = "Failed to write"
 		result = 0
 	if debug or forceDebug:
-		print("[%s] Line %d: %s %d lines to file '%s'." % (source, getframe(1).f_lineno, msg, len(lines), filename))
+		print(f"[{source}] Line {getframe(1).f_lineno}: {msg} {len(lines)} lines to file '{filename}'.")
 	return result
 
 
@@ -301,19 +309,19 @@ def fileReadXML(filename, default=None, source=DEFAULT_MODULE_NAME, debug=False)
 				fd.seek(0)
 				content = fd.readlines()
 				line, column = err.position
-				print("[%s] XML Parse Error: '%s' in '%s'!" % (source, err, filename))
+				print(f"[{source}] XML Parse Error: '{err}' in '{filename}'!")
 				data = content[line - 1].replace("\t", " ").rstrip()
-				print("[%s] XML Parse Error: '%s'" % (source, data))
-				print("[%s] XML Parse Error: '%s^%s'" % (source, "-" * column, " " * (len(data) - column - 1)))
+				print(f"[{source}] XML Parse Error: '{data}'")
+				print(f"[{source}] XML Parse Error: '{'-' * column}^{' ' * (len(data) - column - 1)}'")
 			except Exception as err:
-				print("[%s] Error: Unable to parse data in '%s' - '%s'!" % (source, filename, err))
+				print(f"[{source}] Error: Unable to parse data in '{filename}' - '{err}'!")
 	except OSError as err:
 		if err.errno == ENOENT:  # ENOENT - No such file or directory.
-			print("[%s] Warning: File '%s' does not exist!" % (source, filename))
+			print(f"[{source}] Warning: File '{filename}' does not exist!")
 		else:
 			print("[%s] Error %d: Opening file '%s'!  (%s)" % (source, err.errno, filename, err.strerror))
 	except Exception as err:
-		print("[%s] Error: Unexpected error opening/parsing file '%s'!  (%s)" % (source, filename, err))
+		print(f"[{source}] Error: Unexpected error opening/parsing file '{filename}'!  ({err})")
 		print_exc()
 	if dom is None:
 		if default and isinstance(default, str):
@@ -325,7 +333,7 @@ def fileReadXML(filename, default=None, source=DEFAULT_MODULE_NAME, debug=False)
 		else:
 			msg = "Failed to read"
 	if debug or forceDebug:
-		print("[%s] Line %d: %s from XML file '%s'." % (source, getframe(1).f_lineno, msg, filename))
+		print(f"[{source}] Line {getframe(1).f_lineno}: {msg} from XML file '{filename}'.")
 	return dom
 
 
@@ -343,7 +351,7 @@ def defaultRecordingLocation(candidate=None):
 		if not path:  # If we haven't found a viable candidate yet, try remote mounts.
 			path = bestRecordingLocation([mount for mount in mounts if not mount[0].startswith("/dev/")])
 	if path:
-		movie = pathjoin(path, "movie", "")  # If there's a movie subdir, we'd probably want to use that (directories need to end in sep).
+		movie = join(path, "movie", "")  # If there's a movie subdir, we'd probably want to use that (directories need to end in sep).
 		if isdir(movie):
 			path = movie
 	return path
@@ -361,7 +369,7 @@ def bestRecordingLocation(candidates):
 					biggest = size
 					path = candidate[1]
 		except OSError as err:
-			print("[Directories] Error %d: Couldn't get free space for '%s'!  (%s)" % (err.errno, candidate[1], err.strerror))
+			print(f"[Directories] Error {err.errno}: Couldn't get free space for '{candidate[1]}'!  ({err.strerror})")
 	return path
 
 
@@ -382,11 +390,11 @@ def getRecordingFilename(basename, dirname=None):
 		dirname = defaultRecordingLocation()
 	else:
 		if not dirname.startswith(sep):
-			dirname = pathjoin(defaultRecordingLocation(), dirname)
-	filename = pathjoin(dirname, filename)
+			dirname = join(defaultRecordingLocation(), dirname)
+	filename = join(dirname, filename)
 	next = 0
 	path = filename
-	while isfile("%s.ts" % path):
+	while isfile(f"{path}.ts"):
 		next += 1
 		path = "%s_%03d" % (filename, next)
 	return path
@@ -396,11 +404,11 @@ def copyFile(src, dst):
 	try:
 		copy2(src, dst)
 	except OSError as err:
-		print("[Directories] Error %d: Copying file '%s' to '%s'!  (%s)" % (err.errno, src, dst, err.strerror))
+		print(f"[Directories] Error {err.errno}: Copying file '{src}' to '{dst}'!  ({err.strerror})")
 		return -1
 	return 0
 	# if isdir(dst):
-	# 	dst = pathjoin(dst, basename(src))
+	# 	dst = join(dst, basename(src))
 	# try:
 	# 	with open(src, "rb") as fd1:
 	# 		with open(dst, "w+b") as fd2:
@@ -434,14 +442,14 @@ def copyfile(src, dst):
 def copyTree(src, dst, symlinks=False):
 	names = listdir(src)
 	if isdir(dst):
-		dst = pathjoin(dst, basename(src))
+		dst = join(dst, basename(src))
 		if not isdir(dst):
 			mkdir(dst)
 	else:
 		makedirs(dst)
 	for name in names:
-		srcName = pathjoin(src, name)
-		dstName = pathjoin(dst, name)
+		srcName = join(src, name)
+		dstName = join(dst, name)
 		try:
 			if symlinks and islink(srcName):
 				linkTo = readlink(srcName)
@@ -451,19 +459,19 @@ def copyTree(src, dst, symlinks=False):
 			else:
 				copyfile(srcName, dstName)
 		except OSError as err:
-			print("[Directories] Error %d: Copying tree '%s' to '%s'!  (%s)" % (err.errno, srcName, dstName, err.strerror))
+			print(f"[Directories] Error {err.errno}: Copying tree '{srcName}' to '{dstName}'!  ({err.strerror})")
 	try:
 		status = stat(src)
 		try:
 			chmod(dst, S_IMODE(status.st_mode))
 		except OSError as err:
-			print("[Directories] Error %d: Setting modes from '%s' to '%s'!  (%s)" % (err.errno, src, dst, err.strerror))
+			print(f"[Directories] Error {err.errno}: Setting modes from '{src}' to '{dst}'!  ({err.strerror})")
 		try:
 			utime(dst, (status.st_atime, status.st_mtime))
 		except OSError as err:
-			print("[Directories] Error %d: Setting times from '%s' to '%s'!  (%s)" % (err.errno, src, dst, err.strerror))
+			print(f"[Directories] Error {err.errno}: Setting times from '{src}' to '{dst}'!  ({err.strerror})")
 	except OSError as err:
-		print("[Directories] Error %d: Obtaining stats from '%s' to '%s'!  (%s)" % (err.errno, src, dst, err.strerror))
+		print(f"[Directories] Error {err.errno}: Obtaining stats from '{src}' to '{dst}'!  ({err.strerror})")
 
 
 def copytree(src, dst, symlinks=False):
@@ -488,7 +496,7 @@ def moveFiles(fileList):
 			extMoveFiles(fileList, item[0])
 			print("[Directories] Moving files in background.")
 		else:
-			print("[Directories] Error %d: Moving file '%s' to '%s'!  (%s)" % (err.errno, item[0], item[1], err.strerror))
+			print(f"[Directories] Error {err.errno}: Moving file '{item[0]}' to '{item[1]}'!  ({err.strerror})")
 			errorFlag = True
 	if errorFlag:
 		print("[Directories] Reversing renamed files due to error.")
@@ -496,12 +504,12 @@ def moveFiles(fileList):
 			try:
 				rename(item[1], item[0])
 			except OSError as err:
-				print("[Directories] Error %d: Renaming '%s' to '%s'!  (%s)" % (err.errno, item[1], item[0], err.strerror))
-				print("[Directories] Note: Failed to undo move of '%s' to '%s'!" % (item[0], item[1]))
+				print(f"[Directories] Error {err.errno}: Renaming '{item[1]}' to '{item[0]}'!  ({err.strerror})")
+				print(f"[Directories] Note: Failed to undo move of '{item[0]}' to '{item[1]}'!")
 
 
 def comparePaths(leftPath, rightPath):
-	print("[Directories] comparePaths DEBUG: left='%s', right='%s'." % (leftPath, rightPath))
+	print(f"[Directories] comparePaths DEBUG: left='{leftPath}', right='{rightPath}'.")
 	if leftPath.endswith(sep):
 		leftPath = leftPath[:-1]
 	left = leftPath.split(sep)
@@ -534,7 +542,7 @@ def createDir(path, makeParents=False):
 			mkdir(path)
 		return 1
 	except OSError as err:
-		print("[Directories] Error %d: Couldn't create directory '%s'!  (%s)" % (err.errno, path, err.strerror))
+		print(f"[Directories] Error {err.errno}: Couldn't create directory '{path}'!  ({err.strerror})")
 	return 0
 
 
@@ -543,7 +551,7 @@ def renameDir(oldPath, newPath):
 		rename(oldPath, newPath)
 		return 1
 	except OSError as err:
-		print("[Directories] Error %d: Couldn't rename directory '%s' to '%s'!  (%s)" % (err.errno, oldPath, newPath, err.strerror))
+		print(f"[Directories] Error {err.errno}: Couldn't rename directory '{oldPath}' to '{newPath}'!  ({err.strerror})")
 	return 0
 
 
@@ -552,7 +560,7 @@ def removeDir(path):
 		rmdir(path)
 		return 1
 	except OSError as err:
-		print("[Directories] Error %d: Couldn't remove directory '%s'!  (%s)" % (err.errno, path, err.strerror))
+		print(f"[Directories] Error {err.errno}: Couldn't remove directory '{path}'!  ({err.strerror})")
 	return 0
 
 
@@ -566,7 +574,7 @@ def fileAccess(file, mode="r"):
 	try:
 		result = access(file, accMode)
 	except OSError as err:
-		print("[Directories] Error %d: Couldn't determine file '%s' access mode!  (%s)" % (err.errno, file, err.strerror))
+		print(f"[Directories] Error {err.errno}: Couldn't determine file '{file}' access mode!  ({err.strerror})")
 	return result
 
 
@@ -596,23 +604,23 @@ def hasHardLinks(path):  # Test if the volume containing path supports hard link
 	try:
 		fd, srcName = mkstemp(prefix="HardLink_", suffix=".test", dir=path, text=False)
 	except OSError as err:
-		print("[Directories] Error %d: Creating temp file!  (%s)" % (err.errno, err.strerror))
+		print(f"[Directories] Error {err.errno}: Creating temp file!  ({err.strerror})")
 		return False
-	dstName = "%s.link" % splitext(srcName)[0]
+	dstName = f"{splitext(srcName)[0]}.link"
 	try:
 		link(srcName, dstName)
 		result = True
 	except OSError as err:
-		print("[Directories] Error %d: Creating hard link!  (%s)" % (err.errno, err.strerror))
+		print(f"[Directories] Error {err.errno}: Creating hard link!  ({err.strerror})")
 		result = False
 	try:
 		remove(srcName)
 	except OSError as err:
-		print("[Directories] Error %d: Removing source file!  (%s)" % (err.errno, err.strerror))
+		print(f"[Directories] Error {err.errno}: Removing source file!  ({err.strerror})")
 	try:
 		remove(dstName)
 	except OSError as err:
-		print("[Directories] Error %d: Removing destination file!  (%s)" % (err.errno, err.strerror))
+		print(f"[Directories] Error {err.errno}: Removing destination file!  ({err.strerror})")
 	return result
 
 
@@ -620,7 +628,7 @@ def getSize(path, pattern=".*"):
 	pathSize = 0
 	if isdir(path):
 		for file in crawlDirectory(path, pattern):
-			pathSize += getsize(pathjoin(file[0], file[1]))
+			pathSize += getsize(join(file[0], file[1]))
 	elif isfile(path):
 		pathSize = getsize(path)
 	return pathSize
@@ -643,10 +651,10 @@ def lsof():  # List of open files.
 	for pid in listdir("/proc"):
 		if pid.isdigit():
 			try:
-				prog = readlink(pathjoin("/proc", pid, "exe"))
-				dir = pathjoin("/proc", pid, "fd")
-				for file in [pathjoin(dir, file) for file in listdir(dir)]:
-					lsof.append((pid, prog, readlink(file)))
+				program = readlink(join("/proc", pid, "exe"))
+				directory = join("/proc", pid, "fd")
+				for file in [join(directory, x) for x in listdir(directory)]:
+					lsof.append((pid, program, readlink(file)))
 			except OSError as err:
 				pass
 	return lsof
@@ -673,6 +681,6 @@ def isPluginInstalled(pluginName, pluginFile="plugin", pluginType=None):
 		types = [pluginType]
 	for type in types:
 		for extension in ["c", ""]:
-			if isfile(pathjoin(scopePlugins, type, pluginName, "%s.py%s" % (pluginFile, extension))):
+			if isfile(join(scopePlugins, type, pluginName, f"{pluginFile}.py{extension}")):
 				return True
 	return False
