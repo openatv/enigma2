@@ -651,10 +651,10 @@ def lsof():  # List of open files.
 	for pid in listdir("/proc"):
 		if pid.isdigit():
 			try:
-				prog = readlink(join("/proc", pid, "exe"))
-				dir = join("/proc", pid, "fd")
-				for file in [join(dir, file) for file in listdir(dir)]:
-					lsof.append((pid, prog, readlink(file)))
+				program = readlink(join("/proc", pid, "exe"))
+				directory = join("/proc", pid, "fd")
+				for file in [join(directory, x) for x in listdir(directory)]:
+					lsof.append((pid, program, readlink(file)))
 			except OSError as err:
 				pass
 	return lsof
