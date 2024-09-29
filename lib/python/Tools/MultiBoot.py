@@ -199,6 +199,8 @@ class MultiBootClass():
 								bootSlots[slotCode]["ubi"] = True
 							if "UUID=" in line:
 								bootSlots[slotCode]["uuid"] = True
+							if "rescuemode" in line:
+								bootSlots[slotCode]["rootsubdir"] = "rescue"
 							bootDevice = [x for x in ("sda", "sdb", "sdc", "sdd") if x in line]
 							if "rootsubdir" in line:
 								bootSlots[slotCode]["kernel"] = self.getParam(line, "kernel")
@@ -618,7 +620,7 @@ class MultiBootClass():
 		else:
 			bootSlot = self.bootSlots[self.slotCode]
 			startup = bootSlot["startupfile"][self.bootCode]
-			if fileHas("/proc/cmdline", "kexec=1") and startup == STARTUP_RECOVERY:
+			if (fileHas("/proc/cmdline", "kexec=1") or self.bootSlots[self.slotCode].get("rootsubdir") == "rescue") and startup == STARTUP_RECOVERY:
 				target = STARTUP_FILE
 			else:
 				target = STARTUP_ONCE if startup == STARTUP_RECOVERY else STARTUP_FILE
