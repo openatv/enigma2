@@ -151,8 +151,12 @@ int descrambler_set_pid(int desc_fd, int index, int enable, int pid)
 	p.index = flags;
 
 	if (ioctl(desc_fd, CA_SET_PID, &p) == -1) {
+#ifdef USE_ALTERNATE_CA_HANDLING
+		return 0;
+#else
 		eWarning("[CI%d descrambler] set pid failed", index);
 		return -1;
+#endif
 	}
 
 	return 0;
@@ -161,10 +165,14 @@ int descrambler_set_pid(int desc_fd, int index, int enable, int pid)
 int descrambler_init(int slot, uint8_t ca_demux_id)
 {
 	int desc_fd;
-
+	
+#ifdef USE_ALTERNATE_CA_HANDLING
+	std::string filename = "/dev/dvb/adapter0/ca" + std::to_string(ca_demux_id + 1);
+#else
 	std::string filename = "/dev/dvb/adapter0/ca" + std::to_string(ca_demux_id);
+#endif
 
-	desc_fd = open(filename.c_str(), O_RDWR);
+	desc_fd = open(filename.c_str(), O_RDWR | O_NONBLOCK | O_CLOEXEC);
 	if (desc_fd == -1) {
 		eWarning("[CI%d descrambler] can not open %s", slot, filename.c_str());
 	}
