@@ -1342,7 +1342,6 @@ DEFINE_REF(eDVBCISlot);
 eDVBCISlot::eDVBCISlot(eMainloop *context, int nr):
 	startup_timeout(eTimer::create(context))
 {
-	char configStr[255];
 	slotid = nr;
 	m_isCamMgrRoutingActive = false;
 	m_ciPlusRoutingDone = false;
@@ -1359,8 +1358,11 @@ eDVBCISlot::eDVBCISlot(eMainloop *context, int nr):
 	user_mapped = false;
 	plugged = false;
 	m_ci_version = versionUnknown;
+	char configStr[255];
 	snprintf(configStr, 255, "config.ci.%d.enabled", slotid);
 	bool enabled = eSimpleConfig::getBool(configStr, true);
+	snprintf(configStr, 255, "config.ci.%d.disable_operator_profile", slotid);
+	m_operator_profiles_disabled = eSimpleConfig::getBool(configStr, false);
 	if (enabled) {
 		int bootDelay = eSimpleConfig::getInt("config.cimisc.bootDelay", 5);
 		if (bootDelay) {

@@ -78,6 +78,7 @@ class eDVBCISlot: public iObject, public sigc::trackable
 	int m_tunernum;
 	eMainloop *m_context;
 	int m_ciplus_routing_tunernum;
+	bool m_operator_profiles_disabled;
 	std::string m_ciplus_routing_input;
 	std::string m_ciplus_routing_ci_input;
 
@@ -129,6 +130,7 @@ public:
 	int getSlotID();
 	int getNumOfServices();
 	int getVersion();
+	bool getIsOperatorProfileDisabled() { return m_operator_profiles_disabled; };
 	int16_t getCADemuxID() { return m_ca_demux_id; };
 	int getTunerNum() { return m_tunernum; };
 	int getUseCount() { return use_count; };
