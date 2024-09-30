@@ -83,7 +83,7 @@ class ServiceInfo(Converter):
 			"Framerate": (self.FRAMERATE, (iPlayableService.evVideoSizeChanged, iPlayableService.evUpdatedInfo)),
 			"FrequencyInfo": (self.FREQUENCY_INFORMATION, (iPlayableService.evUpdatedInfo,)),
 			"Freq_Info": (self.FREQUENCY_INFORMATION, (iPlayableService.evUpdatedInfo,)),
-			"HasHBBTV": (self.HAS_HBBTV, (iPlayableService.evHBBTVInfo,)),  # iPlayableService.evUpdatedInfo
+			"HasHBBTV": (self.HAS_HBBTV, (iPlayableService.evUpdatedInfo, iPlayableService.evHBBTVInfo,)),
 			"HasTeletext": (self.HAS_TELETEXT, (iPlayableService.evUpdatedInfo,)),
 			"HasTelext": (self.HAS_TELETEXT, (iPlayableService.evUpdatedInfo,)),
 			"Is1080": (self.IS_1080, (iPlayableService.evVideoSizeChanged,)),
