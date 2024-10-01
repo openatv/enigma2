@@ -43,7 +43,7 @@ class DefaultServiceScan(ServiceScan):
 		db.reloadServicelist()
 		ServiceScan.__init__(self, session, scanList)
 		self.timer = eTimer()
-		self.timer.callback.append(self.ok)
+		self.timer.callback.append(self.keySave)
 		self.timer.start(1000)
 
 
