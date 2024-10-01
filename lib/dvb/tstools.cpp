@@ -46,7 +46,11 @@ RESULT eTSFileSectionReader::stop()
 	return 0;
 }
 
+#if SIGCXX_MAJOR_VERSION == 2
 RESULT eTSFileSectionReader::connectRead(const sigc::slot1<void,const uint8_t*> &r, ePtr<eConnection> &conn)
+#else
+RESULT eTSFileSectionReader::connectRead(const sigc::slot<void(const uint8_t*)> &r, ePtr<eConnection> &conn)
+#endif
 {
 	conn = new eConnection(this, read.connect(r));
 	return 0;

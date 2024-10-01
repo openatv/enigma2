@@ -1390,6 +1390,14 @@ class EPGSelection(Screen):
 		self.key_green_choice = self.ADD_TIMER
 		self.refreshlist()
 
+	def enableTimer(self, timer):
+		self.closeChoiceBoxDialog()
+		timer.enable()
+		self.session.nav.RecordTimer.timeChanged(timer)
+		self.setTimerButtonText(_("Add Timer"))
+		self.key_green_choice = self.ADD_TIMER
+		self.refreshlist()
+
 	def RecordTimerQuestion(self, manual=False):
 		cur = self[f"list{self.activeList}"].getCurrent()
 		event = cur[0]
@@ -1412,11 +1420,15 @@ class EPGSelection(Screen):
 				cb_func1 = lambda ret: self.removeTimer(timer)
 				cb_func2 = lambda ret: self.editTimer(timer)
 				cb_func3 = lambda ret: self.disableTimer(timer)
+				cb_func4 = lambda ret: self.enableTimer(timer)
 				menu = [
 					(_("Delete Timer"), "CALLFUNC", self.RemoveChoiceBoxCB, cb_func1),
-					(_("Edit Timer"), "CALLFUNC", self.RemoveChoiceBoxCB, cb_func2),
-					(_("Disable timer"), "CALLFUNC", self.RemoveChoiceBoxCB, cb_func3)
+					(_("Edit Timer"), "CALLFUNC", self.RemoveChoiceBoxCB, cb_func2)
 				]
+				if timer.disabled:
+					menu.append((_("Enable timer"), "CALLFUNC", self.RemoveChoiceBoxCB, cb_func4))
+				else:
+					menu.append((_("Disable timer"), "CALLFUNC", self.RemoveChoiceBoxCB, cb_func3))
 			title = _("Select action for timer %s:") % event.getEventName()
 		else:
 			if not manual:
@@ -1660,7 +1672,7 @@ class EPGSelection(Screen):
 	def getRecordEvent(self, serviceRefStr, event):
 		recordEvent = None
 		eventID = event.getEventId()
-		for timer in [x for x in self.session.nav.RecordTimer.timer_list if x.eit == eventID]:
+		for timer in [x for x in self.session.nav.RecordTimer.timer_list + self.session.nav.RecordTimer.processed_timers if x.eit == eventID]:
 			if timer.service_ref.ref.toCompareString() == serviceRefStr:
 				recordEvent = timer
 				break

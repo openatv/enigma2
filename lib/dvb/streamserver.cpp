@@ -101,7 +101,7 @@ void eStreamClient::notifier(int what)
 					char *buffer = (char*)malloc(4096);
 					if (buffer)
 					{
-						struct passwd pwd;
+						struct passwd pwd = {};
 						struct passwd *pwdresult = NULL;
 						std::string crypt;
 						username = authentication.substr(0, pos);
@@ -109,13 +109,13 @@ void eStreamClient::notifier(int what)
 						getpwnam_r(username.c_str(), &pwd, buffer, 4096, &pwdresult);
 						if (pwdresult)
 						{
-							struct crypt_data cryptdata;
+							struct crypt_data cryptdata = {};
 							char *cryptresult = NULL;
 							cryptdata.initialized = 0;
 							crypt = pwd.pw_passwd;
 							if (crypt == "*" || crypt == "x")
 							{
-								struct spwd spwd;
+								struct spwd spwd = {};
 								struct spwd *spwdresult = NULL;
 								getspnam_r(username.c_str(), &spwd, buffer, 4096, &spwdresult);
 								if (spwdresult)
@@ -460,8 +460,6 @@ PyObject *eStreamServer::getConnectedClientDetails(int index)
 
 }
 
-
-
 PyObject *eStreamServer::getConnectedClients()
 {
 	ePyObject ret;
@@ -471,8 +469,8 @@ PyObject *eStreamServer::getConnectedClients()
 	for (eSmartPtrList<eStreamClient>::iterator it = clients.begin(); it != clients.end(); ++it)
 	{
 		ePyObject tuple = PyTuple_New(3);
-		PyTuple_SET_ITEM(tuple, 0, PyString_FromString((char *)it->getRemoteHost().c_str()));
-		PyTuple_SET_ITEM(tuple, 1, PyString_FromString((char *)it->getServiceref().c_str()));
+		PyTuple_SET_ITEM(tuple, 0, PyUnicode_FromString((char *)it->getRemoteHost().c_str()));
+		PyTuple_SET_ITEM(tuple, 1, PyUnicode_FromString((char *)it->getServiceref().c_str()));
 		PyTuple_SET_ITEM(tuple, 2, PyLong_FromLong(it->isUsingEncoder()));
 		PyList_SET_ITEM(ret, idx++, tuple);
 	}

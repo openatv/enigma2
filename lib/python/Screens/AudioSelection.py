@@ -12,7 +12,6 @@ from Components.Sources.StaticText import StaticText
 from Components.Sources.List import List
 from Components.Sources.Boolean import Boolean
 from Components.SystemInfo import BoxInfo
-from Components.VolumeControl import VolumeControl
 
 from enigma import iPlayableService, eTimer, eSize
 
@@ -68,9 +67,6 @@ class AudioSelection(ConfigListScreen, Screen):
 			"down": self.keyDown,
 			"left": self.keyLeft,
 			"right": self.keyRight,
-			"volumeUp": self.volumeUp,
-			"volumeDown": self.volumeDown,
-			"volumeMute": self.volumeMute,
 			"menu": self.openAutoLanguageSetup,
 			"1": self.keyNumberGlobal,
 			"2": self.keyNumberGlobal,
@@ -269,11 +265,8 @@ class AudioSelection(ConfigListScreen, Screen):
 					def __call__(self, *args, **kwargs):
 						self.fnc(*self.args)
 
-				Plugins = [(p.name, PluginCaller(self.infobar.runPlugin, p)) for p in plugins.getPlugins(where=PluginDescriptor.WHERE_AUDIOMENU)]
-				if len(Plugins):
-					for x in Plugins:
-						if x[0] != 'AudioEffect':  # always make AudioEffect Blue button.
-							conflist.append(getConfigListEntry(x[0], ConfigNothing(), x[1]))
+				for item in [(p.name, PluginCaller(self.infobar.runPlugin, p)) for p in plugins.getPlugins(where=PluginDescriptor.WHERE_AUDIOMENU) if p.key != "AudioEffect"]:  # Ignore AudioEffect because it's always Blue button.
+					conflist.append(getConfigListEntry(item[0], ConfigNothing(), item[1]))
 
 		elif self.settings.menupage.value == PAGE_SUBTITLES:
 
@@ -546,15 +539,6 @@ class AudioSelection(ConfigListScreen, Screen):
 				self.focus = FOCUS_STREAMS
 		elif self.focus == FOCUS_STREAMS:
 			self["streams"].selectNext()
-
-	def volumeUp(self):
-		VolumeControl.instance and VolumeControl.instance.volUp()
-
-	def volumeDown(self):
-		VolumeControl.instance and VolumeControl.instance.volDown()
-
-	def volumeMute(self):
-		VolumeControl.instance and VolumeControl.instance.volMute()
 
 	def keyNumberGlobal(self, number):
 		if number <= len(self["streams"].list):

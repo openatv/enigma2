@@ -828,7 +828,7 @@ void eRTSPStreamClient::http_response(int sock, int rc, const std::string &ah, c
 	}
 	else
 	{
-		struct timespec tv, rem;
+		struct timespec tv = {}, rem = {};
 		tv.tv_sec = 0;
 		tv.tv_nsec = 5000000;
 		int times = 20;

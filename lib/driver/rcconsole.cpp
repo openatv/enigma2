@@ -21,7 +21,7 @@ eRCConsoleDriver::eRCConsoleDriver(const char *filename): eRCDriver(eRCInput::ge
 	if (handle >= 0)
 	{
 			/* set console mode */
-		struct termios t;
+		struct termios t = {};
 		tcgetattr(handle, &t);
 		ot = t;
 		t.c_lflag &= ~(ECHO | ICANON | ECHOK | ECHOE | ECHONL);

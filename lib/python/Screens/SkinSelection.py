@@ -96,6 +96,11 @@ class SkinSelection(Setup):
 		if config.skin.lcdSkin.value != config.skin.display_skin.value:
 			config.skin.display_skin.value = config.skin.lcdSkin.value
 			config.skin.display_skin.save()
+
+		if config.channelSelection.screenStyle.isChanged() or config.channelSelection.widgetStyle.isChanged():
+			from Screens.ChannelSelection import ChannelSelectionSetup
+			ChannelSelectionSetup.updateSettings(self.session)
+
 		Setup.keySave(self)
 
 	def loadPreview(self):

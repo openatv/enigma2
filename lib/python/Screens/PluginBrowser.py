@@ -633,6 +633,8 @@ class PluginBrowserSetup(Setup):
 		self.opkgComponent.addCallback(self.keyResetFeedsCallback)
 		self.cleanError = False
 		self.refreshIncomplete = 0
+		self.addSaveNotifier(self.onUpdateSettings)
+		self.onClose.append(self.clearSaveNotifiers)
 
 	def keyResetFeeds(self):
 		self.suspendAllActionMaps()
@@ -726,6 +728,22 @@ class PluginBrowserSetup(Setup):
 			if config.usage.alternateGitHubDNS.value:
 				lines += ["%s raw.githubusercontent.com" % ip for ip in ("185.199.108.133", "185.199.109.133", "185.199.110.133", "185.199.111.133", "2606:50c0:8000::154", "2606:50c0:8001::154", "2606:50c0:8002::154", "2606:50c0:8003::154")]
 			fileWriteLines("/etc/hosts", lines, source=MODULE_NAME)
+
+	def onUpdateSettings(self):
+		if config.usage.pluginListLayout.isChanged():
+			oldDialogIndex = None
+			oldSummarys = (-1, None)
+			for index, dialog in enumerate(self.session.dialog_stack):
+				if isinstance(dialog[0], PluginBrowser):
+					oldDialogIndex = (index, dialog[1])
+					oldSummarys = dialog[0].summaries[:]
+					break
+			if oldDialogIndex[0] != -1:
+				newDialog = self.session.instantiateDialog(PluginBrowser)
+				newDialog.summaries = oldSummarys
+				newDialog.isTmp = False
+				newDialog.callback = None
+				self.session.dialog_stack[oldDialogIndex[0]] = (newDialog, oldDialogIndex[1])
 
 
 class PluginBrowserSummary(ScreenSummary):

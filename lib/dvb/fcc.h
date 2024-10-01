@@ -53,8 +53,7 @@ public:
 		fcc_state_decoding,
 		fcc_state_failed
 	};
-	SWIG_VOID(RESULT)
-	playFCCService(const eServiceReference &ref, ePtr<iPlayableService> &SWIG_OUTPUT);
+	SWIG_VOID(RESULT) playFCCService(const eServiceReference &ref, ePtr<iPlayableService> &SWIG_OUTPUT);
 	RESULT stopFCCService(const eServiceReference &sref);
 	RESULT stopFCCService();
 	RESULT cleanupFCCService();

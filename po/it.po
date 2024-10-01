@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-04 16:49+0000\n"
-"PO-Revision-Date: 2024-08-07 20:09+0000\n"
+"POT-Creation-Date: 2024-09-12 21:03+0000\n"
+"PO-Revision-Date: 2024-09-13 06:09+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.8-dev\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
 
 msgid ""
@@ -1482,6 +1482,9 @@ msgstr "4x"
 msgid "5"
 msgstr "5"
 
+msgid "50-200 Mbps"
+msgstr "50-200 Mbps"
+
 msgid "6"
 msgstr "6"
 
@@ -1556,18 +1559,18 @@ msgstr "C'è un file aperto nel dispositivo!"
 
 #, python-format
 msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
-msgstr "Un timer di avvio finito vuole riavviare il %s %s. Farlo ora?"
+msgstr "Un timer di accensione finito vuole riavviare il %s %s. Farlo ora?"
 
 msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
-msgstr "Un timer di avvio finito desidera riavviare l'interfaccia utente. Farlo ora?"
+msgstr "Un timer di accensione finito desidera riavviare l'interfaccia utente. Farlo ora?"
 
 #, python-format
 msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
-msgstr "Un timer di avvio finito vuole impostare il %s %s in standby. Farlo ora?"
+msgstr "Un timer di accensione finito vuole impostare il %s %s in standby. Farlo ora?"
 
 #, python-format
 msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
-msgstr "Un timer di avvio finito vuole spegnere il %s %s. Farlo ora?"
+msgstr "Un timer di accensione finito vuole spegnere il %s %s. Farlo ora?"
 
 #, python-format
 msgid ""
@@ -1618,7 +1621,7 @@ msgid ""
 "\n"
 "Go to Deep Standby now?"
 msgstr ""
-"Una registrazione, un timer di registrazione o un timer di avvio è in esecuzione o inizierà entro 15 minuti. %s esteso a 30 minuti. Il %s %s andrà in spegnimento dopo la registrazione o l'evento del timer di accensione.\n"
+"Una registrazione, un timer di registrazione o un timer di accensione è in esecuzione o inizierà entro 15 minuti. %s esteso a 30 minuti. Il %s %s andrà in spegnimento dopo la registrazione o l'evento del timer di accensione.\n"
 "\n"
 "Spengo ora?"
 
@@ -1688,16 +1691,19 @@ msgstr "Transcodifica AC3plus"
 msgid "AFL"
 msgstr "AFL"
 
-msgid "AI-Powered translation color"
+msgid "AI-Powered Translation color"
 msgstr "Colore di traduzione basato sull'intelligenza artificiale"
 
-msgid "AI-Powered translation enabled"
+msgid "AI-Powered Translation enabled"
 msgstr "Traduzione basata sull'intelligenza artificiale abilitata"
 
-msgid "AI-Powered translation language"
+msgid "AI-Powered Translation language"
 msgstr "Linguaggio di traduzione basato sull'intelligenza artificiale"
 
-msgid "AI-Powered translation subscription code"
+msgid "AI-Powered Translation optimization"
+msgstr "Ottimizzazione della traduzione basata sull'IA"
+
+msgid "AI-Powered Translation subscription code"
 msgstr "Codice di abbonamento alla traduzione basata sull'intelligenza artificiale"
 
 msgid "ARM"
@@ -1747,6 +1753,9 @@ msgstr "Informazioni su openATV"
 
 msgid "About to start"
 msgstr "Sta per iniziare"
+
+msgid "Above 200 Mbps"
+msgstr "Oltre 200 Mbps"
 
 msgid "Access point"
 msgstr "Punto di accesso"
@@ -1878,7 +1887,7 @@ msgid "Add To Parental Protection"
 msgstr "Aggiungi al controllo genitori"
 
 msgid "Add Zap+RecordTimer"
-msgstr "Aggiungi timer di cambio canale e registrazione"
+msgstr "Aggiungi timer 'Zap e registra'"
 
 msgid "Add ZapTimer"
 msgstr "Aggiungi timer di cambio canale"
@@ -2357,6 +2366,18 @@ msgstr "Applica la localizzazione/lingua attualmente evidenziata ed esci"
 msgid "Arabic"
 msgstr "Arabo"
 
+msgid "Arabic (Egyptian)"
+msgstr "Arabo (egiziano)"
+
+msgid "Arabic (Moroccan)"
+msgstr "Arabo (marocchino)"
+
+msgid "Arabic (Syro-Lebanese)"
+msgstr "Arabo (siro-libanese)"
+
+msgid "Arabic (Tunisian)"
+msgstr "Arabo (tunisino)"
+
 msgid "Aragonese"
 msgstr "Aragonese"
 
@@ -2580,12 +2601,6 @@ msgstr "Selezione lingua audio 4"
 msgid "Audio options..."
 msgstr "Opzioni audio…"
 
-msgid "Audio volume step size"
-msgstr "Dimensione passo volume audio"
-
-msgid "Audio volume step size fast mode"
-msgstr "Dimensione passo volume rapido"
-
 msgid "Australia"
 msgstr "Australia"
 
@@ -2666,6 +2681,9 @@ msgstr "AutoFS"
 
 msgid "AutoMountManager"
 msgstr "Gestore di montaggio automatico"
+
+msgid "AutoRefresh"
+msgstr "Ricarica automatica"
 
 msgid "AutoTimer"
 msgstr "Timer automatico"
@@ -3156,6 +3174,9 @@ msgstr "Buffer %d%%"
 msgid "Buffers"
 msgstr "Buffer"
 
+msgid "Build"
+msgstr "Build"
+
 msgid "Build Brand"
 msgstr "Brand build"
 
@@ -3591,7 +3612,7 @@ msgid "Cancel the selection and exit"
 msgstr "Annulla la selezione ed esci"
 
 msgid "Cancel the service history zap"
-msgstr "Annulla servizio zap"
+msgstr "Annulla zap della cronologia dei servizi"
 
 msgid "Cancel the service selection"
 msgstr "Annulla selezione del servizio"
@@ -4295,6 +4316,9 @@ msgstr "Comando da eseguire"
 msgid "Command type"
 msgstr "Tipo comando"
 
+msgid "Commit"
+msgstr "Commit"
+
 msgid "Commit Information Actions"
 msgstr "Azioni sulle informazioni di commit"
 
@@ -4442,9 +4466,6 @@ msgstr ""
 msgid "Configure remote control type"
 msgstr "Configura tipo di telecomando"
 
-msgid "Configure the AI-Powered translation language."
-msgstr "Configura la lingua di traduzione basata sull'intelligenza artificiale."
-
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "Configura modalità DiSEqC per questo LNB."
 
@@ -4496,9 +4517,6 @@ msgstr "Configura livello di luminosità del display del pannello anteriore per 
 msgid "Configure the brightness level of the front panel display for standby."
 msgstr "Configura livello di luminosità del display del pannello frontale per lo standby."
 
-msgid "Configure the color of the AI-Powered translations."
-msgstr "Configura il colore delle traduzioni basate sull'intelligenza artificiale."
-
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
 msgstr "Configura colore dei sottotitoli esterni, alternativo (normale in bianco, corsivo in giallo, grassetto in ciano, sottolineatura in verde), bianco o giallo."
 
@@ -4532,9 +4550,6 @@ msgstr "Configura coordinata finale in x dell'area di visualizzazione del televi
 msgid "Configure the end coordinate in y of the teletext display area."
 msgstr "Configura coordinata finale in y dell'area di visualizzazione del televideo."
 
-msgid "Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row."
-msgstr "Configura dimensione del volume dell'audio in modalità veloce (limite 1-10). Attivato quando il tasto del volume viene premuto o premuto velocemente di seguito."
-
 msgid "Configure the first audio language (highest priority)."
 msgstr "Configura prima lingua audio (priorità massima)."
 
@@ -4567,9 +4582,6 @@ msgstr "Configura funzione dei tasti < e >."
 
 msgid "Configure the gateway."
 msgstr "Configura gateway."
-
-msgid "Configure the general audio volume step size (limit 1-10)."
-msgstr "Configura dimensione generale del volume dell'audio (limite 1-10)."
 
 msgid "Configure the hard disk drive to go to standby after the specified idle time when the box is in standby."
 msgstr "Configura unità disco fisso in modo che vada in standby dopo il tempo di inattività specificato quando il ricevitore è in standby."
@@ -5959,16 +5971,16 @@ msgid "Deselected packages usually occur because those packaged are incompatible
 msgstr "I pacchetti deselezionati di solito si verificano perché quelli impacchettati non sono compatibili con i pacchetti esistenti. Anche se questo è per lo più innocuo, è possibile che il %s %s possa riscontrare problemi."
 
 msgid "Destination of fallback remote receiver"
-msgstr "Destinazione del ricevitore remoto di fallback"
+msgstr "Destinazione ricevitore remoto fallback"
 
 msgid "Destination of fallback remote receiver for ATSC"
-msgstr "Destinazione del ricevitore remoto di fallback per ATSC"
+msgstr "Destinazione ricevitore remoto fallback per ATSC"
 
 msgid "Destination of fallback remote receiver for DVB-C"
-msgstr "Destinazione del ricevitore remoto di fallback per DVB-C"
+msgstr "Destinazione ricevitore remoto fallback per DVB-C"
 
 msgid "Destination of fallback remote receiver for DVB-T"
-msgstr "Destinazione del ricevitore remoto di fallback per DVB-T"
+msgstr "Destinazione ricevitore remoto fallback per DVB-T"
 
 msgid "Detail of GStreamer log."
 msgstr "Dettaglio registro di GStreamer"
@@ -6481,6 +6493,9 @@ msgstr "Repubblica Dominicana"
 msgid "Don't Center DVB Subs On This Service"
 msgstr "Non centrare i sottotitoli DVB su questo servizio"
 
+msgid "Don't Translate Subs On This Service"
+msgstr "Non tradurre sottotitoli su questo servizio"
+
 msgid "Don't add this recording"
 msgstr "Non aggiungere questa registrazione"
 
@@ -6848,9 +6863,6 @@ msgstr "Abilita %s pro:"
 msgid "Enable 5V for active antenna"
 msgstr "Abilita 5V per antenna attiva"
 
-msgid "Enable AI-Powered translation for all teletext and DVB subtitles."
-msgstr "Abilita la traduzione basata sull'intelligenza artificiale per tutti i sottotitoli del televideo e DVB."
-
 msgid "Enable Autorecord"
 msgstr "Abilitare registrazione automatica"
 
@@ -6957,6 +6969,9 @@ msgstr "Abilita scansione veloce"
 msgid "Enable auto fast scan for %s"
 msgstr "Abilita scansione rapida automatica per %s"
 
+msgid "Enable autorefresh templates."
+msgstr "Abilita modelli di aggiornamento automatico."
+
 msgid "Enable blinking rec symbol on the LCD Display in Standby."
 msgstr "Abilita simbolo lampeggiante registrazione su display LCD in standby"
 
@@ -7038,8 +7053,14 @@ msgstr "Abilita questa opzione per aggiungere le informazioni MultiBoot rilevate
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "Abilita questa opzione per aggiungere dati di mappatura delle azioni/controllo remoto al file di registro di debug."
 
+msgid "Enable this option to add extra DVB details to the debug log file."
+msgstr "Abilita questa opzione per aggiungere ulteriori dettagli DVB al file di registro di debug."
+
 msgid "Enable this option to add extra DVB scan data to the debug log file."
 msgstr "Abilita questa opzione per aggiungere dati di scansione DVB extra al file di registro di debug."
+
+msgid "Enable this option to add extra DVB time sync data to the debug log file."
+msgstr "Abilita questa opzione per aggiungere ulteriori dati di sincronizzazione temporale DVB al file di registro di debug."
 
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr "Abilita questa opzione per aggiungere dati EPG extra al file di registro di debug."
@@ -7061,6 +7082,9 @@ msgstr "Abilita questa opzione per aggiungere nomi di schermate e dati di risolu
 
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Abilita questa opzione per aggiungere dati di debug del timer al file di registro di debug."
+
+msgid "Enable this option to show all the available Information screens in the Information menu item list."
+msgstr "Abilita questa opzione per mostrare tutte le schermate Informazioni disponibili nell'elenco delle voci del menu Informazioni."
 
 msgid "Enable this setting if your aerial system needs power."
 msgstr "Abilita questa impostazione se l'antenna necessita di alimentazione."
@@ -7246,6 +7270,9 @@ msgstr "Inserisci numero registrato nel posizionatore che corrisponde a questo s
 msgid "Enter the service pin"
 msgstr "Inserisci PIN del servizio"
 
+msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
+msgstr "Inserisci il tuo codice di abbonamento, il codice unificato per trail è 15."
+
 msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
 msgstr "Inserisci la latitudine attuale. Questo è il numero di gradi di distanza dall'equatore espresso come valore decimale."
 
@@ -7260,9 +7287,6 @@ msgstr "Inserisci la frequenza dell'oscillatore locale per la banda bassa. Per m
 
 msgid "Enter your personal feed URL to allow you to select packages from your personal feed."
 msgstr "Inserisci l'URL del feed personale per consentirti di selezionare i pacchetti dal feed personale."
-
-msgid "Enter your subscription code, the unified code for trial is 15."
-msgstr "Inserisci il tuo codice di abbonamento, il codice unificato per trail è 15."
 
 msgid "Entertainment"
 msgstr "Divertimento"
@@ -7614,13 +7638,13 @@ msgid "Even if TV has another input active?"
 msgstr "Anche se la TV ha un altro input attivo?"
 
 msgid "Even if a 'Wakeup' PowerTimer starting?"
-msgstr "Anche se un timer di avvio si sta avviando?"
+msgstr "Anche se si avvia un timer di accensione 'Risveglio'?"
 
 msgid "Even if a 'Zap and Record' recording timer starting?"
-msgstr "Anche se inizia un timer di registrazione 'zap and record'?"
+msgstr "Anche se si avvia il timer di registrazione 'Zap e registra'?"
 
 msgid "Even if a 'Zap' recording timer starting?"
-msgstr "Anche se si avvia un timer di registrazione 'zap'?"
+msgstr "Anche se si avvia un timer di registrazione 'Zap'?"
 
 msgid "Event Info"
 msgstr "Info evento"
@@ -7947,7 +7971,7 @@ msgid "Fallback Font *"
 msgstr "Carattere di fallback *"
 
 msgid "Fallback Timer"
-msgstr "Timer del ricevitore remoto di fallback"
+msgstr "Timer ricevitore remoto fallback"
 
 msgid "Fallback remote receiver"
 msgstr "Ricevitore remoto Fallback"
@@ -7959,7 +7983,7 @@ msgid "Fallback remote receiver Port"
 msgstr "PORTA Ricevitore remoto fallback"
 
 msgid "Fallback remote receiver URL"
-msgstr "URL del ricevitore remoto di fallback"
+msgstr "URL ricevitore remoto fallback"
 
 msgid "Fallback remote receiver for ATSC"
 msgstr "Ricevitore remoto di fallback per ATSC"
@@ -7971,10 +7995,10 @@ msgid "Fallback remote receiver for DVB-T"
 msgstr "Ricevitore remoto di fallback per DVB-T"
 
 msgid "Fallback remote receiver setup"
-msgstr "Configurazione del ricevitore remoto di fallback"
+msgstr "Configurazione ricevitore remoto fallback"
 
 msgid "Fallback tuner setup"
-msgstr "Impostazioni tuner del ricevitore remoto di fallback"
+msgstr "Impostazioni tuner di fallback"
 
 msgid "False"
 msgstr "Falso"
@@ -9007,9 +9031,6 @@ msgstr "Nascondi i messaggi di errore dal modulo Common Interface."
 msgid "Hide known extensions"
 msgstr "Nascondi estensioni conosciute"
 
-msgid "Hide mute notification"
-msgstr "Nascondi notifica del muto"
-
 msgid "Hide number markers"
 msgstr "Nascondi marcatori numerici"
 
@@ -9233,7 +9254,7 @@ msgid "IP address of the Stream Relay server used to descramble services that ca
 msgstr "Indirizzo IP del server Stream Relay usato per decodificare i servizi che possono essere decrittografati solo tramite Stream Relay."
 
 msgid "IP of fallback remote receiver"
-msgstr "IP del ricevitore remoto di fallback"
+msgstr "IP ricevitore remoto fallback"
 
 msgid "IPK Installer"
 msgstr "Installatore IPK"
@@ -9365,9 +9386,6 @@ msgstr "Se abilitato, usa una finestra temporale per rilevare una riattivazione 
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Se i registri usano lo spazio massimo impostato usato, il più vecchio verrà eliminato."
-
-msgid "If muted, hide mute icon or mute information after few seconds."
-msgstr "Se disattivato, nasconde l'icona muto o le informazioni mute dopo pochi secondi."
 
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
 msgstr "Se possibile, x minuti prima dell'avvio di un timer, VPS-Plugin controllerà che il programma non inizi in anticipo (0 disabilita la funzione)"
@@ -9533,8 +9551,14 @@ msgstr "Includi AIT nelle registrazioni"
 msgid "Include CI assignment"
 msgstr "Includi assegnazione CI"
 
+msgid "Include DVB details"
+msgstr "Includi dettagli DVB"
+
 msgid "Include DVB scan data"
 msgstr "Includi dati scansione DVB"
+
+msgid "Include DVB timesync data"
+msgstr "Includi dati sincronizzazione temporale DVB"
 
 msgid "Include ECM in http streams"
 msgstr "Includi ECM nei flussi http"
@@ -10111,9 +10135,6 @@ msgstr "Kuanyama / Kwanyama"
 msgid "Kurdish"
 msgstr "Curdo"
 
-msgid "Kurdish (Sorani)"
-msgstr "Curdo (Sorani)"
-
 msgid "Kurdistan"
 msgstr "Kurdistan"
 
@@ -10589,6 +10610,9 @@ msgstr "Nomi file lunghi"
 
 msgid "Long press emulation with button"
 msgstr "Emulazione pressione prolungata di un tasto"
+
+msgid "Long press volume steps"
+msgstr "Premi a lungo i passi del volume"
 
 #, python-format
 msgid "Long press: %s"
@@ -13428,7 +13452,7 @@ msgid "Port number for the Stream Relay server used to descramble services that 
 msgstr "Numero di porta per il server Stream Relay usato per decodificare i servizi che possono essere decrittografati solo tramite Stream Relay."
 
 msgid "Port of fallback remote receiver"
-msgstr "Porta del ricevitore remoto di fallback"
+msgstr "Porta ricevitore remoto fallback"
 
 msgid "Portugal"
 msgstr "Portogallo"
@@ -13488,28 +13512,28 @@ msgid "Power threshold in mA"
 msgstr "Soglia di potenza in mA"
 
 msgid "PowerTimer"
-msgstr "Timer di avvio "
+msgstr "Timer di accensione "
 
 msgid "PowerTimer Actions"
-msgstr "Azioni timer di avvio"
+msgstr "Azioni timer di accensione"
 
 msgid "PowerTimer Overview"
-msgstr "Panoramica timer di avvio"
+msgstr "Panoramica timer di accensione"
 
 msgid "PowerTimer Settings"
-msgstr "Impostazioni timer di avvio"
+msgstr "Impostazioni timer di accensione"
 
 msgid "PowerTimer Standby"
-msgstr "Standby timer di avvio"
+msgstr "Standby timer di accensione"
 
 msgid "PowerTimer deep standby"
-msgstr "Spegni timer di avvio"
+msgstr "Spegni timer di accensione"
 
 msgid "PowerTimer log"
-msgstr "Registro timer di avvio"
+msgstr "Registro timer di accensione"
 
 msgid "PowerTimers"
-msgstr "Timer di avvio"
+msgstr "Timer di accensione"
 
 msgid "Predefined"
 msgstr "Predefinito"
@@ -14162,9 +14186,6 @@ msgstr "Informazioni sul ricevitore %s %s"
 msgid "Receiver name"
 msgstr "Nome del ricevitore"
 
-msgid "Reception"
-msgstr "Ricezione servizi"
-
 msgid "Reception Lists"
 msgstr "Elenchi di ricezione"
 
@@ -14235,7 +14256,7 @@ msgstr "Registrazione non riuscita"
 msgid "Recording finished"
 msgstr "Registrazione terminata"
 
-msgid "Recording in progress"
+msgid "Recording in progress!"
 msgstr "Registrazione in corso"
 
 msgid "Recording location"
@@ -15503,6 +15524,15 @@ msgstr "Seleziona 'Sì' se le regolazioni del volume devono essere applicate all
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Seleziona 'Sì' se stai usando un multiswitch che necessita del comando DiSEqC Port-A. Seleziona 'No' per tutte le altre impostazioni."
 
+msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' power timer is starting."
+msgstr "Seleziona 'Sì' se vuoi riattivare la TV per l'avvio del timer di accensione 'Risveglio'."
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
+msgstr "Seleziona 'Sì' se vuoi riattivare la TV per l'avvio del timer di registrazione \"Zap e registra\"."
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr "Seleziona 'Sì' se vuoi riattivare la TV per l'avvio del timer di registrazione \"Zap\"."
+
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Seleziona 'Sì' per mantenere la barra informazioni visualizzata, senza timeout, mentre la riproduzione multimediale è in pausa."
 
@@ -15535,6 +15565,9 @@ msgstr "Seleziona 'Sì' per visualizzare il numero del canale nella barra inform
 
 msgid "Select 'Yes' to display unknown files in the File Commander file viewer, select 'No' to not process unknown files."
 msgstr "Seleziona 'Sì' per visualizzare i file sconosciuti nel visualizzatore di file File Commander, seleziona 'No' per non elaborare i file sconosciuti."
+
+msgid "Select 'Yes' to enable AI-Powered Translation for all teletext and DVB subtitles."
+msgstr "Abilita la traduzione basata sull'intelligenza artificiale per tutti i sottotitoli del televideo e DVB."
 
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr "Seleziona 'Sì' per abilitare la modifica delle impostazioni di questo dispositivo. Selezionando 'No' si ripristinano le impostazioni dei dispositivi ai valori predefiniti."
@@ -15594,7 +15627,7 @@ msgid "Select 'Yes' to remove all settings, tuning data, timers, resume pointers
 msgstr "Seleziona 'Sì' per rimuovere tutte le impostazioni, i dati di ottimizzazione, i timer, i puntatori di ripristino, ecc. Selezionando questa opzione, la configurazione ripristinerà le impostazioni iniziali prima dell'applicazione di qualsiasi impostazione di configurazione. Questa è la forma più affidabile di ripristino delle impostazioni di fabbrica."
 
 msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and power timers."
-msgstr "Seleziona 'Sì' per rimuovere tutti i dati di configurazione del timer. Selezionando questa opzione verranno cancellati tutti i timer, i timer automatici e i timer di avvio."
+msgstr "Seleziona 'Sì' per rimuovere tutti i dati di configurazione del timer. Selezionando questa opzione verranno cancellati tutti i timer, i timer automatici e i timer di accensione."
 
 msgid "Select 'Yes' to remove all tuning data. Selecting this option will remove all tuning and bouquet data and will make timers non functional until the receiver is retuned."
 msgstr "Seleziona 'Sì' per rimuovere tutti i dati di sintonia. Selezionando questa opzione si rimuovono tutti i dati di sintonia e di bouquet e i timer non funzionano finché il ricevitore non viene risintonizzato."
@@ -15883,8 +15916,8 @@ msgstr "Seleziona per quanto tempo visualizzare il messaggio di errore del tasto
 msgid "Select how long to display the task and script message pop up."
 msgstr "Seleziona per quanto tempo visualizzare l'attività e il messaggio popup dello script."
 
-msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
-msgstr "Seleziona per quanto tempo, in secondi, deve essere visualizzato il livello del volume prima che si nasconda automaticamente."
+msgid "Select how long, in seconds, that the volume and mute displays are shown before they automatically hide."
+msgstr "Seleziona per quanto tempo visualizzare, in secondi, i controlli del volume e dell'audio prima della loro scomparsa automatica."
 
 msgid "Select how often this timer is to be repeated."
 msgstr "Seleziona frequenza con cui questo timer deve essere ripetuto."
@@ -15998,6 +16031,9 @@ msgstr "Seleziona ordinamento dei file per la colonna attuale"
 msgid "Select the %s entry"
 msgstr "Seleziona voce %s"
 
+msgid "Select the AI-Powered Translation target language."
+msgstr "Configura la lingua di traduzione basata sull'intelligenza artificiale."
+
 msgid "Select the No / False response"
 msgstr "Seleziona risposta No/Falso"
 
@@ -16053,6 +16089,9 @@ msgstr "Seleziona canale o servizio da usare per questo timer."
 
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Seleziona carattere o azione sotto il cursore della tastiera"
+
+msgid "Select the color to be used for the AI-Powered Translation text."
+msgstr "Configura il colore delle traduzioni basate sull'intelligenza artificiale."
 
 msgid "Select the current bookmarked location and exit"
 msgstr "Seleziona attuale posizione del segnalibro ed esci"
@@ -16235,6 +16274,12 @@ msgstr "Seleziona set di caratteri maiuscoli"
 msgid "Select the shifted character set for the next character only"
 msgstr "Seleziona set di caratteri maiuscoli solo per il carattere successivo"
 
+msgid "Select the size of the volume step when the VOLUME buttons are pressed."
+msgstr "Seleziona dimensione dell'incremento del volume quando vengono premuti i pulsanti VOLUME."
+
+msgid "Select the size of the volume steps when the VOLUME buttons are held down."
+msgstr "Seleziona dimensione degli incrementi del volume quando si tengono premuti i pulsanti VOLUME."
+
 msgid "Select the sort order for the file lines:"
 msgstr "Seleziona ordinamento per le righe del file:"
 
@@ -16330,9 +16375,6 @@ msgstr ""
 "Seleziona rete wireless a cui vuoi connetterti.\n"
 "\n"
 "Premi OK per continuare."
-
-msgid "Select to use logarithmic step size with more steps at the lower volume levels."
-msgstr "Seleziona per usare passi logaritmici più grandi a livelli di volume più bassi."
 
 msgid "Select update source location"
 msgstr "Seleziona posizione di origine degli aggiornamenti"
@@ -16781,7 +16823,7 @@ msgid "Set the time to hide the second infobar. The bar also disappears on press
 msgstr "Imposta l'orario per nascondere la seconda barra informazioni. La barra scompare alla pressione del tasto OK."
 
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, PowerTimer, SleepTimer etc."
-msgstr "Imposta il tempo di attesa per l'esecuzione dell'azione predefinita nei messaggi di spegnimento, standby o riavvio (ad es. usato in timer di registrazione, timer di avvio, timer di spegnimento, ...)"
+msgstr "Imposta il tempo di attesa per l'esecuzione dell'azione predefinita nei messaggi di spegnimento, standby o riavvio (ad es. usato in timer di registrazione, timer di accensione, timer di spegnimento, ...)"
 
 msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
 msgstr "Imposta la posizione in alto a sinistra dello spinner di occupato. Le coordinate vengono ridimensionate in modo tale che in alto a sinistra sia su (0,0) e in basso a destra su (1260,700). Tieni presente che la posizione è in alto a sinistra dello spinner e non al centro dello spinner."
@@ -17338,6 +17380,9 @@ msgstr "Mostra impostazioni avanzate"
 msgid "Show all"
 msgstr "Mostra tutto"
 
+msgid "Show all Information screens"
+msgstr "Mostra tutte le schermate informative"
+
 msgid "Show all available services"
 msgstr "Mostra tutti i servizi disponibili"
 
@@ -17550,16 +17595,16 @@ msgid "Show next system information screen"
 msgstr "Mostra schermata informazioni di sistema successiva"
 
 msgid "Show notification when import channels and/or EPG from remote receiver URL did not complete"
-msgstr "Mostrare una notifica quando i canali di importazione e/o l'EPG dall'URL del ricevitore remoto non sono stati completati"
+msgstr "Mostra una notifica quando i canali di importazione e/o l'EPG dall'URL del ricevitore remoto non sono stati completati"
 
 msgid "Show notification when import channels and/or EPG from remote receiver URL is completed"
-msgstr "Mostrare una notifica quando i canali di importazione e/o l'EPG dall'URL del ricevitore remoto sono stati completati"
+msgstr "Mostra una notifica quando i canali di importazione e/o l'EPG dall'URL del ricevitore remoto sono stati completati"
 
 msgid "Show notification when import channels was not successful"
-msgstr "Mostrare una notifica quando i canali di importazione non sono stati completati"
+msgstr "Mostra una notifica quando i canali di importazione non sono stati completati"
 
 msgid "Show notification when import channels was successful"
-msgstr "Mostrare una notifica quando i canali di importazione sono stati completati"
+msgstr "Mostra una notifica quando i canali di importazione sono stati completati"
 
 msgid "Show or hide the extended description, (skin dependent)."
 msgstr "Mostra o nascondi la descrizione estesa (dipende dalla skin)."
@@ -17733,7 +17778,7 @@ msgid "Show the OSCam information screen"
 msgstr "Mostra schermata di informazioni OSCam"
 
 msgid "Show the PowerTimer"
-msgstr "Mostra timer di avvio"
+msgstr "Mostra timer di accensione"
 
 msgid "Show the SleepTimer"
 msgstr "Mostra timer di spegnimento"
@@ -19339,6 +19384,9 @@ msgstr "Il registro commit %s non contiene informazioni."
 msgid "The '%s' file can't be retrieved, please try again later."
 msgstr "Impossibile recuperare il file '%s', riprova più tardi."
 
+msgid "The AI-Powered Translation service will be optimized to provide the best performance based on the the Internet connection upload speed selected."
+msgstr "Il servizio di traduzione basato sull'intelligenza artificiale sarà ottimizzato per fornire le migliori prestazioni in base alla velocità di caricamento della connessione Internet selezionata."
+
 msgid ""
 "The AutoTimer plugin is not installed!\n"
 "Please install it."
@@ -20463,6 +20511,9 @@ msgstr "Transcodifica"
 msgid "Transcoding: "
 msgstr "Transcodifica: "
 
+msgid "Translate Subs On This Service"
+msgstr "Traduci sottotitoli su questo servizio"
+
 msgid "Translation"
 msgstr "Traduzione"
 
@@ -20629,6 +20680,9 @@ msgstr "Tipo di tuner %s"
 msgid "Tuners"
 msgstr "Tuner"
 
+msgid "Tuners, Scanning & Reception"
+msgstr "Tuner, scansione e ricezione"
+
 msgid "Tuning algorithm"
 msgstr "Algoritmo di sintonizzazione"
 
@@ -20729,7 +20783,7 @@ msgid "URL"
 msgstr "URL"
 
 msgid "URL of fallback remote receiver"
-msgstr "URL del ricevitore remoto di fallback"
+msgstr "URL ricevitore remoto fallback"
 
 msgid "USALS"
 msgstr "USALS"
@@ -20930,6 +20984,9 @@ msgstr "Su"
 
 msgid "Up / Active"
 msgstr "Su o attivo"
+
+msgid "Up to 50 Mbps"
+msgstr "Fino a 50 Mbps"
 
 msgid "Up/Down button mode"
 msgstr "Modalità tasto Su/Giù"
@@ -21175,9 +21232,6 @@ msgstr "Usa mappa dei tasti *"
 
 msgid "Use legacy navigation"
 msgstr "Usa navigazione compatibile"
-
-msgid "Use logarithmic steps"
-msgstr "Usa passi logaritmici"
 
 msgid "Use official channel numbering"
 msgstr "Usa la numerazione canali ufficiale"
@@ -21469,6 +21523,9 @@ msgstr "Venda"
 msgid "Venezuela, Bolivarian Republic of"
 msgstr "Venezuela, Repubblica Bolivariana di"
 
+msgid "Verbose"
+msgstr "Verboso"
+
 msgid "Version"
 msgstr "Versione"
 
@@ -21700,17 +21757,20 @@ msgstr "Regolazione del volume in base al servizio selezionato"
 msgid "Volume Adjust Settings"
 msgstr "Impostazioni di regolazione del volume"
 
-msgid "Volume display timer"
-msgstr "Timer visualizzazione volume"
-
 msgid "Volume down"
 msgstr "Volume giù"
 
 msgid "Volume keys on the receiver remote will control the TV volume. If this feature is not supported the volume keys have no function!"
 msgstr "I tasti del volume sul telecomando del ricevitore controlleranno il volume della TV. Se questa funzione non è supportata, i tasti del volume non hanno alcuna funzione!"
 
+msgid "Volume steps"
+msgstr "Passi volume"
+
 msgid "Volume up"
 msgstr "Volume su"
+
+msgid "Volume/Mute display timer"
+msgstr "Tempo visualizzazione Volume/Muto"
 
 msgid "Vu+ MultiBoot"
 msgstr "Vu+ MultiBoot"
@@ -23003,10 +23063,10 @@ msgstr "uguale a"
 msgid "equestrian"
 msgstr "ippica"
 
-msgid "error starting scanning"
+msgid "Problem starting scan"
 msgstr "errore nell'avvio della scansione"
 
-msgid "error while scanning"
+msgid "Problem while scanning"
 msgstr "errore durante la scansione"
 
 msgid "execute cuts (requires MovieCut plugin)"
@@ -23294,7 +23354,7 @@ msgstr "nessun CAId selezionato"
 msgid "no CI slots found"
 msgstr "nessun slot CI trovato"
 
-msgid "no channel list"
+msgid "No channel list"
 msgstr "no elenco canali"
 
 msgid "no module found"
@@ -23303,7 +23363,7 @@ msgstr "nessun modulo trovato"
 msgid "no or unknown card inserted"
 msgstr "scheda non inserita o sconosciuta"
 
-msgid "no resource manager"
+msgid "No resource manager"
 msgstr "nessun gestore di risorse"
 
 msgid "no storage devices found"
@@ -23763,6 +23823,42 @@ msgstr "sì (mantieni feed)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Kurdish (Sorani)"
+#~ msgstr "Curdo (Sorani)"
+
+#~ msgid "Audio volume step size"
+#~ msgstr "Dimensione passo volume audio"
+
+#~ msgid "Audio volume step size fast mode"
+#~ msgstr "Dimensione passo volume rapido"
+
+#~ msgid "Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row."
+#~ msgstr "Configura dimensione del volume dell'audio in modalità veloce (limite 1-10). Attivato quando il tasto del volume viene premuto o premuto velocemente di seguito."
+
+#~ msgid "Configure the general audio volume step size (limit 1-10)."
+#~ msgstr "Configura dimensione generale del volume dell'audio (limite 1-10)."
+
+#~ msgid "Hide mute notification"
+#~ msgstr "Nascondi notifica del muto"
+
+#~ msgid "If muted, hide mute icon or mute information after few seconds."
+#~ msgstr "Se disattivato, nasconde l'icona muto o le informazioni mute dopo pochi secondi."
+
+#~ msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
+#~ msgstr "Seleziona per quanto tempo, in secondi, deve essere visualizzato il livello del volume prima che si nasconda automaticamente."
+
+#~ msgid "Select to use logarithmic step size with more steps at the lower volume levels."
+#~ msgstr "Seleziona per usare passi logaritmici più grandi a livelli di volume più bassi."
+
+#~ msgid "Use logarithmic steps"
+#~ msgstr "Usa passi logaritmici"
+
+#~ msgid "Volume display timer"
+#~ msgstr "Timer visualizzazione volume"
+
+#~ msgid "Reception"
+#~ msgstr "Ricezione servizi"
 
 #~ msgid "Enable terrestrial LCN:"
 #~ msgstr "Abilita LCN terrestre:"

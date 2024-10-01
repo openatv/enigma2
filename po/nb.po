@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-04 16:49+0000\n"
+"POT-Creation-Date: 2024-09-12 21:03+0000\n"
 "PO-Revision-Date: 2021-08-19 14:13+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nb_NO/>\n"
@@ -1479,6 +1479,9 @@ msgstr ""
 msgid "5"
 msgstr "5"
 
+msgid "50-200 Mbps"
+msgstr ""
+
 msgid "6"
 msgstr "6"
 
@@ -1670,16 +1673,19 @@ msgstr ""
 msgid "AFL"
 msgstr ""
 
-msgid "AI-Powered translation color"
+msgid "AI-Powered Translation color"
 msgstr ""
 
-msgid "AI-Powered translation enabled"
+msgid "AI-Powered Translation enabled"
 msgstr ""
 
-msgid "AI-Powered translation language"
+msgid "AI-Powered Translation language"
 msgstr ""
 
-msgid "AI-Powered translation subscription code"
+msgid "AI-Powered Translation optimization"
+msgstr ""
+
+msgid "AI-Powered Translation subscription code"
 msgstr ""
 
 msgid "ARM"
@@ -1729,6 +1735,9 @@ msgstr ""
 
 msgid "About to start"
 msgstr "starter opp"
+
+msgid "Above 200 Mbps"
+msgstr ""
 
 msgid "Access point"
 msgstr ""
@@ -2339,6 +2348,18 @@ msgstr ""
 msgid "Arabic"
 msgstr "Arabisk"
 
+msgid "Arabic (Egyptian)"
+msgstr ""
+
+msgid "Arabic (Moroccan)"
+msgstr ""
+
+msgid "Arabic (Syro-Lebanese)"
+msgstr ""
+
+msgid "Arabic (Tunisian)"
+msgstr ""
+
 msgid "Aragonese"
 msgstr ""
 
@@ -2560,12 +2581,6 @@ msgstr "Språkvalg 4"
 msgid "Audio options..."
 msgstr "Lyd valg..."
 
-msgid "Audio volume step size"
-msgstr "Lydstyrketrinn"
-
-msgid "Audio volume step size fast mode"
-msgstr ""
-
 msgid "Australia"
 msgstr "Australia"
 
@@ -2645,6 +2660,9 @@ msgid "AutoFS"
 msgstr ""
 
 msgid "AutoMountManager"
+msgstr ""
+
+msgid "AutoRefresh"
 msgstr ""
 
 msgid "AutoTimer"
@@ -3132,6 +3150,9 @@ msgid "Buffering %d%%"
 msgstr "Buffrer %d%%"
 
 msgid "Buffers"
+msgstr ""
+
+msgid "Build"
 msgstr ""
 
 msgid "Build Brand"
@@ -4262,6 +4283,9 @@ msgstr ""
 msgid "Command type"
 msgstr ""
 
+msgid "Commit"
+msgstr ""
+
 msgid "Commit Information Actions"
 msgstr ""
 
@@ -4408,9 +4432,6 @@ msgstr ""
 msgid "Configure remote control type"
 msgstr "Velg fjernkontroll merke"
 
-msgid "Configure the AI-Powered translation language."
-msgstr ""
-
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "Still inn DiSEqC modus for denne LNB."
 
@@ -4459,9 +4480,6 @@ msgstr ""
 msgid "Configure the brightness level of the front panel display for standby."
 msgstr ""
 
-msgid "Configure the color of the AI-Powered translations."
-msgstr ""
-
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
 msgstr "Still inn farge på ekstern undertekst, alternativt (normal hvit, kursiv gul, fet turkis, understrek grønn), hvit eller gul."
 
@@ -4493,9 +4511,6 @@ msgid "Configure the end coordinate in x of the teletext display area."
 msgstr ""
 
 msgid "Configure the end coordinate in y of the teletext display area."
-msgstr ""
-
-msgid "Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row."
 msgstr ""
 
 msgid "Configure the first audio language (highest priority)."
@@ -4530,9 +4545,6 @@ msgstr ""
 
 msgid "Configure the gateway."
 msgstr "Still inn gateway."
-
-msgid "Configure the general audio volume step size (limit 1-10)."
-msgstr "Still inn ønsket lydstyrketrinn (verdi mellom 1-10)."
 
 msgid "Configure the hard disk drive to go to standby after the specified idle time when the box is in standby."
 msgstr ""
@@ -6418,6 +6430,9 @@ msgstr "Dominikanske republikk"
 msgid "Don't Center DVB Subs On This Service"
 msgstr "Ikke sentrer DVB undertekster for denne kanal"
 
+msgid "Don't Translate Subs On This Service"
+msgstr ""
+
 msgid "Don't add this recording"
 msgstr ""
 
@@ -6775,9 +6790,6 @@ msgstr ""
 msgid "Enable 5V for active antenna"
 msgstr "Slå på 5V for aktiv DVB-T antenne"
 
-msgid "Enable AI-Powered translation for all teletext and DVB subtitles."
-msgstr ""
-
 msgid "Enable Autorecord"
 msgstr ""
 
@@ -6884,6 +6896,9 @@ msgstr ""
 msgid "Enable auto fast scan for %s"
 msgstr ""
 
+msgid "Enable autorefresh templates."
+msgstr ""
+
 msgid "Enable blinking rec symbol on the LCD Display in Standby."
 msgstr ""
 
@@ -6965,7 +6980,13 @@ msgstr ""
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add extra DVB details to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add extra DVB scan data to the debug log file."
+msgstr ""
+
+msgid "Enable this option to add extra DVB time sync data to the debug log file."
 msgstr ""
 
 msgid "Enable this option to add extra EPG data to the debug log file."
@@ -6987,6 +7008,9 @@ msgid "Enable this option to add screen names and resolution data to the debug l
 msgstr ""
 
 msgid "Enable this option to add timer debugging data to the debug log file."
+msgstr ""
+
+msgid "Enable this option to show all the available Information screens in the Information menu item list."
 msgstr ""
 
 msgid "Enable this setting if your aerial system needs power."
@@ -7173,6 +7197,9 @@ msgstr "Skriv inn nummeret som er lagret i posisjonerer som tilsvarer denne sate
 msgid "Enter the service pin"
 msgstr "Tast inn kanal pin"
 
+msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
+msgstr ""
+
 msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
 msgstr "Skriv inn din nåværende breddegrad. Dette er antall grader du er fra ekvator som en desimal."
 
@@ -7186,9 +7213,6 @@ msgid "Enter your low band local oscillator frequency. For more information cons
 msgstr "Skriv inn lokale oscillatorfrekvens for lavbåndet ditt. For mer informasjon, se spesifikasjonsarket til LNB."
 
 msgid "Enter your personal feed URL to allow you to select packages from your personal feed."
-msgstr ""
-
-msgid "Enter your subscription code, the unified code for trial is 15."
 msgstr ""
 
 msgid "Entertainment"
@@ -8913,9 +8937,6 @@ msgstr ""
 msgid "Hide known extensions"
 msgstr "Skjul kjente filtyper"
 
-msgid "Hide mute notification"
-msgstr ""
-
 msgid "Hide number markers"
 msgstr "Skjul nummermerker"
 
@@ -9269,9 +9290,6 @@ msgstr ""
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr ""
 
-msgid "If muted, hide mute icon or mute information after few seconds."
-msgstr ""
-
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
 msgstr ""
 
@@ -9431,7 +9449,13 @@ msgstr ""
 msgid "Include CI assignment"
 msgstr "Inkluder CI-tildeling"
 
+msgid "Include DVB details"
+msgstr ""
+
 msgid "Include DVB scan data"
+msgstr ""
+
+msgid "Include DVB timesync data"
 msgstr ""
 
 msgid "Include ECM in http streams"
@@ -10009,9 +10033,6 @@ msgstr ""
 msgid "Kurdish"
 msgstr ""
 
-msgid "Kurdish (Sorani)"
-msgstr ""
-
 msgid "Kurdistan"
 msgstr ""
 
@@ -10486,6 +10507,9 @@ msgid "Long filenames"
 msgstr "Lange filnavn"
 
 msgid "Long press emulation with button"
+msgstr ""
+
+msgid "Long press volume steps"
 msgstr ""
 
 #, python-format
@@ -14038,9 +14062,6 @@ msgstr ""
 msgid "Receiver name"
 msgstr ""
 
-msgid "Reception"
-msgstr ""
-
 msgid "Reception Lists"
 msgstr ""
 
@@ -14111,7 +14132,7 @@ msgstr ""
 msgid "Recording finished"
 msgstr ""
 
-msgid "Recording in progress"
+msgid "Recording in progress!"
 msgstr "Opptak pågår"
 
 msgid "Recording location"
@@ -15372,6 +15393,15 @@ msgstr ""
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Bare velg 'Ja' Hvis du bruker en multiswich som krever et DiSEqC Port-A kommando signal. For alle andre oppsett velger du \"nei\"."
 
+msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' power timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr ""
+
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr ""
 
@@ -15403,6 +15433,9 @@ msgid "Select 'Yes' to display the channel number in the InfoBar."
 msgstr ""
 
 msgid "Select 'Yes' to display unknown files in the File Commander file viewer, select 'No' to not process unknown files."
+msgstr ""
+
+msgid "Select 'Yes' to enable AI-Powered Translation for all teletext and DVB subtitles."
 msgstr ""
 
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
@@ -15752,7 +15785,7 @@ msgstr ""
 msgid "Select how long to display the task and script message pop up."
 msgstr ""
 
-msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
+msgid "Select how long, in seconds, that the volume and mute displays are shown before they automatically hide."
 msgstr ""
 
 msgid "Select how often this timer is to be repeated."
@@ -15867,6 +15900,9 @@ msgstr ""
 msgid "Select the %s entry"
 msgstr ""
 
+msgid "Select the AI-Powered Translation target language."
+msgstr ""
+
 msgid "Select the No / False response"
 msgstr ""
 
@@ -15922,6 +15958,9 @@ msgstr ""
 
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Velg tegnet eller handlingen under tastaturmarkøren"
+
+msgid "Select the color to be used for the AI-Powered Translation text."
+msgstr ""
 
 msgid "Select the current bookmarked location and exit"
 msgstr ""
@@ -16101,6 +16140,12 @@ msgstr "Velg shift tegnsett"
 msgid "Select the shifted character set for the next character only"
 msgstr "Velg shift tegnsettet bare for neste tegn"
 
+msgid "Select the size of the volume step when the VOLUME buttons are pressed."
+msgstr ""
+
+msgid "Select the size of the volume steps when the VOLUME buttons are held down."
+msgstr ""
+
 msgid "Select the sort order for the file lines:"
 msgstr ""
 
@@ -16192,9 +16237,6 @@ msgid ""
 "Select the wireless network to which you want to connect.\n"
 "\n"
 "Press OK to continue."
-msgstr ""
-
-msgid "Select to use logarithmic step size with more steps at the lower volume levels."
 msgstr ""
 
 msgid "Select update source location"
@@ -17178,6 +17220,9 @@ msgid "Show advanced settings"
 msgstr ""
 
 msgid "Show all"
+msgstr ""
+
+msgid "Show all Information screens"
 msgstr ""
 
 msgid "Show all available services"
@@ -19170,6 +19215,9 @@ msgstr ""
 msgid "The '%s' file can't be retrieved, please try again later."
 msgstr ""
 
+msgid "The AI-Powered Translation service will be optimized to provide the best performance based on the the Internet connection upload speed selected."
+msgstr ""
+
 msgid ""
 "The AutoTimer plugin is not installed!\n"
 "Please install it."
@@ -20225,6 +20273,9 @@ msgstr ""
 msgid "Transcoding: "
 msgstr "Transkoding: "
 
+msgid "Translate Subs On This Service"
+msgstr ""
+
 msgid "Translation"
 msgstr "Oversettelse"
 
@@ -20389,6 +20440,9 @@ msgid "Tuner type %s"
 msgstr ""
 
 msgid "Tuners"
+msgstr ""
+
+msgid "Tuners, Scanning & Reception"
 msgstr ""
 
 msgid "Tuning algorithm"
@@ -20688,6 +20742,9 @@ msgstr ""
 msgid "Up / Active"
 msgstr ""
 
+msgid "Up to 50 Mbps"
+msgstr ""
+
 msgid "Up/Down button mode"
 msgstr ""
 
@@ -20923,9 +20980,6 @@ msgid "Use key map *"
 msgstr ""
 
 msgid "Use legacy navigation"
-msgstr ""
-
-msgid "Use logarithmic steps"
 msgstr ""
 
 msgid "Use official channel numbering"
@@ -21192,6 +21246,9 @@ msgstr ""
 msgid "Venezuela, Bolivarian Republic of"
 msgstr ""
 
+msgid "Verbose"
+msgstr ""
+
 msgid "Version"
 msgstr ""
 
@@ -21418,17 +21475,20 @@ msgstr ""
 msgid "Volume Adjust Settings"
 msgstr ""
 
-msgid "Volume display timer"
-msgstr ""
-
 msgid "Volume down"
 msgstr "Volum ned"
 
 msgid "Volume keys on the receiver remote will control the TV volume. If this feature is not supported the volume keys have no function!"
 msgstr ""
 
+msgid "Volume steps"
+msgstr ""
+
 msgid "Volume up"
 msgstr "Volum opp"
+
+msgid "Volume/Mute display timer"
+msgstr ""
 
 msgid "Vu+ MultiBoot"
 msgstr ""
@@ -22681,10 +22741,10 @@ msgstr ""
 msgid "equestrian"
 msgstr "hestesport"
 
-msgid "error starting scanning"
+msgid "Problem starting scan"
 msgstr "feil ved start av søket"
 
-msgid "error while scanning"
+msgid "Problem while scanning"
 msgstr "feil under søket"
 
 msgid "execute cuts (requires MovieCut plugin)"
@@ -22972,7 +23032,7 @@ msgstr "ingen CAId er valgt"
 msgid "no CI slots found"
 msgstr "ingen CI slot ble funnet"
 
-msgid "no channel list"
+msgid "No channel list"
 msgstr "ingen kanalliste"
 
 msgid "no module found"
@@ -22981,7 +23041,7 @@ msgstr "ingen modul ble funnet"
 msgid "no or unknown card inserted"
 msgstr ""
 
-msgid "no resource manager"
+msgid "No resource manager"
 msgstr "ingen ressursforvalter"
 
 msgid "no storage devices found"
@@ -23437,6 +23497,12 @@ msgstr "ja (behold feeder)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Audio volume step size"
+#~ msgstr "Lydstyrketrinn"
+
+#~ msgid "Configure the general audio volume step size (limit 1-10)."
+#~ msgstr "Still inn ønsket lydstyrketrinn (verdi mellom 1-10)."
 
 #~ msgid "Alternative numbering mode"
 #~ msgstr "Alternativt nummervalg"

@@ -75,7 +75,7 @@ eConsoleAppContainer::eConsoleAppContainer():
 
 int eConsoleAppContainer::setCWD( const char *path )
 {
-	struct stat dir_stat;
+	struct stat dir_stat = {};
 
 	if (stat(path, &dir_stat) == -1)
 		return -1;

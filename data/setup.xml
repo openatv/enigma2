@@ -3,6 +3,9 @@
 		<!-- This is just a placeholder, the Videomode plugin implements this sub menu. -->
 	</setup>
 	<setup key="Audio" title="Audio Settings" level="1" showOpenWebif="1">
+		<item level="1" text="Volume steps" description="Select the size of the volume step when the VOLUME buttons are pressed.">config.volumeControl.pressStep</item>
+		<item level="1" text="Long press volume steps" description="Select the size of the volume steps when the VOLUME buttons are held down.">config.volumeControl.longStep</item>
+		<item level="1" text="Volume/Mute display timer" description="Select how long, in seconds, that the volume and mute displays are shown before they automatically hide.">config.volumeControl.hideTimer</item>
 		<item level="1" text="PCM Multichannel" description="Choose whether multi channel sound tracks should be output as PCM." requires="CanPcmMultichannel">config.av.pcm_multichannel</item>
 		<item level="1" text="AC3 downmix" description="Choose whether AC3 sound tracks should be downmixed to stereo." requires="CanDownmixAC3">config.av.downmix_ac3</item>
 		<item level="1" text="AC3 plus transcoding" description="Choose whether AC3 Plus sound tracks should be transcoded to AC3." requires="CanAC3plusTranscode">config.av.transcodeac3plus</item>
@@ -18,11 +21,6 @@
 		<item level="1" text="3D Surround" description="This option allows you to enable 3D Surround Sound." requires="Can3DSurround">config.av.surround_3d</item>
 		<item level="1" text="3D Surround Speaker Position" description="This option allows you to change the virtual loudspeaker position." requires="Can3DSpeaker" conditional="config.av.surround_3d.value != 'none'">config.av.surround_3d_speaker</item>
 		<item level="1" text="Audio Auto Volume Level" description="This option configures you can set Auto Volume Level." requires="CanAutoVolume">config.av.autovolume</item>
-		<item level="1" text="Audio volume step size" description="Configure the general audio volume step size (limit 1-10).">config.av.volume_stepsize</item>
-		<item level="1" text="Audio volume step size fast mode" description="Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row.">config.av.volume_stepsize_fastmode</item>
-		<item level="1" text="Use logarithmic steps" description="Select to use logarithmic step size with more steps at the lower volume levels.">config.audio.volumeLogSteps</item>
-		<item level="1" text="Volume display timer" description="Select how long, in seconds, that the volume display is shown before it automatically hides.">config.audio.volumeHideTimer</item>
-		<item level="1" text="Hide mute notification" description="If muted, hide mute icon or mute information after few seconds.">config.av.volume_hide_mute</item>
 		<item level="1" text="Enable BT Audio" description="This Option allows you to switch Audio to BT Speakers." requires="CanBTAudio">config.av.btaudio</item>
 		<item level="1" text="General BT Audio delay" description="This option configures the general audio delay for BT Speakers." requires="CanBTAudioDelay">config.av.btaudiodelay</item>
 	</setup>
@@ -75,6 +73,8 @@
 		<item level="0" text="CI Boot Delay" description="Set CI Boot delay.">config.cimisc.bootDelay</item>
 	</setup>
 	<setup key="ChannelSelection" title="Channel Selection Settings" showOpenWebif="1">
+		<item text="Channel Selection Screen" description="Select the screen layout, from the options provided by the skin, to be used for the ChannelSelection screen." conditional="len(config.channelSelection.screenStyle.choices) > 1">config.channelSelection.screenStyle</item>
+		<item text="Channel Selection List" description="Select the layout of the information in the services list, from the options provided by the skin, displayed within the ChannelSelection screen." conditional="config.channelSelection.screenStyle.value">config.channelSelection.widgetStyle</item>
 		<item level="0" text="Include CI assignment" description="Set CI assignment for detection of available services.">config.misc.use_ci_assignment</item>
 		<item level="1" text="Numbering mode" description="Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used.">config.usage.numberMode</item>
 		<item level="1" text="Always show bouquets" description="Select 'Yes' to always show the bouquet screen first when opening the channel list. Select 'No' to open the channel list using the current bouquet.">config.usage.show_bouquetalways</item>
@@ -420,9 +420,9 @@
 			<item level="0" text="Even if TV has another input active?" description="You can skip this function and turn off the TV when you wake the receiver from standby and immediately switch back to standby." conditional="config.hdmicec.advanced_settings.value and config.hdmicec.control_tv_standby.value">config.hdmicec.tv_standby_notinputactive</item>
 			<item level="0" text="Wake up TV from standby" description="When the receiver wakes from standby or deep standby it will send a command to the TV to bring it out of standby.">config.hdmicec.control_tv_wakeup</item>
 			<if conditional="config.hdmicec.advanced_settings.value and config.hdmicec.control_tv_wakeup.value">
-				<item level="0" text="Even if a 'Zap' recording timer starting?" description="">config.hdmicec.tv_wakeup_zaptimer</item>
-				<item level="0" text="Even if a 'Zap and Record' recording timer starting?" description="">config.hdmicec.tv_wakeup_zapandrecordtimer</item>
-				<item level="0" text="Even if a 'Wakeup' PowerTimer starting?" description="">config.hdmicec.tv_wakeup_wakeuppowertimer</item>
+				<item level="0" text="Even if a 'Zap' recording timer starting?" description="Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting.">config.hdmicec.tv_wakeup_zaptimer</item>
+				<item level="0" text="Even if a 'Zap and Record' recording timer starting?" description="Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting.">config.hdmicec.tv_wakeup_zapandrecordtimer</item>
+				<item level="0" text="Even if a 'Wakeup' PowerTimer starting?" description="Select 'Yes' if you want to wake the TV for a 'Wakeup' power timer is starting.">config.hdmicec.tv_wakeup_wakeuppowertimer</item>
 			</if>
 			<item level="0" text="Switch TV to correct input" description="When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected.">config.hdmicec.report_active_source</item>
 			<item level="0" text="Switch off the TV to correct input" description="Some TVs can't switch to the correct input if another HDMI port is active. This setting sets the TV to standby before the switch. (If the TV does not turn back on it may require a slower transmission interval or the repetition of the wake-up command.)" conditional="config.hdmicec.advanced_settings.value and config.hdmicec.report_active_source.value">config.hdmicec.workaround_activesource</item>
@@ -485,7 +485,7 @@
 		<item level="2" text="Handle Python crashes" description="Try to prevent reboots for software errors and maintain of the availability for the receiver.">config.crash.bsodpython</item>
 		<item level="2" text="Show crash info on screen and write crash log for x times" description="If 'never', will write crash log despite that for the first crash." requires="config.crash.bsodpython">config.crash.bsodhide</item>
 		<item level="2" text="Restart GUI after x crashes" description="If 'never', will force restart despite that after 100 crashes." requires="config.crash.bsodpython">config.crash.bsodmax</item>
-		<item level="2" text="Enable debug log *" description="Allows you to enable the debug log. They contain very detailed information of everything the system does.">config.crash.enabledebug</item>
+		<item level="2" text="Enable debug log *" description="Allows you to enable the debug log. They contain very detailed information of everything the system does.">config.crash.debugLevel</item>
 		<item level="2" text="Include international data *" description="Enable this option to add international language and country load information detected during system boot to the debug log file.">config.crash.debugInternational</item>
 		<item level="2" text="Include MultiBoot data *" description="Enable this option to add MultiBoot information detected during system boot to the debug log file.">config.crash.debugMultiBoot</item>
 		<item level="2" text="Include keyboard data" description="Enable this option to add keyboard key map data to the debug log file.">config.crash.debugKeyboards</item>
@@ -498,6 +498,7 @@
 		<item level="2" text="Include DVB scan data" description="Enable this option to add extra DVB scan data to the debug log file.">config.crash.debugDVBScan</item>
 		<item level="2" text="Include DVB timesync data" description="Enable this option to add extra DVB time sync data to the debug log file.">config.crash.debugDVBTime</item>
 		<item level="2" text="Include DVB details" description="Enable this option to add extra DVB details to the debug log file.">config.crash.debugDVB</item>
+		<item level="2" text="Include teletext details" description="Enable this option to add extra teletext details to the debug log file.">config.crash.debugTeletext</item>
 		<item level="2" text="Limit debug log size (MB)" description="Allows you to set the maximum size of the Debug log size (MB). When that size is reached, a new file will be created.">config.crash.debugloglimit</item>
 		<item level="2" text="Show Log Manager in Extension Menu" description="Allows you to show/hide Log Manager in the Extension Menu screen (BLUE button).">config.logmanager.showinextensions</item>
 		<item level="2" text="Maximum no of days" description="Logs older then the set no of days will be deleted.">config.crash.daysloglimit</item>
@@ -837,6 +838,7 @@
 		<item text="Fallback Font *" description="Choose the fallback font.">config.skin.FallbackFont</item>
 		<item text="Channel Selection Screen" description="Select the screen layout, from the options provided by the skin, to be used for the ChannelSelection screen." conditional="len(config.channelSelection.screenStyle.choices) > 1">config.channelSelection.screenStyle</item>
 		<item text="Channel Selection List" description="Select the layout of the information in the services list, from the options provided by the skin, displayed within the ChannelSelection screen." conditional="config.channelSelection.screenStyle.value">config.channelSelection.widgetStyle</item>
+		<item text="AutoRefresh" description="Enable autorefresh templates." requires="CanRefreshTemplates">config.skin.autorefresh</item>
 	</setup>
 	<setup key="SleepTimer" title="SleepTimer Settings" showOpenWebif="1">
 		<item text="SleepTimer activation delay" description="Configure the duration, in minutes, before the SleepTimer activates.">config.usage.sleepTimer</item>
@@ -873,10 +875,11 @@
 	</setup>
 	<setup key="Subtitle" title="Subtitle Settings" level="2" showOpenWebif="1">
 		<if requires="AISubs">
-			<item level="2" text="AI-Powered translation enabled" description="Enable AI-Powered translation for all teletext and DVB subtitles.">config.subtitles.ai_enabled</item>
-			<item level="2" text="AI-Powered translation language" description="Configure the AI-Powered translation language.">config.subtitles.ai_translate_to</item>
-			<item level="2" text="AI-Powered translation subscription code" description="Enter your subscription code, the unified code for trial is 15.">config.subtitles.ai_subscription_code</item>
-			<item level="2" text="AI-Powered translation color" description="Configure the color of the AI-Powered translations.">config.subtitles.ai_subtitle_colors</item>
+			<item level="2" text="AI-Powered Translation enabled" description="Select 'Yes' to enable AI-Powered Translation for all teletext and DVB subtitles.">config.subtitles.ai_enabled</item>
+			<item level="2" text="AI-Powered Translation language" description="Select the AI-Powered Translation target language.">config.subtitles.ai_translate_to</item>
+			<item level="2" text="AI-Powered Translation color" description="Select the color to be used for the AI-Powered Translation text.">config.subtitles.ai_subtitle_colors</item>
+			<item level="2" text="AI-Powered Translation optimization" description="The AI-Powered Translation service will be optimized to provide the best performance based on the the Internet connection upload speed selected.">config.subtitles.ai_connection_speed</item>
+			<item level="2" text="AI-Powered Translation subscription code" description="Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15.">config.subtitles.ai_subscription_code</item>
 		</if>
 		<item level="2" text="Teletext subtitle color" description="Configure the color of the teletext subtitles.">config.subtitles.ttx_subtitle_colors</item>
 		<item level="2" text="Use original teletext position" description="When enabled, teletext subtitles will be displayed at their original position.">config.subtitles.ttx_subtitle_original_position</item>
@@ -977,7 +980,7 @@
 		<item level="2" text="Enable cut file support for non *.ts files" description="Enable cut file support for non *.ts files, e.g. mp4.">config.usage.useVideoCuesheet</item>
 		<item level="2" text="Enable cut file support for audio files" description="Enable cut file support for audio files, e.g. mp3.">config.usage.useAudioCuesheet</item>
 		<item level="2" text="Enable chapter support for video files" description="Show chapter positions for supported video files. (gstreamer version must be greather than 1)">config.usage.useChapterInfo</item>
-		<item level="2" text="Enable new GStreamer playback" description="If enabled, the new GStreamer playback engine will be used.">config.misc.usegstplaybin3</item>
+		<!--<item level="2" text="Enable new GStreamer playback" description="If enabled, the new GStreamer playback engine will be used.">config.misc.usegstplaybin3</item-->
 	</setup>
 	<setup key="UserInterface" title="OSD Settings" showOpenWebif="1">
 		<item level="0" text="Menu style" description="Select the display design for menus.">config.usage.menuType</item>

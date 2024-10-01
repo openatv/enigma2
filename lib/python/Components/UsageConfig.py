@@ -8,7 +8,7 @@ from time import time
 from enigma import Misc_Options, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, RT_WRAP, eActionMap, eBackgroundFileEraser, eDVBDB, eDVBFrontend, eEnv, eEPGCache, eServiceEvent, eSubtitleSettings, eSettings, setEnableTtCachingOnOff, setPreferredTuner, setSpinnerOnOff, setTunerTypePriorityOrder
 
 from keyids import KEYIDS
-from skin import parameters
+from skin import getcomponentTemplateNames, parameters, domScreens
 from Components.config import ConfigBoolean, ConfigClock, ConfigDirectory, ConfigDictionarySet, ConfigFloat, ConfigInteger, ConfigIP, ConfigLocations, ConfigNumber, ConfigSelectionNumber, ConfigPassword, ConfigSequence, ConfigSelection, ConfigSet, ConfigSlider, ConfigSubsection, ConfigText, ConfigYesNo, NoSave, config
 from Components.Harddisk import harddiskmanager
 from Components.International import international
@@ -278,6 +278,43 @@ def InitUsageConfig():
 	])
 	config.usage.multiepg_ask_bouquet = ConfigYesNo(default=False)
 	config.usage.showpicon = ConfigYesNo(default=True)
+
+	# New ServiceList
+	config.channelSelection = ConfigSubsection()
+	config.channelSelection.showNumber = ConfigYesNo(default=True)
+	config.channelSelection.showPicon = ConfigYesNo(default=False)
+	config.channelSelection.showServiceTypeIcon = ConfigYesNo(default=False)
+	config.channelSelection.showCryptoIcon = ConfigYesNo(default=False)
+	config.channelSelection.recordIndicatorMode = ConfigSelection(default=2, choices=[
+		(0, _("None")),
+		(1, _("Record Icon")),
+		(2, _("Colored Text"))
+	])
+	config.channelSelection.piconRatio = ConfigSelection(default=167, choices=[
+		(167, _("XPicon, ZZZPicon")),
+		(235, _("ZZPicon")),
+		(250, _("ZPicon"))
+	])
+
+	config.channelSelection.showTimers = ConfigYesNo(default=False)
+
+	screenChoiceList = [("", _("Legacy mode"))]
+	widgetChoiceList = []
+	styles = getcomponentTemplateNames("serviceList")
+	default = ""
+	if styles:
+		for screen in domScreens:
+			element, path = domScreens.get(screen, (None, None))
+			if element.get("base") == "ChannelSelection":
+				label = element.get("label", screen)
+				screenChoiceList.append((screen, label))
+
+		default = styles[0]
+		for style in styles:
+			widgetChoiceList.append((style, style))
+
+	config.channelSelection.screenStyle = ConfigSelection(default="", choices=screenChoiceList)
+	config.channelSelection.widgetStyle = ConfigSelection(default=default, choices=widgetChoiceList)
 
 	# ########  Workaround for VTI Skins   ##############
 	config.usage.picon_dir = ConfigDirectory(default="/usr/share/enigma2/picon")
@@ -550,17 +587,19 @@ def InitUsageConfig():
 
 	config.usage.long_press_emulation_key = ConfigSelection(default=0, choices=[
 		(0, _("None")),
-		(KEYIDS["KEY_TV"], _("TV")),
-		(KEYIDS["KEY_RADIO"], _("RADIO")),
-		(KEYIDS["KEY_AUDIO"], _("Audio")),
-		(KEYIDS["KEY_VIDEO"], _("List/Fav")),
-		(KEYIDS["KEY_HOME"], _("Home")),
-		(KEYIDS["KEY_END"], _("End")),
-		(KEYIDS["KEY_HELP"], _("Help")),
-		(KEYIDS["KEY_INFO"], _("Info (EPG)")),
-		(KEYIDS["KEY_TEXT"], _("Teletext")),
-		(KEYIDS["KEY_SUBTITLE"], _("Subtitle")),
-		(KEYIDS["KEY_FAVORITES"], _("Favorites"))
+		(KEYIDS["KEY_AUDIO"], "AUDIO"),
+		(KEYIDS["KEY_END"], "END"),
+		(KEYIDS["KEY_EPG"], "EPG"),
+		(KEYIDS["KEY_FAVORITES"], "FAV"),
+		(KEYIDS["KEY_HELP"], "HELP"),
+		(KEYIDS["KEY_HOME"], "HOME"),
+		(KEYIDS["KEY_INFO"], "INFO"),
+		(KEYIDS["KEY_LIST"], "LIST"),
+		(KEYIDS["KEY_RADIO"], "RADIO"),
+		(KEYIDS["KEY_SUBTITLE"], "SUBTITLE"),
+		(KEYIDS["KEY_TEXT"], "TEXT"),
+		(KEYIDS["KEY_TV"], "TV"),
+		(KEYIDS["KEY_VIDEO"], "MEDIA")
 	])
 	config.usage.long_press_emulation_key.addNotifier(setLongPressedEmulationKey)
 
@@ -1407,6 +1446,18 @@ def InitUsageConfig():
 	config.crash.bsodmax = ConfigSelection(default="3", choices=choiceList)
 
 	config.crash.enabledebug = ConfigYesNo(default=False)
+	config.crash.debugLevel = ConfigSelection(default=0, choices=[
+		(0, _("Disabled")),
+		(4, _("Enabled")),
+		(5, _("Verbose"))
+	])
+
+	# Migrate old debug
+	if config.crash.enabledebug.value:
+		config.crash.debugLevel.value = 4
+		config.crash.enabledebug.value = False
+		config.crash.enabledebug.save()
+
 	config.crash.debugloglimit = ConfigSelectionNumber(min=1, max=10, stepwidth=1, default=4, wraparound=True)
 	config.crash.daysloglimit = ConfigSelectionNumber(min=1, max=30, stepwidth=1, default=8, wraparound=True)
 	config.crash.sizeloglimit = ConfigSelectionNumber(min=1, max=250, stepwidth=1, default=10, wraparound=True)
@@ -1728,9 +1779,22 @@ def InitUsageConfig():
 
 	config.subtitles.ai_subtitle_colors = ConfigSelection(default=1, choices=[
 		(1, _("White")),
-		(2, _("Yellow"))
+		(2, _("Yellow")),
+		(3, _("Red")),
+		(4, _("Green")),
+		(5, _("Blue"))
 	])
 	config.subtitles.ai_subtitle_colors.addNotifier(setAiSubtitleColors)
+
+	def setAiConnectionSpeed(configElement):
+		eSubtitleSettings.setAiConnectionSpeed(configElement.value)
+
+	config.subtitles.ai_connection_speed = ConfigSelection(default=1, choices=[
+		(1, _("Up to 50 Mbps")),
+		(2, _("50-200 Mbps")),
+		(3, _("Above 200 Mbps"))
+	])
+	config.subtitles.ai_connection_speed.addNotifier(setAiConnectionSpeed)
 
 	langsAI = ['af', 'sq', 'am', 'ar', 'hy', 'az', 'eu', 'be', 'bn', 'bs', 'bg', 'ca', 'zh', 'co', 'hr', 'cs', 'da', 'nl', 'en', 'eo', 'fr', 'fi', 'fy', 'gl', 'ka', 'de', 'el', 'ht', 'ha', 'hu', 'is', 'ig', 'ga', 'it', 'ja', 'jv', 'kn', 'kk', 'km', 'rw', 'ko', 'ku', 'ky', 'lo', 'la', 'lv', 'lt', 'lb', 'mk', 'mg', 'ms', 'mt', 'mi', 'mr', 'mn', 'no', 'ny', 'or', 'ps', 'fa', 'pl', 'pt', 'ro', 'ru', 'sm', 'gd', 'sr', 'st', 'sn', 'sk', 'sl', 'so', 'es', 'su', 'sw', 'sv', 'tl', 'tg', 'te', 'th', 'tr', 'tk', 'uk', 'ur', 'ug', 'uz', 'cy', 'xh', 'yi', 'yo', 'zu']
 	langsAI = [(x, international.LANGUAGE_DATA[x][1]) for x in langsAI]
@@ -1739,7 +1803,10 @@ def InitUsageConfig():
 	langsAI.append(("haw", _("Hawaiian")))
 	langsAI.append(("iw", _("Hebrew")))
 	langsAI.append(("hmn", _("Hmong")))
-	langsAI.append(("ckb", _("Kurdish (Sorani)")))
+	langsAI.append(("ar_eg", _("Arabic (Egyptian)")))
+	langsAI.append(("ar_ma", _("Arabic (Moroccan)")))
+	langsAI.append(("ar_sy", _("Arabic (Syro-Lebanese)")))
+	langsAI.append(("ar_tn", _("Arabic (Tunisian)")))
 	langsAI.sort(key=lambda x: x[1])
 
 	default = config.misc.locale.value

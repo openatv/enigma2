@@ -99,8 +99,8 @@ int main(int argc, char **argv)
 	fclose(fpin);
 
 	/* now write jpeg */
-	struct jpeg_compress_struct cinfo;
-	struct jpeg_error_mgr jerr;
+	struct jpeg_compress_struct cinfo = {};
+	struct jpeg_error_mgr jerr = {};
 	JSAMPROW jrow_pointer[1];
 	FILE *outfp;
 

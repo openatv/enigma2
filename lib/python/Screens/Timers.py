@@ -903,7 +903,7 @@ class RecordTimerOverview(TimerOverviewBase):
 				yellowText = ""
 			elif (not stateRunning or timer.repeated and timer.isRunning()) and not timer.disabled:
 				yellowText = _("Disable")
-			if not timer.repeated and timer.state == TimerEntry.StateEnded:
+			if not timer.disabled and not timer.repeated and timer.state == TimerEntry.StateEnded:
 				yellowText = ""
 			self["key_yellow"].setText(yellowText)
 			self["toggleActions"].setEnabled(yellowText != "")
@@ -1061,6 +1061,7 @@ class RecordTimerOverview(TimerOverviewBase):
 							timerChanged = False
 					else:
 						timer.disable()
+						timerChanged = False
 				if timerChanged:
 					self.session.nav.RecordTimer.timeChanged(timer)
 				self.reloadTimerList()

@@ -20,7 +20,11 @@ class eTSFileSectionReader: public iDVBSectionReader, public sigc::trackable
 	DECLARE_REF(eTSFileSectionReader);
 	unsigned char sectionData[4096];
 	unsigned int sectionSize;
+#if SIGCXX_MAJOR_VERSION == 2
 	sigc::signal1<void, const uint8_t*> read;
+#else
+	sigc::signal<void(const uint8_t*)> read;
+#endif
 
 public:
 	eTSFileSectionReader(eMainloop *context);
@@ -29,7 +33,11 @@ public:
 	RESULT setBufferSize(int size) { return 0; }
 	RESULT start(const eDVBSectionFilterMask &mask);
 	RESULT stop();
+#if SIGCXX_MAJOR_VERSION == 2
 	RESULT connectRead(const sigc::slot1<void,const uint8_t*> &read, ePtr<eConnection> &conn);
+#else
+	RESULT connectRead(const sigc::slot<void(const uint8_t*)> &read, ePtr<eConnection> &conn);
+#endif
 };
 
 class eDVBTSTools : public eDVBPMTParser

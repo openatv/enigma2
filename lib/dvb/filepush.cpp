@@ -58,12 +58,13 @@ void eFilePushThread::thread()
 		size_t bytes_read = 0;
 		off_t current_span_offset = 0;
 		size_t current_span_remaining = 0;
+		m_sof = 0;
 
 		while (!m_stop)
 		{
 			if (m_sg && !current_span_remaining)
 			{
-				m_sg->getNextSourceSpan(m_current_position, bytes_read, current_span_offset, current_span_remaining, m_blocksize);
+				m_sg->getNextSourceSpan(m_current_position, bytes_read, current_span_offset, current_span_remaining, m_blocksize, m_sof);
 				ASSERT(!(current_span_remaining % m_blocksize));
 				m_current_position = current_span_offset;
 				bytes_read = 0;
@@ -78,11 +79,11 @@ void eFilePushThread::thread()
 			/* align to blocksize */
 			maxread -= maxread % m_blocksize;
 
-			if (maxread)
+			if (maxread && !m_sof)
 			{
 #ifdef SHOW_WRITE_TIME
-				struct timeval starttime;
-				struct timeval now;
+				struct timeval starttime = {};
+				struct timeval now = {};
 				gettimeofday(&starttime, NULL);
 #endif
 				buf_end = m_source->read(m_current_position, m_buffer, maxread);
@@ -118,12 +119,12 @@ void eFilePushThread::thread()
 			if (d)
 				buf_end -= d;
 
-			if (buf_end == 0)
+			if (buf_end == 0 || m_sof == 1)
 			{
 				/* on EOF, try COMMITting once. */
 				if (m_send_pvr_commit)
 				{
-					struct pollfd pfd;
+					struct pollfd pfd = {};
 					pfd.fd = m_fd_dest;
 					pfd.events = POLLIN;
 					switch (poll(&pfd, 1, 250)) // wait for 250ms
@@ -149,7 +150,10 @@ void eFilePushThread::thread()
 				   over and over until somebody responds.
 
 				   in stream_mode, think of evtEOF as "buffer underrun occurred". */
-				sendEvent(evtEOF);
+				if (m_sof == 0)
+					sendEvent(evtEOF);
+				else
+					sendEvent(evtUser); // start of file event
 
 				if (m_stream_mode)
 				{
@@ -321,7 +325,7 @@ eFilePushThreadRecorder::eFilePushThreadRecorder(unsigned char *buffer, size_t b
 																							 m_buffer(buffer),
 																							 m_overflow_count(0),
 																							 m_stop(1),
-																							 m_messagepump(eApp, 0)
+																							 m_messagepump(eApp, 0, "eFilePushThreadRecorder")
 {
 	m_protocol = m_stream_id = m_session_id = m_packet_no = 0;
 	CONNECT(m_messagepump.recv_msg, eFilePushThreadRecorder::recvEvent);
@@ -353,7 +357,7 @@ static int errs;
 
 int64_t eFilePushThreadRecorder::getTick()
 { //ms
-	struct timespec ts;
+	struct timespec ts = {};
 	clock_gettime(CLOCK_MONOTONIC, &ts);
 	return (ts.tv_nsec / 1000000) + (ts.tv_sec * 1000);
 }
@@ -389,6 +393,7 @@ int eFilePushThreadRecorder::read_ts(int fd, unsigned char *buf, int size)
 
 	return bytes;
 }
+
 int eFilePushThreadRecorder::read_dmx(int fd, void *m_buffer, int size)
 {
 	unsigned char *buf;
@@ -477,7 +482,7 @@ void eFilePushThreadRecorder::thread()
 	eDebug("[eFilePushThreadRecorder] THREAD START");
 
 	/* we set the signal to not restart syscalls, so we can detect our signal. */
-	struct sigaction act;
+	struct sigaction act = {};
 	memset(&act, 0, sizeof(act));
 	act.sa_handler = signal_handler; // no, SIG_IGN doesn't do it. we want to receive the -EINTR
 	act.sa_flags = 0;
@@ -526,8 +531,8 @@ void eFilePushThreadRecorder::thread()
 		}
 
 #ifdef SHOW_WRITE_TIME
-		struct timeval starttime;
-		struct timeval now;
+		struct timeval starttime = {};
+		struct timeval now = {};
 		gettimeofday(&starttime, NULL);
 #endif
 		int w = writeData(bytes);

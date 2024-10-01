@@ -147,13 +147,14 @@ public:
 	}
 	enum
 	{
-			/* there are not really flags.. */
+		/* there are not really flags.. */
 		flagMake=0,
 		flagBreak=1,
 		flagRepeat=2,
 		flagLong=3,
-			/* but this is. */
+		/* but this is. */
 		flagAscii=4,
+		flagStop=5
 	};
 
 	bool operator<(const eRCKey &r) const
@@ -212,7 +213,11 @@ public:
 protected:
 	std::map<std::string,eRCDevice*,lstr> devices;
 public:
+#if SIGCXX_MAJOR_VERSION == 2
 	sigc::signal1<void, const eRCKey&> keyEvent;
+#else
+	sigc::signal<void(const eRCKey&)> keyEvent;
+#endif
 	eRCInput();
 	~eRCInput();
 

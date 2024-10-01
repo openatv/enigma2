@@ -90,3 +90,5 @@ translate = _("Preferred tuner ATSC")
 translate = _("Preferred tuner ATSC for recordings")
 
 translate = _("Miscellaneous languages")
+translate = _("Enable new GStreamer playback")
+translate = _("If enabled, the new GStreamer playback engine will be used.")

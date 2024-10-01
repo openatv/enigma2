@@ -48,13 +48,13 @@ RESULT eServiceFactoryXine::play(const eServiceReference &ref, ePtr<iPlayableSer
 
 RESULT eServiceFactoryXine::record(const eServiceReference &ref, ePtr<iRecordableService> &ptr)
 {
-	ptr=0;
+	ptr = nullptr;
 	return -1;
 }
 
 RESULT eServiceFactoryXine::list(const eServiceReference &, ePtr<iListableService> &ptr)
 {
-	ptr=0;
+	ptr = nullptr;
 	return -1;
 }
 
@@ -66,7 +66,7 @@ RESULT eServiceFactoryXine::info(const eServiceReference &ref, ePtr<iStaticServi
 
 RESULT eServiceFactoryXine::offlineOperations(const eServiceReference &, ePtr<iServiceOfflineOperations> &ptr)
 {
-	ptr = 0;
+	ptr = nullptr;
 	return -1;
 }
 
@@ -164,7 +164,11 @@ void eServiceXine::eventListener(const xine_event_t *event)
 	}
 }
 
+#if SIGCXX_MAJOR_VERSION == 2
 RESULT eServiceXine::connectEvent(const sigc::slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)
+#else
+RESULT eServiceXine::connectEvent(const sigc::slot<void(iPlayableService*,int)> &event, ePtr<eConnection> &connection)
+#endif
 {
 	connection = new eConnection((iPlayableService*)this, m_event.connect(event));
 	return 0;
@@ -214,7 +218,7 @@ RESULT eServiceXine::stop()
 
 RESULT eServiceXine::pause(ePtr<iPauseableService> &ptr)
 {
-	ptr=this;
+	ptr = this;
 	return 0;
 }
 

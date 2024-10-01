@@ -116,7 +116,11 @@ class eDVBSubtitleParser
 	ePtr<iDVBPESReader> m_pes_reader;
 	ePtr<eConnection> m_read_connection;
 	pts_t m_show_time;
+#if SIGCXX_MAJOR_VERSION == 2
 	sigc::signal1<void,const eDVBSubtitlePage&> m_new_subtitle_page;
+#else
+	sigc::signal<void(const eDVBSubtitlePage&)> m_new_subtitle_page;
+#endif
 	int m_composition_page_id, m_ancillary_page_id;
 	bool m_seen_eod;
 	eSize m_display_size;
@@ -125,7 +129,11 @@ public:
 	virtual ~eDVBSubtitleParser();
 	int start(int pid, int composition_page_id, int ancillary_page_id);
 	int stop();
+#if SIGCXX_MAJOR_VERSION == 2
 	void connectNewPage(const sigc::slot1<void, const eDVBSubtitlePage&> &slot, ePtr<eConnection> &connection);
+#else
+	void connectNewPage(const sigc::slot<void(const eDVBSubtitlePage&)> &slot, ePtr<eConnection> &connection);
+#endif
 private:
 	void subtitle_process_line(subtitle_region *region, subtitle_region_object *object, int line, uint8_t *data, int len);
 	int subtitle_process_pixel_data(subtitle_region *region, subtitle_region_object *object, int *linenr, int *linep, uint8_t *data);

@@ -221,8 +221,8 @@ int loadJPG(ePtr<gPixmap> &result, const char *filename, ePtr<gPixmap> alpha, in
 	if (cached && (result = PixmapCache::Get(filename)))
 		return 0;
 
-	struct jpeg_decompress_struct cinfo;
-	struct my_error_mgr jerr;
+	struct jpeg_decompress_struct cinfo = {};
+	struct my_error_mgr jerr = {};
 	JSAMPARRAY buffer;
 	int row_stride;
 	CFile infile(filename, "rb");

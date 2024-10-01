@@ -67,7 +67,7 @@ jobs:
           echo "installing tuxbox"
           pushd .
           cd /tmp
-          git clone --depth 1 https://github.com/OpenPLi/tuxtxt.git
+          git clone --depth 1 https://github.com/oe-alliance/tuxtxt.git
           cd tuxtxt/libtuxtxt
           autoreconf -i
           ./configure --with-boxtype=generic DVB_API_VERSION=5

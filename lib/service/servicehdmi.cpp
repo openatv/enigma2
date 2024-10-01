@@ -54,7 +54,7 @@ RESULT eServiceFactoryHDMI::record(const eServiceReference &ref, ePtr<iRecordabl
 
 RESULT eServiceFactoryHDMI::list(const eServiceReference &, ePtr<iListableService> &ptr)
 {
-	ptr = 0;
+	ptr = nullptr;
 	return -1;
 }
 
@@ -66,7 +66,7 @@ RESULT eServiceFactoryHDMI::info(const eServiceReference &ref, ePtr<iStaticServi
 
 RESULT eServiceFactoryHDMI::offlineOperations(const eServiceReference &, ePtr<iServiceOfflineOperations> &ptr)
 {
-	ptr = 0;
+	ptr = nullptr;
 	return -1;
 }
 
@@ -117,7 +117,11 @@ eServiceHDMI::~eServiceHDMI()
 
 DEFINE_REF(eServiceHDMI);
 
+#if SIGCXX_MAJOR_VERSION == 2
 RESULT eServiceHDMI::connectEvent(const sigc::slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)
+#else
+RESULT eServiceHDMI::connectEvent(const sigc::slot<void(iPlayableService*,int)> &event, ePtr<eConnection> &connection)
+#endif
 {
 	connection = new eConnection((iPlayableService*)this, m_event.connect(event));
 	return 0;
@@ -355,13 +359,13 @@ int eServiceHDMIRecord::doRecord()
 
 RESULT eServiceHDMIRecord::stream(ePtr<iStreamableService> &ptr)
 {
-	ptr = NULL;
+	ptr = nullptr;
 	return -1;
 }
 
 RESULT eServiceHDMIRecord::subServices(ePtr<iSubserviceList> &ptr)
 {
-	ptr = NULL;
+	ptr = nullptr;
 	return -1;
 }
 
@@ -370,8 +374,11 @@ RESULT eServiceHDMIRecord::frontendInfo(ePtr<iFrontendInformation> &ptr)
 	ptr = this;
 	return 0;
 }
-
+#if SIGCXX_MAJOR_VERSION == 2
 RESULT eServiceHDMIRecord::connectEvent(const sigc::slot2<void,iRecordableService*,int> &event, ePtr<eConnection> &connection)
+#else
+RESULT eServiceHDMIRecord::connectEvent(const sigc::slot<void(iRecordableService*,int)> &event, ePtr<eConnection> &connection)
+#endif
 {
 	connection = new eConnection((iRecordableService*)this, m_event.connect(event));
 	return 0;

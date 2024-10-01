@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-04 16:49+0000\n"
-"PO-Revision-Date: 2024-08-06 09:09+0000\n"
+"POT-Creation-Date: 2024-09-12 21:03+0000\n"
+"PO-Revision-Date: 2024-09-14 05:50+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.8-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1192,7 +1192,7 @@ msgstr "%s - Налаштування"
 
 #, python-format
 msgid "%s Browser Manage Actions"
-msgstr "%s Дії керування браузером"
+msgstr "%s Налаштування кнопок керування браузером"
 
 #, python-format
 msgid "%s GHz"
@@ -1204,7 +1204,7 @@ msgstr "%s Інформація"
 
 #, python-format
 msgid "%s Information Actions"
-msgstr "%s Інформаційні дії"
+msgstr "%s Інформація Налаштування кнопок"
 
 #, python-format
 msgid "%s Setup"
@@ -1461,7 +1461,7 @@ msgid "2nd InfoBar"
 msgstr "Другий Інфобар"
 
 msgid "2nd InfoBar Actions"
-msgstr "Дії для 2-го Інфобару"
+msgstr "Налаштування кнопок для 2-го Інфобару"
 
 msgid "2nd InfoBar ECM"
 msgstr "ECM на другому Інфобарі"
@@ -1519,6 +1519,9 @@ msgstr "4x"
 
 msgid "5"
 msgstr "5"
+
+msgid "50-200 Mbps"
+msgstr "50-200 Мбіт/с"
 
 msgid "6"
 msgstr "6"
@@ -1726,16 +1729,19 @@ msgstr "AC3+ транскодування"
 msgid "AFL"
 msgstr "AFL"
 
-msgid "AI-Powered translation color"
+msgid "AI-Powered Translation color"
 msgstr "Колір субтитрів за допомогою AI"
 
-msgid "AI-Powered translation enabled"
+msgid "AI-Powered Translation enabled"
 msgstr "Ввімкнути переклад за допомогою AI"
 
-msgid "AI-Powered translation language"
+msgid "AI-Powered Translation language"
 msgstr "Мова перекладу на основі AI"
 
-msgid "AI-Powered translation subscription code"
+msgid "AI-Powered Translation optimization"
+msgstr "Оптимізація перекладу за допомогою ШІ"
+
+msgid "AI-Powered Translation subscription code"
 msgstr "Код підписки на переклад на основі AI"
 
 msgid "ARM"
@@ -1785,6 +1791,9 @@ msgstr "Про openATV"
 
 msgid "About to start"
 msgstr "час до запису"
+
+msgid "Above 200 Mbps"
+msgstr "Вище 200 Мбіт/с"
 
 msgid "Access point"
 msgstr "Точка доступу"
@@ -2395,6 +2404,18 @@ msgstr "Застосувати виділену локаль/мову і вий�
 msgid "Arabic"
 msgstr "Арабська"
 
+msgid "Arabic (Egyptian)"
+msgstr "Арабська (Єгипетська)"
+
+msgid "Arabic (Moroccan)"
+msgstr "Арабська (Марокканська)"
+
+msgid "Arabic (Syro-Lebanese)"
+msgstr "Арабська (Сиро-Ліванська)"
+
+msgid "Arabic (Tunisian)"
+msgstr "Арабська (Туніська)"
+
 msgid "Aragonese"
 msgstr "Арагонська"
 
@@ -2527,7 +2548,7 @@ msgid "Aspect"
 msgstr "Вигляд"
 
 msgid "Aspect Ratio Actions"
-msgstr "Всановлення Співвідношення Сторін"
+msgstr "Налаштування кнопок Співвідношення Сторін"
 
 msgid "Aspect list..."
 msgstr "Список виглядів..."
@@ -2618,12 +2639,6 @@ msgstr "Вибір мови аудіо 4"
 msgid "Audio options..."
 msgstr "Вибір аудіо-доріжки..."
 
-msgid "Audio volume step size"
-msgstr "Розмір величини кроку звуку"
-
-msgid "Audio volume step size fast mode"
-msgstr "Розмір величини кроку звуку швидкого режиму"
-
 msgid "Australia"
 msgstr "Австралія"
 
@@ -2697,13 +2712,16 @@ msgid "AutoCam Settings"
 msgstr "Налаштування AutoCam"
 
 msgid "AutoCam Setup Actions"
-msgstr "Налаштування дій AutoCam"
+msgstr "Дії кнопок для AutoCam"
 
 msgid "AutoFS"
 msgstr "АвтоFS"
 
 msgid "AutoMountManager"
 msgstr "Конфігурація Автомонтування"
+
+msgid "AutoRefresh"
+msgstr "Автооновлення"
 
 msgid "AutoTimer"
 msgstr "Автотаймер"
@@ -3064,7 +3082,7 @@ msgid "Bonaire"
 msgstr "Бонайре"
 
 msgid "Bookmark Sequence Actions"
-msgstr "Дії послідовності в закладках"
+msgstr "Дії кнопок для в закладках"
 
 msgid "Bookmark added."
 msgstr "Закладку додано."
@@ -3128,10 +3146,10 @@ msgid "Bouquet Selector"
 msgstr "Вибір Фаворитного списку"
 
 msgid "Bouquet Selector Actions"
-msgstr "Дії Селектора фаворитів"
+msgstr "Дії кнопок для Вибору фаворитів"
 
 msgid "Bouquet Selector Navigation Actions"
-msgstr "Навігація у Селекторі фаворитів"
+msgstr "Дії кнопок для Селекторі фаворитів"
 
 msgid "Bouquets"
 msgstr "Фаворити"
@@ -3193,6 +3211,9 @@ msgstr "Буферизація %d%%"
 
 msgid "Buffers"
 msgstr "Буфери"
+
+msgid "Build"
+msgstr "Збірка"
 
 msgid "Build Brand"
 msgstr "Назва збірки"
@@ -3313,7 +3334,7 @@ msgid "CCcam Information"
 msgstr "CCcam Інформація"
 
 msgid "CCcam Line Edit Actions"
-msgstr "Дії редагування рядка CCcam"
+msgstr "Дії кнопок для редагування рядка CCcam"
 
 msgid "CCcam Line Editor"
 msgstr "Редактор рядків CCcam"
@@ -3813,16 +3834,16 @@ msgid "Channel Selection"
 msgstr "Вибір каналу"
 
 msgid "Channel Selection Actions"
-msgstr "Дії по вибору каналу"
+msgstr "Дії кнопок для Вибору каналу"
 
 msgid "Channel Selection Context Menu"
 msgstr "Меню списку каналів"
 
 msgid "Channel Selection Context Menu Actions"
-msgstr "Дії контекстного меню списку каналів"
+msgstr "Дії кнопок для Контекстного меню списку каналів"
 
 msgid "Channel Selection Context Menu Navigation Actions"
-msgstr "Дії навігації в контекстному меню списку каналів"
+msgstr "Дії кнопок в контекстному меню списку каналів"
 
 msgid "Channel Selection List"
 msgstr "Список вибору каналів"
@@ -4335,6 +4356,9 @@ msgstr "Команда для запуску"
 msgid "Command type"
 msgstr "Тип команди"
 
+msgid "Commit"
+msgstr "Зміни"
+
 msgid "Commit Information Actions"
 msgstr "Здійснення інформаційних дій"
 
@@ -4482,9 +4506,6 @@ msgstr ""
 msgid "Configure remote control type"
 msgstr "Налаштування типу пульта керування"
 
-msgid "Configure the AI-Powered translation language."
-msgstr "Налаштуйте мову перекладу за допомогою AI."
-
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "Налаштування DiSEqC режиму для цього конвертора."
 
@@ -4536,9 +4557,6 @@ msgstr "Регулювання яскравості дисплея на пере
 msgid "Configure the brightness level of the front panel display for standby."
 msgstr "Регулювання яскравості дисплея на передній панелі."
 
-msgid "Configure the color of the AI-Powered translations."
-msgstr "Налаштуйте колір субтитрів за допомогою AI."
-
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
 msgstr "Налаштуйте колір зовнішніх субтитрів, альтернативний (нормальний при білому, курсив при жовтому, жирний при блакитному, підкреслений при зеленому), білий або жовтий кольори."
 
@@ -4561,7 +4579,7 @@ msgid "Configure the duration in minutes before the screen saver will be display
 msgstr "Через якийсь час показати заставку."
 
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
-msgstr "Налаштуйте у хвилинах тривалість до активації таймера енергозбереження."
+msgstr "Налаштуйте у хвилинах тривалість до активації таймера енерго збереження."
 
 msgid "Configure the duration, in minutes, before the SleepTimer activates."
 msgstr "Налаштуйте у хвилинах тривалість до активації таймера сну."
@@ -4571,9 +4589,6 @@ msgstr "Налаштування кінцевої координати Х від
 
 msgid "Configure the end coordinate in y of the teletext display area."
 msgstr "Налаштування кінцевої координати Y відображення телетексту."
-
-msgid "Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row."
-msgstr "Налаштування розміру кроку гучності звуку для швидкого режиму (обмеження 1-10). Активується, коли клавіша гучності постійно натиснена, або часто натискається."
 
 msgid "Configure the first audio language (highest priority)."
 msgstr "Налаштування першої мови аудіо (високий пріоритет)."
@@ -4607,9 +4622,6 @@ msgstr "Налаштуйте функцію кнопок < та >."
 
 msgid "Configure the gateway."
 msgstr "Налаштування шлюза."
-
-msgid "Configure the general audio volume step size (limit 1-10)."
-msgstr "Налаштуйте загальний розмір кроку величини аудіо (обмеження 1-10)."
 
 msgid "Configure the hard disk drive to go to standby after the specified idle time when the box is in standby."
 msgstr "Вкажіть, через який час знаходження приймача в режимі очікування або невикористання, переводити жорсткий диск в режим очікування."
@@ -6521,6 +6533,9 @@ msgstr "Домініканська республіка"
 msgid "Don't Center DVB Subs On This Service"
 msgstr "Не центрувати DVB subs на цьому каналі"
 
+msgid "Don't Translate Subs On This Service"
+msgstr "Не перекладати субтитри на цьому каналі"
+
 msgid "Don't add this recording"
 msgstr "Не потрібно додавати цей запис"
 
@@ -6889,9 +6904,6 @@ msgstr "Ввімкнути %s про:"
 msgid "Enable 5V for active antenna"
 msgstr "Подати 5В для активної антени"
 
-msgid "Enable AI-Powered translation for all teletext and DVB subtitles."
-msgstr "Увімкніть переклад за допомогою штучного інтелекту для всіх субтитрів телетексту та DVB."
-
 msgid "Enable Autorecord"
 msgstr "Активувати автозапис"
 
@@ -6998,6 +7010,9 @@ msgstr "Включити швидке автосканування"
 msgid "Enable auto fast scan for %s"
 msgstr "Включити швидке автосканування для %s"
 
+msgid "Enable autorefresh templates."
+msgstr "Увімкнути автооновлення шаблонів."
+
 msgid "Enable blinking rec symbol on the LCD Display in Standby."
 msgstr "Показати у режимі очікування значок Запис на LCD дисплеї"
 
@@ -7079,8 +7094,14 @@ msgstr "Увімкніть цей параметр, щоб додати інфо
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "Увімкніть цю опцію, щоб додати дані відображення карти дій/віддаленого керування до файлу журналу налагодження."
 
+msgid "Enable this option to add extra DVB details to the debug log file."
+msgstr "Увімкніть цей параметр, щоб додати додаткові відомості про DVB до файлу журналу налагодження."
+
 msgid "Enable this option to add extra DVB scan data to the debug log file."
 msgstr "Увімкніть цей параметр, щоб додати додаткові дані сканування DVB до файлу журналу налагодження."
+
+msgid "Enable this option to add extra DVB time sync data to the debug log file."
+msgstr "Увімкніть цей параметр, щоб додати додаткові дані синхронізації часу DVB до файлу журналу налагодження."
 
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr "Увімкніть цей параметр, щоб додати додаткові дані EPG до файлу журналу налагодження."
@@ -7102,6 +7123,9 @@ msgstr "Увімкніть цю опцію, щоб додати до файлу 
 
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Увімкніть цей параметр, щоб додати дані налагодження таймера до файлу журналу налагодження."
+
+msgid "Enable this option to show all the available Information screens in the Information menu item list."
+msgstr "Увімкніть цей параметр, щоб відобразити всі доступні екрани інформації в списку пунктів меню 'Інформація'."
 
 msgid "Enable this setting if your aerial system needs power."
 msgstr "Включити цю настройку, якщо Ваша антена потребує живлення."
@@ -7289,6 +7313,9 @@ msgstr "Введіть номер позиції в позиціонері, що
 msgid "Enter the service pin"
 msgstr "Введіть пін-код для каналу"
 
+msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
+msgstr "Введіть свій код підписки, уніфікований код для трейлу 15."
+
 msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
 msgstr "Введіть поточну широту. Це число градусів від екватора як десятковий дріб."
 
@@ -7303,9 +7330,6 @@ msgstr "Введіть частоту гетеродина нижнього ді
 
 msgid "Enter your personal feed URL to allow you to select packages from your personal feed."
 msgstr "Введіть URL-адресу свого особистого каналу, щоб Ви могли вибирати пакети з особистого каналу."
-
-msgid "Enter your subscription code, the unified code for trial is 15."
-msgstr "Введіть свій код підписки, уніфікований код для трейлу 15."
 
 msgid "Entertainment"
 msgstr "Розваги"
@@ -9050,9 +9074,6 @@ msgstr "Приховати повідомлення про помилки в м�
 msgid "Hide known extensions"
 msgstr "Сховати відомі розширення"
 
-msgid "Hide mute notification"
-msgstr "Приховати відключення повідомлення"
-
 msgid "Hide number markers"
 msgstr "Сховати маркери номерів"
 
@@ -9409,9 +9430,6 @@ msgstr "Якщо включено, буде використано вікно ч
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Якщо логи займають занадто багато пам'яті, будуть видалятися найстаріші файли."
 
-msgid "If muted, hide mute icon or mute information after few seconds."
-msgstr "Якщо відключено, приховати значок відключення звуку або відключення інформації після декількох секунд."
-
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
 msgstr "Якщо можливо, за x хвилин до запуску таймера VPS-плагін контролюватиме, чи програма починається раніше. (0 вимикає функцію)"
 
@@ -9576,8 +9594,14 @@ msgstr "Додати AIT до запису"
 msgid "Include CI assignment"
 msgstr "Додати призначення CI"
 
+msgid "Include DVB details"
+msgstr "Додати деталі DVB"
+
 msgid "Include DVB scan data"
 msgstr "Включити дані сканування DVB"
+
+msgid "Include DVB timesync data"
+msgstr "Включити дані синхронізації часу DVB"
 
 msgid "Include ECM in http streams"
 msgstr "Додати ECM до http потоку"
@@ -10155,9 +10179,6 @@ msgstr "Куаняма / Кваняма"
 msgid "Kurdish"
 msgstr "Курдська"
 
-msgid "Kurdish (Sorani)"
-msgstr "Курдська (Суранська)"
-
 msgid "Kurdistan"
 msgstr "Курдистан"
 
@@ -10634,6 +10655,9 @@ msgstr "Довгі імена файлів"
 
 msgid "Long press emulation with button"
 msgstr "Емуляція тривалого натискання за допомогою кнопки"
+
+msgid "Long press volume steps"
+msgstr "Довге натискання кнопок гучності"
 
 #, python-format
 msgid "Long press: %s"
@@ -13020,7 +13044,7 @@ msgid "Picture player"
 msgstr "Перегляд зображень"
 
 msgid "Pictures"
-msgstr "Кіноматографія"
+msgstr "Зображення"
 
 #. TRANSLATORS: Aspect ratio policy: Black bars on left/right in doubt, keep English term.
 msgid "Pillarbox"
@@ -14209,9 +14233,6 @@ msgstr "Інформація про приймач для %s %s"
 msgid "Receiver name"
 msgstr "Назва приймача"
 
-msgid "Reception"
-msgstr "Пошук каналів"
-
 msgid "Reception Lists"
 msgstr "Список прийому"
 
@@ -14282,7 +14303,7 @@ msgstr "Помилка запису"
 msgid "Recording finished"
 msgstr "Запис завершено"
 
-msgid "Recording in progress"
+msgid "Recording in progress!"
 msgstr "Триває запис"
 
 msgid "Recording location"
@@ -15552,6 +15573,15 @@ msgstr "Виберіть 'Так', якщо налаштування гучно�
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Виберіть 'Так' коли Ви використовуєте мультисвіч, який вимагає команду DiSEqC Port-A. Для всіх інших налаштувань виберіть 'Ні'."
 
+msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' power timer is starting."
+msgstr "Виберіть 'Так', якщо бажаєте увімкнути телевізор під час запуску таймера 'Пробудження'."
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
+msgstr "Виберіть 'Так', якщо бажаєте увімкнути телевізор під час запуску таймера 'Переключити і записати'."
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr "Виберіть 'Так', якщо бажаєте увімкнути телевізор під час запуску таймера 'Переключити'."
+
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Якщо вибрано 'так', інформаційна панель в режимі 'пауза' буде показана постійно (немає тайм-ауту)."
 
@@ -15584,6 +15614,9 @@ msgstr "Якщо вибрано 'так', номер канал буде пок�
 
 msgid "Select 'Yes' to display unknown files in the File Commander file viewer, select 'No' to not process unknown files."
 msgstr "Виберіть 'Так', щоб відображати невідомі файли у програмі перегляду файлів File Commander, виберіть 'Ні', щоб не обробляти невідомі файли."
+
+msgid "Select 'Yes' to enable AI-Powered Translation for all teletext and DVB subtitles."
+msgstr "Увімкніть переклад за допомогою штучного інтелекту для всіх субтитрів телетексту та DVB."
 
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr "Виберіть 'Так', щоб увімкнути редагування налаштувань цього пристрою. Вибір 'Ні' скидає налаштування пристроїв до значень за замовчуванням."
@@ -15932,8 +15965,8 @@ msgstr "Виберіть, як довго відображати спливаю�
 msgid "Select how long to display the task and script message pop up."
 msgstr "Виберіть, як довго відображати спливаюче повідомлення про завдання скрипта."
 
-msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
-msgstr "Виберіть час у секундах, протягом якого відображення гучності буде показано, перш ніж воно автоматично приховається."
+msgid "Select how long, in seconds, that the volume and mute displays are shown before they automatically hide."
+msgstr "Виберіть час у секундах, протягом якого відображатимуться іконки гучності та вимкнення звуку, перш ніж вони автоматично зникнуть."
 
 msgid "Select how often this timer is to be repeated."
 msgstr "Виберіть, як часто цей таймер має повторюватися."
@@ -16047,6 +16080,9 @@ msgstr "Виберіть тимчасовий порядок сортуванн�
 msgid "Select the %s entry"
 msgstr "Вибрати запис %s"
 
+msgid "Select the AI-Powered Translation target language."
+msgstr "Налаштуйте мову перекладу за допомогою AI."
+
 msgid "Select the No / False response"
 msgstr "Виберіть відповідь Ні/Хибна"
 
@@ -16102,6 +16138,9 @@ msgstr "Виберіть канал або послугу для цього та
 
 msgid "Select the character or action under the keyboard cursor"
 msgstr "Виберіть символ, або дію під курсором клавіатури"
+
+msgid "Select the color to be used for the AI-Powered Translation text."
+msgstr "Налаштуйте колір субтитрів за допомогою AI."
 
 msgid "Select the current bookmarked location and exit"
 msgstr "Виберіть поточне місце в закладках та вийдіть"
@@ -16284,6 +16323,12 @@ msgstr "Виберіть набір символів клавіатури"
 msgid "Select the shifted character set for the next character only"
 msgstr "Виберіть набір символів клавіатури лише для наступного символу"
 
+msgid "Select the size of the volume step when the VOLUME buttons are pressed."
+msgstr "Виберіть розмір кроку гучності під час натискання кнопок ГУЧНІСТЬ."
+
+msgid "Select the size of the volume steps when the VOLUME buttons are held down."
+msgstr "Виберіть розмір кроків гучності, коли кнопки ГУЧНІСТЬ утримуються."
+
 msgid "Select the sort order for the file lines:"
 msgstr "Виберіть порядок сортування для рядків файлу:"
 
@@ -16379,9 +16424,6 @@ msgstr ""
 "Виберіть бездротову мережу, до якої потрібно підключитися.\n"
 "\n"
 "Натисніть OK, щоб продовжити."
-
-msgid "Select to use logarithmic step size with more steps at the lower volume levels."
-msgstr "Виберіть використання логарифмічного розміру кроку з більшою кількістю кроків на нижчих рівнях гучності."
 
 msgid "Select update source location"
 msgstr "Виберіть розташування джерела оновлення"
@@ -17112,7 +17154,7 @@ msgid "Short filenames with time"
 msgstr "Короткі часові назви файлів"
 
 msgid "Should the crash counter be reset to prevent a restart?"
-msgstr "Чи потрібно скинути лічильник rhtisd, щоб запобігти перезавантаженню?"
+msgstr "Чи потрібно скинути лічильник крешів, щоб запобігти перезавантаженню?"
 
 msgid "Show"
 msgstr "Шоу"
@@ -17386,6 +17428,9 @@ msgstr "Показати розширені налаштування"
 
 msgid "Show all"
 msgstr "Показати все"
+
+msgid "Show all Information screens"
+msgstr "Показати всі інформаційні екрани"
 
 msgid "Show all available services"
 msgstr "Показати всі доступні канали"
@@ -19133,7 +19178,7 @@ msgid "TMDB Search"
 msgstr "TMDB Пошук"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 05.08.2024"
+msgstr "Переклад: kvinto - 13.09.2024"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -19389,6 +19434,9 @@ msgstr "Журнал записів %s не містить інформації.
 #, python-format
 msgid "The '%s' file can't be retrieved, please try again later."
 msgstr "Не вдається отримати файл '%s', спробуйте пізніше."
+
+msgid "The AI-Powered Translation service will be optimized to provide the best performance based on the the Internet connection upload speed selected."
+msgstr "Службу перекладу на основі штучного інтелекту буде оптимізовано для забезпечення найкращої продуктивності на основі вибраної швидкості завантаження з Інтернету."
 
 msgid ""
 "The AutoTimer plugin is not installed!\n"
@@ -20514,6 +20562,9 @@ msgstr "Транскодування"
 msgid "Transcoding: "
 msgstr "Перекодування: "
 
+msgid "Translate Subs On This Service"
+msgstr "Перекладати субтитри на цьому каналі"
+
 msgid "Translation"
 msgstr "Переклад"
 
@@ -20679,6 +20730,9 @@ msgstr "Тип тюнера %s"
 
 msgid "Tuners"
 msgstr "Тюнери"
+
+msgid "Tuners, Scanning & Reception"
+msgstr "Тюнери та Сканування"
 
 msgid "Tuning algorithm"
 msgstr "Алгоритм налаштування"
@@ -20982,6 +21036,9 @@ msgstr "Вгору"
 msgid "Up / Active"
 msgstr "Вгору/Активний"
 
+msgid "Up to 50 Mbps"
+msgstr "До 50 Мбіт/с"
+
 msgid "Up/Down button mode"
 msgstr "Режим кнопок Вгору/Вниз"
 
@@ -21226,9 +21283,6 @@ msgstr "Використовувати Keymap *"
 
 msgid "Use legacy navigation"
 msgstr "Використовувати застарілу навігацію"
-
-msgid "Use logarithmic steps"
-msgstr "Використовуйте логарифмічні кроки"
 
 msgid "Use official channel numbering"
 msgstr "Використовувати звичайну нумерацію каналів"
@@ -21520,6 +21574,9 @@ msgstr "Венда"
 msgid "Venezuela, Bolivarian Republic of"
 msgstr "Венесуела, Болівійська Республіка"
 
+msgid "Verbose"
+msgstr "Багатослівний"
+
 msgid "Version"
 msgstr "Версія"
 
@@ -21751,17 +21808,20 @@ msgstr "Вибір каналу регулювання гучності"
 msgid "Volume Adjust Settings"
 msgstr "Налаштування гучності"
 
-msgid "Volume display timer"
-msgstr "Таймер відображення гучності"
-
 msgid "Volume down"
 msgstr "Гучність нижче"
 
 msgid "Volume keys on the receiver remote will control the TV volume. If this feature is not supported the volume keys have no function!"
 msgstr "Кнопки гучності на пульті дистанційного керування приймача будуть керувати гучністю телевізора. Якщо ця функція не підтримується, кнопки гучності не працюють!"
 
+msgid "Volume steps"
+msgstr "Розмір кроків звуку"
+
 msgid "Volume up"
 msgstr "Гучність вище"
+
+msgid "Volume/Mute display timer"
+msgstr "Час відображення Гучності/Вимкнення звуку"
 
 msgid "Vu+ MultiBoot"
 msgstr "MultiBoot Vu+"
@@ -23054,10 +23114,10 @@ msgstr "дорівнює"
 msgid "equestrian"
 msgstr "кінний спорт"
 
-msgid "error starting scanning"
+msgid "Problem starting scan"
 msgstr "помилка при запуску сканування"
 
-msgid "error while scanning"
+msgid "Problem while scanning"
 msgstr "помилка під час сканування"
 
 msgid "execute cuts (requires MovieCut plugin)"
@@ -23345,7 +23405,7 @@ msgstr "не вибрано CAId"
 msgid "no CI slots found"
 msgstr "слот CI не знайдено"
 
-msgid "no channel list"
+msgid "No channel list"
 msgstr "немає списку каналів"
 
 msgid "no module found"
@@ -23354,7 +23414,7 @@ msgstr "модуль не знайдено"
 msgid "no or unknown card inserted"
 msgstr "відсутня або невідома карта"
 
-msgid "no resource manager"
+msgid "No resource manager"
 msgstr "немає менеджера ресурсів"
 
 msgid "no storage devices found"
@@ -23815,6 +23875,42 @@ msgstr "так (зберігати фіди)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Kurdish (Sorani)"
+#~ msgstr "Курдська (Суранська)"
+
+#~ msgid "Audio volume step size"
+#~ msgstr "Розмір величини кроку звуку"
+
+#~ msgid "Audio volume step size fast mode"
+#~ msgstr "Розмір величини кроку звуку швидкого режиму"
+
+#~ msgid "Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row."
+#~ msgstr "Налаштування розміру кроку гучності звуку для швидкого режиму (обмеження 1-10). Активується, коли клавіша гучності постійно натиснена, або часто натискається."
+
+#~ msgid "Configure the general audio volume step size (limit 1-10)."
+#~ msgstr "Налаштуйте загальний розмір кроку величини аудіо (обмеження 1-10)."
+
+#~ msgid "Hide mute notification"
+#~ msgstr "Приховати відключення повідомлення"
+
+#~ msgid "If muted, hide mute icon or mute information after few seconds."
+#~ msgstr "Якщо відключено, приховати значок відключення звуку або відключення інформації після декількох секунд."
+
+#~ msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
+#~ msgstr "Виберіть час у секундах, протягом якого відображення гучності буде показано, перш ніж воно автоматично приховається."
+
+#~ msgid "Select to use logarithmic step size with more steps at the lower volume levels."
+#~ msgstr "Виберіть використання логарифмічного розміру кроку з більшою кількістю кроків на нижчих рівнях гучності."
+
+#~ msgid "Use logarithmic steps"
+#~ msgstr "Використовуйте логарифмічні кроки"
+
+#~ msgid "Volume display timer"
+#~ msgstr "Таймер відображення гучності"
+
+#~ msgid "Reception"
+#~ msgstr "Пошук каналів"
 
 #~ msgid "Enable terrestrial LCN:"
 #~ msgstr "Включити наземний LCN:"

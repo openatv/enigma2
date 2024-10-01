@@ -52,6 +52,7 @@ class Session:
 		self.current_dialog = None
 		self.dialog_stack = []
 		self.summary_stack = []
+		self.onShutdown = []
 		self.summary = None
 		self.in_exec = False
 		self.screen = SessionGlobals(self)
@@ -211,6 +212,11 @@ class Session:
 			self.summary = self.summary_stack.pop()
 		if self.summary is not None:
 			self.summary.show()
+
+	def doShutdown(self):
+		for function in self.onShutdown:
+			if callable(function):
+				function()
 
 
 class PowerKey:
@@ -559,6 +565,8 @@ def runScreenTest():
 	print("=" * 100)
 	session.nav.stopService()
 	session.nav.shutdown()
+	session.doShutdown()
+	VolumeControl.instance.saveVolumeState()
 	configfile.save()
 	from Screens.InfoBarGenerics import saveResumePoints
 	saveResumePoints()
@@ -722,6 +730,7 @@ config.crash.debugDVBScan = ConfigYesNo(default=False)
 config.crash.debugDVBTime = ConfigYesNo(default=False)
 config.crash.debugDVB = ConfigYesNo(default=False)
 config.crash.debugTimers = ConfigYesNo(default=False)
+config.crash.debugTeletext = ConfigYesNo(default=False)
 
 # config.plugins needs to be defined before InputDevice < HelpMenu < MessageBox < InfoBar.
 config.plugins = ConfigSubsection()
@@ -836,10 +845,6 @@ from Tools.StbHardware import setFPWakeuptime, setRTCtime
 enigma.eProfileWrite("InitSkins")
 from skin import InitSkins
 InitSkins()
-
-enigma.eProfileWrite("InitServiceList")
-from Components.ServiceList import InitServiceListSettings
-InitServiceListSettings()
 
 enigma.eProfileWrite("InitInputDevices")
 from Components.InputDevice import InitInputDevices

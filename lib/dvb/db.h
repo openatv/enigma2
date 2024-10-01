@@ -71,12 +71,15 @@ public:
 		{
 			// eDebug("[eDVBDB] LCNData parse %X:%X:%X:%X: LCN_BROADCAST %d LCN_SCANNED %d LCN_GUI %d", sid, tsid, onid, ns, LCN_BROADCAST, LCN_SCANNED, LCN_GUI);
 			auto Data = split_str(buffer);
-			if (Data.size() == 4)
+			if (Data.size() > 2)
 			{
 				PROVIDER = Data[0];
 				PROVIDER_GUI = Data[1];
-				SERVICENAME = Data[2];
-				SERVICENAME_GUI = Data[3];
+				if (Data.size() == 4)
+				{
+					SERVICENAME = Data[2];
+					SERVICENAME_GUI = Data[3];
+				}
 			}
 			return eServiceReferenceDVB(eDVBNamespace(NS), eTransportStreamID(tsid), eOriginalNetworkID(onid), eServiceID(sid), 0);
 		}
@@ -93,7 +96,7 @@ public:
 		return SERVICENAME_GUI;
 	}
 
-	std::string geProviderNameGui()
+	std::string getProviderNameGui()
 	{
 		return PROVIDER_GUI;
 	}
@@ -216,6 +219,7 @@ public:
 	bool isValidService(int tsid, int onid, int sid);
 	void parseServiceData(ePtr<eDVBService> s, std::string str);
 	int getMaxNumber() const { return m_max_number; }
+	PyObject *getAllServicesRaw(int type=0);
 };
 
 #ifndef SWIG

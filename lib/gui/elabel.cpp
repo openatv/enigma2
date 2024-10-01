@@ -59,6 +59,9 @@ int eLabel::event(int event, void *data, void *data2)
 		else if (m_wrap == 2)
 			flags |= gPainter::RT_ELLIPSIS;
 
+		if (m_underline)
+			flags |= gPainter::RT_UNDERLINE;
+
 		if (isGradientSet() || m_blend)
 			flags |= gPainter::RT_BLEND;
 
@@ -184,6 +187,15 @@ void eLabel::setWrap(int wrap)
 	if (m_wrap != wrap)
 	{
 		m_wrap = wrap;
+		invalidate();
+	}
+}
+
+void eLabel::setUnderline(bool underline)
+{
+	if (m_underline != underline)
+	{
+		m_underline = underline;
 		invalidate();
 	}
 }

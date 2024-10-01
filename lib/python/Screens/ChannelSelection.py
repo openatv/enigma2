@@ -58,6 +58,7 @@ FLAG_SERVICE_NEW_FOUND = 64
 FLAG_IS_DEDICATED_3D = 128
 FLAG_HIDE_VBI = 512
 FLAG_CENTER_DVB_SUBS = 2048  # Defined in lib/dvb/idvb.h as dxNewFound = 64 and dxIsDedicated3D = 128.
+FLAG_NO_AI_TRANSLATION = 8192
 
 # Values for csel.bouquet_mark_edit:
 OFF = 0
@@ -1371,6 +1372,13 @@ class ChannelContextMenu(Screen):
 						appendWhenValid(current, menu, (_("Don't Center DVB Subs On This Service"), self.removeCenterDVBSubsFlag))
 					else:
 						appendWhenValid(current, menu, (_("Center DVB Subs On This Service"), self.addCenterDVBSubsFlag))
+
+					if BoxInfo.getItem("AISubs"):
+						if eDVBDB.getInstance().getFlag(eServiceReference(current.toString())) & FLAG_NO_AI_TRANSLATION:
+							appendWhenValid(current, menu, (_("Translate Subs On This Service"), self.removeNoAITranslationFlag))
+						else:
+							appendWhenValid(current, menu, (_("Don't Translate Subs On This Service"), self.addNoAITranslationFlag))
+
 					if not csel.isSubservices():
 						if haveBouquets:
 							bouquets = self.csel.getBouquetList()
@@ -1505,7 +1513,7 @@ class ChannelContextMenu(Screen):
 		self["menu"].getCurrent()[0][1]()
 
 	def keySetup(self):
-		self.session.openWithCallback(self.keyCancel, Setup, "ChannelSelection")
+		self.session.openWithCallback(self.keyCancel, ChannelSelectionSetup)
 
 	def keyTop(self):
 		self["menu"].goTop()
@@ -1633,6 +1641,16 @@ class ChannelContextMenu(Screen):
 		eDVBDB.getInstance().removeFlag(eServiceReference(self.csel.getCurrentSelection().toString()), FLAG_CENTER_DVB_SUBS)
 		eDVBDB.getInstance().reloadBouquets()
 		config.subtitles.dvb_subtitles_centered.value = False
+		self.close()
+
+	def addNoAITranslationFlag(self):
+		eDVBDB.getInstance().addFlag(eServiceReference(self.csel.getCurrentSelection().toString()), FLAG_NO_AI_TRANSLATION)
+		eDVBDB.getInstance().reloadBouquets()
+		self.close()
+
+	def removeNoAITranslationFlag(self):
+		eDVBDB.getInstance().removeFlag(eServiceReference(self.csel.getCurrentSelection().toString()), FLAG_NO_AI_TRANSLATION)
+		eDVBDB.getInstance().reloadBouquets()
 		self.close()
 
 	def addServiceToBouquetOrAlternative(self):
@@ -2387,6 +2405,10 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.lastChannelRootTimer.callback.append(self.__onCreate)
 		self.lastChannelRootTimer.start(100, True)
 		self.pipzaptimer = eTimer()
+		self.session.onShutdown.append(self.close)
+
+	def __del__(self):
+		self.session.onShutdown.remove(self.close)
 
 	def asciiOn(self):
 		rcinput = eRCInput.getInstance()
@@ -3453,3 +3475,42 @@ class SilentBouquetSelector:  # IanSav: Where is this used?  It is imported into
 
 	def getCurrent(self):
 		return self.bouquets[self.pos]
+
+
+class ChannelSelectionSetup(Setup):
+	def __init__(self, session):
+		Setup.__init__(self, session=session, setup="ChannelSelection")
+		self.addSaveNotifier(self.onUpdateSettings)
+		self.onClose.append(self.clearSaveNotifiers)
+
+	def onUpdateSettings(self):
+		ChannelSelectionSetup.updateSettings(self.session)
+
+	@staticmethod
+	def updateSettings(session):
+		styleChanged = False
+		styleScreenChanged = config.channelSelection.screenStyle.isChanged() or config.channelSelection.widgetStyle.isChanged()
+		if not styleScreenChanged:
+			for setting in ("showNumber", "showPicon", "showServiceTypeIcon", "showCryptoIcon", "recordIndicatorMode", "piconRatio"):
+				if getattr(config.channelSelection, setting).isChanged():
+					styleChanged = True
+					break
+			if styleChanged:
+				from Screens.InfoBar import InfoBar
+				InfoBarInstance = InfoBar.instance
+				if InfoBarInstance is not None and InfoBarInstance.servicelist is not None:
+					InfoBarInstance.servicelist.servicelist.readTemplate(config.channelSelection.widgetStyle.value)
+		else:
+			InfoBarInstance = Screens.InfoBar.InfoBar.instance
+			if InfoBarInstance is not None and InfoBarInstance.servicelist is not None:
+				oldDialogIndex = (-1, None)
+				oldSummarys = InfoBarInstance.servicelist.summaries[:]
+				for index, dialog in enumerate(session.dialog_stack):
+					if isinstance(dialog[0], ChannelSelection):
+						oldDialogIndex = (index, dialog[1])
+				InfoBarInstance.servicelist = session.instantiateDialog(ChannelSelection)
+				InfoBarInstance.servicelist.summaries = oldSummarys
+				InfoBarInstance.servicelist.isTmp = False
+				InfoBarInstance.servicelist.callback = None
+				if oldDialogIndex[0] != -1:
+					session.dialog_stack[oldDialogIndex[0]] = (InfoBarInstance.servicelist, oldDialogIndex[1])

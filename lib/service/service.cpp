@@ -89,7 +89,7 @@ std::string eServiceReference::toString() const
 
 	ret += getNum(type);
 	ret += ':';
-	ret += getNum(flags & ~8192); // ignore 8192 because this is only for internal use
+	ret += getNum(flags & ~eDVBService::dxIntIsinBouquet); // ignore dxIntIsinBouquet because this is only for internal use
 	for (unsigned int i = 0; i < sizeof(data) / sizeof(*data); ++i)
 	{
 		ret += ':';
@@ -138,6 +138,18 @@ std::string eServiceReference::toReferenceString() const
 	return ret;
 }
 
+std::string eServiceReference::toLCNReferenceString(bool trailing) const
+{
+    std::string ret;
+    ret.reserve(24); /* Estimate required space */
+    char buf[24];
+    if(trailing)
+        snprintf(buf, 24, "%X:%X:%X:%X:", data[1], data[2], data[3], data[4]);
+    else
+        snprintf(buf, 24, "%X:%X:%X:%X", data[1], data[2], data[3], data[4]);
+    ret.assign(buf);
+	return ret;
+}
 
 eServiceCenter *eServiceCenter::instance;
 
@@ -166,7 +178,7 @@ RESULT eServiceCenter::play(const eServiceReference &ref, ePtr<iPlayableService>
 	std::map<int,ePtr<iServiceHandler> >::iterator i = handler.find(ref.type);
 	if (i == handler.end())
 	{
-		ptr = 0;
+		ptr = nullptr;
 		return -1;
 	}
 	return i->second->play(ref, ptr);
@@ -177,7 +189,7 @@ RESULT eServiceCenter::record(const eServiceReference &ref, ePtr<iRecordableServ
 	std::map<int,ePtr<iServiceHandler> >::iterator i = handler.find(ref.type);
 	if (i == handler.end())
 	{
-		ptr = 0;
+		ptr = nullptr;
 		return -1;
 	}
 	return i->second->record(ref, ptr);
@@ -188,7 +200,7 @@ RESULT eServiceCenter::list(const eServiceReference &ref, ePtr<iListableService>
 	std::map<int,ePtr<iServiceHandler> >::iterator i = handler.find(ref.type);
 	if (i == handler.end())
 	{
-		ptr = 0;
+		ptr = nullptr;
 		return -1;
 	}
 	return i->second->list(ref, ptr);
@@ -199,7 +211,7 @@ RESULT eServiceCenter::info(const eServiceReference &ref, ePtr<iStaticServiceInf
 	std::map<int,ePtr<iServiceHandler> >::iterator i = handler.find(ref.type);
 	if (i == handler.end())
 	{
-		ptr = 0;
+		ptr = nullptr;
 		return -1;
 	}
 	return i->second->info(ref, ptr);
@@ -210,7 +222,7 @@ RESULT eServiceCenter::offlineOperations(const eServiceReference &ref, ePtr<iSer
 	std::map<int,ePtr<iServiceHandler> >::iterator i = handler.find(ref.type);
 	if (i == handler.end())
 	{
-		ptr = 0;
+		ptr = nullptr;
 		return -1;
 	}
 	return i->second->offlineOperations(ref, ptr);
@@ -274,7 +286,7 @@ int eServiceCenter::getServiceTypeForExtension(const std::string &str)
 	/* default handlers */
 RESULT iServiceHandler::info(const eServiceReference &, ePtr<iStaticServiceInformation> &ptr)
 {
-	ptr = 0;
+	ptr = nullptr;
 	return -1;
 }
 

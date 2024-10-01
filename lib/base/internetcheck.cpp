@@ -59,7 +59,7 @@ int checkLinkStatus()
 	}
 
 	int sock;
-	struct ifreq ifr;
+	struct ifreq ifr = {};
 	// Create a socket
 	sock = socket(AF_INET, SOCK_DGRAM, 0);
 	if (sock < 0)

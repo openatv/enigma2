@@ -27,7 +27,7 @@ inline PyObject *PyFrom(int v)
 
 inline PyObject *PyFrom(const char *c)
 {
-	return PyString_FromString(c);
+	return PyUnicode_FromString(c);
 }
 
 // Only used by console which might transfer binary data(screenshots). So use Bytes instead of Unicode
@@ -37,7 +37,11 @@ inline PyObject *PyFrom(std::pair<const char*, int>& p)
 }
 
 template <class R>
+#if SIGCXX_MAJOR_VERSION == 2
 class PSignal0: public PSignal, public sigc::signal0<R>
+#else
+class PSignal0: public PSignal, public sigc::signal<R()>
+#endif
 {
 public:
 	R operator()()
@@ -48,12 +52,20 @@ public:
 			callPython(pArgs);
 			Org_Py_DECREF(pArgs);
 		}
+#if SIGCXX_MAJOR_VERSION == 2
 		return sigc::signal0<R>::operator()();
+#else
+		return sigc::signal<R()>::operator()();
+#endif
 	}
 };
 
 template <class R, class V0>
+#if SIGCXX_MAJOR_VERSION == 2
 class PSignal1: public PSignal, public sigc::signal1<R,V0>
+#else
+class PSignal1: public PSignal, public sigc::signal<R(V0)>
+#endif
 {
 public:
 	R operator()(V0 a0)
@@ -65,12 +77,20 @@ public:
 			callPython(pArgs);
 			Org_Py_DECREF(pArgs);
 		}
+#if SIGCXX_MAJOR_VERSION == 2
 		return sigc::signal1<R,V0>::operator()(a0);
+#else
+		return sigc::signal<R(V0)>::operator()(a0);
+#endif
 	}
 };
 
 template <class R, class V0, class V1>
+#if SIGCXX_MAJOR_VERSION == 2
 class PSignal2: public PSignal, public sigc::signal2<R,V0,V1>
+#else
+class PSignal2: public PSignal, public sigc::signal<R(V0, V1)>
+#endif
 {
 public:
 	R operator()(V0 a0, V1 a1)
@@ -83,12 +103,20 @@ public:
 			callPython(pArgs);
 			Org_Py_DECREF(pArgs);
 		}
+#if SIGCXX_MAJOR_VERSION == 2
 		return sigc::signal2<R,V0,V1>::operator()(a0, a1);
+#else
+		return sigc::signal<R(V0,V1)>::operator()(a0, a1);
+#endif
 	}
 };
 
 template <class R, class V0, class V1, class V2>
+#if SIGCXX_MAJOR_VERSION == 2
 class PSignal3: public PSignal, public sigc::signal3<R,V0,V1,V2>
+#else
+class PSignal3: public PSignal, public sigc::signal<R(V0, V1, V2)>
+#endif
 {
 public:
 	R operator()(V0 a0, V1 a1, V2 a2)
@@ -102,7 +130,11 @@ public:
 			callPython(pArgs);
 			Org_Py_DECREF(pArgs);
 		}
+#if SIGCXX_MAJOR_VERSION == 2
 		return sigc::signal3<R,V0,V1,V2>::operator()(a0, a1, a2);
+#else
+		return sigc::signal<R(V0,V1,V2)>::operator()(a0, a1, a2);
+#endif
 	}
 };
 

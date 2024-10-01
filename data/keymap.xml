@@ -1,11 +1,11 @@
 <!--
 	Flag meanings in <key /> elements:
-	"m": Action active on key "Make".
-	"b": Action active on key "Break".
-	"r": Action active on key repeats.
-	"l": Action on long key press.
+	"m": Action active on key "Make" event.
+	"b": Action active on key "Break" event.
+	"r": Action active on key "Repeat" event (when a button repeats).
+	"l": Action active on key "Long" event (when a button has been held down).
+	"s": Action active on key "Stop" event (when a long pressed button is released).
 -->
-
 <keymap>
 	<!--
 		These key map actions are global to all screens.  These
@@ -15,7 +15,11 @@
 
 	<map context="GlobalActions">
 		<key id="KEY_VOLUMEUP" mapto="volumeUp" flags="mr" />
+		<key id="KEY_VOLUMEUP" mapto="volumeUpLong" flags="l" />
+		<key id="KEY_VOLUMEUP" mapto="volumeUpStop" flags="s" />
 		<key id="KEY_VOLUMEDOWN" mapto="volumeDown" flags="mr" />
+		<key id="KEY_VOLUMEDOWN" mapto="volumeDownLong" flags="l" />
+		<key id="KEY_VOLUMEDOWN" mapto="volumeDownStop" flags="s" />
 		<key id="KEY_MUTE" mapto="volumeMute" flags="m" />
 		<key id="KEY_MUTE" mapto="volumeMuteLong" flags="l" />
 		<key id="KEY_POWER" mapto="power_long" flags="l" />

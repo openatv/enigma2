@@ -77,7 +77,7 @@ void eRCDeviceInputDev::handleCode(long rccode)
 			{
 				if (consoleFd >= 0)
 				{
-					struct kbentry ke;
+					struct kbentry ke = {};
 					/* off course caps is not the same as shift, but this will have to do for now */
 					ke.kb_table = (shiftState || capsState) ? K_SHIFTTAB : K_NORMTAB;
 					ke.kb_index = ev->code;

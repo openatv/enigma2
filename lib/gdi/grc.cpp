@@ -185,7 +185,7 @@ void *gRC::thread()
 
 				/* when the main thread is non-idle for a too long time without any display output,
 				   we want to display a spinner. */
-				struct timespec timeout;
+				struct timespec timeout = {};
 				clock_gettime(CLOCK_REALTIME, &timeout);
 
 				if (m_spinner_enabled)
@@ -924,7 +924,7 @@ void gDC::exec(const gOpcode *o)
 			int correction = o->parm.renderText->area.height() - bbox.height() - 2;
 			offset += ePoint(0, correction);
 		}
-		if (markedpos != -1)
+		if (markedpos != -1 || flags & gPainter::RT_UNDERLINE)
 		{
 			int glyphs = para->size();
 			int left, width = 0;
@@ -970,6 +970,18 @@ void gDC::exec(const gOpcode *o)
 						top += height;
 				}
 			}
+			else if(flags & gPainter::RT_UNDERLINE)
+			{
+				if (glyphs > 0)
+				{
+					bbox = para->getBoundBox();
+					left = bbox.left();
+					width = bbox.width();
+					top = height - 1;
+					height = 1;
+				}
+			}
+
 			if (width)
 			{
 				bbox = eRect(left, top, width, height);

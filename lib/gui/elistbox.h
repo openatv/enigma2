@@ -85,12 +85,14 @@ struct eListboxStyleSetted
 	bool scrollbarforegroundgradient : 1;
 	bool scrollbarbackgroundgradient : 1;
 	bool background_color_rows : 1;
+	bool separator_color : 1;
+	bool header_color : 1;
 };
 
 struct eListboxStyle
 {
 	ePtr<gPixmap> m_background, m_selection, m_overlay;
-	gRGB m_background_color, m_background_color_selected, m_background_color_rows, m_foreground_color, m_foreground_color_selected, m_border_color, m_scollbarborder_color, m_scrollbarforeground_color, m_scrollbarbackground_color, m_spacing_color;
+	gRGB m_background_color, m_background_color_selected, m_background_color_rows, m_foreground_color, m_foreground_color_selected, m_border_color, m_scollbarborder_color, m_scrollbarforeground_color, m_scrollbarbackground_color, m_spacing_color, m_separator_color, m_header_color;
 	int m_max_columns;
 	int m_max_rows;
 	float m_selection_zoom;
@@ -122,6 +124,7 @@ struct eListboxStyle
 	int m_valign, m_halign, m_border_size, m_scrollbarborder_width;
 	ePtr<gFont> m_font, m_font_zoomed, m_valuefont, m_headerfont;
 	eRect m_text_padding;
+	eRect m_separator_size;
 
 	int m_itemCornerRadius[4];
 	uint8_t m_itemCornerRadiusEdges[4];
@@ -358,6 +361,20 @@ public:
 
 	void setSelectionZoom(float zoom, int zoomContentMode = 0);
 	void setSelectionZoomSize(int width, int height, int zoomContentMode = 0);
+
+	void setSeparatorColor(const gRGB &col) { 
+		m_style.m_separator_color = col;
+		m_style.is_set.separator_color = 1;
+	}
+
+	void setSeparatorSize(const eRect &size) { 
+		m_style.m_separator_size = size;
+	}
+
+	void setHeaderColor(const gRGB &col) { 
+		m_style.m_header_color = col;
+		m_style.is_set.header_color = 1;
+	}
 
 	void setOverlay(ePtr<gPixmap> &pm)
 	{

@@ -130,7 +130,11 @@ public:
 	virtual ~eServiceMP3();
 
 		// iPlayableService
-	RESULT connectEvent(const sigc::slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection);
+#if SIGCXX_MAJOR_VERSION == 2
+	RESULT connectEvent(const sigc::slot2<void, iPlayableService*, int> &event, ePtr<eConnection> &connection);
+#else
+	RESULT connectEvent(const sigc::slot<void(iPlayableService*,int)> &event, ePtr<eConnection> &connection);
+#endif
 	RESULT start();
 	RESULT stop();
 
@@ -144,23 +148,23 @@ public:
 	RESULT subtitle(ePtr<iSubtitleOutput> &ptr);
 	RESULT audioDelay(ePtr<iAudioDelay> &ptr);
 	RESULT cueSheet(ePtr<iCueSheet> &ptr);
-	RESULT tap(ePtr<iTapService> &ptr) { ptr = 0; return -1; };
+	RESULT tap(ePtr<iTapService> &ptr) { ptr = nullptr; return -1; };
 
 		// not implemented (yet)
 	RESULT setTarget(int target, bool noaudio = false) { return -1; }
-	RESULT frontendInfo(ePtr<iFrontendInformation> &ptr) { ptr = 0; return -1; }
-	RESULT subServices(ePtr<iSubserviceList> &ptr) { ptr = 0; return -1; }
-	RESULT timeshift(ePtr<iTimeshiftService> &ptr) { ptr = 0; return -1; }
-//	RESULT cueSheet(ePtr<iCueSheet> &ptr) { ptr = 0; return -1; }
+	RESULT frontendInfo(ePtr<iFrontendInformation> &ptr) { ptr = nullptr; return -1; }
+	RESULT subServices(ePtr<iSubserviceList> &ptr) { ptr = nullptr; return -1; }
+	RESULT timeshift(ePtr<iTimeshiftService> &ptr) { ptr = nullptr; return -1; }
+//	RESULT cueSheet(ePtr<iCueSheet> &ptr) { ptr = nullptr; return -1; }
 
 		// iCueSheet
 	PyObject *getCutList();
 	void setCutList(SWIG_PYOBJECT(ePyObject));
 	void setCutListEnable(int enable);
 
-	RESULT rdsDecoder(ePtr<iRdsDecoder> &ptr) { ptr = 0; return -1; }
-	RESULT keys(ePtr<iServiceKeys> &ptr) { ptr = 0; return -1; }
-	RESULT stream(ePtr<iStreamableService> &ptr) { ptr = 0; return -1; }
+	RESULT rdsDecoder(ePtr<iRdsDecoder> &ptr) { ptr = nullptr; return -1; }
+	RESULT keys(ePtr<iServiceKeys> &ptr) { ptr = nullptr; return -1; }
+	RESULT stream(ePtr<iStreamableService> &ptr) { ptr = nullptr; return -1; }
 
 	void setQpipMode(bool value, bool audio) { }
 
@@ -326,7 +330,11 @@ private:
 	errorInfo m_errorInfo;
 	std::string m_download_buffer_path;
 	eServiceMP3(eServiceReference ref);
+#if SIGCXX_MAJOR_VERSION == 2
 	sigc::signal2<void,iPlayableService*,int> m_event;
+#else
+	sigc::signal<void(iPlayableService*,int)> m_event;
+#endif
 	enum
 	{
 		stIdle, stRunning, stStopped,

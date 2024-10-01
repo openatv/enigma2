@@ -81,10 +81,10 @@ fbClass::fbClass(const char *fb)
 	ion = open("/dev/ion", O_RDWR | O_CLOEXEC);
 	if (ion >= 0)
 	{
-		struct ion_allocation_data alloc_data;
-		struct ion_fd_data share_data;
-		struct ion_handle_data free_data;
-		struct ion_phys_data phys_data;
+		struct ion_allocation_data alloc_data = {};
+		struct ion_fd_data share_data = {};
+		struct ion_handle_data free_data = {};
+		struct ion_phys_data phys_data = {};
 		int ret;
 		unsigned char *lion;
 

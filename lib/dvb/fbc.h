@@ -46,7 +46,7 @@ private:
 	static void SetProcFBCID(int, int, bool);
 	static int FESlotID(eDVBRegisteredFrontend *);
 	static bool IsLinked(eDVBRegisteredFrontend *);
- 	static bool isUnicable(eDVBRegisteredFrontend *fe);
+ 	static bool isUnicable(eDVBRegisteredFrontend *);
 	static eDVBRegisteredFrontend* FrontendGetLinkPtr(eDVBFrontend *, link_ptr_t);
 	static eDVBRegisteredFrontend* FrontendGetLinkPtr(eDVBRegisteredFrontend *, link_ptr_t);
 	static void FrontendSetLinkPtr(eDVBRegisteredFrontend *, link_ptr_t, eDVBRegisteredFrontend *);
@@ -57,7 +57,7 @@ private:
 	static void UpdateLNBSlotMask(int, int, bool);
 	bool IsSameFBCSet(int, int) const;
 	bool IsRootFE(eDVBRegisteredFrontend *) const;
- 	bool IsFEUsed(eDVBRegisteredFrontend *, bool) const;
+	bool IsFEUsed(eDVBRegisteredFrontend *, bool) const;
 	int GetFBCID(int) const;
 	int GetDefaultFBCID(int) const;
 

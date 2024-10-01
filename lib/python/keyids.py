@@ -332,7 +332,8 @@ KEYFLAGS = {
 	1: "Break",
 	2: "Repeat",
 	3: "Long",
-	4: "ASCII"
+	4: "ASCII",
+	5: "Stop"
 }
 
 # First entry in each tuple is the preferred name.

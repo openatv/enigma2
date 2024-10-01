@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-08 08:13+0000\n"
+"POT-Creation-Date: 2024-10-01 08:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1014,6 +1014,12 @@ msgid "%d sec"
 msgstr ""
 
 #, python-format
+msgid "%d service found."
+msgid_plural "%d services found."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d times"
 msgstr ""
 
@@ -1103,10 +1109,6 @@ msgid "%m/%d "
 msgstr ""
 
 msgid "%m/%d/%Y"
-msgstr ""
-
-#, python-format
-msgid "%s  (%s)"
 msgstr ""
 
 #, python-format
@@ -1475,6 +1477,9 @@ msgstr ""
 msgid "5"
 msgstr ""
 
+msgid "50-200 Mbps"
+msgstr ""
+
 msgid "6"
 msgstr ""
 
@@ -1659,16 +1664,19 @@ msgstr ""
 msgid "AFL"
 msgstr ""
 
-msgid "AI-Powered translation color"
+msgid "AI-Powered Translation color"
 msgstr ""
 
-msgid "AI-Powered translation enabled"
+msgid "AI-Powered Translation enabled"
 msgstr ""
 
-msgid "AI-Powered translation language"
+msgid "AI-Powered Translation language"
 msgstr ""
 
-msgid "AI-Powered translation subscription code"
+msgid "AI-Powered Translation optimization"
+msgstr ""
+
+msgid "AI-Powered Translation subscription code"
 msgstr ""
 
 msgid "ARM"
@@ -1717,6 +1725,9 @@ msgid "About openATV"
 msgstr ""
 
 msgid "About to start"
+msgstr ""
+
+msgid "Above 200 Mbps"
 msgstr ""
 
 msgid "Access point"
@@ -2328,6 +2339,18 @@ msgstr ""
 msgid "Arabic"
 msgstr ""
 
+msgid "Arabic (Egyptian)"
+msgstr ""
+
+msgid "Arabic (Moroccan)"
+msgstr ""
+
+msgid "Arabic (Syro-Lebanese)"
+msgstr ""
+
+msgid "Arabic (Tunisian)"
+msgstr ""
+
 msgid "Aragonese"
 msgstr ""
 
@@ -2541,12 +2564,6 @@ msgstr ""
 msgid "Audio options..."
 msgstr ""
 
-msgid "Audio volume step size"
-msgstr ""
-
-msgid "Audio volume step size fast mode"
-msgstr ""
-
 msgid "Australia"
 msgstr ""
 
@@ -2626,6 +2643,9 @@ msgid "AutoFS"
 msgstr ""
 
 msgid "AutoMountManager"
+msgstr ""
+
+msgid "AutoRefresh"
 msgstr ""
 
 msgid "AutoTimer"
@@ -3526,6 +3546,12 @@ msgstr ""
 msgid "Cancel the image selection and exit all menus"
 msgstr ""
 
+msgid "Cancel the scan and and exit the scanner"
+msgstr ""
+
+msgid "Cancel the scan and exit all menus"
+msgstr ""
+
 msgid "Cancel the selection and exit"
 msgstr ""
 
@@ -4377,9 +4403,6 @@ msgstr ""
 msgid "Configure remote control type"
 msgstr ""
 
-msgid "Configure the AI-Powered translation language."
-msgstr ""
-
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr ""
 
@@ -4428,9 +4451,6 @@ msgstr ""
 msgid "Configure the brightness level of the front panel display for standby."
 msgstr ""
 
-msgid "Configure the color of the AI-Powered translations."
-msgstr ""
-
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
 msgstr ""
 
@@ -4464,9 +4484,6 @@ msgstr ""
 msgid "Configure the end coordinate in y of the teletext display area."
 msgstr ""
 
-msgid "Configure the fast mode audio volume step size (limit 1-10). Activated when volume key permanent press or press fast in a row."
-msgstr ""
-
 msgid "Configure the first audio language (highest priority)."
 msgstr ""
 
@@ -4498,9 +4515,6 @@ msgid "Configure the function of the < and > buttons."
 msgstr ""
 
 msgid "Configure the gateway."
-msgstr ""
-
-msgid "Configure the general audio volume step size (limit 1-10)."
 msgstr ""
 
 msgid "Configure the hard disk drive to go to standby after the specified idle time when the box is in standby."
@@ -6387,6 +6401,9 @@ msgstr ""
 msgid "Don't Center DVB Subs On This Service"
 msgstr ""
 
+msgid "Don't Translate Subs On This Service"
+msgstr ""
+
 msgid "Don't add this recording"
 msgstr ""
 
@@ -6744,9 +6761,6 @@ msgstr ""
 msgid "Enable 5V for active antenna"
 msgstr ""
 
-msgid "Enable AI-Powered translation for all teletext and DVB subtitles."
-msgstr ""
-
 msgid "Enable Autorecord"
 msgstr ""
 
@@ -6853,6 +6867,9 @@ msgstr ""
 msgid "Enable auto fast scan for %s"
 msgstr ""
 
+msgid "Enable autorefresh templates."
+msgstr ""
+
 msgid "Enable blinking rec symbol on the LCD Display in Standby."
 msgstr ""
 
@@ -6946,6 +6963,9 @@ msgstr ""
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add extra teletext details to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add international language and country load information detected during system boot to the debug log file."
 msgstr ""
 
@@ -6968,6 +6988,9 @@ msgid "Enable this option to show all the available Information screens in the I
 msgstr ""
 
 msgid "Enable this setting if your aerial system needs power."
+msgstr ""
+
+msgid "Enable timer"
 msgstr ""
 
 msgid "Enable to add some extra spacing to the Information screens. This can improve readability."
@@ -7151,6 +7174,9 @@ msgstr ""
 msgid "Enter the service pin"
 msgstr ""
 
+msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
+msgstr ""
+
 msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
 msgstr ""
 
@@ -7164,9 +7190,6 @@ msgid "Enter your low band local oscillator frequency. For more information cons
 msgstr ""
 
 msgid "Enter your personal feed URL to allow you to select packages from your personal feed."
-msgstr ""
-
-msgid "Enter your subscription code, the unified code for trial is 15."
 msgstr ""
 
 msgid "Entertainment"
@@ -7386,6 +7409,10 @@ msgstr ""
 
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error: Failed to run service scan!  (%s)"
 msgstr ""
 
 #, python-format
@@ -8887,9 +8914,6 @@ msgstr ""
 msgid "Hide known extensions"
 msgstr ""
 
-msgid "Hide mute notification"
-msgstr ""
-
 msgid "Hide number markers"
 msgstr ""
 
@@ -9243,9 +9267,6 @@ msgstr ""
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr ""
 
-msgid "If muted, hide mute icon or mute information after few seconds."
-msgstr ""
-
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
 msgstr ""
 
@@ -9439,6 +9460,9 @@ msgid "Include remote control data"
 msgstr ""
 
 msgid "Include screen load data"
+msgstr ""
+
+msgid "Include teletext details"
 msgstr ""
 
 msgid "Include timer data"
@@ -9983,9 +10007,6 @@ msgstr ""
 msgid "Kurdish"
 msgstr ""
 
-msgid "Kurdish (Sorani)"
-msgstr ""
-
 msgid "Kurdistan"
 msgstr ""
 
@@ -10460,6 +10481,9 @@ msgid "Long filenames"
 msgstr ""
 
 msgid "Long press emulation with button"
+msgstr ""
+
+msgid "Long press volume steps"
 msgstr ""
 
 #, python-format
@@ -12678,6 +12702,9 @@ msgstr ""
 msgid "Partitions"
 msgstr ""
 
+msgid "Pass"
+msgstr ""
+
 msgid "Pass-through"
 msgstr ""
 
@@ -14067,7 +14094,7 @@ msgstr ""
 msgid "Recording finished"
 msgstr ""
 
-msgid "Recording in progress"
+msgid "Recording in progress!"
 msgstr ""
 
 msgid "Recording location"
@@ -15136,9 +15163,18 @@ msgid_plural "Scanning - %d%% completed"
 msgstr[0] ""
 msgstr[1] ""
 
+msgid "Scanning can't be performed while recordings are in progress."
+msgstr ""
+
 #, python-format
 msgid "Scanning completed, %d channel found"
 msgid_plural "Scanning completed, %d channels found"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Scanning completed, %d service found."
+msgid_plural "Scanning completed, %d services found."
 msgstr[0] ""
 msgstr[1] ""
 
@@ -15147,6 +15183,13 @@ msgstr ""
 
 msgid "Scanning..."
 msgstr ""
+
+#. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
+#, python-format
+msgid "Scanning: %d%% complete"
+msgid_plural "Scanning: %d%% complete"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Scans default lamedbs sorted by satellite with a connected dish positioner"
 msgstr ""
@@ -15328,6 +15371,15 @@ msgstr ""
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr ""
 
+msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' power timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr ""
+
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr ""
 
@@ -15359,6 +15411,9 @@ msgid "Select 'Yes' to display the channel number in the InfoBar."
 msgstr ""
 
 msgid "Select 'Yes' to display unknown files in the File Commander file viewer, select 'No' to not process unknown files."
+msgstr ""
+
+msgid "Select 'Yes' to enable AI-Powered Translation for all teletext and DVB subtitles."
 msgstr ""
 
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
@@ -15708,7 +15763,7 @@ msgstr ""
 msgid "Select how long to display the task and script message pop up."
 msgstr ""
 
-msgid "Select how long, in seconds, that the volume display is shown before it automatically hides."
+msgid "Select how long, in seconds, that the volume and mute displays are shown before they automatically hide."
 msgstr ""
 
 msgid "Select how often this timer is to be repeated."
@@ -15823,6 +15878,9 @@ msgstr ""
 msgid "Select the %s entry"
 msgstr ""
 
+msgid "Select the AI-Powered Translation target language."
+msgstr ""
+
 msgid "Select the No / False response"
 msgstr ""
 
@@ -15879,6 +15937,9 @@ msgstr ""
 msgid "Select the character or action under the keyboard cursor"
 msgstr ""
 
+msgid "Select the color to be used for the AI-Powered Translation text."
+msgstr ""
+
 msgid "Select the current bookmarked location and exit"
 msgstr ""
 
@@ -15898,6 +15959,9 @@ msgid "Select the currently highlighted locale/language for the user interface"
 msgstr ""
 
 msgid "Select the currently highlighted service"
+msgstr ""
+
+msgid "Select the currently highlighted service and exit"
 msgstr ""
 
 msgid "Select the date from which this timer will become active."
@@ -16024,6 +16088,12 @@ msgstr ""
 msgid "Select the previous item in the list"
 msgstr ""
 
+msgid "Select the previous service and close the scanner"
+msgstr ""
+
+msgid "Select the previous service and close the scanner and exit all menus"
+msgstr ""
+
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr ""
 
@@ -16055,6 +16125,12 @@ msgid "Select the shifted character set"
 msgstr ""
 
 msgid "Select the shifted character set for the next character only"
+msgstr ""
+
+msgid "Select the size of the volume step when the VOLUME buttons are pressed."
+msgstr ""
+
+msgid "Select the size of the volume steps when the VOLUME buttons are held down."
 msgstr ""
 
 msgid "Select the sort order for the file lines:"
@@ -16148,9 +16224,6 @@ msgid ""
 "Select the wireless network to which you want to connect.\n"
 "\n"
 "Press OK to continue."
-msgstr ""
-
-msgid "Select to use logarithmic step size with more steps at the lower volume levels."
 msgstr ""
 
 msgid "Select update source location"
@@ -16340,6 +16413,9 @@ msgid "Service Number, Picon and Service Name"
 msgstr ""
 
 msgid "Service Scan"
+msgstr ""
+
+msgid "Service Scan Actions"
 msgstr ""
 
 msgid "Service Selection Actions"
@@ -19121,6 +19197,9 @@ msgstr ""
 msgid "The '%s' file can't be retrieved, please try again later."
 msgstr ""
 
+msgid "The AI-Powered Translation service will be optimized to provide the best performance based on the the Internet connection upload speed selected."
+msgstr ""
+
 msgid ""
 "The AutoTimer plugin is not installed!\n"
 "Please install it."
@@ -20158,6 +20237,9 @@ msgstr ""
 msgid "Transcoding: "
 msgstr ""
 
+msgid "Translate Subs On This Service"
+msgstr ""
+
 msgid "Translation"
 msgstr ""
 
@@ -20624,6 +20706,9 @@ msgstr ""
 msgid "Up / Active"
 msgstr ""
 
+msgid "Up to 50 Mbps"
+msgstr ""
+
 msgid "Up/Down button mode"
 msgstr ""
 
@@ -20859,9 +20944,6 @@ msgid "Use key map *"
 msgstr ""
 
 msgid "Use legacy navigation"
-msgstr ""
-
-msgid "Use logarithmic steps"
 msgstr ""
 
 msgid "Use official channel numbering"
@@ -21128,6 +21210,9 @@ msgstr ""
 msgid "Venezuela, Bolivarian Republic of"
 msgstr ""
 
+msgid "Verbose"
+msgstr ""
+
 msgid "Version"
 msgstr ""
 
@@ -21354,16 +21439,19 @@ msgstr ""
 msgid "Volume Adjust Settings"
 msgstr ""
 
-msgid "Volume display timer"
-msgstr ""
-
 msgid "Volume down"
 msgstr ""
 
 msgid "Volume keys on the receiver remote will control the TV volume. If this feature is not supported the volume keys have no function!"
 msgstr ""
 
+msgid "Volume steps"
+msgstr ""
+
 msgid "Volume up"
+msgstr ""
+
+msgid "Volume/Mute display timer"
 msgstr ""
 
 msgid "Vu+ MultiBoot"
@@ -22615,10 +22703,10 @@ msgstr ""
 msgid "equestrian"
 msgstr ""
 
-msgid "error starting scanning"
+msgid "Problem starting scan"
 msgstr ""
 
-msgid "error while scanning"
+msgid "Problem while scanning"
 msgstr ""
 
 msgid "execute cuts (requires MovieCut plugin)"
@@ -22906,7 +22994,7 @@ msgstr ""
 msgid "no CI slots found"
 msgstr ""
 
-msgid "no channel list"
+msgid "No channel list"
 msgstr ""
 
 msgid "no module found"
@@ -22915,7 +23003,7 @@ msgstr ""
 msgid "no or unknown card inserted"
 msgstr ""
 
-msgid "no resource manager"
+msgid "No resource manager"
 msgstr ""
 
 msgid "no storage devices found"

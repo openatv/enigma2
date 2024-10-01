@@ -20,7 +20,7 @@ namespace eSimpleConfig
 	{
 		std::string file = eEnv::resolve("${sysconfdir}/enigma2/settings");
 
-		struct stat settings_stat;
+		struct stat settings_stat = {};
 		if (stat(file.c_str(), &settings_stat) == -1 || settings_stat.st_mtime <= lastModified)
 			return;
 

@@ -10,7 +10,7 @@ from socket import AF_UNIX, SOCK_STREAM, socket
 from sys import maxsize
 from time import localtime, strftime, time
 
-from enigma import eActionMap, eAVControl, eDBoxLCD, eDVBDB, eDVBServicePMTHandler, eDVBVolumecontrol, eEPGCache, eServiceCenter, eServiceReference, eTimer, getBsodCounter, getDesktop, iPlayableService, iServiceInformation, quitMainloop, resetBsodCounter, eDVBVolumecontrol
+from enigma import eActionMap, eAVControl, eDBoxLCD, eDVBDB, eDVBServicePMTHandler, eDVBVolumecontrol, eEPGCache, eServiceCenter, eServiceReference, eTimer, getBsodCounter, getDesktop, iPlayableService, iServiceInformation, quitMainloop, resetBsodCounter
 
 from keyids import KEYFLAGS, KEYIDNAMES, KEYIDS
 from RecordTimer import AFTEREVENT, RecordTimer, RecordTimerEntry, findSafeRecordPath, parseEvent
@@ -1537,7 +1537,7 @@ class InfoBarChannelSelection:
 		elif config.usage.channelbutton_mode.value == "2":
 			self.serviceListType = "Norm"
 			self.servicelist.showFavourites()
-			self.session.execDialog(self.servicelist)
+			self.openServiceList()
 
 	def ChannelMinusPressed(self):
 		if config.usage.channelbutton_mode.value == "0":
@@ -1547,21 +1547,21 @@ class InfoBarChannelSelection:
 		elif config.usage.channelbutton_mode.value == "2":
 			self.serviceListType = "Norm"
 			self.servicelist.showFavourites()
-			self.session.execDialog(self.servicelist)
+			self.openServiceList()
 
 	def showTvChannelList(self, zap=False):
 		self.servicelist.setModeTv()
 		if zap:
 			self.servicelist.zap()
 		if config.usage.show_servicelist.value:
-			self.session.execDialog(self.servicelist)
+			self.openServiceList()
 
 	def showRadioChannelList(self, zap=False):
 		self.servicelist.setModeRadio()
 		if zap:
 			self.servicelist.zap()
 		if config.usage.show_servicelist.value:
-			self.session.execDialog(self.servicelist)
+			self.openServiceList()
 
 	def historyBack(self):
 		if config.usage.historymode.value == "0":
@@ -1582,18 +1582,18 @@ class InfoBarChannelSelection:
 				if not config.usage.show_bouquetalways.value:
 					if "keep" not in config.usage.servicelist_cursor_behavior.value:
 						self.servicelist.moveUp()
-					self.session.execDialog(self.servicelist)
+					self.openServiceList()
 				else:
 					self.servicelist.showFavourites()
-					self.session.execDialog(self.servicelist)
+					self.openServiceList()
 			elif self.LongButtonPressed:
 				if not config.usage.show_bouquetalways.value:
 					if "keep" not in config.usage.servicelist_cursor_behavior.value:
 						self.servicelist2.moveUp()
-					self.session.execDialog(self.servicelist2)
+					self.openServiceListPiP()
 				else:
 					self.servicelist2.showFavourites()
-					self.session.execDialog(self.servicelist2)
+					self.openServiceListPiP()
 
 	def switchChannelDown(self):
 		if not self.secondInfoBarScreen or not self.secondInfoBarScreen.shown:
@@ -1602,20 +1602,22 @@ class InfoBarChannelSelection:
 				if not config.usage.show_bouquetalways.value:
 					if "keep" not in config.usage.servicelist_cursor_behavior.value:
 						self.servicelist.moveDown()
-					self.session.execDialog(self.servicelist)
+					self.openServiceList()
 				else:
 					self.servicelist.showFavourites()
-					self.session.execDialog(self.servicelist)
+					self.openServiceList()
 			elif self.LongButtonPressed:
 				if not config.usage.show_bouquetalways.value:
 					if "keep" not in config.usage.servicelist_cursor_behavior.value:
 						self.servicelist2.moveDown()
-					self.session.execDialog(self.servicelist2)
+					self.openServiceListPiP()
 				else:
 					self.servicelist2.showFavourites()
-					self.session.execDialog(self.servicelist2)
+					self.openServiceListPiP()
 
 	def openServiceList(self):
+		if config.skin.autorefresh.value:
+			self.servicelist.servicelist.reloadSkin()
 		self.session.execDialog(self.servicelist)
 
 	def openServiceListPiP(self):
@@ -1623,15 +1625,15 @@ class InfoBarChannelSelection:
 
 	def openSatellites(self):
 		self.servicelist.showSatellites()
-		self.session.execDialog(self.servicelist)
+		self.openServiceList()
 
 	def openBouquets(self):
 		self.servicelist.showFavourites()
-		self.session.execDialog(self.servicelist)
+		self.openServiceList()
 
 	def openSubservices(self):
 		self.servicelist.enterSubservices()
-		self.session.execDialog(self.servicelist)
+		self.openServiceList()
 
 	def zapUp(self):
 		if not self.LongButtonPressed or BoxInfo.getItem("NumVideoDecoders", 1) <= 1:
@@ -1754,10 +1756,10 @@ class InfoBarChannelSelection:
 			self["SeekActionsPTS"].setEnabled(True)
 
 	def volumeUp(self):  # Called from ButtonSetup
-		VolumeControl.instance.volUp()
+		VolumeControl.instance.keyVolumeUp()
 
 	def volumeDown(self):  # Called from ButtonSetup
-		VolumeControl.instance.volDown()
+		VolumeControl.instance.keyVolumeDown()
 
 
 class InfoBarMenu:

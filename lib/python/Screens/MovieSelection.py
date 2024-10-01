@@ -1626,7 +1626,7 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 							(_("Stop recording"), ("s", timer)),
 							(_("Stop recording and delete"), ("sd", timer))
 						]
-						self.session.openWithCallback(self.onTimerChoice, ChoiceBox, title="%s:\n%s" % (_("Recording in progress"), name), list=choices)
+						self.session.openWithCallback(self.onTimerChoice, ChoiceBox, title="%s\n%s" % (_("Recording in progress!"), name), list=choices)
 						return
 				if time() - st.st_mtime < 5 and not args:
 					are_you_sure = _("Do you really want to delete ?")

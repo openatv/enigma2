@@ -96,7 +96,7 @@ eRCShortDriver::~eRCShortDriver()
 
 void eRCInputEventDriver::keyPressed(int)
 {
-	struct input_event ev;
+	struct input_event ev = {};
 	while (1)
 	{
 		if (read(handle, &ev, sizeof(struct input_event))!=sizeof(struct input_event))

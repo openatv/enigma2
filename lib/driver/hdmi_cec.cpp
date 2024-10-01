@@ -176,7 +176,7 @@ eHdmiCEC *eHdmiCEC::getInstance()
 
 void eHdmiCEC::reportPhysicalAddress()
 {
-	struct cec_message txmessage;
+	struct cec_message txmessage = {};
 	memset(&txmessage, 0, sizeof(txmessage));
 	txmessage.address = 0x0f; /* broadcast */
 	txmessage.data[0] = 0x84; /* report address */
@@ -192,7 +192,7 @@ void eHdmiCEC::getAddressInfo()
 	if (hdmiFd >= 0)
 	{
 		bool hasdata = false;
-		struct addressinfo addressinfo;
+		struct addressinfo addressinfo = {};
 
 		if (linuxCEC)
 		{
@@ -330,7 +330,7 @@ void eHdmiCEC::hdmiEvent(int what)
 	{
 		if (linuxCEC)
 		{
-			struct cec_event cecevent;
+			struct cec_event cecevent = {};
 			::ioctl(hdmiFd, CEC_DQEVENT, &cecevent);
 			if (cecevent.event == CEC_EVENT_STATE_CHANGE)
 			{
@@ -343,10 +343,10 @@ void eHdmiCEC::hdmiEvent(int what)
 	if (what & eSocketNotifier::Read)
 	{
 		bool hasdata = false;
-		struct cec_rx_message rxmessage;
+		struct cec_rx_message rxmessage = {};
 		if (linuxCEC)
 		{
-			struct cec_msg msg;
+			struct cec_msg msg = {};
 			if (::ioctl(hdmiFd, CEC_RECEIVE, &msg) >= 0)
 			{
 				rxmessage.length = msg.len - 1;
@@ -565,7 +565,7 @@ void eHdmiCEC::sendMessage(struct cec_message &message)
 
 void eHdmiCEC::sendMessage(unsigned char address, unsigned char cmd, char *data, int length)
 {
-	struct cec_message message;
+	struct cec_message message = {};
 	message.address = address;
 	if (length > (int)(sizeof(message.data) - 1)) length = sizeof(message.data) - 1;
 	message.length = length + 1;

@@ -52,7 +52,7 @@ RESULT eNavigation::playService(const eServiceReference &service)
 	}
 	return res;
 }
-
+#if SIGCXX_MAJOR_VERSION == 2
 RESULT eNavigation::connectEvent(const sigc::slot1<void, int> &event, ePtr<eConnection> &connection)
 {
 	connection = new eConnection(this, m_event.connect(event));
@@ -64,6 +64,19 @@ RESULT eNavigation::connectRecordEvent(const sigc::slot2<void, ePtr<iRecordableS
 	connection = new eConnection(this, m_record_event.connect(event));
 	return 0;
 }
+#else
+RESULT eNavigation::connectEvent(const sigc::slot<void(int)> &event, ePtr<eConnection> &connection)
+{
+	connection = new eConnection(this, m_event.connect(event));
+	return 0;
+}
+
+RESULT eNavigation::connectRecordEvent(const sigc::slot<void(ePtr<iRecordableService>,int)> &event, ePtr<eConnection> &connection)
+{
+	connection = new eConnection(this, m_record_event.connect(event));
+	return 0;
+}
+#endif
 
 RESULT eNavigation::getCurrentService(ePtr<iPlayableService> &service)
 {

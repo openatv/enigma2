@@ -104,7 +104,7 @@ RESULT eDVBServiceStream::stop()
 
 int eDVBServiceStream::doPrepare()
 {
-		/* allocate a ts recorder if we don't already have one. */
+	/* allocate a ts recorder if we don't already have one. */
 	if (m_state == stateIdle)
 	{
 		m_stream_ecm = eConfigManager::getConfigBoolValue("config.streaming.stream_ecm");
