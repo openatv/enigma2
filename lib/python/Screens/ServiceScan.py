@@ -69,7 +69,7 @@ class ServiceScan(Screen):
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText()
 		self["actions"] = HelpableActionMap(self, ["CancelActions"], {
-			"cancel": (self.keyCancel, _("Cancel the scan and and exit the scanner")),
+			"cancel": (self.keyCancel, _("Cancel the scan and exit the scanner")),
 			"close": (self.keyCloseRecursive, _("Cancel the scan and exit all menus")),
 		}, prio=0, description=_("Service Scan Actions"))
 		self["doneActions"] = HelpableActionMap(self, ["CancelActions", "OkSaveActions", "NavigationActions"], {
