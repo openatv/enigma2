@@ -1078,16 +1078,16 @@ class EPGList(GUIComponent):
 				duration = ev[3]
 				xpos, ewidth = self.calcEntryPosAndWidthHelper(stime, duration, start, end, width)
 				clock_types = self.getPixmapForEntry(service, ev[0], stime, duration)
-				if self.eventNameAlign.lower() == 'left':
-					if self.eventNameWrap.lower() == 'yes':
-						alignnment = RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP
-					else:
-						alignnment = RT_HALIGN_LEFT | RT_VALIGN_CENTER
-				else:
-					if self.eventNameWrap.lower() == 'yes':
-						alignnment = RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP
-					else:
-						alignnment = RT_HALIGN_CENTER | RT_VALIGN_CENTER
+				#if self.eventNameAlign.lower() == 'left':
+				#	if self.eventNameWrap.lower() == 'yes':
+				#		alignnment = RT_HALIGN_LEFT | RT_VALIGN_CENTER | RT_WRAP
+				#	else:
+				#		alignnment = RT_HALIGN_LEFT | RT_VALIGN_CENTER
+				#else:
+				#	if self.eventNameWrap.lower() == 'yes':
+				#		alignnment = RT_HALIGN_CENTER | RT_VALIGN_CENTER | RT_WRAP
+				#	else:
+				#		alignnment = RT_HALIGN_CENTER | RT_VALIGN_CENTER
 
 				if stime <= now < (stime + duration):
 					if clock_types is not None and (clock_types == 2 or clock_types == 12):

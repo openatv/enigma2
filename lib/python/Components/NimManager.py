@@ -531,7 +531,7 @@ class SecConfigure:
 
 						sec.setRepeats({"none": 0, "one": 1, "two": 2, "three": 3}[currLnb.diseqcRepeats.value])
 
-					setCommandOrder = False
+					# setCommandOrder = False
 
 					# 0 "committed, toneburst",
 					# 1 "toneburst, committed",
@@ -2201,22 +2201,22 @@ def InitNimManager(nimmgr, update_slots=None):
 
 	def scpcSearchRangeChanged(configElement):
 		fe_id = configElement.fe_id
-		slot_id = configElement.slot_id
-		name = nimmgr.nim_slots[slot_id].description
+		# slot_id = configElement.slot_id
+		# name = nimmgr.nim_slots[slot_id].description
 		if exists("/proc/stb/frontend/%d/use_scpc_optimized_search_range" % fe_id):
 			with open("/proc/stb/frontend/%d/use_scpc_optimized_search_range" % fe_id, "w") as fd:
 				fd.write("1" if configElement.value else "0")
 
 	def toneAmplitudeChanged(configElement):
 		fe_id = configElement.fe_id
-		slot_id = configElement.slot_id
+		# slot_id = configElement.slot_id
 		if exists("/proc/stb/frontend/%d/tone_amplitude" % fe_id):
 			with open("/proc/stb/frontend/%d/tone_amplitude" % fe_id, "w") as fd:
 				fd.write(configElement.value)
 
 	def t2miRawModeChanged(configElement):
 		fe_id = configElement.fe_id
-		slot_id = configElement.slot_id
+		# slot_id = configElement.slot_id
 		if exists("/proc/stb/frontend/%d/t2mirawmode" % fe_id):
 			with open("/proc/stb/frontend/%d/t2mirawmode" % fe_id, "w") as fd:
 				fd.write(configElement.value)
