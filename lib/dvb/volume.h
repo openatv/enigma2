@@ -51,7 +51,7 @@ public:
 	int getVolume() { return leftVol; }
 	int getVolumeLeft() { return leftVol; }
 	int getVolumeRight() { return rightVol; }
-	bool isMuted() { return muted; }
+	bool isMuted(bool force=false) { return muted || (force && mute_zero); }
 };
 
 #endif //__volume_h

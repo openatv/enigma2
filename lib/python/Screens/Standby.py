@@ -153,7 +153,7 @@ class Standby2(Screen):
 		TVinStandby.setTVstate('standby')
 
 	def setMute(self):
-		if eDVBVolumecontrol.getInstance().isMuted():
+		if eDVBVolumecontrol.getInstance().isMuted(True):
 			self.wasMuted = 1
 			print("[Standby] mute already active")
 		else:
