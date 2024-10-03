@@ -622,7 +622,6 @@ class International:
 				else:
 					for package in packageText.split("\n\n"):
 						if package.startswith(f"Package: {self.LOCALE_TEMPLATE % ''}") and "meta" not in package:
-							list = []
 							for data in package.split("\n"):
 								if data.startswith("Package: "):
 									templateLength = len(f"Package: {self.LOCALE_TEMPLATE % ''}")
@@ -742,12 +741,12 @@ class International:
 				if category[self.CAT_PYTHON] is not None:
 					try:  # Try and set the Python locale to the current locale.
 						setlocale(category[self.CAT_PYTHON], locale=(locale, "UTF-8"))
-					except LocaleError as err:
+					except LocaleError:
 						try:  # If unavailable, try for the Python locale to the language base locale.
 							locales = self.packageToLocales(self.getLanguage(locale))
 							setlocale(category[self.CAT_PYTHON], locale=(locales[0], "UTF-8"))
 							replacement = locales[0]
-						except LocaleError as err:  # If unavailable fall back to the US English locale.
+						except LocaleError:  # If unavailable fall back to the US English locale.
 							setlocale(category[self.CAT_PYTHON], locale=("POSIX", ""))
 							replacement = "POSIX"
 						if localeError is None:
