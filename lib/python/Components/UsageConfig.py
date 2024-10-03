@@ -21,6 +21,10 @@ MODULE_NAME = __name__.split(".")[-1]
 DEFAULTKEYMAP = eEnv.resolve("${datadir}/enigma2/keymap.xml")
 
 
+originalAudioTracks = "orj dos ory org esl qaa qaf und mis mul ORY ORJ Audio_ORJ oth"
+visuallyImpairedCommentary = "NAR qad"
+
+
 def InitUsageConfig():
 	AvailRemotes = [splitext(x)[0] for x in glob("/usr/share/enigma2/hardware/*.xml")]
 	RemoteChoices = []
@@ -1827,7 +1831,7 @@ def InitUsageConfig():
 	languageChoiceList = [
 		("", _("None")),
 		("und", _("Undetermined")),
-		("orj dos ory org esl qaa qaf und mis mul ORY ORJ Audio_ORJ oth", _("Original")),
+		(originalAudioTracks, _("Original")),
 		("ara", _("Arabic")),
 		("eus baq", _("Basque")),
 		("bul", _("Bulgarian")),
@@ -1864,7 +1868,7 @@ def InitUsageConfig():
 		("tha", _("Thai")),
 		("tur Audio_TUR", _("Turkish")),
 		("ukr Ukr", _("Ukrainian")),
-		("NAR qad", _("Visual impaired commentary"))
+		(visuallyImpairedCommentary, _("Visual impaired commentary"))
 	]
 	epgChoiceList = languageChoiceList[:1] + languageChoiceList[2:]
 	subtitleChoiceList = languageChoiceList[:1] + languageChoiceList[2:]
