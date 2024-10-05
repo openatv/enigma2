@@ -129,7 +129,7 @@ void eDVBCICcSession::addProgram(uint16_t program_number, std::vector<uint16_t>&
 	eDebugNoNewLine("\n");
 
 	for (std::vector<uint16_t>::iterator it = pids.begin(); it != pids.end(); ++it)
-		descrambler_set_pid(m_descrambler_fd, m_slot->getSlotID(), 1, *it);
+		descrambler_set_pid(m_descrambler_fd, m_slot, 1, *it);
 }
 
 void eDVBCICcSession::removeProgram(uint16_t program_number, std::vector<uint16_t>& pids)
@@ -140,7 +140,10 @@ void eDVBCICcSession::removeProgram(uint16_t program_number, std::vector<uint16_
 	eDebugNoNewLine("\n");
 
 	for (std::vector<uint16_t>::iterator it = pids.begin(); it != pids.end(); ++it)
-		descrambler_set_pid(m_descrambler_fd, m_slot->getSlotID(), 0, *it);
+		descrambler_set_pid(m_descrambler_fd, m_slot, 0, *it);
+
+	if (m_slot->getDescramblingOptions() == 1 || m_slot->getDescramblingOptions() == 3)
+		descrambler_deinit(m_descrambler_fd);
 }
 
 void eDVBCICcSession::cc_open_req()
@@ -161,7 +164,7 @@ void eDVBCICcSession::cc_data_req(const uint8_t *data, unsigned int len)
 
 	if (len < 2)
 	{
-		eWarning("[CI%d RCC] too short data", m_slot->getSlotID());
+		eWarning("[CI%d RCC] cc_data_req too short data", m_slot->getSlotID());
 		return;
 	}
 
@@ -178,7 +181,7 @@ void eDVBCICcSession::cc_data_req(const uint8_t *data, unsigned int len)
 	unsigned int dest_len = sizeof(dest);
 	if (dest_len < 2)
 	{
-		eWarning("[CI%d RCC] not enough space", m_slot->getSlotID());
+		eWarning("[CI%d RCC] cc_data_req not enough space", m_slot->getSlotID());
 		return;
 	}
 
@@ -188,7 +191,7 @@ void eDVBCICcSession::cc_data_req(const uint8_t *data, unsigned int len)
 	answ_len = data_req_loop(&dest[2], dest_len - 2, &data[rp], len - rp, dt_nr);
 	if (answ_len <= 0)
 	{
-		eWarning("[CI%d RCC] can not get data", m_slot->getSlotID());
+		eWarning("[CI%d RCC] cc_data_req can not get data", m_slot->getSlotID());
 		return;
 	}
 
@@ -228,12 +231,12 @@ void eDVBCICcSession::cc_sac_data_req(const uint8_t *data, unsigned int len)
 
 	if (!sac_check_auth(data, len))
 	{
-		eWarning("[CI%d RCC] check_auth of message failed", m_slot->getSlotID());
+		eWarning("[CI%d RCC] cc_sac_data_req check_auth of message failed", m_slot->getSlotID());
 		return;
 	}
 
 	serial = UINT32(&data[rp], 4);
-	//eDebug("%u\n", serial);
+	eDebug("[CI%d RCC] cc_sac_data_req serial %u\n",  m_slot->getSlotID(), serial);
 
 	/* skip serial & header */
 	rp += 8;
@@ -246,7 +249,7 @@ void eDVBCICcSession::cc_sac_data_req(const uint8_t *data, unsigned int len)
 
 	if (len < rp + 1)
 	{
-		eWarning("[CI%d RCC] check_auth of message too short", m_slot->getSlotID());
+		eWarning("[CI%d RCC] cc_sac_data_req check_auth of message too short", m_slot->getSlotID());
 		return;
 	}
 
@@ -257,7 +260,7 @@ void eDVBCICcSession::cc_sac_data_req(const uint8_t *data, unsigned int len)
 
 	if (dest_len < 10)
 	{
-		eWarning("[CI%d RCC] not enough space", m_slot->getSlotID());
+		eWarning("[CI%d RCC] cc_sac_data_req not enough space", m_slot->getSlotID());
 		return;
 	}
 
@@ -270,7 +273,7 @@ void eDVBCICcSession::cc_sac_data_req(const uint8_t *data, unsigned int len)
 	answ_len = data_req_loop(&dest[pos], dest_len - 10, &data[rp], len - rp, dt_nr);
 	if (answ_len <= 0)
 	{
-		eWarning("[CI%d RCC] can not get data", m_slot->getSlotID());
+		eWarning("[CI%d RCC] cc_sac_data_req can not get data", m_slot->getSlotID());
 		return;
 	}
 	pos += answ_len;
@@ -306,7 +309,7 @@ void eDVBCICcSession::cc_sac_send(const uint8_t *tag, uint8_t *data, unsigned in
 {
 	if (pos < 8)
 	{
-		eWarning("[CI%d RCC] too short data", m_slot->getSlotID());
+		eWarning("[CI%d RCC] cc_sac_send too short data", m_slot->getSlotID());
 		return;
 	}
 
@@ -784,13 +787,13 @@ void eDVBCICcSession::set_descrambler_key()
 	if (m_descrambler_fd != -1 && m_current_ca_demux_id != m_slot->getCADemuxID())
 	{
 		descrambler_deinit(m_descrambler_fd);
-		m_descrambler_fd = descrambler_init(m_slot->getSlotID(), m_slot->getCADemuxID());
+		m_descrambler_fd = descrambler_init(m_slot, m_slot->getCADemuxID());
 		m_current_ca_demux_id = m_slot->getCADemuxID();
 	}
 
 	if (m_descrambler_fd == -1 && m_slot->getCADemuxID() > -1)
 	{
-		m_descrambler_fd = descrambler_init(m_slot->getSlotID(), m_slot->getCADemuxID());
+		m_descrambler_fd = descrambler_init(m_slot, m_slot->getCADemuxID());
 		m_current_ca_demux_id = m_slot->getCADemuxID();
 	}
 

@@ -1383,6 +1383,8 @@ eDVBCISlot::eDVBCISlot(eMainloop *context, int nr):
 	bool enabled = eSimpleConfig::getBool(configStr, true);
 	snprintf(configStr, 255, "config.ci.%d.disable_operator_profile", slotid);
 	m_operator_profiles_disabled = eSimpleConfig::getBool(configStr, false);
+	snprintf(configStr, 255, "config.ci.%d.alternative_ca_handling", slotid);
+	m_alt_ca_handling = eSimpleConfig::getInt(configStr, 0);
 	if (enabled) {
 		int bootDelay = eSimpleConfig::getInt("config.cimisc.bootDelay", 5);
 		if (bootDelay) {
