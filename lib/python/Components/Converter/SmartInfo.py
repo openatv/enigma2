@@ -68,10 +68,10 @@ class SmartInfo(Poll, Converter):
                                 polarisation_i = 0
                             fec_i = frontendData.get('fec_inner')
                             Ret_Text = Ret_Text + frequency + ' ' + self.ar_pol[polarisation_i] + ' ' + self.ar_fec[fec_i] + ' ' + symbolrate + ' '
-                        except:
+                        except Exception:
                             Ret_Text = Ret_Text + frequency + ' ' + symbolrate + ' '
 
-                        orb_pos = ''
+                        # orb_pos = ''
                     elif frontendData.get('tuner_type') == 'DVB-T':
                         frequency = str(frontendData.get('frequency') / 1000) + ' MHz'
                         Ret_Text = Ret_Text + _('Frequency: ') + frequency

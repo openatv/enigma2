@@ -331,6 +331,8 @@ void eDVBServicePMTHandler::AITready(int error)
 		int orgid = 0, appid = 0, profileVersion = 0;
 		m_ApplicationName = m_HBBTVUrl = "";
 
+		int oldHbbtv = m_HbbTVApplications.size();
+
 		eraseHbbTVApplications(&m_HbbTVApplications);
 
 //		memcpy(m_AITData, ptr->getBufferData(), 4096);
@@ -507,6 +509,10 @@ void eDVBServicePMTHandler::AITready(int error)
 		}
 		else
 		{
+			// reset HBBTV
+			if(oldHbbtv)
+				serviceEvent(eventHBBTVInfo);
+
 			if(eDVBServicePMTHandler::m_debug)
 				eDebug("[eDVBServicePMTHandler] No found anything.");
 		}

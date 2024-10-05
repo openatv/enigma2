@@ -1,13 +1,13 @@
+from time import localtime
 from Components.PerServiceDisplay import PerServiceDisplay, PerServiceBase
 from Components.GUIComponent import GUIComponent
 from enigma import eTimer, iPlayableService, ePositionGauge
-import time
 
 
 class ServicePosition(PerServiceDisplay):
-	TYPE_LENGTH = 0,
-	TYPE_POSITION = 1,
-	TYPE_REMAINING = 2,
+	TYPE_LENGTH = 0
+	TYPE_POSITION = 1
+	TYPE_REMAINING = 2
 	TYPE_RELATIVE = 3
 
 	def __init__(self, navcore, type):
@@ -38,11 +38,11 @@ class ServicePosition(PerServiceDisplay):
 		seek = service and service.seek()
 		if seek is not None:
 			if what == self.TYPE_LENGTH:
-				r = seek.getLength()
+				sVal = seek.getLength()
 			elif what == self.TYPE_POSITION:
-				r = seek.getPlayPosition()
-			if not r[0]:
-				return r[1] / 90000
+				sVal = seek.getPlayPosition()
+			if not sVal[0]:
+				return sVal[1] / 90000
 
 		return -1
 
@@ -55,20 +55,20 @@ class ServicePosition(PerServiceDisplay):
 		if seek is not None:
 			if self.type != self.TYPE_RELATIVE:
 				if self.type == self.TYPE_LENGTH:
-					l = self.get(self.TYPE_LENGTH)
+					lVal = self.get(self.TYPE_LENGTH)
 				elif self.type == self.TYPE_POSITION:
-					l = self.get(self.TYPE_POSITION)
+					lVal = self.get(self.TYPE_POSITION)
 				elif self.type == self.TYPE_REMAINING:
-					l = self.get(self.TYPE_LENGTH) - self.get(self.TYPE_POSITION)
+					lVal = self.get(self.TYPE_LENGTH) - self.get(self.TYPE_POSITION)
 
-				self.setText("%d:%02d" % (l / 60, l % 60))
+				self.setText("%d:%02d" % (lVal / 60, lVal % 60))
 			else:
-				l = self.get(self.TYPE_POSITION)
-				if l != -1:
-					l += self.relative_base
+				lVal = self.get(self.TYPE_POSITION)
+				if lVal != -1:
+					lVal += self.relative_base
 					try:
-						t = time.localtime(l)
-						timestr = "%2d:%02d:%02d" % (t.tm_hour, t.tm_min, t.tm_sec)
+						tVal = localtime(lVal)
+						timestr = "%2d:%02d:%02d" % (tVal.tm_hour, tVal.tm_min, tVal.tm_sec)
 					except ValueError:
 						timestr = ""
 				else:
@@ -111,12 +111,12 @@ class ServicePositionGauge(PerServiceBase, GUIComponent):
 		if seek is None:
 			return 0, 0
 
-		len = seek.getLength()
+		lVal = seek.getLength()
 		pos = seek.getPlayPosition()
 
-		if len[0] or pos[0]:
+		if lVal[0] or pos[0]:
 			return 0, 0
-		return len[1], pos[1]
+		return lVal[1], pos[1]
 
 	def poll(self):
 		data = self.get()

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-12 21:03+0000\n"
+"POT-Creation-Date: 2024-10-01 08:46+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -1048,6 +1048,12 @@ msgid "%d sec"
 msgstr "%d másodperc"
 
 #, python-format
+msgid "%d service found."
+msgid_plural "%d services found."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d times"
 msgstr "%d alkalommal"
 
@@ -1143,10 +1149,6 @@ msgstr "%m/%d "
 
 msgid "%m/%d/%Y"
 msgstr "%m/%d/%Y"
-
-#, fuzzy, python-format
-msgid "%s  (%s)"
-msgstr "%s (%s)"
 
 #, python-format
 msgid "%s %02d.%02d."
@@ -3648,6 +3650,12 @@ msgstr "Kijelölés visszavonása"
 #, fuzzy
 msgid "Cancel the image selection and exit all menus"
 msgstr "Kijelölés visszavonása"
+
+msgid "Cancel the scan and exit the scanner"
+msgstr ""
+
+msgid "Cancel the scan and exit all menus"
+msgstr ""
 
 msgid "Cancel the selection and exit"
 msgstr ""
@@ -7110,6 +7118,9 @@ msgstr ""
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add extra teletext details to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add international language and country load information detected during system boot to the debug log file."
 msgstr ""
 
@@ -7133,6 +7144,9 @@ msgstr ""
 
 msgid "Enable this setting if your aerial system needs power."
 msgstr "Engedélyezze ezt a beállítást, ha az antennarendszer áramellátást igényel"
+
+msgid "Enable timer"
+msgstr ""
 
 msgid "Enable to add some extra spacing to the Information screens. This can improve readability."
 msgstr ""
@@ -7565,6 +7579,10 @@ msgstr "A %s mappa létrehozása nem sikerült."
 
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error: Failed to run service scan!  (%s)"
 msgstr ""
 
 #, python-format
@@ -9653,6 +9671,9 @@ msgid "Include remote control data"
 msgstr "Távirányító típusának beállítása"
 
 msgid "Include screen load data"
+msgstr ""
+
+msgid "Include teletext details"
 msgstr ""
 
 msgid "Include timer data"
@@ -12985,6 +13006,9 @@ msgstr ""
 msgid "Partitions"
 msgstr "Partíciók"
 
+msgid "Pass"
+msgstr ""
+
 msgid "Pass-through"
 msgstr "Pass-through"
 
@@ -14385,7 +14409,7 @@ msgstr "A felvétel nem sikerült"
 msgid "Recording finished"
 msgstr "A felvétel befejeződött"
 
-msgid "Recording in progress"
+msgid "Recording in progress!"
 msgstr "Felvétel folyamatban"
 
 msgid "Recording location"
@@ -15466,17 +15490,33 @@ msgid_plural "Scanning - %d%% completed"
 msgstr[0] "Keresés folyamatban - %d%% kész"
 msgstr[1] "Keresés folyamatban - %d%% kész"
 
+msgid "Scanning can't be performed while recordings are in progress."
+msgstr ""
+
 #, python-format
 msgid "Scanning completed, %d channel found"
 msgid_plural "Scanning completed, %d channels found"
 msgstr[0] "A keresés befejeződött, és %d csatornát talált"
 msgstr[1] "A keresés befejeződött, és %d csatornát talált"
 
+#, python-format
+msgid "Scanning completed, %d service found."
+msgid_plural "Scanning completed, %d services found."
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Scanning failed!"
 msgstr "A keresés sikertelen!"
 
 msgid "Scanning..."
 msgstr "Keresés..."
+
+#. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
+#, python-format
+msgid "Scanning: %d%% complete"
+msgid_plural "Scanning: %d%% complete"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Scans default lamedbs sorted by satellite with a connected dish positioner"
 msgstr "Műholdanként rendezett Lamedb keresése csatlakoztatott pozícionerhez"
@@ -16253,6 +16293,9 @@ msgstr ""
 msgid "Select the currently highlighted service"
 msgstr ""
 
+msgid "Select the currently highlighted service and exit"
+msgstr ""
+
 msgid "Select the date from which this timer will become active."
 msgstr ""
 
@@ -16376,6 +16419,12 @@ msgid "Select the previous item in list or move the cursor left"
 msgstr ""
 
 msgid "Select the previous item in the list"
+msgstr ""
+
+msgid "Select the previous service and close the scanner"
+msgstr ""
+
+msgid "Select the previous service and close the scanner and exit all menus"
 msgstr ""
 
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
@@ -16713,6 +16762,9 @@ msgid "Service Number, Picon and Service Name"
 msgstr "Csatorna száma, Picon és Csatorna neve"
 
 msgid "Service Scan"
+msgstr ""
+
+msgid "Service Scan Actions"
 msgstr ""
 
 #, fuzzy
@@ -23179,10 +23231,10 @@ msgstr "egyenlő"
 msgid "equestrian"
 msgstr "lovaglás"
 
-msgid "error starting scanning"
+msgid "Problem starting scan"
 msgstr "hiba a keresés indításakor"
 
-msgid "error while scanning"
+msgid "Problem while scanning"
 msgstr "hiba a keresés közben"
 
 msgid "execute cuts (requires MovieCut plugin)"
@@ -23472,7 +23524,7 @@ msgstr "nincs kijelölt CAId"
 msgid "no CI slots found"
 msgstr "nem található CI foglalat"
 
-msgid "no channel list"
+msgid "No channel list"
 msgstr "nincs csatornalista"
 
 msgid "no module found"
@@ -23481,7 +23533,7 @@ msgstr "nincs behelyezve modul"
 msgid "no or unknown card inserted"
 msgstr "nincs vagy ismeretlen kártya behelyezve"
 
-msgid "no resource manager"
+msgid "No resource manager"
 msgstr "nincs erőforrás kezelő"
 
 msgid "no storage devices found"
@@ -23942,6 +23994,10 @@ msgstr "igen (állapotok megtartása)"
 
 msgid "®"
 msgstr "®"
+
+#, fuzzy, python-format
+#~ msgid "%s  (%s)"
+#~ msgstr "%s (%s)"
 
 #~ msgid "Audio volume step size"
 #~ msgstr "Audió hangerő léptetés mértéke"

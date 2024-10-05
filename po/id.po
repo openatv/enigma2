@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-12 21:03+0000\n"
+"POT-Creation-Date: 2024-10-01 08:46+0000\n"
 "PO-Revision-Date: 2024-01-13 10:34+0000\n"
 "Last-Translator: Reza Almanda <rezaalmanda27@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/id/>\n"
@@ -1149,6 +1149,12 @@ msgstr[1] ""
 msgid "%d sec"
 msgstr "%d detik"
 
+#, python-format
+msgid "%d service found."
+msgid_plural "%d services found."
+msgstr[0] ""
+msgstr[1] ""
+
 #, fuzzy, python-format
 msgid "%d times"
 msgstr "End time"
@@ -1249,10 +1255,6 @@ msgstr ""
 
 msgid "%m/%d/%Y"
 msgstr ""
-
-#, fuzzy, python-format
-msgid "%s  (%s)"
-msgstr "%s (%s)\n"
 
 #, python-format
 msgid "%s %02d.%02d."
@@ -3791,6 +3793,12 @@ msgstr "Channel Selection"
 #, fuzzy
 msgid "Cancel the image selection and exit all menus"
 msgstr "Channel Selection"
+
+msgid "Cancel the scan and exit the scanner"
+msgstr ""
+
+msgid "Cancel the scan and exit all menus"
+msgstr ""
 
 msgid "Cancel the selection and exit"
 msgstr ""
@@ -7291,6 +7299,9 @@ msgstr ""
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add extra teletext details to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add international language and country load information detected during system boot to the debug log file."
 msgstr ""
 
@@ -7313,6 +7324,9 @@ msgid "Enable this option to show all the available Information screens in the I
 msgstr ""
 
 msgid "Enable this setting if your aerial system needs power."
+msgstr ""
+
+msgid "Enable timer"
 msgstr ""
 
 msgid "Enable to add some extra spacing to the Information screens. This can improve readability."
@@ -7753,6 +7767,10 @@ msgstr "Error: Creating directory '%s' failed!"
 
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error: Failed to run service scan!  (%s)"
 msgstr ""
 
 #, python-format
@@ -9881,6 +9899,9 @@ msgid "Include remote control data"
 msgstr "Configure remote control type"
 
 msgid "Include screen load data"
+msgstr ""
+
+msgid "Include teletext details"
 msgstr ""
 
 msgid "Include timer data"
@@ -12315,7 +12336,7 @@ msgstr "No card inserted!"
 
 #, fuzzy
 msgid "No channel"
-msgstr "no channel list"
+msgstr "No channel list"
 
 msgid ""
 "No data on transponder!\n"
@@ -13254,6 +13275,9 @@ msgstr ""
 
 msgid "Partitions"
 msgstr "Partisi"
+
+msgid "Pass"
+msgstr ""
 
 msgid "Pass-through"
 msgstr "Pass-through"
@@ -14684,8 +14708,8 @@ msgstr "Recording type"
 msgid "Recording finished"
 msgstr "Recording Settings"
 
-msgid "Recording in progress"
-msgstr "Recording in progress"
+msgid "Recording in progress!"
+msgstr "Recording in progress!"
 
 msgid "Recording location"
 msgstr ""
@@ -15786,17 +15810,33 @@ msgid_plural "Scanning - %d%% completed"
 msgstr[0] "Pelacakan - %d%% completed"
 msgstr[1] "Pelacakan - %d%% completed"
 
+msgid "Scanning can't be performed while recordings are in progress."
+msgstr ""
+
 #, python-format
 msgid "Scanning completed, %d channel found"
 msgid_plural "Scanning completed, %d channels found"
 msgstr[0] "Pelacakan selesai, %d kanal ditemukan"
 msgstr[1] "Pelacakan selesai, %d kanal ditemukan"
 
+#, python-format
+msgid "Scanning completed, %d service found."
+msgid_plural "Scanning completed, %d services found."
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Scanning failed!"
 msgstr "Pelacakan gagal!"
 
 msgid "Scanning..."
 msgstr "Melacak..."
+
+#. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
+#, python-format
+msgid "Scanning: %d%% complete"
+msgid_plural "Scanning: %d%% complete"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Scans default lamedbs sorted by satellite with a connected dish positioner"
 msgstr "Scans default lamedbs sorted by satellite with a connected dish positioner"
@@ -16572,6 +16612,9 @@ msgstr ""
 msgid "Select the currently highlighted service"
 msgstr ""
 
+msgid "Select the currently highlighted service and exit"
+msgstr ""
+
 msgid "Select the date from which this timer will become active."
 msgstr ""
 
@@ -16695,6 +16738,12 @@ msgid "Select the previous item in list or move the cursor left"
 msgstr ""
 
 msgid "Select the previous item in the list"
+msgstr ""
+
+msgid "Select the previous service and close the scanner"
+msgstr ""
+
+msgid "Select the previous service and close the scanner and exit all menus"
 msgstr ""
 
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
@@ -17037,6 +17086,9 @@ msgid "Service Number, Picon and Service Name"
 msgstr "Picon and Service Name"
 
 msgid "Service Scan"
+msgstr ""
+
+msgid "Service Scan Actions"
 msgstr ""
 
 #, fuzzy
@@ -23601,11 +23653,11 @@ msgstr "equal to"
 msgid "equestrian"
 msgstr "equestrian"
 
-msgid "error starting scanning"
-msgstr "error starting scanning"
+msgid "Problem starting scan"
+msgstr "Problem starting scan"
 
-msgid "error while scanning"
-msgstr "error while scanning"
+msgid "Problem while scanning"
+msgstr "Problem while scanning"
 
 msgid "execute cuts (requires MovieCut plugin)"
 msgstr "execute cuts (requires MovieCut plugin)"
@@ -23899,8 +23951,8 @@ msgstr "no CAId selected"
 msgid "no CI slots found"
 msgstr "no CI slots found"
 
-msgid "no channel list"
-msgstr "no channel list"
+msgid "No channel list"
+msgstr "No channel list"
 
 msgid "no module found"
 msgstr "no module found"
@@ -23908,8 +23960,8 @@ msgstr "no module found"
 msgid "no or unknown card inserted"
 msgstr "no or unknown card inserted"
 
-msgid "no resource manager"
-msgstr "no resource manager"
+msgid "No resource manager"
+msgstr "No resource manager"
 
 msgid "no storage devices found"
 msgstr "no storage devices found"
@@ -24381,6 +24433,10 @@ msgstr "yes (keep feeds)"
 msgid "®"
 msgstr ""
 
+#, fuzzy, python-format
+#~ msgid "%s  (%s)"
+#~ msgstr "%s (%s)\n"
+
 #~ msgid "Audio volume step size"
 #~ msgstr "Audio volume step size"
 
@@ -24548,7 +24604,7 @@ msgstr ""
 
 #, fuzzy
 #~ msgid "To restore the image:"
-#~ msgstr "no resource manager"
+#~ msgstr "No resource manager"
 
 #, fuzzy
 #~ msgid "Use OnlineFlash in SoftwareManager"

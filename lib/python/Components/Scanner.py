@@ -1,10 +1,11 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+from mimetypes import guess_type, add_type
+from os import walk
+from os.path import join
 from Plugins.Plugin import PluginDescriptor
 from Components.PluginComponent import plugins
 
-import os
-from mimetypes import guess_type, add_type
 
 add_type("audio/dts", ".dts")
 add_type("audio/mpeg", ".mp3")
@@ -158,11 +159,11 @@ def execute(option):
 def scanDevice(mountpoint):
 	scanner = []
 
-	for p in plugins.getPlugins(PluginDescriptor.WHERE_FILESCAN):
-		l = p()
-		if not isinstance(l, list):
-			l = [l]
-		scanner += l
+	for pluginObj in plugins.getPlugins(PluginDescriptor.WHERE_FILESCAN):
+		func = pluginObj()
+		if not isinstance(func, list):
+			func = [func]
+		scanner += func
 
 	print("[Scanner] ", scanner)
 
@@ -189,11 +190,11 @@ def scanDevice(mountpoint):
 
 	# now scan the paths
 	for p in paths_to_scan:
-		path = os.path.join(mountpoint, p.path)
+		path = join(mountpoint, p.path)
 
-		for root, dirs, files in os.walk(path):
+		for root, dirs, files in walk(path):
 			for f in files:
-				path = os.path.join(root, f)
+				path = join(root, f)
 				if (is_cdrom and f.endswith(".wav") and f.startswith("track")) or f == "cdplaylist.cdpls":
 					sfile = ScanFile(path, "audio/x-cda")
 				else:
@@ -215,20 +216,20 @@ def openList(session, files):
 
 	scanner = []
 
-	for p in plugins.getPlugins(PluginDescriptor.WHERE_FILESCAN):
-		l = p()
-		if not isinstance(l, list):
-			scanner.append(l)
+	for pluginObj in plugins.getPlugins(PluginDescriptor.WHERE_FILESCAN):
+		func = pluginObj()
+		if not isinstance(func, list):
+			scanner.append(func)
 		else:
-			scanner += l
+			scanner += func
 
 	print("[Scanner] ", scanner)
 
 	res = {}
 
 	for file in files:
-		for s in scanner:
-			s.handleFile(res, file)
+		for item in scanner:
+			item.handleFile(res, file)
 
 	choices = [(r.description, r, res[r], session) for r in res]
 	Len = len(choices)

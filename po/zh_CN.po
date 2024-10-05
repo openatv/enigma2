@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-12 21:03+0000\n"
+"POT-Creation-Date: 2024-10-01 08:46+0000\n"
 "PO-Revision-Date: 2023-08-11 04:46+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -1021,6 +1021,12 @@ msgid "%d sec"
 msgstr "%d 秒"
 
 #, python-format
+msgid "%d service found."
+msgid_plural "%d services found."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d times"
 msgstr "%d 次"
 
@@ -1111,10 +1117,6 @@ msgstr "%m/%d "
 
 msgid "%m/%d/%Y"
 msgstr "%m/%d/%Y"
-
-#, python-format
-msgid "%s  (%s)"
-msgstr "%s  (%s)"
 
 #, python-format
 msgid "%s %02d.%02d."
@@ -3612,6 +3614,12 @@ msgstr "取消固件选择并退出"
 
 msgid "Cancel the image selection and exit all menus"
 msgstr "取消镜像选择并退出所有菜单"
+
+msgid "Cancel the scan and exit the scanner"
+msgstr ""
+
+msgid "Cancel the scan and exit all menus"
+msgstr ""
 
 msgid "Cancel the selection and exit"
 msgstr ""
@@ -7056,6 +7064,9 @@ msgstr ""
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add extra teletext details to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add international language and country load information detected during system boot to the debug log file."
 msgstr ""
 
@@ -7079,6 +7090,9 @@ msgstr ""
 
 msgid "Enable this setting if your aerial system needs power."
 msgstr "如果天线系统需要电源,请启用此设置"
+
+msgid "Enable timer"
+msgstr ""
 
 msgid "Enable to add some extra spacing to the Information screens. This can improve readability."
 msgstr ""
@@ -7510,6 +7524,10 @@ msgstr "创建目录%s 失败."
 
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error: Failed to run service scan!  (%s)"
 msgstr ""
 
 #, python-format
@@ -9581,6 +9599,9 @@ msgstr "包含遥控器操作信息"
 
 msgid "Include screen load data"
 msgstr "包含界面加载信息"
+
+msgid "Include teletext details"
+msgstr ""
 
 msgid "Include timer data"
 msgstr ""
@@ -12845,6 +12866,9 @@ msgstr "分区"
 msgid "Partitions"
 msgstr "分区"
 
+msgid "Pass"
+msgstr ""
+
 msgid "Pass-through"
 msgstr "通行证"
 
@@ -14239,7 +14263,7 @@ msgstr "录制失败"
 msgid "Recording finished"
 msgstr "录制完成"
 
-msgid "Recording in progress"
+msgid "Recording in progress!"
 msgstr "录制进行中"
 
 msgid "Recording location"
@@ -15315,17 +15339,33 @@ msgid_plural "Scanning - %d%% completed"
 msgstr[0] "正在扫描 - 已完成 %d%%"
 msgstr[1] "正在扫描 - 已完成 %d%%"
 
+msgid "Scanning can't be performed while recordings are in progress."
+msgstr ""
+
 #, python-format
 msgid "Scanning completed, %d channel found"
 msgid_plural "Scanning completed, %d channels found"
 msgstr[0] "扫描完成, 共找到 %d 个频道"
 msgstr[1] "扫描完成, 共找到 %d 个频道"
 
+#, python-format
+msgid "Scanning completed, %d service found."
+msgid_plural "Scanning completed, %d services found."
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Scanning failed!"
 msgstr "扫描失败！"
 
 msgid "Scanning..."
 msgstr "正在扫描..."
+
+#. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
+#, python-format
+msgid "Scanning: %d%% complete"
+msgid_plural "Scanning: %d%% complete"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Scans default lamedbs sorted by satellite with a connected dish positioner"
 msgstr "使用极轴天线顺序扫描所有卫星的预制频点"
@@ -16097,6 +16137,9 @@ msgstr "为用户界面选择当前突出显示的区域设置/语言"
 msgid "Select the currently highlighted service"
 msgstr ""
 
+msgid "Select the currently highlighted service and exit"
+msgstr ""
+
 msgid "Select the date from which this timer will become active."
 msgstr ""
 
@@ -16219,6 +16262,12 @@ msgid "Select the previous item in list or move the cursor left"
 msgstr ""
 
 msgid "Select the previous item in the list"
+msgstr ""
+
+msgid "Select the previous service and close the scanner"
+msgstr ""
+
+msgid "Select the previous service and close the scanner and exit all menus"
 msgstr ""
 
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
@@ -16552,6 +16601,9 @@ msgid "Service Number, Picon and Service Name"
 msgstr "频道编号,picon和频道名称"
 
 msgid "Service Scan"
+msgstr ""
+
+msgid "Service Scan Actions"
 msgstr ""
 
 msgid "Service Selection Actions"
@@ -22955,10 +23007,10 @@ msgstr "等于"
 msgid "equestrian"
 msgstr "马术"
 
-msgid "error starting scanning"
+msgid "Problem starting scan"
 msgstr "启动扫描时出错"
 
-msgid "error while scanning"
+msgid "Problem while scanning"
 msgstr "扫描时出错"
 
 msgid "execute cuts (requires MovieCut plugin)"
@@ -23246,7 +23298,7 @@ msgstr "未选择CAID"
 msgid "no CI slots found"
 msgstr "没有找到CI插槽"
 
-msgid "no channel list"
+msgid "No channel list"
 msgstr "无频道列表"
 
 msgid "no module found"
@@ -23255,7 +23307,7 @@ msgstr "未找到模块"
 msgid "no or unknown card inserted"
 msgstr "未插入或未知卡"
 
-msgid "no resource manager"
+msgid "No resource manager"
 msgstr "无资源管理器"
 
 msgid "no storage devices found"
@@ -23715,6 +23767,10 @@ msgstr "是(保持订阅源)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s  (%s)"
+#~ msgstr "%s  (%s)"
 
 #~ msgid "Audio volume step size"
 #~ msgstr "音频音量大小"

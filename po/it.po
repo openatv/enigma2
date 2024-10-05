@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-12 21:03+0000\n"
-"PO-Revision-Date: 2024-09-13 06:09+0000\n"
+"POT-Creation-Date: 2024-10-01 08:46+0000\n"
+"PO-Revision-Date: 2024-10-02 07:35+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -1021,6 +1021,12 @@ msgid "%d sec"
 msgstr "%d sec"
 
 #, python-format
+msgid "%d service found."
+msgid_plural "%d services found."
+msgstr[0] "%d servizio trovato."
+msgstr[1] "%d servizi trovati."
+
+#, python-format
 msgid "%d times"
 msgstr "%d volte"
 
@@ -1111,10 +1117,6 @@ msgstr "%m/%d "
 
 msgid "%m/%d/%Y"
 msgstr "%m/%d/%Y"
-
-#, python-format
-msgid "%s  (%s)"
-msgstr "%s (%s)"
 
 #, python-format
 msgid "%s %02d.%02d."
@@ -3607,6 +3609,12 @@ msgstr "Annulla selezione dell'immagine ed esci"
 
 msgid "Cancel the image selection and exit all menus"
 msgstr "Annulla selezione dell'immagine ed esci da tutti i menu"
+
+msgid "Cancel the scan and exit the scanner"
+msgstr "Annulla scansione e esci dallo scanner"
+
+msgid "Cancel the scan and exit all menus"
+msgstr "Annulla scansione ed esci da tutti i menu"
 
 msgid "Cancel the selection and exit"
 msgstr "Annulla la selezione ed esci"
@@ -7065,6 +7073,9 @@ msgstr "Abilita questa opzione per aggiungere ulteriori dati di sincronizzazione
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr "Abilita questa opzione per aggiungere dati EPG extra al file di registro di debug."
 
+msgid "Enable this option to add extra teletext details to the debug log file."
+msgstr "Abilita questa opzione per aggiungere ulteriori dettagli del teletext al file di registro di debug."
+
 msgid "Enable this option to add international language and country load information detected during system boot to the debug log file."
 msgstr "Abilita questa opzione per aggiungere al file di registro di debug le informazioni sul caricamento della lingua internazionale e del paese rilevate durante l'avvio del sistema."
 
@@ -7088,6 +7099,9 @@ msgstr "Abilita questa opzione per mostrare tutte le schermate Informazioni disp
 
 msgid "Enable this setting if your aerial system needs power."
 msgstr "Abilita questa impostazione se l'antenna necessita di alimentazione."
+
+msgid "Enable timer"
+msgstr "Abilita timer"
 
 msgid "Enable to add some extra spacing to the Information screens. This can improve readability."
 msgstr "Abilita per aggiungere spazio extra alle schermate Informazioni. Questo può migliorare la leggibilità."
@@ -7522,6 +7536,10 @@ msgstr "Errore: creazione della cartella '%s' non riuscita!"
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
 msgstr "Errore: creazione della cartella di destinazione picon %s non riuscita"
+
+#, python-format
+msgid "Error: Failed to run service scan!  (%s)"
+msgstr "Errore: impossibile eseguire la scansione del servizio! (%s)"
 
 #, python-format
 msgid "Error: File '%s' cannot be opened!  (%s)"
@@ -9592,6 +9610,9 @@ msgstr "Includi dati del telecomando"
 
 msgid "Include screen load data"
 msgstr "Includi dati di caricamento dello schermo"
+
+msgid "Include teletext details"
+msgstr "Includi dettagli del televideo"
 
 msgid "Include timer data"
 msgstr "Includi dati timer"
@@ -12859,6 +12880,9 @@ msgstr "Partizione"
 msgid "Partitions"
 msgstr "Partizioni"
 
+msgid "Pass"
+msgstr "Passaggio"
+
 msgid "Pass-through"
 msgstr "Passaggio senza conversione"
 
@@ -14256,8 +14280,8 @@ msgstr "Registrazione non riuscita"
 msgid "Recording finished"
 msgstr "Registrazione terminata"
 
-msgid "Recording in progress"
-msgstr "Registrazione in corso"
+msgid "Recording in progress!"
+msgstr "Registrazione in corso!"
 
 msgid "Recording location"
 msgstr "Posizione registrazione"
@@ -15332,17 +15356,33 @@ msgid_plural "Scanning - %d%% completed"
 msgstr[0] "Scansione - %d%% completato"
 msgstr[1] "Scansioni - %d%% completate"
 
+msgid "Scanning can't be performed while recordings are in progress."
+msgstr "La scansione non può essere eseguita mentre sono in corso delle registrazioni."
+
 #, python-format
 msgid "Scanning completed, %d channel found"
 msgid_plural "Scanning completed, %d channels found"
 msgstr[0] "Scansione completata,%d canale trovato"
 msgstr[1] "Scansioni completate,%d canali trovati"
 
+#, python-format
+msgid "Scanning completed, %d service found."
+msgid_plural "Scanning completed, %d services found."
+msgstr[0] "Scansione completata, trovato %d servizio."
+msgstr[1] "Scansione completata, trovati %d servizi."
+
 msgid "Scanning failed!"
 msgstr "Ricerca fallita!"
 
 msgid "Scanning..."
 msgstr "Ricerca in corso..."
+
+#. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
+#, python-format
+msgid "Scanning: %d%% complete"
+msgid_plural "Scanning: %d%% complete"
+msgstr[0] "Scansione: %d%% completata"
+msgstr[1] "Scansione: %d%% completati"
 
 msgid "Scans default lamedbs sorted by satellite with a connected dish positioner"
 msgstr "Scansiona lamedb predefinite ordinate per satellite con un posizionatore di parabola collegato"
@@ -16114,6 +16154,9 @@ msgstr "Selezionare impostazioni internazionali e lingua attualmente evidenziate
 msgid "Select the currently highlighted service"
 msgstr "Seleziona servizio attualmente evidenziato"
 
+msgid "Select the currently highlighted service and exit"
+msgstr "Seleziona servizio attualmente evidenziato ed esci"
+
 msgid "Select the date from which this timer will become active."
 msgstr "Seleziona data a partire dalla quale questo timer diventerà attivo."
 
@@ -16240,6 +16283,12 @@ msgstr "Seleziona elemento precedente nell'elenco o sposta cursore a sinistra"
 
 msgid "Select the previous item in the list"
 msgstr "Seleziona elemento precedente nell'elenco"
+
+msgid "Select the previous service and close the scanner"
+msgstr "Seleziona servizio precedente e chiudi lo scanner"
+
+msgid "Select the previous service and close the scanner and exit all menus"
+msgstr "Seleziona servizio precedente, chiudi lo scanner ed esci da tutti i menu"
 
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "Seleziona protocollo usato dal dispositivo SCR. Le scelte sono 'SCR Unicable' (Unicable) o 'SCR JESS' (JESS, noto anche come Unicable II)."
@@ -16579,6 +16628,9 @@ msgstr "Numero del servizio, Picon e Nome del servizio"
 
 msgid "Service Scan"
 msgstr "Scansione servizio"
+
+msgid "Service Scan Actions"
+msgstr "Azioni di scansione servizii"
 
 msgid "Service Selection Actions"
 msgstr "Azioni di selezione del servizio"
@@ -23063,10 +23115,10 @@ msgstr "uguale a"
 msgid "equestrian"
 msgstr "ippica"
 
-msgid "error starting scanning"
+msgid "Problem starting scan"
 msgstr "errore nell'avvio della scansione"
 
-msgid "error while scanning"
+msgid "Problem while scanning"
 msgstr "errore durante la scansione"
 
 msgid "execute cuts (requires MovieCut plugin)"
@@ -23354,7 +23406,7 @@ msgstr "nessun CAId selezionato"
 msgid "no CI slots found"
 msgstr "nessun slot CI trovato"
 
-msgid "no channel list"
+msgid "No channel list"
 msgstr "no elenco canali"
 
 msgid "no module found"
@@ -23363,7 +23415,7 @@ msgstr "nessun modulo trovato"
 msgid "no or unknown card inserted"
 msgstr "scheda non inserita o sconosciuta"
 
-msgid "no resource manager"
+msgid "No resource manager"
 msgstr "nessun gestore di risorse"
 
 msgid "no storage devices found"
@@ -23823,6 +23875,10 @@ msgstr "sì (mantieni feed)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s  (%s)"
+#~ msgstr "%s (%s)"
 
 #~ msgid "Kurdish (Sorani)"
 #~ msgstr "Curdo (Sorani)"

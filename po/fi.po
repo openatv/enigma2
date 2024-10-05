@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-12 21:03+0000\n"
-"PO-Revision-Date: 2024-09-13 06:09+0000\n"
+"POT-Creation-Date: 2024-10-01 08:46+0000\n"
+"PO-Revision-Date: 2024-09-30 23:21+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -1018,6 +1018,12 @@ msgid "%d sec"
 msgstr "%d sekunti"
 
 #, python-format
+msgid "%d service found."
+msgid_plural "%d services found."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d times"
 msgstr "%d ajat"
 
@@ -1108,10 +1114,6 @@ msgstr "%m/%d "
 
 msgid "%m/%d/%Y"
 msgstr "%m/%d/%Y"
-
-#, python-format
-msgid "%s  (%s)"
-msgstr "%s  (%s)"
 
 #, python-format
 msgid "%s %02d.%02d."
@@ -3618,6 +3620,12 @@ msgstr "Peruuta image valinta ja poistu"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Peruuta image valinta ja poistu kaikista valikoista"
 
+msgid "Cancel the scan and exit the scanner"
+msgstr ""
+
+msgid "Cancel the scan and exit all menus"
+msgstr ""
+
 msgid "Cancel the selection and exit"
 msgstr "Peruuta valinta ja poistu"
 
@@ -4783,7 +4791,7 @@ msgid "Configures which video output connector will be used."
 msgstr "Määrittää mitä video ulostuloa käytetään."
 
 msgid "Configuring"
-msgstr "Muokataan"
+msgstr "Päivitetään"
 
 msgid "Configuring Service"
 msgstr "Määritä palvelu"
@@ -7075,6 +7083,9 @@ msgstr "Tämän vaihtoehdon avulla voit lisätä ylimääräisiä DVB aikasynkro
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr "Ota tämä vaihtoehto käyttöön, jos haluat lisätä ylimääräisiä EPG tietoja vianmäärityslokitiedostoon."
 
+msgid "Enable this option to add extra teletext details to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add international language and country load information detected during system boot to the debug log file."
 msgstr "Ota tämä asetus käyttöön, jos haluat lisätä järjestelmän käynnistyksen aikana havaitut kansainväliset kieli- ja maa tiedot virheen korjauksen lokitiedostoon."
 
@@ -7098,6 +7109,9 @@ msgstr "Aktivoi tämä vaihtoehto,Näyttäeksi kaikki käytettävissä olevat ti
 
 msgid "Enable this setting if your aerial system needs power."
 msgstr "Ota tämä asetus käyttöön, jos antennijärjestelmäsi tarvitsee virtaa."
+
+msgid "Enable timer"
+msgstr ""
 
 msgid "Enable to add some extra spacing to the Information screens. This can improve readability."
 msgstr "Ota käyttöön, jos haluat lisätä ylimääräisiä välilyöntejä Tieto näyttöihin. Tämä voi parantaa luettavuutta."
@@ -7532,6 +7546,10 @@ msgstr "Hakemiston %s luominen epäonnistui!"
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
 msgstr "Virhe: Kanavalogojen kansion luominen epäonnistui: (%s)"
+
+#, python-format
+msgid "Error: Failed to run service scan!  (%s)"
+msgstr ""
 
 #, python-format
 msgid "Error: File '%s' cannot be opened!  (%s)"
@@ -9607,6 +9625,9 @@ msgstr "Sisällytä kaukosäädin tiedot"
 
 msgid "Include screen load data"
 msgstr "Sisällytä näytön kuormitustiedot"
+
+msgid "Include teletext details"
+msgstr ""
 
 msgid "Include timer data"
 msgstr "Sisällytä ajastimen tiedot"
@@ -12882,6 +12903,9 @@ msgstr "Osio"
 msgid "Partitions"
 msgstr "Levyosiot"
 
+msgid "Pass"
+msgstr ""
+
 msgid "Pass-through"
 msgstr "Läpilooppi"
 
@@ -13541,7 +13565,7 @@ msgid "PowerTimer Actions"
 msgstr "Virta-ajastus Toiminnot"
 
 msgid "PowerTimer Overview"
-msgstr "Virta ajastukset Yhteenveto"
+msgstr "Virran katkaisu ajastukset"
 
 msgid "PowerTimer Settings"
 msgstr "Virta-ajastus Asetukset"
@@ -14244,19 +14268,19 @@ msgid "Record write error (no space on disk?)"
 msgstr "Tallennus kirjoitusvirhe (levy täynnä?)"
 
 msgid "RecordTimer"
-msgstr "Tallennusajastin"
+msgstr "Ajastettu Ohjelmat"
 
 msgid "RecordTimer Actions"
 msgstr "Tallennusajastimen Toiminnot"
 
 msgid "RecordTimer Overview"
-msgstr "Tallennusajastin"
+msgstr "Ajastettu ohjelmat näkymä"
 
 msgid "RecordTimer Settings"
-msgstr "Tallennusajastin Asetukset"
+msgstr "Tallennus Asetukset"
 
 msgid "RecordTimers"
-msgstr "Tallennus Ajastukset"
+msgstr "Ajastettu Ohjelmat"
 
 msgid "Recordable media toolbox"
 msgstr "Tallennettavan median työkalupakki"
@@ -14279,7 +14303,7 @@ msgstr "Tallennus epäonnistui"
 msgid "Recording finished"
 msgstr "Tallennus päättyi"
 
-msgid "Recording in progress"
+msgid "Recording in progress!"
 msgstr "Tallennus käynnissä"
 
 msgid "Recording location"
@@ -15355,17 +15379,33 @@ msgid_plural "Scanning - %d%% completed"
 msgstr[0] "Haetaan - %d%% valmiina"
 msgstr[1] "Haetaan - %d%% valmiina"
 
+msgid "Scanning can't be performed while recordings are in progress."
+msgstr ""
+
 #, python-format
 msgid "Scanning completed, %d channel found"
 msgid_plural "Scanning completed, %d channels found"
 msgstr[0] "Haku valmis, löytyi %d kanava"
 msgstr[1] "Haku valmis, löytyi %d kanavaa"
 
+#, python-format
+msgid "Scanning completed, %d service found."
+msgid_plural "Scanning completed, %d services found."
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Scanning failed!"
 msgstr "Haku epäonnistui!"
 
 msgid "Scanning..."
 msgstr "Haetaan..."
+
+#. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
+#, python-format
+msgid "Scanning: %d%% complete"
+msgid_plural "Scanning: %d%% complete"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Scans default lamedbs sorted by satellite with a connected dish positioner"
 msgstr "Hakee oletuskanavalistan satelliittijärjestyksessä käyttäen kytkettyä kääntömoottoria"
@@ -16149,6 +16189,9 @@ msgstr "Valitse kieli, jota käyttöliittymän tulisi käyttää oletuksena"
 msgid "Select the currently highlighted service"
 msgstr "Valitse parhaillaan korostettu kanava"
 
+msgid "Select the currently highlighted service and exit"
+msgstr ""
+
 msgid "Select the date from which this timer will become active."
 msgstr "Valitse päivämäärä, josta alkaen ajastus on aktiivinen."
 
@@ -16275,6 +16318,12 @@ msgstr "Valitse luettelon edellinen kohde tai siirrä kursori vasemmalle"
 
 msgid "Select the previous item in the list"
 msgstr "Valitse listan edellinen kohde"
+
+msgid "Select the previous service and close the scanner"
+msgstr ""
+
+msgid "Select the previous service and close the scanner and exit all menus"
+msgstr ""
 
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "Valitse SCR:n käyttämä protokolla. Vaihtoehdot ovat 'SCR Unicable' (Unicable) tai 'SCR JESS' (JESS, tunnetaan myös Unicable II:na)."
@@ -16614,6 +16663,9 @@ msgstr "Kanavan Numero. Logo ja Palvelu Nimi"
 
 msgid "Service Scan"
 msgstr "Kanavahaku"
+
+msgid "Service Scan Actions"
+msgstr ""
 
 msgid "Service Selection Actions"
 msgstr "Palvelu valinta toiminnot"
@@ -17196,7 +17248,7 @@ msgid "Show Audioselection"
 msgstr "Äänivalinta"
 
 msgid "Show AutoTimer List"
-msgstr "Näytä automaattiajastusluettelo"
+msgstr "Näytä automaattiajastus luettelo"
 
 msgid "Show Box Portal"
 msgstr "Näytä Tallennukset"
@@ -17827,7 +17879,7 @@ msgid "Show the last opkg command's output"
 msgstr "Näytä viimeinen opkg komento"
 
 msgid "Show the list of AutoTimers."
-msgstr "Näytä automaattiajastusluettelo."
+msgstr "Näytä automaattiajastus luettelo."
 
 msgid "Show the list of timers."
 msgstr "Näytä ajastusluettelo."
@@ -21931,7 +21983,7 @@ msgid "Warning: There are %d update packages!"
 msgstr "Varoitus: Päivityspaketteja on %d!"
 
 msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
-msgstr "Löytää vaub verkkoaseman varmuuskopion tallentamiseksi tämä tarkoittaa, että päivityksen jälkeen automaattinen palautus ei toimi. Vaihtoehtoisesti voit asentaa verkkoaseman päivityksen jälkeen ja palauttaa valmistajan automaattisen palautuksen."
+msgstr "Varoitus: Varmuuskopion tallentamiseen on vain verkkoasema. Tämä tarkoittaa, että automaattinen palautus ei toimi päivityksen jälkeen. Vaihtoehtoisesti asenna verkkoasema ensin ja suorita sen jälkeen automaattinen palauttaminen."
 
 msgid "Warning: This is the last crash before an automatic restart is performed.\n"
 msgstr "Varoitus: Tämä on viimeinen kaatuminen ennen automaattisen uudelleenkäynnistyksen tekemistä.\n"
@@ -23113,10 +23165,10 @@ msgstr "Sama kuin"
 msgid "equestrian"
 msgstr "ratsastus"
 
-msgid "error starting scanning"
+msgid "Problem starting scan"
 msgstr "virhe käynnistettäessä skannausta"
 
-msgid "error while scanning"
+msgid "Problem while scanning"
 msgstr "virhe skannauksen aikana"
 
 msgid "execute cuts (requires MovieCut plugin)"
@@ -23404,7 +23456,7 @@ msgstr "ei CAId valittu"
 msgid "no CI slots found"
 msgstr "ei löytynyt CI portteja"
 
-msgid "no channel list"
+msgid "No channel list"
 msgstr "ei kanavalistaa"
 
 msgid "no module found"
@@ -23413,7 +23465,7 @@ msgstr "(modulia ei löytynyt)"
 msgid "no or unknown card inserted"
 msgstr "ei korttia tai tuntematon kortti"
 
-msgid "no resource manager"
+msgid "No resource manager"
 msgstr "Ei tiedostovalikkoa"
 
 msgid "no storage devices found"
@@ -23873,6 +23925,10 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s  (%s)"
+#~ msgstr "%s  (%s)"
 
 #~ msgid "Kurdish (Sorani)"
 #~ msgstr "Kurdi (Sorani)"

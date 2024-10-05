@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-12 21:03+0000\n"
+"POT-Creation-Date: 2024-10-01 08:46+0000\n"
 "PO-Revision-Date: 2024-08-04 16:47+0000\n"
 "Last-Translator: Tmp341 <tmp341@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -1004,6 +1004,11 @@ msgstr[0] "%d eklentisi mevcut değil:"
 msgid "%d sec"
 msgstr "%d sec"
 
+#, python-format
+msgid "%d service found."
+msgid_plural "%d services found."
+msgstr[0] ""
+
 #
 #, python-format
 msgid "%d times"
@@ -1098,11 +1103,6 @@ msgstr "%m/%d "
 
 msgid "%m/%d/%Y"
 msgstr "%m/%d/%Y"
-
-#
-#, python-format
-msgid "%s  (%s)"
-msgstr "%s  (%s)"
 
 #, python-format
 msgid "%s %02d.%02d."
@@ -3739,6 +3739,12 @@ msgstr "Görüntü seçimini iptal edin ve çıkın"
 #
 msgid "Cancel the image selection and exit all menus"
 msgstr "Görüntü seçimini iptal edin ve tüm menülerden çıkın"
+
+msgid "Cancel the scan and exit the scanner"
+msgstr ""
+
+msgid "Cancel the scan and exit all menus"
+msgstr ""
 
 msgid "Cancel the selection and exit"
 msgstr "Seçimi iptal et ve çık"
@@ -7353,6 +7359,9 @@ msgstr ""
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr "Hata ayıklama günlük dosyasına ekstra EPG verileri eklemek için bu seçeneği etkinleştirin."
 
+msgid "Enable this option to add extra teletext details to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add international language and country load information detected during system boot to the debug log file."
 msgstr "Sistem önyüklemesi sırasında algılanan uluslararası dil ve ülke yükleme bilgilerini hata ayıklama günlük dosyasına eklemek için bu seçeneği etkinleştirin."
 
@@ -7376,6 +7385,9 @@ msgstr ""
 
 msgid "Enable this setting if your aerial system needs power."
 msgstr "Anten sisteminiz güç gerektiriyorsa bu ayarı etkinleştirin"
+
+msgid "Enable timer"
+msgstr ""
 
 msgid "Enable to add some extra spacing to the Information screens. This can improve readability."
 msgstr "Bilgi ekranlarına fazladan boşluk eklemeyi etkinleştirin. Bu, okunabilirliği artırabilir."
@@ -7829,6 +7841,10 @@ msgstr "Hata oluştu: '%s' dizini oluşturulamadı!"
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
 msgstr "Hata oluştu: Picon hedef dizini oluşturuluyor: (%s)"
+
+#, python-format
+msgid "Error: Failed to run service scan!  (%s)"
+msgstr ""
 
 #, python-format
 msgid "Error: File '%s' cannot be opened!  (%s)"
@@ -9998,6 +10014,9 @@ msgstr "Uzaktan kumanda verilerini dahil et"
 
 msgid "Include screen load data"
 msgstr "Ekran yükleme verilerini dahil et"
+
+msgid "Include teletext details"
+msgstr ""
 
 msgid "Include timer data"
 msgstr "Zamanlayıcı verilerini dahil edin"
@@ -13465,6 +13484,9 @@ msgstr "Bölüm"
 msgid "Partitions"
 msgstr "Bölümler"
 
+msgid "Pass"
+msgstr ""
+
 msgid "Pass-through"
 msgstr "Geçiş"
 
@@ -14957,7 +14979,7 @@ msgstr "Kayıt başarısız"
 msgid "Recording finished"
 msgstr "Kayıt tamamlandı"
 
-msgid "Recording in progress"
+msgid "Recording in progress!"
 msgstr "Kayıt devam ediyor"
 
 msgid "Recording location"
@@ -16111,16 +16133,30 @@ msgid "Scanning - %d%% completed"
 msgid_plural "Scanning - %d%% completed"
 msgstr[0] "Tarama - %%%d tamamlandı"
 
+msgid "Scanning can't be performed while recordings are in progress."
+msgstr ""
+
 #, python-format
 msgid "Scanning completed, %d channel found"
 msgid_plural "Scanning completed, %d channels found"
 msgstr[0] "Tarama tamamlandı, %d kanal bulundu"
+
+#, python-format
+msgid "Scanning completed, %d service found."
+msgid_plural "Scanning completed, %d services found."
+msgstr[0] ""
 
 msgid "Scanning failed!"
 msgstr "Tarama başarısız!"
 
 msgid "Scanning..."
 msgstr "Tarıyor..."
+
+#. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
+#, python-format
+msgid "Scanning: %d%% complete"
+msgid_plural "Scanning: %d%% complete"
+msgstr[0] ""
 
 #
 msgid "Scans default lamedbs sorted by satellite with a connected dish positioner"
@@ -16916,6 +16952,9 @@ msgstr "Kullanıcı arayüzü için şu anda vurgulanan yerel ayarı/dili seçin
 msgid "Select the currently highlighted service"
 msgstr "Şu anda vurgulanan hizmeti seçin"
 
+msgid "Select the currently highlighted service and exit"
+msgstr ""
+
 msgid "Select the date from which this timer will become active."
 msgstr "Bu zamanlayıcının aktif olacağı tarihi seçin."
 
@@ -17043,6 +17082,12 @@ msgstr "Listede bir önceki öğeyi seçin veya imleci sola hareket ettirin"
 
 msgid "Select the previous item in the list"
 msgstr "Listedeki bir önceki öğeyi seçin"
+
+msgid "Select the previous service and close the scanner"
+msgstr ""
+
+msgid "Select the previous service and close the scanner and exit all menus"
+msgstr ""
 
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "SCR cihazınız tarafından kullanılan protokolü seçin. Seçenekler 'SCR Unicable' (Unicable) veya 'SCR JESS' (Unicable II olarak da bilinen JESS)."
@@ -17393,6 +17438,9 @@ msgid "Service Number, Picon and Service Name"
 msgstr "Servis Numarası, Picon ve Servis Adı"
 
 msgid "Service Scan"
+msgstr ""
+
+msgid "Service Scan Actions"
 msgstr ""
 
 msgid "Service Selection Actions"
@@ -24172,10 +24220,10 @@ msgstr "eşittir"
 msgid "equestrian"
 msgstr "atlı"
 
-msgid "error starting scanning"
+msgid "Problem starting scan"
 msgstr "taramayı başlatma hatası"
 
-msgid "error while scanning"
+msgid "Problem while scanning"
 msgstr "tarama sırasında hata"
 
 msgid "execute cuts (requires MovieCut plugin)"
@@ -24487,7 +24535,7 @@ msgstr "cAId seçilmedi"
 msgid "no CI slots found"
 msgstr "ci yuvası bulunamadı"
 
-msgid "no channel list"
+msgid "No channel list"
 msgstr "kanal listesi yok"
 
 #
@@ -24497,7 +24545,7 @@ msgstr "modül bulunamadı"
 msgid "no or unknown card inserted"
 msgstr "kart yok veya tanınmıyor"
 
-msgid "no resource manager"
+msgid "No resource manager"
 msgstr "kaynak yöneticisi yok"
 
 msgid "no storage devices found"
@@ -25003,6 +25051,11 @@ msgstr "evet (beslemeleri tut)"
 
 msgid "®"
 msgstr "®"
+
+#
+#, python-format
+#~ msgid "%s  (%s)"
+#~ msgstr "%s  (%s)"
 
 #~ msgid "Audio volume step size"
 #~ msgstr "Ses hacmi adım boyutu"

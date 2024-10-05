@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-12 21:03+0000\n"
+"POT-Creation-Date: 2024-10-01 08:46+0000\n"
 "PO-Revision-Date: 2024-09-15 14:23+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -1023,6 +1023,12 @@ msgid "%d sec"
 msgstr "%d sec"
 
 #, python-format
+msgid "%d service found."
+msgid_plural "%d services found."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d times"
 msgstr "%d tijden"
 
@@ -1113,10 +1119,6 @@ msgstr "%m/%d "
 
 msgid "%m/%d/%Y"
 msgstr "%m/%d/%Y"
-
-#, python-format
-msgid "%s  (%s)"
-msgstr "%s  (%s)"
 
 #, python-format
 msgid "%s %02d.%02d."
@@ -3618,6 +3620,12 @@ msgstr "Annuleer de image selectie en exit"
 
 msgid "Cancel the image selection and exit all menus"
 msgstr "Annuleer de image selectie en exit alle menu's"
+
+msgid "Cancel the scan and exit the scanner"
+msgstr ""
+
+msgid "Cancel the scan and exit all menus"
+msgstr ""
 
 msgid "Cancel the selection and exit"
 msgstr "Selectie annuleren en Exit"
@@ -7195,6 +7203,9 @@ msgstr "Activeren, om extra DVB-timesync-data aan het debug-log bestand toe te v
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr "Activeer deze optie om extra EPG gegevens toe te voegen aan het debug log-bestand."
 
+msgid "Enable this option to add extra teletext details to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add international language and country load information detected during system boot to the debug log file."
 msgstr "Schakel deze optie in om informatie over de internationale taal- en landinformatie die tijdens het opstarten van het systeem wordt herkend, toe te voegen aan het Debug-log bestand."
 
@@ -7218,6 +7229,9 @@ msgstr "Activeren, om alle beschikbare informatie-schermen in het informatie-men
 
 msgid "Enable this setting if your aerial system needs power."
 msgstr "Schakel deze optie in indien de antenne een externe voeding nodig heeft."
+
+msgid "Enable timer"
+msgstr ""
 
 msgid "Enable to add some extra spacing to the Information screens. This can improve readability."
 msgstr "Inschakelen om wat extra ruimte toe te voegen aan de informatie-schermen. Dit kan de leesbaarheid verbeteren."
@@ -7662,6 +7676,10 @@ msgstr "Het aanmaken van de map %s is mislukt!"
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
 msgstr "Fout bij het maken van de map voor de Picons: (%s)"
+
+#, python-format
+msgid "Error: Failed to run service scan!  (%s)"
+msgstr ""
 
 #, python-format
 msgid "Error: File '%s' cannot be opened!  (%s)"
@@ -9742,6 +9760,9 @@ msgstr "Inclusief afstandsbediening data"
 
 msgid "Include screen load data"
 msgstr "Inclusief scherm data"
+
+msgid "Include teletext details"
+msgstr ""
 
 msgid "Include timer data"
 msgstr "Inclusief timer gegevens"
@@ -13012,6 +13033,9 @@ msgstr "Partitie"
 msgid "Partitions"
 msgstr "Partities"
 
+msgid "Pass"
+msgstr ""
+
 msgid "Pass-through"
 msgstr "Pass-through"
 
@@ -14414,7 +14438,7 @@ msgstr "Opname mislukt"
 msgid "Recording finished"
 msgstr "Opname gereed"
 
-msgid "Recording in progress"
+msgid "Recording in progress!"
 msgstr "Opnemen bezig"
 
 msgid "Recording location"
@@ -15492,17 +15516,33 @@ msgid_plural "Scanning - %d%% completed"
 msgstr[0] "Zoeken - %d%% voltooid"
 msgstr[1] "Zoeken - %d%% voltooid"
 
+msgid "Scanning can't be performed while recordings are in progress."
+msgstr ""
+
 #, python-format
 msgid "Scanning completed, %d channel found"
 msgid_plural "Scanning completed, %d channels found"
 msgstr[0] "Zoeken voltooid, %d zender gevonden"
 msgstr[1] "Zoeken voltooid, %d zenders gevonden"
 
+#, python-format
+msgid "Scanning completed, %d service found."
+msgid_plural "Scanning completed, %d services found."
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Scanning failed!"
 msgstr "Zoeken mislukt!"
 
 msgid "Scanning..."
 msgstr "Zoeken..."
+
+#. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
+#, python-format
+msgid "Scanning: %d%% complete"
+msgid_plural "Scanning: %d%% complete"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Scans default lamedbs sorted by satellite with a connected dish positioner"
 msgstr "Doorzoekt standaard lamedbs gesorteerd op satelliet met een DiSEqC rotor"
@@ -16282,6 +16322,9 @@ msgstr "Selecteer de nu gearceerde taal voor de user interface"
 msgid "Select the currently highlighted service"
 msgstr "Kies de nu geselecteerde zender"
 
+msgid "Select the currently highlighted service and exit"
+msgstr ""
+
 msgid "Select the date from which this timer will become active."
 msgstr "Kies de datum vanaf wanneer deze timer actief moet worden."
 
@@ -16414,6 +16457,12 @@ msgstr "Selecteer het vorige item in de lijst of ga met de cursor naar links"
 
 msgid "Select the previous item in the list"
 msgstr "Selecteer het vorige item in de lijst"
+
+msgid "Select the previous service and close the scanner"
+msgstr ""
+
+msgid "Select the previous service and close the scanner and exit all menus"
+msgstr ""
 
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "Selecteer het format van uw SCR-apparaat. keuzes zijn 'SCR Unicable' (Unicable) en 'SCR JESS' (JESS, ook bekend als Unicable 2)."
@@ -16755,6 +16804,9 @@ msgstr "Zendernummer, Picon en zendernaam"
 
 msgid "Service Scan"
 msgstr "Zenders scannen"
+
+msgid "Service Scan Actions"
+msgstr ""
 
 msgid "Service Selection Actions"
 msgstr "Zender selectie acties"
@@ -23334,10 +23386,10 @@ msgstr "gelijk aan"
 msgid "equestrian"
 msgstr "ruitersport"
 
-msgid "error starting scanning"
+msgid "Problem starting scan"
 msgstr "fout tijdens het starten van zoeken"
 
-msgid "error while scanning"
+msgid "Problem while scanning"
 msgstr "fout tijdens het zoeken"
 
 msgid "execute cuts (requires MovieCut plugin)"
@@ -23625,7 +23677,7 @@ msgstr "Geen CAId geselecteerd"
 msgid "no CI slots found"
 msgstr "Geen CI slots gevonden"
 
-msgid "no channel list"
+msgid "No channel list"
 msgstr "geen zenderlijst"
 
 msgid "no module found"
@@ -23634,7 +23686,7 @@ msgstr "Geen module gevonden"
 msgid "no or unknown card inserted"
 msgstr "Geen of onbekende kaart geplaatst"
 
-msgid "no resource manager"
+msgid "No resource manager"
 msgstr "geen bron beheerder"
 
 msgid "no storage devices found"
@@ -24092,6 +24144,10 @@ msgstr "ja (bewaar feeds)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s  (%s)"
+#~ msgstr "%s  (%s)"
 
 #~ msgid "Kurdish (Sorani)"
 #~ msgstr "Koerdisch (Sorani)"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-12 21:03+0000\n"
+"POT-Creation-Date: 2024-10-01 08:46+0000\n"
 "PO-Revision-Date: 2024-02-10 07:43+0000\n"
 "Last-Translator: \"Mahmoud Habls (7OODA)\" <adhoda4@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ar/>\n"
@@ -1160,6 +1160,16 @@ msgstr[5] ""
 msgid "%d sec"
 msgstr ""
 
+#, python-format
+msgid "%d service found."
+msgid_plural "%d services found."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
 #
 #, fuzzy, python-format
 msgid "%d times"
@@ -1262,10 +1272,6 @@ msgstr ""
 
 msgid "%m/%d/%Y"
 msgstr ""
-
-#, fuzzy, python-format
-msgid "%s  (%s)"
-msgstr "%s (%s) \n"
 
 #, python-format
 msgid "%s %02d.%02d."
@@ -3889,6 +3895,12 @@ msgstr "إختيار القناه"
 #, fuzzy
 msgid "Cancel the image selection and exit all menus"
 msgstr "إختيار القناه"
+
+msgid "Cancel the scan and exit the scanner"
+msgstr ""
+
+msgid "Cancel the scan and exit all menus"
+msgstr ""
 
 msgid "Cancel the selection and exit"
 msgstr ""
@@ -7454,6 +7466,9 @@ msgstr ""
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add extra teletext details to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add international language and country load information detected during system boot to the debug log file."
 msgstr ""
 
@@ -7477,6 +7492,9 @@ msgstr ""
 
 msgid "Enable this setting if your aerial system needs power."
 msgstr "تمكين هذا الاعداد إذا كان النظام الجوي الخاص بك يحتاج إلى طاقة"
+
+msgid "Enable timer"
+msgstr ""
 
 msgid "Enable to add some extra spacing to the Information screens. This can improve readability."
 msgstr ""
@@ -7916,6 +7934,10 @@ msgstr "فشل إنشاء %s المجلد."
 
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error: Failed to run service scan!  (%s)"
 msgstr ""
 
 #, python-format
@@ -10055,6 +10077,9 @@ msgid "Include remote control data"
 msgstr "أضغط موافق من الريموت للمتابعه"
 
 msgid "Include screen load data"
+msgstr ""
+
+msgid "Include teletext details"
 msgstr ""
 
 msgid "Include timer data"
@@ -13531,6 +13556,9 @@ msgstr ""
 msgid "Partitions"
 msgstr ""
 
+msgid "Pass"
+msgstr ""
+
 msgid "Pass-through"
 msgstr ""
 
@@ -15013,7 +15041,7 @@ msgstr "تسجيل"
 msgid "Recording finished"
 msgstr "تسجيلات"
 
-msgid "Recording in progress"
+msgid "Recording in progress!"
 msgstr "التسجيل قيد التشغيل"
 
 msgid "Recording location"
@@ -16146,9 +16174,22 @@ msgstr[3] ""
 msgstr[4] ""
 msgstr[5] ""
 
+msgid "Scanning can't be performed while recordings are in progress."
+msgstr ""
+
 #, python-format
 msgid "Scanning completed, %d channel found"
 msgid_plural "Scanning completed, %d channels found"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
+
+#, python-format
+msgid "Scanning completed, %d service found."
+msgid_plural "Scanning completed, %d services found."
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
@@ -16161,6 +16202,17 @@ msgstr "فشل البحث!"
 
 msgid "Scanning..."
 msgstr "جاري البحث..."
+
+#. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
+#, python-format
+msgid "Scanning: %d%% complete"
+msgid_plural "Scanning: %d%% complete"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #
 msgid "Scans default lamedbs sorted by satellite with a connected dish positioner"
@@ -16945,6 +16997,9 @@ msgstr ""
 msgid "Select the currently highlighted service"
 msgstr ""
 
+msgid "Select the currently highlighted service and exit"
+msgstr ""
+
 msgid "Select the date from which this timer will become active."
 msgstr ""
 
@@ -17068,6 +17123,12 @@ msgid "Select the previous item in list or move the cursor left"
 msgstr ""
 
 msgid "Select the previous item in the list"
+msgstr ""
+
+msgid "Select the previous service and close the scanner"
+msgstr ""
+
+msgid "Select the previous service and close the scanner and exit all menus"
 msgstr ""
 
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
@@ -17398,6 +17459,9 @@ msgid "Service Number, Picon and Service Name"
 msgstr ""
 
 msgid "Service Scan"
+msgstr ""
+
+msgid "Service Scan Actions"
 msgstr ""
 
 #, fuzzy
@@ -24075,10 +24139,10 @@ msgstr "مساوى لـــ"
 msgid "equestrian"
 msgstr "الفروسية"
 
-msgid "error starting scanning"
+msgid "Problem starting scan"
 msgstr "خطأ في بداية البحث"
 
-msgid "error while scanning"
+msgid "Problem while scanning"
 msgstr "خطأ أثناء البحث"
 
 msgid "execute cuts (requires MovieCut plugin)"
@@ -24381,7 +24445,7 @@ msgstr "لم يتم إختيار الكايد"
 msgid "no CI slots found"
 msgstr ""
 
-msgid "no channel list"
+msgid "No channel list"
 msgstr "لا توجد قائمة قنوات"
 
 #
@@ -24391,7 +24455,7 @@ msgstr "لم يتم العثور على كامه"
 msgid "no or unknown card inserted"
 msgstr ""
 
-msgid "no resource manager"
+msgid "No resource manager"
 msgstr "لا يوجد مدير مصادر"
 
 msgid "no storage devices found"
@@ -24874,6 +24938,10 @@ msgstr "نعم (الاحتفاظ بها)"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy, python-format
+#~ msgid "%s  (%s)"
+#~ msgstr "%s (%s) \n"
 
 #
 #, fuzzy

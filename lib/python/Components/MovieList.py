@@ -542,12 +542,12 @@ class MovieList(GUIComponent):
 		return self.instance.getCurrentIndex()
 
 	def getCurrentEvent(self):
-		l = self.l.getCurrentSelection()
-		return l and l[0] and l[1] and l[1].getEvent(l[0])
+		movieList = self.l.getCurrentSelection()
+		return movieList and movieList[0] and movieList[1] and movieList[1].getEvent(movieList[0])
 
 	def getCurrent(self):
-		l = self.l.getCurrentSelection()
-		return l and l[0]
+		movieList = self.l.getCurrentSelection()
+		return movieList and movieList[0]
 
 	def getItem(self, index):
 		if self.list:
@@ -585,8 +585,8 @@ class MovieList(GUIComponent):
 	def findService(self, service):
 		if service is None:
 			return None
-		for index, l in enumerate(self.list):
-			if l[0] == service:
+		for index, item in enumerate(self.list):
+			if item[0] == service:
 				return index
 		return None
 

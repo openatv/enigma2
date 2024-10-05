@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-12 21:03+0000\n"
+"POT-Creation-Date: 2024-10-01 08:46+0000\n"
 "PO-Revision-Date: 2023-06-04 19:16+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -1055,6 +1055,13 @@ msgid "%d sec"
 msgstr "%d sek."
 
 #, python-format
+msgid "%d service found."
+msgid_plural "%d services found."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
 msgid "%d times"
 msgstr "%d kartų"
 
@@ -1146,10 +1153,6 @@ msgstr "%m/%d "
 
 msgid "%m/%d/%Y"
 msgstr "%m/%d/%Y"
-
-#, python-format
-msgid "%s  (%s)"
-msgstr "%s  (%s)"
 
 #, python-format
 msgid "%s %02d.%02d."
@@ -3654,6 +3657,12 @@ msgstr "Atšaukti atvaizdo pasirinkimą ir užverti"
 
 msgid "Cancel the image selection and exit all menus"
 msgstr "Atšaukti atvaizdo pasirinkimą ir užverti visus meniu"
+
+msgid "Cancel the scan and exit the scanner"
+msgstr ""
+
+msgid "Cancel the scan and exit all menus"
+msgstr ""
 
 msgid "Cancel the selection and exit"
 msgstr ""
@@ -7108,6 +7117,9 @@ msgstr ""
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr "Įjunkite šią parinktį, kad pridėtumėte papildomų EPG duomenų prie derinimo žurnalo failo."
 
+msgid "Enable this option to add extra teletext details to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add international language and country load information detected during system boot to the debug log file."
 msgstr ""
 
@@ -7131,6 +7143,9 @@ msgstr ""
 
 msgid "Enable this setting if your aerial system needs power."
 msgstr "Įjunkite šį nustatymą, jei jūsų antenos sistemai reikia galios"
+
+msgid "Enable timer"
+msgstr ""
 
 msgid "Enable to add some extra spacing to the Information screens. This can improve readability."
 msgstr "Įgalinkite, kad pridėtumėte papildomų tarpų prie informacijos ekranų. Tai gali pagerinti skaitomumą."
@@ -7566,6 +7581,10 @@ msgstr "Katalogo sukurti %s nepavyko."
 
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error: Failed to run service scan!  (%s)"
 msgstr ""
 
 #, python-format
@@ -9639,6 +9658,9 @@ msgstr "Įtraukti nuotolinio valdymo duomenis"
 
 msgid "Include screen load data"
 msgstr "Įtraukti ekrano įkėlimo duomenis"
+
+msgid "Include teletext details"
+msgstr ""
 
 msgid "Include timer data"
 msgstr "Įtraukti laikmačio duomenis"
@@ -12905,6 +12927,9 @@ msgstr "Skaidinys"
 msgid "Partitions"
 msgstr "Skaidiniai"
 
+msgid "Pass"
+msgstr ""
+
 msgid "Pass-through"
 msgstr "Pereiti"
 
@@ -14304,7 +14329,7 @@ msgstr "Nepavyko įrašyti"
 msgid "Recording finished"
 msgstr "Įrašymas baigtas"
 
-msgid "Recording in progress"
+msgid "Recording in progress!"
 msgstr "Vyksta įrašymas"
 
 msgid "Recording location"
@@ -15381,6 +15406,9 @@ msgstr[0] "Skenuojama -%d%% baigtas"
 msgstr[1] "Skenuojama -%d%% baigti"
 msgstr[2] "Skenuojama -%d%% baigta"
 
+msgid "Scanning can't be performed while recordings are in progress."
+msgstr ""
+
 #, python-format
 msgid "Scanning completed, %d channel found"
 msgid_plural "Scanning completed, %d channels found"
@@ -15388,11 +15416,26 @@ msgstr[0] "Skenavimas baigtas, rastas %d kanalas"
 msgstr[1] "Skenavimas baigtas, rasti %d kanalai"
 msgstr[2] "Skenavimas baigtas, rasta %d kanalų"
 
+#, python-format
+msgid "Scanning completed, %d service found."
+msgid_plural "Scanning completed, %d services found."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
 msgid "Scanning failed!"
 msgstr "Skenavimas nepavyko!"
 
 msgid "Scanning..."
 msgstr "Skenuojama..."
+
+#. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
+#, python-format
+msgid "Scanning: %d%% complete"
+msgid_plural "Scanning: %d%% complete"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 msgid "Scans default lamedbs sorted by satellite with a connected dish positioner"
 msgstr "Skenuokite numatytą lamedbs, surūšiuotą pagal palydovą, ir prijungtą prie pozicionieriaus antenos"
@@ -16164,6 +16207,9 @@ msgstr "Pasirinkti šiuo metu paryškintą vartotojo sąsajos lokalę / kalbą"
 msgid "Select the currently highlighted service"
 msgstr "Pasirinkite šiuo metu pažymėtą paslaugą"
 
+msgid "Select the currently highlighted service and exit"
+msgstr ""
+
 msgid "Select the date from which this timer will become active."
 msgstr "Pasirinkite datą, nuo kurios šis laikmatis taps aktyvus."
 
@@ -16286,6 +16332,12 @@ msgid "Select the previous item in list or move the cursor left"
 msgstr ""
 
 msgid "Select the previous item in the list"
+msgstr ""
+
+msgid "Select the previous service and close the scanner"
+msgstr ""
+
+msgid "Select the previous service and close the scanner and exit all menus"
 msgstr ""
 
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
@@ -16622,6 +16674,9 @@ msgid "Service Number, Picon and Service Name"
 msgstr "Kanalo numeris, logotipas ir kanalo pavadinimas"
 
 msgid "Service Scan"
+msgstr ""
+
+msgid "Service Scan Actions"
 msgstr ""
 
 msgid "Service Selection Actions"
@@ -23062,10 +23117,10 @@ msgstr "toks, kaip šis"
 msgid "equestrian"
 msgstr "jojimas"
 
-msgid "error starting scanning"
+msgid "Problem starting scan"
 msgstr "klaida pradedant paiešką"
 
-msgid "error while scanning"
+msgid "Problem while scanning"
 msgstr "klaida, skenuojant"
 
 msgid "execute cuts (requires MovieCut plugin)"
@@ -23353,7 +23408,7 @@ msgstr "joks CAId neišsirinktas"
 msgid "no CI slots found"
 msgstr "jokie CI skaitytuvai nesurasti"
 
-msgid "no channel list"
+msgid "No channel list"
 msgstr "nėra kanalų sąrašo"
 
 msgid "no module found"
@@ -23362,7 +23417,7 @@ msgstr "modulio nerasta"
 msgid "no or unknown card inserted"
 msgstr "neįdėta, arba neatpažįstama kortelė"
 
-msgid "no resource manager"
+msgid "No resource manager"
 msgstr "išteklių valdymo nėra"
 
 msgid "no storage devices found"
@@ -23823,6 +23878,10 @@ msgstr "taip (išsaugoti šaltinius)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s  (%s)"
+#~ msgstr "%s  (%s)"
 
 #~ msgid "Audio volume step size"
 #~ msgstr "Garso stiprumo žingsnio dydis"

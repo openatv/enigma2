@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-12 21:03+0000\n"
-"PO-Revision-Date: 2024-09-14 05:50+0000\n"
+"POT-Creation-Date: 2024-10-01 08:46+0000\n"
+"PO-Revision-Date: 2024-10-01 17:35+0000\n"
 "Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -1061,6 +1061,13 @@ msgid "%d sec"
 msgstr "%d sek"
 
 #, python-format
+msgid "%d service found."
+msgid_plural "%d services found."
+msgstr[0] "Znaleziono %d kanał."
+msgstr[1] "Znaleziono %d kanały."
+msgstr[2] "Znaleziono %d kanałów."
+
+#, python-format
 msgid "%d times"
 msgstr "%d czasy"
 
@@ -1152,10 +1159,6 @@ msgstr "%m/%d "
 
 msgid "%m/%d/%Y"
 msgstr "%m/%d/%Y"
-
-#, python-format
-msgid "%s  (%s)"
-msgstr "%s  (%s)"
 
 #, python-format
 msgid "%s %02d.%02d."
@@ -3650,6 +3653,12 @@ msgstr "Anuluj wybór systemu i wyjdź"
 
 msgid "Cancel the image selection and exit all menus"
 msgstr "Anuluj wybór systemu i zamknij wszystkie menu"
+
+msgid "Cancel the scan and exit the scanner"
+msgstr "Anuluj skanowanie i wyjdź ze skanera"
+
+msgid "Cancel the scan and exit all menus"
+msgstr "Anuluj skanowanie i wyjdź ze wszystkich menu"
 
 msgid "Cancel the selection and exit"
 msgstr "Anuluj wybór i wyjdź"
@@ -7112,6 +7121,9 @@ msgstr "Włącz tę opcję, aby dodać dodatkowe dane synchronizacji czasu DVB d
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr "Włącz tę opcję, aby dodać dodatkowe dane EPG do pliku dziennika debugowania."
 
+msgid "Enable this option to add extra teletext details to the debug log file."
+msgstr "Włącz tę opcję, aby dodać dodatkowe szczegóły telegazety do pliku dziennika debugowania."
+
 msgid "Enable this option to add international language and country load information detected during system boot to the debug log file."
 msgstr "Włącz tę opcję, aby dodać informacje o obciążeniu języka międzynarodowego i kraju wykryte podczas uruchamiania systemu do pliku dziennika debugowania."
 
@@ -7135,6 +7147,9 @@ msgstr "Włącz tę opcję, aby wyświetlić wszystkie dostępne ekrany informac
 
 msgid "Enable this setting if your aerial system needs power."
 msgstr "Włącz to ustawienie, jeśli Twój system antenowy potrzebuje zasilania."
+
+msgid "Enable timer"
+msgstr "Włącz timer"
 
 msgid "Enable to add some extra spacing to the Information screens. This can improve readability."
 msgstr "Włącz, aby dodać dodatkowe odstępy do ekranów informacyjnych.Może to poprawić czytelność."
@@ -7571,6 +7586,10 @@ msgstr "Błąd: Tworzenie katalogu '%s' nie powiodło się!"
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
 msgstr "Błąd: Tworzenie katalogu docelowego picon: (%s)"
+
+#, python-format
+msgid "Error: Failed to run service scan!  (%s)"
+msgstr "Błąd: Nie udało się uruchomić skanowania kanałów! (%s)"
 
 #, python-format
 msgid "Error: File '%s' cannot be opened!  (%s)"
@@ -9641,6 +9660,9 @@ msgstr "Dołącz dane zdalnego sterowania"
 
 msgid "Include screen load data"
 msgstr "Dołąćż dane ładowania ekranu"
+
+msgid "Include teletext details"
+msgstr "Dołącz szczegóły teletekstu"
 
 msgid "Include timer data"
 msgstr "Dołącz dane timera"
@@ -12911,6 +12933,9 @@ msgstr "Partycja"
 msgid "Partitions"
 msgstr "Partycje"
 
+msgid "Pass"
+msgstr "Stan"
+
 msgid "Pass-through"
 msgstr "Pass-through"
 
@@ -14310,8 +14335,8 @@ msgstr "Nagrywanie nie powiodło się"
 msgid "Recording finished"
 msgstr "Nagrywanie zakończone"
 
-msgid "Recording in progress"
-msgstr "Nagrywanie w toku"
+msgid "Recording in progress!"
+msgstr "Nagrywanie w toku!"
 
 msgid "Recording location"
 msgstr "Lokalizacja nagrywania"
@@ -15387,6 +15412,9 @@ msgstr[0] "Skanowanie - %d%% ukończono"
 msgstr[1] "Skanowanie - %d%% ukończono"
 msgstr[2] "Skanowanie - %d%% ukończone"
 
+msgid "Scanning can't be performed while recordings are in progress."
+msgstr "Skanowania nie można wykonać podczas trwania nagrywania."
+
 #, python-format
 msgid "Scanning completed, %d channel found"
 msgid_plural "Scanning completed, %d channels found"
@@ -15394,11 +15422,26 @@ msgstr[0] "Skanowanie zakończone, znaleziono %d kanał"
 msgstr[1] "Skanowanie zakończone, znaleziono %d kanały"
 msgstr[2] "Skanowanie zakończone, znaleziono %d kanałów"
 
+#, python-format
+msgid "Scanning completed, %d service found."
+msgid_plural "Scanning completed, %d services found."
+msgstr[0] "Zakończono skanowanie, znaleziono %d kanał."
+msgstr[1] "Zakończono skanowanie, znaleziono %d kanały."
+msgstr[2] "Zakończono skanowanie, znaleziono %d kanałów."
+
 msgid "Scanning failed!"
 msgstr "Skanowanie nie powiodło się!"
 
 msgid "Scanning..."
 msgstr "Skanowanie..."
+
+#. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
+#, python-format
+msgid "Scanning: %d%% complete"
+msgid_plural "Scanning: %d%% complete"
+msgstr[0] "Skanowanie: ukończono %d%%"
+msgstr[1] "Skanowanie: ukończone %d%%"
+msgstr[2] "Skanowanie: ukończonych %d%%"
 
 msgid "Scans default lamedbs sorted by satellite with a connected dish positioner"
 msgstr "Domyślne skanuje 'lamedbs' wg. satelit z podłączonym pozycjonerem"
@@ -16170,6 +16213,9 @@ msgstr "Wybierz aktualnie podświetlone ustawienia regionalne/język interfejsu 
 msgid "Select the currently highlighted service"
 msgstr "Wybierz aktualnie podświetloną usługę"
 
+msgid "Select the currently highlighted service and exit"
+msgstr "Wybierz aktualnie podświetloną usługę i wyjdź"
+
 msgid "Select the date from which this timer will become active."
 msgstr "Wybierz datę, od której ten timer stanie się aktywny."
 
@@ -16296,6 +16342,12 @@ msgstr "Wybierz poprzednią pozycję na liście lub przesuń kursor w lewo"
 
 msgid "Select the previous item in the list"
 msgstr "Wybierz poprzednią pozycję na liście"
+
+msgid "Select the previous service and close the scanner"
+msgstr "Wybierz poprzednią usługę i zamknij skaner"
+
+msgid "Select the previous service and close the scanner and exit all menus"
+msgstr "Wybierz poprzednią usługę, zamknij skaner i wyjdź ze wszystkich menu"
 
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "Wybierz protokół używany przez urządzenie SCR. Dostępne opcje to „SCR Unicable” (Unicable) lub „SCR JESS” (JESS, znany również jako Unicable II)."
@@ -16635,6 +16687,9 @@ msgstr "Pikona, numer i nazwa kanału"
 
 msgid "Service Scan"
 msgstr "Skanowanie serwisowe"
+
+msgid "Service Scan Actions"
+msgstr "Akcje skanowania kanałów"
 
 msgid "Service Selection Actions"
 msgstr "Akcje wyboru usługi"
@@ -23122,11 +23177,11 @@ msgstr "równe"
 msgid "equestrian"
 msgstr "jeździectwo"
 
-msgid "error starting scanning"
-msgstr "błąd podczas rozpoczynania skanowania"
+msgid "Problem starting scan"
+msgstr "Problem z uruchomieniem skanowania"
 
-msgid "error while scanning"
-msgstr "błąd podczas skanowania"
+msgid "Problem while scanning"
+msgstr "Problem podczas skanowania"
 
 msgid "execute cuts (requires MovieCut plugin)"
 msgstr "wykonywać cięcia (wymaga wtyczki MovieCut)"
@@ -23413,8 +23468,8 @@ msgstr "nie wybrano kaida"
 msgid "no CI slots found"
 msgstr "nie znaleziono gniazda CI"
 
-msgid "no channel list"
-msgstr "brak listy kanałów"
+msgid "No channel list"
+msgstr "Brak listy kanałów"
 
 msgid "no module found"
 msgstr "nie znaleziono modułu"
@@ -23422,8 +23477,8 @@ msgstr "nie znaleziono modułu"
 msgid "no or unknown card inserted"
 msgstr "brak lub nieaktywna karta"
 
-msgid "no resource manager"
-msgstr "brak menadżera zasobów"
+msgid "No resource manager"
+msgstr "Brak menadżera zasobów"
 
 msgid "no storage devices found"
 msgstr "nie znaleziono urządzenia magazynującego"
@@ -23883,6 +23938,10 @@ msgstr "tak (zachować kanały)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s  (%s)"
+#~ msgstr "%s  (%s)"
 
 #~ msgid "Kurdish (Sorani)"
 #~ msgstr "Kurdyjski (sorani)"

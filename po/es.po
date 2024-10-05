@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-12 21:03+0000\n"
-"PO-Revision-Date: 2024-04-18 22:45+0000\n"
+"POT-Creation-Date: 2024-10-01 08:46+0000\n"
+"PO-Revision-Date: 2024-10-02 07:35+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/es/>\n"
 "Language: es\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 5.8-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -858,14 +858,14 @@ msgstr "%d Minutos"
 #, python-format
 msgid "%d Month"
 msgid_plural "%d Months"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Mes"
+msgstr[1] "%d Meses"
 
 #, python-format
 msgid "%d Pixel"
 msgid_plural "%d Pixels"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Píxel"
+msgstr[1] "%d Píxeles"
 
 #, python-format
 msgid "%d Pixel wide"
@@ -890,14 +890,14 @@ msgstr "%d Segundos"
 #, python-format
 msgid "%d Week"
 msgid_plural "%d Weeks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Semana"
+msgstr[1] "%d Semanas"
 
 #, python-format
 msgid "%d Year"
 msgid_plural "%d Years"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d Año"
+msgstr[1] "%d Años"
 
 #. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
 #, python-format
@@ -939,44 +939,44 @@ msgstr "%d ms"
 #, python-format
 msgid "%d package found."
 msgid_plural "%d packages found."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d paquete encontrado."
+msgstr[1] "%d paquetes encontrados."
 
 #, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "El paquete %d tiene una actualización"
+msgstr[1] "Los paquetes %d tienen actualizaciones"
 
 #, python-format
 msgid "%d package installable."
 msgid_plural "%d packages installable."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d paquete instalable."
+msgstr[1] "%d paquetes instalables."
 
 #, python-format
 msgid "%d package installed."
 msgid_plural "%d packages installed."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d paquete instalado."
+msgstr[1] "%d paquetes instalados."
 
 #, python-format
 msgid "%d package marked for install."
 msgid_plural "%d packages marked for install."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d paquete marcado para instalar."
+msgstr[1] "%d paquetes marcados para instalar."
 
 #, python-format
 msgid "%d package marked for remove."
 msgid_plural "%d packages marked for remove."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d paquete marcado para eliminar."
+msgstr[1] "%d paquetes marcados para eliminar."
 
 #, python-format
 msgid "%d package marked for update."
 msgid_plural "%d packages marked for update."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d paquete marcado para actualizar."
+msgstr[1] "%d paquetes marcados para actualizar."
 
 #, python-format
 msgid "%d package upgraded."
@@ -1029,12 +1029,18 @@ msgstr[1] "%d paquetes fueron actualizados."
 #, python-format
 msgid "%d plugin is not available:"
 msgid_plural "%d plugins are not available:"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "El complemento %d no está disponible:"
+msgstr[1] "Los complementos %d no están disponibles:"
 
 #, python-format
 msgid "%d sec"
 msgstr "%d seg"
+
+#, python-format
+msgid "%d service found."
+msgid_plural "%d services found."
+msgstr[0] "%d servicio encontrado."
+msgstr[1] "%d servicios encontrados."
 
 #
 #, python-format
@@ -1133,10 +1139,6 @@ msgid "%m/%d/%Y"
 msgstr "%m/%d/%Y"
 
 #, python-format
-msgid "%s  (%s)"
-msgstr "%s  (%s)"
-
-#, python-format
 msgid "%s %02d.%02d."
 msgstr "%s %02d.%02d."
 
@@ -1162,7 +1164,7 @@ msgstr "Mando a distancia de %s %s (nativo)"
 
 #, python-format
 msgid "%s %sB"
-msgstr ""
+msgstr "%s %sB"
 
 #, python-format
 msgid "%s (%04o)"
@@ -1174,7 +1176,7 @@ msgstr "%s - Configuración"
 
 #, python-format
 msgid "%s Browser Manage Actions"
-msgstr ""
+msgstr "%s Acciones del administrador del navegador"
 
 #, python-format
 msgid "%s GHz"
@@ -1212,7 +1214,7 @@ msgstr "%s ha sido deshabilitado."
 
 #, python-format
 msgid "%s imported from remote receiver."
-msgstr ""
+msgstr "%s importado desde el receptor remoto."
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -1345,13 +1347,13 @@ msgid "-"
 msgstr "-"
 
 msgid "- No space left on backup device."
-msgstr ""
+msgstr "- No queda espacio en el dispositivo para la copia de seguridad."
 
 msgid "- No write permission on backup device."
-msgstr ""
+msgstr "- No hay permiso de escritura en el dispositivo para la copia de seguridad."
 
 msgid "- Wrong backup destination."
-msgstr ""
+msgstr "- Destino de la copia de seguridad incorrecto."
 
 msgid "-24 Hours"
 msgstr "-24 Horas"
@@ -1435,20 +1437,20 @@ msgid "16:9 Always"
 msgstr "16:9 siempre"
 
 msgid "16:9 Combined"
-msgstr ""
+msgstr "Combinado 16:9"
 
 msgid "16:9 Ignore"
-msgstr ""
+msgstr "Ignorar 16:9"
 
 #
 msgid "16:9 Letterbox"
 msgstr "16:9 Buzón"
 
 msgid "16:9 PanScan"
-msgstr ""
+msgstr "Pan & scan 16:9"
 
 msgid "16:9 reset to normal"
-msgstr ""
+msgstr "16:9 reajustado a normal"
 
 #
 msgid "18 V"
@@ -1512,10 +1514,10 @@ msgid "4"
 msgstr "4"
 
 msgid "4:3 Combined"
-msgstr ""
+msgstr "Combinado 4:3"
 
 msgid "4:3 Ignore"
-msgstr ""
+msgstr "Ignorar 4:3"
 
 #
 msgid "4:3 Letterbox"
@@ -1533,7 +1535,7 @@ msgid "5"
 msgstr "5"
 
 msgid "50-200 Mbps"
-msgstr ""
+msgstr "50-200 Mbps"
 
 #
 msgid "6"
@@ -1585,20 +1587,20 @@ msgid "<Last timer location>"
 msgstr "<Ubicación de la última grabación>"
 
 msgid "<Select a device>"
-msgstr ""
+msgstr "<Seleccionar dispositivo>"
 
 msgid "<no log found>"
-msgstr ""
+msgstr "<sin registros>"
 
 #
 msgid "A"
 msgstr "A"
 
 msgid "A backup is now being created."
-msgstr ""
+msgstr "Se está creando una copia de seguridad."
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
-msgstr ""
+msgstr "Una lista separada por comas de las extensiones que se utilizarán para la configuración de 'Mi extensión' de 'Filtro extensión'. Introduzca los nombres de las extensiones sin un punto inicial (.)."
 
 #, python-format
 msgid "A completed task wants to set your %s %s to standby. Do that now?"
@@ -1763,19 +1765,19 @@ msgid "AFL"
 msgstr "AFL"
 
 msgid "AI-Powered Translation color"
-msgstr ""
+msgstr "Color de texto para traducción asistida por IA"
 
 msgid "AI-Powered Translation enabled"
-msgstr ""
+msgstr "Traducción impulsada por IA habilitada"
 
 msgid "AI-Powered Translation language"
-msgstr ""
+msgstr "Traducción basada en inteligencia artificial"
 
 msgid "AI-Powered Translation optimization"
-msgstr ""
+msgstr "Optimización de la traducción basada en IA"
 
 msgid "AI-Powered Translation subscription code"
-msgstr ""
+msgstr "Código de suscripción para traducción impulsada por IA"
 
 msgid "ARM"
 msgstr "ARM"
@@ -1832,7 +1834,7 @@ msgid "About to start"
 msgstr "A punto de comenzar"
 
 msgid "Above 200 Mbps"
-msgstr ""
+msgstr "Más de 200 Mbps"
 
 msgid "Access point"
 msgstr "Punto de acceso"
@@ -1845,7 +1847,7 @@ msgid "Access to geolocation information requires an Internet connection."
 msgstr "Acceder a la información de geolocalización requiere una conexión a Internet."
 
 msgid "Accessed"
-msgstr ""
+msgstr "Consultado"
 
 msgid "Action"
 msgstr "Acción"
@@ -1865,7 +1867,7 @@ msgid "Activate"
 msgstr "Activar"
 
 msgid "Activate Expander"
-msgstr ""
+msgstr "Activar expansor"
 
 msgid "Activate HbbTV (RED button)"
 msgstr "Activar HbbTV (rojo)"
@@ -1892,7 +1894,7 @@ msgid "Activate the configured network settings."
 msgstr "Activar los ajustes de configuración de red."
 
 msgid "Activate the flash expander, save all changed settings and exit"
-msgstr ""
+msgstr "Active el expansor de flash, guarda todos los ajustes cambiados y salga"
 
 msgid "Activate time shift End"
 msgstr "Activar fin de timeshift"
@@ -1907,7 +1909,7 @@ msgid "Active clients"
 msgstr "Clientes activos"
 
 msgid "Active only"
-msgstr ""
+msgstr "Activar solo"
 
 #
 msgid "Adapter Settings"
@@ -1939,19 +1941,19 @@ msgid "Add Current"
 msgstr "Añadir actual"
 
 msgid "Add File Commander to Extensions Menu"
-msgstr ""
+msgstr "Agregar File Commander al menú de extensiones"
 
 msgid "Add File Commander to Main Menu"
-msgstr ""
+msgstr "Añadir File Commander al menú principal"
 
 msgid "Add File Commander to the Extensions Menu list of options."
-msgstr ""
+msgstr "Añadir File Commander a la lista de opciones del Menú extensiones."
 
 msgid "Add File Commander to the Main Menu list of options."
-msgstr ""
+msgstr "Añadir File Commander a la lista de opciones del menú principal."
 
 msgid "Add HDMI-IN To Bouquet"
-msgstr ""
+msgstr "Añadir HDMI-IN al conjunto"
 
 #
 msgid "Add Marker To Bouquet"
@@ -3787,6 +3789,12 @@ msgstr "Cancelar la selección de imágenes y salir"
 
 msgid "Cancel the image selection and exit all menus"
 msgstr "Cancelar la selección de imágenes y salir de todos los menús"
+
+msgid "Cancel the scan and exit the scanner"
+msgstr ""
+
+msgid "Cancel the scan and exit all menus"
+msgstr ""
 
 msgid "Cancel the selection and exit"
 msgstr ""
@@ -7408,6 +7416,9 @@ msgstr ""
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr "Activa esta opción para añadir datos extra de la EPG al archivo de registro de depuración."
 
+msgid "Enable this option to add extra teletext details to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add international language and country load information detected during system boot to the debug log file."
 msgstr ""
 
@@ -7431,6 +7442,9 @@ msgstr ""
 
 msgid "Enable this setting if your aerial system needs power."
 msgstr "Habilitar esta opción si su sistema de antena necesita energía"
+
+msgid "Enable timer"
+msgstr ""
 
 msgid "Enable to add some extra spacing to the Information screens. This can improve readability."
 msgstr "Habilitar para añadir un espacio extra a las pantallas de información. Esto puede mejorar la legibilidad."
@@ -7885,6 +7899,10 @@ msgstr "¡Ha fallado la creación del directorio %s. !"
 
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error: Failed to run service scan!  (%s)"
 msgstr ""
 
 #, python-format
@@ -10070,6 +10088,9 @@ msgstr "Incluir los datos del mando a distancia"
 
 msgid "Include screen load data"
 msgstr "Incluir datos de carga de la pantalla"
+
+msgid "Include teletext details"
+msgstr ""
 
 msgid "Include timer data"
 msgstr "Incluir los datos del temporizador"
@@ -13578,6 +13599,9 @@ msgstr "Partición"
 msgid "Partitions"
 msgstr "Particiones"
 
+msgid "Pass"
+msgstr ""
+
 msgid "Pass-through"
 msgstr "Pasar por"
 
@@ -15086,7 +15110,7 @@ msgstr "Grabación fallida"
 msgid "Recording finished"
 msgstr "Grabación terminada"
 
-msgid "Recording in progress"
+msgid "Recording in progress!"
 msgstr "Grabación en curso"
 
 msgid "Recording location"
@@ -16256,17 +16280,33 @@ msgid_plural "Scanning - %d%% completed"
 msgstr[0] "Escaneo - %d%% completado"
 msgstr[1] "Escaneos - %d%% completados"
 
+msgid "Scanning can't be performed while recordings are in progress."
+msgstr ""
+
 #, python-format
 msgid "Scanning completed, %d channel found"
 msgid_plural "Scanning completed, %d channels found"
 msgstr[0] "Escaneo completado, %d canal encontrado"
 msgstr[1] "Escaneo completado, %d canales encontrados"
 
+#, python-format
+msgid "Scanning completed, %d service found."
+msgid_plural "Scanning completed, %d services found."
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Scanning failed!"
 msgstr "¡El escaneo ha fallado!"
 
 msgid "Scanning..."
 msgstr "Buscando…"
+
+#. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
+#, python-format
+msgid "Scanning: %d%% complete"
+msgid_plural "Scanning: %d%% complete"
+msgstr[0] ""
+msgstr[1] ""
 
 #
 msgid "Scans default lamedbs sorted by satellite with a connected dish positioner"
@@ -17073,6 +17113,9 @@ msgstr "Seleccione el idioma regional actual de la interfaz de usuario"
 msgid "Select the currently highlighted service"
 msgstr "Seleccione el servicio que esta actualmente resaltado"
 
+msgid "Select the currently highlighted service and exit"
+msgstr ""
+
 msgid "Select the date from which this timer will become active."
 msgstr "Seleccione la fecha a partir de la cual se activará este temporizador."
 
@@ -17196,6 +17239,12 @@ msgid "Select the previous item in list or move the cursor left"
 msgstr "Seleccione el elemento anterior de la lista o mueva el cursor hacia la izquierda"
 
 msgid "Select the previous item in the list"
+msgstr ""
+
+msgid "Select the previous service and close the scanner"
+msgstr ""
+
+msgid "Select the previous service and close the scanner and exit all menus"
 msgstr ""
 
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
@@ -17549,6 +17598,9 @@ msgid "Service Number, Picon and Service Name"
 msgstr "Picon y nombre de canal"
 
 msgid "Service Scan"
+msgstr ""
+
+msgid "Service Scan Actions"
 msgstr ""
 
 #, fuzzy
@@ -24512,10 +24564,10 @@ msgstr "igual a"
 msgid "equestrian"
 msgstr "ecuestre"
 
-msgid "error starting scanning"
+msgid "Problem starting scan"
 msgstr "Error iniciando la exploración"
 
-msgid "error while scanning"
+msgid "Problem while scanning"
 msgstr "Error durante la exploración"
 
 msgid "execute cuts (requires MovieCut plugin)"
@@ -24837,7 +24889,7 @@ msgstr "No se ha seleccionado CAId"
 msgid "no CI slots found"
 msgstr "No se han encontrado ranuras CI"
 
-msgid "no channel list"
+msgid "No channel list"
 msgstr "No hay lista de canales"
 
 #
@@ -24847,7 +24899,7 @@ msgstr "Módulo no encontrado"
 msgid "no or unknown card inserted"
 msgstr "No se ha insertado ninguna tarjeta o es desconocida"
 
-msgid "no resource manager"
+msgid "No resource manager"
 msgstr "No hay gestor de recursos"
 
 msgid "no storage devices found"
@@ -25368,6 +25420,10 @@ msgstr "Sí (conservar fuentes)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s  (%s)"
+#~ msgstr "%s  (%s)"
 
 # A/V Settings
 #~ msgid "Audio volume step size"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-12 21:03+0000\n"
+"POT-Creation-Date: 2024-10-01 08:46+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1018,6 +1018,11 @@ msgid "%d sec"
 msgstr "%d giây"
 
 #, python-format
+msgid "%d service found."
+msgid_plural "%d services found."
+msgstr[0] ""
+
+#, python-format
 msgid "%d times"
 msgstr "%d thời gian"
 
@@ -1113,10 +1118,6 @@ msgstr "%m/%d "
 
 msgid "%m/%d/%Y"
 msgstr "%m/%d/%Y"
-
-#, fuzzy, python-format
-msgid "%s  (%s)"
-msgstr "%s (%s)"
 
 #, python-format
 msgid "%s %02d.%02d."
@@ -3632,6 +3633,12 @@ msgstr "Chọn kênh"
 #, fuzzy
 msgid "Cancel the image selection and exit all menus"
 msgstr "Chọn kênh"
+
+msgid "Cancel the scan and exit the scanner"
+msgstr ""
+
+msgid "Cancel the scan and exit all menus"
+msgstr ""
 
 msgid "Cancel the selection and exit"
 msgstr ""
@@ -7121,6 +7128,9 @@ msgstr ""
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add extra teletext details to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add international language and country load information detected during system boot to the debug log file."
 msgstr ""
 
@@ -7144,6 +7154,9 @@ msgstr ""
 
 msgid "Enable this setting if your aerial system needs power."
 msgstr "Kích hoạt cài đặt này nếu hệ thống trên không của bạn cần nguồn điện"
+
+msgid "Enable timer"
+msgstr ""
 
 msgid "Enable to add some extra spacing to the Information screens. This can improve readability."
 msgstr ""
@@ -7580,6 +7593,10 @@ msgstr "Tạo thư mục%s không thành công."
 
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error: Failed to run service scan!  (%s)"
 msgstr ""
 
 #, python-format
@@ -9679,6 +9696,9 @@ msgid "Include remote control data"
 msgstr "Cấu hình loại điều khiển từ xa"
 
 msgid "Include screen load data"
+msgstr ""
+
+msgid "Include teletext details"
 msgstr ""
 
 msgid "Include timer data"
@@ -13033,6 +13053,9 @@ msgstr ""
 msgid "Partitions"
 msgstr "Phân vùng"
 
+msgid "Pass"
+msgstr ""
+
 msgid "Pass-through"
 msgstr "Vượt qua"
 
@@ -14443,7 +14466,7 @@ msgstr "Kiểu ghi âm"
 msgid "Recording finished"
 msgstr "Cài đặt ghi âm"
 
-msgid "Recording in progress"
+msgid "Recording in progress!"
 msgstr "Đang ghi"
 
 msgid "Recording location"
@@ -15534,16 +15557,30 @@ msgid "Scanning - %d%% completed"
 msgid_plural "Scanning - %d%% completed"
 msgstr[0] "Quét%d%% - hoàn thành"
 
+msgid "Scanning can't be performed while recordings are in progress."
+msgstr ""
+
 #, python-format
 msgid "Scanning completed, %d channel found"
 msgid_plural "Scanning completed, %d channels found"
 msgstr[0] "Quét xong, %d kênh được tìm thấy"
+
+#, python-format
+msgid "Scanning completed, %d service found."
+msgid_plural "Scanning completed, %d services found."
+msgstr[0] ""
 
 msgid "Scanning failed!"
 msgstr "Quét thất bại!"
 
 msgid "Scanning..."
 msgstr "Đang quét ..."
+
+#. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
+#, python-format
+msgid "Scanning: %d%% complete"
+msgid_plural "Scanning: %d%% complete"
+msgstr[0] ""
 
 msgid "Scans default lamedbs sorted by satellite with a connected dish positioner"
 msgstr "Quét lamebs mặc định được sắp xếp theo vệ tinh với bộ định vị món ăn được kết nối"
@@ -16320,6 +16357,9 @@ msgstr ""
 msgid "Select the currently highlighted service"
 msgstr ""
 
+msgid "Select the currently highlighted service and exit"
+msgstr ""
+
 msgid "Select the date from which this timer will become active."
 msgstr ""
 
@@ -16443,6 +16483,12 @@ msgid "Select the previous item in list or move the cursor left"
 msgstr ""
 
 msgid "Select the previous item in the list"
+msgstr ""
+
+msgid "Select the previous service and close the scanner"
+msgstr ""
+
+msgid "Select the previous service and close the scanner and exit all menus"
 msgstr ""
 
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
@@ -16782,6 +16828,9 @@ msgid "Service Number, Picon and Service Name"
 msgstr "Số dịch vụ, Picon và Tên dịch vụ"
 
 msgid "Service Scan"
+msgstr ""
+
+msgid "Service Scan Actions"
 msgstr ""
 
 #, fuzzy
@@ -23283,10 +23332,10 @@ msgstr "tương đương với"
 msgid "equestrian"
 msgstr "cưỡi ngựa"
 
-msgid "error starting scanning"
+msgid "Problem starting scan"
 msgstr "lỗi bắt đầu quét"
 
-msgid "error while scanning"
+msgid "Problem while scanning"
 msgstr "lỗi trong khi quét"
 
 msgid "execute cuts (requires MovieCut plugin)"
@@ -23581,7 +23630,7 @@ msgstr "không chọn CAId"
 msgid "no CI slots found"
 msgstr "không tìm thấy khe CI"
 
-msgid "no channel list"
+msgid "No channel list"
 msgstr "không có danh sách kênh"
 
 msgid "no module found"
@@ -23590,7 +23639,7 @@ msgstr "không tìm thấy mô-đun"
 msgid "no or unknown card inserted"
 msgstr "không có hoặc không biết thẻ được chèn"
 
-msgid "no resource manager"
+msgid "No resource manager"
 msgstr "không có người quản lý tài nguyên"
 
 msgid "no storage devices found"
@@ -24052,6 +24101,10 @@ msgstr "có (giữ thức ăn)"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy, python-format
+#~ msgid "%s  (%s)"
+#~ msgstr "%s (%s)"
 
 #~ msgid "Audio volume step size"
 #~ msgstr "Mức âm lượng có thể điều chỉnh"

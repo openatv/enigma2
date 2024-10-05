@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-12 21:03+0000\n"
+"POT-Creation-Date: 2024-10-01 08:46+0000\n"
 "PO-Revision-Date: 2024-09-18 11:00+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
@@ -1053,6 +1053,13 @@ msgid "%d sec"
 msgstr "%d sec"
 
 #, python-format
+msgid "%d service found."
+msgid_plural "%d services found."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
 msgid "%d times"
 msgstr "%d časy"
 
@@ -1144,10 +1151,6 @@ msgstr "%m/%d "
 
 msgid "%m/%d/%Y"
 msgstr "%m/%d/%Y"
-
-#, python-format
-msgid "%s  (%s)"
-msgstr "%s  (%s)"
 
 #, python-format
 msgid "%s %02d.%02d."
@@ -3640,6 +3643,12 @@ msgstr "Zrušit výběr image a ukončit"
 
 msgid "Cancel the image selection and exit all menus"
 msgstr "Zrušit výběr image a opustit všechna menu"
+
+msgid "Cancel the scan and exit the scanner"
+msgstr ""
+
+msgid "Cancel the scan and exit all menus"
+msgstr ""
 
 msgid "Cancel the selection and exit"
 msgstr "Zrušit výběr a ukončit"
@@ -7101,6 +7110,9 @@ msgstr "Povolením této možnosti přidáte do souboru protokolu ladění dalš
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr "Povolením této možnosti přidáte do souboru protokolu ladění další data EPG."
 
+msgid "Enable this option to add extra teletext details to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add international language and country load information detected during system boot to the debug log file."
 msgstr "Povolením této možnosti přidáte do souboru protokolu ladění informace o mezinárodním jazyce a zatížení země zjištěné během spouštění systému."
 
@@ -7124,6 +7136,9 @@ msgstr "Povolením této možnosti zobrazíte všechny dostupné informační ob
 
 msgid "Enable this setting if your aerial system needs power."
 msgstr "Povolte toto nastavení, pokud váš anténní systém potřebuje napájení."
+
+msgid "Enable timer"
+msgstr ""
 
 msgid "Enable to add some extra spacing to the Information screens. This can improve readability."
 msgstr "Povolte přidání dalších mezer na informační obrazovky. To může zlepšit čitelnost."
@@ -7560,6 +7575,10 @@ msgstr "Chyba: Vytvoření adresáře '%s' se nezdařilo!"
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
 msgstr "Chyba: Vytváření cílového adresáře picon: (%s)"
+
+#, python-format
+msgid "Error: Failed to run service scan!  (%s)"
+msgstr ""
 
 #, python-format
 msgid "Error: File '%s' cannot be opened!  (%s)"
@@ -9630,6 +9649,9 @@ msgstr "Zahrnout data dálkového ovládání"
 
 msgid "Include screen load data"
 msgstr "Zahrnout údaje o načtení obrazovky"
+
+msgid "Include teletext details"
+msgstr ""
 
 msgid "Include timer data"
 msgstr "Zahrnout data časovače"
@@ -12899,6 +12921,9 @@ msgstr "Oddíl"
 msgid "Partitions"
 msgstr "Diskové oddíly"
 
+msgid "Pass"
+msgstr ""
+
 msgid "Pass-through"
 msgstr "Procházet"
 
@@ -14298,7 +14323,7 @@ msgstr "Nahrávání se nezdařilo"
 msgid "Recording finished"
 msgstr "Nahrávání dokončeno"
 
-msgid "Recording in progress"
+msgid "Recording in progress!"
 msgstr "Probíhá nahrávání"
 
 msgid "Recording location"
@@ -15375,6 +15400,9 @@ msgstr[0] "Prohledávání - %d%% dokončeno"
 msgstr[1] "Prohledávání - %d%% dokončena"
 msgstr[2] "Prohledávání - %d%% dokončeno"
 
+msgid "Scanning can't be performed while recordings are in progress."
+msgstr ""
+
 #, python-format
 msgid "Scanning completed, %d channel found"
 msgid_plural "Scanning completed, %d channels found"
@@ -15382,11 +15410,26 @@ msgstr[0] "Prohledávání dokončeno, byl nalezen %d program"
 msgstr[1] "Prohledávání dokončeno, byly nalezeny %d programy"
 msgstr[2] "Prohledávání dokončeno, bylo nalezeno %d programů"
 
+#, python-format
+msgid "Scanning completed, %d service found."
+msgid_plural "Scanning completed, %d services found."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
 msgid "Scanning failed!"
 msgstr "Prohledávání selhalo!"
 
 msgid "Scanning..."
 msgstr "Prohledávání..."
+
+#. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
+#, python-format
+msgid "Scanning: %d%% complete"
+msgid_plural "Scanning: %d%% complete"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 msgid "Scans default lamedbs sorted by satellite with a connected dish positioner"
 msgstr "Prohledá standardní lamedbs setříděné podle satelitu a připojeného pozicionéru"
@@ -16158,6 +16201,9 @@ msgstr "Vyberte aktuálně zvýrazněné národní prostředí/jazyk uživatelsk
 msgid "Select the currently highlighted service"
 msgstr "Vyberte aktuálně označenou službu"
 
+msgid "Select the currently highlighted service and exit"
+msgstr ""
+
 msgid "Select the date from which this timer will become active."
 msgstr "Vyberte datum, od kterého se tento časovač stane aktivním."
 
@@ -16284,6 +16330,12 @@ msgstr "Vyberte předchozí položku v seznamu nebo posuňte kurzor vlevo"
 
 msgid "Select the previous item in the list"
 msgstr "Vyberte předchozí položku v seznamu"
+
+msgid "Select the previous service and close the scanner"
+msgstr ""
+
+msgid "Select the previous service and close the scanner and exit all menus"
+msgstr ""
 
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "Vyberte protokol používaný vaším zařízením SCR. Možnosti jsou „SCR Unicable“ (Unicable) nebo „SCR JESS“ (JESS, také známý jako Unicable II)."
@@ -16623,6 +16675,9 @@ msgstr "Číslo programu, pikona a název programu"
 
 msgid "Service Scan"
 msgstr "Skenování služby"
+
+msgid "Service Scan Actions"
+msgstr ""
 
 msgid "Service Selection Actions"
 msgstr "Akce pro výběr služeb"
@@ -23109,10 +23164,10 @@ msgstr "shodné s"
 msgid "equestrian"
 msgstr "jezdectví"
 
-msgid "error starting scanning"
+msgid "Problem starting scan"
 msgstr "chyba při spuštění skenování"
 
-msgid "error while scanning"
+msgid "Problem while scanning"
 msgstr "chyba při skenování"
 
 msgid "execute cuts (requires MovieCut plugin)"
@@ -23400,7 +23455,7 @@ msgstr "není vybrán žádný CAId"
 msgid "no CI slots found"
 msgstr "nebyly nalezeny žádné CI sloty"
 
-msgid "no channel list"
+msgid "No channel list"
 msgstr "žádný seznam kanálů"
 
 msgid "no module found"
@@ -23409,7 +23464,7 @@ msgstr "nenalezen žádný modul"
 msgid "no or unknown card inserted"
 msgstr "není vložena žádná nebo neznámá karta"
 
-msgid "no resource manager"
+msgid "No resource manager"
 msgstr "žádný správce zdrojů"
 
 msgid "no storage devices found"
@@ -23870,6 +23925,10 @@ msgstr "ano (uchovat zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s  (%s)"
+#~ msgstr "%s  (%s)"
 
 #~ msgid "Kurdish (Sorani)"
 #~ msgstr "Kurdština (Soranština)"

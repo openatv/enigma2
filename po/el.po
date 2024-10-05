@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-12 21:03+0000\n"
+"POT-Creation-Date: 2024-10-01 08:46+0000\n"
 "PO-Revision-Date: 2024-08-20 13:09+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -1022,6 +1022,12 @@ msgid "%d sec"
 msgstr "%d δευτ"
 
 #, python-format
+msgid "%d service found."
+msgid_plural "%d services found."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
 msgid "%d times"
 msgstr "%d φορές"
 
@@ -1112,10 +1118,6 @@ msgstr "%m/%d "
 
 msgid "%m/%d/%Y"
 msgstr "%m/%d/%Y"
-
-#, python-format
-msgid "%s  (%s)"
-msgstr "%s  (%s)"
 
 #, python-format
 msgid "%s %02d.%02d."
@@ -3608,6 +3610,12 @@ msgstr "Ακύρωση της επιλογής image και έξοδος"
 
 msgid "Cancel the image selection and exit all menus"
 msgstr "Ακύρωση της επιλογής image και έξοδος από όλα τα μενού"
+
+msgid "Cancel the scan and exit the scanner"
+msgstr ""
+
+msgid "Cancel the scan and exit all menus"
+msgstr ""
 
 msgid "Cancel the selection and exit"
 msgstr "Ακύρωση επιλογής και έξοδος"
@@ -7066,6 +7074,9 @@ msgstr "Ενεργοποιήστε αυτή την επιλογή για να π
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr "Ενεργοποιήστε αυτή την επιλογή για την προσθήκη πρόσθετων δεδομένων EPG στο αρχείο καταγραφής αποσφαλμάτωσης."
 
+msgid "Enable this option to add extra teletext details to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add international language and country load information detected during system boot to the debug log file."
 msgstr "Ενεργοποιήστε αυτήν την επιλογή για να προσθέσετε πληροφορίες για τη διεθνή γλώσσα και τον φόρτο χώρας που ανιχνεύονται κατά την εκκίνηση του συστήματος στο αρχείο καταγραφής αποσφαλμάτωσης."
 
@@ -7089,6 +7100,9 @@ msgstr "Ενεργοποιήστε αυτή την επιλογή για να ε
 
 msgid "Enable this setting if your aerial system needs power."
 msgstr "Ενεργοποιήστε αυτή τη ρύθμιση αν η κεραία σας απαιτεί πρόσθετη ισχύ."
+
+msgid "Enable timer"
+msgstr ""
 
 msgid "Enable to add some extra spacing to the Information screens. This can improve readability."
 msgstr "Ενεργοποίηση προσθήκης πρόσθετου διαστήματος στις οθόνες πληροφοριών. Αυτό μπορεί να βελτιώσει την ανάγνωσή τους."
@@ -7523,6 +7537,10 @@ msgstr "Σφάλμα: Η δημιουργία του φακέλου '%s' απέ�
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
 msgstr "Σφάλμα στη δημιουργία φακέλου λογότυπων: (%s)"
+
+#, python-format
+msgid "Error: Failed to run service scan!  (%s)"
+msgstr ""
 
 #, python-format
 msgid "Error: File '%s' cannot be opened!  (%s)"
@@ -9593,6 +9611,9 @@ msgstr "Συμπερίληψη των δεδομένων τηλεχειριστ�
 
 msgid "Include screen load data"
 msgstr "Συμπερίληψη των δεδομένων φόρτωσης εικόνας"
+
+msgid "Include teletext details"
+msgstr ""
 
 msgid "Include timer data"
 msgstr "Συμπερίληψη των δεδομένων χρονοδιακόπτη"
@@ -12860,6 +12881,9 @@ msgstr "Διαμέρισμα"
 msgid "Partitions"
 msgstr "Διαμερίσματα"
 
+msgid "Pass"
+msgstr ""
+
 msgid "Pass-through"
 msgstr "Διέλευση"
 
@@ -14257,7 +14281,7 @@ msgstr "Αποτυχία εγγραφής"
 msgid "Recording finished"
 msgstr "Η εγγραφή τελείωσε"
 
-msgid "Recording in progress"
+msgid "Recording in progress!"
 msgstr "Εγγραφή σε εξέλιξη"
 
 msgid "Recording location"
@@ -15333,17 +15357,33 @@ msgid_plural "Scanning - %d%% completed"
 msgstr[0] "Ανίχνευση - ολοκληρώθηκε %d%%"
 msgstr[1] "Ανίχνευση - ολοκληρώθηκε το %d%%"
 
+msgid "Scanning can't be performed while recordings are in progress."
+msgstr ""
+
 #, python-format
 msgid "Scanning completed, %d channel found"
 msgid_plural "Scanning completed, %d channels found"
 msgstr[0] "Η ανίχνευση ολοκληρώθηκε, βρέθηκε %d κανάλι"
 msgstr[1] "Η ανίχνευση ολοκληρώθηκε, βρέθηκαν %d κανάλια"
 
+#, python-format
+msgid "Scanning completed, %d service found."
+msgid_plural "Scanning completed, %d services found."
+msgstr[0] ""
+msgstr[1] ""
+
 msgid "Scanning failed!"
 msgstr "Η ανίχνευση απέτυχε!"
 
 msgid "Scanning..."
 msgstr "Ανίχνευση..."
+
+#. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
+#, python-format
+msgid "Scanning: %d%% complete"
+msgid_plural "Scanning: %d%% complete"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Scans default lamedbs sorted by satellite with a connected dish positioner"
 msgstr "Εκτελεί σάρωση των αρχικών βάσεων δεδομένων ταξινομημένων κατά δορυφόρο με συνδεδεμένο μοτέρ"
@@ -16115,6 +16155,9 @@ msgstr "Επιλογή της τρέχουσας επισημασμένης γλ
 msgid "Select the currently highlighted service"
 msgstr "Επιλογή της τρέχουσας επισημασμένης υπηρεσίας"
 
+msgid "Select the currently highlighted service and exit"
+msgstr ""
+
 msgid "Select the date from which this timer will become active."
 msgstr "Επιλέξτε την ημερομηνία από την οποία ο χρονοδιακόπτης θα ενεργοποιηθεί."
 
@@ -16241,6 +16284,12 @@ msgstr "Επιλογή του προηγούμενου στοιχείου στη
 
 msgid "Select the previous item in the list"
 msgstr "Επιλογή του προηγούμενου στοιχείου στη λίστα"
+
+msgid "Select the previous service and close the scanner"
+msgstr ""
+
+msgid "Select the previous service and close the scanner and exit all menus"
+msgstr ""
 
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "Επιλέξτε το πρωτόκολλο της SCR συσκευής σας. Οι επιλογές είναι 'SCR Unicable' (Unicable) ή 'SCR JESS' (JESS, γνωστό και ως Unicable II)."
@@ -16580,6 +16629,9 @@ msgstr "Αριθμός, λογότυπο και όνομα υπηρεσίας"
 
 msgid "Service Scan"
 msgstr "Ανίχνευση υπηρεσιών"
+
+msgid "Service Scan Actions"
+msgstr ""
 
 msgid "Service Selection Actions"
 msgstr "Ενέργειες επιλογής υπηρεσιών"
@@ -23064,10 +23116,10 @@ msgstr "ίσο με"
 msgid "equestrian"
 msgstr "ιπποδρομίες"
 
-msgid "error starting scanning"
+msgid "Problem starting scan"
 msgstr "σφάλμα έναρξης ανίχνευσης"
 
-msgid "error while scanning"
+msgid "Problem while scanning"
 msgstr "σφάλμα κατά την ανίχνευση"
 
 msgid "execute cuts (requires MovieCut plugin)"
@@ -23355,7 +23407,7 @@ msgstr "δεν έχει επιλεγεί CAId"
 msgid "no CI slots found"
 msgstr "δεν βρέθηκαν κοινές διεπαφές (CI)"
 
-msgid "no channel list"
+msgid "No channel list"
 msgstr "χωρίς λίστα καναλιών"
 
 msgid "no module found"
@@ -23364,7 +23416,7 @@ msgstr "δεν βρέθηκε άρθρωμα"
 msgid "no or unknown card inserted"
 msgstr "απουσία εισαγωγής ή άγνωστη κάρτα"
 
-msgid "no resource manager"
+msgid "No resource manager"
 msgstr "χωρίς διαχείριση πόρων"
 
 msgid "no storage devices found"
@@ -23824,6 +23876,10 @@ msgstr "ναι (διατήρηση των feeds)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s  (%s)"
+#~ msgstr "%s  (%s)"
 
 #~ msgid "Kurdish (Sorani)"
 #~ msgstr "Κουρδικά (Σοράνι)"

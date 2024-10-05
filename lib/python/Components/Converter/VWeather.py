@@ -130,7 +130,7 @@ class VWeather(Converter):
 
 class WeatherData:
 	def __init__(self):
-		self.WeatherInfo = WeatherInfo = {
+		self.WeatherInfo = {
 			"currentLocation": "N/A",
 			"currentWeatherCode": "(",
 			"currentWeatherText": "N/A",

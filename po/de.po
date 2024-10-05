@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-09-12 21:03+0000\n"
-"PO-Revision-Date: 2024-09-16 19:28+0000\n"
+"POT-Creation-Date: 2024-10-01 08:46+0000\n"
+"PO-Revision-Date: 2024-10-02 03:04+0000\n"
 "Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -1036,6 +1036,12 @@ msgid "%d sec"
 msgstr "%d Sek."
 
 #, python-format
+msgid "%d service found."
+msgid_plural "%d services found."
+msgstr[0] "%d Sender gefunden."
+msgstr[1] "%d Sender gefunden."
+
+#, python-format
 msgid "%d times"
 msgstr "%d Mal"
 
@@ -1130,10 +1136,6 @@ msgstr "%m/%d "
 
 msgid "%m/%d/%Y"
 msgstr "%m/%d/%Y"
-
-#, python-format
-msgid "%s  (%s)"
-msgstr "%s  (%s)"
 
 #, python-format
 msgid "%s %02d.%02d."
@@ -3809,6 +3811,12 @@ msgstr "Imageauswahl abbrechen und verlassen"
 #
 msgid "Cancel the image selection and exit all menus"
 msgstr "Imageauswahl abbrechen und alle Menüs verlassen"
+
+msgid "Cancel the scan and exit the scanner"
+msgstr "Suchlauf abbrechen und beenden"
+
+msgid "Cancel the scan and exit all menus"
+msgstr "Suchlauf abbrechen und alle Menüs verlassen"
 
 msgid "Cancel the selection and exit"
 msgstr "Auswahl abbrechen und beenden"
@@ -7458,6 +7466,9 @@ msgstr "Aktivieren, um dem Debug-Log zusätzlich DVB-Timesync-Daten hinzuzufüge
 msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr "Aktivieren, um dem Debug-Log zusätzlich EPG-Daten hinzuzufügen."
 
+msgid "Enable this option to add extra teletext details to the debug log file."
+msgstr "Aktivieren, um dem Debug-Log zusätzlich Videotext-Details hinzuzufügen."
+
 msgid "Enable this option to add international language and country load information detected during system boot to the debug log file."
 msgstr "Aktivieren, um dem Debug-Log internationale Sprach- und Länderinformationen hinzuzufügen, die während des Systemstarts erkannt wurden."
 
@@ -7481,6 +7492,9 @@ msgstr "Aktivieren, um alle verfügbaren Informations-Bildschirme in der Informa
 
 msgid "Enable this setting if your aerial system needs power."
 msgstr "Diese Einstellung aktivieren, wenn das Antennensystem Strom benötigt."
+
+msgid "Enable timer"
+msgstr "Timer aktivieren"
 
 msgid "Enable to add some extra spacing to the Information screens. This can improve readability."
 msgstr "Aktivieren, um den Informationsbildschirmen zusätzliche Abstände hinzuzufügen. Dies kann die Lesbarkeit verbessern."
@@ -7935,6 +7949,10 @@ msgstr "Fehler: Das Erstellen des Verzeichnisses '%s' ist fehlgeschlagen!"
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
 msgstr "Fehler beim Erzeugen des Zielordners ('%s')!"
+
+#, python-format
+msgid "Error: Failed to run service scan!  (%s)"
+msgstr "Fehler: Suchlauf kann nicht gestartet werden! (%s)"
 
 #, python-format
 msgid "Error: File '%s' cannot be opened!  (%s)"
@@ -10098,6 +10116,9 @@ msgstr "Inklusive Fernbedienungsdaten"
 
 msgid "Include screen load data"
 msgstr "Inklusive Screen-Daten"
+
+msgid "Include teletext details"
+msgstr "Inklusive Videotext-Details"
 
 msgid "Include timer data"
 msgstr "Inklusive Timer-Daten"
@@ -13623,6 +13644,9 @@ msgstr "Partition"
 msgid "Partitions"
 msgstr "Partitionen"
 
+msgid "Pass"
+msgstr "Durchgang"
+
 msgid "Pass-through"
 msgstr "Durchschleifen"
 
@@ -15137,8 +15161,8 @@ msgstr "Aufnahme fehlgeschlagen!"
 msgid "Recording finished"
 msgstr "Aufnahme beendet"
 
-msgid "Recording in progress"
-msgstr "Es wird aufgenommen"
+msgid "Recording in progress!"
+msgstr "Es wird aufgenommen!"
 
 msgid "Recording location"
 msgstr "Aufnahmeort"
@@ -16307,9 +16331,18 @@ msgid_plural "Scanning - %d%% completed"
 msgstr[0] "Suchlauf zu %d%% erledigt"
 msgstr[1] "Suchlauf zu %d%% erledigt"
 
+msgid "Scanning can't be performed while recordings are in progress."
+msgstr "Kein Suchlauf während Aufnahmen möglich!"
+
 #, python-format
 msgid "Scanning completed, %d channel found"
 msgid_plural "Scanning completed, %d channels found"
+msgstr[0] "Suchlauf beendet, %d Sender gefunden."
+msgstr[1] "Suchlauf beendet, %d Sender gefunden."
+
+#, python-format
+msgid "Scanning completed, %d service found."
+msgid_plural "Scanning completed, %d services found."
 msgstr[0] "Suchlauf beendet, %d Sender gefunden."
 msgstr[1] "Suchlauf beendet, %d Sender gefunden."
 
@@ -16318,6 +16351,13 @@ msgstr "Suchlauf fehlgeschlagen!"
 
 msgid "Scanning..."
 msgstr "Suchlauf..."
+
+#. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
+#, python-format
+msgid "Scanning: %d%% complete"
+msgid_plural "Scanning: %d%% complete"
+msgstr[0] "Suchlauf zu %d%% erledigt"
+msgstr[1] "Suchlauf zu %d%% erledigt"
 
 #
 msgid "Scans default lamedbs sorted by satellite with a connected dish positioner"
@@ -17128,6 +17168,9 @@ msgstr "Die aktuell markierte Sprachregion für die Benutzeroberfläche auswähl
 msgid "Select the currently highlighted service"
 msgstr "Den aktuell markierten Sender auswählen"
 
+msgid "Select the currently highlighted service and exit"
+msgstr "Mit aktuell markiertem Sender beenden"
+
 msgid "Select the date from which this timer will become active."
 msgstr "Das Datum auswählen, ab dem dieser Timer aktiv werden soll."
 
@@ -17261,6 +17304,12 @@ msgstr "Den vorherigen Eintrag in der Liste auswählen oder den Cursor nach link
 msgid "Select the previous item in the list"
 msgstr "Den vorherigen Eintrag in der Liste auswählen"
 
+msgid "Select the previous service and close the scanner"
+msgstr "Vorherigen Sender auswählen und Suchlauf beenden"
+
+msgid "Select the previous service and close the scanner and exit all menus"
+msgstr "Vorherigen Sender auswählen, Suchlauf beenden und alle Menüs schließen"
+
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "Das Protokoll des Unicable/SCR-Gerätes auswählen. 'SCR Unicable' (Unicable I-Format) oder 'SCR JESS' (Unicable II-Format)."
 
@@ -17309,13 +17358,13 @@ msgid "Select the sort order of the Extension Menu entries."
 msgstr "Sortierreihenfolge der Menüpunkte im Erweiterungsmenü einstellen."
 
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the menu entries to be hidden."
-msgstr "Sortierung und Sichtbarkeit (Benutzerdefiniert) der Einträge im Plugin-Manager einstellen."
+msgstr "Sortierung der Einträge im Plugin-Manager einstellen. 'Benutzerdefiniert' erlaubt auch das Verstecken von Einträgen."
 
 msgid "Select the sort order of the Plugin Browser menu entries. User defined also allows the plugin entries to be hidden."
-msgstr "Sortierung der Menüeinträge im Plugin-Manager. 'Benutzerdefiniert' erlaubt auch das Verstecken von Einträgen."
+msgstr "Sortierung der Menüeinträge im Plugin-Manager einstellen. 'Benutzerdefiniert' erlaubt auch das Verstecken von Einträgen."
 
 msgid "Select the sort order of the menu entries. User defined also allows the menu entries to be hidden."
-msgstr "Sortierung und Sichtbarkeit (Benutzerdefiniert) der Menüeinträge einstellen."
+msgstr "Sortierung der Menüeinträge einstellen. 'Benutzerdefiniert' erlaubt auch das Verstecken von Einträgen."
 
 msgid "Select the source location from where to obtain the upgrade files."
 msgstr "Die Quelle der Upgrade-Dateien auswählen."
@@ -17614,6 +17663,9 @@ msgstr "Sendernummer, Picon und Sendername"
 
 msgid "Service Scan"
 msgstr "Sendersuche"
+
+msgid "Service Scan Actions"
+msgstr "Suchlauf-Aktionen"
 
 msgid "Service Selection Actions"
 msgstr "Kanalauswahl-Aktionen"
@@ -24534,10 +24586,10 @@ msgstr "gleich"
 msgid "equestrian"
 msgstr "Pferdesport"
 
-msgid "error starting scanning"
+msgid "Problem starting scan"
 msgstr "Fehler beim Start der Suche!"
 
-msgid "error while scanning"
+msgid "Problem while scanning"
 msgstr "Fehler beim Suchen!"
 
 msgid "execute cuts (requires MovieCut plugin)"
@@ -24854,8 +24906,8 @@ msgstr "Keine CAID ausgewählt"
 msgid "no CI slots found"
 msgstr "Keinen CI-Slot gefunden!"
 
-msgid "no channel list"
-msgstr "keine Senderliste"
+msgid "No channel list"
+msgstr "Keine Senderliste"
 
 #
 msgid "no module found"
@@ -24864,7 +24916,7 @@ msgstr "Kein Modul gefunden"
 msgid "no or unknown card inserted"
 msgstr "Keine oder unbekannte Karte eingesteckt"
 
-msgid "no resource manager"
+msgid "No resource manager"
 msgstr "Kein Resourcen-Manager"
 
 msgid "no storage devices found"
@@ -25366,6 +25418,10 @@ msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s  (%s)"
+#~ msgstr "%s  (%s)"
 
 #~ msgid "Kurdish (Sorani)"
 #~ msgstr "Kurdisch (Sorani)"
