@@ -75,7 +75,8 @@ public:
 	{
 		m_spec.pid     = NetworkInformationSection::PID;
 		m_spec.tid     = NetworkInformationSection::TID;
-		m_spec.timeout = NetworkInformationSection::TIMEOUT;
+		//m_spec.timeout = NetworkInformationSection::TIMEOUT;
+		m_spec.timeout = 30000;  // Some Australian broadcasters don't send complete NIT every 10 seconds as required by standards
 		m_spec.flags   = eDVBTableSpec::tfAnyVersion |
 			eDVBTableSpec::tfHaveTID | eDVBTableSpec::tfCheckCRC |
 			eDVBTableSpec::tfHaveTimeout;
