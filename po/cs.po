@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-01 08:46+0000\n"
-"PO-Revision-Date: 2024-09-18 11:00+0000\n"
+"PO-Revision-Date: 2024-10-05 06:16+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
@@ -1055,9 +1055,9 @@ msgstr "%d sec"
 #, python-format
 msgid "%d service found."
 msgid_plural "%d services found."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Nalezena %d služba."
+msgstr[1] "Byly nalezeny %d služby."
+msgstr[2] "Bylo nalezeno %d služeb."
 
 #, python-format
 msgid "%d times"
@@ -3645,10 +3645,10 @@ msgid "Cancel the image selection and exit all menus"
 msgstr "Zrušit výběr image a opustit všechna menu"
 
 msgid "Cancel the scan and exit the scanner"
-msgstr ""
+msgstr "Zrušit skenování a opustit skener"
 
 msgid "Cancel the scan and exit all menus"
-msgstr ""
+msgstr "Zrušit skenování a opustit všechny nabídky"
 
 msgid "Cancel the selection and exit"
 msgstr "Zrušit výběr a ukončit"
@@ -7111,7 +7111,7 @@ msgid "Enable this option to add extra EPG data to the debug log file."
 msgstr "Povolením této možnosti přidáte do souboru protokolu ladění další data EPG."
 
 msgid "Enable this option to add extra teletext details to the debug log file."
-msgstr ""
+msgstr "Povolením této možnosti přidáte další podrobnosti o teletextu do souboru protokolu ladění."
 
 msgid "Enable this option to add international language and country load information detected during system boot to the debug log file."
 msgstr "Povolením této možnosti přidáte do souboru protokolu ladění informace o mezinárodním jazyce a zatížení země zjištěné během spouštění systému."
@@ -7138,7 +7138,7 @@ msgid "Enable this setting if your aerial system needs power."
 msgstr "Povolte toto nastavení, pokud váš anténní systém potřebuje napájení."
 
 msgid "Enable timer"
-msgstr ""
+msgstr "Povolit časovač"
 
 msgid "Enable to add some extra spacing to the Information screens. This can improve readability."
 msgstr "Povolte přidání dalších mezer na informační obrazovky. To může zlepšit čitelnost."
@@ -7578,7 +7578,7 @@ msgstr "Chyba: Vytváření cílového adresáře picon: (%s)"
 
 #, python-format
 msgid "Error: Failed to run service scan!  (%s)"
-msgstr ""
+msgstr "Chyba: Spuštění kontroly služby se nezdařilo! (%s)"
 
 #, python-format
 msgid "Error: File '%s' cannot be opened!  (%s)"
@@ -9651,7 +9651,7 @@ msgid "Include screen load data"
 msgstr "Zahrnout údaje o načtení obrazovky"
 
 msgid "Include teletext details"
-msgstr ""
+msgstr "Zahrnout podrobnosti o teletextu"
 
 msgid "Include timer data"
 msgstr "Zahrnout data časovače"
@@ -12922,7 +12922,7 @@ msgid "Partitions"
 msgstr "Diskové oddíly"
 
 msgid "Pass"
-msgstr ""
+msgstr "Povolit"
 
 msgid "Pass-through"
 msgstr "Procházet"
@@ -14324,7 +14324,7 @@ msgid "Recording finished"
 msgstr "Nahrávání dokončeno"
 
 msgid "Recording in progress!"
-msgstr "Probíhá nahrávání"
+msgstr "Probíhá nahrávání!"
 
 msgid "Recording location"
 msgstr "Umístění záznamu"
@@ -15401,7 +15401,7 @@ msgstr[1] "Prohledávání - %d%% dokončena"
 msgstr[2] "Prohledávání - %d%% dokončeno"
 
 msgid "Scanning can't be performed while recordings are in progress."
-msgstr ""
+msgstr "Skenování nelze provést, pokud probíhá nahrávání."
 
 #, python-format
 msgid "Scanning completed, %d channel found"
@@ -15413,9 +15413,9 @@ msgstr[2] "Prohledávání dokončeno, bylo nalezeno %d programů"
 #, python-format
 msgid "Scanning completed, %d service found."
 msgid_plural "Scanning completed, %d services found."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Skenování dokončeno, nalezena %d služba."
+msgstr[1] "Skenování dokončeno, nalezeny %d služby."
+msgstr[2] "Skenování dokončeno, nalezeno %d služeb."
 
 msgid "Scanning failed!"
 msgstr "Prohledávání selhalo!"
@@ -15427,9 +15427,9 @@ msgstr "Prohledávání..."
 #, python-format
 msgid "Scanning: %d%% complete"
 msgid_plural "Scanning: %d%% complete"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Skenování: %d%% dokončeno"
+msgstr[1] "Skenování: %d%% dokončena"
+msgstr[2] "Skenování: %d%% dokončeno"
 
 msgid "Scans default lamedbs sorted by satellite with a connected dish positioner"
 msgstr "Prohledá standardní lamedbs setříděné podle satelitu a připojeného pozicionéru"
@@ -16202,7 +16202,7 @@ msgid "Select the currently highlighted service"
 msgstr "Vyberte aktuálně označenou službu"
 
 msgid "Select the currently highlighted service and exit"
-msgstr ""
+msgstr "Vyberte aktuálně zvýrazněnou službu a odejděte"
 
 msgid "Select the date from which this timer will become active."
 msgstr "Vyberte datum, od kterého se tento časovač stane aktivním."
@@ -16332,10 +16332,10 @@ msgid "Select the previous item in the list"
 msgstr "Vyberte předchozí položku v seznamu"
 
 msgid "Select the previous service and close the scanner"
-msgstr ""
+msgstr "Vyberte předchozí službu a ukončete skener"
 
 msgid "Select the previous service and close the scanner and exit all menus"
-msgstr ""
+msgstr "Vyberte předchozí službu, zavřete skener a ukončete všechny nabídky"
 
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "Vyberte protokol používaný vaším zařízením SCR. Možnosti jsou „SCR Unicable“ (Unicable) nebo „SCR JESS“ (JESS, také známý jako Unicable II)."
@@ -16677,7 +16677,7 @@ msgid "Service Scan"
 msgstr "Skenování služby"
 
 msgid "Service Scan Actions"
-msgstr ""
+msgstr "Akce skenování služeb"
 
 msgid "Service Selection Actions"
 msgstr "Akce pro výběr služeb"
