@@ -2585,6 +2585,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		self.curRoot = self.startRoot
 		nref = ref or self.getCurrentSelection()
 		wrappererror = None
+		wrapper = False
 		if nref.flags & eServiceReference.isGroup:
 			oldref = self.session.nav.currentlyPlayingServiceReference or eServiceReference()
 			nref = getBestPlayableServiceReference(nref, oldref)
@@ -2596,9 +2597,12 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 					break
 				elif newurl:
 					nref.setAlternativeUrl(newurl)
+					wrapper = True
 					break
 			if wrappererror:
 				AddPopup(text=wrappererror, type=MessageBox.TYPE_ERROR, timeout=5, id="channelzapwrapper")
+			if not wrapper:  # Reset to group sref
+				nref = self.getCurrentSelection()
 		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if enable_pipzap and self.dopipzap:
 			ref = self.session.pip.getCurrentService()
