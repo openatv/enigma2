@@ -57,7 +57,8 @@ eDVBCICcSession::eDVBCICcSession(eDVBCISlot *slot, int version):
 eDVBCICcSession::~eDVBCICcSession()
 {
 	m_slot->setCCManager(0);
-	descrambler_deinit(m_descrambler_fd);
+	if (m_slot->getDescramblingOptions() != 1 && m_slot->getDescramblingOptions() != 3)
+		descrambler_deinit(m_descrambler_fd);
 
 	if (m_root_ca_store)
 		X509_STORE_free(m_root_ca_store);
