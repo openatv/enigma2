@@ -60,8 +60,8 @@ class PluginDescriptor:
 	WHERE_SATCONFIGCHANGED = 20
 	WHERE_SERVICESCAN = 21
 	WHERE_EXTENSIONSINGLE = 22
-	# Support zap hook to modify the service ref.
-	WHERE_CHANNEL_ZAP = 23
+	# Support playservice hook to modify the service ref.
+	WHERE_PLAYSERVICE = 23
 	# Arguments: reason, session, instance, type.
 	WHERE_INFOBARLOADED = 24
 	# Argument: session
