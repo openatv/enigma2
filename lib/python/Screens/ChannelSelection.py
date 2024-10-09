@@ -46,7 +46,7 @@ from Screens.TimerEdit import TimerSanityConflict
 from Screens.TimerEntry import InstantRecordTimerEntry, TimerEntry
 from Screens.VirtualKeyBoard import VirtualKeyboard
 from Tools.BoundFunction import boundFunction
-from Tools.Notifications import AddPopup, RemovePopup
+from Tools.Notifications import RemovePopup
 from Tools.NumericalTextInput import NumericalTextInput
 
 MODE_TV = 0
@@ -2584,25 +2584,6 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 	def zap(self, enable_pipzap=False, preview_zap=False, checkParentalControl=True, ref=None):
 		self.curRoot = self.startRoot
 		nref = ref or self.getCurrentSelection()
-		wrappererror = None
-		wrapper = False
-		if nref.flags & eServiceReference.isGroup:
-			oldref = self.session.nav.currentlyPlayingServiceReference or eServiceReference()
-			nref = getBestPlayableServiceReference(nref, oldref)
-		if nref.getPath():
-			for p in plugins.getPlugins(PluginDescriptor.WHERE_CHANNEL_ZAP):
-				(newurl, errormsg) = p(session=self.session, service=nref)
-				if errormsg:
-					wrappererror = _("Error getting link via %s\n%s") % (p.name, errormsg)
-					break
-				elif newurl:
-					nref.setAlternativeUrl(newurl)
-					wrapper = True
-					break
-			if wrappererror:
-				AddPopup(text=wrappererror, type=MessageBox.TYPE_ERROR, timeout=5, id="channelzapwrapper")
-			if not wrapper:  # Reset to group sref
-				nref = self.getCurrentSelection()
 		ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		if enable_pipzap and self.dopipzap:
 			ref = self.session.pip.getCurrentService()
