@@ -381,11 +381,11 @@ def getRecordingFilename(basename, dirname=None):
 		if character in nonAllowedCharacters or ord(character) < 32:
 			character = "_"
 		filename += character
-	# Max filename length for ext4 is 255 (minus 8 characters for .ts.meta)
+	# Max filename length for ext4 is 255 (minus 12 characters for .stream.meta)
 	# but must not truncate in the middle of a multi-byte utf8 character!
 	# So convert the truncation to unicode and back, ignoring errors, the
 	# result will be valid utf8 and so xml parsing will be OK.
-	filename = filename[:247]
+	filename = filename[:243]
 	if dirname is None:
 		dirname = defaultRecordingLocation()
 	else:
