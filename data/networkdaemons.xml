@@ -20,7 +20,7 @@
 	<daemon key="inadyn" title="Inadyn" installcheck="/etc/init.d/inadyn-mt" package="inadyn-mt" autostart="/etc/rc2.d/S20inadyn-mt" autostartservice="inadyn-mt" running="inadyn-mt" startservice="inadyn-mt" logpath="/var/log/inadyn.log"/>
 	<daemon key="minidlna" title="MiniDLNA" installcheck="/etc/init.d/minidlna" package="minidlna" autostart="/etc/rc2.d/S20minidlna" autostartservice="minidlna" running="minidlnad" startservice="minidlna" logpath="/var/volatile/log/minidlna.log"/>
 	<daemon key="nfs" title="NFS" installcheck="/etc/init.d/nfsserver" package="packagegroup-base-nfs" autostart="/etc/rc2.d/S*nfsserver" autostartservice="nfsserver" autostartprio="13" running="nfsd" startservice="nfsserver"/>
-	<daemon key="openvpn" title="OpenVPN" installcheck="/etc/init.d/openvpn" package="openvpn" autostart="/etc/rc2.d/S20openvpn" autostartservice="openvpn" running="openvpn" startservice="openvpn" logpath="/etc/openvpn/openvpn.log"/>
+	<daemon key="openvpn" title="OpenVPN" installcheck="/etc/init.d/openvpn" package="openvpn" autostart="/etc/rc2.d/S10openvpn" autostartservice="openvpn" running="openvpn" startservice="openvpn" logpath="/etc/openvpn/openvpn.log"/>
 	<daemon key="sabnzbd" title="SABnzbd" installcheck="/etc/init.d/sabnzbd" package="sabnzbd3" autostart="/etc/rc2.d/S20sabnzbd" autostartservice="sabnzbd" running="SABnzbd.py,SABnzbd.pyc" startservice="sabnzbd"/>
 	<daemon key="sambac" title="Samba Client" installcheck="/usr/bin/smbclient" package="packagegroup-base-smbfs-client"/>
 	<daemon key="sambas" title="Samba Server" installcheck="/etc/init.d/samba" package="packagegroup-base-smbfs-server" autostart="/etc/rc2.d/S20samba" autostartservice="samba" running="smbd" startservice="samba" logpath="/var/log/samba/log.smbd"/>
