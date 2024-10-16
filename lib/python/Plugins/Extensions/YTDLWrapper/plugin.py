@@ -5,36 +5,38 @@ try:
 except ImportError:
 	YoutubeDL = None
 
+SCHEMA = "YT-DL%3a//"
+WRAPPER = "YTDLWrapper"
 
-def zap(session, service, **kwargs):
+
+def playService(service, **kwargs):
 	errormsg = None
-	if service and "http" in service.toString():
+	if service and SCHEMA in service.toString():
 		url = service.toString()
 		url = url.split(":")
 		if len(url) > 9:
 			url = url[10]
-			if YoutubeDL is not None and url.startswith("YT-DL%3a//"):
-				url = url.replace("YT-DL%3a//", "")
+			if YoutubeDL is not None and url.startswith(SCHEMA):
+				url = url.replace(SCHEMA, "")
 				url = url.replace("%3a", ":")
 				try:
 					ydl = YoutubeDL({'format': 'best'})
 					result = ydl.extract_info(url, download=False)
 					if result and hasattr(result, "url"):
 						url = result['url']
-						print("[ChannelSelection] zap / YoutubeDL result url %s" % url)
+						print(f"[{WRAPPER}] playService result url '{url}'")
 						return (url, errormsg)
 					else:
 						errormsg = "No Link found!"
-						print("[ChannelSelection] zap / YoutubeDL no streams")
+						print(f"[{WRAPPER}] playService no streams")
 				except Exception as e:
 					errormsg = str(e)
-					print("[ChannelSelection] zap / YoutubeDL failed %s" % str(e))
-					pass
+					print(f"[{WRAPPER}] playService failed {e}")
 	return (None, errormsg)
 
 
 def Plugins(**kwargs):
 	if YoutubeDL:
-		return [PluginDescriptor(name="YTDLWrapper", description="YTDLWrapper", where=PluginDescriptor.WHERE_CHANNEL_ZAP, needsRestart=False, fnc=zap)]
+		return [PluginDescriptor(name="YTDLWrapper", description="YTDLWrapper", where=PluginDescriptor.WHERE_PLAYSERVICE, needsRestart=False, fnc=playService)]
 	else:
 		return []
