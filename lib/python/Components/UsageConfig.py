@@ -2300,7 +2300,7 @@ def InitUsageConfig():
 	config.timeshift.isRecording = NoSave(ConfigYesNo(default=False))
 	config.timeshift.maxEvents = ConfigSelection(default=12, choices=[(x, ngettext("%d Event", "%d Events", x) % x) for x in range(1, 999)])
 	config.timeshift.maxHours = ConfigSelection(default=12, choices=[(x, ngettext("%d Hour", "%d Hours", x) % x) for x in range(1, 999)])
-	config.timeshift.skipreturntolive = ConfigYesNo(default=False)
+	config.timeshift.skipReturnToLive = ConfigYesNo(default=False)
 	config.timeshift.showInfoBar = ConfigYesNo(default=True)
 	config.timeshift.showLiveTVMsg = ConfigYesNo(default=True)
 	choiceList = [
