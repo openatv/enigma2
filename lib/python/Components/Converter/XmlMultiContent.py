@@ -24,7 +24,8 @@ class MultiContentTemplateParser(TemplateParser):
 					"itemHeight": itemHeight
 				}
 				for name, value in mode.items():
-					attibutes[name] = value
+					if name not in ("itemWidth", "itemHeight"):
+						attibutes[name] = value
 				modes[modeName] = attibutes
 				context = SkinContextStack()
 				context.x = 0
