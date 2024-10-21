@@ -6,6 +6,7 @@
 #include <fstream>
 #include <sstream>
 #include <iomanip>
+#include <string>
 
 #include <lib/base/init.h>
 #include <lib/base/init_num.h>
@@ -93,6 +94,13 @@ static std::string getTunerLetterDM(int NimNumber)
 	if (srcCI) {
 		std::string ret = std::string(srcCI);
 		free(srcCI);
+		if (ret.size() == 1){
+			int corr = 1;
+			if (NimNumber > 7) {
+				corr = -7;
+			}
+			return ret + std::to_string(NimNumber + corr);
+		}
 		return ret;
 	}
 	return eDVBCISlot::getTunerLetter(NimNumber);
@@ -383,7 +391,11 @@ void eDVBCIInterfaces::ciRemoved(eDVBCISlot *slot)
 		if (slot->linked_next)
 			slot->linked_next->setSource(slot->current_source);
 		else // last CI in chain
+#ifdef DREAMBOX_DUAL_TUNER
+			setInputSource(slot->current_tuner, getTunerLetterDM(slot->current_tuner));
+#else
 			setInputSource(slot->current_tuner, eDVBCISlot::getTunerLetter(slot->current_tuner));
+#endif
 		slot->linked_next = 0;
 		slot->use_count=0;
 		slot->plugged=true;
@@ -816,7 +828,7 @@ void eDVBCIInterfaces::removePMTHandler(eDVBServicePMTHandler *pmthandler)
 					{
 						eDebug("[CI] warning: CI streaming finish mode not set, assuming \"tuner A\"");
 #ifdef DREAMBOX_DUAL_TUNER
-							finish_source = getTunerLetterDM(0);
+						finish_source = getTunerLetterDM(0);
 #else
 						finish_source = "A";
 #endif  
@@ -831,7 +843,11 @@ void eDVBCIInterfaces::removePMTHandler(eDVBServicePMTHandler *pmthandler)
 				if (slot->linked_next)
 					slot->linked_next->setSource(slot->current_source);
 				else
+#ifdef DREAMBOX_DUAL_TUNER
+					setInputSource(slot->current_tuner, getTunerLetterDM(slot->current_tuner));
+#else
 					setInputSource(slot->current_tuner, eDVBCISlot::getTunerLetter(slot->current_tuner));
+#endif
 
 				if (base_slot != slot)
 				{
@@ -1219,7 +1235,11 @@ void eDVBCIInterfaces::setCIPlusRouting(int slotid)
 		new_input_source << "CI" << slot->getSlotID();
 
 		setInputSource(tunernum, new_input_source.str());
+#ifdef DREAMBOX_DUAL_TUNER
+		slot->setSource(getTunerLetterDM(tunernum));
+#else
 		slot->setSource(eDVBCISlot::getTunerLetter(tunernum));
+#endif
 
 		slot->setCIPlusRoutingParameter(tunernum, ciplus_routing_input, ciplus_routing_ci_input);
 		eDebug("[CI] CIRouting active slotid=%d tuner=%d old_input=%s old_ci_input=%s", slotid, tunernum, ciplus_routing_input.c_str(), ciplus_routing_ci_input.c_str());
@@ -1342,7 +1362,6 @@ DEFINE_REF(eDVBCISlot);
 eDVBCISlot::eDVBCISlot(eMainloop *context, int nr):
 	startup_timeout(eTimer::create(context))
 {
-	char configStr[255];
 	slotid = nr;
 	m_isCamMgrRoutingActive = false;
 	m_ciPlusRoutingDone = false;
@@ -1359,8 +1378,13 @@ eDVBCISlot::eDVBCISlot(eMainloop *context, int nr):
 	user_mapped = false;
 	plugged = false;
 	m_ci_version = versionUnknown;
+	char configStr[255];
 	snprintf(configStr, 255, "config.ci.%d.enabled", slotid);
 	bool enabled = eSimpleConfig::getBool(configStr, true);
+	snprintf(configStr, 255, "config.ci.%d.disable_operator_profile", slotid);
+	m_operator_profiles_disabled = eSimpleConfig::getBool(configStr, false);
+	snprintf(configStr, 255, "config.ci.%d.alternative_ca_handling", slotid);
+	m_alt_ca_handling = eSimpleConfig::getInt(configStr, 0);
 	if (enabled) {
 		int bootDelay = eSimpleConfig::getInt("config.cimisc.bootDelay", 5);
 		if (bootDelay) {
