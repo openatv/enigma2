@@ -148,10 +148,8 @@ static std::unordered_map<std::string, std::string> HardwareDB{
 	{"/devices/platform/f0470300.ehci/usb1/1-1/1-1.2/1-1.2:1.0/host3/target3:0:0/3:0:0:0", "Back, lower USB 2.0"},
 	{"/devices/platform/f0470300.ehci/usb1/1-1/1-1.1/1-1.1:1.0/host2/target2:0:0/2:0:0:0", "Back, upper USB 2.0"}
 #elif HWH17
-	{"/devices/platform/rdb/f045a000.sata/ata1/host0/target0:0:0/0:0:0:0", "SATA"},
-	{"/devices/platform/f0470500.ehci/usb2/2-1/2-1:1.0/host2/target2:0:0/2:0:0:0", "Back USB 3.0"},
-	{"/devices/platform/f0470300.ehci/usb1/1-1/1-1.2/1-1.2:1.0/host3/target3:0:0/3:0:0:0", "Back, lower USB 2.0"},
-	{"/devices/platform/f0470300.ehci/usb1/1-1/1-1.1/1-1.1:1.0/host2/target2:0:0/2:0:0:0", "Back, upper USB 2.0"}
+	{"/devices/platform/f0470300.ehci/usb1/", "Front USB"},
+	{"/devices/platform/f0470500.ehci/usb2/", "Back USB"}
 #elif HWGBUE4K
 	{"/devices/platform/rdb/f045a000.sata/ata2/host1/target1:0:0/1:0:0:0", "SATA"},
 	{"/devices/platform/rdb/f0470300.ehci_v2/usb3/3-1/3-1.1/3-1.1:1.0/host2/target2:0:0/2:0:0:0", "Front USB"},
