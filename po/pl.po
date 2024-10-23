@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-01 08:46+0000\n"
-"PO-Revision-Date: 2024-10-14 09:28+0000\n"
+"PO-Revision-Date: 2024-10-23 07:15+0000\n"
 "Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.8-dev\n"
+"X-Generator: Weblate 5.8.2-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -3187,7 +3187,7 @@ msgid "Brightness (Normal)"
 msgstr "Jasność"
 
 msgid "Brightness (Standby)"
-msgstr "Jasność czuwanie"
+msgstr "Jasność (tryb czuwania)"
 
 msgid "Brightness Video"
 msgstr "Jasność wideo"
@@ -4564,13 +4564,13 @@ msgid "Configure the border width of the subtitles. The dark border makes the su
 msgstr "Skonfiguruj szerokość krawędzi napisów. Ciemne krawędzie sprawią, że napisy będa bardziej czytelne na jasnym tle."
 
 msgid "Configure the brightness level of the front panel display for dimmed operation."
-msgstr "Skonfiguruj poziom jasności przedniego wyświetlacza w trybie przyciemnionym."
+msgstr "Skonfiguruj poziom jasności wyświetlacza na panelu przednim w celu przyciemnienia."
 
 msgid "Configure the brightness level of the front panel display for normal operation."
-msgstr "Skonfiguruj poziom jasności przedniego wyświetlacza."
+msgstr "Skonfiguruj poziom jasności wyświetlacza panelu przedniego podczas normalnej pracy."
 
 msgid "Configure the brightness level of the front panel display for standby."
-msgstr "Skonfiguruj poziom jasności przedniego wyświetlacza w trybie czuwaniu."
+msgstr "Skonfiguruj poziom jasności wyświetlacza panelu przedniego w trybie czuwania."
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
 msgstr "Skonfiguruj kolor napisów zewnętrznych,alternatywne(normalnie w kolorze białym, kursywa w żółtym, pogrubienie w błękicie, podkreślenia w kolorze zielonym), białe lub żółte."
@@ -8045,13 +8045,13 @@ msgid "Fallback remote receiver"
 msgstr "Zdalny odbiornik zastępczy"
 
 msgid "Fallback remote receiver IP"
-msgstr "IP zdalnego odbiornika rezerwowego"
+msgstr "IP zdalnego odbiornika "
 
 msgid "Fallback remote receiver Port"
-msgstr "Port zdalnego odbiornika rezerwowego"
+msgstr "Port zdalnego odbiornika"
 
 msgid "Fallback remote receiver URL"
-msgstr "URL odbiornika rezerwowego"
+msgstr "URL odbiornika zdalnego"
 
 msgid "Fallback remote receiver for ATSC"
 msgstr "Zdalny odbiornik zastępczy dla ATSC"
@@ -9322,7 +9322,7 @@ msgid "IP address of the Stream Relay server used to descramble services that ca
 msgstr "Adres IP serwera Stream Relay wykorzystywany do odkodowywania usług, które mogą być odszyfrowane przez Stream Relay."
 
 msgid "IP of fallback remote receiver"
-msgstr "Adres zdalnego odbiornika rezerwowego"
+msgstr "Adres IP odbiornika zdalnego"
 
 msgid "IPK Installer"
 msgstr "Instalator IPK"
@@ -9562,10 +9562,10 @@ msgid "Import channels and/or EPG from remote receiver URL when receiver or enig
 msgstr "Importuj kanały i / lub EPG ze zdalnego odbiornika wtedy, gdy odbiornik lub enigma się restartuje"
 
 msgid "Import from remote receiver URL"
-msgstr "Importuj ze zdalnego odbiornika"
+msgstr "Importuj z adresu URL zdalnego odbiornika"
 
 msgid "Import remote receiver URL"
-msgstr "Importuj adres zdalnego odbiornika"
+msgstr "Importuj adres URL zdalnego odbiornika"
 
 msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
 msgstr "Oprócz sprawdzania na początku zdarzenia można zastosować sprawdzanie powtarzalne, dzięki czemu warunki „Limit bufora w godzinach” lub „Sprawdź wolne miejsce” zostaną wykryte wcześniej."
@@ -19797,14 +19797,14 @@ msgstr ""
 
 #, python-format
 msgid "The user interface of your %s %s is restarting"
-msgstr "Interfejs użytkownika Twojego %s %s uruchamia się ponownie"
+msgstr "Interfejs %s %s jest ponownie uruchamiany"
 
 #, python-format
 msgid ""
 "The user interface of your %s %s is restarting\n"
 "due to an error in StartEnigma.py"
 msgstr ""
-"Interfejs użytkownika Twojego %s %s uruchamia się ponownie\n"
+"Interfejs%s %s uruchamia się ponownie\n"
 "z powodu błędu w StartEnigma.py"
 
 msgid "The width of the picture. The input will be scaled to match this value."
@@ -20897,7 +20897,7 @@ msgid "URL"
 msgstr "URL"
 
 msgid "URL of fallback remote receiver"
-msgstr "Adres zdalnego odbiornika rezerwowego"
+msgstr "Adres URL zdalnego odbiornika"
 
 msgid "USALS"
 msgstr "USALS"
