@@ -2,7 +2,7 @@ from Screens.Screen import Screen
 from Components.ConfigList import ConfigListScreen
 from Components.ActionMap import ActionMap
 from Components.Sources.StaticText import StaticText
-from Components.config import config, configfile, getConfigListEntry
+from Components.config import config, configfile, ConfigNothing
 from Components.NimManager import nimmanager, InitNimManager
 from Components.TuneTest import Tuner
 from enigma import eDVBFrontendParametersSatellite, eDVBResourceManager, eTimer
@@ -13,11 +13,31 @@ class AutoDiseqc(ConfigListScreen, Screen):
 		"A", "B", "C", "D"
 	]
 
-	sat_frequencies = [
-
-		# astra 192 zdf
+	universal_central_sats_frequencies = [
+		# Hotbird 13.0E Rai 1
 		(
-			11953,
+			10992,
+			27500,
+			eDVBFrontendParametersSatellite.Polarisation_Vertical,
+			eDVBFrontendParametersSatellite.FEC_2_3,
+			eDVBFrontendParametersSatellite.Inversion_Off,
+			130,
+			eDVBFrontendParametersSatellite.System_DVB_S,
+			eDVBFrontendParametersSatellite.Modulation_Auto,
+			eDVBFrontendParametersSatellite.RollOff_auto,
+			eDVBFrontendParametersSatellite.Pilot_Unknown,
+			eDVBFrontendParametersSatellite.No_Stream_Id_Filter,
+			eDVBFrontendParametersSatellite.PLS_Gold,
+			eDVBFrontendParametersSatellite.PLS_Default_Gold_Code,
+			eDVBFrontendParametersSatellite.No_T2MI_PLP_Id,
+			eDVBFrontendParametersSatellite.T2MI_Default_Pid,
+			12400,
+			318,
+			"Hotbird 13.0°E"
+		),
+		# Astra 19.2E ZDF
+		(
+			11954,
 			27500,
 			eDVBFrontendParametersSatellite.Polarisation_Horizontal,
 			eDVBFrontendParametersSatellite.FEC_3_4,
@@ -34,9 +54,8 @@ class AutoDiseqc(ConfigListScreen, Screen):
 			eDVBFrontendParametersSatellite.T2MI_Default_Pid,
 			1079,
 			1,
-			_("Astra 1 19.2e")
+			"Astra 1 19.2°E"
 		),
-
 		# Astra 23.5E Astra SES
 		(
 			12168,
@@ -56,9 +75,8 @@ class AutoDiseqc(ConfigListScreen, Screen):
 			eDVBFrontendParametersSatellite.T2MI_Default_Pid,
 			3224,
 			3,
-			_("Astra 3 23.5e")
+			"Astra 3 23.5°E"
 		),
-
 		# Astra 28.2E EPG background audio
 		(
 			11778,
@@ -78,19 +96,21 @@ class AutoDiseqc(ConfigListScreen, Screen):
 			eDVBFrontendParametersSatellite.T2MI_Default_Pid,
 			2004,
 			2,
-			_("Astra 2 28.2e")
+			"Astra 2 28.2°E"
 		),
+	]
 
-		# hotbird 130 rai
+	universal_east_sats_frequencies = [
+		# Astra 4A 4.8 Home 3
 		(
-			10992,
+			11785,
 			27500,
 			eDVBFrontendParametersSatellite.Polarisation_Vertical,
-			eDVBFrontendParametersSatellite.FEC_2_3,
+			eDVBFrontendParametersSatellite.FEC_5_6,
 			eDVBFrontendParametersSatellite.Inversion_Off,
-			130,
-			eDVBFrontendParametersSatellite.System_DVB_S,
-			eDVBFrontendParametersSatellite.Modulation_Auto,
+			48,
+			eDVBFrontendParametersSatellite.System_DVB_S2,
+			eDVBFrontendParametersSatellite.Modulation_8PSK,
 			eDVBFrontendParametersSatellite.RollOff_auto,
 			eDVBFrontendParametersSatellite.Pilot_Unknown,
 			eDVBFrontendParametersSatellite.No_Stream_Id_Filter,
@@ -98,19 +118,18 @@ class AutoDiseqc(ConfigListScreen, Screen):
 			eDVBFrontendParametersSatellite.PLS_Default_Gold_Code,
 			eDVBFrontendParametersSatellite.No_T2MI_PLP_Id,
 			eDVBFrontendParametersSatellite.T2MI_Default_Pid,
-			12400,
-			318,
-			_("Hotbird 13.0e")
+			201,
+			85,
+			"Astra 4A 4.8°E"
 		),
-
-		# hispasat 300 tsa
+		# Eutelsat 9.0E CCTV 4 Europe
 		(
-			10890,
+			11996,
 			27500,
 			eDVBFrontendParametersSatellite.Polarisation_Vertical,
 			eDVBFrontendParametersSatellite.FEC_3_4,
 			eDVBFrontendParametersSatellite.Inversion_Off,
-			3300,
+			90,
 			eDVBFrontendParametersSatellite.System_DVB_S,
 			eDVBFrontendParametersSatellite.Modulation_Auto,
 			eDVBFrontendParametersSatellite.RollOff_auto,
@@ -120,9 +139,142 @@ class AutoDiseqc(ConfigListScreen, Screen):
 			eDVBFrontendParametersSatellite.PLS_Default_Gold_Code,
 			eDVBFrontendParametersSatellite.No_T2MI_PLP_Id,
 			eDVBFrontendParametersSatellite.T2MI_Default_Pid,
-			1388,
-			1388,
-			_("Hispasat 30.0w")
+			1,
+			1,
+			"Eutelsat 9B 9.0°E"
+		),
+		# Eutelsat 16.0E CGTN
+		(
+			11595,
+			30000,
+			eDVBFrontendParametersSatellite.Polarisation_Horizontal,
+			eDVBFrontendParametersSatellite.FEC_3_4,
+			eDVBFrontendParametersSatellite.Inversion_Off,
+			160,
+			eDVBFrontendParametersSatellite.System_DVB_S2,
+			eDVBFrontendParametersSatellite.Modulation_8PSK,
+			eDVBFrontendParametersSatellite.RollOff_auto,
+			eDVBFrontendParametersSatellite.Pilot_Unknown,
+			eDVBFrontendParametersSatellite.No_Stream_Id_Filter,
+			eDVBFrontendParametersSatellite.PLS_Gold,
+			eDVBFrontendParametersSatellite.PLS_Default_Gold_Code,
+			eDVBFrontendParametersSatellite.No_T2MI_PLP_Id,
+			eDVBFrontendParametersSatellite.T2MI_Default_Pid,
+			2,
+			64,
+			"Eutelsat 16A 16.0°E"
+		),
+
+	]
+
+	universal_west_sats_frequencies = [
+		# Thor 0.8W Sky News
+		(
+			12418,
+			28000,
+			eDVBFrontendParametersSatellite.Polarisation_Vertical,
+			eDVBFrontendParametersSatellite.FEC_7_8,
+			eDVBFrontendParametersSatellite.Inversion_Off,
+			3592,
+			eDVBFrontendParametersSatellite.System_DVB_S,
+			eDVBFrontendParametersSatellite.Modulation_Auto,
+			eDVBFrontendParametersSatellite.RollOff_auto,
+			eDVBFrontendParametersSatellite.Pilot_Unknown,
+			eDVBFrontendParametersSatellite.No_Stream_Id_Filter,
+			eDVBFrontendParametersSatellite.PLS_Gold,
+			eDVBFrontendParametersSatellite.PLS_Default_Gold_Code,
+			eDVBFrontendParametersSatellite.No_T2MI_PLP_Id,
+			eDVBFrontendParametersSatellite.T2MI_Default_Pid,
+			20,
+			70,
+			"Thor 5/6/7 0.8°W"
+		),
+		# Eutelsat 5.0W Fransat
+		(
+			11054,
+			29950,
+			eDVBFrontendParametersSatellite.Polarisation_Vertical,
+			eDVBFrontendParametersSatellite.FEC_2_3,
+			eDVBFrontendParametersSatellite.Inversion_Off,
+			3550,
+			eDVBFrontendParametersSatellite.System_DVB_S2,
+			eDVBFrontendParametersSatellite.Modulation_8PSK,
+			eDVBFrontendParametersSatellite.RollOff_auto,
+			eDVBFrontendParametersSatellite.Pilot_Unknown,
+			eDVBFrontendParametersSatellite.No_Stream_Id_Filter,
+			eDVBFrontendParametersSatellite.PLS_Gold,
+			eDVBFrontendParametersSatellite.PLS_Default_Gold_Code,
+			eDVBFrontendParametersSatellite.No_T2MI_PLP_Id,
+			eDVBFrontendParametersSatellite.T2MI_Default_Pid,
+			20500,
+			1375,
+			"Eutelsat 5 West B 5.0°W"
+		),
+		# Hispasat 30.0W TVI
+		(
+			10770,
+			30000,
+			eDVBFrontendParametersSatellite.Polarisation_Horizontal,
+			eDVBFrontendParametersSatellite.FEC_5_6,
+			eDVBFrontendParametersSatellite.Inversion_Off,
+			3300,
+			eDVBFrontendParametersSatellite.System_DVB_S2,
+			eDVBFrontendParametersSatellite.Modulation_8PSK,
+			eDVBFrontendParametersSatellite.RollOff_auto,
+			eDVBFrontendParametersSatellite.Pilot_Unknown,
+			eDVBFrontendParametersSatellite.No_Stream_Id_Filter,
+			eDVBFrontendParametersSatellite.PLS_Gold,
+			eDVBFrontendParametersSatellite.PLS_Default_Gold_Code,
+			eDVBFrontendParametersSatellite.No_T2MI_PLP_Id,
+			eDVBFrontendParametersSatellite.T2MI_Default_Pid,
+			6,
+			6,
+			"Hispasat 30.0°W"
+		),
+	]
+
+	circular_sats_frequencies = [
+		# Express AMU1 36.0E NTV Plus
+		(
+			11785,
+			27500,
+			eDVBFrontendParametersSatellite.Polarisation_CircularRight,
+			eDVBFrontendParametersSatellite.FEC_3_4,
+			eDVBFrontendParametersSatellite.Inversion_Off,
+			360,
+			eDVBFrontendParametersSatellite.System_DVB_S2,
+			eDVBFrontendParametersSatellite.Modulation_8PSK,
+			eDVBFrontendParametersSatellite.RollOff_auto,
+			eDVBFrontendParametersSatellite.Pilot_Unknown,
+			eDVBFrontendParametersSatellite.No_Stream_Id_Filter,
+			eDVBFrontendParametersSatellite.PLS_Gold,
+			eDVBFrontendParametersSatellite.PLS_Default_Gold_Code,
+			eDVBFrontendParametersSatellite.No_T2MI_PLP_Id,
+			eDVBFrontendParametersSatellite.T2MI_Default_Pid,
+			13,
+			112,
+			"Express AMU1 36.0°E"
+		),
+		# Express AT1 56.0E NTV Plus Vostok
+		(
+			12054,
+			27500,
+			eDVBFrontendParametersSatellite.Polarisation_CircularRight,
+			eDVBFrontendParametersSatellite.FEC_3_4,
+			eDVBFrontendParametersSatellite.Inversion_Off,
+			560,
+			eDVBFrontendParametersSatellite.System_DVB_S2,
+			eDVBFrontendParametersSatellite.Modulation_8PSK,
+			eDVBFrontendParametersSatellite.RollOff_auto,
+			eDVBFrontendParametersSatellite.Pilot_Unknown,
+			eDVBFrontendParametersSatellite.No_Stream_Id_Filter,
+			eDVBFrontendParametersSatellite.PLS_Gold,
+			eDVBFrontendParametersSatellite.PLS_Default_Gold_Code,
+			eDVBFrontendParametersSatellite.No_T2MI_PLP_Id,
+			eDVBFrontendParametersSatellite.T2MI_Default_Pid,
+			566,
+			112,
+			"Express AT1 56.0°E"
 		),
 	]
 
@@ -145,17 +297,13 @@ class AutoDiseqc(ConfigListScreen, Screen):
 	SAT_TABLE_ONID = 16
 	SAT_TABLE_NAME = 17
 
-	def __init__(self, session, feid, nr_of_ports, simple_tone, simple_sat_change):
+	def __init__(self, session, feid, nr_of_ports, simple_tone, simple_sat_change, order="all"):
 		Screen.__init__(self, session)
 
 		self["statusbar"] = StaticText(" ")
 		self["tunerstatusbar"] = StaticText(" ")
 
-		self.list = []
-		ConfigListScreen.__init__(self, self.list, session=session)
-
-		self["config"].list = self.list
-		self["config"].l.setList(self.list)
+		ConfigListScreen.__init__(self, [], session=session)
 
 		self["key_red"] = StaticText(_("Abort"))
 
@@ -167,6 +315,21 @@ class AutoDiseqc(ConfigListScreen, Screen):
 		self.simple_tone = simple_tone
 		self.simple_sat_change = simple_sat_change
 		self.found_sats = []
+		self.circular_setup = 0
+		if order == "all":
+			self.sat_frequencies = self.universal_central_sats_frequencies[:] + self.universal_east_sats_frequencies[:] + self.universal_west_sats_frequencies[:]
+			if nr_of_ports == 1:
+				self.sat_frequencies += self.circular_sats_frequencies[:]
+		elif order == "astra":
+			self.sat_frequencies = self.universal_central_sats_frequencies[:]
+		elif order == "east":
+			self.sat_frequencies = self.universal_central_sats_frequencies[:] + self.universal_east_sats_frequencies[:]
+			if nr_of_ports == 1:
+				self.sat_frequencies += self.circular_sats_frequencies[:]
+		elif order == "west":
+			self.sat_frequencies = self.universal_west_sats_frequencies[:]
+		elif order == "circular":
+			self.sat_frequencies = self.circular_sats_frequencies[:]
 
 		if not self.openFrontend():
 			self.oldref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
@@ -195,8 +358,17 @@ class AutoDiseqc(ConfigListScreen, Screen):
 		self.state = 0
 		self.abort = False
 
+		self.diseqc = [
+			config.Nims[self.feid].dvbs.diseqcA.value,
+			config.Nims[self.feid].dvbs.diseqcB.value,
+			config.Nims[self.feid].dvbs.diseqcC.value,
+			config.Nims[self.feid].dvbs.diseqcD.value,
+		]
+
 		self.statusTimer = eTimer()
 		self.statusTimer.callback.append(self.statusCallback)
+		self.waitCloseTimer = eTimer()
+		self.waitCloseTimer.callback.append(self.waitClose)
 		self.tunerStatusTimer = eTimer()
 		self.tunerStatusTimer.callback.append(self.tunerStatusCallback)
 		self.startStatusTimer()
@@ -230,16 +402,16 @@ class AutoDiseqc(ConfigListScreen, Screen):
 
 	def statusCallback(self):
 		if self.state == 0:
-			if self.port_index == 0:
+			if self.port_index == 0 and self.diseqc[0] == "3600":
 				self.clearNimEntries()
 				config.Nims[self.feid].dvbs.diseqcA.value = "%d" % (self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS])
-			elif self.port_index == 1:
+			elif self.port_index == 1 and self.diseqc[1] == "3600":
 				self.clearNimEntries()
 				config.Nims[self.feid].dvbs.diseqcB.value = "%d" % (self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS])
-			elif self.port_index == 2:
+			elif self.port_index == 2 and self.diseqc[2] == "3600":
 				self.clearNimEntries()
 				config.Nims[self.feid].dvbs.diseqcC.value = "%d" % (self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS])
-			elif self.port_index == 3:
+			elif self.port_index == 3 and self.diseqc[3] == "3600":
 				self.clearNimEntries()
 				config.Nims[self.feid].dvbs.diseqcD.value = "%d" % (self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS])
 
@@ -249,6 +421,12 @@ class AutoDiseqc(ConfigListScreen, Screen):
 				config.Nims[self.feid].dvbs.diseqcMode.value = "diseqc_a_b"
 			else:
 				config.Nims[self.feid].dvbs.diseqcMode.value = "single"
+				if self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS] == 360 and not self.found_sats:
+					config.Nims[self.feid].dvbs.simpleDiSEqCSetCircularLNB.value = True
+					self.circular_setup = 1
+				if self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS] == 560 and not self.found_sats:
+					config.Nims[self.feid].dvbs.simpleDiSEqCSetCircularLNB.value = True
+					self.circular_setup = 2
 
 			config.Nims[self.feid].dvbs.configMode.value = "simple"
 			config.Nims[self.feid].dvbs.simpleDiSEqCSetVoltageTone = self.simple_tone
@@ -258,6 +436,25 @@ class AutoDiseqc(ConfigListScreen, Screen):
 			self.state += 1
 
 		elif self.state == 1:
+			if self.diseqc[self.port_index] != "3600":
+				self.statusTimer.stop()
+				self.count = 0
+				self.state = 0
+				self.index = len(self.sat_frequencies) - 1
+				self.tunerStopScan(False)
+				return
+
+			if self.circular_setup == 1:
+				if self.raw_channel:
+					self.raw_channel.receivedTsidOnid.get().remove(self.gotTsidOnid)
+				del self.frontend
+				del self.raw_channel
+				if not self.openFrontend():
+					self.frontend = None
+					self.raw_channel = None
+				if self.raw_channel:
+					self.raw_channel.receivedTsidOnid.get().append(self.gotTsidOnid)
+
 			InitNimManager(nimmanager)
 
 			self.tuner = Tuner(self.frontend)
@@ -297,10 +494,10 @@ class AutoDiseqc(ConfigListScreen, Screen):
 		self.saveAndReloadNimConfig()
 
 	def clearNimEntries(self):
-		config.Nims[self.feid].dvbs.diseqcA.value = "3601"
-		config.Nims[self.feid].dvbs.diseqcB.value = "3601"
-		config.Nims[self.feid].dvbs.diseqcC.value = "3601"
-		config.Nims[self.feid].dvbs.diseqcD.value = "3601"
+		config.Nims[self.feid].dvbs.diseqcA.value = "3601" if self.diseqc[0] == "3600" else self.diseqc[0]
+		config.Nims[self.feid].dvbs.diseqcB.value = "3601" if self.diseqc[1] == "3600" else self.diseqc[1]
+		config.Nims[self.feid].dvbs.diseqcC.value = "3601" if self.diseqc[2] == "3600" else self.diseqc[2]
+		config.Nims[self.feid].dvbs.diseqcD.value = "3601" if self.diseqc[3] == "3600" else self.diseqc[3]
 
 	def saveAndReloadNimConfig(self):
 		config.Nims[self.feid].save()
@@ -333,7 +530,7 @@ class AutoDiseqc(ConfigListScreen, Screen):
 		elif dict["tuner_state"] == "UNKNOWN":
 			self["tunerstatusbar"].setText(_("Tuner status UNKNOWN"))
 
-		if dict["tuner_state"] == "LOSTLOCK" or dict["tuner_state"] == "FAILED":
+		if dict["tuner_state"] in ("LOSTLOCK", "FAILED"):
 			self.tunerStopScan(False)
 			return
 
@@ -353,11 +550,18 @@ class AutoDiseqc(ConfigListScreen, Screen):
 		else:
 			self.tunerStopScan(False)
 
+	def waitClose(self):
+		self.close(len(self.found_sats) > 0)
+
 	def tunerStopScan(self, result):
+		if self.waitCloseTimer.isActive():
+			return
+
 		if self.abort:
 			self.setupClear()
 			self.close(False)
 			return
+
 		if result:
 			self.found_sats.append((self.diseqc_ports[self.port_index], self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS], self.sat_frequencies[self.index][self.SAT_TABLE_NAME]))
 			self.index = 0
@@ -369,15 +573,19 @@ class AutoDiseqc(ConfigListScreen, Screen):
 				self.port_index += 1
 
 		if len(self.found_sats) > 0:
-			self.list = []
+			lst = []
 			for x in self.found_sats:
-				self.list.append(getConfigListEntry((_("DiSEqC port %s: %s") % (x[0], x[2]))))
-			self["config"].l.setList(self.list)
+				lst.append((_("DiSEqC port %s: %s") % (x[0], x[2]), ConfigNothing()))
+			self["config"].list = lst
+			self["config"].setCurrentIndex(len(self.found_sats) - 1)
 
 		if self.nr_of_ports == self.port_index:
 			self.state = 99
 			self.setupSave()
-			self.close(len(self.found_sats) > 0)
+			if len(self.found_sats) > 0:
+				self.waitCloseTimer.start(4000, True)
+			else:
+				self.close(False)
 			return
 
 		for x in self.found_sats:
