@@ -6,6 +6,7 @@
 #include <lib/gdi/accel.h>
 
 #include <time.h>
+#include <sys/time.h>
 
 #ifdef USE_LIBVUGLES2
 #include <vuplus_gles.h>

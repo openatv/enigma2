@@ -5,6 +5,7 @@
 #include <map>
 #include <new>
 #include <libsig_comp.h>
+#include <sys/time.h>
 
 // to use memleak check change the following in configure.ac
 // * add -DMEMLEAK_CHECK and -rdynamic to CPP_FLAGS
