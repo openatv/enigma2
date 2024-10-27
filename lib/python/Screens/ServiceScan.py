@@ -282,9 +282,12 @@ class ServiceScan(Screen):
 					self.currentSystem = currentSystem
 					self["FrontendInfo"].frontend_type = currentSystem
 					self["FrontendInfo"].changed((1,))
-			self["scan_progress"].setValue(self.scan.getProgress())
+			progress = self.scan.getProgress()
+			self["scan_progress"].setValue(progress)
 			self["network"].setText(transponderType)
 			self["transponder"].setText(transponderText)
+			for callback in self.onProgressChanged:
+				callback(progress)
 		match self.state:
 			case self.RUNNING:
 				percentage = self.scan.getProgress()
@@ -397,7 +400,7 @@ class ServiceScan(Screen):
 class ServiceScanSummary(ScreenSummary):
 	skin = """
 	<screen name="ServiceScanSummary" title="Service Scan Summary" position="0,0" size="132,64">
-		<widget name="Title" position="6,4" size="120,42" font="Regular;16" />
+		<widget source="Title" render="Label" position="6,4" size="120,42" font="Regular;16" />
 		<widget name="scan_progress" position="6,50" size="56,12" borderWidth="1" />
 		<widget name="Service" position="6,22" size="120,26" font="Regular;12" />
 	</screen>"""
