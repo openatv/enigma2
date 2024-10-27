@@ -8,15 +8,15 @@ msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-10-01 08:46+0000\n"
-"PO-Revision-Date: 2024-10-19 09:15+0000\n"
-"Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
+"PO-Revision-Date: 2024-10-24 16:48+0000\n"
+"Last-Translator: Вячеслав Диконов <sdiconov@mail.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.8-rc\n"
+"X-Generator: Weblate 5.8.2-dev\n"
 "X-Poedit-SourceCharset: iso-8859-5\n"
 
 msgid ""
@@ -1865,7 +1865,7 @@ msgid "Active only"
 msgstr "Только активный"
 
 msgid "Adapter Settings"
-msgstr "Настройки адаптера"
+msgstr "Настройка адаптера"
 
 msgid "Add"
 msgstr "Добавить"
@@ -2288,7 +2288,7 @@ msgid "Also on standby"
 msgstr "Также и в режиме ожидания"
 
 msgid "Also use a #DESCRIPTION line after each #SERVICE line to hold the service's name."
-msgstr "Также используйте строку #DESCRIPTION после каждой строки #SERVICE для хранения названия канала."
+msgstr "Также использовать строку #DESCRIPTION после каждой строки #SERVICE для хранения названия канала."
 
 msgid "Alternative"
 msgstr "Альтернативный"
@@ -3909,10 +3909,10 @@ msgid "Channel up"
 msgstr "Канал вверх"
 
 msgid "Channel zap delay another button"
-msgstr "Задержка любой другой кнопки при переключении каналов"
+msgstr "Задержка следующей кнопки при переключении"
 
 msgid "Channel zap delay first button"
-msgstr "Задержка первой кнопки при переключении каналов"
+msgstr "Задержка первой кнопки при переключении"
 
 msgid "Channel zap delay mode"
 msgstr "Режим задержки срабатывания кнопок при переключении каналов"
@@ -4804,7 +4804,7 @@ msgid "Configure your NTP server."
 msgstr "Настройка NTP сервера."
 
 msgid "Configure your Network"
-msgstr "Настройки сети"
+msgstr "Настройка сети"
 
 msgid "Configure your internal LAN"
 msgstr "Настройка LAN"
@@ -6041,7 +6041,7 @@ msgid "Device Manager"
 msgstr "Диспетчер устройств"
 
 msgid "Device Settings"
-msgstr "Настройки устройств"
+msgstr "Сетевой адаптер"
 
 msgid "Device id"
 msgstr "Идентификатор устройства"
@@ -9310,7 +9310,7 @@ msgid "IP address"
 msgstr "IP-адрес"
 
 msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
-msgstr "IP-адрес сервера Stream Relay, используемый для дешифрации каналов, которые можно расшифровать только через внутреннюю ретрансляцию потока."
+msgstr "IP-адрес сервера Stream Relay, используемого для дешифрации каналов, которые можно расшифровать только через внутреннюю ретрансляцию потока."
 
 msgid "IP of fallback remote receiver"
 msgstr "IP запасного удаленного ресивера"
@@ -11781,7 +11781,7 @@ msgid "Network Log Actions"
 msgstr "Действия с сетевым логом"
 
 msgid "Network MAC settings"
-msgstr "Настройки сетевого MAC"
+msgstr "Настройка MAC-адреса"
 
 msgid "Network Neighbourhood"
 msgstr "Сетевые ресурсы"
@@ -11796,7 +11796,7 @@ msgid "Network Services"
 msgstr "Сетевые службы"
 
 msgid "Network Settings"
-msgstr "Настройки сети"
+msgstr "Настройка сети"
 
 msgid "Network Setup Actions"
 msgstr "Действия по настройке сети"
@@ -11872,7 +11872,7 @@ msgid "Never abort"
 msgstr "Никогда не прерывать"
 
 msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off."
-msgstr "Не расшифровать записываемую передачу. Эта функция глобально переопределяет устанавки отдельных таймеров. Если включено, запись будет сохранена зашифрованной и должна быть расшифрована позже (автономное/offline декодирование). По умолчанию: ВЫКЛ."
+msgstr "Не декодировать передачу во время записи. Эта функция глобально переопределяет настройки отдельных таймеров. Если включено, запись будет сохранена зашифрованной и должна быть расшифрована позже (автономное/offline декодирование). По умолчанию: ВЫКЛ."
 
 msgid "Never decrypt while recording"
 msgstr "Никогда не дешифровывать во время записи"
@@ -12229,7 +12229,7 @@ msgid "Norfolk Island"
 msgstr "Остров Норфолк"
 
 msgid "Normal"
-msgstr "Нормальная (Декодирование)"
+msgstr "Нормальный (Декодирование)"
 
 msgid "Normal - Standard image"
 msgstr "Нормальный - Стандартный образ"
@@ -12942,7 +12942,7 @@ msgid "Password Actions"
 msgstr "Действия с паролем"
 
 msgid "Password Settings"
-msgstr "Настройки пароля"
+msgstr "Пароль"
 
 msgid "Password changed."
 msgstr "Пароль изменён."
@@ -13518,7 +13518,7 @@ msgid "Port D"
 msgstr "Порт D"
 
 msgid "Port number for the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
-msgstr "Номер порта сервера Stream Relay, используемый для дешифрации каналов, которые можно расшифровать только через внутреннюю ретрансляцию потока."
+msgstr "Номер порта сервера Stream Relay, используемого для дешифрации каналов, которые можно расшифровать только через внутреннюю ретрансляцию потока."
 
 msgid "Port of fallback remote receiver"
 msgstr "Порт запасного удаленного ресивера"
@@ -16228,7 +16228,7 @@ msgid "Select the delay before the timer activates."
 msgstr "Выберите задержку перед активацией таймера."
 
 msgid "Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for boxes with multiple satellite tuners."
-msgstr "Выберите задержку остановки внутренней ретрансляции канала перед переключением тюнера на другой канал. Значение '0' рекомендуется только для устройств с несколькими спутниковыми тюнерами."
+msgstr "Задайте время задержки требуемой для остановки внутренней ретрансляции потока перед переключением занятого тюнера на другой канал. Значение '0' рекомендуется только для устройств с несколькими спутниковыми тюнерами."
 
 msgid "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to toggle between the lists. Select an assigned function and click on 'OK' to deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned functions."
 msgstr "Выберите желаемую функцию и нажмите 'ОК', чтобы назначить её. Используйте 'CH +/-' для переключения между списками. Выберите назначенную функцию и нажмите 'ОК', чтобы отменить её назначение. Используйте 'Далее/Назад', чтобы изменить порядок назначенных функций."
@@ -17003,7 +17003,7 @@ msgid "Setting a password is strongly advised if your STB is open to the Interne
 msgstr "Настоятельно рекомендуется установить пароль, если ваш ресивер открыт для доступа из Интернет. Вы должны установить пароль, чтобы иметь возможность использовать такие сетевые службы, как FTP, Telnet или SSH."
 
 msgid "Settings"
-msgstr "Настройки"
+msgstr "Настройка"
 
 msgid "Settings mode"
 msgstr "Режим настроек"
@@ -17088,7 +17088,7 @@ msgid "Setup network time synchronization interval."
 msgstr "Настройки интервала синхронизации времени."
 
 msgid "Setup network. Here you can setup DHCP, IP, DNS"
-msgstr "Настройки сети. Здесь можете настроить DHCP, IP, DNS"
+msgstr "Настройка сети. Здесь можно настроить DHCP, IP-адрес, DNS"
 
 msgid "Setup rotor"
 msgstr "Настройки мотоподвеса"
@@ -17136,13 +17136,13 @@ msgid "Setup your display"
 msgstr "Настройки дисплея"
 
 msgid "Setup your local network"
-msgstr "Настройки локальной сети"
+msgstr "Настройка локальной сети"
 
 msgid "Setup your local network. For Wlan you need to boot with a USB-Wlan stick"
-msgstr "Настройки локальной сети. Wlan нужно подключать через USB"
+msgstr "Настройка локальной сети. Для доступа к беспроводной сети нужно загрузить ресивер с подключенным беспроводным USB-адаптером"
 
 msgid "Setup your mounts for network"
-msgstr "Настройки подключений сети"
+msgstr "Настройка сетевых подключений"
 
 msgid "Setup your network interface. If no Wlan stick is used, you only can select Lan"
 msgstr "Настройки сетевого интерфейса. Если нет Wlan, можно выбирать только Lan"
@@ -18847,10 +18847,10 @@ msgid "Stream"
 msgstr "Поток"
 
 msgid "Stream Relay Settings"
-msgstr "Настройка Stream Relay"
+msgstr "Настройка ретрансляции потоков"
 
 msgid "Stream Relay Setup Actions"
-msgstr "Действия по настройке Stream Relay"
+msgstr "Действия по настройке ретрансляции потоков"
 
 msgid "Stream Relay URL"
 msgstr "URL ретрансляции потока"
@@ -18862,7 +18862,7 @@ msgid "Stream Relay port"
 msgstr "Порт для ретрансляции потока"
 
 msgid "Stream Relay switch delay"
-msgstr "Задержка переключения Stream Relay"
+msgstr "Задержка отключения ретрансляции потока"
 
 msgid "Stream request"
 msgstr "Запрос потока"
@@ -21470,10 +21470,10 @@ msgid "User defined 0x%02x"
 msgstr "Определяется пользователем 0x%02x"
 
 msgid "User defined delay when you press another button to zap to the channel."
-msgstr "Задаваемая пользователем задержка при нажатии другой кнопки для перехода к каналу."
+msgstr "Задаваемая пользователем задержка при нажатии другой кнопки для переключения на канал."
 
 msgid "User defined delay when you press the first button to zap to the channel."
-msgstr "Задаваемая пользователем задержка при нажатии первой кнопки для перехода к каналу."
+msgstr "Задаваемая пользователем задержка при нажатии первой кнопки для переключения на канал."
 
 msgid "User defined transponder"
 msgstr "Транспондер вручную"
