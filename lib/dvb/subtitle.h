@@ -7,6 +7,16 @@
 #include <lib/dvb/pesparse.h>
 #include <lib/gdi/gpixmap.h>
 
+#define DVB_SUB_SEGMENT_PAGE_COMPOSITION 0x10
+#define DVB_SUB_SEGMENT_REGION_COMPOSITION 0x11
+#define DVB_SUB_SEGMENT_CLUT_DEFINITION 0x12
+#define DVB_SUB_SEGMENT_OBJECT_DATA 0x13
+#define DVB_SUB_SEGMENT_DISPLAY_DEFINITION 0x14
+#define DVB_SUB_SEGMENT_END_OF_DISPLAY_SET 0x80
+#define DVB_SUB_SEGMENT_STUFFING 0xFF
+
+#define DVB_SUB_SYNC_BYTE 0x0F
+
 struct subtitle_clut_entry
 {
 	uint8_t Y, Cr, Cb, T;
@@ -125,9 +135,11 @@ class eDVBSubtitleParser
 	bool m_seen_eod;
 	eSize m_display_size;
 public:
+	eDVBSubtitleParser();
 	eDVBSubtitleParser(iDVBDemux *demux);
 	virtual ~eDVBSubtitleParser();
 	int start(int pid, int composition_page_id, int ancillary_page_id);
+	void processBuffer(uint8_t *data, size_t len, pts_t pts);
 	int stop();
 #if SIGCXX_MAJOR_VERSION == 2
 	void connectNewPage(const sigc::slot1<void, const eDVBSubtitlePage&> &slot, ePtr<eConnection> &connection);
@@ -137,7 +149,7 @@ public:
 private:
 	void subtitle_process_line(subtitle_region *region, subtitle_region_object *object, int line, uint8_t *data, int len);
 	int subtitle_process_pixel_data(subtitle_region *region, subtitle_region_object *object, int *linenr, int *linep, uint8_t *data);
-	int subtitle_process_segment(uint8_t *segment);
+	int subtitle_process_segment(uint8_t *segment, bool isBufferProcess=false);
 	void subtitle_process_pes(uint8_t *buffer, int len);
 	void subtitle_redraw_all();
 	void subtitle_reset();
