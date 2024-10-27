@@ -129,7 +129,6 @@ ePython::ePython()
 	PyImport_AppendInittab("eConsoleImpl", PyInit_eConsoleImpl);
 
 	Py_Initialize();
-
 }
 
 ePython::~ePython()
@@ -151,7 +150,7 @@ int ePython::execFile(const char *file)
 int ePython::execute(const std::string &pythonfile, const std::string &funcname)
 {
 	ePyObject pName, pModule, pDict, pFunc, pArgs, pValue;
-	pName = PyString_FromString(pythonfile.c_str());
+	pName = PyUnicode_FromString(pythonfile.c_str());
 
 	pModule = PyImport_Import(pName);
 	Py_DECREF(pName);
@@ -224,7 +223,7 @@ ePyObject ePython::resolve(const std::string &pythonfile, const std::string &fun
 {
 	ePyObject pName, pModule, pDict, pFunc;
 
-	pName = PyString_FromString(pythonfile.c_str());
+	pName = PyUnicode_FromString(pythonfile.c_str());
 
 	pModule = PyImport_Import(pName);
 	Py_DECREF(pName);

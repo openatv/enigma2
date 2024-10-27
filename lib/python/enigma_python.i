@@ -473,7 +473,7 @@ PyObject *getFontFaces()
 	std::vector<std::string> v = fontRenderClass::getInstance()->getFontFaces();
 	ePyObject result = PyList_New(v.size());
 	for (size_t i = 0; i < v.size(); i++)
-		PyList_SET_ITEM(result, i, PyString_FromString(v[i].c_str()));
+		PyList_SET_ITEM(result, i, PyUnicode_FromString(v[i].c_str()));
         return result;
 }
 %}

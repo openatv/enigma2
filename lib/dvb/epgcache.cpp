@@ -1535,13 +1535,13 @@ void fillTuple(ePyObject tuple, const char *argstring, int argcount, ePyObject s
 				tmp = ptr ? PyLong_FromLong(ptr->getDuration()) : (evData ? PyLong_FromLong(evData->getDuration()) : ePyObject());
 				break;
 			case 'T': // Event Title
-				tmp = ptr ? PyString_FromString(ptr->getEventName().c_str()) : ePyObject();
+				tmp = ptr ? ePyObject(PyUnicode_FromString(ptr->getEventName().c_str())) : ePyObject();
 				break;
 			case 'S': // Event Short Description
-				tmp = ptr ? PyString_FromString(ptr->getShortDescription().c_str()) : ePyObject();
+				tmp = ptr ? ePyObject(PyUnicode_FromString(ptr->getShortDescription().c_str())) : ePyObject();
 				break;
 			case 'E': // Event Extended Description
-				tmp = ptr ? PyString_FromString(ptr->getExtendedDescription().c_str()) : ePyObject();
+				tmp = ptr ? ePyObject(PyUnicode_FromString(ptr->getExtendedDescription().c_str())) : ePyObject();
 				break;
 			case 'P': // Event Parental Rating
 				tmp = ptr ? ePyObject(ptr->getParentalData()) : ePyObject();
@@ -1776,7 +1776,7 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 					dvb_ref.setParentTransportStreamID(eTransportStreamID(0));
 					dvb_ref.setParentServiceID(eServiceID(0));
 					dvb_ref.name = "";
-					service = PyString_FromString(dvb_ref.toString().c_str());
+					service = PyUnicode_FromString(dvb_ref.toString().c_str());
 					service_changed = true;
 				}
 			}
@@ -1808,11 +1808,11 @@ PyObject *eEPGCache::lookupEvent(ePyObject list, ePyObject convertFunc)
 							name = buildShortName(name);
 
 						if (name.length())
-							service_name = PyString_FromString(name.c_str());
+							service_name = PyUnicode_FromString(name.c_str());
 					}
 				}
 				if (!service_name)
-					service_name = PyString_FromString("<n/a>");
+					service_name = PyUnicode_FromString("<n/a>");
 			}
 			if (minutes)
 			{
@@ -2915,15 +2915,15 @@ PyObject *eEPGCache::search(ePyObject arg)
 											name = buildShortName(name);
 
 										if (name.length())
-											service_name = PyString_FromString(name.c_str());
+											service_name = PyUnicode_FromString(name.c_str());
 									}
 								}
 								if (!service_name)
-									service_name = PyString_FromString("<n/a>");
+									service_name = PyUnicode_FromString("<n/a>");
 							}
 						// create servicereference string
 							if (must_get_service_reference && !service_reference)
-								service_reference = PyString_FromString(ref.toString().c_str());
+								service_reference = PyUnicode_FromString(ref.toString().c_str());
 						// create list
 							if (!ret)
 								ret = PyList_New(0);

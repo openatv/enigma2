@@ -14,7 +14,7 @@ PyObject *getRecordingsServicesOnly(pNavigation::RecordType type=pNavigation::is
 	self->getRecordingsServicesOnly(services, type);
 	ePyObject result = PyList_New(services.size());
 	for (unsigned int i = 0; i < services.size(); i++)
-		PyList_SET_ITEM(result, i, PyString_FromString(services[i].toString().c_str()));
+		PyList_SET_ITEM(result, i, PyUnicode_FromString(services[i].toString().c_str()));
 	return result;
 }
 PyObject *getRecordingsTypesOnly(pNavigation::RecordType type=pNavigation::isAnyRecording)
@@ -45,7 +45,7 @@ PyObject *getRecordingsServicesAndTypes(pNavigation::RecordType type=pNavigation
 	for (unsigned int i = 0; i < services.size(); i++)
 	{
 		ePyObject tuple = PyTuple_New(2);
-		PyTuple_SET_ITEM(tuple, 0, PyString_FromString(services[i].toString().c_str()));
+		PyTuple_SET_ITEM(tuple, 0, PyUnicode_FromString(services[i].toString().c_str()));
 		PyTuple_SET_ITEM(tuple, 1, PyLong_FromLong(int(returnedTypes[i])));
 		PyList_Append(l, tuple);
 		Py_DECREF(tuple);
@@ -64,7 +64,7 @@ PyObject *getRecordingsServicesAndTypesAndSlotIDs(pNavigation::RecordType type=p
 	for (unsigned int i = 0; i < services.size(); i++)
 	{
 		ePyObject tuple = PyTuple_New(3);
-		PyTuple_SET_ITEM(tuple, 0, PyString_FromString(services[i].toString().c_str()));
+		PyTuple_SET_ITEM(tuple, 0, PyUnicode_FromString(services[i].toString().c_str()));
 		PyTuple_SET_ITEM(tuple, 1, PyLong_FromLong(int(returnedTypes[i])));
 		PyTuple_SET_ITEM(tuple, 2, PyLong_FromLong(slotids[i]));
 		PyList_Append(l, tuple);

@@ -16,7 +16,7 @@ PyObject *eDVBServicePMTHandler::getCaIds(bool pair)
 			ePyObject tuple = PyTuple_New(3);
 			PyTuple_SET_ITEM(tuple, 0, PyLong_FromLong(caids[i]));
 			PyTuple_SET_ITEM(tuple, 1, PyLong_FromLong(ecmpids[i]));
-			PyTuple_SET_ITEM(tuple, 2, PyString_FromString(databytes[i].c_str()));
+			PyTuple_SET_ITEM(tuple, 2, PyUnicode_FromString(databytes[i].c_str()));
 			PyList_SET_ITEM(ret, i, tuple);
 		}
 		else

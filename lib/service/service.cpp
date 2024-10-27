@@ -43,7 +43,7 @@ eServiceReference::eServiceReference(const std::string &string)
 
 	if (pathl)
 	{
-		const char *pathstr = c+pathl;
+		const char *pathstr = c + pathl;
 		const char *namestr = strchr(pathstr, ':');
 		if (namestr)
 		{

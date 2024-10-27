@@ -921,7 +921,7 @@ void eListboxServiceContent::paint(gPainter &painter, eWindowStyle &style, const
 					if (isPlayable && PyCallable_Check(m_GetPiconNameFunc))
 					{
 						ePyObject pArgs = PyTuple_New(1);
-						PyTuple_SET_ITEM(pArgs, 0, PyString_FromString(ref.toString().c_str()));
+						PyTuple_SET_ITEM(pArgs, 0, PyUnicode_FromString(ref.toString().c_str()));
 						ePyObject pRet = PyObject_CallObject(m_GetPiconNameFunc, pArgs);
 						Py_DECREF(pArgs);
 						if (pRet)

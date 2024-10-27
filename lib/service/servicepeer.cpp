@@ -72,7 +72,7 @@ PyObject *getPeerStreamingBoxes()
 	int idx = 0;
 	for (PeerMapping::iterator it = peers.begin(); it != peers.end(); ++it)
 	{
-		PyList_SET_ITEM(ret, idx++, PyString_FromString((char *)it->second.c_str()));
+		PyList_SET_ITEM(ret, idx++, PyUnicode_FromString((char *)it->second.c_str()));
 	}
 	return ret;
 }

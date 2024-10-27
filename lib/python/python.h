@@ -6,9 +6,7 @@
 
 #include <string>
 #include <lib/base/object.h>
-#if PY_VERSION_HEX >= 0x030a0000
 #define PY_SSIZE_T_CLEAN 1
-#endif
 #include "Python.h"
 
 #if !defined(SKIP_PART1) && !defined(SWIG)

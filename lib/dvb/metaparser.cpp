@@ -28,7 +28,7 @@ static int getctime(const std::string &basename)
 static long long fileSize(const std::string &basename)
 {
 	long long filesize = 0;
-	char buf[8];
+	char buf[8] = {};
 	std::string splitname;
 	struct stat64 s = {};
 

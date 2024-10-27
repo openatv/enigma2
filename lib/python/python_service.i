@@ -58,7 +58,7 @@ PyObject *getInfoObject(int w)
 				ePyObject tuple = PyTuple_New(3);
 				PyTuple_SET_ITEM(tuple, 0, PyLong_FromLong(caids[i]));
 				PyTuple_SET_ITEM(tuple, 1, PyLong_FromLong(ecmpids[i]));
-				PyTuple_SET_ITEM(tuple, 2, PyString_FromString(databytes[i].c_str()));
+				PyTuple_SET_ITEM(tuple, 2, PyUnicode_FromString(databytes[i].c_str()));
 				PyList_SET_ITEM(ret, i, tuple);
 			}
 			return ret;
@@ -72,8 +72,8 @@ PyObject *getInfoObject(int w)
 				if (info)
 				{
 					PyTuple_SetItem(tuple, 0, PyLong_FromLong(info->getInteger(0)));
-					PyTuple_SetItem(tuple, 1, PyString_FromString(info->getString(0).c_str()));
-					PyTuple_SetItem(tuple, 2, PyString_FromString(info->getString(1).c_str()));
+					PyTuple_SetItem(tuple, 1, PyUnicode_FromString(info->getString(0).c_str()));
+					PyTuple_SetItem(tuple, 2, PyUnicode_FromString(info->getString(1).c_str()));
 				}
 			}
 			return tuple;
@@ -87,7 +87,7 @@ PyObject *getInfoObject(int w)
 				if (info)
 				{
 					PyTuple_SetItem(tuple, 0, PyLong_FromLong(info->getInteger(0)));
-					PyTuple_SetItem(tuple, 1, PyString_FromString(info->getString(0).c_str()));
+					PyTuple_SetItem(tuple, 1, PyUnicode_FromString(info->getString(0).c_str()));
 				}
 			}
 			return tuple;
@@ -146,7 +146,7 @@ PyObject *getAITApplications()
 		{
 			ePyObject tuple = PyTuple_New(2);
 			PyTuple_SET_ITEM(tuple, 0, PyLong_FromLong(it->first));
-			PyTuple_SET_ITEM(tuple, 1, PyString_FromString(it->second.c_str()));
+			PyTuple_SET_ITEM(tuple, 1, PyUnicode_FromString(it->second.c_str()));
 			PyList_Append(l, tuple);
 			Py_DECREF(tuple);
 		}
@@ -378,8 +378,8 @@ PyObject *getSubtitleList()
 			PyTuple_SET_ITEM(tuple, 1, PyLong_FromLong(subtitlelist[i].pid));
 			PyTuple_SET_ITEM(tuple, 2, PyLong_FromLong(subtitlelist[i].page_number));
 			PyTuple_SET_ITEM(tuple, 3, PyLong_FromLong(subtitlelist[i].magazine_number));
-			PyTuple_SET_ITEM(tuple, 4, PyString_FromString(subtitlelist[i].language_code.c_str()));
-			PyTuple_SET_ITEM(tuple, 5, PyString_FromString(subtitlelist[i].title.c_str()));
+			PyTuple_SET_ITEM(tuple, 4, PyUnicode_FromString(subtitlelist[i].language_code.c_str()));
+			PyTuple_SET_ITEM(tuple, 5, PyUnicode_FromString(subtitlelist[i].title.c_str()));
 			PyList_Append(l, tuple);
 			Py_DECREF(tuple);
 		}
@@ -399,8 +399,8 @@ PyObject *getCachedSubtitle()
 		PyTuple_SET_ITEM(tuple, 1, PyLong_FromLong(track.pid));
 		PyTuple_SET_ITEM(tuple, 2, PyLong_FromLong(track.page_number));
 		PyTuple_SET_ITEM(tuple, 3, PyLong_FromLong(track.magazine_number));
-		PyTuple_SET_ITEM(tuple, 4, PyString_FromString(track.language_code.c_str()));
-		PyTuple_SET_ITEM(tuple, 5, PyString_FromString(track.title.c_str()));
+		PyTuple_SET_ITEM(tuple, 4, PyUnicode_FromString(track.language_code.c_str()));
+		PyTuple_SET_ITEM(tuple, 5, PyUnicode_FromString(track.title.c_str()));
 		return tuple;
 	}
 	Py_INCREF(Py_None);

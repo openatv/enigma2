@@ -569,8 +569,8 @@ PyObject *eDVBServicePMTHandler::getHbbTVApplications()
 		{
 			ePyObject tuple = PyTuple_New(6);
 			PyTuple_SET_ITEM(tuple, 0, PyLong_FromLong((*infoiter)->m_ControlCode));
-			PyTuple_SET_ITEM(tuple, 1, PyString_FromString((*infoiter)->m_ApplicationName.c_str()));
-			PyTuple_SET_ITEM(tuple, 2, PyString_FromString((*infoiter)->m_HbbTVUrl.c_str()));
+			PyTuple_SET_ITEM(tuple, 1, PyUnicode_FromString((*infoiter)->m_ApplicationName.c_str()));
+			PyTuple_SET_ITEM(tuple, 2, PyUnicode_FromString((*infoiter)->m_HbbTVUrl.c_str()));
 			PyTuple_SET_ITEM(tuple, 3, PyLong_FromLong((*infoiter)->m_OrgId));
 			PyTuple_SET_ITEM(tuple, 4, PyLong_FromLong((*infoiter)->m_AppId));
 			PyTuple_SET_ITEM(tuple, 5, PyLong_FromLong((*infoiter)->m_ProfileCode));
