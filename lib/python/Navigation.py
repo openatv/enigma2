@@ -2,7 +2,7 @@ from os import remove
 from os.path import exists
 from time import ctime, time
 
-from enigma import eServiceCenter, eServiceReference, eTimer, getBestPlayableServiceReference, iPlayableService, pNavigation
+from enigma import eServiceCenter, eServiceReference, eTimer, getBestPlayableServiceReference, iPlayableService, iServiceInformation, pNavigation
 
 import NavigationInstance
 import PowerTimer
@@ -402,6 +402,17 @@ class Navigation:
 
 	def getCurrentlyPlayingServiceOrGroup(self):
 		return self.currentlyPlayingServiceOrGroup
+
+	def getCurrentServiceRef(self):
+		curPlayService = self.getCurrentService()
+		info = curPlayService and curPlayService.info()
+		return info and info.getInfoString(iServiceInformation.sServiceref)
+
+	def isCurrentServiceIPTV(self):
+		ref = self.getCurrentServiceRef()
+		ref = ref and eServiceReference(ref)
+		path = ref and ref.getPath()
+		return path and not path.startswith("/") and ref.type in [0x1, 0x1001, 0x138A, 0x1389]
 
 	def isMovieplayerActive(self):
 		MoviePlayerInstance = MoviePlayer.instance
