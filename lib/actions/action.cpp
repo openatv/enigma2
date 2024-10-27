@@ -243,9 +243,26 @@ void eActionMap::keyPressed(const std::string &device, int key, int flags)
 	}
 
 	std::vector<call_entry> call_list;
+	bool modal = false;
+	for (std::multimap<int64_t, eActionBinding>::iterator c(m_bindings.begin()); c != m_bindings.end(); ++c)
+	{
+		if (c->first == -20)
+		{
+			eTrace("[eActionMap] modal active");
+			modal = true;
+			break;
+		}
+	}
+
 	// iterate active contexts
 	for (std::multimap<int64_t, eActionBinding>::iterator c(m_bindings.begin()); c != m_bindings.end(); ++c)
 	{
+		if (modal && c->first > -20)
+		{
+			eTrace("[eActionMap] modal active / ignore key %d", key);
+			continue;
+		}
+
 		int finalFlag = flags;
 
 		if (flags == eRCKey::flagMake)
