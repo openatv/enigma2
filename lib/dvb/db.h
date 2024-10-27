@@ -174,6 +174,11 @@ public:
 	RESULT addCAID(const eServiceReference &service, unsigned int caid);
 	RESULT addFlag(const eServiceReference &service, unsigned int flagmask);
 	RESULT removeFlag(const eServiceReference &service, unsigned int flagmask);
+	RESULT addOrUpdateBouquet(const std::string &name, const std::string &filename, SWIG_PYOBJECT(ePyObject) services, bool isAddedFirst = false);
+	RESULT addOrUpdateBouquet(const std::string &name, SWIG_PYOBJECT(ePyObject) services, const int type, bool isAddedFirst = false);
+	RESULT appendServicesToBouquet(const std::string &filename, SWIG_PYOBJECT(ePyObject) services);
+	RESULT removeBouquet(const std::string &filename_regex);
+	RESULT addChannelToDB(const eServiceReference &service, const eDVBFrontendParameters &feparam, SWIG_PYOBJECT(ePyObject) cachedPids, SWIG_PYOBJECT(ePyObject) caPids, const int serviceFlags);
 	void removeServicesFlag(unsigned int flagmask);
 	PyObject *readSatellites(SWIG_PYOBJECT(ePyObject) sat_list, SWIG_PYOBJECT(ePyObject) sat_dict, SWIG_PYOBJECT(ePyObject) tp_dict);
 	PyObject *readTerrestrials(SWIG_PYOBJECT(ePyObject) ter_list, SWIG_PYOBJECT(ePyObject) tp_dict);
@@ -190,6 +195,7 @@ public:
 	RESULT getChannelFrontendData(const eDVBChannelID &id, ePtr<iDVBFrontendParameters> &parm);
 
 	RESULT addService(const eServiceReferenceDVB &referenc, eDVBService *service);
+	RESULT addOrUpdateService(const eServiceReferenceDVB &referenc, eDVBService *service);
 	RESULT getService(const eServiceReferenceDVB &reference, ePtr<eDVBService> &service);
 	RESULT flush();
 
@@ -202,6 +208,10 @@ public:
 	eDVBDB();
 	virtual ~eDVBDB();
 	int renumberBouquet(eBouquet &bouquet, int startChannelNum = 1);
+	void loadIPTVCachefile(const char *);
+	void parseIPTVServiceData(ePtr<eDVBService> s, std::string str);
+	void saveIptvServicelist(const char *file);
+	std::vector<ePtr<eDVBService>> iptv_services;
 	void addLcnToDB(int ns, int onid, int tsid, int sid, uint16_t lcn, uint32_t signal);
 	void saveLcnDB();
 #endif
@@ -214,6 +224,7 @@ public:
 	static eDVBDB *getInstance() { return instance; }
 	void reloadServicelist();
 	void saveServicelist();
+	void saveIptvServicelist();
 	void saveServicelist(const char *file);
 	void reloadBouquets();
 	bool isValidService(int tsid, int onid, int sid);
