@@ -253,7 +253,7 @@
 	</screen>		
 <!-- Servicescan -->
 	<screen name="ServiceScanSummary" position="0,0" size="390,240">
-		<widget name="Title" position="0,0" size="390,85" font="FdLcD;38" foregroundColor="#87CEFA" halign="center" valign="center" />
+		<widget source="Title" render="Label" position="0,0" size="390,85" font="FdLcD;38" foregroundColor="#87CEFA" halign="center" valign="center" />
 		<widget name="scan_progress" position="0,100" size="390,35"  borderWidth="2" />
 		<widget name="Service" position="0,150" size="390,85" font="FdLcD;38" halign="center" valign="center" />
 	</screen> 		

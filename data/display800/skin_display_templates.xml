@@ -481,7 +481,7 @@
 
 	<!-- Servicescan -->
 	<screen name="ServiceScanSummary" position="0,0" size="800,480">
-		<widget source="parent.Title" render="Label" position="40,20" size="720,376" font="FdLcD;70" halign="center" valign="center"  />
+		<widget source="Title" render="Label" position="40,20" size="720,376" font="FdLcD;70" halign="center" valign="center"  />
 		<widget name="scan_progress" render="Progress" position="40,400" size="720,25" borderWidth="2"  foregroundColor="white" />
 		<widget source="global.CurrentTime" render="Label" position="500,490" size="182,52" halign="right" font="FdLcD;50">
 			<convert type="ClockToText">Default</convert>

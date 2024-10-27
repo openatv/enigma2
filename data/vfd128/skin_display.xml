@@ -435,7 +435,7 @@
 <!-- ATV -->
 <!-- Servicescan -->
 	<screen name="ServiceScanSummary" position="0,0" size="128,32">
-		<widget source="parent.Title" render="Label" position="0,0" size="128,26" font="FdLcD;16" halign="center" valign="center" noWrap="0" />
+		<widget source="Title" render="Label" position="0,0" size="128,26" font="FdLcD;16" halign="center" valign="center" noWrap="0" />
 		<widget name="scan_progress" render="Progress" position="0,26" size="128,6"  borderWidth="1" />
 	</screen>
 

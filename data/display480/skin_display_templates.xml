@@ -836,7 +836,7 @@
 ############ -->
 
 	<!--  Ueberschrift "Kanalsuche" -->
-		<widget name="Title" position="0,40" size="480,55" font="FdLcD;48" foregroundColor="#87CEFA" halign="center" />
+		<widget source="Title" render="Label" position="0,40" size="480,55" font="FdLcD;48" foregroundColor="#87CEFA" halign="center" />
 
 	<!--  Fortschrittsbalken - je 10 Pixel von den Raendern -->
 		<widget name="scan_progress" position="10,110" size="460,50" borderWidth="2" />
