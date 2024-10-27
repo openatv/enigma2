@@ -337,8 +337,10 @@ public:
 
 	static const cacheID audioCacheTags[];
 	static const int nAudioCacheTags;
+	std::string m_reference_str;
 	int getCacheEntry(cacheID);
 	void setCacheEntry(cacheID, int);
+	void setServiceRef(std::string sref) { m_reference_str = sref; }
 
 	bool cacheEmpty();
 	bool cacheAudioEmpty();
