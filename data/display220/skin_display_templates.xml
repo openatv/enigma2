@@ -179,7 +179,7 @@
 	</screen>
 	<!-- Servicescan -->
 	<screen name="ServiceScanSummary" position="0,0" size="220,176">
-		<widget name="Title" position="0,20" size="220,85" font="FdLcD;26" halign="center" valign="center" foregroundColor="#FFFF00" />
+		<widget source="Title" render="Label" position="0,20" size="220,85" font="FdLcD;26" halign="center" valign="center" foregroundColor="#FFFF00" />
 		<widget name="scan_progress" position="0,120" size="220,22" foregroundColor="#02c6ff" borderWidth="2" />
 	</screen>
 	<!-- NetworkServices -->

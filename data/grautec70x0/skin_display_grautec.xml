@@ -411,7 +411,7 @@
 
 <!--ServiceScanSummary-->
 <screen name="ServiceScanSummary" position="0,0" size="400,240">
-	<widget name="Title" position="2,15" size="396,50" font="LCD1;50" halign="center" valign="top" foregroundColor="oled1" backgroundColor="#000000"/>
+	<widget source="Title" render="Label" position="2,15" size="396,50" font="LCD1;50" halign="center" valign="top" foregroundColor="oled1" backgroundColor="#000000"/>
     <widget name="Service" position="2,65" size="396,95" font="LCD1;50" halign="center"/>
 	<widget name="scan_progress" pixmap="/usr/share/enigma2/display/progress-lcd1.png" position="10,170" zPosition="2" borderWidth="1" size="380,14" backgroundColor="oledbackground1"/>
 	<widget source="session.RecordState" render="FixedLabel" text=" " position="399,239" zPosition="2" size="1,1" font="LCD1;1" halign="left" valign="top" foregroundColor="white" backgroundColor="#FF0000">

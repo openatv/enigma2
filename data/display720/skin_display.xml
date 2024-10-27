@@ -325,7 +325,7 @@
 	
 <!-- Servicescan -->
 	<screen name="ServiceScanSummary" position="0,0" size="720,576">
-		<widget name="Title" position="10,20" size="670,376" font="FdLcD;70" halign="center" valign="center"  />
+		<widget source="Title" render="Label" position="10,20" size="670,376" font="FdLcD;70" halign="center" valign="center"  />
 		<widget name="scan_progress"  position="27,400" size="660,25" foregroundColor="#02c6ff" borderWidth="2" />
 		<panel name="SummaryClockPanel" />
 	</screen>
