@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-01 08:46+0000\n"
-"PO-Revision-Date: 2024-10-27 18:00+0000\n"
+"POT-Creation-Date: 2024-10-28 12:47+0000\n"
+"PO-Revision-Date: 2024-10-28 16:12+0000\n"
 "Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -905,14 +905,6 @@ msgid_plural "%d Years"
 msgstr[0] "%d rok"
 msgstr[1] "%d lata"
 msgstr[2] "%d lat"
-
-#. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
-#, python-format
-msgid "%d channel found"
-msgid_plural "%d channels found"
-msgstr[0] "znaleziono %d kanał"
-msgstr[1] "znaleziono %d kanały"
-msgstr[2] "znaleziono %d kanałów"
 
 #, python-format
 msgid "%d core"
@@ -3654,11 +3646,11 @@ msgstr "Anuluj wybór systemu i wyjdź"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Anuluj wybór systemu i zamknij wszystkie menu"
 
-msgid "Cancel the scan and exit the scanner"
-msgstr "Anuluj skanowanie i wyjdź ze skanera"
-
 msgid "Cancel the scan and exit all menus"
 msgstr "Anuluj skanowanie i wyjdź ze wszystkich menu"
+
+msgid "Cancel the scan and exit the scanner"
+msgstr "Anuluj skanowanie i wyjdź ze skanera"
 
 msgid "Cancel the selection and exit"
 msgstr "Anuluj wybór i wyjdź"
@@ -6777,12 +6769,11 @@ msgstr "Lokalizacja EPG"
 msgid "EPG only"
 msgstr "Tylko EPG"
 
+msgid "EPG:"
+msgstr "EPG:"
+
 msgid "EPGSearch"
 msgstr "Wyszukiwanie EPG"
-
-#, python-format
-msgid "ERROR - failed to scan (%s)!"
-msgstr "BŁĄD - skanowanie (%s) nie powiodło się!"
 
 msgid "EXIF-Version"
 msgstr "Wersja EXIF"
@@ -11712,6 +11703,9 @@ msgstr "Przestrzeń i poz. orbit"
 msgid "Namibia"
 msgstr "Namibia"
 
+msgid "Narration"
+msgstr "Narracja"
+
 msgid "Native"
 msgstr "Rodowity"
 
@@ -12023,6 +12017,9 @@ msgstr "Nie włożono karty!"
 msgid "No channel"
 msgstr "Brak kanału"
 
+msgid "No channel list"
+msgstr "Brak listy kanałów"
+
 msgid ""
 "No data on transponder!\n"
 "(Timeout reading PAT)"
@@ -12083,6 +12080,9 @@ msgstr "Nie znaleziono nadającego się pozycjonera."
 
 msgid "No priority"
 msgstr "Bez priorytetu"
+
+msgid "No resource manager"
+msgstr "Brak menadżera zasobów"
 
 msgid "No satellite, terrestrial or cable tuner is configured. Please check your tuner setup."
 msgstr "Nie skonfigurowano tunera satelitarnego, naziemnego ani kablowego. Sprawdź konfigurację tunera."
@@ -12300,6 +12300,9 @@ msgstr "nie skonfigurowano"
 
 msgid "Not currently mounted."
 msgstr "Obecnie nie jest zamontowany."
+
+msgid "Not defined"
+msgstr "Nie zdefiniowano"
 
 #, python-format
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
@@ -12691,6 +12694,9 @@ msgstr "Oryginalny"
 
 msgid "Original Network ID (ONID)"
 msgstr "Oryginale ID sieci (ONID)"
+
+msgid "Original language"
+msgstr "Język oryginalny"
 
 msgid "Oriya"
 msgstr "Oriya"
@@ -13840,6 +13846,12 @@ msgstr "Podstawowe minuty czasu"
 
 msgid "Priority"
 msgstr "Priorytet konwertera"
+
+msgid "Problem starting scan"
+msgstr "Problem z uruchomieniem skanowania"
+
+msgid "Problem while scanning"
+msgstr "Problem podczas skanowania"
 
 msgid "Proc model"
 msgstr "Model Procesora"
@@ -15403,14 +15415,6 @@ msgstr "Skanowanie"
 #, python-format
 msgid "Scanning %s..."
 msgstr "Skanowanie %s..."
-
-#. TRANSLATORS: The stb is performing a channel scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol)
-#, python-format
-msgid "Scanning - %d%% completed"
-msgid_plural "Scanning - %d%% completed"
-msgstr[0] "Skanowanie - %d%% ukończono"
-msgstr[1] "Skanowanie - %d%% ukończono"
-msgstr[2] "Skanowanie - %d%% ukończone"
 
 msgid "Scanning can't be performed while recordings are in progress."
 msgstr "Skanowania nie można wykonać podczas nagrywania."
@@ -20431,6 +20435,9 @@ msgstr "Akcja timera"
 msgid "Timer+"
 msgstr "Timer+"
 
+msgid "Timer:"
+msgstr "Timer:"
+
 msgid "Timerlist"
 msgstr "Lista timera"
 
@@ -20803,14 +20810,8 @@ msgstr "Algorytm strojenia"
 msgid "Tunisia"
 msgstr "Tunezja"
 
-msgid ""
-"Turbo: One reboot after flash\n"
-"Fast: One reboot after flash, one reboot after restore\n"
-"Slow: One reboot after flash, one reboot after restore in GUI"
-msgstr ""
-"Turbo: Jeden restart po flashu\n"
-"Szybki: Jeden restart po flashu, jeden restart po przywróceniu\n"
-"Wolny: Jeden restart po flashu, jeden restart po przywróceniu interfejsu"
+msgid "Turbo: One reboot after flash; Fast: One reboot after flash, one reboot after restore; Slow: One reboot after flash, one reboot after restore in GUI."
+msgstr "Turbo: Jeden restart po flashu; Szybki: Jeden restart po flashu, jeden restart po przywróceniu; Wolny: Jeden restart po flashu, jeden restart po przywróceniu interfejsu."
 
 msgid "Turkey"
 msgstr "Turcja"
@@ -23177,12 +23178,6 @@ msgstr "równe"
 msgid "equestrian"
 msgstr "jeździectwo"
 
-msgid "Problem starting scan"
-msgstr "Problem z uruchomieniem skanowania"
-
-msgid "Problem while scanning"
-msgstr "Problem podczas skanowania"
-
 msgid "execute cuts (requires MovieCut plugin)"
 msgstr "wykonywać cięcia (wymaga wtyczki MovieCut)"
 
@@ -23468,17 +23463,11 @@ msgstr "nie wybrano kaida"
 msgid "no CI slots found"
 msgstr "nie znaleziono gniazda CI"
 
-msgid "No channel list"
-msgstr "Brak listy kanałów"
-
 msgid "no module found"
 msgstr "nie znaleziono modułu"
 
 msgid "no or unknown card inserted"
 msgstr "brak lub nieaktywna karta"
-
-msgid "No resource manager"
-msgstr "Brak menadżera zasobów"
 
 msgid "no storage devices found"
 msgstr "nie znaleziono urządzenia magazynującego"
@@ -23539,9 +23528,6 @@ msgstr "pakiet"
 
 msgid "packages"
 msgstr "pakiety"
-
-msgid "pass"
-msgstr "przelot"
 
 msgid "performing arts"
 msgstr "sztuka"
@@ -23938,6 +23924,27 @@ msgstr "tak (zachować kanały)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%d channel found"
+#~ msgid_plural "%d channels found"
+#~ msgstr[0] "znaleziono %d kanał"
+#~ msgstr[1] "znaleziono %d kanały"
+#~ msgstr[2] "znaleziono %d kanałów"
+
+#, python-format
+#~ msgid "ERROR - failed to scan (%s)!"
+#~ msgstr "BŁĄD - skanowanie (%s) nie powiodło się!"
+
+#, python-format
+#~ msgid "Scanning - %d%% completed"
+#~ msgid_plural "Scanning - %d%% completed"
+#~ msgstr[0] "Skanowanie - %d%% ukończono"
+#~ msgstr[1] "Skanowanie - %d%% ukończono"
+#~ msgstr[2] "Skanowanie - %d%% ukończone"
+
+#~ msgid "pass"
+#~ msgstr "przelot"
 
 #, python-format
 #~ msgid "%s  (%s)"

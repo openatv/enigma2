@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-01 08:46+0000\n"
-"PO-Revision-Date: 2024-10-14 06:52+0000\n"
+"POT-Creation-Date: 2024-10-28 12:47+0000\n"
+"PO-Revision-Date: 2024-10-28 16:12+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.8-dev\n"
+"X-Generator: Weblate 5.8.2-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -902,14 +902,6 @@ msgid_plural "%d Years"
 msgstr[0] "%d Рік"
 msgstr[1] "%d Роки"
 msgstr[2] "%d Років"
-
-#. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
-#, python-format
-msgid "%d channel found"
-msgid_plural "%d channels found"
-msgstr[0] "%d канал знайдено"
-msgstr[1] "%d канали знайдено"
-msgstr[2] "%d каналів знайдено"
 
 #, python-format
 msgid "%d core"
@@ -3649,11 +3641,11 @@ msgstr "Скасувати вибір іміджу і вийти"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Скасувати вибір іміджу та вийдіть із усіх меню"
 
-msgid "Cancel the scan and exit the scanner"
-msgstr "Скасувати сканування та вийти"
-
 msgid "Cancel the scan and exit all menus"
 msgstr "Скасувати сканування та вийти з усіх меню"
+
+msgid "Cancel the scan and exit the scanner"
+msgstr "Скасувати сканування та вийти"
 
 msgid "Cancel the selection and exit"
 msgstr "Скасувати вибір і вийти"
@@ -6771,12 +6763,11 @@ msgstr "Розташування EPG"
 msgid "EPG only"
 msgstr "Лише EPG"
 
+msgid "EPG:"
+msgstr "ЕПГ:"
+
 msgid "EPGSearch"
 msgstr "Пошук EPG"
-
-#, python-format
-msgid "ERROR - failed to scan (%s)!"
-msgstr "ПОМИЛКА - сканування невдале (%s)!"
 
 msgid "EXIF-Version"
 msgstr "EXIF-версія"
@@ -11705,6 +11696,9 @@ msgstr "Простір імен і позиція"
 msgid "Namibia"
 msgstr "Намібія"
 
+msgid "Narration"
+msgstr "Переказ"
+
 msgid "Native"
 msgstr "Власний"
 
@@ -12016,6 +12010,9 @@ msgstr "Не вставлено картку!"
 msgid "No channel"
 msgstr "Канали відсутні"
 
+msgid "No channel list"
+msgstr "немає списку каналів"
+
 msgid ""
 "No data on transponder!\n"
 "(Timeout reading PAT)"
@@ -12076,6 +12073,9 @@ msgstr "Не знайдено позиціонера."
 
 msgid "No priority"
 msgstr "Пріоритету немає"
+
+msgid "No resource manager"
+msgstr "немає менеджера ресурсів"
 
 msgid "No satellite, terrestrial or cable tuner is configured. Please check your tuner setup."
 msgstr "Жодного супутникового, наземного або кабельного тюнера не налаштовано. Будь ласка, перевірте налаштування тюнера."
@@ -12293,6 +12293,9 @@ msgstr "не налаштований"
 
 msgid "Not currently mounted."
 msgstr "На даний момент не змонтовано."
+
+msgid "Not defined"
+msgstr "Не визначено"
 
 #, python-format
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
@@ -12684,6 +12687,9 @@ msgstr "Оригінал"
 
 msgid "Original Network ID (ONID)"
 msgstr "Оригінальний ідентифікатор мережі (ONID)"
+
+msgid "Original language"
+msgstr "Мова оригіналу"
 
 msgid "Oriya"
 msgstr "Oriya"
@@ -13833,6 +13839,12 @@ msgstr "Прайм-тайм хвилина"
 
 msgid "Priority"
 msgstr "Пріоритет"
+
+msgid "Problem starting scan"
+msgstr "помилка при запуску сканування"
+
+msgid "Problem while scanning"
+msgstr "помилка під час сканування"
 
 msgid "Proc model"
 msgstr "Модель ЦП"
@@ -15396,14 +15408,6 @@ msgstr "Сканування"
 #, python-format
 msgid "Scanning %s..."
 msgstr "Сканування %s..."
-
-#. TRANSLATORS: The stb is performing a channel scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol)
-#, python-format
-msgid "Scanning - %d%% completed"
-msgid_plural "Scanning - %d%% completed"
-msgstr[0] "Сканування - %d%% завершено"
-msgstr[1] "Сканування - %d%% завершено"
-msgstr[2] "Сканування - %d%% завершене"
 
 msgid "Scanning can't be performed while recordings are in progress."
 msgstr "Сканування не можна виконувати під час запису."
@@ -19233,7 +19237,7 @@ msgid "TMDB Search"
 msgstr "TMDB Пошук"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 11.10.2024"
+msgstr "Переклад: kvinto - 28.10.2024"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -20423,6 +20427,9 @@ msgstr "Тип таймера"
 msgid "Timer+"
 msgstr "Таймер+"
 
+msgid "Timer:"
+msgstr "Таймер:"
+
 msgid "Timerlist"
 msgstr "Список таймерів"
 
@@ -20795,14 +20802,8 @@ msgstr "Алгоритм налаштування"
 msgid "Tunisia"
 msgstr "Туніс"
 
-msgid ""
-"Turbo: One reboot after flash\n"
-"Fast: One reboot after flash, one reboot after restore\n"
-"Slow: One reboot after flash, one reboot after restore in GUI"
-msgstr ""
-"Турбо: Одне перезавантаження після перепрошивки\n"
-"Швидко: Одне перезавантаження після перепрошивки, одне перезавантаження після відновлення\n"
-"Повільно: Одне перезавантаження після перепрошивки, одне перезавантаження після відновлення в інтерфейсі"
+msgid "Turbo: One reboot after flash; Fast: One reboot after flash, one reboot after restore; Slow: One reboot after flash, one reboot after restore in GUI."
+msgstr "Турбо: Одне перезавантаження після перепрошивки; Швидко: Одне перезавантаження після перепрошивки, одне перезавантаження після відновлення; Повільно: Одне перезавантаження після перепрошивки, одне перезавантаження після відновлення в інтерфейсі."
 
 msgid "Turkey"
 msgstr "Туреччина"
@@ -23169,12 +23170,6 @@ msgstr "дорівнює"
 msgid "equestrian"
 msgstr "кінний спорт"
 
-msgid "Problem starting scan"
-msgstr "помилка при запуску сканування"
-
-msgid "Problem while scanning"
-msgstr "помилка під час сканування"
-
 msgid "execute cuts (requires MovieCut plugin)"
 msgstr "виконання редагувань (потрібно MovieCut плагін)"
 
@@ -23460,17 +23455,11 @@ msgstr "не вибрано CAId"
 msgid "no CI slots found"
 msgstr "слот CI не знайдено"
 
-msgid "No channel list"
-msgstr "немає списку каналів"
-
 msgid "no module found"
 msgstr "модуль не знайдено"
 
 msgid "no or unknown card inserted"
 msgstr "відсутня або невідома карта"
-
-msgid "No resource manager"
-msgstr "немає менеджера ресурсів"
 
 msgid "no storage devices found"
 msgstr "пристрої не знайдені"
@@ -23531,9 +23520,6 @@ msgstr "пакет"
 
 msgid "packages"
 msgstr "пакети"
-
-msgid "pass"
-msgstr "пароль"
 
 msgid "performing arts"
 msgstr "виконавські види мистецтва"
@@ -23930,6 +23916,27 @@ msgstr "так (зберігати фіди)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%d channel found"
+#~ msgid_plural "%d channels found"
+#~ msgstr[0] "%d канал знайдено"
+#~ msgstr[1] "%d канали знайдено"
+#~ msgstr[2] "%d каналів знайдено"
+
+#, python-format
+#~ msgid "ERROR - failed to scan (%s)!"
+#~ msgstr "ПОМИЛКА - сканування невдале (%s)!"
+
+#, python-format
+#~ msgid "Scanning - %d%% completed"
+#~ msgid_plural "Scanning - %d%% completed"
+#~ msgstr[0] "Сканування - %d%% завершено"
+#~ msgstr[1] "Сканування - %d%% завершено"
+#~ msgstr[2] "Сканування - %d%% завершене"
+
+#~ msgid "pass"
+#~ msgstr "пароль"
 
 #, python-format
 #~ msgid "%s  (%s)"

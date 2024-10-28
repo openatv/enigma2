@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-01 08:46+0000\n"
+"POT-Creation-Date: 2024-10-28 12:47+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Icelandic <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/is/>\n"
@@ -966,14 +966,6 @@ msgid "%d Year"
 msgid_plural "%d Years"
 msgstr[0] ""
 msgstr[1] ""
-
-#
-#. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
-#, fuzzy, python-format
-msgid "%d channel found"
-msgid_plural "%d channels found"
-msgstr[0] "%d rásir fundnar!"
-msgstr[1] "%d rásir fundnar!"
 
 #, python-format
 msgid "%d core"
@@ -3857,10 +3849,10 @@ msgstr "Rása val"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Rása val"
 
-msgid "Cancel the scan and exit the scanner"
+msgid "Cancel the scan and exit all menus"
 msgstr ""
 
-msgid "Cancel the scan and exit all menus"
+msgid "Cancel the scan and exit the scanner"
 msgstr ""
 
 msgid "Cancel the selection and exit"
@@ -7089,12 +7081,11 @@ msgstr ""
 msgid "EPG only"
 msgstr ""
 
-msgid "EPGSearch"
+msgid "EPG:"
 msgstr ""
 
-#, python-format
-msgid "ERROR - failed to scan (%s)!"
-msgstr "VILLA - gat ekki leitað (%s)!"
+msgid "EPGSearch"
+msgstr ""
 
 msgid "EXIF-Version"
 msgstr ""
@@ -12451,6 +12442,9 @@ msgstr ""
 msgid "Namibia"
 msgstr ""
 
+msgid "Narration"
+msgstr ""
+
 msgid "Native"
 msgstr ""
 
@@ -12794,6 +12788,9 @@ msgstr ""
 msgid "No channel"
 msgstr "Rás"
 
+msgid "No channel list"
+msgstr ""
+
 #
 msgid ""
 "No data on transponder!\n"
@@ -12867,6 +12864,9 @@ msgid "No positioner capable frontend found."
 msgstr "Það fannst ekki móttakari sem styður staðsetjara."
 
 msgid "No priority"
+msgstr ""
+
+msgid "No resource manager"
 msgstr ""
 
 msgid "No satellite, terrestrial or cable tuner is configured. Please check your tuner setup."
@@ -13112,6 +13112,9 @@ msgid "Not configured"
 msgstr "ekki stillt"
 
 msgid "Not currently mounted."
+msgstr ""
+
+msgid "Not defined"
 msgstr ""
 
 #
@@ -13526,6 +13529,9 @@ msgid "Original"
 msgstr ""
 
 msgid "Original Network ID (ONID)"
+msgstr ""
+
+msgid "Original language"
 msgstr ""
 
 msgid "Oriya"
@@ -14795,6 +14801,12 @@ msgstr ""
 #
 msgid "Priority"
 msgstr "Forgangur"
+
+msgid "Problem starting scan"
+msgstr ""
+
+msgid "Problem while scanning"
+msgstr ""
 
 msgid "Proc model"
 msgstr ""
@@ -16518,13 +16530,6 @@ msgstr ""
 #, python-format
 msgid "Scanning %s..."
 msgstr ""
-
-#. TRANSLATORS: The stb is performing a channel scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol)
-#, python-format
-msgid "Scanning - %d%% completed"
-msgid_plural "Scanning - %d%% completed"
-msgstr[0] ""
-msgstr[1] ""
 
 msgid "Scanning can't be performed while recordings are in progress."
 msgstr ""
@@ -21814,6 +21819,9 @@ msgstr "Gerð Tímastillngar"
 msgid "Timer+"
 msgstr "Tími"
 
+msgid "Timer:"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Timerlist"
@@ -22235,10 +22243,7 @@ msgstr ""
 msgid "Tunisia"
 msgstr ""
 
-msgid ""
-"Turbo: One reboot after flash\n"
-"Fast: One reboot after flash, one reboot after restore\n"
-"Slow: One reboot after flash, one reboot after restore in GUI"
+msgid "Turbo: One reboot after flash; Fast: One reboot after flash, one reboot after restore; Slow: One reboot after flash, one reboot after restore in GUI."
 msgstr ""
 
 #
@@ -24696,12 +24701,6 @@ msgstr "jafnt og"
 msgid "equestrian"
 msgstr ""
 
-msgid "Problem starting scan"
-msgstr ""
-
-msgid "Problem while scanning"
-msgstr ""
-
 msgid "execute cuts (requires MovieCut plugin)"
 msgstr ""
 
@@ -25016,17 +25015,11 @@ msgstr "ekkert CAId valið"
 msgid "no CI slots found"
 msgstr "fann engin CI tengi"
 
-msgid "No channel list"
-msgstr ""
-
 #
 msgid "no module found"
 msgstr "fann ekki einingu"
 
 msgid "no or unknown card inserted"
-msgstr ""
-
-msgid "No resource manager"
 msgstr ""
 
 msgid "no storage devices found"
@@ -25099,10 +25092,6 @@ msgstr ""
 
 msgid "packages"
 msgstr ""
-
-#
-msgid "pass"
-msgstr "í lagi"
 
 msgid "performing arts"
 msgstr ""
@@ -25537,6 +25526,21 @@ msgstr "já (halda fæðirásum)"
 
 msgid "®"
 msgstr ""
+
+#
+#, fuzzy, python-format
+#~ msgid "%d channel found"
+#~ msgid_plural "%d channels found"
+#~ msgstr[0] "%d rásir fundnar!"
+#~ msgstr[1] "%d rásir fundnar!"
+
+#, python-format
+#~ msgid "ERROR - failed to scan (%s)!"
+#~ msgstr "VILLA - gat ekki leitað (%s)!"
+
+#
+#~ msgid "pass"
+#~ msgstr "í lagi"
 
 #
 #, fuzzy, python-format

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-01 08:46+0000\n"
+"POT-Creation-Date: 2024-10-28 12:47+0000\n"
 "PO-Revision-Date: 2024-10-06 23:09+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -885,13 +885,6 @@ msgid "%d Year"
 msgid_plural "%d Years"
 msgstr[0] "%d έτος"
 msgstr[1] "%d έτη"
-
-#. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
-#, python-format
-msgid "%d channel found"
-msgid_plural "%d channels found"
-msgstr[0] "βρέθηκε %d κανάλι"
-msgstr[1] "βρέθηκαν %d κανάλια"
 
 #, python-format
 msgid "%d core"
@@ -3611,11 +3604,11 @@ msgstr "Ακύρωση της επιλογής image και έξοδος"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Ακύρωση της επιλογής image και έξοδος από όλα τα μενού"
 
-msgid "Cancel the scan and exit the scanner"
-msgstr "Ακύρωση ανίχνευσης και έξοδος"
-
 msgid "Cancel the scan and exit all menus"
 msgstr "Ακύρωση ανίχνευσης και έξοδος από όλα τα μενού"
+
+msgid "Cancel the scan and exit the scanner"
+msgstr "Ακύρωση ανίχνευσης και έξοδος"
 
 msgid "Cancel the selection and exit"
 msgstr "Ακύρωση επιλογής και έξοδος"
@@ -6730,12 +6723,11 @@ msgstr "Τοποθεσία EPG"
 msgid "EPG only"
 msgstr "Μόνο EPG"
 
+msgid "EPG:"
+msgstr ""
+
 msgid "EPGSearch"
 msgstr "Αναζήτηση EPG"
-
-#, python-format
-msgid "ERROR - failed to scan (%s)!"
-msgstr "ΣΦΑΛΜΑ - Αποτυχία ανίχνευσης (%s)!"
 
 msgid "EXIF-Version"
 msgstr "Έκδοση EXIF"
@@ -11660,6 +11652,9 @@ msgstr "Χώρος ονόματος & τροχιακή θέση"
 msgid "Namibia"
 msgstr "Ναμίμπια"
 
+msgid "Narration"
+msgstr ""
+
 msgid "Native"
 msgstr "Αυθεντική"
 
@@ -11971,6 +11966,9 @@ msgstr "Δεν έχει εισαχθεί κάρτα!"
 msgid "No channel"
 msgstr "Χωρίς κανάλι"
 
+msgid "No channel list"
+msgstr "Χωρίς λίστα καναλιών"
+
 msgid ""
 "No data on transponder!\n"
 "(Timeout reading PAT)"
@@ -12031,6 +12029,9 @@ msgstr "Δεν βρέθηκε tuner που να υποστηρίζει μοτέ�
 
 msgid "No priority"
 msgstr "Χωρίς προτεραιότητα"
+
+msgid "No resource manager"
+msgstr "Χωρίς διαχείριση πόρων"
 
 msgid "No satellite, terrestrial or cable tuner is configured. Please check your tuner setup."
 msgstr "Μη ρυθμισμένο δορυφορικό, επίγειο ή καλωδιακό tuner. Ελέγξτε τις ρυθμίσεις tuner."
@@ -12248,6 +12249,9 @@ msgstr "Μη ρυθμισμένο"
 
 msgid "Not currently mounted."
 msgstr "Χωρίς προσάρτηση προς το παρόν."
+
+msgid "Not defined"
+msgstr ""
 
 #, python-format
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
@@ -12639,6 +12643,9 @@ msgstr "Πρωτότυπο"
 
 msgid "Original Network ID (ONID)"
 msgstr "Αναγνωριστικό δικτύου (ONID)"
+
+msgid "Original language"
+msgstr ""
 
 msgid "Oriya"
 msgstr "Ορίγια"
@@ -13786,6 +13793,12 @@ msgstr "Λεπτό ζώνης αιχμής"
 
 msgid "Priority"
 msgstr "Προτεραιότητα"
+
+msgid "Problem starting scan"
+msgstr "Πρόβλημα έναρξης ανίχνευσης"
+
+msgid "Problem while scanning"
+msgstr "Πρόβλημα κατά την ανίχνευση"
 
 msgid "Proc model"
 msgstr "Μοντέλο επεξεργαστή"
@@ -15349,13 +15362,6 @@ msgstr "Ανίχνευση"
 #, python-format
 msgid "Scanning %s..."
 msgstr "Ανίχνευση %s..."
-
-#. TRANSLATORS: The stb is performing a channel scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol)
-#, python-format
-msgid "Scanning - %d%% completed"
-msgid_plural "Scanning - %d%% completed"
-msgstr[0] "Ανίχνευση - ολοκληρώθηκε %d%%"
-msgstr[1] "Ανίχνευση - ολοκληρώθηκε το %d%%"
 
 msgid "Scanning can't be performed while recordings are in progress."
 msgstr "Η ανίχνευση δεν μπορεί να πραγματοποιηθεί ενώ υπάρχουν εγγραφές σε εξέλιξη."
@@ -20370,6 +20376,9 @@ msgstr "Τύπος χρονοδιακόπτη"
 msgid "Timer+"
 msgstr "Χρονοδιακόπτης+"
 
+msgid "Timer:"
+msgstr ""
+
 msgid "Timerlist"
 msgstr "Λίστα χρονοδιακοπτών"
 
@@ -20742,14 +20751,8 @@ msgstr "Αλγόριθμος συντονισμού"
 msgid "Tunisia"
 msgstr "Τυνησία"
 
-msgid ""
-"Turbo: One reboot after flash\n"
-"Fast: One reboot after flash, one reboot after restore\n"
-"Slow: One reboot after flash, one reboot after restore in GUI"
-msgstr ""
-"Τούρμπο: Μία επανεκκίνηση μετά το φλασάρισμα\n"
-"Γρήγορο: Μία επανεκκίνηση μετά το φλασάρισμα, μία επανεκκίνηση μετά την αποκατάσταση\n"
-"Αργό: Μία επανεκκίνηση μετά το φλασάρισμα, μία επανεκκίνηση μετά την αποκατάσταση στο γραφικό περιβάλλον"
+msgid "Turbo: One reboot after flash; Fast: One reboot after flash, one reboot after restore; Slow: One reboot after flash, one reboot after restore in GUI."
+msgstr "Τούρμπο: Μία επανεκκίνηση μετά το φλασάρισμα; Γρήγορο: Μία επανεκκίνηση μετά το φλασάρισμα, μία επανεκκίνηση μετά την αποκατάσταση; Αργό: Μία επανεκκίνηση μετά το φλασάρισμα, μία επανεκκίνηση μετά την αποκατάσταση στο γραφικό περιβάλλον"
 
 msgid "Turkey"
 msgstr "Τουρκία"
@@ -23116,12 +23119,6 @@ msgstr "ίσο με"
 msgid "equestrian"
 msgstr "ιπποδρομίες"
 
-msgid "Problem starting scan"
-msgstr "Πρόβλημα έναρξης ανίχνευσης"
-
-msgid "Problem while scanning"
-msgstr "Πρόβλημα κατά την ανίχνευση"
-
 msgid "execute cuts (requires MovieCut plugin)"
 msgstr "εκτέλεση περικοπών (απαιτείται το πρόσθετο MovieCut)"
 
@@ -23407,17 +23404,11 @@ msgstr "δεν έχει επιλεγεί CAId"
 msgid "no CI slots found"
 msgstr "δεν βρέθηκαν κοινές διεπαφές (CI)"
 
-msgid "No channel list"
-msgstr "Χωρίς λίστα καναλιών"
-
 msgid "no module found"
 msgstr "δεν βρέθηκε άρθρωμα"
 
 msgid "no or unknown card inserted"
 msgstr "απουσία εισαγωγής ή άγνωστη κάρτα"
-
-msgid "No resource manager"
-msgstr "Χωρίς διαχείριση πόρων"
 
 msgid "no storage devices found"
 msgstr "δεν βρέθηκαν συσκευές αποθήκευσης"
@@ -23478,9 +23469,6 @@ msgstr "πακέτο"
 
 msgid "packages"
 msgstr "πακέτα"
-
-msgid "pass"
-msgstr "πέρασμα"
 
 msgid "performing arts"
 msgstr "τέχνες και θεάματα"
@@ -23876,6 +23864,25 @@ msgstr "ναι (διατήρηση των feeds)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%d channel found"
+#~ msgid_plural "%d channels found"
+#~ msgstr[0] "βρέθηκε %d κανάλι"
+#~ msgstr[1] "βρέθηκαν %d κανάλια"
+
+#, python-format
+#~ msgid "ERROR - failed to scan (%s)!"
+#~ msgstr "ΣΦΑΛΜΑ - Αποτυχία ανίχνευσης (%s)!"
+
+#, python-format
+#~ msgid "Scanning - %d%% completed"
+#~ msgid_plural "Scanning - %d%% completed"
+#~ msgstr[0] "Ανίχνευση - ολοκληρώθηκε %d%%"
+#~ msgstr[1] "Ανίχνευση - ολοκληρώθηκε το %d%%"
+
+#~ msgid "pass"
+#~ msgstr "πέρασμα"
 
 #, python-format
 #~ msgid "%s  (%s)"

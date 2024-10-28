@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-01 08:46+0000\n"
+"POT-Creation-Date: 2024-10-28 12:47+0000\n"
 "PO-Revision-Date: 2024-02-10 07:43+0000\n"
 "Last-Translator: \"Mahmoud Habls (7OODA)\" <adhoda4@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ar/>\n"
@@ -945,18 +945,6 @@ msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
 msgstr[5] ""
-
-#
-#. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
-#, python-format
-msgid "%d channel found"
-msgid_plural "%d channels found"
-msgstr[0] "%d تم العثور قناة"
-msgstr[1] "%d تم العثور على قنوات"
-msgstr[2] "%d تم العثور على قناتين"
-msgstr[3] "%d تم العثور على قنوات"
-msgstr[4] "%d تم العثور على قنوات"
-msgstr[5] "%d تم العثور على قناة"
 
 #, python-format
 msgid "%d core"
@@ -3896,10 +3884,10 @@ msgstr "إختيار القناه"
 msgid "Cancel the image selection and exit all menus"
 msgstr "إختيار القناه"
 
-msgid "Cancel the scan and exit the scanner"
+msgid "Cancel the scan and exit all menus"
 msgstr ""
 
-msgid "Cancel the scan and exit all menus"
+msgid "Cancel the scan and exit the scanner"
 msgstr ""
 
 msgid "Cancel the selection and exit"
@@ -7093,13 +7081,11 @@ msgstr ""
 msgid "EPG only"
 msgstr ""
 
-msgid "EPGSearch"
+msgid "EPG:"
 msgstr ""
 
-#
-#, python-format
-msgid "ERROR - failed to scan (%s)!"
-msgstr "خطأ - فشل البحث (%s)!"
+msgid "EPGSearch"
+msgstr ""
 
 msgid "EXIF-Version"
 msgstr ""
@@ -12267,6 +12253,9 @@ msgstr ""
 msgid "Namibia"
 msgstr "ناميبيا"
 
+msgid "Narration"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Native"
@@ -12598,6 +12587,9 @@ msgstr ""
 msgid "No channel"
 msgstr "قناه"
 
+msgid "No channel list"
+msgstr "لا توجد قائمة قنوات"
+
 #
 msgid ""
 "No data on transponder!\n"
@@ -12671,6 +12663,9 @@ msgstr ""
 
 msgid "No priority"
 msgstr "لايوجد أولوية"
+
+msgid "No resource manager"
+msgstr "لا يوجد مدير مصادر"
 
 msgid "No satellite, terrestrial or cable tuner is configured. Please check your tuner setup."
 msgstr "لا يوجد قمر صناعي، يتم تكوين موالف القنوات الأرضية أو الكيبل. الرجاء التحقق من إعداد الموالف الخاص بك."
@@ -12897,6 +12892,9 @@ msgid "Not configured"
 msgstr "غير مكون"
 
 msgid "Not currently mounted."
+msgstr ""
+
+msgid "Not defined"
 msgstr ""
 
 #
@@ -13304,6 +13302,9 @@ msgid "Original"
 msgstr "أصلي"
 
 msgid "Original Network ID (ONID)"
+msgstr ""
+
+msgid "Original language"
 msgstr ""
 
 msgid "Oriya"
@@ -14515,6 +14516,12 @@ msgstr ""
 
 msgid "Priority"
 msgstr "الأولوية"
+
+msgid "Problem starting scan"
+msgstr "خطأ في بداية البحث"
+
+msgid "Problem while scanning"
+msgstr "خطأ أثناء البحث"
 
 msgid "Proc model"
 msgstr ""
@@ -16162,17 +16169,6 @@ msgstr ""
 #, python-format
 msgid "Scanning %s..."
 msgstr "جاري البحث %s..."
-
-#. TRANSLATORS: The stb is performing a channel scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol)
-#, python-format
-msgid "Scanning - %d%% completed"
-msgid_plural "Scanning - %d%% completed"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
 
 msgid "Scanning can't be performed while recordings are in progress."
 msgstr ""
@@ -21343,6 +21339,9 @@ msgstr "نوع المؤقت"
 msgid "Timer+"
 msgstr "وقت"
 
+msgid "Timer:"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Timerlist"
@@ -21750,10 +21749,7 @@ msgstr ""
 msgid "Tunisia"
 msgstr "تونس"
 
-msgid ""
-"Turbo: One reboot after flash\n"
-"Fast: One reboot after flash, one reboot after restore\n"
-"Slow: One reboot after flash, one reboot after restore in GUI"
+msgid "Turbo: One reboot after flash; Fast: One reboot after flash, one reboot after restore; Slow: One reboot after flash, one reboot after restore in GUI."
 msgstr ""
 
 msgid "Turkey"
@@ -24139,12 +24135,6 @@ msgstr "مساوى لـــ"
 msgid "equestrian"
 msgstr "الفروسية"
 
-msgid "Problem starting scan"
-msgstr "خطأ في بداية البحث"
-
-msgid "Problem while scanning"
-msgstr "خطأ أثناء البحث"
-
 msgid "execute cuts (requires MovieCut plugin)"
 msgstr ""
 
@@ -24445,18 +24435,12 @@ msgstr "لم يتم إختيار الكايد"
 msgid "no CI slots found"
 msgstr ""
 
-msgid "No channel list"
-msgstr "لا توجد قائمة قنوات"
-
 #
 msgid "no module found"
 msgstr "لم يتم العثور على كامه"
 
 msgid "no or unknown card inserted"
 msgstr ""
-
-msgid "No resource manager"
-msgstr "لا يوجد مدير مصادر"
 
 msgid "no storage devices found"
 msgstr "لم يتم العثور علي أجهزه تخزين"
@@ -24521,9 +24505,6 @@ msgstr ""
 
 msgid "packages"
 msgstr ""
-
-msgid "pass"
-msgstr "مرور"
 
 msgid "performing arts"
 msgstr "الفنون التمثيلية"
@@ -24938,6 +24919,25 @@ msgstr "نعم (الاحتفاظ بها)"
 
 msgid "®"
 msgstr ""
+
+#
+#, python-format
+#~ msgid "%d channel found"
+#~ msgid_plural "%d channels found"
+#~ msgstr[0] "%d تم العثور قناة"
+#~ msgstr[1] "%d تم العثور على قنوات"
+#~ msgstr[2] "%d تم العثور على قناتين"
+#~ msgstr[3] "%d تم العثور على قنوات"
+#~ msgstr[4] "%d تم العثور على قنوات"
+#~ msgstr[5] "%d تم العثور على قناة"
+
+#
+#, python-format
+#~ msgid "ERROR - failed to scan (%s)!"
+#~ msgstr "خطأ - فشل البحث (%s)!"
+
+#~ msgid "pass"
+#~ msgstr "مرور"
 
 #, fuzzy, python-format
 #~ msgid "%s  (%s)"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-01 08:46+0000\n"
+"POT-Creation-Date: 2024-10-28 12:47+0000\n"
 "PO-Revision-Date: 2023-08-11 04:46+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -884,13 +884,6 @@ msgid "%d Year"
 msgid_plural "%d Years"
 msgstr[0] "%d 年"
 msgstr[1] "%d 年"
-
-#. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
-#, python-format
-msgid "%d channel found"
-msgid_plural "%d channels found"
-msgstr[0] "找到 %d 个频道"
-msgstr[1] "找到 %d 个频道"
 
 #, python-format
 msgid "%d core"
@@ -3615,10 +3608,10 @@ msgstr "取消固件选择并退出"
 msgid "Cancel the image selection and exit all menus"
 msgstr "取消镜像选择并退出所有菜单"
 
-msgid "Cancel the scan and exit the scanner"
+msgid "Cancel the scan and exit all menus"
 msgstr ""
 
-msgid "Cancel the scan and exit all menus"
+msgid "Cancel the scan and exit the scanner"
 msgstr ""
 
 msgid "Cancel the selection and exit"
@@ -6720,12 +6713,11 @@ msgstr "EPG位置"
 msgid "EPG only"
 msgstr ""
 
+msgid "EPG:"
+msgstr ""
+
 msgid "EPGSearch"
 msgstr "EPG搜索"
-
-#, python-format
-msgid "ERROR - failed to scan (%s)!"
-msgstr "错误 - 扫描 (%s) 失败！"
 
 msgid "EXIF-Version"
 msgstr ""
@@ -11648,6 +11640,9 @@ msgstr "名称空间和轨道位置."
 msgid "Namibia"
 msgstr "纳米比亚"
 
+msgid "Narration"
+msgstr ""
+
 msgid "Native"
 msgstr "原始"
 
@@ -11956,6 +11951,9 @@ msgstr "没有卡插入！"
 msgid "No channel"
 msgstr "没有频道"
 
+msgid "No channel list"
+msgstr "无频道列表"
+
 msgid ""
 "No data on transponder!\n"
 "(Timeout reading PAT)"
@@ -12016,6 +12014,9 @@ msgstr "未发现有支持的极轴天线."
 
 msgid "No priority"
 msgstr "没有优先权"
+
+msgid "No resource manager"
+msgstr "无资源管理器"
 
 msgid "No satellite, terrestrial or cable tuner is configured. Please check your tuner setup."
 msgstr "卫星,地面波或有线电视调谐器没有配置.请检查您的调谐器设置."
@@ -12233,6 +12234,9 @@ msgstr "未配置"
 
 msgid "Not currently mounted."
 msgstr "当前未安装."
+
+msgid "Not defined"
+msgstr ""
 
 #, python-format
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
@@ -12623,6 +12627,9 @@ msgid "Original"
 msgstr "原始"
 
 msgid "Original Network ID (ONID)"
+msgstr ""
+
+msgid "Original language"
 msgstr ""
 
 msgid "Oriya"
@@ -13768,6 +13775,12 @@ msgstr "黄金时段 分钟"
 
 msgid "Priority"
 msgstr "优先次序"
+
+msgid "Problem starting scan"
+msgstr "启动扫描时出错"
+
+msgid "Problem while scanning"
+msgstr "扫描时出错"
 
 msgid "Proc model"
 msgstr "PROC模型"
@@ -15331,13 +15344,6 @@ msgstr ""
 #, python-format
 msgid "Scanning %s..."
 msgstr "正在扫描 %s..."
-
-#. TRANSLATORS: The stb is performing a channel scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol)
-#, python-format
-msgid "Scanning - %d%% completed"
-msgid_plural "Scanning - %d%% completed"
-msgstr[0] "正在扫描 - 已完成 %d%%"
-msgstr[1] "正在扫描 - 已完成 %d%%"
 
 msgid "Scanning can't be performed while recordings are in progress."
 msgstr ""
@@ -20303,6 +20309,9 @@ msgstr "定时器类型"
 msgid "Timer+"
 msgstr "定时器+"
 
+msgid "Timer:"
+msgstr ""
+
 msgid "Timerlist"
 msgstr "定时器列表"
 
@@ -20675,14 +20684,8 @@ msgstr "调整算法"
 msgid "Tunisia"
 msgstr "突尼斯"
 
-msgid ""
-"Turbo: One reboot after flash\n"
-"Fast: One reboot after flash, one reboot after restore\n"
-"Slow: One reboot after flash, one reboot after restore in GUI"
-msgstr ""
-"Turbo:刷机后重启一次\n"
-"快速:刷机后重启一次,恢复后重启一次\n"
-"慢速:刷机后重启一次,GUI恢复后重启一次"
+msgid "Turbo: One reboot after flash; Fast: One reboot after flash, one reboot after restore; Slow: One reboot after flash, one reboot after restore in GUI."
+msgstr "Turbo:刷机后重启一次; 快速:刷机后重启一次,恢复后重启一次; 慢速:刷机后重启一次,GUI恢复后重启一次"
 
 msgid "Turkey"
 msgstr "土耳其"
@@ -23007,12 +23010,6 @@ msgstr "等于"
 msgid "equestrian"
 msgstr "马术"
 
-msgid "Problem starting scan"
-msgstr "启动扫描时出错"
-
-msgid "Problem while scanning"
-msgstr "扫描时出错"
-
 msgid "execute cuts (requires MovieCut plugin)"
 msgstr "执行最终剪辑(需要MovieCut插件)"
 
@@ -23298,17 +23295,11 @@ msgstr "未选择CAID"
 msgid "no CI slots found"
 msgstr "没有找到CI插槽"
 
-msgid "No channel list"
-msgstr "无频道列表"
-
 msgid "no module found"
 msgstr "未找到模块"
 
 msgid "no or unknown card inserted"
 msgstr "未插入或未知卡"
-
-msgid "No resource manager"
-msgstr "无资源管理器"
 
 msgid "no storage devices found"
 msgstr "未找到的存储设备"
@@ -23369,9 +23360,6 @@ msgstr ""
 
 msgid "packages"
 msgstr ""
-
-msgid "pass"
-msgstr "通过"
 
 msgid "performing arts"
 msgstr "表演艺术"
@@ -23767,6 +23755,25 @@ msgstr "是(保持订阅源)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%d channel found"
+#~ msgid_plural "%d channels found"
+#~ msgstr[0] "找到 %d 个频道"
+#~ msgstr[1] "找到 %d 个频道"
+
+#, python-format
+#~ msgid "ERROR - failed to scan (%s)!"
+#~ msgstr "错误 - 扫描 (%s) 失败！"
+
+#, python-format
+#~ msgid "Scanning - %d%% completed"
+#~ msgid_plural "Scanning - %d%% completed"
+#~ msgstr[0] "正在扫描 - 已完成 %d%%"
+#~ msgstr[1] "正在扫描 - 已完成 %d%%"
+
+#~ msgid "pass"
+#~ msgstr "通过"
 
 #, python-format
 #~ msgid "%s  (%s)"

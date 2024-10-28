@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-01 08:46+0000\n"
+"POT-Creation-Date: 2024-10-28 12:47+0000\n"
 "PO-Revision-Date: 2023-08-06 06:22+0000\n"
 "Last-Translator: Salif Mehmed <mail@salif.eu>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/bg/>\n"
@@ -881,13 +881,6 @@ msgid "%d Year"
 msgid_plural "%d Years"
 msgstr[0] ""
 msgstr[1] ""
-
-#. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
-#, python-format
-msgid "%d channel found"
-msgid_plural "%d channels found"
-msgstr[0] "%d намерен канал"
-msgstr[1] "%d намерени канали"
 
 #, python-format
 msgid "%d core"
@@ -3608,10 +3601,10 @@ msgstr "Отменете избора на изображение и излез�
 msgid "Cancel the image selection and exit all menus"
 msgstr "Отменете избора на изображение и излезте от всички менюта"
 
-msgid "Cancel the scan and exit the scanner"
+msgid "Cancel the scan and exit all menus"
 msgstr ""
 
-msgid "Cancel the scan and exit all menus"
+msgid "Cancel the scan and exit the scanner"
 msgstr ""
 
 msgid "Cancel the selection and exit"
@@ -6713,12 +6706,11 @@ msgstr "Местоположение на EPG"
 msgid "EPG only"
 msgstr ""
 
+msgid "EPG:"
+msgstr ""
+
 msgid "EPGSearch"
 msgstr "EPG Търсене"
-
-#, python-format
-msgid "ERROR - failed to scan (%s)!"
-msgstr "Грешка - сканирането (%s) се провали!"
 
 msgid "EXIF-Version"
 msgstr ""
@@ -11638,6 +11630,9 @@ msgstr "Именно пространство и орбитална поз."
 msgid "Namibia"
 msgstr ""
 
+msgid "Narration"
+msgstr ""
+
 msgid "Native"
 msgstr "Местен"
 
@@ -11946,6 +11941,9 @@ msgstr "Не е поставена карта!"
 msgid "No channel"
 msgstr "Няма канал"
 
+msgid "No channel list"
+msgstr "няма списък с канали"
+
 msgid ""
 "No data on transponder!\n"
 "(Timeout reading PAT)"
@@ -12006,6 +12004,9 @@ msgstr "Не е открит съвместим входящ позиционе�
 
 msgid "No priority"
 msgstr "Не е приоритет"
+
+msgid "No resource manager"
+msgstr "няма мениджър на ресурси"
 
 msgid "No satellite, terrestrial or cable tuner is configured. Please check your tuner setup."
 msgstr "Няма конфигуриран сателитен, наземен или кабелен тунер. Проверете вашите тунер настройки."
@@ -12223,6 +12224,9 @@ msgstr "не е конфигуриран"
 
 msgid "Not currently mounted."
 msgstr "В момента не е монтиран."
+
+msgid "Not defined"
+msgstr ""
 
 #, python-format
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
@@ -12613,6 +12617,9 @@ msgid "Original"
 msgstr "Оригинал"
 
 msgid "Original Network ID (ONID)"
+msgstr ""
+
+msgid "Original language"
 msgstr ""
 
 msgid "Oriya"
@@ -13758,6 +13765,12 @@ msgstr "Праймтайм минута"
 
 msgid "Priority"
 msgstr "Приоритет"
+
+msgid "Problem starting scan"
+msgstr "грешка при стартиране на сканирането"
+
+msgid "Problem while scanning"
+msgstr "грешка по време на сканиране"
 
 msgid "Proc model"
 msgstr ""
@@ -15321,13 +15334,6 @@ msgstr ""
 #, python-format
 msgid "Scanning %s..."
 msgstr "Сканиране на %s..."
-
-#. TRANSLATORS: The stb is performing a channel scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol)
-#, python-format
-msgid "Scanning - %d%% completed"
-msgid_plural "Scanning - %d%% completed"
-msgstr[0] "Сканиране на - %d%% завършено"
-msgstr[1] "Сканиране на  - %d%% завършено"
 
 msgid "Scanning can't be performed while recordings are in progress."
 msgstr ""
@@ -20296,6 +20302,9 @@ msgstr "Тип таймер"
 msgid "Timer+"
 msgstr "Таймер+"
 
+msgid "Timer:"
+msgstr ""
+
 msgid "Timerlist"
 msgstr "Списък с таймер"
 
@@ -20668,14 +20677,8 @@ msgstr "Настройване алгоритъм"
 msgid "Tunisia"
 msgstr ""
 
-msgid ""
-"Turbo: One reboot after flash\n"
-"Fast: One reboot after flash, one reboot after restore\n"
-"Slow: One reboot after flash, one reboot after restore in GUI"
-msgstr ""
-"Turbo: Едно рестартиране след флаш\n"
-"Бързо: Едно рестартиране след флаш, едно рестартиране след възстановяване\n"
-"Бавно: Едно рестартиране след флаш, едно рестартиране след възстановяване в GUI"
+msgid "Turbo: One reboot after flash; Fast: One reboot after flash, one reboot after restore; Slow: One reboot after flash, one reboot after restore in GUI."
+msgstr "Turbo: Едно рестартиране след флаш; Бързо: Едно рестартиране след флаш, едно рестартиране след възстановяване; Бавно: Едно рестартиране след флаш, едно рестартиране след възстановяване в GUI"
 
 msgid "Turkey"
 msgstr ""
@@ -23000,12 +23003,6 @@ msgstr "също като"
 msgid "equestrian"
 msgstr "конен"
 
-msgid "Problem starting scan"
-msgstr "грешка при стартиране на сканирането"
-
-msgid "Problem while scanning"
-msgstr "грешка по време на сканиране"
-
 msgid "execute cuts (requires MovieCut plugin)"
 msgstr ""
 
@@ -23291,17 +23288,11 @@ msgstr "не е избран CAId"
 msgid "no CI slots found"
 msgstr "няма открити CI слотве"
 
-msgid "No channel list"
-msgstr "няма списък с канали"
-
 msgid "no module found"
 msgstr "няма намерен модул"
 
 msgid "no or unknown card inserted"
 msgstr "няма или неизвестна поставена карта"
-
-msgid "No resource manager"
-msgstr "няма мениджър на ресурси"
 
 msgid "no storage devices found"
 msgstr "няма намерени устройства за съхранение"
@@ -23361,9 +23352,6 @@ msgid "package"
 msgstr ""
 
 msgid "packages"
-msgstr ""
-
-msgid "pass"
 msgstr ""
 
 msgid "performing arts"
@@ -23760,6 +23748,22 @@ msgstr "да (запази фийдове)"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid "%d channel found"
+#~ msgid_plural "%d channels found"
+#~ msgstr[0] "%d намерен канал"
+#~ msgstr[1] "%d намерени канали"
+
+#, python-format
+#~ msgid "ERROR - failed to scan (%s)!"
+#~ msgstr "Грешка - сканирането (%s) се провали!"
+
+#, python-format
+#~ msgid "Scanning - %d%% completed"
+#~ msgid_plural "Scanning - %d%% completed"
+#~ msgstr[0] "Сканиране на - %d%% завършено"
+#~ msgstr[1] "Сканиране на  - %d%% завършено"
 
 #~ msgid "Audio volume step size"
 #~ msgstr "Размер на стъпката на силата на звука"
