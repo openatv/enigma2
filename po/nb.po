@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-01 08:46+0000\n"
+"POT-Creation-Date: 2024-10-28 12:47+0000\n"
 "PO-Revision-Date: 2021-08-19 14:13+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nb_NO/>\n"
@@ -881,13 +881,6 @@ msgid "%d Year"
 msgid_plural "%d Years"
 msgstr[0] ""
 msgstr[1] ""
-
-#. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
-#, python-format
-msgid "%d channel found"
-msgid_plural "%d channels found"
-msgstr[0] "%d kanal funnet"
-msgstr[1] "%d kanaler funnet"
 
 #, python-format
 msgid "%d core"
@@ -3580,10 +3573,10 @@ msgstr ""
 msgid "Cancel the image selection and exit all menus"
 msgstr ""
 
-msgid "Cancel the scan and exit the scanner"
+msgid "Cancel the scan and exit all menus"
 msgstr ""
 
-msgid "Cancel the scan and exit all menus"
+msgid "Cancel the scan and exit the scanner"
 msgstr ""
 
 msgid "Cancel the selection and exit"
@@ -6656,12 +6649,11 @@ msgstr ""
 msgid "EPG only"
 msgstr ""
 
-msgid "EPGSearch"
+msgid "EPG:"
 msgstr ""
 
-#, python-format
-msgid "ERROR - failed to scan (%s)!"
-msgstr "FEIL - kunne ikke søke (%s)!"
+msgid "EPGSearch"
+msgstr ""
 
 msgid "EXIF-Version"
 msgstr ""
@@ -11555,6 +11547,9 @@ msgstr "Navneområde & Satellittposisjon."
 msgid "Namibia"
 msgstr "Namibia"
 
+msgid "Narration"
+msgstr ""
+
 msgid "Native"
 msgstr ""
 
@@ -11860,6 +11855,9 @@ msgstr ""
 msgid "No channel"
 msgstr ""
 
+msgid "No channel list"
+msgstr "ingen kanalliste"
+
 msgid ""
 "No data on transponder!\n"
 "(Timeout reading PAT)"
@@ -11920,6 +11918,9 @@ msgstr ""
 
 msgid "No priority"
 msgstr "Ingen prioritet"
+
+msgid "No resource manager"
+msgstr "ingen ressursforvalter"
 
 msgid "No satellite, terrestrial or cable tuner is configured. Please check your tuner setup."
 msgstr "Ingen satellitt, bakkenett eller kabel-TV tuner er stilt inn. Se gjennom tuner innstillingene."
@@ -12132,6 +12133,9 @@ msgid "Not configured"
 msgstr "ikke konfigurert"
 
 msgid "Not currently mounted."
+msgstr ""
+
+msgid "Not defined"
 msgstr ""
 
 #, python-format
@@ -12518,6 +12522,9 @@ msgid "Original"
 msgstr "Original"
 
 msgid "Original Network ID (ONID)"
+msgstr ""
+
+msgid "Original language"
 msgstr ""
 
 msgid "Oriya"
@@ -13661,6 +13668,12 @@ msgstr ""
 
 msgid "Priority"
 msgstr "Prioritet"
+
+msgid "Problem starting scan"
+msgstr "feil ved start av søket"
+
+msgid "Problem while scanning"
+msgstr "feil under søket"
 
 msgid "Proc model"
 msgstr ""
@@ -15217,13 +15230,6 @@ msgstr ""
 #, python-format
 msgid "Scanning %s..."
 msgstr "Søker %s..."
-
-#. TRANSLATORS: The stb is performing a channel scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol)
-#, python-format
-msgid "Scanning - %d%% completed"
-msgid_plural "Scanning - %d%% completed"
-msgstr[0] "Kanalsøk pågår - %d%% fullført"
-msgstr[1] "Kanalsøk pågår - %d%% fullført"
 
 msgid "Scanning can't be performed while recordings are in progress."
 msgstr ""
@@ -20131,6 +20137,9 @@ msgstr "Timer type"
 msgid "Timer+"
 msgstr ""
 
+msgid "Timer:"
+msgstr ""
+
 msgid "Timerlist"
 msgstr ""
 
@@ -20503,10 +20512,7 @@ msgstr ""
 msgid "Tunisia"
 msgstr "Tunisia"
 
-msgid ""
-"Turbo: One reboot after flash\n"
-"Fast: One reboot after flash, one reboot after restore\n"
-"Slow: One reboot after flash, one reboot after restore in GUI"
+msgid "Turbo: One reboot after flash; Fast: One reboot after flash, one reboot after restore; Slow: One reboot after flash, one reboot after restore in GUI."
 msgstr ""
 
 msgid "Turkey"
@@ -22793,12 +22799,6 @@ msgstr ""
 msgid "equestrian"
 msgstr "hestesport"
 
-msgid "Problem starting scan"
-msgstr "feil ved start av søket"
-
-msgid "Problem while scanning"
-msgstr "feil under søket"
-
 msgid "execute cuts (requires MovieCut plugin)"
 msgstr "bruk klipp og lim (du må ha utvidelsen MovieCut)"
 
@@ -23084,17 +23084,11 @@ msgstr "ingen CAId er valgt"
 msgid "no CI slots found"
 msgstr "ingen CI slot ble funnet"
 
-msgid "No channel list"
-msgstr "ingen kanalliste"
-
 msgid "no module found"
 msgstr "ingen modul ble funnet"
 
 msgid "no or unknown card inserted"
 msgstr ""
-
-msgid "No resource manager"
-msgstr "ingen ressursforvalter"
 
 msgid "no storage devices found"
 msgstr "ingen lagringsenheter er funnet"
@@ -23155,9 +23149,6 @@ msgstr ""
 
 msgid "packages"
 msgstr ""
-
-msgid "pass"
-msgstr "klart"
 
 msgid "performing arts"
 msgstr "scenekunst"
@@ -23549,6 +23540,25 @@ msgstr "ja (behold feeder)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%d channel found"
+#~ msgid_plural "%d channels found"
+#~ msgstr[0] "%d kanal funnet"
+#~ msgstr[1] "%d kanaler funnet"
+
+#, python-format
+#~ msgid "ERROR - failed to scan (%s)!"
+#~ msgstr "FEIL - kunne ikke søke (%s)!"
+
+#, python-format
+#~ msgid "Scanning - %d%% completed"
+#~ msgid_plural "Scanning - %d%% completed"
+#~ msgstr[0] "Kanalsøk pågår - %d%% fullført"
+#~ msgstr[1] "Kanalsøk pågår - %d%% fullført"
+
+#~ msgid "pass"
+#~ msgstr "klart"
 
 #~ msgid "Audio volume step size"
 #~ msgstr "Lydstyrketrinn"

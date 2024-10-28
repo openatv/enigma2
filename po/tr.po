@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-01 08:46+0000\n"
+"POT-Creation-Date: 2024-10-28 12:47+0000\n"
 "PO-Revision-Date: 2024-08-04 16:47+0000\n"
 "Last-Translator: Tmp341 <tmp341@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -884,13 +884,6 @@ msgstr[0] "%d Hafta"
 msgid "%d Year"
 msgid_plural "%d Years"
 msgstr[0] "%d yıl"
-
-#
-#. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
-#, python-format
-msgid "%d channel found"
-msgid_plural "%d channels found"
-msgstr[0] "%d kanal bulundu"
 
 #, python-format
 msgid "%d core"
@@ -3740,10 +3733,10 @@ msgstr "Görüntü seçimini iptal edin ve çıkın"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Görüntü seçimini iptal edin ve tüm menülerden çıkın"
 
-msgid "Cancel the scan and exit the scanner"
+msgid "Cancel the scan and exit all menus"
 msgstr ""
 
-msgid "Cancel the scan and exit all menus"
+msgid "Cancel the scan and exit the scanner"
 msgstr ""
 
 msgid "Cancel the selection and exit"
@@ -6997,13 +6990,11 @@ msgstr "EPG konumu"
 msgid "EPG only"
 msgstr "Sadece EPG"
 
+msgid "EPG:"
+msgstr ""
+
 msgid "EPGSearch"
 msgstr "EPG Arama"
-
-#
-#, python-format
-msgid "ERROR - failed to scan (%s)!"
-msgstr "HATA - tarama başarısız (%s)!"
 
 msgid "EXIF-Version"
 msgstr "EXIF Sürümü"
@@ -12192,6 +12183,9 @@ msgstr "Ad alanı ve Yörünge konumu"
 msgid "Namibia"
 msgstr "Namibya"
 
+msgid "Narration"
+msgstr ""
+
 msgid "Native"
 msgstr "Yerli"
 
@@ -12521,6 +12515,9 @@ msgstr "Kart takılmadı!"
 msgid "No channel"
 msgstr "Kanal yok"
 
+msgid "No channel list"
+msgstr "kanal listesi yok"
+
 #
 msgid ""
 "No data on transponder!\n"
@@ -12592,6 +12589,9 @@ msgstr "Konumlayıcı uyumlu uç ekipman bulunamadı."
 
 msgid "No priority"
 msgstr "Öncelik yok"
+
+msgid "No resource manager"
+msgstr "kaynak yöneticisi yok"
 
 msgid "No satellite, terrestrial or cable tuner is configured. Please check your tuner setup."
 msgstr "Hiçbir uydu, karasal veya kablo tuneri yapılandırılmadı. Tuner kurulumunu kontrol edin."
@@ -12831,6 +12831,9 @@ msgstr "yapılandırılmamış"
 
 msgid "Not currently mounted."
 msgstr "Şu anda takılı değil."
+
+msgid "Not defined"
+msgstr ""
 
 #
 #, python-format
@@ -13234,6 +13237,9 @@ msgstr "Özgün"
 
 msgid "Original Network ID (ONID)"
 msgstr "Orijinal Ağ Kimliği (DEĞİL)"
+
+msgid "Original language"
+msgstr ""
 
 msgid "Oriya"
 msgstr "Oriya Dili"
@@ -14461,6 +14467,12 @@ msgstr "Seçkin zaman dakika"
 #
 msgid "Priority"
 msgstr "Öncelik"
+
+msgid "Problem starting scan"
+msgstr "taramayı başlatma hatası"
+
+msgid "Problem while scanning"
+msgstr "tarama sırasında hata"
 
 msgid "Proc model"
 msgstr "Işlem modeli"
@@ -16126,12 +16138,6 @@ msgstr "Taranıyor"
 #, python-format
 msgid "Scanning %s..."
 msgstr "Tarıyor %s..."
-
-#. TRANSLATORS: The stb is performing a channel scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol)
-#, python-format
-msgid "Scanning - %d%% completed"
-msgid_plural "Scanning - %d%% completed"
-msgstr[0] "Tarama - %%%d tamamlandı"
 
 msgid "Scanning can't be performed while recordings are in progress."
 msgstr ""
@@ -21331,6 +21337,9 @@ msgstr "Zamanlayıcı Tipi"
 msgid "Timer+"
 msgstr "Zamanlayıcı"
 
+msgid "Timer:"
+msgstr ""
+
 msgid "Timerlist"
 msgstr "Zaman listesi"
 
@@ -21732,14 +21741,8 @@ msgstr "Tuning algoritması"
 msgid "Tunisia"
 msgstr "Tunus"
 
-msgid ""
-"Turbo: One reboot after flash\n"
-"Fast: One reboot after flash, one reboot after restore\n"
-"Slow: One reboot after flash, one reboot after restore in GUI"
-msgstr ""
-"Turbo: Flaş sonrası bir yeniden başlatma\n"
-"Hızlı: Flaş sonrası bir yeniden başlatma, geri yükleme sonrası bir yeniden başlatma\n"
-"Yavaş: Bir flaş sonrası yeniden başlatma, GUI’de geri yükleme sonrasında bir başlatma"
+msgid "Turbo: One reboot after flash; Fast: One reboot after flash, one reboot after restore; Slow: One reboot after flash, one reboot after restore in GUI."
+msgstr "Turbo: Flaş sonrası bir yeniden başlatma; Hızlı: Flaş sonrası bir yeniden başlatma, geri yükleme sonrası bir yeniden başlatma; Yavaş: Bir flaş sonrası yeniden başlatma, GUI’de geri yükleme sonrasında bir başlatma"
 
 #
 msgid "Turkey"
@@ -24220,12 +24223,6 @@ msgstr "eşittir"
 msgid "equestrian"
 msgstr "atlı"
 
-msgid "Problem starting scan"
-msgstr "taramayı başlatma hatası"
-
-msgid "Problem while scanning"
-msgstr "tarama sırasında hata"
-
 msgid "execute cuts (requires MovieCut plugin)"
 msgstr "kesmeleri yürüt (MovieCut eklentisi gerektirir)"
 
@@ -24535,18 +24532,12 @@ msgstr "cAId seçilmedi"
 msgid "no CI slots found"
 msgstr "ci yuvası bulunamadı"
 
-msgid "No channel list"
-msgstr "kanal listesi yok"
-
 #
 msgid "no module found"
 msgstr "modül bulunamadı"
 
 msgid "no or unknown card inserted"
 msgstr "kart yok veya tanınmıyor"
-
-msgid "No resource manager"
-msgstr "kaynak yöneticisi yok"
 
 msgid "no storage devices found"
 msgstr "depolama aygıtı bulunamadı"
@@ -24616,10 +24607,6 @@ msgstr "paket"
 
 msgid "packages"
 msgstr "paketler"
-
-#
-msgid "pass"
-msgstr "geç"
 
 msgid "performing arts"
 msgstr "sahne sanatları"
@@ -25051,6 +25038,26 @@ msgstr "evet (beslemeleri tut)"
 
 msgid "®"
 msgstr "®"
+
+#
+#, python-format
+#~ msgid "%d channel found"
+#~ msgid_plural "%d channels found"
+#~ msgstr[0] "%d kanal bulundu"
+
+#
+#, python-format
+#~ msgid "ERROR - failed to scan (%s)!"
+#~ msgstr "HATA - tarama başarısız (%s)!"
+
+#, python-format
+#~ msgid "Scanning - %d%% completed"
+#~ msgid_plural "Scanning - %d%% completed"
+#~ msgstr[0] "Tarama - %%%d tamamlandı"
+
+#
+#~ msgid "pass"
+#~ msgstr "geç"
 
 #
 #, python-format

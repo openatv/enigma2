@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-01 08:46+0000\n"
+"POT-Creation-Date: 2024-10-28 12:47+0000\n"
 "PO-Revision-Date: 2024-10-02 07:35+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/es/>\n"
@@ -898,13 +898,6 @@ msgid "%d Year"
 msgid_plural "%d Years"
 msgstr[0] "%d Año"
 msgstr[1] "%d Años"
-
-#. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
-#, python-format
-msgid "%d channel found"
-msgid_plural "%d channels found"
-msgstr[0] "%d canal encontrado"
-msgstr[1] "%d canales encontrados"
 
 #, python-format
 msgid "%d core"
@@ -3790,10 +3783,10 @@ msgstr "Cancelar la selección de imágenes y salir"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Cancelar la selección de imágenes y salir de todos los menús"
 
-msgid "Cancel the scan and exit the scanner"
+msgid "Cancel the scan and exit all menus"
 msgstr ""
 
-msgid "Cancel the scan and exit all menus"
+msgid "Cancel the scan and exit the scanner"
 msgstr ""
 
 msgid "Cancel the selection and exit"
@@ -7049,13 +7042,11 @@ msgstr "Ubicación de EPG"
 msgid "EPG only"
 msgstr ""
 
+msgid "EPG:"
+msgstr ""
+
 msgid "EPGSearch"
 msgstr "Búsqueda en EPG"
-
-#
-#, python-format
-msgid "ERROR - failed to scan (%s)!"
-msgstr "ERROR - ¡Ha fallado la búsqueda (%s)!"
 
 msgid "EXIF-Version"
 msgstr ""
@@ -12280,6 +12271,9 @@ msgstr "Nombre del espacio y posición orbital."
 msgid "Namibia"
 msgstr "Namibia"
 
+msgid "Narration"
+msgstr ""
+
 msgid "Native"
 msgstr "Nativo"
 
@@ -12622,6 +12616,9 @@ msgstr "¡No hay tarjeta insertada!"
 msgid "No channel"
 msgstr "Ningún canal"
 
+msgid "No channel list"
+msgstr "No hay lista de canales"
+
 #
 msgid ""
 "No data on transponder!\n"
@@ -12690,6 +12687,9 @@ msgstr "No se ha encontrado ningún motor."
 
 msgid "No priority"
 msgstr "Sin prioridad"
+
+msgid "No resource manager"
+msgstr "No hay gestor de recursos"
 
 msgid "No satellite, terrestrial or cable tuner is configured. Please check your tuner setup."
 msgstr "No se ha configurado ningún sintonizador de satélite, terrestre o de cable. Compruebe la configuración del sintonizador."
@@ -12927,6 +12927,9 @@ msgstr "No configurado"
 
 msgid "Not currently mounted."
 msgstr "No está montado actualmente."
+
+msgid "Not defined"
+msgstr ""
 
 #, python-format
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
@@ -13338,6 +13341,9 @@ msgid "Original"
 msgstr "Original"
 
 msgid "Original Network ID (ONID)"
+msgstr ""
+
+msgid "Original language"
 msgstr ""
 
 msgid "Oriya"
@@ -14589,6 +14595,12 @@ msgstr "Minuto de máxima audiencia"
 #
 msgid "Priority"
 msgstr "Prioridad"
+
+msgid "Problem starting scan"
+msgstr "Error iniciando la exploración"
+
+msgid "Problem while scanning"
+msgstr "Error durante la exploración"
 
 msgid "Proc model"
 msgstr "Modelo de Proc"
@@ -16272,13 +16284,6 @@ msgstr ""
 #, python-format
 msgid "Scanning %s..."
 msgstr "Buscando %s..."
-
-#. TRANSLATORS: The stb is performing a channel scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol)
-#, python-format
-msgid "Scanning - %d%% completed"
-msgid_plural "Scanning - %d%% completed"
-msgstr[0] "Escaneo - %d%% completado"
-msgstr[1] "Escaneos - %d%% completados"
 
 msgid "Scanning can't be performed while recordings are in progress."
 msgstr ""
@@ -21602,6 +21607,9 @@ msgstr "Tipo de temporizador"
 msgid "Timer+"
 msgstr "Temporizador"
 
+msgid "Timer:"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Timerlist"
@@ -22021,10 +22029,7 @@ msgstr ""
 msgid "Tunisia"
 msgstr ""
 
-msgid ""
-"Turbo: One reboot after flash\n"
-"Fast: One reboot after flash, one reboot after restore\n"
-"Slow: One reboot after flash, one reboot after restore in GUI"
+msgid "Turbo: One reboot after flash; Fast: One reboot after flash, one reboot after restore; Slow: One reboot after flash, one reboot after restore in GUI."
 msgstr ""
 
 # Language
@@ -24564,12 +24569,6 @@ msgstr "igual a"
 msgid "equestrian"
 msgstr "ecuestre"
 
-msgid "Problem starting scan"
-msgstr "Error iniciando la exploración"
-
-msgid "Problem while scanning"
-msgstr "Error durante la exploración"
-
 msgid "execute cuts (requires MovieCut plugin)"
 msgstr "Ejecutar cortes (requiere MovieCut plugin)"
 
@@ -24889,18 +24888,12 @@ msgstr "No se ha seleccionado CAId"
 msgid "no CI slots found"
 msgstr "No se han encontrado ranuras CI"
 
-msgid "No channel list"
-msgstr "No hay lista de canales"
-
 #
 msgid "no module found"
 msgstr "Módulo no encontrado"
 
 msgid "no or unknown card inserted"
 msgstr "No se ha insertado ninguna tarjeta o es desconocida"
-
-msgid "No resource manager"
-msgstr "No hay gestor de recursos"
 
 msgid "no storage devices found"
 msgstr "No se han encontrado dispositivos de almacenamiento"
@@ -24972,10 +24965,6 @@ msgstr ""
 
 msgid "packages"
 msgstr ""
-
-#
-msgid "pass"
-msgstr "Contraseña"
 
 msgid "performing arts"
 msgstr "las artes escénicas"
@@ -25420,6 +25409,27 @@ msgstr "Sí (conservar fuentes)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%d channel found"
+#~ msgid_plural "%d channels found"
+#~ msgstr[0] "%d canal encontrado"
+#~ msgstr[1] "%d canales encontrados"
+
+#
+#, python-format
+#~ msgid "ERROR - failed to scan (%s)!"
+#~ msgstr "ERROR - ¡Ha fallado la búsqueda (%s)!"
+
+#, python-format
+#~ msgid "Scanning - %d%% completed"
+#~ msgid_plural "Scanning - %d%% completed"
+#~ msgstr[0] "Escaneo - %d%% completado"
+#~ msgstr[1] "Escaneos - %d%% completados"
+
+#
+#~ msgid "pass"
+#~ msgstr "Contraseña"
 
 #, python-format
 #~ msgid "%s  (%s)"

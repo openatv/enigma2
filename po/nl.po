@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-01 08:46+0000\n"
+"POT-Creation-Date: 2024-10-28 12:47+0000\n"
 "PO-Revision-Date: 2024-10-27 18:00+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -886,13 +886,6 @@ msgid "%d Year"
 msgid_plural "%d Years"
 msgstr[0] "%d jaar"
 msgstr[1] "%d jaren"
-
-#. TRANSLATORS: Intermediate scanning result, '%d' channel(s) have been found so far
-#, python-format
-msgid "%d channel found"
-msgid_plural "%d channels found"
-msgstr[0] "%d zender gevonden"
-msgstr[1] "%d zenders gevonden"
 
 #, python-format
 msgid "%d core"
@@ -3621,11 +3614,11 @@ msgstr "Annuleer de image selectie en exit"
 msgid "Cancel the image selection and exit all menus"
 msgstr "Annuleer de image selectie en exit alle menu's"
 
-msgid "Cancel the scan and exit the scanner"
-msgstr "De scan annuleren en beëindigen"
-
 msgid "Cancel the scan and exit all menus"
 msgstr "De scan annuleren en alle menu's afsluiten"
+
+msgid "Cancel the scan and exit the scanner"
+msgstr "De scan annuleren en beëindigen"
 
 msgid "Cancel the selection and exit"
 msgstr "Selectie annuleren en Exit"
@@ -6855,12 +6848,11 @@ msgstr "EPG locatie"
 msgid "EPG only"
 msgstr "Alleen EPG"
 
+msgid "EPG:"
+msgstr ""
+
 msgid "EPGSearch"
 msgstr "EPGSearch"
-
-#, python-format
-msgid "ERROR - failed to scan (%s)!"
-msgstr "Fout - zoeken mislukt (%s)!"
 
 msgid "EXIF-Version"
 msgstr "EXIF-Versie"
@@ -11809,6 +11801,9 @@ msgstr "Namespace & Orbital position"
 msgid "Namibia"
 msgstr "Namibië"
 
+msgid "Narration"
+msgstr ""
+
 msgid "Native"
 msgstr "Origineel"
 
@@ -12120,6 +12115,9 @@ msgstr "Geen kaart geplaatst!"
 msgid "No channel"
 msgstr "Geen Zender"
 
+msgid "No channel list"
+msgstr "geen zenderlijst"
+
 msgid ""
 "No data on transponder!\n"
 "(Timeout reading PAT)"
@@ -12180,6 +12178,9 @@ msgstr "Geen geschikte positioner gevonden."
 
 msgid "No priority"
 msgstr "Geen prioriteit"
+
+msgid "No resource manager"
+msgstr "geen bron beheerder"
 
 msgid "No satellite, terrestrial or cable tuner is configured. Please check your tuner setup."
 msgstr "Geen satelliet, DVB-T of kabeltuner is geconfigureerd. Controleer uw tunerinstellingen."
@@ -12397,6 +12398,9 @@ msgstr "niet geconfigureerd"
 
 msgid "Not currently mounted."
 msgstr "Op dit moment niet verbonden."
+
+msgid "Not defined"
+msgstr ""
 
 #, python-format
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
@@ -12791,6 +12795,9 @@ msgstr "Origineel"
 
 msgid "Original Network ID (ONID)"
 msgstr "Oorspronkelijke Netwerk-ID (ONID)"
+
+msgid "Original language"
+msgstr ""
 
 msgid "Oriya"
 msgstr "Odia"
@@ -13943,6 +13950,12 @@ msgstr "Primetime minuut"
 
 msgid "Priority"
 msgstr "Prioriteit"
+
+msgid "Problem starting scan"
+msgstr "fout tijdens het starten van zoeken"
+
+msgid "Problem while scanning"
+msgstr "fout tijdens het zoeken"
 
 msgid "Proc model"
 msgstr "Proc model"
@@ -15508,13 +15521,6 @@ msgstr "Scannen"
 #, python-format
 msgid "Scanning %s..."
 msgstr "Zoeken %s..."
-
-#. TRANSLATORS: The stb is performing a channel scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol)
-#, python-format
-msgid "Scanning - %d%% completed"
-msgid_plural "Scanning - %d%% completed"
-msgstr[0] "Zoeken - %d%% voltooid"
-msgstr[1] "Zoeken - %d%% voltooid"
 
 msgid "Scanning can't be performed while recordings are in progress."
 msgstr "Geen Scan mogelijk tijdens een opname!"
@@ -20612,6 +20618,9 @@ msgstr "Timer soort"
 msgid "Timer+"
 msgstr "Timer+"
 
+msgid "Timer:"
+msgstr ""
+
 msgid "Timerlist"
 msgstr "Timerlijst"
 
@@ -20984,14 +20993,8 @@ msgstr "Afstemalgoritme"
 msgid "Tunisia"
 msgstr "Tunesië"
 
-msgid ""
-"Turbo: One reboot after flash\n"
-"Fast: One reboot after flash, one reboot after restore\n"
-"Slow: One reboot after flash, one reboot after restore in GUI"
-msgstr ""
-"Turbo: 1 herstart na flash\n"
-"Fast: 1 herstart na flash, 1 herstart na herstellen\n"
-"Slow: 1 herstart na flash, 1 herstart na herstellen in GUI"
+msgid "Turbo: One reboot after flash; Fast: One reboot after flash, one reboot after restore; Slow: One reboot after flash, one reboot after restore in GUI."
+msgstr "Turbo: 1 herstart na flash; Fast: 1 herstart na flash, 1 herstart na herstellen; Slow: 1 herstart na flash, 1 herstart na herstellen in GUI"
 
 msgid "Turkey"
 msgstr "Turkije"
@@ -23386,12 +23389,6 @@ msgstr "gelijk aan"
 msgid "equestrian"
 msgstr "ruitersport"
 
-msgid "Problem starting scan"
-msgstr "fout tijdens het starten van zoeken"
-
-msgid "Problem while scanning"
-msgstr "fout tijdens het zoeken"
-
 msgid "execute cuts (requires MovieCut plugin)"
 msgstr "Geknipte stukken overslaan (gebruik hiervoor de MovieCut plugin)"
 
@@ -23677,17 +23674,11 @@ msgstr "Geen CAId geselecteerd"
 msgid "no CI slots found"
 msgstr "Geen CI slots gevonden"
 
-msgid "No channel list"
-msgstr "geen zenderlijst"
-
 msgid "no module found"
 msgstr "Geen module gevonden"
 
 msgid "no or unknown card inserted"
 msgstr "Geen of onbekende kaart geplaatst"
-
-msgid "No resource manager"
-msgstr "geen bron beheerder"
 
 msgid "no storage devices found"
 msgstr "geen opslagmedia gevonden"
@@ -23748,9 +23739,6 @@ msgstr "Pakket"
 
 msgid "packages"
 msgstr "Pakketten"
-
-msgid "pass"
-msgstr "Voortgang"
 
 msgid "performing arts"
 msgstr "podiumkunsten"
@@ -24144,6 +24132,25 @@ msgstr "ja (bewaar feeds)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%d channel found"
+#~ msgid_plural "%d channels found"
+#~ msgstr[0] "%d zender gevonden"
+#~ msgstr[1] "%d zenders gevonden"
+
+#, python-format
+#~ msgid "ERROR - failed to scan (%s)!"
+#~ msgstr "Fout - zoeken mislukt (%s)!"
+
+#, python-format
+#~ msgid "Scanning - %d%% completed"
+#~ msgid_plural "Scanning - %d%% completed"
+#~ msgstr[0] "Zoeken - %d%% voltooid"
+#~ msgstr[1] "Zoeken - %d%% voltooid"
+
+#~ msgid "pass"
+#~ msgstr "Voortgang"
 
 #, python-format
 #~ msgid "%s  (%s)"
