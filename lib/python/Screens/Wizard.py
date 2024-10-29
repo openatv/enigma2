@@ -260,9 +260,9 @@ class Wizard(Screen):
 				self.wizard[self.step]["config"]["type"] = type
 				if type in ("ConfigList", "standalone"):
 					try:
-						exec("from Screens.%s import *" % attributes.get("module", "None"))
+						exec("from Screens.%s import *" % attributes.get("module", "None"), globals())
 					except ImportError:
-						exec("from %s import *" % attributes.get("module", "None"))
+						exec("from %s import *" % attributes.get("module", "None"), globals())
 					self.wizard[self.step]["config"]["screen"] = eval(attributes.get("screen", "None"))
 					if "args" in attributes:
 						self.wizard[self.step]["config"]["args"] = attributes.get("args", "None")
