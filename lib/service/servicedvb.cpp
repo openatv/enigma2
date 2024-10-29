@@ -392,6 +392,8 @@ RESULT eStaticServiceDVBPVRInformation::getName(const eServiceReference &ref, st
 		}
 		m_parser.m_name = name;
 	}
+	if (m_parser.m_prov.empty() && !ref.prov.empty()) m_parser.m_prov = ref.prov;
+
 	return 0;
 }
 
@@ -464,6 +466,13 @@ std::string eStaticServiceDVBPVRInformation::getInfoString(const eServiceReferen
 		return m_parser.m_ref.toString();
 	case iServiceInformation::sTags:
 		return m_parser.m_tags;
+	case iServiceInformation::sProvider:
+	{
+		if (m_parser.m_prov.empty()) {
+			return "";
+		}
+		return m_parser.m_prov;
+	}
 	default:
 		return "";
 	}
