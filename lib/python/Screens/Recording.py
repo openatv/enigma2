@@ -15,6 +15,7 @@ class RecordingSettings(Setup):
 		self.styleKeys = [x[0] for x in self.styles]
 		self.buildChoices(config.usage.timer_path, None)
 		self.buildChoices(config.usage.instantrec_path, None)
+		self.buildChoices(config.timeshift.recordingPath, None)
 		Setup.__init__(self, session=session, setup="Recording")
 		self.status = {}
 
@@ -40,7 +41,7 @@ class RecordingSettings(Setup):
 		self.pathStatus()
 
 	def pathStatus(self):
-		if self.getCurrentItem() in (config.usage.timer_path, config.usage.instantrec_path):
+		if self.getCurrentItem() in (config.usage.timer_path, config.usage.instantrec_path, config.timeshift.recordingPath):
 			item = self["config"].getCurrentIndex()
 			if item in self.status:
 				del self.status[item]
@@ -67,7 +68,7 @@ class RecordingSettings(Setup):
 
 	def keySelect(self):
 		item = self.getCurrentItem()
-		if item in (config.usage.timer_path, config.usage.instantrec_path):
+		if item in (config.usage.timer_path, config.usage.instantrec_path, config.timeshift.recordingPath):
 			self.session.openWithCallback(self.keySelectCallback, MovieLocationBox, self.getCurrentEntry(), preferredPath(item.value))
 		else:
 			Setup.keySelect(self)
@@ -78,6 +79,7 @@ class RecordingSettings(Setup):
 			item = self.getCurrentItem()
 			self.buildChoices(config.usage.timer_path, path if item == config.usage.timer_path else None)
 			self.buildChoices(config.usage.instantrec_path, path if item == config.usage.instantrec_path else None)
+			self.buildChoices(config.timeshift.recordingPath, path if item == config.timeshift.recordingPath else None)
 		self["config"].invalidateCurrent()
 		self.changedEntry()
 
