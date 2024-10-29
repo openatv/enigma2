@@ -519,15 +519,6 @@ def InitUsageConfig():
 			config.usage.instantrec_path.value = savedValue
 	config.usage.instantrec_path.save()
 
-	config.timeshift.recordingPath = ConfigSelection(default="<default>", choices=choiceList)
-	config.timeshift.recordingPath.load()
-	if config.timeshift.recordingPath.saved_value:
-		savedValue = config.timeshift.recordingPath.saved_value if config.timeshift.recordingPath.saved_value.startswith("<") else pathjoin(config.timeshift.recordingPath.saved_value, "")
-		if savedValue and savedValue not in choiceList:
-			config.timeshift.recordingPath.setChoices(choiceList + [(savedValue, savedValue)], default="<default>")
-			config.timeshift.recordingPath.value = savedValue
-	config.timeshift.recordingPath.save()
-
 	config.usage.movielist_trashcan = ConfigYesNo(default=True)
 	config.usage.movielist_trashcan_network_clean = ConfigYesNo(default=False)
 	config.usage.movielist_trashcan_days = ConfigSelection(default=8, choices=[(x, ngettext("%d Day", "%d Days", x) % x) for x in range(1, 32)])
@@ -2360,6 +2351,15 @@ def InitUsageConfig():
 		eSettings.setTimeshiftPath(configElement.value)
 
 	config.timeshift.path.addNotifier(setTimeshiftPath)
+
+	config.timeshift.recordingPath = ConfigSelection(default="<default>", choices=choiceList)
+	config.timeshift.recordingPath.load()
+	if config.timeshift.recordingPath.saved_value:
+		savedValue = config.timeshift.recordingPath.saved_value if config.timeshift.recordingPath.saved_value.startswith("<") else pathjoin(config.timeshift.recordingPath.saved_value, "")
+		if savedValue and savedValue not in choiceList:
+			config.timeshift.recordingPath.setChoices(choiceList + [(savedValue, savedValue)], default="<default>")
+			config.timeshift.recordingPath.value = savedValue
+	config.timeshift.recordingPath.save()
 
 
 def calcFrontendPriorityIntval(config_priority, config_priority_multiselect, config_priority_strictly):
