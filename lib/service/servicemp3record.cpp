@@ -9,13 +9,13 @@
 #include <gst/gst.h>
 #include <gst/pbutils/missing-plugins.h>
 
-#define HTTP_TIMEOUT 60
+#define HTTP_TIMEOUT 120
 
 DEFINE_REF(eServiceMP3Record);
 
 eServiceMP3Record::eServiceMP3Record(const eServiceReference &ref):
 	m_ref(ref),
-	m_streamingsrc_timeout(eTimer::create(eApp)),
+	//m_streamingsrc_timeout(eTimer::create(eApp)),
 	m_pump(eApp, 1,"eServiceMP3Record")
 {
 	m_state = stateIdle;
@@ -26,7 +26,7 @@ eServiceMP3Record::eServiceMP3Record(const eServiceReference &ref):
 	m_extra_headers = "";
 
 	CONNECT(m_pump.recv_msg, eServiceMP3Record::gstPoll);
-	CONNECT(m_streamingsrc_timeout->timeout, eServiceMP3Record::sourceTimeout);
+	//CONNECT(m_streamingsrc_timeout->timeout, eServiceMP3Record::sourceTimeout);
 }
 
 eServiceMP3Record::~eServiceMP3Record()
@@ -114,8 +114,8 @@ RESULT eServiceMP3Record::stop()
 		eDebug("[eMP3ServiceRecord] stop was not recording");
 	if (m_state == statePrepared)
 	{
-		if (m_streamingsrc_timeout)
-			m_streamingsrc_timeout->stop();
+		//if (m_streamingsrc_timeout)
+		//	m_streamingsrc_timeout->stop();
 		m_state = stateIdle;
 	}
 	m_event((iRecordableService*)this, evRecordStopped);
@@ -269,6 +269,7 @@ void eServiceMP3Record::gstBusCall(GstMessage *msg)
 
 			GstStateChange transition = (GstStateChange)GST_STATE_TRANSITION(old_state, new_state);
 			eDebug("[eMP3ServiceRecord] gstBusCall state transition %s -> %s", gst_element_state_get_name(old_state), gst_element_state_get_name(new_state));
+			/*
 			switch(transition)
 			{
 				case GST_STATE_CHANGE_PAUSED_TO_PLAYING:
@@ -280,6 +281,7 @@ void eServiceMP3Record::gstBusCall(GstMessage *msg)
 				default:
 					break;
 			}
+			*/
 			break;
 		}
 		case GST_MESSAGE_ERROR:
@@ -288,8 +290,22 @@ void eServiceMP3Record::gstBusCall(GstMessage *msg)
 			GError *err;
 			gst_message_parse_error(msg, &err, &debug);
 			g_free(debug);
-			if (err->code != GST_STREAM_ERROR_CODEC_NOT_FOUND)
-				eWarning("[eServiceMP3Record] gstBusCall Gstreamer error: %s (%i) from %s", err->message, err->code, sourceName);
+			//if (err->code != GST_STREAM_ERROR_CODEC_NOT_FOUND)
+			//	eWarning("[eServiceMP3Record] gstBusCall Gstreamer error: %s (%i) from %s", err->message, err->code, sourceName);
+			if ( err->domain == GST_STREAM_ERROR )
+			{
+				if ( err->code == GST_STREAM_ERROR_CODEC_NOT_FOUND )
+				{
+					eWarning("[eServiceMP3Record] gstBusCall Gstreamer error: %s (%i) from %s", err->message, err->code, sourceName);
+				}
+			}
+			else if ( err->domain == GST_RESOURCE_ERROR )
+			{
+				if ( err->code == GST_RESOURCE_ERROR_OPEN_READ || err->code == GST_RESOURCE_ERROR_READ )
+				{
+					stop();
+				}
+			}
 			g_error_free(err);
 			break;
 		}
@@ -327,6 +343,7 @@ void eServiceMP3Record::gstBusCall(GstMessage *msg)
 			}
 			break;
 		}
+		/*
 		case GST_MESSAGE_STREAM_STATUS:
 		{
 			GstStreamStatusType type;
@@ -358,6 +375,7 @@ void eServiceMP3Record::gstBusCall(GstMessage *msg)
 			}
 			break;
 		}
+		*/
 		default:
 			break;
 	}
@@ -392,6 +410,19 @@ void eServiceMP3Record::handleUridecNotifySource(GObject *object, GParamSpec *un
 	g_object_get(object, "source", &source, NULL);
 	if (source)
 	{
+		if (g_object_class_find_property(G_OBJECT_GET_CLASS(source), "timeout") != 0)
+		{
+			GstElementFactory *factory = gst_element_get_factory(source);
+			if (factory)
+			{
+				const gchar *sourcename = gst_plugin_feature_get_name(GST_PLUGIN_FEATURE(factory));
+				if (!strcmp(sourcename, "souphttpsrc"))
+				{
+					g_object_set(G_OBJECT(source), "timeout", HTTP_TIMEOUT, NULL);
+					g_object_set(G_OBJECT(source), "retries", 20, NULL);
+				}
+			}
+		}
 		if (g_object_class_find_property(G_OBJECT_GET_CLASS(source), "ssl-strict") != 0)
 		{
 			g_object_set(G_OBJECT(source), "ssl-strict", FALSE, NULL);
