@@ -131,22 +131,28 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 
 	def createSimpleSetup(self, mode):
 		nim = self.nimConfig.dvbs
+		self.autodiseqc_enabled = nim.diseqcA.value == "3600"
 		if mode == "single":
 			self.singleSatEntry = (_("Satellite"), nim.diseqcA, _("Select the satellite from which your dish is receiving its signal. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you."))
 			self.list.append(self.singleSatEntry)
-			if nim.diseqcA.value in ("360", "560"):
-				self.list.append((_("Use circular LNB"), nim.simpleDiSEqCSetCircularLNB, _("If you are using a circular polarized LNB select 'Yes', otherwise select 'No'.")))
-			self.list.append((_("Send DiSEqC"), nim.simpleSingleSendDiSEqC, _("Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups.")))
 		else:
 			self.list.append((_("Port A"), nim.diseqcA, _("Select the satellite which is connected to Port-A of your switch. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'Nothing connected'.")))
 		if mode in ("toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"):
 			self.list.append((_("Port B"), nim.diseqcB, _("Select the satellite which is connected to Port-B of your switch. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'Nothing connected'.")))
+			self.autodiseqc_enabled = self.autodiseqc_enabled or (nim.diseqcB.value == "3600")
 			if mode == "diseqc_a_b_c_d":
 				self.list.append((_("Port C"), nim.diseqcC, _("Select the satellite which is connected to Port-C of your switch. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'Nothing connected'.")))
 				self.list.append((_("Port D"), nim.diseqcD, _("Select the satellite which is connected to Port-D of your switch. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you. If nothing is connected to this port, select 'Nothing connected'.")))
-			if mode != "toneburst_a_b":
-				self.list.append((_("Set voltage and 22KHz"), nim.simpleDiSEqCSetVoltageTone, _("Leave this set to 'Yes' unless you fully understand why you are adjusting it.")))
-				self.list.append((_("Send DiSEqC only on satellite change"), nim.simpleDiSEqCOnlyOnSatChange, _("Select 'Yes' to only send the DiSEqC command when changing from one satellite to another, or select 'No' for the DiSEqC command to be resent on every zap.")))
+				self.autodiseqc_enabled = self.autodiseqc_enabled or (nim.diseqcC.value == "3600") or (nim.diseqcD.value == "3600")
+		if self.autodiseqc_enabled:
+				self.list.append((_("Set auto DiSEqC search order"), nim.autoDiSEqC_order_single if mode == "single" else nim.autoDiSEqC_order, _("Finetune the auto DiSEqC order to in your situation the satellites could be found faster.")))
+		if mode in ("diseqc_a_b", "diseqc_a_b_c_d"):
+			self.list.append((_("Set voltage and 22KHz"), nim.simpleDiSEqCSetVoltageTone, _("Leave this set to 'Yes' unless you fully understand why you are adjusting it.")))
+			self.list.append((_("Send DiSEqC only on satellite change"), nim.simpleDiSEqCOnlyOnSatChange, _("Select 'Yes' to only send the DiSEqC command when changing from one satellite to another, or select 'No' for the DiSEqC command to be resent on every zap.")))
+		elif mode == "single":
+			if nim.diseqcA.value in ("360", "560"):
+				self.list.append((_("Use circular LNB"), nim.simpleDiSEqCSetCircularLNB, _("If you are using a Circular polarised LNB select 'yes', otherwise select 'no'.")))
+			self.list.append((_("Send DiSEqC"), nim.simpleSingleSendDiSEqC, _("Only select 'yes' if you are using a multiswich that requires a DiSEqC Port-A command signal. For all other setups select 'no'.")))
 
 	def createPositionerSetup(self):
 		nim = self.nimConfig.dvbs
@@ -175,7 +181,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				nim.powerMeasurement.save()
 		if not hasattr(self, "additionalMotorOptions"):
 			self.additionalMotorOptions = ConfigYesNo(False)
-		self.showAdditionalMotorOptions = getConfgListEntry(_("Extra motor options"), self.additionalMotorOptions, _("Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move the dish from one satellite to another."))
+		self.showAdditionalMotorOptions = (_("Extra motor options"), self.additionalMotorOptions, _("Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move the dish from one satellite to another."))
 		self.list.append(self.showAdditionalMotorOptions)
 		if self.additionalMotorOptions.value:
 			self.list.append(("   %s [\u00B0%s" % (_("Horizontal turning speed"), _("/sec]")), nim.turningspeedH, _("Consult your motor's specifications for this information, or leave the default setting.")))
@@ -210,6 +216,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self.adaptConfigModeChoices()
 		print("[SatConfig] Creating setup.")
 		self.list = []
+		self.autodiseqc_enabled = False
 		self.multiType = None
 		self.diseqcModeEntry = None
 		self.advancedSatsEntry = None
@@ -413,6 +420,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		if config.usage.setup_level.index > 1:
 			self.list.append((_("Force Legacy Signal stats"), self.nimConfig.force_legacy_signal_stats, _("Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded.")))
 		self["config"].list = self.list
+		self["key_yellow"].setText(self.autodiseqc_enabled and not self.nim.isCombined() and _("Auto DiSEqC") or self.configMode and _("Configuration mode") or "")
 
 	def newConfig(self):
 		self.setTextKeyBlue()
@@ -464,7 +472,8 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self.saveAll()
 		return True
 
-	def autoDiseqcRun(self, ports, order="all"):
+	def autoDiseqcRun(self, ports):
+		order = self.nimConfig.dvbs.autoDiSEqC_order_single.value if self.nimConfig.dvbs.diseqcMode.value == "single" else self.nimConfig.dvbs.autoDiSEqC_order.value
 		self.session.openWithCallback(self.autoDiseqcCallback, AutoDiseqc, self.slotid, ports, self.nimConfig.dvbs.simpleDiSEqCSetVoltageTone, self.nimConfig.dvbs.simpleDiSEqCOnlyOnSatChange, order)
 
 	def autoDiseqcCallback(self, result):
@@ -835,6 +844,8 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self.restoreService(_("Zap back to service before tuner setup?"))
 
 	def keyYellow(self):
+		if self.autodiseqc_enabled and not self.nim.isCombined():
+			self.autoDiseqcRun(self.nimConfig.diseqcMode.value == "diseqc_a_b_c_d" and 4 or self.nimConfig.diseqcMode.value == "diseqc_a_b" and 2 or 1)
 		if self.configMode:
 			if self.nim.isCompatible("DVB-S"):
 				self.nimConfig.dvbs.configMode.selectNext()
