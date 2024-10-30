@@ -131,7 +131,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 
 	def createSimpleSetup(self, mode):
 		nim = self.nimConfig.dvbs
-		self.autodiseqc_enabled = nim.diseqcA.value == "3600"
+		self.autodiseqc_enabled = nim.diseqcA.value == 3600
 		if mode == "single":
 			self.singleSatEntry = (_("Satellite"), nim.diseqcA, _("Select the satellite from which your dish is receiving its signal. If you are unsure select 'Automatic' and the receiver will attempt to determine this for you."))
 			self.list.append(self.singleSatEntry)
@@ -150,7 +150,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 			self.list.append((_("Set voltage and 22KHz"), nim.simpleDiSEqCSetVoltageTone, _("Leave this set to 'Yes' unless you fully understand why you are adjusting it.")))
 			self.list.append((_("Send DiSEqC only on satellite change"), nim.simpleDiSEqCOnlyOnSatChange, _("Select 'Yes' to only send the DiSEqC command when changing from one satellite to another, or select 'No' for the DiSEqC command to be resent on every zap.")))
 		elif mode == "single":
-			if nim.diseqcA.value in ("360", "560"):
+			if nim.diseqcA.value in (360, 560):
 				self.list.append((_("Use circular LNB"), nim.simpleDiSEqCSetCircularLNB, _("If you are using a Circular polarised LNB select 'yes', otherwise select 'no'.")))
 			self.list.append((_("Send DiSEqC"), nim.simpleSingleSendDiSEqC, _("Only select 'yes' if you are using a multiswich that requires a DiSEqC Port-A command signal. For all other setups select 'no'.")))
 
@@ -998,15 +998,15 @@ class NimSelection(Screen):
 							text = "%s\n%s:" % ({"single": _("Single"), "toneburst_a_b": _("Tone burst A/B"), "diseqc_a_b": _("DiSEqC A/B"), "diseqc_a_b_c_d": _("DiSEqC A/B/C/D")}[nimConfig.diseqcMode.value], _("Sats"))
 							satnames = []
 							if nimConfig.diseqcA.orbital_position < 3600:
-								satnames.append(nimmanager.getSatName(int(nimConfig.diseqcA.value)))
+								satnames.append(nimmanager.getSatName(nimConfig.diseqcA.value))
 							if nimConfig.diseqcMode.value in ("toneburst_a_b", "diseqc_a_b", "diseqc_a_b_c_d"):
 								if nimConfig.diseqcB.orbital_position < 3600:
-									satnames.append(nimmanager.getSatName(int(nimConfig.diseqcB.value)))
+									satnames.append(nimmanager.getSatName(nimConfig.diseqcB.valu))
 							if nimConfig.diseqcMode.value == "diseqc_a_b_c_d":
 								if nimConfig.diseqcC.orbital_position < 3600:
-									satnames.append(nimmanager.getSatName(int(nimConfig.diseqcC.value)))
+									satnames.append(nimmanager.getSatName(nimConfig.diseqcC.value))
 								if nimConfig.diseqcD.orbital_position < 3600:
-									satnames.append(nimmanager.getSatName(int(nimConfig.diseqcD.value)))
+									satnames.append(nimmanager.getSatName(nimConfig.diseqcD.value))
 							if len(satnames) <= 2:
 								text += ", ".join(satnames)
 							elif len(satnames) > 2:

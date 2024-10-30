@@ -402,18 +402,18 @@ class AutoDiseqc(ConfigListScreen, Screen):
 
 	def statusCallback(self):
 		if self.state == 0:
-			if self.port_index == 0 and self.diseqc[0] == "3600":
+			if self.port_index == 0 and self.diseqc[0] == 3600:
 				self.clearNimEntries()
-				config.Nims[self.feid].dvbs.diseqcA.value = "%d" % (self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS])
-			elif self.port_index == 1 and self.diseqc[1] == "3600":
+				config.Nims[self.feid].dvbs.diseqcA.value = int(self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS])
+			elif self.port_index == 1 and self.diseqc[1] == 3600:
 				self.clearNimEntries()
-				config.Nims[self.feid].dvbs.diseqcB.value = "%d" % (self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS])
-			elif self.port_index == 2 and self.diseqc[2] == "3600":
+				config.Nims[self.feid].dvbs.diseqcB.value = int(self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS])
+			elif self.port_index == 2 and self.diseqc[2] == 3600:
 				self.clearNimEntries()
-				config.Nims[self.feid].dvbs.diseqcC.value = "%d" % (self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS])
-			elif self.port_index == 3 and self.diseqc[3] == "3600":
+				config.Nims[self.feid].dvbs.diseqcC.value = int(self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS])
+			elif self.port_index == 3 and self.diseqc[3] == 3600:
 				self.clearNimEntries()
-				config.Nims[self.feid].dvbs.diseqcD.value = "%d" % (self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS])
+				config.Nims[self.feid].dvbs.diseqcD.value = int(self.sat_frequencies[self.index][self.SAT_TABLE_ORBPOS])
 
 			if self.nr_of_ports == 4:
 				config.Nims[self.feid].dvbs.diseqcMode.value = "diseqc_a_b_c_d"
@@ -436,7 +436,7 @@ class AutoDiseqc(ConfigListScreen, Screen):
 			self.state += 1
 
 		elif self.state == 1:
-			if self.diseqc[self.port_index] != "3600":
+			if self.diseqc[self.port_index] != 3600:
 				self.statusTimer.stop()
 				self.count = 0
 				self.state = 0
@@ -480,13 +480,13 @@ class AutoDiseqc(ConfigListScreen, Screen):
 		self.clearNimEntries()
 		for x in self.found_sats:
 			if x[0] == "A":
-				config.Nims[self.feid].dvbs.diseqcA.value = "%d" % (x[1])
+				config.Nims[self.feid].dvbs.diseqcA.value = int(x[1])
 			elif x[0] == "B":
-				config.Nims[self.feid].dvbs.diseqcB.value = "%d" % (x[1])
+				config.Nims[self.feid].dvbs.diseqcB.value = int(x[1])
 			elif x[0] == "C":
-				config.Nims[self.feid].dvbs.diseqcC.value = "%d" % (x[1])
+				config.Nims[self.feid].dvbs.diseqcC.value = int(x[1])
 			elif x[0] == "D":
-				config.Nims[self.feid].dvbs.diseqcD.value = "%d" % (x[1])
+				config.Nims[self.feid].dvbs.diseqcD.value = int(x[1])
 		self.saveAndReloadNimConfig()
 
 	def setupClear(self):
@@ -494,10 +494,10 @@ class AutoDiseqc(ConfigListScreen, Screen):
 		self.saveAndReloadNimConfig()
 
 	def clearNimEntries(self):
-		config.Nims[self.feid].dvbs.diseqcA.value = "3601" if self.diseqc[0] == "3600" else self.diseqc[0]
-		config.Nims[self.feid].dvbs.diseqcB.value = "3601" if self.diseqc[1] == "3600" else self.diseqc[1]
-		config.Nims[self.feid].dvbs.diseqcC.value = "3601" if self.diseqc[2] == "3600" else self.diseqc[2]
-		config.Nims[self.feid].dvbs.diseqcD.value = "3601" if self.diseqc[3] == "3600" else self.diseqc[3]
+		config.Nims[self.feid].dvbs.diseqcA.value = 3601 if self.diseqc[0] == 3600 else self.diseqc[0]
+		config.Nims[self.feid].dvbs.diseqcB.value = 3601 if self.diseqc[1] == 3600 else self.diseqc[1]
+		config.Nims[self.feid].dvbs.diseqcC.value = 3601 if self.diseqc[2] == 3600 else self.diseqc[2]
+		config.Nims[self.feid].dvbs.diseqcD.value = 3601 if self.diseqc[3] == 3600 else self.diseqc[3]
 
 	def saveAndReloadNimConfig(self):
 		config.Nims[self.feid].save()
