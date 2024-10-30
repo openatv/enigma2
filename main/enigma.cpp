@@ -494,37 +494,39 @@ int getE2Flags()
 
 bool checkLogin(const char *user, const char *password)
 {
-	bool authenticated  = false;
+	bool authenticated = false;
 
-	char *buffer = (char*)malloc(4096);
-	if (buffer && user && password)
+	if (user && password)
 	{
-		struct passwd pwd = {};
-		struct passwd *pwdresult = NULL;
-		std::string crypt;
-		getpwnam_r(user, &pwd, buffer, 4096, &pwdresult);
-		if (pwdresult)
+		char *buffer = (char *)malloc(4096);
+		if (buffer)
 		{
-			struct crypt_data cryptdata = {};
-			char *cryptresult = NULL;
-			cryptdata.initialized = 0;
-			crypt = pwd.pw_passwd;
-			if (crypt == "*" || crypt == "x")
+			struct passwd pwd = {};
+			struct passwd *pwdresult = NULL;
+			std::string crypt;
+			getpwnam_r(user, &pwd, buffer, 4096, &pwdresult);
+			if (pwdresult)
 			{
-				struct spwd spwd = {};
-				struct spwd *spwdresult = NULL;
-				getspnam_r(user, &spwd, buffer, 4096, &spwdresult);
-				if (spwdresult)
+				struct crypt_data cryptdata = {};
+				char *cryptresult = NULL;
+				cryptdata.initialized = 0;
+				crypt = pwd.pw_passwd;
+				if (crypt == "*" || crypt == "x")
 				{
-					crypt = spwd.sp_pwdp;
+					struct spwd spwd = {};
+					struct spwd *spwdresult = NULL;
+					getspnam_r(user, &spwd, buffer, 4096, &spwdresult);
+					if (spwdresult)
+					{
+						crypt = spwd.sp_pwdp;
+					}
 				}
+				cryptresult = crypt_r(password, crypt.c_str(), &cryptdata);
+				authenticated = cryptresult && cryptresult == crypt;
 			}
-			cryptresult = crypt_r(password, crypt.c_str(), &cryptdata);
-			authenticated = cryptresult && cryptresult == crypt;
+			free(buffer);
 		}
-		free(buffer);
 	}
-
 	return authenticated;
 }
 
