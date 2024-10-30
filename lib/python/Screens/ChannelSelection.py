@@ -101,26 +101,26 @@ config.servicelist.startuproot = ConfigText()
 config.servicelist.startupmode = ConfigText(default="tv")
 
 
-def parseCurentEvent(list, isZapTimer=False):  # IanSav: This is only used once in here, why is it a global method?
-	if len(list) >= 0:
-		list = list[0]
-		begin = list[2] - (getattr(config.recording, "zap_margin_before" if isZapTimer else "margin_before").value * 60)
-		end = list[2] + list[3] + (getattr(config.recording, "zap_margin_after" if isZapTimer else "margin_after").value * 60)
-		name = list[1]
-		description = list[5]
-		eit = list[0]
+def parseCurentEvent(items, isZapTimer=False):  # IanSav: This is only used once in here, why is it a global method?
+	if items:
+		item = items[0]
+		begin = item[2] - (getattr(config.recording, "zap_margin_before" if isZapTimer else "margin_before").value * 60)
+		end = item[2] + item[3] + (getattr(config.recording, "zap_margin_after" if isZapTimer else "margin_after").value * 60)
+		name = item[1]
+		description = item[5]
+		eit = item[0]
 		return begin, end, name, description, eit
 	return False
 
 
-def parseNextEvent(list, isZapTimer=False):  # IanSav: This is only used in once class in here, why is it a global method?
-	if len(list) > 0:
-		list = list[1]
-		begin = list[2] - (getattr(config.recording, "zap_margin_before" if isZapTimer else "margin_before").value * 60)
-		end = list[2] + list[3] + (getattr(config.recording, "zap_margin_after" if isZapTimer else "margin_after").value * 60)
-		name = list[1]
-		description = list[5]
-		eit = list[0]
+def parseNextEvent(items, isZapTimer=False):  # IanSav: This is only used in once class in here, why is it a global method?
+	if items and len(items) > 1:
+		item = items[1]
+		begin = item[2] - (getattr(config.recording, "zap_margin_before" if isZapTimer else "margin_before").value * 60)
+		end = item[2] + item[3] + (getattr(config.recording, "zap_margin_after" if isZapTimer else "margin_after").value * 60)
+		name = item[1]
+		description = item[5]
+		eit = item[0]
 		return begin, end, name, description, eit
 	return False
 # IanSav: These two are almost identical and can be combined to reduce toe code size with almost no cost!
