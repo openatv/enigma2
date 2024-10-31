@@ -24,49 +24,6 @@ from Tools.BoundFunction import boundFunction
 from Tools.BugHunting import printCallSequence
 
 
-class ServiceStopScreen:
-	def __init__(self):
-		try:
-			self.session
-		except Exception:
-			print("[SatConfig] ServiceStopScreen ERROR: No self.session set!")
-		self.oldref = None
-		self.onClose.append(self.__onClose)
-
-	def pipAvailable(self):  # PiP isn't available in every state of Enigma2.
-		try:
-			self.session.pipshown
-			pipavailable = True
-		except Exception:
-			pipavailable = False
-		return pipavailable
-
-	def stopService(self):
-		self.oldref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-		self.session.nav.stopService()
-		if self.pipAvailable() and self.session.pipshown:  # Try to disable PiP.
-			if hasattr(self.session, "infobar"):
-				if self.session.infobar.servicelist and self.session.infobar.servicelist.dopipzap:
-					self.session.infobar.servicelist.togglePipzap()
-			if hasattr(self.session, "pip"):
-				del self.session.pip
-			self.session.pipshown = False
-
-	def __onClose(self):
-		self.session.nav.playService(self.oldref)
-
-	def restoreService(self, msg=_("Zap back to previously tuned service?")):
-		if self.oldref:
-			self.session.openWithCallback(self.restartPrevService, MessageBox, msg, MessageBox.TYPE_YESNO)
-		else:
-			self.restartPrevService(False)
-
-	def restartPrevService(self, yesno):
-		if not yesno:
-			self.oldref = None
-		self.close()
-
-
 class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 	def __init__(self, session, slotid):
 		printCallSequence(10)
@@ -449,7 +406,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				if self.nimConfig.dvbs.diseqcMode.value == "single":
 					if self.nimConfig.dvbs.diseqcA.orbital_position == 3600:
 						autodiseqc_ports = 1
-				elif self.nimConfig.dvbs.diseqcMode.value == "diseqc_a_b":
+				elif self.nimConfig.dvbs.diseqcMode.value in ("toneburst_a_b", "diseqc_a_b"):
 					if self.nimConfig.dvbs.diseqcA.orbital_position == 3600 or self.nimConfig.dvbs.diseqcB.orbital_position == 3600:
 						autodiseqc_ports = 2
 				elif self.nimConfig.dvbs.diseqcMode.value == "diseqc_a_b_c_d":
@@ -844,8 +801,8 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 		self.restoreService(_("Zap back to service before tuner setup?"))
 
 	def keyYellow(self):
-		if self.autodiseqc_enabled and not self.nim.isCombined():
-			self.autoDiseqcRun(self.nimConfig.diseqcMode.value == "diseqc_a_b_c_d" and 4 or self.nimConfig.diseqcMode.value == "diseqc_a_b" and 2 or 1)
+		if self.autodiseqc_enabled and (not self.nim.isCombined() or self.nim.canBeCompatible("DVB-S")):
+			self.autoDiseqcRun(self.nimConfig.dvbs.diseqcMode.value == "diseqc_a_b_c_d" and 4 or self.nimConfig.dvbs.diseqcMode.value in ("toneburst_a_b", "diseqc_a_b") and 2 or 1)
 		if self.configMode:
 			if self.nim.isCompatible("DVB-S"):
 				self.nimConfig.dvbs.configMode.selectNext()
@@ -1139,3 +1096,46 @@ class SelectSatsEntryScreen(Screen):
 			if len(connected_sat) > 0:
 				menu.insert(0, (_("Connected satellites"), "3"))
 			self.session.openWithCallback(sortAction, ChoiceBox, title=_("Select sort method:"), list=menu)
+
+
+class ServiceStopScreen:
+	def __init__(self):
+		try:
+			self.session
+		except Exception:
+			print("[SatConfig] ServiceStopScreen ERROR: No self.session set!")
+		self.oldref = None
+		self.onClose.append(self.__onClose)
+
+	def pipAvailable(self):  # PiP isn't available in every state of Enigma2.
+		try:
+			self.session.pipshown
+			pipavailable = True
+		except Exception:
+			pipavailable = False
+		return pipavailable
+
+	def stopService(self):
+		self.oldref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+		self.session.nav.stopService()
+		if self.pipAvailable() and self.session.pipshown:  # Try to disable PiP.
+			if hasattr(self.session, "infobar"):
+				if self.session.infobar.servicelist and self.session.infobar.servicelist.dopipzap:
+					self.session.infobar.servicelist.togglePipzap()
+			if hasattr(self.session, "pip"):
+				del self.session.pip
+			self.session.pipshown = False
+
+	def __onClose(self):
+		self.session.nav.playService(self.oldref)
+
+	def restoreService(self, msg=_("Zap back to previously tuned service?")):
+		if self.oldref:
+			self.session.openWithCallback(self.restartPrevService, MessageBox, msg, MessageBox.TYPE_YESNO)
+		else:
+			self.restartPrevService(False)
+
+	def restartPrevService(self, yesno):
+		if not yesno:
+			self.oldref = None
+		self.close()
