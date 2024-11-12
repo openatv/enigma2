@@ -208,14 +208,14 @@ class ImageBackup(Screen):
 			lines.append("")
 			cmdLines.append(f"{self.echoCmd} \"{"\n".join(lines)}\"")
 			# Create working directories.
-			cmdLines.append(f"{self.echoCmd} \"Create working directories.\"")
+			cmdLines.append(f"{self.echoCmd} \"{_("Create working directories.")}\"")
 			workDir = f"{join(target, "ib", "")}"  # NOTE: workDir will always have a trailing "/".
 			cmdLines.append(f"{self.removeCmd} -rf {workDir}")
 			cmdLines.append(f"{self.makeDirCmd} -p {workDir}")
 			mountPoint = "/tmp/ib/RootSubdir/" if rootfsSubDir else "/tmp/ib/root/"  # NOTE: mountPoint will always have a trailing "/".
 			backupRoot = mountPoint  # NOTE: backupRoot will always have a trailing "/".
 			cmdLines.append(f"{self.makeDirCmd} -p {mountPoint}")
-			cmdLines.append(f"{self.echoCmd} \"Mount root file system.\"")  # Mount the root file system.
+			cmdLines.append(f"{self.echoCmd} \"{_("Mount root file system.")}\"")  # Mount the root file system.
 			if MultiBoot.canMultiBoot():
 				mountArgs = f"/dev/{mtdRootFs} {mountPoint}"
 				if rootfsSubDir:
@@ -274,10 +274,10 @@ class ImageBackup(Screen):
 			mkubifsArgs = BoxInfo.getItem("mkubifs")
 			backupRootNoSlash = backupRoot[:-1]
 			if "jffs2" in imageFs:
-				cmdLines.append(f"{self.echoCmd} \"Create root journaling flash file system.\"")
+				cmdLines.append(f"{self.echoCmd} \"{_("Create root journaling flash file system.")}\"")
 				cmdLines.append(f"{self.mkfsJffs2} --root={backupRootNoSlash} --faketime --output={workDir}root.jffs2 {mkubifsArgs}")
 			elif "ubi" in imageFs:
-				cmdLines.append(f"{self.echoCmd} \"Create root UBI file system.\"")
+				cmdLines.append(f"{self.echoCmd} \"{_("Create root UBI file system.")}\"")
 				cmdLines.append(f"{self.echoCmd} > {workDir}root.ubi")
 				cmdLines.append(f"{self.mkfsUbiCmd} -r {backupRootNoSlash} -o {workDir}root.ubi {mkubifsArgs}")
 				lines = []
@@ -291,19 +291,19 @@ class ImageBackup(Screen):
 				cmdLines.append(f"{self.echoCmd} '{"\n".join(lines)}' > {workDir}ubinize.cfg")
 				cmdLines.append(f"{self.ubiCmd} -o {workDir}root.ubifs {BoxInfo.getItem("ubinize")} {workDir}ubinize.cfg")
 			elif not recovery:
-				cmdLines.append(f"{self.echoCmd} \"Create tar file of root file system.\"")
+				cmdLines.append(f"{self.echoCmd} \"{_("Create tar file of root file system.")}\"")
 				# cmdLines.append(f"{self.touchCmd} {workDir}rootfs.tar")  # Uncomment this line and comment out the line below to enable a fast backup debugging mode.
 				cmdLines.append(f"{self.tarCmd} -cf {workDir}rootfs.tar -C {backupRootNoSlash} --exclude ./boot/kernel.img --exclude ./var/nmbd --exclude ./.resizerootfs --exclude ./.resize-rootfs --exclude ./.resize-linuxrootfs --exclude ./.resize-userdata --exclude ./var/lib/samba/private/msg.sock --exclude ./var/lib/samba/msg.sock/* --exclude ./run/avahi-daemon/socket --exclude ./run/chrony/chronyd.sock --exclude ./run/udev/control .")
 				cmdLines.append(f"{self.syncCmd}")
-				cmdLines.append(f"{self.echoCmd} \"Compress root file system tar file. (This takes the most time!)\"")
+				cmdLines.append(f"{self.echoCmd} \"{_("Compress root file system tar file. (This takes the most time!)")}\"")
 				cmdLines.append(f"{self.bzip2Cmd} {workDir}rootfs.tar")
 			cmdLines.append(f"{self.syncCmd}")
 			# Create other image backup components.
 			boxName = BoxInfo.getItem("BoxName")
 			if boxName in ("gbquad4k", "gbquad4kpro", "gbue4k", "gbx34k"):
-				cmdLines.append(f"{self.echoCmd} \"Create boot dump.\"")
+				cmdLines.append(f"{self.echoCmd} \"{_("Create boot dump.")}\"")
 				cmdLines.append(f"{self.ddCmd} if=/dev/mmcblk0p1 of={workDir}boot.bin")
-				cmdLines.append(f"{self.echoCmd} \"Create rescue dump.\"")
+				cmdLines.append(f"{self.echoCmd} \"{_("Create rescue dump.")}\"")
 				cmdLines.append(f"{self.ddCmd} if=/dev/mmcblk0p3 of={workDir}rescue.bin")
 			displayNames = ["fast boot", "boot arguments", "base parameters", "PQ parameters", "logo"]
 			model = BoxInfo.getItem("model")
@@ -318,7 +318,7 @@ class ImageBackup(Screen):
 				cmdLines.append(f"{self.echoCmd} \"Create {displayNames[1]} dump.\"")
 				# cmdLines.append(f"{self.ddCmd} if=/dev/mmcblk0p2 of={workDir}bootargs.bin")
 				cmdLines.append(f"{self.copyCmd} -f /usr/share/bootargs.bin {workDir}")
-				cmdLines.append(f"{self.echoCmd} \"Create boot image dump.\"")
+				cmdLines.append(f"{self.echoCmd} \"{_("Create boot image dump.")}\"")
 				cmdLines.append(f"{self.ddCmd} if=/dev/mmcblk0p3 of={workDir}boot.img")
 				cmdLines.append(f"{self.echoCmd} \"Create {displayNames[2]} dump.\"")
 				# cmdLines.append(f"{self.copyCmd} -f /usr/share/bootargs.bin {workDir}baseparam.img")
@@ -328,13 +328,13 @@ class ImageBackup(Screen):
 				cmdLines.append(f"{self.ddCmd} if=/dev/mmcblk0p5 of={workDir}pq_param.bin")
 				cmdLines.append(f"{self.echoCmd} \"Create {displayNames[4]} dump.\"")
 				cmdLines.append(f"{self.ddCmd} if=/dev/mmcblk0p6 of={workDir}logo.img")
-				cmdLines.append(f"{self.echoCmd} \"Create device information dump.\"")
+				cmdLines.append(f"{self.echoCmd} \"{_("Create device information dump.")}\"")
 				# cmdLines.append(f"{self.copyCmd} -f /usr/share/bootargs.bin {workDir}deviceinfo.bin")
 				cmdLines.append(f"{self.ddCmd} if=/dev/mmcblk0p7 of={workDir}deviceinfo.bin")
-				cmdLines.append(f"{self.echoCmd} \"Create application loader dump.\"")
+				cmdLines.append(f"{self.echoCmd} \"{_("Create application loader dump.")}\"")
 				# cmdLines.append(f"{self.ddCmd} if=/dev/mmcblk0p10 of={workDir}apploader.bin")
 				cmdLines.append(f"{self.copyCmd} -f /usr/share/apploader.bin {workDir}")
-				cmdLines.append(f"{self.echoCmd} \"Create root file system dump.\"")
+				cmdLines.append(f"{self.echoCmd} \"{_("Create root file system dump.")}\"")
 				cmdLines.append(f"{self.ddCmd} if=/dev/zero of={workDir}rootfs.ext4 seek=$(((`{self.duCmd} -sb \"{backupRoot}\" | cut -f1` / 1024) + 200000)) count=60 bs=1024")
 				cmdLines.append(f"{self.mkfsExt4} -F -i 4096 {workDir}rootfs.ext4")
 				cmdLines.append(f"{self.makeDirCmd} -p {workDir}userdata")
@@ -344,7 +344,7 @@ class ImageBackup(Screen):
 				cmdLines.append(f"{self.rsyncCmd} -aAX {backupRoot} {workDir}userdata/linuxrootfs1")
 				cmdLines.append(f"{self.unmountCmd} {workDir}userdata")
 			# Create the kernel dump.
-			cmdLines.append(f"{self.echoCmd} \"Create kernel dump.\"")
+			cmdLines.append(f"{self.echoCmd} \"{_("Create kernel dump.")}\"")
 			kernelFile = BoxInfo.getItem("kernelfile")
 			if MultiBoot.canMultiBoot() or mtdKernel.startswith("mmcblk0") or model in ("h8", "hzero"):
 				if BoxInfo.getItem("HasKexecMultiboot") or BoxInfo.getItem("HasGPT"):
@@ -545,7 +545,7 @@ class ImageBackup(Screen):
 				cmdLines.append(f"{self.copyCmd} -f /usr/share/bootargs.bin {mainDestinationRoot}")
 			name = "recovery_emmc" if BoxInfo.getItem("canRecovery") and recovery else "usb"
 			cmdLines.append(f"{self.echoCmd} 3 > /proc/sys/vm/drop_caches")  # Clear memory caches.
-			cmdLines.append(f"{self.echoCmd} \"Create backup image zip file.\"")
+			cmdLines.append(f"{self.echoCmd} \"{_("Create backup image zip file.")}\"")
 			cmdLines.append(f"ZipName=$Distro-$ImageVersion-{boxName}-backup-`{self.dateCmd} +\"%Y%m%d_%H%M\"`_{name}.zip")
 			cmdLines.append(f"{self.zipCmd} a -r -bt -bd -bso0 {target}/$ZipName {join(mainDestinationRoot, "*")}")
 			cmdLines.append(self.syncCmd)
