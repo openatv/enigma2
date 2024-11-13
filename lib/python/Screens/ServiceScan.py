@@ -89,6 +89,7 @@ class ServiceScan(Screen):
 		self.timer = eTimer()
 		self.onProgressChanged = []
 		self.onServiceChanged = []
+		self.onStateChanged = []
 		self.run = 0
 		self.state = self.RUNNING
 		self.currentSystem = None
@@ -131,6 +132,7 @@ class ServiceScan(Screen):
 			callback(serviceName)
 
 	def statusChanged(self):
+		stateText = ""
 		errorCode = 0
 		if self.state == self.RUNNING:
 			transponderType = ""
@@ -294,13 +296,13 @@ class ServiceScan(Screen):
 				if percentage > 99:
 					percentage = 99  # Don't allow 100% as this causes a visual jump on the screen just before the message is replaced.
 				# TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
-				self["scan_state"].setText(f"{ngettext("Scanning: %d%% complete", "Scanning: %d%% complete", percentage) % percentage}, {ngettext("%d service found.", "%d services found.", self.foundServices) % self.foundServices}")
+				stateText = f"{ngettext("Scanning: %d%% complete", "Scanning: %d%% complete", percentage) % percentage}, {ngettext("%d service found.", "%d services found.", self.foundServices) % self.foundServices}"
 			case self.DONE:
 				print(f"[ServiceScan] {self.foundServices} services found. This run found {self.scan.getNumServices()}.")
 				self.scan.newService.get().remove(self.newService)
 				self.scan.statusChanged.get().remove(self.statusChanged)
 				self.scan.clear()
-				self["scan_state"].setText(ngettext("Scanning completed, %d service found.", "Scanning completed, %d services found.", self.foundServices) % self.foundServices)
+				stateText = ngettext("Scanning completed, %d service found.", "Scanning completed, %d services found.", self.foundServices) % self.foundServices
 				if self.run != len(self.scanList) - 1:
 					def delayNext1():
 						self.timer.stop()
@@ -327,7 +329,12 @@ class ServiceScan(Screen):
 					self.timer.callback.append(delayNext2)  # Hack to work around a timing bug in eComponentScan!
 					self.timer.startLongTimer(2)  # Delay the next step by 2 seconds to give eComponentScan time to finish.
 			case self.ERROR:
-				self["scan_state"].setText(_("Error: Failed to run service scan!  (%s)") % self.ERRORS[errorCode])
+				stateText = _("Error: Failed to run service scan!  (%s)") % self.ERRORS[errorCode]
+
+		if stateText:
+			self["scan_state"].setText(stateText)
+			for callback in self.onStateChanged:
+				callback(stateText)
 
 	def runLCNScanner(self):
 		def performScan():
@@ -409,6 +416,7 @@ class ServiceScanSummary(ScreenSummary):
 		ScreenSummary.__init__(self, session, parent)
 		self["scan_progress"] = ProgressBar()
 		self["Service"] = Label(_("No service"))
+		self["scan_state"] = Label()
 		if self.addWatcher not in self.onShow:
 			self.onShow.append(self.addWatcher)
 		if self.removeWatcher not in self.onHide:
@@ -419,15 +427,22 @@ class ServiceScanSummary(ScreenSummary):
 			self.parent.onProgressChanged.append(self.updateProgress)
 		if self.updateService not in self.parent.onServiceChanged:
 			self.parent.onServiceChanged.append(self.updateService)
+		if self.updateScanState not in self.parent.onStateChanged:
+			self.parent.onStateChanged.append(self.updateScanState)
 
 	def removeWatcher(self):
 		if self.updateProgress in self.parent.onProgressChanged:
 			self.parent.onProgressChanged.remove(self.updateProgress)
 		if self.updateService in self.parent.onServiceChanged:
 			self.parent.onServiceChanged.remove(self.updateService)
+		if self.updateScanState in self.parent.onStateChanged:
+			self.parent.onStateChanged.remove(self.updateScanState)
 
 	def updateProgress(self, progress):
 		self["scan_progress"].setValue(progress)
 
 	def updateService(self, service):
 		self["Service"].setText(service)
+
+	def updateScanState(self, scanState):
+		self["scan_state"].setText(scanState)
