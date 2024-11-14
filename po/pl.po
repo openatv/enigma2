@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-28 12:47+0000\n"
-"PO-Revision-Date: 2024-10-30 09:00+0000\n"
+"POT-Creation-Date: 2024-10-30 20:29+0000\n"
+"PO-Revision-Date: 2024-11-09 09:00+0000\n"
 "Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.8.2-dev\n"
+"X-Generator: Weblate 5.8.2\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -3173,10 +3173,10 @@ msgid "Brightness"
 msgstr "Jasność"
 
 msgid "Brightness (Dimmed)"
-msgstr "Jasność (przyciemnienie)"
+msgstr "Jasność (przyciemnianie)"
 
 msgid "Brightness (Normal)"
-msgstr "Jasność"
+msgstr "Jasność (normalna)"
 
 msgid "Brightness (Standby)"
 msgstr "Jasność (tryb czuwania)"
@@ -4556,7 +4556,7 @@ msgid "Configure the border width of the subtitles. The dark border makes the su
 msgstr "Skonfiguruj szerokość krawędzi napisów. Ciemne krawędzie sprawią, że napisy będa bardziej czytelne na jasnym tle."
 
 msgid "Configure the brightness level of the front panel display for dimmed operation."
-msgstr "Skonfiguruj poziom jasności wyświetlacza na panelu przednim w celu przyciemnienia."
+msgstr "Skonfiguruj poziom jasności wyświetlacza na panelu przednim w celu przyciemniania."
 
 msgid "Configure the brightness level of the front panel display for normal operation."
 msgstr "Skonfiguruj poziom jasności wyświetlacza panelu przedniego podczas normalnej pracy."
@@ -6114,7 +6114,7 @@ msgid "Dim delay"
 msgstr "Przygaś ekran po"
 
 msgid "Dim the LCD to the level from 'Brightness (Dimmed)' after specified time."
-msgstr "Przyciemnij wyświetlacz LCD do poziomu określonego w opcji „Jasność (przyciemnienie)” po określonym czasie."
+msgstr "Przyciemnij wyświetlacz LCD do poziomu określonego w opcji „Jasność (przyciemnianie)” po określonym czasie."
 
 msgid "Direct menu item selection"
 msgstr "Bezpośrednie menu wyboru elementy"
@@ -7354,16 +7354,16 @@ msgid "Entitlements for 'CAID %s'"
 msgstr "Uprawnienia dla 'CAID %s'"
 
 msgid "Entry image and text"
-msgstr "Obraz i tekst wpisu"
+msgstr "Ikona i tekst"
 
 msgid "Entry image, number and text"
-msgstr "Obrazek wejściowy, numer i tekst"
+msgstr "Ikona, numer i tekst"
 
 msgid "Entry number and text"
-msgstr "Numer i tekst wpisu"
+msgstr "Numer i tekst"
 
 msgid "Entry text only"
-msgstr "Tylko tekst wejściowy"
+msgstr "Tylko tekst"
 
 msgid "Epg/Guide"
 msgstr "EPG/Przewodnik"
@@ -11107,7 +11107,7 @@ msgstr "MiniTV z OSD"
 
 #, python-format
 msgid "Minimum age %d years"
-msgstr "Wiek minimalny %d lat"
+msgstr "Wiek %d lat"
 
 msgid "Minimum send interval"
 msgstr "Minimalny odstęp wysyłania"
@@ -12296,7 +12296,7 @@ msgid "Not associated"
 msgstr "Nie związane"
 
 msgid "Not configured"
-msgstr "nie skonfigurowano"
+msgstr "Nie skonfigurowano"
 
 msgid "Not currently mounted."
 msgstr "Obecnie nie jest zamontowany."
@@ -13576,7 +13576,7 @@ msgid "Power"
 msgstr "Zasilanie"
 
 msgid "Power LED State in Deep-Standby"
-msgstr "Stan diody LED zasilania podczas wyłączenia"
+msgstr "Stan diody LED zasilania w trybie głębokiego czuwania"
 
 msgid "Power LED State in Standby"
 msgstr "Stan LED zasilania podczas czuwania"
@@ -13585,7 +13585,7 @@ msgid "Power LED can be turned on or off here."
 msgstr "Tutaj można włączyć lub wyłączyć diodę zasilania."
 
 msgid "Power LED state during deep-standby."
-msgstr "Stan diody zasilania podczas wyłączenia."
+msgstr "Stan diody LED zasilania w trybie głębokiego czuwania."
 
 msgid "Power LED state during standby."
 msgstr "Stan LED zasilania podczas czuwania."
@@ -14152,7 +14152,7 @@ msgid "REC Symbol in Standby"
 msgstr "Symbol REC w trybie czuwania"
 
 msgid "REC Symbol in use"
-msgstr "Symbol REC"
+msgstr "Symbol REC w użyciu"
 
 msgid "RED button"
 msgstr "Czerwony przycisk"
@@ -16879,6 +16879,9 @@ msgstr "Ustaw proporcje pikon kanałów."
 
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Ustaw domyślną lokalizację dla nagrań błyskawicznych. Naciśnij przycisk 'OK', aby dodać nową lokalizację użyj strzałek 'lewo/prawo'."
+
+msgid "Set the default location to save your time shift recording files. Press 'OK' to add new locations, press LEFT/RIGHT to select from previously defined locations."
+msgstr "Ustaw domyślną lokalizację, aby zapisać pliki nagrań z timeshift. Naciśnij „OK”, aby dodać nowe lokalizacje, naciśnij LEWO/PRAWO, aby wybrać spośród wcześniej zdefiniowanych lokalizacji."
 
 msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Ustaw domyślną lokalizację dla nagrań-timeshiftu. Naciśnij przycisk 'OK', aby dodać nową lokalizację użyj strzałek 'lewo/prawo'."
@@ -19939,7 +19942,7 @@ msgid "This menu contains selections to display information about the receiver."
 msgstr "To menu zawiera opcje umożliwiające wyświetlanie informacji o odbiorniku."
 
 msgid "This menu offers options related managing the software on the %s %s."
-msgstr "To menu oferuje opcje związane z zarządzaniem oprogramowaniem w urządzeniu %s %s."
+msgstr "W tym menu znajdują się opcje związane z zarządzaniem oprogramowaniem w %s %s."
 
 msgid "This offset will only be used if the channel does not have its own volume offset."
 msgstr "To przesunięcie będzie używane tylko wtedy, gdy kanał nie ma własnego przesunięcia głośności."
@@ -20161,7 +20164,7 @@ msgid "This sets the prefix for each line in the debug log. The 'Boot time' is t
 msgstr "Ustawia prefiks dla każdej linii w dzienniku debugowania. Czas uruchamiania to liczba sekund od ostatniego uruchomienia %s %s."
 
 msgid "This setting allows the tuner configuration to be a duplication of another configured tuner."
-msgstr "To pozwala zduplikować ustawienia tunera, jeśli wcześniej skonfigurowano już inny tuner."
+msgstr "To ustawienie pozwala na utworzenie kopii konfiguracji innego skonfigurowanego już tunera."
 
 msgid "This setting depends on your cable provider and location. If you don't know the correct setting refer to the menu in the official cable receiver, or get it from your cable provider, or seek help via Internet forum."
 msgstr "To ustawienie zależy od operatora sieci kablowej i lokalizacji. Jeśli nie znasz prawidłowego ustawienia, zapoznaj się z menu oficjalnego odbiornika telewizji kablowej lub uzyskaj je od dostawcy telewizji kablowej lub poszukaj pomocy za pośrednictwem forum internetowego."
@@ -20341,6 +20344,9 @@ msgstr "Akcja po zmianie kanału"
 
 msgid "Time shift save failed!"
 msgstr "Timeshift błąd zapisu!"
+
+msgid "Time shift save location"
+msgstr "Timeshift zapisz lokalizację"
 
 msgid "Time shift save recording (Select event)"
 msgstr "Timeshift zapisz nagranie (wybierz wydarzenie)"
@@ -22970,7 +22976,7 @@ msgid "arts/culture (without music, general)"
 msgstr "kultura/sztuka (bez muzyki, ogólna)"
 
 msgid "arts/culture magazine"
-msgstr "kultura/magazyn kulturalny"
+msgstr "sztuka/kultura"
 
 msgid "athletics"
 msgstr "lekka atletyka"

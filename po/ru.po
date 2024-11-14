@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-28 12:47+0000\n"
-"PO-Revision-Date: 2024-10-24 16:48+0000\n"
+"POT-Creation-Date: 2024-10-30 20:29+0000\n"
+"PO-Revision-Date: 2024-11-14 17:31+0000\n"
 "Last-Translator: Вячеслав Диконов <sdiconov@mail.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
 "Language: ru\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.8.2-dev\n"
+"X-Generator: Weblate 5.9-dev\n"
 "X-Poedit-SourceCharset: iso-8859-5\n"
 
 msgid ""
@@ -6761,7 +6761,7 @@ msgid "EPG only"
 msgstr "Только ТВ-гид"
 
 msgid "EPG:"
-msgstr ""
+msgstr "EPG:"
 
 msgid "EPGSearch"
 msgstr "Поиск по ТВ-гиду"
@@ -11694,7 +11694,7 @@ msgid "Namibia"
 msgstr "Намибия"
 
 msgid "Narration"
-msgstr ""
+msgstr "Повествование"
 
 msgid "Native"
 msgstr "Исходное"
@@ -12292,7 +12292,7 @@ msgid "Not currently mounted."
 msgstr "В настоящее время не смонтирован."
 
 msgid "Not defined"
-msgstr ""
+msgstr "Не определено"
 
 #, python-format
 msgid "Not enough disk space. Please free up some disk space and try again. (%d MB required, %d MB available)"
@@ -12686,7 +12686,7 @@ msgid "Original Network ID (ONID)"
 msgstr "Исходный идент. сети (ONID)"
 
 msgid "Original language"
-msgstr ""
+msgstr "Исходный язык"
 
 msgid "Oriya"
 msgstr "Ория"
@@ -12930,7 +12930,7 @@ msgid "Partitions"
 msgstr "Разделы"
 
 msgid "Pass"
-msgstr "Пароль"
+msgstr "Проход"
 
 msgid "Pass-through"
 msgstr "Пропускать"
@@ -15433,9 +15433,9 @@ msgstr "Сканирование..."
 #, python-format
 msgid "Scanning: %d%% complete"
 msgid_plural "Scanning: %d%% complete"
-msgstr[0] "Поиск: %d%%"
-msgstr[1] "Поиск: %d%%"
-msgstr[2] "Поиск: %d%%"
+msgstr[0] "Сканирование: %d%% завершено"
+msgstr[1] "Сканирование: %d%% завершено"
+msgstr[2] "Сканирование: %d%% завершено"
 
 msgid "Scans default lamedbs sorted by satellite with a connected dish positioner"
 msgstr "Сканирование записей lamedb с сортировкой по спутникам при использовании позиционера"
@@ -16869,6 +16869,9 @@ msgstr "Настройка соотношения сторон пиконов к
 
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Назначьте стандартное расположение для файлов немедленной записи. Нажмите 'OK' чтобы добавить новый каталог, либо выберите существующий каталог кнопками ВПРАВО/ВЛЕВО."
+
+msgid "Set the default location to save your time shift recording files. Press 'OK' to add new locations, press LEFT/RIGHT to select from previously defined locations."
+msgstr "Установите местоположение по умолчанию для сохранения файлов записи сдвига во времени. Нажмите 'ОК', чтобы добавить новые местоположения, нажмите ВЛЕВО/ВПРАВО, чтобы выбрать из ранее определенных местоположений."
 
 msgid "Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Назначьте расположение для файлов таймшифта. Нажмите 'OK', чтобы добавить новый каталог, либо кнопками ВПРАВО/ВЛЕВО для выбора существующего каталога."
@@ -19234,7 +19237,7 @@ msgid "TMDB Search"
 msgstr "Поиск по TMDB"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Коррекция перевода Monja 18.10.2024"
+msgstr "Коррекция перевода Monja 10.11.2024"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл слишком большой для ISO9660 уровень 1!"
@@ -20331,6 +20334,9 @@ msgstr "Сохранять данные таймшифта при переклю
 msgid "Time shift save failed!"
 msgstr "Ошибка сохранения файла таймшифта!"
 
+msgid "Time shift save location"
+msgstr "Сдвиг во времени сохранить местоположение"
+
 msgid "Time shift save recording (Select event)"
 msgstr "Сохранение записи таймшифта (Выберите передачу)"
 
@@ -20425,7 +20431,7 @@ msgid "Timer+"
 msgstr "Таймер+"
 
 msgid "Timer:"
-msgstr ""
+msgstr "Таймер:"
 
 msgid "Timerlist"
 msgstr "Список таймеров"
@@ -20800,7 +20806,7 @@ msgid "Tunisia"
 msgstr "Тунис"
 
 msgid "Turbo: One reboot after flash; Fast: One reboot after flash, one reboot after restore; Slow: One reboot after flash, one reboot after restore in GUI."
-msgstr "Турбо: Одна перезагрузка после прошивки; Быстро: Одна перезагрузка после прошивки, одна перезагрузка после восстановления; Медленно: Одна перезагрузка после прошивки, одна перезагрузка после восстановления в GUI"
+msgstr "Турбо: одна перезагрузка после прошивки; Быстро: одна перезагрузка после прошивки, одна перезагрузка после восстановления; Медленно: одна перезагрузка после прошивки, одна перезагрузка после восстановления в графическом интерфейсе."
 
 msgid "Turkey"
 msgstr "Турция"
@@ -22738,7 +22744,7 @@ msgid "Your email address is used to login to IceTV services."
 msgstr "Ваш адрес электронной почты используется для входа в сервисы IceTV."
 
 msgid "Your existing IceTV password."
-msgstr "Ваш существующий пароль IceTV."
+msgstr "Ваш текущий пароль IceTV."
 
 msgid ""
 "Your front panel processor firmware must be upgraded.\n"
