@@ -210,17 +210,17 @@ class Screen(dict):
 
 	image = property(getImage, setImage)
 
-	def showHelp(self):
-		def callHelpAction(*args):
-			if args:
-				(actionMap, context, action) = args
-				actionMap.action(context, action)
+	def callHelpAction(self, *args):
+		if args:
+			(actionMap, context, action) = args
+			actionMap.action(context, action)
 
+	def showHelp(self):
 		from Screens.HelpMenu import HelpMenu  # Import needs to be here because of a circular import.
 		if hasattr(self, "secondInfoBarScreen"):
 			if self.secondInfoBarScreen and self.secondInfoBarScreen.shown:
 				self.secondInfoBarScreen.hide()
-		self.session.openWithCallback(callHelpAction, HelpMenu, self.helpList)
+		self.session.openWithCallback(self.callHelpAction, HelpMenu, self.helpList)
 
 	def setFocus(self, item):
 		self.instance.setFocus(item.instance)
