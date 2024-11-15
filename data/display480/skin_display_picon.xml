@@ -1,311 +1,225 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <skin>
 	<windowstyle id="1" type="skinned">
-		<color color="#000000" name="Background" />
-		<color color="#ffffff" name="LabelForeground" />
-		<color color="#000000" name="ListboxBackground" />
-		<color color="#ffffff" name="ListboxForeground" />
-		<color color="#000000" name="ListboxSelectedBackground" />
-		<color color="#ffffff" name="ListboxSelectedForeground" />
-		<color color="#000000" name="ListboxMarkedBackground" />
-		<color color="#ffffff" name="ListboxMarkedForeground" />
-		<color color="#000000" name="ListboxMarkedAndSelectedBackground" />
-		<color color="#ffffff" name="ListboxMarkedAndSelectedForeground" />
-		<color color="#ffffff" name="WindowTitleForeground" />
-		<color color="#000000" name="WindowTitleBackground" />
+		<color color="#000000" name="Background"/>
+		<color color="#ffffff" name="LabelForeground"/>
+		<color color="#000000" name="ListboxBackground"/>
+		<color color="#ffffff" name="ListboxForeground"/>
+		<color color="#000000" name="ListboxSelectedBackground"/>
+		<color color="#ffffff" name="ListboxSelectedForeground"/>
+		<color color="#000000" name="ListboxMarkedBackground"/>
+		<color color="#ffffff" name="ListboxMarkedForeground"/>
+		<color color="#000000" name="ListboxMarkedAndSelectedBackground"/>
+		<color color="#ffffff" name="ListboxMarkedAndSelectedForeground"/>
+		<color color="#ffffff" name="WindowTitleForeground"/>
+		<color color="#000000" name="WindowTitleBackground"/>
 	</windowstyle>
 	<fonts>
 		<!-- pick a funky name for the font, so we don't conflict  -->
-		<font filename="nmsbd.ttf" name="FdLcD" scale="100" />
+		<font filename="nmsbd.ttf" name="FdLcD" scale="100"/>
 	</fonts>
 
+	<!-- Edited by Makumbo 2024-11-15 - Colors: Red #FF0000 / Light Blue #87CEFA / Light Grey #BDBDBD / Dark Grey #888888 -->
+
+	<!-- Current time big and centered at bottom -->
 	<screen name="SummaryClockPanel">
-
-<!-- ###########
-#####		Nur hier "center"
-#####
-#####		<widget source="global.CurrentTime" render="Label" position="center,227" size="230,100" font="FdLcD;75" halign="center" noWrap="1" transparent="1">
-#####
-#####		Grosse Uhrzeit unten mittig
-############ -->
-
 		<widget source="global.CurrentTime" render="Label" position="0,227" size="480,75" font="FdLcD;75" halign="center">
-			<convert type="ClockToText" />
+			<convert type="ClockToText"/>
 		</widget>
 	</screen>
 
-
-	<!-- InfoBar - Einschaltscreen -->
+	<!-- InfoBar - Box is turned on -->
 	<screen name="InfoBarSummary" position="0,0" size="480,320">
 
-<!-- ###########
-#####		118 + 236 = 354 Dann ist das Picon von links 118 und nach rechts 126 vom Rand
-#####
-#####		<widget source="session.CurrentService" render="LcdPicon" position="118,20" zPosition="2" size="236,142" alphatest="on">
-#####
-#####		Picons sind 220x132 gross - 130 + 220 + 130 = 480 dann Picon in der Mitte, muss nicht vergroessert werden und ist deshalb nicht verzerrt
-#####		Picon 20 von oberem Rand
-############ -->
-
+		<!-- Show 220x132 pixel channel picon centered -->
 		<widget source="session.CurrentService" render="LcdPicon" position="130,20" size="220,132">
 			<convert type="ServiceName">Reference</convert>
 		</widget>
 
-<!-- ###########
-#####		<widget source="session.Event_Now" render="Label" position="0,100" size="115,51" font="FdLcD;38" foregroundColor="#87CEFA" valign="center" halign="center">
-#####
-#####		Startzeit 10 Pixel von links wie Tunerbuchstabe - Groesse 40
-#####		Unterkante auf Hoehe der Unterkante vom Picon
-############ -->
-
+		<!-- Event starttime - blue -->
 		<widget source="session.Event_Now" render="Label" position="10,115" size="120,40" font="FdLcD;40" foregroundColor="#87CEFA" halign="left">
 			<convert type="EventTime">StartTime</convert>
-			<convert type="ClockToText" />
+			<convert type="ClockToText"/>
 		</widget>
 
-<!-- ###########
-#####		<widget source="session.Event_Now" render="Label" position="357,100" size="115,51" font="FdLcD;38" foregroundColor="#87CEFA" valign="center" halign="center">
-#####
-#####		Endzeit 10 Pixel von rechts wie Restzeit - Groesse 40
-#####		Unterkante auf Hoehe der Unterkante vom Picon
-#####		Zweiten Trennstrich 1 Pixel hoeher, dann beide Trennstriche gleich weit vom Fortschrittsbalken entfernt
-#####		Fortschrittsbalken je 10 Pixel von den Raendern
-#####		Fortschrittsbalken 5 Pixel hoeher, damit, falls es 2 Zeilen in "ChannelSelectionSummary" gibt, diese komplett zu sehen sind
-############ -->
-
+		<!-- Event endtime - blue -->
 		<widget source="session.Event_Now" render="Label" position="350,115" size="120,40" font="FdLcD;40" foregroundColor="#87CEFA" halign="right">
 			<convert type="EventTime">EndTime</convert>
-			<convert type="ClockToText" />
+			<convert type="ClockToText"/>
 		</widget>
 
-		<eLabel position="10,170" size="460,3" backgroundColor="#BDBDBD" />
+		<!-- Hyphen - light grey -->
+		<eLabel position="10,170" size="460,3" backgroundColor="#BDBDBD"/>
 
-		<widget source="session.Event_Now" render="Progress" position="10,179" size="460,33">
+		<!-- Progress bar - dark grey -->
+		<widget source="session.Event_Now" render="Progress" position="10,179" size="460,33" foregroundColor="#888888">
 			<convert type="EventTime">Progress</convert>
 		</widget>
 
-		<eLabel position="10,218" size="460,3" backgroundColor="#BDBDBD" />
+		<!-- Hyphen - light grey -->
+		<eLabel position="10,218" size="460,3" backgroundColor="#BDBDBD"/>
 
-<!-- ###########
-#####		<widget source="session.Event_Now" render="Label" position="340,252" size="130,40" font="FdLcD;40" zPosition="0" foregroundColor="#A9E2F3" halign="right" transparent="1">
-#####
-#####		Restzeit 10 Pixel von rechts (wie das "A" von links) - Gleiche Farbe wie die Uhrzeiten
-#####		Blinkendes oder permanentes "R" mittig im Fortschrittsbalken
-############ -->
-
+		<!-- Remaining minutes - blue -->
 		<widget source="session.Event_Now" render="Label" position="345,246" size="125,40" font="FdLcD;40" zPosition="1" foregroundColor="#87CEFA" halign="right">
 			<convert type="EventTime">Remaining</convert>
 			<convert type="RemainingToText">OnlyMinute</convert>
 		</widget>
 
-		<panel name="MeinRecordingPanel" />
-		<panel name="SummaryClockPanel" />
-		<panel name="MeinTunerInfoPanel" />
+		<!-- Get blinking (or permanently displayed) "R" centered on progressbar at recordings -->
+		<panel name="PiconRecordingPanel"/>
+
+		<!-- Get current time big and centered at bottom -->
+		<panel name="SummaryClockPanel"/>
+
+		<!-- Get tuner letter - green or green and red -->
+		<panel name="PiconTunerInfoPanel"/>
 	</screen>
 
-
-	<!-- channelselection -->
+	<!-- Channelselection - Mostly same construction like "InfoBarSummary" but no tuner letter and no current time -->
 	<screen name="ChannelSelectionSummary" position="0,0" size="480,320">
-
-<!-- ###########
-#####		<widget source="parent.Service" render="LcdPicon" position="147,0" size="177,120" zPosition="2" alphatest="on">
-#####			<convert type="ServiceName">Reference</convert>
-#####		</widget>
-#####		<eLabel position="0,123" size="480,1" backgroundColor="#BDBDBD" />
-#####		<widget source="parent.ServiceEvent" render="Progress" position="0,127" size="480,20">
-#####			<convert type="EventTime">Progress</convert>
-#####		</widget>
-#####		<eLabel position="0,149" size="480,1" backgroundColor="#BDBDBD" />
-#####		<widget source="parent.ServiceEvent" render="Label" position="5,67" size="470,51" font="FdLcD;38" foregroundColor="#87CEFA" transparent="1" valign="center" halign="left">
-#####			<convert type="EventTime">StartTime</convert>
-#####			<convert type="ClockToText" />
-#####		</widget>
-#####		<widget source="parent.ServiceEvent" render="Label" position="5,67" size="470,51" font="FdLcD;38" foregroundColor="#87CEFA" transparent="1" valign="center" halign="right">
-#####			<convert type="EventTime">EndTime</convert>
-#####			<convert type="ClockToText" />
-#####		</widget>
-#####		<widget source="parent.ServiceEvent" render="Label" position="0,153" size="480,167" font="FdLcD;42" halign="center" valign="center">
-#####			<convert type="EventName">Name</convert>
-#####		</widget>
-#####		<panel name="MeinRecordingPanel" />
-#####
-#####		Oberer Teil wie in "InfoBarSummary" mit Picon und Uhrzeiten
-#####		Sendername maximal 2 Zeilen mittig in Groesse 40
-#####		Zweiten Trennstrich 1 Pixel hoeher, dann beide Trennstriche gleich weit vom Fortschrittsbalken entfernt
-#####		Fortschrittsbalken je 10 Pixel von den Raendern
-#####		Blinkendes oder permanentes "R" mittig im Fortschrittsbalken
-############ -->
-
 		<widget source="parent.Service" render="LcdPicon" position="130,20" size="220,132">
 			<convert type="ServiceName">Reference</convert>
 		</widget>
-
 		<widget source="parent.ServiceEvent" render="Label" position="10,115" size="120,40" font="FdLcD;40" foregroundColor="#87CEFA" halign="left">
 			<convert type="EventTime">StartTime</convert>
-			<convert type="ClockToText" />
+			<convert type="ClockToText"/>
 		</widget>
-
 		<widget source="parent.ServiceEvent" render="Label" position="350,115" size="120,40" font="FdLcD;40" foregroundColor="#87CEFA" halign="right">
 			<convert type="EventTime">EndTime</convert>
-			<convert type="ClockToText" />
+			<convert type="ClockToText"/>
 		</widget>
-
-		<eLabel position="10,170" size="460,3" backgroundColor="#BDBDBD" />
-
-		<widget source="parent.ServiceEvent" render="Progress" position="10,179" size="460,33">
+		<eLabel position="10,170" size="460,3" backgroundColor="#BDBDBD"/>
+		<widget source="parent.ServiceEvent" render="Progress" position="10,179" size="460,33" foregroundColor="#888888">
 			<convert type="EventTime">Progress</convert>
 		</widget>
-
-		<eLabel position="10,218" size="460,3" backgroundColor="#BDBDBD" />
-
+		<eLabel position="10,218" size="460,3" backgroundColor="#BDBDBD"/>
 		<widget source="parent.ServiceEvent" render="Label" position="0,221" size="480,92" font="FdLcD;40" halign="center" valign="center">
 			<convert type="EventName">Name</convert>
 		</widget>
-
-		<panel name="MeinRecordingPanel" />
+		<panel name="PiconRecordingPanel"/>
 	</screen>
 
-
-	<!-- EPGSelection -->
+	<!-- EPGSelection - EPG key pressed - Mostly same construction like "ChannelSelectionSummary" - Gets the blinking "R" at other coordinates (from "TheRecordingPanel") -->
 	<screen name="EPGSelectionSummary" position="0,0" size="480,320">
-
-<!-- ###########
-#####		Sendername 'klebt' am oberen Rand
-#####
-#####		<widget source="parent.Service" render="Label" position="0,0" size="480,51" foregroundColor="#87CEFA" font="FdLcD;34" transparent="1" halign="center" noWrap="1">
-#####			<convert type="ServiceName">Name</convert>
-#####		</widget>
-#####		<eLabel position="0,51" size="480,2" backgroundColor="#BDBDBD" />
-#####		<widget source="parent.Event" render="Label" position="0,53" size="480,213" font="FdLcD;42" halign="center" valign="center">
-#####			<convert type="EventName">Name</convert>
-#####		</widget>
-#####		<widget source="parent.Event" render="Label" position="5,269" size="470,51" font="FdLcD;38" foregroundColor="#87CEFA" transparent="1" valign="center" halign="left">
-#####			<convert type="EventTime">StartTime</convert>
-#####			<convert type="ClockToText" />
-#####		</widget>
-#####		<eLabel position="0,268" size="480,2" backgroundColor="#BDBDBD" />
-#####		<widget source="parent.Event" render="Label" position="5,269" size="470,51" font="FdLcD;38" foregroundColor="#87CEFA" transparent="1" valign="center" halign="right">
-#####			<convert type="EventTime">EndTime</convert>
-#####			<convert type="ClockToText" />
-#####		</widget>
-#####
-#####		Startzeit 10 Pixel vom linken Rand
-#####		Endzeit 10 Pixel vom rechten Rand - Blinkendes "R" unten mittig
-#####		Blinkendes oder permanentes "R" unten mittig
-############ -->
-
-	<!-- Sendername -->
 		<widget source="parent.Service" render="Label" position="0,8" size="480,46" foregroundColor="#87CEFA" font="FdLcD;40" halign="center" noWrap="1">
 			<convert type="ServiceName">Name</convert>
 		</widget>
-
-	<!-- Trennstrich -->
-		<eLabel position="10,55" size="460,3" backgroundColor="#BDBDBD" />
-
-	<!-- Sendungstitel - maximal 4 Zeilen -->
+		<eLabel position="10,55" size="460,3" backgroundColor="#BDBDBD"/>
 		<widget source="parent.Event" render="Label" position="10,58" size="460,192" font="FdLcD;42" halign="center" valign="center">
 			<convert type="EventName">Name</convert>
 		</widget>
-
-	<!-- Trennstrich -->
-		<eLabel position="10,250" size="460,3" backgroundColor="#BDBDBD" />
-
-	<!-- Startzeit -->
+		<eLabel position="10,250" size="460,3" backgroundColor="#BDBDBD"/>
 		<widget source="parent.Event" render="Label" position="10,258" size="150,46" font="FdLcD;40" foregroundColor="#87CEFA" halign="left">
 			<convert type="EventTime">StartTime</convert>
-			<convert type="ClockToText" />
+			<convert type="ClockToText"/>
 		</widget>
-
-	<!-- Endzeit -->
 		<widget source="parent.Event" render="Label" position="320,258" size="150,46" font="FdLcD;40" foregroundColor="#87CEFA" halign="right">
 			<convert type="EventTime">EndTime</convert>
-			<convert type="ClockToText" />
+			<convert type="ClockToText"/>
 		</widget>
-
-	<!-- Blinkendes oder permanentes "R" unten mittig -->
-		<panel name="TheRecordingPanel" />
+		<panel name="TheRecordingPanel"/>
 	</screen>
 
-
-	<!-- EPG Panel -->
+	<!-- EPG Panel - Mostly same construction like "InfoBarSummary" -->
 	<screen name="MyEPGPanel" position="0,0" size="480,320">
-
-<!-- ###########
-#####		Wird von "QuickEPGSummary", "GraphicalEPGSummary", "GraphicalEPGPIGSummary", "EPGSelectionMultiSummary" und "EPGverticalSummary"
-#####		aufgerufen, wenn man die EPG Taste laenger drueckt und dann einen EPG auswaehlt - mit Picon wie in "ChannelSelectionSummary"
-#####
-##########	Beim ersten Aufruf KEIN Picon und KEIN Fortschritsbalken zu sehen!?!?!
-##########	Erst einmal zum naechsten Sender und dann wieder zurueck?!?!
-#####
-#####		Picon wird an rechten Rand von Endzeit ueberschrieben
-#####		
-#####		<widget source="parent.Service" render="LcdPicon" position="147,0" size="177,120" zPosition="1" alphatest="on">
-#####			<convert type="ServiceName">Reference</convert>
-#####		</widget>
-#####		<eLabel position="0,123" size="480,1" backgroundColor="#BDBDBD" />
-#####		<widget source="parent.Event" render="Progress" position="0,127" size="480,20">
-#####			<convert type="EventTime">Progress</convert>
-#####		</widget>
-#####		<eLabel position="0,149" size="480,1" backgroundColor="#BDBDBD" />
-#####		<widget source="parent.Event" render="Label" position="5,67" size="470,51" font="FdLcD;38" foregroundColor="#87CEFA" transparent="1" valign="center" halign="left">
-#####			<convert type="EventTime">StartTime</convert>
-#####			<convert type="ClockToText" />
-#####		</widget>
-#####		<widget source="parent.Event" render="Label" position="5,67" size="470,51" font="FdLcD;38" foregroundColor="#87CEFA" transparent="1" valign="center" halign="right">
-#####			<convert type="EventTime">EndTime</convert>
-#####			<convert type="ClockToText" />
-#####		</widget>
-#####		<widget source="parent.Event" render="Label" position="0,153" size="480,167" font="FdLcD;42" halign="center" valign="center">
-#####			<convert type="EventName">Name</convert>
-#####		</widget>
-#####
-#####		Oberer Teil wie in "InfoBarSummary" und "ChannelSelectionSummary" mit Picon und Uhrzeiten
-#####		Unterer Teil wie in "ChannelSelectionSummary"
-#####		Blinkendes oder permanentes "R" mittig im Fortschrittsbalken
-############ -->
-
 		<widget source="parent.Service" render="LcdPicon" position="130,20" size="220,132">
 			<convert type="ServiceName">Reference</convert>
 		</widget>
 		<widget source="parent.Event" render="Label" position="10,115" size="120,40" font="FdLcD;40" foregroundColor="#87CEFA" halign="left">
 			<convert type="EventTime">StartTime</convert>
-			<convert type="ClockToText" />
+			<convert type="ClockToText"/>
 		</widget>
 		<widget source="parent.Event" render="Label" position="350,115" size="120,40" font="FdLcD;40" foregroundColor="#87CEFA" halign="right">
 			<convert type="EventTime">EndTime</convert>
-			<convert type="ClockToText" />
+			<convert type="ClockToText"/>
 		</widget>
-		<eLabel position="10,170" size="460,3" backgroundColor="#BDBDBD" />
-		<widget source="parent.Event" render="Progress" position="10,179" size="460,33">
+		<eLabel position="10,170" size="460,3" backgroundColor="#BDBDBD"/>
+		<widget source="parent.Event" render="Progress" position="10,179" size="460,33" foregroundColor="#888888">
 			<convert type="EventTime">Progress</convert>
 		</widget>
-		<eLabel position="10,218" size="460,3" backgroundColor="#BDBDBD" />
+		<eLabel position="10,218" size="460,3" backgroundColor="#BDBDBD"/>
 		<widget source="parent.Event" render="Label" position="0,221" size="480,92" font="FdLcD;40" halign="center" valign="center">
 			<convert type="EventName">Name</convert>
 		</widget>
-		<panel name="MeinRecordingPanel" />
+		<panel name="PiconRecordingPanel"/>
 	</screen>
 
-
-	<!-- EPG panels -->
+	<!-- EPG panels - They all jump to "MyEPGPanel" -->
 	<screen name="QuickEPGSummary" position="0,0" size="480,320">
-		<panel name="MyEPGPanel" />
+		<panel name="MyEPGPanel"/>
 	</screen>
 	<screen name="GraphicalEPGSummary" position="0,0" size="480,320">
-		<panel name="MyEPGPanel" />
+		<panel name="MyEPGPanel"/>
 	</screen>
 	<screen name="GraphicalEPGPIGSummary" position="0,0" size="480,320">
-		<panel name="MyEPGPanel" />
+		<panel name="MyEPGPanel"/>
 	</screen>
 	<screen name="GraphicalInfoBarEPGSummary" position="0,0" size="480,320">
-		<panel name="MyEPGPanel" />
+		<panel name="MyEPGPanel"/>
 	</screen>
 	<screen name="EPGSelectionMultiSummary" position="0,0" size="480,320">
-		<panel name="MyEPGPanel" />
+		<panel name="MyEPGPanel"/>
 	</screen>
 	<screen name="EPGverticalSummary" position="0,0" size="480,320">
-		<panel name="MyEPGPanel" />
+		<panel name="MyEPGPanel"/>
 	</screen>
 
+	<!-- If recording put the blinking (or permanently displayed) "R" in the middle of the progress bar -->
+	<screen name="PiconRecordingPanel">
+		<widget source="session.RecordState" render="Pixmap" position="center,180" pixmap="/usr/share/enigma2/display/skin_default/record.png" alphatest="blend" size="31,31" zPosition="1">
+			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,True,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide">Blink,1000</convert>
+		</widget>
+		<widget source="session.RecordState" render="Pixmap" position="center,180" pixmap="/usr/share/enigma2/display/skin_default/record.png" alphatest="blend" size="31,31" zPosition="1">
+			<convert type="ConfigEntryTest">config.usage.blinking_rec_symbol_during_recording,False,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+	</screen>
+
+	<!-- Tuner Panel - Shows tuner letter in green or, if recording, in red, or one (who is recording) in red and another one (beeing watched) in green -->
+	<screen name="PiconTunerInfoPanel">
+		<widget source="session.FrontendInfo" render="FixedLabel" position="10,246" size="30,40" text="A" foregroundColor="#04B404" font="FdLcD;40" zPosition="1" transparent="1">
+			<convert type="FrontendInfo">NUMBER</convert>
+			<convert type="ValueRange">0,0</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget source="session.FrontendInfo" render="FixedLabel" position="40,246" size="30,40" text="B" foregroundColor="#04B404" font="FdLcD;40" zPosition="1" transparent="1">
+			<convert type="FrontendInfo">NUMBER</convert>
+			<convert type="ValueRange">1,1</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget source="session.FrontendInfo" render="FixedLabel" position="70,246" size="30,40" text="C" foregroundColor="#04B404" font="FdLcD;40" zPosition="1" transparent="1">
+			<convert type="FrontendInfo">NUMBER</convert>
+			<convert type="ValueRange">2,2</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget source="session.FrontendInfo" render="FixedLabel" position="100,246" size="30,40" text="D" foregroundColor="#04B404" font="FdLcD;40" zPosition="1" transparent="1">
+			<convert type="FrontendInfo">NUMBER</convert>
+			<convert type="ValueRange">3,3</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget source="session.TunerInfo" render="FixedLabel" position="10,246" size="30,40" text="A" foregroundColor="#FF0000" font="FdLcD;40" zPosition="0" transparent="1">
+			<convert type="TunerInfo">TunerUseMask</convert>
+			<convert type="ValueBitTest">1</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget source="session.TunerInfo" render="FixedLabel" position="40,246" size="30,40" text="B" foregroundColor="#FF0000" font="FdLcD;40" zPosition="0" transparent="1">
+			<convert type="TunerInfo">TunerUseMask</convert>
+			<convert type="ValueBitTest">2</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget source="session.TunerInfo" render="FixedLabel" position="70,246" size="30,40" text="C" foregroundColor="#FF0000" font="FdLcD;40" zPosition="0" transparent="1">
+			<convert type="TunerInfo">TunerUseMask</convert>
+			<convert type="ValueBitTest">4</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+		<widget source="session.TunerInfo" render="FixedLabel" position="100,246" size="30,40" text="D" foregroundColor="#FF0000" font="FdLcD;40" zPosition="0" transparent="1">
+			<convert type="TunerInfo">TunerUseMask</convert>
+			<convert type="ValueBitTest">8</convert>
+			<convert type="ConditionalShowHide"/>
+		</widget>
+	</screen>
+
+	<!-- The rest will be provided by the "skin_display_templates.xml" file -->
 	<include filename="/usr/share/enigma2/display/skin_display_templates.xml"/>
 </skin>
