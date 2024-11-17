@@ -1,6 +1,6 @@
 from time import localtime, mktime, strftime, time
 
-from enigma import eEPGCache, eServiceEventEnums
+from enigma import eEPGCache, eServiceEventEnums, eServiceReference, iServiceInformation
 
 from ServiceReference import ServiceReference
 from Components.config import config
@@ -8,7 +8,7 @@ from Components.Element import cached
 from Components.Converter.genre import getGenreStringSub
 from Components.Converter.Converter import Converter
 from Components.Converter.Poll import Poll
-from Tools.Conversions import UnitScaler, scaleNumber
+from Tools.Conversions import UnitScaler
 from Tools.Directories import SCOPE_GUISKIN, resolveFilename
 
 
