@@ -309,6 +309,7 @@ def getButtonSetupFunctions():
 		ButtonSetupFunctions.append((_("Bluetooth Setup"), "Bluetooth/", textPlugins))
 	if isPluginInstalled("Chromium"):
 		ButtonSetupFunctions.append((_("Youtube TV"), "YoutubeTV/", textPlugins))
+	ButtonSetupFunctions.append((_("Reload Skin"), "ReloadSkin/", textSetup))
 	return ButtonSetupFunctions
 
 
@@ -710,6 +711,10 @@ class InfoBarButtonSetup():
 				if isPluginInstalled("Chromium"):
 					from Plugins.Extensions.Chromium.plugin import start_youtubetv_main
 					start_youtubetv_main(self.session)
+			elif selected[0] == "ReloadSkin":
+				from skin import reloadSkins
+				reloadSkins()
+				self.session.reloadDialogs()
 
 	def showServiceListOrMovies(self):
 		if hasattr(self, "openServiceList"):
