@@ -6,6 +6,7 @@ from Screens.Screen import Screen
 
 class QuadPiP(Screen):
 	def __init__(self, session, decoderIdx=1, pos=None):
+		self.noSkinReload = True
 		Screen.__init__(self, session)
 		self["video"] = VideoWindow(decoderIdx, 720, 576)
 		self.currentService = None

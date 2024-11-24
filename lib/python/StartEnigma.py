@@ -137,7 +137,8 @@ class Session:
 		readSkin(dialog, None, dialog.skinName, desktop)  # Read skin data.
 		dialog.setDesktop(desktop)  # Create GUI view of this dialog.
 		dialog.applySkin()
-		self.allDialogs.append(dialog)
+		if not hasattr(dialog, "noSkinReload"):
+			self.allDialogs.append(dialog)
 		return dialog
 
 	def pushCurrent(self):
