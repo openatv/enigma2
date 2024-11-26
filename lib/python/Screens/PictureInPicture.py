@@ -45,6 +45,7 @@ def PipPigMode(value):
 
 
 class PictureInPictureZapping(Screen):
+	noSkinReload = True
 	skin = """<screen name="PictureInPictureZapping" flags="wfNoBorder" position="50,50" size="90,26" title="PiPZap" zPosition="-1">
 			<eLabel text="PiP-Zap" position="0,0" size="90,26" foregroundColor="#00ff66" font="Regular;26" />
 		</screen>"""
@@ -59,6 +60,7 @@ class PictureInPicture(Screen):
 		self.dishpipActive = session.instantiateDialog(Dishpip)
 		self.currentService = None
 		self.currentServiceReference = None
+		self.noSkinReload = True
 
 		self.choicelist = [("standard", _("Standard"))]
 		if BoxInfo.getItem("VideoDestinationConfigurable"):
