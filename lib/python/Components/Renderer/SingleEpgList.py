@@ -37,7 +37,7 @@ class SingleEpgList(Renderer, VariableText):
 								localTime = localtime(event[1])
 								text.append(f"{localTime[3]:02d}:{localTime[4]:02d} {event[4]}")
 							else:
-								text.append(_("N/A)"))
+								text.append(_("N/A"))
 
 						eventCount += 1
 						if eventCount > self.maxEvents:
