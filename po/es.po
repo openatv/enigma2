@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-30 20:29+0000\n"
+"POT-Creation-Date: 2024-11-14 19:50+0000\n"
 "PO-Revision-Date: 2024-10-02 07:35+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/es/>\n"
@@ -2394,7 +2394,7 @@ msgstr "Preguntar siempre"
 msgid "Always include ECM in recordings"
 msgstr "Incluir siempre el ECM en las grabaciones"
 
-msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver. Default: off."
+msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver."
 msgstr "Incluir siempre los mensajes ECM en las grabaciones. Esto anula los ajustes individuales del temporizador de forma global. Permite que las grabaciones se descifren siempre después (a veces llamado descifrado sin conexión), si es compatible con su receptor. Por defecto: desactivado."
 
 msgid "Always show bouquets"
@@ -4587,6 +4587,9 @@ msgstr "Complejo (permite mezclar pistas de audio y aspectos)"
 msgid "Composition of the recording filenames"
 msgstr "Composición de los nombres de las grabaciones"
 
+msgid "Compress root file system tar file. (This takes the most time!)"
+msgstr ""
+
 msgid "Compressed bits/pixel"
 msgstr ""
 
@@ -5318,8 +5321,38 @@ msgstr "Crear una contraseña generada aleatoriamente"
 msgid "Create a symbolic link"
 msgstr ""
 
+msgid "Create application loader dump."
+msgstr ""
+
+msgid "Create backup image zip file."
+msgstr ""
+
+msgid "Create boot dump."
+msgstr ""
+
+msgid "Create boot image dump."
+msgstr ""
+
+msgid "Create device information dump."
+msgstr ""
+
+msgid "Create kernel dump."
+msgstr ""
+
 #, python-format
 msgid "Create recovery image backup '%s'."
+msgstr ""
+
+msgid "Create rescue dump."
+msgstr ""
+
+msgid "Create root UBI file system."
+msgstr ""
+
+msgid "Create root file system dump."
+msgstr ""
+
+msgid "Create root journaling flash file system."
 msgstr ""
 
 msgid "Create separate radio user bouquet"
@@ -5328,10 +5361,16 @@ msgstr "Crear un userbouquet de radio independiente"
 msgid "Create swap"
 msgstr ""
 
+msgid "Create tar file of root file system."
+msgstr ""
+
 msgid "Create the additional slots on the selected device"
 msgstr ""
 
 msgid "Create the flash expander in the selected device"
+msgstr ""
+
+msgid "Create working directories."
 msgstr ""
 
 msgid "Creating .ap and .sc files"
@@ -6940,10 +6979,6 @@ msgstr "Dzongkha"
 #
 msgid "E"
 msgstr "E"
-
-#
-msgid "E "
-msgstr "E "
 
 msgid "ECM"
 msgstr ""
@@ -11788,11 +11823,11 @@ msgstr "Configurar montajes"
 msgid "Mount failed"
 msgstr "Montaje fallido"
 
+msgid "Mount root file system."
+msgstr ""
+
 msgid "Mount: "
 msgstr "Montaje: "
-
-msgid "Mountpoint"
-msgstr "Punto de montaje"
 
 msgid "Mounts"
 msgstr "Montajes"
@@ -12459,7 +12494,7 @@ msgstr "Nunca"
 msgid "Never abort"
 msgstr "No salir nunca"
 
-msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off."
+msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding)."
 msgstr "No desencriptar el contenido mientras se graba. Esto anula los ajustes individuales del temporizador de forma global. Si está activada, las grabaciones se almacenan en una presentación cifrada y deben desencriptarse después (a veces se denomina decodificación sin conexión). Por defecto: desactivado."
 
 msgid "Never decrypt while recording"
@@ -25415,6 +25450,13 @@ msgstr "Sí (conservar fuentes)"
 
 msgid "®"
 msgstr "®"
+
+#
+#~ msgid "E "
+#~ msgstr "E "
+
+#~ msgid "Mountpoint"
+#~ msgstr "Punto de montaje"
 
 #, python-format
 #~ msgid "%d channel found"

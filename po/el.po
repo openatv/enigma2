@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-30 20:29+0000\n"
+"POT-Creation-Date: 2024-11-14 19:50+0000\n"
 "PO-Revision-Date: 2024-11-03 19:00+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -2278,7 +2278,7 @@ msgstr "Πάντα ερώτηση"
 msgid "Always include ECM in recordings"
 msgstr "Συμπερίληψη πάντα του ECM στις εγγραφές"
 
-msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver. Default: off."
+msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver."
 msgstr "Να συμπεριλαμβάνονται πάντα τα μηνύματα ECM στις εγγραφές. Αυτό παρακάμπτει όλες τις ιδιαίτερες ρυθμίσεις χρονοδιακοπτών γενικά. Επιτρέπει στις εγγραφές να είναι πάντα αποκωδικοποιημένες μετέπειτα (ενίοτε ονομάζεται κωδικοποίηση εκτός σύνδεσης), αν υποστηρίζεται από τον δέκτη σας. Προεπιλογή: ανενεργό."
 
 msgid "Always show bouquets"
@@ -4372,6 +4372,9 @@ msgstr "Σύνθετη (επιτρέπει τη μίξη ροών ήχου κα�
 msgid "Composition of the recording filenames"
 msgstr "Σύνθεση ονομάτων των εγγραφών"
 
+msgid "Compress root file system tar file. (This takes the most time!)"
+msgstr ""
+
 msgid "Compressed bits/pixel"
 msgstr "Συμπιεσμένα bits/πίξελ"
 
@@ -5080,9 +5083,39 @@ msgstr "Δημιουργία τυχαίου κωδικού πρόσβασης"
 msgid "Create a symbolic link"
 msgstr "Δημιουργία συντόμευσης"
 
+msgid "Create application loader dump."
+msgstr ""
+
+msgid "Create backup image zip file."
+msgstr ""
+
+msgid "Create boot dump."
+msgstr ""
+
+msgid "Create boot image dump."
+msgstr ""
+
+msgid "Create device information dump."
+msgstr ""
+
+msgid "Create kernel dump."
+msgstr ""
+
 #, python-format
 msgid "Create recovery image backup '%s'."
 msgstr "Δημιουργία αντιγράφου ασφαλείας του image ανάκτησης '%s'."
+
+msgid "Create rescue dump."
+msgstr ""
+
+msgid "Create root UBI file system."
+msgstr ""
+
+msgid "Create root file system dump."
+msgstr ""
+
+msgid "Create root journaling flash file system."
+msgstr ""
 
 msgid "Create separate radio user bouquet"
 msgstr "Δημιουργία ξεχωριστού ραδιοφωνικού μπουκέτου χρήστη"
@@ -5090,11 +5123,17 @@ msgstr "Δημιουργία ξεχωριστού ραδιοφωνικού μπ�
 msgid "Create swap"
 msgstr "Δημιουργία swap"
 
+msgid "Create tar file of root file system."
+msgstr ""
+
 msgid "Create the additional slots on the selected device"
 msgstr "Δημιουργία πρόσθετων θέσεων στην επιλεγμένη συσκευή"
 
 msgid "Create the flash expander in the selected device"
 msgstr "Δημιουργία επέκτασης flash στην επιλεγμένη συσκευή"
+
+msgid "Create working directories."
+msgstr ""
 
 msgid "Creating .ap and .sc files"
 msgstr "Δημιουργία αρχείων .ap και .sc"
@@ -6624,9 +6663,6 @@ msgstr "Ντζόνγκα"
 
 msgid "E"
 msgstr "Ε"
-
-msgid "E "
-msgstr "E "
 
 msgid "ECM"
 msgstr "ECM"
@@ -11189,11 +11225,11 @@ msgstr "Ρυθμίσεις προσάρτησης"
 msgid "Mount failed"
 msgstr "Αποτυχία προσάρτησης"
 
+msgid "Mount root file system."
+msgstr ""
+
 msgid "Mount: "
 msgstr "Προσάρτηση: "
-
-msgid "Mountpoint"
-msgstr "Σημείο προσάρτησης"
 
 msgid "Mounts"
 msgstr "Σημεία προσάρτησης"
@@ -11824,7 +11860,7 @@ msgstr "Ποτέ"
 msgid "Never abort"
 msgstr "Ποτέ ματαίωση"
 
-msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off."
+msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding)."
 msgstr "Να μη γίνεται ποτέ αποκωδικοποίηση του περιεχομένου κατά την εγγραφή. Αυτό παρακάμπτει όλες τις ιδιαίτερες ρυθμίσεις χρονοδιακοπτών γενικά. Όταν είναι ενεργό, οι εγγραφές αποθηκεύονται ως κωδικοποιημένες και πρέπει να αποκωδικοποιηθούν μετέπειτα (ενίοτε ονομάζεται κωδικοποίηση εκτός σύνδεσης). Προεπιλογή: ανενεργό."
 
 msgid "Never decrypt while recording"
@@ -23870,6 +23906,12 @@ msgstr "ναι (διατήρηση των feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "E "
+#~ msgstr "E "
+
+#~ msgid "Mountpoint"
+#~ msgstr "Σημείο προσάρτησης"
 
 #, python-format
 #~ msgid "%d channel found"

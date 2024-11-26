@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-30 20:29+0000\n"
+"POT-Creation-Date: 2024-11-14 19:50+0000\n"
 "PO-Revision-Date: 2023-06-04 19:16+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -2322,7 +2322,7 @@ msgstr "Visada klausti"
 msgid "Always include ECM in recordings"
 msgstr "Į įrašus visada įtraukti ECM"
 
-msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver. Default: off."
+msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver."
 msgstr "Į įrašus visada įtraukti ECM pranešimus. Tai atšaukia bendruosius visų laikmačių nustatymus. Tai leidžia įrašus visada vėliau iššifruoti (tai kartais vadinama iškodavimu atsijungus), jei tą palaiko jūsų imtuvas. Numatytasis: 'Ne'."
 
 msgid "Always show bouquets"
@@ -4420,6 +4420,9 @@ msgstr "Kompleksinis (leidžia sumaišyti garso takelius ir formatus)"
 msgid "Composition of the recording filenames"
 msgstr "Įrašo failų sudėtis"
 
+msgid "Compress root file system tar file. (This takes the most time!)"
+msgstr ""
+
 msgid "Compressed bits/pixel"
 msgstr "Suglaudinti bitai / pikseliai"
 
@@ -5129,8 +5132,38 @@ msgstr "Atsitiktinai sugeneruoto slaptažodžio kūrimas"
 msgid "Create a symbolic link"
 msgstr "Sukurkite simbolinę nuorodą"
 
+msgid "Create application loader dump."
+msgstr ""
+
+msgid "Create backup image zip file."
+msgstr ""
+
+msgid "Create boot dump."
+msgstr ""
+
+msgid "Create boot image dump."
+msgstr ""
+
+msgid "Create device information dump."
+msgstr ""
+
+msgid "Create kernel dump."
+msgstr ""
+
 #, python-format
 msgid "Create recovery image backup '%s'."
+msgstr ""
+
+msgid "Create rescue dump."
+msgstr ""
+
+msgid "Create root UBI file system."
+msgstr ""
+
+msgid "Create root file system dump."
+msgstr ""
+
+msgid "Create root journaling flash file system."
 msgstr ""
 
 msgid "Create separate radio user bouquet"
@@ -5139,10 +5172,16 @@ msgstr "Sukurti atskirą vartotojo radijo paketą"
 msgid "Create swap"
 msgstr ""
 
+msgid "Create tar file of root file system."
+msgstr ""
+
 msgid "Create the additional slots on the selected device"
 msgstr ""
 
 msgid "Create the flash expander in the selected device"
+msgstr ""
+
+msgid "Create working directories."
 msgstr ""
 
 msgid "Creating .ap and .sc files"
@@ -6666,9 +6705,6 @@ msgstr "Dzongkha"
 
 msgid "E"
 msgstr "E"
-
-msgid "E "
-msgstr "Е "
 
 msgid "ECM"
 msgstr ""
@@ -11237,11 +11273,11 @@ msgstr "Pajungimo valdymas"
 msgid "Mount failed"
 msgstr "Pajungimo klaida"
 
+msgid "Mount root file system."
+msgstr ""
+
 msgid "Mount: "
 msgstr "Pajungta: "
-
-msgid "Mountpoint"
-msgstr "Prijungimo vieta"
 
 msgid "Mounts"
 msgstr "Pajungimai"
@@ -11869,7 +11905,7 @@ msgstr "niekada"
 msgid "Never abort"
 msgstr "niekada nenutraukti"
 
-msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off."
+msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding)."
 msgstr "Niekada neiškoduoti įrašomo turinio. Tai atšaukia bendruosius visų laikmačių nustatymus. Jei įjungta, įrašai saugomi šifruoti ir vėliau turi būti iškoduojami (tai kartais vadimama iškodavimu atsijungus). Numatytasis: 'Ne'."
 
 msgid "Never decrypt while recording"
@@ -23870,6 +23906,12 @@ msgstr "taip (išsaugoti šaltinius)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "E "
+#~ msgstr "Е "
+
+#~ msgid "Mountpoint"
+#~ msgstr "Prijungimo vieta"
 
 #, python-format
 #~ msgid "%d channel found"

@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-30 20:29+0000\n"
-"PO-Revision-Date: 2024-11-02 18:57+0000\n"
+"POT-Creation-Date: 2024-11-14 19:50+0000\n"
+"PO-Revision-Date: 2024-11-15 20:18+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.8.2\n"
+"X-Generator: Weblate 5.9-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -2315,7 +2315,7 @@ msgstr "Завжди запитувати"
 msgid "Always include ECM in recordings"
 msgstr "Завжди включати ECM у записи"
 
-msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver. Default: off."
+msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver."
 msgstr "Завжди вмикайте запис ECM у записах. При цьому будуть проігноровані деякі параметри таймерів. Якщо даний параметр підтримується Вашим приймачем, це дозволить розкодовувати записи (називається декодуванням в автономному режимі). За замовчуванням: вимкнено."
 
 msgid "Always show bouquets"
@@ -4411,6 +4411,9 @@ msgstr "Комплексно (дозволяє змішувати аудіо-д�
 msgid "Composition of the recording filenames"
 msgstr "Величина назви файлів запису"
 
+msgid "Compress root file system tar file. (This takes the most time!)"
+msgstr "Стиснення tar файлу кореневої файлової системи. (Це займає найбільше часу!)"
+
 msgid "Compressed bits/pixel"
 msgstr "Стислі біти/піксель"
 
@@ -5119,9 +5122,39 @@ msgstr "Створити випадково згенерований парол�
 msgid "Create a symbolic link"
 msgstr "Створити символічне посилання"
 
+msgid "Create application loader dump."
+msgstr "Створення дампу завантажувача додатків."
+
+msgid "Create backup image zip file."
+msgstr "Створення zip-файлу копії іміджу."
+
+msgid "Create boot dump."
+msgstr "Створення дампу завантаження."
+
+msgid "Create boot image dump."
+msgstr "Створення дампу завантажувача іміджу."
+
+msgid "Create device information dump."
+msgstr "Створення дампу інформації про пристрій."
+
+msgid "Create kernel dump."
+msgstr "Створення дампу ядра."
+
 #, python-format
 msgid "Create recovery image backup '%s'."
 msgstr "Створити копію іміджа для відновлення '%s'."
+
+msgid "Create rescue dump."
+msgstr "Створення дампу відновлення."
+
+msgid "Create root UBI file system."
+msgstr "Створення кореневої UBI файлової системи."
+
+msgid "Create root file system dump."
+msgstr "Створення дампу кореневої файлової системи."
+
+msgid "Create root journaling flash file system."
+msgstr "Створення кореневої файлової системи ведення журналу."
 
 msgid "Create separate radio user bouquet"
 msgstr "Створити окремий фаворитний радіо-список"
@@ -5129,11 +5162,17 @@ msgstr "Створити окремий фаворитний радіо-спис
 msgid "Create swap"
 msgstr "Створити swap"
 
+msgid "Create tar file of root file system."
+msgstr "Створення файлу tar кореневої файлової системи."
+
 msgid "Create the additional slots on the selected device"
 msgstr "Створіть додаткові слоти на вибраному пристрої"
 
 msgid "Create the flash expander in the selected device"
 msgstr "Створити флеш-розширювач у вибраному пристрої"
+
+msgid "Create working directories."
+msgstr "Створення робочих каталогів."
 
 msgid "Creating .ap and .sc files"
 msgstr "Створення файлів АР і SC"
@@ -6664,9 +6703,6 @@ msgstr "Дзонгха"
 
 msgid "E"
 msgstr "Е"
-
-msgid "E "
-msgstr "E "
 
 msgid "ECM"
 msgstr "ЕСМ"
@@ -11233,11 +11269,11 @@ msgstr "Налаштування монтування"
 msgid "Mount failed"
 msgstr "Монтування невдале"
 
+msgid "Mount root file system."
+msgstr "Монтування кореневої файлової системи."
+
 msgid "Mount: "
 msgstr "Підключення: "
-
-msgid "Mountpoint"
-msgstr "Точка монтування"
 
 msgid "Mounts"
 msgstr "Точки монтування"
@@ -11868,7 +11904,7 @@ msgstr "ніколи"
 msgid "Never abort"
 msgstr "ніколи не переривати"
 
-msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off."
+msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding)."
 msgstr "Ніколи не розкодовувати передачі під час запису. При цьому будуть проігноровані деякі параметри таймерів. Коли ввімкнено, записи зберігаються в закодованому вигляді, при відтворенні вони будуть розкодовані (називається декодуванням в автономному режимі). За замовчуванням: вимкнено."
 
 msgid "Never decrypt while recording"
@@ -23922,6 +23958,12 @@ msgstr "так (зберігати фіди)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "E "
+#~ msgstr "E "
+
+#~ msgid "Mountpoint"
+#~ msgstr "Точка монтування"
 
 #, python-format
 #~ msgid "%d channel found"

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-30 20:29+0000\n"
-"PO-Revision-Date: 2024-11-02 18:57+0000\n"
+"POT-Creation-Date: 2024-11-14 19:50+0000\n"
+"PO-Revision-Date: 2024-11-15 20:18+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.8.2\n"
+"X-Generator: Weblate 5.9-dev\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
 
 msgid ""
@@ -2277,7 +2277,7 @@ msgstr "Chiedi sempre"
 msgid "Always include ECM in recordings"
 msgstr "Includi sempre gli ECM nelle registrazioni"
 
-msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver. Default: off."
+msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver."
 msgstr "Includi sempre gli ECM nelle registrazioni. Questo sovrascrive le impostazioni individuali dei timer. Se questo viene supportato dal ricevitore, consente registrazioni decriptate successivamente (offline decoding). Valore predefinito: OFF."
 
 msgid "Always show bouquets"
@@ -4371,6 +4371,9 @@ msgstr "Complessa (consente mix tracce audio e aspetti)"
 msgid "Composition of the recording filenames"
 msgstr "Composizione nomi dei file di registrazione"
 
+msgid "Compress root file system tar file. (This takes the most time!)"
+msgstr "Comprimi il file tar del file system root questa è l'operazione che richiede più tempo!)"
+
 msgid "Compressed bits/pixel"
 msgstr "Bit/pixel compressi"
 
@@ -5062,7 +5065,7 @@ msgid "Create Directory"
 msgstr "Crea cartella"
 
 msgid "Create Expander"
-msgstr "Create espansore"
+msgstr "Crea espansore"
 
 msgid "Create ISO"
 msgstr "Crea ISO"
@@ -5071,17 +5074,47 @@ msgid "Create Slots"
 msgstr "Crea slot"
 
 msgid "Create a directory"
-msgstr "Crea una cartella"
+msgstr "Crea cartella"
 
 msgid "Create a randomly generated password"
-msgstr "Crea una password generata casualmente"
+msgstr "Crea password generata casualmente"
 
 msgid "Create a symbolic link"
-msgstr "Crea un collegamento simbolico"
+msgstr "Crea collegamento simbolico"
+
+msgid "Create application loader dump."
+msgstr "Crea dump del caricatore dell'applicazione."
+
+msgid "Create backup image zip file."
+msgstr "Crea file zip con l'immagine di backup."
+
+msgid "Create boot dump."
+msgstr "Crea dump di avvio."
+
+msgid "Create boot image dump."
+msgstr "Crea dump dell'immagine di avvio."
+
+msgid "Create device information dump."
+msgstr "Crea dump delle informazioni sul dispositivo."
+
+msgid "Create kernel dump."
+msgstr "Crea dump del kernel."
 
 #, python-format
 msgid "Create recovery image backup '%s'."
 msgstr "Crea backup dell'immagine di ripristino '%s'."
+
+msgid "Create rescue dump."
+msgstr "Crea dump di salvataggio."
+
+msgid "Create root UBI file system."
+msgstr "Crea file system UBI root."
+
+msgid "Create root file system dump."
+msgstr "Crea dump del file system root."
+
+msgid "Create root journaling flash file system."
+msgstr "Crea file system flash di root con journaling."
 
 msgid "Create separate radio user bouquet"
 msgstr "Crea bouquet separato per le radio"
@@ -5089,11 +5122,17 @@ msgstr "Crea bouquet separato per le radio"
 msgid "Create swap"
 msgstr "Crea swap"
 
+msgid "Create tar file of root file system."
+msgstr "Crea file tar del file system root."
+
 msgid "Create the additional slots on the selected device"
 msgstr "Crea gli slot aggiuntivi sul dispositivo selezionato"
 
 msgid "Create the flash expander in the selected device"
 msgstr "Crea espansione flash nel dispositivo selezionato"
+
+msgid "Create working directories."
+msgstr "Crea cartelle di lavoro."
 
 msgid "Creating .ap and .sc files"
 msgstr "Creazione di file .ap e .sc"
@@ -6622,9 +6661,6 @@ msgid "Dzongkha"
 msgstr "Dzongkha"
 
 msgid "E"
-msgstr "E"
-
-msgid "E "
 msgstr "E"
 
 msgid "ECM"
@@ -11188,11 +11224,11 @@ msgstr "Impostazioni montaggio"
 msgid "Mount failed"
 msgstr "Montaggio non riuscito"
 
+msgid "Mount root file system."
+msgstr "Monta file system root."
+
 msgid "Mount: "
 msgstr "Montato in: "
-
-msgid "Mountpoint"
-msgstr "Punto di montaggio"
 
 msgid "Mounts"
 msgstr "Montaggi"
@@ -11823,7 +11859,7 @@ msgstr "Mai"
 msgid "Never abort"
 msgstr "Non interrompere mai"
 
-msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off."
+msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding)."
 msgstr "Non decifrare mai il contenuto durante la registrazione. Questo sovrascrive le singole impostazioni del timer a livello globale. Se abilitate, le registrazioni vengono archiviate in una presentazione crittografata e devono essere decrittografate in seguito (a volte chiamata decodifica offline). Predefinito: disattivato."
 
 msgid "Never decrypt while recording"
@@ -23869,6 +23905,12 @@ msgstr "sì (mantieni feed)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "E "
+#~ msgstr "E"
+
+#~ msgid "Mountpoint"
+#~ msgstr "Punto di montaggio"
 
 #, python-format
 #~ msgid "%d channel found"

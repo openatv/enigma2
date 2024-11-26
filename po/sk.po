@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-30 20:29+0000\n"
-"PO-Revision-Date: 2024-11-03 19:00+0000\n"
+"POT-Creation-Date: 2024-11-14 19:50+0000\n"
+"PO-Revision-Date: 2024-11-25 12:00+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.8.2\n"
+"X-Generator: Weblate 5.9-dev\n"
 
 msgid ""
 "\n"
@@ -2314,7 +2314,7 @@ msgstr "Vždy sa opýtať"
 msgid "Always include ECM in recordings"
 msgstr "Vždy zahrnúť ECM do nahrávok"
 
-msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver. Default: off."
+msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver."
 msgstr "Vždy zahrnúť správy ECM do nahrávok. Tým sa zmenia globálne nastavenia individuálneho časovača. Umožňuje dekódovať nahrávky dodatočne (niekedy sa nazýva aj ako offline-dekódovanie), ak to váš prijímač podporuje. Predvolene: vypnuté."
 
 msgid "Always show bouquets"
@@ -4410,6 +4410,9 @@ msgstr "Komplexné (umožňuje miešanie rôznych zvukových a obrazových stôp
 msgid "Composition of the recording filenames"
 msgstr "Zostavenie názvu súboru s nahrávkou"
 
+msgid "Compress root file system tar file. (This takes the most time!)"
+msgstr "Komprimovať súbor TAR koreňového systému súborov. (Toto zaberie najviac času!)"
+
 msgid "Compressed bits/pixel"
 msgstr "Komprimované bity/pixely"
 
@@ -5118,9 +5121,39 @@ msgstr "Vytvoriť náhodne vygenerované heslo"
 msgid "Create a symbolic link"
 msgstr "Vytvoriť symbolický odkaz"
 
+msgid "Create application loader dump."
+msgstr "Vytvoriť výpis zavádzača aplikácie."
+
+msgid "Create backup image zip file."
+msgstr "Vytvoriť súbor ZIP so zálohou image."
+
+msgid "Create boot dump."
+msgstr "Vytvoriť výpis procesu spúšťania."
+
+msgid "Create boot image dump."
+msgstr "Vytvoriť výpis spúšťania image."
+
+msgid "Create device information dump."
+msgstr "Vytvoriť výpis s informáciami o zariadení."
+
+msgid "Create kernel dump."
+msgstr "Vytvoriť výpis jadra."
+
 #, python-format
 msgid "Create recovery image backup '%s'."
 msgstr "Vytvoriť záložný image pre obnovenie '%s'."
+
+msgid "Create rescue dump."
+msgstr "Vytvoriť výpis pre záchranu."
+
+msgid "Create root UBI file system."
+msgstr "Vytvoriť hlavný systém súborov UBI."
+
+msgid "Create root file system dump."
+msgstr "Vytvoriť výpis z hlavného systému súborov."
+
+msgid "Create root journaling flash file system."
+msgstr "Vytvoriť hlavný systém súborov žurnálovania flash."
 
 msgid "Create separate radio user bouquet"
 msgstr "Vytvoriť oddelený používateľský prehľad rádií"
@@ -5128,11 +5161,17 @@ msgstr "Vytvoriť oddelený používateľský prehľad rádií"
 msgid "Create swap"
 msgstr "Vytvoriť swap"
 
+msgid "Create tar file of root file system."
+msgstr "Vytvoriť súbor TAR z hlavného systému súborov."
+
 msgid "Create the additional slots on the selected device"
 msgstr "Vytvoriť dodatočné sloty na vybranej jednotke"
 
 msgid "Create the flash expander in the selected device"
 msgstr "Vytvoriť flash expandér na vybranej jednotke"
+
+msgid "Create working directories."
+msgstr "Vytvoriť pracovné priečinky."
 
 msgid "Creating .ap and .sc files"
 msgstr "Vytvorenie súborov .ap a .sc"
@@ -6663,9 +6702,6 @@ msgstr "Dzongkha"
 
 msgid "E"
 msgstr "Východne"
-
-msgid "E "
-msgstr "E "
 
 msgid "ECM"
 msgstr "ECM"
@@ -11232,11 +11268,11 @@ msgstr "Nastavenie pripojení"
 msgid "Mount failed"
 msgstr "Pripojenie neúspešné"
 
+msgid "Mount root file system."
+msgstr "Pripojiť hlavný systém súborov."
+
 msgid "Mount: "
 msgstr "Pripojiť: "
-
-msgid "Mountpoint"
-msgstr "Bod pripojenia"
 
 msgid "Mounts"
 msgstr "Pripojenia"
@@ -11867,7 +11903,7 @@ msgstr "Nikdy"
 msgid "Never abort"
 msgstr "Nikdy neprerušiť"
 
-msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off."
+msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding)."
 msgstr "Nikdy nedekódovať obsah počas nahrávania. Týmto sa prepíšu globálne nastavenia individuálneho časovača. Ak je táto voľba zapnutá, nahrávky sa ukladajú zakódované a musia sa dodatočne dekódovať (niekedy sa tento proces nazýva offline-dekódovanie). Predvolená hodnota: vypnuté."
 
 msgid "Never decrypt while recording"
@@ -23921,6 +23957,12 @@ msgstr "áno (zachovať zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "E "
+#~ msgstr "E "
+
+#~ msgid "Mountpoint"
+#~ msgstr "Bod pripojenia"
 
 #, python-format
 #~ msgid "%d channel found"

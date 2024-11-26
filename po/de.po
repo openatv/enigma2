@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-30 20:29+0000\n"
-"PO-Revision-Date: 2024-11-01 07:20+0000\n"
+"POT-Creation-Date: 2024-11-14 19:50+0000\n"
+"PO-Revision-Date: 2024-11-26 16:07+0000\n"
 "Last-Translator: VfBFan <VfBFan@users.noreply.hosted.weblate.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.8.2-dev\n"
+"X-Generator: Weblate 5.9-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -46,13 +46,13 @@ msgid " "
 msgstr " "
 
 msgid "  Menu key : Select quad channel"
-msgstr "  MENU: Wähle Sendergruppe"
+msgstr "  MENU: Sendergruppe auswählen"
 
 msgid "  REC  "
 msgstr "  REC  "
 
 msgid "  Red key : Show/Hide channel name"
-msgstr "  ROT: Zeige/verstecke Sendernamen"
+msgstr "  ROT: Sendernamen ein-/ausblenden"
 
 #, python-format
 msgid " (Channel %s)"
@@ -2407,7 +2407,7 @@ msgstr "Immer nachfragen"
 msgid "Always include ECM in recordings"
 msgstr "Immer ECM mit aufnehmen"
 
-msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver. Default: off."
+msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver."
 msgstr "Bei 'Ja' setzt diese Funktion die Timer Einstellung außer Kraft. Aufzeichnungen werden immer verschlüsselt gespeichert und nachträglich entschlüsselt, wenn die Hardware diese Funktion unterstützt."
 
 msgid "Always show bouquets"
@@ -4264,7 +4264,7 @@ msgid "Choose the option to correct invalid EPG data."
 msgstr "Option zur Korrektur ungültiger EPG-Daten auswählen."
 
 msgid "Choose the skin to be used for the GUI interface. Press 'GREEN' to activate the skin."
-msgstr "Skin für das GUI (Graphical User Interface - Die grafische Benutzeroberfläche) auswählen und mit GRÜN aktivieren."
+msgstr "Skin für das GUI (Die grafische Benutzeroberfläche) auswählen und mit GRÜN aktivieren."
 
 msgid "Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin."
 msgstr "Displayskin auswählen und mit GRÜN aktivieren."
@@ -4617,6 +4617,9 @@ msgstr "Komplex (Erlaubt das Mischen von Tonspuren und Formaten)"
 
 msgid "Composition of the recording filenames"
 msgstr "Dateinamen für Aufnahmen"
+
+msgid "Compress root file system tar file. (This takes the most time!)"
+msgstr "Komprimieren der Root-Dateisystem Tar-Datei. (Das dauert die meiste Zeit!)"
 
 msgid "Compressed bits/pixel"
 msgstr "Komprimierte Bits/Pixel"
@@ -5367,9 +5370,39 @@ msgstr "Erstelle ein Zufallspasswort"
 msgid "Create a symbolic link"
 msgstr "Einen symbolischen Link erstellen"
 
+msgid "Create application loader dump."
+msgstr "Anwendung Loader Dump Erstellen."
+
+msgid "Create backup image zip file."
+msgstr "Backup Image Zip-Datei Erstellen."
+
+msgid "Create boot dump."
+msgstr "Boot-Dump erstellen."
+
+msgid "Create boot image dump."
+msgstr "Boot-Image Dump erstellen."
+
+msgid "Create device information dump."
+msgstr "Geräteinfo Dump erstellen."
+
+msgid "Create kernel dump."
+msgstr "Kernel-Dump erstellen."
+
 #, python-format
 msgid "Create recovery image backup '%s'."
 msgstr "Recovery-Sicherung '%s' erstellen."
+
+msgid "Create rescue dump."
+msgstr "Rettungs-Dump erstellen."
+
+msgid "Create root UBI file system."
+msgstr "Root UBI Dateisystem erstellen."
+
+msgid "Create root file system dump."
+msgstr "Root Dateisystem Dump erstellen."
+
+msgid "Create root journaling flash file system."
+msgstr "Root Journaling Flash-Dateisystem erstellen."
 
 msgid "Create separate radio user bouquet"
 msgstr "Separates Radiobouquet erstellen"
@@ -5377,11 +5410,17 @@ msgstr "Separates Radiobouquet erstellen"
 msgid "Create swap"
 msgstr "Swap erstellen"
 
+msgid "Create tar file of root file system."
+msgstr "Tar-Datei vom Root-Dateisystem erstellen."
+
 msgid "Create the additional slots on the selected device"
 msgstr "Zusätzliche Slots auf dem ausgewählten Gerät erstellen"
 
 msgid "Create the flash expander in the selected device"
 msgstr "Den Flash-Expander im ausgewählten Gerät erstellen"
+
+msgid "Create working directories."
+msgstr "Arbeitsverzeichnisse erstellen."
 
 msgid "Creating .ap and .sc files"
 msgstr "Erstelle AP- und SC-Dateien"
@@ -6991,10 +7030,6 @@ msgstr "Dzongkha"
 #
 msgid "E"
 msgstr "O"
-
-#
-msgid "E "
-msgstr "E"
 
 msgid "ECM"
 msgstr "ECM"
@@ -9983,7 +10018,6 @@ msgid "Image creation failed!"
 msgstr "Image-Erstellung fehlgeschlagen!"
 
 #
-#, fuzzy
 msgid "ImageWizard"
 msgstr "Einstellungen wiederherstellen"
 
@@ -11808,11 +11842,11 @@ msgstr "Mount-Einstellungen"
 msgid "Mount failed"
 msgstr "Mount fehlgeschlagen!"
 
+msgid "Mount root file system."
+msgstr "Mount Root-Dateisystem."
+
 msgid "Mount: "
 msgstr "Mount: "
-
-msgid "Mountpoint"
-msgstr "Mountpunkt"
 
 msgid "Mounts"
 msgstr "Mounts"
@@ -12498,7 +12532,7 @@ msgstr "Nie"
 msgid "Never abort"
 msgstr "Nie abbrechen"
 
-msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off."
+msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding)."
 msgstr "Bei 'Ja' setzt diese Funktion die Timer Einstellung außer Kraft. Aufzeichnungen werden immer verschlüsselt gespeichert und müssen nachträglich entschlüsselt werden."
 
 msgid "Never decrypt while recording"
@@ -14787,10 +14821,10 @@ msgstr "Prov"
 
 #
 msgid "Provider"
-msgstr "Anbieter"
+msgstr "Provider"
 
 msgid "Provider Name: "
-msgstr "Name Provider: "
+msgstr "Providername: "
 
 msgid "Provider: "
 msgstr "Anbieter: "
@@ -15386,7 +15420,7 @@ msgstr "Alle Alternativen entfernen"
 
 #
 msgid "Remove All New Found Flags"
-msgstr "Entfernen aller 'neu gefunden'-Kennzeichnungen"
+msgstr "Alle 'neu gefunden'-Kennzeichnungen entfernen"
 
 #
 msgid "Remove Bookmark"
@@ -15414,7 +15448,7 @@ msgstr "Aus Jugendschutz entfernen"
 
 #
 msgid "Remove New Found Flag"
-msgstr "Entfernen der 'neu gefunden'-Kennzeichnung"
+msgstr "'neu gefunden'-Kennzeichnung entfernen"
 
 msgid "Remove Plugin"
 msgstr "Plugin entfernen"
@@ -15424,11 +15458,11 @@ msgid "Remove Plugins"
 msgstr "Plugins entfernen"
 
 msgid "Remove Quad Channel Entry"
-msgstr "Entferne Sendergruppe"
+msgstr "Sendergruppe entfernen"
 
 #
 msgid "Remove Satellite Services"
-msgstr "Entferne gewählten Satellit"
+msgstr "Ausgewählten Satellit entfernen"
 
 msgid "Remove Service"
 msgstr "Dienst entfernen"
@@ -15437,52 +15471,52 @@ msgid "Remove Terrestrial Services"
 msgstr "Terrestrische Dienste entfernen"
 
 msgid "Remove a DNS entry"
-msgstr "Entfernen eines DNS-Eintrags"
+msgstr "Einen DNS-Eintrag entfernen"
 
 #
 msgid "Remove a mark"
 msgstr "Markierung entfernen"
 
 msgid "Remove all bouquet/tuning data"
-msgstr "Lösche alle Bouquet/Sender-Daten"
+msgstr "Alle Bouquet-/Senderdaten löschen"
 
 msgid "Remove all cuts and marks"
 msgstr "Alle Markierungen und Schnitte entfernen"
 
 msgid "Remove all network mount data"
-msgstr "Lösche alle Netzlaufwerk-Daten"
+msgstr "Alle Netzlaufwerkdaten löschen"
 
 msgid "Remove all other data"
 msgstr "Alle anderen Daten löschen"
 
 msgid "Remove all plugin setting data"
-msgstr "Lösche alle Plugin-Einstellungsdaten"
+msgstr "Alle Plugin-Einstellungsdaten löschen"
 
 msgid "Remove all resume point data"
-msgstr "Lösche alle Aufnahme-Markierungsdaten"
+msgstr "Alle Aufnahme-Markierungsdaten löschen"
 
 msgid "Remove all settings data"
-msgstr "Lösche alle Einstellungen"
+msgstr "Alle Einstellungen löschen"
 
 msgid "Remove all skin data"
-msgstr "Lösche alle Skin-Daten"
+msgstr "Alle Skin-Daten löschen"
 
 msgid "Remove all timer data"
-msgstr "Lösche alle Timer"
+msgstr "Alle Timer löschen"
 
 msgid "Remove all user interface data"
-msgstr "Lösche alle GUI-Daten"
+msgstr "Alle GUI-Daten löschen"
 
 #
 msgid "Remove completed timers after"
-msgstr "Entferne fertige Timer nach x Tagen"
+msgstr "Abgeschlossene Timer nach x Tagen entfernen"
 
 msgid "Remove current directory from bookmarks"
 msgstr "Aktuellen Ordner aus Lesezeichen entfernen"
 
 #
 msgid "Remove currently selected title"
-msgstr "Entferne aktuell ausgewählten Titel"
+msgstr "Aktuell ausgewählten Titel entfernen"
 
 msgid "Remove highlighted directory from bookmarks"
 msgstr "Ausgewählten Ordner aus Lesezeichen entfernen"
@@ -16766,7 +16800,7 @@ msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpf
 msgstr "'Ja' auswählen, um eine alternative GitHub-DNS Feed IP-Adresse zu verwenden. Das kann helfen, wenn ein VPN benutzt wird, aber die normalen Feeds nicht mittels dem angegebenen DNS-Namen angesprochen werden können."
 
 msgid "Select 'Yes' to use legacy navigation where CH+/- swaps the active column. Select 'No' to use the newer unified navigation option for consistent navigation with other screens where LEFT/RIGHT swaps the active column and CH+/- pages up and down the list."
-msgstr "'Ja', um die alte Navigation zu verwenden, bei der CH+/- die aktive Spalte tauscht. 'Nein', um die neue, mit anderen Screens einheitliche Navigation zu verwenden, bei der LINKS/RECHTS die aktive Spalte und CH+/- seitenweise tauschen."
+msgstr "'Ja', um die alte Navigation zu verwenden, bei der CH+/- die aktive Spalte wechselt. 'Nein', um die neue einheitliche Navigation mit anderen Bildschirmen zu verwenden, bei der LINKS/RECHTS die aktive Spalte wechselt und CH+/- seitenweise durchblättert."
 
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
 msgstr "Bei 'Ja' werden die Signalwerte (SNR usw.) aus API V3 berechnet. Dies ist eine alte API-Version, die jetzt ersetzt wurde."
@@ -25413,6 +25447,13 @@ msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#
+#~ msgid "E "
+#~ msgstr "E"
+
+#~ msgid "Mountpoint"
+#~ msgstr "Mountpunkt"
 
 #, python-format
 #~ msgid "%d channel found"

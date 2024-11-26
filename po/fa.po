@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-30 20:29+0000\n"
+"POT-Creation-Date: 2024-11-14 19:50+0000\n"
 "PO-Revision-Date: 2021-09-15 14:20+0000\n"
 "Last-Translator: Hamed Beyrami <h.beyrami@outlook.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fa/>\n"
@@ -2388,7 +2388,7 @@ msgstr "همیشه پرسیده شود"
 msgid "Always include ECM in recordings"
 msgstr ""
 
-msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver. Default: off."
+msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver."
 msgstr ""
 
 msgid "Always show bouquets"
@@ -4521,6 +4521,9 @@ msgstr "مختلط (اجازه میدهد که قطعات موسیقی و منا
 msgid "Composition of the recording filenames"
 msgstr "ترکیب نام های فایل های ضبط"
 
+msgid "Compress root file system tar file. (This takes the most time!)"
+msgstr ""
+
 msgid "Compressed bits/pixel"
 msgstr ""
 
@@ -5246,8 +5249,38 @@ msgstr ""
 msgid "Create a symbolic link"
 msgstr ""
 
+msgid "Create application loader dump."
+msgstr ""
+
+msgid "Create backup image zip file."
+msgstr ""
+
+msgid "Create boot dump."
+msgstr ""
+
+msgid "Create boot image dump."
+msgstr ""
+
+msgid "Create device information dump."
+msgstr ""
+
+msgid "Create kernel dump."
+msgstr ""
+
 #, python-format
 msgid "Create recovery image backup '%s'."
+msgstr ""
+
+msgid "Create rescue dump."
+msgstr ""
+
+msgid "Create root UBI file system."
+msgstr ""
+
+msgid "Create root file system dump."
+msgstr ""
+
+msgid "Create root journaling flash file system."
 msgstr ""
 
 msgid "Create separate radio user bouquet"
@@ -5256,10 +5289,16 @@ msgstr ""
 msgid "Create swap"
 msgstr ""
 
+msgid "Create tar file of root file system."
+msgstr ""
+
 msgid "Create the additional slots on the selected device"
 msgstr ""
 
 msgid "Create the flash expander in the selected device"
+msgstr ""
+
+msgid "Create working directories."
 msgstr ""
 
 msgid "Creating .ap and .sc files"
@@ -6804,10 +6843,6 @@ msgid "Dzongkha"
 msgstr ""
 
 msgid "E"
-msgstr "E"
-
-#, fuzzy
-msgid "E "
 msgstr "E"
 
 msgid "ECM"
@@ -11475,10 +11510,10 @@ msgstr ""
 msgid "Mount failed"
 msgstr ""
 
-msgid "Mount: "
+msgid "Mount root file system."
 msgstr ""
 
-msgid "Mountpoint"
+msgid "Mount: "
 msgstr ""
 
 msgid "Mounts"
@@ -12139,7 +12174,7 @@ msgstr "هیچ وقت"
 msgid "Never abort"
 msgstr ""
 
-msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off."
+msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding)."
 msgstr ""
 
 #, fuzzy
@@ -24361,6 +24396,10 @@ msgstr "بله نگه داشتن feeds"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "E "
+#~ msgstr "E"
 
 #, python-format
 #~ msgid "%d channel found"

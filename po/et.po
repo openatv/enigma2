@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-30 20:29+0000\n"
+"POT-Creation-Date: 2024-11-14 19:50+0000\n"
 "PO-Revision-Date: 2022-12-04 20:43+0000\n"
 "Last-Translator: rimasx <riks_12@hot.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -2302,7 +2302,7 @@ msgstr "Küsitakse iga kord"
 msgid "Always include ECM in recordings"
 msgstr "Kaasa alati salvestistele ECM"
 
-msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver. Default: off."
+msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver."
 msgstr "Salvestised sisaldavad alati ka ECM sõnumeid. See valik alistab üksiku taimeri seadistused globaalselt ja võimaldab salvestisi hiljem dekrüptida (võrguta dekodeerimine), kui vastuvõtja seda toetab. Vaikimisi: välja lülitatud."
 
 msgid "Always show bouquets"
@@ -4433,6 +4433,9 @@ msgstr "Täielik (võimaldab heliribade miksimist)"
 msgid "Composition of the recording filenames"
 msgstr "Salvestuste nime kuju"
 
+msgid "Compress root file system tar file. (This takes the most time!)"
+msgstr ""
+
 msgid "Compressed bits/pixel"
 msgstr ""
 
@@ -5153,8 +5156,38 @@ msgstr ""
 msgid "Create a symbolic link"
 msgstr ""
 
+msgid "Create application loader dump."
+msgstr ""
+
+msgid "Create backup image zip file."
+msgstr ""
+
+msgid "Create boot dump."
+msgstr ""
+
+msgid "Create boot image dump."
+msgstr ""
+
+msgid "Create device information dump."
+msgstr ""
+
+msgid "Create kernel dump."
+msgstr ""
+
 #, python-format
 msgid "Create recovery image backup '%s'."
+msgstr ""
+
+msgid "Create rescue dump."
+msgstr ""
+
+msgid "Create root UBI file system."
+msgstr ""
+
+msgid "Create root file system dump."
+msgstr ""
+
+msgid "Create root journaling flash file system."
 msgstr ""
 
 msgid "Create separate radio user bouquet"
@@ -5163,10 +5196,16 @@ msgstr "Loo eraldi lemmiknimekiri raadiokanalitele"
 msgid "Create swap"
 msgstr ""
 
+msgid "Create tar file of root file system."
+msgstr ""
+
 msgid "Create the additional slots on the selected device"
 msgstr ""
 
 msgid "Create the flash expander in the selected device"
+msgstr ""
+
+msgid "Create working directories."
 msgstr ""
 
 msgid "Creating .ap and .sc files"
@@ -6721,10 +6760,6 @@ msgstr ""
 
 msgid "E"
 msgstr "E"
-
-#, fuzzy
-msgid "E "
-msgstr " "
 
 msgid "ECM"
 msgstr ""
@@ -11426,11 +11461,11 @@ msgstr "Haakepunktide seadistused"
 msgid "Mount failed"
 msgstr "Haakimine nurjus"
 
+msgid "Mount root file system."
+msgstr ""
+
 msgid "Mount: "
 msgstr "Haagitud: "
-
-msgid "Mountpoint"
-msgstr ""
 
 msgid "Mounts"
 msgstr "Haakepunktid"
@@ -12098,7 +12133,7 @@ msgstr "Mitte kunagi"
 msgid "Never abort"
 msgstr "Mitte kunagi"
 
-msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off."
+msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding)."
 msgstr "Ära dekrüpti sisu salvestamise ajal. See valik alistab üksiku taimeri seadistused globaalselt ja selle lubamisel salvestised talletatakse krüpteeritult. Lahtikrüptida saad hiljem (võrguta dekodeerimine). Vaikimisi: välja lülitatud."
 
 msgid "Never decrypt while recording"
@@ -24424,6 +24459,10 @@ msgstr "Jah (säilita fiidid)"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "E "
+#~ msgstr " "
 
 #, python-format
 #~ msgid "%d channel found"

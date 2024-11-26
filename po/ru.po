@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-30 20:29+0000\n"
+"POT-Creation-Date: 2024-11-14 19:50+0000\n"
 "PO-Revision-Date: 2024-11-14 17:31+0000\n"
 "Last-Translator: Вячеслав Диконов <sdiconov@mail.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
@@ -2312,7 +2312,7 @@ msgstr "Всегда спрашивать"
 msgid "Always include ECM in recordings"
 msgstr "Всегда включать ECM в записи"
 
-msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver. Default: off."
+msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver."
 msgstr "Всегда включать сообщения ECM в запись. Эта функция глобально переопределяет установки отдельных таймеров. Это позволяет дешифровать запись позже (автономное/offline декодирование), если такая возможность реализована в вашем ресивере. По умолчанию: 'ВЫКЛ'."
 
 msgid "Always show bouquets"
@@ -4408,6 +4408,9 @@ msgstr "Сложный (позволяет смешивать звуковые �
 msgid "Composition of the recording filenames"
 msgstr "Формат именования файлов записей"
 
+msgid "Compress root file system tar file. (This takes the most time!)"
+msgstr ""
+
 msgid "Compressed bits/pixel"
 msgstr "Сжатые биты/пиксель"
 
@@ -5116,9 +5119,39 @@ msgstr "Сгенерировать случайный пароль"
 msgid "Create a symbolic link"
 msgstr "Создать символическую ссылку"
 
+msgid "Create application loader dump."
+msgstr ""
+
+msgid "Create backup image zip file."
+msgstr ""
+
+msgid "Create boot dump."
+msgstr ""
+
+msgid "Create boot image dump."
+msgstr ""
+
+msgid "Create device information dump."
+msgstr ""
+
+msgid "Create kernel dump."
+msgstr ""
+
 #, python-format
 msgid "Create recovery image backup '%s'."
 msgstr "Создать резервную копию образа для восстановления '%s'."
+
+msgid "Create rescue dump."
+msgstr ""
+
+msgid "Create root UBI file system."
+msgstr ""
+
+msgid "Create root file system dump."
+msgstr ""
+
+msgid "Create root journaling flash file system."
+msgstr ""
 
 msgid "Create separate radio user bouquet"
 msgstr "Создание отдельного радио букета"
@@ -5126,11 +5159,17 @@ msgstr "Создание отдельного радио букета"
 msgid "Create swap"
 msgstr "Создать swap"
 
+msgid "Create tar file of root file system."
+msgstr ""
+
 msgid "Create the additional slots on the selected device"
 msgstr "Создайте дополнительные слоты на выбранном устройстве"
 
 msgid "Create the flash expander in the selected device"
 msgstr "Создать расширение флеш-памяти на выбранном устройстве"
+
+msgid "Create working directories."
+msgstr ""
 
 msgid "Creating .ap and .sc files"
 msgstr "Создание файлов АР и SC"
@@ -6661,9 +6700,6 @@ msgstr "Дзонгка"
 
 msgid "E"
 msgstr "В"
-
-msgid "E "
-msgstr "E "
 
 msgid "ECM"
 msgstr "ECM"
@@ -11230,11 +11266,11 @@ msgstr "Настройки монтирования"
 msgid "Mount failed"
 msgstr "Монтирование не удалось"
 
+msgid "Mount root file system."
+msgstr ""
+
 msgid "Mount: "
 msgstr "Смонтирован "
-
-msgid "Mountpoint"
-msgstr "Точка монтирования"
 
 msgid "Mounts"
 msgstr "Точки монтирования"
@@ -11865,7 +11901,7 @@ msgstr "Никогда"
 msgid "Never abort"
 msgstr "Никогда не прерывать"
 
-msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off."
+msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding)."
 msgstr "Не декодировать передачу во время записи. Эта функция глобально переопределяет настройки отдельных таймеров. Если включено, запись будет сохранена зашифрованной и должна быть расшифрована позже (автономное/offline декодирование). По умолчанию: ВЫКЛ."
 
 msgid "Never decrypt while recording"
@@ -23919,6 +23955,12 @@ msgstr "Да (оставить фиды)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "E "
+#~ msgstr "E "
+
+#~ msgid "Mountpoint"
+#~ msgstr "Точка монтирования"
 
 #, python-format
 #~ msgid "%d channel found"

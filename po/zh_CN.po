@@ -1,20 +1,20 @@
 # lexlong2007 <lexlong2007@163.com>, 2022.
 # tzyy1970 <haotzyy1970@yahoo.com>, 2022.
-# Mark Stone <grystyle@gmail.com>, 2023.
+# Mark Stone <grystyle@gmail.com>, 2023, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-30 20:29+0000\n"
-"PO-Revision-Date: 2023-08-11 04:46+0000\n"
+"POT-Creation-Date: 2024-11-14 19:50+0000\n"
+"PO-Revision-Date: 2024-11-26 15:36+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
-"Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
+"Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Weblate 5.0-dev\n"
+"X-Generator: Weblate 5.9-dev\n"
 "X-SourceCharset: UTF-8\n"
 "X-Generated: TM2TURK by thawtes\n"
 
@@ -853,7 +853,7 @@ msgid_plural "%d Pixels"
 msgstr[0] "%d 个像素"
 msgstr[1] "%d 个像素"
 
-#, fuzzy, python-format
+#, python-format
 msgid "%d Pixel wide"
 msgid_plural "%d Pixels wide"
 msgstr[0] "%d 个像素宽"
@@ -928,32 +928,32 @@ msgstr[1] "有 %d 个软件包可更新。"
 #, python-format
 msgid "%d package installable."
 msgid_plural "%d packages installable."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "有%d 个软件包可安装。"
+msgstr[1] "有%d 个软件包可安装。"
 
 #, python-format
 msgid "%d package installed."
 msgid_plural "%d packages installed."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "安装了%d 个软件包。"
+msgstr[1] "安装了%d 个软件包。"
 
 #, python-format
 msgid "%d package marked for install."
 msgid_plural "%d packages marked for install."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "已标记%d个要安装的软件包。"
+msgstr[1] "已标记%d个要安装的软件包。"
 
 #, python-format
 msgid "%d package marked for remove."
 msgid_plural "%d packages marked for remove."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "已标记%d个要删除的软件包。"
+msgstr[1] "已标记%d个要删除的软件包。"
 
 #, python-format
 msgid "%d package marked for update."
 msgid_plural "%d packages marked for update."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "已标记%d个要更新的软件包。"
+msgstr[1] "已标记%d个要更新的软件包。"
 
 #, python-format
 msgid "%d package upgraded."
@@ -1006,8 +1006,8 @@ msgstr[1] "已升级 %d 个软件包."
 #, python-format
 msgid "%d plugin is not available:"
 msgid_plural "%d plugins are not available:"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "有%d个插件不可用："
+msgstr[1] "有%d个插件不可用："
 
 #, python-format
 msgid "%d sec"
@@ -1016,8 +1016,8 @@ msgstr "%d 秒"
 #, python-format
 msgid "%d service found."
 msgid_plural "%d services found."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "找到%d个频道。"
+msgstr[1] "找到%d个频道。"
 
 #, python-format
 msgid "%d times"
@@ -1061,7 +1061,7 @@ msgid "%d.%03d GB"
 msgstr "%d.%03d GB"
 
 msgid "%d.%B %Y"
-msgstr ""
+msgstr "%d.%B %Y"
 
 msgid "%d.%m"
 msgstr "%d.%m"
@@ -1137,7 +1137,7 @@ msgstr "%s %s 远程控制(本机)"
 
 #, python-format
 msgid "%s %sB"
-msgstr ""
+msgstr "%s %sB"
 
 #, python-format
 msgid "%s (%04o)"
@@ -1149,7 +1149,7 @@ msgstr "%s - 设置"
 
 #, python-format
 msgid "%s Browser Manage Actions"
-msgstr ""
+msgstr "%s浏览器管理操作"
 
 #, python-format
 msgid "%s GHz"
@@ -1169,7 +1169,7 @@ msgstr "%s 设置"
 
 #, python-format
 msgid "%s View"
-msgstr ""
+msgstr "%s 视图"
 
 #, python-format
 msgid "%s additional screens"
@@ -1177,15 +1177,15 @@ msgstr "%s 个附加屏幕"
 
 #, python-format
 msgid "%s has been activated."
-msgstr ""
+msgstr "已激活%s。"
 
 #, python-format
 msgid "%s has been disabled."
-msgstr ""
+msgstr "已禁用%s。"
 
 #, python-format
 msgid "%s imported from remote receiver."
-msgstr ""
+msgstr "已从远程接收机导入%s。"
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -1194,7 +1194,7 @@ msgstr "%s不再使用,是否删除？"
 
 #, python-format
 msgid "%s long"
-msgstr ""
+msgstr "%s 长按"
 
 #, python-format
 msgid "%s not available."
@@ -1273,16 +1273,16 @@ msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr "(注意: 将在 %d 次崩溃后重新启动.)"
 
 msgid "(PiP)"
-msgstr " (画中画)"
+msgstr "(画中画)"
 
 msgid "(Radio)"
-msgstr " (广播)"
+msgstr "(广播)"
 
 msgid "(TV)"
-msgstr " (电视)"
+msgstr "(电视)"
 
 msgid "(The file '/media/hdd/images/config/myrestore.sh' exists and will be run after the image is flashed.)"
-msgstr ""
+msgstr "（文件'/media/hdd/images/config/myrestore.sh'存在，将在镜像刷写后运行。）"
 
 msgid "(empty)"
 msgstr "(空)"
@@ -1300,7 +1300,7 @@ msgid "* current animation"
 msgstr "* 当前动画"
 
 msgid "+24 Hours"
-msgstr ""
+msgstr "+24小时"
 
 msgctxt "Text list separator"
 msgid ", "
@@ -1310,16 +1310,16 @@ msgid "-"
 msgstr "-"
 
 msgid "- No space left on backup device."
-msgstr ""
+msgstr "-备份设备上没有剩余空间。"
 
 msgid "- No write permission on backup device."
-msgstr ""
+msgstr "-备份设备上没有写入权限。"
 
 msgid "- Wrong backup destination."
-msgstr ""
+msgstr "-备份目标错误。"
 
 msgid "-24 Hours"
-msgstr ""
+msgstr "-24小时"
 
 msgid "-24h/+24 Hours"
 msgstr "-24小时/+24小时"
@@ -1358,7 +1358,7 @@ msgid "12 character"
 msgstr "12 个字符"
 
 msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed."
-msgstr ""
+msgstr "12，显示除希腊语和西里尔语外的拉丁语-1字符，必要时切换为8。"
 
 msgid "12V output"
 msgstr "12V输出"
@@ -1388,19 +1388,19 @@ msgid "16:9 Always"
 msgstr "16:9总是"
 
 msgid "16:9 Combined"
-msgstr ""
+msgstr "16:9 组合"
 
 msgid "16:9 Ignore"
-msgstr ""
+msgstr "16:9 忽略"
 
 msgid "16:9 Letterbox"
 msgstr "16:9信箱模式"
 
 msgid "16:9 PanScan"
-msgstr ""
+msgstr "16:9 裁切"
 
 msgid "16:9 reset to normal"
-msgstr ""
+msgstr "16:9 重置为正常"
 
 msgid "18 V"
 msgstr "18V"
@@ -1409,7 +1409,7 @@ msgid "1st InfoBar timeout"
 msgstr "第一信息栏超时"
 
 msgid "1x"
-msgstr ""
+msgstr "1x"
 
 msgid "2"
 msgstr "2"
@@ -1454,16 +1454,16 @@ msgid "3D Surround Speaker Position"
 msgstr "3D环绕扬声器位置"
 
 msgid "3x"
-msgstr ""
+msgstr "3x"
 
 msgid "4"
 msgstr "4"
 
 msgid "4:3 Combined"
-msgstr ""
+msgstr "4:3 组合"
 
 msgid "4:3 Ignore"
-msgstr ""
+msgstr "4:3 忽略"
 
 msgid "4:3 Letterbox"
 msgstr "4:3信箱模式"
@@ -1472,13 +1472,13 @@ msgid "4:3 PanScan"
 msgstr "4:3全景模式"
 
 msgid "4x"
-msgstr ""
+msgstr "4x"
 
 msgid "5"
 msgstr "5"
 
 msgid "50-200 Mbps"
-msgstr ""
+msgstr "50-200 Mbps"
 
 msgid "6"
 msgstr "6"
@@ -1517,33 +1517,33 @@ msgid "<Default movie location>"
 msgstr "<默认录像位置>"
 
 msgid "<Flash expander inactive>"
-msgstr ""
+msgstr "<闪存扩展器未激活>"
 
 msgid "<Last timer location>"
 msgstr "<最后一个定时器位置>"
 
 msgid "<Select a device>"
-msgstr ""
+msgstr "<选择设备>"
 
 msgid "<no log found>"
-msgstr ""
+msgstr "<未找到日志>"
 
 msgid "A"
 msgstr "A"
 
 msgid "A backup is now being created."
-msgstr ""
+msgstr "正在创建备份。"
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr ""
 
 #, python-format
 msgid "A completed task wants to set your %s %s to standby. Do that now?"
-msgstr ""
+msgstr "一项已完成的任务要将您的%s%s置为待机状态。是否执行？"
 
 #, python-format
 msgid "A completed task wants to shut down your %s %s. Shutdown now?"
-msgstr ""
+msgstr "一项已完成的任务要关闭您的%s%s。现在关机吗？"
 
 #, python-format
 msgid "A crash log was %s created in '%s'"
@@ -1692,19 +1692,19 @@ msgid "AFL"
 msgstr "AFL"
 
 msgid "AI-Powered Translation color"
-msgstr ""
+msgstr "人工智能翻译颜色"
 
 msgid "AI-Powered Translation enabled"
-msgstr ""
+msgstr "已启用人工智能翻译颜色"
 
 msgid "AI-Powered Translation language"
-msgstr ""
+msgstr "人工智能翻译语言"
 
 msgid "AI-Powered Translation optimization"
-msgstr ""
+msgstr "人工智能翻译优化"
 
 msgid "AI-Powered Translation subscription code"
-msgstr ""
+msgstr "人工智能翻译订阅代码"
 
 msgid "ARM"
 msgstr "ARM"
@@ -1749,13 +1749,13 @@ msgid "About"
 msgstr "关于"
 
 msgid "About openATV"
-msgstr ""
+msgstr "关于openATV"
 
 msgid "About to start"
 msgstr "即将开始"
 
 msgid "Above 200 Mbps"
-msgstr ""
+msgstr "200 Mbps以上"
 
 msgid "Access point"
 msgstr "接入点"
@@ -1767,7 +1767,7 @@ msgid "Access to geolocation information requires an Internet connection."
 msgstr "访问地理位置信息需要互联网连接."
 
 msgid "Accessed"
-msgstr ""
+msgstr "已访问"
 
 msgid "Action"
 msgstr "动作"
@@ -1785,7 +1785,7 @@ msgid "Activate"
 msgstr "激活"
 
 msgid "Activate Expander"
-msgstr ""
+msgstr "激活扩展器"
 
 msgid "Activate HbbTV (RED button)"
 msgstr "激活HbbTV(红色键)"
@@ -1809,7 +1809,7 @@ msgid "Activate the configured network settings."
 msgstr "激活已配置的网络设置."
 
 msgid "Activate the flash expander, save all changed settings and exit"
-msgstr ""
+msgstr "激活闪存扩展器，保存所有更改的设置并退出"
 
 msgid "Activate time shift End"
 msgstr "激活时移结束"
@@ -1824,7 +1824,7 @@ msgid "Active clients"
 msgstr "活动客户端"
 
 msgid "Active only"
-msgstr ""
+msgstr "仅活动"
 
 msgid "Adapter Settings"
 msgstr "适配器设置"
@@ -1851,19 +1851,19 @@ msgid "Add Current"
 msgstr "添加当前"
 
 msgid "Add File Commander to Extensions Menu"
-msgstr ""
+msgstr "将File Commander添加到扩展菜单"
 
 msgid "Add File Commander to Main Menu"
-msgstr ""
+msgstr "将File Commander添加到主菜单"
 
 msgid "Add File Commander to the Extensions Menu list of options."
-msgstr ""
+msgstr "将File Commander添加到扩展菜单选项列表中。"
 
 msgid "Add File Commander to the Main Menu list of options."
-msgstr ""
+msgstr "将File Commander添加到主菜单选项列表中。"
 
 msgid "Add HDMI-IN To Bouquet"
-msgstr ""
+msgstr "添加 HDMI-IN 到频道群"
 
 msgid "Add Marker To Bouquet"
 msgstr "添加标记"
@@ -1893,7 +1893,7 @@ msgid "Add ZapTimer"
 msgstr "添加换台定时器"
 
 msgid "Add a DNS entry"
-msgstr ""
+msgstr "添加DNS条目"
 
 msgid "Add a RecordTimer"
 msgstr "添加录制定时器"
@@ -1911,22 +1911,22 @@ msgid "Add a mark"
 msgstr "添加一个标记"
 
 msgid "Add a new bouquet"
-msgstr ""
+msgstr "添加新频道群"
 
 msgid "Add a new marker before the current service"
-msgstr ""
+msgstr "在当前频道之前添加新标记"
 
 msgid "Add a new tag"
 msgstr "增加新标签"
 
 msgid "Add a new timer"
-msgstr ""
+msgstr "添加新定时器"
 
 msgid "Add a new title"
 msgstr "添加新的标题"
 
 msgid "Add a service to the Volume Offsets list"
-msgstr ""
+msgstr "将频道添加到音量偏移列表"
 
 msgid "Add a timer for the current event"
 msgstr "为当前事件添加定时器"
@@ -1950,16 +1950,16 @@ msgid "Add highlighted directory to bookmarks"
 msgstr "添加选中的文件夹到书签"
 
 msgid "Add legacy LEFT/RIGHT actions"
-msgstr ""
+msgstr "添加传统的左/右操作"
 
 msgid "Add more slots"
-msgstr ""
+msgstr "添加更多插槽"
 
 msgid "Add new CCcam line"
-msgstr ""
+msgstr "添加新CCCam行"
 
 msgid "Add new NewCamd line"
-msgstr ""
+msgstr "添加新的NewCamd行"
 
 msgid "Add new tag"
 msgstr "添加新标签"
@@ -1983,25 +1983,25 @@ msgid "Add service"
 msgstr "添加频道"
 
 msgid "Add service names"
-msgstr ""
+msgstr "添加频道名"
 
 msgid "Add service names to each #SERVICE entry."
-msgstr ""
+msgstr "向每个#频道条目添加频道名称。"
 
 msgid "Add service to AutoCam"
-msgstr ""
+msgstr "向AutoCam添加频道"
 
 msgid "Add services to this bouquet?"
-msgstr ""
+msgstr "添加频道到此频道群吗？"
 
 msgid "Add the current directory as a bookmark"
-msgstr ""
+msgstr "将当前目录添加为书签"
 
 msgid "Add the current service to the Volume Offsets list"
-msgstr ""
+msgstr "将当前频道添加到“音量偏移”列表中"
 
 msgid "Add the selected service to a bouquet or alternative"
-msgstr ""
+msgstr "将选择的频道添加到频道群或备选中"
 
 msgid "Add title"
 msgstr "添加标题"
@@ -2013,13 +2013,13 @@ msgid "Add/Remove a timer for the current event"
 msgstr "添加/删除 当前事件定时器"
 
 msgid "Add/Remove highlighted plugin to/from install list"
-msgstr ""
+msgstr "在安装列表中添加/删除突出显示的插件"
 
 msgid "Add/Remove highlighted plugin to/from remove list"
-msgstr ""
+msgstr "在删除列表中添加/删除突出显示的插件"
 
 msgid "Add/Remove highlighted plugin to/from update list"
-msgstr ""
+msgstr "在更新列表中添加/删除突出显示的插件"
 
 msgid "Adding schedule..."
 msgstr "添加任务..."
@@ -2079,7 +2079,7 @@ msgid "Afrikaans"
 msgstr "南非荷兰语"
 
 msgid "After Event"
-msgstr ""
+msgstr "事件后"
 
 msgid "After PowerLost"
 msgstr "关闭电源后"
@@ -2091,7 +2091,7 @@ msgid "After recording"
 msgstr "录像后"
 
 msgid "After zap"
-msgstr ""
+msgstr "切换后"
 
 msgid "Akan"
 msgstr "阿肯语"
@@ -2142,7 +2142,7 @@ msgid "All events up"
 msgstr "向上翻页"
 
 msgid "All files"
-msgstr ""
+msgstr "所有文件"
 
 msgid "All resolutions"
 msgstr "所有分辨率"
@@ -2223,13 +2223,13 @@ msgid "Allows you to show/hide Log Manager in the Extension Menu screen (BLUE bu
 msgstr "允许您显示/隐藏日志管理器的扩展(蓝色键)."
 
 msgid "Allows you to show/hide OScam/CCcam in the Extension Menu screen (BLUE button)."
-msgstr ""
+msgstr "允许您在扩展菜单屏幕中显示/隐藏OScam/CCcam（蓝色按钮）。"
 
 msgid "Alpha"
 msgstr "字母表"
 
 msgid "Alphabetical"
-msgstr ""
+msgstr "按字母顺序排列"
 
 msgid "Alphabetical under headings"
 msgstr "标题下按字母顺序排列"
@@ -2274,7 +2274,7 @@ msgid "Alternative services tuner priority"
 msgstr "可选调谐器的优先次序"
 
 msgid "Always"
-msgstr ""
+msgstr "总是"
 
 msgid "Always ask"
 msgstr "总是询问"
@@ -2282,7 +2282,7 @@ msgstr "总是询问"
 msgid "Always include ECM in recordings"
 msgstr "总是在录制中包括ECM"
 
-msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver. Default: off."
+msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver."
 msgstr "总是在录音中包含ECM信息.这将覆盖全局的单个计时器设置.它允许录音被永远解密后(有时称为脱机解码),如果你的接收器支持.默认值:关闭."
 
 msgid "Always show bouquets"
@@ -2316,13 +2316,13 @@ msgid "Andorra"
 msgstr "安道尔"
 
 msgid "Android"
-msgstr ""
+msgstr "安卓"
 
 msgid "Android Linux SE"
-msgstr ""
+msgstr "安卓 Linux SE"
 
 msgid "Angle"
-msgstr ""
+msgstr "角度"
 
 msgid "Angola"
 msgstr "安哥拉"
@@ -2355,7 +2355,7 @@ msgid "Any recordings"
 msgstr "任何录制"
 
 msgid "Aperture F number"
-msgstr ""
+msgstr "光圈F值"
 
 msgid "Apply any changes to the active locale/language and exit"
 msgstr "对活动区域设置/语言应用任何更改并退出"
@@ -2367,16 +2367,16 @@ msgid "Arabic"
 msgstr "阿拉伯语"
 
 msgid "Arabic (Egyptian)"
-msgstr ""
+msgstr "阿拉伯语(埃及)"
 
 msgid "Arabic (Moroccan)"
-msgstr ""
+msgstr "阿拉伯语(摩洛哥)"
 
 msgid "Arabic (Syro-Lebanese)"
-msgstr ""
+msgstr "阿拉伯语（叙利亚-黎巴嫩）"
 
 msgid "Arabic (Tunisian)"
-msgstr ""
+msgstr "阿拉伯语(突尼斯)"
 
 msgid "Aragonese"
 msgstr "阿拉贡语"
@@ -2423,13 +2423,13 @@ msgid "Are you sure you want to delete the EPG data from:\n"
 msgstr "是否确定要删除的EPG数据:\n"
 
 msgid "Are you sure you want to delete this image?"
-msgstr ""
+msgstr "确定要删除此镜像吗？"
 
 msgid "Are you sure you want to delete this log:\n"
 msgstr "是否确实要删除此日志:\n"
 
 msgid "Are you sure you want to delete this?"
-msgstr ""
+msgstr "确定要删除这个吗？"
 
 msgid "Are you sure you want to exit this wizard?"
 msgstr "是否确定要退出此向导?"
@@ -2495,7 +2495,7 @@ msgid "As plugin in extended bar"
 msgstr "作为扩展栏中的插件"
 
 msgid "Ascending"
-msgstr ""
+msgstr "升序"
 
 msgid "Ask user"
 msgstr "询问用户"
@@ -2519,13 +2519,13 @@ msgid "Aspect ratio"
 msgstr "宽高比"
 
 msgid "Aspect switch"
-msgstr ""
+msgstr "长宽比开关"
 
 msgid "Assamese"
 msgstr "阿萨姆语"
 
 msgid "Assembling the image backup files."
-msgstr ""
+msgstr "正在封装镜像备份文件。"
 
 msgid "Assigned CAIds:"
 msgstr "指定CAIds:"
@@ -2549,11 +2549,11 @@ msgid "At end"
 msgstr "结束时"
 
 msgid "At end of current program"
-msgstr ""
+msgstr "当前节目结束时"
 
 #, python-format
 msgid "At end: %s"
-msgstr ""
+msgstr "结束时：%s"
 
 msgid "Athletics"
 msgstr "田径"
@@ -2653,40 +2653,40 @@ msgid "Auto install log"
 msgstr "自动安装日志"
 
 msgid "Auto multi-selection"
-msgstr ""
+msgstr "自动多选"
 
 msgid "Auto shut down"
-msgstr ""
+msgstr "自动关机"
 
 msgid "Auto standby"
 msgstr "自动待机"
 
 msgid "Auto video mode selected"
-msgstr ""
+msgstr "已选择自动视频模式"
 
 msgid "Auto video mode selected for the TV."
-msgstr ""
+msgstr "已为电视选择自动视频模式。"
 
 msgid "Auto(not available)"
 msgstr "自动(不可用)"
 
 msgid "AutoCam Settings"
-msgstr ""
+msgstr "AutoCam 设置"
 
 msgid "AutoCam Setup Actions"
-msgstr ""
+msgstr "自动CAM设置操作"
 
 msgid "AutoFS"
-msgstr ""
+msgstr "自动文件系统"
 
 msgid "AutoMountManager"
 msgstr "自动挂载管理器"
 
 msgid "AutoRefresh"
-msgstr ""
+msgstr "自动刷新"
 
 msgid "AutoTimer"
-msgstr ""
+msgstr "自动定时器"
 
 msgid "AutoUpdate"
 msgstr "自动更新"
@@ -2722,7 +2722,7 @@ msgid "Automatically update Client/Server View"
 msgstr "自动更新客户端/服务器视图?"
 
 msgid "Automatically update Log-Fullscreen View"
-msgstr ""
+msgstr "自动更新日志全屏视图"
 
 msgid "Autostart"
 msgstr "自启动"
@@ -2840,10 +2840,10 @@ msgid "Backup Mode"
 msgstr "备份模式"
 
 msgid "Backup Mode: Flash Online"
-msgstr ""
+msgstr "备份模式：在线刷机"
 
 msgid "Backup Mode: USB Recovery"
-msgstr ""
+msgstr "备份模式：USB恢复"
 
 msgid "Backup Settings"
 msgstr "备份设置"
@@ -2852,7 +2852,7 @@ msgid "Backup System Settings"
 msgstr "备份系统设置"
 
 msgid "Backup images"
-msgstr ""
+msgstr "备份镜像"
 
 msgid "Backup is running..."
 msgstr "正在备份..."
@@ -2866,7 +2866,7 @@ msgstr ""
 
 #, python-format
 msgid "Backup tool for %s %s"
-msgstr ""
+msgstr "%s %s 的备份工具"
 
 msgid "Backup your %s %s settings."
 msgstr "备份 %s %s 设置."
@@ -2908,10 +2908,10 @@ msgid "Barbados"
 msgstr "巴巴多斯"
 
 msgid "Base Packages"
-msgstr ""
+msgstr "基本包"
 
 msgid "Base Shell Packages"
-msgstr ""
+msgstr "基础Shell包"
 
 msgid "Base time"
 msgstr "基准时间"
@@ -2968,11 +2968,11 @@ msgid "Belize"
 msgstr "伯利兹"
 
 msgid "Benchmark Information"
-msgstr ""
+msgstr "基准信息"
 
 #, python-format
 msgid "Benchmark information for %s %s"
-msgstr ""
+msgstr "%s %s的基准信息"
 
 msgid "Bengali"
 msgstr "孟加拉语"
@@ -3008,13 +3008,13 @@ msgid "Black"
 msgstr "黑色"
 
 msgid "Black Screen"
-msgstr ""
+msgstr "黑屏"
 
 msgid "Black screen till locked"
 msgstr "黑屏直到锁定"
 
 msgid "Blacklist"
-msgstr ""
+msgstr "黑名单"
 
 msgid "Blinking REC"
 msgstr "REC符号闪烁"
@@ -3032,7 +3032,7 @@ msgid "Blue"
 msgstr "蓝色"
 
 msgid "Bluetooth"
-msgstr ""
+msgstr "蓝牙"
 
 msgid "Bluetooth Setup"
 msgstr "蓝牙设置"
@@ -3044,13 +3044,13 @@ msgid "Bonaire"
 msgstr "博内尔岛"
 
 msgid "Bookmark Sequence Actions"
-msgstr ""
+msgstr "书签序列操作"
 
 msgid "Bookmark added."
-msgstr ""
+msgstr "已添加书签。"
 
 msgid "Bookmark removed."
-msgstr ""
+msgstr "已删除书签。"
 
 msgid "Bookmarks"
 msgstr "书签"
@@ -3072,7 +3072,7 @@ msgstr "需要引导加载程序更新！"
 
 #, python-format
 msgid "Boot slot information for %s %s"
-msgstr ""
+msgstr "%s %s的引导槽信息"
 
 msgid "Boot time"
 msgstr "启动时间"
@@ -3105,19 +3105,19 @@ msgid "Bouquet List"
 msgstr "自定义列表"
 
 msgid "Bouquet Selector"
-msgstr ""
+msgstr "频道群选择器"
 
 msgid "Bouquet Selector Actions"
-msgstr ""
+msgstr "频道群选择器操作"
 
 msgid "Bouquet Selector Navigation Actions"
-msgstr ""
+msgstr "频道群选择器导航操作"
 
 msgid "Bouquets"
-msgstr ""
+msgstr "频道群"
 
 msgid "Bouquets start at 1"
-msgstr ""
+msgstr "从1开始频道群"
 
 msgid "Bouvet Island"
 msgstr "布韦岛"
@@ -3144,25 +3144,25 @@ msgid "Brightness (Standby)"
 msgstr "亮度(待机状态)"
 
 msgid "Brightness Video"
-msgstr ""
+msgstr "亮度视频"
 
 msgid "Brightness Video & OSD"
-msgstr ""
+msgstr "亮度视频&OSD"
 
 msgid "British Indian Ocean Territory"
 msgstr "英属印度洋领地"
 
 msgid "Broadcast address"
-msgstr ""
+msgstr "广播地址"
 
 msgid "Broadcast systems"
-msgstr ""
+msgstr "广播系统"
 
 msgid "Broadcom"
 msgstr "博通"
 
 msgid "Browse, install or remove plugins on a one by one basis."
-msgstr ""
+msgstr "逐个浏览、安装或删除插件。"
 
 msgid "Brunei Darussalam"
 msgstr "文莱"
@@ -3191,7 +3191,7 @@ msgstr "构建信息"
 
 #, python-format
 msgid "Build information for %s %s"
-msgstr ""
+msgstr "%s %s 的构建信息"
 
 msgid "Bulgaria"
 msgstr "保加利亚"
@@ -3230,16 +3230,16 @@ msgid "Button Setup"
 msgstr "按键设置"
 
 msgid "Button error timeout"
-msgstr ""
+msgstr "按钮错误超时"
 
 msgid "ButtonSetup"
 msgstr "按键设置"
 
 msgid "By disk UUID"
-msgstr ""
+msgstr "通过磁盘 UUID"
 
 msgid "By disk label"
-msgstr ""
+msgstr "通过磁盘标签"
 
 msgid "Bypass HDMI EDID Check"
 msgstr "绕开HDMI EDID检查"
@@ -3257,13 +3257,13 @@ msgid "C-Band"
 msgstr "C-波段"
 
 msgid "CCD-Width"
-msgstr ""
+msgstr "CCD宽度"
 
 msgid "CCcam"
-msgstr ""
+msgstr "CCcam"
 
 msgid "CCcam - Lines"
-msgstr ""
+msgstr "CCcam 线路"
 
 msgid "CCcam Client Info"
 msgstr "CCcam客户端信息"
@@ -3293,16 +3293,16 @@ msgid "CCcam Info Config"
 msgstr "CCcam信息配置"
 
 msgid "CCcam Information"
-msgstr ""
+msgstr "CCcam 信息"
 
 msgid "CCcam Line Edit Actions"
-msgstr ""
+msgstr "CCcam 线路编辑操作"
 
 msgid "CCcam Line Editor"
-msgstr ""
+msgstr "CCcam 线路编辑器"
 
 msgid "CCcam Profile Settings"
-msgstr ""
+msgstr "CCcam 配置文件设置"
 
 msgid "CCcam Provider Info"
 msgstr "CCcam供应商信息"
@@ -3320,7 +3320,7 @@ msgid "CCcam Shares Info"
 msgstr "CCcam最新信息"
 
 msgid "CCcam.cfg Basic Line Editor"
-msgstr ""
+msgstr "CCcam.cfg 基本线路编辑器"
 
 msgid "CCcamInfo Mainmenu"
 msgstr "CCcam信息主菜单"
@@ -3345,44 +3345,44 @@ msgid "CI (Common Interface) Setup"
 msgstr "CI(通用接口)设置"
 
 msgid "CI Boot Delay"
-msgstr ""
+msgstr "CI 启动延迟"
 
 msgid "CI assignment"
 msgstr "接口分配（CI）"
 
 msgid "CI enabled"
-msgstr ""
+msgstr "已启用 CI"
 
 msgid "CI slot: "
 msgstr "CI插槽: "
 
 msgid "CI+ Helper*"
-msgstr ""
+msgstr "CI+ 帮手*"
 
 msgid "CPU"
 msgstr "处理器"
 
 #, python-format
 msgid "CPU / Core %d type"
-msgstr ""
+msgstr "CPU / 核心 %d 类型"
 
 msgid "CPU Control"
-msgstr ""
+msgstr "CPU控制"
 
 msgid "CPU architecture"
 msgstr "处理器架构"
 
 msgid "CPU benchmark"
-msgstr ""
+msgstr "CPU基准测试"
 
 msgid "CPU brand"
 msgstr "处理器品牌"
 
 msgid "CPU priority for scripts"
-msgstr ""
+msgstr "脚本的 CPU 优先级"
 
 msgid "CPU rating"
-msgstr ""
+msgstr "CPU 等级"
 
 msgid "CPU speed/cores"
 msgstr "处理器速度/内核"
@@ -3409,16 +3409,16 @@ msgid "Calculate"
 msgstr "计算"
 
 msgid "Calculate file hashes/checksums"
-msgstr ""
+msgstr "计算文件哈希值/校验和"
 
 msgid "Calculating benchmark..."
-msgstr ""
+msgstr "正在计算基准..."
 
 msgid "Calculating rating..."
-msgstr ""
+msgstr "正在计算评级..."
 
 msgid "Calculating..."
-msgstr ""
+msgstr "正在计算…"
 
 msgid "Calculation complete"
 msgstr "计算完成"
@@ -3430,7 +3430,7 @@ msgid "Cambodia"
 msgstr "柬埔寨"
 
 msgid "Camera"
-msgstr ""
+msgstr "摄像头"
 
 msgid "Cameroon"
 msgstr "喀麦隆"
@@ -3514,7 +3514,7 @@ msgid "Can't allocate program source (e.g. tuner)"
 msgstr "无法分配程序源(例如调谐器)"
 
 msgid "Can't create backup directory!"
-msgstr ""
+msgstr "无法创建备份目录！"
 
 msgid ""
 "Can't going to live TV!\n"
@@ -3546,10 +3546,10 @@ msgid "Cancel / Close the software update screen"
 msgstr "取消/关闭软件更新屏幕"
 
 msgid "Cancel Task"
-msgstr ""
+msgstr "取消任务"
 
 msgid "Cancel and exit the context menu"
-msgstr ""
+msgstr "取消并退出上下文菜单"
 
 msgid "Cancel any changed settings and exit"
 msgstr "取消所有更改并退出"
@@ -3570,13 +3570,13 @@ msgid "Cancel any text changes and exit"
 msgstr "取消所有文本更改并退出当前菜单"
 
 msgid "Cancel conflict resolution"
-msgstr ""
+msgstr "取消冲突分辨率"
 
 msgid "Cancel execution?"
 msgstr "是否取消执行?"
 
 msgid "Cancel extraction"
-msgstr ""
+msgstr "取消提取"
 
 msgid "Cancel save time shift as movie"
 msgstr "取消保存时移为电影"
@@ -3585,22 +3585,22 @@ msgid "Cancel selection"
 msgstr "取消选择"
 
 msgid "Cancel selection and exit"
-msgstr ""
+msgstr "取消选择并退出"
 
 msgid "Cancel service selection and exit"
-msgstr ""
+msgstr "取消选择频道并退出"
 
 msgid "Cancel the Reset Feeds command currently being processed"
-msgstr ""
+msgstr "取消当前正在处理的重置 Feed 命令"
 
 msgid "Cancel the bouquet selection"
-msgstr ""
+msgstr "取消频道群选择"
 
 msgid "Cancel the flash process"
-msgstr ""
+msgstr "取消刷机进程"
 
 msgid "Cancel the flash process and exit all menus"
-msgstr ""
+msgstr "取消刷机进程并退出所有菜单"
 
 msgid "Cancel the image selection and exit"
 msgstr "取消固件选择并退出"
@@ -3609,28 +3609,28 @@ msgid "Cancel the image selection and exit all menus"
 msgstr "取消镜像选择并退出所有菜单"
 
 msgid "Cancel the scan and exit all menus"
-msgstr ""
+msgstr "取消扫描并退出所有菜单"
 
 msgid "Cancel the scan and exit the scanner"
-msgstr ""
+msgstr "取消扫描并退出扫描器"
 
 msgid "Cancel the selection and exit"
-msgstr ""
+msgstr "取消选择并退出"
 
 msgid "Cancel the service history zap"
-msgstr ""
+msgstr "取消频道历史记录切换"
 
 msgid "Cancel the service selection"
-msgstr ""
+msgstr "取消频道选择"
 
 msgid "Cancel the slot selection and exit"
-msgstr ""
+msgstr "取消槽位选择并退出"
 
 msgid "Cancel the slot selection and exit all menus"
-msgstr ""
+msgstr "取消槽柆选择并退出所有菜单"
 
 msgid "Cancel the task"
-msgstr ""
+msgstr "取消任务"
 
 msgid "Cancel the update"
 msgstr "取消更新"
@@ -3668,7 +3668,7 @@ msgid "Cardserial"
 msgstr "卡片序列号"
 
 msgid "Cardserver Settings"
-msgstr ""
+msgstr "卡片服务器设置"
 
 msgid "Cartoon"
 msgstr "卡通片"
@@ -3683,7 +3683,7 @@ msgid "Cayman Islands"
 msgstr "开曼群岛"
 
 msgid "Cebuano"
-msgstr ""
+msgstr "宿务语"
 
 msgid "Celsius"
 msgstr "摄氏度"
@@ -3719,7 +3719,7 @@ msgid "Change Language"
 msgstr "更改语言"
 
 msgid "Change OSD Settings"
-msgstr ""
+msgstr "更改 OSD 设置"
 
 msgid "Change PIN"
 msgstr "更改PIN码"
@@ -3755,16 +3755,16 @@ msgid "Change step size"
 msgstr "更改步进大小"
 
 msgid "Change to Radio services mode"
-msgstr ""
+msgstr "更改为广播频道模式"
 
 msgid "Change to TV services mode"
-msgstr ""
+msgstr "更改为电视频道模式"
 
 msgid "Change to bouquet"
 msgstr "更改为自定义组"
 
 msgid "Changed"
-msgstr ""
+msgstr "已更改"
 
 #, python-format
 msgid ""
@@ -3781,7 +3781,7 @@ msgid "Channel +/- button mode"
 msgstr "频道+/-键 模式"
 
 msgid "Channel / Service"
-msgstr ""
+msgstr "频道/服务"
 
 msgid "Channel 1"
 msgstr "频道 1"
@@ -3802,25 +3802,25 @@ msgid "Channel Selection"
 msgstr "频道选择"
 
 msgid "Channel Selection Actions"
-msgstr ""
+msgstr "频道选择操作"
 
 msgid "Channel Selection Context Menu"
 msgstr "频道列表上下文菜单"
 
 msgid "Channel Selection Context Menu Actions"
-msgstr ""
+msgstr "频道选择上下文菜单操作"
 
 msgid "Channel Selection Context Menu Navigation Actions"
-msgstr ""
+msgstr "频道选择上下文菜单导航操作"
 
 msgid "Channel Selection List"
-msgstr ""
+msgstr "频道选择列表"
 
 msgid "Channel Selection Navigation Actions"
-msgstr ""
+msgstr "频道选择导航操作"
 
 msgid "Channel Selection Screen"
-msgstr ""
+msgstr "频道选择屏幕"
 
 msgid "Channel Selection Settings"
 msgstr "频道选择设置"
@@ -3886,13 +3886,13 @@ msgid "ChannelEPG Settings"
 msgstr "频道EPG设置"
 
 msgid "Channels"
-msgstr ""
+msgstr "频道"
 
 msgid "Channels and EPG"
-msgstr ""
+msgstr "频道和 EPG"
 
 msgid "Channels only"
-msgstr ""
+msgstr "仅频道"
 
 msgid "Chap."
 msgstr "章."
@@ -3916,10 +3916,10 @@ msgid "Check HDD"
 msgstr "检查硬盘"
 
 msgid "Check for PDC"
-msgstr ""
+msgstr "检查 PDC"
 
 msgid "Check for PDC availability on each service"
-msgstr ""
+msgstr "检查每个频道的 PDC 可用性"
 
 msgid "Check power and input state from TV"
 msgstr "检查电视电源和输入状态"
@@ -3969,22 +3969,22 @@ msgid "Chinese"
 msgstr "中文"
 
 msgid "Chinese (Simplified)"
-msgstr ""
+msgstr "简体中文"
 
 msgid "Choice Box"
 msgstr "选择机顶盒"
 
 msgid "Choice List Actions"
-msgstr ""
+msgstr "选择列表操作"
 
 msgid "Choice List Navigation Actions"
-msgstr ""
+msgstr "选择列表导航操作"
 
 msgid "Choice List Order Actions"
-msgstr ""
+msgstr "选择列表顺序操作"
 
 msgid "Choice List Selection Actions"
-msgstr ""
+msgstr "选择列表选择操作"
 
 #, python-format
 msgid "Choice where to put \"%s\""
@@ -4003,13 +4003,13 @@ msgid "Choose a label that will identify this device within IceTV services."
 msgstr "选择将在IceTV服务中识别此设备的标签."
 
 msgid "Choose how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful when you need information about an event which has recently finished."
-msgstr ""
+msgstr "选择要在 EPG 缓存中保留多少 EPG 历史记录（如果有）。可以在任何 EPG 视图中浏览此历史数据。当您需要有关最近结束的事件的信息时，这会很有用。"
 
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "选择连接到ICETV服务器以检查更新的频率."
 
 msgid "Choose the amount of additional slots."
-msgstr ""
+msgstr "选择附加插槽的数量。"
 
 msgid "Choose the display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "选择日期的显示格式样式.'D'/'DD'是日期,'M'/'MM'是月份的数字.（'DD'和'MM'有前 导零表示单个数字值.）屏幕显示将根据您的选择而定,但可能受皮肤的影响."
@@ -4018,7 +4018,7 @@ msgid "Choose the display formatting style for times. 'H' / 'HH' is the hour for
 msgstr "选择时间的显示格式样式.'H'/'HH'是24小时制,'h'/'hh'是12小时制,'mm'是 分钟,'ss'是秒,（'HH'和'hh'有前导零表示单个数字值.）屏幕显示将根 据您的选择而定,但可能受皮肤的影响."
 
 msgid "Choose the fallback font."
-msgstr ""
+msgstr "选择备用字体。"
 
 msgid "Choose the front panel display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "为日期选择前面板显示格式样式.'D'/'DD'是日期,'M'/'MM'是月份 的数字.（'DD'和'MM'有前导零表示单个数字值.）屏幕显示 将根据您的选择而定,但可能受皮肤的影响."
@@ -4036,25 +4036,25 @@ msgid "Choose the name of the file that holds the EPG data when the %s %s is shu
 msgstr "选择在关闭 %s %s 时保存EPG数据的文件名.这可以方便地区分几个机顶盒."
 
 msgid "Choose the option to correct invalid EPG data."
-msgstr ""
+msgstr "选择该选项以更正无效的EPG数据。"
 
 msgid "Choose the skin to be used for the GUI interface. Press 'GREEN' to activate the skin."
-msgstr ""
+msgstr "选择要用于GUI界面的皮肤。按“绿键”激活皮肤。"
 
 msgid "Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin."
-msgstr ""
+msgstr "选择用于 LCD/前面板界面的皮肤。按“绿键”激活皮肤。"
 
 msgid "Choose the style/order in which items are displayed in help windows."
-msgstr ""
+msgstr "选择帮助窗口中显示项目的样式/顺序。"
 
 msgid "Choose the target device for the slots."
-msgstr ""
+msgstr "选择插槽的目标设备。"
 
 msgid "Choose the target location for the expanded '/usr' directory."
-msgstr ""
+msgstr "为扩展的“/usr”目录选择目标位置。"
 
 msgid "Choose the target location for the slots."
-msgstr ""
+msgstr "选择插槽的目标位置。"
 
 msgid "Choose time interval to which the graphics will be rounded off."
 msgstr "选择图形将被四舍五入的时间间隔."
@@ -4105,7 +4105,7 @@ msgid "Christmas Island"
 msgstr "圣诞岛"
 
 msgid "Chrony"
-msgstr ""
+msgstr "克罗尼"
 
 msgid "Church Slavic"
 msgstr "教堂用斯拉夫语"
@@ -4132,16 +4132,16 @@ msgid "Clean network 'Trash'"
 msgstr "清理网络垃圾桶"
 
 msgid "Clean up (delete) all completed timers?"
-msgstr ""
+msgstr "是否清理（删除）所有已完成的定时器？"
 
 msgid "Clean up and remove all completed timers"
-msgstr ""
+msgstr "清理并移除所有已完成的定时器"
 
 msgid "Clean up and remove all completed timers?"
-msgstr ""
+msgstr "清理并移除所有已完成的定时器吗？"
 
 msgid "Cleaning Trashcan"
-msgstr ""
+msgstr "正在清洁垃圾桶"
 
 msgid "Cleanup"
 msgstr "清理"
@@ -4162,15 +4162,15 @@ msgid "Clear play list"
 msgstr "清理播放列表"
 
 msgid "Clear the logs for this timer"
-msgstr ""
+msgstr "清除此定时器的日志"
 
 msgid "Clear the virtual memory caches"
 msgstr "清除虚拟内存缓存"
 
 msgid "Clear warning"
 msgid_plural "Clear warnings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "明确警告"
+msgstr[1] "明确警告"
 
 msgid "Click the button on your remote you want to change."
 msgstr "请单击你想要修改的遥控键"
@@ -4200,10 +4200,10 @@ msgid "Close PiP on exit"
 msgstr "退出时关闭画中画"
 
 msgid "Close Task List"
-msgstr ""
+msgstr "关闭任务列表"
 
 msgid "Close Task View"
-msgstr ""
+msgstr "关闭任务视图"
 
 msgid "Close bouquet list"
 msgstr "关闭自定义列表"
@@ -4218,13 +4218,13 @@ msgid "Close screen"
 msgstr "关闭屏幕"
 
 msgid "Close the Kexec MultiBoot Manager"
-msgstr ""
+msgstr "关闭 Kexec 多引导管理器"
 
 msgid "Close the Plugin Browser screen"
-msgstr ""
+msgstr "关闭插件浏览器屏幕"
 
 msgid "Close the choice box"
-msgstr ""
+msgstr "关闭选择框"
 
 msgid "Close the current screen"
 msgstr "关闭当前屏幕"
@@ -4236,19 +4236,19 @@ msgid "Close the screen and exit all menus"
 msgstr "关闭屏幕并退出所有菜单"
 
 msgid "Close the screen without saving any changes"
-msgstr ""
+msgstr "关闭屏幕，不保存任何更改"
 
 msgid "Close the window"
 msgstr "关闭此窗口"
 
 msgid "Close this screen"
-msgstr ""
+msgstr "关闭此屏幕"
 
 msgid "Close title selection"
 msgstr "关闭标题选择"
 
 msgid "Cloudflare DNS"
-msgstr ""
+msgstr "Cloudflare DNS"
 
 msgid "Cocos (Keeling) Islands"
 msgstr "科科斯(基林)群岛"
@@ -4275,10 +4275,10 @@ msgid "Color"
 msgstr "颜色"
 
 msgid "Color Bottom"
-msgstr ""
+msgstr "彩色底部"
 
 msgid "Color Top"
-msgstr ""
+msgstr "彩色顶部"
 
 msgid "Color format"
 msgstr "色彩格式"
@@ -4287,10 +4287,10 @@ msgid "Color space"
 msgstr "色彩空间"
 
 msgid "Colored Text"
-msgstr ""
+msgstr "彩色文本"
 
 msgid "Combined"
-msgstr ""
+msgstr "混合"
 
 msgid "Combo"
 msgstr "组合"
@@ -4303,36 +4303,36 @@ msgstr "喜剧片"
 
 #, python-format
 msgid "Command '%s' is unknown"
-msgstr ""
+msgstr "命令‘%s’未知"
 
 msgid "Command execution..."
 msgstr "执行命令..."
 
 msgid "Command finished."
 msgid_plural "Commands finished."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "命令完成。"
+msgstr[1] "命令已完成。"
 
 msgid "Command order"
 msgstr "命令顺序"
 
 msgid "Command to run"
-msgstr ""
+msgstr "运行命令"
 
 msgid "Command type"
 msgstr "命令类型"
 
 msgid "Commit"
-msgstr ""
+msgstr "提交"
 
 msgid "Commit Information Actions"
 msgstr "提交信息操作"
 
 msgid "Commit Log"
-msgstr ""
+msgstr "提交日志"
 
 msgid "Commit Log Information"
-msgstr ""
+msgstr "提交日志信息"
 
 msgid "Commit Logs"
 msgstr "提交日志"
@@ -4347,16 +4347,16 @@ msgid "Common Interface Assignment"
 msgstr "公共接口分配"
 
 msgid "Common Interface Settings"
-msgstr ""
+msgstr "通用接口设置"
 
 msgid "Common Settings"
-msgstr ""
+msgstr "常用设置"
 
 msgid "Common Setup Actions"
 msgstr "常见设置操作"
 
 msgid "Comodo Secure DNS"
-msgstr ""
+msgstr "Comodo 安全 DNS"
 
 msgid "Comoros"
 msgstr "科摩罗"
@@ -4376,8 +4376,11 @@ msgstr "综合(允许混合音轨和相位)"
 msgid "Composition of the recording filenames"
 msgstr "录制文件名的组成"
 
+msgid "Compress root file system tar file. (This takes the most time!)"
+msgstr "压缩根文件系统tar文件。（这需要最多的时间！）"
+
 msgid "Compressed bits/pixel"
-msgstr ""
+msgstr "压缩位数/像素"
 
 msgid "Config"
 msgstr "配置"
@@ -4403,7 +4406,7 @@ msgid "Configuration options for the HELP screen can be found in 'MENU > Setup >
 msgstr "帮助屏幕的配置选项可以在“菜单>设置>使用和用户界面>设置”中找到."
 
 msgid "Configure DNS (name servers)"
-msgstr ""
+msgstr "配置 DNS（名称服务器）"
 
 msgid "Configure an additional delay to improve external subtitle synchronization."
 msgstr "配置额外的延迟以改善外挂字幕同步."
@@ -4418,7 +4421,7 @@ msgid "Configure for which types of recordings a warning about active recordings
 msgstr "配置在尝试重新启动设备或GUI时,针对哪些类型的录制显示有关活动录制的警告."
 
 msgid "Configure front panel LEDs"
-msgstr ""
+msgstr "配置前面板 LED"
 
 msgid "Configure how recording filenames are constructed. Standard: Date Time - Channel - Title Very very short: Title Very short: Title - Date Time Short with time: Date Time - Title Short: Date - Title Long: Date Time - Channel - Title - Info"
 msgstr "配置录制文件名的构造方式.标准:日期时间-频道-标题非常短:标题很短:标题-日期时间短的时间:日期时间-标题短:日期-标题长:日期时间-频道-标题-信息"
@@ -4439,7 +4442,7 @@ msgid "Configure if and how wide the service name column will be shown in the ch
 msgstr "配置频道选择列表中显示频道名称列的宽度."
 
 msgid "Configure if crypto icons will be shown in the channel selection list."
-msgstr ""
+msgstr "配置加密图标是否显示在频道选择列表中。"
 
 msgid "Configure if epg.dat should be saved at all."
 msgstr "配置是否应该保存epg.dat."
@@ -4451,7 +4454,7 @@ msgid "Configure if service picons will be shown in the service list."
 msgstr "配置picon图标是否将显示在频道列表中."
 
 msgid "Configure if service type icons will be shown."
-msgstr ""
+msgstr "配置是否显示频道类型图标。"
 
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
 msgstr "配置字幕是否应在正常、斜体、粗体和粗体斜体之间切换"
@@ -4467,6 +4470,9 @@ msgid ""
 "\n"
 "When the settings are correct press OK to continue."
 msgstr ""
+"通过调整显示的值来配置或验证您的 DNS（名称服务器）。\n"
+"\n"
+"设置正确后，按“确定”继续。"
 
 msgid "Configure remote control type"
 msgstr "配置遥控器类型"
@@ -4482,6 +4488,9 @@ msgid ""
 "\n"
 "When the settings are correct press OK to continue."
 msgstr ""
+"通过调整显示的值来配置 Internet 连接。\n"
+"\n"
+"设置正确后，按“确定”继续。"
 
 msgid "Configure the alignment of events."
 msgstr "配置EPG事件的对齐方式."
@@ -4541,10 +4550,10 @@ msgid "Configure the duration in minutes before the screen saver will be display
 msgstr "配置屏幕保护程序的持续时间(分钟)."
 
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
-msgstr ""
+msgstr "配置节能定时器激活前的持续时间（分钟）。"
 
 msgid "Configure the duration, in minutes, before the SleepTimer activates."
-msgstr ""
+msgstr "配置睡眠定时器激活前的持续时间（分钟）。"
 
 msgid "Configure the end coordinate in x of the teletext display area."
 msgstr "配置图文电视显示区域的x端坐标."
@@ -4580,7 +4589,7 @@ msgid "Configure the function of a short press on the power button."
 msgstr "配置电源键短按功能."
 
 msgid "Configure the function of the < and > buttons."
-msgstr ""
+msgstr "配置 < 和 > 按钮的功能。"
 
 msgid "Configure the gateway."
 msgstr "配置网关."
@@ -4778,10 +4787,10 @@ msgid "Configuring"
 msgstr "配置"
 
 msgid "Configuring Service"
-msgstr ""
+msgstr "正在配置服务"
 
 msgid "ConflictTimer Actions"
-msgstr ""
+msgstr "冲突定时器操作"
 
 msgid "ConflictTimer Overview"
 msgstr "配置定时器"
@@ -4803,7 +4812,7 @@ msgid "Connect to a wireless network"
 msgstr "连接到无线网络"
 
 msgid "Connect to the Internet"
-msgstr ""
+msgstr "连接到互联网"
 
 msgid "Connected clients"
 msgstr "连接客户端"
@@ -4812,7 +4821,7 @@ msgid "Connected satellites"
 msgstr "连接卫星"
 
 msgid "Connected through another tuner"
-msgstr ""
+msgstr "已通过其他调谐器连接"
 
 msgid "Connected to"
 msgstr "连接到"
@@ -4827,19 +4836,19 @@ msgid "Console"
 msgstr "控制台"
 
 msgid "Console Actions"
-msgstr ""
+msgstr "控制台操作"
 
 msgid "Console Network Packages"
-msgstr ""
+msgstr "控制台网络软件包"
 
 msgid "Console Packages"
-msgstr ""
+msgstr "控制台软件包"
 
 msgid "Console Utility Packages"
-msgstr ""
+msgstr "控制台实用程序包"
 
 msgid "Constellation"
-msgstr ""
+msgstr "星座"
 
 msgid "Consult your SCR device specifications for this information."
 msgstr "有关此信息,请参阅SCR设备规格表."
@@ -4879,13 +4888,13 @@ msgid "Continue playing"
 msgstr "继续播放"
 
 msgid "Continue to run the task in the background"
-msgstr ""
+msgstr "继续在后台运行任务"
 
 msgid "Continue with package download and installation"
-msgstr ""
+msgstr "继续下载和安装软件包"
 
 msgid "Continue with the flash process"
-msgstr ""
+msgstr "继续刷机进程"
 
 msgid "Continue with the on-line update"
 msgstr "继续在线更新"
@@ -4900,16 +4909,16 @@ msgid "Contrast"
 msgstr "对比度"
 
 msgid "Contrast Video"
-msgstr ""
+msgstr "对比视频"
 
 msgid "Contrast Video & OSD"
-msgstr ""
+msgstr "对比视频和 OSD"
 
 msgid "Control LED can be turned on or off here."
 msgstr "控制LED可在此处打开或关闭."
 
 msgid "Control files:"
-msgstr ""
+msgstr "控制文件："
 
 msgid "Control of the position how finished timer are shown in the Timer List."
 msgstr "定位控制,已结束的定时器在定时器列表中如何显示."
@@ -4957,45 +4966,45 @@ msgid "Copy To Bouquet"
 msgstr "复制到自定义组"
 
 msgid "Copy To Stream Relay"
-msgstr ""
+msgstr "复制到流中继"
 
 msgid "Copy all related files"
-msgstr ""
+msgstr "复制所有相关文件"
 
 msgid "Copy directory/file to target directory"
-msgstr ""
+msgstr "将目录/文件复制到目标目录"
 
 msgid "Copy job completed."
-msgstr ""
+msgstr "复制任务已完成。"
 
 msgid "Copy job failed!"
-msgstr ""
+msgstr "复制任务失败！"
 
 msgid "Copy job queued."
-msgstr ""
+msgstr "复制任务已排队。"
 
 msgid "Copy only highlighted file"
-msgstr ""
+msgstr "仅复制突出显示的文件"
 
 #, python-format
 msgid "Copy the directory/file '%s'?"
-msgstr ""
+msgstr "复制目录/文件“%s”？"
 
 #, python-format
 msgid "Copy these %d directories/files?"
-msgstr ""
+msgstr "复制这 %d 个目录/文件？"
 
 msgid "Copying files"
 msgstr "复制文件"
 
 msgid "Core dumps are helpful for developers in case of a FATAL SIGNAL crash in the C++ code. Typical core dump size is 110 MB so adjust maximum space used and choose proper location."
-msgstr ""
+msgstr "在 C++ 代码中发生致命信号崩溃时，核心转储对开发人员很有帮助。典型的核心转储大小为 110 MB，因此请调整使用的最大空间并选择适当的位置。"
 
 msgid "Cornish"
 msgstr "康沃尔语"
 
 msgid "Correct invalid EPG data"
-msgstr ""
+msgstr "纠正无效的 EPG 数据"
 
 msgid "Corsican"
 msgstr "科西嘉岛"
@@ -5042,7 +5051,7 @@ msgstr "EPG事件分级信息的国家/地区"
 
 #, python-format
 msgid "Crash %d/%d"
-msgstr ""
+msgstr "崩溃 %d/%d"
 
 msgid "Crash Logs"
 msgstr "崩溃日志"
@@ -5060,41 +5069,77 @@ msgid "Create DVD-ISO"
 msgstr "创建DVD-ISO"
 
 msgid "Create Directory"
-msgstr ""
+msgstr "创建目录"
 
 msgid "Create Expander"
-msgstr ""
+msgstr "创建扩展器"
 
 msgid "Create ISO"
 msgstr "创建ISO"
 
 msgid "Create Slots"
-msgstr ""
+msgstr "创建槽位"
 
 msgid "Create a directory"
-msgstr ""
+msgstr "创建一个目录"
 
 msgid "Create a randomly generated password"
-msgstr ""
+msgstr "创建随机生成的密码"
 
 msgid "Create a symbolic link"
-msgstr ""
+msgstr "创建符号链接"
+
+msgid "Create application loader dump."
+msgstr "创建应用程序加载器转储。"
+
+msgid "Create backup image zip file."
+msgstr "创建备份映像 zip 文件。"
+
+msgid "Create boot dump."
+msgstr "创建启动转储。"
+
+msgid "Create boot image dump."
+msgstr "创建启动映像转储。"
+
+msgid "Create device information dump."
+msgstr "创建设备信息转储。"
+
+msgid "Create kernel dump."
+msgstr "创建内核转储。"
 
 #, python-format
 msgid "Create recovery image backup '%s'."
-msgstr ""
+msgstr "创建恢复映像备份“%s”。"
+
+msgid "Create rescue dump."
+msgstr "创建救援转储。"
+
+msgid "Create root UBI file system."
+msgstr "创建根 UBI 文件系统。"
+
+msgid "Create root file system dump."
+msgstr "创建根文件系统转储。"
+
+msgid "Create root journaling flash file system."
+msgstr "创建根日志闪存文件系统。"
 
 msgid "Create separate radio user bouquet"
 msgstr "创建单独的广播用户自定义组"
 
 msgid "Create swap"
-msgstr ""
+msgstr "创建交换文件"
+
+msgid "Create tar file of root file system."
+msgstr "创建根文件系统的 tar 文件。"
 
 msgid "Create the additional slots on the selected device"
-msgstr ""
+msgstr "在所选设备上创建其他插槽"
 
 msgid "Create the flash expander in the selected device"
-msgstr ""
+msgstr "在选定的设备中创建闪存扩展器"
+
+msgid "Create working directories."
+msgstr "创建工作目录。"
 
 msgid "Creating .ap and .sc files"
 msgstr "创建AP和SC文件"
@@ -5124,7 +5169,7 @@ msgid "Croatian"
 msgstr "克罗地亚语"
 
 msgid "Cron"
-msgstr ""
+msgstr "Cron"
 
 msgid "Cron Manager"
 msgstr "任务管理"
@@ -5145,10 +5190,10 @@ msgid "Currency"
 msgstr "货币"
 
 msgid "Current"
-msgstr ""
+msgstr "当前"
 
 msgid "Current 1/1"
-msgstr ""
+msgstr "当前 1/1"
 
 msgid "Current Affairs"
 msgstr "时事"
@@ -5158,18 +5203,18 @@ msgstr "当前CEC地址"
 
 #, python-format
 msgid "Current CPU Frequency cores 0 and 1: %s MHz"
-msgstr ""
+msgstr "当前 CPU 频率核心 0 和 1：%s MHz"
 
 #, python-format
 msgid "Current CPU Frequency other cores: %s MHz"
-msgstr ""
+msgstr "当前 CPU 其他核心频率：%s MHz"
 
 #, python-format
 msgid "Current CPU cores 0 and 1 Voltage: %s V"
-msgstr ""
+msgstr "当前 CPU 核心 0 和 1 电压：%s V"
 
 msgid "Current Directory"
-msgstr ""
+msgstr "当前目录"
 
 msgid "Current Event:"
 msgstr "当前事件:"
@@ -5179,17 +5224,17 @@ msgstr "当前状态:"
 
 #, python-format
 msgid "Current Temperature (SoC): %s °C"
-msgstr ""
+msgstr "当前温度 (SoC)：%s °C"
 
 msgid "Current crash log"
 msgstr "当前崩溃日志"
 
 msgid "Current directory"
-msgstr ""
+msgstr "当前目录"
 
 #, python-format
 msgid "Current directory (%s)"
-msgstr ""
+msgstr "当前目录（%s）"
 
 msgid "Current installed"
 msgstr "当前已安装"
@@ -6256,7 +6301,7 @@ msgid "Distribution version"
 msgstr "发行版本"
 
 msgid "Divehi / Dhivehi / Maldivian"
-msgstr "迪维希 / 迪维希 / 马尔代夫"
+msgstr "迪维希 / 马尔代夫"
 
 msgid "Djibouti"
 msgstr "吉布提"
@@ -6565,7 +6610,7 @@ msgid "Downloading Image"
 msgstr "正在下载镜像"
 
 msgid "Downloading latest update list. Please wait..."
-msgstr "正在下载最新更新列表,  请稍等..."
+msgstr "正在下载最新更新列表，请稍等..."
 
 msgid "Downloading plugin information. Please wait..."
 msgstr "正在下载插件信息.请稍候..."
@@ -6614,9 +6659,6 @@ msgstr "宗喀语"
 
 msgid "E"
 msgstr "E"
-
-msgid "E "
-msgstr "E "
 
 msgid "ECM"
 msgstr ""
@@ -11075,8 +11117,8 @@ msgid ""
 "Misconfigured unicable connection from tuner %s to tuner %s!\n"
 "Tuner %s option \"connected to\" are disabled now"
 msgstr ""
-"错误连接从调谐器 %s 调谐器 %s!\n"
-"调谐器 %s 选项 \"连接到\"现在被禁用"
+"从调谐器%s到调谐器%s的一线连接配置错误！\n"
+"调谐器%s选项“已连接到”现在被禁用"
 
 msgid "Mobile connection"
 msgstr "移动连接"
@@ -11177,11 +11219,11 @@ msgstr "挂载设置"
 msgid "Mount failed"
 msgstr "挂载失败"
 
+msgid "Mount root file system."
+msgstr ""
+
 msgid "Mount: "
 msgstr "挂载: "
-
-msgid "Mountpoint"
-msgstr "挂载点"
 
 msgid "Mounts"
 msgstr "挂载"
@@ -11659,7 +11701,7 @@ msgid "Nauru"
 msgstr "瑙鲁"
 
 msgid "Navajo / Navaho"
-msgstr "纳瓦霍语/纳瓦霍语"
+msgstr "纳瓦霍语"
 
 msgid "Navigate to the selected directory"
 msgstr ""
@@ -11809,7 +11851,7 @@ msgstr "从不"
 msgid "Never abort"
 msgstr "从不中止"
 
-msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off."
+msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding)."
 msgstr "切勿在录制时解密内容. 这将全局覆盖单个定时器设置. 如果启用,录像将加密存储,播放时必须解密（有时称为离线解码）. 默认值：关闭."
 
 msgid "Never decrypt while recording"
@@ -21643,7 +21685,7 @@ msgid "View mode"
 msgstr "查看模式"
 
 msgid "View or edit files less than 1MB in size"
-msgstr "查看或编辑文件(如果大小<1MB)"
+msgstr "查看或编辑大小小于1MB的文件"
 
 #, python-format
 msgid "View or edit this %s script"
@@ -23715,7 +23757,7 @@ msgid "violet"
 msgstr "紫色"
 
 msgid "wait for ci..."
-msgstr ""
+msgstr "等待 CI..."
 
 msgid "wait for mmi..."
 msgstr "等待mmi..."
@@ -23761,6 +23803,12 @@ msgstr "是(保持订阅源)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "E "
+#~ msgstr "E "
+
+#~ msgid "Mountpoint"
+#~ msgstr "挂载点"
 
 #, python-format
 #~ msgid "%d channel found"

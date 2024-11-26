@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-30 20:29+0000\n"
+"POT-Creation-Date: 2024-11-14 19:50+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -2321,7 +2321,7 @@ msgstr "Mindig rákérdez"
 msgid "Always include ECM in recordings"
 msgstr "A felvételek mindig tartalmazzák az ECM-et"
 
-msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver. Default: off."
+msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver."
 msgstr "A felvételek mindig tartalmazzák az ECM üzeneteket. Ez felülírja az egyéni időzítő beállításokat. Ez az opció lehetővé teszi, hogy a felvételeket később offline dekódolhassuk. Alapértelmezett: kikapcsolva."
 
 msgid "Always show bouquets"
@@ -4417,6 +4417,9 @@ msgstr "Komplex (engedélyezi a hangfolyamok és méretarányok keverését)"
 msgid "Composition of the recording filenames"
 msgstr "A felvételi fájlnevek összeállítása"
 
+msgid "Compress root file system tar file. (This takes the most time!)"
+msgstr ""
+
 msgid "Compressed bits/pixel"
 msgstr ""
 
@@ -5123,8 +5126,38 @@ msgstr ""
 msgid "Create a symbolic link"
 msgstr ""
 
+msgid "Create application loader dump."
+msgstr ""
+
+msgid "Create backup image zip file."
+msgstr ""
+
+msgid "Create boot dump."
+msgstr ""
+
+msgid "Create boot image dump."
+msgstr ""
+
+msgid "Create device information dump."
+msgstr ""
+
+msgid "Create kernel dump."
+msgstr ""
+
 #, python-format
 msgid "Create recovery image backup '%s'."
+msgstr ""
+
+msgid "Create rescue dump."
+msgstr ""
+
+msgid "Create root UBI file system."
+msgstr ""
+
+msgid "Create root file system dump."
+msgstr ""
+
+msgid "Create root journaling flash file system."
 msgstr ""
 
 msgid "Create separate radio user bouquet"
@@ -5133,10 +5166,16 @@ msgstr "Különálló rádió csatornacsomag létrehozása"
 msgid "Create swap"
 msgstr ""
 
+msgid "Create tar file of root file system."
+msgstr ""
+
 msgid "Create the additional slots on the selected device"
 msgstr ""
 
 msgid "Create the flash expander in the selected device"
+msgstr ""
+
+msgid "Create working directories."
 msgstr ""
 
 msgid "Creating .ap and .sc files"
@@ -6666,10 +6705,6 @@ msgstr ""
 
 msgid "E"
 msgstr "E"
-
-#, fuzzy
-msgid "E "
-msgstr " "
 
 msgid "ECM"
 msgstr ""
@@ -11282,11 +11317,11 @@ msgstr "Csatlakozás beállítás"
 msgid "Mount failed"
 msgstr "Csatolás nem sikerült"
 
+msgid "Mount root file system."
+msgstr ""
+
 msgid "Mount: "
 msgstr "Csatlakozás: "
-
-msgid "Mountpoint"
-msgstr ""
 
 msgid "Mounts"
 msgstr "Csatlakozások"
@@ -11934,7 +11969,7 @@ msgstr "soha"
 msgid "Never abort"
 msgstr "nincs megállítás"
 
-msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off."
+msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding)."
 msgstr "Felvétel közben sosem végez dekódolást. Ez általánosan felülírja az egyes időzítő beállításokat. Ha bekapcsolja ezt, a felvételek kódolt formában kerülnek tárolásra, és később kell dekódolni (ezt általában offline dekódolásnak hívják). Alapértelmezett: nem."
 
 msgid "Never decrypt while recording"
@@ -23988,6 +24023,10 @@ msgstr "igen (állapotok megtartása)"
 
 msgid "®"
 msgstr "®"
+
+#, fuzzy
+#~ msgid "E "
+#~ msgstr " "
 
 #, python-format
 #~ msgid "%d channel found"

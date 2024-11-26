@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-30 20:29+0000\n"
-"PO-Revision-Date: 2024-11-01 07:20+0000\n"
+"POT-Creation-Date: 2024-11-14 19:50+0000\n"
+"PO-Revision-Date: 2024-11-22 18:57+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.8.2-dev\n"
+"X-Generator: Weblate 5.9-dev\n"
 
 msgid ""
 "\n"
@@ -2286,7 +2286,7 @@ msgstr "Kysy aina"
 msgid "Always include ECM in recordings"
 msgstr "Sisällytä aina ECM tallennuksiin"
 
-msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver. Default: off."
+msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver."
 msgstr "Sisällytä aina ECM tiedot tallenteisiin. Tallennukset tallennetaan salatussa muodossa ja puretaan jälkikäteen, jos vastaanottimesi tukee sitä. Oletus: Ei."
 
 msgid "Always show bouquets"
@@ -4381,6 +4381,9 @@ msgstr "Laajennettu (useita ääniraitoja ja kuvasuhteita)"
 msgid "Composition of the recording filenames"
 msgstr "Tallenteiden tiedostonimien rakenne"
 
+msgid "Compress root file system tar file. (This takes the most time!)"
+msgstr "Pakkaa root tiedostojärjestelmän tar tiedosto. (Tämä vie eniten aikaa!)"
+
 msgid "Compressed bits/pixel"
 msgstr "Pakattu bittiä/pikseli"
 
@@ -5089,9 +5092,39 @@ msgstr "Luo satunnaisesti luotu salasana"
 msgid "Create a symbolic link"
 msgstr "Luo symbolinen linkki"
 
+msgid "Create application loader dump."
+msgstr "Luo sovelluksen lataajan muistikuva."
+
+msgid "Create backup image zip file."
+msgstr "Luo varmuuskopiointi image zip tiedosto."
+
+msgid "Create boot dump."
+msgstr "Luo käynnistysmuistikuva."
+
+msgid "Create boot image dump."
+msgstr "Luo käynnistyskuvan muistikuva."
+
+msgid "Create device information dump."
+msgstr "Luo laite tiedot vedos."
+
+msgid "Create kernel dump."
+msgstr "Luo kernel vedos."
+
 #, python-format
 msgid "Create recovery image backup '%s'."
 msgstr "Luo palautus varmuuskopio image '%s'."
+
+msgid "Create rescue dump."
+msgstr "Luo palautus vedos."
+
+msgid "Create root UBI file system."
+msgstr "Luo järjestelmätiedosto UBI tiedosto."
+
+msgid "Create root file system dump."
+msgstr "Luo root tiedostojärjestelmä dump."
+
+msgid "Create root journaling flash file system."
+msgstr "Luo pääasiallinen tiedostojärjestelmä."
 
 msgid "Create separate radio user bouquet"
 msgstr "Luo erillinen radio suosikkilista"
@@ -5099,11 +5132,17 @@ msgstr "Luo erillinen radio suosikkilista"
 msgid "Create swap"
 msgstr "Luo vaihto"
 
+msgid "Create tar file of root file system."
+msgstr "Luo tar tiedosto järjestelmätiedostosta."
+
 msgid "Create the additional slots on the selected device"
 msgstr "Lisää lisäpaikat valittuun laitteeseen"
 
 msgid "Create the flash expander in the selected device"
 msgstr "Luo muistin laajennus valittuun laitteeseen"
+
+msgid "Create working directories."
+msgstr "Luo työhakemistoja."
 
 msgid "Creating .ap and .sc files"
 msgstr "Luodaan AP- ja SC-tiedostot"
@@ -6633,9 +6672,6 @@ msgstr "Dzongkha"
 
 msgid "E"
 msgstr "O"
-
-msgid "E "
-msgstr "O "
 
 msgid "ECM"
 msgstr "ECM"
@@ -11203,11 +11239,11 @@ msgstr "Määritä verkko ja laiteliitokset"
 msgid "Mount failed"
 msgstr "Liitos epäonnistui"
 
+msgid "Mount root file system."
+msgstr "Liitä järjestelmätiedosto."
+
 msgid "Mount: "
 msgstr "Liitos: "
-
-msgid "Mountpoint"
-msgstr "Liitäntä"
 
 msgid "Mounts"
 msgstr "Liitokset"
@@ -11840,7 +11876,7 @@ msgstr "ei koskaan"
 msgid "Never abort"
 msgstr "ei koskaan"
 
-msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off."
+msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding)."
 msgstr "Kyllä toiminnolla tämä on tallennukset tallennetaan salattu ja ne on purettava jälkikäteen. Oletus \"Ei\"."
 
 msgid "Never decrypt while recording"
@@ -19226,7 +19262,7 @@ msgstr "TMDB Haku"
 
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Suomenkielinen käännös: 31.10.2024\n"
+"Suomenkielinen käännös: 22.11.2024\n"
 "tomppaa"
 
 msgid "TS file is too large for ISO9660 level 1!"
@@ -23919,6 +23955,12 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "E "
+#~ msgstr "O "
+
+#~ msgid "Mountpoint"
+#~ msgstr "Liitäntä"
 
 #, python-format
 #~ msgid "%d channel found"

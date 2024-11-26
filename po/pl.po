@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-30 20:29+0000\n"
-"PO-Revision-Date: 2024-11-09 09:00+0000\n"
+"POT-Creation-Date: 2024-11-14 19:50+0000\n"
+"PO-Revision-Date: 2024-11-25 12:00+0000\n"
 "Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.8.2\n"
+"X-Generator: Weblate 5.9-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -2168,7 +2168,7 @@ msgid "All"
 msgstr "Wszystkie"
 
 msgid "All Services"
-msgstr "Wszystkie usługi"
+msgstr "Wszystkie kanały"
 
 msgid "All ages"
 msgstr "Wszystkie grupy wiekowe"
@@ -2320,7 +2320,7 @@ msgstr "Zawsze pytaj"
 msgid "Always include ECM in recordings"
 msgstr "Zawsze dołącz ECM w nagraniach"
 
-msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver. Default: off."
+msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver."
 msgstr "Zawsze uwzględniaj komunikaty ECM w nagraniach. Zastępuje to globalnie indywidualne ustawienia timera. Umożliwia to późniejsze odszyfrowanie nagrań (czasami nazywane dekodowaniem offline), jeśli odbiornik obsługuje tę funkcję. Domyślnie: wyłączone."
 
 msgid "Always show bouquets"
@@ -4417,6 +4417,9 @@ msgstr "Kompleksowe (pozwala miksować ścieżki i rodzaje audio)"
 msgid "Composition of the recording filenames"
 msgstr "Składnia nazwy nagrania"
 
+msgid "Compress root file system tar file. (This takes the most time!)"
+msgstr "Skompresuj plik tar głównego systemu plików. (To zajmuje najwięcej czasu!)"
+
 msgid "Compressed bits/pixel"
 msgstr "Skompresowane bity/pixele"
 
@@ -5125,9 +5128,39 @@ msgstr "Utwórz losowo wygenerowane hasło"
 msgid "Create a symbolic link"
 msgstr "Utwórz link symboliczny"
 
+msgid "Create application loader dump."
+msgstr "Utwórz zrzut programu ładującego aplikacje."
+
+msgid "Create backup image zip file."
+msgstr "Utwórz plik zip kopii zapasowej."
+
+msgid "Create boot dump."
+msgstr "Utwórz zrzut rozruchowy."
+
+msgid "Create boot image dump."
+msgstr "Utwórz zrzut systemu rozruchowego."
+
+msgid "Create device information dump."
+msgstr "Utwórz zrzut informacji o urządzeniu."
+
+msgid "Create kernel dump."
+msgstr "Utwórz zrzut kernel."
+
 #, python-format
 msgid "Create recovery image backup '%s'."
 msgstr "Utwórz kopię zapasową systemu Recovery '%s'."
+
+msgid "Create rescue dump."
+msgstr "Utwórz zrzut ratunkowy."
+
+msgid "Create root UBI file system."
+msgstr "Utwórz główny system plików UBI."
+
+msgid "Create root file system dump."
+msgstr "Utwórz zrzut głównego systemu plików."
+
+msgid "Create root journaling flash file system."
+msgstr "Utwórz główny system plików flash dziennika."
 
 msgid "Create separate radio user bouquet"
 msgstr "Utwórz osobną listę kanałów dla radia"
@@ -5135,11 +5168,17 @@ msgstr "Utwórz osobną listę kanałów dla radia"
 msgid "Create swap"
 msgstr "Utwórz plik wymiany"
 
+msgid "Create tar file of root file system."
+msgstr "Utwórz plik tar głównego systemu plików."
+
 msgid "Create the additional slots on the selected device"
 msgstr "Utwórz dodatkowe sloty na wybranym urządzeniu"
 
 msgid "Create the flash expander in the selected device"
 msgstr "Tworzy rozszerzacza flash na wybranym urządzeniu"
+
+msgid "Create working directories."
+msgstr "Utwórz katalogi robocze."
 
 msgid "Creating .ap and .sc files"
 msgstr "Tworzenie AP i plików SC"
@@ -6670,9 +6709,6 @@ msgstr "Dzongkha"
 
 msgid "E"
 msgstr "E"
-
-msgid "E "
-msgstr "E "
 
 msgid "ECM"
 msgstr "ECM"
@@ -9713,7 +9749,7 @@ msgid "InfoBar EPG Actions"
 msgstr "Akcje EPG na pasku informacyjnym"
 
 msgid "InfoBar EPG Settings"
-msgstr "Ustawienia EPG paska informacyjnego"
+msgstr "Ustawienia EPG infobara"
 
 msgid "InfoBar EPG mode"
 msgstr "Tryb EPG Infobar'a"
@@ -10617,7 +10653,7 @@ msgid "Location: %s"
 msgstr "Lokalizacja: %s"
 
 msgid "Lock:"
-msgstr "Zablokuj:"
+msgstr "Zablokowany:"
 
 msgid "Log"
 msgstr "Log"
@@ -10627,7 +10663,7 @@ msgid "Log %d/%d"
 msgstr "Log %d/%d"
 
 msgid "Log Manager"
-msgstr "Menadżer logowania"
+msgstr "Menadżer log"
 
 #, python-format
 msgid "Log file '%s' deleted."
@@ -11240,11 +11276,11 @@ msgstr "Ustawienia montowania"
 msgid "Mount failed"
 msgstr "Nie można zamontować"
 
+msgid "Mount root file system."
+msgstr "Zamontuj główny system plików."
+
 msgid "Mount: "
 msgstr "Montowanie: "
-
-msgid "Mountpoint"
-msgstr "Punkt montowania"
 
 msgid "Mounts"
 msgstr "Montowanie"
@@ -11875,7 +11911,7 @@ msgstr "nigdy"
 msgid "Never abort"
 msgstr "Nie przerywaj"
 
-msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding). Default: off."
+msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding)."
 msgstr "Nigdy nie odszyfrowuj zawartości podczas nagrywania. Zastępuje to globalnie indywidualne ustawienia timera. Jeśli opcja ta jest włączona, nagrania są przechowywane w postaci zaszyfrowanej i muszą być później odszyfrowane (czasami nazywane dekodowaniem offline). Domyślnie: wyłączone."
 
 msgid "Never decrypt while recording"
@@ -15061,7 +15097,7 @@ msgid "Rugby League"
 msgstr "Liga Rugby"
 
 msgid "Run"
-msgstr "Uruchomić"
+msgstr "Uruchom"
 
 #, python-format
 msgid "Run '%s' command"
@@ -17156,7 +17192,7 @@ msgid "Setup your local network"
 msgstr "Ustawienia sieci"
 
 msgid "Setup your local network. For Wlan you need to boot with a USB-Wlan stick"
-msgstr "Ustawienia sieci lokalnej. WLAN trzeba uruchomić z USB-WLAN"
+msgstr "Skonfiguruj swoją sieć lokalną. W przypadku Wlan musisz uruchomić się za pomocą pamięci USB-Wlan"
 
 msgid "Setup your mounts for network"
 msgstr "Ustawienia montowania w sieci"
@@ -21409,7 +21445,7 @@ msgid "Use the Networkwizard to configure your Network. The wizard will help you
 msgstr "Użyj kreatora sieci, aby skonfigurować swoją sieć. Kreator pomoże ci w jej konfiguracji"
 
 msgid "Use the Softcam Panel to control your Cam. This let you start/stop/select a cam"
-msgstr "Użyj panelu aby ustawić softcam. To pozwoli uruchomić, zatrzymać lub wybrać cam"
+msgstr "Użyj panelu Softcam, aby kontrolować swój Cam. Pozwala to na uruchomienie/zatrzymanie/wybranie Cam"
 
 msgid "Use the UP and DOWN buttons to select your locale/language then press the OK button to continue."
 msgstr "Użyj przycisków w górę lub w dół aby wybrać region/język, następnie naciśnij OK aby kontynuować."
@@ -23930,6 +23966,12 @@ msgstr "tak (zachować kanały)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "E "
+#~ msgstr "E "
+
+#~ msgid "Mountpoint"
+#~ msgstr "Punkt montowania"
 
 #, python-format
 #~ msgid "%d channel found"
