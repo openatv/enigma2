@@ -258,6 +258,7 @@ class Dishpip(Dish, Screen):
 		self["posGoto"] = Label("")
 		self["From"] = Label(_("From :"))
 		self["Goto"] = Label(_("Goto :"))
+		self["Tuner"] = Label(_("Tuner :"))
 		self["tunerName"] = Label("")
 		self["turnSpeed"] = Label("")
 		self.updateRotorSatList()
