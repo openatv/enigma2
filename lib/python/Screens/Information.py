@@ -2079,8 +2079,15 @@ class SystemInformation(InformationBase):
 			("Mounted Volumes", ("/bin/mount", "/bin/mount"), None),
 			("Partition Table", None, "/proc/partitions")
 		]
+
+		if isfile("/proc/stb/hdmi/raw_edid"):
+			edid_path = "/proc/stb/hdmi/raw_edid"
+		elif isfile("/sys/class/amhdmitx/amhdmitx0/rawedid"):
+			edid_path = "/sys/class/amhdmitx/amhdmitx0/rawedid"
+		else:
+			edid_path = None
 		if BoxInfo.getItem("HAVEEDIDDECODE"):
-			self.systemCommands.append(("EDID", ("/usr/bin/edid-decode", "/usr/bin/edid-decode", "/proc/stb/hdmi/raw_edid"), None))
+			self.systemCommands.append(("EDID", ("/usr/bin/edid-decode", "/usr/bin/edid-decode", edid_path), None))
 		self.systemCommandsIndex = 0
 		self.systemCommandsMax = len(self.systemCommands)
 		self.info = None
