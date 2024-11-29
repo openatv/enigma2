@@ -90,6 +90,8 @@ public:
 
 	void setVideoSize(int top, int left, int width, int height, int flags = 0) const;
 
+	std::string getEDIDPath() const;
+
 	enum
 	{
 		FLAGS_DEBUG = 1,

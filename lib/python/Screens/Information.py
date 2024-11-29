@@ -9,7 +9,7 @@ from subprocess import PIPE, Popen
 from time import localtime, strftime, strptime
 from urllib.request import urlopen
 
-from enigma import eDVBFrontendParametersSatellite, eDVBResourceManager, eGetEnigmaDebugLvl, eRTSPStreamServer, eServiceCenter, eStreamServer, eTimer, getDesktop, getE2Rev, iPlayableService, iServiceInformation
+from enigma import eAVControl, eDVBFrontendParametersSatellite, eDVBResourceManager, eGetEnigmaDebugLvl, eRTSPStreamServer, eServiceCenter, eStreamServer, eTimer, getDesktop, getE2Rev, iPlayableService, iServiceInformation
 
 from ServiceReference import ServiceReference
 from skin import parameters
@@ -2079,8 +2079,10 @@ class SystemInformation(InformationBase):
 			("Mounted Volumes", ("/bin/mount", "/bin/mount"), None),
 			("Partition Table", None, "/proc/partitions")
 		]
-		if BoxInfo.getItem("HAVEEDIDDECODE"):
-			self.systemCommands.append(("EDID", ("/usr/bin/edid-decode", "/usr/bin/edid-decode", "/proc/stb/hdmi/raw_edid"), None))
+
+		edidPath = eAVControl.getInstance().getEDIDPath()
+		if edidPath:
+			self.systemCommands.append(("EDID", ("/usr/bin/edid-decode", "/usr/bin/edid-decode", edidPath), None))
 		self.systemCommandsIndex = 0
 		self.systemCommandsMax = len(self.systemCommands)
 		self.info = None

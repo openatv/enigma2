@@ -705,5 +705,24 @@ void eAVControl::setOSDAlpha(int alpha, int flags) const
 #endif
 }
 
+/// @brief getEDIDPath
+/// @return 
+std::string eAVControl::getEDIDPath() const
+{
+	struct stat buffer = {};
+
+#ifdef DREAMNEXTGEN
+	const std::string proc = "/sys/class/amhdmitx/amhdmitx0/rawedid";
+#else
+	const std::string proc = "/proc/stb/hdmi/raw_edid";
+#endif
+
+	if (stat(proc.c_str(), &buffer) == 0 && stat("/usr/bin/edid-decode", &buffer) == 0)
+	{
+		return proc;
+	}
+	return "";
+}
+
 
 eAutoInitP0<eAVControl> init_avcontrol(eAutoInitNumbers::rc, "AVControl Driver");
