@@ -344,7 +344,7 @@ class OSCamInfo(Screen, OSCamGlobals):
 			self["logtext"].moveBottom()
 		else:
 			self.loop.stop()
-			self["buildinfos"].setText(_("Unexpected error accessing WebIF: %s") % result.decode(encoding="latin-1", errors="ignore"))
+			self["buildinfos"].setText(_("Unexpected error accessing WebIF: %s") % result)
 
 	def showHideKeyOk(self):
 		idx = self["outlist"].getSelectedIndex()
@@ -793,7 +793,7 @@ class OSCamInfoLog(Screen, OSCamGlobals):
 			self["logtext"].moveBottom()
 		else:
 			self.loop.stop()
-			self.session.open(MessageBox, _("Unexpected error accessing WebIF: %s" % result), MessageBox.TYPE_ERROR, timeout=10, close_on_any_key=True)
+			self["logtext"].setText(_("Unexpected error accessing WebIF: %s" % result))
 
 	def keyPageDown(self):
 		self["logtext"].pageDown()
