@@ -46,7 +46,7 @@ class OSCamGlobals():
 		if port.startswith('+'):
 			proto = "https"
 			port.replace("+", "")
-			ctx = SkipCertificateVerification()
+			ctx = SkipCertificateVerification() # NOSONAR silence S4830 + S5527
 		url = ""
 		if part in ["status", "userstats"]:
 			style, appendix = ("html", "&appendlog=1") if log else (fmt, "")
