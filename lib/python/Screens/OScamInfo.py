@@ -4,6 +4,7 @@ from json import loads
 from os.path import exists
 from re import search, S
 from twisted.internet.reactor import callInThread
+from ssl import _create_unverified_context as SkipCertificateVerification
 from urllib.parse import unquote
 from urllib.request import build_opener, install_opener, urlopen, HTTPDigestAuthHandler, HTTPHandler, HTTPPasswordMgrWithDefaultRealm, Request
 from xml.etree.ElementTree import XML
@@ -30,7 +31,7 @@ class OSCamGlobals():
 		pass
 
 	def openWebIF(self, part="status", label="", fmt="json", log=False):
-		proto, api = "http", "oscamapi"
+		proto, api, ctx = "http", "oscamapi", None
 		if config.oscaminfo.userDataFromConf.value:
 			udata = self.getUserData()
 			if isinstance(udata, str):
@@ -45,6 +46,7 @@ class OSCamGlobals():
 		if port.startswith('+'):
 			proto = "https"
 			port.replace("+", "")
+			ctx = SkipCertificateVerification()
 		url = ""
 		if part in ["status", "userstats"]:
 			style, appendix = ("html", "&appendlog=1") if log else (fmt, "")
@@ -62,7 +64,7 @@ class OSCamGlobals():
 			install_opener(opener)
 		request = Request(url)
 		try:
-			data = urlopen(request, timeout=10).read()
+			data = urlopen(request, timeout=10, context=ctx).read()
 			return True, data
 		except OSError as error:
 			if hasattr(error, "reason"):
