@@ -3694,7 +3694,7 @@ void eDVBServicePlay::checkSubtitleTiming()
 		int diff = show_time - pos;
 //		eDebug("[eDVBServicePlay] Subtitle show %d page.pts=%lld pts=%lld diff=%d", type, show_time, pos, diff);
 
-		if (diff < 20*90 || diff > SUBT_TXT_ABNORMAL_PTS_DIFFS)
+		if (diff < 20*90)
 		{
 			if (type == TELETEXT)
 			{
@@ -3721,7 +3721,10 @@ void eDVBServicePlay::newDVBSubtitlePage(const eDVBSubtitlePage &p)
 		pts_t pos = 0;
 		if (m_decoder)
 			m_decoder->getPTS(0, pos);
-		if ( abs(pos-p.m_show_time)>SUBT_TXT_ABNORMAL_PTS_DIFFS && (m_is_pvr || m_timeshift_enabled))
+		if ( pos-p.m_show_time > SUBT_TXT_ABNORMAL_PTS_DIFFS && (m_is_pvr || m_timeshift_enabled))
+			// Where subtitles are delivered out of sync with video, only treat subtitles in the past as having bad timing.
+			// Those that are delivered too early are cached for displaying at the appropriate later time
+			// Note that this can be due to buggy drivers, as well as problems with the broadcast
 		{
 			// Subtitles delivered over 20 seconds too late
 			eDebug("[eDVBServicePlay] Video pts:%lld, subtitle show_time:%lld, diff:%.02fs BAD TIMING", pos, p.m_show_time, (p.m_show_time - pos) / 90000.0f);
