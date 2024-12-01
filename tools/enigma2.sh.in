@@ -274,7 +274,7 @@ case $ret in
 		/sbin/reboot
 		;;
 	3)
-		rm -fR /home/root/.gstreamer-0.10
+		rm -fR /home/root/.cache/gstreamer-1.0
 		rm -f /tmp/.listen.camd.socket.ignore
 		;;
 	4)
@@ -286,6 +286,11 @@ case $ret in
 		/sbin/modprobe fp
 		[[ -e /etc/enigma2/.deep ]] && rm /etc/enigma2/.deep
 		/sbin/reboot
+		;;
+	15)
+		rm -fR /home/root/.cache/gstreamer-1.0
+		rm -f /tmp/.listen.camd.socket.ignore
+		/usr/bin/kodi
 		;;
 	16)
 		if [ -e /proc/stb/info/model ]; then

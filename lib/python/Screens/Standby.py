@@ -30,6 +30,7 @@ QUIT_RESTART = 3
 QUIT_UPGRADE_FP = 4
 QUIT_ERROR_RESTART = 5
 QUIT_DEBUG_RESTART = 6
+QUIT_KODI = 15
 QUIT_MAINT = 16
 QUIT_UPGRADE_PROGRAM = 42
 QUIT_IMAGE_RESTORE = 43
@@ -326,6 +327,7 @@ class QuitMainloopScreen(Screen):
 			QUIT_SHUTDOWN: _("Your %s %s is shutting down") % getBoxDisplayName(),
 			QUIT_REBOOT: _("Your %s %s is rebooting") % getBoxDisplayName(),
 			QUIT_RESTART: _("The user interface of your %s %s is restarting") % getBoxDisplayName(),
+			QUIT_KODI: _("The user interface of your %s %s will be stopped to run Kodi") % getBoxDisplayName(),
 			QUIT_UPGRADE_FP: _("Your front panel processor will be upgraded\nPlease wait until your %s %s reboots\nThis may take a few minutes") % getBoxDisplayName(),
 			QUIT_ERROR_RESTART: _("The user interface of your %s %s is restarting\ndue to an error in StartEnigma.py") % getBoxDisplayName(),
 			QUIT_MAINT: _("Your %s %s is rebooting into Recovery Mode") % getBoxDisplayName(),
@@ -378,7 +380,7 @@ class TryQuitMainloop(MessageBox):
 			clients = eStreamServer.getInstance().getConnectedClients()
 			if len(clients) == 1 and len(clients[0]) == 3 and clients[0][0] == "::ffff:127.0.0.1":  # ignore internal streams
 				reason = ""
-		elif mediaFilesInUse(session) and retvalue in (QUIT_SHUTDOWN, QUIT_REBOOT, QUIT_RESTART, QUIT_UPGRADE_FP, QUIT_UPGRADE_PROGRAM, QUIT_UPGRADE_FRONTPANEL):
+		elif mediaFilesInUse(session) and retvalue in (QUIT_SHUTDOWN, QUIT_REBOOT, QUIT_KODI, QUIT_RESTART, QUIT_UPGRADE_FP, QUIT_UPGRADE_PROGRAM, QUIT_UPGRADE_FRONTPANEL):
 			reason = _("A file from media is in use!")
 			default_yes = False
 			timeout = 30
@@ -391,6 +393,7 @@ class TryQuitMainloop(MessageBox):
 				QUIT_SHUTDOWN: _("Really shutdown now?"),
 				QUIT_REBOOT: _("Really reboot now?"),
 				QUIT_RESTART: _("Really restart now?"),
+				QUIT_KODI: _("Really start Kodi and stop user interface now?"),
 				QUIT_UPGRADE_FP: _("Really upgrade the front panel processor and reboot now?"),
 				QUIT_MAINT: _("Really reboot into Recovery Mode?"),
 				QUIT_UPGRADE_PROGRAM: _("Really upgrade your %s %s and reboot now?") % getBoxDisplayName(),
