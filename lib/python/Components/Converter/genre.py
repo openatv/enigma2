@@ -390,8 +390,12 @@ class GenresAUSIceTV:
 			_("American Football"),  # 0xf6 remapped from 0x45
 			_("AFL"),  # 0xf7 remapped from 0x45
 			_("Rowing"),  # 0xf8 remapped from 0x48
+		),
+	}
+
+
 class GenresGBROpenTV:
-	maintype=(
+	maintype = (
 		_("General"),  # 0x0
 		_("General"),  # 0x1
 		_("General"),  # 0x2
@@ -410,7 +414,7 @@ class GenresGBROpenTV:
 		_("Sports"),  # 0xf
 	)
 
-	subtype={
+	subtype = {
 		# General
 		0: (
 			_("No Category"),  # 0x00
@@ -584,7 +588,7 @@ class GenresGBROpenTV:
 
 
 class GenresITAOpenTV:
-	maintype=(
+	maintype = (
 		_("Generale"),  # 0x0
 		_("Generale"),  # 0x1
 		_("Intrattenimento"),  # 0x2
@@ -603,7 +607,7 @@ class GenresITAOpenTV:
 		_("Altri Programmi"),  # 0xf
 	)
 
-	subtype={
+	subtype = {
 		# Generale
 		0: (
 			_("Non Definito"),  # 0x00
@@ -766,13 +770,15 @@ class GenresITAOpenTV:
 			_("Film per Adulti"),  # 0xe7
 		),
 	}
+
+
 class GenresAUSOpenTV:
 	# TODO: "OT3": "AUS"
-	maintype=(
+	maintype = (
 		_("General"),  # 0x0
 	)
 
-	subtype={
+	subtype = {
 		0: (
 			_("No Category"),  # 0x00
 		),
@@ -781,11 +787,11 @@ class GenresAUSOpenTV:
 
 class GenresNZLOpenTV:
 	# TODO: "OT4": "NZL"
-	maintype=(
+	maintype = (
 		_("General"),  # 0x0
 	)
 
-	subtype={
+	subtype = {
 		0: (
 			_("No Category"),  # 0x00
 		),
@@ -794,11 +800,11 @@ class GenresNZLOpenTV:
 
 class GenresETSIOpenTV:
 	# TODO: "OTV": "ETSI
-	maintype=(
+	maintype = (
 		_("General"),  # 0x0
 	)
 
-	subtype={
+	subtype = {
 		0: (
 			_("No Category"),  # 0x00
 		),
@@ -861,7 +867,7 @@ def __getGenreStringSubOpenTV(hn, ln, genres):
 	return ""
 
 
-countries={
+countries = {
 	"AUS": (__getGenreStringMain, __getGenreStringMain, GenresAUS()),
 	# Use illegal country names for IceTV genre tables so that they won't match real countries
 	"AUSIceTV": (__getGenreStringMainIceTV, __getGenreStringSubIceTV, GenresAUSIceTV()),
@@ -872,32 +878,32 @@ countries={
 	"ETSIOpenTV": (__getGenreStringMainOpenTV, __getGenreStringSubOpenTV, GenresETSIOpenTV())
 }
 
-defaultGenre=GenresETSI()
-defaultCountryInfo=(__getGenreStringMain, __getGenreStringSub, defaultGenre)
+defaultGenre = GenresETSI()
+defaultCountryInfo = (__getGenreStringMain, __getGenreStringSub, defaultGenre)
 
 # Backwards compatibility - use deprecated
 
-maintype=defaultGenre.maintype
-subtype=defaultGenre.subtype
+maintype = defaultGenre.maintype
+subtype = defaultGenre.subtype
 
 
 def __remapCountry(country):
 	if hasattr(config.plugins, "icetv") and config.plugins.icetv.enable_epg.value:
 		if not country:
-			country=config.plugins.icetv.member.country.value
-		iceTVCountry=f"{country}IceTV"
+			country = config.plugins.icetv.member.country.value
+		iceTVCountry = f"{country}IceTV"
 		if iceTVCountry in countries:
 			return iceTVCountry
 	return country
 
 
 def getGenreStringMain(hn, ln, country=None):
-	countryInfo=countries.get(__remapCountry(country), defaultCountryInfo)
+	countryInfo = countries.get(__remapCountry(country), defaultCountryInfo)
 	return countryInfo[0](hn, ln, countryInfo[2])
 
 
 def getGenreStringSub(hn, ln, country=None):
-	countryInfo=countries.get(__remapCountry(country), defaultCountryInfo)
+	countryInfo = countries.get(__remapCountry(country), defaultCountryInfo)
 	return countryInfo[1](hn, ln, countryInfo[2])
 
 
@@ -906,8 +912,8 @@ def getGenreStringLong(hn, ln, country=None):
 	# 	return _("Undefined content") + " " + str(ln)
 	if hn == 15 and "OpenTV" not in str(country) and not (hasattr(config.plugins, "icetv") and config.plugins.icetv.enable_epg.value):
 		return f'{_("User defined")} {str(ln)}'
-	main=getGenreStringMain(hn, ln, country=country)
-	sub=getGenreStringSub(hn, ln, country=country)
+	main = getGenreStringMain(hn, ln, country=country)
+	sub = getGenreStringSub(hn, ln, country=country)
 	if main and main != sub:
 		return f"{main}: {sub}"
 	else:
