@@ -390,6 +390,417 @@ class GenresAUSIceTV:
 			_("American Football"),  # 0xf6 remapped from 0x45
 			_("AFL"),  # 0xf7 remapped from 0x45
 			_("Rowing"),  # 0xf8 remapped from 0x48
+class GenresGBROpenTV:
+	maintype=(
+		_("General"),  # 0x0
+		_("General"),  # 0x1
+		_("General"),  # 0x2
+		_("General"),  # 0x3
+		_("Children"),  # 0x4
+		_("Children"),  # 0x5
+		_("Entertainment"),  # 0x6
+		_("Entertainment"),  # 0x7
+		_("Music"),  # 0x8
+		_("Music"),  # 0x9
+		_("News/Documentary"),  # 0xa
+		_("News/Documentary"),  # 0xb
+		_("Movie"),  # 0xc
+		_("Movie"),  # 0xd
+		_("Sports"),  # 0xe
+		_("Sports"),  # 0xf
+	)
+
+	subtype={
+		# General
+		0: (
+			_("No Category"),  # 0x00
+		),
+		# General
+		2: (
+			_("No Category"),  # 0x20
+			_("Adult"),  # 0x21
+			_("Unused 0x22"),  # 0x22
+			_("Shopping"),  # 0x23
+		),
+		# Children
+		4: (
+			_("General"),  # 0x40
+			_("Cartoons"),  # 0x41
+			_("Comedy"),  # 0x42
+			_("Drama"),  # 0x43
+			_("Educational"),  # 0x44
+			_("Under 5"),  # 0x45
+			_("Factual"),  # 0x46
+			_("Magazine"),  # 0x47
+		),
+		# Entertainment
+		6: (
+			_("General"),  # 0x60
+			_("Action"),  # 0x61
+			_("Comedy"),  # 0x62
+			_("Detective"),  # 0x63
+			_("Drama"),  # 0x64
+			_("Game Show"),  # 0x65
+			_("Sci-FI"),  # 0x66
+			_("Soap"),  # 0x67
+			_("Animation"),  # 0x68
+			_("Chat Show"),  # 0x69
+			_("Cooking"),  # 0x6a
+			_("Factual"),  # 0x6b
+			_("Fashion"),  # 0x6c
+			_("Home and Garden"),  # 0x6d
+			_("Travel"),  # 0x6e
+			_("Technology"),  # 0x6f
+		),
+		# Entertainment cont...
+		7: (
+			_("Arts"),  # 0x70
+			_("Lifestyle"),  # 0x71
+			_("Home"),  # 0x72
+			_("Magazine"),  # 0x73
+			_("Medical"),  # 0x74
+			_("Review"),  # 0x75
+			_("Antiques"),  # 0x76
+			_("Motors"),  # 0x77
+			_("Art/Literature"),  # 0x78
+			_("Ballet"),  # 0x79
+			_("Opera"),  # 0x7a
+		),
+		# Music
+		8: (
+			_("General"),  # 0x80
+			_("Classical"),  # 0x81
+			_("Folk and Country"),  # 0x82
+			_("National Music"),  # 0x83
+			_("Jazz"),  # 0x84
+			_("Opera"),  # 0x85
+			_("Rock/Pop"),  # 0x86
+			_("Alternative"),  # 0x87
+			_("Events"),  # 0x88
+			_("Club/Dance"),  # 0x89
+			_("Hip Hop"),  # 0x8a
+			_("Soul/Rhythm Blues"),  # 0x8b
+			_("Dance"),  # 0x8c
+			_("Unused 0x8d"),  # 0x8d
+			_("Unused 0x8e"),  # 0x8e
+			_("Unused 0x8f"),  # 0x8f
+		),
+		# Music cont...
+		9: (
+			_("Features"),  # 0x90
+			_("Unused 0x91"),  # 0x91
+			_("Unused 0x92"),  # 0x92
+			_("Unused 0x93"),  # 0x93
+			_("Unused 0x94"),  # 0x94
+			_("Lifestyle"),  # 0x95
+			_("News and Weather"),  # 0x96
+			_("Easy Listening"),  # 0x97
+			_("Discussion"),  # 0x98
+			_("Entertainment"),  # 0x99
+			_("Religious"),  # 0x9a
+		),
+		# News/Documentary
+		10: (
+			_("General"),  # 0xa0
+			_("Business"),  # 0xa1
+			_("World Cultures"),  # 0xa2
+			_("Adventure"),  # 0xa3
+			_("Biography"),  # 0xa4
+			_("Educational"),  # 0xa5
+			_("Feature"),  # 0xa6
+			_("Politics"),  # 0xa7
+			_("News"),  # 0xa8
+			_("Nature"),  # 0xa9
+			_("Religious"),  # 0xaa
+			_("Science"),  # 0xab
+			_("Showbiz"),  # 0xac
+			_("War"),  # 0xad
+			_("Historical"),  # 0xae
+			_("Ancient"),  # 0xaf
+		),
+		# News/Documentary cont...
+		11: (
+			_("Transport"),  # 0xb0
+			_("Docudrama"),  # 0xb1
+			_("World Affairs"),  # 0xb2
+			_("Events"),  # 0xb3
+			_("Entertainment"),  # 0xb4
+		),
+		# Movie
+		12: (
+			_("General"),  # 0xc0
+			_("Action"),  # 0xc1
+			_("Animation"),  # 0xc2
+			_("Unused 0xc3"),  # 0xc3
+			_("Comedy"),  # 0xc4
+			_("Family"),  # 0xc5
+			_("Drama"),  # 0xc6
+			_("Unused 0xc7"),  # 0xc7
+			_("Sci-Fi"),  # 0xc8
+			_("Thriller"),  # 0xc9
+			_("Horror"),  # 0xca
+			_("Romance"),  # 0xcb
+			_("Musical"),  # 0xcc
+			_("Mystery"),  # 0xcd
+			_("Western"),  # 0xce
+			_("Factual"),  # 0xcf
+		),
+		# Movie cont...
+		13: (
+			_("Fantasy"),  # 0xd0
+			_("Erotic"),  # 0xd1
+			_("Adventure"),  # 0xd2
+			_("War"),  # 0xd3
+		),
+		# Sports
+		14: (
+			_("General"),  # 0xe0
+			_("American Football"),  # 0xe1
+			_("Athletics"),  # 0xe2
+			_("Baseball"),  # 0xe3
+			_("Basketball"),  # 0xe4
+			_("Boxing"),  # 0xe5
+			_("Cricket"),  # 0xe6
+			_("Fishing"),  # 0xe7
+			_("Football"),  # 0xe8
+			_("Golf"),  # 0xe9
+			_("Ice Hockey"),  # 0xea
+			_("Motor Sport"),  # 0xeb
+			_("Racing"),  # 0xec
+			_("Rugby"),  # 0xed
+			_("Equestrian"),  # 0xee
+			_("Winter Sports"),  # 0xef
+		),
+		# Sports cont...
+		15: (
+			_("Snooker/Pool"),  # 0xf0
+			_("Tennis"),  # 0xf1
+			_("Wrestling"),  # 0xf2
+			_("Darts"),  # 0xf3
+			_("Watersports"),  # 0xf4
+			_("Extreme"),  # 0xf5
+		),
+	}
+
+
+class GenresITAOpenTV:
+	maintype=(
+		_("Generale"),  # 0x0
+		_("Generale"),  # 0x1
+		_("Intrattenimento"),  # 0x2
+		_("Intrattenimento"),  # 0x3
+		_("Sport"),  # 0x4
+		_("Sport"),  # 0x5
+		_("Film"),  # 0x6
+		_("Film"),  # 0x7
+		_("Mondo e Tendenze"),  # 0x8
+		_("Mondo e Tendenze"),  # 0x9
+		_("Informazione"),  # 0xa
+		_("Informazione"),  # 0xb
+		_("Ragazzi e Musica"),  # 0xc
+		_("Ragazzi e Musica"),  # 0xd
+		_("Altri Programmi"),  # 0xe
+		_("Altri Programmi"),  # 0xf
+	)
+
+	subtype={
+		# Generale
+		0: (
+			_("Non Definito"),  # 0x00
+		),
+		# Intrattenimento
+		2: (
+			_("Generale"),  # 0x20
+			_("Fiction"),  # 0x21
+			_("Sit Com"),  # 0x22
+			_("Show"),  # 0x23
+			_("Telefilm"),  # 0x24
+			_("Soap Opera"),  # 0x25
+			_("Telenovela"),  # 0x26
+			_("Fantascienza"),  # 0x27
+			_("Animazione"),  # 0x28
+			_("Giallo"),  # 0x29
+			_("Drammatico"),  # 0x2a
+			_("Romantico"),  # 0x2b
+			_("Miniserie"),  # 0x2c
+			_("Spettacolo"),  # 0x2d
+			_("Quiz"),  # 0x2e
+			_("Talk Show"),  # 0x2f
+		),
+		# Intrattenimento cont..
+		3: (
+			_("Varieta"),  # 0x30
+			_("Festival"),  # 0x31
+			_("Teatro"),  # 0x32
+			_("Gioco"),  # 0x33
+		),
+		# Sport
+		4: (
+			_("Generale"),  # 0x40
+			_("Calcio"),  # 0x41
+			_("Tennis"),  # 0x42
+			_("Motori"),  # 0x43
+			_("Altri"),  # 0x44
+			_("Baseball"),  # 0x45
+			_("Ciclismo"),  # 0x46
+			_("Rugby"),  # 0x47
+			_("Basket"),  # 0x48
+			_("Boxe"),  # 0x49
+			_("Atletica"),  # 0x4a
+			_("Football USA"),  # 0x4b
+			_("Hockey"),  # 0x4c
+			_("Sci"),  # 0x4d
+			_("Equestri"),  # 0x4e
+			_("Golf"),  # 0x4f
+		),
+		# Sport cont..
+		5: (
+			_("Nuoto"),  # 0x50
+			_("Wrestling"),  # 0x51
+		),
+		# Film
+		6: (
+			_("Generale"),  # 0x60
+			_("Drammatico"),  # 0x61
+			_("Commedia"),  # 0x62
+			_("Romantico"),  # 0x63
+			_("Azione"),  # 0x64
+			_("Fantascienza"),  # 0x65
+			_("Western"),  # 0x66
+			_("Comico"),  # 0x67
+			_("Fantastico"),  # 0x68
+			_("Avventura"),  # 0x69
+			_("Poliziesco"),  # 0x6a
+			_("Guerra"),  # 0x6b
+			_("Horror"),  # 0x6c
+			_("Animazione"),  # 0x6d
+			_("Thriller"),  # 0x6e
+			_("Musicale"),  # 0x6f
+		),
+		# Film cont..
+		7: (
+			_("Corto"),  # 0x70
+			_("Cortometraggio"),  # 0x71
+		),
+		# Mondo e Tendenze
+		8: (
+			_("Generale"),  # 0x80
+			_("Natura"),  # 0x81
+			_("Arte e Cultura"),  # 0x82
+			_("Lifestyle"),  # 0x83
+			_("Viaggi"),  # 0x84
+			_("Documentario"),  # 0x85
+			_("Societa"),  # 0x86
+			_("Scienza"),  # 0x87
+			_("Storia"),  # 0x88
+			_("Sport"),  # 0x89
+			_("Pesca"),  # 0x8a
+			_("Popoli"),  # 0x8b
+			_("Cinema"),  # 0x8c
+			_("Musica"),  # 0x8d
+			_("Hobby"),  # 0x8e
+			_("Caccia"),  # 0x8f
+		),
+		# Mondo e Tendenze cont..
+		9: (
+			_("Reportage"),  # 0x90
+			_("Magazine"),  # 0x91
+			_("Magazine Cultura"),  # 0x92
+			_("Magazine Scienza"),  # 0x93
+			_("Politica"),  # 0x94
+			_("Magazine Cinema"),  # 0x95
+			_("Magazine Sport"),  # 0x96
+			_("Attualita"),  # 0x97
+			_("Moda"),  # 0x98
+			_("Economia"),  # 0x99
+			_("Magazine Caccia e Pesca"),  # 0x9a
+			_("Magazine Viaggi"),  # 0x9b
+			_("Magazine Natura"),  # 0x9c
+			_("Magazine Musica"),  # 0x9d
+			_("Religione"),  # 0x9e
+			_("Televendita"),  # 0x9f
+		),
+		# Informazione
+		10: (
+			_("Generale"),  # 0xa0
+			_("Notiziario"),  # 0xa1
+			_("Sport"),  # 0xa2
+			_("Economia"),  # 0xa3
+		),
+		# Ragazzi e Musica
+		12: (
+			_("Generale"),  # 0xc0
+			_("Bambini"),  # 0xc1
+			_("Ragazzi"),  # 0xc2
+			_("Cartoni Animati"),  # 0xc3
+			_("Musica"),  # 0xc4
+			_("Film Animazione"),  # 0xc5
+			_("Film"),  # 0xc6
+			_("Telefilm"),  # 0xc7
+			_("Magazine"),  # 0xc8
+			_("Inutilizzato 0xc9"),  # 0xc9
+			_("Inutilizzato 0xca"),  # 0xca
+			_("Inutilizzato 0xcb"),  # 0xcb
+			_("Inutilizzato 0xcc"),  # 0xcc
+			_("Inutilizzato 0xcd"),  # 0xcd
+			_("Inutilizzato 0xce"),  # 0xce
+			_("Inutilizzato 0xcf"),  # 0xcf
+		),
+		# Ragazzi e Musica cont..
+		13: (
+			_("Inutilizzato 0xd0"),  # 0xd0
+			_("Inutilizzato 0xd1"),  # 0xd1
+			_("Inutilizzato 0xd2"),  # 0xd2
+			_("Inutilizzato 0xd3"),  # 0xd3
+			_("Danza"),  # 0xd4
+		),
+		# Altri Programmi
+		14: (
+			_("Generale"),  # 0xe0
+			_("Educational"),  # 0xe1
+			_("Regionale"),  # 0xe2
+			_("Shopping"),  # 0xe3
+			_("Inutilizzato 0xe4"),  # 0xe4
+			_("Inizio e Fine Trasmissioni"),  # 0xe5
+			_("Eventi Speciali"),  # 0xe6
+			_("Film per Adulti"),  # 0xe7
+		),
+	}
+class GenresAUSOpenTV:
+	# TODO: "OT3": "AUS"
+	maintype=(
+		_("General"),  # 0x0
+	)
+
+	subtype={
+		0: (
+			_("No Category"),  # 0x00
+		),
+	}
+
+
+class GenresNZLOpenTV:
+	# TODO: "OT4": "NZL"
+	maintype=(
+		_("General"),  # 0x0
+	)
+
+	subtype={
+		0: (
+			_("No Category"),  # 0x00
+		),
+	}
+
+
+class GenresETSIOpenTV:
+	# TODO: "OTV": "ETSI
+	maintype=(
+		_("General"),  # 0x0
+	)
+
+	subtype={
+		0: (
+			_("No Category"),  # 0x00
 		),
 	}
 
@@ -436,48 +847,67 @@ def __getGenreStringSubIceTV(hn, ln, genres):
 	return ""
 
 
-countries = {
+def __getGenreStringMainOpenTV(hn, ln, genres):
+	if hn < len(genres.maintype):
+		return genres.maintype[hn]
+	return ""
+
+
+def __getGenreStringSubOpenTV(hn, ln, genres):
+	if hn in genres.subtype:
+		if ln < len(genres.subtype[hn]):
+			return genres.subtype[hn][ln]
+		return _("User defined 0x%02x" % ((hn << 4) | ln))
+	return ""
+
+
+countries={
 	"AUS": (__getGenreStringMain, __getGenreStringMain, GenresAUS()),
 	# Use illegal country names for IceTV genre tables so that they won't match real countries
 	"AUSIceTV": (__getGenreStringMainIceTV, __getGenreStringSubIceTV, GenresAUSIceTV()),
+	"GBROpenTV": (__getGenreStringMainOpenTV, __getGenreStringSubOpenTV, GenresGBROpenTV()),
+	"ITAOpenTV": (__getGenreStringMainOpenTV, __getGenreStringSubOpenTV, GenresITAOpenTV()),
+	"AUSOpenTV": (__getGenreStringMainOpenTV, __getGenreStringSubOpenTV, GenresAUSOpenTV()),
+	"NZLOpenTV": (__getGenreStringMainOpenTV, __getGenreStringSubOpenTV, GenresNZLOpenTV()),
+	"ETSIOpenTV": (__getGenreStringMainOpenTV, __getGenreStringSubOpenTV, GenresETSIOpenTV())
 }
 
-defaultGenre = GenresETSI()
-defaultCountryInfo = (__getGenreStringMain, __getGenreStringSub, defaultGenre)
+defaultGenre=GenresETSI()
+defaultCountryInfo=(__getGenreStringMain, __getGenreStringSub, defaultGenre)
 
 # Backwards compatibility - use deprecated
 
-maintype = defaultGenre.maintype
-subtype = defaultGenre.subtype
+maintype=defaultGenre.maintype
+subtype=defaultGenre.subtype
 
 
 def __remapCountry(country):
 	if hasattr(config.plugins, "icetv") and config.plugins.icetv.enable_epg.value:
 		if not country:
-			country = config.plugins.icetv.member.country.value
-		iceTVCountry = f"{country}IceTV"
+			country=config.plugins.icetv.member.country.value
+		iceTVCountry=f"{country}IceTV"
 		if iceTVCountry in countries:
 			return iceTVCountry
 	return country
 
 
 def getGenreStringMain(hn, ln, country=None):
-	countryInfo = countries.get(__remapCountry(country), defaultCountryInfo)
+	countryInfo=countries.get(__remapCountry(country), defaultCountryInfo)
 	return countryInfo[0](hn, ln, countryInfo[2])
 
 
 def getGenreStringSub(hn, ln, country=None):
-	countryInfo = countries.get(__remapCountry(country), defaultCountryInfo)
+	countryInfo=countries.get(__remapCountry(country), defaultCountryInfo)
 	return countryInfo[1](hn, ln, countryInfo[2])
 
 
 def getGenreStringLong(hn, ln, country=None):
 	# if hn == 0:
 	# 	return _("Undefined content") + " " + str(ln)
-	if hn == 15 and not (hasattr(config.plugins, "icetv") and config.plugins.icetv.enable_epg.value):
+	if hn == 15 and "OpenTV" not in str(country) and not (hasattr(config.plugins, "icetv") and config.plugins.icetv.enable_epg.value):
 		return f'{_("User defined")} {str(ln)}'
-	main = getGenreStringMain(hn, ln, country=country)
-	sub = getGenreStringSub(hn, ln, country=country)
+	main=getGenreStringMain(hn, ln, country=country)
+	sub=getGenreStringSub(hn, ln, country=country)
 	if main and main != sub:
 		return f"{main}: {sub}"
 	else:

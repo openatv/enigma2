@@ -68,6 +68,54 @@ class AusClassifications(dict):
 		self.update([(index, (classification, longText[classification], images[classification])) for index, classification in enumerate(shortText)])
 
 
+class GBrClassifications(dict):
+	def __init__(self):
+		# British Board of Film Classification
+		#            0   1   2    3    4    5    6     7     8     9     10    11    12    13    14    15
+		shortText = ("", "", "", "U", "U", "U", "PG", "PG", "PG", "12", "12", "12", "15", "15", "15", "18")
+		longText = {
+			"": _("Not Classified"),
+			"U": _("U - Suitable for all"),
+			"PG": _("PG - Parental Guidance"),
+			"12": _("Suitable for ages 12+"),
+			"15": _("Suitable for ages 15+"),
+			"18": _("Suitable only for Adults")
+		}
+		images = {
+			"": "ratings/blank.png",
+			"U": "ratings/GBR-U.png",
+			"PG": "ratings/GBR-PG.png",
+			"12": "ratings/GBR-12.png",
+			"15": "ratings/GBR-15.png",
+			"18": "ratings/GBR-18.png"
+		}
+		self.update([(index, (classification, longText[classification], images[classification])) for index, classification in enumerate(shortText)])
+
+
+class ItaClassifications(dict):
+	def __init__(self):
+		# The classifications used by Sky Italia
+		#            0   1   2    3    4    5    6     7     8     9     10    11    12    13    14    15
+		shortText = ("", "", "", "T", "T", "T", "BA", "BA", "BA", "12", "12", "12", "14", "14", "14", "18")
+		longText = {
+			"": _("Non Classificato"),
+			"T": _("Per Tutti"),
+			"BA": _("Bambini Accompagnati"),
+			"12": _("Dai 12 anni in su"),
+			"14": _("Dai 14 anni in su"),
+			"18": _("Dai 18 anni in su")
+		}
+		images = {
+			"": "ratings/blank.png",
+			"T": "ratings/ITA-T.png",
+			"BA": "ratings/ITA-BA.png",
+			"12": "ratings/ITA-12.png",
+			"14": "ratings/ITA-14.png",
+			"18": "ratings/ITA-18.png"
+		}
+		self.update([(index, (classification, longText[classification], images[classification])) for index, classification in enumerate(shortText)])
+
+
 # Each country classification object in the map tuple must be an object that
 # supports obj.get(key[, default]). It need not actually be a dict object.
 #
@@ -78,7 +126,20 @@ class AusClassifications(dict):
 #
 COUNTRIES = {
 	"ETSI": (ETSIClassifications(), lambda age: (_("bc%d") % age, _("Rating defined by broadcaster - %d") % age, "ratings/ETSI-na.png")),
-	"AUS": (AusClassifications(), lambda age: (_("BC%d") % age, _("Rating defined by broadcaster - %d") % age, "ratings/AUS-na.png"))
+	"AUS": (AusClassifications(), lambda age: (_("BC%d") % age, _("Rating defined by broadcaster - %d") % age, "ratings/AUS-na.png")),
+	"GBR": (GBrClassifications(), lambda age: (_("BC%d") % age, _("Rating defined by broadcaster - %d") % age, "ratings/GBR-na.png")),
+	"ITA": (ItaClassifications(), lambda age: (_("BC%d") % age, _("Rating defined by broadcaster - %d") % age, "ratings/ITA-na.png"))
+}
+
+
+# OpenTV country codes: epgchanneldata.cpp
+# eEPGChannelData::getOpenTvParentalRating
+OPENTV_COUNTRIES = {
+	"OT1": "GBR",
+	"OT2": "ITA",
+	"OT3": "AUS",
+	"OT4": "NZL",
+	"OTV": "ETSI"
 }
 
 
@@ -306,9 +367,13 @@ class EventInfo(Converter, Poll):
 								genres = genres[0:1]
 							rating = event.getParentalData()
 							country = rating.getCountryCode().upper() if rating else "ETSI"
-							if config.misc.epggenrecountry.value:
-								country = config.misc.epggenrecountry.value
-							result = self.separator.join((genreText for genreText in (trimText(getGenreStringSub(genre[0], genre[1], country=country)) for genre in genres) if genreText))
+							if country in OPENTV_COUNTRIES:
+								country = OPENTV_COUNTRIES[country] + "OpenTV"
+								result = self.separator.join((genretext for genretext in (trimText(getGenreStringSub(genre[0], genre[1], country=country)) for genre in genres) if genretext))
+							else:
+								if config.misc.epggenrecountry.value:
+									country = config.misc.epggenrecountry.value
+								result = self.separator.join((genretext for genretext in (trimText(getGenreStringSub(genre[0], genre[1], country=country)) for genre in genres) if genretext))
 				case self.ID:
 					result = trimText(event.getEventId())
 				case self.MEDIA_PATH:
