@@ -1358,10 +1358,10 @@ def InitUsageConfig():
 		("AUS", _("Australia"))
 	]
 	config.misc.epggenrecountry = ConfigSelection(default="", choices=choiceList)
-	choiceList.extend(
+	choiceList.extend([
 		("GBR", _("Great Britain")),
 		("ITA", _("Italy"))
-	)
+	])
 	config.misc.epgratingcountry = ConfigSelection(default="", choices=choiceList)
 
 	def setHDDStandby(configElement):
