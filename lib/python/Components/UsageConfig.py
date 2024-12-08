@@ -2495,7 +2495,7 @@ def patchTuxtxtConfFile(dummyConfigElement):
 	command = "sed -i -r '"
 	for f in tuxtxt2:
 		# Replace keyword (%s) followed by any value ([-0-9]+) by that keyword \1 and the new value %d.
-		command += "s|(%s)\s+([-0-9]+)|\\1 %d|;" % (f[0], f[1])
+		command += r"s|(%s)\s+([-0-9]+)|\\1 %d|;" % (f[0], f[1])
 	command += "' %s" % TUXTXT_CFG_FILE
 	for f in tuxtxt2:
 		# If keyword is not found in file, append keyword and value.
