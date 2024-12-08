@@ -6,7 +6,7 @@ from re import search, S
 from twisted.internet.reactor import callInThread
 from ssl import _create_unverified_context as SkipCertificateVerification
 from urllib.parse import unquote
-from urllib.request import build_opener, install_opener, urlopen, HTTPDigestAuthHandler, HTTPHandler, HTTPPasswordMgrWithDefaultRealm, Request
+from urllib.request import build_opener, install_opener, urlopen, HTTPDigestAuthHandler, HTTPHandler, HTTPSHandler, HTTPPasswordMgrWithDefaultRealm, Request
 from xml.etree.ElementTree import XML
 
 # ENIGMA IMPORTS
@@ -31,7 +31,7 @@ class OSCamGlobals():
 		pass
 
 	def openWebIF(self, part="status", label="", fmt="json", log=False):
-		proto, api, ctx = "http", "oscamapi", None
+		proto, api, webhandler = "http", "oscamapi", HTTPHandler
 		if config.oscaminfo.userDataFromConf.value:
 			udata = self.getUserData()
 			if isinstance(udata, str):
@@ -46,7 +46,7 @@ class OSCamGlobals():
 		if port.startswith('+'):
 			proto = "https"
 			port.replace("+", "")
-			ctx = SkipCertificateVerification() # NOSONAR silence S4830 + S5527
+			webhandler = HTTPSHandler(context=SkipCertificateVerification()) # NOSONAR silence S4830 + S5527
 		url = ""
 		if part in ["status", "userstats"]:
 			style, appendix = ("html", "&appendlog=1") if log else (fmt, "")
@@ -55,16 +55,16 @@ class OSCamGlobals():
 			url = "%s://%s:%s/shutdown.html?action=%s" % (proto, ip, port, part)  # e.g. http://127.0.0.1:8080//shutdown.html?action=restart or ...?action=shutdown
 		elif label:
 			url = "%s://%s:%s/%s.%s?part=%s&label=%s" % (proto, ip, port, api, fmt, part, label)  # e.g. http://127.0.0.1:8080/oscamapi.json?part=entitlement&label=MyReader
-		opener = build_opener(HTTPHandler)
+		opener = build_opener(webhandler)
 		if username and password and url:
 			pwman = HTTPPasswordMgrWithDefaultRealm()
 			pwman.add_password(None, url, username, password)
-			handlers = HTTPDigestAuthHandler(pwman)
-			opener = build_opener(HTTPHandler, handlers)
-			install_opener(opener)
+			authhandler = HTTPDigestAuthHandler(pwman)
+			opener = build_opener(webhandler, authhandler)
+		install_opener(opener)
 		request = Request(url)
 		try:
-			data = urlopen(request, timeout=10, context=ctx).read()
+			data = urlopen(request, timeout=10).read()
 			return True, data
 		except OSError as error:
 			if hasattr(error, "reason"):
