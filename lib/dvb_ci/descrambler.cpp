@@ -5,34 +5,36 @@
 #include <stdlib.h>
 #include <sys/ioctl.h>
 #include <linux/dvb/ca.h>
-
 #include <lib/dvb_ci/descrambler.h>
-
 #include <lib/base/eerror.h>
 
 #ifndef CA_SET_PID
 /**
  * CA_SET_PID and ca_pid struct removed on 4.14 kernel
  * Check commit         833ff5e7feda1a042b83e82208cef3d212ca0ef1
-**/
-struct ca_pid {
+ **/
+struct ca_pid
+{
 	unsigned int pid;
-	int index;              /* -1 == disable*/
+	int index; /* -1 == disable*/
 };
 #define CA_SET_PID _IOW('o', 135, struct ca_pid)
 #endif
 
-enum ca_descr_data_type {
+enum ca_descr_data_type
+{
 	CA_DATA_IV,
 	CA_DATA_KEY,
 };
 
-enum ca_descr_parity {
+enum ca_descr_parity
+{
 	CA_PARITY_EVEN,
 	CA_PARITY_ODD,
 };
 
-struct ca_descr_data {
+struct ca_descr_data
+{
 	unsigned int index;
 	enum ca_descr_parity parity;
 	enum ca_descr_data_type data_type;
@@ -40,7 +42,8 @@ struct ca_descr_data {
 	unsigned char *data;
 };
 
-struct vu_ca_descr_data {
+struct vu_ca_descr_data
+{
 	int slot_id;
 	int fix1; // = 0x6f7c
 	int demux_id;
@@ -62,10 +65,9 @@ struct vu_ca_descr_data {
 	int audio_pids[16];
 };
 
-
 #define CA_SET_DESCR_DATA _IOW('o', 137, struct ca_descr_data)
 
-int descrambler_set_key(int& desc_fd, eDVBCISlot *slot, int parity, unsigned char *data)
+int descrambler_set_key(int &desc_fd, eDVBCISlot *slot, int parity, unsigned char *data)
 {
 	bool vuIoctlSuccess = false;
 
@@ -88,7 +90,7 @@ int descrambler_set_key(int& desc_fd, eDVBCISlot *slot, int parity, unsigned cha
 		memcpy(d.key, data, 16);
 		memcpy(d.iv, data + 16, 16);
 		d.audio_number = slot->getAudioNumber();
-		memcpy(d.audio_pids, slot->getAudioPids(), 16*4);
+		memcpy(d.audio_pids, slot->getAudioPids(), 16 * 4);
 
 		unsigned int ret = ioctl(slot->getFd(), 0x10, &d);
 		if (ret == 0)
@@ -113,7 +115,8 @@ int descrambler_set_key(int& desc_fd, eDVBCISlot *slot, int parity, unsigned cha
 		d.length = 16;
 		d.data = data;
 
-		if (ioctl(desc_fd, CA_SET_DESCR_DATA, &d) == -1) {
+		if (ioctl(desc_fd, CA_SET_DESCR_DATA, &d) == -1)
+		{
 			eWarning("[CI%d descrambler] set key failed", slot->getSlotID());
 			return -1;
 		}
@@ -124,7 +127,8 @@ int descrambler_set_key(int& desc_fd, eDVBCISlot *slot, int parity, unsigned cha
 		d.length = 16;
 		d.data = data + 16;
 
-		if (ioctl(desc_fd, CA_SET_DESCR_DATA, &d) == -1) {
+		if (ioctl(desc_fd, CA_SET_DESCR_DATA, &d) == -1)
+		{
 			eWarning("[CI%d descrambler] set iv failed", slot->getSlotID());
 			return -1;
 		}
@@ -133,15 +137,15 @@ int descrambler_set_key(int& desc_fd, eDVBCISlot *slot, int parity, unsigned cha
 	return 0;
 }
 
-int descrambler_set_pid(int desc_fd, int index, int enable, int pid)
+int descrambler_set_pid(int desc_fd, eDVBCISlot *slot, int enable, int pid)
 {
 	struct ca_pid p = {};
 	unsigned int flags = 0x80;
-
+	eDebug("[CI descrambler]1 index: %x enable: %x pid: %x", slot->getSlotID(), enable, pid);
 	if (desc_fd < 0)
 		return -1;
 
-	if (index)
+	if (slot->getSlotID())
 		flags |= 0x40;
 
 	if (enable)
@@ -149,26 +153,33 @@ int descrambler_set_pid(int desc_fd, int index, int enable, int pid)
 
 	p.pid = pid;
 	p.index = flags;
-
-	if (ioctl(desc_fd, CA_SET_PID, &p) == -1) {
-		eWarning("[CI%d descrambler] set pid failed", index);
+	eDebug("[CI descrambler]2 index: %x enable: %x flags: %x pid: %x", slot->getSlotID(), enable, flags, pid);
+	if (ioctl(desc_fd, CA_SET_PID, &p) == -1)
+	{
+		if (slot->getDescramblingOptions() > 0)
+			return 0;
+		eWarning("[CI%d descrambler] set pid failed", slot->getSlotID());
 		return -1;
 	}
 
 	return 0;
 }
 
-int descrambler_init(int slot, uint8_t ca_demux_id)
+int descrambler_init(eDVBCISlot *slot, uint8_t ca_demux_id)
 {
 	int desc_fd;
 
 	std::string filename = "/dev/dvb/adapter0/ca" + std::to_string(ca_demux_id);
 
-	desc_fd = open(filename.c_str(), O_RDWR);
-	if (desc_fd == -1) {
-		eWarning("[CI%d descrambler] can not open %s", slot, filename.c_str());
+	if (slot->getDescramblingOptions() > 1)
+		filename = "/dev/dvb/adapter0/ca" + std::to_string(ca_demux_id + 1);
+
+	desc_fd = open(filename.c_str(), O_RDWR | O_NONBLOCK | O_CLOEXEC);
+	if (desc_fd == -1)
+	{
+		eWarning("[CI%d descrambler] can not open %s", slot->getSlotID(), filename.c_str());
 	}
-	eDebug("[CI%d descrambler] using ca device %s", slot, filename.c_str());
+	eDebug("[CI%d descrambler] using ca device %s", slot->getSlotID(), filename.c_str());
 
 	return desc_fd;
 }
