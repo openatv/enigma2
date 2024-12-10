@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-14 19:50+0000\n"
-"PO-Revision-Date: 2024-11-14 17:31+0000\n"
-"Last-Translator: Вячеслав Диконов <sdiconov@mail.ru>\n"
+"POT-Creation-Date: 2024-11-26 16:11+0000\n"
+"PO-Revision-Date: 2024-11-28 03:21+0000\n"
+"Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -4355,7 +4355,7 @@ msgid "Command type"
 msgstr "Тип команды"
 
 msgid "Commit"
-msgstr "Commit"
+msgstr "Зафиксировать"
 
 msgid "Commit Information Actions"
 msgstr "Совершение информационных действий"
@@ -4409,7 +4409,7 @@ msgid "Composition of the recording filenames"
 msgstr "Формат именования файлов записей"
 
 msgid "Compress root file system tar file. (This takes the most time!)"
-msgstr ""
+msgstr "Сжать root-файл корневой файловой системы. (Это займет больше всего времени!)"
 
 msgid "Compressed bits/pixel"
 msgstr "Сжатые биты/пиксель"
@@ -5120,38 +5120,38 @@ msgid "Create a symbolic link"
 msgstr "Создать символическую ссылку"
 
 msgid "Create application loader dump."
-msgstr ""
+msgstr "Создать дамп загрузчика приложения."
 
 msgid "Create backup image zip file."
-msgstr ""
+msgstr "Создайте резервную копию образа в формате zip."
 
 msgid "Create boot dump."
-msgstr ""
+msgstr "Создать загрузочный дамп."
 
 msgid "Create boot image dump."
-msgstr ""
+msgstr "Создать дамп загрузочного образа."
 
 msgid "Create device information dump."
-msgstr ""
+msgstr "Создать дамп информации об устройстве."
 
 msgid "Create kernel dump."
-msgstr ""
+msgstr "Создать дамп ядра."
 
 #, python-format
 msgid "Create recovery image backup '%s'."
 msgstr "Создать резервную копию образа для восстановления '%s'."
 
 msgid "Create rescue dump."
-msgstr ""
+msgstr "Создать аварийный дамп."
 
 msgid "Create root UBI file system."
-msgstr ""
+msgstr "Создать корневую файловую систему UBI."
 
 msgid "Create root file system dump."
-msgstr ""
+msgstr "Создать дамп корневой файловой системы."
 
 msgid "Create root journaling flash file system."
-msgstr ""
+msgstr "Создать корневую журналируемую флеш-файловую систему."
 
 msgid "Create separate radio user bouquet"
 msgstr "Создание отдельного радио букета"
@@ -5160,7 +5160,7 @@ msgid "Create swap"
 msgstr "Создать swap"
 
 msgid "Create tar file of root file system."
-msgstr ""
+msgstr "Создать root-файл корневой файловой системы."
 
 msgid "Create the additional slots on the selected device"
 msgstr "Создайте дополнительные слоты на выбранном устройстве"
@@ -5169,7 +5169,7 @@ msgid "Create the flash expander in the selected device"
 msgstr "Создать расширение флеш-памяти на выбранном устройстве"
 
 msgid "Create working directories."
-msgstr ""
+msgstr "Создайте рабочие каталоги."
 
 msgid "Creating .ap and .sc files"
 msgstr "Создание файлов АР и SC"
@@ -11022,9 +11022,6 @@ msgstr "МедиаИнфо"
 msgid "MediaPlayer"
 msgstr "Медиапроигрыватель"
 
-msgid "MediaStream"
-msgstr "Медиа поток"
-
 msgid "Medical"
 msgstr "Медицина"
 
@@ -11267,7 +11264,7 @@ msgid "Mount failed"
 msgstr "Монтирование не удалось"
 
 msgid "Mount root file system."
-msgstr ""
+msgstr "Смонтировать корневую файловую систему."
 
 msgid "Mount: "
 msgstr "Смонтирован "
@@ -13421,8 +13418,8 @@ msgstr "Пожалуйста, подождите, пока список загр
 msgid "Please wait while the plugin is installed."
 msgid_plural "Please wait while the plugins are installed."
 msgstr[0] "Пожалуйста, подождите, пока плагин будет установлен."
-msgstr[1] "Пожалуйста, подождите, пока плагины установятся."
-msgstr[2] "Пожалуйста, подождите, пока плагины установятся."
+msgstr[1] "Пожалуйста, подождите, пока плагина установятся."
+msgstr[2] "Пожалуйста, подождите, пока плагинов установятся."
 
 msgid "Please wait while the plugin is removed."
 msgid_plural "Please wait while the plugins are removed."
@@ -14506,6 +14503,9 @@ msgstr "Перезагрузить закладки"
 
 msgid "Reload Services"
 msgstr "Перезагрузить каналы"
+
+msgid "Reload Skin"
+msgstr "Перезагрузить скин"
 
 msgid "Reload all services from disk"
 msgstr "Перезагрузить все каналы с диска"
@@ -19273,7 +19273,7 @@ msgid "TMDB Search"
 msgstr "Поиск по TMDB"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Коррекция перевода Monja 10.11.2024"
+msgstr "Коррекция перевода Monja 27.11.2024"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл слишком большой для ISO9660 уровень 1!"
@@ -23955,6 +23955,9 @@ msgstr "Да (оставить фиды)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "MediaStream"
+#~ msgstr "Медиа поток"
 
 #~ msgid "E "
 #~ msgstr "E "

@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-14 19:50+0000\n"
-"PO-Revision-Date: 2024-11-25 12:00+0000\n"
+"POT-Creation-Date: 2024-11-26 16:11+0000\n"
+"PO-Revision-Date: 2024-12-03 10:00+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
@@ -2315,7 +2315,7 @@ msgid "Always include ECM in recordings"
 msgstr "Vždy zahrnúť ECM do nahrávok"
 
 msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver."
-msgstr "Vždy zahrnúť správy ECM do nahrávok. Tým sa zmenia globálne nastavenia individuálneho časovača. Umožňuje dekódovať nahrávky dodatočne (niekedy sa nazýva aj ako offline-dekódovanie), ak to váš prijímač podporuje. Predvolene: vypnuté."
+msgstr "Vždy zahrnúť správy ECM do nahrávok. Tým sa globálne prepíšu nastavenia individuálneho časovača. Umožňuje to dekódovať nahrávky dodatočne (v procese offline-dekódovania), ak to váš prijímač podporuje."
 
 msgid "Always show bouquets"
 msgstr "Vždy zobraziť prehľady"
@@ -11024,9 +11024,6 @@ msgstr "Informácie o médiu"
 msgid "MediaPlayer"
 msgstr "Prehrávač médií"
 
-msgid "MediaStream"
-msgstr "Stream média"
-
 msgid "Medical"
 msgstr "Medicínske"
 
@@ -11904,7 +11901,7 @@ msgid "Never abort"
 msgstr "Nikdy neprerušiť"
 
 msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding)."
-msgstr "Nikdy nedekódovať obsah počas nahrávania. Týmto sa prepíšu globálne nastavenia individuálneho časovača. Ak je táto voľba zapnutá, nahrávky sa ukladajú zakódované a musia sa dodatočne dekódovať (niekedy sa tento proces nazýva offline-dekódovanie). Predvolená hodnota: vypnuté."
+msgstr "Nikdy nedekódovať obsah počas nahrávania. Týmto sa globálne prepíšu nastavenia indiv. časovača. Ak je táto voľba zapnutá, nahrávky sa uložia zakódované a musia sa dodatočne dekódovať (tento proces sa nazýva offline-dekódovanie)."
 
 msgid "Never decrypt while recording"
 msgstr "Nikdy nedekódovať počas nahrávania"
@@ -14508,6 +14505,9 @@ msgstr "Znovu načítať záložky"
 
 msgid "Reload Services"
 msgstr "Znovu načítať stanice"
+
+msgid "Reload Skin"
+msgstr "Znovu načítať vzhľad"
 
 msgid "Reload all services from disk"
 msgstr "Znovu načítať všetky stanice/služby z disku"
@@ -23957,6 +23957,9 @@ msgstr "áno (zachovať zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "MediaStream"
+#~ msgstr "Stream média"
 
 #~ msgid "E "
 #~ msgstr "E "

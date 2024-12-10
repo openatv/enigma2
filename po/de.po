@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-14 19:50+0000\n"
-"PO-Revision-Date: 2024-11-26 16:07+0000\n"
+"POT-Creation-Date: 2024-11-26 16:11+0000\n"
+"PO-Revision-Date: 2024-11-27 14:41+0000\n"
 "Last-Translator: VfBFan <VfBFan@users.noreply.hosted.weblate.org>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -4619,7 +4619,7 @@ msgid "Composition of the recording filenames"
 msgstr "Dateinamen für Aufnahmen"
 
 msgid "Compress root file system tar file. (This takes the most time!)"
-msgstr "Komprimieren der Root-Dateisystem Tar-Datei. (Das dauert die meiste Zeit!)"
+msgstr "Komprimieren der Tar-Datei des Root-Dateisystems. (Das dauert die meiste Zeit!)"
 
 msgid "Compressed bits/pixel"
 msgstr "Komprimierte Bits/Pixel"
@@ -5365,25 +5365,25 @@ msgid "Create a directory"
 msgstr "Ein Verzeichnis erstellen"
 
 msgid "Create a randomly generated password"
-msgstr "Erstelle ein Zufallspasswort"
+msgstr "Ein Zufallspasswort erstellen"
 
 msgid "Create a symbolic link"
 msgstr "Einen symbolischen Link erstellen"
 
 msgid "Create application loader dump."
-msgstr "Anwendung Loader Dump Erstellen."
+msgstr "Anwendungs-Loader-Dump erstellen."
 
 msgid "Create backup image zip file."
-msgstr "Backup Image Zip-Datei Erstellen."
+msgstr "Image-Sicherung-Zip-Datei erstellen."
 
 msgid "Create boot dump."
 msgstr "Boot-Dump erstellen."
 
 msgid "Create boot image dump."
-msgstr "Boot-Image Dump erstellen."
+msgstr "Boot-Image-Dump erstellen."
 
 msgid "Create device information dump."
-msgstr "Geräteinfo Dump erstellen."
+msgstr "Geräteinfo-Dump erstellen."
 
 msgid "Create kernel dump."
 msgstr "Kernel-Dump erstellen."
@@ -5396,13 +5396,13 @@ msgid "Create rescue dump."
 msgstr "Rettungs-Dump erstellen."
 
 msgid "Create root UBI file system."
-msgstr "Root UBI Dateisystem erstellen."
+msgstr "Root-UBI-Dateisystem erstellen."
 
 msgid "Create root file system dump."
-msgstr "Root Dateisystem Dump erstellen."
+msgstr "Root-Dateisystem Dump erstellen."
 
 msgid "Create root journaling flash file system."
-msgstr "Root Journaling Flash-Dateisystem erstellen."
+msgstr "Root-Journaling-Flash-Dateisystem erstellen."
 
 msgid "Create separate radio user bouquet"
 msgstr "Separates Radiobouquet erstellen"
@@ -5411,7 +5411,7 @@ msgid "Create swap"
 msgstr "Swap erstellen"
 
 msgid "Create tar file of root file system."
-msgstr "Tar-Datei vom Root-Dateisystem erstellen."
+msgstr "Tar-Datei des Root-Dateisystems erstellen."
 
 msgid "Create the additional slots on the selected device"
 msgstr "Zusätzliche Slots auf dem ausgewählten Gerät erstellen"
@@ -5426,13 +5426,13 @@ msgid "Creating .ap and .sc files"
 msgstr "Erstelle AP- und SC-Dateien"
 
 msgid "Creating file system"
-msgstr "Dateisystem erstellen"
+msgstr "Erstelle Dateisystem"
 
 msgid "Creating hard link to time shift file failed!"
 msgstr "Hardlink-Verbindung zur Timeshift-Datei fehlgeschlagen!"
 
 msgid "Creating partition"
-msgstr "Partition erstellen"
+msgstr "Erstelle Partition"
 
 msgid "Cree"
 msgstr "Cree"
@@ -8035,13 +8035,13 @@ msgid "Error: The path '%s' already exists!"
 msgstr "Fehler: Der Pfad '%s' existiert bereits!"
 
 msgid "Error: The root file system and system directories can't be deleted!"
-msgstr "Fehler: Das Root File System und Systemverzeichnisse können nicht gelöscht werden!"
+msgstr "Fehler: Das Root-Dateisystem und Systemverzeichnisse können nicht gelöscht werden!"
 
 msgid "Error: The root file system and system directories can't be moved!"
-msgstr "Fehler: Das Root File System und Systemverzeichnisse können nicht verschoben werden!"
+msgstr "Fehler: Das Root-Dateisystem und Systemverzeichnisse können nicht verschoben werden!"
 
 msgid "Error: The root file system and system directories can't be renamed!"
-msgstr "Fehler: Das Root File System und Systemverzeichnisse können nicht umbenannt werden!"
+msgstr "Fehler: Das Root-Dateisystem und Systemverzeichnisse können nicht umbenannt werden!"
 
 msgid "Error: The selected service can't be recorded!"
 msgstr "Fehler: Vom ausgewählten Sender kann nicht aufgenommen werden!"
@@ -11574,9 +11574,6 @@ msgstr "MediaInfo"
 #
 msgid "MediaPlayer"
 msgstr "Mediaplayer"
-
-msgid "MediaStream"
-msgstr "MediaStream"
 
 #
 msgid "Medical"
@@ -15351,6 +15348,9 @@ msgstr "Lesezeichen neu laden"
 msgid "Reload Services"
 msgstr "Senderlisten aktualisieren"
 
+msgid "Reload Skin"
+msgstr "Skin neu laden"
+
 msgid "Reload all services from disk"
 msgstr "Alle Sender neu laden"
 
@@ -15462,7 +15462,7 @@ msgstr "Sendergruppe entfernen"
 
 #
 msgid "Remove Satellite Services"
-msgstr "Ausgewählten Satellit entfernen"
+msgstr "Ausgewählten Satelliten entfernen"
 
 msgid "Remove Service"
 msgstr "Dienst entfernen"
@@ -25447,6 +25447,9 @@ msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "MediaStream"
+#~ msgstr "MediaStream"
 
 #
 #~ msgid "E "
