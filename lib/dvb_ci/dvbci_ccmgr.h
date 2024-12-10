@@ -12,7 +12,7 @@ void DH_set_flags(DH *dh, int flags);
 
 class eDVBCICcSessionImpl;
 
-class eDVBCICcSession: public eDVBCISession
+class eDVBCICcSession : public eDVBCISession
 {
 	eDVBCISlot *m_slot;
 	int m_descrambler_fd;
@@ -99,8 +99,7 @@ class eDVBCICcSession: public eDVBCISession
 			0, 0, 0, 0, 32, 256, 256, 0,
 			0, 256, 256, 32, 8, 8, 32, 32,
 			0, 8, 2, 32, 1, 32, 1, 0,
-			32
-		};
+			32};
 		void init()
 		{
 			unsigned int i;
@@ -108,7 +107,7 @@ class eDVBCICcSession: public eDVBCISession
 			for (i = 1; i < MAX_ELEMENTS; i++)
 				m_elements[i].invalidate();
 		};
-		struct ciplus_element* get(unsigned int id)
+		struct ciplus_element *get(unsigned int id)
 		{
 			if ((id < 1) || (id >= MAX_ELEMENTS))
 			{
@@ -117,7 +116,7 @@ class eDVBCICcSession: public eDVBCISession
 			}
 			return &m_elements[id];
 		};
-		uint8_t* get_ptr(unsigned int id)
+		uint8_t *get_ptr(unsigned int id)
 		{
 			struct ciplus_element *e = get(id);
 			if (e == NULL)
@@ -293,8 +292,8 @@ public:
 	~eDVBCICcSession();
 
 	void send(const unsigned char *tag, const void *data, int len);
-	void addProgram(uint16_t program_number, std::vector<uint16_t>& pids);
-	void removeProgram(uint16_t program_number, std::vector<uint16_t>& pids);
+	void addProgram(uint16_t program_number, std::vector<uint16_t> &pids);
+	void removeProgram(uint16_t program_number, std::vector<uint16_t> &pids);
 };
 
 #endif

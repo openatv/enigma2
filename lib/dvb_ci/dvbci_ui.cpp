@@ -15,7 +15,7 @@
 eDVBCI_UI *eDVBCI_UI::instance;
 
 eDVBCI_UI::eDVBCI_UI()
-	:eMMI_UI(MAX_SLOTS), m_messagepump(eApp,1, "dvb_ui")
+	: eMMI_UI(MAX_SLOTS), m_messagepump(eApp, 1, "dvb_ui")
 {
 	ASSERT(!instance);
 	instance = this;
@@ -31,18 +31,18 @@ void eDVBCI_UI::gotMessage(const eDVBCIInterfaces::Message &message)
 {
 	switch (message.m_type)
 	{
-		case eDVBCIInterfaces::Message::slotStateChanged:
-			setState(message.m_slotid, message.m_state);
-			break;
-		case eDVBCIInterfaces::Message::mmiSessionDestroyed:
-			mmiSessionDestroyed(message.m_slotid);
-			break;
-		case eDVBCIInterfaces::Message::mmiDataReceived:
-			processMMIData(message.m_slotid, message.m_tag, message.m_data, message.m_len);
-			break;
-		case eDVBCIInterfaces::Message::appNameChanged:
-			setAppName(message.m_slotid, message.m_appName.c_str());
-			break;
+	case eDVBCIInterfaces::Message::slotStateChanged:
+		setState(message.m_slotid, message.m_state);
+		break;
+	case eDVBCIInterfaces::Message::mmiSessionDestroyed:
+		mmiSessionDestroyed(message.m_slotid);
+		break;
+	case eDVBCIInterfaces::Message::mmiDataReceived:
+		processMMIData(message.m_slotid, message.m_tag, message.m_data, message.m_len);
+		break;
+	case eDVBCIInterfaces::Message::appNameChanged:
+		setAppName(message.m_slotid, message.m_appName.c_str());
+		break;
 	}
 }
 
@@ -101,5 +101,5 @@ int eDVBCI_UI::setEnabled(int slot, bool enabled)
 	return eDVBCIInterfaces::getInstance()->setCIEnabled(slot, enabled);
 }
 
-//FIXME: correct "run/startlevel"
+// FIXME: correct "run/startlevel"
 eAutoInitP0<eDVBCI_UI> init_dvbciui(eAutoInitNumbers::rc, "DVB-CI UI");
