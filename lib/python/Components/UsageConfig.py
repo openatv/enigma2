@@ -2200,8 +2200,10 @@ def InitUsageConfig():
 	config.oscaminfo.userDataFromConf = ConfigYesNo(default=True)
 	config.oscaminfo.username = ConfigText(default="username", fixed_size=False, visible_width=12)
 	config.oscaminfo.password = ConfigPassword(default="password", fixed_size=False)
-	config.oscaminfo.ip = ConfigIP(default=[127, 0, 0, 1], auto_jump=True)
-	config.oscaminfo.port = ConfigInteger(default=16002, limits=(0, 65536))
+	config.oscaminfo.ip = ConfigText(default="127.0.0.1", fixed_size=False)
+	config.oscaminfo.port = ConfigInteger(default=83, limits=(0, 65536))
+	config.oscaminfo.usessl = ConfigYesNo(default=False)
+	config.oscaminfo.verifycert = ConfigYesNo(default=False)
 	choiceList = [
 		(0, _("Disabled"))
 	] + [(x, ngettext("%d Second", "%d Seconds", x) % x) for x in (2, 5, 10, 20, 30)] + [(x * 60, ngettext("%d Minute", "%d Minutes", x) % x) for x in (1, 2, 3)]

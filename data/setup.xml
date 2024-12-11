@@ -566,9 +566,11 @@
 		<if conditional="not config.oscaminfo.userDataFromConf.value">
 			<item level="0" text="Username (httpuser)" description="Username (httpuser)">config.oscaminfo.username</item>
 			<item level="0" text="Password (httpwd)" description="Password (httpuser)">config.oscaminfo.password</item>
-			<item level="0" text="IP address" description="IP address">config.oscaminfo.ip</item>
+			<item level="0" text="DNS name or IP address" description="DNS name or IP address">config.oscaminfo.ip</item>
 			<item level="0" text="Port" description="Port">config.oscaminfo.port</item>
+			<item level="0" text="Use HTTPS protocol" description="Use HTTPS protocol">config.oscaminfo.usessl</item>
 		</if>
+		<item level="0" text="Verify WebIf SSL certificate" description="Verify WebIf SSL certificate">config.oscaminfo.verifycert</item>
 		<item level="0" text="Automatically update Client/Server View" description="Automatically update Client/Server View">config.oscaminfo.autoUpdate</item>
 		<item level="0" text="Automatically update Log-Fullscreen View" description="Automatically update Log-Fullscreen View">config.oscaminfo.autoUpdateLog</item>
 	</setup>
