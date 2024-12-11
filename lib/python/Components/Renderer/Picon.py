@@ -8,7 +8,7 @@ from Components.Harddisk import harddiskmanager
 from Components.Renderer.Renderer import Renderer
 from ServiceReference import ServiceReference
 from Tools.Alternatives import GetWithAlternative
-from Tools.Directories import SCOPE_SKINS, SCOPE_GUISKIN, resolveFilename
+from Tools.Directories import SCOPE_SKINS, SCOPE_GUISKIN, resolveFilename, sanitizeFilename
 
 searchPaths = []
 lastPiconPath = None
@@ -86,15 +86,9 @@ def getPiconName(serviceName):
 		fields[2] = "1"  # Fallback to 1 for services with different service types
 		pngname = findPicon("_".join(fields))
 	if not pngname:
-		name = ServiceReference(serviceName).getServiceName()  # Picon by channel name
-		name = normalize("NFKD", name).encode("ASCII", "ignore").decode()
-		name = sub("[^a-z0-9]", "", name.replace("&", "and").replace("+", "plus").replace("*", "star").lower())
-		if name:
-			pngname = findPicon(name)
-			if not pngname:
-				name = sub("(fhd|uhd|hd|sd|4k)$", "", name)
-				if name:
-					pngname = findPicon(name)
+		if (sName := ServiceReference(serviceName).getServiceName()) and "SID 0x" not in sName and (utf8Name := sanitizeFilename(sName).lower()) and utf8Name != "__":  # avoid lookups on zero length service names
+			legacyName = sub("[^a-z0-9]", "", utf8Name.replace("&", "and").replace("+", "plus").replace("*", "star"))  # legacy ascii service name picons
+			pngname = findPicon(utf8Name) or legacyName and findPicon(legacyName) or findPicon(sub(r"(fhd|uhd|hd|sd|4k)$", "", utf8Name).strip()) or legacyName and findPicon(sub(r"(fhd|uhd|hd|sd|4k)$", "", legacyName).strip())
 	return pngname
 
 
