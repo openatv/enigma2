@@ -134,7 +134,7 @@ class AudioSelection(ConfigListScreen, Screen):
 					choice_list = [("downmix", _("Downmix")), ("passthrough", _("Pass-through")), ("multichannel", _("Convert to multi-channel PCM")), ("hdmi_best", _("Use best / Controlled by HDMI"))]
 					self.settings.downmix_aac = ConfigSelection(choices=choice_list, default=config.av.downmix_aac.value)
 				elif BoxInfo.getItem("machinebuild") in ('gbquad4k', 'gbquad4kpro', 'gbue4k', 'gbx34k'):
-					choice_list = [("downmix", _("Downmix")), ("passthrough", _("Pass-through")), ("multichannel", _("Convert to multi-channel PCM")), ("force_ac3", _("Convert to AC3")), ("force_dts", _("Convert to DTS")), ("use_hdmi_cacenter", _("Use best / Controlled by HDMI")), ("wide", _("Wide")), ("extrawide", _("Extra wide"))]
+					choice_list = [("downmix", _("Downmix")), ("passthrough", _("Pass-through")), ("multichannel", _("Convert to multi-channel PCM")), ("force_ac3", _("Convert to AC3")), ("force_dts", _("Convert to DTS")), ("use_hdmi_caps", _("Use best / Controlled by HDMI"))]
 					self.settings.downmix_aac = ConfigSelection(choices=choice_list, default=config.av.downmix_aac.value)
 				else:
 					self.settings.downmix_aac = ConfigOnOff(default=config.av.downmix_aac.value)
@@ -142,7 +142,7 @@ class AudioSelection(ConfigListScreen, Screen):
 				conflist.append(getConfigListEntry(_("AAC downmix"), self.settings.downmix_aac, None))
 
 			if BoxInfo.getItem("CanDownmixAACPlus"):
-				choice_list = [("downmix", _("Downmix")), ("passthrough", _("Pass-through")), ("multichannel", _("Convert to multi-channel PCM")), ("force_ac3", _("Convert to AC3")), ("force_dts", _("Convert to DTS")), ("use_hdmi_cacenter", _("Use best / Controlled by HDMI")), ("wide", _("Wide")), ("extrawide", _("Extra wide"))]
+				choice_list = [("downmix", _("Downmix")), ("passthrough", _("Pass-through")), ("multichannel", _("Convert to multi-channel PCM")), ("force_ac3", _("Convert to AC3")), ("force_dts", _("Convert to DTS")), ("use_hdmi_caps", _("Use best / Controlled by HDMI"))]
 				self.settings.downmix_aacplus = ConfigSelection(choices=choice_list, default=config.av.downmix_aacplus.value)
 				self.settings.downmix_aacplus.addNotifier(self.changeAACDownmixPlus, initial_call=False)
 				conflist.append(getConfigListEntry(_("AAC plus downmix"), self.settings.downmix_aacplus, None))

@@ -756,9 +756,7 @@ def InitAVSwitch():
 				("multichannel", _("Convert to multi-channel PCM")),
 				("force_ac3", _("Convert to AC3")),
 				("force_dts", _("Convert to DTS")),
-				("use_hdmi_cacenter", _("Use best / Controlled by HDMI")),
-				("wide", _("Wide")),
-				("extrawide", _("Extra wide"))
+				("use_hdmi_caps", _("Use best / Controlled by HDMI"))
 			])
 		else:
 			config.av.downmix_aac = ConfigYesNo(default=True)
@@ -775,10 +773,7 @@ def InitAVSwitch():
 			("passthrough", _("Pass-through")),
 			("multichannel", _("Convert to multi-channel PCM")),
 			("force_ac3", _("Convert to AC3")),
-			("force_dts", _("Convert to DTS")),
-			("use_hdmi_cacenter", _("Use best / Controlled by HDMI")),
-			("wide", _("Wide")),
-			("extrawide", _("Extra wide"))
+			("force_dts", _("Convert to DTS"))
 		])
 		config.av.downmix_aacplus.addNotifier(setAACDownmixPlus)
 	if exists("/proc/stb/audio/aac_transcode_choices"):
