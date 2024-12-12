@@ -229,7 +229,10 @@ AS_IF([test "$BOXTYPE" == "pulse4k"],[AC_DEFINE(HWPULSE4K, 1,[pulse4k])])
 AS_IF([test "$BOXTYPE" == "pulse4kmini"],[AC_DEFINE(HWPULSE4KMINI, 1,[pulse4kmini])])
 AS_IF([test "$MACHINEBUILD" == "gbue4k"],[AC_DEFINE(HWGBUE4K, 1,[gbue4k])])
 AS_IF([test "$MACHINEBUILD" == "gbtrio4kpro"],[AC_DEFINE(HWGBTRIO4KPRO, 1,[gbtrio4kpro])])
+AS_IF([test "$MACHINEBUILD" == "gbquad4kpro"],[AC_DEFINE(HWGBQUAD4KPRO, 1,[gbquad4kpro])])
 AS_IF([test "$MACHINEBUILD" == "beyonwizt2"],[AC_DEFINE(HWBEYONWIZT2, 1,[beyonwizt2])])
+AS_IF([test "$MACHINEBUILD" == "gbquad4k"],[AC_DEFINE(HWGBQUAD4K, 1,[gbquad4k])])
+AS_IF([test "$BOXTYPE" == "u5"],[AC_DEFINE(HWU5, 1,[u5])])
 
 AC_ARG_WITH(accelerationthreshold,
 	AS_HELP_STRING([--with-accelerationthreshold=n], [use acceleration threshold of n bytes]),
