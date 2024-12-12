@@ -130,6 +130,10 @@ class VideoWizard(Wizard, ShowRemoteControl):
 		else:
 			avSwitch.setMode(port=self.port, mode=mode, rate=rates[0][0])
 
+		if BoxInfo.getItem("machinebuild") == "gbquad4kpro" and mode.startswith("2160p"):  # Hack for GB QUAD 4K Pro
+			config.av.hdmicolordepth.value = "10bit"
+			config.av.hdmicolordepth.save()
+
 	def rateSelectionMade(self, index):  # Called by wizardvideo.xml.
 		# print("[WizardVideo] rateSelectionMade DEBUG: index='%s'." % index)
 		self.rate = index
