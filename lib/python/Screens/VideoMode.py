@@ -396,6 +396,10 @@ class VideoSetup(ConfigListScreen, Screen):
 			self.keySave()
 			return
 
+		if BoxInfo.getItem("machinebuild") == "gbquad4kpro" and mode.startswith("2160p"):  # Hack for GB QUAD 4K Pro
+			config.av.hdmicolordepth.value = "10bit"
+			config.av.hdmicolordepth.save()
+
 		self.session.openWithCallback(self.confirm, MessageBox, _("Is this video mode ok?"), MessageBox.TYPE_YESNO, timeout=20, default=False)
 
 	def getCurrent_mode(self):
