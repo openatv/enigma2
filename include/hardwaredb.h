@@ -184,6 +184,13 @@ static std::unordered_map<std::string, std::string> HardwareDB{
 	{"/devices/platform/rdb/f0471000.xhci_v2/usb2/2-2/2-2.4/", "Back, right USB 3.0"},
 	{"/devices/platform/rdb/f0471000.xhci_v2/usb2/2-1/", "Back, left USB 3.0"},
 	{"/devices/platform/rdb/f0470500.ehci_v2/usb4/", "Back USB-C"}
+#elif HWDUO4K
+	{"/devices/platform/rdb/8b0a000.sata/", "SATA"},
+	{"/devices/platform/rdb/8b39000.xhci_v2/usb1/", "Front USB 2.0"},
+	{"/devices/platform/rdb/8b39000.xhci_v2/usb2/2-2/", "Back, upper USB 3.0"},
+	{"/devices/platform/rdb/8b39000.xhci_v2/usb2/2-1/", "Back, lower USB 3.0"}
+#elif HWDUO4KSE
+
 #else
 #endif
 
