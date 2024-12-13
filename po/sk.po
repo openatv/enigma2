@@ -11,15 +11,15 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-11-26 16:11+0000\n"
-"PO-Revision-Date: 2024-12-03 10:00+0000\n"
-"Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
+"PO-Revision-Date: 2024-12-13 17:18+0000\n"
+"Last-Translator: Atec <dr.atec@gmail.com>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.9-dev\n"
+"X-Generator: Weblate 5.9-rc\n"
 
 msgid ""
 "\n"
@@ -3963,7 +3963,7 @@ msgid "Check/Install online updates (you must have a working Internet connection
 msgstr "Kontrola/inštalácia on-line aktualizácií (je potrebné pripojenie na internet)"
 
 msgid "Checking Feeds"
-msgstr "Kontrola zdrojov informácií"
+msgstr "Kontrola zdrojov"
 
 msgid "Checking Logs..."
 msgstr "Kontrola denníkov..."
@@ -5147,13 +5147,13 @@ msgid "Create rescue dump."
 msgstr "Vytvoriť výpis pre záchranu."
 
 msgid "Create root UBI file system."
-msgstr "Vytvoriť hlavný systém súborov UBI."
+msgstr "Vytvoriť koreňový súborový systém UBI."
 
 msgid "Create root file system dump."
-msgstr "Vytvoriť výpis z hlavného systému súborov."
+msgstr "Vytvoriť výpis z koreňového súborového systému."
 
 msgid "Create root journaling flash file system."
-msgstr "Vytvoriť hlavný systém súborov žurnálovania flash."
+msgstr "Vytvoriť koreňový žurnálovací súborový systém flash."
 
 msgid "Create separate radio user bouquet"
 msgstr "Vytvoriť oddelený používateľský prehľad rádií"
@@ -5162,7 +5162,7 @@ msgid "Create swap"
 msgstr "Vytvoriť swap"
 
 msgid "Create tar file of root file system."
-msgstr "Vytvoriť súbor TAR z hlavného systému súborov."
+msgstr "Vytvoriť súbor TAR z koreňového súborového systému."
 
 msgid "Create the additional slots on the selected device"
 msgstr "Vytvoriť dodatočné sloty na vybranej jednotke"
@@ -7370,7 +7370,7 @@ msgid "Enter your low band local oscillator frequency. For more information cons
 msgstr "Zadajte frekvenciu dolného pásma pre lokálny oscilátor. Viac informácií nájdete v špecifikáciách LNB."
 
 msgid "Enter your personal feed URL to allow you to select packages from your personal feed."
-msgstr "Zadajte URL adresu svojho osobného informačného zdroja, aby ste mohli vyberať balíčky zo svojho osobného informačného zdroja."
+msgstr "Zadajte URL adresu svojho osobného zdroja, aby ste z neho mohli vyberať balíčky."
 
 msgid "Entertainment"
 msgstr "Zábava"
@@ -7680,7 +7680,7 @@ msgstr "Chyba: Problém pri zápise '%s'!"
 
 #, python-format
 msgid "Error: There was an issue in the reset of the feeds! Please reboot the %s %s and check the file system for any errors before trying this command again."
-msgstr "Chyba: Pri resetovaní zdrojov informácií sa objavil problém! Reštartujte %s %s a otestujte súborový systém, či neobsahuje chyby. Potom to skúste znova."
+msgstr "Chyba: Pri resetovaní zdrojov sa objavil problém! Reštartujte %s %s a otestujte súborový systém, či neobsahuje chyby. Potom to skúste znova."
 
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "Na cieľovom médiu (USB disku, či pevnom disku) nie je možné vytvoriť požadované priečinky. Prosím, skontrolujte médium a skúste to znovu."
@@ -8144,7 +8144,7 @@ msgid "Feed URL"
 msgstr "URL adresa zdroja"
 
 msgid "Feed disabled!"
-msgstr "Zdroj deaktivovaný!"
+msgstr "Zdroj neaktívny!"
 
 msgid "Feed server DNS error!"
 msgstr "Chyba DNS servera zdroja!"
@@ -11266,7 +11266,7 @@ msgid "Mount failed"
 msgstr "Pripojenie neúspešné"
 
 msgid "Mount root file system."
-msgstr "Pripojiť hlavný systém súborov."
+msgstr "Pripojiť koreňový súborový systém."
 
 msgid "Mount: "
 msgstr "Pripojiť: "
@@ -13388,7 +13388,7 @@ msgid "Please wait while LCN bouquets are created/updated..."
 msgstr "Prosím, čakajte na vytvorenie/aktualizovanie LCN prehľadov..."
 
 msgid "Please wait while feeds are updated..."
-msgstr "Prosím, počkajte na aktualizáciu zdrojov informácií…"
+msgstr "Prosím, počkajte na aktualizáciu zdrojov…"
 
 msgid "Please wait while gathering data..."
 msgstr "Prosím, počkajte na získanie údajov…"
@@ -13409,7 +13409,7 @@ msgid "Please wait while the data is extracted..."
 msgstr "Prosím, počkajte na rozbalenie údajov…"
 
 msgid "Please wait while the feeds are reset (cleared and reloaded)..."
-msgstr "Prosím počkajte na reset (vyčistenie a opätovné načítanie) zdrojov informácií..."
+msgstr "Prosím počkajte na reset (vyčistenie a opätovné načítanie) zdrojov..."
 
 msgid "Please wait while the file is read and processed..."
 msgstr "Prosím počkajte na prečítanie a spracovanie súboru..."
@@ -13454,7 +13454,7 @@ msgid "Please wait while your skin setting is restoring..."
 msgstr "Obnovuje sa nastavenie vzhľadu. Čakajte, prosím…"
 
 msgid "Please wait whilst feeds state is checked."
-msgstr "Prebieha kontrola stavu zdrojov informácií. Čakajte, prosím."
+msgstr "Prebieha kontrola stavu zdrojov. Čakajte, prosím."
 
 msgid "Please wait, copy of flash memory is being deleted. This could take a few minutes to complete."
 msgstr "Vymazáva sa kópia flash pamäte. Môže to trvať niekoľko minút. Čakajte, prosím."
@@ -14805,7 +14805,7 @@ msgid "Reset"
 msgstr "Reset"
 
 msgid "Reset (clear and reload) the feeds"
-msgstr "Resetovať (vymazať a znovu načítať) zdroje informácií"
+msgstr "Resetovať (vymazať a znovu načítať) zdroje"
 
 msgid "Reset Feeds"
 msgstr "Reset zdrojov"
@@ -15854,7 +15854,7 @@ msgid "Select 'Yes' to split tasks into separate actions."
 msgstr "Pre rozdelenie úloh na osobitné akcie, vyberte možnosť 'Áno'."
 
 msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
-msgstr "Ak chcete použiť alternatívne IP adresy feedu na portáli GitHub, vyberte možnosť 'Áno'. Môže to pomôcť vtedy, keď používate VPN a nie je možný prístup k bežným zdrojom informácií pomocou zverejnených DNS mien."
+msgstr "Ak chcete použiť alternatívne IP adresy feedu na portáli GitHub, vyberte možnosť 'Áno'. Môže to pomôcť, ak používate VPN a nie je možný prístup k bežným zdrojom prostredníctvom publikovaných DNS mien."
 
 msgid "Select 'Yes' to use legacy navigation where CH+/- swaps the active column. Select 'No' to use the newer unified navigation option for consistent navigation with other screens where LEFT/RIGHT swaps the active column and CH+/- pages up and down the list."
 msgstr "Ak chcete používať staršie navigovanie (CH+/- prepína aktívny stĺpec), vyberte 'Áno'. Ak chcete používať novšie, unifikované navigovanie (konzistentné s iným obrazovkami, kde tlačidlá DOĽAVA/DOPRAVA prepínajú aktívny stĺpec a CH+/- prepína o stránku nahor/nadol), vyberte možnosť 'Nie'."
@@ -18451,7 +18451,7 @@ msgid "Sorry MiniDLNA Config is Missing"
 msgstr "Prepáčte, chýba konfigurácia MiniDLNA"
 
 msgid "Sorry feeds are down for maintenance, please try again later."
-msgstr "Žiaľ, zdroje informácií nie sú kvôli údržbe dostupné. Skúste to neskôr, prosím."
+msgstr "Žiaľ, zdroje nie sú kvôli údržbe dostupné. Skúste neskôr, prosím."
 
 msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr "Prepáčte, súčasne je možné nahrávať iba 2 kanály!"
@@ -22019,10 +22019,10 @@ msgstr "Upozornenie"
 
 #, python-format
 msgid "Warning: %d feeds were unable to be reloaded!"
-msgstr "Upozornenie: %d zdrojov informácií nebolo možné načítať!"
+msgstr "Upozornenie: %d zdrojov nebolo možné načítať!"
 
 msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
-msgstr "Upozornenie: zrušenie tohto procesu zanechá zdroje informácií v nekompletnom a nepoužiteľnom stave!"
+msgstr "Upozornenie: Zrušením tohto procesu zostanú zdroje informácií v nekompletnom a nepoužiteľnom stave!"
 
 msgid "Warning: Overrides are currently active!"
 msgstr "Upozornenie: momentálne je aktívne prepisovanie!"
