@@ -303,12 +303,12 @@ class FileCommander(Screen, NumericalTextInput, StatInfo):
 		self["navigationActions"].setEnabled(not config.plugins.FileCommander.legacyNavigation.value)
 		self["legacyNavigationActions"] = HelpableActionMap(self, ["FileCommanderActions", "NavigationActions"], {
 			"top": (self.keyGoTop, _("Move to first line / screen")),
-			"pageUp": (self.keyGoLeftColumn, _("Switch to the left column")),
+			"pageUp": (self.keyToggleColumn, _("Switch to the other column")),
 			"up": (self.keyGoLineUp, _("Move up a line")),
 			"left": (self.keyGoPageUp, _("Move up a screen")),
 			"right": (self.keyGoPageDown, _("Move down a screen")),
 			"down": (self.keyGoLineDown, _("Move down a line")),
-			"pageDown": (self.keyGoRightColumn, _("Switch to the right column")),
+			"pageDown": (self.keyToggleColumn, _("Switch to the other column")),
 			"bottom": (self.keyGoBottom, _("Move to last line / screen")),
 			"panelLeft": (self.keyGoLeftColumn, _("Switch to the left column")),
 			"panelRight": (self.keyGoRightColumn, _("Switch to the right column"))
@@ -882,6 +882,12 @@ class FileCommander(Screen, NumericalTextInput, StatInfo):
 
 	def keyGoLineUp(self):
 		self.sourceColumn.goLineUp()
+
+	def keyToggleColumn(self):
+		if self.leftActive:
+			self.keyGoRightColumn()
+		else:
+			self.keyGoLeftColumn()
 
 	def keyGoLeftColumn(self):
 		self.leftActive = True
