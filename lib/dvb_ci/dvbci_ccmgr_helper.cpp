@@ -6,7 +6,6 @@
 
 #include <lib/base/eerror.h>
 
-
 // misc helper functions
 
 void traceHexdump(const uint8_t *data, unsigned int len)
@@ -24,7 +23,7 @@ int get_random(uint8_t *dest, int len)
 	fd = open(urnd, O_RDONLY);
 	if (fd <= 0)
 	{
-		eWarning("[CI RCC] cannot open %s", urnd);
+		eWarning("[CI RCC] get_random cannot open %s", urnd);
 		return -1;
 	}
 
@@ -139,7 +138,7 @@ bool get_authdata(uint8_t *host_id, uint8_t *dhsk, uint8_t *akh, unsigned int sl
 	fd = open(filename, O_RDONLY);
 	if (fd <= 0)
 	{
-		eDebug("[CI%d RCC] can not open %s", slot, filename);
+		eDebug("[CI%d RCC] get_authdata can not open %s", slot, filename);
 		return false;
 	}
 
@@ -147,7 +146,7 @@ bool get_authdata(uint8_t *host_id, uint8_t *dhsk, uint8_t *akh, unsigned int sl
 	{
 		if (read(fd, chunk, sizeof(chunk)) != sizeof(chunk))
 		{
-			eDebug("[CI%d RCC] can not read auth_data", slot);
+			eDebug("[CI%d RCC] get_authdata can not read auth_data", slot);
 			close(fd);
 			return false;
 		}
@@ -196,7 +195,7 @@ bool write_authdata(unsigned int slot, const uint8_t *host_id, const uint8_t *dh
 	memcpy(buf + 8 + 256, akh, 32);
 	entries++;
 
-	eDebug("[CI%d RCC] %d entries for writing", slot, entries);
+	eDebug("[CI%d RCC] %d entries for writing filename %s", slot, entries, filename);
 
 	get_authdata_filename(filename, sizeof(filename), slot);
 	fd = open(filename, O_CREAT | O_WRONLY | O_TRUNC, S_IRUSR | S_IWUSR);
@@ -214,7 +213,7 @@ bool write_authdata(unsigned int slot, const uint8_t *host_id, const uint8_t *dh
 	return true;
 }
 
-bool parameter_init(unsigned int slot, uint8_t* dh_p, uint8_t* dh_g, uint8_t* dh_q, uint8_t* s_key, uint8_t* key_data, uint8_t* iv)
+bool parameter_init(unsigned int slot, uint8_t *dh_p, uint8_t *dh_g, uint8_t *dh_q, uint8_t *s_key, uint8_t *key_data, uint8_t *iv)
 {
 	int fd;
 	unsigned char buf[592];
@@ -255,13 +254,13 @@ RSA *rsa_privatekey_open(const char *filename)
 	fp = fopen(filename, "r");
 	if (!fp)
 	{
-		eWarning("[CI RCC] can not open %s", filename);
+		eWarning("[CI RCC] rsa_privatekey_open can not open %s", filename);
 		return NULL;
 	}
 
 	PEM_read_RSAPrivateKey(fp, &r, NULL, NULL);
 	if (!r)
-		eWarning("[CI RCC] can not read %s", filename);
+		eWarning("[CI RCC] rsa_privatekey_open can not read %s", filename);
 
 	fclose(fp);
 
@@ -276,13 +275,13 @@ X509 *certificate_open(const char *filename)
 	fp = fopen(filename, "r");
 	if (!fp)
 	{
-		eWarning("[CI RCC] can not open %s", filename);
+		eWarning("[CI RCC] certificate_open can not open %s", filename);
 		return NULL;
 	}
 
 	cert = PEM_read_X509(fp, NULL, NULL, NULL);
 	if (!cert)
-		eWarning("[CI RCC] can not read %s", filename);
+		eWarning("[CI RCC] certificate_open can not read %s", filename);
 
 	fclose(fp);
 
@@ -293,8 +292,8 @@ X509 *certificate_open(const char *filename)
 int DH_set0_pqg(DH *dh, BIGNUM *p, BIGNUM *q, BIGNUM *g)
 {
 	/* If the fields p and g in d are NULL, the corresponding input
-	* parameters MUST be non-NULL.  q may remain NULL.
-	*/
+	 * parameters MUST be non-NULL.  q may remain NULL.
+	 */
 	if ((dh->p == NULL && p == NULL) || (dh->g == NULL && g == NULL))
 		return 0;
 
@@ -384,13 +383,13 @@ X509 *certificate_load_and_check(X509_STORE *store, const char *filename)
 	cert = certificate_open(filename);
 	if (!cert)
 	{
-		eWarning("[CI RCC] can not open %s", filename);
+		eWarning("[CI RCC] certificate_load_and_check can not open %s", filename);
 		return NULL;
 	}
 
 	if (!certificate_validate(store, cert))
 	{
-		eWarning("[CI RCC] can not validate %s", filename);
+		eWarning("[CI RCC] certificate_load_and_check can not validate %s", filename);
 		X509_free(cert);
 		return NULL;
 	}
@@ -407,13 +406,13 @@ X509 *certificate_import_and_check(X509_STORE *store, const uint8_t *data, int l
 	cert = d2i_X509(NULL, &data, len);
 	if (!cert)
 	{
-		eWarning("[CI RCC] can not read certificate");
+		eWarning("[CI RCC] certificate_import_and_check can not read certificate");
 		return NULL;
 	}
 
 	if (!certificate_validate(store, cert))
 	{
-		eWarning("[CI RCC] can not vaildate certificate\n");
+		eWarning("[CI RCC] certificate_import_and_check can not vaildate certificate\n");
 		X509_free(cert);
 		return NULL;
 	}
@@ -425,10 +424,10 @@ X509 *certificate_import_and_check(X509_STORE *store, const uint8_t *data, int l
 
 bool ciplus_cert_param_files_exists()
 {
-	if (access("/etc/ciplus/param", R_OK ) != -1 &&
-		access("/etc/ciplus/root.pem", R_OK ) != -1 &&
-		access("/etc/ciplus/device.pem", R_OK ) != -1 &&
-		access("/etc/ciplus/customer.pem", R_OK ) != -1)
+	if (access("/etc/ciplus/param", R_OK) != -1 &&
+		access("/etc/ciplus/root.pem", R_OK) != -1 &&
+		access("/etc/ciplus/device.pem", R_OK) != -1 &&
+		access("/etc/ciplus/customer.pem", R_OK) != -1)
 		return true;
 
 	return false;

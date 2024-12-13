@@ -3,10 +3,11 @@
 
 #include <lib/dvb_ci/dvbci_session.h>
 
-class eDVBCIApplicationManagerSession: public eDVBCISession
+class eDVBCIApplicationManagerSession : public eDVBCISession
 {
-	enum {
-		stateFinal=statePrivate,
+	enum
+	{
+		stateFinal = statePrivate,
 	};
 
 	eDVBCISlot *slot;
@@ -16,6 +17,7 @@ class eDVBCIApplicationManagerSession: public eDVBCISession
 	int wantmenu;
 	int receivedAPDU(const unsigned char *tag, const void *data, int len);
 	int doAction();
+
 public:
 	eDVBCIApplicationManagerSession(eDVBCISlot *tslot);
 	~eDVBCIApplicationManagerSession();
