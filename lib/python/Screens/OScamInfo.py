@@ -39,10 +39,11 @@ class OSCamGlobals():
 		webifok, url, result = self.callApi(proto=proto, ip=ip, port=port, \
 						username=user, password=pwd, api=api, \
 						fmt=fmt, part=part, label=label, log=log)
-		return webifok, url, signstatus, result
+		return webifok, api, url, signstatus, result
 
 	def confPath(self):
-		conffile, owebif = ipv6compiled = found = "", False
+		conffile = ""
+		owebif = ipv6compiled = found = False
 		oport = opath = signstatus = data = error = file = url = None
 		for filename in ["oscam.version", "ncam.version"]:
 			conffile = filename.replace("version", "conf")
@@ -95,7 +96,8 @@ class OSCamGlobals():
 		webif, port, conf, ipv6compiled, signstatus, conffile, error = self.confPath()  # (True, 'http', '127.0.0.1', '8080', '/etc/tuxbox/config/oscam-trunk/', True, 'CN=...', 'oscam.conf', None)
 		conf = "%s%s" % ((conf or ""), (conffile or "oscam.conf"))
 		api = conffile.replace(".conf", "api")
-		proto, blocked, user = pwd = "http", False, None  # Assume that oscam webif is NOT blocking localhost, IPv6 is also configured if it is compiled in, and no user and password are required
+		proto, blocked = "http", False  # Assume that oscam webif is NOT blocking localhost, IPv6 is also configured if it is compiled in, and no user and password are required
+		user = pwd = None
 		ret = _("OSCam webif disabled") if not error else error
 		if webif and port is not None:  # oscam reports it got webif support and webif is running (Port != 0)
 			if config.oscaminfo.userDataFromConf.value:  # Find and parse running oscam, ncam (auto)
@@ -160,7 +162,7 @@ class OSCamGlobals():
 			return False, url, errmsg.encode(encoding="latin-1", errors="ignore")
 
 	def updateLog(self):
-		webifok, url, signstatus, result = self.openWebIF(log=True)
+		webifok, api, url, signstatus, result = self.openWebIF(log=True)
 		result = result.decode(encoding="latin-1", errors="ignore")
 		if webifok:
 			log = search(r'<log>(.*?)</log>', result.replace("<![CDATA[", "").replace("]]>", ""), S)
@@ -291,25 +293,26 @@ class OSCamInfo(Screen, OSCamGlobals):
 				self.loop.start(config.oscaminfo.autoUpdate.value * 1000, False)
 
 	def updateOScamData(self):
-		webifok, url, signstatus, result = self.openWebIF()
+		webifok, api, url, signstatus, result = self.openWebIF()
+		tag, camname = {"oscamapi": ("oscam", "OSCam"), "ncamapi": ("ncam", "NCam")}.get(api)
 		ctime = datetime.fromisoformat(datetime.now(timezone.utc).astimezone().isoformat())
 		currtime = "Protocol Time: %s - %s" % (ctime.strftime("%x"), ctime.strftime("%X"))
 		na = _("n/a")
 		if webifok and result:
-			oscam = loads(result).get("oscam", {})
-			sysinfo = oscam.get("sysinfo", {})
+			jsonData = loads(result).get(tag, {})
+			sysinfo = jsonData.get("sysinfo", {})
 			# GENERAL INFOS (timing, memory usage)
-			stime_iso = oscam.get("starttime", None)
+			stime_iso = jsonData.get("starttime", None)
 			starttime = "Start Time: %s - %s" % (datetime.fromisoformat(stime_iso).strftime("%x"), datetime.fromisoformat(stime_iso).strftime("%X")) if stime_iso else (na, na)
-			runtime = "OSCam Run Time: %s" % oscam.get("runtime", na)
-			version = "OSCam: %s" % (oscam.get("version", na))
-			srvidfile = "srvidfile: %s" % oscam.get("srvidfile", na)
+			runtime = "%s Run Time: %s" % (camname, jsonData.get("runtime", na))
+			version = "%s: %s" % (camname, jsonData.get("version", na))
+			srvidfile = "srvidfile: %s" % jsonData.get("srvidfile", na)
 			url = "%s: %s//%s" % (_("Host"), url.split('/')[0], url.split('/')[2])
 			signed = "%s: %s" % (_("Signed by"), signstatus) if signstatus else ""
 			rulist = []
 			# MAIN INFOS {'s': 'server', 'h': 'http', 'p': 'proxy', 'r': 'reader', 'c': 'cccam_ext', 'x': 'cache exchange', 'm': 'monitor'}
 			outlist = []
-			for client in oscam.get("status", {}).get("client", []):
+			for client in jsonData.get("status", {}).get("client", []):
 				connection = client.get("connection", {})
 				request = client.get("request", {})
 				times = client.get("times", {})
@@ -426,7 +429,7 @@ class OSCamInfo(Screen, OSCamGlobals):
 	def msgboxCB(self, action, answer):
 		if answer:
 			self.loop.stop()
-			webifok, url, signstatus, result = self.openWebIF(part=action)
+			webifok, api, url, signstatus, result = self.openWebIF(part=action)
 			if not webifok:
 				print("[%s] ERROR in module 'msgboxCB': %s" % (MODULE_NAME, "Unexpected error accessing WebIF: %s" % result))
 				self.session.open(MessageBox, _("Unexpected error accessing WebIF: %s" % result), MessageBox.TYPE_ERROR, timeout=3, close_on_any_key=True)
@@ -598,7 +601,7 @@ class OSCamEntitlements(Screen, OSCamGlobals):
 
 	def getJSONentitlements(self):
 		entitleslist = []
-		webifok, url, signstatus, result = self.openWebIF(part="entitlement", label=self.readeruser)  # read JSON-entitlements
+		webifok, api, url, signstatus, result = self.openWebIF(part="entitlement", label=self.readeruser)  # read JSON-entitlements
 		if webifok and result:
 			entitlements = loads(result).get("oscam", {}).get("entitlements", [])
 			if entitlements:
@@ -620,7 +623,7 @@ class OSCamEntitlements(Screen, OSCamGlobals):
 
 	def getJSONstats(self):
 		entitleslist = []
-		webifok, url, signstatus, result = self.openWebIF()  # read JSON-status
+		webifok, api, url, signstatus, result = self.openWebIF()  # read JSON-status
 		if webifok and result:
 			self.clients = loads(result).get("oscam", {}).get("status", {}).get("client", [])
 			bgcoloridx = 0
@@ -642,7 +645,7 @@ class OSCamEntitlements(Screen, OSCamGlobals):
 
 	def getXMLentitlements(self):
 		entitleslist = []
-		webifok, url, signstatus, result = self.openWebIF(part="entitlement", label=self.readeruser, fmt="xml")  # read XML-entitlements
+		webifok, api, url, signstatus, result = self.openWebIF(part="entitlement", label=self.readeruser, fmt="xml")  # read XML-entitlements
 		if webifok and result:
 			reader = XML(result).find("reader")
 			bgcoloridx = 0
