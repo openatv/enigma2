@@ -18,6 +18,7 @@ from Components.config import config
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
+from Components.SystemInfo import BoxInfo
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.Setup import Setup
@@ -34,7 +35,7 @@ class OSCamGlobals():
 	def openWebIF(self, part="status", label="", fmt="json", log=False):
 		udata = self.getUserData()
 		if isinstance(udata, str):
-			return False, None, None, udata.encode()
+			return False, None, None, None, udata.encode()
 		proto, ip, port, user, pwd, api, signstatus = udata
 		webifok, url, result = self.callApi(proto=proto, ip=ip, port=port, \
 						username=user, password=pwd, api=api, \
@@ -42,44 +43,41 @@ class OSCamGlobals():
 		return webifok, api, url, signstatus, result
 
 	def confPath(self):
-		conffile = ""
-		owebif = ipv6compiled = found = False
-		oport = opath = signstatus = data = error = file = url = None
-		for filename in ["oscam.version", "ncam.version"]:
-			conffile = filename.replace("version", "conf")
-			if config.oscaminfo.userDataFromConf.value:  # Find and parse running oscam, ncam (auto)
-				file = "/tmp/.%s/%s" % (filename.split('.')[0], filename)
-				if exists(file):
-					data = Path(file).read_text()
-					found = True
-			else:  # Find and parse running oscam, ncam (api)
-				api = "%sapi" % filename.split('.')[0]
-				webifok, url, result = self.callApi(proto="https" if config.oscaminfo.usessl.value else "http", \
-									ip=str(config.oscaminfo.ip.value), \
-									port=str(config.oscaminfo.port.value), \
-									username=str(config.oscaminfo.username.value), \
-									password=str(config.oscaminfo.password.value), \
-									api=api, fmt="html", part="files", label=filename)
-				result = result.decode(encoding="latin-1", errors="ignore")
-				if webifok:
-					content = search(r'<file.*?>(.*?)</file>', result.replace("<![CDATA[", "").replace("]]>", ""), S)
-					if content:
-						data = content.group(1).strip()
-						found = True
-				else:
-					error = result
-			if found:
-				break
+		cam, api = "ncam", "api"
+		webif = ipv6compiled = False
+		port = signstatus = data = error = conffile = url = None
+		cam = cam if cam in BoxInfo.getItem("CurrentSoftcam").split("/")[-1].lower() else "oscam"
+		verfilename = "%s.version" % cam
+		api = "%s%s" % (cam, api)
+		if config.oscaminfo.userDataFromConf.value:  # Find and parse running oscam, ncam (auto)
+			verfile = "/tmp/.%s/%s" % (verfilename.split('.')[0], verfilename)
+			if exists(verfile):
+				data = Path(verfile).read_text()
+		else:  # Find and parse running oscam, ncam (api)
+			webifok, url, result = self.callApi(proto="https" if config.oscaminfo.usessl.value else "http", \
+												ip=str(config.oscaminfo.ip.value), \
+												port=str(config.oscaminfo.port.value), \
+												username=str(config.oscaminfo.username.value), \
+												password=str(config.oscaminfo.password.value), \
+												api=api, fmt="html", part="files", label=verfilename)
+			result = result.decode(encoding="latin-1", errors="ignore")
+			if webifok:
+				content = search(r'<file.*?>(.*?)</file>', result.replace("<![CDATA[", "").replace("]]>", ""), S)
+				if content:
+					data = content.group(1).strip()
+			else:
+				error = result
+
 		if data:
 			for i in data.splitlines():
 				if "web interface support:" in i.lower():
-					owebif = {"no": False, "yes": True}.get(i.split(":")[1].strip(), False)
+					webif = {"no": False, "yes": True}.get(i.split(":")[1].strip(), False)
 				elif "webifport:" in i.lower():
-					oport = i.split(":")[1].strip()
-					if oport == "0":
-						oport = None
+					port = i.split(":")[1].strip()
+					if port == "0":
+						port = None
 				elif "configdir:" in i.lower():
-					opath = i.split(":")[1].strip()
+					conffile = "%s%s" % (i.split(":")[1].strip(), verfilename.replace("version", "conf"))
 				elif "ipv6 support:" in i.lower():
 					ipv6compiled = {"no": False, "yes": True}.get(i.split(":")[1].strip())
 				elif "signature:" in i.lower():
@@ -89,46 +87,47 @@ class OSCamGlobals():
 				else:
 					continue
 		else:
-			error = "unexpected result from %s%s" % ((file or ""), (url or "")) if not error else error
-		return owebif, oport, opath, ipv6compiled, signstatus, conffile, error
+			error = "unexpected result from %s%s" % ((verfile or ""), (url or "")) if not error else error
+		return webif, port, api, ipv6compiled, signstatus, conffile, error
 
 	def getUserData(self):
-		webif, port, conf, ipv6compiled, signstatus, conffile, error = self.confPath()  # (True, 'http', '127.0.0.1', '8080', '/etc/tuxbox/config/oscam-trunk/', True, 'CN=...', 'oscam.conf', None)
-		conf = "%s%s" % ((conf or ""), (conffile or "oscam.conf"))
-		api = conffile.replace(".conf", "api")
-		proto, blocked = "http", False  # Assume that oscam webif is NOT blocking localhost, IPv6 is also configured if it is compiled in, and no user and password are required
-		user = pwd = None
-		ret = _("OSCam webif disabled") if not error else error
-		if webif and port is not None:  # oscam reports it got webif support and webif is running (Port != 0)
-			if config.oscaminfo.userDataFromConf.value:  # Find and parse running oscam, ncam (auto)
-				if conf is not None and exists(conf):  # If we have a config file, we need to investigate it further
-					with open(conf) as data:
-						for i in data:
-							if "httpuser" in i.lower():
-								user = i.split("=")[1].strip()
-							elif "httppwd" in i.lower():
-								pwd = i.split("=")[1].strip()
-							elif "httpport" in i.lower():
-								port = i.split("=")[1].strip()
-								if port.startswith('+'):
-									proto = "https"
-									port = port.replace("+", "")
-							elif "httpallowed" in i.lower():
-								blocked = True  # Once we encounter a httpallowed statement, we have to assume oscam webif is blocking us ...
-								allowed = i.split("=")[1].strip()
-								if "::1" in allowed or "127.0.0.1" in allowed or "0.0.0.0-255.255.255.255" in allowed:
-									blocked = False  # ... until we find either 127.0.0.1 or ::1 in allowed list
-									ip = "::1" if ipv6compiled else "127.0.0.1"
-								if "::1" not in allowed:
-									ip = "127.0.0.1"
-			else:  #Use custom defined parameters
-				proto = proto="https" if config.oscaminfo.usessl.value else "http"
-				ip = str(config.oscaminfo.ip.value)
-				port = str(config.oscaminfo.port.value)
-				user = str(config.oscaminfo.username.value)
-				pwd = str(config.oscaminfo.password.value)
-			if not blocked:
-				ret = proto, ip, port, user, pwd, api, signstatus
+		ret = _("No system softcam configured!")
+		if BoxInfo.getItem("ShowOscamInfo"):
+			webif, port, api, ipv6compiled, signstatus, conffile, error = self.confPath()  # (True, 'http', '127.0.0.1', '8080', '/etc/tuxbox/config/oscam-trunk/', True, 'CN=...', 'oscam.conf', None)
+			proto, blocked = "http", False  # Assume that oscam webif is NOT blocking localhost, IPv6 is also configured if it is compiled in, and no user and password are required
+			user = pwd = None
+			conffile = "%s" % (conffile or "oscam.conf")
+			ret = _("OSCam webif disabled") if not error else error
+			if webif and port is not None:  # oscam reports it got webif support and webif is running (Port != 0)
+				if config.oscaminfo.userDataFromConf.value:  # Find and parse running oscam, ncam (auto)
+					if conffile is not None and exists(conffile):  # If we have a config file, we need to investigate it further
+						with open(conffile) as data:
+							for i in data:
+								if "httpuser" in i.lower():
+									user = i.split("=")[1].strip()
+								elif "httppwd" in i.lower():
+									pwd = i.split("=")[1].strip()
+								elif "httpport" in i.lower():
+									port = i.split("=")[1].strip()
+									if port.startswith('+'):
+										proto = "https"
+										port = port.replace("+", "")
+								elif "httpallowed" in i.lower():
+									blocked = True  # Once we encounter a httpallowed statement, we have to assume oscam webif is blocking us ...
+									allowed = i.split("=")[1].strip()
+									if "::1" in allowed or "127.0.0.1" in allowed or "0.0.0.0-255.255.255.255" in allowed:
+										blocked = False  # ... until we find either 127.0.0.1 or ::1 in allowed list
+										ip = "::1" if ipv6compiled else "127.0.0.1"
+									if "::1" not in allowed:
+										ip = "127.0.0.1"
+				else:  #Use custom defined parameters
+					proto = proto="https" if config.oscaminfo.usessl.value else "http"
+					ip = str(config.oscaminfo.ip.value)
+					port = str(config.oscaminfo.port.value)
+					user = str(config.oscaminfo.username.value)
+					pwd = str(config.oscaminfo.password.value)
+				if not blocked:
+					ret = proto, ip, port, user, pwd, api, signstatus
 		return ret
 
 	def callApi(self, proto="http", ip="127.0.0.1", port="83", username=None, password=None, api="oscamapi", fmt="json", part="status", label="", log=False):
@@ -294,10 +293,10 @@ class OSCamInfo(Screen, OSCamGlobals):
 
 	def updateOScamData(self):
 		webifok, api, url, signstatus, result = self.openWebIF()
-		tag, camname = {"oscamapi": ("oscam", "OSCam"), "ncamapi": ("ncam", "NCam")}.get(api)
 		ctime = datetime.fromisoformat(datetime.now(timezone.utc).astimezone().isoformat())
 		currtime = "Protocol Time: %s - %s" % (ctime.strftime("%x"), ctime.strftime("%X"))
 		na = _("n/a")
+		tag, camname = {"oscamapi": ("oscam", "OSCam"), "ncamapi": ("ncam", "NCam"), None: (na, na)}.get(api)
 		if webifok and result:
 			jsonData = loads(result).get(tag, {})
 			sysinfo = jsonData.get("sysinfo", {})
