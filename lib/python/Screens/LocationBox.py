@@ -14,6 +14,7 @@ from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Tools.BoundFunction import boundFunction
+from Tools.Conversions import scaleNumber
 from Tools.Directories import createDir, removeDir, renameDir
 from Tools.NumericalTextInput import NumericalTextInput
 
@@ -193,8 +194,8 @@ class LocationBox(Screen, NumericalTextInput):
 		elif directory:  # Write combination of directory & filename when directory is valid.
 			self["target"].setText("".join((directory, self.filename)))
 			try:
-				status = statvfs(directory)
-				free = ("%0.f GB " + _("Free")) % (float(status.f_bavail) * status.f_bsize / 1024 / 1024 / 1024)
+				stat = statvfs(directory)
+				free = f"{scaleNumber(stat.f_bfree * stat.f_frsize, format="%0.f")} {_("Free")}"
 			except OSError as err:
 				print("[LocationBox] Error %d: Unable to get '%s' status!  (%s)" % (err.errno, directory, err.strerror))
 				free = ""
