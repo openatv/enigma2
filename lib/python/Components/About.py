@@ -69,7 +69,7 @@ def getImageVersionString():
 
 def getFlashDateString():
 	try:
-		tm = localtime(stat("/etc/machine-id").st_mtime)
+		tm = localtime(stat("/home").st_ctime)
 		if tm.tm_year >= 2011:
 			return strftime(_("%Y-%m-%d"), tm)
 		else:
