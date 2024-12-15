@@ -247,7 +247,9 @@ class OSCamInfo(Screen, OSCamGlobals):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.skinName = "OSCamInfo"
-		self.setTitle(_("OSCamInfo: Information"))
+		webifok, api, url, signstatus, result = self.openWebIF()
+		camname = {"oscamapi": ("OSCam"), "ncamapi": ("NCam")}.get(api)
+		self.setTitle(_("%sInfo: Information") % camname)
 		self.rulist = []
 		self["buildinfos"] = StaticText()
 		self["extrainfos"] = StaticText()
@@ -260,8 +262,8 @@ class OSCamInfo(Screen, OSCamGlobals):
 		self["buffer"] = StaticText()
 		self["virtuell"] = StaticText()
 		self["resident"] = StaticText()
-		self["key_red"] = StaticText(_("Shutdown OSCam"))
-		self["key_green"] = StaticText(_("Restart OSCam"))
+		self["key_red"] = StaticText(_("Shutdown %s") % camname)
+		self["key_green"] = StaticText(_("Restart %s") % camname)
 		self["key_blue"] = StaticText(_("Show Log"))
 		self["key_OK"] = StaticText()
 		self["key_entitlements"] = StaticText()
@@ -271,22 +273,24 @@ class OSCamInfo(Screen, OSCamGlobals):
 			"ok": (self.keyOk, _("Show details")),
 			"cancel": (self.exit, _("Close the screen")),
 			"menu": (self.keyMenu, _("Open Settings")),
-			"red": (self.keyShutdown, _("Shutdown OSCam")),
-			"green": (self.keyRestart, _("Restart OSCam")),
+			"red": (self.keyShutdown, _("Shutdown %s") % camname),
+			"green": (self.keyRestart, _("Restart %s") % camname),
 			"blue": (self.keyBlue, _("Open Log"))
-			}, prio=1, description=_("OSCamInfo Actions"))
+			}, prio=1, description=_("%sInfo Actions") % camname)
 		self.loop = eTimer()
 		self.loop.callback.append(self.updateOScamData)
 		self.onLayoutFinish.append(self.onLayoutFinished)
 		self.bgColors = parameters.get("OSCamInfoBGcolors", (0x10fcfce1, 0x10f1f6e6, 0x10e2e0ef))
 
 	def onLayoutFinished(self):
+		webifok, api, url, signstatus, result = self.openWebIF()
+		tag = {"oscamapi": ("oscam"), "ncamapi": ("ncam")}.get(api)
 		self.showHideKeyOk()
 		self["outlist"].onSelectionChanged.append(self.showHideKeyOk)
 		if config.oscaminfo.userDataFromConf.value and self.confPath()[0] is None:
 			config.oscaminfo.userDataFromConf.value = False
 			config.oscaminfo.userDataFromConf.save()
-			self["extrainfos"].setText(_("File oscam.conf not found.\nPlease enter username/password manually."))
+			self["extrainfos"].setText(_("File %s.conf not found.\nPlease enter username/password manually.") % tag)
 		else:
 			callInThread(self.updateOScamData)
 			if config.oscaminfo.autoUpdate.value:
@@ -365,8 +369,8 @@ class OSCamInfo(Screen, OSCamGlobals):
 			self["used"].setText("Used: %s" % sysinfo.get("mem_cur_used", na))
 			self["free"].setText("Free: %s" % sysinfo.get("mem_cur_free", na))
 			self["buffer"].setText("Buffer: %s" % sysinfo.get("mem_cur_buff", na))
-			self["virtuell"].setText("Virtuell memory: %s" % sysinfo.get("oscam_vmsize", na))
-			self["resident"].setText("Resident Set: %s" % sysinfo.get("oscam_rsssize", na))
+			self["virtuell"].setText("Virtuell memory: %s" % sysinfo.get(tag + "_vmsize", na))
+			self["resident"].setText("Resident Set: %s" % sysinfo.get(tag + "_rsssize", na))
 			self["outlist"].updateList(outlist)
 			self.displayLog()
 		else:
@@ -417,10 +421,14 @@ class OSCamInfo(Screen, OSCamGlobals):
 		self.session.openWithCallback(self.menuCallback, OSCamInfoSetup)
 
 	def keyShutdown(self):
-		self.session.openWithCallback(boundFunction(self.msgboxCB, "shutdown"), MessageBox, _("Do you really want to shut down OSCam?\n\nATTENTION: To reactivate OSCam, a complete receiver restart must be carried out!"), MessageBox.TYPE_YESNO, timeout=10, default=False)
+		webifok, api, url, signstatus, result = self.openWebIF()
+		camname = {"oscamapi": ("OSCam"), "ncamapi": ("NCam")}.get(api)
+		self.session.openWithCallback(boundFunction(self.msgboxCB, "shutdown"), MessageBox, _("Do you really want to shut down %s?\n\nATTENTION: To reactivate %s, a complete receiver restart must be carried out!" % (camname, camname)), MessageBox.TYPE_YESNO, timeout=10, default=False)
 
 	def keyRestart(self):
-		self.session.openWithCallback(boundFunction(self.msgboxCB, "restart"), MessageBox, _("Do you really want to restart OSCam?\n\nHINT: This will take about 5 seconds!"), MessageBox.TYPE_YESNO, timeout=10, default=False)
+		webifok, api, url, signstatus, result = self.openWebIF()
+		camname = {"oscamapi": ("OSCam"), "ncamapi": ("NCam")}.get(api)
+		self.session.openWithCallback(boundFunction(self.msgboxCB, "restart"), MessageBox, _("Do you really want to restart %s?\n\nHINT: This will take about 5 seconds!" % camname), MessageBox.TYPE_YESNO, timeout=10, default=False)
 
 	def keyBlue(self):
 		self.loop.stop()
@@ -538,8 +546,10 @@ class OSCamEntitlements(Screen, OSCamGlobals):
 	def __init__(self, session, readeruser):
 		self.readeruser = readeruser
 		Screen.__init__(self, session)
+		webifok, api, url, signstatus, result = self.openWebIF()
+		camname = {"oscamapi": ("OSCam"), "ncamapi": ("NCam")}.get(api)
 		self.skinName = "OSCamEntitlements"
-		self.setTitle(_("OSCamInfo: Entitlements for '%s'") % self.readeruser)
+		self.setTitle(_("%samInfo: Entitlements for '%s'") % (camname, self.readeruser))
 		self.dheaders = ["type", "CAID", "Provid", "ID", "Class", "Start Date", "Expire Date", "Name"]
 		self.cheaders = ["CAID", "System", "Reshare", "Hop", "ShareID", "RemoteID", "ProvIDs", "Providers", "Nodes", "Locals", "Count", "Hop1", "Hop2", "Hopx", "Curr", "Res0", "Res1", "Res2", "Resx", "Reshare"]
 		self.showall = False
@@ -558,7 +568,7 @@ class OSCamEntitlements(Screen, OSCamGlobals):
 			"ok": (self.keyOk, _("Show all details")),
 			"cancel": (self.exit, _("Close the screen")),
 			"blue": (self.keyBlue, _("Show all"))
-			}, prio=1, description=_("OSCamInfo Actions"))
+			}, prio=1, description=_("%sInfo Actions") % camname)
 		self.onLayoutFinish.append(self.onLayoutFinished)
 		self.bgColors = parameters.get("OSCamInfoBGcolors", (0x10fcfce1, 0x10f1f6e6, 0x10e2e0ef))
 		self.loop = eTimer()
@@ -578,6 +588,8 @@ class OSCamEntitlements(Screen, OSCamGlobals):
 		callInThread(self.updateEntitlements)
 
 	def updateEntitlements(self):
+		webifok, api, url, signstatus, result = self.openWebIF()
+		camname = {"oscamapi": ("OSCam"), "ncamapi": ("NCam")}.get(api)
 		entitleslist = self.getJSONentitlements()
 		if entitleslist:
 			self["entitleslist"].style = "default"
@@ -592,7 +604,7 @@ class OSCamEntitlements(Screen, OSCamGlobals):
 					self["entitleslist"].style = "entitlements"
 					self.show_cheaders()
 		self["entitleslist"].updateList(entitleslist)
-		self.setTitle(_("OSCamInfo: %s Entitlements for '%s'") % (len(entitleslist), self.readeruser))
+		self.setTitle(_("%sInfo: %s Entitlements for '%s'") % (camname, len(entitleslist), self.readeruser))
 		self.entitleslist = entitleslist
 		self.showHideBlue()
 		self.showHideKeyOk()
@@ -602,8 +614,9 @@ class OSCamEntitlements(Screen, OSCamGlobals):
 	def getJSONentitlements(self):
 		entitleslist = []
 		webifok, api, url, signstatus, result = self.openWebIF(part="entitlement", label=self.readeruser)  # read JSON-entitlements
+		tag = {"oscamapi": ("oscam"), "ncamapi": ("ncam")}.get(api)
 		if webifok and result:
-			entitlements = loads(result).get("oscam", {}).get("entitlements", [])
+			entitlements = loads(result).get(tag, {}).get("entitlements", [])
 			if entitlements:
 				bgcoloridx = 0
 				na = _("n/a")
@@ -624,8 +637,9 @@ class OSCamEntitlements(Screen, OSCamGlobals):
 	def getJSONstats(self):
 		entitleslist = []
 		webifok, api, url, signstatus, result = self.openWebIF()  # read JSON-status
+		tag = {"oscamapi": ("oscam"), "ncamapi": ("ncam")}.get(api)
 		if webifok and result:
-			self.clients = loads(result).get("oscam", {}).get("status", {}).get("client", [])
+			self.clients = loads(result).get(tag, {}).get("status", {}).get("client", [])
 			bgcoloridx = 0
 			na = _("n/a")
 			for client in self.clients:
@@ -778,6 +792,8 @@ class OSCamEntitleDetails(Screen, OSCamGlobals):
 			return nlist
 
 		Screen.__init__(self, session)
+		webifok, api, url, signstatus, result = self.openWebIF()  # read JSON-status
+		camname = {"oscamapi": ("OSCam"), "ncamapi": ("NCam")}.get(api)
 		self.skinName = "OSCamEntitleDetails"
 		self.setTitle(_("Entitlements for 'CAID %s'") % entitlement[1])
 		entitlelen = len(entitlement)
@@ -794,7 +810,7 @@ class OSCamEntitleDetails(Screen, OSCamGlobals):
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions"], {
 			"ok": (self.close, _("Close the screen")),
 			"cancel": (self.close, _("Close the screen")),
-			}, prio=1, description=_("OSCamInfo Actions"))
+			}, }, prio=1, description=_("%sInfo Actions") % camname)
 
 
 class OSCamInfoLog(Screen, OSCamGlobals):
@@ -810,8 +826,10 @@ class OSCamInfoLog(Screen, OSCamGlobals):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		webifok, api, url, signstatus, result = self.openWebIF()
+		camname = {"oscamapi": ("OSCam"), "ncamapi": ("NCam")}.get(api)
 		self.skinName = "OSCamInfoLog"
-		self.setTitle(_("OSCamInfo: Log"))
+		self.setTitle(_("%sInfo: Log") % camname)
 		self["logtext"] = ScrollLabel(_("<no log found>"))
 		self["actions"] = HelpableActionMap(self, ["NavigationActions", "OkCancelActions"], {
 			"ok": (self.exit, _("Close the screen")),
@@ -820,7 +838,7 @@ class OSCamInfoLog(Screen, OSCamGlobals):
 			"up": (self.keyPageUp, _("Move up a page")),
 			"down": (self.keyPageDown, _("Move down a page")),
 			"pageDown": (self.keyPageDown, _("Move down a page"))
-			}, prio=1, description=_("OSCamInfo Log Actions"))
+			}, prio=1, description=_("%sInfo Log Actions") % camname)
 		self.loop = eTimer()
 		self.loop.callback.append(self.displayLog)
 		self.onLayoutFinish.append(self.onLayoutFinished)
