@@ -1552,6 +1552,32 @@ class ConfigSet(ConfigElement):
 	description = property(lambda self: descriptionsList(self.choices.choices, choicesList.TYPE_LIST))
 
 
+# This is the control, and base class, for a list of items.
+#
+class ConfigArray(ConfigElement):
+	def __init__(self, default=None):
+		ConfigElement.__init__(self)
+		if default is None:
+			default = []
+		self.default = default
+		self.lastValue = default
+		self.value = shallowcopy(default)
+
+	def load(self):
+		ConfigElement.load(self)
+		if not isinstance(self.value, list):
+			self.value = [] if self.value is None else list(self.value)
+
+	def getText(self):
+		return " ".join(self.value)
+
+	def fromString(self, value):
+		return eval(value)
+
+	def toString(self, value):
+		return str([x[0] if isinstance(x, list) else x for x in value])
+
+
 # This is the control, and base class, for slider settings.
 #
 class ConfigSlider(ConfigElement):
