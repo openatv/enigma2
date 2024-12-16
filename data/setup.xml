@@ -566,7 +566,7 @@
 		<if conditional="not config.oscaminfo.userDataFromConf.value">
 			<item level="0" text="Username (httpuser)" description="Username (httpuser)">config.oscaminfo.username</item>
 			<item level="0" text="Password (httpwd)" description="Password (httpuser)">config.oscaminfo.password</item>
-			<item level="0" text="DNS name or IP address" description="DNS name or IP address">config.oscaminfo.ip</item>
+			<item level="0" text="Hostname or IP address" description="DNS name or IP address">config.oscaminfo.ip</item>
 			<item level="0" text="Port" description="Port">config.oscaminfo.port</item>
 			<item level="0" text="Use HTTPS protocol" description="Use HTTPS protocol">config.oscaminfo.usessl</item>
 		</if>
