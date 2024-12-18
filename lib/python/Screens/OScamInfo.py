@@ -2,13 +2,13 @@
 from datetime import datetime, timezone, timedelta
 from json import loads
 from os.path import exists
-from re import compile, search, S
+from re import compile
 from twisted.internet.reactor import callInThread
 from ssl import create_default_context, _create_unverified_context as SkipCertificateVerification
 from urllib.parse import unquote
 from urllib.request import build_opener, HTTPDigestAuthHandler, HTTPHandler, HTTPSHandler, HTTPPasswordMgrWithDefaultRealm
 from pathlib import Path
-from xml.etree.ElementTree import XML
+from xml.etree.ElementTree import XML, ParseError
 from ipaddress import ip_address
 from socket import getaddrinfo, gaierror
 
@@ -47,7 +47,7 @@ class OSCamGlobals():
 	def confPath(self):
 		cam, api = "ncam", "api"
 		webif = ipv6compiled = False
-		port = signstatus = data = error = conffile = url = None
+		port = signstatus = data = error = conffile = url = verfile = None
 		cam = cam if cam in BoxInfo.getItem("CurrentSoftcam").split("/")[-1].lower() else "oscam"
 		verfilename = "%s.version" % cam
 		api = "%s%s" % (cam, api)
@@ -64,9 +64,11 @@ class OSCamGlobals():
 												api=api, fmt="html", part="files", label=verfilename)
 			result = result.decode(encoding="latin-1", errors="ignore")
 			if webifok:
-				content = search(r'<file.*?>(.*?)</file>', result.replace("<![CDATA[", "").replace("]]>", ""), S)
-				if content:
-					data = content.group(1).strip()
+				try:
+					xml = XML(result).find("file")
+					data = xml.text.strip() if xml is not None else None
+				except ParseError:
+					pass
 			else:
 				error = result
 
@@ -164,12 +166,14 @@ class OSCamGlobals():
 
 	def updateLog(self):
 		webifok, api, url, signstatus, result = self.openWebIF(log=True)
-		result = result.decode(encoding="latin-1", errors="ignore")
+		ret, result = False, result.decode(encoding="latin-1", errors="ignore")
 		if webifok:
-			log = search(r'<log>(.*?)</log>', result.replace("<![CDATA[", "").replace("]]>", ""), S)
-			return True, log.group(1).strip() if log else "<no log found>"
-		else:
-			return False, result
+			try:
+				xml = XML(result).find("log")
+				ret, result = True, xml.text.strip() if xml is not None else "<no log found>"
+			except ParseError:
+				pass
+		return ret, result
 
 
 class OSCamInfo(Screen, OSCamGlobals):
@@ -882,16 +886,12 @@ class OSCamInfoSetup(Setup):
 	def keySave(self):
 		def keySaveCallback(result):
 			Setup.keySave(self)
-
-		print("[%s] DEBUG in module 'keySave': %s - %s" % (MODULE_NAME, config.oscaminfo.ip.value, self.oldIP))
 		if config.oscaminfo.ip.value != self.oldIP:
 			try:
 				getaddrinfo(config.oscaminfo.ip.value, config.oscaminfo.port.value)
-				print("[%s] DEBUG in module 'keySave': getaddrinfo: %s" % (MODULE_NAME, "top"))
 				self.status = None
 			except gaierror:
 				self.status = _("Hostname cannot be resolved to IP address!")
-
 		if self.status:
 			self.session.openWithCallback(keySaveCallback, MessageBox, self.status, type=MessageBox.TYPE_WARNING)
 		else:
