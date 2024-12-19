@@ -225,6 +225,7 @@ AS_IF([test "$BOXTYPE" == "vusolo4k"],[AC_DEFINE(HWVUSOLO4K, 1,[vusolo4k])])
 AS_IF([test "$BOXTYPE" == "vuultimo4k"],[AC_DEFINE(HWULTIMO4K, 1,[vuultimo4k])])
 AS_IF([test "$BOXTYPE" == "vuduo4k"],[AC_DEFINE(HWDUO4K, 1,[vuduo4k])])
 AS_IF([test "$BOXTYPE" == "vuduo4kse"],[AC_DEFINE(HWDUO4KSE, 1,[vuduo4kse])])
+AS_IF([test "$BOXTYPE" == "vuduo2"],[AC_DEFINE(HWDUO2, 1,[vuduo2])])
 AS_IF([test "$BOXTYPE" == "h7"],[AC_DEFINE(HWH7, 1,[h7])])
 AS_IF([test "$BOXTYPE" == "h17"],[AC_DEFINE(HWH17, 1,[h17])])
 AS_IF([test "$BOXTYPE" == "pulse4k"],[AC_DEFINE(HWPULSE4K, 1,[pulse4k])])
@@ -235,6 +236,14 @@ AS_IF([test "$MACHINEBUILD" == "gbquad4kpro"],[AC_DEFINE(HWGBQUAD4KPRO, 1,[gbqua
 AS_IF([test "$MACHINEBUILD" == "beyonwizt2"],[AC_DEFINE(HWBEYONWIZT2, 1,[beyonwizt2])])
 AS_IF([test "$MACHINEBUILD" == "gbquad4k"],[AC_DEFINE(HWGBQUAD4K, 1,[gbquad4k])])
 AS_IF([test "$BOXTYPE" == "u5"],[AC_DEFINE(HWU5, 1,[u5])])
+AS_IF([test "$BOXTYPE" == "hd51"],[AC_DEFINE(HWHD51, 1,[hd51])])
+AS_IF([test "$BOXTYPE" == "hd61"],[AC_DEFINE(HWHD61, 1,[hd61])])
+AS_IF([test "$BOXTYPE" == "sfx6008"],[AC_DEFINE(HWSFX6008, 1,[sfx6008])])
+AS_IF([test "$BOXTYPE" == "osnino"],[AC_DEFINE(HWOSNINO, 1,[osnino])])
+AS_IF([test "$BOXTYPE" == "h10"],[AC_DEFINE(HWH10, 1,[h10])])
+AS_IF([test "$BOXTYPE" == "multiboxpro"],[AC_DEFINE(HWMULTIBOXPRO, 1,[multiboxpro])])
+AS_IF([test "$BOXTYPE" == "sf8008"],[AC_DEFINE(HWSF8008, 1,[sf8008])])
+
 
 AC_ARG_WITH(accelerationthreshold,
 	AS_HELP_STRING([--with-accelerationthreshold=n], [use acceleration threshold of n bytes]),
