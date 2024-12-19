@@ -816,27 +816,37 @@ RESULT eServiceDVD::disableSubtitles()
 	return 0;
 }
 
+/**
+ * Retrieves the list of available subtitle tracks for the current DVD.
+ * @param subtitlelist A vector to be filled with the available subtitle tracks.
+ * @return RESULT indicating success or failure.
+ */
 RESULT eServiceDVD::getSubtitleList(std::vector<struct SubtitleTrack> &subtitlelist)
 {
 	unsigned int spu_count = 0;
 	ddvd_get_spu_count(m_ddvdconfig, &spu_count);
 	eDebug("[eServiceDVD] getSubtitleList: %d spus", spu_count);
 
-	for ( unsigned int spu_id = 0; spu_id < spu_count; spu_id++ )
+	for (unsigned int spu_id = 0; spu_id < spu_count; spu_id++)
 	{
 		struct SubtitleTrack track = {};
 		uint16_t spu_lang;
+
 		ddvd_get_spu_byid(m_ddvdconfig, spu_id, &spu_lang);
-		char spu_string[3]={(char) ((spu_lang >> 8) & 0xff), (char)(spu_lang & 0xff), 0};
+		if (spu_lang == 0xFFFF)
+		{
+			eDebug("[eServiceDVD] getSubtitleList: spu_id=%d: invalid subtitle track", spu_id);
+			continue;
+		}
+
+		char spu_string[3] = {(char)((spu_lang >> 8) & 0xff), (char)(spu_lang & 0xff), 0};
 		eDebug("[eServiceDVD] getSubtitleList: spu_id=%d lang=%s", spu_id, spu_string);
 
 		track.type = 2;
 		track.pid = spu_id + 1;
 		track.page_number = 5;
 		track.magazine_number = 0;
-		if (spu_lang != 0xFFFF) {
-			track.language_code = spu_string;
-		}
+		track.language_code = spu_string;
 		subtitlelist.push_back(track);
 	}
 	return 0;
