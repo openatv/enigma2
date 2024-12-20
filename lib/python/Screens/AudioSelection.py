@@ -627,7 +627,7 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 			])
 		if sub[0] == 0:  # dvb
 			menu.extend([
-				getConfigMenuItem("dvb_subtitles_yellow"),
+				getConfigMenuItem("dvb_subtitles_color"),
 				getConfigMenuItem("dvb_subtitles_backtrans"),
 				getConfigMenuItem("dvb_subtitles_original_position"),
 				getConfigMenuItem("subtitle_position"),
