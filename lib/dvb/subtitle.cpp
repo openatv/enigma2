@@ -1054,56 +1054,57 @@ void eDVBSubtitleParser::subtitle_redraw(int page_id)
 					break;
 			}
 
-			int bcktrans = eSubtitleSettings::dvb_subtitles_backtrans;
-			int color = eSubtitleSettings::dvb_subtitles_color;
-
-			bool yellow = color == 1;
-			bool green = color == 2;
-			bool cyan = color == 4;
-
-			for (int i = 0; i < clut_size; ++i)
+			int backgroundTransparency = eSubtitleSettings::dvb_subtitles_backtrans;
+			int subtitleColor = eSubtitleSettings::dvb_subtitles_color;
+			bool isYellow = subtitleColor == 1;
+			bool isGreen = subtitleColor == 2;
+			bool isCyan = subtitleColor == 4;
+			if (entries)
 			{
-				if (entries && entries[i].valid)
+				for (int i = 0; i < clut_size; ++i)
 				{
-					int y = entries[i].Y,
-						cr = entries[i].Cr,
-						cb = entries[i].Cb;
-					if (y > 0)
+					if (entries[i].valid)
 					{
-						y -= 16;
-						cr -= 128;
-						cb -= 128;
-						palette[i].r = (green || cyan) ? 0 : MAX(MIN(((298 * y + 460 * cr) / 256), 255), 0);
-						palette[i].b = (yellow || green) ? 0 : MAX(MIN(((298 * y + 543 * cb) / 256), 255), 0);
+						int y = entries[i].Y,
+							cr = entries[i].Cr,
+							cb = entries[i].Cb;
+						if (y > 0)
+						{
+							y -= 16;
+							cr -= 128;
+							cb -= 128;
+							palette[i].r = (isGreen || isCyan) ? 0 : std::max(std::min(((298 * y + 460 * cr) / 256), 255), 0);
+							palette[i].b = (isYellow || isGreen) ? 0 : std::max(std::min(((298 * y + 543 * cb) / 256), 255), 0);
 
-						if (green)
-						{
-							palette[i].g = MAX(MIN(((298 * y) / 256), 255), 0);
-						}
-						else if (color == 3) // magenta
-						{
-							palette[i].g = 0;
-						}
-						else if (cyan)
-						{
-							palette[i].g = MAX(MIN(((298 * y + 543 * cb) / 256), 255), 0);
-						}
-						else // yellow , original
-						{
-							palette[i].g = MAX(MIN(((298 * y - 55 * cb - 137 * cr) / 256), 255), 0);
-						}
+							if (isGreen)
+							{
+								palette[i].g = std::max(std::min(((298 * y) / 256), 255), 0);
+							}
+							else if (subtitleColor == 3) // magenta
+							{
+								palette[i].g = 0;
+							}
+							else if (isCyan)
+							{
+								palette[i].g = std::max(std::min(((298 * y + 543 * cb) / 256), 255), 0);
+							}
+							else // yellow , original
+							{
+								palette[i].g = std::max(std::min(((298 * y - 55 * cb - 137 * cr) / 256), 255), 0);
+							}
 
-						if (palette[i].r || palette[i].g || palette[i].b)
-							palette[i].a = (entries[i].T) & 0xFF;
+							if (palette[i].r || palette[i].g || palette[i].b)
+								palette[i].a = (entries[i].T) & 0xFF;
+							else
+								palette[i].a = backgroundTransparency;
+						}
 						else
-							palette[i].a = bcktrans;
-					}
-					else
-					{
-						palette[i].r = 0;
-						palette[i].g = 0;
-						palette[i].b = 0;
-						palette[i].a = 0xFF;
+						{
+							palette[i].r = 0;
+							palette[i].g = 0;
+							palette[i].b = 0;
+							palette[i].a = 0xFF;
+						}
 					}
 				}
 			}
