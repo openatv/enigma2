@@ -17,7 +17,7 @@ public:
   static void setPangoSubtitleAutoRun(bool value) { pango_autoturnon = value; }
   static void setDVBSubtitleOriginalPosition(int value) { dvb_subtitles_original_position = value; }
   static void setDVBSubtitleBacktrans(int value) { dvb_subtitles_backtrans = value; }
-  static void setDVBSubtitleYellow(bool value) { dvb_subtitles_yellow = value; }
+  static void setDVBSubtitleColor(int value) { dvb_subtitles_color = value; }
   static void setDVBSubtitleCentered(bool value) { dvb_subtitles_centered = value; }
   static void setSubtitleReWrap(bool value) { subtitle_rewrap = value; }
   static void setSubtitlePosition(int value) { subtitle_position = value; }
@@ -47,7 +47,7 @@ public:
   static int subtitle_position;
   static int dvb_subtitles_original_position;
   static int dvb_subtitles_backtrans;
-  static bool dvb_subtitles_yellow;
+  static int dvb_subtitles_color;
   static bool dvb_subtitles_centered;
   static int subtitle_alignment_flag;
   static int subtitle_borderwidth;

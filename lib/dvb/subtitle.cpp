@@ -1055,9 +1055,13 @@ void eDVBSubtitleParser::subtitle_redraw(int page_id)
 			}
 
 			int bcktrans = eSubtitleSettings::dvb_subtitles_backtrans;
-			bool yellow = eSubtitleSettings::dvb_subtitles_yellow;
+			int color = eSubtitleSettings::dvb_subtitles_color;
 
-			for (int i=0; i<clut_size; ++i)
+			bool yellow = color == 1;
+			bool green = color == 2;
+			bool cyan = color == 4;
+
+			for (int i = 0; i < clut_size; ++i)
 			{
 				if (entries && entries[i].valid)
 				{
@@ -1069,9 +1073,26 @@ void eDVBSubtitleParser::subtitle_redraw(int page_id)
 						y -= 16;
 						cr -= 128;
 						cb -= 128;
-						palette[i].r = MAX(MIN(((298 * y            + 460 * cr) / 256), 255), 0);
-						palette[i].g = MAX(MIN(((298 * y -  55 * cb - 137 * cr) / 256), 255), 0);
-						palette[i].b = yellow?0:MAX(MIN(((298 * y + 543 * cb  ) / 256), 255), 0);
+						palette[i].r = (green || cyan) ? 0 : MAX(MIN(((298 * y + 460 * cr) / 256), 255), 0);
+						palette[i].b = (yellow || green) ? 0 : MAX(MIN(((298 * y + 543 * cb) / 256), 255), 0);
+
+						if (green)
+						{
+							palette[i].g = MAX(MIN(((298 * y) / 256), 255), 0);
+						}
+						else if (color == 3) // magenta
+						{
+							palette[i].g = 0;
+						}
+						else if (cyan)
+						{
+							palette[i].g = MAX(MIN(((298 * y + 543 * cb) / 256), 255), 0);
+						}
+						else // yellow , original
+						{
+							palette[i].g = MAX(MIN(((298 * y - 55 * cb - 137 * cr) / 256), 255), 0);
+						}
+
 						if (palette[i].r || palette[i].g || palette[i].b)
 							palette[i].a = (entries[i].T) & 0xFF;
 						else
