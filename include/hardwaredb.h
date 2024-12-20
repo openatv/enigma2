@@ -190,17 +190,14 @@ static std::unordered_map<std::string, std::string> HardwareDB{
 #elif HWGBQUAD4KPRO // CHECKED
 	{"/devices/platform/rdb/f045a000.sata/", "SATA"},
 	{"/devices/platform/rdb/f03e0000.sdhci/mmc_host/", "SD"},
-
 	{"/devices/platform/rdb/f0470500.ehci_v2/usb4/4-1/4-1.1", "Front USB"},
 	{"/devices/platform/rdb/f0471000.xhci_v2/usb2/2-2/2-2.1", "Front USB"},
-
 	{"/devices/platform/rdb/f0470500.ehci_v2/usb4/4-1/4-1.4", "Back, right USB"},
 	{"/devices/platform/rdb/f0471000.xhci_v2/usb2/2-2/2-2.4", "Back, right USB"},
-
 	{"/devices/platform/rdb/f0470300.ehci_v2/usb3/3-1/3-1", "Back, left USB"},
 	{"/devices/platform/rdb/f0471000.xhci_v2/usb2/2-1/2-1", "Back, left USB"},
-
-	{"/devices/platform/rdb/f0470500.ehci_v2/usb4/4-1/4-1.3", "Back USB-C"}
+	{"/devices/platform/rdb/f0470500.ehci_v2/usb4/4-1/4-1.3", "Back USB-C"},
+	{"/devices/platform/rdb/f0471000.xhci_v2/usb2/2-2/2-2.3", "Back USB-C"}
 #elif HWDUO4K
 	{"/devices/platform/rdb/8b0a000.sata/", "SATA"},
 	{"/devices/platform/rdb/8b39000.xhci_v2/usb1/", "Front USB"},
