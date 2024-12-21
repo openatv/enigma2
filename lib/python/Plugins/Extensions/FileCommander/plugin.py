@@ -1988,10 +1988,12 @@ class FileCommanderArchiveExtract(FileCommanderArchiveBase):
 		self.session.openWithCallback(self.extractArchiveCallback, MessageBox, _("To where would you like to extract '%s'?") % self.path, MessageBox.TYPE_YESNO, list=choices, default=0, windowTitle=self.getTitle())
 
 	def extractArchiveCallback(self, target):
-		if target == "\0":
+		if not target:
+			self.close()
+		elif target == "\0":
 			minFree = 100  # Get the size of the archive?
 			self.session.openWithCallback(self.extractArchiveCallback, LocationBox, text=_("Select a location into which to extract '%s':") % self.path, currDir=dirname(self.path), minFree=minFree)
-		elif target:
+		else:
 			self.textBuffer = f"- {self.path}:\n- \n"
 			if self.extension == "tar":
 				def displayData(data):
