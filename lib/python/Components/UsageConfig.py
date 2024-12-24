@@ -1702,11 +1702,11 @@ def InitUsageConfig():
 	config.subtitles.pango_subtitles_delay = ConfigSelection(default=0, choices=choiceList)
 	config.subtitles.pango_subtitles_delay.addNotifier(setPangoSubtitleDelay)
 
-	def setDVBSubtitleYellow(configElement):
-		eSubtitleSettings.setDVBSubtitleYellow(configElement.value)
+	def setDVBSubtitleColor(configElement):
+		eSubtitleSettings.setDVBSubtitleColor(configElement.value)
 
-	config.subtitles.dvb_subtitles_yellow = ConfigYesNo(default=False)
-	config.subtitles.dvb_subtitles_yellow.addNotifier(setDVBSubtitleYellow)
+	config.subtitles.dvb_subtitles_color = ConfigSelection(default=0, choices=[(0, _("Original")), (1, _("Yellow")), (2, _("Green")), (3, _("Magenta")), (4, _("Cyan"))])
+	config.subtitles.dvb_subtitles_color.addNotifier(setDVBSubtitleColor)
 
 	def setDVBSubtitleOriginalPosition(configElement):
 		eSubtitleSettings.setDVBSubtitleOriginalPosition(configElement.value)
