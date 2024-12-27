@@ -893,7 +893,7 @@
 		<item level="0" text="Subtitle black transparency" description="Configure the transparency of the black background of subtitles.">config.subtitles.subtitles_backtrans</item>
 		<item level="2" text="Subtitle font size" description="Configure the font size of the subtitles.">config.subtitles.subtitle_fontsize</item>
 		<item level="2" text="Subtitle delay when timing lacks" description="Configure the subtitle delay when timing information is not available.">config.subtitles.subtitle_noPTSrecordingdelay</item>
-		<item level="2" text="DVB subtitles color" description="A graphical DVB subtitles will be displayed in the selected color, instead of the original color.">config.subtitles.dvb_subtitles_color</item>
+		<item level="2" text="DVB subtitles color" description="Graphical DVB subtitles will be displayed in the selected color, instead of the original colors.">config.subtitles.dvb_subtitles_color</item>
 		<item level="2" text="Use original DVB subtitle position" description="When enabled, graphical DVB subtitles will be displayed at their original position.">config.subtitles.dvb_subtitles_original_position</item>
 		<item level="2" text="Subtitle delay when timing is bad" description="Configure an additional delay to improve subtitle synchronization.">config.subtitles.subtitle_bad_timing_delay</item>
 		<item level="2" text="DVB subtitle black transparency" description="Configure the transparency of the black background of graphical DVB subtitles.">config.subtitles.dvb_subtitles_backtrans</item>
@@ -983,7 +983,7 @@
 		<item level="2" text="Enable cut file support for non *.ts files" description="Enable cut file support for non *.ts files, e.g. mp4.">config.usage.useVideoCuesheet</item>
 		<item level="2" text="Enable cut file support for audio files" description="Enable cut file support for audio files, e.g. mp3.">config.usage.useAudioCuesheet</item>
 		<item level="2" text="Enable chapter support for video files" description="Show chapter positions for supported video files. (gstreamer version must be greather than 1)">config.usage.useChapterInfo</item>
-		<!--<item level="2" text="Enable new GStreamer playback" description="If enabled, the new GStreamer playback engine will be used.">config.misc.usegstplaybin3</item-->
+		<!--item level="2" text="Enable new GStreamer playback" description="If enabled, the new GStreamer playback engine will be used.">config.misc.usegstplaybin3</item-->
 	</setup>
 	<setup key="UserInterface" title="OSD Settings" showOpenWebif="1">
 		<item level="0" text="Menu style" description="Select the display design for menus.">config.usage.menuType</item>
