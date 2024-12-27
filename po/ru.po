@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-26 16:11+0000\n"
-"PO-Revision-Date: 2024-11-28 03:21+0000\n"
+"POT-Creation-Date: 2024-12-24 18:40+0000\n"
+"PO-Revision-Date: 2024-12-22 20:02+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
 "Language: ru\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.9-dev\n"
+"X-Generator: Weblate 5.10-dev\n"
 "X-Poedit-SourceCharset: iso-8859-5\n"
 
 msgid ""
@@ -1618,6 +1618,9 @@ msgstr ""
 "Завершённая задача записи по таймеру требует выключить ваш %s %s.\n"
 "Выключить ресивер сейчас?"
 
+msgid "Graphical DVB subtitles will be displayed in the selected color, instead of the original colors."
+msgstr ""
+
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr "Подсветка на изображении пульта показывает, к какой кнопке относится подсказка. Если указанную функцию выполняют несколько кнопок, то все они будут подсвечены. В тексте под списком перечислены активные кнопки и сказано, требует ли вызов данной функции длительного нажатия кнопки или модификатора SHIFT."
 
@@ -2824,14 +2827,23 @@ msgstr "USB сзади"
 msgid "Back USB 3.0"
 msgstr "Задний USB 3.0"
 
+msgid "Back USB-C"
+msgstr "Задний разъём USB-C"
+
 msgid "Back, inner USB"
 msgstr "USB сзади внутри"
+
+msgid "Back, left USB"
+msgstr "Задний, левый разъём USB"
 
 msgid "Back, lower USB"
 msgstr "Задний нижний USB"
 
 msgid "Back, outer USB"
 msgstr "USB сзади снаружи"
+
+msgid "Back, right USB"
+msgstr "Задний, правый разъём USB"
 
 msgid "Back, upper USB"
 msgstr "Задний верхний USB"
@@ -4227,6 +4239,9 @@ msgstr "Дублировать изображение экрана на LCD"
 msgid "Close"
 msgstr "Закрыть"
 
+msgid "Close CA device at programm end"
+msgstr "Закройте устройство CA по завершении программы"
+
 msgid "Close PiP on exit"
 msgstr "Закрывать окно PiP кнопкой 'EXIT'"
 
@@ -5342,6 +5357,9 @@ msgstr "Видео редактор"
 msgid "Cutlist editor..."
 msgstr "Видео редактор..."
 
+msgid "Cyan"
+msgstr ""
+
 msgid "Cycle PiP(zap)"
 msgstr "Поменять с PIP (переключение)"
 
@@ -5387,6 +5405,9 @@ msgstr "Источник данных DNS"
 msgid "DNS mode"
 msgstr "Режим DNS"
 
+msgid "DNS name or IP address"
+msgstr "DNS-имя или IP-адрес"
+
 msgid "DNS suffix"
 msgstr "DNS-суффикс"
 
@@ -5420,6 +5441,9 @@ msgstr "DVB Субтитры PID и язык"
 
 msgid "DVB subtitle black transparency"
 msgstr "Прозрачность чёрного фона DVB субтитров"
+
+msgid "DVB subtitles color"
+msgstr ""
 
 msgid "DVB-C"
 msgstr "DVB-C"
@@ -6025,6 +6049,9 @@ msgstr "Глубина"
 msgid "Descending"
 msgstr "По убыванию"
 
+msgid "Descrambling options"
+msgstr "Варианты дескремблирования"
+
 msgid "Description"
 msgstr "Описание"
 
@@ -6219,6 +6246,9 @@ msgstr "Выключить цифровое микширование"
 
 msgid "Disable intro screen"
 msgstr "Отключить заставку экрана"
+
+msgid "Disable operator profiles"
+msgstr "Отключить профили операторов"
 
 msgid "Disable the HDD Process on VFD."
 msgstr "Отключить показ состояния HDD на дисплее"
@@ -9243,8 +9273,17 @@ msgstr "Ужас"
 msgid "Horse Racing"
 msgstr "Лошадиные скачки"
 
+msgid "Host"
+msgstr "Хост"
+
 msgid "Hostname"
 msgstr "Имя хоста"
+
+msgid "Hostname cannot be resolved to IP address!"
+msgstr "Имя хоста не может быть преобразовано в IP-адрес!"
+
+msgid "Hostname or IP address"
+msgstr "Имя хоста или IP-адрес"
 
 msgid "Hostname: "
 msgstr "Сетевое имя:"
@@ -9335,6 +9374,9 @@ msgstr "IP-адрес, который будет проверяться при �
 
 msgid "IP address"
 msgstr "IP-адрес"
+
+msgid "IP address is invalid!"
+msgstr "IP-адрес недействителен!"
 
 msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr "IP-адрес сервера Stream Relay, используемого для дешифрации каналов, которые можно расшифровать только через внутреннюю ретрансляцию потока."
@@ -10396,6 +10438,9 @@ msgstr "Ливан"
 msgid "Left"
 msgstr "Слева"
 
+msgid "Left USB"
+msgstr "Левый разъём USB"
+
 msgid "Left column"
 msgstr "Левый столбец"
 
@@ -10407,6 +10452,12 @@ msgstr "Сортировка файлов в левой панели"
 
 msgid "Left from service name"
 msgstr "Перед названием канала"
+
+msgid "Left, back USB"
+msgstr "Левый, задний разъём USB"
+
+msgid "Left, front USB"
+msgstr "Левый, передний разъём USB"
 
 msgid "Left, wrapped"
 msgstr "Cлева, свёрнуто"
@@ -10802,6 +10853,9 @@ msgstr "Македония"
 msgid "Madagascar"
 msgstr "Мадагаскар"
 
+msgid "Magenta"
+msgstr ""
+
 msgid "Magic"
 msgstr "Магия"
 
@@ -11103,6 +11157,9 @@ msgstr "Режим измерения"
 
 msgid "Mexico"
 msgstr "Мексика"
+
+msgid "Micro SD"
+msgstr "Микро SD-карта"
 
 msgid "Micronesia, Federated States of"
 msgstr "Микронезия (Федеративные Штаты)"
@@ -12131,6 +12188,9 @@ msgstr "Не найдено подходящих резервных копий!"
 msgid "No suitable sat tuner found!"
 msgstr "Спутниковый тюнер не найден!"
 
+msgid "No system softcam configured!"
+msgstr "Системный softcam не настроен!"
+
 msgid "No tags are set on these movies."
 msgstr "Нет меток для этих фильмов."
 
@@ -12495,6 +12555,12 @@ msgstr "Выкл"
 
 msgid "Offline decode delay (ms)"
 msgstr "Задержка оффлайн декодирования (Мс)"
+
+msgid "Offset CA device index"
+msgstr "Индекс устройства смещения CA"
+
+msgid "Offset and close CA device"
+msgstr "Смещение и закрытие устройства CA"
 
 msgid "Ojibwa"
 msgstr "Оджибва"
@@ -14262,6 +14328,9 @@ msgstr "Действительно перезагрузить сейчас?"
 msgid "Really shutdown now?"
 msgstr "Действительно выключить сейчас?"
 
+msgid "Really start Kodi and stop user interface now?"
+msgstr "Действительно запустить Kodi и остановить пользовательский интерфейс сейчас?"
+
 msgid "Really upgrade the front panel and reboot now?"
 msgstr "Хотите обновить дисплей и перезагрузить?"
 
@@ -15026,6 +15095,9 @@ msgstr "Переносить субтитры"
 msgid "Right"
 msgstr "Справа"
 
+msgid "Right USB"
+msgstr "Правый USB-порт"
+
 msgid "Right column"
 msgstr "Правый столбец"
 
@@ -15037,6 +15109,12 @@ msgstr "Сортировка файлов в правой панели"
 
 msgid "Right from service name"
 msgstr "После названия канала"
+
+msgid "Right, back USB"
+msgstr "Правый, задний порт USB"
+
+msgid "Right, front USB"
+msgstr "Правый, передний порт USB"
 
 msgid "Right, wrapped"
 msgstr "Справа, свёрнуто"
@@ -15147,6 +15225,12 @@ msgstr "SAT"
 
 msgid "SATA"
 msgstr "SATA"
+
+msgid "SATA BACK"
+msgstr "САТА ЗАДНЯЯ ЧАСТЬ"
+
+msgid "SATA FRONT"
+msgstr "SATA ПЕРЕДНЯЯ ЧАСТЬ"
 
 msgid "SATPI"
 msgstr "SATPI"
@@ -18077,6 +18161,9 @@ msgstr "Уровень сигнала"
 msgid "Signal: "
 msgstr "Сигнал "
 
+msgid "Signed by"
+msgstr "Подписано"
+
 msgid "Similar"
 msgstr "Похожие"
 
@@ -19182,6 +19269,9 @@ msgstr "Переключиться на доступные каналы ТВ"
 msgid "Switch to the left column"
 msgstr "Перейти в левый столбец"
 
+msgid "Switch to the other column"
+msgstr "Переключиться на другую колонку"
+
 msgid "Switch to the right column"
 msgstr "Перейти в правый столбец"
 
@@ -19273,7 +19363,7 @@ msgid "TMDB Search"
 msgstr "Поиск по TMDB"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Коррекция перевода Monja 27.11.2024"
+msgstr "Коррекция перевода Monja 22.12.2024"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл слишком большой для ISO9660 уровень 1!"
@@ -19838,6 +19928,10 @@ msgid ""
 msgstr ""
 "Интерфейс вашего %s %s будет перезапущен\n"
 "по причине ошибки в StartEnigma.py"
+
+#, python-format
+msgid "The user interface of your %s %s will be stopped to run Kodi"
+msgstr "Пользовательский интерфейс вашего %s %s будет остановлен для запуска Kodi"
 
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr "Ширина рисунка. Вход будет масштабирован, чтобы соответствовать этому значению."
@@ -21277,6 +21371,9 @@ msgstr "Использовать геолокацию"
 msgid "Use HDMI-preemphasis"
 msgstr "Использование HDMI-предыскажений"
 
+msgid "Use HTTPS protocol"
+msgstr "Использовать протокол HTTPS"
+
 msgid "Use Harddisk Hardware Standby Timer"
 msgstr "Использовать аппаратный таймер ожидания жёсткого диска"
 
@@ -21671,6 +21768,9 @@ msgstr "Венесуэла (Боливарианская Республика)"
 
 msgid "Verbose"
 msgstr "Подробный"
+
+msgid "Verify WebIf SSL certificate"
+msgstr "Проверить SSL-сертификат WebIf"
 
 msgid "Version"
 msgstr "Версия"
@@ -22241,9 +22341,6 @@ msgstr "Если включено, то графические субтитры 
 msgid "When enabled, graphical DVB subtitles will be displayed at their original position."
 msgstr "Если включено, графические DVB субтитры будут показаны в их исходном положении."
 
-msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
-msgstr "Если включено, графические DVB субтитры будут отображаться жёлтым, а не исходным цветом."
-
 msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr "Укажите действие кнопки 'EXIT' при работающем видеопроигрывателе."
 
@@ -22517,9 +22614,6 @@ msgstr "Год"
 
 msgid "Yellow"
 msgstr "Жёлтый"
-
-msgid "Yellow DVB subtitles"
-msgstr "Жёлтый цвет DVB субтитров"
 
 msgid "Yemen"
 msgstr "Йемен"
@@ -23955,6 +24049,12 @@ msgstr "Да (оставить фиды)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
+#~ msgstr "Если включено, графические DVB субтитры будут отображаться жёлтым, а не исходным цветом."
+
+#~ msgid "Yellow DVB subtitles"
+#~ msgstr "Жёлтый цвет DVB субтитров"
 
 #~ msgid "MediaStream"
 #~ msgstr "Медиа поток"

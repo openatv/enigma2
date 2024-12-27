@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-26 16:11+0000\n"
-"PO-Revision-Date: 2024-11-29 01:47+0000\n"
+"POT-Creation-Date: 2024-12-24 18:40+0000\n"
+"PO-Revision-Date: 2024-12-21 11:00+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.9-dev\n"
+"X-Generator: Weblate 5.10-dev\n"
 
 msgid ""
 "\n"
@@ -1616,6 +1616,9 @@ msgstr ""
 "Ukončené nahrávání chce vypnout Vaše %s %s\n"
 "Určitě, teď?"
 
+msgid "Graphical DVB subtitles will be displayed in the selected color, instead of the original colors."
+msgstr ""
+
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr "Zvýraznění na obrázku dálkového ovladače ukazuje, kterého tlačítka se nápověda týká. Pokud uvedenou funkci vykonává více než jedno tlačítko, zobrazí se více než jedno zvýraznění. V textu pod seznamem jsou uvedena aktivní tlačítka a informace o tom, zda funkce vyžaduje dlouhé stisknutí nebo stisknutí tlačítka (tlačítek) SHIFT."
 
@@ -2822,14 +2825,23 @@ msgstr "Zadní USB port"
 msgid "Back USB 3.0"
 msgstr "Zadní USB 3.0 port"
 
+msgid "Back USB-C"
+msgstr "Zadní USB-C"
+
 msgid "Back, inner USB"
 msgstr "Zadní strana, vnitřní USB port"
+
+msgid "Back, left USB"
+msgstr "Zadní, levé USB"
 
 msgid "Back, lower USB"
 msgstr "Vzadu, spodní USB port"
 
 msgid "Back, outer USB"
 msgstr "Zadní strana, vnější USB port"
+
+msgid "Back, right USB"
+msgstr "Zadní, pravé USB"
 
 msgid "Back, upper USB"
 msgstr "Zadní, horní USB port"
@@ -4225,6 +4237,9 @@ msgstr "Klonování televizní obrazovky na LCD"
 msgid "Close"
 msgstr "Zavřít"
 
+msgid "Close CA device at programm end"
+msgstr "Zavřít CA zařízení na konci programu"
+
 msgid "Close PiP on exit"
 msgstr "Tlačítkem Exit ukončit PiP"
 
@@ -5340,6 +5355,9 @@ msgstr "Editor střihu"
 msgid "Cutlist editor..."
 msgstr "Editor střihu videa..."
 
+msgid "Cyan"
+msgstr ""
+
 msgid "Cycle PiP(zap)"
 msgstr "Cyklus PiP (přepínání)"
 
@@ -5385,6 +5403,9 @@ msgstr "Zdroj DNS"
 msgid "DNS mode"
 msgstr "Režim DNS"
 
+msgid "DNS name or IP address"
+msgstr "DNS jméno nebo IP adresa"
+
 msgid "DNS suffix"
 msgstr "Přípona DNS"
 
@@ -5418,6 +5439,9 @@ msgstr "DVB titulky PID a jazyk"
 
 msgid "DVB subtitle black transparency"
 msgstr "Průhlednost pozadí DVD titulků"
+
+msgid "DVB subtitles color"
+msgstr ""
 
 msgid "DVB-C"
 msgstr "DVB-C"
@@ -6023,6 +6047,9 @@ msgstr "Hloubka"
 msgid "Descending"
 msgstr "Sestupně"
 
+msgid "Descrambling options"
+msgstr "Možnosti dekódování"
+
 msgid "Description"
 msgstr "Popis"
 
@@ -6217,6 +6244,9 @@ msgstr "Zakázat digitální downmix"
 
 msgid "Disable intro screen"
 msgstr "Zakázat úvodní obrazovku"
+
+msgid "Disable operator profiles"
+msgstr "Zakázat profily operátora"
 
 msgid "Disable the HDD Process on VFD."
 msgstr "Zobrazí pásek HDD na VFD."
@@ -9241,8 +9271,17 @@ msgstr "Horor"
 msgid "Horse Racing"
 msgstr "Koňské dostihy"
 
+msgid "Host"
+msgstr "Host"
+
 msgid "Hostname"
 msgstr "Název hostitele"
+
+msgid "Hostname cannot be resolved to IP address!"
+msgstr "Název hostitele nelze přeložit na IP adresu!"
+
+msgid "Hostname or IP address"
+msgstr "Název hostitele nebo IP adresa"
 
 msgid "Hostname: "
 msgstr "Název hostitele: "
@@ -9333,6 +9372,9 @@ msgstr "Při aktivaci časovače se má zkontrolovat IP adresa."
 
 msgid "IP address"
 msgstr "IP adresa"
+
+msgid "IP address is invalid!"
+msgstr "IP adresa je neplatná!"
 
 msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr "IP adresa serveru Stream Relay používaného k dekódování služeb, které lze dešifrovat pouze prostřednictvím Stream Relay."
@@ -10394,6 +10436,9 @@ msgstr "Libanon"
 msgid "Left"
 msgstr "Vlevo"
 
+msgid "Left USB"
+msgstr "Levé USB"
+
 msgid "Left column"
 msgstr "Levý sloupec"
 
@@ -10405,6 +10450,12 @@ msgstr "Řazení souborů v levém sloupci"
 
 msgid "Left from service name"
 msgstr "Nalevo od názvu kanálu"
+
+msgid "Left, back USB"
+msgstr "Levé, zadní USB"
+
+msgid "Left, front USB"
+msgstr "Levé, přední USB"
 
 msgid "Left, wrapped"
 msgstr "vlevo, zalomený"
@@ -10800,6 +10851,9 @@ msgstr "Makedonský"
 msgid "Madagascar"
 msgstr "Madagaskar"
 
+msgid "Magenta"
+msgstr ""
+
 msgid "Magic"
 msgstr "Magický"
 
@@ -11101,6 +11155,9 @@ msgstr "Režim měření"
 
 msgid "Mexico"
 msgstr "Mexiko"
+
+msgid "Micro SD"
+msgstr "Micro SD"
 
 msgid "Micronesia, Federated States of"
 msgstr "Mikronésie, Federativní státy"
@@ -12129,6 +12186,9 @@ msgstr "Nebylo nalezen žádné vhodné umístění záloh!"
 msgid "No suitable sat tuner found!"
 msgstr "Nenalezen žádný vhodný tuner!"
 
+msgid "No system softcam configured!"
+msgstr "Není nakonfigurován žádný systémový softcam!"
+
 msgid "No tags are set on these movies."
 msgstr "Tyto soubory nemají nastavené žádné tagy."
 
@@ -12493,6 +12553,12 @@ msgstr "Vypnuto"
 
 msgid "Offline decode delay (ms)"
 msgstr "Zpoždění offline dekódování (ms)"
+
+msgid "Offset CA device index"
+msgstr "Ofsetový index zařízení CA"
+
+msgid "Offset and close CA device"
+msgstr "Posunout a uzavřít CA zařízení"
 
 msgid "Ojibwa"
 msgstr "Ojibwa"
@@ -14260,6 +14326,9 @@ msgstr "Opravdu nyní restartovat?"
 msgid "Really shutdown now?"
 msgstr "Opravdu nyní vypnout?"
 
+msgid "Really start Kodi and stop user interface now?"
+msgstr "Opravdu nyní spustit Kodi a zastavit uživatelské rozhraní?"
+
 msgid "Really upgrade the front panel and reboot now?"
 msgstr "Opravdu upgradovat přední panel a restartovatí?"
 
@@ -15024,6 +15093,9 @@ msgstr "Zalamovat titulky"
 msgid "Right"
 msgstr "Vpravo"
 
+msgid "Right USB"
+msgstr "Pravé USB"
+
 msgid "Right column"
 msgstr "Pravý sloupec"
 
@@ -15035,6 +15107,12 @@ msgstr "Řazení souborů v pravém sloupci"
 
 msgid "Right from service name"
 msgstr "Napravo od názvu kanálu"
+
+msgid "Right, back USB"
+msgstr "Pravé, zadní USB"
+
+msgid "Right, front USB"
+msgstr "Pravé, přední USB"
 
 msgid "Right, wrapped"
 msgstr "vpravo, zalomený"
@@ -15145,6 +15223,12 @@ msgstr "SAT"
 
 msgid "SATA"
 msgstr "SATA"
+
+msgid "SATA BACK"
+msgstr "ZADNÍ SATA"
+
+msgid "SATA FRONT"
+msgstr "PŘEDNÍ SATA"
 
 msgid "SATPI"
 msgstr "SATPI"
@@ -18075,6 +18159,9 @@ msgstr "Síla signálu:"
 msgid "Signal: "
 msgstr "Signál: "
 
+msgid "Signed by"
+msgstr "Podepsáno"
+
 msgid "Similar"
 msgstr "Podobné"
 
@@ -19180,6 +19267,9 @@ msgstr "Přepnout na dostupné televizní služby"
 msgid "Switch to the left column"
 msgstr "Přepnout do levého sloupce"
 
+msgid "Switch to the other column"
+msgstr "Přepnout do druhého sloupce"
+
 msgid "Switch to the right column"
 msgstr "Přepnout do pravého sloupce"
 
@@ -19836,6 +19926,10 @@ msgid ""
 msgstr ""
 "Uživatelské rozhraní Vašeho %s %s se restartuje\n"
 "kvůli chybě v StartEnigma.py"
+
+#, python-format
+msgid "The user interface of your %s %s will be stopped to run Kodi"
+msgstr "Uživatelské rozhraní vašeho %s %s bude zastaveno, aby bylo možné spustit Kodi"
 
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr "Šířka obrazu. Vstup bude upraven tak, aby odpovídal této hodnotě."
@@ -21275,6 +21369,9 @@ msgstr "Použít geolokaci"
 msgid "Use HDMI-preemphasis"
 msgstr "Použít HDMI-preemphasis (zvýraznění zvuku)"
 
+msgid "Use HTTPS protocol"
+msgstr "Použít protokol HTTPS"
+
 msgid "Use Harddisk Hardware Standby Timer"
 msgstr "Použít HDD hardware-časovač vypnutí"
 
@@ -21669,6 +21766,9 @@ msgstr "Venezuela, Bolívarská republika"
 
 msgid "Verbose"
 msgstr "Upovídaný"
+
+msgid "Verify WebIf SSL certificate"
+msgstr "Ověřit certifikát WebIf SSL"
 
 msgid "Version"
 msgstr "Verze"
@@ -22239,9 +22339,6 @@ msgstr "Jestliže je povoleno, grafické DVB titulky jsou preferovány před tel
 msgid "When enabled, graphical DVB subtitles will be displayed at their original position."
 msgstr "Jestliže je povoleno, grafické DVB titulky budou zobrazovány na jejich původní pozici."
 
-msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
-msgstr "Jestliže je povoleno, grafické DVB titulky budou zobrazovány žlutě namísto jejich původní barvy."
-
 msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr "Jestliže je povoleno, je možné opouštět movieplayer pomocí Exit."
 
@@ -22515,9 +22612,6 @@ msgstr "Rok"
 
 msgid "Yellow"
 msgstr "Žluté"
-
-msgid "Yellow DVB subtitles"
-msgstr "Žluté DVB titulky"
 
 msgid "Yemen"
 msgstr "Jemen"
@@ -23953,6 +24047,36 @@ msgstr "ano (uchovat zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
+#~ msgstr "Jestliže je povoleno, grafické DVB titulky budou zobrazovány žlutě namísto jejich původní barvy."
+
+#~ msgid "Yellow DVB subtitles"
+#~ msgstr "Žluté DVB titulky"
+
+#~ msgid "Back USB 2.0"
+#~ msgstr "Zadní USB 2.0"
+
+#~ msgid "Back, left USB 3.0"
+#~ msgstr "Zadní, levé USB 3.0"
+
+#~ msgid "Back, lower USB 2.0"
+#~ msgstr "Zadní, spodní USB 2.0"
+
+#~ msgid "Back, lower USB 3.0"
+#~ msgstr "Zadní, spodní USB 3.0"
+
+#~ msgid "Back, right USB 3.0"
+#~ msgstr "Zadní, pravé USB 3.0"
+
+#~ msgid "Back, upper USB 2.0"
+#~ msgstr "Zadní, horní USB 2.0"
+
+#~ msgid "Back, upper USB 3.0"
+#~ msgstr "Zadní, horní USB 3.0"
+
+#~ msgid "Front USB 2.0"
+#~ msgstr "Přední USB 2.0"
 
 #~ msgid "MediaStream"
 #~ msgstr "Stream médií"

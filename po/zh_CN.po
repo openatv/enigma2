@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-26 16:11+0000\n"
-"PO-Revision-Date: 2024-12-10 08:00+0000\n"
+"POT-Creation-Date: 2024-12-24 18:40+0000\n"
+"PO-Revision-Date: 2024-12-27 21:39+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Weblate 5.9-dev\n"
+"X-Generator: Weblate 5.10-dev\n"
 "X-SourceCharset: UTF-8\n"
 "X-Generated: TM2TURK by thawtes\n"
 
@@ -31,7 +31,7 @@ msgid ""
 "Recording in progress."
 msgstr ""
 "\n"
-"正在进行录像。"
+"正在录制。"
 
 msgid " "
 msgstr " "
@@ -1295,7 +1295,7 @@ msgid "* = Restart Required"
 msgstr "* = 需要重启"
 
 msgid "* Only available if more than one interface is active."
-msgstr "* 仅在超过一个网卡处于活动状态时可用。"
+msgstr "* 仅当有多个网卡处于活动状态时可用。"
 
 msgid "* current animation"
 msgstr "*当前动画"
@@ -1314,7 +1314,7 @@ msgid "- No space left on backup device."
 msgstr "- 备份设备上没有剩余空间。"
 
 msgid "- No write permission on backup device."
-msgstr "- 备份设备上没有写权限。"
+msgstr "- 备份设备上没有写入权限。"
 
 msgid "- Wrong backup destination."
 msgstr "-备份目标错误。"
@@ -1359,7 +1359,7 @@ msgid "12 character"
 msgstr "12个字符"
 
 msgid "12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed."
-msgstr "12，显示除希腊语和西里尔字母外的Latin-1字符，如果需要切换到8。"
+msgstr "12，显示除希腊语和西里尔字母外的Latin-1字符， 必要时切换到8。"
 
 msgid "12V output"
 msgstr "12V 输出"
@@ -1583,6 +1583,9 @@ msgid ""
 msgstr ""
 "一个已结束的录像定时器\n"
 "想要关闭 %s %s。要关闭吗？"
+
+msgid "Graphical DVB subtitles will be displayed in the selected color, instead of the original colors."
+msgstr "图形化 DVB 字幕将以选定的颜色显示，而不是原始颜色。"
 
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr "遥控器图像上的高亮部分显示帮助所指的按钮。如果多个按钮执行指示的功能，则将显示多个高亮部分。列表下方的文本列出了活动按钮以及该功能是否需要长按或按 SHIFT 键。"
@@ -2790,14 +2793,23 @@ msgstr "背面 USB"
 msgid "Back USB 3.0"
 msgstr "背面 USB 3.0"
 
+msgid "Back USB-C"
+msgstr "背面 USB-C"
+
 msgid "Back, inner USB"
 msgstr "背面，内置 USB"
+
+msgid "Back, left USB"
+msgstr "背面，左侧 USB"
 
 msgid "Back, lower USB"
 msgstr "背面，下方 USB"
 
 msgid "Back, outer USB"
 msgstr "背面，外部 USB"
+
+msgid "Back, right USB"
+msgstr "背面，右侧 USB"
 
 msgid "Back, upper USB"
 msgstr "背面，上方 USB"
@@ -4192,6 +4204,9 @@ msgstr "克隆电视屏幕到液晶显示屏"
 msgid "Close"
 msgstr "关闭"
 
+msgid "Close CA device at programm end"
+msgstr "节目结束时关闭 CA 设备"
+
 msgid "Close PiP on exit"
 msgstr "退出时关闭画中画"
 
@@ -5306,6 +5321,9 @@ msgstr "剪切列表编辑器"
 msgid "Cutlist editor..."
 msgstr "剪切列表编辑器..."
 
+msgid "Cyan"
+msgstr "青色"
+
 msgid "Cycle PiP(zap)"
 msgstr "循环画中画 (切换)"
 
@@ -5351,6 +5369,9 @@ msgstr "DNS 数据源"
 msgid "DNS mode"
 msgstr "DNS 模式"
 
+msgid "DNS name or IP address"
+msgstr "DNS 名称或 IP 地址"
+
 msgid "DNS suffix"
 msgstr "DNS 后缀"
 
@@ -5384,6 +5405,9 @@ msgstr "DVB 字幕 PID 和语言"
 
 msgid "DVB subtitle black transparency"
 msgstr "DVB字幕黑色透明度"
+
+msgid "DVB subtitles color"
+msgstr "DVB 字幕颜色"
 
 msgid "DVB-C"
 msgstr "DVB-C"
@@ -5989,6 +6013,9 @@ msgstr "深度"
 msgid "Descending"
 msgstr "降序"
 
+msgid "Descrambling options"
+msgstr "解扰选项"
+
 msgid "Description"
 msgstr "描述"
 
@@ -6183,6 +6210,9 @@ msgstr "禁用数字缩混"
 
 msgid "Disable intro screen"
 msgstr "禁用屏幕介绍"
+
+msgid "Disable operator profiles"
+msgstr "禁用操作员配置文件"
 
 msgid "Disable the HDD Process on VFD."
 msgstr "禁用 VFD 上的 HDD 进程。"
@@ -9204,8 +9234,17 @@ msgstr "恐怖"
 msgid "Horse Racing"
 msgstr "赛马"
 
+msgid "Host"
+msgstr "主机"
+
 msgid "Hostname"
 msgstr "主机名"
+
+msgid "Hostname cannot be resolved to IP address!"
+msgstr "主机名无法解析为 IP 地址！"
+
+msgid "Hostname or IP address"
+msgstr "主机名或 IP 地址"
 
 msgid "Hostname: "
 msgstr "主机名： "
@@ -9296,6 +9335,9 @@ msgstr "定时器激活时要检查的 IP 地址。"
 
 msgid "IP address"
 msgstr "IP 地址"
+
+msgid "IP address is invalid!"
+msgstr "IP地址无效！"
 
 msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr "串流中继服务器的 IP 地址，用于对只能通过串流中继解密的频道进行解扰。"
@@ -10356,6 +10398,9 @@ msgstr "黎巴嫩"
 msgid "Left"
 msgstr "左 箭头"
 
+msgid "Left USB"
+msgstr "左侧 USB"
+
 msgid "Left column"
 msgstr "左列"
 
@@ -10367,6 +10412,12 @@ msgstr "左列文件排序"
 
 msgid "Left from service name"
 msgstr "频道名称左起"
+
+msgid "Left, back USB"
+msgstr "左侧，背面 USB"
+
+msgid "Left, front USB"
+msgstr "左侧，前置 USB"
 
 msgid "Left, wrapped"
 msgstr "左，覆盖"
@@ -10761,6 +10812,9 @@ msgstr "马其顿语"
 msgid "Madagascar"
 msgstr "马达加斯加"
 
+msgid "Magenta"
+msgstr "洋红色"
+
 msgid "Magic"
 msgstr "魔术"
 
@@ -11062,6 +11116,9 @@ msgstr "测光模式"
 
 msgid "Mexico"
 msgstr "墨西哥"
+
+msgid "Micro SD"
+msgstr "Micro SD"
 
 msgid "Micronesia, Federated States of"
 msgstr "密克罗尼西亚联邦"
@@ -12090,6 +12147,9 @@ msgstr "找不到合适的备份位置！"
 msgid "No suitable sat tuner found!"
 msgstr "没有找到合适的卫星调谐器！"
 
+msgid "No system softcam configured!"
+msgstr "未配置系统 softcam！"
+
 msgid "No tags are set on these movies."
 msgstr "这些电影没有设置标签。"
 
@@ -12454,6 +12514,12 @@ msgstr "关闭"
 
 msgid "Offline decode delay (ms)"
 msgstr "离线解码延迟（毫秒）"
+
+msgid "Offset CA device index"
+msgstr "偏移 CA 设备索引"
+
+msgid "Offset and close CA device"
+msgstr "偏移并关闭 CA 设备"
 
 msgid "Ojibwa"
 msgstr "奥吉布瓦"
@@ -14219,6 +14285,9 @@ msgstr "真的要立即重启吗？"
 msgid "Really shutdown now?"
 msgstr "真的要立即关闭吗？"
 
+msgid "Really start Kodi and stop user interface now?"
+msgstr "真的要立即启动 Kodi 并停止用户界面吗？"
+
 msgid "Really upgrade the front panel and reboot now?"
 msgstr "真的要马上升级前面板并重新启动？"
 
@@ -14983,6 +15052,9 @@ msgstr "重新封装字幕"
 msgid "Right"
 msgstr "右"
 
+msgid "Right USB"
+msgstr "右侧 USB"
+
 msgid "Right column"
 msgstr "右栏"
 
@@ -14994,6 +15066,12 @@ msgstr "右列文件排序"
 
 msgid "Right from service name"
 msgstr "频道名称右起"
+
+msgid "Right, back USB"
+msgstr "右侧，背面 USB"
+
+msgid "Right, front USB"
+msgstr "右侧，前置 USB"
 
 msgid "Right, wrapped"
 msgstr "右，覆盖"
@@ -15104,6 +15182,12 @@ msgstr "卫星"
 
 msgid "SATA"
 msgstr "SATA"
+
+msgid "SATA BACK"
+msgstr "背面 SATA"
+
+msgid "SATA FRONT"
+msgstr "前置 SATA"
 
 msgid "SATPI"
 msgstr "SATPI"
@@ -18031,6 +18115,9 @@ msgstr "信号强度："
 msgid "Signal: "
 msgstr "信号："
 
+msgid "Signed by"
+msgstr "签署人"
+
 msgid "Similar"
 msgstr "类似"
 
@@ -19134,6 +19221,9 @@ msgstr "切换到可用的电视频道"
 msgid "Switch to the left column"
 msgstr "切换到左列"
 
+msgid "Switch to the other column"
+msgstr "切换到另一列"
+
 msgid "Switch to the right column"
 msgstr "切换到右列"
 
@@ -19790,6 +19880,10 @@ msgid ""
 msgstr ""
 "由于 StartEnigma.py 的错误。\n"
 "%s %s 的用户界面正在重启"
+
+#, python-format
+msgid "The user interface of your %s %s will be stopped to run Kodi"
+msgstr "%s %s 的用户界面将停止运行 Kodi"
 
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr "图片的宽度。 输入将被缩放以匹配此值。"
@@ -21229,6 +21323,9 @@ msgstr "使用地理位置"
 msgid "Use HDMI-preemphasis"
 msgstr "使用 HDMI 预加重"
 
+msgid "Use HTTPS protocol"
+msgstr "使用 HTTPS 协议"
+
 msgid "Use Harddisk Hardware Standby Timer"
 msgstr "使用硬盘硬件待机定时器"
 
@@ -21623,6 +21720,9 @@ msgstr "委内瑞拉(玻利瓦尔共和国)"
 
 msgid "Verbose"
 msgstr "详细"
+
+msgid "Verify WebIf SSL certificate"
+msgstr "验证 WebIf SSL 证书"
 
 msgid "Version"
 msgstr "版本"
@@ -22193,9 +22293,6 @@ msgstr "启用时，图形DVB字幕优先于图文电视字幕（如果两种类
 msgid "When enabled, graphical DVB subtitles will be displayed at their original position."
 msgstr "启用时，图形化 DVB 字幕将显示在其原始位置。"
 
-msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
-msgstr "启用时，图形化 DVB 字幕将以黄色显示，而不是原始颜色。"
-
 msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr "启用后，可按 “EXIT” 键退出电影播放器。"
 
@@ -22469,9 +22566,6 @@ msgstr "年"
 
 msgid "Yellow"
 msgstr "黄色"
-
-msgid "Yellow DVB subtitles"
-msgstr "黄色 DVB 字幕"
 
 msgid "Yemen"
 msgstr "也门"
@@ -23906,6 +24000,39 @@ msgstr "是（保留订阅源）"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "A graphical DVB subtitles will be displayed in the selected color, instead of the original color."
+#~ msgstr "图形 DVB 字幕将以选定的颜色显示，而不是原来的颜色。"
+
+#~ msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
+#~ msgstr "启用时，图形化 DVB 字幕将以黄色显示，而不是原始颜色。"
+
+#~ msgid "Yellow DVB subtitles"
+#~ msgstr "黄色 DVB 字幕"
+
+#~ msgid "Back USB 2.0"
+#~ msgstr "背面 USB 2.0"
+
+#~ msgid "Back, left USB 3.0"
+#~ msgstr "背面，左侧 USB 3.0"
+
+#~ msgid "Back, lower USB 2.0"
+#~ msgstr "背面，下方 USB 2.0"
+
+#~ msgid "Back, lower USB 3.0"
+#~ msgstr "背面，下方 USB 3.0"
+
+#~ msgid "Back, right USB 3.0"
+#~ msgstr "背面，右侧 USB 3.0"
+
+#~ msgid "Back, upper USB 2.0"
+#~ msgstr "背面，上方 USB 2.0"
+
+#~ msgid "Back, upper USB 3.0"
+#~ msgstr "背面，上方 USB 3.0"
+
+#~ msgid "Front USB 2.0"
+#~ msgstr "前置 USB 2.0"
 
 #~ msgid "E "
 #~ msgstr "E "

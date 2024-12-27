@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-26 16:11+0000\n"
+"POT-Creation-Date: 2024-12-24 18:40+0000\n"
 "PO-Revision-Date: 2024-11-10 13:00+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -1593,6 +1593,9 @@ msgstr ""
 "Een voltooide timer wil uw\n"
 "%s %s uitschakelen. Dat nu doen?"
 
+msgid "Graphical DVB subtitles will be displayed in the selected color, instead of the original colors."
+msgstr ""
+
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr "Door een arcering op de afstandsbediening wordt aangegeven over welke knop de help tekst gaat. Bij een uitleg over meerdere knoppen, zie je meerdere arceringen. In de tekst onder de knoppen wordt uitgelegd of de knop bijvoorbeeld lang ingedrukt moet worden of bediend via de SHIFT knop."
 
@@ -2798,14 +2801,23 @@ msgstr "Achterkant USB"
 msgid "Back USB 3.0"
 msgstr "Achterkant USB 3.0"
 
+msgid "Back USB-C"
+msgstr ""
+
 msgid "Back, inner USB"
 msgstr "Achterkant, USB binnen"
+
+msgid "Back, left USB"
+msgstr ""
 
 msgid "Back, lower USB"
 msgstr "Achterkant, USB beneden"
 
 msgid "Back, outer USB"
 msgstr "Achterkant, USB buiten"
+
+msgid "Back, right USB"
+msgstr ""
 
 msgid "Back, upper USB"
 msgstr "Achterkant, USB boven"
@@ -4207,6 +4219,9 @@ msgstr "Toon het TV beeld op het display"
 msgid "Close"
 msgstr "Sluiten"
 
+msgid "Close CA device at programm end"
+msgstr ""
+
 msgid "Close PiP on exit"
 msgstr "Sluit PiP met de EXIT-knop"
 
@@ -5421,6 +5436,9 @@ msgstr "Cutlist editor"
 msgid "Cutlist editor..."
 msgstr "Cutlist editor..."
 
+msgid "Cyan"
+msgstr ""
+
 msgid "Cycle PiP(zap)"
 msgstr "Wissel PiP(zap)"
 
@@ -5466,6 +5484,9 @@ msgstr "DNS gegevensbron"
 msgid "DNS mode"
 msgstr "DNS Modus"
 
+msgid "DNS name or IP address"
+msgstr ""
+
 msgid "DNS suffix"
 msgstr "DNS-achtervoegsel"
 
@@ -5499,6 +5520,9 @@ msgstr "DVB ondertiteling PID & taal"
 
 msgid "DVB subtitle black transparency"
 msgstr "Transparantie van de achtergrond bij DVB-ondertitels"
+
+msgid "DVB subtitles color"
+msgstr ""
 
 msgid "DVB-C"
 msgstr "DVB-C"
@@ -6112,6 +6136,9 @@ msgstr "Diepte"
 msgid "Descending"
 msgstr "Aflopend"
 
+msgid "Descrambling options"
+msgstr ""
+
 msgid "Description"
 msgstr "Beschrijving"
 
@@ -6306,6 +6333,9 @@ msgstr "DD/DTS Downmix deactiveren"
 
 msgid "Disable intro screen"
 msgstr "Deactiveer Intro scherm"
+
+msgid "Disable operator profiles"
+msgstr ""
 
 msgid "Disable the HDD Process on VFD."
 msgstr "Harde schijf proces uitschakelen bij VFD"
@@ -9349,8 +9379,17 @@ msgstr "Horror"
 msgid "Horse Racing"
 msgstr "Paardenrace"
 
+msgid "Host"
+msgstr ""
+
 msgid "Hostname"
 msgstr "Hostnaam"
+
+msgid "Hostname cannot be resolved to IP address!"
+msgstr ""
+
+msgid "Hostname or IP address"
+msgstr ""
 
 msgid "Hostname: "
 msgstr "Apparaat naam: "
@@ -9441,6 +9480,9 @@ msgstr "IP-adres dat bij het activeren van de timer gecontroleerd moet worden."
 
 msgid "IP address"
 msgstr "IP-adres"
+
+msgid "IP address is invalid!"
+msgstr ""
 
 msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr "IP-adres van de Stream Relay server wordt gebruikt om zenders te decoderen die alleen via Stream Relay gedecodeerd kunnen worden."
@@ -10505,6 +10547,9 @@ msgstr "Libanon"
 msgid "Left"
 msgstr "Links"
 
+msgid "Left USB"
+msgstr ""
+
 msgid "Left column"
 msgstr "Linker kolom"
 
@@ -10516,6 +10561,12 @@ msgstr "Bestanden in de linker kolom sorteren"
 
 msgid "Left from service name"
 msgstr "Links van de zendernaam"
+
+msgid "Left, back USB"
+msgstr ""
+
+msgid "Left, front USB"
+msgstr ""
 
 msgid "Left, wrapped"
 msgstr "Links, er omheen"
@@ -10910,6 +10961,9 @@ msgstr "Macedonië"
 msgid "Madagascar"
 msgstr "Madagaskar"
 
+msgid "Magenta"
+msgstr ""
+
 msgid "Magic"
 msgstr "Magic"
 
@@ -11211,6 +11265,9 @@ msgstr "Meetmodus"
 
 msgid "Mexico"
 msgstr "Mexico"
+
+msgid "Micro SD"
+msgstr ""
 
 msgid "Micronesia, Federated States of"
 msgstr "Micronesië"
@@ -12239,6 +12296,9 @@ msgstr "Geen geschikte back-up locatie gevonden!"
 msgid "No suitable sat tuner found!"
 msgstr "Geen passende satelliettuner gevonden!"
 
+msgid "No system softcam configured!"
+msgstr ""
+
 msgid "No tags are set on these movies."
 msgstr "Geen markeringen geplaatst in deze opnames."
 
@@ -12606,6 +12666,12 @@ msgstr "Uit"
 
 msgid "Offline decode delay (ms)"
 msgstr "Offline decodeer vertraging (ms)"
+
+msgid "Offset CA device index"
+msgstr ""
+
+msgid "Offset and close CA device"
+msgstr ""
 
 msgid "Ojibwa"
 msgstr "Ojibwe"
@@ -14376,6 +14442,9 @@ msgstr "Nu herstarten?"
 msgid "Really shutdown now?"
 msgstr "Nu uitschakelen?"
 
+msgid "Really start Kodi and stop user interface now?"
+msgstr ""
+
 msgid "Really upgrade the front panel and reboot now?"
 msgstr "Wilt u werkelijk het voor paneel update en opnieuw opstarten?"
 
@@ -15140,6 +15209,9 @@ msgstr "Breedte ondertitels"
 msgid "Right"
 msgstr "Rechts"
 
+msgid "Right USB"
+msgstr ""
+
 msgid "Right column"
 msgstr "Rechter kolom"
 
@@ -15151,6 +15223,12 @@ msgstr "Bestanden in rechter kolom sorteren"
 
 msgid "Right from service name"
 msgstr "Rechts van de zendernaam"
+
+msgid "Right, back USB"
+msgstr ""
+
+msgid "Right, front USB"
+msgstr ""
 
 msgid "Right, wrapped"
 msgstr "rechts, gedraaid"
@@ -15261,6 +15339,12 @@ msgstr "SAT"
 
 msgid "SATA"
 msgstr "SATA"
+
+msgid "SATA BACK"
+msgstr ""
+
+msgid "SATA FRONT"
+msgstr ""
 
 msgid "SATPI"
 msgstr "SATPI"
@@ -18228,6 +18312,9 @@ msgstr "Signaalsterkte:"
 msgid "Signal: "
 msgstr "Signaal: "
 
+msgid "Signed by"
+msgstr ""
+
 msgid "Similar"
 msgstr "Herhalingen"
 
@@ -19330,6 +19417,9 @@ msgstr "Ga naar de beschikbare TV-zenders"
 msgid "Switch to the left column"
 msgstr "Ga naar de linkerkolom"
 
+msgid "Switch to the other column"
+msgstr ""
+
 msgid "Switch to the right column"
 msgstr "Ga naar de rechterkolom"
 
@@ -19990,6 +20080,10 @@ msgid ""
 msgstr ""
 "De gebruikersinterface van uw %s %s wordt herstart\n"
 "vanwege een fout in StartEnigma.py."
+
+#, python-format
+msgid "The user interface of your %s %s will be stopped to run Kodi"
+msgstr ""
 
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr "De breedte van het beeld. De invoer wordt aangepast aan deze waarde."
@@ -21475,6 +21569,9 @@ msgstr "Gebruik Geolocatie"
 msgid "Use HDMI-preemphasis"
 msgstr "Gebruik HDMI-pre-emphasis"
 
+msgid "Use HTTPS protocol"
+msgstr ""
+
 msgid "Use Harddisk Hardware Standby Timer"
 msgstr "Gebruik harde schijf hardware stand-by timer"
 
@@ -21871,6 +21968,9 @@ msgstr "Bolivariaanse Republiek Venezuela"
 
 msgid "Verbose"
 msgstr "Uitgebreid"
+
+msgid "Verify WebIf SSL certificate"
+msgstr ""
 
 msgid "Version"
 msgstr "Versie"
@@ -22446,9 +22546,6 @@ msgstr ""
 "\n"
 "U kunt kiezen tussen: Origineel, Vast of Relatief. De standaardwaarde is Origineel."
 
-msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
-msgstr "Kies ja wanneer u de grafische DVB-ondertitels in geel wilt weergegeven i.p.v. in de originele kleur."
-
 msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr "Indien geactiveerd, kan de Mediaspeler (ook) verlaten worden door op de EXIT-knop te drukken."
 
@@ -22736,9 +22833,6 @@ msgstr "Jaar"
 
 msgid "Yellow"
 msgstr "Geel"
-
-msgid "Yellow DVB subtitles"
-msgstr "DVB-ondertitels in de kleur geel"
 
 msgid "Yemen"
 msgstr "Jemen"
@@ -24174,6 +24268,12 @@ msgstr "ja (bewaar feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
+#~ msgstr "Kies ja wanneer u de grafische DVB-ondertitels in geel wilt weergegeven i.p.v. in de originele kleur."
+
+#~ msgid "Yellow DVB subtitles"
+#~ msgstr "DVB-ondertitels in de kleur geel"
 
 #~ msgid "MediaStream"
 #~ msgstr "MediaStream"

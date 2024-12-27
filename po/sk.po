@@ -10,16 +10,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-26 16:11+0000\n"
-"PO-Revision-Date: 2024-12-13 17:18+0000\n"
-"Last-Translator: Atec <dr.atec@gmail.com>\n"
+"POT-Creation-Date: 2024-12-24 18:40+0000\n"
+"PO-Revision-Date: 2024-12-21 14:15+0000\n"
+"Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.9-rc\n"
+"X-Generator: Weblate 5.10-dev\n"
 
 msgid ""
 "\n"
@@ -1620,6 +1620,9 @@ msgstr ""
 "Časovač nahrávania skončil a chce vypnúť\n"
 "%s %s. Vypnúť ihneď?"
 
+msgid "Graphical DVB subtitles will be displayed in the selected color, instead of the original colors."
+msgstr ""
+
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr "Zvýraznenie na obrázku diaľkového ovládača ukazuje, ku ktorému tlačidlu sa pomoc vzťahuje. Ak uvedenú funkciu vykonáva viac tlačidiel, zobrazí sa viac ako jedno zvýraznenie. V texte pod zoznamom sú uvedené aktívne tlačidlá a informácia o tom, či si funkcia vyžaduje dlhé stlačenie tlačidla (tlačidiel) alebo SHIFT."
 
@@ -2821,22 +2824,31 @@ msgid "Back"
 msgstr "Späť"
 
 msgid "Back USB"
-msgstr "Zadný USB port"
+msgstr "USB vzadu"
 
 msgid "Back USB 3.0"
-msgstr "Zadný USB 3.0 port"
+msgstr "USB 3.0 vzadu"
+
+msgid "Back USB-C"
+msgstr "USB-C vzadu"
 
 msgid "Back, inner USB"
-msgstr "Vzadu, vnútorné USB"
+msgstr "USB vzadu, vnútri"
+
+msgid "Back, left USB"
+msgstr "USB vzadu, vľavo"
 
 msgid "Back, lower USB"
-msgstr "Vzadu, dolný USB port"
+msgstr "USB vzadu, dole"
 
 msgid "Back, outer USB"
-msgstr "Vzadu, vonkajší USB port"
+msgstr "USB vzadu, zvonku"
+
+msgid "Back, right USB"
+msgstr "USB vzadu, vpravo"
 
 msgid "Back, upper USB"
-msgstr "Vzadu, horný USB port"
+msgstr "USB vzadu, hore"
 
 msgid "Back/Recall"
 msgstr "Späť/Odvolať"
@@ -4229,6 +4241,9 @@ msgstr "Klonovať obrazovku TV na LCD"
 msgid "Close"
 msgstr "Zatvoriť"
 
+msgid "Close CA device at programm end"
+msgstr "Zavrieť zariadenie CA na konci programu"
+
 msgid "Close PiP on exit"
 msgstr "Zatvoriť PiP pri ukončení"
 
@@ -5147,13 +5162,13 @@ msgid "Create rescue dump."
 msgstr "Vytvoriť výpis pre záchranu."
 
 msgid "Create root UBI file system."
-msgstr "Vytvoriť koreňový súborový systém UBI."
+msgstr "Vytvoriť koreňový systém súborov UBI."
 
 msgid "Create root file system dump."
-msgstr "Vytvoriť výpis z koreňového súborového systému."
+msgstr "Vytvoriť výpis z koreňového systému súborov."
 
 msgid "Create root journaling flash file system."
-msgstr "Vytvoriť koreňový žurnálovací súborový systém flash."
+msgstr "Vytvoriť koreňový žurnálovací flash systém súborov."
 
 msgid "Create separate radio user bouquet"
 msgstr "Vytvoriť oddelený používateľský prehľad rádií"
@@ -5162,7 +5177,7 @@ msgid "Create swap"
 msgstr "Vytvoriť swap"
 
 msgid "Create tar file of root file system."
-msgstr "Vytvoriť súbor TAR z koreňového súborového systému."
+msgstr "Vytvoriť súbor TAR z koreňového systému súborov."
 
 msgid "Create the additional slots on the selected device"
 msgstr "Vytvoriť dodatočné sloty na vybranej jednotke"
@@ -5344,6 +5359,9 @@ msgstr "Editor strihov"
 msgid "Cutlist editor..."
 msgstr "Editor strihov..."
 
+msgid "Cyan"
+msgstr ""
+
 msgid "Cycle PiP(zap)"
 msgstr "Cyklovať obraz v obraze (prep.)"
 
@@ -5389,6 +5407,9 @@ msgstr "Zdroj údajov DNS"
 msgid "DNS mode"
 msgstr "Režim DNS"
 
+msgid "DNS name or IP address"
+msgstr "DNS meno alebo IP adresa"
+
 msgid "DNS suffix"
 msgstr "Prípona DNS"
 
@@ -5422,6 +5443,9 @@ msgstr "DVB titulky, PID a jazyk"
 
 msgid "DVB subtitle black transparency"
 msgstr "Priehľadnosť pozadia DVD titulkov"
+
+msgid "DVB subtitles color"
+msgstr ""
 
 msgid "DVB-C"
 msgstr "DVB-C"
@@ -6027,6 +6051,9 @@ msgstr "Hĺbka"
 msgid "Descending"
 msgstr "Zostupne"
 
+msgid "Descrambling options"
+msgstr "Možnosti dekódovania"
+
 msgid "Description"
 msgstr "Popis"
 
@@ -6221,6 +6248,9 @@ msgstr "Vypnúť digitálny downmix"
 
 msgid "Disable intro screen"
 msgstr "Vypnúť úvodnú obrazovku"
+
+msgid "Disable operator profiles"
+msgstr "Vypnúť profily operátora"
 
 msgid "Disable the HDD Process on VFD."
 msgstr "Vypnúť ikonu HDD na VFD."
@@ -7663,13 +7693,13 @@ msgid "Error: The path '%s' already exists!"
 msgstr "Chyba: Cesta '%s' už existuje!"
 
 msgid "Error: The root file system and system directories can't be deleted!"
-msgstr "Chyba: Koreňový systém súborov a systémové priečinky nie je možné vymazať!"
+msgstr "Chyba: koreňový systém súborov a systémové priečinky nie je možné vymazať!"
 
 msgid "Error: The root file system and system directories can't be moved!"
-msgstr "Chyba: Koreňový systém súborov a systémové priečinky nie je možné presunúť!"
+msgstr "Chyba: koreňový systém súborov a systémové priečinky nie je možné presunúť!"
 
 msgid "Error: The root file system and system directories can't be renamed!"
-msgstr "Chyba: Koreňový systém súborov a systémové priečinky nie je možné premenovať!"
+msgstr "Chyba: koreňový systém súborov a systémové priečinky nie je možné premenovať!"
 
 msgid "Error: The selected service can't be recorded!"
 msgstr "Error: Vybranú stanicu nie je možné nahrávať!"
@@ -7680,7 +7710,7 @@ msgstr "Chyba: Problém pri zápise '%s'!"
 
 #, python-format
 msgid "Error: There was an issue in the reset of the feeds! Please reboot the %s %s and check the file system for any errors before trying this command again."
-msgstr "Chyba: Pri resetovaní zdrojov sa objavil problém! Reštartujte %s %s a otestujte súborový systém, či neobsahuje chyby. Potom to skúste znova."
+msgstr "Chyba: Pri resetovaní zdrojov sa objavil problém! Reštartujte %s %s a otestujte systém súborov, či neobsahuje chyby. Potom to skúste znova."
 
 msgid "Error: Unable to create the required directories on the target device (e.g. USB stick or hard disk)! Please verify device and try again."
 msgstr "Na cieľovom médiu (USB disku, či pevnom disku) nie je možné vytvoriť požadované priečinky. Prosím, skontrolujte médium a skúste to znovu."
@@ -8144,7 +8174,7 @@ msgid "Feed URL"
 msgstr "URL adresa zdroja"
 
 msgid "Feed disabled!"
-msgstr "Zdroj neaktívny!"
+msgstr "Zdroj deaktivovaný!"
 
 msgid "Feed server DNS error!"
 msgstr "Chyba DNS servera zdroja!"
@@ -9245,8 +9275,17 @@ msgstr "Horor"
 msgid "Horse Racing"
 msgstr "Jazda na koni"
 
+msgid "Host"
+msgstr "Host."
+
 msgid "Hostname"
 msgstr "Meno hostiteľa"
+
+msgid "Hostname cannot be resolved to IP address!"
+msgstr "Meno hostiteľa nemožno previesť na IP adresu!"
+
+msgid "Hostname or IP address"
+msgstr "Meno hostiteľa alebo IP adresa"
 
 msgid "Hostname: "
 msgstr "Názov host.: "
@@ -9337,6 +9376,9 @@ msgstr "IP adresa sa skontroluje pri aktivácii časovača."
 
 msgid "IP address"
 msgstr "IP adresa"
+
+msgid "IP address is invalid!"
+msgstr "IP adresa nie je platná!"
 
 msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr "IP adresa servera pre prenos streamu, používaná na dekódovanie služieb, ktoré je možné dekódovať cez prenos streamu."
@@ -10398,6 +10440,9 @@ msgstr "Libanon"
 msgid "Left"
 msgstr "Vľavo"
 
+msgid "Left USB"
+msgstr "USB vľavo"
+
 msgid "Left column"
 msgstr "Ľavý stĺpec"
 
@@ -10409,6 +10454,12 @@ msgstr "Zoraďovanie súborov v ľavom stĺpci"
 
 msgid "Left from service name"
 msgstr "Vľavo od názvu stanice"
+
+msgid "Left, back USB"
+msgstr "USB vľavo, vzadu"
+
+msgid "Left, front USB"
+msgstr "USB vľavo, vpredu"
 
 msgid "Left, wrapped"
 msgstr "Doľava, zalomené"
@@ -10790,7 +10841,7 @@ msgid "MTD kernel"
 msgstr "MTD kernel"
 
 msgid "MTD root"
-msgstr "MTD root"
+msgstr "MTD koreň"
 
 msgid "MTU"
 msgstr "MTU"
@@ -10803,6 +10854,9 @@ msgstr "macedónčina"
 
 msgid "Madagascar"
 msgstr "Madagaskar"
+
+msgid "Magenta"
+msgstr ""
 
 msgid "Magic"
 msgstr "Magic"
@@ -11106,6 +11160,9 @@ msgstr "Režim merania"
 msgid "Mexico"
 msgstr "Mexiko"
 
+msgid "Micro SD"
+msgstr "Micro SD"
+
 msgid "Micronesia, Federated States of"
 msgstr "Mikronézia (Federatívne štáty)"
 
@@ -11266,7 +11323,7 @@ msgid "Mount failed"
 msgstr "Pripojenie neúspešné"
 
 msgid "Mount root file system."
-msgstr "Pripojiť koreňový súborový systém."
+msgstr "Pripojiť koreňový systém súborov."
 
 msgid "Mount: "
 msgstr "Pripojiť: "
@@ -12133,6 +12190,9 @@ msgstr "Nenašli sa žiadne vhodné umiestnenia pre zálohu!"
 msgid "No suitable sat tuner found!"
 msgstr "Nenašiel sa žiadny vhodný sat. tuner!"
 
+msgid "No system softcam configured!"
+msgstr "Nie je nakonfigurovaný žiadny systémový softcam!"
+
 msgid "No tags are set on these movies."
 msgstr "Tieto filmy nemajú nastavené žiadne tagy."
 
@@ -12497,6 +12557,12 @@ msgstr "Vypnuté"
 
 msgid "Offline decode delay (ms)"
 msgstr "Oneskorenie offline dekódovania (ms)"
+
+msgid "Offset CA device index"
+msgstr "Posun indexu zariadenia CA"
+
+msgid "Offset and close CA device"
+msgstr "Posunúť a zavrieť zariadenie CA"
 
 msgid "Ojibwa"
 msgstr "odžibwa"
@@ -13409,7 +13475,7 @@ msgid "Please wait while the data is extracted..."
 msgstr "Prosím, počkajte na rozbalenie údajov…"
 
 msgid "Please wait while the feeds are reset (cleared and reloaded)..."
-msgstr "Prosím počkajte na reset (vyčistenie a opätovné načítanie) zdrojov..."
+msgstr "Prosím, počkajte na reset (vyčistenie a opätovné načítanie) zdrojov..."
 
 msgid "Please wait while the file is read and processed..."
 msgstr "Prosím počkajte na prečítanie a spracovanie súboru..."
@@ -13454,7 +13520,7 @@ msgid "Please wait while your skin setting is restoring..."
 msgstr "Obnovuje sa nastavenie vzhľadu. Čakajte, prosím…"
 
 msgid "Please wait whilst feeds state is checked."
-msgstr "Prebieha kontrola stavu zdrojov. Čakajte, prosím."
+msgstr "Prosím čakajte, prebieha kontrola stavu zdrojov."
 
 msgid "Please wait, copy of flash memory is being deleted. This could take a few minutes to complete."
 msgstr "Vymazáva sa kópia flash pamäte. Môže to trvať niekoľko minút. Čakajte, prosím."
@@ -14264,6 +14330,9 @@ msgstr "Naozaj reštartovať?"
 msgid "Really shutdown now?"
 msgstr "Naozaj vypnúť?"
 
+msgid "Really start Kodi and stop user interface now?"
+msgstr "Naozaj chcete spustiť Kodi a zastaviť použív. rozhranie?"
+
 msgid "Really upgrade the front panel and reboot now?"
 msgstr "Naozaj chcete aktualizovať predný panel a reštartovať?"
 
@@ -15028,6 +15097,9 @@ msgstr "Znovu zalomiť titulky"
 msgid "Right"
 msgstr "Vpravo"
 
+msgid "Right USB"
+msgstr "USB vpravo"
+
 msgid "Right column"
 msgstr "Pravý stĺpec"
 
@@ -15039,6 +15111,12 @@ msgstr "Zoraďovanie súborov v pravom stĺpci"
 
 msgid "Right from service name"
 msgstr "Vpravo od názvu stanice"
+
+msgid "Right, back USB"
+msgstr "USB vpravo, vzadu"
+
+msgid "Right, front USB"
+msgstr "USB vpravo, vpredu"
 
 msgid "Right, wrapped"
 msgstr "Doprava, zalomené"
@@ -15059,7 +15137,7 @@ msgid "Romansh"
 msgstr "rétorománčina"
 
 msgid "Root"
-msgstr "Root"
+msgstr "Koreň (Root)"
 
 msgid "Root Image"
 msgstr "Koreňový image"
@@ -15150,6 +15228,12 @@ msgstr "SAT"
 msgid "SATA"
 msgstr "SATA"
 
+msgid "SATA BACK"
+msgstr "SATA VZADU"
+
+msgid "SATA FRONT"
+msgstr "SATA VPREDU"
+
 msgid "SATPI"
 msgstr "SATPI"
 
@@ -15167,7 +15251,7 @@ msgid "SDcard slot %s%s"
 msgstr "Slot %s%s SD karty"
 
 msgid "SDcard switch ERROR! - H9 root files not transferred to SD card"
-msgstr "CHYBA pri prepínaní SD karty! Koreňové súbory H9 neboli prenesené na SD kartu"
+msgstr "CHYBA pri prepínaní karty SD! Koreňové súbory H9 neboli prenesené na kartu SD"
 
 msgid "SDcard switch ERROR! - already on Nand"
 msgstr "CHYBA pri prepínaní SD karty! Už je na NAND"
@@ -15854,7 +15938,7 @@ msgid "Select 'Yes' to split tasks into separate actions."
 msgstr "Pre rozdelenie úloh na osobitné akcie, vyberte možnosť 'Áno'."
 
 msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
-msgstr "Ak chcete použiť alternatívne IP adresy feedu na portáli GitHub, vyberte možnosť 'Áno'. Môže to pomôcť, ak používate VPN a nie je možný prístup k bežným zdrojom prostredníctvom publikovaných DNS mien."
+msgstr "Ak chcete použiť alternatívne IP adresy zdroja na portáli GitHub, vyberte možnosť 'Áno'. Môže to pomôcť, ak používate VPN a nie je možný prístup k bežným zdrojom prostredníctvom zverejnených DNS mien."
 
 msgid "Select 'Yes' to use legacy navigation where CH+/- swaps the active column. Select 'No' to use the newer unified navigation option for consistent navigation with other screens where LEFT/RIGHT swaps the active column and CH+/- pages up and down the list."
 msgstr "Ak chcete používať staršie navigovanie (CH+/- prepína aktívny stĺpec), vyberte 'Áno'. Ak chcete používať novšie, unifikované navigovanie (konzistentné s iným obrazovkami, kde tlačidlá DOĽAVA/DOPRAVA prepínajú aktívny stĺpec a CH+/- prepína o stránku nahor/nadol), vyberte možnosť 'Nie'."
@@ -18079,6 +18163,9 @@ msgstr "Sila signálu:"
 msgid "Signal: "
 msgstr "Signál: "
 
+msgid "Signed by"
+msgstr "Podpísané"
+
 msgid "Similar"
 msgstr "Podobné"
 
@@ -18451,7 +18538,7 @@ msgid "Sorry MiniDLNA Config is Missing"
 msgstr "Prepáčte, chýba konfigurácia MiniDLNA"
 
 msgid "Sorry feeds are down for maintenance, please try again later."
-msgstr "Žiaľ, zdroje nie sú kvôli údržbe dostupné. Skúste neskôr, prosím."
+msgstr "Žiaľ, zdroje nie sú dostupné, kvôli údržbe. Skúste to neskôr, prosím."
 
 msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr "Prepáčte, súčasne je možné nahrávať iba 2 kanály!"
@@ -19184,6 +19271,9 @@ msgstr "Prepnúť na dostupné TV stanice"
 msgid "Switch to the left column"
 msgstr "Prepnúť na ľavý stĺpec"
 
+msgid "Switch to the other column"
+msgstr "Prepnúť na iný stĺpec"
+
 msgid "Switch to the right column"
 msgstr "Prepnúť na pravý stĺpec"
 
@@ -19840,6 +19930,10 @@ msgid ""
 msgstr ""
 "Používateľské rozhranie %s %s sa reštartuje\n"
 "pre chybu v súbore StartEnigma.py"
+
+#, python-format
+msgid "The user interface of your %s %s will be stopped to run Kodi"
+msgstr "Používateľské rozhranie zariadenia %s %s sa zastaví kvôli spusteniu Kodi"
 
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr "Šírka obrazu. Mierka vstupu sa prispôsobí, aby zodpovedala tejto hodnote."
@@ -20956,7 +21050,7 @@ msgid "USB switch ERROR! - already on USB"
 msgstr "CHYBA pri prepnutí na USB! Už je na USB"
 
 msgid "USB switch ERROR! - root files not transferred to USB"
-msgstr "CHYBA pri prepnutí na USB! Koreňové súbory sa nepreniesli na USB"
+msgstr "CHYBA pri prepnutí USB! Koreňové súbory sa nepreniesli na USB"
 
 msgid "UUID"
 msgstr "UUID"
@@ -21278,6 +21372,9 @@ msgstr "Použiť zemepisnú polohu"
 
 msgid "Use HDMI-preemphasis"
 msgstr "Použiť HDMI-preemphasis"
+
+msgid "Use HTTPS protocol"
+msgstr "Použiť protokol HTTPS"
 
 msgid "Use Harddisk Hardware Standby Timer"
 msgstr "Použiť hardvérový časovač pohotovostného režimu pevného disku"
@@ -21674,6 +21771,9 @@ msgstr "Venezuela (Bolívarská republika)"
 msgid "Verbose"
 msgstr "Podrobne"
 
+msgid "Verify WebIf SSL certificate"
+msgstr "Overiť SSL certifikát WebIf"
+
 msgid "Version"
 msgstr "Verzia"
 
@@ -22019,10 +22119,10 @@ msgstr "Upozornenie"
 
 #, python-format
 msgid "Warning: %d feeds were unable to be reloaded!"
-msgstr "Upozornenie: %d zdrojov nebolo možné načítať!"
+msgstr "Upozornenie: %d zdrojov nebolo možné opäť načítať!"
 
 msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
-msgstr "Upozornenie: Zrušením tohto procesu zostanú zdroje informácií v nekompletnom a nepoužiteľnom stave!"
+msgstr "Upozornenie: zrušenie tohto procesu zanechá zdroje v nekompletnom a nepoužiteľnom stave!"
 
 msgid "Warning: Overrides are currently active!"
 msgstr "Upozornenie: momentálne je aktívne prepisovanie!"
@@ -22242,9 +22342,6 @@ msgstr "Ak je povolené, uprednostnia sa grafické DVB titulky pred teletextový
 
 msgid "When enabled, graphical DVB subtitles will be displayed at their original position."
 msgstr "Ak je povolené, grafické DVB titulky sa zobrazia na ich pôvodnej pozícii."
-
-msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
-msgstr "Ak je povolené, budú sa grafické DVB titulky zobrazovať žltou farbou namiesto ich pôvodnej."
 
 msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr "Ak je povolené, prehrávač médií bude možné ukončiť tlačidlom EXIT."
@@ -22519,9 +22616,6 @@ msgstr "Rok"
 
 msgid "Yellow"
 msgstr "Žltá"
-
-msgid "Yellow DVB subtitles"
-msgstr "Žlté DVB titulky"
 
 msgid "Yemen"
 msgstr "Jemen"
@@ -23957,6 +24051,36 @@ msgstr "áno (zachovať zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
+#~ msgstr "Ak je povolené, budú sa grafické DVB titulky zobrazovať žltou farbou namiesto ich pôvodnej."
+
+#~ msgid "Yellow DVB subtitles"
+#~ msgstr "Žlté DVB titulky"
+
+#~ msgid "Back USB 2.0"
+#~ msgstr "USB 2.0 vzadu"
+
+#~ msgid "Back, left USB 3.0"
+#~ msgstr "USB 3.0 vzadu, vľavo"
+
+#~ msgid "Back, lower USB 2.0"
+#~ msgstr "USB 2.0 vzadu, dole"
+
+#~ msgid "Back, lower USB 3.0"
+#~ msgstr "USB 3.0 vzadu, dole"
+
+#~ msgid "Back, right USB 3.0"
+#~ msgstr "USB 3.0 vzadu, vpravo"
+
+#~ msgid "Back, upper USB 2.0"
+#~ msgstr "USB 2.0 vzadu, hore"
+
+#~ msgid "Back, upper USB 3.0"
+#~ msgstr "USB 3.0 vzadu, hore"
+
+#~ msgid "Front USB 2.0"
+#~ msgstr "USB 2.0 vpredu"
 
 #~ msgid "MediaStream"
 #~ msgstr "Stream média"

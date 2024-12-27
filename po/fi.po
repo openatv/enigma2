@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-26 16:11+0000\n"
-"PO-Revision-Date: 2024-11-27 05:07+0000\n"
+"POT-Creation-Date: 2024-12-24 18:40+0000\n"
+"PO-Revision-Date: 2024-12-24 18:34+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.9-dev\n"
+"X-Generator: Weblate 5.10-dev\n"
 
 msgid ""
 "\n"
@@ -1586,6 +1586,9 @@ msgstr ""
 "Juuri päättynyt ajastus haluaa sammuttaa\n"
 "%s %s:n virransäästötilaan. Sammutetaanko nyt?"
 
+msgid "Graphical DVB subtitles will be displayed in the selected color, instead of the original colors."
+msgstr ""
+
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr "Kaukosäätimen kuvan korostus osoittaa, mihin painikkeisiin ohje liittyy. Jos useampi kuin yksi näppäin suorittaa määritetyn toiminnon, näytössä näkyy useampi kuin yksi merkki. Luettelon alapuolella oleva teksti luettelee aktiiviset näppäimet ja osoittaa, edellyttääkö toiminto näppäimen painamista pitkään tai painikkeen painamista."
 
@@ -2798,14 +2801,23 @@ msgstr "Taka usb"
 msgid "Back USB 3.0"
 msgstr "Taka USB 3.0"
 
+msgid "Back USB-C"
+msgstr "Taka USB-C"
+
 msgid "Back, inner USB"
 msgstr "Taka, ylempi USB"
+
+msgid "Back, left USB"
+msgstr "Taka, Vasen USB"
 
 msgid "Back, lower USB"
 msgstr "Taka, alempi USB"
 
 msgid "Back, outer USB"
 msgstr "Taka, ulompi USB"
+
+msgid "Back, right USB"
+msgstr "Taka, Oikea USB"
 
 msgid "Back, upper USB"
 msgstr "Ylempi USB"
@@ -4201,6 +4213,9 @@ msgstr "Kopioi TV kuva LCD näyttöön"
 msgid "Close"
 msgstr "Sulje"
 
+msgid "Close CA device at programm end"
+msgstr "Sulje CA-laite ohjelman lopussa"
+
 msgid "Close PiP on exit"
 msgstr "Sulje PiP exit näppäimellä"
 
@@ -5315,6 +5330,9 @@ msgstr "Leikkauskohtien editori"
 msgid "Cutlist editor..."
 msgstr "Määritä leikkauskohdat..."
 
+msgid "Cyan"
+msgstr ""
+
 msgid "Cycle PiP(zap)"
 msgstr "Kierrä PIP(zap)"
 
@@ -5360,6 +5378,9 @@ msgstr "DNS data lähde"
 msgid "DNS mode"
 msgstr "DNS tila"
 
+msgid "DNS name or IP address"
+msgstr "DNS nimi tai IP osoite"
+
 msgid "DNS suffix"
 msgstr "DNS pääte"
 
@@ -5393,6 +5414,9 @@ msgstr "DVB teksitykset PID & kieli"
 
 msgid "DVB subtitle black transparency"
 msgstr "DVB tekstin mustan reunan läpinäkyvyys"
+
+msgid "DVB subtitles color"
+msgstr ""
 
 msgid "DVB-C"
 msgstr "DVB-C"
@@ -5998,6 +6022,9 @@ msgstr "Syvyys"
 msgid "Descending"
 msgstr "Laskeva"
 
+msgid "Descrambling options"
+msgstr "Salauksen purku asetukset"
+
 msgid "Description"
 msgstr "Kuvaus"
 
@@ -6192,6 +6219,9 @@ msgstr "Vaihda muunto stereoksi"
 
 msgid "Disable intro screen"
 msgstr "Poista Esittelyn käytöstä"
+
+msgid "Disable operator profiles"
+msgstr "Poista operaattori profiilit käytöstä"
 
 msgid "Disable the HDD Process on VFD."
 msgstr "Kiintolevyn etenemispalkki päälle/pois"
@@ -9213,8 +9243,17 @@ msgstr "Kauhu"
 msgid "Horse Racing"
 msgstr "Hevos urheilu"
 
+msgid "Host"
+msgstr "Isäntä"
+
 msgid "Hostname"
 msgstr "Isäntänimi"
+
+msgid "Hostname cannot be resolved to IP address!"
+msgstr "Isäntänimi ei voi ratkaista IP osoitetta!"
+
+msgid "Hostname or IP address"
+msgstr "Isäntä tai IP-osoite"
 
 msgid "Hostname: "
 msgstr "Isäntänimi: "
@@ -9305,6 +9344,9 @@ msgstr "IP Osoite, joka tarkistetaan ajastimen aktivoinnin yhteydessä."
 
 msgid "IP address"
 msgstr "IP osoite"
+
+msgid "IP address is invalid!"
+msgstr "IP-osoite on mitätön!"
 
 msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr "Striimin välitys -palvelimen IP-osoite, jota käytetään sellaisten palvelujen salauksen purkamiseen, joiden salaus voidaan purkaa vain striimin välityksen kautta."
@@ -10370,6 +10412,9 @@ msgstr "Libanoni"
 msgid "Left"
 msgstr "Vasen"
 
+msgid "Left USB"
+msgstr "Vasen USB"
+
 msgid "Left column"
 msgstr "Vasen sarake"
 
@@ -10381,6 +10426,12 @@ msgstr "Vasemman sarakkeen tiedostolajittelu"
 
 msgid "Left from service name"
 msgstr "Kanavanimestä vasemmalle"
+
+msgid "Left, back USB"
+msgstr "Vasen, taka USB"
+
+msgid "Left, front USB"
+msgstr "Vasen, etu USB"
 
 msgid "Left, wrapped"
 msgstr "vasemmalla, rivitä teksti"
@@ -10775,6 +10826,9 @@ msgstr "Makedonia"
 msgid "Madagascar"
 msgstr "Madagascar"
 
+msgid "Magenta"
+msgstr ""
+
 msgid "Magic"
 msgstr "Taika"
 
@@ -11076,6 +11130,9 @@ msgstr "Mittaustila"
 
 msgid "Mexico"
 msgstr "Meksiko"
+
+msgid "Micro SD"
+msgstr "Micro Sd"
 
 msgid "Micronesia, Federated States of"
 msgstr "Micronesia"
@@ -12110,6 +12167,9 @@ msgstr "Yhteensopivia varmuuskopiointi sijainteja ei löytynyt!"
 msgid "No suitable sat tuner found!"
 msgstr "Sopivaa satelliittiviritintä ei löytynyt!"
 
+msgid "No system softcam configured!"
+msgstr "softcamia ei määritetty!"
+
 msgid "No tags are set on these movies."
 msgstr "Näissä tallenteissa ei ole avainsanoja."
 
@@ -12476,6 +12536,12 @@ msgstr "Pois"
 
 msgid "Offline decode delay (ms)"
 msgstr "Offline purkamisen viive (ms)"
+
+msgid "Offset CA device index"
+msgstr "Muuta CA laitteen indeksiä"
+
+msgid "Offset and close CA device"
+msgstr "Muuta ja sulje CA laite"
 
 msgid "Ojibwa"
 msgstr "Ojibwa"
@@ -14241,6 +14307,9 @@ msgstr "Haluatko silti käynnistää uudelleen?"
 msgid "Really shutdown now?"
 msgstr "Haluatko silti sammuttaa?"
 
+msgid "Really start Kodi and stop user interface now?"
+msgstr "Aloita Kodi ja lopeta käyttöliittymä nyt?"
+
 msgid "Really upgrade the front panel and reboot now?"
 msgstr "Päivitetäänkö etupaneeli nyt ja käynnistetään uudelleen?"
 
@@ -15005,6 +15074,9 @@ msgstr "Uudelleenrivitä tekstitys"
 msgid "Right"
 msgstr "Oikea"
 
+msgid "Right USB"
+msgstr "Oikea USB"
+
 msgid "Right column"
 msgstr "Oikea sarake"
 
@@ -15016,6 +15088,12 @@ msgstr "Oikean sarakkeen tiedosto lajittelu"
 
 msgid "Right from service name"
 msgstr "Kanavanimestä oikealle"
+
+msgid "Right, back USB"
+msgstr "Oikea, taka USB"
+
+msgid "Right, front USB"
+msgstr "Oikea, etu USB"
 
 msgid "Right, wrapped"
 msgstr "oikealla, rivitä teksti"
@@ -15101,7 +15179,7 @@ msgstr "Suoritetaan Myrestore scripttiä, Odata hetki ..."
 
 #, python-format
 msgid "Running command %d: '%s'."
-msgstr "Suoritettaan komentoa %d: '%s'."
+msgstr "Suoritetaan komentoa %d: '%s'."
 
 msgid "Russian"
 msgstr "Venäjä"
@@ -15126,6 +15204,12 @@ msgstr "SAT"
 
 msgid "SATA"
 msgstr "SATA"
+
+msgid "SATA BACK"
+msgstr "SATA TAKA"
+
+msgid "SATA FRONT"
+msgstr "SATA ETU"
 
 msgid "SATPI"
 msgstr "SATPI"
@@ -18067,6 +18151,9 @@ msgstr "Signaalinvoimakkuus:"
 msgid "Signal: "
 msgstr "Signaali: "
 
+msgid "Signed by"
+msgstr "Allekirjoittanut"
+
 msgid "Similar"
 msgstr "Samanlaiset"
 
@@ -19170,6 +19257,9 @@ msgstr "Vaihda käytettävissä oleviin TV kanaviin"
 msgid "Switch to the left column"
 msgstr "Vaihda vasempaan sarakkeeseen"
 
+msgid "Switch to the other column"
+msgstr "Siirry toiseen sarakkeeseen"
+
 msgid "Switch to the right column"
 msgstr "Vaihda oikeaan sarakkeeseen"
 
@@ -19262,7 +19352,7 @@ msgstr "TMDB Haku"
 
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Suomenkielinen käännös: 22.11.2024\n"
+"Suomenkielinen käännös: 15.12.2024\n"
 "tomppaa"
 
 msgid "TS file is too large for ISO9660 level 1!"
@@ -19828,6 +19918,10 @@ msgid ""
 msgstr ""
 "%s %s:n käyttöliittymä käynnistyy uudelleen\n"
 "johtuen virheestä StartEnigma.py-tiedostossa"
+
+#, python-format
+msgid "The user interface of your %s %s will be stopped to run Kodi"
+msgstr "Käyttöliittymä %s %ss pysäytetään Kodin käynnistämiseksi"
 
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr "Kuvan leveys. Tulo skaalataan vastaamaan tätä arvoa."
@@ -21272,6 +21366,9 @@ msgstr "Käytä maantieteellistä sijaintia"
 msgid "Use HDMI-preemphasis"
 msgstr "Käytä HDMI-esikorostusta"
 
+msgid "Use HTTPS protocol"
+msgstr "Käytä HTTPS protokollaa"
+
 msgid "Use Harddisk Hardware Standby Timer"
 msgstr "Käytä kiintolevyn sisäistä virransäästötoimintoa"
 
@@ -21666,6 +21763,9 @@ msgstr "Venezuela, Bolivariaaninen tasavalta"
 
 msgid "Verbose"
 msgstr "Yksityiskohtainen"
+
+msgid "Verify WebIf SSL certificate"
+msgstr "Tarkista Web SSL sertifikaatti"
 
 msgid "Version"
 msgstr "Versio"
@@ -22236,9 +22336,6 @@ msgstr "Kun päällä, DVB tekstitystä suositaan teksti-tv pohjaisen tekstityks
 msgid "When enabled, graphical DVB subtitles will be displayed at their original position."
 msgstr "Kun päällä, DVB tekstitys näytetään alkuperäisellä paikallaan."
 
-msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
-msgstr "Kun päällä, DVB tekstitys näytetään keltaisena alkuperäisen värin sijaan."
-
 msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr "Kun päällä, voit keskeyttää tallenteen katselun exit-näppäimellä."
 
@@ -22512,9 +22609,6 @@ msgstr "Vuosi"
 
 msgid "Yellow"
 msgstr "Keltainen"
-
-msgid "Yellow DVB subtitles"
-msgstr "Keltaiset DVB tekstit"
 
 msgid "Yemen"
 msgstr "Yemen"
@@ -23955,6 +24049,36 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
+#~ msgstr "Kun päällä, DVB tekstitys näytetään keltaisena alkuperäisen värin sijaan."
+
+#~ msgid "Yellow DVB subtitles"
+#~ msgstr "Keltaiset DVB tekstit"
+
+#~ msgid "Back USB 2.0"
+#~ msgstr "Taka USB 2.0"
+
+#~ msgid "Back, left USB 3.0"
+#~ msgstr "Taka, Vasen USB 3.0"
+
+#~ msgid "Back, lower USB 2.0"
+#~ msgstr "Taka, alempi USB 2.0"
+
+#~ msgid "Back, lower USB 3.0"
+#~ msgstr "Taka, alempi USB 3.0"
+
+#~ msgid "Back, right USB 3.0"
+#~ msgstr "Taka, oikea USB 3.0"
+
+#~ msgid "Back, upper USB 2.0"
+#~ msgstr "Taka, ylempi USB 2.0"
+
+#~ msgid "Back, upper USB 3.0"
+#~ msgstr "Taka, ylempi USB 3.0"
+
+#~ msgid "Front USB 2.0"
+#~ msgstr "Etu USB 2.0"
 
 #~ msgid "MediaStream"
 #~ msgstr "Media Toisto"

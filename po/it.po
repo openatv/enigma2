@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-26 16:11+0000\n"
-"PO-Revision-Date: 2024-11-27 14:41+0000\n"
+"POT-Creation-Date: 2024-12-24 18:40+0000\n"
+"PO-Revision-Date: 2024-12-27 21:39+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.9-dev\n"
+"X-Generator: Weblate 5.10-dev\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
 
 msgid ""
@@ -1583,6 +1583,9 @@ msgstr ""
 "Il termine di una registrazione programmata prevede\n"
 "di spegnere il %s %s. Farlo ora?"
 
+msgid "Graphical DVB subtitles will be displayed in the selected color, instead of the original colors."
+msgstr "I sottotitoli DVB grafici verranno visualizzati nel colore selezionato, anziché nei colori originali."
+
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr "Un'evidenziazione sull'immagine del telecomando mostra a quale tasto si riferisce la guida. Se più di un tasto esegue la funzione indicata, verrà visualizzata più di un'evidenziazione. Il testo sotto l'elenco elenca i tasti attivi e se la funzione richiede una pressione prolungata o SHIFT dai tasti."
 
@@ -2789,14 +2792,23 @@ msgstr "USB posteriore"
 msgid "Back USB 3.0"
 msgstr "USB 3.0 posteriore"
 
+msgid "Back USB-C"
+msgstr "USB-C posteriore"
+
 msgid "Back, inner USB"
 msgstr "USB posteriore interna"
+
+msgid "Back, left USB"
+msgstr "USB posteriore sinistra"
 
 msgid "Back, lower USB"
 msgstr "USB posteriore inferiore"
 
 msgid "Back, outer USB"
 msgstr "USB posteriore esterna"
+
+msgid "Back, right USB"
+msgstr "USB posteriore destra"
 
 msgid "Back, upper USB"
 msgstr "USB posteriore superiore"
@@ -4191,6 +4203,9 @@ msgstr "Clona schermo TV su LCD"
 msgid "Close"
 msgstr "Chiudi"
 
+msgid "Close CA device at programm end"
+msgstr "Chiudi dispositivo CA alla fine del programma"
+
 msgid "Close PiP on exit"
 msgstr "Chiudi PiP all'uscita"
 
@@ -5305,6 +5320,9 @@ msgstr "Editor elenco tagli"
 msgid "Cutlist editor..."
 msgstr "Editor elenco tagli..."
 
+msgid "Cyan"
+msgstr "Ciano"
+
 msgid "Cycle PiP(zap)"
 msgstr "Ciclo PIP(zap)"
 
@@ -5350,6 +5368,9 @@ msgstr "Sorgente dati DNS"
 msgid "DNS mode"
 msgstr "Modalità DNS"
 
+msgid "DNS name or IP address"
+msgstr "Nome DNS o indirizzo IP"
+
 msgid "DNS suffix"
 msgstr "Suffisso DNS"
 
@@ -5383,6 +5404,9 @@ msgstr "PID e lingua dei sottotitoli DVB"
 
 msgid "DVB subtitle black transparency"
 msgstr "Sottotitoli DVB trasparenza nero"
+
+msgid "DVB subtitles color"
+msgstr "Colore sottotitoli DVB"
 
 msgid "DVB-C"
 msgstr "DVB-C"
@@ -5988,6 +6012,9 @@ msgstr "Profondità"
 msgid "Descending"
 msgstr "Discendente"
 
+msgid "Descrambling options"
+msgstr "Opzioni di decriptazione"
+
 msgid "Description"
 msgstr "Descrizione"
 
@@ -6182,6 +6209,9 @@ msgstr "Disabilita riduzione digitale mix"
 
 msgid "Disable intro screen"
 msgstr "Disabilita schermata introduttiva"
+
+msgid "Disable operator profiles"
+msgstr "Disabilita profili operatore"
 
 msgid "Disable the HDD Process on VFD."
 msgstr "Disabilita processo HDD su VFD"
@@ -9203,8 +9233,17 @@ msgstr "Orrore"
 msgid "Horse Racing"
 msgstr "Ippica"
 
+msgid "Host"
+msgstr "Host"
+
 msgid "Hostname"
 msgstr "Nome host"
+
+msgid "Hostname cannot be resolved to IP address!"
+msgstr "Il nome host non può essere risolto in indirizzo IP!"
+
+msgid "Hostname or IP address"
+msgstr "Nome host o indirizzo IP"
 
 msgid "Hostname: "
 msgstr "Nome host: "
@@ -9295,6 +9334,9 @@ msgstr "Indirizzo IP da verificare all'attivazione del timer."
 
 msgid "IP address"
 msgstr "Indirizzo IP"
+
+msgid "IP address is invalid!"
+msgstr "L'indirizzo IP non è valido!"
 
 msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr "Indirizzo IP del server Stream Relay usato per decodificare i servizi che possono essere decrittografati solo tramite Stream Relay."
@@ -10355,6 +10397,9 @@ msgstr "Libano"
 msgid "Left"
 msgstr "Sinistra"
 
+msgid "Left USB"
+msgstr "USB sinistra"
+
 msgid "Left column"
 msgstr "Colonna sinistra"
 
@@ -10366,6 +10411,12 @@ msgstr "Ordinamento per file colonna sinistra"
 
 msgid "Left from service name"
 msgstr "A sinistra del nome del servizio"
+
+msgid "Left, back USB"
+msgstr "USB posteriore sinistra"
+
+msgid "Left, front USB"
+msgstr "USB anteriore sinistra"
 
 msgid "Left, wrapped"
 msgstr "Sinistra, avvolto"
@@ -10760,6 +10811,9 @@ msgstr "Macedone"
 msgid "Madagascar"
 msgstr "Madagascar"
 
+msgid "Magenta"
+msgstr "Magenta"
+
 msgid "Magic"
 msgstr "Magia"
 
@@ -11061,6 +11115,9 @@ msgstr "Modalità misurazione"
 
 msgid "Mexico"
 msgstr "Messico"
+
+msgid "Micro SD"
+msgstr "Micro SD"
 
 msgid "Micronesia, Federated States of"
 msgstr "Micronesia, Stati Federati di"
@@ -12089,6 +12146,9 @@ msgstr "Nessuna posizione trovata adatta al backup!"
 msgid "No suitable sat tuner found!"
 msgstr "Nessun tuner satellitare adatto trovato!"
 
+msgid "No system softcam configured!"
+msgstr "Nessuna softcam di sistema configurata!"
+
 msgid "No tags are set on these movies."
 msgstr "Nessuna etichetta configurata su queste registrazioni."
 
@@ -12453,6 +12513,12 @@ msgstr "Off"
 
 msgid "Offline decode delay (ms)"
 msgstr "Ritardo decodifica offline (ms)"
+
+msgid "Offset CA device index"
+msgstr "Offset indice dispositivo CA"
+
+msgid "Offset and close CA device"
+msgstr "Offset e chiudi dispositivo CA"
 
 msgid "Ojibwa"
 msgstr "Ojibwa"
@@ -14218,6 +14284,9 @@ msgstr "Riavviare ora?"
 msgid "Really shutdown now?"
 msgstr "Spegnere ora?"
 
+msgid "Really start Kodi and stop user interface now?"
+msgstr "Vuoi davvero avviare Kodi e fermare l'interfaccia utente adesso?"
+
 msgid "Really upgrade the front panel and reboot now?"
 msgstr "Vuoi aggiornare il panello frontale e riavviare?"
 
@@ -14982,6 +15051,9 @@ msgstr "Riavvolgere sottotitoli"
 msgid "Right"
 msgstr "Destra"
 
+msgid "Right USB"
+msgstr "USB destra"
+
 msgid "Right column"
 msgstr "Colonna destra"
 
@@ -14993,6 +15065,12 @@ msgstr "Ordinamento per file colonna destra"
 
 msgid "Right from service name"
 msgstr "A destra del nome del servizio"
+
+msgid "Right, back USB"
+msgstr "USB posteriore destra"
+
+msgid "Right, front USB"
+msgstr "USB anteriore destra"
 
 msgid "Right, wrapped"
 msgstr "Destra, avvolto"
@@ -15103,6 +15181,12 @@ msgstr "SAT"
 
 msgid "SATA"
 msgstr "SATA"
+
+msgid "SATA BACK"
+msgstr "SATA POSTERIORE"
+
+msgid "SATA FRONT"
+msgstr "SATA ANTERIORE"
 
 msgid "SATPI"
 msgstr "SATPI"
@@ -18030,6 +18114,9 @@ msgstr "Potenza segnale:"
 msgid "Signal: "
 msgstr "Segnale: "
 
+msgid "Signed by"
+msgstr "Firmato da"
+
 msgid "Similar"
 msgstr "Simile"
 
@@ -19133,6 +19220,9 @@ msgstr "Passa ai servizi TV disponibili"
 msgid "Switch to the left column"
 msgstr "Passa alla colonna di sinistra"
 
+msgid "Switch to the other column"
+msgstr "Passa all'altra colonna"
+
 msgid "Switch to the right column"
 msgstr "Passa alla colonna di destra"
 
@@ -19789,6 +19879,10 @@ msgid ""
 msgstr ""
 "L'interfaccia utente di %s %s si sta riavviando\n"
 "a causa di un errore in StartEnigma.py"
+
+#, python-format
+msgid "The user interface of your %s %s will be stopped to run Kodi"
+msgstr "L'interfaccia utente del %s %s verrà fermata per eseguire Kodi"
 
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr "La larghezza dell'immagine. Quella di input sarà ridimensionata per raggiungere questo valore."
@@ -21228,6 +21322,9 @@ msgstr "Usa geolocalizzazione"
 msgid "Use HDMI-preemphasis"
 msgstr "Usa HDMI-preemphasis"
 
+msgid "Use HTTPS protocol"
+msgstr "Usa protocollo HTTPS"
+
 msgid "Use Harddisk Hardware Standby Timer"
 msgstr "Usa timer di standby hardware del disco rigido"
 
@@ -21622,6 +21719,9 @@ msgstr "Venezuela, Repubblica Bolivariana di"
 
 msgid "Verbose"
 msgstr "Verboso"
+
+msgid "Verify WebIf SSL certificate"
+msgstr "Verifica certificato SSL WebIf"
 
 msgid "Version"
 msgstr "Versione"
@@ -22192,9 +22292,6 @@ msgstr "Se abilitato, i sottotitoli DVB grafici verranno preferiti rispetto ai s
 msgid "When enabled, graphical DVB subtitles will be displayed at their original position."
 msgstr "Se abilitato, i sottotitoli DVB grafici verranno visualizzati nella loro posizione originale."
 
-msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
-msgstr "Se abilitato, i sottotitoli DVB grafici verranno visualizzati in giallo, invece del colore originale."
-
 msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr "Se abilitato, sarà possibile lasciare il movieplayer con esci."
 
@@ -22468,9 +22565,6 @@ msgstr "Anno"
 
 msgid "Yellow"
 msgstr "Giallo"
-
-msgid "Yellow DVB subtitles"
-msgstr "Sottotitoli DVB gialli"
 
 msgid "Yemen"
 msgstr "Yemen"
@@ -23905,6 +23999,39 @@ msgstr "sì (mantieni feed)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "A graphical DVB subtitles will be displayed in the selected color, instead of the original color."
+#~ msgstr "I sottotitoli DVB grafici verranno visualizzati nel colore selezionato, anziché nel colore originale."
+
+#~ msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
+#~ msgstr "Se abilitato, i sottotitoli DVB grafici verranno visualizzati in giallo, invece del colore originale."
+
+#~ msgid "Yellow DVB subtitles"
+#~ msgstr "Sottotitoli DVB gialli"
+
+#~ msgid "Back USB 2.0"
+#~ msgstr "USB 2.0 posteriore"
+
+#~ msgid "Back, left USB 3.0"
+#~ msgstr "USB 3.0 posteriore sinistra"
+
+#~ msgid "Back, lower USB 2.0"
+#~ msgstr "USB 2.0 posteriore inferiore"
+
+#~ msgid "Back, lower USB 3.0"
+#~ msgstr "USB 3.0 posteriore inferiore"
+
+#~ msgid "Back, right USB 3.0"
+#~ msgstr "USB 3.0 posteriore destra"
+
+#~ msgid "Back, upper USB 2.0"
+#~ msgstr "USB 2.0 posteriore superiore"
+
+#~ msgid "Back, upper USB 3.0"
+#~ msgstr "USB 3.0 posteriore superiore"
+
+#~ msgid "Front USB 2.0"
+#~ msgstr "USB 2.0 anteriore"
 
 #~ msgid "MediaStream"
 #~ msgstr "MediaStream"

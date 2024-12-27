@@ -3,20 +3,21 @@
 # Mr.Servo <mrservo@gmx.de>, 2021, 2022.
 # JPierre <jpcoquelle@gmail.com>, 2023.
 # "Mr.Servo" <mrservo@gmx.de>, 2024.
+# Mathieu13006 <llapaca@gmail.com>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-26 16:11+0000\n"
-"PO-Revision-Date: 2024-02-19 11:02+0000\n"
-"Last-Translator: \"Mr.Servo\" <mrservo@gmx.de>\n"
+"POT-Creation-Date: 2024-12-24 18:40+0000\n"
+"PO-Revision-Date: 2024-12-24 18:34+0000\n"
+"Last-Translator: Mathieu13006 <llapaca@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
-"X-Generator: Weblate 5.4\n"
+"X-Generator: Weblate 5.10-dev\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 
 msgid ""
@@ -1592,6 +1593,9 @@ msgstr ""
 "Un enregistrement programmé et terminé veut\n"
 "éteindre votre %s %s. Eteindre maintenant?"
 
+msgid "Graphical DVB subtitles will be displayed in the selected color, instead of the original colors."
+msgstr ""
+
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr "Une surbrillance sur l'image de la télécommande montre à quel bouton l'aide fait référence. Si plus d'un bouton effectue la fonction indiquée, plus d'un point culminant sera affiché. Le texte sous la liste répertorie les boutons actifs et indique si la fonction nécessite un appui long ou SHIFT du ou des boutons."
 
@@ -2798,14 +2802,23 @@ msgstr "USB arrière"
 msgid "Back USB 3.0"
 msgstr "USB 3.0 arrière"
 
+msgid "Back USB-C"
+msgstr ""
+
 msgid "Back, inner USB"
 msgstr "USB arrière interne"
+
+msgid "Back, left USB"
+msgstr ""
 
 msgid "Back, lower USB"
 msgstr "A l'arrière, USB du bas"
 
 msgid "Back, outer USB"
 msgstr "USB arrière externe"
+
+msgid "Back, right USB"
+msgstr "Prise USB arrière droite"
 
 msgid "Back, upper USB"
 msgstr "A l'arrière, USB du haut"
@@ -2820,7 +2833,7 @@ msgid "Background color"
 msgstr "Couleur de fond"
 
 msgid "Background delete option"
-msgstr "Option de suppression en arrière-plan"
+msgstr "Option de suppression de l'arrière-plan"
 
 msgid "Background delete speed"
 msgstr "Vitesse de suppression en arrière-plan"
@@ -4203,6 +4216,9 @@ msgstr "Dupliquer l'écran TV sur le LCD"
 msgid "Close"
 msgstr "Fermer"
 
+msgid "Close CA device at programm end"
+msgstr ""
+
 msgid "Close PiP on exit"
 msgstr "Ferme le PiP avec la touche exit"
 
@@ -5311,6 +5327,9 @@ msgstr "Éditeur de montage vidéo"
 msgid "Cutlist editor..."
 msgstr "Éditeur monter/couper..."
 
+msgid "Cyan"
+msgstr ""
+
 msgid "Cycle PiP(zap)"
 msgstr "Cycle PiP(zap)"
 
@@ -5356,6 +5375,9 @@ msgstr ""
 msgid "DNS mode"
 msgstr ""
 
+msgid "DNS name or IP address"
+msgstr ""
+
 msgid "DNS suffix"
 msgstr ""
 
@@ -5389,6 +5411,9 @@ msgstr "PID Sous-titres DVB - lang"
 
 msgid "DVB subtitle black transparency"
 msgstr "Transparence des sous-titres DVB"
+
+msgid "DVB subtitles color"
+msgstr ""
 
 msgid "DVB-C"
 msgstr "DVB-C"
@@ -5994,6 +6019,9 @@ msgstr "Profondeur"
 msgid "Descending"
 msgstr ""
 
+msgid "Descrambling options"
+msgstr ""
+
 msgid "Description"
 msgstr "Description"
 
@@ -6190,6 +6218,9 @@ msgstr "Désactiver downmix numérique"
 
 msgid "Disable intro screen"
 msgstr "Désactiver l'écran d'accueil"
+
+msgid "Disable operator profiles"
+msgstr ""
 
 msgid "Disable the HDD Process on VFD."
 msgstr "Désactivé l'activité du disque dur sur le VFD"
@@ -9204,7 +9235,16 @@ msgstr "Horreur"
 msgid "Horse Racing"
 msgstr "Course de chevaux"
 
+msgid "Host"
+msgstr ""
+
 msgid "Hostname"
+msgstr ""
+
+msgid "Hostname cannot be resolved to IP address!"
+msgstr ""
+
+msgid "Hostname or IP address"
 msgstr ""
 
 msgid "Hostname: "
@@ -9296,6 +9336,9 @@ msgstr ""
 
 msgid "IP address"
 msgstr "Adresse IP"
+
+msgid "IP address is invalid!"
+msgstr ""
 
 msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr ""
@@ -10356,6 +10399,9 @@ msgstr "Liban"
 msgid "Left"
 msgstr "Gauche"
 
+msgid "Left USB"
+msgstr ""
+
 msgid "Left column"
 msgstr ""
 
@@ -10367,6 +10413,12 @@ msgstr ""
 
 msgid "Left from service name"
 msgstr "À la gauche du nom du service"
+
+msgid "Left, back USB"
+msgstr ""
+
+msgid "Left, front USB"
+msgstr ""
 
 msgid "Left, wrapped"
 msgstr "Gauche, enveloppé"
@@ -10761,6 +10813,9 @@ msgstr "Macédoine"
 msgid "Madagascar"
 msgstr "Madagascar"
 
+msgid "Magenta"
+msgstr ""
+
 msgid "Magic"
 msgstr "Magie"
 
@@ -11063,6 +11118,9 @@ msgstr ""
 
 msgid "Mexico"
 msgstr "Mexique"
+
+msgid "Micro SD"
+msgstr ""
 
 msgid "Micronesia, Federated States of"
 msgstr "Micronésie, États fédérés de"
@@ -12090,6 +12148,9 @@ msgstr ""
 msgid "No suitable sat tuner found!"
 msgstr "Aucun tuner satellite convenable trouvé !"
 
+msgid "No system softcam configured!"
+msgstr ""
+
 msgid "No tags are set on these movies."
 msgstr "Aucune étiquette définie sur ces films."
 
@@ -12454,6 +12515,12 @@ msgstr "Arrêt"
 
 msgid "Offline decode delay (ms)"
 msgstr "Délai décodage hors ligne (ms)"
+
+msgid "Offset CA device index"
+msgstr ""
+
+msgid "Offset and close CA device"
+msgstr ""
 
 msgid "Ojibwa"
 msgstr "Ojibwa"
@@ -14219,6 +14286,9 @@ msgstr "Tu redémarres vraiment maintenant ?"
 msgid "Really shutdown now?"
 msgstr "On arrête vraiment maintenant ?"
 
+msgid "Really start Kodi and stop user interface now?"
+msgstr ""
+
 msgid "Really upgrade the front panel and reboot now?"
 msgstr "Voulez-vous vraiment mettre à jour l'afficheur VFD et rebooter maintenant ?"
 
@@ -14985,6 +15055,9 @@ msgstr "Envelopper les sous-titres"
 msgid "Right"
 msgstr "Droite"
 
+msgid "Right USB"
+msgstr ""
+
 msgid "Right column"
 msgstr ""
 
@@ -14996,6 +15069,12 @@ msgstr ""
 
 msgid "Right from service name"
 msgstr "À la droite du nom de service"
+
+msgid "Right, back USB"
+msgstr ""
+
+msgid "Right, front USB"
+msgstr ""
 
 msgid "Right, wrapped"
 msgstr "droite, enveloppé"
@@ -15107,6 +15186,12 @@ msgstr "SAT"
 
 msgid "SATA"
 msgstr "SATA"
+
+msgid "SATA BACK"
+msgstr ""
+
+msgid "SATA FRONT"
+msgstr ""
 
 msgid "SATPI"
 msgstr "SATPI"
@@ -18024,6 +18109,9 @@ msgstr "Force du signal :"
 msgid "Signal: "
 msgstr "Signal : "
 
+msgid "Signed by"
+msgstr ""
+
 msgid "Similar"
 msgstr "Similaire"
 
@@ -19133,6 +19221,9 @@ msgstr ""
 msgid "Switch to the left column"
 msgstr ""
 
+msgid "Switch to the other column"
+msgstr ""
+
 msgid "Switch to the right column"
 msgstr ""
 
@@ -19762,6 +19853,10 @@ msgid ""
 msgstr ""
 "L'interface de votre %s %s redémarre\n"
 "à cause d'une erreur dans StartEnigma.py"
+
+#, python-format
+msgid "The user interface of your %s %s will be stopped to run Kodi"
+msgstr ""
 
 msgid "The width of the picture. The input will be scaled to match this value."
 msgstr "La largeur de l'image. L'entrée sera mise à l'échelle pour correspondre à cette valeur."
@@ -21208,6 +21303,9 @@ msgstr "Utiliser la géolocalisation"
 msgid "Use HDMI-preemphasis"
 msgstr "Utiliser la préemphase (préaccentuation) HDMI"
 
+msgid "Use HTTPS protocol"
+msgstr ""
+
 msgid "Use Harddisk Hardware Standby Timer"
 msgstr "Utiliser le timer de mise en veille du disque dur"
 
@@ -21572,6 +21670,9 @@ msgid "Venezuela, Bolivarian Republic of"
 msgstr "Venezuela, République bolivarienne du"
 
 msgid "Verbose"
+msgstr ""
+
+msgid "Verify WebIf SSL certificate"
 msgstr ""
 
 msgid "Version"
@@ -22135,9 +22236,6 @@ msgstr "Lorsqu'elle est activée, les sous-titres graphiques DVB seront préfér
 msgid "When enabled, graphical DVB subtitles will be displayed at their original position."
 msgstr "Lorsqu'elle est activée, les sous-titres graphiques DVB seront affichés à leur position d'origine."
 
-msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
-msgstr "Lorsqu'elle est activée, les sous-titres graphiques DVB seront affichés en jaune, au lieu de la couleur d'origine."
-
 msgid "When enabled, it is possible to leave the movie player with exit."
 msgstr "Lorsqu'elle est activée, il est possible de quitter le lecteur de film avec exit."
 
@@ -22408,9 +22506,6 @@ msgstr "Année"
 
 msgid "Yellow"
 msgstr "Jaune"
-
-msgid "Yellow DVB subtitles"
-msgstr "Sous-titres DVB jaune"
 
 msgid "Yemen"
 msgstr "Yémen"
@@ -23848,6 +23943,12 @@ msgstr "Oui (garder feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
+#~ msgstr "Lorsqu'elle est activée, les sous-titres graphiques DVB seront affichés en jaune, au lieu de la couleur d'origine."
+
+#~ msgid "Yellow DVB subtitles"
+#~ msgstr "Sous-titres DVB jaune"
 
 #~ msgid "E "
 #~ msgstr "E "
