@@ -72,7 +72,6 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			"openPowerTimerList": (self.openPowerTimerList, _("Show the PowerTimer")),
 			"ZoomInOut": (self.ZoomInOut, _("Zoom In/Out TV")),
 			"ZoomOff": (self.ZoomOff, _("Zoom Off")),
-			"HarddiskSetup": (self.HarddiskSetup, _("Select HDD")),
 			"showWWW": (self.showPORTAL, _("Open MediaStream")),
 			"showSetup": (self.showSetup, _("Show setup")),
 			"showInformation": (self.showInformation, _("Show Information")),
@@ -359,10 +358,6 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			file = open('/proc/stb/vmpeg/0/zoomrate', 'w')
 			file.write(str(0))
 			file.close()
-
-	def HarddiskSetup(self):
-		from Screens.HarddiskSetup import HarddiskSelection
-		self.session.open(HarddiskSelection)
 
 	def showPORTAL(self):
 		try:
