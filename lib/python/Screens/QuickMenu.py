@@ -329,7 +329,6 @@ class QuickMenu(Screen, ProtectedScreen):
 		if NETWORKBROWSER:
 			self.subList.append(self.quickSubMenuEntryComponent(_("Mount Manager"), _("Manage network mounts"), _("Setup your network mounts"), callback=mountManager))
 			self.subList.append(self.quickSubMenuEntryComponent(_("Network Browser"), _("Search for network shares"), _("Search for network shares"), callback=networkBrowser))
-		self.subList.append(self.quickSubMenuEntryComponent(_("Device Manager"), _("Mounts Devices"), _("Setup your Device mounts (USB, HDD, others...)"), screen="MountManager", screenName="HddMount"))
 		self.setSubList()
 
 	def subMenuNetwork(self):  # Network Menu.
@@ -436,21 +435,8 @@ class QuickMenu(Screen, ProtectedScreen):
 		self.setSubList()
 
 	def subMenuHarddisk(self):  # Harddisk Menu.
-		def isFileSystemSupported(filesystem):
-			filesystems = fileReadLines("/proc/filesystems", default=[], source=MODULE_NAME)
-			found = False
-			for line in filesystems:
-				if line.endswith(filesystem):
-					found = True
-					break
-			return found
-
 		self.subList = []
-		self.subList.append(self.quickSubMenuEntryComponent(_("Harddisk Setup"), _("Harddisk Setup"), _("Setup your Harddisk"), setup="HardDisk"))
-		self.subList.append(self.quickSubMenuEntryComponent(_("Initialization"), _("Format HDD"), _("Format your hard drive"), screen="HarddiskSetup", screenName="HarddiskSelection"))
-		self.subList.append(self.quickSubMenuEntryComponent(_("File System Check"), _("Check HDD"), _("Filesystem check your hard drive"), screen="HarddiskSetup", screenName="HarddiskFsckSelection"))
-		if isFileSystemSupported("ext4"):
-			self.subList.append(self.quickSubMenuEntryComponent(_("Convert ext3 to ext4"), _("Convert file system ext3 to ext4"), _("Convert file system ext3 to ext4"), screen="HarddiskSetup", screenName="HarddiskConvertExt4Selection"))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Device Manager"), _("Device Manager"), _("Setup your Device mounts (USB, HDD, others...)"), screen="DeviceManager", screenName="DeviceManager"))
 		self.setSubList()
 
 	def quickSubMenuEntryComponent(self, name, description, longDescription=None, width=540, setup=None, screen=None, screenName=None, callback=None):
