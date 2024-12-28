@@ -293,6 +293,32 @@ void eConsoleAppContainer::readyRead(int what)
 	}
 }
 
+int eConsoleAppContainer::waitPID()
+{
+	int status;
+	// wait for process end
+	do {
+		int w = waitpid(pid, &status, 0);
+		if (w == -1) {
+			eDebug("[eConsoleAppContainer] waitPID pid = %d error %d.", pid, w);
+			return w;
+		}
+		if (WIFEXITED(status)) {
+			eTrace("[eConsoleAppContainer] pid = %d exited with status %d.", pid, WEXITSTATUS(status));
+		} else if (WIFSIGNALED(status)) {
+			eDebug("[eConsoleAppContainer] pid = %d killed by signal %d.", pid, WTERMSIG(status));
+		} else if (WIFSTOPPED(status)) {
+			eDebug("[eConsoleAppContainer] pid = %d stopped by signal %d.", pid, WSTOPSIG(status));
+		} else if (WIFCONTINUED(status)) {
+			eDebug("[eConsoleAppContainer] pid = %d continued.", pid);
+		}
+	} while (!WIFEXITED(status) && !WIFSIGNALED(status));
+
+	// force hungup
+	readyRead(eSocketNotifier::Hungup);
+	return 0;
+}
+
 void eConsoleAppContainer::readyErrRead(int what)
 {
 	if (what & (eSocketNotifier::Priority|eSocketNotifier::Read))
