@@ -286,7 +286,7 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("User interface settings"), "Setup/UserInterface", textSetup))
 	ButtonSetupFunctions.append((_("Recording Setup"), "Setup/Recording", textSetup))
 	ButtonSetupFunctions.append((_("Harddisk Setup"), "Setup/HardDisk", textSetup))
-	ButtonSetupFunctions.append((_("Mount Manager"), "Module/Screens.MountManager/HddMount", textSetup))
+	ButtonSetupFunctions.append((_("Device Manager"), "Module/Screens.DeviceManager/DeviceManager", textSetup))
 	ButtonSetupFunctions.append((_("Subtitles Settings"), "Setup/Subtitle", textSetup))
 	ButtonSetupFunctions.append((_("Language"), "Module/Screens.LocaleSelection/LocaleSelection", textSetup))
 	if BoxInfo.getItem("SoftCam"):
