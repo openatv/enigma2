@@ -101,31 +101,3 @@ class HarddiskSelection(Screen):
 		if selection[1] != 0:
 			self.doIt(selection[1])
 			self.close(True)
-
-# This is actually just HarddiskSelection but with correct type
-
-
-class HarddiskFsckSelection(HarddiskSelection):
-	def __init__(self, session):
-		HarddiskSelection.__init__(self, session)
-		self.setTitle(_("File System Check"))
-		self.skinName = "HarddiskSelection"
-
-	def doIt(self, selection):
-		self.session.openWithCallback(self.close, HarddiskSetup, selection,
-			action=selection.createCheckJob,
-			text=_("Check"),
-			question=_("Do you really want to check the file system?\nThis could take a long time!"))
-
-
-class HarddiskConvertExt4Selection(HarddiskSelection):
-	def __init__(self, session):
-		HarddiskSelection.__init__(self, session)
-		self.setTitle(_("Convert file system ext3 to ext4"))
-		self.skinName = "HarddiskSelection"
-
-	def doIt(self, selection):
-		self.session.openWithCallback(self.close, HarddiskSetup, selection,
-			action=selection.createExt4ConversionJob,
-			text=_("Convert ext3 to ext4"),
-			question=_("Do you really want to convert the file system?\nYou cannot go back!"))
