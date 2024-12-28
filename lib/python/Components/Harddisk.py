@@ -1,101 +1,108 @@
-from os import listdir
-from os.path import exists, ismount, join
-import os
-import time
-from Tools.CList import CList
+from glob import glob
+from os import access, listdir, lstat, major, minor, mkdir, popen, remove, rmdir, stat as osstat, statvfs, system, unlink, walk
+from os.path import abspath, dirname, exists, isfile, islink, ismount, join, realpath
+from re import search, sub
+from time import sleep, time
+
+from enigma import getDeviceDB, eTimer
+
 from Components.SystemInfo import BoxInfo
-from Components.Console import Console
-from Tools.HardwareInfo import HardwareInfo
 import Components.Task
-import re
-import six
+from Components.Console import Console
+from Tools.Directories import fileReadLines, fileReadLine, fileWriteLines
+from Tools.CList import CList
+from Tools.HardwareInfo import HardwareInfo
 
 MODEL = BoxInfo.getItem("model")
 
 
 def readFile(filename):
-	file = open(filename)
-	data = file.read().strip()
-	file.close()
+	with open(filename) as fd:
+		data = fd.read().strip()
 	return data
 
+## Unused
+#def getextdevices(ext):
+#	cmd = f"blkid -t TYPE={ext} -o device"
+#	extdevices = popen(cmd).read().replace("\n", ",").rstrip(",")
+#	return None if extdevices == "" else [x.strip() for x in extdevices.split(",")]
 
-def getextdevices(ext):
-	cmd = 'blkid -t TYPE=%s -o device' % ext
-	extdevices = os.popen(cmd).read().replace('\n', ',').rstrip(",")
-	if extdevices == "":
-		return None
-	else:
-		extdevices = [x.strip() for x in extdevices.split(",")]
-		return extdevices
+
+def getProcMountsNew():
+	lines = fileReadLines("/proc/mounts", default=[])
+	result = []
+	for line in [x for x in lines if x and x.startswith("/dev/")]:
+		# Replace encoded space (\040) and newline (\012) characters with actual space and newline
+		result.append([s.replace("\\040", " ").replace("\\012", "\n") for s in line.strip(" \n").split(" ")])
+	return result
 
 
 def getProcMounts():
 	try:
 		mounts = open("/proc/mounts")
 		result = []
-		tmp = [line.strip().split(' ') for line in mounts]
+		tmp = [line.strip().split(" ") for line in mounts]
 		mounts.close()
 		for item in tmp:
-			# Spaces are encoded as \040 in mounts
-			item[1] = item[1].replace('\\040', ' ')
+			item[1] = item[1].replace("\\040", " ")  # Spaces are encoded as \040 in mounts.
 			result.append(item)
 		return result
-	except OSError as ex:
-		print("[Harddisk] Failed to open /proc/mounts", ex)
+	except OSError as err:
+		print(f"[Harddisk] Error {err.errno}: Failed to open '/proc/mounts'!  ({err.strerror})")
 		return []
 
 
 def isFileSystemSupported(filesystem):
 	try:
-		file = open('/proc/filesystems')
+		file = open("/proc/filesystems")
 		for fs in file:
 			if fs.strip().endswith(filesystem):
 				file.close()
 				return True
 		file.close()
 		return False
-	except Exception as ex:
-		print("[Harddisk] Failed to read /proc/filesystems:", ex)
+	except Exception as err:
+		print(f"[Harddisk] Error {err.errno}: Failed to read '/proc/filesystems'!  ({err.strerror})")
+		return False
 
 
 def findMountPoint(path):
 	"""Example: findMountPoint("/media/hdd/some/file") returns "/media/hdd\""""
-	path = os.path.abspath(path)
-	while not os.path.ismount(path):
-		path = os.path.dirname(path)
+	path = abspath(path)
+	while not ismount(path):
+		path = dirname(path)
 	return path
 
 
 def getFolderSize(path):
-	if os.path.islink(path):
-		return (os.lstat(path).st_size, 0)
-	if os.path.isfile(path):
-		st = os.lstat(path)
+	if islink(path):
+		return (lstat(path).st_size, 0)
+	if isfile(path):
+		st = lstat(path)
 		return (st.st_size, st.st_blocks * 512)
 	total_bytes = 0
-	have = []
-	for dirpath, dirnames, filenames in os.walk(path):
-		total_bytes += os.lstat(dirpath).st_blocks * 512
+	have = set()
+	for dirpath, dirnames, filenames in walk(path):
+		total_bytes += lstat(dirpath).st_blocks * 512
 		for f in filenames:
-			fp = os.path.join(dirpath, f)
-			if os.path.islink(fp):
+			fp = join(dirpath, f)
+			if islink(fp):
 				continue
-			st = os.lstat(fp)
+			st = lstat(fp)
 			if st.st_ino in have:
-				continue  # skip hardlinks which were already counted
-			have.append(st.st_ino)
+				continue  # Skip hard links which were already counted.
+			have.add(st.st_ino)
 			total_bytes += st.st_blocks * 512
 		for d in dirnames:
-			dp = os.path.join(dirpath, d)
+			dp = join(dirpath, d)
 	return total_bytes
 
 
 def Freespace(dev):
 	try:
-		statdev = os.statvfs(dev)
+		statdev = statvfs(dev)
 		space = (statdev.f_bavail * statdev.f_frsize) / 1024
-	except:
+	except OSError:
 		space = 0
 	return space
 
@@ -107,48 +114,42 @@ DEVTYPE_DEVFS = 1
 class Harddisk:
 	def __init__(self, device, removable=False):
 		self.device = device
-
-		if os.access("/dev/.udev", 0) or os.access("/run/udev/data", 0):
+		if access("/dev/.udev", 0) or access("/run/udev/data", 0):
 			self.type = DEVTYPE_UDEV
-		elif os.access("/dev/.devfsd", 0):
+		elif access("/dev/.devfsd", 0):
 			self.type = DEVTYPE_DEVFS
 		else:
-			print("[Harddisk] Unable to determine structure of /dev")
-
+			print("[Harddisk] Unable to determine structure of '/dev'!")
 		self.max_idle_time = 0
 		self.idle_running = False
-		self.last_access = time.time()
+		self.last_access = time()
 		self.last_stat = 0
 		self.timer = None
 		self.is_sleeping = False
-
-		self.dev_path = ''
-		self.disk_path = ''
+		self.dev_path = ""
+		self.disk_path = ""
 		self.mount_path = None
 		self.mount_device = None
-		self.phys_path = os.path.realpath(self.sysfsPath('device'))
-
+		self.phys_path = realpath(self.sysfsPath("device"))
 		if self.type == DEVTYPE_UDEV:
-			self.dev_path = '/dev/' + self.device
+			self.dev_path = join("/dev", self.device)
 			self.disk_path = self.dev_path
-
 		elif self.type == DEVTYPE_DEVFS:
-			tmp = readFile(self.sysfsPath('dev')).split(':')
+			tmp = readFile(self.sysfsPath("dev")).split(":")
 			s_major = int(tmp[0])
 			s_minor = int(tmp[1])
-			for disc in os.listdir("/dev/discs"):
-				dev_path = os.path.realpath('/dev/discs/' + disc)
-				disk_path = dev_path + '/disc'
+			for disc in listdir("/dev/discs"):  # IanSav: Is this path correct?  Linux uses disk not disc!
+				dev_path = realpath(join("/dev/discs", disc))
+				disk_path = join(dev_path, "disc")
 				try:
-					rdev = os.stat(disk_path).st_rdev
+					rdev = osstat(disk_path).st_rdev
 				except OSError:
 					continue
-				if s_major == os.major(rdev) and s_minor == os.minor(rdev):
+				if s_major == major(rdev) and s_minor == minor(rdev):
 					self.dev_path = dev_path
 					self.disk_path = disk_path
 					break
-
-		print("[Harddisk] new Harddisk", self.device, '->', self.dev_path, '->', self.disk_path)
+		print(f"[Harddisk] New Harddisk '{self.device}' -> '{self.dev_path}' -> '{self.disk_path}'.")
 		if not removable:
 			self.startIdle()
 
@@ -157,15 +158,15 @@ class Harddisk:
 
 	def partitionPath(self, n):
 		if self.type == DEVTYPE_UDEV:
-			if self.dev_path.startswith('/dev/mmcblk'):
-				return self.dev_path + "p" + n
+			if self.dev_path.startswith("/dev/mmcblk"):
+				return f"{self.dev_path}p{n}"
 			else:
-				return self.dev_path + n
+				return f"{self.dev_path}{n}"
 		elif self.type == DEVTYPE_DEVFS:
-			return self.dev_path + '/part' + n
+			return join(self.dev_path, "part{n}")
 
 	def sysfsPath(self, filename):
-		return os.path.join('/sys/block/', self.device, filename)
+		return join("/sys/block/", self.device, filename)
 
 	def stop(self):
 		if self.timer:
@@ -174,24 +175,19 @@ class Harddisk:
 
 	def bus(self):
 		ret = _("External")
-		# SD/MMC(F1 specific)
-		if self.type == DEVTYPE_UDEV:
+		if self.type == DEVTYPE_UDEV:  # SD/MMC(F1 specific).
 			card = "sdhci" in self.phys_path
 			type_name = " (SD/MMC)"
-		# CF(7025 specific)
-		elif self.type == DEVTYPE_DEVFS:
+		elif self.type == DEVTYPE_DEVFS:  # CF(7025 specific).
 			card = self.device[:2] == "hd" and "host0" not in self.dev_path
 			type_name = " (CF)"
-
 		hw_type = HardwareInfo().get_device_name()
-		if hw_type == 'elite' or hw_type == 'premium' or hw_type == 'premium+' or hw_type == 'ultra':
+		if hw_type == "elite" or hw_type == "premium" or hw_type == "premium+" or hw_type == "ultra":
 			internal = "ide" in self.phys_path
 		else:
-			internal = ("pci" or "ahci") in self.phys_path
-
-		if MODEL == 'sf8008':
+			internal = ("pci" in self.phys_path or "ahci" in self.phys_path)
+		if MODEL == "sf8008":
 			internal = ("usb1/1-1/1-1.1/1-1.1:1.0" in self.phys_path) or ("usb1/1-1/1-1.4/1-1.4:1.0" in self.phys_path)
-
 		if card:
 			ret += type_name
 		elif internal:
@@ -201,12 +197,12 @@ class Harddisk:
 	def diskSize(self):
 		cap = 0
 		try:
-			line = readFile(self.sysfsPath('size'))
+			line = readFile(self.sysfsPath("size"))
 			cap = int(line)
-		except:
+		except Exception:
 			dev = self.findMount()
 			if dev:
-				stat = os.statvfs(dev)
+				stat = statvfs(dev)
 				cap = int(stat.f_blocks * stat.f_bsize)
 				return cap // 1000 // 1000
 			else:
@@ -218,32 +214,32 @@ class Harddisk:
 		if cap == 0:
 			return ""
 		if cap < 1000:
-			return _("%03d MB") % cap
+			return _("%03d MB") % cap  # IanSav: Does this need to be translated?
 		return _("%d.%03d GB") % (cap // 1000, cap % 1000)
 
 	def model(self):
 		try:
 			if self.device[:2] == "hd":
-				return readFile('/proc/ide/' + self.device + '/model')
+				return readFile(join("/proc/ide", self.device, "model"))
 			elif self.device[:2] == "sd":
-				vendor = readFile(self.phys_path + '/vendor')
-				model = readFile(self.phys_path + '/model')
-				return vendor + '(' + model + ')'
-			elif self.device.startswith('mmcblk'):
-				return readFile(self.sysfsPath('device/name'))
+				vendor = readFile(join(self.phys_path, "vendor"))
+				model = readFile(join(self.phys_path, "model"))
+				return f"{vendor}({model})"
+			elif self.device.startswith("mmcblk"):
+				return readFile(self.sysfsPath("device/name"))
 			else:
 				raise Exception("no hdX or sdX or mmcX")
-		except Exception as e:
-			#print "[Harddisk] Failed to get model:", e
+		except Exception as err:
+			# print(f"[Harddisk] Error {err.errno}: Failed to get model!  ({err.strerror})")
 			return "-?-"
 
 	def free(self):
 		dev = self.findMount()
 		if dev:
 			try:
-				stat = os.statvfs(dev)
+				stat = statvfs(dev)
 				return int((stat.f_bfree / 1000) * (stat.f_bsize / 1024))
-			except:
+			except Exception:
 				pass
 		return -1
 
@@ -251,16 +247,15 @@ class Harddisk:
 		numPart = -1
 		if self.type == DEVTYPE_UDEV:
 			try:
-				devdir = os.listdir('/dev')
+				devdir = listdir("/dev")
 			except OSError:
 				return -1
 			for filename in devdir:
 				if filename.startswith(self.device):
 					numPart += 1
-
 		elif self.type == DEVTYPE_DEVFS:
 			try:
-				idedir = os.listdir(self.dev_path)
+				idedir = listdir(self.dev_path)
 			except OSError:
 				return -1
 			for filename in idedir:
@@ -271,15 +266,15 @@ class Harddisk:
 		return numPart
 
 	def mountDevice(self):
-		for parts in getProcMounts():
-			if os.path.realpath(parts[0]).startswith(self.dev_path):
+		for parts in getProcMountsNew():
+			if realpath(parts[0]).startswith(self.dev_path):
 				self.mount_device = parts[0]
 				self.mount_path = parts[1]
 				return parts[1]
 
 	def enumMountDevices(self):
-		for parts in getProcMounts():
-			if os.path.realpath(parts[0]).startswith(self.dev_path):
+		for parts in getProcMountsNew():
+			if realpath(parts[0]).startswith(self.dev_path):
 				yield parts[1]
 
 	def findMount(self):
@@ -289,28 +284,23 @@ class Harddisk:
 
 	def unmount(self):
 		dev = self.mountDevice()
-		if dev is None:
-			# not mounted, return OK
+		if dev is None:  # Not mounted, return OK.
 			return 0
-		cmd = 'umount ' + dev
-		print("[Harddisk]", cmd)
-		res = os.system(cmd)
+		cmd = f"umount {dev}"
+		print(f"[Harddisk] Command: '{cmd}'.")
+		res = system(cmd)
 		return res >> 8
 
-	def createPartition(self):
-		# No longer supported, use createInitializeJob instead
+	def createPartition(self):  # No longer supported, use createInitializeJob instead!
 		return 1
 
-	def mkfs(self):
-		# No longer supported, use createInitializeJob instead
+	def mkfs(self):  # No longer supported, use createInitializeJob instead!
 		return 1
 
 	def mount(self):
-		# try mounting through fstab first
-		if self.mount_device is None:
+		if self.mount_device is None:  # Try mounting through fstab first.
 			dev = self.partitionPath("1")
-		else:
-			# if previously mounted, use the same spot
+		else:  # If previously mounted, use the same spot.
 			dev = self.mount_device
 		try:
 			fstab = open("/etc/fstab")
@@ -320,38 +310,33 @@ class Harddisk:
 			return -1
 		for line in lines:
 			parts = line.strip().split(" ")
-			fspath = os.path.realpath(parts[0])
+			fspath = realpath(parts[0])
 			if fspath == dev:
-				print("[Harddisk] mounting:", fspath)
-				cmd = "mount -t auto " + fspath
-				res = os.system(cmd)
+				print(f"[Harddisk] Mounting '{fspath}'.")
+				cmd = f"mount -t auto {fspath}"
+				res = system(cmd)
 				return res >> 8
-		# device is not in fstab
-		res = -1
+
+		res = -1  # Device is not in fstab.
 		if self.type == DEVTYPE_UDEV:
-			# we can let udev do the job, re-read the partition table
-			res = os.system('hdparm -z ' + self.disk_path)
-			# give udev some time to make the mount, which it will do asynchronously
-			from time import sleep
-			sleep(3)
+			res = system(f"hdparm -z {self.disk_path}")  # We can let udev do the job, re-read the partition table.
+			sleep(3)  # Give udev some time to make the mount, which it will do asynchronously.
 		return res >> 8
 
-	def fsck(self):
-		# No longer supported, use createCheckJob instead
+	def fsck(self):  # No longer supported, use createCheckJob instead!
 		return 1
 
 	def killPartitionTable(self):
-		zero = 512 * b'\0'
-		h = open(self.dev_path, 'wb')
-		# delete first 9 sectors, which will likely kill the first partition too
-		for i in list(range(9)):
+		zero = 512 * b"\0"
+		h = open(self.dev_path, "wb")
+		for i in list(range(9)):  # Delete first 9 sectors, which will likely kill the first partition too.
 			h.write(zero)
 		h.close()
 
 	def killPartition(self, n):
-		zero = 512 * b'\0'
+		zero = 512 * b"\0"
 		part = self.partitionPath(n)
-		h = open(part, 'wb')
+		h = open(part, "wb")
 		for i in list(range(3)):
 			h.write(zero)
 		h.close()
@@ -359,45 +344,29 @@ class Harddisk:
 	def createInitializeJob(self):
 		job = Components.Task.Job(_("Initializing storage device..."))
 		size = self.diskSize()
-		print("[Harddisk][HD] size: %s MB" % size)
-
+		print(f"[Harddisk] Storage size {size} MB.")
 		task = UnmountTask(job, self)
-
 		task = Components.Task.PythonTask(job, _("Removing partition table"))
 		task.work = self.killPartitionTable
 		task.weighting = 1
-
 		task = Components.Task.LoggingTask(job, _("Rereading partition table"))
 		task.weighting = 1
-		task.setTool('hdparm')
-		task.args.append('-z')
+		task.setTool("hdparm")
+		task.args.append("-z")
 		task.args.append(self.disk_path)
-
 		task = Components.Task.ConditionTask(job, _("Waiting for partition"), timeoutCount=20)
-		task.check = lambda: not os.path.exists(self.partitionPath("1"))
+		task.check = lambda: not exists(self.partitionPath("1"))
 		task.weighting = 1
-
 		task = Components.Task.LoggingTask(job, _("Creating partition"))
 		task.weighting = 5
-		task.setTool('parted')
-		if size < 1024:
-			# On very small devices, align to block only
-			alignment = 'min'
-		else:
-			# Prefer optimal alignment for performance
-			alignment = 'opt'
-		if size > 2097151:
-			parttype = 'gpt'
-		else:
-			parttype = 'msdos'
-		task.args += ['-a', alignment, '-s', self.disk_path, 'mklabel', parttype, 'mkpart', 'primary', '0%', '100%']
-
+		task.setTool("parted")
+		alignment = "min" if size < 1024 else "opt"  # On very small devices, align to block only, prefer optimal alignment for performance.
+		parttype = "gpt" if size > 2097151 else "msdos"
+		task.args += ["-a", alignment, "-s", self.disk_path, "mklabel", parttype, "mkpart", "primary", "0%", "100%"]
 		task = Components.Task.ConditionTask(job, _("Waiting for partition"))
-		task.check = lambda: os.path.exists(self.partitionPath("1"))
+		task.check = lambda: exists(self.partitionPath("1"))
 		task.weighting = 1
-
 		task = UnmountTask(job, self)
-
 		task = MkfsTask(job, _("Creating file system"))
 		big_o_options = ["dir_index"]
 		if isFileSystemSupported("ext4"):
@@ -405,48 +374,38 @@ class Harddisk:
 		else:
 			task.setTool("mkfs.ext3")
 		if size > 250000:
-			# No more than 256k i-nodes (prevent problems with fsck memory requirements)
-			task.args += ["-T", "largefile", "-N", "262144"]
+			task.args += ["-T", "largefile", "-N", "262144"]  # No more than 256k i-nodes (prevent problems with fsck memory requirements).
 			big_o_options.append("sparse_super")
 		elif size > 16384:
-			# between 16GB and 250GB: 1 i-node per megabyte
-			task.args += ["-T", "largefile"]
+			task.args += ["-T", "largefile"]  # Between 16GB and 250GB: 1 i-node per megabyte.
 			big_o_options.append("sparse_super")
 		elif size > 2048:
-			# Over 2GB: 32 i-nodes per megabyte
-			task.args += ["-T", "largefile", "-N", str(int(size * 32))]
+			task.args += ["-T", "largefile", "-N", str(int(size * 32))]  # Over 2GB: 32 i-nodes per megabyte.
 		task.args += ["-F", "-F", "-m0", "-O ^metadata_csum", "-O", ",".join(big_o_options), self.partitionPath("1")]
-
 		task = MountTask(job, self)
 		task.weighting = 3
-
 		task = Components.Task.ConditionTask(job, _("Waiting for mount"), timeoutCount=20)
 		task.check = self.mountDevice
 		task.weighting = 1
-
 		return job
 
-	def initialize(self):
-		# no longer supported
+	def initialize(self):  # No longer supported!
 		return -5
 
-	def check(self):
-		# no longer supported
+	def check(self):  # No longer supported!
 		return -5
 
 	def createCheckJob(self):
 		job = Components.Task.Job(_("Checking file system..."))
 		if self.findMount():
-			# Create unmount task if it was not mounted
-			UnmountTask(job, self)
+			UnmountTask(job, self)  # Create unmount task if it was not mounted.
 			dev = self.mount_device
 		else:
-			# otherwise, assume there is one partition
-			dev = self.partitionPath("1")
+			dev = self.partitionPath("1")  # Otherwise, assume there is one partition.
 		task = Components.Task.LoggingTask(job, "fsck")
-		task.setTool('fsck.ext3')
-		task.args.append('-f')
-		task.args.append('-p')
+		task.setTool("fsck.ext3")
+		task.args.append("-f")
+		task.args.append("-p")
 		task.args.append(dev)
 		MountTask(job, self)
 		task = Components.Task.ConditionTask(job, _("Waiting for mount"))
@@ -454,35 +413,33 @@ class Harddisk:
 		return job
 
 	def createExt4ConversionJob(self):
-		if not isFileSystemSupported('ext4'):
+		if not isFileSystemSupported("ext4"):
 			raise Exception("You system does not support ext4")
 		job = Components.Task.Job(_("Converting ext3 to ext4..."))
-		if not os.path.exists('/sbin/tune2fs'):
-			addInstallTask(job, 'e2fsprogs-tune2fs')
+		if not exists("/sbin/tune2fs"):
+			addInstallTask(job, "e2fsprogs-tune2fs")
 		if self.findMount():
-			# Create unmount task if it was not mounted
-			UnmountTask(job, self)
+			UnmountTask(job, self)  # Create unmount task if it was not mounted.
 			dev = self.mount_device
 		else:
-			# otherwise, assume there is one partition
-			dev = self.partitionPath("1")
+			dev = self.partitionPath("1")  # Otherwise, assume there is one partition.
 		task = Components.Task.LoggingTask(job, "fsck")
-		task.setTool('fsck.ext3')
-		task.args.append('-p')
+		task.setTool("fsck.ext3")
+		task.args.append("-p")
 		task.args.append(dev)
 		task = Components.Task.LoggingTask(job, "tune2fs")
-		task.setTool('tune2fs')
-		task.args.append('-O')
-		task.args.append('extents,uninit_bg,dir_index')
-		task.args.append('-o')
-		task.args.append('journal_data_writeback')
+		task.setTool("tune2fs")
+		task.args.append("-O")
+		task.args.append("extents,uninit_bg,dir_index")
+		task.args.append("-o")
+		task.args.append("journal_data_writeback")
 		task.args.append(dev)
 		task = Components.Task.LoggingTask(job, "fsck")
-		task.setTool('fsck.ext4')
-		task.postconditions = []  # ignore result, it will always "fail"
-		task.args.append('-f')
-		task.args.append('-p')
-		task.args.append('-D')
+		task.setTool("fsck.ext4")
+		task.postconditions = []  # Ignore result, it will always "fail".
+		task.args.append("-f")
+		task.args.append("-p")
+		task.args.append("-D")
 		task.args.append(dev)
 		MountTask(job, self)
 		task = Components.Task.ConditionTask(job, _("Waiting for mount"))
@@ -495,26 +452,23 @@ class Harddisk:
 	def getDeviceName(self):
 		return self.disk_path
 
-	# the HDD idle poll daemon.
-	# as some harddrives have a buggy standby timer, we are doing this by hand here.
-	# first, we disable the hardware timer. then, we check every now and then if
-	# any access has been made to the disc. If there has been no access over a specifed time,
-	# we set the hdd into standby.
+	# The HDD idle poll daemon.
+	# As some hard drives have a buggy standby timer, we are doing this by hand here.
+	# First, we disable the hardware timer. Then, we check every now and then if
+	# any access has been made to the disc. If there has been no access over a
+	# specified time, we set the HDD into standby.
+	#
 	def readStats(self):
-		if os.path.exists("/sys/block/%s/stat" % self.device):
-			f = open("/sys/block/%s/stat" % self.device)
-			l = f.read()
-			f.close()
+		if exists(f"/sys/block/{self.device}/stat"):
+			with open(f"/sys/block/{self.device}/stat") as fd:
+				l = fd.read()
 			data = l.split(None, 5)
 			return int(data[0]), int(data[4])
 		else:
 			return -1, -1
 
 	def startIdle(self):
-		from enigma import eTimer
-
-		# disable HDD standby timer
-		if self.bus() == _("External"):
+		if self.bus() == _("External"):  # Disable HDD standby timer.
 			Console().ePopen(("sdparm", "sdparm", "--set=SCT=0", self.disk_path))
 		else:
 			Console().ePopen(("hdparm", "hdparm", "-S0", self.disk_path))
@@ -523,29 +477,25 @@ class Harddisk:
 		self.idle_running = True
 		self.hdd_timer = False
 		try:
-			configsettings = readFile('/etc/enigma2/settings')
+			configsettings = readFile("/etc/enigma2/settings")
 			if "config.usage.hdd_timer" in configsettings:
 				self.hdd_timer = True
-		except:
+		except Exception:
 			self.hdd_timer = False
-		self.setIdleTime(self.max_idle_time)  # kick the idle polling loop
+		self.setIdleTime(self.max_idle_time)  # Kick the idle polling loop.
 
 	def runIdle(self):
 		if not self.max_idle_time:
 			return
-		t = time.time()
-
+		t = time()
 		idle_time = t - self.last_access
-
 		stats = self.readStats()
 		l = sum(stats)
-
-		if l != self.last_stat and l >= 0:  # access
+		if l != self.last_stat and l >= 0:  # Access.
 			self.last_stat = l
 			self.last_access = t
 			idle_time = 0
 			self.is_sleeping = False
-
 		if idle_time >= self.max_idle_time and not self.is_sleeping:
 			self.setSleep()
 			self.is_sleeping = True
@@ -562,29 +512,30 @@ class Harddisk:
 			if not idle:
 				self.timer.stop()
 			else:
-				self.timer.start(idle * 100, False)  # poll 10 times per period.
+				self.timer.start(idle * 100, False)  # Poll 10 times per period.
 
 	def isSleeping(self):
 		return self.is_sleeping
 
 
+# For backward compatibility, force_mounted actually means "hotplug".
+#
 class Partition:
-	# for backward compatibility, force_mounted actually means "hotplug"
 	def __init__(self, mountpoint, device=None, description="", force_mounted=False):
 		self.mountpoint = mountpoint
 		self.description = description
 		self.force_mounted = mountpoint and force_mounted
-		self.is_hotplug = force_mounted  # so far; this might change.
+		self.is_hotplug = force_mounted  # So far; this might change.
 		self.device = device
 
 	def __str__(self):
-		return "Partition(mountpoint=%s,description=%s,device=%s)" % (self.mountpoint, self.description, self.device)
+		return f"Partition(mountpoint={self.mountpoint},description={self.description},device={self.device})"
 
 	def stat(self):
 		if self.mountpoint:
-			return os.statvfs(self.mountpoint)
+			return statvfs(self.mountpoint)
 		else:
-			raise OSError("Device %s is not mounted" % self.device)
+			raise OSError(f"Device {self.device} is not mounted")
 
 	def free(self):
 		try:
@@ -601,178 +552,44 @@ class Partition:
 			return None
 
 	def tabbedDescription(self):
-		if self.mountpoint.startswith('/media/net') or self.mountpoint.startswith('/media/autofs'):
-			# Network devices have a user defined name
-			return self.description
-		return self.description + '\t' + self.mountpoint
+		if self.mountpoint.startswith("/media/net") or self.mountpoint.startswith("/media/autofs"):
+			return self.description  # Network devices have a user defined name
+		return f"{self.description}\t{self.mountpoint}"
 
 	def mounted(self, mounts=None):
-		# THANK YOU PYTHON FOR STRIPPING AWAY f_fsid.
-		# TODO: can os.path.ismount be used?
+		# THANK YOU PYTHON FOR STRIPPING AWAY f_fsid!
+		# TODO: Can os.path.ismount be used?
 		if self.force_mounted:
 			return True
 		if self.mountpoint:
 			if mounts is None:
-				mounts = getProcMounts()
+				mounts = getProcMountsNew()
 			for parts in mounts:
-				if self.mountpoint.startswith(parts[1]):  # use startswith so a mount not ending with '/' is also detected.
+				if self.mountpoint.startswith(parts[1]):  # Use startswith so a mount not ending with "/" is also detected.
 					return True
 		return False
 
 	def filesystem(self, mounts=None):
 		if self.mountpoint:
 			if mounts is None:
-				mounts = getProcMounts()
+				mounts = getProcMountsNew()
 			for fields in mounts:
-				if self.mountpoint.endswith('/') and not self.mountpoint == '/':
-					if fields[1] + '/' == self.mountpoint:
+				if self.mountpoint.endswith("/") and not self.mountpoint == "/":
+					if join(fields[1], "") == self.mountpoint:
 						return fields[2]
 				else:
 					if fields[1] == self.mountpoint:
 						return fields[2]
-		return ''
-
-
-DEVICEDB = \
-	{"one":
-		{
-			"/devices/platform/ff500000.dwc3/xhci-hcd.0.auto/usb1": _("USB 2.0 (Back, inner)"),
-			"/devices/platform/ff500000.dwc3/xhci-hcd.0.auto/usb2": _("USB 3.0 (Back, outer)"),
-		},
-	"two":
-		{
-			"/devices/platform/ff500000.dwc3/xhci-hcd.0.auto/usb1": _("USB 2.0 (Back, inner)"),
-			"/devices/platform/ff500000.dwc3/xhci-hcd.0.auto/usb2": _("USB 3.0 (Back, outer)"),
-		},
-	"dm8000":
-		{
-			"/devices/pci0000:01/0000:01:00.0/host1/target1:0:0/1:0:0:0": _("SATA"),
-			"/devices/platform/brcm-ehci.0/usb1/1-1/1-1.1/1-1.1:1.0": _("Front USB"),
-			"/devices/platform/brcm-ehci.0/usb1/1-1/1-1.1/1-1.1.": _("Front USB"),
-			"/devices/platform/brcm-ehci.0/usb1/1-1/1-1.2/1-1.2:1.0": _("Back, upper USB"),
-			"/devices/platform/brcm-ehci.0/usb1/1-1/1-1.2/1-1.2.": _("Back, upper USB"),
-			"/devices/platform/brcm-ehci.0/usb1/1-1/1-1.3/1-1.3:1.0": _("Back, lower USB"),
-			"/devices/platform/brcm-ehci.0/usb1/1-1/1-1.3/1-1.3.": _("Back, lower USB"),
-			"/devices/platform/brcm-ehci-1.1/usb2/2-1/2-1:1.0/": _("Internal USB"),
-			"/devices/platform/brcm-ohci-1.1/usb4/4-1/4-1:1.0/": _("Internal USB"),
-			"/devices/platform/brcm-ehci.0/usb1/1-1/1-1.4/1-1.4.": _("Internal USB"),
-		},
-	"dm7020hd":
-	{
-		"/devices/pci0000:01/0000:01:00.0/host0/target0:0:0/0:0:0:0": _("SATA"),
-		"/devices/pci0000:01/0000:01:00.0/host1/target1:0:0/1:0:0:0": _("eSATA"),
-		"/devices/platform/brcm-ehci-1.1/usb2/2-1/2-1:1.0": _("Front USB"),
-		"/devices/platform/brcm-ehci-1.1/usb2/2-1/2-1.": _("Front USB"),
-		"/devices/platform/brcm-ehci.0/usb1/1-2/1-2:1.0": _("Back, upper USB"),
-		"/devices/platform/brcm-ehci.0/usb1/1-2/1-2.": _("Back, upper USB"),
-		"/devices/platform/brcm-ehci.0/usb1/1-1/1-1:1.0": _("Back, lower USB"),
-		"/devices/platform/brcm-ehci.0/usb1/1-1/1-1.": _("Back, lower USB"),
-	},
-	"dm7080":
-	{
-		"/devices/pci0000:00/0000:00:00.0/usb9/9-1/": _("Back USB 3.0"),
-		"/devices/pci0000:00/0000:00:00.0/usb9/9-2/": _("Front USB 3.0"),
-		"/devices/platform/ehci-brcm.0/": _("Back, lower USB"),
-		"/devices/platform/ehci-brcm.1/": _("Back, upper USB"),
-		"/devices/platform/ehci-brcm.2/": _("Internal USB"),
-		"/devices/platform/ehci-brcm.3/": _("Internal USB"),
-		"/devices/platform/ohci-brcm.0/": _("Back, lower USB"),
-		"/devices/platform/ohci-brcm.1/": _("Back, upper USB"),
-		"/devices/platform/ohci-brcm.2/": _("Internal USB"),
-		"/devices/platform/ohci-brcm.3/": _("Internal USB"),
-		"/devices/platform/sdhci-brcmstb.0/": _("eMMC"),
-		"/devices/platform/sdhci-brcmstb.1/": _("SD"),
-		"/devices/platform/strict-ahci.0/ata1/": _("SATA"),  # front
-		"/devices/platform/strict-ahci.0/ata2/": _("SATA"),  # back
-	},
-	"dm800":
-	{
-		"/devices/pci0000:01/0000:01:00.0/host0/target0:0:0/0:0:0:0": _("SATA"),
-		"/devices/platform/brcm-ehci.0/usb1/1-2/1-2:1.0": _("Upper USB"),
-		"/devices/platform/brcm-ehci.0/usb1/1-1/1-1:1.0": _("Lower USB"),
-	},
-	"dm820":
-	{
-		"/devices/platform/ehci-brcm.0/": _("Back, lower USB"),
-		"/devices/platform/ehci-brcm.1/": _("Back, upper USB"),
-		"/devices/platform/ehci-brcm.2/": _("Internal USB"),
-		"/devices/platform/ehci-brcm.3/": _("Internal USB"),
-		"/devices/platform/ohci-brcm.0/": _("Back, lower USB"),
-		"/devices/platform/ohci-brcm.1/": _("Back, upper USB"),
-		"/devices/platform/ohci-brcm.2/": _("Internal USB"),
-		"/devices/platform/ohci-brcm.3/": _("Internal USB"),
-		"/devices/platform/sdhci-brcmstb.0/": _("eMMC"),
-		"/devices/platform/sdhci-brcmstb.1/": _("SD"),
-		"/devices/platform/strict-ahci.0/ata1/": _("SATA"),     # front
-		"/devices/platform/strict-ahci.0/ata2/": _("SATA"),     # back
-	},
-	"dm520":
-	{
-		"/devices/platform/ehci-brcm.0/usb1/1-2/": _("Back, outer USB"),
-		"/devices/platform/ohci-brcm.0/usb2/2-2/": _("Back, outer USB"),
-		"/devices/platform/ehci-brcm.0/usb1/1-1/": _("Back, inner USB"),
-		"/devices/platform/ohci-brcm.0/usb2/2-1/": _("Back, inner USB"),
-	},
-	"dm900":
-	{
-		"/devices/platform/brcmstb-ahci.0/ata1/": _("SATA"),
-		"/devices/rdb.4/f03e0000.sdhci/mmc_host/mmc0/": _("eMMC"),
-		"/devices/rdb.4/f03e0200.sdhci/mmc_host/mmc1/": _("SD"),
-		"/devices/rdb.4/f0470600.ohci_v2/usb6/6-0:1.0/port1/": _("Front USB"),
-		"/devices/rdb.4/f0470300.ehci_v2/usb3/3-0:1.0/port1/": _("Front USB"),
-		"/devices/rdb.4/f0471000.xhci_v2/usb2/2-0:1.0/port1/": _("Front USB"),
-		"/devices/rdb.4/f0470400.ohci_v2/usb5/5-0:1.0/port1/": _("Back USB"),
-		"/devices/rdb.4/f0470500.ehci_v2/usb4/4-0:1.0/port1/": _("Back USB"),
-		"/devices/rdb.4/f0471000.xhci_v2/usb2/2-0:1.0/port2/": _("Back USB"),
-	},
-	"dm920":
-	{
-		"/devices/platform/brcmstb-ahci.0/ata1/": _("SATA"),
-		"/devices/rdb.4/f03e0000.sdhci/mmc_host/mmc0/": _("eMMC"),
-		"/devices/rdb.4/f03e0200.sdhci/mmc_host/mmc1/": _("SD"),
-		"/devices/rdb.4/f0470600.ohci_v2/usb6/6-0:1.0/port1/": _("Front USB"),
-		"/devices/rdb.4/f0470300.ehci_v2/usb3/3-0:1.0/port1/": _("Front USB"),
-		"/devices/rdb.4/f0471000.xhci_v2/usb2/2-0:1.0/port1/": _("Front USB"),
-		"/devices/rdb.4/f0470400.ohci_v2/usb5/5-0:1.0/port1/": _("Back USB"),
-		"/devices/rdb.4/f0470500.ehci_v2/usb4/4-0:1.0/port1/": _("Back USB"),
-		"/devices/rdb.4/f0471000.xhci_v2/usb2/2-0:1.0/port2/": _("Back USB"),
-	},
-	"dm800se":
-	{
-		"/devices/pci0000:01/0000:01:00.0/host0/target0:0:0/0:0:0:0": _("SATA"),
-		"/devices/pci0000:01/0000:01:00.0/host1/target1:0:0/1:0:0:0": _("eSATA"),
-		"/devices/platform/brcm-ehci.0/usb1/1-2/1-2:1.0": _("Upper USB"),
-		"/devices/platform/brcm-ehci.0/usb1/1-1/1-1:1.0": _("Lower USB"),
-	},
-	"dm500hd":
-	{
-		"/devices/pci0000:01/0000:01:00.0/host1/target1:0:0/1:0:0:0": _("eSATA"),
-		"/devices/pci0000:01/0000:01:00.0/host0/target0:0:0/0:0:0:0": _("eSATA"),
-	},
-	"dm800sev2":
-	{
-		"/devices/pci0000:01/0000:01:00.0/host0/target0:0:0/0:0:0:0": _("SATA"),
-		"/devices/pci0000:01/0000:01:00.0/host1/target1:0:0/1:0:0:0": _("eSATA"),
-		"/devices/platform/brcm-ehci.0/usb1/1-2/1-2:1.0": _("Upper USB"),
-		"/devices/platform/brcm-ehci.0/usb1/1-1/1-1:1.0": _("Lower USB"),
-	},
-	"dm500hdv2":
-	{
-		"/devices/pci0000:01/0000:01:00.0/host1/target1:0:0/1:0:0:0": _("eSATA"),
-		"/devices/pci0000:01/0000:01:00.0/host0/target0:0:0/0:0:0:0": _("eSATA"),
-	}
-	}
-
-DEVICEDB["dm525"] = DEVICEDB["dm520"]
+		return ""
 
 
 def addInstallTask(job, package):
 	task = Components.Task.LoggingTask(job, "update packages")
-	task.setTool('opkg')
-	task.args.append('update')
-	task = Components.Task.LoggingTask(job, "Install " + package)
-	task.setTool('opkg')
-	task.args.append('install')
+	task.setTool("opkg")
+	task.args.append("update")
+	task = Components.Task.LoggingTask(job, f"Install {package}")
+	task.setTool("opkg")
+	task.args.append("install")
 	task.args.append(package)
 
 
@@ -783,14 +600,17 @@ class HarddiskManager:
 		self.partitions = []
 		self.devices_scanned_on_init = []
 		self.on_partition_list_change = CList()
+		self.console = Console()
+		self.enumerateHotPlugDevices(self.init)
+
+	def init(self):
 		self.enumerateBlockDevices()
 		self.enumerateNetworkMounts()
-		# Find stuff not detected by the enumeration
-		p = [("/", _("Internal flash"))]
+		p = [("/", _("Internal flash"))]  # Find stuff not detected by the enumeration.
 		self.partitions.extend([Partition(mountpoint=x[0], description=x[1]) for x in p])
 
 	def getBlockDevInfo(self, blockdev):
-		devpath = "/sys/block/" + blockdev
+		devpath = join("/sys/block", blockdev)
 		error = False
 		removable = False
 		BLACKLIST = []
@@ -798,59 +618,129 @@ class HarddiskManager:
 			BLACKLIST = ["mmcblk0"]
 		elif BoxInfo.getItem("mtdrootfs").startswith("mmcblk1p"):
 			BLACKLIST = ["mmcblk1"]
-
 		blacklisted = False
 		if blockdev[:7] in BLACKLIST:
 			blacklisted = True
-		if blockdev.startswith("mmcblk") and (re.search(r"mmcblk\dboot", blockdev) or re.search(r"mmcblk\drpmb", blockdev)):
+		if blockdev.startswith("mmcblk") and (search(r"mmcblk\dboot", blockdev) or search(r"mmcblk\drpmb", blockdev)) or blockdev == "ram":
 			blacklisted = True
 		is_cdrom = False
 		partitions = []
 		try:
-			if os.path.exists(devpath + "/removable"):
-				removable = bool(int(readFile(devpath + "/removable")))
-			if os.path.exists(devpath + "/dev"):
-				dev = int(readFile(devpath + "/dev").split(':')[0])
+			if exists(join(devpath, "removable")):
+				removable = bool(int(readFile(join(devpath, "removable"))))
+			if exists(join(devpath, "dev")):
+				dev = int(readFile(join(devpath, "dev")).split(":")[0])
 			else:
 				dev = None
-			devlist = [1, 7, 31, 253, 254]  # ram, loop, mtdblock, romblock, ramzswap
+			devlist = [1, 7, 31, 253, 254]  # This is ram, loop, mtdblock, romblock, ramzswap respectively.
 			if dev in devlist:
 				blacklisted = True
-			if blockdev[0:2] == 'sr':
+			if blockdev[0:2] == "sr":
 				is_cdrom = True
-			if blockdev[0:2] == 'hd':
+			if blockdev[0:2] == "hd":
 				try:
-					media = readFile("/proc/ide/%s/media" % blockdev)
+					media = readFile(f"/proc/ide/{blockdev}/media")
 					if "cdrom" in media:
 						is_cdrom = True
 				except OSError:
 					error = True
-			# check for partitions
-			if not is_cdrom and os.path.exists(devpath):
-				for partition in os.listdir(devpath):
+			if not is_cdrom and exists(devpath):  # Check for partitions.
+				for partition in listdir(devpath):
 					if partition[0:len(blockdev)] != blockdev:
 						continue
-					if dev == 179 and not re.search(r"mmcblk\dp\d+", partition):
+					if dev == 179 and not search(r"mmcblk\dp\d+", partition):
 						continue
 					partitions.append(partition)
 			else:
 				self.cd = blockdev
 		except OSError:
 			error = True
-		# check for medium
-		medium_found = True
+		medium_found = True  # Check for medium.
 		try:
-			if os.path.exists("/dev/" + blockdev):
-				open("/dev/" + blockdev).close()
+			if exists(join("/dev", blockdev)):
+				open(join("/dev", blockdev)).close()
 		except OSError as err:
-			if err.errno == 159:  # no medium present
+			if err.errno == 159:  # No medium present.
 				medium_found = False
-
 		return error, blacklisted, removable, is_cdrom, partitions, medium_found
 
+	def enumerateHotPlugDevices(self, callback):
+		def parseDeviceData(inputData):
+			eventData = {}
+			if "\n" in inputData:
+				data = inputData[:-1].split("\n")
+				eventData["mode"] = 1
+			else:
+				data = inputData.split("\0")[:-1]
+				eventData["mode"] = 0
+			for values in data:
+				variable, value = values.split("=", 1)
+				eventData[variable] = value
+			return eventData
+
+		print("[Harddisk] Enumerating hotplug devices.")
+		fileNames = glob("/tmp/hotplug_dev_*")
+		devices = []
+		for fileName in fileNames:
+			with open(fileName) as f:
+				data = f.read()
+				eventData = parseDeviceData(data)
+				device = eventData["DEVNAME"].replace("/dev/", "")
+				shortDevice = device[:7] if device.startswith("mmcblk") else sub(r"[\d]", "", device)
+				removable = fileReadLine(f"/sys/block/{shortDevice}/removable")
+				eventData["SORT"] = 0 if ("pci" in eventData["DEVPATH"] or "ahci" in eventData["DEVPATH"]) and removable == "0" else 1
+				devices.append(eventData)
+				#remove(fileName)
+
+		if devices:
+			devices.sort(key=lambda x: (x["SORT"], x["ID_PART_ENTRY_SIZE"]))
+			mounts = getProcMountsNew()
+			devmounts = [x[0] for x in mounts]
+			mounts = [x[1] for x in mounts if "/media/" in x[1]]
+			possibleMountPoints = [f"/media/{x}" for x in ("usb8", "usb7", "usb6", "usb5", "usb4", "usb3", "usb2", "usb", "hdd") if f"/media/{x}" not in mounts]
+
+			for device in devices:
+				if device["DEVNAME"] not in devmounts:
+					device["MOUNT"] = possibleMountPoints.pop()
+
+			knownDevices = fileReadLines("/etc/udev/known_devices", default=[])
+			newFstab = fileReadLines("/etc/fstab")
+			commands = []
+			for device in devices:
+				ID_FS_UUID = device.get("ID_FS_UUID")
+				DEVNAME = device.get("DEVNAME")
+				if [x for x in newFstab if DEVNAME in x]:
+					print(f"[Harddisk] Add hotplug device: {DEVNAME} ignored because device is already in fstab")
+					continue
+				if [x for x in newFstab if ID_FS_UUID in x]:
+					print(f"[Harddisk] Add hotplug device: {DEVNAME} ignored because uuid is already in fstab")
+					continue
+				mountPoint = device.get("MOUNT")
+				if mountPoint:
+					commands.append(f"/bin/umount -lf {DEVNAME.replace("/dev/", "/media/")}")
+					ID_FS_TYPE = "auto"  # eventData.get("ID_FS_TYPE")
+					knownDevices.append(f"{ID_FS_UUID}:{mountPoint}")
+					newFstab.append(f"UUID={ID_FS_UUID} {mountPoint} {ID_FS_TYPE} defaults 0 0")
+					if not exists(mountPoint):
+						mkdir(mountPoint, 0o755)
+					print(f"[Harddisk] Add hotplug device: {DEVNAME} mount: {mountPoint} to fstab")
+				else:
+					print(f"[Harddisk] Warning! hotplug device: {DEVNAME} has no mountPoint")
+
+			if commands:
+				#def enumerateHotPlugDevicesCallback(*args, **kwargs):
+				#	callback()
+				fileWriteLines("/etc/fstab", newFstab)
+				commands.append("/bin/mount -a")
+				#self.console.eBatch(cmds=commands, callback=enumerateHotPlugDevicesCallback) # eBatch is not working correctly here this needs to be fixed
+				#return
+				for command in commands:
+					self.console.ePopen(command)
+		callback()
+
 	def enumerateBlockDevices(self):
-		print("[Harddisk] enumerating block devices...")
-		for blockdev in os.listdir("/sys/block"):
+		print("[Harddisk] Enumerating block devices.")
+		for blockdev in listdir("/sys/block"):
 			error, blacklisted, removable, is_cdrom, partitions, medium_found = self.addHotplugPartition(blockdev)
 			if not error and not blacklisted and medium_found:
 				for part in partitions:
@@ -858,7 +748,7 @@ class HarddiskManager:
 				self.devices_scanned_on_init.append((blockdev, removable, is_cdrom, medium_found))
 
 	def enumerateNetworkMounts(self, refresh=False):
-		print("[Harddisk] Enumerating network mounts...")
+		print("[Harddisk] Enumerating network mounts.")
 		for mount in ("net", "autofs"):
 			netMounts = (exists(join("/media", mount)) and listdir(join("/media", mount))) or []
 			for netMount in netMounts:
@@ -866,7 +756,7 @@ class HarddiskManager:
 				if ismount(path):
 					partition = Partition(mountpoint=path, description=netMount)
 					if str(partition) not in [str(x) for x in self.partitions]:
-						print(f"[Harddisk] New network mount {mount}->{path}.")
+						print(f"[Harddisk] New network mount '{mount}' -> '{path}'.")
 						if refresh:
 							self.addMountedPartition(device=path, desc=netMount)
 						else:
@@ -881,29 +771,29 @@ class HarddiskManager:
 	def getAutofsMountpoint(self, device):
 		r = self.getMountpoint(device)
 		if r is None:
-			return "/media/" + device
+			return join("/media", device)
 		return r
 
 	def getMountpoint(self, device):
-		dev = "/dev/%s" % device
-		for item in getProcMounts():
+		dev = join("/dev", device)
+		for item in getProcMountsNew():
 			if item[0] == dev:
-				return item[1] + '/'
+				return join(item[1], "")
 		return None
 
 	def addHotplugPartition(self, device, physdev=None):
-		# device is the device name, without /dev
-		# physdev is the physical device path, which we (might) use to determine the userfriendly name
+		# device -> the device name, without /dev.
+		# physdev -> the physical device path, which we (might) use to determine the user friendly name.
 		if not physdev:
 			dev, part = self.splitDeviceName(device)
 			try:
-				physdev = os.path.realpath('/sys/block/' + dev + '/device')[4:]
-			except OSError:
+				physdev = realpath(f"/sys/block/{dev}/device")[4:]
+			except OSError as err:
 				physdev = dev
-				print("[Harddisk] couldn't determine blockdev physdev for device", device)
+				print(f"[Harddisk] Error {err.errno}: Couldn't determine blockdev or physdev for device '{device}'!  ({err.strerror})")
 		error, blacklisted, removable, is_cdrom, partitions, medium_found = self.getBlockDevInfo(self.splitDeviceName(device)[0])
 		hw_type = HardwareInfo().get_device_name()
-		if hw_type == 'elite' or hw_type == 'premium' or hw_type == 'premium+' or hw_type == 'ultra':
+		if hw_type == "elite" or hw_type == "premium" or hw_type == "premium+" or hw_type == "ultra":
 			if device[0:3] == "hda":
 				blacklisted = True
 		if not blacklisted and medium_found:
@@ -914,7 +804,7 @@ class HarddiskManager:
 				self.on_partition_list_change("add", p)
 			# see if this is a harddrive
 			l = len(device)
-			if l and (not device[l - 1].isdigit() or (device.startswith('mmcblk') and not re.search(r"mmcblk\dp\d+", device))):
+			if l and (not device[l - 1].isdigit() or (device.startswith("mmcblk") and not search(r"mmcblk\dp\d+", device))):
 				if device not in [hdd.device for hdd in self.hdd]:
 					self.hdd.append(Harddisk(device, removable))
 					self.hdd.sort()
@@ -922,15 +812,15 @@ class HarddiskManager:
 		return error, blacklisted, removable, is_cdrom, partitions, medium_found
 
 	def addHotplugAudiocd(self, device, physdev=None):
-		# device is the device name, without /dev
-		# physdev is the physical device path, which we (might) use to determine the userfriendly name
+		# device -> the device name, without /dev.
+		# physdev -> the physical device path, which we (might) use to determine the user friendly name.
 		if not physdev:
 			dev, part = self.splitDeviceName(device)
 			try:
-				physdev = os.path.realpath('/sys/block/' + dev + '/device')[4:]
-			except OSError:
+				physdev = realpath(f"/sys/block/{dev}/device")[4:]
+			except OSError as err:
 				physdev = dev
-				print("[Harddisk] couldn't determine blockdev physdev for device", device)
+				print(f"[Harddisk] Error {err.errno}: Couldn't determine blockdev or physdev for device '{device}'!  ({err.strerror})")
 		error, blacklisted, removable, is_cdrom, partitions, medium_found = self.getBlockDevInfo(device)
 		if not blacklisted and medium_found:
 			description = self.getUserfriendlyDeviceName(device, physdev)
@@ -944,10 +834,10 @@ class HarddiskManager:
 		for x in self.partitions[:]:
 			if x.device == device:
 				self.partitions.remove(x)
-				if x.mountpoint:  # Plugins won't expect unmounted devices
+				if x.mountpoint:  # Plugins won't expect unmounted devices.
 					self.on_partition_list_change("remove", x)
 		l = len(device)
-		if l and (not device[l - 1].isdigit() or (device.startswith('mmcblk') and not re.search(r"mmcblk\dp\d+", device))):
+		if l and (not device[l - 1].isdigit() or (device.startswith("mmcblk") and not search(r"mmcblk\dp\d+", device))):
 			for hdd in self.hdd:
 				if hdd.device == device:
 					hdd.stop()
@@ -961,10 +851,10 @@ class HarddiskManager:
 	def HDDList(self):
 		list = []
 		for hd in self.hdd:
-			hdd = hd.model() + " - " + hd.bus()
+			hdd = f"{hd.model()} - {hd.bus()}"
 			cap = hd.capacity()
 			if cap != "":
-				hdd += " (" + cap + ")"
+				hdd += f" ({cap})"
 			list.append((hdd, hd))
 		return list
 
@@ -973,28 +863,26 @@ class HarddiskManager:
 
 	def getMountedPartitions(self, onlyhotplug=False, mounts=None):
 		if mounts is None:
-			mounts = getProcMounts()
+			mounts = getProcMountsNew()
 		parts = [x for x in self.partitions if (x.is_hotplug or not onlyhotplug) and x.mounted(mounts)]
 		devs = set([x.device for x in parts])
 		for devname in devs.copy():
 			if not devname:
 				continue
 			dev, part = self.splitDeviceName(devname)
-			if part and dev in devs:  # if this is a partition and we still have the wholedisk, remove wholedisk
+			if part and dev in devs:  # If this is a partition and we still have the whole disk, remove the whole disk.
 				devs.remove(dev)
-
-		# return all devices which are not removed due to being a wholedisk when a partition exists
-		return [x for x in parts if not x.device or x.device in devs]
+		return [x for x in parts if not x.device or x.device in devs]  # Return all devices which are not removed due to being a whole disk when a partition exists.
 
 	def splitDeviceName(self, devname):
-		if re.search(r"^mmcblk\d(?:p\d+$|$)", devname):
-			m = re.search(r"(?P<dev>mmcblk\d)p(?P<part>\d+)$", devname)
+		if search(r"^mmcblk\d(?:p\d+$|$)", devname):
+			m = search(r"(?P<dev>mmcblk\d)p(?P<part>\d+)$", devname)
 			if m:
-				return m.group('dev'), m.group('part') and int(m.group('part')) or 0
+				return m.group("dev"), m.group("part") and int(m.group("part")) or 0
 			else:
 				return devname, 0
 		else:
-			# this works for: sdaX, hdaX, sr0 (which is in fact dev="sr0", part=""). It doesn't work for other names like mtdblock3, but they are blacklisted anyway.
+			# This works for: sdaX, hdaX, sr0 (which is in fact dev="sr0", part=""). It doesn't work for other names like mtdblock3, but they are blacklisted anyway.
 			dev = devname[:3]
 			part = devname[3:]
 			for p in part:
@@ -1006,15 +894,13 @@ class HarddiskManager:
 		dev, part = self.splitDeviceName(dev)
 		description = _("External Storage %s") % dev
 		try:
-			description = readFile("/sys" + phys + "/model")
-		except OSError as s:
-			print("[Harddisk] couldn't read model: ", s)
-		from Tools.HardwareInfo import HardwareInfo
-		for physdevprefix, pdescription in list(DEVICEDB.get(HardwareInfo().device_name, {}).items()):
+			description = readFile(f"/sys{phys}/model")
+		except OSError as err:
+			print(f"[Harddisk] Error {err.errno}: Couldn't read model!  ({err.strerror})")
+		for physdevprefix, pdescription in list(getDeviceDB().items()):
 			if phys.startswith(physdevprefix):
 				description = pdescription
-		# not wholedisk and not partition 1
-		if part and part != 1:
+		if part and part != 1:  # Not whole disk and not partition 1.
 			description += _(" (Partition %d)") % part
 		return description
 
@@ -1022,8 +908,7 @@ class HarddiskManager:
 		device = join(device, "")
 		for x in self.partitions:
 			if x.mountpoint == device:
-				#already_mounted
-				return
+				return  # Already mounted.
 		newpartion = Partition(mountpoint=device, description=desc)
 		self.partitions.append(newpartion)
 		self.on_partition_list_change("add", newpartion)
@@ -1037,15 +922,15 @@ class HarddiskManager:
 
 	def setDVDSpeed(self, device, speed=0):
 		ioctl_flag = int(0x5322)
-		if not device.startswith('/'):
-			device = "/dev/" + device
+		if not device.startswith("/"):
+			device = join("/dev", device)
 		try:
 			from fcntl import ioctl
 			cd = open(device)
 			ioctl(cd.fileno(), ioctl_flag, speed)
 			cd.close()
-		except Exception as ex:
-			print("[Harddisk] Failed to set %s speed to %s" % (device, speed), ex)
+		except OSError as err:
+			print(f"[Harddisk] Error {err.errno}: Failed to set '{device}' speed to {speed}!  ({err.strerror})")
 
 
 class UnmountTask(Components.Task.LoggingTask):
@@ -1056,27 +941,27 @@ class UnmountTask(Components.Task.LoggingTask):
 
 	def prepare(self):
 		try:
-			dev = self.hdd.disk_path.split('/')[-1]
-			open('/dev/nomount.%s' % dev, "wb").close()
-		except Exception as e:
-			print("[Harddisk] ERROR: Failed to create /dev/nomount file:", e)
-		self.setTool('umount')
-		self.args.append('-f')
+			dev = self.hdd.disk_path.split("/")[-1]
+			open(f"/dev/nomount.{dev}", "wb").close()
+		except OSError as err:
+			print(f"[Harddisk] Error {err.errno}: Failed to create '/dev/nomount' file!  ({err.strerror})")
+		self.setTool("umount")
+		self.args.append("-f")
 		for dev in self.hdd.enumMountDevices():
 			self.args.append(dev)
 			self.postconditions.append(Components.Task.ReturncodePostcondition())
 			self.mountpoints.append(dev)
 		if not self.mountpoints:
-			print("[Harddisk] UnmountTask: No mountpoints found?")
-			self.cmd = 'true'
+			print("[Harddisk] UnmountTask: No mount points found?")
+			self.cmd = "true"
 			self.args = [self.cmd]
 
 	def afterRun(self):
 		for path in self.mountpoints:
 			try:
-				os.rmdir(path)
-			except Exception as ex:
-				print("[Harddisk] Failed to remove path '%s':" % path, ex)
+				rmdir(path)
+			except OSError as err:
+				print(f"[Harddisk] Error {err.errno}: Failed to remove path '{path}'!  ({err.strerror})")
 
 
 class MountTask(Components.Task.LoggingTask):
@@ -1086,31 +971,25 @@ class MountTask(Components.Task.LoggingTask):
 
 	def prepare(self):
 		try:
-			dev = self.hdd.disk_path.split('/')[-1]
-			os.unlink('/dev/nomount.%s' % dev)
-		except Exception as e:
-			print("ERROR: Failed to remove /dev/nomount file:", e)
-		# try mounting through fstab first
-		if self.hdd.mount_device is None:
+			dev = self.hdd.disk_path.split("/")[-1]
+			unlink(f"/dev/nomount.{dev}")
+		except OSError as err:
+			print(f"[Harddisk] Error {err.errno}: Failed to remove '/dev/nomount' file!  ({err.strerror})")
+		if self.hdd.mount_device is None:  # Try mounting through fstab first.
 			dev = self.hdd.partitionPath("1")
 		else:
-			# if previously mounted, use the same spot
-			dev = self.hdd.mount_device
-		fstab = open("/etc/fstab")
-		lines = fstab.readlines()
-		fstab.close()
+			dev = self.hdd.mount_device  # If previously mounted, use the same spot.
+		with open("/etc/fstab") as fd:
+			lines = fd.readlines()
 		for line in lines:
 			parts = line.strip().split(" ")
-			fspath = os.path.realpath(parts[0])
-			if os.path.realpath(fspath) == dev:
-				self.setCmdline("mount -t auto " + fspath)
+			fspath = realpath(parts[0])
+			if realpath(fspath) == dev:
+				self.setCmdline(f"mount -t auto {fspath}")
 				self.postconditions.append(Components.Task.ReturncodePostcondition())
 				return
-		# device is not in fstab
-		if self.hdd.type == DEVTYPE_UDEV:
-			# we can let udev do the job, re-read the partition table
-			# Sorry for the sleep 2 hack...
-			self.setCmdline('sleep 2; hdparm -z ' + self.hdd.disk_path)
+		if self.hdd.type == DEVTYPE_UDEV:  # The device is not in fstab.
+			self.setCmdline(f"sleep 2; hdparm -z {self.hdd.disk_path}")  # We can let udev do the job, re-read the partition table. Sorry for the sleep 2 hack.
 			self.postconditions.append(Components.Task.ReturncodePostcondition())
 
 
@@ -1119,19 +998,20 @@ class MkfsTask(Components.Task.LoggingTask):
 		self.fsck_state = None
 
 	def processOutput(self, data):
-		data = six.ensure_str(data)
-		if 'Writing inode tables:' in data or 'Die Superblöcke' in data:
-			self.fsck_state = 'inode'
-		elif self.fsck_state == 'inode':
-			if '/' in data:
+		if isinstance(data, bytes):
+			data = data.decode()
+		if "Writing inode tables:" in data or "Die Superblöcke" in data:
+			self.fsck_state = "inode"
+		elif self.fsck_state == "inode":
+			if "/" in data:
 				try:
-					d = data.strip(' \x08\r\n').split('/', 1)
-					if '\x08' in d[1]:
-						d[1] = d[1].split('\x08', 1)[0]
+					d = data.strip(" \x08\r\n").split("/", 1)
+					if "\x08" in d[1]:
+						d[1] = d[1].split("\x08", 1)[0]
 					self.setProgress(80 * int(d[0]) // int(d[1]))
-				except Exception as e:
-					print("[Harddisk] MkfsTask - [Mkfs] Error:", e)
-				return  # don't log the progess
+				except Exception as err:
+					print(f"[Harddisk] MkfsTask - [Mkfs] Error: {err}!")
+				return  # Don't log the progress.
 		self.log.append(data)
 
 
