@@ -302,7 +302,7 @@ class StorageDevice():
 			print(key, value)
 			setattr(self, key, value)
 
-		self.mount_path = None  # TODO
+		self.mount_path = None
 		self.mount_device = None
 		self.dev_path = self.devicePoint
 		self.disk_path = self.dev_path
@@ -1025,12 +1025,9 @@ class DeviceManager(Screen):
 					self.updateDevices()
 				command = "swapoff" if storageDevice.get("swapState") else "swapon"
 				self.console.ePopen(f"{command} {storageDevice.get("devicePoint")}", swapCallback)
-				return
-			elif storageDevice.get("isPartition"):
+			elif storageDevice.get("isPartition") and not storageDevice.get("fstabMountPoint"):
 				knownDevice = storageDevice.get("knownDevice")
-				if storageDevice.get("fstabMountPoint"):
-					return
-				elif ":None" in knownDevice:
+				if ":None" in knownDevice:
 					knownDevices = fileReadLines("/etc/udev/known_devices", [], source=MODULE_NAME)
 					if knownDevice in knownDevices:
 						knownDevices.remove(knownDevice)
@@ -1049,8 +1046,6 @@ class DeviceManager(Screen):
 						choiceList = [(f"/media/{x}", f"/media/{x}") for x in self.storageDevices.getMountPoints(storageDevice.get("deviceType"), fstab, onlyPossible=True)]
 						self.session.openWithCallback(keyBlueCallback, ChoiceBox, choiceList=choiceList, buttonList=[], windowTitle=title)
 				self.updateDevices()
-			else:
-				pass
 
 	def updateDevices(self):
 		self.buildList()
