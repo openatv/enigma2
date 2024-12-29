@@ -296,9 +296,10 @@ void eConsoleAppContainer::readyRead(int what)
 int eConsoleAppContainer::waitPID()
 {
 	int status;
+	int w;
 	// wait for process end
 	do {
-		int w = waitpid(pid, &status, 0);
+		w = waitpid(pid, &status, 0);
 		if (w == -1) {
 			eDebug("[eConsoleAppContainer] waitPID pid = %d error %d.", pid, w);
 			return w;
