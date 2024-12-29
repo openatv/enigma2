@@ -129,16 +129,15 @@ class MkfsTask(LoggingTask):
 			data = data.decode()
 		if "Writing inode tables:" in data or "Die Superblöcke" in data:
 			self.fsck_state = "inode"
-		elif self.fsck_state == "inode":
-			if "/" in data:
-				try:
-					d = data.strip(" \x08\r\n").split("/", 1)
-					if "\x08" in d[1]:
-						d[1] = d[1].split("\x08", 1)[0]
-					self.setProgress(80 * int(d[0]) // int(d[1]))
-				except Exception as err:
-					print(f"[MkfsTask] MkfsTask - [Mkfs] Error: {err}!")
-				return  # Don't log the progress.
+		elif self.fsck_state == "inode" and "/" in data:
+			try:
+				d = data.strip(" \x08\r\n").split("/", 1)
+				if "\x08" in d[1]:
+					d[1] = d[1].split("\x08", 1)[0]
+				self.setProgress(80 * int(d[0]) // int(d[1]))
+			except Exception as err:
+				print(f"[MkfsTask] MkfsTask - [Mkfs] Error: {err}!")
+			return  # Don't log the progress.
 		self.log.append(data)
 
 
@@ -162,23 +161,23 @@ class StorageDeviceAction(Setup):
 			fileSystems.append("fat")
 		if storageDevice.size <= (32 * 1024 ** 3):  # 32GB
 			fileSystems.append("vfat")  # FAT32
-		else:  # > 32GB
-			if exists("/sbin/mount.exfat"):
-				fileSystems.append("exfat")
+
+		if exists("/usr/sbin/mkfs.exfat"):
+			fileSystems.append("exfat")
 
 		if exists("/usr/bin/ntfsfix") and exists("/usr/sbin/mkntfs"):
 			fileSystems.append("ntfs")  # NTFS optional
 
-		if action == self.ACTION_INITIALIZE:
-			fileSystems.append("swap")
+		fileSystems.append("swap")
 
 		self.formatMode = ConfigSelection(default=0, choices=[(0, _("Simple")), (1, _("Advanced"))])
 		self.formatFilesystems = []
 		self.formatLabels = []
 		self.formatsizes = []
 		self.numOfPartitions = 1
-
-		defaultFs = "ext4"
+		defaultFs = self.storageDevice.fsType if self.storageDevice.isPartition else "ext4"
+		if defaultFs not in fileSystems:
+			defaultFs = "ext4"
 
 		for i in range(4):
 			self.formatFilesystems.append(ConfigSelection(default=defaultFs, choices=[(x, x) for x in fileSystems]))
@@ -201,34 +200,51 @@ class StorageDeviceAction(Setup):
 		]
 		self.formatPartion = ConfigSelection(default=default, choices=choices)
 
-		Setup.__init__(self, session=session, setup="")
-		self.setTitle(f"{actionText} - {self.storageDevice.name}")
+		Setup.__init__(self, session=session, setup="StorageDeviceAction")
+		self.setTitle(actionText)
 
 	def getActionParameters(self):
 		if self.action == self.ACTION_FORMAT:
 			return {"fsType": self.formatFilesystems[0].value, "label": self.formatLabels[0].value}
 		elif self.action == self.ACTION_INITIALIZE:
 			uuids = {}
+			fsTypes = {}
 			for device in [x.replace("/dev/", "") for x in glob(f"{self.storageDevice.devicePoint}*") if x != self.storageDevice.devicePoint]:
 				uuid = fileReadLine(f"/dev/uuid/{device}", default=None, source=MODULE_NAME)
+				fsType = fileReadLine(f"/dev/fstype/{device}", default=None, source=MODULE_NAME)
 				if uuid:
 					uuids[device] = uuid
+				if fsType:
+					fsTypes[device] = fsType
 			if self.formatMode.value:
 				partitions = []
 				for i in range(self.numOfPartitions):
 					if self.formatFilesystems[i].value:
 						partitions.append({"fsType": self.formatFilesystems[i].value, "size": self.formatsizes[i].value, "label": self.formatLabels[i].value})
-				return {"partitionType": self.formatPartion.value, "partitions": partitions, "uuids": uuids}
+				return {"partitionType": self.formatPartion.value, "partitions": partitions, "uuids": uuids, "fsTypes": fsTypes}
 			else:
-				return {"partitionType": self.formatPartion.value, "partitions": [{"fsType": self.formatFilesystems[0].value, "size": 100}], "uuids": uuids}
+				return {"partitionType": self.formatPartion.value, "partitions": [{"fsType": self.formatFilesystems[0].value, "size": 100}], "uuids": uuids, "fsTypes": fsTypes}
 		else:
 			return None
 
 	def createSetup(self):  # NOSONAR silence S2638
 		items = []
 		if self.action == self.ACTION_FORMAT:
+			diskInfo = f"{_("Device")}: {self.storageDevice.name} / {scaleNumber(self.storageDevice.diskSize, format="%.2f")}"
+			if self.storageDevice.location:
+				diskInfo = f"{diskInfo} / {self.storageDevice.location}"
+			items.append((diskInfo,))
+			diskInfo = f"{_("Partition")}: {self.storageDevice.fsType} / {scaleNumber(self.storageDevice.size, format="%.2f")}"
+			items.append((diskInfo,))
+		else:
+			diskInfo = f"{_("Device")}: {self.storageDevice.name} / {scaleNumber(self.storageDevice.diskSize, format="%.2f")}"
+			if self.storageDevice.location:
+				diskInfo = f"{diskInfo} / {self.storageDevice.location}"
+			items.append((diskInfo,))
+		if self.action == self.ACTION_FORMAT:
 			items.append((_("File System"), self.formatFilesystems[0]))
-			items.append((_("Label"), self.formatLabels[0]))
+			if self.formatFilesystems[0].value != "swap":
+				items.append((_("Label"), self.formatLabels[0]))
 		elif self.action == self.ACTION_INITIALIZE:
 			items.append((_("Mode"), self.formatMode))
 			if self.formatMode.value:
@@ -309,9 +325,9 @@ class StorageDevice():
 
 		job = Job(_("Initializing storage device..."))
 
-		task = UnmountTask(job, self)
+		UnmountTask(job, self)
 
-		task = UnmountSwapTask(job, self)
+		UnmountSwapTask(job, self)
 
 		task = LoggingTask(job, _("Removing partition table"))
 		task.setTool('parted')
@@ -329,16 +345,19 @@ class StorageDevice():
 		fsType = options.get("fsType", "ext4")
 		label = options.get("label")
 		job = Job(_("Formatting storage device..."))
-		task = UnmountTask(job, self)
+		UnmountTask(job, self)
+		UnmountSwapTask(job, self)
 		task = MkfsTask(job, _("Creating file system"))
 		task.setTool(f"mkfs.{fsType}")
 		if fsType == "vfat" and label:
 			task.args += ["-n", label]
 		if fsType == "ntfs":
-			task.setTool(f"mkntfs")
+			task.setTool("mkntfs")
 			task.args += ["-Q", "-F"]
 			if label:
 				task.args += ["-L", label]
+		if fsType == "swap":
+			task.setTool("mkswap")
 		elif fsType.startswith("ext"):
 			big_o_options = ["dir_index"]
 			if self.size > 250000 * 1024 * 1024:
@@ -354,7 +373,7 @@ class StorageDevice():
 				task.args += ["-T", "largefile", "-N", str(int((self.size / 1024 / 1024) * 32))]
 			if label:
 				task.args += ["-L", label]
-			if self.UUID:
+			if self.UUID and self.fsType and self.fsType == fsType:
 				task.args += ["-U", self.UUID]
 			task.args += ["-E", "discard", "-F", "-m0", "-O ^metadata_csum", "-O", ",".join(big_o_options)]
 		task.args.append(self.devicePoint)
@@ -371,15 +390,16 @@ class StorageDevice():
 		options = options or {}
 		partitions = options.get("partitions") or []
 		uuids = options.get("uuids") or {}
+		fsTypes = options.get("fsTypes") or {}
 		partitionType = options.get("partitionType")
 
 		job = Job(_("Initializing storage device..."))
 		print(f"[StorageDevice] createInitializeJob size: {scaleNumber(self.size, format="%.2f")}")
 		print(f"[StorageDevice] createInitializeJob partitions: {partitions} uuids: {uuids}")
 
-		task = UnmountTask(job, self)
+		UnmountTask(job, self)
 
-		task = UnmountSwapTask(job, self)
+		UnmountSwapTask(job, self)
 
 		task = LoggingTask(job, _("Removing partition table"))
 		task.setTool('parted')
@@ -426,6 +446,7 @@ class StorageDevice():
 			label = partition.get("label", f"DISK_{index + 1}")
 			device = f"{self.devicePoint}p{index + 1}" if "mmcblk" in self.devicePoint else f"{self.devicePoint}{index + 1}"
 			uuid = uuids.get(device)
+			oldFsType = fsTypes.get(device)
 			task = MkfsTask(job, _("Creating file system"))
 			if fsType == "swap":
 				task.setTool("mkswap")
@@ -434,7 +455,7 @@ class StorageDevice():
 				if fsType == "vfat" and label:
 					task.args += ["-n", label]
 				if fsType == "ntfs":
-					task.setTool(f"mkntfs")
+					task.setTool("mkntfs")
 					task.args += ["-Q", "-F"]
 				if label:
 					task.args += ["-L", label]
@@ -452,7 +473,7 @@ class StorageDevice():
 						# Over 2GB: 32 i-nodes per megabyte
 						task.args += ["-T", "largefile", "-N", str(int((self.size / 1024 / 1024) * 32))]
 					task.args += ["-L", label]
-					if uuid:
+					if uuid and oldFsType and oldFsType == fsType:
 						task.args += ["-U", uuid]
 					task.args += ["-E", "discard", "-F", "-m0", "-O ^metadata_csum", "-O", ",".join(big_o_options)]
 			task.args.append(device)
@@ -497,7 +518,7 @@ class StorageDevice():
 			task = UUIDTask(job, {self.devicePoint.replace("/dev/", ""): self.UUID})
 			task.weighting = 1
 
-		MountTask(job, self)
+		task = MountTask(job, self)
 		task.weighting = 3
 #		task = ConditionTask(job, _("Waiting for mount"))
 #		task.check = self.mountDevice
@@ -517,7 +538,7 @@ class StorageDevice():
 			else:
 				task.args += ["-f", "-p"]
 		task.args.append(self.devicePoint)
-		MountTask(job, self)
+		task = MountTask(job, self)
 		task.weighting = 3
 #		task = ConditionTask(job, _("Waiting for mount"))
 #		task.check = self.mountDevice
@@ -525,9 +546,6 @@ class StorageDevice():
 
 
 class StorageDeviceManager():
-	def __init__(self):
-		pass
-
 	def createDevicesList(self):
 		swapDevices = [x for x in fileReadLines("/proc/swaps", default=[], source=MODULE_NAME) if x.startswith("/") and "partition" in x]
 		partitions = fileReadLines("/proc/partitions", default=[], source=MODULE_NAME)
@@ -579,7 +597,10 @@ class StorageDeviceManager():
 
 		if expanderDisk:
 			for device in deviceList:
-				device["FlashExpander"] = device.get("disk") == expanderDisk
+				if device.get("disk") == expanderDisk:
+					device["FlashExpander"] = True
+					description = device["description"]
+					device["description"] = f"{description}\n{_("Flash Expander")}: {_("Enabled")}"
 
 		for index, line in enumerate(fstab):
 			parts = line.split()
@@ -593,6 +614,7 @@ class StorageDeviceManager():
 					"UUID": UUID,
 					"devicePoint": parts[1],
 					"isUnknown": True,
+					"FlashExpander": False
 				}
 				unknownList.append(deviceData)
 		print("deviceList")
@@ -650,17 +672,29 @@ class StorageDeviceManager():
 					rw = _("None")
 
 		size = 0
+		diskSize = 0
 		for line in partitions:
 			if line.find(device) != -1:
 				parts = line.strip().split()
 				size = int(parts[2]) * 1024
 				break
+
+		if isPartition:
+			for line in partitions:
+				if line.find(device2) != -1:
+					parts = line.strip().split()
+					diskSize = int(parts[2]) * 1024
+					break
+
 		if not size:
 			size = fileReadLine(join("/sys/block", device2, device, "size"), default=None, source=MODULE_NAME)
 			try:
 				size = int(size) * 512
 			except ValueError:
 				size = 0
+
+		if not diskSize:
+			diskSize = size
 		if size:
 			devicePoint = f"/dev/{device}"
 			isMounted = len([parts for parts in mounts if mountP == parts[1]])
@@ -687,7 +721,7 @@ class StorageDeviceManager():
 				description.append(f"{_("Position")}: {deviceLocation}")
 			description = "\n".join(description)
 			deviceData = {
-				"name": model,  # TODO
+				"name": model,
 				"device": device,
 				"disk": device2,
 				"UUID": UUID,
@@ -704,6 +738,7 @@ class StorageDeviceManager():
 				"isPartition": bool(isPartition),
 				"rw": rw,
 				"size": size,
+				"diskSize": diskSize,
 				"mountFsType": mountFsType,
 				"swapState": swapState,
 				"isUnknown": False,
@@ -763,7 +798,7 @@ class DeviceManager(Screen):
 					<mode name="default">
 						<text index="Device" position="34,0" size="220,30" font="0" />
 						<text index="DeviceIndent" position="52,0" size="220,30" font="0" />
-						<text index="Description" position="400,0" size="350,30" font="0" verticalAlignment="top" horizontalAlignment="left" />
+						<text index="Description" position="450,0" size="400,30" font="0" verticalAlignment="top" horizontalAlignment="left" />
 						<text index="Size" position="900,0" size="180,30" font="0" verticalAlignment="top" horizontalAlignment="right" />
 						<text index="PartitionSeparator" position="6,6" size="30,30" font="1" verticalAlignment="center" />
 						<pixmap index="Image" position="0,0" size="30,30" alpha="blend" scale="centerScaled" />
@@ -904,8 +939,7 @@ class DeviceManager(Screen):
 				if storageDevice.get("FlashExpander"):
 					self["key_blue"].setText("")
 				elif storageDevice.get("fsType") == "swap":
-					self["key_blue"].setText("")
-					self["key_green"].setText(_("Off") if storageDevice.get("swapState") else _("On"))
+					self["key_blue"].setText(_("Off") if storageDevice.get("swapState") else _("On"))
 				elif storageDevice.get("isPartition"):
 					if storageDevice.get("fstabMountPoint"):
 						self["key_blue"].setText("")
@@ -936,12 +970,14 @@ class DeviceManager(Screen):
 
 	def keyMountPoints(self):
 		def keyMountPointsCallback(needsReboot=False):
+			self.needReboot = self.needReboot or needsReboot
 			self.updateDevices()
 
 		self.session.openWithCallback(keyMountPointsCallback, DeviceManagerMountPoints, storageDevices=self.storageDevices)
 
 	def keyMountPoint(self):
 		def keyMountPointCallback(needsReboot=False):
+			self.needReboot = self.needReboot or needsReboot
 			self.updateDevices()
 
 		if self["devicelist"].list:
@@ -953,25 +989,11 @@ class DeviceManager(Screen):
 				elif storageDevice.get("fsType") == "swap":
 					def swapCallback(data, retVal, extraArgs):
 						self.updateDevices()
-					command = "swapoff" if storageDevice.swapState else "swapon"
-					self.console.ePopen(f"{command} {storageDevice.devicePoint}", swapCallback)
+					command = "swapoff" if storageDevice.get("swapState") else "swapon"
+					self.console.ePopen(f"{command} {storageDevice.get("devicePoint")}", swapCallback)
 					return
 				elif storageDevice.get("isPartition"):
 					self.session.openWithCallback(keyMountPointCallback, DeviceManagerMountPoints, index=self["devicelist"].getCurrentIndex(), storageDevices=self.storageDevices)
-
-		return
-
-		def keyMountPointCallback(answer):
-			def keyMountPointCallback2(result=None, retval=None, extra_args=None):
-				print("keyMountPointCallback2")
-				print(retval)
-				print(result)
-				isMounted = current[5]
-				mountp = current[3]
-				device = current[4]
-				self.updateDevices()
-				if answer[0] == "None" or device != current[4] or current[5] != isMounted or mountp != current[3]:
-					self.needReboot = True
 
 	def keyBlue(self):
 		def keyBlueCallback(answer):
@@ -999,6 +1021,10 @@ class DeviceManager(Screen):
 		if current:
 			storageDevice = current[self.LIST_DATA]
 			if storageDevice.get("fsType") == "swap":
+				def swapCallback(data, retVal, extraArgs):
+					self.updateDevices()
+				command = "swapoff" if storageDevice.get("swapState") else "swapon"
+				self.console.ePopen(f"{command} {storageDevice.get("devicePoint")}", swapCallback)
 				return
 			elif storageDevice.get("isPartition"):
 				knownDevice = storageDevice.get("knownDevice")
@@ -1070,19 +1096,20 @@ class DeviceManager(Screen):
 
 	def keyActions(self):
 		def keyActionsSetupCallback(options):
-			self.currentOptions = options
-			actionQuestion = {
-				StorageDeviceAction.ACTION_CHECK: _("Do you really want to check the file system?\nThis could take a long time!"),
-				StorageDeviceAction.ACTION_EXT4CONVERSION: _("Do you really want to convert the file system?\nYou cannot go back!")
-			}
-			question = actionQuestion.get(self.currentAction) or _("Do you really want to format the device in the Linux file system?\nAll data on the device will be lost!")
-			if Screens.InfoBar.InfoBar.instance and Screens.InfoBar.InfoBar.instance.timeshiftEnabled():
-				message = "%s\n\n%s" % (question, _("You seem to be in time shift, the service will briefly stop as time shift stops."))
-				message = "%s\n%s" % (message, _("Do you want to continue?"))
-				self.session.openWithCallback(self.stopTimeshift, MessageBox, message)
-			else:
-				message = "%s\n%s" % (question, _("You can continue watching TV etc. while this is running."))
-				self.session.openWithCallback(self.hddConfirmed, MessageBox, message)
+			if options is not None:
+				self.currentOptions = options
+				actionQuestion = {
+					StorageDeviceAction.ACTION_CHECK: _("Do you really want to check the file system?\nThis could take a long time!"),
+					StorageDeviceAction.ACTION_EXT4CONVERSION: _("Do you really want to convert the file system?\nYou cannot go back!")
+				}
+				question = actionQuestion.get(self.currentAction) or _("Do you really want to format the device in the Linux file system?\nAll data on the device will be lost!")
+				if Screens.InfoBar.InfoBar.instance and Screens.InfoBar.InfoBar.instance.timeshiftEnabled():
+					message = "%s\n\n%s" % (question, _("You seem to be in time shift, the service will briefly stop as time shift stops."))
+					message = "%s\n%s" % (message, _("Do you want to continue?"))
+					self.session.openWithCallback(self.stopTimeshift, MessageBox, message)
+				else:
+					message = "%s\n%s" % (question, _("You can continue watching TV etc. while this is running."))
+					self.session.openWithCallback(self.hddConfirmed, MessageBox, message)
 
 		def keyActionsCallback(action):
 			self.currentAction = action
@@ -1126,20 +1153,13 @@ class DeviceManager(Screen):
 				fileSystems.append("fat")
 			if storageDevice.size <= (32 * 1024 ** 3):  # 32GB
 				fileSystems.append("vfat")  # FAT32
-			else:  # > 32GB
-				if exists("/sbin/mount.exfat"):
-					fileSystems.append("exfat")
 
+			if exists("/usr/sbin/fsck.exfat"):
+				fileSystems.append("exfat")
 			if exists("/usr/bin/ntfsfix") and exists("/usr/sbin/mkntfs"):
 				fileSystems.append("ntfs")  # NTFS optional
 
-			if storageDevice.fsType == "swap":
-				def swapCallback(data, retVal, extraArgs):
-					self.updateDevices()
-				command = "swapoff" if storageDevice.swapState else "swapon"
-				self.console.ePopen(f"{command} {storageDevice.devicePoint}", swapCallback)
-				return
-			elif storageDevice.isPartition:
+			if storageDevice.isPartition:
 				choiceList = [
 					(_("Cancel"), 0),
 					(_("Format Storage Device"), StorageDeviceAction.ACTION_FORMAT)
@@ -1184,7 +1204,7 @@ class DeviceManagerMountPoints(Setup):
 			self.storageDevices = storageDevices
 		else:
 			self.storageDevices = StorageDeviceManager()
-		self.devices = self.buildDevices(index)
+		self.devices, self.disks = self.buildDevices(index)
 		self.mountPoints = []
 		self.customMountPoints = []
 		self.fileSystems = []
@@ -1193,7 +1213,7 @@ class DeviceManagerMountPoints(Setup):
 		fstab = fileReadLines("/etc/fstab", default=[], source=MODULE_NAME) if single else []
 		noMediaHdd = len(self.devices) == 1 and not [line for line in fstab if "/media/hdd" in line]  # No media/hdd and only one device
 
-		# device , fstabmountpoint, isMounted , deviceUuid, name, deviceType
+		# device , fstabmountpoint, isMounted , deviceUuid, name, deviceType, fsType, size, disk
 		for index, device in enumerate(self.devices):
 			deviceType = device[5]
 			fstabMountPoint = device[1]
@@ -1203,7 +1223,7 @@ class DeviceManagerMountPoints(Setup):
 
 			if "sr" in device[0]:
 				fileSystems = ["auto", "iso9660", "udf"]
-				choiceList.extend([("/media/cdrom", "/media/cdrom")], [("/media/dvd", "/media/dvd")])
+				choiceList.extend([("/media/cdrom", "/media/cdrom"), ("/media/dvd", "/media/dvd")])
 				defaultMountpoint = fstabMountPoint or "/media/cdrom"
 			else:
 				possibleMounts = [f"/media/{x}" for x in self.storageDevices.getMountPoints(deviceType)]
@@ -1234,40 +1254,43 @@ class DeviceManagerMountPoints(Setup):
 			self.fileSystems.append(NoSave(ConfigSelection(default=fileSystems[0], choices=fileSystemChoices)))
 			self.options.append(NoSave(ConfigText("defaults")))
 
-		Setup.__init__(self, session=session, setup="")
+		Setup.__init__(self, session=session, setup="DeviceManagerMountPoints")
 		self.setTitle(_("Select the mount points"))
 
 	def buildDevices(self, deviceIndex=-1):
 		storageDeviceList, extraList = self.storageDevices.createDevicesList()
 		devices = []
+		disks = {}
 		for index, storageDevice in enumerate(storageDeviceList):
 			if deviceIndex == -1 or index == deviceIndex:
 				if storageDevice.get("fsType") == "swap":
 					continue
-				name = storageDevice.get("name")
-				deviceLocation = storageDevice.get("location")
-				if deviceLocation:
-					name = f"{name} ({deviceLocation})"
 				if storageDevice.get("isPartition"):
-					devices.append((storageDevice.get("devicePoint"), storageDevice.get("fstabMountPoint"), storageDevice.get("isMounted"), storageDevice.get("UUID"), name, storageDevice.get("deviceType")))
-		return devices
+					devices.append((storageDevice.get("devicePoint"), storageDevice.get("fstabMountPoint"), storageDevice.get("isMounted"), storageDevice.get("UUID"), storageDevice.get("name"), storageDevice.get("deviceType"), storageDevice.get("fsType"), storageDevice.get("size"), storageDevice.get("disk")))
+				else:
+					diskInfo = f"{_("Device")}: {storageDevice.get("name")} / {scaleNumber(storageDevice.get("diskSize"), format="%.2f")}"
+					if storageDevice.get("location"):
+						diskInfo = f"{diskInfo} / {storageDevice.get("location")}"
+					disks[storageDevice.get("disk")] = diskInfo
+		return devices, disks
 
 	def appendEntries(self, index, device):
 		items = []
-		items.append(("%s - %s" % (device[0], device[4]),))
-		items.append((_("Mountpoint"), self.mountPoints[index], _("Select the mountpoint for the device."), index))
+		# device , fstabmountpoint, isMounted , deviceUuid, name, deviceType, fsType, size, disk
+		diskInfo = f"{device[0]} / {device[6]} / {scaleNumber(device[7], format="%.2f")}"
+		items.append((diskInfo,))
+		items.append((_("Mountpoint"), self.mountPoints[index], _("Select the mountpoint for the device."), index, device[8]))
 		if self.mountPoints[index].value != "None":
 			if self.mountPoints[index].value == "":
-				items.append((_("Custom mountpoint"), self.customMountPoints[index], _("Define the custom ountpoint for the device."), index))
-			items.append((_("Filesystem"), self.fileSystems[index], _("Select the filesystem for the device."), index))
-			items.append((_("Options"), self.options[index], _("Define the filesystem mount options."), index))
+				items.append((_("Custom mountpoint"), self.customMountPoints[index], _("Define the custom mountpoint for the device."), index, device[8]))
+			items.append((_("Filesystem"), self.fileSystems[index], _("Select the filesystem for the device."), index, device[8]))
+			items.append((_("Options"), self.options[index], _("Define the filesystem mount options."), index, device[8]))
 		return items
 
 	def createSetup(self):  # NOSONAR silence S2638
 		items = []
 		for index, device in enumerate(self.devices):
 			items = items + self.appendEntries(index, device)
-		print(items)
 		Setup.createSetup(self, appendItems=items)
 
 	def changedEntry(self):
@@ -1276,6 +1299,10 @@ class DeviceManagerMountPoints(Setup):
 		if current == self.fileSystems[index]:
 			self.options[index].value = self.defaultOptions.get(self.fileSystems[index].value)
 		Setup.changedEntry(self)
+
+	def setFootnote(self, footnote):
+		disk = self["config"].getCurrent()[4]
+		Setup.setFootnote(self, self.disks.get(disk, ""))
 
 	def keySave(self):
 		def keySaveCallback(result=None, retval=None, extra_args=None):
