@@ -557,24 +557,21 @@ class Partition:
 		return f"{self.description}\t{self.mountpoint}"
 
 	def mounted(self, mounts=None):
-		# THANK YOU PYTHON FOR STRIPPING AWAY f_fsid!
-		# TODO: Can os.path.ismount be used?
-		if self.force_mounted:
-			return True
-		if self.mountpoint:
-			if mounts is None:
-				mounts = getProcMountsNew()
-			for parts in mounts:
-				if self.mountpoint.startswith(parts[1]):  # Use startswith so a mount not ending with "/" is also detected.
-					return True
-		return False
+		return self.mountpoint and ismount(self.mountpoint)
+#		if self.mountpoint:
+#			if mounts is None:
+#				mounts = getProcMountsNew()
+#			for parts in mounts:
+#				if self.mountpoint.startswith(parts[1]):  # Use startswith so a mount not ending with "/" is also detected.
+#					return True
+#		return False
 
 	def filesystem(self, mounts=None):
 		if self.mountpoint:
 			if mounts is None:
 				mounts = getProcMountsNew()
 			for fields in mounts:
-				if self.mountpoint.endswith("/") and not self.mountpoint == "/":
+				if self.mountpoint.endswith("/") and self.mountpoint != "/":
 					if join(fields[1], "") == self.mountpoint:
 						return fields[2]
 				else:
@@ -864,7 +861,7 @@ class HarddiskManager:
 	def getMountedPartitions(self, onlyhotplug=False, mounts=None):
 		if mounts is None:
 			mounts = getProcMountsNew()
-		parts = [x for x in self.partitions if (x.is_hotplug or not onlyhotplug) and x.mounted(mounts)]
+		parts = [x for x in self.partitions if (x.is_hotplug or not onlyhotplug) and (x.force_mounted or x.mounted(mounts))]
 		devs = set([x.device for x in parts])
 		for devname in devs.copy():
 			if not devname:
@@ -1002,16 +999,15 @@ class MkfsTask(Components.Task.LoggingTask):
 			data = data.decode()
 		if "Writing inode tables:" in data or "Die Superblöcke" in data:
 			self.fsck_state = "inode"
-		elif self.fsck_state == "inode":
-			if "/" in data:
-				try:
-					d = data.strip(" \x08\r\n").split("/", 1)
-					if "\x08" in d[1]:
-						d[1] = d[1].split("\x08", 1)[0]
-					self.setProgress(80 * int(d[0]) // int(d[1]))
-				except Exception as err:
-					print(f"[Harddisk] MkfsTask - [Mkfs] Error: {err}!")
-				return  # Don't log the progress.
+		elif self.fsck_state == "inode" and "/" in data:
+			try:
+				d = data.strip(" \x08\r\n").split("/", 1)
+				if "\x08" in d[1]:
+					d[1] = d[1].split("\x08", 1)[0]
+				self.setProgress(80 * int(d[0]) // int(d[1]))
+			except Exception as err:
+				print(f"[Harddisk] MkfsTask - [Mkfs] Error: {err}!")
+			return  # Don't log the progress.
 		self.log.append(data)
 
 
