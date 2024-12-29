@@ -88,7 +88,7 @@ class HotPlugManager:
 			notFound = True
 			mounts = fileReadLines("/proc/mounts")
 			mountPoint = "/media/usb"
-			mountPointDevice = f"/media/{DEVNAME.replace("/dev/", "")}"
+			mountPointDevice = DEVNAME.replace("/dev/", "/media/")
 			mountPointHdd = None if [x.split()[1] for x in mounts if "/media/hdd" in x] else "/media/hdd"
 			knownDevices = fileReadLines("/etc/udev/known_devices", default=[])
 			knownDevice = ""
@@ -105,15 +105,14 @@ class HotPlugManager:
 						notFound = False
 						break
 
-			if notFound:
-				if knownDevices:
-					for device in knownDevices:
-						deviceData = device.split(":")
-						if len(deviceData) == 2 and deviceData[0] == ID_FS_UUID:
-							print("[Hotplug] UUID found in known_devices")
-							knownDevice = deviceData[1]
-							notFound = knownDevice != "None"  # Ignore this device
-							break
+			if notFound and knownDevices:
+				for device in knownDevices:
+					deviceData = device.split(":")
+					if len(deviceData) == 2 and deviceData[0] == ID_FS_UUID:
+						print("[Hotplug] UUID found in known_devices")
+						knownDevice = deviceData[1]
+						notFound = knownDevice != "None"  # Ignore this device
+						break
 
 			if notFound:
 				fstab = fileReadLines("/etc/fstab")
@@ -188,10 +187,9 @@ class HotPlugManager:
 					choiceList.append(
 						(_("Permanently mount as %s") % mountPointHdd, 4),
 					)
-				elif mountPointDevice:
-					choiceList.append(
-						(_("Permanently mount as %s") % mountPointDevice, 5),
-					)
+				choiceList.append(
+					(_("Permanently mount as %s") % mountPointDevice, 5),
+				)
 				ModalMessageBox.instance.showMessageBox(text=text, list=choiceList, default=default, windowTitle=_("New Storage Device"), callback=newDeviceCallback)
 			else:
 				self.timer.start(1000)
@@ -212,7 +210,6 @@ class HotPlugManager:
 				if ID_TYPE == "disk" and DEVTYPE == "partition":
 					self.deviceData.append(eventData)
 					self.timer.start(1000)
-					return
 
 			elif action == "remove":
 				ID_TYPE = eventData.get("ID_TYPE")
