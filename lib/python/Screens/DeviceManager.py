@@ -554,12 +554,12 @@ class StorageDeviceManager():
 		deviceList = []
 		unknownList = []
 		seenDevices = []
-		back = BoxInfo.getItem("mtdblack")
+		black = BoxInfo.getItem("mtdblack")
 		for line in partitions:
 			parts = line.strip().split()
 			if parts:
 				device = parts[3]
-				if not device.startswith(back) and device not in seenDevices:
+				if not device.startswith(black) and device not in seenDevices:
 					seenDevices.append(device)
 		seenDevices.sort()
 
