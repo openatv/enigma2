@@ -671,7 +671,7 @@ class SchedulerOverview(TimerOverviewBase):
 	def __init__(self, session):
 		self["timerlist"] = SchedulerList([])
 		TimerOverviewBase.__init__(self, session, mode=MODE_SCHEDULER)
-		self.skinName = self.skinName.insert(0, "PowerTimerOverview")  # Fallback for old kins
+		self.skinName.insert(0, "PowerTimerOverview")  # Fallback for old skins
 
 	def doChangeCallbackAppend(self):
 		self.session.nav.Scheduler.on_state_change.append(self.onStateChange)
