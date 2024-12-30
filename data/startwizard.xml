@@ -48,8 +48,15 @@ self.condition = self.swapDevice and self.swapDevice == "."
 		<displaytext value="Plug in USB device" />
 		<list>
 			<listentry caption="Retry" step="swap" />
-			<listentry caption="Cancel" step="network" />
+			<listentry caption="Cancel" step="devices" />
 		</list>
+	</step>
+
+	<step id="devices" nextstep="network">
+		<condition>
+self.condition = self.hasDevices()
+		</condition>
+		<config screen="DeviceManagerMountPoints" module="DeviceManager" type="standalone" />
 	</step>
 
 	<step id="network">

@@ -195,11 +195,7 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 			<menu key="extended" level="0" text="System" weight="95">
 				<!-- Menu / Setup / System / Storage devices -->
 				<menu key="harddisk" level="0" text="Storage Devices" weight="45" requires="Harddisk">
-					<item key="harddisk_setup" level="1" text="Hard Disk Settings" weight="0"><setup setupKey="HardDisk" /></item>
-					<item key="harddisk_init" level="0" text="Format Storage Device" weight="5"><screen module="HarddiskSetup" screen="HarddiskSelection" /></item>
-					<item key="harddisk_check" level="0" text="File System Check" weight="10"><screen module="HarddiskSetup" screen="HarddiskFsckSelection" /></item>
-					<item key="harddisk_convert" level="0" text="Convert EXT3 File System to EXT4" weight="15" requires="ext4"><screen module="HarddiskSetup" screen="HarddiskConvertExt4Selection" /></item>
-					<item key="mount_manager" level="0" text="Mount Manager" weight="20"><screen module="MountManager" screen="HddMount" /></item>
+					<item key="device_manager" level="0" text="Device Manager" weight="20"><screen module="DeviceManager" screen="DeviceManager" /></item>
 					<item key="swap_manager" level="2" text="Swap Manager" weight="30"><screen module="SwapManager" screen="Swap" /></item>
 					<item key="flash_expander" level="2" text="Flash Expander" weight="40"><screen module="FlashExpander" screen="FlashExpander" /></item>
 				</menu>

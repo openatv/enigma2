@@ -46,6 +46,7 @@ public:
 	int execute( const char *str );
 	int execute( const char *cmdline, const char *const argv[] );
 	int getPID() { return pid; }
+	int waitPID();
 	void kill();
 	void sendCtrlC();
 	void sendEOF();

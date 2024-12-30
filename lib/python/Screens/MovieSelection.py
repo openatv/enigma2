@@ -1703,8 +1703,8 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 			pass
 
 	def showDeviceMounts(self):
-		from Screens.MountManager import HddMount
-		self.session.open(HddMount)
+		from Screens.DeviceManager import DeviceManager
+		self.session.open(DeviceManager)
 
 	def showActionFeedback(self, text):
 		if self.feedbackTimer is None:

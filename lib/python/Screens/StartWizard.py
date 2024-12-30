@@ -54,6 +54,10 @@ class StartWizard(Wizard, ShowRemoteControl):
 		configfile.save()
 
 	def createSwapFileFlashExpander(self, callback):
+		def messageBoxCallback(*res):
+			if callback:
+				callback()
+
 		def creataSwapFileCallback(result=None, retVal=None, extraArgs=None):
 			fstab = fileReadLines("/etc/fstab", default=[], source=MODULE_NAME)
 			print("[FlashExpander] fstabUpdate DEBUG: Begin fstab:\n%s" % "\n".join(fstab))
@@ -63,11 +67,9 @@ class StartWizard(Wizard, ShowRemoteControl):
 			fileWriteLines("/etc/fstab", "\n".join(fstabNew), source=MODULE_NAME)
 			print("[FlashExpander] fstabUpdate DEBUG: Ending fstab:\n%s" % "\n".join(fstabNew))
 			messageBox.close()
-			if callback:
-				callback()
 
 		print("[StartWizard] DEBUG createSwapFileFlashExpander")
-		messageBox = self.session.open(MessageBox, _("Please wait, swap is is being created. This could take a few minutes to complete."), MessageBox.TYPE_INFO, enable_input=False, windowTitle=_("Create swap"))
+		messageBox = self.session.openWithCallback(messageBoxCallback, MessageBox, _("Please wait, swap is is being created. This could take a few minutes to complete."), MessageBox.TYPE_INFO, enable_input=False, windowTitle=_("Create swap"))
 		fileName = join("/.FlashExpander", "swapfile")
 		commands = []
 		commands.append("/bin/dd if=/dev/zero of='%s' bs=1024 count=131072 2>/dev/null" % fileName)  # Use 128 MB because creation of bigger swap is very slow.
@@ -168,6 +170,9 @@ class StartWizard(Wizard, ShowRemoteControl):
 
 	def isFlashExpanderActive(self):
 		return isdir(join("/%s/%s" % (EXPANDER_MOUNT, EXPANDER_MOUNT), "bin"))
+
+	def hasDevices(self):
+		return harddiskmanager.HDDCount() > 0
 
 	def keyYellow(self):
 		if self.wizard[self.currStep]["name"] == "swap":

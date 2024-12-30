@@ -57,6 +57,7 @@ self.condition = (self.InterfaceState == True )
 		<text value="The Internet connection appears to be working.\n\nPress OK to continue." />
 		<displaytext value="Follow instructions on TV" />
 		<code>
+self.showIP()
 self.clearSelectedKeys()
 self.selectKey("OK")
 		</code>
