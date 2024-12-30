@@ -1014,9 +1014,9 @@ class HdmiCec:
 		now = time()
 		recording = NavigationInstance.instance.getRecordingsCheckBeforeActivateDeepStandby()
 		rectimer = abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - now) <= 900 or NavigationInstance.instance.RecordTimer.getStillRecording() or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - now) <= 900
-		pwrtimer = abs(NavigationInstance.instance.PowerTimer.getNextPowerManagerTime() - now) <= 900 or NavigationInstance.instance.PowerTimer.isProcessing(exceptTimer=0) or not NavigationInstance.instance.PowerTimer.isAutoDeepstandbyEnabled()
-		if recording or rectimer or pwrtimer:
-			self.CECwritedebug(f"[HdmiCec] go not into deepstandby... recording={recording}, rectimer={rectimer}, pwrtimer={pwrtimer}", True)
+		scheduler = abs(NavigationInstance.instance.Scheduler.getNextPowerManagerTime() - now) <= 900 or NavigationInstance.instance.Scheduler.isProcessing(exceptTimer=0) or not NavigationInstance.instance.Scheduler.isAutoDeepstandbyEnabled()
+		if recording or rectimer or scheduler:
+			self.CECwritedebug(f"[HdmiCec] go not into deepstandby... recording={recording}, rectimer={rectimer}, scheduler={scheduler}", True)
 			self.standby()
 		else:
 			from Screens.InfoBar import InfoBar

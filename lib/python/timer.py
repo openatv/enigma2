@@ -101,7 +101,7 @@ class Timer:
 				return
 		if timer.state == TimerEntry.StateEnded:  # Give the timer a chance to re-enqueue.
 			timer.state = TimerEntry.StateWaiting
-		elif "PowerTimerEntry" in repr(timer) and (timer.timerType == 3 or timer.timerType == 4):  # Types: 3=AUTOSTANDBY, 4=AUTODEEPSTANDBY.
+		elif "SchedulerEntry" in repr(timer) and (timer.timerType == 3 or timer.timerType == 4):  # Types: 3=AUTOSTANDBY, 4=AUTODEEPSTANDBY.
 			if timer.state > 0 and timer.keyPressHooked:
 				eActionMap.getInstance().unbindAction("", timer.keyPressed)
 				timer.keyPressHooked = False
@@ -278,10 +278,10 @@ class TimerEntry:
 
 	def shouldSkip(self):  # Check if a timer entry must be skipped.
 		if self.disabled:
-			if self.end <= time() and "PowerTimerEntry" not in repr(self):
+			if self.end <= time() and "SchedulerEntry" not in repr(self):
 				self.disabled = False
 			return True
-		if "PowerTimerEntry" in repr(self):  # Types: 3=AUTOSTANDBY, 4=AUTODEEPSTANDBY.
+		if "SchedulerEntry" in repr(self):  # Types: 3=AUTOSTANDBY, 4=AUTODEEPSTANDBY.
 			if (self.timerType == 3 or self.timerType == 4) and self.autosleeprepeat != "once":
 				return False
 			elif self.begin >= time() and (self.timerType == 3 or self.timerType == 4) and self.autosleeprepeat == "once":

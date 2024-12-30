@@ -15,22 +15,22 @@ from Components.SystemInfo import getBoxDisplayName
 from Components.TimerSanityCheck import TimerSanityCheck
 from Screens.MessageBox import MessageBox
 import Screens.Standby
-from Tools.Directories import SCOPE_CONFIG, fileReadLines, fileReadXML, resolveFilename
+from Tools.Directories import SCOPE_CONFIG, copyFile, fileReadLines, fileReadXML, resolveFilename
 from Tools.Notifications import AddNotification, AddNotificationWithCallback, AddPopup
 from Tools.XMLTools import stringToXML
 
 # try:
 # 	from Screens.InfoBar import InfoBar
 # except Exception as err:
-# 	print("[PowerTimer] Error: Import of 'InfoBar' from 'Screens.InfoBar' failed!  (%s)" % str(err))
+# 	print("[Scheduler] Error: Import of 'InfoBar' from 'Screens.InfoBar' failed!  (%s)" % str(err))
 # 	InfoBar = False
 InfoBar = False
 
 MODULE_NAME = __name__.split(".")[-1]
 DEBUG = config.crash.debugTimers.value
 
-TIMER_XML_FILE = resolveFilename(SCOPE_CONFIG, "pm_timers.xml")
-TIMER_FLAG_FILE = "/tmp/was_powertimer_wakeup"
+TIMER_XML_FILE = resolveFilename(SCOPE_CONFIG, "scheduler.xml")
+TIMER_FLAG_FILE = "/tmp/was_scheduler_wakeup"
 
 wasTimerWakeup = False
 DSsave = False
@@ -77,6 +77,7 @@ class TIMERTYPE:
 	DEEPSTANDBY = 6
 	REBOOT = 7
 	RESTART = 8
+	OTHER = 9
 
 	def __init__(self):
 		pass
@@ -90,11 +91,17 @@ def parseEvent(event):
 	return (begin, end)
 
 
-class PowerTimer(Timer):
+class Scheduler(Timer):
 	def __init__(self):
 		Timer.__init__(self)
 
 	def loadTimers(self):
+
+		# Migrate PowerTimer
+		powerTimerFile = resolveFilename(SCOPE_CONFIG, "pm_timers.xml")
+		if exists(powerTimerFile) and not exists(TIMER_XML_FILE):
+			copyFile(powerTimerFile, TIMER_XML_FILE)
+
 		if exists(TIMER_XML_FILE):
 			timerDom = fileReadXML(TIMER_XML_FILE, source=MODULE_NAME)
 			if timerDom is None:
@@ -102,10 +109,10 @@ class PowerTimer(Timer):
 				try:
 					rename(TIMER_XML_FILE, f"{TIMER_XML_FILE}_bad")
 				except OSError as err:
-					print(f"[PowerTimer] Error {err.errno}: Unable to rename corrupt timer file out of the way!  ({err.strerror})")
+					print(f"[Scheduler] Error {err.errno}: Unable to rename corrupt timer file out of the way!  ({err.strerror})")
 				return
 		else:
-			print(f"[PowerTimer] Note: The timer file '{TIMER_XML_FILE}' was not found!")
+			print(f"[Scheduler] Note: The timer file '{TIMER_XML_FILE}' was not found!")
 			return
 		check = True  # Display a message when at least one timer overlaps another one.
 		for timer in timerDom.findall("timer"):
@@ -130,7 +137,8 @@ class PowerTimer(Timer):
 				TIMERTYPE.STANDBY: "standby",
 				TIMERTYPE.DEEPSTANDBY: "deepstandby",
 				TIMERTYPE.REBOOT: "reboot",
-				TIMERTYPE.RESTART: "restart"
+				TIMERTYPE.RESTART: "restart",
+				TIMERTYPE.OTHER: "other"
 			}[timer.timerType]))
 			timerEntry.append(f"begin=\"{timer.begin}\"")
 			timerEntry.append(f"end=\"{timer.end}\"")
@@ -153,6 +161,9 @@ class PowerTimer(Timer):
 			timerEntry.append(f"trafficlimit=\"{timer.trafficlimit}\"")
 			timerEntry.append(f"netip=\"{timer.netip}\"")
 			timerEntry.append(f"ipadress=\"{timer.ipadress}\"")
+			if timer.function:
+				timerEntry.append(f"function=\"{timer.function}\"")
+
 			timerLog = []
 			for logTime, logCode, logMsg in timer.log_entries:
 				if logTime > int(time()) - saveDays:
@@ -172,7 +183,7 @@ class PowerTimer(Timer):
 				fsync(fd.fileno())
 			rename(f"{TIMER_XML_FILE}.writing", TIMER_XML_FILE)
 		except OSError as err:
-			print(f"[PowerTimer] Error {err.errno}: Unable to save timer entries to '{TIMER_XML_FILE}'!  ({err.strerror})")
+			print(f"[Scheduler] Error {err.errno}: Unable to save timer entries to '{TIMER_XML_FILE}'!  ({err.strerror})")
 
 	def createTimer(self, timerDom):
 		begin = int(timerDom.get("begin"))
@@ -194,12 +205,13 @@ class PowerTimer(Timer):
 			"standby": TIMERTYPE.STANDBY,
 			"deepstandby": TIMERTYPE.DEEPSTANDBY,
 			"reboot": TIMERTYPE.REBOOT,
-			"restart": TIMERTYPE.RESTART
+			"restart": TIMERTYPE.RESTART,
+			"other": TIMERTYPE.OTHER
 		}.get(timerDom.get("timertype", "wakeup"), "wakeup")
 		repeated = timerDom.get("repeated")
 		autosleepbegin = int(timerDom.get("autosleepbegin") or begin)
 		autosleepend = int(timerDom.get("autosleepend") or end)
-		entry = PowerTimerEntry(begin, end, disabled, afterevent, timertype)
+		entry = SchedulerEntry(begin, end, disabled, afterevent, timertype)
 		entry.repeated = int(repeated)
 		entry.autosleepinstandbyonly = timerDom.get("autosleepinstandbyonly", "no")
 		entry.autosleepdelay = int(timerDom.get("autosleepdelay", "0"))
@@ -211,6 +223,7 @@ class PowerTimer(Timer):
 		entry.trafficlimit = int(timerDom.get("trafficlimit", "100"))
 		entry.netip = timerDom.get("netip", "false").lower() in ("true", "yes")
 		entry.ipadress = timerDom.get("ipadress", "0.0.0.0")
+		entry.function = timerDom.get("function")
 		for log in timerDom.findall("log"):
 			entry.log_entries.append((int(log.get("time")), int(log.get("code")), log.text.strip()))
 		return entry
@@ -220,7 +233,7 @@ class PowerTimer(Timer):
 	#
 	def doActivate(self, timer):
 		if timer.shouldSkip():
-			timer.state = PowerTimerEntry.StateEnded
+			timer.state = SchedulerEntry.StateEnded
 		else:
 			# When active returns True this means "accepted", otherwise the current
 			# state is kept. The timer entry itself will fix up the delay.
@@ -229,13 +242,13 @@ class PowerTimer(Timer):
 		try:
 			self.timer_list.remove(timer)
 		except ValueError:
-			print("[PowerTimer] Remove timer from timer list failed!")
-		if timer.state < PowerTimerEntry.StateEnded:  # Did this timer reached the last state?
+			print("[Scheduler] Remove timer from timer list failed!")
+		if timer.state < SchedulerEntry.StateEnded:  # Did this timer reached the last state?
 			insort(self.timer_list, timer)  # No, sort it into active list.
 		else:  # Yes, process repeated, and re-add.
 			if timer.repeated:
 				timer.processRepeated()
-				timer.state = PowerTimerEntry.StateWaiting
+				timer.state = SchedulerEntry.StateWaiting
 				self.addTimerEntry(timer)
 			else:
 
@@ -263,7 +276,7 @@ class PowerTimer(Timer):
 				if nextAct + 3 < now:
 					continue
 				if getNextStbPowerOn and DEBUG:
-					print(f"[PowerTimer] Next STB power up {strftime('%a, %Y/%m/%d %H:%M', localtime(nextAct))}.")
+					print(f"[Scheduler] Next STB power up {strftime('%a, %Y/%m/%d %H:%M', localtime(nextAct))}.")
 				nextTimerType = None
 				nextAfterEvent = None
 				if nextPTlist[0][0] == -1:
@@ -301,14 +314,14 @@ class PowerTimer(Timer):
 			ae = []
 			now = int(time())
 			if DEBUG:
-				print("[PowerTimer] +++++++++++++++")
+				print("[Scheduler] +++++++++++++++")
 			for entry in nextRecTime:
 				if entry[0] < now + 900:
 					tt.append(entry[1])
 				if entry[0] < now + 900:
 					ae.append(entry[2])
 				if DEBUG:
-					print(f"[PowerTimer] {ctime(entry[0])} {str(entry)}.")
+					print(f"[Scheduler] {ctime(entry[0])} {str(entry)}.")
 			if TIMERTYPE.RESTART not in tt:
 				RSsave = False
 			if TIMERTYPE.REBOOT not in tt:
@@ -318,9 +331,9 @@ class PowerTimer(Timer):
 			if AFTEREVENT.DEEPSTANDBY not in ae:
 				aeDSsave = False
 			if DEBUG:
-				print(f"[PowerTimer] RSsave={RSsave}, RBsave={RBsave}, DSsave={DSsave}, aeDSsave={aeDSsave}, wasTimerWakeup={wasTimerWakeup}")
+				print(f"[Scheduler] RSsave={RSsave}, RBsave={RBsave}, DSsave={DSsave}, aeDSsave={aeDSsave}, wasTimerWakeup={wasTimerWakeup}")
 			if DEBUG:
-				print("[PowerTimer] +++++++++++++++")
+				print("[Scheduler] +++++++++++++++")
 			if config.timeshift.isRecording.value:
 				if 0 < nextRecTime[0][0] < fakeTime:
 					return nextRecTime
@@ -347,7 +360,7 @@ class PowerTimer(Timer):
 
 	def record(self, timer, doSave=True):
 		timer.timeChanged()
-		print(f"[PowerTimer] Timer '{str(timer)}'.")
+		print(f"[Scheduler] Timer '{str(timer)}'.")
 		timer.Timer = self
 		self.addTimerEntry(timer)
 		if doSave:
@@ -355,15 +368,15 @@ class PowerTimer(Timer):
 		return None
 
 	def removeEntry(self, timer):
-		print(f"[PowerTimer] Remove timer '{str(timer)}'.")
+		print(f"[Scheduler] Remove timer '{str(timer)}'.")
 		timer.repeated = False  # Avoid re-queuing.
 		timer.autoincrease = False
 		timer.abort()  # Abort timer. This sets the end time to current time, so timer will be stopped.
 		if timer.state != timer.StateEnded:
 			self.timeChanged(timer)
-		# print("[PowerTimer] State: %s." % timer.state)
-		# print("[PowerTimer] In processed: %s." % timer in self.processed_timers)
-		# print("[PowerTimer] In running: %s." % timer in self.timer_list)
+		# print("[Scheduler] State: %s." % timer.state)
+		# print("[Scheduler] In processed: %s." % timer in self.processed_timers)
+		# print("[Scheduler] In running: %s." % timer in self.timer_list)
 		if timer.state != TimerEntry.StateEnded:  # Disable timer first.
 			timer.disable()
 		if not timer.dontSave:  # Auto increase instant timer if possible.
@@ -406,13 +419,13 @@ class PowerTimer(Timer):
 		return isRunning
 
 
-class PowerTimerEntry(TimerEntry):
+class SchedulerEntry(TimerEntry):
 	def __init__(self, begin, end, disabled=False, afterEvent=AFTEREVENT.NONE, timerType=TIMERTYPE.WAKEUP, checkOldTimers=False, autosleepdelay=60):
 		TimerEntry.__init__(self, int(begin), int(end))
-		print("[PowerTimerEntry] DEBUG: Running init code.")
+		print("[SchedulerEntry] DEBUG: Running init code.")
 		if checkOldTimers and self.begin < int(time()) - 1209600:
 			self.begin = int(time())
-		# Check auto PowerTimer.
+		# Check auto Scheduler.
 		if (timerType == TIMERTYPE.AUTOSTANDBY or timerType == TIMERTYPE.AUTODEEPSTANDBY) and not disabled and int(time()) > 3600 and self.begin > int(time()):
 			self.begin = int(time())  # The begin is in the future -> set to current time = no start delay of this timer.
 		if self.end < self.begin:
@@ -434,6 +447,7 @@ class PowerTimerEntry(TimerEntry):
 		self.autosleepwindow = False
 		self.autosleepbegin = self.begin
 		self.autosleepend = self.end
+		self.function = None
 		self.nettraffic = False
 		self.netbytes = 0
 		self.netbytes_time = 0
@@ -455,14 +469,15 @@ class PowerTimerEntry(TimerEntry):
 			TIMERTYPE.STANDBY: "standby",
 			TIMERTYPE.DEEPSTANDBY: "deepstandby",
 			TIMERTYPE.REBOOT: "reboot",
-			TIMERTYPE.RESTART: "restart"
+			TIMERTYPE.RESTART: "restart",
+			TIMERTYPE.OTHER: "other"
 			}[self.timerType]
 		if getType:
 			return timertype
 		if not self.disabled:
-			return f"PowerTimerEntry(type={timertype}, begin={ctime(self.begin)})"
+			return f"SchedulerEntry(type={timertype}, begin={ctime(self.begin)})"
 		else:
-			return f"PowerTimerEntry(type={timertype}, begin={ctime(self.begin)} Disabled)"
+			return f"SchedulerEntry(type={timertype}, begin={ctime(self.begin)} Disabled)"
 
 	def activate(self):
 		global DSsave, InfoBar, RBsave, RSsave, aeDSsave, wasTimerWakeup
@@ -470,7 +485,7 @@ class PowerTimerEntry(TimerEntry):
 			try:
 				from Screens.InfoBar import InfoBar
 			except Exception as err:
-				print(f"[PowerTimer] Import 'InfoBar' from 'Screens.InfoBar' failed!  ({str(err)})")
+				print(f"[Scheduler] Import 'InfoBar' from 'Screens.InfoBar' failed!  ({str(err)})")
 		isRecTimerWakeup = breakPT = shiftPT = False
 		now = int(time())
 		nextState = self.state + 1
@@ -496,23 +511,23 @@ class PowerTimerEntry(TimerEntry):
 			if self.timerType == TIMERTYPE.AUTODEEPSTANDBY:
 				self.getNetworkTraffic(getInitialValue=True)
 		if nextState in (self.StateRunning, self.StateEnded):
-			if NavigationInstance.instance.PowerTimer is None:
+			if NavigationInstance.instance.Scheduler is None:
 				# DEBUG: Running/Ended timer at system start has no navigation instance.
-				# First fix: Crash in getPriorityCheck (NavigationInstance.instance.PowerTimer...).
-				# Second fix: Suppress the message "A finished PowerTimer wants to ...".
+				# First fix: Crash in getPriorityCheck (NavigationInstance.instance.Scheduler...).
+				# Second fix: Suppress the message "A finished Scheduler timer wants to ...".
 				if DEBUG:
-					print(f"[PowerTimer] *****NavigationInstance.instance.PowerTimer is None***** {self.timerType} {self.state} {ctime(self.begin)} {ctime(self.end)}.")
+					print(f"[Scheduler] *****NavigationInstance.instance.Scheduler is None***** {self.timerType} {self.state} {ctime(self.begin)} {ctime(self.end)}.")
 				return True
 			elif (nextState == self.StateRunning and abs(self.begin - now) > 900) or (nextState == self.StateEnded and abs(self.end - now) > 900):
 				if self.timerType in (TIMERTYPE.AUTODEEPSTANDBY, TIMERTYPE.AUTOSTANDBY):
-					print(f"[PowerTimer] Time warp detected - set new begin time for {self.__repr__(True)} timer.")
+					print(f"[Scheduler] Time warp detected - set new begin time for {self.__repr__(True)} timer.")
 					if not self.getAutoSleepWindow():
 						return False
 					else:
 						self.begin = now + autoSleepDelay
 						self.end = self.begin
 						return False
-				print(f"[PowerTimer] Time warp detected - timer {self.__repr__(True)} ending without action.")
+				print(f"[Scheduler] Time warp detected - timer {self.__repr__(True)} ending without action.")
 				return True
 			if NavigationInstance.instance.isRecordTimerImageStandard:
 				isRecTimerWakeup = NavigationInstance.instance.RecordTimer.isRecTimerWakeup()
@@ -529,23 +544,23 @@ class PowerTimerEntry(TimerEntry):
 				return True
 			elif self.timerType == TIMERTYPE.WAKEUP:
 				if DEBUG:
-					print("[PowerTimer] self.timerType == TIMERTYPE.WAKEUP:")
+					print("[Scheduler] self.timerType == TIMERTYPE.WAKEUP:")
 				Screens.Standby.TVinStandby.skipHdmiCecNow("wakeuppowertimer")
 				if Screens.Standby.inStandby:
 					Screens.Standby.inStandby.Power()
 				return True
 			elif self.timerType == TIMERTYPE.WAKEUPTOSTANDBY:
 				if DEBUG:
-					print("[PowerTimer] self.timerType == TIMERTYPE.WAKEUPTOSTANDBY:")
+					print("[Scheduler] self.timerType == TIMERTYPE.WAKEUPTOSTANDBY:")
 				return True
 			elif self.timerType == TIMERTYPE.STANDBY:
 				if DEBUG:
-					print("[PowerTimer] self.timerType == TIMERTYPE.STANDBY:")
+					print("[Scheduler] self.timerType == TIMERTYPE.STANDBY:")
 				prioPT = [TIMERTYPE.WAKEUP, TIMERTYPE.RESTART, TIMERTYPE.REBOOT, TIMERTYPE.DEEPSTANDBY]
 				prioPTae = [AFTEREVENT.WAKEUP, AFTEREVENT.DEEPSTANDBY]
 				shiftPT, breakPT = self.getPriorityCheck(prioPT, prioPTae)
 				if not Screens.Standby.inStandby and not breakPT:  # Not already in standby.
-					message = _("A finished PowerTimer wants to set your %s %s to standby. Do that now?") % getBoxDisplayName()
+					message = _("A finished Scheduler timer wants to set your %s %s to standby. Do that now?") % getBoxDisplayName()
 					timeout = int(config.usage.shutdown_msgbox_timeout.value)
 					if InfoBar and InfoBar.instance:
 						InfoBar.instance.openInfoBarMessageWithCallback(self.sendStandbyNotification, message, MessageBox.TYPE_YESNO, timeout=timeout, default=True)
@@ -554,12 +569,12 @@ class PowerTimerEntry(TimerEntry):
 				return True
 			elif self.timerType == TIMERTYPE.AUTOSTANDBY:
 				if DEBUG:
-					print("[PowerTimer] self.timerType == TIMERTYPE.AUTOSTANDBY:")
+					print("[Scheduler] self.timerType == TIMERTYPE.AUTOSTANDBY:")
 				if not self.getAutoSleepWindow():
 					return False
 				if not Screens.Standby.inStandby and not self.messageBoxAnswerPending:  # Not already in standby.
 					self.messageBoxAnswerPending = True
-					message = _("A finished PowerTimer wants to set your %s %s to standby. Do that now?") % getBoxDisplayName()
+					message = _("A finished Scheduler timer wants to set your %s %s to standby. Do that now?") % getBoxDisplayName()
 					timeout = int(config.usage.shutdown_msgbox_timeout.value)
 					if InfoBar and InfoBar.instance:
 						InfoBar.instance.openInfoBarMessageWithCallback(self.sendStandbyNotification, message, MessageBox.TYPE_YESNO, timeout=timeout, default=True)
@@ -578,11 +593,11 @@ class PowerTimerEntry(TimerEntry):
 					self.end = self.begin
 			elif self.timerType == TIMERTYPE.AUTODEEPSTANDBY:
 				if DEBUG:
-					print("[PowerTimer] self.timerType == TIMERTYPE.AUTODEEPSTANDBY:")
+					print("[Scheduler] self.timerType == TIMERTYPE.AUTODEEPSTANDBY:")
 				if not self.getAutoSleepWindow():
 					return False
 				if isRecTimerWakeup or (self.autosleepinstandbyonly == "yes" and not Screens.Standby.inStandby) \
-				or NavigationInstance.instance.PowerTimer.isProcessing() or abs(NavigationInstance.instance.PowerTimer.getNextPowerManagerTime() - now) <= 900 or self.getNetworkAdress() or self.getNetworkTraffic() \
+				or NavigationInstance.instance.Scheduler.isProcessing() or abs(NavigationInstance.instance.Scheduler.getNextPowerManagerTime() - now) <= 900 or self.getNetworkAdress() or self.getNetworkTraffic() \
 				or NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - now) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - now) <= 900:
 					self.do_backoff()
 					self.begin = self.end = int(now) + self.backoff  # Retry.
@@ -591,12 +606,12 @@ class PowerTimerEntry(TimerEntry):
 					if self.autosleeprepeat == "once":
 						self.disabled = True
 					if Screens.Standby.inStandby or self.autosleepinstandbyonly == "noquery":  # In standby or option "without query" is enabled.
-						print("[PowerTimer] quitMainloop #1.")
+						print("[Scheduler] quitMainloop #1.")
 						quitMainloop(1)
 						return True
 					elif not self.messageBoxAnswerPending:
 						self.messageBoxAnswerPending = True
-						message = _("A finished PowerTimer wants to shut down your %s %s. Do that now?") % getBoxDisplayName()
+						message = _("A finished Scheduler timer wants to shut down your %s %s. Do that now?") % getBoxDisplayName()
 						timeout = int(config.usage.shutdown_msgbox_timeout.value)
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(self.sendTryQuitMainloopNotification, message, MessageBox.TYPE_YESNO, timeout=timeout, default=True)
@@ -611,18 +626,18 @@ class PowerTimerEntry(TimerEntry):
 					self.end = self.begin
 			elif self.timerType == TIMERTYPE.RESTART:
 				if DEBUG:
-					print("[PowerTimer] self.timerType == TIMERTYPE.RESTART:")
+					print("[Scheduler] self.timerType == TIMERTYPE.RESTART:")
 				prioPT = [TIMERTYPE.RESTART, TIMERTYPE.REBOOT, TIMERTYPE.DEEPSTANDBY]  # Check priority.
 				prioPTae = [AFTEREVENT.DEEPSTANDBY]
 				shiftPT, breakPT = self.getPriorityCheck(prioPT, prioPTae)
 				if RBsave or aeDSsave or DSsave:  # A timer with higher priority was shifted - no execution of current timer.
 					if DEBUG:
-						print("[PowerTimer] Break #1.")
+						print("[Scheduler] Break #1.")
 					breakPT = True
 				# NOTE: This code can *NEVER* run!
 				# if False:  # A timer with lower priority was shifted - shift now current timer and wait for restore the saved time values from other timer.
 				# 	if DEBUG:
-				# 		print("[PowerTimer] Shift #1.")
+				# 		print("[Scheduler] Shift #1.")
 				# 	breakPT = False
 				# 	shiftPT = True
 				if isRecTimerWakeup or shiftPT or breakPT or NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - now) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - now) <= 900:
@@ -659,10 +674,10 @@ class PowerTimerEntry(TimerEntry):
 						except Exception:
 							pass
 					if Screens.Standby.inStandby:  # In standby.
-						print("[PowerTimer] quitMainloop #4.")
+						print("[Scheduler] quitMainloop #4.")
 						quitMainloop(3)
 					else:
-						message = _("A finished PowerTimer wants to restart the user interface. Do that now?")
+						message = _("A finished Scheduler timer wants to restart the user interface. Do that now?")
 						timeout = int(config.usage.shutdown_msgbox_timeout.value)
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(self.sendTryToRestartNotification, message, MessageBox.TYPE_YESNO, timeout=timeout, default=True)
@@ -672,17 +687,17 @@ class PowerTimerEntry(TimerEntry):
 				return True
 			elif self.timerType == TIMERTYPE.REBOOT:
 				if DEBUG:
-					print("[PowerTimer] self.timerType == TIMERTYPE.REBOOT:")
+					print("[Scheduler] self.timerType == TIMERTYPE.REBOOT:")
 				prioPT = [TIMERTYPE.REBOOT, TIMERTYPE.DEEPSTANDBY]  # Check priority.
 				prioPTae = [AFTEREVENT.DEEPSTANDBY]
 				shiftPT, breakPT = self.getPriorityCheck(prioPT, prioPTae)
 				if aeDSsave or DSsave:  # A timer with higher priority was shifted - no execution of current timer.
 					if DEBUG:
-						print("[PowerTimer] Break #1.")
+						print("[Scheduler] Break #1.")
 					breakPT = True
 				if RSsave:  # A timer with lower priority was shifted - shift now current timer and wait for restore the saved time values from other timer.
 					if DEBUG:
-						print("[PowerTimer] Shift #1.")
+						print("[Scheduler] Shift #1.")
 					breakPT = False
 					shiftPT = True
 				if isRecTimerWakeup or shiftPT or breakPT or NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - now) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - now) <= 900:
@@ -719,10 +734,10 @@ class PowerTimerEntry(TimerEntry):
 						except Exception:
 							pass
 					if Screens.Standby.inStandby:  # In standby.
-						print("[PowerTimer] quitMainloop #3.")
+						print("[Scheduler] quitMainloop #3.")
 						quitMainloop(2)
 					else:
-						message = _("A finished PowerTimer wants to reboot your %s %s. Do that now?") % getBoxDisplayName()
+						message = _("A finished Scheduler timer wants to reboot your %s %s. Do that now?") % getBoxDisplayName()
 						timeout = int(config.usage.shutdown_msgbox_timeout.value)
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(self.sendTryToRebootNotification, message, MessageBox.TYPE_YESNO, timeout=timeout, default=True)
@@ -732,18 +747,18 @@ class PowerTimerEntry(TimerEntry):
 				return True
 			elif self.timerType == TIMERTYPE.DEEPSTANDBY:
 				if DEBUG:
-					print("[PowerTimer] self.timerType == TIMERTYPE.DEEPSTANDBY:")
+					print("[Scheduler] self.timerType == TIMERTYPE.DEEPSTANDBY:")
 				prioPT = [TIMERTYPE.WAKEUP, TIMERTYPE.WAKEUPTOSTANDBY, TIMERTYPE.DEEPSTANDBY]  # Check priority.
 				prioPTae = [AFTEREVENT.WAKEUP, AFTEREVENT.WAKEUPTOSTANDBY, AFTEREVENT.DEEPSTANDBY]
 				shiftPT, breakPT = self.getPriorityCheck(prioPT, prioPTae)
 				# NOTE: This code can *NEVER* run!
 				# if False:  # A timer with higher priority was shifted - no execution of current timer.
 				# 	if DEBUG:
-				# 		print("[PowerTimer] Break #1.")
+				# 		print("[Scheduler] Break #1.")
 				# 	breakPT = True
 				if RSsave or RBsave or aeDSsave:  # A timer with lower priority was shifted - shift now current timer and wait for restore the saved time values from other timer.
 					if DEBUG:
-						print("[PowerTimer] Shift #1.")
+						print("[Scheduler] Shift #1.")
 					breakPT = False
 					shiftPT = True
 				if isRecTimerWakeup or shiftPT or breakPT or NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - now) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - now) <= 900:
@@ -780,10 +795,10 @@ class PowerTimerEntry(TimerEntry):
 						except Exception:
 							pass
 					if Screens.Standby.inStandby:  # In standby.
-						print("[PowerTimer] quitMainloop #2.")
+						print("[Scheduler] quitMainloop #2.")
 						quitMainloop(1)
 					else:
-						message = _("A finished PowerTimer wants to shut down your %s %s. Do that now?") % getBoxDisplayName()
+						message = _("A finished Scheduler timer wants to shut down your %s %s. Do that now?") % getBoxDisplayName()
 						timeout = int(config.usage.shutdown_msgbox_timeout.value)
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(self.sendTryQuitMainloopNotification, message, MessageBox.TYPE_YESNO, timeout=timeout, default=True)
@@ -791,6 +806,40 @@ class PowerTimerEntry(TimerEntry):
 							AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, message, MessageBox.TYPE_YESNO, timeout=timeout, default=True)
 				DSsave = False
 				return True
+			elif self.timerType == TIMERTYPE.OTHER and self.function:
+				if DEBUG:
+					print(f"[Scheduler] self.timerType == TIMERTYPE.OTHER: / function = {self.function}")
+				functionTimerEntry = functionTimer.getItem(self.function)
+				if functionTimerEntry:
+					functionTimerEntryFunction = functionTimerEntry.get("fnc")
+
+					doFunc = False
+					#if self.exec_fnc_when == "standby" and Screens.Standby.inStandby:
+					#	doFunc = True
+					#elif self.exec_fnc_when == "stb_on" and not Screens.Standby.inStandby:
+					#	doFunc = True
+					#elif self.exec_fnc_when == "always":
+					#	doFunc = True
+
+					doFunc = True
+
+					if doFunc:
+						self.end += 7200
+						if functionTimerEntryFunction and callable(functionTimerEntryFunction):
+							functionTimerEntryFunction()
+
+						#if "isThreaded" in functionTimerEntry and not functionTimerEntry["isThreaded"]:
+						#	self.is_threaded = False
+						#elif "isScreen" in functionTimerEntry and not functionTimerEntry["isScreen"]:
+						#	self.is_threaded = False
+						#self.execnotifyafter = self.notify_after_t
+						#if self.notify_t and not Screens.Standby.inStandby:
+						#	Notifications.AddNotificationWithCallback(self.askForScheduledTimer, MessageBox, _("An scheduled task wants to execute following function at your STB\n\n %s \n\nContinue?") % functionTimerEntry["name"], timeout = 20)
+						#else:
+						#	self.askForScheduledTimer(True)
+
+				return True
+
 		elif nextState == self.StateEnded:
 			if self.afterEvent == AFTEREVENT.WAKEUP:
 				Screens.Standby.TVinStandby.skipHdmiCecNow("wakeuppowertimer")
@@ -798,7 +847,7 @@ class PowerTimerEntry(TimerEntry):
 					Screens.Standby.inStandby.Power()
 			elif self.afterEvent == AFTEREVENT.STANDBY:
 				if not Screens.Standby.inStandby:  # Not already in standby.
-					message = _("A finished PowerTimer wants to set your %s %s to standby. Do that now?") % getBoxDisplayName()
+					message = _("A finished Scheduler timer wants to set your %s %s to standby. Do that now?") % getBoxDisplayName()
 					timeout = int(config.usage.shutdown_msgbox_timeout.value)
 					if InfoBar and InfoBar.instance:
 						InfoBar.instance.openInfoBarMessageWithCallback(self.sendStandbyNotification, message, MessageBox.TYPE_YESNO, timeout=timeout, default=True)
@@ -806,22 +855,22 @@ class PowerTimerEntry(TimerEntry):
 						AddNotificationWithCallback(self.sendStandbyNotification, MessageBox, message, MessageBox.TYPE_YESNO, timeout=timeout, default=True)
 			elif self.afterEvent == AFTEREVENT.DEEPSTANDBY:
 				if DEBUG:
-					print("[PowerTimer] self.afterEvent == AFTEREVENT.DEEPSTANDBY:")
+					print("[Scheduler] self.afterEvent == AFTEREVENT.DEEPSTANDBY:")
 				prioPT = [TIMERTYPE.WAKEUP, TIMERTYPE.WAKEUPTOSTANDBY, TIMERTYPE.DEEPSTANDBY]  # Check priority.
 				prioPTae = [AFTEREVENT.WAKEUP, AFTEREVENT.WAKEUPTOSTANDBY, AFTEREVENT.DEEPSTANDBY]
 				shiftPT, breakPT = self.getPriorityCheck(prioPT, prioPTae)
 				if DSsave:  # A timer with higher priority was shifted - no execution of current timer.
 					if DEBUG:
-						print("[PowerTimer] Break #1.")
+						print("[Scheduler] Break #1.")
 					breakPT = True
 				if RSsave or RBsave:  # A timer with lower priority was shifted - shift now current timer and wait for restore the saved time values.
 					if DEBUG:
-						print("[PowerTimer] Shift #1.")
+						print("[Scheduler] Shift #1.")
 					breakPT = False
 					shiftPT = True
 				runningPT = False
-				# Option: Check other PowerTimer is running (currently disabled).
-				# runningPT = NavigationInstance.instance.PowerTimer.isProcessing(exceptTimer = TIMERTYPE.NONE, endedTimer = self.timerType)
+				# Option: Check other Scheduler is running (currently disabled).
+				# runningPT = NavigationInstance.instance.Scheduler.isProcessing(exceptTimer = TIMERTYPE.NONE, endedTimer = self.timerType)
 				if isRecTimerWakeup or shiftPT or breakPT or runningPT or NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - now) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - now) <= 900:
 					if self.repeated and not aeDSsave:
 						self.savebegin = self.begin
@@ -848,17 +897,17 @@ class PowerTimerEntry(TimerEntry):
 						except Exception:
 							pass
 					if Screens.Standby.inStandby:  # In standby.
-						print("[PowerTimer] quitMainloop #5.")
+						print("[Scheduler] quitMainloop #5.")
 						quitMainloop(1)
 					else:
-						message = _("A finished PowerTimer wants to shut down your %s %s. Do that now?") % getBoxDisplayName()
+						message = _("A finished Scheduler timer wants to shut down your %s %s. Do that now?") % getBoxDisplayName()
 						timeout = int(config.usage.shutdown_msgbox_timeout.value)
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(self.sendTryQuitMainloopNotification, message, MessageBox.TYPE_YESNO, timeout, default=True)
 						else:
 							AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, message, MessageBox.TYPE_YESNO, timeout=timeout, default=True)
 				aeDSsave = False
-			NavigationInstance.instance.PowerTimer.saveTimers()
+			NavigationInstance.instance.Scheduler.saveTimers()
 			self.resetTimerWakeup()
 			return True
 
@@ -867,7 +916,7 @@ class PowerTimerEntry(TimerEntry):
 		if exists(TIMER_FLAG_FILE):
 			remove(TIMER_FLAG_FILE)
 			if DEBUG:
-				print("[PowerTimer] Reset wakeup state.")
+				print("[Scheduler] Reset wakeup state.")
 		wasTimerWakeup = False
 
 	def getNextActivation(self):
@@ -906,7 +955,7 @@ class PowerTimerEntry(TimerEntry):
 		if not self.autoincrease:
 			return False
 		newEnd = int(time()) + self.autoincreasetime if timer is None else timer.begin - 30
-		dummyTimer = PowerTimerEntry(self.begin, newEnd, disabled=True, afterEvent=self.afterEvent, timerType=self.timerType)
+		dummyTimer = SchedulerEntry(self.begin, newEnd, disabled=True, afterEvent=self.afterEvent, timerType=self.timerType)
 		dummyTimer.disabled = self.disabled
 		timerSanityCheck = TimerSanityCheck(NavigationInstance.instance.PowerManager.timer_list, dummyTimer)
 		if not timerSanityCheck.check():
@@ -983,24 +1032,24 @@ class PowerTimerEntry(TimerEntry):
 	def getPriorityCheck(self, prioPT, prioPTae):
 		shiftPT = False
 		breakPT = False
-		nextPTlist = NavigationInstance.instance.PowerTimer.getNextPowerManagerTime(getNextTimerTyp=True)
+		nextPTlist = NavigationInstance.instance.Scheduler.getNextPowerManagerTime(getNextTimerTyp=True)
 		for timer in nextPTlist:
 			if abs(timer[0] - int(time())) > 900:  # Check timers within next 15 minutes will start or end.
 				continue
 			if timer[1] is None and timer[2] is None and timer[3] is None:  # Faketime.
 				if DEBUG:
-					print(f"[PowerTimer] Shift #2 - Timer is fake time {ctime(timer[0])} {str(timer)}.")
+					print(f"[Scheduler] Shift #2 - Timer is fake time {ctime(timer[0])} {str(timer)}.")
 				shiftPT = True
 				continue
 			if timer[0] == self.begin and timer[1] == self.timerType and timer[2] is None and timer[3] == self.state or timer[0] == self.end and timer[1] is None and timer[2] == self.afterEvent and timer[3] == self.state:  # Is timer in list itself?
 				if DEBUG:
-					print(f"[PowerTimer] Timer is itself {ctime(timer[0])} {str(timer)}.")
+					print(f"[Scheduler] Timer is itself {ctime(timer[0])} {str(timer)}.")
 				nextPTitself = True
 			else:
 				nextPTitself = False
 			if (timer[1] in prioPT or timer[2] in prioPTae) and not nextPTitself:
 				if DEBUG:
-					print(f"[PowerTimer] Break #2 <= 900 {ctime(timer[0])} {str(timer)}.")
+					print(f"[Scheduler] Break #2 <= 900 {ctime(timer[0])} {str(timer)}.")
 				breakPT = True
 				break
 		return shiftPT, breakPT
@@ -1056,7 +1105,7 @@ class PowerTimerEntry(TimerEntry):
 						retVal = True
 						break
 			except Exception:
-				print(f"[PowerTimer] Error reading IP -> {self.ipadress}!")
+				print(f"[Scheduler] Error reading IP -> {self.ipadress}!")
 		return retVal
 
 	def getNetworkTraffic(self, getInitialValue=False):
@@ -1072,7 +1121,7 @@ class PowerTimerEntry(TimerEntry):
 				if getInitialValue:
 					self.netbytes = newBytes
 					self.netbytes_time = now
-					print(f"[PowerTimer] NetworkTraffic: Initial bytes={newBytes}, time is {ctime(now)}.")
+					print(f"[Scheduler] NetworkTraffic: Initial bytes={newBytes}, time is {ctime(now)}.")
 					return
 				oldBytes = self.netbytes
 				seconds = now - self.netbytes_time
@@ -1080,12 +1129,34 @@ class PowerTimerEntry(TimerEntry):
 				self.netbytes_time = now
 				diffBytes = float(newBytes - oldBytes) * 8.0 / 1024.0 / seconds  # In kbit/s.
 				if diffBytes < 0:
-					print("[PowerTimer] NetworkTraffic: Overflow of interface counter, waiting for next value.")
+					print("[Scheduler] NetworkTraffic: Overflow of interface counter, waiting for next value.")
 					return True
 				else:
-					print(f"[PowerTimer] NetworkTraffic: {diffBytes:0.2f} Kbps ({diffBytes / 8.0 / 1024.0 * seconds:0.2f} MByte in {seconds} seconds), actualBytes={newBytes}, time is {ctime(now)}.")
+					print(f"[Scheduler] NetworkTraffic: {diffBytes:0.2f} Kbps ({diffBytes / 8.0 / 1024.0 * seconds:0.2f} MByte in {seconds} seconds), actualBytes={newBytes}, time is {ctime(now)}.")
 				if diffBytes > self.trafficlimit:
 					return True
 			else:
-				print("[PowerTimer] NetworkTraffic: Unable to access network traffic information! (Try 'cat /proc/net/dev' for testing on command line.)")
+				print("[Scheduler] NetworkTraffic: Unable to access network traffic information! (Try 'cat /proc/net/dev' for testing on command line.)")
 		return False
+
+
+class FunctionTimer:
+	def __init__(self):
+		self.items = {}
+
+	def add(self, fnc):
+		if isinstance(fnc, (tuple, list)) and len(fnc) == 2 and isinstance(fnc[0], str) and isinstance(fnc[1], dict) and fnc[0] not in self.items:
+			self.items[fnc[0]] = fnc[1]
+
+	def remove(self, fncid):
+		if isinstance(fncid, str) and fncid in self.items:
+			self.items.pop(fncid)
+
+	def get(self):
+		return self.items
+
+	def getItem(self, item):
+		return self.items.get(item)
+
+
+functionTimer = FunctionTimer()

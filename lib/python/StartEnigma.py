@@ -282,10 +282,10 @@ class PowerKey:
 		elif action == "standby_noTVshutdown":
 			Screens.Standby.TVinStandby.skipHdmiCecNow(True)
 			self.standby()
-		elif action == "powertimerStandby":
+		elif action == "schedulerStandby":
 			val = 3
 			self.setSleepTimer(val)
-		elif action == "powertimerDeepStandby":
+		elif action == "schedulerDeepStandby":
 			val = 4
 			self.setSleepTimer(val)
 		elif action == "sleeptimer":
@@ -311,25 +311,25 @@ class PowerKey:
 		self.session.open(SleepTimerButton)
 
 	def setSleepTimer(self, val):
-		from PowerTimer import PowerTimerEntry
+		from Scheduler import SchedulerEntry
 		sleeptime = 15
 		data = (int(time() + 60), int(time() + 120))
-		self.addSleepTimer(PowerTimerEntry(checkOldTimers=True, *data, timerType=val, autosleepdelay=sleeptime))
+		self.addSleepTimer(SchedulerEntry(checkOldTimers=True, *data, timerType=val, autosleepdelay=sleeptime))
 
 	def addSleepTimer(self, timer):
-		from Screens.Timers import PowerTimerEdit
-		self.session.openWithCallback(self.finishedAdd, PowerTimerEdit, timer)
+		from Screens.Timers import SchedulerEdit
+		self.session.openWithCallback(self.finishedAdd, SchedulerEdit, timer)
 
 	def finishedAdd(self, answer):
 		if not isinstance(answer, bool) and answer[0]:
 			entry = answer[1]
-			simulTimerList = self.session.nav.PowerTimer.record(entry)
+			simulTimerList = self.session.nav.Scheduler.record(entry)
 
 	def sleepStandby(self):
-		self.doAction(action="powertimerStandby")
+		self.doAction(action="schedulerStandby")
 
 	def sleepDeepStandby(self):
-		self.doAction(action="powertimerDeepStandby")
+		self.doAction(action="schedulerDeepStandby")
 
 
 class AutoScartControl:
@@ -492,10 +492,10 @@ def runScreenTest():
 	# Zap timer.
 	nextZapTime = session.nav.RecordTimer.getNextZapTime()
 	nextZapTimeInStandby = 0
-	# Power timer.
-	tmp = session.nav.PowerTimer.getNextPowerManagerTime(getNextStbPowerOn=True)
-	nextPowerTime = tmp[0]
-	nextPowerTimeInStandby = tmp[1]
+	# Scheduler timer.
+	tmp = session.nav.Scheduler.getNextPowerManagerTime(getNextStbPowerOn=True)
+	nextScheduler = tmp[0]
+	nextSchedulerInStandby = tmp[1]
 	# Plugin timer.
 	tmp = plugins.getNextWakeupTime(getPluginIdent=True)
 	nextPluginTime = tmp[0]
@@ -527,7 +527,7 @@ def runScreenTest():
 	wakeupList = [x for x in (
 		(nextRecordTime, 0, nextRecordTimeInStandby),
 		(nextZapTime, 1, nextZapTimeInStandby),
-		(nextPowerTime, 2, nextPowerTimeInStandby),
+		(nextScheduler, 2, nextSchedulerInStandby),
 		(nextPluginTime, 3, nextPluginTimeInStandby)
 	) if x[0] != -1]
 	wakeupList.sort()
@@ -555,7 +555,7 @@ def runScreenTest():
 		print("[StartEnigma] Set next wakeup type to '%s'%s %s" % ({
 			0: "record-timer",
 			1: "zap-timer",
-			2: "power-timer",
+			2: "scheduler",
 			3: "plugin-timer"
 		}[startTime[1]], nextPluginName, {
 			0: "and starts normal",
