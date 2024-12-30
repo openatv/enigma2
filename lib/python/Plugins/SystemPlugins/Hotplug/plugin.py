@@ -73,6 +73,7 @@ class HotPlugManager:
 		self.timer = eTimer()
 		self.timer.callback.append(self.processDeviceData)
 		self.deviceData = []
+		self.addedDevice = []
 
 	def processDeviceData(self):
 		self.timer.stop()
@@ -120,6 +121,7 @@ class HotPlugManager:
 				if fstabDevice and fstabDevice[0] not in mounts:  # Check if device is already in fstab and if the mountpoint not used
 					Console().ePopen("/bin/mount -a")
 					notFound = False
+					self.newCount += 1
 
 			if notFound and mountPointHdd:  # If device is the first and /media/hdd not mounted
 				knownDevices.append(f"{ID_FS_UUID}:{mountPointHdd}")
@@ -130,6 +132,7 @@ class HotPlugManager:
 				fileWriteLines("/etc/fstab", newFstab)
 				Console().ePopen("/bin/mount -a")
 				notFound = False
+				self.newCount += 1
 
 			if notFound:
 				description = ""
@@ -141,7 +144,7 @@ class HotPlugManager:
 
 				def newDeviceCallback(answer):
 					if answer:
-						if answer in (2, 3):
+						if answer in (2, 3, 4, 5):
 							self.newCount += 1
 						fstab = fileReadLines("/etc/fstab")
 						if answer in (2, 3) and not exists(mountPoint):
@@ -172,8 +175,8 @@ class HotPlugManager:
 							Console().ePopen("/bin/mount -a")
 						if answer in (1, 3, 4, 5):
 							fileWriteLines("/etc/udev/known_devices", knownDevices)
+					self.addedDevice.append((DEVNAME, DEVPATH))
 					self.timer.start(1000)
-					# harddiskmanager.enumerateBlockDevices()
 
 				default = 3
 				choiceList = [
@@ -192,11 +195,13 @@ class HotPlugManager:
 				)
 				ModalMessageBox.instance.showMessageBox(text=text, list=choiceList, default=default, windowTitle=_("New Storage Device"), callback=newDeviceCallback)
 			else:
+				self.addedDevice.append((DEVNAME, DEVPATH))
 				self.timer.start(1000)
 		else:
 			if self.newCount:
 				self.newCount = 0
-				harddiskmanager.enumerateBlockDevices()
+				for device, physicalDevicePath in self.addedDevice:
+					harddiskmanager.addHotplugPartition(device, physicalDevicePath)
 
 	def processHotplugData(self, eventData):
 		mode = eventData.get("mode")
