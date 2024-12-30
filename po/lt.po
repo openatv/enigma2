@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-24 18:40+0000\n"
+"POT-Creation-Date: 2024-12-30 10:59+0000\n"
 "PO-Revision-Date: 2023-06-04 19:16+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -1590,24 +1590,24 @@ msgid "A file from media is in use!"
 msgstr "Medijos failas yra naudojamas!"
 
 #, python-format
-msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
+msgid "A finished Scheduler timer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "Baigtas įjungimo laikmatis nori paleisti iš naujo jūsų %s %s.\n"
 "Paleisti dabar?"
 
-msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
+msgid "A finished Scheduler timer wants to restart the user interface. Do that now?"
 msgstr ""
 "Baigtas įjungimo laikmatis nori grafinę aplinką paleisti iš naujo.\n"
 "Paleisti dabar?"
 
 #, python-format
-msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
+msgid "A finished Scheduler timer wants to set your %s %s to standby. Do that now?"
 msgstr ""
 "Baigtas įjungimo laikmatis nori perjungti Jūsų\n"
 " %s %s į budėjimo režimą. Perjungti dabar?"
 
 #, python-format
-msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
+msgid "A finished Scheduler timer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "Baigtas įjungimo laikmatis nori išjungti jūsų %s %s.\n"
 "Išjungti dabar?"
@@ -1628,11 +1628,11 @@ msgstr ""
 "Baigtas įrašymo laikmatis nori išjungti\n"
 "Jūsų %s %s. Išjungti dabar?"
 
-msgid "Graphical DVB subtitles will be displayed in the selected color, instead of the original colors."
-msgstr ""
-
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr "Nuotolinio valdymo pulto vaizdo paryškinimas rodo, kurį mygtuką nurodo žinynas. Jei nurodytą funkciją atlieka daugiau nei vienas mygtukas, bus rodomas daugiau nei vienas paryškinimas. Po sąrašu esančiame tekste išvardijami aktyvūs mygtukai ir tai, ar funkcijai reikia ilgo mygtuko (-ų) paspaudimo ar SHIFT."
+
+msgid "A new storage device has been connected:"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -1823,6 +1823,9 @@ msgstr "Veiksmas ilgu POWER mygtuko paspaudimu"
 
 msgid "Action on short POWER button press"
 msgstr "Veiksmas trumpu POWER mygtuko paspaudimu"
+
+msgid "Actions"
+msgstr ""
 
 msgid "Activate"
 msgstr "Aktyvuoti"
@@ -3820,14 +3823,6 @@ msgstr "Keisti į paketą"
 msgid "Changed"
 msgstr "Pakeistas"
 
-#, python-format
-msgid ""
-"Changes need a system restart to take effect.\n"
-"Restart your %s %s now?"
-msgstr ""
-"Kad įsigaliotų pakeitimai, sistemą reikia paleisti iš naujo.\n"
-"Paleisti %s %s iš naujo dabar?"
-
 msgid "Channel"
 msgstr "Kanalas"
 
@@ -3962,12 +3957,6 @@ msgstr "Simbolių įrenginys"
 
 msgid "Chechen"
 msgstr "Čečėnijos"
-
-msgid "Check"
-msgstr "Tikrinti"
-
-msgid "Check HDD"
-msgstr "Tikrinti HDD"
 
 msgid "Check for PDC"
 msgstr "Patikrinkite, ar nėra PDC"
@@ -4274,6 +4263,12 @@ msgstr "Baigti dialogą"
 
 msgid "Close screen"
 msgstr "Uždaryti ekraną"
+
+msgid "Close the Device Manager screen"
+msgstr ""
+
+msgid "Close the Device Manager screen and exit all menus"
+msgstr ""
 
 msgid "Close the Kexec MultiBoot Manager"
 msgstr ""
@@ -4990,12 +4985,6 @@ msgstr "Valdykite savo emuliatorius"
 msgid "Controlled by HDMI"
 msgstr "valdoma HDMI"
 
-msgid "Convert EXT3 File System to EXT4"
-msgstr "Konvertuoti EXT3 failų sistemą į EXT4"
-
-msgid "Convert ext3 to ext4"
-msgstr "Konvertuoti ext3 į ext4"
-
 msgid "Convert file system ext3 to ext4"
 msgstr "Konvertuoti ext3 failų sistemą į ext4"
 
@@ -5339,6 +5328,9 @@ msgstr "Šiuo metu nustatyti apimties poslinkiai:"
 
 msgid "Custom"
 msgstr "Pasirinktinis"
+
+msgid "Custom mountpoint"
+msgstr ""
 
 msgid "Custom skip time for '1'/'3' buttons"
 msgstr "Pasirinktinai praleisti laiką '1'/'3' mygtukams"
@@ -5795,6 +5787,12 @@ msgstr "Nustatykite papildomą milisekundžių delsą prieš pradedant http (-us
 msgid "Define the DNS suffix."
 msgstr ""
 
+msgid "Define the custom mountpoint for the device."
+msgstr ""
+
+msgid "Define the filesystem mount options."
+msgstr ""
+
 msgid "Defined / Active"
 msgstr "Apibrėžta / Aktyvi"
 
@@ -6108,8 +6106,14 @@ msgstr "Išsamiau"
 msgid "Development Packages"
 msgstr ""
 
+msgid "Device"
+msgstr ""
+
 msgid "Device Manager"
 msgstr "Įrenginių valdymas"
+
+msgid "Device Manager Actions"
+msgstr ""
 
 msgid "Device Settings"
 msgstr "Įrenginio parametrai"
@@ -6125,9 +6129,6 @@ msgstr "Įrenginio pavadinimas:"
 
 msgid "Device number"
 msgstr "Įrenginio numeris"
-
-msgid "Device: "
-msgstr "Įrenginys: "
 
 msgid "Devices"
 msgstr "Įrenginiai"
@@ -7760,7 +7761,7 @@ msgstr "Etiopija"
 msgid "Even if TV has another input active?"
 msgstr "Net jei TV turi kitą aktyvią įvestį?"
 
-msgid "Even if a 'Wakeup' PowerTimer starting?"
+msgid "Even if a 'Wakeup' Scheduler starting?"
 msgstr "Net jei prasideda budėjimo laikmatis?"
 
 msgid "Even if a 'Zap and Record' recording timer starting?"
@@ -8290,6 +8291,9 @@ msgstr "Failų valdytojo teksto redaktoriaus veiksmai"
 msgid "File Commander settings"
 msgstr "Failų valdytojo nustatymai"
 
+msgid "File System"
+msgstr ""
+
 msgid "File System Check"
 msgstr "Failų sistemos tikrinimas"
 
@@ -8318,8 +8322,8 @@ msgstr "Failo pavadinimas"
 msgid "Files/folders to exclude from backup"
 msgstr "Failai/aplankai, neįtraukti į atsarginę kopiją"
 
-msgid "Filesystem check your hard drive"
-msgstr "Tikrinama HDD failų sistema"
+msgid "Filesystem"
+msgstr ""
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr "Užpildykite kanalų EPG iš transliacijos EPG, kai nėra IceTV EPG kanalo"
@@ -8520,14 +8524,11 @@ msgstr "Formatuoti"
 msgid "Format Disk"
 msgstr ""
 
-msgid "Format HDD"
-msgstr "Formatuoti HDD"
-
 msgid "Format Storage Device"
 msgstr ""
 
-msgid "Format your hard drive"
-msgstr "Formatuoti kietą diską"
+msgid "Formatting storage device..."
+msgstr ""
 
 msgid "Forward Error Correction (FEC)"
 msgstr ""
@@ -8648,9 +8649,6 @@ msgstr "Pilno HD testas"
 
 msgid "G"
 msgstr "G"
-
-msgid "GB"
-msgstr "GB"
 
 msgid "GCC version"
 msgstr "GCC versija"
@@ -8868,6 +8866,9 @@ msgstr "Eiti į X kalibraciją"
 
 msgid "Grab"
 msgstr "Patraukti"
+
+msgid "Graphical DVB subtitles will be displayed in the selected color, instead of the original colors."
+msgstr ""
 
 msgid "Graphical EPG"
 msgstr "Grafinis EPG"
@@ -9826,9 +9827,6 @@ msgstr "Pradinis spartaus atsukimo atgal greitis"
 
 msgid "Initial scroll delay"
 msgstr "Pradinė slinkties delsa"
-
-msgid "Initialization"
-msgstr "Inicializavimas"
 
 msgid "Initialize"
 msgstr "Inicializuoti"
@@ -10818,9 +10816,6 @@ msgstr "MAC adresas"
 msgid "MAC-address"
 msgstr "MAC adresas"
 
-msgid "MB"
-msgstr "MB"
-
 msgid "MENU"
 msgstr "MENIU"
 
@@ -11318,6 +11313,9 @@ msgstr "Pajungimo tvarkyklė"
 msgid "Mount Menu Actions"
 msgstr ""
 
+msgid "Mount Point"
+msgstr ""
+
 msgid "Mount Settings"
 msgstr "Montavimo parametrai"
 
@@ -11330,14 +11328,11 @@ msgstr "Pajungimo klaida"
 msgid "Mount root file system."
 msgstr ""
 
-msgid "Mount: "
-msgstr "Pajungta: "
+msgid "Mountpoint"
+msgstr "Prijungimo vieta"
 
 msgid "Mounts"
 msgstr "Pajungimai"
-
-msgid "Mounts Devices"
-msgstr "Pajungti įrenginiai"
 
 msgid "Move"
 msgstr "Perkelti"
@@ -11976,6 +11971,9 @@ msgstr "Naujas PIN"
 
 msgid "New Setting DXAndy "
 msgstr "Naujas nustatymas DXAndy "
+
+msgid "New Storage Device"
+msgstr ""
 
 msgid "New Zealand"
 msgstr "Naujoji Zelandija"
@@ -12773,6 +12771,9 @@ msgstr "Ši parinktis leidžia įjungti įrenginio budėjimo režimo laikmatį"
 msgid "Optional parameter"
 msgstr "Neprivalomas parametras"
 
+msgid "Options"
+msgstr ""
+
 msgid "Orbital position"
 msgstr "Padėtis orbitoje"
 
@@ -13029,6 +13030,9 @@ msgstr "Parlamentas"
 msgid "Partition"
 msgstr "Skaidinys"
 
+msgid "Partition Type"
+msgstr ""
+
 msgid "Partitions"
 msgstr "Skaidiniai"
 
@@ -13055,6 +13059,9 @@ msgstr "Slaptažodžio parametrai"
 
 msgid "Password changed."
 msgstr "Slaptažodis pakeistas."
+
+msgid "Path"
+msgstr ""
 
 #, python-format
 msgid "Path '%s' missing!"
@@ -13101,6 +13108,13 @@ msgstr ""
 
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "Negrįžtamai pašalinti visus įrašus iš šiukšlinės?"
+
+msgid "Permanently ignore this device"
+msgstr ""
+
+#, python-format
+msgid "Permanently mount as %s"
+msgstr ""
 
 msgid "Permanently remove all deleted items"
 msgstr "Negrįžtamai pašalinti visus ištrintus elementus"
@@ -13536,9 +13550,6 @@ msgstr "Palaukite, įkeliamas atvaizdas..."
 msgid "Please wait, swap is is being created. This could take a few minutes to complete."
 msgstr ""
 
-msgid "Please wait."
-msgstr "Palaukite..."
-
 msgid "Please wait..."
 msgstr "Palaukite..."
 
@@ -13638,6 +13649,9 @@ msgstr "Portugalija"
 msgid "Portuguese"
 msgstr "Portugalų"
 
+msgid "Position"
+msgstr ""
+
 msgid "Position of finished Timers in Timerlist"
 msgstr "Atliktų laikmačių padėtis laikmačių sąraše"
 
@@ -13692,22 +13706,22 @@ msgstr "Įtampos galia mA"
 msgid "PowerTimer"
 msgstr "Įjungimo laikmatis"
 
-msgid "PowerTimer Actions"
+msgid "Scheduler Actions"
 msgstr "PowerTimer veiksmai"
 
-msgid "PowerTimer Overview"
+msgid "Scheduler Overview"
 msgstr "Įjungimo laikmačio apžvalga"
 
 msgid "PowerTimer Settings"
 msgstr "PowerTimer nustatymai"
 
-msgid "PowerTimer Standby"
+msgid "Scheduler Standby"
 msgstr "Įjungimo laikmatis. Budėjimo režimas"
 
-msgid "PowerTimer deep standby"
+msgid "Scheduler deep standby"
 msgstr "Įjungimo laikmatis budėjimo režime"
 
-msgid "PowerTimer log"
+msgid "Scheduler log"
 msgstr "Maitinimo laikmačio žurnalas"
 
 msgid "PowerTimers"
@@ -14932,10 +14946,6 @@ msgstr "Skiriamoji geba"
 msgid "Restart"
 msgstr "Paleisti iš naujo"
 
-#, python-format
-msgid "Restart %s %s."
-msgstr "Paleisti iš naujo %s %s."
-
 msgid "Restart GUI"
 msgstr "Paleisti iš naujo grafinę aplinką"
 
@@ -15984,9 +15994,6 @@ msgstr "Pasirinkite greitą DiSEqC, jei jūsų sistema palaiko tai. Jei jūs ne�
 msgid "Select Folders"
 msgstr "Pasirinkite katalogus"
 
-msgid "Select HDD"
-msgstr "Pasirinkite kietą diską"
-
 msgid "Select Lan/Wlan"
 msgstr "Pasirinkite tinklą"
 
@@ -16063,6 +16070,12 @@ msgstr "Pasirinkite filmą"
 msgid "Select a network adapter"
 msgstr "Pasirinkite tinklo adapterį"
 
+msgid "Select a permanent mount point for all devices"
+msgstr ""
+
+msgid "Select a permanent mount point for the current device"
+msgstr ""
+
 msgid "Select a repository commit log to view:"
 msgstr "Pasirinkite saugyklos įsipareigojimų žurnalą, kad peržiūrėtumėte:"
 
@@ -16093,6 +16106,9 @@ msgstr ""
 
 msgid "Select all related files"
 msgstr "Pasirinkite visus susijusius failus"
+
+msgid "Select an action for the current device"
+msgstr ""
 
 msgid "Select an action to perform when the task has completed."
 msgstr "Pasirinkite veiksmą, kurį norite atlikti, kai užduotis bus baigta."
@@ -16380,6 +16396,9 @@ msgstr ""
 msgid "Select the file sort order for the %s column:"
 msgstr ""
 
+msgid "Select the filesystem for the device."
+msgstr ""
+
 msgid "Select the first item in list or move to the start of text"
 msgstr ""
 
@@ -16434,6 +16453,12 @@ msgstr ""
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Pasirinkite Unicable įrenginio modelio numerį. Jei modelio numeris nenurodytas, nustatykite 'SCR' į 'naudotojo nustatytas' ir rankiniu būdu įveskite jo parametrus pagal jo specifikacijų lapą."
 
+msgid "Select the mount points"
+msgstr ""
+
+msgid "Select the mountpoint for the device."
+msgstr ""
+
 msgid "Select the movie path"
 msgstr "Pasirinkite filmo kelią"
 
@@ -16444,6 +16469,10 @@ msgid ""
 "Select the network interface to be used for the Internet connection.\n"
 "\n"
 "Press OK to continue."
+msgstr ""
+
+#, python-format
+msgid "Select the new mount point for: '%s'"
 msgstr ""
 
 msgid "Select the next item in list or move the cursor right"
@@ -17157,9 +17186,6 @@ msgstr "Sukonfigūruoti Įvesties įrenginį"
 
 msgid "Setup MiniDLNA"
 msgstr "MiniDLNA nustatymas"
-
-msgid "Setup Mounts"
-msgstr "Pajungimo valdymas"
 
 msgid "Setup Network Services"
 msgstr "Sukonfigūruoti tinklo paslaugas"
@@ -19123,6 +19149,9 @@ msgstr "Svalbardas ir Jan Majenas"
 msgid "Swahili"
 msgstr "Svahili"
 
+msgid "Swap"
+msgstr ""
+
 msgid "Swap File Manager"
 msgstr "Mainų failo valdymas"
 
@@ -19345,9 +19374,6 @@ msgstr "T2MI PLP ID"
 msgid "T2MI RAW Mode"
 msgstr "T2MI RAW režimas"
 
-msgid "TB"
-msgstr "TB"
-
 msgid "TEXT"
 msgstr "TEKSTAS"
 
@@ -19509,6 +19535,10 @@ msgstr "Telugų"
 
 #, python-format
 msgid "Temp directory (%s)"
+msgstr ""
+
+#, python-format
+msgid "Temporarily mount as %s"
 msgstr ""
 
 msgid "Temporary directory"
@@ -19983,9 +20013,6 @@ msgstr "Šis %s %s negali iškoduoti %s srautų!"
 
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Šis DVD RW diskas jau formatuotas - performatavimas ištrins visą šio disko turinį."
-
-msgid "This Device is already mounted as HDD."
-msgstr "Šis įrenginys jau yra prijungtas kaip HDD."
 
 msgid "This Option allows you to switch Audio to BT Speakers."
 msgstr "Ši parinktis leidžia perjungti garsą į BT garsiakalbius."
@@ -20594,6 +20621,9 @@ msgstr "Paveikslėlio perjungimas grafikoje"
 msgid "Toggle a cut mark at the current position"
 msgstr "Perkelti iškirpimo žymeklį į dabartinę poziciją"
 
+msgid "Toggle a temporary mount for the current device"
+msgstr ""
+
 msgid "Toggle all related files"
 msgstr ""
 
@@ -21096,6 +21126,9 @@ msgstr "Universali LNB"
 msgid "Unknown"
 msgstr "Nežinoma"
 
+msgid "Unknown Devices"
+msgstr ""
+
 msgid ""
 "Unknown Error creating Skin.\n"
 "Please check after reboot MyMetrixLite-Plugin and apply your settings."
@@ -21253,9 +21286,6 @@ msgstr "Galimi atnaujinimai:"
 msgid "Updating"
 msgstr "Atnaujinama"
 
-msgid "Updating mount locations."
-msgstr "Atnaujinamos pajungimo vietos."
-
 msgid "Updating package list."
 msgstr ""
 
@@ -21382,9 +21412,6 @@ msgstr ""
 
 msgid "Use an alternative smaller screen."
 msgstr "Naudokite alternatyvų mažesnį ekraną."
-
-msgid "Use as HDD"
-msgstr "Naudoti kaip HDD"
 
 msgid "Use automatic mode detection"
 msgstr ""
@@ -22025,13 +22052,6 @@ msgstr "Laukite laiko sinchronizavimo paleisties metu"
 msgid "Wait please while creating swap file..."
 msgstr "Prašome palaukti kuriamas mainų failas..."
 
-msgid "Wait please while scanning for devices..."
-msgstr "Palaukite, kol skenuojama jūsų įranga..."
-
-#, python-format
-msgid "Wait please while scanning your %s %s devices..."
-msgstr "Palaukite, kol skenuojama jūsų %s %s įranga..."
-
 msgid "Wait please while scanning..."
 msgstr "Palaukite, kol skenuojama..."
 
@@ -22440,6 +22460,12 @@ msgstr "Žiemos sportas"
 
 msgid "Wipe"
 msgstr "Išvalykite"
+
+msgid "Wipe Storage Device"
+msgstr ""
+
+msgid "Wiping storage device..."
+msgstr ""
 
 msgid "Wireless LAN"
 msgstr "Belaidis LAN"
@@ -24001,6 +24027,85 @@ msgstr "taip (išsaugoti šaltinius)"
 msgid "®"
 msgstr "®"
 
+#, python-format
+#~ msgid ""
+#~ "Changes need a system restart to take effect.\n"
+#~ "Restart your %s %s now?"
+#~ msgstr ""
+#~ "Kad įsigaliotų pakeitimai, sistemą reikia paleisti iš naujo.\n"
+#~ "Paleisti %s %s iš naujo dabar?"
+
+#~ msgid "Check"
+#~ msgstr "Tikrinti"
+
+#~ msgid "Check HDD"
+#~ msgstr "Tikrinti HDD"
+
+#~ msgid "Convert EXT3 File System to EXT4"
+#~ msgstr "Konvertuoti EXT3 failų sistemą į EXT4"
+
+#~ msgid "Convert ext3 to ext4"
+#~ msgstr "Konvertuoti ext3 į ext4"
+
+#~ msgid "Device: "
+#~ msgstr "Įrenginys: "
+
+#~ msgid "Filesystem check your hard drive"
+#~ msgstr "Tikrinama HDD failų sistema"
+
+#~ msgid "Format HDD"
+#~ msgstr "Formatuoti HDD"
+
+#~ msgid "Format your hard drive"
+#~ msgstr "Formatuoti kietą diską"
+
+#~ msgid "GB"
+#~ msgstr "GB"
+
+#~ msgid "Initialization"
+#~ msgstr "Inicializavimas"
+
+#~ msgid "MB"
+#~ msgstr "MB"
+
+#~ msgid "Mount: "
+#~ msgstr "Pajungta: "
+
+#~ msgid "Mounts Devices"
+#~ msgstr "Pajungti įrenginiai"
+
+#~ msgid "Please wait."
+#~ msgstr "Palaukite..."
+
+#, python-format
+#~ msgid "Restart %s %s."
+#~ msgstr "Paleisti iš naujo %s %s."
+
+#~ msgid "Select HDD"
+#~ msgstr "Pasirinkite kietą diską"
+
+#~ msgid "Setup Mounts"
+#~ msgstr "Pajungimo valdymas"
+
+#~ msgid "TB"
+#~ msgstr "TB"
+
+#~ msgid "This Device is already mounted as HDD."
+#~ msgstr "Šis įrenginys jau yra prijungtas kaip HDD."
+
+#~ msgid "Updating mount locations."
+#~ msgstr "Atnaujinamos pajungimo vietos."
+
+#~ msgid "Use as HDD"
+#~ msgstr "Naudoti kaip HDD"
+
+#~ msgid "Wait please while scanning for devices..."
+#~ msgstr "Palaukite, kol skenuojama jūsų įranga..."
+
+#, python-format
+#~ msgid "Wait please while scanning your %s %s devices..."
+#~ msgstr "Palaukite, kol skenuojama jūsų %s %s įranga..."
+
 #~ msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
 #~ msgstr "Kai čia įjungta, grafiniai DVB subtitrai bus rodomi ne numatytosios, bet geltonos spalvos."
 
@@ -24009,9 +24114,6 @@ msgstr "®"
 
 #~ msgid "E "
 #~ msgstr "Е "
-
-#~ msgid "Mountpoint"
-#~ msgstr "Prijungimo vieta"
 
 #, python-format
 #~ msgid "%d channel found"

@@ -38,7 +38,7 @@
 		<!-- Menu / Timer -->
 		<menu key="timermenu" level="0" text="Timers" weight="7">
 			<item key="timer_edit" level="0" text="RecordTimers" weight="0"><screen module="Timers" screen="RecordTimerOverview" /></item>
-			<item key="powertimer_edit" level="0" text="PowerTimers" weight="5"><screen module="Timers" screen="PowerTimerOverview" /></item>
+			<item key="powertimer_edit" level="0" text="Scheduler" weight="5"><screen module="Timers" screen="SchedulerOverview" /></item>
 			<item key="crontimer_edit" level="0" text="Cron Timers" weight="10"><screen module="CronTimer" screen="CronTimers" /></item>
 			<item key="sleep" level="0" text="Sleep Timers" weight="20" requires="DeepstandbySupport"><screen module="SleepTimer" screen="SleepTimer" /></item>
 		</menu>

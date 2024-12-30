@@ -5,8 +5,8 @@ from time import ctime, time
 from enigma import eServiceCenter, eServiceReference, eTimer, getBestPlayableServiceReference, iPlayableService, iServiceInformation, pNavigation
 
 import NavigationInstance
-import PowerTimer
 import RecordTimer
+import Scheduler
 import ServiceReference
 from Components.config import config
 from Components.ImportChannels import ImportChannels
@@ -62,15 +62,15 @@ class Navigation:
 			self.RecordTimer = p()
 			if self.RecordTimer:
 				break
-		self.PowerTimer = PowerTimer.PowerTimer()  # Initialize PowerTimer before RecordTimer.loadTimers.
+		self.Scheduler = Scheduler.Scheduler()  # Initialize Scheduler before RecordTimer.loadTimers.
 		if not self.RecordTimer:
 			self.RecordTimer = RecordTimer.RecordTimer()
 			self.RecordTimer.loadTimers()  # Call loadTimers after initialize of self.RecordTimer.
 			self.isRecordTimerImageStandard = True
-		self.PowerTimer.loadTimers()  # Call loadTimers after initialize of self.PowerTimer.
+		self.Scheduler.loadTimers()  # Call loadTimers after initialize of self.Scheduler.
 		self.__wasTimerWakeup = False
 		self.__wasRecTimerWakeup = False
-		self.__wasPowerTimerWakeup = False
+		self.__wasSchedulerWakeup = False
 		if not exists("/etc/enigma2/.deep"):  # Flag file comes from "/usr/bin/enigma2.sh".
 			print("=" * 100)
 			print("[Navigation] Receiver did not start from Deep Standby. Skip wake up detection.")
@@ -186,8 +186,8 @@ class Navigation:
 				if not self.forcerecord:
 					print(f"[Navigation] Timer starts at '{ctime(self.timertime)}'.")
 				print("[Navigation] Was power timer wakeup is True.")
-				self.__wasPowerTimerWakeup = True
-				fileWriteLine(PowerTimer.TIMER_FLAG_FILE, "1", source=MODULE_NAME)
+				self.__wasSchedulerWakeup = True
+				fileWriteLine(Scheduler.TIMER_FLAG_FILE, "1", source=MODULE_NAME)
 			# Plugin timer.
 			elif self.wakeuptyp == 3:
 				if not self.forcerecord:
@@ -237,8 +237,8 @@ class Navigation:
 	def wasRecTimerWakeup(self):
 		return self.__wasRecTimerWakeup
 
-	def wasPowerTimerWakeup(self):
-		return self.__wasPowerTimerWakeup
+	def wasSchedulerWakeup(self):
+		return self.__wasSchedulerWakeup
 
 	def TimeSynctimer(self):
 		now = time()
@@ -505,7 +505,7 @@ class Navigation:
 
 	def shutdown(self):
 		self.RecordTimer.shutdown()
-		self.PowerTimer.shutdown()
+		self.Scheduler.shutdown()
 		self.ServiceHandler = None
 		self.pnav = None
 

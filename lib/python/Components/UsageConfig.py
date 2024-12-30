@@ -580,8 +580,8 @@ def InitUsageConfig():
 		("standby", _("Standby")),
 		("standby_noTVshutdown", _("Standby without TV shut down")),
 		("sleeptimer", _("SleepTimer")),
-		("powertimerStandby", _("PowerTimer Standby")),
-		("powertimerDeepStandby", _("PowerTimer deep standby"))
+		("schedulerStandby", _("Scheduler Standby")),
+		("schedulerDeepStandby", _("Scheduler deep standby"))
 	]
 	config.usage.on_long_powerpress = ConfigSelection(default="show_menu", choices=choiceList)
 	config.usage.on_short_powerpress = ConfigSelection(default="standby", choices=choiceList)

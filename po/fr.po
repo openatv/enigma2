@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-24 18:40+0000\n"
+"POT-Creation-Date: 2024-12-30 10:59+0000\n"
 "PO-Revision-Date: 2024-12-24 18:34+0000\n"
 "Last-Translator: Mathieu13006 <llapaca@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fr/>\n"
@@ -1555,24 +1555,24 @@ msgid "A file from media is in use!"
 msgstr "Un fichier du média est en cours d'utilisation !"
 
 #, python-format
-msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
+msgid "A finished Scheduler timer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "Un timer d'alimentation terminé désire redémarrer votre %s %s.\n"
 "Êtes-vous d'accord?"
 
-msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
+msgid "A finished Scheduler timer wants to restart the user interface. Do that now?"
 msgstr ""
 "Un timer d'alimentation terminé désire redémarrer l'interface utilisateur.\n"
 "Êtes-vous d'accord?"
 
 #, python-format
-msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
+msgid "A finished Scheduler timer wants to set your %s %s to standby. Do that now?"
 msgstr ""
 "Un timer d'alimentation terminé désire mettre votre\n"
 " %s %s en veille. Êtes-vous d'accord?"
 
 #, python-format
-msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
+msgid "A finished Scheduler timer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "Un timer d'alimentation terminé désire éteindre votre %s %s.\n"
 "Êtes-vous d'accord?"
@@ -1593,11 +1593,11 @@ msgstr ""
 "Un enregistrement programmé et terminé veut\n"
 "éteindre votre %s %s. Eteindre maintenant?"
 
-msgid "Graphical DVB subtitles will be displayed in the selected color, instead of the original colors."
-msgstr ""
-
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr "Une surbrillance sur l'image de la télécommande montre à quel bouton l'aide fait référence. Si plus d'un bouton effectue la fonction indiquée, plus d'un point culminant sera affiché. Le texte sous la liste répertorie les boutons actifs et indique si la fonction nécessite un appui long ou SHIFT du ou des boutons."
+
+msgid "A new storage device has been connected:"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -1788,6 +1788,9 @@ msgstr "Action appui long sur touche mise sous tension"
 
 msgid "Action on short POWER button press"
 msgstr "Action appui court sur touche mise sous tension"
+
+msgid "Actions"
+msgstr ""
 
 msgid "Activate"
 msgstr "Activer"
@@ -3783,14 +3786,6 @@ msgstr "Changer vers bouquet"
 msgid "Changed"
 msgstr ""
 
-#, python-format
-msgid ""
-"Changes need a system restart to take effect.\n"
-"Restart your %s %s now?"
-msgstr ""
-"Les modifications nécessites un redémarrage pour être effectives.\n"
-"Redémarrer votre %s%s maintenant ?"
-
 msgid "Channel"
 msgstr "Chaîne"
 
@@ -3927,12 +3922,6 @@ msgstr "Dispositif de caractère"
 
 msgid "Chechen"
 msgstr "Tchétchène"
-
-msgid "Check"
-msgstr "Vérification"
-
-msgid "Check HDD"
-msgstr "Vérification du disque dur"
 
 msgid "Check for PDC"
 msgstr ""
@@ -4239,6 +4228,12 @@ msgstr "Fermer le dialogue"
 
 msgid "Close screen"
 msgstr "Fermer l'écran"
+
+msgid "Close the Device Manager screen"
+msgstr ""
+
+msgid "Close the Device Manager screen and exit all menus"
+msgstr ""
 
 msgid "Close the Kexec MultiBoot Manager"
 msgstr ""
@@ -4949,12 +4944,6 @@ msgstr "Contrôlez vos softcams"
 msgid "Controlled by HDMI"
 msgstr "Contrôlé par HDMI"
 
-msgid "Convert EXT3 File System to EXT4"
-msgstr "Convertir le système de fichiers ext3 vers ext4"
-
-msgid "Convert ext3 to ext4"
-msgstr "Convertir ext3 vers ext4"
-
 msgid "Convert file system ext3 to ext4"
 msgstr "Convertir le système de fichiers ext3 vers ext4"
 
@@ -5296,6 +5285,9 @@ msgstr ""
 
 msgid "Custom"
 msgstr "Personnalisé(e)"
+
+msgid "Custom mountpoint"
+msgstr ""
 
 msgid "Custom skip time for '1'/'3' buttons"
 msgstr "Personnaliser délai saut pour touches '1'/'3'"
@@ -5752,6 +5744,12 @@ msgstr "Définir un délai supplémentaire en millisecondes avant le début des 
 msgid "Define the DNS suffix."
 msgstr ""
 
+msgid "Define the custom mountpoint for the device."
+msgstr ""
+
+msgid "Define the filesystem mount options."
+msgstr ""
+
 msgid "Defined / Active"
 msgstr ""
 
@@ -6065,8 +6063,14 @@ msgstr ""
 msgid "Development Packages"
 msgstr ""
 
+msgid "Device"
+msgstr ""
+
 msgid "Device Manager"
 msgstr "Gestionnaire des périphériques"
+
+msgid "Device Manager Actions"
+msgstr ""
 
 msgid "Device Settings"
 msgstr "Paramètres du périphérique"
@@ -6083,9 +6087,6 @@ msgstr "Nom du périphérique :"
 
 msgid "Device number"
 msgstr ""
-
-msgid "Device: "
-msgstr "Périphérique : "
 
 msgid "Devices"
 msgstr "Périphériques"
@@ -7714,7 +7715,7 @@ msgstr "Ethiopie"
 msgid "Even if TV has another input active?"
 msgstr "Même si la TV a une autre entrée active ?"
 
-msgid "Even if a 'Wakeup' PowerTimer starting?"
+msgid "Even if a 'Wakeup' Scheduler starting?"
 msgstr "Même si une minuterie de réveil démarre ?"
 
 msgid "Even if a 'Zap and Record' recording timer starting?"
@@ -8244,6 +8245,9 @@ msgstr ""
 msgid "File Commander settings"
 msgstr "Paramètres de File Commander"
 
+msgid "File System"
+msgstr ""
+
 msgid "File System Check"
 msgstr "Vérification du système de fichiers"
 
@@ -8272,8 +8276,8 @@ msgstr "Nom de fichier"
 msgid "Files/folders to exclude from backup"
 msgstr "Fichiers/répertoires à exclure de la sauvegarde"
 
-msgid "Filesystem check your hard drive"
-msgstr "Vérification du système de fichiers de votre disque dur"
+msgid "Filesystem"
+msgstr ""
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr "Remplir les EPG des chaînes à partir de l'EPG de diffusion lorsqu'il n'existe pas d'EPG IceTV pour la chaîne"
@@ -8474,14 +8478,11 @@ msgstr "Format"
 msgid "Format Disk"
 msgstr ""
 
-msgid "Format HDD"
-msgstr "Formater le disque dur"
-
 msgid "Format Storage Device"
 msgstr ""
 
-msgid "Format your hard drive"
-msgstr "Formater le disque dur"
+msgid "Formatting storage device..."
+msgstr ""
 
 msgid "Forward Error Correction (FEC)"
 msgstr ""
@@ -8602,9 +8603,6 @@ msgstr "Test FullHD"
 
 msgid "G"
 msgstr "G"
-
-msgid "GB"
-msgstr "GB"
 
 msgid "GCC version"
 msgstr ""
@@ -8822,6 +8820,9 @@ msgid "GotoX calibration"
 msgstr "Aller sur X calibration"
 
 msgid "Grab"
+msgstr ""
+
+msgid "Graphical DVB subtitles will be displayed in the selected color, instead of the original colors."
 msgstr ""
 
 msgid "Graphical EPG"
@@ -9781,9 +9782,6 @@ msgstr "Vitesse initiale de retour rapide"
 
 msgid "Initial scroll delay"
 msgstr "Retard initial du défilement"
-
-msgid "Initialization"
-msgstr "Initialisation"
 
 msgid "Initialize"
 msgstr "Initialiser"
@@ -10771,9 +10769,6 @@ msgstr ""
 msgid "MAC-address"
 msgstr "Adresse MAC"
 
-msgid "MB"
-msgstr "Mo"
-
 msgid "MENU"
 msgstr "MENU"
 
@@ -11272,6 +11267,9 @@ msgstr "Gestionnaire de montage"
 msgid "Mount Menu Actions"
 msgstr ""
 
+msgid "Mount Point"
+msgstr ""
+
 msgid "Mount Settings"
 msgstr ""
 
@@ -11284,14 +11282,11 @@ msgstr "Echec du montage"
 msgid "Mount root file system."
 msgstr ""
 
-msgid "Mount: "
-msgstr "Montage : "
+msgid "Mountpoint"
+msgstr ""
 
 msgid "Mounts"
 msgstr "Montages"
-
-msgid "Mounts Devices"
-msgstr "Périphérique de montages"
 
 msgid "Move"
 msgstr "Déplacer"
@@ -11932,6 +11927,9 @@ msgstr "Nouveau PIN"
 
 msgid "New Setting DXAndy "
 msgstr "Nouveau Paramètre DXAndy "
+
+msgid "New Storage Device"
+msgstr ""
 
 msgid "New Zealand"
 msgstr "Nouvelle Zélande"
@@ -12732,6 +12730,9 @@ msgstr "Option pour activer les programmations de mise en veille matérielles"
 msgid "Optional parameter"
 msgstr ""
 
+msgid "Options"
+msgstr ""
+
 msgid "Orbital position"
 msgstr "Position orbitale"
 
@@ -12988,6 +12989,9 @@ msgstr "Parlement"
 msgid "Partition"
 msgstr ""
 
+msgid "Partition Type"
+msgstr ""
+
 msgid "Partitions"
 msgstr "Partitions"
 
@@ -13014,6 +13018,9 @@ msgstr "Configuration du mot de passe"
 
 msgid "Password changed."
 msgstr "Mot de passe changé."
+
+msgid "Path"
+msgstr ""
 
 #, python-format
 msgid "Path '%s' missing!"
@@ -13060,6 +13067,13 @@ msgstr ""
 
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "Supprimer définitivement tous les enregistrements dans la poubelle ?"
+
+msgid "Permanently ignore this device"
+msgstr ""
+
+#, python-format
+msgid "Permanently mount as %s"
+msgstr ""
 
 msgid "Permanently remove all deleted items"
 msgstr "Supprimer définitivement tous les éléments supprimés"
@@ -13490,9 +13504,6 @@ msgstr ""
 msgid "Please wait, swap is is being created. This could take a few minutes to complete."
 msgstr ""
 
-msgid "Please wait."
-msgstr "Veuillez patienter."
-
 msgid "Please wait..."
 msgstr "Veuillez patienter..."
 
@@ -13592,6 +13603,9 @@ msgstr "Portugal"
 msgid "Portuguese"
 msgstr "Portugais"
 
+msgid "Position"
+msgstr ""
+
 msgid "Position of finished Timers in Timerlist"
 msgstr "Position des programmations terminées dans la liste"
 
@@ -13646,22 +13660,22 @@ msgstr "Seuil de puissance en mA"
 msgid "PowerTimer"
 msgstr "Programmations d'alimentation"
 
-msgid "PowerTimer Actions"
+msgid "Scheduler Actions"
 msgstr ""
 
-msgid "PowerTimer Overview"
+msgid "Scheduler Overview"
 msgstr "Aperçu des programmations d'alimentation"
 
 msgid "PowerTimer Settings"
 msgstr ""
 
-msgid "PowerTimer Standby"
+msgid "Scheduler Standby"
 msgstr "Programmations d'alimentation de veille"
 
-msgid "PowerTimer deep standby"
+msgid "Scheduler deep standby"
 msgstr "Programmations d'alimentation de veille profonde"
 
-msgid "PowerTimer log"
+msgid "Scheduler log"
 msgstr "Log du gestionnaire d'alimentation"
 
 msgid "PowerTimers"
@@ -14888,10 +14902,6 @@ msgstr ""
 msgid "Restart"
 msgstr "Redémarrer le récepteur"
 
-#, python-format
-msgid "Restart %s %s."
-msgstr "Relancer %s %s."
-
 msgid "Restart GUI"
 msgstr "Relancer l'IGU"
 
@@ -15938,9 +15948,6 @@ msgstr "Sélectionner Fast DiSEqC si votre système aérien le supporte. Si vous
 msgid "Select Folders"
 msgstr "Choisir les répertoires"
 
-msgid "Select HDD"
-msgstr "Sélectionner le disque dur"
-
 msgid "Select Lan/Wlan"
 msgstr "Sélection LAN/WiFi"
 
@@ -16017,6 +16024,12 @@ msgstr "Sélectionner un film"
 msgid "Select a network adapter"
 msgstr "Sélectionner un adaptateur réseau"
 
+msgid "Select a permanent mount point for all devices"
+msgstr ""
+
+msgid "Select a permanent mount point for the current device"
+msgstr ""
+
 msgid "Select a repository commit log to view:"
 msgstr ""
 
@@ -16046,6 +16059,9 @@ msgid "Select all lines"
 msgstr ""
 
 msgid "Select all related files"
+msgstr ""
+
+msgid "Select an action for the current device"
 msgstr ""
 
 msgid "Select an action to perform when the task has completed."
@@ -16334,6 +16350,9 @@ msgstr ""
 msgid "Select the file sort order for the %s column:"
 msgstr ""
 
+msgid "Select the filesystem for the device."
+msgstr ""
+
 msgid "Select the first item in list or move to the start of text"
 msgstr ""
 
@@ -16388,6 +16407,12 @@ msgstr ""
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Sélectionnez le numéro de modèle de votre appareil Unicable. Si le numéro de modèle n'est pas répertorié, définissez « SCR » sur « défini par l'utilisateur » et entrez les paramètres de l'appareil manuellement en fonction de sa fiche technique."
 
+msgid "Select the mount points"
+msgstr ""
+
+msgid "Select the mountpoint for the device."
+msgstr ""
+
 msgid "Select the movie path"
 msgstr "Sélectionner le chemin d’accès au film"
 
@@ -16398,6 +16423,10 @@ msgid ""
 "Select the network interface to be used for the Internet connection.\n"
 "\n"
 "Press OK to continue."
+msgstr ""
+
+#, python-format
+msgid "Select the new mount point for: '%s'"
 msgstr ""
 
 msgid "Select the next item in list or move the cursor right"
@@ -17109,9 +17138,6 @@ msgstr "Configurer le périphérique d'entrée"
 
 msgid "Setup MiniDLNA"
 msgstr "Configurer MiniDLNA"
-
-msgid "Setup Mounts"
-msgstr "Configurer montages"
 
 msgid "Setup Network Services"
 msgstr "Configurer les services réseaux"
@@ -19081,6 +19107,9 @@ msgstr "Svalbard et Jan Mayen"
 msgid "Swahili"
 msgstr "Swahili"
 
+msgid "Swap"
+msgstr ""
+
 msgid "Swap File Manager"
 msgstr "Gestionnaire du fichier de swap"
 
@@ -19306,9 +19335,6 @@ msgstr "T2MI PLP ID"
 msgid "T2MI RAW Mode"
 msgstr "T2MI mode RAW"
 
-msgid "TB"
-msgstr "TB"
-
 msgid "TEXT"
 msgstr "TEXTE"
 
@@ -19470,6 +19496,10 @@ msgstr "Telugu"
 
 #, python-format
 msgid "Temp directory (%s)"
+msgstr ""
+
+#, python-format
+msgid "Temporarily mount as %s"
 msgstr ""
 
 msgid "Temporary directory"
@@ -19935,9 +19965,6 @@ msgstr "Le %s %s ne peut décoder les flux %s !"
 
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Ce support DVD RW est déjà formaté - le reformater effacera tout le contenu sur le disque."
-
-msgid "This Device is already mounted as HDD."
-msgstr "Ce périphérique est déjà monté comme disque dur."
 
 msgid "This Option allows you to switch Audio to BT Speakers."
 msgstr "Cette option vous permet de basculer l’audio vers les haut-parleurs BT."
@@ -20556,6 +20583,9 @@ msgstr "Basculer l'image dans graphique"
 msgid "Toggle a cut mark at the current position"
 msgstr "Commuter un marqueur coupé à cette position"
 
+msgid "Toggle a temporary mount for the current device"
+msgstr ""
+
 msgid "Toggle all related files"
 msgstr ""
 
@@ -21061,6 +21091,9 @@ msgstr "LNB universel"
 msgid "Unknown"
 msgstr "Inconnu"
 
+msgid "Unknown Devices"
+msgstr ""
+
 msgid ""
 "Unknown Error creating Skin.\n"
 "Please check after reboot MyMetrixLite-Plugin and apply your settings."
@@ -21218,9 +21251,6 @@ msgstr "Mises à jour disponible :"
 msgid "Updating"
 msgstr "Mise à jour en cours"
 
-msgid "Updating mount locations."
-msgstr "Mise à jour des points de montage."
-
 msgid "Updating package list."
 msgstr ""
 
@@ -21347,9 +21377,6 @@ msgstr ""
 
 msgid "Use an alternative smaller screen."
 msgstr "Utiliser l'écran alternatif"
-
-msgid "Use as HDD"
-msgstr "Utiliser comme disque dur"
 
 msgid "Use automatic mode detection"
 msgstr ""
@@ -21964,13 +21991,6 @@ msgstr "Attendre la synchronisation au démarrage"
 msgid "Wait please while creating swap file..."
 msgstr "Veuillez patienter, création du fichier de swap…"
 
-msgid "Wait please while scanning for devices..."
-msgstr "Veuillez patienter pendant le scan des périphériques…"
-
-#, python-format
-msgid "Wait please while scanning your %s %s devices..."
-msgstr "Veuillez patienter pendant l'analyse en cours de votre %s %s…"
-
 msgid "Wait please while scanning..."
 msgstr "Veuillez patienter pendant l'analyse en cours…"
 
@@ -22378,6 +22398,12 @@ msgid "Winter Sports"
 msgstr "Sports d’hiver"
 
 msgid "Wipe"
+msgstr ""
+
+msgid "Wipe Storage Device"
+msgstr ""
+
+msgid "Wiping storage device..."
 msgstr ""
 
 msgid "Wireless LAN"
@@ -23943,6 +23969,85 @@ msgstr "Oui (garder feeds)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid ""
+#~ "Changes need a system restart to take effect.\n"
+#~ "Restart your %s %s now?"
+#~ msgstr ""
+#~ "Les modifications nécessites un redémarrage pour être effectives.\n"
+#~ "Redémarrer votre %s%s maintenant ?"
+
+#~ msgid "Check"
+#~ msgstr "Vérification"
+
+#~ msgid "Check HDD"
+#~ msgstr "Vérification du disque dur"
+
+#~ msgid "Convert EXT3 File System to EXT4"
+#~ msgstr "Convertir le système de fichiers ext3 vers ext4"
+
+#~ msgid "Convert ext3 to ext4"
+#~ msgstr "Convertir ext3 vers ext4"
+
+#~ msgid "Device: "
+#~ msgstr "Périphérique : "
+
+#~ msgid "Filesystem check your hard drive"
+#~ msgstr "Vérification du système de fichiers de votre disque dur"
+
+#~ msgid "Format HDD"
+#~ msgstr "Formater le disque dur"
+
+#~ msgid "Format your hard drive"
+#~ msgstr "Formater le disque dur"
+
+#~ msgid "GB"
+#~ msgstr "GB"
+
+#~ msgid "Initialization"
+#~ msgstr "Initialisation"
+
+#~ msgid "MB"
+#~ msgstr "Mo"
+
+#~ msgid "Mount: "
+#~ msgstr "Montage : "
+
+#~ msgid "Mounts Devices"
+#~ msgstr "Périphérique de montages"
+
+#~ msgid "Please wait."
+#~ msgstr "Veuillez patienter."
+
+#, python-format
+#~ msgid "Restart %s %s."
+#~ msgstr "Relancer %s %s."
+
+#~ msgid "Select HDD"
+#~ msgstr "Sélectionner le disque dur"
+
+#~ msgid "Setup Mounts"
+#~ msgstr "Configurer montages"
+
+#~ msgid "TB"
+#~ msgstr "TB"
+
+#~ msgid "This Device is already mounted as HDD."
+#~ msgstr "Ce périphérique est déjà monté comme disque dur."
+
+#~ msgid "Updating mount locations."
+#~ msgstr "Mise à jour des points de montage."
+
+#~ msgid "Use as HDD"
+#~ msgstr "Utiliser comme disque dur"
+
+#~ msgid "Wait please while scanning for devices..."
+#~ msgstr "Veuillez patienter pendant le scan des périphériques…"
+
+#, python-format
+#~ msgid "Wait please while scanning your %s %s devices..."
+#~ msgstr "Veuillez patienter pendant l'analyse en cours de votre %s %s…"
 
 #~ msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
 #~ msgstr "Lorsqu'elle est activée, les sous-titres graphiques DVB seront affichés en jaune, au lieu de la couleur d'origine."

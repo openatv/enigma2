@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-24 18:40+0000\n"
+"POT-Creation-Date: 2024-12-30 10:59+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1557,24 +1557,24 @@ msgid "A file from media is in use!"
 msgstr ""
 
 #, python-format
-msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
+msgid "A finished Scheduler timer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "Một powertimer đã hoàn thành muốn khởi động lại %s% s của bạn.\n"
 "Làm điều đó bây giờ?"
 
-msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
+msgid "A finished Scheduler timer wants to restart the user interface. Do that now?"
 msgstr ""
 "Một powertimer đã hoàn thành muốn khởi động lại giao diện người dùng.\n"
 "Làm điều đó bây giờ?"
 
 #, python-format
-msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
+msgid "A finished Scheduler timer wants to set your %s %s to standby. Do that now?"
 msgstr ""
 "Một điện thoại hoàn thành muốn thiết lập của bạn\n"
 "%s %s để chờ. Làm điều đó bây giờ?"
 
 #, python-format
-msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
+msgid "A finished Scheduler timer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "Một điện thoại hoàn thành muốn tắt % s% s của bạn.\n"
 "Làm điều đó bây giờ?"
@@ -1595,10 +1595,10 @@ msgstr ""
 "Một bộ đếm thời gian hoàn thành muốn thiết lập của bạn\n"
 "%s%s để chờ. Làm điều đó bây giờ?"
 
-msgid "Graphical DVB subtitles will be displayed in the selected color, instead of the original colors."
+msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr ""
 
-msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
+msgid "A new storage device has been connected:"
 msgstr ""
 
 #, python-format
@@ -1789,6 +1789,9 @@ msgstr "Thao tác nhấn nút nguồn dài"
 
 msgid "Action on short POWER button press"
 msgstr "Thao tác nhấn nút nguồn ngắn"
+
+msgid "Actions"
+msgstr ""
 
 msgid "Activate"
 msgstr "Kích hoạt"
@@ -3800,14 +3803,6 @@ msgstr "Đổi thành gói kênh"
 msgid "Changed"
 msgstr ""
 
-#, python-format
-msgid ""
-"Changes need a system restart to take effect.\n"
-"Restart your %s %s now?"
-msgstr ""
-"Thay đổi cần khởi động lại hệ thống để có hiệu lực.\n"
-"Khởi động lại%s%s của bạn bây giờ?"
-
 msgid "Channel"
 msgstr "Kênh"
 
@@ -3943,12 +3938,6 @@ msgstr "Thiêt bị hiện tại"
 #, fuzzy
 msgid "Chechen"
 msgstr "Kiểm tra"
-
-msgid "Check"
-msgstr "Kiểm tra"
-
-msgid "Check HDD"
-msgstr "Kiểm tra HDD"
 
 msgid "Check for PDC"
 msgstr ""
@@ -4255,6 +4244,12 @@ msgid "Close dialog"
 msgstr "Đóng hộp thoại"
 
 msgid "Close screen"
+msgstr ""
+
+msgid "Close the Device Manager screen"
+msgstr ""
+
+msgid "Close the Device Manager screen and exit all menus"
 msgstr ""
 
 msgid "Close the Kexec MultiBoot Manager"
@@ -4971,12 +4966,6 @@ msgstr "Điều khiển Softcam của bạn"
 msgid "Controlled by HDMI"
 msgstr "được điều khiển bởi HDMI"
 
-msgid "Convert EXT3 File System to EXT4"
-msgstr "Chuyển đổi hệ thống tập tin ext3 sang ext4"
-
-msgid "Convert ext3 to ext4"
-msgstr "Chuyển đổi ext3 thành ext4"
-
 msgid "Convert file system ext3 to ext4"
 msgstr "Chuyển đổi hệ thống tập tin ext3 thành ext4"
 
@@ -5325,6 +5314,9 @@ msgstr ""
 
 msgid "Custom"
 msgstr "Tập quán"
+
+msgid "Custom mountpoint"
+msgstr ""
 
 msgid "Custom skip time for '1'/'3' buttons"
 msgstr "Thời gian bỏ qua tùy chỉnh cho các nút '1' / '3'"
@@ -5791,6 +5783,12 @@ msgstr ""
 msgid "Define the DNS suffix."
 msgstr ""
 
+msgid "Define the custom mountpoint for the device."
+msgstr ""
+
+msgid "Define the filesystem mount options."
+msgstr ""
+
 msgid "Defined / Active"
 msgstr ""
 
@@ -6107,8 +6105,14 @@ msgstr ""
 msgid "Development Packages"
 msgstr ""
 
+msgid "Device"
+msgstr ""
+
 msgid "Device Manager"
 msgstr "Quản lý thiết bị"
+
+msgid "Device Manager Actions"
+msgstr ""
 
 msgid "Device Settings"
 msgstr "Thiết lập thiết bị"
@@ -6124,9 +6128,6 @@ msgstr "Tên thiết bị:"
 
 msgid "Device number"
 msgstr ""
-
-msgid "Device: "
-msgstr "Thiết bị: "
 
 msgid "Devices"
 msgstr "Thiết bị"
@@ -7772,7 +7773,7 @@ msgstr "Ê-díp-tô"
 msgid "Even if TV has another input active?"
 msgstr "Ngay cả khi TV có đầu vào khác hoạt động?"
 
-msgid "Even if a 'Wakeup' PowerTimer starting?"
+msgid "Even if a 'Wakeup' Scheduler starting?"
 msgstr "Ngay cả khi bộ hẹn giờ nguồn 'thức dậy' bắt đầu?"
 
 msgid "Even if a 'Zap and Record' recording timer starting?"
@@ -8301,6 +8302,9 @@ msgstr ""
 msgid "File Commander settings"
 msgstr "Cài đặt chỉ huy tập tin"
 
+msgid "File System"
+msgstr ""
+
 msgid "File System Check"
 msgstr "Kiểm tra hệ thống tập tin"
 
@@ -8330,8 +8334,8 @@ msgstr "tên tệp"
 msgid "Files/folders to exclude from backup"
 msgstr "Tập tin / thư mục để loại trừ khỏi bản sao lưu"
 
-msgid "Filesystem check your hard drive"
-msgstr "Hệ thống tập tin kiểm tra đĩa cứng của bạn"
+msgid "Filesystem"
+msgstr ""
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr ""
@@ -8537,14 +8541,11 @@ msgstr "Định dạng"
 msgid "Format Disk"
 msgstr ""
 
-msgid "Format HDD"
-msgstr "Định dạng ổ cứng"
-
 msgid "Format Storage Device"
 msgstr ""
 
-msgid "Format your hard drive"
-msgstr "Định dạng đĩa cứng của bạn"
+msgid "Formatting storage device..."
+msgstr ""
 
 msgid "Forward Error Correction (FEC)"
 msgstr ""
@@ -8668,9 +8669,6 @@ msgstr "Toàn bộ RGB RGB"
 
 #, fuzzy
 msgid "G"
-msgstr "GB"
-
-msgid "GB"
 msgstr "GB"
 
 msgid "GCC version"
@@ -8893,6 +8891,9 @@ msgid "GotoX calibration"
 msgstr "Hiệu chuẩn GotoX"
 
 msgid "Grab"
+msgstr ""
+
+msgid "Graphical DVB subtitles will be displayed in the selected color, instead of the original colors."
 msgstr ""
 
 msgid "Graphical EPG"
@@ -9869,9 +9870,6 @@ msgstr "Tốc độ tua lại ban đầu"
 
 msgid "Initial scroll delay"
 msgstr "Độ trễ cuộn ban đầu"
-
-msgid "Initialization"
-msgstr "Khởi tạo"
 
 msgid "Initialize"
 msgstr "Khởi tạo"
@@ -10875,9 +10873,6 @@ msgstr ""
 msgid "MAC-address"
 msgstr "Địa chỉ MAC"
 
-msgid "MB"
-msgstr "MB"
-
 msgid "MENU"
 msgstr ""
 
@@ -11394,6 +11389,9 @@ msgstr "Quản lý"
 msgid "Mount Menu Actions"
 msgstr ""
 
+msgid "Mount Point"
+msgstr ""
+
 msgid "Mount Settings"
 msgstr ""
 
@@ -11406,14 +11404,11 @@ msgstr "Núi thất bại"
 msgid "Mount root file system."
 msgstr ""
 
-msgid "Mount: "
-msgstr "Núi: "
+msgid "Mountpoint"
+msgstr ""
 
 msgid "Mounts"
 msgstr "Núi"
-
-msgid "Mounts Devices"
-msgstr "Thiết bị gắn kết"
 
 msgid "Move"
 msgstr "Di chuyển"
@@ -12078,6 +12073,9 @@ msgstr "Mã PIN mới"
 
 msgid "New Setting DXAndy "
 msgstr "Cài đặt mới DXAndy "
+
+msgid "New Storage Device"
+msgstr ""
 
 msgid "New Zealand"
 msgstr "New Zealand"
@@ -12895,6 +12893,9 @@ msgstr "Tùy chọn để bật Hẹn giờ chờ phần cứng"
 msgid "Optional parameter"
 msgstr ""
 
+msgid "Options"
+msgstr ""
+
 msgid "Orbital position"
 msgstr "Vị trí quỹ đạo"
 
@@ -13156,6 +13157,9 @@ msgstr ""
 msgid "Partition"
 msgstr ""
 
+msgid "Partition Type"
+msgstr ""
+
 msgid "Partitions"
 msgstr "Phân vùng"
 
@@ -13182,6 +13186,9 @@ msgstr "Thiết lập mật khẩu"
 
 msgid "Password changed."
 msgstr "Mật khẩu đã được thay đổi."
+
+msgid "Path"
+msgstr ""
 
 #, python-format
 msgid "Path '%s' missing!"
@@ -13231,6 +13238,13 @@ msgstr ""
 
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "Xóa vĩnh viễn tất cả các bản ghi trong thùng rác?"
+
+msgid "Permanently ignore this device"
+msgstr ""
+
+#, python-format
+msgid "Permanently mount as %s"
+msgstr ""
 
 msgid "Permanently remove all deleted items"
 msgstr "Xóa vĩnh viễn tất cả các mục đã xóa"
@@ -13660,9 +13674,6 @@ msgstr ""
 msgid "Please wait, swap is is being created. This could take a few minutes to complete."
 msgstr ""
 
-msgid "Please wait."
-msgstr "Xin vui lòng chờ."
-
 msgid "Please wait..."
 msgstr "Xin vui lòng chờ ..."
 
@@ -13762,6 +13773,9 @@ msgstr "Bồ Đào Nha"
 msgid "Portuguese"
 msgstr "Bồ Đào Nha"
 
+msgid "Position"
+msgstr ""
+
 msgid "Position of finished Timers in Timerlist"
 msgstr "Vị trí của bộ hẹn giờ đã hoàn thành trong Danh sách thời gian"
 
@@ -13816,22 +13830,22 @@ msgstr "Ngưỡng công suất tính bằng mA"
 msgid "PowerTimer"
 msgstr "Thời gian quyền lực"
 
-msgid "PowerTimer Actions"
+msgid "Scheduler Actions"
 msgstr ""
 
-msgid "PowerTimer Overview"
+msgid "Scheduler Overview"
 msgstr "Tổng quan về PowerTimer"
 
 msgid "PowerTimer Settings"
 msgstr ""
 
-msgid "PowerTimer Standby"
+msgid "Scheduler Standby"
 msgstr "Chế độ chờ PowerTimer"
 
-msgid "PowerTimer deep standby"
+msgid "Scheduler deep standby"
 msgstr "Thời gian chờ quyền lực"
 
-msgid "PowerTimer log"
+msgid "Scheduler log"
 msgstr "Nhật ký PowerManager"
 
 msgid "PowerTimers"
@@ -15077,10 +15091,6 @@ msgstr ""
 msgid "Restart"
 msgstr "Khởi động lại"
 
-#, python-format
-msgid "Restart %s %s."
-msgstr "Khởi động lại % s% s."
-
 msgid "Restart GUI"
 msgstr "Khởi động lại GUI"
 
@@ -16136,9 +16146,6 @@ msgstr "Chọn Fast DiSEqC nếu hệ thống trên không của bạn hỗ tr�
 msgid "Select Folders"
 msgstr "Chọn thư mục"
 
-msgid "Select HDD"
-msgstr "Chọn ổ cứng"
-
 msgid "Select Lan/Wlan"
 msgstr "Chọn Lan / Wlan"
 
@@ -16215,6 +16222,12 @@ msgstr "Chọn một bộ phim"
 msgid "Select a network adapter"
 msgstr "Chọn bộ điều hợp mạng"
 
+msgid "Select a permanent mount point for all devices"
+msgstr ""
+
+msgid "Select a permanent mount point for the current device"
+msgstr ""
+
 msgid "Select a repository commit log to view:"
 msgstr ""
 
@@ -16244,6 +16257,9 @@ msgid "Select all lines"
 msgstr ""
 
 msgid "Select all related files"
+msgstr ""
+
+msgid "Select an action for the current device"
 msgstr ""
 
 msgid "Select an action to perform when the task has completed."
@@ -16533,6 +16549,9 @@ msgstr ""
 msgid "Select the file sort order for the %s column:"
 msgstr ""
 
+msgid "Select the filesystem for the device."
+msgstr ""
+
 msgid "Select the first item in list or move to the start of text"
 msgstr ""
 
@@ -16588,6 +16607,12 @@ msgstr ""
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Chọn số kiểu máy của thiết bị Unicable của bạn. Nếu số kiểu máy không được liệt kê, hãy đặt 'SCR' thành 'người dùng xác định' và nhập thủ công các thông số thiết bị theo bảng thông số kỹ thuật của nó."
 
+msgid "Select the mount points"
+msgstr ""
+
+msgid "Select the mountpoint for the device."
+msgstr ""
+
 msgid "Select the movie path"
 msgstr "Chọn đường dẫn phim"
 
@@ -16598,6 +16623,10 @@ msgid ""
 "Select the network interface to be used for the Internet connection.\n"
 "\n"
 "Press OK to continue."
+msgstr ""
+
+#, python-format
+msgid "Select the new mount point for: '%s'"
 msgstr ""
 
 msgid "Select the next item in list or move the cursor right"
@@ -17318,9 +17347,6 @@ msgstr "Thiết lập InputDevice"
 
 msgid "Setup MiniDLNA"
 msgstr "Cài đặt MiniDLNA"
-
-msgid "Setup Mounts"
-msgstr "Cài đặt gắn kết"
 
 msgid "Setup Network Services"
 msgstr "Cài đặt dịch vụ mạng"
@@ -19315,6 +19341,9 @@ msgstr "Svalbard và Jan Mayen"
 msgid "Swahili"
 msgstr ""
 
+msgid "Swap"
+msgstr ""
+
 msgid "Swap File Manager"
 msgstr "Trao đổi quản lý tập tin"
 
@@ -19540,9 +19569,6 @@ msgstr "T2MI PLP ID"
 msgid "T2MI RAW Mode"
 msgstr "Chế độ RAW T2MI"
 
-msgid "TB"
-msgstr "TB"
-
 msgid "TEXT"
 msgstr ""
 
@@ -19710,6 +19736,10 @@ msgstr ""
 
 #, python-format
 msgid "Temp directory (%s)"
+msgstr ""
+
+#, python-format
+msgid "Temporarily mount as %s"
 msgstr ""
 
 msgid "Temporary directory"
@@ -20176,9 +20206,6 @@ msgstr "Đây % s% s là gói không thể giải mã các luồng% s!"
 
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Phương tiện DVD RW này đã được định dạng - định dạng lại sẽ xóa tất cả nội dung trên đĩa."
-
-msgid "This Device is already mounted as HDD."
-msgstr "Thiết bị này đã được gắn dưới dạng ổ cứng."
 
 msgid "This Option allows you to switch Audio to BT Speakers."
 msgstr "Tùy chọn này cho phép bạn chuyển Âm thanh sang Loa BT."
@@ -20796,6 +20823,9 @@ msgstr "Chuyển đổi hình ảnh trong đồ họa"
 msgid "Toggle a cut mark at the current position"
 msgstr "Chuyển đổi dấu cắt ở vị trí hiện tại"
 
+msgid "Toggle a temporary mount for the current device"
+msgstr ""
+
 msgid "Toggle all related files"
 msgstr ""
 
@@ -21307,6 +21337,9 @@ msgstr "LNB phổ quát"
 msgid "Unknown"
 msgstr "Không xác định"
 
+msgid "Unknown Devices"
+msgstr ""
+
 msgid ""
 "Unknown Error creating Skin.\n"
 "Please check after reboot MyMetrixLite-Plugin and apply your settings."
@@ -21466,9 +21499,6 @@ msgstr "Cập nhật có sẵn:"
 msgid "Updating"
 msgstr "Nâng cấp"
 
-msgid "Updating mount locations."
-msgstr "Cập nhật vị trí gắn kết."
-
 msgid "Updating package list."
 msgstr ""
 
@@ -21596,9 +21626,6 @@ msgstr ""
 
 msgid "Use an alternative smaller screen."
 msgstr "Sử dụng màn hình thay thế"
-
-msgid "Use as HDD"
-msgstr "Sử dụng như ổ cứng"
 
 msgid "Use automatic mode detection"
 msgstr ""
@@ -22223,13 +22250,6 @@ msgstr "Đợi thời gian đồng bộ khi khởi động"
 msgid "Wait please while creating swap file..."
 msgstr "Xin vui lòng chờ trong khi tạo hoán đổi ..."
 
-msgid "Wait please while scanning for devices..."
-msgstr "Vui lòng đợi trong khi quét thiết bị ..."
-
-#, python-format
-msgid "Wait please while scanning your %s %s devices..."
-msgstr "Vui lòng đợi trong khi quét các thiết bị% s% s của bạn ..."
-
 msgid "Wait please while scanning..."
 msgstr "Vui lòng đợi trong khi quét ..."
 
@@ -22643,6 +22663,12 @@ msgid "Winter Sports"
 msgstr "thể thao mùa đông"
 
 msgid "Wipe"
+msgstr ""
+
+msgid "Wipe Storage Device"
+msgstr ""
+
+msgid "Wiping storage device..."
 msgstr ""
 
 msgid "Wireless LAN"
@@ -24226,6 +24252,85 @@ msgstr "có (giữ thức ăn)"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid ""
+#~ "Changes need a system restart to take effect.\n"
+#~ "Restart your %s %s now?"
+#~ msgstr ""
+#~ "Thay đổi cần khởi động lại hệ thống để có hiệu lực.\n"
+#~ "Khởi động lại%s%s của bạn bây giờ?"
+
+#~ msgid "Check"
+#~ msgstr "Kiểm tra"
+
+#~ msgid "Check HDD"
+#~ msgstr "Kiểm tra HDD"
+
+#~ msgid "Convert EXT3 File System to EXT4"
+#~ msgstr "Chuyển đổi hệ thống tập tin ext3 sang ext4"
+
+#~ msgid "Convert ext3 to ext4"
+#~ msgstr "Chuyển đổi ext3 thành ext4"
+
+#~ msgid "Device: "
+#~ msgstr "Thiết bị: "
+
+#~ msgid "Filesystem check your hard drive"
+#~ msgstr "Hệ thống tập tin kiểm tra đĩa cứng của bạn"
+
+#~ msgid "Format HDD"
+#~ msgstr "Định dạng ổ cứng"
+
+#~ msgid "Format your hard drive"
+#~ msgstr "Định dạng đĩa cứng của bạn"
+
+#~ msgid "GB"
+#~ msgstr "GB"
+
+#~ msgid "Initialization"
+#~ msgstr "Khởi tạo"
+
+#~ msgid "MB"
+#~ msgstr "MB"
+
+#~ msgid "Mount: "
+#~ msgstr "Núi: "
+
+#~ msgid "Mounts Devices"
+#~ msgstr "Thiết bị gắn kết"
+
+#~ msgid "Please wait."
+#~ msgstr "Xin vui lòng chờ."
+
+#, python-format
+#~ msgid "Restart %s %s."
+#~ msgstr "Khởi động lại % s% s."
+
+#~ msgid "Select HDD"
+#~ msgstr "Chọn ổ cứng"
+
+#~ msgid "Setup Mounts"
+#~ msgstr "Cài đặt gắn kết"
+
+#~ msgid "TB"
+#~ msgstr "TB"
+
+#~ msgid "This Device is already mounted as HDD."
+#~ msgstr "Thiết bị này đã được gắn dưới dạng ổ cứng."
+
+#~ msgid "Updating mount locations."
+#~ msgstr "Cập nhật vị trí gắn kết."
+
+#~ msgid "Use as HDD"
+#~ msgstr "Sử dụng như ổ cứng"
+
+#~ msgid "Wait please while scanning for devices..."
+#~ msgstr "Vui lòng đợi trong khi quét thiết bị ..."
+
+#, python-format
+#~ msgid "Wait please while scanning your %s %s devices..."
+#~ msgstr "Vui lòng đợi trong khi quét các thiết bị% s% s của bạn ..."
 
 #~ msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
 #~ msgstr "Khi được bật, phụ đề DVB đồ họa sẽ được hiển thị màu vàng, thay vì màu gốc."

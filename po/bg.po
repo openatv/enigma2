@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-24 18:40+0000\n"
+"POT-Creation-Date: 2024-12-30 10:59+0000\n"
 "PO-Revision-Date: 2023-08-06 06:22+0000\n"
 "Last-Translator: Salif Mehmed <mail@salif.eu>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/bg/>\n"
@@ -1550,24 +1550,24 @@ msgid "A file from media is in use!"
 msgstr "Файл от медия се използва!"
 
 #, python-format
-msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
+msgid "A finished Scheduler timer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "Завършен таймер за захранване иска да рестартира вашия %s %s.\n"
 "Да го направи ли сега?"
 
-msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
+msgid "A finished Scheduler timer wants to restart the user interface. Do that now?"
 msgstr ""
 "Завършен таймер за захранване иска да рестартира потребителския интерфейс.\n"
 "Да го направи ли сега?"
 
 #, python-format
-msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
+msgid "A finished Scheduler timer wants to set your %s %s to standby. Do that now?"
 msgstr ""
 "Готовият таймер за захранване иска да настрои вашия\n"
 "%s %s в режим на готовност. Да го направи ли сега?"
 
 #, python-format
-msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
+msgid "A finished Scheduler timer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "Завършен таймер за захранване иска да изключи вашия %s %s.\n"
 "Да го направи ли сега?"
@@ -1588,11 +1588,11 @@ msgstr ""
 "Таймерът за завършен запис иска да се изключи\n"
 "вашият %s %s. Изключване сега?"
 
-msgid "Graphical DVB subtitles will be displayed in the selected color, instead of the original colors."
-msgstr ""
-
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr "Открояване на изображението на дистанционното управление показва за кой бутон се отнася помощта. Ако повече от един бутон изпълнява указаната функция, ще се покаже повече от един акцент. Текстът под списъка изброява активните бутони и дали функцията изисква продължително натискане или SHIFT на бутона(ите)."
+
+msgid "A new storage device has been connected:"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -1780,6 +1780,9 @@ msgstr "Действие при дълго натискане на бутона 
 
 msgid "Action on short POWER button press"
 msgstr "Действие при кратко натискане на бутона за захранване"
+
+msgid "Actions"
+msgstr ""
 
 msgid "Activate"
 msgstr "Активиране"
@@ -3771,14 +3774,6 @@ msgstr "Промени до букет"
 msgid "Changed"
 msgstr ""
 
-#, python-format
-msgid ""
-"Changes need a system restart to take effect.\n"
-"Restart your %s %s now?"
-msgstr ""
-"Промените имат нужда от рестарт на системата, за да има ефект.\n"
-"Рестартирайте вашия %s %s сега?"
-
 msgid "Channel"
 msgstr "Канал"
 
@@ -3913,12 +3908,6 @@ msgstr "Характерно устройство"
 
 msgid "Chechen"
 msgstr ""
-
-msgid "Check"
-msgstr "Проверка"
-
-msgid "Check HDD"
-msgstr "Проверка HDD"
 
 msgid "Check for PDC"
 msgstr ""
@@ -4224,6 +4213,12 @@ msgstr "Затвори диалога"
 
 msgid "Close screen"
 msgstr "Затваряне на екрана"
+
+msgid "Close the Device Manager screen"
+msgstr ""
+
+msgid "Close the Device Manager screen and exit all menus"
+msgstr ""
 
 msgid "Close the Kexec MultiBoot Manager"
 msgstr ""
@@ -4934,12 +4929,6 @@ msgstr "Управление на вашите Softcams"
 msgid "Controlled by HDMI"
 msgstr "управлявано от HDMI"
 
-msgid "Convert EXT3 File System to EXT4"
-msgstr "Преобразуване ext3 към ext4"
-
-msgid "Convert ext3 to ext4"
-msgstr "Преобразуване ext3 към ext4"
-
 msgid "Convert file system ext3 to ext4"
 msgstr "Преобразуване ext3 към ext4"
 
@@ -5281,6 +5270,9 @@ msgstr ""
 
 msgid "Custom"
 msgstr "Персонализиран"
+
+msgid "Custom mountpoint"
+msgstr ""
 
 msgid "Custom skip time for '1'/'3' buttons"
 msgstr "Персонализирано време за прескачане на '1'/'3' бутони"
@@ -5737,6 +5729,12 @@ msgstr "Определете допълнително забавяне в мил
 msgid "Define the DNS suffix."
 msgstr ""
 
+msgid "Define the custom mountpoint for the device."
+msgstr ""
+
+msgid "Define the filesystem mount options."
+msgstr ""
+
 msgid "Defined / Active"
 msgstr "Дефиниран / Активен"
 
@@ -6050,8 +6048,14 @@ msgstr ""
 msgid "Development Packages"
 msgstr ""
 
+msgid "Device"
+msgstr ""
+
 msgid "Device Manager"
 msgstr "Диспечер на устройствата"
+
+msgid "Device Manager Actions"
+msgstr ""
 
 msgid "Device Settings"
 msgstr "Настройка на устройството"
@@ -6067,9 +6071,6 @@ msgstr "Име на устройството:"
 
 msgid "Device number"
 msgstr ""
-
-msgid "Device: "
-msgstr "Утройство: "
 
 msgid "Devices"
 msgstr "Утройства"
@@ -7695,7 +7696,7 @@ msgstr ""
 msgid "Even if TV has another input active?"
 msgstr ""
 
-msgid "Even if a 'Wakeup' PowerTimer starting?"
+msgid "Even if a 'Wakeup' Scheduler starting?"
 msgstr ""
 
 msgid "Even if a 'Zap and Record' recording timer starting?"
@@ -8225,6 +8226,9 @@ msgstr ""
 msgid "File Commander settings"
 msgstr "Настройки на File Commander"
 
+msgid "File System"
+msgstr ""
+
 msgid "File System Check"
 msgstr "Проверка файлова система"
 
@@ -8253,8 +8257,8 @@ msgstr "Име на файл"
 msgid "Files/folders to exclude from backup"
 msgstr "Файлове/папки които да се изключат от архива"
 
-msgid "Filesystem check your hard drive"
-msgstr "Файловата система проверява вашия твърд диск"
+msgid "Filesystem"
+msgstr ""
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr "Попълнете EPG за канали от EPG за излъчване, където няма IceTV EPG за канала"
@@ -8455,14 +8459,11 @@ msgstr "Форматиране"
 msgid "Format Disk"
 msgstr ""
 
-msgid "Format HDD"
-msgstr "Форматиране на твърдия диск"
-
 msgid "Format Storage Device"
 msgstr ""
 
-msgid "Format your hard drive"
-msgstr "Форматиране на вашия твърд диск"
+msgid "Formatting storage device..."
+msgstr ""
 
 msgid "Forward Error Correction (FEC)"
 msgstr ""
@@ -8582,9 +8583,6 @@ msgid "FullHD Test"
 msgstr "Full HD тест"
 
 msgid "G"
-msgstr ""
-
-msgid "GB"
 msgstr ""
 
 msgid "GCC version"
@@ -8802,6 +8800,9 @@ msgid "GotoX calibration"
 msgstr "Отиди на X калибровка"
 
 msgid "Grab"
+msgstr ""
+
+msgid "Graphical DVB subtitles will be displayed in the selected color, instead of the original colors."
 msgstr ""
 
 msgid "Graphical EPG"
@@ -9758,9 +9759,6 @@ msgstr "Начална скорост на пренавиване"
 
 msgid "Initial scroll delay"
 msgstr "Забавяне на първоначалното превъртане"
-
-msgid "Initialization"
-msgstr "Инициализация"
 
 msgid "Initialize"
 msgstr "Инициализиране"
@@ -10748,9 +10746,6 @@ msgstr ""
 msgid "MAC-address"
 msgstr "MAC- адрес"
 
-msgid "MB"
-msgstr ""
-
 msgid "MENU"
 msgstr "МЕНЮ"
 
@@ -11248,6 +11243,9 @@ msgstr "Мениджър за монтиране"
 msgid "Mount Menu Actions"
 msgstr ""
 
+msgid "Mount Point"
+msgstr ""
+
 msgid "Mount Settings"
 msgstr ""
 
@@ -11260,14 +11258,11 @@ msgstr "Монтирането се провали"
 msgid "Mount root file system."
 msgstr ""
 
-msgid "Mount: "
-msgstr "Монтиране: "
+msgid "Mountpoint"
+msgstr "Точка на монтиране"
 
 msgid "Mounts"
 msgstr "Мониране"
-
-msgid "Mounts Devices"
-msgstr "Монтирани устройства"
 
 msgid "Move"
 msgstr "Премести"
@@ -11906,6 +11901,9 @@ msgstr "Нов PIN"
 
 msgid "New Setting DXAndy "
 msgstr "Нова настройка DXAndy "
+
+msgid "New Storage Device"
+msgstr ""
 
 msgid "New Zealand"
 msgstr ""
@@ -12703,6 +12701,9 @@ msgstr "Опция за разрешаване на Hardware Standby Timer"
 msgid "Optional parameter"
 msgstr ""
 
+msgid "Options"
+msgstr ""
+
 msgid "Orbital position"
 msgstr "Орбитална позиция"
 
@@ -12959,6 +12960,9 @@ msgstr "Парламент"
 msgid "Partition"
 msgstr "Дял"
 
+msgid "Partition Type"
+msgstr ""
+
 msgid "Partitions"
 msgstr "Дялове"
 
@@ -12985,6 +12989,9 @@ msgstr "Настройки на паролата"
 
 msgid "Password changed."
 msgstr "Паролата е сменена."
+
+msgid "Path"
+msgstr ""
 
 #, python-format
 msgid "Path '%s' missing!"
@@ -13031,6 +13038,13 @@ msgstr ""
 
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "Окончателно изтриване на всички записи в кошчето за боклук?"
+
+msgid "Permanently ignore this device"
+msgstr ""
+
+#, python-format
+msgid "Permanently mount as %s"
+msgstr ""
 
 msgid "Permanently remove all deleted items"
 msgstr "Окончателно премахване на всички изтрити елементи"
@@ -13461,9 +13475,6 @@ msgstr ""
 msgid "Please wait, swap is is being created. This could take a few minutes to complete."
 msgstr ""
 
-msgid "Please wait."
-msgstr "Моля изчакайте."
-
 msgid "Please wait..."
 msgstr "Моля изчакайте..."
 
@@ -13563,6 +13574,9 @@ msgstr ""
 msgid "Portuguese"
 msgstr "Португалски"
 
+msgid "Position"
+msgstr ""
+
 msgid "Position of finished Timers in Timerlist"
 msgstr "Позиция на готовите таймери в Timerlist"
 
@@ -13617,22 +13631,22 @@ msgstr "Праг на мощността в mA"
 msgid "PowerTimer"
 msgstr "Таймер на захранването"
 
-msgid "PowerTimer Actions"
+msgid "Scheduler Actions"
 msgstr ""
 
-msgid "PowerTimer Overview"
+msgid "Scheduler Overview"
 msgstr "Преглед на таймера за захранване"
 
 msgid "PowerTimer Settings"
 msgstr ""
 
-msgid "PowerTimer Standby"
+msgid "Scheduler Standby"
 msgstr "Таймер за захранване в режим на готовност"
 
-msgid "PowerTimer deep standby"
+msgid "Scheduler deep standby"
 msgstr "Таймер за захранване в дълбока готовност"
 
-msgid "PowerTimer log"
+msgid "Scheduler log"
 msgstr "Дневник на таймера за захранване"
 
 msgid "PowerTimers"
@@ -14857,10 +14871,6 @@ msgstr ""
 msgid "Restart"
 msgstr "Рестарт"
 
-#, python-format
-msgid "Restart %s %s."
-msgstr "Рестарт %s %s."
-
 msgid "Restart GUI"
 msgstr "Рестарт графичен интерфейс"
 
@@ -15907,9 +15917,6 @@ msgstr "Изберете Fast DiSEqC, ако вашата антенна сис�
 msgid "Select Folders"
 msgstr "Изберете папки"
 
-msgid "Select HDD"
-msgstr "Изберете HDD"
-
 msgid "Select Lan/Wlan"
 msgstr "Изберете Lan/Wlan"
 
@@ -15986,6 +15993,12 @@ msgstr "Изберете филм"
 msgid "Select a network adapter"
 msgstr "Изберете мрежов адаптер"
 
+msgid "Select a permanent mount point for all devices"
+msgstr ""
+
+msgid "Select a permanent mount point for the current device"
+msgstr ""
+
 msgid "Select a repository commit log to view:"
 msgstr ""
 
@@ -16015,6 +16028,9 @@ msgid "Select all lines"
 msgstr ""
 
 msgid "Select all related files"
+msgstr ""
+
+msgid "Select an action for the current device"
 msgstr ""
 
 msgid "Select an action to perform when the task has completed."
@@ -16303,6 +16319,9 @@ msgstr ""
 msgid "Select the file sort order for the %s column:"
 msgstr ""
 
+msgid "Select the filesystem for the device."
+msgstr ""
+
 msgid "Select the first item in list or move to the start of text"
 msgstr ""
 
@@ -16357,6 +16376,12 @@ msgstr ""
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Изберете номера на модела на вашето Unicable устройство. Ако номерът на модела не е в списъка, задайте „SCR“ на „defined от потребителя“ и въведете параметрите на устройството ръчно в съответствие със спецификациите му."
 
+msgid "Select the mount points"
+msgstr ""
+
+msgid "Select the mountpoint for the device."
+msgstr ""
+
 msgid "Select the movie path"
 msgstr "Изберете път към филма"
 
@@ -16367,6 +16392,10 @@ msgid ""
 "Select the network interface to be used for the Internet connection.\n"
 "\n"
 "Press OK to continue."
+msgstr ""
+
+#, python-format
+msgid "Select the new mount point for: '%s'"
 msgstr ""
 
 msgid "Select the next item in list or move the cursor right"
@@ -17080,9 +17109,6 @@ msgstr "Настройка на входното устройство"
 
 msgid "Setup MiniDLNA"
 msgstr "Настройка на MiniDLNA"
-
-msgid "Setup Mounts"
-msgstr "Настройка на монтаж"
 
 msgid "Setup Network Services"
 msgstr "Настройка на мрежовите сервизи"
@@ -19044,6 +19070,9 @@ msgstr ""
 msgid "Swahili"
 msgstr ""
 
+msgid "Swap"
+msgstr ""
+
 msgid "Swap File Manager"
 msgstr "Swap Файлов мениджър"
 
@@ -19266,9 +19295,6 @@ msgstr ""
 msgid "T2MI RAW Mode"
 msgstr ""
 
-msgid "TB"
-msgstr "TB"
-
 msgid "TEXT"
 msgstr "ТЕКСТ"
 
@@ -19430,6 +19456,10 @@ msgstr ""
 
 #, python-format
 msgid "Temp directory (%s)"
+msgstr ""
+
+#, python-format
+msgid "Temporarily mount as %s"
 msgstr ""
 
 msgid "Temporary directory"
@@ -19894,9 +19924,6 @@ msgstr "Този %s %s не може да декодира %s потоци!"
 
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Този DVD RW носител вече е форматиран - преформатирането ще изтрие цялото съдържание на диска."
-
-msgid "This Device is already mounted as HDD."
-msgstr "Това устройство е вече инсталирано като HDD."
 
 msgid "This Option allows you to switch Audio to BT Speakers."
 msgstr "Тази опция ви позволява да превключите аудио към BT високоговорители."
@@ -20505,6 +20532,9 @@ msgstr "Превключване на картината в графика"
 msgid "Toggle a cut mark at the current position"
 msgstr "Превключете знак за рязане в текущата позиция"
 
+msgid "Toggle a temporary mount for the current device"
+msgstr ""
+
 msgid "Toggle all related files"
 msgstr ""
 
@@ -21007,6 +21037,9 @@ msgstr "Универсално LNB"
 msgid "Unknown"
 msgstr "Неизвестен"
 
+msgid "Unknown Devices"
+msgstr ""
+
 msgid ""
 "Unknown Error creating Skin.\n"
 "Please check after reboot MyMetrixLite-Plugin and apply your settings."
@@ -21164,9 +21197,6 @@ msgstr "Налични актуализации:"
 msgid "Updating"
 msgstr "Надграждам"
 
-msgid "Updating mount locations."
-msgstr "Актуализиране на местата за монтиране."
-
 msgid "Updating package list."
 msgstr ""
 
@@ -21293,9 +21323,6 @@ msgstr ""
 
 msgid "Use an alternative smaller screen."
 msgstr "Използване на алтернативен екран"
-
-msgid "Use as HDD"
-msgstr "Използване като HDD"
 
 msgid "Use automatic mode detection"
 msgstr ""
@@ -21910,13 +21937,6 @@ msgstr "Изчакайте синхронизиране на времето пр
 msgid "Wait please while creating swap file..."
 msgstr "Моля изчакайте, докато се създава swap file..."
 
-msgid "Wait please while scanning for devices..."
-msgstr "Моля изчакайте, докато се сканира за устройства..."
-
-#, python-format
-msgid "Wait please while scanning your %s %s devices..."
-msgstr "Моля изчакайте, докато се сканират %s %s устройства ..."
-
 msgid "Wait please while scanning..."
 msgstr "Моля изчакайте, докато сканира ..."
 
@@ -22324,6 +22344,12 @@ msgid "Winter Sports"
 msgstr "Зимни спортове"
 
 msgid "Wipe"
+msgstr ""
+
+msgid "Wipe Storage Device"
+msgstr ""
+
+msgid "Wiping storage device..."
 msgstr ""
 
 msgid "Wireless LAN"
@@ -23885,14 +23911,84 @@ msgstr "да (запази фийдове)"
 msgid "®"
 msgstr ""
 
+#, python-format
+#~ msgid ""
+#~ "Changes need a system restart to take effect.\n"
+#~ "Restart your %s %s now?"
+#~ msgstr ""
+#~ "Промените имат нужда от рестарт на системата, за да има ефект.\n"
+#~ "Рестартирайте вашия %s %s сега?"
+
+#~ msgid "Check"
+#~ msgstr "Проверка"
+
+#~ msgid "Check HDD"
+#~ msgstr "Проверка HDD"
+
+#~ msgid "Convert EXT3 File System to EXT4"
+#~ msgstr "Преобразуване ext3 към ext4"
+
+#~ msgid "Convert ext3 to ext4"
+#~ msgstr "Преобразуване ext3 към ext4"
+
+#~ msgid "Device: "
+#~ msgstr "Утройство: "
+
+#~ msgid "Filesystem check your hard drive"
+#~ msgstr "Файловата система проверява вашия твърд диск"
+
+#~ msgid "Format HDD"
+#~ msgstr "Форматиране на твърдия диск"
+
+#~ msgid "Format your hard drive"
+#~ msgstr "Форматиране на вашия твърд диск"
+
+#~ msgid "Initialization"
+#~ msgstr "Инициализация"
+
+#~ msgid "Mount: "
+#~ msgstr "Монтиране: "
+
+#~ msgid "Mounts Devices"
+#~ msgstr "Монтирани устройства"
+
+#~ msgid "Please wait."
+#~ msgstr "Моля изчакайте."
+
+#, python-format
+#~ msgid "Restart %s %s."
+#~ msgstr "Рестарт %s %s."
+
+#~ msgid "Select HDD"
+#~ msgstr "Изберете HDD"
+
+#~ msgid "Setup Mounts"
+#~ msgstr "Настройка на монтаж"
+
+#~ msgid "TB"
+#~ msgstr "TB"
+
+#~ msgid "This Device is already mounted as HDD."
+#~ msgstr "Това устройство е вече инсталирано като HDD."
+
+#~ msgid "Updating mount locations."
+#~ msgstr "Актуализиране на местата за монтиране."
+
+#~ msgid "Use as HDD"
+#~ msgstr "Използване като HDD"
+
+#~ msgid "Wait please while scanning for devices..."
+#~ msgstr "Моля изчакайте, докато се сканира за устройства..."
+
+#, python-format
+#~ msgid "Wait please while scanning your %s %s devices..."
+#~ msgstr "Моля изчакайте, докато се сканират %s %s устройства ..."
+
 #~ msgid "When enabled, graphical DVB subtitles will be displayed in yellow, instead of the original color."
 #~ msgstr "Когато е разрешено, графичните DVB субтитри ще се показват в жълто, вместо в оригиналния цвят."
 
 #~ msgid "Yellow DVB subtitles"
 #~ msgstr "Жълти DVB субтитри"
-
-#~ msgid "Mountpoint"
-#~ msgstr "Точка на монтиране"
 
 #, python-format
 #~ msgid "%d channel found"

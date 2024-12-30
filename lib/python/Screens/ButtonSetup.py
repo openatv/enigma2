@@ -281,7 +281,7 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Restart enigma"), "Module/Screens.Standby/TryQuitMainloop/3", textPower))
 	ButtonSetupFunctions.append((_("Deep Standby"), "Module/Screens.Standby/TryQuitMainloop/1", textPower))
 	ButtonSetupFunctions.append((_("SleepTimer"), "Module/Screens.SleepTimer/SleepTimer", textPower))
-	ButtonSetupFunctions.append((_("PowerTimer"), "Module/Screens.Timers/PowerTimerOverview", textPower))
+	ButtonSetupFunctions.append((_("Scheduler"), "Module/Screens.Timers/SchedulerOverview", textPower))
 	ButtonSetupFunctions.append((_("Usage Setup"), "Setup/Usage", textSetup))
 	ButtonSetupFunctions.append((_("User interface settings"), "Setup/UserInterface", textSetup))
 	ButtonSetupFunctions.append((_("Recording Setup"), "Setup/Recording", textSetup))

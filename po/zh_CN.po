@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-24 18:40+0000\n"
-"PO-Revision-Date: 2024-12-27 21:39+0000\n"
+"POT-Creation-Date: 2024-12-30 10:59+0000\n"
+"PO-Revision-Date: 2024-12-30 11:00+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -947,8 +947,8 @@ msgstr[1] "%d 个标记为需要安装。"
 #, python-format
 msgid "%d package marked for remove."
 msgid_plural "%d packages marked for remove."
-msgstr[0] "已标记 %d 个要删除的软件包。"
-msgstr[1] "已标记 %d 个要删除的软件包。"
+msgstr[0] "%d 个标记为需要删除。"
+msgstr[1] "%d 个标记为需要删除。"
 
 #, python-format
 msgid "%d package marked for update."
@@ -1554,18 +1554,18 @@ msgid "A file from media is in use!"
 msgstr "来自媒体的文件正在使用中！"
 
 #, python-format
-msgid "A finished PowerTimer wants to reboot your %s %s. Do that now?"
+msgid "A finished Scheduler timer wants to reboot your %s %s. Do that now?"
 msgstr "一个已结束的电源定时器想要重启 %s %s。是否执行？"
 
-msgid "A finished PowerTimer wants to restart the user interface. Do that now?"
+msgid "A finished Scheduler timer wants to restart the user interface. Do that now?"
 msgstr "一个已结束的电源定时器想要重启用户界面。是否执行？"
 
 #, python-format
-msgid "A finished PowerTimer wants to set your %s %s to standby. Do that now?"
+msgid "A finished Scheduler timer wants to set your %s %s to standby. Do that now?"
 msgstr "一个已结束的电源定时器要将 %s %s 设置到待机状态。是否执行？"
 
 #, python-format
-msgid "A finished PowerTimer wants to shut down your %s %s. Do that now?"
+msgid "A finished Scheduler timer wants to shut down your %s %s. Do that now?"
 msgstr "一个已结束的电源定时器要将 %s %s 关闭。是否执行？"
 
 #, python-format
@@ -1584,11 +1584,11 @@ msgstr ""
 "一个已结束的录像定时器\n"
 "想要关闭 %s %s。要关闭吗？"
 
-msgid "Graphical DVB subtitles will be displayed in the selected color, instead of the original colors."
-msgstr "图形化 DVB 字幕将以选定的颜色显示，而不是原始颜色。"
-
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr "遥控器图像上的高亮部分显示帮助所指的按钮。如果多个按钮执行指示的功能，则将显示多个高亮部分。列表下方的文本列出了活动按钮以及该功能是否需要长按或按 SHIFT 键。"
+
+msgid "A new storage device has been connected:"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -1779,6 +1779,9 @@ msgstr "长按电源键操作"
 
 msgid "Action on short POWER button press"
 msgstr "短按电源键操作"
+
+msgid "Actions"
+msgstr ""
 
 msgid "Activate"
 msgstr "激活"
@@ -3774,14 +3777,6 @@ msgstr "更改到频道群"
 msgid "Changed"
 msgstr "已更改"
 
-#, python-format
-msgid ""
-"Changes need a system restart to take effect.\n"
-"Restart your %s %s now?"
-msgstr ""
-"更改需要重启系统才能生效。\n"
-"是否现在重新启动你的 %s %s？"
-
 msgid "Channel"
 msgstr "频道"
 
@@ -3916,12 +3911,6 @@ msgstr "字符装置"
 
 msgid "Chechen"
 msgstr "车臣语"
-
-msgid "Check"
-msgstr "检查"
-
-msgid "Check HDD"
-msgstr "检查硬盘"
 
 msgid "Check for PDC"
 msgstr "检查 PDC"
@@ -4227,6 +4216,12 @@ msgstr "关闭对话框"
 
 msgid "Close screen"
 msgstr "关闭屏幕"
+
+msgid "Close the Device Manager screen"
+msgstr ""
+
+msgid "Close the Device Manager screen and exit all menus"
+msgstr ""
 
 msgid "Close the Kexec MultiBoot Manager"
 msgstr "关闭 Kexec MultiBoot 管理器"
@@ -4941,12 +4936,6 @@ msgstr "控制 Softcam"
 msgid "Controlled by HDMI"
 msgstr "由 HDMI 控制"
 
-msgid "Convert EXT3 File System to EXT4"
-msgstr "转换 ext3 文件系统到 ext4"
-
-msgid "Convert ext3 to ext4"
-msgstr "转换 ext3 到 ext4"
-
 msgid "Convert file system ext3 to ext4"
 msgstr "转换 ext3 文件系统到 ext4"
 
@@ -5290,6 +5279,9 @@ msgstr "当前定义的音量补偿："
 
 msgid "Custom"
 msgstr "自定义"
+
+msgid "Custom mountpoint"
+msgstr ""
 
 msgid "Custom skip time for '1'/'3' buttons"
 msgstr "自定义“1” “3”按键的跳跃时间"
@@ -5746,6 +5738,12 @@ msgstr "定义http(s)串流启动前的附加延迟（以毫秒为单位）。"
 msgid "Define the DNS suffix."
 msgstr "定义 DNS 后缀。"
 
+msgid "Define the custom mountpoint for the device."
+msgstr ""
+
+msgid "Define the filesystem mount options."
+msgstr ""
+
 msgid "Defined / Active"
 msgstr "定义/活动"
 
@@ -5926,7 +5924,7 @@ msgid "Delete only highlighted file"
 msgstr "仅删除突出显示的文件"
 
 msgid "Delete or Wipe the highlighted slot"
-msgstr "删除或擦除突出显示的位置"
+msgstr "删除或擦除突出显示的槽位"
 
 msgid "Delete play list entry"
 msgstr "删除播放列表条目"
@@ -6059,8 +6057,14 @@ msgstr "详情"
 msgid "Development Packages"
 msgstr "开发包"
 
+msgid "Device"
+msgstr ""
+
 msgid "Device Manager"
 msgstr "设备管理器"
+
+msgid "Device Manager Actions"
+msgstr ""
 
 msgid "Device Settings"
 msgstr "设备设置"
@@ -6076,9 +6080,6 @@ msgstr "设备名:"
 
 msgid "Device number"
 msgstr "设备编号"
-
-msgid "Device: "
-msgstr "设备："
 
 msgid "Devices"
 msgstr "设备"
@@ -7714,7 +7715,7 @@ msgstr "埃塞俄比亚"
 msgid "Even if TV has another input active?"
 msgstr "即使电视有别的活动输入？"
 
-msgid "Even if a 'Wakeup' PowerTimer starting?"
+msgid "Even if a 'Wakeup' Scheduler starting?"
 msgstr "即使“唤醒”电源定时器启动？"
 
 msgid "Even if a 'Zap and Record' recording timer starting?"
@@ -8130,10 +8131,10 @@ msgid "Favorites"
 msgstr "收藏夹"
 
 msgid "Feed URL"
-msgstr "Feed 地址"
+msgstr "订阅源地址"
 
 msgid "Feed disabled!"
-msgstr "已禁用 Feed！"
+msgstr "已禁用订阅源！"
 
 msgid "Feed server DNS error!"
 msgstr "订阅源服务器DNS错误！"
@@ -8142,10 +8143,10 @@ msgid "Feed server access error!"
 msgstr "订阅源服务器访问错误！"
 
 msgid "Feed stable."
-msgstr "Feed 稳定。"
+msgstr "订阅源稳定。"
 
 msgid "Feed unstable!"
-msgstr "Feed 不稳定！"
+msgstr "订阅源不稳定！"
 
 msgid "Fetch EPG and update timers now"
 msgstr "立即获取 EPG 并更新定时器"
@@ -8244,6 +8245,9 @@ msgstr "文件指挥官文本编辑器操作"
 msgid "File Commander settings"
 msgstr "文件指挥官设置"
 
+msgid "File System"
+msgstr ""
+
 msgid "File System Check"
 msgstr "文件系统检查"
 
@@ -8272,8 +8276,8 @@ msgstr "文件名"
 msgid "Files/folders to exclude from backup"
 msgstr "要从备份中排除的文件/文件夹"
 
-msgid "Filesystem check your hard drive"
-msgstr "文件系统检查你的硬盘"
+msgid "Filesystem"
+msgstr ""
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr "在没有 IceTV EPG 的广播 EPG 中填写频道 EPG"
@@ -8474,14 +8478,11 @@ msgstr "格式化"
 msgid "Format Disk"
 msgstr "格式化磁盘"
 
-msgid "Format HDD"
-msgstr "格式化硬盘"
-
 msgid "Format Storage Device"
 msgstr "格式化存储设备"
 
-msgid "Format your hard drive"
-msgstr "格式化你的硬盘"
+msgid "Formatting storage device..."
+msgstr ""
 
 msgid "Forward Error Correction (FEC)"
 msgstr "前向纠错 (FEC)"
@@ -8602,9 +8603,6 @@ msgstr "全高清测试"
 
 msgid "G"
 msgstr "G"
-
-msgid "GB"
-msgstr "GB"
 
 msgid "GCC version"
 msgstr "GCC 版本"
@@ -8822,6 +8820,9 @@ msgstr "转到 X 校准"
 
 msgid "Grab"
 msgstr "抓取"
+
+msgid "Graphical DVB subtitles will be displayed in the selected color, instead of the original colors."
+msgstr "图形化 DVB 字幕将以选定的颜色显示，而不是原始颜色。"
 
 msgid "Graphical EPG"
 msgstr "图形化 EPG"
@@ -9781,9 +9782,6 @@ msgstr "初始快退速度"
 msgid "Initial scroll delay"
 msgstr "初始滚动延迟"
 
-msgid "Initialization"
-msgstr "初始化"
-
 msgid "Initialize"
 msgstr "初始化"
 
@@ -10581,7 +10579,7 @@ msgid "Loading information, please wait..."
 msgstr "正在加载信息，请稍候..."
 
 msgid "Loading slot information, please wait..."
-msgstr "正在加载位置信息，请稍候..."
+msgstr "正在加载插槽信息，请稍候..."
 
 msgid "Local box"
 msgstr "本地机顶盒"
@@ -10769,9 +10767,6 @@ msgstr "MAC 地址"
 
 msgid "MAC-address"
 msgstr "MAC 地址"
-
-msgid "MB"
-msgstr "MB"
 
 msgid "MENU"
 msgstr "菜单"
@@ -11270,6 +11265,9 @@ msgstr "挂载管理器"
 msgid "Mount Menu Actions"
 msgstr "挂载菜单操作"
 
+msgid "Mount Point"
+msgstr ""
+
 msgid "Mount Settings"
 msgstr "挂载设置"
 
@@ -11282,14 +11280,11 @@ msgstr "挂载失败"
 msgid "Mount root file system."
 msgstr "挂载根文件系统。"
 
-msgid "Mount: "
-msgstr "挂载："
+msgid "Mountpoint"
+msgstr "挂载点"
 
 msgid "Mounts"
 msgstr "挂载"
-
-msgid "Mounts Devices"
-msgstr "挂载设备"
 
 msgid "Move"
 msgstr "移动"
@@ -11932,6 +11927,9 @@ msgstr "新 PIN"
 msgid "New Setting DXAndy "
 msgstr "新设置 DXAndy"
 
+msgid "New Storage Device"
+msgstr ""
+
 msgid "New Zealand"
 msgstr "新西兰"
 
@@ -12133,7 +12131,7 @@ msgid "No services/providers selected"
 msgstr "没有选择 频道/供应商"
 
 msgid "No slot images found"
-msgstr "未找到镜像位置"
+msgstr "未找到任何镜像插槽"
 
 msgid "No standby"
 msgstr "不待机"
@@ -12728,6 +12726,9 @@ msgstr "启用硬件待机计时器的选项。"
 msgid "Optional parameter"
 msgstr "可选参数"
 
+msgid "Options"
+msgstr ""
+
 msgid "Orbital position"
 msgstr "轨道位置"
 
@@ -12984,6 +12985,9 @@ msgstr "议会"
 msgid "Partition"
 msgstr "分区"
 
+msgid "Partition Type"
+msgstr ""
+
 msgid "Partitions"
 msgstr "分区"
 
@@ -13010,6 +13014,9 @@ msgstr "密码设置"
 
 msgid "Password changed."
 msgstr "密码已修改。"
+
+msgid "Path"
+msgstr ""
 
 #, python-format
 msgid "Path '%s' missing!"
@@ -13056,6 +13063,13 @@ msgstr "是否执行升级？"
 
 msgid "Permanently delete all recordings in the trash can?"
 msgstr "永久删除所有回收站中的录像吗？"
+
+msgid "Permanently ignore this device"
+msgstr ""
+
+#, python-format
+msgid "Permanently mount as %s"
+msgstr ""
 
 msgid "Permanently remove all deleted items"
 msgstr "永久删除所有已删除项目"
@@ -13432,7 +13446,7 @@ msgid "Please wait while the data is extracted..."
 msgstr "正在提取数据，请稍候..."
 
 msgid "Please wait while the feeds are reset (cleared and reloaded)..."
-msgstr "正在重置（清除并重新加载）feed，请稍候..."
+msgstr "正在重置（清除并重新加载）订阅源，请稍候..."
 
 msgid "Please wait while the file is read and processed..."
 msgstr "正在读取和处理文件，请稍候..."
@@ -13488,9 +13502,6 @@ msgstr "请稍候，正在加载镜像..."
 
 msgid "Please wait, swap is is being created. This could take a few minutes to complete."
 msgstr "请稍候，正在创建交换。这可能需要几分钟才能完成。"
-
-msgid "Please wait."
-msgstr "请稍等。"
 
 msgid "Please wait..."
 msgstr "请等待..."
@@ -13591,6 +13602,9 @@ msgstr "葡萄牙"
 msgid "Portuguese"
 msgstr "葡萄牙语"
 
+msgid "Position"
+msgstr ""
+
 msgid "Position of finished Timers in Timerlist"
 msgstr "定时器列表中已结束定时器的位置"
 
@@ -13645,22 +13659,22 @@ msgstr "功率阈值（mA）"
 msgid "PowerTimer"
 msgstr "电源定时器"
 
-msgid "PowerTimer Actions"
+msgid "Scheduler Actions"
 msgstr "电源定时器动作"
 
-msgid "PowerTimer Overview"
+msgid "Scheduler Overview"
 msgstr "电源定时器概览"
 
 msgid "PowerTimer Settings"
 msgstr "电源定时器设置"
 
-msgid "PowerTimer Standby"
+msgid "Scheduler Standby"
 msgstr "电源定时器待机"
 
-msgid "PowerTimer deep standby"
+msgid "Scheduler deep standby"
 msgstr "电源定时器深度待机"
 
-msgid "PowerTimer log"
+msgid "Scheduler log"
 msgstr "电源定时器日志"
 
 msgid "PowerTimers"
@@ -13837,7 +13851,7 @@ msgid "Press OK to use this locale.  [%s]"
 msgstr "按“确定”使用此区域设置。[%s]"
 
 msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that image. If available, YELLOW will either delete or wipe the image. A deleted image can be restored with the BLUE button. A wiped image is completely removed and cannot be restored!"
-msgstr "按向上/向下按钮选择一个位置，然后按 OK 或 绿键 重新启动到该镜像。 如果可用，黄键将删除或擦除镜像。 可以使用蓝键恢复已删除的镜像。 擦除的镜像被完全删除，无法恢复！"
+msgstr "按向上/向下按钮选择一个槽位，然后按 OK 或 绿键 重新启动到该镜像。 如果可用，黄键将删除或擦除镜像。 可以使用蓝键恢复已删除的镜像。 擦除的镜像被完全删除，无法恢复！"
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "按此按键可模拟长按之后按下的按键（这也会覆盖分配给仿真按键的任何其他操作）。"
@@ -14885,10 +14899,6 @@ msgstr "分辨率单位"
 msgid "Restart"
 msgstr "重启"
 
-#, python-format
-msgid "Restart %s %s."
-msgstr "重启 %s %s。"
-
 msgid "Restart GUI"
 msgstr "重启用户界面"
 
@@ -14962,7 +14972,7 @@ msgid "Restore settings now"
 msgstr "立即恢复设置"
 
 msgid "Restore the highlighted slot"
-msgstr "恢复突出显示的位置"
+msgstr "还原突出显示的槽位"
 
 msgid "Restore your %s %s settings."
 msgstr "恢复 %s %s 的设置。"
@@ -15890,7 +15900,7 @@ msgid "Select 'Yes' to split tasks into separate actions."
 msgstr "选择“是”将任务拆分为单独的操作。"
 
 msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
-msgstr "选择“是”以使用备用 GitHub feed 源 IP 地址。如果您使用 VPN 并且无法通过发布的 DNS 名称访问正常的 feed 源，这会很有帮助。"
+msgstr "选择“是”以使用备用 GitHub 订阅源 IP 地址。如果您使用 VPN 并且无法通过发布的 DNS 名称访问正常的订阅源，这会很有帮助。"
 
 msgid "Select 'Yes' to use legacy navigation where CH+/- swaps the active column. Select 'No' to use the newer unified navigation option for consistent navigation with other screens where LEFT/RIGHT swaps the active column and CH+/- pages up and down the list."
 msgstr "选择“是”以使用传统导航，其中CH+/-交换活动列。选择“否”可使用较新的统一导航选项，以与其他屏幕保持一致的导航，其中左/右在列表中上下交换活动列和CH+/-页面。"
@@ -15933,9 +15943,6 @@ msgstr "如果您的天线系统支持快速 DiSEqC，请选择它。如果您�
 
 msgid "Select Folders"
 msgstr "选择文件夹"
-
-msgid "Select HDD"
-msgstr "选择硬盘"
 
 msgid "Select Lan/Wlan"
 msgstr "选择 Lan/Wlan"
@@ -16013,6 +16020,12 @@ msgstr "选择一部影片"
 msgid "Select a network adapter"
 msgstr "选择网络适配器"
 
+msgid "Select a permanent mount point for all devices"
+msgstr ""
+
+msgid "Select a permanent mount point for the current device"
+msgstr ""
+
 msgid "Select a repository commit log to view:"
 msgstr "选择要查看的存储库提交日志："
 
@@ -16043,6 +16056,9 @@ msgstr "选择所有行"
 
 msgid "Select all related files"
 msgstr "选择所有相关文件"
+
+msgid "Select an action for the current device"
+msgstr ""
 
 msgid "Select an action to perform when the task has completed."
 msgstr "选择任务完成后要执行的操作。"
@@ -16330,6 +16346,9 @@ msgstr "选择以前访问过频道的显示顺序。"
 msgid "Select the file sort order for the %s column:"
 msgstr "选择第 %s 列的文件排序顺序："
 
+msgid "Select the filesystem for the device."
+msgstr ""
+
 msgid "Select the first item in list or move to the start of text"
 msgstr "选择列表中的第一项或移至文本开头"
 
@@ -16340,10 +16359,10 @@ msgid "Select the function to be assigned to this button."
 msgstr "选择要分配给此按钮的功能。"
 
 msgid "Select the highlighted image and proceed to the slot selection"
-msgstr "选择突出显示的镜像并继续进行位置选择"
+msgstr "选择突出显示的镜像并继续进行槽位选择"
 
 msgid "Select the highlighted slot and reboot"
-msgstr "选择突出显示的位置并重新启动"
+msgstr "选择突出显示的插槽并重新启动"
 
 msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
 msgstr "选择时间线标记的初始位置。 标记是在 EPG 上绘制的显示当前时间的垂直线。值越大，标记越向右移动，显示的历史记录越多，即将发生的事件越少。"
@@ -16384,6 +16403,12 @@ msgstr "选择DNS的模式。"
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "选择Unicable 设备的型号。 如果未列出型号，请将“SCR”设置为“用户定义”，然后根据其规格手动输入设备参数。"
 
+msgid "Select the mount points"
+msgstr ""
+
+msgid "Select the mountpoint for the device."
+msgstr ""
+
 msgid "Select the movie path"
 msgstr "选择影片路径"
 
@@ -16398,6 +16423,10 @@ msgstr ""
 "选择用于互联网连接的网络接口。\n"
 "\n"
 "按“确定”继续。"
+
+#, python-format
+msgid "Select the new mount point for: '%s'"
+msgstr ""
 
 msgid "Select the next item in list or move the cursor right"
 msgstr "选择列表中的下一项或向右移动光标"
@@ -17119,9 +17148,6 @@ msgstr "设置输入设备"
 
 msgid "Setup MiniDLNA"
 msgstr "设置 MiniDLNA"
-
-msgid "Setup Mounts"
-msgstr "设置挂载"
 
 msgid "Setup Network Services"
 msgstr "设置网络服务"
@@ -19083,6 +19109,9 @@ msgstr "斯瓦尔巴群岛和Jan Mayen"
 msgid "Swahili"
 msgstr "斯瓦希里语"
 
+msgid "Swap"
+msgstr ""
+
 msgid "Swap File Manager"
 msgstr "交换文件管理器"
 
@@ -19305,9 +19334,6 @@ msgstr "T2MI PLP ID"
 msgid "T2MI RAW Mode"
 msgstr "T2MI RAW 模式"
 
-msgid "TB"
-msgstr "TB"
-
 msgid "TEXT"
 msgstr "文本"
 
@@ -19470,6 +19496,10 @@ msgstr "泰卢固语"
 #, python-format
 msgid "Temp directory (%s)"
 msgstr "临时目录（%s）"
+
+#, python-format
+msgid "Temporarily mount as %s"
+msgstr ""
 
 msgid "Temporary directory"
 msgstr "临时目录"
@@ -19966,9 +19996,6 @@ msgstr "此 %s %s 不能解码 %s 流！"
 
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "此 DVD RW 介质已经格式化－重新格式化将擦除光盘上的所有内容。"
-
-msgid "This Device is already mounted as HDD."
-msgstr "此设备已挂载为硬盘。"
 
 msgid "This Option allows you to switch Audio to BT Speakers."
 msgstr "此选项允许您显示菜单路径。"
@@ -20579,6 +20606,9 @@ msgstr "切换图形中的图片"
 msgid "Toggle a cut mark at the current position"
 msgstr "在当前位置切换剪切标记"
 
+msgid "Toggle a temporary mount for the current device"
+msgstr ""
+
 msgid "Toggle all related files"
 msgstr "切换所有相关文件"
 
@@ -21081,6 +21111,9 @@ msgstr "通用高频头"
 msgid "Unknown"
 msgstr "未知"
 
+msgid "Unknown Devices"
+msgstr ""
+
 msgid ""
 "Unknown Error creating Skin.\n"
 "Please check after reboot MyMetrixLite-Plugin and apply your settings."
@@ -21238,9 +21271,6 @@ msgstr "可用更新："
 msgid "Updating"
 msgstr "正在更新"
 
-msgid "Updating mount locations."
-msgstr "正在更新挂载位置。"
-
 msgid "Updating package list."
 msgstr "正在更新软件包列表。"
 
@@ -21367,9 +21397,6 @@ msgstr "使用备用 GitHub DNS"
 
 msgid "Use an alternative smaller screen."
 msgstr "使用替代的较小屏幕。"
-
-msgid "Use as HDD"
-msgstr "当作硬盘使用"
 
 msgid "Use automatic mode detection"
 msgstr "使用自动模式检测"
@@ -21546,7 +21573,7 @@ msgid "User - Bouquets"
 msgstr "用户 － 频道群"
 
 msgid "User Feed URL"
-msgstr "用户 Feed 地址"
+msgstr "用户订阅源地址"
 
 msgid "User ID"
 msgstr "用户名"
@@ -22018,13 +22045,6 @@ msgstr "启动时等待时间同步"
 msgid "Wait please while creating swap file..."
 msgstr "正在创建交换文件，请等待..."
 
-msgid "Wait please while scanning for devices..."
-msgstr "正在扫描设备，请等待..."
-
-#, python-format
-msgid "Wait please while scanning your %s %s devices..."
-msgstr "正在扫描 %s %s 设备，请等待..."
-
 msgid "Wait please while scanning..."
 msgstr "正在扫描，请等待..."
 
@@ -22072,7 +22092,7 @@ msgid "Warning: %d feeds were unable to be reloaded!"
 msgstr "警告：无法重新加载 %d 订阅源！"
 
 msgid "Warning: Canceling this process will leave the feeds in an incomplete and unusable state!"
-msgstr "警告：取消此过程将使 feed 处于不完整且无法使用的状态！"
+msgstr "警告：取消此过程将使订阅源处于不完整且无法使用的状态！"
 
 msgid "Warning: Overrides are currently active!"
 msgstr "警告：覆盖当前处于活动状态！"
@@ -22436,6 +22456,12 @@ msgstr "冬季运动"
 
 msgid "Wipe"
 msgstr "消除"
+
+msgid "Wipe Storage Device"
+msgstr ""
+
+msgid "Wiping storage device..."
+msgstr ""
 
 msgid "Wireless LAN"
 msgstr "无线局域网"
@@ -23202,7 +23228,7 @@ msgstr "eMMC"
 
 #, python-format
 msgid "eMMC slot %s%s"
-msgstr "eMMC 位置 %s%s"
+msgstr "eMMC 槽位 %s%s"
 
 msgid "eSATA"
 msgstr "eSATA"
@@ -24001,6 +24027,85 @@ msgstr "是（保留订阅源）"
 msgid "®"
 msgstr "®"
 
+#, python-format
+#~ msgid ""
+#~ "Changes need a system restart to take effect.\n"
+#~ "Restart your %s %s now?"
+#~ msgstr ""
+#~ "更改需要重启系统才能生效。\n"
+#~ "是否现在重新启动你的 %s %s？"
+
+#~ msgid "Check"
+#~ msgstr "检查"
+
+#~ msgid "Check HDD"
+#~ msgstr "检查硬盘"
+
+#~ msgid "Convert EXT3 File System to EXT4"
+#~ msgstr "转换 ext3 文件系统到 ext4"
+
+#~ msgid "Convert ext3 to ext4"
+#~ msgstr "转换 ext3 到 ext4"
+
+#~ msgid "Device: "
+#~ msgstr "设备："
+
+#~ msgid "Filesystem check your hard drive"
+#~ msgstr "文件系统检查你的硬盘"
+
+#~ msgid "Format HDD"
+#~ msgstr "格式化硬盘"
+
+#~ msgid "Format your hard drive"
+#~ msgstr "格式化你的硬盘"
+
+#~ msgid "GB"
+#~ msgstr "GB"
+
+#~ msgid "Initialization"
+#~ msgstr "初始化"
+
+#~ msgid "MB"
+#~ msgstr "MB"
+
+#~ msgid "Mount: "
+#~ msgstr "挂载："
+
+#~ msgid "Mounts Devices"
+#~ msgstr "挂载设备"
+
+#~ msgid "Please wait."
+#~ msgstr "请稍等。"
+
+#, python-format
+#~ msgid "Restart %s %s."
+#~ msgstr "重启 %s %s。"
+
+#~ msgid "Select HDD"
+#~ msgstr "选择硬盘"
+
+#~ msgid "Setup Mounts"
+#~ msgstr "设置挂载"
+
+#~ msgid "TB"
+#~ msgstr "TB"
+
+#~ msgid "This Device is already mounted as HDD."
+#~ msgstr "此设备已挂载为硬盘。"
+
+#~ msgid "Updating mount locations."
+#~ msgstr "正在更新挂载位置。"
+
+#~ msgid "Use as HDD"
+#~ msgstr "当作硬盘使用"
+
+#~ msgid "Wait please while scanning for devices..."
+#~ msgstr "正在扫描设备，请等待..."
+
+#, python-format
+#~ msgid "Wait please while scanning your %s %s devices..."
+#~ msgstr "正在扫描 %s %s 设备，请等待..."
+
 #~ msgid "A graphical DVB subtitles will be displayed in the selected color, instead of the original color."
 #~ msgstr "图形 DVB 字幕将以选定的颜色显示，而不是原来的颜色。"
 
@@ -24036,9 +24141,6 @@ msgstr "®"
 
 #~ msgid "E "
 #~ msgstr "E "
-
-#~ msgid "Mountpoint"
-#~ msgstr "挂载点"
 
 #, python-format
 #~ msgid "%d channel found"
