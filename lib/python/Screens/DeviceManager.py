@@ -889,7 +889,7 @@ class DeviceManager(Screen):
 					swapState = _("On") if storageDevice.get("swapState") else _("Off")
 					des = f"{_("Swap")}: {swapState}"
 				else:
-					des = f"{_("Mount")}: {mountPoint} {fs}{rw}"
+					des = f"{_("Mountpoint")}: {mountPoint} {fs}{rw}"
 				separator = "└"
 				devicePixmap = None
 			else:

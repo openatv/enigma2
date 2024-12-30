@@ -1944,7 +1944,7 @@ class StorageInformation(InformationBase):
 				diskSize = stat.f_blocks * stat.f_frsize
 				diskFree = stat.f_bfree * stat.f_frsize
 				diskUsed = diskSize - diskFree
-				info.append(formatLine("P2", _("Mount"), partition.mountpoint))
+				info.append(formatLine("P2", _("Mountpoint"), partition.mountpoint))
 				info.append(formatLine("P2", _("Size"), f"{scaleNumber(diskSize)}  ({scaleNumber(diskSize, 'Iec')})"))
 				info.append(formatLine("P2", _("Used"), f"{scaleNumber(diskUsed)}  ({scaleNumber(diskUsed, 'Iec')})"))
 				info.append(formatLine("P2", _("Free"), f"{scaleNumber(diskFree)}  ({scaleNumber(diskFree, 'Iec')})"))
@@ -1967,7 +1967,7 @@ class StorageInformation(InformationBase):
 						diskSize = stat.f_blocks * stat.f_frsize
 						diskFree = stat.f_bfree * stat.f_frsize
 						diskUsed = diskSize - diskFree
-						info.append(formatLine("P3", _("Mount"), partition.mountpoint))
+						info.append(formatLine("P3", _("Mountpoint"), partition.mountpoint))
 						info.append(formatLine("P3", _("Size"), f"{scaleNumber(diskSize)}  ({scaleNumber(diskSize, 'Iec')})"))
 						info.append(formatLine("P3", _("Used"), f"{scaleNumber(diskUsed)}  ({scaleNumber(diskUsed, 'Iec')})"))
 						info.append(formatLine("P3", _("Free"), f"{scaleNumber(diskFree)}  ({scaleNumber(diskFree, 'Iec')})"))
