@@ -7,10 +7,12 @@ from Components.GUIComponent import GUIComponent
 from Components.Pixmap import Pixmap
 from Components.Sources.Boolean import Boolean
 from Components.Sources.StaticText import StaticText
+from Components.SystemInfo import getBoxDisplayName
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
-from Screens.Standby import QUIT_RESTART, TryQuitMainloop
+from Screens.Standby import QUIT_REBOOT, QUIT_RESTART, TryQuitMainloop
 from Screens.VirtualKeyBoard import VirtualKeyBoard
+from Tools.BoundFunction import boundFunction
 
 
 class ConfigList(GUIComponent):
@@ -449,22 +451,26 @@ class ConfigListScreen:
 	def keySave(self):
 		for notifier in self.onSave:
 			notifier()
-		if self.saveAll():
-			self.session.openWithCallback(self.restartConfirm, MessageBox, self.restartMsg, default=True, type=MessageBox.TYPE_YESNO)
+		rebootFlag = self.saveAll()
+		if rebootFlag:
+			self.session.openWithCallback(boundFunction(self.restartConfirm, rebootFlag[0]), MessageBox, rebootFlag[1], default=True, type=MessageBox.TYPE_YESNO)
 		else:
 			self.close()
 
-	def restartConfirm(self, result):
+	def restartConfirm(self, rebootFlag, result):
 		if result:
-			self.session.open(TryQuitMainloop, retvalue=QUIT_RESTART)
+			self.session.open(TryQuitMainloop, retvalue=rebootFlag)
 			self.close()
 
 	def saveAll(self):
-		restart = False
+		restart = 0
 		for item in self["config"].list:
 			if len(item) > 1:
-				if item[0].endswith("*") and item[1].isChanged():
-					restart = True
+				if item[1].isChanged():
+					if item[0].endswith("*"):
+						restart = (QUIT_RESTART, _("Restart GUI now?"))
+					elif item[0].endswith("#"):
+						restart = (QUIT_REBOOT, _("Reboot %s %s now?") % getBoxDisplayName())
 				item[1].save()
 		configfile.save()
 		return restart
