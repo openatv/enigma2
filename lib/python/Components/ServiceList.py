@@ -1,6 +1,6 @@
 #Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License
 #
-#Copyright (c) 2024 jbleyel
+#Copyright (c) 2024-2025 jbleyel
 
 #Permission is hereby granted, free of charge, to any person obtaining a copy
 #of this software and associated documentation files (the "Software"), to deal

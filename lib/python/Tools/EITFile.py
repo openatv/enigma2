@@ -1,4 +1,4 @@
-# Copyright (C) 2022 jbleyel
+# Copyright (C) 2022-2025 jbleyel
 # This file is part of openATV enigma2 <https://github.com/openatv/enigma2>.
 #
 # EITFile.py is free software: you can redistribute it and/or modify

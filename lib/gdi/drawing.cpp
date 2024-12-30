@@ -1,7 +1,7 @@
 /*
 Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License
 
-Copyright (c) 2023-2024 zKhadiri, jbleyel, openATV
+Copyright (c) 2023-2025 zKhadiri, jbleyel, openATV
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
