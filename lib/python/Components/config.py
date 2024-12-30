@@ -209,7 +209,8 @@ class ConfigElement:
 
 	def isChanged(self):  # NOTE: self.saved_value should already be stringified, self.default may be a string or None.
 		saved = self.saved_value or self.toString(self.default)
-		# print(f"[Config] isChanged DEBUG: Saved='{saved}', Default='{self.toString(self.default)}', Value='{self.toString(self.value)}', Changed={self.toString(self.value) != saved}.")
+		# print(f"[Config] isChanged DEBUG: SavedValue='{self.saved_value}', Default='{self.toString(self.default)}', Saved='{saved}', Value='{self.toString(self.value)}', Changed={self.toString(self.value) != saved}.")
+		# print(f"[Config] isChanged DEBUG: SavedValue='{type(self.saved_value)}', Default='{type(self.toString(self.default))}', Saved='{type(saved)}', Value='{type(self.toString(self.value))}', Changed={self.toString(self.value) != saved}.")
 		return self.toString(self.value) != saved
 
 	def changed(self):  # This calls all the notifiers on every change to an element.
@@ -622,9 +623,6 @@ class ConfigDictionarySet(ConfigElement):
 	def fromString(self, val):
 		return eval(val)
 
-	def toString(self, value):
-		return str(value)
-
 	def getValue(self):
 		return self.dirs
 
@@ -863,9 +861,6 @@ class ConfigSelection(ConfigElement):
 		if self._descr is None:
 			self._descr = self.description[self.value]
 		return ("text", self._descr)
-
-	def toString(self, val):
-		return str(val)
 
 	def toDisplayString(self, val):
 		return self.description[val]
@@ -1355,9 +1350,6 @@ class ConfigInteger(ConfigSequence):
 	def fromString(self, value):
 		return int(value)
 
-	def toString(self, value):
-		return str(value)
-
 	def getValue(self):
 		return self._value[0]
 
@@ -1536,9 +1528,6 @@ class ConfigSet(ConfigElement):
 
 	def fromString(self, value):
 		return eval(value)
-
-	# def toString(self, value):
-	# 	return str(value)
 
 	def toDisplayString(self, value):
 		return ", ".join([self.description[x] for x in value])
