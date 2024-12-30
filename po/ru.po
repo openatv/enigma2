@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-30 10:59+0000\n"
+"POT-Creation-Date: 2024-12-30 19:32+0000\n"
 "PO-Revision-Date: 2024-12-22 20:02+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
@@ -97,6 +97,9 @@ msgstr " обновлено"
 
 msgid "!! Boot loader Upgrade !!"
 msgstr "!! Обновление загрузчика !!"
+
+msgid "# = Reboot Required"
+msgstr ""
 
 msgid "%-H:%M"
 msgstr "%-H:%M"
@@ -13699,30 +13702,6 @@ msgstr "Индикатор питания на дисплее"
 msgid "Power threshold in mA"
 msgstr "Порог тока в мА"
 
-msgid "PowerTimer"
-msgstr "Таймер питания"
-
-msgid "Scheduler Actions"
-msgstr "Действия PowerTimer"
-
-msgid "Scheduler Overview"
-msgstr "Просмотр таймеров питания"
-
-msgid "PowerTimer Settings"
-msgstr "Настройки PowerTimer"
-
-msgid "Scheduler Standby"
-msgstr "Таймер питания в 'Режим ожидания'"
-
-msgid "Scheduler deep standby"
-msgstr "Таймер питания в 'Глубокий сон'"
-
-msgid "Scheduler log"
-msgstr "Лог таймеров питания"
-
-msgid "PowerTimers"
-msgstr "Таймеры питания"
-
 msgid "Predefined"
 msgstr "Предопределено"
 
@@ -14360,6 +14339,10 @@ msgstr "Задний"
 
 msgid "Reboot"
 msgstr "Перезагрузить"
+
+#, python-format
+msgid "Reboot %s %s now?"
+msgstr ""
 
 msgid "Rec"
 msgstr "Запись"
@@ -15575,6 +15558,27 @@ msgstr "Запланированная загрузка epg.dat"
 
 msgid "Scheduled save of epg.dat"
 msgstr "Запланированное сохранение epg.dat"
+
+msgid "Scheduler"
+msgstr ""
+
+msgid "Scheduler Actions"
+msgstr "Действия PowerTimer"
+
+msgid "Scheduler Overview"
+msgstr "Просмотр таймеров питания"
+
+msgid "Scheduler Settings"
+msgstr ""
+
+msgid "Scheduler Standby"
+msgstr "Таймер питания в 'Режим ожидания'"
+
+msgid "Scheduler deep standby"
+msgstr "Таймер питания в 'Глубокий сон'"
+
+msgid "Scheduler log"
+msgstr "Лог таймеров питания"
 
 msgid "Sci-Fi"
 msgstr "Научная фантастика"
@@ -18031,8 +18035,8 @@ msgstr "Показать экран настроек логов"
 msgid "Show the OSCam information screen"
 msgstr "Показать экран информации OSCam"
 
-msgid "Show the PowerTimer"
-msgstr "Показать Таймер питания"
+msgid "Show the Scheduler"
+msgstr ""
 
 msgid "Show the SleepTimer"
 msgstr "Показать таймер сна"
@@ -24075,6 +24079,18 @@ msgstr "Да (оставить фиды)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "PowerTimer"
+#~ msgstr "Таймер питания"
+
+#~ msgid "PowerTimer Settings"
+#~ msgstr "Настройки PowerTimer"
+
+#~ msgid "PowerTimers"
+#~ msgstr "Таймеры питания"
+
+#~ msgid "Show the PowerTimer"
+#~ msgstr "Показать Таймер питания"
 
 #, python-format
 #~ msgid ""

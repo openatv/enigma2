@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-30 10:59+0000\n"
+"POT-Creation-Date: 2024-12-30 19:32+0000\n"
 "PO-Revision-Date: 2024-12-17 12:22+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -97,6 +97,9 @@ msgstr " ενημερώθηκε"
 
 msgid "!! Boot loader Upgrade !!"
 msgstr "!! Αναβάθμιση bootloader !!"
+
+msgid "# = Reboot Required"
+msgstr ""
 
 msgid "%-H:%M"
 msgstr "%-H:%M"
@@ -13656,30 +13659,6 @@ msgstr "Οθόνη σε λειτουργία"
 msgid "Power threshold in mA"
 msgstr "Κατώφλι ισχύος σε mA"
 
-msgid "PowerTimer"
-msgstr "Χρονοδιακόπτης λειτουργίας"
-
-msgid "Scheduler Actions"
-msgstr "Ενέργειες χρονοδιακόπτη λειτουργίας"
-
-msgid "Scheduler Overview"
-msgstr "Επισκόπηση χρονοδιακοπτών λειτουργίας"
-
-msgid "PowerTimer Settings"
-msgstr "Ρυθμίσεις χρονοδιακόπτη λειτουργίας"
-
-msgid "Scheduler Standby"
-msgstr "Αναμονή χρονοδιακόπτη λειτουργίας"
-
-msgid "Scheduler deep standby"
-msgstr "Βαθιά αναμονή χρονοδιακόπτη λειτουργίας"
-
-msgid "Scheduler log"
-msgstr "Καταγραφή χρονοδιακόπτη λειτουργίας"
-
-msgid "PowerTimers"
-msgstr "Χρονοδιακόπτες λειτουργίας"
-
 msgid "Predefined"
 msgstr "Προρυθμισμένο"
 
@@ -14317,6 +14296,10 @@ msgstr "Πλαϊνό"
 
 msgid "Reboot"
 msgstr "Επανεκκίνηση"
+
+#, python-format
+msgid "Reboot %s %s now?"
+msgstr ""
 
 msgid "Rec"
 msgstr "Εγγραφή"
@@ -15529,6 +15512,27 @@ msgstr "Προγραμματισμένη φόρτωση του epg.dat"
 
 msgid "Scheduled save of epg.dat"
 msgstr "Προγραμματισμένη αποθήκευση του epg.dat"
+
+msgid "Scheduler"
+msgstr ""
+
+msgid "Scheduler Actions"
+msgstr "Ενέργειες χρονοδιακόπτη λειτουργίας"
+
+msgid "Scheduler Overview"
+msgstr "Επισκόπηση χρονοδιακοπτών λειτουργίας"
+
+msgid "Scheduler Settings"
+msgstr ""
+
+msgid "Scheduler Standby"
+msgstr "Αναμονή χρονοδιακόπτη λειτουργίας"
+
+msgid "Scheduler deep standby"
+msgstr "Βαθιά αναμονή χρονοδιακόπτη λειτουργίας"
+
+msgid "Scheduler log"
+msgstr "Καταγραφή χρονοδιακόπτη λειτουργίας"
 
 msgid "Sci-Fi"
 msgstr "Sci-Fi"
@@ -17985,8 +17989,8 @@ msgstr "Εμφάνιση οθόνης ρυθμίσεων καταγραφολο�
 msgid "Show the OSCam information screen"
 msgstr "Εμφάνιση της οθόνης πληροφοριών OSCam"
 
-msgid "Show the PowerTimer"
-msgstr "Εμφάνιση του χρονοδιακόπτη λειτουργίας"
+msgid "Show the Scheduler"
+msgstr ""
 
 msgid "Show the SleepTimer"
 msgstr "Εμφάνιση χρονοδιακόπτη ύπνου"
@@ -24026,6 +24030,18 @@ msgstr "ναι (διατήρηση των feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "PowerTimer"
+#~ msgstr "Χρονοδιακόπτης λειτουργίας"
+
+#~ msgid "PowerTimer Settings"
+#~ msgstr "Ρυθμίσεις χρονοδιακόπτη λειτουργίας"
+
+#~ msgid "PowerTimers"
+#~ msgstr "Χρονοδιακόπτες λειτουργίας"
+
+#~ msgid "Show the PowerTimer"
+#~ msgstr "Εμφάνιση του χρονοδιακόπτη λειτουργίας"
 
 #, python-format
 #~ msgid ""

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-30 10:59+0000\n"
+"POT-Creation-Date: 2024-12-30 19:32+0000\n"
 "PO-Revision-Date: 2024-12-21 11:00+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
@@ -95,6 +95,9 @@ msgstr " aktualizováno"
 
 msgid "!! Boot loader Upgrade !!"
 msgstr "!! Upgrade zavaděče!!"
+
+msgid "# = Reboot Required"
+msgstr ""
 
 msgid "%-H:%M"
 msgstr "%-H:%M"
@@ -13697,30 +13700,6 @@ msgstr "Zapnout přední displej"
 msgid "Power threshold in mA"
 msgstr "Prahový proud v mA"
 
-msgid "PowerTimer"
-msgstr "Časovač vypnutí"
-
-msgid "Scheduler Actions"
-msgstr "Akce PowerTimer"
-
-msgid "Scheduler Overview"
-msgstr "Časovač napájení - přehled"
-
-msgid "PowerTimer Settings"
-msgstr "Nastavení časovače PowerTimer"
-
-msgid "Scheduler Standby"
-msgstr "Časovač napájení (vypnout do pohotovosti)"
-
-msgid "Scheduler deep standby"
-msgstr "Časovač napájení (úplně vypnout)"
-
-msgid "Scheduler log"
-msgstr "Časovač napájení - protokol"
-
-msgid "PowerTimers"
-msgstr "Časovače napájení"
-
 msgid "Predefined"
 msgstr "Přednastavené"
 
@@ -14358,6 +14337,10 @@ msgstr "Zadní"
 
 msgid "Reboot"
 msgstr "Restartovat"
+
+#, python-format
+msgid "Reboot %s %s now?"
+msgstr ""
 
 msgid "Rec"
 msgstr "Rec"
@@ -15573,6 +15556,27 @@ msgstr "Naplánované načtení souboru epg.dat"
 
 msgid "Scheduled save of epg.dat"
 msgstr "Naplánované uložení souboru epg.dat"
+
+msgid "Scheduler"
+msgstr ""
+
+msgid "Scheduler Actions"
+msgstr "Akce PowerTimer"
+
+msgid "Scheduler Overview"
+msgstr "Časovač napájení - přehled"
+
+msgid "Scheduler Settings"
+msgstr ""
+
+msgid "Scheduler Standby"
+msgstr "Časovač napájení (vypnout do pohotovosti)"
+
+msgid "Scheduler deep standby"
+msgstr "Časovač napájení (úplně vypnout)"
+
+msgid "Scheduler log"
+msgstr "Časovač napájení - protokol"
 
 msgid "Sci-Fi"
 msgstr "Sci-Fi"
@@ -18029,8 +18033,8 @@ msgstr "Zobrazit obrazovku Nastavení protokolů"
 msgid "Show the OSCam information screen"
 msgstr "Zobrazit obrazovku s informacemi o OSCamu"
 
-msgid "Show the PowerTimer"
-msgstr "Zobrazit časovač napájení"
+msgid "Show the Scheduler"
+msgstr ""
 
 msgid "Show the SleepTimer"
 msgstr "Zobrazit časovač vypnutí"
@@ -24073,6 +24077,18 @@ msgstr "ano (uchovat zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "PowerTimer"
+#~ msgstr "Časovač vypnutí"
+
+#~ msgid "PowerTimer Settings"
+#~ msgstr "Nastavení časovače PowerTimer"
+
+#~ msgid "PowerTimers"
+#~ msgstr "Časovače napájení"
+
+#~ msgid "Show the PowerTimer"
+#~ msgstr "Zobrazit časovač napájení"
 
 #, python-format
 #~ msgid ""

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-30 10:59+0000\n"
+"POT-Creation-Date: 2024-12-30 19:32+0000\n"
 "PO-Revision-Date: 2024-12-30 11:00+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -97,6 +97,9 @@ msgstr " 已更新"
 
 msgid "!! Boot loader Upgrade !!"
 msgstr "！！ 引导加载程序升级！！"
+
+msgid "# = Reboot Required"
+msgstr ""
 
 msgid "%-H:%M"
 msgstr "%-H:%M"
@@ -13656,30 +13659,6 @@ msgstr "开机显示"
 msgid "Power threshold in mA"
 msgstr "功率阈值（mA）"
 
-msgid "PowerTimer"
-msgstr "电源定时器"
-
-msgid "Scheduler Actions"
-msgstr "电源定时器动作"
-
-msgid "Scheduler Overview"
-msgstr "电源定时器概览"
-
-msgid "PowerTimer Settings"
-msgstr "电源定时器设置"
-
-msgid "Scheduler Standby"
-msgstr "电源定时器待机"
-
-msgid "Scheduler deep standby"
-msgstr "电源定时器深度待机"
-
-msgid "Scheduler log"
-msgstr "电源定时器日志"
-
-msgid "PowerTimers"
-msgstr "电源定时器"
-
 msgid "Predefined"
 msgstr "预定义"
 
@@ -14317,6 +14296,10 @@ msgstr "后部"
 
 msgid "Reboot"
 msgstr "重启"
+
+#, python-format
+msgid "Reboot %s %s now?"
+msgstr ""
 
 msgid "Rec"
 msgstr "REC"
@@ -15529,6 +15512,27 @@ msgstr "epg.dat 的预定加载"
 
 msgid "Scheduled save of epg.dat"
 msgstr "epg.dat 的预定保存"
+
+msgid "Scheduler"
+msgstr ""
+
+msgid "Scheduler Actions"
+msgstr "电源定时器动作"
+
+msgid "Scheduler Overview"
+msgstr "电源定时器概览"
+
+msgid "Scheduler Settings"
+msgstr ""
+
+msgid "Scheduler Standby"
+msgstr "电源定时器待机"
+
+msgid "Scheduler deep standby"
+msgstr "电源定时器深度待机"
+
+msgid "Scheduler log"
+msgstr "电源定时器日志"
 
 msgid "Sci-Fi"
 msgstr "科幻小说"
@@ -17985,8 +17989,8 @@ msgstr "显示日志设备屏"
 msgid "Show the OSCam information screen"
 msgstr "显示 OSCam 信息屏幕"
 
-msgid "Show the PowerTimer"
-msgstr "显示电源定时器"
+msgid "Show the Scheduler"
+msgstr ""
 
 msgid "Show the SleepTimer"
 msgstr "显示睡眠定时器"
@@ -24026,6 +24030,18 @@ msgstr "是（保留订阅源）"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "PowerTimer"
+#~ msgstr "电源定时器"
+
+#~ msgid "PowerTimer Settings"
+#~ msgstr "电源定时器设置"
+
+#~ msgid "PowerTimers"
+#~ msgstr "电源定时器"
+
+#~ msgid "Show the PowerTimer"
+#~ msgstr "显示电源定时器"
 
 #, python-format
 #~ msgid ""

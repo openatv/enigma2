@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-30 10:59+0000\n"
+"POT-Creation-Date: 2024-12-30 19:32+0000\n"
 "PO-Revision-Date: 2023-06-04 19:16+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -97,6 +97,9 @@ msgstr " atnaujinta"
 
 msgid "!! Boot loader Upgrade !!"
 msgstr "!! Įkrovos tvarkyklės atnaujinimas !!"
+
+msgid "# = Reboot Required"
+msgstr ""
 
 msgid "%-H:%M"
 msgstr "%-V:%M"
@@ -13703,30 +13706,6 @@ msgstr "Įjungimo ekranas"
 msgid "Power threshold in mA"
 msgstr "Įtampos galia mA"
 
-msgid "PowerTimer"
-msgstr "Įjungimo laikmatis"
-
-msgid "Scheduler Actions"
-msgstr "PowerTimer veiksmai"
-
-msgid "Scheduler Overview"
-msgstr "Įjungimo laikmačio apžvalga"
-
-msgid "PowerTimer Settings"
-msgstr "PowerTimer nustatymai"
-
-msgid "Scheduler Standby"
-msgstr "Įjungimo laikmatis. Budėjimo režimas"
-
-msgid "Scheduler deep standby"
-msgstr "Įjungimo laikmatis budėjimo režime"
-
-msgid "Scheduler log"
-msgstr "Maitinimo laikmačio žurnalas"
-
-msgid "PowerTimers"
-msgstr "Maitinimo laikmačiai"
-
 msgid "Predefined"
 msgstr "Pageidautinas"
 
@@ -14364,6 +14343,10 @@ msgstr "Galinis"
 
 msgid "Reboot"
 msgstr "Paleisti iš naujo"
+
+#, python-format
+msgid "Reboot %s %s now?"
+msgstr ""
 
 msgid "Rec"
 msgstr "Rec"
@@ -15579,6 +15562,27 @@ msgstr "Suplanuota epg.dat užkrova"
 
 msgid "Scheduled save of epg.dat"
 msgstr "Planuojama išsaugoti epg.dat"
+
+msgid "Scheduler"
+msgstr ""
+
+msgid "Scheduler Actions"
+msgstr "PowerTimer veiksmai"
+
+msgid "Scheduler Overview"
+msgstr "Įjungimo laikmačio apžvalga"
+
+msgid "Scheduler Settings"
+msgstr ""
+
+msgid "Scheduler Standby"
+msgstr "Įjungimo laikmatis. Budėjimo režimas"
+
+msgid "Scheduler deep standby"
+msgstr "Įjungimo laikmatis budėjimo režime"
+
+msgid "Scheduler log"
+msgstr "Maitinimo laikmačio žurnalas"
 
 msgid "Sci-Fi"
 msgstr "Mokslinė fantastika"
@@ -18023,8 +18027,8 @@ msgstr ""
 msgid "Show the OSCam information screen"
 msgstr ""
 
-msgid "Show the PowerTimer"
-msgstr "Rodyti išjungimo laikmatį..."
+msgid "Show the Scheduler"
+msgstr ""
 
 msgid "Show the SleepTimer"
 msgstr "Rodyti miego laikmatį"
@@ -24026,6 +24030,18 @@ msgstr "taip (išsaugoti šaltinius)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "PowerTimer"
+#~ msgstr "Įjungimo laikmatis"
+
+#~ msgid "PowerTimer Settings"
+#~ msgstr "PowerTimer nustatymai"
+
+#~ msgid "PowerTimers"
+#~ msgstr "Maitinimo laikmačiai"
+
+#~ msgid "Show the PowerTimer"
+#~ msgstr "Rodyti išjungimo laikmatį..."
 
 #, python-format
 #~ msgid ""

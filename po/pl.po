@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-30 10:59+0000\n"
+"POT-Creation-Date: 2024-12-30 19:32+0000\n"
 "PO-Revision-Date: 2024-12-21 14:15+0000\n"
 "Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
@@ -103,6 +103,9 @@ msgstr " zaktualizowany"
 
 msgid "!! Boot loader Upgrade !!"
 msgstr "!! Aktualizacja Bootloadera !!"
+
+msgid "# = Reboot Required"
+msgstr ""
 
 msgid "%-H:%M"
 msgstr "%-H:%M"
@@ -13709,30 +13712,6 @@ msgstr "Włącz wyświetlacz"
 msgid "Power threshold in mA"
 msgstr "Wartość progowa mocy w mA"
 
-msgid "PowerTimer"
-msgstr "Programator zasilania"
-
-msgid "Scheduler Actions"
-msgstr "Akcje programatora zasilania"
-
-msgid "Scheduler Overview"
-msgstr "Programatory zasilania"
-
-msgid "PowerTimer Settings"
-msgstr "Ustawienia programatora zasilania"
-
-msgid "Scheduler Standby"
-msgstr "Programator czuwania"
-
-msgid "Scheduler deep standby"
-msgstr "Programator wyłączenia"
-
-msgid "Scheduler log"
-msgstr "Logi programatorów zasilania"
-
-msgid "PowerTimers"
-msgstr "Programatory zasilania"
-
 msgid "Predefined"
 msgstr "Zdefiniowany"
 
@@ -14370,6 +14349,10 @@ msgstr "Tył"
 
 msgid "Reboot"
 msgstr "Uruchom ponownie"
+
+#, python-format
+msgid "Reboot %s %s now?"
+msgstr ""
 
 msgid "Rec"
 msgstr "Nagrywanie"
@@ -15585,6 +15568,27 @@ msgstr "Planowane ładowanie pliku epg.dat"
 
 msgid "Scheduled save of epg.dat"
 msgstr "Planowane zapisywanie pliku epg.dat"
+
+msgid "Scheduler"
+msgstr ""
+
+msgid "Scheduler Actions"
+msgstr "Akcje programatora zasilania"
+
+msgid "Scheduler Overview"
+msgstr "Programatory zasilania"
+
+msgid "Scheduler Settings"
+msgstr ""
+
+msgid "Scheduler Standby"
+msgstr "Programator czuwania"
+
+msgid "Scheduler deep standby"
+msgstr "Programator wyłączenia"
+
+msgid "Scheduler log"
+msgstr "Logi programatorów zasilania"
 
 msgid "Sci-Fi"
 msgstr "Sci-Fi"
@@ -18041,8 +18045,8 @@ msgstr "Pokaż ekran Ustawienia Log"
 msgid "Show the OSCam information screen"
 msgstr "Pokaż ekran informacyjny OSCam"
 
-msgid "Show the PowerTimer"
-msgstr "Pokaż timer zasilania"
+msgid "Show the Scheduler"
+msgstr ""
 
 msgid "Show the SleepTimer"
 msgstr "Pokaż timer czuwania"
@@ -24086,6 +24090,18 @@ msgstr "tak (zachować kanały)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "PowerTimer"
+#~ msgstr "Programator zasilania"
+
+#~ msgid "PowerTimer Settings"
+#~ msgstr "Ustawienia programatora zasilania"
+
+#~ msgid "PowerTimers"
+#~ msgstr "Programatory zasilania"
+
+#~ msgid "Show the PowerTimer"
+#~ msgstr "Pokaż timer zasilania"
 
 #, python-format
 #~ msgid ""

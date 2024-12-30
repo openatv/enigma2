@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-30 10:59+0000\n"
+"POT-Creation-Date: 2024-12-30 19:32+0000\n"
 "PO-Revision-Date: 2023-08-06 06:22+0000\n"
 "Last-Translator: Salif Mehmed <mail@salif.eu>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/bg/>\n"
@@ -93,6 +93,9 @@ msgstr " актуализиран"
 
 msgid "!! Boot loader Upgrade !!"
 msgstr "!! Обновяване на буутлоудъра !!"
+
+msgid "# = Reboot Required"
+msgstr ""
 
 msgid "%-H:%M"
 msgstr ""
@@ -13628,30 +13631,6 @@ msgstr "Дисплей при включване"
 msgid "Power threshold in mA"
 msgstr "Праг на мощността в mA"
 
-msgid "PowerTimer"
-msgstr "Таймер на захранването"
-
-msgid "Scheduler Actions"
-msgstr ""
-
-msgid "Scheduler Overview"
-msgstr "Преглед на таймера за захранване"
-
-msgid "PowerTimer Settings"
-msgstr ""
-
-msgid "Scheduler Standby"
-msgstr "Таймер за захранване в режим на готовност"
-
-msgid "Scheduler deep standby"
-msgstr "Таймер за захранване в дълбока готовност"
-
-msgid "Scheduler log"
-msgstr "Дневник на таймера за захранване"
-
-msgid "PowerTimers"
-msgstr "Таймери за захранване"
-
 msgid "Predefined"
 msgstr "Предварително дефиниран"
 
@@ -14289,6 +14268,10 @@ msgstr ""
 
 msgid "Reboot"
 msgstr "Рестарт"
+
+#, python-format
+msgid "Reboot %s %s now?"
+msgstr ""
 
 msgid "Rec"
 msgstr "Запис"
@@ -15501,6 +15484,27 @@ msgstr "Планирано зареждане на epg.dat"
 
 msgid "Scheduled save of epg.dat"
 msgstr "Планирано запазване на epg.dat"
+
+msgid "Scheduler"
+msgstr ""
+
+msgid "Scheduler Actions"
+msgstr ""
+
+msgid "Scheduler Overview"
+msgstr "Преглед на таймера за захранване"
+
+msgid "Scheduler Settings"
+msgstr ""
+
+msgid "Scheduler Standby"
+msgstr "Таймер за захранване в режим на готовност"
+
+msgid "Scheduler deep standby"
+msgstr "Таймер за захранване в дълбока готовност"
+
+msgid "Scheduler log"
+msgstr "Дневник на таймера за захранване"
 
 msgid "Sci-Fi"
 msgstr "Научна фантастика"
@@ -17946,8 +17950,8 @@ msgstr ""
 msgid "Show the OSCam information screen"
 msgstr ""
 
-msgid "Show the PowerTimer"
-msgstr "Показване на таймера за захранване"
+msgid "Show the Scheduler"
+msgstr ""
 
 msgid "Show the SleepTimer"
 msgstr "Показване на таймера за заспиване"
@@ -23910,6 +23914,15 @@ msgstr "да (запази фийдове)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "PowerTimer"
+#~ msgstr "Таймер на захранването"
+
+#~ msgid "PowerTimers"
+#~ msgstr "Таймери за захранване"
+
+#~ msgid "Show the PowerTimer"
+#~ msgstr "Показване на таймера за захранване"
 
 #, python-format
 #~ msgid ""

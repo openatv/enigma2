@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-30 10:59+0000\n"
+"POT-Creation-Date: 2024-12-30 19:32+0000\n"
 "PO-Revision-Date: 2024-12-27 21:39+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
@@ -96,6 +96,9 @@ msgstr " aggiornato"
 
 msgid "!! Boot loader Upgrade !!"
 msgstr "!Aggiornamento Bootloader!"
+
+msgid "# = Reboot Required"
+msgstr ""
 
 msgid "%-H:%M"
 msgstr "%-H:%M"
@@ -13655,30 +13658,6 @@ msgstr "Display acceso"
 msgid "Power threshold in mA"
 msgstr "Soglia di potenza in mA"
 
-msgid "PowerTimer"
-msgstr "Timer di accensione "
-
-msgid "Scheduler Actions"
-msgstr "Azioni timer di accensione"
-
-msgid "Scheduler Overview"
-msgstr "Panoramica timer di accensione"
-
-msgid "PowerTimer Settings"
-msgstr "Impostazioni timer di accensione"
-
-msgid "Scheduler Standby"
-msgstr "Standby timer di accensione"
-
-msgid "Scheduler deep standby"
-msgstr "Spegni timer di accensione"
-
-msgid "Scheduler log"
-msgstr "Registro timer di accensione"
-
-msgid "PowerTimers"
-msgstr "Timer di accensione"
-
 msgid "Predefined"
 msgstr "Predefinito"
 
@@ -14316,6 +14295,10 @@ msgstr "Posteriore"
 
 msgid "Reboot"
 msgstr "Riavvio completo"
+
+#, python-format
+msgid "Reboot %s %s now?"
+msgstr ""
 
 msgid "Rec"
 msgstr "Rec"
@@ -15528,6 +15511,27 @@ msgstr "Caricamento programmato di epg.dat"
 
 msgid "Scheduled save of epg.dat"
 msgstr "Salvataggio programmato di epg.dat"
+
+msgid "Scheduler"
+msgstr ""
+
+msgid "Scheduler Actions"
+msgstr "Azioni timer di accensione"
+
+msgid "Scheduler Overview"
+msgstr "Panoramica timer di accensione"
+
+msgid "Scheduler Settings"
+msgstr ""
+
+msgid "Scheduler Standby"
+msgstr "Standby timer di accensione"
+
+msgid "Scheduler deep standby"
+msgstr "Spegni timer di accensione"
+
+msgid "Scheduler log"
+msgstr "Registro timer di accensione"
 
 msgid "Sci-Fi"
 msgstr "Fantascienza"
@@ -17984,8 +17988,8 @@ msgstr "Mostra schermata Impostazioni registri"
 msgid "Show the OSCam information screen"
 msgstr "Mostra schermata di informazioni OSCam"
 
-msgid "Show the PowerTimer"
-msgstr "Mostra timer di accensione"
+msgid "Show the Scheduler"
+msgstr ""
 
 msgid "Show the SleepTimer"
 msgstr "Mostra timer di spegnimento"
@@ -24025,6 +24029,18 @@ msgstr "sì (mantieni feed)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "PowerTimer"
+#~ msgstr "Timer di accensione "
+
+#~ msgid "PowerTimer Settings"
+#~ msgstr "Impostazioni timer di accensione"
+
+#~ msgid "PowerTimers"
+#~ msgstr "Timer di accensione"
+
+#~ msgid "Show the PowerTimer"
+#~ msgstr "Mostra timer di accensione"
 
 #, python-format
 #~ msgid ""

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-30 10:59+0000\n"
+"POT-Creation-Date: 2024-12-30 19:32+0000\n"
 "PO-Revision-Date: 2024-01-13 10:34+0000\n"
 "Last-Translator: Reza Almanda <rezaalmanda27@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/id/>\n"
@@ -98,6 +98,9 @@ msgstr " diperbarui"
 
 msgid "!! Boot loader Upgrade !!"
 msgstr "!! Peningkatan Bootloader !!"
+
+msgid "# = Reboot Required"
+msgstr ""
 
 msgid "%-H:%M"
 msgstr "%-H:%M"
@@ -14061,30 +14064,6 @@ msgstr "Power On Display"
 msgid "Power threshold in mA"
 msgstr "Power threshold in mA"
 
-msgid "PowerTimer"
-msgstr "PewaktuDaya"
-
-msgid "Scheduler Actions"
-msgstr ""
-
-msgid "Scheduler Overview"
-msgstr "Tinjau PewaktuDaya"
-
-msgid "PowerTimer Settings"
-msgstr ""
-
-msgid "Scheduler Standby"
-msgstr "PewaktuDaya Standby"
-
-msgid "Scheduler deep standby"
-msgstr "PewaktuDaya DeepStandby"
-
-msgid "Scheduler log"
-msgstr "Scheduler log"
-
-msgid "PowerTimers"
-msgstr "PewaktuDaya"
-
 msgid "Predefined"
 msgstr "Predefined"
 
@@ -14740,6 +14719,10 @@ msgstr ""
 
 msgid "Reboot"
 msgstr "Reboot"
+
+#, python-format
+msgid "Reboot %s %s now?"
+msgstr ""
 
 msgid "Rec"
 msgstr "Rec"
@@ -15981,6 +15964,27 @@ msgstr ""
 
 msgid "Scheduled save of epg.dat"
 msgstr ""
+
+msgid "Scheduler"
+msgstr ""
+
+msgid "Scheduler Actions"
+msgstr ""
+
+msgid "Scheduler Overview"
+msgstr "Tinjau PewaktuDaya"
+
+msgid "Scheduler Settings"
+msgstr ""
+
+msgid "Scheduler Standby"
+msgstr "PewaktuDaya Standby"
+
+msgid "Scheduler deep standby"
+msgstr "PewaktuDaya DeepStandby"
+
+msgid "Scheduler log"
+msgstr "Scheduler log"
 
 msgid "Sci-Fi"
 msgstr ""
@@ -18468,9 +18472,8 @@ msgstr ""
 msgid "Show the OSCam information screen"
 msgstr ""
 
-#, fuzzy
-msgid "Show the PowerTimer"
-msgstr "Show the Power Timer..."
+msgid "Show the Scheduler"
+msgstr ""
 
 #, fuzzy
 msgid "Show the SleepTimer"
@@ -24584,6 +24587,16 @@ msgstr "yes (keep feeds)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "PowerTimer"
+#~ msgstr "PewaktuDaya"
+
+#~ msgid "PowerTimers"
+#~ msgstr "PewaktuDaya"
+
+#, fuzzy
+#~ msgid "Show the PowerTimer"
+#~ msgstr "Show the Power Timer..."
 
 #, python-format
 #~ msgid ""

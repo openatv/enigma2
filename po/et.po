@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-30 10:59+0000\n"
+"POT-Creation-Date: 2024-12-30 19:32+0000\n"
 "PO-Revision-Date: 2022-12-04 20:43+0000\n"
 "Last-Translator: rimasx <riks_12@hot.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -93,6 +93,9 @@ msgstr " uuendatud"
 
 msgid "!! Boot loader Upgrade !!"
 msgstr "!! Alglaaduri uuendus !!"
+
+msgid "# = Reboot Required"
+msgstr ""
 
 msgid "%-H:%M"
 msgstr "%-H:%M"
@@ -13994,30 +13997,6 @@ msgstr "Esipaneeli näidik kasutuses"
 msgid "Power threshold in mA"
 msgstr "Tuvastusvool mA"
 
-msgid "PowerTimer"
-msgstr "Toitetaimer"
-
-msgid "Scheduler Actions"
-msgstr ""
-
-msgid "Scheduler Overview"
-msgstr "Toiteaimeri ülevaade"
-
-msgid "PowerTimer Settings"
-msgstr ""
-
-msgid "Scheduler Standby"
-msgstr "Ooteeseisundi toitetaimer"
-
-msgid "Scheduler deep standby"
-msgstr "Puhkeseisundi toitetaimer"
-
-msgid "Scheduler log"
-msgstr "Toitetaimeri logi"
-
-msgid "PowerTimers"
-msgstr "Toitetaimerid"
-
 msgid "Predefined"
 msgstr "Eelmääratud"
 
@@ -14676,6 +14655,10 @@ msgstr ""
 
 msgid "Reboot"
 msgstr "Taaskäivitus"
+
+#, python-format
+msgid "Reboot %s %s now?"
+msgstr ""
 
 msgid "Rec"
 msgstr "Rec"
@@ -15925,6 +15908,27 @@ msgstr ""
 
 msgid "Scheduled save of epg.dat"
 msgstr ""
+
+msgid "Scheduler"
+msgstr ""
+
+msgid "Scheduler Actions"
+msgstr ""
+
+msgid "Scheduler Overview"
+msgstr "Toiteaimeri ülevaade"
+
+msgid "Scheduler Settings"
+msgstr ""
+
+msgid "Scheduler Standby"
+msgstr "Ooteeseisundi toitetaimer"
+
+msgid "Scheduler deep standby"
+msgstr "Puhkeseisundi toitetaimer"
+
+msgid "Scheduler log"
+msgstr "Toitetaimeri logi"
 
 msgid "Sci-Fi"
 msgstr ""
@@ -18425,9 +18429,8 @@ msgstr ""
 msgid "Show the OSCam information screen"
 msgstr ""
 
-#, fuzzy
-msgid "Show the PowerTimer"
-msgstr "Kuva toitetaimer"
+msgid "Show the Scheduler"
+msgstr ""
 
 #, fuzzy
 msgid "Show the SleepTimer"
@@ -24579,6 +24582,16 @@ msgstr "Jah (säilita fiidid)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "PowerTimer"
+#~ msgstr "Toitetaimer"
+
+#~ msgid "PowerTimers"
+#~ msgstr "Toitetaimerid"
+
+#, fuzzy
+#~ msgid "Show the PowerTimer"
+#~ msgstr "Kuva toitetaimer"
 
 #, python-format
 #~ msgid ""

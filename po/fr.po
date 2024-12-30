@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-30 10:59+0000\n"
+"POT-Creation-Date: 2024-12-30 19:32+0000\n"
 "PO-Revision-Date: 2024-12-24 18:34+0000\n"
 "Last-Translator: Mathieu13006 <llapaca@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fr/>\n"
@@ -98,6 +98,9 @@ msgstr " mis à jour"
 
 msgid "!! Boot loader Upgrade !!"
 msgstr "!! Boot loader Upgrade !!"
+
+msgid "# = Reboot Required"
+msgstr ""
 
 msgid "%-H:%M"
 msgstr "%-H:%M"
@@ -13657,30 +13660,6 @@ msgstr "Activer l'affichage"
 msgid "Power threshold in mA"
 msgstr "Seuil de puissance en mA"
 
-msgid "PowerTimer"
-msgstr "Programmations d'alimentation"
-
-msgid "Scheduler Actions"
-msgstr ""
-
-msgid "Scheduler Overview"
-msgstr "Aperçu des programmations d'alimentation"
-
-msgid "PowerTimer Settings"
-msgstr ""
-
-msgid "Scheduler Standby"
-msgstr "Programmations d'alimentation de veille"
-
-msgid "Scheduler deep standby"
-msgstr "Programmations d'alimentation de veille profonde"
-
-msgid "Scheduler log"
-msgstr "Log du gestionnaire d'alimentation"
-
-msgid "PowerTimers"
-msgstr "Programmations d'alimentation"
-
 msgid "Predefined"
 msgstr "Prédéfini"
 
@@ -14318,6 +14297,10 @@ msgstr ""
 
 msgid "Reboot"
 msgstr "Redémarrer"
+
+#, python-format
+msgid "Reboot %s %s now?"
+msgstr ""
 
 msgid "Rec"
 msgstr "Enr"
@@ -15533,6 +15516,27 @@ msgstr "Chargement programmé de epg.dat"
 
 msgid "Scheduled save of epg.dat"
 msgstr "Sauvegarde programmée de epg.dat"
+
+msgid "Scheduler"
+msgstr ""
+
+msgid "Scheduler Actions"
+msgstr ""
+
+msgid "Scheduler Overview"
+msgstr "Aperçu des programmations d'alimentation"
+
+msgid "Scheduler Settings"
+msgstr ""
+
+msgid "Scheduler Standby"
+msgstr "Programmations d'alimentation de veille"
+
+msgid "Scheduler deep standby"
+msgstr "Programmations d'alimentation de veille profonde"
+
+msgid "Scheduler log"
+msgstr "Log du gestionnaire d'alimentation"
 
 msgid "Sci-Fi"
 msgstr "Sci-Fi"
@@ -17977,8 +17981,8 @@ msgstr ""
 msgid "Show the OSCam information screen"
 msgstr ""
 
-msgid "Show the PowerTimer"
-msgstr "Afficher la minuterie d'alimentation"
+msgid "Show the Scheduler"
+msgstr ""
 
 msgid "Show the SleepTimer"
 msgstr "Afficher la minuterie de veille"
@@ -23969,6 +23973,15 @@ msgstr "Oui (garder feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "PowerTimer"
+#~ msgstr "Programmations d'alimentation"
+
+#~ msgid "PowerTimers"
+#~ msgstr "Programmations d'alimentation"
+
+#~ msgid "Show the PowerTimer"
+#~ msgstr "Afficher la minuterie d'alimentation"
 
 #, python-format
 #~ msgid ""

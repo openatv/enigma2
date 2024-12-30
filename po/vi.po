@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-30 10:59+0000\n"
+"POT-Creation-Date: 2024-12-30 19:32+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -96,6 +96,9 @@ msgstr " cập nhật"
 
 msgid "!! Boot loader Upgrade !!"
 msgstr "!! Nâng cấp bộ nạp khởi động !!"
+
+msgid "# = Reboot Required"
+msgstr ""
 
 msgid "%-H:%M"
 msgstr "%H:%M"
@@ -13827,30 +13830,6 @@ msgstr "Năng lượng hiển thị"
 msgid "Power threshold in mA"
 msgstr "Ngưỡng công suất tính bằng mA"
 
-msgid "PowerTimer"
-msgstr "Thời gian quyền lực"
-
-msgid "Scheduler Actions"
-msgstr ""
-
-msgid "Scheduler Overview"
-msgstr "Tổng quan về PowerTimer"
-
-msgid "PowerTimer Settings"
-msgstr ""
-
-msgid "Scheduler Standby"
-msgstr "Chế độ chờ PowerTimer"
-
-msgid "Scheduler deep standby"
-msgstr "Thời gian chờ quyền lực"
-
-msgid "Scheduler log"
-msgstr "Nhật ký PowerManager"
-
-msgid "PowerTimers"
-msgstr "Bộ đếm thời gian"
-
 msgid "Predefined"
 msgstr "Được xác định trước"
 
@@ -14499,6 +14478,10 @@ msgstr ""
 
 msgid "Reboot"
 msgstr "Khởi động lại"
+
+#, python-format
+msgid "Reboot %s %s now?"
+msgstr ""
 
 msgid "Rec"
 msgstr "Ghi"
@@ -15727,6 +15710,27 @@ msgstr ""
 
 msgid "Scheduled save of epg.dat"
 msgstr ""
+
+msgid "Scheduler"
+msgstr ""
+
+msgid "Scheduler Actions"
+msgstr ""
+
+msgid "Scheduler Overview"
+msgstr "Tổng quan về PowerTimer"
+
+msgid "Scheduler Settings"
+msgstr ""
+
+msgid "Scheduler Standby"
+msgstr "Chế độ chờ PowerTimer"
+
+msgid "Scheduler deep standby"
+msgstr "Thời gian chờ quyền lực"
+
+msgid "Scheduler log"
+msgstr "Nhật ký PowerManager"
 
 msgid "Sci-Fi"
 msgstr ""
@@ -18195,9 +18199,8 @@ msgstr ""
 msgid "Show the OSCam information screen"
 msgstr ""
 
-#, fuzzy
-msgid "Show the PowerTimer"
-msgstr "Hiển thị Bộ hẹn giờ nguồn ..."
+msgid "Show the Scheduler"
+msgstr ""
 
 #, fuzzy
 msgid "Show the SleepTimer"
@@ -24252,6 +24255,16 @@ msgstr "có (giữ thức ăn)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "PowerTimer"
+#~ msgstr "Thời gian quyền lực"
+
+#~ msgid "PowerTimers"
+#~ msgstr "Bộ đếm thời gian"
+
+#, fuzzy
+#~ msgid "Show the PowerTimer"
+#~ msgstr "Hiển thị Bộ hẹn giờ nguồn ..."
 
 #, python-format
 #~ msgid ""

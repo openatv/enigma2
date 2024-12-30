@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-30 10:59+0000\n"
-"PO-Revision-Date: 2024-12-26 18:31+0000\n"
+"POT-Creation-Date: 2024-12-30 19:32+0000\n"
+"PO-Revision-Date: 2024-12-30 22:09+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -106,6 +106,9 @@ msgstr " installiert"
 
 msgid "!! Boot loader Upgrade !!"
 msgstr "!! Bootloader-Update !!"
+
+msgid "# = Reboot Required"
+msgstr "# = Neustart Notwendig"
 
 msgid "%-H:%M"
 msgstr "%-H:%M"
@@ -1606,27 +1609,27 @@ msgstr "Eine Mediendatei ist in Benutzung!"
 #, python-format
 msgid "A finished Scheduler timer wants to reboot your %s %s. Do that now?"
 msgstr ""
-"Ein PowerTimer möchte die %s %s neu starten.\n"
+"Eine Zeitplaner Aufgabe möchte die %s %s neu starten.\n"
 "Jetzt neu starten?"
 
 # /usr/lib/enigma2/python/PowerTimer.py
 msgid "A finished Scheduler timer wants to restart the user interface. Do that now?"
 msgstr ""
-"Ein PowerTimer möchte die Benutzeroberfläche neu starten.\n"
+"Eine Zeitplaner Aufgabe möchte die Benutzeroberfläche neu starten.\n"
 "Jetzt neu starten?"
 
 # /usr/lib/enigma2/python/PowerTimer.py
 #, python-format
 msgid "A finished Scheduler timer wants to set your %s %s to standby. Do that now?"
 msgstr ""
-"Ein PowerTimer möchte die %s %s in den Standby versetzen.\n"
+"Eine Zeitplaner Aufgabe möchte die %s %s in den Standby versetzen.\n"
 "Jetzt ausführen?"
 
 # /usr/lib/enigma2/python/PowerTimer.py
 #, python-format
 msgid "A finished Scheduler timer wants to shut down your %s %s. Do that now?"
 msgstr ""
-"Ein PowerTimer möchte die %s %s ausschalten.\n"
+"Eine Zeitplaner Aufgabe möchte die %s %s ausschalten.\n"
 "Jetzt herunterfahren?"
 
 #
@@ -1651,7 +1654,7 @@ msgid "A highlight on the remote control image shows which button the help refer
 msgstr "Die Hervorhebung auf dem Fernbedienungsbild zeigt an, auf welche Tasten sich die Hilfe bezieht. Wenn mehr als eine Taste die angegebene Funktion ausführt, werden mehrere Markierungen angezeigt. Der Text unterhalb der Liste listet die aktiven Tasten auf und gibt an, ob die Funktion ein langes Drücken oder SHIFT der Taste(n) erfordert."
 
 msgid "A new storage device has been connected:"
-msgstr ""
+msgstr "Ein neuer Datenträger wurde angeschlossen:"
 
 #
 #, python-format
@@ -1693,7 +1696,7 @@ msgid ""
 "\n"
 "Go to Deep Standby now?"
 msgstr ""
-"Eine Aufnahme, ein Aufnahmetimer oder ein PowerTimer läuft oder wird innerhalb der nächsten 15 Minuten beginnen. %s wurde um 30 Minuten verlängert.\n"
+"Eine Aufnahme, ein Aufnahmetimer oder eine Zeitplaner Aufgabe läuft oder wird innerhalb der nächsten 15 Minuten beginnen. %s wurde um 30 Minuten verlängert.\n"
 "Die %s %s geht nach dem Aufnahme- oder Einschalttimer-Ereignis in den Deep-Standby.\n"
 "\n"
 "Jetzt in den Deep-Standby wechseln?"
@@ -1877,7 +1880,7 @@ msgid "Action on short POWER button press"
 msgstr "Ausschalttaste"
 
 msgid "Actions"
-msgstr ""
+msgstr "Aktionen"
 
 msgid "Activate"
 msgstr "Aktiviere"
@@ -4288,7 +4291,7 @@ msgid "Choose what you want the button '0' to do when PiP is active."
 msgstr "Die Funktion der Taste '0' auswählen, wenn Bild-im-Bild aktiv ist."
 
 msgid "Choose where to mount your devices to:"
-msgstr "Die Mountpunkte der Geräte auswählen:"
+msgstr "Die Einhängepunkte der Geräte auswählen:"
 
 msgid "Choose whether AAC sound tracks should be transcoded."
 msgstr "Auswählen, ob AAC-Tonspuren transkodiert werden sollen."
@@ -4452,10 +4455,10 @@ msgid "Close screen"
 msgstr "Bildschirm schließen"
 
 msgid "Close the Device Manager screen"
-msgstr ""
+msgstr "Geräteverwaltung schliessen"
 
 msgid "Close the Device Manager screen and exit all menus"
-msgstr ""
+msgstr "Geräteverwaltung schliessen und alle Menüs"
 
 msgid "Close the Kexec MultiBoot Manager"
 msgstr "Kexec-MultiBoot-Verwaltung beenden"
@@ -5571,7 +5574,7 @@ msgid "Custom"
 msgstr "Benutzerdefiniert"
 
 msgid "Custom mountpoint"
-msgstr ""
+msgstr "Benutzerdefinierter Einhängepunkt"
 
 #
 msgid "Custom skip time for '1'/'3' buttons"
@@ -6044,10 +6047,10 @@ msgid "Define the DNS suffix."
 msgstr "Legt den DNS-Suffix fest."
 
 msgid "Define the custom mountpoint for the device."
-msgstr ""
+msgstr "Benutzerdefinierten Einhängepunkt für das Gerät definieren."
 
 msgid "Define the filesystem mount options."
-msgstr ""
+msgstr "Einhänge-Optionen für das Dateisystem definieren."
 
 msgid "Defined / Active"
 msgstr "Definiert / Aktiv"
@@ -6376,14 +6379,14 @@ msgid "Development Packages"
 msgstr "Entwicklung"
 
 msgid "Device"
-msgstr ""
+msgstr "Gerät"
 
 #
 msgid "Device Manager"
 msgstr "Geräteverwaltung"
 
 msgid "Device Manager Actions"
-msgstr ""
+msgstr "Geräteverwaltungs-Aktionen"
 
 msgid "Device Settings"
 msgstr "Netzwerkadapter-Einstellungen"
@@ -8108,7 +8111,7 @@ msgid "Error: You can't run '%s' on a directory!"
 msgstr "Fehler: '%s' auf ein Verzeichnis anwenden ist nicht erlaubt!"
 
 msgid "Error: mount not successful!"
-msgstr "Fehler: Mount nicht erfolgreich!"
+msgstr "Fehler: Einhängen nicht erfolgreich!"
 
 msgid "Esperanto"
 msgstr "Esperanto"
@@ -8132,7 +8135,7 @@ msgid "Even if TV has another input active?"
 msgstr "Auch wenn der TV einen anderen Eingang aktiviert hat?"
 
 msgid "Even if a 'Wakeup' Scheduler task starting?"
-msgstr "Auch wenn ein 'Aufwecken' PowerTimer startet?"
+msgstr "Auch wenn eine 'Aufwecken' Zeitplaner Aufgabe startet?"
 
 msgid "Even if a 'Zap and Record' recording timer starting?"
 msgstr "Auch wenn ein 'Umschalten und Aufnehmen' Timer startet?"
@@ -8684,7 +8687,7 @@ msgid "File Commander settings"
 msgstr "File Commander Einstellungen"
 
 msgid "File System"
-msgstr ""
+msgstr "File System"
 
 #
 msgid "File System Check"
@@ -8717,7 +8720,7 @@ msgid "Files/folders to exclude from backup"
 msgstr "Nicht zu sichernde Dateien"
 
 msgid "Filesystem"
-msgstr ""
+msgstr "Filesystem"
 
 #
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
@@ -8936,10 +8939,10 @@ msgid "Format Disk"
 msgstr "Datenträger formatieren"
 
 msgid "Format Storage Device"
-msgstr "Speichergerät formatieren"
+msgstr "Datenträger formatieren"
 
 msgid "Formatting storage device..."
-msgstr ""
+msgstr "Datenträger formatieren..."
 
 msgid "Forward Error Correction (FEC)"
 msgstr "Vorwärtsfehlerkorrektur (FEC)"
@@ -10298,7 +10301,7 @@ msgid "Initialize"
 msgstr "Initialisieren"
 
 msgid "Initializing storage device..."
-msgstr "Speichergerät initialisieren..."
+msgstr "Datenträger initialisieren..."
 
 msgid "Inode"
 msgstr "Inode"
@@ -11085,11 +11088,11 @@ msgid "List available networks"
 msgstr "Verfügbare Netzwerke anzeigen"
 
 msgid "List of Storage Devices"
-msgstr "Liste der Speichermedien"
+msgstr "Liste der Datenträger"
 
 # Mediaplayer Setup
 msgid "List of storage devices"
-msgstr "Liste der Speichermedien"
+msgstr "Liste der Datenträger"
 
 #, python-format
 msgid "List version %d, found %d channel"
@@ -11870,7 +11873,7 @@ msgid "Motor running timeout"
 msgstr "Zeitüberschreitung beim Motorlauf"
 
 msgid "Mount"
-msgstr "Mount"
+msgstr "Einhängen"
 
 #
 msgid "Mount Manager"
@@ -11880,7 +11883,7 @@ msgid "Mount Menu Actions"
 msgstr "Mount-Menü Aktionen"
 
 msgid "Mount Point"
-msgstr ""
+msgstr "Einhängepunkt"
 
 msgid "Mount Settings"
 msgstr "Mount-Einstellungen"
@@ -11890,13 +11893,13 @@ msgstr "Mount-Einstellungen"
 
 #
 msgid "Mount failed"
-msgstr "Mount fehlgeschlagen!"
+msgstr "Einhängen fehlgeschlagen!"
 
 msgid "Mount root file system."
 msgstr "Mount Root-Dateisystem."
 
 msgid "Mountpoint"
-msgstr "Mountpunkt"
+msgstr "Einhängepunkt"
 
 msgid "Mounts"
 msgstr "Mounts"
@@ -12599,7 +12602,7 @@ msgid "New Setting DXAndy "
 msgstr "Neue DXAndy-Programmliste "
 
 msgid "New Storage Device"
-msgstr ""
+msgstr "Neuer Datenträger"
 
 msgid "New Zealand"
 msgstr "Neuseeland"
@@ -12829,7 +12832,7 @@ msgid "No standby"
 msgstr "Kein Standby"
 
 msgid "No storage or hard disks detected."
-msgstr "Keine Festplatten gefunden!"
+msgstr "Keine Datenträger gefunden!"
 
 msgid "No suitable backup locations found!"
 msgstr "Keinen passenden Speicherort für die Sicherung gefunden!"
@@ -12899,7 +12902,7 @@ msgstr "Kein gültiges Gerät erkannt - OK drücken"
 
 #, python-format
 msgid "No valid mount for '%s' found!"
-msgstr "Kein gültiger Mount für '%s' gefunden!"
+msgstr "Kein gültiger Einhängepunkt für '%s' gefunden!"
 
 msgid "No valid region details were found"
 msgstr "Es wurden keine gültigen Regionsangaben gefunden!"
@@ -13399,7 +13402,7 @@ msgid "Open the Plugin Browser settings screen"
 msgstr "Plugin-Manager Einstellungen"
 
 msgid "Open the Storage Device information"
-msgstr "Informationen zu Speichergeräten öffnen"
+msgstr "Informationen zu Datenträgern öffnen"
 
 msgid "Open the VirtualKeyBoard for text entry"
 msgstr "Die virtuelle Tastatur zur Texteingabe öffnen"
@@ -13468,7 +13471,7 @@ msgid "Optional parameter"
 msgstr "Optionaler Parameter"
 
 msgid "Options"
-msgstr ""
+msgstr "Optionen"
 
 msgid "Orbital position"
 msgstr "Orbitalposition"
@@ -13743,7 +13746,7 @@ msgid "Partition"
 msgstr "Partition"
 
 msgid "Partition Type"
-msgstr ""
+msgstr "Partitionstyp"
 
 # InfoPanel
 msgid "Partitions"
@@ -13776,7 +13779,7 @@ msgid "Password changed."
 msgstr "Passwort geändert."
 
 msgid "Path"
-msgstr ""
+msgstr "Pfad"
 
 #, python-format
 msgid "Path '%s' missing!"
@@ -13829,11 +13832,11 @@ msgid "Permanently delete all recordings in the trash can?"
 msgstr "Alle Aufnahmen im Papierkorb endgültig löschen?"
 
 msgid "Permanently ignore this device"
-msgstr ""
+msgstr "Diese Gerät permanent ignorieren"
 
 #, python-format
 msgid "Permanently mount as %s"
-msgstr ""
+msgstr "Permanent als %s einhängen"
 
 msgid "Permanently remove all deleted items"
 msgstr "Papierkorb leeren"
@@ -14420,7 +14423,7 @@ msgid "Portuguese"
 msgstr "Portugiesisch"
 
 msgid "Position"
-msgstr ""
+msgstr "Position"
 
 msgid "Position of finished Timers in Timerlist"
 msgstr "Position beendeter Timeraufnahmen in der Timerliste"
@@ -14477,32 +14480,6 @@ msgstr "Display einschalten"
 #
 msgid "Power threshold in mA"
 msgstr "Schwellwert Stromverbrauch in mA"
-
-msgid "PowerTimer"
-msgstr "PowerTimer"
-
-msgid "Scheduler Actions"
-msgstr "PowerTimer-Aktionen"
-
-#
-msgid "Scheduler Overview"
-msgstr "PowerTimer-Übersicht"
-
-msgid "PowerTimer Settings"
-msgstr "PowerTimer-Einstellungen"
-
-msgid "Scheduler Standby"
-msgstr "PowerTimer-Standby"
-
-msgid "Scheduler deep standby"
-msgstr "PowerTimer Deep-Standby"
-
-#
-msgid "Scheduler log"
-msgstr "PowerTimer-Log"
-
-msgid "PowerTimers"
-msgstr "PowerTimer"
 
 msgid "Predefined"
 msgstr "Vordefiniert"
@@ -15190,6 +15167,10 @@ msgstr "Rückseite"
 #
 msgid "Reboot"
 msgstr "Neustart"
+
+#, python-format
+msgid "Reboot %s %s now?"
+msgstr "%s %s jetzt Neustarten?"
 
 msgid "Rec"
 msgstr "Aufnahme"
@@ -16500,6 +16481,29 @@ msgstr "Geplantes Laden der 'epg.dat'"
 msgid "Scheduled save of epg.dat"
 msgstr "Geplantes Speichern der 'epg.dat'"
 
+msgid "Scheduler"
+msgstr "Taskplaner"
+
+msgid "Scheduler Actions"
+msgstr "Zeitplaner-Aktionen"
+
+#
+msgid "Scheduler Overview"
+msgstr "Zeitplaner-Übersicht"
+
+msgid "Scheduler Settings"
+msgstr "Taskplaner Einstellungen"
+
+msgid "Scheduler Standby"
+msgstr "Zeitplaner-Standby"
+
+msgid "Scheduler deep standby"
+msgstr "Zeitplaner Deep-Standby"
+
+#
+msgid "Scheduler log"
+msgstr "Zeitplaner-Log"
+
 msgid "Sci-Fi"
 msgstr "Sci-Fi"
 
@@ -16688,7 +16692,7 @@ msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port
 msgstr "Wenn ein Multiswitch verwendet wird, der ein DiSEqC-Port-A-Befehlssignal benötigt 'Ja' auswählen, ansonsten 'Nein'."
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' power timer is starting."
-msgstr "'Ja', wenn der TV beim Start eines PowerTimers aufgeweckt werden soll."
+msgstr "'Ja', wenn der TV beim Start einer Zeitplaner Aufgabe aufgeweckt werden soll."
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
 msgstr "'Ja', wenn der TV beim Start eines 'Umschalten und Aufnehmen'-Timers aufgeweckt werden soll."
@@ -16791,7 +16795,7 @@ msgid "Select 'Yes' to remove all settings, tuning data, timers, resume pointers
 msgstr "'Ja' auswählen, um alle Einstellungen, Empfangsdaten, Timer, Fortsetzungszeiger usw. zu entfernen. Die Konfiguration wird auf die ursprünglichen Einstellungen zurückgesetzt. Dies ist die zuverlässigste Form für die Werkseinstellungen."
 
 msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and power timers."
-msgstr "'Ja' löscht alle Timer-Konfigurationsdaten. Es werden alle Timer, AutoTimer und PowerTimer gelöscht!"
+msgstr "'Ja' löscht alle Timer-Konfigurationsdaten. Es werden alle Timer, AutoTimer und Zeitplaner Aufgaben gelöscht!"
 
 msgid "Select 'Yes' to remove all tuning data. Selecting this option will remove all tuning and bouquet data and will make timers non functional until the receiver is retuned."
 msgstr "'Ja' auswählen, um alle Empfangsdaten zu löschen. Es werden alle Empfangs- und Bouquetdaten gelöscht und Timer sind nicht funktionsfähig, bis der Empfänger neu abgestimmt wurde!"
@@ -17016,10 +17020,10 @@ msgid "Select a network adapter"
 msgstr "Netzwerkschnittstelle auswählen"
 
 msgid "Select a permanent mount point for all devices"
-msgstr ""
+msgstr "Einen dauerhaften Einhängepunkt für alle Geräte definieren"
 
 msgid "Select a permanent mount point for the current device"
-msgstr ""
+msgstr "Einen dauerhaften Einhängepunkt für das aktuelle Gerät definieren"
 
 msgid "Select a repository commit log to view:"
 msgstr "Ein Repository-Commit-Log zur Ansicht auswählen:"
@@ -17054,7 +17058,7 @@ msgid "Select all related files"
 msgstr "Alle zugehörigen Dateien auswählen"
 
 msgid "Select an action for the current device"
-msgstr ""
+msgstr "Eine Aktion für das aktuelle Gerät auswählen"
 
 msgid "Select an action to perform when the task has completed."
 msgstr "Aktion auswählen, die durchgeführt werden soll, wenn die Aufgabe abgeschlossen ist."
@@ -17357,7 +17361,7 @@ msgid "Select the file sort order for the %s column:"
 msgstr "Sortierreihenfolge der Dateien für die %s Spalte auswählen:"
 
 msgid "Select the filesystem for the device."
-msgstr ""
+msgstr "Das Dateisystem für das Gerät auswählen."
 
 msgid "Select the first item in list or move to the start of text"
 msgstr "Den ersten Eintrag in der Liste auswählen oder an den Anfang des Textes gehen"
@@ -17417,10 +17421,10 @@ msgid "Select the model number of your Unicable device. If the model number is n
 msgstr "Das Modell des Unicable/SCR-Gerätes auswählen. Wenn der Hersteller nicht aufgeführt ist, 'SCR' auf 'Benutzerdefiniert' setzen und die Geräteparameter gemäß dem zugehörigen Datenblatt manuell eingeben."
 
 msgid "Select the mount points"
-msgstr ""
+msgstr "Einhängepunkt auswählen"
 
 msgid "Select the mountpoint for the device."
-msgstr ""
+msgstr "Einhängepunkt für das Gerät auswählen."
 
 #
 msgid "Select the movie path"
@@ -17440,7 +17444,7 @@ msgstr ""
 
 #, python-format
 msgid "Select the new mount point for: '%s'"
-msgstr ""
+msgstr "Einhängepunkt für: '%s' auswählen"
 
 msgid "Select the next item in list or move the cursor right"
 msgstr "Den nächsten Eintrag in der Liste auswählen oder den Cursor nach rechts bewegen"
@@ -18095,7 +18099,7 @@ msgid "Set the time to hide the second infobar. The bar also disappears on press
 msgstr "Die Anzeigedauer der zweiten Infoleiste einstellen. Diese kann auch mit OK beendet werden."
 
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, PowerTimer, SleepTimer etc."
-msgstr "Die Wartezeit für die Ausführung der Standardaktion in den Meldungen 'Ausschalten', 'Standby' oder 'Neustart' einstellen (z.B. verwendet in Timer, PowerTimer, Ausschalttimer usw.)."
+msgstr "Die Wartezeit für die Ausführung der Standardaktion in den Meldungen 'Ausschalten', 'Standby' oder 'Neustart' einstellen (z.B. verwendet in Timer, Zeitplaner Aufgaben, Ausschalttimer usw.)."
 
 msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
 msgstr "Obere linke Position des Spinners (Beschäftigungsanzeige) einstellen. Oben links ist 0,0, unten rechts 1260,700. Die Position ist die obere linke Ecke des Spinners, nicht dessen Mitte."
@@ -19096,9 +19100,8 @@ msgstr "Log-Einstellung anzeigen"
 msgid "Show the OSCam information screen"
 msgstr "OSCam Info-Bildschirm anzeigen"
 
-#
-msgid "Show the PowerTimer"
-msgstr "PowerTimer anzeigen"
+msgid "Show the Scheduler"
+msgstr "Taskplaner anzeigen"
 
 #
 msgid "Show the SleepTimer"
@@ -19286,7 +19289,7 @@ msgid "Simple titleset (compatibility for legacy players)"
 msgstr "Schlicht (bessere Kompatibilität mit alten DVD-Playern)"
 
 msgid "Simple umounter mass storage device."
-msgstr "Einfaches Entfernen des Massenspeichergerätes."
+msgstr "Einfaches Entfernen des Datenträgers."
 
 msgid "Simple zoom"
 msgstr "Einfacher Zoom"
@@ -20102,16 +20105,16 @@ msgstr "Laufwerksinformationen"
 
 #
 msgid "Storage Devices"
-msgstr "Speichergeräte"
+msgstr "Datenträger"
 
 msgid "Storage device full!"
-msgstr "Speichergerät voll!"
+msgstr "Datenträger voll!"
 
 msgid "Storage device not found!"
-msgstr "Speichergerät wurde nicht gefunden!"
+msgstr "Datenträger wurde nicht gefunden!"
 
 msgid "Storage device not writable!"
-msgstr "Speichergerät ist nicht beschreibbar!"
+msgstr "Datenträger ist nicht beschreibbar!"
 
 #
 msgid "Store position"
@@ -20286,7 +20289,7 @@ msgid "Swahili"
 msgstr "Suaheli"
 
 msgid "Swap"
-msgstr ""
+msgstr "Swap"
 
 msgid "Swap File Manager"
 msgstr "Swap-File-Verwaltung"
@@ -20700,7 +20703,7 @@ msgstr "Temporäres Verzeichnis ('%s')"
 
 #, python-format
 msgid "Temporarily mount as %s"
-msgstr ""
+msgstr "Temporär einhängen als %s"
 
 msgid "Temporary directory"
 msgstr "Temporäres Verzeichnis"
@@ -21880,7 +21883,7 @@ msgid "Toggle a cut mark at the current position"
 msgstr "Marker an der aktuellen Position setzen"
 
 msgid "Toggle a temporary mount for the current device"
-msgstr ""
+msgstr "Temporären Einhängepunkt für das aktuelle Gerät umschalten"
 
 msgid "Toggle all related files"
 msgstr "Alle zugehörigen Dateien umschalten"
@@ -22423,7 +22426,7 @@ msgid "Unknown"
 msgstr "Unbekannt"
 
 msgid "Unknown Devices"
-msgstr ""
+msgstr "Unbekannte Geräte"
 
 msgid ""
 "Unknown Error creating Skin.\n"
@@ -23421,7 +23424,7 @@ msgid "Waiting"
 msgstr "Wartet"
 
 msgid "Waiting for mount"
-msgstr "Warte auf Mount"
+msgstr "Warte auf Einhängen"
 
 msgid "Waiting for partition"
 msgstr "Warte auf Partition"
@@ -23856,10 +23859,10 @@ msgid "Wipe"
 msgstr "Schreddern"
 
 msgid "Wipe Storage Device"
-msgstr ""
+msgstr "Datenträger Löschen"
 
 msgid "Wiping storage device..."
-msgstr ""
+msgstr "Datenträger löschen..."
 
 #
 msgid "Wireless LAN"
@@ -25071,7 +25074,7 @@ msgid "no or unknown card inserted"
 msgstr "Keine oder unbekannte Karte eingesteckt"
 
 msgid "no storage devices found"
-msgstr "Keine Speichergeräte gefunden!"
+msgstr "Keine Datenträger gefunden!"
 
 msgid "normal"
 msgstr "Normal"
@@ -25565,6 +25568,19 @@ msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "PowerTimer"
+#~ msgstr "PowerTimer"
+
+#~ msgid "PowerTimer Settings"
+#~ msgstr "PowerTimer-Einstellungen"
+
+#~ msgid "PowerTimers"
+#~ msgstr "PowerTimer"
+
+#
+#~ msgid "Show the PowerTimer"
+#~ msgstr "PowerTimer anzeigen"
 
 #, python-format
 #~ msgid ""

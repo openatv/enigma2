@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-30 10:59+0000\n"
+"POT-Creation-Date: 2024-12-30 19:32+0000\n"
 "PO-Revision-Date: 2024-03-28 13:02+0000\n"
 "Last-Translator: ssantos <ssantos@web.de>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pt/>\n"
@@ -100,6 +100,9 @@ msgstr " Actualizar"
 
 msgid "!! Boot loader Upgrade !!"
 msgstr "!! Carregador de arranque actualizado!!"
+
+msgid "# = Reboot Required"
+msgstr ""
 
 #
 msgid "%-H:%M"
@@ -14314,30 +14317,6 @@ msgstr ""
 msgid "Power threshold in mA"
 msgstr "Limiar de potência em mA"
 
-msgid "PowerTimer"
-msgstr ""
-
-msgid "Scheduler Actions"
-msgstr ""
-
-msgid "Scheduler Overview"
-msgstr "Visão geral do Temporizador de energia"
-
-msgid "PowerTimer Settings"
-msgstr ""
-
-msgid "Scheduler Standby"
-msgstr ""
-
-msgid "Scheduler deep standby"
-msgstr ""
-
-msgid "Scheduler log"
-msgstr ""
-
-msgid "PowerTimers"
-msgstr "Temporizador de Energia"
-
 #
 msgid "Predefined"
 msgstr "Pré-definido pelo utilizador"
@@ -15015,6 +14994,10 @@ msgstr ""
 #
 msgid "Reboot"
 msgstr "Reiniciar"
+
+#, python-format
+msgid "Reboot %s %s now?"
+msgstr ""
 
 msgid "Rec"
 msgstr "Gravar"
@@ -16312,6 +16295,27 @@ msgid "Scheduled load of epg.dat"
 msgstr ""
 
 msgid "Scheduled save of epg.dat"
+msgstr ""
+
+msgid "Scheduler"
+msgstr ""
+
+msgid "Scheduler Actions"
+msgstr ""
+
+msgid "Scheduler Overview"
+msgstr "Visão geral do Temporizador de energia"
+
+msgid "Scheduler Settings"
+msgstr ""
+
+msgid "Scheduler Standby"
+msgstr ""
+
+msgid "Scheduler deep standby"
+msgstr ""
+
+msgid "Scheduler log"
 msgstr ""
 
 msgid "Sci-Fi"
@@ -18835,9 +18839,8 @@ msgstr ""
 msgid "Show the OSCam information screen"
 msgstr ""
 
-#
-msgid "Show the PowerTimer"
-msgstr "Mostrar o temporizador de energia"
+msgid "Show the Scheduler"
+msgstr ""
 
 #
 msgid "Show the SleepTimer"
@@ -25119,6 +25122,13 @@ msgstr "sim (mantenha os feeds)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "PowerTimers"
+#~ msgstr "Temporizador de Energia"
+
+#
+#~ msgid "Show the PowerTimer"
+#~ msgstr "Mostrar o temporizador de energia"
 
 #, python-format
 #~ msgid ""

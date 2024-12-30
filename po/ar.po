@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-30 10:59+0000\n"
+"POT-Creation-Date: 2024-12-30 19:32+0000\n"
 "PO-Revision-Date: 2024-02-10 07:43+0000\n"
 "Last-Translator: \"Mahmoud Habls (7OODA)\" <adhoda4@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ar/>\n"
@@ -100,6 +100,9 @@ msgstr " محدث"
 
 msgid "!! Boot loader Upgrade !!"
 msgstr "!! ترقية برنامج إقلاع النظام!!"
+
+msgid "# = Reboot Required"
+msgstr ""
 
 msgid "%-H:%M"
 msgstr "%-س:%د"
@@ -14366,30 +14369,6 @@ msgstr ""
 msgid "Power threshold in mA"
 msgstr "قياس الطاقه في الميكرو امبير"
 
-msgid "PowerTimer"
-msgstr ""
-
-msgid "Scheduler Actions"
-msgstr ""
-
-msgid "Scheduler Overview"
-msgstr ""
-
-msgid "PowerTimer Settings"
-msgstr ""
-
-msgid "Scheduler Standby"
-msgstr ""
-
-msgid "Scheduler deep standby"
-msgstr ""
-
-msgid "Scheduler log"
-msgstr ""
-
-msgid "PowerTimers"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Predefined"
@@ -15061,6 +15040,10 @@ msgstr ""
 
 msgid "Reboot"
 msgstr "إعادة التشغيل"
+
+#, python-format
+msgid "Reboot %s %s now?"
+msgstr ""
 
 msgid "Rec"
 msgstr ""
@@ -16350,6 +16333,27 @@ msgid "Scheduled load of epg.dat"
 msgstr ""
 
 msgid "Scheduled save of epg.dat"
+msgstr ""
+
+msgid "Scheduler"
+msgstr ""
+
+msgid "Scheduler Actions"
+msgstr ""
+
+msgid "Scheduler Overview"
+msgstr ""
+
+msgid "Scheduler Settings"
+msgstr ""
+
+msgid "Scheduler Standby"
+msgstr ""
+
+msgid "Scheduler deep standby"
+msgstr ""
+
+msgid "Scheduler log"
 msgstr ""
 
 msgid "Sci-Fi"
@@ -18868,10 +18872,8 @@ msgstr ""
 msgid "Show the OSCam information screen"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Show the PowerTimer"
-msgstr "إظهار مشغل التليفزيون"
+msgid "Show the Scheduler"
+msgstr ""
 
 #
 #, fuzzy
@@ -25083,6 +25085,11 @@ msgstr "نعم (الاحتفاظ بها)"
 
 msgid "®"
 msgstr ""
+
+#
+#, fuzzy
+#~ msgid "Show the PowerTimer"
+#~ msgstr "إظهار مشغل التليفزيون"
 
 #~ msgid "Check"
 #~ msgstr "فحص"

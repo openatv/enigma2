@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-30 10:59+0000\n"
+"POT-Creation-Date: 2024-12-30 19:32+0000\n"
 "PO-Revision-Date: 2024-10-02 07:35+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/es/>\n"
@@ -108,6 +108,9 @@ msgstr " actualizado"
 
 msgid "!! Boot loader Upgrade !!"
 msgstr "!! Cargador de Arranque Actualizado!!"
+
+msgid "# = Reboot Required"
+msgstr ""
 
 msgid "%-H:%M"
 msgstr "%-H:%M"
@@ -14431,31 +14434,6 @@ msgstr "Encender pantalla"
 msgid "Power threshold in mA"
 msgstr "Umbral de potencia en mA"
 
-msgid "PowerTimer"
-msgstr "PowerTimer"
-
-msgid "Scheduler Actions"
-msgstr "Acciones de PowerTimer"
-
-#
-msgid "Scheduler Overview"
-msgstr "Temporizadores de alimentación"
-
-msgid "PowerTimer Settings"
-msgstr "Configuración de PowerTimer"
-
-msgid "Scheduler Standby"
-msgstr "Temporizador de modo de espera"
-
-msgid "Scheduler deep standby"
-msgstr "Scheduler deep standby"
-
-msgid "Scheduler log"
-msgstr "Registro de PowerManager"
-
-msgid "PowerTimers"
-msgstr "Temporizadores de alimentación"
-
 msgid "Predefined"
 msgstr "Predefinido"
 
@@ -15138,6 +15116,10 @@ msgstr "Posterior"
 #
 msgid "Reboot"
 msgstr "Reiniciar"
+
+#, python-format
+msgid "Reboot %s %s now?"
+msgstr ""
 
 msgid "Rec"
 msgstr "Grabar"
@@ -16449,6 +16431,28 @@ msgstr "Carga programada de epg.dat"
 
 msgid "Scheduled save of epg.dat"
 msgstr "Guardado programado de epg.dat"
+
+msgid "Scheduler"
+msgstr ""
+
+msgid "Scheduler Actions"
+msgstr "Acciones de PowerTimer"
+
+#
+msgid "Scheduler Overview"
+msgstr "Temporizadores de alimentación"
+
+msgid "Scheduler Settings"
+msgstr ""
+
+msgid "Scheduler Standby"
+msgstr "Temporizador de modo de espera"
+
+msgid "Scheduler deep standby"
+msgstr "Scheduler deep standby"
+
+msgid "Scheduler log"
+msgstr "Registro de PowerManager"
 
 msgid "Sci-Fi"
 msgstr "Ciencia Ficción"
@@ -19039,8 +19043,8 @@ msgstr ""
 msgid "Show the OSCam information screen"
 msgstr ""
 
-msgid "Show the PowerTimer"
-msgstr "Mostrar temporizador de apagado"
+msgid "Show the Scheduler"
+msgstr ""
 
 msgid "Show the SleepTimer"
 msgstr "Mostrar temporizador de apagado"
@@ -25568,6 +25572,18 @@ msgstr "Sí (conservar fuentes)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "PowerTimer"
+#~ msgstr "PowerTimer"
+
+#~ msgid "PowerTimer Settings"
+#~ msgstr "Configuración de PowerTimer"
+
+#~ msgid "PowerTimers"
+#~ msgstr "Temporizadores de alimentación"
+
+#~ msgid "Show the PowerTimer"
+#~ msgstr "Mostrar temporizador de apagado"
 
 #, python-format
 #~ msgid ""

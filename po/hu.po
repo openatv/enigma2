@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-30 10:59+0000\n"
+"POT-Creation-Date: 2024-12-30 19:32+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -97,6 +97,9 @@ msgstr " Frissítve"
 
 msgid "!! Boot loader Upgrade !!"
 msgstr "!! Bootloader frissítés !!"
+
+msgid "# = Reboot Required"
+msgstr ""
 
 msgid "%-H:%M"
 msgstr "%-H:%M"
@@ -13779,30 +13782,6 @@ msgstr "LCD kijelző legyen bekapcsolva"
 msgid "Power threshold in mA"
 msgstr "Áram határérték (mA)"
 
-msgid "PowerTimer"
-msgstr "Kikapcsolás Időzítő"
-
-msgid "Scheduler Actions"
-msgstr ""
-
-msgid "Scheduler Overview"
-msgstr "Kikapcsolás Időzítő Áttekintés"
-
-msgid "PowerTimer Settings"
-msgstr ""
-
-msgid "Scheduler Standby"
-msgstr "Kikapcsolás Időzítő Készenléti állapot"
-
-msgid "Scheduler deep standby"
-msgstr "Kikapcsolás Időzítő Kikapcsolás"
-
-msgid "Scheduler log"
-msgstr "PowerTimer napló"
-
-msgid "PowerTimers"
-msgstr "Kikapcsolás Időzítők"
-
 msgid "Predefined"
 msgstr "Előre definiált"
 
@@ -14444,6 +14423,10 @@ msgstr ""
 
 msgid "Reboot"
 msgstr "Újraindítás"
+
+#, python-format
+msgid "Reboot %s %s now?"
+msgstr ""
 
 msgid "Rec"
 msgstr "Felvétel"
@@ -15661,6 +15644,27 @@ msgstr ""
 
 msgid "Scheduled save of epg.dat"
 msgstr ""
+
+msgid "Scheduler"
+msgstr ""
+
+msgid "Scheduler Actions"
+msgstr ""
+
+msgid "Scheduler Overview"
+msgstr "Kikapcsolás Időzítő Áttekintés"
+
+msgid "Scheduler Settings"
+msgstr ""
+
+msgid "Scheduler Standby"
+msgstr "Kikapcsolás Időzítő Készenléti állapot"
+
+msgid "Scheduler deep standby"
+msgstr "Kikapcsolás Időzítő Kikapcsolás"
+
+msgid "Scheduler log"
+msgstr "PowerTimer napló"
 
 msgid "Sci-Fi"
 msgstr "Sci-Fi"
@@ -18122,9 +18126,8 @@ msgstr ""
 msgid "Show the OSCam information screen"
 msgstr ""
 
-#, fuzzy
-msgid "Show the PowerTimer"
-msgstr "A Bekapcsolás időzítő mutatása..."
+msgid "Show the Scheduler"
+msgstr ""
 
 #, fuzzy
 msgid "Show the SleepTimer"
@@ -24143,6 +24146,16 @@ msgstr "igen (állapotok megtartása)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "PowerTimer"
+#~ msgstr "Kikapcsolás Időzítő"
+
+#~ msgid "PowerTimers"
+#~ msgstr "Kikapcsolás Időzítők"
+
+#, fuzzy
+#~ msgid "Show the PowerTimer"
+#~ msgstr "A Bekapcsolás időzítő mutatása..."
 
 #, python-format
 #~ msgid ""
