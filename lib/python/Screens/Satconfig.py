@@ -907,6 +907,20 @@ class NimSelection(Screen):
 							nimConfig.configMode.value = "loopthrough"
 							nimConfig.connectedTo.value = str(link)
 
+	def checkFBCLinks(self):
+		for x in nimmanager.nim_slots:
+			if self.showNim(x):
+				if x.isCompatible("DVB-S"):
+					slotid = x.slot
+					if isFBCLink(slotid):
+						link = getLinkedSlotID(slotid)
+						if link != -1:
+							linkNimConfig = nimmanager.getNimConfig(link).dvbs
+							if linkNimConfig.configMode.value == "nothing":
+								nimConfig = nimmanager.getNimConfig(slotid).dvbs
+								nimConfig.configMode.value = "nothing"  # Reset child if parent is "nothing"
+								nimConfig.configMode.save()
+
 	def exit(self):
 		self.close(True)
 
@@ -943,6 +957,7 @@ class NimSelection(Screen):
 			self.session.openWithCallback(boundFunction(self.NimSetupCB, self["nimlist"].getIndex()), self.resultclass, nim.slot)
 
 	def NimSetupCB(self, index=None):
+		self.checkFBCLinks()
 		self.loadFBCLinks()
 		self.updateList(index)
 
