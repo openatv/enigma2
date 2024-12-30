@@ -597,7 +597,7 @@ class StorageDeviceManager():
 
 		for index, line in enumerate(fstab):
 			parts = line.split()
-			if parts[0].startswith("UUID="):
+			if parts and parts[0].startswith("UUID="):
 				UUID = parts[0].replace("UUID=", "")
 				if UUID in seenUUIDs:
 					continue
