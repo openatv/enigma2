@@ -687,7 +687,7 @@ class HarddiskManager:
 				removable = fileReadLine(f"/sys/block/{shortDevice}/removable")
 				eventData["SORT"] = 0 if ("pci" in eventData["DEVPATH"] or "ahci" in eventData["DEVPATH"]) and removable == "0" else 1
 				devices.append(eventData)
-				#remove(fileName)
+				remove(fileName)
 
 		if devices:
 			devices.sort(key=lambda x: (x["SORT"], x["ID_PART_ENTRY_SIZE"]))
