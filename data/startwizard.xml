@@ -54,7 +54,7 @@ self.condition = self.swapDevice and self.swapDevice == "."
 
 	<step id="devices" nextstep="network">
 		<condition>
-self.condition = self.hasDevices()
+self.condition = self.hasPartitions()
 		</condition>
 		<config screen="DeviceManagerMountPoints" module="DeviceManager" type="standalone" />
 	</step>

@@ -1,5 +1,6 @@
 from os import stat, statvfs, makedirs
 from os.path import join, isdir
+from re import search
 from shlex import split
 
 from enigma import eTimer
@@ -171,8 +172,17 @@ class StartWizard(Wizard, ShowRemoteControl):
 	def isFlashExpanderActive(self):
 		return isdir(join("/%s/%s" % (EXPANDER_MOUNT, EXPANDER_MOUNT), "bin"))
 
-	def hasDevices(self):
-		return harddiskmanager.HDDCount() > 0
+	def hasPartitions(self):
+		partitions = fileReadLines("/proc/partitions", source=MODULE_NAME)
+		count = 0
+		black = BoxInfo.getItem("mtdblack")
+		for line in partitions:
+			parts = line.strip().split()
+			if parts:
+				device = parts[3]
+				if not device.startswith(black) and (search(r"^sd[a-z][1-9][\d]*$", device) or search(r"^mmcblk[\d]p[\d]*$", device)):
+					count += 1
+		return count > 0
 
 	def keyYellow(self):
 		if self.wizard[self.currStep]["name"] == "swap":
