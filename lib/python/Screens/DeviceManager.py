@@ -553,20 +553,14 @@ class StorageDeviceManager():
 		knownDevices = fileReadLines("/etc/udev/known_devices", default=[], source=MODULE_NAME)
 		deviceList = []
 		unknownList = []
-
 		seenDevices = []
+		back = BoxInfo.getItem("mtdblack")
 		for line in partitions:
 			parts = line.strip().split()
-			if not parts:
-				continue
-			device = parts[3]
-			if BoxInfo.getItem("mtdrootfs").startswith("mmcblk0p") and device.startswith("mmcblk0"):
-				continue
-			if BoxInfo.getItem("mtdrootfs").startswith("mmcblk1p") and device.startswith("mmcblk1"):
-				continue
-			if device in seenDevices:
-				continue
-			seenDevices.append(device)
+			if parts:
+				device = parts[3]
+				if not device.startswith(back) and device not in seenDevices:
+					seenDevices.append(device)
 		seenDevices.sort()
 
 		for device in seenDevices:
