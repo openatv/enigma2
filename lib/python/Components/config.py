@@ -1350,6 +1350,9 @@ class ConfigInteger(ConfigSequence):
 	def fromString(self, value):
 		return int(value)
 
+	def toString(self, value):
+		return str(value)
+
 	def getValue(self):
 		return self._value[0]
 
