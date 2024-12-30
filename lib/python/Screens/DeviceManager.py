@@ -790,7 +790,7 @@ class DeviceManager(Screen):
 	DEVICE_TYPES_ICON = 1
 
 	skin = """
-	<screen name="DeviceManager" title="Mount Manager" position="center,center" size="1080,465" resolution="1280,720">
+	<screen name="DeviceManager" title="Device Manager" position="center,center" size="1080,465" resolution="1280,720">
 		<widget source="devicelist" render="Listbox" position="0,0" size="1080,325">
 			<templates>
 				<template name="Default" fonts="Regular;20,Regular;24" itemHeight="30">
@@ -849,14 +849,14 @@ class DeviceManager(Screen):
 		self["description"] = Label()
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "MenuActions"], {
 			"ok": (self.keyMountPoint, _("Select a permanent mount point for the current device")),
-			"cancel": (self.close, _("Close the Mount Manager screen")),
-			"close": (self.keyClose, _("Close the Mount Manager screen and exit all menus")),
+			"cancel": (self.close, _("Close the Device Manager screen")),
+			"close": (self.keyClose, _("Close the Device Manager screen and exit all menus")),
 			"menu": (self.keyMenu, _("Hard Disk Settings")),
-			"red": (self.close, _("Close the Mount Manager screen")),
+			"red": (self.close, _("Close the Device Manager screen")),
 			"green": (self.keyActions, _("Select an action for the current device")),
 			"yellow": (self.keyMountPoints, _("Select a permanent mount point for all devices")),
 			"blue": (self.keyBlue, _("Toggle a temporary mount for the current device"))
-		}, prio=0, description=_("Mount Manager Actions"))
+		}, prio=0, description=_("Device Manager Actions"))
 		self.needReboot = False
 		self.storageDevices = StorageDeviceManager()
 		self.updateDevices()
