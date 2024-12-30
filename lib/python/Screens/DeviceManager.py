@@ -349,13 +349,14 @@ class StorageDevice():
 		UnmountSwapTask(job, self)
 		task = MkfsTask(job, _("Creating file system"))
 		task.setTool(f"mkfs.{fsType}")
-		if fsType == "vfat" and label:
-			task.args += ["-n", label]
+		if label:
+			if fsType in ("vfat", "fat"):
+				task.args += ["-n", label]
+			else:
+				task.args += ["-L", label]
 		if fsType == "ntfs":
 			task.setTool("mkntfs")
 			task.args += ["-Q", "-F"]
-			if label:
-				task.args += ["-L", label]
 		if fsType == "swap":
 			task.setTool("mkswap")
 		elif fsType.startswith("ext"):
@@ -371,8 +372,6 @@ class StorageDevice():
 			elif self.size > (2 * (1024 ** 3)):
 				# Over 2GB: 32 i-nodes per megabyte
 				task.args += ["-T", "largefile", "-N", str(int((self.size / 1024 / 1024) * 32))]
-			if label:
-				task.args += ["-L", label]
 			if self.UUID and self.fsType and self.fsType == fsType:
 				task.args += ["-U", self.UUID]
 			task.args += ["-E", "discard", "-F", "-m0", "-O ^metadata_csum", "-O", ",".join(big_o_options)]
@@ -452,13 +451,14 @@ class StorageDevice():
 				task.setTool("mkswap")
 			else:
 				task.setTool(f"mkfs.{fsType}")
-				if fsType == "vfat" and label:
-					task.args += ["-n", label]
+				if label:
+					if fsType in ("vfat", "fat"):
+						task.args += ["-n", label]
+					else:
+						task.args += ["-L", label]
 				if fsType == "ntfs":
 					task.setTool("mkntfs")
 					task.args += ["-Q", "-F"]
-				if label:
-					task.args += ["-L", label]
 				elif fsType.startswith("ext"):
 					big_o_options = ["dir_index"]
 					if self.size > 250000 * 1024 * 1024:
@@ -472,7 +472,6 @@ class StorageDevice():
 					elif self.size > (2 * (1024 ** 3)):
 						# Over 2GB: 32 i-nodes per megabyte
 						task.args += ["-T", "largefile", "-N", str(int((self.size / 1024 / 1024) * 32))]
-					task.args += ["-L", label]
 					if uuid and oldFsType and oldFsType == fsType:
 						task.args += ["-U", uuid]
 					task.args += ["-E", "discard", "-F", "-m0", "-O ^metadata_csum", "-O", ",".join(big_o_options)]
