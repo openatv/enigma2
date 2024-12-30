@@ -324,7 +324,7 @@ class SchedulerList(TimerListBase):
 			bottomText = _("Delay: %s") % ngettext("%d Minute", "%d Minutes", timer.autosleepdelay) % timer.autosleepdelay
 		else:
 			repeatIcon = self.iconRepeat if timer.repeated else self.iconOnce
-			topText = _("At end: %s") % POWERTIMER_AFTER_EVENT_NAMES.get(timer.afterEvent, UNKNOWN)
+			topText = _("At end: %s") % SCHEDULER_AFTER_EVENT_NAMES.get(timer.afterEvent, UNKNOWN)
 			begin = fuzzyDate(timer.begin)
 			if timer.repeated:
 				repeatedText = []
@@ -374,7 +374,7 @@ class SchedulerList(TimerListBase):
 		res = [None]
 		if repeatIcon:
 			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, self.indent, ((self.topHeight - self.iconHeight) // 2), self.iconWidth, self.iconHeight, repeatIcon, None, None, BT_SCALE))
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, leftOffset, 0, halfWidth, self.topHeight, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, POWERTIMER_TYPE_NAMES.get(timer.timerType, UNKNOWN)))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, leftOffset, 0, halfWidth, self.topHeight, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, SCHEDULER_TYPE_NAMES.get(timer.timerType, UNKNOWN)))
 		if topText:
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, leftOffset + halfWidth + 10, 0, halfWidth, self.topHeight, 2, RT_HALIGN_RIGHT | RT_VALIGN_CENTER, topText))
 		if stateIcon:
