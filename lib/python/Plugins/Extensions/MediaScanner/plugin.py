@@ -1,7 +1,11 @@
+from os import access, F_OK, R_OK
 from Plugins.Plugin import PluginDescriptor
 from Components.Scanner import scanDevice
+from Components.Harddisk import harddiskmanager
+from Screens.ChoiceBox import ChoiceBox
 from Screens.InfoBar import InfoBar
-import os
+from Screens.MessageBox import MessageBox
+from Tools.BoundFunction import boundFunction
 
 parentScreen = None
 
@@ -32,8 +36,7 @@ def mountpoint_choosen(option):
 	list = [(r.description, r, res[r], session) for r in res]
 
 	if not list:
-		from Screens.MessageBox import MessageBox
-		if os.access(mountpoint, os.F_OK | os.R_OK):
+		if access(mountpoint, F_OK | R_OK):
 			session.open(MessageBox, _("No displayable files on this medium found!"), MessageBox.TYPE_INFO, simple=True, timeout=5)
 		#else:
 		#	print "ignore", mountpoint, "because its not accessible"
@@ -41,17 +44,13 @@ def mountpoint_choosen(option):
 			parentScreen.close()
 		return
 
-	from Screens.ChoiceBox import ChoiceBox
-	session.openWithCallback(execute, ChoiceBox,
-		title=_("The following files were found..."),
-		list=list)
+	session.openWithCallback(execute, ChoiceBox, title=_("The following files were found..."), list=list)
 
 
 def scan(session, parent=None):
 	global parentScreen
 	parentScreen = parent
-	from Screens.ChoiceBox import ChoiceBox
-	parts = [(r.tabbedDescription(), r.mountpoint, session) for r in harddiskmanager.getMountedPartitions(onlyhotplug=False) if os.access(r.mountpoint, os.F_OK | os.R_OK)]
+	parts = [(r.tabbedDescription(), r.mountpoint, session) for r in harddiskmanager.getMountedPartitions(onlyhotplug=False) if access(r.mountpoint, F_OK | R_OK)]
 	parts.append((_("Temporary directory") + "\t/tmp", "/tmp", session))
 	session.openWithCallback(mountpoint_choosen, ChoiceBox, title=_("Please select medium to be scanned"), list=parts)
 
@@ -64,13 +63,9 @@ def menuEntry(*args):
 	mountpoint_choosen(args)
 
 
-from Components.Harddisk import harddiskmanager
-
-
 def menuHook(menuid):
 	if menuid != "mainmenu":
 		return []
-	from Tools.BoundFunction import boundFunction
 	return [(("%s (files)") % r.description, boundFunction(menuEntry, r.description, r.mountpoint), "hotplug_%s" % r.mountpoint, None) for r in harddiskmanager.getMountedPartitions(onlyhotplug=True)]
 
 
