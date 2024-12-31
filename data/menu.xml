@@ -190,6 +190,7 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 				<item key="Inadyn_setup" level="2" text="Inadyn Settings" weight="25" requires="inadyn"><screen module="NetworkSetup" screen="NetworkInadynSetup" /></item>
 				<item key="minidlna_setup" level="2" text="MiniDLNA Settings" weight="30" requires="minidlna"><screen module="NetworkSetup" screen="NetworkMiniDLNASetup" /></item>
 				<item key="netushare_setup" level="2" text="uShare Settings" weight="55" requires="ushare"><screen module="NetworkSetup" screen="NetworkuShareSetup" /></item>
+				<item key="netsamba_setup" level="2" text="Samba Settings" weight="60" requires="samba"><screen module="NetworkSetup" screen="NetworkSambaSetup" /></item>
 			</menu>
 			<!-- Menu / Setup / System (Was: Menu / Setup / System / Extended System) -->
 			<menu key="extended" level="0" text="System" weight="95">

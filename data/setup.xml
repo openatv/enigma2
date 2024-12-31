@@ -561,6 +561,10 @@
 		<item text="Nameserver" description="Configure the name server (DNS).">config.network.dns</item>
 		<item text="Activate network settings" description="Activate the configured network settings.">config.network.activate</item>
 	</setup>
+	<setup key="NetworkSamba" title="Samba Settings" allowDefault="1">
+		<item text="Enable automatic shares" description="Select 'Yes' to allow each storage device detected to be automatically exported as samba share.">config.samba.enableAutoShare</item>
+		<item text="Automatic shares access" description="Select the access mode for the automatically exported samba shares." conditional="config.samba.enableAutoShare.value">config.samba.autoShareAccess</item>
+	</setup>
 	<setup key="OSCamInfoSetup" title="OSCam Information Settings">
 		<item level="0" text="Read Userdata from oscam.conf" description="Read Userdata from oscam.conf">config.oscaminfo.userDataFromConf</item>
 		<if conditional="not config.oscaminfo.userDataFromConf.value">
