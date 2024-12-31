@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-30 19:32+0000\n"
+"POT-Creation-Date: 2024-12-31 15:16+0000\n"
 "PO-Revision-Date: 2023-06-04 19:16+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -2759,6 +2759,9 @@ msgstr "Automatinės raiškos etiketė"
 
 msgid "Automatic scan for services"
 msgstr "Automatinė kanalų paieška"
+
+msgid "Automatic shares access"
+msgstr ""
 
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr "Automatiškai nustatykite televizorių į budėjimo režimą, kai imtuvas pereina į budėjimo režimą arba gilų budėjimo režimą."
@@ -7082,6 +7085,9 @@ msgstr "Įjungti automatinę greitą paiešką"
 msgid "Enable auto fast scan for %s"
 msgstr "Įjungti automatinę greitą paiešką %s"
 
+msgid "Enable automatic shares"
+msgstr ""
+
 msgid "Enable autorefresh templates."
 msgstr ""
 
@@ -11328,11 +11334,11 @@ msgstr "Pajungimo valdymas"
 msgid "Mount failed"
 msgstr "Pajungimo klaida"
 
-msgid "Mount root file system."
-msgstr ""
-
 msgid "Mount point"
 msgstr "Prijungimo vieta"
+
+msgid "Mount root file system."
+msgstr ""
 
 msgid "Mounts"
 msgstr "Pajungimai"
@@ -14274,8 +14280,14 @@ msgstr "Vertinimas nenurodytas"
 msgid "Re-enter new PIN"
 msgstr "Pakartokite naują PIN"
 
+msgid "Read Only"
+msgstr ""
+
 msgid "Read Userdata from oscam.conf"
 msgstr "Vartotojo duomenis imti iš oscam.conf"
+
+msgid "Read/Write"
+msgstr ""
 
 msgid "Reader"
 msgstr "Skaitytuvas"
@@ -15314,6 +15326,9 @@ msgstr ""
 msgid "Samba Server"
 msgstr ""
 
+msgid "Samba Settings"
+msgstr ""
+
 msgid "Same as in active"
 msgstr "Kaip ir aktyvus"
 
@@ -15767,6 +15782,9 @@ msgstr ""
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Jeigu nustatyta 'taip; info juosta bus rodoma visą laiką \"pauzės\" būsenoje (be pertraukos)."
 
+msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
+msgstr ""
+
 msgid "Select 'Yes' to allow use of the seek bar to jump to a selected point within the event."
 msgstr "Jei nustatyta 'taip', leidžia jums paieškos lange naudotis paieška ir dabartinio įvykio viduje."
 
@@ -15857,7 +15875,7 @@ msgstr "Norėdami pašalinti visus papildinio konfigūracijos duomenis, pasirink
 msgid "Select 'Yes' to remove all settings, tuning data, timers, resume pointers etc. Selecting this option will restore the configuration to the initial settings before any configuration settings were applied. This is the most reliable form of Factory Reset."
 msgstr "Pasirinkite 'Taip', kad pašalintumėte visus parametrus, derinkite duomenis, laikmačius, atnaujinimo žymes ir kt. Pasirinkus šią parinktį, prieš pritaikys bet kokius konfigūracijos parametrus, konfigūracija bus atkurta pradiniuose parametruose. Tai yra patikimiausia gamyklinių nustatymų forma."
 
-msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and scheduler."
+msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and schedules."
 msgstr "Norėdami pašalinti visus laikmačius konfigūracijos duomenis, pasirinkite 'Taip'. Pasirinkus šią parinktį bus išvalyti visi laikmačiai, automatiniai laikmačiai ir maitinimo laikmačiai."
 
 msgid "Select 'Yes' to remove all tuning data. Selecting this option will remove all tuning and bouquet data and will make timers non functional until the receiver is retuned."
@@ -16304,6 +16322,9 @@ msgstr "Pasirinkite naudotojo juostos dažnį, kuris bus priskirtas šiam imtuvu
 
 msgid "Select the Yes / True response"
 msgstr "Pasirinkite taip / Teisingą atsakymą"
+
+msgid "Select the access mode for the automatically exported samba shares."
+msgstr ""
 
 #, python-format
 msgid "Select the action for '%s'"

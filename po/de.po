@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-30 19:32+0000\n"
+"POT-Creation-Date: 2024-12-31 15:16+0000\n"
 "PO-Revision-Date: 2024-12-31 11:56+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
@@ -2869,6 +2869,9 @@ msgstr "Bildschirmmeldung der Auflösung"
 
 msgid "Automatic scan for services"
 msgstr "Automatischer Suchlauf"
+
+msgid "Automatic shares access"
+msgstr ""
 
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr "Den Fernseher automatisch zusammen mit dem Receiver in den Standby oder Deep-Standby versetzen."
@@ -7428,6 +7431,9 @@ msgstr "Automatische Schnellsuche aktivieren"
 msgid "Enable auto fast scan for %s"
 msgstr "Automatische Schnellsuche aktivieren für %s"
 
+msgid "Enable automatic shares"
+msgstr ""
+
 msgid "Enable autorefresh templates."
 msgstr "AutoRefresh-Vorgaben aktivieren."
 
@@ -11895,11 +11901,11 @@ msgstr "Mount-Einstellungen"
 msgid "Mount failed"
 msgstr "Einhängen fehlgeschlagen!"
 
-msgid "Mount root file system."
-msgstr "Mount Root-Dateisystem."
-
 msgid "Mount point"
 msgstr "Einhängepunkt"
+
+msgid "Mount root file system."
+msgstr "Mount Root-Dateisystem."
 
 msgid "Mounts"
 msgstr "Mounts"
@@ -15090,8 +15096,14 @@ msgstr "Bewertung undefiniert"
 msgid "Re-enter new PIN"
 msgstr "Neue PIN wiederholen"
 
+msgid "Read Only"
+msgstr ""
+
 msgid "Read Userdata from oscam.conf"
 msgstr "Benutzerdaten von 'oscam.conf' auslesen"
+
+msgid "Read/Write"
+msgstr ""
 
 msgid "Reader"
 msgstr "Reader"
@@ -16213,6 +16225,9 @@ msgstr "Samba Client"
 msgid "Samba Server"
 msgstr "Samba Server"
 
+msgid "Samba Settings"
+msgstr ""
+
 msgid "Same as in active"
 msgstr "Gleich wie bei Box aktiv"
 
@@ -16703,6 +16718,9 @@ msgstr "'Ja', wenn der TV beim Start eines 'Umschalten'-Aufnahmetimers aufgeweck
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Bei 'Ja' wird die Infoleiste im pausierten Zustand nicht ausgeblendet, sondern dauerhaft angezeigt."
 
+msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
+msgstr ""
+
 msgid "Select 'Yes' to allow use of the seek bar to jump to a selected point within the event."
 msgstr "Bei 'Ja' kann innerhalb der Suchleiste zu jedem beliebigen Zeitpunkt vor- oder zurückgesprungen werden."
 
@@ -16794,7 +16812,7 @@ msgstr "'Ja' auswählen, um alle Plugin-Konfigurationsdaten zu entfernen. Es wer
 msgid "Select 'Yes' to remove all settings, tuning data, timers, resume pointers etc. Selecting this option will restore the configuration to the initial settings before any configuration settings were applied. This is the most reliable form of Factory Reset."
 msgstr "'Ja' auswählen, um alle Einstellungen, Empfangsdaten, Timer, Fortsetzungszeiger usw. zu entfernen. Die Konfiguration wird auf die ursprünglichen Einstellungen zurückgesetzt. Dies ist die zuverlässigste Form für die Werkseinstellungen."
 
-msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and scheduler."
+msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and schedules."
 msgstr "'Ja' löscht alle Timer-Konfigurationsdaten. Es werden alle Timer, AutoTimer und Zeitplaner-Aufgaben gelöscht!"
 
 msgid "Select 'Yes' to remove all tuning data. Selecting this option will remove all tuning and bouquet data and will make timers non functional until the receiver is retuned."
@@ -17259,6 +17277,9 @@ msgstr "Die User-Band-Frequenz auswählen, die diesem Tuner zugewiesen werden so
 
 msgid "Select the Yes / True response"
 msgstr "Ja / positive Antwort auswählen"
+
+msgid "Select the access mode for the automatically exported samba shares."
+msgstr ""
 
 #, python-format
 msgid "Select the action for '%s'"

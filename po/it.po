@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-30 19:32+0000\n"
+"POT-Creation-Date: 2024-12-31 15:16+0000\n"
 "PO-Revision-Date: 2024-12-31 11:43+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
@@ -2712,6 +2712,9 @@ msgstr "Etichetta risoluzione automatica"
 
 msgid "Automatic scan for services"
 msgstr "Scansione automatica dei servizi"
+
+msgid "Automatic shares access"
+msgstr ""
 
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr "Metti automaticamente la TV in standby ogni volta che il ricevitore va in standby o spegnimento."
@@ -7039,6 +7042,9 @@ msgstr "Abilita scansione veloce"
 msgid "Enable auto fast scan for %s"
 msgstr "Abilita scansione rapida automatica per %s"
 
+msgid "Enable automatic shares"
+msgstr ""
+
 msgid "Enable autorefresh templates."
 msgstr "Abilita modelli di aggiornamento automatico."
 
@@ -11279,11 +11285,11 @@ msgstr "Impostazioni montaggio"
 msgid "Mount failed"
 msgstr "Montaggio non riuscito"
 
-msgid "Mount root file system."
-msgstr "Monta file system root."
-
 msgid "Mount point"
 msgstr "Punto di montaggio"
+
+msgid "Mount root file system."
+msgstr "Monta file system root."
 
 msgid "Mounts"
 msgstr "Montaggi"
@@ -14226,8 +14232,14 @@ msgstr "Valutazione non definita"
 msgid "Re-enter new PIN"
 msgstr "Inserire Nuovo PIN"
 
+msgid "Read Only"
+msgstr ""
+
 msgid "Read Userdata from oscam.conf"
 msgstr "Leggi dati utente da oscam.conf"
+
+msgid "Read/Write"
+msgstr ""
 
 msgid "Reader"
 msgstr "Reader"
@@ -15266,6 +15278,9 @@ msgstr "Client Samba"
 msgid "Samba Server"
 msgstr "Server Samba"
 
+msgid "Samba Settings"
+msgstr ""
+
 msgid "Same as in active"
 msgstr "Come da attivo"
 
@@ -15716,6 +15731,9 @@ msgstr "Seleziona 'Sì' se vuoi riattivare la TV per l'avvio del timer di regist
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Seleziona 'Sì' per mantenere la barra informazioni visualizzata, senza timeout, mentre la riproduzione multimediale è in pausa."
 
+msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
+msgstr ""
+
 msgid "Select 'Yes' to allow use of the seek bar to jump to a selected point within the event."
 msgstr "Seleziona 'Sì' per consentire l'uso della barra di ricerca per passare a un punto selezionato all'interno dell'evento."
 
@@ -15806,7 +15824,7 @@ msgstr "Seleziona 'Sì' per rimuovere tutti i dati di configurazione del plugin.
 msgid "Select 'Yes' to remove all settings, tuning data, timers, resume pointers etc. Selecting this option will restore the configuration to the initial settings before any configuration settings were applied. This is the most reliable form of Factory Reset."
 msgstr "Seleziona 'Sì' per rimuovere tutte le impostazioni, i dati di ottimizzazione, i timer, i puntatori di ripristino, ecc. Selezionando questa opzione, la configurazione ripristinerà le impostazioni iniziali prima dell'applicazione di qualsiasi impostazione di configurazione. Questa è la forma più affidabile di ripristino delle impostazioni di fabbrica."
 
-msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and scheduler."
+msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and schedules."
 msgstr "Seleziona 'Sì' per rimuovere tutti i dati di configurazione del timer. Selezionando questa opzione verranno cancellati tutti i timer, i timer automatici e i timer di accensione."
 
 msgid "Select 'Yes' to remove all tuning data. Selecting this option will remove all tuning and bouquet data and will make timers non functional until the receiver is retuned."
@@ -16253,6 +16271,9 @@ msgstr "Seleziona frequenza della banda utente da assegnare a questo tuner. Ques
 
 msgid "Select the Yes / True response"
 msgstr "Seleziona risposta Sì/Vero"
+
+msgid "Select the access mode for the automatically exported samba shares."
+msgstr ""
 
 #, python-format
 msgid "Select the action for '%s'"

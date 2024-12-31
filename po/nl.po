@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-30 19:32+0000\n"
+"POT-Creation-Date: 2024-12-31 15:16+0000\n"
 "PO-Revision-Date: 2024-11-10 13:00+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -1632,7 +1632,7 @@ msgid ""
 "\n"
 "Go to Deep Standby now?"
 msgstr ""
-"Een opname, timer of power timer is actief of begint binnen 15 minuten. %s verlengt naar 30 minuten. Uw %s %s schakelt uit na de opname of de power timer.\n"
+"Een opname, timer of schedule is actief of begint binnen 15 minuten. %s verlengt naar 30 minuten. Uw %s %s schakelt uit na de opname of de power timer.\n"
 "\n"
 "De ontvanger nu uitschakelen?"
 
@@ -2721,6 +2721,9 @@ msgstr "Automatische resolutieinfo"
 
 msgid "Automatic scan for services"
 msgstr "Hier kunt u automatisch naar zenders zoeken"
+
+msgid "Automatic shares access"
+msgstr ""
 
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr "Automatisch de TV in Stand-by zetten wanneer de ontvanger naar Stand-by gaat of wordt uitgeschakeld."
@@ -7169,6 +7172,9 @@ msgstr "Auto Fastscan inschakelen"
 msgid "Enable auto fast scan for %s"
 msgstr "Activeer snelle auto scan voor %s"
 
+msgid "Enable automatic shares"
+msgstr ""
+
 msgid "Enable autorefresh templates."
 msgstr "AutoRefresh sjablonen activeren."
 
@@ -7861,7 +7867,7 @@ msgid "Even if TV has another input active?"
 msgstr "Zelfs als op TV een andere poort actief is?"
 
 msgid "Even if a 'Wakeup' Scheduler task starting?"
-msgstr "Zelfs als een 'ontwaak' power timer start?"
+msgstr "Zelfs als een 'ontwaak' schedule start?"
 
 msgid "Even if a 'Zap and Record' recording timer starting?"
 msgstr "Zelfs als een 'Zap en Opname' timer start?"
@@ -11429,11 +11435,11 @@ msgstr "Mount instellingen"
 msgid "Mount failed"
 msgstr "Mount mislukt"
 
-msgid "Mount root file system."
-msgstr ""
-
 msgid "Mount point"
 msgstr "Mountpunt"
+
+msgid "Mount root file system."
+msgstr ""
 
 msgid "Mounts"
 msgstr "Mounts"
@@ -14384,8 +14390,14 @@ msgstr "Beoordeling niet gedefinieerd"
 msgid "Re-enter new PIN"
 msgstr "Voer de pincode opnieuw in"
 
+msgid "Read Only"
+msgstr ""
+
 msgid "Read Userdata from oscam.conf"
 msgstr "Lees gebruikers informatie uit oscam.conf"
+
+msgid "Read/Write"
+msgstr ""
 
 msgid "Reader"
 msgstr "Lezer"
@@ -15424,6 +15436,9 @@ msgstr "Samba client"
 msgid "Samba Server"
 msgstr "Samba server"
 
+msgid "Samba Settings"
+msgstr ""
+
 msgid "Same as in active"
 msgstr "Hetzelfde als in de actieve"
 
@@ -15878,6 +15893,9 @@ msgstr "Kies 'Ja' wanneer de TV bij het starten van een 'Zappen en Opnemen' time
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Bij 'ja' zal de informatiebalk continu worden getoond wanneer het afspelen is gepauzeerd."
 
+msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
+msgstr ""
+
 msgid "Select 'Yes' to allow use of the seek bar to jump to a selected point within the event."
 msgstr "Kies 'Ja' om tijdens een Timeshift-opname m.b.v. de seekbar naar elk gewenst tijdstip, voor- of achteruit, te spoelen."
 
@@ -15970,7 +15988,7 @@ msgstr "Kies 'Ja' om alle configuratie data van plugins te verwijderen. Hierdoor
 msgid "Select 'Yes' to remove all settings, tuning data, timers, resume pointers etc. Selecting this option will restore the configuration to the initial settings before any configuration settings were applied. This is the most reliable form of Factory Reset."
 msgstr "Kies 'Ja' om alle favorietenlijsten, tuning data, timers, hervat punten en dergelijke te verwijderen. Hierdoor worden alle instellingen terug gezet naar default, dit is de meest betrouwbare methode voor het herstellen van de fabrieksinstellingen."
 
-msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and scheduler."
+msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and schedules."
 msgstr "Kies 'Ja' om alle timer configuratie data te verwijderen. Hierdoor zullen alle timers, autotimers en power timers worden gewist."
 
 msgid "Select 'Yes' to remove all tuning data. Selecting this option will remove all tuning and bouquet data and will make timers non functional until the receiver is retuned."
@@ -16421,6 +16439,9 @@ msgstr "Selecteer het User Band frequentie dat aan deze tuner wordt toegewezen. 
 
 msgid "Select the Yes / True response"
 msgstr "Selecteer het juiste antwoord"
+
+msgid "Select the access mode for the automatically exported samba shares."
+msgstr ""
 
 #, python-format
 msgid "Select the action for '%s'"

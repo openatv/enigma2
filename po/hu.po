@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-30 19:32+0000\n"
+"POT-Creation-Date: 2024-12-31 15:16+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -2759,6 +2759,9 @@ msgstr "Automatikus felbontás címke"
 
 msgid "Automatic scan for services"
 msgstr "Automatikus keresése a csatornáknak"
+
+msgid "Automatic shares access"
+msgstr ""
 
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr ""
@@ -7083,6 +7086,9 @@ msgstr "Automatikus gyorskeresés engedélyezése"
 msgid "Enable auto fast scan for %s"
 msgstr "Automatikus gyorskeresés engedélyezése ehhez: %s"
 
+msgid "Enable automatic shares"
+msgstr ""
+
 msgid "Enable autorefresh templates."
 msgstr ""
 
@@ -11372,10 +11378,10 @@ msgstr "Csatlakozás beállítás"
 msgid "Mount failed"
 msgstr "Csatolás nem sikerült"
 
-msgid "Mount root file system."
+msgid "Mount point"
 msgstr ""
 
-msgid "Mount point"
+msgid "Mount root file system."
 msgstr ""
 
 msgid "Mounts"
@@ -14354,8 +14360,14 @@ msgstr "Nincs besorolás"
 msgid "Re-enter new PIN"
 msgstr "Írja be újra az új PIN-kód"
 
+msgid "Read Only"
+msgstr ""
+
 msgid "Read Userdata from oscam.conf"
 msgstr "Az Oscam.conf felhasználói adatainak olvasása"
+
+msgid "Read/Write"
+msgstr ""
 
 msgid "Reader"
 msgstr "Olvasó"
@@ -15396,6 +15408,9 @@ msgstr ""
 msgid "Samba Server"
 msgstr ""
 
+msgid "Samba Settings"
+msgstr ""
+
 msgid "Same as in active"
 msgstr "Ugyanaz, mint az aktív"
 
@@ -15853,6 +15868,9 @@ msgstr ""
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Ha az 'igen'-t választja, az Információs sáv folyamatosan 'szüneteltetett' állapotban marad (nincs időkorlát)."
 
+msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
+msgstr ""
+
 msgid "Select 'Yes' to allow use of the seek bar to jump to a selected point within the event."
 msgstr "Ha az 'igen'-t választja, akkor a keresősáv segítségével átugorhat egy adott pontra az eseményen belül."
 
@@ -15943,7 +15961,7 @@ msgstr ""
 msgid "Select 'Yes' to remove all settings, tuning data, timers, resume pointers etc. Selecting this option will restore the configuration to the initial settings before any configuration settings were applied. This is the most reliable form of Factory Reset."
 msgstr ""
 
-msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and scheduler."
+msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and schedules."
 msgstr ""
 
 msgid "Select 'Yes' to remove all tuning data. Selecting this option will remove all tuning and bouquet data and will make timers non functional until the receiver is retuned."
@@ -16389,6 +16407,9 @@ msgid "Select the User Band frequency to be assigned to this tuner. This is the 
 msgstr "Válassza ki a tunerhez hozzárendelni kívánt felhasználói sáv frekvenciáját. Ez az a frekvencia, amelyet az SCR kapcsoló a kért transzponder tunernek való továbbadására használ."
 
 msgid "Select the Yes / True response"
+msgstr ""
+
+msgid "Select the access mode for the automatically exported samba shares."
 msgstr ""
 
 #, python-format

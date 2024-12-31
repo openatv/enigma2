@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-30 19:32+0000\n"
+"POT-Creation-Date: 2024-12-31 15:16+0000\n"
 "PO-Revision-Date: 2023-08-06 06:22+0000\n"
 "Last-Translator: Salif Mehmed <mail@salif.eu>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/bg/>\n"
@@ -2714,6 +2714,9 @@ msgstr "Автоматична резолюция етикет"
 
 msgid "Automatic scan for services"
 msgstr "Автоматично сканиране за сервизи"
+
+msgid "Automatic shares access"
+msgstr ""
 
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr "Автоматично се поставя телевизора в режим на готовност, когато приемникът премине в режим на готовност или дълбока готовност."
@@ -7023,6 +7026,9 @@ msgstr "Разрешаване на автоматично бързо скани
 msgid "Enable auto fast scan for %s"
 msgstr "Разрешаване на автоматично бързо сканиране %s"
 
+msgid "Enable automatic shares"
+msgstr ""
+
 msgid "Enable autorefresh templates."
 msgstr ""
 
@@ -11258,11 +11264,11 @@ msgstr "Настройка на монтажа"
 msgid "Mount failed"
 msgstr "Монтирането се провали"
 
-msgid "Mount root file system."
-msgstr ""
-
 msgid "Mount point"
 msgstr "Точка на монтиране"
+
+msgid "Mount root file system."
+msgstr ""
 
 msgid "Mounts"
 msgstr "Мониране"
@@ -14199,8 +14205,14 @@ msgstr "Рейтинг неопределен"
 msgid "Re-enter new PIN"
 msgstr "Въведете отново новия PIN"
 
+msgid "Read Only"
+msgstr ""
+
 msgid "Read Userdata from oscam.conf"
 msgstr "Прочетете потребителските данни от oscam.conf"
+
+msgid "Read/Write"
+msgstr ""
 
 msgid "Reader"
 msgstr "Читател"
@@ -15239,6 +15251,9 @@ msgstr ""
 msgid "Samba Server"
 msgstr ""
 
+msgid "Samba Settings"
+msgstr ""
+
 msgid "Same as in active"
 msgstr "Също като в активна"
 
@@ -15690,6 +15705,9 @@ msgstr ""
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Ако е зададено 'да'; инфобарът остава показван постоянно в 'пауза' (без прекъсване)."
 
+msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
+msgstr ""
+
 msgid "Select 'Yes' to allow use of the seek bar to jump to a selected point within the event."
 msgstr "Ако е зададено 'да', ви позволява да използвате лентата за търсене, за да прескочите до точка в събитието."
 
@@ -15780,7 +15798,7 @@ msgstr "Изберете „Да“, за да премахнете всички
 msgid "Select 'Yes' to remove all settings, tuning data, timers, resume pointers etc. Selecting this option will restore the configuration to the initial settings before any configuration settings were applied. This is the most reliable form of Factory Reset."
 msgstr "Изберете „Да“, за да премахнете всички настройки, данни за настройка, таймери, указатели за възобновяване и т.н. Избирането на тази опция ще възстанови конфигурацията до първоначалните настройки, преди да бъдат приложени каквито и да е конфигурационни настройки. Това е най-надеждната форма на фабрично нулиране."
 
-msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and scheduler."
+msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and schedules."
 msgstr "Изберете „Да“, за да премахнете всички данни за конфигурацията на таймера. Избирането на тази опция ще изчисти всички таймери, автоматични таймери и таймери за захранване."
 
 msgid "Select 'Yes' to remove all tuning data. Selecting this option will remove all tuning and bouquet data and will make timers non functional until the receiver is retuned."
@@ -16227,6 +16245,9 @@ msgstr "Изберете честотата на потребителския д
 
 msgid "Select the Yes / True response"
 msgstr "Изберете отговора Да / Вярно"
+
+msgid "Select the access mode for the automatically exported samba shares."
+msgstr ""
 
 #, python-format
 msgid "Select the action for '%s'"

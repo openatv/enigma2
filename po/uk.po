@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-30 19:32+0000\n"
+"POT-Creation-Date: 2024-12-31 15:16+0000\n"
 "PO-Revision-Date: 2024-12-31 11:56+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
@@ -2750,6 +2750,9 @@ msgstr "Мітка автороздільності екрану"
 
 msgid "Automatic scan for services"
 msgstr "Автосканування каналів"
+
+msgid "Automatic shares access"
+msgstr ""
 
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr "Автоматично переводьте телевізор у режим очікування, коли приймач переходить у режим очікування, або глибокого очікування."
@@ -7080,6 +7083,9 @@ msgstr "Включити швидке автосканування"
 msgid "Enable auto fast scan for %s"
 msgstr "Включити швидке автосканування для %s"
 
+msgid "Enable automatic shares"
+msgstr ""
+
 msgid "Enable autorefresh templates."
 msgstr "Увімкнути автооновлення шаблонів."
 
@@ -11324,11 +11330,11 @@ msgstr "Налаштування монтування"
 msgid "Mount failed"
 msgstr "Монтування невдале"
 
-msgid "Mount root file system."
-msgstr "Монтування кореневої файлової системи."
-
 msgid "Mount point"
 msgstr "Точка монтування"
+
+msgid "Mount root file system."
+msgstr "Монтування кореневої файлової системи."
 
 msgid "Mounts"
 msgstr "Точки монтування"
@@ -14273,8 +14279,14 @@ msgstr "Рейтинг не визначений"
 msgid "Re-enter new PIN"
 msgstr "Повторно введіть новий ПІН"
 
+msgid "Read Only"
+msgstr ""
+
 msgid "Read Userdata from oscam.conf"
 msgstr "Дані користувача з oscam.conf"
+
+msgid "Read/Write"
+msgstr ""
 
 msgid "Reader"
 msgstr "Рідер"
@@ -15313,6 +15325,9 @@ msgstr "Клієнт Samba"
 msgid "Samba Server"
 msgstr "Samba Сервер"
 
+msgid "Samba Settings"
+msgstr ""
+
 msgid "Same as in active"
 msgstr "Те ж, що при активності"
 
@@ -15766,6 +15781,9 @@ msgstr "Виберіть 'Так', якщо бажаєте увімкнути т
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Якщо вибрано 'так', інформаційна панель в режимі 'пауза' буде показана постійно (немає тайм-ауту)."
 
+msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
+msgstr ""
+
 msgid "Select 'Yes' to allow use of the seek bar to jump to a selected point within the event."
 msgstr "Якщо вибрано 'так', зможете використовувати SeekBar, щоб перейти до точки з подією."
 
@@ -15856,7 +15874,7 @@ msgstr "Виберіть 'Так', щоб видалити всі дані ко�
 msgid "Select 'Yes' to remove all settings, tuning data, timers, resume pointers etc. Selecting this option will restore the configuration to the initial settings before any configuration settings were applied. This is the most reliable form of Factory Reset."
 msgstr "Виберіть 'Так', щоб видалити всі налаштування, дані налаштування, таймери, показники відновлення, тощо. Вибір цієї опції відновить конфігурацію до початкових налаштувань. Це найнадійніша форма скидання до заводських налаштувань."
 
-msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and scheduler."
+msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and schedules."
 msgstr "Виберіть 'Так', щоб видалити всі дані конфігурації таймера. Якщо вибрати цей параметр, усі таймери, автотаймери та таймери живлення очистяться."
 
 msgid "Select 'Yes' to remove all tuning data. Selecting this option will remove all tuning and bouquet data and will make timers non functional until the receiver is retuned."
@@ -16303,6 +16321,9 @@ msgstr "Виберіть частоту Користувацької Смуги,
 
 msgid "Select the Yes / True response"
 msgstr "Виберіть відповідь Так/Правда"
+
+msgid "Select the access mode for the automatically exported samba shares."
+msgstr ""
 
 #, python-format
 msgid "Select the action for '%s'"

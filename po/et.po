@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-30 19:32+0000\n"
+"POT-Creation-Date: 2024-12-31 15:16+0000\n"
 "PO-Revision-Date: 2022-12-04 20:43+0000\n"
 "Last-Translator: rimasx <riks_12@hot.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -2750,6 +2750,9 @@ msgstr "Lahutuse teavitamine"
 
 msgid "Automatic scan for services"
 msgstr "Kanalite automaatotsing"
+
+msgid "Automatic shares access"
+msgstr ""
 
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr ""
@@ -7149,6 +7152,9 @@ msgstr "Luba automaatne kiirotsing"
 msgid "Enable auto fast scan for %s"
 msgstr "Kiire automaatotsing %s jaoks"
 
+msgid "Enable automatic shares"
+msgstr ""
+
 msgid "Enable autorefresh templates."
 msgstr ""
 
@@ -11516,10 +11522,10 @@ msgstr "Haakepunktide seadistused"
 msgid "Mount failed"
 msgstr "Haakimine nurjus"
 
-msgid "Mount root file system."
+msgid "Mount point"
 msgstr ""
 
-msgid "Mount point"
+msgid "Mount root file system."
 msgstr ""
 
 msgid "Mounts"
@@ -14583,8 +14589,14 @@ msgstr "Vanusepiirang määramata"
 msgid "Re-enter new PIN"
 msgstr "Sisesta veel kord uus PIN kood"
 
+msgid "Read Only"
+msgstr ""
+
 msgid "Read Userdata from oscam.conf"
 msgstr "Loe kasutaja andmeid oscam.conf failist"
+
+msgid "Read/Write"
+msgstr ""
 
 msgid "Reader"
 msgstr "Kaardipesa"
@@ -15656,6 +15668,9 @@ msgstr ""
 msgid "Samba Server"
 msgstr ""
 
+msgid "Samba Settings"
+msgstr ""
+
 msgid "Same as in active"
 msgstr "Võrdne seiskamisajaga"
 
@@ -16118,6 +16133,9 @@ msgstr ""
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Kui lubatud, kuvatakse pausil olles inforiba pidevalt."
 
+msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
+msgstr ""
+
 msgid "Select 'Yes' to allow use of the seek bar to jump to a selected point within the event."
 msgstr "Määrates 'jah', saad kasutada saates soovitud kohani liikumiseks otsiriba."
 
@@ -16209,7 +16227,7 @@ msgstr ""
 msgid "Select 'Yes' to remove all settings, tuning data, timers, resume pointers etc. Selecting this option will restore the configuration to the initial settings before any configuration settings were applied. This is the most reliable form of Factory Reset."
 msgstr ""
 
-msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and scheduler."
+msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and schedules."
 msgstr ""
 
 msgid "Select 'Yes' to remove all tuning data. Selecting this option will remove all tuning and bouquet data and will make timers non functional until the receiver is retuned."
@@ -16662,6 +16680,9 @@ msgid "Select the User Band frequency to be assigned to this tuner. This is the 
 msgstr ""
 
 msgid "Select the Yes / True response"
+msgstr ""
+
+msgid "Select the access mode for the automatically exported samba shares."
 msgstr ""
 
 #, python-format

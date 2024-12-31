@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-30 19:32+0000\n"
+"POT-Creation-Date: 2024-12-31 15:16+0000\n"
 "PO-Revision-Date: 2024-12-29 20:00+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
@@ -2721,6 +2721,9 @@ msgstr "Resoluution vaihtumisen ilmoitus"
 
 msgid "Automatic scan for services"
 msgstr "Automaattinen kanavahaku"
+
+msgid "Automatic shares access"
+msgstr ""
 
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr "Laittaa television automaattisesti valmiustilaan, kun vastaanotin siirtyy valmiustilaan tai virransäästötilaan."
@@ -7049,6 +7052,9 @@ msgstr "Ota käyttöön autom. pikahaku"
 msgid "Enable auto fast scan for %s"
 msgstr "Ota automaattinen pikahaku kohteelle %s"
 
+msgid "Enable automatic shares"
+msgstr ""
+
 msgid "Enable autorefresh templates."
 msgstr "Ota automaattiset päivitykset käyttöön."
 
@@ -11294,11 +11300,11 @@ msgstr "Määritä verkko ja laiteliitokset"
 msgid "Mount failed"
 msgstr "Liitos epäonnistui"
 
-msgid "Mount root file system."
-msgstr "Liitä järjestelmätiedosto."
-
 msgid "Mount point"
 msgstr "Liitäntä"
+
+msgid "Mount root file system."
+msgstr "Liitä järjestelmätiedosto."
 
 msgid "Mounts"
 msgstr "Liitokset"
@@ -14249,8 +14255,14 @@ msgstr "Ikärajaa ei määritelty"
 msgid "Re-enter new PIN"
 msgstr "Toista uusi PIN kooditun"
 
+msgid "Read Only"
+msgstr ""
+
 msgid "Read Userdata from oscam.conf"
 msgstr "Lue Käyttäjäntiedot oscam.conf:ista"
+
+msgid "Read/Write"
+msgstr ""
 
 msgid "Reader"
 msgstr "Lukija"
@@ -15289,6 +15301,9 @@ msgstr "Samba Asiakas"
 msgid "Samba Server"
 msgstr "Samba Serveri"
 
+msgid "Samba Settings"
+msgstr ""
+
 msgid "Same as in active"
 msgstr "Sama kuin aktiivinen"
 
@@ -15747,6 +15762,9 @@ msgstr "Valitse \"Kyllä\", jos haluat herätää television Vaihda kanavaa ajas
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "'Kyllä' valinnalla tietopalkki näytetään, pysyvästi keskeytetyssä tilassa (ei aikakatkaisua)."
 
+msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
+msgstr ""
+
 msgid "Select 'Yes' to allow use of the seek bar to jump to a selected point within the event."
 msgstr "Jos asetuksena on 'kyllä ', voit käyttää hakupalkkia hypätäksesi haluttuun kohtaan ohjelmassa."
 
@@ -15837,7 +15855,7 @@ msgstr "Valitse 'Kyllä' poistaaksesi kaikki laajennukset tiedot. Tämän vaihto
 msgid "Select 'Yes' to remove all settings, tuning data, timers, resume pointers etc. Selecting this option will restore the configuration to the initial settings before any configuration settings were applied. This is the most reliable form of Factory Reset."
 msgstr "Valitse 'Kyllä' poistaaksesi kaikki asetukset, virittimen tiedot, ajastukset jne. Tämän vaihtoehdon valitseminen palauttaa kokoonpanon alkuasetuksiin ennen kuin mitään kokoonpanoasetuksia käytettiin. Tämä on luotettavin Tehdasasetusten palautuksen muoto."
 
-msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and scheduler."
+msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and schedules."
 msgstr "Valitse 'Kyllä' poistaaksesi kaikki ajastus tiedot. Tämän vaihtoehdon valitseminen poistaa kaikki ajastukset, automaattiset ajastukset ja virta ajastukset."
 
 msgid "Select 'Yes' to remove all tuning data. Selecting this option will remove all tuning and bouquet data and will make timers non functional until the receiver is retuned."
@@ -16288,6 +16306,9 @@ msgstr "Valitse tähän virittimeen asetettu käyttäjän taajuusalueen taajuus.
 
 msgid "Select the Yes / True response"
 msgstr "Valitse Kyllä / Tosi vastaus"
+
+msgid "Select the access mode for the automatically exported samba shares."
+msgstr ""
 
 #, python-format
 msgid "Select the action for '%s'"

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-30 19:32+0000\n"
+"POT-Creation-Date: 2024-12-31 15:16+0000\n"
 "PO-Revision-Date: 2024-08-04 16:47+0000\n"
 "Last-Translator: Tmp341 <tmp341@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -2806,6 +2806,9 @@ msgstr "Otomatik çözünürlük etiketi"
 
 msgid "Automatic scan for services"
 msgstr "Kanallar için otomatik arama"
+
+msgid "Automatic shares access"
+msgstr ""
 
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr "Alıcı bekleme veya derin bekleme moduna geçtiğinde TV'yi otomatik olarak bekleme moduna alın."
@@ -7322,6 +7325,9 @@ msgstr "Otomatik hızlı taramayı etkinleştir"
 msgid "Enable auto fast scan for %s"
 msgstr "İçin otomatik hızlı taramayı etkinleştir %s"
 
+msgid "Enable automatic shares"
+msgstr ""
+
 msgid "Enable autorefresh templates."
 msgstr ""
 
@@ -11778,11 +11784,11 @@ msgstr "Mount kurulum"
 msgid "Mount failed"
 msgstr "Mount başarısız oldu"
 
-msgid "Mount root file system."
-msgstr ""
-
 msgid "Mount point"
 msgstr "Bağlantı noktası"
+
+msgid "Mount root file system."
+msgstr ""
 
 msgid "Mounts"
 msgstr "Mounts"
@@ -14911,8 +14917,14 @@ msgstr "Reyting belirtilmemiş"
 msgid "Re-enter new PIN"
 msgstr "Yeni PIN'i tekrar girin"
 
+msgid "Read Only"
+msgstr ""
+
 msgid "Read Userdata from oscam.conf"
 msgstr "Oscam.conf'dan kullanıcı bilgisi oku"
+
+msgid "Read/Write"
+msgstr ""
 
 msgid "Reader"
 msgstr "Okuyucu"
@@ -16020,6 +16032,9 @@ msgstr "Samba İstemci"
 msgid "Samba Server"
 msgstr "Samba Server"
 
+msgid "Samba Settings"
+msgstr ""
+
 msgid "Same as in active"
 msgstr "Aktif ile aynı"
 
@@ -16500,6 +16515,9 @@ msgstr ""
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Eğer 'evet' olarak ayarlandıysa; bilgi çubuğu 'duraklatıldı' durumunda kalıcı olarak gösterilmeye devam edecek (zaman aşımı yok)."
 
+msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
+msgstr ""
+
 msgid "Select 'Yes' to allow use of the seek bar to jump to a selected point within the event."
 msgstr "'Evet' olarak ayarlanırsa, etkinlik içinde bir noktaya atlamak için arama çubuğunu kullanmanıza izin verir."
 
@@ -16590,7 +16608,7 @@ msgstr "Tüm eklenti yapılandırma verilerini kaldırmak için 'Evet'i seçin. 
 msgid "Select 'Yes' to remove all settings, tuning data, timers, resume pointers etc. Selecting this option will restore the configuration to the initial settings before any configuration settings were applied. This is the most reliable form of Factory Reset."
 msgstr "Tüm ayarları, ayar verilerini, zamanlayıcıları, devam etme işaretçilerini vb. kaldırmak için 'Evet'i seçin. Bu seçeneğin seçilmesi, herhangi bir yapılandırma ayarı uygulanmadan önce yapılandırmayı başlangıç ayarlarına geri yükleyecektir. Bu, Fabrika Ayarlarına Sıfırlamanın en güvenilir şeklidir."
 
-msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and scheduler."
+msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and schedules."
 msgstr "Tüm zamanlayıcı yapılandırma verilerini kaldırmak için 'Evet'i seçin. Bu seçeneğin seçilmesi tüm zamanlayıcıları, otomatik zamanlayıcıları ve güç zamanlayıcılarını silecektir."
 
 msgid "Select 'Yes' to remove all tuning data. Selecting this option will remove all tuning and bouquet data and will make timers non functional until the receiver is retuned."
@@ -17050,6 +17068,9 @@ msgstr "Bu alıcıya atanacak Kullanıcı Bandı frekansını seçin. Bu, SCR an
 
 msgid "Select the Yes / True response"
 msgstr "Evet / Doğru yanıtını seçin"
+
+msgid "Select the access mode for the automatically exported samba shares."
+msgstr ""
 
 #, python-format
 msgid "Select the action for '%s'"

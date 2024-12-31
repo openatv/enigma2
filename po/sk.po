@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-30 19:32+0000\n"
+"POT-Creation-Date: 2024-12-31 15:16+0000\n"
 "PO-Revision-Date: 2024-12-21 14:15+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
@@ -2749,6 +2749,9 @@ msgstr "Štítok autom. rozlíšenia"
 
 msgid "Automatic scan for services"
 msgstr "Automatické vyhľadávanie staníc"
+
+msgid "Automatic shares access"
+msgstr ""
 
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr "Automaticky prepnúť TV do pohotovostného režimu vždy keď sa prijímač vypne alebo prepne do pohotovostného režimu."
@@ -7079,6 +7082,9 @@ msgstr "Povoliť automatické rýchle vyhľadávanie (Fast Scan)"
 msgid "Enable auto fast scan for %s"
 msgstr "Povoliť automatické rýchle vyhľadávanie (Fast Scan) pre %s"
 
+msgid "Enable automatic shares"
+msgstr ""
+
 msgid "Enable autorefresh templates."
 msgstr "Povoliť automatické obnovovanie šablón."
 
@@ -11323,11 +11329,11 @@ msgstr "Nastavenie pripojení"
 msgid "Mount failed"
 msgstr "Pripojenie neúspešné"
 
-msgid "Mount root file system."
-msgstr "Pripojiť koreňový systém súborov."
-
 msgid "Mount point"
 msgstr "Bod pripojenia"
+
+msgid "Mount root file system."
+msgstr "Pripojiť koreňový systém súborov."
 
 msgid "Mounts"
 msgstr "Pripojenia"
@@ -14272,8 +14278,14 @@ msgstr "Hodnotenie neurčené"
 msgid "Re-enter new PIN"
 msgstr "Znovu zadajte nový kód PIN"
 
+msgid "Read Only"
+msgstr ""
+
 msgid "Read Userdata from oscam.conf"
 msgstr "Načítať používateľské dáta z oscam.conf"
+
+msgid "Read/Write"
+msgstr ""
 
 msgid "Reader"
 msgstr "Čítačka"
@@ -15312,6 +15324,9 @@ msgstr "Klient Samba"
 msgid "Samba Server"
 msgstr "Server Samba"
 
+msgid "Samba Settings"
+msgstr ""
+
 msgid "Same as in active"
 msgstr "Rovnako ako pri zapnutí"
 
@@ -15765,6 +15780,9 @@ msgstr "Ak chcete prebudiť TV pri spúšťaní nahrávacieho časovača pre 'Pr
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Ak je nastavené na 'Áno', pri pozastavení prehrávania médií zostane infolišta zobrazená bez časového limitu."
 
+msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
+msgstr ""
+
 msgid "Select 'Yes' to allow use of the seek bar to jump to a selected point within the event."
 msgstr "Ak je nastavené 'Áno', bude možné použitie vyhľadávacieho panela na skok na vybraný bod v rámci udalosti."
 
@@ -15855,7 +15873,7 @@ msgstr "Ak chcete odstrániť všetky konfiguračné údaje pluginu, vyberte mo�
 msgid "Select 'Yes' to remove all settings, tuning data, timers, resume pointers etc. Selecting this option will restore the configuration to the initial settings before any configuration settings were applied. This is the most reliable form of Factory Reset."
 msgstr "Ak chcete odstrániť všetky nastavenia, údaje o naladení, časovače, značky pre pokračovanie atď., vyberte možnosť 'Áno'. Obnovia sa počiatočné nastavenia konfigurácie do stavu pred použitím akýchkoľvek nastavení. Toto je najspoľahlivejšií spôsob resetu do továrenského nastavenia."
 
-msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and scheduler."
+msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and schedules."
 msgstr "Ak chcete odstrániť všetky údaje o konfigurácii časovačov, vyberte možnosť 'Áno'. Tým sa vymažú všetky časovače, automatické časovače a časovače napájania."
 
 msgid "Select 'Yes' to remove all tuning data. Selecting this option will remove all tuning and bouquet data and will make timers non functional until the receiver is retuned."
@@ -16302,6 +16320,9 @@ msgstr "Vyberte frekvenciu používateľského pásma, ktorá sa pridelí tomuto
 
 msgid "Select the Yes / True response"
 msgstr "Vyberte odozvu Áno/Pravda"
+
+msgid "Select the access mode for the automatically exported samba shares."
+msgstr ""
 
 #, python-format
 msgid "Select the action for '%s'"

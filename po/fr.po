@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-30 19:32+0000\n"
+"POT-Creation-Date: 2024-12-31 15:16+0000\n"
 "PO-Revision-Date: 2024-12-24 18:34+0000\n"
 "Last-Translator: Mathieu13006 <llapaca@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fr/>\n"
@@ -2722,6 +2722,9 @@ msgstr "Etiquette de résolution automatique"
 
 msgid "Automatic scan for services"
 msgstr "Scan automatique des services"
+
+msgid "Automatic shares access"
+msgstr ""
 
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr "Mettre automatiquement le téléviseur en veille lorsque le récepteur passe en veille ou en veille profonde."
@@ -7041,6 +7044,9 @@ msgstr "Activer le scan rapide automatique"
 msgid "Enable auto fast scan for %s"
 msgstr "Activer le scan rapide automatique pour %s"
 
+msgid "Enable automatic shares"
+msgstr ""
+
 msgid "Enable autorefresh templates."
 msgstr ""
 
@@ -11282,10 +11288,10 @@ msgstr "Paramètre de montage"
 msgid "Mount failed"
 msgstr "Echec du montage"
 
-msgid "Mount root file system."
+msgid "Mount point"
 msgstr ""
 
-msgid "Mount point"
+msgid "Mount root file system."
 msgstr ""
 
 msgid "Mounts"
@@ -14228,8 +14234,14 @@ msgstr "Classification indéfini"
 msgid "Re-enter new PIN"
 msgstr "Ressaisir nouveau PIN"
 
+msgid "Read Only"
+msgstr ""
+
 msgid "Read Userdata from oscam.conf"
 msgstr "Lecture des données utilisateur depuis oscam.conf"
+
+msgid "Read/Write"
+msgstr ""
 
 msgid "Reader"
 msgstr "Lecteur"
@@ -15271,6 +15283,9 @@ msgstr ""
 msgid "Samba Server"
 msgstr ""
 
+msgid "Samba Settings"
+msgstr ""
+
 msgid "Same as in active"
 msgstr "Le même qu'en actif"
 
@@ -15721,6 +15736,9 @@ msgstr ""
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Si défini sur 'oui' : l'infobarre reste affichée en permanence 'en pause' (aucun délai d'attente)."
 
+msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
+msgstr ""
+
 msgid "Select 'Yes' to allow use of the seek bar to jump to a selected point within the event."
 msgstr "Si mis à 'oui' cela permets à la barre de recherche de sauter à un point d'un évènement."
 
@@ -15811,7 +15829,7 @@ msgstr ""
 msgid "Select 'Yes' to remove all settings, tuning data, timers, resume pointers etc. Selecting this option will restore the configuration to the initial settings before any configuration settings were applied. This is the most reliable form of Factory Reset."
 msgstr ""
 
-msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and scheduler."
+msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and schedules."
 msgstr ""
 
 msgid "Select 'Yes' to remove all tuning data. Selecting this option will remove all tuning and bouquet data and will make timers non functional until the receiver is retuned."
@@ -16258,6 +16276,9 @@ msgstr "Sélectionnez la fréquence de la bande utilisateur à attribuer à ce t
 
 msgid "Select the Yes / True response"
 msgstr "Sélectionnez la réponse Oui / Vrai"
+
+msgid "Select the access mode for the automatically exported samba shares."
+msgstr ""
 
 #, python-format
 msgid "Select the action for '%s'"

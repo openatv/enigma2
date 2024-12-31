@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-30 19:32+0000\n"
+"POT-Creation-Date: 2024-12-31 15:16+0000\n"
 "PO-Revision-Date: 2024-10-02 07:35+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/es/>\n"
@@ -2856,6 +2856,9 @@ msgstr "Etiqueta de resolución automática"
 
 msgid "Automatic scan for services"
 msgstr "Búsqueda automática de canales"
+
+msgid "Automatic shares access"
+msgstr ""
 
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr "Poner automáticamente la TV en modo de espera cada vez que el receptor entre en modo de espera o espera profundo."
@@ -7377,6 +7380,9 @@ msgstr "Habilitar exploración rápida automática"
 msgid "Enable auto fast scan for %s"
 msgstr "Habilitar escaneo rápido automático para %s"
 
+msgid "Enable automatic shares"
+msgstr ""
+
 msgid "Enable autorefresh templates."
 msgstr ""
 
@@ -11876,11 +11882,11 @@ msgstr "Configurar montajes"
 msgid "Mount failed"
 msgstr "Montaje fallido"
 
-msgid "Mount root file system."
-msgstr ""
-
 msgid "Mount point"
 msgstr "Punto de montaje"
+
+msgid "Mount root file system."
+msgstr ""
 
 msgid "Mounts"
 msgstr "Montajes"
@@ -15040,8 +15046,14 @@ msgstr "Clasificación no definida"
 msgid "Re-enter new PIN"
 msgstr "Re-introducir PIN nuevo"
 
+msgid "Read Only"
+msgstr ""
+
 msgid "Read Userdata from oscam.conf"
 msgstr "Leer datos de usuario de oscam.conf"
+
+msgid "Read/Write"
+msgstr ""
 
 msgid "Reader"
 msgstr "Lector"
@@ -16165,6 +16177,9 @@ msgstr ""
 msgid "Samba Server"
 msgstr ""
 
+msgid "Samba Settings"
+msgstr ""
+
 msgid "Same as in active"
 msgstr "Igual que en activo"
 
@@ -16653,6 +16668,9 @@ msgstr ""
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Seleccione \"Sí\" para mantener la barra de información en pantalla, sin tiempo de espera, mientras la reproducción multimedia está en pausa."
 
+msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
+msgstr ""
+
 msgid "Select 'Yes' to allow use of the seek bar to jump to a selected point within the event."
 msgstr "Si se ajusta a 'sí', te permitirá usar la barra de búsqueda para avanzar a cualquier momento del programa."
 
@@ -16743,7 +16761,7 @@ msgstr "Seleccione \"Sí\" para eliminar todos los datos de configuración del p
 msgid "Select 'Yes' to remove all settings, tuning data, timers, resume pointers etc. Selecting this option will restore the configuration to the initial settings before any configuration settings were applied. This is the most reliable form of Factory Reset."
 msgstr "Seleccione \"Sí\" para eliminar todos los ajustes, datos de sintonización, temporizadores, punteros de reanudación, etc. Al seleccionar esta opción se restablecerá la configuración a los ajustes iniciales antes de que se aplicara cualquier ajuste de configuración. Esta es la forma más fiable de Restauración de Fábrica."
 
-msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and scheduler."
+msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and schedules."
 msgstr "Seleccione \"Sí\" para eliminar todos los datos de configuración de los temporizadores. Al seleccionar esta opción, se borrarán todos los temporizadores, los temporizadores automáticos y los temporizadores de encendido."
 
 msgid "Select 'Yes' to remove all tuning data. Selecting this option will remove all tuning and bouquet data and will make timers non functional until the receiver is retuned."
@@ -17208,6 +17226,9 @@ msgstr "Select the User Band frequency to be assigned to this tuner. This is the
 
 msgid "Select the Yes / True response"
 msgstr "Seleccione respuesta Sí / Verdadero"
+
+msgid "Select the access mode for the automatically exported samba shares."
+msgstr ""
 
 #, python-format
 msgid "Select the action for '%s'"

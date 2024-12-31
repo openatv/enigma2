@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-30 19:32+0000\n"
+"POT-Creation-Date: 2024-12-31 15:16+0000\n"
 "PO-Revision-Date: 2024-12-31 11:43+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -2713,6 +2713,9 @@ msgstr "自动分辨率标签"
 
 msgid "Automatic scan for services"
 msgstr "频道自动扫描"
+
+msgid "Automatic shares access"
+msgstr ""
 
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr "每当接收机进入待机或深度待机时，自动将电视置于待机状态。"
@@ -7040,6 +7043,9 @@ msgstr "启用自动快速扫描"
 msgid "Enable auto fast scan for %s"
 msgstr "为 %s 启用自动快速扫描"
 
+msgid "Enable automatic shares"
+msgstr ""
+
 msgid "Enable autorefresh templates."
 msgstr "启用自动刷新模板。"
 
@@ -11280,11 +11286,11 @@ msgstr "挂载设置"
 msgid "Mount failed"
 msgstr "挂载失败"
 
-msgid "Mount root file system."
-msgstr "挂载根文件系统。"
-
 msgid "Mount point"
 msgstr "挂载点"
+
+msgid "Mount root file system."
+msgstr "挂载根文件系统。"
 
 msgid "Mounts"
 msgstr "挂载"
@@ -14227,8 +14233,14 @@ msgstr "评级未定义"
 msgid "Re-enter new PIN"
 msgstr "重新输入新 PIN"
 
+msgid "Read Only"
+msgstr ""
+
 msgid "Read Userdata from oscam.conf"
 msgstr "从 oscam.conf 读取用户数据"
+
+msgid "Read/Write"
+msgstr ""
 
 msgid "Reader"
 msgstr "读卡器"
@@ -15267,6 +15279,9 @@ msgstr "Samba 客户端"
 msgid "Samba Server"
 msgstr "Samba 服务器"
 
+msgid "Samba Settings"
+msgstr ""
+
 msgid "Same as in active"
 msgstr "与活动的相同"
 
@@ -15717,6 +15732,9 @@ msgstr "如果您想在“换台”录像定时器启动时唤醒电视，请选
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "选择“是”，在暂停媒体播放时，信息栏保持显示，不超时。"
 
+msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
+msgstr ""
+
 msgid "Select 'Yes' to allow use of the seek bar to jump to a selected point within the event."
 msgstr "选择“是”以允许使用搜索栏跳转到事件中的选定点。"
 
@@ -15807,7 +15825,7 @@ msgstr "选择“是”删除所有插件配置数据。选择此选项将删除
 msgid "Select 'Yes' to remove all settings, tuning data, timers, resume pointers etc. Selecting this option will restore the configuration to the initial settings before any configuration settings were applied. This is the most reliable form of Factory Reset."
 msgstr "选择“是”以删除所有设置、调谐数据、定时器、恢复指针等。选择此选项会将配置恢复到应用任何配置设置之前的初始设置。这是最可靠的出厂重置形式。"
 
-msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and scheduler."
+msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and schedules."
 msgstr "选择“是”删除所有定时器配置数据。选择此选项将清除所有定时器、自动定时器和电源定时器。"
 
 msgid "Select 'Yes' to remove all tuning data. Selecting this option will remove all tuning and bouquet data and will make timers non functional until the receiver is retuned."
@@ -16254,6 +16272,9 @@ msgstr "选择要分配给此调谐器的用户频带频率。这是 SCR 开关�
 
 msgid "Select the Yes / True response"
 msgstr "选择 是/真 响应"
+
+msgid "Select the access mode for the automatically exported samba shares."
+msgstr ""
 
 #, python-format
 msgid "Select the action for '%s'"
