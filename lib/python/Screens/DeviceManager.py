@@ -66,25 +66,42 @@ class UUIDTask(ConditionTask):
 
 	def check(self):
 		fstab = fileReadLines("/etc/fstab", default=[], source=MODULE_NAME)
-		save = False
+		knownDevices = fileReadLines("/etc/udev/known_devices", default=[], source=MODULE_NAME)
+		saveFstab = False
+		saveknownDevices = False
 		for device, olduuid in self.uuids.items():
 			newuuid = fileReadLine(f"/dev/uuid/{device}", default=None, source=MODULE_NAME)
 			if newuuid and newuuid != olduuid:
 				for i, line in enumerate(fstab):
 					if line.find(f"UUID={olduuid}") != -1:
 						fstab[i] = line.replace(f"UUID={olduuid}", f"UUID={newuuid}")
-						print(f"[UUIDTask] UUID changed from {olduuid} to {newuuid}")
-						save = True
+						print(f"[UUIDTask] fstab UUID changed from {olduuid} to {newuuid}")
+						saveFstab = True
+						break
+				for i, line in enumerate(knownDevices):
+					if line.startswith(olduuid):
+						fstab[i] = line.replace(f"{olduuid}", f"{newuuid}")
+						print(f"[UUIDTask] known_devices UUID changed from {olduuid} to {newuuid}")
+						saveknownDevices = True
 						break
 			if not newuuid:
 				for i, line in enumerate(fstab):
 					if line.find(f"UUID={olduuid}") != -1:
 						fstab[i] = f"#{line}"
-						print(f"[UUIDTask] UUID {olduuid} removed")
-						save = True
+						print(f"[UUIDTask] fstab UUID {olduuid} removed")
+						saveFstab = True
 						break
-		if save:
+				for i, line in enumerate(knownDevices):
+					if line.startswith(olduuid):
+						fstab[i] = ""
+						print(f"[UUIDTask] known_devices UUID {olduuid} removed")
+						saveknownDevices = True
+						break
+		if saveFstab:
 			fileWriteLines("/etc/fstab", fstab, source=MODULE_NAME)
+		if saveknownDevices:
+			knownDevices = [x for x in knownDevices if x]
+			fileWriteLines("/etc/udev/known_devices", knownDevices, source=MODULE_NAME)
 		return True
 
 
@@ -1365,6 +1382,18 @@ class DeviceManagerMountPoints(Setup):
 					mkdir(mountPoint, 0o755)
 
 		if newFstab != oldFstab:
+			knownDevices = fileReadLines("/etc/udev/known_devices", default=[], source=MODULE_NAME)
+			knownDevicesUUIDs = [x.split(":")[0] for x in knownDevices if ":" in x]
+			saveKnownDevices = False
+			for line in newFstab:
+				if line.startswith("UUID=") and EXPANDER_MOUNT not in line:
+					UUID = line.split()[0].replace("UUID=", "")
+					if UUID not in knownDevicesUUIDs:
+						mountPoint = line.split()[1]
+						knownDevices.append(f"{UUID}:{mountPoint}")
+						saveKnownDevices = True
+			if saveKnownDevices:
+				fileWriteLines("/etc/udev/known_devices", knownDevices, source=MODULE_NAME)
 			fileWriteLines("/etc/fstab", newFstab, source=MODULE_NAME)
 			Console().ePopen([self.MOUNT, self.MOUNT, "-a"], keySaveCallback)
 		else:
