@@ -937,7 +937,7 @@ class DeviceManager(Screen):
 					swapState = _("On") if storageDevice.get("swapState") else _("Off")
 					des = f"{_("Swap")}: {swapState}"
 				else:
-					des = f"{_("Mountpoint")}: {mountPoint} {fs}{rw}"
+					des = f"{_("Mount point")}: {mountPoint} {fs}{rw}"
 				separator = "└"
 				devicePixmap = None
 			else:
@@ -1315,7 +1315,7 @@ class DeviceManagerMountPoints(Setup):
 		# device , fstabmountpoint, isMounted , deviceUuid, name, deviceType, fsType, size, disk
 		diskInfo = f"{device[0]} / {device[6]} / {scaleNumber(device[7], format="%.2f")}"
 		items.append((diskInfo,))
-		items.append((_("Mountpoint"), self.mountPoints[index], _("Select the mountpoint for the device."), index, device[8]))
+		items.append((_("Mount point"), self.mountPoints[index], _("Select the mountpoint for the device."), index, device[8]))
 		if self.mountPoints[index].value != "None":
 			if self.mountPoints[index].value == "":
 				items.append((_("Custom mountpoint"), self.customMountPoints[index], _("Define the custom mountpoint for the device."), index, device[8]))
