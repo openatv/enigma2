@@ -891,7 +891,8 @@ class HarddiskManager:
 		dev, part = self.splitDeviceName(dev)
 		description = _("External Storage %s") % dev
 		try:
-			description = readFile(f"/sys{phys}/model")
+			fileName = "name" if "mmc" in dev else "model"
+			description = readFile(f"/sys{phys}/{fileName}")
 		except OSError as err:
 			print(f"[Harddisk] Error {err.errno}: Couldn't read model!  ({err.strerror})")
 		for physdevprefix, pdescription in list(getDeviceDB().items()):
