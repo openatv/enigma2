@@ -451,29 +451,29 @@ class ConfigListScreen:
 	def keySave(self):
 		for notifier in self.onSave:
 			notifier()
-		rebootFlag = self.saveAll()
-		if rebootFlag:
-			self.session.openWithCallback(boundFunction(self.restartConfirm, rebootFlag[0]), MessageBox, rebootFlag[1], default=True, type=MessageBox.TYPE_YESNO)
+		quitData = self.saveAll()
+		if quitData:
+			self.session.openWithCallback(boundFunction(self.restartConfirm, quitData[0]), MessageBox, quitData[1], default=True, type=MessageBox.TYPE_YESNO)
 		else:
 			self.close()
 
-	def restartConfirm(self, rebootFlag, result):
+	def restartConfirm(self, quitValue, result):
 		if result:
-			self.session.open(TryQuitMainloop, retvalue=rebootFlag)
+			self.session.open(TryQuitMainloop, retvalue=quitValue)
 			self.close()
 
 	def saveAll(self):
-		restart = 0
+		quitData = ()
 		for item in self["config"].list:
 			if len(item) > 1:
 				if item[1].isChanged():
 					if item[0].endswith("*"):
-						restart = (QUIT_RESTART, _("Restart GUI now?"))
+						quitData = (QUIT_RESTART, _("Restart GUI now?"))
 					elif item[0].endswith("#"):
-						restart = (QUIT_REBOOT, _("Reboot %s %s now?") % getBoxDisplayName())
+						quitData = (QUIT_REBOOT, _("Reboot %s %s now?") % getBoxDisplayName())
 				item[1].save()
 		configfile.save()
-		return restart
+		return quitData
 
 	def addSaveNotifier(self, notifier):
 		if callable(notifier):
