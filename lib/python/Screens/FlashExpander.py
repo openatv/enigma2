@@ -338,7 +338,7 @@ class FlashExpander(Setup):
 						if deviceID:
 							self.deviceData[deviceID] = (data[0][:-1], name)
 			self.updateStatus()
-			if callback:
+			if callback and callable(callback):
 				callback()
 
 		self.console.ePopen(["/sbin/blkid", "/sbin/blkid"], callback=getBlockIdDataCallback)

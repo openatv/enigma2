@@ -488,7 +488,7 @@ class KexecSlotManager(Setup):
 						if deviceID:
 							self.deviceData[deviceID] = (data[0][:-1], name)
 			self.updateStatus()
-			if callback:
+			if callback and callable(callback):
 				callback()
 
 		self.console.ePopen(["/sbin/blkid", "/sbin/blkid"], callback=readDevicesCallback)
@@ -682,7 +682,7 @@ arg=${bootargs} logo=osd0,loaded,0x7f800000 vout=1080p50hz,enable hdmimode=1080p
 					if data and data[0][:-1].startswith(hdd.dev_path):
 						self.deviceData[1] = (data[0][:-1], name)
 			self.updateStatus()
-			if callback:
+			if callback and callable(callback):
 				callback()
 
 		self.console.ePopen(["/sbin/blkid", "/sbin/blkid"], callback=readDevicesCallback)

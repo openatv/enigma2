@@ -56,7 +56,7 @@ class StartWizard(Wizard, ShowRemoteControl):
 
 	def createSwapFileFlashExpander(self, callback):
 		def messageBoxCallback(*res):
-			if callback:
+			if callback and callable(callback):
 				callback()
 
 		def creataSwapFileCallback(result=None, retVal=None, extraArgs=None):
@@ -91,7 +91,7 @@ class StartWizard(Wizard, ShowRemoteControl):
 			return None
 
 		def creataSwapFileCallback(result=None, retVal=None, extraArgs=None):
-			if callback:
+			if callback and callable(callback):
 				callback()
 
 		print("[StartWizard] DEBUG createSwapFile: %s" % self.swapDevice)
@@ -160,7 +160,7 @@ class StartWizard(Wizard, ShowRemoteControl):
 						if deviceID:
 							self.deviceData[deviceID] = (data[0][:-1], name)
 			print("[StartWizard] DEBUG readSwapDevicesCallback: %s" % str(self.deviceData))
-			if callback:
+			if callback and callable(callback):
 				callback()
 
 		self.console.ePopen(["/sbin/blkid", "/sbin/blkid"], callback=readSwapDevicesCallback)

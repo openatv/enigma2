@@ -48,7 +48,7 @@ class ConsoleItem:
 		del self.container.appClosed[:]
 		del self.container
 		callback = self.callback
-		if callback:
+		if callback and callable(callback):
 			data = b"".join(self.appResults)
 			data = data if self.binary else data.decode()
 			callback(data, retVal, self.extraArgs)
