@@ -185,7 +185,7 @@ class Navigation:
 			if self.wakeuptyp == 2:
 				if not self.forcerecord:
 					print(f"[Navigation] Timer starts at '{ctime(self.timertime)}'.")
-				print("[Navigation] Was power timer wakeup is True.")
+				print("[Navigation] Was schedule wakeup is True.")
 				self.__wasSchedulerWakeup = True
 				fileWriteLine(Scheduler.TIMER_FLAG_FILE, "1", source=MODULE_NAME)
 			# Plugin timer.

@@ -5041,7 +5041,7 @@ class InfoBarSleepTimer:
 			if isRecordTime or isScheduler:
 				timerMethod(1800, showMessage=False)  # 1800 = 30 minutes.
 				if not Screens.Standby.inStandby:
-					message = _("A recording, recording timer or power timer is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or power timer event.\n\nGo to Deep Standby now?") % (name, brand, model)
+					message = _("A recording, recording timer or schedule is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or schedule event.\n\nGo to Deep Standby now?") % (name, brand, model)
 					self.session.openWithCallback(boundFunction(self.timerStandby, action), MessageBox, message, MessageBox.TYPE_YESNO, timeout=timeout, default=True, windowTitle=name)
 				return None, None, None
 		return brand, model, timeout

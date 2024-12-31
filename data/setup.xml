@@ -334,7 +334,7 @@
 			<item level="0" text="Remove all resume point data" description="Select 'Yes' to remove all media player resume data. Selecting this option will remove the data used to allow playback of media files to resume from the position where playback was last stopped. Playback position of recordings is not affected." conditional="self.resumePoints">config.factory.resetResumePoints</item>
 			<item level="0" text="Remove all settings data" description="Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values. This will also cause Enigma2 to run the Welcome Wizard on restart." conditional="self.settings">config.factory.resetSettings</item>
 			<item level="0" text="Remove all skin data" description="Select 'Yes' to remove all user customizations of skin data. Selecting this option will remove all user based skin customizations. All affected skins will return to their standard settings. This will also clear any customized boot logos and backdrops." conditional="self.skins">config.factory.resetSkins</item>
-			<item level="0" text="Remove all timer data" description="Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and power timers." conditional="len(self.timers)">config.factory.resetTimers</item>
+			<item level="0" text="Remove all timer data" description="Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and scheduler." conditional="len(self.timers)">config.factory.resetTimers</item>
 			<item level="0" text="Remove all other data" description="Select 'Yes' to remove all other files and directories not covered by the options above." conditional="len(self.others)">config.factory.resetOthers</item>
 		</if>
 	</setup>
@@ -422,7 +422,7 @@
 			<if conditional="config.hdmicec.advanced_settings.value and config.hdmicec.control_tv_wakeup.value">
 				<item level="0" text="Even if a 'Zap' recording timer starting?" description="Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting.">config.hdmicec.tv_wakeup_zaptimer</item>
 				<item level="0" text="Even if a 'Zap and Record' recording timer starting?" description="Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting.">config.hdmicec.tv_wakeup_zapandrecordtimer</item>
-				<item level="0" text="Even if a 'Wakeup' Scheduler task starting?" description="Select 'Yes' if you want to wake the TV for a 'Wakeup' power timer is starting.">config.hdmicec.tv_wakeup_wakeuppowertimer</item>
+				<item level="0" text="Even if a 'Wakeup' Scheduler task starting?" description="Select 'Yes' if you want to wake the TV for a 'Wakeup' schedule is starting.">config.hdmicec.tv_wakeup_wakeuppowertimer</item>
 			</if>
 			<item level="0" text="Switch TV to correct input" description="When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected.">config.hdmicec.report_active_source</item>
 			<item level="0" text="Switch off the TV to correct input" description="Some TVs can't switch to the correct input if another HDMI port is active. This setting sets the TV to standby before the switch. (If the TV does not turn back on it may require a slower transmission interval or the repetition of the wake-up command.)" conditional="config.hdmicec.advanced_settings.value and config.hdmicec.report_active_source.value">config.hdmicec.workaround_activesource</item>
