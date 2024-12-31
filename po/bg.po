@@ -1553,24 +1553,24 @@ msgid "A file from media is in use!"
 msgstr "Файл от медия се използва!"
 
 #, python-format
-msgid "A finished Scheduler timer wants to reboot your %s %s. Do that now?"
+msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "Завършен таймер за захранване иска да рестартира вашия %s %s.\n"
 "Да го направи ли сега?"
 
-msgid "A finished Scheduler timer wants to restart the user interface. Do that now?"
+msgid "A finished scheduled timer wants to restart the user interface. Do that now?"
 msgstr ""
 "Завършен таймер за захранване иска да рестартира потребителския интерфейс.\n"
 "Да го направи ли сега?"
 
 #, python-format
-msgid "A finished Scheduler timer wants to set your %s %s to standby. Do that now?"
+msgid "A finished scheduled timer wants to set your %s %s to standby. Do that now?"
 msgstr ""
 "Готовият таймер за захранване иска да настрои вашия\n"
 "%s %s в режим на готовност. Да го направи ли сега?"
 
 #, python-format
-msgid "A finished Scheduler timer wants to shut down your %s %s. Do that now?"
+msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "Завършен таймер за захранване иска да изключи вашия %s %s.\n"
 "Да го направи ли сега?"
@@ -1623,7 +1623,7 @@ msgstr "Записът в момента върви. Моля спрете за�
 
 #, python-format
 msgid ""
-"A recording, recording timer or schedule is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or schedule event.\n"
+"A recording, recording timer or scheduled task is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or scheduled task.\n"
 "\n"
 "Go to Deep Standby now?"
 msgstr ""
@@ -5738,7 +5738,7 @@ msgstr ""
 msgid "Define the custom mountpoint for the device."
 msgstr ""
 
-msgid "Define the filesystem mount options."
+msgid "Define the file system mount options."
 msgstr ""
 
 msgid "Defined / Active"
@@ -7705,7 +7705,7 @@ msgstr ""
 msgid "Even if TV has another input active?"
 msgstr ""
 
-msgid "Even if a 'Wakeup' Scheduler task starting?"
+msgid "Even if a 'Wakeup' scheduled task starting?"
 msgstr ""
 
 msgid "Even if a 'Zap and Record' recording timer starting?"
@@ -8235,7 +8235,7 @@ msgstr ""
 msgid "File Commander settings"
 msgstr "Настройки на File Commander"
 
-msgid "File System"
+msgid "File system"
 msgstr ""
 
 msgid "File System Check"
@@ -15692,7 +15692,7 @@ msgstr ""
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Изберете \"да\" само ако използвате мултипревключвател, който изисква команден сигнал DiSEqC Port-A. За всички други настройки изберете „не“."
 
-msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' schedule is starting."
+msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' scheduled task is starting."
 msgstr ""
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
@@ -16344,7 +16344,7 @@ msgstr ""
 msgid "Select the file sort order for the %s column:"
 msgstr ""
 
-msgid "Select the filesystem for the device."
+msgid "Select the file system for the device."
 msgstr ""
 
 msgid "Select the first item in list or move to the start of text"
@@ -18527,7 +18527,7 @@ msgstr "За съжаление, %s не е инсталиран!"
 msgid "Sorry, no backups found!"
 msgstr "За съжаление не са намерени резервни копия!"
 
-msgid "Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"
+msgid "Sorry, no physical devices that supports SWAP attached. Can't create swap file on network or FAT32 file systems"
 msgstr "За съжаление няма прилежащи физически устройства, поддържащи SWAP. Не може да се създаде Swapfile в мрежови или fat32 файлови системи"
 
 msgid "Sorry, there was a problem:"

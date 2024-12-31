@@ -623,7 +623,7 @@ class PluginBrowserSetup(Setup):
 		choiceList = [("/", _("Internal flash"))]
 		oldLocation = config.usage.piconInstallLocation.savedValue
 		for partition in harddiskmanager.getMountedPartitions():
-			if partition.device and fileAccess(partition.mountpoint, "w") and partition.filesystem() in ("ext3", "ext4"):  # Limit to physical drives with ext3 and ext4
+			if partition.device and fileAccess(partition.mountpoint, "w") and partition.fileSystem() in ("ext3", "ext4"):  # Limit to physical drives with ext3 and ext4
 				choiceList.append((partition.mountpoint, f"{partition.description} ({partition.mountpoint})"))
 		if oldLocation and oldLocation not in [location[0] for location in choiceList]:  # Add old location if not in calculated list of locations to prevent a setting change.
 			choiceList.append((oldLocation, oldLocation))

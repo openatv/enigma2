@@ -1599,18 +1599,18 @@ msgid "A file from media is in use!"
 msgstr "Plik z nośnika jest w użyciu!"
 
 #, python-format
-msgid "A finished Scheduler timer wants to reboot your %s %s. Do that now?"
+msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
 msgstr "Programator zasilania chce ponownie uruchomić %s %s. Zrobić to teraz?"
 
-msgid "A finished Scheduler timer wants to restart the user interface. Do that now?"
+msgid "A finished scheduled timer wants to restart the user interface. Do that now?"
 msgstr "Wykonany timer zasilania chce ponownie uruchomić interfejs użytkownika. Czy chcesz to zrobić teraz?"
 
 #, python-format
-msgid "A finished Scheduler timer wants to set your %s %s to standby. Do that now?"
+msgid "A finished scheduled timer wants to set your %s %s to standby. Do that now?"
 msgstr "Wykonany timer zasilania chce ustawić %s %s w stan czuwania. Zrobić to teraz?"
 
 #, python-format
-msgid "A finished Scheduler timer wants to shut down your %s %s. Do that now?"
+msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
 msgstr "Timer zasilania chce wyłączyć %s %s. Zrobić to teraz?"
 
 #, python-format
@@ -1661,7 +1661,7 @@ msgstr "Nagrywanie w toku. Zatrzymaj nagrywanie przed uruchomieniem miernika syg
 
 #, python-format
 msgid ""
-"A recording, recording timer or schedule is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or schedule event.\n"
+"A recording, recording timer or scheduled task is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or scheduled task.\n"
 "\n"
 "Go to Deep Standby now?"
 msgstr ""
@@ -5792,7 +5792,7 @@ msgstr "Zdefiniuj DNS suffix."
 msgid "Define the custom mountpoint for the device."
 msgstr ""
 
-msgid "Define the filesystem mount options."
+msgid "Define the file system mount options."
 msgstr ""
 
 msgid "Defined / Active"
@@ -7772,7 +7772,7 @@ msgstr "Etiopia"
 msgid "Even if TV has another input active?"
 msgstr "Nawet jeśli TV/AV ma inne aktywne wejście?"
 
-msgid "Even if a 'Wakeup' Scheduler task starting?"
+msgid "Even if a 'Wakeup' scheduled task starting?"
 msgstr "Nawet jeśli zacznie działać timer 'wybudzania'?"
 
 msgid "Even if a 'Zap and Record' recording timer starting?"
@@ -8302,7 +8302,7 @@ msgstr "File Commander: Akcje edytora tekstu"
 msgid "File Commander settings"
 msgstr "Ustawienia File Commander"
 
-msgid "File System"
+msgid "File system"
 msgstr ""
 
 msgid "File System Check"
@@ -15776,7 +15776,7 @@ msgstr "Wybierz opcję 'Tak', jeśli regulacja głośności ma być stosowana do
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Wybierz „tak” tylko, jeśli używasz multiswich, który wymaga sygnału polecenia DiSEqC Port-A. Dla wszystkich innych ustawień wybierz „nie”."
 
-msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' schedule is starting."
+msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' scheduled task is starting."
 msgstr "Wybierz opcję „Tak”, jeśli chcesz wybudzić telewizor na czas uruchomienia timera zasilania „Wybudzanie”."
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
@@ -16427,7 +16427,7 @@ msgstr "Wybierz kolejność wyświetlania wcześniej odwiedzonych kanałów."
 msgid "Select the file sort order for the %s column:"
 msgstr "Wybierz kolejność sortowania plików dla kolumny %s:"
 
-msgid "Select the filesystem for the device."
+msgid "Select the file system for the device."
 msgstr ""
 
 msgid "Select the first item in list or move to the start of text"
@@ -18625,7 +18625,7 @@ msgstr "Niestety, %s nie został zainstalowany!"
 msgid "Sorry, no backups found!"
 msgstr "Nie znaleziono kopii zapasowych!"
 
-msgid "Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"
+msgid "Sorry, no physical devices that supports SWAP attached. Can't create swap file on network or FAT32 file systems"
 msgstr "Nie znaleziono dysku, który umożliwiałby utworzenie pliku wymiany. Nie można utworzyć pliku wymiany na dyskach sieciowych ani z systemem plików FAT32"
 
 msgid "Sorry, there was a problem:"

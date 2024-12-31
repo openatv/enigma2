@@ -1593,18 +1593,18 @@ msgid "A file from media is in use!"
 msgstr "Súbor z daného média sa práve používa!"
 
 #, python-format
-msgid "A finished Scheduler timer wants to reboot your %s %s. Do that now?"
+msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
 msgstr "Časovač napájania skončil a chce reštartovať %s %s. Vykonať ihneď?"
 
-msgid "A finished Scheduler timer wants to restart the user interface. Do that now?"
+msgid "A finished scheduled timer wants to restart the user interface. Do that now?"
 msgstr "Časovač napájania skončil a chce reštartovať používateľské rozhranie. Vykonať ihneď?"
 
 #, python-format
-msgid "A finished Scheduler timer wants to set your %s %s to standby. Do that now?"
+msgid "A finished scheduled timer wants to set your %s %s to standby. Do that now?"
 msgstr "Časovač napájania skončil a chce prepnúť %s %s do pohotovostného režimu. Vykonať ihneď?"
 
 #, python-format
-msgid "A finished Scheduler timer wants to shut down your %s %s. Do that now?"
+msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
 msgstr "Časovač napájania skončil a chce vypnúť zariadenie %s %s. Vykonať ihneď?"
 
 #, python-format
@@ -1655,7 +1655,7 @@ msgstr "Práve sa nahráva. Pred spustením vyhľadávača družíc nahrávanie 
 
 #, python-format
 msgid ""
-"A recording, recording timer or schedule is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or schedule event.\n"
+"A recording, recording timer or scheduled task is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or scheduled task.\n"
 "\n"
 "Go to Deep Standby now?"
 msgstr ""
@@ -5785,7 +5785,7 @@ msgstr "Definujte príponu DNS."
 msgid "Define the custom mountpoint for the device."
 msgstr ""
 
-msgid "Define the filesystem mount options."
+msgid "Define the file system mount options."
 msgstr ""
 
 msgid "Defined / Active"
@@ -7765,7 +7765,7 @@ msgstr "Etiópia"
 msgid "Even if TV has another input active?"
 msgstr "Aj keď je na TV aktívny iný vstup?"
 
-msgid "Even if a 'Wakeup' Scheduler task starting?"
+msgid "Even if a 'Wakeup' scheduled task starting?"
 msgstr "Aj keď sa spustí 'prebudenie' časovačom napájania?"
 
 msgid "Even if a 'Zap and Record' recording timer starting?"
@@ -8295,7 +8295,7 @@ msgstr "Správca súborov: akcie pre textový editor"
 msgid "File Commander settings"
 msgstr "Správca súborov: nastavenia"
 
-msgid "File System"
+msgid "File system"
 msgstr ""
 
 msgid "File System Check"
@@ -15768,7 +15768,7 @@ msgstr "Ak sa má použiť prispôsobenie hlasitosti na zvukové stopy Dolby, vy
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Ak používate multiprepínač, ktorý vyžaduje príkazový signál DiSEqC Port-A, vyberte možnosť 'Áno'. Pre všetky ostatné nastavenia vyberte 'Nie'."
 
-msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' schedule is starting."
+msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' scheduled task is starting."
 msgstr "Ak chcete prebudiť TV pri spúšťaní časovača pre 'Prebudenie', vyberte možnosť 'Áno'."
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
@@ -16419,7 +16419,7 @@ msgstr "Vyberte poradie zobrazenia predtým navštívených služieb."
 msgid "Select the file sort order for the %s column:"
 msgstr "Vyberte poradie zoraďovania súborov pre stĺpec %s:"
 
-msgid "Select the filesystem for the device."
+msgid "Select the file system for the device."
 msgstr ""
 
 msgid "Select the first item in list or move to the start of text"
@@ -18616,7 +18616,7 @@ msgstr "Prepáčte, %s nebol nainštalovaný!"
 msgid "Sorry, no backups found!"
 msgstr "Žiaľ, nenašli sa žiadne zálohy!"
 
-msgid "Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"
+msgid "Sorry, no physical devices that supports SWAP attached. Can't create swap file on network or FAT32 file systems"
 msgstr "Prepáčte, nie sú pripojené žiadne zariadenia podporujúce SWAP. Súbor SWAP nie je možné vytvoriť v sieti alebo v súborových systémoch FAT32"
 
 msgid "Sorry, there was a problem:"

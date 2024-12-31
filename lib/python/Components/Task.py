@@ -436,41 +436,6 @@ class JobManager:
 		list += self.active_jobs
 		return list
 
-# some examples:
-#class PartitionExistsPostcondition:
-#	def __init__(self, device):
-#		self.device = device
-#
-#	def check(self, task):
-#		import os
-#		return os.access(self.device + "part1", os.F_OK)
-#
-#class CreatePartitionTask(Task):
-#	def __init__(self, device):
-#		Task.__init__(self, "Creating partition")
-#		self.device = device
-#		self.setTool("/sbin/sfdisk")
-#		self.args += ["-f", self.device + "disc"]
-#		self.initial_input = "0,\n;\n;\n;\ny\n"
-#		self.postconditions.append(PartitionExistsPostcondition(self.device))
-#
-#class CreateFilesystemTask(Task):
-#	def __init__(self, device, partition = 1, largefile = True):
-#		Task.__init__(self, "Creating file system")
-#		self.setTool("/sbin/mkfs.ext")
-#		if largefile:
-#			self.args += ["-T", "largefile"]
-#		self.args.append("-m0")
-#		self.args.append(device + "part%d" % partition)
-#
-#class FilesystemMountTask(Task):
-#	def __init__(self, device, partition = 1, filesystem = "ext3"):
-#		Task.__init__(self, "Mounting filesystem")
-#		self.setTool("/bin/mount")
-#		if filesystem is not None:
-#			self.args += ["-t", filesystem]
-#		self.args.append(device + "part%d" % partition)
-
 
 class Condition:
 	def __init__(self):
@@ -576,21 +541,6 @@ class FailedPostcondition(Condition):
 
 	def check(self, task):
 		return (self.exception is None) or (self.exception == 0)
-
-#class HDDInitJob(Job):
-#	def __init__(self, device):
-#		Job.__init__(self, _("Initialize Harddisk"))
-#		self.device = device
-#		self.fromDescription(self.createDescription())
-#
-#	def fromDescription(self, description):
-#		self.device = description["device"]
-#		self.addTask(CreatePartitionTask(self.device))
-#		self.addTask(CreateFilesystemTask(self.device))
-#		self.addTask(FilesystemMountTask(self.device))
-#
-#	def createDescription(self):
-#		return {"device": self.device}
 
 
 job_manager = JobManager()

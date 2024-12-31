@@ -219,7 +219,7 @@ class StorageDeviceAction(Setup):
 		fileSystems.append("swap")
 
 		self.formatMode = ConfigSelection(default=0, choices=[(0, _("Simple")), (1, _("Advanced"))])
-		self.formatFilesystems = []
+		self.formatFileSystems = []
 		self.formatLabels = []
 		self.formatsizes = []
 		self.numOfPartitions = 1
@@ -228,7 +228,7 @@ class StorageDeviceAction(Setup):
 			defaultFs = "ext4"
 
 		for i in range(4):
-			self.formatFilesystems.append(ConfigSelection(default=defaultFs, choices=[(x, x) for x in fileSystems]))
+			self.formatFileSystems.append(ConfigSelection(default=defaultFs, choices=[(x, x) for x in fileSystems]))
 			self.formatLabels.append(ConfigText(default=f"DISK_{i + 1}", fixed_size=False))
 			self.formatsizes.append(ConfigSelection(default=100 if i == 0 else 0, choices=[(x, f"{x}%") for x in range(0, 101)]))
 
@@ -253,7 +253,7 @@ class StorageDeviceAction(Setup):
 
 	def getActionParameters(self):
 		if self.action == self.ACTION_FORMAT:
-			return {"fsType": self.formatFilesystems[0].value, "label": self.formatLabels[0].value}
+			return {"fsType": self.formatFileSystems[0].value, "label": self.formatLabels[0].value}
 		elif self.action == self.ACTION_INITIALIZE:
 			uuids = {}
 			fsTypes = {}
@@ -267,11 +267,11 @@ class StorageDeviceAction(Setup):
 			if self.formatMode.value:
 				partitions = []
 				for i in range(self.numOfPartitions):
-					if self.formatFilesystems[i].value:
-						partitions.append({"fsType": self.formatFilesystems[i].value, "size": self.formatsizes[i].value, "label": self.formatLabels[i].value})
+					if self.formatFileSystems[i].value:
+						partitions.append({"fsType": self.formatFileSystems[i].value, "size": self.formatsizes[i].value, "label": self.formatLabels[i].value})
 				return {"partitionType": self.formatPartion.value, "partitions": partitions, "uuids": uuids, "fsTypes": fsTypes}
 			else:
-				return {"partitionType": self.formatPartion.value, "partitions": [{"fsType": self.formatFilesystems[0].value, "size": 100}], "uuids": uuids, "fsTypes": fsTypes}
+				return {"partitionType": self.formatPartion.value, "partitions": [{"fsType": self.formatFileSystems[0].value, "size": 100}], "uuids": uuids, "fsTypes": fsTypes}
 		else:
 			return None
 
@@ -290,8 +290,8 @@ class StorageDeviceAction(Setup):
 				diskInfo = f"{diskInfo} / {self.storageDevice.location}"
 			items.append((diskInfo,))
 		if self.action == self.ACTION_FORMAT:
-			items.append((_("File System"), self.formatFilesystems[0]))
-			if self.formatFilesystems[0].value != "swap":
+			items.append((_("File system"), self.formatFileSystems[0]))
+			if self.formatFileSystems[0].value != "swap":
 				items.append((_("Label"), self.formatLabels[0]))
 		elif self.action == self.ACTION_INITIALIZE:
 			items.append((_("Mode"), self.formatMode))
@@ -300,8 +300,8 @@ class StorageDeviceAction(Setup):
 				for i in range(self.numOfPartitions):
 					items.append((f"Partion {i + 1}",))
 					items.append((_("Size"), self.formatsizes[i]))
-					items.append((_("File System"), self.formatFilesystems[i]))
-					if self.formatFilesystems[i].value != "swap":
+					items.append((_("File system"), self.formatFileSystems[i]))
+					if self.formatFileSystems[i].value != "swap":
 						items.append((_("Label"), self.formatLabels[i]))
 		Setup.createSetup(self, appendItems=items)
 
@@ -1319,8 +1319,8 @@ class DeviceManagerMountPoints(Setup):
 		if self.mountPoints[index].value != "None":
 			if self.mountPoints[index].value == "":
 				items.append((_("Custom mountpoint"), self.customMountPoints[index], _("Define the custom mountpoint for the device."), index, device[8]))
-			items.append((_("Filesystem"), self.fileSystems[index], _("Select the filesystem for the device."), index, device[8]))
-			items.append((_("Options"), self.options[index], _("Define the filesystem mount options."), index, device[8]))
+			items.append((_("File system"), self.fileSystems[index], _("Select the file system for the device."), index, device[8]))
+			items.append((_("Options"), self.options[index], _("Define the file system mount options."), index, device[8]))
 		return items
 
 	def createSetup(self):  # NOSONAR silence S2638

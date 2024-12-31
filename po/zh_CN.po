@@ -1557,18 +1557,18 @@ msgid "A file from media is in use!"
 msgstr "正在使用来自媒体的文件！"
 
 #, python-format
-msgid "A finished Scheduler timer wants to reboot your %s %s. Do that now?"
+msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
 msgstr "一个已结束的电源定时器想要重启 %s %s。是否执行？"
 
-msgid "A finished Scheduler timer wants to restart the user interface. Do that now?"
+msgid "A finished scheduled timer wants to restart the user interface. Do that now?"
 msgstr "一个已结束的电源定时器想要重启用户界面。是否执行？"
 
 #, python-format
-msgid "A finished Scheduler timer wants to set your %s %s to standby. Do that now?"
+msgid "A finished scheduled timer wants to set your %s %s to standby. Do that now?"
 msgstr "一个已结束的电源定时器要将 %s %s 设置到待机状态。是否执行？"
 
 #, python-format
-msgid "A finished Scheduler timer wants to shut down your %s %s. Do that now?"
+msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
 msgstr "一个已结束的电源定时器要将 %s %s 关闭。是否执行？"
 
 #, python-format
@@ -1619,7 +1619,7 @@ msgstr "录像正在进行。 开始寻星前请先停止录像。"
 
 #, python-format
 msgid ""
-"A recording, recording timer or schedule is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or schedule event.\n"
+"A recording, recording timer or scheduled task is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or scheduled task.\n"
 "\n"
 "Go to Deep Standby now?"
 msgstr ""
@@ -5747,7 +5747,7 @@ msgstr "定义 DNS 后缀。"
 msgid "Define the custom mountpoint for the device."
 msgstr "定义设备的自定义挂载点。"
 
-msgid "Define the filesystem mount options."
+msgid "Define the file system mount options."
 msgstr "定义文件系统挂载选项。"
 
 msgid "Defined / Active"
@@ -7724,7 +7724,7 @@ msgstr "埃塞俄比亚"
 msgid "Even if TV has another input active?"
 msgstr "即使电视有别的活动输入？"
 
-msgid "Even if a 'Wakeup' Scheduler task starting?"
+msgid "Even if a 'Wakeup' scheduled task starting?"
 msgstr "即使“唤醒”电源定时器启动？"
 
 msgid "Even if a 'Zap and Record' recording timer starting?"
@@ -8254,7 +8254,7 @@ msgstr "文件指挥官文本编辑器操作"
 msgid "File Commander settings"
 msgstr "文件指挥官设置"
 
-msgid "File System"
+msgid "File system"
 msgstr "文件系统"
 
 msgid "File System Check"
@@ -15720,7 +15720,7 @@ msgstr "如果音量调整应应用于杜比音轨，请选择“是”。"
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "如果您使用需要 DiSEqC 端口 A 命令信号的多路开关，请选择“是”。 为所有其他设置选择“否”。"
 
-msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' schedule is starting."
+msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' scheduled task is starting."
 msgstr "如果您想因“唤醒”电源定时器启动而唤醒电视，请选择“是”。"
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
@@ -16371,7 +16371,7 @@ msgstr "选择以前访问过频道的显示顺序。"
 msgid "Select the file sort order for the %s column:"
 msgstr "选择第 %s 列的文件排序顺序："
 
-msgid "Select the filesystem for the device."
+msgid "Select the file system for the device."
 msgstr "选择设备的文件系统。"
 
 msgid "Select the first item in list or move to the start of text"
@@ -18566,7 +18566,7 @@ msgstr "抱歉， %s 还未安装！"
 msgid "Sorry, no backups found!"
 msgstr "抱歉，没有找到备份！"
 
-msgid "Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"
+msgid "Sorry, no physical devices that supports SWAP attached. Can't create swap file on network or FAT32 file systems"
 msgstr "抱歉，没有支持SWAP的物理设备连接。 无法在网络或 fat32 文件系统上创建交换文件"
 
 msgid "Sorry, there was a problem:"

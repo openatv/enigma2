@@ -1558,24 +1558,24 @@ msgid "A file from media is in use!"
 msgstr "Un fichier du média est en cours d'utilisation !"
 
 #, python-format
-msgid "A finished Scheduler timer wants to reboot your %s %s. Do that now?"
+msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "Un timer d'alimentation terminé désire redémarrer votre %s %s.\n"
 "Êtes-vous d'accord?"
 
-msgid "A finished Scheduler timer wants to restart the user interface. Do that now?"
+msgid "A finished scheduled timer wants to restart the user interface. Do that now?"
 msgstr ""
 "Un timer d'alimentation terminé désire redémarrer l'interface utilisateur.\n"
 "Êtes-vous d'accord?"
 
 #, python-format
-msgid "A finished Scheduler timer wants to set your %s %s to standby. Do that now?"
+msgid "A finished scheduled timer wants to set your %s %s to standby. Do that now?"
 msgstr ""
 "Un timer d'alimentation terminé désire mettre votre\n"
 " %s %s en veille. Êtes-vous d'accord?"
 
 #, python-format
-msgid "A finished Scheduler timer wants to shut down your %s %s. Do that now?"
+msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "Un timer d'alimentation terminé désire éteindre votre %s %s.\n"
 "Êtes-vous d'accord?"
@@ -1628,7 +1628,7 @@ msgstr "Un enregistrement est en cours. Veuillez arrêter l'enregistrement avant
 
 #, python-format
 msgid ""
-"A recording, recording timer or schedule is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or schedule event.\n"
+"A recording, recording timer or scheduled task is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or scheduled task.\n"
 "\n"
 "Go to Deep Standby now?"
 msgstr ""
@@ -5753,7 +5753,7 @@ msgstr ""
 msgid "Define the custom mountpoint for the device."
 msgstr ""
 
-msgid "Define the filesystem mount options."
+msgid "Define the file system mount options."
 msgstr ""
 
 msgid "Defined / Active"
@@ -7724,7 +7724,7 @@ msgstr "Ethiopie"
 msgid "Even if TV has another input active?"
 msgstr "Même si la TV a une autre entrée active ?"
 
-msgid "Even if a 'Wakeup' Scheduler task starting?"
+msgid "Even if a 'Wakeup' scheduled task starting?"
 msgstr "Même si une minuterie de réveil démarre ?"
 
 msgid "Even if a 'Zap and Record' recording timer starting?"
@@ -8254,7 +8254,7 @@ msgstr ""
 msgid "File Commander settings"
 msgstr "Paramètres de File Commander"
 
-msgid "File System"
+msgid "File system"
 msgstr ""
 
 msgid "File System Check"
@@ -15724,7 +15724,7 @@ msgstr ""
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Choisir ‘oui’ uniquement si vous utilisez un multiswitch qui requière un signal de commande DiSEqC Port-A. Pour toutes les autres configuration choisir ‘non’."
 
-msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' schedule is starting."
+msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' scheduled task is starting."
 msgstr ""
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
@@ -16375,7 +16375,7 @@ msgstr ""
 msgid "Select the file sort order for the %s column:"
 msgstr ""
 
-msgid "Select the filesystem for the device."
+msgid "Select the file system for the device."
 msgstr ""
 
 msgid "Select the first item in list or move to the start of text"
@@ -18559,7 +18559,7 @@ msgstr "Désolé, %s n'a pas été installé !"
 msgid "Sorry, no backups found!"
 msgstr "Désolé, aucune sauvegarde n'a été trouvée !"
 
-msgid "Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"
+msgid "Sorry, no physical devices that supports SWAP attached. Can't create swap file on network or FAT32 file systems"
 msgstr "Désolé, aucun périphérique physique qui supporte SWAP n'est branché. Impossible de créer un fichier swap sur le réseau ou sur un système de fichier FAT32"
 
 msgid "Sorry, there was a problem:"

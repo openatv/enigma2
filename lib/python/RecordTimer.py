@@ -987,7 +987,7 @@ class RecordTimerEntry(TimerEntry):
 				return True
 			elif abs(NavigationInstance.instance.Scheduler.getNextPowerManagerTime() - int(time())) <= 900 or NavigationInstance.instance.Scheduler.isProcessing(exceptTimer=0) or not NavigationInstance.instance.Scheduler.isAutoDeepstandbyEnabled():
 				if self.afterEvent == AFTEREVENT.DEEPSTANDBY or (wasRecTimerWakeup and self.afterEvent == AFTEREVENT.AUTO and self.wasInStandby) or (self.afterEvent == AFTEREVENT.AUTO and wasRecTimerWakeup):
-					print("[RecordTimer] Scheduler due within next 15 minutes or is currently active so not returning to deepstandby.")
+					print("[RecordTimer] Scheduler run due within next 15 minutes or is currently active so not returning to deepstandby.")
 				self.wasInStandby = False
 				self.resetTimerWakeup()
 				return True

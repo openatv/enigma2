@@ -1558,24 +1558,24 @@ msgid "A file from media is in use!"
 msgstr "Een mediabestand is in gebruik!"
 
 #, python-format
-msgid "A finished Scheduler timer wants to reboot your %s %s. Do that now?"
+msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "Een PowerTimer wil uw %s %s herstarten.\n"
 "Wilt u dat nu doen?"
 
-msgid "A finished Scheduler timer wants to restart the user interface. Do that now?"
+msgid "A finished scheduled timer wants to restart the user interface. Do that now?"
 msgstr ""
 "Een Powertimer wil de gebruikersinterface van uw %s %s herstarten.\n"
 "Wilt u dit toestaan?"
 
 #, python-format
-msgid "A finished Scheduler timer wants to set your %s %s to standby. Do that now?"
+msgid "A finished scheduled timer wants to set your %s %s to standby. Do that now?"
 msgstr ""
 "Een PowerTimer wil uw %s %s in stand-by zetten. \n"
 "Wilt u dat nu doen?"
 
 #, python-format
-msgid "A finished Scheduler timer wants to shut down your %s %s. Do that now?"
+msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "Een PowerTimer wil uw %s %s uitschakelen. \n"
 "Wilt u dat nu doen?"
@@ -1628,7 +1628,7 @@ msgstr "U bent aan het opnemen. Stop de opname voordat u de signaalmeting start.
 
 #, python-format
 msgid ""
-"A recording, recording timer or schedule is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or schedule event.\n"
+"A recording, recording timer or scheduled task is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or scheduled task.\n"
 "\n"
 "Go to Deep Standby now?"
 msgstr ""
@@ -5862,7 +5862,7 @@ msgstr "Het DNS-achtervoegsel invullen."
 msgid "Define the custom mountpoint for the device."
 msgstr ""
 
-msgid "Define the filesystem mount options."
+msgid "Define the file system mount options."
 msgstr ""
 
 msgid "Defined / Active"
@@ -7866,7 +7866,7 @@ msgstr "Ethiopië"
 msgid "Even if TV has another input active?"
 msgstr "Zelfs als op TV een andere poort actief is?"
 
-msgid "Even if a 'Wakeup' Scheduler task starting?"
+msgid "Even if a 'Wakeup' scheduled task starting?"
 msgstr "Zelfs als een 'ontwaak' schedule start?"
 
 msgid "Even if a 'Zap and Record' recording timer starting?"
@@ -8396,7 +8396,7 @@ msgstr "File Commander Tekst Editor Acties"
 msgid "File Commander settings"
 msgstr "File Commander instellingen"
 
-msgid "File System"
+msgid "File system"
 msgstr ""
 
 msgid "File System Check"
@@ -15881,7 +15881,7 @@ msgstr "Kies 'Ja' wanneer de volumewijzigingen toegepast moeten worden op het Do
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Selecteer alleen 'ja' als u een multiswich gebruikt die een DiSEqC Port-A commando gebruikt. In alle andere gevallen kiest u 'nee'."
 
-msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' schedule is starting."
+msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' scheduled task is starting."
 msgstr "Kies 'Ja' wanneer de TV door een PowerTimer moet worden ingeschakeld."
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
@@ -16540,7 +16540,7 @@ msgstr "De volgorde van de bekeken zenders opgeven."
 msgid "Select the file sort order for the %s column:"
 msgstr "Kies de sorteervolgorde voor het bestanden in de %s kolom:"
 
-msgid "Select the filesystem for the device."
+msgid "Select the file system for the device."
 msgstr ""
 
 msgid "Select the first item in list or move to the start of text"
@@ -18762,7 +18762,7 @@ msgstr "Sorry, %s is niet geïnstalleerd!"
 msgid "Sorry, no backups found!"
 msgstr "Sorry, er is geen back-up gevonden!"
 
-msgid "Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"
+msgid "Sorry, no physical devices that supports SWAP attached. Can't create swap file on network or FAT32 file systems"
 msgstr "Sorry, geen fysieke apparaten die SWAP ondersteuning bieden gevonden. Kan geen Swapfile op netwerk- of FAT32-bestandssystemen maken"
 
 msgid "Sorry, there was a problem:"

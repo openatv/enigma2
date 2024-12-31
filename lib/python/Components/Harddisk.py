@@ -52,20 +52,6 @@ def getProcMounts():
 		return []
 
 
-def isFileSystemSupported(filesystem):
-	try:
-		file = open("/proc/filesystems")
-		for fs in file:
-			if fs.strip().endswith(filesystem):
-				file.close()
-				return True
-		file.close()
-		return False
-	except Exception as err:
-		print(f"[Harddisk] Error {err.errno}: Failed to read '/proc/filesystems'!  ({err.strerror})")
-		return False
-
-
 def findMountPoint(path):
 	"""Example: findMountPoint("/media/hdd/some/file") returns "/media/hdd\""""
 	path = abspath(path)
@@ -369,10 +355,7 @@ class Harddisk:
 		task = UnmountTask(job, self)
 		task = MkfsTask(job, _("Creating file system"))
 		big_o_options = ["dir_index"]
-		if isFileSystemSupported("ext4"):
-			task.setTool("mkfs.ext4")
-		else:
-			task.setTool("mkfs.ext3")
+		task.setTool("mkfs.ext4")
 		if size > 250000:
 			task.args += ["-T", "largefile", "-N", "262144"]  # No more than 256k i-nodes (prevent problems with fsck memory requirements).
 			big_o_options.append("sparse_super")
@@ -413,8 +396,6 @@ class Harddisk:
 		return job
 
 	def createExt4ConversionJob(self):
-		if not isFileSystemSupported("ext4"):
-			raise Exception("You system does not support ext4")
 		job = Components.Task.Job(_("Converting ext3 to ext4..."))
 		if not exists("/sbin/tune2fs"):
 			addInstallTask(job, "e2fsprogs-tune2fs")
@@ -566,7 +547,7 @@ class Partition:
 #					return True
 #		return False
 
-	def filesystem(self, mounts=None):
+	def fileSystem(self, mounts=None):
 		if self.mountpoint:
 			if mounts is None:
 				mounts = getProcMountsNew()
@@ -1013,4 +994,3 @@ class MkfsTask(Components.Task.LoggingTask):
 
 
 harddiskmanager = HarddiskManager()
-BoxInfo.setItem("ext4", isFileSystemSupported("ext4"))

@@ -277,16 +277,16 @@ class Swap(Screen):
 
 	def doCreateSwap(self):
 		parts = []
-		supported_filesystems = frozenset(('ext4', 'ext3', 'ext2', 'vfat'))
+		supportedFileSystems = frozenset(('ext4', 'ext3', 'ext2', 'vfat'))
 		candidates = []
 		mounts = getProcMounts()
 		for partition in harddiskmanager.getMountedPartitions(False, mounts):
-			if partition.filesystem(mounts) in supported_filesystems:
+			if partition.fileSystem(mounts) in supportedFileSystems:
 				candidates.append((partition.description, partition.mountpoint))
 		if len(candidates):
 			self.session.openWithCallback(self.doCSplace, ChoiceBox, title=_("Please select device to use as swap file location"), list=candidates)
 		else:
-			self.session.open(MessageBox, _("Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"), MessageBox.TYPE_INFO, timeout=10)
+			self.session.open(MessageBox, _("Sorry, no physical devices that supports SWAP attached. Can't create swap file on network or FAT32 file systems"), MessageBox.TYPE_INFO, timeout=10)
 
 	def doCSplace(self, name):
 		if name:

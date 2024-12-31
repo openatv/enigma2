@@ -1591,24 +1591,24 @@ msgid "A file from media is in use!"
 msgstr "Egy fájl még használatban van a hordozón!"
 
 #, python-format
-msgid "A finished Scheduler timer wants to reboot your %s %s. Do that now?"
+msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "A kikapcsolás időzítő újra akarja indítani a(z) %s %s készüléket.\n"
 "Engedélyezi?"
 
-msgid "A finished Scheduler timer wants to restart the user interface. Do that now?"
+msgid "A finished scheduled timer wants to restart the user interface. Do that now?"
 msgstr ""
 "A kikapcsolás időzítő újra akarja indítani a kezelőfelületet.\n"
 "Engedélyezi?"
 
 #, python-format
-msgid "A finished Scheduler timer wants to set your %s %s to standby. Do that now?"
+msgid "A finished scheduled timer wants to set your %s %s to standby. Do that now?"
 msgstr ""
 "A kikapcsolás időzítő készenléti állapotba\n"
 "akarja helyezni a(z) %s %s készüléket. Engedélyezi?"
 
 #, python-format
-msgid "A finished Scheduler timer wants to shut down your %s %s. Do that now?"
+msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "A kikapcsolás időzítő ki akarja kapcsolni a(z) %s %s készüléket.\n"
 "Engedélyezi?"
@@ -1661,7 +1661,7 @@ msgstr "Egy felvétel folyamatban van. Kérjük, állítsa le a felvételt, miel
 
 #, python-format
 msgid ""
-"A recording, recording timer or schedule is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or schedule event.\n"
+"A recording, recording timer or scheduled task is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or scheduled task.\n"
 "\n"
 "Go to Deep Standby now?"
 msgstr ""
@@ -5797,7 +5797,7 @@ msgstr ""
 msgid "Define the custom mountpoint for the device."
 msgstr ""
 
-msgid "Define the filesystem mount options."
+msgid "Define the file system mount options."
 msgstr ""
 
 msgid "Defined / Active"
@@ -7767,7 +7767,7 @@ msgstr "Etiópia"
 msgid "Even if TV has another input active?"
 msgstr "Még akkor is, ha a TV-nek van egy másik aktív bemenete?"
 
-msgid "Even if a 'Wakeup' Scheduler task starting?"
+msgid "Even if a 'Wakeup' scheduled task starting?"
 msgstr "Még akkor is, ha elkezdődik egy 'felébresztés' időzítő?"
 
 msgid "Even if a 'Zap and Record' recording timer starting?"
@@ -8297,7 +8297,7 @@ msgstr ""
 msgid "File Commander settings"
 msgstr "File Commander beállításai"
 
-msgid "File System"
+msgid "File system"
 msgstr ""
 
 msgid "File System Check"
@@ -15856,7 +15856,7 @@ msgstr ""
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Csak akkor válassza az 'igen' beállítást, ha multiswich-t használ, amelyhez DiSEqC Port-A parancs jelet igényel. Az összes többi beállításhoz válassza a 'nem' lehetőséget."
 
-msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' schedule is starting."
+msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' scheduled task is starting."
 msgstr ""
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
@@ -16508,7 +16508,7 @@ msgstr ""
 msgid "Select the file sort order for the %s column:"
 msgstr ""
 
-msgid "Select the filesystem for the device."
+msgid "Select the file system for the device."
 msgstr ""
 
 msgid "Select the first item in list or move to the start of text"
@@ -18711,7 +18711,7 @@ msgstr "Sajnálom, a %s nincs feltelepítve!"
 msgid "Sorry, no backups found!"
 msgstr "Nincs rendszerbeállítás mentés!"
 
-msgid "Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"
+msgid "Sorry, no physical devices that supports SWAP attached. Can't create swap file on network or FAT32 file systems"
 msgstr "Sajnáljuk, nincs olyan fizikai eszköz, amely támogatja a SWAP csatolását. Nem hozható létre Swapfile a hálózati vagy fat32 fájlrendszereken"
 
 msgid "Sorry, there was a problem:"

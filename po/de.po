@@ -1607,27 +1607,27 @@ msgstr "Eine Mediendatei ist in Benutzung!"
 
 # /usr/lib/enigma2/python/PowerTimer.py
 #, python-format
-msgid "A finished Scheduler timer wants to reboot your %s %s. Do that now?"
+msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "Eine Zeitplaner-Aufgabe möchte die %s %s neu starten.\n"
 "Jetzt neu starten?"
 
 # /usr/lib/enigma2/python/PowerTimer.py
-msgid "A finished Scheduler timer wants to restart the user interface. Do that now?"
+msgid "A finished scheduled timer wants to restart the user interface. Do that now?"
 msgstr ""
 "Eine Zeitplaner-Aufgabe möchte die Benutzeroberfläche neu starten.\n"
 "Jetzt neu starten?"
 
 # /usr/lib/enigma2/python/PowerTimer.py
 #, python-format
-msgid "A finished Scheduler timer wants to set your %s %s to standby. Do that now?"
+msgid "A finished scheduled timer wants to set your %s %s to standby. Do that now?"
 msgstr ""
 "Eine Zeitplaner-Aufgabe möchte die %s %s in den Standby versetzen.\n"
 "Jetzt ausführen?"
 
 # /usr/lib/enigma2/python/PowerTimer.py
 #, python-format
-msgid "A finished Scheduler timer wants to shut down your %s %s. Do that now?"
+msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "Eine Zeitplaner-Aufgabe möchte die %s %s ausschalten.\n"
 "Jetzt herunterfahren?"
@@ -1692,7 +1692,7 @@ msgstr ""
 
 #, python-format
 msgid ""
-"A recording, recording timer or schedule is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or schedule event.\n"
+"A recording, recording timer or scheduled task is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or scheduled task.\n"
 "\n"
 "Go to Deep Standby now?"
 msgstr ""
@@ -6052,7 +6052,7 @@ msgstr "Legt den DNS-Suffix fest."
 msgid "Define the custom mountpoint for the device."
 msgstr "Benutzerdefinierten Einhängepunkt für das Gerät festlegen."
 
-msgid "Define the filesystem mount options."
+msgid "Define the file system mount options."
 msgstr "Einhänge-Optionen für das Dateisystem festlegen."
 
 msgid "Defined / Active"
@@ -8140,7 +8140,7 @@ msgstr "Äthiopien"
 msgid "Even if TV has another input active?"
 msgstr "Auch wenn der TV einen anderen Eingang aktiviert hat?"
 
-msgid "Even if a 'Wakeup' Scheduler task starting?"
+msgid "Even if a 'Wakeup' scheduled task starting?"
 msgstr "Auch wenn eine 'Aufwecken'-Zeitplaner-Aufgabe startet?"
 
 msgid "Even if a 'Zap and Record' recording timer starting?"
@@ -8692,7 +8692,7 @@ msgstr "File Commander Texteditor-Optionen"
 msgid "File Commander settings"
 msgstr "File Commander Einstellungen"
 
-msgid "File System"
+msgid "File system"
 msgstr "Dateisystem"
 
 #
@@ -16706,7 +16706,7 @@ msgstr "'Ja' auswählen, wenn Lautstärkeanpassungen auf Dolby-Tonspuren angewen
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Wenn ein Multiswitch verwendet wird, der ein DiSEqC-Port-A-Befehlssignal benötigt 'Ja' auswählen, ansonsten 'Nein'."
 
-msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' schedule is starting."
+msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' scheduled task is starting."
 msgstr "'Ja', wenn der TV beim Start einer Zeitplaner-Aufgabe aufgeweckt werden soll."
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
@@ -17381,7 +17381,7 @@ msgstr "Die Anzeigereihenfolge der zuvor besuchten Sender auswählen."
 msgid "Select the file sort order for the %s column:"
 msgstr "Sortierreihenfolge der Dateien für die %s Spalte auswählen:"
 
-msgid "Select the filesystem for the device."
+msgid "Select the file system for the device."
 msgstr "Das Dateisystem für das Gerät auswählen."
 
 msgid "Select the first item in list or move to the start of text"
@@ -19712,7 +19712,7 @@ msgstr "%s wurde nicht installiert!"
 msgid "Sorry, no backups found!"
 msgstr "Keine Sicherungen gefunden!"
 
-msgid "Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"
+msgid "Sorry, no physical devices that supports SWAP attached. Can't create swap file on network or FAT32 file systems"
 msgstr "Leider sind keine physischen Geräte angeschlossen, die Swap unterstützen. Eine Auslagerungsdatei kann nicht auf Netzwerk- oder Fat32-Dateisystemen erstellt werden!"
 
 msgid "Sorry, there was a problem:"

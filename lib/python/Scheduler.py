@@ -514,7 +514,7 @@ class SchedulerEntry(TimerEntry):
 			if NavigationInstance.instance.Scheduler is None:
 				# DEBUG: Running/Ended timer at system start has no navigation instance.
 				# First fix: Crash in getPriorityCheck (NavigationInstance.instance.Scheduler...).
-				# Second fix: Suppress the message "A finished Scheduler timer wants to ...".
+				# Second fix: Suppress the message "A finished scheduled timer wants to ...".
 				if DEBUG:
 					print(f"[Scheduler] *****NavigationInstance.instance.Scheduler is None***** {self.timerType} {self.state} {ctime(self.begin)} {ctime(self.end)}.")
 				return True
@@ -560,7 +560,7 @@ class SchedulerEntry(TimerEntry):
 				prioPTae = [AFTEREVENT.WAKEUP, AFTEREVENT.DEEPSTANDBY]
 				shiftPT, breakPT = self.getPriorityCheck(prioPT, prioPTae)
 				if not Screens.Standby.inStandby and not breakPT:  # Not already in standby.
-					message = _("A finished Scheduler timer wants to set your %s %s to standby. Do that now?") % getBoxDisplayName()
+					message = _("A finished scheduled timer wants to set your %s %s to standby. Do that now?") % getBoxDisplayName()
 					timeout = int(config.usage.shutdown_msgbox_timeout.value)
 					if InfoBar and InfoBar.instance:
 						InfoBar.instance.openInfoBarMessageWithCallback(self.sendStandbyNotification, message, MessageBox.TYPE_YESNO, timeout=timeout, default=True)
@@ -574,7 +574,7 @@ class SchedulerEntry(TimerEntry):
 					return False
 				if not Screens.Standby.inStandby and not self.messageBoxAnswerPending:  # Not already in standby.
 					self.messageBoxAnswerPending = True
-					message = _("A finished Scheduler timer wants to set your %s %s to standby. Do that now?") % getBoxDisplayName()
+					message = _("A finished scheduled timer wants to set your %s %s to standby. Do that now?") % getBoxDisplayName()
 					timeout = int(config.usage.shutdown_msgbox_timeout.value)
 					if InfoBar and InfoBar.instance:
 						InfoBar.instance.openInfoBarMessageWithCallback(self.sendStandbyNotification, message, MessageBox.TYPE_YESNO, timeout=timeout, default=True)
@@ -611,7 +611,7 @@ class SchedulerEntry(TimerEntry):
 						return True
 					elif not self.messageBoxAnswerPending:
 						self.messageBoxAnswerPending = True
-						message = _("A finished Scheduler timer wants to shut down your %s %s. Do that now?") % getBoxDisplayName()
+						message = _("A finished scheduled timer wants to shut down your %s %s. Do that now?") % getBoxDisplayName()
 						timeout = int(config.usage.shutdown_msgbox_timeout.value)
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(self.sendTryQuitMainloopNotification, message, MessageBox.TYPE_YESNO, timeout=timeout, default=True)
@@ -677,7 +677,7 @@ class SchedulerEntry(TimerEntry):
 						print("[Scheduler] quitMainloop #4.")
 						quitMainloop(3)
 					else:
-						message = _("A finished Scheduler timer wants to restart the user interface. Do that now?")
+						message = _("A finished scheduled timer wants to restart the user interface. Do that now?")
 						timeout = int(config.usage.shutdown_msgbox_timeout.value)
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(self.sendTryToRestartNotification, message, MessageBox.TYPE_YESNO, timeout=timeout, default=True)
@@ -737,7 +737,7 @@ class SchedulerEntry(TimerEntry):
 						print("[Scheduler] quitMainloop #3.")
 						quitMainloop(2)
 					else:
-						message = _("A finished Scheduler timer wants to reboot your %s %s. Do that now?") % getBoxDisplayName()
+						message = _("A finished scheduled timer wants to reboot your %s %s. Do that now?") % getBoxDisplayName()
 						timeout = int(config.usage.shutdown_msgbox_timeout.value)
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(self.sendTryToRebootNotification, message, MessageBox.TYPE_YESNO, timeout=timeout, default=True)
@@ -798,7 +798,7 @@ class SchedulerEntry(TimerEntry):
 						print("[Scheduler] quitMainloop #2.")
 						quitMainloop(1)
 					else:
-						message = _("A finished Scheduler timer wants to shut down your %s %s. Do that now?") % getBoxDisplayName()
+						message = _("A finished scheduled timer wants to shut down your %s %s. Do that now?") % getBoxDisplayName()
 						timeout = int(config.usage.shutdown_msgbox_timeout.value)
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(self.sendTryQuitMainloopNotification, message, MessageBox.TYPE_YESNO, timeout=timeout, default=True)
@@ -847,7 +847,7 @@ class SchedulerEntry(TimerEntry):
 					Screens.Standby.inStandby.Power()
 			elif self.afterEvent == AFTEREVENT.STANDBY:
 				if not Screens.Standby.inStandby:  # Not already in standby.
-					message = _("A finished Scheduler timer wants to set your %s %s to standby. Do that now?") % getBoxDisplayName()
+					message = _("A finished scheduled timer wants to set your %s %s to standby. Do that now?") % getBoxDisplayName()
 					timeout = int(config.usage.shutdown_msgbox_timeout.value)
 					if InfoBar and InfoBar.instance:
 						InfoBar.instance.openInfoBarMessageWithCallback(self.sendStandbyNotification, message, MessageBox.TYPE_YESNO, timeout=timeout, default=True)
@@ -869,7 +869,7 @@ class SchedulerEntry(TimerEntry):
 					breakPT = False
 					shiftPT = True
 				runningPT = False
-				# Option: Check other Scheduler is running (currently disabled).
+				# Option: Check other scheduled task is running (currently disabled).
 				# runningPT = NavigationInstance.instance.Scheduler.isProcessing(exceptTimer = TIMERTYPE.NONE, endedTimer = self.timerType)
 				if isRecTimerWakeup or shiftPT or breakPT or runningPT or NavigationInstance.instance.RecordTimer.isRecording() or abs(NavigationInstance.instance.RecordTimer.getNextRecordingTime() - now) <= 900 or abs(NavigationInstance.instance.RecordTimer.getNextZapTime() - now) <= 900:
 					if self.repeated and not aeDSsave:
@@ -900,7 +900,7 @@ class SchedulerEntry(TimerEntry):
 						print("[Scheduler] quitMainloop #5.")
 						quitMainloop(1)
 					else:
-						message = _("A finished Scheduler timer wants to shut down your %s %s. Do that now?") % getBoxDisplayName()
+						message = _("A finished scheduled timer wants to shut down your %s %s. Do that now?") % getBoxDisplayName()
 						timeout = int(config.usage.shutdown_msgbox_timeout.value)
 						if InfoBar and InfoBar.instance:
 							InfoBar.instance.openInfoBarMessageWithCallback(self.sendTryQuitMainloopNotification, message, MessageBox.TYPE_YESNO, timeout, default=True)

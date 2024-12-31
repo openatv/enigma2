@@ -1571,21 +1571,21 @@ msgstr "Medyadan bir dosya kullanılıyor!"
 
 #
 #, python-format
-msgid "A finished Scheduler timer wants to reboot your %s %s. Do that now?"
+msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
 msgstr "Biten bir PowerTimer %s %s cihazınızı yeniden başlatmak istiyor. Bunu şimdi mi yapacaksın?"
 
 #
-msgid "A finished Scheduler timer wants to restart the user interface. Do that now?"
+msgid "A finished scheduled timer wants to restart the user interface. Do that now?"
 msgstr "Bitmiş bir PowerTimer kullanıcı arayüzünü yeniden başlatmak istiyor. Bunu şimdi mi yapacaksın?"
 
 #
 #, python-format
-msgid "A finished Scheduler timer wants to set your %s %s to standby. Do that now?"
+msgid "A finished scheduled timer wants to set your %s %s to standby. Do that now?"
 msgstr "Bitmiş bir PowerTimer %s %s cihazınızı bekleme moduna ayarlamak istiyor. Bunu şimdi mi yapacaksın?"
 
 #
 #, python-format
-msgid "A finished Scheduler timer wants to shut down your %s %s. Do that now?"
+msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
 msgstr "Bitmiş bir PowerTimer %s %s cihazınızı kapatmak istiyor. Bunu şimdi mi yapacaksın?"
 
 #
@@ -1641,7 +1641,7 @@ msgstr "Kayıt devam ediyor. Lütfen uydu bulucuyu başlatmadan önce kayıdı d
 
 #, python-format
 msgid ""
-"A recording, recording timer or schedule is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or schedule event.\n"
+"A recording, recording timer or scheduled task is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or scheduled task.\n"
 "\n"
 "Go to Deep Standby now?"
 msgstr ""
@@ -5962,7 +5962,7 @@ msgstr "DNS son ekini tanımlayın."
 msgid "Define the custom mountpoint for the device."
 msgstr ""
 
-msgid "Define the filesystem mount options."
+msgid "Define the file system mount options."
 msgstr ""
 
 msgid "Defined / Active"
@@ -8032,7 +8032,7 @@ msgstr "Etiyopya"
 msgid "Even if TV has another input active?"
 msgstr "TV'de başka bir giriş aktif olsa bile mi?"
 
-msgid "Even if a 'Wakeup' Scheduler task starting?"
+msgid "Even if a 'Wakeup' scheduled task starting?"
 msgstr "Bir 'uyandırma' güç zamanlayıcısı başlasa bile?"
 
 msgid "Even if a 'Zap and Record' recording timer starting?"
@@ -8590,7 +8590,7 @@ msgstr "File Commander Metin Düzenleyici Eylemleri"
 msgid "File Commander settings"
 msgstr "Dosya Komutu Ayarları"
 
-msgid "File System"
+msgid "File system"
 msgstr ""
 
 msgid "File System Check"
@@ -16503,7 +16503,7 @@ msgstr "Dolby ses parçalarına ses ayarı yapılması gerekiyorsa 'Evet'i seçi
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "DiSEqC Port-A komut sinyali gerektiren bir multiswich kullanıyorsanız, yalnızca 'evet'i seçin. Diğer tüm kurulumlar için 'hayır' seçeneğini seçin."
 
-msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' schedule is starting."
+msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' scheduled task is starting."
 msgstr ""
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
@@ -17167,7 +17167,7 @@ msgstr "Daha önce izlenen servislerin görüntülenme sırasını seçin."
 msgid "Select the file sort order for the %s column:"
 msgstr "Dosya sıralama düzenini %s seçin:"
 
-msgid "Select the filesystem for the device."
+msgid "Select the file system for the device."
 msgstr ""
 
 msgid "Select the first item in list or move to the start of text"
@@ -19442,7 +19442,7 @@ msgstr "Üzgünüz, %s yüklenmedi!"
 msgid "Sorry, no backups found!"
 msgstr "Üzgünüz, hiç yedek bulunamadı!"
 
-msgid "Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"
+msgid "Sorry, no physical devices that supports SWAP attached. Can't create swap file on network or FAT32 file systems"
 msgstr "Üzgünüm, SWAP ekli destekleyen hiçbir fiziksel cihaz yok. Ağda veya fat32 dosya sistemlerinde Swapfile oluşturulamıyor"
 
 msgid "Sorry, there was a problem:"

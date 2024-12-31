@@ -1591,18 +1591,18 @@ msgid "A file from media is in use!"
 msgstr "Используется файл с носителя!"
 
 #, python-format
-msgid "A finished Scheduler timer wants to reboot your %s %s. Do that now?"
+msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
 msgstr "Таймер выключения требует перезагрузки вашего %s %s. Перезагрузить сейчас?"
 
-msgid "A finished Scheduler timer wants to restart the user interface. Do that now?"
+msgid "A finished scheduled timer wants to restart the user interface. Do that now?"
 msgstr "Законченный PowerTimer хочет перезапустить пользовательский интерфейс. Сделать это сейчас?"
 
 #, python-format
-msgid "A finished Scheduler timer wants to set your %s %s to standby. Do that now?"
+msgid "A finished scheduled timer wants to set your %s %s to standby. Do that now?"
 msgstr "Таймер выключения требует перевести ваш %s %s в режим ожидания. Сделать это сейчас?"
 
 #, python-format
-msgid "A finished Scheduler timer wants to shut down your %s %s. Do that now?"
+msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
 msgstr "Таймер выключения требует выключить ваш %s %s. Выключить ресивер сейчас?"
 
 #, python-format
@@ -1653,7 +1653,7 @@ msgstr "Идёт запись. Остановите запись перед по
 
 #, python-format
 msgid ""
-"A recording, recording timer or schedule is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or schedule event.\n"
+"A recording, recording timer or scheduled task is running or will begin within 15 minutes. %s extended to 30 minutes. Your %s %s will go to Deep Standby after the recording or scheduled task.\n"
 "\n"
 "Go to Deep Standby now?"
 msgstr ""
@@ -5783,7 +5783,7 @@ msgstr "Задайте DNS-суффикс."
 msgid "Define the custom mountpoint for the device."
 msgstr ""
 
-msgid "Define the filesystem mount options."
+msgid "Define the file system mount options."
 msgstr ""
 
 msgid "Defined / Active"
@@ -7763,7 +7763,7 @@ msgstr "Эфиопия"
 msgid "Even if TV has another input active?"
 msgstr "Даже если у ТВ активен другой вход?"
 
-msgid "Even if a 'Wakeup' Scheduler task starting?"
+msgid "Even if a 'Wakeup' scheduled task starting?"
 msgstr "Даже если запускается таймер питания 'пробуждения'?"
 
 msgid "Even if a 'Zap and Record' recording timer starting?"
@@ -8293,7 +8293,7 @@ msgstr "Действия текстового редактора File Commander"
 msgid "File Commander settings"
 msgstr "Настройки File Commander"
 
-msgid "File System"
+msgid "File system"
 msgstr ""
 
 msgid "File System Check"
@@ -15766,7 +15766,7 @@ msgstr "Выберите 'Да', если регулировки громкос�
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Выбирайте 'Да', если используете мультисвич, которому нужен командный сигнал DiSEqC - порт A. Во всех остальных случаях выбирайте 'Нет'."
 
-msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' schedule is starting."
+msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' scheduled task is starting."
 msgstr "Выберите 'Да', если хотите вывести телевизор из спящего режима, так как таймер 'Пробуждение' уже запущен."
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
@@ -16417,7 +16417,7 @@ msgstr "Выберите последовательность отображен
 msgid "Select the file sort order for the %s column:"
 msgstr "Выберите порядок сортировки файлов для столбца %s:"
 
-msgid "Select the filesystem for the device."
+msgid "Select the file system for the device."
 msgstr ""
 
 msgid "Select the first item in list or move to the start of text"
@@ -18614,7 +18614,7 @@ msgstr "Извините, %s не установлен!"
 msgid "Sorry, no backups found!"
 msgstr "Извините, не найдено ни одной копии!"
 
-msgid "Sorry, no physical devices that supports SWAP attached. Can't create Swapfile on network or fat32 filesystems"
+msgid "Sorry, no physical devices that supports SWAP attached. Can't create swap file on network or FAT32 file systems"
 msgstr "Извините, не найдено ни одно устройство для размещения файла подкачки. Файл подкачки не может быть создан"
 
 msgid "Sorry, there was a problem:"
