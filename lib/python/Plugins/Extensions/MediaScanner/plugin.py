@@ -48,7 +48,7 @@ def scan(session, parent=None):
 	global parentScreen
 	parentScreen = parent
 	parts = [(r.tabbedDescription(), r.mountpoint, session, True) for r in harddiskmanager.getMountedPartitions(onlyhotplug=False) if access(r.mountpoint, F_OK | R_OK)]
-	parts.append((_("Temporary directory") + "\t/tmp", "/tmp", session))
+	parts.append((_("Temporary directory") + "\t/tmp", "/tmp", session, True))
 	session.openWithCallback(mountpoint_choosen, ChoiceBox, title=_("Please select medium to be scanned"), list=parts)
 
 
