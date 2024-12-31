@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-12-30 19:32+0000\n"
-"PO-Revision-Date: 2024-12-30 11:00+0000\n"
+"PO-Revision-Date: 2024-12-31 11:43+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -99,7 +99,7 @@ msgid "!! Boot loader Upgrade !!"
 msgstr "！！ 引导加载程序升级！！"
 
 msgid "# = Reboot Required"
-msgstr ""
+msgstr "# = 需要重新启动"
 
 msgid "%-H:%M"
 msgstr "%-H:%M"
@@ -1263,7 +1263,7 @@ msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV
 msgstr "“处理来自电视的待机”比“处理来自电视的输入”具有更高的优先级。"
 
 msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
-msgstr "'解扰和记录ECM' 提供了在录制时解扰失败后进行解扰的选项。'不要解扰，记录 ECM'保存可在播放时解扰的加扰录像。 “正常”表示解扰录像，并且不记录 ECM。"
+msgstr "如果在录制时解扰失败，'解扰和录制ECM' 提供之后进行解扰的选项。'不解扰，录制 ECM'则保存加扰录像，可在回放时进行解扰。 “正常”表示解扰录像，但不录制 ECM。"
 
 msgid "'WeatherPlugin' is not installed!"
 msgstr "'天气插件' 未安装！"
@@ -1554,7 +1554,7 @@ msgid "A crash log was %s created in '%s'"
 msgstr "崩溃日志 %s 已创建到 '%s'"
 
 msgid "A file from media is in use!"
-msgstr "来自媒体的文件正在使用中！"
+msgstr "正在使用来自媒体的文件！"
 
 #, python-format
 msgid "A finished Scheduler timer wants to reboot your %s %s. Do that now?"
@@ -1591,7 +1591,7 @@ msgid "A highlight on the remote control image shows which button the help refer
 msgstr "遥控器图像上的高亮部分显示帮助所指的按钮。如果多个按钮执行指示的功能，则将显示多个高亮部分。列表下方的文本列出了活动按钮以及该功能是否需要长按或按 SHIFT 键。"
 
 msgid "A new storage device has been connected:"
-msgstr ""
+msgstr "已连接新的存储设备："
 
 #, python-format
 msgid ""
@@ -1772,7 +1772,7 @@ msgid "Accessed"
 msgstr "已访问"
 
 msgid "Action"
-msgstr "动作"
+msgstr "操作"
 
 msgid "Action at end of media"
 msgstr "媒体结束时的操作"
@@ -1784,7 +1784,7 @@ msgid "Action on short POWER button press"
 msgstr "短按电源键操作"
 
 msgid "Actions"
-msgstr ""
+msgstr "操作"
 
 msgid "Activate"
 msgstr "激活"
@@ -3632,7 +3632,7 @@ msgid "Cancel the selection and exit"
 msgstr "取消选择并退出"
 
 msgid "Cancel the service history zap"
-msgstr "取消频道历史记录切换"
+msgstr "取消频道切换历史记录"
 
 msgid "Cancel the service selection"
 msgstr "取消频道选择"
@@ -4221,10 +4221,10 @@ msgid "Close screen"
 msgstr "关闭屏幕"
 
 msgid "Close the Device Manager screen"
-msgstr ""
+msgstr "关闭设备管理器屏幕"
 
 msgid "Close the Device Manager screen and exit all menus"
-msgstr ""
+msgstr "关闭设备管理器屏幕并退出所有菜单"
 
 msgid "Close the Kexec MultiBoot Manager"
 msgstr "关闭 Kexec MultiBoot 管理器"
@@ -5284,7 +5284,7 @@ msgid "Custom"
 msgstr "自定义"
 
 msgid "Custom mountpoint"
-msgstr ""
+msgstr "自定义挂载点"
 
 msgid "Custom skip time for '1'/'3' buttons"
 msgstr "自定义“1” “3”按键的跳跃时间"
@@ -5742,10 +5742,10 @@ msgid "Define the DNS suffix."
 msgstr "定义 DNS 后缀。"
 
 msgid "Define the custom mountpoint for the device."
-msgstr ""
+msgstr "定义设备的自定义挂载点。"
 
 msgid "Define the filesystem mount options."
-msgstr ""
+msgstr "定义文件系统挂载选项。"
 
 msgid "Defined / Active"
 msgstr "定义/活动"
@@ -6061,13 +6061,13 @@ msgid "Development Packages"
 msgstr "开发包"
 
 msgid "Device"
-msgstr ""
+msgstr "设备"
 
 msgid "Device Manager"
 msgstr "设备管理器"
 
 msgid "Device Manager Actions"
-msgstr ""
+msgstr "设备管理器操作"
 
 msgid "Device Settings"
 msgstr "设备设置"
@@ -8249,7 +8249,7 @@ msgid "File Commander settings"
 msgstr "文件指挥官设置"
 
 msgid "File System"
-msgstr ""
+msgstr "文件系统"
 
 msgid "File System Check"
 msgstr "文件系统检查"
@@ -8280,7 +8280,7 @@ msgid "Files/folders to exclude from backup"
 msgstr "要从备份中排除的文件/文件夹"
 
 msgid "Filesystem"
-msgstr ""
+msgstr "文件系统"
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr "在没有 IceTV EPG 的广播 EPG 中填写频道 EPG"
@@ -8485,7 +8485,7 @@ msgid "Format Storage Device"
 msgstr "格式化存储设备"
 
 msgid "Formatting storage device..."
-msgstr ""
+msgstr "正在格式化存储设备..."
 
 msgid "Forward Error Correction (FEC)"
 msgstr "前向纠错 (FEC)"
@@ -9185,7 +9185,7 @@ msgid "History next"
 msgstr "历史 下一个"
 
 msgid "History zap..."
-msgstr "切换历史..."
+msgstr "换台历史记录..."
 
 msgid "Hmong"
 msgstr "苗族"
@@ -10113,7 +10113,7 @@ msgid "Just change channels"
 msgstr "只切换频道"
 
 msgid "Just zap"
-msgstr "只切换"
+msgstr "仅换台"
 
 msgid "KA-SAT"
 msgstr "KA 卫星"
@@ -10931,13 +10931,13 @@ msgid "Margin after recording"
 msgstr "录像后余量"
 
 msgid "Margin after zap"
-msgstr "切换后幅度"
+msgstr "换台后余量"
 
 msgid "Margin before recording"
 msgstr "录像前余量"
 
 msgid "Margin before zap"
-msgstr "换台前备用的时间"
+msgstr "换台前余量"
 
 msgid "Mark As Dedicated 3D Service"
 msgstr "标记为专用 3D 频道"
@@ -11269,7 +11269,7 @@ msgid "Mount Menu Actions"
 msgstr "挂载菜单操作"
 
 msgid "Mount Point"
-msgstr ""
+msgstr "挂载点"
 
 msgid "Mount Settings"
 msgstr "挂载设置"
@@ -11931,7 +11931,7 @@ msgid "New Setting DXAndy "
 msgstr "新设置 DXAndy"
 
 msgid "New Storage Device"
-msgstr ""
+msgstr "新的存储设备"
 
 msgid "New Zealand"
 msgstr "新西兰"
@@ -12730,7 +12730,7 @@ msgid "Optional parameter"
 msgstr "可选参数"
 
 msgid "Options"
-msgstr ""
+msgstr "选项"
 
 msgid "Orbital position"
 msgstr "轨道位置"
@@ -12989,7 +12989,7 @@ msgid "Partition"
 msgstr "分区"
 
 msgid "Partition Type"
-msgstr ""
+msgstr "分区类型"
 
 msgid "Partitions"
 msgstr "分区"
@@ -13019,7 +13019,7 @@ msgid "Password changed."
 msgstr "密码已修改。"
 
 msgid "Path"
-msgstr ""
+msgstr "路径"
 
 #, python-format
 msgid "Path '%s' missing!"
@@ -13068,11 +13068,11 @@ msgid "Permanently delete all recordings in the trash can?"
 msgstr "永久删除所有回收站中的录像吗？"
 
 msgid "Permanently ignore this device"
-msgstr ""
+msgstr "永久忽略此设备"
 
 #, python-format
 msgid "Permanently mount as %s"
-msgstr ""
+msgstr "永久挂载为 %s"
 
 msgid "Permanently remove all deleted items"
 msgstr "永久删除所有已删除项目"
@@ -13606,7 +13606,7 @@ msgid "Portuguese"
 msgstr "葡萄牙语"
 
 msgid "Position"
-msgstr ""
+msgstr "位置"
 
 msgid "Position of finished Timers in Timerlist"
 msgstr "定时器列表中已结束定时器的位置"
@@ -14299,7 +14299,7 @@ msgstr "重启"
 
 #, python-format
 msgid "Reboot %s %s now?"
-msgstr ""
+msgstr "现在重启 %s %s 吗？"
 
 msgid "Rec"
 msgstr "REC"
@@ -15514,7 +15514,7 @@ msgid "Scheduled save of epg.dat"
 msgstr "epg.dat 的预定保存"
 
 msgid "Scheduler"
-msgstr ""
+msgstr "调度程序"
 
 msgid "Scheduler Actions"
 msgstr "电源定时器动作"
@@ -15523,7 +15523,7 @@ msgid "Scheduler Overview"
 msgstr "电源定时器概览"
 
 msgid "Scheduler Settings"
-msgstr ""
+msgstr "调度程序设置"
 
 msgid "Scheduler Standby"
 msgstr "电源定时器待机"
@@ -16025,10 +16025,10 @@ msgid "Select a network adapter"
 msgstr "选择网络适配器"
 
 msgid "Select a permanent mount point for all devices"
-msgstr ""
+msgstr "为所有设备选择一个永久挂载点"
 
 msgid "Select a permanent mount point for the current device"
-msgstr ""
+msgstr "为当前设备选择一个永久挂载点"
 
 msgid "Select a repository commit log to view:"
 msgstr "选择要查看的存储库提交日志："
@@ -16062,7 +16062,7 @@ msgid "Select all related files"
 msgstr "选择所有相关文件"
 
 msgid "Select an action for the current device"
-msgstr ""
+msgstr "为当前设备选择一个操作"
 
 msgid "Select an action to perform when the task has completed."
 msgstr "选择任务完成后要执行的操作。"
@@ -16351,7 +16351,7 @@ msgid "Select the file sort order for the %s column:"
 msgstr "选择第 %s 列的文件排序顺序："
 
 msgid "Select the filesystem for the device."
-msgstr ""
+msgstr "选择设备的文件系统。"
 
 msgid "Select the first item in list or move to the start of text"
 msgstr "选择列表中的第一项或移至文本开头"
@@ -16408,10 +16408,10 @@ msgid "Select the model number of your Unicable device. If the model number is n
 msgstr "选择Unicable 设备的型号。 如果未列出型号，请将“SCR”设置为“用户定义”，然后根据其规格手动输入设备参数。"
 
 msgid "Select the mount points"
-msgstr ""
+msgstr "选择挂载点"
 
 msgid "Select the mountpoint for the device."
-msgstr ""
+msgstr "选择设备的挂载点。"
 
 msgid "Select the movie path"
 msgstr "选择影片路径"
@@ -16430,7 +16430,7 @@ msgstr ""
 
 #, python-format
 msgid "Select the new mount point for: '%s'"
-msgstr ""
+msgstr "为“%s”选择新的挂载点"
 
 msgid "Select the next item in list or move the cursor right"
 msgstr "选择列表中的下一项或向右移动光标"
@@ -17990,7 +17990,7 @@ msgid "Show the OSCam information screen"
 msgstr "显示 OSCam 信息屏幕"
 
 msgid "Show the Scheduler"
-msgstr ""
+msgstr "显示调度程序"
 
 msgid "Show the SleepTimer"
 msgstr "显示睡眠定时器"
@@ -19114,7 +19114,7 @@ msgid "Swahili"
 msgstr "斯瓦希里语"
 
 msgid "Swap"
-msgstr ""
+msgstr "交换"
 
 msgid "Swap File Manager"
 msgstr "交换文件管理器"
@@ -19503,7 +19503,7 @@ msgstr "临时目录（%s）"
 
 #, python-format
 msgid "Temporarily mount as %s"
-msgstr ""
+msgstr "临时挂载为 %s"
 
 msgid "Temporary directory"
 msgstr "临时目录"
@@ -20442,7 +20442,7 @@ msgid "Time shift not possible!"
 msgstr "不能时移！"
 
 msgid "Time shift save action on zap"
-msgstr "换台时的时移保存动作"
+msgstr "换台时的时移保存操作"
 
 msgid "Time shift save failed!"
 msgstr "时移保存失败！"
@@ -20611,7 +20611,7 @@ msgid "Toggle a cut mark at the current position"
 msgstr "在当前位置切换剪切标记"
 
 msgid "Toggle a temporary mount for the current device"
-msgstr ""
+msgstr "为当前设备切换临时挂载"
 
 msgid "Toggle all related files"
 msgstr "切换所有相关文件"
@@ -21116,7 +21116,7 @@ msgid "Unknown"
 msgstr "未知"
 
 msgid "Unknown Devices"
-msgstr ""
+msgstr "未知设备"
 
 msgid ""
 "Unknown Error creating Skin.\n"
@@ -21593,10 +21593,10 @@ msgid "User defined 0x%02x"
 msgstr "用户定义 0x%02x"
 
 msgid "User defined delay when you press another button to zap to the channel."
-msgstr "当你按下其他按键到切换到频道的用户自定义延迟。"
+msgstr "当您按下其他按键切换到频道时，用户定义的延迟。"
 
 msgid "User defined delay when you press the first button to zap to the channel."
-msgstr "当你按下第一个按键到切换到频道的用户自定义延迟。"
+msgstr "当您按下第一个按键切换到频道时，用户定义的延迟。"
 
 msgid "User defined transponder"
 msgstr "用户定义的转发器"
@@ -22330,7 +22330,7 @@ msgid "When enabled, number markers will be hidden."
 msgstr "启用时，数字标记将会被隐藏。"
 
 msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
-msgstr "启用后，按“0”将会切换到第一个频道群中的第一个频道，并删除您的切换历史记录。"
+msgstr "启用后，按“0”将会切换到第一个频道群中的第一个频道，并删除您的换台历史记录。"
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "启用后，重新格式化字幕以匹配屏幕宽度。"
@@ -22462,10 +22462,10 @@ msgid "Wipe"
 msgstr "消除"
 
 msgid "Wipe Storage Device"
-msgstr ""
+msgstr "擦除存储设备"
 
 msgid "Wiping storage device..."
-msgstr ""
+msgstr "正在擦除存储设备..."
 
 msgid "Wireless LAN"
 msgstr "无线局域网"
@@ -22998,10 +22998,10 @@ msgid "Zoom In/Out TV..."
 msgstr "放大/缩小电视..."
 
 msgid "Zoom Off"
-msgstr "缩小"
+msgstr "关闭缩放"
 
 msgid "Zoom Off..."
-msgstr "缩放关闭…"
+msgstr "关闭缩放…"
 
 msgid "Zoom from left"
 msgstr "从左放大"

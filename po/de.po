@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-12-30 19:32+0000\n"
-"PO-Revision-Date: 2024-12-30 22:09+0000\n"
+"PO-Revision-Date: 2024-12-31 11:56+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -108,7 +108,7 @@ msgid "!! Boot loader Upgrade !!"
 msgstr "!! Bootloader-Update !!"
 
 msgid "# = Reboot Required"
-msgstr "# = Neustart Notwendig"
+msgstr "# = Neustart notwendig"
 
 msgid "%-H:%M"
 msgstr "%-H:%M"
@@ -1609,27 +1609,27 @@ msgstr "Eine Mediendatei ist in Benutzung!"
 #, python-format
 msgid "A finished Scheduler timer wants to reboot your %s %s. Do that now?"
 msgstr ""
-"Eine Zeitplaner Aufgabe möchte die %s %s neu starten.\n"
+"Eine Zeitplaner-Aufgabe möchte die %s %s neu starten.\n"
 "Jetzt neu starten?"
 
 # /usr/lib/enigma2/python/PowerTimer.py
 msgid "A finished Scheduler timer wants to restart the user interface. Do that now?"
 msgstr ""
-"Eine Zeitplaner Aufgabe möchte die Benutzeroberfläche neu starten.\n"
+"Eine Zeitplaner-Aufgabe möchte die Benutzeroberfläche neu starten.\n"
 "Jetzt neu starten?"
 
 # /usr/lib/enigma2/python/PowerTimer.py
 #, python-format
 msgid "A finished Scheduler timer wants to set your %s %s to standby. Do that now?"
 msgstr ""
-"Eine Zeitplaner Aufgabe möchte die %s %s in den Standby versetzen.\n"
+"Eine Zeitplaner-Aufgabe möchte die %s %s in den Standby versetzen.\n"
 "Jetzt ausführen?"
 
 # /usr/lib/enigma2/python/PowerTimer.py
 #, python-format
 msgid "A finished Scheduler timer wants to shut down your %s %s. Do that now?"
 msgstr ""
-"Eine Zeitplaner Aufgabe möchte die %s %s ausschalten.\n"
+"Eine Zeitplaner-Aufgabe möchte die %s %s ausschalten.\n"
 "Jetzt herunterfahren?"
 
 #
@@ -1696,8 +1696,8 @@ msgid ""
 "\n"
 "Go to Deep Standby now?"
 msgstr ""
-"Eine Aufnahme, ein Aufnahmetimer oder eine Zeitplaner Aufgabe läuft oder wird innerhalb der nächsten 15 Minuten beginnen. %s wurde um 30 Minuten verlängert.\n"
-"Die %s %s geht nach dem Aufnahme- oder Einschalttimer-Ereignis in den Deep-Standby.\n"
+"Eine Aufnahme, ein Aufnahmetimer oder eine Zeitplaner-Aufgabe läuft oder wird innerhalb der nächsten 15 Minuten beginnen. %s wurde um 30 Minuten verlängert.\n"
+"Die %s %s geht nach dem Ereignis in den Deep-Standby.\n"
 "\n"
 "Jetzt in den Deep-Standby wechseln?"
 
@@ -4455,10 +4455,10 @@ msgid "Close screen"
 msgstr "Bildschirm schließen"
 
 msgid "Close the Device Manager screen"
-msgstr "Geräteverwaltung schliessen"
+msgstr "Geräteverwaltung schließen"
 
 msgid "Close the Device Manager screen and exit all menus"
-msgstr "Geräteverwaltung schliessen und alle Menüs"
+msgstr "Geräteverwaltung und alle Menüs schließen"
 
 msgid "Close the Kexec MultiBoot Manager"
 msgstr "Kexec-MultiBoot-Verwaltung beenden"
@@ -6047,10 +6047,10 @@ msgid "Define the DNS suffix."
 msgstr "Legt den DNS-Suffix fest."
 
 msgid "Define the custom mountpoint for the device."
-msgstr "Benutzerdefinierten Einhängepunkt für das Gerät definieren."
+msgstr "Benutzerdefinierten Einhängepunkt für das Gerät festlegen."
 
 msgid "Define the filesystem mount options."
-msgstr "Einhänge-Optionen für das Dateisystem definieren."
+msgstr "Einhänge-Optionen für das Dateisystem festlegen."
 
 msgid "Defined / Active"
 msgstr "Definiert / Aktiv"
@@ -6396,7 +6396,7 @@ msgstr "Geräte-ID"
 
 # MovieSelection.py
 msgid "Device mounts"
-msgstr "Gerätemounts"
+msgstr "Geräte-Einhängepunkte"
 
 msgid "Device name:"
 msgstr "Gerätename:"
@@ -8135,7 +8135,7 @@ msgid "Even if TV has another input active?"
 msgstr "Auch wenn der TV einen anderen Eingang aktiviert hat?"
 
 msgid "Even if a 'Wakeup' Scheduler task starting?"
-msgstr "Auch wenn eine 'Aufwecken' Zeitplaner Aufgabe startet?"
+msgstr "Auch wenn eine 'Aufwecken'-Zeitplaner-Aufgabe startet?"
 
 msgid "Even if a 'Zap and Record' recording timer starting?"
 msgstr "Auch wenn ein 'Umschalten und Aufnehmen' Timer startet?"
@@ -8687,7 +8687,7 @@ msgid "File Commander settings"
 msgstr "File Commander Einstellungen"
 
 msgid "File System"
-msgstr "File System"
+msgstr "Dateisystem"
 
 #
 msgid "File System Check"
@@ -8720,7 +8720,7 @@ msgid "Files/folders to exclude from backup"
 msgstr "Nicht zu sichernde Dateien"
 
 msgid "Filesystem"
-msgstr "Filesystem"
+msgstr "Dateisystem"
 
 #
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
@@ -13052,7 +13052,7 @@ msgid "Not configured"
 msgstr "Nicht konfiguriert"
 
 msgid "Not currently mounted."
-msgstr "Zurzeit nicht eingebunden."
+msgstr "Zurzeit nicht eingehängt."
 
 msgid "Not defined"
 msgstr "Nicht definiert"
@@ -13832,11 +13832,11 @@ msgid "Permanently delete all recordings in the trash can?"
 msgstr "Alle Aufnahmen im Papierkorb endgültig löschen?"
 
 msgid "Permanently ignore this device"
-msgstr "Diese Gerät permanent ignorieren"
+msgstr "Dieses Gerät dauerhaft ignorieren"
 
 #, python-format
 msgid "Permanently mount as %s"
-msgstr "Permanent als %s einhängen"
+msgstr "Dauerhaft als %s einhängen"
 
 msgid "Permanently remove all deleted items"
 msgstr "Papierkorb leeren"
@@ -15170,7 +15170,7 @@ msgstr "Neustart"
 
 #, python-format
 msgid "Reboot %s %s now?"
-msgstr "%s %s jetzt Neustarten?"
+msgstr "%s %s jetzt neu starten?"
 
 msgid "Rec"
 msgstr "Aufnahme"
@@ -16482,7 +16482,7 @@ msgid "Scheduled save of epg.dat"
 msgstr "Geplantes Speichern der 'epg.dat'"
 
 msgid "Scheduler"
-msgstr "Taskplaner"
+msgstr "Aufgabenplanung"
 
 msgid "Scheduler Actions"
 msgstr "Zeitplaner-Aktionen"
@@ -16492,17 +16492,17 @@ msgid "Scheduler Overview"
 msgstr "Zeitplaner-Übersicht"
 
 msgid "Scheduler Settings"
-msgstr "Taskplaner Einstellungen"
+msgstr "Aufgaben Einstellungen"
 
 msgid "Scheduler Standby"
-msgstr "Zeitplaner-Standby"
+msgstr "Aufgabe-Standby"
 
 msgid "Scheduler deep standby"
-msgstr "Zeitplaner Deep-Standby"
+msgstr "Aufgabe Deep-Standby"
 
 #
 msgid "Scheduler log"
-msgstr "Zeitplaner-Log"
+msgstr "Aufgaben-Planer-Log"
 
 msgid "Sci-Fi"
 msgstr "Sci-Fi"
@@ -16692,7 +16692,7 @@ msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port
 msgstr "Wenn ein Multiswitch verwendet wird, der ein DiSEqC-Port-A-Befehlssignal benötigt 'Ja' auswählen, ansonsten 'Nein'."
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Wakeup' power timer is starting."
-msgstr "'Ja', wenn der TV beim Start einer Zeitplaner Aufgabe aufgeweckt werden soll."
+msgstr "'Ja', wenn der TV beim Start einer Zeitplaner-Aufgabe aufgeweckt werden soll."
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
 msgstr "'Ja', wenn der TV beim Start eines 'Umschalten und Aufnehmen'-Timers aufgeweckt werden soll."
@@ -16795,7 +16795,7 @@ msgid "Select 'Yes' to remove all settings, tuning data, timers, resume pointers
 msgstr "'Ja' auswählen, um alle Einstellungen, Empfangsdaten, Timer, Fortsetzungszeiger usw. zu entfernen. Die Konfiguration wird auf die ursprünglichen Einstellungen zurückgesetzt. Dies ist die zuverlässigste Form für die Werkseinstellungen."
 
 msgid "Select 'Yes' to remove all timer configuration data. Selecting this option will clear all timers, autotimers and power timers."
-msgstr "'Ja' löscht alle Timer-Konfigurationsdaten. Es werden alle Timer, AutoTimer und Zeitplaner Aufgaben gelöscht!"
+msgstr "'Ja' löscht alle Timer-Konfigurationsdaten. Es werden alle Timer, AutoTimer und Zeitplaner-Aufgaben gelöscht!"
 
 msgid "Select 'Yes' to remove all tuning data. Selecting this option will remove all tuning and bouquet data and will make timers non functional until the receiver is retuned."
 msgstr "'Ja' auswählen, um alle Empfangsdaten zu löschen. Es werden alle Empfangs- und Bouquetdaten gelöscht und Timer sind nicht funktionsfähig, bis der Empfänger neu abgestimmt wurde!"
@@ -18099,7 +18099,7 @@ msgid "Set the time to hide the second infobar. The bar also disappears on press
 msgstr "Die Anzeigedauer der zweiten Infoleiste einstellen. Diese kann auch mit OK beendet werden."
 
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, PowerTimer, SleepTimer etc."
-msgstr "Die Wartezeit für die Ausführung der Standardaktion in den Meldungen 'Ausschalten', 'Standby' oder 'Neustart' einstellen (z.B. verwendet in Timer, Zeitplaner Aufgaben, Ausschalttimer usw.)."
+msgstr "Die Wartezeit für die Ausführung der Standardaktion in den Meldungen 'Ausschalten', 'Standby' oder 'Neustart' einstellen (z. B. verwendet in Timer, Zeitplaner-Aufgaben, Ausschalttimer usw.)."
 
 msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
 msgstr "Obere linke Position des Spinners (Beschäftigungsanzeige) einstellen. Oben links ist 0,0, unten rechts 1260,700. Die Position ist die obere linke Ecke des Spinners, nicht dessen Mitte."
@@ -18284,7 +18284,7 @@ msgid "Setup your Channel selection configuration"
 msgstr "Senderlistenkonfiguration einstellen"
 
 msgid "Setup your Device mounts (USB, HDD, others...)"
-msgstr "Gerätemounts einrichten (USB, Festplatte usw.)"
+msgstr "Geräte-Einhängepunkte einrichten (USB, Festplatte usw.)"
 
 # Quick Menue
 msgid "Setup your EPG config"
@@ -19101,7 +19101,7 @@ msgid "Show the OSCam information screen"
 msgstr "OSCam Info-Bildschirm anzeigen"
 
 msgid "Show the Scheduler"
-msgstr "Taskplaner anzeigen"
+msgstr "Aufgabenplanung anzeigen"
 
 #
 msgid "Show the SleepTimer"
@@ -23480,7 +23480,7 @@ msgstr "Warnung: Es gibt %d Update-Pakete!"
 msgid "Warning: There is only a network drive to store the backup. This means the auto restore will not work after the flash. Alternatively, mount the network drive after the flash and perform a manufacturer reset to auto restore."
 msgstr ""
 "Es kann nur ein Netzlaufwerk gefunden werden, um die Sicherung zu speichern, was bedeutet, dass die automatische Wiederherstellung nach dem Flashen nicht funktioniert!\n"
-"Alternativ kann das Netzlaufwerk nach dem Flashen eingebunden und ein Hersteller-Reset mit Autorestore durchgeführt werden."
+"Alternativ kann das Netzlaufwerk nach dem Flashen eingehängt und ein Hersteller-Reset mit Autorestore durchgeführt werden."
 
 msgid "Warning: This is the last crash before an automatic restart is performed.\n"
 msgstr "WARNUNG: Dies ist der letzte Absturz, bevor ein automatischer Neustart ausgeführt wird!\n"
@@ -23859,7 +23859,7 @@ msgid "Wipe"
 msgstr "Schreddern"
 
 msgid "Wipe Storage Device"
-msgstr "Datenträger Löschen"
+msgstr "Datenträger löschen"
 
 msgid "Wiping storage device..."
 msgstr "Datenträger löschen..."
