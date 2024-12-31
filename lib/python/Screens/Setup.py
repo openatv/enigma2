@@ -140,9 +140,9 @@ class Setup(ConfigListScreen, Screen):
 			itemText = _(element.get("text", "??"))
 			itemDescription = _(element.get("description", " "))
 		restart = element.get("restart", "").lower()
-		if restart == "gui" and not itemText.endswith("*"):  # Add * as restart indicator based on the restart attribute
+		if restart == "gui" and not itemText.endswith("*"):  # Add "*" as restart indicator based on the restart attribute.
 			itemText = f"{itemText}*"
-		elif restart == "system" and not itemText.endswith("#"):  # Add # as reboot indicator based on the restart attribute
+		elif restart == "system" and not itemText.endswith("#"):  # Add "#" as reboot indicator based on the restart attribute.
 			itemText = f"{itemText}#"
 		item = eval(element.text) if element.text else ""
 		if item == "":
