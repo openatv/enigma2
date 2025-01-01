@@ -16,7 +16,7 @@ def execute(option):
 			parentScreen.close()
 		return
 
-	(_, scanner, files, session) = option
+	(_, scanner, files, session, _) = option
 	scanner.open(files, session)
 	if parentScreen:
 		parentScreen.close()
