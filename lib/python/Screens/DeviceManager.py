@@ -616,7 +616,7 @@ class StorageDeviceManager():
 			if not isPartition:
 				if not search(r"^sd[a-z]*$", device) and not search(r"^mmcblk[\d]*$", device):
 					continue
-			deviceList.append(self.createDevice(device, isPartition, mounts, swapDevices, partitions, knownDevices, fstab))
+			deviceList.append(self.createDevice(device, bool(isPartition), mounts, swapDevices, partitions, knownDevices, fstab))
 
 		seenUUIDs = [device.get("UUID") for device in deviceList if device.get("UUID")]
 
@@ -688,29 +688,33 @@ class StorageDeviceManager():
 				deviceLocation = pdescription
 
 		deviceMounts = []
-
 		mounts = [x for x in mounts if EXPANDER_MOUNT not in x[1]]
-
-		for parts in [parts for parts in mounts if device in parts[0]]:
-			mountP = parts[1]
-			mountFsType = parts[2]
-			rw = parts[3]
-			deviceMounts.append((mountP, mountFsType, rw))
-
 		swapState = False
-		if not deviceMounts:
-			swapDevicesNames = [x.split()[0] for x in swapDevices]
-			for parts in [parts for parts in mounts if device not in parts[0]]:
-				if f"/dev/{device}" in swapDevicesNames:
-					mountP = "swap"
-					mountFsType = "swap"
-					rw = ""
-					swapState = True
-					break
-				else:
-					mountP = _("None")
-					mountFsType = _("unavailable")
-					rw = _("None")
+		devicePoint = f"/dev/{device}"
+		if isPartition:
+			for parts in [parts for parts in mounts if devicePoint == parts[0]]:
+				mountP = parts[1]
+				mountFsType = parts[2]
+				rw = parts[3]
+				deviceMounts.append((mountP, mountFsType, rw))
+
+			if not deviceMounts:
+				swapDevicesNames = [x.split()[0] for x in swapDevices]
+				for parts in [parts for parts in mounts if devicePoint != parts[0]]:
+					if f"/dev/{device}" in swapDevicesNames:
+						mountP = "swap"
+						mountFsType = "swap"
+						rw = ""
+						swapState = True
+						break
+					else:
+						mountP = _("None")
+						mountFsType = _("unavailable")
+						rw = _("None")
+		else:
+			mountP = ""
+			rw = ""
+			mountFsType = ""
 
 		size = 0
 		diskSize = 0
@@ -737,7 +741,6 @@ class StorageDeviceManager():
 		if not diskSize:
 			diskSize = size
 		if size:
-			devicePoint = f"/dev/{device}"
 			isMounted = len([parts for parts in mounts if mountP == parts[1]])
 			UUID = fileReadLine(f"/dev/uuid/{device}", default="", source=MODULE_NAME)
 			fsType = fileReadLine(f"/dev/fstype/{device}", default="", source=MODULE_NAME)
@@ -776,7 +779,7 @@ class StorageDeviceManager():
 				"description": description,
 				"deviceType": deviceType,
 				"fsType": fsType,
-				"isPartition": bool(isPartition),
+				"isPartition": isPartition,
 				"rw": rw,
 				"size": size,
 				"diskSize": diskSize,
@@ -1118,7 +1121,6 @@ class DeviceManager(Screen):
 		job_manager.in_background = in_background
 		if self.curentservice:
 			self.session.nav.playService(self.curentservice)
-		print("[DeviceManager] DEBUG JobViewCB")
 		self.updateDevices()
 
 	def getActionFunction(self, action, storageDevice):
