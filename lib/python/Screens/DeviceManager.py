@@ -32,7 +32,7 @@
 from glob import glob
 from os import mkdir, rmdir, unlink
 from os.path import exists, isfile, join, realpath
-from re import search, sub
+from re import search, split, sub
 
 from enigma import getDeviceDB
 
@@ -594,6 +594,8 @@ class StorageDevice():
 
 class StorageDeviceManager():
 	def createDevicesList(self):
+		def alphanumKey(s):
+			return [int(text) if text.isdigit() else text for text in split(r'(\d+)', s)]
 		swapDevices = [x for x in fileReadLines("/proc/swaps", default=[], source=MODULE_NAME) if x.startswith("/") and "partition" in x]
 		partitions = fileReadLines("/proc/partitions", default=[], source=MODULE_NAME)
 		mounts = getProcMountsNew()
@@ -609,7 +611,7 @@ class StorageDeviceManager():
 				device = parts[3]
 				if not device.startswith(black) and device not in seenDevices:
 					seenDevices.append(device)
-		seenDevices.sort()
+		seenDevices = sorted(seenDevices, key=alphanumKey)
 
 		for device in seenDevices:
 			isPartition = search(r"^sd[a-z][1-9][\d]*$", device) or search(r"^mmcblk[\d]p[\d]*$", device)
