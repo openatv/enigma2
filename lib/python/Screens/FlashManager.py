@@ -1,6 +1,6 @@
 from json import load
 from os import W_OK, access, listdir, major, makedirs, minor, mkdir, sep, stat, statvfs, unlink, walk
-from os.path import basename, exists, isdir, isfile, islink, ismount, splitext, join
+from os.path import basename, exists, isdir, isfile, islink, ismount, splitext, join, getsize
 from shutil import rmtree
 from time import time
 from urllib.request import Request, urlopen
@@ -510,14 +510,13 @@ class FlashImage(Screen):
 
 	def postFlashActionCallback(self, choice):
 		if choice:
-			knownConfigFiles = set(["settings", "plugins", "noplugins", "slow", "fast", "turbo"])
-			for directory in listdir("/media"):  # Remove known config files from other devices than /media/hdd.
+			knownFlagFiles = ("settings", "plugins", "noplugins", "slow", "fast", "turbo")
+			for directory in listdir("/media"):  # Remove known flag files from devices other than /media/hdd.
 				if directory not in ("autofs", "hdd"):
-					configPath = join("/media", directory, "images/config")
-					if isdir(configPath):
-						configFiles = [x for x in listdir(configPath)]
-						for configFile in set(configFiles).intersection(knownConfigFiles):
-							unlink(join(configPath, configFile))
+					for flagFile in knownFlagFiles:
+						flagPath = join("/media", directory, "images/config", flagFile)
+						if isfile(flagPath) and getsize(flagPath) == 0:
+							unlink(flagPath)
 			rootFolder = "/media/hdd/images/config"
 			if choice != "abort" and not self.recordCheck:
 				self.recordCheck = True
@@ -563,9 +562,8 @@ class FlashImage(Screen):
 								if fileName == config.plugins.softwaremanager.restoremode.value:
 									if not exists(path):
 										open(path, "w").close()
-								else:
-									if exists(path):
-										unlink(path)
+								elif exists(path):
+									unlink(path)
 						except OSError as err:
 							print("[FlashManager] postFlashActionCallback Error %d: Failed to create restore mode flag file '%s'!  (%s)" % (err.errno, path, err.strerror))
 				self.startDownload()
