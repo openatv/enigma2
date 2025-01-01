@@ -1,4 +1,4 @@
-# openATV 7.5.1
+# OpenATV 7.5.1
 
 ## Build status
 
@@ -37,8 +37,8 @@
 ## Git repositories involved
 
 * [OE Alliance Core](https://github.com/oe-alliance/oe-alliance-core/tree/5.5.1 "OE Alliance Core") - Core framework
-* [openATV 7.5.1](https://github.com/openatv/enigma2/tree/master "openATV 7.5.1") - openATV core
-* [MetrixHD](https://github.com/openatv/MetrixHD/tree/master "openATV Skin") - Default openATV skin
+* [OpenATV 7.5.1](https://github.com/openatv/enigma2/tree/master "OpenATV 7.5.1") - OpenATV core
+* [MetrixHD](https://github.com/openatv/MetrixHD/tree/master "OpenATV Skin") - Default OpenATV skin
 * [OpenWebif](https://github.com/oe-alliance "OpenWebif") - OpenWebif
 * [OE Alliance Plugins](https://github.com/oe-alliance/oe-alliance-plugins "OE Alliance Plugins") - OE Alliance Plugins
 * [Enigm2 Plugins](https://github.com/oe-alliance/enigma2-plugins "Enigma2 Plugins") - Enigma2 Plugins
@@ -47,7 +47,7 @@
 
 ## DOXYGEN Documentation
 
-* [openATV enigma2](https://doxy.mynonpublic.com/ "openATV enigma2") -  openATV core
+* [OpenATV enigma2](https://doxy.mynonpublic.com/ "OpenATV enigma2") -  OpenATV core
 
 # Build instructions
 

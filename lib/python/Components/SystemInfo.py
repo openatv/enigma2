@@ -349,7 +349,7 @@ try:
 except IndexError:
 	branch = ""
 commitLogs = [
-	("openATV Enigma2", f"https://api.github.com/repos/openatv/enigma2/commits{branch}"),
+	("OpenATV Enigma2", f"https://api.github.com/repos/openatv/enigma2/commits{branch}"),
 	("OE-Alliance Plugins", "https://api.github.com/repos/oe-alliance/oe-alliance-plugins/commits"),
 	("Enigma2 Plugins", "https://api.github.com/repos/oe-alliance/enigma2-plugins/commits"),
 	("OpenWebif", "https://api.github.com/repos/E2OpenPlugins/e2openplugin-OpenWebif/commits"),

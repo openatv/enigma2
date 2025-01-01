@@ -193,7 +193,7 @@ void bsodFatal(const char *component)
 		strftime(tm_str, sizeof(tm_str), "%a %b %_d %T %Y", &tm);
 
 		fprintf(f,
-			"openATV Enigma2 crash log\n\n"
+			"OpenATV Enigma2 crash log\n\n"
 			"crashdate=%s\n"
 			"compiledate=%s\n"
 			"skin=%s\n"
@@ -270,7 +270,7 @@ void bsodFatal(const char *component)
 	if (!bsodpython)
 	{
 		os_text << "Your receiver encountered a software problem, and needs to be restarted.\n"
-			"Please send the logfile " << crashlog_name << " to the openATV forum (www.opena.tv).\n"
+			"Please send the logfile " << crashlog_name << " to the OpenATV forum (www.opena.tv).\n"
 			"Your receiver will restart in 10 seconds.\n"
 			"Component: " << component;
 		os << os_text.str();
@@ -286,7 +286,7 @@ void bsodFatal(const char *component)
 			txt = "if it happens one more time";
 
 		os_text << "Your receiver encountered a Python software problem. There have been " << bsodcnt << " crashes so far.\n"
-			"Please send the logfile " << crashlog_name << " to the openATV forum (www.opena.tv).\n"
+			"Please send the logfile " << crashlog_name << " to the OpenATV forum (www.opena.tv).\n"
 			"Your receiver will restart " << txt << ".\n"
 			"Component: " << component;
 		os << os_text.str();

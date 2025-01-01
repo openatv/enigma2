@@ -1,12 +1,12 @@
 # German translations for Enigma2.
 #
-# jbleyel <jbleyel@gmx.net>, 2021, 2022, 2023, 2024.
+# jbleyel <jbleyel@gmx.net>, 2021, 2022, 2023, 2024, 2025.
 # hd75hd <hd75hd.hd75hd@gmail.com>, 2021, 2022.
 # openATV <openatv@gmail.com>, 2021, 2023.
 # Holger <mrservo@gmx.de>, 2021.
-# Makumbo <tokioplo@web.de>, 2021, 2022, 2023, 2024.
+# Makumbo <tokioplo@web.de>, 2021, 2022, 2023, 2024, 2025.
 # Mr.Servo <mrservo@gmx.de>, 2021, 2022.
-# VfBFan <drop0815@posteo.de>, 2021, 2022, 2023, 2024.
+# VfBFan <drop0815@posteo.de>, 2021, 2022, 2023, 2024, 2025.
 # Gunnar Koser <info@e2world.de>, 2022.
 # Mike <mike99@gmx.net>, 2022.
 # tomppaa <tomzza89@gmail.com>, 2022.
@@ -17,8 +17,8 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-12-31 15:16+0000\n"
-"PO-Revision-Date: 2024-12-31 11:56+0000\n"
-"Last-Translator: jbleyel <jbleyel@gmx.net>\n"
+"PO-Revision-Date: 2025-01-01 22:07+0000\n"
+"Last-Translator: VfBFan <drop0815@posteo.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -108,7 +108,7 @@ msgid "!! Boot loader Upgrade !!"
 msgstr "!! Bootloader-Update !!"
 
 msgid "# = Reboot Required"
-msgstr "# = Neustart notwendig"
+msgstr "# = Neustart erforderlich"
 
 msgid "%-H:%M"
 msgstr "%-H:%M"
@@ -1315,7 +1315,7 @@ msgid "(show optional DVD audio menu)"
 msgstr "(DVD-Audiomenü anzeigen, falls vorhanden)"
 
 msgid "* = Restart Required"
-msgstr "* = Neustart erforderlich"
+msgstr "* = GUI-Neustart erforderlich"
 
 #
 msgid "* Only available if more than one interface is active."
@@ -1629,7 +1629,7 @@ msgstr ""
 #, python-format
 msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
 msgstr ""
-"Eine Zeitplaner-Aufgabe möchte die %s %s ausschalten.\n"
+"Eine Zeitplaner-Aufgabe möchte die %s %s in den Deep-Standby herunterfahren.\n"
 "Jetzt herunterfahren?"
 
 #
@@ -1699,7 +1699,7 @@ msgstr ""
 "Eine Aufnahme, ein Aufnahmetimer oder eine Zeitplaner-Aufgabe läuft oder wird innerhalb der nächsten 15 Minuten beginnen. %s wurde um 30 Minuten verlängert.\n"
 "Die %s %s geht nach dem Ereignis in den Deep-Standby.\n"
 "\n"
-"Jetzt in den Deep-Standby wechseln?"
+"Oder jetzt in den Deep-Standby herunterfahren?"
 
 #
 #, python-format
@@ -1842,8 +1842,8 @@ msgstr "Streamingdienst abgebrochen.\n"
 msgid "About"
 msgstr "Über"
 
-msgid "About openATV"
-msgstr "Über openATV"
+msgid "About OpenATV"
+msgstr "Über OpenATV"
 
 #
 msgid "About to start"
@@ -2871,7 +2871,7 @@ msgid "Automatic scan for services"
 msgstr "Automatischer Suchlauf"
 
 msgid "Automatic shares access"
-msgstr ""
+msgstr "Auto-Share-Zugriff"
 
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr "Den Fernseher automatisch zusammen mit dem Receiver in den Standby oder Deep-Standby versetzen."
@@ -6754,8 +6754,8 @@ msgid ""
 "Do you really want to format the device in the Linux file system?\n"
 "All data on the device will be lost!"
 msgstr ""
-"Das Speichergerät wirklich mit dem Linux Filesystem formatieren?\n"
-"Alle vorhandenen Daten darauf werden dabei gelöscht!"
+"Den Datenträger wirklich mit dem Linux Filesystem formatieren?\n"
+"Alle darauf vorhandenen Daten werden dabei gelöscht!"
 
 msgid "Do you really want to move to trashcan ?"
 msgstr "Dies wirklich in den Papierkorb verschieben?"
@@ -7432,7 +7432,7 @@ msgid "Enable auto fast scan for %s"
 msgstr "Automatische Schnellsuche aktivieren für %s"
 
 msgid "Enable automatic shares"
-msgstr ""
+msgstr "Auto-Share aktivieren"
 
 msgid "Enable autorefresh templates."
 msgstr "AutoRefresh-Vorgaben aktivieren."
@@ -8821,7 +8821,7 @@ msgstr "Flash-Expander-Aktionen"
 msgid "Flash Image"
 msgstr "Image flashen"
 
-#. TRANSLATORS: The variable is the name of a distribution.  E.g. "openATV".
+#. TRANSLATORS: The variable is the name of a distribution.  E.g. "OpenATV".
 #, python-format
 msgid "Flash Manager - %s Images"
 msgstr "Flash-Manager - %s Images"
@@ -8948,7 +8948,7 @@ msgid "Format Storage Device"
 msgstr "Datenträger formatieren"
 
 msgid "Formatting storage device..."
-msgstr "Datenträger formatieren..."
+msgstr "Datenträger wird formatiert..."
 
 msgid "Forward Error Correction (FEC)"
 msgstr "Vorwärtsfehlerkorrektur (FEC)"
@@ -10307,7 +10307,7 @@ msgid "Initialize"
 msgstr "Initialisieren"
 
 msgid "Initializing storage device..."
-msgstr "Datenträger initialisieren..."
+msgstr "Datenträger wird initialisiert..."
 
 msgid "Inode"
 msgstr "Inode"
@@ -12908,7 +12908,7 @@ msgstr "Kein gültiges Gerät erkannt - OK drücken"
 
 #, python-format
 msgid "No valid mount for '%s' found!"
-msgstr "Kein gültiger Einhängepunkt für '%s' gefunden!"
+msgstr "Keinen gültigen Einhängepunkt für '%s' gefunden!"
 
 msgid "No valid region details were found"
 msgstr "Es wurden keine gültigen Regionsangaben gefunden!"
@@ -15097,13 +15097,13 @@ msgid "Re-enter new PIN"
 msgstr "Neue PIN wiederholen"
 
 msgid "Read Only"
-msgstr ""
+msgstr "Nur Lesen"
 
 msgid "Read Userdata from oscam.conf"
 msgstr "Benutzerdaten von 'oscam.conf' auslesen"
 
 msgid "Read/Write"
-msgstr ""
+msgstr "Lesen/Schreiben"
 
 msgid "Reader"
 msgstr "Reader"
@@ -16226,7 +16226,7 @@ msgid "Samba Server"
 msgstr "Samba Server"
 
 msgid "Samba Settings"
-msgstr ""
+msgstr "Samba"
 
 msgid "Same as in active"
 msgstr "Gleich wie bei Box aktiv"
@@ -16719,7 +16719,7 @@ msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media
 msgstr "Bei 'Ja' wird die Infoleiste im pausierten Zustand nicht ausgeblendet, sondern dauerhaft angezeigt."
 
 msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
-msgstr ""
+msgstr "Bei 'Ja' wird jeder Datenträger automatisch als Samba Share erstellt."
 
 msgid "Select 'Yes' to allow use of the seek bar to jump to a selected point within the event."
 msgstr "Bei 'Ja' kann innerhalb der Suchleiste zu jedem beliebigen Zeitpunkt vor- oder zurückgesprungen werden."
@@ -17279,7 +17279,7 @@ msgid "Select the Yes / True response"
 msgstr "Ja / positive Antwort auswählen"
 
 msgid "Select the access mode for the automatically exported samba shares."
-msgstr ""
+msgstr "Den Zugriffsmodus für die automatisch exportierten Samba Shares auswählen."
 
 #, python-format
 msgid "Select the action for '%s'"
@@ -17442,7 +17442,7 @@ msgid "Select the model number of your Unicable device. If the model number is n
 msgstr "Das Modell des Unicable/SCR-Gerätes auswählen. Wenn der Hersteller nicht aufgeführt ist, 'SCR' auf 'Benutzerdefiniert' setzen und die Geräteparameter gemäß dem zugehörigen Datenblatt manuell eingeben."
 
 msgid "Select the mount points"
-msgstr "Einhängepunkt auswählen"
+msgstr "Einhängepunkte auswählen"
 
 msgid "Select the mountpoint for the device."
 msgstr "Einhängepunkt für das Gerät auswählen."
@@ -17465,7 +17465,7 @@ msgstr ""
 
 #, python-format
 msgid "Select the new mount point for: '%s'"
-msgstr "Einhängepunkt für: '%s' auswählen"
+msgstr "Einhängepunkt für '%s' auswählen"
 
 msgid "Select the next item in list or move the cursor right"
 msgstr "Den nächsten Eintrag in der Liste auswählen oder den Cursor nach rechts bewegen"
@@ -19713,7 +19713,7 @@ msgid "Sorry, no backups found!"
 msgstr "Keine Sicherungen gefunden!"
 
 msgid "Sorry, no physical devices that supports SWAP attached. Can't create swap file on network or FAT32 file systems"
-msgstr "Leider sind keine physischen Geräte angeschlossen, die Swap unterstützen. Eine Auslagerungsdatei kann nicht auf Netzwerk- oder Fat32-Dateisystemen erstellt werden!"
+msgstr "Leider sind keine physischen Geräte angeschlossen, die Swap unterstützen. Eine Auslagerungsdatei kann nicht auf Netzwerk- oder FAT32-Dateisystemen erstellt werden!"
 
 msgid "Sorry, there was a problem:"
 msgstr "Achtung, es gibt ein Problem:"
@@ -23559,11 +23559,11 @@ msgid "Welcome to IceTV"
 msgstr "Willkommen bei IceTV"
 
 msgid ""
-"Welcome to openATV.\n"
+"Welcome to OpenATV.\n"
 "\n"
 "Use the UP/DOWN buttons on your remote control to select an option. Use the LEFT/RIGHT buttons to change the values of a configurable option. After that, press OK to proceed to the next screen."
 msgstr ""
-"Willkommen bei openATV.\n"
+"Willkommen bei OpenATV.\n"
 "\n"
 "Mit den Tasten Hoch/Runter auf der Fernbedienung eine Option auswählen. Die Tasten Links/Rechts verwenden, um die Werte einer konfigurierbaren Option zu ändern. Anschließend OK drücken, um zum nächsten Bildschirm zu gelangen."
 
@@ -23883,7 +23883,7 @@ msgid "Wipe Storage Device"
 msgstr "Datenträger löschen"
 
 msgid "Wiping storage device..."
-msgstr "Datenträger löschen..."
+msgstr "Datenträger wird gelöscht..."
 
 #
 msgid "Wireless LAN"

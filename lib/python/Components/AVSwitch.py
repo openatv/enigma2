@@ -27,7 +27,7 @@ def InitAVSwitch():
 
 	config.av.edid_override.addNotifier(setUnsupportModes)
 	config.av.yuvenabled = ConfigBoolean(default=MACHINEBUILD != "vuduo")
-	config.av.osd_alpha = ConfigSlider(default=255, increment=5, limits=(20, 255))  # Make openATV compatible with some plugins who still use config.av.osd_alpha.
+	config.av.osd_alpha = ConfigSlider(default=255, increment=5, limits=(20, 255))  # Make OpenATV compatible with some plugins who still use config.av.osd_alpha.
 	config.av.autores = ConfigSelection(default="disabled", choices=[
 		("disabled", _("Disabled")),
 		("simple", _("Simple")),

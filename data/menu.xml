@@ -18,7 +18,7 @@
 	<menu key="mainmenu" text="Main Menu" title="Main Menu">
 		<!-- Menu / Information -->
 		<menu key="information" level="0" text="Information" description="This menu contains selections to display information about the receiver." weight="5">
-			<item key="distribution_info_screen" level="0" text="About openATV" weight="5"><screen module="Information" screen="DistributionInformation" /></item>
+			<item key="distribution_info_screen" level="0" text="About OpenATV" weight="5"><screen module="Information" screen="DistributionInformation" /></item>
 			<item key="receiver_info_screen" level="0" text="Receiver" weight="10"><screen module="Information" screen="ReceiverInformation" /></item>
 			<item key="picture_info_screen" level="0" text="Pictures" weight="15" conditional="config.usage.informationShowAllMenuScreens.value"><screen module="Information" screen="PictureInformation" /></item>
 			<item key="tuner_info_screen" level="0" text="Tuners" weight="20"><screen module="Information" screen="TunerInformation" /></item>

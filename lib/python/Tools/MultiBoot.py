@@ -585,7 +585,7 @@ class MultiBootClass():
 				"beyonwiz": "Beyonwiz",
 				"blackhole": "Black Hole",
 				"egami": "EGAMI",
-				"openatv": "openATV",
+				"openatv": "OpenATV",
 				"openbh": "OpenBH",
 				"opendroid": "OpenDroid",
 				"openeight": "OpenEight",
