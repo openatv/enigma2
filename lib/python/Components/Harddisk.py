@@ -674,11 +674,11 @@ class HarddiskManager:
 			devices.sort(key=lambda x: (x["SORT"], x["ID_PART_ENTRY_SIZE"]))
 			mounts = getProcMountsNew()
 			devmounts = [x[0] for x in mounts]
-			mounts = [x[1] for x in mounts if "/media/" in x[1]]
+			mounts = [x[1] for x in mounts if x[1].startswith("/media/")]
 			possibleMountPoints = [f"/media/{x}" for x in ("usb8", "usb7", "usb6", "usb5", "usb4", "usb3", "usb2", "usb", "hdd") if f"/media/{x}" not in mounts]
 
 			for device in devices:
-				if device["DEVNAME"] not in devmounts:
+				if device["DEVNAME"] not in devmounts or "/media/hdd" in possibleMountPoints:
 					device["MOUNT"] = possibleMountPoints.pop()
 
 			knownDevices = fileReadLines("/etc/udev/known_devices", default=[])
