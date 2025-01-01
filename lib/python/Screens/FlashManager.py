@@ -510,11 +510,14 @@ class FlashImage(Screen):
 
 	def postFlashActionCallback(self, choice):
 		if choice:
-			for directory in listdir("/media"):  # Remove config flag from other devices than /media/hdd.
+			knownConfigFiles = set(["settings", "plugins", "noplugins", "slow", "fast", "turbo"])
+			for directory in listdir("/media"):  # Remove known config files from other devices than /media/hdd.
 				if directory not in ("autofs", "hdd"):
 					configPath = join("/media", directory, "images/config")
 					if isdir(configPath):
-						rmtree(configPath)
+						configFiles = [x for x in listdir(configPath)]
+						for configFile in set(configFiles).intersection(knownConfigFiles):
+							unlink(join(configPath, configFile))
 			rootFolder = "/media/hdd/images/config"
 			if choice != "abort" and not self.recordCheck:
 				self.recordCheck = True
