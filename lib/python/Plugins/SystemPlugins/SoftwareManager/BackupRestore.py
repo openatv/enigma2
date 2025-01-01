@@ -480,20 +480,16 @@ class RestoreScreen(ConfigListScreen, Screen):
 			self.userRestoreScript()
 
 	def userRestoreScript(self, ret=None):
-		SH_List = []
-		SH_List.append("/media/hdd/images/config/myrestore.sh")
-		SH_List.append("/media/usb/images/config/myrestore.sh")
-		SH_List.append("/media/mmc/images/config/myrestore.sh")
-		SH_List.append("/media/cf/images/config/myrestore.sh")
+		scriptPath = None
+		for directory in listdir("/media"):
+			if directory != "autofs":
+				configPath = join("/media", directory, "images/config/myrestore.sh")
+				if exists(configPath):
+					scriptPath = configPath
+					break
 
-		startSH = None
-		for SH in SH_List:
-			if exists(SH):
-				startSH = SH
-				break
-
-		if startSH:
-			self.session.openWithCallback(self.restoreMetrixSkin, Console, title=_("Running Myrestore script, Please wait ..."), cmdlist=[startSH], closeOnSuccess=True, showScripts=False)
+		if scriptPath:
+			self.session.openWithCallback(self.restoreMetrixSkin, Console, title=_("Running Myrestore script, Please wait ..."), cmdlist=[scriptPath], closeOnSuccess=True, showScripts=False)
 		else:
 			self.restoreMetrixSkin()
 
