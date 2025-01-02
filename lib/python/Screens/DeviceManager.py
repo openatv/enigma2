@@ -669,14 +669,14 @@ class StorageDeviceManager():
 	def createDevice(self, device, isPartition, mounts, swapDevices, partitions, knownDevices, fstab):
 		def getDeviceTypeModel():
 			devicePath = realpath(join("/sys/block", device2, "device"))
-			deviceType = 0
+			deviceType = 0  # USB
 			if device2.startswith("mmcblk"):
 				model = fileReadLine(join("/sys/block", device2, "device/name"), default="", source=MODULE_NAME)
-				deviceType = 1
+				deviceType = 1  # MMC
 			else:
 				model = fileReadLine(join("/sys/block", device2, "device/model"), default="", source=MODULE_NAME)
-			if devicePath.find("/devices/pci") != -1 or devicePath.find("ahci") != -1:
-				deviceType = 2
+			if "pci" in devicePath or "ahci" in devicePath or "ata" in devicePath:
+				deviceType = 2  # HDD
 			return devicePath[4:], deviceType, model
 
 		if isPartition:
