@@ -1,4 +1,4 @@
-from os import stat, statvfs, makedirs
+from os import listdir, makedirs, stat, statvfs
 from os.path import join, isdir
 from re import search
 from shlex import split
@@ -9,16 +9,17 @@ from Components.AVSwitch import avSwitch
 from Components.config import ConfigBoolean, config, configfile
 from Components.Console import Console
 from Components.Harddisk import harddiskmanager
+from Components.Storage import EXPANDER_MOUNT
 from Components.SystemInfo import BoxInfo
 from Components.Pixmap import Pixmap
-from Screens.FlashExpander import EXPANDER_MOUNT, MOUNT_DEVICE, MOUNT_MOUNTPOINT, MOUNT_FILESYSTEM
+from Screens.FlashExpander import MOUNT_DEVICE, MOUNT_MOUNTPOINT, MOUNT_FILESYSTEM
 from Screens.HarddiskSetup import HarddiskSelection
 from Screens.HelpMenu import ShowRemoteControl
 from Screens.MessageBox import MessageBox
 from Screens.Standby import TryQuitMainloop, QUIT_RESTART
 from Screens.VideoWizard import VideoWizard
 from Screens.Wizard import wizardManager, Wizard
-from Tools.Directories import fileReadLines, fileWriteLines
+from Tools.Directories import fileReadLine, fileReadLines, fileWriteLines
 
 MODULE_NAME = __name__.split(".")[-1]
 
@@ -140,30 +141,25 @@ class StartWizard(Wizard, ShowRemoteControl):
 		self.swapDevice = self.selection
 
 	def readSwapDevices(self, callback=None):
-		def readSwapDevicesCallback(output=None, retVal=None, extraArgs=None):
-			def getDeviceID(deviceInfo):
-				mode = "%s=" % "UUID"
-				for token in deviceInfo:
-					if token.startswith(mode):
-						return token[len(mode):]
-				return None
+		black = BoxInfo.getItem("mtdblack")
+		self.deviceData = {}
+		uuids = {}
+		for fileName in listdir("/dev/uuid"):
+			if black not in fileName:
+				m = search(r"(?P<A>mmcblk\d)p1$|(?P<B>sd\w)1$", fileName)
+				if m:
+					disk = m.group("A") or m.group("B")
+					if disk:
+						uuids[disk] = (fileReadLine(join("/dev/uuid", fileName)), f"/dev/{fileName}")
 
-			lines = output.splitlines()
-			mountTypemode = " %s=" % "UUID"
-			lines = [line for line in lines if mountTypemode in line and ("/dev/sd" in line or "/dev/cf" in line) and ("TYPE=\"ext" in line or "TYPE=\"vfat" in line)]
-			self.deviceData = {}
-			for (name, hdd) in harddiskmanager.HDDList():
-				for line in lines:
-					data = split(line.strip())
-					if data and data[0][:-1].startswith(hdd.dev_path):
-						deviceID = getDeviceID(data)
-						if deviceID:
-							self.deviceData[deviceID] = (data[0][:-1], name)
+		for (name, hdd) in harddiskmanager.HDDList():
+			uuid, device = uuids.get(hdd.device)
+			if uuid:
+				self.deviceData[uuid] = (device, name)
+
 			print("[StartWizard] DEBUG readSwapDevicesCallback: %s" % str(self.deviceData))
 			if callback and callable(callback):
 				callback()
-
-		self.console.ePopen(["/sbin/blkid", "/sbin/blkid"], callback=readSwapDevicesCallback)
 
 	def getFreeMemory(self):
 		memInfo = fileReadLines("/proc/meminfo", source=MODULE_NAME)
@@ -186,7 +182,11 @@ class StartWizard(Wizard, ShowRemoteControl):
 
 	def keyYellow(self):
 		if self.wizard[self.currStep]["name"] == "swap":
-			self.session.open(HarddiskSelection)
+			if not self.isFlashExpanderActive():
+				def formatCallback():
+					harddiskmanager.enumerateBlockDevices()
+					self.readSwapDevices()
+				self.session.openWithCallback(formatCallback, HarddiskSelection)
 		else:
 			Wizard.keyYellow(self)
 
