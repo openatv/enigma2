@@ -1,5 +1,5 @@
 from glob import glob
-from os import access, listdir, lstat, major, minor, mkdir, popen, remove, rmdir, stat as osstat, statvfs, system, unlink, walk
+from os import listdir, lstat, mkdir, popen, remove, statvfs, system, walk
 from os.path import abspath, dirname, exists, isfile, islink, ismount, join, realpath
 from re import search, sub
 from time import sleep, time
@@ -7,11 +7,9 @@ from time import sleep, time
 from enigma import getDeviceDB, eTimer
 
 from Components.SystemInfo import BoxInfo
-import Components.Task
 from Components.Console import Console
 from Tools.Directories import fileReadLines, fileReadLine, fileWriteLines
 from Tools.CList import CList
-from Tools.HardwareInfo import HardwareInfo
 
 MODEL = BoxInfo.getItem("model")
 
@@ -228,12 +226,6 @@ class Harddisk:
 		res = system(cmd)
 		return res >> 8
 
-	def createPartition(self):  # No longer supported, use createInitializeJob instead!
-		return 1
-
-	def mkfs(self):  # No longer supported, use createInitializeJob instead!
-		return 1
-
 	def mount(self):
 		if self.mount_device is None:  # Try mounting through fstab first.
 			dev = self.partitionPath("1")
@@ -258,124 +250,6 @@ class Harddisk:
 		res = system(f"hdparm -z {self.disk_path}")  # We can let udev do the job, re-read the partition table.
 		sleep(3)  # Give udev some time to make the mount, which it will do asynchronously.
 		return res >> 8
-
-	def fsck(self):  # No longer supported, use createCheckJob instead!
-		return 1
-
-	def killPartitionTable(self):
-		zero = 512 * b"\0"
-		h = open(self.dev_path, "wb")
-		for i in list(range(9)):  # Delete first 9 sectors, which will likely kill the first partition too.
-			h.write(zero)
-		h.close()
-
-	def killPartition(self, n):
-		zero = 512 * b"\0"
-		part = self.partitionPath(n)
-		h = open(part, "wb")
-		for i in list(range(3)):
-			h.write(zero)
-		h.close()
-
-	def createInitializeJob(self):
-		job = Components.Task.Job(_("Initializing storage device..."))
-		size = self.diskSize()
-		print(f"[Harddisk] Storage size {size} MB.")
-		task = UnmountTask(job, self)
-		task = Components.Task.PythonTask(job, _("Removing partition table"))
-		task.work = self.killPartitionTable
-		task.weighting = 1
-		task = Components.Task.LoggingTask(job, _("Rereading partition table"))
-		task.weighting = 1
-		task.setTool("hdparm")
-		task.args.append("-z")
-		task.args.append(self.disk_path)
-		task = Components.Task.ConditionTask(job, _("Waiting for partition"), timeoutCount=20)
-		task.check = lambda: not exists(self.partitionPath("1"))
-		task.weighting = 1
-		task = Components.Task.LoggingTask(job, _("Creating partition"))
-		task.weighting = 5
-		task.setTool("parted")
-		alignment = "min" if size < 1024 else "opt"  # On very small devices, align to block only, prefer optimal alignment for performance.
-		parttype = "gpt" if size > 2097151 else "msdos"
-		task.args += ["-a", alignment, "-s", self.disk_path, "mklabel", parttype, "mkpart", "primary", "0%", "100%"]
-		task = Components.Task.ConditionTask(job, _("Waiting for partition"))
-		task.check = lambda: exists(self.partitionPath("1"))
-		task.weighting = 1
-		task = UnmountTask(job, self)
-		task = MkfsTask(job, _("Creating file system"))
-		big_o_options = ["dir_index"]
-		task.setTool("mkfs.ext4")
-		if size > 250000:
-			task.args += ["-T", "largefile", "-N", "262144"]  # No more than 256k i-nodes (prevent problems with fsck memory requirements).
-			big_o_options.append("sparse_super")
-		elif size > 16384:
-			task.args += ["-T", "largefile"]  # Between 16GB and 250GB: 1 i-node per megabyte.
-			big_o_options.append("sparse_super")
-		elif size > 2048:
-			task.args += ["-T", "largefile", "-N", str(int(size * 32))]  # Over 2GB: 32 i-nodes per megabyte.
-		task.args += ["-F", "-F", "-m0", "-O ^metadata_csum", "-O", ",".join(big_o_options), self.partitionPath("1")]
-		task = MountTask(job, self)
-		task.weighting = 3
-		task = Components.Task.ConditionTask(job, _("Waiting for mount"), timeoutCount=20)
-		task.check = self.mountDevice
-		task.weighting = 1
-		return job
-
-	def initialize(self):  # No longer supported!
-		return -5
-
-	def check(self):  # No longer supported!
-		return -5
-
-	def createCheckJob(self):
-		job = Components.Task.Job(_("Checking file system..."))
-		if self.findMount():
-			UnmountTask(job, self)  # Create unmount task if it was not mounted.
-			dev = self.mount_device
-		else:
-			dev = self.partitionPath("1")  # Otherwise, assume there is one partition.
-		task = Components.Task.LoggingTask(job, "fsck")
-		task.setTool("fsck.ext3")
-		task.args.append("-f")
-		task.args.append("-p")
-		task.args.append(dev)
-		MountTask(job, self)
-		task = Components.Task.ConditionTask(job, _("Waiting for mount"))
-		task.check = self.mountDevice
-		return job
-
-	def createExt4ConversionJob(self):
-		job = Components.Task.Job(_("Converting ext3 to ext4..."))
-		if not exists("/sbin/tune2fs"):
-			addInstallTask(job, "e2fsprogs-tune2fs")
-		if self.findMount():
-			UnmountTask(job, self)  # Create unmount task if it was not mounted.
-			dev = self.mount_device
-		else:
-			dev = self.partitionPath("1")  # Otherwise, assume there is one partition.
-		task = Components.Task.LoggingTask(job, "fsck")
-		task.setTool("fsck.ext3")
-		task.args.append("-p")
-		task.args.append(dev)
-		task = Components.Task.LoggingTask(job, "tune2fs")
-		task.setTool("tune2fs")
-		task.args.append("-O")
-		task.args.append("extents,uninit_bg,dir_index")
-		task.args.append("-o")
-		task.args.append("journal_data_writeback")
-		task.args.append(dev)
-		task = Components.Task.LoggingTask(job, "fsck")
-		task.setTool("fsck.ext4")
-		task.postconditions = []  # Ignore result, it will always "fail".
-		task.args.append("-f")
-		task.args.append("-p")
-		task.args.append("-D")
-		task.args.append(dev)
-		MountTask(job, self)
-		task = Components.Task.ConditionTask(job, _("Waiting for mount"))
-		task.check = self.mountDevice
-		return job
 
 	def getDeviceDir(self):
 		return self.dev_path
@@ -509,16 +383,6 @@ class Partition:
 					if fields[1] == self.mountpoint:
 						return fields[2]
 		return ""
-
-
-def addInstallTask(job, package):
-	task = Components.Task.LoggingTask(job, "update packages")
-	task.setTool("opkg")
-	task.args.append("update")
-	task = Components.Task.LoggingTask(job, f"Install {package}")
-	task.setTool("opkg")
-	task.args.append("install")
-	task.args.append(package)
 
 
 class HarddiskManager:
@@ -861,87 +725,6 @@ class HarddiskManager:
 			cd.close()
 		except OSError as err:
 			print(f"[Harddisk] Error {err.errno}: Failed to set '{device}' speed to {speed}!  ({err.strerror})")
-
-
-class UnmountTask(Components.Task.LoggingTask):
-	def __init__(self, job, hdd):
-		Components.Task.LoggingTask.__init__(self, job, _("Unmount"))
-		self.hdd = hdd
-		self.mountpoints = []
-
-	def prepare(self):
-		try:
-			dev = self.hdd.disk_path.split("/")[-1]
-			open(f"/dev/nomount.{dev}", "wb").close()
-		except OSError as err:
-			print(f"[Harddisk] Error {err.errno}: Failed to create '/dev/nomount' file!  ({err.strerror})")
-		self.setTool("umount")
-		self.args.append("-f")
-		for dev in self.hdd.enumMountDevices():
-			self.args.append(dev)
-			self.postconditions.append(Components.Task.ReturncodePostcondition())
-			self.mountpoints.append(dev)
-		if not self.mountpoints:
-			print("[Harddisk] UnmountTask: No mount points found?")
-			self.cmd = "true"
-			self.args = [self.cmd]
-
-	def afterRun(self):
-		for path in self.mountpoints:
-			try:
-				rmdir(path)
-			except OSError as err:
-				print(f"[Harddisk] Error {err.errno}: Failed to remove path '{path}'!  ({err.strerror})")
-
-
-class MountTask(Components.Task.LoggingTask):
-	def __init__(self, job, hdd):
-		Components.Task.LoggingTask.__init__(self, job, _("Mount"))
-		self.hdd = hdd
-
-	def prepare(self):
-		try:
-			dev = self.hdd.disk_path.split("/")[-1]
-			unlink(f"/dev/nomount.{dev}")
-		except OSError as err:
-			print(f"[Harddisk] Error {err.errno}: Failed to remove '/dev/nomount' file!  ({err.strerror})")
-		if self.hdd.mount_device is None:  # Try mounting through fstab first.
-			dev = self.hdd.partitionPath("1")
-		else:
-			dev = self.hdd.mount_device  # If previously mounted, use the same spot.
-		with open("/etc/fstab") as fd:
-			lines = fd.readlines()
-		for line in lines:
-			parts = line.strip().split(" ")
-			fspath = realpath(parts[0])
-			if realpath(fspath) == dev:
-				self.setCmdline(f"mount -t auto {fspath}")
-				self.postconditions.append(Components.Task.ReturncodePostcondition())
-				return
-		if self.hdd.type == DEVTYPE_UDEV:  # The device is not in fstab.
-			self.setCmdline(f"sleep 2; hdparm -z {self.hdd.disk_path}")  # We can let udev do the job, re-read the partition table. Sorry for the sleep 2 hack.
-			self.postconditions.append(Components.Task.ReturncodePostcondition())
-
-
-class MkfsTask(Components.Task.LoggingTask):
-	def prepare(self):
-		self.fsck_state = None
-
-	def processOutput(self, data):
-		if isinstance(data, bytes):
-			data = data.decode()
-		if "Writing inode tables:" in data or "Die Superblöcke" in data:
-			self.fsck_state = "inode"
-		elif self.fsck_state == "inode" and "/" in data:
-			try:
-				d = data.strip(" \x08\r\n").split("/", 1)
-				if "\x08" in d[1]:
-					d[1] = d[1].split("\x08", 1)[0]
-				self.setProgress(80 * int(d[0]) // int(d[1]))
-			except Exception as err:
-				print(f"[Harddisk] MkfsTask - [Mkfs] Error: {err}!")
-			return  # Don't log the progress.
-		self.log.append(data)
 
 
 harddiskmanager = HarddiskManager()
