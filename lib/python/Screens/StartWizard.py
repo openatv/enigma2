@@ -152,14 +152,15 @@ class StartWizard(Wizard, ShowRemoteControl):
 					if disk:
 						uuids[disk] = (fileReadLine(join("/dev/uuid", fileName)), f"/dev/{fileName}")
 
-		for (name, hdd) in harddiskmanager.HDDList():
-			uuid, device = uuids.get(hdd.device)
-			if uuid:
-				self.deviceData[uuid] = (device, name)
+		if uuids:
+			for (name, hdd) in harddiskmanager.HDDList():
+				uuid, device = uuids.get(hdd.device)
+				if uuid:
+					self.deviceData[uuid] = (device, name)
 
-			print("[StartWizard] DEBUG readSwapDevicesCallback: %s" % str(self.deviceData))
-			if callback and callable(callback):
-				callback()
+		print("[StartWizard] DEBUG readSwapDevicesCallback: %s" % str(self.deviceData))
+		if callback and callable(callback):
+			callback()
 
 	def getFreeMemory(self):
 		memInfo = fileReadLines("/proc/meminfo", source=MODULE_NAME)
