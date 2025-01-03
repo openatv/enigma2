@@ -93,19 +93,10 @@ def Freespace(dev):
 	return space
 
 
-DEVTYPE_UDEV = 0
-DEVTYPE_DEVFS = 1
-
-
 class Harddisk:
 	def __init__(self, device, removable=False, model=None):
 		self.device = device
-		if access("/dev/.udev", 0) or access("/run/udev/data", 0):
-			self.type = DEVTYPE_UDEV
-		elif access("/dev/.devfsd", 0):
-			self.type = DEVTYPE_DEVFS
-		else:
-			print("[Harddisk] Unable to determine structure of '/dev'!")
+		self.type = 0  # TODO maybe no longer needed / DEVTYPE_UDEV
 		self.max_idle_time = 0
 		self.idle_running = False
 		self.last_access = time()
@@ -117,25 +108,10 @@ class Harddisk:
 		self.mount_path = None
 		self.mount_device = None
 		self.phys_path = realpath(self.sysfsPath("device"))
-		if self.type == DEVTYPE_UDEV:
-			self.dev_path = join("/dev", self.device)
-			self.disk_path = self.dev_path
-		elif self.type == DEVTYPE_DEVFS:
-			tmp = readFile(self.sysfsPath("dev")).split(":")
-			s_major = int(tmp[0])
-			s_minor = int(tmp[1])
-			for disc in listdir("/dev/discs"):  # IanSav: Is this path correct?  Linux uses disk not disc!
-				dev_path = realpath(join("/dev/discs", disc))
-				disk_path = join(dev_path, "disc")
-				try:
-					rdev = osstat(disk_path).st_rdev
-				except OSError:
-					continue
-				if s_major == major(rdev) and s_minor == minor(rdev):
-					self.dev_path = dev_path
-					self.disk_path = disk_path
-					break
-		print(f"[Harddisk] New Harddisk '{self.device}' -> '{self.dev_path}' -> '{self.disk_path}'.")
+		self.dev_path = join("/dev", self.device)
+		self.disk_path = self.dev_path
+		self.modelName = model
+		print(f"[Harddisk] New Harddisk '{self.device}' -> '{self.dev_path}'.")
 		if not removable:
 			self.startIdle()
 
@@ -143,13 +119,7 @@ class Harddisk:
 		return self.device < ob.device
 
 	def partitionPath(self, n):
-		if self.type == DEVTYPE_UDEV:
-			if self.dev_path.startswith("/dev/mmcblk"):
-				return f"{self.dev_path}p{n}"
-			else:
-				return f"{self.dev_path}{n}"
-		elif self.type == DEVTYPE_DEVFS:
-			return join(self.dev_path, "part{n}")
+		return join(self.dev_path, "part{n}")
 
 	def sysfsPath(self, filename):
 		return join("/sys/block/", self.device, filename)
@@ -161,24 +131,14 @@ class Harddisk:
 
 	def bus(self):
 		ret = _("External")
-		if self.type == DEVTYPE_UDEV:  # SD/MMC(F1 specific).
-			card = "sdhci" in self.phys_path
-			type_name = " (SD/MMC)"
-		elif self.type == DEVTYPE_DEVFS:  # CF(7025 specific).
-			card = self.device[:2] == "hd" and "host0" not in self.dev_path
-			type_name = " (CF)"
-		hw_type = HardwareInfo().get_device_name()
-		if hw_type == "elite" or hw_type == "premium" or hw_type == "premium+" or hw_type == "ultra":
-			internal = "ide" in self.phys_path
+		internal = False
+		if "sdhci" in self.phys_path:
+			ret += " (SD/MMC)"
+		elif MODEL == "sf8008":
+			internal = ("usb1/1-1/1-1.1/1-1.1:1.0" in self.phys_path) or ("usb1/1-1/1-1.4/1-1.4:1.0" in self.phys_path)
 		else:
 			internal = ("pci" in self.phys_path or "ahci" in self.phys_path)
-		if MODEL == "sf8008":
-			internal = ("usb1/1-1/1-1.1/1-1.1:1.0" in self.phys_path) or ("usb1/1-1/1-1.4/1-1.4:1.0" in self.phys_path)
-		if card:
-			ret += type_name
-		elif internal:
-			ret = _("Internal")
-		return ret
+		return _("Internal") if internal else ret
 
 	def diskSize(self):
 		cap = 0
@@ -205,6 +165,8 @@ class Harddisk:
 
 	def model(self):
 		try:
+			if self.modelName:
+				return self.modelName
 			if self.device[:2] == "hd":
 				return readFile(join("/proc/ide", self.device, "model"))
 			elif self.device[:2] == "sd":
@@ -231,24 +193,13 @@ class Harddisk:
 
 	def numPartitions(self):
 		numPart = -1
-		if self.type == DEVTYPE_UDEV:
-			try:
-				devdir = listdir("/dev")
-			except OSError:
-				return -1
-			for filename in devdir:
-				if filename.startswith(self.device):
-					numPart += 1
-		elif self.type == DEVTYPE_DEVFS:
-			try:
-				idedir = listdir(self.dev_path)
-			except OSError:
-				return -1
-			for filename in idedir:
-				if filename.startswith("disc"):
-					numPart += 1
-				if filename.startswith("part"):
-					numPart += 1
+		try:
+			devdir = listdir("/dev")
+		except OSError:
+			return -1
+		for filename in devdir:
+			if filename.startswith(self.device):
+				numPart += 1
 		return numPart
 
 	def mountDevice(self):
@@ -304,9 +255,8 @@ class Harddisk:
 				return res >> 8
 
 		res = -1  # Device is not in fstab.
-		if self.type == DEVTYPE_UDEV:
-			res = system(f"hdparm -z {self.disk_path}")  # We can let udev do the job, re-read the partition table.
-			sleep(3)  # Give udev some time to make the mount, which it will do asynchronously.
+		res = system(f"hdparm -z {self.disk_path}")  # We can let udev do the job, re-read the partition table.
+		sleep(3)  # Give udev some time to make the mount, which it will do asynchronously.
 		return res >> 8
 
 	def fsck(self):  # No longer supported, use createCheckJob instead!
