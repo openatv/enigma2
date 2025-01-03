@@ -152,11 +152,12 @@ class StartWizard(Wizard, ShowRemoteControl):
 					if disk:
 						uuids[disk] = (fileReadLine(join("/dev/uuid", fileName)), f"/dev/{fileName}")
 
-		if uuids:
-			for (name, hdd) in harddiskmanager.HDDList():
-				uuid, device = uuids.get(hdd.device)
-				if uuid:
-					self.deviceData[uuid] = (device, name)
+		print("[StartWizard] DEBUG readSwapDevices uuids", uuids)
+
+		for (name, hdd) in harddiskmanager.HDDList():
+			uuid, device = uuids.get(hdd.device, (None, None))
+			if uuid:
+				self.deviceData[uuid] = (device, name)
 
 		print("[StartWizard] DEBUG readSwapDevicesCallback: %s" % str(self.deviceData))
 		if callback and callable(callback):
@@ -186,7 +187,7 @@ class StartWizard(Wizard, ShowRemoteControl):
 			if not self.isFlashExpanderActive():
 				def formatCallback():
 					harddiskmanager.enumerateBlockDevices()
-					self.readSwapDevices()
+					self.updateValues()
 				self.session.openWithCallback(formatCallback, HarddiskSelection)
 		else:
 			Wizard.keyYellow(self)

@@ -337,12 +337,11 @@ class FlashExpander(Setup):
 
 		print("[FlashExpander] DEBUG: uuids -> ", uuids)
 
-		if uuids:
-			for (name, hdd) in harddiskmanager.HDDList():
-				print("[FlashExpander] DEBUG: HDDList", hdd.device, hdd.dev_path)
-				uuid, device = uuids.get(hdd.device)
-				if uuid:
-					self.deviceData[uuid] = (device, name)
+		for (name, hdd) in harddiskmanager.HDDList():
+			print("[FlashExpander] DEBUG: HDDList", hdd.device, hdd.dev_path)
+			uuid, device = uuids.get(hdd.device, (None, None))
+			if uuid:
+				self.deviceData[uuid] = (device, name)
 
 		print("[FlashExpander] DEBUG: self.deviceData", self.deviceData)
 		self.updateStatus()
