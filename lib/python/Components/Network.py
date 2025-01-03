@@ -100,7 +100,21 @@ class Network:
 	def loadNetworkConfig(self, iface, callback=None):  # Parse the interfaces file.
 		interfaces = {}
 		interface = ""
-		for line in fileReadLines(self.networkInterfaceFile, default=[], source=MODULE_NAME):
+		lines = fileReadLines(self.networkInterfaceFile, default=[], source=MODULE_NAME)
+		if len(lines) > 3:
+			lines = lines[2:]  # Remove the header
+		enabled = False
+		for line in lines:
+			if line.startswith(f"auto {iface}"):
+				enabled = True
+				break
+		newlines = []
+		for line in lines:
+			if line and line[0] == "#":
+				newlines.append(line[1:])
+			else:
+				newlines.append(line)
+		for line in newlines:
 			data = line.strip().split(" ")
 			if data[0] == "iface":
 				interface = data[1]
@@ -129,11 +143,15 @@ class Network:
 				if data[0] in ("pre-down", "post-down"):
 					if "predown" in self.ifaces[interface]:
 						self.ifaces[interface]["predown"] = line
+
+		self.ifaces[iface]["up"] = enabled
 		print(f"[Network] DEBUG: Interfaces={interfaces}")
-		for ifacename, iface in list(interfaces.items()):
-			if ifacename in self.ifaces:
-				self.ifaces[ifacename]["dhcp"] = iface["dhcp"]
-				self.ifaces[ifacename]["ipv6"] = iface["ipv6"]
+		for name, item in list(interfaces.items()):
+			if name in self.ifaces:
+				self.ifaces[name]["dhcp"] = item["dhcp"]
+				self.ifaces[name]["ipv6"] = item["ipv6"]
+
+		print(f"[Network] DEBUG: '{iface}' InterfaceData={self.ifaces[iface]}")
 		if self.console and len(self.console.appContainers) == 0:
 			self.configuredNetworkAdapters = self.configuredInterfaces  # Save configured interface list.
 			self.loadNameserverConfig()  # Load name servers only once.
@@ -200,37 +218,44 @@ class Network:
 			WoW = False
 			if ifacename in self.onlyWoWifaces:
 				WoW = self.onlyWoWifaces[ifacename]
-			if WoW is False and iface["up"] is True:
-				lines.append(f"auto {ifacename}")
+			enabled = iface["up"] is True
+			enabledComment = "" if enabled else "# "
+			if WoW is False:
+				lines.append(f"{enabledComment}auto {ifacename}")
 				self.configuredInterfaces.append(ifacename)
 				self.onlyWoWifaces[ifacename] = False
 			elif WoW is True:
 				self.onlyWoWifaces[ifacename] = True
 				lines.append(f"# Only WakeOnWiFi {ifacename}")
-			comment = "" if "ipv6" in iface and iface["ipv6"] else "# "
+			comment = "" if "ipv6" in iface and iface["ipv6"] and enabled else "# "
 			lines.append(f"{comment}iface {ifacename} inet6 dhcp")
 			if iface["dhcp"]:
-				lines.append(f"iface {ifacename} inet dhcp")
+				lines.append(f"{enabledComment}iface {ifacename} inet dhcp")
 			if not iface["dhcp"]:
-				lines.append(f"iface {ifacename} inet static")
-				lines.append("  hostname $(hostname)")
+				lines.append(f"{enabledComment}iface {ifacename} inet static")
+				lines.append(f"{enabledComment}  hostname $(hostname)")
 				if "ip" in iface:
 					dummy = ".".join([str(x) for x in iface["ip"]])
-					lines.append(f"	address {dummy}")
+					lines.append(f"{enabledComment}	address {dummy}")
 					dummy = ".".join([str(x) for x in iface["netmask"]])
-					lines.append(f"	netmask {dummy}")
+					lines.append(f"{enabledComment}	netmask {dummy}")
 					# lines.append(f"	address {".".join([str(x) for x in iface["ip"]])}")
 					# lines.append(f"	netmask {".".join([str(x) for x in iface["netmask"]])}")
 					if "gateway" in iface:
 						dummy = ".".join([str(x) for x in iface["gateway"]])
-						lines.append(f"	gateway {dummy}")
+						lines.append(f"{enabledComment}	gateway {dummy}")
 						# lines.append(f"	gateway {".".join([str(x) for x in iface["gateway"]])}")
 			if "configStrings" in iface:
-				lines.append(iface["configStrings"])
+				configStrings = iface["configStrings"]
+				if not enabled:
+					configStrings = configStrings.split("\n")
+					configStrings = [f"{enabledComment}{x}" for x in configStrings]
+					configStrings = "\n".join(configStrings)
+				lines.append(configStrings)
 			if iface["preup"] is not False and "configStrings" not in iface:
-				lines.append(iface["preup"])
+				lines.append(f"{enabledComment}{iface["preup"]}")
 			if iface["predown"] is not False and "configStrings" not in iface:
-				lines.append(iface["predown"])
+				lines.append(f"{enabledComment}{iface["predown"]}")
 			lines.append("")
 		fileWriteLines(self.networkInterfaceFile, lines, source=MODULE_NAME)
 		self.configuredNetworkAdapters = self.configuredInterfaces
