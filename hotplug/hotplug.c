@@ -114,7 +114,7 @@ int main(int argc, char *argv[])
 					{
 						if(getenv("DEVNAME"))
 						{
-							snprintf(data, sizeof(data) - 1, "ACTION=%s\nDEVPATH=%s\nID_TYPE=%s\nDEVTYPE=%s\nDEVNAME=%s\nID_FS_TYPE=%s\nID_BUS=%s\nID_FS_UUID=%s\nID_MODEL=%s\nID_PART_ENTRY_SIZE=%s", action, devpath , getenv("ID_TYPE") ? getenv("ID_TYPE") : "disk", getenv("DEVTYPE"), getenv("DEVNAME"), getenv("ID_FS_TYPE"), getenv("ID_BUS"), getenv("ID_FS_UUID"), getenv("ID_MODEL") ? getenv("ID_MODEL") : getenv("ID_NAME"),getenv("ID_PART_ENTRY_SIZE"));
+							snprintf(data, sizeof(data) - 1, "ACTION=%s\nDEVPATH=%s\nID_TYPE=%s\nDEVTYPE=%s\nDEVNAME=%s\nID_FS_TYPE=%s\nID_BUS=%s\nID_FS_UUID=%s\nID_MODEL=%s\nID_PART_ENTRY_SIZE=%s", action, devpath , getenv("ID_TYPE") ? getenv("ID_TYPE") : "disk", getenv("DEVTYPE"), getenv("DEVNAME"), getenv("ID_FS_TYPE"), getenv("ID_BUS"), getenv("ID_FS_UUID"), getenv("ID_MODEL") ? getenv("ID_MODEL") : getenv("ID_NAME"),getenv("ID_PART_ENTRY_SIZE") ? getenv("ID_PART_ENTRY_SIZE") : "0");
 							data[sizeof(data) - 1] = 0;
 							if (debug)
 								printf("%s\n", data);
