@@ -7,9 +7,9 @@ from enigma import getDeviceDB, eTimer
 
 from Components.Console import Console
 from Components.Harddisk import harddiskmanager
+from Components.Storage import EXPANDER_MOUNT
 from Plugins.Plugin import PluginDescriptor
 from Screens.MessageBox import ModalMessageBox
-from Screens.FlashExpander import EXPANDER_MOUNT
 from Tools.Directories import fileReadLines, fileWriteLines
 from Tools.Conversions import scaleNumber
 
@@ -81,10 +81,15 @@ class HotPlugManager:
 			eventData = self.deviceData.pop()
 			DEVPATH = eventData.get("DEVPATH")
 			DEVNAME = eventData.get("DEVNAME")
+			ID_MODEL = eventData.get("ID_MODEL")
+			if eventData["DEVTYPE"] == "disk":
+				harddiskmanager.addHotplugPartition(DEVNAME, DEVPATH, ID_MODEL)
+				self.timer.start(100)
+				return
+
 			ID_FS_TYPE = "auto"  # eventData.get("ID_FS_TYPE")
 			# ID_BUS = eventData.get("ID_BUS")
 			ID_FS_UUID = eventData.get("ID_FS_UUID")
-			ID_MODEL = eventData.get("ID_MODEL")
 			ID_PART_ENTRY_SIZE = int(eventData.get("ID_PART_ENTRY_SIZE", 0))
 			notFound = True
 			mounts = fileReadLines("/proc/mounts")
@@ -175,7 +180,7 @@ class HotPlugManager:
 							Console().ePopen("/bin/mount -a")
 						if answer in (1, 3, 4, 5):
 							fileWriteLines("/etc/udev/known_devices", knownDevices)
-					self.addedDevice.append((DEVNAME, DEVPATH))
+					self.addedDevice.append((DEVNAME, DEVPATH, ID_MODEL))
 					self.timer.start(1000)
 
 				default = 3
@@ -195,13 +200,13 @@ class HotPlugManager:
 				)
 				ModalMessageBox.instance.showMessageBox(text=text, list=choiceList, default=default, windowTitle=_("New Storage Device"), callback=newDeviceCallback)
 			else:
-				self.addedDevice.append((DEVNAME, DEVPATH))
+				self.addedDevice.append((DEVNAME, DEVPATH, ID_MODEL))
 				self.timer.start(1000)
 		else:
 			if self.newCount:
 				self.newCount = 0
-				for device, physicalDevicePath in self.addedDevice:
-					harddiskmanager.addHotplugPartition(device, physicalDevicePath)
+				for device, physicalDevicePath, model in self.addedDevice:
+					harddiskmanager.addHotplugPartition(device, physicalDevicePath, model=model)
 
 	def processHotplugData(self, eventData):
 		mode = eventData.get("mode")
@@ -212,7 +217,7 @@ class HotPlugManager:
 				self.timer.stop()
 				ID_TYPE = eventData.get("ID_TYPE")
 				DEVTYPE = eventData.get("DEVTYPE")
-				if ID_TYPE == "disk" and DEVTYPE == "partition":
+				if ID_TYPE == "disk" and DEVTYPE in ("partition", "disk"):
 					self.deviceData.append(eventData)
 					self.timer.start(1000)
 
@@ -220,7 +225,7 @@ class HotPlugManager:
 				ID_TYPE = eventData.get("ID_TYPE")
 				DEVTYPE = eventData.get("DEVTYPE")
 				# ID_FS_UUID = eventData.get("ID_FS_UUID")
-				if ID_TYPE == "disk" and DEVTYPE == "partition":
+				if ID_TYPE == "disk" and DEVTYPE in ("partition", "disk"):
 					device = eventData.get("DEVNAME")
 					harddiskmanager.removeHotplugPartition(device)
 			elif action == "ifup":

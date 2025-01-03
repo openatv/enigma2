@@ -98,7 +98,7 @@ DEVTYPE_DEVFS = 1
 
 
 class Harddisk:
-	def __init__(self, device, removable=False):
+	def __init__(self, device, removable=False, model=None):
 		self.device = device
 		if access("/dev/.udev", 0) or access("/run/udev/data", 0):
 			self.type = DEVTYPE_UDEV
@@ -663,11 +663,12 @@ class HarddiskManager:
 			with open(fileName) as f:
 				data = f.read()
 				eventData = parseDeviceData(data)
-				device = eventData["DEVNAME"].replace("/dev/", "")
-				shortDevice = device[:7] if device.startswith("mmcblk") else sub(r"[\d]", "", device)
-				removable = fileReadLine(f"/sys/block/{shortDevice}/removable")
-				eventData["SORT"] = 0 if ("pci" in eventData["DEVPATH"] or "ahci" in eventData["DEVPATH"]) and removable == "0" else 1
-				devices.append(eventData)
+				if eventData["DEVTYPE"] == "partition":  # Handle only partitions
+					device = eventData["DEVNAME"].replace("/dev/", "")
+					shortDevice = device[:7] if device.startswith("mmcblk") else sub(r"[\d]", "", device)
+					removable = fileReadLine(f"/sys/block/{shortDevice}/removable")
+					eventData["SORT"] = 0 if ("pci" in eventData["DEVPATH"] or "ahci" in eventData["DEVPATH"]) and removable == "0" else 1
+					devices.append(eventData)
 				remove(fileName)
 
 		if devices:
@@ -759,7 +760,7 @@ class HarddiskManager:
 				return join(item[1], "")
 		return None
 
-	def addHotplugPartition(self, device, physdev=None):
+	def addHotplugPartition(self, device, physdev=None, model=None):
 		# device -> the device name, without /dev.
 		# physdev -> the physical device path, which we (might) use to determine the user friendly name.
 		if not physdev:
