@@ -574,7 +574,13 @@ class HarddiskManager:
 				return join(item[1], "")
 		return None
 
+	def triggerAddRemovePartion(self, action, partition):
+		print(f"[Harddisk] {action} partition {partition.device} -> {partition.mountpoint}")
+		self.on_partition_list_change(action, partition)
+
 	def addHotplugPartition(self, device, physdev=None, model=None):
+		device = device.replace("/dev/", "")
+		print(f"[Harddisk] addHotplugPartition {device}")
 		# device -> the device name, without /dev.
 		# physdev -> the physical device path, which we (might) use to determine the user friendly name.
 		if not physdev:
@@ -585,21 +591,16 @@ class HarddiskManager:
 				physdev = dev
 				print(f"[Harddisk] Error {err.errno}: Couldn't determine blockdev or physdev for device '{device}'!  ({err.strerror})")
 		error, blacklisted, removable, is_cdrom, partitions, medium_found = self.getBlockDevInfo(self.splitDeviceName(device)[0])
-		hw_type = HardwareInfo().get_device_name()
-		if hw_type == "elite" or hw_type == "premium" or hw_type == "premium+" or hw_type == "ultra":
-			if device[0:3] == "hda":
-				blacklisted = True
 		if not blacklisted and medium_found:
 			description = self.getUserfriendlyDeviceName(device, physdev)
 			p = Partition(mountpoint=self.getMountpoint(device), description=description, force_mounted=True, device=device)
 			self.partitions.append(p)
 			if p.mountpoint:  # Plugins won't expect unmounted devices
-				self.on_partition_list_change("add", p)
+				self.triggerAddRemovePartion("add", p)
 			# see if this is a harddrive
-			l = len(device)
-			if l and (not device[l - 1].isdigit() or (device.startswith("mmcblk") and not search(r"mmcblk\dp\d+", device))):
+			if not search(r"mmcblk\dp\d+|sd\w\d+", device):
 				if device not in [hdd.device for hdd in self.hdd]:
-					self.hdd.append(Harddisk(device, removable))
+					self.hdd.append(Harddisk(device, removable, model))
 					self.hdd.sort()
 				BoxInfo.setItem("Harddisk", True)
 		return error, blacklisted, removable, is_cdrom, partitions, medium_found
@@ -619,7 +620,7 @@ class HarddiskManager:
 			description = self.getUserfriendlyDeviceName(device, physdev)
 			p = Partition(mountpoint="/media/audiocd", description=description, force_mounted=True, device=device)
 			self.partitions.append(p)
-			self.on_partition_list_change("add", p)
+			self.triggerAddRemovePartion("add", p)
 			BoxInfo.setItem("Harddisk", False)
 		return error, blacklisted, removable, is_cdrom, partitions, medium_found
 
@@ -628,9 +629,8 @@ class HarddiskManager:
 			if x.device == device:
 				self.partitions.remove(x)
 				if x.mountpoint:  # Plugins won't expect unmounted devices.
-					self.on_partition_list_change("remove", x)
-		l = len(device)
-		if l and (not device[l - 1].isdigit() or (device.startswith("mmcblk") and not search(r"mmcblk\dp\d+", device))):
+					self.triggerAddRemovePartion("remove", x)
+		if not search(r"mmcblk\dp\d+|sd\w\d+", device):
 			for hdd in self.hdd:
 				if hdd.device == device:
 					hdd.stop()
@@ -688,7 +688,9 @@ class HarddiskManager:
 		description = _("External Storage %s") % dev
 		try:
 			fileName = "name" if "mmc" in dev else "model"
-			description = readFile(f"/sys{phys}/{fileName}")
+			fileName = f"/sys{phys}/{fileName}"
+			if exists(fileName):
+				description = readFile(fileName)
 		except OSError as err:
 			print(f"[Harddisk] Error {err.errno}: Couldn't read model!  ({err.strerror})")
 		for physdevprefix, pdescription in list(getDeviceDB().items()):
@@ -705,14 +707,14 @@ class HarddiskManager:
 				return  # Already mounted.
 		newpartion = Partition(mountpoint=device, description=desc)
 		self.partitions.append(newpartion)
-		self.on_partition_list_change("add", newpartion)
+		self.triggerAddRemovePartion("add", newpartion)
 
 	def removeMountedPartition(self, mountpoint):
 		mountpoint = join(mountpoint, "")
 		for x in self.partitions[:]:
 			if x.mountpoint == mountpoint:
 				self.partitions.remove(x)
-				self.on_partition_list_change("remove", x)
+				self.triggerAddRemovePartion("remove", x)
 
 	def setDVDSpeed(self, device, speed=0):
 		ioctl_flag = int(0x5322)
