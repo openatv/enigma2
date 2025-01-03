@@ -47,15 +47,21 @@ based on multiple authors.
 #include <string.h>
 #include <unistd.h>
 
-
-int replacechar(char *str, char orig, char rep) {
-    char *ix = str;
-    int n = 0;
-    while((ix = strchr(ix, orig)) != NULL) {
-        *ix++ = rep;
-        n++;
-    }
-    return n;
+/// @brief Replaces all occurrences of a character in a string with another character.
+/// @param str The string in which to replace characters.
+/// @param orig The character to be replaced in the string.
+/// @param rep The character to replace the original character with.
+/// @return The number of characters replaced in the string.
+int replacechar(char *str, char orig, char rep)
+{
+	char *ix = str;
+	int n = 0;
+	while ((ix = strchr(ix, orig)) != NULL)
+	{
+		*ix++ = rep;
+		n++;
+	}
+	return n;
 }
 
 int main(int argc, char *argv[])
@@ -67,7 +73,7 @@ int main(int argc, char *argv[])
 	int mode = 0;
 	int debug = 0;
 
-	if(argc == 3)
+	if (argc == 3)
 	{
 		action = argv[1];
 		devpath = argv[2];
@@ -102,19 +108,41 @@ int main(int argc, char *argv[])
 	}
 	if (mode == 2 || sd >= 0)
 	{
-		if (mode == 2 || connect(sd, (const struct sockaddr*)&serv_addr_un, sizeof(serv_addr_un)) >= 0)
+		if (mode == 2 || connect(sd, (const struct sockaddr *)&serv_addr_un, sizeof(serv_addr_un)) >= 0)
 		{
 			char data[1024];
 
-			if(mode > 0)
+			if (mode > 0)
 			{
 				if (action && devpath)
 				{
 					if (strcmp(action, "add") == 0)
 					{
-						if(getenv("DEVNAME"))
+						if (getenv("DEVNAME"))
 						{
-							snprintf(data, sizeof(data) - 1, "ACTION=%s\nDEVPATH=%s\nID_TYPE=%s\nDEVTYPE=%s\nDEVNAME=%s\nID_FS_TYPE=%s\nID_BUS=%s\nID_FS_UUID=%s\nID_MODEL=%s\nID_PART_ENTRY_SIZE=%s", action, devpath , getenv("ID_TYPE") ? getenv("ID_TYPE") : "disk", getenv("DEVTYPE"), getenv("DEVNAME"), getenv("ID_FS_TYPE"), getenv("ID_BUS"), getenv("ID_FS_UUID"), getenv("ID_MODEL") ? getenv("ID_MODEL") : getenv("ID_NAME"),getenv("ID_PART_ENTRY_SIZE") ? getenv("ID_PART_ENTRY_SIZE") : "0");
+							char devsize[50];
+							if (getenv("ID_PART_ENTRY_SIZE"))
+							{
+								snprintf(devsize, sizeof(devsize) - 1, "%s", getenv("ID_PART_ENTRY_SIZE"));
+							}
+							else
+							{
+								// Fallback get size from block device
+								long ldevsize = 0;
+								FILE *f;
+								char fn[255];
+								snprintf(fn, sizeof(fn) - 1, "/sys%s/size", devpath);
+								f = fopen(fn, "r");
+								if (f)
+								{
+									if (fscanf(f, "%ld", &ldevsize) != 1)
+										ldevsize = 0;
+									fclose(f);
+								}
+								snprintf(devsize, sizeof(devsize) - 1, "%ld", ldevsize);
+							}
+
+							snprintf(data, sizeof(data) - 1, "ACTION=%s\nDEVPATH=%s\nID_TYPE=%s\nDEVTYPE=%s\nDEVNAME=%s\nID_FS_TYPE=%s\nID_BUS=%s\nID_FS_UUID=%s\nID_MODEL=%s\nID_PART_ENTRY_SIZE=%s", action, devpath, getenv("ID_TYPE") ? getenv("ID_TYPE") : "disk", getenv("DEVTYPE"), getenv("DEVNAME"), getenv("ID_FS_TYPE"), getenv("ID_BUS"), getenv("ID_FS_UUID"), getenv("ID_MODEL") ? getenv("ID_MODEL") : getenv("ID_NAME"), devsize);
 							data[sizeof(data) - 1] = 0;
 							if (debug)
 								printf("%s\n", data);
@@ -138,11 +166,11 @@ int main(int argc, char *argv[])
 							}
 						}
 					}
-					else if(strcmp(action, "remove") == 0)
+					else if (strcmp(action, "remove") == 0)
 					{
-						if(getenv("DEVNAME"))
+						if (getenv("DEVNAME"))
 						{
-							snprintf(data, sizeof(data) - 1, "ACTION=%s\nDEVPATH=%s\nID_TYPE=%s\nDEVTYPE=%s\nDEVNAME=%s\nID_FS_UUID=%s", action, devpath, getenv("ID_TYPE") ? getenv("ID_TYPE") : "disk" , getenv("DEVTYPE"), getenv("DEVNAME"), getenv("ID_FS_UUID"));
+							snprintf(data, sizeof(data) - 1, "ACTION=%s\nDEVPATH=%s\nID_TYPE=%s\nDEVTYPE=%s\nDEVNAME=%s\nID_FS_UUID=%s", action, devpath, getenv("ID_TYPE") ? getenv("ID_TYPE") : "disk", getenv("DEVTYPE"), getenv("DEVNAME"), getenv("ID_FS_UUID"));
 							data[sizeof(data) - 1] = 0;
 							if (debug)
 								printf("%s\n", data);
@@ -150,7 +178,7 @@ int main(int argc, char *argv[])
 								send(sd, data, strlen(data) + 1, 0);
 						}
 					}
-					else if(strcmp(action, "ifup") == 0)
+					else if (strcmp(action, "ifup") == 0)
 					{
 						snprintf(data, sizeof(data) - 1, "ACTION=%s\nINTERFACE=%s", action, devpath);
 						data[sizeof(data) - 1] = 0;
@@ -159,7 +187,7 @@ int main(int argc, char *argv[])
 						if (mode == 1)
 							send(sd, data, strlen(data) + 1, 0);
 					}
-					else if(strcmp(action, "ifdown") == 0)
+					else if (strcmp(action, "ifdown") == 0)
 					{
 						snprintf(data, sizeof(data) - 1, "ACTION=%s\nINTERFACE=%s", action, devpath);
 						data[sizeof(data) - 1] = 0;
@@ -168,7 +196,7 @@ int main(int argc, char *argv[])
 						if (mode == 1)
 							send(sd, data, strlen(data) + 1, 0);
 					}
-					else if(strcmp(action, "online") == 0)
+					else if (strcmp(action, "online") == 0)
 					{
 						snprintf(data, sizeof(data) - 1, "ACTION=%s\nSTATE=%s", action, devpath);
 						data[sizeof(data) - 1] = 0;
@@ -179,10 +207,11 @@ int main(int argc, char *argv[])
 					}
 				}
 			}
-			else 
+			else
 			{
 
-				if (!action) action = getenv("ACTION");
+				if (!action)
+					action = getenv("ACTION");
 				if (action)
 				{
 					snprintf(data, sizeof(data) - 1, "ACTION=%s", action);
@@ -203,7 +232,8 @@ int main(int argc, char *argv[])
 				if (!devpath)
 				{
 					devpath = getenv("DEVPATH");
-					if (!devpath) devpath = "-";
+					if (!devpath)
+						devpath = "-";
 				}
 				snprintf(data, sizeof(data) - 1, "DEVPATH=%s", devpath);
 				data[sizeof(data) - 1] = 0;
@@ -211,14 +241,13 @@ int main(int argc, char *argv[])
 				if (!physdevpath)
 				{
 					physdevpath = getenv("PHYSDEVPATH");
-					if (!physdevpath) physdevpath = "-";
+					if (!physdevpath)
+						physdevpath = "-";
 				}
 				snprintf(data, sizeof(data) - 1, "PHYSDEVPATH=%s", physdevpath);
 				data[sizeof(data) - 1] = 0;
 				send(sd, data, strlen(data) + 1, 0);
-
 			}
-
 		}
 		if (mode != 2)
 			close(sd);
