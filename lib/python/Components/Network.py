@@ -110,7 +110,7 @@ class Network:
 				break
 		newlines = []
 		for line in lines:
-			if line and line[0] == "#":
+			if line and line[0] == "#" and "inet6 dhcp" not in line:
 				newlines.append(line[1:])
 			else:
 				newlines.append(line)
