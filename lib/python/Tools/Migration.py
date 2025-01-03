@@ -1,3 +1,4 @@
+from ast import literal_eval
 from Components.config import ConfigBoolean, ConfigText, config
 
 
@@ -10,9 +11,9 @@ def migrateSettings():
 	if migrationVersion < 1:
 		migrateMenuSort()
 		migrateTimeshift()
-	# elif migrationVersion < 2:
-	# 	migrateNextChange()
-	config.misc.migrationVersion.value = "1"
+	if migrationVersion < 2:
+		migrateReorderConfig()
+	config.misc.migrationVersion.value = "2"
 	config.misc.migrationVersion.save()
 
 
@@ -105,3 +106,16 @@ def migrateTimeshift():
 				getattr(config.timeshift, item[1]).save()
 	except Exception as err:
 		print("[Migration] migrateTimeshift Error: %s!" % str(err))
+
+def migrateReorderConfig():
+	# Convert ChoiceBox reorderConfig settings from ", " seperator to list representation.
+	try:
+		for (k, c) in config.misc.pluginlist.dict().items():
+			try:
+				literal_eval(c.value)
+			except Exception:
+				print("[Migration] migrateReorderConfig: Value converted from '%s' to '%s'." % (c.value, str(c.value.split(","))))
+				c.value = str([x for x in c.value.split(",") if x])
+				c.save()
+	except Exception as err:
+		print("[Migration] migrateReorderConfig Error: %s!" % str(err))
