@@ -30,7 +30,7 @@ self.condition = not self.smallFlashSize and self.getFreeMemory() &lt; 128 and n
 		<list type="dynamic" source="swapDeviceList" evaluation="swapDeviceSelectionMade" onselect="swapDeviceSelectionMoved"/>
 		<code async="yes">
 self.readSwapDevices(self.afterAsyncCode)
-if not self.isFlashExpanderActive()
+if not self.isFlashExpanderActive():
 	self["key_yellow"].setText(_("Format"))
 		</code>
 		<code pos="after" async="yes">
