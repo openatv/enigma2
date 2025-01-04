@@ -1,6 +1,6 @@
 # Poland translations for Enigma2.
 #
-# pololoko111 <peciek83@gmail.com>, 2021, 2022, 2023, 2024.
+# pololoko111 <peciek83@gmail.com>, 2021, 2022, 2023, 2024, 2025.
 # openATV <openatv@gmail.com>, 2021.
 # Grzegorz <grzegorz914@icloud.com>, 2021, 2022.
 # drakulis <drakulis@interia.pl>, 2022, 2023, 2024.
@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-12-31 15:16+0000\n"
-"PO-Revision-Date: 2024-12-21 14:15+0000\n"
+"PO-Revision-Date: 2025-01-04 02:00+0000\n"
 "Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -105,7 +105,7 @@ msgid "!! Boot loader Upgrade !!"
 msgstr "!! Aktualizacja Bootloadera !!"
 
 msgid "# = Reboot Required"
-msgstr ""
+msgstr "# = Wymagane ponowne uruchomienie"
 
 msgid "%-H:%M"
 msgstr "%-H:%M"
@@ -1600,18 +1600,18 @@ msgstr "Plik z nośnika jest w użyciu!"
 
 #, python-format
 msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
-msgstr "Programator zasilania chce ponownie uruchomić %s %s. Zrobić to teraz?"
+msgstr "Zakończony zaplanowany timer chce ponownie uruchomić %s %s. Czy zrobić to teraz?"
 
 msgid "A finished scheduled timer wants to restart the user interface. Do that now?"
-msgstr "Wykonany timer zasilania chce ponownie uruchomić interfejs użytkownika. Czy chcesz to zrobić teraz?"
+msgstr "Zakończony zaplanowany timer chce ponownie uruchomić interfejs użytkownika. Czy zrobić to teraz?"
 
 #, python-format
 msgid "A finished scheduled timer wants to set your %s %s to standby. Do that now?"
-msgstr "Wykonany timer zasilania chce ustawić %s %s w stan czuwania. Zrobić to teraz?"
+msgstr "Zakończony zaplanowany timer chce ustawić %s %s w tryb gotowości. Czy zrobić to teraz?"
 
 #, python-format
 msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
-msgstr "Timer zasilania chce wyłączyć %s %s. Zrobić to teraz?"
+msgstr "Zakończony zaplanowany timer chce wyłączyć %s %s. Czy chcesz to teraz zrobić?"
 
 #, python-format
 msgid ""
@@ -1633,7 +1633,7 @@ msgid "A highlight on the remote control image shows which button the help refer
 msgstr "Podświetlenie na obrazie pilota zdalnego sterowania wskazuje, do którego przycisku odnosi się pomoc. Jeśli więcej niż jeden przycisk wykonuje wskazaną funkcję, wyświetlone zostanie więcej niż jedno podświetlenie. Tekst poniżej listy zawiera listę aktywnych przycisków oraz informację, czy dana funkcja wymaga długiego naciśnięcia przycisku lub naciśnięcia przycisku SHIFT."
 
 msgid "A new storage device has been connected:"
-msgstr ""
+msgstr "Podłączono nowe urządzenie pamięci masowej:"
 
 #, python-format
 msgid ""
@@ -1826,7 +1826,7 @@ msgid "Action on short POWER button press"
 msgstr "Akcja dla przycisku 'Power'"
 
 msgid "Actions"
-msgstr ""
+msgstr "Akcje"
 
 msgid "Activate"
 msgstr "Aktywuj"
@@ -2757,7 +2757,7 @@ msgid "Automatic scan for services"
 msgstr "Automatyczne skanowanie kanałów"
 
 msgid "Automatic shares access"
-msgstr ""
+msgstr "Automatyczny dostęp do udziałów"
 
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr "Automatycznie wyłącz TV jeśli tuner przejdzie w tryb czuwania lub zostanie wyłączony."
@@ -4268,10 +4268,10 @@ msgid "Close screen"
 msgstr "Zamknij ekran"
 
 msgid "Close the Device Manager screen"
-msgstr ""
+msgstr "Zamknij ekran Menedżera urządzeń"
 
 msgid "Close the Device Manager screen and exit all menus"
-msgstr ""
+msgstr "Zamknij ekran Menedżera urządzeń i wyjdź ze wszystkich menu"
 
 msgid "Close the Kexec MultiBoot Manager"
 msgstr "Zamknij Menadżera Kexec MultiBoot"
@@ -5332,7 +5332,7 @@ msgid "Custom"
 msgstr "Zwykły"
 
 msgid "Custom mountpoint"
-msgstr ""
+msgstr "Niestandardowy punkt montowania"
 
 msgid "Custom skip time for '1'/'3' buttons"
 msgstr "Czas przeskoku dla klawiszy '1'/'3'"
@@ -5365,7 +5365,7 @@ msgid "Cutlist editor..."
 msgstr "Edytor składni..."
 
 msgid "Cyan"
-msgstr ""
+msgstr "Cyjan"
 
 msgid "Cycle PiP(zap)"
 msgstr "Cykl PIP(przełącz)"
@@ -5450,7 +5450,7 @@ msgid "DVB subtitle black transparency"
 msgstr "Czarne przeźroczyste napisy"
 
 msgid "DVB subtitles color"
-msgstr ""
+msgstr "Kolor napisów DVB"
 
 msgid "DVB-C"
 msgstr "DVB-C"
@@ -5790,10 +5790,10 @@ msgid "Define the DNS suffix."
 msgstr "Zdefiniuj DNS suffix."
 
 msgid "Define the custom mountpoint for the device."
-msgstr ""
+msgstr "Zdefiniuj niestandardowy punkt montowania dla urządzenia."
 
 msgid "Define the file system mount options."
-msgstr ""
+msgstr "Zdefiniuj opcje montowania systemu plików."
 
 msgid "Defined / Active"
 msgstr "Zdefiniowany/Aktywny"
@@ -6109,13 +6109,13 @@ msgid "Development Packages"
 msgstr "Pakiety developerskie"
 
 msgid "Device"
-msgstr ""
+msgstr "Urządzenie"
 
 msgid "Device Manager"
 msgstr "Menadżer urządzeń"
 
 msgid "Device Manager Actions"
-msgstr ""
+msgstr "Akcje Menedżera urządzeń"
 
 msgid "Device Settings"
 msgstr "Ustawienia LAN/WLAN"
@@ -7090,7 +7090,7 @@ msgid "Enable auto fast scan for %s"
 msgstr "Włącz automatyczny fastscan dla %s"
 
 msgid "Enable automatic shares"
-msgstr ""
+msgstr "Włącz automatyczne udostępnianie"
 
 msgid "Enable autorefresh templates."
 msgstr "Włącz automatyczne odświeżanie szablonów."
@@ -7773,7 +7773,7 @@ msgid "Even if TV has another input active?"
 msgstr "Nawet jeśli TV/AV ma inne aktywne wejście?"
 
 msgid "Even if a 'Wakeup' scheduled task starting?"
-msgstr "Nawet jeśli zacznie działać timer 'wybudzania'?"
+msgstr "Nawet jeśli rozpocznie się zaplanowane zadanie „Wybudzenia”?"
 
 msgid "Even if a 'Zap and Record' recording timer starting?"
 msgstr "Nawet jeśli uruchomi się timer nagrywania „Zap and Record”?"
@@ -8303,7 +8303,7 @@ msgid "File Commander settings"
 msgstr "Ustawienia File Commander"
 
 msgid "File system"
-msgstr ""
+msgstr "System plików"
 
 msgid "File System Check"
 msgstr "Sprawdź system plików"
@@ -8334,7 +8334,7 @@ msgid "Files/folders to exclude from backup"
 msgstr "Wykluczone pliki z kopii zapasowej"
 
 msgid "Filesystem"
-msgstr ""
+msgstr "System plików"
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr "Wypełnij EPG kanału z EPG transmisji, w której nie ma EPG IceTV dla kanału"
@@ -8539,7 +8539,7 @@ msgid "Format Storage Device"
 msgstr "Formatuj urządzenie pamięci masowej"
 
 msgid "Formatting storage device..."
-msgstr ""
+msgstr "Formatowanie urządzenia pamięci masowej..."
 
 msgid "Forward Error Correction (FEC)"
 msgstr "Korekcja błędów (FEC)"
@@ -8879,7 +8879,7 @@ msgid "Grab"
 msgstr "Chwyć"
 
 msgid "Graphical DVB subtitles will be displayed in the selected color, instead of the original colors."
-msgstr ""
+msgstr "Graficzne napisy DVB będą wyświetlane w wybranym kolorze, a nie w kolorach oryginalnych."
 
 msgid "Graphical EPG"
 msgstr "Graficzny EPG"
@@ -10868,7 +10868,7 @@ msgid "Madagascar"
 msgstr "Madagaskar"
 
 msgid "Magenta"
-msgstr ""
+msgstr "Magenta"
 
 msgid "Magic"
 msgstr "Magia"
@@ -11326,7 +11326,7 @@ msgid "Mount Menu Actions"
 msgstr "Akcje menu montowania"
 
 msgid "Mount Point"
-msgstr ""
+msgstr "Punkt montowania"
 
 msgid "Mount Settings"
 msgstr "Ustawienia montowania"
@@ -11988,7 +11988,7 @@ msgid "New Setting DXAndy "
 msgstr "Nowe ustawienie DXAndy "
 
 msgid "New Storage Device"
-msgstr ""
+msgstr "Nowe urządzenie pamięci masowej"
 
 msgid "New Zealand"
 msgstr "Nowa Zelandia"
@@ -12787,7 +12787,7 @@ msgid "Optional parameter"
 msgstr "Parametr opcjonalny"
 
 msgid "Options"
-msgstr ""
+msgstr "Opcje"
 
 msgid "Orbital position"
 msgstr "Pozycja orbitalna"
@@ -13046,7 +13046,7 @@ msgid "Partition"
 msgstr "Partycja"
 
 msgid "Partition Type"
-msgstr ""
+msgstr "Typ partycji"
 
 msgid "Partitions"
 msgstr "Partycje"
@@ -13076,7 +13076,7 @@ msgid "Password changed."
 msgstr "Hasło zostało zmienione."
 
 msgid "Path"
-msgstr ""
+msgstr "Ścieżka"
 
 #, python-format
 msgid "Path '%s' missing!"
@@ -13125,11 +13125,11 @@ msgid "Permanently delete all recordings in the trash can?"
 msgstr "Czy usunąć z kosza wszystkie nagrania?"
 
 msgid "Permanently ignore this device"
-msgstr ""
+msgstr "Trwale zignoruj to urządzenie"
 
 #, python-format
 msgid "Permanently mount as %s"
-msgstr ""
+msgstr "Zamontuj na stałe jako %s"
 
 msgid "Permanently remove all deleted items"
 msgstr "Usuń trwale wszystkie usunięte elementy"
@@ -13665,7 +13665,7 @@ msgid "Portuguese"
 msgstr "Portugalski"
 
 msgid "Position"
-msgstr ""
+msgstr "Pozycja"
 
 msgid "Position of finished Timers in Timerlist"
 msgstr "Lista pozycji do wykonania w liście timera"
@@ -14287,13 +14287,13 @@ msgid "Re-enter new PIN"
 msgstr "Wprowadź ponownie nowy kod PIN"
 
 msgid "Read Only"
-msgstr ""
+msgstr "Tylko do odczytu"
 
 msgid "Read Userdata from oscam.conf"
 msgstr "Czytaj dane użytkownika w oscam.conf"
 
 msgid "Read/Write"
-msgstr ""
+msgstr "Odczyt/Zapis"
 
 msgid "Reader"
 msgstr "Czytnik"
@@ -14364,7 +14364,7 @@ msgstr "Uruchom ponownie"
 
 #, python-format
 msgid "Reboot %s %s now?"
-msgstr ""
+msgstr "Czy teraz zrestartować %s %s?"
 
 msgid "Rec"
 msgstr "Nagrywanie"
@@ -15333,7 +15333,7 @@ msgid "Samba Server"
 msgstr "Serwer Samba"
 
 msgid "Samba Settings"
-msgstr ""
+msgstr "Ustawienia Samby"
 
 msgid "Same as in active"
 msgstr "Taki sam jak w aktywnym"
@@ -15585,7 +15585,7 @@ msgid "Scheduled save of epg.dat"
 msgstr "Planowane zapisywanie pliku epg.dat"
 
 msgid "Scheduler"
-msgstr ""
+msgstr "Harmonogram"
 
 msgid "Scheduler Actions"
 msgstr "Akcje programatora zasilania"
@@ -15594,7 +15594,7 @@ msgid "Scheduler Overview"
 msgstr "Programatory zasilania"
 
 msgid "Scheduler Settings"
-msgstr ""
+msgstr "Ustawienia harmonogramu"
 
 msgid "Scheduler Standby"
 msgstr "Programator czuwania"
@@ -15789,7 +15789,7 @@ msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media
 msgstr "Jeśli jest ustawione na 'tak' pasek informacyjny pozostanie wyświetlany na stałe w stanie 'pauzy' (bez timeoutu)."
 
 msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
-msgstr ""
+msgstr "Wybierz „Tak”, aby zezwolić na automatyczny eksport każdego wykrytego urządzenia pamięci masowej jako udziału Samba."
 
 msgid "Select 'Yes' to allow use of the seek bar to jump to a selected point within the event."
 msgstr "Jeśli ustawione na 'tak', pozwala wykorzystać pasek wyszukiwania do przewijania timeshift'u."
@@ -16099,10 +16099,10 @@ msgid "Select a network adapter"
 msgstr "Wybierz kartę sieciową"
 
 msgid "Select a permanent mount point for all devices"
-msgstr ""
+msgstr "Wybierz stały punkt montowania dla wszystkich urządzeń"
 
 msgid "Select a permanent mount point for the current device"
-msgstr ""
+msgstr "Wybierz stały punkt montowania dla bieżącego urządzenia"
 
 msgid "Select a repository commit log to view:"
 msgstr "Wybierz log z repozytorium, który chcesz zobaczyć:"
@@ -16136,7 +16136,7 @@ msgid "Select all related files"
 msgstr "Wybierz wszystkie powiązane pliki"
 
 msgid "Select an action for the current device"
-msgstr ""
+msgstr "Wybierz akcję dla bieżącego urządzenia"
 
 msgid "Select an action to perform when the task has completed."
 msgstr "Wybierz działanie, które ma zostać wykonane po zakończeniu zadania."
@@ -16330,7 +16330,7 @@ msgid "Select the Yes / True response"
 msgstr "Wybierz odpowiedź jako Tak/Prawda"
 
 msgid "Select the access mode for the automatically exported samba shares."
-msgstr ""
+msgstr "Wybierz tryb dostępu dla automatycznie eksportowanych udziałów Samba."
 
 #, python-format
 msgid "Select the action for '%s'"
@@ -16428,7 +16428,7 @@ msgid "Select the file sort order for the %s column:"
 msgstr "Wybierz kolejność sortowania plików dla kolumny %s:"
 
 msgid "Select the file system for the device."
-msgstr ""
+msgstr "Wybierz system plików dla urządzenia."
 
 msgid "Select the first item in list or move to the start of text"
 msgstr "Zaznacz pierwszy element na liście lub przejdź na początek tekstu"
@@ -16485,10 +16485,10 @@ msgid "Select the model number of your Unicable device. If the model number is n
 msgstr "Wybierz numer modelu swojego urządzenia Unicable. Jeśli numeru modelu nie ma na liście, ustaw „SCR” na „zdefiniowane przez użytkownika” i ręcznie wprowadź parametry urządzenia zgodnie z arkuszem specyfikacji."
 
 msgid "Select the mount points"
-msgstr ""
+msgstr "Wybierz punkty montowania"
 
 msgid "Select the mountpoint for the device."
-msgstr ""
+msgstr "Wybierz punkt montowania dla urządzenia."
 
 msgid "Select the movie path"
 msgstr "Wybierz ścieżkę do filmu"
@@ -16507,7 +16507,7 @@ msgstr ""
 
 #, python-format
 msgid "Select the new mount point for: '%s'"
-msgstr ""
+msgstr "Wybierz nowy punkt montowania dla: '%s'"
 
 msgid "Select the next item in list or move the cursor right"
 msgstr "Wybierz następną pozycję na liście lub przesuń kursor w prawo"
@@ -18067,7 +18067,7 @@ msgid "Show the OSCam information screen"
 msgstr "Pokaż ekran informacyjny OSCam"
 
 msgid "Show the Scheduler"
-msgstr ""
+msgstr "Pokaż harmonogram"
 
 msgid "Show the SleepTimer"
 msgstr "Pokaż timer czuwania"
@@ -19194,7 +19194,7 @@ msgid "Swahili"
 msgstr "Suahili"
 
 msgid "Swap"
-msgstr ""
+msgstr "Zamień"
 
 msgid "Swap File Manager"
 msgstr "Menadżer pliku wymiany"
@@ -19583,7 +19583,7 @@ msgstr "Katalog tymczasowy (%s)"
 
 #, python-format
 msgid "Temporarily mount as %s"
-msgstr ""
+msgstr "Tymczasowo zamontuj jako %s"
 
 msgid "Temporary directory"
 msgstr "Katalog tymczasowy"
@@ -20691,7 +20691,7 @@ msgid "Toggle a cut mark at the current position"
 msgstr "Przełącz wycięty znak w bieżącej pozycji"
 
 msgid "Toggle a temporary mount for the current device"
-msgstr ""
+msgstr "Przełącz tymczasowe montowanie dla bieżącego urządzenia"
 
 msgid "Toggle all related files"
 msgstr "Przełącz wszystkie powiązane pliki"
@@ -21196,7 +21196,7 @@ msgid "Unknown"
 msgstr "Nieznany"
 
 msgid "Unknown Devices"
-msgstr ""
+msgstr "Nieznane urządzenia"
 
 msgid ""
 "Unknown Error creating Skin.\n"
@@ -22542,10 +22542,10 @@ msgid "Wipe"
 msgstr "Wyczyść"
 
 msgid "Wipe Storage Device"
-msgstr ""
+msgstr "Wyczyść urządzenie pamięci masowej"
 
 msgid "Wiping storage device..."
-msgstr ""
+msgstr "Czyszczenie urządzenia pamięci masowej..."
 
 msgid "Wireless LAN"
 msgstr "Sieć Bezprzewodowa LAN"
