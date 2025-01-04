@@ -187,7 +187,7 @@ class ChoiceBoxNew(Screen):
 	def keyResetList(self):
 		def keyResetListCallback(answer):
 			if answer:
-				self.configOrder.value = ""
+				self.configOrder.value = self.configOrder.default
 				self.configOrder.save()
 
 		self.session.openWithCallback(keyResetListCallback, MessageBox, _("Reset list order to the default list order?"), MessageBox.TYPE_YESNO, windowTitle=self.getTitle())
