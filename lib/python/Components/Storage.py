@@ -30,8 +30,8 @@
 
 
 from glob import glob
-from os import unlink, mkdir
-from os.path import exists, realpath
+from os import listdir, mkdir, rmdir, unlink
+from os.path import exists, ismount, join, realpath
 
 
 from Components.Task import Job, LoggingTask, ConditionTask, ReturncodePostcondition
@@ -421,3 +421,17 @@ def getProcMountsNew():
 		# Replace encoded space (\040) and newline (\012) characters with actual space and newline
 		result.append([s.replace("\\040", " ").replace("\\012", "\n") for s in line.strip(" \n").split(" ")])
 	return result
+
+
+def cleanMediaDirs():
+	mounts = getProcMountsNew()
+	mounts = [x[1] for x in mounts if x[1].startswith("/media/")]
+	for directory in listdir("/media"):
+		if directory not in ("autofs", "hdd"):
+			mediaDirectory = join("/media/", directory)
+			if mediaDirectory not in mounts and not ismount(mediaDirectory):
+				print(f"[Storage] remove directory {mediaDirectory} because of unmount")
+				try:
+					rmdir(mediaDirectory)
+				except OSError as err:
+					print(f"[Storage] Error {err.errno}: Failed delete '{mediaDirectory}'!  ({err.strerror})")
