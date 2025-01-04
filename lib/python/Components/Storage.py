@@ -298,7 +298,7 @@ class UUIDTask(ConditionTask):
 						break
 				for i, line in enumerate(knownDevices):
 					if line.startswith(olduuid):
-						fstab[i] = line.replace(f"{olduuid}", f"{newuuid}")
+						knownDevices[i] = line.replace(f"{olduuid}", f"{newuuid}")
 						print(f"[UUIDTask] known_devices UUID changed from {olduuid} to {newuuid}")
 						saveknownDevices = True
 						break
@@ -311,7 +311,7 @@ class UUIDTask(ConditionTask):
 						break
 				for i, line in enumerate(knownDevices):
 					if line.startswith(olduuid):
-						fstab[i] = ""
+						knownDevices[i] = ""
 						print(f"[UUIDTask] known_devices UUID {olduuid} removed")
 						saveknownDevices = True
 						break
