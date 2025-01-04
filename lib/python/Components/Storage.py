@@ -305,7 +305,7 @@ class UUIDTask(ConditionTask):
 			if not newuuid:
 				for i, line in enumerate(fstab):
 					if line.find(f"UUID={olduuid}") != -1:
-						fstab[i] = f"#{line}"
+						fstab[i] = ""
 						print(f"[UUIDTask] fstab UUID {olduuid} removed")
 						saveFstab = True
 						break
