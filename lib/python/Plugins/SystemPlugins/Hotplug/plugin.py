@@ -7,7 +7,7 @@ from enigma import getDeviceDB, eTimer
 
 from Components.Console import Console
 from Components.Harddisk import harddiskmanager
-from Components.Storage import EXPANDER_MOUNT
+from Components.Storage import EXPANDER_MOUNT, cleanMediaDirs
 from Plugins.Plugin import PluginDescriptor
 from Screens.MessageBox import ModalMessageBox
 from Tools.Directories import fileReadLines, fileWriteLines
@@ -62,6 +62,7 @@ def autostart(reason, **kwargs):
 				remove(HOTPLUG_SOCKET)
 		except OSError:
 			pass
+		cleanMediaDirs()  # Initial cleanup
 		factory = Factory()
 		factory.protocol = Hotplug
 		reactor.listenUNIX(HOTPLUG_SOCKET, factory)
@@ -70,13 +71,15 @@ def autostart(reason, **kwargs):
 class HotPlugManager:
 	def __init__(self):
 		self.newCount = 0
-		self.timer = eTimer()
-		self.timer.callback.append(self.processDeviceData)
+		self.addTimer = eTimer()
+		self.addTimer.callback.append(self.processAddDevice)
+		self.removeTimer = eTimer()
+		self.removeTimer.callback.append(self.processRemoveDevice)
 		self.deviceData = []
 		self.addedDevice = []
 
-	def processDeviceData(self):
-		self.timer.stop()
+	def processAddDevice(self):
+		self.addTimer.stop()
 		if self.deviceData:
 			eventData = self.deviceData.pop()
 			DEVPATH = eventData.get("DEVPATH")
@@ -84,7 +87,7 @@ class HotPlugManager:
 			ID_MODEL = eventData.get("ID_MODEL")
 			if eventData["DEVTYPE"] == "disk":
 				harddiskmanager.addHotplugPartition(DEVNAME, DEVPATH, ID_MODEL)
-				self.timer.start(100)
+				self.addTimer.start(100)
 				return
 
 			ID_FS_TYPE = "auto"  # eventData.get("ID_FS_TYPE")
@@ -181,14 +184,14 @@ class HotPlugManager:
 						if answer in (1, 3, 4, 5):
 							fileWriteLines("/etc/udev/known_devices", knownDevices)
 					self.addedDevice.append((DEVNAME, DEVPATH, ID_MODEL))
-					self.timer.start(1000)
+					self.addTimer.start(1000)
 
 				default = 3
 				choiceList = [
 					(_("Do nothing"), 0),
 					(_("Permanently ignore this device"), 1),
 					(_("Temporarily mount as %s") % mountPoint, 2),
-					(_("Permanently mount as %s" % mountPoint), 3)
+					(_("Permanently mount as %s") % mountPoint, 3)
 				]
 				if mountPointHdd:
 					default = 4
@@ -201,12 +204,16 @@ class HotPlugManager:
 				ModalMessageBox.instance.showMessageBox(text=text, list=choiceList, default=default, windowTitle=_("New Storage Device"), callback=newDeviceCallback)
 			else:
 				self.addedDevice.append((DEVNAME, DEVPATH, ID_MODEL))
-				self.timer.start(1000)
+				self.addTimer.start(1000)
 		else:
 			if self.newCount:
 				self.newCount = 0
 				for device, physicalDevicePath, model in self.addedDevice:
 					harddiskmanager.addHotplugPartition(device, physicalDevicePath, model=model)
+
+	def processRemoveDevice(self):
+		self.removeTimer.stop()
+		cleanMediaDirs()
 
 	def processHotplugData(self, eventData):
 		mode = eventData.get("mode")
@@ -214,12 +221,12 @@ class HotPlugManager:
 		action = eventData.get("ACTION")
 		if mode == 1:
 			if action == "add":
-				self.timer.stop()
+				self.addTimer.stop()
 				ID_TYPE = eventData.get("ID_TYPE")
 				DEVTYPE = eventData.get("DEVTYPE")
 				if ID_TYPE == "disk" and DEVTYPE in ("partition", "disk"):
 					self.deviceData.append(eventData)
-					self.timer.start(1000)
+					self.addTimer.start(1000)
 
 			elif action == "remove":
 				ID_TYPE = eventData.get("ID_TYPE")
@@ -228,6 +235,8 @@ class HotPlugManager:
 				if ID_TYPE == "disk" and DEVTYPE in ("partition", "disk"):
 					device = eventData.get("DEVNAME")
 					harddiskmanager.removeHotplugPartition(device)
+					self.removeTimer.stop()
+					self.removeTimer.start(2000)
 			elif action == "ifup":
 				interface = eventData.get("INTERFACE")
 			elif action == "ifdown":
