@@ -180,7 +180,7 @@ class StartWizard(Wizard, ShowRemoteControl):
 				device = parts[3]
 				if not device.startswith(black) and (search(r"^sd[a-z][1-9][\d]*$", device) or search(r"^mmcblk[\d]p[\d]*$", device)):
 					count += 1
-		return count > 0
+		return count > 1
 
 	def keyYellow(self):
 		if self.wizard[self.currStep]["name"] == "swap":
