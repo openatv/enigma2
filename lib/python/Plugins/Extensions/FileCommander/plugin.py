@@ -1010,7 +1010,7 @@ class FileCommander(Screen, NumericalTextInput, StatInfo):
 
 	def keyManageBookmarks(self, current):
 		bookmarks = config.plugins.FileCommander.bookmarks.value
-		order = config.misc.pluginlist.fc_bookmarks_order.value.split(",")
+		order = eval(config.misc.pluginlist.fcBookmarksOrder.value)
 		directory = current and self.sourceColumn.getCurrentDirectory() or self.sourceColumn.getPath()
 		if directory in bookmarks:
 			bookmarks.remove(directory)
@@ -1024,8 +1024,8 @@ class FileCommander(Screen, NumericalTextInput, StatInfo):
 			self.displayStatus(_("Bookmark added."))
 		config.plugins.FileCommander.bookmarks.value = bookmarks
 		config.plugins.FileCommander.bookmarks.save()
-		config.misc.pluginlist.fc_bookmarks_order.value = ",".join(order)
-		config.misc.pluginlist.fc_bookmarks_order.save()
+		config.misc.pluginlist.fcBookmarksOrder.value = str(order)
+		config.misc.pluginlist.fcBookmarksOrder.save()
 
 	def keyMediaInfo(self):
 		self.shortcutAction("mediainfo")
@@ -1576,13 +1576,13 @@ class FileCommander(Screen, NumericalTextInput, StatInfo):
 
 		bookmarks = [(x, x) for x in config.plugins.FileCommander.bookmarks.value]
 		bookmarks.insert(0, (_("Storage Devices"), None))
-		order = config.misc.pluginlist.fc_bookmarks_order.value.split(",")
+		order = eval(config.misc.pluginlist.fcBookmarksOrder.value)
 		if order and _("Storage Devices") in order:
 			order.remove(_("Storage Devices"))
 		order.insert(0, _("Storage Devices"))
-		config.misc.pluginlist.fc_bookmarks_order.value = ",".join(order)
-		config.misc.pluginlist.fc_bookmarks_order.save()
-		self.session.openWithCallback(selectBookmarkCallback, ChoiceBox, title=_("Select Bookmark"), list=bookmarks, reorderConfig="fc_bookmarks_order")
+		config.misc.pluginlist.fcBookmarksOrder.value = str(order)
+		config.misc.pluginlist.fcBookmarksOrder.save()
+		self.session.openWithCallback(selectBookmarkCallback, ChoiceBox, title=_("Select Bookmark"), list=bookmarks, reorderConfig="fcBookmarksOrder")
 
 	def keySettings(self):
 		def settingsCallback(*answer):
