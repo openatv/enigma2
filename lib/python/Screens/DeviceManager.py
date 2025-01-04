@@ -39,7 +39,7 @@ from enigma import getDeviceDB
 from Components.ActionMap import HelpableActionMap
 from Components.config import ConfigSelection, ConfigText, NoSave
 from Components.Console import Console
-from Components.Storage import StorageDevice, getProcMountsNew, EXPANDER_MOUNT
+from Components.Storage import StorageDevice, cleanMediaDirs, getProcMountsNew, EXPANDER_MOUNT
 from Components.Label import Label
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
@@ -534,9 +534,6 @@ class DeviceManager(Screen):
 		storageDeviceList, unknownList = self.storageDevices.createDevicesList()
 		for storageDevice in storageDeviceList:
 
-#			if storageDevice.get("device").startswith("m"):
-#				continue
-
 			deviceDisplayName = "" if storageDevice.get("isPartition") else storageDevice.get("device")
 			deviceDisplayNameIndent = storageDevice.get("device") if storageDevice.get("isPartition") else ""
 
@@ -556,7 +553,6 @@ class DeviceManager(Screen):
 				else:
 					rw = ""
 
-#				fs = storageDevice.get("mountFsType")
 				fs = storageDevice.get("fsType")
 				if fs == "swap":
 					swapState = _("On") if storageDevice.get("swapState") else _("Off")
@@ -706,6 +702,7 @@ class DeviceManager(Screen):
 						for parts in mounts:
 							if parts[1] == storageDevice.get("mountPoint"):
 								self.session.open(MessageBox, _("Can't unmount partition, make sure it is not being used for swap or record/time shift paths"), MessageBox.TYPE_INFO)
+						cleanMediaDirs()
 					else:
 						title = _("Select the new mount point for: '%s'") % storageDevice.get("model")
 						fstab = fileReadLines("/etc/fstab", default=[], source=MODULE_NAME)
@@ -844,6 +841,7 @@ class DeviceManager(Screen):
 
 
 class DeviceManagerMountPoints(Setup):
+	UMOUNT = "/bin/umount"
 	MOUNT = "/bin/mount"
 	defaultOptions = {
 		"auto": "",
@@ -868,6 +866,7 @@ class DeviceManagerMountPoints(Setup):
 		self.mountPoints = []
 		self.customMountPoints = []
 		self.fileSystems = []
+		self.deviceMounts = []
 		self.options = []
 		single = index != -1
 		fstab = fileReadLines("/etc/fstab", default=[], source=MODULE_NAME) if single else []
@@ -974,6 +973,18 @@ class DeviceManagerMountPoints(Setup):
 #			if answer[0] == "None" or device != current[4] or current[5] != isMounted or mountp != current[3]:
 #				self.needReboot = True
 
+			mounts = getProcMountsNew()
+			mediaMounts = [f"{x[0]}:{x[1]}" for x in mounts if x[1].startswith("/media/")]
+			removeMounts = []
+			for removeMount in [x for x in mediaMounts if x not in self.deviceMounts]:
+				mountPoint = removeMount.split(":")[1]
+				removeMounts.append(mountPoint)
+			if removeMounts:
+				Console().ePopen([self.UMOUNT, self.UMOUNT] + removeMounts)
+				Console().ePopen([self.MOUNT, self.MOUNT, "-a"])
+
+			cleanMediaDirs()
+
 			self.close(needReboot)
 
 		oldFstab = fileReadLines("/etc/fstab", default=[], source=MODULE_NAME)
@@ -991,6 +1002,8 @@ class DeviceManagerMountPoints(Setup):
 			if not found or EXPANDER_MOUNT in line:
 				newFstab.append(line)
 
+		self.deviceMounts = []
+
 		for index, device in enumerate(self.devices):
 			mountPoint = self.mountPoints[index].value or f"/media/{self.customMountPoints[index].value}"
 			fileSystem = self.fileSystems[index].value
@@ -998,6 +1011,7 @@ class DeviceManagerMountPoints(Setup):
 			# device , fstabmountpoint, isMounted , deviceUuid, name, choiceList
 			UUID = device[3]
 			if mountPoint != "None":
+				self.deviceMounts.append(f"{device[0]}:{mountPoint}")
 				if UUID:
 					newFstab.append(f"UUID={device[3]}\t{mountPoint}\t{fileSystem}\t{options}\t0 0")
 				else:  # This should not happen
