@@ -888,7 +888,7 @@ class DeviceManagerMountPoints(Setup):
 				possibleMounts = [f"/media/{x}" for x in self.storageDevices.getMountPoints(deviceType)]
 				if single:
 					for mounts in fstab:
-						if mounts.split()[1] in possibleMounts:
+						if mounts and mounts.split()[1] in possibleMounts:
 							possibleMounts.remove(mounts.split()[1])
 					choiceList.extend([(x, x) for x in possibleMounts])
 				else:
