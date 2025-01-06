@@ -90,6 +90,7 @@ class StorageDevice():
 	def createFormatJob(self, options):
 		fsType = options.get("fsType", "ext4")
 		label = options.get("label")
+		label.replace(" ", "_")
 		job = Job(_("Formatting storage device..."))
 		UnmountTask(job, self)
 		UnmountSwapTask(job, self)
@@ -103,6 +104,8 @@ class StorageDevice():
 		if fsType == "ntfs":
 			task.setTool("mkntfs")
 			task.args += ["-Q", "-F"]
+			if label:
+				task.args += ["-L", label]
 		if fsType == "swap":
 			task.setTool("mkswap")
 		elif fsType.startswith("ext"):
@@ -185,6 +188,7 @@ class StorageDevice():
 		for index, partition in enumerate(partitions):
 			fsType = partition.get("fsType", "ext4")
 			label = partition.get("label", f"DISK_{index + 1}")
+			label.replace(" ", "_")
 			device = f"{self.devicePoint}p{index + 1}" if "mmcblk" in self.devicePoint else f"{self.devicePoint}{index + 1}"
 			uuid = uuids.get(device)
 			oldFsType = fsTypes.get(device)
@@ -201,6 +205,8 @@ class StorageDevice():
 				if fsType == "ntfs":
 					task.setTool("mkntfs")
 					task.args += ["-Q", "-F"]
+					if label:
+						task.args += ["-L", label]
 				elif fsType.startswith("ext"):
 					big_o_options = ["dir_index"]
 					if self.size > 250000 * 1024 * 1024:
