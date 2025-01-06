@@ -54,7 +54,7 @@ class StorageDevice():
 		self.dev_path = self.devicePoint
 		self.disk_path = self.dev_path
 
-	def normalizeLabel(label):
+	def normalizeLabel(self, label):
 		label = label.replace(" ", "_")
 		return "".join([ch for ch in label if ch in (ascii_letters + digits + "_")])
 
