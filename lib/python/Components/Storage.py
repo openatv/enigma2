@@ -32,6 +32,7 @@
 from glob import glob
 from os import listdir, mkdir, rmdir, unlink
 from os.path import exists, ismount, join, realpath
+from string import ascii_letters, digits
 
 
 from Components.Task import Job, LoggingTask, ConditionTask, ReturncodePostcondition
@@ -52,6 +53,10 @@ class StorageDevice():
 		self.mount_device = None
 		self.dev_path = self.devicePoint
 		self.disk_path = self.dev_path
+
+	def normalizeLabel(label):
+		label = label.replace(" ", "_")
+		return "".join([ch for ch in label if ch in (ascii_letters + digits + "_")])
 
 	def findMount(self):
 		if self.mount_path is None:
@@ -90,7 +95,7 @@ class StorageDevice():
 	def createFormatJob(self, options):
 		fsType = options.get("fsType", "ext4")
 		label = options.get("label")
-		label.replace(" ", "_")
+		label = self.normalizeLabel(label)
 		job = Job(_("Formatting storage device..."))
 		UnmountTask(job, self)
 		UnmountSwapTask(job, self)
@@ -188,7 +193,7 @@ class StorageDevice():
 		for index, partition in enumerate(partitions):
 			fsType = partition.get("fsType", "ext4")
 			label = partition.get("label", f"DISK_{index + 1}")
-			label.replace(" ", "_")
+			label = self.normalizeLabel(label)
 			device = f"{self.devicePoint}p{index + 1}" if "mmcblk" in self.devicePoint else f"{self.devicePoint}{index + 1}"
 			uuid = uuids.get(device)
 			oldFsType = fsTypes.get(device)
