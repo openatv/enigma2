@@ -1,6 +1,6 @@
 from datetime import date
 from glob import glob
-from os import makedirs, listdir, stat, rename, remove
+from os import access, makedirs, listdir, stat, rename, remove, F_OK, R_OK, W_OK
 from os.path import exists, isdir, join
 
 from enigma import eTimer, eEnv, eConsoleAppContainer, eEPGCache
@@ -10,6 +10,7 @@ from Components.config import NoSave, configfile, ConfigSubsection, ConfigText, 
 from Components.config import config
 from Components.ConfigList import ConfigListScreen
 from Components.FileList import MultiFileSelectList
+from Components.Harddisk import harddiskmanager
 from Components.Label import Label
 from Components.MenuList import MenuList
 from Components.Sources.List import List
@@ -135,59 +136,87 @@ class BackupScreen(ConfigListScreen, Screen):
 			self.callLater(self.doBackup)
 
 	def doBackup(self):
-		self.shutdownOKOld = config.usage.shutdownOK.value
-		config.usage.shutdownOK.setValue(True)
-		config.usage.shutdownOK.save()
-		configfile.save()
-		try:
-			if config.plugins.softwaremanager.epgcache.value:
-				eEPGCache.getInstance().save()
-		except Exception:
-			pass
-		try:
-			backupFile = getBackupFilename()
-			if exists(self.backuppath) is False:
-				makedirs(self.backuppath)
-			fullbackupFilename = join(self.backuppath, backupFile)
-			if not hasattr(config.plugins, "configurationbackup"):
-				InitConfig()
-			backupDirs = " ".join(f.strip("/") for f in config.plugins.configurationbackup.backupdirs_default.value)
-			for f in config.plugins.configurationbackup.backupdirs.value:
-				if f.strip("/") not in backupDirs:
-					backupDirs += f" {f.strip('/')}"
-			for file in ("installed-list.txt", "changed-configfiles.txt", "passwd.txt", "groups.txt"):
-				if f"tmp/{file}" not in backupDirs:
-					backupDirs += f" tmp/{file}"
+		def backuplocationCB(path):
+			if path:
+				config.plugins.configurationbackup.backuplocation.value = path
+				config.plugins.configurationbackup.backuplocation.save()
+				config.plugins.configurationbackup.save()
+				config.save()
+				self.shutdownOKOld = config.usage.shutdownOK.value
+				config.usage.shutdownOK.setValue(True)
+				config.usage.shutdownOK.save()
+				configfile.save()
+				try:
+					if config.plugins.softwaremanager.epgcache.value:
+						eEPGCache.getInstance().save()
+				except Exception:
+					pass
+				try:
+					backupFile = getBackupFilename()
+					if exists(self.backuppath) is False:
+						makedirs(self.backuppath)
+					fullbackupFilename = join(self.backuppath, backupFile)
+					if not hasattr(config.plugins, "configurationbackup"):
+						InitConfig()
+					backupDirs = " ".join(f.strip("/") for f in config.plugins.configurationbackup.backupdirs_default.value)
+					for f in config.plugins.configurationbackup.backupdirs.value:
+						if f.strip("/") not in backupDirs:
+							backupDirs += f" {f.strip('/')}"
+					for file in ("installed-list.txt", "changed-configfiles.txt", "passwd.txt", "groups.txt"):
+						if f"tmp/{file}" not in backupDirs:
+							backupDirs += f" tmp/{file}"
 
-			ShellCompatibleFunctions.backupUserDB()
-			pkgs = ShellCompatibleFunctions.listpkg(type="user")
-			fileWriteLines("/tmp/installed-list.txt", pkgs)
-			if exists("/usr/lib/package.lst"):
-				pkgs = ShellCompatibleFunctions.listpkg(type="installed")
-				with open("/usr/lib/package.lst") as fd:
-					installed = set(line.split()[0] for line in pkgs)
-					preinstalled = set(line.split()[0] for line in fd)
-					removed = preinstalled - installed
-					removed = [package for package in removed if package.startswith("enigma2-plugin-") or package.startswith("enigma2-locale-")]
-					if removed:
-						fileWriteLines("/tmp/removed-list.txt", removed)
-						backupDirs += " tmp/removed-list.txt"
-			tarCmd = f"tar -C / -czvf {fullbackupFilename}"
-			for f in config.plugins.configurationbackup.backupdirs_exclude.value:
-				tarCmd += f" --exclude {f.strip('/')}"
-			for f in BLACKLISTED:
-				tarCmd += f" --exclude {f.strip('/')}"
-			tarCmd += f" {backupDirs}"
-			cmdList = ["opkg list-changed-conffiles > /tmp/changed-configfiles.txt", tarCmd]
-			if exists(fullbackupFilename):
-				dt = str(date.fromtimestamp(stat(fullbackupFilename).st_ctime))
-				newFilename = join(self.backuppath, f"{dt}-{backupFile}")
-				if exists(newFilename):
-					remove(newFilename)
-				rename(fullbackupFilename, newFilename)
-			self.session.openWithCallback(self.backupFinishedCB, Console, title=self.screenTitle, cmdlist=cmdList, closeOnSuccess=self.closeOnSuccess, showScripts=False)
-		except OSError:
-			self.session.openWithCallback(self.backupErrorCB, MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout=10)
+					ShellCompatibleFunctions.backupUserDB()
+					pkgs = ShellCompatibleFunctions.listpkg(type="user")
+					fileWriteLines("/tmp/installed-list.txt", pkgs)
+					if exists("/usr/lib/package.lst"):
+						pkgs = ShellCompatibleFunctions.listpkg(type="installed")
+						with open("/usr/lib/package.lst") as fd:
+							installed = set(line.split()[0] for line in pkgs)
+							preinstalled = set(line.split()[0] for line in fd)
+							removed = preinstalled - installed
+							removed = [package for package in removed if package.startswith("enigma2-plugin-") or package.startswith("enigma2-locale-")]
+							if removed:
+								fileWriteLines("/tmp/removed-list.txt", removed)
+								backupDirs += " tmp/removed-list.txt"
+					tarCmd = f"tar -C / -czvf {fullbackupFilename}"
+					for f in config.plugins.configurationbackup.backupdirs_exclude.value:
+						tarCmd += f" --exclude {f.strip('/')}"
+					for f in BLACKLISTED:
+						tarCmd += f" --exclude {f.strip('/')}"
+					tarCmd += f" {backupDirs}"
+					cmdList = ["opkg list-changed-conffiles > /tmp/changed-configfiles.txt", tarCmd]
+					if exists(fullbackupFilename):
+						dt = str(date.fromtimestamp(stat(fullbackupFilename).st_ctime))
+						newFilename = join(self.backuppath, f"{dt}-{backupFile}")
+						if exists(newFilename):
+							remove(newFilename)
+						rename(fullbackupFilename, newFilename)
+					self.session.openWithCallback(self.backupFinishedCB, Console, title=self.screenTitle, cmdlist=cmdList, closeOnSuccess=self.closeOnSuccess, showScripts=False)
+				except OSError:
+					self.session.openWithCallback(self.backupErrorCB, MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout=10)
+
+		seenMountPoints = []  # DEBUG: Fix Hardisk.py to remove duplicated mount points!
+		choices = []
+		oldpath = config.plugins.configurationbackup.backuplocation.value
+		index = 0
+		for partition in harddiskmanager.getMountedPartitions(onlyhotplug=False):
+			path = join(partition.mountpoint, "")
+			if path in seenMountPoints:  # TODO: Fix Hardisk.py to remove duplicated mount points!
+				continue
+			if access(path, F_OK | R_OK | W_OK) and path != "/":
+				seenMountPoints.append(path)
+				choices.append(("%s (%s)" % (path, partition.description), path))
+				if oldpath and oldpath == path:
+					index = len(choices) - 1
+
+		if len(choices):
+			if len(choices) > 1:
+				self.session.openWithCallback(backuplocationCB, MessageBox, _("Please select medium to use as backup location"), list=choices, default=index, windowTitle=_("Backup Location"))
+			else:
+				backuplocationCB(choices[0][1])
+		else:
+			self.session.open(MessageBox, _("No suitable backup locations found!"), MessageBox.TYPE_ERROR, timeout=5)
 
 	def backupFinishedCB(self, retval=None):
 		print("[BackupScreen] DEBUG backupFinishedCB")
