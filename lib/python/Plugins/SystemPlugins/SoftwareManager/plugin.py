@@ -309,43 +309,6 @@ class BackupHelper(Screen):
 				doClose = False
 			except:
 				self.session.open(MessageBox, _("Sorry, %s has not been installed!") % ("MediaScanner"), MessageBox.TYPE_INFO, timeout=10)
-		elif self.args == 4:
-			seenMountPoints = []  # DEBUG: Fix Hardisk.py to remove duplicated mount points!
-			choices = []
-			oldpath = config.plugins.configurationbackup.backuplocation.value
-			index = 0
-			for partition in harddiskmanager.getMountedPartitions(onlyhotplug=False):
-				path = pathjoin(partition.mountpoint, "")
-				if path in seenMountPoints:  # TODO: Fix Hardisk.py to remove duplicated mount points!
-					continue
-				if access(path, F_OK | R_OK | W_OK) and path != "/":
-					seenMountPoints.append(path)
-					choices.append(("%s (%s)" % (path, partition.description), path))
-					if oldpath and oldpath == path:
-						index = len(choices) - 1
-
-			def backuplocationCB(path):
-				if path:
-					oldpath = config.plugins.configurationbackup.backuplocation.value
-					config.plugins.configurationbackup.backuplocation.setValue(path)
-					config.plugins.configurationbackup.backuplocation.save()
-					config.plugins.configurationbackup.save()
-					config.save()
-					if path != oldpath:
-						print("Creating backup folder if not already there...")
-						self.backuppath = getBackupPath()
-						try:
-							if not exists(self.backuppath):
-								makedirs(self.backuppath)
-						except OSError:
-							self.session.open(MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout=10)
-				self.close()
-
-			if len(choices):
-				self.session.openWithCallback(backuplocationCB, MessageBox, _("Please select medium to use as backup location"), list=choices, default=index, windowTitle=_("Backup Location"))
-				doClose = False
-			else:
-				self.session.open(MessageBox, _("No suitable backup locations found!"), MessageBox.TYPE_ERROR, timeout=5)
 		elif self.args == 5:
 			self.session.open(BackupSelection, title=_("Default files/folders to backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs_default, readOnly=True, mode="backupfiles")
 		elif self.args == 6:

@@ -174,7 +174,6 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 				<!-- Menu / Setup / Software Management / Advanced Options -->
 				<menu key="advanced_software" level="2" text="Advanced Options" description="Advanced options and settings." weight="20">
 					<item key="advanced_restore" level="2" text="Advanced Restore" description="Restore your backups by date." weight="16"><plugin system="SoftwareManager" screen="RestoreMenu" /></item>
-					<item key="backup_location" level="2" text="Select Backup Location" description="Select your backup device." weight="16"><plugin system="SoftwareManager" screen="BackupHelper">4</plugin></item>
 					<item key="backup_default" level="2" text="Show Default Backup Files" description="Here you can browse (but not modify) the files that are added to the backupfile by default (E2-setup, channels, network)." weight="16"><plugin system="SoftwareManager" screen="BackupHelper">5</plugin></item>
 					<item key="backup_additional" level="2" text="Select Additional Backup Files" description="Here you can specify additional files that should be added to the backup file." weight="16"><plugin system="SoftwareManager" screen="BackupHelper">6</plugin></item>
 					<item key="backup_excluded" level="2" text="Select Excluded Backup Files" description="Here you can select which files should be excluded from the backup." weight="16"><plugin system="SoftwareManager" screen="BackupHelper">7</plugin></item>
