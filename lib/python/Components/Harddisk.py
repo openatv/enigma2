@@ -736,21 +736,31 @@ class HarddiskManager:
 			return dev, part and int(part) or 0
 
 	def getUserfriendlyDeviceName(self, dev, phys):
-		dev, part = self.splitDeviceName(dev)
-		description = _("External Storage %s") % dev
+		device, part = self.splitDeviceName(dev)
+		description = _("External Storage %s") % device
 		try:
-			fileName = "name" if "mmc" in dev else "model"
+			fileName = "name" if "mmc" in device else "model"
 			fileName = f"/sys{phys}/{fileName}"
 			if exists(fileName):
 				description = readFile(fileName)
 		except OSError as err:
 			print(f"[Harddisk] Error {err.errno}: Couldn't read model!  ({err.strerror})")
+		hwdescription = ""
 		for physdevprefix, pdescription in list(getDeviceDB().items()):
 			if phys.startswith(physdevprefix):
-				description = pdescription
-		if part and part != 1:  # Not whole disk and not partition 1.
-			description += _(" (Partition %d)") % part
-		return description
+				hwdescription = pdescription
+
+		label = fileReadLine(f"/dev/label/{dev}", default="", source=MODULE_NAME)
+		if label:
+			description += f" ({label})"
+		else:
+			if part and part != 1:  # Not whole disk and not partition 1.
+				description += _(" (Partition %d)") % part
+
+		if hwdescription:
+			return f"{hwdescription}: {description}"
+		else:
+			return description
 
 	def addMountedPartition(self, device, desc):
 		device = join(device, "")
