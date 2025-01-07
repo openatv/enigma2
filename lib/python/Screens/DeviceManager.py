@@ -34,7 +34,7 @@ from os import mkdir
 from os.path import exists, join, realpath
 from re import search, split, sub
 
-from enigma import getDeviceDB
+from enigma import eTimer, getDeviceDB
 
 from Components.ActionMap import HelpableActionMap
 from Components.config import ConfigSelection, ConfigText, NoSave
@@ -51,6 +51,7 @@ from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.Setup import Setup
 from Screens.Standby import QUIT_REBOOT, TryQuitMainloop
+from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Tools.Conversions import scaleNumber
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import SCOPE_GUISKIN, fileReadLine, fileReadLines, fileWriteLines, resolveFilename
@@ -64,6 +65,7 @@ class StorageDeviceAction(Setup):
 	ACTION_EXT4CONVERSION = 3
 	ACTION_WIPE = 4
 	ACTION_FORMAT = 5
+	ACTION_LABEL = 6
 
 	def __init__(self, session, storageDevice, action, actionText):
 		self.storageDevice = storageDevice
@@ -371,6 +373,7 @@ class StorageDeviceManager():
 			isMounted = len([parts for parts in mounts if mountP == parts[1]])
 			UUID = fileReadLine(f"/dev/uuid/{device}", default="", source=MODULE_NAME)
 			fsType = fileReadLine(f"/dev/fstype/{device}", default="", source=MODULE_NAME)
+			label = fileReadLine(f"/dev/label/{device}", default="", source=MODULE_NAME)
 			knownDevice = ""
 			for known in knownDevices:
 				if UUID and UUID in known:
@@ -413,7 +416,8 @@ class StorageDeviceManager():
 				"mountFsType": mountFsType,
 				"swapState": swapState,
 				"isUnknown": False,
-				"FlashExpander": False
+				"FlashExpander": False,
+				"label": label
 			}
 			return deviceData
 
@@ -543,6 +547,7 @@ class DeviceManager(Screen):
 			deviceDisplayNameIndent = storageDevice.get("device") if storageDevice.get("isPartition") else ""
 
 			mountPoint = storageDevice.get("mountPoint")
+			label = storageDevice.get("label")
 
 			size = f"{scaleNumber(storageDevice.get("size"), format="%.2f")}"
 
@@ -563,7 +568,7 @@ class DeviceManager(Screen):
 					swapState = _("On") if storageDevice.get("swapState") else _("Off")
 					des = f"{_("Swap")}: {swapState}"
 				else:
-					des = f"{_("Mount point")}: {mountPoint} {fs}{rw}"
+					des = f"{label or _("No Name")}: {mountPoint} {fs}{rw}"
 				separator = "└"
 				devicePixmap = None
 			else:
@@ -666,12 +671,12 @@ class DeviceManager(Screen):
 		def keyBlueCallback(answer):
 			def checkMount(data, retVal, extraArgs):
 				if retVal:
-					print(f"[DeviceManager] mount failed for device:{device} / RC:{retVal}")
+					print(f"[DeviceManager] mount failed for device:{devicePoint} / RC:{retVal}")
 				self.updateDevices()
 				mountok = False
 				mounts = getProcMountsNew()
 				for parts in mounts:
-					if parts[0] == device:
+					if parts[0] == devicePoint:
 						mountok = True
 				if not mountok:
 					self.session.open(MessageBox, _("Mount failed"), MessageBox.TYPE_INFO, timeout=5)
@@ -700,7 +705,7 @@ class DeviceManager(Screen):
 						knownDevices.remove(knownDevice)
 					fileWriteLines("/etc/udev/known_devices", knownDevices, source=MODULE_NAME)
 				else:
-					device = storageDevice.get("devicePoint")
+					devicePoint = storageDevice.get("devicePoint")
 					if storageDevice.get("isMounted"):
 						self.console.ePopen([self.UMOUNT, self.UMOUNT, storageDevice.get("mountPoint")])
 						mounts = getProcMountsNew()
@@ -711,7 +716,9 @@ class DeviceManager(Screen):
 					else:
 						title = _("Select the new mount point for: '%s'") % storageDevice.get("model")
 						fstab = fileReadLines("/etc/fstab", default=[], source=MODULE_NAME)
-						choiceList = [(f"/media/{x}", f"/media/{x}") for x in self.storageDevices.getMountPoints(storageDevice.get("deviceType"), fstab, onlyPossible=True)]
+						label = storageDevice.get("label")
+						device = storageDevice.get("device")
+						choiceList = [(f"/media/{x}", f"/media/{x}") for x in self.storageDevices.getMountPoints(storageDevice.get("deviceType"), fstab, onlyPossible=True) + [device, label]]
 						self.session.openWithCallback(keyBlueCallback, ChoiceBox, choiceList=choiceList, buttonList=[], windowTitle=title)
 				self.updateDevices()
 
@@ -757,6 +764,27 @@ class DeviceManager(Screen):
 		}.get(action)
 
 	def keyActions(self):
+		def renameActionCallback(result=None, retval=None, extra_args=None):
+			def renameActionCallback2():
+				self.reloadTimer = None
+				self.updateDevices()
+			self.reloadTimer = eTimer()
+			self.reloadTimer.callback.append(renameActionCallback2)
+			self.reloadTimer.start(1000, True)
+
+		def renameCallback(newName):
+			if newName:
+				newName = storageDevice.normalizeLabel(newName)
+				if "extfat" == storageDevice.fsType:
+					cmd = f"exfatlabel {storageDevice.devicePoint} {newName}"
+				elif "ntfs" in storageDevice.fsType:  # Not supported yet becaue you need to unmount
+					cmd = f"ntfslabel {storageDevice.devicePoint} {newName}"
+				elif "fat" in storageDevice.fsType:
+					cmd = f"mlabel -i {storageDevice.devicePoint} ::{newName}"
+				else:
+					cmd = f"e2label {storageDevice.devicePoint} {newName}"
+				self.console.ePopen(cmd, callback=renameActionCallback)
+
 		def keyActionsSetupCallback(options):
 			if options is not None:
 				self.currentOptions = options
@@ -776,7 +804,9 @@ class DeviceManager(Screen):
 		def keyActionsCallback(action):
 			self.currentAction = action
 			if action:
-				if action in (StorageDeviceAction.ACTION_FORMAT, StorageDeviceAction.ACTION_INITIALIZE):
+				if action == StorageDeviceAction.ACTION_LABEL:
+					self.session.openWithCallback(renameCallback, VirtualKeyBoard, title=_("Please enter the new name:"), text=storageDevice.label)
+				elif action in (StorageDeviceAction.ACTION_FORMAT, StorageDeviceAction.ACTION_INITIALIZE):
 					self.session.openWithCallback(keyActionsSetupCallback, StorageDeviceAction, storageDevice, action, _("Format Storage Device"))
 				elif action == StorageDeviceAction.ACTION_WIPE:
 					uuids = {}
@@ -830,6 +860,8 @@ class DeviceManager(Screen):
 					choiceList.append((_("File System Check"), StorageDeviceAction.ACTION_CHECK))
 				if storageDevice.fsType == "ext3":
 					choiceList.append((_("Convert file system ext3 to ext4"), StorageDeviceAction.ACTION_EXT4CONVERSION))
+				if "ntfs" not in storageDevice.fsType and storageDevice.fsType in fileSystems:  # NTFS not supported yet becaue you need to unmount
+					choiceList.append((_("Rename"), StorageDeviceAction.ACTION_LABEL))
 			else:
 				choiceList = [
 					(_("Cancel"), 0),
@@ -876,8 +908,10 @@ class DeviceManagerMountPoints(Setup):
 		single = index != -1
 		fstab = fileReadLines("/etc/fstab", default=[], source=MODULE_NAME) if single else []
 		noMediaHdd = len(self.devices) == 1 and not [line for line in fstab if "/media/hdd" in line]  # No media/hdd and only one device
+		self.configMode = ConfigSelection(default=0, choices=[(0, _("Simple")), (1, _("Advanced"))])
+		self.console = Console()
 
-		# device , fstabmountpoint, isMounted , deviceUuid, name, deviceType, fsType, size, disk
+		# device , fstabmountpoint, isMounted , deviceUuid, name, deviceType, fsType, size, disk, label
 		for index, device in enumerate(self.devices):
 			deviceType = device[5]
 			fstabMountPoint = device[1]
@@ -900,6 +934,11 @@ class DeviceManagerMountPoints(Setup):
 					choiceList.extend([(x, x) for x in possibleMounts])
 				if fstabMountPoint and fstabMountPoint not in [x[0] for x in choiceList]:
 					choiceList.insert(1, (fstabMountPoint, fstabMountPoint))
+				label = device[9]
+				if label:
+					label = f"/media/{label.replace(" ", "_")}"
+					choiceList.append((label, label))
+
 				defaultMountpoint = fstabMountPoint or "None"
 				fileSystems = ["auto", "ext4", "vfat"]
 				if exists("/sbin/mount.exfat"):
@@ -930,7 +969,7 @@ class DeviceManagerMountPoints(Setup):
 				if storageDevice.get("fsType") == "swap":
 					continue
 				if storageDevice.get("isPartition"):
-					devices.append((storageDevice.get("devicePoint"), storageDevice.get("fstabMountPoint"), storageDevice.get("isMounted"), storageDevice.get("UUID"), storageDevice.get("name"), storageDevice.get("deviceType"), storageDevice.get("fsType"), storageDevice.get("size"), storageDevice.get("disk")))
+					devices.append((storageDevice.get("devicePoint"), storageDevice.get("fstabMountPoint"), storageDevice.get("isMounted"), storageDevice.get("UUID"), storageDevice.get("name"), storageDevice.get("deviceType"), storageDevice.get("fsType"), storageDevice.get("size"), storageDevice.get("disk"), storageDevice.get("label")))
 				else:
 					diskInfo = f"{_("Device")}: {storageDevice.get("name")} / {scaleNumber(storageDevice.get("diskSize"), format="%.2f")}"
 					if storageDevice.get("location"):
@@ -940,33 +979,37 @@ class DeviceManagerMountPoints(Setup):
 
 	def appendEntries(self, index, device):
 		items = []
-		# device , fstabmountpoint, isMounted , deviceUuid, name, deviceType, fsType, size, disk
-		diskInfo = f"{device[0]} / {device[6]} / {scaleNumber(device[7], format="%.2f")}"
-		items.append((diskInfo,))
-		items.append((_("Mount point"), self.mountPoints[index], _("Select the mountpoint for the device."), index, device[8]))
+		# device , fstabmountpoint, isMounted , deviceUuid, name, deviceType, fsType, size, disk, label
+		partInfo = f"{device[9] or _("No Name")}: {device[0]} / {scaleNumber(device[7], format="%.2f")}"
+		partInfoDesc = f"{_("File system")}: {device[6]}"
+		items.append((partInfo, self.mountPoints[index], f"{_("Select the mountpoint for the device.")}\n{partInfoDesc}", index, device[8]))
 		if self.mountPoints[index].value != "None":
 			if self.mountPoints[index].value == "":
 				items.append((_("Custom mountpoint"), self.customMountPoints[index], _("Define the custom mountpoint for the device."), index, device[8]))
-			items.append((_("File system"), self.fileSystems[index], _("Select the file system for the device."), index, device[8]))
-			items.append((_("Options"), self.options[index], _("Define the file system mount options."), index, device[8]))
+			if self.configMode.value:  # Advanced
+				items.append((_("File system"), self.fileSystems[index], _("Select the file system for the device."), index, device[8]))
+				items.append((_("Options"), self.options[index], _("Define the file system mount options."), index, device[8]))
 		return items
 
 	def createSetup(self):  # NOSONAR silence S2638
-		items = []
+		items = [(_("Mode"), self.configMode)]
 		for index, device in enumerate(self.devices):
 			items = items + self.appendEntries(index, device)
 		Setup.createSetup(self, appendItems=items)
 
 	def changedEntry(self):
 		current = self["config"].getCurrent()[1]
-		index = self["config"].getCurrent()[3]
-		if current == self.fileSystems[index]:
-			self.options[index].value = self.defaultOptions.get(self.fileSystems[index].value)
+		if current != self.configMode:
+			index = self["config"].getCurrent()[3]
+			if current == self.fileSystems[index]:
+				self.options[index].value = self.defaultOptions.get(self.fileSystems[index].value)
 		Setup.changedEntry(self)
 
 	def setFootnote(self, footnote):
-		disk = self["config"].getCurrent()[4]
-		Setup.setFootnote(self, self.disks.get(disk, ""))
+		if self["config"].getCurrent()[1] != self.configMode:
+			disk = self["config"].getCurrent()[4]
+			footnote = self.disks.get(disk, "")
+		Setup.setFootnote(self, footnote)
 
 	def keySave(self):
 		def keySaveCallback(result=None, retval=None, extra_args=None):
@@ -985,8 +1028,8 @@ class DeviceManagerMountPoints(Setup):
 				mountPoint = removeMount.split(":")[1]
 				removeMounts.append(mountPoint)
 			if removeMounts:
-				Console().ePopen([self.UMOUNT, self.UMOUNT] + removeMounts)
-				Console().ePopen([self.MOUNT, self.MOUNT, "-a"])
+				self.console.ePopen([self.UMOUNT, self.UMOUNT] + removeMounts)
+				self.console.ePopen([self.MOUNT, self.MOUNT, "-a"])
 
 			cleanMediaDirs()
 
@@ -1038,7 +1081,7 @@ class DeviceManagerMountPoints(Setup):
 			if saveKnownDevices:
 				fileWriteLines("/etc/udev/known_devices", knownDevices, source=MODULE_NAME)
 			fileWriteLines("/etc/fstab", newFstab, source=MODULE_NAME)
-			Console().ePopen([self.MOUNT, self.MOUNT, "-a"], keySaveCallback)
+			self.console.ePopen([self.MOUNT, self.MOUNT, "-a"], keySaveCallback)
 		else:
 			self.close(False)
 
@@ -1052,10 +1095,6 @@ class DeviceManagerMountPoints(Setup):
 class DeviceManagerSetup(Setup):
 	def __init__(self, session):
 		Setup.__init__(self, session, "HardDisk")
-
-
-class HddMount(DeviceManager):
-	pass
 
 
 class DevicesPanelSummary(Screen):
