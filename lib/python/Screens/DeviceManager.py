@@ -37,7 +37,7 @@ from re import search, split, sub
 from enigma import eTimer, getDeviceDB
 
 from Components.ActionMap import HelpableActionMap
-from Components.config import ConfigSelection, ConfigText, NoSave
+from Components.config import config, ConfigSelection, ConfigText, NoSave
 from Components.Console import Console
 from Components.Storage import StorageDevice, cleanMediaDirs, getProcMountsNew, EXPANDER_MOUNT
 from Components.Label import Label
@@ -210,7 +210,6 @@ class StorageDeviceAction(Setup):
 							self.formatsizes[pos].value = 100 - fullSize
 							break
 
-			# print(f"[StorageDeviceAction] DEBUG numOfPartitions: {self.numOfPartitions}")
 		Setup.changedEntry(self)
 
 	def keyCancel(self):
@@ -279,7 +278,8 @@ class StorageDeviceManager():
 				UUID = parts[0].replace("UUID=", "")
 				if UUID in seenUUIDs:
 					continue
-				print(f"[DeviceManager] DEBUG fstab line {index + 1} / UUID {UUID} not in device list")
+				if config.crash.debugStorage.value:
+					print(f"[DeviceManager] DEBUG fstab line {index + 1} / UUID {UUID} not in device list")
 
 				deviceData = {
 					"UUID": UUID,
@@ -288,10 +288,8 @@ class StorageDeviceManager():
 					"FlashExpander": False
 				}
 				unknownList.append(deviceData)
-		print("deviceList")
-		print(deviceList)
-		print("unknownList")
-		print(unknownList)
+		if config.crash.debugStorage.value:
+			print(f"[DeviceManager] DEBUG deviceList:\n{deviceList}\nunknownList:\n{unknownList}")
 		return deviceList, unknownList
 
 	def createDevice(self, device, isPartition, mounts, swapDevices, partitions, knownDevices, fstab):
@@ -673,6 +671,8 @@ class DeviceManager(Screen):
 			def checkMount(data, retVal, extraArgs):
 				if retVal:
 					print(f"[DeviceManager] mount failed for device:{devicePoint} / RC:{retVal}")
+					if config.crash.debugStorage.value:
+						print(data)
 				self.updateDevices()
 				mountok = False
 				mounts = getProcMountsNew()
@@ -807,6 +807,7 @@ class DeviceManager(Screen):
 
 		def keyActionsCallback(action):
 			self.currentAction = action
+			options = {"debug": True} if config.crash.debugStorage.value else {}
 			if action:
 				if action == StorageDeviceAction.ACTION_LABEL:
 					self.session.openWithCallback(renameCallback, VirtualKeyBoard, title=_("Please enter the new name:"), text=storageDevice.label)
@@ -818,9 +819,9 @@ class DeviceManager(Screen):
 						uuid = fileReadLine(f"/dev/uuid/{device}", default=None, source=MODULE_NAME)
 						if uuid:
 							uuids[device] = uuid
-					keyActionsSetupCallback({"uuids": uuids})
+					keyActionsSetupCallback(options | {"uuids": uuids})
 				else:
-					keyActionsSetupCallback({})
+					keyActionsSetupCallback(options)
 
 		current = self["devicelist"].getCurrent()
 		if current:
@@ -1016,7 +1017,12 @@ class DeviceManagerMountPoints(Setup):
 		Setup.setFootnote(self, footnote)
 
 	def keySave(self):
-		def keySaveCallback(result=None, retval=None, extra_args=None):
+		def keySaveCallback(data, retVal, extraArgs):
+			if retVal:
+				print(f"[DeviceManager] mount failed / RC:{retVal}")
+				if config.crash.debugStorage.value:
+					print(data)
+
 			needReboot = False
 #			isMounted = current[5]
 #			mountp = current[3]
