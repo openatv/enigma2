@@ -681,6 +681,8 @@ class DeviceManager(Screen):
 						mountok = True
 				if not mountok:
 					self.session.open(MessageBox, _("Mount failed"), MessageBox.TYPE_INFO, timeout=5)
+				else:
+					harddiskmanager.refreshMountPoints()
 			if answer:
 				if not exists(answer[1]):
 					mkdir(answer[1], 0o755)
