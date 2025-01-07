@@ -7,10 +7,9 @@ msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-12-31 15:16+0000\n"
-"PO-Revision-Date: 2025-01-02 13:08+0000\n"
+"PO-Revision-Date: 2025-01-07 09:01+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
-"Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/"
-"projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
+"Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1526,7 +1525,7 @@ msgid "< Default >"
 msgstr "< 默认值 >"
 
 msgid "< Default with Picon >"
-msgstr "<默认带 Picon>"
+msgstr "<默认带频道图标>"
 
 msgid "< User Skin >"
 msgstr "< 用户皮肤 >"
@@ -4323,7 +4322,7 @@ msgid "Clear before scan"
 msgstr "扫描前清理"
 
 msgid "Clear fixed"
-msgstr "清除浮动"
+msgstr "清除固定"
 
 msgid "Clear play list"
 msgstr "清除播放列表"
@@ -4645,10 +4644,10 @@ msgid "Configure if epg.dat should be saved at all."
 msgstr "配置是否应该保存 epg.dat。"
 
 msgid "Configure if service picons will be shown in quickzap."
-msgstr "如需频道 picon 要在快速换台中显示，则配置。"
+msgstr "如需频道图标要在快速换台中显示，则配置。"
 
 msgid "Configure if service picons will be shown in the service list."
-msgstr "配置频道 picon 是否显示在频道列表中。"
+msgstr "配置频道图标是否显示在频道列表中。"
 
 msgid "Configure if service type icons will be shown."
 msgstr "配置是否显示频道类型图标。"
@@ -4926,7 +4925,7 @@ msgid "Configure the skip time interval for the '7'/'9' buttons."
 msgstr "配置“7” “9”按键的跳跃时间间隔。"
 
 msgid "Configure the slow motion speeds."
-msgstr "配置慢动作速度。"
+msgstr "配置慢放速度。"
 
 msgid ""
 "Configure the source of the frontend data as shown on the infobars. "
@@ -4975,7 +4974,7 @@ msgid ""
 msgstr "配置字幕的垂直位置，从屏幕底部开始测量。"
 
 msgid "Configure the width allocated to the picon."
-msgstr "配置分配给picon的宽度。"
+msgstr "配置分配给频道图标的宽度。"
 
 msgid "Configure the width allocated to the service name."
 msgstr "配置分配给频道名称的宽度。"
@@ -4992,10 +4991,10 @@ msgstr ""
 
 msgid ""
 "Configure to show channel names, numbers, picons or all three inside EPG."
-msgstr "配置在EPG中显示频道名称，picon 或两者。"
+msgstr "配置在 EPG 中显示频道名称、频道编号、频道图标或全部三项。"
 
 msgid "Configure to show the channel names, picons, or both in the EPG."
-msgstr "配置在EPG中显示频道名称，picon 或两者。"
+msgstr "配置在 EPG 中显示频道名称，频道图标或两者都显示。"
 
 msgid "Configure whether a bold TrueType font is used for teletext."
 msgstr "配置粗体 TrueType 字体是否用于图文电视。"
@@ -7601,37 +7600,37 @@ msgid "End time"
 msgstr "结束时间"
 
 msgid "Energy Timer"
-msgstr "能量定时器"
+msgstr "能源定时器"
 
 #, python-format
 msgid "Energy Timer: %d minute remains."
 msgid_plural "Energy Timer: %d minutes remain."
-msgstr[0] "能量定时器：剩余 %d 分钟。"
-msgstr[1] "能量定时器：剩余 %d 分钟。"
+msgstr[0] "能源定时器：剩余 %d 分钟。"
+msgstr[1] "能源定时器：剩余 %d 分钟。"
 
 #, python-format
 msgid "Energy Timer: %d second remains."
 msgid_plural "Energy Timer: %d seconds remain."
-msgstr[0] "能量定时器：剩余 %d 秒。"
-msgstr[1] "能量定时器：剩余 %d 秒。"
+msgstr[0] "能源定时器：剩余 %d 秒。"
+msgstr[1] "能源定时器：剩余 %d 秒。"
 
 msgid "Energy Timer: Inactive."
-msgstr "能量定时器：未激活。"
+msgstr "能源定时器：未激活。"
 
 msgid "Energy timer"
-msgstr "能量定时器"
+msgstr "能源定时器"
 
 msgid "EnergySaver action"
-msgstr "节能动作"
+msgstr "节能操作"
 
 msgid "EnergySaver activation delay"
-msgstr "节能器激活延迟"
+msgstr "节能模式启动延迟"
 
 msgid "EnergyTimer Actions"
-msgstr "能量定时器动作"
+msgstr "能源定时器动作"
 
 msgid "EnergyTimer Overview"
-msgstr "能量定时器概览"
+msgstr "能源定时器概览"
 
 msgid "English"
 msgstr "英语"
@@ -8005,7 +8004,7 @@ msgstr "错误：创建目录“%s”失败！"
 
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
-msgstr "错误：正在创建 Picon 目标目录：（%s）"
+msgstr "错误：正在创建频道图标目标目录：（%s）"
 
 #, python-format
 msgid "Error: Failed to run service scan!  (%s)"
@@ -8780,7 +8779,7 @@ msgid "Fixed"
 msgstr "固定"
 
 msgid "Fixed X11 font (SD)"
-msgstr "Fixed X11 字体（标清）"
+msgstr "等宽 X11 字体（标清）"
 
 msgid "Flash Expander"
 msgstr "闪存扩展器"
@@ -8888,7 +8887,7 @@ msgid "Force LNB Tuner ToneBurst settings."
 msgstr "强制高频头调谐器22K开关设置。"
 
 msgid "Force Legacy Signal stats"
-msgstr "强制传统信号统计"
+msgstr "强制使用传统信号统计"
 
 msgid "Force ToneBurst"
 msgstr "强制22K开关"
@@ -9347,7 +9346,7 @@ msgid "HDMI"
 msgstr "HDMI"
 
 msgid "HDMI Colorimetry"
-msgstr "HDMI 比色法"
+msgstr "HDMI 色彩标准"
 
 msgid "HDMI HDR Type"
 msgstr "HDMI HDR 类型"
@@ -9531,7 +9530,7 @@ msgid "Hidden network"
 msgstr "隐藏网络"
 
 msgid "Hide"
-msgstr "Hide"
+msgstr "隐藏"
 
 msgid "Hide CI messages"
 msgstr "隐藏 CI 消息"
@@ -9809,7 +9808,7 @@ msgid "ISO path"
 msgstr "ISO 路径"
 
 msgid "ISO speed rating"
-msgstr "ISO速度等级"
+msgstr "ISO 感光度等级"
 
 msgid "ISP"
 msgstr "ISP"
@@ -13294,7 +13293,7 @@ msgid "Option"
 msgstr "选项"
 
 msgid "Option to disable picons on the Infobar."
-msgstr "禁用信息栏上的图标的选项。"
+msgstr "禁用信息栏上频道图标的选项。"
 
 msgid "Option to enable the Hardware Standby Timer."
 msgstr "启用硬件待机计时器的选项。"
@@ -13375,7 +13374,7 @@ msgid "Overwrite Emu Files ?"
 msgstr "覆盖 EMU 文件吗？"
 
 msgid "Overwrite Picon Files ?"
-msgstr "覆盖 PICON 文件吗？"
+msgstr "覆盖频道图标文件吗？"
 
 msgid "Overwrite Setting Files ?"
 msgstr "覆盖设置文件吗？"
@@ -13396,7 +13395,7 @@ msgid "Overwrite driver files during software upgrade?"
 msgstr "在软件升级过程中覆盖驱动文件吗？"
 
 msgid "Overwrite picon files during software upgrade?"
-msgstr "在软件升级过程中覆盖 PICON 文件吗？"
+msgstr "在软件升级过程中覆盖频道图标文件吗？"
 
 msgid "Overwrite setting files (channellist) during software upgrade?"
 msgstr "在软件升级过程中覆盖设置文件 （channellist） 吗？"
@@ -13689,19 +13688,19 @@ msgid "PiPZap"
 msgstr "画中画换台"
 
 msgid "Picon"
-msgstr "Picon"
+msgstr "频道图标"
 
 msgid "Picon Packages"
-msgstr "Picon 包"
+msgstr "频道图标包"
 
 msgid "Picon and Service Name"
-msgstr "Picon 和频道名"
+msgstr "频道图标和频道名"
 
 msgid "Picon install location"
-msgstr "Picon 安装位置"
+msgstr "频道图标安装位置"
 
 msgid "Picon width"
-msgstr "Picon 宽度"
+msgstr "频道图标宽度"
 
 msgid "Picture Information"
 msgstr "图片信息"
@@ -15088,7 +15087,7 @@ msgstr "红键/HbbTV 键操作"
 
 msgid ""
 "Reduce the size of the service picons for more line spacing between them."
-msgstr "减少频道 picon 的大小，以便在它们之间有更多的行间距。"
+msgstr "减少频道图标的大小，以便在它们之间有更多的行间距。"
 
 msgid "Reduce time scale"
 msgstr "缩短时间尺度"
@@ -16160,25 +16159,25 @@ msgid "Scheduled save of epg.dat"
 msgstr "epg.dat 的预定保存"
 
 msgid "Scheduler"
-msgstr "调度程序"
+msgstr "计划任务"
 
 msgid "Scheduler Actions"
-msgstr "电源定时器动作"
+msgstr "计划任务操作"
 
 msgid "Scheduler Overview"
-msgstr "电源定时器概览"
+msgstr "计划任务概览"
 
 msgid "Scheduler Settings"
-msgstr "调度程序设置"
+msgstr "计划任务设置"
 
 msgid "Scheduler Standby"
-msgstr "电源定时器待机"
+msgstr "计划任务待机"
 
 msgid "Scheduler deep standby"
-msgstr "电源定时器深度待机"
+msgstr "计划任务深度待机"
 
 msgid "Scheduler log"
-msgstr "电源定时器日志"
+msgstr "计划任务日志"
 
 msgid "Sci-Fi"
 msgstr "科幻小说"
@@ -16512,9 +16511,7 @@ msgid ""
 "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown "
 "when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy "
 "navigation for users who prefer it."
-msgstr ""
-"选择“是”，可在向左/向右按钮未定义时，使用向左/向右按钮来PageUp/PageDown移"
-"动 。 这为喜欢它的用户提供了传统导航。"
+msgstr "选择“是”以启用左/右按钮作为上页/下页功能（当左/右按钮未定义其他功能时）。此功能为偏好传统导航方式的用户提供支持。"
 
 msgid "Select 'Yes' to hide channels without EPG data."
 msgstr "选择“是”隐藏没有 EPG 数据的频道。"
@@ -16678,7 +16675,7 @@ msgid "Select 'Yes' to show m2k packages in the Download Plugins screen."
 msgstr "选择“是”以在下载插件屏幕中显示 m2k 软件包。"
 
 msgid "Select 'Yes' to show picon packages in the Download Plugins screen."
-msgstr "选择“是”在下载插件屏幕中显示 picon 包。"
+msgstr "选择“是”在下载插件屏幕中显示频道图标包。"
 
 msgid ""
 "Select 'Yes' to show plugin skin packages in the Download Plugins screen."
@@ -16751,9 +16748,7 @@ msgid ""
 "Select 'No' to use the newer unified navigation option for consistent "
 "navigation with other screens where LEFT/RIGHT swaps the active column and "
 "CH+/- pages up and down the list."
-msgstr ""
-"选择“是”以使用传统导航，其中CH+/-交换活动列。选择“否”可使用较新的统一导航选"
-"项，以与其他屏幕保持一致的导航，其中左/右在列表中上下交换活动列和CH+/-页面。"
+msgstr "选择“是”以使用传统导航方式，即 CH+/- 切换活动列。选择“否”以使用新的统一导航选项，与其他屏幕保持一致：左/右切换活动列，CH+/- 上下翻页列表。"
 
 msgid ""
 "Select 'Yes' to use signal values (SNR, etc) calculated from the older API "
@@ -17332,7 +17327,7 @@ msgid "Select the location in which to store the recording:"
 msgstr "选择存储录像的位置："
 
 msgid "Select the location where the picon files will be installed."
-msgstr "选择 picon 文件的安装位置。"
+msgstr "选择频道图标文件的安装位置。"
 
 msgid ""
 "Select the manufacturer of your SCR device. If the manufacturer is not "
@@ -17814,7 +17809,7 @@ msgid "Service Number and Service Name"
 msgstr "频道编号和频率名称"
 
 msgid "Service Number, Picon and Service Name"
-msgstr "频道编号，Picon 和频道名称"
+msgstr "频道编号，频道图标和频道名称"
 
 msgid "Service Scan"
 msgstr "频道扫描"
@@ -17877,13 +17872,13 @@ msgid "Service off-air"
 msgstr "频道停播"
 
 msgid "Service picons aspect ratio"
-msgstr "频道 Picon 宽高比"
+msgstr "频道图标宽高比"
 
 msgid "Service picons downsize"
 msgstr "缩小频道图标"
 
 msgid "Service reference"
-msgstr "频道索引"
+msgstr "频道标识符"
 
 msgid "Service scan"
 msgstr "频道扫描"
@@ -17973,7 +17968,7 @@ msgid "Set executable mode (755)"
 msgstr "设置可执行模式（755）"
 
 msgid "Set fixed"
-msgstr "设置定位"
+msgstr "设置固定"
 
 msgid "Set fps for external subtitles"
 msgstr "设置外挂字幕的帧数"
@@ -18009,7 +18004,7 @@ msgid "Set the User ID of the OpenWebif from your fallback tuner"
 msgstr "从备用调谐器设置 OpenWebif 的用户 ID"
 
 msgid "Set the aspect ratio of the service picons."
-msgstr "录像的宽高比。"
+msgstr "设置频道图标的宽高比。"
 
 msgid ""
 "Set the default location for your instant recordings. Press 'OK' to add new "
@@ -18560,7 +18555,7 @@ msgid "Show InfoBar on skip forward/backward"
 msgstr "快进/快退时显示信息栏"
 
 msgid "Show InfoBar picons"
-msgstr "显示信息栏 PICON"
+msgstr "显示信息栏频道图标"
 
 msgid "Show Information"
 msgstr "显示信息"
@@ -18623,7 +18618,7 @@ msgid "Show PiP in the Front Display"
 msgstr "在前端显示屏中显示画中画"
 
 msgid "Show Picon packages"
-msgstr "显示 Picon 包"
+msgstr "显示频道图标包"
 
 msgid "Show Plugin Skin packages"
 msgstr "显示插件皮肤包"
@@ -18689,7 +18684,7 @@ msgid "Show VCR SCART on main menu"
 msgstr "在主菜单中显示 VCR SCART"
 
 msgid "Show Vertical EPG"
-msgstr "显示 Vertical EPG"
+msgstr "显示纵向 EPG"
 
 msgid "Show WLAN status"
 msgstr "显示WLAN状态"
@@ -18955,13 +18950,13 @@ msgid "Show persistent InfoBar while paused"
 msgstr "暂停时永久显示信息栏"
 
 msgid "Show picon background color"
-msgstr "显示 PICON 背景颜色"
+msgstr "显示频道图标背景颜色"
 
 msgid "Show picons in quickzap"
-msgstr "在快速换台中显示 picon"
+msgstr "在快速换台中显示频道图标"
 
 msgid "Show picons in service list"
-msgstr "在频道列表中显示 picon"
+msgstr "在频道列表中显示频道图标"
 
 msgid "Show picture information"
 msgstr "显示图片信息"
@@ -19122,7 +19117,7 @@ msgid "Show the OSCam information screen"
 msgstr "显示 OSCam 信息屏幕"
 
 msgid "Show the Scheduler"
-msgstr "显示调度程序"
+msgstr "显示计划任务"
 
 msgid "Show the SleepTimer"
 msgstr "显示睡眠定时器"
@@ -19195,7 +19190,7 @@ msgid "Show usage and GUI menu..."
 msgstr "显示使用习惯和图形界面菜单..."
 
 msgid "Show vertical Program Guide"
-msgstr "显示 vertical 节目指南"
+msgstr "显示纵向节目指南"
 
 msgid "Show warning before restart"
 msgstr "重启前显示警告"
@@ -19527,7 +19522,7 @@ msgid "Slow Motion"
 msgstr "慢动作"
 
 msgid "Slow motion speeds"
-msgstr "慢动作"
+msgstr "慢放速度"
 
 msgid "Small"
 msgstr "小"
@@ -19536,10 +19531,10 @@ msgid "Small - Tiny image"
 msgstr "小 - 微镜像"
 
 msgid "Small Box Preparation"
-msgstr "小盒制剂"
+msgstr "小机子准备"
 
 msgid "Small Box Preparation Actions"
-msgstr "小机子准备动作"
+msgstr "小机子准备操作"
 
 msgid "Small Test"
 msgstr "小测试"
@@ -20291,10 +20286,10 @@ msgid "Swap services"
 msgstr "交换频道"
 
 msgid "SwaptoNand"
-msgstr "SwaptoNand"
+msgstr "切换到 NAND"
 
 msgid "SwaptoSD"
-msgstr "交换空间"
+msgstr "切换到 SD"
 
 msgid "Swati"
 msgstr "斯瓦蒂"
@@ -20621,7 +20616,7 @@ msgid "Teletext TTFWidthFactor16 (TrueType letter width)"
 msgstr "图文电视 TTFWidthFactor16 （TrueType 文字宽度）"
 
 msgid "Teletext UseTTF (0=fixed font, 1=TrueType)"
-msgstr "图文电视使用 TTF（0=fixed 字体，1=TrueType）"
+msgstr "图文电视使用 TTF（0=等宽字体，1=TrueType）"
 
 msgid "Teletext base visibility"
 msgstr "图文电视基本可视性"
@@ -20991,7 +20986,7 @@ msgid ""
 "\n"
 "Press OK to continue using the %s %s."
 msgstr ""
-"能量定时器想要将 %s %s 设置为 %s。\n"
+"能源定时器想要将 %s %s 设置为 %s。\n"
 "\n"
 "按 OK 继续使用 %s %s。"
 
@@ -21042,7 +21037,7 @@ msgstr ""
 msgid ""
 "The picon directory already exists and must be removed. Do you want to "
 "proceed?"
-msgstr "picon目录已存在，必须删除。是否要继续？"
+msgstr "频道图标目录已存在，必须删除。是否要继续？"
 
 #, python-format
 msgid "The results have been written to %s."
@@ -21281,7 +21276,7 @@ msgid "This option allows you can config the Colordepth for UHD"
 msgstr "此选项允许您配置UHD的颜色深度"
 
 msgid "This option allows you can config the Colorimetry for HDR"
-msgstr "此选项允许您配置HDR的比色法"
+msgstr "此选项允许您配置 HDR 的色度学设置"
 
 msgid "This option allows you can config the Colorspace from Auto to RGB"
 msgstr "此选项允许您将色彩空间从自动配置为 RGB"
@@ -21323,7 +21318,7 @@ msgstr "此选项允许您选择显示屏在待机状态下是否显示时间或
 
 msgid ""
 "This option allows you choose the background color of transparent picons."
-msgstr "此选项允许您选择透明 picon 的背景颜色。"
+msgstr "此选项允许您选择透明频道图标的背景颜色。"
 
 msgid ""
 "This option allows you choose the option for Subservice indicator or "
@@ -21808,10 +21803,10 @@ msgid "Time zone area"
 msgstr "时区区域"
 
 msgid "Timeline 24 Hour"
-msgstr "时间轴24小时"
+msgstr "24小时时间线"
 
 msgid "Timeline font size"
-msgstr "时间轴字体大小"
+msgstr "时间线字体大小"
 
 msgid "Timeline marker"
 msgstr "时间线标记"
@@ -22479,7 +22474,7 @@ msgstr "未知错误代码"
 
 #, python-format
 msgid "Unknown group: %d"
-msgstr "Unknown group: %d"
+msgstr "未知组：%d"
 
 msgid "Unknown recording event"
 msgstr "未知录制事件"
@@ -22489,7 +22484,7 @@ msgstr "未知频道!"
 
 #, python-format
 msgid "Unknown user: %d"
-msgstr "Unknown user: %d"
+msgstr "未知用户：%d"
 
 msgid "Unknown!"
 msgstr "未知!"
@@ -22660,7 +22655,7 @@ msgid "Upper case"
 msgstr "大写"
 
 msgid "Upper line"
-msgstr "上线"
+msgstr "上行"
 
 msgid "Uptime"
 msgstr "正常运行时间"
@@ -22889,7 +22884,7 @@ msgstr ""
 "使用向上/向下按钮选择要备份的已安装镜像。按“开始”（绿色）按钮开始备份。"
 
 msgid "Use the alternative or the conventional radio mode."
-msgstr "使用备选或传统收音机模式。"
+msgstr "使用替代模式或传统收音机模式。"
 
 msgid "Use the current selection and exit"
 msgstr "使用当前选择并退出"
@@ -22984,7 +22979,7 @@ msgid "Using automatic address"
 msgstr "使用自动地址"
 
 msgid "Using fixed address"
-msgstr "使用定位地址"
+msgstr "使用固定地址"
 
 msgid "Using old profile: "
 msgstr "使用旧的配置文件："
@@ -23148,22 +23143,22 @@ msgid "Vertical"
 msgstr "垂直"
 
 msgid "Vertical EPG"
-msgstr "Vertical EPG"
+msgstr "纵向 EPG"
 
 msgid "Vertical alignment for the event-progress."
-msgstr "事件进度的垂直对齐。"
+msgstr "事件进度的纵向对齐。"
 
 msgid "Vertical alignment for the service number."
-msgstr "频道编号的垂直对齐。"
+msgstr "频道编号的纵向对齐。"
 
 msgid "Vertical menu"
-msgstr "垂直菜单"
+msgstr "纵向菜单"
 
 msgid "Vertical turning speed"
-msgstr "垂直转动速度"
+msgstr "纵向转动速度"
 
 msgid "VerticalEPG Settings"
-msgstr "VerticalEPG 设置"
+msgstr "纵向 EPG 设置"
 
 msgid "Very fast"
 msgstr "非常快"
@@ -24044,7 +24039,7 @@ msgid "Without pop up"
 msgstr "不弹出"
 
 msgid "Without query"
-msgstr "没有疑问"
+msgstr "无查询"
 
 msgid "Wizard Actions"
 msgstr "向导操作"
@@ -24053,7 +24048,7 @@ msgid "Wolof"
 msgstr "沃洛夫"
 
 msgid "Workaround for old tuner driver."
-msgstr "旧调谐器驱动程序的解决方法。"
+msgstr "旧调谐器驱动的临时解决方案。"
 
 #, python-format
 msgid "Would you save the entered PIN %s persistent?"
@@ -24099,7 +24094,7 @@ msgid "Y-Resolution"
 msgstr "Y 分辨率"
 
 msgid "YELLOW button"
-msgstr "黄色键"
+msgstr "黄键"
 
 msgid "YELLOW long"
 msgstr "长按黄键"
@@ -25461,10 +25456,10 @@ msgid "tourism/travel"
 msgstr "旅游/旅行"
 
 msgid "traditional (fast)"
-msgstr "传统的（快）"
+msgstr "传统（快速）"
 
 msgid "traditional (fast), retune"
-msgstr "传统（快速），重调"
+msgstr "传统（快速），重新调谐"
 
 msgid "tree delete"
 msgstr "删除树"

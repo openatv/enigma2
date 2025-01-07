@@ -1,5 +1,5 @@
 # openATV <openatv@gmail.com>, 2021.
-# igorrrrr <igorzhugan66@gmail.com>, 2021, 2022, 2023, 2024.
+# igorrrrr <igorzhugan66@gmail.com>, 2021, 2022, 2023, 2024, 2025.
 # Artem <Localizer_in_Russian@protonmail.com>, 2021.
 # Вячеслав Диконов <sdiconov@mail.ru>, 2022, 2024.
 # jbleyel <jbleyel@gmx.net>, 2023.
@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-12-31 15:16+0000\n"
-"PO-Revision-Date: 2024-12-22 20:02+0000\n"
+"PO-Revision-Date: 2025-01-05 14:11+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
 "Language: ru\n"
@@ -99,7 +99,7 @@ msgid "!! Boot loader Upgrade !!"
 msgstr "!! Обновление загрузчика !!"
 
 msgid "# = Reboot Required"
-msgstr ""
+msgstr "# = Требуется перезагрузка"
 
 msgid "%-H:%M"
 msgstr "%-H:%M"
@@ -1014,7 +1014,7 @@ msgstr[2] "%d пакетов загружено."
 msgid "%d package was identified for upgrade."
 msgid_plural "%d packages were identified for upgrade."
 msgstr[0] "%d пакет отмечен для обновления."
-msgstr[1] "%d пакетов отмечено для обновления."
+msgstr[1] "%d пакета отмечено для обновления."
 msgstr[2] "%d пакетов отмечено для обновления."
 
 #, python-format
@@ -1625,7 +1625,7 @@ msgid "A highlight on the remote control image shows which button the help refer
 msgstr "Подсветка на изображении пульта показывает, к какой кнопке относится подсказка. Если указанную функцию выполняют несколько кнопок, то все они будут подсвечены. В тексте под списком перечислены активные кнопки и сказано, требует ли вызов данной функции длительного нажатия кнопки или модификатора SHIFT."
 
 msgid "A new storage device has been connected:"
-msgstr ""
+msgstr "Подключено новое устройство хранения данных:"
 
 #, python-format
 msgid ""
@@ -1818,7 +1818,7 @@ msgid "Action on short POWER button press"
 msgstr "Кнопка вкл/выкл"
 
 msgid "Actions"
-msgstr ""
+msgstr "Действия"
 
 msgid "Activate"
 msgstr "Активация"
@@ -2749,7 +2749,7 @@ msgid "Automatic scan for services"
 msgstr "Автопоиск каналов"
 
 msgid "Automatic shares access"
-msgstr ""
+msgstr "Автоматический доступ к общим папкам"
 
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr "Автоматически переводите телевизор в режим ожидания, когда ресивер переходит в режим ожидания или глубокий режим ожидания."
@@ -4259,10 +4259,10 @@ msgid "Close screen"
 msgstr "Закрыть экран"
 
 msgid "Close the Device Manager screen"
-msgstr ""
+msgstr "Закройте экран диспетчера устройств"
 
 msgid "Close the Device Manager screen and exit all menus"
-msgstr ""
+msgstr "Закройте экран диспетчера устройств и выйдите из всех меню"
 
 msgid "Close the Kexec MultiBoot Manager"
 msgstr "Закройте диспетчер Kexec MultiBoot"
@@ -5323,7 +5323,7 @@ msgid "Custom"
 msgstr "Пользовательские"
 
 msgid "Custom mountpoint"
-msgstr ""
+msgstr "Пользовательская точка монтирования"
 
 msgid "Custom skip time for '1'/'3' buttons"
 msgstr "Время пропуска для кнопок '1'/'3'"
@@ -5356,7 +5356,7 @@ msgid "Cutlist editor..."
 msgstr "Видео редактор..."
 
 msgid "Cyan"
-msgstr ""
+msgstr "Голубой"
 
 msgid "Cycle PiP(zap)"
 msgstr "Поменять с PIP (переключение)"
@@ -5441,7 +5441,7 @@ msgid "DVB subtitle black transparency"
 msgstr "Прозрачность чёрного фона DVB субтитров"
 
 msgid "DVB subtitles color"
-msgstr ""
+msgstr "Цвет субтитров DVB"
 
 msgid "DVB-C"
 msgstr "DVB-C"
@@ -5781,10 +5781,10 @@ msgid "Define the DNS suffix."
 msgstr "Задайте DNS-суффикс."
 
 msgid "Define the custom mountpoint for the device."
-msgstr ""
+msgstr "Определите пользовательскую точку монтирования для устройства."
 
 msgid "Define the file system mount options."
-msgstr ""
+msgstr "Определите параметры монтирования файловой системы."
 
 msgid "Defined / Active"
 msgstr "Определено / Активно"
@@ -6100,13 +6100,13 @@ msgid "Development Packages"
 msgstr "Пакеты для разработчиков"
 
 msgid "Device"
-msgstr ""
+msgstr "Устройство"
 
 msgid "Device Manager"
 msgstr "Диспетчер устройств"
 
 msgid "Device Manager Actions"
-msgstr ""
+msgstr "Действия диспетчера устройств"
 
 msgid "Device Settings"
 msgstr "Сетевой адаптер"
@@ -7081,7 +7081,7 @@ msgid "Enable auto fast scan for %s"
 msgstr "Включить автоматический быстрый поиск для %s"
 
 msgid "Enable automatic shares"
-msgstr ""
+msgstr "Включить автоматический общий доступ"
 
 msgid "Enable autorefresh templates."
 msgstr "Включить автоматическое обновление шаблонов."
@@ -8294,7 +8294,7 @@ msgid "File Commander settings"
 msgstr "Настройки File Commander"
 
 msgid "File system"
-msgstr ""
+msgstr "Файловая система"
 
 msgid "File System Check"
 msgstr "Проверка файловой системы"
@@ -8325,7 +8325,7 @@ msgid "Files/folders to exclude from backup"
 msgstr "Исключить из резервной копии"
 
 msgid "Filesystem"
-msgstr ""
+msgstr "Файловая система"
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr "Заполните EPG канала из вещательной EPG, если для канала нет EPG IceTV"
@@ -8530,7 +8530,7 @@ msgid "Format Storage Device"
 msgstr "Форматирование устройства хранения"
 
 msgid "Formatting storage device..."
-msgstr ""
+msgstr "Форматирование запоминающего устройства..."
 
 msgid "Forward Error Correction (FEC)"
 msgstr "Прямая коррекция ошибок (FEC)"
@@ -8870,7 +8870,7 @@ msgid "Grab"
 msgstr "Захват"
 
 msgid "Graphical DVB subtitles will be displayed in the selected color, instead of the original colors."
-msgstr ""
+msgstr "Графические субтитры DVB будут отображаться в выбранном цвете вместо исходных цветов."
 
 msgid "Graphical EPG"
 msgstr "Графический ТВ-гид"
@@ -10858,7 +10858,7 @@ msgid "Madagascar"
 msgstr "Мадагаскар"
 
 msgid "Magenta"
-msgstr ""
+msgstr "Пурпурный"
 
 msgid "Magic"
 msgstr "Магия"
@@ -11316,7 +11316,7 @@ msgid "Mount Menu Actions"
 msgstr "Действия меню монтирования"
 
 msgid "Mount Point"
-msgstr ""
+msgstr "Точка монтирования"
 
 msgid "Mount Settings"
 msgstr "Настройки монтирования"
@@ -11978,7 +11978,7 @@ msgid "New Setting DXAndy "
 msgstr "Новые настройки DXAndy "
 
 msgid "New Storage Device"
-msgstr ""
+msgstr "Новое устройство хранения данных"
 
 msgid "New Zealand"
 msgstr "Новая Зеландия"
@@ -12777,7 +12777,7 @@ msgid "Optional parameter"
 msgstr "Необязательный параметр"
 
 msgid "Options"
-msgstr ""
+msgstr "Параметры"
 
 msgid "Orbital position"
 msgstr "Позиция на орбите"
@@ -13036,7 +13036,7 @@ msgid "Partition"
 msgstr "Раздел"
 
 msgid "Partition Type"
-msgstr ""
+msgstr "Тип раздела"
 
 msgid "Partitions"
 msgstr "Разделы"
@@ -13066,7 +13066,7 @@ msgid "Password changed."
 msgstr "Пароль изменён."
 
 msgid "Path"
-msgstr ""
+msgstr "Путь"
 
 #, python-format
 msgid "Path '%s' missing!"
@@ -13115,11 +13115,11 @@ msgid "Permanently delete all recordings in the trash can?"
 msgstr "Окончательно удалить все записи в корзине?"
 
 msgid "Permanently ignore this device"
-msgstr ""
+msgstr "Игнорировать это устройство навсегда"
 
 #, python-format
 msgid "Permanently mount as %s"
-msgstr ""
+msgstr "Постоянно монтировать как %s"
 
 msgid "Permanently remove all deleted items"
 msgstr "Очистка корзины"
@@ -13655,7 +13655,7 @@ msgid "Portuguese"
 msgstr "Португальский"
 
 msgid "Position"
-msgstr ""
+msgstr "Позиция"
 
 msgid "Position of finished Timers in Timerlist"
 msgstr "Позиции выполненных таймеров в таймер-листе"
@@ -14277,13 +14277,13 @@ msgid "Re-enter new PIN"
 msgstr "Повторный ввод пин-кода"
 
 msgid "Read Only"
-msgstr ""
+msgstr "Только для чтения"
 
 msgid "Read Userdata from oscam.conf"
 msgstr "Данные пользователя из oscam.conf"
 
 msgid "Read/Write"
-msgstr ""
+msgstr "Чтение/Запись"
 
 msgid "Reader"
 msgstr "Ридер"
@@ -14354,7 +14354,7 @@ msgstr "Перезагрузить"
 
 #, python-format
 msgid "Reboot %s %s now?"
-msgstr ""
+msgstr "Перезагрузить %s %s сейчас?"
 
 msgid "Rec"
 msgstr "Запись"
@@ -15323,7 +15323,7 @@ msgid "Samba Server"
 msgstr "Самба-сервер"
 
 msgid "Samba Settings"
-msgstr ""
+msgstr "Настройки Samba"
 
 msgid "Same as in active"
 msgstr "То же, что при активности"
@@ -15575,7 +15575,7 @@ msgid "Scheduled save of epg.dat"
 msgstr "Запланированное сохранение epg.dat"
 
 msgid "Scheduler"
-msgstr ""
+msgstr "Планировщик"
 
 msgid "Scheduler Actions"
 msgstr "Действия PowerTimer"
@@ -15584,7 +15584,7 @@ msgid "Scheduler Overview"
 msgstr "Просмотр таймеров питания"
 
 msgid "Scheduler Settings"
-msgstr ""
+msgstr "Настройки планировщика"
 
 msgid "Scheduler Standby"
 msgstr "Таймер питания в 'Режим ожидания'"
@@ -15779,7 +15779,7 @@ msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media
 msgstr "Если выберете 'Да', то во время паузы инфопанель будет отображаться постоянно без ограничения времени видимости."
 
 msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
-msgstr ""
+msgstr "Выберите 'Да', чтобы разрешить автоматически экспортировать каждое обнаруженное устройство хранения данных как общий ресурс Samba."
 
 msgid "Select 'Yes' to allow use of the seek bar to jump to a selected point within the event."
 msgstr "Выбор 'Да' позволяет использовать панель перемотки для перехода к нужному моменту внутри передачи."
@@ -16089,10 +16089,10 @@ msgid "Select a network adapter"
 msgstr "Выбор сетевого адаптера"
 
 msgid "Select a permanent mount point for all devices"
-msgstr ""
+msgstr "Выберите постоянную точку монтирования для всех устройств"
 
 msgid "Select a permanent mount point for the current device"
-msgstr ""
+msgstr "Выберите постоянную точку монтирования для текущего устройства"
 
 msgid "Select a repository commit log to view:"
 msgstr "Выберите журнал изменений в репозитории для просмотра:"
@@ -16126,7 +16126,7 @@ msgid "Select all related files"
 msgstr "Выбрать все связанные файлы"
 
 msgid "Select an action for the current device"
-msgstr ""
+msgstr "Выберите действие для текущего устройства"
 
 msgid "Select an action to perform when the task has completed."
 msgstr "Выберите действие, которое необходимо выполнить после завершения задачи."
@@ -16320,7 +16320,7 @@ msgid "Select the Yes / True response"
 msgstr "Выберите Да / Верный ответ"
 
 msgid "Select the access mode for the automatically exported samba shares."
-msgstr ""
+msgstr "Выберите режим доступа для автоматически экспортируемых общих ресурсов Samba."
 
 #, python-format
 msgid "Select the action for '%s'"
@@ -16418,7 +16418,7 @@ msgid "Select the file sort order for the %s column:"
 msgstr "Выберите порядок сортировки файлов для столбца %s:"
 
 msgid "Select the file system for the device."
-msgstr ""
+msgstr "Выберите файловую систему для устройства."
 
 msgid "Select the first item in list or move to the start of text"
 msgstr "Выберите первый элемент в списке или перейдите к началу текста"
@@ -16475,10 +16475,10 @@ msgid "Select the model number of your Unicable device. If the model number is n
 msgstr "Выберите номер модели своего устройства Unicable. Если номер модели не указан, установите для параметра 'SCR' значение 'Задается пользователем' и введите параметры устройства вручную в соответствии с его спецификацией."
 
 msgid "Select the mount points"
-msgstr ""
+msgstr "Выберите точки монтирования"
 
 msgid "Select the mountpoint for the device."
-msgstr ""
+msgstr "Выберите точку монтирования для устройства."
 
 msgid "Select the movie path"
 msgstr "Выбрать папку для фильмов"
@@ -16497,7 +16497,7 @@ msgstr ""
 
 #, python-format
 msgid "Select the new mount point for: '%s'"
-msgstr ""
+msgstr "Выберите новую точку монтирования для: '%s'"
 
 msgid "Select the next item in list or move the cursor right"
 msgstr "Выберите следующий элемент в списке или переместите курсор вправо"
@@ -18057,7 +18057,7 @@ msgid "Show the OSCam information screen"
 msgstr "Показать экран информации OSCam"
 
 msgid "Show the Scheduler"
-msgstr ""
+msgstr "Показать планировщик"
 
 msgid "Show the SleepTimer"
 msgstr "Показать таймер сна"
@@ -19183,7 +19183,7 @@ msgid "Swahili"
 msgstr "Суахили"
 
 msgid "Swap"
-msgstr ""
+msgstr "Swap"
 
 msgid "Swap File Manager"
 msgstr "Управление файлом подкачки"
@@ -19414,7 +19414,7 @@ msgid "TMDB Search"
 msgstr "Поиск по TMDB"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Коррекция перевода Monja 22.12.2024"
+msgstr "Коррекция перевода Monja 05.01.2025"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл слишком большой для ISO9660 уровень 1!"
@@ -19572,7 +19572,7 @@ msgstr "Временный каталог (%s)"
 
 #, python-format
 msgid "Temporarily mount as %s"
-msgstr ""
+msgstr "Временно смонтировать как %s"
 
 msgid "Temporary directory"
 msgstr "Временный каталог"
@@ -20680,7 +20680,7 @@ msgid "Toggle a cut mark at the current position"
 msgstr "Расположить метку обработки в текущей позиции"
 
 msgid "Toggle a temporary mount for the current device"
-msgstr ""
+msgstr "Переключить временное монтирование для текущего устройства"
 
 msgid "Toggle all related files"
 msgstr "Переключить все связанные файлы"
@@ -21185,7 +21185,7 @@ msgid "Unknown"
 msgstr "Неизвестный"
 
 msgid "Unknown Devices"
-msgstr ""
+msgstr "Неизвестные устройства"
 
 msgid ""
 "Unknown Error creating Skin.\n"
@@ -22531,10 +22531,10 @@ msgid "Wipe"
 msgstr "Стереть"
 
 msgid "Wipe Storage Device"
-msgstr ""
+msgstr "Очистите устройство хранения данных"
 
 msgid "Wiping storage device..."
-msgstr ""
+msgstr "Очистка запоминающего устройства..."
 
 msgid "Wireless LAN"
 msgstr "Беспроводной доступ в Интернет"
