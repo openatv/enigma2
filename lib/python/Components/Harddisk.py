@@ -676,6 +676,7 @@ class HarddiskManager:
 		return error, blacklisted, removable, is_cdrom, partitions, medium_found
 
 	def removeHotplugPartition(self, device):
+		device = device.replace("/dev/", "")
 		for x in self.partitions[:]:
 			if x.device == device:
 				self.partitions.remove(x)
