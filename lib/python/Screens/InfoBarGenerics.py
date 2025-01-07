@@ -436,39 +436,39 @@ class InfoBarUnhandledKey:
 
 class InfoBarScreenSaver:
 	def __init__(self):
+		self.screenSaverTimer = eTimer()
+		self.screenSaverTimer.callback.append(self.screenSaverTimeout)
+		self.screenSaver = self.session.instantiateDialog(ScreenSaver)
 		self.onExecBegin.append(self.__onExecBegin)
 		self.onExecEnd.append(self.__onExecEnd)
-		self.screenSaverTimer = eTimer()
-		self.screenSaverTimer.callback.append(self.screensaverTimeout)
-		self.screensaver = self.session.instantiateDialog(ScreenSaver)
 		self.onLayoutFinish.append(self.__layoutFinished)
 
-	def __layoutFinished(self):
-		self.screensaver.hide()
-
 	def __onExecBegin(self):
-		self.ScreenSaverTimerStart()
+		self.screenSaverTimerStart()
 
 	def __onExecEnd(self):
-		if self.screensaver.shown:
-			self.screensaver.hide()
-			eActionMap.getInstance().unbindAction("", self.keypressScreenSaver)
+		if self.screenSaver.shown:
+			self.screenSaver.hide()
+			eActionMap.getInstance().unbindAction("", self.screenSaverKeyPress)
 		self.screenSaverTimer.stop()
 
-	def ScreenSaverTimerStart(self):
-		time = int(config.usage.screen_saver.value)
+	def __layoutFinished(self):
+		self.screenSaver.hide()
+
+	def screenSaverTimerStart(self):
+		startTimer = config.usage.screenSaverStartTimer.value
 		flag = self.seekstate[0]
 		if not flag:
 			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 			if ref and not (hasattr(self.session, "pipshown") and self.session.pipshown):
 				ref = ref.toString().split(":")
 				flag = ref[2] == "2" or ref[2] == "A" or splitext(ref[10])[1].lower() in AUDIO_EXTENSIONS
-		if time and flag:
-			self.screenSaverTimer.startLongTimer(time)
+		if startTimer and flag:
+			self.screenSaverTimer.startLongTimer(startTimer)
 		else:
 			self.screenSaverTimer.stop()
 
-	def screensaverTimeout(self):
+	def screenSaverTimeout(self):
 		if self.execing and not Screens.Standby.inStandby and not Screens.Standby.inTryQuitMainloop:
 			self.hide()
 			if hasattr(self, "pvrStateDialog"):
@@ -476,15 +476,15 @@ class InfoBarScreenSaver:
 					self.pvrStateDialog.hide()
 				except Exception:
 					pass
-			self.screensaver.show()
-			eActionMap.getInstance().bindAction("", -maxsize - 1, self.keypressScreenSaver)
+			self.screenSaver.show()
+			eActionMap.getInstance().bindAction("", -maxsize - 1, self.screenSaverKeyPress)
 
-	def keypressScreenSaver(self, key, flag):
+	def screenSaverKeyPress(self, key, flag):
 		if flag:
-			self.screensaver.hide()
+			self.screenSaver.hide()
 			self.show()
-			self.ScreenSaverTimerStart()
-			eActionMap.getInstance().unbindAction("", self.keypressScreenSaver)
+			self.screenSaverTimerStart()
+			eActionMap.getInstance().unbindAction("", self.screenSaverKeyPress)
 
 
 class HideVBILine(Screen):
@@ -2621,8 +2621,8 @@ class InfoBarSeek:
 		for c in self.onPlayStateChanged:
 			c(self.seekstate)
 		self.checkSkipShowHideLock()
-		if hasattr(self, "ScreenSaverTimerStart"):
-			self.ScreenSaverTimerStart()
+		if hasattr(self, "screenSaverTimerStart"):
+			self.screenSaverTimerStart()
 		return True
 
 	def okButton(self):
@@ -3559,8 +3559,8 @@ class InfoBarPiP:
 					print("[InfoBarGenerics] [LCDMiniTV] disable PiP")
 					eDBoxLCD.getInstance().setLCDMode(config.lcd.modeminitv.value)
 				self.session.pipshown = False
-			if hasattr(self, "ScreenSaverTimerStart"):
-				self.ScreenSaverTimerStart()
+			if hasattr(self, "screenSaverTimerStart"):
+				self.screenSaverTimerStart()
 		else:
 			service = self.session.nav.getCurrentService()
 			info = service and service.info()

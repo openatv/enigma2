@@ -67,6 +67,14 @@ def migrateMenuSort():  # This function needs to called in StartEnigma after ini
 				config.usage.menu_sort_weight.save()
 			except Exception as err:
 				print("[Migration] migrateMenuSort Error: %s!" % str(err))
+	# Update screen saver setting.
+	config.usage.screen_saver = ConfigInteger(default=0)
+	oldValue = config.usage.screen_saver.value
+	if oldValue:
+		config.usage.screen_saver.value = config.usage.screen_saver.default  # Remove the old setting.
+		config.usage.screenSaverStartTimer.value = oldValue  # Save the new setting.
+		config.usage.screen_saver.save()
+		config.usage.screenSaverStartTimer.save()
 
 
 def migrateTimeshift():
