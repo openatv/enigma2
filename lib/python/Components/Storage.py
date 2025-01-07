@@ -54,9 +54,19 @@ class StorageDevice():
 		self.dev_path = self.devicePoint
 		self.disk_path = self.dev_path
 
-	def normalizeLabel(self, label):
+	def getLabelLimit(self, fstype):
+		if "ntfs" in fstype:
+			return 32
+		elif "exfat" == fstype:
+			return 15
+		elif "ext" in fstype:
+			return 16
+		else:
+			return 11
+
+	def normalizeLabel(self, label, limit):
 		label = label.replace(" ", "_")
-		return "".join([ch for ch in label if ch in (ascii_letters + digits + "_")])
+		return "".join([ch for ch in label if ch in (ascii_letters + digits + "_")])[:limit]
 
 	def findMount(self):
 		if self.mount_path is None:
@@ -95,7 +105,7 @@ class StorageDevice():
 	def createFormatJob(self, options):
 		fsType = options.get("fsType", "ext4")
 		label = options.get("label")
-		label = self.normalizeLabel(label)
+		label = self.normalizeLabel(label, self.getLabelLimit(fsType))
 		job = Job(_("Formatting storage device..."))
 		UnmountTask(job, self)
 		UnmountSwapTask(job, self)
@@ -193,7 +203,7 @@ class StorageDevice():
 		for index, partition in enumerate(partitions):
 			fsType = partition.get("fsType", "ext4")
 			label = partition.get("label", f"DISK_{index + 1}")
-			label = self.normalizeLabel(label)
+			label = self.normalizeLabel(label, self.getLabelLimit(fsType))
 			device = f"{self.devicePoint}p{index + 1}" if "mmcblk" in self.devicePoint else f"{self.devicePoint}{index + 1}"
 			uuid = uuids.get(device)
 			oldFsType = fsTypes.get(device)

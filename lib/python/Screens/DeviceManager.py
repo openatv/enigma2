@@ -778,7 +778,7 @@ class DeviceManager(Screen):
 
 		def renameCallback(newName):
 			if newName:
-				newName = storageDevice.normalizeLabel(newName)
+				newName = storageDevice.normalizeLabel(newName, storageDevice.getLabelLimit(storageDevice.fsType))
 				if "extfat" == storageDevice.fsType:
 					cmd = f"exfatlabel {storageDevice.devicePoint} {newName}"
 				elif "ntfs" in storageDevice.fsType:  # Not supported yet becaue you need to unmount
