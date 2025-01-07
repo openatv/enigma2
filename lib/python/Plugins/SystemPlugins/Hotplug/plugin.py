@@ -77,6 +77,7 @@ class HotPlugManager:
 		self.removeTimer.callback.append(self.processRemoveDevice)
 		self.deviceData = []
 		self.addedDevice = []
+		self.callMount = False
 
 	def processAddDevice(self):
 		self.addTimer.stop()
@@ -127,7 +128,9 @@ class HotPlugManager:
 				fstab = fileReadLines("/etc/fstab")
 				fstabDevice = [x.split()[1] for x in fstab if ID_FS_UUID in x and EXPANDER_MOUNT not in x]
 				if fstabDevice and fstabDevice[0] not in mounts:  # Check if device is already in fstab and if the mountpoint not used
-					Console().ePopen("/bin/mount -a")
+					if not exists(fstabDevice[0]):
+						mkdir(fstabDevice[0], 0o755)
+					self.callMount = True
 					notFound = False
 					self.newCount += 1
 
@@ -138,7 +141,9 @@ class HotPlugManager:
 				newFstab = [x for x in fstab if f"UUID={ID_FS_UUID}" not in x and EXPANDER_MOUNT not in x]
 				newFstab.append(f"UUID={ID_FS_UUID} {mountPointHdd} {ID_FS_TYPE} defaults 0 0")
 				fileWriteLines("/etc/fstab", newFstab)
-				Console().ePopen("/bin/mount -a")
+				if not exists(mountPointHdd):
+					mkdir(mountPoint, 0o755)
+				self.callMount = True
 				notFound = False
 				self.newCount += 1
 
@@ -168,19 +173,19 @@ class HotPlugManager:
 							newFstab = [x for x in fstab if f"UUID={ID_FS_UUID}" not in x and EXPANDER_MOUNT not in x]
 							newFstab.append(f"UUID={ID_FS_UUID} {mountPoint} {ID_FS_TYPE} defaults 0 0")
 							fileWriteLines("/etc/fstab", newFstab)
-							Console().ePopen("/bin/mount -a")
+							self.callMount = True
 						elif answer == 4:
 							knownDevices.append(f"{ID_FS_UUID}:{mountPointHdd}")
 							newFstab = [x for x in fstab if f"UUID={ID_FS_UUID}" not in x and EXPANDER_MOUNT not in x]
 							newFstab.append(f"UUID={ID_FS_UUID} {mountPointHdd} {ID_FS_TYPE} defaults 0 0")
 							fileWriteLines("/etc/fstab", newFstab)
-							Console().ePopen("/bin/mount -a")
+							self.callMount = True
 						elif answer == 5:
 							knownDevices.append(f"{ID_FS_UUID}:{mountPointDevice}")
 							newFstab = [x for x in fstab if f"UUID={ID_FS_UUID}" not in x and EXPANDER_MOUNT not in x]
 							newFstab.append(f"UUID={ID_FS_UUID} {mountPointDevice} {ID_FS_TYPE} defaults 0 0")
 							fileWriteLines("/etc/fstab", newFstab)
-							Console().ePopen("/bin/mount -a")
+							self.callMount = True
 						if answer in (1, 3, 4, 5):
 							fileWriteLines("/etc/udev/known_devices", knownDevices)
 					self.addedDevice.append((DEVNAME, DEVPATH, ID_MODEL))
@@ -207,6 +212,9 @@ class HotPlugManager:
 				self.addTimer.start(1000)
 		else:
 			if self.newCount:
+				if self.callMount:
+					self.callMount = False
+					Console().ePopen("/bin/mount -a")
 				self.newCount = 0
 				for device, physicalDevicePath, model in self.addedDevice:
 					harddiskmanager.addHotplugPartition(device, physicalDevicePath, model=model)
