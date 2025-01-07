@@ -716,7 +716,7 @@ class HarddiskManager:
 			dev, part = self.splitDeviceName(devname)
 			if part and dev in devs:  # If this is a partition and we still have the whole disk, remove the whole disk.
 				devs.remove(dev)
-		return [x for x in parts if not x.device or x.device in devs]  # Return all devices which are not removed due to being a whole disk when a partition exists.
+		return [x for x in parts if (not x.device or x.device in devs) and x.mountpoint]  # Return all devices which are not removed due to being a whole disk when a partition exists.
 
 	def splitDeviceName(self, devname):
 		if search(r"^mmcblk\d(?:p\d+$|$)", devname):
