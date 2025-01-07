@@ -388,6 +388,7 @@ class Partition:
 
 class HarddiskManager:
 	def __init__(self):
+		self.debug = False
 		self.hdd = []
 		self.cd = ""
 		self.partitions = []
@@ -402,14 +403,18 @@ class HarddiskManager:
 		p = [("/", _("Internal flash"))]  # Find stuff not detected by the enumeration.
 		self.partitions.extend([Partition(mountpoint=x[0], description=x[1]) for x in p])
 
+	def debugPrint(self, text):
+		if self.debug:
+			print(text)
+
 	def refreshMountPoints(self):
 		# Remove old mounts
-		print(f"[Harddisk] DEBUG refreshMountPoints")
+		self.debugPrint(f"[Harddisk] DEBUG refreshMountPoints")
 		for partition in self.partitions:
 			if partition.mountpoint and partition.mountpoint != "/":
 				newMountpoint = self.getMountpoint(partition.device)
 				if partition.mountpoint != newMountpoint:
-					print(f"[Harddisk] DEBUG remove mountpoint old: {partition.mountpoint} / new: {newMountpoint}")
+					self.debugPrint(f"[Harddisk] DEBUG remove mountpoint old: {partition.mountpoint} / new: {newMountpoint}")
 					self.triggerAddRemovePartion("remove", partition=partition)
 					partition.mountpoint = newMountpoint
 
@@ -417,13 +422,13 @@ class HarddiskManager:
 		for partition in self.partitions:
 			if partition.mountpoint != "/":
 				newMountpoint = self.getMountpoint(partition.device)
-				print(f"[Harddisk] DEBUG add mountpoint old: {partition.mountpoint} / new: {newMountpoint}")
+				self.debugPrint(f"[Harddisk] DEBUG add mountpoint old: {partition.mountpoint} / new: {newMountpoint}")
 				if newMountpoint and partition.mountpoint != newMountpoint:
 					partition.mountpoint = newMountpoint
 					self.triggerAddRemovePartion("add", partition=partition)
 
 	def refresh(self, disk):
-		print(f"[Harddisk] DEBUG refresh", disk)
+		self.debugPrint(f"[Harddisk] DEBUG refresh", disk)
 		removeList = []
 		appedList = []
 		oldPartitions = []
@@ -626,12 +631,12 @@ class HarddiskManager:
 		return None
 
 	def triggerAddRemovePartion(self, action, partition):
-		print(f"[Harddisk] {action} partition {partition.device} -> {partition.mountpoint}")
+		self.debugPrint(f"[Harddisk] {action} partition {partition.device} -> {partition.mountpoint}")
 		self.on_partition_list_change(action, partition)
 
 	def addHotplugPartition(self, device, physdev=None, model=None):
 		device = device.replace("/dev/", "")
-		print(f"[Harddisk] DEBUG addHotplugPartition {device}")
+		self.debugPrint(f"[Harddisk] DEBUG addHotplugPartition {device}")
 		# device -> the device name, without /dev.
 		# physdev -> the physical device path, which we (might) use to determine the user friendly name.
 		if not physdev:
@@ -677,6 +682,7 @@ class HarddiskManager:
 
 	def removeHotplugPartition(self, device):
 		device = device.replace("/dev/", "")
+		self.debugPrint(f"[Harddisk] DEBUG removeHotplugPartition {device}")
 		for x in self.partitions[:]:
 			if x.device == device:
 				self.partitions.remove(x)

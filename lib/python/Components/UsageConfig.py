@@ -1,6 +1,6 @@
 from glob import glob
 from locale import AM_STR, PM_STR, nl_langinfo
-from os import makedirs, remove, system as ossystem
+from os import makedirs, remove, system as ossystem, unlink
 from os.path import exists, isfile, join as pathjoin, normpath, splitext
 from sys import maxsize
 from time import time
@@ -1313,6 +1313,16 @@ def InitUsageConfig():
 		eEPGCache.getInstance().setDebug(configElement.value)
 
 	config.crash.debugEPG.addNotifier(debugEPGhanged, immediate_feedback=False, initial_call=False)
+
+	def debugStorageChanged(configElement):
+		udevDebugFile = "/etc/udev/udev.debug"
+		if configElement.value:
+			fileWriteLine(udevDebugFile, "", source=MODULE_NAME)
+		elif exists(udevDebugFile):
+			unlink(udevDebugFile)
+		harddiskmanager.debug = configElement.value
+
+	config.crash.debugStorage.addNotifier(debugStorageChanged)
 
 	hddChoices = [("/etc/enigma2/", _("Internal Flash"))]
 	for partition in harddiskmanager.getMountedPartitions():
