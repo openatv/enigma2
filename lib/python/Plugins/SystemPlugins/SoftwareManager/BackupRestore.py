@@ -195,6 +195,8 @@ class BackupScreen(ConfigListScreen, Screen):
 					self.session.openWithCallback(self.backupFinishedCB, Console, title=self.screenTitle, cmdlist=cmdList, closeOnSuccess=self.closeOnSuccess, showScripts=False)
 				except OSError:
 					self.session.openWithCallback(self.backupErrorCB, MessageBox, _("Sorry, your backup destination is not writeable.\nPlease select a different one."), MessageBox.TYPE_INFO, timeout=10)
+			else:
+				self.close(True)
 
 		seenMountPoints = []  # DEBUG: Fix Hardisk.py to remove duplicated mount points!
 		choices = []
