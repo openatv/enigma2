@@ -331,6 +331,12 @@ class UUIDTask(ConditionTask):
 		if saveknownDevices:
 			knownDevices = [x for x in knownDevices if x]
 			fileWriteLines("/etc/udev/known_devices", knownDevices, source=MODULE_NAME)
+		for line in fstab:
+			if EXPANDER_MOUNT not in line and "/media/" in line:
+				parts = line.split()
+				if not exists(parts[1]):
+					mkdir(parts[1], 0o755)
+
 		return True
 
 
