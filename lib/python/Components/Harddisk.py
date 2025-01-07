@@ -402,6 +402,61 @@ class HarddiskManager:
 		p = [("/", _("Internal flash"))]  # Find stuff not detected by the enumeration.
 		self.partitions.extend([Partition(mountpoint=x[0], description=x[1]) for x in p])
 
+	def refreshMountPoints(self):
+		# Remove old mounts
+		print(f"[Harddisk] DEBUG refreshMountPoints")
+		for partition in self.partitions:
+			if partition.mountpoint and partition.mountpoint != "/":
+				newMountpoint = self.getMountpoint(partition.device)
+				if partition.mountpoint != newMountpoint:
+					print(f"[Harddisk] DEBUG remove mountpoint old: {partition.mountpoint} / new: {newMountpoint}")
+					self.triggerAddRemovePartion("remove", partition=partition)
+					partition.mountpoint = newMountpoint
+
+		# Add new mount
+		for partition in self.partitions:
+			if partition.mountpoint != "/":
+				newMountpoint = self.getMountpoint(partition.device)
+				print(f"[Harddisk] DEBUG add mountpoint old: {partition.mountpoint} / new: {newMountpoint}")
+				if newMountpoint and partition.mountpoint != newMountpoint:
+					partition.mountpoint = newMountpoint
+					self.triggerAddRemovePartion("add", partition=partition)
+
+	def refresh(self, disk):
+		print(f"[Harddisk] DEBUG refresh", disk)
+		removeList = []
+		appedList = []
+		oldPartitions = []
+		for partition in self.partitions:
+			if partition.device and partition.device.startswith(disk) and partition.device != disk:
+				oldPartitions.append(partition.device)
+
+		if not exists(join("/sys/block/", disk)):
+			removeList += oldPartitions
+			removeList.append(disk)
+		else:
+			currentPartitions = []
+			for line in fileReadLines("/proc/partitions", default=[], source=MODULE_NAME):
+				parts = line.strip().split()
+				if parts:
+					device = parts[3]
+					if device.startswith(disk) and device != disk:
+						currentPartitions.append(device)
+
+			for partition in oldPartitions:
+				if partition not in currentPartitions:
+					removeList.append(partition)
+
+			for partition in currentPartitions:
+				if partition not in oldPartitions:
+					appedList.append(partition)
+
+		for device in removeList:
+			self.removeHotplugPartition(device)
+
+		for device in appedList:
+			self.addHotplugPartition(device)
+
 	def getBlockDevInfo(self, blockdev):
 		devpath = join("/sys/block", blockdev)
 		error = False

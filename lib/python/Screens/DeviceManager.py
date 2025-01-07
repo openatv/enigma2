@@ -41,6 +41,7 @@ from Components.config import ConfigSelection, ConfigText, NoSave
 from Components.Console import Console
 from Components.Storage import StorageDevice, cleanMediaDirs, getProcMountsNew, EXPANDER_MOUNT
 from Components.Label import Label
+from Components.Harddisk import harddiskmanager
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import BoxInfo  # , getBoxDisplayName
@@ -752,6 +753,7 @@ class DeviceManager(Screen):
 		job_manager.in_background = in_background
 		if self.curentservice:
 			self.session.nav.playService(self.curentservice)
+		harddiskmanager.refresh(self.currentStorageDevice.disk)
 		self.updateDevices()
 
 	def getActionFunction(self, action, storageDevice):
@@ -1032,7 +1034,7 @@ class DeviceManagerMountPoints(Setup):
 				self.console.ePopen([self.MOUNT, self.MOUNT, "-a"])
 
 			cleanMediaDirs()
-
+			harddiskmanager.refreshMountPoints()
 			self.close(needReboot)
 
 		oldFstab = fileReadLines("/etc/fstab", default=[], source=MODULE_NAME)
