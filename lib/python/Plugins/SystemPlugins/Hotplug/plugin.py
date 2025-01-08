@@ -5,6 +5,7 @@ from twisted.internet.protocol import Factory, Protocol
 
 from enigma import getDeviceDB, eTimer
 
+from Components.config import config
 from Components.Console import Console
 from Components.Harddisk import harddiskmanager
 from Components.Storage import EXPANDER_MOUNT, cleanMediaDirs
@@ -46,7 +47,8 @@ class Hotplug(Protocol):
 		for values in data:
 			variable, value = values.split("=", 1)
 			eventData[variable] = value
-		hotPlugManager.processHotplugData(eventData)
+		if data and eventData:
+			hotPlugManager.processHotplugData(eventData)
 
 
 def AudiocdAdded():
@@ -78,6 +80,11 @@ class HotPlugManager:
 		self.deviceData = []
 		self.addedDevice = []
 		self.callMount = False
+		self.debug = False
+
+		def debugStorageChanged(configElement):
+			self.debug = configElement.value
+		config.crash.debugStorage.addNotifier(debugStorageChanged)
 
 	def processAddDevice(self):
 		self.addTimer.stop()
@@ -119,7 +126,8 @@ class HotPlugManager:
 				for device in knownDevices:
 					deviceData = device.split(":")
 					if len(deviceData) == 2 and deviceData[0] == ID_FS_UUID:
-						print("[Hotplug] UUID found in known_devices")
+						if self.debug:
+							print("[Hotplug] UUID found in known_devices")
 						knownDevice = deviceData[1]
 						notFound = knownDevice != "None"  # Ignore this device
 						break
@@ -225,9 +233,10 @@ class HotPlugManager:
 
 	def processHotplugData(self, eventData):
 		mode = eventData.get("mode")
-		print("[Hotplug] DEBUG: ", eventData)
+		if self.debug:
+			print("[Hotplug] DEBUG: ", eventData)
 		action = eventData.get("ACTION")
-		if mode == 1:
+		if mode == 1 and eventData.get("MODE", "") != "CD":
 			if action == "add":
 				self.addTimer.stop()
 				ID_TYPE = eventData.get("ID_TYPE")

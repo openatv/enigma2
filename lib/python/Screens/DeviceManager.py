@@ -37,7 +37,7 @@ from re import search, split, sub
 from enigma import eTimer, getDeviceDB
 
 from Components.ActionMap import HelpableActionMap
-from Components.config import ConfigSelection, ConfigText, NoSave
+from Components.config import config, ConfigSelection, ConfigText, NoSave
 from Components.Console import Console
 from Components.Storage import StorageDevice, cleanMediaDirs, getProcMountsNew, EXPANDER_MOUNT
 from Components.Label import Label
@@ -210,7 +210,6 @@ class StorageDeviceAction(Setup):
 							self.formatsizes[pos].value = 100 - fullSize
 							break
 
-			# print(f"[StorageDeviceAction] DEBUG numOfPartitions: {self.numOfPartitions}")
 		Setup.changedEntry(self)
 
 	def keyCancel(self):
@@ -279,7 +278,8 @@ class StorageDeviceManager():
 				UUID = parts[0].replace("UUID=", "")
 				if UUID in seenUUIDs:
 					continue
-				print(f"[DeviceManager] DEBUG fstab line {index + 1} / UUID {UUID} not in device list")
+				if config.crash.debugStorage.value:
+					print(f"[DeviceManager] DEBUG fstab line {index + 1} / UUID {UUID} not in device list")
 
 				deviceData = {
 					"UUID": UUID,
@@ -288,10 +288,8 @@ class StorageDeviceManager():
 					"FlashExpander": False
 				}
 				unknownList.append(deviceData)
-		print("deviceList")
-		print(deviceList)
-		print("unknownList")
-		print(unknownList)
+		if config.crash.debugStorage.value:
+			print(f"[DeviceManager] DEBUG deviceList:\n{deviceList}\nunknownList:\n{unknownList}")
 		return deviceList, unknownList
 
 	def createDevice(self, device, isPartition, mounts, swapDevices, partitions, knownDevices, fstab):
@@ -445,6 +443,8 @@ class DeviceManager(Screen):
 
 	MOUNT = "/bin/mount"
 	UMOUNT = "/bin/umount"
+	SWAPON = "/sbin/swapom"
+	SWAPOFF = "/sbin/swapoff"
 
 	LIST_SELECTION = 0
 	LIST_DEVICE = 1
@@ -661,10 +661,13 @@ class DeviceManager(Screen):
 					return
 				elif storageDevice.get("fsType") == "swap":
 					def swapCallback(data, retVal, extraArgs):
+						if retVal:
+							print(f"[DeviceManager] swap failed / RC:{retVal}")
+							if config.crash.debugStorage.value:
+								print(data)
 						self.updateDevices()
-					command = "swapoff" if storageDevice.get("swapState") else "swapon"
-					self.console.ePopen(f"{command} {storageDevice.get("devicePoint")}", swapCallback)
-					return
+					command = self.SWAPOFF if storageDevice.get("swapState") else self.SWAPON
+					self.console.ePopen([command, command, storageDevice.get("devicePoint")], swapCallback)
 				elif storageDevice.get("isPartition"):
 					self.session.openWithCallback(keyMountPointCallback, DeviceManagerMountPoints, index=self["devicelist"].getCurrentIndex(), storageDevices=self.storageDevices)
 
@@ -673,6 +676,8 @@ class DeviceManager(Screen):
 			def checkMount(data, retVal, extraArgs):
 				if retVal:
 					print(f"[DeviceManager] mount failed for device:{devicePoint} / RC:{retVal}")
+					if config.crash.debugStorage.value:
+						print(data)
 				self.updateDevices()
 				mountok = False
 				mounts = getProcMountsNew()
@@ -697,9 +702,13 @@ class DeviceManager(Screen):
 			storageDevice = current[self.LIST_DATA]
 			if storageDevice.get("fsType") == "swap":
 				def swapCallback(data, retVal, extraArgs):
+					if retVal:
+						print(f"[DeviceManager] swap failed / RC:{retVal}")
+						if config.crash.debugStorage.value:
+							print(data)
 					self.updateDevices()
-				command = "swapoff" if storageDevice.get("swapState") else "swapon"
-				self.console.ePopen(f"{command} {storageDevice.get("devicePoint")}", swapCallback)
+				command = self.SWAPOFF if storageDevice.get("swapState") else self.SWAPON
+				self.console.ePopen([command, command, storageDevice.get("devicePoint")], swapCallback)
 			elif storageDevice.get("isPartition") and not storageDevice.get("fstabMountPoint"):
 				knownDevice = storageDevice.get("knownDevice")
 				if ":None" in knownDevice:
@@ -768,7 +777,12 @@ class DeviceManager(Screen):
 		}.get(action)
 
 	def keyActions(self):
-		def renameActionCallback(result=None, retval=None, extra_args=None):
+		def renameActionCallback(data, retVal, extraArgs):
+			if retVal:
+				print(f"[DeviceManager] rename failed / RC:{retVal}")
+				if config.crash.debugStorage.value:
+					print(data)
+
 			def renameActionCallback2():
 				self.reloadTimer = None
 				self.updateDevices()
@@ -779,15 +793,17 @@ class DeviceManager(Screen):
 		def renameCallback(newName):
 			if newName:
 				newName = storageDevice.normalizeLabel(newName, storageDevice.getLabelLimit(storageDevice.fsType))
+				params = [storageDevice.devicePoint, newName]
 				if "extfat" == storageDevice.fsType:
-					cmd = f"exfatlabel {storageDevice.devicePoint} {newName}"
-				elif "ntfs" in storageDevice.fsType:  # Not supported yet becaue you need to unmount
-					cmd = f"ntfslabel {storageDevice.devicePoint} {newName}"
+					cmd = "/usr/sbin/exfatlabel"
+				elif "ntfs" in storageDevice.fsType:  # Not supported yet because you need to unmount
+					cmd = "/usr/sbin/ntfslabel"
 				elif "fat" in storageDevice.fsType:
-					cmd = f"mlabel -i {storageDevice.devicePoint} ::{newName}"
+					params = ["-i", storageDevice.devicePoint, f"::{newName}"]
+					cmd = "/usr/bin/mlabel"
 				else:
-					cmd = f"e2label {storageDevice.devicePoint} {newName}"
-				self.console.ePopen(cmd, callback=renameActionCallback)
+					cmd = "/sbin/e2label"
+				self.console.ePopen([cmd, cmd] + params, callback=renameActionCallback)
 
 		def keyActionsSetupCallback(options):
 			if options is not None:
@@ -807,6 +823,7 @@ class DeviceManager(Screen):
 
 		def keyActionsCallback(action):
 			self.currentAction = action
+			options = {"debug": True} if config.crash.debugStorage.value else {}
 			if action:
 				if action == StorageDeviceAction.ACTION_LABEL:
 					self.session.openWithCallback(renameCallback, VirtualKeyBoard, title=_("Please enter the new name:"), text=storageDevice.label)
@@ -818,9 +835,9 @@ class DeviceManager(Screen):
 						uuid = fileReadLine(f"/dev/uuid/{device}", default=None, source=MODULE_NAME)
 						if uuid:
 							uuids[device] = uuid
-					keyActionsSetupCallback({"uuids": uuids})
+					keyActionsSetupCallback(options | {"uuids": uuids})
 				else:
-					keyActionsSetupCallback({})
+					keyActionsSetupCallback(options)
 
 		current = self["devicelist"].getCurrent()
 		if current:
@@ -1016,7 +1033,12 @@ class DeviceManagerMountPoints(Setup):
 		Setup.setFootnote(self, footnote)
 
 	def keySave(self):
-		def keySaveCallback(result=None, retval=None, extra_args=None):
+		def keySaveCallback(data, retVal, extraArgs):
+			if retVal:
+				print(f"[DeviceManager] mount failed / RC:{retVal}")
+				if config.crash.debugStorage.value:
+					print(data)
+
 			needReboot = False
 #			isMounted = current[5]
 #			mountp = current[3]
