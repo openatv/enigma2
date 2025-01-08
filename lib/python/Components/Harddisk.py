@@ -428,7 +428,7 @@ class HarddiskManager:
 					self.triggerAddRemovePartion("add", partition=partition)
 
 	def refresh(self, disk):
-		self.debugPrint(f"refresh", disk)
+		self.debugPrint(f"refresh {disk}")
 		removeList = []
 		appedList = []
 		oldPartitions = []
