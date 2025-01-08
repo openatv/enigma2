@@ -47,7 +47,8 @@ class Hotplug(Protocol):
 		for values in data:
 			variable, value = values.split("=", 1)
 			eventData[variable] = value
-		hotPlugManager.processHotplugData(eventData)
+		if data and eventData:
+			hotPlugManager.processHotplugData(eventData)
 
 
 def AudiocdAdded():
@@ -235,7 +236,7 @@ class HotPlugManager:
 		if self.debug:
 			print("[Hotplug] DEBUG: ", eventData)
 		action = eventData.get("ACTION")
-		if mode == 1:
+		if mode == 1 and eventData.get("MODE", "") != "CD":
 			if action == "add":
 				self.addTimer.stop()
 				ID_TYPE = eventData.get("ID_TYPE")
