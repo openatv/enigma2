@@ -512,7 +512,7 @@ class FlashImage(Screen):
 		if choice:
 			knownFlagFiles = ("settings", "plugins", "noplugins", "slow", "fast", "turbo")
 			for directory in listdir("/media"):  # Remove known flag files from devices other than /media/hdd.
-				if directory not in ("autofs", "hdd"):
+				if directory not in ("audiocd", "autofs", "hdd"):
 					for flagFile in knownFlagFiles:
 						flagPath = join("/media", directory, "images/config", flagFile)
 						if isfile(flagPath) and getsize(flagPath) == 0:
