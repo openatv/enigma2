@@ -659,6 +659,10 @@ class DeviceManager(Screen):
 					return
 				elif storageDevice.get("fsType") == "swap":
 					def swapCallback(data, retVal, extraArgs):
+						if retVal:
+							print(f"[DeviceManager] swap failed / RC:{retVal}")
+							if config.crash.debugStorage.value:
+								print(data)
 						self.updateDevices()
 					command = "swapoff" if storageDevice.get("swapState") else "swapon"
 					self.console.ePopen(f"{command} {storageDevice.get("devicePoint")}", swapCallback)
@@ -697,6 +701,10 @@ class DeviceManager(Screen):
 			storageDevice = current[self.LIST_DATA]
 			if storageDevice.get("fsType") == "swap":
 				def swapCallback(data, retVal, extraArgs):
+					if retVal:
+						print(f"[DeviceManager] swap failed / RC:{retVal}")
+						if config.crash.debugStorage.value:
+							print(data)
 					self.updateDevices()
 				command = "swapoff" if storageDevice.get("swapState") else "swapon"
 				self.console.ePopen(f"{command} {storageDevice.get("devicePoint")}", swapCallback)
@@ -768,7 +776,12 @@ class DeviceManager(Screen):
 		}.get(action)
 
 	def keyActions(self):
-		def renameActionCallback(result=None, retval=None, extra_args=None):
+		def renameActionCallback(data, retVal, extraArgs):
+			if retVal:
+				print(f"[DeviceManager] rename failed / RC:{retVal}")
+				if config.crash.debugStorage.value:
+					print(data)
+
 			def renameActionCallback2():
 				self.reloadTimer = None
 				self.updateDevices()
