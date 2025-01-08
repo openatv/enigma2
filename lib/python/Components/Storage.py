@@ -454,7 +454,7 @@ def cleanMediaDirs():
 	mounts = getProcMountsNew()
 	mounts = [x[1] for x in mounts if x[1].startswith("/media/")]
 	for directory in listdir("/media"):
-		if directory not in ("autofs", "hdd"):
+		if directory not in ("audiocd", "autofs", "hdd"):
 			mediaDirectory = join("/media/", directory)
 			if mediaDirectory not in mounts and not ismount(mediaDirectory):
 				print(f"[Storage] remove directory {mediaDirectory} because of unmount")

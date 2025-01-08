@@ -513,7 +513,7 @@ class RestoreScreen(ConfigListScreen, Screen):
 	def userRestoreScript(self, ret=None):
 		scriptPath = None
 		for directory in listdir("/media"):
-			if directory != "autofs":
+			if directory not in ("audiocd", "autofs"):
 				configPath = join("/media", directory, "images/config/myrestore.sh")
 				if exists(configPath):
 					scriptPath = configPath
