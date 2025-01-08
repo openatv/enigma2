@@ -393,7 +393,7 @@ class FlashImage(Screen):
 		if choice:
 			def findMedia(paths):
 				def availableSpace(path):
-					if "/mmc" not in path and isdir(path) and access(path, W_OK):
+					if isdir(path) and access(path, W_OK):
 						try:
 							fs = statvfs(path)
 							return (fs.f_bavail * fs.f_frsize) / (1 << 20)
@@ -405,7 +405,7 @@ class FlashImage(Screen):
 					deviceID = stat(path).st_dev
 					return (major(deviceID), minor(deviceID)) in diskStats
 
-				diskStats = [(int(x[0]), int(x[1])) for x in [x.split()[0:3] for x in open("/proc/diskstats").readlines()] if x[2].startswith("sd")]
+				diskStats = [(int(x[0]), int(x[1])) for x in [x.split()[0:3] for x in open("/proc/diskstats").readlines()] if x[2].startswith("sd") or x[2].startswith("mmc")]
 				for path in paths:
 					if isdir(path) and checkIfDevice(path, diskStats) and availableSpace(path) > 500:
 						return (path, True)
