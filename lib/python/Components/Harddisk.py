@@ -409,7 +409,7 @@ class HarddiskManager:
 
 	def refreshMountPoints(self):
 		# Remove old mounts
-		self.debugPrint(f"refreshMountPoints")
+		self.debugPrint("refreshMountPoints")
 		for partition in self.partitions:
 			if partition.mountpoint and partition.mountpoint != "/":
 				newMountpoint = self.getMountpoint(partition.device)
