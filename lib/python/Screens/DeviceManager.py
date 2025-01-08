@@ -665,8 +665,7 @@ class DeviceManager(Screen):
 								print(data)
 						self.updateDevices()
 					command = "swapoff" if storageDevice.get("swapState") else "swapon"
-					self.console.ePopen(f"{command} {storageDevice.get("devicePoint")}", swapCallback)
-					return
+					self.console.ePopen([command, command, storageDevice.get("devicePoint")], swapCallback)
 				elif storageDevice.get("isPartition"):
 					self.session.openWithCallback(keyMountPointCallback, DeviceManagerMountPoints, index=self["devicelist"].getCurrentIndex(), storageDevices=self.storageDevices)
 
@@ -707,7 +706,7 @@ class DeviceManager(Screen):
 							print(data)
 					self.updateDevices()
 				command = "swapoff" if storageDevice.get("swapState") else "swapon"
-				self.console.ePopen(f"{command} {storageDevice.get("devicePoint")}", swapCallback)
+				self.console.ePopen([command, command, storageDevice.get("devicePoint")], swapCallback)
 			elif storageDevice.get("isPartition") and not storageDevice.get("fstabMountPoint"):
 				knownDevice = storageDevice.get("knownDevice")
 				if ":None" in knownDevice:
@@ -792,15 +791,17 @@ class DeviceManager(Screen):
 		def renameCallback(newName):
 			if newName:
 				newName = storageDevice.normalizeLabel(newName, storageDevice.getLabelLimit(storageDevice.fsType))
+				params = [storageDevice.devicePoint, newName]
 				if "extfat" == storageDevice.fsType:
-					cmd = f"exfatlabel {storageDevice.devicePoint} {newName}"
-				elif "ntfs" in storageDevice.fsType:  # Not supported yet becaue you need to unmount
-					cmd = f"ntfslabel {storageDevice.devicePoint} {newName}"
+					cmd = "/usr/sbin/exfatlabel"
+				elif "ntfs" in storageDevice.fsType:  # Not supported yet because you need to unmount
+					cmd = "/usr/sbin/ntfslabel"
 				elif "fat" in storageDevice.fsType:
-					cmd = f"mlabel -i {storageDevice.devicePoint} ::{newName}"
+					params = ["-i", storageDevice.devicePoint, f"::{newName}"]
+					cmd = "/usr/bin/mlabel"
 				else:
-					cmd = f"e2label {storageDevice.devicePoint} {newName}"
-				self.console.ePopen(cmd, callback=renameActionCallback)
+					cmd = "/sbin/e2label"
+				self.console.ePopen([cmd, cmd] + params, callback=renameActionCallback)
 
 		def keyActionsSetupCallback(options):
 			if options is not None:
