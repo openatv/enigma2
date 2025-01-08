@@ -443,6 +443,8 @@ class DeviceManager(Screen):
 
 	MOUNT = "/bin/mount"
 	UMOUNT = "/bin/umount"
+	SWAPON = "/sbin/swapom"
+	SWAPOFF = "/sbin/swapoff"
 
 	LIST_SELECTION = 0
 	LIST_DEVICE = 1
@@ -664,7 +666,7 @@ class DeviceManager(Screen):
 							if config.crash.debugStorage.value:
 								print(data)
 						self.updateDevices()
-					command = "swapoff" if storageDevice.get("swapState") else "swapon"
+					command = self.SWAPOFF if storageDevice.get("swapState") else self.SWAPON
 					self.console.ePopen([command, command, storageDevice.get("devicePoint")], swapCallback)
 				elif storageDevice.get("isPartition"):
 					self.session.openWithCallback(keyMountPointCallback, DeviceManagerMountPoints, index=self["devicelist"].getCurrentIndex(), storageDevices=self.storageDevices)
@@ -705,7 +707,7 @@ class DeviceManager(Screen):
 						if config.crash.debugStorage.value:
 							print(data)
 					self.updateDevices()
-				command = "swapoff" if storageDevice.get("swapState") else "swapon"
+				command = self.SWAPOFF if storageDevice.get("swapState") else self.SWAPON
 				self.console.ePopen([command, command, storageDevice.get("devicePoint")], swapCallback)
 			elif storageDevice.get("isPartition") and not storageDevice.get("fstabMountPoint"):
 				knownDevice = storageDevice.get("knownDevice")
