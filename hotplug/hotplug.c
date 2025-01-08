@@ -97,6 +97,10 @@ int main(int argc, char *argv[])
 			{
 				debug = 1;
 			}
+			if (strcmp(argv[4], "1") == 0) // Called from bdpoll
+			{
+				mode = 0;
+			}
 		}
 	}
 	if (mode != 2)
@@ -209,42 +213,7 @@ int main(int argc, char *argv[])
 			}
 			else
 			{
-
-				if (!action)
-					action = getenv("ACTION");
-				if (action)
-				{
-					snprintf(data, sizeof(data) - 1, "ACTION=%s", action);
-					data[sizeof(data) - 1] = 0;
-					send(sd, data, strlen(data) + 1, 0);
-				}
-				else
-				{
-					mediastatus = getenv("X_E2_MEDIA_STATUS");
-					if (mediastatus)
-					{
-						snprintf(data, sizeof(data) - 1, "X_E2_MEDIA_STATUS=%s", mediastatus);
-						data[sizeof(data) - 1] = 0;
-						send(sd, data, strlen(data) + 1, 0);
-					}
-				}
-
-				if (!devpath)
-				{
-					devpath = getenv("DEVPATH");
-					if (!devpath)
-						devpath = "-";
-				}
-				snprintf(data, sizeof(data) - 1, "DEVPATH=%s", devpath);
-				data[sizeof(data) - 1] = 0;
-				send(sd, data, strlen(data) + 1, 0);
-				if (!physdevpath)
-				{
-					physdevpath = getenv("PHYSDEVPATH");
-					if (!physdevpath)
-						physdevpath = "-";
-				}
-				snprintf(data, sizeof(data) - 1, "PHYSDEVPATH=%s", physdevpath);
+				snprintf(data, sizeof(data) - 1, "MODE=CD\nACTION=%s\nDEVPATH=%s\nPHYSDEVPATH=%s", action, devpath, physdevpath);
 				data[sizeof(data) - 1] = 0;
 				send(sd, data, strlen(data) + 1, 0);
 			}
