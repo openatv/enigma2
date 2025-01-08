@@ -375,7 +375,7 @@ class UnmountTask(LoggingTask):
 		try:
 			open(self.nomoutFile, "wb").close()
 		except Exception as e:
-			print("[UnmountTask] ERROR: Failed to create /dev/nomount file:", e)
+			print(f"[{self.__class__.__name__}] ERROR: Failed to create /dev/nomount file:{e}")
 		self.setTool('umount')
 		self.args.append('-f')
 		self.args.append('-l')
@@ -384,7 +384,7 @@ class UnmountTask(LoggingTask):
 				self.args.append(parts[0])
 				self.mountpoints.append(parts[0])
 		if not self.mountpoints:
-			print("[UnmountTask] No mountpoints found?")
+			print(f"[{self.__class__.__name__}] No mountpoints found?")
 			self.cmd = 'true'
 			self.args = [self.cmd]
 		else:
@@ -411,7 +411,8 @@ class UnmountSwapTask(LoggingTask):
 			parts = line.split()
 			self.args.append(parts[0])
 		if not swaps:
-			print("[UnmountSwapTask] No mountpoints found?")
+			if self.debug:
+				print(f"[{self.__class__.__name__}] No mountpoints found!")
 			self.cmd = 'true'
 			self.args = [self.cmd]
 
@@ -433,7 +434,7 @@ class MountTask(LoggingTask):
 		try:
 			unlink(self.nomoutFile)
 		except Exception as e:
-			print("[MountTask] ERROR: Failed to remove /dev/nomount file:", e)
+			print(f"[{self.__class__.__name__}] ERROR: Failed to remove /dev/nomount file: {e}")
 
 		if self.mountDevice:
 			part = "p1" if "mmcblk" in self.storageDevice.disk else "1"
@@ -471,7 +472,7 @@ class MkfsTask(LoggingTask):
 					d[1] = d[1].split("\x08", 1)[0]
 				self.setProgress(80 * int(d[0]) // int(d[1]))
 			except Exception as err:
-				print(f"[MkfsTask] MkfsTask - [Mkfs] Error: {err}!")
+				print(f"[{self.__class__.__name__}] Error: {err}!")
 			return  # Don't log the progress.
 		self.log.append(data)
 
