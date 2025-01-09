@@ -1079,7 +1079,12 @@ class DeviceManagerMountPoints(Setup):
 		self.deviceMounts = []
 
 		for index, device in enumerate(self.devices):
-			mountPoint = self.mountPoints[index].value or f"/media/{self.customMountPoints[index].value}"
+			if self.mountPoints[index].value:
+				mountPoint = self.mountPoints[index].value
+			else:
+				mountPoint = self.customMountPoints[index].value
+				mountPoint = "".join(x for x in mountPoint if x.isalnum() or x in "_-")
+				mountPoint = f"/media/{mountPoint}"
 			fileSystem = self.fileSystems[index].value
 			options = self.options[index].value
 			# device , fstabmountpoint, isMounted , deviceUuid, name, choiceList
