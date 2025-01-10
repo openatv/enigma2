@@ -135,10 +135,14 @@ class ServiceInfo(Converter):
 		def isMultichannelAudio(invert):
 			audio = service.audioTracks()
 			if audio and audio.getNumberOfTracks():
-				description = audio.getTrackInfo(audio.getCurrentTrack()).getDescription()  # Some audio descriptions have 'audio' as additional value (e.g. "AC-3 audio").
-				result = bool(description and description.split()[0] in ("AC3", "AC3+", "DTS", "DTS-HD", "AC4", "LPCM", "Dolby", "HE-AAC", "AAC+", "WMA"))
-				if invert:
-					result = not result
+				currentTrack = audio.getCurrentTrack()
+				if currentTrack > -1:
+					description = audio.getTrackInfo(currentTrack).getDescription()  # Some audio descriptions have 'audio' as additional value (e.g. "AC-3 audio").
+					result = bool(description and description.split()[0] in ("AC3", "AC3+", "DTS", "DTS-HD", "AC4", "LPCM", "Dolby", "HE-AAC", "AAC+", "WMA"))
+					if invert:
+						result = not result
+				else:
+					result = False
 			else:
 				result = False
 			return result
