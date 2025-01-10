@@ -94,6 +94,7 @@ static std::string getTunerLetterDM(int NimNumber)
 	{
 		std::string ret = std::string(srcCI);
 		free(srcCI);
+#ifdef HAVE_DM_FBC
 		if (ret.size() == 1)
 		{
 			int corr = 1;
@@ -103,6 +104,7 @@ static std::string getTunerLetterDM(int NimNumber)
 			}
 			return ret + std::to_string(NimNumber + corr);
 		}
+#endif	
 		return ret;
 	}
 	return eDVBCISlot::getTunerLetter(NimNumber);
