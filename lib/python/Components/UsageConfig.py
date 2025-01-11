@@ -451,6 +451,7 @@ def InitUsageConfig():
 	config.usage.hdd_standby = ConfigSelection(default="300", choices=choiceList)
 	config.usage.hdd_standby_in_standby = ConfigSelection(default="-1", choices=[("-1", _("Same as in active"))] + choiceList)
 	config.usage.hdd_timer = ConfigYesNo(default=False)
+	config.usage.showUnknownDevices = ConfigYesNo(default=False)
 	config.usage.output_12V = ConfigSelection(default="do not change", choices=[
 		("do not change", _("Do not change")),
 		("off", _("Off")),
