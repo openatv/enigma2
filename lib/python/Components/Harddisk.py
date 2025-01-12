@@ -411,7 +411,7 @@ class HarddiskManager:
 		# Remove old mounts
 		self.debugPrint("refreshMountPoints")
 		for partition in self.partitions:
-			if partition.mountpoint and partition.mountpoint != "/":
+			if partition.device and partition.mountpoint and partition.mountpoint != "/":
 				newMountpoint = self.getMountpoint(partition.device)
 				if partition.mountpoint != newMountpoint:
 					self.debugPrint(f"remove mountpoint old: {partition.mountpoint} / new: {newMountpoint}")
@@ -420,7 +420,7 @@ class HarddiskManager:
 
 		# Add new mount
 		for partition in self.partitions:
-			if partition.mountpoint != "/":
+			if partition.device and partition.mountpoint != "/":
 				newMountpoint = self.getMountpoint(partition.device)
 				self.debugPrint(f"add mountpoint old: {partition.mountpoint} / new: {newMountpoint}")
 				if newMountpoint and partition.mountpoint != newMountpoint:
