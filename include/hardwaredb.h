@@ -142,6 +142,12 @@ static std::unordered_map<std::string, std::string> HardwareDB{
 	{"/devices/f0490600.ohci/usb10/", "Front USB"},
 	{"/devices/f0480400.ohci/usb7/", "Back, lower USB"},
 	{"/devices/f0480600.ohci/usb8/", "Back, upper USB"}
+#elif HWUNO4KSE
+	{"/devices/platform/rdb/f045a000.sata/ata1/", "SATA"},
+	{"/devices/platform/rdb/f0470300.ehci_v2/usb3/3-1/3-1", "Back, lower USB"},
+	{"/devices/platform/rdb/f0471000.xhci_v2/usb2/2-1/2-1", "Back, lower USB"},
+	{"/devices/platform/rdb/f0470500.ehci_v2/usb4/4-1/4-1", "Back, upper USB"},
+	{"/devices/platform/rdb/f0471000.xhci_v2/usb2/2-2/2-2", "Back, upper USB"}
 #elif HWDUO2 // CHECKED
 	{"/devices/platform/strict-ahci.0/ata1/", "eSATA"},
 	{"/devices/platform/ehci-brcm.2/usb3/", "Front USB"},
