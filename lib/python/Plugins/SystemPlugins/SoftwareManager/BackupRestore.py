@@ -146,6 +146,7 @@ class BackupScreen(ConfigListScreen, Screen):
 				config.usage.shutdownOK.setValue(True)
 				config.usage.shutdownOK.save()
 				configfile.save()
+				self.backuppath = getBackupPath()
 				try:
 					if config.plugins.softwaremanager.epgcache.value:
 						eEPGCache.getInstance().save()
