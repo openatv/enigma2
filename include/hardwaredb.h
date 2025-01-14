@@ -215,6 +215,7 @@ static std::unordered_map<std::string, std::string> HardwareDB{
 	{"/devices/platform/rdb/f0471000.xhci_v2/usb2/2-2/", "Back, upper USB"},
 	{"/devices/platform/rdb/f0471000.xhci_v2/usb2/2-1/", "Back, lower USB"}
 #elif HWHD51 // CHECKED
+	{"/devices/platform/rdb/f045a000.sata/ata1/", "SATA"},
 	{"/devices/platform/f0470300.ehci/usb1/1-1/1-1.2", "Front USB"},
 	{"/devices/platform/f0470300.ehci/usb1/1-1/1-1.3", "Back, left USB"},
 	{"/devices/platform/f0471000.xhci/usb6/6-2/6-2", "Back, right USB"},

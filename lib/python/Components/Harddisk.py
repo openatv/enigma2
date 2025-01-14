@@ -533,7 +533,7 @@ class HarddiskManager:
 					device = eventData["DEVNAME"].replace("/dev/", "")
 					shortDevice = device[:7] if device.startswith("mmcblk") else sub(r"[\d]", "", device)
 					removable = fileReadLine(f"/sys/block/{shortDevice}/removable", source=MODULE_NAME)
-					internal = ("pci" in eventData["DEVPATH"] or "ahci" in eventData["DEVPATH"])
+					internal = "pci" in eventData["DEVPATH"] or "ahci" in eventData["DEVPATH"] or "ata" in eventData["DEVPATH"]
 					if internal and removable == "1":  # This is probably a driver bug
 						for physdevprefix, pdescription in list(getDeviceDB().items()):
 							if eventData["DEVPATH"].startswith(physdevprefix) and "SATA" in pdescription:
