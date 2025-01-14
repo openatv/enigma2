@@ -315,7 +315,7 @@ class StorageDeviceManager():
 		deviceLocation = ""
 		for physdevprefix, pdescription in list(getDeviceDB().items()):
 			if physdev.startswith(physdevprefix):
-				deviceLocation = pdescription
+				deviceLocation = _(pdescription)
 
 		deviceMounts = []
 		mounts = [x for x in mounts if EXPANDER_MOUNT not in x[1]]

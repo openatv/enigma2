@@ -761,7 +761,7 @@ class HarddiskManager:
 		hwdescription = ""
 		for physdevprefix, pdescription in list(getDeviceDB().items()):
 			if phys.startswith(physdevprefix):
-				hwdescription = pdescription
+				hwdescription = _(pdescription)
 
 		label = fileReadLine(f"/dev/label/{dev}", default="", source=MODULE_NAME)
 		if label:
