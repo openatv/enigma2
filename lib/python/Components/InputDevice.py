@@ -356,7 +356,7 @@ class InitInputDevices:
 		configItem = getattr(config.inputDevices, device)
 		configItem.enabled = ConfigYesNo(default=BoxInfo.getItem("RemoteEnable", False))
 		configItem.enabled.addNotifier(self.inputDevicesEnabledChanged)
-		configItem.name = ConfigText(default="")
+		configItem.name = ConfigText(default="", fixed_size=False)
 		configItem.name.addNotifier(self.inputDevicesNameChanged)
 		configItem.repeat = ConfigSlider(default=BoxInfo.getItem("RemoteRepeat", 100), increment=10, limits=(0, 500))
 		configItem.repeat.addNotifier(self.inputDevicesRepeatChanged)
