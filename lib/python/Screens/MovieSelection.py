@@ -8,7 +8,6 @@ from enigma import eRCInput, eServiceCenter, eServiceReference, eServiceReferenc
 import NavigationInstance
 from RecordTimer import AFTEREVENT, RecordTimerEntry
 from Components.ActionMap import ActionMap, HelpableActionMap, NumberActionMap
-from Components.Button import Button
 from Components.config import ConfigLocations, ConfigSelection, ConfigSelectionNumber, ConfigSet, ConfigSubsection, ConfigText, ConfigYesNo, config
 from Components.DiskInfo import DiskInfo
 from Components.Harddisk import harddiskmanager
@@ -60,19 +59,19 @@ config.movielist.show_underscores = ConfigYesNo(default=False)
 userDefinedButtons = None
 last_selected_dest = []
 
-# This kludge is needed because ConfigSelection only takes numbers and someone appears to be fascinated by 'enums'.
+# This kludge is needed because ConfigSelection only takes numbers and someone appears to be fascinated by "enums".
 #
 l_moviesort = [
-	(MovieList.SORT_GROUPWISE, _("default"), '02/01 & A-Z'),
-	(MovieList.SORT_RECORDED, _("by date"), '03/02/01'),
-	(MovieList.SORT_ALPHANUMERIC, _("alphabetic"), 'A-Z'),
-	(MovieList.SORT_ALPHANUMERIC_FLAT, _("flat alphabetic"), 'A-Z Flat'),
-	(MovieList.SHUFFLE, _("shuffle"), '?'),
-	(MovieList.SORT_RECORDED_REVERSE, _("reverse by date"), '01/02/03'),
-	(MovieList.SORT_ALPHANUMERIC_REVERSE, _("alphabetic reverse"), 'Z-A'),
-	(MovieList.SORT_ALPHANUMERIC_FLAT_REVERSE, _("flat alphabetic reverse"), 'Z-A Flat'),
-	(MovieList.SORT_ALPHA_DATE_OLDEST_FIRST, _("alpha then oldest"), 'A1 A2 Z1'),
-	(MovieList.SORT_ALPHAREV_DATE_NEWEST_FIRST, _("alpharev then newest"), 'Z1 A2 A1')]
+	(MovieList.SORT_GROUPWISE, _("default"), "02/01 & A-Z"),
+	(MovieList.SORT_RECORDED, _("by date"), "03/02/01"),
+	(MovieList.SORT_ALPHANUMERIC, _("alphabetic"), "A-Z"),
+	(MovieList.SORT_ALPHANUMERIC_FLAT, _("flat alphabetic"), "A-Z Flat"),
+	(MovieList.SHUFFLE, _("shuffle"), "?"),
+	(MovieList.SORT_RECORDED_REVERSE, _("reverse by date"), "01/02/03"),
+	(MovieList.SORT_ALPHANUMERIC_REVERSE, _("alphabetic reverse"), "Z-A"),
+	(MovieList.SORT_ALPHANUMERIC_FLAT_REVERSE, _("flat alphabetic reverse"), "Z-A Flat"),
+	(MovieList.SORT_ALPHA_DATE_OLDEST_FIRST, _("alpha then oldest"), "A1 A2 Z1"),
+	(MovieList.SORT_ALPHAREV_DATE_NEWEST_FIRST, _("alpharev then newest"), "Z1 A2 A1")]
 
 config.movielist.moviesort = ConfigSelection(default=MovieList.SORT_GROUPWISE, choices=l_moviesort)
 
@@ -103,7 +102,7 @@ def getPreferredTagEditor():  # Wrapper function for old plugins.
 def isTrashFolder(ref):
 	if not config.usage.movielist_trashcan.value or not ref.flags & eServiceReference.mustDescent:
 		return False
-	return realpath(ref.getPath()).endswith(TRASHCAN) or realpath(ref.getPath()).endswith("%s/" % TRASHCAN)
+	return realpath(ref.getPath()).endswith(TRASHCAN) or realpath(ref.getPath()).endswith(f"{TRASHCAN}/")
 
 
 def isInTrashFolder(ref):
@@ -151,9 +150,9 @@ def createMoveList(serviceref, dest):
 	if not serviceref.flags & eServiceReference.mustDescent:  # Real movie, add extra files.
 		srcBase = splitext(src)[0]
 		baseName = split(srcBase)[1]
-		eitName = "%s.eit" % srcBase
+		eitName = f"{srcBase}.eit"
 		if exists(eitName):
-			moveList.append((eitName, join(dest, "%s.eit" % baseName)))
+			moveList.append((eitName, join(dest, f"{baseName}.eit")))
 		baseName = split(src)[1]
 		for ext in ("%s.ap", "%s.cuts", "%s.meta", "%s.sc"):
 			candidate = ext % src
@@ -171,7 +170,7 @@ def moveServiceFiles(serviceref, dest, name=None, allowCopy=True):
 			name = split(moveList[-1][0])[1]
 		moveFiles(moveList, name)
 	except OSError as err:
-		print("[MovieSelection] Error %d: Failed move!  (%s)" % (err.errno, err.strerror))
+		print(f"[MovieSelection] Error {err.errno}: Failed move!  ({err.strerror})")
 		raise  # Throw exception.
 
 
@@ -184,7 +183,7 @@ def copyServiceFiles(serviceref, dest, name=None):
 			name = split(moveList[-1][0])[1]
 		copyFiles(moveList, name)
 	except OSError as err:
-		print("[MovieSelection] Error %d: Failed copy!  (%s)" % (err.errno, err.strerror))
+		print(f"[MovieSelection] Error {err.errno}: Failed copy!  ({err.strerror})")
 		raise  # Throw exception.
 
 
@@ -280,13 +279,13 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 		self["list"] = MovieList(None, sort_type=self.settings["moviesort"], descr_state=self.settings["description"])
 		self.list = self["list"]
 		self.selectedmovie = selectedmovie
-		self.playGoTo = None  # 1 - preview next item / -1 - preview previous
+		self.playGoTo = None  # 1: Preview next item, -1: Preview previous item.
 		self.setTitle(_("Movie selection"))
 		SelectionEventInfo.__init__(self)
-		self["key_red"] = Button("")
-		self["key_green"] = Button("")
-		self["key_yellow"] = Button("")
-		self["key_blue"] = Button("")
+		self["key_red"] = StaticText()
+		self["key_green"] = StaticText()
+		self["key_yellow"] = StaticText()
+		self["key_blue"] = StaticText()
 		self._updateButtonTexts()
 		self["movie_off"] = MultiPixmap()
 		self["movie_off"].hide()
@@ -352,8 +351,8 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 			"down": (self.keyDown, _("Go down the list"))
 		}, prio=-2)
 		tPreview = _("Preview")
-		tFwd = "%s (%s)" % (_("skip forward"), tPreview)
-		tBack = "%s (%s)" % (_("skip backward"), tPreview)
+		tFwd = f"{_("skip forward")} ({tPreview})"
+		tBack = f"{_("skip backward")} ({tPreview})"
 		sfwd = lambda: self.seekRelative(1, config.seek.selfdefined_46.value * 90000)
 		ssfwd = lambda: self.seekRelative(1, config.seek.selfdefined_79.value * 90000)
 		sback = lambda: self.seekRelative(-1, config.seek.selfdefined_46.value * 90000)
@@ -410,12 +409,12 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 				"movieoff_menu": _("On end of movie (as menu)")
 			}
 			for plugin in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST):
-				userDefinedActions["@%s" % plugin.name] = plugin.description
+				userDefinedActions[f"@{plugin.name}"] = plugin.description
 			locations = []
 			buildMovieLocationList(locations)
 			for d, p in locations:
 				if p and p.startswith("/"):
-					userDefinedActions[p] = "%s: %s" % (_("Goto"), d)
+					userDefinedActions[p] = f"{_("Goto")}: {d}"
 			config.movielist.btn_red = ConfigSelection(default="delete", choices=userDefinedActions)
 			config.movielist.btn_green = ConfigSelection(default="move", choices=userDefinedActions)
 			config.movielist.btn_yellow = ConfigSelection(default="bookmarks", choices=userDefinedActions)
@@ -448,7 +447,7 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 		}
 
 	def getinitUserDefinedActionsDescription(self, key):
-		return _(userDefinedActions.get(eval("config.movielist.%s.value" % key), _("Not Defined")))
+		return _(userDefinedActions.get(eval(f"config.movielist.{key}.value"), _("Not Defined")))
 
 	def _callButton(self, name):
 		if name.startswith("@"):
@@ -462,7 +461,7 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 			self.gotFilename(name)
 		else:
 			try:
-				a = getattr(self, "do_%s" % name)
+				a = getattr(self, f"do_{name}")
 			except Exception:  # Undefined action.
 				return
 			a()
@@ -631,7 +630,7 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 		try:
 			NavigationInstance.instance.RecordTimer.on_state_change.remove(self.list.updateRecordings)
 		except Exception as err:
-			print("[MovieSelection] Error: Failed to unsubscribe '%s'!" % str(err))
+			print(f"[MovieSelection] Error: Failed to unsubscribe '{str(err)}'!")
 
 	def createSummary(self):
 		return MovieSelectionSummary
@@ -673,28 +672,23 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 		return isSimpleFile(item)
 
 	def _updateButtonTexts(self):
-		for k in ("red", "green", "yellow", "blue"):
-			btn = userDefinedButtons[k]
-			self["key_%s" % k].setText(userDefinedActions[btn.value])
+		for button in ("red", "green", "yellow", "blue"):
+			self[f"key_{button}"].setText(userDefinedActions[userDefinedButtons[button].value])
 
 	def updateButtons(self):
 		item = self.getCurrentSelection()
-		for name in ("red", "green", "yellow", "blue"):
-			action = userDefinedButtons[name].value
+		for button in ("red", "green", "yellow", "blue"):
+			action = userDefinedButtons[button].value
 			if action.startswith("@"):
 				check = self.can_default
 			elif action.startswith("/"):
 				check = self.can_gohome
 			else:
 				try:
-					check = getattr(self, "can_%s" % action)
+					check = getattr(self, f"can_{action}")
 				except Exception:
 					check = self.can_default
-			gui = self["key_%s" % name]
-			if check(item):
-				gui.show()
-			else:
-				gui.hide()
+			self[f"key_{button}"].setText(userDefinedActions[userDefinedButtons[button].value] if check(item) else "")
 
 	def showEventInformation(self):
 		from Screens.EventView import EventViewSimple
@@ -754,7 +748,7 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 			self.session.open(DVD.DVDPlayer, dvd_filelist=[path])
 			return True
 		except Exception as err:
-			print("[MovieSelection] Error: DVD Player not installed!  (%s)" % str(err))
+			print(f"[MovieSelection] Error: DVD Player not installed!  ({str(err)})")
 
 	def __serviceStarted(self):
 		if not self.list.playInBackground or not self.list.playInForeground:
@@ -820,7 +814,7 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 				return
 			path = nextItem.getPath()
 			ext = splitext(path)[1].lower()
-			print("[MovieSelection] Next up '%s'." % path)
+			print(f"[MovieSelection] Next up '{path}'.")
 			if ext in AUDIO_EXTENSIONS:
 				self.nextInBackground = next
 				self.callLater(self.preview)
@@ -943,7 +937,7 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 								filelist.append(((p, False), None))
 						self.session.open(ui.Pic_Full_View, filelist, index, path)
 					except Exception as err:
-						print("[MovieSelection] Error: Cannot display!  (%s)" % str(err))
+						print(f"[MovieSelection] Error: Cannot display!  ({str(err)})")
 					return
 				Screens.InfoBar.InfoBar.instance.checkTimeshiftRunning(boundFunction(self.itemSelectedCheckTimeshiftCallback, ext, path))
 
@@ -973,7 +967,7 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 			with open(path, "wb") as fd:
 				dump(self.settings, fd)
 		except OSError as err:
-			print("[MovieSelection] Error %d: Failed to save settings to '%s'!  (%s)" % (err.errno, path, err.strerror))
+			print(f"[MovieSelection] Error {err.errno}: Failed to save settings to '{path}'!  ({err.strerror})")
 		# Also set config items, in case the user has a read-only disk.
 		config.movielist.moviesort.value = self.settings["moviesort"]
 		config.movielist.description.value = self.settings["description"]
@@ -983,7 +977,7 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 		config.usage.on_movie_eof.save()
 
 	def loadLocalSettings(self):
-		'Load settings, called when entering a directory'
+		"Load settings, called when entering a directory"
 		if config.movielist.settings_per_directory.value:
 			try:
 				path = join(config.movielist.last_videodir.value, ".e2settings.pkl")
@@ -998,7 +992,7 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 				}
 				self.applyConfigSettings(updates)
 			except Exception as err:
-				print("[MovieSelection] Error: Failed to load settings from '%s'!  (%s)" % (path, str(err)))
+				print(f"[MovieSelection] Error: Failed to load settings from '{path}'!  ({str(err)})")
 		else:
 			updates = {
 				"moviesort": config.movielist.moviesort.value,
@@ -1025,7 +1019,7 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 		return needUpdate
 
 	def sortBy(self, newType):
-		print("[MovieSelection] Sort by '%s'." % newType)
+		print(f"[MovieSelection] Sort by '{newType}'.")
 		self.settings["moviesort"] = newType
 		self.saveLocalSettings()
 		self.setSortType(newType)
@@ -1062,9 +1056,10 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 	def configureDone(self, result):
 		if result is True:
 			self.applyConfigSettings({
-			"moviesort": config.movielist.moviesort.value,
+				"moviesort": config.movielist.moviesort.value,
 				"description": config.movielist.description.value,
-				"movieoff": config.usage.on_movie_eof.value})
+				"movieoff": config.usage.on_movie_eof.value
+			})
 			self.saveLocalSettings()
 			self._updateButtonTexts()
 			self["list"].setItemsPerPage()
@@ -1084,7 +1079,7 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 		for index, x in enumerate(l_moviesort):
 			if int(x[0]) == int(config.movielist.moviesort.value):
 				used = index
-			menu.append((_(x[1]), x[0], "%d" % index))
+			menu.append((_(x[1]), x[0], str(index)))
 		self.session.openWithCallback(self.sortbyMenuCallback, ChoiceBox, title=_("Sort list:"), list=menu, selection=used)
 
 	def getPixmapSortIndex(self, which):
@@ -1143,10 +1138,10 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 		self["list"].reload(self.current_ref, self.selected_tags)
 		self.updateTags()
 		title = ""
-		if config.usage.setup_level.index >= 2:  # Expert+
+		if config.usage.setup_level.index >= 2:  # Expert+.
 			title += config.movielist.last_videodir.value
 		if self.selected_tags:
-			title += " - %s" % ",".join(self.selected_tags)
+			title += " - {",".join(self.selected_tags)}"
 		self.setTitle(title)
 		self.displayMovieOffStatus()
 		self.displaySortStatus()
@@ -1174,8 +1169,7 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 	def gotFilename(self, res, selItem=None):
 		if not res:
 			return
-		if not res.endswith("/"):  # The serviceref must end with /.
-			res = "%s/" % res
+		res = join(res, "")  # The service reference must end with "/".
 		currentDir = config.movielist.last_videodir.value
 		if res != currentDir:
 			if isdir(res):
@@ -1243,7 +1237,7 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 		self.session.open(MessageBox, _("No tags are set on these movies."), MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
 
 	def selectMovieLocation(self, title, callback):
-		bookmarks = [("(%s...)" % _("Other"), None)]
+		bookmarks = [(f"({_("Other")}...)", None)]
 		buildMovieLocationList(bookmarks)
 		self.onMovieSelected = callback
 		self.movieSelectTitle = title
@@ -1290,7 +1284,7 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 		path = config.movielist.last_videodir.value
 		if path in config.movielist.videodirs.value:
 			if len(path) > 40:
-				path = "...%s" % path[-40:]
+				path = f"...{path[-40:]}"
 			self.session.openWithCallback(self.removeBookmark, MessageBox, _("Do you really want to remove your bookmark for '%s'?") % path, windowTitle=self.getTitle())
 		else:
 			config.movielist.videodirs.value += [path]
@@ -1318,20 +1312,19 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 		try:
 			path = join(config.movielist.last_videodir.value, name)
 			mkdir(path)
-			if not path.endswith("/"):
-				path += "/"
+			path = join(path, "")
 			ref = eServiceReference(eServiceReference.idFile, eServiceReference.noFlags, eServiceReferenceFS.directory)
 			ref.setPath(path)
 			self.reloadList(sel=ref)
 		except OSError as err:
-			print("[MovieSelection] Error %d: %s!" % (err.errno, err.strerror))
+			print(f"[MovieSelection] Error {err.errno}: {err.strerror}!")
 			if err.errno == 17:
 				msg = _("Error: The path '%s' already exists!") % name
 			else:
-				msg = "%s\n%s" % (_("Error"), str(err))
+				msg = f"{_("Error")}\n{str(err)}"
 		except Exception as err:
-			print("[MovieSelection] Unexpected error: %s" % str(err))
-			msg = "%s\n%s" % (_("Error"), str(err))
+			print("[MovieSelection] Unexpected error: '{str(err)}'!")
+			msg = f"{_("Error")}\n{str(err)}"
 		if msg:
 			self.session.open(MessageBox, msg, type=MessageBox.TYPE_ERROR, timeout=5, windowTitle=self.getTitle())
 
@@ -1368,7 +1361,7 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 		item = self.getCurrentSelection()
 		info = item[1]
 		serviceref = ServiceReference(None, reftype=eServiceReference.idDVB, path=item[0].getPath())
-		name = "%s - decoded" % info.getName(item[0])
+		name = f"{info.getName(item[0])} - decoded"
 		description = info.getInfoString(item[0], iServiceInformation.sDescription)
 		begin = int(time())
 		recording = RecordTimerEntry(serviceref, begin, begin + 3600, name, description, 0, dirname=preferredTimerPath())
@@ -1385,14 +1378,14 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 		if item and item[0]:
 			try:
 				path = item[0].getPath().rstrip("/")
-				meta = "%s.meta" % path
+				meta = f"{path}.meta"
 				if isfile(meta):
 					metafile = open(meta, "r+")
 					sid = metafile.readline()
 					oldtitle = metafile.readline()
 					rest = metafile.read()
 					metafile.seek(0)
-					metafile.write("%s%s\n%s" % (sid, name, rest))
+					metafile.write(f"{sid}{name}\n{rest}")
 					metafile.truncate()
 					metafile.close()
 					index = self.list.getCurrentIndex()
@@ -1405,29 +1398,29 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 				pathname, filename = split(path)
 				newpath = join(pathname, name)
 				msg = None
-				print("[MovieSelection] Rename '%s' to '%s'." % (path, newpath))
+				print(f"[MovieSelection] Rename '{path}' to '{newpath}'.")
 				rename(path, newpath)
 				ref = eServiceReference(eServiceReference.idFile, eServiceReference.noFlags, eServiceReferenceFS.directory)
 				ref.setPath(newpath)
 				self.reloadList(sel=ref)
 			except OSError as err:
-				print("[MovieSelection] Error %d: %s!" % (err.errno, err.strerror))
+				print(f"[MovieSelection] Error {err.errno}: {err.strerror}!")
 				if err.errno == 17:
 					msg = _("Error: The path '%s' already exists!") % name
 				else:
-					msg = "%s\n%s" % (_("Error"), str(err))
+					msg = f"{_("Error")}\n{str(err)}"
 			except Exception as err:
 				import traceback
-				print("[MovieSelection] Unexpected error: %s" % str(err))
+				print("[MovieSelection] Unexpected error: {str(err)}")
 				traceback.print_exc()
-				msg = "%s\n%s" % (_("Error"), str(err))
+				msg = f"{_("Error")}\n{str(err)}"
 			if msg:
 				self.session.open(MessageBox, msg, type=MessageBox.TYPE_ERROR, timeout=5, windowTitle=self.getTitle())
 
 	def do_reset(self):
 		current = self.getCurrent()
 		if current:
-			resetMoviePlayState("%s.cuts" % current.getPath(), current)
+			resetMoviePlayState(f"{current.getPath()}.cuts", current)
 			self["list"].invalidateCurrentItem()  # Trigger repaint.
 
 	def do_move(self):
@@ -1440,8 +1433,8 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 			name = info and info.getName(current) or _("this recording")
 			path = normpath(current.getPath())
 			# Show a more limited list of destinations, no point in showing mount points.
-			title = "%s %s" % (_("Select destination for:"), name)
-			bookmarks = [("(%s...)" % _("Other"), None)]
+			title = f"{_("Select destination for:")} {name}"
+			bookmarks = [(f"({_("Other")}...)", None)]
 			inlist = []
 			try:  # Sub directories.
 				base = split(path)[0]
@@ -1452,7 +1445,7 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 							bookmarks.append((fn, d))
 							inlist.append(d)
 			except Exception as err:
-				print("[MovieSelection] Error: %s!" % str(err))
+				print(f"[MovieSelection] Error: {str(err)}!")
 			for d in last_selected_dest:  # Last favorites.
 				if d not in inlist:
 					bookmarks.append((d, d))
@@ -1493,7 +1486,7 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 			if info is None:  # Special case.
 				return
 			name = info and info.getName(current) or _("this recording")
-			self.selectMovieLocation(title="%s %s" % (_("Select copy destination for:"), name), callback=self.gotCopyMovieDest)
+			self.selectMovieLocation(title=f"{_("Select copy destination for:")} {name}", callback=self.gotCopyMovieDest)
 
 	def gotCopyMovieDest(self, choice):
 		if not choice:
@@ -1587,11 +1580,11 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 						msg = ""
 						deleteFiles(cur_path, name)
 						self["list"].removeService(current)
-						self.showActionFeedback("%s %s" % (_("Deleted"), name))
+						self.showActionFeedback(f"{_("Deleted")} {name}")
 						return
 					except Exception as err:
-						print("[MovieSelection] Error: Weird error moving to trash!  (%s)" % str(err))
-						msg = "%s\n%s\n" % (_("Cannot delete file"), str(err))
+						print(f"[MovieSelection] Error: Weird error moving to trash!  ({str(err)})")
+						msg = f"{_("Cannot delete file")}\n{str(err)}\n"
 						return
 				for fn in listdir(cur_path):
 					if (fn != ".") and (fn != ".."):
@@ -1607,11 +1600,11 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 					try:
 						rmdir(cur_path)
 					except OSError as err:
-						print("[MovieSelection] Error %d: Failed delete '%s'!  (%s)" % (err.errno, cur_path, err.strerror))
-						self.session.open(MessageBox, "%s\n%s" % (_("Delete failed!"), str(err)), MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
+						print(f"[MovieSelection] Error {err.errno}: Failed delete '{cur_path}'!  ({err.strerror})")
+						self.session.open(MessageBox, f"{_("Delete failed!")}\n{str(err)}", MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
 					else:
 						self["list"].removeService(current)
-						self.showActionFeedback("%s %s" % (_("Deleted"), name))
+						self.showActionFeedback(f"{_("Deleted")} {name}")
 		else:
 			if not args:
 				rec_filename = split(current.getPath())[1]
@@ -1626,7 +1619,7 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 							(_("Stop recording"), ("s", timer)),
 							(_("Stop recording and delete"), ("sd", timer))
 						]
-						self.session.openWithCallback(self.onTimerChoice, ChoiceBox, title="%s\n%s" % (_("Recording in progress!"), name), list=choices)
+						self.session.openWithCallback(self.onTimerChoice, ChoiceBox, title=f"{_("Recording in progress!")}\n{name}", list=choices)
 						return
 				if time() - st.st_mtime < 5 and not args:
 					are_you_sure = _("Do you really want to delete ?")
@@ -1639,10 +1632,10 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 					self["list"].removeService(current)
 					from Screens.InfoBarGenerics import delResumePoint
 					delResumePoint(current)  # Files were moved to .Trash, okay.
-					self.showActionFeedback("%s %s" % (_("Deleted"), name))
+					self.showActionFeedback(f"{_("Deleted")} {name}")
 					return
 				else:
-					msg = "%s\n" % _("Cannot move to trash can")
+					msg = f"{_("Cannot move to trash can")}\n"
 					are_you_sure = _("Do you really want to delete %s ?") % name
 			else:
 				if TRASHCAN in cur_path:
@@ -1673,9 +1666,9 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 			self["list"].removeService(current)
 			from Screens.InfoBarGenerics import delResumePoint
 			delResumePoint(current)
-			self.showActionFeedback("%s %s" % (_("Deleted"), name))
-		except Exception as ex:
-			self.session.open(MessageBox, "%s\n%s\n%s" % (_("Delete failed!"), name, str(ex)), MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
+			self.showActionFeedback(f"{_("Deleted")} {name}")
+		except Exception as err:
+			self.session.open(MessageBox, f"{_("Delete failed!")}\n{name}\n{str(err)}", MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
 
 	def purgeAll(self):
 		recordings = self.session.nav.getRecordings(False, pNavigation.isRealRecording)
@@ -1683,7 +1676,7 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 		if not recordings:
 			next_rec_time = self.session.nav.RecordTimer.getNextRecordingTime()
 		if recordings or (next_rec_time > 0 and (next_rec_time - time()) < 120):
-			msg = "\n%s" % _("Recording(s) are in progress or coming up in few seconds!")
+			msg = f"\n{_("Recording(s) are in progress or coming up in few seconds!")}"
 		else:
 			msg = ""
 		self.session.openWithCallback(self.purgeConfirmed, MessageBox, _("Permanently delete all recordings in the trash can?") + msg, windowTitle=self.getTitle())
@@ -1728,9 +1721,9 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 		self.gotFilename(defaultMoviePath())
 
 	def do_sortdefault(self):
-		print("[MovieSelection] Sort '%s'." % config.movielist.moviesort.value)
+		print(f"[MovieSelection] Sort '{config.movielist.moviesort.value}'.")
 		config.movielist.moviesort.load()
-		print("[MovieSelection] Sort '%s'." % config.movielist.moviesort.value)
+		print(f"[MovieSelection] Sort '{config.movielist.moviesort.value}'.")
 		self.sortBy(int(config.movielist.moviesort.value))
 
 	def do_sort(self):
@@ -1827,7 +1820,7 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 					settings = initSubsSettings().search
 					self.session.open(SubsSearch, E2SubsSeeker(self.session, settings), settings, filepath=path, searchTitles=[name], standAlone=True)
 				except Exception as err:
-					print("[MovieSelection] Error: Start SubsSupport plugin failed!  (%s)" % str(err))
+					print(f"[MovieSelection] Error: Start SubsSupport plugin failed!  ({str(err)})")
 
 
 class MovieSelectionSummary(Screen):
@@ -1861,13 +1854,13 @@ class MovieSelectionSummary(Screen):
 			if item[0].flags & eServiceReference.mustDescent:
 				if len(name) > 12:
 					name = split(normpath(name))[1]
-				name = "> %s" % name
+				name = f"> {name}"
 			self["name"].text = name
 		else:
 			self["name"].text = ""
 
 
-class MovieContextMenu(Screen, ProtectedScreen):  # Contract: On OK returns a callable object (e.g. delete)
+class MovieContextMenu(Screen, ProtectedScreen):  # Contract: On OK returns a callable object (e.g. delete).
 	def __init__(self, session, csel, service):
 		self.csel = csel
 		Screen.__init__(self, session)
@@ -1877,8 +1870,8 @@ class MovieContextMenu(Screen, ProtectedScreen):  # Contract: On OK returns a ca
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
-		self['footnote'] = Label("")
-		self['description'] = Label("")
+		self["footnote"] = Label("")
+		self["description"] = Label("")
 		self["status"] = StaticText()
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions", "NumberActions", "MenuActions"], {
 			"red": self.cancelClick,
@@ -1915,7 +1908,7 @@ class MovieContextMenu(Screen, ProtectedScreen):  # Contract: On OK returns a ca
 				menu.append((_("Reset playback position"), csel.do_reset))
 				menu.append((_("Rename"), csel.do_rename))
 				menu.append((_("Start offline decode"), csel.do_decode))
-				if isfile("%s.meta" % service.getPath().rstrip("/")):
+				if isfile(f"{service.getPath().rstrip("/")}.meta"):
 					menu.append((_("Edit Tags"), csel.do_tageditor))
 				# Plugins expect a valid selection, so only include them if we selected a non-directory.
 				menu.extend([(p.description, boundFunction(p, session, service)) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)])
