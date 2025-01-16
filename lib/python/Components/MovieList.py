@@ -1,31 +1,26 @@
-import os
-import struct
-import random
+from os import stat
+from os.path import join, normpath, realpath, split, splitext
+from random import shuffle
+from struct import Struct
 
-from enigma import eListboxPythonMultiContent, eListbox, gFont, iServiceInformation, eSize, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, eServiceReference, eServiceReferenceFS, eServiceCenter, eTimer, loadPNG, BT_SCALE, BT_KEEP_ASPECT_RATIO
+from enigma import BT_KEEP_ASPECT_RATIO, BT_SCALE, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, eListbox, eListboxPythonMultiContent, eServiceCenter, eServiceReference, eServiceReferenceFS, eSize, eTimer, gFont, iServiceInformation, loadPNG
 
-from Components.GUIComponent import GUIComponent
-from Tools.FuzzyDate import FuzzyTime
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest, MultiContentEntryPixmapAlphaBlend, MultiContentEntryProgress
+import NavigationInstance
+from ServiceReference import ServiceReference
+from skin import getSkinFactor, parseFont
 from Components.config import config
-from Tools.LoadPixmap import LoadPixmap
+from Components.FileList import AUDIO_EXTENSIONS, DVD_EXTENSIONS, IMAGE_EXTENSIONS, MOVIE_EXTENSIONS, KNOWN_EXTENSIONS
+from Components.GUIComponent import GUIComponent
+from Components.MultiContent import MultiContentEntryPixmapAlphaBlend, MultiContentEntryPixmapAlphaTest, MultiContentEntryProgress, MultiContentEntryText
+from Components.Renderer.Picon import getPiconName
+from Screens.LocationBox import defaultInhibitDirs
 from Tools.Directories import SCOPE_GUISKIN, resolveFilename
+from Tools.FuzzyDate import FuzzyTime
+from Tools.LoadPixmap import LoadPixmap
 from Tools.TextBoundary import getTextBoundarySize
 from Tools.Trashcan import TRASHCAN
-from Screens.LocationBox import defaultInhibitDirs
-from ServiceReference import ServiceReference
-from Components.Renderer.Picon import getPiconName
-import NavigationInstance
-import skin
 
-AUDIO_EXTENSIONS = frozenset((".dts", ".mp3", ".wav", ".wave", ".wv", ".oga", ".ogg", ".flac", ".m4a", ".mp2", ".m2a", ".wma", ".ac3", ".mka", ".aac", ".ape", ".alac", ".amr", ".au", ".mid"))
-DVD_EXTENSIONS = frozenset((".iso", ".img", ".nrg"))
-IMAGE_EXTENSIONS = frozenset((".jpg", ".png", ".gif", ".bmp", ".jpeg", ".jpe", ".svg"))
-MOVIE_EXTENSIONS = frozenset((".mpg", ".vob", ".m4v", ".mkv", ".avi", ".divx", ".dat", ".flv", ".mp4", ".mov", ".wmv", ".asf", ".3gp", ".3g2", ".mpeg", ".mpe", ".rm", ".rmvb", ".ogm", ".ogv", ".m2ts", ".mts", ".webm", ".pva", ".wtv"))
-KNOWN_EXTENSIONS = MOVIE_EXTENSIONS.union(IMAGE_EXTENSIONS, DVD_EXTENSIONS, AUDIO_EXTENSIONS)
-RECORD_EXTENSIONS = (".ts", ".stream")
-
-cutsParser = struct.Struct('>QI')  # big-endian, 64-bit PTS and 32-bit type
+cutsParser = Struct(">QI")  # Big-endian, 64-bit PTS and 32-bit type.
 
 
 class MovieListData:
@@ -40,7 +35,7 @@ class StubInfo:
 		pass
 
 	def getName(self, serviceref):
-		return os.path.split(serviceref.getPath())[1]
+		return split(serviceref.getPath())[1]
 
 	def getLength(self, serviceref):
 		return -1
@@ -54,17 +49,19 @@ class StubInfo:
 	def getInfo(self, serviceref, w):
 		try:
 			if w == iServiceInformation.sTimeCreate:
-				return os.stat(serviceref.getPath()).st_ctime
-			if w == iServiceInformation.sFileSize:
-				return os.stat(serviceref.getPath()).st_size
-			if w == iServiceInformation.sDescription:
-				return serviceref.getPath()
-		except:
-			pass
-		return 0
+				result = stat(serviceref.getPath()).st_ctime
+			elif w == iServiceInformation.sFileSize:
+				result = stat(serviceref.getPath()).st_size
+			elif w == iServiceInformation.sDescription:
+				result = serviceref.getPath()
+			else:
+				result = 0
+		except Exception:
+			result = 0
+		return result
 
 	def getInfoString(self, serviceref, w):
-		return ''
+		return ""
 
 
 justStubInfo = StubInfo()
@@ -78,42 +75,35 @@ def lastPlayPosFromCache(ref):
 def moviePlayState(cutsFileName, ref, length):
 	"""Returns None, 0..100 for percentage"""
 	try:
-		# read the cuts file first
-		f = open(cutsFileName, 'rb')
-		lastCut = None
-		cutPTS = None
-		while True:
-			data = f.read(cutsParser.size)
-			if len(data) < cutsParser.size:
-				break
-			cut, cutType = cutsParser.unpack(data)
-			if cutType == 3:  # undocumented, but 3 appears to be the stop
-				cutPTS = cut
-			else:
-				lastCut = cut
-		f.close()
-		# See what we have in RAM (it might help)
-		last = lastPlayPosFromCache(ref)
+		with open(cutsFileName, "rb") as fd:  # Read the cuts file first.
+			lastCut = None
+			cutPTS = None
+			while True:
+				data = fd.read(cutsParser.size)
+				if len(data) < cutsParser.size:
+					break
+				cut, cutType = cutsParser.unpack(data)
+				if cutType == 3:  # Undocumented, but 3 appears to be the stop.
+					cutPTS = cut
+				else:
+					lastCut = cut
+		last = lastPlayPosFromCache(ref)  # See what we have in RAM (it might help).
 		if last:
-			# Get the length from the cache
-			if not lastCut:
+			if not lastCut:  # Get the length from the cache.
 				lastCut = last[2]
-			# Get the cut point from the cache if not in the file
-			if not cutPTS:
+			if not cutPTS:  # Get the cut point from the cache if not in the file.
 				cutPTS = last[1]
 		if cutPTS is None:
-			# Unseen movie
-			return None
+			return None  # Unseen movie.
 		if not lastCut:
 			if length and (length > 0):
 				lastCut = length * 90000
 			else:
-				# dunno
-				return 0
+				return 0  # Unknown.
 		if cutPTS >= lastCut:
 			return 100
 		return (100 * cutPTS) // lastCut
-	except:
+	except Exception:
 		cutPTS = lastPlayPosFromCache(ref)
 		if cutPTS:
 			if not length or (length < 0):
@@ -132,26 +122,26 @@ def resetMoviePlayState(cutsFileName, ref=None):
 		if ref is not None:
 			from Screens.InfoBarGenerics import delResumePoint
 			delResumePoint(ref)
-		f = open(cutsFileName, 'rb')
-		cutlist = []
-		while True:
-			data = f.read(cutsParser.size)
-			if len(data) < cutsParser.size:
-				break
-			cut, cutType = cutsParser.unpack(data)
-			if cutType != 3:
-				cutlist.append(data)
-		f.close()
-		f = open(cutsFileName, 'wb')
-		f.write(''.join(cutlist))
-		f.close()
-	except:
+		with open(cutsFileName, "rb") as fd:
+			cutlist = []
+			while True:
+				data = fd.read(cutsParser.size)
+				if len(data) < cutsParser.size:
+					break
+				cut, cutType = cutsParser.unpack(data)
+				if cutType != 3:
+					cutlist.append(data)
+		with open(cutsFileName, "wb") as fd:
+			fd.write("".join(cutlist))
+	except Exception:
 		pass
-		#import sys
-		#print "Exception in resetMoviePlayState: %s: %s" % sys.exc_info()[:2]
+		# import sys
+		# print(f"[MovieList] Exception in resetMoviePlayState: {sys.exc_info()[0]} - {sys.exc_info()[1]}!")
 
 
 class MovieList(GUIComponent):
+	GUI_WIDGET = eListbox
+
 	SORT_ALPHANUMERIC = 1
 	SORT_RECORDED = 2
 	SHUFFLE = 3
@@ -174,10 +164,7 @@ class MovieList(GUIComponent):
 		self.firstFileEntry = 0
 		self.parentDirectory = 0
 		self.fontName = "Regular"
-		if skin.getSkinFactor() == 1.5:
-			self.fontSize = 28
-		else:
-			self.fontSize = 20
+		self.fontSize = 28 if getSkinFactor() == 1.5 else 20
 		self.listHeight = None
 		self.listWidth = None
 		self.reloadDelayTimer = None
@@ -186,15 +173,13 @@ class MovieList(GUIComponent):
 		self.root = None
 		self._playInBackground = None
 		self._playInForeground = None
-		self._char = ''
-
+		self._char = ""
 		if root is not None:
 			self.reload(root)
-
 		self.onSelectionChanged = []
 		self.iconPart = []
 		for part in list(range(5)):
-			self.iconPart.append(LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/part_%d_4.png" % part)))
+			self.iconPart.append(LoadPixmap(resolveFilename(SCOPE_GUISKIN, f"icons/part_{part}_4.png")))
 		self.iconMovieRec = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/part_new.png"))
 		self.iconMoviePlay = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/movie_play.png"))
 		self.iconMoviePlayRec = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/movie_play_rec.png"))
@@ -210,7 +195,7 @@ class MovieList(GUIComponent):
 			attribs = []
 			for (attrib, value) in self.skinAttributes:
 				if attrib == "font":
-					font = skin.parseFont(value, ((1, 1), (1, 1)))
+					font = parseFont(value, ((1, 1), (1, 1)))
 					self.fontName = font.family
 					self.fontSize = font.pointSize
 				else:
@@ -253,13 +238,12 @@ class MovieList(GUIComponent):
 		updateresumePointCache()
 
 	def updateRecordings(self, timer=None):
-		if timer is not None:
-			if timer.justplay:
-				return
+		if timer is not None and timer.justplay:
+			return
 		result = {}
 		for timer in NavigationInstance.instance.RecordTimer.timer_list:
 			if timer.isRunning() and not timer.justplay:
-				result[os.path.split(timer.Filename)[1] + '.ts'] = timer
+				result[f"{split(timer.Filename)[1]}.ts"] = timer
 		if self.runningTimers == result:
 			return
 		self.runningTimers = result
@@ -279,8 +263,9 @@ class MovieList(GUIComponent):
 			self.onSelectionChanged.remove(fnc)
 
 	def selectionChanged(self):
-		for x in self.onSelectionChanged:
-			x()
+		for callback in self.onSelectionChanged:
+			if callback and callable(callback):
+				callback()
 
 	def setDescriptionState(self, val):
 		self.descr_state = val
@@ -291,12 +276,9 @@ class MovieList(GUIComponent):
 	def setItemsPerPage(self):
 		if self.listHeight > 0:
 			ext = config.movielist.useextlist.value
-			if ext != '0':
-				itemHeight = (self.listHeight // config.movielist.itemsperpage.value) * 2
-			else:
-				itemHeight = self.listHeight // config.movielist.itemsperpage.value
+			itemHeight = (self.listHeight // config.movielist.itemsperpage.value) * 2 if ext != "0" else self.listHeight // config.movielist.itemsperpage.value
 		else:
-			itemHeight = 30  # some default (270/5)
+			itemHeight = 30  # Some default (270/5).
 		self.itemHeight = itemHeight
 		self.l.setItemHeight(itemHeight)
 		self.instance.resize(eSize(self.listWidth, self.listHeight // itemHeight * itemHeight))
@@ -319,13 +301,8 @@ class MovieList(GUIComponent):
 		width = self.l.getItemSize().width()
 		pathName = serviceref.getPath()
 		res = [None]
-
-		if ext != '0':
-			ih = self.itemHeight // 2
-		else:
-			ih = self.itemHeight
-
-		if skin.getSkinFactor() == 1.5:
+		ih = self.itemHeight // 2 if ext != "0" else self.itemHeight
+		if getSkinFactor() == 1.5:
 			listBeginX = 3
 			listEndX = 3
 			listMarginX = 12
@@ -343,25 +320,19 @@ class MovieList(GUIComponent):
 			progressIconSize = 21
 			progressBarSize = 48
 			textPosY = 1
-
 		textPosX = listBeginX + dataIconSize + listMarginX
-
 		if serviceref.flags & eServiceReference.mustDescent:
-			# Directory
-			iconSize = pathIconSize
+			iconSize = pathIconSize  # Directory.
 			iconPosX = listBeginX - 1
-			iconPosY = ih / 2 - iconSize / 2
+			iconPosY = int(ih / 2) - int(iconSize / 2)
 			if iconPosY < iconPosX:
 				iconPosY = iconPosX
-			# Name is full path name
-			if info is None:
-				# Special case: "parent"
-				txt = ".."
+			if info is None:  # Name is full path name.
+				txt = ".."  # Special case: "parent".
 			else:
-				p = os.path.split(pathName)
+				p = split(pathName)
 				if not p[1]:
-					# if path ends in '/', p is blank.
-					p = os.path.split(p[0])
+					p = split(p[0])  # If path ends in "/", p is blank.
 				txt = p[1]
 				if txt == TRASHCAN:
 					dateSize = getTextBoundarySize(self.instance, self.dateFont, self.l.getItemSize(), _("Trashcan")).width()
@@ -370,7 +341,7 @@ class MovieList(GUIComponent):
 					res.append(MultiContentEntryText(pos=(width - dateSize - listEndX, textPosY), size=(dateSize, self.itemHeight), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=_("Trashcan")))
 					return res
 			if not config.movielist.show_underscores.value:
-				txt = txt.replace('_', ' ').strip()
+				txt = txt.replace("_", " ").strip()
 			dateSize = getTextBoundarySize(self.instance, self.dateFont, self.l.getItemSize(), _("Directory")).width()
 			res.append(MultiContentEntryPixmapAlphaBlend(pos=(iconPosX, iconPosY), size=(iconSize, iconSize), png=self.iconFolder, flags=BT_SCALE | BT_KEEP_ASPECT_RATIO))
 			res.append(MultiContentEntryText(pos=(textPosX, 0), size=(width - textPosX - dateSize - listMarginX - listEndX, ih), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=txt))
@@ -379,26 +350,26 @@ class MovieList(GUIComponent):
 		if (data == -1) or (data is None):
 			data = MovieListData()
 			cur_idx = self.l.getCurrentSelectionIndex()
-			x = self.list[cur_idx]  # x = ref,info,begin,...
-			data.len = 0  # dont recalc movielist to speedup loading the list
-			self.list[cur_idx] = (x[0], x[1], x[2], data)  # update entry in list... so next time we don't need to recalc
+			x = self.list[cur_idx]  # x = ref, info, begin, ...
+			data.len = 0  # Don't recalculate movie list to speedup loading the list.
+			self.list[cur_idx] = (x[0], x[1], x[2], data)  # Update entry in list... so next time we don't need to recalculate.
 			if config.movielist.show_underscores.value:
 				data.txt = info.getName(serviceref)
 			else:
-				data.txt = info.getName(serviceref).replace('_', ' ').strip()
+				data.txt = info.getName(serviceref).replace("_", " ").strip()
 			if config.movielist.hide_extensions.value:
-				fileName, fileExtension = os.path.splitext(data.txt)
+				fileName, fileExtension = splitext(data.txt)
 				if fileExtension in KNOWN_EXTENSIONS:
 					data.txt = fileName
 			data.icon = None
 			data.part = None
-			if os.path.split(pathName)[1] in self.runningTimers:
-				if switch == 'i':
+			if split(pathName)[1] in self.runningTimers:
+				if switch == "i":
 					if (self.playInBackground or self.playInForeground) and serviceref == (self.playInBackground or self.playInForeground):
 						data.icon = self.iconMoviePlayRec
 					else:
 						data.icon = self.iconMovieRec
-				elif switch == 'p' or switch == 's':
+				elif switch == "p" or switch == "s":
 					data.part = 100
 					if (self.playInBackground or self.playInForeground) and serviceref == (self.playInBackground or self.playInForeground):
 						data.partcol = 0xffc71d
@@ -407,14 +378,14 @@ class MovieList(GUIComponent):
 			elif (self.playInBackground or self.playInForeground) and serviceref == (self.playInBackground or self.playInForeground):
 				data.icon = self.iconMoviePlay
 			else:
-				data.part = moviePlayState(pathName + '.cuts', serviceref, data.len)
-				if switch == 'i':
+				data.part = moviePlayState(f"{pathName}.cuts", serviceref, data.len)
+				if switch == "i":
 					if data.part is not None and data.part > 0:
 						data.icon = self.iconPart[data.part // 25]
 					else:
 						if config.usage.movielist_unseen.value:
 							data.icon = self.iconUnwatched
-				elif switch == 'p' or switch == 's':
+				elif switch == "p" or switch == "s":
 					if data.part is not None and data.part > 0:
 						data.partcol = 0xffc71d
 					else:
@@ -422,21 +393,16 @@ class MovieList(GUIComponent):
 							data.part = 100
 							data.partcol = 0x206333
 		len = data.len
-		if len > 0:
-			len = "%d:%02d" % (len // 60, len % 60)
-		else:
-			len = ""
-
+		len = f"{len // 60}:{len % 60:02d}" if len > 0 else ""
 		iconSize = 0
-
-		if switch == 'i':
+		if switch == "i":
 			iconSize = dataIconSize
 			iconPosX = listBeginX
 			iconPosY = ih // 2 - iconSize // 2
 			if iconPosY < iconPosX:
 				iconPosY = iconPosX
 			res.append(MultiContentEntryPixmapAlphaBlend(pos=(iconPosX, iconPosY), size=(iconSize, iconSize), png=data.icon, flags=BT_SCALE | BT_KEEP_ASPECT_RATIO))
-		elif switch == 'p':
+		elif switch == "p":
 			if data.part is not None and data.part > 0:
 				iconSize = progressBarSize
 				iconPosX = listBeginX
@@ -451,7 +417,7 @@ class MovieList(GUIComponent):
 				if iconPosY < iconPosX:
 					iconPosY = iconPosX
 				res.append(MultiContentEntryPixmapAlphaBlend(pos=(iconPosX, iconPosY), size=(iconSize, iconSize), png=data.icon, flags=BT_SCALE | BT_KEEP_ASPECT_RATIO))
-		elif switch == 's':
+		elif switch == "s":
 			iconSize = progressIconSize
 			iconPosX = listBeginX
 			iconPosY = ih // 2 - iconSize // 2
@@ -461,44 +427,37 @@ class MovieList(GUIComponent):
 				res.append(MultiContentEntryProgress(pos=(iconPosX, iconPosY), size=(iconSize, iconSize), percent=data.part, borderWidth=2, foreColor=data.partcol, foreColorSelected=None, backColor=None, backColorSelected=None))
 			else:
 				res.append(MultiContentEntryPixmapAlphaBlend(pos=(iconPosX, iconPosY), size=(iconSize, iconSize), png=data.icon, flags=BT_SCALE | BT_KEEP_ASPECT_RATIO))
-
 		begin_string = ""
 		if begin > 0:
-			begin_string = ', '.join(FuzzyTime(begin, inPast=True))
+			begin_string = ", ".join(FuzzyTime(begin, inPast=True))
 		dateSize = serviceSize = getTextBoundarySize(self.instance, self.dateFont, self.l.getItemSize(), begin_string).width()
-
-		if iconSize:
-			textPosX = listBeginX + iconSize + listMarginX
-		else:
-			textPosX = listBeginX
-
-		if ext != '0':
+		textPosX = listBeginX + iconSize + listMarginX if iconSize else listBeginX
+		if ext != "0":
 			getrec = info.getName(serviceref)
-			fileName, fileExtension = os.path.splitext(getrec)
+			fileName, fileExtension = splitext(getrec)
 			desc = None
 			picon = None
 			service = None
 			try:
 				serviceHandler = eServiceCenter.getInstance()
 				info = serviceHandler.info(serviceref)
-				desc = info.getInfoString(serviceref, iServiceInformation.sDescription)		# get description
-				ref = info.getInfoString(serviceref, iServiceInformation.sServiceref)		# get reference
-				service = ServiceReference(ref).getServiceName()							# get service name
+				desc = info.getInfoString(serviceref, iServiceInformation.sDescription)  # Get description.
+				ref = info.getInfoString(serviceref, iServiceInformation.sServiceref)  # Get reference.
+				service = ServiceReference(ref).getServiceName()  # Get service name.
 				serviceSize = getTextBoundarySize(self.instance, self.dateFont, self.l.getItemSize(), service).width()
-			except Exception as e:
-				print(('[MovieList] load extended infos get failed: ', e))
-			if ext == '2':
+			except Exception as err:
+				print(f"[MovieList] Load extended info get failed: '{str(err)}'!")
+			if ext == "2":
 				try:
 					picon = getPiconName(ref)
 					picon = loadPNG(picon)
-				except Exception as e:
-					print(('[MovieList] load picon get failed: ', e))
-
-			if fileExtension in RECORD_EXTENSIONS:
-				if ext == '1':
+				except Exception as err:
+					print("[MovieList] Load picon get failed: '{str(err)}'!")
+			if fileExtension in (".ts", ".stream"):
+				if ext == "1":
 					res.append(MultiContentEntryText(pos=(textPosX, 0), size=(width - textPosX - serviceSize - listMarginX - listEndX, ih), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=data.txt))
 					res.append(MultiContentEntryText(pos=(width - serviceSize - listEndX, textPosY), size=(serviceSize, ih), font=1, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER, text=service))
-				if ext == '2':
+				if ext == "2":
 					piconSize = ih * 1.667
 					res.append(MultiContentEntryText(pos=(textPosX, 0), size=(width - textPosX - dateSize - listMarginX - listEndX, ih), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=data.txt))
 					res.append(MultiContentEntryPixmapAlphaBlend(pos=(width - piconSize - listEndX, listEndX), size=(piconSize, ih), png=picon, flags=BT_SCALE | BT_KEEP_ASPECT_RATIO))
@@ -518,8 +477,7 @@ class MovieList(GUIComponent):
 		if self.firstFileEntry < len(self.list):
 			self.instance.moveSelectionTo(self.firstFileEntry)
 		else:
-			# there are no movies, just directories...
-			self.moveToFirst()
+			self.moveToFirst()  # There are no movies, just directories.
 
 	def moveToParentDirectory(self):
 		if self.parentDirectory < len(self.list):
@@ -554,8 +512,6 @@ class MovieList(GUIComponent):
 			if len(self.list) > index:
 				return self.list[index] and self.list[index][0]
 
-	GUI_WIDGET = eListbox
-
 	def postWidgetCreate(self, instance):
 		instance.setContent(self.l)
 		instance.selectionChanged.get().append(self.selectionChanged)
@@ -569,11 +525,8 @@ class MovieList(GUIComponent):
 		if self.reloadDelayTimer is not None:
 			self.reloadDelayTimer.stop()
 			self.reloadDelayTimer = None
-		if root is not None:
-			self.load(root, filter_tags)
-		else:
-			self.load(self.root, filter_tags)
-		self.l.setBuildFunc(self.buildMovieListEntry)  # don't move that to __init__ as this will create memory leak when calling MovieList from WebIf
+		self.load(self.root if root is None else root, filter_tags)
+		self.l.setBuildFunc(self.buildMovieListEntry)  # Don't move that to __init__ as this will create memory leak when calling MovieList from OpenWebIf.
 		self.l.setList(self.list)
 
 	def removeService(self, service):
@@ -600,28 +553,22 @@ class MovieList(GUIComponent):
 		return self.list.__iter__()
 
 	def load(self, root, filter_tags):
-		# this lists our root service, then building a
-		# nice list
-		del self.list[:]
+		del self.list[:]  # This lists our root service, then building a nice list.
 		serviceHandler = eServiceCenter.getInstance()
 		numberOfDirs = 0
-
 		reflist = root and serviceHandler.list(root)
 		if reflist is None:
-			print("listing of movies failed")
+			print("[MovieList] Listing of movies failed!")
 			return
 		realtags = set()
 		tags = {}
-		rootPath = os.path.normpath(root.getPath())
+		rootPath = normpath(root.getPath())
 		parent = None
-		# Don't navigate above the "root"
-		if len(rootPath) > 1 and (os.path.realpath(rootPath) != config.movielist.root.value):
-			parent = os.path.split(os.path.normpath(rootPath))[0]
-			currentfolder = os.path.normpath(rootPath) + '/'
+		if len(rootPath) > 1 and (realpath(rootPath) != config.movielist.root.value):  # Don't navigate above the "root".
+			parent = split(normpath(rootPath))[0]
+			currentfolder = join(normpath(rootPath), "")
 			if parent and (parent not in defaultInhibitDirs) and not currentfolder.endswith(config.usage.default_path.value):
-				# enigma wants an extra '/' appended
-				if not parent.endswith('/'):
-					parent += '/'
+				parent = join(parent, "")  # Enigma wants an extra "/" appended.
 			ref = eServiceReference(eServiceReference.idFile, eServiceReference.flagDirectory, eServiceReferenceFS.directory)
 			ref.setPath(parent)
 			ref.flags = eServiceReference.flagDirectory
@@ -637,21 +584,20 @@ class MovieList(GUIComponent):
 			begin = info.getInfo(serviceref, iServiceInformation.sTimeCreate)
 			if serviceref.flags & eServiceReference.mustDescent:
 				dirname = info.getName(serviceref)
-				if not dirname.endswith('.AppleDouble/') and not dirname.endswith('.AppleDesktop/') and not dirname.endswith('.AppleDB/') and not dirname.endswith('Network Trash Folder/') and not dirname.endswith('Temporary Items/'):
+				if not dirname.endswith(".AppleDouble/") and not dirname.endswith(".AppleDesktop/") and not dirname.endswith(".AppleDB/") and not dirname.endswith("Network Trash Folder/") and not dirname.endswith("Temporary Items/"):
 					self.list.append((serviceref, info, begin, -1))
 					numberOfDirs += 1
 				continue
-			# convert space-seperated list of tags into a set
-			this_tags = info.getInfoString(serviceref, iServiceInformation.sTags).split(' ')
+			if serviceref.getPath().endswith(".jpg"): # Ignore all JPEG files as they are often added as movie posters but should not be listed as extra media.
+				continue
+			# Convert space-separated list of tags into a set.
+			this_tags = info.getInfoString(serviceref, iServiceInformation.sTags).split(" ")
 			name = info.getName(serviceref)
-
-			# OSX put a lot of stupid files ._* everywhere... we need to skip them
+			# OSX puts a lot of "._*: everywhere, we need to skip them.
 			if name[:2] == "._":
 				continue
-
-			if this_tags == ['']:
-				# No tags? Auto tag!
-				this_tags = name.replace(',', ' ').replace('.', ' ').replace('_', ' ').replace(':', ' ').split()
+			if this_tags == [""]:  # No tags? Auto tag.
+				this_tags = name.replace(",", " ").replace(".", " ").replace("_", " ").replace(":", " ").split()
 			else:
 				realtags.update(this_tags)
 			for tag in this_tags:
@@ -660,19 +606,16 @@ class MovieList(GUIComponent):
 						tags[tag].append(name)
 					else:
 						tags[tag] = [name]
-			# filter_tags is either None (which means no filter at all), or
-			# a set. In this case, all elements of filter_tags must be present,
-			# otherwise the entry will be dropped.
+			# Filter_tags is either None (which means no filter at all), or a set. In this case,
+			# all elements of filter_tags must be present, otherwise the entry will be dropped.
 			if filter_tags is not None:
 				this_tags_fullname = [" ".join(this_tags)]
 				this_tags_fullname = set(this_tags_fullname)
 				this_tags = set(this_tags)
 				if not this_tags.issuperset(filter_tags) and not this_tags_fullname.issuperset(filter_tags):
-# 					print "Skipping", name, "tags=", this_tags, " filter=", filter_tags
+					# print(f"[MovieList] Skipping '{name}' tags='{this_tags}' filter='{filter_tags}'.")
 					continue
-
 			self.list.append((serviceref, info, begin, -1))
-
 		self.firstFileEntry = numberOfDirs
 		self.parentDirectory = 0
 		self.list.sort(key=self.buildGroupwiseSortkey)
@@ -691,46 +634,40 @@ class MovieList(GUIComponent):
 		elif self.sort_type == MovieList.SHUFFLE:
 			dirlist = self.list[:numberOfDirs]
 			shufflelist = self.list[numberOfDirs:]
-			random.shuffle(shufflelist)
+			shuffle(shufflelist)
 			self.list = dirlist + shufflelist
 		elif self.sort_type == MovieList.SORT_ALPHA_DATE_OLDEST_FIRST:
 			self.list = sorted(self.list[:numberOfDirs], key=self.buildAlphaDateSortKey) + sorted(self.list[numberOfDirs:], key=self.buildAlphaDateSortKey)
 		elif self.sort_type == MovieList.SORT_ALPHAREV_DATE_NEWEST_FIRST:
 			self.list = sorted(self.list[:numberOfDirs], key=self.buildAlphaDateSortKey, reverse=True) + sorted(self.list[numberOfDirs:], key=self.buildAlphaDateSortKey, reverse=True)
-
 		for x in self.list:
 			if x[1]:
-				tmppath = x[1].getName(x[0])[:-1] if x[1].getName(x[0]).endswith('/') else x[1].getName(x[0])
-				if tmppath.endswith('.Trash'):
+				tmppath = x[1].getName(x[0])[:-1] if x[1].getName(x[0]).endswith("/") else x[1].getName(x[0])
+				if tmppath.endswith(".Trash"):
 					self.list.insert(0, self.list.pop(self.list.index(x)))
 					break
-
 		if self.root and numberOfDirs > 0:
-			rootPath = os.path.normpath(self.root.getPath())
-			if not rootPath.endswith('/'):
-				rootPath += '/'
+			rootPath = normpath(self.root.getPath())
+			if not rootPath.endswith("/"):
+				rootPath += "/"
 			if rootPath != parent:
-				# with new sort types directories may be in between files, so scan whole
-				# list for parentDirectory index. Usually it is the first one anyway
+				# With new sort types directories may be in-between files, so scan whole
+				# list for parentDirectory index. Usually it is the first one anyway.
 				for index, item in enumerate(self.list):
 					if item[0].flags & eServiceReference.mustDescent:
-						itempath = os.path.normpath(item[0].getPath())
-						if not itempath.endswith('/'):
-							itempath += '/'
+						itempath = normpath(item[0].getPath())
+						if not itempath.endswith("/"):
+							itempath += "/"
 						if itempath == rootPath:
 							self.parentDirectory = index
 							break
 		self.root = root
-		# finally, store a list of all tags which were found. these can be presented
-		# to the user to filter the list
-		# ML: Only use the tags that occur more than once in the list OR that were
-		# really in the tag set of some file.
-
-		# reverse the dictionary to see which unique movie each tag now references
-		rtags = {}
+		# Finally, store a list of all tags which were found. these can be presented to the user to filter the list.
+		# ML: Only use the tags that occur more than once in the list OR that were really in the tag set of some file.
+		rtags = {}  # Reverse the dictionary to see which unique movie each tag now references.
 		for tag, movies in list(tags.items()):
 			if (len(movies) > 1) or (tag in realtags):
-				movies = tuple(movies)  # a tuple can be hashed, but a list not
+				movies = tuple(movies)  # A tuple can be hashed, but a list not.
 				item = rtags.get(movies, [])
 				if not item:
 					rtags[movies] = item
@@ -738,15 +675,13 @@ class MovieList(GUIComponent):
 		self.tags = {}
 		for movies, tags in list(rtags.items()):
 			movie = movies[0]
-			# format the tag lists so that they are in 'original' order
-			tags.sort(key=movie.find)
+			tags.sort(key=movie.find)  # Format the tag lists so that they are in "original" order.
 			first = movie.find(tags[0])
 			last = movie.find(tags[-1]) + len(tags[-1])
 			match = movie
 			start = 0
 			end = len(movie)
-			# Check if the set has a complete sentence in common, and how far
-			for m in movies[1:]:
+			for m in movies[1:]:  # Check if the set has a complete sentence in common, and how far.
 				if m[start:end] != match:
 					if not m.startswith(movie[:last]):
 						start = first
@@ -754,61 +689,50 @@ class MovieList(GUIComponent):
 						end = last
 					match = movie[start:end]
 					if m[start:end] != match:
-						match = ''
+						match = ""
 						break
 			if match:
 				self.tags[match] = set(tags)
 				continue
 			else:
-				match = ' '.join(tags)
-				if len(match) > 2:  # Omit small words
+				match = " ".join(tags)
+				if len(match) > 2:  # Omit small words.
 					self.tags[match] = set(tags)
 
 	def buildAlphaNumericSortKey(self, x):
-		# x = ref,info,begin,...
-		ref = x[0]
+		ref = x[0]  # x = ref, info, begin, ...
 		name = x[1] and x[1].getName(ref)
 		if ref.flags & eServiceReference.mustDescent:
 			return 0, name and name.lower() or "", -x[2]
 		return 1, name and name.lower() or "", -x[2]
 
-# as for buildAlphaNumericSortKey, but without negating dates
-	def buildAlphaDateSortKey(self, x):
-		# x = ref,info,begin,...
-		ref = x[0]
+	def buildAlphaDateSortKey(self, x):  # As for buildAlphaNumericSortKey, but without negating dates.
+		ref = x[0]  # x = ref, info, begin, ...
 		name = x[1] and x[1].getName(ref)
 		if ref.flags & eServiceReference.mustDescent:
 			return 0, name and name.lower() or "", x[2]
 		return 1, name and name.lower() or "", x[2]
 
 	def buildAlphaNumericFlatSortKey(self, x):
-		# x = ref,info,begin,...
 		ref = x[0]
 		name = x[1] and x[1].getName(ref)
 		if name and ref.flags & eServiceReference.mustDescent:
-			# only use directory basename for sorting
-			p = os.path.split(name)
-			if not p[1]:
-				# if path ends in '/', p is blank.
-				p = os.path.split(p[0])
+			p = split(name)  # Only use directory base name for sorting.
+			if not p[1]:  # if path ends in "/", p is blank.
+				p = split(p[0])
 			name = p[1]
-		# print "Sorting for -%s-" % name
-
+		# print(f"[MovieList] Sorting for '{name}'.")
 		return 1, name and name.lower() or "", -x[2]
 
 	def buildBeginTimeSortKey(self, x):
-		ref = x[0]
+		ref = x[0]  # x = ref, info, begin, ...
 		if ref.flags & eServiceReference.mustDescent:
-			return 0, "", x[1] and -os.stat(ref.getPath()).st_mtime or 0
+			return 0, "", x[1] and -stat(ref.getPath()).st_mtime or 0
 		return 1, "", -x[2]
 
-	def buildGroupwiseSortkey(self, x):
-		# Sort recordings by date, sort MP3 and stuff by name
-		ref = x[0]
-		if ref.type >= eServiceReference.idUser:
-			return self.buildAlphaNumericSortKey(x)
-		else:
-			return self.buildBeginTimeSortKey(x)
+	def buildGroupwiseSortkey(self, x):  # Sort recordings by date, sort MP3 and stuff by name.
+		ref = x[0]  # x = ref, info, begin, ...
+		return self.buildAlphaNumericSortKey(x) if ref.type >= eServiceReference.idUser else self.buildBeginTimeSortKey(x)
 
 	def moveTo(self, serviceref):
 		index = self.findService(serviceref)
@@ -831,25 +755,24 @@ class MovieList(GUIComponent):
 			lbl.visible = True
 		self.moveToCharTimer = eTimer()
 		self.moveToCharTimer.callback.append(self._moveToChrStr)
-		self.moveToCharTimer.start(1000, True)  # time to wait for next key press to decide which letter to use...
+		self.moveToCharTimer.start(1000, True)  # Time to wait for next key press to decide which letter to use.
 
 	def moveToString(self, char, lbl=None):
-		self._char = self._char + char.upper()
+		self._char = f"{self._char}{char.upper()}"
 		self._lbl = lbl
 		if lbl:
 			lbl.setText(self._char)
 			lbl.visible = True
 		self.moveToCharTimer = eTimer()
 		self.moveToCharTimer.callback.append(self._moveToChrStr)
-		self.moveToCharTimer.start(1000, True)  # time to wait for next key press to decide which letter to use...
+		self.moveToCharTimer.start(1000, True)  # Time to wait for next key press to decide which letter to use.
 
 	def _moveToChrStr(self):
 		currentIndex = self.instance.getCurrentIndex()
 		found = False
 		if currentIndex < (len(self.list) - 1):
 			itemsBelow = self.list[currentIndex + 1:]
-			#first search the items below the selection
-			for index, item in enumerate(itemsBelow):
+			for index, item in enumerate(itemsBelow):  # First search the items below the selection.
 				if item[1] is None:
 					continue
 				ref = item[0]
@@ -863,7 +786,7 @@ class MovieList(GUIComponent):
 					self.instance.moveSelectionTo(index + currentIndex + 1)
 					break
 		if found is False and currentIndex > 0:
-			itemsAbove = self.list[1:currentIndex]  # first item (0) points parent folder - no point to include
+			itemsAbove = self.list[1:currentIndex]  # First item (0) points parent folder - no point in including it.
 			for index, item in enumerate(itemsAbove):
 				if item[1] is None:
 					continue
@@ -877,18 +800,17 @@ class MovieList(GUIComponent):
 					found = True
 					self.instance.moveSelectionTo(index + 1)
 					break
-
-		self._char = ''
+		self._char = ""
 		if self._lbl:
 			self._lbl.visible = False
 
 
 def getShortName(name, serviceref):
-	if serviceref.flags & eServiceReference.mustDescent:  # Directory
+	if serviceref.flags & eServiceReference.mustDescent:  # Directory.
 		pathName = serviceref.getPath()
-		p = os.path.split(pathName)
-		if not p[1]:  # if path ends in '/', p is blank.
-			p = os.path.split(p[0])
+		p = split(pathName)
+		if not p[1]:  # If path ends in "/", p is blank.
+			p = split(p[0])
 		return p[1].upper()
 	else:
 		return name
