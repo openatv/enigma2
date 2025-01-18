@@ -215,6 +215,8 @@ class Volume:
 		self.serviceVolumeOffsets = self.loadXML()  # Load the volume configuration data.
 		self.volumeControl = eDVBVolumecontrol.getInstance()
 		self.normalVolume = None
+		self.lastAdjustedValue = 0  # Remember delta from last automatic volume up/down
+		self.currentVolume = 0  # Only set when AC3 or DTS is available
 		self.newService = [False, None]
 		self.pluginStarted = False
 		self.eventTracker = ServiceEventTracker(screen=self, eventmap={
