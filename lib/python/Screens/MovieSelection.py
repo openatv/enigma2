@@ -1570,6 +1570,9 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 					folder_filename = split(split(name)[0])[1]
 					self.session.openWithCallback(self.delete, MessageBox, _("'%s' contains %d file(s) and %d sub-directories.\n") % (folder_filename, files, subdirs) + are_you_sure, windowTitle=self.getTitle())
 					return
+				else:
+					self.session.openWithCallback(self.delete, MessageBox, are_you_sure, windowTitle=self.getTitle())
+					return
 			else:
 				if TRASHCAN in cur_path:
 					are_you_sure = _("Do you really want to permanently remove from trash can ?")
