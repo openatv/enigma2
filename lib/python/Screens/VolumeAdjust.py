@@ -1,12 +1,13 @@
 from copy import deepcopy
 from os import unlink
-from os.path import isfile
+from os.path import isfile, exists
+from pickle import dump, load
 
-from enigma import eDVBVolumecontrol, eServiceReference, iPlayableService, iServiceInformation
+from enigma import eDVBVolumecontrol, eEnv, eServiceReference, eServiceCenter, iPlayableService, iServiceInformation
 
 from ServiceReference import ServiceReference
 from Components.ActionMap import HelpableActionMap
-from Components.config import ConfigSelectionNumber, ConfigSubsection, ConfigYesNo, NoSave, config, getConfigListEntry
+from Components.config import ConfigSelection, ConfigSelectionNumber, ConfigSubsection, ConfigYesNo, NoSave, config, getConfigListEntry
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Sources.StaticText import StaticText
 from Screens.ChannelSelection import ChannelSelectionBase, OFF
@@ -15,6 +16,7 @@ from Tools.Directories import SCOPE_CONFIG, fileReadXML, moveFiles, resolveFilen
 
 MODULE_NAME = "VolumeAdjust"
 VOLUME_FILE = resolveFilename(SCOPE_CONFIG, "volume.xml")
+SERVICE_VOLUME_FILE = resolveFilename(SCOPE_CONFIG, "ava_volume.cfg")
 
 OFFSET_MIN = -100
 OFFSET_MAX = 100
@@ -26,6 +28,10 @@ config.volume = ConfigSubsection()
 config.volume.defaultOffset = ConfigSelectionNumber(min=OFFSET_MIN, max=OFFSET_MAX, stepwidth=1, default=DEFAULT_OFFSET, wraparound=False)
 config.volume.dolbyEnabled = ConfigYesNo(default=False)
 config.volume.dolbyOffset = ConfigSelectionNumber(min=OFFSET_MIN, max=OFFSET_MAX, stepwidth=1, default=DEFAULT_OFFSET, wraparound=False)
+config.volume.adjustMode = ConfigSelection(choices=[(0, _("Disabled")), (1, _("Enabled")), (2, _("Remember service volume value"))], default=0)
+config.volume.adjustOnlyAC3 = ConfigYesNo(default=True)  # "Only AC3/DTS(HD)"
+config.volume.mpegMax = ConfigSelectionNumber(10, 100, 5, default=100)
+config.volume.showVolumeBar = ConfigYesNo(default=False)
 
 
 class VolumeAdjust(Setup):
@@ -209,11 +215,36 @@ class Volume:
 		self.serviceVolumeOffsets = self.loadXML()  # Load the volume configuration data.
 		self.volumeControl = eDVBVolumecontrol.getInstance()
 		self.normalVolume = None
-		self.previousServiceReference = None
-		self.previousOffset = 0
+		self.newService = [False, None]
+		self.pluginStarted = False
 		self.eventTracker = ServiceEventTracker(screen=self, eventmap={
-			iPlayableService.evUpdatedInfo: self.processVolumeOffset,
-		})
+				iPlayableService.evUpdatedInfo: self.processVolumeOffset,
+				iPlayableService.evStart: self.eventStart,
+				iPlayableService.evEnd: self.eventEnd
+			})
+
+		self.serviceList = {}
+		if config.volume.adjustMode.value == 1:  # Automatic volume adjust mode
+			for name, ref, offset in self.serviceVolumeOffsets:
+				self.serviceList[ref] = offset
+		else:  # Remember channel volume mode
+			if exists(SERVICE_VOLUME_FILE):
+				with open(SERVICE_VOLUME_FILE, "rb") as fd:
+					self.serviceList = load(fd)
+
+	def eventStart(self):
+		self.newService = [True, None]
+
+	def eventEnd(self):
+		if config.volume.adjustMode.value == 1:  # Automatic volume adjust mode
+			# if played service had AC3||DTS audio and volume value was changed with RC, take new delta value from the config
+			if self.currentVolume and self.volumeControl.getVolume() != self.currentVolume:
+				self.lastAdjustedValue = self.newService[1] and self.serviceList.get(self.newService[1].toString(), self.defaultValue) or self.defaultValue
+		elif config.volume.adjustMode.value == 2:  # Remember channel volume mode
+			ref = self.newService[1]
+			if ref and ref.valid():
+				self.serviceList[ref.toString()] = self.volumeControl.getVolume()
+		self.newService = [False, None]
 
 	def loadXML(self):  # Load the volume configuration data.
 		serviceVolumeOffsets = []
@@ -263,36 +294,69 @@ class Volume:
 		return self.normalVolume or DEFAULT_VOLUME
 
 	def processVolumeOffset(self):  # This is the routine to change the volume offset.
-		serviceRef = self.session.nav.getCurrentlyPlayingServiceReference()
-		if serviceRef:
-			serviceReference = serviceRef.toCompareString()
-			if serviceReference != self.previousServiceReference:  # Check if the service has changed.
-				self.previousServiceReference = serviceReference
-				index = self.findCurrentService(serviceReference)
-				name, ref, offset = [ServiceReference(serviceRef).getServiceName().replace("\xc2\x87", "").replace("\xc2\x86", ""), serviceReference, 0] if index == -1 else self.serviceVolumeOffsets[index]
-				serviceVolume = self.volumeControl.getVolume()
-				if self.previousOffset:
-					self.normalVolume = serviceVolume - self.previousOffset
-					print(f"[VolumeAdjust] Volume offset of {self.previousOffset} is currently in effect.  Normal volume is {self.normalVolume}.")
-				else:
-					self.normalVolume = serviceVolume
-					print(f"[VolumeAdjust] Normal volume is {self.normalVolume}.")
-				if index == -1:  # Service not found, check if Dolby Digital volume needs to be offset.
-					if config.volume.dolbyEnabled.value and self.isCurrentAudioAC3DTS():
-						offset = config.volume.dolbyOffset.value
-						newVolume = self.normalVolume + offset
-						if serviceVolume != newVolume:
-							self.volumeControl.setVolume(newVolume, newVolume)
-							print(f"[VolumeAdjust] New volume of {newVolume}, including an offset of {offset}, set for Dolby Digital / Dolby AC-3 service '{name}'.")
-					elif serviceVolume != self.normalVolume:
-						self.volumeControl.setVolume(self.normalVolume, self.normalVolume)
-						print(f"[VolumeAdjust] Normal volume of {self.normalVolume} restored for service '{name}'.")
-				else:  # Service found in serviceVolumeOffsets list, use volume offset to change the volume.
-					newVolume = self.normalVolume + offset
-					if serviceVolume != newVolume:
-						self.volumeControl.setVolume(newVolume, newVolume)
-						print(f"[VolumeAdjust] New volume of {newVolume}, including an offset of {offset}, set for service '{name}'.")
-				self.previousOffset = offset
+		# taken from the plugin !!!!
+		if config.volume.adjustMode.value and self.newService[0]:
+			serviceRef = self.session.nav.getCurrentlyPlayingServiceReference()
+			if serviceRef:
+				print("[VolumeAdjustment] service changed")
+				self.newService = [False, serviceRef]
+				self.currentVolume = 0  # init
+				if config.volume.adjustMode.value == 1:  # Automatic volume adjust mode
+					self.currentAC3DTS = self.isCurrentAudioAC3DTS()
+					if self.pluginStarted:
+						if self.currentAC3DTS:  # ac3 dts?
+							ref = self.getPlayingServiceReference()
+							vol = self.volumeControl.getVolume()
+							currentvol = vol  # remember current vol
+							vol -= self.lastAdjustedValue  # go back to origin value first
+							ajvol = self.serviceList.get(ref.toString(), self.defaultValue)  # get delta from config
+							if ajvol < 0:  # adjust vol down
+								if vol + ajvol < 0:
+									ajvol = (-1) * vol
+							else:  # adjust vol up
+								if vol >= 100 - ajvol:  # check if delta + vol < 100
+									ajvol = 100 - vol  # correct delta value
+							self.lastAdjustedValue = ajvol  # save delta value
+							if (vol + ajvol != currentvol):
+								if ajvol == 0:
+									ajvol = vol - currentvol  # correction for debug -print(only)
+								self.setVolume(vol + self.lastAdjustedValue)
+								print(f"[VolumeAdjustment] Change volume for service: '{self.getServiceName(ref)}' (+{ajvol}) to {self.volumeControl.getVolume()}")
+							self.currentVolume = self.volumeControl.getVolume()  # ac3||dts service , save current volume
+						else:
+							# mpeg or whatever audio
+							if self.lastAdjustedValue != 0:
+								# go back to origin value
+								vol = self.volumeControl.getVolume()
+								ajvol = vol - self.lastAdjustedValue
+								if ajvol > config.volume.mpegMax.value:
+										ajvol = config.volume.mpegMax.value
+								self.setVolume(ajvol)
+								print(f"[VolumeAdjustment] Change volume for service: '{self.getServiceName(self.session.nav.getCurrentlyPlayingServiceReference())}' (-{vol - ajvol}) to {self.volumeControl.getVolume()}")
+								self.lastAdjustedValue = 0  # mpeg audio, no delta here
+						return  # get out of here, nothing to do anymore
+				elif config.volume.adjustMode.value == 2:  # modus = Remember channel volume
+					if self.pluginStarted:
+						ref = self.getPlayingServiceReference()
+						if ref.valid():
+							# get value from dict
+							lastvol = self.serviceList.get(ref.toString(), -1)
+							if lastvol != -1 and lastvol != self.volumeControl.getVolume():
+								# set volume value
+								self.setVolume(lastvol)
+								print(f"[VolumeAdjustment] Set last used volume value for service '{self.getServiceName(ref)}' to {self.volumeControl.getVolume()}")
+						return  # get out of here, nothing to do anymore
+
+			if not self.pluginStarted:
+				if config.volume.adjustMode.value == 1:  # Automatic volume adjust mode
+					# starting plugin, if service audio is ac3 or dts --> get delta from config...volume value is set by enigma2-system at start
+					if self.currentAC3DTS:
+						self.lastAdjustedValue = self.serviceList.get(self.session.nav.getCurrentlyPlayingServiceReference().toString(), self.defaultValue)
+						self.currentVolume = self.volumeControl.getVolume()  # ac3||dts service , save current volume
+				self.pluginStarted = True  # plugin started...
+
+	def getServiceName(self, ref):
+		return ServiceReference(ref).getServiceName().replace("\xc2\x86", "").replace("\xc2\x87", "") if ref else ""
 
 	def findCurrentService(self, serviceReference):
 		for index, (name, ref, offset) in enumerate(self.serviceVolumeOffsets):
@@ -307,17 +371,51 @@ class Volume:
 			try:  # Uhh, servicemp3 leads sometimes to OverflowError Error.
 				description = audio.getTrackInfo(audio.getCurrentTrack()).getDescription()
 				print(f"[VolumeAdjust] Description: '{description}'.")
-				if "AC3" in description or "DTS" in description or "Dolby Digital" == description:
-					print("[VolumeAdjust] AudioAC3Dolby = YES")
-					return True
+				if config.volume.adjustOnlyAC3.value:
+					if "AC3" in description or "DTS" in description or "Dolby Digital" == description:
+						print("[VolumeAdjust] AudioAC3Dolby = YES")
+						return True
+					else:
+						if description and description.split()[0] in ("AC3", "AC-3", "A_AC3", "A_AC-3", "A-AC-3", "E-AC-3", "A_EAC3", "DTS", "DTS-HD", "AC4", "AAC-HE"):
+							print("[VolumeAdjust] AudioAC3Dolby = YES")
+							return True
 			except Exception:
 				print("[VolumeAdjust] Exception: AudioAC3Dolby = NO")
 				return False
 		print("[VolumeAdjust] AudioAC3Dolby = NO")
 		return False
 
+	def getPlayingServiceReference(self):
+		ref = self.session.nav.getCurrentlyPlayingServiceReference()
+		if ref:
+			refstr = ref.toString()
+			if "%3a//" not in refstr and refstr.rsplit(":", 1)[1].startswith("/"):  # check if a movie is playing
+				# it is , get the eServicereference if available
+				self.serviceHandler = eServiceCenter.getInstance()
+				info = self.serviceHandler.info(ref)
+				if info:
+					# no need here to know if eServiceReference is valid...
+					ref = eServiceReference(info.getInfoString(ref, iServiceInformation.sServiceref))  # get new eServicereference from meta file
+		return ref
+
+	def setVolume(self, value):
+		self.volumeControl.setVolume(value, value)  # Set new volume
+		if self.volumeControlInstance is not None:
+			self.volumeControlInstance.volumeDialog.setValue(value)  # Update progressbar value
+			if config.volume.showVolumeBar.value:
+				self.volumeControlInstance.volumeDialog.show()
+				self.volumeControlInstance.hideVolTimer.start(3000, True)
+		config.volumeControl.volume.value = self.volumeControl.getVolume()
+		config.volumeControl.volume.save()
+
 
 VolumeInstance = None
+
+
+def shutdown():
+	if VolumeInstance:
+		with open(SERVICE_VOLUME_FILE, "wb") as fd:
+			dump(VolumeInstance.serviceList, fd)
 
 
 def autostart(session):

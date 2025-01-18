@@ -580,6 +580,8 @@ def runScreenTest():
 	session.nav.shutdown()
 	session.doShutdown()
 	VolumeControl.instance.saveVolumeState()
+	from Screens.VolumeAdjust import shutdown
+	shutdown()
 	configfile.save()
 	from Screens.InfoBarGenerics import saveResumePoints
 	saveResumePoints()

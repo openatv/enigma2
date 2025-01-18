@@ -1058,5 +1058,9 @@
 		<item level="0" text="Default volume offset" description="This is the initial / default volume offset applied to any services added the the volume adjust list.">config.volume.defaultOffset</item>
 		<item level="0" text="Enable Dolby Digital / Dolby AC-3 offsets" description="Select 'Yes' if volume adjustments should be applied to Dolby sound tracks.">config.volume.dolbyEnabled</item>
 		<item level="0" text="Default Dolby Digital / Dolby AC-3 offset" description="This offset will only be used if the channel does not have its own volume offset.">config.volume.dolbyOffset</item>
+		<item level="0" text="Mode" description="">config.volume.adjustMode</item>
+		<item level="0" text="Only AC3/DTS(HD)" description="">config.volume.adjustOnlyAC3</item>
+		<item level="0" text="Max. volume for mpeg audio" description="">config.volume.mpegMax</item>
+		<item level="0" text="Show volumebar when volume-value was changed" description="">config.volume.showVolumeBar</item>
 	</setup>
 </setupxml>
