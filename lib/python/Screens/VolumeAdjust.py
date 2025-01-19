@@ -28,8 +28,7 @@ config.volume = ConfigSubsection()
 config.volume.defaultOffset = ConfigSelectionNumber(min=OFFSET_MIN, max=OFFSET_MAX, stepwidth=1, default=DEFAULT_OFFSET, wraparound=False)
 config.volume.dolbyEnabled = ConfigYesNo(default=False)
 config.volume.dolbyOffset = ConfigSelectionNumber(min=OFFSET_MIN, max=OFFSET_MAX, stepwidth=1, default=DEFAULT_OFFSET, wraparound=False)
-config.volume.adjustMode = ConfigSelection(choices=[(0, _("Disabled")), (1, _("Enabled")), (2, _("Remember service volume value"))], default=0)
-config.volume.adjustOnlyAC3 = ConfigYesNo(default=True)  # "Only AC3/DTS(HD)"
+config.volume.adjustMode = ConfigSelection(choices=[(0, _("Disabled")), (1, _("Defined")), (2, _("Remember"))], default=0)
 config.volume.mpegMax = ConfigSelectionNumber(10, 100, 5, default=100)
 config.volume.showVolumeBar = ConfigYesNo(default=False)
 
@@ -106,6 +105,7 @@ class VolumeAdjust(Setup):
 	def keySave(self):
 		if self.serviceVolumeOffsets != self.initialVolumeOffsets:  # Save the volume configuration data if there are any changes.
 			VolumeInstance.setServiceVolumeOffsets(self.serviceVolumeOffsets)
+		VolumeInstance.refreshSettings()
 		Setup.keySave(self)
 
 	def cancelConfirm(self, result):
@@ -226,7 +226,11 @@ class Volume:
 			})
 
 		self.serviceList = {}
-		if config.volume.adjustMode.value == 1:  # Automatic volume adjust mode
+		self.adjustMode = config.volume.adjustMode.value
+		self.mpegMax = config.volume.mpegMax.value
+		self.dolbyEnabled = config.volume.dolbyEnabled.value
+		self.defaultOffset = config.volume.defaultOffset.value
+		if self.adjustMode == 1:  # Automatic volume adjust mode
 			for name, ref, offset in self.serviceVolumeOffsets:
 				self.serviceList[ref] = offset
 		else:  # Remember channel volume mode
@@ -234,15 +238,21 @@ class Volume:
 				with open(SERVICE_VOLUME_FILE, "rb") as fd:
 					self.serviceList = load(fd)
 
+	def refreshSettings(self):
+		self.defaultOffset = config.volume.defaultOffset.value
+		self.adjustMode = config.volume.adjustMode.value
+		self.mpegMax = config.volume.mpegMax.value
+		self.dolbyEnabled = config.volume.dolbyEnabled.value
+
 	def eventStart(self):
 		self.newService = [True, None]
 
 	def eventEnd(self):
-		if config.volume.adjustMode.value == 1:  # Automatic volume adjust mode
+		if self.adjustMode == 1:  # Automatic volume adjust mode
 			# if played service had AC3||DTS audio and volume value was changed with RC, take new delta value from the config
 			if self.currentVolume and self.volumeControl.getVolume() != self.currentVolume:
-				self.lastAdjustedValue = self.newService[1] and self.serviceList.get(self.newService[1].toString(), self.defaultValue) or self.defaultValue
-		elif config.volume.adjustMode.value == 2:  # Remember channel volume mode
+				self.lastAdjustedValue = self.newService[1] and self.serviceList.get(self.newService[1].toString(), self.defaultOffset) or self.defaultOffset
+		elif self.adjustMode == 2:  # Remember channel volume mode
 			ref = self.newService[1]
 			if ref and ref.valid():
 				self.serviceList[ref.toString()] = self.volumeControl.getVolume()
@@ -297,13 +307,13 @@ class Volume:
 
 	def processVolumeOffset(self):  # This is the routine to change the volume offset.
 		# taken from the plugin !!!!
-		if config.volume.adjustMode.value and self.newService[0]:
+		if self.adjustMode and self.newService[0]:
 			serviceRef = self.session.nav.getCurrentlyPlayingServiceReference()
 			if serviceRef:
 				print("[VolumeAdjustment] service changed")
 				self.newService = [False, serviceRef]
 				self.currentVolume = 0  # init
-				if config.volume.adjustMode.value == 1:  # Automatic volume adjust mode
+				if self.adjustMode == 1:  # Automatic volume adjust mode
 					self.currentAC3DTS = self.isCurrentAudioAC3DTS()
 					if self.pluginStarted:
 						if self.currentAC3DTS:  # ac3 dts?
@@ -311,7 +321,7 @@ class Volume:
 							vol = self.volumeControl.getVolume()
 							currentvol = vol  # remember current vol
 							vol -= self.lastAdjustedValue  # go back to origin value first
-							ajvol = self.serviceList.get(ref.toString(), self.defaultValue)  # get delta from config
+							ajvol = self.serviceList.get(ref.toString(), self.defaultOffset)  # get delta from config
 							if ajvol < 0:  # adjust vol down
 								if vol + ajvol < 0:
 									ajvol = (-1) * vol
@@ -331,13 +341,13 @@ class Volume:
 								# go back to origin value
 								vol = self.volumeControl.getVolume()
 								ajvol = vol - self.lastAdjustedValue
-								if ajvol > config.volume.mpegMax.value:
-										ajvol = config.volume.mpegMax.value
+								if ajvol > self.mpegMax:
+									ajvol = self.mpegMax
 								self.setVolume(ajvol)
 								print(f"[VolumeAdjustment] Change volume for service: '{self.getServiceName(self.session.nav.getCurrentlyPlayingServiceReference())}' (-{vol - ajvol}) to {self.volumeControl.getVolume()}")
 								self.lastAdjustedValue = 0  # mpeg audio, no delta here
 						return  # get out of here, nothing to do anymore
-				elif config.volume.adjustMode.value == 2:  # modus = Remember channel volume
+				elif self.adjustMode == 2:  # modus = Remember channel volume
 					if self.pluginStarted:
 						ref = self.getPlayingServiceReference()
 						if ref.valid():
@@ -350,10 +360,10 @@ class Volume:
 						return  # get out of here, nothing to do anymore
 
 			if not self.pluginStarted:
-				if config.volume.adjustMode.value == 1:  # Automatic volume adjust mode
+				if self.adjustMode == 1:  # Automatic volume adjust mode
 					# starting plugin, if service audio is ac3 or dts --> get delta from config...volume value is set by enigma2-system at start
 					if self.currentAC3DTS:
-						self.lastAdjustedValue = self.serviceList.get(self.session.nav.getCurrentlyPlayingServiceReference().toString(), self.defaultValue)
+						self.lastAdjustedValue = self.serviceList.get(self.session.nav.getCurrentlyPlayingServiceReference().toString(), self.defaultOffset)
 						self.currentVolume = self.volumeControl.getVolume()  # ac3||dts service , save current volume
 				self.pluginStarted = True  # plugin started...
 
@@ -373,7 +383,7 @@ class Volume:
 			try:  # Uhh, servicemp3 leads sometimes to OverflowError Error.
 				description = audio.getTrackInfo(audio.getCurrentTrack()).getDescription()
 				print(f"[VolumeAdjust] Description: '{description}'.")
-				if config.volume.adjustOnlyAC3.value:
+				if self.dolbyEnabled:
 					if "AC3" in description or "DTS" in description or "Dolby Digital" == description:
 						print("[VolumeAdjust] AudioAC3Dolby = YES")
 						return True
