@@ -1916,7 +1916,7 @@ class TemplateParser():
 	def collectColors(self, attributes, widgetColors=None):
 		if widgetColors is None:
 			widgetColors = ()
-		for color in ("backgroundColor", "backgroundColorMarked", "backgroundColorMarkedAndSelected", "backgroundColorSelected", "borderColor", "foregroundColor", "foregroundColorMarked", "foregroundColorMarkedAndSelected", "foregroundColorSelected") + widgetColors:
+		for color in ("backgroundColor", "backgroundColorMarked", "backgroundColorMarkedAndSelected", "backgroundColorSelected", "borderColor", "borderColorSelected", "foregroundColor", "foregroundColorMarked", "foregroundColorMarkedAndSelected", "foregroundColorSelected") + widgetColors:
 			translatedColor = self.resolveColor(attributes.get(color))
 			if translatedColor is not None:
 				attributes[color] = translatedColor

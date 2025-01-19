@@ -70,7 +70,7 @@ class MultiContentTemplateParser(TemplateParser):
 						modeData = []
 						for item in modesItems[modeName]:
 							index = item.get("index", "-1")
-							if index.isdigit():
+							if index.isdigit() or index == "-1":
 								index = int(index)
 							elif self.indexNames:
 								index = self.indexNames.get(index, -1)
@@ -84,6 +84,7 @@ class MultiContentTemplateParser(TemplateParser):
 							backgroundColor = item.get("backgroundColor")
 							backgroundColorSelected = item.get("backgroundColorSelected")
 							borderColor = item.get("borderColor")
+							borderColorSelected = item.get("borderColorSelected")
 							borderWidth = int(item.get("borderWidth", "0"))
 							cornerRadius, cornerEdges = item.get("_radius", (0, 0))
 							flags = item.get("_flags", 0)
@@ -109,7 +110,7 @@ class MultiContentTemplateParser(TemplateParser):
 										else:
 											modeData.append((eListboxPythonMultiContent.TYPE_LINEAR_GRADIENT, pos[0], pos[1], size[0], size[1], gradientDirection, gradientStart, gradientMid, gradientEnd, gradientStartSelected, gradientMidSelected, gradientEndSelected, cornerRadius, cornerEdges))
 									else:
-										modeData.append((eListboxPythonMultiContent.TYPE_RECT, pos[0], pos[1], size[0], size[1], backgroundColor, backgroundColorSelected, borderWidth, borderColor, cornerRadius, cornerEdges))
+										modeData.append((eListboxPythonMultiContent.TYPE_RECT, pos[0], pos[1], size[0], size[1], backgroundColor, backgroundColorSelected, borderWidth, borderColor, borderColorSelected, cornerRadius, cornerEdges))
 								case "progress":
 									if index == -1:
 										index = None
