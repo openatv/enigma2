@@ -10,6 +10,7 @@ from Components.ActionMap import HelpableActionMap
 from Components.config import ConfigSelection, ConfigSelectionNumber, ConfigSubsection, ConfigYesNo, NoSave, config, getConfigListEntry
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Sources.StaticText import StaticText
+from Components.VolumeControl import VolumeControl
 from Screens.ChannelSelection import ChannelSelectionBase, OFF
 from Screens.Setup import Setup
 from Tools.Directories import SCOPE_CONFIG, fileReadXML, moveFiles, resolveFilename
@@ -412,11 +413,11 @@ class Volume:
 
 	def setVolume(self, value):
 		self.volumeControl.setVolume(value, value)  # Set new volume
-		if self.volumeControlInstance is not None:
-			self.volumeControlInstance.volumeDialog.setValue(value)  # Update progressbar value
+		if VolumeControl.instance:
+			VolumeControl.instance.volumeDialog.setValue(value)  # Update progressbar value
 			if config.volume.showVolumeBar.value:
-				self.volumeControlInstance.volumeDialog.show()
-				self.volumeControlInstance.hideVolTimer.start(3000, True)
+				VolumeControl.instance.volumeDialog.show()
+				VolumeControl.instance.hideVolTimer.start(3000, True)
 		config.volumeControl.volume.value = self.volumeControl.getVolume()
 		config.volumeControl.volume.save()
 
