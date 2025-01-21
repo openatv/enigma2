@@ -2240,12 +2240,13 @@ class TunerInformation(InformationBase):
 			return f"{format_string(format, value, grouping=True)} {units}" if units else format_string(format, value, grouping=True)
 
 		def extractModes(data, mode):
-			mode = f"{mode} "
-			length = len(mode)
 			values = []
-			for item in data.split(","):
-				if item.startswith(mode):
-					values.append(item[length:].capitalize())
+			if data:
+				mode = f"{mode} "
+				length = len(mode)
+				for item in data.split(","):
+					if item.startswith(mode):
+						values.append(item[length:].capitalize())
 			return sorted(values)
 
 		def sortQAM(values):
