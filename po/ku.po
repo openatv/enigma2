@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 Kurdish translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-31 15:16+0000\n"
+"POT-Creation-Date: 2025-01-07 09:29+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Kurdish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ku/>\n"
@@ -1681,6 +1681,22 @@ msgid "A file from media is in use!"
 msgstr ""
 
 #, fuzzy, python-format
+msgid ""
+"A finished record timer wants to set your\n"
+"%s %s to standby. Do that now?"
+msgstr ""
+"A finished record timer wants to set your\n"
+"receiver to standby. Do that now?"
+
+#, fuzzy, python-format
+msgid ""
+"A finished record timer wants to shut down\n"
+"your %s %s. Shutdown now?"
+msgstr ""
+"A finished record timer wants to shut down\n"
+"your receiver. Shutdown now?"
+
+#, fuzzy, python-format
 msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "A finished record timer wants to set your\n"
@@ -1700,22 +1716,6 @@ msgstr ""
 
 #, fuzzy, python-format
 msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
-msgstr ""
-"A finished record timer wants to shut down\n"
-"your receiver. Shutdown now?"
-
-#, fuzzy, python-format
-msgid ""
-"A finished record timer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-"A finished record timer wants to set your\n"
-"receiver to standby. Do that now?"
-
-#, fuzzy, python-format
-msgid ""
-"A finished record timer wants to shut down\n"
-"your %s %s. Shutdown now?"
 msgstr ""
 "A finished record timer wants to shut down\n"
 "your receiver. Shutdown now?"
@@ -3455,9 +3455,6 @@ msgstr ""
 msgid "Burundi"
 msgstr ""
 
-msgid "Bus: "
-msgstr "Bus: "
-
 msgid "Business & Finance"
 msgstr ""
 
@@ -3468,12 +3465,6 @@ msgid "Button error timeout"
 msgstr ""
 
 msgid "ButtonSetup"
-msgstr ""
-
-msgid "By disk UUID"
-msgstr ""
-
-msgid "By disk label"
 msgstr ""
 
 msgid "Bypass HDMI EDID Check"
@@ -3880,9 +3871,6 @@ msgstr "Heta Neha min Sinyal Nedi... Bettal ki!"
 
 msgid "Cannot move to trash can"
 msgstr "Cannot move to trash can"
-
-msgid "Capacity"
-msgstr ""
 
 msgid "Cape Verde"
 msgstr ""
@@ -4819,9 +4807,6 @@ msgstr ""
 #, fuzzy
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "Configure the aspect ratio of the screen."
-
-msgid "Select the duration of inactivity before the screen saver will be displayed."
-msgstr ""
 
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
 msgstr ""
@@ -8583,9 +8568,6 @@ msgstr ""
 msgid "File Commander settings"
 msgstr "Video enhancement settings"
 
-msgid "File system"
-msgstr ""
-
 #, fuzzy
 msgid "File System Check"
 msgstr "File System Check"
@@ -8601,6 +8583,9 @@ msgid ""
 "Please enter username/password manually."
 msgstr ""
 
+msgid "File system"
+msgstr ""
+
 msgid "File transfer was canceled by user!"
 msgstr ""
 
@@ -8612,9 +8597,6 @@ msgid "Filename"
 msgstr "filename"
 
 msgid "Files/folders to exclude from backup"
-msgstr ""
-
-msgid "Filesystem"
 msgstr ""
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
@@ -12542,6 +12524,9 @@ msgstr "No HDD found or HDD not initialized!"
 msgid "No Internet connection"
 msgstr ""
 
+msgid "No Name"
+msgstr ""
+
 msgid ""
 "No Settings loaded !!\n"
 "\n"
@@ -13871,6 +13856,9 @@ msgid "Please enter the new directory name:"
 msgstr ""
 
 msgid "Please enter the new file name:"
+msgstr ""
+
+msgid "Please enter the new name:"
 msgstr ""
 
 msgid "Please enter the new tag:"
@@ -16200,6 +16188,9 @@ msgstr ""
 msgid "Scope"
 msgstr ""
 
+msgid "Screen saver movement"
+msgstr ""
+
 msgid "Script Manager"
 msgstr ""
 
@@ -16368,13 +16359,13 @@ msgstr ""
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr ""
 
-msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
-msgstr ""
-
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
 msgstr ""
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
 msgstr ""
 
 #, fuzzy
@@ -16593,9 +16584,6 @@ msgstr ""
 msgid "Select AutoCam default Softcam"
 msgstr ""
 
-msgid "Select Backup Location"
-msgstr "Select Backup Location"
-
 msgid "Select Bookmark"
 msgstr ""
 
@@ -16765,6 +16753,9 @@ msgstr ""
 
 msgid "Select files/folders to backup"
 msgstr "Select files/folders to backup"
+
+msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
+msgstr ""
 
 msgid "Select how long to display status messages."
 msgstr ""
@@ -17019,6 +17010,9 @@ msgid "Select the display options for each menu entry item. If menu numbers are 
 msgstr ""
 
 msgid "Select the display sequence of previously visited services."
+msgstr ""
+
+msgid "Select the duration of inactivity before the screen saver will be displayed."
 msgstr ""
 
 #, python-format
@@ -17310,9 +17304,6 @@ msgid "Select your ATSC provider."
 msgstr "Select provider to add..."
 
 msgid "Select your Language for Audio/Subtitles"
-msgstr ""
-
-msgid "Select your backup device."
 msgstr ""
 
 msgid "Select your country. If not available select 'All'."
@@ -17821,9 +17812,6 @@ msgid "Setup Audiomode"
 msgstr ""
 
 msgid "Setup Enigma2"
-msgstr ""
-
-msgid "Setup Harddisk"
 msgstr ""
 
 msgid "Setup Inadyn"
@@ -22852,9 +22840,6 @@ msgstr ""
 msgid "Waiting"
 msgstr "Waiting"
 
-msgid "Waiting for mount"
-msgstr "Waiting for mount"
-
 msgid "Waiting for partition"
 msgstr "Waiting for partition"
 
@@ -24870,6 +24855,15 @@ msgstr "yes (keep feeds)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Bus: "
+#~ msgstr "Bus: "
+
+#~ msgid "Select Backup Location"
+#~ msgstr "Select Backup Location"
+
+#~ msgid "Waiting for mount"
+#~ msgstr "Waiting for mount"
 
 #, fuzzy
 #~ msgid "PowerTimers"

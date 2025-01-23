@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-31 15:16+0000\n"
-"PO-Revision-Date: 2025-01-07 09:01+0000\n"
+"POT-Creation-Date: 2025-01-07 09:29+0000\n"
+"PO-Revision-Date: 2025-01-21 21:57+0000\n"
 "Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -63,7 +63,7 @@ msgid " (current channel)"
 msgstr " (aktualny kanał)"
 
 msgid " (disabled)"
-msgstr " (wyłączone)"
+msgstr " (wyłączony)"
 
 msgid " (higher than any auto)"
 msgstr " (wyższy niż jakikolwiek automatyczny)"
@@ -1557,10 +1557,10 @@ msgid "< User Skin >"
 msgstr "< Skórka Użytkownika >"
 
 msgid "<Current movie list location>"
-msgstr "<Bieżąca lokalizacja nagrań>"
+msgstr "<Bieżąca lokalizacja listy filmów>"
 
 msgid "<Default movie location>"
-msgstr "<Domyślna lokalizacja nagrań>"
+msgstr "<Domyślna lokalizacja filmu>"
 
 msgid "<Flash expander inactive>"
 msgstr "<Rozszerzacz flash nieaktywny>"
@@ -1599,21 +1599,6 @@ msgid "A file from media is in use!"
 msgstr "Plik z nośnika jest w użyciu!"
 
 #, python-format
-msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
-msgstr "Zakończony zaplanowany timer chce ponownie uruchomić %s %s. Czy zrobić to teraz?"
-
-msgid "A finished scheduled timer wants to restart the user interface. Do that now?"
-msgstr "Zakończony zaplanowany timer chce ponownie uruchomić interfejs użytkownika. Czy zrobić to teraz?"
-
-#, python-format
-msgid "A finished scheduled timer wants to set your %s %s to standby. Do that now?"
-msgstr "Zakończony zaplanowany timer chce ustawić %s %s w tryb gotowości. Czy zrobić to teraz?"
-
-#, python-format
-msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
-msgstr "Zakończony zaplanowany timer chce wyłączyć %s %s. Czy chcesz to teraz zrobić?"
-
-#, python-format
 msgid ""
 "A finished record timer wants to set your\n"
 "%s %s to standby. Do that now?"
@@ -1628,6 +1613,21 @@ msgid ""
 msgstr ""
 "Wykonany timer nagrywania chce wyłączyć %s %s.\n"
 "Wyłączyć teraz?"
+
+#, python-format
+msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
+msgstr "Zakończony zaplanowany timer chce ponownie uruchomić %s %s. Czy zrobić to teraz?"
+
+msgid "A finished scheduled timer wants to restart the user interface. Do that now?"
+msgstr "Zakończony zaplanowany timer chce ponownie uruchomić interfejs użytkownika. Czy zrobić to teraz?"
+
+#, python-format
+msgid "A finished scheduled timer wants to set your %s %s to standby. Do that now?"
+msgstr "Zakończony zaplanowany timer chce ustawić %s %s w tryb gotowości. Czy zrobić to teraz?"
+
+#, python-format
+msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
+msgstr "Zakończony zaplanowany timer chce wyłączyć %s %s. Czy chcesz to teraz zrobić?"
 
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr "Podświetlenie na obrazie pilota zdalnego sterowania wskazuje, do którego przycisku odnosi się pomoc. Jeśli więcej niż jeden przycisk wykonuje wskazaną funkcję, wyświetlone zostanie więcej niż jedno podświetlenie. Tekst poniżej listy zawiera listę aktywnych przycisków oraz informację, czy dana funkcja wymaga długiego naciśnięcia przycisku lub naciśnięcia przycisku SHIFT."
@@ -1934,7 +1934,7 @@ msgid "Add To Parental Protection"
 msgstr "dodaj do ochrony rodzicielskiej"
 
 msgid "Add Zap+RecordTimer"
-msgstr "Dodaj timer zap + nagrywanie"
+msgstr "Dodaj timer przełącz + nagrywanie"
 
 msgid "Add ZapTimer"
 msgstr "Dodaj zap timer"
@@ -2018,10 +2018,10 @@ msgid "Add recording (Enter recording duration)"
 msgstr "Dodaj nagrywanie (wpisz czas trwania nagrywania)"
 
 msgid "Add recording (Enter recording end time)"
-msgstr "Dodaj nagrywanie (wpisz czas zakończenia nagrywania)"
+msgstr "Dodaj nagrywanie (wpisz godzinę zakończenia nagrywania)"
 
 msgid "Add recording (Indefinitely - 24 hours)"
-msgstr "Dodaj nagrywanie (na czas nieokreślony)"
+msgstr "Dodaj nagrywanie (na czas nieokreślony - 24 godziny)"
 
 msgid "Add recording (Stop after current event)"
 msgstr "Dodaj nagrywanie (stop po aktualnym wydarzeniu)"
@@ -2664,7 +2664,7 @@ msgid "Auto Detect"
 msgstr "Automatyczne Wykrywanie"
 
 msgid "Auto Language"
-msgstr "Auto język"
+msgstr "Automatyczny język"
 
 msgid "Auto Language Selection"
 msgstr "Automatyczny wybór języka"
@@ -3279,9 +3279,6 @@ msgstr "Nagraj do średniego"
 msgid "Burundi"
 msgstr "Burundi"
 
-msgid "Bus: "
-msgstr "Szyna: "
-
 msgid "Business & Finance"
 msgstr "Biznes i Finanse"
 
@@ -3293,12 +3290,6 @@ msgstr "Limit czasu błędu przycisku"
 
 msgid "ButtonSetup"
 msgstr "Ustawienia przycisków"
-
-msgid "By disk UUID"
-msgstr "Wg UUID dysku"
-
-msgid "By disk label"
-msgstr "Wg etykiety dysku"
 
 msgid "Bypass HDMI EDID Check"
 msgstr "Pomiń sprawdzanie HDMI EDID"
@@ -3710,9 +3701,6 @@ msgstr "Nie można znaleźć żadnego sygnału... anulowanie!"
 
 msgid "Cannot move to trash can"
 msgstr "Nie można przenieść do kosza"
-
-msgid "Capacity"
-msgstr "Pojemność"
 
 msgid "Cape Verde"
 msgstr "Zielony Przylądek"
@@ -4434,7 +4422,7 @@ msgid "Composition of the recording filenames"
 msgstr "Składnia nazwy nagrania"
 
 msgid "Compress root file system tar file. (This takes the most time!)"
-msgstr "Skompresuj plik tar głównego systemu plików. (To zajmuje najwięcej czasu!)"
+msgstr "Kompresowanie pliku tar głównego systemu plików. (To zajmuje najwięcej czasu!)"
 
 msgid "Compressed bits/pixel"
 msgstr "Skompresowane bity/pixele"
@@ -4601,9 +4589,6 @@ msgstr "Skonfiguruj zachowanie kursora na liście wyboru kanałów. Po otwarciu 
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "Skonfiguruj rozdzielczość wyświetlania i czcionkę używaną do telegazety."
 
-msgid "Select the duration of inactivity before the screen saver will be displayed."
-msgstr "Skonfiguruj czas trwania w minutach dla wygaszacza ekranu."
-
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
 msgstr "Skonfiguruj czas trwania (w minutach) przed aktywacją licznika czasu oszczędzania energii."
 
@@ -4650,10 +4635,10 @@ msgid "Configure the gateway."
 msgstr "Skonfiguruj ustawienia 'bramy'."
 
 msgid "Configure the hard disk drive to go to standby after the specified idle time when the box is in standby."
-msgstr "Skonfiguruj dysk twardy tak, aby przechodził w stan wstrzymania po określonym czasie bezczynności, gdy urządzenie jest w stanie wstrzymania."
+msgstr "Skonfiguruj dysk twardy tak, aby przechodził w tryb gotowości po określonym czasie bezczynności, gdy urządzenie znajduje się w trybie gotowości."
 
 msgid "Configure the hard disk drive to go to standby after the specified idle time."
-msgstr "Skonfiguruj czas po jakim dysk twardy ma przechodzić w tryb uśpienia."
+msgstr "Skonfiguruj dysk twardy tak, aby po określonym czasie bezczynności przeszedł w tryb gotowości."
 
 msgid "Configure the height of the TrueType font letters used for teletext."
 msgstr "Skonfiguruj wysokość liter czcionki TrueType używanych do telegazety."
@@ -5142,7 +5127,7 @@ msgid "Create application loader dump."
 msgstr "Utwórz zrzut programu ładującego aplikacje."
 
 msgid "Create backup image zip file."
-msgstr "Utwórz plik zip kopii zapasowej."
+msgstr "Tworzenie pliku zip kopii zapasowej."
 
 msgid "Create boot dump."
 msgstr "Utwórz zrzut rozruchowy."
@@ -5154,7 +5139,7 @@ msgid "Create device information dump."
 msgstr "Utwórz zrzut informacji o urządzeniu."
 
 msgid "Create kernel dump."
-msgstr "Utwórz zrzut kernel."
+msgstr "Tworzenie zrzutu kernel."
 
 #, python-format
 msgid "Create recovery image backup '%s'."
@@ -5179,7 +5164,7 @@ msgid "Create swap"
 msgstr "Utwórz plik wymiany"
 
 msgid "Create tar file of root file system."
-msgstr "Utwórz plik tar głównego systemu plików."
+msgstr "Tworzenie pliku tar głównego systemu plików."
 
 msgid "Create the additional slots on the selected device"
 msgstr "Utwórz dodatkowe sloty na wybranym urządzeniu"
@@ -5188,7 +5173,7 @@ msgid "Create the flash expander in the selected device"
 msgstr "Tworzy rozszerzacza flash na wybranym urządzeniu"
 
 msgid "Create working directories."
-msgstr "Utwórz katalogi robocze."
+msgstr "Tworzenie katalogów roboczych."
 
 msgid "Creating .ap and .sc files"
 msgstr "Tworzenie AP i plików SC"
@@ -5221,10 +5206,10 @@ msgid "Cron"
 msgstr "Cron"
 
 msgid "Cron Manager"
-msgstr "Menadżer zadań"
+msgstr "Menadżer cron"
 
 msgid "Cron Timers"
-msgstr "Harmonogramy zadań"
+msgstr "Harmonogramy cron"
 
 msgid "Cuba"
 msgstr "Kuba"
@@ -5744,7 +5729,7 @@ msgid "Default movie location (%s)"
 msgstr "Domyślna lokalizacja filmów (%s)"
 
 msgid "Default movie selection location"
-msgstr "Domyślna lokalizacja nagrań"
+msgstr "Domyślna lokalizacja wyboru filmu"
 
 msgid "Default recording type"
 msgstr "Domyślny tryp nagrywania"
@@ -6088,16 +6073,16 @@ msgid "Deselected packages usually occur because those packaged are incompatible
 msgstr "Odznaczone pakiety zwykle występują, ponieważ te spakowane są niezgodne z istniejącymi pakietami. Chociaż jest to w większości nieszkodliwe, możliwe jest, że %s %s może napotkać problemy."
 
 msgid "Destination of fallback remote receiver"
-msgstr "Lokalizacja zdalnego odbiornika rezerwowego"
+msgstr "Lokalizacja zdalnego odbiornika"
 
 msgid "Destination of fallback remote receiver for ATSC"
-msgstr "Lokalizacja zdalnego odbiornika rezerwowego dla ATSC"
+msgstr "Lokalizacja zdalnego odbiornika dla ATSC"
 
 msgid "Destination of fallback remote receiver for DVB-C"
-msgstr "Lokalizacja zdalnego odbiornika rezerwowego dla DVB-C"
+msgstr "Lokalizacja zdalnego odbiornika dla DVB-C"
 
 msgid "Destination of fallback remote receiver for DVB-T"
-msgstr "Lokalizacja zdalnego odbiornika rezerwowego dla DVB-T"
+msgstr "Lokalizacja zdalnego odbiornika dla DVB-T"
 
 msgid "Detail of GStreamer log."
 msgstr "Szczegóły logu GStreamer."
@@ -6273,7 +6258,7 @@ msgid "Disable timer"
 msgstr "Wyłącz timer"
 
 msgid "Disabled"
-msgstr "Wyłączone"
+msgstr "Wyłączony"
 
 msgid "Disabled PiP.\n"
 msgstr "Wyłączone PIP.\n"
@@ -6391,7 +6376,7 @@ msgid "Do not backup the image"
 msgstr "Nie twórz kopii zapasowej systemu"
 
 msgid "Do not change"
-msgstr "Nie należy zmieniać"
+msgstr "Nie zmieniaj"
 
 msgid "Do not flash image"
 msgstr "Nie instaluj systemu"
@@ -7020,7 +7005,7 @@ msgid "Enable IceTV"
 msgstr "Włącz IceTV"
 
 msgid "Enable InfoBar fade-out"
-msgstr "Włącz wygaszacz paska informacyjnego"
+msgstr "Włącz wygaszanie paska informacyjnego"
 
 msgid "Enable Kexec MultiBoot"
 msgstr "Włącz Kexec MultiBoot"
@@ -7249,7 +7234,7 @@ msgid "Encryption Type:"
 msgstr "Typ szyfrowania:"
 
 msgid "Encryption key"
-msgstr "Klucz szyfrujący"
+msgstr "Hasło sieci"
 
 msgid "Encryption key type"
 msgstr "Typ klucza szyfrującego"
@@ -8302,9 +8287,6 @@ msgstr "File Commander: Akcje edytora tekstu"
 msgid "File Commander settings"
 msgstr "Ustawienia File Commander"
 
-msgid "File system"
-msgstr "System plików"
-
 msgid "File System Check"
 msgstr "Sprawdź system plików"
 
@@ -8321,6 +8303,9 @@ msgstr ""
 "Nie znaleziono pliku Oscam.conf.\n"
 "Podaj nazwę użytkownika/hasło ręcznie."
 
+msgid "File system"
+msgstr "System plików"
+
 msgid "File transfer was canceled by user!"
 msgstr "Przesyłanie pliku zostało anulowane przez użytkownika!"
 
@@ -8332,9 +8317,6 @@ msgstr "Nazwa pliku"
 
 msgid "Files/folders to exclude from backup"
 msgstr "Wykluczone pliki z kopii zapasowej"
-
-msgid "Filesystem"
-msgstr "System plików"
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr "Wypełnij EPG kanału z EPG transmisji, w której nie ma EPG IceTV dla kanału"
@@ -8524,7 +8506,7 @@ msgid "Force de-interlace"
 msgstr "Siła przeplotu"
 
 msgid "Force disabled"
-msgstr "wymuszanie wyłączone"
+msgstr "Wymuszono wyłączenie"
 
 msgid "Force enabled"
 msgstr "wymuszanie włączone"
@@ -9050,10 +9032,10 @@ msgid "Hard Disk Settings"
 msgstr "Ustawienia HDD"
 
 msgid "Hard disk standby after"
-msgstr "Przełącz dysk twardy w tryb czuwania po"
+msgstr "Dysk twardy w trybie gotowości po"
 
 msgid "Hard disk standby in box standby after"
-msgstr "Czuwanie dysku twardego w trybie czuwania po"
+msgstr "Dysk twardy w trybie gotowości po"
 
 msgid "Harddisk"
 msgstr "Dysk twardy"
@@ -9936,7 +9918,7 @@ msgid "Installing Service"
 msgstr "Instalowanie listy"
 
 msgid "Installing Software..."
-msgstr "Instalowanie systemu..."
+msgstr "Instalowanie oprogramowania..."
 
 msgid "Installing package."
 msgstr "Instalowanie pakietu."
@@ -10023,7 +10005,7 @@ msgid "Invalid type"
 msgstr "nieprawidłowy typ"
 
 msgid "Inversion"
-msgstr "Odwracanie"
+msgstr "Inwersja"
 
 msgid "Invert"
 msgstr "Zaznacz/Odznacz"
@@ -10560,7 +10542,7 @@ msgid "Lingala"
 msgstr "Lingala"
 
 msgid "Link detected"
-msgstr "Wykryte"
+msgstr "Wykryto łącze"
 
 msgid "Link quality:"
 msgstr "Jakość sygnału:"
@@ -11341,7 +11323,7 @@ msgid "Mount point"
 msgstr "Punkt montowania"
 
 msgid "Mount root file system."
-msgstr "Zamontuj główny system plików."
+msgstr "Montowanie głównego systemu plików."
 
 msgid "Mounts"
 msgstr "Montowanie"
@@ -12084,6 +12066,9 @@ msgstr "Nie znaleziono HDD lub dysk nie jest zainicjowany!"
 msgid "No Internet connection"
 msgstr "Brak połączenia z internetem"
 
+msgid "No Name"
+msgstr "Bez nazwy"
+
 msgid ""
 "No Settings loaded !!\n"
 "\n"
@@ -12194,7 +12179,7 @@ msgid "No slot images found"
 msgstr "Nie znaleziono systemow w slocie"
 
 msgid "No standby"
-msgstr "Brak czuwania"
+msgstr "Brak gotowości"
 
 msgid "No storage or hard disks detected."
 msgstr "Nie wykryto pamięci masowej ani dysków twardych."
@@ -12781,7 +12766,7 @@ msgid "Option to disable picons on the Infobar."
 msgstr "Opcja wyłączenia pikon na pasku informacyjnym."
 
 msgid "Option to enable the Hardware Standby Timer."
-msgstr "Opcja włączenia sprzętowego licznika czasu czuwania."
+msgstr "Opcja umożliwiająca włączenie timera czuwania sprzętu."
 
 msgid "Optional parameter"
 msgstr "Parametr opcjonalny"
@@ -13372,6 +13357,9 @@ msgstr "Podaj nazwę nowego katalogu:"
 msgid "Please enter the new file name:"
 msgstr "Podaj nazwę nowego pliku:"
 
+msgid "Please enter the new name:"
+msgstr "Proszę wprowadzić nową nazwę:"
+
 msgid "Please enter the new tag:"
 msgstr "Wprowadź nowy znacznik:"
 
@@ -13656,7 +13644,7 @@ msgid "Port number for the Stream Relay server used to descramble services that 
 msgstr "Numer portu dla serwera Stream Relay wykorzystywany do odkodowywania usług, które mogą być tylko odszyfrowane przez Stream Relay."
 
 msgid "Port of fallback remote receiver"
-msgstr "Port zdalnego odbiornika rezerwowego"
+msgstr "Port zdalnego odbiornika"
 
 msgid "Portugal"
 msgstr "Portugalia"
@@ -14037,31 +14025,31 @@ msgid "Properties of current title"
 msgstr "Właściwości aktualnego tytułu"
 
 msgid "Protect Quickmenu"
-msgstr "Chroń QuickMenu"
+msgstr "Chroń szybkie menu"
 
 msgid "Protect Screens"
-msgstr "Chroń Ekrany"
+msgstr "Chroń ekrany"
 
 msgid "Protect configuration"
-msgstr "Chroń Konfiguracje"
+msgstr "Chroń konfigurację"
 
 msgid "Protect context menus"
-msgstr "Chroń Menu Kontekstowe"
+msgstr "Chroń menu kontekstowe"
 
 msgid "Protect main menu"
-msgstr "Chroń Menu główne"
+msgstr "Chroń menu główne"
 
 msgid "Protect movie list"
-msgstr "Chroń Listę Filmów"
+msgstr "Chroń listę filmów"
 
 msgid "Protect on epg age"
-msgstr "Chroń Wiek z EPG"
+msgstr "Zabezpiecz wiek EPG"
 
 msgid "Protect plugin browser"
 msgstr "Chroń przeglądarkę wtyczek"
 
 msgid "Protect services"
-msgstr "Zabezpiecz Kanały"
+msgstr "Zabezpiecz kanały"
 
 msgid "Protect software update screen"
 msgstr "Chroń ekran aktualizacji oprogramowania"
@@ -14599,7 +14587,7 @@ msgid "Reload all services from disk"
 msgstr "Przeładuj wszystkie usługi z dysku"
 
 msgid "Reload blacklists"
-msgstr "Odświeżyć Czarną Listę"
+msgstr "Odśwież czarne listy"
 
 msgid "Reloading EPG Cache..."
 msgstr "Przeładowywanie pamięci podręcznej EPG..."
@@ -14891,10 +14879,10 @@ msgid "Reset"
 msgstr "Resetuj"
 
 msgid "Reset (clear and reload) the feeds"
-msgstr "Zresetuj (wyczyść i załaduj ponownie)feed"
+msgstr "Zresetuj (wyczyść i załaduj ponownie) feed'y"
 
 msgid "Reset Feeds"
-msgstr "Zresetuj Feeds"
+msgstr "Zresetuj feed'y"
 
 msgid "Reset HDMI-CEC settings to default"
 msgstr "Przywróć ustawienia domyślne HDMI-CEC"
@@ -15333,7 +15321,7 @@ msgid "Samba Server"
 msgstr "Serwer Samba"
 
 msgid "Samba Settings"
-msgstr "Ustawienia Samby"
+msgstr "Ustawienia samby"
 
 msgid "Same as in active"
 msgstr "Taki sam jak w aktywnym"
@@ -15571,9 +15559,9 @@ msgstr "Skanowanie..."
 #, python-format
 msgid "Scanning: %d%% complete"
 msgid_plural "Scanning: %d%% complete"
-msgstr[0] "Skanowanie: ukończono %d%%"
-msgstr[1] "Skanowanie: ukończone %d%%"
-msgstr[2] "Skanowanie: ukończonych %d%%"
+msgstr[0] "Skanowanie: Ukończono %d%%"
+msgstr[1] "Skanowanie: Ukończone %d%%"
+msgstr[2] "Skanowanie: Ukończonych %d%%"
 
 msgid "Scans default lamedbs sorted by satellite with a connected dish positioner"
 msgstr "Domyślne skanuje 'lamedbs' wg. satelit z podłączonym pozycjonerem"
@@ -15591,7 +15579,7 @@ msgid "Scheduler Actions"
 msgstr "Akcje programatora zasilania"
 
 msgid "Scheduler Overview"
-msgstr "Programatory zasilania"
+msgstr "Przegląd harmonogramu"
 
 msgid "Scheduler Settings"
 msgstr "Ustawienia harmonogramu"
@@ -15616,6 +15604,9 @@ msgstr "Nauka i Technika"
 
 msgid "Scope"
 msgstr "Zakres"
+
+msgid "Screen saver movement"
+msgstr "Ruch wygaszacza ekranu"
 
 msgid "Script Manager"
 msgstr "Menadżer skryptów"
@@ -15776,14 +15767,14 @@ msgstr "Wybierz opcję 'Tak', jeśli regulacja głośności ma być stosowana do
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Wybierz „tak” tylko, jeśli używasz multiswich, który wymaga sygnału polecenia DiSEqC Port-A. Dla wszystkich innych ustawień wybierz „nie”."
 
-msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
-msgstr "Wybierz opcję „Tak”, jeśli chcesz wybudzić telewizor na czas uruchomienia timera zasilania „Wybudzanie”."
-
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
 msgstr "Wybierz opcję „Tak”, jeśli chcesz wybudzić telewizor na czas rozpoczęcia timera nagrywania „Przełącz i Nagraj”."
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
 msgstr "Wybierz opcję „Tak”, jeśli chcesz wybudzić telewizor na rozpoczęcie nagrywania przez timer „Przełącz”."
+
+msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
+msgstr "Wybierz „Tak”, jeśli chcesz, aby telewizor wybudzał się po uruchomieniu zaplanowanego zadania „Wybudzanie”."
 
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Jeśli jest ustawione na 'tak' pasek informacyjny pozostanie wyświetlany na stałe w stanie 'pauzy' (bez timeoutu)."
@@ -15998,9 +15989,6 @@ msgstr "Dodatkowe pliki kopii zapasowej"
 msgid "Select AutoCam default Softcam"
 msgstr "Wybierz AutoCam jako domyślny Softcam"
 
-msgid "Select Backup Location"
-msgstr "Wybierz lokalizację kopii"
-
 msgid "Select Bookmark"
 msgstr "Wybierz zakładkę"
 
@@ -16167,6 +16155,9 @@ msgstr "Wybierz pliki, które chcesz wykluczyć z kopii zapasowej"
 
 msgid "Select files/folders to backup"
 msgstr "Wybierz pliki kopii zapasowej"
+
+msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
+msgstr "Wybierz, jak długo obraz wygaszacza ekranu będzie pozostawał w tym samym miejscu na ekranie, zanim zostanie przeniesiony."
 
 msgid "Select how long to display status messages."
 msgstr "Wybierz, jak długo mają być wyświetlane komunikaty o stanie."
@@ -16422,6 +16413,9 @@ msgstr "Wybierz opcje wyświetlania dla każdego elementu menu. Jeśli numery me
 
 msgid "Select the display sequence of previously visited services."
 msgstr "Wybierz kolejność wyświetlania wcześniej odwiedzonych kanałów."
+
+msgid "Select the duration of inactivity before the screen saver will be displayed."
+msgstr "Wybierz czas bezczynności, po którym zostanie wyświetlony wygaszacz ekranu."
 
 #, python-format
 msgid "Select the file sort order for the %s column:"
@@ -16716,9 +16710,6 @@ msgstr "Wybierz dostawcę ATSC."
 msgid "Select your Language for Audio/Subtitles"
 msgstr "Wybierz język dla audio/napisów"
 
-msgid "Select your backup device."
-msgstr "Wybierz urządzenie do tworzenia kopii zapasowych."
-
 msgid "Select your country. If not available select 'All'."
 msgstr "Wybierz swój kraj. Jeśli nie jest dostępny, wybierz „wszystkie”."
 
@@ -16864,7 +16855,7 @@ msgid "Service Number, Picon and Service Name"
 msgstr "Pikona, numer i nazwa kanału"
 
 msgid "Service Scan"
-msgstr "Skanowanie serwisowe"
+msgstr "Skanowanie kanałów"
 
 msgid "Service Scan Actions"
 msgstr "Akcje skanowania kanałów"
@@ -17217,9 +17208,6 @@ msgstr "Ustawienia trybu dźwięku"
 
 msgid "Setup Enigma2"
 msgstr "Ustawienia Enigmy2"
-
-msgid "Setup Harddisk"
-msgstr "Ustawienia HDD"
 
 msgid "Setup Inadyn"
 msgstr "Ustawienia Inadyn"
@@ -18334,7 +18322,7 @@ msgid "Sleep Timer"
 msgstr "Timer czuwania"
 
 msgid "Sleep Timers"
-msgstr "Timer Czuwania"
+msgstr "Timer czuwania"
 
 msgid "Sleep delay"
 msgstr "Opóźnienie (w minutach)"
@@ -21441,7 +21429,7 @@ msgid "Use HTTPS protocol"
 msgstr "Użyj protokołu HTTPS"
 
 msgid "Use Harddisk Hardware Standby Timer"
-msgstr "Użyj sprzętowego timera czuwania dla HDD"
+msgstr "Użyj timera czuwania sprzętu dysku twardego"
 
 msgid "Use MHW EPG information when it is available."
 msgstr "Użyj informacji EPG MHW gdy dostępne."
@@ -22055,7 +22043,7 @@ msgid "Volume"
 msgstr "Głośność"
 
 msgid "Volume Adjust"
-msgstr "Dostosowanie głośności"
+msgstr "Regulacja głośności"
 
 msgid "Volume Adjust Actions"
 msgstr "Akcje regulacji głośności"
@@ -22134,9 +22122,6 @@ msgstr "Proszę czekać, skanowanie..."
 
 msgid "Waiting"
 msgstr "Czekaj"
-
-msgid "Waiting for mount"
-msgstr "Czekaj na zakończenie montowania"
 
 msgid "Waiting for partition"
 msgstr "Czekaj na utworzenie partycji"
@@ -23501,7 +23486,7 @@ msgid "hops:"
 msgstr "hops:"
 
 msgid "inactive"
-msgstr "wyłączone"
+msgstr "nieaktywny"
 
 msgid "increase uphop by 1"
 msgstr "wzrost uphop o 1"
@@ -23696,7 +23681,7 @@ msgid "off or wpa2 on"
 msgstr "wyłączone lub wpa2 włączone"
 
 msgid "offset is"
-msgstr "jest wyłączone"
+msgstr "przesunięcie jest"
 
 msgid "olympic blue"
 msgstr "olympic blue"
@@ -24111,6 +24096,33 @@ msgstr "tak (zachować kanały)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Bus: "
+#~ msgstr "Szyna: "
+
+#~ msgid "By disk UUID"
+#~ msgstr "Wg UUID dysku"
+
+#~ msgid "By disk label"
+#~ msgstr "Wg etykiety dysku"
+
+#~ msgid "Capacity"
+#~ msgstr "Pojemność"
+
+#~ msgid "Filesystem"
+#~ msgstr "System plików"
+
+#~ msgid "Select Backup Location"
+#~ msgstr "Wybierz lokalizację kopii"
+
+#~ msgid "Select your backup device."
+#~ msgstr "Wybierz urządzenie do tworzenia kopii zapasowych."
+
+#~ msgid "Setup Harddisk"
+#~ msgstr "Ustawienia HDD"
+
+#~ msgid "Waiting for mount"
+#~ msgstr "Czekaj na zakończenie montowania"
 
 #~ msgid "PowerTimer"
 #~ msgstr "Programator zasilania"

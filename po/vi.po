@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-31 15:16+0000\n"
+"POT-Creation-Date: 2025-01-07 09:29+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1560,6 +1560,22 @@ msgid "A file from media is in use!"
 msgstr ""
 
 #, python-format
+msgid ""
+"A finished record timer wants to set your\n"
+"%s %s to standby. Do that now?"
+msgstr ""
+"Một bộ đếm thời gian hoàn thành muốn thiết lập của bạn\n"
+"% s% s để chờ. Làm điều đó bây giờ?"
+
+#, python-format
+msgid ""
+"A finished record timer wants to shut down\n"
+"your %s %s. Shutdown now?"
+msgstr ""
+"Một bộ đếm thời gian hoàn thành muốn thiết lập của bạn\n"
+"%s%s để chờ. Làm điều đó bây giờ?"
+
+#, python-format
 msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "Một powertimer đã hoàn thành muốn khởi động lại %s% s của bạn.\n"
@@ -1581,22 +1597,6 @@ msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "Một điện thoại hoàn thành muốn tắt % s% s của bạn.\n"
 "Làm điều đó bây giờ?"
-
-#, python-format
-msgid ""
-"A finished record timer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-"Một bộ đếm thời gian hoàn thành muốn thiết lập của bạn\n"
-"% s% s để chờ. Làm điều đó bây giờ?"
-
-#, python-format
-msgid ""
-"A finished record timer wants to shut down\n"
-"your %s %s. Shutdown now?"
-msgstr ""
-"Một bộ đếm thời gian hoàn thành muốn thiết lập của bạn\n"
-"%s%s để chờ. Làm điều đó bây giờ?"
 
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr ""
@@ -3264,9 +3264,6 @@ msgstr "Ghi vào trung bình"
 msgid "Burundi"
 msgstr "Burundi"
 
-msgid "Bus: "
-msgstr "Xe buýt: "
-
 msgid "Business & Finance"
 msgstr ""
 
@@ -3278,12 +3275,6 @@ msgstr ""
 
 msgid "ButtonSetup"
 msgstr "Cài đặt nút"
-
-msgid "By disk UUID"
-msgstr ""
-
-msgid "By disk label"
-msgstr ""
 
 msgid "Bypass HDMI EDID Check"
 msgstr "Bỏ qua kiểm tra HDMI EDID"
@@ -3692,9 +3683,6 @@ msgstr "Không thể tìm thấy bất kỳ tín hiệu nào ..., hủy bỏ!"
 
 msgid "Cannot move to trash can"
 msgstr "Không thể di chuyển đến thùng rác"
-
-msgid "Capacity"
-msgstr ""
 
 #, fuzzy
 msgid "Cape Verde"
@@ -4583,9 +4571,6 @@ msgstr "Định cấu hình hành vi con trỏ trong danh sách chọn kênh. Kh
 
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "Định cấu hình độ phân giải màn hình và phông chữ được sử dụng cho teletext."
-
-msgid "Select the duration of inactivity before the screen saver will be displayed."
-msgstr "Định cấu hình thời lượng tính bằng phút cho trình bảo vệ màn hình."
 
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
 msgstr ""
@@ -8311,9 +8296,6 @@ msgstr ""
 msgid "File Commander settings"
 msgstr "Cài đặt chỉ huy tập tin"
 
-msgid "File system"
-msgstr ""
-
 msgid "File System Check"
 msgstr "Kiểm tra hệ thống tập tin"
 
@@ -8330,6 +8312,9 @@ msgstr ""
 "Không tìm thấy tệp oscam.conf.\n"
 "Vui lòng nhập tên người dùng / mật khẩu bằng tay."
 
+msgid "File system"
+msgstr ""
+
 msgid "File transfer was canceled by user!"
 msgstr ""
 
@@ -8342,9 +8327,6 @@ msgstr "tên tệp"
 
 msgid "Files/folders to exclude from backup"
 msgstr "Tập tin / thư mục để loại trừ khỏi bản sao lưu"
-
-msgid "Filesystem"
-msgstr ""
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr ""
@@ -12187,6 +12169,9 @@ msgstr "Không tìm thấy ổ cứng hoặc ổ cứng không được khởi t
 msgid "No Internet connection"
 msgstr ""
 
+msgid "No Name"
+msgstr ""
+
 msgid ""
 "No Settings loaded !!\n"
 "\n"
@@ -13496,6 +13481,9 @@ msgid "Please enter the new directory name:"
 msgstr ""
 
 msgid "Please enter the new file name:"
+msgstr ""
+
+msgid "Please enter the new name:"
 msgstr ""
 
 msgid "Please enter the new tag:"
@@ -15759,6 +15747,9 @@ msgstr ""
 msgid "Scope"
 msgstr ""
 
+msgid "Screen saver movement"
+msgstr ""
+
 msgid "Script Manager"
 msgstr ""
 
@@ -15922,13 +15913,13 @@ msgstr ""
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Chỉ chọn 'có' nếu bạn đang sử dụng đa tín hiệu yêu cầu tín hiệu lệnh DiSEqC Port-A. Đối với tất cả các thiết lập khác, chọn 'không'."
 
-msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
-msgstr ""
-
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
 msgstr ""
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
 msgstr ""
 
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
@@ -16144,9 +16135,6 @@ msgstr "Chọn tập tin sao lưu bổ sung"
 msgid "Select AutoCam default Softcam"
 msgstr ""
 
-msgid "Select Backup Location"
-msgstr "Chọn vị trí dự phòng"
-
 msgid "Select Bookmark"
 msgstr ""
 
@@ -16313,6 +16301,9 @@ msgstr "Chọn tệp để loại trừ khỏi bản sao lưu"
 
 msgid "Select files/folders to backup"
 msgstr "Chọn tập tin / thư mục để sao lưu"
+
+msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
+msgstr ""
 
 msgid "Select how long to display status messages."
 msgstr ""
@@ -16569,6 +16560,9 @@ msgstr ""
 
 msgid "Select the display sequence of previously visited services."
 msgstr ""
+
+msgid "Select the duration of inactivity before the screen saver will be displayed."
+msgstr "Định cấu hình thời lượng tính bằng phút cho trình bảo vệ màn hình."
 
 #, python-format
 msgid "Select the file sort order for the %s column:"
@@ -16860,9 +16854,6 @@ msgstr "Chọn nhà cung cấp ATSC của bạn."
 
 msgid "Select your Language for Audio/Subtitles"
 msgstr "Chọn ngôn ngữ của bạn cho âm thanh / phụ đề"
-
-msgid "Select your backup device."
-msgstr ""
 
 msgid "Select your country. If not available select 'All'."
 msgstr "Chọn đất nước của bạn. Nếu không có sẵn, chọn 'tất cả'."
@@ -17360,9 +17351,6 @@ msgstr "Thiết lập Audiomode"
 
 msgid "Setup Enigma2"
 msgstr "Cài đặt Enigma2"
-
-msgid "Setup Harddisk"
-msgstr "Cài đặt đĩa cứng"
 
 msgid "Setup Inadyn"
 msgstr "Cài đặt Inadyn"
@@ -22280,9 +22268,6 @@ msgstr "Vui lòng đợi trong khi quét ..."
 msgid "Waiting"
 msgstr "Đang chờ đợi"
 
-msgid "Waiting for mount"
-msgstr "Chờ đợi để gắn kết"
-
 msgid "Waiting for partition"
 msgstr "Chờ phân vùng"
 
@@ -24276,6 +24261,18 @@ msgstr "có (giữ thức ăn)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Bus: "
+#~ msgstr "Xe buýt: "
+
+#~ msgid "Select Backup Location"
+#~ msgstr "Chọn vị trí dự phòng"
+
+#~ msgid "Setup Harddisk"
+#~ msgstr "Cài đặt đĩa cứng"
+
+#~ msgid "Waiting for mount"
+#~ msgstr "Chờ đợi để gắn kết"
 
 #~ msgid "PowerTimer"
 #~ msgstr "Thời gian quyền lực"

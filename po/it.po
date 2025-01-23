@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-31 15:16+0000\n"
-"PO-Revision-Date: 2025-01-01 18:30+0000\n"
+"POT-Creation-Date: 2025-01-07 09:29+0000\n"
+"PO-Revision-Date: 2025-01-08 08:32+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -1556,21 +1556,6 @@ msgid "A file from media is in use!"
 msgstr "C'è un file aperto nel dispositivo!"
 
 #, python-format
-msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
-msgstr "Un timer di accensione finito vuole riavviare il %s %s. Farlo ora?"
-
-msgid "A finished scheduled timer wants to restart the user interface. Do that now?"
-msgstr "Un timer di accensione finito desidera riavviare l'interfaccia utente. Farlo ora?"
-
-#, python-format
-msgid "A finished scheduled timer wants to set your %s %s to standby. Do that now?"
-msgstr "Un timer di accensione finito vuole impostare il %s %s in standby. Farlo ora?"
-
-#, python-format
-msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
-msgstr "Un timer di accensione finito vuole spegnere il %s %s. Farlo ora?"
-
-#, python-format
 msgid ""
 "A finished record timer wants to set your\n"
 "%s %s to standby. Do that now?"
@@ -1585,6 +1570,21 @@ msgid ""
 msgstr ""
 "Il termine di una registrazione programmata prevede\n"
 "di spegnere il %s %s. Farlo ora?"
+
+#, python-format
+msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
+msgstr "Un timer di accensione finito vuole riavviare il %s %s. Farlo ora?"
+
+msgid "A finished scheduled timer wants to restart the user interface. Do that now?"
+msgstr "Un timer di accensione finito desidera riavviare l'interfaccia utente. Farlo ora?"
+
+#, python-format
+msgid "A finished scheduled timer wants to set your %s %s to standby. Do that now?"
+msgstr "Un timer di accensione finito vuole impostare il %s %s in standby. Farlo ora?"
+
+#, python-format
+msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
+msgstr "Un timer di accensione finito vuole spegnere il %s %s. Farlo ora?"
 
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr "Un'evidenziazione sull'immagine del telecomando mostra a quale tasto si riferisce la guida. Se più di un tasto esegue la funzione indicata, verrà visualizzata più di un'evidenziazione. Il testo sotto l'elenco elenca i tasti attivi e se la funzione richiede una pressione prolungata o SHIFT dai tasti."
@@ -3236,9 +3236,6 @@ msgstr "Masterizza su supporto"
 msgid "Burundi"
 msgstr "Burundi"
 
-msgid "Bus: "
-msgstr "Bus: "
-
 msgid "Business & Finance"
 msgstr "Affari & Finanza"
 
@@ -3250,12 +3247,6 @@ msgstr "Timeout errore tasto"
 
 msgid "ButtonSetup"
 msgstr "Impostazioni tasti"
-
-msgid "By disk UUID"
-msgstr "Per UUID disco"
-
-msgid "By disk label"
-msgstr "Per etichetta disco"
 
 msgid "Bypass HDMI EDID Check"
 msgstr "Ignora controllo HDMI EDID"
@@ -3667,9 +3658,6 @@ msgstr "Impossibile trovare alcun segnale... annullo tutto!"
 
 msgid "Cannot move to trash can"
 msgstr "Impossibile spostare nel cestino"
-
-msgid "Capacity"
-msgstr "Capacità"
 
 msgid "Cape Verde"
 msgstr "Capo Verde"
@@ -4554,9 +4542,6 @@ msgstr "Configura comportamento del cursore nell'elenco di selezione dei canali.
 
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "Configura risoluzione dello schermo e carattere usato per il televideo."
-
-msgid "Select the duration of inactivity before the screen saver will be displayed."
-msgstr "Configura durata in minuti prima che venga visualizzato lo screen saver."
 
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
 msgstr "Configura durata, in minuti, prima dell'attivazione del timer di risparmio energetico."
@@ -8253,9 +8238,6 @@ msgstr "File Commander Azioni dell'Editor di testo"
 msgid "File Commander settings"
 msgstr "File Commander Impostazioni"
 
-msgid "File system"
-msgstr "File system"
-
 msgid "File System Check"
 msgstr "Controllo file system"
 
@@ -8272,6 +8254,9 @@ msgstr ""
 "File oscam.conf non trovato.\n"
 "Inserisci nome utente/password manualmente."
 
+msgid "File system"
+msgstr "File system"
+
 msgid "File transfer was canceled by user!"
 msgstr "Il trasferimento file è stato annullato dall'utente!"
 
@@ -8283,9 +8268,6 @@ msgstr "Nome del file"
 
 msgid "Files/folders to exclude from backup"
 msgstr "File o cartelle da escludere dal backup"
-
-msgid "Filesystem"
-msgstr "Filesystem"
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr "Compila EPG del canale dall'EPG trasmesso dove non c'è EPG IceTV per il canale"
@@ -12032,6 +12014,9 @@ msgstr "HDD non trovato o non formattato!"
 msgid "No Internet connection"
 msgstr "Nessuna connessione Internet"
 
+msgid "No Name"
+msgstr "Nessun nome"
+
 msgid ""
 "No Settings loaded !!\n"
 "\n"
@@ -13319,6 +13304,9 @@ msgstr "Inserisci un nuovo nome per la cartella:"
 
 msgid "Please enter the new file name:"
 msgstr "Inserisci un nuovo nome per il file:"
+
+msgid "Please enter the new name:"
+msgstr "Inserisci il nuovo nome:"
 
 msgid "Please enter the new tag:"
 msgstr "Inserisci il nuovo tag:"
@@ -15560,6 +15548,9 @@ msgstr "Scienza e tecnologia"
 msgid "Scope"
 msgstr "Scope"
 
+msgid "Screen saver movement"
+msgstr "Movimento screensaver"
+
 msgid "Script Manager"
 msgstr "Gestore script"
 
@@ -15719,14 +15710,14 @@ msgstr "Seleziona 'Sì' se le regolazioni del volume devono essere applicate all
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Seleziona 'Sì' se stai usando un multiswitch che necessita del comando DiSEqC Port-A. Seleziona 'No' per tutte le altre impostazioni."
 
-msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
-msgstr "Seleziona 'Sì' se vuoi riattivare la TV per l'avvio del timer di accensione 'Risveglio'."
-
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
 msgstr "Seleziona 'Sì' se vuoi riattivare la TV per l'avvio del timer di registrazione \"Zap e registra\"."
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
 msgstr "Seleziona 'Sì' se vuoi riattivare la TV per l'avvio del timer di registrazione \"Zap\"."
+
+msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
+msgstr "Seleziona 'Sì' se vuoi riattivare la TV per l'avvio del timer di accensione 'Risveglio'."
 
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Seleziona 'Sì' per mantenere la barra informazioni visualizzata, senza timeout, mentre la riproduzione multimediale è in pausa."
@@ -15941,9 +15932,6 @@ msgstr "Seleziona file di backup aggiuntivi"
 msgid "Select AutoCam default Softcam"
 msgstr "Seleziona softcam predefinita per AutoCam"
 
-msgid "Select Backup Location"
-msgstr "Seleziona posizione di backup"
-
 msgid "Select Bookmark"
 msgstr "Seleziona segnalibro"
 
@@ -16110,6 +16098,9 @@ msgstr "Seleziona file che saranno esclusi dal backup"
 
 msgid "Select files/folders to backup"
 msgstr "Seleziona file/ cartelle di cui eseguire il backup"
+
+msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
+msgstr "Seleziona per quanto tempo l'immagine dello screensaver rimarrà nella stessa posizione sullo schermo prima di essere spostata."
 
 msgid "Select how long to display status messages."
 msgstr "Seleziona per quanto tempo visualizzare i messaggi di stato."
@@ -16365,6 +16356,9 @@ msgstr "Seleziona opzioni di visualizzazione per ciascuna voce di menu. Se sono 
 
 msgid "Select the display sequence of previously visited services."
 msgstr "Seleziona sequenza di visualizzazione dei servizi visitati in precedenza."
+
+msgid "Select the duration of inactivity before the screen saver will be displayed."
+msgstr "Configura durata in minuti prima che venga visualizzato lo screen saver."
 
 #, python-format
 msgid "Select the file sort order for the %s column:"
@@ -16658,9 +16652,6 @@ msgstr "Seleziona fornitore ATSC."
 
 msgid "Select your Language for Audio/Subtitles"
 msgstr "Seleziona lingua per Audio/Sottotitoli"
-
-msgid "Select your backup device."
-msgstr "Seleziona dispositivo di backup."
 
 msgid "Select your country. If not available select 'All'."
 msgstr "Seleziona paese. Se non disponibile seleziona 'Tutti'."
@@ -17160,9 +17151,6 @@ msgstr "Imposta modalità audio"
 
 msgid "Setup Enigma2"
 msgstr "Imposta Enigma2"
-
-msgid "Setup Harddisk"
-msgstr "Imposta disco rigido"
 
 msgid "Setup Inadyn"
 msgstr "Imposta Inadyn"
@@ -22075,9 +22063,6 @@ msgstr "Attendi, scansione in corso…"
 msgid "Waiting"
 msgstr "In attesa"
 
-msgid "Waiting for mount"
-msgstr "In attesa di montaggio"
-
 msgid "Waiting for partition"
 msgstr "Attendi il partizionamento"
 
@@ -24050,6 +24035,33 @@ msgstr "sì (mantieni feed)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Bus: "
+#~ msgstr "Bus: "
+
+#~ msgid "By disk UUID"
+#~ msgstr "Per UUID disco"
+
+#~ msgid "By disk label"
+#~ msgstr "Per etichetta disco"
+
+#~ msgid "Capacity"
+#~ msgstr "Capacità"
+
+#~ msgid "Filesystem"
+#~ msgstr "Filesystem"
+
+#~ msgid "Select Backup Location"
+#~ msgstr "Seleziona posizione di backup"
+
+#~ msgid "Select your backup device."
+#~ msgstr "Seleziona dispositivo di backup."
+
+#~ msgid "Setup Harddisk"
+#~ msgstr "Imposta disco rigido"
+
+#~ msgid "Waiting for mount"
+#~ msgstr "In attesa di montaggio"
 
 #~ msgid "PowerTimer"
 #~ msgstr "Timer di accensione "

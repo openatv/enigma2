@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-31 15:16+0000\n"
+"POT-Creation-Date: 2025-01-07 09:29+0000\n"
 "PO-Revision-Date: 2022-12-04 20:43+0000\n"
 "Last-Translator: rimasx <riks_12@hot.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -1565,6 +1565,22 @@ msgid "A file from media is in use!"
 msgstr ""
 
 #, python-format
+msgid ""
+"A finished record timer wants to set your\n"
+"%s %s to standby. Do that now?"
+msgstr ""
+"Lõpetanud salvestustaimer soovib\n"
+"panna %s %s ooteseisundisse. Kas nõustud?"
+
+#, python-format
+msgid ""
+"A finished record timer wants to shut down\n"
+"your %s %s. Shutdown now?"
+msgstr ""
+"Lõpetanud salvestustaimer soovib\n"
+"%s %s välja lülitada. Kas nõustud?"
+
+#, python-format
 msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "Lõpetanud toitetaimer soovib %s %s taaskäivitada.\n"
@@ -1585,22 +1601,6 @@ msgstr ""
 msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "Lõpetanud toitetaimer soovib\n"
-"%s %s välja lülitada. Kas nõustud?"
-
-#, python-format
-msgid ""
-"A finished record timer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-"Lõpetanud salvestustaimer soovib\n"
-"panna %s %s ooteseisundisse. Kas nõustud?"
-
-#, python-format
-msgid ""
-"A finished record timer wants to shut down\n"
-"your %s %s. Shutdown now?"
-msgstr ""
-"Lõpetanud salvestustaimer soovib\n"
 "%s %s välja lülitada. Kas nõustud?"
 
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
@@ -3284,9 +3284,6 @@ msgstr "Kirjuta andmekandjale"
 msgid "Burundi"
 msgstr "Burundi"
 
-msgid "Bus: "
-msgstr "Siin: "
-
 msgid "Business & Finance"
 msgstr ""
 
@@ -3299,12 +3296,6 @@ msgstr ""
 
 msgid "ButtonSetup"
 msgstr "Nuppude seadistus"
-
-msgid "By disk UUID"
-msgstr ""
-
-msgid "By disk label"
-msgstr ""
 
 msgid "Bypass HDMI EDID Check"
 msgstr "HDMI EDID kontrollist möödaminek"
@@ -3716,9 +3707,6 @@ msgstr "Mingit signaali ei leita, katkestame!"
 
 msgid "Cannot move to trash can"
 msgstr "Prügikasti saatmine ei ole võimalik"
-
-msgid "Capacity"
-msgstr ""
 
 #, fuzzy
 msgid "Cape Verde"
@@ -4617,9 +4605,6 @@ msgstr "Määra kursori käitumine kanalinimekirjas. Kanalinimekirja avades saab
 
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "Seadista teleteksti lahutust ja kirjatüüpi."
-
-msgid "Select the duration of inactivity before the screen saver will be displayed."
-msgstr "Määra aeg ekraanisäästja käivitamiseni (min)."
 
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
 msgstr ""
@@ -8375,9 +8360,6 @@ msgstr ""
 msgid "File Commander settings"
 msgstr "Failihalduri seaded"
 
-msgid "File system"
-msgstr ""
-
 msgid "File System Check"
 msgstr "Failisüsteemi kontroll"
 
@@ -8394,6 +8376,9 @@ msgstr ""
 "Oscam.conf faili ei leitud.\n"
 "Sisesta kasutajanimi/parool käsitsi."
 
+msgid "File system"
+msgstr ""
+
 msgid "File transfer was canceled by user!"
 msgstr ""
 
@@ -8406,9 +8391,6 @@ msgstr "faili nimi"
 
 msgid "Files/folders to exclude from backup"
 msgstr "Varukoopiast välja jäetavad failid/kataloogid"
-
-msgid "Filesystem"
-msgstr ""
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr ""
@@ -12313,6 +12295,9 @@ msgstr "Kõvaketas puudub või on vormindamata!"
 msgid "No Internet connection"
 msgstr ""
 
+msgid "No Name"
+msgstr ""
+
 msgid ""
 "No Settings loaded !!\n"
 "\n"
@@ -13655,6 +13640,9 @@ msgid "Please enter the new directory name:"
 msgstr ""
 
 msgid "Please enter the new file name:"
+msgstr ""
+
+msgid "Please enter the new name:"
 msgstr ""
 
 msgid "Please enter the new tag:"
@@ -15957,6 +15945,9 @@ msgstr ""
 msgid "Scope"
 msgstr ""
 
+msgid "Screen saver movement"
+msgstr ""
+
 msgid "Script Manager"
 msgstr ""
 
@@ -16121,13 +16112,13 @@ msgstr ""
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Vali 'jah' ainult juhul, kui kasutatav multiswich lüliti nõuab DiSEqC Port-A käsu signaali. Kõigil teistel juhtudel vali 'ei'."
 
-msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
-msgstr ""
-
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
 msgstr ""
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
 msgstr ""
 
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
@@ -16344,9 +16335,6 @@ msgstr "Lisafailid varundamiseks"
 msgid "Select AutoCam default Softcam"
 msgstr ""
 
-msgid "Select Backup Location"
-msgstr "Varukoopia asukoht"
-
 msgid "Select Bookmark"
 msgstr ""
 
@@ -16518,6 +16506,9 @@ msgstr "Vali varukoopiast välja jäetavad failid"
 
 msgid "Select files/folders to backup"
 msgstr "Vali varundatavad failid/kaustad"
+
+msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
+msgstr ""
 
 msgid "Select how long to display status messages."
 msgstr ""
@@ -16776,6 +16767,9 @@ msgstr ""
 
 msgid "Select the display sequence of previously visited services."
 msgstr ""
+
+msgid "Select the duration of inactivity before the screen saver will be displayed."
+msgstr "Määra aeg ekraanisäästja käivitamiseni (min)."
 
 #, python-format
 msgid "Select the file sort order for the %s column:"
@@ -17068,9 +17062,6 @@ msgstr "Vali ATSC levitaja."
 
 msgid "Select your Language for Audio/Subtitles"
 msgstr "Määra heli ja subtiitrite keel"
-
-msgid "Select your backup device."
-msgstr ""
 
 msgid "Select your country. If not available select 'All'."
 msgstr "Vali asukohamaa. Kui pole saadaval, vali 'kõik'."
@@ -17573,9 +17564,6 @@ msgstr "Seadista helirežiim"
 # Quick Menue
 msgid "Setup Enigma2"
 msgstr "Enigma2 seadistamine"
-
-msgid "Setup Harddisk"
-msgstr "Seadista kõvaketas"
 
 msgid "Setup Inadyn"
 msgstr "Inadyn seaded"
@@ -22581,9 +22569,6 @@ msgstr "Oota otsingu lõppemist..."
 msgid "Waiting"
 msgstr "Ootel"
 
-msgid "Waiting for mount"
-msgstr "Haakimise ootel"
-
 msgid "Waiting for partition"
 msgstr "Partitsiooni ootel"
 
@@ -24603,6 +24588,18 @@ msgstr "Jah (säilita fiidid)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Bus: "
+#~ msgstr "Siin: "
+
+#~ msgid "Select Backup Location"
+#~ msgstr "Varukoopia asukoht"
+
+#~ msgid "Setup Harddisk"
+#~ msgstr "Seadista kõvaketas"
+
+#~ msgid "Waiting for mount"
+#~ msgstr "Haakimise ootel"
 
 #~ msgid "PowerTimer"
 #~ msgstr "Toitetaimer"

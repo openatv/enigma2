@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-31 15:16+0000\n"
+"POT-Creation-Date: 2025-01-07 09:29+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -1591,6 +1591,22 @@ msgid "A file from media is in use!"
 msgstr "Egy fájl még használatban van a hordozón!"
 
 #, python-format
+msgid ""
+"A finished record timer wants to set your\n"
+"%s %s to standby. Do that now?"
+msgstr ""
+"A felvételi időzítő készenléti állapotba akarja\n"
+"helyezni a(z) %s %s készüléket. Engedélyezi?"
+
+#, python-format
+msgid ""
+"A finished record timer wants to shut down\n"
+"your %s %s. Shutdown now?"
+msgstr ""
+"A felvételi időzítő ki akarja kapcsolni\n"
+"a(z) %s %s készüléket. Engedélyezi?"
+
+#, python-format
 msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "A kikapcsolás időzítő újra akarja indítani a(z) %s %s készüléket.\n"
@@ -1612,22 +1628,6 @@ msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "A kikapcsolás időzítő ki akarja kapcsolni a(z) %s %s készüléket.\n"
 "Engedélyezi?"
-
-#, python-format
-msgid ""
-"A finished record timer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-"A felvételi időzítő készenléti állapotba akarja\n"
-"helyezni a(z) %s %s készüléket. Engedélyezi?"
-
-#, python-format
-msgid ""
-"A finished record timer wants to shut down\n"
-"your %s %s. Shutdown now?"
-msgstr ""
-"A felvételi időzítő ki akarja kapcsolni\n"
-"a(z) %s %s készüléket. Engedélyezi?"
 
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr "A távirányító képén egy kiemelés mutatja, hogy a súgó melyik gombra vonatkozik. Ha egynél több gomb hajtja végre a jelzett funkciót, egynél több kiemelés jelenik meg. A lista alatti szöveg felsorolja az aktív gombokat, és azt, hogy a funkcióhoz szükséges-e a gomb hosszan tartó megnyomása vagy a SHIFT használata."
@@ -3288,9 +3288,6 @@ msgstr "Kiírás adathordozóra"
 msgid "Burundi"
 msgstr "Burundi"
 
-msgid "Bus: "
-msgstr "Busz: "
-
 msgid "Business & Finance"
 msgstr "Üzlet és Pénzügy"
 
@@ -3302,12 +3299,6 @@ msgstr ""
 
 msgid "ButtonSetup"
 msgstr "Távirányító gomb beállítás"
-
-msgid "By disk UUID"
-msgstr ""
-
-msgid "By disk label"
-msgstr ""
 
 msgid "Bypass HDMI EDID Check"
 msgstr "HDMI EDID ellenőrzés kihagyása"
@@ -3708,9 +3699,6 @@ msgstr "Nem található jel... művelet megszakítva!"
 
 msgid "Cannot move to trash can"
 msgstr "Nem helyezthető a kukába"
-
-msgid "Capacity"
-msgstr ""
 
 #, fuzzy
 msgid "Cape Verde"
@@ -4595,9 +4583,6 @@ msgstr "Konfigurálja a kurzor viselkedését a csatorna kiválasztási listába
 
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "Beállíthatja, hogy a teletexthez milyen betűtípust milyen felbontásban használ."
-
-msgid "Select the duration of inactivity before the screen saver will be displayed."
-msgstr "Állítsa be a képernyővédő időtartamát percekben."
 
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
 msgstr ""
@@ -8297,9 +8282,6 @@ msgstr ""
 msgid "File Commander settings"
 msgstr "File Commander beállításai"
 
-msgid "File system"
-msgstr ""
-
 msgid "File System Check"
 msgstr "Fájlrendszer ellenőrzése"
 
@@ -8316,6 +8298,9 @@ msgstr ""
 "Az oscam.conf fájl nem található.\n"
 "Kérem adja meg a felhasználónevet/jelszót."
 
+msgid "File system"
+msgstr ""
+
 msgid "File transfer was canceled by user!"
 msgstr ""
 
@@ -8328,9 +8313,6 @@ msgstr "fájlnév"
 
 msgid "Files/folders to exclude from backup"
 msgstr "Fájlok/mappák kizárása a mentésből"
-
-msgid "Filesystem"
-msgstr ""
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr ""
@@ -12144,6 +12126,9 @@ msgstr "Nem észlelhető háttértár, vagy az nem lett inicializálva!"
 msgid "No Internet connection"
 msgstr ""
 
+msgid "No Name"
+msgstr ""
+
 msgid ""
 "No Settings loaded !!\n"
 "\n"
@@ -13445,6 +13430,9 @@ msgid "Please enter the new directory name:"
 msgstr ""
 
 msgid "Please enter the new file name:"
+msgstr ""
+
+msgid "Please enter the new name:"
 msgstr ""
 
 msgid "Please enter the new tag:"
@@ -15693,6 +15681,9 @@ msgstr "Tudomány & Tech"
 msgid "Scope"
 msgstr ""
 
+msgid "Screen saver movement"
+msgstr ""
+
 msgid "Script Manager"
 msgstr ""
 
@@ -15856,13 +15847,13 @@ msgstr ""
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Csak akkor válassza az 'igen' beállítást, ha multiswich-t használ, amelyhez DiSEqC Port-A parancs jelet igényel. Az összes többi beállításhoz válassza a 'nem' lehetőséget."
 
-msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
-msgstr ""
-
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
 msgstr ""
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
 msgstr ""
 
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
@@ -16078,9 +16069,6 @@ msgstr "További mentési fájlok kiválasztása"
 msgid "Select AutoCam default Softcam"
 msgstr ""
 
-msgid "Select Backup Location"
-msgstr "Válassza ki a mentés helyét"
-
 msgid "Select Bookmark"
 msgstr ""
 
@@ -16247,6 +16235,9 @@ msgstr "Válassza ki a kizárandó fájlokat a mentésből"
 
 msgid "Select files/folders to backup"
 msgstr "Válasszon fájlokat/mappákat a biztonsági mentéshez"
+
+msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
+msgstr ""
 
 msgid "Select how long to display status messages."
 msgstr ""
@@ -16503,6 +16494,9 @@ msgstr ""
 
 msgid "Select the display sequence of previously visited services."
 msgstr ""
+
+msgid "Select the duration of inactivity before the screen saver will be displayed."
+msgstr "Állítsa be a képernyővédő időtartamát percekben."
 
 #, python-format
 msgid "Select the file sort order for the %s column:"
@@ -16793,9 +16787,6 @@ msgstr "Válassza ki az ATSC szolgáltatót."
 
 msgid "Select your Language for Audio/Subtitles"
 msgstr "Válassza ki a nyelvet az Audióhoz / Feliratokhoz"
-
-msgid "Select your backup device."
-msgstr ""
 
 msgid "Select your country. If not available select 'All'."
 msgstr "Válassza ki az országot. Ha nem áll rendelkezésre, válassza az 'összes' lehetőséget."
@@ -17291,9 +17282,6 @@ msgstr "Audiomode beállítás"
 
 msgid "Setup Enigma2"
 msgstr "Enigma2 beállítás"
-
-msgid "Setup Harddisk"
-msgstr "Háttértár beállítása"
 
 msgid "Setup Inadyn"
 msgstr "Inadyn beállítása"
@@ -22191,9 +22179,6 @@ msgstr "Kérem várjon, mialatt a keresés folyik..."
 msgid "Waiting"
 msgstr "Várakozás"
 
-msgid "Waiting for mount"
-msgstr "Várakozás a megosztás csatlakozására"
-
 msgid "Waiting for partition"
 msgstr "Várakozás a partícióra"
 
@@ -24167,6 +24152,18 @@ msgstr "igen (állapotok megtartása)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Bus: "
+#~ msgstr "Busz: "
+
+#~ msgid "Select Backup Location"
+#~ msgstr "Válassza ki a mentés helyét"
+
+#~ msgid "Setup Harddisk"
+#~ msgstr "Háttértár beállítása"
+
+#~ msgid "Waiting for mount"
+#~ msgstr "Várakozás a megosztás csatlakozására"
 
 #~ msgid "PowerTimer"
 #~ msgstr "Kikapcsolás Időzítő"

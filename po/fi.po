@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-31 15:16+0000\n"
-"PO-Revision-Date: 2025-01-01 18:30+0000\n"
+"POT-Creation-Date: 2025-01-07 09:29+0000\n"
+"PO-Revision-Date: 2025-01-09 09:21+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -1553,6 +1553,22 @@ msgid "A file from media is in use!"
 msgstr "Mediatiedosto on käytössä!"
 
 #, python-format
+msgid ""
+"A finished record timer wants to set your\n"
+"%s %s to standby. Do that now?"
+msgstr ""
+"Juuri päättynyt ajastus haluaa sammuttaa\n"
+"%s %s:n valmiustilaan. Sammutetaanko nyt?"
+
+#, python-format
+msgid ""
+"A finished record timer wants to shut down\n"
+"your %s %s. Shutdown now?"
+msgstr ""
+"Juuri päättynyt ajastus haluaa sammuttaa\n"
+"%s %s:n virransäästötilaan. Sammutetaanko nyt?"
+
+#, python-format
 msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "Valmis virta ajastus haluaa uudelleenkäynnistää\n"
@@ -1571,23 +1587,7 @@ msgstr ""
 msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "Päättynyt virta ajastus haluaa sammuttaa\n"
-"%s %s:n virransäästötilaan. Sammutetaanko nyt?"
-
-#, python-format
-msgid ""
-"A finished record timer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-"Juuri päättynyt ajastus haluaa sammuttaa\n"
 "%s %s:n valmiustilaan. Sammutetaanko nyt?"
-
-#, python-format
-msgid ""
-"A finished record timer wants to shut down\n"
-"your %s %s. Shutdown now?"
-msgstr ""
-"Juuri päättynyt ajastus haluaa sammuttaa\n"
-"%s %s:n virransäästötilaan. Sammutetaanko nyt?"
 
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr "Kaukosäätimen kuvan korostus osoittaa, mihin painikkeisiin ohje liittyy. Jos useampi kuin yksi näppäin suorittaa määritetyn toiminnon, näytössä näkyy useampi kuin yksi merkki. Luettelon alapuolella oleva teksti luettelee aktiiviset näppäimet ja osoittaa, edellyttääkö toiminto näppäimen painamista pitkään tai painikkeen painamista."
@@ -3245,9 +3245,6 @@ msgstr "Polttaa"
 msgid "Burundi"
 msgstr "Burundi"
 
-msgid "Bus: "
-msgstr "Väylä: "
-
 msgid "Business & Finance"
 msgstr "Liiketoiminta ja rahoitus"
 
@@ -3259,12 +3256,6 @@ msgstr "Virheen aikakatkaisu"
 
 msgid "ButtonSetup"
 msgstr "Näppäinmääritykset"
-
-msgid "By disk UUID"
-msgstr "Levyllä UUID"
-
-msgid "By disk label"
-msgstr "Levymerkintä"
 
 msgid "Bypass HDMI EDID Check"
 msgstr "Ohita HDMI EDID tarkistus"
@@ -3677,9 +3668,6 @@ msgstr "Signaalia ei löydy... keskeytetään!"
 
 msgid "Cannot move to trash can"
 msgstr "Ei voida siirtää roskakoriin"
-
-msgid "Capacity"
-msgstr "Kapasiteetti"
 
 msgid "Cape Verde"
 msgstr "Cape Verde"
@@ -4564,9 +4552,6 @@ msgstr "Määritä kursorin toiminta kanavalistassa. Kun kanavalista avataan, vo
 
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "Määritä näytön resoluutio ja teksti-tv:lle käytetty fontti."
-
-msgid "Select the duration of inactivity before the screen saver will be displayed."
-msgstr "Määrittää, käytetäänkö näytönsäästäjää ja jos, niin kuinka pitkän ajan kuluttua se aktivoidaan."
 
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
 msgstr "Määritä kesto minuutteina ennen kuin energian säästötila aktivoituu."
@@ -8263,9 +8248,6 @@ msgstr "Tiedostonhallinnan Tekstieditori toiminnot"
 msgid "File Commander settings"
 msgstr "File Commander Asetukset"
 
-msgid "File system"
-msgstr "Tiedostojärjestelmä"
-
 msgid "File System Check"
 msgstr "Tiedostojärjestelmän tarkistus"
 
@@ -8282,6 +8264,9 @@ msgstr ""
 "Tiedostoa oscam.conf ei löytynyt.\n"
 "Syötä käyttäjänimi/salasana manuaalisesti."
 
+msgid "File system"
+msgstr "Tiedostojärjestelmä"
+
 msgid "File transfer was canceled by user!"
 msgstr "Käyttäjä peruutti tiedoston siirron!"
 
@@ -8293,9 +8278,6 @@ msgstr "Tiedostonimi"
 
 msgid "Files/folders to exclude from backup"
 msgstr "Poistot varmuuskopioinnista"
-
-msgid "Filesystem"
-msgstr "Tiedostojärjestelmä"
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr "Täytä kanavan EPG: t lähetetystä EPG: stä, jos kanavalle ei ole IceTV EPG: tä"
@@ -12049,6 +12031,9 @@ msgstr "Kiintolevyä ei löydy tai sitä ei ole alustettu!"
 msgid "No Internet connection"
 msgstr "Ei Internet yhteyttä"
 
+msgid "No Name"
+msgstr "Ei nimeä"
+
 msgid ""
 "No Settings loaded !!\n"
 "\n"
@@ -13342,6 +13327,9 @@ msgstr "Kirjoita uusi kansio nimi"
 
 msgid "Please enter the new file name:"
 msgstr "Kirjoita uusi tiedostonimi"
+
+msgid "Please enter the new name:"
+msgstr "Kirjoita uusi nimi:"
 
 msgid "Please enter the new tag:"
 msgstr "Syötä uusi tunniste:"
@@ -15583,6 +15571,9 @@ msgstr "Tiede & tekniikka"
 msgid "Scope"
 msgstr "Alue"
 
+msgid "Screen saver movement"
+msgstr "Näytönsäästäjä liikkuminen"
+
 msgid "Script Manager"
 msgstr "Komentosarjojen hallinta"
 
@@ -15750,14 +15741,14 @@ msgstr ""
 "Valitse 'kyllä', jos käytät monikytkintä, joka vaatii DiSEqC portti-A\n"
 "komentosignaalin. Kaikille muille kokoonpanoille valitse 'ei'."
 
-msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
-msgstr "Valitse \"Kyllä\", jos haluat herätää television kun Virta ajastus käynnistyy."
-
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
 msgstr "Valitse \"Kyllä\", jos haluat herätää television kun vaihda kanavaa ja tallenna alkaa."
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
 msgstr "Valitse \"Kyllä\", jos haluat herätää television Vaihda kanavaa ajastus alkaa."
+
+msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
+msgstr "Valitse \"Kyllä\", jos haluat herätää television kun Virta ajastus käynnistyy."
 
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "'Kyllä' valinnalla tietopalkki näytetään, pysyvästi keskeytetyssä tilassa (ei aikakatkaisua)."
@@ -15972,9 +15963,6 @@ msgstr "Lisää varmuuskopioitavat tiedostot"
 msgid "Select AutoCam default Softcam"
 msgstr "Valitse AutoCam oletus Softcamiksi"
 
-msgid "Select Backup Location"
-msgstr "Varmuuskopion sijainti"
-
 msgid "Select Bookmark"
 msgstr "Valitse kirjanmerkki"
 
@@ -16143,6 +16131,9 @@ msgstr "Valitse varmuuskopiosta suljettavat tiedostot"
 
 msgid "Select files/folders to backup"
 msgstr "Valitse varmistettavat tiedostot/kansiot"
+
+msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
+msgstr "Valitse, kuinka kauan näytönsäästäjä pysyy samassa paikassa ruudulla, ennen kuin se siirretään."
 
 msgid "Select how long to display status messages."
 msgstr "Valitse, kuinka kauan tilaviestejä näytetään."
@@ -16400,6 +16391,9 @@ msgstr "Valitse näytön vaihtoehdot jokaiselle valikon kohteelle. Jos valikkonu
 
 msgid "Select the display sequence of previously visited services."
 msgstr "Valitse aiemmin katsottuijen kanavien näyttö järjestys."
+
+msgid "Select the duration of inactivity before the screen saver will be displayed."
+msgstr "Määrittää, käytetäänkö näytönsäästäjää ja jos, niin kuinka pitkän ajan kuluttua se aktivoidaan."
 
 #, python-format
 msgid "Select the file sort order for the %s column:"
@@ -16693,9 +16687,6 @@ msgstr "Valitse ATSC-palveluntarjoajasi."
 
 msgid "Select your Language for Audio/Subtitles"
 msgstr "Valitse kieliasetukset äänelle ja tekstitykselle"
-
-msgid "Select your backup device."
-msgstr "Valitse varmuuskopio laite."
 
 msgid "Select your country. If not available select 'All'."
 msgstr "Valitse maasi, jos ei ole saatavilla valitse 'kaikki'."
@@ -17197,9 +17188,6 @@ msgstr "Ääni asetusten määritys"
 
 msgid "Setup Enigma2"
 msgstr "Käyttöjärjestelmä Asetukset"
-
-msgid "Setup Harddisk"
-msgstr "Kiintolevyn asetukset"
 
 msgid "Setup Inadyn"
 msgstr "Inadyn asetukset"
@@ -22119,9 +22107,6 @@ msgstr "Odota, kun skannaat..."
 msgid "Waiting"
 msgstr "Odottaa"
 
-msgid "Waiting for mount"
-msgstr "Odotetaan liittämistä"
-
 msgid "Waiting for partition"
 msgstr "Odotetaan osiointia"
 
@@ -24100,6 +24085,33 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Bus: "
+#~ msgstr "Väylä: "
+
+#~ msgid "By disk UUID"
+#~ msgstr "Levyllä UUID"
+
+#~ msgid "By disk label"
+#~ msgstr "Levymerkintä"
+
+#~ msgid "Capacity"
+#~ msgstr "Kapasiteetti"
+
+#~ msgid "Filesystem"
+#~ msgstr "Tiedostojärjestelmä"
+
+#~ msgid "Select Backup Location"
+#~ msgstr "Varmuuskopion sijainti"
+
+#~ msgid "Select your backup device."
+#~ msgstr "Valitse varmuuskopio laite."
+
+#~ msgid "Setup Harddisk"
+#~ msgstr "Kiintolevyn asetukset"
+
+#~ msgid "Waiting for mount"
+#~ msgstr "Odotetaan liittämistä"
 
 #~ msgid "PowerTimer"
 #~ msgstr "Virta ajastusasetukset"

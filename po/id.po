@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-31 15:16+0000\n"
+"POT-Creation-Date: 2025-01-07 09:29+0000\n"
 "PO-Revision-Date: 2024-01-13 10:34+0000\n"
 "Last-Translator: Reza Almanda <rezaalmanda27@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/id/>\n"
@@ -1698,6 +1698,22 @@ msgid "A file from media is in use!"
 msgstr ""
 
 #, python-format
+msgid ""
+"A finished record timer wants to set your\n"
+"%s %s to standby. Do that now?"
+msgstr ""
+"Pewaktu rekam telah selesai ingin menyetel\n"
+"%s %s anda ke standby. Lakukan sekarang?"
+
+#, python-format
+msgid ""
+"A finished record timer wants to shut down\n"
+"your %s %s. Shutdown now?"
+msgstr ""
+"Pewaktu rekam telah selesai ingin mematikan\n"
+"%s %s anda. Matikan sekarang?"
+
+#, python-format
 msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "Pewaktu daya telah selesai ingin me-reboot %s %s anda.\n"
@@ -1719,22 +1735,6 @@ msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "Pewaktu daya telah selesai ingin mematikan %s %s anda.\n"
 "Lakukan sekarang?"
-
-#, python-format
-msgid ""
-"A finished record timer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-"Pewaktu rekam telah selesai ingin menyetel\n"
-"%s %s anda ke standby. Lakukan sekarang?"
-
-#, python-format
-msgid ""
-"A finished record timer wants to shut down\n"
-"your %s %s. Shutdown now?"
-msgstr ""
-"Pewaktu rekam telah selesai ingin mematikan\n"
-"%s %s anda. Matikan sekarang?"
 
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr ""
@@ -3421,9 +3421,6 @@ msgstr "Burn to medium"
 msgid "Burundi"
 msgstr "Burundi"
 
-msgid "Bus: "
-msgstr "Bus: "
-
 msgid "Business & Finance"
 msgstr ""
 
@@ -3435,12 +3432,6 @@ msgstr ""
 
 msgid "ButtonSetup"
 msgstr "ButtonSetup"
-
-msgid "By disk UUID"
-msgstr ""
-
-msgid "By disk label"
-msgstr ""
 
 msgid "Bypass HDMI EDID Check"
 msgstr "Bypass HDMI EDID Check"
@@ -3851,9 +3842,6 @@ msgstr "Cannot find any signal ..., aborting !"
 
 msgid "Cannot move to trash can"
 msgstr "Cannot move to trash can"
-
-msgid "Capacity"
-msgstr ""
 
 #, fuzzy
 msgid "Cape Verde"
@@ -4751,9 +4739,6 @@ msgstr "Configure the cursor behavior in the channel selection list. When openin
 
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "Configure the display resolution and the font used for teletext."
-
-msgid "Select the duration of inactivity before the screen saver will be displayed."
-msgstr "Select the duration of inactivity before the screen saver will be displayed."
 
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
 msgstr ""
@@ -8490,9 +8475,6 @@ msgstr ""
 msgid "File Commander settings"
 msgstr "Video Settings"
 
-msgid "File system"
-msgstr ""
-
 msgid "File System Check"
 msgstr "File System Check"
 
@@ -8509,6 +8491,9 @@ msgstr ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
 
+msgid "File system"
+msgstr ""
+
 msgid "File transfer was canceled by user!"
 msgstr ""
 
@@ -8521,9 +8506,6 @@ msgstr "filename"
 
 msgid "Files/folders to exclude from backup"
 msgstr "Files/folders to exclude from backup"
-
-msgid "Filesystem"
-msgstr ""
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr ""
@@ -12397,6 +12379,9 @@ msgstr "No HDD found or HDD not initialized!"
 msgid "No Internet connection"
 msgstr ""
 
+msgid "No Name"
+msgstr ""
+
 msgid ""
 "No Settings loaded !!\n"
 "\n"
@@ -13723,6 +13708,9 @@ msgid "Please enter the new directory name:"
 msgstr ""
 
 msgid "Please enter the new file name:"
+msgstr ""
+
+msgid "Please enter the new name:"
 msgstr ""
 
 msgid "Please enter the new tag:"
@@ -16013,6 +16001,9 @@ msgstr ""
 msgid "Scope"
 msgstr ""
 
+msgid "Screen saver movement"
+msgstr ""
+
 msgid "Script Manager"
 msgstr ""
 
@@ -16176,13 +16167,13 @@ msgstr ""
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr ""
 
-msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
-msgstr ""
-
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
 msgstr ""
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
 msgstr ""
 
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
@@ -16398,9 +16389,6 @@ msgstr "Select Additional Backup Files"
 msgid "Select AutoCam default Softcam"
 msgstr ""
 
-msgid "Select Backup Location"
-msgstr "Select Backup Location"
-
 msgid "Select Bookmark"
 msgstr ""
 
@@ -16567,6 +16555,9 @@ msgstr "Select files to exclude from backup"
 
 msgid "Select files/folders to backup"
 msgstr "Select files/folders to backup"
+
+msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
+msgstr ""
 
 msgid "Select how long to display status messages."
 msgstr ""
@@ -16822,6 +16813,9 @@ msgstr ""
 
 msgid "Select the display sequence of previously visited services."
 msgstr ""
+
+msgid "Select the duration of inactivity before the screen saver will be displayed."
+msgstr "Select the duration of inactivity before the screen saver will be displayed."
 
 #, python-format
 msgid "Select the file sort order for the %s column:"
@@ -17113,9 +17107,6 @@ msgstr "ATSC provider"
 
 msgid "Select your Language for Audio/Subtitles"
 msgstr "Select your Language for Audio/Subtitles"
-
-msgid "Select your backup device."
-msgstr ""
 
 msgid "Select your country. If not available select 'All'."
 msgstr ""
@@ -17620,9 +17611,6 @@ msgstr "Atur Mode audio"
 
 msgid "Setup Enigma2"
 msgstr "Atur Enigma2"
-
-msgid "Setup Harddisk"
-msgstr "Atur Harddisk"
 
 msgid "Setup Inadyn"
 msgstr "Atur Inadyn"
@@ -22592,9 +22580,6 @@ msgstr "Wait please while scanning..."
 msgid "Waiting"
 msgstr "Waiting"
 
-msgid "Waiting for mount"
-msgstr "Waiting for mount"
-
 msgid "Waiting for partition"
 msgstr "Waiting for partition"
 
@@ -24608,6 +24593,18 @@ msgstr "yes (keep feeds)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Bus: "
+#~ msgstr "Bus: "
+
+#~ msgid "Select Backup Location"
+#~ msgstr "Select Backup Location"
+
+#~ msgid "Setup Harddisk"
+#~ msgstr "Atur Harddisk"
+
+#~ msgid "Waiting for mount"
+#~ msgstr "Waiting for mount"
 
 #~ msgid "PowerTimer"
 #~ msgstr "PewaktuDaya"

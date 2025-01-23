@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-31 15:16+0000\n"
+"POT-Creation-Date: 2025-01-07 09:29+0000\n"
 "PO-Revision-Date: 2023-06-04 19:16+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -1593,6 +1593,22 @@ msgid "A file from media is in use!"
 msgstr "Medijos failas yra naudojamas!"
 
 #, python-format
+msgid ""
+"A finished record timer wants to set your\n"
+"%s %s to standby. Do that now?"
+msgstr ""
+"Baigtas įrašymo laikmatis nori perjungti Jūsų\n"
+"%s %s į budėjimo režimą. Perjungti dabar?"
+
+#, python-format
+msgid ""
+"A finished record timer wants to shut down\n"
+"your %s %s. Shutdown now?"
+msgstr ""
+"Baigtas įrašymo laikmatis nori išjungti\n"
+"Jūsų %s %s. Išjungti dabar?"
+
+#, python-format
 msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "Baigtas įjungimo laikmatis nori paleisti iš naujo jūsų %s %s.\n"
@@ -1614,22 +1630,6 @@ msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "Baigtas įjungimo laikmatis nori išjungti jūsų %s %s.\n"
 "Išjungti dabar?"
-
-#, python-format
-msgid ""
-"A finished record timer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-"Baigtas įrašymo laikmatis nori perjungti Jūsų\n"
-"%s %s į budėjimo režimą. Perjungti dabar?"
-
-#, python-format
-msgid ""
-"A finished record timer wants to shut down\n"
-"your %s %s. Shutdown now?"
-msgstr ""
-"Baigtas įrašymo laikmatis nori išjungti\n"
-"Jūsų %s %s. Išjungti dabar?"
 
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr "Nuotolinio valdymo pulto vaizdo paryškinimas rodo, kurį mygtuką nurodo žinynas. Jei nurodytą funkciją atlieka daugiau nei vienas mygtukas, bus rodomas daugiau nei vienas paryškinimas. Po sąrašu esančiame tekste išvardijami aktyvūs mygtukai ir tai, ar funkcijai reikia ilgo mygtuko (-ų) paspaudimo ar SHIFT."
@@ -3283,9 +3283,6 @@ msgstr "Įrašyti į laikmeną"
 msgid "Burundi"
 msgstr "Burundis"
 
-msgid "Bus: "
-msgstr "Jungtis: "
-
 msgid "Business & Finance"
 msgstr "Verslas ir finansai"
 
@@ -3297,12 +3294,6 @@ msgstr "Mygtuko klaidos skirtasis laikas"
 
 msgid "ButtonSetup"
 msgstr "Mygtukų sąranka"
-
-msgid "By disk UUID"
-msgstr ""
-
-msgid "By disk label"
-msgstr ""
 
 msgid "Bypass HDMI EDID Check"
 msgstr "Praleisti HDMI EDID tikrinimą"
@@ -3714,9 +3705,6 @@ msgstr "Jokio signalo nerasta …,  nutraukiama !"
 
 msgid "Cannot move to trash can"
 msgstr "Perkelti į šiukšlinę negalima"
-
-msgid "Capacity"
-msgstr "Talpa"
 
 msgid "Cape Verde"
 msgstr "Žaliasis kišulys"
@@ -4604,9 +4592,6 @@ msgstr "Konfigūruoti žymeklio veikimą kanalo pasirinkimo sąraše. Atidarydam
 
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "Konfigūruokite ekrano rezoliuciją ir šriftą, naudojamą teletekstui."
-
-msgid "Select the duration of inactivity before the screen saver will be displayed."
-msgstr "Konfigūruokite trukmę minutėmis prieš rodydami ekrano užsklandą."
 
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
 msgstr "Sukonfigūruokite trukmę minutėmis, prieš aktyvuojant energijos taupymo laikmatį."
@@ -8300,9 +8285,6 @@ msgstr "Failų valdytojo teksto redaktoriaus veiksmai"
 msgid "File Commander settings"
 msgstr "Failų valdytojo nustatymai"
 
-msgid "File system"
-msgstr ""
-
 msgid "File System Check"
 msgstr "Failų sistemos tikrinimas"
 
@@ -8319,6 +8301,9 @@ msgstr ""
 "Failas oscam.conf nerastas.\n"
 "Įrašykite vartotojo vardą ir slaptažodį rankiniu būdu."
 
+msgid "File system"
+msgstr ""
+
 msgid "File transfer was canceled by user!"
 msgstr "Failų perkėlimą atšaukė vartotojas!"
 
@@ -8330,9 +8315,6 @@ msgstr "Failo pavadinimas"
 
 msgid "Files/folders to exclude from backup"
 msgstr "Failai/aplankai, neįtraukti į atsarginę kopiją"
-
-msgid "Filesystem"
-msgstr ""
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr "Užpildykite kanalų EPG iš transliacijos EPG, kai nėra IceTV EPG kanalo"
@@ -12078,6 +12060,9 @@ msgstr "Kietas diskas nerastas arba neinicializuotas!"
 msgid "No Internet connection"
 msgstr ""
 
+msgid "No Name"
+msgstr ""
+
 msgid ""
 "No Settings loaded !!\n"
 "\n"
@@ -13365,6 +13350,9 @@ msgstr "Įveskite naują katalogo pavadinimą:"
 
 msgid "Please enter the new file name:"
 msgstr "Įveskite naują failo pavadinimą:"
+
+msgid "Please enter the new name:"
+msgstr ""
 
 msgid "Please enter the new tag:"
 msgstr "Įveskite naują žymę:"
@@ -15611,6 +15599,9 @@ msgstr "Mokslas ir technika"
 msgid "Scope"
 msgstr "Apimtis"
 
+msgid "Screen saver movement"
+msgstr ""
+
 msgid "Script Manager"
 msgstr "Scenarijų tvarkyklė"
 
@@ -15770,13 +15761,13 @@ msgstr "Pasirinkite 'Taip', jei Dolby garso takeliams turėtų būti taikomi gar
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Pasirinkite tik \"taip\", jei naudojate \"multiswich\", kurio komandinis signalas \"DiSEqC Port-A\" reikalingas. Visoms kitoms sąrankoms pasirinkite \"ne\"."
 
-msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
-msgstr ""
-
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
 msgstr ""
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
 msgstr ""
 
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
@@ -15992,9 +15983,6 @@ msgstr "Pasirinkite papildomus failus atsarginei kopijai"
 msgid "Select AutoCam default Softcam"
 msgstr ""
 
-msgid "Select Backup Location"
-msgstr "Pasirinkite atsarginės kopijos kūrimo vietą"
-
 msgid "Select Bookmark"
 msgstr "Pasirinkite žymę"
 
@@ -16161,6 +16149,9 @@ msgstr "Pasirinkite failus, kurių neįtraukti į atsarginę kopiją"
 
 msgid "Select files/folders to backup"
 msgstr "Pasirinkite failus ir katalogus atsarginei kopijai"
+
+msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
+msgstr ""
 
 msgid "Select how long to display status messages."
 msgstr "Pasirinkite, kiek laiko rodyti būsenos pranešimus."
@@ -16416,6 +16407,9 @@ msgstr "Pasirinkite kiekvieno meniu įvesties elemento rodymo parinktis. Jei yra
 
 msgid "Select the display sequence of previously visited services."
 msgstr ""
+
+msgid "Select the duration of inactivity before the screen saver will be displayed."
+msgstr "Konfigūruokite trukmę minutėmis prieš rodydami ekrano užsklandą."
 
 #, python-format
 msgid "Select the file sort order for the %s column:"
@@ -16703,9 +16697,6 @@ msgstr "Pasirinkite savo ATSC paslaugų teikėją."
 
 msgid "Select your Language for Audio/Subtitles"
 msgstr "Pasirinkite garso/subtitrų kalbą"
-
-msgid "Select your backup device."
-msgstr "Pasirinkite atsarginį įrenginį."
 
 msgid "Select your country. If not available select 'All'."
 msgstr "Pasirinkite savo šalį. Jei nėra pasirinkti 'visos'."
@@ -17199,9 +17190,6 @@ msgstr "Nustatyti garso režimą"
 
 msgid "Setup Enigma2"
 msgstr "Nustatyti Enigma2"
-
-msgid "Setup Harddisk"
-msgstr "Nustatyti kietą diską"
 
 msgid "Setup Inadyn"
 msgstr "Nustatyti Inadyn"
@@ -22083,9 +22071,6 @@ msgstr "Palaukite, kol skenuojama..."
 msgid "Waiting"
 msgstr "Laukiama"
 
-msgid "Waiting for mount"
-msgstr "Laukiama pajungimo"
-
 msgid "Waiting for partition"
 msgstr "Laukiama skaidinio"
 
@@ -24051,6 +24036,24 @@ msgstr "taip (išsaugoti šaltinius)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Bus: "
+#~ msgstr "Jungtis: "
+
+#~ msgid "Capacity"
+#~ msgstr "Talpa"
+
+#~ msgid "Select Backup Location"
+#~ msgstr "Pasirinkite atsarginės kopijos kūrimo vietą"
+
+#~ msgid "Select your backup device."
+#~ msgstr "Pasirinkite atsarginį įrenginį."
+
+#~ msgid "Setup Harddisk"
+#~ msgstr "Nustatyti kietą diską"
+
+#~ msgid "Waiting for mount"
+#~ msgstr "Laukiama pajungimo"
 
 #~ msgid "PowerTimer"
 #~ msgstr "Įjungimo laikmatis"

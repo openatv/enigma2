@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-31 15:16+0000\n"
+"POT-Creation-Date: 2025-01-07 09:29+0000\n"
 "PO-Revision-Date: 2024-10-02 07:35+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/es/>\n"
@@ -1613,6 +1613,24 @@ msgstr "Se creó un registro de cuelgues %s en '%s'"
 msgid "A file from media is in use!"
 msgstr "¡Hay un archivo de medios en uso!"
 
+#
+#, python-format
+msgid ""
+"A finished record timer wants to set your\n"
+"%s %s to standby. Do that now?"
+msgstr ""
+"Una grabación finalizada quiere poner tu \n"
+"%s %s en modo espera. ¿Hacerlo ahora?"
+
+#
+#, python-format
+msgid ""
+"A finished record timer wants to shut down\n"
+"your %s %s. Shutdown now?"
+msgstr ""
+"Una grabación finalizada quiere apagar\n"
+"tu %s %s. ¿Apagar ahora?"
+
 # /usr/lib/enigma2/python/PowerTimer.py
 #, python-format
 msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
@@ -1631,24 +1649,6 @@ msgstr "Un temporizador de alimentación quiere poner tu %s %s en modo espera. �
 #, python-format
 msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
 msgstr "Un temporizador de alimentación quiere apagar tu %s %s. ¿Apagar ahora?"
-
-#
-#, python-format
-msgid ""
-"A finished record timer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-"Una grabación finalizada quiere poner tu \n"
-"%s %s en modo espera. ¿Hacerlo ahora?"
-
-#
-#, python-format
-msgid ""
-"A finished record timer wants to shut down\n"
-"your %s %s. Shutdown now?"
-msgstr ""
-"Una grabación finalizada quiere apagar\n"
-"tu %s %s. ¿Apagar ahora?"
 
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr "Un resaltado en la imagen del mando a distancia muestra a qué botón se refiere la ayuda. Si más de un botón realiza la función indicada, se mostrará más de un resaltado. El texto debajo de la lista enumera los botones activos y si la función requiere una pulsación prolongada o usar el botón SHIFT (MAYÚS)."
@@ -3409,10 +3409,6 @@ msgstr "Grabar a recurso"
 msgid "Burundi"
 msgstr "Burundi"
 
-#
-msgid "Bus: "
-msgstr "Bus: "
-
 msgid "Business & Finance"
 msgstr "Negocios y Finanzas"
 
@@ -3425,12 +3421,6 @@ msgstr "Error en el tiempo de espera del botón"
 
 msgid "ButtonSetup"
 msgstr "Botón de ajuste"
-
-msgid "By disk UUID"
-msgstr ""
-
-msgid "By disk label"
-msgstr ""
 
 msgid "Bypass HDMI EDID Check"
 msgstr "Comprobar Bypass HDMI EDID"
@@ -3847,9 +3837,6 @@ msgstr "No se puede encontrar ninguna señal..., ¡abortando!"
 
 msgid "Cannot move to trash can"
 msgstr "No se puede mover a la papelera"
-
-msgid "Capacity"
-msgstr "Capacidad"
 
 msgid "Cape Verde"
 msgstr "Cabo Verde"
@@ -4770,9 +4757,6 @@ msgstr "Configure el comportamiento del cursor en la lista de selección de cana
 
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "Configure la resolución de la pantalla y la fuente utilizada para el teletexto."
-
-msgid "Select the duration of inactivity before the screen saver will be displayed."
-msgstr "Configura la duración en minutos para el salvapantallas."
 
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
 msgstr "Configure la duración, en minutos, antes de que se active el temporizador de ahorro de energía."
@@ -8644,9 +8628,6 @@ msgstr ""
 msgid "File Commander settings"
 msgstr "Ajustes de los comandos de archivo"
 
-msgid "File system"
-msgstr ""
-
 #
 msgid "File System Check"
 msgstr "Comprobar sistema de ficheros"
@@ -8664,6 +8645,9 @@ msgstr ""
 "No se ha encontrado el archivo oscam.conf.\n"
 "Escribe el nombre de usuario y contraseña manualmente."
 
+msgid "File system"
+msgstr ""
+
 msgid "File transfer was canceled by user!"
 msgstr ""
 
@@ -8676,9 +8660,6 @@ msgstr "Nombre del fichero"
 
 msgid "Files/folders to exclude from backup"
 msgstr "Archivos/carpetas a excluir del copiado de seguridad"
-
-msgid "Filesystem"
-msgstr ""
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr "Rellenar las EPGs de los canales a partir de la EPG de emisión cuando no hay una EPG de IceTV para el canal"
@@ -12678,6 +12659,9 @@ msgstr "¡No se encontró ningún HDD o no está inicializado!"
 msgid "No Internet connection"
 msgstr ""
 
+msgid "No Name"
+msgstr ""
+
 msgid ""
 "No Settings loaded !!\n"
 "\n"
@@ -14061,6 +14045,9 @@ msgid "Please enter the new directory name:"
 msgstr ""
 
 msgid "Please enter the new file name:"
+msgstr ""
+
+msgid "Please enter the new name:"
 msgstr ""
 
 msgid "Please enter the new tag:"
@@ -16481,6 +16468,9 @@ msgstr "Ciencia y tecnología"
 msgid "Scope"
 msgstr "Alcance"
 
+msgid "Screen saver movement"
+msgstr ""
+
 msgid "Script Manager"
 msgstr "Gestor de scripts"
 
@@ -16656,13 +16646,13 @@ msgstr "Seleccione \"Sí\" si los ajustes de volumen deben aplicarse a las pista
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Seleccione \"Sí\" si está utilizando un multiswitch que requiere una señal de comando DiSEqC en el Puerto-A. Seleccione 'No' para todas las demás configuraciones."
 
-msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
-msgstr ""
-
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
 msgstr ""
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
 msgstr ""
 
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
@@ -16878,10 +16868,6 @@ msgstr "Seleccionar los archivos adicionales de la copia de seguridad"
 msgid "Select AutoCam default Softcam"
 msgstr ""
 
-#
-msgid "Select Backup Location"
-msgstr "Seleccionar ubicación de la copia de seguridad"
-
 msgid "Select Bookmark"
 msgstr ""
 
@@ -17058,6 +17044,9 @@ msgstr "Seleccionar los archivos a excluir de la copia de seguridad"
 #
 msgid "Select files/folders to backup"
 msgstr "Seleccione archivos/carpetas para el copiado de seguridad"
+
+msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
+msgstr ""
 
 msgid "Select how long to display status messages."
 msgstr ""
@@ -17320,6 +17309,9 @@ msgstr "Seleccione las opciones de visualización para cada elemento del menú. 
 
 msgid "Select the display sequence of previously visited services."
 msgstr ""
+
+msgid "Select the duration of inactivity before the screen saver will be displayed."
+msgstr "Configura la duración en minutos para el salvapantallas."
 
 #, python-format
 msgid "Select the file sort order for the %s column:"
@@ -17613,9 +17605,6 @@ msgstr "Seleccionar proveedor a añadir..."
 
 msgid "Select your Language for Audio/Subtitles"
 msgstr "Seleccione tu idioma para Audio/Subtítulos"
-
-msgid "Select your backup device."
-msgstr ""
 
 msgid "Select your country. If not available select 'All'."
 msgstr ""
@@ -18147,9 +18136,6 @@ msgstr "Configuración del modo de audio"
 # Quick Menue
 msgid "Setup Enigma2"
 msgstr "Configurar Enigma2"
-
-msgid "Setup Harddisk"
-msgstr "Configurar disco duro"
 
 msgid "Setup Inadyn"
 msgstr "Configurar Inadyn"
@@ -23434,9 +23420,6 @@ msgstr "Por favor, espera mientras se realiza una búsqueda…"
 msgid "Waiting"
 msgstr "Esperando"
 
-msgid "Waiting for mount"
-msgstr "Esperando el montaje"
-
 msgid "Waiting for partition"
 msgstr "Esperando partición"
 
@@ -25593,6 +25576,23 @@ msgstr "Sí (conservar fuentes)"
 
 msgid "®"
 msgstr "®"
+
+#
+#~ msgid "Bus: "
+#~ msgstr "Bus: "
+
+#~ msgid "Capacity"
+#~ msgstr "Capacidad"
+
+#
+#~ msgid "Select Backup Location"
+#~ msgstr "Seleccionar ubicación de la copia de seguridad"
+
+#~ msgid "Setup Harddisk"
+#~ msgstr "Configurar disco duro"
+
+#~ msgid "Waiting for mount"
+#~ msgstr "Esperando el montaje"
 
 #~ msgid "PowerTimer"
 #~ msgstr "PowerTimer"

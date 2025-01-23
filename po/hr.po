@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-31 15:16+0000\n"
+"POT-Creation-Date: 2025-01-07 09:29+0000\n"
 "PO-Revision-Date: 2024-11-03 19:00+0000\n"
 "Last-Translator: Dejan <pitbul@vip.hr>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hr/>\n"
@@ -1640,6 +1640,24 @@ msgid "A file from media is in use!"
 msgstr "Naziv na mediju se već koristi!"
 
 #
+#, fuzzy, python-format
+msgid ""
+"A finished record timer wants to set your\n"
+"%s %s to standby. Do that now?"
+msgstr ""
+"Tajmer snimanja je završio i želi postaviti\n"
+"%s %s u stanje pripravnosti. Učiniti sada?"
+
+#
+#, python-format
+msgid ""
+"A finished record timer wants to shut down\n"
+"your %s %s. Shutdown now?"
+msgstr ""
+"Tajmer snimanja je završio i želi isključiti vaš\n"
+"%s %s. Isključiti sada?"
+
+#
 #, python-format
 msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
 msgstr "Završeni \"PowerTimer\" želi ponovno pokrenuti vaš %s %s. Napraviti sada?"
@@ -1657,24 +1675,6 @@ msgstr "Završeni \"PowerTimer\" želi postaviti vaš %s %s u stanje pripravnost
 #, python-format
 msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
 msgstr "Završeni \"PowerTimer\" želi isključiti vaš %s %s. Napraviti sada?"
-
-#
-#, fuzzy, python-format
-msgid ""
-"A finished record timer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-"Tajmer snimanja je završio i želi postaviti\n"
-"%s %s u stanje pripravnosti. Učiniti sada?"
-
-#
-#, python-format
-msgid ""
-"A finished record timer wants to shut down\n"
-"your %s %s. Shutdown now?"
-msgstr ""
-"Tajmer snimanja je završio i želi isključiti vaš\n"
-"%s %s. Isključiti sada?"
 
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr "Istaknuto na slici daljinskog upravljača prikazuje koja tipka je za pomoć. Ako više od jedne tipke obavlja označenu funkciju, onda će biti prikazano više istaknutih tipki. Tekst ispod liste ispisuje aktivne tipke i načina na koji se pritiskaju bilo dugim pritiskom ili SHIFT tipke (aka)."
@@ -3442,10 +3442,6 @@ msgstr "Zaprži na medij"
 msgid "Burundi"
 msgstr ""
 
-#
-msgid "Bus: "
-msgstr "Sabirnica:"
-
 msgid "Business & Finance"
 msgstr ""
 
@@ -3457,12 +3453,6 @@ msgstr "Vremensko ograničenje Greške tipke "
 
 msgid "ButtonSetup"
 msgstr "Postavke tipke"
-
-msgid "By disk UUID"
-msgstr "Prema UUID diska"
-
-msgid "By disk label"
-msgstr "Prema nazivu diska"
 
 msgid "Bypass HDMI EDID Check"
 msgstr "Zaobiđi HDMI EDID provjeru"
@@ -3893,9 +3883,6 @@ msgstr "Ne može se pronaći bilo koji signal ..., prekida se !"
 
 msgid "Cannot move to trash can"
 msgstr "Ne može se premjestiti u kantu za smeće"
-
-msgid "Capacity"
-msgstr "Kapacitet"
 
 msgid "Cape Verde"
 msgstr ""
@@ -4827,9 +4814,6 @@ msgstr "Konfigurirajte ponašanje kursora na popisu za odabir kanala. Prilikom o
 
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "Konfigurirajte razlučivost ekrana i font koji se koristi za teletekst."
-
-msgid "Select the duration of inactivity before the screen saver will be displayed."
-msgstr "Konfigurirajte trajanje u minutama prije nego što se prikaže čuvar ekrana."
 
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
 msgstr "Konfigurirajte trajanje, u minutama, prije aktiviranja tajmera EnergySaver."
@@ -8723,9 +8707,6 @@ msgstr ""
 msgid "File Commander settings"
 msgstr ""
 
-msgid "File system"
-msgstr ""
-
 #
 msgid "File System Check"
 msgstr ""
@@ -8741,6 +8722,9 @@ msgid ""
 "Please enter username/password manually."
 msgstr ""
 
+msgid "File system"
+msgstr ""
+
 msgid "File transfer was canceled by user!"
 msgstr ""
 
@@ -8751,9 +8735,6 @@ msgid "Filename"
 msgstr ""
 
 msgid "Files/folders to exclude from backup"
-msgstr ""
-
-msgid "Filesystem"
 msgstr ""
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
@@ -12871,6 +12852,9 @@ msgstr "Disk nije pronađen ili neinicijaliziran!"
 msgid "No Internet connection"
 msgstr ""
 
+msgid "No Name"
+msgstr ""
+
 msgid ""
 "No Settings loaded !!\n"
 "\n"
@@ -14260,6 +14244,9 @@ msgid "Please enter the new directory name:"
 msgstr ""
 
 msgid "Please enter the new file name:"
+msgstr ""
+
+msgid "Please enter the new name:"
 msgstr ""
 
 msgid "Please enter the new tag:"
@@ -16719,6 +16706,9 @@ msgstr ""
 msgid "Scope"
 msgstr ""
 
+msgid "Screen saver movement"
+msgstr ""
+
 msgid "Script Manager"
 msgstr ""
 
@@ -16900,13 +16890,13 @@ msgstr ""
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr ""
 
-msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
-msgstr ""
-
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
 msgstr ""
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
 msgstr ""
 
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
@@ -17122,11 +17112,6 @@ msgstr ""
 msgid "Select AutoCam default Softcam"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Select Backup Location"
-msgstr "Odaberi film"
-
 msgid "Select Bookmark"
 msgstr ""
 
@@ -17306,6 +17291,9 @@ msgstr ""
 
 #
 msgid "Select files/folders to backup"
+msgstr ""
+
+msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
 msgstr ""
 
 msgid "Select how long to display status messages."
@@ -17568,6 +17556,9 @@ msgstr ""
 
 msgid "Select the display sequence of previously visited services."
 msgstr ""
+
+msgid "Select the duration of inactivity before the screen saver will be displayed."
+msgstr "Konfigurirajte trajanje u minutama prije nego što se prikaže čuvar ekrana."
 
 #, python-format
 msgid "Select the file sort order for the %s column:"
@@ -17862,9 +17853,6 @@ msgid "Select your ATSC provider."
 msgstr ""
 
 msgid "Select your Language for Audio/Subtitles"
-msgstr ""
-
-msgid "Select your backup device."
 msgstr ""
 
 msgid "Select your country. If not available select 'All'."
@@ -18381,9 +18369,6 @@ msgid "Setup Audiomode"
 msgstr ""
 
 msgid "Setup Enigma2"
-msgstr ""
-
-msgid "Setup Harddisk"
 msgstr ""
 
 msgid "Setup Inadyn"
@@ -23536,9 +23521,6 @@ msgstr ""
 msgid "Waiting"
 msgstr ""
 
-msgid "Waiting for mount"
-msgstr ""
-
 msgid "Waiting for partition"
 msgstr ""
 
@@ -25623,6 +25605,24 @@ msgstr "Da ( zadrži feedove)"
 
 msgid "®"
 msgstr "®"
+
+#
+#~ msgid "Bus: "
+#~ msgstr "Sabirnica:"
+
+#~ msgid "By disk UUID"
+#~ msgstr "Prema UUID diska"
+
+#~ msgid "By disk label"
+#~ msgstr "Prema nazivu diska"
+
+#~ msgid "Capacity"
+#~ msgstr "Kapacitet"
+
+#
+#, fuzzy
+#~ msgid "Select Backup Location"
+#~ msgstr "Odaberi film"
 
 #
 #, fuzzy

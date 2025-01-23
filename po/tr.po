@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-31 15:16+0000\n"
+"POT-Creation-Date: 2025-01-07 09:29+0000\n"
 "PO-Revision-Date: 2024-08-04 16:47+0000\n"
 "Last-Translator: Tmp341 <tmp341@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -1571,6 +1571,24 @@ msgstr "Medyadan bir dosya kullanılıyor!"
 
 #
 #, python-format
+msgid ""
+"A finished record timer wants to set your\n"
+"%s %s to standby. Do that now?"
+msgstr ""
+"Biten bir kayıt zamanlayıcısı %s %s'yu\n"
+"bekleme kipine almak istiyor. Şimdi alınsın mı?"
+
+#
+#, python-format
+msgid ""
+"A finished record timer wants to shut down\n"
+"your %s %s. Shutdown now?"
+msgstr ""
+"Biten bir kayıt zamanlayıcısı %s %s'yu\n"
+"kapatmak istiyor. Şimdi kapatılsın mı?"
+
+#
+#, python-format
 msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
 msgstr "Biten bir PowerTimer %s %s cihazınızı yeniden başlatmak istiyor. Bunu şimdi mi yapacaksın?"
 
@@ -1587,24 +1605,6 @@ msgstr "Bitmiş bir PowerTimer %s %s cihazınızı bekleme moduna ayarlamak isti
 #, python-format
 msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
 msgstr "Bitmiş bir PowerTimer %s %s cihazınızı kapatmak istiyor. Bunu şimdi mi yapacaksın?"
-
-#
-#, python-format
-msgid ""
-"A finished record timer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-"Biten bir kayıt zamanlayıcısı %s %s'yu\n"
-"bekleme kipine almak istiyor. Şimdi alınsın mı?"
-
-#
-#, python-format
-msgid ""
-"A finished record timer wants to shut down\n"
-"your %s %s. Shutdown now?"
-msgstr ""
-"Biten bir kayıt zamanlayıcısı %s %s'yu\n"
-"kapatmak istiyor. Şimdi kapatılsın mı?"
 
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr "Uzaktan kumanda görüntüsündeki bir vurgu, yardımın hangi düğmeye atıfta bulunduğunu gösterir. Belirtilen işlevi birden fazla düğme gerçekleştirirse, birden fazla vurgu gösterilecektir. Listenin altındaki metin, etkin düğmeleri ve işlevin düğmelere uzun basmayı mı yoksa SHIFT'i mi gerektirdiğini listeler."
@@ -3355,9 +3355,6 @@ msgstr "Ortama yaz"
 msgid "Burundi"
 msgstr "Burundi"
 
-msgid "Bus: "
-msgstr "Yol: "
-
 msgid "Business & Finance"
 msgstr "İş finansı"
 
@@ -3369,12 +3366,6 @@ msgstr "Düğme hatası zaman aşımı"
 
 msgid "ButtonSetup"
 msgstr "Tuş Kurulumu"
-
-msgid "By disk UUID"
-msgstr "Disk UUID'sine göre"
-
-msgid "By disk label"
-msgstr "Disk etiketi ile"
 
 msgid "Bypass HDMI EDID Check"
 msgstr "HDMI EDID Kontrolunu atla"
@@ -3797,9 +3788,6 @@ msgstr "Hiç sinyol bulunamadı..., durduruluyor!"
 
 msgid "Cannot move to trash can"
 msgstr "Çöp sepetine taşınamadı"
-
-msgid "Capacity"
-msgstr "Kapasite"
 
 msgid "Cape Verde"
 msgstr "Cape Verde"
@@ -4723,9 +4711,6 @@ msgstr "Kanal seçim listesindeki imleç davranışını yapılandırın. Kanal 
 
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "Teletekst için kullanılan ekran çözünürlüğünü ve yazı tipini yapılandırın."
-
-msgid "Select the duration of inactivity before the screen saver will be displayed."
-msgstr "Ekran koruyucu için süreyi dakika olarak yapılandırın."
 
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
 msgstr "Enerji tasarrufu zamanlayıcı etkinleştirilmeden önce süreyi dakika cinsinden yapılandırın."
@@ -8590,9 +8575,6 @@ msgstr "File Commander Metin Düzenleyici Eylemleri"
 msgid "File Commander settings"
 msgstr "Dosya Komutu Ayarları"
 
-msgid "File system"
-msgstr ""
-
 msgid "File System Check"
 msgstr "Dosya sistemi kontrolü"
 
@@ -8609,6 +8591,9 @@ msgstr ""
 "Oscam.conf dosyası bulunamadı.\n"
 "Lütfen kullanıcı adınızı / şifrenizi manuel olarak girin."
 
+msgid "File system"
+msgstr ""
+
 msgid "File transfer was canceled by user!"
 msgstr "Dosya aktarımı kullanıcı tarafından iptal edildi!"
 
@@ -8621,9 +8606,6 @@ msgstr "Dosya adı"
 
 msgid "Files/folders to exclude from backup"
 msgstr "Yedeklemeden hariç tutulacak dosyalar / klasörler"
-
-msgid "Filesystem"
-msgstr ""
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr "Kanal için IceTV EPG'si olmayan yayın EPG'sinden kanal EPG'lerini doldurun"
@@ -12579,6 +12561,9 @@ msgstr "HDD bulunamadı veya HDD ilişkilendirilemedi!"
 msgid "No Internet connection"
 msgstr "Internet bağlantısını kontrol et"
 
+msgid "No Name"
+msgstr ""
+
 msgid ""
 "No Settings loaded !!\n"
 "\n"
@@ -13946,6 +13931,9 @@ msgstr "Lütfen yeni dizin adını girin:"
 
 msgid "Please enter the new file name:"
 msgstr "Lütfen yeni dosya adını girin:"
+
+msgid "Please enter the new name:"
+msgstr ""
 
 msgid "Please enter the new tag:"
 msgstr "Lütfen yeni açıklama girin:"
@@ -16334,6 +16322,9 @@ msgstr "Bilim ve Teknoloji"
 msgid "Scope"
 msgstr "Kapsam"
 
+msgid "Screen saver movement"
+msgstr ""
+
 msgid "Script Manager"
 msgstr "Komut Dosyası Yöneticisi"
 
@@ -16503,13 +16494,13 @@ msgstr "Dolby ses parçalarına ses ayarı yapılması gerekiyorsa 'Evet'i seçi
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "DiSEqC Port-A komut sinyali gerektiren bir multiswich kullanıyorsanız, yalnızca 'evet'i seçin. Diğer tüm kurulumlar için 'hayır' seçeneğini seçin."
 
-msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
-msgstr ""
-
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
 msgstr ""
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
 msgstr ""
 
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
@@ -16725,10 +16716,6 @@ msgstr "Ek yedek dosyaları seçin"
 msgid "Select AutoCam default Softcam"
 msgstr "AutoCam varsayılanı için Softcam seçin"
 
-#
-msgid "Select Backup Location"
-msgstr "Yedekleme konumu seç"
-
 msgid "Select Bookmark"
 msgstr "Yer İşareti Seçin"
 
@@ -16902,6 +16889,9 @@ msgstr "Yedeklemeden hariç tutulacak dosyaları seçin"
 #
 msgid "Select files/folders to backup"
 msgstr "Yedeklenecek dosya/klasörleri seç"
+
+msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
+msgstr ""
 
 msgid "Select how long to display status messages."
 msgstr "Durum mesajlarının ne kadar süreyle görüntüleneceğini seçin."
@@ -17162,6 +17152,9 @@ msgstr "Her menü girişi öğesi için ekran seçeneklerini seçin. Menü numar
 
 msgid "Select the display sequence of previously visited services."
 msgstr "Daha önce izlenen servislerin görüntülenme sırasını seçin."
+
+msgid "Select the duration of inactivity before the screen saver will be displayed."
+msgstr "Ekran koruyucu için süreyi dakika olarak yapılandırın."
 
 #, python-format
 msgid "Select the file sort order for the %s column:"
@@ -17459,9 +17452,6 @@ msgstr "ATSC sağlayıcınızı seçin."
 
 msgid "Select your Language for Audio/Subtitles"
 msgstr "Ses / Altyazılar için Dilinizi seçin"
-
-msgid "Select your backup device."
-msgstr "Yedekleme cihazınızı seçin."
 
 msgid "Select your country. If not available select 'All'."
 msgstr "Ülkeni seç. Mevcut değilse 'tümü' seçeneğini seçin."
@@ -17981,9 +17971,6 @@ msgstr "Audiomode'u Kur"
 
 msgid "Setup Enigma2"
 msgstr "Kurulum Enigma2"
-
-msgid "Setup Harddisk"
-msgstr "Kurulum Sabit Diski"
 
 msgid "Setup Inadyn"
 msgstr "Inadyn Kurulumu"
@@ -23121,9 +23108,6 @@ msgstr "Tararken lütfen bekleyin ..."
 msgid "Waiting"
 msgstr "Bekliyor"
 
-msgid "Waiting for mount"
-msgstr "Bağlantı için bekleyin"
-
 msgid "Waiting for partition"
 msgstr "Bölüntü için bekleyin"
 
@@ -25224,6 +25208,31 @@ msgstr "evet (beslemeleri tut)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Bus: "
+#~ msgstr "Yol: "
+
+#~ msgid "By disk UUID"
+#~ msgstr "Disk UUID'sine göre"
+
+#~ msgid "By disk label"
+#~ msgstr "Disk etiketi ile"
+
+#~ msgid "Capacity"
+#~ msgstr "Kapasite"
+
+#
+#~ msgid "Select Backup Location"
+#~ msgstr "Yedekleme konumu seç"
+
+#~ msgid "Select your backup device."
+#~ msgstr "Yedekleme cihazınızı seçin."
+
+#~ msgid "Setup Harddisk"
+#~ msgstr "Kurulum Sabit Diski"
+
+#~ msgid "Waiting for mount"
+#~ msgstr "Bağlantı için bekleyin"
 
 #~ msgid "PowerTimer"
 #~ msgstr "PowerTimer"

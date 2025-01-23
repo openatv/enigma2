@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-31 15:16+0000\n"
+"POT-Creation-Date: 2025-01-07 09:29+0000\n"
 "PO-Revision-Date: 2024-11-10 13:00+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -1558,6 +1558,22 @@ msgid "A file from media is in use!"
 msgstr "Een mediabestand is in gebruik!"
 
 #, python-format
+msgid ""
+"A finished record timer wants to set your\n"
+"%s %s to standby. Do that now?"
+msgstr ""
+"Een voltooide timer wil uw %s %s\n"
+"in stand-by zetten. Dat nu doen?"
+
+#, python-format
+msgid ""
+"A finished record timer wants to shut down\n"
+"your %s %s. Shutdown now?"
+msgstr ""
+"Een voltooide timer wil uw\n"
+"%s %s uitschakelen. Dat nu doen?"
+
+#, python-format
 msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "Een PowerTimer wil uw %s %s herstarten.\n"
@@ -1579,22 +1595,6 @@ msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "Een PowerTimer wil uw %s %s uitschakelen. \n"
 "Wilt u dat nu doen?"
-
-#, python-format
-msgid ""
-"A finished record timer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-"Een voltooide timer wil uw %s %s\n"
-"in stand-by zetten. Dat nu doen?"
-
-#, python-format
-msgid ""
-"A finished record timer wants to shut down\n"
-"your %s %s. Shutdown now?"
-msgstr ""
-"Een voltooide timer wil uw\n"
-"%s %s uitschakelen. Dat nu doen?"
 
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr "Door een arcering op de afstandsbediening wordt aangegeven over welke knop de help tekst gaat. Bij een uitleg over meerdere knoppen, zie je meerdere arceringen. In de tekst onder de knoppen wordt uitgelegd of de knop bijvoorbeeld lang ingedrukt moet worden of bediend via de SHIFT knop."
@@ -3247,9 +3247,6 @@ msgstr "Brand naar medium"
 msgid "Burundi"
 msgstr "Burundi"
 
-msgid "Bus: "
-msgstr "Bus: "
-
 msgid "Business & Finance"
 msgstr "Bedrijf & financiën"
 
@@ -3261,12 +3258,6 @@ msgstr "Time-out voor knopfout"
 
 msgid "ButtonSetup"
 msgstr "Knop instellingen"
-
-msgid "By disk UUID"
-msgstr "Op schijf UUID"
-
-msgid "By disk label"
-msgstr "Op disk label"
 
 msgid "Bypass HDMI EDID Check"
 msgstr "Omzeil de HDMI-EDID controle"
@@ -3678,9 +3669,6 @@ msgstr "Kan geen signaal vinden..., gestopt!"
 
 msgid "Cannot move to trash can"
 msgstr "Kan geen bestanden naar de prullenbak verplaatsen"
-
-msgid "Capacity"
-msgstr "Capaciteit"
 
 msgid "Cape Verde"
 msgstr "Kaapverdië"
@@ -4609,9 +4597,6 @@ msgstr "Stel hier de positie van de cursor in bij het openen van de zenderlijst.
 
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "Configureer de weergaveresolutie en het lettertype dat wordt gebruikt voor Teletekst."
-
-msgid "Select the duration of inactivity before the screen saver will be displayed."
-msgstr "Hier kunt u een screensaver activeren en instellen na hoeveel minuten deze moet starten."
 
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
 msgstr "Stel de tijdsduur in minuten in, voordat de Energie SpaarTimer wordt geactiveerd."
@@ -8396,9 +8381,6 @@ msgstr "File Commander Tekst Editor Acties"
 msgid "File Commander settings"
 msgstr "File Commander instellingen"
 
-msgid "File system"
-msgstr ""
-
 msgid "File System Check"
 msgstr "Bestandssysteemcontrole"
 
@@ -8415,6 +8397,9 @@ msgstr ""
 "Het oscam.conf bestand is niet gevonden.\n"
 "Geef een gebruikersnaam en het wachtwoord handmatig op."
 
+msgid "File system"
+msgstr ""
+
 msgid "File transfer was canceled by user!"
 msgstr "Bestandsoverdracht is geannuleerd door gebruiker!"
 
@@ -8426,9 +8411,6 @@ msgstr "bestandnaam"
 
 msgid "Files/folders to exclude from backup"
 msgstr "Uitgesloten back-up bestanden"
-
-msgid "Filesystem"
-msgstr ""
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr "Laat de zender EPG automatisch actualiseren wanneer er geen IceTV EPG beschikbaar is"
@@ -12182,6 +12164,9 @@ msgstr "Geen harde schijf gevonden of de harde schijf is niet geïnitialiseerd!"
 msgid "No Internet connection"
 msgstr "Geen internetverbinding"
 
+msgid "No Name"
+msgstr ""
+
 msgid ""
 "No Settings loaded !!\n"
 "\n"
@@ -13472,6 +13457,9 @@ msgstr "Voer de nieuwe mapnaam in:"
 
 msgid "Please enter the new file name:"
 msgstr "Geef de nieuwe bestandsnaam op:"
+
+msgid "Please enter the new name:"
+msgstr ""
 
 msgid "Please enter the new tag:"
 msgstr "A.u.b. de nieuwe tag opgeven: "
@@ -15720,6 +15708,9 @@ msgstr "Wetenschap & Techniek"
 msgid "Scope"
 msgstr "Scope"
 
+msgid "Screen saver movement"
+msgstr ""
+
 msgid "Script Manager"
 msgstr "Script Manager"
 
@@ -15881,14 +15872,14 @@ msgstr "Kies 'Ja' wanneer de volumewijzigingen toegepast moeten worden op het Do
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Selecteer alleen 'ja' als u een multiswich gebruikt die een DiSEqC Port-A commando gebruikt. In alle andere gevallen kiest u 'nee'."
 
-msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
-msgstr "Kies 'Ja' wanneer de TV door een PowerTimer moet worden ingeschakeld."
-
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
 msgstr "Kies 'Ja' wanneer u de TV wil inschakelen bij het starten van een 'Zappen en Opnemen' timer."
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
 msgstr "Kies 'Ja' wanneer de TV bij het starten van een 'Zappen en Opnemen' timer moet worden ingeschakeld."
+
+msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
+msgstr "Kies 'Ja' wanneer de TV door een PowerTimer moet worden ingeschakeld."
 
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Bij 'ja' zal de informatiebalk continu worden getoond wanneer het afspelen is gepauzeerd."
@@ -16109,9 +16100,6 @@ msgstr "Extra back-up bestanden"
 msgid "Select AutoCam default Softcam"
 msgstr "Standaard Softcam voor AutoCam"
 
-msgid "Select Backup Location"
-msgstr "Selecteer een back-up locatie"
-
 msgid "Select Bookmark"
 msgstr "Selecteer Bladwijzer"
 
@@ -16278,6 +16266,9 @@ msgstr "Selecteer uitgesloten back-up bestanden"
 
 msgid "Select files/folders to backup"
 msgstr "Selecteer bestanden voor een back-up"
+
+msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
+msgstr ""
 
 msgid "Select how long to display status messages."
 msgstr "Selecteer hoe lang statusmeldingen moeten worden weergegeven."
@@ -16535,6 +16526,9 @@ msgstr ""
 
 msgid "Select the display sequence of previously visited services."
 msgstr "De volgorde van de bekeken zenders opgeven."
+
+msgid "Select the duration of inactivity before the screen saver will be displayed."
+msgstr "Hier kunt u een screensaver activeren en instellen na hoeveel minuten deze moet starten."
 
 #, python-format
 msgid "Select the file sort order for the %s column:"
@@ -16834,9 +16828,6 @@ msgstr "Selecteer uw ATSC provider."
 
 msgid "Select your Language for Audio/Subtitles"
 msgstr "Selecteer voorkeurstaal voor audio/ondertitels."
-
-msgid "Select your backup device."
-msgstr "Selecteer uw back-up apparaat."
 
 msgid "Select your country. If not available select 'All'."
 msgstr "Selecteer het land. Indien niet beschikbaar kiest u 'alle'."
@@ -17341,9 +17332,6 @@ msgstr "Audio voorkeuren instellen"
 
 msgid "Setup Enigma2"
 msgstr "Wijzig Enigma2 instellingen"
-
-msgid "Setup Harddisk"
-msgstr "Harde schijf configureren"
 
 msgid "Setup Inadyn"
 msgstr "Inadyn instellen"
@@ -22324,9 +22312,6 @@ msgstr "Een ogenblik geduld tijdens het zoeken..."
 msgid "Waiting"
 msgstr "Wachten"
 
-msgid "Waiting for mount"
-msgstr "Wachten op de mount"
-
 msgid "Waiting for partition"
 msgstr "Wacht op een verdeelpunt"
 
@@ -24319,6 +24304,30 @@ msgstr "ja (bewaar feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Bus: "
+#~ msgstr "Bus: "
+
+#~ msgid "By disk UUID"
+#~ msgstr "Op schijf UUID"
+
+#~ msgid "By disk label"
+#~ msgstr "Op disk label"
+
+#~ msgid "Capacity"
+#~ msgstr "Capaciteit"
+
+#~ msgid "Select Backup Location"
+#~ msgstr "Selecteer een back-up locatie"
+
+#~ msgid "Select your backup device."
+#~ msgstr "Selecteer uw back-up apparaat."
+
+#~ msgid "Setup Harddisk"
+#~ msgstr "Harde schijf configureren"
+
+#~ msgid "Waiting for mount"
+#~ msgstr "Wachten op de mount"
 
 #~ msgid "PowerTimer"
 #~ msgstr "PowerTimer"

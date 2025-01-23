@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-31 15:16+0000\n"
+"POT-Creation-Date: 2025-01-07 09:29+0000\n"
 "PO-Revision-Date: 2021-11-04 23:53+0000\n"
 "Last-Translator: T. Rylle <dk-translation@pm.me>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/da/>\n"
@@ -1553,6 +1553,22 @@ msgid "A file from media is in use!"
 msgstr ""
 
 #, python-format
+msgid ""
+"A finished record timer wants to set your\n"
+"%s %s to standby. Do that now?"
+msgstr ""
+"En afsluttet optagetimer ønsker at sætte din\n"
+"%s %s i Standby. Gør det nu ?"
+
+#, python-format
+msgid ""
+"A finished record timer wants to shut down\n"
+"your %s %s. Shutdown now?"
+msgstr ""
+"En afsluttet optagetimer ønsker at slukke\n"
+"din %s %s. Sluk nu ?"
+
+#, python-format
 msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "En gennemført StrømTimer vil genstarte din %s %s.\n"
@@ -1574,22 +1590,6 @@ msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "En gennemført StrømTimer ønsker at slukke din %s %s.\n"
 "Gør det nu ?"
-
-#, python-format
-msgid ""
-"A finished record timer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-"En afsluttet optagetimer ønsker at sætte din\n"
-"%s %s i Standby. Gør det nu ?"
-
-#, python-format
-msgid ""
-"A finished record timer wants to shut down\n"
-"your %s %s. Shutdown now?"
-msgstr ""
-"En afsluttet optagetimer ønsker at slukke\n"
-"din %s %s. Sluk nu ?"
 
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr ""
@@ -3241,9 +3241,6 @@ msgstr "Brænd til medie"
 msgid "Burundi"
 msgstr "Burundi"
 
-msgid "Bus: "
-msgstr "Bus: "
-
 msgid "Business & Finance"
 msgstr "Forretning & Finans"
 
@@ -3255,12 +3252,6 @@ msgstr ""
 
 msgid "ButtonSetup"
 msgstr "KnapOpsætning"
-
-msgid "By disk UUID"
-msgstr ""
-
-msgid "By disk label"
-msgstr ""
 
 msgid "Bypass HDMI EDID Check"
 msgstr "Omgå HDMI EDID Kontrol"
@@ -3672,9 +3663,6 @@ msgstr "Kan ikke finde noget signal ..., afbryder !"
 
 msgid "Cannot move to trash can"
 msgstr "Kan ikke flytte til papirkurv"
-
-msgid "Capacity"
-msgstr ""
 
 msgid "Cape Verde"
 msgstr "Kap Verde"
@@ -4557,9 +4545,6 @@ msgstr "Konfigurer markøropførslen i kanalvalgslisten. Når kanalvalgslisten �
 
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "Konfigurer den skærmopløsning og skrifttype der skal bruges til Tekst-TV."
-
-msgid "Select the duration of inactivity before the screen saver will be displayed."
-msgstr "Konfigurer varigheden i minutter for pauseskærm."
 
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
 msgstr ""
@@ -8245,9 +8230,6 @@ msgstr ""
 msgid "File Commander settings"
 msgstr "File Commander indstillinger"
 
-msgid "File system"
-msgstr ""
-
 msgid "File System Check"
 msgstr "Kontroller filsystem"
 
@@ -8264,6 +8246,9 @@ msgstr ""
 "Fil oscam.conf ikke fundet.\n"
 "Indtast venligst brugernavn/adgangskode manuelt."
 
+msgid "File system"
+msgstr ""
+
 msgid "File transfer was canceled by user!"
 msgstr ""
 
@@ -8275,9 +8260,6 @@ msgstr "filnavn"
 
 msgid "Files/folders to exclude from backup"
 msgstr "Filer/mapper udelukkes fra kopiering"
-
-msgid "Filesystem"
-msgstr ""
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr "Udfyld kanal EPGer fra udsendt EPG hvor der ikke er nogen IceTV EPG for kanalen"
@@ -12083,6 +12065,9 @@ msgstr "Ingen HDD fundet eller HDD ikke initialiseret!"
 msgid "No Internet connection"
 msgstr ""
 
+msgid "No Name"
+msgstr ""
+
 msgid ""
 "No Settings loaded !!\n"
 "\n"
@@ -13387,6 +13372,9 @@ msgid "Please enter the new directory name:"
 msgstr ""
 
 msgid "Please enter the new file name:"
+msgstr ""
+
+msgid "Please enter the new name:"
 msgstr ""
 
 msgid "Please enter the new tag:"
@@ -15637,6 +15625,9 @@ msgstr "Viden & Teknologi"
 msgid "Scope"
 msgstr ""
 
+msgid "Screen saver movement"
+msgstr ""
+
 msgid "Script Manager"
 msgstr ""
 
@@ -15801,13 +15792,13 @@ msgstr ""
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Vælg kun 'Ja' hvid du bruger en multiswitch som kræver en DiSEqC Port-A kommandosignal. Til alle andre opsætninger vælges 'Nej'."
 
-msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
-msgstr ""
-
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
 msgstr ""
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
 msgstr ""
 
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
@@ -16023,9 +16014,6 @@ msgstr "Vælg yderligere sikkerhedskopieringsfiler"
 msgid "Select AutoCam default Softcam"
 msgstr ""
 
-msgid "Select Backup Location"
-msgstr "Vælg placering af sikkerhedskopi"
-
 msgid "Select Bookmark"
 msgstr ""
 
@@ -16192,6 +16180,9 @@ msgstr "Vælg filer der udelukkes i sikkerhedskopi"
 
 msgid "Select files/folders to backup"
 msgstr "Vælg filer/mapper til sikkerhedskopi"
+
+msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
+msgstr ""
 
 msgid "Select how long to display status messages."
 msgstr ""
@@ -16447,6 +16438,9 @@ msgstr ""
 
 msgid "Select the display sequence of previously visited services."
 msgstr ""
+
+msgid "Select the duration of inactivity before the screen saver will be displayed."
+msgstr "Konfigurer varigheden i minutter for pauseskærm."
 
 #, python-format
 msgid "Select the file sort order for the %s column:"
@@ -16737,9 +16731,6 @@ msgstr "Vælg din ATSC Udbyder."
 
 msgid "Select your Language for Audio/Subtitles"
 msgstr "Vælg dit sprog for Lyd/Undertekster"
-
-msgid "Select your backup device."
-msgstr ""
 
 msgid "Select your country. If not available select 'All'."
 msgstr "Vælg dit land. Vælg 'Alle' hvis det ikke findes."
@@ -17237,9 +17228,6 @@ msgstr "Sæt Lydtilstand op"
 
 msgid "Setup Enigma2"
 msgstr "Sæt Enigma2 op"
-
-msgid "Setup Harddisk"
-msgstr "Sæt Harddisk op"
 
 msgid "Setup Inadyn"
 msgstr "Sæt Inadyn op"
@@ -22131,9 +22119,6 @@ msgstr "Vent mens der søges..."
 msgid "Waiting"
 msgstr "Venter"
 
-msgid "Waiting for mount"
-msgstr "Venter på mount"
-
 msgid "Waiting for partition"
 msgstr "Venter på partition"
 
@@ -24119,6 +24104,18 @@ msgstr "ja (behold feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Bus: "
+#~ msgstr "Bus: "
+
+#~ msgid "Select Backup Location"
+#~ msgstr "Vælg placering af sikkerhedskopi"
+
+#~ msgid "Setup Harddisk"
+#~ msgstr "Sæt Harddisk op"
+
+#~ msgid "Waiting for mount"
+#~ msgstr "Venter på mount"
 
 #~ msgid "PowerTimer"
 #~ msgstr "StrømTimer"

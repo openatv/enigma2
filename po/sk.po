@@ -1,6 +1,6 @@
 # NickerSK <nickersk@gmail.com>, 2021, 2022.
 # Marian-SK <podnety@mojepreklady.net>, 2021.
-# Marián Hikaník <podnety@mojepreklady.net>, 2021, 2022, 2023, 2024.
+# Marián Hikaník <podnety@mojepreklady.net>, 2021, 2022, 2023, 2024, 2025.
 # Atec <dr.atec@gmail.com>, 2023, 2024, 2025.
 # Milan Šalka <salka.milan@googlemail.com>, 2023, 2024.
 # HS <enosat@yahoo.com>, 2024.
@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-31 15:16+0000\n"
-"PO-Revision-Date: 2025-01-04 02:00+0000\n"
-"Last-Translator: Atec <dr.atec@gmail.com>\n"
+"POT-Creation-Date: 2025-01-07 09:29+0000\n"
+"PO-Revision-Date: 2025-01-14 03:00+0000\n"
+"Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
@@ -101,7 +101,7 @@ msgid "!! Boot loader Upgrade !!"
 msgstr "!!Upgrade zavádzača!!"
 
 msgid "# = Reboot Required"
-msgstr ""
+msgstr "# = Vyžaduje sa reštart"
 
 msgid "%-H:%M"
 msgstr "%-H:%M"
@@ -1593,21 +1593,6 @@ msgid "A file from media is in use!"
 msgstr "Súbor z daného média sa práve používa!"
 
 #, python-format
-msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
-msgstr "Časovač napájania skončil a chce reštartovať %s %s. Vykonať ihneď?"
-
-msgid "A finished scheduled timer wants to restart the user interface. Do that now?"
-msgstr "Časovač napájania skončil a chce reštartovať používateľské rozhranie. Vykonať ihneď?"
-
-#, python-format
-msgid "A finished scheduled timer wants to set your %s %s to standby. Do that now?"
-msgstr "Časovač napájania skončil a chce prepnúť %s %s do pohotovostného režimu. Vykonať ihneď?"
-
-#, python-format
-msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
-msgstr "Časovač napájania skončil a chce vypnúť zariadenie %s %s. Vykonať ihneď?"
-
-#, python-format
 msgid ""
 "A finished record timer wants to set your\n"
 "%s %s to standby. Do that now?"
@@ -1623,11 +1608,26 @@ msgstr ""
 "Časovač nahrávania skončil a chce vypnúť\n"
 "%s %s. Vypnúť ihneď?"
 
+#, python-format
+msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
+msgstr "Časovač napájania skončil a chce reštartovať %s %s. Vykonať ihneď?"
+
+msgid "A finished scheduled timer wants to restart the user interface. Do that now?"
+msgstr "Časovač napájania skončil a chce reštartovať používateľské rozhranie. Vykonať ihneď?"
+
+#, python-format
+msgid "A finished scheduled timer wants to set your %s %s to standby. Do that now?"
+msgstr "Časovač napájania skončil a chce prepnúť %s %s do pohotovostného režimu. Vykonať ihneď?"
+
+#, python-format
+msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
+msgstr "Časovač napájania skončil a chce vypnúť zariadenie %s %s. Vykonať ihneď?"
+
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr "Zvýraznenie na obrázku diaľkového ovládača ukazuje, ku ktorému tlačidlu sa pomoc vzťahuje. Ak uvedenú funkciu vykonáva viac tlačidiel, zobrazí sa viac ako jedno zvýraznenie. V texte pod zoznamom sú uvedené aktívne tlačidlá a informácia o tom, či si funkcia vyžaduje dlhé stlačenie tlačidla (tlačidiel) alebo SHIFT."
 
 msgid "A new storage device has been connected:"
-msgstr ""
+msgstr "Bolo pripojené nové úložné zariadenie:"
 
 #, python-format
 msgid ""
@@ -1820,7 +1820,7 @@ msgid "Action on short POWER button press"
 msgstr "Akcia pri krátkom stlačení tlačidla VYPNÚŤ"
 
 msgid "Actions"
-msgstr ""
+msgstr "Akcie"
 
 msgid "Activate"
 msgstr "Aktivovať"
@@ -2751,7 +2751,7 @@ msgid "Automatic scan for services"
 msgstr "Automatické vyhľadávanie staníc"
 
 msgid "Automatic shares access"
-msgstr ""
+msgstr "Automatický prístup k zdieľaniu"
 
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr "Automaticky prepnúť TV do pohotovostného režimu vždy keď sa prijímač vypne alebo prepne do pohotovostného režimu."
@@ -3273,9 +3273,6 @@ msgstr "Vypáliť na médium"
 msgid "Burundi"
 msgstr "Burundi"
 
-msgid "Bus: "
-msgstr "Zbernica: "
-
 msgid "Business & Finance"
 msgstr "Biznis a financie"
 
@@ -3287,12 +3284,6 @@ msgstr "Vypršal časový limit pre chybu tlačidla"
 
 msgid "ButtonSetup"
 msgstr "Nastavenie tlačidiel"
-
-msgid "By disk UUID"
-msgstr "Podľa UUID disku"
-
-msgid "By disk label"
-msgstr "Podľa menovky disku"
 
 msgid "Bypass HDMI EDID Check"
 msgstr "Preskočiť test HDMI EDID"
@@ -3704,9 +3695,6 @@ msgstr "Nenašiel sa žiadny signál..., prerušuje sa!"
 
 msgid "Cannot move to trash can"
 msgstr "Nie je možné presunúť do koša"
-
-msgid "Capacity"
-msgstr "Kapacita"
 
 msgid "Cape Verde"
 msgstr "Kapverdy"
@@ -4261,10 +4249,10 @@ msgid "Close screen"
 msgstr "Zatvoriť obrazovku"
 
 msgid "Close the Device Manager screen"
-msgstr ""
+msgstr "Zavrieť obrazovku správcu zariadenia"
 
 msgid "Close the Device Manager screen and exit all menus"
-msgstr ""
+msgstr "Zavrieť obrazovku správcu zariadenia a ukončiť všetky menu"
 
 msgid "Close the Kexec MultiBoot Manager"
 msgstr "Zatvoriť správcu MultiBoot Kexec"
@@ -4593,9 +4581,6 @@ msgstr "Nastavte správanie kurzora v zozname pre výber kanála. Pri otvorení 
 
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "Nastavte rozlíšenie obrazovky a písmo používané pre teletext."
-
-msgid "Select the duration of inactivity before the screen saver will be displayed."
-msgstr "Nastavte čas v minútach pre šetrič obrazovky."
 
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
 msgstr "Nastavte čas v minútach, po ktorom sa aktivuje časovač pre šetrenie energie."
@@ -5325,7 +5310,7 @@ msgid "Custom"
 msgstr "Používateľské"
 
 msgid "Custom mountpoint"
-msgstr ""
+msgstr "Používateľský bod pripojenia"
 
 msgid "Custom skip time for '1'/'3' buttons"
 msgstr "Vlastný čas skoku pre tlačidlá '1'/'3'"
@@ -5358,7 +5343,7 @@ msgid "Cutlist editor..."
 msgstr "Editor strihov..."
 
 msgid "Cyan"
-msgstr ""
+msgstr "Azúrová"
 
 msgid "Cycle PiP(zap)"
 msgstr "Cyklovať obraz v obraze (prep.)"
@@ -5443,7 +5428,7 @@ msgid "DVB subtitle black transparency"
 msgstr "Priehľadnosť pozadia DVD titulkov"
 
 msgid "DVB subtitles color"
-msgstr ""
+msgstr "Farba DVB titulkov"
 
 msgid "DVB-C"
 msgstr "DVB-C"
@@ -5783,10 +5768,10 @@ msgid "Define the DNS suffix."
 msgstr "Definujte príponu DNS."
 
 msgid "Define the custom mountpoint for the device."
-msgstr ""
+msgstr "Definovať používateľský bod pripojenia pre toto zariadenie."
 
 msgid "Define the file system mount options."
-msgstr ""
+msgstr "Definovať možnosti pripojenia systému súborov."
 
 msgid "Defined / Active"
 msgstr "Definované/aktívne"
@@ -6102,13 +6087,13 @@ msgid "Development Packages"
 msgstr "Vývojové balíčky"
 
 msgid "Device"
-msgstr ""
+msgstr "Zariadenie"
 
 msgid "Device Manager"
 msgstr "Správca zariadení"
 
 msgid "Device Manager Actions"
-msgstr ""
+msgstr "Akcie správcu zariadenia"
 
 msgid "Device Settings"
 msgstr "Nastavenie zariadenia"
@@ -7083,7 +7068,7 @@ msgid "Enable auto fast scan for %s"
 msgstr "Povoliť automatické rýchle vyhľadávanie (Fast Scan) pre %s"
 
 msgid "Enable automatic shares"
-msgstr ""
+msgstr "Povoliť automatické zdieľania"
 
 msgid "Enable autorefresh templates."
 msgstr "Povoliť automatické obnovovanie šablón."
@@ -8295,9 +8280,6 @@ msgstr "Správca súborov: akcie pre textový editor"
 msgid "File Commander settings"
 msgstr "Správca súborov: nastavenia"
 
-msgid "File system"
-msgstr ""
-
 msgid "File System Check"
 msgstr "Kontrola súborového systému"
 
@@ -8314,6 +8296,9 @@ msgstr ""
 "Súbor oscam.conf sa nanašiel.\n"
 "Prosím, zadajte meno používateľa/heslo ručne."
 
+msgid "File system"
+msgstr "Systém súborov"
+
 msgid "File transfer was canceled by user!"
 msgstr "Prenos súboru bol zrušený používateľom!"
 
@@ -8325,9 +8310,6 @@ msgstr "Názov súboru"
 
 msgid "Files/folders to exclude from backup"
 msgstr "Súbory/priečinky vylúčené zo zálohy"
-
-msgid "Filesystem"
-msgstr ""
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr "Doplniť EPG pre stanicu z vysielaného EPG, ak IceTV EPG pre túto stanicu neobsahuje"
@@ -8532,7 +8514,7 @@ msgid "Format Storage Device"
 msgstr "Formátovať úložné zariadenie"
 
 msgid "Formatting storage device..."
-msgstr ""
+msgstr "Formátovanie úložného zariadenia..."
 
 msgid "Forward Error Correction (FEC)"
 msgstr "Dopredná oprava chyby (FEC)"
@@ -8872,7 +8854,7 @@ msgid "Grab"
 msgstr "Zachytiť"
 
 msgid "Graphical DVB subtitles will be displayed in the selected color, instead of the original colors."
-msgstr ""
+msgstr "Grafické DVB titulky sa zobrazia vybranou farbou, nie v pôvodných farbách."
 
 msgid "Graphical EPG"
 msgstr "Grafický EPG"
@@ -10860,7 +10842,7 @@ msgid "Madagascar"
 msgstr "Madagaskar"
 
 msgid "Magenta"
-msgstr ""
+msgstr "Purpurová"
 
 msgid "Magic"
 msgstr "Magic"
@@ -11318,7 +11300,7 @@ msgid "Mount Menu Actions"
 msgstr "Akcie pre menu pripájania (mount)"
 
 msgid "Mount Point"
-msgstr ""
+msgstr "Bod pripojenia"
 
 msgid "Mount Settings"
 msgstr "Nastavenia pripojení"
@@ -11980,7 +11962,7 @@ msgid "New Setting DXAndy "
 msgstr "Nový setting DXAndy "
 
 msgid "New Storage Device"
-msgstr ""
+msgstr "Nové úložné zariadenie"
 
 msgid "New Zealand"
 msgstr "Nový Zéland"
@@ -12075,6 +12057,9 @@ msgstr "Pevný disk sa nenašiel alebo nie je inicializovaný!"
 
 msgid "No Internet connection"
 msgstr "Žiadne pripojenie na internet"
+
+msgid "No Name"
+msgstr "Bez názvu"
 
 msgid ""
 "No Settings loaded !!\n"
@@ -12779,7 +12764,7 @@ msgid "Optional parameter"
 msgstr "Voliteľný parameter"
 
 msgid "Options"
-msgstr ""
+msgstr "Možnosti"
 
 msgid "Orbital position"
 msgstr "Orbitálna pozícia"
@@ -12797,7 +12782,7 @@ msgid "Original Network ID (ONID)"
 msgstr "Pôvodné ID siete (ONID)"
 
 msgid "Original language"
-msgstr "pôvodný jazyk"
+msgstr "Pôvodný jazyk"
 
 msgid "Oriya"
 msgstr "urijčina"
@@ -13038,7 +13023,7 @@ msgid "Partition"
 msgstr "Partícia"
 
 msgid "Partition Type"
-msgstr ""
+msgstr "Typ partície"
 
 msgid "Partitions"
 msgstr "Partície"
@@ -13068,7 +13053,7 @@ msgid "Password changed."
 msgstr "Heslo zmenené."
 
 msgid "Path"
-msgstr ""
+msgstr "Cesta"
 
 #, python-format
 msgid "Path '%s' missing!"
@@ -13117,11 +13102,11 @@ msgid "Permanently delete all recordings in the trash can?"
 msgstr "Natrvalo vymazať všetky nahrávky z koša?"
 
 msgid "Permanently ignore this device"
-msgstr ""
+msgstr "Toto zariadenie permanentne ignorovať"
 
 #, python-format
 msgid "Permanently mount as %s"
-msgstr ""
+msgstr "Natrvalo pripojiť ako %s"
 
 msgid "Permanently remove all deleted items"
 msgstr "Natrvalo odstrániť všetky vymazané položky"
@@ -13363,6 +13348,9 @@ msgstr "Prosím, zadajte nový názov priečinka:"
 
 msgid "Please enter the new file name:"
 msgstr "Prosím, zadajte nový názov súboru:"
+
+msgid "Please enter the new name:"
+msgstr "Prosím, zadajte nové meno:"
 
 msgid "Please enter the new tag:"
 msgstr "Prosím, zadajte nový tag:"
@@ -13657,7 +13645,7 @@ msgid "Portuguese"
 msgstr "portugalčina"
 
 msgid "Position"
-msgstr ""
+msgstr "Pozícia"
 
 msgid "Position of finished Timers in Timerlist"
 msgstr "Pozícia ukončených časovačov v zozname"
@@ -14279,13 +14267,13 @@ msgid "Re-enter new PIN"
 msgstr "Znovu zadajte nový kód PIN"
 
 msgid "Read Only"
-msgstr ""
+msgstr "Len na čítanie"
 
 msgid "Read Userdata from oscam.conf"
 msgstr "Načítať používateľské dáta z oscam.conf"
 
 msgid "Read/Write"
-msgstr ""
+msgstr "Čítanie/zápis"
 
 msgid "Reader"
 msgstr "Čítačka"
@@ -14356,7 +14344,7 @@ msgstr "Reštartovať"
 
 #, python-format
 msgid "Reboot %s %s now?"
-msgstr ""
+msgstr "Reštartovať %s %s teraz?"
 
 msgid "Rec"
 msgstr "Nahrávanie"
@@ -15325,7 +15313,7 @@ msgid "Samba Server"
 msgstr "Server Samba"
 
 msgid "Samba Settings"
-msgstr ""
+msgstr "Nastavenia Samba"
 
 msgid "Same as in active"
 msgstr "Rovnako ako pri zapnutí"
@@ -15577,7 +15565,7 @@ msgid "Scheduled save of epg.dat"
 msgstr "Plánované uloženie súboru epg.dat"
 
 msgid "Scheduler"
-msgstr ""
+msgstr "Plánovač"
 
 msgid "Scheduler Actions"
 msgstr "Akcie časovača napájania"
@@ -15586,7 +15574,7 @@ msgid "Scheduler Overview"
 msgstr "Prehľad časovačov napájania"
 
 msgid "Scheduler Settings"
-msgstr ""
+msgstr "Nastavenia plánovača"
 
 msgid "Scheduler Standby"
 msgstr "Časovač napájania – pohotovostný režim"
@@ -15608,6 +15596,9 @@ msgstr "Veda a technika"
 
 msgid "Scope"
 msgstr "Rozsah"
+
+msgid "Screen saver movement"
+msgstr "Pohyb šetriča obrazovky"
 
 msgid "Script Manager"
 msgstr "Správca skriptov"
@@ -15768,20 +15759,20 @@ msgstr "Ak sa má použiť prispôsobenie hlasitosti na zvukové stopy Dolby, vy
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Ak používate multiprepínač, ktorý vyžaduje príkazový signál DiSEqC Port-A, vyberte možnosť 'Áno'. Pre všetky ostatné nastavenia vyberte 'Nie'."
 
-msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
-msgstr "Ak chcete prebudiť TV pri spúšťaní časovača pre 'Prebudenie', vyberte možnosť 'Áno'."
-
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
 msgstr "Ak chcete prebudiť TV pri spúšťaní nahrávacieho časovača pre 'Prepnutie a nahratie', vyberte možnosť 'Áno'."
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
 msgstr "Ak chcete prebudiť TV pri spúšťaní nahrávacieho časovača pre 'Prepnutie', vyberte možnosť 'Áno'."
 
+msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
+msgstr "Ak chcete prebudiť TV pri spúšťaní časovača pre 'Prebudenie', vyberte možnosť 'Áno'."
+
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Ak je nastavené na 'Áno', pri pozastavení prehrávania médií zostane infolišta zobrazená bez časového limitu."
 
 msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
-msgstr ""
+msgstr "Vyberte 'Áno', ak chcete povoliť automatické exportovanie každého zisteného úložného zariadenia ako zdieľania Samba."
 
 msgid "Select 'Yes' to allow use of the seek bar to jump to a selected point within the event."
 msgstr "Ak je nastavené 'Áno', bude možné použitie vyhľadávacieho panela na skok na vybraný bod v rámci udalosti."
@@ -15990,9 +15981,6 @@ msgstr "Vybrať ďalšie súbory na zálohovanie"
 msgid "Select AutoCam default Softcam"
 msgstr "Východiskový softcam pre AutoCam"
 
-msgid "Select Backup Location"
-msgstr "Vyberte umiestnenie zálohy"
-
 msgid "Select Bookmark"
 msgstr "Vybrať záložku"
 
@@ -16091,10 +16079,10 @@ msgid "Select a network adapter"
 msgstr "Vyberte sieťový adaptér"
 
 msgid "Select a permanent mount point for all devices"
-msgstr ""
+msgstr "Vyberte trvalý bod pripojenia pre všetky zariadenia"
 
 msgid "Select a permanent mount point for the current device"
-msgstr ""
+msgstr "Vyberte trvalý bod pripojenia pre aktuálne zariadenie"
 
 msgid "Select a repository commit log to view:"
 msgstr "Vyberte denník o odovzdaní do repozitára, ktorý sa má zobraziť:"
@@ -16128,7 +16116,7 @@ msgid "Select all related files"
 msgstr "Vyberte všetky súvisiace súbory"
 
 msgid "Select an action for the current device"
-msgstr ""
+msgstr "Vyberte akciu pre aktuálne zariadenie"
 
 msgid "Select an action to perform when the task has completed."
 msgstr "Vyberte akciu, ktorá sa vykoná po dokončení úlohy."
@@ -16159,6 +16147,9 @@ msgstr "Výber súborov, ktoré sa nemajú zálohovať"
 
 msgid "Select files/folders to backup"
 msgstr "Vyberte súbory/priečinky na zálohovanie"
+
+msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
+msgstr "Vyberte, ako dlho zostane obrázok šetriča na rovnakom mieste predtým, než sa presunie."
 
 msgid "Select how long to display status messages."
 msgstr "Vyberte trvanie zobrazení stavových hlásení."
@@ -16322,7 +16313,7 @@ msgid "Select the Yes / True response"
 msgstr "Vyberte odozvu Áno/Pravda"
 
 msgid "Select the access mode for the automatically exported samba shares."
-msgstr ""
+msgstr "Vyberte režim prístupu pre automaticky exportované zdieľania Samba."
 
 #, python-format
 msgid "Select the action for '%s'"
@@ -16415,12 +16406,15 @@ msgstr "Vyberte možnosti zobrazenia pre jednotlivé položky menu. Ak sú dostu
 msgid "Select the display sequence of previously visited services."
 msgstr "Vyberte poradie zobrazenia predtým navštívených služieb."
 
+msgid "Select the duration of inactivity before the screen saver will be displayed."
+msgstr "Nastavte dobu neaktivity pred tým, než sa zobrazí šetrič obrazovky."
+
 #, python-format
 msgid "Select the file sort order for the %s column:"
 msgstr "Vyberte poradie zoraďovania súborov pre stĺpec %s:"
 
 msgid "Select the file system for the device."
-msgstr ""
+msgstr "Vyberte systém súborov pre toto zariadenie."
 
 msgid "Select the first item in list or move to the start of text"
 msgstr "Vyberte prvú položku v zozname alebo sa presuňte na začiatok textu"
@@ -16477,10 +16471,10 @@ msgid "Select the model number of your Unicable device. If the model number is n
 msgstr "Vyberte číslo modelu vášho zariadenia Unicable. Ak nie je číslo modelu uvedené v zozname, nastavte 'SCR' na voľbu 'definované používateľom' a zadajte parametre zariadenia manuálne podľa jeho špecifikácií."
 
 msgid "Select the mount points"
-msgstr ""
+msgstr "Vyberte body pripojenia"
 
 msgid "Select the mountpoint for the device."
-msgstr ""
+msgstr "Vyberte bod pripojenia pre zariadenie."
 
 msgid "Select the movie path"
 msgstr "Vyberte cestu k filmu"
@@ -16499,7 +16493,7 @@ msgstr ""
 
 #, python-format
 msgid "Select the new mount point for: '%s'"
-msgstr ""
+msgstr "Vyberte nový bod pripojenia pre: '%s'"
 
 msgid "Select the next item in list or move the cursor right"
 msgstr "Vybrať ďalšiu položku v zozname alebo presunúť kurzor doprava"
@@ -16707,9 +16701,6 @@ msgstr "Vyberte vášho poskytovateľa ATSC."
 
 msgid "Select your Language for Audio/Subtitles"
 msgstr "Výber jazyka zvuku/titulkov"
-
-msgid "Select your backup device."
-msgstr "Vyberte záložné zariadenie."
 
 msgid "Select your country. If not available select 'All'."
 msgstr "Vyberte svoju krajinu. Ak nie je dostupná, vyberte 'všetky'."
@@ -17209,9 +17200,6 @@ msgstr "Nastavenie režimu zvuku"
 
 msgid "Setup Enigma2"
 msgstr "Nastavenie systému Enigma2"
-
-msgid "Setup Harddisk"
-msgstr "Nastavenie pevného disku"
 
 msgid "Setup Inadyn"
 msgstr "Nastavenie Inadyn"
@@ -18059,7 +18047,7 @@ msgid "Show the OSCam information screen"
 msgstr "Zobraziť obrazovku informácií OScamu"
 
 msgid "Show the Scheduler"
-msgstr ""
+msgstr "Zobraziť plánovač"
 
 msgid "Show the SleepTimer"
 msgstr "Zobraziť časovač uspania"
@@ -19185,7 +19173,7 @@ msgid "Swahili"
 msgstr "svahilčina"
 
 msgid "Swap"
-msgstr ""
+msgstr "Swap"
 
 msgid "Swap File Manager"
 msgstr "Správca swap súboru"
@@ -19574,7 +19562,7 @@ msgstr "Dočasný priečinok (%s)"
 
 #, python-format
 msgid "Temporarily mount as %s"
-msgstr ""
+msgstr "Dočasne pripojiť ako %s"
 
 msgid "Temporary directory"
 msgstr "Dočasný priečinok"
@@ -20682,7 +20670,7 @@ msgid "Toggle a cut mark at the current position"
 msgstr "Prepnúť strihovú značku na aktuálnej pozícii"
 
 msgid "Toggle a temporary mount for the current device"
-msgstr ""
+msgstr "Prepnúť dočasné pripojenie pre aktuálne zariadenie"
 
 msgid "Toggle all related files"
 msgstr "Prepnúť všetky súvisiace súbory"
@@ -21187,7 +21175,7 @@ msgid "Unknown"
 msgstr "Neznáme"
 
 msgid "Unknown Devices"
-msgstr ""
+msgstr "Neznáme zariadenia"
 
 msgid ""
 "Unknown Error creating Skin.\n"
@@ -22126,9 +22114,6 @@ msgstr "Prebieha vyhľadávanie. Čakajte, prosím…"
 msgid "Waiting"
 msgstr "Čaká sa"
 
-msgid "Waiting for mount"
-msgstr "Čaká sa na pripojenie"
-
 msgid "Waiting for partition"
 msgstr "Čaká sa na partíciu"
 
@@ -22533,10 +22518,10 @@ msgid "Wipe"
 msgstr "Vymazať"
 
 msgid "Wipe Storage Device"
-msgstr ""
+msgstr "Vymazať úložné zariadenie"
 
 msgid "Wiping storage device..."
-msgstr ""
+msgstr "Úložné zariadenie sa vymazáva..."
 
 msgid "Wireless LAN"
 msgstr "Bezdrôtová LAN"
@@ -24102,6 +24087,30 @@ msgstr "áno (zachovať zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Bus: "
+#~ msgstr "Zbernica: "
+
+#~ msgid "By disk UUID"
+#~ msgstr "Podľa UUID disku"
+
+#~ msgid "By disk label"
+#~ msgstr "Podľa menovky disku"
+
+#~ msgid "Capacity"
+#~ msgstr "Kapacita"
+
+#~ msgid "Select Backup Location"
+#~ msgstr "Vyberte umiestnenie zálohy"
+
+#~ msgid "Select your backup device."
+#~ msgstr "Vyberte záložné zariadenie."
+
+#~ msgid "Setup Harddisk"
+#~ msgstr "Nastavenie pevného disku"
+
+#~ msgid "Waiting for mount"
+#~ msgstr "Čaká sa na pripojenie"
 
 #~ msgid "PowerTimer"
 #~ msgstr "Časovač napájania"

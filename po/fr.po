@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-31 15:16+0000\n"
+"POT-Creation-Date: 2025-01-07 09:29+0000\n"
 "PO-Revision-Date: 2024-12-24 18:34+0000\n"
 "Last-Translator: Mathieu13006 <llapaca@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fr/>\n"
@@ -1558,6 +1558,22 @@ msgid "A file from media is in use!"
 msgstr "Un fichier du média est en cours d'utilisation !"
 
 #, python-format
+msgid ""
+"A finished record timer wants to set your\n"
+"%s %s to standby. Do that now?"
+msgstr ""
+"Un enregistrement programmé et terminé veut passer votre\n"
+"%s %s en veille. Procéder maintenant?"
+
+#, python-format
+msgid ""
+"A finished record timer wants to shut down\n"
+"your %s %s. Shutdown now?"
+msgstr ""
+"Un enregistrement programmé et terminé veut\n"
+"éteindre votre %s %s. Eteindre maintenant?"
+
+#, python-format
 msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "Un timer d'alimentation terminé désire redémarrer votre %s %s.\n"
@@ -1579,22 +1595,6 @@ msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "Un timer d'alimentation terminé désire éteindre votre %s %s.\n"
 "Êtes-vous d'accord?"
-
-#, python-format
-msgid ""
-"A finished record timer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-"Un enregistrement programmé et terminé veut passer votre\n"
-"%s %s en veille. Procéder maintenant?"
-
-#, python-format
-msgid ""
-"A finished record timer wants to shut down\n"
-"your %s %s. Shutdown now?"
-msgstr ""
-"Un enregistrement programmé et terminé veut\n"
-"éteindre votre %s %s. Eteindre maintenant?"
 
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr "Une surbrillance sur l'image de la télécommande montre à quel bouton l'aide fait référence. Si plus d'un bouton effectue la fonction indiquée, plus d'un point culminant sera affiché. Le texte sous la liste répertorie les boutons actifs et indique si la fonction nécessite un appui long ou SHIFT du ou des boutons."
@@ -3246,9 +3246,6 @@ msgstr "Graver sur média"
 msgid "Burundi"
 msgstr "Burundi"
 
-msgid "Bus: "
-msgstr "Bus : "
-
 msgid "Business & Finance"
 msgstr "Affaires et finances"
 
@@ -3260,12 +3257,6 @@ msgstr ""
 
 msgid "ButtonSetup"
 msgstr "Paramètres des touches"
-
-msgid "By disk UUID"
-msgstr ""
-
-msgid "By disk label"
-msgstr ""
 
 msgid "Bypass HDMI EDID Check"
 msgstr "Contourner la vérification du HDMI EDID"
@@ -3677,9 +3668,6 @@ msgstr "Impossible de trouver un signal ..., abandon !"
 
 msgid "Cannot move to trash can"
 msgstr "Impossible de déplacer dans la corbeille"
-
-msgid "Capacity"
-msgstr "Capacité"
 
 msgid "Cape Verde"
 msgstr "Cap-Vert"
@@ -4563,9 +4551,6 @@ msgstr "Configure le comportement du curseur dans la liste de sélection des cha
 
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "Configure la résolution d'écran et la police de caractères utilisée pour le télétexte."
-
-msgid "Select the duration of inactivity before the screen saver will be displayed."
-msgstr "Configure la durée en minutes de l'économiseur d'écran."
 
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
 msgstr ""
@@ -8254,9 +8239,6 @@ msgstr ""
 msgid "File Commander settings"
 msgstr "Paramètres de File Commander"
 
-msgid "File system"
-msgstr ""
-
 msgid "File System Check"
 msgstr "Vérification du système de fichiers"
 
@@ -8273,6 +8255,9 @@ msgstr ""
 "Fichier oscam.conf introuvable.\n"
 "Merci d'entrer le nom d'utilisateur et le mot de passe manuellement."
 
+msgid "File system"
+msgstr ""
+
 msgid "File transfer was canceled by user!"
 msgstr ""
 
@@ -8284,9 +8269,6 @@ msgstr "Nom de fichier"
 
 msgid "Files/folders to exclude from backup"
 msgstr "Fichiers/répertoires à exclure de la sauvegarde"
-
-msgid "Filesystem"
-msgstr ""
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr "Remplir les EPG des chaînes à partir de l'EPG de diffusion lorsqu'il n'existe pas d'EPG IceTV pour la chaîne"
@@ -12034,6 +12016,9 @@ msgstr "Aucun disque dur trouvé ou disque dur non initialisé !"
 msgid "No Internet connection"
 msgstr ""
 
+msgid "No Name"
+msgstr ""
+
 msgid ""
 "No Settings loaded !!\n"
 "\n"
@@ -13323,6 +13308,9 @@ msgid "Please enter the new directory name:"
 msgstr ""
 
 msgid "Please enter the new file name:"
+msgstr ""
+
+msgid "Please enter the new name:"
 msgstr ""
 
 msgid "Please enter the new tag:"
@@ -15565,6 +15553,9 @@ msgstr "Sciences et technologie"
 msgid "Scope"
 msgstr ""
 
+msgid "Screen saver movement"
+msgstr ""
+
 msgid "Script Manager"
 msgstr "Gestionnaire de scénarios"
 
@@ -15724,13 +15715,13 @@ msgstr ""
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Choisir ‘oui’ uniquement si vous utilisez un multiswitch qui requière un signal de commande DiSEqC Port-A. Pour toutes les autres configuration choisir ‘non’."
 
-msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
-msgstr ""
-
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
 msgstr ""
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
 msgstr ""
 
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
@@ -15946,9 +15937,6 @@ msgstr "Choisir les fichiers additionnels à sauvegarder"
 msgid "Select AutoCam default Softcam"
 msgstr ""
 
-msgid "Select Backup Location"
-msgstr "Sélectionner l'emplacement de sauvegarde"
-
 msgid "Select Bookmark"
 msgstr ""
 
@@ -16115,6 +16103,9 @@ msgstr "Choisir les fichiers à exclure de la sauvegarde"
 
 msgid "Select files/folders to backup"
 msgstr "Sélectionner les fichiers/dossiers pour sauvegarde"
+
+msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
+msgstr ""
 
 msgid "Select how long to display status messages."
 msgstr ""
@@ -16370,6 +16361,9 @@ msgstr ""
 
 msgid "Select the display sequence of previously visited services."
 msgstr ""
+
+msgid "Select the duration of inactivity before the screen saver will be displayed."
+msgstr "Configure la durée en minutes de l'économiseur d'écran."
 
 #, python-format
 msgid "Select the file sort order for the %s column:"
@@ -16657,9 +16651,6 @@ msgstr "Sélectionnez votre fournisseur ATSC."
 
 msgid "Select your Language for Audio/Subtitles"
 msgstr "Choisir votre langue pour l'audio/les sous-titres"
-
-msgid "Select your backup device."
-msgstr ""
 
 msgid "Select your country. If not available select 'All'."
 msgstr "Sélectionnez votre pays. Si pas disponible choisir ‘tous’."
@@ -17151,9 +17142,6 @@ msgstr "Configurer le mode audio"
 
 msgid "Setup Enigma2"
 msgstr "Configurer Enigma2"
-
-msgid "Setup Harddisk"
-msgstr "Configurer le disque dur"
 
 msgid "Setup Inadyn"
 msgstr "Configurer Inadyn"
@@ -22022,9 +22010,6 @@ msgstr "Veuillez patienter pendant l'analyse en cours…"
 msgid "Waiting"
 msgstr "Attendez"
 
-msgid "Waiting for mount"
-msgstr "Attendre pour monter"
-
 msgid "Waiting for partition"
 msgstr "Attendre pour partitionner"
 
@@ -23994,6 +23979,21 @@ msgstr "Oui (garder feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Bus: "
+#~ msgstr "Bus : "
+
+#~ msgid "Capacity"
+#~ msgstr "Capacité"
+
+#~ msgid "Select Backup Location"
+#~ msgstr "Sélectionner l'emplacement de sauvegarde"
+
+#~ msgid "Setup Harddisk"
+#~ msgstr "Configurer le disque dur"
+
+#~ msgid "Waiting for mount"
+#~ msgstr "Attendre pour monter"
 
 #~ msgid "PowerTimer"
 #~ msgstr "Programmations d'alimentation"

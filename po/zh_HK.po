@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-31 15:16+0000\n"
+"POT-Creation-Date: 2025-01-07 09:29+0000\n"
 "PO-Revision-Date: 2024-07-23 13:09+0000\n"
 "Last-Translator: Ricky From Hong Kong <lamricky11@hotmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -1582,6 +1582,22 @@ msgid "A file from media is in use!"
 msgstr ""
 
 #, fuzzy, python-format
+msgid ""
+"A finished record timer wants to set your\n"
+"%s %s to standby. Do that now?"
+msgstr ""
+"定時事件完成時您的Dreambox即將待機.\n"
+"確定嗎?"
+
+#, fuzzy, python-format
+msgid ""
+"A finished record timer wants to shut down\n"
+"your %s %s. Shutdown now?"
+msgstr ""
+"定時事件完成時您的Dreambox即將關機.\n"
+"確定嗎?"
+
+#, fuzzy, python-format
 msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "定時事件完成時您的Dreambox即將待機.\n"
@@ -1601,22 +1617,6 @@ msgstr ""
 
 #, fuzzy, python-format
 msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
-msgstr ""
-"定時事件完成時您的Dreambox即將關機.\n"
-"確定嗎?"
-
-#, fuzzy, python-format
-msgid ""
-"A finished record timer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-"定時事件完成時您的Dreambox即將待機.\n"
-"確定嗎?"
-
-#, fuzzy, python-format
-msgid ""
-"A finished record timer wants to shut down\n"
-"your %s %s. Shutdown now?"
 msgstr ""
 "定時事件完成時您的Dreambox即將關機.\n"
 "確定嗎?"
@@ -3371,9 +3371,6 @@ msgstr "燒錄到DVD"
 msgid "Burundi"
 msgstr ""
 
-msgid "Bus: "
-msgstr "匯流排:"
-
 msgid "Business & Finance"
 msgstr ""
 
@@ -3387,12 +3384,6 @@ msgstr ""
 #, fuzzy
 msgid "ButtonSetup"
 msgstr "設定"
-
-msgid "By disk UUID"
-msgstr ""
-
-msgid "By disk label"
-msgstr ""
 
 msgid "Bypass HDMI EDID Check"
 msgstr ""
@@ -3806,9 +3797,6 @@ msgid "Cannot find any signal ..., aborting !"
 msgstr ""
 
 msgid "Cannot move to trash can"
-msgstr ""
-
-msgid "Capacity"
 msgstr ""
 
 msgid "Cape Verde"
@@ -4734,9 +4722,6 @@ msgid "Configure the cursor behavior in the channel selection list. When opening
 msgstr ""
 
 msgid "Configure the display resolution and the font used for teletext."
-msgstr ""
-
-msgid "Select the duration of inactivity before the screen saver will be displayed."
 msgstr ""
 
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
@@ -8524,9 +8509,6 @@ msgstr ""
 msgid "File Commander settings"
 msgstr "Softcam 設定"
 
-msgid "File system"
-msgstr ""
-
 msgid "File System Check"
 msgstr "檔系統檢視"
 
@@ -8541,6 +8523,9 @@ msgid ""
 "Please enter username/password manually."
 msgstr ""
 
+msgid "File system"
+msgstr ""
+
 msgid "File transfer was canceled by user!"
 msgstr ""
 
@@ -8553,9 +8538,6 @@ msgstr "檔案名"
 #, fuzzy
 msgid "Files/folders to exclude from backup"
 msgstr "選擇要備份的檔/目錄"
-
-msgid "Filesystem"
-msgstr ""
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr ""
@@ -12550,6 +12532,9 @@ msgstr "未找到硬碟或硬碟未初始化！"
 msgid "No Internet connection"
 msgstr ""
 
+msgid "No Name"
+msgstr ""
+
 msgid ""
 "No Settings loaded !!\n"
 "\n"
@@ -13908,6 +13893,9 @@ msgid "Please enter the new directory name:"
 msgstr ""
 
 msgid "Please enter the new file name:"
+msgstr ""
+
+msgid "Please enter the new name:"
 msgstr ""
 
 msgid "Please enter the new tag:"
@@ -16296,6 +16284,9 @@ msgstr "Science & Technology"
 msgid "Scope"
 msgstr ""
 
+msgid "Screen saver movement"
+msgstr ""
+
 msgid "Script Manager"
 msgstr ""
 
@@ -16468,13 +16459,13 @@ msgstr ""
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr ""
 
-msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
-msgstr ""
-
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
 msgstr ""
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
 msgstr ""
 
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
@@ -16691,9 +16682,6 @@ msgstr "選擇音軌"
 msgid "Select AutoCam default Softcam"
 msgstr ""
 
-msgid "Select Backup Location"
-msgstr ""
-
 msgid "Select Bookmark"
 msgstr ""
 
@@ -16872,6 +16860,9 @@ msgstr "選擇要備份的檔/目錄"
 
 msgid "Select files/folders to backup"
 msgstr "選擇要備份的檔/目錄"
+
+msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
+msgstr ""
 
 msgid "Select how long to display status messages."
 msgstr ""
@@ -17130,6 +17121,9 @@ msgid "Select the display options for each menu entry item. If menu numbers are 
 msgstr ""
 
 msgid "Select the display sequence of previously visited services."
+msgstr ""
+
+msgid "Select the duration of inactivity before the screen saver will be displayed."
 msgstr ""
 
 #, python-format
@@ -17423,9 +17417,6 @@ msgid "Select your ATSC provider."
 msgstr "選擇您的選擇."
 
 msgid "Select your Language for Audio/Subtitles"
-msgstr ""
-
-msgid "Select your backup device."
 msgstr ""
 
 msgid "Select your country. If not available select 'All'."
@@ -17945,10 +17936,6 @@ msgstr "選擇音頻模式"
 #, fuzzy
 msgid "Setup Enigma2"
 msgstr "重啟Enigma2"
-
-#, fuzzy
-msgid "Setup Harddisk"
-msgstr "硬碟"
 
 #, fuzzy
 msgid "Setup Inadyn"
@@ -23063,9 +23050,6 @@ msgstr "正在掃描...請稍候..."
 msgid "Waiting"
 msgstr "等待"
 
-msgid "Waiting for mount"
-msgstr ""
-
 msgid "Waiting for partition"
 msgstr ""
 
@@ -25067,6 +25051,13 @@ msgstr "是 (保留)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Bus: "
+#~ msgstr "匯流排:"
+
+#, fuzzy
+#~ msgid "Setup Harddisk"
+#~ msgstr "硬碟"
 
 #, fuzzy
 #~ msgid "PowerTimer"

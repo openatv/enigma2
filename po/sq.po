@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-31 15:16+0000\n"
+"POT-Creation-Date: 2025-01-07 09:29+0000\n"
 "PO-Revision-Date: 2023-12-11 00:50+0000\n"
 "Last-Translator: W L <wl@mailhole.de>\n"
 "Language-Team: Albanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sq/>\n"
@@ -1558,6 +1558,22 @@ msgid "A file from media is in use!"
 msgstr "Një skedar nga media është në përdorim!"
 
 #, python-format
+msgid ""
+"A finished record timer wants to set your\n"
+"%s %s to standby. Do that now?"
+msgstr ""
+"Një kohëmatës i përfunduar rekord dëshiron të vendosë tuajin\n"
+"%s %s në gatishmëri. Bëje atë tani?"
+
+#, python-format
+msgid ""
+"A finished record timer wants to shut down\n"
+"your %s %s. Shutdown now?"
+msgstr ""
+"Një kohëmatës i përfunduar rekord dëshiron të fiket\n"
+"%s %s juaj. Mbyllje tani?"
+
+#, python-format
 msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "Një kohëmatës i përfunduar i rrymës dëshiron të rindezë %s %s tuaj.\n"
@@ -1579,22 +1595,6 @@ msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "Një kohëmatës i përfunduar i rrymës dëshiron të fikur %s %s tuaj.\n"
 "Bëje atë tani?"
-
-#, python-format
-msgid ""
-"A finished record timer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-"Një kohëmatës i përfunduar rekord dëshiron të vendosë tuajin\n"
-"%s %s në gatishmëri. Bëje atë tani?"
-
-#, python-format
-msgid ""
-"A finished record timer wants to shut down\n"
-"your %s %s. Shutdown now?"
-msgstr ""
-"Një kohëmatës i përfunduar rekord dëshiron të fiket\n"
-"%s %s juaj. Mbyllje tani?"
 
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr "Një pikë kulmore në figurën e telekomandës tregon se cilit buton i referohet ndihma. Nëse më shumë se një buton kryen funksionin e treguar, do të shfaqen më shumë se një pikë kryesore. Teksti poshtë listës liston butonat aktiv dhe nëse funksioni kërkon një shtypje të gjatë ose SHIFT të butonit(s)."
@@ -3246,9 +3246,6 @@ msgstr "Digjni deri në mes"
 msgid "Burundi"
 msgstr "Burundi"
 
-msgid "Bus: "
-msgstr "Autobusi: "
-
 msgid "Business & Finance"
 msgstr "Biznes & Financë"
 
@@ -3260,12 +3257,6 @@ msgstr ""
 
 msgid "ButtonSetup"
 msgstr "Rregullimi i butonit"
-
-msgid "By disk UUID"
-msgstr ""
-
-msgid "By disk label"
-msgstr ""
 
 msgid "Bypass HDMI EDID Check"
 msgstr "Bypass HDMI EDID Check"
@@ -3677,9 +3668,6 @@ msgstr "Nuk mund të gjej asnjë sinjal ..., aborti!"
 
 msgid "Cannot move to trash can"
 msgstr "Nuk mund të zhvendoset në koshin e plehrave"
-
-msgid "Capacity"
-msgstr "Kapaciteti"
 
 msgid "Cape Verde"
 msgstr "Kepi Verde"
@@ -4558,9 +4546,6 @@ msgstr "Konfiguro sjelljen e kursorit në listën e përzgjedhjes së kanalit. K
 
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "Konfiguro rezolucionin e ekranit dhe fontin e përdorur për teletekstin."
-
-msgid "Select the duration of inactivity before the screen saver will be displayed."
-msgstr "Konfiguro kohëzgjatjen në minuta për mbrojtësin e ekranit."
 
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
 msgstr "Konfiguro kohëzgjatjen, në minuta, përpara se të aktivizohet kohëmatësi i kursimit të energjisë."
@@ -8245,9 +8230,6 @@ msgstr ""
 msgid "File Commander settings"
 msgstr "Cilësimet e komandantit të skedarit"
 
-msgid "File system"
-msgstr ""
-
 msgid "File System Check"
 msgstr "Kontrolli i sistemit të skedarëve"
 
@@ -8264,6 +8246,9 @@ msgstr ""
 "Skedari oscam.conf nuk u gjet.\n"
 "Ju lutemi shkruani me dorë emrin e përdoruesit/fjalëkalimin."
 
+msgid "File system"
+msgstr ""
+
 msgid "File transfer was canceled by user!"
 msgstr ""
 
@@ -8275,9 +8260,6 @@ msgstr "Emri i file"
 
 msgid "Files/folders to exclude from backup"
 msgstr "Skedarët/dosjet për të përjashtuar nga rezervimi"
-
-msgid "Filesystem"
-msgstr ""
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr "Plotësoni EPG-të e kanalit nga EPG e transmetuar ku nuk ka IceTV EPG për kanalin"
@@ -12019,6 +12001,9 @@ msgstr ""
 msgid "No Internet connection"
 msgstr ""
 
+msgid "No Name"
+msgstr ""
+
 msgid ""
 "No Settings loaded !!\n"
 "\n"
@@ -13281,6 +13266,9 @@ msgid "Please enter the new directory name:"
 msgstr ""
 
 msgid "Please enter the new file name:"
+msgstr ""
+
+msgid "Please enter the new name:"
 msgstr ""
 
 msgid "Please enter the new tag:"
@@ -15513,6 +15501,9 @@ msgstr ""
 msgid "Scope"
 msgstr ""
 
+msgid "Screen saver movement"
+msgstr ""
+
 msgid "Script Manager"
 msgstr ""
 
@@ -15672,13 +15663,13 @@ msgstr ""
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr ""
 
-msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
-msgstr ""
-
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
 msgstr ""
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
 msgstr ""
 
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
@@ -15894,9 +15885,6 @@ msgstr ""
 msgid "Select AutoCam default Softcam"
 msgstr ""
 
-msgid "Select Backup Location"
-msgstr ""
-
 msgid "Select Bookmark"
 msgstr ""
 
@@ -16062,6 +16050,9 @@ msgid "Select files to exclude from backup"
 msgstr ""
 
 msgid "Select files/folders to backup"
+msgstr ""
+
+msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
 msgstr ""
 
 msgid "Select how long to display status messages."
@@ -16318,6 +16309,9 @@ msgstr ""
 
 msgid "Select the display sequence of previously visited services."
 msgstr ""
+
+msgid "Select the duration of inactivity before the screen saver will be displayed."
+msgstr "Konfiguro kohëzgjatjen në minuta për mbrojtësin e ekranit."
 
 #, python-format
 msgid "Select the file sort order for the %s column:"
@@ -16604,9 +16598,6 @@ msgid "Select your ATSC provider."
 msgstr ""
 
 msgid "Select your Language for Audio/Subtitles"
-msgstr ""
-
-msgid "Select your backup device."
 msgstr ""
 
 msgid "Select your country. If not available select 'All'."
@@ -17079,9 +17070,6 @@ msgid "Setup Audiomode"
 msgstr ""
 
 msgid "Setup Enigma2"
-msgstr ""
-
-msgid "Setup Harddisk"
 msgstr ""
 
 msgid "Setup Inadyn"
@@ -21898,9 +21886,6 @@ msgstr "Ju lutemi prisni gjatë skanimit..."
 msgid "Waiting"
 msgstr "Duke pritur"
 
-msgid "Waiting for mount"
-msgstr "Në pritje të montimit"
-
 msgid "Waiting for partition"
 msgstr "Në pritje të ndarjes"
 
@@ -23859,6 +23844,15 @@ msgstr "Po (mbani ushqim)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Bus: "
+#~ msgstr "Autobusi: "
+
+#~ msgid "Capacity"
+#~ msgstr "Kapaciteti"
+
+#~ msgid "Waiting for mount"
+#~ msgstr "Në pritje të montimit"
 
 #, python-format
 #~ msgid ""

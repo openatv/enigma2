@@ -16,9 +16,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-31 15:16+0000\n"
-"PO-Revision-Date: 2025-01-02 17:41+0000\n"
-"Last-Translator: VfBFan <drop0815@posteo.de>\n"
+"POT-Creation-Date: 2025-01-07 09:29+0000\n"
+"PO-Revision-Date: 2025-01-15 06:00+0000\n"
+"Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -1605,6 +1605,24 @@ msgstr "Ein Crash-Log wurde %s in '%s' erstellt"
 msgid "A file from media is in use!"
 msgstr "Eine Mediendatei ist in Benutzung!"
 
+#
+#, python-format
+msgid ""
+"A finished record timer wants to set your\n"
+"%s %s to standby. Do that now?"
+msgstr ""
+"Ein Aufnahmetimer möchte die %s %s in den Standby versetzen.\n"
+"Jetzt ausführen?"
+
+#
+#, python-format
+msgid ""
+"A finished record timer wants to shut down\n"
+"your %s %s. Shutdown now?"
+msgstr ""
+"Ein Aufnahmetimer möchte die %s %s in den Deep-Standby herunterfahren.\n"
+"Jetzt herunterfahren?"
+
 # /usr/lib/enigma2/python/PowerTimer.py
 #, python-format
 msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
@@ -1630,24 +1648,6 @@ msgstr ""
 msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "Eine Zeitplaner-Aufgabe möchte die %s %s in den Deep-Standby herunterfahren.\n"
-"Jetzt herunterfahren?"
-
-#
-#, python-format
-msgid ""
-"A finished record timer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-"Ein Aufnahmetimer möchte die %s %s in den Standby versetzen.\n"
-"Jetzt ausführen?"
-
-#
-#, python-format
-msgid ""
-"A finished record timer wants to shut down\n"
-"your %s %s. Shutdown now?"
-msgstr ""
-"Ein Aufnahmetimer möchte die %s %s ausschalten.\n"
 "Jetzt herunterfahren?"
 
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
@@ -3419,10 +3419,6 @@ msgstr "Brennen"
 msgid "Burundi"
 msgstr "Burundi"
 
-#
-msgid "Bus: "
-msgstr "Bus: "
-
 msgid "Business & Finance"
 msgstr "Wirtschaft und Finanzen"
 
@@ -3435,12 +3431,6 @@ msgstr "Timeout für Tastenfehler"
 
 msgid "ButtonSetup"
 msgstr "Tastenbelegung"
-
-msgid "By disk UUID"
-msgstr "Nach Datenträger-UUID"
-
-msgid "By disk label"
-msgstr "Nach Datenträgerbezeichnung"
 
 msgid "Bypass HDMI EDID Check"
 msgstr "HDMI-EDID-Prüfung überspringen"
@@ -3869,9 +3859,6 @@ msgstr "Kein Signal gefunden! Abbruch!"
 
 msgid "Cannot move to trash can"
 msgstr "Nicht in den Papierkorb verschiebbar!"
-
-msgid "Capacity"
-msgstr "Kapazität"
 
 msgid "Cape Verde"
 msgstr "Kap Verde"
@@ -4820,9 +4807,6 @@ msgstr "Position des Cursors beim Öffnen der Senderliste festlegen. Auf dem lau
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "Bestimmt die Bildschirmauflösung und den Zeichensatz für die Videotext-Darstellung."
 
-msgid "Select the duration of inactivity before the screen saver will be displayed."
-msgstr "Die Verzögerungszeit des Bildschirmschoners, falls aktiviert, einstellen."
-
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
 msgstr "Die Dauer in Minuten festlegen, bevor die Energiesparfunktion aktiviert wird."
 
@@ -5383,7 +5367,7 @@ msgid "Create application loader dump."
 msgstr "Anwendungs-Loader-Dump erstellen."
 
 msgid "Create backup image zip file."
-msgstr "Image-Sicherung-Zip-Datei erstellen."
+msgstr "Image-Sicherungs-Zip-Datei erstellen."
 
 msgid "Create boot dump."
 msgstr "Boot-Dump erstellen."
@@ -8692,9 +8676,6 @@ msgstr "File Commander Texteditor-Optionen"
 msgid "File Commander settings"
 msgstr "File Commander Einstellungen"
 
-msgid "File system"
-msgstr "Dateisystem"
-
 #
 msgid "File System Check"
 msgstr "Dateisystemüberprüfung"
@@ -8712,6 +8693,9 @@ msgstr ""
 "Datei 'oscam.conf' nicht gefunden!\n"
 "Bitte Benutzernamen und Passwort manuell eingeben."
 
+msgid "File system"
+msgstr "Dateisystem"
+
 msgid "File transfer was canceled by user!"
 msgstr "Dateiübertragung durch den Benutzer abgebrochen!"
 
@@ -8724,9 +8708,6 @@ msgstr "Dateiname"
 
 msgid "Files/folders to exclude from backup"
 msgstr "Nicht zu sichernde Dateien"
-
-msgid "Filesystem"
-msgstr "Dateisystem"
 
 #
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
@@ -12713,6 +12694,9 @@ msgstr "Keine Festplatte gefunden oder Festplatte nicht initialisiert!"
 msgid "No Internet connection"
 msgstr "Keine Internetverbindung"
 
+msgid "No Name"
+msgstr "Unbenannt"
+
 msgid ""
 "No Settings loaded !!\n"
 "\n"
@@ -14108,6 +14092,9 @@ msgstr "Bitte neuen Verzeichnisnamen eingeben:"
 
 msgid "Please enter the new file name:"
 msgstr "Bitte neuen Dateinamen eingeben:"
+
+msgid "Please enter the new name:"
+msgstr "Bitte neuen Namen eingeben:"
 
 msgid "Please enter the new tag:"
 msgstr "Bitte den neuen Tag eingeben:"
@@ -15626,7 +15613,7 @@ msgstr "Titel entfernen"
 
 #
 msgid "Removing"
-msgstr "Entfernen"
+msgstr "Entferne"
 
 msgid "Removing Service"
 msgstr "Dienst wird entfernt"
@@ -16531,6 +16518,9 @@ msgstr "Wissenschaft & Technik"
 msgid "Scope"
 msgstr "Scope"
 
+msgid "Screen saver movement"
+msgstr "Bildschirmschoner Bewegung"
+
 msgid "Script Manager"
 msgstr "Skriptverwaltung"
 
@@ -16706,14 +16696,14 @@ msgstr "'Ja' auswählen, wenn Lautstärkeanpassungen auf Dolby-Tonspuren angewen
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Wenn ein Multiswitch verwendet wird, der ein DiSEqC-Port-A-Befehlssignal benötigt 'Ja' auswählen, ansonsten 'Nein'."
 
-msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
-msgstr "'Ja', wenn der TV beim Start einer Zeitplaner-Aufgabe aufgeweckt werden soll."
-
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
 msgstr "'Ja', wenn der TV beim Start eines 'Umschalten und Aufnehmen'-Timers aufgeweckt werden soll."
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
 msgstr "'Ja', wenn der TV beim Start eines 'Umschalten'-Aufnahmetimers aufgeweckt werden soll."
+
+msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
+msgstr "'Ja', wenn der TV beim Start einer Zeitplaner-Aufgabe aufgeweckt werden soll."
 
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Bei 'Ja' wird die Infoleiste im pausierten Zustand nicht ausgeblendet, sondern dauerhaft angezeigt."
@@ -16931,10 +16921,6 @@ msgstr "Zusätzlich zu sichernde Dateien auswählen"
 msgid "Select AutoCam default Softcam"
 msgstr "Standard-Softcam für AutoCam"
 
-#
-msgid "Select Backup Location"
-msgstr "Sicherungziel auswählen"
-
 msgid "Select Bookmark"
 msgstr "Lesezeichen auswählen"
 
@@ -17109,6 +17095,9 @@ msgstr "Nicht zu sichernde Dateien auswählen"
 #
 msgid "Select files/folders to backup"
 msgstr "Dateien/Ordner auswählen"
+
+msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
+msgstr "Auswählen, wie lange das Bildschirmschoner-Bild an der gleichen Stelle des Bildschirms verweilen soll, bevor es die Position ändert."
 
 msgid "Select how long to display status messages."
 msgstr "Auswählen, wie lange Statusmeldungen angezeigt werden sollen."
@@ -17376,6 +17365,9 @@ msgstr ""
 
 msgid "Select the display sequence of previously visited services."
 msgstr "Die Anzeigereihenfolge der zuvor besuchten Sender auswählen."
+
+msgid "Select the duration of inactivity before the screen saver will be displayed."
+msgstr "Die Dauer der Inaktivität einstellen, bevor der Bildschirmschoner (falls aktiviert) angezeigt wird."
 
 #, python-format
 msgid "Select the file sort order for the %s column:"
@@ -17679,9 +17671,6 @@ msgstr "Den ATSC-Anbieter auswählen."
 
 msgid "Select your Language for Audio/Subtitles"
 msgstr "Die Sprache für Audio/Untertitel auswählen."
-
-msgid "Select your backup device."
-msgstr "Das Sicherungsgerät auswählen."
 
 msgid "Select your country. If not available select 'All'."
 msgstr "Das Land auswählen. Wenn nicht verfügbar, 'Alle' auswählen."
@@ -18226,9 +18215,6 @@ msgstr "Konfiguration Ton"
 # Quick Menue
 msgid "Setup Enigma2"
 msgstr "Enigma2 anpassen"
-
-msgid "Setup Harddisk"
-msgstr "Konfiguration der Festplatte"
 
 msgid "Setup Inadyn"
 msgstr "Inadyn-Einstellungen"
@@ -20317,7 +20303,7 @@ msgstr "Swap-File-Verwaltung"
 
 #
 msgid "Swap File not found. You have to create the file before to activate."
-msgstr "Auslagerunsdatei nicht gefunden! Bitte erst erstellen."
+msgstr "Auslagerungsdatei nicht gefunden! Bitte erst erstellen."
 
 #
 msgid "Swap Manager"
@@ -23435,7 +23421,7 @@ msgstr "Warte beim Systemstart auf Zeitsynchronisation"
 
 #
 msgid "Wait please while creating swap file..."
-msgstr "Auslagerunsdatei wird erstellt. Bitte warten..."
+msgstr "Auslagerungsdatei wird erstellt. Bitte warten..."
 
 msgid "Wait please while scanning..."
 msgstr "Suchlauf wird durchgeführt. Bitte warten..."
@@ -23443,9 +23429,6 @@ msgstr "Suchlauf wird durchgeführt. Bitte warten..."
 #
 msgid "Waiting"
 msgstr "Wartet"
-
-msgid "Waiting for mount"
-msgstr "Warte auf Einhängen"
 
 msgid "Waiting for partition"
 msgstr "Warte auf Partition"
@@ -24161,7 +24144,7 @@ msgstr "Es wurden keine Logs zum Löschen ausgewählt!"
 
 #
 msgid "You have to create a Swap File before to activate the autostart."
-msgstr "Autostart kann erst aktiviert werden, wenn eine Auslagerunsdatei erstellt wurde!"
+msgstr "Autostart kann erst aktiviert werden, wenn eine Auslagerungsdatei erstellt wurde!"
 
 #
 #, python-format
@@ -25589,6 +25572,35 @@ msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#
+#~ msgid "Bus: "
+#~ msgstr "Bus: "
+
+#~ msgid "By disk UUID"
+#~ msgstr "Nach Datenträger-UUID"
+
+#~ msgid "By disk label"
+#~ msgstr "Nach Datenträgerbezeichnung"
+
+#~ msgid "Capacity"
+#~ msgstr "Kapazität"
+
+#~ msgid "Filesystem"
+#~ msgstr "Dateisystem"
+
+#
+#~ msgid "Select Backup Location"
+#~ msgstr "Sicherungziel auswählen"
+
+#~ msgid "Select your backup device."
+#~ msgstr "Das Sicherungsgerät auswählen."
+
+#~ msgid "Setup Harddisk"
+#~ msgstr "Konfiguration der Festplatte"
+
+#~ msgid "Waiting for mount"
+#~ msgstr "Warte auf Einhängen"
 
 #~ msgid "PowerTimer"
 #~ msgstr "PowerTimer"

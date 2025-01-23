@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-31 15:16+0000\n"
+"POT-Creation-Date: 2025-01-07 09:29+0000\n"
 "PO-Revision-Date: 2024-02-10 07:43+0000\n"
 "Last-Translator: \"Mahmoud Habls (7OODA)\" <adhoda4@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ar/>\n"
@@ -1735,6 +1735,22 @@ msgid "A file from media is in use!"
 msgstr ""
 
 #, fuzzy, python-format
+msgid ""
+"A finished record timer wants to set your\n"
+"%s %s to standby. Do that now?"
+msgstr ""
+"انتهاء التسجيل بالمؤقت ، يجب وضع \n"
+"الدريم بوكس فى وضع الاستعداد , أفعل ذلك الان ؟"
+
+#, fuzzy, python-format
+msgid ""
+"A finished record timer wants to shut down\n"
+"your %s %s. Shutdown now?"
+msgstr ""
+"انتهاء التسجيل بالمؤقت ، يجب إغلاق الدريم بوكس \n"
+"أغلاق الان؟"
+
+#, fuzzy, python-format
 msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "انتهاء التسجيل بالمؤقت ، يجب وضع \n"
@@ -1756,22 +1772,6 @@ msgstr ""
 
 #, fuzzy, python-format
 msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
-msgstr ""
-"انتهاء التسجيل بالمؤقت ، يجب إغلاق الدريم بوكس \n"
-"أغلاق الان؟"
-
-#, fuzzy, python-format
-msgid ""
-"A finished record timer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-"انتهاء التسجيل بالمؤقت ، يجب وضع \n"
-"الدريم بوكس فى وضع الاستعداد , أفعل ذلك الان ؟"
-
-#, fuzzy, python-format
-msgid ""
-"A finished record timer wants to shut down\n"
-"your %s %s. Shutdown now?"
 msgstr ""
 "انتهاء التسجيل بالمؤقت ، يجب إغلاق الدريم بوكس \n"
 "أغلاق الان؟"
@@ -3509,10 +3509,6 @@ msgstr ""
 msgid "Burundi"
 msgstr "بوروندي"
 
-#
-msgid "Bus: "
-msgstr "الناقل: "
-
 msgid "Business & Finance"
 msgstr ""
 
@@ -3523,12 +3519,6 @@ msgid "Button error timeout"
 msgstr ""
 
 msgid "ButtonSetup"
-msgstr ""
-
-msgid "By disk UUID"
-msgstr ""
-
-msgid "By disk label"
 msgstr ""
 
 msgid "Bypass HDMI EDID Check"
@@ -3947,9 +3937,6 @@ msgid "Cannot find any signal ..., aborting !"
 msgstr "لا يمكن العثور على أي إشارة ... ، جارٍ الإلغاء !"
 
 msgid "Cannot move to trash can"
-msgstr ""
-
-msgid "Capacity"
 msgstr ""
 
 msgid "Cape Verde"
@@ -4880,9 +4867,6 @@ msgid "Configure the cursor behavior in the channel selection list. When opening
 msgstr ""
 
 msgid "Configure the display resolution and the font used for teletext."
-msgstr ""
-
-msgid "Select the duration of inactivity before the screen saver will be displayed."
 msgstr ""
 
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
@@ -8657,9 +8641,6 @@ msgstr ""
 msgid "File Commander settings"
 msgstr ""
 
-msgid "File system"
-msgstr ""
-
 msgid "File System Check"
 msgstr "فحص نظام الملفات"
 
@@ -8674,6 +8655,9 @@ msgid ""
 "Please enter username/password manually."
 msgstr ""
 
+msgid "File system"
+msgstr ""
+
 msgid "File transfer was canceled by user!"
 msgstr ""
 
@@ -8684,9 +8668,6 @@ msgid "Filename"
 msgstr "اسم الملف"
 
 msgid "Files/folders to exclude from backup"
-msgstr ""
-
-msgid "Filesystem"
 msgstr ""
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
@@ -12654,6 +12635,9 @@ msgstr "لا يوجد قرص صلب أو ان القرص الصلب غير مه�
 msgid "No Internet connection"
 msgstr ""
 
+msgid "No Name"
+msgstr ""
+
 msgid ""
 "No Settings loaded !!\n"
 "\n"
@@ -14010,6 +13994,9 @@ msgid "Please enter the new directory name:"
 msgstr ""
 
 msgid "Please enter the new file name:"
+msgstr ""
+
+msgid "Please enter the new name:"
 msgstr ""
 
 msgid "Please enter the new tag:"
@@ -16383,6 +16370,9 @@ msgstr ""
 msgid "Scope"
 msgstr ""
 
+msgid "Screen saver movement"
+msgstr ""
+
 msgid "Script Manager"
 msgstr ""
 
@@ -16550,13 +16540,13 @@ msgstr ""
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr ""
 
-msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
-msgstr ""
-
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
 msgstr ""
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
 msgstr ""
 
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
@@ -16772,9 +16762,6 @@ msgstr ""
 msgid "Select AutoCam default Softcam"
 msgstr ""
 
-msgid "Select Backup Location"
-msgstr "تحديد موقع النسخ الاحتياطي"
-
 msgid "Select Bookmark"
 msgstr ""
 
@@ -16944,6 +16931,9 @@ msgstr ""
 
 msgid "Select files/folders to backup"
 msgstr "أختار ملفات/مجلدات النسخة الإحتياطية"
+
+msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
+msgstr ""
 
 msgid "Select how long to display status messages."
 msgstr ""
@@ -17199,6 +17189,9 @@ msgid "Select the display options for each menu entry item. If menu numbers are 
 msgstr ""
 
 msgid "Select the display sequence of previously visited services."
+msgstr ""
+
+msgid "Select the duration of inactivity before the screen saver will be displayed."
 msgstr ""
 
 #, python-format
@@ -17488,9 +17481,6 @@ msgid "Select your ATSC provider."
 msgstr "حدد مزود خدمات لجنة أنظمة التلفزيون المتقدمة."
 
 msgid "Select your Language for Audio/Subtitles"
-msgstr ""
-
-msgid "Select your backup device."
 msgstr ""
 
 msgid "Select your country. If not available select 'All'."
@@ -17997,9 +17987,6 @@ msgid "Setup Audiomode"
 msgstr ""
 
 msgid "Setup Enigma2"
-msgstr ""
-
-msgid "Setup Harddisk"
 msgstr ""
 
 msgid "Setup Inadyn"
@@ -23088,9 +23075,6 @@ msgstr ""
 msgid "Waiting"
 msgstr "جاري الانتظار"
 
-msgid "Waiting for mount"
-msgstr "في انتظار الربط"
-
 msgid "Waiting for partition"
 msgstr "في انتظار التقسيم"
 
@@ -25106,6 +25090,16 @@ msgstr "نعم (الاحتفاظ بها)"
 
 msgid "®"
 msgstr ""
+
+#
+#~ msgid "Bus: "
+#~ msgstr "الناقل: "
+
+#~ msgid "Select Backup Location"
+#~ msgstr "تحديد موقع النسخ الاحتياطي"
+
+#~ msgid "Waiting for mount"
+#~ msgstr "في انتظار الربط"
 
 #
 #, fuzzy

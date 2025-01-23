@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-31 15:16+0000\n"
+"POT-Creation-Date: 2025-01-07 09:29+0000\n"
 "PO-Revision-Date: 2023-08-06 06:22+0000\n"
 "Last-Translator: Salif Mehmed <mail@salif.eu>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/bg/>\n"
@@ -1553,6 +1553,22 @@ msgid "A file from media is in use!"
 msgstr "Файл от медия се използва!"
 
 #, python-format
+msgid ""
+"A finished record timer wants to set your\n"
+"%s %s to standby. Do that now?"
+msgstr ""
+"Таймерът за завършен запис иска да настрои вашия\n"
+"%s %s в режим на готовност. Да го направи ли сега?"
+
+#, python-format
+msgid ""
+"A finished record timer wants to shut down\n"
+"your %s %s. Shutdown now?"
+msgstr ""
+"Таймерът за завършен запис иска да се изключи\n"
+"вашият %s %s. Изключване сега?"
+
+#, python-format
 msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "Завършен таймер за захранване иска да рестартира вашия %s %s.\n"
@@ -1574,22 +1590,6 @@ msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "Завършен таймер за захранване иска да изключи вашия %s %s.\n"
 "Да го направи ли сега?"
-
-#, python-format
-msgid ""
-"A finished record timer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-"Таймерът за завършен запис иска да настрои вашия\n"
-"%s %s в режим на готовност. Да го направи ли сега?"
-
-#, python-format
-msgid ""
-"A finished record timer wants to shut down\n"
-"your %s %s. Shutdown now?"
-msgstr ""
-"Таймерът за завършен запис иска да се изключи\n"
-"вашият %s %s. Изключване сега?"
 
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr "Открояване на изображението на дистанционното управление показва за кой бутон се отнася помощта. Ако повече от един бутон изпълнява указаната функция, ще се покаже повече от един акцент. Текстът под списъка изброява активните бутони и дали функцията изисква продължително натискане или SHIFT на бутона(ите)."
@@ -3238,9 +3238,6 @@ msgstr "Запиши на носител"
 msgid "Burundi"
 msgstr ""
 
-msgid "Bus: "
-msgstr "Шина: "
-
 msgid "Business & Finance"
 msgstr "Бизнес Финанси"
 
@@ -3252,12 +3249,6 @@ msgstr ""
 
 msgid "ButtonSetup"
 msgstr "Настройка на дистанционен бутон"
-
-msgid "By disk UUID"
-msgstr ""
-
-msgid "By disk label"
-msgstr ""
 
 msgid "Bypass HDMI EDID Check"
 msgstr "Изключване на проверката HDMI EDID"
@@ -3665,9 +3656,6 @@ msgstr "Не мога да намеря никакъв сигнал ..., пре�
 
 msgid "Cannot move to trash can"
 msgstr "Не мога да преместя в коша за боклук"
-
-msgid "Capacity"
-msgstr "Капацитет"
 
 msgid "Cape Verde"
 msgstr ""
@@ -4548,9 +4536,6 @@ msgstr "Конфигуриране на поведението на курсор
 
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "Конфигуриране на разделителната способност на дисплея и шрифта използван за телетекст."
-
-msgid "Select the duration of inactivity before the screen saver will be displayed."
-msgstr "Конфигуриране на продължителността в минути за скрийнсейвъра."
 
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
 msgstr ""
@@ -8235,9 +8220,6 @@ msgstr ""
 msgid "File Commander settings"
 msgstr "Настройки на File Commander"
 
-msgid "File system"
-msgstr ""
-
 msgid "File System Check"
 msgstr "Проверка файлова система"
 
@@ -8254,6 +8236,9 @@ msgstr ""
 "Файлът oscam.conf не е намерен.\n"
 "Моля, въведете потребителското име/парола ръчно."
 
+msgid "File system"
+msgstr ""
+
 msgid "File transfer was canceled by user!"
 msgstr ""
 
@@ -8265,9 +8250,6 @@ msgstr "Име на файл"
 
 msgid "Files/folders to exclude from backup"
 msgstr "Файлове/папки които да се изключат от архива"
-
-msgid "Filesystem"
-msgstr ""
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr "Попълнете EPG за канали от EPG за излъчване, където няма IceTV EPG за канала"
@@ -12008,6 +11990,9 @@ msgstr "Няма намерен HDD или HDD не е инициализира�
 msgid "No Internet connection"
 msgstr ""
 
+msgid "No Name"
+msgstr ""
+
 msgid ""
 "No Settings loaded !!\n"
 "\n"
@@ -13294,6 +13279,9 @@ msgid "Please enter the new directory name:"
 msgstr ""
 
 msgid "Please enter the new file name:"
+msgstr ""
+
+msgid "Please enter the new name:"
 msgstr ""
 
 msgid "Please enter the new tag:"
@@ -15533,6 +15521,9 @@ msgstr "Наука и технологии"
 msgid "Scope"
 msgstr ""
 
+msgid "Screen saver movement"
+msgstr ""
+
 msgid "Script Manager"
 msgstr ""
 
@@ -15692,13 +15683,13 @@ msgstr ""
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Изберете \"да\" само ако използвате мултипревключвател, който изисква команден сигнал DiSEqC Port-A. За всички други настройки изберете „не“."
 
-msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
-msgstr ""
-
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
 msgstr ""
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
 msgstr ""
 
 #, fuzzy
@@ -15915,9 +15906,6 @@ msgstr "Допълнителни файлове за архивиране"
 msgid "Select AutoCam default Softcam"
 msgstr ""
 
-msgid "Select Backup Location"
-msgstr "Изберете местоположение за архивиране"
-
 msgid "Select Bookmark"
 msgstr ""
 
@@ -16084,6 +16072,9 @@ msgstr "Изберете файлове, за изключване от архи
 
 msgid "Select files/folders to backup"
 msgstr "Изберете файлове/папки за архивиране"
+
+msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
+msgstr ""
 
 msgid "Select how long to display status messages."
 msgstr ""
@@ -16339,6 +16330,9 @@ msgstr ""
 
 msgid "Select the display sequence of previously visited services."
 msgstr ""
+
+msgid "Select the duration of inactivity before the screen saver will be displayed."
+msgstr "Конфигуриране на продължителността в минути за скрийнсейвъра."
 
 #, python-format
 msgid "Select the file sort order for the %s column:"
@@ -16626,9 +16620,6 @@ msgstr "Изберете вашия ATSC доставчик."
 
 msgid "Select your Language for Audio/Subtitles"
 msgstr "Изберете вашия език за аудио/субтитри"
-
-msgid "Select your backup device."
-msgstr ""
 
 msgid "Select your country. If not available select 'All'."
 msgstr "Изберете своята държава. Ако не е налично, изберете „всички“."
@@ -17122,9 +17113,6 @@ msgstr "Настройка на аудио режим"
 
 msgid "Setup Enigma2"
 msgstr "Настройка на Enigma2"
-
-msgid "Setup Harddisk"
-msgstr "Настройка на твърдия диск"
 
 msgid "Setup Inadyn"
 msgstr "Настройка на Inadyn"
@@ -21968,9 +21956,6 @@ msgstr "Моля изчакайте, докато сканира ..."
 msgid "Waiting"
 msgstr "В очакване"
 
-msgid "Waiting for mount"
-msgstr "В очакване за инсталиране"
-
 msgid "Waiting for partition"
 msgstr "В очакване за деление"
 
@@ -23935,6 +23920,21 @@ msgstr "да (запази фийдове)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Bus: "
+#~ msgstr "Шина: "
+
+#~ msgid "Capacity"
+#~ msgstr "Капацитет"
+
+#~ msgid "Select Backup Location"
+#~ msgstr "Изберете местоположение за архивиране"
+
+#~ msgid "Setup Harddisk"
+#~ msgstr "Настройка на твърдия диск"
+
+#~ msgid "Waiting for mount"
+#~ msgstr "В очакване за инсталиране"
 
 #~ msgid "PowerTimer"
 #~ msgstr "Таймер на захранването"
