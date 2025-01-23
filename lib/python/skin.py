@@ -2214,7 +2214,8 @@ def readSkin(screen, skin, names, desktop):
 					args = {
 						"scale": context.scale,
 						"dom": widgetTemplates,
-						"size": widget.attrib.get("size")
+						"itemHeight": int(widget.attrib.get("itemHeight", 0)),
+						"itemWidth": int(widget.attrib.get("itemWidth", 0))
 					}
 					connection = converterClass(args)
 					connection.connect(source)
