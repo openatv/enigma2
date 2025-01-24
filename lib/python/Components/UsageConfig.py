@@ -1674,6 +1674,7 @@ def InitUsageConfig():
 		eSubtitleSettings.setSubtitleBacktrans(configElement.value)
 
 	choiceList = [
+        (-1, _("Original")),
 		(0, _("No transparency")),
 		(12, "5%"),
 		(25, "10%"),
@@ -1693,7 +1694,7 @@ def InitUsageConfig():
 	def setDVBSubtitleBacktrans(configElement):
 		eSubtitleSettings.setDVBSubtitleBacktrans(configElement.value)
 
-	config.subtitles.dvb_subtitles_backtrans = ConfigSelection(default=0, choices=choiceList)
+	config.subtitles.dvb_subtitles_backtrans = ConfigSelection(default=-1, choices=choiceList)
 	config.subtitles.dvb_subtitles_backtrans.addNotifier(setDVBSubtitleBacktrans)
 
 	choiceList = []
