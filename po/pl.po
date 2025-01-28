@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-01-07 09:29+0000\n"
-"PO-Revision-Date: 2025-01-21 21:57+0000\n"
+"PO-Revision-Date: 2025-01-25 17:05+0000\n"
 "Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -2129,7 +2129,7 @@ msgid "After Event"
 msgstr "Po wydarzeniu"
 
 msgid "After PowerLost"
-msgstr "Po przywróceniu prądu"
+msgstr "Po utracie zasilania"
 
 msgid "After event"
 msgstr "Po zakończeniu"
@@ -4407,7 +4407,7 @@ msgid "Comoros"
 msgstr "Komory"
 
 msgid "Compiled by"
-msgstr "Kompilacja"
+msgstr "Opracowane przez"
 
 msgid "Complete"
 msgstr "Kompletny"
@@ -4800,7 +4800,7 @@ msgid "Configure which tuner type will be preferred, when the same service is av
 msgstr "Skonfiguruj który tuner ma być preferowany, jeżeli kanał jest dostępny z różnych typów tunerów."
 
 msgid "Configure which tuner will be preferred for recordings, when more than one tuner is available. 'Disabled' would select a tuner based on preferred tuner in customize screen. 'Auto' would choose based on E2's default rules, ignoring preferred tuner in customize screen."
-msgstr "Skonfiguruj który tuner preferowany będzie nagrywać, gdy więcej niż jeden tuner jest dostępny."
+msgstr "Skonfiguruj, który tuner będzie preferowany do nagrań, gdy dostępnych jest więcej niż jeden tuner. Opcja „Wyłączone” spowoduje wybór tunera na podstawie preferowanego tunera na ekranie dostosowywania. Opcja „Auto” spowoduje wybór na podstawie domyślnych reguł E2, ignorując preferowany tuner na ekranie dostosowywania."
 
 msgid "Configure which tuner will be preferred, when more than one tuner is available. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites."
 msgstr "Skonfiguruj który tuner będzie wykorzystany, gdy posiadasz więcej niż jeden tuner. Jeśli ustawione na 'auto' system da pierwszeństwo dla tunera o najniższej liczbie kanałów/satelit."
@@ -5314,19 +5314,19 @@ msgid "Currently Defined Volume Offsets:"
 msgstr "Aktualnie zdefiniowane Przesunięcia głośności:"
 
 msgid "Custom"
-msgstr "Zwykły"
+msgstr "Niestandardowy"
 
 msgid "Custom mountpoint"
 msgstr "Niestandardowy punkt montowania"
 
 msgid "Custom skip time for '1'/'3' buttons"
-msgstr "Czas przeskoku dla klawiszy '1'/'3'"
+msgstr "Niestandardowy czas pomijania dla przycisków '1'/'3'"
 
 msgid "Custom skip time for '4'/'6' buttons"
-msgstr "Czas przeskoku dla klawiszy '4'/'6'"
+msgstr "Niestandardowy czas pomijania dla przycisków '4'/'6'"
 
 msgid "Custom skip time for '7'/'9' buttons"
-msgstr "Czas przeskoku dla klawiszy '7'/'9'"
+msgstr "Niestandardowy czas pomijania dla przycisków '7'/'9'"
 
 msgid "Customize"
 msgstr "Ustawienia zaawansowane"
@@ -6358,10 +6358,10 @@ msgid "Distribution language"
 msgstr "Język"
 
 msgid "Distribution revision"
-msgstr "Rewizja"
+msgstr "Rewizja dystrybucji"
 
 msgid "Distribution version"
-msgstr "Wersja"
+msgstr "Wersja dystrybucyjna"
 
 msgid "Divehi / Dhivehi / Maldivian"
 msgstr "Divehi / Dhivehi / Malediwski"
@@ -7314,10 +7314,10 @@ msgid "Enigma2 information"
 msgstr "Info o enigma2"
 
 msgid "Enigma2 revision"
-msgstr "Rewizja Enigmy"
+msgstr "Rewizja Enigmy2"
 
 msgid "Enigma2 version"
-msgstr "Wersja"
+msgstr "Wersja Enigmy2"
 
 msgid "Enigmalight"
 msgstr "Enigmalight"
@@ -8768,7 +8768,7 @@ msgid "Go down the list"
 msgstr "Przejdź w dół listy"
 
 msgid "Go to deep standby"
-msgstr "Wyłącz tuner"
+msgstr "Wyłącz dekoder"
 
 msgid "Go to first movie or last item"
 msgstr "Idź do pierwszego filmu lub ostatniej pozycji"
@@ -8816,7 +8816,7 @@ msgid "Goto current channel and now"
 msgstr "Idż do bieżącego kanału"
 
 msgid "Goto deep standby"
-msgstr "Wyłącz tuner"
+msgstr "Wyłącz dekoder"
 
 msgid "Goto first channel"
 msgstr "Idż do pierwszego kanału"
@@ -10140,7 +10140,7 @@ msgid "Just abort, show message"
 msgstr "Przerwij, pokaż komunikat"
 
 msgid "Just boot"
-msgstr "Pozostaw uruchomiony"
+msgstr "Po prostu uruchom"
 
 msgid "Just change Bouquet"
 msgstr "Tylko zmień listę kanałów"
@@ -14127,7 +14127,7 @@ msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python nakładka na /tmp/mmi.socket"
 
 msgid "Python version"
-msgstr "Wersja Pythona"
+msgstr "Wersja Python"
 
 msgid "Qatar"
 msgstr "Katar"
@@ -16675,10 +16675,10 @@ msgid "Select what do do after the timer zap has completed."
 msgstr "Wybierz, co zrobić po zakończeniu odliczania czasu."
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
-msgstr "Wybierz, co ma się stać gdy %s %s zostanie włączony. Czy ma się uruchomić normalnie czy przejść w trybu czuwania."
+msgstr "Wybierz, co ma zostać wykonane, gdy %s %s zostanie uruchomiony, będzie odtwarzany normalnie lub przejdzie w tryb gotowości."
 
 msgid "Select what should be done when the %s %s was shutdown incorrectly, or after the Power was lost."
-msgstr "Po przywróceniu zasilania twój %s %s zostanie automatycznie uruchomiony. Wybierz, co należy wtedy zrobić."
+msgstr "Wybierz, co ma zostać zrobione, gdy %s %s zostanie nieprawidłowo wyłączony lub po utracie zasilania."
 
 msgid "Select what you want the Channel +/- button to activate."
 msgstr "Wybierz, co ma aktywować przycisk Kanał +/-."
@@ -20462,7 +20462,7 @@ msgid "Time delay of the shutdown messages"
 msgstr "Opóźnienie komunikatów wyłączania"
 
 msgid "Time delay until standby or deep standby"
-msgstr "Opóźnienie trybu czuwania lub wyłączenia tunera"
+msgstr "Opóźnienie trybu czuwania lub wyłączenia dekodera"
 
 msgid "Time for next LCD scrolling"
 msgstr "Czas następnego przewijania przedniego wyświetlacza"
@@ -21335,7 +21335,7 @@ msgid "Updated"
 msgstr "Zaktualizowano"
 
 msgid "Updated version unknown"
-msgstr "Zaktualizowana wersja niedostępna"
+msgstr "Zaktualizowana wersja nieznana"
 
 msgid "Updates available:"
 msgstr "Dostępne aktualizacje:"
@@ -22581,7 +22581,7 @@ msgid "With this option you can switch off the display during operation."
 msgstr "Dzięki tej opcji możesz wyłączyć wyświetlacz podczas pracy."
 
 msgid "With this option you can switch off the display in Deep Standby Mode."
-msgstr "Dzięki tej opcji możesz wyłączyć wyświetlacz po wyłączeniu tunera."
+msgstr "Za pomocą tej opcji można wyłączyć wyświetlacz w trybie głębokiego czuwania."
 
 msgid "With this option you can switch off the display in Standby Mode."
 msgstr "Dzięki tej opcji możesz wyłączyć wyświetlacz w trybie czuwania."
