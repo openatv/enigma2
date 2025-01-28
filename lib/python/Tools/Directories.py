@@ -94,13 +94,15 @@ def InitDefaultPaths():
 
 
 skinResolveList = []
+skinResolveListXml = []
 lcdskinResolveList = []
 fontsResolveList = []
 
 
 def clearResolveLists():
-	global skinResolveList, lcdskinResolveList, fontsResolveList
+	global skinResolveList, skinResolveListXml, lcdskinResolveList, fontsResolveList
 	skinResolveList = []
+	skinResolveListXml = []
 	lcdskinResolveList = []
 	fontsResolveList = []
 
@@ -163,19 +165,34 @@ def resolveFilename(scope, base="", path_prefix=None):
 				if len(pluginCode) > 2:
 					path = join(plugins, pluginCode[0], pluginCode[1])
 	elif scope == SCOPE_GUISKIN:
-		global skinResolveList
-		if not skinResolveList:
-			from Components.config import config  # This import must be here as this module finds the config file as part of the config initialization.
-			skin = dirname(config.skin.primary_skin.value)
-			skinResolveList = addIfExists([
-				join(scopeConfig, skin),
-				join(scopeConfig, "skin_common"),
-				join(scopeGUISkin, skin),
-				join(scopeGUISkin, f"skin_fallback_{getDesktop(0).size().height()}"),
-				join(scopeGUISkin, "skin_default"),
-				scopeGUISkin  # Deprecate top level of SCOPE_GUISKIN directory to allow a clean up.
-			])
-		path = checkPaths(skinResolveList, base)
+		global skinResolveList, skinResolveListXml
+		if base.endswith(".xml"):  # If the base filename ends with ".xml" then resolve the skin using the skinResolveListXml to support old skins.
+			if not skinResolveListXml:
+				from Components.config import config  # This import must be here as this module finds the config file as part of the config initialization.
+				skin = dirname(config.skin.primary_skin.value)
+				skinResolveListXml = addIfExists([
+					join(scopeConfig, skin),
+					join(scopeConfig, "skin_common"),
+					scopeConfig,  # Only for xml files to support old skins.
+					join(scopeGUISkin, skin),
+					join(scopeGUISkin, f"skin_fallback_{getDesktop(0).size().height()}"),
+					join(scopeGUISkin, "skin_default"),
+					scopeGUISkin  # Deprecate top level of SCOPE_GUISKIN directory to allow a clean up.
+				])
+			path = checkPaths(skinResolveListXml, base)
+		else:
+			if not skinResolveList:
+				from Components.config import config  # This import must be here as this module finds the config file as part of the config initialization.
+				skin = dirname(config.skin.primary_skin.value)
+				skinResolveList = addIfExists([
+					join(scopeConfig, skin),
+					join(scopeConfig, "skin_common"),
+					join(scopeGUISkin, skin),
+					join(scopeGUISkin, f"skin_fallback_{getDesktop(0).size().height()}"),
+					join(scopeGUISkin, "skin_default"),
+					scopeGUISkin  # Deprecate top level of SCOPE_GUISKIN directory to allow a clean up.
+				])
+			path = checkPaths(skinResolveList, base)
 	elif scope == SCOPE_LCDSKIN:
 		global lcdskinResolveList
 		if not lcdskinResolveList:
