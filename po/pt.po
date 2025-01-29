@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-07 09:29+0000\n"
+"POT-Creation-Date: 2025-01-28 07:25+0000\n"
 "PO-Revision-Date: 2025-01-25 17:05+0000\n"
 "Last-Translator: Carlos Manuel Ferreira Alves <me@carlosmfalves.eu>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pt/>\n"
@@ -1880,6 +1880,9 @@ msgid "Activate the configured network settings."
 msgstr "Activar definições de rede configuradas."
 
 msgid "Activate the flash expander, save all changed settings and exit"
+msgstr ""
+
+msgid "Activate this device"
 msgstr ""
 
 msgid "Activate time shift End"
@@ -3813,7 +3816,7 @@ msgstr "Não é possível determinar o limite %s ..., abortando !"
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Não foi possível encontrar qualquer sinal..., a cancelar!"
 
-msgid "Cannot move to trash can"
+msgid "Can't move to trashcan!"
 msgstr "Impossível mover para a reciclagem"
 
 msgid "Cape Verde"
@@ -4809,7 +4812,7 @@ msgstr "Configurar a latitude da sua localização."
 msgid "Configure the longitude of your location."
 msgstr "Configurar a longitude da sua localização."
 
-msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can."
+msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trashcan."
 msgstr "Configurar a quantidade mínima de espaço em disco que deve estar disponível para as gravações. Quando a quantidade de espaço entra abaixo deste valor, itens apagados serão removidos da reciclagem."
 
 msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
@@ -4825,7 +4828,7 @@ msgstr ""
 msgid "Configure the network again"
 msgstr "Configure a sua rede outra vez"
 
-msgid "Configure the number of days after which items are automatically removed from the trash can."
+msgid "Configure the number of days after which items are automatically removed from the trashcan."
 msgstr "Configure o número de dias após os itens deverão ser automaticamente removidos do lixo."
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
@@ -6402,7 +6405,7 @@ msgstr "Directório"
 
 #
 #, python-format
-msgid "Directory %s does not exist."
+msgid "Error: Directory '%s' does not exist!"
 msgstr "A pasta %s não existe."
 
 #, python-format
@@ -6640,7 +6643,7 @@ msgstr "Deseja realmente eliminar %s ?"
 msgid "Do you really want to delete '%s'?"
 msgstr "Deseja mesmo eliminar %s?"
 
-msgid "Do you really want to delete ?"
+msgid "Do you really want to delete?"
 msgstr "Tem a certeza que quer eliminar?"
 
 #, python-format
@@ -6671,7 +6674,7 @@ msgid "Do you really want to move to trashcan ?"
 msgstr "Pretende mover para o caixote do lixo?"
 
 #, python-format
-msgid "Do you really want to permanently remove '%s' from trash can ?"
+msgid "Do you really want to permanently remove '%s' from the trashcan?"
 msgstr ""
 
 msgid "Do you really want to permanently remove from trash can ?"
@@ -6689,7 +6692,7 @@ msgstr "Pretende apagar o temporizador para %s?"
 
 #
 #, python-format
-msgid "Do you really want to remove your bookmark for '%s'?"
+msgid "Do you really want to remove the bookmark for '%s'?"
 msgstr "Deseja mesmo remover o marcador %s?"
 
 msgid ""
@@ -7441,10 +7444,16 @@ msgstr ""
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr ""
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
+msgstr ""
+
+msgid "Enable this option to show unknown storage devices in device manager."
 msgstr ""
 
 msgid "Enable this setting if your aerial system needs power."
@@ -8574,7 +8583,7 @@ msgstr "Verificação do sistema de ficheiros"
 msgid "File System Packages"
 msgstr ""
 
-msgid "File appears to be busy.\n"
+msgid "File appears to be busy!\n"
 msgstr "Parece que o ficheiro está ocupado.\n"
 
 msgid ""
@@ -9952,6 +9961,9 @@ msgstr ""
 msgid "Image creation failed!"
 msgstr ""
 
+msgid "Image version"
+msgstr ""
+
 msgid "ImageWizard"
 msgstr "Assistente de Configuração"
 
@@ -10070,6 +10082,9 @@ msgid "Include remote control data"
 msgstr "Incluir dados de controle remoto"
 
 msgid "Include screen load data"
+msgstr ""
+
+msgid "Include storage device data"
 msgstr ""
 
 msgid "Include teletext details"
@@ -13658,7 +13673,7 @@ msgstr ""
 msgid "Perform the upgrade?"
 msgstr ""
 
-msgid "Permanently delete all recordings in the trash can?"
+msgid "Permanently delete all recordings in the trashcan?"
 msgstr "Apagar definitivamente todas as gravações na reciclagem?"
 
 msgid "Permanently ignore this device"
@@ -18919,6 +18934,9 @@ msgstr ""
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr ""
 
+msgid "Show unknown devices"
+msgstr ""
+
 msgid "Show unknown video format as"
 msgstr ""
 
@@ -23283,7 +23301,7 @@ msgstr "Quando activado, o conteúdo com uma proporção de 4:3 será esticado p
 msgid "When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels."
 msgstr "Quando activado, continue para o próximo Bouquet ao atingir o último canal do Bouquet atual."
 
-msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
+msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
 msgstr "Quando activado, gravações apagadas são movidas para a reciclagem, em vez de serem imediatamente apagadas."
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
@@ -23301,7 +23319,7 @@ msgstr "Quando activado, é possível sair do reprodutor de vídeo com o botão 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Quando activado, medir o consumo de energia para detectar quando o motor pára de girar (quando suportado pelo sintonizador)."
 
-msgid "When enabled, network trash cans are probed for cleaning."
+msgid "When enabled, network trashcans are probed for cleaning."
 msgstr ""
 
 msgid "When enabled, number markers will be hidden."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-07 09:29+0000\n"
+"POT-Creation-Date: 2025-01-28 07:25+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1824,6 +1824,9 @@ msgid "Activate the configured network settings."
 msgstr "Kích hoạt cài đặt mạng được cấu hình."
 
 msgid "Activate the flash expander, save all changed settings and exit"
+msgstr ""
+
+msgid "Activate this device"
 msgstr ""
 
 msgid "Activate time shift End"
@@ -3681,7 +3684,7 @@ msgstr ""
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Không thể tìm thấy bất kỳ tín hiệu nào ..., hủy bỏ!"
 
-msgid "Cannot move to trash can"
+msgid "Can't move to trashcan!"
 msgstr "Không thể di chuyển đến thùng rác"
 
 #, fuzzy
@@ -4641,7 +4644,7 @@ msgstr "Định cấu hình vĩ độ của vị trí của bạn."
 msgid "Configure the longitude of your location."
 msgstr "Cấu hình kinh độ của vị trí của bạn."
 
-msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can."
+msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trashcan."
 msgstr "Định cấu hình dung lượng đĩa tối thiểu có sẵn để ghi. Khi lượng không gian giảm xuống dưới giá trị này, các mục đã xóa sẽ bị xóa khỏi thùng rác."
 
 msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
@@ -4656,7 +4659,7 @@ msgstr "Cấu hình netmask."
 msgid "Configure the network again"
 msgstr "Định cấu hình lại mạng của bạn"
 
-msgid "Configure the number of days after which items are automatically removed from the trash can."
+msgid "Configure the number of days after which items are automatically removed from the trashcan."
 msgstr "Định cấu hình số ngày sau đó các mục được tự động xóa khỏi thùng rác."
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
@@ -6191,7 +6194,7 @@ msgid "Directory"
 msgstr "Danh mục"
 
 #, python-format
-msgid "Directory %s does not exist."
+msgid "Error: Directory '%s' does not exist!"
 msgstr "Thư mục%s không tồn tại."
 
 #, python-format
@@ -6415,7 +6418,7 @@ msgstr "Bạn có thực sự muốn xóa% s không?"
 msgid "Do you really want to delete '%s'?"
 msgstr "Bạn có thực sự muốn xóa%s không?"
 
-msgid "Do you really want to delete ?"
+msgid "Do you really want to delete?"
 msgstr "Bạn có thực sự muốn xóa không?"
 
 #, python-format
@@ -6444,7 +6447,7 @@ msgid "Do you really want to move to trashcan ?"
 msgstr "Bạn có thực sự muốn chuyển đến thùng rác?"
 
 #, python-format
-msgid "Do you really want to permanently remove '%s' from trash can ?"
+msgid "Do you really want to permanently remove '%s' from the trashcan?"
 msgstr "Bạn có thực sự muốn xóa vĩnh viễn '% s' khỏi thùng rác không?"
 
 msgid "Do you really want to permanently remove from trash can ?"
@@ -6461,7 +6464,7 @@ msgstr ""
 "plugin % s?"
 
 #, python-format
-msgid "Do you really want to remove your bookmark for '%s'?"
+msgid "Do you really want to remove the bookmark for '%s'?"
 msgstr "Bạn có thực sự muốn xóa dấu trang của%s không?"
 
 msgid ""
@@ -7199,10 +7202,16 @@ msgstr ""
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr ""
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
+msgstr ""
+
+msgid "Enable this option to show unknown storage devices in device manager."
 msgstr ""
 
 msgid "Enable this setting if your aerial system needs power."
@@ -8302,7 +8311,7 @@ msgstr "Kiểm tra hệ thống tập tin"
 msgid "File System Packages"
 msgstr ""
 
-msgid "File appears to be busy.\n"
+msgid "File appears to be busy!\n"
 msgstr "Tập tin có vẻ bận rộn.\n"
 
 msgid ""
@@ -9641,6 +9650,9 @@ msgstr ""
 msgid "Image creation failed!"
 msgstr ""
 
+msgid "Image version"
+msgstr ""
+
 msgid "ImageWizard"
 msgstr "Hình ảnh"
 
@@ -9758,6 +9770,9 @@ msgid "Include remote control data"
 msgstr "Cấu hình loại điều khiển từ xa"
 
 msgid "Include screen load data"
+msgstr ""
+
+msgid "Include storage device data"
 msgstr ""
 
 msgid "Include teletext details"
@@ -13230,7 +13245,7 @@ msgstr ""
 msgid "Perform the upgrade?"
 msgstr ""
 
-msgid "Permanently delete all recordings in the trash can?"
+msgid "Permanently delete all recordings in the trashcan?"
 msgstr "Xóa vĩnh viễn tất cả các bản ghi trong thùng rác?"
 
 msgid "Permanently ignore this device"
@@ -18281,6 +18296,9 @@ msgstr ""
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "Hiển thị Videoresolution không xác định là độ phân giải màn hình cao hơn hoặc cao hơn tiếp theo."
 
+msgid "Show unknown devices"
+msgstr ""
+
 msgid "Show unknown video format as"
 msgstr "Hiển thị định dạng video không xác định là"
 
@@ -22517,7 +22535,7 @@ msgstr "Khi được bật, nội dung có tỷ lệ khung hình 4: 3 sẽ đư�
 msgid "When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels."
 msgstr "Khi được bật, tiếp tục đến bó hoa tiếp theo khi đạt đến kênh cuối cùng của bó hoa hiện tại trong khi thay đổi kênh."
 
-msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
+msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
 msgstr "Khi được bật, các bản ghi bị xóa sẽ được chuyển vào thùng rác, thay vì bị xóa ngay lập tức."
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
@@ -22535,7 +22553,7 @@ msgstr "Khi được bật, có thể rời khỏi trình phát phim với lối
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Khi được bật, đo mức tiêu thụ năng lượng để phát hiện khi rôto dừng quay (khi được bộ chỉnh tần hỗ trợ)."
 
-msgid "When enabled, network trash cans are probed for cleaning."
+msgid "When enabled, network trashcans are probed for cleaning."
 msgstr "Khi được bật, thùng rác mạng được thăm dò để làm sạch."
 
 msgid "When enabled, number markers will be hidden."

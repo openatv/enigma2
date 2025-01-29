@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-07 09:29+0000\n"
+"POT-Creation-Date: 2025-01-28 07:25+0000\n"
 "PO-Revision-Date: 2021-09-13 18:30+0000\n"
 "Last-Translator: Josep Belda <josepmaulet1707@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ca/>\n"
@@ -1977,6 +1977,9 @@ msgid "Activate the configured network settings."
 msgstr "Activar la configuració de la xarxa."
 
 msgid "Activate the flash expander, save all changed settings and exit"
+msgstr ""
+
+msgid "Activate this device"
 msgstr ""
 
 msgid "Activate time shift End"
@@ -3964,7 +3967,7 @@ msgstr ""
 msgid "Cannot find any signal ..., aborting !"
 msgstr "No trobem cap senyal … avortant!"
 
-msgid "Cannot move to trash can"
+msgid "Can't move to trashcan!"
 msgstr "No es pot moure a la paperera"
 
 msgid "Cape Verde"
@@ -4976,7 +4979,7 @@ msgstr "Configureu la latitud de la vostra ubicació."
 msgid "Configure the longitude of your location."
 msgstr "Configureu la longitud de la vostra ubicació."
 
-msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can."
+msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trashcan."
 msgstr "Configureu la quantitat mínima d’espai de disc disponible per a les gravacions. Quan la quantitat d’espai baixa per sota d’aquest valor, els elements suprimits s’eliminaran de la paperera."
 
 msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
@@ -4992,7 +4995,7 @@ msgstr "Configura xarxa de red"
 msgid "Configure the network again"
 msgstr "Configura de nou la xarxa"
 
-msgid "Configure the number of days after which items are automatically removed from the trash can."
+msgid "Configure the number of days after which items are automatically removed from the trashcan."
 msgstr ""
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
@@ -6586,7 +6589,7 @@ msgid "Directory"
 msgstr "Directori"
 
 #, python-format
-msgid "Directory %s does not exist."
+msgid "Error: Directory '%s' does not exist!"
 msgstr "El directori% s no existeix."
 
 #, python-format
@@ -6821,7 +6824,7 @@ msgstr ""
 msgid "Do you really want to delete '%s'?"
 msgstr "Segur que vols esborrar %s?"
 
-msgid "Do you really want to delete ?"
+msgid "Do you really want to delete?"
 msgstr ""
 
 #, python-format
@@ -6853,7 +6856,7 @@ msgid "Do you really want to move to trashcan ?"
 msgstr ""
 
 #, python-format
-msgid "Do you really want to permanently remove '%s' from trash can ?"
+msgid "Do you really want to permanently remove '%s' from the trashcan?"
 msgstr ""
 
 msgid "Do you really want to permanently remove from trash can ?"
@@ -6871,7 +6874,7 @@ msgstr "Segur que vols esborrar %s?"
 
 #
 #, python-format
-msgid "Do you really want to remove your bookmark for '%s'?"
+msgid "Do you really want to remove the bookmark for '%s'?"
 msgstr "Voleu suprimir el marcador de% s?"
 
 msgid ""
@@ -7633,10 +7636,16 @@ msgstr ""
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr ""
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
+msgstr ""
+
+msgid "Enable this option to show unknown storage devices in device manager."
 msgstr ""
 
 msgid "Enable this setting if your aerial system needs power."
@@ -8778,7 +8787,7 @@ msgstr ""
 msgid "File System Packages"
 msgstr ""
 
-msgid "File appears to be busy.\n"
+msgid "File appears to be busy!\n"
 msgstr "Sembla que el fitxer està ocupat.\n"
 
 msgid ""
@@ -10181,6 +10190,9 @@ msgstr ""
 msgid "Image creation failed!"
 msgstr ""
 
+msgid "Image version"
+msgstr ""
+
 msgid "ImageWizard"
 msgstr ""
 
@@ -10298,6 +10310,9 @@ msgid "Include remote control data"
 msgstr ""
 
 msgid "Include screen load data"
+msgstr ""
+
+msgid "Include storage device data"
 msgstr ""
 
 msgid "Include teletext details"
@@ -13967,7 +13982,7 @@ msgstr ""
 msgid "Perform the upgrade?"
 msgstr ""
 
-msgid "Permanently delete all recordings in the trash can?"
+msgid "Permanently delete all recordings in the trashcan?"
 msgstr "Voleu eliminar tots els enregistraments de la paperera?"
 
 msgid "Permanently ignore this device"
@@ -19317,6 +19332,9 @@ msgstr ""
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr ""
 
+msgid "Show unknown devices"
+msgstr ""
+
 msgid "Show unknown video format as"
 msgstr ""
 
@@ -23720,7 +23738,7 @@ msgstr "Quan estigui habilitat, el contingut amb una proporció de 4: 3 s’este
 msgid "When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels."
 msgstr "Quan estigui habilitat, continueu fins al següent ram quan s’arribi al darrer canal del ram actual mentre canvieu de canal."
 
-msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
+msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
 msgstr "Quan estan activats, els enregistraments suprimits es traslladen a la paperera, en lloc de ser eliminats immediatament."
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
@@ -23738,7 +23756,7 @@ msgstr "Quan està activat, els fluxos http poden ser distribuïts al servidor. 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Quan estigui habilitat, mesura el consum d’energia per detectar quan el rotor deixa de girar (quan és compatible amb el sintonitzador)."
 
-msgid "When enabled, network trash cans are probed for cleaning."
+msgid "When enabled, network trashcans are probed for cleaning."
 msgstr ""
 
 msgid "When enabled, number markers will be hidden."

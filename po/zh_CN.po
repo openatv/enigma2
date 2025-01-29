@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-07 09:29+0000\n"
+"POT-Creation-Date: 2025-01-28 07:25+0000\n"
 "PO-Revision-Date: 2025-01-16 10:00+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -1815,6 +1815,9 @@ msgstr "启用已配置的网络设置。"
 
 msgid "Activate the flash expander, save all changed settings and exit"
 msgstr "激活闪存扩展器，保存所有更改的设置并退出"
+
+msgid "Activate this device"
+msgstr ""
 
 msgid "Activate time shift End"
 msgstr "激活时移结束"
@@ -3657,7 +3660,7 @@ msgstr "无法确定 %s 限制...，正在中止！"
 msgid "Cannot find any signal ..., aborting !"
 msgstr "无法找到任何信号...，正在中止！"
 
-msgid "Cannot move to trash can"
+msgid "Can't move to trashcan!"
 msgstr "无法移动到回收站"
 
 msgid "Cape Verde"
@@ -4613,7 +4616,7 @@ msgstr "设置您所在位置的纬度。"
 msgid "Configure the longitude of your location."
 msgstr "设置您所在位置的经度。"
 
-msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can."
+msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trashcan."
 msgstr "配置可用于录制的最小磁盘空间量。 当空间量低于此值时，已删除的项目将从回收站中删除。"
 
 msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
@@ -4628,7 +4631,7 @@ msgstr "配置子网掩码。"
 msgid "Configure the network again"
 msgstr "重新配置网络"
 
-msgid "Configure the number of days after which items are automatically removed from the trash can."
+msgid "Configure the number of days after which items are automatically removed from the trashcan."
 msgstr "配置项目在多少天后自动从垃圾箱中删除。"
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
@@ -6142,7 +6145,7 @@ msgid "Directory"
 msgstr "目录"
 
 #, python-format
-msgid "Directory %s does not exist."
+msgid "Error: Directory '%s' does not exist!"
 msgstr "不存在 %s 目录 。"
 
 #, python-format
@@ -6364,7 +6367,7 @@ msgstr "真的要删除 %s ？"
 msgid "Do you really want to delete '%s'?"
 msgstr "真的要删除“%s”吗？"
 
-msgid "Do you really want to delete ?"
+msgid "Do you really want to delete?"
 msgstr "真的要删除？"
 
 #, python-format
@@ -6399,7 +6402,7 @@ msgid "Do you really want to move to trashcan ?"
 msgstr "真的要移动到回收站？"
 
 #, python-format
-msgid "Do you really want to permanently remove '%s' from trash can ?"
+msgid "Do you really want to permanently remove '%s' from the trashcan?"
 msgstr "真的要从垃圾桶中永久删除“%s”吗？"
 
 msgid "Do you really want to permanently remove from trash can ?"
@@ -6414,7 +6417,7 @@ msgid "Do you really want to remove the timer for %s?"
 msgstr "真的要删除 %s 的定时器?"
 
 #, python-format
-msgid "Do you really want to remove your bookmark for '%s'?"
+msgid "Do you really want to remove the bookmark for '%s'?"
 msgstr "真的要删除“%s”的书签吗？"
 
 msgid ""
@@ -7145,11 +7148,17 @@ msgstr "启用此选项可将远程控制数据添加到调试日志文件中。
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr "启用此选项可将屏幕名称和分辨率数据添加到调试日志文件中。"
 
+msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "启用此选项可将定时器调试数据添加到调试日志文件。"
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
 msgstr "启用此选项可显示信息菜单项列表中所有可用的信息屏幕。"
+
+msgid "Enable this option to show unknown storage devices in device manager."
+msgstr ""
 
 msgid "Enable this setting if your aerial system needs power."
 msgstr "如果您的天线系统需要电源，请启用此设置。"
@@ -8245,7 +8254,7 @@ msgstr "文件系统检查"
 msgid "File System Packages"
 msgstr "文件系统软件包"
 
-msgid "File appears to be busy.\n"
+msgid "File appears to be busy!\n"
 msgstr "文件似乎忙。\n"
 
 msgid ""
@@ -9553,6 +9562,9 @@ msgstr "创建的镜像："
 msgid "Image creation failed!"
 msgstr "镜像创建失败！"
 
+msgid "Image version"
+msgstr ""
+
 msgid "ImageWizard"
 msgstr "镜像向导"
 
@@ -9673,6 +9685,9 @@ msgstr "包含遥控数据"
 
 msgid "Include screen load data"
 msgstr "包括屏幕加载数据"
+
+msgid "Include storage device data"
+msgstr ""
 
 msgid "Include teletext details"
 msgstr "包括图文电视详细信息"
@@ -13055,7 +13070,7 @@ msgstr "改为执行在线刷机"
 msgid "Perform the upgrade?"
 msgstr "是否执行升级？"
 
-msgid "Permanently delete all recordings in the trash can?"
+msgid "Permanently delete all recordings in the trashcan?"
 msgstr "永久删除所有回收站中的录像吗？"
 
 msgid "Permanently ignore this device"
@@ -18064,6 +18079,9 @@ msgstr "显示下划线字符"
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "将未知的视频分辨率显示为下一个更高或最高的屏幕分辨率。"
 
+msgid "Show unknown devices"
+msgstr ""
+
 msgid "Show unknown video format as"
 msgstr "将未知的视频格式显示为"
 
@@ -22311,7 +22329,7 @@ msgstr "启用时，宽高比为4:3的内容将被拉伸以适合屏幕。"
 msgid "When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels."
 msgstr "启用后，换台到当前频道群的最后一个频道时，继续到下一个频道群。"
 
-msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
+msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
 msgstr "启用后，已删除的录像会移至回收站，而不是立即删除。"
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
@@ -22329,7 +22347,7 @@ msgstr "启用后，可按 “EXIT” 键退出电影播放器。"
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "启用时，测量功率消耗以检测极轴何时停止转动（当调谐器支持时）。"
 
-msgid "When enabled, network trash cans are probed for cleaning."
+msgid "When enabled, network trashcans are probed for cleaning."
 msgstr "启用时，将探测网络回收站以进行清洁。"
 
 msgid "When enabled, number markers will be hidden."

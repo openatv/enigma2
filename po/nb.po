@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-07 09:29+0000\n"
+"POT-Creation-Date: 2025-01-28 07:25+0000\n"
 "PO-Revision-Date: 2021-08-19 14:13+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nb_NO/>\n"
@@ -1795,6 +1795,9 @@ msgid "Activate the configured network settings."
 msgstr "Aktiver nettverksinnstillingene."
 
 msgid "Activate the flash expander, save all changed settings and exit"
+msgstr ""
+
+msgid "Activate this device"
 msgstr ""
 
 msgid "Activate time shift End"
@@ -3626,7 +3629,7 @@ msgstr ""
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Finner ikke signal..., avbryter!"
 
-msgid "Cannot move to trash can"
+msgid "Can't move to trashcan!"
 msgstr "Kan ikke slette til papirkurv"
 
 msgid "Cape Verde"
@@ -4577,7 +4580,7 @@ msgstr "Angi mottakerens breddegrad."
 msgid "Configure the longitude of your location."
 msgstr "Angi mottakerens lengdegrad."
 
-msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can."
+msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trashcan."
 msgstr "Still inn minsteverdi for lagring av opptak. Når lagringsplassen fylles opp, tømmes papirkurven."
 
 msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
@@ -4592,7 +4595,7 @@ msgstr "Still inn nettmaske."
 msgid "Configure the network again"
 msgstr "Konfigurer nettverket på nytt"
 
-msgid "Configure the number of days after which items are automatically removed from the trash can."
+msgid "Configure the number of days after which items are automatically removed from the trashcan."
 msgstr ""
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
@@ -6100,7 +6103,7 @@ msgid "Directory"
 msgstr "Mappe"
 
 #, python-format
-msgid "Directory %s does not exist."
+msgid "Error: Directory '%s' does not exist!"
 msgstr "Mappe %s finnes ikke."
 
 #, python-format
@@ -6318,7 +6321,7 @@ msgstr ""
 msgid "Do you really want to delete '%s'?"
 msgstr "Er du sikker på at du vil slette %s?"
 
-msgid "Do you really want to delete ?"
+msgid "Do you really want to delete?"
 msgstr ""
 
 #, python-format
@@ -6347,7 +6350,7 @@ msgid "Do you really want to move to trashcan ?"
 msgstr ""
 
 #, python-format
-msgid "Do you really want to permanently remove '%s' from trash can ?"
+msgid "Do you really want to permanently remove '%s' from the trashcan?"
 msgstr ""
 
 msgid "Do you really want to permanently remove from trash can ?"
@@ -6362,7 +6365,7 @@ msgid "Do you really want to remove the timer for %s?"
 msgstr ""
 
 #, python-format
-msgid "Do you really want to remove your bookmark for '%s'?"
+msgid "Do you really want to remove the bookmark for '%s'?"
 msgstr "Vil du virkelig fjerne bokmerket for %s?"
 
 msgid ""
@@ -7073,10 +7076,16 @@ msgstr ""
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr ""
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
+msgstr ""
+
+msgid "Enable this option to show unknown storage devices in device manager."
 msgstr ""
 
 msgid "Enable this setting if your aerial system needs power."
@@ -8154,7 +8163,7 @@ msgstr ""
 msgid "File System Packages"
 msgstr ""
 
-msgid "File appears to be busy.\n"
+msgid "File appears to be busy!\n"
 msgstr "Filen ser ut til å være opptatt.\n"
 
 msgid ""
@@ -9457,6 +9466,9 @@ msgstr ""
 msgid "Image creation failed!"
 msgstr ""
 
+msgid "Image version"
+msgstr ""
+
 msgid "ImageWizard"
 msgstr ""
 
@@ -9571,6 +9583,9 @@ msgid "Include remote control data"
 msgstr ""
 
 msgid "Include screen load data"
+msgstr ""
+
+msgid "Include storage device data"
 msgstr ""
 
 msgid "Include teletext details"
@@ -12937,7 +12952,7 @@ msgstr ""
 msgid "Perform the upgrade?"
 msgstr ""
 
-msgid "Permanently delete all recordings in the trash can?"
+msgid "Permanently delete all recordings in the trashcan?"
 msgstr "Slette for godt alle opptak som ligger i papirkurven?"
 
 msgid "Permanently ignore this device"
@@ -17907,6 +17922,9 @@ msgstr ""
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr ""
 
+msgid "Show unknown devices"
+msgstr ""
+
 msgid "Show unknown video format as"
 msgstr ""
 
@@ -22025,7 +22043,7 @@ msgstr "Hvis aktivert, vil et 4:3 bilde strekkes ut for å tilpasse seg skjermen
 msgid "When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels."
 msgstr "Hvis aktivert, fortsettes automatisk til neste kanalliste når den siste kanalen i nåværende liste er nådd mens du skifter kanaler."
 
-msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
+msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
 msgstr "Hvis aktivert, vil slettede opptak gå i papirkurven istedenfor å bli slettet umiddelbart."
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
@@ -22043,7 +22061,7 @@ msgstr "Hvis aktivert, er det mulig å forlate mediespiller med exit."
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Hvis aktivert, brukes rotorens strømforbruk til måling for å oppdage når rotorbevegelsen stopper (hvis det støttes av tuner)."
 
-msgid "When enabled, network trash cans are probed for cleaning."
+msgid "When enabled, network trashcans are probed for cleaning."
 msgstr ""
 
 msgid "When enabled, number markers will be hidden."

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-07 09:29+0000\n"
+"POT-Creation-Date: 2025-01-28 07:25+0000\n"
 "PO-Revision-Date: 2024-02-10 07:43+0000\n"
 "Last-Translator: \"Mahmoud Habls (7OODA)\" <adhoda4@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ar/>\n"
@@ -2006,6 +2006,9 @@ msgstr "تفعيل إعدادات تكوين الشبكة."
 msgid "Activate the flash expander, save all changed settings and exit"
 msgstr ""
 
+msgid "Activate this device"
+msgstr ""
+
 msgid "Activate time shift End"
 msgstr ""
 
@@ -3936,7 +3939,7 @@ msgstr ""
 msgid "Cannot find any signal ..., aborting !"
 msgstr "لا يمكن العثور على أي إشارة ... ، جارٍ الإلغاء !"
 
-msgid "Cannot move to trash can"
+msgid "Can't move to trashcan!"
 msgstr ""
 
 msgid "Cape Verde"
@@ -4938,7 +4941,7 @@ msgstr "تكوين خط العرض للموقع الخاص بك."
 msgid "Configure the longitude of your location."
 msgstr "تكوين خط الطول للموقع الخاص بك."
 
-msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can."
+msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trashcan."
 msgstr "تكوين الحد الأدنى من مساحة القرص لتكون متاحة للتسجيلات. عندما ينخفض مقدار المساحة أقل من هذه القيمة، سيتم إزالة العناصر المحذوفة من سلة المهملات."
 
 msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
@@ -4953,7 +4956,7 @@ msgstr "إعدادات قناع الشبكة."
 msgid "Configure the network again"
 msgstr "تكوين الشبكة مره ثانيه"
 
-msgid "Configure the number of days after which items are automatically removed from the trash can."
+msgid "Configure the number of days after which items are automatically removed from the trashcan."
 msgstr ""
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
@@ -6509,7 +6512,7 @@ msgid "Directory"
 msgstr "الدليل"
 
 #, python-format
-msgid "Directory %s does not exist."
+msgid "Error: Directory '%s' does not exist!"
 msgstr "المجلد %s غير موجود."
 
 #, python-format
@@ -6735,7 +6738,7 @@ msgstr ""
 msgid "Do you really want to delete '%s'?"
 msgstr "هل تريد فعلا مسح %s?"
 
-msgid "Do you really want to delete ?"
+msgid "Do you really want to delete?"
 msgstr ""
 
 #, python-format
@@ -6765,7 +6768,7 @@ msgid "Do you really want to move to trashcan ?"
 msgstr ""
 
 #, python-format
-msgid "Do you really want to permanently remove '%s' from trash can ?"
+msgid "Do you really want to permanently remove '%s' from the trashcan?"
 msgstr ""
 
 msgid "Do you really want to permanently remove from trash can ?"
@@ -6780,7 +6783,7 @@ msgid "Do you really want to remove the timer for %s?"
 msgstr "هل تريد فعلا مسح البلج إن \"%s\" ؟"
 
 #, python-format
-msgid "Do you really want to remove your bookmark for '%s'?"
+msgid "Do you really want to remove the bookmark for '%s'?"
 msgstr "هل تريد فعلا حذف المرجعية %s?"
 
 msgid ""
@@ -7532,10 +7535,16 @@ msgstr ""
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr ""
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
+msgstr ""
+
+msgid "Enable this option to show unknown storage devices in device manager."
 msgstr ""
 
 msgid "Enable this setting if your aerial system needs power."
@@ -8647,7 +8656,7 @@ msgstr "فحص نظام الملفات"
 msgid "File System Packages"
 msgstr ""
 
-msgid "File appears to be busy.\n"
+msgid "File appears to be busy!\n"
 msgstr "يبدو ان الملف مشغول.\n"
 
 msgid ""
@@ -10014,6 +10023,9 @@ msgstr ""
 msgid "Image creation failed!"
 msgstr ""
 
+msgid "Image version"
+msgstr ""
+
 msgid "ImageWizard"
 msgstr ""
 
@@ -10134,6 +10146,9 @@ msgid "Include remote control data"
 msgstr "أضغط موافق من الريموت للمتابعه"
 
 msgid "Include screen load data"
+msgstr ""
+
+msgid "Include storage device data"
 msgstr ""
 
 msgid "Include teletext details"
@@ -13730,7 +13745,7 @@ msgstr ""
 msgid "Perform the upgrade?"
 msgstr ""
 
-msgid "Permanently delete all recordings in the trash can?"
+msgid "Permanently delete all recordings in the trashcan?"
 msgstr "حذف جميع التسجيلات في سله المهملات بشكل دائم ؟"
 
 msgid "Permanently ignore this device"
@@ -18958,6 +18973,9 @@ msgstr ""
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr ""
 
+msgid "Show unknown devices"
+msgstr ""
+
 msgid "Show unknown video format as"
 msgstr ""
 
@@ -23329,7 +23347,7 @@ msgstr "عند التمكين، سيتم توسيع المحتوى الذي يح
 msgid "When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels."
 msgstr ""
 
-msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
+msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
 msgstr ""
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
@@ -23347,7 +23365,7 @@ msgstr ""
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "عند التمكين، كشف قياس استهلاك الطاقة عندما يتوقف عن الدوران (عندما يدعمها المؤالف)."
 
-msgid "When enabled, network trash cans are probed for cleaning."
+msgid "When enabled, network trashcans are probed for cleaning."
 msgstr ""
 
 msgid "When enabled, number markers will be hidden."

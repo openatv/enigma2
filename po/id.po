@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-07 09:29+0000\n"
+"POT-Creation-Date: 2025-01-28 07:25+0000\n"
 "PO-Revision-Date: 2024-01-13 10:34+0000\n"
 "Last-Translator: Reza Almanda <rezaalmanda27@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/id/>\n"
@@ -1965,6 +1965,9 @@ msgstr "Aktifkan pengaturan jaringan terkonfigurasi."
 msgid "Activate the flash expander, save all changed settings and exit"
 msgstr ""
 
+msgid "Activate this device"
+msgstr ""
+
 msgid "Activate time shift End"
 msgstr "Aktifkan Akhir timeshift"
 
@@ -3840,8 +3843,8 @@ msgstr ""
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Cannot find any signal ..., aborting !"
 
-msgid "Cannot move to trash can"
-msgstr "Cannot move to trash can"
+msgid "Can't move to trashcan!"
+msgstr "Can't move to trashcan!"
 
 #, fuzzy
 msgid "Cape Verde"
@@ -4810,8 +4813,8 @@ msgstr "Configure the latitude of your location."
 msgid "Configure the longitude of your location."
 msgstr "Configure the longitude of your location."
 
-msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can."
-msgstr "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can."
+msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trashcan."
+msgstr "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trashcan."
 
 msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
 msgstr "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
@@ -4825,8 +4828,8 @@ msgstr "Configure the netmask."
 msgid "Configure the network again"
 msgstr "Configure the network again"
 
-msgid "Configure the number of days after which items are automatically removed from the trash can."
-msgstr "Configure the number of days after which items are automatically removed from the trash can."
+msgid "Configure the number of days after which items are automatically removed from the trashcan."
+msgstr "Configure the number of days after which items are automatically removed from the trashcan."
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
 msgstr "Configure the number of days old timers are kept before they are automatically removed from the timer list."
@@ -6360,8 +6363,8 @@ msgid "Directory"
 msgstr "Directory"
 
 #, python-format
-msgid "Directory %s does not exist."
-msgstr "Directory %s does not exist."
+msgid "Error: Directory '%s' does not exist!"
+msgstr "Error: Directory '%s' does not exist!"
 
 #, python-format
 msgid "Directory '%s' can't be linked to recordings!"
@@ -6584,8 +6587,8 @@ msgstr "Do you really want to delete %s ?"
 msgid "Do you really want to delete '%s'?"
 msgstr "Do you really want to delete '%s'?"
 
-msgid "Do you really want to delete ?"
-msgstr "Do you really want to delete ?"
+msgid "Do you really want to delete?"
+msgstr "Do you really want to delete?"
 
 #, python-format
 msgid ""
@@ -6613,8 +6616,8 @@ msgid "Do you really want to move to trashcan ?"
 msgstr "Do you really want to move to trashcan ?"
 
 #, python-format
-msgid "Do you really want to permanently remove '%s' from trash can ?"
-msgstr "Do you really want to permanently remove '%s' from trash can ?"
+msgid "Do you really want to permanently remove '%s' from the trashcan?"
+msgstr "Do you really want to permanently remove '%s' from the trashcan?"
 
 msgid "Do you really want to permanently remove from trash can ?"
 msgstr "Do you really want to permanently remove from trash can ?"
@@ -6628,8 +6631,8 @@ msgid "Do you really want to remove the timer for %s?"
 msgstr "Do you really want to remove the timer for %s?"
 
 #, python-format
-msgid "Do you really want to remove your bookmark for '%s'?"
-msgstr "Do you really want to remove your bookmark for '%s'?"
+msgid "Do you really want to remove the bookmark for '%s'?"
+msgstr "Do you really want to remove the bookmark for '%s'?"
 
 msgid ""
 "Do you really want to restart OSCam?\n"
@@ -7369,10 +7372,16 @@ msgstr ""
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr ""
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
+msgstr ""
+
+msgid "Enable this option to show unknown storage devices in device manager."
 msgstr ""
 
 msgid "Enable this setting if your aerial system needs power."
@@ -8481,8 +8490,8 @@ msgstr "File System Check"
 msgid "File System Packages"
 msgstr ""
 
-msgid "File appears to be busy.\n"
-msgstr "File appears to be busy.\n"
+msgid "File appears to be busy!\n"
+msgstr "File appears to be busy!\n"
 
 msgid ""
 "File oscam.conf not found.\n"
@@ -9841,6 +9850,9 @@ msgstr ""
 msgid "Image creation failed!"
 msgstr ""
 
+msgid "Image version"
+msgstr ""
+
 msgid "ImageWizard"
 msgstr "ImageWizard"
 
@@ -9960,6 +9972,9 @@ msgid "Include remote control data"
 msgstr "Configure remote control type"
 
 msgid "Include screen load data"
+msgstr ""
+
+msgid "Include storage device data"
 msgstr ""
 
 msgid "Include teletext details"
@@ -13453,8 +13468,8 @@ msgstr ""
 msgid "Perform the upgrade?"
 msgstr ""
 
-msgid "Permanently delete all recordings in the trash can?"
-msgstr "Permanently delete all recordings in the trash can?"
+msgid "Permanently delete all recordings in the trashcan?"
+msgstr "Permanently delete all recordings in the trashcan?"
 
 msgid "Permanently ignore this device"
 msgstr ""
@@ -18555,6 +18570,9 @@ msgstr ""
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "Show unknown Videoresolution as next higher or as highest screen resolution."
 
+msgid "Show unknown devices"
+msgstr ""
+
 msgid "Show unknown video format as"
 msgstr "Show unknown video format as"
 
@@ -22830,8 +22848,8 @@ msgstr "When enabled, content with an aspect ratio of 4:3 will be stretched to f
 msgid "When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels."
 msgstr "When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels."
 
-msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
-msgstr "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
+msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
+msgstr "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
 msgstr "When enabled, external subtitles will be always turned on for playback movie."
@@ -22848,8 +22866,8 @@ msgstr "When enabled, it is possible to leave the movie player with exit."
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 
-msgid "When enabled, network trash cans are probed for cleaning."
-msgstr "When enabled, network trash cans are probed for cleaning."
+msgid "When enabled, network trashcans are probed for cleaning."
+msgstr "When enabled, network trashcans are probed for cleaning."
 
 msgid "When enabled, number markers will be hidden."
 msgstr ""

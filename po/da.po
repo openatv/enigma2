@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-07 09:29+0000\n"
+"POT-Creation-Date: 2025-01-28 07:25+0000\n"
 "PO-Revision-Date: 2021-11-04 23:53+0000\n"
 "Last-Translator: T. Rylle <dk-translation@pm.me>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/da/>\n"
@@ -1815,6 +1815,9 @@ msgid "Activate the configured network settings."
 msgstr "Aktiver de kunfigurerede netværksinstillinger."
 
 msgid "Activate the flash expander, save all changed settings and exit"
+msgstr ""
+
+msgid "Activate this device"
 msgstr ""
 
 msgid "Activate time shift End"
@@ -3661,7 +3664,7 @@ msgstr ""
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Kan ikke finde noget signal ..., afbryder !"
 
-msgid "Cannot move to trash can"
+msgid "Can't move to trashcan!"
 msgstr "Kan ikke flytte til papirkurv"
 
 msgid "Cape Verde"
@@ -4615,7 +4618,7 @@ msgstr "Konfigurer breddegraden af din placering."
 msgid "Configure the longitude of your location."
 msgstr "Konfigurer længdegraden af din placering."
 
-msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can."
+msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trashcan."
 msgstr "Konfigurer den mindste mængde diskplads der skal være tilgængelig for optagelser. Når mængden af plads falder under denne værdi, vil slettede elementer blive fjernet fra skarldespanden."
 
 msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
@@ -4630,7 +4633,7 @@ msgstr "Konfigurer netmasken."
 msgid "Configure the network again"
 msgstr "Konfigurer dit netværk igen"
 
-msgid "Configure the number of days after which items are automatically removed from the trash can."
+msgid "Configure the number of days after which items are automatically removed from the trashcan."
 msgstr "Konfigurer antallet af dage efter hvilke elementer automatisk bliver fjernet fra skraldespanden."
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
@@ -6143,7 +6146,7 @@ msgid "Directory"
 msgstr "Mappe"
 
 #, python-format
-msgid "Directory %s does not exist."
+msgid "Error: Directory '%s' does not exist!"
 msgstr "Mappen %s eksistere ikke."
 
 #, python-format
@@ -6365,7 +6368,7 @@ msgstr "Vil du virkelig slette %s ?"
 msgid "Do you really want to delete '%s'?"
 msgstr "Vil du virkelig slette: %s ?"
 
-msgid "Do you really want to delete ?"
+msgid "Do you really want to delete?"
 msgstr "Vil du virkelig slette ?"
 
 #, python-format
@@ -6394,7 +6397,7 @@ msgid "Do you really want to move to trashcan ?"
 msgstr "Vil du virkelig flytte til papirkurv ?"
 
 #, python-format
-msgid "Do you really want to permanently remove '%s' from trash can ?"
+msgid "Do you really want to permanently remove '%s' from the trashcan?"
 msgstr "Vil du virkelig fjerne '%s' permanent fra skraldespanden ?"
 
 msgid "Do you really want to permanently remove from trash can ?"
@@ -6409,7 +6412,7 @@ msgid "Do you really want to remove the timer for %s?"
 msgstr "Vil du virkelig fjerne Timeren for %s ?"
 
 #, python-format
-msgid "Do you really want to remove your bookmark for '%s'?"
+msgid "Do you really want to remove the bookmark for '%s'?"
 msgstr "Vil du virkelig fjerne bogmærket for %s ?"
 
 msgid ""
@@ -7134,10 +7137,16 @@ msgstr "Aktiver denne mulighed for at tilføje fjernbetjening data til fejlsøgn
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr "Aktiver denne mulighed for at tilføje navne og opløsning data til fejlsøgningslog filen."
 
+msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr ""
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
+msgstr ""
+
+msgid "Enable this option to show unknown storage devices in device manager."
 msgstr ""
 
 msgid "Enable this setting if your aerial system needs power."
@@ -8236,7 +8245,7 @@ msgstr "Kontroller filsystem"
 msgid "File System Packages"
 msgstr ""
 
-msgid "File appears to be busy.\n"
+msgid "File appears to be busy!\n"
 msgstr "Filen virker optaget.\n"
 
 msgid ""
@@ -9552,6 +9561,9 @@ msgstr ""
 msgid "Image creation failed!"
 msgstr ""
 
+msgid "Image version"
+msgstr ""
+
 msgid "ImageWizard"
 msgstr "Image assistent"
 
@@ -9675,6 +9687,9 @@ msgstr "Konfigurer fjernbetjenings kontroltype"
 
 msgid "Include screen load data"
 msgstr "Medtag skærmindlæsningsdata"
+
+msgid "Include storage device data"
+msgstr ""
 
 msgid "Include teletext details"
 msgstr ""
@@ -13120,7 +13135,7 @@ msgstr ""
 msgid "Perform the upgrade?"
 msgstr ""
 
-msgid "Permanently delete all recordings in the trash can?"
+msgid "Permanently delete all recordings in the trashcan?"
 msgstr "Slet alle optagelser i papirkurven permanent ?"
 
 msgid "Permanently ignore this device"
@@ -18154,6 +18169,9 @@ msgstr ""
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "Vis ukendt videoopløsning som næsthøjeste eller højeste skærmopløsning."
 
+msgid "Show unknown devices"
+msgstr ""
+
 msgid "Show unknown video format as"
 msgstr "Vis ukendt videoformat som"
 
@@ -22364,7 +22382,7 @@ msgstr "Når aktiverer, vil indhold med et billedformat på 4:3 blive strukket f
 msgid "When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels."
 msgstr "Når dette aktiveres, fortsættes til næste Buket når den sidste kanal i den aktuelle Buket bliver nået mens der skiftes kanaler."
 
-msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
+msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
 msgstr "Når aktiveret, flyttes slettede optagelser til skraldespand i stedet for straks at blive slettet."
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
@@ -22382,7 +22400,7 @@ msgstr "Når dette aktiveres, er det muligt at forlade Filmafspilleren med EXIT.
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Når dette aktiveres, måles strømforbruget for at opdage når rotoren stopper med at dreje (når det understøttes af Tuneren)."
 
-msgid "When enabled, network trash cans are probed for cleaning."
+msgid "When enabled, network trashcans are probed for cleaning."
 msgstr "Når dette er aktiveret, undersøges netværksskraldespande ved oprydning."
 
 msgid "When enabled, number markers will be hidden."

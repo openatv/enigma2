@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-07 09:29+0000\n"
+"POT-Creation-Date: 2025-01-28 07:25+0000\n"
 "PO-Revision-Date: 2024-11-10 13:00+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -1824,6 +1824,9 @@ msgstr "Activeer de geconfigureerde netwerkinstellingen."
 
 msgid "Activate the flash expander, save all changed settings and exit"
 msgstr "De Flash-Expander inschakelen, alle wijzigen opslaan en afsluiten"
+
+msgid "Activate this device"
+msgstr ""
 
 msgid "Activate time shift End"
 msgstr "Beëindig de Timeshift"
@@ -3667,7 +3670,7 @@ msgstr "Kan de %s limiet niet bepalen ..., annuleren !"
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Kan geen signaal vinden..., gestopt!"
 
-msgid "Cannot move to trash can"
+msgid "Can't move to trashcan!"
 msgstr "Kan geen bestanden naar de prullenbak verplaatsen"
 
 msgid "Cape Verde"
@@ -4692,7 +4695,7 @@ msgstr "Configureer de breedtegraad van uw locatie."
 msgid "Configure the longitude of your location."
 msgstr "Configureer de lengtegraad van uw locatie."
 
-msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can."
+msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trashcan."
 msgstr "Bepaal hoeveel ruimte er minimaal beschikbaar moet zijn voor opnames. Als deze waarde bereikt wordt, zulle bestanden uit de prullenbak worden verwijderd."
 
 msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
@@ -4707,7 +4710,7 @@ msgstr "Configureer de netmask."
 msgid "Configure the network again"
 msgstr "Configureer uw netwerk opnieuw"
 
-msgid "Configure the number of days after which items are automatically removed from the trash can."
+msgid "Configure the number of days after which items are automatically removed from the trashcan."
 msgstr ""
 "Na hoeveel dagen moeten opnames automatisch uit de prullenbak worden verwijderd.\n"
 "\n"
@@ -6265,7 +6268,7 @@ msgid "Directory"
 msgstr "Map"
 
 #, python-format
-msgid "Directory %s does not exist."
+msgid "Error: Directory '%s' does not exist!"
 msgstr "Map %s bestaat niet."
 
 #, python-format
@@ -6487,7 +6490,7 @@ msgstr "Wilt u echt %s verwijderen?"
 msgid "Do you really want to delete '%s'?"
 msgstr "Wilt u %s echt wissen?"
 
-msgid "Do you really want to delete ?"
+msgid "Do you really want to delete?"
 msgstr "Wilt u echt verwijderen?"
 
 #, python-format
@@ -6522,7 +6525,7 @@ msgid "Do you really want to move to trashcan ?"
 msgstr "Wilt u dit echt naar de prullenbak verplaatsen?"
 
 #, python-format
-msgid "Do you really want to permanently remove '%s' from trash can ?"
+msgid "Do you really want to permanently remove '%s' from the trashcan?"
 msgstr "Wilt u '%s' permanent verwijderen uit de prullenbak?"
 
 msgid "Do you really want to permanently remove from trash can ?"
@@ -6537,7 +6540,7 @@ msgid "Do you really want to remove the timer for %s?"
 msgstr "Wilt u echt de timer voor %s verwijderen?"
 
 #, python-format
-msgid "Do you really want to remove your bookmark for '%s'?"
+msgid "Do you really want to remove the bookmark for '%s'?"
 msgstr "Weet u zeker dat u het bookmark van %s wilt verwijderen?"
 
 msgid ""
@@ -7274,11 +7277,17 @@ msgstr "Activeer deze optie om gegevens van de afstandsbediening mee te nemen in
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr "Activeer deze optie om schermnamen en resolutiegegevens mee te nemen in het debug log bestand."
 
+msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Activeer deze optie om Timer debug gegevens mee te nemen in het debug log bestand."
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
 msgstr "Activeren, om alle beschikbare informatie-schermen in het informatie-menu te tonen."
+
+msgid "Enable this option to show unknown storage devices in device manager."
+msgstr ""
 
 msgid "Enable this setting if your aerial system needs power."
 msgstr "Schakel deze optie in indien de antenne een externe voeding nodig heeft."
@@ -8387,7 +8396,7 @@ msgstr "Bestandssysteemcontrole"
 msgid "File System Packages"
 msgstr "Bestandssysteem pakketten"
 
-msgid "File appears to be busy.\n"
+msgid "File appears to be busy!\n"
 msgstr "Bestand mogelijk in gebruik door ander proces.\n"
 
 msgid ""
@@ -9702,6 +9711,9 @@ msgstr "Image gemaakt:"
 msgid "Image creation failed!"
 msgstr "Het maken van de image is mislukt!"
 
+msgid "Image version"
+msgstr ""
+
 msgid "ImageWizard"
 msgstr "Image wizard"
 
@@ -9822,6 +9834,9 @@ msgstr "Inclusief afstandsbediening data"
 
 msgid "Include screen load data"
 msgstr "Inclusief scherm data"
+
+msgid "Include storage device data"
+msgstr ""
 
 msgid "Include teletext details"
 msgstr "Inclusief Teletekst details"
@@ -13207,7 +13222,7 @@ msgstr "In plaats daarvan een online flash uitvoeren"
 msgid "Perform the upgrade?"
 msgstr "De upgrade uitvoeren?"
 
-msgid "Permanently delete all recordings in the trash can?"
+msgid "Permanently delete all recordings in the trashcan?"
 msgstr "Alle bestanden in de prullenbak nu permanent verwijderen?"
 
 msgid "Permanently ignore this device"
@@ -18259,6 +18274,9 @@ msgstr "Toon underscore tekens in bestandsnamen"
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "Toon onbekende videoresolutie als hogere of hoogste scherm resolutie."
 
+msgid "Show unknown devices"
+msgstr ""
+
 msgid "Show unknown video format as"
 msgstr "Toon onbekend video formaat als"
 
@@ -22561,7 +22579,7 @@ msgstr "Indien geactiveerd, dan zal een 4:3 weergave omgezet worden tot een pass
 msgid "When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels."
 msgstr "Bij 'Ja' kunt u doorzappen naar de volgende favorietenlijst, wanneer de laatste zender in de huidige favorietenlijst bereikt is."
 
-msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
+msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
 msgstr "Kies 'Ja' wanneer u verwijderde opnames naar de prullenbak wilt verplaatsen, anders worden deze direct verwijderd."
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
@@ -22582,7 +22600,7 @@ msgstr "Indien geactiveerd, kan de Mediaspeler (ook) verlaten worden door op de 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Indien geactiveerd, dan wordt het door de rotor opgenomen vermogen gedetecteerd indien deze stopt met draaien (wanneer uw tuner dit ondersteund)."
 
-msgid "When enabled, network trash cans are probed for cleaning."
+msgid "When enabled, network trashcans are probed for cleaning."
 msgstr "Indien geactiveerd, worden netwerk prullenbakken ook opgeschoond."
 
 msgid "When enabled, number markers will be hidden."

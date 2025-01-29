@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-07 09:29+0000\n"
+"POT-Creation-Date: 2025-01-28 07:25+0000\n"
 "PO-Revision-Date: 2025-01-15 06:00+0000\n"
 "Last-Translator: Marchella1983 <marchella_ru@mail.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
@@ -1851,6 +1851,9 @@ msgstr "Активировать выбранные настройки сети.
 msgid "Activate the flash expander, save all changed settings and exit"
 msgstr "Активируйте расширение флеш-памяти, сохраните все изменённые настройки и выйдите"
 
+msgid "Activate this device"
+msgstr ""
+
 msgid "Activate time shift End"
 msgstr "Указать окончание таймшифта"
 
@@ -3692,7 +3695,7 @@ msgstr "Невозможно определить предел %s ..., отме�
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Сигнал не найден, прерываем!"
 
-msgid "Cannot move to trash can"
+msgid "Can't move to trashcan!"
 msgstr "Невозможно переместить в корзину"
 
 msgid "Cape Verde"
@@ -4650,7 +4653,7 @@ msgstr "Укажите широту своего местонахождения.
 msgid "Configure the longitude of your location."
 msgstr "Укажите долготу своего местонахождения."
 
-msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can."
+msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trashcan."
 msgstr "Задайте минимальный размер дискового пространства, которое должно быть доступно для записи. Когда количество свободного места упадет ниже этого значения, записи в корзине будут окончательно стёрты."
 
 msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
@@ -4665,7 +4668,7 @@ msgstr "Настройки маски подсети."
 msgid "Configure the network again"
 msgstr "Повторить настройку сети"
 
-msgid "Configure the number of days after which items are automatically removed from the trash can."
+msgid "Configure the number of days after which items are automatically removed from the trashcan."
 msgstr "Укажите, через сколько дней файлы из корзины будут удалены."
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
@@ -6179,7 +6182,7 @@ msgid "Directory"
 msgstr "Каталог"
 
 #, python-format
-msgid "Directory %s does not exist."
+msgid "Error: Directory '%s' does not exist!"
 msgstr "Каталог %s отсутствует."
 
 #, python-format
@@ -6401,7 +6404,7 @@ msgstr "Действительно удалить %s?"
 msgid "Do you really want to delete '%s'?"
 msgstr "Действительно удалить %s?"
 
-msgid "Do you really want to delete ?"
+msgid "Do you really want to delete?"
 msgstr "Действительно удалить?"
 
 #, python-format
@@ -6436,7 +6439,7 @@ msgid "Do you really want to move to trashcan ?"
 msgstr "Действительно удалить в корзину?"
 
 #, python-format
-msgid "Do you really want to permanently remove '%s' from trash can ?"
+msgid "Do you really want to permanently remove '%s' from the trashcan?"
 msgstr "Действительно навсегда удалить '%s' из корзины?"
 
 msgid "Do you really want to permanently remove from trash can ?"
@@ -6451,7 +6454,7 @@ msgid "Do you really want to remove the timer for %s?"
 msgstr "Действительно удалить таймер для %s?"
 
 #, python-format
-msgid "Do you really want to remove your bookmark for '%s'?"
+msgid "Do you really want to remove the bookmark for '%s'?"
 msgstr "Действительно удалить вашу закладку %s?"
 
 msgid ""
@@ -7183,11 +7186,17 @@ msgstr "Включите этот параметр, чтобы добавить 
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr "Включите эту опцию, чтобы добавить имена экранов и данные о разрешении в файл лога отладки."
 
+msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Включите этот параметр, чтобы добавить данные отладки таймера в файл лога отладки."
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
 msgstr "Включите эту опцию, чтобы отобразить все доступные информационные экраны в списке пунктов меню 'Информация'."
+
+msgid "Enable this option to show unknown storage devices in device manager."
+msgstr ""
 
 msgid "Enable this setting if your aerial system needs power."
 msgstr "Включите этот параметр, если вашей антенной системе требуется питание."
@@ -8285,7 +8294,7 @@ msgstr "Проверка файловой системы"
 msgid "File System Packages"
 msgstr "Пакеты файловой системы"
 
-msgid "File appears to be busy.\n"
+msgid "File appears to be busy!\n"
 msgstr "Файл занят\n"
 
 msgid ""
@@ -9593,6 +9602,9 @@ msgstr "Образ создан:"
 msgid "Image creation failed!"
 msgstr "Не удалось создать образ!"
 
+msgid "Image version"
+msgstr ""
+
 msgid "ImageWizard"
 msgstr "Мастер прошивок"
 
@@ -9713,6 +9725,9 @@ msgstr "Указать тип пульта управления"
 
 msgid "Include screen load data"
 msgstr "Включить данные о загрузке экрана"
+
+msgid "Include storage device data"
+msgstr ""
 
 msgid "Include teletext details"
 msgstr "Включать подробности о телетексте"
@@ -13097,7 +13112,7 @@ msgstr "Вместо этого выполните онлайн-прошивку
 msgid "Perform the upgrade?"
 msgstr "Выполнить обновление?"
 
-msgid "Permanently delete all recordings in the trash can?"
+msgid "Permanently delete all recordings in the trashcan?"
 msgstr "Окончательно удалить все записи в корзине?"
 
 msgid "Permanently ignore this device"
@@ -18111,6 +18126,9 @@ msgstr "Показывать символы подчеркивания в име
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "Показывать неизвестное разрешение как следующее более высокое или как максимальное."
 
+msgid "Show unknown devices"
+msgstr ""
+
 msgid "Show unknown video format as"
 msgstr "Показывать неизвестный видео формат как"
 
@@ -22360,7 +22378,7 @@ msgstr "Если эта функция включена, содержимое с
 msgid "When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels."
 msgstr "Если включено, то когда при переключении каналов будет достигнут последний канал текущего букета, произойдет переход к следующему букету."
 
-msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
+msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
 msgstr "Если этот параметр включен, удалённые записи перемещаются в корзину, а не удаляются немедленно."
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
@@ -22378,7 +22396,7 @@ msgstr "Укажите действие кнопки 'EXIT' при работа�
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Если включено, используется измерение мощности для обнаружения, когда ротор перестал поворачиваться (если есть поддержка в ресивере)."
 
-msgid "When enabled, network trash cans are probed for cleaning."
+msgid "When enabled, network trashcans are probed for cleaning."
 msgstr "Если включено, сетевая корзина будет очищаться."
 
 msgid "When enabled, number markers will be hidden."

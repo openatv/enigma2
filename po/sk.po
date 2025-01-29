@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-07 09:29+0000\n"
-"PO-Revision-Date: 2025-01-25 17:05+0000\n"
-"Last-Translator: Atec <dr.atec@gmail.com>\n"
+"POT-Creation-Date: 2025-01-28 07:25+0000\n"
+"PO-Revision-Date: 2025-01-29 19:01+0000\n"
+"Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
@@ -1851,6 +1851,9 @@ msgstr "Aktivovať nakonfigurované nastavenia siete."
 
 msgid "Activate the flash expander, save all changed settings and exit"
 msgstr "Aktivovať flash expandér, uložiť všetky zmenené nastavenia a ukončiť"
+
+msgid "Activate this device"
+msgstr "Aktivovať toto zariadenie"
 
 msgid "Activate time shift End"
 msgstr "Ukončiť timeshift"
@@ -3693,7 +3696,7 @@ msgstr "Nie je možné určiť limit %s ..., prerušuje sa!"
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Nenašiel sa žiadny signál..., prerušuje sa!"
 
-msgid "Cannot move to trash can"
+msgid "Can't move to trashcan!"
 msgstr "Nie je možné presunúť do koša"
 
 msgid "Cape Verde"
@@ -4249,10 +4252,10 @@ msgid "Close screen"
 msgstr "Zatvoriť obrazovku"
 
 msgid "Close the Device Manager screen"
-msgstr "Zavrieť obrazovku správcu zariadenia"
+msgstr "Zavrieť obrazovku správcu zariadení"
 
 msgid "Close the Device Manager screen and exit all menus"
-msgstr "Zavrieť obrazovku správcu zariadenia a ukončiť všetky menu"
+msgstr "Zavrieť obrazovku správcu zariadení a ukončiť všetky menu"
 
 msgid "Close the Kexec MultiBoot Manager"
 msgstr "Zatvoriť správcu MultiBoot Kexec"
@@ -4651,7 +4654,7 @@ msgstr "Nastavte zemepisnú šírku vašej lokality."
 msgid "Configure the longitude of your location."
 msgstr "Nastavte zemepisnú dĺžku vašej lokality."
 
-msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can."
+msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trashcan."
 msgstr "Nastavte minimálne voľné miesto na disku, ktoré má byť dostupné pre nahrávky. Keď voľné miesto klesne pod túto hodnotu, vymazané položky sa odstránia z koša."
 
 msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
@@ -4666,7 +4669,7 @@ msgstr "Nastavte masku siete."
 msgid "Configure the network again"
 msgstr "Nastaviť sieť ešte raz"
 
-msgid "Configure the number of days after which items are automatically removed from the trash can."
+msgid "Configure the number of days after which items are automatically removed from the trashcan."
 msgstr "Nastavte počet dní, po ktorých sa položky v koši automaticky odstránia."
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
@@ -6093,7 +6096,7 @@ msgid "Device Manager"
 msgstr "Správca zariadení"
 
 msgid "Device Manager Actions"
-msgstr "Akcie správcu zariadenia"
+msgstr "Akcie správcu zariadení"
 
 msgid "Device Settings"
 msgstr "Nastavenie zariadenia"
@@ -6180,7 +6183,7 @@ msgid "Directory"
 msgstr "Priečinok"
 
 #, python-format
-msgid "Directory %s does not exist."
+msgid "Error: Directory '%s' does not exist!"
 msgstr "Priečinok %s neexistuje."
 
 #, python-format
@@ -6402,7 +6405,7 @@ msgstr "Naozaj chcete vymazať %s?"
 msgid "Do you really want to delete '%s'?"
 msgstr "Naozaj chcete vymazať %s?"
 
-msgid "Do you really want to delete ?"
+msgid "Do you really want to delete?"
 msgstr "Naozaj chcete vymazať?"
 
 #, python-format
@@ -6437,7 +6440,7 @@ msgid "Do you really want to move to trashcan ?"
 msgstr "Naozaj chcete vykonať presun do koša?"
 
 #, python-format
-msgid "Do you really want to permanently remove '%s' from trash can ?"
+msgid "Do you really want to permanently remove '%s' from the trashcan?"
 msgstr "Naozaj chcete navždy odstrániť '%s' z koša?"
 
 msgid "Do you really want to permanently remove from trash can ?"
@@ -6452,7 +6455,7 @@ msgid "Do you really want to remove the timer for %s?"
 msgstr "Naozaj chcete odstrániť časovač pre %s?"
 
 #, python-format
-msgid "Do you really want to remove your bookmark for '%s'?"
+msgid "Do you really want to remove the bookmark for '%s'?"
 msgstr "Naozaj chcete odstrániť záložku pre %s?"
 
 msgid ""
@@ -7184,11 +7187,17 @@ msgstr "Aktiváciou tejto možnosti pridáte do súboru denníka ladenia údaje 
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr "Aktiváciou tejto možnosti pridáte do súboru denníka ladenia názvy obrazoviek a údaje o rozlíšení."
 
+msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
+msgstr "Aktiváciou tejto možnosti pridáte informáciu o úložnom zariadení, zistené počas načítavania systému a udalosti typu hot plug do súboru denníka ladenia."
+
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Aktiváciou tejto možnosti pridáte do súboru denníka ladenia údaje ladenia časovača."
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
 msgstr "Aktiváciou tejto možnosti sa zobrazia všetky dostupné informačné obrazovky v zozname položiek menu s informáciami."
+
+msgid "Enable this option to show unknown storage devices in device manager."
+msgstr "Aktiváciou tejto možnosti zobrazíte neznáme úložné zariadenia v správcovi zariadení."
 
 msgid "Enable this setting if your aerial system needs power."
 msgstr "Ak váš anténny systém vyžaduje napájanie, aktivujte toto nastavenie."
@@ -8286,7 +8295,7 @@ msgstr "Kontrola súborového systému"
 msgid "File System Packages"
 msgstr "Balíčky súborového systému"
 
-msgid "File appears to be busy.\n"
+msgid "File appears to be busy!\n"
 msgstr "Súbor sa zdá byť zaneprázdnený.\n"
 
 msgid ""
@@ -9594,6 +9603,9 @@ msgstr "Image vytvorený:"
 msgid "Image creation failed!"
 msgstr "Vytváranie image sa nepodarilo!"
 
+msgid "Image version"
+msgstr "Verzia image"
+
 msgid "ImageWizard"
 msgstr "Sprievodca pre image"
 
@@ -9714,6 +9726,9 @@ msgstr "Zahrnúť údaje zo vzdialenej kontroly"
 
 msgid "Include screen load data"
 msgstr "Zahrnúť údaje o načítaní obrazovky"
+
+msgid "Include storage device data"
+msgstr "Zahrnúť údaje o úložnom zariadení"
 
 msgid "Include teletext details"
 msgstr "Zahrnúť teletextové podrobnosti"
@@ -12782,7 +12797,7 @@ msgid "Original Network ID (ONID)"
 msgstr "Pôvodné ID siete (ONID)"
 
 msgid "Original language"
-msgstr "pôvodný jazyk"
+msgstr "Pôvodný jazyk"
 
 msgid "Oriya"
 msgstr "urijčina"
@@ -13098,7 +13113,7 @@ msgstr "Namiesto toho vykonať on-line flashovanie"
 msgid "Perform the upgrade?"
 msgstr "Aktualizovať?"
 
-msgid "Permanently delete all recordings in the trash can?"
+msgid "Permanently delete all recordings in the trashcan?"
 msgstr "Natrvalo vymazať všetky nahrávky z koša?"
 
 msgid "Permanently ignore this device"
@@ -18112,6 +18127,9 @@ msgstr "Zobraziť znaky podčiarknutia v názvoch súborov"
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "Zobraziť neznáme rozlíšenie videa ako najbližšie vyššie alebo najvyššie rozlíšenie obrazovky."
 
+msgid "Show unknown devices"
+msgstr "Zobraziť neznáme zariadenia"
+
 msgid "Show unknown video format as"
 msgstr "Zobraziť neznámy formát videa ako"
 
@@ -19000,13 +19018,13 @@ msgid "Storage Devices"
 msgstr "Úložné zariadenia"
 
 msgid "Storage device full!"
-msgstr "Plný disk!"
+msgstr "Úložné zariadenie je plné!"
 
 msgid "Storage device not found!"
-msgstr "Disk sa nenašiel!"
+msgstr "Nenašlo sa úložné zariadenie!"
 
 msgid "Storage device not writable!"
-msgstr "Na disk nie je možné zapisovať!"
+msgstr "Úložné zariadenie nie je zapisovateľné!"
 
 msgid "Store position"
 msgstr "Uložiť pozíciu"
@@ -22361,7 +22379,7 @@ msgstr "Ak je povolené, tak obsah s pomerom strán 4:3 sa roztiahne na celú ob
 msgid "When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels."
 msgstr "Ak je povolené, po dosiahnutí posledného kanála v aktuálnom prehľade sa bude pokračovať v prepínaní v nasledujúcom prehľade."
 
-msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
+msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
 msgstr "Ak je povolené, vymazané nahrávky sa namiesto ich okamžitého odstránenia presunú do koša."
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
@@ -22379,7 +22397,7 @@ msgstr "Ak je povolené, prehrávač médií bude možné ukončiť tlačidlom E
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Ak je povolené, prijímač sa bude meraním spotreby energie snažiť rozpoznať, kedy sa zastaví otáčanie motora (ak je podporované tunerom)."
 
-msgid "When enabled, network trash cans are probed for cleaning."
+msgid "When enabled, network trashcans are probed for cleaning."
 msgstr "Ak je povolené, vyprázdnia sa tiež sieťové kôše."
 
 msgid "When enabled, number markers will be hidden."

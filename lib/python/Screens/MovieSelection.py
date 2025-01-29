@@ -1141,7 +1141,7 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 		if config.usage.setup_level.index >= 2:  # Expert+.
 			title += config.movielist.last_videodir.value
 		if self.selected_tags:
-			title += " - {",".join(self.selected_tags)}"
+			title += " - {", ".join(self.selected_tags)}"
 		self.setTitle(title)
 		self.displayMovieOffStatus()
 		self.displaySortStatus()
@@ -1186,7 +1186,7 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 					ref.setPath(currentDir)
 					self.reloadList(home=True, sel=ref)
 			else:
-				self.session.open(MessageBox, _("Directory %s does not exist.") % res, type=MessageBox.TYPE_ERROR, timeout=5, windowTitle=self.getTitle())
+				self.session.open(MessageBox, _("Error: Directory '%s' does not exist!") % res, type=MessageBox.TYPE_ERROR, timeout=5, windowTitle=self.getTitle())
 
 	def showAll(self):
 		self.selected_tags_ele = None
@@ -1285,7 +1285,7 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 		if path in config.movielist.videodirs.value:
 			if len(path) > 40:
 				path = f"...{path[-40:]}"
-			self.session.openWithCallback(self.removeBookmark, MessageBox, _("Do you really want to remove your bookmark for '%s'?") % path, windowTitle=self.getTitle())
+			self.session.openWithCallback(self.removeBookmark, MessageBox, _("Do you really want to remove the bookmark for '%s'?") % path, windowTitle=self.getTitle())
 		else:
 			config.movielist.videodirs.value += [path]
 			config.movielist.videodirs.save()
@@ -1529,85 +1529,64 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 		item = self.getCurrentSelection()
 		current = item[0]
 		info = item[1]
-		cur_path = realpath(current.getPath())
-		if not exists(cur_path):  # File does not exist.
+		currentPath = realpath(current.getPath())
+		if not exists(currentPath):  # File does not exist.
 			return
-		st = stat(cur_path)
-		name = info and info.getName(current) or _("this recording")
-		are_you_sure = ""
-		pathtest = info and info.getName(current)
-		if not pathtest:
+		st = stat(currentPath)
+		name = info and info.getName(current)
+		if not name:
 			return
 		if item and isTrashFolder(item[0]):  # Red button to empty trashcan.
 			self.purgeAll()
 			return
+		areYouSure = ""
 		if current.flags & eServiceReference.mustDescent:
 			files = 0
 			subdirs = 0
-			if TRASHCAN not in cur_path and config.usage.movielist_trashcan.value:
+			for file in listdir(currentPath):
+				if file not in (".", ".."):
+					if isdir(join(currentPath, file)):
+						subdirs += 1
+					else:
+						files += 1
+			preamble = f"{_("'%s' contains %d file(s) and %d sub-directories.\n") % (split(split(name)[0])[1], files, subdirs)}\n\n" if files or subdirs else ""
+			if TRASHCAN not in currentPath and config.usage.movielist_trashcan.value:
 				if isFolder(item):
-					are_you_sure = _("Do you really want to move to trashcan ?")
+					# areYouSure = _("Do you really want to move '%s' to the trashcan?") % name
+					areYouSure = _("Do you really want to move to trashcan ?")
 				else:
 					args = True
 				if args:
-					trash = createTrashcan(cur_path)
+					trash = createTrashcan(currentPath)
 					if trash:
 						moveServiceFiles(current, trash, name, allowCopy=True)
 						self["list"].removeService(current)
-						self.showActionFeedback(_("Deleted") + " " + name)
+						self.showActionFeedback(f"{_("Deleted")} {name}")
 						return
 					else:
-						msg = _("Cannot move to trash can") + "\n"
-						are_you_sure = _("Do you really want to delete %s ?") % name
-				for fn in listdir(cur_path):
-					if (fn != ".") and (fn != ".."):
-						ffn = join(cur_path, fn)
-						if isdir(ffn):
-							subdirs += 1
-						else:
-							files += 1
-				if files or subdirs:
-					folder_filename = split(split(name)[0])[1]
-					self.session.openWithCallback(self.delete, MessageBox, _("'%s' contains %d file(s) and %d sub-directories.\n") % (folder_filename, files, subdirs) + are_you_sure, windowTitle=self.getTitle())
-					return
-				else:
-					self.session.openWithCallback(self.delete, MessageBox, are_you_sure, windowTitle=self.getTitle())
-					return
+						msg = f"{_("Can't move to trashcan!")}\n\n"
+						self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
+						return
+					areYouSure = _("Do you really want to delete '%s'?") % name
+				self.session.openWithCallback(self.delete, MessageBox, f"{preamble}{areYouSure}", windowTitle=self.getTitle())
+				return
 			else:
-				if TRASHCAN in cur_path:
-					are_you_sure = _("Do you really want to permanently remove from trash can ?")
+				if TRASHCAN in currentPath:
+					preamble = ""
+					areYouSure = _("Do you really want to permanently remove '%s' from the trashcan?" % name)
 				else:
-					are_you_sure = _("Do you really want to delete ?")
+					areYouSure = _("Do you really want to delete '%s'?") % name
 				if args:
 					try:
-						msg = ""
-						deleteFiles(cur_path, name)
+						deleteFiles(currentPath, name)
 						self["list"].removeService(current)
 						self.showActionFeedback(f"{_("Deleted")} {name}")
-						return
 					except Exception as err:
-						print(f"[MovieSelection] Error: Weird error moving to trash!  ({str(err)})")
+						print(f"[MovieSelection] Error: Weird error moving to trashcan!  ({str(err)})")
 						msg = f"{_("Cannot delete file")}\n{str(err)}\n"
-						return
-				for fn in listdir(cur_path):
-					if (fn != ".") and (fn != ".."):
-						ffn = join(cur_path, fn)
-						if isdir(ffn):
-							subdirs += 1
-						else:
-							files += 1
-				if files or subdirs:
-					folder_filename = split(split(name)[0])[1]
-					self.session.openWithCallback(self.delete, MessageBox, _("'%s' contains %d file(s) and %d sub-directories.\n") % (folder_filename, files, subdirs) + are_you_sure, windowTitle=self.getTitle())
-				else:
-					try:
-						rmdir(cur_path)
-					except OSError as err:
-						print(f"[MovieSelection] Error {err.errno}: Failed delete '{cur_path}'!  ({err.strerror})")
-						self.session.open(MessageBox, f"{_("Delete failed!")}\n{str(err)}", MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
-					else:
-						self["list"].removeService(current)
-						self.showActionFeedback(f"{_("Deleted")} {name}")
+						self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
+					return
+				self.session.openWithCallback(self.delete, MessageBox, f"{preamble}{areYouSure}", windowTitle=self.getTitle())
 		else:
 			if not args:
 				rec_filename = split(current.getPath())[1]
@@ -1624,12 +1603,12 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 						]
 						self.session.openWithCallback(self.onTimerChoice, ChoiceBox, title=f"{_("Recording in progress!")}\n{name}", list=choices)
 						return
-				if time() - st.st_mtime < 5 and not args:
-					are_you_sure = _("Do you really want to delete ?")
-					self.session.openWithCallback(self.delete, MessageBox, _("File appears to be busy.\n") + are_you_sure, windowTitle=self.getTitle())
+				if int(time()) - st.st_mtime < 5 and not args:
+					areYouSure = _("Do you really want to delete?")
+					self.session.openWithCallback(self.delete, MessageBox, f"{_("File appears to be busy!\n")}\n{areYouSure}", windowTitle=self.getTitle())
 					return
-			if TRASHCAN not in cur_path and config.usage.movielist_trashcan.value:
-				trash = createTrashcan(cur_path)
+			if TRASHCAN not in currentPath and config.usage.movielist_trashcan.value:
+				trash = createTrashcan(currentPath)
 				if trash:
 					moveServiceFiles(current, trash, name, allowCopy=True)
 					self["list"].removeService(current)
@@ -1638,15 +1617,15 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 					self.showActionFeedback(f"{_("Deleted")} {name}")
 					return
 				else:
-					msg = f"{_("Cannot move to trash can")}\n"
-					are_you_sure = _("Do you really want to delete %s ?") % name
+					msg = f"{_("Can't move to trashcan!")}\n\n"
+					areYouSure = _("Do you really want to delete '%s'?") % name
 			else:
-				if TRASHCAN in cur_path:
-					are_you_sure = _("Do you really want to permanently remove '%s' from trash can ?") % name
+				if TRASHCAN in currentPath:
+					areYouSure = _("Do you really want to permanently remove '%s' from the trashcan?") % name
 				else:
-					are_you_sure = _("Do you really want to delete %s ?") % name
+					areYouSure = _("Do you really want to delete '%s'?") % name
 				msg = ""
-			self.session.openWithCallback(self.deleteConfirmed, MessageBox, msg + are_you_sure, windowTitle=self.getTitle())
+			self.session.openWithCallback(self.deleteConfirmed, MessageBox, f"{msg}{areYouSure}", windowTitle=self.getTitle())
 
 	def deleteConfirmed(self, confirmed):
 		if not confirmed:
@@ -1675,14 +1654,9 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 
 	def purgeAll(self):
 		recordings = self.session.nav.getRecordings(False, pNavigation.isRealRecording)
-		next_rec_time = -1
-		if not recordings:
-			next_rec_time = self.session.nav.RecordTimer.getNextRecordingTime()
-		if recordings or (next_rec_time > 0 and (next_rec_time - time()) < 120):
-			msg = f"\n{_("Recording(s) are in progress or coming up in few seconds!")}"
-		else:
-			msg = ""
-		self.session.openWithCallback(self.purgeConfirmed, MessageBox, _("Permanently delete all recordings in the trash can?") + msg, windowTitle=self.getTitle())
+		nextRecordingTime = -1 if recordings else self.session.nav.RecordTimer.getNextRecordingTime()
+		msg = f"\n\n{_("Recording(s) are in progress or coming up in few seconds!")}" if recordings or (nextRecordingTime > 0 and (nextRecordingTime - int(time())) < 120) else ""
+		self.session.openWithCallback(self.purgeConfirmed, MessageBox, f"{_("Permanently delete all recordings in the trashcan?")}{msg}", windowTitle=self.getTitle())
 
 	def purgeConfirmed(self, confirmed):
 		if not confirmed:

@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-07 09:29+0000\n"
-"PO-Revision-Date: 2025-01-09 09:21+0000\n"
+"POT-Creation-Date: 2025-01-28 07:25+0000\n"
+"PO-Revision-Date: 2025-01-29 20:01+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -1819,6 +1819,9 @@ msgstr "Ota tekemäsi verkkoasetukset käyttöön."
 
 msgid "Activate the flash expander, save all changed settings and exit"
 msgstr "Aktivoi muistin laajennus, tallenna kaikki muutetut asetukset ja poistu"
+
+msgid "Activate this device"
+msgstr "Aktivoi tämä laite"
 
 msgid "Activate time shift End"
 msgstr "Aloita ajansiirto"
@@ -3666,7 +3669,7 @@ msgstr "Ei voida määrittää %s rajaa ..., keskeytys !"
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Signaalia ei löydy... keskeytetään!"
 
-msgid "Cannot move to trash can"
+msgid "Can't move to trashcan!"
 msgstr "Ei voida siirtää roskakoriin"
 
 msgid "Cape Verde"
@@ -4622,7 +4625,7 @@ msgstr "Määritä sijaintisi leveysaste."
 msgid "Configure the longitude of your location."
 msgstr "Määritä sijaintisi pituusaste."
 
-msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can."
+msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trashcan."
 msgstr "Määrittää vapaan levytilan vähimmäismäärän tallennuksia varten. Kun kiintolevyn vapaa levytila menee alle tämän arvon, poistetut tiedostot tyhjennetään roskakorista."
 
 msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
@@ -4637,7 +4640,7 @@ msgstr "Määritä verkkomaski."
 msgid "Configure the network again"
 msgstr "Määritä verkko uudelleen"
 
-msgid "Configure the number of days after which items are automatically removed from the trash can."
+msgid "Configure the number of days after which items are automatically removed from the trashcan."
 msgstr "Määrittää, kuinka monen päivän jälkeen tiedostot poistetaan automaattisesti roskakorista."
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
@@ -6151,7 +6154,7 @@ msgid "Directory"
 msgstr "Hakemisto"
 
 #, python-format
-msgid "Directory %s does not exist."
+msgid "Error: Directory '%s' does not exist!"
 msgstr "Hakemistoa %s ei löydy."
 
 #, python-format
@@ -6373,7 +6376,7 @@ msgstr "Haluatko varmasti poistaa %s ?"
 msgid "Do you really want to delete '%s'?"
 msgstr "Haluatko varmasti poistaa %s?"
 
-msgid "Do you really want to delete ?"
+msgid "Do you really want to delete?"
 msgstr "Haluatko varmasti poistaa?"
 
 #, python-format
@@ -6408,7 +6411,7 @@ msgid "Do you really want to move to trashcan ?"
 msgstr "Haluatko varmasti siirtää roskakoriin?"
 
 #, python-format
-msgid "Do you really want to permanently remove '%s' from trash can ?"
+msgid "Do you really want to permanently remove '%s' from the trashcan?"
 msgstr "Haluatko varmasti poistaa pysyvästi '%s' \"roskakorista?"
 
 msgid "Do you really want to permanently remove from trash can ?"
@@ -6423,7 +6426,7 @@ msgid "Do you really want to remove the timer for %s?"
 msgstr "Haluatko poistaa ajastuksen %s?"
 
 #, python-format
-msgid "Do you really want to remove your bookmark for '%s'?"
+msgid "Do you really want to remove the bookmark for '%s'?"
 msgstr "Haluatko poistaa kirjanmerkin %s?"
 
 msgid ""
@@ -7154,11 +7157,17 @@ msgstr "Aktivoi tämä vaihtoehto, jos haluat lisätä kaukosäätimen tietoja v
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr "Ota tämä vaihtoehto käyttöön, jos haluat lisätä näytön nimiä ja tarkkuustietoja virheenkorjauksen lokitiedostoon."
 
+msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
+msgstr "Ota tämä asetus käyttöön lisätäksesi järjestelmän käynnistyksen ja hot plug tapahtumat debug lokitiedostoon."
+
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Ota tämä vaihtoehto käyttöön, jos haluat lisätä ajastin tiedot vianmääritys lokitiedostoon."
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
 msgstr "Aktivoi tämä vaihtoehto,Näyttäeksi kaikki käytettävissä olevat tietoruudut tieto valikossa."
+
+msgid "Enable this option to show unknown storage devices in device manager."
+msgstr "Tämän vaihtoehdon avulla näytettään tuntemattomat tallennuslaitteet laitehallinnassa."
 
 msgid "Enable this setting if your aerial system needs power."
 msgstr "Ota tämä asetus käyttöön, jos antennijärjestelmäsi tarvitsee virtaa."
@@ -8254,7 +8263,7 @@ msgstr "Tiedostojärjestelmän tarkistus"
 msgid "File System Packages"
 msgstr "Tiedostojärjestelmä paketit"
 
-msgid "File appears to be busy.\n"
+msgid "File appears to be busy!\n"
 msgstr "Tiedosto näyttää olevan käytössä.\n"
 
 msgid ""
@@ -9567,6 +9576,9 @@ msgstr "Varmuuskopio tehty:"
 msgid "Image creation failed!"
 msgstr "Varmuuskopionti epäonnistui!"
 
+msgid "Image version"
+msgstr "Imagen tiedot"
+
 msgid "ImageWizard"
 msgstr "Ohjelmisto Avustaja"
 
@@ -9687,6 +9699,9 @@ msgstr "Sisällytä kaukosäädin tiedot"
 
 msgid "Include screen load data"
 msgstr "Sisällytä näytön kuormitustiedot"
+
+msgid "Include storage device data"
+msgstr "Sisältää tallennuslaitteen tiedot"
 
 msgid "Include teletext details"
 msgstr "Teksitv teksityksen yksityiskohdat"
@@ -13077,7 +13092,7 @@ msgstr "Suorita sen sijaan uuden ohjelmiston lataus internetistä"
 msgid "Perform the upgrade?"
 msgstr "Suoritetaanko päivitys?"
 
-msgid "Permanently delete all recordings in the trash can?"
+msgid "Permanently delete all recordings in the trashcan?"
 msgstr "Poista kaikki roskakorin tallenteet pysyvästi?"
 
 msgid "Permanently ignore this device"
@@ -18100,6 +18115,9 @@ msgstr "Näytä alaviivamerkit tiedoston nimissä"
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "Näytä tuntemattomat videotarkkuudet seuraavalla suuremmalla tai suurimmalla tarkkuudella."
 
+msgid "Show unknown devices"
+msgstr "Näytä tuntemattomat laitteet"
+
 msgid "Show unknown video format as"
 msgstr "Näytä tuntematon videon tarkkuus muodossa"
 
@@ -19391,7 +19409,7 @@ msgstr "TMDB Haku"
 
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Suomenkielinen käännös: 1.1.2025\n"
+"Suomenkielinen käännös: 29.1.2025\n"
 "tomppaa"
 
 msgid "TS file is too large for ISO9660 level 1!"
@@ -22354,7 +22372,7 @@ msgstr "Kun päällä, 4:3 kuvasuhteen kuva venytetään koko näytölle."
 msgid "When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels."
 msgstr "Kun päällä, siirrytään kanavanvaihdolla suosikkilistan viimeiseltä kanavalta seuraavaan suosikkilistaan."
 
-msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
+msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
 msgstr "Kun päällä, poistetut tallenteet siirretään roskakoriin, sen sijaan että ne poistettaisii välittömästi."
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
@@ -22372,7 +22390,7 @@ msgstr "Kun päällä, voit keskeyttää tallenteen katselun exit-näppäimellä
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Kun päällä, mitataan virrankulutusta jotta voidaan havaita kun kääntömoottori pysähtyy (jos viritin tukee tätä)."
 
-msgid "When enabled, network trash cans are probed for cleaning."
+msgid "When enabled, network trashcans are probed for cleaning."
 msgstr "Kun päällä, verkkolevyjen roskakorit tutkitaan tyhjennystä varten."
 
 msgid "When enabled, number markers will be hidden."

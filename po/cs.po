@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-07 09:29+0000\n"
+"POT-Creation-Date: 2025-01-28 07:25+0000\n"
 "PO-Revision-Date: 2025-01-22 22:55+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
@@ -1847,6 +1847,9 @@ msgstr "Aktivovat konfiguraci nastavení sítě."
 
 msgid "Activate the flash expander, save all changed settings and exit"
 msgstr "Aktivovat flash expandér, uložit všechna změněná nastavení a ukončit"
+
+msgid "Activate this device"
+msgstr ""
 
 msgid "Activate time shift End"
 msgstr "Aktivace konce časového posunu"
@@ -3689,7 +3692,7 @@ msgstr "Nelze určit %s limit ..., ruší se!"
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Nelze najít žádný signál ..., končím!"
 
-msgid "Cannot move to trash can"
+msgid "Can't move to trashcan!"
 msgstr "Nelze přesunout do koše"
 
 msgid "Cape Verde"
@@ -4647,7 +4650,7 @@ msgstr "Nastavuje zeměpisnou šířku Vašeho místa."
 msgid "Configure the longitude of your location."
 msgstr "Nastavuje zeměpisnou délku Vašeho místa."
 
-msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can."
+msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trashcan."
 msgstr "Nastavuje minimální množství volného místa na disku využitelné pro nahrávání. Jestliže volné místo klesne pod tuto hodnotu, smazané položky budou odstraněny z koše."
 
 msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
@@ -4662,7 +4665,7 @@ msgstr "Nastavuje síťovou masku."
 msgid "Configure the network again"
 msgstr "Nastavte znovu vaši síť"
 
-msgid "Configure the number of days after which items are automatically removed from the trash can."
+msgid "Configure the number of days after which items are automatically removed from the trashcan."
 msgstr "Nastavuje počet dnů, po kterých jsou položky umístěné v koši automaticky smazány."
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
@@ -6176,7 +6179,7 @@ msgid "Directory"
 msgstr "Adresář"
 
 #, python-format
-msgid "Directory %s does not exist."
+msgid "Error: Directory '%s' does not exist!"
 msgstr "Adresář %s neexistuje."
 
 #, python-format
@@ -6398,7 +6401,7 @@ msgstr "Opravdu chcete smazat %s ?"
 msgid "Do you really want to delete '%s'?"
 msgstr "Opravdu chcete smazat \"%s\"?"
 
-msgid "Do you really want to delete ?"
+msgid "Do you really want to delete?"
 msgstr "Opravdu chcete smazat ?"
 
 #, python-format
@@ -6433,7 +6436,7 @@ msgid "Do you really want to move to trashcan ?"
 msgstr "Opravdu chcete přesunout do koše?"
 
 #, python-format
-msgid "Do you really want to permanently remove '%s' from trash can ?"
+msgid "Do you really want to permanently remove '%s' from the trashcan?"
 msgstr "Opravdu chcete trvale odstranit '%s' z koše?"
 
 msgid "Do you really want to permanently remove from trash can ?"
@@ -6448,7 +6451,7 @@ msgid "Do you really want to remove the timer for %s?"
 msgstr "Chcete opravdu odstranit časovač pro %s?"
 
 #, python-format
-msgid "Do you really want to remove your bookmark for '%s'?"
+msgid "Do you really want to remove the bookmark for '%s'?"
 msgstr "Opravdu chcete odstranit záložku pro '%s'?"
 
 msgid ""
@@ -7180,11 +7183,17 @@ msgstr "Tuto možnost povolte, chcete-li do souboru protokolu ladění přidat d
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr "Tuto možnost povolte, chcete-li do souboru protokolu ladění přidat názvy obrazovek a údaje o rozlišení."
 
+msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Tuto možnost povolte, chcete-li do souboru protokolu ladění přidat údaje o ladění časovače."
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
 msgstr "Povolením této možnosti zobrazíte všechny dostupné informační obrazovky v seznamu položek nabídky Informace."
+
+msgid "Enable this option to show unknown storage devices in device manager."
+msgstr ""
 
 msgid "Enable this setting if your aerial system needs power."
 msgstr "Povolte toto nastavení, pokud váš anténní systém potřebuje napájení."
@@ -8282,7 +8291,7 @@ msgstr "Kontrola souborového systému"
 msgid "File System Packages"
 msgstr "Balíčky souborového systému"
 
-msgid "File appears to be busy.\n"
+msgid "File appears to be busy!\n"
 msgstr "Soubor je asi zaneprázdněn.\n"
 
 msgid ""
@@ -9590,6 +9599,9 @@ msgstr "Obrázek vytvořen:"
 msgid "Image creation failed!"
 msgstr "Vytvoření obrázku se nezdařilo!"
 
+msgid "Image version"
+msgstr ""
+
 msgid "ImageWizard"
 msgstr "Průvodce obnovením"
 
@@ -9710,6 +9722,9 @@ msgstr "Zahrnout data dálkového ovládání"
 
 msgid "Include screen load data"
 msgstr "Zahrnout údaje o načtení obrazovky"
+
+msgid "Include storage device data"
+msgstr ""
 
 msgid "Include teletext details"
 msgstr "Zahrnout podrobnosti o teletextu"
@@ -13094,7 +13109,7 @@ msgstr "Proveďte místo toho on-line kontrolu flashe"
 msgid "Perform the upgrade?"
 msgstr "Provést aktualizaci?"
 
-msgid "Permanently delete all recordings in the trash can?"
+msgid "Permanently delete all recordings in the trashcan?"
 msgstr "Trvale odstranit všechny záznamy z koše?"
 
 msgid "Permanently ignore this device"
@@ -18108,6 +18123,9 @@ msgstr "Zobrazit podtržítka"
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "Zobrazit neznámé rozlišení videa jako nejbližší vyšší nebo nejvyšší rozlišení obrazovky."
 
+msgid "Show unknown devices"
+msgstr ""
+
 msgid "Show unknown video format as"
 msgstr "Zobrazit neznámý formát videa jako"
 
@@ -22357,7 +22375,7 @@ msgstr "Jestliže je povoleno, pak obsah s poměrem stran 4:3 bude roztažen na 
 msgid "When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels."
 msgstr "Při povolení bude po dosažení posledního programu v aktuálním přehledu pokračovat přepínání v následujícím přehledu."
 
-msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
+msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
 msgstr "Jestliže je povoleno, pak smazané nahrávky jsou umístěny do koše, místo toho, aby byly ihned odstraněny."
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
@@ -22375,7 +22393,7 @@ msgstr "Jestliže je povoleno, je možné opouštět movieplayer pomocí Exit."
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Pokud je povoleno, přijímač se bude snažit měřením spotřeby proudu určit, kdy motor ukončí natáčení (pokud je podporováno tunerem)."
 
-msgid "When enabled, network trash cans are probed for cleaning."
+msgid "When enabled, network trashcans are probed for cleaning."
 msgstr "Pokud je povoleno, síťové koše jsou sondovány kvůli čištění."
 
 msgid "When enabled, number markers will be hidden."

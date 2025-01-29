@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-07 09:29+0000\n"
+"POT-Creation-Date: 2025-01-28 07:25+0000\n"
 "PO-Revision-Date: 2023-08-06 06:22+0000\n"
 "Last-Translator: Salif Mehmed <mail@salif.eu>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/bg/>\n"
@@ -1815,6 +1815,9 @@ msgid "Activate the configured network settings."
 msgstr "Активиране на конфигурираните мрежови настройки."
 
 msgid "Activate the flash expander, save all changed settings and exit"
+msgstr ""
+
+msgid "Activate this device"
 msgstr ""
 
 msgid "Activate time shift End"
@@ -3654,7 +3657,7 @@ msgstr "Не може да се определи %s лимит ..., прекра
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Не мога да намеря никакъв сигнал ..., претърпявам неуспех !"
 
-msgid "Cannot move to trash can"
+msgid "Can't move to trashcan!"
 msgstr "Не мога да преместя в коша за боклук"
 
 msgid "Cape Verde"
@@ -4606,7 +4609,7 @@ msgstr "Конфигуриране на вашата географска шир
 msgid "Configure the longitude of your location."
 msgstr "Конфигуриране на вашата географска дължина."
 
-msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can."
+msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trashcan."
 msgstr "Конфигуриране на минималния размер на дисковото пространство на разположение за записи. Когато размера падне под тази стойност, изтритите елементи ще бъдат oтстранени от кошчето за боклук."
 
 msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
@@ -4621,7 +4624,7 @@ msgstr "Конфигуриране на мрежовата маска."
 msgid "Configure the network again"
 msgstr "Конфигурирайте вашата мрежа отново"
 
-msgid "Configure the number of days after which items are automatically removed from the trash can."
+msgid "Configure the number of days after which items are automatically removed from the trashcan."
 msgstr "Конфигуриране на броя дни, след което елементите се премахват автоматично от кошчето."
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
@@ -6133,7 +6136,7 @@ msgid "Directory"
 msgstr "Директория"
 
 #, python-format
-msgid "Directory %s does not exist."
+msgid "Error: Directory '%s' does not exist!"
 msgstr "Директорията %s не съществува."
 
 #, python-format
@@ -6355,7 +6358,7 @@ msgstr "Наистина ли искате да изтриете %s ?"
 msgid "Do you really want to delete '%s'?"
 msgstr "Наистина ли искате да изтриете %s?"
 
-msgid "Do you really want to delete ?"
+msgid "Do you really want to delete?"
 msgstr "Наистина ли искате да изтриете ?"
 
 #, python-format
@@ -6388,7 +6391,7 @@ msgid "Do you really want to move to trashcan ?"
 msgstr "Наистина ли искате да преместите в кошчето за боклук?"
 
 #, python-format
-msgid "Do you really want to permanently remove '%s' from trash can ?"
+msgid "Do you really want to permanently remove '%s' from the trashcan?"
 msgstr "Наистина ли искате да премахнете завинаги '%s' от кошчето за боклук ?"
 
 msgid "Do you really want to permanently remove from trash can ?"
@@ -6403,7 +6406,7 @@ msgid "Do you really want to remove the timer for %s?"
 msgstr "Наистина ли искате да премахнете таймер за %s ?"
 
 #, python-format
-msgid "Do you really want to remove your bookmark for '%s'?"
+msgid "Do you really want to remove the bookmark for '%s'?"
 msgstr "Наистина ли искате да премахнете вашия bookmark от %s?"
 
 msgid ""
@@ -7128,10 +7131,16 @@ msgstr "Разрешете тази опция, за да добавите да�
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr "Разрешаване на тази опция, за да добавите екранни имена и данни за разделителна способност към регистрационния файл за отстраняване на грешки."
 
+msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr ""
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
+msgstr ""
+
+msgid "Enable this option to show unknown storage devices in device manager."
 msgstr ""
 
 msgid "Enable this setting if your aerial system needs power."
@@ -8226,7 +8235,7 @@ msgstr "Проверка файлова система"
 msgid "File System Packages"
 msgstr ""
 
-msgid "File appears to be busy.\n"
+msgid "File appears to be busy!\n"
 msgstr "Изглежда, че файлът е зает.\n"
 
 msgid ""
@@ -9531,6 +9540,9 @@ msgstr ""
 msgid "Image creation failed!"
 msgstr ""
 
+msgid "Image version"
+msgstr ""
+
 msgid "ImageWizard"
 msgstr "Съветник за имидж"
 
@@ -9651,6 +9663,9 @@ msgstr "Включете данни за дистанционно управле
 
 msgid "Include screen load data"
 msgstr "Включете данни за зареждане на екрана"
+
+msgid "Include storage device data"
+msgstr ""
 
 msgid "Include teletext details"
 msgstr ""
@@ -13030,7 +13045,7 @@ msgstr "Вместо това извършете онлайн флаш"
 msgid "Perform the upgrade?"
 msgstr ""
 
-msgid "Permanently delete all recordings in the trash can?"
+msgid "Permanently delete all recordings in the trashcan?"
 msgstr "Окончателно изтриване на всички записи в кошчето за боклук?"
 
 msgid "Permanently ignore this device"
@@ -18025,6 +18040,9 @@ msgstr ""
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "Показване на неизвестна видео резолюция като следващата най-висока на екрана."
 
+msgid "Show unknown devices"
+msgstr ""
+
 msgid "Show unknown video format as"
 msgstr "Показване на неизвестен видео формат като"
 
@@ -22200,7 +22218,7 @@ msgstr "Когато е разрешено, съдържанието със съ
 msgid "When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels."
 msgstr "Когато е разрешено, продължаване към следващия букет, когато се достигне последният канал на текущия букет при смяна на каналите."
 
-msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
+msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
 msgstr "Когато е разрешено, изтритите записи се преместват в кошчето, вместо да се изтриват веднага."
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
@@ -22218,7 +22236,7 @@ msgstr "Когато е разрешено, е възможно да напус�
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Когато е разрешено, измерва се консумацията на енергия, за да се открие, когато роторът спира да се върти(когато се поддържа от тунера)."
 
-msgid "When enabled, network trash cans are probed for cleaning."
+msgid "When enabled, network trashcans are probed for cleaning."
 msgstr "Когато е разрешено, мрежовите боклуци се сондират за почистване."
 
 msgid "When enabled, number markers will be hidden."
