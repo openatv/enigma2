@@ -1,12 +1,11 @@
 # -*- coding: UTF-8 -*-
-
+from glob import glob
 from gettext import bindtextdomain, install, textdomain, translation
 from locale import Error as LocaleError, LC_ALL, LC_COLLATE, LC_CTYPE, LC_MESSAGES, LC_MONETARY, LC_NUMERIC, LC_TIME, setlocale
 from os import environ, listdir
 from os.path import isdir
-from subprocess import PIPE, Popen
 
-from Tools.Directories import SCOPE_CONFIG, SCOPE_LANGUAGE, fileReadLines, resolveFilename
+from Tools.Directories import SCOPE_CONFIG, SCOPE_LANGUAGE, SCOPE_SKINS, fileReadLines, resolveFilename
 
 # In this code the following meanings are used:
 # 	Language: An official language as recognized by ISO, eg "en" for English.
@@ -584,24 +583,7 @@ class International:
 
 	def getAvailablePackages(self, update=False):
 		if update:
-			command = (PACKAGER, "find", self.LOCALE_TEMPLATE % "*")
-			availablePackages = []
-			try:
-				# print(f"[International] Processing command '{command[0]}' with arguments '{"', '".join(command[1:])}'.")
-				process = Popen(command, stdout=PIPE, stderr=PIPE, universal_newlines=True)
-				packageText, errorText = process.communicate()
-				if errorText:
-					print(f"[International] getLanguagePackages Error: {errorText}")
-				else:
-					for language in packageText.split("\n"):
-						if language and "meta" not in language:
-							lang = language[15:].split(" ")[0]
-							if lang not in availablePackages:
-								availablePackages.append(lang)
-					availablePackages = sorted(availablePackages)
-			except OSError as err:
-				print(f"[International] getLanguagePackages Error {err.errno}: {err.strerror} ('{command[0]}')")
-				availablePackages = []
+			availablePackages = fileReadLines(resolveFilename(SCOPE_SKINS, "languages.lst"), default=[])
 			if self.debugMode:
 				availablePackagesList = "', '".join(availablePackages)
 				print(f"[International] There are {len(availablePackages)} available locale/language packages in the repository '{availablePackagesList}'.")
@@ -611,25 +593,7 @@ class International:
 
 	def getInstalledPackages(self, update=False):
 		if update:
-			command = (PACKAGER, "status", self.LOCALE_TEMPLATE % "*")
-			installedPackages = []
-			try:
-				# print(f"[International] Processing command '{command[0]}' with arguments '{"', '".join(command[1:])}'.")
-				process = Popen(command, stdout=PIPE, stderr=PIPE, universal_newlines=True)
-				packageText, errorText = process.communicate()
-				if errorText:
-					print(f"[International] getInstalledPackages Error: {errorText}")
-				else:
-					for package in packageText.split("\n\n"):
-						if package.startswith(f"Package: {self.LOCALE_TEMPLATE % ''}") and "meta" not in package:
-							for data in package.split("\n"):
-								if data.startswith("Package: "):
-									templateLength = len(f"Package: {self.LOCALE_TEMPLATE % ''}")
-									installedPackages.append(data[templateLength:])
-									break
-					installedPackages = sorted(installedPackages)
-			except OSError as err:
-				print(f"[International] getInstalledPackages Error {err.errno}: {err.strerror} ('{command[0]}')")
+			installedPackages = sorted([x.split("-")[2].split(".")[0] for x in glob("/var/lib/opkg/info/enigma2-locale-*.control") if "meta" not in x])
 			if self.debugMode:
 				print(f"[International] There are {len(installedPackages)} installed locale/language packages '{"', '".join(installedPackages)}'.")
 		else:
