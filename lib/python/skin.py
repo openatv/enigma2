@@ -9,7 +9,7 @@ from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT
 from Components.config import ConfigEnableDisable, ConfigSelection, ConfigSubsection, ConfigText, config
 from Components.SystemInfo import BoxInfo
 from Components.Sources.Source import ObsoleteSource
-from Tools.Directories import SCOPE_LCDSKIN, SCOPE_GUISKIN, SCOPE_FONTS, SCOPE_SKINS, pathExists, resolveFilename, fileReadXML, scopeConfig
+from Tools.Directories import SCOPE_LCDSKIN, SCOPE_GUISKIN, SCOPE_FONTS, SCOPE_SKINS, pathExists, resolveFilename, fileReadXML
 from Tools.Import import my_import
 from Tools.LoadPixmap import LoadPixmap
 
@@ -159,10 +159,7 @@ def InitSkins():
 #
 def loadSkin(filename, scope=SCOPE_SKINS, desktop=getDesktop(GUI_SKIN_ID), screenID=GUI_SKIN_ID):
 	global windowStyles, resolutions
-	if "skin_user" in filename and isfile(pathjoin(scopeConfig, filename)):  # Check user skin files in /etc/enigma2 first and use it if exists
-		filename = pathjoin(scopeConfig, filename)
-	else:
-		filename = resolveFilename(scope, filename)
+	filename = resolveFilename(scope, filename)
 	print(f"[Skin] Loading skin file '{filename}'.")
 	domSkin = fileReadXML(filename, source=MODULE_NAME)
 	if domSkin is not None:
