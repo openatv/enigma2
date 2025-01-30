@@ -1262,6 +1262,7 @@ class ServiceList(ServiceListBase, ServiceListTemplateParser):
 		res = [None]
 
 		info = self.service_center.info(service)
+		crypted = not isMarker and not isFolder and info and info.isCrypted()
 		serviceName = info and info.getName(service) or "<n/a>"
 
 		isPlayableValue = 0
@@ -1312,7 +1313,8 @@ class ServiceList(ServiceListBase, ServiceListTemplateParser):
 					continue
 				if itemIndex == 5 and not status & 112:  # RecordingIndicator
 					continue
-
+				if itemIndex == 6 and not crypted:
+					continue
 				if itemIndex > 0:
 					eventIndex = itemIndex // 100
 					if eventIndex > 0:
