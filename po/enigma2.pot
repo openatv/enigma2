@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-28 07:25+0000\n"
+"POT-Creation-Date: 2025-01-30 15:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3471,6 +3471,9 @@ msgid ""
 "Switch to live TV and restart time shift ?"
 msgstr ""
 
+msgid "Can't move to trashcan!"
+msgstr ""
+
 msgid ""
 "Can't play the next time shift file!\n"
 "Switch to live TV and restart time shift ?"
@@ -3593,9 +3596,6 @@ msgid "Cannot determine %s limit ..., aborting !"
 msgstr ""
 
 msgid "Cannot find any signal ..., aborting !"
-msgstr ""
-
-msgid "Can't move to trashcan!"
 msgstr ""
 
 msgid "Cape Verde"
@@ -6066,10 +6066,6 @@ msgid "Directory"
 msgstr ""
 
 #, python-format
-msgid "Error: Directory '%s' does not exist!"
-msgstr ""
-
-#, python-format
 msgid "Directory '%s' can't be linked to recordings!"
 msgstr ""
 
@@ -6277,14 +6273,7 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid "Do you really want to delete %s ?"
-msgstr ""
-
-#, python-format
 msgid "Do you really want to delete '%s'?"
-msgstr ""
-
-msgid "Do you really want to delete?"
 msgstr ""
 
 #, python-format
@@ -6301,6 +6290,9 @@ msgstr ""
 msgid "Do you really want to delete this timer?"
 msgstr ""
 
+msgid "Do you really want to delete?"
+msgstr ""
+
 msgid "Do you really want to exit?"
 msgstr ""
 
@@ -6309,14 +6301,12 @@ msgid ""
 "All data on the device will be lost!"
 msgstr ""
 
-msgid "Do you really want to move to trashcan ?"
+#, python-format
+msgid "Do you really want to move '%s' to the trashcan?"
 msgstr ""
 
 #, python-format
 msgid "Do you really want to permanently remove '%s' from the trashcan?"
-msgstr ""
-
-msgid "Do you really want to permanently remove from trash can ?"
 msgstr ""
 
 #, python-format
@@ -6324,11 +6314,11 @@ msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr ""
 
 #, python-format
-msgid "Do you really want to remove the timer for %s?"
+msgid "Do you really want to remove the bookmark for '%s'?"
 msgstr ""
 
 #, python-format
-msgid "Do you really want to remove the bookmark for '%s'?"
+msgid "Do you really want to remove the timer for %s?"
 msgstr ""
 
 msgid ""
@@ -7473,6 +7463,10 @@ msgstr ""
 
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error: Directory '%s' does not exist!"
 msgstr ""
 
 #, python-format
