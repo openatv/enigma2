@@ -1552,8 +1552,7 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 			preamble = f"{_("'%s' contains %d file(s) and %d sub-directories.\n") % (split(split(name)[0])[1], files, subdirs)}\n\n" if files or subdirs else ""
 			if TRASHCAN not in currentPath and config.usage.movielist_trashcan.value:
 				if isFolder(item):
-					# areYouSure = _("Do you really want to move '%s' to the trashcan?") % name
-					areYouSure = _("Do you really want to move to trashcan ?")
+					areYouSure = _("Do you really want to move '%s' to the trashcan?") % name
 				else:
 					args = True
 				if args:
@@ -1567,7 +1566,6 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 						msg = f"{_("Can't move to trashcan!")}\n\n"
 						self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
 						return
-					areYouSure = _("Do you really want to delete '%s'?") % name
 				self.session.openWithCallback(self.delete, MessageBox, f"{preamble}{areYouSure}", windowTitle=self.getTitle())
 				return
 			else:
