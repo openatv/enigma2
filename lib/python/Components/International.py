@@ -1,11 +1,11 @@
 # -*- coding: UTF-8 -*-
-from glob import glob
+
 from gettext import bindtextdomain, install, textdomain, translation
 from locale import Error as LocaleError, LC_ALL, LC_COLLATE, LC_CTYPE, LC_MESSAGES, LC_MONETARY, LC_NUMERIC, LC_TIME, setlocale
 from os import environ, listdir
 from os.path import isdir
 
-from Tools.Directories import SCOPE_CONFIG, SCOPE_LANGUAGE, SCOPE_SKINS, fileReadLines, resolveFilename
+from Tools.Directories import SCOPE_CONFIG, SCOPE_LANGUAGE, fileReadLines, resolveFilename
 
 # In this code the following meanings are used:
 # 	Language: An official language as recognized by ISO, eg "en" for English.
@@ -13,7 +13,6 @@ from Tools.Directories import SCOPE_CONFIG, SCOPE_LANGUAGE, SCOPE_SKINS, fileRea
 # 	Locale: An official language as spoken in a country, eg "en_AU" for English (Australian).
 
 MODULE_NAME = __name__.split(".")[-1]
-PACKAGER = "/usr/bin/opkg"
 
 languagePath = resolveFilename(SCOPE_LANGUAGE)
 try:
@@ -26,6 +25,9 @@ textdomain("enigma2")
 
 
 class International:
+	# This is the list of all locales built for OpenATV. If any locales are added or removed then this list should be updated!
+	# The list of available locales rarely changes so this has been done to optimize the speed of starting Enigma2.
+	DEFINED_LOCALES = ["ar", "bg", "ca", "cs", "da", "de", "el", "en", "en_AU", "en_GB", "es", "et", "fa", "fi", "fr", "fy", "he", "hr", "hu", "id", "is", "it", "ku", "lt", "lv", "nb", "nl", "nn", "pl", "pt", "pt_BR", "ro", "ru", "sk", "sl", "sq", "sr", "sv", "ta", "th", "tr", "uk", "vi", "zh_CN", "zh_HK"]
 	LOCALE_TEMPLATE = "enigma2-locale-%s"
 	PERMANENT_LOCALES = ["de_DE", "en_US", "fr_FR"]
 
@@ -582,18 +584,17 @@ class International:
 		self.languageList.sort()
 
 	def getAvailablePackages(self, update=False):
-		if update:
-			availablePackages = fileReadLines(resolveFilename(SCOPE_SKINS, "languages.lst"), default=[])
-			if self.debugMode:
-				availablePackagesList = "', '".join(availablePackages)
-				print(f"[International] There are {len(availablePackages)} available locale/language packages in the repository '{availablePackagesList}'.")
-		else:
-			availablePackages = self.availablePackages
-		return availablePackages
+		if update or self.debugMode:
+			print(f"[International] There are {len(self.DEFINED_LOCALES)} available locale/language packages in the repository '{"', '".join(self.DEFINED_LOCALES)}'.")
+		return self.DEFINED_LOCALES
 
 	def getInstalledPackages(self, update=False):
 		if update:
-			installedPackages = sorted([x.split("-")[2].split(".")[0] for x in glob("/var/lib/opkg/info/enigma2-locale-*.control") if "meta" not in x])
+			installedPackages = []
+			for file in listdir("/var/lib/opkg/info"):
+				if file.startswith("enigma2-locale-") and file.endswith(".control") and "meta" not in file:
+					installedPackages.append(file[15:].split(".")[0])
+			installedPackages.sort()
 			if self.debugMode:
 				print(f"[International] There are {len(installedPackages)} installed locale/language packages '{"', '".join(installedPackages)}'.")
 		else:
