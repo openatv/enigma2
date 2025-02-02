@@ -1539,7 +1539,6 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 		if item and isTrashFolder(item[0]):  # Red button to empty trashcan.
 			self.purgeAll()
 			return
-		areYouSure = ""
 		if current.flags & eServiceReference.mustDescent:
 			files = 0
 			subdirs = 0
@@ -1549,31 +1548,26 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 						subdirs += 1
 					else:
 						files += 1
-			preamble = f"{_("'%s' contains %d file(s) and %d sub-directories.\n") % (split(split(name)[0])[1], files, subdirs)}\n\n" if files or subdirs else ""
+			# preamble = f"{_("'%s' contains %d file(s) and %d sub-directories.") % (split(split(name)[0])[1], files, subdirs)}\n\n" if files or subdirs else ""
+			preamble = f"{_("'%s' contains %d file(s) and %d sub-directories.\n") % (split(split(name)[0])[1], files, subdirs)}\n" if files or subdirs else ""
 			if TRASHCAN not in currentPath and config.usage.movielist_trashcan.value:
 				if isFolder(item):
 					areYouSure = _("Do you really want to move '%s' to the trashcan?") % name
 				else:
 					args = True
+					areYouSure = _("Do you really want to delete '%s'?") % name
 				if args:
 					trash = createTrashcan(currentPath)
 					if trash:
 						moveServiceFiles(current, trash, name, allowCopy=True)
 						self["list"].removeService(current)
 						self.showActionFeedback(f"{_("Deleted")} {name}")
-						return
 					else:
-						msg = f"{_("Can't move to trashcan!")}\n\n"
-						self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
-						return
+						self.session.open(MessageBox, f"{_("Can't move to trashcan!")}\n\n", MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
+					return
 				self.session.openWithCallback(self.delete, MessageBox, f"{preamble}{areYouSure}", windowTitle=self.getTitle())
 				return
 			else:
-				if TRASHCAN in currentPath:
-					preamble = ""
-					areYouSure = _("Do you really want to permanently remove '%s' from the trashcan?" % name)
-				else:
-					areYouSure = _("Do you really want to delete '%s'?") % name
 				if args:
 					try:
 						deleteFiles(currentPath, name)
@@ -1581,19 +1575,24 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 						self.showActionFeedback(f"{_("Deleted")} {name}")
 					except Exception as err:
 						print(f"[MovieSelection] Error: Weird error moving to trashcan!  ({str(err)})")
-						msg = f"{_("Cannot delete file")}\n{str(err)}\n"
-						self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
+						self.session.open(MessageBox, f"{_("Cannot delete file")}\n{str(err)}\n", MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
 					return
+				if TRASHCAN in currentPath:
+					preamble = ""
+					areYouSure = _("Do you really want to permanently remove '%s' from the trashcan?") % name
+				else:
+					areYouSure = _("Do you really want to delete '%s'?") % name
 				self.session.openWithCallback(self.delete, MessageBox, f"{preamble}{areYouSure}", windowTitle=self.getTitle())
 		else:
+			areYouSure = ""
 			if not args:
-				rec_filename = split(current.getPath())[1]
-				if rec_filename.endswith(".ts"):
-					rec_filename = rec_filename[:-3]
-				elif rec_filename.endswith(".stream"):
-					rec_filename = rec_filename[:-7]
+				recordingFilename = split(current.getPath())[1]
+				if recordingFilename.endswith(".ts"):
+					recordingFilename = recordingFilename[:-3]
+				elif recordingFilename.endswith(".stream"):
+					recordingFilename = recordingFilename[:-7]
 				for timer in NavigationInstance.instance.RecordTimer.timer_list:
-					if timer.isRunning() and not timer.justplay and rec_filename in timer.Filename:
+					if timer.isRunning() and not timer.justplay and recordingFilename in timer.Filename:
 						choices = [
 							(_("Cancel"), None),
 							(_("Stop recording"), ("s", timer)),
@@ -1602,8 +1601,8 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 						self.session.openWithCallback(self.onTimerChoice, ChoiceBox, title=f"{_("Recording in progress!")}\n{name}", list=choices)
 						return
 				if int(time()) - st.st_mtime < 5 and not args:
-					areYouSure = _("Do you really want to delete?")
-					self.session.openWithCallback(self.delete, MessageBox, f"{_("File appears to be busy!\n")}\n{areYouSure}", windowTitle=self.getTitle())
+					# self.session.openWithCallback(self.delete, MessageBox, f"{_("File '%s' appears to be busy!") % name}\n\n{_("Do you really want to delete '%s'?") % name}", windowTitle=self.getTitle())
+					self.session.openWithCallback(self.delete, MessageBox, f"{_("File appears to be busy!\n")}\n{_("Do you really want to delete '%s'?") % name}", windowTitle=self.getTitle())
 					return
 			if TRASHCAN not in currentPath and config.usage.movielist_trashcan.value:
 				trash = createTrashcan(currentPath)
@@ -1618,11 +1617,8 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 					msg = f"{_("Can't move to trashcan!")}\n\n"
 					areYouSure = _("Do you really want to delete '%s'?") % name
 			else:
-				if TRASHCAN in currentPath:
-					areYouSure = _("Do you really want to permanently remove '%s' from the trashcan?") % name
-				else:
-					areYouSure = _("Do you really want to delete '%s'?") % name
 				msg = ""
+				areYouSure = (_("Do you really want to permanently remove '%s' from the trashcan?") if TRASHCAN in currentPath else _("Do you really want to delete '%s'?")) % name
 			self.session.openWithCallback(self.deleteConfirmed, MessageBox, f"{msg}{areYouSure}", windowTitle=self.getTitle())
 
 	def deleteConfirmed(self, confirmed):
