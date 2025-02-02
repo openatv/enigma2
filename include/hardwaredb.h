@@ -288,7 +288,7 @@ static std::unordered_map<std::string, std::string> HardwareDB{
 	{"/devices/platform/rdb/8b0a000.sata/", "SATA"},
 	{"/devices/platform/rdb/8b39000.xhci_v2/usb1/1-2/", "Front USB"},
 	{"/devices/platform/rdb/8b39000.xhci_v2/usb2/2-2/", "Back, upper USB"},
-	{"/devices/platform/rdb/8b39000.xhci_v2/usb2/2-1/", "Back, lower USB"}
+	{"/devices/platform/rdb/8b39000.xhci_v2/usb2/2-1/", "Back, lower USB"},
 	{"/devices/platform/rdb/8b39000.xhci_v2/usb1/1-1/1-1.2/1-1.2:1.0", "Back, upper USB"},
 	{"/devices/platform/rdb/8b39000.xhci_v2/usb1/1-1/1-1.1/1-1.1:1.0", "Back, lower USB"}
 #elif HWVUDUO4KSE // CHECKED
