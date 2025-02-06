@@ -258,7 +258,8 @@ static std::unordered_map<std::string, std::string> HardwareDB{
 	{"/devices/platform/soc/f98a0000.xhci/usb4/4-1/4-1", "Right USB"},
 	{"/devices/platform/soc/f98a0000.xhci/usb4/3-1/3-1", "Right USB"},
 	{"/devices/platform/soc/f9890000.ehci/usb1/1-1/1-1.2", "Back USB"},
-	{"/devices/platform/soc/f9890000.ehci/usb1/1-1/1-1.3", "Micro SD"}
+	{"/devices/platform/soc/f9890000.ehci/usb1/1-1/1-1.3", "Micro SD"},
+        {"/devices/platform/soc/f9890000.ehci/usb1/1-1/1-1.4", "Internal SSD"}
 #elif HWSFX6008 // CHECKED
 	{"/devices/platform/soc/f98a0000.xhci/usb3/3-1/3-1", "Left USB"},
 	{"/devices/platform/soc/f9890000.ehci/usb1/1-1", "Back USB"}
