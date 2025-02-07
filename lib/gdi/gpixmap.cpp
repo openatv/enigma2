@@ -1941,6 +1941,11 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 #ifdef GPIXMAP_DEBUG
 		Stopwatch s;
 #endif
+
+#ifdef FORCE_NO_ACCELERATION_SCALE
+	if (accel && (flag & blitScale))
+		accel = false;	
+#endif
 		if (accel)
 		{
 			flag &= 7; // remove all flags except the blit flags
