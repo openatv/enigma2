@@ -1943,6 +1943,7 @@ void gPixmap::blit(const gPixmap &src, const eRect &_pos, const gRegion &clip, i
 #endif
 		if (accel)
 		{
+			flag &= 7; // remove all flags except the blit flags
 			if (!gAccel::getInstance()->blit(surface, src.surface, area, srcarea, flag))
 			{
 #ifdef GPIXMAP_DEBUG
