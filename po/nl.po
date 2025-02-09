@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-28 07:25+0000\n"
+"POT-Creation-Date: 2025-01-30 15:09+0000\n"
 "PO-Revision-Date: 2024-11-10 13:00+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -3544,6 +3544,9 @@ msgstr ""
 "Kan niet naar live TV!\n"
 "Toch naar live-TV schakelen en Timeshift opnieuw starten?"
 
+msgid "Can't move to trashcan!"
+msgstr "Kan geen bestanden naar de prullenbak verplaatsen"
+
 msgid ""
 "Can't play the next time shift file!\n"
 "Switch to live TV and restart time shift ?"
@@ -3669,9 +3672,6 @@ msgstr "Kan de %s limiet niet bepalen ..., annuleren !"
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Kan geen signaal vinden..., gestopt!"
-
-msgid "Can't move to trashcan!"
-msgstr "Kan geen bestanden naar de prullenbak verplaatsen"
 
 msgid "Cape Verde"
 msgstr "Kaapverdië"
@@ -6268,10 +6268,6 @@ msgid "Directory"
 msgstr "Map"
 
 #, python-format
-msgid "Error: Directory '%s' does not exist!"
-msgstr "Map %s bestaat niet."
-
-#, python-format
 msgid "Directory '%s' can't be linked to recordings!"
 msgstr "Map '%s' kan niet voor opnames gebruikt worden!"
 
@@ -6483,15 +6479,8 @@ msgstr ""
 "Er is geen weg terug!"
 
 #, python-format
-msgid "Do you really want to delete %s ?"
-msgstr "Wilt u echt %s verwijderen?"
-
-#, python-format
 msgid "Do you really want to delete '%s'?"
 msgstr "Wilt u %s echt wissen?"
-
-msgid "Do you really want to delete?"
-msgstr "Wilt u echt verwijderen?"
 
 #, python-format
 msgid ""
@@ -6511,6 +6500,9 @@ msgstr ""
 msgid "Do you really want to delete this timer?"
 msgstr "Wilt u deze timer echt verwijderen?"
 
+msgid "Do you really want to delete?"
+msgstr "Wilt u echt verwijderen?"
+
 msgid "Do you really want to exit?"
 msgstr "Werkelijk afbreken?"
 
@@ -6521,27 +6513,25 @@ msgstr ""
 "Wil je echt het opslagapparaat formatteren in het Linux bestandssysteem?\n"
 "Alle gegevens op het apparaat zullen verloren gaan!"
 
-msgid "Do you really want to move to trashcan ?"
-msgstr "Wilt u dit echt naar de prullenbak verplaatsen?"
+#, python-format
+msgid "Do you really want to move '%s' to the trashcan?"
+msgstr ""
 
 #, python-format
 msgid "Do you really want to permanently remove '%s' from the trashcan?"
 msgstr "Wilt u '%s' permanent verwijderen uit de prullenbak?"
-
-msgid "Do you really want to permanently remove from trash can ?"
-msgstr "Wilt u echt permanent verwijderen uit de prullenbak?"
 
 #, python-format
 msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "Weet u zeker dat u map %s van de harde schijf wilt wissen?"
 
 #, python-format
-msgid "Do you really want to remove the timer for %s?"
-msgstr "Wilt u echt de timer voor %s verwijderen?"
-
-#, python-format
 msgid "Do you really want to remove the bookmark for '%s'?"
 msgstr "Weet u zeker dat u het bookmark van %s wilt verwijderen?"
+
+#, python-format
+msgid "Do you really want to remove the timer for %s?"
+msgstr "Wilt u echt de timer voor %s verwijderen?"
 
 msgid ""
 "Do you really want to restart OSCam?\n"
@@ -7738,6 +7728,10 @@ msgstr "Het aanmaken van de map %s is mislukt!"
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
 msgstr "Fout bij het maken van de map voor de Picons: (%s)"
+
+#, python-format
+msgid "Error: Directory '%s' does not exist!"
+msgstr "Map %s bestaat niet."
 
 #, python-format
 msgid "Error: Failed to run service scan!  (%s)"
@@ -24322,6 +24316,16 @@ msgstr "ja (bewaar feeds)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Do you really want to delete %s ?"
+#~ msgstr "Wilt u echt %s verwijderen?"
+
+#~ msgid "Do you really want to move to trashcan ?"
+#~ msgstr "Wilt u dit echt naar de prullenbak verplaatsen?"
+
+#~ msgid "Do you really want to permanently remove from trash can ?"
+#~ msgstr "Wilt u echt permanent verwijderen uit de prullenbak?"
 
 #~ msgid "Bus: "
 #~ msgstr "Bus: "

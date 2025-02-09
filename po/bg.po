@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-28 07:25+0000\n"
+"POT-Creation-Date: 2025-01-30 15:09+0000\n"
 "PO-Revision-Date: 2023-08-06 06:22+0000\n"
 "Last-Translator: Salif Mehmed <mail@salif.eu>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/bg/>\n"
@@ -3531,6 +3531,9 @@ msgstr ""
 "Невъзможно свързване към live TV!\n"
 "Превключване към live TV и рестартиране Timeshift ?"
 
+msgid "Can't move to trashcan!"
+msgstr "Не мога да преместя в коша за боклук"
+
 msgid ""
 "Can't play the next time shift file!\n"
 "Switch to live TV and restart time shift ?"
@@ -3656,9 +3659,6 @@ msgstr "Не може да се определи %s лимит ..., прекра
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Не мога да намеря никакъв сигнал ..., претърпявам неуспех !"
-
-msgid "Can't move to trashcan!"
-msgstr "Не мога да преместя в коша за боклук"
 
 msgid "Cape Verde"
 msgstr ""
@@ -6136,10 +6136,6 @@ msgid "Directory"
 msgstr "Директория"
 
 #, python-format
-msgid "Error: Directory '%s' does not exist!"
-msgstr "Директорията %s не съществува."
-
-#, python-format
 msgid "Directory '%s' can't be linked to recordings!"
 msgstr "Директорията „%s“ не може да бъде свързана със записи!"
 
@@ -6351,15 +6347,8 @@ msgstr ""
 "Не мога да се върна!"
 
 #, python-format
-msgid "Do you really want to delete %s ?"
-msgstr "Наистина ли искате да изтриете %s ?"
-
-#, python-format
 msgid "Do you really want to delete '%s'?"
 msgstr "Наистина ли искате да изтриете %s?"
-
-msgid "Do you really want to delete?"
-msgstr "Наистина ли искате да изтриете ?"
 
 #, python-format
 msgid ""
@@ -6379,6 +6368,9 @@ msgstr ""
 msgid "Do you really want to delete this timer?"
 msgstr "Наистина ли искате да изтриете този таймер ?"
 
+msgid "Do you really want to delete?"
+msgstr "Наистина ли искате да изтриете ?"
+
 msgid "Do you really want to exit?"
 msgstr "Наистина ли искате да излезете?"
 
@@ -6387,27 +6379,25 @@ msgid ""
 "All data on the device will be lost!"
 msgstr ""
 
-msgid "Do you really want to move to trashcan ?"
-msgstr "Наистина ли искате да преместите в кошчето за боклук?"
+#, python-format
+msgid "Do you really want to move '%s' to the trashcan?"
+msgstr ""
 
 #, python-format
 msgid "Do you really want to permanently remove '%s' from the trashcan?"
 msgstr "Наистина ли искате да премахнете завинаги '%s' от кошчето за боклук ?"
-
-msgid "Do you really want to permanently remove from trash can ?"
-msgstr "Наистина ли искате да премахнете завинаги от кошчето за боклук?"
 
 #, python-format
 msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "Наистина ли искате да премахнете директория %s от диска?"
 
 #, python-format
-msgid "Do you really want to remove the timer for %s?"
-msgstr "Наистина ли искате да премахнете таймер за %s ?"
-
-#, python-format
 msgid "Do you really want to remove the bookmark for '%s'?"
 msgstr "Наистина ли искате да премахнете вашия bookmark от %s?"
+
+#, python-format
+msgid "Do you really want to remove the timer for %s?"
+msgstr "Наистина ли искате да премахнете таймер за %s ?"
 
 msgid ""
 "Do you really want to restart OSCam?\n"
@@ -7580,6 +7570,10 @@ msgstr "Създаване на директория %s не успя."
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
 msgstr ""
+
+#, python-format
+msgid "Error: Directory '%s' does not exist!"
+msgstr "Директорията %s не съществува."
 
 #, python-format
 msgid "Error: Failed to run service scan!  (%s)"
@@ -23938,6 +23932,16 @@ msgstr "да (запази фийдове)"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid "Do you really want to delete %s ?"
+#~ msgstr "Наистина ли искате да изтриете %s ?"
+
+#~ msgid "Do you really want to move to trashcan ?"
+#~ msgstr "Наистина ли искате да преместите в кошчето за боклук?"
+
+#~ msgid "Do you really want to permanently remove from trash can ?"
+#~ msgstr "Наистина ли искате да премахнете завинаги от кошчето за боклук?"
 
 #~ msgid "Bus: "
 #~ msgstr "Шина: "

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-28 07:25+0000\n"
+"POT-Creation-Date: 2025-01-30 15:09+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pt_BR/>\n"
@@ -3732,6 +3732,9 @@ msgid ""
 "Switch to live TV and restart time shift ?"
 msgstr ""
 
+msgid "Can't move to trashcan!"
+msgstr "Não foi possível mover para a lixeira"
+
 msgid ""
 "Can't play the next time shift file!\n"
 "Switch to live TV and restart time shift ?"
@@ -3863,9 +3866,6 @@ msgstr ""
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Sem sinal. Cancelando..."
-
-msgid "Can't move to trashcan!"
-msgstr "Não foi possível mover para a lixeira"
 
 msgid "Cape Verde"
 msgstr ""
@@ -6451,10 +6451,6 @@ msgid "Directory"
 msgstr "Diretório"
 
 #, python-format
-msgid "Error: Directory '%s' does not exist!"
-msgstr "O diretório %s não existe."
-
-#, python-format
 msgid "Directory '%s' can't be linked to recordings!"
 msgstr ""
 
@@ -6669,17 +6665,9 @@ msgstr ""
 "Deseja mesmo converter o sistema de arquivos?\n"
 "Não pode voltar!"
 
-#, fuzzy, python-format
-msgid "Do you really want to delete %s ?"
-msgstr "Deseja mesmo apagar %s?"
-
 #, python-format
 msgid "Do you really want to delete '%s'?"
 msgstr "Remover %s?"
-
-#, fuzzy
-msgid "Do you really want to delete?"
-msgstr "Deseja mesmo apagar %s?"
 
 #, python-format
 msgid ""
@@ -6696,6 +6684,10 @@ msgstr ""
 msgid "Do you really want to delete this timer?"
 msgstr "Deseja mesmo apagar %s?"
 
+#, fuzzy
+msgid "Do you really want to delete?"
+msgstr "Deseja mesmo apagar %s?"
+
 msgid "Do you really want to exit?"
 msgstr "Deseja realmente sair?"
 
@@ -6704,30 +6696,27 @@ msgid ""
 "All data on the device will be lost!"
 msgstr ""
 
-msgid "Do you really want to move to trashcan ?"
+#, python-format
+msgid "Do you really want to move '%s' to the trashcan?"
 msgstr ""
 
 #, fuzzy, python-format
 msgid "Do you really want to permanently remove '%s' from the trashcan?"
 msgstr "Deseja mesmo remover a pasta %s do disco?"
 
-#, fuzzy
-msgid "Do you really want to permanently remove from trash can ?"
-msgstr "Deseja mesmo remover a pasta %s do disco?"
-
 #, python-format
 msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "Deseja mesmo remover a pasta %s do disco?"
+
+#, python-format
+msgid "Do you really want to remove the bookmark for '%s'?"
+msgstr "Remover o favorito de %s?"
 
 #, fuzzy, python-format
 msgid "Do you really want to remove the timer for %s?"
 msgstr ""
 "Deseja mesmo fazer o download\n"
 "do plugin \"%s\"?"
-
-#, python-format
-msgid "Do you really want to remove the bookmark for '%s'?"
-msgstr "Remover o favorito de %s?"
 
 msgid ""
 "Do you really want to restart OSCam?\n"
@@ -7906,6 +7895,10 @@ msgstr "Falha ao criar a pasta %s ."
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
 msgstr ""
+
+#, python-format
+msgid "Error: Directory '%s' does not exist!"
+msgstr "O diretório %s não existe."
 
 #, python-format
 msgid "Error: Failed to run service scan!  (%s)"
@@ -24855,6 +24848,14 @@ msgstr "Sim (manter os feeds)"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy, python-format
+#~ msgid "Do you really want to delete %s ?"
+#~ msgstr "Deseja mesmo apagar %s?"
+
+#, fuzzy
+#~ msgid "Do you really want to permanently remove from trash can ?"
+#~ msgstr "Deseja mesmo remover a pasta %s do disco?"
 
 #~ msgid "Bus: "
 #~ msgstr "Bus: "

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-28 07:25+0000\n"
+"POT-Creation-Date: 2025-01-30 15:09+0000\n"
 "PO-Revision-Date: 2023-12-11 00:50+0000\n"
 "Last-Translator: W L <wl@mailhole.de>\n"
 "Language-Team: Albanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sq/>\n"
@@ -3543,6 +3543,9 @@ msgstr ""
 "Nuk mund të shkoj në TV drejtpërdrejt!\n"
 "Kaloni në TV drejtpërdrejt dhe rinisni Timeshift?"
 
+msgid "Can't move to trashcan!"
+msgstr "Nuk mund të zhvendoset në koshin e plehrave"
+
 msgid ""
 "Can't play the next time shift file!\n"
 "Switch to live TV and restart time shift ?"
@@ -3668,9 +3671,6 @@ msgstr "Nuk mund të përcaktojë kufirin %s ..., duke abortuar!"
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Nuk mund të gjej asnjë sinjal ..., aborti!"
-
-msgid "Can't move to trashcan!"
-msgstr "Nuk mund të zhvendoset në koshin e plehrave"
 
 msgid "Cape Verde"
 msgstr "Kepi Verde"
@@ -6146,10 +6146,6 @@ msgid "Directory"
 msgstr "Drejtoria"
 
 #, python-format
-msgid "Error: Directory '%s' does not exist!"
-msgstr "Drejtoria %s nuk ekziston."
-
-#, python-format
 msgid "Directory '%s' can't be linked to recordings!"
 msgstr "Drejtoria '%s' nuk mund të lidhet me regjistrimet!"
 
@@ -6361,15 +6357,8 @@ msgstr ""
 "Ju nuk mund të ktheheni!"
 
 #, python-format
-msgid "Do you really want to delete %s ?"
-msgstr "Dëshiron vërtet të fshish %s?"
-
-#, python-format
 msgid "Do you really want to delete '%s'?"
 msgstr "Dëshiron vërtet të fshish %s?"
-
-msgid "Do you really want to delete?"
-msgstr "Dëshiron vërtet të fshish?"
 
 #, python-format
 msgid ""
@@ -6389,6 +6378,9 @@ msgstr ""
 msgid "Do you really want to delete this timer?"
 msgstr "Dëshiron vërtet ta fshish këtë kohëmatës?"
 
+msgid "Do you really want to delete?"
+msgstr "Dëshiron vërtet të fshish?"
+
 msgid "Do you really want to exit?"
 msgstr "Dëshiron vërtet të dalësh?"
 
@@ -6397,27 +6389,25 @@ msgid ""
 "All data on the device will be lost!"
 msgstr ""
 
-msgid "Do you really want to move to trashcan ?"
-msgstr "Dëshiron vërtet të zhvendosesh në koshin e plehrave?"
+#, python-format
+msgid "Do you really want to move '%s' to the trashcan?"
+msgstr ""
 
 #, python-format
 msgid "Do you really want to permanently remove '%s' from the trashcan?"
 msgstr "Dëshiron vërtet të heqësh përgjithmonë '%s' nga koshi i plehrave?"
-
-msgid "Do you really want to permanently remove from trash can ?"
-msgstr "Dëshiron vërtet ta heqësh përgjithmonë nga koshi i plehrave?"
 
 #, python-format
 msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "Dëshiron vërtet të heqësh directory %s nga disku?"
 
 #, python-format
-msgid "Do you really want to remove the timer for %s?"
-msgstr "Dëshiron vërtet të heqësh kohëmatësin për %s?"
-
-#, python-format
 msgid "Do you really want to remove the bookmark for '%s'?"
 msgstr "Dëshiron vërtet të heqësh faqeshënuesin tënd të %s?"
+
+#, python-format
+msgid "Do you really want to remove the timer for %s?"
+msgstr "Dëshiron vërtet të heqësh kohëmatësin për %s?"
 
 msgid ""
 "Do you really want to restart OSCam?\n"
@@ -7590,6 +7580,10 @@ msgstr "Krijimi i drejtorisë %s dështoi."
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
 msgstr ""
+
+#, python-format
+msgid "Error: Directory '%s' does not exist!"
+msgstr "Drejtoria %s nuk ekziston."
 
 #, python-format
 msgid "Error: Failed to run service scan!  (%s)"
@@ -23862,6 +23856,16 @@ msgstr "Po (mbani ushqim)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Do you really want to delete %s ?"
+#~ msgstr "Dëshiron vërtet të fshish %s?"
+
+#~ msgid "Do you really want to move to trashcan ?"
+#~ msgstr "Dëshiron vërtet të zhvendosesh në koshin e plehrave?"
+
+#~ msgid "Do you really want to permanently remove from trash can ?"
+#~ msgstr "Dëshiron vërtet ta heqësh përgjithmonë nga koshi i plehrave?"
 
 #~ msgid "Bus: "
 #~ msgstr "Autobusi: "

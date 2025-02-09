@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-28 07:25+0000\n"
+"POT-Creation-Date: 2025-01-30 15:09+0000\n"
 "PO-Revision-Date: 2024-11-03 19:00+0000\n"
 "Last-Translator: Dejan <pitbul@vip.hr>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hr/>\n"
@@ -3750,6 +3750,9 @@ msgstr ""
 "Ne može se ići na TV uživo!\n"
 "Prebaciti se na TV uživo i ponovno pokrenite time shift ?"
 
+msgid "Can't move to trashcan!"
+msgstr "Ne može se premjestiti u kantu za smeće"
+
 msgid ""
 "Can't play the next time shift file!\n"
 "Switch to live TV and restart time shift ?"
@@ -3883,9 +3886,6 @@ msgstr "Ne može se odrediti %s limit ..., prekida se !"
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Ne može se pronaći bilo koji signal ..., prekida se !"
-
-msgid "Can't move to trashcan!"
-msgstr "Ne može se premjestiti u kantu za smeće"
 
 msgid "Cape Verde"
 msgstr ""
@@ -6514,10 +6514,6 @@ msgid "Directory"
 msgstr ""
 
 #, python-format
-msgid "Error: Directory '%s' does not exist!"
-msgstr ""
-
-#, python-format
 msgid "Directory '%s' can't be linked to recordings!"
 msgstr ""
 
@@ -6744,17 +6740,10 @@ msgid ""
 "You cannot go back!"
 msgstr ""
 
-#, python-format
-msgid "Do you really want to delete %s ?"
-msgstr ""
-
 #
 #, python-format
 msgid "Do you really want to delete '%s'?"
 msgstr "Jeste li sigurni da želite obrisati datoteku %s?"
-
-msgid "Do you really want to delete?"
-msgstr ""
 
 #, python-format
 msgid ""
@@ -6772,6 +6761,9 @@ msgstr ""
 msgid "Do you really want to delete this timer?"
 msgstr "Jeste li sigurni da želite obrisati datoteku %s?"
 
+msgid "Do you really want to delete?"
+msgstr ""
+
 #
 msgid "Do you really want to exit?"
 msgstr "Želite li stvarno izaći?"
@@ -6781,14 +6773,12 @@ msgid ""
 "All data on the device will be lost!"
 msgstr ""
 
-msgid "Do you really want to move to trashcan ?"
+#, python-format
+msgid "Do you really want to move '%s' to the trashcan?"
 msgstr ""
 
 #, python-format
 msgid "Do you really want to permanently remove '%s' from the trashcan?"
-msgstr ""
-
-msgid "Do you really want to permanently remove from trash can ?"
 msgstr ""
 
 #
@@ -6797,14 +6787,14 @@ msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr ""
 
 #
-#, fuzzy, python-format
-msgid "Do you really want to remove the timer for %s?"
-msgstr "Jeste li sigurni da želite obrisati datoteku %s?"
-
-#
 #, python-format
 msgid "Do you really want to remove the bookmark for '%s'?"
 msgstr ""
+
+#
+#, fuzzy, python-format
+msgid "Do you really want to remove the timer for %s?"
+msgstr "Jeste li sigurni da želite obrisati datoteku %s?"
 
 msgid ""
 "Do you really want to restart OSCam?\n"
@@ -8027,6 +8017,10 @@ msgstr ""
 
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error: Directory '%s' does not exist!"
 msgstr ""
 
 #, python-format

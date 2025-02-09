@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-28 07:25+0000\n"
-"PO-Revision-Date: 2025-01-15 06:00+0000\n"
-"Last-Translator: Marchella1983 <marchella_ru@mail.ru>\n"
+"POT-Creation-Date: 2025-01-30 15:09+0000\n"
+"PO-Revision-Date: 2025-02-02 16:04+0000\n"
+"Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -1852,7 +1852,7 @@ msgid "Activate the flash expander, save all changed settings and exit"
 msgstr "Активируйте расширение флеш-памяти, сохраните все изменённые настройки и выйдите"
 
 msgid "Activate this device"
-msgstr ""
+msgstr "Активировать это устройство"
 
 msgid "Activate time shift End"
 msgstr "Указать окончание таймшифта"
@@ -3569,6 +3569,9 @@ msgstr ""
 "Невозможно вернуться на просматриваемый канал!\n"
 "Снова подключиться к каналу и перезапустить таймшифт?"
 
+msgid "Can't move to trashcan!"
+msgstr "Невозможно переместить в корзину!"
+
 msgid ""
 "Can't play the next time shift file!\n"
 "Switch to live TV and restart time shift ?"
@@ -3694,9 +3697,6 @@ msgstr "Невозможно определить предел %s ..., отме�
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Сигнал не найден, прерываем!"
-
-msgid "Can't move to trashcan!"
-msgstr "Невозможно переместить в корзину"
 
 msgid "Cape Verde"
 msgstr "Кабо-Верде"
@@ -6182,10 +6182,6 @@ msgid "Directory"
 msgstr "Каталог"
 
 #, python-format
-msgid "Error: Directory '%s' does not exist!"
-msgstr "Каталог %s отсутствует."
-
-#, python-format
 msgid "Directory '%s' can't be linked to recordings!"
 msgstr "Каталог '%s' не может быть связан с записями!"
 
@@ -6397,15 +6393,8 @@ msgstr ""
 "Вернуть прошлое состояние будет невозможно!"
 
 #, python-format
-msgid "Do you really want to delete %s ?"
-msgstr "Действительно удалить %s?"
-
-#, python-format
 msgid "Do you really want to delete '%s'?"
 msgstr "Действительно удалить %s?"
-
-msgid "Do you really want to delete?"
-msgstr "Действительно удалить?"
 
 #, python-format
 msgid ""
@@ -6425,6 +6414,9 @@ msgstr ""
 msgid "Do you really want to delete this timer?"
 msgstr "Действительно удалить этот таймер?"
 
+msgid "Do you really want to delete?"
+msgstr "Действительно удалить?"
+
 msgid "Do you really want to exit?"
 msgstr "Действительно хотите выйти?"
 
@@ -6435,27 +6427,25 @@ msgstr ""
 "Вы действительно хотите отформатировать устройство в файловой системе Linux?\n"
 "Все данные на устройстве будут потеряны!"
 
-msgid "Do you really want to move to trashcan ?"
-msgstr "Действительно удалить в корзину?"
+#, python-format
+msgid "Do you really want to move '%s' to the trashcan?"
+msgstr "Вы действительно хотите переместить '%s' в корзину?"
 
 #, python-format
 msgid "Do you really want to permanently remove '%s' from the trashcan?"
 msgstr "Действительно навсегда удалить '%s' из корзины?"
-
-msgid "Do you really want to permanently remove from trash can ?"
-msgstr "Действительно навсегда удалить из корзины?"
 
 #, python-format
 msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "Действительно удалить каталог %s с диска?"
 
 #, python-format
-msgid "Do you really want to remove the timer for %s?"
-msgstr "Действительно удалить таймер для %s?"
-
-#, python-format
 msgid "Do you really want to remove the bookmark for '%s'?"
 msgstr "Действительно удалить вашу закладку %s?"
+
+#, python-format
+msgid "Do you really want to remove the timer for %s?"
+msgstr "Действительно удалить таймер для %s?"
 
 msgid ""
 "Do you really want to restart OSCam?\n"
@@ -7187,7 +7177,7 @@ msgid "Enable this option to add screen names and resolution data to the debug l
 msgstr "Включите эту опцию, чтобы добавить имена экранов и данные о разрешении в файл лога отладки."
 
 msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
-msgstr ""
+msgstr "Включите эту опцию, чтобы добавить в файл журнала отладки информацию об устройствах хранения, обнаруженных во время загрузки системы и событий горячего подключения."
 
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Включите этот параметр, чтобы добавить данные отладки таймера в файл лога отладки."
@@ -7196,7 +7186,7 @@ msgid "Enable this option to show all the available Information screens in the I
 msgstr "Включите эту опцию, чтобы отобразить все доступные информационные экраны в списке пунктов меню 'Информация'."
 
 msgid "Enable this option to show unknown storage devices in device manager."
-msgstr ""
+msgstr "Включите эту опцию, чтобы отображать неизвестные устройства хранения данных в диспетчере устройств."
 
 msgid "Enable this setting if your aerial system needs power."
 msgstr "Включите этот параметр, если вашей антенной системе требуется питание."
@@ -7639,6 +7629,10 @@ msgstr "Ошибка: не удалось создать каталог '%s'!"
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
 msgstr "Ошибка: создание целевого каталога для пиконов: (%s)"
+
+#, python-format
+msgid "Error: Directory '%s' does not exist!"
+msgstr "Каталог %s отсутствует!"
 
 #, python-format
 msgid "Error: Failed to run service scan!  (%s)"
@@ -9603,7 +9597,7 @@ msgid "Image creation failed!"
 msgstr "Не удалось создать образ!"
 
 msgid "Image version"
-msgstr ""
+msgstr "Версия изображения"
 
 msgid "ImageWizard"
 msgstr "Мастер прошивок"
@@ -9727,7 +9721,7 @@ msgid "Include screen load data"
 msgstr "Включить данные о загрузке экрана"
 
 msgid "Include storage device data"
-msgstr ""
+msgstr "Включить данные устройства хранения"
 
 msgid "Include teletext details"
 msgstr "Включать подробности о телетексте"
@@ -18127,7 +18121,7 @@ msgid "Show unknown Videoresolution as next higher or as highest screen resoluti
 msgstr "Показывать неизвестное разрешение как следующее более высокое или как максимальное."
 
 msgid "Show unknown devices"
-msgstr ""
+msgstr "Показать неизвестные устройства"
 
 msgid "Show unknown video format as"
 msgstr "Показывать неизвестный видео формат как"
@@ -19421,7 +19415,7 @@ msgid "TMDB Search"
 msgstr "Поиск по TMDB"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Коррекция перевода Monja 05.01.2025"
+msgstr "Коррекция перевода Monja 02.02.2025"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл слишком большой для ISO9660 уровень 1!"
@@ -21300,7 +21294,7 @@ msgid "Up/Down buttons also for 'all up/down'."
 msgstr "Кнопки ВВЕРХ/ВНИЗ также для 'всех ВВЕРХ/ВНИЗ'"
 
 msgid "Update"
-msgstr "Обновить"
+msgstr "Обновлено"
 
 msgid "Update Plugin"
 msgstr "Обновить плагин"
@@ -24104,6 +24098,16 @@ msgstr "Да (оставить фиды)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Do you really want to delete %s ?"
+#~ msgstr "Действительно удалить %s?"
+
+#~ msgid "Do you really want to move to trashcan ?"
+#~ msgstr "Действительно удалить в корзину?"
+
+#~ msgid "Do you really want to permanently remove from trash can ?"
+#~ msgstr "Действительно навсегда удалить из корзины?"
 
 #~ msgid "Bus: "
 #~ msgstr "Шина "

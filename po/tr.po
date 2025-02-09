@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-28 07:25+0000\n"
+"POT-Creation-Date: 2025-01-30 15:09+0000\n"
 "PO-Revision-Date: 2024-08-04 16:47+0000\n"
 "Last-Translator: Tmp341 <tmp341@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -3656,6 +3656,9 @@ msgstr ""
 "TV yayınlayamayacağım!\n"
 "Canlı TV'ye geçin ve Timeshift'i yeniden başlatın?"
 
+msgid "Can't move to trashcan!"
+msgstr "Çöp sepetine taşınamadı"
+
 msgid ""
 "Can't play the next time shift file!\n"
 "Switch to live TV and restart time shift ?"
@@ -3788,9 +3791,6 @@ msgstr "%s sınırı belirlenemiyor ..., iptal ediliyor!"
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Hiç sinyol bulunamadı..., durduruluyor!"
-
-msgid "Can't move to trashcan!"
-msgstr "Çöp sepetine taşınamadı"
 
 msgid "Cape Verde"
 msgstr "Cape Verde"
@@ -6378,11 +6378,6 @@ msgstr "Klasörler"
 msgid "Directory"
 msgstr "Klasör"
 
-#
-#, python-format
-msgid "Error: Directory '%s' does not exist!"
-msgstr "%s klasörü oluşturulmamış."
-
 #, python-format
 msgid "Directory '%s' can't be linked to recordings!"
 msgstr "Bir dizinde yararlı bir şekilde '%s' çalıştıramazsınız!"
@@ -6606,17 +6601,10 @@ msgstr ""
 "Dosya sistemini dönüştürmek istiyor musunuz?\n"
 "Geri dönüşü yoktur!"
 
-#, python-format
-msgid "Do you really want to delete %s ?"
-msgstr "%s silmek istiyor musunuz?"
-
 #
 #, python-format
 msgid "Do you really want to delete '%s'?"
 msgstr "%s 'i silmek istediğinizden emin misiniz?"
-
-msgid "Do you really want to delete?"
-msgstr "Silmek istiyor musunuz?"
 
 #, python-format
 msgid ""
@@ -6636,6 +6624,9 @@ msgstr ""
 msgid "Do you really want to delete this timer?"
 msgstr "Bu zamanlayıcıyı gerçekten silmek istiyor musunuz?"
 
+msgid "Do you really want to delete?"
+msgstr "Silmek istiyor musunuz?"
+
 #
 msgid "Do you really want to exit?"
 msgstr "Çıkmak istediğinizden emin misiniz?"
@@ -6647,29 +6638,27 @@ msgstr ""
 "Cihazı gerçekten Linux dosya sisteminde biçimlendirmek istiyor musunuz?\n"
 "Cihazdaki tüm veriler kaybolacaktır!"
 
-msgid "Do you really want to move to trashcan ?"
-msgstr "Gerçekten çöp kutusuna gitmek mi istiyorsun?"
+#, python-format
+msgid "Do you really want to move '%s' to the trashcan?"
+msgstr ""
 
 #, python-format
 msgid "Do you really want to permanently remove '%s' from the trashcan?"
 msgstr "'%s' çöp sepetinden kalıcı olarak kaldırmak istiyor muzunuz?"
-
-msgid "Do you really want to permanently remove from trash can ?"
-msgstr "Çöp sepetinden kalıcı olarak kaldırmak istiyor muzunuz?"
 
 #
 #, python-format
 msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "%s klasörünü kaldırmak istiyor musunuz?"
 
-#, python-format
-msgid "Do you really want to remove the timer for %s?"
-msgstr "%s için zamanlayıcıyı gerçekten silmek istiyor musunuz?"
-
 #
 #, python-format
 msgid "Do you really want to remove the bookmark for '%s'?"
 msgstr "%s adlı yer imini kaldırmak istiyor musunuz?"
+
+#, python-format
+msgid "Do you really want to remove the timer for %s?"
+msgstr "%s için zamanlayıcıyı gerçekten silmek istiyor musunuz?"
 
 msgid ""
 "Do you really want to restart OSCam?\n"
@@ -7901,6 +7890,11 @@ msgstr "Hata oluştu: '%s' dizini oluşturulamadı!"
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
 msgstr "Hata oluştu: Picon hedef dizini oluşturuluyor: (%s)"
+
+#
+#, python-format
+msgid "Error: Directory '%s' does not exist!"
+msgstr "%s klasörü oluşturulmamış."
 
 #, python-format
 msgid "Error: Failed to run service scan!  (%s)"
@@ -25226,6 +25220,16 @@ msgstr "evet (beslemeleri tut)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Do you really want to delete %s ?"
+#~ msgstr "%s silmek istiyor musunuz?"
+
+#~ msgid "Do you really want to move to trashcan ?"
+#~ msgstr "Gerçekten çöp kutusuna gitmek mi istiyorsun?"
+
+#~ msgid "Do you really want to permanently remove from trash can ?"
+#~ msgstr "Çöp sepetinden kalıcı olarak kaldırmak istiyor muzunuz?"
 
 #~ msgid "Bus: "
 #~ msgstr "Yol: "

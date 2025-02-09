@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-28 07:25+0000\n"
+"POT-Creation-Date: 2025-01-30 15:09+0000\n"
 "PO-Revision-Date: 2023-06-04 19:16+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -3580,6 +3580,9 @@ msgstr ""
 "Nepavyksta perjungti į tiesioginę transliaciją!\n"
 "Perjungti į tiesioginę transliaciją ir paleisti laiko poslinkį iš naujo?"
 
+msgid "Can't move to trashcan!"
+msgstr "Perkelti į šiukšlinę negalima"
+
 msgid ""
 "Can't play the next time shift file!\n"
 "Switch to live TV and restart time shift ?"
@@ -3705,9 +3708,6 @@ msgstr "Negalima nustatyti %s ribos ..., nutraukiama !"
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Jokio signalo nerasta …,  nutraukiama !"
-
-msgid "Can't move to trashcan!"
-msgstr "Perkelti į šiukšlinę negalima"
 
 msgid "Cape Verde"
 msgstr "Žaliasis kišulys"
@@ -6194,10 +6194,6 @@ msgid "Directory"
 msgstr "Katalogas"
 
 #, python-format
-msgid "Error: Directory '%s' does not exist!"
-msgstr "Katalogo %s nėra."
-
-#, python-format
 msgid "Directory '%s' can't be linked to recordings!"
 msgstr "Katalogas \"%s\" negali būti susietas su įrašais!"
 
@@ -6409,15 +6405,8 @@ msgstr ""
 "Šio veiksmo atstatyti atgal negalėsite!"
 
 #, python-format
-msgid "Do you really want to delete %s ?"
-msgstr "Ar tikrai norite trinti %s ?"
-
-#, python-format
 msgid "Do you really want to delete '%s'?"
 msgstr "Ar tikrai norite pašalinti %s?"
-
-msgid "Do you really want to delete?"
-msgstr "Ar tikrai norite trinti ?"
 
 #, python-format
 msgid ""
@@ -6437,6 +6426,9 @@ msgstr ""
 msgid "Do you really want to delete this timer?"
 msgstr "Ar tikrai norite trinti šį laikmatį ?"
 
+msgid "Do you really want to delete?"
+msgstr "Ar tikrai norite trinti ?"
+
 msgid "Do you really want to exit?"
 msgstr "Ar tikrai norite užverti?"
 
@@ -6445,27 +6437,25 @@ msgid ""
 "All data on the device will be lost!"
 msgstr ""
 
-msgid "Do you really want to move to trashcan ?"
-msgstr "Ar tikrai norite perkelti į šiukšliadėžę?"
+#, python-format
+msgid "Do you really want to move '%s' to the trashcan?"
+msgstr ""
 
 #, python-format
 msgid "Do you really want to permanently remove '%s' from the trashcan?"
 msgstr "Ar tikrai norite negrįžtamai pašalinti '%s' iš šiukšliadėžės?"
-
-msgid "Do you really want to permanently remove from trash can ?"
-msgstr "Ar tikrai norite negrįžtamai pašalinti iš šiukšliadėžės?"
 
 #, python-format
 msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "Ar tikrai norite pašalinti %s katalogą iš disko?"
 
 #, python-format
-msgid "Do you really want to remove the timer for %s?"
-msgstr "Ar tikrai norite pašalinti laikmatį %s?"
-
-#, python-format
 msgid "Do you really want to remove the bookmark for '%s'?"
 msgstr "Ar tikrai norite pašalinti savo %s žymę?"
+
+#, python-format
+msgid "Do you really want to remove the timer for %s?"
+msgstr "Ar tikrai norite pašalinti laikmatį %s?"
 
 msgid ""
 "Do you really want to restart OSCam?\n"
@@ -7643,6 +7633,10 @@ msgstr "Katalogo sukurti %s nepavyko."
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
 msgstr ""
+
+#, python-format
+msgid "Error: Directory '%s' does not exist!"
+msgstr "Katalogo %s nėra."
 
 #, python-format
 msgid "Error: Failed to run service scan!  (%s)"
@@ -24054,6 +24048,16 @@ msgstr "taip (išsaugoti šaltinius)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Do you really want to delete %s ?"
+#~ msgstr "Ar tikrai norite trinti %s ?"
+
+#~ msgid "Do you really want to move to trashcan ?"
+#~ msgstr "Ar tikrai norite perkelti į šiukšliadėžę?"
+
+#~ msgid "Do you really want to permanently remove from trash can ?"
+#~ msgstr "Ar tikrai norite negrįžtamai pašalinti iš šiukšliadėžės?"
 
 #~ msgid "Bus: "
 #~ msgstr "Jungtis: "

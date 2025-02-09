@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-28 07:25+0000\n"
+"POT-Creation-Date: 2025-01-30 15:09+0000\n"
 "PO-Revision-Date: 2024-07-23 13:09+0000\n"
 "Last-Translator: Ricky From Hong Kong <lamricky11@hotmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -3668,6 +3668,9 @@ msgid ""
 "Switch to live TV and restart time shift ?"
 msgstr ""
 
+msgid "Can't move to trashcan!"
+msgstr ""
+
 msgid ""
 "Can't play the next time shift file!\n"
 "Switch to live TV and restart time shift ?"
@@ -3797,9 +3800,6 @@ msgid "Cannot determine %s limit ..., aborting !"
 msgstr ""
 
 msgid "Cannot find any signal ..., aborting !"
-msgstr ""
-
-msgid "Can't move to trashcan!"
 msgstr ""
 
 msgid "Cape Verde"
@@ -6382,10 +6382,6 @@ msgid "Directory"
 msgstr "目錄"
 
 #, python-format
-msgid "Error: Directory '%s' does not exist!"
-msgstr ""
-
-#, python-format
 msgid "Directory '%s' can't be linked to recordings!"
 msgstr ""
 
@@ -6601,15 +6597,8 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid "Do you really want to delete %s ?"
-msgstr "確定刪除 %s？"
-
-#, python-format
 msgid "Do you really want to delete '%s'?"
 msgstr "確定刪除「%s」？"
-
-msgid "Do you really want to delete?"
-msgstr "確定刪除？"
 
 #, python-format
 msgid ""
@@ -6625,6 +6614,9 @@ msgstr ""
 msgid "Do you really want to delete this timer?"
 msgstr "確定刪除計時器？"
 
+msgid "Do you really want to delete?"
+msgstr "確定刪除？"
+
 msgid "Do you really want to exit?"
 msgstr "確定退出？"
 
@@ -6633,27 +6625,25 @@ msgid ""
 "All data on the device will be lost!"
 msgstr ""
 
-msgid "Do you really want to move to trashcan ?"
-msgstr "確定要移到垃圾筒？"
+#, python-format
+msgid "Do you really want to move '%s' to the trashcan?"
+msgstr ""
 
 #, python-format
 msgid "Do you really want to permanently remove '%s' from the trashcan?"
 msgstr "確定要從垃圾筒永久刪除「%s」？"
-
-msgid "Do you really want to permanently remove from trash can ?"
-msgstr "確定要從垃圾筒永久刪除？"
 
 #, python-format
 msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "確定要從磁碟上刪除目錄「%s」？"
 
 #, python-format
-msgid "Do you really want to remove the timer for %s?"
-msgstr "確定要刪除%s的計時器？"
-
-#, python-format
 msgid "Do you really want to remove the bookmark for '%s'?"
 msgstr "確定要刪除%s的書簽？"
+
+#, python-format
+msgid "Do you really want to remove the timer for %s?"
+msgstr "確定要刪除%s的計時器？"
 
 msgid ""
 "Do you really want to restart OSCam?\n"
@@ -7840,6 +7830,10 @@ msgstr "錯誤：創建目錄 %s 失敗！"
 
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
+msgstr ""
+
+#, python-format
+msgid "Error: Directory '%s' does not exist!"
 msgstr ""
 
 #, python-format
@@ -25069,6 +25063,16 @@ msgstr "是 (保留)"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid "Do you really want to delete %s ?"
+#~ msgstr "確定刪除 %s？"
+
+#~ msgid "Do you really want to move to trashcan ?"
+#~ msgstr "確定要移到垃圾筒？"
+
+#~ msgid "Do you really want to permanently remove from trash can ?"
+#~ msgstr "確定要從垃圾筒永久刪除？"
 
 #~ msgid "Bus: "
 #~ msgstr "匯流排:"

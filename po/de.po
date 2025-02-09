@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-28 07:25+0000\n"
-"PO-Revision-Date: 2025-01-30 14:06+0000\n"
+"POT-Creation-Date: 2025-01-30 15:09+0000\n"
+"PO-Revision-Date: 2025-01-30 15:58+0000\n"
 "Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -1288,7 +1288,7 @@ msgstr "'weatherplugin' ist nicht installiert!"
 
 #, python-format
 msgid "(Access to the '%s' commit log requires an Internet connection.)"
-msgstr "Der Zugriff auf das %s Commit-Log benötigt eine Internetverbindung!"
+msgstr "Der Zugriff auf das '%s' Commit-Log benötigt eine Internetverbindung!"
 
 #, python-format
 msgid "(Attention: There will be a restart after %d crashes.)"
@@ -3723,6 +3723,9 @@ msgstr ""
 "Es kann nicht zum Live-TV geschaltet werden!\n"
 "Zum Live-TV schalten und Timeshift erneut starten?"
 
+msgid "Can't move to trashcan!"
+msgstr "Nicht in den Papierkorb verschiebbar!"
+
 msgid ""
 "Can't play the next time shift file!\n"
 "Switch to live TV and restart time shift ?"
@@ -3859,9 +3862,6 @@ msgstr "%s kann nicht ermittelt werden! Abbruch..."
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Kein Signal gefunden! Abbruch!"
-
-msgid "Can't move to trashcan!"
-msgstr "Nicht in den Papierkorb verschiebbar!"
 
 msgid "Cape Verde"
 msgstr "Kap Verde"
@@ -4634,7 +4634,7 @@ msgstr "Konfiguriere"
 
 #, python-format
 msgid "Config file %s saved."
-msgstr "Konfigurationsdatei %s gespeichert."
+msgstr "Konfigurationsdatei '%s' gespeichert."
 
 msgctxt "Abbreviation of 'Configurable'"
 msgid "Configurable"
@@ -4643,7 +4643,7 @@ msgstr "Konfigurierbar"
 #, python-format
 msgid "Configuration file '%s' has been modified since it was installed, would you like to keep the modified version?"
 msgstr ""
-"Eine Konfigurationsdatei (%s) wurde seit der Installation verändert.\n"
+"Eine Konfigurationsdatei ('%s') wurde seit der Installation verändert.\n"
 "Soll die geänderte Version erhalten bleiben?"
 
 msgid "Configuration mode"
@@ -6471,10 +6471,6 @@ msgid "Directory"
 msgstr "Verzeichnis"
 
 #, python-format
-msgid "Error: Directory '%s' does not exist!"
-msgstr "Fehler: Das Verzeichnis %s existiert nicht!"
-
-#, python-format
 msgid "Directory '%s' can't be linked to recordings!"
 msgstr "Verzeichnis '%s' kann nicht zu Aufnahmen verlinkt werden!"
 
@@ -6484,7 +6480,7 @@ msgstr "Das Verzeichnis '%s' existiert nicht!"
 
 #, python-format
 msgid "Directory '%s' not writable!"
-msgstr "Verzeichnis '%s' ist nicht beschreibbar!"
+msgstr "Das Verzeichnis '%s' ist nicht beschreibbar!"
 
 #
 msgid "Directory browser"
@@ -6703,17 +6699,10 @@ msgstr ""
 "Das Dateisystem wirklich konvertieren?\n"
 "Dieser Vorgang ist nicht umkehrbar!"
 
-#, python-format
-msgid "Do you really want to delete %s ?"
-msgstr "'%s' wirklich löschen?"
-
 #
 #, python-format
 msgid "Do you really want to delete '%s'?"
 msgstr "'%s' wirklich löschen?"
-
-msgid "Do you really want to delete?"
-msgstr "Dies wirklich löschen?"
 
 #, python-format
 msgid ""
@@ -6733,6 +6722,9 @@ msgstr ""
 msgid "Do you really want to delete this timer?"
 msgstr "Timer wirklich löschen?"
 
+msgid "Do you really want to delete?"
+msgstr "Dies wirklich löschen?"
+
 #
 msgid "Do you really want to exit?"
 msgstr "Wirklich beenden?"
@@ -6744,29 +6736,27 @@ msgstr ""
 "Den Datenträger wirklich mit dem Linux-Dateiystem formatieren?\n"
 "Alle darauf vorhandenen Daten werden dabei gelöscht!"
 
-msgid "Do you really want to move to trashcan ?"
-msgstr "Dies wirklich in den Papierkorb verschieben?"
+#, python-format
+msgid "Do you really want to move '%s' to the trashcan?"
+msgstr "'%s' wirklich in den Papierkorb verschieben?"
 
 #, python-format
 msgid "Do you really want to permanently remove '%s' from the trashcan?"
 msgstr "'%s' wirklich aus dem Papierkorb entfernen?"
-
-msgid "Do you really want to permanently remove from trash can ?"
-msgstr "Dies wirklich dauerhaft aus dem Papierkorb entfernen?"
 
 #
 #, python-format
 msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "Das Verzeichnis '%s' wirklich von der Festplatte löschen?"
 
-#, python-format
-msgid "Do you really want to remove the timer for %s?"
-msgstr "Den Timer für '%s' wirklich entfernen?"
-
 #
 #, python-format
 msgid "Do you really want to remove the bookmark for '%s'?"
 msgstr "Das Lesezeichen für '%s' wirklich löschen?"
+
+#, python-format
+msgid "Do you really want to remove the timer for %s?"
+msgstr "Den Timer für '%s' wirklich entfernen?"
 
 msgid ""
 "Do you really want to restart OSCam?\n"
@@ -7874,7 +7864,7 @@ msgstr "Fehler %s: Die Datei '%s' konnte nicht abgerufen werden! (%s)"
 
 #, python-format
 msgid "Error '%s' encountered retrieving the '%s' commit log!"
-msgstr "Fehler '%s' beim Abrufen der %s Commit-Logs!"
+msgstr "Fehler '%s' beim Abrufen des '%s' Commit-Logs!"
 
 msgid "Error Download Setting"
 msgstr "Fehler beim Herunterladen!"
@@ -8007,6 +7997,10 @@ msgstr "Fehler: Das Erstellen des Verzeichnisses '%s' ist fehlgeschlagen!"
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
 msgstr "Fehler beim Erzeugen des Zielordners ('%s')!"
+
+#, python-format
+msgid "Error: Directory '%s' does not exist!"
+msgstr "Fehler: Das Verzeichnis '%s' existiert nicht!"
 
 #, python-format
 msgid "Error: Failed to run service scan!  (%s)"
@@ -20832,7 +20826,7 @@ msgstr "Die %s Commit-Logs können nicht abgerufen werden! Bitte später erneut 
 
 #, python-format
 msgid "The '%s' commit log contains no information."
-msgstr "Das %s Commit-Log enthält keine Informationen!"
+msgstr "Das '%s' Commit-Log enthält keine Informationen!"
 
 #, python-format
 msgid "The '%s' file can't be retrieved, please try again later."
@@ -21098,7 +21092,7 @@ msgstr "Der Picon Ordner existiert bereits! Er muss entfernt werden. Fortfahren?
 #
 #, python-format
 msgid "The results have been written to %s."
-msgstr "Die Ergebnisse des Tests wurden in der Datei %s gespeichert."
+msgstr "Die Ergebnisse des Tests wurden in der Datei '%s' gespeichert."
 
 msgid "The saved PIN was cleared."
 msgstr "Die PIN wurde zurückgesetzt."
@@ -23293,7 +23287,7 @@ msgstr "Datei anzeigen oder bearbeiten (bei Größen <1 MB)"
 
 #, python-format
 msgid "View or edit this %s script"
-msgstr "Skript (%s) anzeigen oder bearbeiten"
+msgstr "Skript '%s' anzeigen oder bearbeiten"
 
 # geändert 03.01.13 husky
 msgid "View photos..."
@@ -25590,6 +25584,16 @@ msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Do you really want to delete %s ?"
+#~ msgstr "'%s' wirklich löschen?"
+
+#~ msgid "Do you really want to move to trashcan ?"
+#~ msgstr "Dies wirklich in den Papierkorb verschieben?"
+
+#~ msgid "Do you really want to permanently remove from trash can ?"
+#~ msgstr "Dies wirklich dauerhaft aus dem Papierkorb entfernen?"
 
 #
 #~ msgid "Bus: "

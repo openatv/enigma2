@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-28 07:25+0000\n"
+"POT-Creation-Date: 2025-01-30 15:09+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -3551,6 +3551,9 @@ msgstr ""
 "Không thể lên truyền hình trực tiếp!\n"
 "Chuyển sang truyền hình trực tiếp và khởi động lại Timeshift?"
 
+msgid "Can't move to trashcan!"
+msgstr "Không thể di chuyển đến thùng rác"
+
 msgid ""
 "Can't play the next time shift file!\n"
 "Switch to live TV and restart time shift ?"
@@ -3683,9 +3686,6 @@ msgstr ""
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Không thể tìm thấy bất kỳ tín hiệu nào ..., hủy bỏ!"
-
-msgid "Can't move to trashcan!"
-msgstr "Không thể di chuyển đến thùng rác"
 
 #, fuzzy
 msgid "Cape Verde"
@@ -6194,10 +6194,6 @@ msgid "Directory"
 msgstr "Danh mục"
 
 #, python-format
-msgid "Error: Directory '%s' does not exist!"
-msgstr "Thư mục%s không tồn tại."
-
-#, python-format
 msgid "Directory '%s' can't be linked to recordings!"
 msgstr ""
 
@@ -6411,15 +6407,8 @@ msgstr ""
 "Bạn không thể quay lại!"
 
 #, python-format
-msgid "Do you really want to delete %s ?"
-msgstr "Bạn có thực sự muốn xóa% s không?"
-
-#, python-format
 msgid "Do you really want to delete '%s'?"
 msgstr "Bạn có thực sự muốn xóa%s không?"
-
-msgid "Do you really want to delete?"
-msgstr "Bạn có thực sự muốn xóa không?"
 
 #, python-format
 msgid ""
@@ -6435,6 +6424,9 @@ msgstr ""
 msgid "Do you really want to delete this timer?"
 msgstr "Bạn có thực sự muốn xóa bộ đếm thời gian này?"
 
+msgid "Do you really want to delete?"
+msgstr "Bạn có thực sự muốn xóa không?"
+
 msgid "Do you really want to exit?"
 msgstr "Bạn có thực sự muốn thoát?"
 
@@ -6443,29 +6435,27 @@ msgid ""
 "All data on the device will be lost!"
 msgstr ""
 
-msgid "Do you really want to move to trashcan ?"
-msgstr "Bạn có thực sự muốn chuyển đến thùng rác?"
+#, python-format
+msgid "Do you really want to move '%s' to the trashcan?"
+msgstr ""
 
 #, python-format
 msgid "Do you really want to permanently remove '%s' from the trashcan?"
 msgstr "Bạn có thực sự muốn xóa vĩnh viễn '% s' khỏi thùng rác không?"
-
-msgid "Do you really want to permanently remove from trash can ?"
-msgstr "Bạn có thực sự muốn loại bỏ vĩnh viễn khỏi thùng rác?"
 
 #, python-format
 msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "Bạn có thực sự muốn xóa thư mục%s khỏi đĩa không?"
 
 #, python-format
+msgid "Do you really want to remove the bookmark for '%s'?"
+msgstr "Bạn có thực sự muốn xóa dấu trang của%s không?"
+
+#, python-format
 msgid "Do you really want to remove the timer for %s?"
 msgstr ""
 "Bạn có thực sự muốn loại bỏ\n"
 "plugin % s?"
-
-#, python-format
-msgid "Do you really want to remove the bookmark for '%s'?"
-msgstr "Bạn có thực sự muốn xóa dấu trang của%s không?"
 
 msgid ""
 "Do you really want to restart OSCam?\n"
@@ -7656,6 +7646,10 @@ msgstr "Tạo thư mục%s không thành công."
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
 msgstr ""
+
+#, python-format
+msgid "Error: Directory '%s' does not exist!"
+msgstr "Thư mục%s không tồn tại."
 
 #, python-format
 msgid "Error: Failed to run service scan!  (%s)"
@@ -24279,6 +24273,16 @@ msgstr "có (giữ thức ăn)"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid "Do you really want to delete %s ?"
+#~ msgstr "Bạn có thực sự muốn xóa% s không?"
+
+#~ msgid "Do you really want to move to trashcan ?"
+#~ msgstr "Bạn có thực sự muốn chuyển đến thùng rác?"
+
+#~ msgid "Do you really want to permanently remove from trash can ?"
+#~ msgstr "Bạn có thực sự muốn loại bỏ vĩnh viễn khỏi thùng rác?"
 
 #~ msgid "Bus: "
 #~ msgstr "Xe buýt: "

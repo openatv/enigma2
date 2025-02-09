@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-28 07:25+0000\n"
-"PO-Revision-Date: 2025-01-29 20:01+0000\n"
+"POT-Creation-Date: 2025-01-30 15:09+0000\n"
+"PO-Revision-Date: 2025-02-08 19:21+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -3543,6 +3543,9 @@ msgstr ""
 "Et voi suora toistaa televisiota!\n"
 "Vaihdetaan live televisioon ja käynnistetään ajansiirto uudelleen?"
 
+msgid "Can't move to trashcan!"
+msgstr "Ei voida siirtää roskakoriin!"
+
 msgid ""
 "Can't play the next time shift file!\n"
 "Switch to live TV and restart time shift ?"
@@ -3668,9 +3671,6 @@ msgstr "Ei voida määrittää %s rajaa ..., keskeytys !"
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Signaalia ei löydy... keskeytetään!"
-
-msgid "Can't move to trashcan!"
-msgstr "Ei voida siirtää roskakoriin"
 
 msgid "Cape Verde"
 msgstr "Cape Verde"
@@ -6154,10 +6154,6 @@ msgid "Directory"
 msgstr "Hakemisto"
 
 #, python-format
-msgid "Error: Directory '%s' does not exist!"
-msgstr "Hakemistoa %s ei löydy."
-
-#, python-format
 msgid "Directory '%s' can't be linked to recordings!"
 msgstr "Hakemistoa %s ei voi linkittää tallenteisiin!"
 
@@ -6369,15 +6365,8 @@ msgstr ""
 "Et voi palata takaisin entiseen!"
 
 #, python-format
-msgid "Do you really want to delete %s ?"
-msgstr "Haluatko varmasti poistaa %s ?"
-
-#, python-format
 msgid "Do you really want to delete '%s'?"
 msgstr "Haluatko varmasti poistaa %s?"
-
-msgid "Do you really want to delete?"
-msgstr "Haluatko varmasti poistaa?"
 
 #, python-format
 msgid ""
@@ -6397,6 +6386,9 @@ msgstr ""
 msgid "Do you really want to delete this timer?"
 msgstr "Haluatko poistaa tämän ajastuksen?"
 
+msgid "Do you really want to delete?"
+msgstr "Haluatko varmasti poistaa?"
+
 msgid "Do you really want to exit?"
 msgstr "Haluatko lopettaa?"
 
@@ -6407,27 +6399,25 @@ msgstr ""
 "Haluatko varmasti alustaa laitteen?\n"
 "Kaikki laitteen tiedot menetetään!"
 
-msgid "Do you really want to move to trashcan ?"
-msgstr "Haluatko varmasti siirtää roskakoriin?"
+#, python-format
+msgid "Do you really want to move '%s' to the trashcan?"
+msgstr "Haluatko siirtää '%s' roskakoriin?"
 
 #, python-format
 msgid "Do you really want to permanently remove '%s' from the trashcan?"
 msgstr "Haluatko varmasti poistaa pysyvästi '%s' \"roskakorista?"
-
-msgid "Do you really want to permanently remove from trash can ?"
-msgstr "Haluatko varmasti poistaa pysyvästi roskakorista?"
 
 #, python-format
 msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "Haluatko poistaa levyltä hakemiston %s?"
 
 #, python-format
-msgid "Do you really want to remove the timer for %s?"
-msgstr "Haluatko poistaa ajastuksen %s?"
-
-#, python-format
 msgid "Do you really want to remove the bookmark for '%s'?"
 msgstr "Haluatko poistaa kirjanmerkin %s?"
+
+#, python-format
+msgid "Do you really want to remove the timer for %s?"
+msgstr "Haluatko poistaa ajastuksen %s?"
 
 msgid ""
 "Do you really want to restart OSCam?\n"
@@ -7089,7 +7079,7 @@ msgid "Enable freesat EPG"
 msgstr "Ota käyttöön freesat EPG"
 
 msgid "Enable import timer from fallback tuner"
-msgstr "Tuo ajastimet etävastaaottimelta"
+msgstr "Tuo ajastimet etävastaanottimelta"
 
 msgid "Enable intro screen"
 msgstr "Aktivoi aloitusnäyttö"
@@ -7608,6 +7598,10 @@ msgstr "Hakemiston %s luominen epäonnistui!"
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
 msgstr "Virhe: Kanavalogojen kansion luominen epäonnistui: (%s)"
+
+#, python-format
+msgid "Error: Directory '%s' does not exist!"
+msgstr "Hakemistoa %s ei löydy!"
 
 #, python-format
 msgid "Error: Failed to run service scan!  (%s)"
@@ -24103,6 +24097,16 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Do you really want to delete %s ?"
+#~ msgstr "Haluatko varmasti poistaa %s ?"
+
+#~ msgid "Do you really want to move to trashcan ?"
+#~ msgstr "Haluatko varmasti siirtää roskakoriin?"
+
+#~ msgid "Do you really want to permanently remove from trash can ?"
+#~ msgstr "Haluatko varmasti poistaa pysyvästi roskakorista?"
 
 #~ msgid "Bus: "
 #~ msgstr "Väylä: "

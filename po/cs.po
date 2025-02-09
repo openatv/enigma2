@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-28 07:25+0000\n"
-"PO-Revision-Date: 2025-01-22 22:55+0000\n"
+"POT-Creation-Date: 2025-01-30 15:09+0000\n"
+"PO-Revision-Date: 2025-01-31 08:54+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
@@ -1849,7 +1849,7 @@ msgid "Activate the flash expander, save all changed settings and exit"
 msgstr "Aktivovat flash expandér, uložit všechna změněná nastavení a ukončit"
 
 msgid "Activate this device"
-msgstr ""
+msgstr "Aktivujte toto zařízení"
 
 msgid "Activate time shift End"
 msgstr "Aktivace konce časového posunu"
@@ -3566,6 +3566,9 @@ msgstr ""
 "Nelze se připojit k aktuálnímu TV vysílání !\n"
 "Přepnout do aktuálního vysílání TV a restartovat Timeshift?"
 
+msgid "Can't move to trashcan!"
+msgstr "Nelze přesunout do koše!"
+
 msgid ""
 "Can't play the next time shift file!\n"
 "Switch to live TV and restart time shift ?"
@@ -3691,9 +3694,6 @@ msgstr "Nelze určit %s limit ..., ruší se!"
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Nelze najít žádný signál ..., končím!"
-
-msgid "Can't move to trashcan!"
-msgstr "Nelze přesunout do koše"
 
 msgid "Cape Verde"
 msgstr "Kapverdy"
@@ -6179,10 +6179,6 @@ msgid "Directory"
 msgstr "Adresář"
 
 #, python-format
-msgid "Error: Directory '%s' does not exist!"
-msgstr "Adresář %s neexistuje."
-
-#, python-format
 msgid "Directory '%s' can't be linked to recordings!"
 msgstr "Adresář '%s' nelze propojit s nahrávkami!"
 
@@ -6394,15 +6390,8 @@ msgstr ""
 "Nelze se vrátit zpět!"
 
 #, python-format
-msgid "Do you really want to delete %s ?"
-msgstr "Opravdu chcete smazat %s ?"
-
-#, python-format
 msgid "Do you really want to delete '%s'?"
 msgstr "Opravdu chcete smazat \"%s\"?"
-
-msgid "Do you really want to delete?"
-msgstr "Opravdu chcete smazat ?"
 
 #, python-format
 msgid ""
@@ -6422,6 +6411,9 @@ msgstr ""
 msgid "Do you really want to delete this timer?"
 msgstr "Opravdu chcete smazat tento časovač ?"
 
+msgid "Do you really want to delete?"
+msgstr "Opravdu chcete smazat ?"
+
 msgid "Do you really want to exit?"
 msgstr "Opravdu chcete ukončit?"
 
@@ -6432,27 +6424,25 @@ msgstr ""
 "Opravdu chcete naformátovat zařízení v systému souborů Linux?\n"
 "Všechna data v zařízení budou ztracena!"
 
-msgid "Do you really want to move to trashcan ?"
-msgstr "Opravdu chcete přesunout do koše?"
+#, python-format
+msgid "Do you really want to move '%s' to the trashcan?"
+msgstr "Opravdu chcete přesunout '%s' do koše?"
 
 #, python-format
 msgid "Do you really want to permanently remove '%s' from the trashcan?"
 msgstr "Opravdu chcete trvale odstranit '%s' z koše?"
-
-msgid "Do you really want to permanently remove from trash can ?"
-msgstr "Opravdu chcete trvale odstranit z koše ?"
 
 #, python-format
 msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "Opravdu chcete odstranit adresář '%s' z disku?"
 
 #, python-format
-msgid "Do you really want to remove the timer for %s?"
-msgstr "Chcete opravdu odstranit časovač pro %s?"
-
-#, python-format
 msgid "Do you really want to remove the bookmark for '%s'?"
 msgstr "Opravdu chcete odstranit záložku pro '%s'?"
+
+#, python-format
+msgid "Do you really want to remove the timer for %s?"
+msgstr "Chcete opravdu odstranit časovač pro %s?"
 
 msgid ""
 "Do you really want to restart OSCam?\n"
@@ -7184,7 +7174,7 @@ msgid "Enable this option to add screen names and resolution data to the debug l
 msgstr "Tuto možnost povolte, chcete-li do souboru protokolu ladění přidat názvy obrazovek a údaje o rozlišení."
 
 msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
-msgstr ""
+msgstr "Povolte tuto možnost, chcete-li do souboru protokolu ladění přidat informace o úložném zařízení zjištěné během spouštění systému a událostí připojení za provozu."
 
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Tuto možnost povolte, chcete-li do souboru protokolu ladění přidat údaje o ladění časovače."
@@ -7193,7 +7183,7 @@ msgid "Enable this option to show all the available Information screens in the I
 msgstr "Povolením této možnosti zobrazíte všechny dostupné informační obrazovky v seznamu položek nabídky Informace."
 
 msgid "Enable this option to show unknown storage devices in device manager."
-msgstr ""
+msgstr "Povolením této možnosti zobrazíte ve správci zařízení neznámá úložná zařízení."
 
 msgid "Enable this setting if your aerial system needs power."
 msgstr "Povolte toto nastavení, pokud váš anténní systém potřebuje napájení."
@@ -7636,6 +7626,10 @@ msgstr "Chyba: Vytvoření adresáře '%s' se nezdařilo!"
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
 msgstr "Chyba: Vytváření cílového adresáře picon: (%s)"
+
+#, python-format
+msgid "Error: Directory '%s' does not exist!"
+msgstr "Chyba: Adresář %s neexistuje!"
 
 #, python-format
 msgid "Error: Failed to run service scan!  (%s)"
@@ -9600,7 +9594,7 @@ msgid "Image creation failed!"
 msgstr "Vytvoření obrázku se nezdařilo!"
 
 msgid "Image version"
-msgstr ""
+msgstr "Verze obrázku"
 
 msgid "ImageWizard"
 msgstr "Průvodce obnovením"
@@ -9724,7 +9718,7 @@ msgid "Include screen load data"
 msgstr "Zahrnout údaje o načtení obrazovky"
 
 msgid "Include storage device data"
-msgstr ""
+msgstr "Zahrnout data úložného zařízení"
 
 msgid "Include teletext details"
 msgstr "Zahrnout podrobnosti o teletextu"
@@ -18124,7 +18118,7 @@ msgid "Show unknown Videoresolution as next higher or as highest screen resoluti
 msgstr "Zobrazit neznámé rozlišení videa jako nejbližší vyšší nebo nejvyšší rozlišení obrazovky."
 
 msgid "Show unknown devices"
-msgstr ""
+msgstr "Zobrazit neznámá zařízení"
 
 msgid "Show unknown video format as"
 msgstr "Zobrazit neznámý formát videa jako"
@@ -24101,6 +24095,16 @@ msgstr "ano (uchovat zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Do you really want to delete %s ?"
+#~ msgstr "Opravdu chcete smazat %s ?"
+
+#~ msgid "Do you really want to move to trashcan ?"
+#~ msgstr "Opravdu chcete přesunout do koše?"
+
+#~ msgid "Do you really want to permanently remove from trash can ?"
+#~ msgstr "Opravdu chcete trvale odstranit z koše ?"
 
 #~ msgid "Bus: "
 #~ msgstr "Sběrnice: "

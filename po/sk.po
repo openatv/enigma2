@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-28 07:25+0000\n"
-"PO-Revision-Date: 2025-01-29 19:01+0000\n"
+"POT-Creation-Date: 2025-01-30 15:09+0000\n"
+"PO-Revision-Date: 2025-02-02 16:04+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
@@ -3570,6 +3570,9 @@ msgstr ""
 "Nie je možné prejsť na live TV!\n"
 "Má sa prepnúť na live TV a reštartovať timeshift?"
 
+msgid "Can't move to trashcan!"
+msgstr "Nie je možné presunúť do koša!"
+
 msgid ""
 "Can't play the next time shift file!\n"
 "Switch to live TV and restart time shift ?"
@@ -3695,9 +3698,6 @@ msgstr "Nie je možné určiť limit %s ..., prerušuje sa!"
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Nenašiel sa žiadny signál..., prerušuje sa!"
-
-msgid "Can't move to trashcan!"
-msgstr "Nie je možné presunúť do koša"
 
 msgid "Cape Verde"
 msgstr "Kapverdy"
@@ -6183,10 +6183,6 @@ msgid "Directory"
 msgstr "Priečinok"
 
 #, python-format
-msgid "Error: Directory '%s' does not exist!"
-msgstr "Priečinok %s neexistuje."
-
-#, python-format
 msgid "Directory '%s' can't be linked to recordings!"
 msgstr "Priečinok '%s' nie je možné prepojiť s nahrávkami!"
 
@@ -6398,15 +6394,8 @@ msgstr ""
 "Nedá sa vrátiť späť!"
 
 #, python-format
-msgid "Do you really want to delete %s ?"
-msgstr "Naozaj chcete vymazať %s?"
-
-#, python-format
 msgid "Do you really want to delete '%s'?"
 msgstr "Naozaj chcete vymazať %s?"
-
-msgid "Do you really want to delete?"
-msgstr "Naozaj chcete vymazať?"
 
 #, python-format
 msgid ""
@@ -6426,6 +6415,9 @@ msgstr ""
 msgid "Do you really want to delete this timer?"
 msgstr "Naozaj chcete vymazať tento časovač?"
 
+msgid "Do you really want to delete?"
+msgstr "Naozaj chcete vymazať?"
+
 msgid "Do you really want to exit?"
 msgstr "Naozaj chcete ukončiť?"
 
@@ -6436,27 +6428,25 @@ msgstr ""
 "Naozaj chcete naformátovať jednotku na systém súborov pre Linux?\n"
 "Všetky údaje na jednotke sa stratia!"
 
-msgid "Do you really want to move to trashcan ?"
-msgstr "Naozaj chcete vykonať presun do koša?"
+#, python-format
+msgid "Do you really want to move '%s' to the trashcan?"
+msgstr "Naozaj chcete presunúť '%s' do koša?"
 
 #, python-format
 msgid "Do you really want to permanently remove '%s' from the trashcan?"
 msgstr "Naozaj chcete navždy odstrániť '%s' z koša?"
-
-msgid "Do you really want to permanently remove from trash can ?"
-msgstr "Naozaj chcete navždy odstrániť z koša?"
 
 #, python-format
 msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "Naozaj chcete odstrániť z disku priečinok %s?"
 
 #, python-format
-msgid "Do you really want to remove the timer for %s?"
-msgstr "Naozaj chcete odstrániť časovač pre %s?"
-
-#, python-format
 msgid "Do you really want to remove the bookmark for '%s'?"
 msgstr "Naozaj chcete odstrániť záložku pre %s?"
+
+#, python-format
+msgid "Do you really want to remove the timer for %s?"
+msgstr "Naozaj chcete odstrániť časovač pre %s?"
 
 msgid ""
 "Do you really want to restart OSCam?\n"
@@ -7640,6 +7630,10 @@ msgstr "Chyba: nepodarilo sa vytvoriť priečinok '%s'!"
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
 msgstr "Chyba: Vytváranie cieľového adresára pikon: (%s)"
+
+#, python-format
+msgid "Error: Directory '%s' does not exist!"
+msgstr "Chyba: Priečinok %s neexistuje!"
 
 #, python-format
 msgid "Error: Failed to run service scan!  (%s)"
@@ -24105,6 +24099,16 @@ msgstr "áno (zachovať zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Do you really want to delete %s ?"
+#~ msgstr "Naozaj chcete vymazať %s?"
+
+#~ msgid "Do you really want to move to trashcan ?"
+#~ msgstr "Naozaj chcete vykonať presun do koša?"
+
+#~ msgid "Do you really want to permanently remove from trash can ?"
+#~ msgstr "Naozaj chcete navždy odstrániť z koša?"
 
 #~ msgid "Bus: "
 #~ msgstr "Zbernica: "

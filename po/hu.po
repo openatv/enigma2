@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-28 07:25+0000\n"
+"POT-Creation-Date: 2025-01-30 15:09+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -3567,6 +3567,9 @@ msgstr ""
 "Nem lehet az élő TV adásra váltani!\n"
 "Váltson át az élő adásra és indítsa újra a Timeshift-t?"
 
+msgid "Can't move to trashcan!"
+msgstr "Nem helyezthető a kukába"
+
 msgid ""
 "Can't play the next time shift file!\n"
 "Switch to live TV and restart time shift ?"
@@ -3699,9 +3702,6 @@ msgstr ""
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Nem található jel... művelet megszakítva!"
-
-msgid "Can't move to trashcan!"
-msgstr "Nem helyezthető a kukába"
 
 #, fuzzy
 msgid "Cape Verde"
@@ -6199,10 +6199,6 @@ msgid "Directory"
 msgstr "Mappa"
 
 #, python-format
-msgid "Error: Directory '%s' does not exist!"
-msgstr "A %s mappa nem létezik."
-
-#, python-format
 msgid "Directory '%s' can't be linked to recordings!"
 msgstr ""
 
@@ -6414,15 +6410,8 @@ msgstr ""
 "Ez visszafordíthatatlan lesz!"
 
 #, python-format
-msgid "Do you really want to delete %s ?"
-msgstr "Biztos benne, hogy törölni szeretné: %s?"
-
-#, python-format
 msgid "Do you really want to delete '%s'?"
 msgstr "Biztos benne, hogy törölni szeretné ezt: %s?"
-
-msgid "Do you really want to delete?"
-msgstr "Biztos benne, hogy törölni szeretne?"
 
 #, python-format
 msgid ""
@@ -6438,6 +6427,9 @@ msgstr ""
 msgid "Do you really want to delete this timer?"
 msgstr "Biztos benne, hogy törölni szeretné ezt az időzítést?"
 
+msgid "Do you really want to delete?"
+msgstr "Biztos benne, hogy törölni szeretne?"
+
 msgid "Do you really want to exit?"
 msgstr "Biztos benne, hogy ki szeretne lépni?"
 
@@ -6446,27 +6438,25 @@ msgid ""
 "All data on the device will be lost!"
 msgstr ""
 
-msgid "Do you really want to move to trashcan ?"
-msgstr "Biztos benne, hogy a kukába rakja?"
+#, python-format
+msgid "Do you really want to move '%s' to the trashcan?"
+msgstr ""
 
 #, python-format
 msgid "Do you really want to permanently remove '%s' from the trashcan?"
 msgstr "Biztos benne, hogy végleg eltávolítja a(z) %s a kukából?"
-
-msgid "Do you really want to permanently remove from trash can ?"
-msgstr "Biztos benne, hogy végleg el szeretné távolítani a kukából?"
 
 #, python-format
 msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "Biztos benne, hogy el szeretné távolítani a %s mappát a háttértárról?"
 
 #, python-format
-msgid "Do you really want to remove the timer for %s?"
-msgstr "Tényleg el szeretné távolítani a(z) %s időzítőt?"
-
-#, python-format
 msgid "Do you really want to remove the bookmark for '%s'?"
 msgstr "Biztos benne, hogy el szeretné távolítani a(z) %s könyvjelzőt?"
+
+#, python-format
+msgid "Do you really want to remove the timer for %s?"
+msgstr "Tényleg el szeretné távolítani a(z) %s időzítőt?"
 
 msgid ""
 "Do you really want to restart OSCam?\n"
@@ -7641,6 +7631,10 @@ msgstr "A %s mappa létrehozása nem sikerült."
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
 msgstr ""
+
+#, python-format
+msgid "Error: Directory '%s' does not exist!"
+msgstr "A %s mappa nem létezik."
 
 #, python-format
 msgid "Error: Failed to run service scan!  (%s)"
@@ -24170,6 +24164,16 @@ msgstr "igen (állapotok megtartása)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Do you really want to delete %s ?"
+#~ msgstr "Biztos benne, hogy törölni szeretné: %s?"
+
+#~ msgid "Do you really want to move to trashcan ?"
+#~ msgstr "Biztos benne, hogy a kukába rakja?"
+
+#~ msgid "Do you really want to permanently remove from trash can ?"
+#~ msgstr "Biztos benne, hogy végleg el szeretné távolítani a kukából?"
 
 #~ msgid "Bus: "
 #~ msgstr "Busz: "

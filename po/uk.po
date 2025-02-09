@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-28 07:25+0000\n"
-"PO-Revision-Date: 2025-01-29 19:01+0000\n"
+"POT-Creation-Date: 2025-01-30 15:09+0000\n"
+"PO-Revision-Date: 2025-02-01 12:01+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -3571,6 +3571,9 @@ msgstr ""
 "Неможливо з’єднатися з ТВ!\n"
 "Підключитися до каналу і перезапустити таймшифт?"
 
+msgid "Can't move to trashcan!"
+msgstr "Неможливо перемістити в кошик!"
+
 msgid ""
 "Can't play the next time shift file!\n"
 "Switch to live TV and restart time shift ?"
@@ -3696,9 +3699,6 @@ msgstr "Не вдається визначити ліміт %s ..., скасов
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Неможливо знайти будь-який сигнал ..., скасовується!"
-
-msgid "Can't move to trashcan!"
-msgstr "Неможливо перемістити в кошик"
 
 msgid "Cape Verde"
 msgstr "Кабо Верде"
@@ -6184,10 +6184,6 @@ msgid "Directory"
 msgstr "Каталог"
 
 #, python-format
-msgid "Error: Directory '%s' does not exist!"
-msgstr "Каталогу %s не існує."
-
-#, python-format
 msgid "Directory '%s' can't be linked to recordings!"
 msgstr "Каталог '%s' не може бути пов'язаний із записами!"
 
@@ -6399,15 +6395,8 @@ msgstr ""
 "Усі файли на диску будуть втрачені!"
 
 #, python-format
-msgid "Do you really want to delete %s ?"
-msgstr "Ви дійсно хочете видалити %s ?"
-
-#, python-format
 msgid "Do you really want to delete '%s'?"
 msgstr "Ви дійсно хочете видалити %s?"
-
-msgid "Do you really want to delete?"
-msgstr "Ви дійсно хочете видалити?"
 
 #, python-format
 msgid ""
@@ -6427,6 +6416,9 @@ msgstr ""
 msgid "Do you really want to delete this timer?"
 msgstr "Справді видалити цей таймер?"
 
+msgid "Do you really want to delete?"
+msgstr "Ви дійсно хочете видалити?"
+
 msgid "Do you really want to exit?"
 msgstr "Ви дійсно хочете вийти?"
 
@@ -6437,27 +6429,25 @@ msgstr ""
 "Ви дійсно хочете відформатувати пристрій у файлову систему Linux?\n"
 "Усі дані на пристрої будуть втрачені!"
 
-msgid "Do you really want to move to trashcan ?"
-msgstr "Дійсно хочете видалити у кошик?"
+#, python-format
+msgid "Do you really want to move '%s' to the trashcan?"
+msgstr "Ви справді бажаєте перемістити '%s' до кошика?"
 
 #, python-format
 msgid "Do you really want to permanently remove '%s' from the trashcan?"
 msgstr "Ви дійсно бажаєте остаточно видалити '%s' з кошика?"
-
-msgid "Do you really want to permanently remove from trash can ?"
-msgstr "Дійсно хочете остаточно видалити з кошика?"
 
 #, python-format
 msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "Ви дійсно хочете видалити каталог %s з диску?"
 
 #, python-format
-msgid "Do you really want to remove the timer for %s?"
-msgstr "Ви дійсно хочете видалити таймер %s?"
-
-#, python-format
 msgid "Do you really want to remove the bookmark for '%s'?"
 msgstr "Ви дійсно хочете видалити Вашу закладку з %s?"
+
+#, python-format
+msgid "Do you really want to remove the timer for %s?"
+msgstr "Ви дійсно хочете видалити таймер %s?"
 
 msgid ""
 "Do you really want to restart OSCam?\n"
@@ -7641,6 +7631,10 @@ msgstr "Створення директорії %s невдале!"
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
 msgstr "Помилка: Створення цільового каталогу піконів: (%s)"
+
+#, python-format
+msgid "Error: Directory '%s' does not exist!"
+msgstr "Каталогу %s не існує!"
 
 #, python-format
 msgid "Error: Failed to run service scan!  (%s)"
@@ -19423,7 +19417,7 @@ msgid "TMDB Search"
 msgstr "TMDB Пошук"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 29.01.2024"
+msgstr "Переклад: kvinto - 31.01.2024"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -24106,6 +24100,16 @@ msgstr "так (зберігати фіди)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Do you really want to delete %s ?"
+#~ msgstr "Ви дійсно хочете видалити %s ?"
+
+#~ msgid "Do you really want to move to trashcan ?"
+#~ msgstr "Дійсно хочете видалити у кошик?"
+
+#~ msgid "Do you really want to permanently remove from trash can ?"
+#~ msgstr "Дійсно хочете остаточно видалити з кошика?"
 
 #~ msgid "Bus: "
 #~ msgstr "Шина: "

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-28 07:25+0000\n"
+"POT-Creation-Date: 2025-01-30 15:09+0000\n"
 "PO-Revision-Date: 2022-12-04 20:43+0000\n"
 "Last-Translator: rimasx <riks_12@hot.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -3575,6 +3575,9 @@ msgstr ""
 "Otsesaatele lülitumine ei ole võimalik!\n"
 "Kas lülituda otsesaatele ja taaskäivitada ajanihe?"
 
+msgid "Can't move to trashcan!"
+msgstr "Prügikasti saatmine ei ole võimalik"
+
 msgid ""
 "Can't play the next time shift file!\n"
 "Switch to live TV and restart time shift ?"
@@ -3707,9 +3710,6 @@ msgstr ""
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Mingit signaali ei leita, katkestame!"
-
-msgid "Can't move to trashcan!"
-msgstr "Prügikasti saatmine ei ole võimalik"
 
 #, fuzzy
 msgid "Cape Verde"
@@ -6241,10 +6241,6 @@ msgid "Directory"
 msgstr "Kataloog"
 
 #, python-format
-msgid "Error: Directory '%s' does not exist!"
-msgstr "Kataloogi %s ei eksisteeri."
-
-#, python-format
 msgid "Directory '%s' can't be linked to recordings!"
 msgstr ""
 
@@ -6462,15 +6458,8 @@ msgstr ""
 "Seda ei saa tagasi pöörata!"
 
 #, python-format
-msgid "Do you really want to delete %s ?"
-msgstr "Kas kustutada %s?"
-
-#, python-format
 msgid "Do you really want to delete '%s'?"
 msgstr "Kas kustutada %s?"
-
-msgid "Do you really want to delete?"
-msgstr "Kas kustutada?"
 
 #, python-format
 msgid ""
@@ -6486,6 +6475,9 @@ msgstr ""
 msgid "Do you really want to delete this timer?"
 msgstr "Kas kustutada see taimer?"
 
+msgid "Do you really want to delete?"
+msgstr "Kas kustutada?"
+
 msgid "Do you really want to exit?"
 msgstr "Kas väljuda?"
 
@@ -6494,27 +6486,25 @@ msgid ""
 "All data on the device will be lost!"
 msgstr ""
 
-msgid "Do you really want to move to trashcan ?"
-msgstr "Kas liigutada prügikasti?"
+#, python-format
+msgid "Do you really want to move '%s' to the trashcan?"
+msgstr ""
 
 #, python-format
 msgid "Do you really want to permanently remove '%s' from the trashcan?"
 msgstr "Kas eemaldada %s lõplikult prügikastist?"
-
-msgid "Do you really want to permanently remove from trash can ?"
-msgstr "Kas kustutada lõplikult prügikastist?"
 
 #, python-format
 msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "Kas kustutada kataloog %s kõvakettalt?"
 
 #, python-format
-msgid "Do you really want to remove the timer for %s?"
-msgstr "Kas eemaldada \"%s\" taimer?"
-
-#, python-format
 msgid "Do you really want to remove the bookmark for '%s'?"
 msgstr "Kas kustutada %s järjehoidja?"
+
+#, python-format
+msgid "Do you really want to remove the timer for %s?"
+msgstr "Kas eemaldada \"%s\" taimer?"
 
 msgid ""
 "Do you really want to restart OSCam?\n"
@@ -7714,6 +7704,10 @@ msgstr "Kataloogi %s loomine nurjus."
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
 msgstr ""
+
+#, python-format
+msgid "Error: Directory '%s' does not exist!"
+msgstr "Kataloogi %s ei eksisteeri."
 
 #, python-format
 msgid "Error: Failed to run service scan!  (%s)"
@@ -24606,6 +24600,16 @@ msgstr "Jah (säilita fiidid)"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid "Do you really want to delete %s ?"
+#~ msgstr "Kas kustutada %s?"
+
+#~ msgid "Do you really want to move to trashcan ?"
+#~ msgstr "Kas liigutada prügikasti?"
+
+#~ msgid "Do you really want to permanently remove from trash can ?"
+#~ msgstr "Kas kustutada lõplikult prügikastist?"
 
 #~ msgid "Bus: "
 #~ msgstr "Siin: "

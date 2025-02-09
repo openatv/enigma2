@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-28 07:25+0000\n"
+"POT-Creation-Date: 2025-01-30 15:09+0000\n"
 "PO-Revision-Date: 2021-09-15 14:20+0000\n"
 "Last-Translator: Hamed Beyrami <h.beyrami@outlook.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fa/>\n"
@@ -3660,6 +3660,9 @@ msgid ""
 "Switch to live TV and restart time shift ?"
 msgstr ""
 
+msgid "Can't move to trashcan!"
+msgstr "نمیتوان به سطل زباله انتقال داد"
+
 msgid ""
 "Can't play the next time shift file!\n"
 "Switch to live TV and restart time shift ?"
@@ -3790,9 +3793,6 @@ msgstr ""
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr ""
-
-msgid "Can't move to trashcan!"
-msgstr "نمیتوان به سطل زباله انتقال داد"
 
 msgid "Cape Verde"
 msgstr ""
@@ -6337,10 +6337,6 @@ msgstr ""
 msgid "Directory"
 msgstr "پوشه"
 
-#, fuzzy, python-format
-msgid "Error: Directory '%s' does not exist!"
-msgstr "پوشه %s وجود ندارد"
-
 #, python-format
 msgid "Directory '%s' can't be linked to recordings!"
 msgstr ""
@@ -6556,15 +6552,8 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid "Do you really want to delete %s ?"
-msgstr ""
-
-#, python-format
 msgid "Do you really want to delete '%s'?"
 msgstr "آیا واقعا قصد حذف کردن %s را دارید؟ "
-
-msgid "Do you really want to delete?"
-msgstr ""
 
 #, python-format
 msgid ""
@@ -6581,6 +6570,9 @@ msgstr ""
 msgid "Do you really want to delete this timer?"
 msgstr "آیا واقعا قصد حذف کردن %s را دارید؟ "
 
+msgid "Do you really want to delete?"
+msgstr ""
+
 msgid "Do you really want to exit?"
 msgstr "آیا واقعا قصد خروج دارید؟"
 
@@ -6589,27 +6581,25 @@ msgid ""
 "All data on the device will be lost!"
 msgstr ""
 
-msgid "Do you really want to move to trashcan ?"
+#, python-format
+msgid "Do you really want to move '%s' to the trashcan?"
 msgstr ""
 
 #, python-format
 msgid "Do you really want to permanently remove '%s' from the trashcan?"
 msgstr ""
 
-msgid "Do you really want to permanently remove from trash can ?"
-msgstr ""
-
 #, python-format
 msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "آیا واقعا میخواهید پوشه %s را از دیسک حذف کنید ؟"
 
-#, fuzzy, python-format
-msgid "Do you really want to remove the timer for %s?"
-msgstr "آیا واقعا قصد حذف کردن %s را دارید؟ "
-
 #, python-format
 msgid "Do you really want to remove the bookmark for '%s'?"
 msgstr "آیا واقعا میخواهید علامت خود را از %s حذف کنید ؟"
+
+#, fuzzy, python-format
+msgid "Do you really want to remove the timer for %s?"
+msgstr "آیا واقعا قصد حذف کردن %s را دارید؟ "
 
 msgid ""
 "Do you really want to restart OSCam?\n"
@@ -7774,6 +7764,10 @@ msgstr "ایجاد شاخه %s ناموفق "
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
 msgstr ""
+
+#, fuzzy, python-format
+msgid "Error: Directory '%s' does not exist!"
+msgstr "پوشه %s وجود ندارد"
 
 #, python-format
 msgid "Error: Failed to run service scan!  (%s)"

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-28 07:25+0000\n"
-"PO-Revision-Date: 2025-01-30 13:58+0000\n"
+"POT-Creation-Date: 2025-01-30 15:09+0000\n"
+"PO-Revision-Date: 2025-02-01 12:01+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -3533,6 +3533,9 @@ msgstr ""
 "Non riesco a passare alla TV in diretta!\n"
 "Passare alla TV in diretta e riavviare timeshift?"
 
+msgid "Can't move to trashcan!"
+msgstr "Impossibile spostare nel cestino!"
+
 msgid ""
 "Can't play the next time shift file!\n"
 "Switch to live TV and restart time shift ?"
@@ -3658,9 +3661,6 @@ msgstr "Impossibile determinare il limite %s..., interruzione!"
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Impossibile trovare alcun segnale... annullo tutto!"
-
-msgid "Can't move to trashcan!"
-msgstr "Impossibile spostare nel cestino!"
 
 msgid "Cape Verde"
 msgstr "Capo Verde"
@@ -6144,10 +6144,6 @@ msgid "Directory"
 msgstr "Cartella"
 
 #, python-format
-msgid "Error: Directory '%s' does not exist!"
-msgstr "Errore: la cartella '%s' non esiste!"
-
-#, python-format
 msgid "Directory '%s' can't be linked to recordings!"
 msgstr "Impossibile collegare la cartella '%s' alle registrazioni!"
 
@@ -6359,15 +6355,8 @@ msgstr ""
 "Non puoi tornare indietro!"
 
 #, python-format
-msgid "Do you really want to delete %s ?"
-msgstr "Vuoi davvero eliminare %s?"
-
-#, python-format
 msgid "Do you really want to delete '%s'?"
 msgstr "Vuoi davvero eliminare '%s'?"
-
-msgid "Do you really want to delete?"
-msgstr "Vuoi davvero eliminare?"
 
 #, python-format
 msgid ""
@@ -6387,6 +6376,9 @@ msgstr ""
 msgid "Do you really want to delete this timer?"
 msgstr "Vuoi davvero eliminare questo timer?"
 
+msgid "Do you really want to delete?"
+msgstr "Vuoi davvero eliminare?"
+
 msgid "Do you really want to exit?"
 msgstr "Vuoi davvero uscire?"
 
@@ -6397,27 +6389,25 @@ msgstr ""
 "Vuoi davvero formattare il dispositivo nel file system Linux?\n"
 "Tutti i dati sul dispositivo andranno persi!"
 
-msgid "Do you really want to move to trashcan ?"
-msgstr "Vuoi davvero spostarlo nel cestino?"
+#, python-format
+msgid "Do you really want to move '%s' to the trashcan?"
+msgstr "Vuoi davvero spostare '%s' nel cestino?"
 
 #, python-format
 msgid "Do you really want to permanently remove '%s' from the trashcan?"
 msgstr "Vuoi davvero rimuovere definitivamente '%s' dal cestino?"
-
-msgid "Do you really want to permanently remove from trash can ?"
-msgstr "Vuoi davvero rimuovere definitivamente dal cestino?"
 
 #, python-format
 msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "Vuoi davvero rimuovere la cartella %s dal disco?"
 
 #, python-format
-msgid "Do you really want to remove the timer for %s?"
-msgstr "Vuoi davvero rimuovere il timer per %s?"
-
-#, python-format
 msgid "Do you really want to remove the bookmark for '%s'?"
 msgstr "Vuoi davvero rimuovere il segnalibro di %s?"
+
+#, python-format
+msgid "Do you really want to remove the timer for %s?"
+msgstr "Vuoi davvero rimuovere il timer per %s?"
 
 msgid ""
 "Do you really want to restart OSCam?\n"
@@ -7598,6 +7588,10 @@ msgstr "Errore: creazione della cartella '%s' non riuscita!"
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
 msgstr "Errore: creazione della cartella di destinazione picon %s non riuscita"
+
+#, python-format
+msgid "Error: Directory '%s' does not exist!"
+msgstr "Errore: la cartella '%s' non esiste!"
 
 #, python-format
 msgid "Error: Failed to run service scan!  (%s)"
@@ -24053,6 +24047,16 @@ msgstr "sì (mantieni feed)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Do you really want to delete %s ?"
+#~ msgstr "Vuoi davvero eliminare %s?"
+
+#~ msgid "Do you really want to move to trashcan ?"
+#~ msgstr "Vuoi davvero spostarlo nel cestino?"
+
+#~ msgid "Do you really want to permanently remove from trash can ?"
+#~ msgstr "Vuoi davvero rimuovere definitivamente dal cestino?"
 
 #~ msgid "Bus: "
 #~ msgstr "Bus: "
