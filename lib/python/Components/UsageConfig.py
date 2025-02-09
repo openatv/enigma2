@@ -1830,6 +1830,7 @@ def InitUsageConfig():
 	langsAI.append(("ar_eg", _("Arabic (Egyptian)")))
 	langsAI.append(("ar_ma", _("Arabic (Moroccan)")))
 	langsAI.append(("ar_sy", _("Arabic (Syro-Lebanese)")))
+	langsAI.append(("ar_iq", _("Arabic (Iraq)")))
 	langsAI.append(("ar_tn", _("Arabic (Tunisian)")))
 	langsAI.sort(key=lambda x: x[1])
 
@@ -1845,6 +1846,13 @@ def InitUsageConfig():
 
 	config.subtitles.ai_translate_to = ConfigSelection(default=default, choices=langsAI)
 	config.subtitles.ai_translate_to.addNotifier(setAiTranslateTo)
+
+	def setAiMode(configElement):
+		eSubtitleSettings.setAiMode(configElement.value)
+
+	config.subtitles.ai_mode = ConfigSelection(default=1, choices=[(x, f"{_("Mode")} {x}") for x in range(1, 4)])
+	config.subtitles.ai_mode.addNotifier(setAiMode)
+
 	# AI end
 
 	config.autolanguage = ConfigSubsection()

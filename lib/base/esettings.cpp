@@ -55,3 +55,4 @@ std::string eSubtitleSettings::ai_translate_to = "0";
 std::string eSubtitleSettings::ai_subscription_code = "15";
 int eSubtitleSettings::ai_subtitle_colors = 1;
 int eSubtitleSettings::ai_connection_speed = 1;
+int eSubtitleSettings::ai_mode = 1;
