@@ -366,7 +366,7 @@ self.instance.move(ePoint(orgpos.x() + (orgwidth - newwidth)//2, orgpos.y()))
 		<widget name="footnote" position="215,435" size="260,19" zPosition="20" font="Regular;18" transparent="1" />
 		<widget name="HelpWindow" pixmap="skin_default/vkey_icon.png" position="170,300" zPosition="1" size="440,350" transparent="1" alphatest="on" />
 	</screen>
-	<screen name="ChannelContextMenu" position="center,center" size="350,385" title="Channel List Menu">
+	<screen name="ChannelContextMenu" position="center,center" size="350,385" title="Channel Selection Context Menu">
 		<panel name="BasicTemplate" />
 		<widget name="menu" position="10,10" size="340,300" scrollbarMode="showOnDemand" />
 	</screen>
