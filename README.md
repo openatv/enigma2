@@ -1,4 +1,4 @@
-# OpenATV 7.5.1
+# OpenATV 7.6
 
 ## Build status
 
