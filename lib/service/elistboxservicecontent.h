@@ -61,6 +61,7 @@ public:
 	void getCurrent(eServiceReference &ref);
 	void getPrev(eServiceReference &ref);
 	void getNext(eServiceReference &ref);
+	PyObject *getList();
 
 	int getNextBeginningWithChar(char c);
 	int getPrevMarkerPos();
