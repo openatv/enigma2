@@ -936,8 +936,8 @@ class FileCommander(Screen, NumericalTextInput, StatInfo):
 	def keyHashes(self, path=None):
 		if path is None:
 			path = self.sourceColumn.getPath()
-		if isfile(path):
-			if stat(path).st_size < HASH_CHECK_SIZE:
+		if isfile(path) or islink(path):
+			if lstat(path).st_size < HASH_CHECK_SIZE:
 				import hashlib
 				data = {}
 				data["Screen"] = "FileCommanderHashes"
@@ -2879,7 +2879,7 @@ class FileDeleteTask(Job):
 		count = len(srcPaths)
 		for index, srcPath in enumerate(srcPaths):
 			taskName = _("Directory/File %d of %d" % (index + 1, count))
-			if isfile(srcPath):
+			if isfile(srcPath) or islink(srcPath):
 				FileTransferTask(self, taskName, srcPath, dirname(normpath(srcPath)), FileTransferTask.JOB_DELETE)
 			else:
 				FileTransferTask(self, taskName, srcPath, dirname(normpath(srcPath)), FileTransferTask.JOB_DELETE_TREE)
@@ -2910,7 +2910,7 @@ class FileTransferTask(Task):
 
 	def __init__(self, job, taskName, srcPath, dstPath, jobType):
 		Task.__init__(self, job, taskName)
-		if exists(srcPath) and exists(dstPath):
+		if lexists(srcPath) and exists(dstPath):
 			self.srcPath = srcPath
 			self.dstPath = dstPath
 			target = join(dstPath, "") if isdir(srcPath) else join(dstPath, basename(normpath(srcPath)))
@@ -2949,7 +2949,7 @@ class FileTransferTask(Task):
 		self.progressTimer.start(self.updateTime, True)
 
 	def prepare(self):
-		self.srcSize = float(self.dirSize(self.srcPath) if isdir(self.srcPath) else getsize(self.srcPath))
+		self.srcSize = float(self.dirSize(self.srcPath) if isdir(self.srcPath) else lstat(self.srcPath).st_size)
 		self.updateTime = max(1000, int(self.srcSize * 0.000001 * 0.5))  # Based on 20Mb/s transfer rate.
 		self.progressTimer.start(self.updateTime, True)
 
