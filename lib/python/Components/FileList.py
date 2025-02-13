@@ -1,5 +1,5 @@
 from os import R_OK, access, listdir, lstat, sep
-from os.path import basename, dirname, exists, isdir, islink, join as pathjoin, normpath, realpath, splitext
+from os.path import basename, dirname, exists, isdir, islink, join, normpath, realpath, splitext
 from re import compile
 
 from enigma import BT_SCALE, BT_VALIGN_CENTER, RT_HALIGN_LEFT, RT_VALIGN_CENTER, eListboxPythonMultiContent, eServiceCenter, eServiceReference, eServiceReferenceFS, gFont
@@ -124,25 +124,6 @@ EXTENSIONS = {
 	".zip": "zip"
 }
 
-EXTENSION_ICONS = {}
-EXTENSION_ICONS["lock_off"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/lock_off.png"))
-EXTENSION_ICONS["lock_on"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/lock_on.png"))
-EXTENSION_ICONS["link-arrow"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/link-arrow.png"))
-EXTENSION_ICONS["link"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/link.png"))
-EXTENSION_ICONS["storage"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/storage.png"))
-EXTENSION_ICONS["parent"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/parent.png"))
-EXTENSION_ICONS["current"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/current.png"))
-EXTENSION_ICONS["directory"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/directory.png"))
-EXTENSION_ICONS["file"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/file.png"))
-for icon in set(EXTENSIONS.values()):
-	EXTENSION_ICONS[icon] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, f"extensions/{icon}.png"))
-if EXTENSION_ICONS["storage"] is None:
-	EXTENSION_ICONS["storage"] = EXTENSION_ICONS["directory"]
-if EXTENSION_ICONS["parent"] is None:
-	EXTENSION_ICONS["parent"] = EXTENSION_ICONS["directory"]
-if EXTENSION_ICONS["current"] is None:
-	EXTENSION_ICONS["current"] = EXTENSION_ICONS["directory"]
-
 # Playable file extensions.
 AUDIO_EXTENSIONS = frozenset((".mp3", ".mp2", ".m4a", ".m2a", ".mka", ".flac", ".ogg", ".oga", ".dts", ".wav", ".wave", ".wma", ".wv", ".ac3", ".aac", ".ape", ".alac", ".amr", ".au", ".mid"))
 DVD_EXTENSIONS = frozenset((".iso", ".img", ".nrg"))
@@ -155,6 +136,24 @@ KNOWN_EXTENSIONS = MOVIE_EXTENSIONS.union(AUDIO_EXTENSIONS, DVD_EXTENSIONS, IMAG
 
 class FileListBase(MenuList):
 	def __init__(self, selectedItems, directory, showDirectories=True, showFiles=True, showMountPoints=True, matchingPattern=None, useServiceRef=False, inhibitDirs=False, inhibitMounts=False, isTop=False, additionalExtensions=None, sortDirectories="0.0", sortFiles="0.0", directoriesFirst=True, showCurrentDirectory=False):
+		self.extensionIcons = {}
+		self.extensionIcons["lock_off"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/lock_off.png"))
+		self.extensionIcons["lock_on"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/lock_on.png"))
+		self.extensionIcons["link_arrow"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/link_arrow.png"))
+		self.extensionIcons["link_error"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/link_error.png"))
+		self.extensionIcons["storage"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/storage.png"))
+		self.extensionIcons["parent"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/parent.png"))
+		self.extensionIcons["current"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/current.png"))
+		self.extensionIcons["directory"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/directory.png"))
+		self.extensionIcons["file"] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/file.png"))
+		for icon in set(EXTENSIONS.values()):
+			self.extensionIcons[icon] = LoadPixmap(resolveFilename(SCOPE_GUISKIN, f"extensions/{icon}.png"))
+		if self.extensionIcons["storage"] is None:
+			self.extensionIcons["storage"] = self.extensionIcons["directory"]
+		if self.extensionIcons["parent"] is None:
+			self.extensionIcons["parent"] = self.extensionIcons["directory"]
+		if self.extensionIcons["current"] is None:
+			self.extensionIcons["current"] = self.extensionIcons["directory"]
 		self.fileList = []
 		MenuList.__init__(self, self.fileList, content=eListboxPythonMultiContent)
 		self.selectedItems = selectedItems
@@ -194,7 +193,7 @@ class FileListBase(MenuList):
 			self.refresh()
 
 	def refreshMountPoints(self):
-		self.mountPoints = [pathjoin(x.mountpoint, "") for x in harddiskmanager.getMountedPartitions()]
+		self.mountPoints = [join(x.mountpoint, "") for x in harddiskmanager.getMountedPartitions()]
 		self.mountPoints.sort(reverse=True)
 
 	def setSingleSelectMode(self):
@@ -224,13 +223,13 @@ class FileListBase(MenuList):
 			if directory and not self.isTop:
 				mountPoint = normpath(self.getMountPoint(directory)) if islink(directory) else normpath(self.getMountPointLink(directory))
 				if self.showMountPoints and directory == mountPoint:
-					self.fileList.append(self.fileListComponent(name="<%s>" % _("List of Storage Devices"), path=None, isDir=True, isLink=False, selected=None, dirIcon=ICON_STORAGE))
+					self.fileList.append(self.fileListComponent(name=f"<{_("List of Storage Devices")}>", path=None, isDir=True, isLink=False, selected=None, dirIcon=ICON_STORAGE))
 				if self.showCurrentDirectory:
-					self.fileList.append(self.fileListComponent(name="<%s>" % _("Current Directory"), path=pathjoin(directory, ""), isDir=True, isLink=islink(directory), selected=None, dirIcon=ICON_CURRENT))
+					self.fileList.append(self.fileListComponent(name=f"<{_("Current Directory")}>", path=join(directory, ""), isDir=True, isLink=islink(directory), selected=None, dirIcon=ICON_CURRENT))
 				parent = dirname(directory)
 				inside = mountPoint != directory if islink(directory) else parent.startswith(mountPoint)
 				if directory != parent and inside and not (self.inhibitMounts and self.getMountPoint(directory) in self.inhibitMounts):
-					self.fileList.append(self.fileListComponent(name="<%s>" % _("Parent Directory"), path=pathjoin(parent, ""), isDir=True, isLink=islink(parent), selected=None, dirIcon=ICON_PARENT))
+					self.fileList.append(self.fileListComponent(name=f"<{_("Parent Directory")}>", path=join(parent, ""), isDir=True, isLink=islink(parent), selected=None, dirIcon=ICON_PARENT))
 				# print(f"[FileList] changeDir DEBUG: mountPointLink='{normpath(self.getMountPointLink(directory))}', mountPoint='{normpath(self.getMountPoint(directory))}', directory='{directory}', parent='{parent}'.")
 			for name, path, isDir, isLink in directories:
 				if not (self.inhibitMounts and self.getMountPoint(path) in self.inhibitMounts) and not self.inParentDirs(path, self.inhibitDirs):
@@ -240,7 +239,7 @@ class FileListBase(MenuList):
 		self.fileList = []
 		directories = []
 		files = []
-		self.currentDirectory = pathjoin(directory, "") if directory else directory
+		self.currentDirectory = join(directory, "") if directory else directory
 		if directory:
 			directory = normpath(directory)
 		if directory is None and self.showMountPoints:  # Present available mount points.
@@ -252,11 +251,11 @@ class FileListBase(MenuList):
 				seenMountPoints.append(path)
 				if path not in self.inhibitMounts and not self.inParentDirs(path, self.inhibitDirs):
 					selected = False if self.multiSelect else None
-					self.fileList.append(self.fileListComponent(name=partition.description, path=pathjoin(path, ""), isDir=True, isLink=False, selected=selected, dirIcon=None))
+					self.fileList.append(self.fileListComponent(name=partition.description, path=join(path, ""), isDir=True, isLink=False, selected=selected, dirIcon=None))
 		elif self.useServiceRef and directory:
 			# Don't use "eServiceReference(string)" constructor as it doesn't allow ":" in the directory name.
 			root = eServiceReference(eServiceReference.idFile, eServiceReference.noFlags, eServiceReferenceFS.directory)
-			root.setPath(pathjoin(directory, ""))
+			root.setPath(join(directory, ""))
 			if self.additionalExtensions:
 				root.setName(self.additionalExtensions)
 			serviceList = self.serviceHandler.list(root)
@@ -277,9 +276,9 @@ class FileListBase(MenuList):
 				try:
 					items = listdir(directory)
 					for item in items:
-						path = pathjoin(directory, item)
+						path = join(directory, item)
 						if isdir(path):
-							directories.append((item, pathjoin(path, ""), True, islink(path)))
+							directories.append((item, join(path, ""), True, islink(path)))
 						else:
 							files.append((item, path, False, islink(path)))
 					directories = self.sortList(directories, self.sortDirectories)
@@ -324,28 +323,25 @@ class FileListBase(MenuList):
 		# print(f"[FileList] fileListComponent DEBUG: Name='{name}', Path='{path}', isDir={isDir}, isLink={isLink}, selected={selected}, dirIcon={dirIcon}.")
 		res = [(path, isDir, isLink, selected, name, dirIcon)]
 		if selected is not None and not self.getIsSpecialFolder(res[0]):
-			icon = EXTENSION_ICONS[f"lock_{'on' if selected else 'off'}"]
+			icon = self.extensionIcons[f"lock_{'on' if selected else 'off'}"]
 			if icon:
 				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, self.lockX, self.lockY, self.lockW, self.lockH, icon, None, None, BT_SCALE | BT_VALIGN_CENTER))
-		linkIcon = EXTENSION_ICONS["link-arrow"] if isLink else None
 		if isDir:
-			if isLink and linkIcon is None:
-				icon = EXTENSION_ICONS["link"]
-			else:
-				icon = EXTENSION_ICONS[{
-					ICON_STORAGE: "storage",
-					ICON_PARENT: "parent",
-					ICON_CURRENT: "current"
-				}.get(dirIcon, "directory")]
+			icon = self.extensionIcons[{
+				ICON_STORAGE: "storage",
+				ICON_PARENT: "parent",
+				ICON_CURRENT: "current"
+			}.get(dirIcon, "directory")]
 		else:
 			if path is None:
 				path = ""
 			extension = splitext(path.getPath())[1].lower() if isinstance(path, eServiceReference) else splitext(path)[1].lower()
-			icon = EXTENSION_ICONS[EXTENSIONS.get(extension, "file")]
+			icon = self.extensionIcons[EXTENSIONS.get(extension, "file")]
 		if icon:
 			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, self.iconX, self.iconY, self.iconW, self.iconH, icon, None, None, BT_SCALE | BT_VALIGN_CENTER))
-			if linkIcon:
-				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, self.iconX, self.iconY, self.iconW, self.iconH, linkIcon, None, None, BT_SCALE | BT_VALIGN_CENTER))
+			if isLink:
+				icon = self.extensionIcons["link_arrow"] if exists(path) else self.extensionIcons["link_error"]
+				res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, self.iconX, self.iconY, self.iconW, self.iconH, icon, None, None, BT_SCALE | BT_VALIGN_CENTER))
 		res.append((eListboxPythonMultiContent.TYPE_TEXT, self.nameX, self.nameY, self.nameW, self.nameH, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, name))
 		return res
 
@@ -356,7 +352,7 @@ class FileListBase(MenuList):
 		if (isDir is False and type == SELECT_DIRECTORIES) or (isDir is True and type == SELECT_FILES):
 			selected = entry[0][FILE_SELECTED]
 		if path and not self.getIsSpecialFolder(entry[0]):
-			path = path if isDir else pathjoin(self.currentDirectory, path)
+			path = path if isDir else join(self.currentDirectory, path)
 			if selected and path not in self.selectedItems:
 				self.selectedItems.append(path)
 			elif not selected and path in self.selectedItems:
@@ -457,13 +453,13 @@ class FileListBase(MenuList):
 		while last != sep and mountPoint == self.getMountPoint(path):
 			last = path
 			path = dirname(path)
-		return pathjoin(last, "")
+		return join(last, "")
 
 	def getMountpointLink(self, path):  # Legacy method name for external code.
 		self.getMountPointLink(path)
 
 	def getMountPoint(self, path):
-		path = pathjoin(realpath(path), "")
+		path = join(realpath(path), "")
 		for mountPoint in self.mountPoints:
 			if path.startswith(mountPoint):
 				return mountPoint
@@ -514,7 +510,7 @@ class FileListBase(MenuList):
 		return self.currentDirectory
 
 	def setCurrentDirectory(self, directory):
-		self.currentDirectory = pathjoin(directory, "")
+		self.currentDirectory = join(directory, "")
 
 	current_directory = property(getCurrentDirectory, setCurrentDirectory)  # This variable is deprecated but currently in use by the FTPBrowser plugin.
 
@@ -576,10 +572,11 @@ def FileEntryComponent(name, absolute=None, isDir=False):  # This method is depr
 	x, y, w, h = parameters.get("FileListName", (35, 1, 470, 20))
 	res.append((eListboxPythonMultiContent.TYPE_TEXT, x, y, w, h, 0, RT_HALIGN_LEFT, name))
 	if isDir:
-		png = EXTENSION_ICONS["directory"]
+		png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "extensions/directory.png"))
 	else:
-		extension = splitext(name)[1].lower()
-		png = EXTENSION_ICONS.get(EXTENSIONS.get(extension), None)
+		png = EXTENSIONS.get(splitext(name)[1].lower())
+		if png:
+			png = LoadPixmap(resolveFilename(SCOPE_GUISKIN, f"extensions/{png}.png"))
 	if png is not None:
 		x, y, w, h = parameters.get("FileListIcon", (10, 2, 20, 20))
 		res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, x, y, w, h, png))
