@@ -805,38 +805,6 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 		else:
 			InfoBarSeek.seekBack(self)
 
-	def showPiP(self):
-		slist = self.servicelist
-		if self.session.pipshown:
-			if slist and slist.dopipzap:
-				slist.togglePipzap()
-			if self.session.pipshown:
-				del self.session.pip
-				self.session.pipshown = False
-		else:
-			service = self.session.nav.getCurrentService()
-			info = service and service.info()
-			xres = str(info.getInfo(enigma.iServiceInformation.sVideoWidth))
-			if int(xres) <= 720 or BoxInfo.getItem("model") != 'blackbox7405':
-				from Screens.PictureInPicture import PictureInPicture
-				self.session.pip = self.session.instantiateDialog(PictureInPicture)
-				self.session.pip.show()
-				if self.session.pip.playService(slist.getCurrentSelection()):
-					self.session.pipshown = True
-					self.session.pip.servicePath = slist.getCurrentServicePath()
-				else:
-					self.session.pipshown = False
-					del self.session.pip
-			else:
-				self.session.open(MessageBox, _("Your %s %s does not support PiP HD") % getBoxDisplayName(), type=MessageBox.TYPE_INFO, timeout=5)
-
-	def movePiP(self):
-		if self.session.pipshown:
-			InfoBarPiP.movePiP(self)
-
-	def swapPiP(self):
-		pass
-
 	def showMovies(self):
 		if self.fromMovieSelection:
 			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
