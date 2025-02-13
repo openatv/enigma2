@@ -97,11 +97,6 @@ class VolumeControl:
 		config.volumeControl.volume.setValue(self.dvbVolumeControl.getVolume())
 		config.volumeControl.save()
 
-	def showMute(self):  # This method is only called by InfoBarGenerics.py:
-		if self.dvbVolumeControl.isMuted():
-			self.muteDialog.show()
-			self.hideTimer.start(config.volumeControl.hideTimer.value * 1000, True)
-
 	# These methods are provided for compatibly with shared plugins.
 	#
 	def volUp(self):
