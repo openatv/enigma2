@@ -290,6 +290,7 @@ case $ret in
 	15)
 		rm -fR /home/root/.cache/gstreamer-1.0
 		rm -f /tmp/.listen.camd.socket.ignore
+                dd if=/dev/zero of=/dev/fb0
 		/usr/bin/kodi
 		;;
 	16)
