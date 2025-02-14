@@ -821,6 +821,12 @@ def InitUsageConfig():
 		("nothing", _("Nothing"))
 	])
 
+	config.usage.show_in_operation = ConfigSelection(default="time", choices=[
+		("time", _("Time")),
+		("number", _("Channel Number")),
+		("nothing", _("Nothing"))
+	])
+
 	config.usage.show_message_when_recording_starts = ConfigYesNo(default=True)
 
 	config.usage.load_length_of_movies_in_moviellist = ConfigYesNo(default=True)
