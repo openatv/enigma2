@@ -290,13 +290,13 @@ config.crontimers.dayofmonth = NoSave(ConfigInteger(default=1, limits=(1, 31)))
 class CronTimersConfig(ConfigListScreen, Screen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		Screen.setTitle(self, _("Cron Manager"))
+		self.setTitle(_("Cron Manager"))
 		self.skinName = "Setup"
 		self.onChangedEntry = []
 		self.list = []
 		ConfigListScreen.__init__(self, self.list, session=session, on_change=self.changedEntry)
-		self["key_red"] = Label(_("Close"))
-		self["key_green"] = Label(_("Save"))
+		self["key_red"] = StaticText(_("Close"))
+		self["key_green"] = StaticText(_("Save"))
 		self["actions"] = ActionMap(["WizardActions", "ColorActions", "VirtualKeyboardActions", "MenuActions"], {
 			"red": self.close,
 			"green": self.checkentry,

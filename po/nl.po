@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-31 15:16+0000\n"
+"POT-Creation-Date: 2025-01-30 15:09+0000\n"
 "PO-Revision-Date: 2024-11-10 13:00+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -1558,6 +1558,22 @@ msgid "A file from media is in use!"
 msgstr "Een mediabestand is in gebruik!"
 
 #, python-format
+msgid ""
+"A finished record timer wants to set your\n"
+"%s %s to standby. Do that now?"
+msgstr ""
+"Een voltooide timer wil uw %s %s\n"
+"in stand-by zetten. Dat nu doen?"
+
+#, python-format
+msgid ""
+"A finished record timer wants to shut down\n"
+"your %s %s. Shutdown now?"
+msgstr ""
+"Een voltooide timer wil uw\n"
+"%s %s uitschakelen. Dat nu doen?"
+
+#, python-format
 msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "Een PowerTimer wil uw %s %s herstarten.\n"
@@ -1579,22 +1595,6 @@ msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "Een PowerTimer wil uw %s %s uitschakelen. \n"
 "Wilt u dat nu doen?"
-
-#, python-format
-msgid ""
-"A finished record timer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-"Een voltooide timer wil uw %s %s\n"
-"in stand-by zetten. Dat nu doen?"
-
-#, python-format
-msgid ""
-"A finished record timer wants to shut down\n"
-"your %s %s. Shutdown now?"
-msgstr ""
-"Een voltooide timer wil uw\n"
-"%s %s uitschakelen. Dat nu doen?"
 
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr "Door een arcering op de afstandsbediening wordt aangegeven over welke knop de help tekst gaat. Bij een uitleg over meerdere knoppen, zie je meerdere arceringen. In de tekst onder de knoppen wordt uitgelegd of de knop bijvoorbeeld lang ingedrukt moet worden of bediend via de SHIFT knop."
@@ -1702,19 +1702,19 @@ msgstr "AC3plus transcodering"
 msgid "AFL"
 msgstr "AFL"
 
-msgid "AI-Powered Translation color"
+msgid "AI Translation color"
 msgstr "Kleur van de door AI vertaalde ondertiteling"
 
-msgid "AI-Powered Translation enabled"
+msgid "AI Translation enabled"
 msgstr "AI vertaling geactiveerd"
 
-msgid "AI-Powered Translation language"
+msgid "AI Translation language"
 msgstr "Taal voor AI vertaling"
 
-msgid "AI-Powered Translation optimization"
+msgid "AI Translation optimization"
 msgstr "Verbeteren van AI vertaling"
 
-msgid "AI-Powered Translation subscription code"
+msgid "AI Translation subscription code"
 msgstr "Abonnement-code voor door AI vertaalde ondertiteling"
 
 msgid "ARM"
@@ -1824,6 +1824,9 @@ msgstr "Activeer de geconfigureerde netwerkinstellingen."
 
 msgid "Activate the flash expander, save all changed settings and exit"
 msgstr "De Flash-Expander inschakelen, alle wijzigen opslaan en afsluiten"
+
+msgid "Activate this device"
+msgstr ""
 
 msgid "Activate time shift End"
 msgstr "Beëindig de Timeshift"
@@ -3247,9 +3250,6 @@ msgstr "Brand naar medium"
 msgid "Burundi"
 msgstr "Burundi"
 
-msgid "Bus: "
-msgstr "Bus: "
-
 msgid "Business & Finance"
 msgstr "Bedrijf & financiën"
 
@@ -3261,12 +3261,6 @@ msgstr "Time-out voor knopfout"
 
 msgid "ButtonSetup"
 msgstr "Knop instellingen"
-
-msgid "By disk UUID"
-msgstr "Op schijf UUID"
-
-msgid "By disk label"
-msgstr "Op disk label"
 
 msgid "Bypass HDMI EDID Check"
 msgstr "Omzeil de HDMI-EDID controle"
@@ -3550,6 +3544,9 @@ msgstr ""
 "Kan niet naar live TV!\n"
 "Toch naar live-TV schakelen en Timeshift opnieuw starten?"
 
+msgid "Can't move to trashcan!"
+msgstr "Kan geen bestanden naar de prullenbak verplaatsen"
+
 msgid ""
 "Can't play the next time shift file!\n"
 "Switch to live TV and restart time shift ?"
@@ -3675,12 +3672,6 @@ msgstr "Kan de %s limiet niet bepalen ..., annuleren !"
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Kan geen signaal vinden..., gestopt!"
-
-msgid "Cannot move to trash can"
-msgstr "Kan geen bestanden naar de prullenbak verplaatsen"
-
-msgid "Capacity"
-msgstr "Capaciteit"
 
 msgid "Cape Verde"
 msgstr "Kaapverdië"
@@ -4610,9 +4601,6 @@ msgstr "Stel hier de positie van de cursor in bij het openen van de zenderlijst.
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "Configureer de weergaveresolutie en het lettertype dat wordt gebruikt voor Teletekst."
 
-msgid "Select the duration of inactivity before the screen saver will be displayed."
-msgstr "Hier kunt u een screensaver activeren en instellen na hoeveel minuten deze moet starten."
-
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
 msgstr "Stel de tijdsduur in minuten in, voordat de Energie SpaarTimer wordt geactiveerd."
 
@@ -4707,7 +4695,7 @@ msgstr "Configureer de breedtegraad van uw locatie."
 msgid "Configure the longitude of your location."
 msgstr "Configureer de lengtegraad van uw locatie."
 
-msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can."
+msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trashcan."
 msgstr "Bepaal hoeveel ruimte er minimaal beschikbaar moet zijn voor opnames. Als deze waarde bereikt wordt, zulle bestanden uit de prullenbak worden verwijderd."
 
 msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
@@ -4722,7 +4710,7 @@ msgstr "Configureer de netmask."
 msgid "Configure the network again"
 msgstr "Configureer uw netwerk opnieuw"
 
-msgid "Configure the number of days after which items are automatically removed from the trash can."
+msgid "Configure the number of days after which items are automatically removed from the trashcan."
 msgstr ""
 "Na hoeveel dagen moeten opnames automatisch uit de prullenbak worden verwijderd.\n"
 "\n"
@@ -6280,10 +6268,6 @@ msgid "Directory"
 msgstr "Map"
 
 #, python-format
-msgid "Directory %s does not exist."
-msgstr "Map %s bestaat niet."
-
-#, python-format
 msgid "Directory '%s' can't be linked to recordings!"
 msgstr "Map '%s' kan niet voor opnames gebruikt worden!"
 
@@ -6495,15 +6479,8 @@ msgstr ""
 "Er is geen weg terug!"
 
 #, python-format
-msgid "Do you really want to delete %s ?"
-msgstr "Wilt u echt %s verwijderen?"
-
-#, python-format
 msgid "Do you really want to delete '%s'?"
 msgstr "Wilt u %s echt wissen?"
-
-msgid "Do you really want to delete ?"
-msgstr "Wilt u echt verwijderen?"
 
 #, python-format
 msgid ""
@@ -6523,6 +6500,9 @@ msgstr ""
 msgid "Do you really want to delete this timer?"
 msgstr "Wilt u deze timer echt verwijderen?"
 
+msgid "Do you really want to delete?"
+msgstr "Wilt u echt verwijderen?"
+
 msgid "Do you really want to exit?"
 msgstr "Werkelijk afbreken?"
 
@@ -6533,27 +6513,25 @@ msgstr ""
 "Wil je echt het opslagapparaat formatteren in het Linux bestandssysteem?\n"
 "Alle gegevens op het apparaat zullen verloren gaan!"
 
-msgid "Do you really want to move to trashcan ?"
-msgstr "Wilt u dit echt naar de prullenbak verplaatsen?"
+#, python-format
+msgid "Do you really want to move '%s' to the trashcan?"
+msgstr ""
 
 #, python-format
-msgid "Do you really want to permanently remove '%s' from trash can ?"
+msgid "Do you really want to permanently remove '%s' from the trashcan?"
 msgstr "Wilt u '%s' permanent verwijderen uit de prullenbak?"
-
-msgid "Do you really want to permanently remove from trash can ?"
-msgstr "Wilt u echt permanent verwijderen uit de prullenbak?"
 
 #, python-format
 msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "Weet u zeker dat u map %s van de harde schijf wilt wissen?"
 
 #, python-format
-msgid "Do you really want to remove the timer for %s?"
-msgstr "Wilt u echt de timer voor %s verwijderen?"
+msgid "Do you really want to remove the bookmark for '%s'?"
+msgstr "Weet u zeker dat u het bookmark van %s wilt verwijderen?"
 
 #, python-format
-msgid "Do you really want to remove your bookmark for '%s'?"
-msgstr "Weet u zeker dat u het bookmark van %s wilt verwijderen?"
+msgid "Do you really want to remove the timer for %s?"
+msgstr "Wilt u echt de timer voor %s verwijderen?"
 
 msgid ""
 "Do you really want to restart OSCam?\n"
@@ -7289,11 +7267,17 @@ msgstr "Activeer deze optie om gegevens van de afstandsbediening mee te nemen in
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr "Activeer deze optie om schermnamen en resolutiegegevens mee te nemen in het debug log bestand."
 
+msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Activeer deze optie om Timer debug gegevens mee te nemen in het debug log bestand."
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
 msgstr "Activeren, om alle beschikbare informatie-schermen in het informatie-menu te tonen."
+
+msgid "Enable this option to show unknown storage devices in device manager."
+msgstr ""
 
 msgid "Enable this setting if your aerial system needs power."
 msgstr "Schakel deze optie in indien de antenne een externe voeding nodig heeft."
@@ -7744,6 +7728,10 @@ msgstr "Het aanmaken van de map %s is mislukt!"
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
 msgstr "Fout bij het maken van de map voor de Picons: (%s)"
+
+#, python-format
+msgid "Error: Directory '%s' does not exist!"
+msgstr "Map %s bestaat niet."
 
 #, python-format
 msgid "Error: Failed to run service scan!  (%s)"
@@ -8396,16 +8384,13 @@ msgstr "File Commander Tekst Editor Acties"
 msgid "File Commander settings"
 msgstr "File Commander instellingen"
 
-msgid "File system"
-msgstr ""
-
 msgid "File System Check"
 msgstr "Bestandssysteemcontrole"
 
 msgid "File System Packages"
 msgstr "Bestandssysteem pakketten"
 
-msgid "File appears to be busy.\n"
+msgid "File appears to be busy!\n"
 msgstr "Bestand mogelijk in gebruik door ander proces.\n"
 
 msgid ""
@@ -8414,6 +8399,9 @@ msgid ""
 msgstr ""
 "Het oscam.conf bestand is niet gevonden.\n"
 "Geef een gebruikersnaam en het wachtwoord handmatig op."
+
+msgid "File system"
+msgstr ""
 
 msgid "File transfer was canceled by user!"
 msgstr "Bestandsoverdracht is geannuleerd door gebruiker!"
@@ -8426,9 +8414,6 @@ msgstr "bestandnaam"
 
 msgid "Files/folders to exclude from backup"
 msgstr "Uitgesloten back-up bestanden"
-
-msgid "Filesystem"
-msgstr ""
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr "Laat de zender EPG automatisch actualiseren wanneer er geen IceTV EPG beschikbaar is"
@@ -9720,6 +9705,9 @@ msgstr "Image gemaakt:"
 msgid "Image creation failed!"
 msgstr "Het maken van de image is mislukt!"
 
+msgid "Image version"
+msgstr ""
+
 msgid "ImageWizard"
 msgstr "Image wizard"
 
@@ -9840,6 +9828,9 @@ msgstr "Inclusief afstandsbediening data"
 
 msgid "Include screen load data"
 msgstr "Inclusief scherm data"
+
+msgid "Include storage device data"
+msgstr ""
 
 msgid "Include teletext details"
 msgstr "Inclusief Teletekst details"
@@ -12182,6 +12173,9 @@ msgstr "Geen harde schijf gevonden of de harde schijf is niet geïnitialiseerd!"
 msgid "No Internet connection"
 msgstr "Geen internetverbinding"
 
+msgid "No Name"
+msgstr ""
+
 msgid ""
 "No Settings loaded !!\n"
 "\n"
@@ -13222,7 +13216,7 @@ msgstr "In plaats daarvan een online flash uitvoeren"
 msgid "Perform the upgrade?"
 msgstr "De upgrade uitvoeren?"
 
-msgid "Permanently delete all recordings in the trash can?"
+msgid "Permanently delete all recordings in the trashcan?"
 msgstr "Alle bestanden in de prullenbak nu permanent verwijderen?"
 
 msgid "Permanently ignore this device"
@@ -13472,6 +13466,9 @@ msgstr "Voer de nieuwe mapnaam in:"
 
 msgid "Please enter the new file name:"
 msgstr "Geef de nieuwe bestandsnaam op:"
+
+msgid "Please enter the new name:"
+msgstr ""
 
 msgid "Please enter the new tag:"
 msgstr "A.u.b. de nieuwe tag opgeven: "
@@ -15720,6 +15717,9 @@ msgstr "Wetenschap & Techniek"
 msgid "Scope"
 msgstr "Scope"
 
+msgid "Screen saver movement"
+msgstr ""
+
 msgid "Script Manager"
 msgstr "Script Manager"
 
@@ -15881,14 +15881,14 @@ msgstr "Kies 'Ja' wanneer de volumewijzigingen toegepast moeten worden op het Do
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Selecteer alleen 'ja' als u een multiswich gebruikt die een DiSEqC Port-A commando gebruikt. In alle andere gevallen kiest u 'nee'."
 
-msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
-msgstr "Kies 'Ja' wanneer de TV door een PowerTimer moet worden ingeschakeld."
-
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
 msgstr "Kies 'Ja' wanneer u de TV wil inschakelen bij het starten van een 'Zappen en Opnemen' timer."
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
 msgstr "Kies 'Ja' wanneer de TV bij het starten van een 'Zappen en Opnemen' timer moet worden ingeschakeld."
+
+msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
+msgstr "Kies 'Ja' wanneer de TV door een PowerTimer moet worden ingeschakeld."
 
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Bij 'ja' zal de informatiebalk continu worden getoond wanneer het afspelen is gepauzeerd."
@@ -16109,9 +16109,6 @@ msgstr "Extra back-up bestanden"
 msgid "Select AutoCam default Softcam"
 msgstr "Standaard Softcam voor AutoCam"
 
-msgid "Select Backup Location"
-msgstr "Selecteer een back-up locatie"
-
 msgid "Select Bookmark"
 msgstr "Selecteer Bladwijzer"
 
@@ -16278,6 +16275,9 @@ msgstr "Selecteer uitgesloten back-up bestanden"
 
 msgid "Select files/folders to backup"
 msgstr "Selecteer bestanden voor een back-up"
+
+msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
+msgstr ""
 
 msgid "Select how long to display status messages."
 msgstr "Selecteer hoe lang statusmeldingen moeten worden weergegeven."
@@ -16535,6 +16535,9 @@ msgstr ""
 
 msgid "Select the display sequence of previously visited services."
 msgstr "De volgorde van de bekeken zenders opgeven."
+
+msgid "Select the duration of inactivity before the screen saver will be displayed."
+msgstr "Hier kunt u een screensaver activeren en instellen na hoeveel minuten deze moet starten."
 
 #, python-format
 msgid "Select the file sort order for the %s column:"
@@ -16834,9 +16837,6 @@ msgstr "Selecteer uw ATSC provider."
 
 msgid "Select your Language for Audio/Subtitles"
 msgstr "Selecteer voorkeurstaal voor audio/ondertitels."
-
-msgid "Select your backup device."
-msgstr "Selecteer uw back-up apparaat."
 
 msgid "Select your country. If not available select 'All'."
 msgstr "Selecteer het land. Indien niet beschikbaar kiest u 'alle'."
@@ -17341,9 +17341,6 @@ msgstr "Audio voorkeuren instellen"
 
 msgid "Setup Enigma2"
 msgstr "Wijzig Enigma2 instellingen"
-
-msgid "Setup Harddisk"
-msgstr "Harde schijf configureren"
 
 msgid "Setup Inadyn"
 msgstr "Inadyn instellen"
@@ -18270,6 +18267,9 @@ msgstr "Toon underscore tekens in bestandsnamen"
 
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "Toon onbekende videoresolutie als hogere of hoogste scherm resolutie."
+
+msgid "Show unknown devices"
+msgstr ""
 
 msgid "Show unknown video format as"
 msgstr "Toon onbekend video formaat als"
@@ -22324,9 +22324,6 @@ msgstr "Een ogenblik geduld tijdens het zoeken..."
 msgid "Waiting"
 msgstr "Wachten"
 
-msgid "Waiting for mount"
-msgstr "Wachten op de mount"
-
 msgid "Waiting for partition"
 msgstr "Wacht op een verdeelpunt"
 
@@ -22576,7 +22573,7 @@ msgstr "Indien geactiveerd, dan zal een 4:3 weergave omgezet worden tot een pass
 msgid "When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels."
 msgstr "Bij 'Ja' kunt u doorzappen naar de volgende favorietenlijst, wanneer de laatste zender in de huidige favorietenlijst bereikt is."
 
-msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
+msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
 msgstr "Kies 'Ja' wanneer u verwijderde opnames naar de prullenbak wilt verplaatsen, anders worden deze direct verwijderd."
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
@@ -22597,7 +22594,7 @@ msgstr "Indien geactiveerd, kan de Mediaspeler (ook) verlaten worden door op de 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Indien geactiveerd, dan wordt het door de rotor opgenomen vermogen gedetecteerd indien deze stopt met draaien (wanneer uw tuner dit ondersteund)."
 
-msgid "When enabled, network trash cans are probed for cleaning."
+msgid "When enabled, network trashcans are probed for cleaning."
 msgstr "Indien geactiveerd, worden netwerk prullenbakken ook opgeschoond."
 
 msgid "When enabled, number markers will be hidden."
@@ -24319,6 +24316,40 @@ msgstr "ja (bewaar feeds)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Do you really want to delete %s ?"
+#~ msgstr "Wilt u echt %s verwijderen?"
+
+#~ msgid "Do you really want to move to trashcan ?"
+#~ msgstr "Wilt u dit echt naar de prullenbak verplaatsen?"
+
+#~ msgid "Do you really want to permanently remove from trash can ?"
+#~ msgstr "Wilt u echt permanent verwijderen uit de prullenbak?"
+
+#~ msgid "Bus: "
+#~ msgstr "Bus: "
+
+#~ msgid "By disk UUID"
+#~ msgstr "Op schijf UUID"
+
+#~ msgid "By disk label"
+#~ msgstr "Op disk label"
+
+#~ msgid "Capacity"
+#~ msgstr "Capaciteit"
+
+#~ msgid "Select Backup Location"
+#~ msgstr "Selecteer een back-up locatie"
+
+#~ msgid "Select your backup device."
+#~ msgstr "Selecteer uw back-up apparaat."
+
+#~ msgid "Setup Harddisk"
+#~ msgstr "Harde schijf configureren"
+
+#~ msgid "Waiting for mount"
+#~ msgstr "Wachten op de mount"
 
 #~ msgid "PowerTimer"
 #~ msgstr "PowerTimer"

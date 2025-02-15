@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-31 15:16+0000\n"
+"POT-Creation-Date: 2025-01-30 15:09+0000\n"
 "PO-Revision-Date: 2021-09-13 18:30+0000\n"
 "Last-Translator: Josep Belda <josepmaulet1707@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ca/>\n"
@@ -1693,6 +1693,24 @@ msgstr ""
 
 #
 #, fuzzy, python-format
+msgid ""
+"A finished record timer wants to set your\n"
+"%s %s to standby. Do that now?"
+msgstr ""
+"Una gravació acabada pretén posar\n"
+"la %s %s en repòs. Vols fer-ho ara?"
+
+#
+#, fuzzy, python-format
+msgid ""
+"A finished record timer wants to shut down\n"
+"your %s %s. Shutdown now?"
+msgstr ""
+"Una gravació acabada pretén apagar\n"
+"la %s %s ara. Vols apagar-la?"
+
+#
+#, fuzzy, python-format
 msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "Una gravació acabada pretén posar\n"
@@ -1715,24 +1733,6 @@ msgstr ""
 #
 #, fuzzy, python-format
 msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
-msgstr ""
-"Una gravació acabada pretén apagar\n"
-"la %s %s ara. Vols apagar-la?"
-
-#
-#, fuzzy, python-format
-msgid ""
-"A finished record timer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-"Una gravació acabada pretén posar\n"
-"la %s %s en repòs. Vols fer-ho ara?"
-
-#
-#, fuzzy, python-format
-msgid ""
-"A finished record timer wants to shut down\n"
-"your %s %s. Shutdown now?"
 msgstr ""
 "Una gravació acabada pretén apagar\n"
 "la %s %s ara. Vols apagar-la?"
@@ -1840,19 +1840,19 @@ msgstr ""
 msgid "AFL"
 msgstr "PAL"
 
-msgid "AI-Powered Translation color"
+msgid "AI Translation color"
 msgstr ""
 
-msgid "AI-Powered Translation enabled"
+msgid "AI Translation enabled"
 msgstr ""
 
-msgid "AI-Powered Translation language"
+msgid "AI Translation language"
 msgstr ""
 
-msgid "AI-Powered Translation optimization"
+msgid "AI Translation optimization"
 msgstr ""
 
-msgid "AI-Powered Translation subscription code"
+msgid "AI Translation subscription code"
 msgstr ""
 
 msgid "ARM"
@@ -1977,6 +1977,9 @@ msgid "Activate the configured network settings."
 msgstr "Activar la configuració de la xarxa."
 
 msgid "Activate the flash expander, save all changed settings and exit"
+msgstr ""
+
+msgid "Activate this device"
 msgstr ""
 
 msgid "Activate time shift End"
@@ -3518,10 +3521,6 @@ msgstr ""
 msgid "Burundi"
 msgstr "Burundi"
 
-#
-msgid "Bus: "
-msgstr "Bus: "
-
 msgid "Business & Finance"
 msgstr ""
 
@@ -3532,12 +3531,6 @@ msgid "Button error timeout"
 msgstr ""
 
 msgid "ButtonSetup"
-msgstr ""
-
-msgid "By disk UUID"
-msgstr ""
-
-msgid "By disk label"
 msgstr ""
 
 msgid "Bypass HDMI EDID Check"
@@ -3836,6 +3829,9 @@ msgid ""
 "Switch to live TV and restart time shift ?"
 msgstr ""
 
+msgid "Can't move to trashcan!"
+msgstr "No es pot moure a la paperera"
+
 msgid ""
 "Can't play the next time shift file!\n"
 "Switch to live TV and restart time shift ?"
@@ -3973,12 +3969,6 @@ msgstr ""
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "No trobem cap senyal … avortant!"
-
-msgid "Cannot move to trash can"
-msgstr "No es pot moure a la paperera"
-
-msgid "Capacity"
-msgstr ""
 
 msgid "Cape Verde"
 msgstr ""
@@ -4920,9 +4910,6 @@ msgstr ""
 msgid "Configure the display resolution and the font used for teletext."
 msgstr ""
 
-msgid "Select the duration of inactivity before the screen saver will be displayed."
-msgstr "Configureu la durada en minuts per al protector de pantalla."
-
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
 msgstr ""
 
@@ -4992,7 +4979,7 @@ msgstr "Configureu la latitud de la vostra ubicació."
 msgid "Configure the longitude of your location."
 msgstr "Configureu la longitud de la vostra ubicació."
 
-msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can."
+msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trashcan."
 msgstr "Configureu la quantitat mínima d’espai de disc disponible per a les gravacions. Quan la quantitat d’espai baixa per sota d’aquest valor, els elements suprimits s’eliminaran de la paperera."
 
 msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
@@ -5008,7 +4995,7 @@ msgstr "Configura xarxa de red"
 msgid "Configure the network again"
 msgstr "Configura de nou la xarxa"
 
-msgid "Configure the number of days after which items are automatically removed from the trash can."
+msgid "Configure the number of days after which items are automatically removed from the trashcan."
 msgstr ""
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
@@ -6602,10 +6589,6 @@ msgid "Directory"
 msgstr "Directori"
 
 #, python-format
-msgid "Directory %s does not exist."
-msgstr "El directori% s no existeix."
-
-#, python-format
 msgid "Directory '%s' can't be linked to recordings!"
 msgstr ""
 
@@ -6828,17 +6811,10 @@ msgid ""
 "You cannot go back!"
 msgstr ""
 
-#, python-format
-msgid "Do you really want to delete %s ?"
-msgstr ""
-
 #
 #, python-format
 msgid "Do you really want to delete '%s'?"
 msgstr "Segur que vols esborrar %s?"
-
-msgid "Do you really want to delete ?"
-msgstr ""
 
 #, python-format
 msgid ""
@@ -6856,6 +6832,9 @@ msgstr ""
 msgid "Do you really want to delete this timer?"
 msgstr "Segur que vols esborrar %s?"
 
+msgid "Do you really want to delete?"
+msgstr ""
+
 #
 msgid "Do you really want to exit?"
 msgstr "Segur que vols sortir?"
@@ -6865,14 +6844,12 @@ msgid ""
 "All data on the device will be lost!"
 msgstr ""
 
-msgid "Do you really want to move to trashcan ?"
+#, python-format
+msgid "Do you really want to move '%s' to the trashcan?"
 msgstr ""
 
 #, python-format
-msgid "Do you really want to permanently remove '%s' from trash can ?"
-msgstr ""
-
-msgid "Do you really want to permanently remove from trash can ?"
+msgid "Do you really want to permanently remove '%s' from the trashcan?"
 msgstr ""
 
 #
@@ -6881,14 +6858,14 @@ msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "Realment voleu eliminar el directori% s del disc?"
 
 #
+#, python-format
+msgid "Do you really want to remove the bookmark for '%s'?"
+msgstr "Voleu suprimir el marcador de% s?"
+
+#
 #, fuzzy, python-format
 msgid "Do you really want to remove the timer for %s?"
 msgstr "Segur que vols esborrar %s?"
-
-#
-#, python-format
-msgid "Do you really want to remove your bookmark for '%s'?"
-msgstr "Voleu suprimir el marcador de% s?"
 
 msgid ""
 "Do you really want to restart OSCam?\n"
@@ -7649,10 +7626,16 @@ msgstr ""
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr ""
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
+msgstr ""
+
+msgid "Enable this option to show unknown storage devices in device manager."
 msgstr ""
 
 msgid "Enable this setting if your aerial system needs power."
@@ -8104,6 +8087,10 @@ msgstr "Ha fallat la creació del directori% s."
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
 msgstr ""
+
+#, python-format
+msgid "Error: Directory '%s' does not exist!"
+msgstr "El directori% s no existeix."
 
 #, python-format
 msgid "Error: Failed to run service scan!  (%s)"
@@ -8787,9 +8774,6 @@ msgstr ""
 msgid "File Commander settings"
 msgstr ""
 
-msgid "File system"
-msgstr ""
-
 #
 msgid "File System Check"
 msgstr ""
@@ -8797,12 +8781,15 @@ msgstr ""
 msgid "File System Packages"
 msgstr ""
 
-msgid "File appears to be busy.\n"
+msgid "File appears to be busy!\n"
 msgstr "Sembla que el fitxer està ocupat.\n"
 
 msgid ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
+msgstr ""
+
+msgid "File system"
 msgstr ""
 
 msgid "File transfer was canceled by user!"
@@ -8815,9 +8802,6 @@ msgid "Filename"
 msgstr "Nom de l’arxiu"
 
 msgid "Files/folders to exclude from backup"
-msgstr ""
-
-msgid "Filesystem"
 msgstr ""
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
@@ -10200,6 +10184,9 @@ msgstr ""
 msgid "Image creation failed!"
 msgstr ""
 
+msgid "Image version"
+msgstr ""
+
 msgid "ImageWizard"
 msgstr ""
 
@@ -10317,6 +10304,9 @@ msgid "Include remote control data"
 msgstr ""
 
 msgid "Include screen load data"
+msgstr ""
+
+msgid "Include storage device data"
 msgstr ""
 
 msgid "Include teletext details"
@@ -12876,6 +12866,9 @@ msgstr "No hi ha disc dur o no està inicialitzat!"
 msgid "No Internet connection"
 msgstr ""
 
+msgid "No Name"
+msgstr ""
+
 msgid ""
 "No Settings loaded !!\n"
 "\n"
@@ -13983,7 +13976,7 @@ msgstr ""
 msgid "Perform the upgrade?"
 msgstr ""
 
-msgid "Permanently delete all recordings in the trash can?"
+msgid "Permanently delete all recordings in the trashcan?"
 msgstr "Voleu eliminar tots els enregistraments de la paperera?"
 
 msgid "Permanently ignore this device"
@@ -14258,6 +14251,9 @@ msgid "Please enter the new directory name:"
 msgstr ""
 
 msgid "Please enter the new file name:"
+msgstr ""
+
+msgid "Please enter the new name:"
 msgstr ""
 
 msgid "Please enter the new tag:"
@@ -16699,6 +16695,9 @@ msgstr ""
 msgid "Scope"
 msgstr ""
 
+msgid "Screen saver movement"
+msgstr ""
+
 msgid "Script Manager"
 msgstr ""
 
@@ -16877,13 +16876,13 @@ msgstr ""
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Seleccioneu només “sí” si utilitzeu un interruptor multiswitch que requereix un senyal de comandament DiSEqC Port-A. Per a la resta de configuracions, seleccioneu “no”."
 
-msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
-msgstr ""
-
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
 msgstr ""
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
 msgstr ""
 
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
@@ -17099,10 +17098,6 @@ msgstr ""
 msgid "Select AutoCam default Softcam"
 msgstr ""
 
-#
-msgid "Select Backup Location"
-msgstr "Selecciona la ubicació de còpia de seguretat"
-
 msgid "Select Bookmark"
 msgstr ""
 
@@ -17280,6 +17275,9 @@ msgstr ""
 #
 msgid "Select files/folders to backup"
 msgstr "Seleccioneu fitxers / carpetes a còpia de seguretat"
+
+msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
+msgstr ""
 
 msgid "Select how long to display status messages."
 msgstr ""
@@ -17540,6 +17538,9 @@ msgstr ""
 
 msgid "Select the display sequence of previously visited services."
 msgstr ""
+
+msgid "Select the duration of inactivity before the screen saver will be displayed."
+msgstr "Configureu la durada en minuts per al protector de pantalla."
 
 #, python-format
 msgid "Select the file sort order for the %s column:"
@@ -17831,9 +17832,6 @@ msgid "Select your ATSC provider."
 msgstr "Seleccioneu el vostre proveïdor ATSC."
 
 msgid "Select your Language for Audio/Subtitles"
-msgstr ""
-
-msgid "Select your backup device."
 msgstr ""
 
 msgid "Select your country. If not available select 'All'."
@@ -18348,9 +18346,6 @@ msgid "Setup Audiomode"
 msgstr ""
 
 msgid "Setup Enigma2"
-msgstr ""
-
-msgid "Setup Harddisk"
 msgstr ""
 
 msgid "Setup Inadyn"
@@ -19329,6 +19324,9 @@ msgid "Show underscore characters"
 msgstr ""
 
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
+msgstr ""
+
+msgid "Show unknown devices"
 msgstr ""
 
 msgid "Show unknown video format as"
@@ -23475,9 +23473,6 @@ msgstr ""
 msgid "Waiting"
 msgstr "Esperant"
 
-msgid "Waiting for mount"
-msgstr "Esperant muntatge"
-
 msgid "Waiting for partition"
 msgstr "En espera de la partició"
 
@@ -23737,7 +23732,7 @@ msgstr "Quan estigui habilitat, el contingut amb una proporció de 4: 3 s’este
 msgid "When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels."
 msgstr "Quan estigui habilitat, continueu fins al següent ram quan s’arribi al darrer canal del ram actual mentre canvieu de canal."
 
-msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
+msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
 msgstr "Quan estan activats, els enregistraments suprimits es traslladen a la paperera, en lloc de ser eliminats immediatament."
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
@@ -23755,7 +23750,7 @@ msgstr "Quan està activat, els fluxos http poden ser distribuïts al servidor. 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Quan estigui habilitat, mesura el consum d’energia per detectar quan el rotor deixa de girar (quan és compatible amb el sintonitzador)."
 
-msgid "When enabled, network trash cans are probed for cleaning."
+msgid "When enabled, network trashcans are probed for cleaning."
 msgstr ""
 
 msgid "When enabled, number markers will be hidden."
@@ -25565,6 +25560,17 @@ msgstr "si (mantenir feeds)"
 
 msgid "®"
 msgstr ""
+
+#
+#~ msgid "Bus: "
+#~ msgstr "Bus: "
+
+#
+#~ msgid "Select Backup Location"
+#~ msgstr "Selecciona la ubicació de còpia de seguretat"
+
+#~ msgid "Waiting for mount"
+#~ msgstr "Esperant muntatge"
 
 #
 #, fuzzy

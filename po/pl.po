@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-31 15:16+0000\n"
-"PO-Revision-Date: 2025-01-07 09:01+0000\n"
+"POT-Creation-Date: 2025-01-30 15:09+0000\n"
+"PO-Revision-Date: 2025-02-08 19:21+0000\n"
 "Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -63,7 +63,7 @@ msgid " (current channel)"
 msgstr " (aktualny kanał)"
 
 msgid " (disabled)"
-msgstr " (wyłączone)"
+msgstr " (wyłączony)"
 
 msgid " (higher than any auto)"
 msgstr " (wyższy niż jakikolwiek automatyczny)"
@@ -1064,7 +1064,7 @@ msgstr[2] "Znaleziono %d kanałów."
 
 #, python-format
 msgid "%d times"
-msgstr "%d czasy"
+msgstr "%d razy"
 
 #, python-format
 msgid "%d wireless network found!"
@@ -1557,10 +1557,10 @@ msgid "< User Skin >"
 msgstr "< Skórka Użytkownika >"
 
 msgid "<Current movie list location>"
-msgstr "<Bieżąca lokalizacja nagrań>"
+msgstr "<Bieżąca lokalizacja listy filmów>"
 
 msgid "<Default movie location>"
-msgstr "<Domyślna lokalizacja nagrań>"
+msgstr "<Domyślna lokalizacja filmu>"
 
 msgid "<Flash expander inactive>"
 msgstr "<Rozszerzacz flash nieaktywny>"
@@ -1599,21 +1599,6 @@ msgid "A file from media is in use!"
 msgstr "Plik z nośnika jest w użyciu!"
 
 #, python-format
-msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
-msgstr "Zakończony zaplanowany timer chce ponownie uruchomić %s %s. Czy zrobić to teraz?"
-
-msgid "A finished scheduled timer wants to restart the user interface. Do that now?"
-msgstr "Zakończony zaplanowany timer chce ponownie uruchomić interfejs użytkownika. Czy zrobić to teraz?"
-
-#, python-format
-msgid "A finished scheduled timer wants to set your %s %s to standby. Do that now?"
-msgstr "Zakończony zaplanowany timer chce ustawić %s %s w tryb gotowości. Czy zrobić to teraz?"
-
-#, python-format
-msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
-msgstr "Zakończony zaplanowany timer chce wyłączyć %s %s. Czy chcesz to teraz zrobić?"
-
-#, python-format
 msgid ""
 "A finished record timer wants to set your\n"
 "%s %s to standby. Do that now?"
@@ -1628,6 +1613,21 @@ msgid ""
 msgstr ""
 "Wykonany timer nagrywania chce wyłączyć %s %s.\n"
 "Wyłączyć teraz?"
+
+#, python-format
+msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
+msgstr "Zakończony zaplanowany timer chce ponownie uruchomić %s %s. Czy zrobić to teraz?"
+
+msgid "A finished scheduled timer wants to restart the user interface. Do that now?"
+msgstr "Zakończony zaplanowany timer chce ponownie uruchomić interfejs użytkownika. Czy zrobić to teraz?"
+
+#, python-format
+msgid "A finished scheduled timer wants to set your %s %s to standby. Do that now?"
+msgstr "Zakończony zaplanowany timer chce ustawić %s %s w tryb gotowości. Czy zrobić to teraz?"
+
+#, python-format
+msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
+msgstr "Zakończony zaplanowany timer chce wyłączyć %s %s. Czy chcesz to teraz zrobić?"
 
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr "Podświetlenie na obrazie pilota zdalnego sterowania wskazuje, do którego przycisku odnosi się pomoc. Jeśli więcej niż jeden przycisk wykonuje wskazaną funkcję, wyświetlone zostanie więcej niż jedno podświetlenie. Tekst poniżej listy zawiera listę aktywnych przycisków oraz informację, czy dana funkcja wymaga długiego naciśnięcia przycisku lub naciśnięcia przycisku SHIFT."
@@ -1735,19 +1735,19 @@ msgstr "AC3plus transkodowanie"
 msgid "AFL"
 msgstr "AFL"
 
-msgid "AI-Powered Translation color"
+msgid "AI Translation color"
 msgstr "Kolor napisów oparty na sztucznej inteligencji"
 
-msgid "AI-Powered Translation enabled"
+msgid "AI Translation enabled"
 msgstr "Włącz tłumaczenie oparte na sztucznej inteligencji"
 
-msgid "AI-Powered Translation language"
+msgid "AI Translation language"
 msgstr "Język tłumaczenia oparty na sztucznej inteligencji"
 
-msgid "AI-Powered Translation optimization"
+msgid "AI Translation optimization"
 msgstr "Optymalizacja tłumaczeń oparta na sztucznej inteligencji"
 
-msgid "AI-Powered Translation subscription code"
+msgid "AI Translation subscription code"
 msgstr "Kod subskrypcji tłumaczenia obsługiwanego przez sztuczną inteligencję"
 
 msgid "ARM"
@@ -1796,7 +1796,7 @@ msgid "About OpenATV"
 msgstr "Info o OpenATV"
 
 msgid "About to start"
-msgstr "zaraz się rozpocznie"
+msgstr "Zaraz się rozpocznie"
 
 msgid "Above 200 Mbps"
 msgstr "Powyżej 200Mbps"
@@ -1844,19 +1844,22 @@ msgid "Activate Picture in Picture"
 msgstr "Uruchom PiP"
 
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
-msgstr "Aktywuj możliwość wysyłania indywidualnych komend HDMI-CEC z linii poleceń."
+msgstr "Aktywuj sposób wysyłania pojedynczych lub określonych wewnętrznych poleceń HDMI-CEC z wiersza poleceń."
 
 msgid "Activate network adapter configuration"
-msgstr "aktywuj konfigurację karty sieciowej"
+msgstr "Aktywuj konfigurację karty sieciowej"
 
 msgid "Activate network settings"
 msgstr "Aktywuj ustawienia sieci"
 
 msgid "Activate the configured network settings."
-msgstr "Aktywuj ustawienia sieci."
+msgstr "Aktywuj skonfigurowane ustawienia sieciowe."
 
 msgid "Activate the flash expander, save all changed settings and exit"
 msgstr "Aktywuj rozszerzacza flash, zapisz wszystkie zmienione ustawienia i wyjdź"
+
+msgid "Activate this device"
+msgstr "Aktywuj to urządzenie"
 
 msgid "Activate time shift End"
 msgstr "Aktywuj zakończenie timeshift'u"
@@ -1934,7 +1937,7 @@ msgid "Add To Parental Protection"
 msgstr "dodaj do ochrony rodzicielskiej"
 
 msgid "Add Zap+RecordTimer"
-msgstr "Dodaj timer zap + nagrywanie"
+msgstr "Dodaj timer przełącz + nagrywanie"
 
 msgid "Add ZapTimer"
 msgstr "Dodaj zap timer"
@@ -1997,7 +2000,7 @@ msgid "Add highlighted directory to bookmarks"
 msgstr "Dodaj wybrany folder do zakładek"
 
 msgid "Add legacy LEFT/RIGHT actions"
-msgstr "Dodaj poprzednie akcje dla LEWO/PRAWO"
+msgstr "Dodaj starsze akcje LEWO/PRAWO"
 
 msgid "Add more slots"
 msgstr "Dodaj więcej slotów"
@@ -2018,10 +2021,10 @@ msgid "Add recording (Enter recording duration)"
 msgstr "Dodaj nagrywanie (wpisz czas trwania nagrywania)"
 
 msgid "Add recording (Enter recording end time)"
-msgstr "Dodaj nagrywanie (wpisz czas zakończenia nagrywania)"
+msgstr "Dodaj nagrywanie (wpisz godzinę zakończenia nagrywania)"
 
 msgid "Add recording (Indefinitely - 24 hours)"
-msgstr "Dodaj nagrywanie (na czas nieokreślony)"
+msgstr "Dodaj nagrywanie (na czas nieokreślony - 24 godziny)"
 
 msgid "Add recording (Stop after current event)"
 msgstr "Dodaj nagrywanie (stop po aktualnym wydarzeniu)"
@@ -2129,7 +2132,7 @@ msgid "After Event"
 msgstr "Po wydarzeniu"
 
 msgid "After PowerLost"
-msgstr "Po przywróceniu prądu"
+msgstr "Po utracie zasilania"
 
 msgid "After event"
 msgstr "Po zakończeniu"
@@ -2285,7 +2288,7 @@ msgid "Alphanumeric"
 msgstr "Alfanumeryczny"
 
 msgid "Also import at reboot/restart enigma2"
-msgstr "Importuj także przy restarcie odbiornika / enigmy"
+msgstr "Importuj również przy ponownym uruchomieniu/restartcie enigma2"
 
 msgid "Also import from the extension menu"
 msgstr "Import także z menu rozszerzeń"
@@ -2664,7 +2667,7 @@ msgid "Auto Detect"
 msgstr "Automatyczne Wykrywanie"
 
 msgid "Auto Language"
-msgstr "Auto język"
+msgstr "Automatyczny język"
 
 msgid "Auto Language Selection"
 msgstr "Automatyczny wybór języka"
@@ -2760,7 +2763,7 @@ msgid "Automatic shares access"
 msgstr "Automatyczny dostęp do udziałów"
 
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
-msgstr "Automatycznie wyłącz TV jeśli tuner przejdzie w tryb czuwania lub zostanie wyłączony."
+msgstr "Automatyczne przełączanie telewizora w tryb czuwania za każdym razem, gdy odbiornik przejdzie w tryb czuwania lub głębokiego czuwania."
 
 msgid "Automatically start time shift after"
 msgstr "Czas, po którym ma zostać uruchomiony timeshift"
@@ -3124,7 +3127,7 @@ msgid "Boot ID"
 msgstr "Boot ID"
 
 msgid "Boot information"
-msgstr "Info o rozruchu"
+msgstr "Informacje o rozruchu"
 
 msgid "Boot loader update required!"
 msgstr "Wymagana aktualizacja Bootloadera!"
@@ -3240,13 +3243,13 @@ msgid "Build Brand"
 msgstr "Marka"
 
 msgid "Build Information"
-msgstr "Info o kompilacji"
+msgstr "Informacje o kompilacji"
 
 msgid "Build Model"
 msgstr "Model"
 
 msgid "Build information"
-msgstr "Info o kompilacji"
+msgstr "Informacje o kompilacji"
 
 #, python-format
 msgid "Build information for %s %s"
@@ -3279,9 +3282,6 @@ msgstr "Nagraj do średniego"
 msgid "Burundi"
 msgstr "Burundi"
 
-msgid "Bus: "
-msgstr "Szyna: "
-
 msgid "Business & Finance"
 msgstr "Biznes i Finanse"
 
@@ -3293,12 +3293,6 @@ msgstr "Limit czasu błędu przycisku"
 
 msgid "ButtonSetup"
 msgstr "Ustawienia przycisków"
-
-msgid "By disk UUID"
-msgstr "Wg UUID dysku"
-
-msgid "By disk label"
-msgstr "Wg etykiety dysku"
 
 msgid "Bypass HDMI EDID Check"
 msgstr "Pomiń sprawdzanie HDMI EDID"
@@ -3495,7 +3489,7 @@ msgid "Cameroon"
 msgstr "Kamerun"
 
 msgid "Can be used for different fps between external subtitles and video."
-msgstr "Może być stosowane do różnych klatek na sekundę między napisami zewnętrznymi i wideo."
+msgstr "Można go używać do różnych wartości fps pomiędzy napisami zewnętrznymi i wideo."
 
 msgid ""
 "Can be used to test defect pixels on TV screen.\n"
@@ -3581,6 +3575,9 @@ msgid ""
 msgstr ""
 "Nie można przejść do TV na żywo!\n"
 "Przełączyć na TV na żywo i ponownie uruchomić timeshift?"
+
+msgid "Can't move to trashcan!"
+msgstr "Nie można przenieść do kosza!"
 
 msgid ""
 "Can't play the next time shift file!\n"
@@ -3707,12 +3704,6 @@ msgstr "Nie można określić limitu %s, Przerywam!"
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Nie można znaleźć żadnego sygnału... anulowanie!"
-
-msgid "Cannot move to trash can"
-msgstr "Nie można przenieść do kosza"
-
-msgid "Capacity"
-msgstr "Pojemność"
 
 msgid "Cape Verde"
 msgstr "Zielony Przylądek"
@@ -4114,25 +4105,25 @@ msgid "Choose whether AAC sound tracks should be transcoded."
 msgstr "Wybierz, czy transkodować ścieżkę dźwiękową AAC."
 
 msgid "Choose whether AC3 Plus sound tracks should be transcoded to AC3."
-msgstr "Wybierz, czy transkodować ścieżkę dźwiękową AC3 Plus do AC3."
+msgstr "Wybierz, czy ścieżki dźwiękowe AC3 Plus mają zostać przekodowane do AC3."
 
 msgid "Choose whether AC3 sound tracks should be downmixed to stereo."
-msgstr "Wybierz, czy ścieżki dźwiękowe AC3 powinny być przystosowywane do stereo."
+msgstr "Wybierz, czy ścieżki dźwiękowe AC3 mają zostać zmiksowane do wersji stereo."
 
 msgid "Choose whether DTS channel sound tracks should be downmixed or transcoded."
-msgstr "Wybierz, czy ścieżki dźwiękowe DTS powinny być przystosowywane do stereo lub transkodowane."
+msgstr "Wybierz, czy ścieżki dźwiękowe kanału DTS mają być miksowane w dół lub transkodowane."
 
 msgid "Choose whether DTS channel sound tracks should be downmixed to stereo."
-msgstr "Wybierz, czy ścieżki dźwiękowe DTS powinny być przystosowywane do stereo."
+msgstr "Wybierz, czy ścieżki dźwiękowe kanału DTS mają być miksowane do wersji stereo."
 
 msgid "Choose whether WMA Pro channel sound tracks should be downmixed or transcoded."
-msgstr "Wybierz, czy ścieżki dźwiękowe WMA Pro powinny być przystosowywane do stereo lub transkodowane."
+msgstr "Wybierz, czy ścieżki dźwiękowe kanałów WMA Pro mają być miksowane w dół lub transkodowane."
 
 msgid "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
 msgstr "Wybierz, czy wielokanałowe ścieżki dźwiękowe mają być konwertowane na PCM czy SPDIF."
 
 msgid "Choose whether multi channel sound tracks should be downmixed to stereo."
-msgstr "Wybierz, czy wielokanałowe ścieżki dźwiękowe powinny być przystosowywane do stereo."
+msgstr "Wybierz, czy ścieżki dźwiękowe wielokanałowe mają zostać zmiksowane do wersji stereo."
 
 msgid "Choose whether multi channel sound tracks should be output as PCM."
 msgstr "Wybierz, czy ścieżki dźwiękowe wielokanałowe mają być odtwarzane jako PCM."
@@ -4419,7 +4410,7 @@ msgid "Comoros"
 msgstr "Komory"
 
 msgid "Compiled by"
-msgstr "Kompilacja"
+msgstr "Opracowane przez"
 
 msgid "Complete"
 msgstr "Kompletny"
@@ -4434,7 +4425,7 @@ msgid "Composition of the recording filenames"
 msgstr "Składnia nazwy nagrania"
 
 msgid "Compress root file system tar file. (This takes the most time!)"
-msgstr "Skompresuj plik tar głównego systemu plików. (To zajmuje najwięcej czasu!)"
+msgstr "Kompresowanie pliku tar głównego systemu plików. (To zajmuje najwięcej czasu!)"
 
 msgid "Compressed bits/pixel"
 msgstr "Skompresowane bity/pixele"
@@ -4464,10 +4455,10 @@ msgid "Configure DNS (name servers)"
 msgstr "Konfiguruj DNS (serwery nazw)"
 
 msgid "Configure an additional delay to improve external subtitle synchronization."
-msgstr "Skonfiguruj dodatkowe opóźnienie poprawy zewnętrznej synchronizacji napisów."
+msgstr "Skonfiguruj dodatkowe opóźnienie w celu polepszenia synchronizacji zewnętrznych napisów."
 
 msgid "Configure an additional delay to improve subtitle synchronization."
-msgstr "Skonfiguruj dodatkowe opóźnienie do poprawy synchronizacji napisów."
+msgstr "Skonfiguruj dodatkowe opóźnienie w celu polepszenia synchronizacji napisów."
 
 msgid "Configure default setting for new timers. Need a restart after changing."
 msgstr "Skonfiguruj domyślne ustawienie dla nowych timerów. Po zmianie wymagany restart."
@@ -4512,7 +4503,7 @@ msgid "Configure if service type icons will be shown."
 msgstr "Skonfiguruj, czy będą wyświetlane ikony typów usług."
 
 msgid "Configure if the subtitle should switch between normal, italic, bold and bold italic."
-msgstr "Skonfiguruj, czy podtytuły mają się przełączać między normalną, kursywą, pogrubioną i pogrubioną."
+msgstr "Skonfiguruj, czy napisy mają być wyświetlane w trybie normalnym, kursywą, pogrubionym i pogrubioną kursywą."
 
 msgid "Configure interface"
 msgstr "Skonfiguruj interfejs"
@@ -4584,10 +4575,10 @@ msgid "Configure the brightness level of the front panel display for standby."
 msgstr "Skonfiguruj poziom jasności wyświetlacza panelu przedniego w trybie czuwania."
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
-msgstr "Skonfiguruj kolor napisów zewnętrznych,alternatywne(normalnie w kolorze białym, kursywa w żółtym, pogrubienie w błękicie, podkreślenia w kolorze zielonym), białe lub żółte."
+msgstr "Skonfiguruj kolor napisów zewnętrznych: alternatywny (zwykły w kolorze białym, kursywa w kolorze żółtym, pogrubiony w kolorze cyjanowym, podkreślenie w kolorze zielonym), biały lub żółty."
 
 msgid "Configure the color of the teletext subtitles."
-msgstr "Skonfiguruj kolor napisów telegazety."
+msgstr "Skonfiguruj kolor napisów w telegazecie."
 
 msgid "Configure the contrast level of the front panel display."
 msgstr "Skonfiguruj poziom kontrastu przedniego wyświetlacza."
@@ -4600,9 +4591,6 @@ msgstr "Skonfiguruj zachowanie kursora na liście wyboru kanałów. Po otwarciu 
 
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "Skonfiguruj rozdzielczość wyświetlania i czcionkę używaną do telegazety."
-
-msgid "Select the duration of inactivity before the screen saver will be displayed."
-msgstr "Skonfiguruj czas trwania w minutach dla wygaszacza ekranu."
 
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
 msgstr "Skonfiguruj czas trwania (w minutach) przed aktywacją licznika czasu oszczędzania energii."
@@ -4650,10 +4638,10 @@ msgid "Configure the gateway."
 msgstr "Skonfiguruj ustawienia 'bramy'."
 
 msgid "Configure the hard disk drive to go to standby after the specified idle time when the box is in standby."
-msgstr "Skonfiguruj dysk twardy tak, aby przechodził w stan wstrzymania po określonym czasie bezczynności, gdy urządzenie jest w stanie wstrzymania."
+msgstr "Skonfiguruj dysk twardy tak, aby po określonym czasie bezczynności przechodził w tryb gotowości, gdy dekoder znajduje się w trybie gotowości."
 
 msgid "Configure the hard disk drive to go to standby after the specified idle time."
-msgstr "Skonfiguruj czas po jakim dysk twardy ma przechodzić w tryb uśpienia."
+msgstr "Skonfiguruj dysk twardy tak, aby po określonym czasie bezczynności przeszedł w tryb gotowości."
 
 msgid "Configure the height of the TrueType font letters used for teletext."
 msgstr "Skonfiguruj wysokość liter czcionki TrueType używanych do telegazety."
@@ -4673,7 +4661,7 @@ msgstr "Skonfiguruj szerokość geograficzną swojej lokalizacji."
 msgid "Configure the longitude of your location."
 msgstr "Skonfiguruj długość geograficzną swojej lokalizacji."
 
-msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can."
+msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trashcan."
 msgstr "Skonfiguruj minimalną przestrzeń dysku zarezerwowaną dla nagrań. W przypadku spadku poniżej tego progu, usunięte pliki zostaną wykasowane z kosza."
 
 msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
@@ -4688,7 +4676,7 @@ msgstr "Skonfiguruj maskę sieci."
 msgid "Configure the network again"
 msgstr "Skonfiguruj sieć ponownie"
 
-msgid "Configure the number of days after which items are automatically removed from the trash can."
+msgid "Configure the number of days after which items are automatically removed from the trashcan."
 msgstr "Skonfiguruj liczbę dni, po upływie których elementy zostaną automatycznie usunięte z kosza."
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
@@ -4749,7 +4737,7 @@ msgid "Configure the start coordinate in y of the teletext display area."
 msgstr "Skonfiguruj współrzędną początkową 'y' obszaru wyświetlania telegazety."
 
 msgid "Configure the subtitle delay when timing information is not available."
-msgstr "Skonfiguruj opóźnienie napisów, gdy informacje nie są dostępne."
+msgstr "Skonfiguruj opóźnienie napisów, gdy informacje o czasie są niedostępne."
 
 msgid "Configure the third audio language."
 msgstr "Skonfiguruj trzeci język ścieżki audio."
@@ -4758,7 +4746,7 @@ msgid "Configure the third subtitle language."
 msgstr "Skonfiguruj trzeci język napisów."
 
 msgid "Configure the transparency of the black background of graphical DVB subtitles."
-msgstr "Przezroczystość czarnego tła napisów."
+msgstr "Skonfiguruj przezroczystość czarnego tła graficznych napisów DVB."
 
 msgid "Configure the transparency of the black background of subtitles."
 msgstr "Skonfiguruj przezroczystość czarnego tła napisów."
@@ -4800,7 +4788,7 @@ msgid "Configure whether another tuner from the preferred list is allocated for 
 msgstr "Skonfiguruj, czy inny tuner z preferowanej listy jest przydzielany do nagrań zamiast dzielić tuner, który jest już aktywny, odbierając ten sam kanał telewizyjny na żywo."
 
 msgid "Configure whether multi channel sound tracks should be downmixed to stereo."
-msgstr "Wybierz, czy wielokanałowe ścieżki dźwiękowe powinny być przystosowywane do stereo."
+msgstr "Skonfiguruj, czy ścieżki dźwiękowe wielokanałowe mają być miksowane do wersji stereo."
 
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (e.g. EPGrefresh)."
 msgstr "Skonfiguruj, czy symbol „nagrywania” (w skórce wyświetlacza i skórce wyświetlacza LCD) ma być widoczny tylko dla rzeczywistych nagrań, czy także dla nagrań strumieniowych i pseudo (np. EPGrefresh)."
@@ -4815,7 +4803,7 @@ msgid "Configure which tuner type will be preferred, when the same service is av
 msgstr "Skonfiguruj który tuner ma być preferowany, jeżeli kanał jest dostępny z różnych typów tunerów."
 
 msgid "Configure which tuner will be preferred for recordings, when more than one tuner is available. 'Disabled' would select a tuner based on preferred tuner in customize screen. 'Auto' would choose based on E2's default rules, ignoring preferred tuner in customize screen."
-msgstr "Skonfiguruj który tuner preferowany będzie nagrywać, gdy więcej niż jeden tuner jest dostępny."
+msgstr "Skonfiguruj, który tuner będzie preferowany do nagrań, gdy dostępnych jest więcej niż jeden tuner. Opcja „Wyłączone” spowoduje wybór tunera na podstawie preferowanego tunera na ekranie dostosowywania. Opcja „Auto” spowoduje wybór na podstawie domyślnych reguł E2, ignorując preferowany tuner na ekranie dostosowywania."
 
 msgid "Configure which tuner will be preferred, when more than one tuner is available. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites."
 msgstr "Skonfiguruj który tuner będzie wykorzystany, gdy posiadasz więcej niż jeden tuner. Jeśli ustawione na 'auto' system da pierwszeństwo dla tunera o najniższej liczbie kanałów/satelit."
@@ -4991,10 +4979,10 @@ msgid "Convert file system ext3 to ext4"
 msgstr "Konwersja systemu plików ext3 do ext4"
 
 msgid "Convert to AC3"
-msgstr "konwertuj na AC3"
+msgstr "Konwertuj do AC3"
 
 msgid "Convert to DTS"
-msgstr "konwertuj na DTS"
+msgstr "Konwertuj do DTS"
 
 msgid "Convert to multi-channel PCM"
 msgstr "konwertuj na wielokanałowy PCM"
@@ -5142,7 +5130,7 @@ msgid "Create application loader dump."
 msgstr "Utwórz zrzut programu ładującego aplikacje."
 
 msgid "Create backup image zip file."
-msgstr "Utwórz plik zip kopii zapasowej."
+msgstr "Tworzenie pliku zip kopii zapasowej."
 
 msgid "Create boot dump."
 msgstr "Utwórz zrzut rozruchowy."
@@ -5154,7 +5142,7 @@ msgid "Create device information dump."
 msgstr "Utwórz zrzut informacji o urządzeniu."
 
 msgid "Create kernel dump."
-msgstr "Utwórz zrzut kernel."
+msgstr "Tworzenie zrzutu kernel."
 
 #, python-format
 msgid "Create recovery image backup '%s'."
@@ -5179,7 +5167,7 @@ msgid "Create swap"
 msgstr "Utwórz plik wymiany"
 
 msgid "Create tar file of root file system."
-msgstr "Utwórz plik tar głównego systemu plików."
+msgstr "Tworzenie pliku tar głównego systemu plików."
 
 msgid "Create the additional slots on the selected device"
 msgstr "Utwórz dodatkowe sloty na wybranym urządzeniu"
@@ -5188,7 +5176,7 @@ msgid "Create the flash expander in the selected device"
 msgstr "Tworzy rozszerzacza flash na wybranym urządzeniu"
 
 msgid "Create working directories."
-msgstr "Utwórz katalogi robocze."
+msgstr "Tworzenie katalogów roboczych."
 
 msgid "Creating .ap and .sc files"
 msgstr "Tworzenie AP i plików SC"
@@ -5221,10 +5209,10 @@ msgid "Cron"
 msgstr "Cron"
 
 msgid "Cron Manager"
-msgstr "Menadżer zadań"
+msgstr "Menadżer cron"
 
 msgid "Cron Timers"
-msgstr "Harmonogramy zadań"
+msgstr "Harmonogramy cron"
 
 msgid "Cuba"
 msgstr "Kuba"
@@ -5329,19 +5317,19 @@ msgid "Currently Defined Volume Offsets:"
 msgstr "Aktualnie zdefiniowane Przesunięcia głośności:"
 
 msgid "Custom"
-msgstr "Zwykły"
+msgstr "Niestandardowy"
 
 msgid "Custom mountpoint"
 msgstr "Niestandardowy punkt montowania"
 
 msgid "Custom skip time for '1'/'3' buttons"
-msgstr "Czas przeskoku dla klawiszy '1'/'3'"
+msgstr "Niestandardowy czas pomijania dla przycisków '1'/'3'"
 
 msgid "Custom skip time for '4'/'6' buttons"
-msgstr "Czas przeskoku dla klawiszy '4'/'6'"
+msgstr "Niestandardowy czas pomijania dla przycisków '4'/'6'"
 
 msgid "Custom skip time for '7'/'9' buttons"
-msgstr "Czas przeskoku dla klawiszy '7'/'9'"
+msgstr "Niestandardowy czas pomijania dla przycisków '7'/'9'"
 
 msgid "Customize"
 msgstr "Ustawienia zaawansowane"
@@ -5447,7 +5435,7 @@ msgid "DVB Subtitles PID & Language"
 msgstr "Napisy DVB, PID i język"
 
 msgid "DVB subtitle black transparency"
-msgstr "Czarne przeźroczyste napisy"
+msgstr "Przezroczystość czarnych napisów DVB"
 
 msgid "DVB subtitles color"
 msgstr "Kolor napisów DVB"
@@ -5744,7 +5732,7 @@ msgid "Default movie location (%s)"
 msgstr "Domyślna lokalizacja filmów (%s)"
 
 msgid "Default movie selection location"
-msgstr "Domyślna lokalizacja nagrań"
+msgstr "Domyślna lokalizacja wyboru filmu"
 
 msgid "Default recording type"
 msgstr "Domyślny tryp nagrywania"
@@ -5936,7 +5924,7 @@ msgid "Delete and uninstall Plugins. This will remove the Plugin from your box"
 msgstr "Usuń i odinstaluj wtyczki. Spowoduje to usunięcie wtyczek z urządzenia"
 
 msgid "Delete character to left of cursor or select AM times"
-msgstr "Usuń znak po lewej kursora lub wybierz czasy AM"
+msgstr "Usuń znak na lewo od kursora lub wybierz godziny AM"
 
 msgid "Delete character under cursor or select PM times"
 msgstr "Usuń znak pod kursorem lub wybierz czasy PM"
@@ -6088,16 +6076,16 @@ msgid "Deselected packages usually occur because those packaged are incompatible
 msgstr "Odznaczone pakiety zwykle występują, ponieważ te spakowane są niezgodne z istniejącymi pakietami. Chociaż jest to w większości nieszkodliwe, możliwe jest, że %s %s może napotkać problemy."
 
 msgid "Destination of fallback remote receiver"
-msgstr "Lokalizacja zdalnego odbiornika rezerwowego"
+msgstr "Lokalizacja zdalnego odbiornika"
 
 msgid "Destination of fallback remote receiver for ATSC"
-msgstr "Lokalizacja zdalnego odbiornika rezerwowego dla ATSC"
+msgstr "Lokalizacja zdalnego odbiornika dla ATSC"
 
 msgid "Destination of fallback remote receiver for DVB-C"
-msgstr "Lokalizacja zdalnego odbiornika rezerwowego dla DVB-C"
+msgstr "Lokalizacja zdalnego odbiornika dla DVB-C"
 
 msgid "Destination of fallback remote receiver for DVB-T"
-msgstr "Lokalizacja zdalnego odbiornika rezerwowego dla DVB-T"
+msgstr "Lokalizacja zdalnego odbiornika dla DVB-T"
 
 msgid "Detail of GStreamer log."
 msgstr "Szczegóły logu GStreamer."
@@ -6202,10 +6190,6 @@ msgid "Directory"
 msgstr "Katalog"
 
 #, python-format
-msgid "Directory %s does not exist."
-msgstr "Katalog %s nie istnieje."
-
-#, python-format
 msgid "Directory '%s' can't be linked to recordings!"
 msgstr "Katalog '%s' nie może być użyty dla nagrań!"
 
@@ -6273,7 +6257,7 @@ msgid "Disable timer"
 msgstr "Wyłącz timer"
 
 msgid "Disabled"
-msgstr "Wyłączone"
+msgstr "Wyłączony"
 
 msgid "Disabled PiP.\n"
 msgstr "Wyłączone PIP.\n"
@@ -6373,10 +6357,10 @@ msgid "Distribution language"
 msgstr "Język"
 
 msgid "Distribution revision"
-msgstr "Rewizja"
+msgstr "Rewizja dystrybucji"
 
 msgid "Distribution version"
-msgstr "Wersja"
+msgstr "Wersja dystrybucyjna"
 
 msgid "Divehi / Dhivehi / Maldivian"
 msgstr "Divehi / Dhivehi / Malediwski"
@@ -6391,7 +6375,7 @@ msgid "Do not backup the image"
 msgstr "Nie twórz kopii zapasowej systemu"
 
 msgid "Do not change"
-msgstr "Nie należy zmieniać"
+msgstr "Nie zmieniaj"
 
 msgid "Do not flash image"
 msgstr "Nie instaluj systemu"
@@ -6417,15 +6401,8 @@ msgstr ""
 "Operacja jest nieodwracalna!"
 
 #, python-format
-msgid "Do you really want to delete %s ?"
-msgstr "Czy chcesz usunąć %s?"
-
-#, python-format
 msgid "Do you really want to delete '%s'?"
 msgstr "Czy chcesz usunąć %s?"
-
-msgid "Do you really want to delete ?"
-msgstr "Czy chcesz usunąć?"
 
 #, python-format
 msgid ""
@@ -6445,6 +6422,9 @@ msgstr ""
 msgid "Do you really want to delete this timer?"
 msgstr "Czy na pewno usunąć timer?"
 
+msgid "Do you really want to delete?"
+msgstr "Czy na pewno chcesz usunąć?"
+
 msgid "Do you really want to exit?"
 msgstr "Czy chcesz wyjść?"
 
@@ -6455,27 +6435,25 @@ msgstr ""
 "Czy na pewno chcesz sformatować urządzenie w systemie plików Linux?\n"
 "Wszystkie dane na urządzeniu zostaną bezpowrotnie utracone!"
 
-msgid "Do you really want to move to trashcan ?"
-msgstr "Czy na pewno chcesz przenieść do kosza?"
+#, python-format
+msgid "Do you really want to move '%s' to the trashcan?"
+msgstr "Czy na pewno chcesz przenieść '%s' do kosza?"
 
 #, python-format
-msgid "Do you really want to permanently remove '%s' from trash can ?"
+msgid "Do you really want to permanently remove '%s' from the trashcan?"
 msgstr "Czy chcesz trwale usunąć '%s' z kosza?"
-
-msgid "Do you really want to permanently remove from trash can ?"
-msgstr "Czy chcesz trwale usunąć z kosza?"
 
 #, python-format
 msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "Czy chcesz usunąć katalog %s?"
 
 #, python-format
-msgid "Do you really want to remove the timer for %s?"
-msgstr "Czy na pewno chcesz usunąć ten timer %s?"
+msgid "Do you really want to remove the bookmark for '%s'?"
+msgstr "Czy na pewno chcesz usunąć zakładkę dla '%s'?"
 
 #, python-format
-msgid "Do you really want to remove your bookmark for '%s'?"
-msgstr "Czy na pewno chcesz usunąć swoją zakładkę %s?"
+msgid "Do you really want to remove the timer for %s?"
+msgstr "Czy na pewno chcesz usunąć timer dla %s?"
 
 msgid ""
 "Do you really want to restart OSCam?\n"
@@ -6602,7 +6580,7 @@ msgid "Documentary"
 msgstr "Dokumentalny"
 
 msgid "Dolby Digital downmix is now"
-msgstr "Dolby Digital downmix jest teraz"
+msgstr "Teraz dostępny jest downmix Dolby Digital"
 
 msgid "Domain"
 msgstr "Domena"
@@ -6888,7 +6866,7 @@ msgid "Edit Title"
 msgstr "Edycja Tytułu"
 
 msgid "Edit Upgrade Source URL"
-msgstr "Edytuj adres URL źródła aktualizacji"
+msgstr "Edytuj źródłowy adres URL aktualizacji"
 
 msgid "Edit chapters of current title"
 msgstr "Edycja rozdziałów bieżącego tytułu"
@@ -7020,7 +6998,7 @@ msgid "Enable IceTV"
 msgstr "Włącz IceTV"
 
 msgid "Enable InfoBar fade-out"
-msgstr "Włącz wygaszacz paska informacyjnego"
+msgstr "Włącz wygaszanie paska informacyjnego"
 
 msgid "Enable Kexec MultiBoot"
 msgstr "Włącz Kexec MultiBoot"
@@ -7206,11 +7184,17 @@ msgstr "Włącz tę opcję, aby dodać dane zdalnego sterowania do pliku dzienni
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr "Włącz tę opcję, aby dodać nazwy ekranów i dane rozdzielczości do pliku dziennika debugowania."
 
+msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
+msgstr "Włącz tę opcję, aby dodać informacje o urządzeniu pamięci masowej wykrytym podczas rozruchu systemu i zdarzeń podłączania na gorąco do pliku dziennika debugowania."
+
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Włącz tę opcję, aby dodać dane debugowania timera do pliku dziennika debugowania."
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
 msgstr "Włącz tę opcję, aby wyświetlić wszystkie dostępne ekrany informacyjne na liście pozycji menu Informacje."
+
+msgid "Enable this option to show unknown storage devices in device manager."
+msgstr "Włącz tę opcję, aby wyświetlić nieznane urządzenia pamięci masowej w Menadżerze urządzeń."
 
 msgid "Enable this setting if your aerial system needs power."
 msgstr "Włącz to ustawienie, jeśli Twój system antenowy potrzebuje zasilania."
@@ -7249,7 +7233,7 @@ msgid "Encryption Type:"
 msgstr "Typ szyfrowania:"
 
 msgid "Encryption key"
-msgstr "Klucz szyfrujący"
+msgstr "Hasło sieci"
 
 msgid "Encryption key type"
 msgstr "Typ klucza szyfrującego"
@@ -7320,19 +7304,19 @@ msgid "Enhanced Movie Center"
 msgstr "Ulepszone Centrum Filmu"
 
 msgid "Enigma2 (re)starts"
-msgstr "Ilość restartów"
+msgstr "Ilość restartów E2"
 
 msgid "Enigma2 debug level"
-msgstr "Poziom debugowania"
+msgstr "Poziom debugowania E2"
 
 msgid "Enigma2 information"
-msgstr "Info o enigma2"
+msgstr "Informacje o Enigma2"
 
 msgid "Enigma2 revision"
-msgstr "Rewizja Enigmy"
+msgstr "Rewizja Enigmy2"
 
 msgid "Enigma2 version"
-msgstr "Wersja"
+msgstr "Wersja Enigmy2"
 
 msgid "Enigmalight"
 msgstr "Enigmalight"
@@ -7417,7 +7401,7 @@ msgid "Enter your low band local oscillator frequency. For more information cons
 msgstr "Wprowadź częstotliwość lokalnego oscylatora dolnego pasma. Aby uzyskać więcej informacji, zapoznaj się z arkuszem specyfikacji swojego LNB."
 
 msgid "Enter your personal feed URL to allow you to select packages from your personal feed."
-msgstr "Wprowadź adres URL osobistego kanału, aby umożliwić wybór pakietów z osobistego kanału."
+msgstr "Wprowadź adres URL swojego osobistego kanału, aby móc wybierać pakiety z tego kanału."
 
 msgid "Entertainment"
 msgstr "Rozrywka"
@@ -7618,7 +7602,7 @@ msgstr ""
 "%s"
 
 msgid "Error writing '/etc/enigma2/epg.dat' on the remote receiver!"
-msgstr "Błąd podczas zapisu „/etc/enigma2/epg.dat” na zdalnym odbiorniku!"
+msgstr "Błąd podczas zapisu '/etc/enigma2/epg.dat' na zdalnym odbiorniku!"
 
 msgid "Error writing 'epg.dat' on the remote receiver!"
 msgstr "Błąd podczas zapisu „epg.dat” na zdalnym odbiorniku!"
@@ -7653,6 +7637,10 @@ msgstr "Błąd: Tworzenie katalogu '%s' nie powiodło się!"
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
 msgstr "Błąd: Tworzenie katalogu docelowego picon: (%s)"
+
+#, python-format
+msgid "Error: Directory '%s' does not exist!"
+msgstr "Błąd: Katalog '%s' nie istnieje!"
 
 #, python-format
 msgid "Error: Failed to run service scan!  (%s)"
@@ -7776,10 +7764,10 @@ msgid "Even if a 'Wakeup' scheduled task starting?"
 msgstr "Nawet jeśli rozpocznie się zaplanowane zadanie „Wybudzenia”?"
 
 msgid "Even if a 'Zap and Record' recording timer starting?"
-msgstr "Nawet jeśli uruchomi się timer nagrywania „Zap and Record”?"
+msgstr "Nawet jeśli uruchomi się timer nagrywania „Przełącz i Nagraj”?"
 
 msgid "Even if a 'Zap' recording timer starting?"
-msgstr "Nawet jeśli uruchomi się timer nagrywania „Zap”?"
+msgstr "Nawet jeśli uruchomi się timer nagrywania „Przełącz”?"
 
 msgid "Event Info"
 msgstr "Info o wydarzeniu"
@@ -7989,13 +7977,13 @@ msgid "External Storage %s"
 msgstr "Pamięć zewnętrzna %s"
 
 msgid "External subtitle color"
-msgstr "Zewnętrzny kolor napisów"
+msgstr "Kolor napisów zewnętrznych"
 
 msgid "External subtitle dialog colorization"
-msgstr "Kolorowanie okna dialogowego napisów zewnętrznych"
+msgstr "Kolorowanie dialogów napisów zewnętrznych"
 
 msgid "External subtitle switch fonts"
-msgstr "Zewnętrzne czcionki przełączania napisów"
+msgstr "Zewnętrzne czcionki przełączające napisy"
 
 msgid "Extra High"
 msgstr "Bardzo wysoka"
@@ -8302,17 +8290,14 @@ msgstr "File Commander: Akcje edytora tekstu"
 msgid "File Commander settings"
 msgstr "Ustawienia File Commander"
 
-msgid "File system"
-msgstr "System plików"
-
 msgid "File System Check"
 msgstr "Sprawdź system plików"
 
 msgid "File System Packages"
 msgstr "Pakiety systemu plików"
 
-msgid "File appears to be busy.\n"
-msgstr "Plik wydaje się być zajęty.\n"
+msgid "File appears to be busy!\n"
+msgstr "Wygląda na to, że plik jest zajęty!\n"
 
 msgid ""
 "File oscam.conf not found.\n"
@@ -8320,6 +8305,9 @@ msgid ""
 msgstr ""
 "Nie znaleziono pliku Oscam.conf.\n"
 "Podaj nazwę użytkownika/hasło ręcznie."
+
+msgid "File system"
+msgstr "System plików"
 
 msgid "File transfer was canceled by user!"
 msgstr "Przesyłanie pliku zostało anulowane przez użytkownika!"
@@ -8332,9 +8320,6 @@ msgstr "Nazwa pliku"
 
 msgid "Files/folders to exclude from backup"
 msgstr "Wykluczone pliki z kopii zapasowej"
-
-msgid "Filesystem"
-msgstr "System plików"
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr "Wypełnij EPG kanału z EPG transmisji, w której nie ma EPG IceTV dla kanału"
@@ -8503,7 +8488,7 @@ msgid "For how many minutes do you want to record?"
 msgstr "Przez ile minut chcesz nagrywać?"
 
 msgid "Force AC3plus"
-msgstr "wymuś AC3plus"
+msgstr "Wymuś AC3plus"
 
 msgid "Force LNB Power"
 msgstr "Wymuś moc LNB"
@@ -8524,7 +8509,7 @@ msgid "Force de-interlace"
 msgstr "Siła przeplotu"
 
 msgid "Force disabled"
-msgstr "wymuszanie wyłączone"
+msgstr "Wymuszono wyłączenie"
 
 msgid "Force enabled"
 msgstr "wymuszanie włączone"
@@ -8545,7 +8530,7 @@ msgid "Forward Error Correction (FEC)"
 msgstr "Korekcja błędów (FEC)"
 
 msgid "Forward volume keys"
-msgstr "Kontroluj głośność TV/AV"
+msgstr "Klawisze zwiększania głośności"
 
 msgid "Frame rate"
 msgstr "Częstotliwość odświeżania"
@@ -8786,7 +8771,7 @@ msgid "Go down the list"
 msgstr "Przejdź w dół listy"
 
 msgid "Go to deep standby"
-msgstr "Wyłącz tuner"
+msgstr "Wyłącz dekoder"
 
 msgid "Go to first movie or last item"
 msgstr "Idź do pierwszego filmu lub ostatniej pozycji"
@@ -8834,7 +8819,7 @@ msgid "Goto current channel and now"
 msgstr "Idż do bieżącego kanału"
 
 msgid "Goto deep standby"
-msgstr "Wyłącz tuner"
+msgstr "Wyłącz dekoder"
 
 msgid "Goto first channel"
 msgstr "Idż do pierwszego kanału"
@@ -9020,7 +9005,7 @@ msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
 msgid "HI-cleanup for external subtitles"
-msgstr "Czyszczenie napisów zewnętrznych"
+msgstr "HI-oczyszczanie zewnętrznych napisów"
 
 msgid "HLG Support"
 msgstr "HLG Wsparcie"
@@ -9050,10 +9035,10 @@ msgid "Hard Disk Settings"
 msgstr "Ustawienia HDD"
 
 msgid "Hard disk standby after"
-msgstr "Przełącz dysk twardy w tryb czuwania po"
+msgstr "Dysk twardy w trybie gotowości po"
 
 msgid "Hard disk standby in box standby after"
-msgstr "Czuwanie dysku twardego w trybie czuwania po"
+msgstr "Dysk twardy w trybie gotowości w dekoderze po"
 
 msgid "Harddisk"
 msgstr "Dysk twardy"
@@ -9149,7 +9134,7 @@ msgid "Hide"
 msgstr "Ukryj"
 
 msgid "Hide CI messages"
-msgstr "Ukryj komunikaty CI"
+msgstr "Ukryj wiadomości CI"
 
 msgid "Hide InfoBar"
 msgstr "Zawsze ukryć pasek informacyjny"
@@ -9158,10 +9143,10 @@ msgid "Hide VBI Line For This Service"
 msgstr "Ukryj linię VBI dla tego kanału"
 
 msgid "Hide any zap error messages."
-msgstr "Ukryj wszelki zapis komunikatu o błędach."
+msgstr "Ukryj wszystkie komunikaty o błędach przełączania."
 
 msgid "Hide error messages from the Common Interface module."
-msgstr "Ukryj komunikaty o błędach z modułu CI."
+msgstr "Ukryj komunikaty o błędach w module Common Interface."
 
 msgid "Hide known extensions"
 msgstr "Ukryj rozszerzenia znanych plików"
@@ -9523,7 +9508,7 @@ msgid "If enabled, AIT data is included in recordings."
 msgstr "Jeśli włączone, dane AIT są zawarte w nagraniach."
 
 msgid "If enabled, a log will be kept of CEC protocol traffic. The log files are located with the other log files but named 'Enigma2-hdmicec-[date].log'."
-msgstr "Jeśli jest włączony, dziennik z protokołu CEC będzie przechowywany. Pliki dziennika znajdują się z innymi plikami dziennika, ale o nazwie Enigma2-hdmicec-[data].log."
+msgstr "Jeśli włączone, będzie przechowywany log ruchu protokołu CEC. Pliki log znajdują się z innymi plikami log, ale mają nazwę 'Enigma2-hdmicec-[date].log'."
 
 msgid "If enabled, the new GStreamer playback engine will be used."
 msgstr "Jeśli włączone, nowy silnik odtwarzania GStreamer zostanie wykorzystany."
@@ -9538,7 +9523,7 @@ msgid "If possible, x minutes before a timer starts VPS-Plugin will control whet
 msgstr "Jeśli to możliwe, x minut przed uruchomieniem timera Wtyczka VPS będzie kontrolować, czy program rozpocznie się wcześniej. (0 wyłącza funkcję)"
 
 msgid "If set to 'Yes' the same commands will be sent to the TV for deep standby events as are sent during regular standby events."
-msgstr "Jeśli \"Tak\", ta sama komenda zostanie wysłana do TV dla zdarzeń wyłączenia oraz czuwania."
+msgstr "Jeżeli zostanie wybrana opcja „Tak”, do telewizora w przypadku przejścia w tryb głębokiego czuwania będą wysyłane te same polecenia, co w przypadku zwykłego trybu czuwania."
 
 msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
 msgstr "Jeśli ustawiony jest na \"tak\", pozwala na używanie timeshift z alternatywnymi wtyczkami audio."
@@ -9619,6 +9604,9 @@ msgstr "Utworzono system:"
 msgid "Image creation failed!"
 msgstr "Tworzenie systemu nie powiodło się!"
 
+msgid "Image version"
+msgstr "Wersja systemu"
+
 msgid "ImageWizard"
 msgstr "Kreator systemu"
 
@@ -9638,7 +9626,7 @@ msgid "Import channels and/or EPG from remote receiver URL when receiver is boot
 msgstr "Importuj kanały i / lub EPG ze zdalnego odbiornika wtedy, gdy odbiornik startuje"
 
 msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
-msgstr "Importuj kanały i / lub EPG ze zdalnego odbiornika wtedy, gdy odbiornik lub enigma się restartuje"
+msgstr "Importuj kanały i/lub EPG z adresu URL zdalnego odbiornika po ponownym uruchomieniu odbiornika lub enigma2"
 
 msgid "Import from remote receiver URL"
 msgstr "Importuj z adresu URL zdalnego odbiornika"
@@ -9739,6 +9727,9 @@ msgstr "Dołącz dane zdalnego sterowania"
 
 msgid "Include screen load data"
 msgstr "Dołąćż dane ładowania ekranu"
+
+msgid "Include storage device data"
+msgstr "Dołącz dane urządzenia pamięci masowej"
 
 msgid "Include teletext details"
 msgstr "Dołącz szczegóły teletekstu"
@@ -9936,7 +9927,7 @@ msgid "Installing Service"
 msgstr "Instalowanie listy"
 
 msgid "Installing Software..."
-msgstr "Instalowanie systemu..."
+msgstr "Instalowanie oprogramowania..."
 
 msgid "Installing package."
 msgstr "Instalowanie pakietu."
@@ -10023,7 +10014,7 @@ msgid "Invalid type"
 msgstr "nieprawidłowy typ"
 
 msgid "Inversion"
-msgstr "Odwracanie"
+msgstr "Inwersja"
 
 msgid "Invert"
 msgstr "Zaznacz/Odznacz"
@@ -10158,7 +10149,7 @@ msgid "Just abort, show message"
 msgstr "Przerwij, pokaż komunikat"
 
 msgid "Just boot"
-msgstr "Pozostaw uruchomiony"
+msgstr "Po prostu uruchom"
 
 msgid "Just change Bouquet"
 msgstr "Tylko zmień listę kanałów"
@@ -10560,7 +10551,7 @@ msgid "Lingala"
 msgstr "Lingala"
 
 msgid "Link detected"
-msgstr "Wykryte"
+msgstr "Wykryto łącze"
 
 msgid "Link quality:"
 msgstr "Jakość sygnału:"
@@ -11341,7 +11332,7 @@ msgid "Mount point"
 msgstr "Punkt montowania"
 
 msgid "Mount root file system."
-msgstr "Zamontuj główny system plików."
+msgstr "Montowanie głównego systemu plików."
 
 msgid "Mounts"
 msgstr "Montowanie"
@@ -12084,6 +12075,9 @@ msgstr "Nie znaleziono HDD lub dysk nie jest zainicjowany!"
 msgid "No Internet connection"
 msgstr "Brak połączenia z internetem"
 
+msgid "No Name"
+msgstr "Bez nazwy"
+
 msgid ""
 "No Settings loaded !!\n"
 "\n"
@@ -12194,7 +12188,7 @@ msgid "No slot images found"
 msgstr "Nie znaleziono systemow w slocie"
 
 msgid "No standby"
-msgstr "Brak czuwania"
+msgstr "Brak gotowości"
 
 msgid "No storage or hard disks detected."
 msgstr "Nie wykryto pamięci masowej ani dysków twardych."
@@ -12781,7 +12775,7 @@ msgid "Option to disable picons on the Infobar."
 msgstr "Opcja wyłączenia pikon na pasku informacyjnym."
 
 msgid "Option to enable the Hardware Standby Timer."
-msgstr "Opcja włączenia sprzętowego licznika czasu czuwania."
+msgstr "Opcja umożliwiająca włączenie timera czuwania sprzętu."
 
 msgid "Optional parameter"
 msgstr "Parametr opcjonalny"
@@ -13121,7 +13115,7 @@ msgstr "Zamiast tego wykonaj flashowanie online"
 msgid "Perform the upgrade?"
 msgstr "Wykonać aktualizację?"
 
-msgid "Permanently delete all recordings in the trash can?"
+msgid "Permanently delete all recordings in the trashcan?"
 msgstr "Czy usunąć z kosza wszystkie nagrania?"
 
 msgid "Permanently ignore this device"
@@ -13371,6 +13365,9 @@ msgstr "Podaj nazwę nowego katalogu:"
 
 msgid "Please enter the new file name:"
 msgstr "Podaj nazwę nowego pliku:"
+
+msgid "Please enter the new name:"
+msgstr "Proszę wprowadzić nową nazwę:"
 
 msgid "Please enter the new tag:"
 msgstr "Wprowadź nowy znacznik:"
@@ -13656,7 +13653,7 @@ msgid "Port number for the Stream Relay server used to descramble services that 
 msgstr "Numer portu dla serwera Stream Relay wykorzystywany do odkodowywania usług, które mogą być tylko odszyfrowane przez Stream Relay."
 
 msgid "Port of fallback remote receiver"
-msgstr "Port zdalnego odbiornika rezerwowego"
+msgstr "Port zdalnego odbiornika"
 
 msgid "Portugal"
 msgstr "Portugalia"
@@ -13725,10 +13722,10 @@ msgid "Predefined transponder"
 msgstr "Zdefiniowany transponder"
 
 msgid "Prefer AC3 track"
-msgstr "Preferuj AC3"
+msgstr "Preferuj ścieżkę AC3"
 
 msgid "Prefer AC3+ track"
-msgstr "Preferuj ścieżkę dźwiękową AC3+"
+msgstr "Preferuj ścieżkę AC3+"
 
 msgid "Prefer IPv4"
 msgstr "Preferuj IPv4"
@@ -14037,31 +14034,31 @@ msgid "Properties of current title"
 msgstr "Właściwości aktualnego tytułu"
 
 msgid "Protect Quickmenu"
-msgstr "Chroń QuickMenu"
+msgstr "Chroń szybkie menu"
 
 msgid "Protect Screens"
-msgstr "Chroń Ekrany"
+msgstr "Chroń ekrany"
 
 msgid "Protect configuration"
-msgstr "Chroń Konfiguracje"
+msgstr "Chroń konfigurację"
 
 msgid "Protect context menus"
-msgstr "Chroń Menu Kontekstowe"
+msgstr "Chroń menu kontekstowe"
 
 msgid "Protect main menu"
-msgstr "Chroń Menu główne"
+msgstr "Chroń menu główne"
 
 msgid "Protect movie list"
-msgstr "Chroń Listę Filmów"
+msgstr "Chroń listę filmów"
 
 msgid "Protect on epg age"
-msgstr "Chroń Wiek z EPG"
+msgstr "Zabezpiecz wiek EPG"
 
 msgid "Protect plugin browser"
 msgstr "Chroń przeglądarkę wtyczek"
 
 msgid "Protect services"
-msgstr "Zabezpiecz Kanały"
+msgstr "Zabezpiecz kanały"
 
 msgid "Protect software update screen"
 msgstr "Chroń ekran aktualizacji oprogramowania"
@@ -14127,7 +14124,7 @@ msgid "Put TV in standby"
 msgstr "Przełącz TV w stan czuwania"
 
 msgid "Put your AV Receiver in standby"
-msgstr "Przełącz AV w tryb czuwania"
+msgstr "Przełącz amplituner AV w tryb czuwania"
 
 msgid "Python"
 msgstr "Python"
@@ -14139,7 +14136,7 @@ msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python nakładka na /tmp/mmi.socket"
 
 msgid "Python version"
-msgstr "Wersja Pythona"
+msgstr "Wersja Python"
 
 msgid "Qatar"
 msgstr "Katar"
@@ -14599,7 +14596,7 @@ msgid "Reload all services from disk"
 msgstr "Przeładuj wszystkie usługi z dysku"
 
 msgid "Reload blacklists"
-msgstr "Odświeżyć Czarną Listę"
+msgstr "Odśwież czarne listy"
 
 msgid "Reloading EPG Cache..."
 msgstr "Przeładowywanie pamięci podręcznej EPG..."
@@ -14756,7 +14753,7 @@ msgid "Remove service from AutoCam"
 msgstr "Usuń usługę z AutoCam"
 
 msgid "Remove texts for the hearing impaired from external subtitles (instrumental music or environmental sounds, e.g., when a doorbell rings or a gun shot is heard)."
-msgstr "Usuń teksty dla osób niedosłyszących z zewnętrznych napisów (np. informacje o muzyce i dźwiękach np. gdy dzwoni dzwonek do drzwi lub słychać strzał z pistoletu)."
+msgstr "Usuń teksty przeznaczone dla osób niedosłyszących z napisów zewnętrznych (muzyka instrumentalna lub dźwięki otoczenia, np. gdy dzwoni dzwonek do drzwi lub słychać strzał)."
 
 msgid "Remove the Line from CCcam.cfg"
 msgstr "Usuń linię z CCcam.cfg"
@@ -14891,10 +14888,10 @@ msgid "Reset"
 msgstr "Resetuj"
 
 msgid "Reset (clear and reload) the feeds"
-msgstr "Zresetuj (wyczyść i załaduj ponownie)feed"
+msgstr "Zresetuj (wyczyść i załaduj ponownie) feed'y"
 
 msgid "Reset Feeds"
-msgstr "Zresetuj Feeds"
+msgstr "Zresetuj feed'y"
 
 msgid "Reset HDMI-CEC settings to default"
 msgstr "Przywróć ustawienia domyślne HDMI-CEC"
@@ -15132,7 +15129,7 @@ msgid "Right, front USB"
 msgstr "Prawy, przedni USB"
 
 msgid "Right, wrapped"
-msgstr "prawo, owinięty"
+msgstr "Prawo, zawinięte"
 
 msgid "Roll-off"
 msgstr "Pasmo przepustowe"
@@ -15333,7 +15330,7 @@ msgid "Samba Server"
 msgstr "Serwer Samba"
 
 msgid "Samba Settings"
-msgstr "Ustawienia Samby"
+msgstr "Ustawienia samby"
 
 msgid "Same as in active"
 msgstr "Taki sam jak w aktywnym"
@@ -15532,7 +15529,7 @@ msgid "Scan for terrestrial LCNs and create LCN bouquets"
 msgstr "Skanuj w poszukiwaniu naziemnych LCN i stwórz listy kanałów"
 
 msgid "Scan wireless networks"
-msgstr "Skanuj sieci bezprzewodowe"
+msgstr "Skanuj sieci WiFi"
 
 msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
 msgstr "Skanuj sieć w poszukiwaniu punktów dostępu i połącz z nimi używając wybranego urządzenia."
@@ -15571,9 +15568,9 @@ msgstr "Skanowanie..."
 #, python-format
 msgid "Scanning: %d%% complete"
 msgid_plural "Scanning: %d%% complete"
-msgstr[0] "Skanowanie: ukończono %d%%"
-msgstr[1] "Skanowanie: ukończone %d%%"
-msgstr[2] "Skanowanie: ukończonych %d%%"
+msgstr[0] "Skanowanie: Ukończono %d%%"
+msgstr[1] "Skanowanie: Ukończone %d%%"
+msgstr[2] "Skanowanie: Ukończonych %d%%"
 
 msgid "Scans default lamedbs sorted by satellite with a connected dish positioner"
 msgstr "Domyślne skanuje 'lamedbs' wg. satelit z podłączonym pozycjonerem"
@@ -15591,7 +15588,7 @@ msgid "Scheduler Actions"
 msgstr "Akcje programatora zasilania"
 
 msgid "Scheduler Overview"
-msgstr "Programatory zasilania"
+msgstr "Przegląd harmonogramu"
 
 msgid "Scheduler Settings"
 msgstr "Ustawienia harmonogramu"
@@ -15616,6 +15613,9 @@ msgstr "Nauka i Technika"
 
 msgid "Scope"
 msgstr "Zakres"
+
+msgid "Screen saver movement"
+msgstr "Ruch wygaszacza ekranu"
 
 msgid "Script Manager"
 msgstr "Menadżer skryptów"
@@ -15776,14 +15776,14 @@ msgstr "Wybierz opcję 'Tak', jeśli regulacja głośności ma być stosowana do
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Wybierz „tak” tylko, jeśli używasz multiswich, który wymaga sygnału polecenia DiSEqC Port-A. Dla wszystkich innych ustawień wybierz „nie”."
 
-msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
-msgstr "Wybierz opcję „Tak”, jeśli chcesz wybudzić telewizor na czas uruchomienia timera zasilania „Wybudzanie”."
-
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
 msgstr "Wybierz opcję „Tak”, jeśli chcesz wybudzić telewizor na czas rozpoczęcia timera nagrywania „Przełącz i Nagraj”."
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
 msgstr "Wybierz opcję „Tak”, jeśli chcesz wybudzić telewizor na rozpoczęcie nagrywania przez timer „Przełącz”."
+
+msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
+msgstr "Wybierz „Tak”, jeśli chcesz, aby telewizor wybudzał się po uruchomieniu zaplanowanego zadania „Wybudzanie”."
 
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Jeśli jest ustawione na 'tak' pasek informacyjny pozostanie wyświetlany na stałe w stanie 'pauzy' (bez timeoutu)."
@@ -15998,9 +15998,6 @@ msgstr "Dodatkowe pliki kopii zapasowej"
 msgid "Select AutoCam default Softcam"
 msgstr "Wybierz AutoCam jako domyślny Softcam"
 
-msgid "Select Backup Location"
-msgstr "Wybierz lokalizację kopii"
-
 msgid "Select Bookmark"
 msgstr "Wybierz zakładkę"
 
@@ -16167,6 +16164,9 @@ msgstr "Wybierz pliki, które chcesz wykluczyć z kopii zapasowej"
 
 msgid "Select files/folders to backup"
 msgstr "Wybierz pliki kopii zapasowej"
+
+msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
+msgstr "Wybierz, jak długo obraz wygaszacza ekranu będzie pozostawał w tym samym miejscu na ekranie, zanim zostanie przeniesiony."
 
 msgid "Select how long to display status messages."
 msgstr "Wybierz, jak długo mają być wyświetlane komunikaty o stanie."
@@ -16422,6 +16422,9 @@ msgstr "Wybierz opcje wyświetlania dla każdego elementu menu. Jeśli numery me
 
 msgid "Select the display sequence of previously visited services."
 msgstr "Wybierz kolejność wyświetlania wcześniej odwiedzonych kanałów."
+
+msgid "Select the duration of inactivity before the screen saver will be displayed."
+msgstr "Wybierz czas bezczynności, po którym zostanie wyświetlony wygaszacz ekranu."
 
 #, python-format
 msgid "Select the file sort order for the %s column:"
@@ -16681,10 +16684,10 @@ msgid "Select what do do after the timer zap has completed."
 msgstr "Wybierz, co zrobić po zakończeniu odliczania czasu."
 
 msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
-msgstr "Wybierz, co ma się stać gdy %s %s zostanie włączony. Czy ma się uruchomić normalnie czy przejść w trybu czuwania."
+msgstr "Wybierz, co ma zostać wykonane, gdy %s %s zostanie uruchomiony, będzie odtwarzany normalnie lub przejdzie w tryb gotowości."
 
 msgid "Select what should be done when the %s %s was shutdown incorrectly, or after the Power was lost."
-msgstr "Po przywróceniu zasilania twój %s %s zostanie automatycznie uruchomiony. Wybierz, co należy wtedy zrobić."
+msgstr "Wybierz, co ma zostać zrobione, gdy %s %s zostanie nieprawidłowo wyłączony lub po utracie zasilania."
 
 msgid "Select what you want the Channel +/- button to activate."
 msgstr "Wybierz, co ma aktywować przycisk Kanał +/-."
@@ -16715,9 +16718,6 @@ msgstr "Wybierz dostawcę ATSC."
 
 msgid "Select your Language for Audio/Subtitles"
 msgstr "Wybierz język dla audio/napisów"
-
-msgid "Select your backup device."
-msgstr "Wybierz urządzenie do tworzenia kopii zapasowych."
 
 msgid "Select your country. If not available select 'All'."
 msgstr "Wybierz swój kraj. Jeśli nie jest dostępny, wybierz „wszystkie”."
@@ -16864,7 +16864,7 @@ msgid "Service Number, Picon and Service Name"
 msgstr "Pikona, numer i nazwa kanału"
 
 msgid "Service Scan"
-msgstr "Skanowanie serwisowe"
+msgstr "Skanowanie kanałów"
 
 msgid "Service Scan Actions"
 msgstr "Akcje skanowania kanałów"
@@ -17052,7 +17052,7 @@ msgid "Set the aspect ratio of the service picons."
 msgstr "Ustaw proporcje pikon kanałów."
 
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
-msgstr "Ustaw domyślną lokalizację dla nagrań błyskawicznych. Naciśnij przycisk 'OK', aby dodać nową lokalizację użyj strzałek 'lewo/prawo'."
+msgstr "Ustaw domyślną lokalizację dla swoich natychmiastowych nagrań. Naciśnij „OK”, aby dodać nowe lokalizacje, naciśnij „LEWO”/„PRAWO”, aby wybrać spośród wcześniej zdefiniowanych lokalizacji."
 
 msgid "Set the default location to save your time shift recording files. Press 'OK' to add new locations, press LEFT/RIGHT to select from previously defined locations."
 msgstr "Ustaw domyślną lokalizację, aby zapisać pliki nagrań z timeshift. Naciśnij „OK”, aby dodać nowe lokalizacje, naciśnij LEWO/PRAWO, aby wybrać spośród wcześniej zdefiniowanych lokalizacji."
@@ -17218,9 +17218,6 @@ msgstr "Ustawienia trybu dźwięku"
 msgid "Setup Enigma2"
 msgstr "Ustawienia Enigmy2"
 
-msgid "Setup Harddisk"
-msgstr "Ustawienia HDD"
-
 msgid "Setup Inadyn"
 msgstr "Ustawienia Inadyn"
 
@@ -17300,7 +17297,7 @@ msgid "Setup your EPG config"
 msgstr "Wybierz konfig.EPG"
 
 msgid "Setup your Harddisk"
-msgstr "Ustawienia HDD"
+msgstr "Skonfiguruj swój HDD"
 
 msgid "Setup your LCD"
 msgstr "Ustawienia LCD"
@@ -18132,6 +18129,9 @@ msgstr "Pokaż znaki podkreślenia w nazwach plików"
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "Pokaż nieznaną rozdzielczość wideo jako następną wyższą lub najwyższą rozdzielczość ekranu."
 
+msgid "Show unknown devices"
+msgstr "Pokaż nieznane urządzenia"
+
 msgid "Show unknown video format as"
 msgstr "Pokaż nieznany format wideo jako"
 
@@ -18334,7 +18334,7 @@ msgid "Sleep Timer"
 msgstr "Timer czuwania"
 
 msgid "Sleep Timers"
-msgstr "Timer Czuwania"
+msgstr "Timer czuwania"
 
 msgid "Sleep delay"
 msgstr "Opóźnienie (w minutach)"
@@ -19137,7 +19137,7 @@ msgid "Subtitle delay when timing is bad"
 msgstr "Czas opóźnienia dla napisów jest zły"
 
 msgid "Subtitle delay when timing lacks"
-msgstr "Opóźnienie napisów gdy nie synchronizowane"
+msgstr "Opóźnienie napisów w przypadku braku synchronizacji"
 
 msgid "Subtitle font size"
 msgstr "Rozmiar czcionki napisów"
@@ -19278,7 +19278,7 @@ msgid "Switch next channel"
 msgstr "Przełącz na następny kanał"
 
 msgid "Switch off the TV to correct input"
-msgstr "Wyłącz TV na poprawne wejście"
+msgstr "Wyłącz telewizor, aby poprawić sygnał wejściowy"
 
 msgid "Switch to 720p video"
 msgstr "Przełączna wideo 720p"
@@ -20262,10 +20262,10 @@ msgid "This option configures the general audio delay for BT Speakers."
 msgstr "Ta opcja konfiguruje ogólne opóźnienie audio dla głośników BT."
 
 msgid "This option configures the general audio delay of Dolby Digital sound tracks."
-msgstr "Ta opcja konfiguruje Ogólne opóźnienie audio ścieżek dźwiękowych Dolby Digital."
+msgstr "Opcja ta konfiguruje ogólne opóźnienie dźwięku w ścieżkach dźwiękowych Dolby Digital."
 
 msgid "This option configures the general audio delay of stereo sound tracks."
-msgstr "Ta opcja konfiguruje Ogólne opóźnienie audio stereo ścieżek dźwiękowych."
+msgstr "Opcja ta konfiguruje ogólne opóźnienie dźwięku w ścieżkach dźwiękowych stereo."
 
 msgid "This option configures the picture sharpness."
 msgstr "Ta opcja ustawia ostrość obrazu."
@@ -20474,7 +20474,7 @@ msgid "Time delay of the shutdown messages"
 msgstr "Opóźnienie komunikatów wyłączania"
 
 msgid "Time delay until standby or deep standby"
-msgstr "Opóźnienie trybu czuwania lub wyłączenia tunera"
+msgstr "Opóźnienie do przejścia w tryb czuwania lub wyłączenia dekodera"
 
 msgid "Time for next LCD scrolling"
 msgstr "Czas następnego przewijania przedniego wyświetlacza"
@@ -20904,7 +20904,7 @@ msgid "Try to prevent reboots for software errors and maintain of the availabili
 msgstr "Staraj się unikać ponownego uruchamiania w przypadku błędów systemu i utrzymuj dostępność odbiornika."
 
 msgid "Try to send repeated commands if not all commands were executed (e.g. TV wake up, but not switched to correct input)."
-msgstr "Spróbuj wysłać powtarzające się polecenia, jeśli nie wszystkie polecenia zostały wykonane (np. telewizor włączył się, ale nie został przełączony na prawidłowe wejście)."
+msgstr "Spróbuj wysłać powtórzone polecenia, jeśli nie wszystkie zostały wykonane (np. wybudzenie telewizora bez przełączenia na właściwe wejście)."
 
 msgid "Tsonga"
 msgstr "Tsonga"
@@ -21098,10 +21098,10 @@ msgid "USALS automatically moves a motorized dish to the correct satellite based
 msgstr "USALS automatycznie przesuwa zmotoryzowaną antenę na właściwego satelitę na podstawie współrzędnych wprowadzonych przez użytkownika. Bez USALS każdy satelita będzie musiał być ustawiony i zapisany indywidualnie."
 
 msgid "USB 2.0 (Back, inner)"
-msgstr "USB 2.0 (Z tyłu, wewnętrzny)"
+msgstr "USB 2.0 (tył, wewnętrzny)"
 
 msgid "USB 3.0 (Back, outer)"
-msgstr "USB 3.0 (Z tyłu, zewnętrzny)"
+msgstr "USB 3.0 (tył, zewnętrzny)"
 
 msgid "USB Stick"
 msgstr "Pamięć USB"
@@ -21347,7 +21347,7 @@ msgid "Updated"
 msgstr "Zaktualizowano"
 
 msgid "Updated version unknown"
-msgstr "Zaktualizowana wersja niedostępna"
+msgstr "Zaktualizowana wersja nieznana"
 
 msgid "Updates available:"
 msgstr "Dostępne aktualizacje:"
@@ -21441,7 +21441,7 @@ msgid "Use HTTPS protocol"
 msgstr "Użyj protokołu HTTPS"
 
 msgid "Use Harddisk Hardware Standby Timer"
-msgstr "Użyj sprzętowego timera czuwania dla HDD"
+msgstr "Użyj timera czuwania sprzętu dysku twardego"
 
 msgid "Use MHW EPG information when it is available."
 msgstr "Użyj informacji EPG MHW gdy dostępne."
@@ -21657,7 +21657,7 @@ msgid "User - Bouquets"
 msgstr "Użytkownik - Listy kanałów"
 
 msgid "User Feed URL"
-msgstr "adres URL feeda użytkownika"
+msgstr "Adres URL kanału użytkownika"
 
 msgid "User ID"
 msgstr "Nazwa użytkownika"
@@ -22055,7 +22055,7 @@ msgid "Volume"
 msgstr "Głośność"
 
 msgid "Volume Adjust"
-msgstr "Dostosowanie głośności"
+msgstr "Regulacja głośności"
 
 msgid "Volume Adjust Actions"
 msgstr "Akcje regulacji głośności"
@@ -22135,9 +22135,6 @@ msgstr "Proszę czekać, skanowanie..."
 msgid "Waiting"
 msgstr "Czekaj"
 
-msgid "Waiting for mount"
-msgstr "Czekaj na zakończenie montowania"
-
 msgid "Waiting for partition"
 msgstr "Czekaj na utworzenie partycji"
 
@@ -22157,7 +22154,7 @@ msgid "Wake up to standby"
 msgstr "Wybudzaj ze stanu czuwania"
 
 msgid "Wake up your AV Receiver from standby"
-msgstr "Wybudzaj AV ze stanu czuwania"
+msgstr "Wybudź swój amplituner AV ze stanu czuwania"
 
 msgid "Wallis and Futuna"
 msgstr "Wallis i Futuna"
@@ -22323,16 +22320,16 @@ msgid "When enabled the PiP can be closed by the exit button."
 msgstr "Po włączeniu PiP można zamknąć za pomocą przycisku wyjścia."
 
 msgid "When enabled the receiver will automatically be switched off."
-msgstr "Jeśli włączone, urządzenie będzie automatycznie wyłączane."
+msgstr "Po włączeniu odbiornik automatycznie się wyłączy."
 
 msgid "When enabled the receiver will automatically be switched on."
-msgstr "Jeśli włączone, urządzenie będzie automatycznie włączane."
+msgstr "Po włączeniu odbiornik włączy się automatycznie."
 
 msgid "When enabled the receiver will automatically return to standby when the TV is turned off."
-msgstr "Jeśli włączone, urządzenie automatycznie powróci do trybu czuwania jeśli TV jest wyłączony."
+msgstr "Po włączeniu tej opcji odbiornik automatycznie powróci do trybu czuwania po wyłączeniu telewizora."
 
 msgid "When enabled the receiver will automatically wake from standby when the TV is turned on."
-msgstr "Jeśli włączone, urządzenie będzie automatycznie wybudzanie jeśli TV jest włączony."
+msgstr "Po włączeniu tej opcji odbiornik będzie automatycznie wybudzał się z trybu czuwania po włączeniu telewizora."
 
 msgid "When enabled the timer from the fallback tuner is imported"
 msgstr "Gdy włączone, timer ze zdalnego odbiornika jest importowany"
@@ -22385,7 +22382,7 @@ msgstr "Gdy włączone, zawartość proporcji obrazu 4:3 będzie rozciągana aby
 msgid "When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels."
 msgstr "Gdy włączone, przełącz na kolejną listę kanałów po dojściu do ostatniego kanału w aktualnej liście."
 
-msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
+msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
 msgstr "Gdy włączone, usunięte nagrania zostaną przeniesione do 'kosza', zamiast natychmiastowego usunięcia."
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
@@ -22403,8 +22400,8 @@ msgstr "Gdy jest włączona,możliwe jest opuszczenie Odtwarzacz filmów przycis
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Gdy włączone, pomiar zużycia energii w celu wykrycia, kiedy rotor zatrzymuje obrót (jeśli jest obsługa w tunerze)."
 
-msgid "When enabled, network trash cans are probed for cleaning."
-msgstr "Gdy ta opcja jest włączona, sieciowe kosze są sprawdzane pod kątem czyszczenia."
+msgid "When enabled, network trashcans are probed for cleaning."
+msgstr "Po włączeniu tej opcji, kosze na śmieci w sieci są sprawdzane pod kątem czyszczenia."
 
 msgid "When enabled, number markers will be hidden."
 msgstr "Po włączeniu znaczniki liczb będą ukryte."
@@ -22446,7 +22443,7 @@ msgid "When enabled, the receiver will automatically use the subtitles which you
 msgstr "Gdy włączone, automatycznie zostaną włączone napisy ostatnio wybrane na danym kanale."
 
 msgid "When enabled, the receiver will select an AC3 track (when available)."
-msgstr "Gdy włączone, zostanie wybrana ścieżka audio AC3 (jeśli jest dostępna)."
+msgstr "Po włączeniu tej opcji odbiornik wybierze ścieżkę AC3 (jeśli jest dostępna)."
 
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Gdy włączone, zostanie wybrana ścieżka AC3 + (jeśli jest dostępna)."
@@ -22479,7 +22476,7 @@ msgid "When nonzero, a zap timer will stop the nominated period after the ending
 msgstr "Gdy wartość niezerowa, Zap timer zatrzyma nagrywanie po określonym okresie po czasie zakończenia wskazanym w EPG."
 
 msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
-msgstr "Jeśli urządzenie zostanie uruchomione z trybu czuwania TV zostanie przełączony na odpowiednie wejście."
+msgstr "Gdy odbiornik wybudzi się ze stanu czuwania, telewizor nakaże mu przełączenie się na wejście HDMI, do którego podłączony jest odbiornik."
 
 msgid "When set each folder will show the previous state used, when off the default values will be shown."
 msgstr "Po ustawieniu każdy folder pokaże poprzedni stan używany, kiedy wyłączysz domyślne wartości."
@@ -22575,7 +22572,7 @@ msgid "With EXIT button"
 msgstr "z przyciskiem wyjścia"
 
 msgid "With LEFT/RIGHT buttons"
-msgstr "z przyciskami lewo/prawo"
+msgstr "Z przyciskami LEWO/PRAWO"
 
 msgid "With T2MI RAW mode disabled (default) we can use single T2MI PLP de-encapsulation. With T2MI RAW mode enabled we can use astra-sm to analyze T2MI"
 msgstr "Przy wyłączonym trybie T2MI RAW (domyślnie) możemy użyć pojedynczego dekapsulację PLP T2MI. Przy włączonym trybie T2MI RAW możemy używać astra-sm do analizy T2MI"
@@ -22596,7 +22593,7 @@ msgid "With this option you can switch off the display during operation."
 msgstr "Dzięki tej opcji możesz wyłączyć wyświetlacz podczas pracy."
 
 msgid "With this option you can switch off the display in Deep Standby Mode."
-msgstr "Dzięki tej opcji możesz wyłączyć wyświetlacz po wyłączeniu tunera."
+msgstr "Za pomocą tej opcji można wyłączyć wyświetlacz w trybie głębokiego czuwania."
 
 msgid "With this option you can switch off the display in Standby Mode."
 msgstr "Dzięki tej opcji możesz wyłączyć wyświetlacz w trybie czuwania."
@@ -22765,11 +22762,11 @@ msgid "You can only burn Dreambox recordings!"
 msgstr "Możesz nagrywać tylko nagrania Dreambox!"
 
 msgid "You can skip this function and turn off the TV when you wake the receiver from standby and immediately switch back to standby."
-msgstr "Możesz pominąć tę funkcję i wyłączyć telewizor po wybudzeniu odbiornika z trybu czuwania i natychmiastowym przełączeniu z powrotem do trybu czuwania."
+msgstr "Możesz pominąć tę funkcję i wyłączyć telewizor po wybudzeniu odbiornika z trybu czuwania, a następnie od razu przełączyć go z powrotem w tryb czuwania."
 
 #, python-format
 msgid "You can switch with left and right this tuner types %s"
-msgstr "Możesz użyć lewo/prawo aby zmienić typ tunera %s"
+msgstr "Możesz przełączać się między lewym i prawym typem tunera %s"
 
 msgid "You cannot delete this!"
 msgstr "Tego nie można usunąć!"
@@ -23321,7 +23318,7 @@ msgid "east"
 msgstr "wschód"
 
 msgid "ecm time:"
-msgstr "czasy ecm:"
+msgstr "czas ecm:"
 
 msgid "ecm.info"
 msgstr "ecm.info"
@@ -23501,7 +23498,7 @@ msgid "hops:"
 msgstr "hops:"
 
 msgid "inactive"
-msgstr "wyłączone"
+msgstr "nieaktywny"
 
 msgid "increase uphop by 1"
 msgstr "wzrost uphop o 1"
@@ -23546,7 +23543,7 @@ msgid "leave movie player"
 msgstr "zamknij odtwarzacz filmów"
 
 msgid "left"
-msgstr "lewo"
+msgstr "Lewo"
 
 msgid "leisure hobbies (general)"
 msgstr "rozrywka hobby"
@@ -23696,7 +23693,7 @@ msgid "off or wpa2 on"
 msgstr "wyłączone lub wpa2 włączone"
 
 msgid "offset is"
-msgstr "jest wyłączone"
+msgstr "przesunięcie jest"
 
 msgid "olympic blue"
 msgstr "olympic blue"
@@ -23786,7 +23783,7 @@ msgid "rewind to the previous chapter"
 msgstr "cofnij do poprzedniego rozdziału"
 
 msgid "right"
-msgstr "prawo"
+msgstr "Prawo"
 
 msgid "rock/pop"
 msgstr "rock/pop"
@@ -23947,7 +23944,7 @@ msgid "step size"
 msgstr "rozmiar kroku"
 
 msgid "stereo"
-msgstr "stereo"
+msgstr "Stereo"
 
 msgid "successful"
 msgstr "pomyślnie"
@@ -24111,6 +24108,43 @@ msgstr "tak (zachować kanały)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Do you really want to delete %s ?"
+#~ msgstr "Czy chcesz usunąć %s?"
+
+#~ msgid "Do you really want to move to trashcan ?"
+#~ msgstr "Czy na pewno chcesz przenieść do kosza?"
+
+#~ msgid "Do you really want to permanently remove from trash can ?"
+#~ msgstr "Czy chcesz trwale usunąć z kosza?"
+
+#~ msgid "Bus: "
+#~ msgstr "Szyna: "
+
+#~ msgid "By disk UUID"
+#~ msgstr "Wg UUID dysku"
+
+#~ msgid "By disk label"
+#~ msgstr "Wg etykiety dysku"
+
+#~ msgid "Capacity"
+#~ msgstr "Pojemność"
+
+#~ msgid "Filesystem"
+#~ msgstr "System plików"
+
+#~ msgid "Select Backup Location"
+#~ msgstr "Wybierz lokalizację kopii"
+
+#~ msgid "Select your backup device."
+#~ msgstr "Wybierz urządzenie do tworzenia kopii zapasowych."
+
+#~ msgid "Setup Harddisk"
+#~ msgstr "Ustawienia HDD"
+
+#~ msgid "Waiting for mount"
+#~ msgstr "Czekaj na zakończenie montowania"
 
 #~ msgid "PowerTimer"
 #~ msgstr "Programator zasilania"

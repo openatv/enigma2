@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-31 15:16+0000\n"
+"POT-Creation-Date: 2025-01-30 15:09+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1560,6 +1560,22 @@ msgid "A file from media is in use!"
 msgstr ""
 
 #, python-format
+msgid ""
+"A finished record timer wants to set your\n"
+"%s %s to standby. Do that now?"
+msgstr ""
+"Một bộ đếm thời gian hoàn thành muốn thiết lập của bạn\n"
+"% s% s để chờ. Làm điều đó bây giờ?"
+
+#, python-format
+msgid ""
+"A finished record timer wants to shut down\n"
+"your %s %s. Shutdown now?"
+msgstr ""
+"Một bộ đếm thời gian hoàn thành muốn thiết lập của bạn\n"
+"%s%s để chờ. Làm điều đó bây giờ?"
+
+#, python-format
 msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "Một powertimer đã hoàn thành muốn khởi động lại %s% s của bạn.\n"
@@ -1581,22 +1597,6 @@ msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "Một điện thoại hoàn thành muốn tắt % s% s của bạn.\n"
 "Làm điều đó bây giờ?"
-
-#, python-format
-msgid ""
-"A finished record timer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-"Một bộ đếm thời gian hoàn thành muốn thiết lập của bạn\n"
-"% s% s để chờ. Làm điều đó bây giờ?"
-
-#, python-format
-msgid ""
-"A finished record timer wants to shut down\n"
-"your %s %s. Shutdown now?"
-msgstr ""
-"Một bộ đếm thời gian hoàn thành muốn thiết lập của bạn\n"
-"%s%s để chờ. Làm điều đó bây giờ?"
 
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr ""
@@ -1702,19 +1702,19 @@ msgstr "Chuyển mã AC3plus"
 msgid "AFL"
 msgstr "AFP"
 
-msgid "AI-Powered Translation color"
+msgid "AI Translation color"
 msgstr ""
 
-msgid "AI-Powered Translation enabled"
+msgid "AI Translation enabled"
 msgstr ""
 
-msgid "AI-Powered Translation language"
+msgid "AI Translation language"
 msgstr ""
 
-msgid "AI-Powered Translation optimization"
+msgid "AI Translation optimization"
 msgstr ""
 
-msgid "AI-Powered Translation subscription code"
+msgid "AI Translation subscription code"
 msgstr ""
 
 msgid "ARM"
@@ -1824,6 +1824,9 @@ msgid "Activate the configured network settings."
 msgstr "Kích hoạt cài đặt mạng được cấu hình."
 
 msgid "Activate the flash expander, save all changed settings and exit"
+msgstr ""
+
+msgid "Activate this device"
 msgstr ""
 
 msgid "Activate time shift End"
@@ -3264,9 +3267,6 @@ msgstr "Ghi vào trung bình"
 msgid "Burundi"
 msgstr "Burundi"
 
-msgid "Bus: "
-msgstr "Xe buýt: "
-
 msgid "Business & Finance"
 msgstr ""
 
@@ -3278,12 +3278,6 @@ msgstr ""
 
 msgid "ButtonSetup"
 msgstr "Cài đặt nút"
-
-msgid "By disk UUID"
-msgstr ""
-
-msgid "By disk label"
-msgstr ""
 
 msgid "Bypass HDMI EDID Check"
 msgstr "Bỏ qua kiểm tra HDMI EDID"
@@ -3557,6 +3551,9 @@ msgstr ""
 "Không thể lên truyền hình trực tiếp!\n"
 "Chuyển sang truyền hình trực tiếp và khởi động lại Timeshift?"
 
+msgid "Can't move to trashcan!"
+msgstr "Không thể di chuyển đến thùng rác"
+
 msgid ""
 "Can't play the next time shift file!\n"
 "Switch to live TV and restart time shift ?"
@@ -3689,12 +3686,6 @@ msgstr ""
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Không thể tìm thấy bất kỳ tín hiệu nào ..., hủy bỏ!"
-
-msgid "Cannot move to trash can"
-msgstr "Không thể di chuyển đến thùng rác"
-
-msgid "Capacity"
-msgstr ""
 
 #, fuzzy
 msgid "Cape Verde"
@@ -4584,9 +4575,6 @@ msgstr "Định cấu hình hành vi con trỏ trong danh sách chọn kênh. Kh
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "Định cấu hình độ phân giải màn hình và phông chữ được sử dụng cho teletext."
 
-msgid "Select the duration of inactivity before the screen saver will be displayed."
-msgstr "Định cấu hình thời lượng tính bằng phút cho trình bảo vệ màn hình."
-
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
 msgstr ""
 
@@ -4656,7 +4644,7 @@ msgstr "Định cấu hình vĩ độ của vị trí của bạn."
 msgid "Configure the longitude of your location."
 msgstr "Cấu hình kinh độ của vị trí của bạn."
 
-msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can."
+msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trashcan."
 msgstr "Định cấu hình dung lượng đĩa tối thiểu có sẵn để ghi. Khi lượng không gian giảm xuống dưới giá trị này, các mục đã xóa sẽ bị xóa khỏi thùng rác."
 
 msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
@@ -4671,7 +4659,7 @@ msgstr "Cấu hình netmask."
 msgid "Configure the network again"
 msgstr "Định cấu hình lại mạng của bạn"
 
-msgid "Configure the number of days after which items are automatically removed from the trash can."
+msgid "Configure the number of days after which items are automatically removed from the trashcan."
 msgstr "Định cấu hình số ngày sau đó các mục được tự động xóa khỏi thùng rác."
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
@@ -6206,10 +6194,6 @@ msgid "Directory"
 msgstr "Danh mục"
 
 #, python-format
-msgid "Directory %s does not exist."
-msgstr "Thư mục%s không tồn tại."
-
-#, python-format
 msgid "Directory '%s' can't be linked to recordings!"
 msgstr ""
 
@@ -6423,15 +6407,8 @@ msgstr ""
 "Bạn không thể quay lại!"
 
 #, python-format
-msgid "Do you really want to delete %s ?"
-msgstr "Bạn có thực sự muốn xóa% s không?"
-
-#, python-format
 msgid "Do you really want to delete '%s'?"
 msgstr "Bạn có thực sự muốn xóa%s không?"
-
-msgid "Do you really want to delete ?"
-msgstr "Bạn có thực sự muốn xóa không?"
 
 #, python-format
 msgid ""
@@ -6447,6 +6424,9 @@ msgstr ""
 msgid "Do you really want to delete this timer?"
 msgstr "Bạn có thực sự muốn xóa bộ đếm thời gian này?"
 
+msgid "Do you really want to delete?"
+msgstr "Bạn có thực sự muốn xóa không?"
+
 msgid "Do you really want to exit?"
 msgstr "Bạn có thực sự muốn thoát?"
 
@@ -6455,29 +6435,27 @@ msgid ""
 "All data on the device will be lost!"
 msgstr ""
 
-msgid "Do you really want to move to trashcan ?"
-msgstr "Bạn có thực sự muốn chuyển đến thùng rác?"
+#, python-format
+msgid "Do you really want to move '%s' to the trashcan?"
+msgstr ""
 
 #, python-format
-msgid "Do you really want to permanently remove '%s' from trash can ?"
+msgid "Do you really want to permanently remove '%s' from the trashcan?"
 msgstr "Bạn có thực sự muốn xóa vĩnh viễn '% s' khỏi thùng rác không?"
-
-msgid "Do you really want to permanently remove from trash can ?"
-msgstr "Bạn có thực sự muốn loại bỏ vĩnh viễn khỏi thùng rác?"
 
 #, python-format
 msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "Bạn có thực sự muốn xóa thư mục%s khỏi đĩa không?"
 
 #, python-format
+msgid "Do you really want to remove the bookmark for '%s'?"
+msgstr "Bạn có thực sự muốn xóa dấu trang của%s không?"
+
+#, python-format
 msgid "Do you really want to remove the timer for %s?"
 msgstr ""
 "Bạn có thực sự muốn loại bỏ\n"
 "plugin % s?"
-
-#, python-format
-msgid "Do you really want to remove your bookmark for '%s'?"
-msgstr "Bạn có thực sự muốn xóa dấu trang của%s không?"
 
 msgid ""
 "Do you really want to restart OSCam?\n"
@@ -7214,10 +7192,16 @@ msgstr ""
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr ""
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
+msgstr ""
+
+msgid "Enable this option to show unknown storage devices in device manager."
 msgstr ""
 
 msgid "Enable this setting if your aerial system needs power."
@@ -7662,6 +7646,10 @@ msgstr "Tạo thư mục%s không thành công."
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
 msgstr ""
+
+#, python-format
+msgid "Error: Directory '%s' does not exist!"
+msgstr "Thư mục%s không tồn tại."
 
 #, python-format
 msgid "Error: Failed to run service scan!  (%s)"
@@ -8311,16 +8299,13 @@ msgstr ""
 msgid "File Commander settings"
 msgstr "Cài đặt chỉ huy tập tin"
 
-msgid "File system"
-msgstr ""
-
 msgid "File System Check"
 msgstr "Kiểm tra hệ thống tập tin"
 
 msgid "File System Packages"
 msgstr ""
 
-msgid "File appears to be busy.\n"
+msgid "File appears to be busy!\n"
 msgstr "Tập tin có vẻ bận rộn.\n"
 
 msgid ""
@@ -8329,6 +8314,9 @@ msgid ""
 msgstr ""
 "Không tìm thấy tệp oscam.conf.\n"
 "Vui lòng nhập tên người dùng / mật khẩu bằng tay."
+
+msgid "File system"
+msgstr ""
 
 msgid "File transfer was canceled by user!"
 msgstr ""
@@ -8342,9 +8330,6 @@ msgstr "tên tệp"
 
 msgid "Files/folders to exclude from backup"
 msgstr "Tập tin / thư mục để loại trừ khỏi bản sao lưu"
-
-msgid "Filesystem"
-msgstr ""
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr ""
@@ -9659,6 +9644,9 @@ msgstr ""
 msgid "Image creation failed!"
 msgstr ""
 
+msgid "Image version"
+msgstr ""
+
 msgid "ImageWizard"
 msgstr "Hình ảnh"
 
@@ -9776,6 +9764,9 @@ msgid "Include remote control data"
 msgstr "Cấu hình loại điều khiển từ xa"
 
 msgid "Include screen load data"
+msgstr ""
+
+msgid "Include storage device data"
 msgstr ""
 
 msgid "Include teletext details"
@@ -12187,6 +12178,9 @@ msgstr "Không tìm thấy ổ cứng hoặc ổ cứng không được khởi t
 msgid "No Internet connection"
 msgstr ""
 
+msgid "No Name"
+msgstr ""
+
 msgid ""
 "No Settings loaded !!\n"
 "\n"
@@ -13245,7 +13239,7 @@ msgstr ""
 msgid "Perform the upgrade?"
 msgstr ""
 
-msgid "Permanently delete all recordings in the trash can?"
+msgid "Permanently delete all recordings in the trashcan?"
 msgstr "Xóa vĩnh viễn tất cả các bản ghi trong thùng rác?"
 
 msgid "Permanently ignore this device"
@@ -13496,6 +13490,9 @@ msgid "Please enter the new directory name:"
 msgstr ""
 
 msgid "Please enter the new file name:"
+msgstr ""
+
+msgid "Please enter the new name:"
 msgstr ""
 
 msgid "Please enter the new tag:"
@@ -15759,6 +15756,9 @@ msgstr ""
 msgid "Scope"
 msgstr ""
 
+msgid "Screen saver movement"
+msgstr ""
+
 msgid "Script Manager"
 msgstr ""
 
@@ -15922,13 +15922,13 @@ msgstr ""
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Chỉ chọn 'có' nếu bạn đang sử dụng đa tín hiệu yêu cầu tín hiệu lệnh DiSEqC Port-A. Đối với tất cả các thiết lập khác, chọn 'không'."
 
-msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
-msgstr ""
-
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
 msgstr ""
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
 msgstr ""
 
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
@@ -16144,9 +16144,6 @@ msgstr "Chọn tập tin sao lưu bổ sung"
 msgid "Select AutoCam default Softcam"
 msgstr ""
 
-msgid "Select Backup Location"
-msgstr "Chọn vị trí dự phòng"
-
 msgid "Select Bookmark"
 msgstr ""
 
@@ -16313,6 +16310,9 @@ msgstr "Chọn tệp để loại trừ khỏi bản sao lưu"
 
 msgid "Select files/folders to backup"
 msgstr "Chọn tập tin / thư mục để sao lưu"
+
+msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
+msgstr ""
 
 msgid "Select how long to display status messages."
 msgstr ""
@@ -16569,6 +16569,9 @@ msgstr ""
 
 msgid "Select the display sequence of previously visited services."
 msgstr ""
+
+msgid "Select the duration of inactivity before the screen saver will be displayed."
+msgstr "Định cấu hình thời lượng tính bằng phút cho trình bảo vệ màn hình."
 
 #, python-format
 msgid "Select the file sort order for the %s column:"
@@ -16860,9 +16863,6 @@ msgstr "Chọn nhà cung cấp ATSC của bạn."
 
 msgid "Select your Language for Audio/Subtitles"
 msgstr "Chọn ngôn ngữ của bạn cho âm thanh / phụ đề"
-
-msgid "Select your backup device."
-msgstr ""
 
 msgid "Select your country. If not available select 'All'."
 msgstr "Chọn đất nước của bạn. Nếu không có sẵn, chọn 'tất cả'."
@@ -17360,9 +17360,6 @@ msgstr "Thiết lập Audiomode"
 
 msgid "Setup Enigma2"
 msgstr "Cài đặt Enigma2"
-
-msgid "Setup Harddisk"
-msgstr "Cài đặt đĩa cứng"
 
 msgid "Setup Inadyn"
 msgstr "Cài đặt Inadyn"
@@ -18292,6 +18289,9 @@ msgstr ""
 
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "Hiển thị Videoresolution không xác định là độ phân giải màn hình cao hơn hoặc cao hơn tiếp theo."
+
+msgid "Show unknown devices"
+msgstr ""
 
 msgid "Show unknown video format as"
 msgstr "Hiển thị định dạng video không xác định là"
@@ -22280,9 +22280,6 @@ msgstr "Vui lòng đợi trong khi quét ..."
 msgid "Waiting"
 msgstr "Đang chờ đợi"
 
-msgid "Waiting for mount"
-msgstr "Chờ đợi để gắn kết"
-
 msgid "Waiting for partition"
 msgstr "Chờ phân vùng"
 
@@ -22532,7 +22529,7 @@ msgstr "Khi được bật, nội dung có tỷ lệ khung hình 4: 3 sẽ đư�
 msgid "When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels."
 msgstr "Khi được bật, tiếp tục đến bó hoa tiếp theo khi đạt đến kênh cuối cùng của bó hoa hiện tại trong khi thay đổi kênh."
 
-msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
+msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
 msgstr "Khi được bật, các bản ghi bị xóa sẽ được chuyển vào thùng rác, thay vì bị xóa ngay lập tức."
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
@@ -22550,7 +22547,7 @@ msgstr "Khi được bật, có thể rời khỏi trình phát phim với lối
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Khi được bật, đo mức tiêu thụ năng lượng để phát hiện khi rôto dừng quay (khi được bộ chỉnh tần hỗ trợ)."
 
-msgid "When enabled, network trash cans are probed for cleaning."
+msgid "When enabled, network trashcans are probed for cleaning."
 msgstr "Khi được bật, thùng rác mạng được thăm dò để làm sạch."
 
 msgid "When enabled, number markers will be hidden."
@@ -24276,6 +24273,28 @@ msgstr "có (giữ thức ăn)"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid "Do you really want to delete %s ?"
+#~ msgstr "Bạn có thực sự muốn xóa% s không?"
+
+#~ msgid "Do you really want to move to trashcan ?"
+#~ msgstr "Bạn có thực sự muốn chuyển đến thùng rác?"
+
+#~ msgid "Do you really want to permanently remove from trash can ?"
+#~ msgstr "Bạn có thực sự muốn loại bỏ vĩnh viễn khỏi thùng rác?"
+
+#~ msgid "Bus: "
+#~ msgstr "Xe buýt: "
+
+#~ msgid "Select Backup Location"
+#~ msgstr "Chọn vị trí dự phòng"
+
+#~ msgid "Setup Harddisk"
+#~ msgstr "Cài đặt đĩa cứng"
+
+#~ msgid "Waiting for mount"
+#~ msgstr "Chờ đợi để gắn kết"
 
 #~ msgid "PowerTimer"
 #~ msgstr "Thời gian quyền lực"

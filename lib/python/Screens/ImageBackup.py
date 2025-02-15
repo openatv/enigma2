@@ -88,7 +88,7 @@ class ImageBackup(Screen):
 		self.zipCmd = "/usr/bin/7za"
 		self.runScript = "/tmp/imagebackup.sh"
 		self.usbBin = "usb_update.bin"
-		self.separator = f"{"_" * 70}"
+		self.separator = f"{"_" * 66}"
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.callLater(self.getImageList)
 
@@ -251,7 +251,7 @@ class ImageBackup(Screen):
 			cmdLines.append("\tDisplayDistro=Unknown")
 			cmdLines.append("\tImageVersion=Unknown")
 			cmdLines.append("fi")
-			cmdLines.append(f"{self.echoCmd} \"Image version $DisplayDistro $ImageVersion.\"")
+			cmdLines.append(f"{self.echoCmd} \"{_("Image version")} $DisplayDistro $ImageVersion.\"")
 			# Build the "imageversion" inventory file.
 			cmdLines.append(f"{self.echoCmd} \"[Image Version]\" > /tmp/imageversion")
 			cmdLines.append(f"{self.echoCmd} \"distro=$Distro\" >> /tmp/imageversion")

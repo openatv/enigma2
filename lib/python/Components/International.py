@@ -4,7 +4,6 @@ from gettext import bindtextdomain, install, textdomain, translation
 from locale import Error as LocaleError, LC_ALL, LC_COLLATE, LC_CTYPE, LC_MESSAGES, LC_MONETARY, LC_NUMERIC, LC_TIME, setlocale
 from os import environ, listdir
 from os.path import isdir
-from subprocess import PIPE, Popen
 
 from Tools.Directories import SCOPE_CONFIG, SCOPE_LANGUAGE, fileReadLines, resolveFilename
 
@@ -14,7 +13,6 @@ from Tools.Directories import SCOPE_CONFIG, SCOPE_LANGUAGE, fileReadLines, resol
 # 	Locale: An official language as spoken in a country, eg "en_AU" for English (Australian).
 
 MODULE_NAME = __name__.split(".")[-1]
-PACKAGER = "/usr/bin/opkg"
 
 languagePath = resolveFilename(SCOPE_LANGUAGE)
 try:
@@ -27,6 +25,9 @@ textdomain("enigma2")
 
 
 class International:
+	# This is the list of all locales built for OpenATV. If any locales are added or removed then this list should be updated!
+	# The list of available locales rarely changes so this has been done to optimize the speed of starting Enigma2.
+	DEFINED_LOCALES = ["ar", "bg", "ca", "cs", "da", "de", "el", "en", "en_AU", "en_GB", "es", "et", "fa", "fi", "fr", "fy", "he", "hr", "hu", "id", "is", "it", "ku", "lt", "lv", "nb", "nl", "nn", "pl", "pt", "pt_BR", "ro", "ru", "sk", "sl", "sq", "sr", "sv", "ta", "th", "tr", "uk", "vi", "zh_CN", "zh_HK"]
 	LOCALE_TEMPLATE = "enigma2-locale-%s"
 	PERMANENT_LOCALES = ["de_DE", "en_US", "fr_FR"]
 
@@ -583,53 +584,17 @@ class International:
 		self.languageList.sort()
 
 	def getAvailablePackages(self, update=False):
-		if update:
-			command = (PACKAGER, "find", self.LOCALE_TEMPLATE % "*")
-			availablePackages = []
-			try:
-				# print(f"[International] Processing command '{command[0]}' with arguments '{"', '".join(command[1:])}'.")
-				process = Popen(command, stdout=PIPE, stderr=PIPE, universal_newlines=True)
-				packageText, errorText = process.communicate()
-				if errorText:
-					print(f"[International] getLanguagePackages Error: {errorText}")
-				else:
-					for language in packageText.split("\n"):
-						if language and "meta" not in language:
-							lang = language[15:].split(" ")[0]
-							if lang not in availablePackages:
-								availablePackages.append(lang)
-					availablePackages = sorted(availablePackages)
-			except OSError as err:
-				print(f"[International] getLanguagePackages Error {err.errno}: {err.strerror} ('{command[0]}')")
-				availablePackages = []
-			if self.debugMode:
-				availablePackagesList = "', '".join(availablePackages)
-				print(f"[International] There are {len(availablePackages)} available locale/language packages in the repository '{availablePackagesList}'.")
-		else:
-			availablePackages = self.availablePackages
-		return availablePackages
+		if update or self.debugMode:
+			print(f"[International] There are {len(self.DEFINED_LOCALES)} available locale/language packages in the repository '{"', '".join(self.DEFINED_LOCALES)}'.")
+		return self.DEFINED_LOCALES
 
 	def getInstalledPackages(self, update=False):
 		if update:
-			command = (PACKAGER, "status", self.LOCALE_TEMPLATE % "*")
 			installedPackages = []
-			try:
-				# print(f"[International] Processing command '{command[0]}' with arguments '{"', '".join(command[1:])}'.")
-				process = Popen(command, stdout=PIPE, stderr=PIPE, universal_newlines=True)
-				packageText, errorText = process.communicate()
-				if errorText:
-					print(f"[International] getInstalledPackages Error: {errorText}")
-				else:
-					for package in packageText.split("\n\n"):
-						if package.startswith(f"Package: {self.LOCALE_TEMPLATE % ''}") and "meta" not in package:
-							for data in package.split("\n"):
-								if data.startswith("Package: "):
-									templateLength = len(f"Package: {self.LOCALE_TEMPLATE % ''}")
-									installedPackages.append(data[templateLength:])
-									break
-					installedPackages = sorted(installedPackages)
-			except OSError as err:
-				print(f"[International] getInstalledPackages Error {err.errno}: {err.strerror} ('{command[0]}')")
+			for file in listdir("/var/lib/opkg/info"):
+				if file.startswith("enigma2-locale-") and file.endswith(".control") and "meta" not in file:
+					installedPackages.append(file[15:].split(".")[0])
+			installedPackages.sort()
 			if self.debugMode:
 				print(f"[International] There are {len(installedPackages)} installed locale/language packages '{"', '".join(installedPackages)}'.")
 		else:

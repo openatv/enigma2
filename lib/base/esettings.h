@@ -80,11 +80,13 @@ public:
   static void setAiSubscriptionCode(std::string value) { ai_subscription_code = value; }
   static void setAiSubtitleColors(int value) { ai_subtitle_colors = value; }
   static void setAiConnectionSpeed(int value) { ai_connection_speed = value; }
+  static void setAiMode(int value) { ai_mode = value; }
   static bool ai_enabled;
   static std::string ai_translate_to;
   static std::string ai_subscription_code;
   static int ai_subtitle_colors;
   static int ai_connection_speed;//1=Up to 50 Mbps, 2=50-200 Mbps, 3=Above 200 Mbps
+  static int ai_mode;
 
 };
 

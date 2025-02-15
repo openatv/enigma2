@@ -327,7 +327,7 @@ class LocationBox(Screen, NumericalTextInput):
 				self["bookmarklist"].setList(self.bookmarksList)
 				self.updateState()
 		else:  # Remove bookmark.
-			self.session.openWithCallback(boundFunction(self.removeBookmarkCallback, current), MessageBox, _("Do you really want to remove your bookmark for '%s'?") % current)
+			self.session.openWithCallback(boundFunction(self.removeBookmarkCallback, current), MessageBox, _("Do you really want to remove the bookmark for '%s'?") % current)
 
 	def removeBookmarkCallback(self, bookmark, answer):
 		if answer and bookmark in self.bookmarksList:

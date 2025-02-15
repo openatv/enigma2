@@ -10,6 +10,11 @@ class MultiContentTemplateParser(TemplateParser):
 		self.template = {}
 		self.indexNames = {}
 
+	def scaleWithHeight(self, itemWidth, itemHeight):
+		scaleFactorVertical = self.scale[1][0] / self.scale[1][1]
+		scaleFactorHorizontal = self.scale[0][0] / self.scale[0][1]
+		return (int(itemWidth * scaleFactorHorizontal), int(itemHeight * scaleFactorVertical))
+
 	def readTemplate(self, templateName):
 		def parseTemplateModes(template):
 			modes = {}
@@ -70,7 +75,7 @@ class MultiContentTemplateParser(TemplateParser):
 						modeData = []
 						for item in modesItems[modeName]:
 							index = item.get("index", "-1")
-							if index.isdigit():
+							if index.isdigit() or index == "-1":
 								index = int(index)
 							elif self.indexNames:
 								index = self.indexNames.get(index, -1)
@@ -84,6 +89,7 @@ class MultiContentTemplateParser(TemplateParser):
 							backgroundColor = item.get("backgroundColor")
 							backgroundColorSelected = item.get("backgroundColorSelected")
 							borderColor = item.get("borderColor")
+							borderColorSelected = item.get("borderColorSelected")
 							borderWidth = int(item.get("borderWidth", "0"))
 							cornerRadius, cornerEdges = item.get("_radius", (0, 0))
 							flags = item.get("_flags", 0)
@@ -109,7 +115,7 @@ class MultiContentTemplateParser(TemplateParser):
 										else:
 											modeData.append((eListboxPythonMultiContent.TYPE_LINEAR_GRADIENT, pos[0], pos[1], size[0], size[1], gradientDirection, gradientStart, gradientMid, gradientEnd, gradientStartSelected, gradientMidSelected, gradientEndSelected, cornerRadius, cornerEdges))
 									else:
-										modeData.append((eListboxPythonMultiContent.TYPE_RECT, pos[0], pos[1], size[0], size[1], backgroundColor, backgroundColorSelected, borderWidth, borderColor, cornerRadius, cornerEdges))
+										modeData.append((eListboxPythonMultiContent.TYPE_RECT, pos[0], pos[1], size[0], size[1], backgroundColor, backgroundColorSelected, borderWidth, borderColor, borderColorSelected, cornerRadius, cornerEdges))
 								case "progress":
 									if index == -1:
 										index = None
@@ -136,11 +142,8 @@ class XmlMultiContent(StringList, MultiContentTemplateParser):
 		self.dom = args.get("dom")
 		if self.dom is not None:
 			self.scale = args.get("scale")
-			self.widgetSize = (int(args.get("size")[0]), int(args.get("size")[1]))
-			scaleFactorVertical = self.scale[1][0] / self.scale[1][1]
-			scaleFactorHorizontal = self.scale[0][0] / self.scale[0][1]
-			self.itemWidth = int(self.widgetSize[0] * scaleFactorHorizontal)  # Set itemWidth to the widgetWidth.
-			self.itemHeight = int(self.widgetSize[1] * scaleFactorVertical)  # Set itemHeight to the widgetHeight.
+			self.itemWidth = args.get("itemWidth", 0)
+			self.itemHeight = args.get("itemHeight", 0)
 		else:
 			print("[XmlMultiContent] Error: This is for internal usage and not an argument for a 'converter' tag!")
 
@@ -161,6 +164,7 @@ class XmlMultiContent(StringList, MultiContentTemplateParser):
 					template = modes[style][1]
 					selectionEnabled = self.template.get("selectionEnabled")
 					scrollbarMode = self.template.get("scrollbarMode")
+					itemWidth, itemHeight = self.scaleWithHeight(itemWidth, itemHeight)
 					self.content.setTemplate(template)
 					self.content.setItemWidth(itemWidth)
 					self.content.setItemHeight(itemHeight)

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-31 15:16+0000\n"
+"POT-Creation-Date: 2025-01-30 15:09+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -1591,6 +1591,22 @@ msgid "A file from media is in use!"
 msgstr "Egy fájl még használatban van a hordozón!"
 
 #, python-format
+msgid ""
+"A finished record timer wants to set your\n"
+"%s %s to standby. Do that now?"
+msgstr ""
+"A felvételi időzítő készenléti állapotba akarja\n"
+"helyezni a(z) %s %s készüléket. Engedélyezi?"
+
+#, python-format
+msgid ""
+"A finished record timer wants to shut down\n"
+"your %s %s. Shutdown now?"
+msgstr ""
+"A felvételi időzítő ki akarja kapcsolni\n"
+"a(z) %s %s készüléket. Engedélyezi?"
+
+#, python-format
 msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "A kikapcsolás időzítő újra akarja indítani a(z) %s %s készüléket.\n"
@@ -1612,22 +1628,6 @@ msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "A kikapcsolás időzítő ki akarja kapcsolni a(z) %s %s készüléket.\n"
 "Engedélyezi?"
-
-#, python-format
-msgid ""
-"A finished record timer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-"A felvételi időzítő készenléti állapotba akarja\n"
-"helyezni a(z) %s %s készüléket. Engedélyezi?"
-
-#, python-format
-msgid ""
-"A finished record timer wants to shut down\n"
-"your %s %s. Shutdown now?"
-msgstr ""
-"A felvételi időzítő ki akarja kapcsolni\n"
-"a(z) %s %s készüléket. Engedélyezi?"
 
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr "A távirányító képén egy kiemelés mutatja, hogy a súgó melyik gombra vonatkozik. Ha egynél több gomb hajtja végre a jelzett funkciót, egynél több kiemelés jelenik meg. A lista alatti szöveg felsorolja az aktív gombokat, és azt, hogy a funkcióhoz szükséges-e a gomb hosszan tartó megnyomása vagy a SHIFT használata."
@@ -1732,19 +1732,19 @@ msgstr "AC3 plusz transzkódolás"
 msgid "AFL"
 msgstr "AFL"
 
-msgid "AI-Powered Translation color"
+msgid "AI Translation color"
 msgstr ""
 
-msgid "AI-Powered Translation enabled"
+msgid "AI Translation enabled"
 msgstr ""
 
-msgid "AI-Powered Translation language"
+msgid "AI Translation language"
 msgstr ""
 
-msgid "AI-Powered Translation optimization"
+msgid "AI Translation optimization"
 msgstr ""
 
-msgid "AI-Powered Translation subscription code"
+msgid "AI Translation subscription code"
 msgstr ""
 
 #, fuzzy
@@ -1855,6 +1855,9 @@ msgid "Activate the configured network settings."
 msgstr "A megadott hálózati beállítások aktiválása."
 
 msgid "Activate the flash expander, save all changed settings and exit"
+msgstr ""
+
+msgid "Activate this device"
 msgstr ""
 
 msgid "Activate time shift End"
@@ -3288,9 +3291,6 @@ msgstr "Kiírás adathordozóra"
 msgid "Burundi"
 msgstr "Burundi"
 
-msgid "Bus: "
-msgstr "Busz: "
-
 msgid "Business & Finance"
 msgstr "Üzlet és Pénzügy"
 
@@ -3302,12 +3302,6 @@ msgstr ""
 
 msgid "ButtonSetup"
 msgstr "Távirányító gomb beállítás"
-
-msgid "By disk UUID"
-msgstr ""
-
-msgid "By disk label"
-msgstr ""
 
 msgid "Bypass HDMI EDID Check"
 msgstr "HDMI EDID ellenőrzés kihagyása"
@@ -3573,6 +3567,9 @@ msgstr ""
 "Nem lehet az élő TV adásra váltani!\n"
 "Váltson át az élő adásra és indítsa újra a Timeshift-t?"
 
+msgid "Can't move to trashcan!"
+msgstr "Nem helyezthető a kukába"
+
 msgid ""
 "Can't play the next time shift file!\n"
 "Switch to live TV and restart time shift ?"
@@ -3705,12 +3702,6 @@ msgstr ""
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Nem található jel... művelet megszakítva!"
-
-msgid "Cannot move to trash can"
-msgstr "Nem helyezthető a kukába"
-
-msgid "Capacity"
-msgstr ""
 
 #, fuzzy
 msgid "Cape Verde"
@@ -4596,9 +4587,6 @@ msgstr "Konfigurálja a kurzor viselkedését a csatorna kiválasztási listába
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "Beállíthatja, hogy a teletexthez milyen betűtípust milyen felbontásban használ."
 
-msgid "Select the duration of inactivity before the screen saver will be displayed."
-msgstr "Állítsa be a képernyővédő időtartamát percekben."
-
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
 msgstr ""
 
@@ -4668,7 +4656,7 @@ msgstr "Az antenna telepítés helyének földrajzi szélessége."
 msgid "Configure the longitude of your location."
 msgstr "Az antenna telepítés helyének földrajzi hosszúsága."
 
-msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can."
+msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trashcan."
 msgstr "A felvételekhez szükséges minimális szabad tárhely. Ha az elérhető szabad tárterület a megadott érték alá esik, a kukába helyezett elemek véglegesen törölve lesznek."
 
 msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
@@ -4683,7 +4671,7 @@ msgstr "Alhálózati maszk beállítása."
 msgid "Configure the network again"
 msgstr "Állítsa be újra hálózatát"
 
-msgid "Configure the number of days after which items are automatically removed from the trash can."
+msgid "Configure the number of days after which items are automatically removed from the trashcan."
 msgstr "Állítsa be azon napok számát, amelyek után az elemek automatikusan eltávolításra kerülnek a kukákból."
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
@@ -6211,10 +6199,6 @@ msgid "Directory"
 msgstr "Mappa"
 
 #, python-format
-msgid "Directory %s does not exist."
-msgstr "A %s mappa nem létezik."
-
-#, python-format
 msgid "Directory '%s' can't be linked to recordings!"
 msgstr ""
 
@@ -6426,15 +6410,8 @@ msgstr ""
 "Ez visszafordíthatatlan lesz!"
 
 #, python-format
-msgid "Do you really want to delete %s ?"
-msgstr "Biztos benne, hogy törölni szeretné: %s?"
-
-#, python-format
 msgid "Do you really want to delete '%s'?"
 msgstr "Biztos benne, hogy törölni szeretné ezt: %s?"
-
-msgid "Do you really want to delete ?"
-msgstr "Biztos benne, hogy törölni szeretne?"
 
 #, python-format
 msgid ""
@@ -6450,6 +6427,9 @@ msgstr ""
 msgid "Do you really want to delete this timer?"
 msgstr "Biztos benne, hogy törölni szeretné ezt az időzítést?"
 
+msgid "Do you really want to delete?"
+msgstr "Biztos benne, hogy törölni szeretne?"
+
 msgid "Do you really want to exit?"
 msgstr "Biztos benne, hogy ki szeretne lépni?"
 
@@ -6458,27 +6438,25 @@ msgid ""
 "All data on the device will be lost!"
 msgstr ""
 
-msgid "Do you really want to move to trashcan ?"
-msgstr "Biztos benne, hogy a kukába rakja?"
+#, python-format
+msgid "Do you really want to move '%s' to the trashcan?"
+msgstr ""
 
 #, python-format
-msgid "Do you really want to permanently remove '%s' from trash can ?"
+msgid "Do you really want to permanently remove '%s' from the trashcan?"
 msgstr "Biztos benne, hogy végleg eltávolítja a(z) %s a kukából?"
-
-msgid "Do you really want to permanently remove from trash can ?"
-msgstr "Biztos benne, hogy végleg el szeretné távolítani a kukából?"
 
 #, python-format
 msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "Biztos benne, hogy el szeretné távolítani a %s mappát a háttértárról?"
 
 #, python-format
-msgid "Do you really want to remove the timer for %s?"
-msgstr "Tényleg el szeretné távolítani a(z) %s időzítőt?"
+msgid "Do you really want to remove the bookmark for '%s'?"
+msgstr "Biztos benne, hogy el szeretné távolítani a(z) %s könyvjelzőt?"
 
 #, python-format
-msgid "Do you really want to remove your bookmark for '%s'?"
-msgstr "Biztos benne, hogy el szeretné távolítani a(z) %s könyvjelzőt?"
+msgid "Do you really want to remove the timer for %s?"
+msgstr "Tényleg el szeretné távolítani a(z) %s időzítőt?"
 
 msgid ""
 "Do you really want to restart OSCam?\n"
@@ -7203,10 +7181,16 @@ msgstr ""
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr ""
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
+msgstr ""
+
+msgid "Enable this option to show unknown storage devices in device manager."
 msgstr ""
 
 msgid "Enable this setting if your aerial system needs power."
@@ -7647,6 +7631,10 @@ msgstr "A %s mappa létrehozása nem sikerült."
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
 msgstr ""
+
+#, python-format
+msgid "Error: Directory '%s' does not exist!"
+msgstr "A %s mappa nem létezik."
 
 #, python-format
 msgid "Error: Failed to run service scan!  (%s)"
@@ -8297,16 +8285,13 @@ msgstr ""
 msgid "File Commander settings"
 msgstr "File Commander beállításai"
 
-msgid "File system"
-msgstr ""
-
 msgid "File System Check"
 msgstr "Fájlrendszer ellenőrzése"
 
 msgid "File System Packages"
 msgstr ""
 
-msgid "File appears to be busy.\n"
+msgid "File appears to be busy!\n"
 msgstr "A fájl használatban van.\n"
 
 msgid ""
@@ -8315,6 +8300,9 @@ msgid ""
 msgstr ""
 "Az oscam.conf fájl nem található.\n"
 "Kérem adja meg a felhasználónevet/jelszót."
+
+msgid "File system"
+msgstr ""
 
 msgid "File transfer was canceled by user!"
 msgstr ""
@@ -8328,9 +8316,6 @@ msgstr "fájlnév"
 
 msgid "Files/folders to exclude from backup"
 msgstr "Fájlok/mappák kizárása a mentésből"
-
-msgid "Filesystem"
-msgstr ""
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr ""
@@ -9627,6 +9612,9 @@ msgstr ""
 msgid "Image creation failed!"
 msgstr ""
 
+msgid "Image version"
+msgstr ""
+
 msgid "ImageWizard"
 msgstr "ImageWizard"
 
@@ -9750,6 +9738,9 @@ msgid "Include remote control data"
 msgstr "Távirányító típusának beállítása"
 
 msgid "Include screen load data"
+msgstr ""
+
+msgid "Include storage device data"
 msgstr ""
 
 msgid "Include teletext details"
@@ -12144,6 +12135,9 @@ msgstr "Nem észlelhető háttértár, vagy az nem lett inicializálva!"
 msgid "No Internet connection"
 msgstr ""
 
+msgid "No Name"
+msgstr ""
+
 msgid ""
 "No Settings loaded !!\n"
 "\n"
@@ -13194,7 +13188,7 @@ msgstr ""
 msgid "Perform the upgrade?"
 msgstr ""
 
-msgid "Permanently delete all recordings in the trash can?"
+msgid "Permanently delete all recordings in the trashcan?"
 msgstr "A kuka véglegesen kiüríthető?"
 
 msgid "Permanently ignore this device"
@@ -13445,6 +13439,9 @@ msgid "Please enter the new directory name:"
 msgstr ""
 
 msgid "Please enter the new file name:"
+msgstr ""
+
+msgid "Please enter the new name:"
 msgstr ""
 
 msgid "Please enter the new tag:"
@@ -15693,6 +15690,9 @@ msgstr "Tudomány & Tech"
 msgid "Scope"
 msgstr ""
 
+msgid "Screen saver movement"
+msgstr ""
+
 msgid "Script Manager"
 msgstr ""
 
@@ -15856,13 +15856,13 @@ msgstr ""
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Csak akkor válassza az 'igen' beállítást, ha multiswich-t használ, amelyhez DiSEqC Port-A parancs jelet igényel. Az összes többi beállításhoz válassza a 'nem' lehetőséget."
 
-msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
-msgstr ""
-
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
 msgstr ""
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
 msgstr ""
 
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
@@ -16078,9 +16078,6 @@ msgstr "További mentési fájlok kiválasztása"
 msgid "Select AutoCam default Softcam"
 msgstr ""
 
-msgid "Select Backup Location"
-msgstr "Válassza ki a mentés helyét"
-
 msgid "Select Bookmark"
 msgstr ""
 
@@ -16247,6 +16244,9 @@ msgstr "Válassza ki a kizárandó fájlokat a mentésből"
 
 msgid "Select files/folders to backup"
 msgstr "Válasszon fájlokat/mappákat a biztonsági mentéshez"
+
+msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
+msgstr ""
 
 msgid "Select how long to display status messages."
 msgstr ""
@@ -16503,6 +16503,9 @@ msgstr ""
 
 msgid "Select the display sequence of previously visited services."
 msgstr ""
+
+msgid "Select the duration of inactivity before the screen saver will be displayed."
+msgstr "Állítsa be a képernyővédő időtartamát percekben."
 
 #, python-format
 msgid "Select the file sort order for the %s column:"
@@ -16793,9 +16796,6 @@ msgstr "Válassza ki az ATSC szolgáltatót."
 
 msgid "Select your Language for Audio/Subtitles"
 msgstr "Válassza ki a nyelvet az Audióhoz / Feliratokhoz"
-
-msgid "Select your backup device."
-msgstr ""
 
 msgid "Select your country. If not available select 'All'."
 msgstr "Válassza ki az országot. Ha nem áll rendelkezésre, válassza az 'összes' lehetőséget."
@@ -17291,9 +17291,6 @@ msgstr "Audiomode beállítás"
 
 msgid "Setup Enigma2"
 msgstr "Enigma2 beállítás"
-
-msgid "Setup Harddisk"
-msgstr "Háttértár beállítása"
 
 msgid "Setup Inadyn"
 msgstr "Inadyn beállítása"
@@ -18218,6 +18215,9 @@ msgstr ""
 
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "Az ismeretlen videofelbontása a következő magasabb vagy legmagasabb képernyőfelbontásként."
+
+msgid "Show unknown devices"
+msgstr ""
 
 msgid "Show unknown video format as"
 msgstr "Ismeretlen videó formátum megjelenítése"
@@ -22191,9 +22191,6 @@ msgstr "Kérem várjon, mialatt a keresés folyik..."
 msgid "Waiting"
 msgstr "Várakozás"
 
-msgid "Waiting for mount"
-msgstr "Várakozás a megosztás csatlakozására"
-
 msgid "Waiting for partition"
 msgstr "Várakozás a partícióra"
 
@@ -22440,7 +22437,7 @@ msgstr "Egy 4:3-as kép méretarányú tartalom szét lesz nyújtva a képernyő
 msgid "When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels."
 msgstr "Ha engedélyezi, akkor a csatornaváltás közben, ha a csatornacsomag utolsó csatornájához értünk, ugorjon-e a következő csatornacsomagra, vagy sem."
 
-msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
+msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
 msgstr "A törölt fájlok kukába kerüljenek, azonnali megsemmisítés helyett."
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
@@ -22458,7 +22455,7 @@ msgstr "Lehessen kilépni a lejátszóból az EXIT gomb megnyomásával."
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Ezzel a funkcióval a motor forgását az áramfelvétel mérésével lehet ellenőrizni (amennyiben a tuner támogatja)."
 
-msgid "When enabled, network trash cans are probed for cleaning."
+msgid "When enabled, network trashcans are probed for cleaning."
 msgstr "Ha engedélyezve van, akkor a hálózati kuka is ürítésre kerül."
 
 msgid "When enabled, number markers will be hidden."
@@ -24167,6 +24164,28 @@ msgstr "igen (állapotok megtartása)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Do you really want to delete %s ?"
+#~ msgstr "Biztos benne, hogy törölni szeretné: %s?"
+
+#~ msgid "Do you really want to move to trashcan ?"
+#~ msgstr "Biztos benne, hogy a kukába rakja?"
+
+#~ msgid "Do you really want to permanently remove from trash can ?"
+#~ msgstr "Biztos benne, hogy végleg el szeretné távolítani a kukából?"
+
+#~ msgid "Bus: "
+#~ msgstr "Busz: "
+
+#~ msgid "Select Backup Location"
+#~ msgstr "Válassza ki a mentés helyét"
+
+#~ msgid "Setup Harddisk"
+#~ msgstr "Háttértár beállítása"
+
+#~ msgid "Waiting for mount"
+#~ msgstr "Várakozás a megosztás csatlakozására"
 
 #~ msgid "PowerTimer"
 #~ msgstr "Kikapcsolás Időzítő"

@@ -175,7 +175,12 @@ def resolveFilename(scope, base="", path_prefix=None):
 				join(scopeGUISkin, "skin_default"),
 				scopeGUISkin  # Deprecate top level of SCOPE_GUISKIN directory to allow a clean up.
 			])
-		path = checkPaths(skinResolveList, base)
+		if base.endswith(".xml"):  # If the base filename ends with ".xml" then add scopeConfig to the resolveList for support of old skins.
+			resolveList = skinResolveList[:]
+			resolveList.insert(2, scopeConfig)
+			path = checkPaths(resolveList, base)
+		else:
+			path = checkPaths(skinResolveList, base)
 	elif scope == SCOPE_LCDSKIN:
 		global lcdskinResolveList
 		if not lcdskinResolveList:

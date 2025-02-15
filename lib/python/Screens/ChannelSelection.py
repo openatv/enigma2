@@ -682,7 +682,7 @@ class ChannelSelectionBase(Screen):
 	def getBouquetList(self):
 		bouquets = []
 		if self.isSubservices():
- 			bouquets.append((self.getServiceName(self.subservicesBouquet), self.subservicesBouquet))
+			bouquets.append((self.getServiceName(self.subservicesBouquet), self.subservicesBouquet))
 		serviceHandler = eServiceCenter.getInstance()
 		if config.usage.multibouquet.value:
 			list = serviceHandler.list(self.bouquet_root)

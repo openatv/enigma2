@@ -215,7 +215,7 @@ class BackupScreen(ConfigListScreen, Screen):
 
 		if len(choices):
 			if len(choices) > 1:
-				self.session.openWithCallback(backuplocationCB, MessageBox, _("Please select medium to use as backup location"), list=choices, default=index, windowTitle=_("Backup Location"))
+				self.session.openWithCallback(backuplocationCB, MessageBox, _("Please select medium to use as backup location"), list=choices, default=index, windowTitle=_("Backup Location"), timeout=10)
 			else:
 				backuplocationCB(choices[0][1])
 		else:

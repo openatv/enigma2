@@ -678,7 +678,7 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 						return
 					except Exception as e:
 						print("[InfoBar] Failed to move to .Trash folder:", e)
-						msg = _("Cannot move to trash can") + "\n" + str(e) + "\n"
+						msg = _("Can't move to trashcan!") + "\n" + str(e) + "\n"
 				info = serviceHandler.info(ref)
 				name = info and info.getName(ref) or _("this recording")
 				msg += _("Do you really want to delete '%s'?") % name

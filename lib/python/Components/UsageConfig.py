@@ -821,6 +821,12 @@ def InitUsageConfig():
 		("nothing", _("Nothing"))
 	])
 
+	config.usage.show_in_operation = ConfigSelection(default="time", choices=[
+		("time", _("Time")),
+		("number", _("Channel Number")),
+		("nothing", _("Nothing"))
+	])
+
 	config.usage.show_message_when_recording_starts = ConfigYesNo(default=True)
 
 	config.usage.load_length_of_movies_in_moviellist = ConfigYesNo(default=True)
@@ -1674,6 +1680,7 @@ def InitUsageConfig():
 		eSubtitleSettings.setSubtitleBacktrans(configElement.value)
 
 	choiceList = [
+        (-1, _("Original")),
 		(0, _("No transparency")),
 		(12, "5%"),
 		(25, "10%"),
@@ -1693,7 +1700,7 @@ def InitUsageConfig():
 	def setDVBSubtitleBacktrans(configElement):
 		eSubtitleSettings.setDVBSubtitleBacktrans(configElement.value)
 
-	config.subtitles.dvb_subtitles_backtrans = ConfigSelection(default=0, choices=choiceList)
+	config.subtitles.dvb_subtitles_backtrans = ConfigSelection(default=-1, choices=choiceList)
 	config.subtitles.dvb_subtitles_backtrans.addNotifier(setDVBSubtitleBacktrans)
 
 	choiceList = []
@@ -1829,6 +1836,7 @@ def InitUsageConfig():
 	langsAI.append(("ar_eg", _("Arabic (Egyptian)")))
 	langsAI.append(("ar_ma", _("Arabic (Moroccan)")))
 	langsAI.append(("ar_sy", _("Arabic (Syro-Lebanese)")))
+	langsAI.append(("ar_iq", _("Arabic (Iraq)")))
 	langsAI.append(("ar_tn", _("Arabic (Tunisian)")))
 	langsAI.sort(key=lambda x: x[1])
 
@@ -1844,6 +1852,13 @@ def InitUsageConfig():
 
 	config.subtitles.ai_translate_to = ConfigSelection(default=default, choices=langsAI)
 	config.subtitles.ai_translate_to.addNotifier(setAiTranslateTo)
+
+	def setAiMode(configElement):
+		eSubtitleSettings.setAiMode(configElement.value)
+
+	config.subtitles.ai_mode = ConfigSelection(default=1, choices=[(x, f"{_("Mode")} {x}") for x in range(1, 4)])
+	config.subtitles.ai_mode.addNotifier(setAiMode)
+
 	# AI end
 
 	config.autolanguage = ConfigSubsection()

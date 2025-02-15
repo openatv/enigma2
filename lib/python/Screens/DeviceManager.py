@@ -989,7 +989,7 @@ class DeviceManagerMountPoints(Setup):
 				fileSystems.extend(["hfsplus", "btrfs", "xfs"])
 			devMount = device[0].replace("/dev/", "/media/")
 			choiceList.append((devMount, devMount))
-			choiceList.append(("", "Custom"))
+			choiceList.append(("", _("Custom")))
 			self.mountPoints.append(NoSave(ConfigSelection(default=defaultMountpoint, choices=choiceList)))
 			self.customMountPoints.append(NoSave(ConfigText(fixed_size=False)))
 			fileSystemChoices = [(x, x) for x in fileSystems]

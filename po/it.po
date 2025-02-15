@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-31 15:16+0000\n"
-"PO-Revision-Date: 2025-01-01 18:30+0000\n"
+"POT-Creation-Date: 2025-01-30 15:09+0000\n"
+"PO-Revision-Date: 2025-02-01 12:01+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -1556,21 +1556,6 @@ msgid "A file from media is in use!"
 msgstr "C'è un file aperto nel dispositivo!"
 
 #, python-format
-msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
-msgstr "Un timer di accensione finito vuole riavviare il %s %s. Farlo ora?"
-
-msgid "A finished scheduled timer wants to restart the user interface. Do that now?"
-msgstr "Un timer di accensione finito desidera riavviare l'interfaccia utente. Farlo ora?"
-
-#, python-format
-msgid "A finished scheduled timer wants to set your %s %s to standby. Do that now?"
-msgstr "Un timer di accensione finito vuole impostare il %s %s in standby. Farlo ora?"
-
-#, python-format
-msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
-msgstr "Un timer di accensione finito vuole spegnere il %s %s. Farlo ora?"
-
-#, python-format
 msgid ""
 "A finished record timer wants to set your\n"
 "%s %s to standby. Do that now?"
@@ -1585,6 +1570,21 @@ msgid ""
 msgstr ""
 "Il termine di una registrazione programmata prevede\n"
 "di spegnere il %s %s. Farlo ora?"
+
+#, python-format
+msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
+msgstr "Un timer di accensione finito vuole riavviare il %s %s. Farlo ora?"
+
+msgid "A finished scheduled timer wants to restart the user interface. Do that now?"
+msgstr "Un timer di accensione finito desidera riavviare l'interfaccia utente. Farlo ora?"
+
+#, python-format
+msgid "A finished scheduled timer wants to set your %s %s to standby. Do that now?"
+msgstr "Un timer di accensione finito vuole impostare il %s %s in standby. Farlo ora?"
+
+#, python-format
+msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
+msgstr "Un timer di accensione finito vuole spegnere il %s %s. Farlo ora?"
 
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr "Un'evidenziazione sull'immagine del telecomando mostra a quale tasto si riferisce la guida. Se più di un tasto esegue la funzione indicata, verrà visualizzata più di un'evidenziazione. Il testo sotto l'elenco elenca i tasti attivi e se la funzione richiede una pressione prolungata o SHIFT dai tasti."
@@ -1692,19 +1692,19 @@ msgstr "Transcodifica AC3plus"
 msgid "AFL"
 msgstr "AFL"
 
-msgid "AI-Powered Translation color"
+msgid "AI Translation color"
 msgstr "Colore di traduzione basato sull'intelligenza artificiale"
 
-msgid "AI-Powered Translation enabled"
+msgid "AI Translation enabled"
 msgstr "Traduzione basata sull'intelligenza artificiale abilitata"
 
-msgid "AI-Powered Translation language"
+msgid "AI Translation language"
 msgstr "Linguaggio di traduzione basato sull'intelligenza artificiale"
 
-msgid "AI-Powered Translation optimization"
+msgid "AI Translation optimization"
 msgstr "Ottimizzazione della traduzione basata sull'IA"
 
-msgid "AI-Powered Translation subscription code"
+msgid "AI Translation subscription code"
 msgstr "Codice di abbonamento alla traduzione basata sull'intelligenza artificiale"
 
 msgid "ARM"
@@ -1814,6 +1814,9 @@ msgstr "Attiva impostazioni di rete configurate."
 
 msgid "Activate the flash expander, save all changed settings and exit"
 msgstr "Attiva espansore flash, salva tutte le impostazioni modificate ed esci"
+
+msgid "Activate this device"
+msgstr "Attiva questo dispositivo"
 
 msgid "Activate time shift End"
 msgstr "Attiva fine del timeshift"
@@ -2245,10 +2248,10 @@ msgid "Also import at reboot/restart enigma2"
 msgstr "Importa anche in fase di Avvio/Riavvio di Enigma2"
 
 msgid "Also import from the extension menu"
-msgstr "Importare anche dal menu delle estensioni"
+msgstr "Importa anche dal menu delle estensioni"
 
 msgid "Also import when box is leaving standby"
-msgstr "Importare anche quando il ricevitore sta uscendo dalla sospensione"
+msgstr "Importa anche quando il ricevitore sta uscendo dalla sospensione"
 
 msgid "Also on standby"
 msgstr "Anche in standby"
@@ -3236,9 +3239,6 @@ msgstr "Masterizza su supporto"
 msgid "Burundi"
 msgstr "Burundi"
 
-msgid "Bus: "
-msgstr "Bus: "
-
 msgid "Business & Finance"
 msgstr "Affari & Finanza"
 
@@ -3250,12 +3250,6 @@ msgstr "Timeout errore tasto"
 
 msgid "ButtonSetup"
 msgstr "Impostazioni tasti"
-
-msgid "By disk UUID"
-msgstr "Per UUID disco"
-
-msgid "By disk label"
-msgstr "Per etichetta disco"
 
 msgid "Bypass HDMI EDID Check"
 msgstr "Ignora controllo HDMI EDID"
@@ -3539,6 +3533,9 @@ msgstr ""
 "Non riesco a passare alla TV in diretta!\n"
 "Passare alla TV in diretta e riavviare timeshift?"
 
+msgid "Can't move to trashcan!"
+msgstr "Impossibile spostare nel cestino!"
+
 msgid ""
 "Can't play the next time shift file!\n"
 "Switch to live TV and restart time shift ?"
@@ -3664,12 +3661,6 @@ msgstr "Impossibile determinare il limite %s..., interruzione!"
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Impossibile trovare alcun segnale... annullo tutto!"
-
-msgid "Cannot move to trash can"
-msgstr "Impossibile spostare nel cestino"
-
-msgid "Capacity"
-msgstr "Capacità"
 
 msgid "Cape Verde"
 msgstr "Capo Verde"
@@ -4555,9 +4546,6 @@ msgstr "Configura comportamento del cursore nell'elenco di selezione dei canali.
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "Configura risoluzione dello schermo e carattere usato per il televideo."
 
-msgid "Select the duration of inactivity before the screen saver will be displayed."
-msgstr "Configura durata in minuti prima che venga visualizzato lo screen saver."
-
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
 msgstr "Configura durata, in minuti, prima dell'attivazione del timer di risparmio energetico."
 
@@ -4627,7 +4615,7 @@ msgstr "Configura latitudine della tua posizione."
 msgid "Configure the longitude of your location."
 msgstr "Configura longitudine della tua posizione."
 
-msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can."
+msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trashcan."
 msgstr "Configura quantità minima di spazio su disco disponibile per le registrazioni. Quando la quantità di spazio scende al di sotto di questo valore, gli elementi eliminati verranno rimossi dal cestino."
 
 msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
@@ -4642,7 +4630,7 @@ msgstr "Configura maschera di rete."
 msgid "Configure the network again"
 msgstr "Configura di nuovo la rete"
 
-msgid "Configure the number of days after which items are automatically removed from the trash can."
+msgid "Configure the number of days after which items are automatically removed from the trashcan."
 msgstr "Configura numero di giorni dopo i quali gli elementi vengono automaticamente rimossi dal cestino."
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
@@ -6156,10 +6144,6 @@ msgid "Directory"
 msgstr "Cartella"
 
 #, python-format
-msgid "Directory %s does not exist."
-msgstr "La cartella %s non esiste."
-
-#, python-format
 msgid "Directory '%s' can't be linked to recordings!"
 msgstr "Impossibile collegare la cartella '%s' alle registrazioni!"
 
@@ -6371,15 +6355,8 @@ msgstr ""
 "Non puoi tornare indietro!"
 
 #, python-format
-msgid "Do you really want to delete %s ?"
-msgstr "Vuoi davvero eliminare %s?"
-
-#, python-format
 msgid "Do you really want to delete '%s'?"
 msgstr "Vuoi davvero eliminare '%s'?"
-
-msgid "Do you really want to delete ?"
-msgstr "Vuoi davvero eliminare?"
 
 #, python-format
 msgid ""
@@ -6399,6 +6376,9 @@ msgstr ""
 msgid "Do you really want to delete this timer?"
 msgstr "Vuoi davvero eliminare questo timer?"
 
+msgid "Do you really want to delete?"
+msgstr "Vuoi davvero eliminare?"
+
 msgid "Do you really want to exit?"
 msgstr "Vuoi davvero uscire?"
 
@@ -6409,27 +6389,25 @@ msgstr ""
 "Vuoi davvero formattare il dispositivo nel file system Linux?\n"
 "Tutti i dati sul dispositivo andranno persi!"
 
-msgid "Do you really want to move to trashcan ?"
-msgstr "Vuoi davvero spostarlo nel cestino?"
+#, python-format
+msgid "Do you really want to move '%s' to the trashcan?"
+msgstr "Vuoi davvero spostare '%s' nel cestino?"
 
 #, python-format
-msgid "Do you really want to permanently remove '%s' from trash can ?"
+msgid "Do you really want to permanently remove '%s' from the trashcan?"
 msgstr "Vuoi davvero rimuovere definitivamente '%s' dal cestino?"
-
-msgid "Do you really want to permanently remove from trash can ?"
-msgstr "Vuoi davvero rimuovere definitivamente dal cestino?"
 
 #, python-format
 msgid "Do you really want to remove directory '%s' from the disk?"
 msgstr "Vuoi davvero rimuovere la cartella %s dal disco?"
 
 #, python-format
-msgid "Do you really want to remove the timer for %s?"
-msgstr "Vuoi davvero rimuovere il timer per %s?"
+msgid "Do you really want to remove the bookmark for '%s'?"
+msgstr "Vuoi davvero rimuovere il segnalibro di %s?"
 
 #, python-format
-msgid "Do you really want to remove your bookmark for '%s'?"
-msgstr "Vuoi davvero rimuovere il segnalibro di %s?"
+msgid "Do you really want to remove the timer for %s?"
+msgstr "Vuoi davvero rimuovere il timer per %s?"
 
 msgid ""
 "Do you really want to restart OSCam?\n"
@@ -7159,11 +7137,17 @@ msgstr "Abilita questa opzione per aggiungere dati del controllo remoto al file 
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr "Abilita questa opzione per aggiungere nomi di schermate e dati di risoluzione al file di registro di debug."
 
+msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
+msgstr "Abilita questa opzione per aggiungere al file di registro di debug le informazioni sul dispositivo di archiviazione rilevato durante l'avvio del sistema e gli eventi di hot plug."
+
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Abilita questa opzione per aggiungere dati di debug del timer al file di registro di debug."
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
 msgstr "Abilita questa opzione per mostrare tutte le schermate Informazioni disponibili nell'elenco delle voci del menu Informazioni."
+
+msgid "Enable this option to show unknown storage devices in device manager."
+msgstr "Abilita questa opzione per mostrare i dispositivi di archiviazione sconosciuti in gestione dispositivi."
 
 msgid "Enable this setting if your aerial system needs power."
 msgstr "Abilita questa impostazione se l'antenna necessita di alimentazione."
@@ -7604,6 +7588,10 @@ msgstr "Errore: creazione della cartella '%s' non riuscita!"
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
 msgstr "Errore: creazione della cartella di destinazione picon %s non riuscita"
+
+#, python-format
+msgid "Error: Directory '%s' does not exist!"
+msgstr "Errore: la cartella '%s' non esiste!"
 
 #, python-format
 msgid "Error: Failed to run service scan!  (%s)"
@@ -8253,16 +8241,13 @@ msgstr "File Commander Azioni dell'Editor di testo"
 msgid "File Commander settings"
 msgstr "File Commander Impostazioni"
 
-msgid "File system"
-msgstr "File system"
-
 msgid "File System Check"
 msgstr "Controllo file system"
 
 msgid "File System Packages"
 msgstr "Pacchetti file system"
 
-msgid "File appears to be busy.\n"
+msgid "File appears to be busy!\n"
 msgstr "Il file sembra occupato.\n"
 
 msgid ""
@@ -8271,6 +8256,9 @@ msgid ""
 msgstr ""
 "File oscam.conf non trovato.\n"
 "Inserisci nome utente/password manualmente."
+
+msgid "File system"
+msgstr "File system"
 
 msgid "File transfer was canceled by user!"
 msgstr "Il trasferimento file è stato annullato dall'utente!"
@@ -8283,9 +8271,6 @@ msgstr "Nome del file"
 
 msgid "Files/folders to exclude from backup"
 msgstr "File o cartelle da escludere dal backup"
-
-msgid "Filesystem"
-msgstr "Filesystem"
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
 msgstr "Compila EPG del canale dall'EPG trasmesso dove non c'è EPG IceTV per il canale"
@@ -9570,6 +9555,9 @@ msgstr "Immagine creata:"
 msgid "Image creation failed!"
 msgstr "Creazione immagine fallita!"
 
+msgid "Image version"
+msgstr "Versione immagine"
+
 msgid "ImageWizard"
 msgstr "Creazione guidata immagine"
 
@@ -9583,19 +9571,19 @@ msgid "Immediately restart selected devices."
 msgstr "Riavvia immediatamente i dispositivi selezionati."
 
 msgid "Import channels and/or EPG from remote receiver URL also when the receiver is getting out of standby"
-msgstr "Importare i canali e/o l'EPG dall'URL del ricevitore remoto anche quando il ricevitore sta uscendo dalla sospensione"
+msgstr "Importa i canali e/o l'EPG dall'URL del ricevitore remoto anche quando il ricevitore sta uscendo dalla sospensione"
 
 msgid "Import channels and/or EPG from remote receiver URL when receiver is booted"
-msgstr "Importare i canali dall'URL del ricevitore remoto quando il ricevitore viene avviato"
+msgstr "Importa i canali dall'URL del ricevitore remoto quando il ricevitore viene avviato"
 
 msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
-msgstr "Importare i canali e/o l'EPG dall'URL del ricevitore remoto quando il ricevitore o Enigma2 viene riavviato"
+msgstr "Importa i canali e/o l'EPG dall'URL del ricevitore remoto quando il ricevitore o Enigma2 viene riavviato"
 
 msgid "Import from remote receiver URL"
-msgstr "Importare dall'URL del ricevitore remoto"
+msgstr "Importa dall'URL del ricevitore remoto"
 
 msgid "Import remote receiver URL"
-msgstr "Importare URL del ricevitore remoto"
+msgstr "Importa URL del ricevitore remoto"
 
 msgid "In addition to the check at an event start, a repetitive check can be used, so that the conditions 'buffer limit in hours' or 'check free space' are detected earlier."
 msgstr "In aggiunta al controllo ad inizio programma, si può impostare un controllo ciclico, in modo che si controllino per tempo il verificarsi delle condizioni 'limite di buffer in ore' e 'spazio libero'."
@@ -9690,6 +9678,9 @@ msgstr "Includi dati del telecomando"
 
 msgid "Include screen load data"
 msgstr "Includi dati di caricamento dello schermo"
+
+msgid "Include storage device data"
+msgstr "Includi dati del dispositivo di archiviazione"
 
 msgid "Include teletext details"
 msgstr "Includi dettagli del televideo"
@@ -12032,6 +12023,9 @@ msgstr "HDD non trovato o non formattato!"
 msgid "No Internet connection"
 msgstr "Nessuna connessione Internet"
 
+msgid "No Name"
+msgstr "Nessun nome"
+
 msgid ""
 "No Settings loaded !!\n"
 "\n"
@@ -13069,7 +13063,7 @@ msgstr "Esegui invece un flash in linea"
 msgid "Perform the upgrade?"
 msgstr "Eseguire l'aggiornamento?"
 
-msgid "Permanently delete all recordings in the trash can?"
+msgid "Permanently delete all recordings in the trashcan?"
 msgstr "Eliminare definitivamente tutte le registrazioni nel cestino?"
 
 msgid "Permanently ignore this device"
@@ -13319,6 +13313,9 @@ msgstr "Inserisci un nuovo nome per la cartella:"
 
 msgid "Please enter the new file name:"
 msgstr "Inserisci un nuovo nome per il file:"
+
+msgid "Please enter the new name:"
+msgstr "Inserisci il nuovo nome:"
 
 msgid "Please enter the new tag:"
 msgstr "Inserisci il nuovo tag:"
@@ -15560,6 +15557,9 @@ msgstr "Scienza e tecnologia"
 msgid "Scope"
 msgstr "Scope"
 
+msgid "Screen saver movement"
+msgstr "Movimento screensaver"
+
 msgid "Script Manager"
 msgstr "Gestore script"
 
@@ -15719,14 +15719,14 @@ msgstr "Seleziona 'Sì' se le regolazioni del volume devono essere applicate all
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Seleziona 'Sì' se stai usando un multiswitch che necessita del comando DiSEqC Port-A. Seleziona 'No' per tutte le altre impostazioni."
 
-msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
-msgstr "Seleziona 'Sì' se vuoi riattivare la TV per l'avvio del timer di accensione 'Risveglio'."
-
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
 msgstr "Seleziona 'Sì' se vuoi riattivare la TV per l'avvio del timer di registrazione \"Zap e registra\"."
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
 msgstr "Seleziona 'Sì' se vuoi riattivare la TV per l'avvio del timer di registrazione \"Zap\"."
+
+msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
+msgstr "Seleziona 'Sì' se vuoi riattivare la TV per l'avvio del timer di accensione 'Risveglio'."
 
 msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused."
 msgstr "Seleziona 'Sì' per mantenere la barra informazioni visualizzata, senza timeout, mentre la riproduzione multimediale è in pausa."
@@ -15941,9 +15941,6 @@ msgstr "Seleziona file di backup aggiuntivi"
 msgid "Select AutoCam default Softcam"
 msgstr "Seleziona softcam predefinita per AutoCam"
 
-msgid "Select Backup Location"
-msgstr "Seleziona posizione di backup"
-
 msgid "Select Bookmark"
 msgstr "Seleziona segnalibro"
 
@@ -16110,6 +16107,9 @@ msgstr "Seleziona file che saranno esclusi dal backup"
 
 msgid "Select files/folders to backup"
 msgstr "Seleziona file/ cartelle di cui eseguire il backup"
+
+msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
+msgstr "Seleziona per quanto tempo l'immagine dello screensaver rimarrà nella stessa posizione sullo schermo prima di essere spostata."
 
 msgid "Select how long to display status messages."
 msgstr "Seleziona per quanto tempo visualizzare i messaggi di stato."
@@ -16365,6 +16365,9 @@ msgstr "Seleziona opzioni di visualizzazione per ciascuna voce di menu. Se sono 
 
 msgid "Select the display sequence of previously visited services."
 msgstr "Seleziona sequenza di visualizzazione dei servizi visitati in precedenza."
+
+msgid "Select the duration of inactivity before the screen saver will be displayed."
+msgstr "Configura durata in minuti prima che venga visualizzato lo screen saver."
 
 #, python-format
 msgid "Select the file sort order for the %s column:"
@@ -16658,9 +16661,6 @@ msgstr "Seleziona fornitore ATSC."
 
 msgid "Select your Language for Audio/Subtitles"
 msgstr "Seleziona lingua per Audio/Sottotitoli"
-
-msgid "Select your backup device."
-msgstr "Seleziona dispositivo di backup."
 
 msgid "Select your country. If not available select 'All'."
 msgstr "Seleziona paese. Se non disponibile seleziona 'Tutti'."
@@ -17160,9 +17160,6 @@ msgstr "Imposta modalità audio"
 
 msgid "Setup Enigma2"
 msgstr "Imposta Enigma2"
-
-msgid "Setup Harddisk"
-msgstr "Imposta disco rigido"
 
 msgid "Setup Inadyn"
 msgstr "Imposta Inadyn"
@@ -18074,6 +18071,9 @@ msgstr "Mostra caratteri di sottolineatura"
 
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "Mostra risoluzione video sconosciuta come risoluzione dello schermo successiva o più alta."
+
+msgid "Show unknown devices"
+msgstr "Mostra dispositivi sconosciuti"
 
 msgid "Show unknown video format as"
 msgstr "Mostra formato video sconosciuto come"
@@ -22075,9 +22075,6 @@ msgstr "Attendi, scansione in corso…"
 msgid "Waiting"
 msgstr "In attesa"
 
-msgid "Waiting for mount"
-msgstr "In attesa di montaggio"
-
 msgid "Waiting for partition"
 msgstr "Attendi il partizionamento"
 
@@ -22325,7 +22322,7 @@ msgstr "Se abilitato, il contenuto con un aspect ratio di 4:3 verrà ampliato pe
 msgid "When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels."
 msgstr "Se abilitato, passerà al bouquet successivo se verrà raggiunto l'ultimo canale del bouquet attuale mentre si cambia canale."
 
-msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
+msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
 msgstr "Se abilitato, le registrazioni eliminate verranno spostate nel cestino, invece di essere eliminate immediatamente."
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
@@ -22343,7 +22340,7 @@ msgstr "Se abilitato, sarà possibile lasciare il movieplayer con esci."
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Se abilitato, misurerà il consumo di energia per rilevare quando il motore smette di girare (se supportato dal tuner)."
 
-msgid "When enabled, network trash cans are probed for cleaning."
+msgid "When enabled, network trashcans are probed for cleaning."
 msgstr "Se abilitato, il cestino di rete sarà visualizzato prima dello svuotamento."
 
 msgid "When enabled, number markers will be hidden."
@@ -24050,6 +24047,43 @@ msgstr "sì (mantieni feed)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "Do you really want to delete %s ?"
+#~ msgstr "Vuoi davvero eliminare %s?"
+
+#~ msgid "Do you really want to move to trashcan ?"
+#~ msgstr "Vuoi davvero spostarlo nel cestino?"
+
+#~ msgid "Do you really want to permanently remove from trash can ?"
+#~ msgstr "Vuoi davvero rimuovere definitivamente dal cestino?"
+
+#~ msgid "Bus: "
+#~ msgstr "Bus: "
+
+#~ msgid "By disk UUID"
+#~ msgstr "Per UUID disco"
+
+#~ msgid "By disk label"
+#~ msgstr "Per etichetta disco"
+
+#~ msgid "Capacity"
+#~ msgstr "Capacità"
+
+#~ msgid "Filesystem"
+#~ msgstr "Filesystem"
+
+#~ msgid "Select Backup Location"
+#~ msgstr "Seleziona posizione di backup"
+
+#~ msgid "Select your backup device."
+#~ msgstr "Seleziona dispositivo di backup."
+
+#~ msgid "Setup Harddisk"
+#~ msgstr "Imposta disco rigido"
+
+#~ msgid "Waiting for mount"
+#~ msgstr "In attesa di montaggio"
 
 #~ msgid "PowerTimer"
 #~ msgstr "Timer di accensione "

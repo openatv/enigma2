@@ -149,6 +149,7 @@
 		<item level="0" text="Status of the display in standby mode" description="With this option you can switch off the display in Standby Mode." requires="Power4x7Standby">config.usage.lcd_power4x7standby</item>
 		<item level="0" text="Status of the display in deep standby" description="With this option you can switch off the display in Deep Standby Mode." requires="Power4x7Suspend">config.usage.lcd_power4x7suspend</item>
 		<item level="0" text="Show in Standby" description="This option allows you choose if the display shows the time or nothing in Standby." requires="7segment">config.usage.show_in_standby</item>
+		<item level="0" text="Show during operation" description="This option allows you choose if the display shows the time, channel number or nothing during operation." requires="7segment">config.usage.show_in_operation</item>
 		<item level="2" text="Initial scroll delay" description="Delay in milliseconds before start of scrolling text on display." requires="VFD_initial_scroll_delay">config.usage.vfd_initial_scroll_delay</item>
 		<item level="2" text="Final scroll delay" description="Delay in milliseconds after finish scrolling text on display." requires="VFD_final_scroll_delay">config.usage.vfd_final_scroll_delay</item>
 		<item level="1" text="Repeat Display Message" description="If the text is too long to be displayed on the front panel, it will be repeated (number of times)." requires="VFD_scroll_repeats">config.usage.vfd_scroll_repeats</item>
@@ -517,10 +518,10 @@
 		<item level="2" text="Enable core dumps *" description="Core dumps are helpful for developers in case of a FATAL SIGNAL crash in the C++ code. Typical core dump size is 110 MB so adjust maximum space used and choose proper location.">config.crash.coredump</item>
 	</setup>
 	<setup key="MovieSelection" title="Movie List Settings" showOpenWebif="1">
-		<item level="0" text="Use 'Trash' in movie list" description="When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately.">config.usage.movielist_trashcan</item>
-		<item level="0" text="Purge 'Trash' after (days)" description="Configure the number of days after which items are automatically removed from the trash can.">config.usage.movielist_trashcan_days</item>
-		<item level="0" text="Clean network 'Trash'" description="When enabled, network trash cans are probed for cleaning.">config.usage.movielist_trashcan_network_clean</item>
-		<item level="0" text="Space to reserve for recordings (GB)" description="Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can.">config.usage.movielist_trashcan_reserve</item>
+		<item level="0" text="Use 'Trash' in movie list" description="When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately.">config.usage.movielist_trashcan</item>
+		<item level="0" text="Purge 'Trash' after (days)" description="Configure the number of days after which items are automatically removed from the trashcan.">config.usage.movielist_trashcan_days</item>
+		<item level="0" text="Clean network 'Trash'" description="When enabled, network trashcans are probed for cleaning.">config.usage.movielist_trashcan_network_clean</item>
+		<item level="0" text="Space to reserve for recordings (GB)" description="Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trashcan.">config.usage.movielist_trashcan_reserve</item>
 		<item level="0" text="Background delete option" description="Configure on which devices the background delete option should be used.">config.misc.erase_flags</item>
 		<item level="0" text="Background delete speed" description="Configure the speed of the background deletion process. Lower speed will consume less hard disk drive performance.">config.misc.erase_speed</item>
 		<item level="0" text="Font size" description="This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.movielist.fontsize</item>
@@ -633,10 +634,10 @@
 		<item level="2" text="Time jump multiplier for fast backward" description="Defines the jump distance for backward jumps. The value is multiplied by the rewind speed, e.g. -4x. Values significantly lower than 2s may not work with all media files.">config.seek.withjumps_backwards_ms</item>
 		<item level="2" text="Time jump repeat interval for fast forward/backward" description="Defines how fast the time jumps are repeated. Values lower than 500ms may be problematic with NAS.">config.seek.withjumps_repeat_ms</item>
 		<item level="2" text="Time jump avoid zero step size" description="Avoid getting stuck (at the expense of some stuttering) when the jump time is smaller than the time between I-frames.">config.seek.withjumps_avoid_zero</item>
-		<item level="1" text="Use 'Trash' in movie list" description="When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately.">config.usage.movielist_trashcan</item>
-		<item level="1" text="Purge 'Trash' after (days)" description="Configure the number of days after which items are automatically removed from the trash can.">config.usage.movielist_trashcan_days</item>
-		<item level="1" text="Clean network 'Trash'" description="When enabled, network trash cans are probed for cleaning.">config.usage.movielist_trashcan_network_clean</item>
-		<item level="1" text="Space to reserve for recordings (GB)" description="Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can.">config.usage.movielist_trashcan_reserve</item>
+		<item level="1" text="Use 'Trash' in movie list" description="When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately.">config.usage.movielist_trashcan</item>
+		<item level="1" text="Purge 'Trash' after (days)" description="Configure the number of days after which items are automatically removed from the trashcan.">config.usage.movielist_trashcan_days</item>
+		<item level="1" text="Clean network 'Trash'" description="When enabled, network trashcans are probed for cleaning.">config.usage.movielist_trashcan_network_clean</item>
+		<item level="1" text="Space to reserve for recordings (GB)" description="Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trashcan.">config.usage.movielist_trashcan_reserve</item>
 		<item level="2" text="Background delete option" description="Configure on which devices the background delete option should be used.">config.misc.erase_flags</item>
 		<item level="2" text="Background delete speed" description="Configure the speed of the background deletion process. Lower speed will consume less hard disk drive performance.">config.misc.erase_speed</item>
 	</setup>
@@ -687,9 +688,9 @@
 		<item level="2" text="Limit character set for recording filenames" description="Limit the characters that can be used in recording filenames to (7 bit) ASCII. This ensures compatibility with operating systems or file systems with limited character sets.">config.recording.ascii_filenames</item>
 		<item level="2" text="Composition of the recording filenames" description="Configure how recording filenames are constructed. Standard: Date Time - Channel - Title Very very short: Title Very short: Title - Date Time Short with time: Date Time - Title Short: Date - Title Long: Date Time - Channel - Title - Info">config.recording.filename_composition</item>
 		<item level="2" text="Remove completed timers after" description="Configure the number of days old timers are kept before they are automatically removed from the timer list.">config.recording.keep_timers</item>
-		<item level="1" text="Purge 'Trash' after (days)" description="Configure the number of days after which items are automatically removed from the trash can.">config.usage.movielist_trashcan_days</item>
-		<item level="1" text="Clean network 'Trash'" description="When enabled, network trash cans are probed for cleaning.">config.usage.movielist_trashcan_network_clean</item>
-		<item level="1" text="Space to reserve for recordings (GB)" description="Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can.">config.usage.movielist_trashcan_reserve</item>
+		<item level="1" text="Purge 'Trash' after (days)" description="Configure the number of days after which items are automatically removed from the trashcan.">config.usage.movielist_trashcan_days</item>
+		<item level="1" text="Clean network 'Trash'" description="When enabled, network trashcans are probed for cleaning.">config.usage.movielist_trashcan_network_clean</item>
+		<item level="1" text="Space to reserve for recordings (GB)" description="Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trashcan.">config.usage.movielist_trashcan_reserve</item>
 		<item level="2" text="Background delete option" description="Configure on which devices the background delete option should be used.">config.misc.erase_flags</item>
 		<item level="2" text="Background delete speed" description="Configure the speed of the background deletion process. Lower speed will consume less hard disk drive performance.">config.misc.erase_speed</item>
 		<item level="2" text="Always include ECM in recordings" description="Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver.">config.recording.always_ecm</item>
@@ -884,11 +885,12 @@
 	</setup>
 	<setup key="Subtitle" title="Subtitle Settings" level="2" showOpenWebif="1">
 		<if requires="AISubs">
-			<item level="2" text="AI-Powered Translation enabled" description="Select 'Yes' to enable AI-Powered Translation for all teletext and DVB subtitles.">config.subtitles.ai_enabled</item>
-			<item level="2" text="AI-Powered Translation language" description="Select the AI-Powered Translation target language.">config.subtitles.ai_translate_to</item>
-			<item level="2" text="AI-Powered Translation color" description="Select the color to be used for the AI-Powered Translation text.">config.subtitles.ai_subtitle_colors</item>
-			<item level="2" text="AI-Powered Translation optimization" description="The AI-Powered Translation service will be optimized to provide the best performance based on the the Internet connection upload speed selected.">config.subtitles.ai_connection_speed</item>
-			<item level="2" text="AI-Powered Translation subscription code" description="Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15.">config.subtitles.ai_subscription_code</item>
+			<item level="2" text="AI Translation enabled" description="Select 'Yes' to enable AI-Powered Translation for all teletext and DVB subtitles.">config.subtitles.ai_enabled</item>
+			<item level="2" text="AI Translation language" description="Select the AI-Powered Translation target language.">config.subtitles.ai_translate_to</item>
+			<item level="2" text="AI Translation color" description="Select the color to be used for the AI-Powered Translation text.">config.subtitles.ai_subtitle_colors</item>
+			<item level="2" text="AI Translation optimization" description="The AI-Powered Translation service will be optimized to provide the best performance based on the the Internet connection upload speed selected.">config.subtitles.ai_connection_speed</item>
+			<item level="2" text="AI Translation subscription code" description="Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15.">config.subtitles.ai_subscription_code</item>
+			<item level="2" text="AI Translation mode" description="The AI mode used for translating languages. You can choose the one that gives the most accurate translation for your target language.">config.subtitles.ai_mode</item>
 		</if>
 		<item level="2" text="Teletext subtitle color" description="Configure the color of the teletext subtitles.">config.subtitles.ttx_subtitle_colors</item>
 		<item level="2" text="Use original teletext position" description="When enabled, teletext subtitles will be displayed at their original position.">config.subtitles.ttx_subtitle_original_position</item>

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-31 15:16+0000\n"
+"POT-Creation-Date: 2025-01-30 15:09+0000\n"
 "PO-Revision-Date: 2016-04-02 23:09+0200\n"
 "Last-Translator: Stig-O <stiose@hotmail.com>\n"
 "Language-Team: Stig-O\n"
@@ -1742,6 +1742,24 @@ msgstr ""
 
 #
 #, python-format
+msgid ""
+"A finished record timer wants to set your\n"
+"%s %s to standby. Do that now?"
+msgstr ""
+"En avluttet timer ønsker å sette din\n"
+"%s %s i dvalemodus. Skal det gjøres nå ?"
+
+#
+#, python-format
+msgid ""
+"A finished record timer wants to shut down\n"
+"your %s %s. Shutdown now?"
+msgstr ""
+"Et avluttet timer ønsker å slå av\n"
+"din %s %s. Skal den slås av nå ?"
+
+#
+#, python-format
 msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
 msgstr ""
 "Et avluttet powertimer ønsker å restart din %s %s.\n"
@@ -1766,24 +1784,6 @@ msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "Et avluttet powertimer ønsker å slå av din %s %s.\n"
 "Skal den slås av nå ?"
-
-#
-#, python-format
-msgid ""
-"A finished record timer wants to set your\n"
-"%s %s to standby. Do that now?"
-msgstr ""
-"En avluttet timer ønsker å sette din\n"
-"%s %s i dvalemodus. Skal det gjøres nå ?"
-
-#
-#, python-format
-msgid ""
-"A finished record timer wants to shut down\n"
-"your %s %s. Shutdown now?"
-msgstr ""
-"Et avluttet timer ønsker å slå av\n"
-"din %s %s. Skal den slås av nå ?"
 
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr ""
@@ -1894,19 +1894,19 @@ msgstr "AAC omkoding"
 msgid "AFL"
 msgstr "PAL"
 
-msgid "AI-Powered Translation color"
+msgid "AI Translation color"
 msgstr ""
 
-msgid "AI-Powered Translation enabled"
+msgid "AI Translation enabled"
 msgstr ""
 
-msgid "AI-Powered Translation language"
+msgid "AI Translation language"
 msgstr ""
 
-msgid "AI-Powered Translation optimization"
+msgid "AI Translation optimization"
 msgstr ""
 
-msgid "AI-Powered Translation subscription code"
+msgid "AI Translation subscription code"
 msgstr ""
 
 msgid "ARM"
@@ -2031,6 +2031,9 @@ msgid "Activate the configured network settings."
 msgstr "Aktivere konfigurerte nettverksinnstillinger."
 
 msgid "Activate the flash expander, save all changed settings and exit"
+msgstr ""
+
+msgid "Activate this device"
 msgstr ""
 
 msgid "Activate time shift End"
@@ -3585,10 +3588,6 @@ msgstr ""
 msgid "Burundi"
 msgstr ""
 
-#
-msgid "Bus: "
-msgstr "Bus: "
-
 msgid "Business & Finance"
 msgstr ""
 
@@ -3599,12 +3598,6 @@ msgid "Button error timeout"
 msgstr ""
 
 msgid "ButtonSetup"
-msgstr ""
-
-msgid "By disk UUID"
-msgstr ""
-
-msgid "By disk label"
 msgstr ""
 
 msgid "Bypass HDMI EDID Check"
@@ -3884,6 +3877,9 @@ msgid ""
 "Switch to live TV and restart time shift ?"
 msgstr ""
 
+msgid "Can't move to trashcan!"
+msgstr "Kan ikke flytte til søppelbøtta"
+
 msgid ""
 "Can't play the next time shift file!\n"
 "Switch to live TV and restart time shift ?"
@@ -4022,12 +4018,6 @@ msgstr ""
 
 msgid "Cannot find any signal ..., aborting !"
 msgstr "Kan ikke finne noe signal..., avbryter!"
-
-msgid "Cannot move to trash can"
-msgstr "Kan ikke flytte til søppelbøtta"
-
-msgid "Capacity"
-msgstr ""
 
 msgid "Cape Verde"
 msgstr ""
@@ -4987,9 +4977,6 @@ msgstr ""
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "Konfigurer varigheten i minutter for skjermspareren."
 
-msgid "Select the duration of inactivity before the screen saver will be displayed."
-msgstr ""
-
 msgid "Configure the duration, in minutes, before the EnergySaver timer activates."
 msgstr ""
 
@@ -5062,7 +5049,7 @@ msgstr "Konfigurer breddegrad for din lokalisering."
 msgid "Configure the longitude of your location."
 msgstr "Konfigurer lengdegraden for din lokalisering."
 
-msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trash can."
+msgid "Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trashcan."
 msgstr "Konfigurer det minimum av diskplass til å være tilgjengelig for opptak. Når mengden av plass faller under denne verdien, vil slettede elementer fjernes fra søppelbøtta."
 
 msgid "Configure the minimum width before showing the 'i' icon, '0' is equal to not showing the icon at all."
@@ -5078,7 +5065,7 @@ msgstr "Konfigurer nettmasken."
 msgid "Configure the network again"
 msgstr "Konfigurere nettverket ditt igjen"
 
-msgid "Configure the number of days after which items are automatically removed from the trash can."
+msgid "Configure the number of days after which items are automatically removed from the trashcan."
 msgstr "Konfigurere antall dager etter hvilke elementer som automatisk fjernes fra søppelbøtta."
 
 msgid "Configure the number of days old timers are kept before they are automatically removed from the timer list."
@@ -6693,10 +6680,6 @@ msgid "Directory"
 msgstr "Katalog"
 
 #, python-format
-msgid "Directory %s does not exist."
-msgstr "Katalog %s finnes ikke."
-
-#, python-format
 msgid "Directory '%s' can't be linked to recordings!"
 msgstr ""
 
@@ -6926,17 +6909,10 @@ msgstr ""
 "Ønsker du virkelig å konvertere filsystemet?\n"
 "Du kan ikke angre!"
 
-#, python-format
-msgid "Do you really want to delete %s ?"
-msgstr "Vil du virkelig slette %s ?"
-
 #
 #, python-format
 msgid "Do you really want to delete '%s'?"
 msgstr "Vil du virkelig slette %s"
-
-msgid "Do you really want to delete ?"
-msgstr "Vil du virkelig slette?"
 
 #, python-format
 msgid ""
@@ -6953,6 +6929,9 @@ msgstr ""
 msgid "Do you really want to delete this timer?"
 msgstr "Vil du virkelig slette denne timeren ?"
 
+msgid "Do you really want to delete?"
+msgstr "Vil du virkelig slette?"
+
 #
 msgid "Do you really want to exit?"
 msgstr "Vil du virkelig avslutte"
@@ -6962,15 +6941,13 @@ msgid ""
 "All data on the device will be lost!"
 msgstr ""
 
-msgid "Do you really want to move to trashcan ?"
-msgstr "Ønsker du virkelig å flytte til søppelbøtta?"
+#, python-format
+msgid "Do you really want to move '%s' to the trashcan?"
+msgstr ""
 
 #, python-format
-msgid "Do you really want to permanently remove '%s' from trash can ?"
+msgid "Do you really want to permanently remove '%s' from the trashcan?"
 msgstr "Ønsker du virkelig å permanent fjerne '%s' fra søppelbøtta?"
-
-msgid "Do you really want to permanently remove from trash can ?"
-msgstr "Ønsker du virkelig å permanent fjerne fra søppelbøtta?"
 
 #
 #, python-format
@@ -6979,13 +6956,13 @@ msgstr "Vil du virkelig fjerne katalog %s fra harddisken?"
 
 #
 #, python-format
-msgid "Do you really want to remove the timer for %s?"
-msgstr "Vil du virkelig slette timeren for %s"
+msgid "Do you really want to remove the bookmark for '%s'?"
+msgstr "Vil du virkelig fjerne ditt bokmerke %s?"
 
 #
 #, python-format
-msgid "Do you really want to remove your bookmark for '%s'?"
-msgstr "Vil du virkelig fjerne ditt bokmerke %s?"
+msgid "Do you really want to remove the timer for %s?"
+msgstr "Vil du virkelig slette timeren for %s"
 
 msgid ""
 "Do you really want to restart OSCam?\n"
@@ -7760,10 +7737,16 @@ msgstr ""
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr ""
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
+msgstr ""
+
+msgid "Enable this option to show unknown storage devices in device manager."
 msgstr ""
 
 msgid "Enable this setting if your aerial system needs power."
@@ -8219,6 +8202,10 @@ msgstr "Laging av katalog %s feilet."
 #, python-format
 msgid "Error: Creating picon target directory: (%s)"
 msgstr ""
+
+#, python-format
+msgid "Error: Directory '%s' does not exist!"
+msgstr "Katalog %s finnes ikke."
 
 #, python-format
 msgid "Error: Failed to run service scan!  (%s)"
@@ -8912,9 +8899,6 @@ msgstr ""
 msgid "File Commander settings"
 msgstr "Bildeforbedrings innstillinger"
 
-msgid "File system"
-msgstr ""
-
 #
 msgid "File System Check"
 msgstr "Filsystem Sjekk"
@@ -8922,7 +8906,7 @@ msgstr "Filsystem Sjekk"
 msgid "File System Packages"
 msgstr ""
 
-msgid "File appears to be busy.\n"
+msgid "File appears to be busy!\n"
 msgstr "Filen ser ut til å være opptatt.\n"
 
 msgid ""
@@ -8931,6 +8915,9 @@ msgid ""
 msgstr ""
 "Filen oscam.conf ble ikke funnet.\n"
 "Vennligst oppgi brukernavn/passord manuelt."
+
+msgid "File system"
+msgstr ""
 
 msgid "File transfer was canceled by user!"
 msgstr ""
@@ -8944,9 +8931,6 @@ msgid "Filename"
 msgstr "filnavn"
 
 msgid "Files/folders to exclude from backup"
-msgstr ""
-
-msgid "Filesystem"
 msgstr ""
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
@@ -10363,6 +10347,9 @@ msgstr ""
 msgid "Image creation failed!"
 msgstr ""
 
+msgid "Image version"
+msgstr ""
+
 msgid "ImageWizard"
 msgstr ""
 
@@ -10482,6 +10469,9 @@ msgid "Include remote control data"
 msgstr "Konfigurere fjernkontrollen"
 
 msgid "Include screen load data"
+msgstr ""
+
+msgid "Include storage device data"
 msgstr ""
 
 msgid "Include teletext details"
@@ -13064,6 +13054,9 @@ msgstr "Ingen harddisk funnet eller harddisk ikke initialisert."
 msgid "No Internet connection"
 msgstr ""
 
+msgid "No Name"
+msgstr ""
+
 msgid ""
 "No Settings loaded !!\n"
 "\n"
@@ -14189,7 +14182,7 @@ msgstr ""
 msgid "Perform the upgrade?"
 msgstr ""
 
-msgid "Permanently delete all recordings in the trash can?"
+msgid "Permanently delete all recordings in the trashcan?"
 msgstr "Permanent slette alle opptak i søppelbøtta?"
 
 msgid "Permanently ignore this device"
@@ -14465,6 +14458,9 @@ msgid "Please enter the new directory name:"
 msgstr ""
 
 msgid "Please enter the new file name:"
+msgstr ""
+
+msgid "Please enter the new name:"
 msgstr ""
 
 msgid "Please enter the new tag:"
@@ -16931,6 +16927,9 @@ msgstr ""
 msgid "Scope"
 msgstr ""
 
+msgid "Screen saver movement"
+msgstr ""
+
 msgid "Script Manager"
 msgstr ""
 
@@ -17108,13 +17107,13 @@ msgstr ""
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr ""
 
-msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
-msgstr ""
-
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
 msgstr ""
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
+msgstr ""
+
+msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
 msgstr ""
 
 #, fuzzy
@@ -17331,10 +17330,6 @@ msgstr ""
 msgid "Select AutoCam default Softcam"
 msgstr ""
 
-#
-msgid "Select Backup Location"
-msgstr "Velg sikkerhetskopi plassering"
-
 msgid "Select Bookmark"
 msgstr ""
 
@@ -17511,6 +17506,9 @@ msgstr ""
 #
 msgid "Select files/folders to backup"
 msgstr "Velg filer/mapper for sikkerhetskopi."
+
+msgid "Select how long the screen saver image will stay in the same location on the screen before it will be moved."
+msgstr ""
 
 msgid "Select how long to display status messages."
 msgstr ""
@@ -17770,6 +17768,9 @@ msgid "Select the display options for each menu entry item. If menu numbers are 
 msgstr ""
 
 msgid "Select the display sequence of previously visited services."
+msgstr ""
+
+msgid "Select the duration of inactivity before the screen saver will be displayed."
 msgstr ""
 
 #, python-format
@@ -18067,9 +18068,6 @@ msgid "Select your ATSC provider."
 msgstr "Velg tilbyder å legge til..."
 
 msgid "Select your Language for Audio/Subtitles"
-msgstr ""
-
-msgid "Select your backup device."
 msgstr ""
 
 msgid "Select your country. If not available select 'All'."
@@ -18589,9 +18587,6 @@ msgid "Setup Audiomode"
 msgstr ""
 
 msgid "Setup Enigma2"
-msgstr ""
-
-msgid "Setup Harddisk"
 msgstr ""
 
 msgid "Setup Inadyn"
@@ -19584,6 +19579,9 @@ msgid "Show underscore characters"
 msgstr ""
 
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
+msgstr ""
+
+msgid "Show unknown devices"
 msgstr ""
 
 msgid "Show unknown video format as"
@@ -23830,9 +23828,6 @@ msgstr ""
 msgid "Waiting"
 msgstr "Venter"
 
-msgid "Waiting for mount"
-msgstr "Venter på mount"
-
 msgid "Waiting for partition"
 msgstr "Venter på partisjonen"
 
@@ -24088,7 +24083,7 @@ msgstr "Når funksjonen er aktivert, vil innhold med et sideforhold på 4:3 stre
 msgid "When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels."
 msgstr ""
 
-msgid "When enabled, deleted recordings are moved to the trash can, instead of being deleted immediately."
+msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
 msgstr "Når funksjonen er aktivert, vil slettede opptak flyttes til papirkurven, i stedet for å bli slettet umiddelbart."
 
 msgid "When enabled, external subtitles will be always turned on for playback movie."
@@ -24106,7 +24101,7 @@ msgstr ""
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Når funksjonen er aktivert, måles strømforbruket for å oppdage når rotoren slutter å snu (når det støttes av tuneren)."
 
-msgid "When enabled, network trash cans are probed for cleaning."
+msgid "When enabled, network trashcans are probed for cleaning."
 msgstr "Når funksjonen er aktivert, er nettverkssøppelbøtter analysert for rengjøring."
 
 msgid "When enabled, number markers will be hidden."
@@ -25975,6 +25970,27 @@ msgstr "ja (behold feeds)"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid "Do you really want to delete %s ?"
+#~ msgstr "Vil du virkelig slette %s ?"
+
+#~ msgid "Do you really want to move to trashcan ?"
+#~ msgstr "Ønsker du virkelig å flytte til søppelbøtta?"
+
+#~ msgid "Do you really want to permanently remove from trash can ?"
+#~ msgstr "Ønsker du virkelig å permanent fjerne fra søppelbøtta?"
+
+#
+#~ msgid "Bus: "
+#~ msgstr "Bus: "
+
+#
+#~ msgid "Select Backup Location"
+#~ msgstr "Velg sikkerhetskopi plassering"
+
+#~ msgid "Waiting for mount"
+#~ msgstr "Venter på mount"
 
 #~ msgid "PowerTimers"
 #~ msgstr "StrømTimer"
