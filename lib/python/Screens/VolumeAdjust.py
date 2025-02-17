@@ -11,7 +11,7 @@ from Components.config import ConfigSelection, ConfigSelectionNumber, ConfigSubs
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Sources.StaticText import StaticText
 from Components.VolumeControl import VolumeControl
-from Screens.ChannelSelection import ChannelSelectionBase, OFF
+from Screens.ChannelSelection import ChannelSelectionBase
 from Screens.Setup import Setup
 from Tools.Directories import SCOPE_CONFIG, fileReadXML, moveFiles, resolveFilename
 
@@ -26,11 +26,11 @@ DEFAULT_VOLUME = 50
 DEFAULT_OFFSET = 10
 
 config.volume = ConfigSubsection()
-config.volume.defaultOffset = ConfigSelectionNumber(min=OFFSET_MIN, max=OFFSET_MAX, stepwidth=1, default=DEFAULT_OFFSET, wraparound=False)
+config.volume.adjustMode = ConfigSelection(default=0, choices=[(0, _("Adjustments disabled")), (1, _("Defined volume offsets")), (2, _("Last used/set volume"))])
+config.volume.defaultOffset = ConfigSelectionNumber(default=DEFAULT_OFFSET, min=OFFSET_MIN, max=OFFSET_MAX, stepwidth=1, wraparound=False)
 config.volume.dolbyEnabled = ConfigYesNo(default=False)
-config.volume.dolbyOffset = ConfigSelectionNumber(min=OFFSET_MIN, max=OFFSET_MAX, stepwidth=1, default=DEFAULT_OFFSET, wraparound=False)
-config.volume.adjustMode = ConfigSelection(choices=[(0, _("Disabled")), (1, _("Defined")), (2, _("Remember"))], default=0)
-config.volume.mpegMax = ConfigSelectionNumber(10, 100, 5, default=100)
+config.volume.dolbyOffset = ConfigSelectionNumber(default=DEFAULT_OFFSET, min=OFFSET_MIN, max=OFFSET_MAX, stepwidth=1, wraparound=False)
+config.volume.mpegMax = ConfigSelectionNumber(default=100, min=10, max=100, stepwidth=5)
 config.volume.showVolumeBar = ConfigYesNo(default=False)
 
 
@@ -42,14 +42,14 @@ class VolumeAdjust(Setup):
 		self["key_yellow"] = StaticText("")
 		self["key_blue"] = StaticText("")
 		self["addServiceActions"] = HelpableActionMap(self, ["VolumeAdjustActions"], {
-			"addService": (self.addService, _("Add a service to the Volume Offsets list"))
+			"addService": (self.keyAddService, _("Add a service to the Volume Offsets list"))
 		}, prio=0, description=_("Volume Adjust Actions"))
 		self["addCurrentActions"] = HelpableActionMap(self, ["VolumeAdjustActions"], {
-			"addCurrentService": (self.addCurrentService, _("Add the current service to the Volume Offsets list"))
+			"addCurrentService": (self.keyAddCurrentService, _("Add the current service to the Volume Offsets list"))
 		}, prio=0, description=_("Volume Adjust Actions"))
 		self["addCurrentActions"].setEnabled(False)
 		self["deleteActions"] = HelpableActionMap(self, ["VolumeAdjustActions"], {
-			"deleteService": (self.deleteService, _("Delete the currently highlighted service from the Volume Offsets list"))
+			"deleteService": (self.keyDeleteService, _("Delete the currently highlighted service from the Volume Offsets list"))
 		}, prio=0, description=_("Volume Adjust Actions"))
 		self["deleteActions"].setEnabled(False)
 		serviceRef = self.session.nav.getCurrentlyPlayingServiceReference()
@@ -63,7 +63,7 @@ class VolumeAdjust(Setup):
 		self.serviceVolume = self.volumeControl.getVolume()
 		self.normalVolume = VolumeInstance.getNormalVolume()
 
-	def createSetup(self):  # NOSONAR silence S2638
+	def createSetup(self):  # Redefine the method of the same in in the Setup class.
 		self.list = []
 		Setup.createSetup(self)
 		volumeList = self["config"].getList()
@@ -79,8 +79,7 @@ class VolumeAdjust(Setup):
 				volumeList.append(getConfigListEntry(f"  -  {serviceVolumeOffset[0]}", entry, _("Set the volume offset for the '%s' service.") % serviceVolumeOffset[0]))
 		self["config"].setList(volumeList)
 
-	def selectionChanged(self):
-		Setup.selectionChanged(self)
+	def selectionChanged(self):  # Redefine the method of the same in in the Setup class.
 		if self.findCurrentService(self.serviceName, self.serviceReference) == -1:
 			self["addCurrentActions"].setEnabled(True)
 			self["key_yellow"].setText(_("Add Current"))
@@ -93,8 +92,9 @@ class VolumeAdjust(Setup):
 		else:
 			self["deleteActions"].setEnabled(False)
 			self["key_blue"].setText("")
+		Setup.selectionChanged(self)
 
-	def changedEntry(self):  # Override the Setup method that calls createSetup() when a ConfigBoolean or ConfigSelection based class is changed!
+	def changedEntry(self):  # Redefine the method of the same in in the Setup class. Setup method calls createSetup() when a ConfigBoolean or ConfigSelection based class is changed!
 		index = self["config"].getCurrentIndex() - self.volumeStart - 1
 		if index > -1:
 			value = self["config"].getCurrent()[1].value
@@ -102,14 +102,16 @@ class VolumeAdjust(Setup):
 			if self.serviceVolumeOffsets[index][1] == self.serviceReference:  # Apply the offset if we are setting an offset for the current service.
 				volume = self.normalVolume + value
 				self.volumeControl.setVolume(volume, volume)  # Volume left, volume right.
+		else:
+			Setup.changedEntry(self)
 
-	def keySave(self):
+	def keySave(self):  # Redefine the method of the same in in the Setup class.
 		if self.serviceVolumeOffsets != self.initialVolumeOffsets:  # Save the volume configuration data if there are any changes.
 			VolumeInstance.setServiceVolumeOffsets(self.serviceVolumeOffsets)
 		VolumeInstance.refreshSettings()
 		Setup.keySave(self)
 
-	def cancelConfirm(self, result):
+	def cancelConfirm(self, result):  # Redefine the method of the same in in the Setup class.
 		if not result:
 			return
 		VolumeInstance.setServiceVolumeOffsets(self.initialVolumeOffsets)
@@ -117,32 +119,32 @@ class VolumeAdjust(Setup):
 			self.volumeControl.setVolume(self.serviceVolume, self.serviceVolume)  # Volume left, volume right.
 		Setup.cancelConfirm(self, result)
 
-	def addService(self):
-		self.session.openWithCallback(self.addServiceCallback, SmallChannelSelection, None)
-
-	def addServiceCallback(self, serviceReference):
-		if serviceReference:
-			serviceName = ServiceReference(serviceReference).getServiceName().replace("\xc2\x87", "").replace("\xc2\x86", "")
-			serviceReference = serviceReference.toCompareString()
-			if self.findCurrentService(serviceName, serviceReference) == -1:
-				self.serviceVolumeOffsets.append([serviceName, serviceReference, NEW_VALUE])
-				self.createSetup()
-				self["config"].setCurrentIndex(self.volumeStart + len(self.serviceVolumeOffsets))
-				self.setFootnote(_("Service '%s' added.") % serviceName)
+	def keyAddService(self):
+		def keyAddServiceCallback(serviceReference):
+			if serviceReference:
+				serviceName = ServiceReference(serviceReference).getServiceName().replace("\xc2\x87", "").replace("\xc2\x86", "")
+				serviceReference = serviceReference.toCompareString()
+				if self.findCurrentService(serviceName, serviceReference) == -1:
+					self.serviceVolumeOffsets.append([serviceName, serviceReference, NEW_VALUE])
+					self.createSetup()
+					self["config"].setCurrentIndex(self.volumeStart + len(self.serviceVolumeOffsets))
+					self.setFootnote(_("Service '%s' added.") % serviceName)
+				else:
+					self.setFootnote(_("Service '%s' is already defined.") % serviceName)
 			else:
-				self.setFootnote(_("Service '%s' is already defined.") % serviceName)
-		else:
-			self.setFootnote(_("Service selection canceled."))
+				self.setFootnote(_("Service selection canceled."))
 
-	def addCurrentService(self):
+		self.session.openWithCallback(keyAddServiceCallback, VolumeAdjustServiceSelection)
+
+	def keyAddCurrentService(self):
 		self.serviceVolumeOffsets.append([self.serviceName, self.serviceReference, NEW_VALUE])
 		self.createSetup()
 		self["config"].setCurrentIndex(self.volumeStart + len(self.serviceVolumeOffsets))
 		self.setFootnote(_("Service '%s' added.") % self.serviceName)
 
-	def deleteService(self):
+	def keyDeleteService(self):
 		index = self["config"].getCurrentIndex()
-		name, ref, offset = self.serviceVolumeOffsets.pop(index - self.volumeStart - 1)
+		name, reference, offset = self.serviceVolumeOffsets.pop(index - self.volumeStart - 1)
 		self.createSetup()
 		configLength = len(self["config"].getList())
 		if index >= configLength:
@@ -151,45 +153,62 @@ class VolumeAdjust(Setup):
 		self.setFootnote(_("Service '%s' deleted.") % name)
 
 	def findCurrentService(self, serviceName, serviceReference):
-		for index, (name, ref, offset) in enumerate(self.serviceVolumeOffsets):
-			if name == serviceName and ref == serviceReference:
-				return index
-		return -1
+		result = -1
+		for index, name, reference, offset in enumerate(self.serviceVolumeOffsets):
+			if name == serviceName and reference == serviceReference:
+				result = index
+				break
+		return result
 
 
-class SmallChannelSelection(ChannelSelectionBase):
+class VolumeAdjustServiceSelection(ChannelSelectionBase):
 	skin = """
-	<screen name="SmallChannelSelection" title="Volume Adjust Service Selection" position="center,center" size="560,430" resolution="1280,720">
+	<screen name="VolumeAdjustServiceSelection" title="Volume Adjust Service Selection" position="center,center" size="560,430" resolution="1280,720">
 		<widget name="list" position="0,0" size="e,e-50" scrollbarMode="showOnDemand" />
-		<widget name="key_red" position="0,e-40" size="140,40" backgroundColor="key_red" font="Regular;20" foregroundColor="key_text" halign="center" valign="center" />
-		<widget name="key_green" position="140,e-40" size="140,40" backgroundColor="key_green" font="Regular;20" foregroundColor="key_text" halign="center" valign="center" />
-		<widget name="key_yellow" position="280,e-40" size="140,40" backgroundColor="key_yellow" font="Regular;20" foregroundColor="key_text" halign="center" valign="center" />
-		<widget name="key_blue" position="420,e-40" size="140,40" backgroundColor="key_blue" font="Regular;20" foregroundColor="key_text" halign="center" valign="center" />
+		<widget source="key_red" render="Label" position="0,e-40" size="180,40" backgroundColor="key_red" conditional="key_red" font="Regular;20" foregroundColor="key_text" horizontalAlignment="center" verticalAlignment="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_green" render="Label" position="190,e-40" size="180,40" backgroundColor="key_green" conditional="key_green" font="Regular;20" foregroundColor="key_text" horizontalAlignment="center" verticalAlignment="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_yellow" render="Label" position="380,e-40" size="180,40" backgroundColor="key_yellow" conditional="key_yellow" font="Regular;20" foregroundColor="key_text" horizontalAlignment="center" verticalAlignment="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_blue" render="Label" position="570,e-40" size="180,40" backgroundColor="key_blue" conditional="key_blue" font="Regular;20" foregroundColor="key_text" horizontalAlignment="center" verticalAlignment="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_help" render="Label" position="e-80,e-40" size="80,40" backgroundColor="key_back" conditional="key_help" font="Regular;20" foregroundColor="key_text" horizontalAlignment="center" verticalAlignment="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
 	</screen>"""
 
-	def __init__(self, session, title):
+	def __init__(self, session):
 		ChannelSelectionBase.__init__(self, session)
-		self.skinName = ["SmallChannelSelection", "mySmallChannelSelection"]  # The screen "mySmallChannelSelection" is for legacy support only.
+		self.skinName = ["VolumeAdjustServiceSelection", "SmallChannelSelection", "mySmallChannelSelection"]  # The screen "mySmallChannelSelection" is for legacy support only.
 		self.setTitle(_("Volume Adjust Service Selection"))
-		self.onShown.append(self.__onExecCallback)
-		self.bouquet_mark_edit = OFF
 		service = self.session.nav.getCurrentService()
 		if service:
 			info = service.info()
 			if info:
-				refstr = info.getInfoString(iServiceInformation.sServiceref)
-				self.servicelist.setPlayableIgnoreService(eServiceReference(refstr))
+				self.servicelist.setPlayableIgnoreService(eServiceReference(info.getInfoString(iServiceInformation.sServiceref)))
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "TvRadioActions"], {
-			"cancel": (self.cancel, _("Cancel the service selection")),
-			"ok": (self.channelSelected, _("Select the currently highlighted service")),
-			"keyTV": (self.setModeTv, _("Switch to the available TV services")),
-			"keyRadio": (self.setModeRadio, _("Switch to the available RADIO services"))
-		}, prio=0, description=_("Service Selection Actions"))
+			"cancel": (self.keyCancel, _("Cancel the service selection")),
+			"ok": (self.keyChannelSelected, _("Select the currently highlighted service")),
+			"keyTV": (self.keySetModeTV, _("Switch to the available TV services")),
+			"keyRadio": (self.keySetModeRadio, _("Switch to the available RADIO services"))
+		}, prio=0, description=_("Volume Adjust Service Selection Actions"))
+		self.onShown.append(self.reselectCurrentMode)
 
-	def __onExecCallback(self):
-		self.setModeTv()
+	def reselectCurrentMode(self):
+		from Screens.InfoBar import InfoBar  # This must be here to avoid cyclic imports!
+		if InfoBar and InfoBar.instance and InfoBar.instance.servicelist:
+			self.setCurrentMode(InfoBar.instance.servicelist.getCurrentMode())
+		self.showFavourites()
 
-	def channelSelected(self):
+	def keyCancel(self):
+		self.close(None)
+
+	def keyChannelSelected(self):
 		ref = self.getCurrentSelection()
 		if (ref.flags & 7) == 7:
 			self.enterPath(ref)
@@ -197,16 +216,13 @@ class SmallChannelSelection(ChannelSelectionBase):
 			ref = self.getCurrentSelection()
 			self.close(ref)
 
-	def setModeTv(self):
-		self.setTvMode()
+	def keySetModeTV(self):
+		self.setCurrentMode(self.MODE_TV)
 		self.showFavourites()
 
-	def setModeRadio(self):
-		self.setRadioMode()
+	def keySetModeRadio(self):
+		self.setCurrentMode(self.MODE_RADIO)
 		self.showFavourites()
-
-	def cancel(self):
-		self.close(None)
 
 
 class Volume:
@@ -221,11 +237,10 @@ class Volume:
 		self.newService = [False, None]
 		self.pluginStarted = False
 		self.eventTracker = ServiceEventTracker(screen=self, eventmap={
-				iPlayableService.evUpdatedInfo: self.processVolumeOffset,
-				iPlayableService.evStart: self.eventStart,
-				iPlayableService.evEnd: self.eventEnd
-			})
-
+			iPlayableService.evUpdatedInfo: self.processVolumeOffset,
+			iPlayableService.evStart: self.eventStart,
+			iPlayableService.evEnd: self.eventEnd
+		})
 		self.serviceList = {}
 		self.adjustMode = config.volume.adjustMode.value
 		self.mpegMax = config.volume.mpegMax.value
