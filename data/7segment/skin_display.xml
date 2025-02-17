@@ -17,7 +17,7 @@ and the display skin will not be displayed
 <!-- MyClockPanel -->	
 	<screen name="MyClockPanel">
 		<widget source="session.CurrentService" render="Label" position="0,0" size="1,1">
-			<convert type="VfdDisplay"></convert>
+			<convert type="VfdDisplay">config.usage.show_in_operation</convert>
 		</widget>
 	</screen>
 	
