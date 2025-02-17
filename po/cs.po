@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-30 15:09+0000\n"
-"PO-Revision-Date: 2025-01-31 08:54+0000\n"
+"POT-Creation-Date: 2025-02-11 08:26+0000\n"
+"PO-Revision-Date: 2025-02-13 21:46+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.10-rc\n"
 
 msgid ""
 "\n"
@@ -1734,6 +1734,9 @@ msgstr "Překlad pomocí AI povolen"
 msgid "AI Translation language"
 msgstr "Překladatelský jazyk založený na AI"
 
+msgid "AI Translation mode"
+msgstr "Režim překladu AI"
+
 msgid "AI Translation optimization"
 msgstr "Optimalizace překladu s technologií AI"
 
@@ -2408,6 +2411,9 @@ msgstr "Arabsky"
 
 msgid "Arabic (Egyptian)"
 msgstr "Arabština (Egyptština)"
+
+msgid "Arabic (Iraq)"
+msgstr "Arabština (Irák)"
 
 msgid "Arabic (Moroccan)"
 msgstr "Arabština (Marocká)"
@@ -3826,9 +3832,6 @@ msgstr "Info o kanálu"
 
 msgid "Channel List"
 msgstr "Seznam kanálů"
-
-msgid "Channel List Menu"
-msgstr "Nabídka Seznam kanálů"
 
 msgid "Channel Selection"
 msgstr "Výběr kanálú"
@@ -6410,9 +6413,6 @@ msgstr ""
 
 msgid "Do you really want to delete this timer?"
 msgstr "Opravdu chcete smazat tento časovač ?"
-
-msgid "Do you really want to delete?"
-msgstr "Opravdu chcete smazat ?"
 
 msgid "Do you really want to exit?"
 msgstr "Opravdu chcete ukončit?"
@@ -9961,6 +9961,9 @@ msgstr "Interní"
 msgid "Internal Flash"
 msgstr "Interní Flash"
 
+msgid "Internal SSD"
+msgstr "Interní SSD"
+
 msgid "Internal USB"
 msgstr "Interní USB"
 
@@ -13293,6 +13296,9 @@ msgstr "Přehrát vybranou službu"
 
 msgid "Playback Settings"
 msgstr "Nastavení přehrávání"
+
+msgid "Playback Time:"
+msgstr "Doba přehrávání:"
 
 msgid "Playback, Recording & Time Shift"
 msgstr "Nahrávání a Timeshift"
@@ -19673,6 +19679,9 @@ msgstr "Protokol revizí '%s' neobsahuje žádné informace."
 msgid "The '%s' file can't be retrieved, please try again later."
 msgstr "Soubor '%s' nelze načíst, zkuste to prosím později."
 
+msgid "The AI mode used for translating languages. You can choose the one that gives the most accurate translation for your target language."
+msgstr "Režim AI používaný pro překlad jazyků. Můžete si vybrat ten, který poskytuje nejpřesnější překlad pro váš cílový jazyk."
+
 msgid "The AI-Powered Translation service will be optimized to provide the best performance based on the the Internet connection upload speed selected."
 msgstr "Služba AI-Powered Translation bude optimalizována tak, aby poskytovala nejlepší výkon na základě zvolené rychlosti odesílání internetového připojení."
 
@@ -24095,6 +24104,12 @@ msgstr "ano (uchovat zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Channel List Menu"
+#~ msgstr "Nabídka Seznam kanálů"
+
+#~ msgid "Do you really want to delete?"
+#~ msgstr "Opravdu chcete smazat ?"
 
 #, python-format
 #~ msgid "Do you really want to delete %s ?"

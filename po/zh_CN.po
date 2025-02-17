@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-30 15:09+0000\n"
-"PO-Revision-Date: 2025-02-08 19:21+0000\n"
+"POT-Creation-Date: 2025-02-11 08:26+0000\n"
+"PO-Revision-Date: 2025-02-12 12:56+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -1702,6 +1702,9 @@ msgstr "已启用人工智能翻译"
 msgid "AI Translation language"
 msgstr "人工智能翻译语言"
 
+msgid "AI Translation mode"
+msgstr "AI 翻译模式"
+
 msgid "AI Translation optimization"
 msgstr "人工智能翻译优化"
 
@@ -2376,6 +2379,9 @@ msgstr "阿拉伯语"
 
 msgid "Arabic (Egyptian)"
 msgstr "阿拉伯语（埃及）"
+
+msgid "Arabic (Iraq)"
+msgstr "阿拉伯语（伊拉克）"
 
 msgid "Arabic (Moroccan)"
 msgstr "阿拉伯语（摩洛哥）"
@@ -3794,9 +3800,6 @@ msgstr "频道信息"
 
 msgid "Channel List"
 msgstr "频道列表"
-
-msgid "Channel List Menu"
-msgstr "频道列表菜单"
 
 msgid "Channel Selection"
 msgstr "频道选择"
@@ -6377,9 +6380,6 @@ msgstr ""
 msgid "Do you really want to delete this timer?"
 msgstr "真的要删除这个定时器吗？"
 
-msgid "Do you really want to delete?"
-msgstr "真的要删除？"
-
 msgid "Do you really want to exit?"
 msgstr "真的要退出？"
 
@@ -6587,7 +6587,7 @@ msgstr[0] "完成 - 已安装，升级或删除了 %d 个软件包 (%s)"
 msgstr[1] "完成 - 已安装，升级或删除了 %d 个软件包 (%s)"
 
 msgid "Down"
-msgstr "下 箭头"
+msgstr "下"
 
 msgid "Down / Inactive"
 msgstr "Down / 非活动"
@@ -8957,7 +8957,7 @@ msgid "HH:mm:ss"
 msgstr "24小时制 时时:分分:秒秒"
 
 msgid "HI-cleanup for external subtitles"
-msgstr "HI-cleanup外挂字幕"
+msgstr "外挂听障字幕清理"
 
 msgid "HLG Support"
 msgstr "HLG 支持"
@@ -9924,6 +9924,9 @@ msgstr "内部"
 msgid "Internal Flash"
 msgstr "内部闪存"
 
+msgid "Internal SSD"
+msgstr "内置固态硬盘"
+
 msgid "Internal USB"
 msgstr "内部 USB"
 
@@ -10394,7 +10397,7 @@ msgid "Lebanon"
 msgstr "黎巴嫩"
 
 msgid "Left"
-msgstr "左 箭头"
+msgstr "左"
 
 msgid "Left USB"
 msgstr "左侧 USB"
@@ -10702,7 +10705,7 @@ msgid "Long << / >>"
 msgstr "长按 << / >>"
 
 msgid "Long Left/Right"
-msgstr "长按 左/右 箭头"
+msgstr "长按 左/右 键"
 
 msgid "Long filenames"
 msgstr "长文件名"
@@ -13254,6 +13257,9 @@ msgstr "播放选择的频道"
 
 msgid "Playback Settings"
 msgstr "回放设置"
+
+msgid "Playback Time:"
+msgstr "播放时间："
 
 msgid "Playback, Recording & Time Shift"
 msgstr "回放、录像和时移"
@@ -16209,7 +16215,7 @@ msgid "Select refresh rate"
 msgstr "选择刷新率"
 
 msgid "Select seekbar to be activated by arrow L/R (long) or << >> (long)."
-msgstr "选择要激活的进度条，通过（长按）左/右箭头或（长按）<< >>。"
+msgstr "选择要激活的进度条，通过（长按）左/右键或（长按）<< >>。"
 
 msgid "Select service information to view:"
 msgstr "选择要查看的频道信息："
@@ -19627,6 +19633,9 @@ msgstr "“%s”提交日志不包含任何信息。"
 msgid "The '%s' file can't be retrieved, please try again later."
 msgstr "无法检索“%s”文件，请稍后再试。"
 
+msgid "The AI mode used for translating languages. You can choose the one that gives the most accurate translation for your target language."
+msgstr "用于翻译语言的 AI 模式。您可以选择为目标语言提供最准确翻译的模式。"
+
 msgid "The AI-Powered Translation service will be optimized to provide the best performance based on the the Internet connection upload speed selected."
 msgstr "人工智能驱动的翻译服务将根据所选的互联网连接上传速度进行优化，以提供最佳性能。"
 
@@ -21230,7 +21239,7 @@ msgid "Unzipping Image"
 msgstr "正在解压镜像"
 
 msgid "Up"
-msgstr "上 箭头"
+msgstr "上"
 
 msgid "Up / Active"
 msgstr "Up / 活动"
@@ -24048,6 +24057,12 @@ msgstr "是（保留订阅源）"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Channel List Menu"
+#~ msgstr "频道列表菜单"
+
+#~ msgid "Do you really want to delete?"
+#~ msgstr "真的要删除？"
 
 #, python-format
 #~ msgid "Do you really want to delete %s ?"

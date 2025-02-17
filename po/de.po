@@ -16,9 +16,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-30 15:09+0000\n"
-"PO-Revision-Date: 2025-01-30 15:58+0000\n"
-"Last-Translator: Makumbo <tokioplo@web.de>\n"
+"POT-Creation-Date: 2025-02-11 08:26+0000\n"
+"PO-Revision-Date: 2025-02-13 08:03+0000\n"
+"Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -1780,19 +1780,22 @@ msgid "AFL"
 msgstr "AFL"
 
 msgid "AI Translation color"
-msgstr "Textfarbe für KI-gestützte Übersetzung"
+msgstr "Textfarbe der KI-Übersetzung"
 
 msgid "AI Translation enabled"
-msgstr "KI-gestützte Übersetzung aktiviert"
+msgstr "KI-Übersetzung aktiviert"
 
 msgid "AI Translation language"
-msgstr "Sprache der KI-gestützten Übersetzung"
+msgstr "Sprache der KI-Übersetzung"
+
+msgid "AI Translation mode"
+msgstr "Modus der KI-Übersetzung"
 
 msgid "AI Translation optimization"
-msgstr "KI-gestützte Übersetzung Optimierung"
+msgstr "KI-Übersetzung-Optimierung"
 
 msgid "AI Translation subscription code"
-msgstr "Abo-Code für KI-gestützte Übersetzung"
+msgstr "Abo-Code für KI-Übersetzung"
 
 msgid "ARM"
 msgstr "ARM"
@@ -2506,6 +2509,9 @@ msgstr "Arabisch"
 
 msgid "Arabic (Egyptian)"
 msgstr "Arabisch (Egyptisch)"
+
+msgid "Arabic (Iraq)"
+msgstr "Arabisch (Irakisch)"
 
 msgid "Arabic (Moroccan)"
 msgstr "Arabisch (Marokkanisch)"
@@ -4002,10 +4008,6 @@ msgstr "Programm-Informationen"
 
 msgid "Channel List"
 msgstr "Senderliste"
-
-#
-msgid "Channel List Menu"
-msgstr "Senderliste-Menü"
 
 msgid "Channel Selection"
 msgstr "Senderliste"
@@ -6721,9 +6723,6 @@ msgstr ""
 
 msgid "Do you really want to delete this timer?"
 msgstr "Timer wirklich löschen?"
-
-msgid "Do you really want to delete?"
-msgstr "Dies wirklich löschen?"
 
 #
 msgid "Do you really want to exit?"
@@ -10446,6 +10445,9 @@ msgstr "Intern"
 msgid "Internal Flash"
 msgstr "Interner Flash"
 
+msgid "Internal SSD"
+msgstr "Interne SSD"
+
 msgid "Internal USB"
 msgstr "USB intern"
 
@@ -14035,6 +14037,9 @@ msgstr "Gewählten Sender abspielen"
 msgid "Playback Settings"
 msgstr "Wiedergabe"
 
+msgid "Playback Time:"
+msgstr "Laufzeit:"
+
 msgid "Playback, Recording & Time Shift"
 msgstr "Aufnahmen & Timeshift"
 
@@ -17239,7 +17244,7 @@ msgid "Select the %s entry"
 msgstr "Eintrag %s auswählen"
 
 msgid "Select the AI-Powered Translation target language."
-msgstr "Sprache der für KI-gestützten Übersetzung auswählen."
+msgstr "Sprache der KI-gestützten Übersetzung auswählen."
 
 msgid "Select the No / False response"
 msgstr "Nein / negative Antwort auswählen"
@@ -17305,7 +17310,7 @@ msgid "Select the character or action under the keyboard cursor"
 msgstr "Das Zeichen oder die Aktion beim Cursor der Tastatur auswählen"
 
 msgid "Select the color to be used for the AI-Powered Translation text."
-msgstr "Textfarbe der für KI-gestützten Übersetzung auswählen."
+msgstr "Textfarbe der KI-gestützten Übersetzung auswählen."
 
 msgid "Select the current bookmarked location and exit"
 msgstr "Den aktuellen Speicherort vom Lesezeichen auswählen und beenden"
@@ -20831,6 +20836,9 @@ msgstr "Das '%s' Commit-Log enthält keine Informationen!"
 #, python-format
 msgid "The '%s' file can't be retrieved, please try again later."
 msgstr "Die Datei '%s' kann nicht abgerufen werden! Bitte später erneut versuchen."
+
+msgid "The AI mode used for translating languages. You can choose the one that gives the most accurate translation for your target language."
+msgstr "Der KI-Modus zum Übersetzen von Sprachen. Denjenigen auswählen, der die beste Übersetzung für die Zielsprache liefert."
 
 msgid "The AI-Powered Translation service will be optimized to provide the best performance based on the the Internet connection upload speed selected."
 msgstr "Die KI-gestützte Übersetzung wird optimiert, um das beste Ergebnis basierend auf der Upload-Geschwindigkeit der Internetverbindung zu erreichen."
@@ -25584,6 +25592,13 @@ msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#
+#~ msgid "Channel List Menu"
+#~ msgstr "Senderliste-Menü"
+
+#~ msgid "Do you really want to delete?"
+#~ msgstr "Dies wirklich löschen?"
 
 #, python-format
 #~ msgid "Do you really want to delete %s ?"

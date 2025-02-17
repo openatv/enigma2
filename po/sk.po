@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-30 15:09+0000\n"
-"PO-Revision-Date: 2025-02-02 16:04+0000\n"
+"POT-Creation-Date: 2025-02-11 08:26+0000\n"
+"PO-Revision-Date: 2025-02-14 21:55+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.10\n"
 
 msgid ""
 "\n"
@@ -1730,19 +1730,22 @@ msgid "AFL"
 msgstr "AFL"
 
 msgid "AI Translation color"
-msgstr "Farba prekladu s využitím umelej inteligencie"
+msgstr "Farba prekladu vytvoreného umelou inteligenciou"
 
 msgid "AI Translation enabled"
-msgstr "Preklad poháňaný umelou inteligenciou povolený"
+msgstr "Prekladanie pomocou umelej inteligencie povolené"
 
 msgid "AI Translation language"
-msgstr "Jazyk prekladu poháňaného umelou inteligenciou "
+msgstr "Jazyk prekladu vytvoreného umelou inteligenciou "
+
+msgid "AI Translation mode"
+msgstr "Režim prekladania pomocou umelej inteligencie"
 
 msgid "AI Translation optimization"
-msgstr "Optimalizácia prekladu pomocou AI"
+msgstr "Optimalizácia prekladu pomocou umelej inteligencie"
 
 msgid "AI Translation subscription code"
-msgstr "Kód predplatného prekladu poháňaného umelou inteligenciou"
+msgstr "Kód predplatného pre preklad pomocou umelej inteligencie"
 
 msgid "ARM"
 msgstr "ARM"
@@ -2412,6 +2415,9 @@ msgstr "arabčina"
 
 msgid "Arabic (Egyptian)"
 msgstr "Arabčina (egyptská)"
+
+msgid "Arabic (Iraq)"
+msgstr "Arabčina (Irak)"
 
 msgid "Arabic (Moroccan)"
 msgstr "Arabčina (marocká)"
@@ -3830,9 +3836,6 @@ msgstr "Info o programe"
 
 msgid "Channel List"
 msgstr "Zoznam kanálov"
-
-msgid "Channel List Menu"
-msgstr "Menu zoznamu kanálov"
 
 msgid "Channel Selection"
 msgstr "Výber prehľadu"
@@ -6415,9 +6418,6 @@ msgstr ""
 msgid "Do you really want to delete this timer?"
 msgstr "Naozaj chcete vymazať tento časovač?"
 
-msgid "Do you really want to delete?"
-msgstr "Naozaj chcete vymazať?"
-
 msgid "Do you really want to exit?"
 msgstr "Naozaj chcete ukončiť?"
 
@@ -7379,7 +7379,7 @@ msgid "Enter the service pin"
 msgstr "Zadajte PIN kód stanice"
 
 msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
-msgstr "Zadajte kód svojho predplatného. Jednotný kód pre skúšobnú verziu je 15."
+msgstr "Na zapnutie prekladania pomocou umelej inteligencie, zadajte kód predplatného. Jednotný kód pre skúšobnú verziu je 15."
 
 msgid "Enter your current latitude. This is the number of degrees you are from the equator as a decimal."
 msgstr "Zadajte aktuálnu zemepisnú šírku v stupňoch od rovníka (vo forme desatinného čísla)."
@@ -9964,6 +9964,9 @@ msgstr "Interné"
 
 msgid "Internal Flash"
 msgstr "Interná pamäť flash"
+
+msgid "Internal SSD"
+msgstr "Interný SSD"
 
 msgid "Internal USB"
 msgstr "Interné USB"
@@ -13298,6 +13301,9 @@ msgstr "Prehrať vybranú službu"
 msgid "Playback Settings"
 msgstr "Nastavenia prehrávania"
 
+msgid "Playback Time:"
+msgstr "Čas prehrávania:"
+
 msgid "Playback, Recording & Time Shift"
 msgstr "Prehrávanie, nahrávanie a timeshift"
 
@@ -15814,7 +15820,7 @@ msgid "Select 'Yes' to display unknown files in the File Commander file viewer, 
 msgstr "Ak sa majú v prehliadači Správcu súborov zobrazovať aj neznáme súbory, vyberte možnosť 'Áno'. Ak sa neznáme súbory nemajú spracúvať, vyberte možnosť 'Nie'."
 
 msgid "Select 'Yes' to enable AI-Powered Translation for all teletext and DVB subtitles."
-msgstr "Povoliť preklady poháňané umelou inteligenciou pre všetok teletext a DVB titulky."
+msgstr "Povoliť preklady vytvárané umelou inteligenciou pre teletext a DVB titulky."
 
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr "Ak chcete povoliť úpravu nastavení tohto zariadenia, vyberte možnosť 'Áno'. Výberom možnosti 'Nie' sa nastavenia zariadenie resetujú na predvolené hodnoty."
@@ -16285,7 +16291,7 @@ msgid "Select the %s entry"
 msgstr "Vyberte záznam %s"
 
 msgid "Select the AI-Powered Translation target language."
-msgstr "Nastavte jazyk prekladu poháňaného umelou inteligenciou."
+msgstr "Vyberte cieľový jazyk prekladu pomocou umelej inteligencie."
 
 msgid "Select the No / False response"
 msgstr "Vyberte odozvu Nie/Nesprávne"
@@ -16347,7 +16353,7 @@ msgid "Select the character or action under the keyboard cursor"
 msgstr "Vyberte znak alebo akciu pod kurzorom klávesnice"
 
 msgid "Select the color to be used for the AI-Powered Translation text."
-msgstr "Nastavte farbu prekladov poháňaných umelou inteligenciou."
+msgstr "Vyberte farbu pre texty preložené umelou inteligenciou."
 
 msgid "Select the current bookmarked location and exit"
 msgstr "Vybrať umiestnenie aktuálnej záložky a ukončiť"
@@ -19677,8 +19683,11 @@ msgstr "Denník o odovzdaní '%s' neobsahuje žiadnu informáciu."
 msgid "The '%s' file can't be retrieved, please try again later."
 msgstr "Súbor '%s' nie je možné získať, skúste to znovu neskôr, prosím."
 
+msgid "The AI mode used for translating languages. You can choose the one that gives the most accurate translation for your target language."
+msgstr "Režim umelej inteligencie použitý na prekladanie jazykov. Môžete si vybrať systém, ktorý poskytuje najpresnejší preklad pre váš cieľový jazyk."
+
 msgid "The AI-Powered Translation service will be optimized to provide the best performance based on the the Internet connection upload speed selected."
-msgstr "Služba prekladania s pomocou AI bude výkonnostne optimalizovaná podľa vybranej rýchlosti odosielania údajov cez internet."
+msgstr "Služba prekladania umelou inteligenciou bude výkonnostne optimalizovaná podľa vybranej rýchlosti odosielania údajov cez internet."
 
 msgid ""
 "The AutoTimer plugin is not installed!\n"
@@ -23090,7 +23099,7 @@ msgid "a gui to assign services/providers to common interface modules"
 msgstr "rozhranie GUI na priradenie staníc a poskytovateľov k modulom CI"
 
 msgid "a gui to assign services/providers/caids to common interface modules"
-msgstr "rozhranie GUI na priradenie staníc, poskytovateľov a CAId k modulom CI"
+msgstr "rozhranie GUI na priradenie staníc, poskytovateľov, CAID k modulom CI"
 
 msgid "activatePiP"
 msgstr "aktivovaťPiP"
@@ -23633,7 +23642,7 @@ msgid "news/weather report"
 msgstr "správy/správa o počasí"
 
 msgid "no CAId selected"
-msgstr "nie je zvolený žiadny CAId"
+msgstr "nie je zvolený žiadny CAID"
 
 msgid "no CI slots found"
 msgstr "nenašli sa žiadne sloty CI"
@@ -23806,7 +23815,7 @@ msgid "search EPG..."
 msgstr "hľadanie v EPG…"
 
 msgid "select CAId's"
-msgstr "vyberte CAId(y)"
+msgstr "vyberte CAID"
 
 msgid "serious music/classic music"
 msgstr "vážna hudba/klasická hudba"
@@ -24099,6 +24108,12 @@ msgstr "áno (zachovať zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Channel List Menu"
+#~ msgstr "Menu zoznamu kanálov"
+
+#~ msgid "Do you really want to delete?"
+#~ msgstr "Naozaj chcete vymazať?"
 
 #, python-format
 #~ msgid "Do you really want to delete %s ?"

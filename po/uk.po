@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-30 15:09+0000\n"
-"PO-Revision-Date: 2025-02-01 12:01+0000\n"
+"POT-Creation-Date: 2025-02-11 08:26+0000\n"
+"PO-Revision-Date: 2025-02-12 12:56+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -1739,6 +1739,9 @@ msgstr "Ввімкнути переклад за допомогою AI"
 msgid "AI Translation language"
 msgstr "Мова перекладу на основі AI"
 
+msgid "AI Translation mode"
+msgstr "Режим перекладу ШІ"
+
 msgid "AI Translation optimization"
 msgstr "Оптимізація перекладу за допомогою ШІ"
 
@@ -2413,6 +2416,9 @@ msgstr "Арабська"
 
 msgid "Arabic (Egyptian)"
 msgstr "Арабська (Єгипетська)"
+
+msgid "Arabic (Iraq)"
+msgstr "Арабська (Ірак)"
 
 msgid "Arabic (Moroccan)"
 msgstr "Арабська (Марокканська)"
@@ -3831,9 +3837,6 @@ msgstr "Інформація каналу"
 
 msgid "Channel List"
 msgstr "Список каналів"
-
-msgid "Channel List Menu"
-msgstr "Меню списку каналів"
 
 msgid "Channel Selection"
 msgstr "Вибір каналу"
@@ -6415,9 +6418,6 @@ msgstr ""
 
 msgid "Do you really want to delete this timer?"
 msgstr "Справді видалити цей таймер?"
-
-msgid "Do you really want to delete?"
-msgstr "Ви дійсно хочете видалити?"
 
 msgid "Do you really want to exit?"
 msgstr "Ви дійсно хочете вийти?"
@@ -9966,6 +9966,9 @@ msgstr "Внутрішній"
 msgid "Internal Flash"
 msgstr "Внутрішня Пам’ять"
 
+msgid "Internal SSD"
+msgstr "Внутрішній SSD"
+
 msgid "Internal USB"
 msgstr "Внутрішній USB"
 
@@ -13298,6 +13301,9 @@ msgstr "Відтворити вибраний канал"
 
 msgid "Playback Settings"
 msgstr "Налаштування відтворення"
+
+msgid "Playback Time:"
+msgstr "Час відтворення:"
 
 msgid "Playback, Recording & Time Shift"
 msgstr "Запис і таймшифт"
@@ -19417,7 +19423,7 @@ msgid "TMDB Search"
 msgstr "TMDB Пошук"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 31.01.2024"
+msgstr "Переклад: kvinto - 11.02.2025"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -19677,6 +19683,9 @@ msgstr "Журнал записів %s не містить інформації.
 #, python-format
 msgid "The '%s' file can't be retrieved, please try again later."
 msgstr "Не вдається отримати файл '%s', спробуйте пізніше."
+
+msgid "The AI mode used for translating languages. You can choose the one that gives the most accurate translation for your target language."
+msgstr "Режим ШІ, який використовується для перекладу мов. Ви можете вибрати той, який дає найточніший переклад для вашої цільової мови."
 
 msgid "The AI-Powered Translation service will be optimized to provide the best performance based on the the Internet connection upload speed selected."
 msgstr "Службу перекладу на основі штучного інтелекту буде оптимізовано для забезпечення найкращої продуктивності на основі вибраної швидкості завантаження з Інтернету."
@@ -24100,6 +24109,12 @@ msgstr "так (зберігати фіди)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Channel List Menu"
+#~ msgstr "Меню списку каналів"
+
+#~ msgid "Do you really want to delete?"
+#~ msgstr "Ви дійсно хочете видалити?"
 
 #, python-format
 #~ msgid "Do you really want to delete %s ?"
