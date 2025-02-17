@@ -1366,7 +1366,7 @@ class ReceiverInformation(InformationBase):
 		hwRelease = fileReadLine("/proc/stb/info/release", source=MODULE_NAME)
 		if hwRelease:
 			info.append(formatLine("P1", _("Factory release"), hwRelease))
-		displaytype = BoxInfo.getItem("displaytype").startswith(" ")
+		displaytype = BoxInfo.getItem("displaytype")
 		if displaytype and not displaytype.startswith(" "):
 			info.append(formatLine("P1", _("Display type"), displaytype))
 		fpVersion = getFPVersion()
