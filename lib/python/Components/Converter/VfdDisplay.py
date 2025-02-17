@@ -4,6 +4,7 @@ from datetime import datetime
 from Components.Converter.Poll import Poll
 from Components.Converter.Converter import Converter
 from Components.Element import cached
+from Components.config import configfile
 
 
 class VfdDisplay(Poll, Converter):
@@ -15,6 +16,21 @@ class VfdDisplay(Poll, Converter):
 		self.delay = 5000
 		self.loop = -1
 		self.type = type.lower().split(';')
+		configValue = None
+		for value in self.type:
+			if value.startswith("config."):
+				configValue = configfile.getResolvedKey(value, silent=True)  # Invalid/non-existent keys will return None.
+				break
+
+		if configValue == "nothing":
+			self.delay = 0
+			self.type = ["nothing"]
+			return
+		elif configValue == "time":
+			self.type = []
+		elif configValue == "number":
+			self.type = ["number"]
+
 		if 'number' in self.type and 'clock' not in self.type:  # Only channel number
 			self.delay = 0
 			self.poll_enabled = False
@@ -41,6 +57,8 @@ class VfdDisplay(Poll, Converter):
 
 	@cached
 	def getText(self):
+		if "nothing" in self.type:
+			return "    "
 		if hasattr(self.source, 'text'):
 			if 'nozero' in self.type:
 				return self.source.text.rjust(4)
