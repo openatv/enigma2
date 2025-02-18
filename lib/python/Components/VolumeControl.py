@@ -20,15 +20,6 @@ class VolumeControl:
 			print("[VolumeControl] Error: Only one VolumeControl instance is allowed!")
 		else:
 			VolumeControl.instance = self
-			global globalActionMap
-			globalActionMap.actions["volumeUp"] = self.keyVolumeUp
-			globalActionMap.actions["volumeUpLong"] = self.keyVolumeLong
-			globalActionMap.actions["volumeUpStop"] = self.keyVolumeStop
-			globalActionMap.actions["volumeDown"] = self.keyVolumeDown
-			globalActionMap.actions["volumeDownLong"] = self.keyVolumeLong
-			globalActionMap.actions["volumeDownStop"] = self.keyVolumeStop
-			globalActionMap.actions["volumeMute"] = self.keyVolumeMute
-			globalActionMap.actions["volumeMuteLong"] = self.keyVolumeMuteLong
 			self.dvbVolumeControl = eDVBVolumecontrol.getInstance()
 			config.volumeControl = ConfigSubsection()
 			config.volumeControl.volume = ConfigInteger(default=20, limits=(0, 100))
@@ -37,6 +28,15 @@ class VolumeControl:
 			config.volumeControl.pressStep.addNotifier(updateStep, initial_call=True, immediate_feedback=True)
 			config.volumeControl.longStep = ConfigSelectionNumber(1, 10, 1, default=5)
 			config.volumeControl.hideTimer = ConfigSelectionNumber(1, 10, 1, default=3)
+			global globalActionMap
+			globalActionMap.actions["volumeUp"] = self.keyVolumeUp
+			globalActionMap.actions["volumeDown"] = self.keyVolumeDown
+			globalActionMap.actions["volumeUpLong"] = self.keyVolumeLong
+			globalActionMap.actions["volumeDownLong"] = self.keyVolumeLong
+			globalActionMap.actions["volumeUpStop"] = self.keyVolumeStop
+			globalActionMap.actions["volumeDownStop"] = self.keyVolumeStop
+			globalActionMap.actions["volumeMute"] = self.keyVolumeMute
+			globalActionMap.actions["volumeMuteLong"] = self.keyVolumeMuteLong
 			self.muteDialog = session.instantiateDialog(Mute)
 			self.muteDialog.setAnimationMode(0)
 			self.volumeDialog = session.instantiateDialog(Volume)
@@ -52,6 +52,8 @@ class VolumeControl:
 			# Compatibility interface for shared plugins.
 			self.volctrl = self.dvbVolumeControl
 			self.hideVolTimer = self.hideTimer
+			session.onShutdown.append(self.shutdown)
+			print("[VolumeControl] Volume control module initialized.")
 
 	def keyVolumeUp(self):
 		self.updateVolume(self.dvbVolumeControl.volumeUp(0, 0))
@@ -93,9 +95,10 @@ class VolumeControl:
 		self.muteDialog.hide()
 		self.volumeDialog.hide()
 
-	def saveVolumeState(self):
+	def shutdown(self):
 		config.volumeControl.volume.setValue(self.dvbVolumeControl.getVolume())
 		config.volumeControl.save()
+		print("[VolumeControl] Volume settings saved and module shut down.")
 
 	# These methods are provided for compatibly with shared plugins.
 	#
