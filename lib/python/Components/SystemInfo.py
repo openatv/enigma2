@@ -414,6 +414,7 @@ BoxInfo.setItem("LcdLiveTV", fileCheck("/proc/stb/fb/sd_detach") or fileCheck("/
 BoxInfo.setItem("LcdLiveTVPiP", fileCheck("/proc/stb/lcd/live_decoder"))
 BoxInfo.setItem("LCDMiniTV", fileExists("/proc/stb/lcd/mode"))
 BoxInfo.setItem("LCDMiniTVPiP", BoxInfo.getItem("LCDMiniTV") and MACHINEBUILD not in ("gb800ueplus", "gbquad4k", "gbquad4kpro", "gbue4k"))
+BoxInfo.setItem("LCDSKIN", fileExists("/usr/share/enigma2/display"))
 BoxInfo.setItem("LCDSKINSetup", fileExists("/usr/share/enigma2/display") and DISPLAYTYPE not in ("7segment",))
 BoxInfo.setItem("LEDButtons", MACHINEBUILD == "vuultimo")
 BoxInfo.setItem("LEDColorControl", fileExists("/proc/stb/fp/led_color"))
