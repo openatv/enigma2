@@ -217,7 +217,6 @@ class ChannelSelectionBase(Screen):
 		self.baseTitle = _("Channel Selection")
 		self.function = EDIT_OFF
 		self.getBouquetMode()
-		self.subservicesBouquet = subservices_tv_ref
 		self.instanceInfoBarSubserviceSelection = None
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.onShown.append(self.applyKeyMap)
@@ -521,7 +520,7 @@ class ChannelSelectionBase(Screen):
 							ref.setName(_("Current transponder"))
 							self.servicelist.addService(ref, beforeCurrent=True)
 							if self.getSubservices():  # Add subservices selection if available.
-								ref = eServiceReference(self.subservicesBouquet)
+								ref = eServiceReference(subservices_tv_ref)
 								ref.setName(self.getServiceName(ref))
 								self.servicelist.addService(ref, beforeCurrent=True)
 						for (service_name, service_ref) in addCableAndTerrestrialLater:
@@ -682,7 +681,7 @@ class ChannelSelectionBase(Screen):
 	def getBouquetList(self):
 		bouquets = []
 		if self.isSubservices():
-			bouquets.append((self.getServiceName(self.subservicesBouquet), self.subservicesBouquet))
+			bouquets.append((self.getServiceName(subservices_tv_ref), subservices_tv_ref))
 		serviceHandler = eServiceCenter.getInstance()
 		if config.usage.multibouquet.value:
 			list = serviceHandler.list(self.bouquet_root)
@@ -745,7 +744,7 @@ class ChannelSelectionBase(Screen):
 		subservices = subservices or self.getSubservices(service)
 		if subservices:
 			self.clearPath()
-			self.enterPath(self.subservicesBouquet)
+			self.enterPath(subservices_tv_ref)
 			self.fillVirtualSubservices(service, subservices)
 
 	def getSubservices(self, service=None):
@@ -773,10 +772,7 @@ class ChannelSelectionBase(Screen):
 		self.setCurrentSelection(service or self.session.nav.getCurrentlyPlayingServiceReference())
 
 	def isSubservices(self, path=None):
-		if not path:  # Current
-			path = self.getRoot()
-		if path:
-			return self.subservicesBouquet.getPath() == path.getPath()
+		return subservices_tv_ref == (path or self.getRoot())
 
 	def getMutableList(self, root=eServiceReference()):  # Override for subservices
 		# ChannelContextMenu.inBouquet = True --> Wrong menu
