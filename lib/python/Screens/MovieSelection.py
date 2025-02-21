@@ -280,7 +280,7 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 		self.list = self["list"]
 		self.selectedmovie = selectedmovie
 		self.playGoTo = None  # 1: Preview next item, -1: Preview previous item.
-		self.setTitle(_("Movie selection"))
+		self.setTitle(_("Movie Selection"))
 		SelectionEventInfo.__init__(self)
 		self["key_red"] = StaticText()
 		self["key_green"] = StaticText()
@@ -343,7 +343,7 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 			"f3": (self.btn_F3, boundFunction(self.getinitUserDefinedActionsDescription, "btn_F3"))
 		}, prio=0)
 		self["OkCancelActions"] = HelpableActionMap(self, ["OkCancelActions"], {
-			"cancel": (self.abort, _("Exit movie list")),
+			"cancel": (self.abort, _("Exit Movie Selection")),
 			"ok": (self.itemSelected, _("Select movie"))
 		}, prio=0)
 		self["DirectionActions"] = HelpableActionMap(self, ["DirectionActions"], {
@@ -1837,7 +1837,7 @@ class MovieContextMenu(Screen, ProtectedScreen):  # Contract: On OK returns a ca
 		Screen.__init__(self, session)
 		ProtectedScreen.__init__(self)
 		self.skinName = "Setup"
-		self.setTitle(_("Movie List Settings"))
+		self.setTitle(_("Movie Selection Settings"))
 		self["HelpWindow"] = Pixmap()
 		self["HelpWindow"].hide()
 		self["VKeyIcon"] = Boolean(False)
