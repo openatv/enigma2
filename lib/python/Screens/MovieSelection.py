@@ -280,7 +280,7 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 		self.list = self["list"]
 		self.selectedmovie = selectedmovie
 		self.playGoTo = None  # 1: Preview next item, -1: Preview previous item.
-		self.setTitle(_("Movie selection"))
+		self.setTitle(_("Movie Selection"))
 		SelectionEventInfo.__init__(self)
 		self["key_red"] = StaticText()
 		self["key_green"] = StaticText()
