@@ -42,6 +42,7 @@
 			<item key="crontimer_edit" level="0" text="Cron Timers" weight="10"><screen module="CronTimer" screen="CronTimers" /></item>
 			<item key="sleep" level="0" text="Sleep Timers" weight="20" requires="DeepstandbySupport"><screen module="SleepTimer" screen="SleepTimer" /></item>
 		</menu>
+		<item key="movie_selection" level="0" text="Movie Selection" weight="8" conditional="config.usage.movieSelectionInMenu.value"><screen module="MovieSelection" screen="MovieSelection" /></item>
 		<item key="plugin_selection" level="1" text="Plugin Browser" weight="10"><screen module="PluginBrowser" screen="PluginBrowser" /></item>
 		<item key="scart_switch" level="1" text="VCR Scart Settings" weight="15" conditional="config.usage.show_vcr_scart.value" requires="ScartSwitch"><code>self.session.scart.VCRSbChanged(3)</code></item>
 		<!-- Menu / Setup -->
