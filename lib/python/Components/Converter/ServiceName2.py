@@ -408,7 +408,7 @@ class ServiceName2(Converter):
 			return "Glanc"
 		elif "/iptv/" in refstr:
 			return "Edem"
-		elif "only4" or "1ce" in refstr:
+		elif "only4" in refstr or "1ce" in refstr:
 			return "Only4"
 		elif "wisp.cat" in refstr:
 			return "TvoeTV"
