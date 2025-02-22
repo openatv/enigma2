@@ -3501,7 +3501,7 @@ class InfoBarPiP:
 			if self.allowPiP:
 				self.addExtension((self.getShowHideName, self.showPiP, lambda: True), "blue")
 				self.addExtension((self.getMoveName, self.movePiP, self.pipShown), "green")
-				self.addExtension((self.getSwapName, self.swapPiP, self.pipShown), "yellow")
+				self.addExtension((self.getSwapName, self.swapPiP, lambda: self.pipShown() and isStandardInfoBar(self)), "yellow")
 				self.addExtension((self.getTogglePipzapName, self.togglePipzap, self.pipShown), "red")
 			else:
 				self.addExtension((self.getShowHideName, self.showPiP, self.pipShown), "blue")
@@ -3569,7 +3569,10 @@ class InfoBarPiP:
 				self.session.pip = self.session.instantiateDialog(PictureInPicture)
 				self.session.pip.setAnimationMode(0)
 				self.session.pip.show()
-				newservice = self.lastPiPService or self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.servicelist.getCurrent()
+				if isStandardInfoBar(self):
+					newservice = self.lastPiPService or self.session.nav.getCurrentlyPlayingServiceReference() or self.servicelist.getCurrentSelection()
+				else:
+					newservice = self.lastPiPService or self.servicelist.getCurrentSelection()
 				if self.session.pip.playService(newservice):
 					self.session.pipshown = True
 					self.session.pip.servicePath = self.servicelist.getCurrentServicePath()
