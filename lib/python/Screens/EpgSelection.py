@@ -1280,7 +1280,7 @@ class EPGSelection(Screen):
 				name = event.getEventName()
 			except:
 				name = ""
-			self.session.open(tmdbScreen, name, 2)
+			self.session.open(tmdbScreen, name)
 		except ImportError:
 			self.session.open(MessageBox, _("The TMDB plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
