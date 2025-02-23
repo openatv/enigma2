@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-11 08:26+0000\n"
+"POT-Creation-Date: 2025-02-21 10:33+0000\n"
 "PO-Revision-Date: 2023-06-04 19:16+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -1176,10 +1176,6 @@ msgstr "%s%s nuotolinio valdymo pultas (gimtasis)"
 #, python-format
 msgid "%s %sB"
 msgstr ""
-
-#, python-format
-msgid "%s (%04o)"
-msgstr "%s (%04o)"
 
 #, python-format
 msgid "%s - Setup"
@@ -3846,6 +3842,9 @@ msgstr "Kanalo informacija"
 
 msgid "Channel List"
 msgstr "Kanalų sąrašas"
+
+msgid "Channel Number"
+msgstr ""
 
 msgid "Channel Selection"
 msgstr "Kanalo pasirinkimas"
@@ -7847,6 +7846,9 @@ msgstr "Išeikite iš failų vadovo"
 msgid "Exit MAC address configuration"
 msgstr "Išeiti iš MAC adreso konfigūracijos"
 
+msgid "Exit Movie Selection"
+msgstr "Užverti filmų sąrašą"
+
 msgid "Exit Quad Channel Selection"
 msgstr "Užverti 4 kanalų pasirinkimą"
 
@@ -7879,9 +7881,6 @@ msgstr "Užverti medija grotuvą"
 
 msgid "Exit menu"
 msgstr "Išeiti iš meniu"
-
-msgid "Exit Movie Selection"
-msgstr "Užverti filmų sąrašą"
 
 msgid "Exit movie player?"
 msgstr "Užverti filmų grotuvą?"
@@ -11608,17 +11607,17 @@ msgstr "Kino filmų sąrašas"
 msgid "Movie List Actions"
 msgstr "Filmų sąrašo veiksmai"
 
-msgid "Movie Selection Settings"
-msgstr "Filmų sąrašo parametrai"
-
 msgid "Movie Player Actions"
 msgstr "Filmo grotuvo veiksmai"
 
-msgid "Movie playback may not use an invalid/inappropriate directory."
-msgstr "Filmų atkūrimas gali nenaudoti netinkamo / netinkamo katalogo."
-
 msgid "Movie Selection"
 msgstr "Filmo pasirinkimas"
+
+msgid "Movie Selection Settings"
+msgstr "Filmų sąrašo parametrai"
+
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr "Filmų atkūrimas gali nenaudoti netinkamo / netinkamo katalogo."
 
 msgid "Movie/Drama"
 msgstr "Filmas|drama"
@@ -15956,6 +15955,9 @@ msgstr ""
 msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
 msgstr ""
 
+msgid "Select 'Yes' to show the 'Movie Selection' entry in the Main Menu. This can provide access to the Movie Selection screen when there is no assigned button on the remote control."
+msgstr ""
+
 msgid "Select 'Yes' to show the advanced setting options."
 msgstr "Pasirinkite 'Taip', kad būtų rodomos išplėstinės nustatymų parinktys."
 
@@ -17537,6 +17539,9 @@ msgstr "Rodyti Merlin EPG centrą"
 msgid "Show MiniTV in the Front Display"
 msgstr "Rodyti Mini TV priekiniame monitoriuje"
 
+msgid "Show Movie Selection in Main Menu"
+msgstr ""
+
 msgid "Show Movies List"
 msgstr "Rodyti filmų sąrašą"
 
@@ -17731,6 +17736,9 @@ msgstr ""
 
 msgid "Show directories first"
 msgstr "Pirmiausia parodyti katalogus"
+
+msgid "Show during operation"
+msgstr ""
 
 msgid "Show encryption information in the InfoBar (when supported by the skin)."
 msgstr "Info uostoje rodyti kodavimo informaciją (kai tą palaiko tema)."
@@ -20137,6 +20145,9 @@ msgstr "Ši parinktis leidžia nustatyti, kaip rodyti likusį / praėjusį laik�
 
 msgid "This option allows you choose if the display shows the time or nothing in Standby."
 msgstr "Ši parinktis leidžia pasirinkti, kaip rodyti laiką arba nieko, budėjimo režime"
+
+msgid "This option allows you choose if the display shows the time, channel number or nothing during operation."
+msgstr ""
 
 msgid "This option allows you choose the background color of transparent picons."
 msgstr "Ši parinktis leidžia pasirinkti skaidrių logotipų fono spalvą."
@@ -24057,6 +24068,10 @@ msgstr "taip (išsaugoti šaltinius)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s (%04o)"
+#~ msgstr "%s (%04o)"
 
 #~ msgid "Channel List Menu"
 #~ msgstr "Kanalų sąrašo meniu"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-11 08:26+0000\n"
+"POT-Creation-Date: 2025-02-21 10:33+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1143,10 +1143,6 @@ msgstr "%s%s điều khiển từ xa (tự nhiên)"
 #, python-format
 msgid "%s %sB"
 msgstr ""
-
-#, python-format
-msgid "%s (%04o)"
-msgstr "%s (%04o)"
 
 #, python-format
 msgid "%s - Setup"
@@ -3826,6 +3822,9 @@ msgstr "Thông tin kênh"
 
 msgid "Channel List"
 msgstr "Danh sách kênh"
+
+msgid "Channel Number"
+msgstr ""
 
 msgid "Channel Selection"
 msgstr "Chọn kênh"
@@ -7852,6 +7851,9 @@ msgstr ""
 msgid "Exit MAC address configuration"
 msgstr "Thoát cấu hình địa chỉ MAC"
 
+msgid "Exit Movie Selection"
+msgstr "Thoát khỏi danh sách phim"
+
 msgid "Exit Quad Channel Selection"
 msgstr "Thoát lựa chọn kênh Quad"
 
@@ -7884,9 +7886,6 @@ msgstr "Thoát phương tiện truyền thông"
 
 msgid "Exit menu"
 msgstr ""
-
-msgid "Exit Movie Selection"
-msgstr "Thoát khỏi danh sách phim"
 
 msgid "Exit movie player?"
 msgstr "Thoát khỏi trình phát phim?"
@@ -11703,18 +11702,18 @@ msgstr "Danh sách phim"
 msgid "Movie List Actions"
 msgstr "Lựa chọn phim"
 
-msgid "Movie Selection Settings"
-msgstr "Thiết lập danh sách phim"
-
 #, fuzzy
 msgid "Movie Player Actions"
 msgstr "Lựa chọn phim"
 
-msgid "Movie playback may not use an invalid/inappropriate directory."
-msgstr ""
-
 msgid "Movie Selection"
 msgstr "Lựa chọn phim"
+
+msgid "Movie Selection Settings"
+msgstr "Thiết lập danh sách phim"
+
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr ""
 
 msgid "Movie/Drama"
 msgstr "Phim / Kịch"
@@ -16108,6 +16107,9 @@ msgstr ""
 msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
 msgstr ""
 
+msgid "Select 'Yes' to show the 'Movie Selection' entry in the Main Menu. This can provide access to the Movie Selection screen when there is no assigned button on the remote control."
+msgstr ""
+
 msgid "Select 'Yes' to show the advanced setting options."
 msgstr ""
 
@@ -17704,6 +17706,9 @@ msgstr "Hiển thị Trung tâm EPG Merlin"
 msgid "Show MiniTV in the Front Display"
 msgstr "Hiển thị MiniTV trong màn hình phía trước"
 
+msgid "Show Movie Selection in Main Menu"
+msgstr ""
+
 msgid "Show Movies List"
 msgstr "Hiển thị danh sách phim"
 
@@ -17900,6 +17905,9 @@ msgstr ""
 
 msgid "Show directories first"
 msgstr "Hiển thị thư mục đầu tiên"
+
+msgid "Show during operation"
+msgstr ""
 
 msgid "Show encryption information in the InfoBar (when supported by the skin)."
 msgstr "Hiển thị thông tin mã hóa trong infobar (khi được hỗ trợ bởi skin)."
@@ -20329,6 +20337,9 @@ msgstr "Tùy chọn này cho phép bạn chọn cách hiển thị thời gian c
 
 msgid "This option allows you choose if the display shows the time or nothing in Standby."
 msgstr "Tùy chọn này cho phép bạn chọn cách hiển thị Thời gian hoặc không có gì trong Chế độ chờ"
+
+msgid "This option allows you choose if the display shows the time, channel number or nothing during operation."
+msgstr ""
 
 msgid "This option allows you choose the background color of transparent picons."
 msgstr "Tùy chọn này cho phép bạn chọn màu nền của picons trong suốt."
@@ -24282,6 +24293,10 @@ msgstr "có (giữ thức ăn)"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid "%s (%04o)"
+#~ msgstr "%s (%04o)"
 
 #~ msgid "Channel List Menu"
 #~ msgstr "Danh sách lít kênh"

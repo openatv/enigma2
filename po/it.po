@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-11 08:26+0000\n"
-"PO-Revision-Date: 2025-02-12 12:56+0000\n"
+"POT-Creation-Date: 2025-02-21 10:33+0000\n"
+"PO-Revision-Date: 2025-02-23 08:09+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.10.1-dev\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
 
 msgid ""
@@ -1141,10 +1141,6 @@ msgstr "%s %s controllo remoto (nativo)"
 #, python-format
 msgid "%s %sB"
 msgstr "%s %sB"
-
-#, python-format
-msgid "%s (%04o)"
-msgstr "%s (%04o)"
 
 #, python-format
 msgid "%s - Setup"
@@ -3800,6 +3796,9 @@ msgstr "Info canale"
 msgid "Channel List"
 msgstr "Elenco canali"
 
+msgid "Channel Number"
+msgstr "Numero canale"
+
 msgid "Channel Selection"
 msgstr "Selezione canale"
 
@@ -5689,7 +5688,7 @@ msgid "Default movie location (%s)"
 msgstr "Posizione predefinita registrazione (%s)"
 
 msgid "Default movie selection location"
-msgstr "Posizione predefinita per selezione registrazione"
+msgstr "Posizione predefinita per Selezione registrazione"
 
 msgid "Default recording type"
 msgstr "Tipo di registrazione predefinita"
@@ -7800,6 +7799,9 @@ msgstr "Esci da File Commander"
 msgid "Exit MAC address configuration"
 msgstr "Esci dalla configurazione del MAC-address"
 
+msgid "Exit Movie Selection"
+msgstr "Esci da Selezione registrazione"
+
 msgid "Exit Quad Channel Selection"
 msgstr "Esci dalla selezione di Quad Channel"
 
@@ -7832,9 +7834,6 @@ msgstr "Esci da Mediaplayer"
 
 msgid "Exit menu"
 msgstr "Menu di uscita"
-
-msgid "Exit Movie Selection"
-msgstr "Esci dall'elenco registrazioni"
 
 msgid "Exit movie player?"
 msgstr "Uscire dal lettore?"
@@ -11559,17 +11558,17 @@ msgstr "Elenco registrazioni"
 msgid "Movie List Actions"
 msgstr "Azioni elenco registrazioni"
 
-msgid "Movie Selection Settings"
-msgstr "Impostazioni elenco registrazioni"
-
 msgid "Movie Player Actions"
 msgstr "Azioni del riproduttore"
 
-msgid "Movie playback may not use an invalid/inappropriate directory."
-msgstr "La riproduzione non può usare una cartella non valida."
-
 msgid "Movie Selection"
 msgstr "Selezione registrazione"
+
+msgid "Movie Selection Settings"
+msgstr "Impostazioni Selezione registrazione"
+
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr "La riproduzione non può usare una cartella non valida."
 
 msgid "Movie/Drama"
 msgstr "Film/Dramma"
@@ -15905,6 +15904,9 @@ msgstr "Seleziona 'Sì' per mostrare i pacchetti di sottoscrizione nella scherma
 msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
 msgstr "Seleziona 'Sì' per mostrare i pacchetti dei plugin di sistema nella schermata Scarica plugin."
 
+msgid "Select 'Yes' to show the 'Movie Selection' entry in the Main Menu. This can provide access to the Movie Selection screen when there is no assigned button on the remote control."
+msgstr "Seleziona 'Sì' per visualizzare la voce 'Selezione registrazione' nel menu principale. Questo può fornire accesso alla schermata Selezione registrazione quando non è assegnato alcun pulsante sul telecomando."
+
 msgid "Select 'Yes' to show the advanced setting options."
 msgstr "Seleziona 'Sì' per mostrare le opzioni di impostazione avanzate."
 
@@ -17010,7 +17012,7 @@ msgid "Set the default location to store your time shift buffer files. Press 'OK
 msgstr "Imposta la posizione predefinita per i file timeshift. Premi 'OK' per aggiungere nuove posizioni, seleziona sinistra/destra per selezionare una posizione esistente."
 
 msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
-msgstr "Imposta la posizione predefinita per le registrazioni. Premi 'OK' per aggiungere nuove posizioni, seleziona sinistra/destra per selezionare una posizione esistente."
+msgstr "Imposta la posizione predefinita per le registrazioni. Premi 'OK' per aggiungere nuove posizioni, premi 'SINISTRA'/'DESTRA' per selezionare tra le posizioni definite in precedenza."
 
 msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Imposta la posizione predefinita per i timer. Premi 'OK' per aggiungere nuove posizioni, seleziona sinistra/destra per selezionare una posizione esistente."
@@ -17498,6 +17500,9 @@ msgstr "Mostra centro EPG Merlin"
 msgid "Show MiniTV in the Front Display"
 msgstr "Mostra MiniTV sullo schermo anteriore"
 
+msgid "Show Movie Selection in Main Menu"
+msgstr "Mostra Selezione registrazione nel Menu principale"
+
 msgid "Show Movies List"
 msgstr "Mostra elenco registrazioni"
 
@@ -17692,6 +17697,9 @@ msgstr "Mostra dettagli dell'attività evidenziata"
 
 msgid "Show directories first"
 msgstr "Mostra prima le cartelle"
+
+msgid "Show during operation"
+msgstr "Mostra durante il funzionamento"
 
 msgid "Show encryption information in the InfoBar (when supported by the skin)."
 msgstr "Mostra informazioni sulla crittografia nella barra informazioni (se supportata dalla skin)."
@@ -20119,6 +20127,9 @@ msgstr "Questa opzione consente di scegliere come visualizzare il tempo rimanent
 
 msgid "This option allows you choose if the display shows the time or nothing in Standby."
 msgstr "Questa opzione consente di scegliere come visualizzare l'ora o nulla in standby"
+
+msgid "This option allows you choose if the display shows the time, channel number or nothing during operation."
+msgstr "Questa opzione consente di scegliere se durante il funzionamento il display visualizza l'ora, il numero del canale oppure nulla."
 
 msgid "This option allows you choose the background color of transparent picons."
 msgstr "Questa opzione consente di scegliere il colore di sfondo delle icone trasparenti."
@@ -24056,6 +24067,10 @@ msgstr "sì (mantieni feed)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s (%04o)"
+#~ msgstr "%s (%04o)"
 
 #~ msgid "Channel List Menu"
 #~ msgstr "Menu elenco canali"

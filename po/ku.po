@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: enigma2 Kurdish translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-11 08:26+0000\n"
+"POT-Creation-Date: 2025-02-21 10:33+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Kurdish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ku/>\n"
@@ -1257,10 +1257,6 @@ msgstr "dreambox remote control (native)"
 #, python-format
 msgid "%s %sB"
 msgstr ""
-
-#, fuzzy, python-format
-msgid "%s (%04o)"
-msgstr "%s (%s)\n"
 
 #, fuzzy, python-format
 msgid "%s - Setup"
@@ -4023,6 +4019,9 @@ msgstr "Qanal"
 #, fuzzy
 msgid "Channel List"
 msgstr "Qanal Liste "
+
+msgid "Channel Number"
+msgstr ""
 
 msgid "Channel Selection"
 msgstr "Channel Selection"
@@ -8113,6 +8112,9 @@ msgstr ""
 msgid "Exit MAC address configuration"
 msgstr "Exit nameserver configuration"
 
+msgid "Exit Movie Selection"
+msgstr "Exit Movie Selection"
+
 #, fuzzy
 msgid "Exit Quad Channel Selection"
 msgstr "Channel Selection"
@@ -8147,9 +8149,6 @@ msgstr "Exit mediaplayer"
 
 msgid "Exit menu"
 msgstr ""
-
-msgid "Exit Movie Selection"
-msgstr "Exit Movie Selection"
 
 msgid "Exit movie player?"
 msgstr "Exit movie player?"
@@ -12043,18 +12042,18 @@ msgid "Movie List Actions"
 msgstr "Movie Selection"
 
 #, fuzzy
-msgid "Movie Selection Settings"
-msgstr "Movielist menu"
-
-#, fuzzy
 msgid "Movie Player Actions"
 msgstr "Movie Selection"
 
-msgid "Movie playback may not use an invalid/inappropriate directory."
-msgstr ""
-
 msgid "Movie Selection"
 msgstr "Movie Selection"
+
+#, fuzzy
+msgid "Movie Selection Settings"
+msgstr "Movielist menu"
+
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr ""
 
 msgid "Movie/Drama"
 msgstr "Movie/Drama"
@@ -16555,6 +16554,9 @@ msgstr ""
 msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
 msgstr ""
 
+msgid "Select 'Yes' to show the 'Movie Selection' entry in the Main Menu. This can provide access to the Movie Selection screen when there is no assigned button on the remote control."
+msgstr ""
+
 msgid "Select 'Yes' to show the advanced setting options."
 msgstr ""
 
@@ -18171,6 +18173,9 @@ msgstr ""
 msgid "Show MiniTV in the Front Display"
 msgstr ""
 
+msgid "Show Movie Selection in Main Menu"
+msgstr ""
+
 #, fuzzy
 msgid "Show Movies List"
 msgstr "Timer edit"
@@ -18380,6 +18385,9 @@ msgstr ""
 #, fuzzy
 msgid "Show directories first"
 msgstr "Timer edit"
+
+msgid "Show during operation"
+msgstr ""
 
 #, fuzzy
 msgid "Show encryption information in the InfoBar (when supported by the skin)."
@@ -20849,6 +20857,9 @@ msgid "This option allows you choose how to display the remaining/elapsed time f
 msgstr ""
 
 msgid "This option allows you choose if the display shows the time or nothing in Standby."
+msgstr ""
+
+msgid "This option allows you choose if the display shows the time, channel number or nothing during operation."
 msgstr ""
 
 msgid "This option allows you choose the background color of transparent picons."
@@ -24874,6 +24885,10 @@ msgstr "yes (keep feeds)"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy, python-format
+#~ msgid "%s (%04o)"
+#~ msgstr "%s (%s)\n"
 
 #~ msgid "Channel List Menu"
 #~ msgstr "Menu Qenal Liste"

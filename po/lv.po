@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-11 08:26+0000\n"
+"POT-Creation-Date: 2025-02-21 10:33+0000\n"
 "PO-Revision-Date: 2016-04-02 23:17+0200\n"
 "Last-Translator: Andy Blackburn <andyblac@icloud.com>\n"
 "Language-Team: Ivo / enigma2 (c) <ivog@apolllo.lv>\n"
@@ -1241,11 +1241,6 @@ msgstr "Spiediet OK uz tālvadības pults, lai turpinātu."
 #, python-format
 msgid "%s %sB"
 msgstr ""
-
-#
-#, fuzzy, python-format
-msgid "%s (%04o)"
-msgstr "%s (%s)\n"
 
 #
 #, fuzzy, python-format
@@ -4138,6 +4133,9 @@ msgid "Channel Info"
 msgstr ""
 
 msgid "Channel List"
+msgstr ""
+
+msgid "Channel Number"
 msgstr ""
 
 #
@@ -8393,6 +8391,11 @@ msgstr "iziet no vārdu servera konfigurācijas"
 
 #
 #, fuzzy
+msgid "Exit Movie Selection"
+msgstr "iziet no filmu saraksta"
+
+#
+#, fuzzy
 msgid "Exit Quad Channel Selection"
 msgstr "Kanālu izvēle"
 
@@ -8430,11 +8433,6 @@ msgstr "iziet no mediju atskaņotāja"
 
 msgid "Exit menu"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Exit Movie Selection"
-msgstr "iziet no filmu saraksta"
 
 #
 #, fuzzy
@@ -12536,21 +12534,21 @@ msgstr ""
 msgid "Movie List Actions"
 msgstr "Taimeru izvēle"
 
-msgid "Movie Selection Settings"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Movie Player Actions"
 msgstr "Taimeru izvēle"
 
-msgid "Movie playback may not use an invalid/inappropriate directory."
-msgstr ""
-
 #
 #, fuzzy
 msgid "Movie Selection"
 msgstr "Taimeru izvēle"
+
+msgid "Movie Selection Settings"
+msgstr ""
+
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr ""
 
 msgid "Movie/Drama"
 msgstr ""
@@ -17329,6 +17327,9 @@ msgstr ""
 msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
 msgstr ""
 
+msgid "Select 'Yes' to show the 'Movie Selection' entry in the Main Menu. This can provide access to the Movie Selection screen when there is no assigned button on the remote control."
+msgstr ""
+
 msgid "Select 'Yes' to show the advanced setting options."
 msgstr ""
 
@@ -18985,6 +18986,9 @@ msgstr ""
 msgid "Show MiniTV in the Front Display"
 msgstr ""
 
+msgid "Show Movie Selection in Main Menu"
+msgstr ""
+
 msgid "Show Movies List"
 msgstr ""
 
@@ -19196,6 +19200,9 @@ msgid "Show details of highlighted task"
 msgstr ""
 
 msgid "Show directories first"
+msgstr ""
+
+msgid "Show during operation"
 msgstr ""
 
 msgid "Show encryption information in the InfoBar (when supported by the skin)."
@@ -21771,6 +21778,9 @@ msgid "This option allows you choose how to display the remaining/elapsed time f
 msgstr ""
 
 msgid "This option allows you choose if the display shows the time or nothing in Standby."
+msgstr ""
+
+msgid "This option allows you choose if the display shows the time, channel number or nothing during operation."
 msgstr ""
 
 msgid "This option allows you choose the background color of transparent picons."
@@ -25965,6 +25975,11 @@ msgstr "jā (paturēt barotnes)"
 
 msgid "®"
 msgstr ""
+
+#
+#, fuzzy, python-format
+#~ msgid "%s (%04o)"
+#~ msgstr "%s (%s)\n"
 
 #
 #~ msgid "Bus: "

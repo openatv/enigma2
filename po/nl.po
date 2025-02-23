@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-11 08:26+0000\n"
+"POT-Creation-Date: 2025-02-21 10:33+0000\n"
 "PO-Revision-Date: 2024-11-10 13:00+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -1143,10 +1143,6 @@ msgstr "%s %s Afstandsbediening"
 #, python-format
 msgid "%s %sB"
 msgstr "%s %sB"
-
-#, python-format
-msgid "%s (%04o)"
-msgstr "%s (%04o)"
 
 #, python-format
 msgid "%s - Setup"
@@ -3810,6 +3806,9 @@ msgstr "Zender info"
 
 msgid "Channel List"
 msgstr "Zenderlijst"
+
+msgid "Channel Number"
+msgstr ""
 
 msgid "Channel Selection"
 msgstr "Zenderlijst"
@@ -7943,6 +7942,9 @@ msgstr "File Commander afsluiten"
 msgid "Exit MAC address configuration"
 msgstr "Verlaat MAC-adres instellingen"
 
+msgid "Exit Movie Selection"
+msgstr "Opnamelijst afsluiten"
+
 msgid "Exit Quad Channel Selection"
 msgstr "Verlaat Quad zender selectie"
 
@@ -7975,9 +7977,6 @@ msgstr "Mediaspeler afsluiten"
 
 msgid "Exit menu"
 msgstr "Exit menu"
-
-msgid "Exit Movie Selection"
-msgstr "Opnamelijst afsluiten"
 
 msgid "Exit movie player?"
 msgstr "Opnamespeler beëindigen?"
@@ -11709,17 +11708,17 @@ msgstr "Opnamelijst"
 msgid "Movie List Actions"
 msgstr "Opnamelijst Acties"
 
-msgid "Movie Selection Settings"
-msgstr "Opnamelijst instellingen"
-
 msgid "Movie Player Actions"
 msgstr "Opnamelijst Acties"
 
-msgid "Movie playback may not use an invalid/inappropriate directory."
-msgstr "Er is mogelijk een niet geschikte map voor opnames geselecteerd."
-
 msgid "Movie Selection"
 msgstr "Opname selectie"
+
+msgid "Movie Selection Settings"
+msgstr "Opnamelijst instellingen"
+
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr "Er is mogelijk een niet geschikte map voor opnames geselecteerd."
 
 msgid "Movie/Drama"
 msgstr "Film/drama"
@@ -16071,6 +16070,9 @@ msgstr "Kies 'Ja' om de Abonnementen in het plugin download-menu te tonen."
 msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
 msgstr "Kies 'Ja' om Systeem plugins in het plugin download-scherm weer te geven."
 
+msgid "Select 'Yes' to show the 'Movie Selection' entry in the Main Menu. This can provide access to the Movie Selection screen when there is no assigned button on the remote control."
+msgstr ""
+
 msgid "Select 'Yes' to show the advanced setting options."
 msgstr "Kies 'Ja' om de geavanceerde instellingen te tonen."
 
@@ -17688,6 +17690,9 @@ msgstr "Toon Merlin EPG"
 msgid "Show MiniTV in the Front Display"
 msgstr "Toon MiniTV op het display"
 
+msgid "Show Movie Selection in Main Menu"
+msgstr ""
+
 msgid "Show Movies List"
 msgstr "Toon Opname lijst"
 
@@ -17886,6 +17891,9 @@ msgstr "Details van gemarkeerde taak weergeven"
 
 msgid "Show directories first"
 msgstr "Toon eerst mappen"
+
+msgid "Show during operation"
+msgstr ""
 
 msgid "Show encryption information in the InfoBar (when supported by the skin)."
 msgstr "Toon versleutel informatie in de informatiebalk (als dat door uw skin wordt ondersteund)."
@@ -20329,6 +20337,9 @@ msgstr "Hier kunt u instellen of u de resterende of de verstreken tijd wilt zien
 
 msgid "This option allows you choose if the display shows the time or nothing in Standby."
 msgstr "Hier kunt u instellen of en hoe u de tijd wilt weergeven in stand-by"
+
+msgid "This option allows you choose if the display shows the time, channel number or nothing during operation."
+msgstr ""
 
 msgid "This option allows you choose the background color of transparent picons."
 msgstr "Met deze optie kunt u de achtergrond kleur van transparante picons instellen."
@@ -24325,6 +24336,10 @@ msgstr "ja (bewaar feeds)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s (%04o)"
+#~ msgstr "%s (%04o)"
 
 #~ msgid "Channel List Menu"
 #~ msgstr "Zenderlijstmenu"

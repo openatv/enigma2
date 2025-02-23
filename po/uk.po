@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-11 08:26+0000\n"
-"PO-Revision-Date: 2025-02-12 12:56+0000\n"
+"POT-Creation-Date: 2025-02-21 10:33+0000\n"
+"PO-Revision-Date: 2025-02-22 07:46+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.10.1-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1179,10 +1179,6 @@ msgstr "%s %s пульт ДУ (рідний)"
 #, python-format
 msgid "%s %sB"
 msgstr "%s %sB"
-
-#, python-format
-msgid "%s (%04o)"
-msgstr "%s (%04o)"
 
 #, python-format
 msgid "%s - Setup"
@@ -3837,6 +3833,9 @@ msgstr "Інформація каналу"
 
 msgid "Channel List"
 msgstr "Список каналів"
+
+msgid "Channel Number"
+msgstr "Номер Каналу"
 
 msgid "Channel Selection"
 msgstr "Вибір каналу"
@@ -7843,6 +7842,9 @@ msgstr "Вийти з File Commander"
 msgid "Exit MAC address configuration"
 msgstr "Вийти з налаштувань МАС-адреси"
 
+msgid "Exit Movie Selection"
+msgstr "Закрити список фільмів"
+
 msgid "Exit Quad Channel Selection"
 msgstr "Вихід з вибору Чотири-екранного Вікна"
 
@@ -7875,9 +7877,6 @@ msgstr "Вийти з медіапрогравача"
 
 msgid "Exit menu"
 msgstr "Вийти з меню"
-
-msgid "Exit Movie Selection"
-msgstr "Закрити список фільмів"
 
 msgid "Exit movie player?"
 msgstr "Вийти з відео плеєра?"
@@ -11604,17 +11603,17 @@ msgstr "Список записів"
 msgid "Movie List Actions"
 msgstr "Дії для списку записів"
 
-msgid "Movie Selection Settings"
-msgstr "Налаштування списку записів"
-
 msgid "Movie Player Actions"
 msgstr "Дії для Плеєра записів"
 
-msgid "Movie playback may not use an invalid/inappropriate directory."
-msgstr "Відтворення відео не може використовувати недійсний/невідповідний каталог."
-
 msgid "Movie Selection"
 msgstr "Вибір записів"
+
+msgid "Movie Selection Settings"
+msgstr "Налаштування списку записів"
+
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr "Відтворення відео не може використовувати недійсний/невідповідний каталог."
 
 msgid "Movie/Drama"
 msgstr "Кіно/Драма"
@@ -15955,6 +15954,9 @@ msgstr "Виберіть 'Так', щоб показати пакети підп
 msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
 msgstr "Виберіть 'Так', щоб відобразити пакети плагінів системи на екрані завантаження плагінів."
 
+msgid "Select 'Yes' to show the 'Movie Selection' entry in the Main Menu. This can provide access to the Movie Selection screen when there is no assigned button on the remote control."
+msgstr "Виберіть 'Так', щоб відобразити запис 'Вибір відео' в Головному Меню. Це може забезпечити доступ до екрана вибору відео, якщо на пульті дистанційного керування немає призначеної кнопки."
+
 msgid "Select 'Yes' to show the advanced setting options."
 msgstr "Виберіть 'Так', щоб відобразити розширені параметри налаштувань."
 
@@ -17548,6 +17550,9 @@ msgstr "Показати Центр ЕПГ Мерлін"
 msgid "Show MiniTV in the Front Display"
 msgstr "Показати MiniTV на дисплеї"
 
+msgid "Show Movie Selection in Main Menu"
+msgstr "Показати Вибір відео в Головному Меню"
+
 msgid "Show Movies List"
 msgstr "Показати список записів"
 
@@ -17742,6 +17747,9 @@ msgstr "Показати деталі виділеного завдання"
 
 msgid "Show directories first"
 msgstr "Спочатку показати каталоги"
+
+msgid "Show during operation"
+msgstr "Показувати під час роботи"
 
 msgid "Show encryption information in the InfoBar (when supported by the skin)."
 msgstr "Показати інформацію про декодуванні на інфобарі (якщо це підтримується скіном)."
@@ -19423,7 +19431,7 @@ msgid "TMDB Search"
 msgstr "TMDB Пошук"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 11.02.2025"
+msgstr "Переклад: kvinto - 21.02.2025"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -20171,6 +20179,9 @@ msgstr "Цей параметр дозволяє Вам вибрати спос�
 
 msgid "This option allows you choose if the display shows the time or nothing in Standby."
 msgstr "Ця опція дозволяє вибрати можливість відображати годинник, або ні в Режимі очікування"
+
+msgid "This option allows you choose if the display shows the time, channel number or nothing during operation."
+msgstr "Ця опція дозволяє вибрати відображення на дисплеї під час роботи час, номер каналу чи нічого."
 
 msgid "This option allows you choose the background color of transparent picons."
 msgstr "Цей параметр дозволяє Вам вибрати колір фону для прозорих піконів."
@@ -24109,6 +24120,10 @@ msgstr "так (зберігати фіди)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s (%04o)"
+#~ msgstr "%s (%04o)"
 
 #~ msgid "Channel List Menu"
 #~ msgstr "Меню списку каналів"

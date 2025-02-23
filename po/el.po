@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-11 08:26+0000\n"
-"PO-Revision-Date: 2025-01-25 17:05+0000\n"
+"POT-Creation-Date: 2025-02-21 10:33+0000\n"
+"PO-Revision-Date: 2025-02-17 21:33+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
 "Language: el\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.10.1-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1144,10 +1144,6 @@ msgid "%s %sB"
 msgstr "%s %sB"
 
 #, python-format
-msgid "%s (%04o)"
-msgstr "%s (%04o)"
-
-#, python-format
 msgid "%s - Setup"
 msgstr "%s - Ρυθμίσεις"
 
@@ -1703,7 +1699,7 @@ msgid "AI Translation language"
 msgstr "Γλώσσα μετάφρασης μέσω AI"
 
 msgid "AI Translation mode"
-msgstr ""
+msgstr "Λειτουργία μετάφρασης ΤΝ"
 
 msgid "AI Translation optimization"
 msgstr "Βελτιστοποίηση μετάφρασης μέσω ΤΝ"
@@ -1820,7 +1816,7 @@ msgid "Activate the flash expander, save all changed settings and exit"
 msgstr "Ενεργοποίηση επέκτασης μνήμης flash, αποθήκευση όλων των αλλαγών ρυθμίσεων και έξοδος"
 
 msgid "Activate this device"
-msgstr ""
+msgstr "Ενεργοποίηση αυτής της συσκευής"
 
 msgid "Activate time shift End"
 msgstr "Ενεργοποίηση τέλους χρονομετατόπισης"
@@ -2381,7 +2377,7 @@ msgid "Arabic (Egyptian)"
 msgstr "Αραβικά (Αιγυπτιακά)"
 
 msgid "Arabic (Iraq)"
-msgstr ""
+msgstr "Αραβικά (Ιράκ)"
 
 msgid "Arabic (Moroccan)"
 msgstr "Αραβικά (Μαροκινά)"
@@ -3541,7 +3537,7 @@ msgstr ""
 "Αλλαγή σε ζωντανή TV και επανεκκίνηση χρονομετατόπισης ;"
 
 msgid "Can't move to trashcan!"
-msgstr "Αδυναμία μετακίνησης στον κάδο αχρήστων"
+msgstr "Αδυναμία μετακίνησης στον κάδο αχρήστων!"
 
 msgid ""
 "Can't play the next time shift file!\n"
@@ -3800,6 +3796,9 @@ msgstr "Πληροφορίες καναλιού"
 
 msgid "Channel List"
 msgstr "Λίστα καναλιών"
+
+msgid "Channel Number"
+msgstr "Αριθμός καναλιού"
 
 msgid "Channel Selection"
 msgstr "Επιλογή καναλιού"
@@ -6392,7 +6391,7 @@ msgstr ""
 
 #, python-format
 msgid "Do you really want to move '%s' to the trashcan?"
-msgstr ""
+msgstr "Θέλετε σίγουρα να μετακινηθεί το '%s' στον κάδο αχρήστων;"
 
 #, python-format
 msgid "Do you really want to permanently remove '%s' from the trashcan?"
@@ -7139,7 +7138,7 @@ msgid "Enable this option to add screen names and resolution data to the debug l
 msgstr "Ενεργοποιήστε αυτή την επιλογή για την προσθήκη ονομάτων οθόνης και δεδομένων ανάλυσης εικόνας στο αρχείο καταγραφής αποσφαλμάτωσης."
 
 msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
-msgstr ""
+msgstr "Ενεργοποιήστε αυτή την επιλογή για να προστεθούν οι πληροφορίες της συσκευής αποθήκευσης που ανιχνεύεται κατά την εκκίνηση του συστήματος και οι ενέργειες αυτόματης σύνδεσης στο αρχείο αποσφαλμάτωσης."
 
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Ενεργοποιήστε αυτή την επιλογή για την προσθήκη δεδομένων αποσφαλμάτωσης στο αρχείο καταγραφής."
@@ -7148,7 +7147,7 @@ msgid "Enable this option to show all the available Information screens in the I
 msgstr "Ενεργοποιήστε αυτή την επιλογή για να εμφανίζονται όλες οι διαθέσιμες οθόνες πληροφοριών στη λίστα στοιχείων του μενού πληροφοριών."
 
 msgid "Enable this option to show unknown storage devices in device manager."
-msgstr ""
+msgstr "Ενεργοποιήστε αυτή την επιλογή για να εμφανίζονται οι άγνωστες συσκευές αποθήκευσης στη διαχείριση συσκευών."
 
 msgid "Enable this setting if your aerial system needs power."
 msgstr "Ενεργοποιήστε αυτή τη ρύθμιση αν η κεραία σας απαιτεί πρόσθετη ισχύ."
@@ -7592,7 +7591,7 @@ msgstr "Σφάλμα στη δημιουργία φακέλου λογότυπω
 
 #, python-format
 msgid "Error: Directory '%s' does not exist!"
-msgstr "Ο φάκελος %s δεν υπάρχει."
+msgstr "Σφάλμα: Ο φάκελος %s δεν υπάρχει!"
 
 #, python-format
 msgid "Error: Failed to run service scan!  (%s)"
@@ -7801,6 +7800,9 @@ msgstr "Έξοδος από το File Commander"
 msgid "Exit MAC address configuration"
 msgstr "Έξοδος από τη ρύθμιση της διεύθυνσης MAC"
 
+msgid "Exit Movie Selection"
+msgstr "Έξοδος από τη λίστα ταινιών"
+
 msgid "Exit Quad Channel Selection"
 msgstr "Έξοδος από την επιλογή τετραπλού καναλιού"
 
@@ -7833,9 +7835,6 @@ msgstr "Έξοδος από την αναπαραγωγή πολυμέσων"
 
 msgid "Exit menu"
 msgstr "Μενού εξόδου"
-
-msgid "Exit Movie Selection"
-msgstr "Έξοδος από τη λίστα ταινιών"
 
 msgid "Exit movie player?"
 msgstr "Έξοδος από την αναπαραγωγή ταινιών;"
@@ -9557,7 +9556,7 @@ msgid "Image creation failed!"
 msgstr "Αποτυχία δημιουργίας image!"
 
 msgid "Image version"
-msgstr ""
+msgstr "Έκδοση image"
 
 msgid "ImageWizard"
 msgstr "Οδηγός Image"
@@ -9681,7 +9680,7 @@ msgid "Include screen load data"
 msgstr "Συμπερίληψη των δεδομένων φόρτωσης εικόνας"
 
 msgid "Include storage device data"
-msgstr ""
+msgstr "Συμπερίληψη δεδομένων συσκευής αποθήκευσης"
 
 msgid "Include teletext details"
 msgstr "Συμπερίληψη λεπτομερειών τηλεκειμένου"
@@ -9925,7 +9924,7 @@ msgid "Internal Flash"
 msgstr "Εσωτερική Flash"
 
 msgid "Internal SSD"
-msgstr ""
+msgstr "Εσωτερικός SSD"
 
 msgid "Internal USB"
 msgstr "Εσωτερικό USB"
@@ -11560,17 +11559,17 @@ msgstr "Λίστα ταινιών"
 msgid "Movie List Actions"
 msgstr "Ενέργειες λίστας ταινιών"
 
-msgid "Movie Selection Settings"
-msgstr "Ρυθμίσεις λίστας ταινιών"
-
 msgid "Movie Player Actions"
 msgstr "Ενέργειες αναπαραγωγού ταινιών"
 
-msgid "Movie playback may not use an invalid/inappropriate directory."
-msgstr "Η αναπαραγωγή ταινιών μπορεί να μην κάνει χρήση ενός μη έγκυρου/ακατάλληλου φακέλου."
-
 msgid "Movie Selection"
 msgstr "Επιλογή ταινιών"
+
+msgid "Movie Selection Settings"
+msgstr "Ρυθμίσεις λίστας ταινιών"
+
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr "Η αναπαραγωγή ταινιών μπορεί να μην κάνει χρήση ενός μη έγκυρου/ακατάλληλου φακέλου."
 
 msgid "Movie/Drama"
 msgstr "Ταινία/Δράμα"
@@ -13259,7 +13258,7 @@ msgid "Playback Settings"
 msgstr "Ρυθμίσεις αναπαραγωγής"
 
 msgid "Playback Time:"
-msgstr ""
+msgstr "Χρόνος αναπαραγωγής:"
 
 msgid "Playback, Recording & Time Shift"
 msgstr "Αναπαραγωγή, εγγραφή & χρονομετατόπιση"
@@ -15906,6 +15905,9 @@ msgstr "Επιλέξτε 'ναι' για να εμφανιστούν τα πακ
 msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
 msgstr "Επιλέξτε 'ναι' για να εμφανιστούν τα πακέτα συστήματος στην οθόνη λήψης προσθέτων."
 
+msgid "Select 'Yes' to show the 'Movie Selection' entry in the Main Menu. This can provide access to the Movie Selection screen when there is no assigned button on the remote control."
+msgstr ""
+
 msgid "Select 'Yes' to show the advanced setting options."
 msgstr "Επιλέξτε 'ναι' για εμφάνιση των προχωρημένων επιλογών ρύθμισης."
 
@@ -17499,6 +17501,9 @@ msgstr "Εμφάνιση Κέντρου Πολυμέσων Merlin"
 msgid "Show MiniTV in the Front Display"
 msgstr "Εμφάνιση MiniTV στην οθόνη πρόσοψης"
 
+msgid "Show Movie Selection in Main Menu"
+msgstr ""
+
 msgid "Show Movies List"
 msgstr "Εμφάνιση λίστας ταινιών"
 
@@ -17693,6 +17698,9 @@ msgstr "Εμφάνιση λεπτομερειών επισημασμένης ε�
 
 msgid "Show directories first"
 msgstr "Εμφάνιση φακέλων πρώτα"
+
+msgid "Show during operation"
+msgstr "Εμφάνιση κατά τη λειτουργία"
 
 msgid "Show encryption information in the InfoBar (when supported by the skin)."
 msgstr "Εμφάνιση πληροφοριών κωδικοποίησης στη μπάρα πληροφοριών (αν υποστηρίζεται από το θέμα)."
@@ -18080,7 +18088,7 @@ msgid "Show unknown Videoresolution as next higher or as highest screen resoluti
 msgstr "Εμφάνιση άγνωστης ανάλυσης εικόνας ως επόμενη υψηλότερη ή ύψιστη ανάλυση οθόνης."
 
 msgid "Show unknown devices"
-msgstr ""
+msgstr "Εμφάνιση άγνωστων συσκευών"
 
 msgid "Show unknown video format as"
 msgstr "Εμφάνιση άγνωστου φορμά βίντεο ως"
@@ -19634,7 +19642,7 @@ msgid "The '%s' file can't be retrieved, please try again later."
 msgstr "Αδύνατη η ανάκτηση του αρχείου '%s', δοκιμάστε αργότερα."
 
 msgid "The AI mode used for translating languages. You can choose the one that gives the most accurate translation for your target language."
-msgstr ""
+msgstr "Η λειτουργία ΤΝ που χρησιμοποιείται για τη γλωσσική μετάφραση. Μπορείτε να επιλέξετε εκείνη που δίνει την πιο ακριβή μετάφραση για την επιθυμητή γλώσσα."
 
 msgid "The AI-Powered Translation service will be optimized to provide the best performance based on the the Internet connection upload speed selected."
 msgstr "Η υπηρεσία μετάφρασης μέσω ΤΝ θα βελτιστοποιηθεί για να παρέχει την καλύτερη απόδοση, βασισμένη στην επιλεγμένη ταχύτητα ανεβάσματος διαδικτύου."
@@ -20120,6 +20128,9 @@ msgstr "Αυτή η επιλογή ορίζει τον τρόπο εμφάνισ
 
 msgid "This option allows you choose if the display shows the time or nothing in Standby."
 msgstr "Αυτή η επιλογή επιτρέπει να επιλέξετε αν θα εμφανίζεται η ώρα ή τίποτα κατά την αναμονή."
+
+msgid "This option allows you choose if the display shows the time, channel number or nothing during operation."
+msgstr "Αυτή η επιλογή επιτρέπει να επιλέξετε αν η οθόνη πρόσοψης θα εμφανίζει την ώρα, τον αριθμό καναλιού ή τίποτα κατά τη λειτουργία."
 
 msgid "This option allows you choose the background color of transparent picons."
 msgstr "Αυτή η επιλογή επιτρέπει να επιλέξετε το χρώμα φόντου των διάφανων λογότυπων."
@@ -24057,6 +24068,10 @@ msgstr "ναι (διατήρηση των feeds)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s (%04o)"
+#~ msgstr "%s (%04o)"
 
 #~ msgid "Channel List Menu"
 #~ msgstr "Μενού λίστας καναλιών"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-11 08:26+0000\n"
+"POT-Creation-Date: 2025-02-21 10:33+0000\n"
 "PO-Revision-Date: 2024-09-02 09:09+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sv/>\n"
@@ -1272,10 +1272,6 @@ msgstr "%s %s fjärrkontoll (ursprunglig)"
 #, python-format
 msgid "%s %sB"
 msgstr ""
-
-#, fuzzy, python-format
-msgid "%s (%04o)"
-msgstr "%s (%s)\n"
 
 #, fuzzy, python-format
 msgid "%s - Setup"
@@ -4145,6 +4141,9 @@ msgstr "Kanal info"
 
 msgid "Channel List"
 msgstr "Kanallista"
+
+msgid "Channel Number"
+msgstr ""
 
 #
 msgid "Channel Selection"
@@ -8404,6 +8403,10 @@ msgid "Exit MAC address configuration"
 msgstr "Avsluta namnserverkonfiguration"
 
 #
+msgid "Exit Movie Selection"
+msgstr "Avsluta filmlista"
+
+#
 #, fuzzy
 msgid "Exit Quad Channel Selection"
 msgstr "Kanalval"
@@ -8440,10 +8443,6 @@ msgstr "Avsluta mediaspelare"
 
 msgid "Exit menu"
 msgstr ""
-
-#
-msgid "Exit Movie Selection"
-msgstr "Avsluta filmlista"
 
 #
 msgid "Exit movie player?"
@@ -12531,20 +12530,20 @@ msgstr "Filmlista"
 msgid "Movie List Actions"
 msgstr "Filmval"
 
-msgid "Movie Selection Settings"
-msgstr "Inställning Filmlista"
-
 #
 #, fuzzy
 msgid "Movie Player Actions"
 msgstr "Filmval"
 
-msgid "Movie playback may not use an invalid/inappropriate directory."
-msgstr ""
-
 #
 msgid "Movie Selection"
 msgstr "Filmval"
+
+msgid "Movie Selection Settings"
+msgstr "Inställning Filmlista"
+
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr ""
 
 msgid "Movie/Drama"
 msgstr "Film / Drama"
@@ -17315,6 +17314,9 @@ msgstr ""
 msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
 msgstr ""
 
+msgid "Select 'Yes' to show the 'Movie Selection' entry in the Main Menu. This can provide access to the Movie Selection screen when there is no assigned button on the remote control."
+msgstr ""
+
 msgid "Select 'Yes' to show the advanced setting options."
 msgstr ""
 
@@ -18978,6 +18980,9 @@ msgstr ""
 msgid "Show MiniTV in the Front Display"
 msgstr ""
 
+msgid "Show Movie Selection in Main Menu"
+msgstr ""
+
 #, fuzzy
 msgid "Show Movies List"
 msgstr "Visa Timerlista"
@@ -19192,6 +19197,9 @@ msgstr ""
 #, fuzzy
 msgid "Show directories first"
 msgstr "Visa favoritlista"
+
+msgid "Show during operation"
+msgstr ""
 
 msgid "Show encryption information in the InfoBar (when supported by the skin)."
 msgstr "Visa krypteringsinfo i infofältet (när det stöds av ditt 'skin')."
@@ -21784,6 +21792,9 @@ msgstr ""
 #, fuzzy
 msgid "This option allows you choose if the display shows the time or nothing in Standby."
 msgstr "Det här alternativet låter dig välja hur förfluten tid skall visas, som + eller -"
+
+msgid "This option allows you choose if the display shows the time, channel number or nothing during operation."
+msgstr ""
 
 msgid "This option allows you choose the background color of transparent picons."
 msgstr ""
@@ -26034,6 +26045,10 @@ msgstr "ja (behåll feeds)"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy, python-format
+#~ msgid "%s (%04o)"
+#~ msgstr "%s (%s)\n"
 
 #~ msgid "Channel List Menu"
 #~ msgstr "Meny för kanallista"

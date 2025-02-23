@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-11 08:26+0000\n"
+"POT-Creation-Date: 2025-02-21 10:33+0000\n"
 "PO-Revision-Date: 2025-02-13 21:46+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
@@ -1174,10 +1174,6 @@ msgstr "%s %s dálkové ovládání (nativní)"
 #, python-format
 msgid "%s %sB"
 msgstr "%s %sB"
-
-#, python-format
-msgid "%s (%04o)"
-msgstr "%s (%04o)"
 
 #, python-format
 msgid "%s - Setup"
@@ -3832,6 +3828,9 @@ msgstr "Info o kanálu"
 
 msgid "Channel List"
 msgstr "Seznam kanálů"
+
+msgid "Channel Number"
+msgstr ""
 
 msgid "Channel Selection"
 msgstr "Výběr kanálú"
@@ -7838,6 +7837,9 @@ msgstr "Ukončit File Commander"
 msgid "Exit MAC address configuration"
 msgstr "Ukončit konfiguraci MAC adresy"
 
+msgid "Exit Movie Selection"
+msgstr "Zavřít seznam filmů"
+
 msgid "Exit Quad Channel Selection"
 msgstr "Ukončit výběr čtyř kanálů"
 
@@ -7870,9 +7872,6 @@ msgstr "Zavřít přehrávač"
 
 msgid "Exit menu"
 msgstr "Opustit menu"
-
-msgid "Exit Movie Selection"
-msgstr "Zavřít seznam filmů"
 
 msgid "Exit movie player?"
 msgstr "Zavřít přehrávač?"
@@ -11599,17 +11598,17 @@ msgstr "Filmotéka"
 msgid "Movie List Actions"
 msgstr "Akce seznamu filmů"
 
-msgid "Movie Selection Settings"
-msgstr "Nastavení filmotéky"
-
 msgid "Movie Player Actions"
 msgstr "Akce přehrávače filmů"
 
-msgid "Movie playback may not use an invalid/inappropriate directory."
-msgstr "Přehrávání filmu nesmí používat neplatnou složku."
-
 msgid "Movie Selection"
 msgstr "Výběr filmů"
+
+msgid "Movie Selection Settings"
+msgstr "Nastavení filmotéky"
+
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr "Přehrávání filmu nesmí používat neplatnou složku."
 
 msgid "Movie/Drama"
 msgstr "Film/Drama"
@@ -15950,6 +15949,9 @@ msgstr "Vyberte 'Ano' pro zobrazení předplacených balíčků na obrazovce St�
 msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
 msgstr "Vyberte 'Ano', chcete-li zobrazit balíčky systémových pluginů na obrazovce Stáhnout pluginy."
 
+msgid "Select 'Yes' to show the 'Movie Selection' entry in the Main Menu. This can provide access to the Movie Selection screen when there is no assigned button on the remote control."
+msgstr ""
+
 msgid "Select 'Yes' to show the advanced setting options."
 msgstr "Výběrem možnosti „Ano“ zobrazíte možnosti pokročilého nastavení."
 
@@ -17543,6 +17545,9 @@ msgstr "Zobrazit Merlin EPG Centrum"
 msgid "Show MiniTV in the Front Display"
 msgstr "Zobrazit MiniTV na předním displeji"
 
+msgid "Show Movie Selection in Main Menu"
+msgstr ""
+
 msgid "Show Movies List"
 msgstr "Zobrazit seznam filmů"
 
@@ -17737,6 +17742,9 @@ msgstr "Zobrazit detaily zvýrazněného úkolu"
 
 msgid "Show directories first"
 msgstr "Zobrazit nejprve adresáře"
+
+msgid "Show during operation"
+msgstr ""
 
 msgid "Show encryption information in the InfoBar (when supported by the skin)."
 msgstr "Zobrazit informace o šifrování v Infobaru (je-li podporován vzhledem)."
@@ -20166,6 +20174,9 @@ msgstr "Tato volba vám umožní vybrat, jak se zobrazí při přehrávání zb�
 
 msgid "This option allows you choose if the display shows the time or nothing in Standby."
 msgstr "Tato možnost vám umožňuje vybrat, jak v pohotovostním režimu zobrazit čas nebo nic."
+
+msgid "This option allows you choose if the display shows the time, channel number or nothing during operation."
+msgstr ""
 
 msgid "This option allows you choose the background color of transparent picons."
 msgstr "Tato volba vám umožní vybrat barvu pozadí průhledných piconů."
@@ -24104,6 +24115,10 @@ msgstr "ano (uchovat zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s (%04o)"
+#~ msgstr "%s (%04o)"
 
 #~ msgid "Channel List Menu"
 #~ msgstr "Nabídka Seznam kanálů"

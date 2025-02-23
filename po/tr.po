@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-11 08:26+0000\n"
+"POT-Creation-Date: 2025-02-21 10:33+0000\n"
 "PO-Revision-Date: 2024-08-04 16:47+0000\n"
 "Last-Translator: Tmp341 <tmp341@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -1128,11 +1128,6 @@ msgstr "%s %s uzaktan kumanda (yerel)"
 #, python-format
 msgid "%s %sB"
 msgstr "%s %sB"
-
-#
-#, python-format
-msgid "%s (%04o)"
-msgstr "%s (%04o)"
 
 #, python-format
 msgid "%s - Setup"
@@ -3936,6 +3931,9 @@ msgstr "Kanal Bilgisi"
 
 msgid "Channel List"
 msgstr "Kanal Listesi"
+
+msgid "Channel Number"
+msgstr ""
 
 #
 msgid "Channel Selection"
@@ -8113,6 +8111,10 @@ msgid "Exit MAC address configuration"
 msgstr "MAC adres yapılandırmasından çık"
 
 #
+msgid "Exit Movie Selection"
+msgstr "Film listesinden çık"
+
+#
 msgid "Exit Quad Channel Selection"
 msgstr "Quad Kanal Seçiminden Çık"
 
@@ -8148,10 +8150,6 @@ msgstr "Ortam oynatıcıdan çık"
 
 msgid "Exit menu"
 msgstr "Menüden çık"
-
-#
-msgid "Exit Movie Selection"
-msgstr "Film listesinden çık"
 
 #
 msgid "Exit movie player?"
@@ -12073,19 +12071,19 @@ msgstr "Film Listesi"
 msgid "Movie List Actions"
 msgstr "Film Listesi Eylemleri"
 
-msgid "Movie Selection Settings"
-msgstr "Film Listesi Kurulumu"
-
 #
 msgid "Movie Player Actions"
 msgstr "Film Oynatıcı Eylemleri"
 
-msgid "Movie playback may not use an invalid/inappropriate directory."
-msgstr "Film oynatma geçersiz/uygun olmayan bir dizini kullanamaz."
-
 #
 msgid "Movie Selection"
 msgstr "Film seçimi"
+
+msgid "Movie Selection Settings"
+msgstr "Film Listesi Kurulumu"
+
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr "Film oynatma geçersiz/uygun olmayan bir dizini kullanamaz."
 
 msgid "Movie/Drama"
 msgstr "Film/Dram"
@@ -16689,6 +16687,9 @@ msgstr "Abonelik paketlerini Eklentileri İndir ekranında göstermek için 'Eve
 msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
 msgstr "Eklentileri İndir ekranında sistem eklenti paketlerini göstermek için 'Evet'i seçin."
 
+msgid "Select 'Yes' to show the 'Movie Selection' entry in the Main Menu. This can provide access to the Movie Selection screen when there is no assigned button on the remote control."
+msgstr ""
+
 msgid "Select 'Yes' to show the advanced setting options."
 msgstr "Gelişmiş ayar seçeneklerini göstermek için 'Evet'i seçin."
 
@@ -18325,6 +18326,9 @@ msgstr "Merlin EPG Merkezini Göster"
 msgid "Show MiniTV in the Front Display"
 msgstr "Ön Ekranda MiniTV'yi Göster"
 
+msgid "Show Movie Selection in Main Menu"
+msgstr ""
+
 msgid "Show Movies List"
 msgstr "Film Listesini Göster"
 
@@ -18525,6 +18529,9 @@ msgstr "Vurgulanan görevin ayrıntılarını göster"
 
 msgid "Show directories first"
 msgstr "Önce dizinleri göster"
+
+msgid "Show during operation"
+msgstr ""
 
 msgid "Show encryption information in the InfoBar (when supported by the skin)."
 msgstr "Bilgi çubuğunda şifre bilgisi göster (arayüz destekliyorsa)."
@@ -21062,6 +21069,9 @@ msgstr "Bu seçenek, medya oynatma için kalan / geçen sürenin nasıl görünt
 
 msgid "This option allows you choose if the display shows the time or nothing in Standby."
 msgstr "Bu seçenek, Bekleme modunda Saatin veya hiçbir şeyin nasıl görüntüleneceğini seçmenize izin verir"
+
+msgid "This option allows you choose if the display shows the time, channel number or nothing during operation."
+msgstr ""
 
 msgid "This option allows you choose the background color of transparent picons."
 msgstr "Bu seçenek şeffaf pikoların arka plan rengini seçmenizi sağlar."
@@ -25229,6 +25239,11 @@ msgstr "evet (beslemeleri tut)"
 
 msgid "®"
 msgstr "®"
+
+#
+#, python-format
+#~ msgid "%s (%04o)"
+#~ msgstr "%s (%04o)"
 
 #~ msgid "Channel List Menu"
 #~ msgstr "Kanal listesi menüsü"

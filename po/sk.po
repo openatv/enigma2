@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-11 08:26+0000\n"
-"PO-Revision-Date: 2025-02-14 21:55+0000\n"
+"POT-Creation-Date: 2025-02-21 10:33+0000\n"
+"PO-Revision-Date: 2025-02-23 08:09+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.10\n"
+"X-Generator: Weblate 5.10.1-dev\n"
 
 msgid ""
 "\n"
@@ -1178,10 +1178,6 @@ msgstr "%s %s diaľkové ovládanie (originálne)"
 #, python-format
 msgid "%s %sB"
 msgstr "%s %sB"
-
-#, python-format
-msgid "%s (%04o)"
-msgstr "%s (%04o)"
 
 #, python-format
 msgid "%s - Setup"
@@ -3832,13 +3828,16 @@ msgid "Channel 1 with Prime time"
 msgstr "Kanál 1 s časom primetime"
 
 msgid "Channel Info"
-msgstr "Info o programe"
+msgstr "Info o kanáli"
 
 msgid "Channel List"
 msgstr "Zoznam kanálov"
 
+msgid "Channel Number"
+msgstr "Číslo kanála"
+
 msgid "Channel Selection"
-msgstr "Výber prehľadu"
+msgstr "Výber kanála"
 
 msgid "Channel Selection Actions"
 msgstr "Akcie pre výber kanála"
@@ -3862,7 +3861,7 @@ msgid "Channel Selection Screen"
 msgstr "Obrazovka pre výber kanálov"
 
 msgid "Channel Selection Settings"
-msgstr "Nastavenia výberu staníc"
+msgstr "Nastavenia výberu kanála"
 
 msgid "Channel buttons"
 msgstr "Tlačidlá kanála"
@@ -3883,7 +3882,7 @@ msgid "Channel list preview"
 msgstr "Náhľad zoznamu kanálov"
 
 msgid "Channel list service mode*"
-msgstr "Servisný mód zoznamu staníc*"
+msgstr "Servisný mód zoznamu kanálov*"
 
 msgid "Channel list show MiniTV when Skin use."
 msgstr "Zoznam kanálov – zobrazenie MiniTV pri použití vzhľadu."
@@ -7842,6 +7841,9 @@ msgstr "Ukončiť Správcu súborov"
 msgid "Exit MAC address configuration"
 msgstr "Ukončiť konfiguráciu MAC adresy"
 
+msgid "Exit Movie Selection"
+msgstr "Zatvoriť zoznam filmov"
+
 msgid "Exit Quad Channel Selection"
 msgstr "Ukončiť výber Quad-kanála"
 
@@ -7874,9 +7876,6 @@ msgstr "Ukončiť prehrávač médií"
 
 msgid "Exit menu"
 msgstr "Zatvoriť menu"
-
-msgid "Exit Movie Selection"
-msgstr "Zatvoriť zoznam filmov"
 
 msgid "Exit movie player?"
 msgstr "Ukončiť prehrávač médií?"
@@ -8315,7 +8314,7 @@ msgid "Files/folders to exclude from backup"
 msgstr "Súbory/priečinky vylúčené zo zálohy"
 
 msgid "Fill in channel EPGs from the broadcast EPG where there is no IceTV EPG for the channel"
-msgstr "Doplniť EPG pre stanicu z vysielaného EPG, ak IceTV EPG pre túto stanicu neobsahuje"
+msgstr "Doplniť EPG pre kanály z vysielaného EPG, ak IceTV neobsahuje EPG pre tento kanál"
 
 msgid "Film-Noir"
 msgstr "Film-Noir"
@@ -9085,7 +9084,7 @@ msgid "Helps setting up your signal"
 msgstr "Pomôže s nastavením signálu"
 
 msgid "Here can set the EPG will alway open at the current channel, the first channel or one of both with primetime. If no primetime selected, the current time is used."
-msgstr "Nastavenie, či sa EPG otvorí na aktuálnom kanáloi, prvom kanáli alebo na jednom z nich s primetime. Ak nie je vybraný žiadny primetime, použije sa aktuálny čas."
+msgstr "Nastavenie, či sa EPG otvorí na aktuálnom kanáli, prvom kanáli alebo na jednom z nich s primetime. Ak nie je vybraný žiadny primetime, použije sa aktuálny čas."
 
 msgid "Here you can browse (but not modify) the files that are added to the backupfile by default (E2-setup, channels, network)."
 msgstr "Zoznam súborov (bez možnosti úprav), ktoré sa štandardne zálohujú (nastavenia E2, kanály, sieť)."
@@ -9613,7 +9612,7 @@ msgid "Immediately restart selected devices."
 msgstr "Ihneď reštartovať vybrané zariadenia."
 
 msgid "Import channels and/or EPG from remote receiver URL also when the receiver is getting out of standby"
-msgstr "Importovať stanice a/alebo EPG z URL adresy vzdialeného prijímača aj vtedy, keď sa prijímač prebudí z pohotovostného režimu"
+msgstr "Importovať kanály a/alebo EPG z URL adresy vzdialeného prijímača aj vtedy, keď sa prijímač prebudí z pohotovostného režimu"
 
 msgid "Import channels and/or EPG from remote receiver URL when receiver is booted"
 msgstr "Importovať kanály a/alebo EPG zo URL vzdialeného prijímača počas štartu prijímača"
@@ -11211,7 +11210,7 @@ msgid "Miscellaneous languages"
 msgstr "Rôzne jazyky"
 
 msgid "Misconfiguration in channel allocation"
-msgstr "Nespráva konfigurácia prideľovania kanálov"
+msgstr "Nesprávna konfigurácia prideľovania kanálov"
 
 #, python-format
 msgid ""
@@ -11603,17 +11602,17 @@ msgstr "Zoznam filmov"
 msgid "Movie List Actions"
 msgstr "Akcie pre zoznam filmov"
 
-msgid "Movie Selection Settings"
-msgstr "Nastavenie zoznamu filmov"
-
 msgid "Movie Player Actions"
 msgstr "Akcie pre prehrávač médií"
 
-msgid "Movie playback may not use an invalid/inappropriate directory."
-msgstr "Prehrávanie filmov nemôže využívať neplatnú/nevhodnú zložku."
-
 msgid "Movie Selection"
 msgstr "Výber nahrávok"
+
+msgid "Movie Selection Settings"
+msgstr "Nastavenie zoznamu filmov"
+
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr "Prehrávanie filmov nemôže využívať neplatnú/nevhodnú zložku."
 
 msgid "Movie/Drama"
 msgstr "Film/Dráma"
@@ -12104,7 +12103,7 @@ msgid "No channel"
 msgstr "Žiadny kanál"
 
 msgid "No channel list"
-msgstr "žiadny zoznam kanálov"
+msgstr "Žiadny zoznam kanálov"
 
 msgid ""
 "No data on transponder!\n"
@@ -12656,7 +12655,7 @@ msgid "Open Settings"
 msgstr "Otvoriť nastavenia"
 
 msgid "Open Similar List Channel List"
-msgstr "Otvoriť podobný zoznam kanálov"
+msgstr "Otvoriť zoznam podobných kanálov"
 
 msgid "Open Timerlist"
 msgstr "Otvoriť zoznam časovačov"
@@ -15841,7 +15840,7 @@ msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageD
 msgstr "Vyberte 'áno', ak sa majú tlačidlá DOĽAVA/DOPRAVA používať na presun o stránku hore/dolu a ak nie sú tlačidlá DOĽAVA/DOPRAVA definované inak."
 
 msgid "Select 'Yes' to hide channels without EPG data."
-msgstr "Ak je nastavené na 'áno', kanály bez dostupného EPH sa nezobrazia."
+msgstr "Ak je nastavené na 'Áno', kanály bez dostupného EPG sa nezobrazia."
 
 msgid "Select 'Yes' to hide the server name and IP address of the server."
 msgstr "Voľba 'Áno' skryje názov a IP adresu servera."
@@ -15953,6 +15952,9 @@ msgstr "Ak chcete na obrazovke Stiahnuť pluginy zobrazovať aj predplatené bal
 
 msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
 msgstr "Ak sa majú na obrazovke Stiahnuť pluginy zobrazovať aj balíčky so systémovými pluginmi, vyberte možnosť 'Áno'."
+
+msgid "Select 'Yes' to show the 'Movie Selection' entry in the Main Menu. This can provide access to the Movie Selection screen when there is no assigned button on the remote control."
+msgstr "Ak sa má v hlavnom menu zobrazovať položka Výber filmu, vyberte možnosť 'Áno'. Získate tak prístup k obrazovke pre výber filmov aj vtedy, keď nie je na diaľkovom ovládaní pridelené žiadne tlačidlo."
 
 msgid "Select 'Yes' to show the advanced setting options."
 msgstr "Ak chcete zobraziť možnosti pokročilých nastavení, vyberte voľbu 'Áno'."
@@ -17310,7 +17312,7 @@ msgid "Setup your System"
 msgstr "Nastavenie systému"
 
 msgid "Setup your Tuner and search for channels"
-msgstr "Nastavenie tunera a vyhľadávanie staníc"
+msgstr "Nastavenie tunera a vyhľadávanie kanálov"
 
 msgid "Setup your Video Mode, Video Output and other Video Settings"
 msgstr "Nastavenie video režimu, video výstupu a ostatných parametrov videa"
@@ -17547,6 +17549,9 @@ msgstr "Zobraziť Merlin EPG Center"
 msgid "Show MiniTV in the Front Display"
 msgstr "Zobraziť MiniTV na prednom displeji"
 
+msgid "Show Movie Selection in Main Menu"
+msgstr "Zobraziť Výber filmu v hlavnom menu"
+
 msgid "Show Movies List"
 msgstr "Zobraziť zoznam filmov"
 
@@ -17742,6 +17747,9 @@ msgstr "Zobraziť podrobnosti o vybranej úlohe"
 msgid "Show directories first"
 msgstr "Najskôr zobraziť priečinky"
 
+msgid "Show during operation"
+msgstr "Zobrazovať počas prevádzky"
+
 msgid "Show encryption information in the InfoBar (when supported by the skin)."
 msgstr "Zobraziť informácie o kódovaní v infolište (ak to podporuje vzhľad)."
 
@@ -17879,16 +17887,16 @@ msgid "Show next system information screen"
 msgstr "Zobraziť ďalšiu systémovú informačnú obrazovku"
 
 msgid "Show notification when import channels and/or EPG from remote receiver URL did not complete"
-msgstr "Zobraziť notifikáciu v prípade, keď nebol import staníc a/alebo EPG z URL adresy vzdialeného prijímača úspešne dokončený"
+msgstr "Zobraziť notifikáciu v prípade, keď nebol import kanálov a/alebo EPG z URL adresy vzdialeného prijímača úspešne dokončený"
 
 msgid "Show notification when import channels and/or EPG from remote receiver URL is completed"
-msgstr "Zobraziť notifikáciu v prípade, keď bol import staníc a/alebo EPG z URL adresy vzdialeného prijímača úspešne dokončený"
+msgstr "Zobraziť notifikáciu v prípade, keď bol import kanálov a/alebo EPG z URL adresy vzdialeného prijímača úspešne dokončený"
 
 msgid "Show notification when import channels was not successful"
-msgstr "Zobraziť notifikáciu v prípade, keď nebol import staníc úspešne dokončený"
+msgstr "Zobraziť notifikáciu pri neúspešnom importovaní kanálov"
 
 msgid "Show notification when import channels was successful"
-msgstr "Zobraziť notifikáciu v prípade, keď bol import staníc úspešne dokončený"
+msgstr "Zobraziť notifikáciu po úspešnom importovaní kanálov"
 
 msgid "Show or hide the extended description, (skin dependent)."
 msgstr "Zobraziť/skryť rozšírený popis (závisí od vzhľadu)."
@@ -20171,6 +20179,9 @@ msgstr "Nastavenie spôsobu zobrazenia zostávajúceho/uplynutého času pri pre
 msgid "This option allows you choose if the display shows the time or nothing in Standby."
 msgstr "Zobrazenie/nezobrazenie času v pohotovostnom režime."
 
+msgid "This option allows you choose if the display shows the time, channel number or nothing during operation."
+msgstr "Umožňuje výber toho, či sa bude na displeji počas prevádzky zobrazovať čas, číslo kanála alebo sa nezobrazí nič."
+
 msgid "This option allows you choose the background color of transparent picons."
 msgstr "Výber farby pozadia priehľadných pikon."
 
@@ -20337,7 +20348,7 @@ msgid "This option sets up the picture sharpness, used when the picture is being
 msgstr "Nastavenie ostrosti obrazu pri použití upscalingu."
 
 msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
-msgstr "Tento plugin dokáže určiť, či sa programy začínajú skôr alebo trvajú dlhšie. Vysielanie však musí poskytovať príslušné potrebné údaje."
+msgstr "Tento plugin dokáže určiť, či sa programy začínajú skôr alebo trvajú dlhšie. Kanál však musí poskytovať príslušné potrebné údaje."
 
 msgid "This service is protected by a parental control PIN!"
 msgstr "Táto stanica/služba je chránená PIN rodičovskej kontroly!"
@@ -22413,7 +22424,7 @@ msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "Ak je povolené, titulky sa preformátujú tak, aby zodpovedali šírke obrazovky."
 
 msgid "When enabled, show channel numbers in the channel selection screen."
-msgstr "Ak je povolené, na pobrazovke výberu kanálov sa zobrazia čísla kanálov."
+msgstr "Ak je povolené, na obrazovke pre výber kanála sa zobrazia čísla kanálov."
 
 msgid "When enabled, show status or error messages."
 msgstr "Ak je povolené, budú sa zobrazovať stavové alebo chybové správy."
@@ -23048,7 +23059,7 @@ msgid "Zap to channel (setup in menu)"
 msgstr "Prepnúť na kanál (nastavenie v menu)"
 
 msgid "Zap to channel and close (setup in menu)"
-msgstr "Prepnúť na kanál a zatvoriť (nastavenie v menu)"
+msgstr "Prepnúť na kanál a zavrieť (nastavenie v menu)"
 
 msgid "Zap up"
 msgstr "Prepnúť nahor"
@@ -24108,6 +24119,10 @@ msgstr "áno (zachovať zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s (%04o)"
+#~ msgstr "%s (%04o)"
 
 #~ msgid "Channel List Menu"
 #~ msgstr "Menu zoznamu kanálov"

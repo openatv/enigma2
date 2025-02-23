@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-11 08:26+0000\n"
+"POT-Creation-Date: 2025-02-21 10:33+0000\n"
 "PO-Revision-Date: 2022-12-04 20:43+0000\n"
 "Last-Translator: rimasx <riks_12@hot.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -1138,10 +1138,6 @@ msgstr "%s %s pult (algupärane)"
 #, python-format
 msgid "%s %sB"
 msgstr ""
-
-#, python-format
-msgid "%s (%04o)"
-msgstr "%s (%04o)"
 
 #, python-format
 msgid "%s - Setup"
@@ -3850,6 +3846,9 @@ msgstr "Kanaliinfo"
 
 msgid "Channel List"
 msgstr "Kanalinimekiri"
+
+msgid "Channel Number"
+msgstr ""
 
 msgid "Channel Selection"
 msgstr "Kanalivalik"
@@ -7910,6 +7909,9 @@ msgstr ""
 msgid "Exit MAC address configuration"
 msgstr "Lõpeta MAC-aadressi seadistamine"
 
+msgid "Exit Movie Selection"
+msgstr "Sulge filmilist"
+
 msgid "Exit Quad Channel Selection"
 msgstr "Sulge Quad PiP kanalivalik"
 
@@ -7942,9 +7944,6 @@ msgstr "Sulge meediamängija"
 
 msgid "Exit menu"
 msgstr ""
-
-msgid "Exit Movie Selection"
-msgstr "Sulge filmilist"
 
 msgid "Exit movie player?"
 msgstr "Kas lõpetada taasesitus?"
@@ -11814,18 +11813,18 @@ msgstr "Filmilist"
 msgid "Movie List Actions"
 msgstr "Salvestised"
 
-msgid "Movie Selection Settings"
-msgstr "Filmilisti seaded"
-
 #, fuzzy
 msgid "Movie Player Actions"
 msgstr "Salvestised"
 
-msgid "Movie playback may not use an invalid/inappropriate directory."
-msgstr ""
-
 msgid "Movie Selection"
 msgstr "Salvestised"
+
+msgid "Movie Selection Settings"
+msgstr "Filmilisti seaded"
+
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr ""
 
 msgid "Movie/Drama"
 msgstr "Film/draama"
@@ -16307,6 +16306,9 @@ msgstr ""
 msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
 msgstr ""
 
+msgid "Select 'Yes' to show the 'Movie Selection' entry in the Main Menu. This can provide access to the Movie Selection screen when there is no assigned button on the remote control."
+msgstr ""
+
 msgid "Select 'Yes' to show the advanced setting options."
 msgstr ""
 
@@ -17927,6 +17929,9 @@ msgstr "Merlin EPG Center"
 msgid "Show MiniTV in the Front Display"
 msgstr "Kuva MiniTV esipaneelil"
 
+msgid "Show Movie Selection in Main Menu"
+msgstr ""
+
 msgid "Show Movies List"
 msgstr "Filmilist"
 
@@ -18126,6 +18131,9 @@ msgstr ""
 
 msgid "Show directories first"
 msgstr "Kuva esmalt kataloogid"
+
+msgid "Show during operation"
+msgstr ""
 
 msgid "Show encryption information in the InfoBar (when supported by the skin)."
 msgstr "Salastatuse näitamine inforibal (kui kujundus seda toetab)."
@@ -20585,6 +20593,9 @@ msgstr "See valik määrab, kuidas näidatakse kulunud ja allesolevat aega meedi
 
 msgid "This option allows you choose if the display shows the time or nothing in Standby."
 msgstr "See valik määrab, kas ooteseisundis kuvada kellaaega või mitte midagi"
+
+msgid "This option allows you choose if the display shows the time, channel number or nothing during operation."
+msgstr ""
 
 msgid "This option allows you choose the background color of transparent picons."
 msgstr "See valik määrab läbipaistvate pikonite taustavärvi."
@@ -24608,6 +24619,10 @@ msgstr "Jah (säilita fiidid)"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid "%s (%04o)"
+#~ msgstr "%s (%04o)"
 
 #
 #~ msgid "Channel List Menu"

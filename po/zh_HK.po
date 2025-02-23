@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-11 08:26+0000\n"
+"POT-Creation-Date: 2025-02-21 10:33+0000\n"
 "PO-Revision-Date: 2024-07-23 13:09+0000\n"
 "Last-Translator: Ricky From Hong Kong <lamricky11@hotmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -1151,10 +1151,6 @@ msgstr "按OK鍵確認."
 #, python-format
 msgid "%s %sB"
 msgstr ""
-
-#, python-format
-msgid "%s (%04o)"
-msgstr "%s （%04o）"
 
 #, fuzzy, python-format
 msgid "%s - Setup"
@@ -3954,6 +3950,9 @@ msgstr "頻道"
 #, fuzzy
 msgid "Channel List"
 msgstr "頻道"
+
+msgid "Channel Number"
+msgstr ""
 
 msgid "Channel Selection"
 msgstr ""
@@ -8045,6 +8044,9 @@ msgstr ""
 msgid "Exit MAC address configuration"
 msgstr "退出 DNS 配置"
 
+msgid "Exit Movie Selection"
+msgstr ""
+
 #, fuzzy
 msgid "Exit Quad Channel Selection"
 msgstr "頻道選擇"
@@ -8077,9 +8079,6 @@ msgid "Exit mediaplayer"
 msgstr ""
 
 msgid "Exit menu"
-msgstr ""
-
-msgid "Exit Movie Selection"
 msgstr ""
 
 msgid "Exit movie player?"
@@ -12045,17 +12044,17 @@ msgid "Movie List Actions"
 msgstr "電影列表"
 
 #, fuzzy
-msgid "Movie Selection Settings"
-msgstr "已錄節目列表功能表"
-
-#, fuzzy
 msgid "Movie Player Actions"
 msgstr "電影位置"
 
-msgid "Movie playback may not use an invalid/inappropriate directory."
+msgid "Movie Selection"
 msgstr ""
 
-msgid "Movie Selection"
+#, fuzzy
+msgid "Movie Selection Settings"
+msgstr "已錄節目列表功能表"
+
+msgid "Movie playback may not use an invalid/inappropriate directory."
 msgstr ""
 
 msgid "Movie/Drama"
@@ -16654,6 +16653,9 @@ msgstr ""
 msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
 msgstr ""
 
+msgid "Select 'Yes' to show the 'Movie Selection' entry in the Main Menu. This can provide access to the Movie Selection screen when there is no assigned button on the remote control."
+msgstr ""
+
 msgid "Select 'Yes' to show the advanced setting options."
 msgstr ""
 
@@ -18323,6 +18325,9 @@ msgstr "顯示Gemini專案"
 msgid "Show MiniTV in the Front Display"
 msgstr ""
 
+msgid "Show Movie Selection in Main Menu"
+msgstr ""
+
 #, fuzzy
 msgid "Show Movies List"
 msgstr "短片"
@@ -18532,6 +18537,9 @@ msgstr ""
 #, fuzzy
 msgid "Show directories first"
 msgstr "顯示剩餘時間"
+
+msgid "Show during operation"
+msgstr ""
 
 msgid "Show encryption information in the InfoBar (when supported by the skin)."
 msgstr ""
@@ -21056,6 +21064,9 @@ msgid "This option allows you choose how to display the remaining/elapsed time f
 msgstr ""
 
 msgid "This option allows you choose if the display shows the time or nothing in Standby."
+msgstr ""
+
+msgid "This option allows you choose if the display shows the time, channel number or nothing during operation."
 msgstr ""
 
 msgid "This option allows you choose the background color of transparent picons."
@@ -25072,6 +25083,10 @@ msgstr "是 (保留)"
 
 msgid "®"
 msgstr ""
+
+#, python-format
+#~ msgid "%s (%04o)"
+#~ msgstr "%s （%04o）"
 
 #~ msgid "Channel List Menu"
 #~ msgstr "頻道列表功能表"

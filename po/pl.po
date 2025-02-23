@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-11 08:26+0000\n"
-"PO-Revision-Date: 2025-02-15 07:38+0000\n"
+"POT-Creation-Date: 2025-02-21 10:33+0000\n"
+"PO-Revision-Date: 2025-02-23 18:50+0000\n"
 "Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.10\n"
+"X-Generator: Weblate 5.10.1-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1182,10 +1182,6 @@ msgstr "%s %s pilot zdalnego sterowania (podstawowy)"
 #, python-format
 msgid "%s %sB"
 msgstr "%s %sB"
-
-#, python-format
-msgid "%s (%04o)"
-msgstr "%s (%04o)"
 
 #, python-format
 msgid "%s - Setup"
@@ -2778,10 +2774,10 @@ msgid "Automatically turn on external subtitles"
 msgstr "Automatyczne włączenie napisów zewnętrznych"
 
 msgid "Automatically update Client/Server View"
-msgstr "Automatycznie aktualizuj widok klienta/serwera"
+msgstr "Automatyczna aktualizacja widoku klienta/serwera"
 
 msgid "Automatically update Log-Fullscreen View"
-msgstr "Automatycznie aktualizuj widok logów na pełnym ekranie"
+msgstr "Automatyczna aktualizacja logów - widok pełnoekranowy"
 
 msgid "Autostart"
 msgstr "Autostart"
@@ -3843,6 +3839,9 @@ msgstr "Info Kanału"
 msgid "Channel List"
 msgstr "Lista Kanałów"
 
+msgid "Channel Number"
+msgstr "Numer kanału"
+
 msgid "Channel Selection"
 msgstr "Wybór kanału"
 
@@ -4165,7 +4164,7 @@ msgid "City"
 msgstr "Miasto"
 
 msgid "Clean (Just flash and start clean)"
-msgstr "Aktualizuj, wyczyść i skonfiguruj od zera"
+msgstr "Wyczyść (Wystarczy zainstalować i skonfiguruj od zera)"
 
 msgid "Clean network 'Trash'"
 msgstr "Wyczyść kosz ze śmieci"
@@ -5799,7 +5798,7 @@ msgid "Defines the jump distance for forward jumps. The value is multiplied by t
 msgstr "Określa odległość skoku dla skoku do przodu. Wartość jest mnożona przez prędkość przewijania, np. 4 x. Wartości znacznie mniejsza niż 4s mogą nie działać z wszystkimi plikami multimedialnymi."
 
 msgid "Defines which fast forward speeds are using normal cueing. All other forward speeds and all rewind speeds use time jumps."
-msgstr "Określa, które prędkości korzystają z normalnych wskazówek.Wszystkie inne prędkości do przodu i wszystkie prędkości użyją czasu skoku."
+msgstr "Definiuje, które prędkości szybkiego przewijania do przodu używają normalnego podpowiadania. Wszystkie inne prędkości przewijania do przodu i wszystkie prędkości przewijania do tyłu używają przeskoków czasowych."
 
 msgid "Delay after DiSEqC peripheral power on command"
 msgstr "Opóźnienie po komendzie DiSEqC peryferyjny powerON"
@@ -7849,6 +7848,9 @@ msgstr "Zakończ File Commander"
 msgid "Exit MAC address configuration"
 msgstr "Zamknij konfigurację adresu MAC"
 
+msgid "Exit Movie Selection"
+msgstr "Wyjdź z wyboru filmu"
+
 msgid "Exit Quad Channel Selection"
 msgstr "Wyjdź z wyboru kanału"
 
@@ -7881,9 +7883,6 @@ msgstr "Wyjdź z odtwarzacza multimedialnego"
 
 msgid "Exit menu"
 msgstr "Wyjdź z menu"
-
-msgid "Exit Movie Selection"
-msgstr "Wyjdź z listy filmów"
 
 msgid "Exit movie player?"
 msgstr "Wyjść z odtwarzacza?"
@@ -8401,7 +8400,7 @@ msgid "Flash Expander Actions"
 msgstr "Akcje rozszerzacza flash"
 
 msgid "Flash Image"
-msgstr "Zainstaluj"
+msgstr "Instalacja systemu"
 
 #. TRANSLATORS: The variable is the name of a distribution.  E.g. "OpenATV".
 #, python-format
@@ -11167,7 +11166,7 @@ msgid "Mexico"
 msgstr "Meksyk"
 
 msgid "Micro SD"
-msgstr "Micro SD"
+msgstr "Karta SD"
 
 msgid "Micronesia, Federated States of"
 msgstr "Mikronezja, Sfederowane Stany Mikronezji"
@@ -11611,17 +11610,17 @@ msgstr "Lista filmów"
 msgid "Movie List Actions"
 msgstr "Akcje listy filmów"
 
-msgid "Movie Selection Settings"
-msgstr "Ustawienia listy filmów"
-
 msgid "Movie Player Actions"
 msgstr "Akcje odtwarzacza filmów"
 
-msgid "Movie playback may not use an invalid/inappropriate directory."
-msgstr "Odtwarzanie filmów nie może korzystać z nieprawidłowego/nieodpowiedniego katalogu."
-
 msgid "Movie Selection"
-msgstr "Filmy/Multimedia"
+msgstr "Wybór filmów"
+
+msgid "Movie Selection Settings"
+msgstr "Ustawienia wyboru filmu"
+
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr "Odtwarzanie filmu nie może odbywać się przy użyciu nieprawidłowego/niewłaściwego katalogu."
 
 msgid "Movie/Drama"
 msgstr "Film/Dramat"
@@ -13467,7 +13466,7 @@ msgid "Please select the target location to save the backup:"
 msgstr "Wybierz lokalizację docelową, aby zapisać kopię zapasową:"
 
 msgid "Please select what to do after flash of the following image:"
-msgstr "Wybierz, co zrobić po flashowaniu następującego systemu:"
+msgstr "Wybierz, co zrobić po wgraniu następującego systemu:"
 
 msgid ""
 "Please use direction keys to move the PiP window.\n"
@@ -15962,6 +15961,9 @@ msgstr "Wybierz opcję „Tak”, aby wyświetlić pakiety subskrypcji na ekrani
 msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
 msgstr "Wybierz \"Tak\", aby wyświetlić pakiety wtyczek systemowych na ekranie pobierania wtyczek."
 
+msgid "Select 'Yes' to show the 'Movie Selection' entry in the Main Menu. This can provide access to the Movie Selection screen when there is no assigned button on the remote control."
+msgstr "Wybierz 'Tak', aby wyświetlić wpis 'Wybór filmu' w Menu głównym. Może to zapewnić dostęp do ekranu Wybór filmu, gdy na pilocie nie ma przypisanego przycisku."
+
 msgid "Select 'Yes' to show the advanced setting options."
 msgstr "Wybierz \"Tak\", aby wyświetlić zaawansowane opcje ustawień."
 
@@ -16056,7 +16058,7 @@ msgid "Select Time Shift Location"
 msgstr "Wybierz lokalizację przesunięcia w czasie"
 
 msgid "Select Upgrade Source"
-msgstr "Źródło aktualizacji"
+msgstr "Wybierz źródło aktualizacji"
 
 msgid "Select Upgrade Source To Edit"
 msgstr "Wybierz źródło aktualizacji do edycji"
@@ -16199,7 +16201,7 @@ msgid "Select how to activate the Quick EPG mode."
 msgstr "Wybierz sposób aktywacji trybu szybkiego EPG."
 
 msgid "Select how your box will upgrade."
-msgstr "Wybór trybu aktualizacji."
+msgstr "Wybierz sposób aktualizacji urządzenia."
 
 msgid "Select if an end time is required."
 msgstr "Wybierz, czy wymagany jest czas zakończenia."
@@ -16591,7 +16593,7 @@ msgid "Select the sort order of the menu entries. User defined also allows the m
 msgstr "Wybierz kolejność sortowania pozycji menu. Zdefiniowane przez użytkownika pozwala również na ukrycie pozycji menu."
 
 msgid "Select the source location from where to obtain the upgrade files."
-msgstr "Wybierz lokalizację źródłową, z której zostaną pobrane pliki ulepszenia."
+msgstr "Wybierz lokalizację źródłową, z której chcesz pobrać pliki aktualizacji."
 
 msgid "Select the source of the default DNS settings."
 msgstr "Wybierz źródło domyślnych ustawień DNS."
@@ -17067,7 +17069,7 @@ msgid "Set the default location to store your time shift buffer files. Press 'OK
 msgstr "Ustaw domyślną lokalizację dla nagrań-timeshiftu. Naciśnij przycisk 'OK', aby dodać nową lokalizację użyj strzałek 'lewo/prawo'."
 
 msgid "Set the default movie selection location for your media files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
-msgstr "Ustaw domyślną lokalizację nagrań.Naciśnij przycisk 'OK', aby dodać nową lokalizację użyj strzałek 'lewo/prawo'."
+msgstr "Ustaw domyślną lokalizację wyboru filmu dla swoich plików multimedialnych. Naciśnij 'OK', aby dodać nowe lokalizacje, naciśnij 'LEWO'/'PRAWO', aby wybrać z wcześniej zdefiniowanych lokalizacji."
 
 msgid "Set the default recording location for your timers. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Ustaw domyślną lokalizację dla swoich timerów. Naciśnij przycisk 'OK', aby dodać nowa lokalizację użyj strzałek 'lewo/prawo'."
@@ -17555,6 +17557,9 @@ msgstr "Pokaż Centrum Merlin EPG"
 msgid "Show MiniTV in the Front Display"
 msgstr "Pokaż MiniTV na przednim wyświetlaczu"
 
+msgid "Show Movie Selection in Main Menu"
+msgstr "Pokaż wybór filmów w menu głównym"
+
 msgid "Show Movies List"
 msgstr "Pokaż Listę Filmów"
 
@@ -17749,6 +17754,9 @@ msgstr "Pokaż szczegóły podświetlonego zadania"
 
 msgid "Show directories first"
 msgstr "Pokaż najpierw katalogi"
+
+msgid "Show during operation"
+msgstr "Pokaż podczas działania"
 
 msgid "Show encryption information in the InfoBar (when supported by the skin)."
 msgstr "Pokaż informacje o kodowaniu na pasku informacyjnym (jeśli posiada wsparcie w skórce)."
@@ -19856,7 +19864,7 @@ msgid "The backup succeeded"
 msgstr "Kopia zapasowa wykonana poprawnie"
 
 msgid "The backup succeeded. We will now continue to explain the upgrade process."
-msgstr "Kopia zapasowa wykonana poprawnie. Będziemy kontynuować, aby wyjaśnić proces ulepszania."
+msgstr "Kopia zapasowa wykonana poprawnie. Będziemy kontynuować, aby wyjaśnić proces aktualizacji."
 
 msgid "The bitrate of the video encoder. Larger value improves quality and increases file size."
 msgstr "Szybkość transmisji kodera wideo. Większa wartość poprawia jakość i zwiększa rozmiar pliku."
@@ -20179,6 +20187,9 @@ msgstr "Ta opcja pozwala wybrać sposób wyświetlania czasu pozostałego/upływ
 
 msgid "This option allows you choose if the display shows the time or nothing in Standby."
 msgstr "Ta opcja pozwala wybrać, czy w trybie gotowości wyświetlacz ma pokazywać godzinę, czy też nic."
+
+msgid "This option allows you choose if the display shows the time, channel number or nothing during operation."
+msgstr "Opcja ta pozwala wybrać, czy podczas pracy wyświetlacz ma pokazywać godzinę, numer kanału czy nic."
 
 msgid "This option allows you choose the background color of transparent picons."
 msgstr "Ta opcja pozwala wybrać kolor tła dla przezroczystych pikon."
@@ -21144,7 +21155,7 @@ msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Nie udało się zainicjować Kexec MultiBoot!"
 
 msgid "Unattended upgrade without GUI"
-msgstr "Aktualizacja bez nadzoru poza GUI"
+msgstr "Nienadzorowana aktualizacja bez interfejsu graficznego"
 
 msgid "Undefined"
 msgstr "Nieokreślony"
@@ -21347,7 +21358,7 @@ msgid "Update the selected plugin / list of plugins"
 msgstr "Zaktualizuj wybraną wtyczkę / listę wtyczek"
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
-msgstr "Aktualizuj, wykonaj kopię zapasową systemu i przywróć ustawienia"
+msgstr "Aktualizuj/Utwórz kopię zapasową oprogramowania, Utwórz kopię zapasową/Przywróć ustawienia"
 
 msgid "Update/Backup/Restore your box"
 msgstr "Aktualizuj-Utwórz kopię zapasową-Przywróć ustawienia"
@@ -21368,7 +21379,7 @@ msgid "Updating package list."
 msgstr "Aktualizowanie listy pakietów."
 
 msgid "Upgrade (Flash & restore all)"
-msgstr "Aktualizuj (Przywróć wszystko)"
+msgstr "Uaktualnienie (instalowanie i przywracanie wszystkiego)"
 
 msgid "Upgrade finished."
 msgstr "Aktualizacja zakończona."
@@ -24117,6 +24128,10 @@ msgstr "tak (zachować feed'y)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s (%04o)"
+#~ msgstr "%s (%04o)"
 
 #~ msgid "Channel List Menu"
 #~ msgstr "Menu listy kanałów"

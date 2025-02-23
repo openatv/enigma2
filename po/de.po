@@ -16,16 +16,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-11 08:26+0000\n"
-"PO-Revision-Date: 2025-02-13 08:03+0000\n"
-"Last-Translator: jbleyel <jbleyel@gmx.net>\n"
+"POT-Creation-Date: 2025-02-21 10:33+0000\n"
+"PO-Revision-Date: 2025-02-21 12:14+0000\n"
+"Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.10.1-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1160,10 +1160,6 @@ msgstr "%s %s Fernbedienung (nativ)"
 #, python-format
 msgid "%s %sB"
 msgstr "%s %sB"
-
-#, python-format
-msgid "%s (%04o)"
-msgstr "%s (%04o)"
 
 #, python-format
 msgid "%s - Setup"
@@ -4008,6 +4004,9 @@ msgstr "Programm-Informationen"
 
 msgid "Channel List"
 msgstr "Senderliste"
+
+msgid "Channel Number"
+msgstr "Sendernummer"
 
 msgid "Channel Selection"
 msgstr "Senderliste"
@@ -7526,7 +7525,7 @@ msgid "Enable this option to add screen names and resolution data to the debug l
 msgstr "Aktivieren, um dem Debug-Log Bildschirmnamen und Auflösungsdaten hinzuzufügen."
 
 msgid "Enable this option to add storage device information detected during system boot and hot plug events to the debug log file."
-msgstr "Aktivieren, um während des Bootvorgangs oder per Hot-Plug ermittelte Informationen zu Datenträgern im Log anzuzeigen."
+msgstr "Aktivieren, um während des Bootvorgangs oder per Hot-Plug ermittelte Informationen zu Datenträgern im Debug-Log anzuzeigen."
 
 msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Aktivieren, um dem Debug-Log Timer-Daten hinzuzufügen."
@@ -8216,6 +8215,10 @@ msgstr "File Commander beenden"
 msgid "Exit MAC address configuration"
 msgstr "Konfiguration der MAC-Addresse verlassen"
 
+#
+msgid "Exit Movie Selection"
+msgstr "Filmauswahl verlassen"
+
 msgid "Exit Quad Channel Selection"
 msgstr "Beende Quad Bild-im-Bild Senderauswahl"
 
@@ -8249,10 +8252,6 @@ msgstr "Mediaplayer beenden"
 
 msgid "Exit menu"
 msgstr "Menü verlassen"
-
-#
-msgid "Exit Movie Selection"
-msgstr "Verlasse Filmauswahl"
 
 msgid "Exit movie player?"
 msgstr "Movieplayer verlassen?"
@@ -12195,17 +12194,17 @@ msgstr "Filmauswahl"
 msgid "Movie List Actions"
 msgstr "Filmauswahlaktionen"
 
-msgid "Movie Selection Settings"
-msgstr "Filmauswahl-Einstellungen"
-
 msgid "Movie Player Actions"
 msgstr "Movieplayer-Aktionen"
 
-msgid "Movie playback may not use an invalid/inappropriate directory."
-msgstr "Die Filmwiedergabe darf kein ungültiges/unpassendes Verzeichnis verwenden."
-
 msgid "Movie Selection"
 msgstr "Filmauswahl"
+
+msgid "Movie Selection Settings"
+msgstr "Filmauswahl-Einstellungen"
+
+msgid "Movie playback may not use an invalid/inappropriate directory."
+msgstr "Zur Filmwiedergabe darf kein ungültiges/unpassendes Verzeichnis verwenden werden!"
 
 msgid "Movie/Drama"
 msgstr "Film/Drama"
@@ -16891,6 +16890,9 @@ msgstr "Bei 'Ja' werden Abo-Pakete in der Downloadliste angezeigt."
 msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
 msgstr "Bei 'Ja' werden Systemplugins in der Downloadliste angezeigt."
 
+msgid "Select 'Yes' to show the 'Movie Selection' entry in the Main Menu. This can provide access to the Movie Selection screen when there is no assigned button on the remote control."
+msgstr "'Ja' wählen, um den Eintrag 'Filmauswahl' im Hauptmenü anzuzeigen. Dies kann den Zugriff auf die Filmauswahl ermöglichen, falls auf der Fernbedienung dafür keine Taste vorhanden ist."
+
 msgid "Select 'Yes' to show the advanced setting options."
 msgstr "'Ja' auswählen, um die erweiterten Einstellungen anzuzeigen."
 
@@ -18587,6 +18589,9 @@ msgstr "Merlin-EPG-Center anzeigen"
 msgid "Show MiniTV in the Front Display"
 msgstr "MiniTV im Display anzeigen"
 
+msgid "Show Movie Selection in Main Menu"
+msgstr "Filmauswahl im Hauptmenü anzeigen"
+
 msgid "Show Movies List"
 msgstr "Filmauswahl"
 
@@ -18786,6 +18791,9 @@ msgstr "Details der markierten Aufgabe anzeigen"
 
 msgid "Show directories first"
 msgstr "Verzeichnisse zuerst anzeigen"
+
+msgid "Show during operation"
+msgstr "Anzeige im Betrieb"
 
 # Menue Anpassungen OSD
 msgid "Show encryption information in the InfoBar (when supported by the skin)."
@@ -21340,6 +21348,9 @@ msgstr "Anzeige der verbleibenden und verstrichenen Zeit bei Medienwiedergabe ei
 
 msgid "This option allows you choose if the display shows the time or nothing in Standby."
 msgstr "Die Anzeige der Uhrzeit im Standby einstellen."
+
+msgid "This option allows you choose if the display shows the time, channel number or nothing during operation."
+msgstr "Auswählen, ob das Display im Betrieb Zeit, Sendernummer oder nichts anzeigen soll."
 
 msgid "This option allows you choose the background color of transparent picons."
 msgstr "Die Hintergrundfarbe von transparenten Senderlogos (Picons) einstellen."
@@ -25592,6 +25603,10 @@ msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%s (%04o)"
+#~ msgstr "%s (%04o)"
 
 #
 #~ msgid "Channel List Menu"
