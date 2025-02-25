@@ -100,7 +100,7 @@ class VolumeControl:
 		config.volumeControl.save()
 		print("[VolumeControl] Volume settings saved and module shut down.")
 
-	# These methods are provided for compatibly with shared plugins.
+	# These methods are provided for compatibility with shared plugins.
 	#
 	def volUp(self):
 		self.keyVolumeUp()
