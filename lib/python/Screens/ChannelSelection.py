@@ -293,17 +293,24 @@ class ChannelSelectionBase(Screen):
 	def moveEnd(self):  # This is used by InfoBarGenerics.
 		self.servicelist.goBottom()
 
-	def setTvMode(self):
-		self.mode = MODE_TV
-		self.servicePath = self.servicePathTV
+	def getCurrentMode(self):
+		return self.mode
+
+	def setCurrentMode(self, mode):
+		if mode != MODE_RADIO:
+			mode = MODE_TV
+		self.servicePath = self.servicePathRadio if mode == MODE_RADIO else self.servicePathTV
+		self.mode = mode
 		self.getBouquetMode()
 		self.buildTitle()
+		# modeString = {MODE_RADIO: "Radio", MODE_TV: "TV"}.get(mode)
+		# print(f"[ChannelSelection] DEBUG {modeString} Mode selected.")
+
+	def setTvMode(self):
+		self.setCurrentMode(MODE_TV)
 
 	def setRadioMode(self):
-		self.mode = MODE_RADIO
-		self.servicePath = self.servicePathRadio
-		self.getBouquetMode()
-		self.buildTitle()
+		self.setCurrentMode(MODE_RADIO)
 
 	def getBouquetMode(self):
 		if self.mode == MODE_TV:
