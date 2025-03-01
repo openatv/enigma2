@@ -201,6 +201,7 @@ class Standby2(Screen):
 
 		self.paused_service = None
 		self.prev_running_service = None
+		self.correctChannelNumber = False
 
 		self.prev_running_service = self.session.nav.getCurrentlyPlayingServiceOrGroup()
 		service = self.prev_running_service and self.prev_running_service.toString()
@@ -249,10 +250,13 @@ class Standby2(Screen):
 			service = self.prev_running_service.toString()
 			if config.servicelist.startupservice_onstandby.value:
 				self.session.nav.playService(eServiceReference(config.servicelist.startupservice.value))
-				from Screens.InfoBar import InfoBar
-				InfoBar.instance and InfoBar.instance.servicelist.correctChannelNumber()
+				self.correctChannelNumber = True
 			else:
 				self.session.nav.playService(self.prev_running_service)
+			if self.correctChannelNumber:
+				from Screens.InfoBar import InfoBar
+				InfoBar.instance and InfoBar.instance.servicelist.correctChannelNumber()
+				self.correctChannelNumber = False
 		self.session.screen["Standby"].boolean = False
 		globalActionMap.setEnabled(True)
 		for hdd in harddiskmanager.HDDList():
