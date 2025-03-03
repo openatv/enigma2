@@ -2432,8 +2432,7 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 				}
 			}
 			gst_tag_list_free(tags);
-			m_event((iPlayableService*)this, evUser+15); // Use user event for tags changed notification since if we use evUpdatedInfo it causes constant refreshes of AudioSelectionLists
-//			m_event((iPlayableService*)this, evUpdatedInfo);
+			m_event((iPlayableService*)this, evUpdatedEventInfo);
 			break;
 		}
 		/* TOC entry intercept used for chapter support CVR */
