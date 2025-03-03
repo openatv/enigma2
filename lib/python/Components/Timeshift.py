@@ -512,7 +512,7 @@ class InfoBarTimeshift:
 				self.save_current_timeshift = False
 			elif answer == "no":
 				pass
-			InfoBarTimeshift.saveTimeshiftActions(self, answer, returnFunction)
+		InfoBarTimeshift.saveTimeshiftActions(self, answer, returnFunction)
 
 	def eraseTimeshiftFile(self):
 		for filename in listdir(config.timeshift.path.value):
@@ -657,7 +657,7 @@ class InfoBarTimeshift:
 		elif action == "no":
 			pass
 		# Get rid of old time shift file before E2 truncates its filesize
-		if returnFunction is not None and action != "no":
+		if returnFunction is not None and action and action != "no":
 			self.eraseTimeshiftFile()
 
 		returnFunction(action and action != "no")
