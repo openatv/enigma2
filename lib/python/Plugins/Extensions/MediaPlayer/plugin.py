@@ -268,8 +268,8 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 				iPlayableService.evUser + 12: self.__evPluginError,
 				# we dont need that anymore, but keep it for the next two weeks
 				# let us see, if user reports any problems
-				iPlayableService.evUser + 13: self["coverArt"].embeddedCoverArt,
-				iPlayableService.evUser + 13: self.__embeddedCoverArt
+				iPlayableService.evUpdateIDv3Cover: self["coverArt"].embeddedCoverArt,
+				iPlayableService.evUpdateIDv3Cover: self.__embeddedCoverArt
 			})
 
 	def hideAndInfoBar(self):

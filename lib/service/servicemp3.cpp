@@ -2426,13 +2426,13 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 						gst_buffer_unmap(buf_image, &map);
 						close(fd);
 						m_coverart = true;
-						m_event((iPlayableService*)this, evUser+13);
+						m_event((iPlayableService*)this, evUpdateIDv3Cover);
 						eDebug("[eServiceMP3] /tmp/.id3coverart %d bytes written ", ret);
 					}
 				}
 			}
 			gst_tag_list_free(tags);
-			m_event((iPlayableService*)this, evUpdatedEventInfo);
+			m_event((iPlayableService*)this, evUpdateTags);
 			break;
 		}
 		/* TOC entry intercept used for chapter support CVR */
