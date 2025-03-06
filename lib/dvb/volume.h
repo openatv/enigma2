@@ -32,6 +32,8 @@ private:
 	bool muted;
 	int leftVol, rightVol;
 	int m_volsteps;
+	int m_BaseVolume;
+	int m_VolumeOffset;
 
 	int checkVolume(int vol);
 
@@ -43,11 +45,14 @@ public:
 	int volumeDown(int left = 0, int right = 0);
 
 	int setVolume(int left, int right);
+	int setVolumeOffset(int offset);
 
 	void volumeMute();
 	void volumeUnMute();
 	bool volumeToggleMute();
 
+	int getBaseVolume() { return m_BaseVolume; }
+	int getVolumeOffset() { return m_VolumeOffset; }
 	int getVolume() { return leftVol; }
 	int getVolumeLeft() { return leftVol; }
 	int getVolumeRight() { return rightVol; }

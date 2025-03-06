@@ -51,6 +51,7 @@ eDVBVolumecontrol::eDVBVolumecontrol()
 	openMixer();
 #endif
 	mute_zero = false;
+	m_VolumeOffset = 0;
 	volumeUnMute();
 	setVolume(100, 100);
 }
@@ -119,18 +120,46 @@ void eDVBVolumecontrol::closeMixer(int fd)
 #endif
 }
 
+/**
+ * @brief Increases the volume for the left and right channels.
+ *
+ * This function increases the volume for the left and right audio channels by the specified amounts.
+ * If the specified amount is zero, the volume is increased by a default step value.
+ *
+ * @param left The amount to increase the left channel volume. If zero, the volume is increased by the default step value.
+ * @param right The amount to increase the right channel volume. If zero, the volume is increased by the default step value.
+ * @return The new volume level for the left channel.
+ */
 int eDVBVolumecontrol::volumeUp(int left, int right)
 {
 	setVolume(leftVol + (left ? left : m_volsteps), rightVol + (right ? right : m_volsteps));
 	return leftVol;
 }
 
+/**
+ * Decreases the volume for the left and right channels.
+ *
+ * @param left The amount to decrease the left channel volume. If zero, the default volume step is used.
+ * @param right The amount to decrease the right channel volume. If zero, the default volume step is used.
+ * @return The new volume level for the left channel after the decrease.
+ */
 int eDVBVolumecontrol::volumeDown(int left, int right)
 {
 	setVolume(leftVol - (left ? left : m_volsteps), rightVol - (right ? right : m_volsteps));
 	return leftVol;
 }
 
+/**
+ * @brief Adjusts the volume to ensure it is within the valid range.
+ *
+ * This function takes an integer volume value and checks if it is within the
+ * acceptable range of 0 to 100. If the volume is less than 0, it sets it to 0.
+ * If the volume is greater than 100, it sets it to 100. Otherwise, it returns
+ * the original volume value.
+ *
+ * @param vol The volume value to be checked and adjusted.
+ * @return The adjusted volume value, guaranteed to be within the range [0, 100].
+ */
 int eDVBVolumecontrol::checkVolume(int vol)
 {
 	if (vol < 0)
@@ -140,11 +169,25 @@ int eDVBVolumecontrol::checkVolume(int vol)
 	return vol;
 }
 
+/**
+ * @brief Sets the volume for the left and right channels.
+ *
+ * This function adjusts the volume levels for the left and right audio channels.
+ * The input volume levels are expected to be in the range of 0 to 100.
+ * Depending on the system configuration, it either uses ALSA or a custom mixer
+ * to set the volume.
+ *
+ * @param left The volume level for the left channel (0 to 100).
+ * @param right The volume level for the right channel (0 to 100).
+ * @return The adjusted left volume level.
+ */
 int eDVBVolumecontrol::setVolume(int left, int right)
 {
 	/* left, right is 0..100 */
 	leftVol = checkVolume(left);
 	rightVol = checkVolume(right);
+
+	m_BaseVolume = (m_VolumeOffset != 0) ? checkVolume(leftVol - m_VolumeOffset) : leftVol;
 
 #ifdef HAVE_ALSA
 	eDebug("[eDVBVolumecontrol] Setvolume: ALSA leftVol=%d", leftVol);
@@ -211,6 +254,15 @@ int eDVBVolumecontrol::setVolume(int left, int right)
 	return leftVol;
 }
 
+/**
+ * @brief Mutes the volume for the DVB (Digital Video Broadcasting) system.
+ *
+ * This function mutes the volume by setting the playback volume to zero if ALSA (Advanced Linux Sound Architecture) 
+ * is available. If ALSA is not available, it uses the DVB API to mute the audio. Additionally, it writes to a 
+ * specific file to ensure the mixer is muted due to exclusive access in the driver.
+ *
+ * @note The function sets the `muted` member variable to true to indicate that the volume is muted.
+ */
 void eDVBVolumecontrol::volumeMute()
 {
 #ifdef HAVE_ALSA
@@ -234,6 +286,22 @@ void eDVBVolumecontrol::volumeMute()
 #endif
 }
 
+/**
+ * @brief Unmutes the volume control.
+ *
+ * This function unmutes the volume control by setting the appropriate
+ * volume levels and flags. It handles both ALSA and non-ALSA systems.
+ *
+ * For ALSA systems, it sets the playback volume to the stored left volume
+ * level and updates the muted flag.
+ *
+ * For non-ALSA systems, it opens the mixer device, sends an ioctl command
+ * to unmute the audio, and closes the mixer device. Additionally, it writes
+ * to a specific file to handle a workaround for exclusive mixer access in
+ * the driver.
+ *
+ * @note This function modifies the `muted` member variable.
+ */
 void eDVBVolumecontrol::volumeUnMute()
 {
 #ifdef HAVE_ALSA
@@ -257,6 +325,15 @@ void eDVBVolumecontrol::volumeUnMute()
 #endif
 }
 
+/**
+ * @brief Toggles the mute state of the volume.
+ *
+ * This function checks the current mute state of the volume. If the volume is
+ * currently muted, it will unmute the volume. If the volume is not muted, it
+ * will mute the volume.
+ *
+ * @return The new mute state after toggling.
+ */
 bool eDVBVolumecontrol::volumeToggleMute()
 {
 	if (isMuted())
@@ -264,4 +341,29 @@ bool eDVBVolumecontrol::volumeToggleMute()
 	else
 		volumeMute();
 	return muted;
+}
+
+/**
+ * @brief Sets the volume offset within the range of -100 to 100.
+ *
+ * This function adjusts the volume offset to ensure it is within the
+ * acceptable range of -100 to 100. It then calculates the new volume
+ * based on the base volume and the provided offset, sets the volume,
+ * and updates the internal volume offset state.
+ *
+ * @param offset The desired volume offset, which will be clamped
+ *               between -100 and 100 if it falls outside this range.
+ * @return The clamped volume offset.
+ */
+int eDVBVolumecontrol::setVolumeOffset(int offset)
+{
+	if (offset < -100)
+		offset = -100;
+	else if (offset > 100)
+		offset = 100;
+
+	int newVol = checkVolume(m_BaseVolume + offset);
+	setVolume(newVol, newVol);
+	m_VolumeOffset = offset;
+	return offset;
 }
