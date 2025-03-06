@@ -505,14 +505,16 @@ class InfoBarTimeshift:
 			returnFunction(True)
 
 	def checkTimeshiftRunningCallback(self, returnFunction, answer):
-		if answer:
-			if answer == "savetimeshift" or answer == "savetimeshiftandrecord":
+		match answer:
+			case "savetimeshift" | "savetimeshiftandrecord":
 				self.save_current_timeshift = True
-			elif answer == "noSave":
+			case "noSave":
 				self.save_current_timeshift = False
-			elif answer == "no":
+			case "no":  # This is not really needed because the default os "no".
 				pass
-			InfoBarTimeshift.saveTimeshiftActions(self, answer, returnFunction)
+			case _:  # The user pressed cancel so assume they meant "no". That's probably not always correct, but it seems reasonable.
+				answer = "no"
+		InfoBarTimeshift.saveTimeshiftActions(self, answer, returnFunction)
 
 	def eraseTimeshiftFile(self):
 		for filename in listdir(config.timeshift.path.value):
