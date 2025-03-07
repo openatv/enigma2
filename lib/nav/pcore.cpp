@@ -22,6 +22,11 @@ RESULT pNavigation::playService(const eServiceReference &service)
 	return m_core->playService(service);
 }
 
+RESULT pNavigation::setPiPService(const eServiceReference &service)
+{
+	return m_core->setPiPService(service);
+}
+
 RESULT pNavigation::getCurrentService(ePtr<iPlayableService> &service)
 {
 	return m_core->getCurrentService(service);
@@ -35,6 +40,11 @@ RESULT pNavigation::pause(int p)
 RESULT pNavigation::stopService()
 {
 	return m_core->stopService();
+}
+
+RESULT pNavigation::clearPiPService()
+{
+	return m_core->clearPiPService();
 }
 
 RESULT pNavigation::recordService(const eServiceReference &ref, ePtr<iRecordableService> &service, bool simulate, RecordType type)
