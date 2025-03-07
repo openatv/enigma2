@@ -213,6 +213,7 @@ RESULT eFCCServiceManager::tryFCCService(const eServiceReference &sref, ePtr<iPl
 			/* kill service and event */
 			m_core->m_service_event_conn = 0;
 			m_core->m_runningService = 0;
+			m_core->m_runningServiceRef = eServiceReference();
 
 			if (it->second.m_useNormalDecode)
 			{
