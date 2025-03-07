@@ -2437,7 +2437,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 					ref = eServiceReference(refstr)
 					if isStreamRelay:
 						if not [timer for timer in self.session.nav.RecordTimer.timer_list if timer.state == 2 and refstr == timer.service_ref]:
-							ref.setAlternativeUrl(refstr)
+							ref.setAlternativeUrl(refstr, True)
 					self.servicelist.setPlayableIgnoreService(ref)
 
 	def __evServiceEnd(self):
