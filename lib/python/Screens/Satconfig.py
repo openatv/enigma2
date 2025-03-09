@@ -962,7 +962,7 @@ class NimSelection(Screen):
 		self.updateList(index)
 
 	def showNim(self, nim):
-		return True
+		return not nim.isEmpty()
 
 	def updateList(self, index=None):
 		self.list = []
