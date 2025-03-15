@@ -465,6 +465,9 @@ isDedicated3D = False
 def applySettings(mode=config.osd.threeDmode.value, znorm=int(config.osd.threeDznorm.value)):
 	global previous, isDedicated3D
 	mode = isDedicated3D and mode == "auto" and "sidebyside" or mode
+
+	if not BoxInfo.getItem("3DMode"):
+		return
 	if previous != (mode, znorm):
 		try:
 			previous = (mode, znorm)
