@@ -2644,7 +2644,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		return ret
 
 	def addToHistory(self, ref):
-		if not self.isSubservices():
+		if not self.isSubservices() or not self.history:
 			if self.delhistpoint is not None:
 				x = self.delhistpoint
 				while x <= len(self.history) - 1:
