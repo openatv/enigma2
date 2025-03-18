@@ -77,6 +77,7 @@ class EPGSelection(Screen):
 		if self.session.pipshown:
 			self.Oldpipshown = True
 		self.session.pipshown = False
++		self.onClose.append(self.restorePiP)
 		self.cureventindex = None
 		if plugin_PiPServiceRelation_installed:
 			self.pipServiceRelation = getRelationDict()
@@ -1782,16 +1783,18 @@ class EPGSelection(Screen):
 					self.session.nav.playService(self.StartRef)
 				else:
 					self.zapFunc(None, False)
+		self.closeEventViewDialog()
+		if self.type == EPG_TYPE_VERTICAL and NOCLOSE:
+			return
+		self.close(True)
+
+	def restorePiP(self):
 		if self.session.pipshown:
 			self.Oldpipshown = False
 			self.session.pipshown = False
 			del self.session.pip
 		if self.Oldpipshown:
 			self.session.pipshown = True
-		self.closeEventViewDialog()
-		if self.type == EPG_TYPE_VERTICAL and NOCLOSE:
-			return
-		self.close(True)
 
 	def zap(self):
 		if self.session.nav.getCurrentlyPlayingServiceOrGroup() and "0:0:0:0:0:0:0:0:0" in self.session.nav.getCurrentlyPlayingServiceOrGroup().toString():
