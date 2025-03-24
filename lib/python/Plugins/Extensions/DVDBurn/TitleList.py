@@ -352,12 +352,12 @@ class TitleList(Screen):
 		t = self.current_edit_title
 		t.titleEditDone(cutlist)
 		all_hd = True
-		all_sd = True
+		# all_sd = True
 		for title in self.project.titles:
 			if title != self.current_edit_title and title.VideoType == 0:
 				all_hd = False
-			if title != self.current_edit_title and title.VideoType == 1:
-				all_sd = False
+			# if title != self.current_edit_title and title.VideoType == 1:
+			# 	all_sd = False
 
 		choices = []
 

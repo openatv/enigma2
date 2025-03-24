@@ -96,8 +96,8 @@ class Title:
 		template = template.replace("$A", audiostring)
 
 		if template.find("$l") >= 0:
-			l = self.length
-			lengthstring = "%d:%02d:%02d" % (l / 3600, l % 3600 / 60, l % 60)
+			ll = self.length
+			lengthstring = "%d:%02d:%02d" % (ll / 3600, ll % 3600 / 60, ll % 60)
 			template = template.replace("$l", lengthstring)
 		if self.timeCreate:
 			template = template.replace("$Y", str(self.timeCreate[0]))
@@ -113,10 +113,10 @@ class Title:
 		CUT_TYPE_IN = 0
 		CUT_TYPE_OUT = 1
 		CUT_TYPE_MARK = 2
-		CUT_TYPE_LAST = 3
+		# CUT_TYPE_LAST = 3
 
 		accumulated_in = 0
-		accumulated_at = 0
+		# accumulated_at = 0
 		last_in = 0
 
 		self.cutlist = []
@@ -139,7 +139,7 @@ class Title:
 
 				# accumulate the segment
 				accumulated_in += pts - last_in
-				accumulated_at = pts
+				# accumulated_at = pts
 				currently_in = False
 
 			if type == CUT_TYPE_MARK and currently_in:
