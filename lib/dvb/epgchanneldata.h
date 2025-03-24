@@ -187,6 +187,8 @@ class eEPGChannelData: public sigc::trackable
 		uint32_t startTime;
 		uint32_t duration;
 		uint32_t title_crc;
+		uint8_t genreId;
+		uint8_t parentalRating;
 	};
 	OpenTvDescriptorMap m_OPENTV_descriptors_map;
 	std::map<uint16_t, struct opentv_channel> m_OPENTV_channels_map;
@@ -194,6 +196,7 @@ class eEPGChannelData: public sigc::trackable
 	ePtr<eTimer> m_OPENTV_Timer;
 	ePtr<iDVBSectionReader> m_OPENTV_ChannelsReader, m_OPENTV_TitlesReader, m_OPENTV_SummariesReader;
 	ePtr<eConnection> m_OPENTV_ChannelsConn, m_OPENTV_TitlesConn, m_OPENTV_SummariesConn;
+	eit_parental_rating getOpenTvParentalRating(int dvbnamespace, int parental_rating);
 	void OPENTV_checkCompletion(const uint32_t data_crc);
 	void OPENTV_ChannelsSection(const uint8_t *d);
 	void OPENTV_TitlesSection(const uint8_t *d);
