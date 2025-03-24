@@ -2,20 +2,21 @@
 # Carlos Manuel Ferreira Alves <me@carlosmfalves.eu>, 2023, 2025.
 # Pedro Figueiredo <pabfig@sapo.pt>, 2023.
 # ssantos <ssantos@web.de>, 2024.
+# DrAlves <dralves@users.noreply.hosted.weblate.org>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-21 10:33+0000\n"
-"PO-Revision-Date: 2025-01-25 17:05+0000\n"
-"Last-Translator: Carlos Manuel Ferreira Alves <me@carlosmfalves.eu>\n"
+"PO-Revision-Date: 2025-03-14 06:36+0000\n"
+"Last-Translator: DrAlves <dralves@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pt/>\n"
 "Language: pt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 "X-Poedit-SourceCharset: iso-8859-15\n"
 
 msgid ""
@@ -930,44 +931,44 @@ msgstr "%d ms"
 #, python-format
 msgid "%d package found."
 msgid_plural "%d packages found."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d pacote encontrado."
+msgstr[1] "%d pacotes encontrados."
 
 #, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d pacote tem uma atualização"
+msgstr[1] "%d pacotes têm atualizações"
 
 #, python-format
 msgid "%d package installable."
 msgid_plural "%d packages installable."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d pacote instalável."
+msgstr[1] "%d pacotes instaláveis."
 
 #, python-format
 msgid "%d package installed."
 msgid_plural "%d packages installed."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d pacote instalado."
+msgstr[1] "%d pacotes instalados."
 
 #, python-format
 msgid "%d package marked for install."
 msgid_plural "%d packages marked for install."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d pacote marcado para instalação."
+msgstr[1] "%d pacotes marcados para instalação."
 
 #, python-format
 msgid "%d package marked for remove."
 msgid_plural "%d packages marked for remove."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d pacote marcado para remoção."
+msgstr[1] "%d pacotes marcados para remoção."
 
 #, python-format
 msgid "%d package marked for update."
 msgid_plural "%d packages marked for update."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d pacote marcado para atualização."
+msgstr[1] "%d pacotes marcados para atualização."
 
 #, python-format
 msgid "%d package upgraded."
@@ -1020,8 +1021,8 @@ msgstr[1] "%d pacotes foram actualizados."
 #, python-format
 msgid "%d plugin is not available:"
 msgid_plural "%d plugins are not available:"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d plugin não está disponível:"
+msgstr[1] "%d plugins não estão disponíveis:"
 
 #, python-format
 msgid "%d sec"
@@ -1030,8 +1031,8 @@ msgstr "%d seg"
 #, python-format
 msgid "%d service found."
 msgid_plural "%d services found."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d serviço encontrado."
+msgstr[1] "%d serviços encontrados."
 
 #
 #, python-format
@@ -1156,9 +1157,9 @@ msgstr "rato infravermelhos de %s %s"
 msgid "%s %s remote control (native)"
 msgstr "controlo remoto de %s %s (nativo)"
 
-#, python-format
+#, fuzzy, python-format
 msgid "%s %sB"
-msgstr ""
+msgstr "%s %sB"
 
 #, python-format
 msgid "%s - Setup"
@@ -1166,7 +1167,7 @@ msgstr "%s - Configuração"
 
 #, python-format
 msgid "%s Browser Manage Actions"
-msgstr ""
+msgstr "%s Ações de Gestão do Browser"
 
 #, python-format
 msgid "%s GHz"
@@ -1204,7 +1205,7 @@ msgstr "%s foi desactivado."
 
 #, python-format
 msgid "%s imported from remote receiver."
-msgstr ""
+msgstr "%s importado do receptor remoto."
 
 #. TRANSLATORS: The satellite with name '%s' is no longer used after a configuration change. The user is asked whether or not the satellite should be deleted.
 #, python-format
@@ -1334,13 +1335,13 @@ msgid "-"
 msgstr "-"
 
 msgid "- No space left on backup device."
-msgstr ""
+msgstr "- Não existe espaço restante no dispositivo de cópia de segurança."
 
 msgid "- No write permission on backup device."
-msgstr ""
+msgstr "- Nenhuma permissão de gravação no dispositivo de backup."
 
 msgid "- Wrong backup destination."
-msgstr ""
+msgstr "- O destino de backup está errado."
 
 msgid "-24 Hours"
 msgstr "-24 Horas"
@@ -1418,20 +1419,20 @@ msgid "16:9 Always"
 msgstr "16:9 sempre"
 
 msgid "16:9 Combined"
-msgstr ""
+msgstr "16:9 Combinado"
 
 msgid "16:9 Ignore"
-msgstr ""
+msgstr "16:9 Ignorado"
 
 #
 msgid "16:9 Letterbox"
 msgstr "16:9 Letterbox"
 
 msgid "16:9 PanScan"
-msgstr ""
+msgstr "16:9 PanScan"
 
 msgid "16:9 reset to normal"
-msgstr ""
+msgstr "16:9 reset (ficar em normal)"
 
 msgid "18 V"
 msgstr "18 V"
@@ -1492,10 +1493,10 @@ msgid "4"
 msgstr "4"
 
 msgid "4:3 Combined"
-msgstr ""
+msgstr "4:3 Combinado"
 
 msgid "4:3 Ignore"
-msgstr ""
+msgstr "4:3 Ignorado"
 
 #
 msgid "4:3 Letterbox"
@@ -1511,8 +1512,9 @@ msgstr "4x"
 msgid "5"
 msgstr "5"
 
+#, fuzzy
 msgid "50-200 Mbps"
-msgstr ""
+msgstr "50-200 Mbps"
 
 msgid "6"
 msgstr "6"
@@ -1555,23 +1557,23 @@ msgid "<Default movie location>"
 msgstr "<Local padrão do filme>"
 
 msgid "<Flash expander inactive>"
-msgstr ""
+msgstr "<Flash expander inativo>"
 
 #
 msgid "<Last timer location>"
 msgstr "<Última localização de gravação>"
 
 msgid "<Select a device>"
-msgstr ""
+msgstr "<Selecione um dispositivo>"
 
 msgid "<no log found>"
-msgstr ""
+msgstr "<nenhum log encontrado>"
 
 msgid "A"
 msgstr "A"
 
 msgid "A backup is now being created."
-msgstr ""
+msgstr "Um backup está neste momento a ser criado."
 
 msgid "A comma separated list of extensions to be used for 'My Extension' setting of 'Filter extension'. Enter the extension names without a leading dot (.)."
 msgstr "Uma lista de extensões separada por vírgulas a utilizar na definição \"A minha extensão\" de \"Filtrar extensão\". Introduza os nomes das extensões sem um ponto inicial (.)."
@@ -1632,7 +1634,7 @@ msgid "A highlight on the remote control image shows which button the help refer
 msgstr "Um destaque na imagem do controlo remoto mostra a que botão a ajuda se refere. Se mais do que um botão executar a função indicada, será apresentado mais do que um realce. O texto por baixo da lista indica os botões activos e se a função requer uma pressão longa ou SHIFT do(s) botão(ões)."
 
 msgid "A new storage device has been connected:"
-msgstr ""
+msgstr "Um novo dispositivo de armazenamento foi conectado:"
 
 #, python-format
 msgid ""
@@ -1741,22 +1743,22 @@ msgid "AFL"
 msgstr "AFL"
 
 msgid "AI Translation color"
-msgstr ""
+msgstr "Cor da tradução de IA"
 
 msgid "AI Translation enabled"
-msgstr ""
+msgstr "Tradução de IA ativada"
 
 msgid "AI Translation language"
-msgstr ""
+msgstr "Idioma de tradução de IA"
 
 msgid "AI Translation mode"
-msgstr ""
+msgstr "Modo de Tradução com IA"
 
 msgid "AI Translation optimization"
-msgstr ""
+msgstr "Otimização da Tradução com IA"
 
 msgid "AI Translation subscription code"
-msgstr ""
+msgstr "Código de Subscrição de Tradução com IA"
 
 msgid "ARM"
 msgstr "ARM"
@@ -1814,7 +1816,7 @@ msgid "About to start"
 msgstr "prestes a iniciar"
 
 msgid "Above 200 Mbps"
-msgstr ""
+msgstr "Acima de 200 Mbps"
 
 msgid "Access point"
 msgstr "Ponto de acesso"
@@ -1844,13 +1846,13 @@ msgid "Action on short POWER button press"
 msgstr "Acção ao premir brevemente o botão POWER"
 
 msgid "Actions"
-msgstr ""
+msgstr "Ações"
 
 msgid "Activate"
 msgstr "Activar"
 
 msgid "Activate Expander"
-msgstr ""
+msgstr "Ativar Expander"
 
 msgid "Activate HbbTV (RED button)"
 msgstr "Activar HbbTV (Botão vermelho)"
@@ -1896,7 +1898,7 @@ msgid "Active clients"
 msgstr "Clientes activos"
 
 msgid "Active only"
-msgstr ""
+msgstr "Apenas Ativos"
 
 #
 msgid "Adapter Settings"
