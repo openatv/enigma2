@@ -263,7 +263,7 @@ def standbyCounterChanged(configElement):
 def InitLcd():
 	if MACHINEBUILD in ("gbx34k", "force4", "viperslim", "lunix", "lunix4k", "purehdse", "vipert2c", "evoslimse", "evoslimt2c", "valalinux", "tmtwin4k", "tmnanom3", "mbmicrov2", "revo4k", "force3uhd", "force2nano", "evoslim", "ultrabox", "novaip", "dm520", "dm525", "purehd", "mutant11", "xpeedlxpro", "zgemmai55", "sf98", "et7x00mini", "xpeedlxcs2", "xpeedlxcc", "e4hd", "e4hdhybrid", "mbmicro", "beyonwizt2", "dynaspark", "gb800se", "gb800solo", "gb800seplus", "gbultrase", "gbipbox", "tmsingle", "tmnano2super", "iqonios300hd", "iqonios300hdv2", "optimussos1plus", "optimussos1", "vusolo", "et4x00", "et5x00", "et6x00", "et7000", "et7100", "gbx1", "gbx2", "gbx3", "gbx3h"):
 		detected = False
-	elif MACHINEBUILD in ("pulse4kmini",):
+	elif MACHINEBUILD in ("pulse4kmini", "ustym4kpro"):
 		detected = True
 	else:
 		detected = eDBoxLCD.getInstance().detected()
