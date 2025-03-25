@@ -638,7 +638,7 @@ class OpkgComponent:
 		if self.command in (self.CMD_LIST, self.CMD_LIST_INSTALLED, self.CMD_UPGRADE_LIST):
 			argv = line.split(" - ", 2)
 			argc = len(argv)
-			if not line.startswith("Not selecting "):
+			if not line.startswith("Not selecting ") and not line.startswith("error: "):
 				if self.command == self.CMD_UPGRADE_LIST and self.isExcluded(argv[0]):
 					self.excludeList.append(argv)
 				else:
