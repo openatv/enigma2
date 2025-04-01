@@ -1872,7 +1872,7 @@ class TemplateParser():
 					return 0xff000000 | int(color[1:])
 				return parseColor(color).argb()
 			except Exception as err:
-				print("[MultiContent] Error: Resolve color '{str(err)}'!")
+				print(f"[MultiContent] Error: Resolve color '{str(err)}'!")
 			return None
 		return color
 
@@ -2232,7 +2232,7 @@ def readSkin(screen, skin, names, desktop):
 				# print(f"[Skin] DEBUG: Params='{parms}'.")
 				try:
 					converterClass = my_import(".".join(("Components", "Converter", converterType))).__dict__.get(converterType)
-				except ImportError as err:
+				except ImportError:
 					raise SkinError(f"Converter '{converterType}' not found")
 				connection = None
 				for element in source.downstream_elements:
@@ -2244,7 +2244,7 @@ def readSkin(screen, skin, names, desktop):
 				source = connection
 			try:
 				rendererClass = my_import(".".join(("Components", "Renderer", widgetRenderer))).__dict__.get(widgetRenderer)
-			except ImportError as err:
+			except ImportError:
 				raise SkinError(f"Renderer '{widgetRenderer}' not found")
 			renderer = rendererClass()  # Instantiate renderer.
 			renderer.connect(source)  # Connect to source.
