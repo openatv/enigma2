@@ -452,7 +452,7 @@ class MovieList(GUIComponent):
 					picon = getPiconName(ref)
 					picon = loadPNG(picon)
 				except Exception as err:
-					print("[MovieList] Load picon get failed: '{str(err)}'!")
+					print(f"[MovieList] Load picon get failed: '{str(err)}'!")
 			if fileExtension in (".ts", ".stream"):
 				if ext == "1":
 					res.append(MultiContentEntryText(pos=(textPosX, 0), size=(width - textPosX - serviceSize - listMarginX - listEndX, ih), font=0, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER, text=data.txt))

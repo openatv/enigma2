@@ -238,7 +238,7 @@ class PowerKey:
 		globalActionMap.actions["power_down"] = self.powerdown
 		globalActionMap.actions["power_up"] = self.powerup
 		globalActionMap.actions["power_long"] = self.powerlong
-		globalActionMap.actions["deepstandby"] = self.shutdown  # Frontpanel long power button press.
+		globalActionMap.actions["deepstandby"] = self.shutdown  # Front panel long power button press.
 		globalActionMap.actions["discrete_off"] = self.standby
 		globalActionMap.actions["sleeptimer"] = self.openSleepTimer
 		globalActionMap.actions["powertimer_standby"] = self.sleepStandby

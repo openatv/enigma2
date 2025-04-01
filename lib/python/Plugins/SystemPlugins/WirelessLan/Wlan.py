@@ -359,7 +359,6 @@ class Status:
 			"signal": False,
 			"channel": False,
 			"encryption_type": False,
-			"frequency": False,
 			"frequency_norm": False
 		}
 		for line in result.splitlines():

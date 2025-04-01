@@ -38,7 +38,6 @@ class Element:
 		self.connectUpstream(upstream)
 		upstream.connectDownstream(self)
 
-	
 	def disconnectAll(self):  # We disconnect from down (Renderer) to up (Source).
 		# We should not disconnect from upstream if there are still elements depending on us.
 		assert len(self.downstream_elements) == 0, "there are still downstream elements left"

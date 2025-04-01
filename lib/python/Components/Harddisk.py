@@ -171,7 +171,7 @@ class Harddisk:
 			elif self.device[:2] in ("sd", "sr"):
 				vendor = readFile(join(self.phys_path, "vendor"))
 				model = readFile(join(self.phys_path, "model"))
-				return f"{vendor}({model})"
+				return f"{vendor}  ({model})"
 			elif self.device.startswith("mmcblk"):
 				return readFile(self.sysfsPath("device/name"))
 			else:

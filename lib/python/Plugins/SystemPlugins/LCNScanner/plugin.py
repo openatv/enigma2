@@ -139,7 +139,7 @@ class LCNScanner:
 			return modes
 
 		def loadLCNs():
-			print(f"[LCNScanner] Loading 'lcndb' file.")
+			print("[LCNScanner] Loading 'lcndb' file.")
 			lcndb = []
 			for lcn in fileReadLines(join(self.configPath, "lcndb"), default=[], source=MODULE_NAME):
 				if lcn not in lcndb:
