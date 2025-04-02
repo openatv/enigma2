@@ -46,7 +46,7 @@ class PliExtraInfo(Converter, Poll):
 		100: "Eutelsat 10E",
 		130: "Hot Bird",
 		160: "Eutelsat 16E",
-		192: "Astra 1KR/1L/1M/1N",
+		192: "Astra 1KR/1LMNP",
 		200: "Arabsat 20E",
 		216: "Eutelsat 21.5E",
 		235: "Astra 3",
