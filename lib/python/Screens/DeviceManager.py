@@ -527,6 +527,7 @@ class DeviceManager(Screen):
 		self["key_green"] = StaticText(_("Actions"))
 		self["key_yellow"] = StaticText(_("Mount Point"))
 		self["key_blue"] = StaticText(_("Unmount"))
+		self["key_menu"] = StaticText(_("MENU"))
 		self["description"] = Label()
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "MenuActions"], {
 			"ok": (self.keyMountPoint, _("Select a permanent mount point for the current device")),
