@@ -77,7 +77,7 @@ class EPGSelection(Screen):
 		if self.session.pipshown:
 			self.Oldpipshown = True
 		self.session.pipshown = False
-+		self.onClose.append(self.restorePiP)
+		self.onClose.append(self.restorePiP)
 		self.cureventindex = None
 		if plugin_PiPServiceRelation_installed:
 			self.pipServiceRelation = getRelationDict()
