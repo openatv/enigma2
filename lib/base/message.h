@@ -71,11 +71,7 @@ class eFixedMessagePump: public sigc::trackable
 		}
 	}
 public:
-#if SIGCXX_MAJOR_VERSION == 2
-	sigc::signal1<void,const T&> recv_msg;
-#else
 	sigc::signal<void(const T&)> recv_msg;
-#endif
 	void send(const T &msg)
 	{
 		{

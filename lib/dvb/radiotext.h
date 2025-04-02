@@ -29,11 +29,7 @@ public:
 	eDVBRdsDecoder(iDVBDemux *demux, int mode, int audio_type);
 	~eDVBRdsDecoder();
 	int start(int pid);
-#if SIGCXX_MAJOR_VERSION == 2
-	void connectEvent(const sigc::slot1<void, int> &slot, ePtr<eConnection> &connection);
-#else
 	void connectEvent(const sigc::slot<void(int)> &slot, ePtr<eConnection> &connection);
-#endif
 	std::string getRadioText() { return m_rt_message; }
 	std::string getRtpText() { return m_rtplus_message; }
 	ePyObject getRassPictureMask();
@@ -51,11 +47,7 @@ private:
 	void convertRdsMessageToUTF8(unsigned char* buffer, std::string& message);
 	ePtr<iDVBPESReader> m_pes_reader;
 	ePtr<eConnection> m_read_connection;
-#if SIGCXX_MAJOR_VERSION == 2
-	sigc::signal1<void, int> m_event;
-#else
 	sigc::signal<void(int)> m_event;
-#endif
 	ePtr<eTimer> m_abortTimer;
 };
 

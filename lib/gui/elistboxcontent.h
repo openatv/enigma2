@@ -41,11 +41,7 @@ protected:
 	int cursorRestoreLine();
 	int size();
 
-#if SIGCXX_MAJOR_VERSION == 2
-	RESULT connectItemChanged(const sigc::slot0<void> &itemChanged, ePtr<eConnection> &connection);
-#else
 	RESULT connectItemChanged(const sigc::slot<void()> &itemChanged, ePtr<eConnection> &connection);
-#endif
 
 	// void setOutputDevice ? (for allocating colors, ...) .. requires some work, though
 	void setSize(const eSize &size);

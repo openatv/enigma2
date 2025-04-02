@@ -96,11 +96,7 @@ public:
 		TAKEOVER_RELEASE,
 		NUM_DATA_ENTRIES
 	};
-#if SIGCXX_MAJOR_VERSION == 2
-	sigc::signal1<void,iDVBFrontend*> m_stateChanged;
-#else
 	sigc::signal<void(iDVBFrontend*)> m_stateChanged;
-#endif
 
 private:
 	DECLARE_REF(eDVBFrontend);
@@ -177,11 +173,7 @@ public:
 	RESULT prepare_cable(const eDVBFrontendParametersCable &);
 	RESULT prepare_terrestrial(const eDVBFrontendParametersTerrestrial &);
 	RESULT prepare_atsc(const eDVBFrontendParametersATSC &);
-#if SIGCXX_MAJOR_VERSION == 2
-	RESULT connectStateChange(const sigc::slot1<void,iDVBFrontend*> &stateChange, ePtr<eConnection> &connection);
-#else
 	RESULT connectStateChange(const sigc::slot<void(iDVBFrontend*)> &stateChange, ePtr<eConnection> &connection);
-#endif
 	RESULT getState(int &state);
 	RESULT setTone(int tone);
 	RESULT setVoltage(int voltage);

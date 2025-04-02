@@ -191,11 +191,7 @@ RESULT eDVBDemux::flush()
 	return 0;
 }
 
-#if SIGCXX_MAJOR_VERSION == 2
-RESULT eDVBDemux::connectEvent(const sigc::slot1<void,int> &event, ePtr<eConnection> &conn)
-#else
 RESULT eDVBDemux::connectEvent(const sigc::slot<void(int)> &event, ePtr<eConnection> &conn)
-#endif
 {
 	conn = new eConnection(this, m_event.connect(event));
 	return 0;
@@ -306,11 +302,7 @@ RESULT eDVBSectionReader::stop()
 	return 0;
 }
 
-#if SIGCXX_MAJOR_VERSION == 2
-RESULT eDVBSectionReader::connectRead(const sigc::slot1<void,const uint8_t*> &r, ePtr<eConnection> &conn)
-#else
 RESULT eDVBSectionReader::connectRead(const sigc::slot<void(const uint8_t*)> &r, ePtr<eConnection> &conn)
-#endif
 {
 	conn = new eConnection(this, read.connect(r));
 	return 0;
@@ -416,11 +408,7 @@ RESULT eDVBPESReader::stop()
 	return 0;
 }
 
-#if SIGCXX_MAJOR_VERSION == 2
-RESULT eDVBPESReader::connectRead(const sigc::slot2<void,const uint8_t*,int> &r, ePtr<eConnection> &conn)
-#else
 RESULT eDVBPESReader::connectRead(const sigc::slot<void(const uint8_t*,int)> &r, ePtr<eConnection> &conn)
-#endif
 {
 	conn = new eConnection(this, m_read.connect(r));
 	return 0;
@@ -986,11 +974,7 @@ RESULT eDVBTSRecorder::getFirstPTS(pts_t &pts)
 	return m_thread->getFirstPTS(pts);
 }
 
-#if SIGCXX_MAJOR_VERSION == 2
-RESULT eDVBTSRecorder::connectEvent(const sigc::slot1<void,int> &event, ePtr<eConnection> &conn)
-#else
 RESULT eDVBTSRecorder::connectEvent(const sigc::slot<void(int)> &event, ePtr<eConnection> &conn)
-#endif
 {
 	conn = new eConnection(this, m_event.connect(event));
 	return 0;

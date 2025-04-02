@@ -197,11 +197,7 @@ public:
 		tableProgress(seen.size(), max);
 		return eTable<Section>::createTable(nr, data, max);
 	}
-#if SIGCXX_MAJOR_VERSION == 2
-	sigc::signal2<void, int, int> tableProgress;
-#else
 	sigc::signal<void(int, int)> tableProgress;
-#endif
 };
 
 template <class Section>

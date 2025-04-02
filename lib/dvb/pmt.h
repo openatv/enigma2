@@ -145,11 +145,7 @@ public:
 		eventChannelAllocated,
 	};
 #ifndef SWIG
-#if SIGCXX_MAJOR_VERSION == 2
-	sigc::signal1<void,int> serviceEvent;
-#else
 	sigc::signal<void(int)> serviceEvent;
-#endif
 
 	int getProgramInfo(program &program);
 	int getDataDemux(ePtr<iDVBDemux> &demux);

@@ -213,11 +213,7 @@ public:
 protected:
 	std::map<std::string,eRCDevice*,lstr> devices;
 public:
-#if SIGCXX_MAJOR_VERSION == 2
-	sigc::signal1<void, const eRCKey&> keyEvent;
-#else
 	sigc::signal<void(const eRCKey&)> keyEvent;
-#endif
 	eRCInput();
 	~eRCInput();
 

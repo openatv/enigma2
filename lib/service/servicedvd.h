@@ -80,11 +80,7 @@ public:
 	void setQpipMode(bool value, bool audio) { }
 
 		// iPlayableService
-#if SIGCXX_MAJOR_VERSION == 2
-	RESULT connectEvent(const sigc::slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection);
-#else
 	RESULT connectEvent(const sigc::slot<void(iPlayableService*,int)> &event, ePtr<eConnection> &connection);
-#endif
 	RESULT start();
 	RESULT stop();
 	RESULT info(ePtr<iServiceInformation> &ptr);
@@ -147,11 +143,7 @@ private:
 
 	eServiceReference m_ref;
 
-#if SIGCXX_MAJOR_VERSION == 2
-	sigc::signal2<void,iPlayableService*,int> m_event;
-#else
 	sigc::signal<void(iPlayableService*,int)> m_event;
-#endif
 
 	struct ddvd *m_ddvdconfig;
 	ePtr<gPixmap> m_pixmap;

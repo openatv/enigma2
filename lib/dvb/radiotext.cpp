@@ -135,11 +135,7 @@ void eDVBRdsDecoder::convertRdsMessageToUTF8(unsigned char* buffer, std::string&
 	}
 }
 
-#if SIGCXX_MAJOR_VERSION == 2
-void eDVBRdsDecoder::connectEvent(const sigc::slot1<void, int> &slot, ePtr<eConnection> &connection)
-#else
 void eDVBRdsDecoder::connectEvent(const sigc::slot<void(int)> &slot, ePtr<eConnection> &connection)
-#endif
 {
 	connection = new eConnection(this, m_event.connect(slot));
 }

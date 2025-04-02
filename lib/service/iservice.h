@@ -1004,11 +1004,7 @@ class iPlayableService: public iPlayableService_ENUMS, public iObject
 public:
 #ifndef SWIG
 
-#if SIGCXX_MAJOR_VERSION == 2
-	virtual RESULT connectEvent(const sigc::slot2<void,iPlayableService*,int> &event, ePtr<eConnection> &connection)=0;
-#else
 	virtual RESULT connectEvent(const sigc::slot<void(iPlayableService*,int)> &event, ePtr<eConnection> &connection)=0;
-#endif
 
 #endif
 	virtual RESULT start()=0;
@@ -1079,11 +1075,7 @@ class iRecordableService: public iRecordableService_ENUMS, public iObject
 #endif
 public:
 #ifndef SWIG
-#if SIGCXX_MAJOR_VERSION == 2
-	virtual RESULT connectEvent(const sigc::slot2<void,iRecordableService*,int> &event, ePtr<eConnection> &connection)=0;
-#else
 	virtual RESULT connectEvent(const sigc::slot<void(iRecordableService*,int)> &event, ePtr<eConnection> &connection)=0;
-#endif
 #endif
 	virtual SWIG_VOID(RESULT) getError(int &SWIG_OUTPUT)=0;
 	virtual RESULT prepare(const char *filename, time_t begTime=-1, time_t endTime=-1, int eit_event_id=-1, const char *name=0, const char *descr=0, const char *tags=0, bool descramble = true, bool recordecm = false, int packetsize = 188)=0;

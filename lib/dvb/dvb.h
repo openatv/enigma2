@@ -29,11 +29,7 @@ class eDVBRegisteredFrontend: public iObject, public sigc::trackable
 	ePtr<eTimer> disable;
 	void closeFrontend();
 public:
-#if SIGCXX_MAJOR_VERSION == 2
-	sigc::signal0<void> stateChanged;
-#else
 	sigc::signal<void()> stateChanged;
-#endif
 	eDVBRegisteredFrontend(eDVBFrontend *fe, iDVBAdapter *adap)
 		:disable(eTimer::create(eApp)), m_adapter(adap), m_frontend(fe), m_inuse(0)
 	{
@@ -200,11 +196,7 @@ private:
 	RESULT addChannel(const eDVBChannelID &chid, eDVBChannel *ch);
 	RESULT removeChannel(eDVBChannel *ch);
 
-#if SIGCXX_MAJOR_VERSION == 2
-	sigc::signal1<void,eDVBChannel*> m_channelAdded;
-#else
 	sigc::signal<void(eDVBChannel*)> m_channelAdded;
-#endif
 
 	eUsePtr<iDVBChannel> m_cached_channel;
 	sigc::connection m_cached_channel_state_changed_conn;
@@ -231,11 +223,7 @@ public:
 		errNoSourceFound = -7,
 	};
 
-#if SIGCXX_MAJOR_VERSION == 2
-	RESULT connectChannelAdded(const sigc::slot1<void,eDVBChannel*> &channelAdded, ePtr<eConnection> &connection);
-#else
 	RESULT connectChannelAdded(const sigc::slot<void(eDVBChannel*)> &channelAdded, ePtr<eConnection> &connection);
-#endif
 	int canAllocateChannel(const eDVBChannelID &channelid, const eDVBChannelID &ignore, int &system, bool simulate=false);
 
 		/* allocate channel... */
@@ -299,13 +287,8 @@ public:
 	RESULT setChannel(const eDVBChannelID &id, ePtr<iDVBFrontendParameters> &feparam);
 	eDVBChannelID getChannelID() { return m_channel_id; }
 
-#if SIGCXX_MAJOR_VERSION == 2
-	RESULT connectStateChange(const sigc::slot1<void,iDVBChannel*> &stateChange, ePtr<eConnection> &connection);
-	RESULT connectEvent(const sigc::slot2<void,iDVBChannel*,int> &eventChange, ePtr<eConnection> &connection);
-#else
 	RESULT connectStateChange(const sigc::slot<void(iDVBChannel*)> &stateChange, ePtr<eConnection> &connection);
 	RESULT connectEvent(const sigc::slot<void(iDVBChannel*,int)> &eventChange, ePtr<eConnection> &connection);
-#endif
 
 	RESULT getState(int &state);
 
@@ -337,13 +320,8 @@ private:
 	ePtr<iDVBFrontendParameters> m_current_frontend_parameters;
 	eDVBChannelID m_channel_id;
 
-#if SIGCXX_MAJOR_VERSION == 2
-	sigc::signal1<void,iDVBChannel*> m_stateChanged;
-	sigc::signal2<void,iDVBChannel*,int> m_event;
-#else
 	sigc::signal<void(iDVBChannel*)> m_stateChanged;
 	sigc::signal<void(iDVBChannel*,int)> m_event;
-#endif
 
 	int m_state;
 	ePtr<iTsSource> m_source;

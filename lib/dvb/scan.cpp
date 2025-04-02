@@ -1852,11 +1852,7 @@ RESULT eDVBScan::processVCT(eDVBNamespace dvbnamespace, const VirtualChannelTabl
 	return 0;
 }
 
-#if SIGCXX_MAJOR_VERSION == 2
-RESULT eDVBScan::connectEvent(const sigc::slot1<void,int> &event, ePtr<eConnection> &connection)
-#else
 RESULT eDVBScan::connectEvent(const sigc::slot<void(int)> &event, ePtr<eConnection> &connection)
-#endif
 {
 	connection = new eConnection(this, m_event.connect(event));
 	return 0;
