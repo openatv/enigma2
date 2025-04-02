@@ -42,6 +42,7 @@ from Screens.PictureInPicture import PictureInPicture
 from Screens.RdsDisplay import RassInteractive
 from Screens.Screen import Screen
 from Screens.Setup import Setup
+import Screens.Standby
 from Screens.TimerEdit import TimerSanityConflict
 from Screens.TimerEntry import InstantRecordTimerEntry, TimerEntry
 from Screens.VirtualKeyBoard import VirtualKeyboard
@@ -2372,12 +2373,8 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			iPlayableService.evStart: self.__evServiceStart,
 			iPlayableService.evEnd: self.__evServiceEnd
 		})
-		try:
-			if ChannelSelection.instance:
-				raise AssertionError("[ChannelSelection] Class InfoBar is a singleton class and just one instance of this class is allowed!")
-		except Exception:
-			pass
-		ChannelSelection.instance = self
+		if not ChannelSelection.instance:  # Use only the first instance of ChannelSelection
+			ChannelSelection.instance = self
 		self.startServiceRef = None
 		self.history_tv = []
 		self.history_radio = []
@@ -2490,13 +2487,28 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 				self.setModeRadio()
 		else:
 			self.setModeTv()
+
+		standbyScreen = None
+		doPlay = False
+		if self == ChannelSelection.instance and Screens.Standby.inStandby:  # Find Standby screen if already inStandby.
+			for screen in self.session.allDialogs:
+				if screen.__class__.__name__ == "Standby":
+					standbyScreen = screen
+					break
+
 		lastservice = eServiceReference(self.lastservice.value)
 		if lastservice.valid():
+			if standbyScreen:
+				standbyScreen.prev_running_service = lastservice  # Save the last service in Standby screen.
+				standbyScreen.correctChannelNumber = True
+			elif self == ChannelSelection.instance:
+				doPlay = True  # Do real playback only for the first instance and only if not in Standby
+
 			if self.isSubservices():
-				self.zap(ref=lastservice)
+				self.zap(ref=lastservice, doPlay=doPlay)
 				self.enterSubservices()
 			else:
-				self.zap()
+				self.zap(doPlay=doPlay)
 
 	def channelSelected(self):
 		ref = self.getCurrentSelection()
@@ -3503,6 +3515,7 @@ class ChannelSelectionSetup(Setup):
 				for index, dialog in enumerate(session.dialog_stack):
 					if isinstance(dialog[0], ChannelSelection):
 						oldDialogIndex = (index, dialog[1])
+				ChannelSelection.instance = None
 				InfoBarInstance.servicelist = session.instantiateDialog(ChannelSelection)
 				InfoBarInstance.servicelist.summaries = oldSummarys
 				InfoBarInstance.servicelist.isTmp = False
