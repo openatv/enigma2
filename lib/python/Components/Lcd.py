@@ -397,7 +397,7 @@ def InitLcd():
 		], default="0")
 		config.usage.vfd_xcorevfd.addNotifier(setXcoreVFD)
 
-		choices = [("0", _("off")), ("1", _("blue"))] if MACHINEBUILD == "dual" else [("0", _("Off")), ("1", _("blue")), ("2", _("red")), ("3", _("violet"))]
+		choices = [("0", _("Off")), ("1", _("blue"))] if MACHINEBUILD == "dual" else [("0", _("Off")), ("1", _("blue")), ("2", _("red")), ("3", _("violet"))]
 
 		config.usage.lcd_ledpowercolor = ConfigSelection(default="1", choices=choices)
 		if exists("/proc/stb/fp/ledpowercolor"):
