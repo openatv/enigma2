@@ -1,3 +1,4 @@
+from gettext import dgettext
 from os.path import isdir, isfile
 from xml.etree.ElementTree import parse
 
@@ -170,9 +171,10 @@ class Menu(Screen, ProtectedScreen):
 		</widget>
 	</screen>"""
 
-	def __init__(self, session, parentMenu):
+	def __init__(self, session, parentMenu, PluginLanguageDomain=None):
 		self.session = session
 		self.parentMenu = parentMenu
+		self.pluginLanguageDomain = PluginLanguageDomain
 		Screen.__init__(self, session, enableHelp=True)
 		self.menuList = []
 		self["menu"] = List(self.menuList)
@@ -242,7 +244,7 @@ class Menu(Screen, ProtectedScreen):
 				"blue": (self.toggleSortMode, _("Toggle item edit mode on/off"))
 			}, prio=0, description=_("Menu Edit Actions"))
 		title = parentMenu.get("title", "") or None
-		title = title and _(title)
+		title = title and (dgettext(self.pluginLanguageDomain, title) if self.pluginLanguageDomain else _(title))
 		if title is None:
 			title = _(parentMenu.get("text", ""))
 		self.setTitle(title)
@@ -384,7 +386,7 @@ class Menu(Screen, ProtectedScreen):
 		return (text, module, key, weight, description, image)
 
 	def processDisplayedText(self, text):
-		text = _(text) if text else ""
+		text = dgettext(self.pluginLanguageDomain, text) if self.pluginLanguageDomain else _(text) if text else ""
 		if "%s %s" in text:
 			text = text % getBoxDisplayName()
 		return text
