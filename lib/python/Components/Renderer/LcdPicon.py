@@ -160,7 +160,7 @@ class LcdPicon(Renderer):
 	def changed(self, what):
 		if self.instance:
 			pngname = ""
-			if what[0] == 1 or what[0] == 3:
+			if (what[0] == 1 or what[0] == 3) and self.source.text:
 				pngname = getLcdPiconName(self.source.text)
 				if not exists(pngname):  # No picon for service found
 					pngname = self.defaultpngname
