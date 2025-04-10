@@ -768,7 +768,10 @@ if test "$BOXTYPE" == "vuduo" -o "$BOXTYPE" == "vusolo" -o "$BOXTYPE" == "vuduo2
 	AC_DEFINE(KEY_HELP_TO_KEY_INFO, 1,[define when rc sends a KEY_HELP event we need KEY_INFO])
 	AC_DEFINE(KEY_INFO_TO_KEY_EPG, 1,[define when rc sends a KEY_INFO event for its KEY_EPG key])
 	AC_DEFINE(KEY_EDIT_TO_KEY_TIME, 1,[define when rc sends a KEY_TIME event for its KEY_EDIT key])
-	AC_DEFINE(PASSTHROUGHT_FIX, 1 ,[define when passthrough is not entirely supported by drivers (usually Vu+)])
+fi
+
+if "$BOXTYPE" == "vuultimo4k" -o "$BOXTYPE" == "vuduo4kse"; then
+	AC_DEFINE(PASSTHROUGH_FIX, 1 ,[define when passthrough is not entirely supported by drivers (usually Vu+)])
 fi
 
 if test "$BOXTYPE" == "vp7358ci" ; then

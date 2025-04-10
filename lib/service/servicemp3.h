@@ -117,7 +117,7 @@ public:
 
 typedef struct _GstElement GstElement;
 
-typedef enum { atUnknown, atMPEG, atMP3, atAC3, atDTS, atAAC, atPCM, atOGG, atFLAC, atWMA, atDRA } audiotype_t;
+typedef enum { atUnknown, atMPEG, atMP3, atAC3, atDTS, atAAC, atPCM, atOGG, atFLAC, atWMA, atDRA, atEAC3 } audiotype_t;
 typedef enum { stUnknown, stPlainText, stSSA, stASS, stSRT, stVOB, stPGS, stDVB } subtype_t;
 typedef enum { ctNone, ctMPEGTS, ctMPEGPS, ctMKV, ctAVI, ctMP4, ctVCD, ctCDA, ctASF, ctOGG, ctWEBM, ctDRA } containertype_t;
 
@@ -300,7 +300,7 @@ private:
 	int m_currentAudioStream;
 	int m_currentSubtitleStream;
 	int m_cachedSubtitleStream;
-	int selectAudioStream(int i);
+	int selectAudioStream(int i, bool skipAudioFix=false);
 	std::vector<audioStream> m_audioStreams;
 	std::vector<subtitleStream> m_subtitleStreams;
 	iSubtitleUser *m_subtitle_widget;
@@ -377,6 +377,9 @@ private:
 	subtitle_pages_map_t m_subtitle_pages;
 	ePtr<eTimer> m_subtitle_sync_timer;
 	ePtr<eTimer> m_dvb_subtitle_sync_timer;
+#ifdef PASSTHROUGH_FIX
+	ePtr<eTimer> m_passthrough_fix_timer;
+#endif
 	ePtr<eDVBSubtitleParser> m_dvb_subtitle_parser;
 	ePtr<eConnection> m_new_dvb_subtitle_page_connection;
 	void newDVBSubtitlePage(const eDVBSubtitlePage &p);
@@ -388,6 +391,10 @@ private:
 	void pushSubtitles();
 	void pullSubtitle(GstBuffer *buffer);
 	void sourceTimeout();
+	void clearBuffers();
+#ifdef PASSTHROUGH_FIX
+	void forcePassthrough();
+#endif
 	sourceStream m_sourceinfo;
 	gulong m_subs_to_pull_handler_id, m_notify_source_handler_id, m_notify_element_added_handler_id;
 

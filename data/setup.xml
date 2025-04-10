@@ -7,7 +7,13 @@
 		<item level="1" text="Long press volume steps" description="Select the size of the volume steps when the VOLUME buttons are held down.">config.volumeControl.longStep</item>
 		<item level="1" text="Volume/Mute display timer" description="Select how long, in seconds, that the volume and mute displays are shown before they automatically hide.">config.volumeControl.hideTimer</item>
 		<item level="1" text="PCM Multichannel" description="Choose whether multi channel sound tracks should be output as PCM." requires="CanPcmMultichannel">config.av.pcm_multichannel</item>
-		<item level="1" text="AC3 downmix" description="Choose whether AC3 sound tracks should be downmixed to stereo." requires="CanDownmixAC3">config.av.downmix_ac3</item>
+		<if requires="CanDownmixAC3">
+			<item level="1" text="AC3 downmix" description="Choose whether AC3 sound tracks should be downmixed to stereo.">config.av.downmix_ac3</item>
+			<if requires="VuEAC3Fix" conditional="config.av.downmix_ac3.value == 'passthrough'">
+				<item level="1" text="Passthrough audio handling delay AC3" description="Used to specify delay when switching between services and AC3 passthrough is enabled.">config.av.passthrough_fix_short</item>
+				<item level="1" text="Passthrough audio handling delay AC3+" description="Used to specify delay when switching between services and AC3+/Atmos passthrough is enabled.">config.av.passthrough_fix_long</item>
+			</if>
+		</if>
 		<item level="1" text="AC3 plus transcoding" description="Choose whether AC3 Plus sound tracks should be transcoded to AC3." requires="CanAC3plusTranscode">config.av.transcodeac3plus</item>
 		<item level="1" text="DTS downmix" description="Choose whether DTS channel sound tracks should be downmixed to stereo." requires="CanDownmixDTS">config.av.downmix_dts</item>
 		<item level="1" text="DTS/DTS-HD HR/DTS-HD MA/DTS:X" description="Choose whether DTS channel sound tracks should be downmixed or transcoded." requires="CanDTSHD">config.av.dtshd</item>

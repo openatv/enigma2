@@ -4430,12 +4430,18 @@ class InfoBarCueSheetSupport:
 		}, prio=1, description=_("Marker Actions"))
 		self.cut_list = []
 		self.is_closing = False
+		self.resumeTimer = eTimer()
+		self.resumeTimer.callback.append(self.triggerResumeLogic)
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 			iPlayableService.evStart: self.__serviceStarted,
 			iPlayableService.evCuesheetChanged: self.downloadCuesheet,
 		})
 
 	def __serviceStarted(self):
+		self.resumeTimer.stop()
+		self.resumeTimer.start(config.av.passthrough_fix_long.value + 1000, True)
+
+	def triggerResumeLogic(self):
 		if self.is_closing:
 			return
 		# print("new service started! trying to download cuts!")

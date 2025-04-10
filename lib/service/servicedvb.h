@@ -314,6 +314,11 @@ protected:
 	ePtr<eTimer> m_nownext_timer;
 	void updateEpgCacheNowNext();
 
+#ifdef PASSTHROUGH_FIX
+	ePtr<eTimer> m_passthrough_fix_timer;
+	void forcePassthrough();
+#endif
+
 		/* radiotext */
 	ePtr<eDVBRdsDecoder> m_rds_decoder;
 	ePtr<eConnection> m_rds_decoder_event_connection;

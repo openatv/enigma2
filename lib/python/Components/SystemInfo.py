@@ -479,4 +479,7 @@ BoxInfo.setItem("samba", exists("/etc/init.d/samba"))
 # AI
 BoxInfo.setItem("AISubs", exists("/etc/init.d/aisocket"))
 
+# Vu+ EAC3Fix
+BoxInfo.setItem("VuEAC3Fix", MODEL in ("vuultimo4k", "vuduo4kse"))
+
 updateSysSoftCam()
