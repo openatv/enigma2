@@ -405,6 +405,9 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.list.append(getConfigListEntry(_("SCPC optimized search range"), nimConfig.scpcSearchRange, _("Your receiver can use SCPC optimized search range. Consult your receiver's manual for more information.")))
 			if exists("/proc/stb/frontend/%d/t2mirawmode" % self.nim.slot) and config.usage.setup_level.index >= 2:  # Expert mode.
 				self.list.append(getConfigListEntry(_("T2MI RAW Mode"), nimConfig.t2miRawMode, _("With T2MI RAW mode disabled (default) we can use single T2MI PLP de-encapsulation. With T2MI RAW mode enabled we can use astra-sm to analyze T2MI")))
+			if len(nimConfig.input.choices) > 1:
+				self.list.append(getConfigListEntry(_("Connector"), nimConfig.input, _("Select the input connector you want to use.")))
+
 		elif self.nim.isCompatible("DVB-C"):
 			self.configMode = getConfigListEntry(_("Configuration mode"), self.nimConfig.dvbc.configMode, _("Select 'Enabled' if this tuner has a signal cable connected, otherwise select 'Nothing connected'."))
 			self.list.append(self.configMode)
@@ -962,7 +965,7 @@ class NimSelection(Screen):
 		self.updateList(index)
 
 	def showNim(self, nim):
-		return not nim.isEmpty()
+		return not (nim.isEmpty() or (nim.isCompatible("DVB-C") and nim.isFBCTuner() and not nim.isFBCRoot()))
 
 	def updateList(self, index=None):
 		self.list = []

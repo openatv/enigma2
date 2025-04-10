@@ -2,6 +2,7 @@
 #include <lib/dvb/dvb.h>
 #include <lib/dvb/sec.h>
 #include <lib/base/object.h>
+#include <lib/base/esimpleconfig.h>
 
 #include <unistd.h>
 #include <fcntl.h>
@@ -13,22 +14,30 @@
 
 int eFBCTunerManager::ReadProcInt(int fe_index, const std::string & entry)
 {
-	int value;
-	std::stringstream path;
 	std::ifstream file;
-
+	std::stringstream path;
 	path << "/proc/stb/frontend/" << fe_index << "/" << entry;
 	file.open(path.str().c_str());
-
 	if(!file.is_open())
 		return(-1);
 
+#ifdef HAVE_DM_FBC
+	std::string value;
 	file >> value;
+#else
+	int value;
+	file >> value;
+#endif
 
 	if(file.bad() || file.fail())
 		return(-1);
 
+#ifdef HAVE_DM_FBC
+	return(value == "A" ? 0 : 1);
+#else
 	return(value);
+#endif
+
 }
 
 void eFBCTunerManager::WriteProcInt(int fe_index, const std::string & entry, int value)
@@ -45,6 +54,44 @@ void eFBCTunerManager::WriteProcInt(int fe_index, const std::string & entry, int
 	file << value;
 }
 
+void eFBCTunerManager::WriteProcStr(int fe_index, const std::string & entry, int value)
+{
+	std::stringstream path;
+	std::ofstream file;
+
+	path << "/proc/stb/frontend/" << fe_index << "/" << entry;
+	file.open(path.str().c_str());
+
+	if(!file.is_open())
+		return;
+
+	char configStr[255];
+	snprintf(configStr, 255, "config.Nims.%d.dvbs.input", fe_index);
+	std::string str = eSimpleConfig::getString(configStr, "A");
+	file << str.c_str();
+}
+
+#ifdef HAVE_DM_FBC
+void eFBCTunerManager::LoadConnectChoices(int fe_index, std::string &choices)
+{
+	std::stringstream path;
+	std::ifstream file;
+	std::string line;
+	std::string::const_iterator it;
+	int fbc_id;
+
+	path << "/proc/stb/frontend/"  << fe_index << "/input_choices";
+	file.open(path.str().c_str());
+
+	if(!file.is_open())
+		return;
+
+	file >> choices;
+
+	if(file.bad() || file.fail())
+		return;
+}
+#else
 void eFBCTunerManager::LoadConnectChoices(int fe_index, connect_choices_t &choices)
 {
 	std::stringstream path;
@@ -77,6 +124,7 @@ void eFBCTunerManager::LoadConnectChoices(int fe_index, connect_choices_t &choic
 		}
 	}
 }
+#endif
 
 DEFINE_REF(eFBCTunerManager);
 
@@ -117,22 +165,32 @@ eFBCTunerManager::eFBCTunerManager(ePtr<eDVBResourceManager> res_mgr)
 			continue; // ignore DVB-C/T FBC tuners because they need no special treatment
 
 		fe_id = FESlotID(it);
+#ifdef HAVE_DM_FBC
+		tuner.set_id = ReadProcInt(fe_id, "input");
+#else
 		tuner.set_id = ReadProcInt(fe_id, "fbc_set_id");
-
+#endif
 		if(tuner.set_id >= 0)
 		{
 			if(fbc_prev_set_id != tuner.set_id)
 			{
 				fbc_prev_set_id = tuner.set_id;
+#ifdef HAVE_DM_FBC
+				LoadConnectChoices(fe_id, tuner.input_choices);
+#else
 				LoadConnectChoices(fe_id, tuner.connect_choices);
+#endif
 				tuner.id = 0;
 			}
-
+#ifdef HAVE_DM_FBC
+			tuner.is_root = tuner.id < 2;
+#else
 			if(tuner.id < (int)tuner.connect_choices.size())
 				tuner.is_root = tuner.connect_choices.test(tuner.id);
 			else
 				tuner.is_root = false;
 
+#endif
 
 			tuner.default_id = tuner.is_root ? tuner.id : 0;
 			m_tuners[fe_id] = tuner;
@@ -156,8 +214,14 @@ eFBCTunerManager::eFBCTunerManager(ePtr<eDVBResourceManager> res_mgr)
 		if (!(it->m_frontend->supportsDeliverySystem(SYS_DVBS, false) || it->m_frontend->supportsDeliverySystem(SYS_DVBS2, false)))
 			continue;
 
+#ifdef HAVE_DM_FBC
+		if(ReadProcInt(FESlotID(it), "input") >= 0)
+			it->m_frontend->setFBCTuner(true);
+#else
 		if(ReadProcInt(FESlotID(it), "fbc_set_id") >= 0)
 			it->m_frontend->setFBCTuner(true);
+#endif
+
 	}
 }
 
@@ -170,12 +234,16 @@ eFBCTunerManager::~eFBCTunerManager()
 void eFBCTunerManager::SetProcFBCID(int fe_id, int fbc_connect, bool fbc_is_linked)
 {
 	eTrace("[*][eFBCTunerManager::SetProcFBCID] %d -> %d", fe_id, fbc_connect);
+#ifdef HAVE_DM_FBC
+	WriteProcStr(fe_id, "input", fbc_connect);
+#else
 
 	/* set root */
 	WriteProcInt(fe_id, "fbc_connect", fbc_connect);
 
 	/* set linked */
 	WriteProcInt(fe_id, "fbc_link", fbc_is_linked ? 1 : 0);
+#endif
 }
 
 int eFBCTunerManager::FESlotID(eDVBRegisteredFrontend *fe)
