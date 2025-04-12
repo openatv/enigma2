@@ -127,6 +127,7 @@ class EventInfo(PerServiceBase, Source):
 		if what == iPlayableService.evEnd and not self.__service:
 			self.changed((self.CHANGED_CLEAR,))
 		else:
+			self.__service = None
 			self.changed((self.CHANGED_ALL,))
 
 	def destroy(self):
