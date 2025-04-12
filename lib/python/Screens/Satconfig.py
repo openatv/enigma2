@@ -1079,7 +1079,7 @@ class NimSelection(Screen):
 						text = _("Enabled")
 				if not x.isSupported():
 					text = _("Tuner is not supported")
-				self.list.append((slotid, x.friendly_full_description, text, x))
+				self.list.append((slotid, x.friendly_full_description_compressed if x.isCompatible("DVB-C") and x.isFBCTuner() else x.friendly_full_description, text, x))
 		self["nimlist"].setList(self.list)
 		self["nimlist"].updateList(self.list)
 		if index is not None:
