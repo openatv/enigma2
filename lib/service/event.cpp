@@ -65,6 +65,14 @@ std::string eServiceEvent::normalise_crid(std::string crid, ePtr<eDVBService> se
 			}
 		}
 	}
+
+	if(crid.size() > 0 && !isUTF8(crid))
+	{
+		if(eServiceEvent::m_UTF8CorrectMode == 2)
+			eDebug("[eServiceEvent] crid is not UTF8\nhex output:%s\nstr output:%s\n",string_to_hex(crid).c_str(),crid.c_str());
+		crid = repairUTF8(crid.c_str(), crid.size());
+	}
+
 	return crid;
 }
 
