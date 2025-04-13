@@ -29,6 +29,9 @@ MODULE_NAME = __name__.split(".")[-1]
 # TODO: Move most of the code to pNavgation and remove this stuff from python.
 #
 class Navigation:
+	playServiceExtensions = []
+	recordServiceExtensions = []
+
 	TIMER_TYPES = {
 		0: "Record-timer",
 		1: "Zap-timer",
@@ -307,6 +310,7 @@ class Navigation:
 		# from Components.ServiceEventTracker import InfoBarCount
 		# InfoBarInstance = InfoBarCount == 1 and InfoBar.instance
 		InfoBarInstance = InfoBar.instance
+		isHandled = False
 
 		currentServiceSource = None
 		if InfoBarInstance:
@@ -381,6 +385,10 @@ class Navigation:
 					playref, wrappererror = self.serviceHook(playref)
 					if wrappererror:
 						return 1
+
+				for f in Navigation.playServiceExtensions:
+					playref, isHandled = f(self, playref, event, InfoBarInstance)
+
 				print(f"[Navigation] Playref is '{playref.toString()}'.")
 				self.currentlyPlayingServiceOrGroup = ref
 				if InfoBarInstance and InfoBarInstance.servicelist.servicelist.setCurrent(ref, adjust):
@@ -398,7 +406,7 @@ class Navigation:
 					self.firstStart = False
 					self.retryServicePlayTimer.start(delay, True)
 					return 0
-				elif self.pnav.playService(playref):
+				elif not isHandled and self.pnav.playService(playref):
 					print(f"[Navigation] Failed to start '{playref.toString()}'.")
 					self.currentlyPlayingServiceReference = None
 					self.originalPlayingServiceReference = None
@@ -473,6 +481,8 @@ class Navigation:
 				ref = getBestPlayableServiceReference(ref, eServiceReference(), simulate)
 			if type != (pNavigation.isPseudoRecording | pNavigation.isFromEPGrefresh):
 				ref, isStreamRelay = streamrelay.streamrelayChecker(ref)
+				for f in Navigation.recordServiceExtensions:
+					ref = f(self, ref)
 				#if not isStreamRelay:
 				#	ref, wrappererror = self.serviceHook(ref)
 			service = ref and self.pnav and self.pnav.recordService(ref, simulate, type)
@@ -481,7 +491,9 @@ class Navigation:
 		return service
 
 	def stopRecordService(self, service):
-		ret = self.pnav and self.pnav.stopRecordService(service)
+		ret = -1
+		if service and isinstance(service, iRecordableServicePtr):
+			ret = self.pnav and self.pnav.stopRecordService(service)
 		return ret
 
 	def getRecordings(self, simulate=False, type=pNavigation.isAnyRecording):
