@@ -153,8 +153,8 @@ class EPGSelection(Screen):
 		}
 
 		self["epgcatchupactions"] = HelpableActionMap(self, "EPGCatchUpActions", {
- 			"play": (self.playCatchup, _("Play archive")),
- 		}, prio=-2, description=_("Catchup player commands"))
+			"play": (self.playCatchup, _("Play archive")),
+		}, prio=-2, description=_("Catchup player commands"))
 		self["epgcatchupactions"].setEnabled(callable(self.catchupPlayerFunc))
 
 		if self.type == EPG_TYPE_SINGLE:
