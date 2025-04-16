@@ -46,6 +46,7 @@ epgTypes = {
 
 
 class EPGSelection(Screen):
+	catchupPlayerFunc = None
 	EMPTY = 0
 	ADD_TIMER = 1
 	REMOVE_TIMER = 2
@@ -150,6 +151,12 @@ class EPGSelection(Screen):
 			"info": (self.Info, _("Show detailed event info")),
 			"infolong": (self.InfoLong, _("Show single EPG for current channel"))
 		}
+
+		self["epgcatchupactions"] = HelpableActionMap(self, "EPGCatchUpActions", {
+ 			"play": (self.playCatchup, _("Play archive")),
+ 		}, prio=-2, description=_("Catchup player commands"))
+		self["epgcatchupactions"].setEnabled(callable(self.catchupPlayerFunc))
+
 		if self.type == EPG_TYPE_SINGLE:
 			epgActions["epg"] = (self.Info, _("Show detailed event info"))
 			del epgActions["infolong"]
@@ -386,6 +393,17 @@ class EPGSelection(Screen):
 		}.get(self.type, (None, None))
 		if key:
 			self.session.openWithCallback(createSetupCallback, Setup, key)
+
+	def setupKeyPlayButtonDisplay(self, stime, service):
+		ena = self["list"].detectCatchupAvailable(stime, service)
+		self["epgcatchupactions"].setEnabled(ena)
+
+	def playCatchup(self):
+		event, service = self["list"].getCurrent()[:2]
+		stime = event and event.getBeginTime()
+		service = service and service.ref
+		if self["list"].detectCatchupAvailable(stime, service):
+			self.catchupPlayerFunc(event, service)
 
 	def togglePIG(self):
 		if self.type == EPG_TYPE_VERTICAL:
@@ -1493,6 +1511,7 @@ class EPGSelection(Screen):
 		self["recordingactions"].setEnabled(False)
 		self["epgactions"].setEnabled(False)
 		self["dialogactions"].setEnabled(True)
+		self["epgcatchupactions"].setEnabled(False)
 		self.ChoiceBoxDialog.instantiateActionMap(True)
 		self.ChoiceBoxDialog.show()
 		if "input_actions" in self:
@@ -1736,6 +1755,8 @@ class EPGSelection(Screen):
 			self.key_green_choice = self.ADD_TIMER
 		if self.eventviewDialog and (self.type == EPG_TYPE_INFOBAR or self.type == EPG_TYPE_INFOBARGRAPH):
 			self.infoKeyPressed(True)
+		if callable(self.catchupPlayerFunc):
+			self.setupKeyPlayButtonDisplay(event.getBeginTime(), serviceref)
 
 	def moveTimeLines(self, force=False):
 		self.updateTimelineTimer.start((60 - int(time()) % 60) * 1000)
