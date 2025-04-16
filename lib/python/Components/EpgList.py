@@ -1,3 +1,5 @@
+from datetime import timedelta
+from re import search
 from time import localtime, time, strftime, mktime
 
 from enigma import eEPGCache, eListbox, eListboxPythonMultiContent, eServiceReference, loadPNG, gFont, eRect, eSize, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, RT_VALIGN_TOP, RT_WRAP, BT_SCALE, BT_KEEP_ASPECT_RATIO
@@ -144,6 +146,7 @@ class EPGList(GUIComponent):
 		self.autotimericon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'icons/epgclock_autotimer.png'))
 		self.icetvicon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'icons/epgclock_icetv.png'))
 		self.primetimeicon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'icons/epgclock_primetime.png'))
+		self.catchupicon = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, 'icons/catchup.png'))
 
 		self.nowEvPix = None
 		self.nowSelEvPix = None
@@ -1305,6 +1308,16 @@ class EPGList(GUIComponent):
 				))
 		return res
 
+	def detectCatchupAvailable(self, beginTime, serviceReference):
+		sRef = serviceReference.toString() if isinstance(serviceReference, eServiceReference) else serviceReference
+		now = time()
+		if beginTime and beginTime < now and "catchupdays=" in sRef:
+			match = search(r"catchupdays=(\d*)", sRef)
+			catchupDays = int(match.groups(1)[0])
+			if now - beginTime <= timedelta(days=catchupDays).total_seconds():
+				return True
+		return False
+
 	def getIcons(self, clock_types, service, beginTime):
 		icons = []
 		if clock_types and clock_types in (2, 7, 12):
@@ -1312,6 +1325,8 @@ class EPGList(GUIComponent):
 				icons.append(self.autotimericon)
 			if self.wasEntryIceTV:
 				icons.append(self.icetvicon)
+		if self.detectCatchupAvailable(beginTime, service):
+			return [self.catchupicon]
 		return icons
 
 	def getSelectionPosition(self, serviceref, activeList=1):
