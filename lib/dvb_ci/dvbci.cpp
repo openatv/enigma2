@@ -893,6 +893,17 @@ void eDVBCIInterfaces::gotPMT(eDVBServicePMTHandler *pmthandler)
 	}
 }
 
+bool eDVBCIInterfaces::isCiConnected(eDVBServicePMTHandler *pmthandler)
+{
+	bool ret = false;
+	PMTHandlerList::iterator it=std::find(m_pmt_handlers.begin(), m_pmt_handlers.end(), pmthandler);
+	if (it != m_pmt_handlers.end() && it->cislot)
+	{
+		ret = true;
+	}
+	return ret;
+}
+
 int eDVBCIInterfaces::getMMIState(int slotid)
 {
 	eDVBCISlot *slot;
