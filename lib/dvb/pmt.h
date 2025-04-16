@@ -142,6 +142,7 @@ public:
 		eventHBBTVInfo, /* HBBTV information was detected in the AIT */
 
 		eventStopped,
+		eventStartPvrDescramble,   // start PVR Descramble Convert
 		eventChannelAllocated,
 	};
 #ifndef SWIG
@@ -179,7 +180,8 @@ public:
 		streamserver = 7,
 		scrambled_streamserver = 8,
 		streamclient = 9,
-		offline = 10
+		offline = 10,
+		pvrDescramble = 11
 	};
 
 	/* deprecated interface */
