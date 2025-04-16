@@ -39,6 +39,9 @@ class ServiceReference(eServiceReference):
 		ref = self.ref
 		return ref.flags & eServiceReference.isGroup or (ref.type == eServiceReference.idDVB or ref.type == eServiceReference.idDVB + 0x100 or ref.type == 0x2000 or ref.type == 0x1001)
 
+	def toString(self):
+		return self.ref.toString()
+
 
 def getStreamRelayRef(sref):
 	try:
