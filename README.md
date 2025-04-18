@@ -83,16 +83,13 @@
     sudo sysctl -n -w fs.inotify.max_user_watches=524288
     ```
 
-1. Remove AppArmor to accelerate the build process.
+1. Modify AppArmor config.
 
     ```sh
-    sudo apparmor_status
+    echo 'kernel.apparmor_restrict_unprivileged_userns=0' | sudo tee /etc/sysctl.d/60-apparmor-namespace.conf > /dev/null && sudo sysctl --system
 
-    sudo systemctl stop apparmor
-
-    sudo systemctl disable apparmor
-
-    sudo apt purge apparmor
+    sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
+    ```
 
 1. Add new user `openatvbuilder`
 
