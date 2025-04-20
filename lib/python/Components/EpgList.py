@@ -1226,7 +1226,7 @@ class EPGList(GUIComponent):
 						for typeIcon in self.getIcons(clock_types, service, ev[0]):
 							res.append(MultiContentEntryPixmapAlphaBlend(
 								pos=(pos[0] - self.picx - self.gap, pos[1]), size=(self.picx, self.picy),
-								png=self.typeIcon))
+								png=typeIcon))
 
 		return res
 
