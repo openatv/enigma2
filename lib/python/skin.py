@@ -1523,6 +1523,7 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 				style.setHeaderFont(parseFont(configList.attrib.get("headerFont", "Regular;20"), ((1, 1), (1, 1))))
 			style.setValue(eWindowStyleSkinned.valueEntryLeftOffset, parseInteger(configList.attrib.get("entryLeftOffset", "15")))
 			style.setValue(eWindowStyleSkinned.valueHeaderLeftOffset, parseInteger(configList.attrib.get("headerLeftOffset", "15")))
+			style.setValue(eWindowStyleSkinned.valueIndentSize, parseInteger(configList.attrib.get("indentSize", "20")))
 		for label in tag.findall("label"):
 			style.setLabelFont(parseFont(label.attrib.get("font", "Regular;20"), ((1, 1), (1, 1))))
 		for listBox in tag.findall("listbox"):

@@ -84,6 +84,7 @@ public:
 	enum {
 		valueEntryLeftOffset,
 		valueHeaderLeftOffset,
+		valueIndentSize,
 		valueMax
 	};
 	void setColor(int what, const gRGB &back);

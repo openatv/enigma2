@@ -75,6 +75,7 @@ public:
 	void setSeperation(int sep) { m_seperation = sep; }
 	int getEntryLeftOffset();
 	int getHeaderLeftOffset();
+	int getIndentSize();
 	int currentCursorSelectable();
 	void setSlider(int height, int space)
 	{

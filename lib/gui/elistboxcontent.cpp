@@ -666,13 +666,34 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 		{
 			/* handle left part. get item from tuple, convert to string, display. */
 			text = PyTuple_GET_ITEM(item, 0);
+			const char *string;
+			int indent = 0;
 
-			text = PyObject_Str(text); /* creates a new object - old object was borrowed! */
-			const char *string = (text && PyUnicode_Check(text)) ? PyUnicode_AsUTF8(text) : "<not-a-string>";
-			Py_XDECREF(text);
+			if (PyTuple_Check(text))
+			{
+				if (PyTuple_Size(text) > 1)
+				{
+					ePyObject pindent = PyTuple_GET_ITEM(text, 1);
+					if (pindent && PyLong_Check(pindent))
+					{
+						indent = PyLong_AsLong(pindent);
+						indent = indent * style.getValue(eWindowStyleSkinned::valueIndentSize);
+					}
+				}
 
-			/* when we have no label, align value to the left. (FIXME:
-			   don't we want to specifiy this individually?) */
+				text = PyTuple_GET_ITEM(text, 0);
+				text = PyObject_Str(text); /* creates a new object - old object was borrowed! */
+				string = (text && PyUnicode_Check(text)) ? PyUnicode_AsUTF8(text) : "<not-a-string>";
+				Py_XDECREF(text);
+			}
+			else
+			{
+				text = PyObject_Str(text); /* creates a new object - old object was borrowed! */
+				string = (text && PyUnicode_Check(text)) ? PyUnicode_AsUTF8(text) : "<not-a-string>";
+				Py_XDECREF(text);
+			}
+
+			// when we have no label, align value to the left. (FIXME: don't we want to specifiy this individually?)
 			int value_alignment_left = !*string;
 
 			/* now, handle the value. get 2nd part from tuple*/
@@ -734,7 +755,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 					left = 0;
 				if(width == -1)
 				{
-					left = offset.x() + leftOffset;
+					left = offset.x() + leftOffset + indent;
 					width = m_itemsize.width() - left * 2;
 				}
 				
@@ -744,7 +765,7 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 			}
 
 
-			eRect labelrect(ePoint(offset.x() + leftOffset, offset.y()), m_itemsize);
+			eRect labelrect(ePoint(offset.x() + leftOffset + indent, offset.y()), m_itemsize);
 			painter.renderText(labelrect, string, alphablendflag | gPainter::RT_HALIGN_LEFT | gPainter::RT_VALIGN_CENTER, border_color, border_size);
 
 			/*  check if this is really a tuple */
@@ -949,6 +970,13 @@ int eListboxPythonConfigContent::getHeaderLeftOffset()
 	ePtr<eWindowStyle> style;
 	m_listbox->getStyle(style);
 	return style->getValue(eWindowStyleSkinned::valueHeaderLeftOffset);
+}
+
+int eListboxPythonConfigContent::getIndentSize()
+{
+	ePtr<eWindowStyle> style;
+	m_listbox->getStyle(style);
+	return style->getValue(eWindowStyleSkinned::valueIndentSize);
 }
 
 
