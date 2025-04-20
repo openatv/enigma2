@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-10 18:45+0000\n"
+"POT-Creation-Date: 2025-04-20 18:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -892,6 +892,10 @@ msgid "%d feed catalog package was updated."
 msgid_plural "%d feed catalog packages were updated."
 msgstr[0] ""
 msgstr[1] ""
+
+#, python-format
+msgid "%d jobs are running in the background!"
+msgstr ""
 
 #, python-format
 msgid "%d kB"
@@ -2283,6 +2287,10 @@ msgstr ""
 msgid "Amlogic remote"
 msgstr ""
 
+#, python-format
+msgid "Amount %d / Success %d / Failed %d"
+msgstr ""
+
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr ""
 
@@ -3622,6 +3630,9 @@ msgid "Cascade PiP"
 msgstr ""
 
 msgid "Catalan / Valencian"
+msgstr ""
+
+msgid "Catchup player commands"
 msgstr ""
 
 msgid "Cayman Islands"
@@ -5934,6 +5945,21 @@ msgid "Depth"
 msgstr ""
 
 msgid "Descending"
+msgstr ""
+
+msgid "Descramble end time"
+msgstr ""
+
+msgid "Descramble in Standby"
+msgstr ""
+
+msgid "Descramble in Standby finished"
+msgstr ""
+
+msgid "Descramble recordings before Shutdown"
+msgstr ""
+
+msgid "Descramble start time"
 msgstr ""
 
 msgid "Descrambling options"
@@ -13035,6 +13061,9 @@ msgstr ""
 msgid "Play all audio files in the directory"
 msgstr ""
 
+msgid "Play archive"
+msgstr ""
+
 msgid "Play audio in background"
 msgstr ""
 
@@ -15752,6 +15781,9 @@ msgstr ""
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr ""
 
+msgid "Select 'Yes' to shut down immediately instead of starting the descramble."
+msgstr ""
+
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr ""
 
@@ -15883,6 +15915,12 @@ msgid "Select a repository commit log to view:"
 msgstr ""
 
 msgid "Select a script to run:"
+msgstr ""
+
+msgid "Select a time, when in Standby mode, after which the descramble can proceed."
+msgstr ""
+
+msgid "Select a time, when in Standby, before which descramble can proceed."
 msgstr ""
 
 msgid "Select a tuner"
@@ -16900,6 +16938,12 @@ msgid "Set time options"
 msgstr ""
 
 msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
+msgstr ""
+
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby mode before shutting down."
+msgstr ""
+
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
 msgstr ""
 
 msgid "Set to 'Yes', to enable automatic recording of the background timeshift buffer."
@@ -19634,6 +19678,10 @@ msgid "The picon directory already exists and must be removed. Do you want to pr
 msgstr ""
 
 #, python-format
+msgid "The process will take approximately %d minutes to complete."
+msgstr ""
+
+#, python-format
 msgid "The results have been written to %s."
 msgstr ""
 
@@ -19723,6 +19771,12 @@ msgstr ""
 
 msgid "There are pending tasks:"
 msgstr ""
+
+#, python-format
+msgid "There is %d scrambled recording, which will be unscrambled during Standby."
+msgid_plural "There are %d scrambled recordings, which will be unscrambled during Standby."
+msgstr[0] ""
+msgstr[1] ""
 
 #, python-format
 msgid "There is a risk that your %s %s will not boot or may malfunction after such a large on-line update."
