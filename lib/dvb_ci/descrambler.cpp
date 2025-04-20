@@ -71,7 +71,7 @@ int descrambler_set_key(int &desc_fd, eDVBCISlot *slot, int parity, unsigned cha
 {
 	bool vuIoctlSuccess = false;
 
-	if (slot->getTunerNum() > 7) // might be VU box with 2 FBC tuners -> try to use VU ioctl
+	if (slot->getTunerNum() > 7 || slot->getTunerNum() == -1) // might be VU box with 2 FBC tuners or VU offline decryption -> try to use VU ioctl
 	{
 		struct vu_ca_descr_data d;
 

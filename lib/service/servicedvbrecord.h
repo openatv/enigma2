@@ -18,6 +18,7 @@ class eDVBServiceRecord: public eDVBServiceBase,
 {
 	DECLARE_REF(eDVBServiceRecord);
 public:
+	eDVBServicePMTHandler::serviceType m_serviceType;
 	RESULT connectEvent(const sigc::slot<void(iRecordableService*,int)> &event, ePtr<eConnection> &connection);
 	RESULT prepare(const char *filename, time_t begTime, time_t endTime, int eit_event_id, const char *name, const char *descr, const char *tags, bool descramble, bool recordecm, int packetsize = 188);
 	RESULT prepareStreaming(bool descramble, bool includeecm);
@@ -28,6 +29,7 @@ public:
 	RESULT frontendInfo(ePtr<iFrontendInformation> &ptr);
 	RESULT subServices(ePtr<iSubserviceList> &ptr);
 	RESULT getFilenameExtension(std::string &ext) { ext = ".ts"; return 0; };
+	RESULT getServiceType(int &serviceType) { serviceType = m_serviceType; return 0; };
 
 		// iStreamableService
 	ePtr<iStreamData> getStreamingData();
@@ -35,12 +37,17 @@ public:
 		// iSubserviceList
 	int getNumberOfSubservices();
 	RESULT getSubservice(eServiceReference &subservice, unsigned int n);
+
+protected:
+	ePtr<iDVBDemux> m_decode_demux;
+	ePtr<iTSMPEGDecoder> m_decoder;
 private:
 	enum { stateIdle, statePrepared, stateRecording };
 	bool m_simulate;
 	int m_state, m_want_record;
 	bool m_record_ecm;
 	bool m_descramble;
+	bool m_pvr_descramble;
 	bool m_is_stream_client;
 	bool m_is_pvr;
 	int m_packet_size;
@@ -65,6 +72,7 @@ private:
 
 	int doPrepare();
 	int doRecord();
+	void updateDecoder();
 
 			/* events */
 	void serviceEvent(int event);

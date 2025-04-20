@@ -10,6 +10,7 @@ from Components.Harddisk import harddiskmanager
 from Components.ImportChannels import ImportChannels
 from Components.Label import Label
 import Components.RecordingConfig
+from Components.ScrambledRecordings import ScrambledRecordings
 from Components.Sources.StreamService import StreamServiceList
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Task import job_manager
@@ -361,12 +362,19 @@ class TryQuitMainloop(MessageBox):
 		self.ptsmainloopvalue = retvalue
 		recordings = session.nav.getRecordings(False, Components.RecordingConfig.recType(config.recording.warn_box_restart_rec_types.getValue()))
 		jobs = len(job_manager.getPendingJobs())
+		if BoxInfo.getItem("CanDescrambleInStandby"):
+			scrambledRecordings = ScrambledRecordings()
+			scrambledList = scrambledRecordings.readList(returnLength=True)
+		else:
+			scrambledList = []
+
 		inTimeshift = Screens.InfoBar.InfoBar and Screens.InfoBar.InfoBar.instance and Screens.InfoBar.InfoBar.ptsGetTimeshiftStatus(Screens.InfoBar.InfoBar.instance)
 		self.connected = False
 		reason = ""
-		next_rec_time = -1
+		nextRecordingTime = -1
+		self.descramble = False
 		if not recordings:
-			next_rec_time = session.nav.RecordTimer.getNextRecordingTime()
+			nextRecordingTime = session.nav.RecordTimer.getNextRecordingTime()
 #		if jobs:
 #			reason = (ngettext("%d job is running in the background!", "%d jobs are running in the background!", jobs) % jobs) + '\n'
 #			if jobs == 1:
@@ -381,7 +389,7 @@ class TryQuitMainloop(MessageBox):
 			reason = _("You seem to be in time shift!") + '\n'
 			default_yes = True
 			timeout = 30
-		elif recordings or (next_rec_time > 0 and (next_rec_time - time()) < 360):
+		elif recordings or (nextRecordingTime > 0 and (nextRecordingTime - time()) < 360):
 			reason = _("Recording(s) are in progress or coming up in few seconds!") + '\n'
 			default_yes = False
 			timeout = 30
@@ -396,7 +404,24 @@ class TryQuitMainloop(MessageBox):
 			reason = _("A file from media is in use!")
 			default_yes = False
 			timeout = 30
-
+		elif jobs and retvalue in (QUIT_SHUTDOWN, QUIT_REBOOT, QUIT_KODI):
+			reason = _('%d jobs are running in the background!') % jobs
+			default_yes = False
+			timeout = 30
+		elif len(scrambledList) and retvalue == QUIT_SHUTDOWN and config.recording.standbyDescrambleShutdown.value:
+			duration = 0
+			for scrambledListItem in scrambledList:
+				duration += scrambledListItem[1]
+			count = len(scrambledList)
+			reason = [
+				ngettext("There is %d scrambled recording, which will be unscrambled during Standby.", "There are %d scrambled recordings, which will be unscrambled during Standby.", count) % count,
+				_("The process will take approximately %d minutes to complete.") % min(int(duration // 60), 2),
+				 _("Select 'Yes' to shut down immediately instead of starting the descramble.")
+			]
+			reason = f"{reason[0]} {reason[1]}\n\n{reason[2]}"
+			default_yes = False
+			self.descramble = True
+			timeout = 30
 		if reason and inStandby:
 			session.nav.record_event.append(self.getRecordEvent)
 			self.skinName = ""
@@ -466,6 +491,10 @@ class TryQuitMainloop(MessageBox):
 
 			quitMainloop(self.retval)
 		else:
+			if self.descramble:
+				from Components.PvrDescrambleConvert import pvr_descramble_convert
+				if pvr_descramble_convert.scrambledRecordsLeft():
+					self.session.open(Standby2)
 			MessageBox.close(self, True)
 
 	def __onShow(self):

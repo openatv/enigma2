@@ -14,12 +14,14 @@ from Components.Harddisk import findMountPoint
 import Components.RecordingConfig
 Components.RecordingConfig.InitRecordingConfig()
 from Components.SystemInfo import getBoxDisplayName
+from Components.ScrambledRecordings import ScrambledRecordings
 from Components.TimerSanityCheck import TimerSanityCheck
 from Components.UsageConfig import defaultMoviePath, calcFrontendPriorityIntval
 from Screens.MessageBox import MessageBox
 import Screens.Standby
 from ServiceReference import ServiceReference
 from Tools.ASCIItranslit import legacyEncode
+from Tools.CIHelper import cihelper
 from Tools.Directories import SCOPE_CONFIG, fileReadXML, getRecordingFilename, resolveFilename
 from Tools.Notifications import AddNotification, AddNotificationWithCallback, AddPopup
 from Tools import Trashcan
@@ -615,7 +617,7 @@ def createRecordTimerEntry(timer):
 
 
 class RecordTimerEntry(TimerEntry):
-	def __init__(self, serviceref, begin, end, name, description, eit, disabled=False, justplay=TIMERTYPE.JUSTPLAY, afterEvent=AFTEREVENT.DEFAULT, checkOldTimers=False, dirname=None, tags=None, descramble="notset", record_ecm="notset", rename_repeat=True, isAutoTimer=False, ice_timer_id=None, always_zap=TIMERTYPE.ALWAYS_ZAP, MountPath=None, fixDescription=False, cridSeries=None, cridEpisode=None, cridRecommendation=None):
+	def __init__(self, serviceref, begin, end, name, description, eit, disabled=False, justplay=TIMERTYPE.JUSTPLAY, afterEvent=AFTEREVENT.DEFAULT, checkOldTimers=False, dirname=None, tags=None, descramble="notset", record_ecm="notset", rename_repeat=True, isAutoTimer=False, ice_timer_id=None, always_zap=TIMERTYPE.ALWAYS_ZAP, MountPath=None, fixDescription=False, cridSeries=None, cridEpisode=None, cridRecommendation=None, filename=None):
 		TimerEntry.__init__(self, int(begin), int(end))
 		# print("[RecordTimerEntry] DEBUG: Running init code.")
 		self.marginBefore = (getattr(config.recording, "zap_margin_before" if justplay == TIMERTYPE.ZAP else "margin_before").value * 60)
@@ -695,6 +697,12 @@ class RecordTimerEntry(TimerEntry):
 		else:
 			self.descramble = descramble
 			self.record_ecm = record_ecm
+
+		if self.descramble or not self.record_ecm:
+			if cihelper.ServiceIsAssigned(self.service_ref.ref):
+				self.descramble = False
+				self.record_ecm = True
+
 		config.usage.frontend_priority_intval.setValue(calcFrontendPriorityIntval(config.usage.frontend_priority, config.usage.frontend_priority_multiselect, config.usage.frontend_priority_strictly))
 		config.usage.recording_frontend_priority_intval.setValue(calcFrontendPriorityIntval(config.usage.recording_frontend_priority, config.usage.recording_frontend_priority_multiselect, config.usage.recording_frontend_priority_strictly))
 		self.needChangePriorityFrontend = config.usage.recording_frontend_priority_intval.value != "-2" and config.usage.recording_frontend_priority_intval.value != config.usage.frontend_priority_intval.value
@@ -712,6 +720,12 @@ class RecordTimerEntry(TimerEntry):
 		# AttributeError: 'RecordTimerEntry' object has no attribute 'justremind'
 		self.justremind = False
 		self.external = False
+
+		self.PVRFilename = filename
+		self.isPVRDescramble = False
+		self.pvrConvert = False
+		self.scrambledRecordings = ScrambledRecordings()
+
 		self.log_entries = []
 		self.check_justplay()
 		self.resetState()
@@ -958,6 +972,11 @@ class RecordTimerEntry(TimerEntry):
 				self.log(12, "Stop recording.")
 			if not self.justplay:
 				if self.record_service:
+					scamble = not self.descramble or config.recording.never_decrypt.value
+					if not self.failed and not self.isPVRDescramble and scamble:
+						print(f"[RecordTimer] Add Recording to pending descramble list: {self.Filename}")
+						self.scrambledRecordings.writeList(append=f"{self.Filename}{self.record_service.getFilenameExtension()}")
+
 					NavigationInstance.instance.stopRecordService(self.record_service)
 					self.record_service = None
 			if self.lastend and self.failed:
@@ -1193,6 +1212,14 @@ class RecordTimerEntry(TimerEntry):
 			return True
 
 	def calculateFilename(self, name=None):
+		if self.PVRFilename:
+			self.Filename = self.PVRFilename
+			self.PVRFilename = None
+			self.isPVRDescramble = True
+			if DEBUG:
+				self.log(0, "Filename calculated as: '%s'" % self.Filename)
+			return self.Filename
+
 		beginDate = strftime("%Y%m%d %H%M", localtime(self.begin))
 		name = name or self.name
 		filename = f"{beginDate} - {self.service_ref.getServiceName()}"
@@ -1398,6 +1425,8 @@ class RecordTimerEntry(TimerEntry):
 			# state, with also keeping the possibility to re-try.
 			# DEBUG: This has to be done!
 		elif event == iRecordableService.evStart:
+			if self.pvrConvert:
+				return
 			text = _("A recording has been started:\n%s") % self.name
 			notify = config.usage.show_message_when_recording_starts.value and not Screens.Standby.inStandby
 			if self.dirnameHadToFallback:

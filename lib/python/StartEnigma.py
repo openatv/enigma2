@@ -789,7 +789,6 @@ from skin import readSkin
 enigma.eProfileWrite("InitDefaultPaths")
 from Components.config import ConfigSubsection, NoSave, configfile
 from Tools.Directories import InitDefaultPaths, SCOPE_CONFIG, SCOPE_GUISKIN, SCOPE_PLUGINS, fileUpdateLine, resolveFilename
-import Components.RecordingConfig
 InitDefaultPaths()
 
 enigma.eProfileWrite("ConfigMisc")
@@ -883,6 +882,9 @@ InitRecordingConfig()
 enigma.eProfileWrite("InitUsageConfig")
 from Components.UsageConfig import InitUsageConfig, DEFAULTKEYMAP
 InitUsageConfig()
+
+enigma.eProfileWrite("InitPvrDescrambleConvert")
+from Components.PvrDescrambleConvert import pvr_descramble_convert
 
 enigma.eProfileWrite("InitTimeZones")
 from Components.Timezones import InitTimeZones

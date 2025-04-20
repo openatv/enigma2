@@ -21,6 +21,7 @@ from Components.UsageConfig import preferredTimerPath
 from Components.Sources.Boolean import Boolean
 from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.StaticText import StaticText
+from Components.SystemInfo import BoxInfo
 from Plugins.Plugin import PluginDescriptor
 from Screens.ChoiceBox import ChoiceBox
 import Screens.InfoBar
@@ -1878,7 +1879,8 @@ class MovieContextMenu(Screen, ProtectedScreen):  # Contract: On OK returns a ca
 				menu.append((_("Copy"), csel.do_copy))
 				menu.append((_("Reset playback position"), csel.do_reset))
 				menu.append((_("Rename"), csel.do_rename))
-				menu.append((_("Start offline decode"), csel.do_decode))
+				if BoxInfo.getItem("CanOfflineDecode"):
+					menu.append((_("Start offline decode"), csel.do_decode))
 				if isfile(f"{service.getPath().rstrip("/")}.meta"):
 					menu.append((_("Edit Tags"), csel.do_tageditor))
 				# Plugins expect a valid selection, so only include them if we selected a non-directory.

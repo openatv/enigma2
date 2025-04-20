@@ -703,7 +703,7 @@
 		<item level="2" text="Background delete speed" description="Configure the speed of the background deletion process. Lower speed will consume less hard disk drive performance.">config.misc.erase_speed</item>
 		<item level="2" text="Always include ECM in recordings" description="Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver.">config.recording.always_ecm</item>
 		<item level="2" text="Never decrypt while recording" description="Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding).">config.recording.never_decrypt</item>
-		<item level="2" text="Offline decode delay (ms)" description="Configure the offline decoding delay in milliseconds. The configured delay is observed at each control word parity change.">config.recording.offline_decode_delay</item>
+		<item level="2" text="Offline decode delay (ms)" description="Configure the offline decoding delay in milliseconds. The configured delay is observed at each control word parity change." requires="CanOfflineDecode">config.recording.offline_decode_delay</item>
 		<item level="2" text="Default recording type" description="'Unscramble &amp; record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM.">config.recording.ecm_data</item>
 		<item level="2" text="Default 'Timer type' *" description="Configure default setting for new timers. Need a restart after changing.">config.recording.default_timertype</item>
 		<item level="2" text="Default 'After event' *" description="Configure default setting for new timers. Need a restart after changing.">config.recording.default_afterevent</item>
@@ -711,6 +711,14 @@
 		<item level="2" text="Show recording symbol" description="Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (e.g. EPGrefresh).">config.recording.show_rec_symbol_for_rec_types</item>
 		<item level="2" text="Show warning before restart" description="Configure for which types of recordings a warning about active recordings is shown when attempting to restart the box or the GUI.">config.recording.warn_box_restart_rec_types</item>
 		<item level="2" text="Show free space in timer view" description="When 'Enabled', the timer view will show the free space on the target device. This will wake the device from sleep mode.">config.recording.timerviewshowfreespace</item>
+		<if requires="CanDescrambleInStandby">
+			<item level="2" text="Descramble in Standby" description="Set to 'Enabled' to descramble queued scrambled recordings in Standby.">config.recording.standbyDescramble</item>
+			<if conditional="config.recording.standbyDescramble.value" indent="1">
+				<item level="2" text="Descramble recordings before Shutdown" description="Set to 'Enabled' to descramble queued scrambled recordings in Standby mode before shutting down.">config.recording.standbyDescrambleShutdown</item>
+				<item level="2" text="Descramble start time" description="Select a time, when in Standby mode, after which the descramble can proceed.">config.recording.standbyDescrambleStart</item>
+				<item level="2" text="Descramble end time" description="Select a time, when in Standby, before which descramble can proceed.">config.recording.standbyDescrambleEnd</item>
+			</if>
+		</if>
 	</setup>
 	<setup key="RecordTimer" title="RecordTimer Settings">
 		<if conditional="config.usage.remote_fallback_external_timer.value and config.usage.remote_fallback.value">

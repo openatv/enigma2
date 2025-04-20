@@ -100,6 +100,7 @@ public:
 	RESULT frontendInfo(ePtr<iFrontendInformation> &ptr);
 	RESULT stream(ePtr<iStreamableService> &ptr);
 	RESULT subServices(ePtr<iSubserviceList> &ptr);
+	RESULT getServiceType(int &serviceType) { serviceType = -1; return -1; };
 	RESULT getFilenameExtension(std::string &ext) { ext = ".ts"; return 0; };
 
 private:

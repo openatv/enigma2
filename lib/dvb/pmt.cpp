@@ -96,17 +96,18 @@ void eDVBServicePMTHandler::channelStateChanged(iDVBChannel *channel)
 					{
 						registerCAService();
 					}
+					const eServiceReferenceDVB reference = eServiceReferenceDVB(m_reference.toReferenceString());
 					if (m_ca_servicePtr && !m_service->usePMT())
 					{
 						if(eDVBServicePMTHandler::m_debug)
 							eDebug("[eDVBServicePMTHandler] create cached caPMT");
-						eDVBCAHandler::getInstance()->handlePMT(m_reference, m_service);
+						eDVBCAHandler::getInstance()->handlePMT(reference, m_service);
 					}
 					else if (m_ca_servicePtr && (m_service->m_flags & eDVBService::dxIsScrambledPMT))
 					{
 						if(eDVBServicePMTHandler::m_debug)
 							eDebug("[eDVBServicePMTHandler] create caPMT to descramble PMT");
-						eDVBCAHandler::getInstance()->handlePMT(m_reference, m_service);
+						eDVBCAHandler::getInstance()->handlePMT(reference, m_service);
 					}
 				}
 			}
@@ -162,7 +163,8 @@ void eDVBServicePMTHandler::registerCAService()
 		demuxes[1] = m_decode_demux_num;
 	else
 		demuxes[1] = demuxes[0];
-	eDVBCAHandler::getInstance()->registerService(m_reference, adapterid, demuxes, (int)m_service_type, m_ca_servicePtr);
+	const eServiceReferenceDVB reference = eServiceReferenceDVB(m_reference.toReferenceString());
+	eDVBCAHandler::getInstance()->registerService(reference, adapterid, demuxes, (int)m_service_type, m_ca_servicePtr);
 }
 
 void eDVBServicePMTHandler::PMTready(int error)
@@ -205,8 +207,9 @@ void eDVBServicePMTHandler::PMTready(int error)
 		if (m_ca_servicePtr)
 		{
 			ePtr<eTable<ProgramMapSection> > ptr;
+			const eServiceReferenceDVB reference = eServiceReferenceDVB(m_reference.toReferenceString());
 			if (!m_PMT.getCurrent(ptr))
-				eDVBCAHandler::getInstance()->handlePMT(m_reference, ptr);
+				eDVBCAHandler::getInstance()->handlePMT(reference, ptr);
 			else
 				eDebug("[eDVBServicePMTHandler] cannot call buildCAPMT");
 		}
@@ -1120,11 +1123,12 @@ int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, ePtr<iTsSource> &s
 {
 	RESULT res=0;
 	m_reference = ref;
+	m_reference.name = ""; // clear name, we don't need it
 
-		/*
-		 * We need to m_use decode demux only when we are descrambling (demuxers > ca demuxers)
-		 * To avoid confusion with use_decode_demux now we look only descramble argument
-		 */
+	/*
+		* We need to m_use decode demux only when we are descrambling (demuxers > ca demuxers)
+		* To avoid confusion with use_decode_demux now we look only descramble argument
+	*/
 	m_use_decode_demux = descramble;
 
 	m_no_pat_entry_delay->stop();
@@ -1133,7 +1137,7 @@ int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, ePtr<iTsSource> &s
 		/* use given service as backup. This is used for time shift where we want to clone the live stream using the cache, but in fact have a PVR channel */
 	m_service = service;
 
-		/* is this a normal (non PVR) channel? */
+	/* is this a normal (non PVR) channel? */
 	if (ref.path.empty())
 	{
 		eDVBChannelID chid;
@@ -1154,7 +1158,8 @@ int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, ePtr<iTsSource> &s
 
 		if (!res && !simulate && !m_ca_disabled)
 			eDVBCIInterfaces::getInstance()->addPMTHandler(this);
-	} else if (!simulate) // no simulation of playback services
+	}
+	else if (!simulate) // no simulation of playback services
 	{
 		if (!ref.getServiceID().get() /* incorrect sid in meta file or recordings.epl*/ )
 		{
@@ -1181,7 +1186,8 @@ int eDVBServicePMTHandler::tuneExt(eServiceReferenceDVB &ref, ePtr<iTsSource> &s
 			eDebug("[eDVBServicePMTHandler] alloc PVR");
 			/* allocate PVR */
 		eDVBChannelID chid;
-		if (m_service_type == streamclient) ref.getChannelID(chid);
+		if (m_service_type == streamclient)
+			ref.getChannelID(chid);
 		res = m_resourceManager->allocatePVRChannel(chid, m_pvr_channel);
 		if (res)
 			eDebug("[eDVBServicePMTHandler] allocatePVRChannel failed!\n");
@@ -1266,7 +1272,8 @@ void eDVBServicePMTHandler::free()
 			demuxes[1]=demuxes[0];
 		ePtr<eTable<ProgramMapSection> > ptr;
 		m_PMT.getCurrent(ptr);
-		eDVBCAHandler::getInstance()->unregisterService(m_reference, adapterid, demuxes, (int)m_service_type, ptr);
+		const eServiceReferenceDVB reference = eServiceReferenceDVB(m_reference.toReferenceString());
+		eDVBCAHandler::getInstance()->unregisterService(reference, adapterid, demuxes, (int)m_service_type, ptr);
 		m_ca_servicePtr = 0;
 	}
 

@@ -258,6 +258,7 @@ void eServiceMP3Record::gstBusCall(GstMessage *msg)
 			break;
 		case GST_MESSAGE_STATE_CHANGED:
 		{
+			/*
 			if(GST_MESSAGE_SRC(msg) != GST_OBJECT(m_recording_pipeline))
 				break;
 
@@ -269,7 +270,7 @@ void eServiceMP3Record::gstBusCall(GstMessage *msg)
 
 			GstStateChange transition = (GstStateChange)GST_STATE_TRANSITION(old_state, new_state);
 			eDebug("[eMP3ServiceRecord] gstBusCall state transition %s -> %s", gst_element_state_get_name(old_state), gst_element_state_get_name(new_state));
-			/*
+			
 			switch(transition)
 			{
 				case GST_STATE_CHANGE_PAUSED_TO_PLAYING:
