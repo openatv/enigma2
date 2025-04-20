@@ -173,7 +173,7 @@ class PVRDescrambleConvert():
 		self.failedCount = 0
 		if BoxInfo.getItem("CanDescrambleInStandby") and config.recording.standbyDescramble.value:
 			instandby = self.getInstandby()
-			if not self.leaveStandby in instandby.onClose:
+			if self.leaveStandby not in instandby.onClose:
 				instandby.onClose.append(self.leaveStandby)
 			self.beginConvert()
 

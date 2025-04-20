@@ -416,7 +416,7 @@ class TryQuitMainloop(MessageBox):
 			reason = [
 				ngettext("There is %d scrambled recording, which will be unscrambled during Standby.", "There are %d scrambled recordings, which will be unscrambled during Standby.", count) % count,
 				_("The process will take approximately %d minutes to complete.") % min(int(duration // 60), 2),
-				 _("Select 'Yes' to shut down immediately instead of starting the descramble.")
+				_("Select 'Yes' to shut down immediately instead of starting the descramble.")
 			]
 			reason = f"{reason[0]} {reason[1]}\n\n{reason[2]}"
 			default_yes = False
