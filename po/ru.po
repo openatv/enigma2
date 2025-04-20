@@ -8,16 +8,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-21 10:33+0000\n"
-"PO-Revision-Date: 2025-03-01 21:00+0000\n"
-"Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
+"POT-Creation-Date: 2025-04-10 18:45+0000\n"
+"PO-Revision-Date: 2025-04-07 13:02+0000\n"
+"Last-Translator: Marchella1983 <marchella_ru@mail.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.10.3-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 "X-Poedit-SourceCharset: iso-8859-5\n"
 
 msgid ""
@@ -4863,11 +4863,17 @@ msgstr "Подключено через другой тюнер"
 msgid "Connected to"
 msgstr "Подключен к"
 
+msgid "Connected transcoding, limit - no PiP!"
+msgstr ""
+
 msgid "Connected: "
 msgstr "Подключен "
 
 msgid "Connection information"
 msgstr "Информация о подключении"
+
+msgid "Connector"
+msgstr ""
 
 msgid "Console"
 msgstr "Консоль"
@@ -6690,7 +6696,7 @@ msgid "Driver and kernel information"
 msgstr "Драйвера и ядро"
 
 msgid "Drivers version"
-msgstr "Версия драйверов"
+msgstr "Обновление драйверов"
 
 msgid "Duplex"
 msgstr "Двойной"
@@ -7140,7 +7146,7 @@ msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "Включить расширенные параметры настройки HDMI-CEC."
 
 msgid "Enable this option to add MultiBoot information detected during system boot to the debug log file."
-msgstr "Включите этот параметр, чтобы добавить информацию о мультизагрузке, обнаруженную во время загрузки системы, в файл лога отладки."
+msgstr "Включите этот параметр, чтобы добавить информацию о Multiboot, обнаруженную во время загрузки системы, в файл лога отладки."
 
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "Включите этот параметр, чтобы добавить данные сопоставления карты действий / удалённого управления в файл лога отладки."
@@ -9839,6 +9845,12 @@ msgstr "Ввод данных"
 msgid "Input "
 msgstr "Вход "
 
+msgid "Input 1"
+msgstr ""
+
+msgid "Input 2"
+msgstr ""
+
 msgid "Input Device Settings"
 msgstr "Настройка устройства ввода"
 
@@ -11647,22 +11659,22 @@ msgid "Multi EPG"
 msgstr "Мульти ТВ-гид"
 
 msgid "MultiBoot"
-msgstr "Мультизагрузка"
+msgstr "MultiBoot"
 
 msgid "MultiBoot Information"
-msgstr "Информация о мультизагрузке"
+msgstr "MultiBoot информация"
 
 msgid "MultiBoot Manager"
-msgstr "Диспетчер мультизагрузки"
+msgstr "Диспетчер MultiBoot"
 
 msgid "MultiBoot Manager Actions"
-msgstr "Действия диспетчера мультизагрузки"
+msgstr "Действия диспетчера MultiBoot"
 
 msgid "MultiBoot boot mode"
-msgstr "Режим мультизагрузки"
+msgstr "Режим MultiBoot"
 
 msgid "MultiBoot startup file"
-msgstr "Загрузочный файл мультизагрузки"
+msgstr "Стартовый файл в MultiBoot"
 
 msgid "MultiEPG Settings"
 msgstr "Настройки мульти ТВ-гида"
@@ -11674,7 +11686,7 @@ msgid "MultiTranscoding"
 msgstr "Мультитранскодирование"
 
 msgid "Multiboot Image created:"
-msgstr "Мультизагрузочный образ создан:"
+msgstr "Образ Multiboot создан:"
 
 msgid "Multimedia Packages"
 msgstr "Мультимедийные пакеты"
@@ -13043,6 +13055,12 @@ msgstr "Проход"
 
 msgid "Pass-through"
 msgstr "Пропускать"
+
+msgid "Passthrough audio handling delay AC3"
+msgstr ""
+
+msgid "Passthrough audio handling delay AC3+"
+msgstr ""
 
 msgid "Password"
 msgstr "Пароль"
@@ -14755,7 +14773,7 @@ msgid "Remove the Line from CCcam.cfg"
 msgstr "Удалить строку из CCcam.cfg"
 
 msgid "Remove the MultiBoot files"
-msgstr "Удалите файлы мультизагрузки"
+msgstr "Удалите файлы Multiboot"
 
 msgid "Remove the current bookmark"
 msgstr "Удалить текущую закладку"
@@ -16449,6 +16467,9 @@ msgstr "Выберите выделенный слот и перезагрузи
 
 msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
 msgstr "Выберите начальное положение маркера временной шкалы. Маркер — это вертикальная линия, нарисованная в EPG, которая показывает текущее время. Чем больше значение, тем больше маркер будет двигаться вправо, показывая больше истории и меньше предстоящих событий."
+
+msgid "Select the input connector you want to use."
+msgstr ""
 
 msgid "Select the last item in list or move to the end of text"
 msgstr "Выберите последний элемент в списке или перейдите в конец текста"
@@ -18300,7 +18321,7 @@ msgid "Size descending"
 msgstr "Размер по убыванию"
 
 msgid "Skin & Resolution"
-msgstr "Скин и разрешение"
+msgstr "Информация скина"
 
 msgid "Skin Component Packages"
 msgstr "Пакеты компонентов скина"
@@ -19402,7 +19423,7 @@ msgid "System information"
 msgstr "Информация о системе"
 
 msgid "System temperature"
-msgstr "Температура системы"
+msgstr "Температура CPU"
 
 msgid "System: "
 msgstr "Система: "
@@ -21657,6 +21678,12 @@ msgstr "Использовано флеш-памяти"
 msgid "Used service scan type"
 msgstr "Используемый тип поиска"
 
+msgid "Used to specify delay when switching between services and AC3 passthrough is enabled."
+msgstr ""
+
+msgid "Used to specify delay when switching between services and AC3+/Atmos passthrough is enabled."
+msgstr ""
+
 msgid "Used:"
 msgstr "Занято"
 
@@ -23696,9 +23723,6 @@ msgstr "Используемого двухслойного носителя."
 msgid "of a SINGLE layer medium used."
 msgstr "Используемого однослойного носителя."
 
-msgid "off"
-msgstr "Выкл"
-
 msgid "off or wpa2 on"
 msgstr "Отключен или включен wpa2"
 
@@ -24118,6 +24142,9 @@ msgstr "Да (оставить фиды)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "off"
+#~ msgstr "Выкл"
 
 #, python-format
 #~ msgid "%s (%04o)"

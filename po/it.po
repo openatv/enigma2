@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-21 10:33+0000\n"
-"PO-Revision-Date: 2025-02-23 08:09+0000\n"
+"POT-Creation-Date: 2025-04-10 18:45+0000\n"
+"PO-Revision-Date: 2025-04-11 17:59+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.1-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
 
 msgid ""
@@ -4825,11 +4825,17 @@ msgstr "Connesso tramite un altro tuner"
 msgid "Connected to"
 msgstr "Connesso a"
 
+msgid "Connected transcoding, limit - no PiP!"
+msgstr "Transcodifica connessa, limite: no PiP!"
+
 msgid "Connected: "
 msgstr "Connesso: "
 
 msgid "Connection information"
 msgstr "Informazioni sulla connessione"
+
+msgid "Connector"
+msgstr "Connettore"
 
 msgid "Console"
 msgstr "Console"
@@ -9798,6 +9804,12 @@ msgstr "Input"
 msgid "Input "
 msgstr "Input "
 
+msgid "Input 1"
+msgstr "Ingresso 1"
+
+msgid "Input 2"
+msgstr "Ingresso 2"
+
 msgid "Input Device Settings"
 msgstr "Impostazioni dispositivo di input"
 
@@ -13000,6 +13012,12 @@ msgstr "Passaggio"
 
 msgid "Pass-through"
 msgstr "Passaggio senza conversione"
+
+msgid "Passthrough audio handling delay AC3"
+msgstr "Ritardo gestione audio passthrough AC3"
+
+msgid "Passthrough audio handling delay AC3+"
+msgstr "Ritardo gestione audio passthrough AC3+"
 
 msgid "Password"
 msgstr "Password"
@@ -16401,6 +16419,9 @@ msgstr "Seleziona slot evidenziato e riavvia"
 
 msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
 msgstr "Seleziona posizione iniziale del marcatore della timeline. L'indicatore è la linea verticale tracciata sull'EPG che mostra l'ora corrente. Maggiore è il valore, più l'indicatore si sposterà a destra mostrando più cronologia e meno eventi imminenti."
+
+msgid "Select the input connector you want to use."
+msgstr "Seleziona connettore di ingresso da usare."
 
 msgid "Select the last item in list or move to the end of text"
 msgstr "Seleziona ultimo elemento nell'elenco o spostati alla fine del testo"
@@ -21607,6 +21628,12 @@ msgstr "Flash usata"
 msgid "Used service scan type"
 msgstr "Modalità scansione servizi"
 
+msgid "Used to specify delay when switching between services and AC3 passthrough is enabled."
+msgstr "Usato per specificare il ritardo quando si passa da un servizio all'altro e il passthrough AC3 è abilitato."
+
+msgid "Used to specify delay when switching between services and AC3+/Atmos passthrough is enabled."
+msgstr "Usato per specificare il ritardo quando si passa da un servizio all'altro e il passthrough AC3+/Atmos è abilitato."
+
 msgid "Used:"
 msgstr "Usato: "
 
@@ -23646,9 +23673,6 @@ msgstr "di DVD doppio strato usato."
 msgid "of a SINGLE layer medium used."
 msgstr "di DVD singolo strato usato."
 
-msgid "off"
-msgstr "off"
-
 msgid "off or wpa2 on"
 msgstr "off o wpa2 on"
 
@@ -24067,6 +24091,9 @@ msgstr "sì (mantieni feed)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "off"
+#~ msgstr "off"
 
 #, python-format
 #~ msgid "%s (%04o)"

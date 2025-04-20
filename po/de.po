@@ -16,16 +16,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-21 10:33+0000\n"
-"PO-Revision-Date: 2025-02-21 12:14+0000\n"
-"Last-Translator: Makumbo <tokioplo@web.de>\n"
+"POT-Creation-Date: 2025-04-10 18:45+0000\n"
+"PO-Revision-Date: 2025-04-13 08:35+0000\n"
+"Last-Translator: VfBFan <drop0815@posteo.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.1-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -3484,7 +3484,7 @@ msgstr ""
 "CCcam-Informationen %s\n"
 "von AliAbdul %s\n"
 "\n"
-"Dieser Bildschirm zeigt Ihnen den Status der CCcam an."
+"Dieser Bildschirm zeigt den Status der CCcam an."
 
 msgid "CCcam Info Config"
 msgstr "Konfiguration von CCcam-Info"
@@ -5101,11 +5101,17 @@ msgstr "Über anderen Tuner verbunden"
 msgid "Connected to"
 msgstr "Verbunden mit"
 
+msgid "Connected transcoding, limit - no PiP!"
+msgstr "Transcoding verbunden. Beschränkung: Kein Bild-im-Bild!"
+
 msgid "Connected: "
 msgstr "Verbunden: "
 
 msgid "Connection information"
 msgstr "Verbindungsinformationen"
+
+msgid "Connector"
+msgstr "Anschluss"
 
 msgid "Console"
 msgstr "Konsole"
@@ -10310,6 +10316,12 @@ msgstr "Eingabe"
 msgid "Input "
 msgstr "Eingabe "
 
+msgid "Input 1"
+msgstr "Eingang 1"
+
+msgid "Input 2"
+msgstr "Eingang 2"
+
 msgid "Input Device Settings"
 msgstr "Eingabegeräte Einstellungen"
 
@@ -13757,6 +13769,12 @@ msgstr "Durchgang"
 
 msgid "Pass-through"
 msgstr "Durchschleifen"
+
+msgid "Passthrough audio handling delay AC3"
+msgstr "Audio Verzögerung beim Durchschleifen von AC3"
+
+msgid "Passthrough audio handling delay AC3+"
+msgstr "Audio Verzögerung beim Durchschleifen von AC3+"
 
 #
 msgid "Password"
@@ -17409,6 +17427,9 @@ msgstr "Den markierten Slot auswählen und neu starten"
 
 msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
 msgstr "Die Anfangsposition der Zeitleisten-Markierung auswählen. Dies ist die vertikale Linie im EPG für die aktuelle Zeit. Je größer der Wert, desto mehr bewegt sie sich nach rechts und zeigt mehr vergangene, dafür aber weniger kommende Ereignisse an."
+
+msgid "Select the input connector you want to use."
+msgstr "Den gewünschten Anschluss auswählen."
 
 msgid "Select the last item in list or move to the end of text"
 msgstr "Den letzten Eintrag in der Liste auswählen oder an das Textende springen"
@@ -21541,7 +21562,7 @@ msgid "This sets the prefix for each line in the debug log. The 'Boot time' is t
 msgstr "Prefix für die Zeilen im Debug-Log. 'Bootzeit' sind die Sekunden, seit dem die %s %s gestartet wurde."
 
 msgid "This setting allows the tuner configuration to be a duplication of another configured tuner."
-msgstr "Diese Einstellung ermöglicht es Ihnen, die Tuner-Konfiguration zu duplizieren, so wie ein anderer Tuner bereits konfiguriert ist."
+msgstr "Diese Einstellung ermöglicht es, die Tuner-Konfiguration eines anderen bereits konfigurierten Tuners zu duplizieren."
 
 msgid "This setting depends on your cable provider and location. If you don't know the correct setting refer to the menu in the official cable receiver, or get it from your cable provider, or seek help via Internet forum."
 msgstr "Diese Einstellung hängt von Kabelanbieter und Standort ab. Wenn die richtige Einstellung nicht bekannt ist, auf das Menü im offiziellen Kabelempfänger beziehen, es vom Kabelanbieter besorgen, oder Hilfe über das Internetforum suchen."
@@ -22946,6 +22967,12 @@ msgstr "Benutzter Flash"
 #
 msgid "Used service scan type"
 msgstr "Verwendeter Suchlauf"
+
+msgid "Used to specify delay when switching between services and AC3 passthrough is enabled."
+msgstr "Dient zur Definition der Verzögerung beim Umschalten und aktiviertem Durchschleifen von AC3."
+
+msgid "Used to specify delay when switching between services and AC3+/Atmos passthrough is enabled."
+msgstr "Dient zur Definition der Verzögerung beim Umschalten und aktiviertem Durchschleifen von AC3+/Atmos."
 
 msgid "Used:"
 msgstr "Verwendet:"
@@ -25146,10 +25173,6 @@ msgstr "eines Dual-Layer-Mediums benutzt."
 msgid "of a SINGLE layer medium used."
 msgstr "eines Single-Layer-Mediums benutzt."
 
-#
-msgid "off"
-msgstr "Aus"
-
 msgid "off or wpa2 on"
 msgstr "aus oder WPA2 an"
 
@@ -25603,6 +25626,10 @@ msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#
+#~ msgid "off"
+#~ msgstr "Aus"
 
 #, python-format
 #~ msgid "%s (%04o)"

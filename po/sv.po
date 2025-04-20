@@ -1,26 +1,29 @@
 # Swedish translations for Enigma2.
 #
 # Allan Nordhøy <epost@anotheragency.no>, 2024.
+# Daniel Nylander <daniel@danielnylander.se>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-21 10:33+0000\n"
-"PO-Revision-Date: 2024-09-02 09:09+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"POT-Creation-Date: 2025-04-10 18:45+0000\n"
+"PO-Revision-Date: 2025-04-13 08:35+0000\n"
+"Last-Translator: Daniel Nylander <daniel@danielnylander.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sv/>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.8-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
 msgid ""
 "\n"
 "<This tuner is configured automatically>"
 msgstr ""
+"\n"
+"<Denna mottagare är konfigurerad automatiskt>"
 
 msgid ""
 "\n"
@@ -30,7 +33,7 @@ msgstr ""
 "Inspelning pågår."
 
 msgid " "
-msgstr ""
+msgstr " "
 
 msgid "  Menu key : Select quad channel"
 msgstr ""
@@ -67,14 +70,12 @@ msgid " (lower than any auto)"
 msgstr "(lägre än alla auto)"
 
 #
-#, fuzzy
 msgid " <No Channel>"
-msgstr "Kanal"
+msgstr " <Ingen kanal>"
 
 #
-#, fuzzy
 msgid " <empty>"
-msgstr "tom"
+msgstr " <tom>"
 
 msgid " HI "
 msgstr ""
@@ -102,16 +103,15 @@ msgid "!! Boot loader Upgrade !!"
 msgstr ""
 
 msgid "# = Reboot Required"
-msgstr ""
+msgstr "# = Omstart krävs"
 
 #
 msgid "%-H:%M"
 msgstr "%T:%M"
 
 #
-#, fuzzy
 msgid "%-H:%M:%S"
-msgstr "%T:%M"
+msgstr "%-H:%M:%S"
 
 msgid "%-I:%M"
 msgstr ""
@@ -5255,10 +5255,16 @@ msgstr ""
 msgid "Connected to"
 msgstr "Ansluten till"
 
+msgid "Connected transcoding, limit - no PiP!"
+msgstr ""
+
 msgid "Connected: "
 msgstr "Ansluten:"
 
 msgid "Connection information"
+msgstr ""
+
+msgid "Connector"
 msgstr ""
 
 msgid "Console"
@@ -10591,6 +10597,12 @@ msgstr "Ingång"
 msgid "Input "
 msgstr "Ingång"
 
+msgid "Input 1"
+msgstr ""
+
+msgid "Input 2"
+msgstr ""
+
 msgid "Input Device Settings"
 msgstr ""
 
@@ -14110,6 +14122,12 @@ msgid "Pass"
 msgstr ""
 
 msgid "Pass-through"
+msgstr ""
+
+msgid "Passthrough audio handling delay AC3"
+msgstr ""
+
+msgid "Passthrough audio handling delay AC3+"
 msgstr ""
 
 #
@@ -17828,6 +17846,9 @@ msgid "Select the highlighted slot and reboot"
 msgstr ""
 
 msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
+msgstr ""
+
+msgid "Select the input connector you want to use."
 msgstr ""
 
 msgid "Select the last item in list or move to the end of text"
@@ -23403,6 +23424,12 @@ msgstr ""
 msgid "Used service scan type"
 msgstr "Använd kanalsökningstyp"
 
+msgid "Used to specify delay when switching between services and AC3 passthrough is enabled."
+msgstr ""
+
+msgid "Used to specify delay when switching between services and AC3+/Atmos passthrough is enabled."
+msgstr ""
+
 msgid "Used:"
 msgstr "Använt:"
 
@@ -25580,10 +25607,6 @@ msgstr "av DUAL layer media använt."
 msgid "of a SINGLE layer medium used."
 msgstr "av SINGLE layer media använt."
 
-#
-msgid "off"
-msgstr "av"
-
 msgid "off or wpa2 on"
 msgstr "avstängd eller wpa2 på"
 
@@ -26045,6 +26068,10 @@ msgstr "ja (behåll feeds)"
 
 msgid "®"
 msgstr ""
+
+#
+#~ msgid "off"
+#~ msgstr "av"
 
 #, fuzzy, python-format
 #~ msgid "%s (%04o)"

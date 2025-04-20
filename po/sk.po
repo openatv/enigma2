@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-21 10:33+0000\n"
-"PO-Revision-Date: 2025-02-23 08:09+0000\n"
+"POT-Creation-Date: 2025-04-10 18:45+0000\n"
+"PO-Revision-Date: 2025-04-11 17:59+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.10.1-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 
 msgid ""
 "\n"
@@ -4864,11 +4864,17 @@ msgstr "Pripojené cez iný tuner"
 msgid "Connected to"
 msgstr "Pripojené k"
 
+msgid "Connected transcoding, limit - no PiP!"
+msgstr "Pripojené prekódovanie, limit - bez PiP!"
+
 msgid "Connected: "
 msgstr "Pripojené: "
 
 msgid "Connection information"
 msgstr "Informácie o pripojení"
+
+msgid "Connector"
+msgstr "Konektor"
 
 msgid "Console"
 msgstr "Ovládací panel"
@@ -9840,6 +9846,12 @@ msgstr "Vstup"
 msgid "Input "
 msgstr "Vstup "
 
+msgid "Input 1"
+msgstr "Vstup 1"
+
+msgid "Input 2"
+msgstr "Vstup 2"
+
 msgid "Input Device Settings"
 msgstr "Nastavenia vstupného zariadenia"
 
@@ -13044,6 +13056,12 @@ msgstr "Prechod"
 
 msgid "Pass-through"
 msgstr "Prechod (pass-through)"
+
+msgid "Passthrough audio handling delay AC3"
+msgstr "Oneskorenie spracovania priechodzieho zvuku AC3"
+
+msgid "Passthrough audio handling delay AC3+"
+msgstr "Oneskorenie spracovania priechodzieho zvuku AC3+"
 
 msgid "Password"
 msgstr "Heslo"
@@ -16450,6 +16468,9 @@ msgstr "Vybrať zvýraznený slot a reštartovať"
 
 msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
 msgstr "Vyberte počiatočnú pozíciu značky na časovej osi. Značkou je vertikálna línia vykreslená v EPG, ktorá ukazuje aktuálny čas. Čím je táto hodnota väčšia, tým viac sa značka presunie doprava. Zobrazí sa tak viac histórie a menej nasledujúcich udalostí."
+
+msgid "Select the input connector you want to use."
+msgstr "Vyberte vstupný konektor, ktorý chcete použiť."
 
 msgid "Select the last item in list or move to the end of text"
 msgstr "Vyberte poslednú položku v zozname alebo sa presuňte na koniec textu"
@@ -21658,6 +21679,12 @@ msgstr "Použitý flash"
 msgid "Used service scan type"
 msgstr "Použitý typ vyhľadávania staníc"
 
+msgid "Used to specify delay when switching between services and AC3 passthrough is enabled."
+msgstr "Používa sa na určenie oneskorenia, keď je aktivované prepínanie medzi stanicami/službami a prechodom AC3."
+
+msgid "Used to specify delay when switching between services and AC3+/Atmos passthrough is enabled."
+msgstr "Používa sa na určenie oneskorenia, keď je aktivované prepínanie medzi stanicami/službami a prechodom AC3+/Atmos."
+
 msgid "Used:"
 msgstr "Využité:"
 
@@ -23697,9 +23724,6 @@ msgstr "dvojvrstvového média využitých."
 msgid "of a SINGLE layer medium used."
 msgstr "jednovrstvového média využitých."
 
-msgid "off"
-msgstr "vyp."
-
 msgid "off or wpa2 on"
 msgstr "vypnuté alebo zapnuté WPA2"
 
@@ -24119,6 +24143,9 @@ msgstr "áno (zachovať zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "off"
+#~ msgstr "vyp."
 
 #, python-format
 #~ msgid "%s (%04o)"

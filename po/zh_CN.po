@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-21 10:33+0000\n"
-"PO-Revision-Date: 2025-03-15 13:30+0000\n"
+"POT-Creation-Date: 2025-04-10 18:45+0000\n"
+"PO-Revision-Date: 2025-04-12 12:57+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -4826,11 +4826,17 @@ msgstr "通过另一个调谐器连接"
 msgid "Connected to"
 msgstr "已连接到"
 
+msgid "Connected transcoding, limit - no PiP!"
+msgstr "连接转码，限制 - 无画中画功能！"
+
 msgid "Connected: "
 msgstr "已连接："
 
 msgid "Connection information"
 msgstr "连接信息"
+
+msgid "Connector"
+msgstr "连接器"
 
 msgid "Console"
 msgstr "控制台"
@@ -9799,6 +9805,12 @@ msgstr "输入"
 msgid "Input "
 msgstr "输入 "
 
+msgid "Input 1"
+msgstr "输入 1"
+
+msgid "Input 2"
+msgstr "输入 2"
+
 msgid "Input Device Settings"
 msgstr "输入设备设置"
 
@@ -13001,6 +13013,12 @@ msgstr "通过"
 
 msgid "Pass-through"
 msgstr "直通"
+
+msgid "Passthrough audio handling delay AC3"
+msgstr "直通音频处理延迟 AC3"
+
+msgid "Passthrough audio handling delay AC3+"
+msgstr "直通音频处理延迟 AC3+"
 
 msgid "Password"
 msgstr "密码"
@@ -16402,6 +16420,9 @@ msgstr "选择突出显示的插槽并重新启动"
 
 msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
 msgstr "选择时间线标记的初始位置。 标记是在 EPG 上绘制的显示当前时间的垂直线。值越大，标记越向右移动，显示的历史记录越多，即将发生的事件越少。"
+
+msgid "Select the input connector you want to use."
+msgstr "选择要使用的输入连接器。"
 
 msgid "Select the last item in list or move to the end of text"
 msgstr "选择列表中的最后一项或移至文本末尾"
@@ -21608,6 +21629,12 @@ msgstr "已使用闪存"
 msgid "Used service scan type"
 msgstr "使用的频道扫描类型"
 
+msgid "Used to specify delay when switching between services and AC3 passthrough is enabled."
+msgstr "用于在启用 AC3 直通时，指定频道切换之间的延迟。"
+
+msgid "Used to specify delay when switching between services and AC3+/Atmos passthrough is enabled."
+msgstr "用于在启用 AC3+/Atmos 直通时，指定频道切换之间的延迟。"
+
 msgid "Used:"
 msgstr "使用："
 
@@ -23647,9 +23674,6 @@ msgstr "使用双层介质。"
 msgid "of a SINGLE layer medium used."
 msgstr "使用单层介质。"
 
-msgid "off"
-msgstr "关闭"
-
 msgid "off or wpa2 on"
 msgstr "关闭或 WPA2 开"
 
@@ -24068,6 +24092,9 @@ msgstr "是（保留订阅源）"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "off"
+#~ msgstr "关闭"
 
 #, python-format
 #~ msgid "%s (%04o)"

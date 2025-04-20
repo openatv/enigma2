@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-21 10:33+0000\n"
-"PO-Revision-Date: 2025-04-02 18:12+0000\n"
+"POT-Creation-Date: 2025-04-10 18:45+0000\n"
+"PO-Revision-Date: 2025-04-12 12:57+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -4835,11 +4835,17 @@ msgstr "Yhdistetty toisen virittimen kautta"
 msgid "Connected to"
 msgstr "Kytketty virittimestä"
 
+msgid "Connected transcoding, limit - no PiP!"
+msgstr "Yhdistetty transkoodaus rajattu - ei PiP!"
+
 msgid "Connected: "
 msgstr "Yhdistetty: "
 
 msgid "Connection information"
 msgstr "Yhteyden tiedot"
+
+msgid "Connector"
+msgstr "Yhdistetty"
 
 msgid "Console"
 msgstr "Konsoli"
@@ -9813,6 +9819,12 @@ msgstr "Tulo"
 msgid "Input "
 msgstr "Tulo "
 
+msgid "Input 1"
+msgstr "Tulo 1"
+
+msgid "Input 2"
+msgstr "Tulo 2"
+
 msgid "Input Device Settings"
 msgstr "Syöttölaite Asetukset"
 
@@ -13023,6 +13035,12 @@ msgstr "hyväksytty"
 
 msgid "Pass-through"
 msgstr "Läpilooppi"
+
+msgid "Passthrough audio handling delay AC3"
+msgstr "AC3 -äänen läpiviennin käsittelyviive"
+
+msgid "Passthrough audio handling delay AC3+"
+msgstr "AC3+ -äänen läpiviennin käsittelyviive"
 
 msgid "Password"
 msgstr "Salasana"
@@ -16437,6 +16455,9 @@ msgstr "Valitse korostettu image paikka ja käynnistä uudelleen"
 msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
 msgstr "Valitse aikajana merkin alkuasento. Merkki on EPG:hen piirretty pystysuora viiva, joka näyttää nykyisen ajan. Mitä suurempi arvo on, sitä enemmän merkki siirtyy oikealle ja näyttää enemmän historiaa ja vähemmän tulevia ohjelmia."
 
+msgid "Select the input connector you want to use."
+msgstr "Valitse tulo, jota haluat käyttää."
+
 msgid "Select the last item in list or move to the end of text"
 msgstr "Valitse listan ensimmäinen kohta tai siirry tekstin alkuun"
 
@@ -19417,7 +19438,7 @@ msgstr "TMDB Haku"
 
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Suomenkielinen käännös: 27.2.2025\n"
+"Suomenkielinen käännös: 12.4.2025\n"
 "tomppaa"
 
 msgid "TS file is too large for ISO9660 level 1!"
@@ -21651,6 +21672,12 @@ msgstr "Käytetty muisti"
 msgid "Used service scan type"
 msgstr "Käytetty kanavahakutyyppi"
 
+msgid "Used to specify delay when switching between services and AC3 passthrough is enabled."
+msgstr "Käytetään määrittämään viive, kun vaihdetaan kanavien välillä ja AC3 -läpivienti on käytössä."
+
+msgid "Used to specify delay when switching between services and AC3+/Atmos passthrough is enabled."
+msgstr "Käytetään määrittämään viive, kun vaihdetaan kanavien välillä ja AC3+/Atmos -läpivienti on käytössä."
+
 msgid "Used:"
 msgstr "Käytetty:"
 
@@ -23696,9 +23723,6 @@ msgstr "Dl dvd levystä käytetty."
 msgid "of a SINGLE layer medium used."
 msgstr "dvd levystä käytetty."
 
-msgid "off"
-msgstr "pois"
-
 msgid "off or wpa2 on"
 msgstr "Pois tai WPA2 päällä"
 
@@ -24117,6 +24141,9 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "off"
+#~ msgstr "pois"
 
 #, python-format
 #~ msgid "%s (%04o)"

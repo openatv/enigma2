@@ -3,7 +3,7 @@
 # openATV <openatv@gmail.com>, 2021.
 # Apachi70 <Apachi70000@gmail.com>, 2017, 2023.
 # Apachi70 <ahiles77@t-online.de>, 2023, 2024.
-# tanerkaderli <taner.kaderli@live.com>, 2023.
+# tanerkaderli <taner.kaderli@live.com>, 2023, 2025.
 # jbleyel <jbleyel@gmx.net>, 2023.
 # DreamOSat Forum <info@dreamosat-forum.com>, 2024.
 # Tmp341 <tmp341@gmail.com>, 2024.
@@ -11,16 +11,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-21 10:33+0000\n"
-"PO-Revision-Date: 2024-08-04 16:47+0000\n"
-"Last-Translator: Tmp341 <tmp341@gmail.com>\n"
+"POT-Creation-Date: 2025-04-10 18:45+0000\n"
+"PO-Revision-Date: 2025-04-14 12:33+0000\n"
+"Last-Translator: tanerkaderli <taner.kaderli@live.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.7-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-Bookmarks: 2450,-1,-1,-1,-1,-1,-1,-1,-1,-1\n"
 
@@ -108,7 +108,7 @@ msgid "!! Boot loader Upgrade !!"
 msgstr "!! Bootloader Yükseltme !!"
 
 msgid "# = Reboot Required"
-msgstr ""
+msgstr "# = Yeniden başlatmak gerekir"
 
 #
 msgid "%-H:%M"
@@ -1003,7 +1003,7 @@ msgstr "%d sec"
 #, python-format
 msgid "%d service found."
 msgid_plural "%d services found."
-msgstr[0] ""
+msgstr[0] "%d servis bulundu."
 
 #
 #, python-format
@@ -2450,16 +2450,16 @@ msgid "Arabic (Egyptian)"
 msgstr ""
 
 msgid "Arabic (Iraq)"
-msgstr ""
+msgstr "Arapça (Irak)"
 
 msgid "Arabic (Moroccan)"
-msgstr ""
+msgstr "Arapça (Fas)"
 
 msgid "Arabic (Syro-Lebanese)"
-msgstr ""
+msgstr "Arapça (Suriye-Lübnan)"
 
 msgid "Arabic (Tunisian)"
-msgstr ""
+msgstr "Arapça (Tunus)"
 
 msgid "Aragonese"
 msgstr "Aragonca"
@@ -2783,7 +2783,7 @@ msgid "AutoMountManager"
 msgstr "Otomatik Montaj Yöneticisi"
 
 msgid "AutoRefresh"
-msgstr ""
+msgstr "Otomatik Yenileme"
 
 msgid "AutoTimer"
 msgstr "Otomatik Zamanlayıcıya Genel Bakış"
@@ -2812,7 +2812,7 @@ msgid "Automatic scan for services"
 msgstr "Kanallar için otomatik arama"
 
 msgid "Automatic shares access"
-msgstr ""
+msgstr "Otomatik paylaşım erişimi"
 
 msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
 msgstr "Alıcı bekleme veya derin bekleme moduna geçtiğinde TV'yi otomatik olarak bekleme moduna alın."
@@ -2903,13 +2903,13 @@ msgid "Back USB 3.0"
 msgstr "Back USB 3.0"
 
 msgid "Back USB-C"
-msgstr ""
+msgstr "Arka USB-C"
 
 msgid "Back, inner USB"
 msgstr "Back, iç USB"
 
 msgid "Back, left USB"
-msgstr ""
+msgstr "Arka, sol USB"
 
 msgid "Back, lower USB"
 msgstr "Back, alt USB"
@@ -2918,7 +2918,7 @@ msgid "Back, outer USB"
 msgstr "Back, dış USB"
 
 msgid "Back, right USB"
-msgstr ""
+msgstr "Arka, sağ USB"
 
 msgid "Back, upper USB"
 msgstr "Arka, üst USB"
@@ -3753,7 +3753,7 @@ msgid "Cancel the image selection and exit all menus"
 msgstr "Görüntü seçimini iptal edin ve tüm menülerden çıkın"
 
 msgid "Cancel the scan and exit all menus"
-msgstr ""
+msgstr "Taramayı iptal edin ve tüm menülerden çıkın"
 
 msgid "Cancel the scan and exit the scanner"
 msgstr ""
@@ -3933,7 +3933,7 @@ msgid "Channel List"
 msgstr "Kanal Listesi"
 
 msgid "Channel Number"
-msgstr ""
+msgstr "Kanal Numarası"
 
 #
 msgid "Channel Selection"
@@ -4345,7 +4345,7 @@ msgid "Close"
 msgstr "Kapat"
 
 msgid "Close CA device at programm end"
-msgstr ""
+msgstr "Program sonunda CA aygıtını kapatın"
 
 #
 msgid "Close PiP on exit"
@@ -4370,10 +4370,10 @@ msgid "Close screen"
 msgstr "Ekranı kapat"
 
 msgid "Close the Device Manager screen"
-msgstr ""
+msgstr "Aygıt Yöneticisi ekranını kapatın"
 
 msgid "Close the Device Manager screen and exit all menus"
-msgstr ""
+msgstr "Aygıt Yöneticisi ekranını kapatın ve tüm menülerden çıkın"
 
 msgid "Close the Kexec MultiBoot Manager"
 msgstr "Kexec MultiBoot Yöneticisini kapatın"
@@ -5003,11 +5003,17 @@ msgstr "Başka bir tuner üzerinden bağlanır"
 msgid "Connected to"
 msgstr "Bağlandı"
 
+msgid "Connected transcoding, limit - no PiP!"
+msgstr ""
+
 msgid "Connected: "
 msgstr "Bağlı: "
 
 msgid "Connection information"
 msgstr "Bağlantı bilgileri"
+
+msgid "Connector"
+msgstr ""
 
 msgid "Console"
 msgstr "Konsol"
@@ -5507,7 +5513,7 @@ msgid "Cutlist editor..."
 msgstr "Film düzenleyici..."
 
 msgid "Cyan"
-msgstr ""
+msgstr "Camgöbeği"
 
 msgid "Cycle PiP(zap)"
 msgstr "Döngü PIP(zap)"
@@ -5557,7 +5563,7 @@ msgid "DNS mode"
 msgstr "DNS modu"
 
 msgid "DNS name or IP address"
-msgstr ""
+msgstr "DNS adı veya IP adresi"
 
 msgid "DNS suffix"
 msgstr "DNS son eki"
@@ -5594,7 +5600,7 @@ msgid "DVB subtitle black transparency"
 msgstr "DVB altyazı siyah saydamlığı"
 
 msgid "DVB subtitles color"
-msgstr ""
+msgstr "DVB altyazı rengi"
 
 msgid "DVB-C"
 msgstr "DVB-C"
@@ -10209,6 +10215,12 @@ msgstr "Giriş"
 msgid "Input "
 msgstr "Giriş "
 
+msgid "Input 1"
+msgstr ""
+
+msgid "Input 2"
+msgstr ""
+
 msgid "Input Device Settings"
 msgstr "Bu giriş cihazının ayarlarını kullan"
 
@@ -13601,6 +13613,12 @@ msgstr ""
 
 msgid "Pass-through"
 msgstr "Geçiş"
+
+msgid "Passthrough audio handling delay AC3"
+msgstr ""
+
+msgid "Passthrough audio handling delay AC3+"
+msgstr ""
 
 #
 msgid "Password"
@@ -17196,6 +17214,9 @@ msgstr "Vurgulanan yuvayı seçin ve yeniden başlatın"
 
 msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
 msgstr "Zaman çizelgesi işaretleyicisinin ilk konumunu seçin. İşaretleyici, EPG üzerine çizilen ve geçerli zamanı gösteren dikey çizgidir. Değer ne kadar büyük olursa, işaretleyici o kadar sağa hareket eder ve daha fazla geçmiş ve daha az yaklaşan olay gösterir."
+
+msgid "Select the input connector you want to use."
+msgstr ""
 
 msgid "Select the last item in list or move to the end of text"
 msgstr "Listedeki son öğeyi seçin veya metnin sonuna gidin"
@@ -22624,6 +22645,12 @@ msgstr "Kullanılmış flaş"
 msgid "Used service scan type"
 msgstr "Kullanılan kanal tarama tipi"
 
+msgid "Used to specify delay when switching between services and AC3 passthrough is enabled."
+msgstr ""
+
+msgid "Used to specify delay when switching between services and AC3+/Atmos passthrough is enabled."
+msgstr ""
+
 msgid "Used:"
 msgstr "Kullanılan:"
 
@@ -24780,10 +24807,6 @@ msgstr "çift katmanlı ortam kullanıldığında."
 msgid "of a SINGLE layer medium used."
 msgstr "tek katmanlı ortam kullanıldığında."
 
-#
-msgid "off"
-msgstr "kapalı"
-
 msgid "off or wpa2 on"
 msgstr "kapalı veya wpa2 açık"
 
@@ -25239,6 +25262,10 @@ msgstr "evet (beslemeleri tut)"
 
 msgid "®"
 msgstr "®"
+
+#
+#~ msgid "off"
+#~ msgstr "kapalı"
 
 #
 #, python-format

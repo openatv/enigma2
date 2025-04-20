@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-21 10:33+0000\n"
-"PO-Revision-Date: 2025-03-31 22:30+0000\n"
-"Last-Translator: Libor Rejč <l.rejc@seznam.cz>\n"
+"POT-Creation-Date: 2025-04-10 18:45+0000\n"
+"PO-Revision-Date: 2025-04-11 17:59+0000\n"
+"Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -4861,11 +4861,17 @@ msgstr "Připojeno přes jiný tuner"
 msgid "Connected to"
 msgstr "Připojeno k"
 
+msgid "Connected transcoding, limit - no PiP!"
+msgstr "Připojené překódování, limit – bez PiP!"
+
 msgid "Connected: "
 msgstr "Připojeno: "
 
 msgid "Connection information"
 msgstr "Informace o připojení"
+
+msgid "Connector"
+msgstr "Konektor"
 
 msgid "Console"
 msgstr "Řídící panel"
@@ -9837,6 +9843,12 @@ msgstr "Výběr z nabídky"
 msgid "Input "
 msgstr "Vstup "
 
+msgid "Input 1"
+msgstr "Vstup 1"
+
+msgid "Input 2"
+msgstr "Vstup 2"
+
 msgid "Input Device Settings"
 msgstr "Nastavení vstupního zařízení"
 
@@ -13041,6 +13053,12 @@ msgstr "Povolit"
 
 msgid "Pass-through"
 msgstr "Procházet"
+
+msgid "Passthrough audio handling delay AC3"
+msgstr "Zpoždění zpracování průchozího zvuku AC3"
+
+msgid "Passthrough audio handling delay AC3+"
+msgstr "Zpoždění zpracování zvuku v průchozím režimu AC3+"
 
 msgid "Password"
 msgstr "Heslo"
@@ -16447,6 +16465,9 @@ msgstr "Vyberte zvýrazněný slot a restartujte"
 
 msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
 msgstr "Vyberte počáteční pozici značky na časové ose. Značka je svislá čára nakreslená v EPG, která ukazuje aktuální čas. Čím větší hodnota, tím více se značka posune doprava a zobrazí více historie a méně nadcházejících událostí."
+
+msgid "Select the input connector you want to use."
+msgstr "Vyberte vstupní konektor, který chcete použít."
 
 msgid "Select the last item in list or move to the end of text"
 msgstr "Vyberte poslední položku v seznamu nebo se posuňte na konec textu"
@@ -21655,6 +21676,12 @@ msgstr "Použitý flash"
 msgid "Used service scan type"
 msgstr "Použítý typ vyhledávání programu"
 
+msgid "Used to specify delay when switching between services and AC3 passthrough is enabled."
+msgstr "Používá se k určení zpoždění při přepínání mezi službami a povolení průchodu AC3."
+
+msgid "Used to specify delay when switching between services and AC3+/Atmos passthrough is enabled."
+msgstr "Používá se k určení zpoždění při přepínání mezi službami a povoleném průchodu AC3+/Atmos."
+
 msgid "Used:"
 msgstr "Použ.:"
 
@@ -23694,9 +23721,6 @@ msgstr "z DVOUVRSTVÉHO DVD použito."
 msgid "of a SINGLE layer medium used."
 msgstr "z JEDNOVRSTVÉHO DVD použito."
 
-msgid "off"
-msgstr "vypnuto"
-
 msgid "off or wpa2 on"
 msgstr "vypnuto nebo wpa2 zapnuto"
 
@@ -24116,6 +24140,9 @@ msgstr "ano (uchovat zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "off"
+#~ msgstr "vypnuto"
 
 #, python-format
 #~ msgid "%s (%04o)"

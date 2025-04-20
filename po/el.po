@@ -3,20 +3,21 @@
 # This file is distributed under the same license as the PACKAGE package.
 # jbleyel <jbleyel@gmx.net>, 2022.
 # MCelliotG <mcelliotg@gmail.com>, 2022, 2023, 2024, 2025.
+# GiannosOB <giannos2105@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-21 10:33+0000\n"
-"PO-Revision-Date: 2025-02-24 17:20+0000\n"
-"Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
+"POT-Creation-Date: 2025-04-10 18:45+0000\n"
+"PO-Revision-Date: 2025-04-12 12:57+0000\n"
+"Last-Translator: GiannosOB <giannos2105@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
 "Language: el\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.1-dev\n"
+"X-Generator: Weblate 5.11-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -4826,11 +4827,17 @@ msgstr "Συνδέθηκε μέσω άλλου tuner"
 msgid "Connected to"
 msgstr "Συνδέθηκε με"
 
+msgid "Connected transcoding, limit - no PiP!"
+msgstr "Συνδεδεμένο transcoding, όριο - όχι PiP!"
+
 msgid "Connected: "
 msgstr "Σύνδεση: "
 
 msgid "Connection information"
 msgstr "Πληροφορίες σύνδεσης"
+
+msgid "Connector"
+msgstr "Συνδέτης"
 
 msgid "Console"
 msgstr "Κονσόλα"
@@ -9799,6 +9806,12 @@ msgstr "Εισαγωγή"
 msgid "Input "
 msgstr "Εισαγωγή "
 
+msgid "Input 1"
+msgstr "Είσοδος 1"
+
+msgid "Input 2"
+msgstr "Είσοδος 2"
+
 msgid "Input Device Settings"
 msgstr "Ρυθμίσεις συσκευής εισόδου"
 
@@ -13001,6 +13014,12 @@ msgstr "Πέρασε"
 
 msgid "Pass-through"
 msgstr "Διέλευση"
+
+msgid "Passthrough audio handling delay AC3"
+msgstr "Καθυστέρηση χειρισμού ήχου Passthrough AC3"
+
+msgid "Passthrough audio handling delay AC3+"
+msgstr "Passthrough audio handling delay AC3+"
 
 msgid "Password"
 msgstr "Κωδικός"
@@ -16402,6 +16421,9 @@ msgstr "Επιλογή της επισημασμένης θέσης και επ�
 
 msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
 msgstr "Επιλογή της αρχικής θέσης του δείκτη γραμμής χρόνου. Ο δείκτης είναι η κάθετη γραμμή που εμφανίζεται στο EPG και δείχνει την τρέχουσα ώρα. Όσο πιο μεγάλη είναι η τιμή, τόσο περισσότερο θα μετακινείται ο δείκτης, δείχνοντας περισσότερο το ιστορικό και λιγότερο τα επερχόμενα προγράμματα."
+
+msgid "Select the input connector you want to use."
+msgstr "Επιλέξτε την υποδοχή εισόδου που θέλετε να χρησιμοποιήσετε."
 
 msgid "Select the last item in list or move to the end of text"
 msgstr "Επιλογή του τελευταίου στοιχείου της λίστας ή μετάβαση στο τέλος του κειμένου"
@@ -21608,6 +21630,12 @@ msgstr "Flash σε χρήση"
 msgid "Used service scan type"
 msgstr "Επιλεγμένος τύπος ανίχνευσης υπηρεσιών"
 
+msgid "Used to specify delay when switching between services and AC3 passthrough is enabled."
+msgstr "Χρησιμοποιείται για τον καθορισμό της καθυστέρησης κατά την εναλλαγή μεταξύ υπηρεσιών και την ενεργοποίηση του AC3 passthrough."
+
+msgid "Used to specify delay when switching between services and AC3+/Atmos passthrough is enabled."
+msgstr "Χρησιμοποιείται για τον καθορισμό της καθυστέρησης κατά την εναλλαγή μεταξύ υπηρεσιών και την ενεργοποίηση του AC3+/Atmos passthrough."
+
 msgid "Used:"
 msgstr "Χρησιμοποιήθηκαν:"
 
@@ -23647,9 +23675,6 @@ msgstr "ενός μέσου ΔΙΠΛΗΣ στρώσης σε χρήση."
 msgid "of a SINGLE layer medium used."
 msgstr "ενός μέσου ΜΟΝΗΣ στρώσης σε χρήση."
 
-msgid "off"
-msgstr "κλειστό"
-
 msgid "off or wpa2 on"
 msgstr "κλειστό ή wpa2 ανοικτό"
 
@@ -24068,6 +24093,9 @@ msgstr "ναι (διατήρηση των feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "off"
+#~ msgstr "κλειστό"
 
 #, python-format
 #~ msgid "%s (%04o)"
