@@ -1074,8 +1074,13 @@
 		<!-- This is just a placeholder, the Videomode plugin implements this sub menu. -->
 	</setup>
 	<setup key="VolumeAdjust" title="Volume Adjust Settings">
-		<item level="0" text="Default volume offset" description="This is the initial / default volume offset applied to any services added the the volume adjust list.">config.volume.defaultOffset</item>
-		<item level="0" text="Enable Dolby Digital / Dolby AC-3 offsets" description="Select 'Yes' if volume adjustments should be applied to Dolby sound tracks.">config.volume.dolbyEnabled</item>
-		<item level="0" text="Default Dolby Digital / Dolby AC-3 offset" description="This offset will only be used if the channel does not have its own volume offset.">config.volume.dolbyOffset</item>
+		<item level="0" text="Volume adjustment mode" description="Select 'Disabled' to disable all automated volume adjustments. Select 'Defined volume offsets' to assign a specified offset to the service's volume level. Select 'Last used/set volume' to remember the volume level last used for each service.">config.volumeAdjust.adjustMode</item>
+		<if conditional="config.volumeAdjust.adjustMode.value == 1">
+			<item level="0" text="Default volume offset" description="This is the initial / default volume offset applied to any services added the the volume adjust list.">config.volumeAdjust.defaultOffset</item>
+			<item level="0" text="Default Dolby Digital / Dolby AC-3 offset" description="This offset will only be used if the channel does not have its own volume offset.">config.volumeAdjust.dolbyOffset</item>
+		</if>
+		<if conditional="config.volumeAdjust.adjustMode.value != 0">
+			<item level="0" text="Auto show volume level" description="Select 'Yes' to show the volume level on any automated changes of volume level.">config.volumeAdjust.showVolumeBar</item>
+		</if>
 	</setup>
 </setupxml>
