@@ -392,7 +392,7 @@ class VolumeAdjust:
 			self.serviceReference = None
 			self.serviceName = ""
 		self.serviceAudio = None
-						
+
 	def eventEnd(self):
 		if self.serviceReference:
 			match self.adjustMode:
