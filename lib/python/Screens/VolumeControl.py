@@ -583,9 +583,6 @@ class VolumeControl:
 
 	# These methods are provided for compatibility with shared plugins.
 	#
-	def setVolume(self, volLeft, volRight):
-		self.updateVolume(volLeft)
-
 	def volUp(self):
 		self.keyVolumeUp()
 
