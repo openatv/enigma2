@@ -44,7 +44,7 @@ public:
 		int pid;
 		int subtitling_type;  	/*  see ETSI EN 300 468 table 26 component_type
 									when stream_content is 0x03
-									0x10..0x13, 0x20..0x23 is used for dvb subtitles
+									0x10..0x16, 0x20..0x26 is used for dvb subtitles
 									0x01 is used for teletext subtitles */
 		union
 		{
