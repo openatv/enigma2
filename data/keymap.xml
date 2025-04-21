@@ -410,6 +410,13 @@
 		<key id="KEY_I" mapto="log" flags="m" />
 	</map>
 
+	<map context="TVRadioActions">
+		<key id="KEY_TV" mapto="tvMode" flags="m" />
+		<key id="KEY_RADIO" mapto="radioMode" flags="m" />
+		<key id="KEY_TV2" mapto="tvRadioMode" flags="m" />
+		<key id="KEY_FAVORITES" mapto="tvRadioMode" flags="m" />
+	</map>
+
 	<map context="VirtualKeyBoardActions">
 		<!-- Also uses NumberActions -->
 		<!-- Also uses TextEditActions -->
@@ -441,15 +448,6 @@
 		<key id="KEY_F12" mapto="next" flags="m" />
 		<key id="KEY_F10" mapto="last" flags="m" />
 		<key id="KEY_NEXTSONG" mapto="last" flags="m" />
-	</map>
-
-	<map context="VolumeAdjustActions">
-		<key id="KEY_YELLOW" mapto="addCurrentService" flags="m" />
-		<key id="KEY_BLUE" mapto="deleteService" flags="m" />
-		<key id="KEY_FAVORITES" mapto="addService" flags="m" />
-		<key id="KEY_TV" mapto="addService" flags="m" />
-		<key id="KEY_RADIO" mapto="addService" flags="m" />
-		<key id="KEY_EPG" mapto="debug" flags="m" />
 	</map>
 
 	<!--
