@@ -1,7 +1,7 @@
 from time import localtime, mktime
 from enigma import pNavigation
 
-from Components.config import ConfigClock, ConfigInteger, ConfigSelection, ConfigSubsection, ConfigYesNo, config
+from Components.config import ConfigClock, ConfigEnableDisable, ConfigInteger, ConfigSelection, ConfigSubsection, ConfigYesNo, config
 from Components.SystemInfo import BoxInfo
 
 
@@ -74,11 +74,11 @@ def InitRecordingConfig():
 	config.recording.timerviewshowfreespace = ConfigYesNo(default=True)
 
 	if BoxInfo.getItem("CanDescrambleInStandby"):
-		config.recording.standbyDescramble = ConfigYesNo(default=True)
-		config.recording.standbyDescrambleShutdown = ConfigYesNo(default=True)
+		config.recording.standbyDescramble = ConfigEnableDisable(default=True)
+		config.recording.standbyDescrambleShutdown = ConfigEnableDisable(default=True)
 	else:
-		config.recording.standbyDescramble = ConfigYesNo(default=False)
-		config.recording.standbyDescrambleShutdown = ConfigYesNo(default=False)
+		config.recording.standbyDescramble = ConfigEnableDisable(default=False)
+		config.recording.standbyDescrambleShutdown = ConfigEnableDisable(default=False)
 	config.recording.standbyDescrambleStart = ConfigClock(default=calculateTime(0, 1))
 	config.recording.standbyDescrambleEnd = ConfigClock(default=calculateTime(23, 59))
 
