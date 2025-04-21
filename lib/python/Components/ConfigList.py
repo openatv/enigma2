@@ -470,9 +470,10 @@ class ConfigListScreen:
 		for item in self["config"].list:
 			if len(item) > 1:
 				if item[1].isChanged():
-					if item[0].endswith("*"):
+					itemText = item[0][0] if isinstance(item[0], tuple) else item[0]
+					if itemText.endswith("*"):
 						quitData = (QUIT_RESTART, _("Restart GUI now?"))
-					elif item[0].endswith("#"):
+					elif itemText.endswith("#"):
 						quitData = (QUIT_REBOOT, _("Reboot %s %s now?") % getBoxDisplayName())
 				item[1].save()
 		configfile.save()
