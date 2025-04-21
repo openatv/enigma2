@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-10 18:45+0000\n"
+"POT-Creation-Date: 2025-04-20 18:15+0000\n"
 "PO-Revision-Date: 2025-04-14 12:33+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
@@ -919,6 +919,10 @@ msgid_plural "%d feed catalog packages were updated."
 msgstr[0] "%d сервер каталогу пакетів оновлено."
 msgstr[1] "%d сервер каталогів пакетів оновлено."
 msgstr[2] "%d сервер каталогів пакетів оновлено."
+
+#, python-format
+msgid "%d jobs are running in the background!"
+msgstr ""
 
 #, python-format
 msgid "%d kB"
@@ -2350,6 +2354,10 @@ msgstr "Amlogic"
 msgid "Amlogic remote"
 msgstr "Пульт Amlogic"
 
+#, python-format
+msgid "Amount %d / Success %d / Failed %d"
+msgstr ""
+
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr "Зроблено спробу зафіксувати поточний статус телевізора. Якщо це неможливо через неправильні, або відсутні повідомлення про статус, це може призвести до неочікуваної відповіді приймача. З іншого боку, намагається краще реагувати на різні умови експлуатації."
 
@@ -3567,7 +3575,7 @@ msgid "Can't create backup directory!"
 msgstr "Не вдається створити каталог резервних копій!"
 
 msgid ""
-"Can't going to live TV!\n"
+"Can't go to live TV!\n"
 "Switch to live TV and restart time shift ?"
 msgstr ""
 "Неможливо з’єднатися з ТВ!\n"
@@ -3577,7 +3585,7 @@ msgid "Can't move to trashcan!"
 msgstr "Неможливо перемістити в кошик!"
 
 msgid ""
-"Can't play the next time shift file!\n"
+"Can't play the next time shift buffer file!\n"
 "Switch to live TV and restart time shift ?"
 msgstr ""
 "Неможливо запустити наступний файл таймшифта!\n"
@@ -3725,6 +3733,9 @@ msgstr "ПІП каскадом"
 
 msgid "Catalan / Valencian"
 msgstr "Каталонська / Валенсійська"
+
+msgid "Catch Up Player Actions"
+msgstr ""
 
 msgid "Cayman Islands"
 msgstr "Кайманові острови"
@@ -6051,6 +6062,21 @@ msgstr "Глибина"
 
 msgid "Descending"
 msgstr "По зменшуванню"
+
+msgid "Descramble end time"
+msgstr ""
+
+msgid "Descramble in Standby"
+msgstr ""
+
+msgid "Descramble in Standby finished"
+msgstr ""
+
+msgid "Descramble recordings before Shutdown"
+msgstr ""
+
+msgid "Descramble start time"
+msgstr ""
 
 msgid "Descrambling options"
 msgstr "Параметри дешифрування"
@@ -8745,7 +8771,7 @@ msgstr "Німецька"
 msgid "Germany"
 msgstr "Німеччина"
 
-msgid "Getting Event Info failed!"
+msgid "Getting event information failed!"
 msgstr "Помилка отримання інформації про поточну подію!"
 
 msgid "Getting plugin information. Please wait..."
@@ -12212,7 +12238,7 @@ msgstr "Системну програмну камеру не налаштова
 msgid "No tags are set on these movies."
 msgstr "Теги не встановлені на цих фільмах."
 
-msgid "No time shift found to save as recording!"
+msgid "No time shift buffer found to save as recording!"
 msgstr "Файл таймшифта для збереження у вигляді запису не знайдено!"
 
 msgid "No timeout"
@@ -12411,7 +12437,7 @@ msgstr "Недостатньо місця на диску. Будь ласка, 
 
 #, python-format
 msgid ""
-"Not enough free Diskspace!\n"
+"Not enough free disk space!\n"
 "\n"
 "Filesize: %sMB\n"
 "Free Space: %sMB\n"
@@ -12455,7 +12481,7 @@ msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "Тепер"
 
-msgid "Now save time shift as movie and continues recording"
+msgid "Save time shift buffer now and continue recording"
 msgstr "Зберегти таймшифт зараз як фільм і продовжувати запис"
 
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
@@ -13255,6 +13281,9 @@ msgstr "Відкрити канал без допомоги Stream Relay"
 
 msgid "Play all audio files in the directory"
 msgstr "Відтворити всі аудіофайли в каталозі"
+
+msgid "Play catch up service archive"
+msgstr ""
 
 msgid "Play audio in background"
 msgstr "Відтворювати аудіо у фоновому режимі"
@@ -14425,7 +14454,7 @@ msgstr "Записати наступне"
 msgid "Record now"
 msgstr "Записати зараз"
 
-msgid "Record started! Stopping time shift now ..."
+msgid "Recording started, stopping time shift now."
 msgstr "Розпочато запис! Зупинка таймшифта ..."
 
 #, python-format
@@ -15499,7 +15528,7 @@ msgstr "Збережені рядки в повідомленнях сценар
 msgid "Saving EPG Cache..."
 msgstr "Збереження кеша ЕПГ..."
 
-msgid "Saving time shift as movie now. This might take a while!"
+msgid "Saving time shift buffer, this might take a while."
 msgstr "Файл тайшифта зберігається як фільм. Це займе деякий час!"
 
 msgid "Saving time shift files"
@@ -15993,6 +16022,9 @@ msgstr "Виберіть 'Так', щоб відобразити цей плаг
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Виберіть 'Так', щоб відобразити пакети веб-посилань на екрані завантаження плагінів."
 
+msgid "Select 'Yes' to shut down immediately instead of starting the descramble."
+msgstr ""
+
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr "Виберіть 'Так', щоб розділити завдання на окремі дії."
 
@@ -16125,6 +16157,12 @@ msgstr "Виберіть журнал фіксації сховища для п�
 
 msgid "Select a script to run:"
 msgstr "Вибір скрипта для запуску:"
+
+msgid "Select a time, when in Standby mode, after which the descramble can proceed."
+msgstr ""
+
+msgid "Select a time, when in Standby, before which descramble can proceed."
+msgstr ""
 
 msgid "Select a tuner"
 msgstr "Вибір тюнера"
@@ -17172,6 +17210,12 @@ msgstr "Встановити параметри часу"
 
 msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
 msgstr "Якщо вимкнено, символи підкреслення в назвах файлів і каталогів не відображаються і замінюються пробілами."
+
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby mode before shutting down."
+msgstr ""
+
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
+msgstr ""
 
 msgid "Set to 'Yes', to enable automatic recording of the background timeshift buffer."
 msgstr "Якщо вибрано 'Так', буде включено автоматичний запис таймшифта у фоновому режимі."
@@ -19010,10 +19054,10 @@ msgstr "Зупинити оновлення, якщо воно запущене,
 msgid "Stop time shift"
 msgstr "Зупинити таймшифт"
 
-msgid "Stop time shift and save time shift buffer as movie"
+msgid "Stop time shift and save time shift buffer as a movie"
 msgstr "Зупинити тайм-шифт і зберегти його буфер як запис"
 
-msgid "Stop time shift and save time shift buffer as movie and start recording of current event"
+msgid "Stop time shift and save time shift buffer as a movie and start recording of current event"
 msgstr "Зупинити тайм-шифт і зберегти його буфер як запис і почати запис поточної передачі"
 
 msgid "Stop time shift while recording"
@@ -19858,8 +19902,8 @@ msgid "The authors are NOT RESPONSIBLE for DATA LOSS OR DAMAGE!"
 msgstr "Автори НЕ НЕСУТЬ ВІДПОВІДАЛЬНОСТІ за ВТРАТУ, АБО ПОШКОДЖЕННЯ ДАНИХ!"
 
 msgid ""
-"The available disk space for time shift is less than specified in the settings.\n"
-"What do you want to do ?"
+"The available disk space for time shift buffer is less than specified in the settings.\n"
+"What do you want to do?"
 msgstr ""
 "Вільне місце на диску менше ніж вказано в налаштуваннях.\n"
 "Що ви хочете зробити?"
@@ -19883,8 +19927,8 @@ msgid "The bitrate of the video encoder. Larger value improves quality and incre
 msgstr "Бітрейт відеокодера. Велике значення покращує якість і збільшує розмір файлу."
 
 msgid ""
-"The buffer time for time shift exceeds the specified limit in the settings.\n"
-"What do you want to do ?"
+"The time shift buffer exceeds the limit specified in the settings.\n"
+"What do you want to do?"
 msgstr ""
 "Розмір буфера таймшифта перевищує ліміт, зазначений в налаштуваннях.\n"
 "Що ви хочете зробити?"
@@ -19968,6 +20012,10 @@ msgstr ""
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr "Каталог піконів уже існує і його потрібно видалити. Ви бажаєте продовжити?"
+
+#, python-format
+msgid "The process will take approximately %d minutes to complete."
+msgstr ""
 
 #, python-format
 msgid "The results have been written to %s."
@@ -20077,6 +20125,13 @@ msgstr "Немає доступних оновлень."
 
 msgid "There are pending tasks:"
 msgstr "Є незавершені завдання:"
+
+#, python-format
+msgid "There is %d scrambled recording, which will be unscrambled during Standby."
+msgid_plural "There are %d scrambled recordings, which will be unscrambled during Standby."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #, python-format
 msgid "There is a risk that your %s %s will not boot or may malfunction after such a large on-line update."
@@ -22553,7 +22608,7 @@ msgstr "Де хочете зробити копію своїх налаштув�
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Де зберігати тимчасові записи timeshift?"
 
-msgid "Which event do you want to save permanently?"
+msgid "Which time shift buffer event do you want to save?"
 msgstr "Яку подію ви хочете зберегти назавжди?"
 
 msgid "While available"
@@ -22816,12 +22871,12 @@ msgstr "Ви вирішили створити резервну копію на�
 msgid "You have chosen to restore the settings. Enigma2 will restart after restore. Press OK to start the restore now."
 msgstr "Ви вибрали відновлення налаштувань. Enigma2 перезапуститься після відновлення. Натисніть OK, щоб почати відновлення зараз."
 
-msgid "You have chosen to save the current time shift"
+msgid "You have chosen to save the current time shift buffer"
 msgstr "Ви вибрали збереження поточного таймшифту"
 
 msgid ""
 "You have chosen to save the current time shift event, but the event has not yet finished\n"
-"What do you want to do ?"
+"What do you want to do?"
 msgstr ""
 "Ви обрали поточний таймшифт для збереження, але передача ще не закінчена\n"
 "Що Ви хочете зробити?"
@@ -22852,7 +22907,7 @@ msgstr ""
 msgid "You seem to be in time shift!"
 msgstr "Спочатку завершіть таймшифт!"
 
-msgid "You seem to be in time shift, Do you want to leave time shift ?"
+msgid "You seem to be in time shift, do you want to leave time shift?"
 msgstr "Спочатку завершіть таймшифт, бажаєте відключити таймшифт?"
 
 msgid "You seem to be in time shift, the service will briefly stop as time shift stops."

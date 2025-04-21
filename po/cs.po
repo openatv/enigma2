@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-10 18:45+0000\n"
+"POT-Creation-Date: 2025-04-20 18:15+0000\n"
 "PO-Revision-Date: 2025-04-11 17:59+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
@@ -915,6 +915,10 @@ msgid_plural "%d feed catalog packages were updated."
 msgstr[0] "%d balíček katalogu zdrojů byl aktualizován."
 msgstr[1] "%d balíčků katalogu zdrojů bylo aktualizováno."
 msgstr[2] "%d balíčků katalogu zdrojů bylo aktualizováno."
+
+#, python-format
+msgid "%d jobs are running in the background!"
+msgstr ""
 
 #, python-format
 msgid "%d kB"
@@ -2346,6 +2350,10 @@ msgstr "Amlogic"
 msgid "Amlogic remote"
 msgstr "Dálkové ovládání Amlogic"
 
+#, python-format
+msgid "Amount %d / Success %d / Failed %d"
+msgstr ""
+
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr "Je proveden pokus o zachycení aktuálního stavu TV. Pokud to není možné kvůli nesprávným nebo chybějícím stavovým zprávám, může to způsobit neočekávanou odpověď přijímače. Na druhou stranu se snaží lépe reagovat na různé provozní podmínky."
 
@@ -3563,7 +3571,7 @@ msgid "Can't create backup directory!"
 msgstr "Adresář zálohy nelze vytvořit!"
 
 msgid ""
-"Can't going to live TV!\n"
+"Can't go to live TV!\n"
 "Switch to live TV and restart time shift ?"
 msgstr ""
 "Nelze se připojit k aktuálnímu TV vysílání !\n"
@@ -3573,7 +3581,7 @@ msgid "Can't move to trashcan!"
 msgstr "Nelze přesunout do koše!"
 
 msgid ""
-"Can't play the next time shift file!\n"
+"Can't play the next time shift buffer file!\n"
 "Switch to live TV and restart time shift ?"
 msgstr ""
 "Nelze přehrát další soubor Timeshift!\n"
@@ -3721,6 +3729,9 @@ msgstr "Kaskáda obrazů"
 
 msgid "Catalan / Valencian"
 msgstr "Katalánština / Valencie"
+
+msgid "Catch Up Player Actions"
+msgstr ""
 
 msgid "Cayman Islands"
 msgstr "Kajmanské ostrovy"
@@ -6047,6 +6058,21 @@ msgstr "Hloubka"
 
 msgid "Descending"
 msgstr "Sestupně"
+
+msgid "Descramble end time"
+msgstr ""
+
+msgid "Descramble in Standby"
+msgstr ""
+
+msgid "Descramble in Standby finished"
+msgstr ""
+
+msgid "Descramble recordings before Shutdown"
+msgstr ""
+
+msgid "Descramble start time"
+msgstr ""
 
 msgid "Descrambling options"
 msgstr "Možnosti dekódování"
@@ -8741,7 +8767,7 @@ msgstr "Německy"
 msgid "Germany"
 msgstr "Německo"
 
-msgid "Getting Event Info failed!"
+msgid "Getting event information failed!"
 msgstr "Načtení info o pořadu selhalo!"
 
 msgid "Getting plugin information. Please wait..."
@@ -12208,7 +12234,7 @@ msgstr "Není nakonfigurován žádný systémový softcam!"
 msgid "No tags are set on these movies."
 msgstr "Tyto soubory nemají nastavené žádné tagy."
 
-msgid "No time shift found to save as recording!"
+msgid "No time shift buffer found to save as recording!"
 msgstr "Žádný Timeshift pro uložení záznamu nenalezen!"
 
 msgid "No timeout"
@@ -12407,7 +12433,7 @@ msgstr "Nedostatek místa na disku. Uvolněte prostor na disku a zkuste znovu. (
 
 #, python-format
 msgid ""
-"Not enough free Diskspace!\n"
+"Not enough free disk space!\n"
 "\n"
 "Filesize: %sMB\n"
 "Free Space: %sMB\n"
@@ -12451,7 +12477,7 @@ msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "Nyní"
 
-msgid "Now save time shift as movie and continues recording"
+msgid "Save time shift buffer now and continue recording"
 msgstr "Uložit časový posun jako film a pokračovat v nahrávání"
 
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
@@ -13251,6 +13277,9 @@ msgstr "Přehrát službu bez Stream Relay"
 
 msgid "Play all audio files in the directory"
 msgstr "Přehrát všechny zvukové soubory v adresáři"
+
+msgid "Play catch up service archive"
+msgstr ""
 
 msgid "Play audio in background"
 msgstr "Přehrávat zvuk na pozadí"
@@ -14421,7 +14450,7 @@ msgstr "Nahrát další"
 msgid "Record now"
 msgstr "Nová nahrávka"
 
-msgid "Record started! Stopping time shift now ..."
+msgid "Recording started, stopping time shift now."
 msgstr "Nahrávání zahájeno! Zastavuji časový posun..."
 
 #, python-format
@@ -15495,7 +15524,7 @@ msgstr "Uložené řádky ve zprávách skriptu"
 msgid "Saving EPG Cache..."
 msgstr "Uložit cache EPG..."
 
-msgid "Saving time shift as movie now. This might take a while!"
+msgid "Saving time shift buffer, this might take a while."
 msgstr "Nyní se časový posun ukládá jako film. To může chvíli trvat!"
 
 msgid "Saving time shift files"
@@ -15989,6 +16018,9 @@ msgstr "Chcete-li tento plugin zobrazit v prohlížeči pluginů, vyberte 'Ano'.
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Vyberte 'Ano', chcete-li zobrazit balíčky webových odkazů na obrazovce Stáhnout pluginy."
 
+msgid "Select 'Yes' to shut down immediately instead of starting the descramble."
+msgstr ""
+
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr "Chcete-li úkoly rozdělit do samostatných akcí, vyberte možnost „Ano“."
 
@@ -16121,6 +16153,12 @@ msgstr "Vyberte protokol potvrzení úložiště, který chcete zobrazit:"
 
 msgid "Select a script to run:"
 msgstr "Vyberte skript ke spuštění:"
+
+msgid "Select a time, when in Standby mode, after which the descramble can proceed."
+msgstr ""
+
+msgid "Select a time, when in Standby, before which descramble can proceed."
+msgstr ""
 
 msgid "Select a tuner"
 msgstr "Vyberte tuner"
@@ -17168,6 +17206,12 @@ msgstr "Nastavit možnosti času"
 
 msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
 msgstr "Chcete-li nahradit znaky podtržení, '_', v názvech souborů a adresářů mezerami, nastavte na 'Zakázáno'."
+
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby mode before shutting down."
+msgstr ""
+
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
+msgstr ""
 
 msgid "Set to 'Yes', to enable automatic recording of the background timeshift buffer."
 msgstr "Pokud nastavíte na 'ano' bude umožněno automatické nahrávání na pozadí funkce časového posunu."
@@ -19006,10 +19050,10 @@ msgstr "Zastavte aktualizaci, pokud běží, ukončete ji"
 msgid "Stop time shift"
 msgstr "Zastavit časový posun"
 
-msgid "Stop time shift and save time shift buffer as movie"
+msgid "Stop time shift and save time shift buffer as a movie"
 msgstr "Zastavit časový posun a uložit vyrovnávací paměť časového posunu jako film"
 
-msgid "Stop time shift and save time shift buffer as movie and start recording of current event"
+msgid "Stop time shift and save time shift buffer as a movie and start recording of current event"
 msgstr "Zastavit časový posun a uložit vyrovnávací paměť časového posunu jako film a spustit záznam aktuální události"
 
 msgid "Stop time shift while recording"
@@ -19854,8 +19898,8 @@ msgid "The authors are NOT RESPONSIBLE for DATA LOSS OR DAMAGE!"
 msgstr "Autoři NEODPOVÍDAJÍ ZA ZTRÁTU NEBO POŠKOZENÍ DAT!"
 
 msgid ""
-"The available disk space for time shift is less than specified in the settings.\n"
-"What do you want to do ?"
+"The available disk space for time shift buffer is less than specified in the settings.\n"
+"What do you want to do?"
 msgstr ""
 "Dostupný prostor na disku pro časový posun je menší, než je zadáno v nastavení.\n"
 "Co chceš dělat ?"
@@ -19879,8 +19923,8 @@ msgid "The bitrate of the video encoder. Larger value improves quality and incre
 msgstr "Datový tok kodéru videa. Vyšší hodnota zlepšuje kvalitu a zvětšuje velikost souboru."
 
 msgid ""
-"The buffer time for time shift exceeds the specified limit in the settings.\n"
-"What do you want to do ?"
+"The time shift buffer exceeds the limit specified in the settings.\n"
+"What do you want to do?"
 msgstr ""
 "Čas vyrovnávací paměti pro časový posun překračuje limit zadaný v nastavení.\n"
 "Co chceš dělat ?"
@@ -19964,6 +20008,10 @@ msgstr ""
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr "Adresář picon již existuje a musí být odstraněn. Chcete pokračovat?"
+
+#, python-format
+msgid "The process will take approximately %d minutes to complete."
+msgstr ""
 
 #, python-format
 msgid "The results have been written to %s."
@@ -20073,6 +20121,13 @@ msgstr "Nejsou žádné dostupné aktualizace."
 
 msgid "There are pending tasks:"
 msgstr "Jsou zde čekající úkoly:"
+
+#, python-format
+msgid "There is %d scrambled recording, which will be unscrambled during Standby."
+msgid_plural "There are %d scrambled recordings, which will be unscrambled during Standby."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #, python-format
 msgid "There is a risk that your %s %s will not boot or may malfunction after such a large on-line update."
@@ -22549,7 +22604,7 @@ msgstr "Kam chcete zazálohovat Vaše nastavení?"
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Kam chcete uložit dočasné nahrávky s časovým posunem?"
 
-msgid "Which event do you want to save permanently?"
+msgid "Which time shift buffer event do you want to save?"
 msgstr "Který pořad chcete uložit trvale?"
 
 msgid "While available"
@@ -22812,12 +22867,12 @@ msgstr "Rozhodli jste se zálohovat svá nastavení. Stiskněte OK pro spuštěn
 msgid "You have chosen to restore the settings. Enigma2 will restart after restore. Press OK to start the restore now."
 msgstr "Rozhodli jste se obnovit nastavení. Enigma2 se po obnovení restartuje. Stisknutím tlačítka OK nyní zahájíte obnovu."
 
-msgid "You have chosen to save the current time shift"
+msgid "You have chosen to save the current time shift buffer"
 msgstr "Rozhodli jste se uložit aktuální časový posun"
 
 msgid ""
 "You have chosen to save the current time shift event, but the event has not yet finished\n"
-"What do you want to do ?"
+"What do you want to do?"
 msgstr ""
 "Rozhodli jste se uložit aktuální událost časového posunu, ale tato událost ještě neskončila\n"
 "Co chcete dělat ?"
@@ -22848,7 +22903,7 @@ msgstr ""
 msgid "You seem to be in time shift!"
 msgstr "Zdá se, že jste v časovém posunu!"
 
-msgid "You seem to be in time shift, Do you want to leave time shift ?"
+msgid "You seem to be in time shift, do you want to leave time shift?"
 msgstr "Zdá se, že jste v časovém posunu, Chcete opustit časový posun?"
 
 msgid "You seem to be in time shift, the service will briefly stop as time shift stops."

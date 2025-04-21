@@ -16,16 +16,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-10 18:45+0000\n"
-"PO-Revision-Date: 2025-04-13 08:35+0000\n"
-"Last-Translator: VfBFan <drop0815@posteo.de>\n"
+"POT-Creation-Date: 2025-04-20 18:15+0000\n"
+"PO-Revision-Date: 2025-04-20 21:45+0000\n"
+"Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.11.1-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -912,6 +912,10 @@ msgid "%d feed catalog package was updated."
 msgid_plural "%d feed catalog packages were updated."
 msgstr[0] "%d Feed-Paket aktualisiert."
 msgstr[1] "%d Feed-Pakete aktualisiert."
+
+#, python-format
+msgid "%d jobs are running in the background!"
+msgstr "Im Hintergrund laufen %d Aktionen (Jobs)!"
 
 #, python-format
 msgid "%d kB"
@@ -2442,6 +2446,10 @@ msgstr "Amlogic"
 msgid "Amlogic remote"
 msgstr "Amlogic Fernbedienung"
 
+#, python-format
+msgid "Amount %d / Success %d / Failed %d"
+msgstr "Anzahl %d / %d Erfolge / %d Fehlschläge"
+
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr "Es wird versucht, den aktuellen TV-Betriebszustand zu erfassen. Ist dies aufgrund falscher oder fehlender Statusmeldungen nicht möglich, kann der Receiver unerwartet reagieren. Andererseits wird versucht, auf verschiedene Betriebszustände besser zu reagieren."
 
@@ -3719,7 +3727,7 @@ msgid "Can't create backup directory!"
 msgstr "Sicherungsverzeichnis konnte nicht erzeugt werden!"
 
 msgid ""
-"Can't going to live TV!\n"
+"Can't go to live TV!\n"
 "Switch to live TV and restart time shift ?"
 msgstr ""
 "Es kann nicht zum Live-TV geschaltet werden!\n"
@@ -3729,7 +3737,7 @@ msgid "Can't move to trashcan!"
 msgstr "Nicht in den Papierkorb verschiebbar!"
 
 msgid ""
-"Can't play the next time shift file!\n"
+"Can't play the next time shift buffer file!\n"
 "Switch to live TV and restart time shift ?"
 msgstr ""
 "Die nächste Timeshift-Datei kann nicht abgespielt werden!\n"
@@ -3888,6 +3896,9 @@ msgstr "Kaskadiertes Bild-im-Bild"
 
 msgid "Catalan / Valencian"
 msgstr "Katalanisch / Valencianisch"
+
+msgid "Catch Up Player Actions"
+msgstr ""
 
 msgid "Cayman Islands"
 msgstr "Kaimaninseln"
@@ -6326,6 +6337,21 @@ msgstr "Tiefe"
 
 msgid "Descending"
 msgstr "Absteigend"
+
+msgid "Descramble end time"
+msgstr "Endzeit entschlüsseln"
+
+msgid "Descramble in Standby"
+msgstr "Im Standby entschlüsseln"
+
+msgid "Descramble in Standby finished"
+msgstr "Entschlüsselung im Standby beendet"
+
+msgid "Descramble recordings before Shutdown"
+msgstr "Aufnahmen vor dem Herunterfahren entschlüsseln"
+
+msgid "Descramble start time"
+msgstr "Startzeit entschlüsseln"
 
 msgid "Descrambling options"
 msgstr "Entschlüsselungsoptionen"
@@ -9175,7 +9201,7 @@ msgstr "Deutsch"
 msgid "Germany"
 msgstr "Deutschland"
 
-msgid "Getting Event Info failed!"
+msgid "Getting event information failed!"
 msgstr "Bezug von Sendungsinformationen fehlgeschlagen!"
 
 #
@@ -12859,7 +12885,7 @@ msgstr "Kein Softcam konfiguriert!"
 msgid "No tags are set on these movies."
 msgstr "Keine Tags für diese Filme gesetzt!"
 
-msgid "No time shift found to save as recording!"
+msgid "No time shift buffer found to save as recording!"
 msgstr "Kein Timeshift zur Speicherung als Aufnahme gefunden!"
 
 # UsageConfig.py
@@ -13077,7 +13103,7 @@ msgstr ""
 
 #, python-format
 msgid ""
-"Not enough free Diskspace!\n"
+"Not enough free disk space!\n"
 "\n"
 "Filesize: %sMB\n"
 "Free Space: %sMB\n"
@@ -13123,7 +13149,7 @@ msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "Jetzt"
 
-msgid "Now save time shift as movie and continues recording"
+msgid "Save time shift buffer now and continue recording"
 msgstr "Jetzt Timeshift als Film speichern und die Aufnahme fortsetzen"
 
 #
@@ -13981,6 +14007,9 @@ msgstr "Sender ohne Stream Relay abspielen"
 
 msgid "Play all audio files in the directory"
 msgstr "Alle Audiodateien des Verzeichnisses abspielen"
+
+msgid "Play catch up service archive"
+msgstr ""
 
 msgid "Play audio in background"
 msgstr "Audio im Hintergrund abspielen"
@@ -15249,7 +15278,7 @@ msgstr "Nächste Sendung aufnehmen"
 msgid "Record now"
 msgstr "Laufende Sendung aufnehmen"
 
-msgid "Record started! Stopping time shift now ..."
+msgid "Recording started, stopping time shift now."
 msgstr "Aufnahme gestartet! Timeshift wird gestoppt..."
 
 #, python-format
@@ -16409,7 +16438,7 @@ msgstr "Gespeicherte Zeilen in Skript-Meldungen"
 msgid "Saving EPG Cache..."
 msgstr "EPG-Cache speichern..."
 
-msgid "Saving time shift as movie now. This might take a while!"
+msgid "Saving time shift buffer, this might take a while."
 msgstr "Speichere Timeshift als Film. Das kann eine Weile dauern!"
 
 msgid "Saving time shift files"
@@ -16931,6 +16960,9 @@ msgstr "'Ja' auswählen, um dieses Plugin im Plugin-Manager anzuzeigen."
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Bei 'Ja' werden Weblink-Pakete in der Downloadliste angezeigt."
 
+msgid "Select 'Yes' to shut down immediately instead of starting the descramble."
+msgstr "'Ja' auswählen, um sofort herunterzufahren statt die Entschlüsselung zu starten."
+
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr "Bei 'Ja' werden die Aufgaben in separate Aktionen aufgeteilt."
 
@@ -17069,6 +17101,12 @@ msgstr "Ein Repository-Commit-Log zur Ansicht auswählen:"
 # ScriptRunner
 msgid "Select a script to run:"
 msgstr "Zu startendes Skript auswählen:"
+
+msgid "Select a time, when in Standby mode, after which the descramble can proceed."
+msgstr "Zeit auswählen, nach der die Entschlüsselung im Standby fortgesetzt werden soll."
+
+msgid "Select a time, when in Standby, before which descramble can proceed."
+msgstr "Zeit auswählen, bevor die Entschlüsselung im Standby fortgesetzt werden soll."
 
 msgid "Select a tuner"
 msgstr "Tuner auswählen"
@@ -18181,6 +18219,12 @@ msgstr "Zeitoptionen einstellen"
 
 msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
 msgstr "Bei 'Nein' werden Unterstriche in Dateien und Verzeichnissen durch Leerzeichen ersetzt."
+
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby mode before shutting down."
+msgstr "Aktivieren, um verschlüsselte Aufnahmen in der Warteschleife vor dem Herunterfahren im Standby zu entschlüsseln."
+
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
+msgstr "Aktivieren, um verschlüsselte Aufnahmen in der Warteschleife im Standby zu entschlüsseln."
 
 msgid "Set to 'Yes', to enable automatic recording of the background timeshift buffer."
 msgstr "'Ja' aktiviert die automatische Aufnahme für Timeshift im Hintergrund."
@@ -20122,10 +20166,10 @@ msgstr "Update anhalten (falls es läuft), dann beenden"
 msgid "Stop time shift"
 msgstr "Timeshift stoppen"
 
-msgid "Stop time shift and save time shift buffer as movie"
+msgid "Stop time shift and save time shift buffer as a movie"
 msgstr "Timeshift stoppen und den Timeshift-Puffer als Film speichern"
 
-msgid "Stop time shift and save time shift buffer as movie and start recording of current event"
+msgid "Stop time shift and save time shift buffer as a movie and start recording of current event"
 msgstr "Timeshift stoppen und den Timeshift-Puffer als Film speichern sowie die aktuelle Sendung weiter aufnehmen"
 
 msgid "Stop time shift while recording"
@@ -21014,8 +21058,8 @@ msgid "The authors are NOT RESPONSIBLE for DATA LOSS OR DAMAGE!"
 msgstr "Die Autoren sind NICHT für DATENVERLUST oder SCHÄDEN verantwortlich!"
 
 msgid ""
-"The available disk space for time shift is less than specified in the settings.\n"
-"What do you want to do ?"
+"The available disk space for time shift buffer is less than specified in the settings.\n"
+"What do you want to do?"
 msgstr ""
 "Der verfügbare Speicherplatz für Timeshift ist geringer als in den Einstellungen festgelegt wurde!\n"
 "Was soll geschehen?"
@@ -21039,8 +21083,8 @@ msgid "The bitrate of the video encoder. Larger value improves quality and incre
 msgstr "Die Bitrate des Videoencoders. Ein größerer Wert verbessert die Qualität, erhöht aber die Dateigröße."
 
 msgid ""
-"The buffer time for time shift exceeds the specified limit in the settings.\n"
-"What do you want to do ?"
+"The time shift buffer exceeds the limit specified in the settings.\n"
+"What do you want to do?"
 msgstr ""
 "Der Zeitpuffer für Timeshift übersteigt die in den Einstellungen festgelegte Grenze!\n"
 "Was soll geschehen?"
@@ -21125,6 +21169,10 @@ msgstr ""
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr "Der Picon Ordner existiert bereits! Er muss entfernt werden. Fortfahren?"
+
+#, python-format
+msgid "The process will take approximately %d minutes to complete."
+msgstr "Es wird ungefähr %d Minuten bis zur Fertigstellung dauern."
 
 #
 #, python-format
@@ -21236,6 +21284,12 @@ msgstr "Es sind keine Updates verfügbar!"
 
 msgid "There are pending tasks:"
 msgstr "Es gibt ausstehende Aufgaben:"
+
+#, python-format
+msgid "There is %d scrambled recording, which will be unscrambled during Standby."
+msgid_plural "There are %d scrambled recordings, which will be unscrambled during Standby."
+msgstr[0] "Es gib %d verschlüsselte Aufnahme, die im Standby entschlüsselt wird."
+msgstr[1] "Es gib %d verschlüsselte Aufnahmen, die im Standby entschlüsselt werden."
 
 #, python-format
 msgid "There is a risk that your %s %s will not boot or may malfunction after such a large on-line update."
@@ -23895,7 +23949,7 @@ msgstr "Wohin sollen die Einstellungen gesichert werden?"
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Wohin sollen temporäre Timeshift-Aufnahmen gespeichert werden?"
 
-msgid "Which event do you want to save permanently?"
+msgid "Which time shift buffer event do you want to save?"
 msgstr "Welche Sendung soll dauerhaft gespeichert werden?"
 
 msgid "While available"
@@ -24183,12 +24237,12 @@ msgstr ""
 "Die Einstellungen sollen wiederhergestellt werden.\n"
 "OK drücken, um die Wiederherstellung jetzt zu starten."
 
-msgid "You have chosen to save the current time shift"
+msgid "You have chosen to save the current time shift buffer"
 msgstr "Es wurde ausgewählt, dass die aktuelle Timeshift-Datei gespeichert werden soll"
 
 msgid ""
 "You have chosen to save the current time shift event, but the event has not yet finished\n"
-"What do you want to do ?"
+"What do you want to do?"
 msgstr ""
 "Die aktuelle Sendung wurde zum Speichern ausgewählt, sie ist aber noch nicht beendet!\n"
 "Was soll geschehen?"
@@ -24224,7 +24278,7 @@ msgstr ""
 msgid "You seem to be in time shift!"
 msgstr "Der Receiver befindet sich im Timeshift!"
 
-msgid "You seem to be in time shift, Do you want to leave time shift ?"
+msgid "You seem to be in time shift, do you want to leave time shift?"
 msgstr "Der Receiver befindet sich im Timeshift. Timeshift beenden?"
 
 msgid "You seem to be in time shift, the service will briefly stop as time shift stops."

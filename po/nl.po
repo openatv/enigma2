@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-10 18:45+0000\n"
+"POT-Creation-Date: 2025-04-20 18:15+0000\n"
 "PO-Revision-Date: 2024-11-10 13:00+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -901,6 +901,10 @@ msgid "%d feed catalog package was updated."
 msgid_plural "%d feed catalog packages were updated."
 msgstr[0] "%d feed cataloguspakket is bijgewerkt."
 msgstr[1] "%d feed catalogus pakketten zijn bijgewerkt."
+
+#, python-format
+msgid "%d jobs are running in the background!"
+msgstr ""
 
 #, python-format
 msgid "%d kB"
@@ -2322,6 +2326,10 @@ msgstr "Amlogic"
 msgid "Amlogic remote"
 msgstr "Amlogic afstandsbediening"
 
+#, python-format
+msgid "Amount %d / Success %d / Failed %d"
+msgstr ""
+
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr "Er is een poging gedaan om de TV-status te lezen. Wanneer dit niet mogelijk is door ontbrekende of niet correcte status meldingen zou de ontvanger onverwacht kunnen reageren. Aan de andere kant, zou deze daar door beter kunnen reageren op diverse situaties."
 
@@ -3540,7 +3548,7 @@ msgid "Can't create backup directory!"
 msgstr "Er kan geen map voor de back-up gemaakt worden!"
 
 msgid ""
-"Can't going to live TV!\n"
+"Can't go to live TV!\n"
 "Switch to live TV and restart time shift ?"
 msgstr ""
 "Kan niet naar live TV!\n"
@@ -3550,7 +3558,7 @@ msgid "Can't move to trashcan!"
 msgstr "Kan geen bestanden naar de prullenbak verplaatsen"
 
 msgid ""
-"Can't play the next time shift file!\n"
+"Can't play the next time shift buffer file!\n"
 "Switch to live TV and restart time shift ?"
 msgstr ""
 "Kan het volgende Timeshift-bestand niet afspelen!\n"
@@ -3698,6 +3706,9 @@ msgstr "Waterval PiP"
 
 msgid "Catalan / Valencian"
 msgstr "Catalaans / Valenciaans"
+
+msgid "Catch Up Player Actions"
+msgstr ""
 
 msgid "Cayman Islands"
 msgstr "Kaaiman Eilanden"
@@ -6135,6 +6146,21 @@ msgstr "Diepte"
 
 msgid "Descending"
 msgstr "Aflopend"
+
+msgid "Descramble end time"
+msgstr ""
+
+msgid "Descramble in Standby"
+msgstr ""
+
+msgid "Descramble in Standby finished"
+msgstr ""
+
+msgid "Descramble recordings before Shutdown"
+msgstr ""
+
+msgid "Descramble start time"
+msgstr ""
 
 msgid "Descrambling options"
 msgstr ""
@@ -8845,7 +8871,7 @@ msgstr "Duits"
 msgid "Germany"
 msgstr "Duitsland"
 
-msgid "Getting Event Info failed!"
+msgid "Getting event information failed!"
 msgstr "Geen programma info gevonden!"
 
 msgid "Getting plugin information. Please wait..."
@@ -12317,7 +12343,7 @@ msgstr ""
 msgid "No tags are set on these movies."
 msgstr "Geen markeringen geplaatst in deze opnames."
 
-msgid "No time shift found to save as recording!"
+msgid "No time shift buffer found to save as recording!"
 msgstr "Geen Timeshift-bestand gevonden om als opname op te slaan!"
 
 msgid "No timeout"
@@ -12516,7 +12542,7 @@ msgstr "Onvoldoende schijfruimte. Maak ruimte vrij en probeer het opnieuw (%d MB
 
 #, python-format
 msgid ""
-"Not enough free Diskspace!\n"
+"Not enough free disk space!\n"
 "\n"
 "Filesize: %sMB\n"
 "Free Space: %sMB\n"
@@ -12560,7 +12586,7 @@ msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "Nu"
 
-msgid "Now save time shift as movie and continues recording"
+msgid "Save time shift buffer now and continue recording"
 msgstr "Sla Timeshift nu op als Opname en ga door met opnemen"
 
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
@@ -13363,6 +13389,9 @@ msgstr "Zender zonder Stream Relay afspelen"
 
 msgid "Play all audio files in the directory"
 msgstr "Alle audiobestanden in de map afspelen"
+
+msgid "Play catch up service archive"
+msgstr ""
 
 msgid "Play audio in background"
 msgstr "Geluid op de achtergrond afspelen"
@@ -14536,7 +14565,7 @@ msgstr "Neem volgende op"
 msgid "Record now"
 msgstr "Neem nu op"
 
-msgid "Record started! Stopping time shift now ..."
+msgid "Recording started, stopping time shift now."
 msgstr "Opname begonnen! Timeshift stopt nu ..."
 
 #, python-format
@@ -15610,7 +15639,7 @@ msgstr "Opgeslagen regels in scriptberichten"
 msgid "Saving EPG Cache..."
 msgstr "Bezig EPG Cache op te slaan..."
 
-msgid "Saving time shift as movie now. This might take a while!"
+msgid "Saving time shift buffer, this might take a while."
 msgstr "Timeshift wordt nu als opname opgeslagen. Dit kan enige tijd duren!"
 
 msgid "Saving time shift files"
@@ -16111,6 +16140,9 @@ msgstr "Kies 'Ja' om deze plugin in de Plugin Browser in te tonen."
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Kies 'Ja' om Weblinks in het plugin download-scherm weer te geven."
 
+msgid "Select 'Yes' to shut down immediately instead of starting the descramble."
+msgstr ""
+
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr "Kies 'Ja' om opdrachten in meerdere acties op te delen."
 
@@ -16243,6 +16275,12 @@ msgstr "Selecteer een repository commit-log:"
 
 msgid "Select a script to run:"
 msgstr "Selecteer script om uit te voeren:"
+
+msgid "Select a time, when in Standby mode, after which the descramble can proceed."
+msgstr ""
+
+msgid "Select a time, when in Standby, before which descramble can proceed."
+msgstr ""
 
 msgid "Select a tuner"
 msgstr "Selecteer een tuner"
@@ -17303,6 +17341,12 @@ msgstr "Tijdopties instellen"
 
 msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
 msgstr "Wanneer uitgeschakeld, worden underscore tekens in bestands- en map namen niet weergegeven en vervangen door spaties."
+
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby mode before shutting down."
+msgstr ""
+
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
+msgstr ""
 
 msgid "Set to 'Yes', to enable automatic recording of the background timeshift buffer."
 msgstr "Kies 'Ja' wanneer u automatisch een Timeshift opname wilt starten."
@@ -19155,10 +19199,10 @@ msgstr "Stop een lopende update en Exit"
 msgid "Stop time shift"
 msgstr "Beëindig de Timeshift"
 
-msgid "Stop time shift and save time shift buffer as movie"
+msgid "Stop time shift and save time shift buffer as a movie"
 msgstr "Stop Timeshift en de Timeshift-buffer opslaan als opname"
 
-msgid "Stop time shift and save time shift buffer as movie and start recording of current event"
+msgid "Stop time shift and save time shift buffer as a movie and start recording of current event"
 msgstr "Stop Timeshift en sla Timeshift-buffer op als opname, en start opname van het huidige programma"
 
 msgid "Stop time shift while recording"
@@ -20007,8 +20051,8 @@ msgid "The authors are NOT RESPONSIBLE for DATA LOSS OR DAMAGE!"
 msgstr "De auteurs zijn NIET VERANTWOORDELIJK voor GEGEVENSVERLIES OF SCHADE!"
 
 msgid ""
-"The available disk space for time shift is less than specified in the settings.\n"
-"What do you want to do ?"
+"The available disk space for time shift buffer is less than specified in the settings.\n"
+"What do you want to do?"
 msgstr ""
 "De beschikbare schijfruimte voor Timeshift is minder dan opgegeven in de instellingen.\n"
 "Wat wilt u doen?"
@@ -20032,8 +20076,8 @@ msgid "The bitrate of the video encoder. Larger value improves quality and incre
 msgstr "De bitrate van de video encoder. Hogere waarde is betere kwaliteit, maar ook grotere bestandsgrootte."
 
 msgid ""
-"The buffer time for time shift exceeds the specified limit in the settings.\n"
-"What do you want to do ?"
+"The time shift buffer exceeds the limit specified in the settings.\n"
+"What do you want to do?"
 msgstr ""
 "De buffertijd voor Timeshift groter is dan de opgegeven limiet in de instellingen.\n"
 "Wat wilt u doen?"
@@ -20117,6 +20161,10 @@ msgstr ""
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr "De map voor de Picons bestaat al en moet verwijderd worden. Dit nu uitvoeren?"
+
+#, python-format
+msgid "The process will take approximately %d minutes to complete."
+msgstr ""
 
 #, python-format
 msgid "The results have been written to %s."
@@ -20226,6 +20274,12 @@ msgstr "Er zijn momenteel geen updates beschikbaar."
 
 msgid "There are pending tasks:"
 msgstr "Er zijn taken in behandeling:"
+
+#, python-format
+msgid "There is %d scrambled recording, which will be unscrambled during Standby."
+msgid_plural "There are %d scrambled recordings, which will be unscrambled during Standby."
+msgstr[0] ""
+msgstr[1] ""
 
 #, python-format
 msgid "There is a risk that your %s %s will not boot or may malfunction after such a large on-line update."
@@ -22767,7 +22821,7 @@ msgstr "Waar wilt u een back-up maken van de instellingen?"
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "Waar wilt u de tijdelijke Timeshift opnames opslaan?"
 
-msgid "Which event do you want to save permanently?"
+msgid "Which time shift buffer event do you want to save?"
 msgstr "Welk programma wilt u permanent verwijderen?"
 
 msgid "While available"
@@ -23035,12 +23089,12 @@ msgstr "Je hebt ervoor gekozen om een back-up te maken van je instellingen. Druk
 msgid "You have chosen to restore the settings. Enigma2 will restart after restore. Press OK to start the restore now."
 msgstr "U heeft gekozen om de instellingen te herstellen. Druk op OK om het herstel nu te starten."
 
-msgid "You have chosen to save the current time shift"
+msgid "You have chosen to save the current time shift buffer"
 msgstr "U heeft gekozen voor het opslaan van de huidige Timeshift"
 
 msgid ""
 "You have chosen to save the current time shift event, but the event has not yet finished\n"
-"What do you want to do ?"
+"What do you want to do?"
 msgstr ""
 "U wilt de huidige Timeshift opslaan, maar het programma is nog niet afgelopen.\n"
 "Wat wilt u doen?"
@@ -23071,7 +23125,7 @@ msgstr ""
 msgid "You seem to be in time shift!"
 msgstr "Timeshift is waarschijnlijk actief!"
 
-msgid "You seem to be in time shift, Do you want to leave time shift ?"
+msgid "You seem to be in time shift, do you want to leave time shift?"
 msgstr "Timeshift is waarschijnlijk actief, wilt u Timeshift stoppen?"
 
 msgid "You seem to be in time shift, the service will briefly stop as time shift stops."

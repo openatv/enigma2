@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-10 18:45+0000\n"
+"POT-Creation-Date: 2025-04-20 18:15+0000\n"
 "PO-Revision-Date: 2025-04-12 12:57+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -900,6 +900,10 @@ msgid "%d feed catalog package was updated."
 msgid_plural "%d feed catalog packages were updated."
 msgstr[0] "已更新 %d 个订阅源目录包。"
 msgstr[1] "已更新 %d 个订阅源目录包。"
+
+#, python-format
+msgid "%d jobs are running in the background!"
+msgstr ""
 
 #, python-format
 msgid "%d kB"
@@ -2313,6 +2317,10 @@ msgstr "晶晨"
 msgid "Amlogic remote"
 msgstr "晶晨遥控器"
 
+#, python-format
+msgid "Amount %d / Success %d / Failed %d"
+msgstr ""
+
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr "试图捕获当前的电视状态。如果由于状态消息不正确或丢失而无法执行此操作，则可能会导致接收机意外响应。另一方面，尝试更好地响应不同的操作条件。"
 
@@ -3530,7 +3538,7 @@ msgid "Can't create backup directory!"
 msgstr "无法创建备份目录！"
 
 msgid ""
-"Can't going to live TV!\n"
+"Can't go to live TV!\n"
 "Switch to live TV and restart time shift ?"
 msgstr ""
 "无法打开电视直播！\n"
@@ -3540,7 +3548,7 @@ msgid "Can't move to trashcan!"
 msgstr "无法移动到回收站！"
 
 msgid ""
-"Can't play the next time shift file!\n"
+"Can't play the next time shift buffer file!\n"
 "Switch to live TV and restart time shift ?"
 msgstr ""
 "无法播放下一个时移文件！\n"
@@ -3688,6 +3696,9 @@ msgstr "层叠画中画"
 
 msgid "Catalan / Valencian"
 msgstr "加泰罗尼亚语/瓦伦西亚语"
+
+msgid "Catch Up Player Actions"
+msgstr ""
 
 msgid "Cayman Islands"
 msgstr "开曼群岛"
@@ -6012,6 +6023,21 @@ msgstr "深度"
 
 msgid "Descending"
 msgstr "降序"
+
+msgid "Descramble end time"
+msgstr ""
+
+msgid "Descramble in Standby"
+msgstr ""
+
+msgid "Descramble in Standby finished"
+msgstr ""
+
+msgid "Descramble recordings before Shutdown"
+msgstr ""
+
+msgid "Descramble start time"
+msgstr ""
 
 msgid "Descrambling options"
 msgstr "解扰选项"
@@ -8703,7 +8729,7 @@ msgstr "德语"
 msgid "Germany"
 msgstr "德国"
 
-msgid "Getting Event Info failed!"
+msgid "Getting event information failed!"
 msgstr "获取事件信息失败！"
 
 msgid "Getting plugin information. Please wait..."
@@ -12168,7 +12194,7 @@ msgstr "未配置系统 softcam！"
 msgid "No tags are set on these movies."
 msgstr "这些电影没有设置标签。"
 
-msgid "No time shift found to save as recording!"
+msgid "No time shift buffer found to save as recording!"
 msgstr "没有发现要保存为录像的时移！"
 
 msgid "No timeout"
@@ -12367,7 +12393,7 @@ msgstr "没有足够的磁盘空间。请释放一些空间后重试。（需要
 
 #, python-format
 msgid ""
-"Not enough free Diskspace!\n"
+"Not enough free disk space!\n"
 "\n"
 "Filesize: %sMB\n"
 "Free Space: %sMB\n"
@@ -12411,7 +12437,7 @@ msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "现在"
 
-msgid "Now save time shift as movie and continues recording"
+msgid "Save time shift buffer now and continue recording"
 msgstr "现在将时移保存为电影并继续录制"
 
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
@@ -13211,6 +13237,9 @@ msgstr "无流中继播放频道"
 
 msgid "Play all audio files in the directory"
 msgstr "播放目录下所有音频文件"
+
+msgid "Play catch up service archive"
+msgstr ""
 
 msgid "Play audio in background"
 msgstr "在后台播放音频"
@@ -14379,7 +14408,7 @@ msgstr "录制下一个"
 msgid "Record now"
 msgstr "现在录制"
 
-msgid "Record started! Stopping time shift now ..."
+msgid "Recording started, stopping time shift now."
 msgstr "录像开始！ 现在停止时移..."
 
 #, python-format
@@ -15453,7 +15482,7 @@ msgstr "脚本消息中保存的行"
 msgid "Saving EPG Cache..."
 msgstr "正在保存 EPG 缓存..."
 
-msgid "Saving time shift as movie now. This might take a while!"
+msgid "Saving time shift buffer, this might take a while."
 msgstr "现在将时移保存为影片。 这可能需要一段时间！"
 
 msgid "Saving time shift files"
@@ -15944,6 +15973,9 @@ msgstr "选择“是”以在插件浏览器中显示该插件。"
 msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "选择“是”以在下载插件屏幕中显示网页链接包。"
 
+msgid "Select 'Yes' to shut down immediately instead of starting the descramble."
+msgstr ""
+
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr "选择“是”将任务拆分为单独的操作。"
 
@@ -16076,6 +16108,12 @@ msgstr "选择要查看的存储库提交日志："
 
 msgid "Select a script to run:"
 msgstr "选择要运行的脚本："
+
+msgid "Select a time, when in Standby mode, after which the descramble can proceed."
+msgstr ""
+
+msgid "Select a time, when in Standby, before which descramble can proceed."
+msgstr ""
 
 msgid "Select a tuner"
 msgstr "选择调谐器"
@@ -17123,6 +17161,12 @@ msgstr "设置时间选项"
 
 msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
 msgstr "设置为“禁用”以用空格替换文件和目录名称中的下划线字符“_”。"
+
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby mode before shutting down."
+msgstr ""
+
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
+msgstr ""
 
 msgid "Set to 'Yes', to enable automatic recording of the background timeshift buffer."
 msgstr "设置为“是”，以启用后台分时缓冲区的自动录制。"
@@ -18959,10 +19003,10 @@ msgstr "停止更新，如果正在运行，则退出"
 msgid "Stop time shift"
 msgstr "停止时移"
 
-msgid "Stop time shift and save time shift buffer as movie"
+msgid "Stop time shift and save time shift buffer as a movie"
 msgstr "停止时移并将时移缓冲区保存为电影"
 
-msgid "Stop time shift and save time shift buffer as movie and start recording of current event"
+msgid "Stop time shift and save time shift buffer as a movie and start recording of current event"
 msgstr "停止时移并将时移缓冲区保存为电影同时开始录制当前事件"
 
 msgid "Stop time shift while recording"
@@ -19807,8 +19851,8 @@ msgid "The authors are NOT RESPONSIBLE for DATA LOSS OR DAMAGE!"
 msgstr "作者对 数据丢失 或 损坏 不 承担任何责任！"
 
 msgid ""
-"The available disk space for time shift is less than specified in the settings.\n"
-"What do you want to do ?"
+"The available disk space for time shift buffer is less than specified in the settings.\n"
+"What do you want to do?"
 msgstr ""
 "可用于时移的磁盘空间小于设置中指定的空间。\n"
 "你想让我做什么 ？"
@@ -19832,8 +19876,8 @@ msgid "The bitrate of the video encoder. Larger value improves quality and incre
 msgstr "视频编码器的比特率。 较大的值可提高质量并增加文件大小。"
 
 msgid ""
-"The buffer time for time shift exceeds the specified limit in the settings.\n"
-"What do you want to do ?"
+"The time shift buffer exceeds the limit specified in the settings.\n"
+"What do you want to do?"
 msgstr ""
 "时移的缓冲时间超过设置中指定的限制。\n"
 "你想让我做什么 ？"
@@ -19917,6 +19961,10 @@ msgstr ""
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr "频道图标目录已存在，必须删除。是否要继续？"
+
+#, python-format
+msgid "The process will take approximately %d minutes to complete."
+msgstr ""
 
 #, python-format
 msgid "The results have been written to %s."
@@ -20026,6 +20074,12 @@ msgstr "没有可用的更新。"
 
 msgid "There are pending tasks:"
 msgstr "有待处理的任务："
+
+#, python-format
+msgid "There is %d scrambled recording, which will be unscrambled during Standby."
+msgid_plural "There are %d scrambled recordings, which will be unscrambled during Standby."
+msgstr[0] ""
+msgstr[1] ""
 
 #, python-format
 msgid "There is a risk that your %s %s will not boot or may malfunction after such a large on-line update."
@@ -22502,7 +22556,7 @@ msgstr "要备份你的设置到哪里？"
 msgid "Where do you want to save temporary time shift recordings?"
 msgstr "您希望将临时时移录像保存到哪里？"
 
-msgid "Which event do you want to save permanently?"
+msgid "Which time shift buffer event do you want to save?"
 msgstr "您要永久保存哪个事件？"
 
 msgid "While available"
@@ -22765,12 +22819,12 @@ msgstr "您已选择备份您的设置。按“确定”立即开始备份。"
 msgid "You have chosen to restore the settings. Enigma2 will restart after restore. Press OK to start the restore now."
 msgstr "您已选择恢复设置。Enigma2将在恢复后重新启动。按“确定”立即开始恢复。"
 
-msgid "You have chosen to save the current time shift"
+msgid "You have chosen to save the current time shift buffer"
 msgstr "你已选择保存当前时移"
 
 msgid ""
 "You have chosen to save the current time shift event, but the event has not yet finished\n"
-"What do you want to do ?"
+"What do you want to do?"
 msgstr ""
 "你已选择保存当前时移事件，但该事件还未结束 \n"
 "你想要做什么？"
@@ -22801,7 +22855,7 @@ msgstr ""
 msgid "You seem to be in time shift!"
 msgstr "您似乎在时移中!"
 
-msgid "You seem to be in time shift, Do you want to leave time shift ?"
+msgid "You seem to be in time shift, do you want to leave time shift?"
 msgstr "您似乎在时移中，要离开时移吗？"
 
 msgid "You seem to be in time shift, the service will briefly stop as time shift stops."
