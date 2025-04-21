@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-20 18:15+0000\n"
+"POT-Creation-Date: 2025-04-21 09:40+0000\n"
 "PO-Revision-Date: 2023-08-06 06:22+0000\n"
 "Last-Translator: Salif Mehmed <mail@salif.eu>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/bg/>\n"
@@ -1886,6 +1886,9 @@ msgstr "Добавяне на нов вход за четири канала"
 msgid "Add RecordTimer"
 msgstr "Добавяне на таймер за запис"
 
+msgid "Add Service"
+msgstr ""
+
 msgid "Add Service To Bouquet"
 msgstr "добави сервиз към букет"
 
@@ -1907,11 +1910,17 @@ msgstr ""
 msgid "Add a DNS entry"
 msgstr "Добавяне на запис в DNS"
 
+msgid "Add a RADIO service to the Volume Offset list"
+msgstr ""
+
 msgid "Add a RecordTimer"
 msgstr "Добави записващ таймер"
 
 msgid "Add a RecordTimer for current event"
 msgstr "Добавяне на записващ таймер за текущото събитие"
+
+msgid "Add a TV service to the Volume Offset list"
+msgstr ""
 
 msgid "Add a ZapTimer for current event"
 msgstr "Добавяне на zap таймер за текущото събитие"
@@ -1937,7 +1946,7 @@ msgstr ""
 msgid "Add a new title"
 msgstr "Добавяне на ново заглавие"
 
-msgid "Add a service to the Volume Offsets list"
+msgid "Add a service to the Volume Offset list"
 msgstr ""
 
 msgid "Add a timer for the current event"
@@ -2009,7 +2018,7 @@ msgstr ""
 msgid "Add the current directory as a bookmark"
 msgstr ""
 
-msgid "Add the current service to the Volume Offsets list"
+msgid "Add the current/active service to the Volume Offset list"
 msgstr ""
 
 msgid "Add the selected service to a bouquet or alternative"
@@ -2031,6 +2040,9 @@ msgid "Add/Remove highlighted plugin to/from remove list"
 msgstr ""
 
 msgid "Add/Remove highlighted plugin to/from update list"
+msgstr ""
+
+msgid "Add/Remove the current service to/from the Volume Offset list"
 msgstr ""
 
 msgid "Adding schedule..."
@@ -2672,6 +2684,9 @@ msgid "Auto install log"
 msgstr ""
 
 msgid "Auto multi-selection"
+msgstr ""
+
+msgid "Auto show volume level"
 msgstr ""
 
 msgid "Auto shut down"
@@ -5281,6 +5296,9 @@ msgstr ""
 msgid "Currently Defined Volume Offsets:"
 msgstr ""
 
+msgid "Currently Remembered Volume Levels:"
+msgstr ""
+
 msgid "Custom"
 msgstr "Персонализиран"
 
@@ -5751,6 +5769,9 @@ msgstr ""
 msgid "Defined / Active"
 msgstr "Дефиниран / Активен"
 
+msgid "Defined volume offset"
+msgstr ""
+
 msgid "Defines how fast the time jumps are repeated. Values lower than 500ms may be problematic with NAS."
 msgstr "Определя колко бързо се повтарят времевите скокове. Стойности по-ниски от 500ms може да бъдат проблематични с NAS."
 
@@ -5953,9 +5974,6 @@ msgstr "Изтрийте текущия буфер за изместване н�
 
 msgid "Delete the currently displayed log file"
 msgstr "Изтрийте текущо показания регистрационен файл"
-
-msgid "Delete the currently highlighted service from the Volume Offsets list"
-msgstr ""
 
 msgid "Delete the currently selected timer"
 msgstr ""
@@ -6937,9 +6955,6 @@ msgstr "Разрешаване на BT Audio"
 
 msgid "Enable Bouquet Edit"
 msgstr "активиране на редактиране на букет"
-
-msgid "Enable Dolby Digital / Dolby AC-3 offsets"
-msgstr ""
 
 msgid "Enable EIT EPG"
 msgstr "Разрешаване на EIT EPG"
@@ -8057,6 +8072,9 @@ msgstr ""
 msgid "Fallback Font *"
 msgstr ""
 
+msgid "Fallback Remote Receiver Settings"
+msgstr ""
+
 msgid "Fallback Timer"
 msgstr "Резервен Таймер"
 
@@ -8080,9 +8098,6 @@ msgstr "Резервен отдалечен приемник за DVB-C"
 
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Резервен отдалечен приемник за DVB-T"
-
-msgid "Fallback Remote Receiver Settings"
-msgstr ""
 
 msgid "Fallback tuner setup"
 msgstr "Настройки на резервен тунер"
@@ -10386,6 +10401,9 @@ msgstr ""
 msgid "Last used share: "
 msgstr "Последно използвано споделяне: "
 
+msgid "Last used/set volume"
+msgstr ""
+
 msgctxt "third event: 'third' event label"
 msgid "Later"
 msgstr ""
@@ -12412,9 +12430,6 @@ msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr ""
 
-msgid "Save time shift buffer now and continue recording"
-msgstr "Сега запазете смяната на времето като филм и продължете да записвате"
-
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
 msgstr "Сега използвайте настройката за контраст, за да увеличите максимално яркостта на фона, но се уверете, че все още можете да видите разликата между двете най-ярки нива на нюанси. Ако сте направили това, натиснете OK."
 
@@ -13213,9 +13228,6 @@ msgstr ""
 msgid "Play all audio files in the directory"
 msgstr ""
 
-msgid "Play catch up service archive"
-msgstr ""
-
 msgid "Play audio in background"
 msgstr "Възпроизвеждане на аудио във фонов режим"
 
@@ -13224,6 +13236,9 @@ msgstr "Възпроизвеждане на Аудио-CD..."
 
 msgid "Play back media files"
 msgstr "Възпроизвеждане на медийни файлове"
+
+msgid "Play catch up service archive"
+msgstr ""
 
 msgid "Play entry"
 msgstr "Възпроизвеждане на запис"
@@ -14380,9 +14395,6 @@ msgstr "Запиши следващия"
 msgid "Record now"
 msgstr "Запиши сега"
 
-msgid "Recording started, stopping time shift now."
-msgstr "Записът стартира! Спиране TimeShift сега ..."
-
 #, python-format
 msgid "Record time limited due to conflicting timer:%s"
 msgstr "Времето за запис е ограничено поради конфликт с таймер %s"
@@ -14437,6 +14449,9 @@ msgstr "Записът тече"
 
 msgid "Recording started"
 msgstr "Записът стартира"
+
+msgid "Recording started, stopping time shift now."
+msgstr "Записът стартира! Спиране TimeShift сега ..."
 
 msgid "Recording stopped"
 msgstr "Записът е спрян"
@@ -15448,6 +15463,9 @@ msgstr "Запазете смяната във времето като филм 
 msgid "Save time shift as movie and stop recording"
 msgstr "Запазете смяната на времето като филм и спрете записа"
 
+msgid "Save time shift buffer now and continue recording"
+msgstr "Сега запазете смяната на времето като филм и продължете да записвате"
+
 msgid "Saved lines in script messages"
 msgstr ""
 
@@ -15705,6 +15723,9 @@ msgstr "Изберете 'A' или 'B', ако вашата антенна си
 msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB specifications."
 msgstr "Изберете 'лента', ако използвате 'универсален' конвертор, в противен случай се консултирайте със спецификацията на вашия конвертор."
 
+msgid "Select 'Disabled' to disable all automated volume adjustments. Select 'Defined volume offsets' to assign a specified offset to the service's volume level. Select 'Last used/set volume' to remember the volume level last used for each service."
+msgstr ""
+
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr ""
 
@@ -15737,9 +15758,6 @@ msgstr ""
 
 msgid "Select 'Yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'No'."
 msgstr "Изберете „да“, ако този тунер е свързан към SCR устройството чрез друг тунер, в противен случай изберете „не“."
-
-msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
-msgstr ""
 
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Изберете \"да\" само ако използвате мултипревключвател, който изисква команден сигнал DiSEqC Port-A. За всички други настройки изберете „не“."
@@ -15938,6 +15956,9 @@ msgid "Select 'Yes' to show the channel list after switching between Radio and T
 msgstr "Ако е зададено 'да', списъкът на каналите ще се покаже след превключване между режимите на радиото и телевизор."
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
+msgstr ""
+
+msgid "Select 'Yes' to show the volume level on any automated changes of volume level."
 msgstr ""
 
 msgid "Select 'Yes' to show this plugin in the Plugin Browser."
@@ -17097,6 +17118,10 @@ msgstr ""
 
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Задайте типа на индикацията за прогрес в екрана за избор на канал."
+
+#, python-format
+msgid "Set the volume level for the '%s' service."
+msgstr ""
 
 #, python-format
 msgid "Set the volume offset for the '%s' service."
@@ -19819,13 +19844,6 @@ msgid "The bitrate of the video encoder. Larger value improves quality and incre
 msgstr "Битрейт на видео енкодера. По-голямата стойност подобрява качеството и увеличава размера на файла."
 
 msgid ""
-"The time shift buffer exceeds the limit specified in the settings.\n"
-"What do you want to do?"
-msgstr ""
-"Времето на буфер за TimeShift надвишава определения лимит в настройките.\n"
-"Какво искаш да направиш ?"
-
-msgid ""
 "The channel may support VPS\n"
 " Do you want to enable VPS?"
 msgstr ""
@@ -19931,6 +19949,13 @@ msgstr ""
 
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Времето се умножава по текущия брояч на повторения."
+
+msgid ""
+"The time shift buffer exceeds the limit specified in the settings.\n"
+"What do you want to do?"
+msgstr ""
+"Времето на буфер за TimeShift надвишава определения лимит в настройките.\n"
+"Какво искаш да направиш ?"
 
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
@@ -20666,6 +20691,9 @@ msgstr ""
 
 msgid "Toggle between bouquet/EPG lists"
 msgstr "Превключване между списъци с букети/EPG"
+
+msgid "Toggle between the available TV and RADIO services"
+msgstr ""
 
 msgid "Toggle display of image information"
 msgstr ""
@@ -21988,16 +22016,19 @@ msgstr "Режим волтаж"
 msgid "Volume"
 msgstr "Сила на звука"
 
-msgid "Volume Adjust"
-msgstr "Регулиране на силата на звука"
-
 msgid "Volume Adjust Actions"
 msgstr ""
 
 msgid "Volume Adjust Service Selection"
 msgstr ""
 
+msgid "Volume Adjust Service Selection Actions"
+msgstr ""
+
 msgid "Volume Adjust Settings"
+msgstr ""
+
+msgid "Volume adjustment mode"
 msgstr ""
 
 msgid "Volume down"
@@ -24030,6 +24061,9 @@ msgstr "да (запази фийдове)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Volume Adjust"
+#~ msgstr "Регулиране на силата на звука"
 
 #~ msgid "off"
 #~ msgstr "изключен"

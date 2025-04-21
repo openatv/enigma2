@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-20 18:15+0000\n"
+"POT-Creation-Date: 2025-04-21 09:40+0000\n"
 "PO-Revision-Date: 2021-11-04 23:53+0000\n"
 "Last-Translator: T. Rylle <dk-translation@pm.me>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/da/>\n"
@@ -1886,6 +1886,9 @@ msgstr "Tilføj ny firedobbel Kanalpost"
 msgid "Add RecordTimer"
 msgstr "Tilføj Optagetimer"
 
+msgid "Add Service"
+msgstr ""
+
 msgid "Add Service To Bouquet"
 msgstr "Tilføj kanal til Buket"
 
@@ -1907,11 +1910,17 @@ msgstr "Tilføj Zap-Timer"
 msgid "Add a DNS entry"
 msgstr ""
 
+msgid "Add a RADIO service to the Volume Offset list"
+msgstr ""
+
 msgid "Add a RecordTimer"
 msgstr "Tilføj en optagetimer"
 
 msgid "Add a RecordTimer for current event"
 msgstr "Tilføj en optagetimer for nuværende begivenhed"
+
+msgid "Add a TV service to the Volume Offset list"
+msgstr ""
 
 msgid "Add a ZapTimer for current event"
 msgstr "Tilføj en Zap-Timer for nuværende begivenhed"
@@ -1937,7 +1946,7 @@ msgstr ""
 msgid "Add a new title"
 msgstr "Tilføj en ny titel"
 
-msgid "Add a service to the Volume Offsets list"
+msgid "Add a service to the Volume Offset list"
 msgstr ""
 
 msgid "Add a timer for the current event"
@@ -2009,7 +2018,7 @@ msgstr ""
 msgid "Add the current directory as a bookmark"
 msgstr ""
 
-msgid "Add the current service to the Volume Offsets list"
+msgid "Add the current/active service to the Volume Offset list"
 msgstr ""
 
 msgid "Add the selected service to a bouquet or alternative"
@@ -2031,6 +2040,9 @@ msgid "Add/Remove highlighted plugin to/from remove list"
 msgstr ""
 
 msgid "Add/Remove highlighted plugin to/from update list"
+msgstr ""
+
+msgid "Add/Remove the current service to/from the Volume Offset list"
 msgstr ""
 
 msgid "Adding schedule..."
@@ -2673,6 +2685,9 @@ msgid "Auto install log"
 msgstr ""
 
 msgid "Auto multi-selection"
+msgstr ""
+
+msgid "Auto show volume level"
 msgstr ""
 
 msgid "Auto shut down"
@@ -5291,6 +5306,9 @@ msgstr ""
 msgid "Currently Defined Volume Offsets:"
 msgstr ""
 
+msgid "Currently Remembered Volume Levels:"
+msgstr ""
+
 msgid "Custom"
 msgstr "Brugerdefineret"
 
@@ -5761,6 +5779,9 @@ msgstr ""
 msgid "Defined / Active"
 msgstr ""
 
+msgid "Defined volume offset"
+msgstr ""
+
 msgid "Defines how fast the time jumps are repeated. Values lower than 500ms may be problematic with NAS."
 msgstr "Definer hvor hurtig tidshop bliver gentaget. Værdier mindre end 0,5s kan være problematiske med NAS."
 
@@ -5962,9 +5983,6 @@ msgid "Delete the current time shift buffer and restart time shift"
 msgstr "Slet nuværende Timeshift buffer og genstart Timeshift"
 
 msgid "Delete the currently displayed log file"
-msgstr ""
-
-msgid "Delete the currently highlighted service from the Volume Offsets list"
 msgstr ""
 
 msgid "Delete the currently selected timer"
@@ -6943,9 +6961,6 @@ msgstr "Aktiver BT Lyd"
 
 msgid "Enable Bouquet Edit"
 msgstr "Aktiver Buketredigering"
-
-msgid "Enable Dolby Digital / Dolby AC-3 offsets"
-msgstr ""
 
 msgid "Enable EIT EPG"
 msgstr "Aktiver EIT EPG"
@@ -8064,6 +8079,9 @@ msgstr ""
 msgid "Fallback Font *"
 msgstr ""
 
+msgid "Fallback Remote Receiver Settings"
+msgstr ""
+
 msgid "Fallback Timer"
 msgstr ""
 
@@ -8087,9 +8105,6 @@ msgstr "Fallback remote receiver URL"
 
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Fallback remote receiver URL"
-
-msgid "Fallback Remote Receiver Settings"
-msgstr ""
 
 msgid "Fallback tuner setup"
 msgstr "Fallback remote receiver URL"
@@ -10422,6 +10437,9 @@ msgstr ""
 msgid "Last used share: "
 msgstr "Sidst brugte delnig: "
 
+msgid "Last used/set volume"
+msgstr ""
+
 msgctxt "third event: 'third' event label"
 msgid "Later"
 msgstr "Senere"
@@ -12490,9 +12508,6 @@ msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "Nu"
 
-msgid "Save time shift buffer now and continue recording"
-msgstr "Gem nu Timeshift som film og fortsæt optagelse"
-
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
 msgstr "Bruge nu indstillingen Kontrast til at skrue så meget som muligt op for Lystyrken på baggrunden, men vær sikker på at du stadig kan se forskel mellem de 2 lyseste skyggerniveauer. Når du har gjort det, tryk OK."
 
@@ -13304,9 +13319,6 @@ msgstr ""
 msgid "Play all audio files in the directory"
 msgstr ""
 
-msgid "Play catch up service archive"
-msgstr ""
-
 msgid "Play audio in background"
 msgstr "Afspil lyd i baggrunden"
 
@@ -13315,6 +13327,9 @@ msgstr "Afspil lyd-CD..."
 
 msgid "Play back media files"
 msgstr "Afspil mediefiler"
+
+msgid "Play catch up service archive"
+msgstr ""
 
 msgid "Play entry"
 msgstr "Afspil post"
@@ -14478,9 +14493,6 @@ msgstr "Optag næste"
 msgid "Record now"
 msgstr "Optag nu"
 
-msgid "Recording started, stopping time shift now."
-msgstr "Optagelse startet! Stopper Timeshift nu..."
-
 #, python-format
 msgid "Record time limited due to conflicting timer:%s"
 msgstr "Optagelsestid begrænset på grund af konfliktende Timer %s"
@@ -14535,6 +14547,9 @@ msgstr "Optagelse køre"
 
 msgid "Recording started"
 msgstr "Optagelse sstartede"
+
+msgid "Recording started, stopping time shift now."
+msgstr "Optagelse startet! Stopper Timeshift nu..."
 
 msgid "Recording stopped"
 msgstr "Optagelse stoppede"
@@ -15552,6 +15567,9 @@ msgstr "Gem Timeshift som film og fortsæt med optagelse"
 msgid "Save time shift as movie and stop recording"
 msgstr "Gem Timeshift som film og stands optagelse"
 
+msgid "Save time shift buffer now and continue recording"
+msgstr "Gem nu Timeshift som film og fortsæt optagelse"
+
 msgid "Saved lines in script messages"
 msgstr ""
 
@@ -15814,6 +15832,9 @@ msgstr "Vælg 'A' eller 'B' hvis dit antennesystem kræver dette, ellers vælges
 msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB specifications."
 msgstr "Vælg 'bånd' hvis der bruges en 'universal LNB, ellers se databladet til din LBN."
 
+msgid "Select 'Disabled' to disable all automated volume adjustments. Select 'Defined volume offsets' to assign a specified offset to the service's volume level. Select 'Last used/set volume' to remember the volume level last used for each service."
+msgstr ""
+
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr ""
 
@@ -15846,9 +15867,6 @@ msgstr ""
 
 msgid "Select 'Yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'No'."
 msgstr "Vælg 'Ja' hvis denne Tuner er forbundet til SCR enheden gennem en anden Tuner, eller vælges 'Nej'."
-
-msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
-msgstr ""
 
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Vælg kun 'Ja' hvid du bruger en multiswitch som kræver en DiSEqC Port-A kommandosignal. Til alle andre opsætninger vælges 'Nej'."
@@ -16046,6 +16064,9 @@ msgid "Select 'Yes' to show the channel list after switching between Radio and T
 msgstr "Hvis sat til'Ja' vil kanallisten blive vist når der skiftes mellem Radio og TV tilstande."
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
+msgstr ""
+
+msgid "Select 'Yes' to show the volume level on any automated changes of volume level."
 msgstr ""
 
 msgid "Select 'Yes' to show this plugin in the Plugin Browser."
@@ -17212,6 +17233,10 @@ msgstr ""
 
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Sæt typen af fremgangsindikation i kanalvalgsskærm."
+
+#, python-format
+msgid "Set the volume level for the '%s' service."
+msgstr ""
 
 #, python-format
 msgid "Set the volume offset for the '%s' service."
@@ -19968,13 +19993,6 @@ msgid "The bitrate of the video encoder. Larger value improves quality and incre
 msgstr "Bithastigheden af videoindkoder. Høje værdier forbedre kvalitet og øger filstørelse."
 
 msgid ""
-"The time shift buffer exceeds the limit specified in the settings.\n"
-"What do you want to do?"
-msgstr ""
-"Buffertiden for Timeshift er overstiger den grænse der er angivet i indstillingerne.\n"
-"Hvad ønsker du at gøre ?"
-
-msgid ""
 "The channel may support VPS\n"
 " Do you want to enable VPS?"
 msgstr ""
@@ -20080,6 +20098,13 @@ msgstr ""
 
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Tiden bliver ganget med den aktuelle gentagelsestæller."
+
+msgid ""
+"The time shift buffer exceeds the limit specified in the settings.\n"
+"What do you want to do?"
+msgstr ""
+"Buffertiden for Timeshift er overstiger den grænse der er angivet i indstillingerne.\n"
+"Hvad ønsker du at gøre ?"
 
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
@@ -20817,6 +20842,9 @@ msgstr ""
 
 msgid "Toggle between bouquet/EPG lists"
 msgstr "Skift mellem Buketter/EPG lister"
+
+msgid "Toggle between the available TV and RADIO services"
+msgstr ""
 
 msgid "Toggle display of image information"
 msgstr ""
@@ -22151,16 +22179,19 @@ msgstr "Spændingstilstand"
 msgid "Volume"
 msgstr "Lydstyrke"
 
-msgid "Volume Adjust"
-msgstr "Lydstyrkejustering"
-
 msgid "Volume Adjust Actions"
 msgstr ""
 
 msgid "Volume Adjust Service Selection"
 msgstr ""
 
+msgid "Volume Adjust Service Selection Actions"
+msgstr ""
+
 msgid "Volume Adjust Settings"
+msgstr ""
+
+msgid "Volume adjustment mode"
 msgstr ""
 
 msgid "Volume down"
@@ -24214,6 +24245,9 @@ msgstr "ja (behold feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Volume Adjust"
+#~ msgstr "Lydstyrkejustering"
 
 #~ msgid "off"
 #~ msgstr "Slukket"

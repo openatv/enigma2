@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-20 18:15+0000\n"
-"PO-Revision-Date: 2025-04-11 17:59+0000\n"
+"POT-Creation-Date: 2025-04-21 09:40+0000\n"
+"PO-Revision-Date: 2025-04-21 11:24+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.11.1-dev\n"
 
 msgid ""
 "\n"
@@ -921,7 +921,7 @@ msgstr[2] "Aktualizovaných bolo %d balíkov s katalógovým zdrojom."
 
 #, python-format
 msgid "%d jobs are running in the background!"
-msgstr ""
+msgstr "Na pozadí prebiehajú úlohy. Ich počet je: %d!"
 
 #, python-format
 msgid "%d kB"
@@ -1921,6 +1921,9 @@ msgstr "Pridať nový záznam pre Quad kanál"
 msgid "Add RecordTimer"
 msgstr "Pridať časovač nahrávania"
 
+msgid "Add Service"
+msgstr "Pridať stanicu/službu"
+
 msgid "Add Service To Bouquet"
 msgstr "Pridať stanicu do prehľadu"
 
@@ -1942,11 +1945,17 @@ msgstr "Pridať časovač prepnutia"
 msgid "Add a DNS entry"
 msgstr "Pridať záznam DNS"
 
+msgid "Add a RADIO service to the Volume Offset list"
+msgstr "Pridať RÁDIOVÚ stanicu/službu do zoznamu pre úpravu hlasitosti"
+
 msgid "Add a RecordTimer"
 msgstr "Pridať časovač nahrávania"
 
 msgid "Add a RecordTimer for current event"
 msgstr "Pridať časovač nahrávania pre aktuálnu udalosť"
+
+msgid "Add a TV service to the Volume Offset list"
+msgstr "Pridať TV stanicu do zoznamu pre posun hlasitosti"
 
 msgid "Add a ZapTimer for current event"
 msgstr "Pridať časovač prepnutia pre aktuálnu udalosť"
@@ -1972,7 +1981,7 @@ msgstr "Pridať nový časovač"
 msgid "Add a new title"
 msgstr "Pridať nový titul"
 
-msgid "Add a service to the Volume Offsets list"
+msgid "Add a service to the Volume Offset list"
 msgstr "Pridať stanicu do zoznamu pre posun hlasitosti"
 
 msgid "Add a timer for the current event"
@@ -2044,7 +2053,7 @@ msgstr "Pridať služby do tohto prehľadu?"
 msgid "Add the current directory as a bookmark"
 msgstr "Pridať aktuálny priečinok ako záložku"
 
-msgid "Add the current service to the Volume Offsets list"
+msgid "Add the current/active service to the Volume Offset list"
 msgstr "Pridať aktuálnu stanicu do zoznamu pre posun hlasitosti"
 
 msgid "Add the selected service to a bouquet or alternative"
@@ -2067,6 +2076,9 @@ msgstr "Pridať/odstránť zvýraznený plugin do alebo zo zoznamu na odstránen
 
 msgid "Add/Remove highlighted plugin to/from update list"
 msgstr "Pridať/odstránť zvýraznený plugin do alebo zo zoznamu na aktualizáciu"
+
+msgid "Add/Remove the current service to/from the Volume Offset list"
+msgstr "Pridať/odstrániť aktuálnu stanicu do/zo zoznamu pre posun hlasitosti"
 
 msgid "Adding schedule..."
 msgstr "Pridáva sa plán..."
@@ -2355,7 +2367,7 @@ msgstr "Diaľkové ovládanie Amlogic"
 
 #, python-format
 msgid "Amount %d / Success %d / Failed %d"
-msgstr ""
+msgstr "Počet: %d / Úspešných: %d / Neúspešných: %d"
 
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr "Prebehne pokus o zaznamenanie aktuálneho stavu TV. Ak to nie je možné kvôli nesprávnym alebo chýbajúcim správam o stave, môže dôjsť k neočakávanej reakcii prijímača. Ide však o pokus dosiahnuť lepšiu reakciu na rôzne podmienky pri fungovaní prijímača."
@@ -2708,6 +2720,9 @@ msgstr "Denník automatickej inštalácie"
 
 msgid "Auto multi-selection"
 msgstr "Automatický viacnásobný výber"
+
+msgid "Auto show volume level"
+msgstr "Automatické zobrazenie úrovne hlasitosti"
 
 msgid "Auto shut down"
 msgstr "Automatické vypnutie"
@@ -3734,7 +3749,7 @@ msgid "Catalan / Valencian"
 msgstr "katalánčina/valencijčina"
 
 msgid "Catch Up Player Actions"
-msgstr ""
+msgstr "Akcie prehrávača Catch Up"
 
 msgid "Cayman Islands"
 msgstr "Kajmanské ostrovy"
@@ -5328,6 +5343,9 @@ msgstr ""
 msgid "Currently Defined Volume Offsets:"
 msgstr "Aktuálne definované posuny hlasitosti:"
 
+msgid "Currently Remembered Volume Levels:"
+msgstr "Úrovne hlasitosti aktuálne uložené v pamäti:"
+
 msgid "Custom"
 msgstr "Používateľské"
 
@@ -5798,6 +5816,9 @@ msgstr "Definovať možnosti pripojenia systému súborov."
 msgid "Defined / Active"
 msgstr "Definované/aktívne"
 
+msgid "Defined volume offset"
+msgstr "Definovaný posun hlasitosti"
+
 msgid "Defines how fast the time jumps are repeated. Values lower than 500ms may be problematic with NAS."
 msgstr "Určuje, ako rýchlo sa opakujú časové skoky. Hodnoty menšie ako 500 ms môžu byť v kombinácii s NAS problematické."
 
@@ -6001,9 +6022,6 @@ msgstr "Vymazať aktuálnu vyrov. pamäť pre timeshift a reštartovať ho"
 msgid "Delete the currently displayed log file"
 msgstr "Vymazať práve zobrazený súbor so záznamom"
 
-msgid "Delete the currently highlighted service from the Volume Offsets list"
-msgstr "Vymazať aktuálne zvýraznenú stanicu zo zoznamu pre posun hlasitosti"
-
 msgid "Delete the currently selected timer"
 msgstr "Vymazať práve vybraný časovač"
 
@@ -6063,19 +6081,19 @@ msgid "Descending"
 msgstr "Zostupne"
 
 msgid "Descramble end time"
-msgstr ""
+msgstr "Čas ukončenia dekódovania"
 
 msgid "Descramble in Standby"
-msgstr ""
+msgstr "Dekódovať v pohotovostnom režime"
 
 msgid "Descramble in Standby finished"
-msgstr ""
+msgstr "Dekódovanie v pohotovostnom režime bolo dokončené"
 
 msgid "Descramble recordings before Shutdown"
-msgstr ""
+msgstr "Dekódovať nahrávky pred vypnutím"
 
 msgid "Descramble start time"
-msgstr ""
+msgstr "Čas spustenia dekódovania"
 
 msgid "Descrambling options"
 msgstr "Možnosti dekódovania"
@@ -6993,9 +7011,6 @@ msgstr "Zapnúť BT audio"
 
 msgid "Enable Bouquet Edit"
 msgstr "Zapnúť úpravu prehľadu"
-
-msgid "Enable Dolby Digital / Dolby AC-3 offsets"
-msgstr "Aktivovať posuny Dolby Digital/Dolby AC-3"
 
 msgid "Enable EIT EPG"
 msgstr "Povoliť EIT EPG"
@@ -8117,6 +8132,9 @@ msgstr "Záložné rozhranie API nevrátilo platný výsledok."
 msgid "Fallback Font *"
 msgstr "Záložný font *"
 
+msgid "Fallback Remote Receiver Settings"
+msgstr "Nastavenie záložného vzdialeného prijímača"
+
 msgid "Fallback Timer"
 msgstr "Záložný časovač"
 
@@ -8140,9 +8158,6 @@ msgstr "Záložný vzdialený prijímač pre DVB-C"
 
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Záložný vzdialený prijímač pre DVB-T"
-
-msgid "Fallback Remote Receiver Settings"
-msgstr "Nastavenie záložného vzdialeného prijímača"
 
 msgid "Fallback tuner setup"
 msgstr "Nastavenie záložného tuneru"
@@ -10450,6 +10465,9 @@ msgstr "Naposledy použitý stĺpec"
 msgid "Last used share: "
 msgstr "Posledné použité zdieľanie: "
 
+msgid "Last used/set volume"
+msgstr "Naposledy použitá/nastavená hlasitosť"
+
 msgctxt "third event: 'third' event label"
 msgid "Later"
 msgstr "Neskôr"
@@ -12480,9 +12498,6 @@ msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "Teraz"
 
-msgid "Save time shift buffer now and continue recording"
-msgstr "Uložiť timeshift ako film a pokračovať v nahrávaní"
-
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
 msgstr "Teraz pomocou nastavenia kontrastu čo najviac zvýšte jas pozadia tak, aby ste stále videli rozdiel medzi dvomi najjasnejšími úrovňami sivej. Po skončení stlačte tlačidlo OK."
 
@@ -13281,9 +13296,6 @@ msgstr "Prehrať službu/stanicu bez prenosu streamu"
 msgid "Play all audio files in the directory"
 msgstr "Prehrať všetky zvukové súbory v priečinku"
 
-msgid "Play catch up service archive"
-msgstr ""
-
 msgid "Play audio in background"
 msgstr "Prehrávať zvuk na pozadí"
 
@@ -13292,6 +13304,9 @@ msgstr "Prehrať audio CD…"
 
 msgid "Play back media files"
 msgstr "Prehrať mediálne súbory"
+
+msgid "Play catch up service archive"
+msgstr "Prehrať archív služby Catch Up"
 
 msgid "Play entry"
 msgstr "Prehrať položku"
@@ -14453,9 +14468,6 @@ msgstr "Nahrať nasledujúce"
 msgid "Record now"
 msgstr "Nahrávať hneď"
 
-msgid "Recording started, stopping time shift now."
-msgstr "Nahrávanie spustené! Zastavuje sa timeshift…"
-
 #, python-format
 msgid "Record time limited due to conflicting timer:%s"
 msgstr "Čas nahrávania je obmedzený kvôli konfliktu časovačov %s"
@@ -14510,6 +14522,9 @@ msgstr "Prebieha nahrávanie"
 
 msgid "Recording started"
 msgstr "Nahrávanie spustené"
+
+msgid "Recording started, stopping time shift now."
+msgstr "Nahrávanie spustené, zastavuje sa timeshift."
 
 msgid "Recording stopped"
 msgstr "Nahrávanie zastavené"
@@ -15521,6 +15536,9 @@ msgstr "Uložiť timeshift ako film a pokračovať v nahrávaní"
 msgid "Save time shift as movie and stop recording"
 msgstr "Uložiť timeshift ako film a zastaviť nahrávanie"
 
+msgid "Save time shift buffer now and continue recording"
+msgstr "Uložiť timeshift ako film a pokračovať v nahrávaní"
+
 msgid "Saved lines in script messages"
 msgstr "Uložené riadky v správach skriptov"
 
@@ -15528,7 +15546,7 @@ msgid "Saving EPG Cache..."
 msgstr "Uložiť EPG cache…"
 
 msgid "Saving time shift buffer, this might take a while."
-msgstr "TimeShift sa ukladá ako film. Môže to chvíľu trvať!"
+msgstr "Ukladá sa vyrovnávacia pamäť funkcie timeshift. Môže to chvíľu trvať."
 
 msgid "Saving time shift files"
 msgstr "Ukladajú sa súbory timeshiftu"
@@ -15781,6 +15799,9 @@ msgstr "Ak si to vyžaduje anténny systém, vyberte možnosť 'A' alebo 'B'. In
 msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB specifications."
 msgstr "Ak sa používa 'univerzálny' LNB, vyberte 'pásmo' (band), v opačnom prípade si pozrite špecifikácie vášho LNB."
 
+msgid "Select 'Disabled' to disable all automated volume adjustments. Select 'Defined volume offsets' to assign a specified offset to the service's volume level. Select 'Last used/set volume' to remember the volume level last used for each service."
+msgstr "Ak chcete deaktivovať všetky automatické úpravy hlasitosti, vyberte voľbu 'Vypnuté'. Ak chcete prideliť určitý posun úrovne hlasitosti ku stanici/službe, vyberte voľbu 'Definované posuny hlasitosti'. Ak chcete pre každú stanicu/službu uložiť poslednú použitú úroveň hlasitosti, vyberte voľbu 'Naposledy použitá/nastavená hlasitosť'."
+
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr "Na spustenie pomocníka pre CI+ helper, zvoľte možnosť 'Zapnúť'."
 
@@ -15813,9 +15834,6 @@ msgstr "Ak je pred aktivovaním časovača potrebné skontrolovať sieťovú pre
 
 msgid "Select 'Yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'No'."
 msgstr "Ak je tento tuner pripojený na SCR zariadenie prostredníctvom iného tunera, vyberte možnosť 'áno'. Inak vyberte možnosť 'nie'."
-
-msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
-msgstr "Ak sa má použiť prispôsobenie hlasitosti na zvukové stopy Dolby, vyberte voľbu 'Áno'."
 
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Ak používate multiprepínač, ktorý vyžaduje príkazový signál DiSEqC Port-A, vyberte možnosť 'Áno'. Pre všetky ostatné nastavenia vyberte 'Nie'."
@@ -16015,6 +16033,9 @@ msgstr "Ak je nastavené na 'áno', po prepnutí medzi rádiami/TV kanálmi sa z
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
 msgstr "Ak chcete v zozname priečinkov zobraziť aktuálny priečinok, vyberte možnosť 'Áno'. Táto zmena sa uplatní až po reštartovaní Správcu súborov."
 
+msgid "Select 'Yes' to show the volume level on any automated changes of volume level."
+msgstr "Ak chcete zobraziť úroveň hlasitosti pri akejkoľvek automatickej zmene, vyberte voľbu 'Áno'."
+
 msgid "Select 'Yes' to show this plugin in the Plugin Browser."
 msgstr "Ak sa má tento plugin zobrazovať v prehliadači pluginov, vyberte 'Áno'."
 
@@ -16022,7 +16043,7 @@ msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Ak sa majú na obrazovke Stiahnuť pluginy zobrazovať aj balíčky webových odkazov, vyberte možnosť 'Áno'."
 
 msgid "Select 'Yes' to shut down immediately instead of starting the descramble."
-msgstr ""
+msgstr "Pre okamžité vypnutie (namiesto spustenia dekódovania), vyberte možnosť 'Áno'."
 
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr "Pre rozdelenie úloh na osobitné akcie, vyberte možnosť 'Áno'."
@@ -16158,10 +16179,10 @@ msgid "Select a script to run:"
 msgstr "Vyberte skript na spustenie:"
 
 msgid "Select a time, when in Standby mode, after which the descramble can proceed."
-msgstr ""
+msgstr "Vyberte čas, v pohotovostnom režime, po ktorom môže dekódovanie pokračovať."
 
 msgid "Select a time, when in Standby, before which descramble can proceed."
-msgstr ""
+msgstr "Vyberte čas, v pohotovostnom režime, pred ktorým môže dekódovanie pokračovať."
 
 msgid "Select a tuner"
 msgstr "Vyberte tuner"
@@ -17183,6 +17204,10 @@ msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Nastavenie typu zobrazenia indikátora priebehu na obrazovke výberu kanála."
 
 #, python-format
+msgid "Set the volume level for the '%s' service."
+msgstr "Nastavte úroveň hlasitosti pre stanicu/službu '%s'."
+
+#, python-format
 msgid "Set the volume offset for the '%s' service."
 msgstr "Nastaviť posun hlasitosti pre stanicu '%s'."
 
@@ -17211,10 +17236,10 @@ msgid "Set to 'Disabled' to replace underscore characters, '_', in file and dire
 msgstr "Ak sa majú v názvoch priečinkov súborov nahradiť znaky popdčiarknutia '_' medzerami, nastavte túto voľbu na 'Zakázané'."
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby mode before shutting down."
-msgstr ""
+msgstr "Ak chcete pred vypnutím najskôr v pohotovostnom režime dekódovať nahrávky čakajúce vo fronte, nastavte túto voľbu na 'Zapnuté'."
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
-msgstr ""
+msgstr "Ak chcete v pohotovostnom režime dekódovať nahrávky čakajúce vo fronte, nastavte túto voľbu na 'Zapnuté'."
 
 msgid "Set to 'Yes', to enable automatic recording of the background timeshift buffer."
 msgstr "Nastavte na 'Áno', pre zapnutie automatického nahrávania timeshiftu na pozadí."
@@ -19926,13 +19951,6 @@ msgid "The bitrate of the video encoder. Larger value improves quality and incre
 msgstr "Dátový tok video enkódera. Vyššia hodnota zlepší kvalitu a zvýši veľkosť súboru."
 
 msgid ""
-"The time shift buffer exceeds the limit specified in the settings.\n"
-"What do you want to do?"
-msgstr ""
-"Čas vyrovnávacej pamäte pre timeshift prekračuje limit zadaný v nastaveniach.\n"
-"Čo sa má urobiť?"
-
-msgid ""
 "The channel may support VPS\n"
 " Do you want to enable VPS?"
 msgstr ""
@@ -20014,7 +20032,7 @@ msgstr "Priečiok pre picony už existuje a musí sa odstrániť. Má sa pokrač
 
 #, python-format
 msgid "The process will take approximately %d minutes to complete."
-msgstr ""
+msgstr "Čas potrebný na dokončenie procesu: asi %d min."
 
 #, python-format
 msgid "The results have been written to %s."
@@ -20048,6 +20066,13 @@ msgstr ""
 
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Čas sa vynásobí aktuálnym počítadlom opakovaní."
+
+msgid ""
+"The time shift buffer exceeds the limit specified in the settings.\n"
+"What do you want to do?"
+msgstr ""
+"Čas vyrovnávacej pamäte pre timeshift prekračuje limit zadaný v nastaveniach.\n"
+"Čo sa má urobiť?"
 
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
@@ -20128,9 +20153,9 @@ msgstr "Existujú čakajúce úlohy:"
 #, python-format
 msgid "There is %d scrambled recording, which will be unscrambled during Standby."
 msgid_plural "There are %d scrambled recordings, which will be unscrambled during Standby."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Existuje %d kódovaná nahrávka, ktorá bude dekódovaná počas pohotovostného režimu."
+msgstr[1] "Existujú %d kódované nahrávky, ktoré budú dekódované počas pohotovostného režimu."
+msgstr[2] "Existuje %d kódovaných nahrávok, ktoré budú dekódované počas pohotovostného režimu."
 
 #, python-format
 msgid "There is a risk that your %s %s will not boot or may malfunction after such a large on-line update."
@@ -20791,6 +20816,9 @@ msgstr "Zapnúť/vypnúť automatické obnovovanie"
 
 msgid "Toggle between bouquet/EPG lists"
 msgstr "Prepnúť medzi zoznamami prehľadov/EPG"
+
+msgid "Toggle between the available TV and RADIO services"
+msgstr "Prepnúť medzi dostupný TV a RÁDIO stanicami/službami"
 
 msgid "Toggle display of image information"
 msgstr "Prepnúť zobrazenie informácií o image"
@@ -22147,17 +22175,20 @@ msgstr "Režim napätia"
 msgid "Volume"
 msgstr "Hlasitosť"
 
-msgid "Volume Adjust"
-msgstr "Prispôsobenie hlasitosti"
-
 msgid "Volume Adjust Actions"
 msgstr "Akcie nastavenia hlasitosti"
 
 msgid "Volume Adjust Service Selection"
 msgstr "Výber stanice na úpravu hlasitosti"
 
+msgid "Volume Adjust Service Selection Actions"
+msgstr "Akcie výberu stanice pre úpravu hlasitosti"
+
 msgid "Volume Adjust Settings"
 msgstr "Nastavenia úpravy hlasitosti"
+
+msgid "Volume adjustment mode"
+msgstr "Režim úpravy hlasitosti"
 
 msgid "Volume down"
 msgstr "Zníženie hlasitosti"
@@ -24198,6 +24229,18 @@ msgstr "áno (zachovať zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Delete the currently highlighted service from the Volume Offsets list"
+#~ msgstr "Vymazať aktuálne zvýraznenú stanicu zo zoznamu pre posun hlasitosti"
+
+#~ msgid "Enable Dolby Digital / Dolby AC-3 offsets"
+#~ msgstr "Aktivovať posuny Dolby Digital/Dolby AC-3"
+
+#~ msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
+#~ msgstr "Ak sa má použiť prispôsobenie hlasitosti na zvukové stopy Dolby, vyberte voľbu 'Áno'."
+
+#~ msgid "Volume Adjust"
+#~ msgstr "Prispôsobenie hlasitosti"
 
 #~ msgid "off"
 #~ msgstr "vyp."

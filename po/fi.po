@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-20 18:15+0000\n"
+"POT-Creation-Date: 2025-04-21 09:40+0000\n"
 "PO-Revision-Date: 2025-04-21 04:10+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
@@ -1889,6 +1889,9 @@ msgstr "Lisää uusi lähetin ryhmä"
 msgid "Add RecordTimer"
 msgstr "Lisää ajastus"
 
+msgid "Add Service"
+msgstr ""
+
 msgid "Add Service To Bouquet"
 msgstr "Lisää kanava suosikkilistalle"
 
@@ -1910,11 +1913,17 @@ msgstr "Lisää kanavanvaihto ajastus"
 msgid "Add a DNS entry"
 msgstr "Lisää DNS merkintä"
 
+msgid "Add a RADIO service to the Volume Offset list"
+msgstr ""
+
 msgid "Add a RecordTimer"
 msgstr "Lisää ajastus"
 
 msgid "Add a RecordTimer for current event"
 msgstr "Lisää tallennusajastus tähän ohjelmaan"
+
+msgid "Add a TV service to the Volume Offset list"
+msgstr ""
 
 msgid "Add a ZapTimer for current event"
 msgstr "Lisää kanavanvaihtoajastus tähän ohjelmaan"
@@ -1940,7 +1949,7 @@ msgstr "Lisää uusi ajastus"
 msgid "Add a new title"
 msgstr "Lisää uusi tallenne"
 
-msgid "Add a service to the Volume Offsets list"
+msgid "Add a service to the Volume Offset list"
 msgstr "Lisää kanavan Äänen voimakkuuden Offsetti listalle"
 
 msgid "Add a timer for the current event"
@@ -2012,7 +2021,7 @@ msgstr "Lisää kanava tähän kanavalistaan?"
 msgid "Add the current directory as a bookmark"
 msgstr "Lisää nykyinen hakemisto kirjanmerkiksi"
 
-msgid "Add the current service to the Volume Offsets list"
+msgid "Add the current/active service to the Volume Offset list"
 msgstr "Lisää nykyinen kanava Äänen voimakkuuden Offsetti listalle"
 
 msgid "Add the selected service to a bouquet or alternative"
@@ -2035,6 +2044,9 @@ msgstr "Lisää / Poista korostettu lisäosa lataus listalta"
 
 msgid "Add/Remove highlighted plugin to/from update list"
 msgstr "Lisää / Poista korostettu lisäosa päivitys listalle"
+
+msgid "Add/Remove the current service to/from the Volume Offset list"
+msgstr ""
 
 msgid "Adding schedule..."
 msgstr "Lisätään aikataulu..."
@@ -2680,6 +2692,9 @@ msgstr "Automaattinen asennusloki"
 
 msgid "Auto multi-selection"
 msgstr "Automaattinen valinta"
+
+msgid "Auto show volume level"
+msgstr ""
 
 msgid "Auto shut down"
 msgstr "Automaattinen sammutus"
@@ -5299,6 +5314,9 @@ msgstr ""
 msgid "Currently Defined Volume Offsets:"
 msgstr "Tällä hetkellä määritellyt Äänen voimakkuuden poikkeamat"
 
+msgid "Currently Remembered Volume Levels:"
+msgstr ""
+
 msgid "Custom"
 msgstr "Muokattu"
 
@@ -5769,6 +5787,9 @@ msgstr "Määrittele tiedosto järjestelmäasetukset."
 msgid "Defined / Active"
 msgstr "Määritetty / Aktiivinen"
 
+msgid "Defined volume offset"
+msgstr ""
+
 msgid "Defines how fast the time jumps are repeated. Values lower than 500ms may be problematic with NAS."
 msgstr "Määrittää, kuinka nopeasti aikahyppy toistetaan. Alle 500ms (0.5s) arvot voivat aiheuttaa ongelmia NAS-levyjen kanssa."
 
@@ -5971,9 +5992,6 @@ msgstr "Poista nykyinen aikasiirtopuskuri ja käynnistä ajansiirto uudelleen"
 
 msgid "Delete the currently displayed log file"
 msgstr "Poista näkyvissä oleva lokitiedosto"
-
-msgid "Delete the currently highlighted service from the Volume Offsets list"
-msgstr "Poista nykyinen korostettu kanavan äänen voimakkuuden Offsets listasta"
 
 msgid "Delete the currently selected timer"
 msgstr "Poistaaksesi vain valittu ajastus"
@@ -6963,9 +6981,6 @@ msgstr "Aktivoi Bluetooth Ääni"
 
 msgid "Enable Bouquet Edit"
 msgstr "Kanavalistojen lisäys ja poisto"
-
-msgid "Enable Dolby Digital / Dolby AC-3 offsets"
-msgstr "Ota Dolby Digital / Dolby AC-3 offsetti käyttöön"
 
 msgid "Enable EIT EPG"
 msgstr "Ota käyttöön EIT EPG"
@@ -8085,6 +8100,9 @@ msgstr "Fallback API ei löytänyt oikeaa tulosta."
 msgid "Fallback Font *"
 msgstr "Toissijainen Fontti *"
 
+msgid "Fallback Remote Receiver Settings"
+msgstr "Etävastaanottimen asetukset"
+
 msgid "Fallback Timer"
 msgstr "Vara ajastin"
 
@@ -8108,9 +8126,6 @@ msgstr "Varaviritin DVB-C"
 
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Varaviritin DVB-T"
-
-msgid "Fallback Remote Receiver Settings"
-msgstr "Etävastaanottimen asetukset"
 
 msgid "Fallback tuner setup"
 msgstr "Etävastaanotin asetukset"
@@ -10422,6 +10437,9 @@ msgstr "Viimeksi käytetty sarake"
 msgid "Last used share: "
 msgstr "Viimeksi käytetty jako: "
 
+msgid "Last used/set volume"
+msgstr ""
+
 msgctxt "third event: 'third' event label"
 msgid "Later"
 msgstr "Myöhemmin"
@@ -12459,9 +12477,6 @@ msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "Nyt"
 
-msgid "Save time shift buffer now and continue recording"
-msgstr "Muunna ajansiirto tallenteeksi ja jatka tallentamista"
-
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
 msgstr "Säädä kontrastisäädöllä tausta mahdollisimman valkoiseksi. Varmista, että näet yhä kahden kirkkaimman sävyn eron. Kun olet tyytyväinen tulokseen, paina OK."
 
@@ -13260,9 +13275,6 @@ msgstr "Toista kanava ilman striimin välitystä"
 msgid "Play all audio files in the directory"
 msgstr "Toista kaikki hakemiston äänitiedostot"
 
-msgid "Play catch up service archive"
-msgstr ""
-
 msgid "Play audio in background"
 msgstr "Toista ääni taustalla"
 
@@ -13271,6 +13283,9 @@ msgstr "Toista ääni-CD."
 
 msgid "Play back media files"
 msgstr "Toista mediatiedostoja"
+
+msgid "Play catch up service archive"
+msgstr ""
 
 msgid "Play entry"
 msgstr "Toista"
@@ -14430,9 +14445,6 @@ msgstr "Tallenna seuraava"
 msgid "Record now"
 msgstr "Tallenna heti"
 
-msgid "Recording started, stopping time shift now."
-msgstr "Tallennus alkoi! Ajansiirto pysähtyy nyt..."
-
 #, python-format
 msgid "Record time limited due to conflicting timer:%s"
 msgstr "Ajastusaika rajoitettu, ristiriita ajastukseen %s"
@@ -14487,6 +14499,9 @@ msgstr "Tallennus käynnissä"
 
 msgid "Recording started"
 msgstr "Tallennus alkanut"
+
+msgid "Recording started, stopping time shift now."
+msgstr "Tallennus alkoi! Ajansiirto pysähtyy nyt..."
 
 msgid "Recording stopped"
 msgstr "Tallennus keskeytetty"
@@ -15498,6 +15513,9 @@ msgstr "Muunna ajansiirto tallenteeksi ja jatka tallentamista"
 msgid "Save time shift as movie and stop recording"
 msgstr "Muunna ajansiirto tallenteeksi ja lopeta tallentaminen"
 
+msgid "Save time shift buffer now and continue recording"
+msgstr "Muunna ajansiirto tallenteeksi ja jatka tallentamista"
+
 msgid "Saved lines in script messages"
 msgstr "Tallennetut rivit komentosarjaviesteissä"
 
@@ -15757,6 +15775,9 @@ msgstr ""
 "Valitse 'taajuusalue', jos käytössä 'universaali' LNB, muutoin lisätiedot\n"
 "LNB:n teknisistä tiedoista."
 
+msgid "Select 'Disabled' to disable all automated volume adjustments. Select 'Defined volume offsets' to assign a specified offset to the service's volume level. Select 'Last used/set volume' to remember the volume level last used for each service."
+msgstr ""
+
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr "Valitse 'Käytössä' Avataksesi CI+ avustajan."
 
@@ -15793,9 +15814,6 @@ msgid "Select 'Yes' if this tuner is connected to the SCR device through another
 msgstr ""
 "Valitse 'kyllä', jos tämä viritin on kytketty SCR laitteeseen toisen\n"
 "virittimen läpi, muutoin valitse 'ei'."
-
-msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
-msgstr "Valitse 'Kyllä' jos äänenvoimakkuuden säätöjä tulee soveltaa Dolby ääni raitoihin."
 
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr ""
@@ -15996,6 +16014,9 @@ msgstr "'Kyllä' valinnalla kanavalista näytetään, kun vaihdetaan radio- ja T
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
 msgstr "Valitse 'Kyllä', jos haluat näyttää nykyisen hakemiston hakemistoluettelossa. Huomaa, että tiedostonhallinta on käynnistettävä uudelleen, jotta tämä muutos tulee voimaan."
+
+msgid "Select 'Yes' to show the volume level on any automated changes of volume level."
+msgstr ""
 
 msgid "Select 'Yes' to show this plugin in the Plugin Browser."
 msgstr "Valitse \"Kyllä\" näyttääksesi tämän lisäosat valikossa."
@@ -17169,6 +17190,10 @@ msgstr "Säädä spinnerin vasenta yläkulmaa (ruutu). Ylävasen on 0,0, alhaall
 
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Määritä ohjelman pituuden osoittamisen tyyppi kanavien valintalistassa."
+
+#, python-format
+msgid "Set the volume level for the '%s' service."
+msgstr ""
 
 #, python-format
 msgid "Set the volume offset for the '%s' service."
@@ -19914,13 +19939,6 @@ msgid "The bitrate of the video encoder. Larger value improves quality and incre
 msgstr "Videokooderin bittinopeus. Suurempi arvo parantaa laatua ja lisää tiedostokokoa."
 
 msgid ""
-"The time shift buffer exceeds the limit specified in the settings.\n"
-"What do you want to do?"
-msgstr ""
-"Ajansiirron aikapuskuri ylittää asetuksissa määritetyn rajan.\n"
-"Mitä haluat tehdä?"
-
-msgid ""
 "The channel may support VPS\n"
 " Do you want to enable VPS?"
 msgstr ""
@@ -20036,6 +20054,13 @@ msgstr ""
 
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Aika kerrotaan nykyisellä toistolaskurilla."
+
+msgid ""
+"The time shift buffer exceeds the limit specified in the settings.\n"
+"What do you want to do?"
+msgstr ""
+"Ajansiirron aikapuskuri ylittää asetuksissa määritetyn rajan.\n"
+"Mitä haluat tehdä?"
 
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
@@ -20782,6 +20807,9 @@ msgstr "Kytke automaattinen virkistys päälle/pois"
 
 msgid "Toggle between bouquet/EPG lists"
 msgstr "Vaihda suosikkien ja ohjelmatietojen välillä"
+
+msgid "Toggle between the available TV and RADIO services"
+msgstr ""
 
 msgid "Toggle display of image information"
 msgstr "Vaihda kuvatietojen näyttö"
@@ -22139,17 +22167,20 @@ msgstr "13/18V-jännite"
 msgid "Volume"
 msgstr "Äänenvoimakkuus"
 
-msgid "Volume Adjust"
-msgstr "Äänenvoimakkuuden säätö"
-
 msgid "Volume Adjust Actions"
 msgstr "Äänenvoimakkuuden säätötoiminnot"
 
 msgid "Volume Adjust Service Selection"
 msgstr "Äänenvoimakkuuden säätö valinta palvelu"
 
+msgid "Volume Adjust Service Selection Actions"
+msgstr ""
+
 msgid "Volume Adjust Settings"
 msgstr "Äänenvoimakkuuden säätö asetukset"
+
+msgid "Volume adjustment mode"
+msgstr ""
 
 msgid "Volume down"
 msgstr "Äänenvoimakkuus -"
@@ -24195,6 +24226,18 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Delete the currently highlighted service from the Volume Offsets list"
+#~ msgstr "Poista nykyinen korostettu kanavan äänen voimakkuuden Offsets listasta"
+
+#~ msgid "Enable Dolby Digital / Dolby AC-3 offsets"
+#~ msgstr "Ota Dolby Digital / Dolby AC-3 offsetti käyttöön"
+
+#~ msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
+#~ msgstr "Valitse 'Kyllä' jos äänenvoimakkuuden säätöjä tulee soveltaa Dolby ääni raitoihin."
+
+#~ msgid "Volume Adjust"
+#~ msgstr "Äänenvoimakkuuden säätö"
 
 #~ msgid "off"
 #~ msgstr "pois"

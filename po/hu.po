@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-20 18:15+0000\n"
+"POT-Creation-Date: 2025-04-21 09:40+0000\n"
 "PO-Revision-Date: 2022-03-10 14:56+0000\n"
 "Last-Translator: H. Árkosi Róbert <robreg@zsurob.hu>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -1926,6 +1926,9 @@ msgstr "Új négy csatornás bejegyzés hozzáadása"
 msgid "Add RecordTimer"
 msgstr "Felvétel időzítő hozzáadása"
 
+msgid "Add Service"
+msgstr ""
+
 msgid "Add Service To Bouquet"
 msgstr "csatorna hozzáadása csatornacsomaghoz"
 
@@ -1947,11 +1950,17 @@ msgstr "Zap időzítő hozzáadása"
 msgid "Add a DNS entry"
 msgstr ""
 
+msgid "Add a RADIO service to the Volume Offset list"
+msgstr ""
+
 msgid "Add a RecordTimer"
 msgstr "Egy felvételi időzítő hozzáadása"
 
 msgid "Add a RecordTimer for current event"
 msgstr "Egy felvételi időzítő hozzáadása a jelenlegi eseményhez"
+
+msgid "Add a TV service to the Volume Offset list"
+msgstr ""
 
 msgid "Add a ZapTimer for current event"
 msgstr "Elkapcsolás időzítő hozzáadása az aktuális eseményhez"
@@ -1977,7 +1986,7 @@ msgstr ""
 msgid "Add a new title"
 msgstr "Új cím hozzáadása"
 
-msgid "Add a service to the Volume Offsets list"
+msgid "Add a service to the Volume Offset list"
 msgstr ""
 
 msgid "Add a timer for the current event"
@@ -2049,7 +2058,7 @@ msgstr ""
 msgid "Add the current directory as a bookmark"
 msgstr ""
 
-msgid "Add the current service to the Volume Offsets list"
+msgid "Add the current/active service to the Volume Offset list"
 msgstr ""
 
 msgid "Add the selected service to a bouquet or alternative"
@@ -2071,6 +2080,9 @@ msgid "Add/Remove highlighted plugin to/from remove list"
 msgstr ""
 
 msgid "Add/Remove highlighted plugin to/from update list"
+msgstr ""
+
+msgid "Add/Remove the current service to/from the Volume Offset list"
 msgstr ""
 
 msgid "Adding schedule..."
@@ -2717,6 +2729,9 @@ msgid "Auto install log"
 msgstr ""
 
 msgid "Auto multi-selection"
+msgstr ""
+
+msgid "Auto show volume level"
 msgstr ""
 
 msgid "Auto shut down"
@@ -5331,6 +5346,9 @@ msgstr ""
 msgid "Currently Defined Volume Offsets:"
 msgstr ""
 
+msgid "Currently Remembered Volume Levels:"
+msgstr ""
+
 msgid "Custom"
 msgstr "Egyedi"
 
@@ -5810,6 +5828,9 @@ msgstr ""
 msgid "Defined / Active"
 msgstr "Definiált / Aktív"
 
+msgid "Defined volume offset"
+msgstr ""
+
 msgid "Defines how fast the time jumps are repeated. Values lower than 500ms may be problematic with NAS."
 msgstr "Meghatározza, hogy az idő ugrása milyen gyorsan ismétlődik. Az 500 ms alatti értékek problémát okozhatnak a NAS-nak."
 
@@ -6013,9 +6034,6 @@ msgid "Delete the current time shift buffer and restart time shift"
 msgstr "Törölje az aktuális Timeshift puffert, és indítsa újra a Timeshift-et"
 
 msgid "Delete the currently displayed log file"
-msgstr ""
-
-msgid "Delete the currently highlighted service from the Volume Offsets list"
 msgstr ""
 
 msgid "Delete the currently selected timer"
@@ -6997,9 +7015,6 @@ msgstr "BT Audió engedélyezve"
 
 msgid "Enable Bouquet Edit"
 msgstr "csatornacsomag szerkesztés engedélyezése"
-
-msgid "Enable Dolby Digital / Dolby AC-3 offsets"
-msgstr ""
 
 msgid "Enable EIT EPG"
 msgstr "EIT EPG engedélyezése"
@@ -8116,6 +8131,9 @@ msgstr ""
 msgid "Fallback Font *"
 msgstr ""
 
+msgid "Fallback Remote Receiver Settings"
+msgstr ""
+
 msgid "Fallback Timer"
 msgstr "Tartalék távoli időzítő"
 
@@ -8139,9 +8157,6 @@ msgstr "Tartalék távoli vevő DVB-C vételhez"
 
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Tartalék távoli vevő DVB-T vételhez"
-
-msgid "Fallback Remote Receiver Settings"
-msgstr ""
 
 msgid "Fallback tuner setup"
 msgstr "Tartalék távoli vevő beállítása"
@@ -10479,6 +10494,9 @@ msgstr ""
 msgid "Last used share: "
 msgstr "Utolsó használt megosztás: "
 
+msgid "Last used/set volume"
+msgstr ""
+
 msgctxt "third event: 'third' event label"
 msgid "Later"
 msgstr "Később"
@@ -12551,9 +12569,6 @@ msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "Most"
 
-msgid "Save time shift buffer now and continue recording"
-msgstr "Timeshift mentése most és a felvétel folytatása"
-
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
 msgstr "Most a kontraszt beállító funkció segítségével állítsa be a háttér világosságát a lehető legmagasabb értékre, de arra ügyeljen hogy a két világosság csík között lásson különbséget. Ha készen van, nyomja meg az OK gombot."
 
@@ -13363,9 +13378,6 @@ msgstr ""
 msgid "Play all audio files in the directory"
 msgstr ""
 
-msgid "Play catch up service archive"
-msgstr ""
-
 msgid "Play audio in background"
 msgstr "Hanglejátszás a háttérben"
 
@@ -13374,6 +13386,9 @@ msgstr "Audio-CD lejátszás..."
 
 msgid "Play back media files"
 msgstr "Médiafájlok lejátszása"
+
+msgid "Play catch up service archive"
+msgstr ""
 
 msgid "Play entry"
 msgstr "Bejegyzés lejátszása"
@@ -14535,9 +14550,6 @@ msgstr "Következőt felveszi"
 msgid "Record now"
 msgstr "Felvesz most"
 
-msgid "Recording started, stopping time shift now."
-msgstr "A felvétel elkezdődött! A Timeshift megállítása most ..."
-
 #, python-format
 msgid "Record time limited due to conflicting timer:%s"
 msgstr "A felvételi idő rövidítve lett időzítés ütközés miatt: %s"
@@ -14592,6 +14604,9 @@ msgstr "Felvétel folyamatban"
 
 msgid "Recording started"
 msgstr "Felvétel elindítva"
+
+msgid "Recording started, stopping time shift now."
+msgstr "A felvétel elkezdődött! A Timeshift megállítása most ..."
 
 msgid "Recording stopped"
 msgstr "A felvétel leállítva"
@@ -15608,6 +15623,9 @@ msgstr "Timeshift mentése és a felvétel folytatása"
 msgid "Save time shift as movie and stop recording"
 msgstr "Timeshift mentése és a felvétel megállítása"
 
+msgid "Save time shift buffer now and continue recording"
+msgstr "Timeshift mentése most és a felvétel folytatása"
+
 msgid "Saved lines in script messages"
 msgstr ""
 
@@ -15869,6 +15887,9 @@ msgstr "Válassza az 'A' vagy 'B' opciót, ha a aerial rendszer ezt megköveteli
 msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB specifications."
 msgstr "Ha 'univerzális' LNB-t használ, válassza a 'sáv' lehetőséget, különben forduljon az LNB specifikációs laphoz."
 
+msgid "Select 'Disabled' to disable all automated volume adjustments. Select 'Defined volume offsets' to assign a specified offset to the service's volume level. Select 'Last used/set volume' to remember the volume level last used for each service."
+msgstr ""
+
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr ""
 
@@ -15901,9 +15922,6 @@ msgstr ""
 
 msgid "Select 'Yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'No'."
 msgstr "Válassza az 'igen' lehetőséget, ha ez a tuner egy másik tuneren keresztül csatlakozik az SCR eszközhöz, ellenkező esetben válassza a 'nem' lehetőséget."
-
-msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
-msgstr ""
 
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Csak akkor válassza az 'igen' beállítást, ha multiswich-t használ, amelyhez DiSEqC Port-A parancs jelet igényel. Az összes többi beállításhoz válassza a 'nem' lehetőséget."
@@ -16101,6 +16119,9 @@ msgid "Select 'Yes' to show the channel list after switching between Radio and T
 msgstr "Ha az 'igen'-t választja, a csatorna lista megjelenik a rádió és a TV mód közötti váltás után."
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
+msgstr ""
+
+msgid "Select 'Yes' to show the volume level on any automated changes of volume level."
 msgstr ""
 
 msgid "Select 'Yes' to show this plugin in the Plugin Browser."
@@ -17266,6 +17287,10 @@ msgstr ""
 
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Állítsa be a folyamatjelző típusát a csatornaválasztó képernyőn."
+
+#, python-format
+msgid "Set the volume level for the '%s' service."
+msgstr ""
 
 #, python-format
 msgid "Set the volume offset for the '%s' service."
@@ -20023,13 +20048,6 @@ msgid "The bitrate of the video encoder. Larger value improves quality and incre
 msgstr "A videó kódolás bitrátája. A nagyobb érték javítja a minőséget és növeli a fájlméretet."
 
 msgid ""
-"The time shift buffer exceeds the limit specified in the settings.\n"
-"What do you want to do?"
-msgstr ""
-"A Timeshift pufferidő meghaladja a beállított határértéket.\n"
-"Mit akar csinálni ?"
-
-msgid ""
 "The channel may support VPS\n"
 " Do you want to enable VPS?"
 msgstr ""
@@ -20135,6 +20153,13 @@ msgstr ""
 
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Az időt megszorozzuk az aktuális ismétlési számlálóval."
+
+msgid ""
+"The time shift buffer exceeds the limit specified in the settings.\n"
+"What do you want to do?"
+msgstr ""
+"A Timeshift pufferidő meghaladja a beállított határértéket.\n"
+"Mit akar csinálni ?"
 
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
@@ -20874,6 +20899,9 @@ msgstr ""
 
 msgid "Toggle between bouquet/EPG lists"
 msgstr "Váltás a Csatornacsomag/EPG lista között"
+
+msgid "Toggle between the available TV and RADIO services"
+msgstr ""
 
 msgid "Toggle display of image information"
 msgstr ""
@@ -22211,16 +22239,19 @@ msgstr "Feszültség"
 msgid "Volume"
 msgstr "Hangerő"
 
-msgid "Volume Adjust"
-msgstr "Hangerő szabályozás"
-
 msgid "Volume Adjust Actions"
 msgstr ""
 
 msgid "Volume Adjust Service Selection"
 msgstr ""
 
+msgid "Volume Adjust Service Selection Actions"
+msgstr ""
+
 msgid "Volume Adjust Settings"
+msgstr ""
+
+msgid "Volume adjustment mode"
 msgstr ""
 
 msgid "Volume down"
@@ -24262,6 +24293,9 @@ msgstr "igen (állapotok megtartása)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Volume Adjust"
+#~ msgstr "Hangerő szabályozás"
 
 #~ msgid "off"
 #~ msgstr "ki"

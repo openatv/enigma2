@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-20 18:15+0000\n"
+"POT-Creation-Date: 2025-04-21 09:40+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Frisian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fy/>\n"
@@ -2058,6 +2058,9 @@ msgstr ""
 msgid "Add RecordTimer"
 msgstr "In tiidsbarren tafoegje"
 
+msgid "Add Service"
+msgstr ""
+
 #
 msgid "Add Service To Bouquet"
 msgstr "kanaal tafoegje oan bouquet"
@@ -2086,12 +2089,18 @@ msgstr "In tiidsbarren tafoegje"
 msgid "Add a DNS entry"
 msgstr ""
 
+msgid "Add a RADIO service to the Volume Offset list"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Add a RecordTimer"
 msgstr "In tiidsbarren tafoegje"
 
 msgid "Add a RecordTimer for current event"
+msgstr ""
+
+msgid "Add a TV service to the Volume Offset list"
 msgstr ""
 
 msgid "Add a ZapTimer for current event"
@@ -2122,7 +2131,7 @@ msgstr ""
 msgid "Add a new title"
 msgstr "In nije titel tafoegje"
 
-msgid "Add a service to the Volume Offsets list"
+msgid "Add a service to the Volume Offset list"
 msgstr ""
 
 msgid "Add a timer for the current event"
@@ -2204,7 +2213,7 @@ msgstr ""
 msgid "Add the current directory as a bookmark"
 msgstr ""
 
-msgid "Add the current service to the Volume Offsets list"
+msgid "Add the current/active service to the Volume Offset list"
 msgstr ""
 
 msgid "Add the selected service to a bouquet or alternative"
@@ -2229,6 +2238,9 @@ msgid "Add/Remove highlighted plugin to/from remove list"
 msgstr ""
 
 msgid "Add/Remove highlighted plugin to/from update list"
+msgstr ""
+
+msgid "Add/Remove the current service to/from the Volume Offset list"
 msgstr ""
 
 msgid "Adding schedule..."
@@ -2925,6 +2937,9 @@ msgid "Auto install log"
 msgstr ""
 
 msgid "Auto multi-selection"
+msgstr ""
+
+msgid "Auto show volume level"
 msgstr ""
 
 msgid "Auto shut down"
@@ -5709,6 +5724,9 @@ msgstr ""
 msgid "Currently Defined Volume Offsets:"
 msgstr ""
 
+msgid "Currently Remembered Volume Levels:"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Custom"
@@ -6220,6 +6238,9 @@ msgstr ""
 msgid "Defined / Active"
 msgstr ""
 
+msgid "Defined volume offset"
+msgstr ""
+
 msgid "Defines how fast the time jumps are repeated. Values lower than 500ms may be problematic with NAS."
 msgstr ""
 
@@ -6436,9 +6457,6 @@ msgid "Delete the current time shift buffer and restart time shift"
 msgstr ""
 
 msgid "Delete the currently displayed log file"
-msgstr ""
-
-msgid "Delete the currently highlighted service from the Volume Offsets list"
 msgstr ""
 
 msgid "Delete the currently selected timer"
@@ -7488,9 +7506,6 @@ msgstr "Ynskeakele"
 #
 msgid "Enable Bouquet Edit"
 msgstr "bewurkjen boeket oan"
-
-msgid "Enable Dolby Digital / Dolby AC-3 offsets"
-msgstr ""
 
 msgid "Enable EIT EPG"
 msgstr ""
@@ -8670,6 +8685,9 @@ msgstr ""
 msgid "Fallback Font *"
 msgstr ""
 
+msgid "Fallback Remote Receiver Settings"
+msgstr ""
+
 msgid "Fallback Timer"
 msgstr ""
 
@@ -8692,9 +8710,6 @@ msgid "Fallback remote receiver for DVB-C"
 msgstr ""
 
 msgid "Fallback remote receiver for DVB-T"
-msgstr ""
-
-msgid "Fallback Remote Receiver Settings"
 msgstr ""
 
 msgid "Fallback tuner setup"
@@ -11211,6 +11226,9 @@ msgstr ""
 msgid "Last used share: "
 msgstr ""
 
+msgid "Last used/set volume"
+msgstr ""
+
 msgctxt "third event: 'third' event label"
 msgid "Later"
 msgstr ""
@@ -13479,9 +13497,6 @@ msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr ""
 
-msgid "Save time shift buffer now and continue recording"
-msgstr ""
-
 #
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
 msgstr "No, feroare it helderens nivo en set it sa heech, mar wêz seker dat jo altiid nog it ferskil sjogge tusken de twa helderste skaadnivos.Binne jo klear, druk OK"
@@ -14342,9 +14357,6 @@ msgstr ""
 msgid "Play all audio files in the directory"
 msgstr ""
 
-msgid "Play catch up service archive"
-msgstr ""
-
 msgid "Play audio in background"
 msgstr ""
 
@@ -14354,6 +14366,9 @@ msgid "Play audio-CD..."
 msgstr "Ofspylje fan Audio-CD..."
 
 msgid "Play back media files"
+msgstr ""
+
+msgid "Play catch up service archive"
 msgstr ""
 
 #
@@ -15641,9 +15656,6 @@ msgstr "Opnimme"
 msgid "Record now"
 msgstr "Opnimme"
 
-msgid "Recording started, stopping time shift now."
-msgstr ""
-
 #
 #, python-format
 msgid "Record time limited due to conflicting timer:%s"
@@ -15710,6 +15722,9 @@ msgstr "An it opnimmen"
 #, fuzzy
 msgid "Recording started"
 msgstr "An it opnimmen"
+
+msgid "Recording started, stopping time shift now."
+msgstr ""
 
 #
 #, fuzzy
@@ -16827,6 +16842,9 @@ msgstr ""
 msgid "Save time shift as movie and stop recording"
 msgstr ""
 
+msgid "Save time shift buffer now and continue recording"
+msgstr ""
+
 msgid "Saved lines in script messages"
 msgstr ""
 
@@ -17114,6 +17132,9 @@ msgstr ""
 msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB specifications."
 msgstr ""
 
+msgid "Select 'Disabled' to disable all automated volume adjustments. Select 'Defined volume offsets' to assign a specified offset to the service's volume level. Select 'Last used/set volume' to remember the volume level last used for each service."
+msgstr ""
+
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr ""
 
@@ -17145,9 +17166,6 @@ msgid "Select 'Yes' if network traffic should be checked before activating the t
 msgstr ""
 
 msgid "Select 'Yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'No'."
-msgstr ""
-
-msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
 msgstr ""
 
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
@@ -17346,6 +17364,9 @@ msgid "Select 'Yes' to show the channel list after switching between Radio and T
 msgstr ""
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
+msgstr ""
+
+msgid "Select 'Yes' to show the volume level on any automated changes of volume level."
 msgstr ""
 
 msgid "Select 'Yes' to show this plugin in the Plugin Browser."
@@ -18548,6 +18569,10 @@ msgid "Set the top left location of the busy spinner. The coordinates are scaled
 msgstr ""
 
 msgid "Set the type of the progress indication in the channel selection screen."
+msgstr ""
+
+#, python-format
+msgid "Set the volume level for the '%s' service."
 msgstr ""
 
 #, python-format
@@ -21490,11 +21515,6 @@ msgid "The bitrate of the video encoder. Larger value improves quality and incre
 msgstr ""
 
 msgid ""
-"The time shift buffer exceeds the limit specified in the settings.\n"
-"What do you want to do?"
-msgstr ""
-
-msgid ""
 "The channel may support VPS\n"
 " Do you want to enable VPS?"
 msgstr ""
@@ -21599,6 +21619,11 @@ msgid ""
 msgstr ""
 
 msgid "The time is multiplied by the current repeat counter."
+msgstr ""
+
+msgid ""
+"The time shift buffer exceeds the limit specified in the settings.\n"
+"What do you want to do?"
 msgstr ""
 
 #, python-format
@@ -22374,6 +22399,9 @@ msgid "Toggle auto refresh On/Off"
 msgstr ""
 
 msgid "Toggle between bouquet/EPG lists"
+msgstr ""
+
+msgid "Toggle between the available TV and RADIO services"
 msgstr ""
 
 msgid "Toggle display of image information"
@@ -23811,16 +23839,19 @@ msgstr "Spanning mode"
 msgid "Volume"
 msgstr "Lûdsterkte"
 
-msgid "Volume Adjust"
-msgstr ""
-
 msgid "Volume Adjust Actions"
 msgstr ""
 
 msgid "Volume Adjust Service Selection"
 msgstr ""
 
+msgid "Volume Adjust Service Selection Actions"
+msgstr ""
+
 msgid "Volume Adjust Settings"
+msgstr ""
+
+msgid "Volume adjustment mode"
 msgstr ""
 
 msgid "Volume down"

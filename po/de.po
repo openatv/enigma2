@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-20 18:15+0000\n"
+"POT-Creation-Date: 2025-04-21 09:40+0000\n"
 "PO-Revision-Date: 2025-04-20 21:45+0000\n"
 "Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
@@ -1990,6 +1990,9 @@ msgstr "Neue Sendergruppe hinzufügen"
 msgid "Add RecordTimer"
 msgstr "Timer 'Aufnehmen' hinzufügen"
 
+msgid "Add Service"
+msgstr ""
+
 #
 msgid "Add Service To Bouquet"
 msgstr "Kanal zu Bouquet hinzufügen"
@@ -2014,11 +2017,17 @@ msgstr "Timer 'Umschalten' hinzufügen"
 msgid "Add a DNS entry"
 msgstr "Hinzufügen eines DNS-Eintrags"
 
+msgid "Add a RADIO service to the Volume Offset list"
+msgstr ""
+
 msgid "Add a RecordTimer"
 msgstr "Neuen Aufnahmetimer hinzufügen"
 
 msgid "Add a RecordTimer for current event"
 msgstr "Aufnahmetimer für aktuelles Programm hinzufügen"
+
+msgid "Add a TV service to the Volume Offset list"
+msgstr ""
 
 msgid "Add a ZapTimer for current event"
 msgstr "Umschalttimer für aktuelles Programm hinzufügen"
@@ -2046,7 +2055,7 @@ msgstr "Neuen Timer hinzufügen"
 msgid "Add a new title"
 msgstr "Neuen Titel hinzufügen"
 
-msgid "Add a service to the Volume Offsets list"
+msgid "Add a service to the Volume Offset list"
 msgstr "Sender zur Liste der Lautstärke-Offsets hinzufügen"
 
 msgid "Add a timer for the current event"
@@ -2126,7 +2135,7 @@ msgstr "Sender zu diesem Bouquet?"
 msgid "Add the current directory as a bookmark"
 msgstr "Das aktuelle Verzeichnis als Lesezeichen hinzufügen"
 
-msgid "Add the current service to the Volume Offsets list"
+msgid "Add the current/active service to the Volume Offset list"
 msgstr "Aktuellen Sender zur Liste der Lautstärke-Offsets hinzufügen"
 
 msgid "Add the selected service to a bouquet or alternative"
@@ -2150,6 +2159,9 @@ msgstr "Markiertes Plugin zur Entfernungsliste hinzufügen oder entfernen"
 
 msgid "Add/Remove highlighted plugin to/from update list"
 msgstr "Markiertes Plugin zur Updateliste hinzufügen oder entfernen"
+
+msgid "Add/Remove the current service to/from the Volume Offset list"
+msgstr ""
 
 msgid "Adding schedule..."
 msgstr "Zeitplan hinzufügen..."
@@ -2826,6 +2838,9 @@ msgstr "Autoinstall-Log"
 
 msgid "Auto multi-selection"
 msgstr "Auto-Multiauswahl"
+
+msgid "Auto show volume level"
+msgstr ""
 
 msgid "Auto shut down"
 msgstr "Automatisches Herunterfahren"
@@ -5578,6 +5593,9 @@ msgstr ""
 msgid "Currently Defined Volume Offsets:"
 msgstr "Aktuell definierte Lautstärke-Offsets:"
 
+msgid "Currently Remembered Volume Levels:"
+msgstr ""
+
 msgid "Custom"
 msgstr "Benutzerdefiniert"
 
@@ -6063,6 +6081,9 @@ msgstr "Einhänge-Optionen für das Dateisystem festlegen."
 msgid "Defined / Active"
 msgstr "Definiert / Aktiv"
 
+msgid "Defined volume offset"
+msgstr ""
+
 msgid "Defines how fast the time jumps are repeated. Values lower than 500ms may be problematic with NAS."
 msgstr "Legt fest, in wie schneller Folge Zeitsprünge erfolgen. Werte unter 500ms können mit NAS problematisch sein."
 
@@ -6276,9 +6297,6 @@ msgstr "Den aktuellen Timeshift-Puffer löschen und Timeshift neu starten"
 
 msgid "Delete the currently displayed log file"
 msgstr "Die aktuell angezeigte Logdatei löschen"
-
-msgid "Delete the currently highlighted service from the Volume Offsets list"
-msgstr "Löschen des aktuell markierten Senders aus der Liste der Lautstärke-Offsets"
 
 msgid "Delete the currently selected timer"
 msgstr "Den aktuell ausgewählten Timer löschen"
@@ -7335,9 +7353,6 @@ msgstr "Bluetooth-Audio aktivieren"
 #
 msgid "Enable Bouquet Edit"
 msgstr "Bouquet bearbeiten aktivieren"
-
-msgid "Enable Dolby Digital / Dolby AC-3 offsets"
-msgstr "Dolby-Digital- / Dolby-AC-3-Offset aktivieren"
 
 msgid "Enable EIT EPG"
 msgstr "EIT-EPG aktivieren"
@@ -8508,6 +8523,9 @@ msgstr "Reserve-API lieferte fehlerhafte Ergebnisse!"
 msgid "Fallback Font *"
 msgstr "Ersatz-Schriftart *"
 
+msgid "Fallback Remote Receiver Settings"
+msgstr "Reserve-Receiver-Einstellungen"
+
 msgid "Fallback Timer"
 msgstr "Reserve-Timer"
 
@@ -8531,9 +8549,6 @@ msgstr "Reserve-Receiver für DVB-C"
 
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Reserve-Receiver für DVB-T"
-
-msgid "Fallback Remote Receiver Settings"
-msgstr "Reserve-Receiver-Einstellungen"
 
 msgid "Fallback tuner setup"
 msgstr "Reserve-Tuner-Einstellungen"
@@ -10951,6 +10966,9 @@ msgstr "Zuletzt benutzte Spalte"
 msgid "Last used share: "
 msgstr "Zuletzt verwendete Netzwerkfreigabe: "
 
+msgid "Last used/set volume"
+msgstr ""
+
 msgctxt "third event: 'third' event label"
 msgid "Later"
 msgstr "Später"
@@ -13149,9 +13167,6 @@ msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "Jetzt"
 
-msgid "Save time shift buffer now and continue recording"
-msgstr "Jetzt Timeshift als Film speichern und die Aufnahme fortsetzen"
-
 #
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
 msgstr ""
@@ -14008,9 +14023,6 @@ msgstr "Sender ohne Stream Relay abspielen"
 msgid "Play all audio files in the directory"
 msgstr "Alle Audiodateien des Verzeichnisses abspielen"
 
-msgid "Play catch up service archive"
-msgstr ""
-
 msgid "Play audio in background"
 msgstr "Audio im Hintergrund abspielen"
 
@@ -14020,6 +14032,9 @@ msgstr "Audio-CD wiedergeben..."
 # /Extensions/MediaPlayer
 msgid "Play back media files"
 msgstr "Wiedergabe von Mediendateien"
+
+msgid "Play catch up service archive"
+msgstr ""
 
 #
 msgid "Play entry"
@@ -15278,9 +15293,6 @@ msgstr "Nächste Sendung aufnehmen"
 msgid "Record now"
 msgstr "Laufende Sendung aufnehmen"
 
-msgid "Recording started, stopping time shift now."
-msgstr "Aufnahme gestartet! Timeshift wird gestoppt..."
-
 #, python-format
 msgid "Record time limited due to conflicting timer:%s"
 msgstr "Aufnahmezeit aufgrund kollidierender Timer '%s' begrenzt"
@@ -15336,6 +15348,9 @@ msgstr "Aufnahme läuft"
 
 msgid "Recording started"
 msgstr "Aufnahme gestartet"
+
+msgid "Recording started, stopping time shift now."
+msgstr "Aufnahme gestartet! Timeshift wird gestoppt..."
 
 msgid "Recording stopped"
 msgstr "Aufnahme angehalten"
@@ -16432,6 +16447,9 @@ msgstr "Timeshift als Film speichern und Aufnahme fortsetzen"
 msgid "Save time shift as movie and stop recording"
 msgstr "Timeshift als Film speichern und Aufnahme beenden"
 
+msgid "Save time shift buffer now and continue recording"
+msgstr "Jetzt Timeshift als Film speichern und die Aufnahme fortsetzen"
+
 msgid "Saved lines in script messages"
 msgstr "Gespeicherte Zeilen in Skript-Meldungen"
 
@@ -16716,6 +16734,9 @@ msgstr "'A' oder 'B' auswählen, wenn das Antennensystem dies erfordert. Andernf
 msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB specifications."
 msgstr "'Band' auswählen, wenn ein 'Universal LNB' verwendet wird, andernfalls im LNB-Datenblatt nachsehen."
 
+msgid "Select 'Disabled' to disable all automated volume adjustments. Select 'Defined volume offsets' to assign a specified offset to the service's volume level. Select 'Last used/set volume' to remember the volume level last used for each service."
+msgstr ""
+
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr "'Aktivieren' auswählen, um den CI+ Helper zu starten."
 
@@ -16749,9 +16770,6 @@ msgstr "'Ja' auswählen, wenn der Netzwerkverkehr vor der Aktivierung des Timers
 
 msgid "Select 'Yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'No'."
 msgstr "'Ja' auswählen, wenn dieser Tuner über einen anderen Tuner mit dem Unicable/SCR-Gerät verbunden ist, andernfalls 'Nein'."
-
-msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
-msgstr "'Ja' auswählen, wenn Lautstärkeanpassungen auf Dolby-Tonspuren angewendet werden sollen."
 
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Wenn ein Multiswitch verwendet wird, der ein DiSEqC-Port-A-Befehlssignal benötigt 'Ja' auswählen, ansonsten 'Nein'."
@@ -16953,6 +16971,9 @@ msgid "Select 'Yes' to show the current directory in the list of directories. No
 msgstr ""
 "'Ja' auswählen, um das aktuelle Verzeichnis in der Verzeichnisliste anzuzeigen.\n"
 "Achtung: File Commander muss dafür neu gestartet werden!"
+
+msgid "Select 'Yes' to show the volume level on any automated changes of volume level."
+msgstr ""
 
 msgid "Select 'Yes' to show this plugin in the Plugin Browser."
 msgstr "'Ja' auswählen, um dieses Plugin im Plugin-Manager anzuzeigen."
@@ -18191,6 +18212,10 @@ msgstr "Obere linke Position des Spinners (Beschäftigungsanzeige) einstellen. O
 
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Anzeige der Fortschrittsanzeige in der Senderliste einstellen."
+
+#, python-format
+msgid "Set the volume level for the '%s' service."
+msgstr ""
 
 #, python-format
 msgid "Set the volume offset for the '%s' service."
@@ -21083,13 +21108,6 @@ msgid "The bitrate of the video encoder. Larger value improves quality and incre
 msgstr "Die Bitrate des Videoencoders. Ein größerer Wert verbessert die Qualität, erhöht aber die Dateigröße."
 
 msgid ""
-"The time shift buffer exceeds the limit specified in the settings.\n"
-"What do you want to do?"
-msgstr ""
-"Der Zeitpuffer für Timeshift übersteigt die in den Einstellungen festgelegte Grenze!\n"
-"Was soll geschehen?"
-
-msgid ""
 "The channel may support VPS\n"
 " Do you want to enable VPS?"
 msgstr ""
@@ -21208,6 +21226,13 @@ msgstr ""
 
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Die Zeit wird mit dem aktuellen Wiederholungszähler multipliziert."
+
+msgid ""
+"The time shift buffer exceeds the limit specified in the settings.\n"
+"What do you want to do?"
+msgstr ""
+"Der Zeitpuffer für Timeshift übersteigt die in den Einstellungen festgelegte Grenze!\n"
+"Was soll geschehen?"
 
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
@@ -22010,6 +22035,9 @@ msgstr "Automatische Aktualisierung ein-/ausschalten"
 
 msgid "Toggle between bouquet/EPG lists"
 msgstr "Zwischen Favoritenliste und EPG-Liste wechseln"
+
+msgid "Toggle between the available TV and RADIO services"
+msgstr ""
 
 msgid "Toggle display of image information"
 msgstr "Umschalten der Anzeige von Bildinformationen"
@@ -23451,17 +23479,20 @@ msgstr "Spannungsmodus"
 msgid "Volume"
 msgstr "Lautstärke"
 
-msgid "Volume Adjust"
-msgstr "Lautstärkeanpassung"
-
 msgid "Volume Adjust Actions"
 msgstr "Aktionen zur Lautstärkeanpassung"
 
 msgid "Volume Adjust Service Selection"
 msgstr "Senderauswahl der Lautstärkeanpassung"
 
+msgid "Volume Adjust Service Selection Actions"
+msgstr ""
+
 msgid "Volume Adjust Settings"
 msgstr "Lautstärkeanpassung"
+
+msgid "Volume adjustment mode"
+msgstr ""
 
 msgid "Volume down"
 msgstr "Lautstärke -"
@@ -25680,6 +25711,18 @@ msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Delete the currently highlighted service from the Volume Offsets list"
+#~ msgstr "Löschen des aktuell markierten Senders aus der Liste der Lautstärke-Offsets"
+
+#~ msgid "Enable Dolby Digital / Dolby AC-3 offsets"
+#~ msgstr "Dolby-Digital- / Dolby-AC-3-Offset aktivieren"
+
+#~ msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
+#~ msgstr "'Ja' auswählen, wenn Lautstärkeanpassungen auf Dolby-Tonspuren angewendet werden sollen."
+
+#~ msgid "Volume Adjust"
+#~ msgstr "Lautstärkeanpassung"
 
 #
 #~ msgid "off"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-20 18:15+0000\n"
+"POT-Creation-Date: 2025-04-21 09:40+0000\n"
 "PO-Revision-Date: 2025-04-12 12:57+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -1885,6 +1885,9 @@ msgstr "添加新的四画面频道条目"
 msgid "Add RecordTimer"
 msgstr "添加录像定时器"
 
+msgid "Add Service"
+msgstr ""
+
 msgid "Add Service To Bouquet"
 msgstr "添加频道到频道群"
 
@@ -1906,11 +1909,17 @@ msgstr "添加换台定时器"
 msgid "Add a DNS entry"
 msgstr "添加 DNS 条目"
 
+msgid "Add a RADIO service to the Volume Offset list"
+msgstr ""
+
 msgid "Add a RecordTimer"
 msgstr "添加录像定时器"
 
 msgid "Add a RecordTimer for current event"
 msgstr "为当前事件添加录像定时器"
+
+msgid "Add a TV service to the Volume Offset list"
+msgstr ""
 
 msgid "Add a ZapTimer for current event"
 msgstr "为当前事件添加换台定时器"
@@ -1936,7 +1945,7 @@ msgstr "添加新定时器"
 msgid "Add a new title"
 msgstr "添加新标题"
 
-msgid "Add a service to the Volume Offsets list"
+msgid "Add a service to the Volume Offset list"
 msgstr "添加频道到音量偏移列表"
 
 msgid "Add a timer for the current event"
@@ -2008,7 +2017,7 @@ msgstr "添加频道到此频道群吗?"
 msgid "Add the current directory as a bookmark"
 msgstr "将当前目录添加为书签"
 
-msgid "Add the current service to the Volume Offsets list"
+msgid "Add the current/active service to the Volume Offset list"
 msgstr "添加当前频道到音量补偿列表"
 
 msgid "Add the selected service to a bouquet or alternative"
@@ -2031,6 +2040,9 @@ msgstr "在/从删除列表中添加/删除突出显示的插件"
 
 msgid "Add/Remove highlighted plugin to/from update list"
 msgstr "在/从更新列表中添加/删除突出显示的插件"
+
+msgid "Add/Remove the current service to/from the Volume Offset list"
+msgstr ""
 
 msgid "Adding schedule..."
 msgstr "正在添加任务计划..."
@@ -2672,6 +2684,9 @@ msgstr "自动安装日志"
 
 msgid "Auto multi-selection"
 msgstr "自动多选"
+
+msgid "Auto show volume level"
+msgstr ""
 
 msgid "Auto shut down"
 msgstr "自动关机"
@@ -5290,6 +5305,9 @@ msgstr ""
 msgid "Currently Defined Volume Offsets:"
 msgstr "当前定义的音量补偿："
 
+msgid "Currently Remembered Volume Levels:"
+msgstr ""
+
 msgid "Custom"
 msgstr "自定义"
 
@@ -5760,6 +5778,9 @@ msgstr "定义文件系统挂载选项。"
 msgid "Defined / Active"
 msgstr "定义/活动"
 
+msgid "Defined volume offset"
+msgstr ""
+
 msgid "Defines how fast the time jumps are repeated. Values lower than 500ms may be problematic with NAS."
 msgstr "定义重复跳跃的时间有多快。数值低于500毫秒可能 NAS 会有问题。"
 
@@ -5962,9 +5983,6 @@ msgstr "删除当前的时移缓冲区并重新开始时移"
 
 msgid "Delete the currently displayed log file"
 msgstr "删除当前显示的日志文件"
-
-msgid "Delete the currently highlighted service from the Volume Offsets list"
-msgstr "从音量补偿列表中删除当前突出显示的频道"
 
 msgid "Delete the currently selected timer"
 msgstr "删除当前选中的定时器"
@@ -6954,9 +6972,6 @@ msgstr "启用蓝牙音频"
 
 msgid "Enable Bouquet Edit"
 msgstr "启用频道群编辑"
-
-msgid "Enable Dolby Digital / Dolby AC-3 offsets"
-msgstr "启用杜比数字/杜比 AC-3 偏移"
 
 msgid "Enable EIT EPG"
 msgstr "启用 EIT（事件信息表） EPG"
@@ -8076,6 +8091,9 @@ msgstr "Fallback API 未返回有效结果。"
 msgid "Fallback Font *"
 msgstr "备用字体 *"
 
+msgid "Fallback Remote Receiver Settings"
+msgstr "备用远程接收机设置"
+
 msgid "Fallback Timer"
 msgstr "备用定时器"
 
@@ -8099,9 +8117,6 @@ msgstr "备用远程 DVB-C 接收机"
 
 msgid "Fallback remote receiver for DVB-T"
 msgstr "备用远程 DVB-T 接收机"
-
-msgid "Fallback Remote Receiver Settings"
-msgstr "备用远程接收机设置"
 
 msgid "Fallback tuner setup"
 msgstr "备用调谐器设置"
@@ -10408,6 +10423,9 @@ msgstr "上次使用的列"
 msgid "Last used share: "
 msgstr "最后使用的共享："
 
+msgid "Last used/set volume"
+msgstr ""
+
 msgctxt "third event: 'third' event label"
 msgid "Later"
 msgstr "稍后"
@@ -12437,9 +12455,6 @@ msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "现在"
 
-msgid "Save time shift buffer now and continue recording"
-msgstr "现在将时移保存为电影并继续录制"
-
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
 msgstr "现在，使用对比度设置尽可能多地调高背景的亮度，但确保您仍然可以看到两个最亮级别的阴影之间的差异。如果已经完成，请按 OK 键。"
 
@@ -13238,9 +13253,6 @@ msgstr "无流中继播放频道"
 msgid "Play all audio files in the directory"
 msgstr "播放目录下所有音频文件"
 
-msgid "Play catch up service archive"
-msgstr ""
-
 msgid "Play audio in background"
 msgstr "在后台播放音频"
 
@@ -13249,6 +13261,9 @@ msgstr "播放音频CD..."
 
 msgid "Play back media files"
 msgstr "播放媒体文件"
+
+msgid "Play catch up service archive"
+msgstr ""
 
 msgid "Play entry"
 msgstr "播放条目"
@@ -14408,9 +14423,6 @@ msgstr "录制下一个"
 msgid "Record now"
 msgstr "现在录制"
 
-msgid "Recording started, stopping time shift now."
-msgstr "录像开始！ 现在停止时移..."
-
 #, python-format
 msgid "Record time limited due to conflicting timer:%s"
 msgstr "由于定时器冲突，录像时间受到限制：%s"
@@ -14465,6 +14477,9 @@ msgstr "正在录制"
 
 msgid "Recording started"
 msgstr "录制已开始"
+
+msgid "Recording started, stopping time shift now."
+msgstr "录像开始！ 现在停止时移..."
 
 msgid "Recording stopped"
 msgstr "录制已停止"
@@ -15476,6 +15491,9 @@ msgstr "保存时移为影片并继续录制"
 msgid "Save time shift as movie and stop recording"
 msgstr "保存时移为影片并停止录制"
 
+msgid "Save time shift buffer now and continue recording"
+msgstr "现在将时移保存为电影并继续录制"
+
 msgid "Saved lines in script messages"
 msgstr "脚本消息中保存的行"
 
@@ -15733,6 +15751,9 @@ msgstr "如果您的天线系统需要，请选择“A”或“B”，否则请�
 msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB specifications."
 msgstr "如果使用“通用”高频头，请选择“波段”，否则请参看您的高频头规格。"
 
+msgid "Select 'Disabled' to disable all automated volume adjustments. Select 'Defined volume offsets' to assign a specified offset to the service's volume level. Select 'Last used/set volume' to remember the volume level last used for each service."
+msgstr ""
+
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr "选择“启用”以启动 CI+ 助手。"
 
@@ -15765,9 +15786,6 @@ msgstr "如果在激活定时器之前应检查网络流量，请选择“是”
 
 msgid "Select 'Yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'No'."
 msgstr "如果该调谐器通过另一个调谐器连接到 SCR 设备，请选择“是”，否则选择“否”。"
-
-msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
-msgstr "如果音量调整应应用于杜比音轨，请选择“是”。"
 
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "如果您使用需要 DiSEqC 端口 A 命令信号的多路开关，请选择“是”。 为所有其他设置选择“否”。"
@@ -15966,6 +15984,9 @@ msgstr "选择“是”以在广播和电视模式之间切换后，显示频道
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
 msgstr "选择“是”在目录列表中显示当前目录。 请注意，必须重新启动文件指挥官才能使此更改生效。"
+
+msgid "Select 'Yes' to show the volume level on any automated changes of volume level."
+msgstr ""
 
 msgid "Select 'Yes' to show this plugin in the Plugin Browser."
 msgstr "选择“是”以在插件浏览器中显示该插件。"
@@ -17133,6 +17154,10 @@ msgstr "设置繁忙旋转器的左上角位置。坐标经过缩放，使得左
 
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "在频道选择屏幕中设置进度指示的类型。"
+
+#, python-format
+msgid "Set the volume level for the '%s' service."
+msgstr ""
 
 #, python-format
 msgid "Set the volume offset for the '%s' service."
@@ -19876,13 +19901,6 @@ msgid "The bitrate of the video encoder. Larger value improves quality and incre
 msgstr "视频编码器的比特率。 较大的值可提高质量并增加文件大小。"
 
 msgid ""
-"The time shift buffer exceeds the limit specified in the settings.\n"
-"What do you want to do?"
-msgstr ""
-"时移的缓冲时间超过设置中指定的限制。\n"
-"你想让我做什么 ？"
-
-msgid ""
 "The channel may support VPS\n"
 " Do you want to enable VPS?"
 msgstr ""
@@ -19998,6 +20016,13 @@ msgstr ""
 
 msgid "The time is multiplied by the current repeat counter."
 msgstr "时间乘以重复计数器并添加到最小发送间隔。"
+
+msgid ""
+"The time shift buffer exceeds the limit specified in the settings.\n"
+"What do you want to do?"
+msgstr ""
+"时移的缓冲时间超过设置中指定的限制。\n"
+"你想让我做什么 ？"
 
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
@@ -20740,6 +20765,9 @@ msgstr "打开/关闭自动刷新"
 
 msgid "Toggle between bouquet/EPG lists"
 msgstr "在频道群/EPG 列表之间切换"
+
+msgid "Toggle between the available TV and RADIO services"
+msgstr ""
 
 msgid "Toggle display of image information"
 msgstr "切换镜像信息的显示"
@@ -22096,17 +22124,20 @@ msgstr "电压模式"
 msgid "Volume"
 msgstr "音量"
 
-msgid "Volume Adjust"
-msgstr "音量调节"
-
 msgid "Volume Adjust Actions"
 msgstr "音量调节操作"
 
 msgid "Volume Adjust Service Selection"
 msgstr "音量调整频道选择"
 
+msgid "Volume Adjust Service Selection Actions"
+msgstr ""
+
 msgid "Volume Adjust Settings"
 msgstr "音量调节设置"
+
+msgid "Volume adjustment mode"
+msgstr ""
 
 msgid "Volume down"
 msgstr "音量减小"
@@ -24146,6 +24177,18 @@ msgstr "是（保留订阅源）"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Delete the currently highlighted service from the Volume Offsets list"
+#~ msgstr "从音量补偿列表中删除当前突出显示的频道"
+
+#~ msgid "Enable Dolby Digital / Dolby AC-3 offsets"
+#~ msgstr "启用杜比数字/杜比 AC-3 偏移"
+
+#~ msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
+#~ msgstr "如果音量调整应应用于杜比音轨，请选择“是”。"
+
+#~ msgid "Volume Adjust"
+#~ msgstr "音量调节"
 
 #~ msgid "off"
 #~ msgstr "关闭"

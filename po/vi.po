@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-20 18:15+0000\n"
+"POT-Creation-Date: 2025-04-21 09:40+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1895,6 +1895,9 @@ msgstr "Thêm mục nhập kênh Quad mới"
 msgid "Add RecordTimer"
 msgstr "Thêm bộ đếm thời gian"
 
+msgid "Add Service"
+msgstr ""
+
 msgid "Add Service To Bouquet"
 msgstr "thêm dịch vụ vào gói kênh"
 
@@ -1916,11 +1919,17 @@ msgstr "Thêm bộ đếm thời gian"
 msgid "Add a DNS entry"
 msgstr ""
 
+msgid "Add a RADIO service to the Volume Offset list"
+msgstr ""
+
 msgid "Add a RecordTimer"
 msgstr "Thêm bộ đếm thời gian"
 
 msgid "Add a RecordTimer for current event"
 msgstr "Thêm một bộ đếm thời gian cho sự kiện hiện tại"
+
+msgid "Add a TV service to the Volume Offset list"
+msgstr ""
 
 msgid "Add a ZapTimer for current event"
 msgstr "Thêm / xóa bộ đếm thời gian thay đổi cho sự kiện hiện tại"
@@ -1946,7 +1955,7 @@ msgstr ""
 msgid "Add a new title"
 msgstr "Thêm một tiêu đề mới"
 
-msgid "Add a service to the Volume Offsets list"
+msgid "Add a service to the Volume Offset list"
 msgstr ""
 
 msgid "Add a timer for the current event"
@@ -2018,7 +2027,7 @@ msgstr ""
 msgid "Add the current directory as a bookmark"
 msgstr ""
 
-msgid "Add the current service to the Volume Offsets list"
+msgid "Add the current/active service to the Volume Offset list"
 msgstr ""
 
 msgid "Add the selected service to a bouquet or alternative"
@@ -2040,6 +2049,9 @@ msgid "Add/Remove highlighted plugin to/from remove list"
 msgstr ""
 
 msgid "Add/Remove highlighted plugin to/from update list"
+msgstr ""
+
+msgid "Add/Remove the current service to/from the Volume Offset list"
 msgstr ""
 
 msgid "Adding schedule..."
@@ -2693,6 +2705,9 @@ msgid "Auto install log"
 msgstr ""
 
 msgid "Auto multi-selection"
+msgstr ""
+
+msgid "Auto show volume level"
 msgstr ""
 
 msgid "Auto shut down"
@@ -5325,6 +5340,9 @@ msgstr ""
 msgid "Currently Defined Volume Offsets:"
 msgstr ""
 
+msgid "Currently Remembered Volume Levels:"
+msgstr ""
+
 msgid "Custom"
 msgstr "Tập quán"
 
@@ -5805,6 +5823,9 @@ msgstr ""
 msgid "Defined / Active"
 msgstr ""
 
+msgid "Defined volume offset"
+msgstr ""
+
 msgid "Defines how fast the time jumps are repeated. Values lower than 500ms may be problematic with NAS."
 msgstr "Xác định tốc độ nhảy thời gian được lặp lại nhanh như thế nào. Giá trị thấp hơn 500ms có thể có vấn đề với NAS."
 
@@ -6008,9 +6029,6 @@ msgid "Delete the current time shift buffer and restart time shift"
 msgstr "Xóa bộ đệm timeshift hiện tại và khởi động lại timeshift"
 
 msgid "Delete the currently displayed log file"
-msgstr ""
-
-msgid "Delete the currently highlighted service from the Volume Offsets list"
 msgstr ""
 
 msgid "Delete the currently selected timer"
@@ -7005,9 +7023,6 @@ msgstr "Kích hoạt âm thanh BT"
 
 msgid "Enable Bouquet Edit"
 msgstr "cho phép chỉnh sửa gói kênh"
-
-msgid "Enable Dolby Digital / Dolby AC-3 offsets"
-msgstr ""
 
 msgid "Enable EIT EPG"
 msgstr "Kích hoạt EIT EPG"
@@ -8130,6 +8145,9 @@ msgstr ""
 msgid "Fallback Font *"
 msgstr ""
 
+msgid "Fallback Remote Receiver Settings"
+msgstr ""
+
 msgid "Fallback Timer"
 msgstr "Hẹn giờ dự phòng"
 
@@ -8153,9 +8171,6 @@ msgstr "Dự phòng thu từ xa cho DVB-C"
 
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Dự phòng thu từ xa cho DVB-T"
-
-msgid "Fallback Remote Receiver Settings"
-msgstr ""
 
 msgid "Fallback tuner setup"
 msgstr "Thiết lập điều chỉnh dự phòng"
@@ -10505,6 +10520,9 @@ msgstr ""
 msgid "Last used share: "
 msgstr "Chia sẻ được sử dụng lần cuối: "
 
+msgid "Last used/set volume"
+msgstr ""
+
 msgctxt "third event: 'third' event label"
 msgid "Later"
 msgstr "Hiện tại không thể truy xuất nhật ký cam kết vui lòng thử lại sau"
@@ -12598,9 +12616,6 @@ msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "Hiện nay"
 
-msgid "Save time shift buffer now and continue recording"
-msgstr "Bây giờ hãy lưu timeshift dưới dạng phim và tiếp tục ghi"
-
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
 msgstr "Bây giờ, sử dụng cài đặt độ tương phản để tăng độ sáng của nền càng nhiều càng tốt, nhưng hãy đảm bảo rằng bạn vẫn có thể thấy sự khác biệt giữa hai mức độ sáng nhất. Nếu bạn đã thực hiện điều đó, hãy nhấn OK."
 
@@ -13414,9 +13429,6 @@ msgstr ""
 msgid "Play all audio files in the directory"
 msgstr ""
 
-msgid "Play catch up service archive"
-msgstr ""
-
 msgid "Play audio in background"
 msgstr "Phát âm thanh trong nền"
 
@@ -13425,6 +13437,9 @@ msgstr "Phát CD âm thanh ..."
 
 msgid "Play back media files"
 msgstr "Phát lại tập tin phương tiện"
+
+msgid "Play catch up service archive"
+msgstr ""
 
 msgid "Play entry"
 msgstr "Chơi nhập cảnh"
@@ -14590,9 +14605,6 @@ msgstr "Ghi lại tiếp theo"
 msgid "Record now"
 msgstr "Ghi lại ngay"
 
-msgid "Recording started, stopping time shift now."
-msgstr "Ghi lại bắt đầu! Dừng timeshift ngay bây giờ ..."
-
 #, python-format
 msgid "Record time limited due to conflicting timer:%s"
 msgstr "Ghi lại thời gian giới hạn do bộ đếm thời gian xung đột%s"
@@ -14652,6 +14664,9 @@ msgstr "Cài đặt ghi âm"
 #, fuzzy
 msgid "Recording started"
 msgstr "Kiểu ghi âm"
+
+msgid "Recording started, stopping time shift now."
+msgstr "Ghi lại bắt đầu! Dừng timeshift ngay bây giờ ..."
 
 #, fuzzy
 msgid "Recording stopped"
@@ -15677,6 +15692,9 @@ msgstr "Lưu timeshift như phim và tiếp tục ghi"
 msgid "Save time shift as movie and stop recording"
 msgstr "Lưu timeshift dưới dạng phim và dừng ghi"
 
+msgid "Save time shift buffer now and continue recording"
+msgstr "Bây giờ hãy lưu timeshift dưới dạng phim và tiếp tục ghi"
+
 msgid "Saved lines in script messages"
 msgstr ""
 
@@ -15935,6 +15953,9 @@ msgstr "Chọn 'A' hoặc 'B' nếu hệ thống trên không của bạn yêu c
 msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB specifications."
 msgstr "Chọn 'băng tần' nếu sử dụng LNB 'phổ quát', nếu không hãy tham khảo bảng thông số LNB của bạn."
 
+msgid "Select 'Disabled' to disable all automated volume adjustments. Select 'Defined volume offsets' to assign a specified offset to the service's volume level. Select 'Last used/set volume' to remember the volume level last used for each service."
+msgstr ""
+
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr ""
 
@@ -15967,9 +15988,6 @@ msgstr ""
 
 msgid "Select 'Yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'No'."
 msgstr "Chọn 'có' nếu bộ chỉnh này được kết nối với thiết bị SCR thông qua bộ chỉnh khác, nếu không thì chọn 'không'."
-
-msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
-msgstr ""
 
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "Chỉ chọn 'có' nếu bạn đang sử dụng đa tín hiệu yêu cầu tín hiệu lệnh DiSEqC Port-A. Đối với tất cả các thiết lập khác, chọn 'không'."
@@ -16167,6 +16185,9 @@ msgid "Select 'Yes' to show the channel list after switching between Radio and T
 msgstr "Nếu được đặt thành 'có', danh sách kênh sẽ được hiển thị sau khi chuyển đổi giữa chế độ radio và TV."
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
+msgstr ""
+
+msgid "Select 'Yes' to show the volume level on any automated changes of volume level."
 msgstr ""
 
 msgid "Select 'Yes' to show this plugin in the Plugin Browser."
@@ -17335,6 +17356,10 @@ msgstr ""
 
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Đặt loại chỉ báo tiến trình trong màn hình chọn kênh."
+
+#, python-format
+msgid "Set the volume level for the '%s' service."
+msgstr ""
 
 #, python-format
 msgid "Set the volume offset for the '%s' service."
@@ -20097,13 +20122,6 @@ msgid "The bitrate of the video encoder. Larger value improves quality and incre
 msgstr "Tốc độ bit của bộ mã hóa video. Giá trị lớn hơn cải thiện chất lượng và tăng kích thước tệp."
 
 msgid ""
-"The time shift buffer exceeds the limit specified in the settings.\n"
-"What do you want to do?"
-msgstr ""
-"Thời gian bộ đệm cho timeshift vượt quá giới hạn chỉ định trong cài đặt.\n"
-"Bạn muốn làm gì ?"
-
-msgid ""
 "The channel may support VPS\n"
 " Do you want to enable VPS?"
 msgstr ""
@@ -20209,6 +20227,13 @@ msgstr ""
 
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Thời gian được nhân với bộ đếm lặp lại hiện tại."
+
+msgid ""
+"The time shift buffer exceeds the limit specified in the settings.\n"
+"What do you want to do?"
+msgstr ""
+"Thời gian bộ đệm cho timeshift vượt quá giới hạn chỉ định trong cài đặt.\n"
+"Bạn muốn làm gì ?"
 
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
@@ -20955,6 +20980,9 @@ msgstr ""
 
 msgid "Toggle between bouquet/EPG lists"
 msgstr "Chuyển đổi giữa các danh sách bó / epg"
+
+msgid "Toggle between the available TV and RADIO services"
+msgstr ""
 
 msgid "Toggle display of image information"
 msgstr ""
@@ -22299,16 +22327,19 @@ msgstr "Chế độ điện áp"
 msgid "Volume"
 msgstr "Âm lượng"
 
-msgid "Volume Adjust"
-msgstr "Điều chỉnh âm lượng"
-
 msgid "Volume Adjust Actions"
 msgstr ""
 
 msgid "Volume Adjust Service Selection"
 msgstr ""
 
+msgid "Volume Adjust Service Selection Actions"
+msgstr ""
+
 msgid "Volume Adjust Settings"
+msgstr ""
+
+msgid "Volume adjustment mode"
 msgstr ""
 
 msgid "Volume down"
@@ -24370,6 +24401,9 @@ msgstr "có (giữ thức ăn)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Volume Adjust"
+#~ msgstr "Điều chỉnh âm lượng"
 
 #~ msgid "off"
 #~ msgstr "tắt"

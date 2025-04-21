@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-20 18:15+0000\n"
+"POT-Creation-Date: 2025-04-21 09:40+0000\n"
 "PO-Revision-Date: 2025-04-14 12:33+0000\n"
 "Last-Translator: tanerkaderli <taner.kaderli@live.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -1925,6 +1925,9 @@ msgstr "Yeni Quad Kanal Girişi Ekleme"
 msgid "Add RecordTimer"
 msgstr "Kayıt Zamanlayıcı Ekle"
 
+msgid "Add Service"
+msgstr ""
+
 #
 msgid "Add Service To Bouquet"
 msgstr "Bukete servis ekle"
@@ -1949,11 +1952,17 @@ msgstr "Zap Zamanlayıcı Ekle"
 msgid "Add a DNS entry"
 msgstr "DNS girişi ekleyin"
 
+msgid "Add a RADIO service to the Volume Offset list"
+msgstr ""
+
 msgid "Add a RecordTimer"
 msgstr "Kayıt zamanlayıcı ekle"
 
 msgid "Add a RecordTimer for current event"
 msgstr "Geçerli etkinliğe kayıt zamanlayıcı ekle"
+
+msgid "Add a TV service to the Volume Offset list"
+msgstr ""
 
 msgid "Add a ZapTimer for current event"
 msgstr "Geçerli etkinliğe zap zamanlayıcı ekle"
@@ -1981,7 +1990,7 @@ msgstr "Yeni bir zamanlayıcı ekleyin"
 msgid "Add a new title"
 msgstr "Yeni başlık ekle"
 
-msgid "Add a service to the Volume Offsets list"
+msgid "Add a service to the Volume Offset list"
 msgstr "Birim Ofsetleri listesine bir hizmet ekleyin"
 
 msgid "Add a timer for the current event"
@@ -2059,7 +2068,7 @@ msgstr "Bu bukete hizmet eklensin mi?"
 msgid "Add the current directory as a bookmark"
 msgstr "Geçerli dizini yer imi olarak ekleme"
 
-msgid "Add the current service to the Volume Offsets list"
+msgid "Add the current/active service to the Volume Offset list"
 msgstr "Geçerli hizmeti Hacim Ofsetleri listesine ekleyin"
 
 msgid "Add the selected service to a bouquet or alternative"
@@ -2084,6 +2093,9 @@ msgstr "Vurgulanan eklentiyi kaldırma listesine ekle/kaldır"
 
 msgid "Add/Remove highlighted plugin to/from update list"
 msgstr "Vurgulanan eklentiyi güncelleme listesine ekleme/listeden kaldırma"
+
+msgid "Add/Remove the current service to/from the Volume Offset list"
+msgstr ""
 
 msgid "Adding schedule..."
 msgstr "Zamanlama ekleniyor..."
@@ -2761,6 +2773,9 @@ msgstr "Otomatik yükleme günlüğü"
 
 msgid "Auto multi-selection"
 msgstr "Otomatik çoklu seçim"
+
+msgid "Auto show volume level"
+msgstr ""
 
 msgid "Auto shut down"
 msgstr "Otomatik kapanma"
@@ -5482,6 +5497,9 @@ msgstr ""
 msgid "Currently Defined Volume Offsets:"
 msgstr "Halihazırda Tanımlanmış Hacim Ofsetleri:"
 
+msgid "Currently Remembered Volume Levels:"
+msgstr ""
+
 #
 msgid "Custom"
 msgstr "Özelleştir"
@@ -5974,6 +5992,9 @@ msgstr ""
 msgid "Defined / Active"
 msgstr "Tanımlı / Aktif"
 
+msgid "Defined volume offset"
+msgstr ""
+
 msgid "Defines how fast the time jumps are repeated. Values lower than 500ms may be problematic with NAS."
 msgstr "Zaman atlamalarının ne kadar hızlı tekrarlandığını tanımlar. NAS ile 500 ms'den daha düşük değerler sorunlu olabilir."
 
@@ -6183,9 +6204,6 @@ msgstr "Mevcut zaman kayması tamponunu silin ve zaman kaymasını yeniden başl
 
 msgid "Delete the currently displayed log file"
 msgstr "Şu anda görüntülenen günlük dosyasını silin"
-
-msgid "Delete the currently highlighted service from the Volume Offsets list"
-msgstr "Şu anda vurgulanan hizmeti Hacim Ofsetleri listesinden silin"
 
 msgid "Delete the currently selected timer"
 msgstr "Seçili zamanlayıcıyı silme"
@@ -7231,9 +7249,6 @@ msgstr "BT Sesini Etkinleştir"
 #
 msgid "Enable Bouquet Edit"
 msgstr "Buket düzenlemeyi etkinleştir"
-
-msgid "Enable Dolby Digital / Dolby AC-3 offsets"
-msgstr "Dolby Digital / Dolby AC-3 ofsetlerini etkinleştir"
 
 msgid "Enable EIT EPG"
 msgstr "EIT EPG etkinleştir"
@@ -8405,6 +8420,9 @@ msgstr "Geri dönüş API'si geçerli bir sonuç döndürmedi."
 msgid "Fallback Font *"
 msgstr "Yedek Yazı Tipi *"
 
+msgid "Fallback Remote Receiver Settings"
+msgstr ""
+
 msgid "Fallback Timer"
 msgstr ""
 
@@ -8428,9 +8446,6 @@ msgstr "Yedek cihaz URL"
 
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Yedek cihaz URL"
-
-msgid "Fallback Remote Receiver Settings"
-msgstr ""
 
 msgid "Fallback tuner setup"
 msgstr "Yedek cihaz URL"
@@ -10849,6 +10864,9 @@ msgstr "Son kullanılan sütun"
 msgid "Last used share: "
 msgstr "Son kullanılan paylaşım: "
 
+msgid "Last used/set volume"
+msgstr ""
+
 msgctxt "third event: 'third' event label"
 msgid "Later"
 msgstr "Sonra"
@@ -13019,9 +13037,6 @@ msgctxt "now/next: 'now' event label"
 msgid "Now"
 msgstr "Şimdi"
 
-msgid "Save time shift buffer now and continue recording"
-msgstr "Şimdi zaman kaymasını film olarak kaydedin ve kaydetmeye devam edin"
-
 #
 msgid "Now, use the contrast setting to turn up the brightness of the background as much as possible, but make sure that you can still see the difference between the two brightest levels of shades.If you have done that, press OK."
 msgstr "Şimdi, arka planın parlaklığını mümkün olduğunca açmak için kontrast ayarını kullanın, ancak iki en parlak renk tonu arasındaki farkı görebildiğinizden emin olun. Bunu yaptıysanız Tamam'a basın."
@@ -13848,9 +13863,6 @@ msgstr "Servisi Stream Relay olmadan oynat"
 msgid "Play all audio files in the directory"
 msgstr "Dizindeki tüm ses dosyalarını çalma"
 
-msgid "Play catch up service archive"
-msgstr ""
-
 msgid "Play audio in background"
 msgstr "Sesi arkaplanda çal"
 
@@ -13860,6 +13872,9 @@ msgstr "Ses CD'si (Audio CD) çal..."
 
 msgid "Play back media files"
 msgstr "Ortam dosyalarını oynat"
+
+msgid "Play catch up service archive"
+msgstr ""
 
 #
 msgid "Play entry"
@@ -15101,9 +15116,6 @@ msgstr "Sonrakini kaydet"
 msgid "Record now"
 msgstr "Şimdikini kaydet"
 
-msgid "Recording started, stopping time shift now."
-msgstr "Kayıt başladı! Zaman-kaydırma şimdi durduruluyor ..."
-
 #
 #, python-format
 msgid "Record time limited due to conflicting timer:%s"
@@ -15160,6 +15172,9 @@ msgstr "Koşu kaydı"
 
 msgid "Recording started"
 msgstr "Kayıt başladı"
+
+msgid "Recording started, stopping time shift now."
+msgstr "Kayıt başladı! Zaman-kaydırma şimdi durduruluyor ..."
 
 msgid "Recording stopped"
 msgstr "Kayıt durduruldu"
@@ -16243,6 +16258,9 @@ msgstr "Zaman-kaydırmayı Film olarak sakla ve kayıda devam et"
 msgid "Save time shift as movie and stop recording"
 msgstr "Zaman-kaydırmayı Film olarak sakla ve kayıdı durdur"
 
+msgid "Save time shift buffer now and continue recording"
+msgstr "Şimdi zaman kaymasını film olarak kaydedin ve kaydetmeye devam edin"
+
 msgid "Saved lines in script messages"
 msgstr "Kod mesajlarında kaydedilen satırlar"
 
@@ -16515,6 +16533,9 @@ msgstr "Anten sisteminiz bunu gerektiriyorsa 'A' veya 'B' seçeneğini seçin, a
 msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB specifications."
 msgstr "Eğer bir 'evrensel' LNB kullanıyorsanız, 'band' seçeneğini seçin, aksi takdirde LNB teknik tablonuza bakın."
 
+msgid "Select 'Disabled' to disable all automated volume adjustments. Select 'Defined volume offsets' to assign a specified offset to the service's volume level. Select 'Last used/set volume' to remember the volume level last used for each service."
+msgstr ""
+
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr "CI+ yardımcısını başlatmak için 'Etkinleştir'i seçin."
 
@@ -16547,9 +16568,6 @@ msgstr "Zamanlayıcıyı etkinleştirmeden önce ağ trafiğinin kontrol edilmes
 
 msgid "Select 'Yes' if this tuner is connected to the SCR device through another tuner, otherwise select 'No'."
 msgstr "Bu alıcı SCR cihazına başka bir alıcı aracılığıyla bağlıysa 'evet' seçeneğini seçin, aksi halde 'hayır' seçeneğini seçin."
-
-msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
-msgstr "Dolby ses parçalarına ses ayarı yapılması gerekiyorsa 'Evet'i seçin."
 
 msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port-A command signal. Select 'No' for all other setups."
 msgstr "DiSEqC Port-A komut sinyali gerektiren bir multiswich kullanıyorsanız, yalnızca 'evet'i seçin. Diğer tüm kurulumlar için 'hayır' seçeneğini seçin."
@@ -16748,6 +16766,9 @@ msgstr "'evet' Radyo ve TV kipleri arasındaki geçişlerde kanal listesi görü
 
 msgid "Select 'Yes' to show the current directory in the list of directories. Note that File Commander must be restarted for this change to take effect."
 msgstr "Dizinler listesinde geçerli dizini göstermek için 'Evet'i seçin. Bu değişikliğin etkili olması için File Commander'ın yeniden başlatılması gerektiğini unutmayın."
+
+msgid "Select 'Yes' to show the volume level on any automated changes of volume level."
+msgstr ""
 
 msgid "Select 'Yes' to show this plugin in the Plugin Browser."
 msgstr ""
@@ -17947,6 +17968,10 @@ msgstr "Meşgul döndürücünün sol üst konumunu ayarlayın. Koordinatlar, so
 
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Kanal seçim ekranındaki ilerleme işaretinin tipini belirleyin."
+
+#, python-format
+msgid "Set the volume level for the '%s' service."
+msgstr ""
 
 #, python-format
 msgid "Set the volume offset for the '%s' service."
@@ -20810,13 +20835,6 @@ msgid "The bitrate of the video encoder. Larger value improves quality and incre
 msgstr "Video kodlayıcının bit hızı. Daha büyük değer kaliteyi artırır ve dosya boyutunu artırır."
 
 msgid ""
-"The time shift buffer exceeds the limit specified in the settings.\n"
-"What do you want to do?"
-msgstr ""
-"Zaman kayması için tampon süresi, ayarlarda belirtilen sınırı aşıyor.\n"
-"Ne yapmak istiyorsun ?"
-
-msgid ""
 "The channel may support VPS\n"
 " Do you want to enable VPS?"
 msgstr ""
@@ -20934,6 +20952,13 @@ msgstr ""
 
 msgid "The time is multiplied by the current repeat counter."
 msgstr "Zaman, geçerli tekrar sayıcı ile çarpılır."
+
+msgid ""
+"The time shift buffer exceeds the limit specified in the settings.\n"
+"What do you want to do?"
+msgstr ""
+"Zaman kayması için tampon süresi, ayarlarda belirtilen sınırı aşıyor.\n"
+"Ne yapmak istiyorsun ?"
 
 #, python-format
 msgid "The timer file '%s' is corrupt and could not be loaded."
@@ -21701,6 +21726,9 @@ msgstr "Otomatik yenilemeyi Aç/Kapat"
 
 msgid "Toggle between bouquet/EPG lists"
 msgstr "Buket / epg listeleri arasında geçiş yap"
+
+msgid "Toggle between the available TV and RADIO services"
+msgstr ""
 
 msgid "Toggle display of image information"
 msgstr "Görüntü bilgilerinin görüntülenmesini aç / kapat"
@@ -23131,17 +23159,20 @@ msgstr "Voltaj kipi"
 msgid "Volume"
 msgstr "Ses Düzeyi"
 
-msgid "Volume Adjust"
-msgstr "Ses ayarı"
-
 msgid "Volume Adjust Actions"
 msgstr "Ses Ayarlama İşlemleri"
 
 msgid "Volume Adjust Service Selection"
 msgstr "Ses Ayarı Servis Seçimi"
 
+msgid "Volume Adjust Service Selection Actions"
+msgstr ""
+
 msgid "Volume Adjust Settings"
 msgstr "Ses Ayarı Ayarları"
+
+msgid "Volume adjustment mode"
+msgstr ""
 
 msgid "Volume down"
 msgstr "Ses azalt"
@@ -25315,6 +25346,18 @@ msgstr "evet (beslemeleri tut)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Delete the currently highlighted service from the Volume Offsets list"
+#~ msgstr "Şu anda vurgulanan hizmeti Hacim Ofsetleri listesinden silin"
+
+#~ msgid "Enable Dolby Digital / Dolby AC-3 offsets"
+#~ msgstr "Dolby Digital / Dolby AC-3 ofsetlerini etkinleştir"
+
+#~ msgid "Select 'Yes' if volume adjustments should be applied to Dolby sound tracks."
+#~ msgstr "Dolby ses parçalarına ses ayarı yapılması gerekiyorsa 'Evet'i seçin."
+
+#~ msgid "Volume Adjust"
+#~ msgstr "Ses ayarı"
 
 #
 #~ msgid "off"
