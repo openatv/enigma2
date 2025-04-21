@@ -13,7 +13,7 @@ from Components.Sources.StaticText import StaticText
 from Screens.ChannelSelection import ChannelSelectionBase
 from Screens.Screen import Screen
 from Screens.Setup import Setup
-from Tools.Directories import SCOPE_CONFIG, fileReadXML, fileWriteLines, moveFiles, resolveFilename
+from Tools.Directories import SCOPE_CONFIG, fileReadXML, fileWriteLines, resolveFilename
 
 MODULE_NAME = __name__.split(".")[-1]
 
