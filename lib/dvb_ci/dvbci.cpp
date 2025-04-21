@@ -446,6 +446,9 @@ void eDVBCIInterfaces::recheckPMTHandlers()
 		pmthandler->getService(service);
 
 		eTrace("[CI] recheck %p %s", pmthandler, ref.toString().c_str());
+		bool PVR = !ref.path.empty() && ref.path.starts_with("/") && ref.path.ends_with(".ts");
+		ref.path = "";
+
 		for (eSmartPtrList<eDVBCISlot>::iterator ci_it(m_slots.begin()); ci_it != m_slots.end(); ++ci_it)
 			if (ci_it->plugged && ci_it->getCAManager())
 			{
@@ -524,7 +527,12 @@ void eDVBCIInterfaces::recheckPMTHandlers()
 				{
 					eDVBNamespace ns = ref.getDVBNamespace();
 					mask |= 2;
-					if (!service) // subservice?
+
+					if(PVR && !service)
+					{
+						eDVBDB::getInstance()->getService(ref, service);
+					} 
+					else if (!service) // subservice?
 					{
 						eServiceReferenceDVB parent_ref = ref.getParentServiceReference();
 						eDVBDB::getInstance()->getService(parent_ref, service);
