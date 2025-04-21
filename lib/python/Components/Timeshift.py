@@ -463,7 +463,7 @@ class InfoBarTimeshift:
 		elif (self.isSeekable() or (self.timeshiftEnabled() and not config.timeshift.startDelay.value) or self.save_current_timeshift) and config.timeshift.check.value:
 			if config.timeshift.favoriteSaveAction.value == "askuser":
 				if self.save_current_timeshift:
-					message = _("You have chosen to save the current time shift event, but the event has not yet finished\nWhat do you want to do ?")
+					message = _("You have chosen to save the current time shift event, but the event has not yet finished\nWhat do you want to do?")
 					choice = [
 						(_("Save time shift as movie and continue recording"), "savetimeshiftandrecord"),
 						(_("Save time shift as movie and stop recording"), "savetimeshift"),
@@ -472,7 +472,7 @@ class InfoBarTimeshift:
 					]
 					self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple=True, list=choice, timeout=30)
 				else:
-					message = _("You seem to be in time shift, Do you want to leave time shift ?")
+					message = _("You seem to be in time shift, do you want to leave time shift?")
 					choice = [
 						(_("Yes, but don't save time shift as movie"), "noSave"),
 						(_("Yes, but save time shift as movie and continue recording"), "savetimeshiftandrecord"),
@@ -484,12 +484,12 @@ class InfoBarTimeshift:
 				if self.save_current_timeshift:
 					# The user has previously activated "Time shift save recording" of current event - so must be necessarily saved of the timeshift!
 					# workaround - without the message box can the box no longer be operated when goes in standby(no freezing - no longer can use - unhandled key screen comes when key press -)
-					message = _("You have chosen to save the current time shift")
-					choice = [(_("Now save time shift as movie and continues recording"), "savetimeshiftandrecord")]
+					message = _("You have chosen to save the current time shift buffer")
+					choice = [(_("Save time shift buffer now and continue recording"), "savetimeshiftandrecord")]
 					self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple=True, list=choice, timeout=1)
 					# InfoBarTimeshift.saveTimeshiftActions(self, "savetimeshiftandrecord", returnFunction)
 				else:
-					message = _("You seem to be in time shift, Do you want to leave time shift ?")
+					message = _("You seem to be in time shift, do you want to leave time shift?")
 					choice = [(_("Yes"), config.timeshift.favoriteSaveAction.value), (_("No"), "no")]
 					self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple=True, list=choice, timeout=30)
 		elif self.save_current_timeshift:
@@ -497,8 +497,8 @@ class InfoBarTimeshift:
 			# but the user has previously activated "Time shift save recording" of current event
 			# so we silently do "savetimeshiftandrecord" when switching channel independent of config.timeshift.favoriteSaveAction
 			# workaround - without the message box can the box no longer be operated when goes in standby(no freezing - no longer can use - unhandled key screen comes when key press -)
-			message = _("You have chosen to save the current time shift")
-			choice = [(_("Now save time shift as movie and continues recording"), "savetimeshiftandrecord")]
+			message = _("You have chosen to save the current time shift buffer")
+			choice = [(_("Save time shift buffer now and continue recording"), "savetimeshiftandrecord")]
 			self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple=True, list=choice, timeout=1)
 			# InfoBarTimeshift.saveTimeshiftActions(self, "savetimeshiftandrecord", returnFunction)
 		else:
@@ -639,7 +639,7 @@ class InfoBarTimeshift:
 						else:
 							servicename = ServiceReference(servicerefname).getServiceName()
 							entrylist.append(("[%s] %s : %s" % (strftime("%H:%M", localtime(int(begintime))), servicename, eventname), "%s" % filename))
-			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title=_("Which event do you want to save permanently?"), list=entrylist)
+			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title=_("Which time shift buffer event do you want to save?"), list=entrylist)
 
 	def saveTimeshiftActions(self, action=None, returnFunction=None):
 		timeshiftfile = None
@@ -677,7 +677,7 @@ class InfoBarTimeshift:
 					if statinfo.st_mtime > (time() - 5.0):
 						savefilename = filename
 		if savefilename is None:
-			AddNotification(MessageBox, _("No time shift found to save as recording!"), MessageBox.TYPE_ERROR, timeout=30)
+			AddNotification(MessageBox, _("No time shift buffer found to save as recording!"), MessageBox.TYPE_ERROR, timeout=30)
 		else:
 			timeshift_saved = True
 			timeshift_saveerror1 = ""
@@ -803,11 +803,11 @@ class InfoBarTimeshift:
 							eventname = ""
 						JobManager.AddJob(CopyTimeshiftJob(self, "mv \"%s%s.copy\" \"%s.ts\"" % (config.timeshift.path.value, copy_file, fullname), copy_file, fullname, eventname))
 						if not Screens.Standby.inTryQuitMainloop and not Screens.Standby.inStandby and not mergelater and self.save_timeshift_postaction != "standby":
-							AddNotification(MessageBox, _("Saving time shift as movie now. This might take a while!"), MessageBox.TYPE_INFO, timeout=30)
+							AddNotification(MessageBox, _("Saving time shift buffer, this might take a while."), MessageBox.TYPE_INFO, timeout=30)
 					else:
 						timeshift_saved = False
 						timeshift_saveerror1 = ""
-						timeshift_saveerror2 = _("Not enough free Diskspace!\n\nFilesize: %sMB\nFree Space: %sMB\nPath: %s" % (filesize, freespace, recordingPath))
+						timeshift_saveerror2 = _("Not enough free disk space!\n\nFilesize: %sMB\nFree Space: %sMB\nPath: %s" % (filesize, freespace, recordingPath))
 				except Exception as errormsg:
 					timeshift_saved = False
 					timeshift_saveerror2 = errormsg
@@ -820,17 +820,17 @@ class InfoBarTimeshift:
 	def ptsAskUser(self, what):
 		if self.ptsAskUser_wait:
 			return
-		message_time = _("The buffer time for time shift exceeds the specified limit in the settings.\nWhat do you want to do ?")
-		message_space = _("The available disk space for time shift is less than specified in the settings.\nWhat do you want to do ?")
-		message_livetv = _("Can't going to live TV!\nSwitch to live TV and restart time shift ?")
-		message_nextfile = _("Can't play the next time shift file!\nSwitch to live TV and restart time shift ?")
+		message_time = _("The time shift buffer exceeds the limit specified in the settings.\nWhat do you want to do?")
+		message_space = _("The available disk space for time shift buffer is less than specified in the settings.\nWhat do you want to do?")
+		message_livetv = _("Can't go to live TV!\nSwitch to live TV and restart time shift ?")
+		message_nextfile = _("Can't play the next time shift buffer file!\nSwitch to live TV and restart time shift ?")
 		choice_restart = [
 			(_("Delete the current time shift buffer and restart time shift"), "restarttimeshift"),
 			(_("Nothing, just leave this menu"), "no")
 		]
 		choice_save = [
-			(_("Stop time shift and save time shift buffer as movie and start recording of current event"), "savetimeshiftandrecord"),
-			(_("Stop time shift and save time shift buffer as movie"), "savetimeshift"),
+			(_("Stop time shift and save time shift buffer as a movie and start recording of current event"), "savetimeshiftandrecord"),
+			(_("Stop time shift and save time shift buffer as a movie"), "savetimeshift"),
 			(_("Stop time shift"), "noSave"),
 			(_("Nothing, just leave this menu"), "no")
 		]
@@ -1026,7 +1026,7 @@ class InfoBarTimeshift:
 			info = service and service.info()
 			event = info and info.getEvent(0)
 		except Exception as errormsg:
-			AddNotification(MessageBox, _("Getting Event Info failed!") + "\n\n%s" % errormsg, MessageBox.TYPE_ERROR, timeout=10)
+			AddNotification(MessageBox, _("Getting event information failed!") + "\n\n%s" % errormsg, MessageBox.TYPE_ERROR, timeout=10)
 		if event is not None:
 			curEvent = parseEvent(event)
 			self.pts_curevent_begin = int(curEvent[0])
@@ -1460,7 +1460,7 @@ class InfoBarTimeshift:
 			if self.seekstate != self.SEEK_STATE_PLAY:
 				self.setSeekState(self.SEEK_STATE_PLAY)
 			if self.isSeekable():
-				AddNotification(MessageBox, _("Record started! Stopping time shift now ..."), MessageBox.TYPE_INFO, timeout=30)
+				AddNotification(MessageBox, _("Recording started, stopping time shift now."), MessageBox.TYPE_INFO, timeout=30)
 			self.switchToLive = False
 			self.stopTimeshiftcheckTimeshiftRunningCallback(True)
 		if timer.state == TimerEntry.StateEnded:
