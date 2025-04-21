@@ -129,6 +129,9 @@ def parseNextEvent(items, isZapTimer=False):  # IanSav: This is only used in onc
 
 
 class ChannelSelectionBase(Screen):
+	MODE_TV = 0
+	MODE_RADIO = 1
+
 	def __init__(self, session):
 		def digitHelp():
 			return _("LCN style QuickSelect entry selection") if config.usage.show_channel_jump_in_servicelist.value == "quick" else _("SMS style QuickSelect entry selection")
