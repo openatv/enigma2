@@ -135,9 +135,9 @@ class VolumeAdjustSettings(Setup):
 		if not result:
 			return
 		if self.volumeOffsets != self.initialVolumeOffsets:
-			self.volumeOffsets = deepcopy(self.initialVolumeOffsets)
+			VolumeAdjust.instance.setVolumeOffsets(self.initialVolumeOffsets)
 		if self.volumeRemembered != self.initialVolumeRemembered:
-			self.volumeRemembered = deepcopy(self.initialVolumeRemembered)
+			VolumeAdjust.instance.setVolumeRemembered(self.initialVolumeRemembered)
 		if self.volumeControl.getVolume() != self.initialVolume:  # Reset the volume if we were setting a volume for the current service.
 			self.volumeControl.setVolume(self.initialVolume, self.initialVolume)
 		if self.volumeControl.getVolumeOffset() != self.initialOffset:  # Reset the offset if we were setting an offset for the current service.
@@ -465,8 +465,14 @@ class VolumeAdjust:
 	def getVolumeOffsets(self):
 		return self.volumeOffsets
 
+	def setVolumeOffsets(self, volumeOffsets):
+		self.volumeOffsets = volumeOffsets
+
 	def getVolumeRemembered(self):
 		return self.volumeRemembered
+
+	def setVolumeRemembered(self, volumeRemembered):
+		self.volumeRemembered = volumeRemembered
 
 	def refreshSettings(self):  # Refresh the cached data when the settings are changed.
 		self.adjustMode = config.volumeAdjust.adjustMode.value
