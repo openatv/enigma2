@@ -822,8 +822,8 @@ class InfoBarTimeshift:
 			return
 		message_time = _("The time shift buffer exceeds the limit specified in the settings.\nWhat do you want to do?")
 		message_space = _("The available disk space for time shift buffer is less than specified in the settings.\nWhat do you want to do?")
-		message_livetv = _("Can't go to live TV!\nSwitch to live TV and restart time shift ?")
-		message_nextfile = _("Can't play the next time shift buffer file!\nSwitch to live TV and restart time shift ?")
+		message_livetv = _("Can't go to live TV!\nSwitch to live TV and restart time shift?")
+		message_nextfile = _("Can't play the next time shift buffer file!\nSwitch to live TV and restart time shift?")
 		choice_restart = [
 			(_("Delete the current time shift buffer and restart time shift"), "restarttimeshift"),
 			(_("Nothing, just leave this menu"), "no")

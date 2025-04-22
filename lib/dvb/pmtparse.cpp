@@ -430,7 +430,7 @@ int eDVBPMTParser::getProgramInfo(program &program)
 					if (!num_descriptors && streamtype == 0x06 && prev_audio)
 					{
 						prev_audio->rdsPid = (*es)->getPid();
-						eDebug("[eDVBPMTParser] Rds PID %04x detected ? ! ?", prev_audio->rdsPid);
+						eDebug("[eDVBPMTParser] Rds PID %04x detected?!?", prev_audio->rdsPid);
 					}
 					//HEVC 4K for Topway
 					if (!num_descriptors && streamtype == 0xEA && !isvideo && !isaudio)

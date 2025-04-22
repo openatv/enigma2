@@ -87,8 +87,8 @@ class SABnzbdSetupScreen(Screen):
 	def UninstalldataAvail(self, str, retval, extra_args):
 		str = six.ensure_str(str)
 		if str:
-			restartbox = self.session.openWithCallback(self.RemovePackage, MessageBox, _('Your %s %s will be restarted after the removal of service\nDo you want to remove now ?') % getBoxDisplayName(), MessageBox.TYPE_YESNO)
-			restartbox.setTitle(_('Ready to remove "%s" ?') % self.service_name)
+			restartbox = self.session.openWithCallback(self.RemovePackage, MessageBox, _("Your %s %s will be restarted after the removal of service\nDo you want to remove now?") % getBoxDisplayName(), MessageBox.TYPE_YESNO)
+			restartbox.setTitle(_("Ready to remove \"%s\"?") % self.service_name)
 		else:
 			self.updateService()
 

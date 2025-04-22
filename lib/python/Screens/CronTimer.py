@@ -80,7 +80,7 @@ class CronTimers(Screen):
 		elif ("wget returned 1" or "wget returned 255" or "404 Not Found") in result:
 			self.session.openWithCallback(self.installPackageFailed, MessageBox, _("Sorry feeds are down for maintenance, please try again later."), type=MessageBox.TYPE_INFO, timeout=10, close_on_any_key=True)
 		else:
-			self.session.openWithCallback(self.installPackage, MessageBox, _("Ready to install \"%s\" ?") % self.service_name, MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(self.installPackage, MessageBox, _("Ready to install \"%s\"?") % self.service_name, MessageBox.TYPE_YESNO)
 
 	def installPackage(self, val):
 		if val:
@@ -111,7 +111,7 @@ class CronTimers(Screen):
 
 	def removedataAvail(self, result, retval, extra_args):
 		if result:
-			self.session.openWithCallback(self.removePackage, MessageBox, _("Ready to remove \"%s\" ?") % self.service_name)
+			self.session.openWithCallback(self.removePackage, MessageBox, _("Ready to remove \"%s\"?") % self.service_name)
 		else:
 			self.close()
 

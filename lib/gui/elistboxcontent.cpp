@@ -1227,7 +1227,7 @@ int eListboxPythonMultiContent::getMaxItemTextWidth()
 
 				if (!item)
 				{
-					eDebug("[eListboxPythonMultiContent] no items[%d] ?", i);
+					eDebug("[eListboxPythonMultiContent] no items[%d]?", i);
 					continue;
 				}
 
@@ -1474,7 +1474,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 			if (!item)
 			{
-				eDebug("[eListboxPythonMultiContent] no items[%d] ?", i);
+				eDebug("[eListboxPythonMultiContent] no items[%d]?", i);
 				goto error_out;
 			}
 
