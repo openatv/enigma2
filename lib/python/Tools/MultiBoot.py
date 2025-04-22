@@ -2,7 +2,7 @@ from datetime import datetime
 from glob import glob
 from hashlib import md5
 from os import listdir, mkdir, rename, rmdir, stat
-from os.path import basename, exists, isdir, isfile, ismount, join as pathjoin
+from os.path import basename, exists, isdir, isfile, ismount, join
 from struct import calcsize, pack, unpack, error
 from tempfile import mkdtemp
 
@@ -110,8 +110,8 @@ class MultiBootClass():
 			if exists(device):
 				tempDir = mkdtemp(prefix=PREFIX)
 				self.console.ePopen([MOUNT, MOUNT, device, tempDir])
-				cmdFile = pathjoin(tempDir, COMMAND_FILE)
-				startupFile = pathjoin(tempDir, STARTUP_FILE)
+				cmdFile = join(tempDir, COMMAND_FILE)
+				startupFile = join(tempDir, STARTUP_FILE)
 				if isfile(cmdFile) or isfile(startupFile):
 					file = cmdFile if isfile(cmdFile) else startupFile
 					startupCmdLine = " ".join(x.strip() for x in fileReadLines(file, default=[], source=MODULE_NAME) if x.strip())
@@ -138,7 +138,7 @@ class MultiBootClass():
 		if self.bootDevice:
 			tempDir = mkdtemp(prefix=PREFIX)
 			self.console.ePopen([MOUNT, MOUNT, self.bootDevice, tempDir])
-			for path in sorted(glob(pathjoin(tempDir, STARTUP_TEMPLATE))):
+			for path in sorted(glob(join(tempDir, STARTUP_TEMPLATE))):
 				file = basename(path)
 				if "DISABLE" in file:
 					if self.debugMode:
@@ -278,10 +278,12 @@ class MultiBootClass():
 	def getUUIDtoDevice(self, UUID):  # Returns None on failure.
 		if UUID.startswith("UUID="):  # Remove the "UUID=" from startup files that have it.
 			UUID = UUID[5:]
-		for fileName in listdir("/dev/uuid"):
-			if fileReadLine(pathjoin("/dev/uuid", fileName)) == UUID:
-				return f"/dev/{fileName}"
-		return None
+		result = None
+		for file in listdir("/dev/uuid"):
+			if fileReadLine(join("/dev/uuid", file)) == UUID:
+				result = f"/dev/{file}"
+				break
+		return result
 
 	def loadCurrentSlotAndBootCodes(self):
 		if self.bootSlots and self.bootSlotsKeys:
@@ -420,27 +422,27 @@ class MultiBootClass():
 			self.imageList[self.slotCode]["status"] = "unknown"
 		else:
 			rootDir = self.bootSlots[self.slotCode].get("rootsubdir")
-			imageDir = pathjoin(self.tempDir, rootDir) if rootDir else self.tempDir
-			infoFile = pathjoin(imageDir, "usr/lib/enigma.info")
-			infoFile1 = pathjoin(imageDir, "etc/image-version")
+			imageDir = join(self.tempDir, rootDir) if rootDir else self.tempDir
+			infoFile = join(imageDir, "usr/lib/enigma.info")
+			versionFile = join(imageDir, "etc/image-version")
 			if isfile(infoFile):
 				info = self.readSlotInfo(infoFile)
 				compileDate = str(info.get("compiledate"))
 				revision = info.get("imgrevision")
-				revision = ".%03d" % revision if info.get("distro") == "openvix" and isinstance(revision, int) else f" {revision}"
+				revision = f".{revision:03d}" if info.get("distro") == "openvix" and isinstance(revision, int) else f" {revision}"
 				revision = "" if revision.strip() == compileDate else revision
 				compileDate = f"{compileDate[0:4]}-{compileDate[4:6]}-{compileDate[6:8]}"
 				self.imageList[self.slotCode]["detection"] = "Found an enigma information file"
 				self.imageList[self.slotCode]["imagename"] = f"{info.get("displaydistro", info.get("distro"))} {info.get("imgversion")}{revision} ({compileDate})"
 				self.imageList[self.slotCode]["imagelogname"] = f"{info.get("displaydistro", info.get("distro"))} {info.get("imgversion")}{revision} ({compileDate})"
 				self.imageList[self.slotCode]["status"] = "active"
-			elif isfile(infoFile1):
-				info = self.readSlotInfo(infoFile1)
-				compileDate = self.getCompiledate(imageDir)
+			elif isfile(versionFile):
+				info = self.readSlotInfo(versionFile)
+				compileDate = self.getCompileDate(imageDir)
 				compileDate = f"{compileDate[0:4]}-{compileDate[4:6]}-{compileDate[6:8]}"
 				version = str(info.get("version"))
 				if "." not in version and "-" not in version and version.isdigit():
-					version = f"{int(version[0:2])}.{int(version[3:5])}"
+					version = f"{int(version[0:3])}.{version[3:4]}.{version[4:6]}" if len(version) == 18 else f"{int(version[0:2])}.{int(version[3:5])}"
 				self.imageList[self.slotCode]["detection"] = "Found an image version file"
 				creator = info.get("creator")
 				if creator is not None:
@@ -450,7 +452,7 @@ class MultiBootClass():
 					self.imageList[self.slotCode]["imagename"] = f"Unknown Creator {version} ({compileDate})"
 					self.imageList[self.slotCode]["imagelogname"] = f"Unknown Creator {version} ({compileDate})"
 				self.imageList[self.slotCode]["status"] = "active"
-			elif isfile(pathjoin(imageDir, "usr/bin/enigma2")):
+			elif isfile(join(imageDir, "usr/bin/enigma2")):
 				info = self.deriveSlotInfo(imageDir)
 				compileDate = str(info.get("compiledate"))
 				compileDate = f"{compileDate[0:4]}-{compileDate[4:6]}-{compileDate[6:8]}"
@@ -558,23 +560,23 @@ class MultiBootClass():
 				pass
 		return value
 
-	def getCompiledate(self, path):
+	def getCompileDate(self, path):
 		statusfile = "var/lib/opkg/status"
-		if exists(pathjoin(path, "var/lib/dpkg/status")):
+		if exists(join(path, "var/lib/dpkg/status")):
 			statusfile = "var/lib/dpkg/status"
 		try:
-			date = datetime.fromtimestamp(stat(pathjoin(path, statusfile)).st_mtime).strftime("%Y%m%d")
+			date = datetime.fromtimestamp(stat(join(path, statusfile)).st_mtime).strftime("%Y%m%d")
 			if date.startswith("1970"):
-				date = datetime.fromtimestamp(stat(pathjoin(path, "usr/share/bootlogo.mvi")).st_mtime).strftime("%Y%m%d")
-			date = max(date, datetime.fromtimestamp(stat(pathjoin(path, "usr/bin/enigma2")).st_mtime).strftime("%Y%m%d"))
+				date = datetime.fromtimestamp(stat(join(path, "usr/share/bootlogo.mvi")).st_mtime).strftime("%Y%m%d")
+			date = max(date, datetime.fromtimestamp(stat(join(path, "usr/bin/enigma2")).st_mtime).strftime("%Y%m%d"))
 		except OSError as err:
 			date = "00000000"
 		return date
 
 	def deriveSlotInfo(self, path):  # Part of analyzeSlot() within getSlotImageList().
 		info = {}
-		info["compiledate"] = self.getCompiledate(path)
-		lines = fileReadLines(pathjoin(path, "etc/issue"), source=MODULE_NAME)
+		info["compiledate"] = self.getCompileDate(path)
+		lines = fileReadLines(join(path, "etc/issue"), source=MODULE_NAME)
 		if lines and "vuplus" not in lines[0] and len(lines) >= 2:
 			data = lines[-2].strip()[:-6].split()
 			info["distro"] = " ".join(data[:-1])
@@ -624,7 +626,7 @@ class MultiBootClass():
 			if exists(DREAM_BOOT_FILE) and startup == STARTUP_RECOVERY:
 				pass
 			else:
-				copyfile(pathjoin(self.tempDir, startup), pathjoin(self.tempDir, target))
+				copyfile(join(self.tempDir, startup), join(self.tempDir, target))
 			if exists(DUAL_BOOT_FILE):
 				slot = self.slotCode if self.slotCode.isdecimal() else "0"
 				with open(DUAL_BOOT_FILE, "wb") as fd:
@@ -684,24 +686,24 @@ class MultiBootClass():
 			self.callback(2)
 		else:
 			rootDir = self.bootSlots[self.slotCode].get("rootsubdir")
-			imageDir = pathjoin(self.tempDir, rootDir) if rootDir else self.tempDir
+			imageDir = join(self.tempDir, rootDir) if rootDir else self.tempDir
 			if self.bootSlots[self.slotCode].get("ubi", False) or fileHas("/proc/cmdline", "kexec=1"):
 				try:
-					if isfile(pathjoin(imageDir, "usr/bin/enigma2")):
+					if isfile(join(imageDir, "usr/bin/enigma2")):
 						self.console.ePopen([REMOVE, REMOVE, "-rf", imageDir])
 					mkdir(imageDir)
 				except OSError as err:
 					print(f"[MultiBoot] hideSlot Error {err.errno}: Unable to wipe all files in slot '{self.slotCode}' ({self.device})!  ({err.strerror})")
 			else:
-				enigmaFile = ""  # This is in case the first pathjoin fails.
+				enigmaFile = ""  # This is in case the first join fails.
 				try:
-					enigmaFile = pathjoin(imageDir, "usr/bin/enigma2")
+					enigmaFile = join(imageDir, "usr/bin/enigma2")
 					if isfile(enigmaFile):
 						rename(enigmaFile, f"{enigmaFile}x.bin")
-					enigmaFile = pathjoin(imageDir, "usr/lib/enigma.info")
+					enigmaFile = join(imageDir, "usr/lib/enigma.info")
 					if isfile(enigmaFile):
 						rename(enigmaFile, f"{enigmaFile}x")
-					enigmaFile = pathjoin(imageDir, "etc")
+					enigmaFile = join(imageDir, "etc")
 					if isdir(enigmaFile):
 						rename(enigmaFile, f"{enigmaFile}x")
 				except OSError as err:
@@ -714,18 +716,18 @@ class MultiBootClass():
 			self.callback(2)
 		else:
 			rootDir = self.bootSlots[self.slotCode].get("rootsubdir")
-			imageDir = pathjoin(self.tempDir, rootDir) if rootDir else self.tempDir
-			enigmaFile = ""  # This is in case the first pathjoin fails.
+			imageDir = join(self.tempDir, rootDir) if rootDir else self.tempDir
+			enigmaFile = ""  # This is in case the first join fails.
 			try:
-				enigmaFile = pathjoin(imageDir, "usr/bin/enigma2")
+				enigmaFile = join(imageDir, "usr/bin/enigma2")
 				hiddenFile = f"{enigmaFile}x.bin"
 				if isfile(hiddenFile):
 					rename(hiddenFile, enigmaFile)
-				enigmaFile = pathjoin(imageDir, "usr/lib/enigma.info")
+				enigmaFile = join(imageDir, "usr/lib/enigma.info")
 				hiddenFile = f"{enigmaFile}x"
 				if isfile(hiddenFile):
 					rename(hiddenFile, enigmaFile)
-				enigmaFile = pathjoin(imageDir, "etc")
+				enigmaFile = join(imageDir, "etc")
 				hiddenFile = f"{enigmaFile}x"
 				if isdir(hiddenFile):
 					rename(hiddenFile, enigmaFile)
