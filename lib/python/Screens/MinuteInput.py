@@ -74,7 +74,7 @@ class MinuteInput(Screen):
 	def ok(self):
 		IntMinutes = int(self["minutes"].getText())
 		if IntMinutes > self.MaxMinutes:
-			self.session.open(MessageBox, _("Maximum minutes to jump %d !") % self.MaxMinutes, MessageBox.TYPE_WARNING, timeout=5)
+			self.session.open(MessageBox, _("Maximum minutes to jump %d!") % self.MaxMinutes, MessageBox.TYPE_WARNING, timeout=5)
 			self.cancel()
 		else:
 			self.close(IntMinutes)

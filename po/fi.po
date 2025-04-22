@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-21 09:40+0000\n"
-"PO-Revision-Date: 2025-04-21 04:10+0000\n"
+"PO-Revision-Date: 2025-04-21 21:23+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -897,9 +897,9 @@ msgid_plural "%d feed catalog packages were updated."
 msgstr[0] "%d Ohjelmisto jakelu lista päivitetty."
 msgstr[1] "%d Ohjelmisto valmistaja listat on päivitetty."
 
-#, fuzzy, python-format
+#, python-format
 msgid "%d jobs are running in the background!"
-msgstr "%d  Työ ovat käynnissä taustalla!"
+msgstr "%d Tehtävää on käynnissä taustalla!"
 
 #, python-format
 msgid "%d kB"
@@ -1890,7 +1890,7 @@ msgid "Add RecordTimer"
 msgstr "Lisää ajastus"
 
 msgid "Add Service"
-msgstr ""
+msgstr "Lisää Kanava"
 
 msgid "Add Service To Bouquet"
 msgstr "Lisää kanava suosikkilistalle"
@@ -1914,7 +1914,7 @@ msgid "Add a DNS entry"
 msgstr "Lisää DNS merkintä"
 
 msgid "Add a RADIO service to the Volume Offset list"
-msgstr ""
+msgstr "Lisää RADIO kanavan äänenvoimakkuuden siirtymälistaan"
 
 msgid "Add a RecordTimer"
 msgstr "Lisää ajastus"
@@ -1923,7 +1923,7 @@ msgid "Add a RecordTimer for current event"
 msgstr "Lisää tallennusajastus tähän ohjelmaan"
 
 msgid "Add a TV service to the Volume Offset list"
-msgstr ""
+msgstr "Lisää TV-kanava äänenvoimakkuuden siirtymälistaan"
 
 msgid "Add a ZapTimer for current event"
 msgstr "Lisää kanavanvaihtoajastus tähän ohjelmaan"
@@ -2046,7 +2046,7 @@ msgid "Add/Remove highlighted plugin to/from update list"
 msgstr "Lisää / Poista korostettu lisäosa päivitys listalle"
 
 msgid "Add/Remove the current service to/from the Volume Offset list"
-msgstr ""
+msgstr "Lisää/poista nykyinen kanava äänenvoimakkuuden siirtymälistaan/listasta"
 
 msgid "Adding schedule..."
 msgstr "Lisätään aikataulu..."
@@ -2339,7 +2339,7 @@ msgstr "Amlogic kaukosäädin"
 
 #, python-format
 msgid "Amount %d / Success %d / Failed %d"
-msgstr ""
+msgstr "Määrä %d / Onnistui %d / Epäonnistui %d"
 
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr "TV:n nykyinen tila yritetään tallentaa. Jos tämä ei ole mahdollista virheellisten tai puuttuvien tilaviestien vuoksi, vastaanotin voi vastata odottamattomasti. Toisaalta yritetään reagoida paremmin erilaisiin käyttöolosuhteisiin."
@@ -2694,7 +2694,7 @@ msgid "Auto multi-selection"
 msgstr "Automaattinen valinta"
 
 msgid "Auto show volume level"
-msgstr ""
+msgstr "Näytä äänenvoimakkuus taso automaattisesti"
 
 msgid "Auto shut down"
 msgstr "Automaattinen sammutus"
@@ -3689,12 +3689,12 @@ msgstr "Käyttäjä peruutti tehtävän"
 msgid "Cannot delete file"
 msgstr "Tiedostoa ei voi poistaa"
 
-#. TRANSLATORS: "Cannot determine (east/west) limit ..., aborting !"
+#. TRANSLATORS: "Cannot determine (east/west) limit ..., aborting!"
 #, python-format
-msgid "Cannot determine %s limit ..., aborting !"
+msgid "Cannot determine %s limit ..., aborting!"
 msgstr "Ei voida määrittää %s rajaa ..., keskeytys !"
 
-msgid "Cannot find any signal ..., aborting !"
+msgid "Cannot find any signal ..., aborting!"
 msgstr "Signaalia ei löydy... keskeytetään!"
 
 msgid "Cape Verde"
@@ -3722,7 +3722,7 @@ msgid "Catalan / Valencian"
 msgstr "Catalan / Valencian"
 
 msgid "Catch Up Player Actions"
-msgstr ""
+msgstr "Soittimen toiminnot"
 
 msgid "Cayman Islands"
 msgstr "Cayman saaret"
@@ -5315,7 +5315,7 @@ msgid "Currently Defined Volume Offsets:"
 msgstr "Tällä hetkellä määritellyt Äänen voimakkuuden poikkeamat"
 
 msgid "Currently Remembered Volume Levels:"
-msgstr ""
+msgstr "Nykyinen muistissa oleva äänenvoimakkuus tasot:"
 
 msgid "Custom"
 msgstr "Muokattu"
@@ -5788,7 +5788,7 @@ msgid "Defined / Active"
 msgstr "Määritetty / Aktiivinen"
 
 msgid "Defined volume offset"
-msgstr ""
+msgstr "Määritetty äänenvoimakkuus"
 
 msgid "Defines how fast the time jumps are repeated. Values lower than 500ms may be problematic with NAS."
 msgstr "Määrittää, kuinka nopeasti aikahyppy toistetaan. Alle 500ms (0.5s) arvot voivat aiheuttaa ongelmia NAS-levyjen kanssa."
@@ -6052,19 +6052,19 @@ msgid "Descending"
 msgstr "Laskeva"
 
 msgid "Descramble end time"
-msgstr ""
+msgstr "Salauksen purun päättymis aika"
 
 msgid "Descramble in Standby"
-msgstr ""
+msgstr "Salauksen purku valmiustilassa"
 
 msgid "Descramble in Standby finished"
-msgstr ""
+msgstr "Salauksen purku valmiustilassa on päättynyt"
 
 msgid "Descramble recordings before Shutdown"
-msgstr ""
+msgstr "Purkaa tallennuksen salaus ennen sammutusta"
 
 msgid "Descramble start time"
-msgstr ""
+msgstr "Salauksen purun aloitusaika"
 
 msgid "Descrambling options"
 msgstr "Salauksen purku asetukset"
@@ -6176,7 +6176,7 @@ msgstr "Sanelu"
 #, python-format
 msgid ""
 "Difference between timer begin and end must be equal or greater than %d minutes.\n"
-"End Action was disabled !"
+"End Action was disabled!"
 msgstr ""
 "Ajastimen aloitusajan ja lopetusajan välisen eron on oltava suurempi tai yhtä suuri kuin %d minuuttia.\n"
 "Lopputoiminto on poistettu käytöstä!"
@@ -10438,7 +10438,7 @@ msgid "Last used share: "
 msgstr "Viimeksi käytetty jako: "
 
 msgid "Last used/set volume"
-msgstr ""
+msgstr "Viimeksi käytetty/määritetty äänenvoimakkuus"
 
 msgctxt "third event: 'third' event label"
 msgid "Later"
@@ -11057,7 +11057,7 @@ msgid "Maxdown: "
 msgstr "Maxdown: "
 
 #, python-format
-msgid "Maximum minutes to jump %d !"
+msgid "Maximum minutes to jump %d!"
 msgstr "Voit hypätä enintään %d minuuttia!"
 
 msgid "Maximum no of days"
@@ -13285,7 +13285,7 @@ msgid "Play back media files"
 msgstr "Toista mediatiedostoja"
 
 msgid "Play catch up service archive"
-msgstr ""
+msgstr "Toista kanava arkisto"
 
 msgid "Play entry"
 msgstr "Toista"
@@ -15523,7 +15523,7 @@ msgid "Saving EPG Cache..."
 msgstr "Tallennetaan kanavaoppaan välimuistiin.."
 
 msgid "Saving time shift buffer, this might take a while."
-msgstr "Muunnetaan ajansiirto tallennukseksi. Tämä saattaa kestää hetken!"
+msgstr "Muunnetaan ajansiirto tallennukseksi. Tämä saattaa kestää hetken."
 
 msgid "Saving time shift files"
 msgstr "Tallennetaan ajansiirron tiedostoja"
@@ -15776,7 +15776,7 @@ msgstr ""
 "LNB:n teknisistä tiedoista."
 
 msgid "Select 'Disabled' to disable all automated volume adjustments. Select 'Defined volume offsets' to assign a specified offset to the service's volume level. Select 'Last used/set volume' to remember the volume level last used for each service."
-msgstr ""
+msgstr "Valitse 'Pois käytöstä' poistaaksesi kaikki automatisoidut äänenvoimakkuuden säädöt käytöstä. Valitse 'Määritetyt äänenvoimakkuuden siirtymät' määrittääksesi palvelun äänenvoimakkuustason siirtymän. Valitse 'Viimeksi käytetty/määritetty äänenvoimakkuus' muistaaksesi kunkin palvelun viimeksi käytetyn äänenvoimakkuustason."
 
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr "Valitse 'Käytössä' Avataksesi CI+ avustajan."
@@ -16016,7 +16016,7 @@ msgid "Select 'Yes' to show the current directory in the list of directories. No
 msgstr "Valitse 'Kyllä', jos haluat näyttää nykyisen hakemiston hakemistoluettelossa. Huomaa, että tiedostonhallinta on käynnistettävä uudelleen, jotta tämä muutos tulee voimaan."
 
 msgid "Select 'Yes' to show the volume level on any automated changes of volume level."
-msgstr ""
+msgstr "Valitse 'Kyllä' näyttääksesi äänenvoimakkuustason äänenvoimakkuuden muutoksissa."
 
 msgid "Select 'Yes' to show this plugin in the Plugin Browser."
 msgstr "Valitse \"Kyllä\" näyttääksesi tämän lisäosat valikossa."
@@ -16025,7 +16025,7 @@ msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Valitse 'Kyllä' näyttääksesi Netti sivut listassa."
 
 msgid "Select 'Yes' to shut down immediately instead of starting the descramble."
-msgstr ""
+msgstr "Valitse 'Kyllä' sammuttaaksesi välittömästi sen sijaan, että aloitat salauksen purun."
 
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr "Valitse ”Kyllä” jakaaksesi tehtävät eri toimintoihin."
@@ -16163,10 +16163,10 @@ msgid "Select a script to run:"
 msgstr "Valitse suoritettava scripti:"
 
 msgid "Select a time, when in Standby mode, after which the descramble can proceed."
-msgstr ""
+msgstr "Valitse aika, jonka kuluttua valmiustilassa salauksen purku voi jatkua."
 
 msgid "Select a time, when in Standby, before which descramble can proceed."
-msgstr ""
+msgstr "Valitse aika, jonka jälkeen valmiustilassa salauksen purku voi jatkua."
 
 msgid "Select a tuner"
 msgstr "Valitse viritin"
@@ -17193,7 +17193,7 @@ msgstr "Määritä ohjelman pituuden osoittamisen tyyppi kanavien valintalistass
 
 #, python-format
 msgid "Set the volume level for the '%s' service."
-msgstr ""
+msgstr "Aseta äänenvoimakkuustaso '%s' kanavalle."
 
 #, python-format
 msgid "Set the volume offset for the '%s' service."
@@ -17224,10 +17224,10 @@ msgid "Set to 'Disabled' to replace underscore characters, '_', in file and dire
 msgstr "Jos asetus ei ole käytössä, tiedosto- ja kansionimien alaviivoja ei näytetä, ja ne korvataan välilyönneillä."
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby mode before shutting down."
-msgstr ""
+msgstr "Aseta 'Käytössä' purkaaksesi jonossa olevat salatut tallenteet valmiustilassa ennen sammutusta."
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
-msgstr ""
+msgstr "Aseta 'Käytössä' purkaaksesi jonossa olevat salatut tallenteet valmiustilassa."
 
 msgid "Set to 'Yes', to enable automatic recording of the background timeshift buffer."
 msgstr "Jos asetuksena on 'kyllä` valinnalla tallennus käynnistyy automaattisesti, kun vaihdat jollekin kanavalle. Näitä tallennuksia ei tarvitse erikseen muuntaa tallenteiksi vaan niistä tulee pysyviä tallenteita suoraan."
@@ -19439,7 +19439,7 @@ msgstr "Symbolinen linkki"
 msgid "Sync NTP every (minutes)"
 msgstr "Synkronoi NTP joka (minuuttia)"
 
-msgid "Sync failure moving back to origin !"
+msgid "Sync failure moving back to origin!"
 msgstr "Synkronointivirhe, palataan takaisin alkuperäiseen!"
 
 msgid "Sync mode"
@@ -19507,7 +19507,7 @@ msgstr "TMDB Haku"
 
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Suomenkielinen käännös: 12.4.2025\n"
+"Suomenkielinen käännös: 22.4.2025\n"
 "tomppaa"
 
 msgid "TS file is too large for ISO9660 level 1!"
@@ -20020,7 +20020,7 @@ msgstr "Kanavalogo hakemisto on jos olemassa ja pitää poistaa ensin. Haluatko 
 
 #, python-format
 msgid "The process will take approximately %d minutes to complete."
-msgstr ""
+msgstr "Prosessi vie noin %d minuuttia valmistuakseen."
 
 #, python-format
 msgid "The results have been written to %s."
@@ -20141,8 +20141,8 @@ msgstr "Odottavia asennuksia:"
 #, python-format
 msgid "There is %d scrambled recording, which will be unscrambled during Standby."
 msgid_plural "There are %d scrambled recordings, which will be unscrambled during Standby."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "On %d salattua tallennus, joka puretaan valmiustilassa."
+msgstr[1] "On %d salattua tallennetta, jotka puretaan valmiustilassa."
 
 #, python-format
 msgid "There is a risk that your %s %s will not boot or may malfunction after such a large on-line update."
@@ -20152,7 +20152,7 @@ msgstr "Voi olla, että %s %s ei käynnisty tai siinä voi esiintyä toiminta h�
 msgid "There is no information to show for '%s'."
 msgstr "Ei ole mitään näytettävää tietoa \"%s\"."
 
-msgid "There is no signal to lock on !"
+msgid "There is no signal to lock on!"
 msgstr "Ei signaalia johon voisi lukittua!"
 
 msgid "There might not be enough space on the selected partition. Do you really want to continue?"
@@ -20809,7 +20809,7 @@ msgid "Toggle between bouquet/EPG lists"
 msgstr "Vaihda suosikkien ja ohjelmatietojen välillä"
 
 msgid "Toggle between the available TV and RADIO services"
-msgstr ""
+msgstr "Vaihda saatavilla olevien TV ja RADIO kanavien välillä"
 
 msgid "Toggle display of image information"
 msgstr "Vaihda kuvatietojen näyttö"
@@ -22174,13 +22174,13 @@ msgid "Volume Adjust Service Selection"
 msgstr "Äänenvoimakkuuden säätö valinta palvelu"
 
 msgid "Volume Adjust Service Selection Actions"
-msgstr ""
+msgstr "Äänenvoimakkuuden säätö valinta toiminnot"
 
 msgid "Volume Adjust Settings"
 msgstr "Äänenvoimakkuuden säätö asetukset"
 
 msgid "Volume adjustment mode"
-msgstr ""
+msgstr "Äänenvoimakkuuden säätö tila"
 
 msgid "Volume down"
 msgstr "Äänenvoimakkuus -"

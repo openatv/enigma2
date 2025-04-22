@@ -789,7 +789,7 @@ class PositionerSetup(Screen):
 				if self.sync():
 					break
 			else:
-				msg = _("Cannot find any signal ..., aborting !")
+				msg = _("Cannot find any signal ..., aborting!")
 				self.printMsg(msg)
 				self.statusMsg("")
 				self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, timeout=5)
@@ -819,8 +819,8 @@ class PositionerSetup(Screen):
 			if self.lock_count < self.LOCK_LIMIT:
 				break
 		else:
-			# TRANSLATORS: "Cannot determine (east/west) limit ..., aborting !"
-			msg = _("Cannot determine %s limit ..., aborting !") % toGeoposEx(direction)
+			# TRANSLATORS: "Cannot determine (east/west) limit ..., aborting!"
+			msg = _("Cannot determine %s limit ..., aborting!") % toGeoposEx(direction)
 			self.printMsg(msg)
 			self.statusMsg("")
 			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, timeout=5)
@@ -831,7 +831,7 @@ class PositionerSetup(Screen):
 		move(start_pos)
 		prev_pos = start_pos
 		if not self.sync():
-			msg = _("Sync failure moving back to origin !")
+			msg = _("Sync failure moving back to origin!")
 			self.printMsg(msg)
 			self.statusMsg("")
 			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, timeout=5)
@@ -847,7 +847,7 @@ class PositionerSetup(Screen):
 			if self.lock_count < self.LOCK_LIMIT:
 				break
 		else:
-			msg = _("Cannot determine %s limit ..., aborting !") % toGeoposEx(direction)
+			msg = _("Cannot determine %s limit ..., aborting!") % toGeoposEx(direction)
 			self.printMsg(msg)
 			self.statusMsg("")
 			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, timeout=5)
@@ -898,7 +898,7 @@ class PositionerSetup(Screen):
 		print("Initial signal quality: %6.2f" % self.snr_percentage, file=log)
 		print("Initial lock ratio    : %6.2f" % self.lock_count, file=log)
 		if self.lock_count < 1 - self.LOCK_LIMIT:
-			msg = _("There is no signal to lock on !")
+			msg = _("There is no signal to lock on!")
 			self.printMsg(msg)
 			self.statusMsg("")
 			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, timeout=5)
@@ -921,7 +921,7 @@ class PositionerSetup(Screen):
 				break
 			nsteps += 1
 		else:
-			msg = _("Cannot determine %s limit ..., aborting !") % toGeoposEx(direction)
+			msg = _("Cannot determine %s limit ..., aborting!") % toGeoposEx(direction)
 			self.printMsg(msg)
 			self.statusMsg("")
 			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, timeout=5)
@@ -930,7 +930,7 @@ class PositionerSetup(Screen):
 		self.statusMsg(_("Moving") + " " + toGeoposEx(direction) + "  0", blinking=True)
 		move(-x)
 		if not self.sync():
-			msg = _("Sync failure moving back to origin !")
+			msg = _("Sync failure moving back to origin!")
 			self.printMsg(msg)
 			self.statusMsg("")
 			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, timeout=5)
@@ -948,7 +948,7 @@ class PositionerSetup(Screen):
 				break
 			nsteps += 1
 		else:
-			msg = _("Cannot determine %s limit ..., aborting !") % toGeoposEx(direction)
+			msg = _("Cannot determine %s limit ..., aborting!") % toGeoposEx(direction)
 			self.printMsg(msg)
 			self.statusMsg("")
 			self.session.open(MessageBox, msg, MessageBox.TYPE_ERROR, timeout=5)

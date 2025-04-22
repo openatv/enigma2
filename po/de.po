@@ -17,8 +17,8 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-21 09:40+0000\n"
-"PO-Revision-Date: 2025-04-20 21:45+0000\n"
-"Last-Translator: Makumbo <tokioplo@web.de>\n"
+"PO-Revision-Date: 2025-04-22 01:37+0000\n"
+"Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -1991,7 +1991,7 @@ msgid "Add RecordTimer"
 msgstr "Timer 'Aufnehmen' hinzufügen"
 
 msgid "Add Service"
-msgstr ""
+msgstr "Sender hinzufügen"
 
 #
 msgid "Add Service To Bouquet"
@@ -2018,7 +2018,7 @@ msgid "Add a DNS entry"
 msgstr "Hinzufügen eines DNS-Eintrags"
 
 msgid "Add a RADIO service to the Volume Offset list"
-msgstr ""
+msgstr "Radiosender zur Liste der Lautstärke-Offsets hinzufügen"
 
 msgid "Add a RecordTimer"
 msgstr "Neuen Aufnahmetimer hinzufügen"
@@ -2027,7 +2027,7 @@ msgid "Add a RecordTimer for current event"
 msgstr "Aufnahmetimer für aktuelles Programm hinzufügen"
 
 msgid "Add a TV service to the Volume Offset list"
-msgstr ""
+msgstr "TV-Sender zur Liste der Lautstärke-Offsets hinzufügen"
 
 msgid "Add a ZapTimer for current event"
 msgstr "Umschalttimer für aktuelles Programm hinzufügen"
@@ -2161,7 +2161,7 @@ msgid "Add/Remove highlighted plugin to/from update list"
 msgstr "Markiertes Plugin zur Updateliste hinzufügen oder entfernen"
 
 msgid "Add/Remove the current service to/from the Volume Offset list"
-msgstr ""
+msgstr "Aktuellen Sender zur Liste der Lautstärke-Offsets hinzufügen oder entfernen"
 
 msgid "Adding schedule..."
 msgstr "Zeitplan hinzufügen..."
@@ -2460,7 +2460,7 @@ msgstr "Amlogic Fernbedienung"
 
 #, python-format
 msgid "Amount %d / Success %d / Failed %d"
-msgstr "Anzahl %d / %d Erfolge / %d Fehlschläge"
+msgstr "Anzahl %d / %d Erfolgreich / %d Fehlgeschlagen"
 
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr "Es wird versucht, den aktuellen TV-Betriebszustand zu erfassen. Ist dies aufgrund falscher oder fehlender Statusmeldungen nicht möglich, kann der Receiver unerwartet reagieren. Andererseits wird versucht, auf verschiedene Betriebszustände besser zu reagieren."
@@ -2840,7 +2840,7 @@ msgid "Auto multi-selection"
 msgstr "Auto-Multiauswahl"
 
 msgid "Auto show volume level"
-msgstr ""
+msgstr "Lautstärkepegel automatisch anzeigen"
 
 msgid "Auto shut down"
 msgstr "Automatisches Herunterfahren"
@@ -3880,12 +3880,12 @@ msgstr "Aufgabe durch den Benutzer abgebrochen"
 msgid "Cannot delete file"
 msgstr "Datei kann nicht gelöscht werden!"
 
-#. TRANSLATORS: "Cannot determine (east/west) limit ..., aborting !"
+#. TRANSLATORS: "Cannot determine (east/west) limit ..., aborting!"
 #, python-format
-msgid "Cannot determine %s limit ..., aborting !"
+msgid "Cannot determine %s limit ..., aborting!"
 msgstr "%s kann nicht ermittelt werden! Abbruch..."
 
-msgid "Cannot find any signal ..., aborting !"
+msgid "Cannot find any signal ..., aborting!"
 msgstr "Kein Signal gefunden! Abbruch!"
 
 msgid "Cape Verde"
@@ -3913,7 +3913,7 @@ msgid "Catalan / Valencian"
 msgstr "Katalanisch / Valencianisch"
 
 msgid "Catch Up Player Actions"
-msgstr ""
+msgstr "Catch Up Player Aktionen"
 
 msgid "Cayman Islands"
 msgstr "Kaimaninseln"
@@ -5594,7 +5594,7 @@ msgid "Currently Defined Volume Offsets:"
 msgstr "Aktuell definierte Lautstärke-Offsets:"
 
 msgid "Currently Remembered Volume Levels:"
-msgstr ""
+msgstr "Aktuell gespeicherte Lautstärkepegel:"
 
 msgid "Custom"
 msgstr "Benutzerdefiniert"
@@ -6082,7 +6082,7 @@ msgid "Defined / Active"
 msgstr "Definiert / Aktiv"
 
 msgid "Defined volume offset"
-msgstr ""
+msgstr "Definierter Lautstärke-Offset"
 
 msgid "Defines how fast the time jumps are repeated. Values lower than 500ms may be problematic with NAS."
 msgstr "Legt fest, in wie schneller Folge Zeitsprünge erfolgen. Werte unter 500ms können mit NAS problematisch sein."
@@ -6357,19 +6357,19 @@ msgid "Descending"
 msgstr "Absteigend"
 
 msgid "Descramble end time"
-msgstr "Endzeit entschlüsseln"
+msgstr "Endzeit für Entschlüsselung"
 
 msgid "Descramble in Standby"
 msgstr "Im Standby entschlüsseln"
 
 msgid "Descramble in Standby finished"
-msgstr "Entschlüsselung im Standby beendet"
+msgstr "Entschlüsselung im Standby abgeschlossen"
 
 msgid "Descramble recordings before Shutdown"
 msgstr "Aufnahmen vor dem Herunterfahren entschlüsseln"
 
 msgid "Descramble start time"
-msgstr "Startzeit entschlüsseln"
+msgstr "Startzeit für Entschlüsselung"
 
 msgid "Descrambling options"
 msgstr "Entschlüsselungsoptionen"
@@ -6490,7 +6490,7 @@ msgstr "Diktion"
 #, python-format
 msgid ""
 "Difference between timer begin and end must be equal or greater than %d minutes.\n"
-"End Action was disabled !"
+"End Action was disabled!"
 msgstr ""
 "Die Differenz zwischen Timer Startzeit und Endzeit muss größer oder gleich %d Minuten sein.\n"
 "Die Endaktion wurde deaktiviert!"
@@ -10967,7 +10967,7 @@ msgid "Last used share: "
 msgstr "Zuletzt verwendete Netzwerkfreigabe: "
 
 msgid "Last used/set volume"
-msgstr ""
+msgstr "Zuletzt benutzte/eingestellte Lautstärke"
 
 msgctxt "third event: 'third' event label"
 msgid "Later"
@@ -11632,7 +11632,7 @@ msgid "Maxdown: "
 msgstr "Maxdown: "
 
 #, python-format
-msgid "Maximum minutes to jump %d !"
+msgid "Maximum minutes to jump %d!"
 msgstr "Es kann maximal nur %d Minuten gesprungen werden!"
 
 msgid "Maximum no of days"
@@ -14034,7 +14034,7 @@ msgid "Play back media files"
 msgstr "Wiedergabe von Mediendateien"
 
 msgid "Play catch up service archive"
-msgstr ""
+msgstr "Abspielen vom Senderarchiv"
 
 #
 msgid "Play entry"
@@ -16735,7 +16735,7 @@ msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB spec
 msgstr "'Band' auswählen, wenn ein 'Universal LNB' verwendet wird, andernfalls im LNB-Datenblatt nachsehen."
 
 msgid "Select 'Disabled' to disable all automated volume adjustments. Select 'Defined volume offsets' to assign a specified offset to the service's volume level. Select 'Last used/set volume' to remember the volume level last used for each service."
-msgstr ""
+msgstr "'Deaktiviert': Keine automatische Lautstärkeanpassung. 'Definierter Lautstärke-Offset': Den Sendern bestimmte Lautstärkepegel zuweisen. 'Zuletzt benutzte/eingestellte Lautstärke': Die zuletzt verwendeten Lautstärkepegel für die Sender verwenden."
 
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr "'Aktivieren' auswählen, um den CI+ Helper zu starten."
@@ -16973,7 +16973,7 @@ msgstr ""
 "Achtung: File Commander muss dafür neu gestartet werden!"
 
 msgid "Select 'Yes' to show the volume level on any automated changes of volume level."
-msgstr ""
+msgstr "'Ja' auswählen, um den Lautstärkepegel bei jeder automatischen Änderung anzuzeigen."
 
 msgid "Select 'Yes' to show this plugin in the Plugin Browser."
 msgstr "'Ja' auswählen, um dieses Plugin im Plugin-Manager anzuzeigen."
@@ -18215,7 +18215,7 @@ msgstr "Anzeige der Fortschrittsanzeige in der Senderliste einstellen."
 
 #, python-format
 msgid "Set the volume level for the '%s' service."
-msgstr ""
+msgstr "Lautstärkepegel für den Sender '%s' festlegen."
 
 #, python-format
 msgid "Set the volume offset for the '%s' service."
@@ -20591,7 +20591,7 @@ msgstr "Symbolischer Link"
 msgid "Sync NTP every (minutes)"
 msgstr "Synchronisierungsintervall mit NTP-Server"
 
-msgid "Sync failure moving back to origin !"
+msgid "Sync failure moving back to origin!"
 msgstr "Synchronisationsfehler beim Zurückgehen zum Ursprung!"
 
 msgid "Sync mode"
@@ -21324,7 +21324,7 @@ msgstr "Es besteht die Gefahr, dass die %s %s nach einer so umfangreichen Online
 msgid "There is no information to show for '%s'."
 msgstr "Es gibt keine Informationen für '%s'!"
 
-msgid "There is no signal to lock on !"
+msgid "There is no signal to lock on!"
 msgstr "Es gibt kein Signal zum Einrasten!"
 
 msgid "There might not be enough space on the selected partition. Do you really want to continue?"
@@ -22037,7 +22037,7 @@ msgid "Toggle between bouquet/EPG lists"
 msgstr "Zwischen Favoritenliste und EPG-Liste wechseln"
 
 msgid "Toggle between the available TV and RADIO services"
-msgstr ""
+msgstr "Zwischen verfügbaren TV- und Radio-Sendern wechseln"
 
 msgid "Toggle display of image information"
 msgstr "Umschalten der Anzeige von Bildinformationen"
@@ -23486,13 +23486,13 @@ msgid "Volume Adjust Service Selection"
 msgstr "Senderauswahl der Lautstärkeanpassung"
 
 msgid "Volume Adjust Service Selection Actions"
-msgstr ""
+msgstr "Aktionen der Senderauswahl der Lautstärkeanpassung"
 
 msgid "Volume Adjust Settings"
 msgstr "Lautstärkeanpassung"
 
 msgid "Volume adjustment mode"
-msgstr ""
+msgstr "Modus der Lautstärkeanpassung"
 
 msgid "Volume down"
 msgstr "Lautstärke -"

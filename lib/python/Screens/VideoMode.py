@@ -547,7 +547,7 @@ class AutoVideoMode(Screen):
 
 	def VideoChanged(self):
 		if config.av.autores.value == "disabled" or getAutoresPlugin_enabled():
-			#print "[VideoMode] autoresolution is disabled - resolution not changed !"
+			#print "[VideoMode] autoresolution is disabled - resolution not changed!"
 			return
 		if self.session.nav.getCurrentlyPlayingServiceReference() and not self.session.nav.getCurrentlyPlayingServiceReference().toString().startswith("4097:"):
 			delay = config.av.autores_delay.value

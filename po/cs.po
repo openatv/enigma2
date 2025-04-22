@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-21 09:40+0000\n"
-"PO-Revision-Date: 2025-04-11 17:59+0000\n"
+"PO-Revision-Date: 2025-04-22 14:29+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.11.1-dev\n"
 
 msgid ""
 "\n"
@@ -918,7 +918,7 @@ msgstr[2] "%d balíčků katalogu zdrojů bylo aktualizováno."
 
 #, python-format
 msgid "%d jobs are running in the background!"
-msgstr ""
+msgstr "Na pozadí běží %d úloh!"
 
 #, python-format
 msgid "%d kB"
@@ -1919,7 +1919,7 @@ msgid "Add RecordTimer"
 msgstr "Přidat časovač nahrávání"
 
 msgid "Add Service"
-msgstr ""
+msgstr "Přidat službu"
 
 msgid "Add Service To Bouquet"
 msgstr "Přidat program do přehledu"
@@ -1943,7 +1943,7 @@ msgid "Add a DNS entry"
 msgstr "Přidat položku DNS"
 
 msgid "Add a RADIO service to the Volume Offset list"
-msgstr ""
+msgstr "Přidání služby RADIO do seznamu Kompenzace hlasitosti"
 
 msgid "Add a RecordTimer"
 msgstr "Přidat záznam časovače"
@@ -1952,7 +1952,7 @@ msgid "Add a RecordTimer for current event"
 msgstr "Přidat záznam časovače aktuálnímu pořadu"
 
 msgid "Add a TV service to the Volume Offset list"
-msgstr ""
+msgstr "Přidání televizní služby do seznamu Kompenzace hlasitosti"
 
 msgid "Add a ZapTimer for current event"
 msgstr "Přidat přepnutí časovače aktuálnímu pořadu"
@@ -2075,7 +2075,7 @@ msgid "Add/Remove highlighted plugin to/from update list"
 msgstr "Přidat/odebrat zvýrazněný plugin do/ze seznamu aktualizací"
 
 msgid "Add/Remove the current service to/from the Volume Offset list"
-msgstr ""
+msgstr "Přidat/Odebrat aktuální službu do/ze seznamu Posun hlasitosti"
 
 msgid "Adding schedule..."
 msgstr "Přidávám plán..."
@@ -2364,7 +2364,7 @@ msgstr "Dálkové ovládání Amlogic"
 
 #, python-format
 msgid "Amount %d / Success %d / Failed %d"
-msgstr ""
+msgstr "Částka %d / Úspěch %d / Neúspěch %d"
 
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr "Je proveden pokus o zachycení aktuálního stavu TV. Pokud to není možné kvůli nesprávným nebo chybějícím stavovým zprávám, může to způsobit neočekávanou odpověď přijímače. Na druhou stranu se snaží lépe reagovat na různé provozní podmínky."
@@ -2719,7 +2719,7 @@ msgid "Auto multi-selection"
 msgstr "Automatický výběr z více položek"
 
 msgid "Auto show volume level"
-msgstr ""
+msgstr "Automatické zobrazení úrovně hlasitosti"
 
 msgid "Auto shut down"
 msgstr "Automatické vypnutí"
@@ -3713,12 +3713,12 @@ msgstr "Na žádost uživatele zrušeno"
 msgid "Cannot delete file"
 msgstr "Soubor nelze smazat"
 
-#. TRANSLATORS: "Cannot determine (east/west) limit ..., aborting !"
+#. TRANSLATORS: "Cannot determine (east/west) limit ..., aborting!"
 #, python-format
-msgid "Cannot determine %s limit ..., aborting !"
+msgid "Cannot determine %s limit ..., aborting!"
 msgstr "Nelze určit %s limit ..., ruší se!"
 
-msgid "Cannot find any signal ..., aborting !"
+msgid "Cannot find any signal ..., aborting!"
 msgstr "Nelze najít žádný signál ..., končím!"
 
 msgid "Cape Verde"
@@ -3746,7 +3746,7 @@ msgid "Catalan / Valencian"
 msgstr "Katalánština / Valencie"
 
 msgid "Catch Up Player Actions"
-msgstr ""
+msgstr "Akce hráče pro dohánění zmeškaných událostí"
 
 msgid "Cayman Islands"
 msgstr "Kajmanské ostrovy"
@@ -5341,7 +5341,7 @@ msgid "Currently Defined Volume Offsets:"
 msgstr "Aktuálně definované posuny hlasitosti:"
 
 msgid "Currently Remembered Volume Levels:"
-msgstr ""
+msgstr "Aktuálně uložené úrovně hlasitosti:"
 
 msgid "Custom"
 msgstr "Vlastní"
@@ -5814,7 +5814,7 @@ msgid "Defined / Active"
 msgstr "Definováno / Aktivní"
 
 msgid "Defined volume offset"
-msgstr ""
+msgstr "Definovaný offset hlasitosti"
 
 msgid "Defines how fast the time jumps are repeated. Values lower than 500ms may be problematic with NAS."
 msgstr "Nastaví rychlost opakování časových skoků. Hodnoty nižší než 500 ms, mohou být problematické s některými NAS zařízeními."
@@ -6078,19 +6078,19 @@ msgid "Descending"
 msgstr "Sestupně"
 
 msgid "Descramble end time"
-msgstr ""
+msgstr "Dešifrovat čas konce"
 
 msgid "Descramble in Standby"
-msgstr ""
+msgstr "Dekódování v pohotovostním režimu"
 
 msgid "Descramble in Standby finished"
-msgstr ""
+msgstr "Dekódování v pohotovostním režimu dokončeno"
 
 msgid "Descramble recordings before Shutdown"
-msgstr ""
+msgstr "Dešifrování nahrávek před vypnutím"
 
 msgid "Descramble start time"
-msgstr ""
+msgstr "Čas zahájení dekódování"
 
 msgid "Descrambling options"
 msgstr "Možnosti dekódování"
@@ -6202,7 +6202,7 @@ msgstr "Dikce"
 #, python-format
 msgid ""
 "Difference between timer begin and end must be equal or greater than %d minutes.\n"
-"End Action was disabled !"
+"End Action was disabled!"
 msgstr ""
 "Rozdíl mezi začátkem a koncem časovače musí být roven nebo větší než %d minut.\n"
 "Ukončení akce bylo zakázáno!"
@@ -10463,7 +10463,7 @@ msgid "Last used share: "
 msgstr "Poslední sdílené: "
 
 msgid "Last used/set volume"
-msgstr ""
+msgstr "Naposledy použitá/nastavená hlasitost"
 
 msgctxt "third event: 'third' event label"
 msgid "Later"
@@ -11083,7 +11083,7 @@ msgid "Maxdown: "
 msgstr "Maxdown: "
 
 #, python-format
-msgid "Maximum minutes to jump %d !"
+msgid "Maximum minutes to jump %d!"
 msgstr "Maximální počet minut na skok %d!"
 
 msgid "Maximum no of days"
@@ -13303,7 +13303,7 @@ msgid "Play back media files"
 msgstr "Přehrát soubory"
 
 msgid "Play catch up service archive"
-msgstr ""
+msgstr "Přehrání archivu služby dohánění zmeškaných událostí"
 
 msgid "Play entry"
 msgstr "Přehrát položku"
@@ -15797,7 +15797,7 @@ msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB spec
 msgstr "Pokud používáte „univerzální“ LNB, vyberte „pásmo“, v opačném případě se podívejte na technický list LNB."
 
 msgid "Select 'Disabled' to disable all automated volume adjustments. Select 'Defined volume offsets' to assign a specified offset to the service's volume level. Select 'Last used/set volume' to remember the volume level last used for each service."
-msgstr ""
+msgstr "Vyberte možnost „Zakázáno“, chcete-li zakázat veškeré automatické úpravy hlasitosti. Vyberte možnost „Definované posuny hlasitosti“, chcete-li přiřadit specifikovaný posun k úrovni hlasitosti služby. Vyberte možnost „Naposledy použitá/nastavená hlasitost“, chcete-li si zapamatovat naposledy použitou úroveň hlasitosti pro každou službu."
 
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr "Chcete-li spustit pomocníka CI+, vyberte možnost Povolit."
@@ -16031,7 +16031,7 @@ msgid "Select 'Yes' to show the current directory in the list of directories. No
 msgstr "Vyberte 'Ano' pro zobrazení aktuálního adresáře v seznamu adresářů. Pamatujte, že aby se tato změna projevila, musí být File Commander restartován."
 
 msgid "Select 'Yes' to show the volume level on any automated changes of volume level."
-msgstr ""
+msgstr "Vyberte „Ano“, chcete-li zobrazit úroveň hlasitosti při všech automatických změnách úrovně hlasitosti."
 
 msgid "Select 'Yes' to show this plugin in the Plugin Browser."
 msgstr "Chcete-li tento plugin zobrazit v prohlížeči pluginů, vyberte 'Ano'."
@@ -16040,7 +16040,7 @@ msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Vyberte 'Ano', chcete-li zobrazit balíčky webových odkazů na obrazovce Stáhnout pluginy."
 
 msgid "Select 'Yes' to shut down immediately instead of starting the descramble."
-msgstr ""
+msgstr "Vyberte „Ano“ pro okamžité vypnutí namísto spuštění dekódování."
 
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr "Chcete-li úkoly rozdělit do samostatných akcí, vyberte možnost „Ano“."
@@ -16176,7 +16176,7 @@ msgid "Select a script to run:"
 msgstr "Vyberte skript ke spuštění:"
 
 msgid "Select a time, when in Standby mode, after which the descramble can proceed."
-msgstr ""
+msgstr "V pohotovostním režimu vyberte čas, po kterém může dekódování pokračovat."
 
 msgid "Select a time, when in Standby, before which descramble can proceed."
 msgstr ""
@@ -19450,7 +19450,7 @@ msgstr "Symbolický odkaz"
 msgid "Sync NTP every (minutes)"
 msgstr "Synchronizovat NTP po (min)"
 
-msgid "Sync failure moving back to origin !"
+msgid "Sync failure moving back to origin!"
 msgstr "Selhání synchronizace přesouvá zpět na původní !"
 
 msgid "Sync mode"
@@ -20162,7 +20162,7 @@ msgstr "Existuje riziko, že se váš %s %s po tak rozsáhlé on-line aktualizac
 msgid "There is no information to show for '%s'."
 msgstr "Pro '%s' nejsou k dispozici žádné informace."
 
-msgid "There is no signal to lock on !"
+msgid "There is no signal to lock on!"
 msgstr "Není signál pro uzamčení!"
 
 msgid "There might not be enough space on the selected partition. Do you really want to continue?"

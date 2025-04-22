@@ -83,7 +83,7 @@ void eDVBDiseqcCommand::setCommandString(const char *str)
 			case 'a' ... 'f': c-=87; break;
 			case 'A' ... 'F': c-=55; break;
 			default:
-				eDebug("[eDVBDiseqcCommand] invalid character in hex string..ignore complete diseqc command !");
+				eDebug("[eDVBDiseqcCommand] invalid character in hex string..ignore complete diseqc command!");
 				return;
 		}
 		if ( i % 2 )

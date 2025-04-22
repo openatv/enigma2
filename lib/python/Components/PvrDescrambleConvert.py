@@ -412,7 +412,7 @@ class PVRDescrambleConvert():
 			self.beginConvert()
 
 			if len(simulTimerList) > 1:  # with other recording
-				print("[PVRDescramble] conflicts !")
+				print("[PVRDescramble] conflicts!")
 			else:
 				print(f"[PVRDescramble] Couldn't record due to invalid service {sref}")
 			recording.autoincrease = False
