@@ -53,9 +53,9 @@ class VolumeAdjustSettings(Setup):
 		self["key_blue"] = StaticText()
 		self["offsetActions"] = HelpableActionMap(self, ["ColorActions", "TVRadioActions"], {
 			"yellow": (self.keyAddRemoveService, _("Add/Remove the current service to/from the Volume Offset list")),
-			"tvMode": (self.keyAddTVService, _("Add a TV service to the Volume Offset list")),
-			"radioMode": (self.keyAddRadioService, _("Add a RADIO service to the Volume Offset list")),
-			"tvRadioMode": (self.keyAddService, _("Add a service to the Volume Offset list"))
+			"keyTV": (self.keyAddTVService, _("Add a TV service to the Volume Offset list")),
+			"keyRadio": (self.keyAddRadioService, _("Add a RADIO service to the Volume Offset list")),
+			"keyTVRadio": (self.keyAddService, _("Add a service to the Volume Offset list"))
 		}, prio=0, description=_("Volume Adjust Actions"))
 		self["currentAction"] = HelpableActionMap(self, ["ColorActions"], {
 			"blue": (self.keyAddServiceReference, _("Add the current/active service to the Volume Offset list"))
@@ -135,9 +135,9 @@ class VolumeAdjustSettings(Setup):
 		if not result:
 			return
 		if self.volumeOffsets != self.initialVolumeOffsets:
-			self.volumeOffsets = deepcopy(self.initialVolumeOffsets)
+			VolumeAdjust.instance.setVolumeOffsets(self.initialVolumeOffsets)
 		if self.volumeRemembered != self.initialVolumeRemembered:
-			self.volumeRemembered = deepcopy(self.initialVolumeRemembered)
+			VolumeAdjust.instance.setVolumeRemembered(self.initialVolumeRemembered)
 		if self.volumeControl.getVolume() != self.initialVolume:  # Reset the volume if we were setting a volume for the current service.
 			self.volumeControl.setVolume(self.initialVolume, self.initialVolume)
 		if self.volumeControl.getVolumeOffset() != self.initialOffset:  # Reset the offset if we were setting an offset for the current service.
@@ -232,13 +232,13 @@ class VolumeAdjustServiceSelection(ChannelSelectionBase):
 		self["volumeServiceActions"] = HelpableActionMap(self, ["SelectCancelActions", "TVRadioActions"], {
 			"select": (self.keySelect, _("Select the currently highlighted service")),
 			"cancel": (self.keyCancel, _("Cancel the service selection")),
-			"tvRadioMode": (self.keyModeToggle, _("Toggle between the available TV and RADIO services"))
+			"keyTVRadio": (self.keyModeToggle, _("Toggle between the available TV and RADIO services"))
 		}, prio=0, description=_("Volume Adjust Service Selection Actions"))
 		self["tvAction"] = HelpableActionMap(self, ["TVRadioActions"], {
-			"tvMode": (self.keyModeTV, _("Switch to the available TV services"))
+			"keyTV": (self.keyModeTV, _("Switch to the available TV services"))
 		}, prio=0, description=_("Volume Adjust Service Selection Actions"))
 		self["radioAction"] = HelpableActionMap(self, ["TVRadioActions"], {
-			"radioMode": (self.keyModeRadio, _("Switch to the available RADIO services"))
+			"keyRadio": (self.keyModeRadio, _("Switch to the available RADIO services"))
 		}, prio=0, description=_("Volume Adjust Service Selection Actions"))
 		match mode:
 			case "TV":
@@ -465,8 +465,14 @@ class VolumeAdjust:
 	def getVolumeOffsets(self):
 		return self.volumeOffsets
 
+	def setVolumeOffsets(self, volumeOffsets):
+		self.volumeOffsets = volumeOffsets
+
 	def getVolumeRemembered(self):
 		return self.volumeRemembered
+
+	def setVolumeRemembered(self, volumeRemembered):
+		self.volumeRemembered = volumeRemembered
 
 	def refreshSettings(self):  # Refresh the cached data when the settings are changed.
 		self.adjustMode = config.volumeAdjust.adjustMode.value

@@ -411,10 +411,10 @@
 	</map>
 
 	<map context="TVRadioActions">
-		<key id="KEY_TV" mapto="tvMode" flags="m" />
-		<key id="KEY_RADIO" mapto="radioMode" flags="m" />
-		<key id="KEY_TV2" mapto="tvRadioMode" flags="m" />
-		<key id="KEY_FAVORITES" mapto="tvRadioMode" flags="m" />
+		<key id="KEY_TV" mapto="keyTV" flags="m" />
+		<key id="KEY_RADIO" mapto="keyRadio" flags="m" />
+		<key id="KEY_TV2" mapto="keyTVRadio" flags="m" />
+		<key id="KEY_FAVORITES" mapto="keyTVRadio" flags="m" />
 	</map>
 
 	<map context="VirtualKeyBoardActions">
@@ -1375,11 +1375,6 @@
 	<map context="TimerEditActions">
 		<key id="KEY_INFO" mapto="log" flags="m" />
 		<key id="KEY_I" mapto="log" flags="m" />
-	</map>
-
-	<map context="TvRadioActions">
-		<key id="KEY_TV" mapto="keyTV" flags="m" />
-		<key id="KEY_RADIO" mapto="keyRadio" flags="m" />
 	</map>
 
 	<map context="WindowActions">
