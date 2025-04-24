@@ -329,19 +329,17 @@ class PVRDescrambleConvert():
 			if self.pvrLists:
 				self.currentPvr = self.pvrLists.pop(0)
 			else:
-				self.currentPvr
-
-			if self.currentPvr is None:
-				if self.debug:
-					print(f"[PVRDescramble] no more unscrambled recordings / wantShutdown {self.wantShutdown}")
-				if self.wantShutdown:
-					quitMainloop(1)
-				else:
-					message = [
-						_("Descramble in Standby finished"),
-						_("Amount %d / Success %d / Failed %d") % (self.successCount + self.failedCount, self.successCount, self.failedCount),
-					]
-					self.addNotification(f"{message[0]}\n\n{message[1]}")
+				if (self.successCount + self.failedCount) > 0:
+					if self.debug:
+						print(f"[PVRDescramble] no more unscrambled recordings / wantShutdown {self.wantShutdown}")
+					if self.wantShutdown:
+						quitMainloop(1)
+					else:
+						message = [
+							_("Descramble in Standby finished"),
+							_("Amount %d / Success %d / Failed %d") % (self.successCount + self.failedCount, self.successCount, self.failedCount),
+						]
+						self.addNotification(f"{message[0]}\n\n{message[1]}")
 				return
 
 			(_begin, sref, name, length, real_ref) = self.currentPvr
