@@ -262,7 +262,7 @@ class AudioSelection(ConfigListScreen, Screen):
 				conflist.append(getConfigListEntry(_("Auto Volume Level"), self.settings.autovolume, None))
 
 			if config.hdmicec.enabled.value and config.hdmicec.volume_forwarding.value and VolumeControl.instance:
-				volumeCtrl = VolumeControl.instance.dvbVolumeControl
+				volumeCtrl = VolumeControl.instance.volumeControl
 				self.settings.volume = ConfigSlider(default=volumeCtrl.getVolume(), increment=1, limits=(0, 100))
 				self.settings.volume.addNotifier(self.changeVolume, initial_call=False)
 				conflist.append(getConfigListEntry(_("Volume"), self.settings.volume, None))
@@ -393,7 +393,7 @@ class AudioSelection(ConfigListScreen, Screen):
 		config.av.autovolume.save()
 
 	def changeVolume(self, volume):
-		VolumeControl.instance.dvbVolumeControl.setVolume(volume.value, volume.value)
+		VolumeControl.instance.volumeControl.setVolume(volume.value, volume.value)
 
 	def changeAC3Downmix(self, downmix):
 		if BoxInfo.getItem("machinebuild") in ('dm900', 'dm920', 'dm7080', 'dm800', 'dreamone', 'dreamtwo'):
