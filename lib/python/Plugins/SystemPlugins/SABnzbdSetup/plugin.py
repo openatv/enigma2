@@ -35,7 +35,7 @@ class SABnzbdSetupScreen(Screen):
 		Screen.setTitle(self, _("SABnzbd Settings"))
 		self.skinName = "NetworkServiceSetup"
 		self.onChangedEntry = []
-		self['lab1'] = Label(_("Autostart:"))
+		self['lab1'] = Label(_("Autostart") + ":")
 		self['labactive'] = Label(_(_("Disabled")))
 		self['lab2'] = Label(_("Current Status:"))
 		self['labstop'] = Label(_("Stopped"))

@@ -69,7 +69,7 @@ class ChapterZap(Screen):
 		self.number = 0
 		self.field = ""
 
-		self["chapter"] = Label(_("Chapter:"))
+		self["chapter"] = Label(_("Chapter") + ":")
 
 		self["number"] = Label()
 

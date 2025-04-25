@@ -875,7 +875,7 @@ class RecordTimerOverview(TimerOverviewBase):
 			shortDescription = event.getShortDescription()
 			if shortDescription and description != shortDescription:
 				if description and shortDescription:
-					description = "%s %s\n\n%s %s" % (_("Timer:"), description, _("EPG:"), shortDescription)
+					description = "%s %s\n\n%s: %s" % (_("Timer:"), description, _("EPG"), shortDescription)
 				elif shortDescription:
 					description = shortDescription
 					timer.description = shortDescription

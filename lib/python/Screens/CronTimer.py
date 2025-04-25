@@ -27,7 +27,7 @@ class CronTimers(Screen):
 			mkdir("/usr/script", 0o755)
 		self.setTitle(_("Cron Manager"))
 		self.onChangedEntry = []
-		self["lab1"] = Label(_("Autostart:"))
+		self["lab1"] = Label(_("Autostart") + ":")
 		self["labactive"] = Label(_("Active"))
 		self["labdisabled"] = Label(_("Disabled"))
 		self["lab2"] = Label(_("Current Status:"))

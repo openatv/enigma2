@@ -328,7 +328,7 @@ class GenresAUSIceTV:
 		),
 		# Arts/Culture
 		7: (
-			_("Arts & Culture"),  # 0x70
+			_("Arts/Culture"),  # 0x70
 			_("Unused %s") % "0x71",  # 0x71
 			_("Unused %s") % "0x72",  # 0x72
 			_("Religion"),  # 0x73

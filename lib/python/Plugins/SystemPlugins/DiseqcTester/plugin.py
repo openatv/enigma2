@@ -217,8 +217,8 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		self.loopssuccessful = loopssuccessful
 		self.log = log
 		self["Overall_progress"] = Label(_("Overall progress:"))
-		self["Progress"] = Label(_("Progress:"))
-		self["Failed"] = Label(_("Failed:"))
+		self["Progress"] = Label(_("Progress") + ":")
+		self["Failed"] = Label(_("Failed") + ":")
 		self["Succeeded"] = Label(_("Succeeded:"))
 		self["Not_tested"] = Label(_("Not tested:"))
 		self["With_errors"] = Label(_("With errors:"))

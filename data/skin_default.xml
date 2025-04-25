@@ -1262,7 +1262,7 @@ self.autoResize()
 	</screen>
 	<screen name="SubtitleDisplay" position="fill" zPosition="-1" flags="wfNoBorder" backgroundColor="transparent" />
 	<!-- TextBox -->
-	<screen name="TextBox" position="center,center" size="560,460" title="Message...">
+	<screen name="TextBox" position="center,center" size="560,460" title="Message">
 		<panel name="BasicTemplate" />
 		<widget name="text" position="10,0" size="540,400" font="Regular;20" />
 		<!--widget source="text" render="Label" position="0,0" size="540,390" font="Regular;18" /-->

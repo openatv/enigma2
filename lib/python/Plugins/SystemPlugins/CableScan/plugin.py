@@ -27,7 +27,7 @@ class CableScan:
 		self.done = False
 
 	def execBegin(self):
-		self.text.setText(_("Scanning..."))
+		self.text.setText(_("Scanning"))
 		self.progressbar.setValue(0)
 		self.scan = eCableScan(self.scanNetwork, self.scanFrequency, self.scanSymbolRate, self.scanModulation, self.keepNumbers, self.hdList)
 		self.scan.scanCompleted.get().append(self.scanCompleted)
