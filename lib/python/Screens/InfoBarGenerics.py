@@ -1244,8 +1244,8 @@ class NumberZap(Screen):
 		self.field = str(number)
 		self.searchNumber = searchNumberFunction
 		self.startBouquet = None
-		self["channel"] = Label(_("Channel:"))
-		self["channel_summary"] = StaticText(_("Channel:"))
+		self["channel"] = Label(_("Channel") + ":")
+		self["channel_summary"] = StaticText(_("Channel") + ":")
 		self["number"] = Label(self.numberString)
 		self["servicenumber"] = Label(self.numberString)
 		self["number_summary"] = StaticText(self.numberString)

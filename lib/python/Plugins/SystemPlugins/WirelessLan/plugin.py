@@ -66,16 +66,16 @@ class WlanStatus(Screen):
 		Screen.__init__(self, session)
 		self.iface = iface
 
-		self["LabelBSSID"] = StaticText(_("Access point:"))
-		self["LabelESSID"] = StaticText(_("SSID:"))
+		self["LabelBSSID"] = StaticText(_("Access point") + ":")
+		self["LabelESSID"] = StaticText(_("SSID") + ":")
 		self["LabelQuality"] = StaticText(_("Link quality:"))
-		self["LabelSignal"] = StaticText(_("Signal strength:"))
-		self["LabelBitrate"] = StaticText(_("Bitrate:"))
-		self["LabelEnc"] = StaticText(_("Encryption:"))
+		self["LabelSignal"] = StaticText(_("Signal strength") + ":")
+		self["LabelBitrate"] = StaticText(_("Bitrate") + ":")
+		self["LabelEnc"] = StaticText(_("Encryption") + ":")
 
-		self["LabelChannel"] = StaticText(_("Channel:"))
+		self["LabelChannel"] = StaticText(_("Channel") + ":")
 		self["LabelEncType"] = StaticText(_("Encryption Type:"))
-		self["LabelFrequency"] = StaticText(_("Frequency:"))
+		self["LabelFrequency"] = StaticText(_("Frequency") + ":")
 		self["LabelFrequencyNorm"] = StaticText(_("Frequency Norm:"))
 
 		self["BSSID"] = StaticText()

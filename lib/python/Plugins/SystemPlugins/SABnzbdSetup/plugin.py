@@ -60,7 +60,7 @@ class SABnzbdSetupScreen(Screen):
 		str = six.ensure_str(str)
 		if not str:
 			restartbox = self.session.openWithCallback(self.InstallPackage, MessageBox, _('Your %s %s will be restarted after the installation of service.\n\nDo you want to install now ?') % getBoxDisplayName(), MessageBox.TYPE_YESNO)
-			restartbox.setTitle(_('Ready to install "%s" ?') % self.service_name)
+			restartbox.setTitle(_('Ready to install "%s"?') % self.service_name)
 		else:
 			self.updateService()
 
