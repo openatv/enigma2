@@ -28,7 +28,7 @@ STARTUP_ANDROID = "STARTUP_ANDROID"
 STARTUP_ANDROID_LINUXSE = "STARTUP_ANDROID_LINUXSE"
 STARTUP_RECOVERY = "STARTUP_RECOVERY"
 STARTUP_BOXMODE = "BOXMODE"  # This is known as bootCode in this code.
-BOOT_DEVICE_LIST = ("/dev/mmcblk0p1", "/dev/mmcblk1p1", "/dev/mmcblk0p3", "/dev/mmcblk0p4", "/dev/mtdblock2", "/dev/block/by-name/bootoptions")
+BOOT_DEVICE_LIST = ("/dev/mmcblk0p1", "/dev/mmcblk1p1", "/dev/mmcblk0p3", "/dev/mmcblk0p4", "/dev/mtdblock2", "/dev/block/by-name/bootoptions", "/dev/block/by-name/others")
 BOOT_DEVICE_LIST_VUPLUS = ("/dev/mmcblk0p4", "/dev/mmcblk0p7", "/dev/mmcblk0p9")  # Kexec kernel Vu+ MultiBoot.
 
 
@@ -742,6 +742,15 @@ class MultiBootClass():
 		else:
 			rmdir(self.tempDir)
 			self.callback(0)
+
+	def is_fat32(self, device):
+		try:
+			with open(device, 'rb') as f:
+				boot_sector = f.read(512)
+				fs_type = boot_sector[82:90].decode('ascii', errors='ignore')
+				return fs_type.strip() == "FAT32"
+		except Exception:
+			return False
 
 
 MultiBoot = MultiBootClass()

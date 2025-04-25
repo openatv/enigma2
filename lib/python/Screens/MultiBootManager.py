@@ -693,3 +693,58 @@ arg=${bootargs} logo=osd0,loaded,0x7f800000 vout=1080p50hz,enable hdmimode=1080p
 			ACTION_SELECT: _("Select Device"),
 			ACTION_CREATE: _("Create Slots")
 		}.get(self.green, _("Invalid")))
+
+class ChkrootInit(Screen):
+	skin = """
+	<screen name="ChkrootInit" title="Chkroot MultiBoot Manager" position="center,center" size="900,600" resolution="1280,720">
+		<widget name="description" position="0,0" size="e,e-50" font="Regular;20" />
+		<widget source="key_red" render="Label" position="0,e-40" size="180,40" backgroundColor="key_red" conditional="key_red" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_green" render="Label" position="190,e-40" size="180,40" backgroundColor="key_green" conditional="key_green" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_help" render="Label" position="e-80,e-40" size="80,40" backgroundColor="key_back" conditional="key_help" font="Regular;20" foregroundColor="key_text" halign="center" valign="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>"""
+
+	def __init__(self, session, *args):
+		Screen.__init__(self, session, enableHelp=True)
+		self.skinName = "KexecInit"
+		self.setTitle(_("Chkroot MultiBoot Manager"))
+		self["key_red"] = StaticText()
+		self["key_green"] = StaticText()
+		self["description"] = Label()
+		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions"], {
+			"ok": (self.close, _("Close the Chkroot MultiBoot Manager")),
+			"cancel": (self.close, _("Close the Chkroot MultiBoot Manager")),
+			"red": (self.close, _("Close the Chkroot MultiBoot Manager")),
+			"green": (self.rootInit, _("Start the Chkroot initialization"))
+		}, prio=-1, description=_("Chkroot Manager Actions"))
+		self["key_red"].setText(_("Close"))
+		self["key_green"].setText(_("Initialize"))
+		self.descriptionSuffix = _("The %s %s will reboot within 1 seconds.") % getBoxDisplayName()
+		self["description"].setText("%s\n\n%s" % (_("Press GREEN to enable MultiBoot!"), self.descriptionSuffix))
+
+	def rootInit(self):
+		def rootInitCallback(*args, **kwargs):
+			self.session.open(TryQuitMainloop, QUIT_REBOOT)
+
+		self["description"].setText("%s\n\n%s" % (_("Chkroot MultiBoot Initialization in progress!"), self.descriptionSuffix))
+		device = "/dev/block/by-name/others"
+		mountpoint = "/boot"
+		mtdRootFs = BoxInfo.getItem("mtdrootfs")
+		mtdKernel = BoxInfo.getItem("mtdkernel")
+		cmdList = [
+			f"mkfs.vfat -F 32 -n CHKROOT {device}",
+			f"mkdir -p {mountpoint}",
+			f"mount {device} {mountpoint}",
+			f"echo 'kernel=/dev/{mtdKernel} root=/dev/{mtdRootFs} rootsubdir=linuxrootfs1' > {mountpoint}/STARTUP",
+			f"echo 'kernel=/dev/{mtdKernel} root=/dev/{mtdRootFs} rootsubdir=linuxrootfs1' > {mountpoint}/STARTUP_1",
+			f"echo 'kernel=/dev/{mtdKernel} root=/dev/{mtdRootFs} rootsubdir=linuxrootfs2' > {mountpoint}/STARTUP_2",
+			f"echo 'kernel=/dev/{mtdKernel} root=/dev/{mtdRootFs} rootsubdir=linuxrootfs3' > {mountpoint}/STARTUP_3",
+			f"echo 'kernel=/dev/{mtdKernel} root=/dev/{mtdRootFs} rootsubdir=linuxrootfs4' > {mountpoint}/STARTUP_4",
+			f"umount {mountpoint}"
+		]
+		Console().eBatch(cmdList, rootInitCallback, debug=True)
