@@ -141,6 +141,7 @@ class Setup(ConfigListScreen, Screen):
 			itemText = _(element.get("text", "??"))
 			itemDescription = _(element.get("description", " "))
 		restart = element.get("restart", "").lower()
+		data = element.get("data", "").split(",")
 		indent = element.get("indent", indent)
 		indent = int(indent) if indent and indent.isnumeric() else None
 		if restart == "gui" and not itemText.endswith("*"):  # Add "*" as restart indicator based on the restart attribute.
@@ -149,20 +150,20 @@ class Setup(ConfigListScreen, Screen):
 			itemText = f"{itemText}#"
 		item = eval(element.text) if element.text else ""
 		if item == "":
-			self.list.append((self.formatItemText(itemText),))  # Add the comment line to the config list.
+			self.list.append((self.formatItemText(itemText, data),))  # Add the comment line to the config list.
 		elif not isinstance(item, ConfigNothing):
-			label = (self.formatItemText(itemText), indent) if indent else self.formatItemText(itemText)
-			self.list.append((label, item, self.formatItemDescription(item, itemDescription)))  # Add the item to the config list.
+			label = (self.formatItemText(itemText, data), indent) if indent else self.formatItemText(itemText, data)
+			self.list.append((label, item, self.formatItemDescription(item, itemDescription, data)))  # Add the item to the config list.
 		if item is config.usage.setupShowDefault:
 			self.showDefaultChanged = True
 		if item is config.usage.boolean_graphic:
 			self.graphicSwitchChanged = True
 
-	def formatItemText(self, itemText):
-		return itemText.replace("%s %s", "%s %s" % getBoxDisplayName())
+	def formatItemText(self, text, data=None):
+		return text % tuple(data) if data and "%s %s" not in text and text.count("%s") == len(data) else text.replace("%s %s", "%s %s" % getBoxDisplayName())
 
-	def formatItemDescription(self, item, itemDescription):
-		itemDescription = itemDescription.replace("%s %s", "%s %s" % getBoxDisplayName())
+	def formatItemDescription(self, item, itemDescription, data=None):
+		itemDescription = self.formatItemText(itemDescription, data)
 		if config.usage.setupShowDefault.value:
 			spacer = "\n" if config.usage.setupShowDefault.value == "newline" else "  "
 			itemDefault = item.toDisplayString(item.default)
