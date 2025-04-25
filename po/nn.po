@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-21 09:40+0000\n"
+"POT-Creation-Date: 2025-04-25 10:13+0000\n"
 "PO-Revision-Date: 2016-04-02 23:09+0200\n"
 "Last-Translator: Stig-O <stiose@hotmail.com>\n"
 "Language-Team: Stig-O\n"
@@ -1973,10 +1973,6 @@ msgstr ""
 msgid "Access point"
 msgstr ""
 
-#
-msgid "Access point:"
-msgstr "Tilgangspunkt:"
-
 msgid "Access to geolocation information requires an Internet connection."
 msgstr ""
 
@@ -2795,10 +2791,6 @@ msgstr "Tyrkisk"
 msgid "Artist"
 msgstr "Artist"
 
-#, fuzzy
-msgid "Arts & Culture"
-msgstr "Kunst/Kultur"
-
 msgid "Arts/Culture"
 msgstr "Kunst/Kultur"
 
@@ -3073,9 +3065,6 @@ msgstr ""
 
 msgid "Autostart"
 msgstr "Autostart"
-
-msgid "Autostart:"
-msgstr "Autostart:"
 
 #
 msgid "Available format variables"
@@ -3379,10 +3368,6 @@ msgstr ""
 #
 #, fuzzy
 msgid "Bitrate"
-msgstr "Bitrate:"
-
-#
-msgid "Bitrate:"
 msgstr "Bitrate:"
 
 msgid "Black"
@@ -4284,10 +4269,6 @@ msgid "Channel zap delay mode"
 msgstr ""
 
 #
-msgid "Channel:"
-msgstr "Kanal:"
-
-#
 msgid "ChannelEPG Settings"
 msgstr "KanalEPG oppsett"
 
@@ -4307,10 +4288,6 @@ msgstr "Kap."
 #
 msgid "Chapter"
 msgstr "Kapittel"
-
-#
-msgid "Chapter:"
-msgstr "Kapittel:"
 
 #
 #, fuzzy
@@ -7383,9 +7360,6 @@ msgstr "EPG plassering"
 msgid "EPG only"
 msgstr ""
 
-msgid "EPG:"
-msgstr ""
-
 msgid "EPGSearch"
 msgstr ""
 
@@ -7842,10 +7816,6 @@ msgstr "Krypteringsnøkkel"
 #
 msgid "Encryption key type"
 msgstr "Krypteringsnøkkel type"
-
-#
-msgid "Encryption:"
-msgstr "Kryptering:"
 
 msgid "End"
 msgstr ""
@@ -8723,11 +8693,6 @@ msgstr "Feilet"
 msgid "Failed to write /tmp/positionersetup.log: "
 msgstr "Klarte ikke å skrive til /tmp/positionersetup.log:"
 
-#
-#, fuzzy
-msgid "Failed:"
-msgstr "Feilet"
-
 msgid "Falkland Islands (Malvinas)"
 msgstr ""
 
@@ -9238,17 +9203,11 @@ msgstr ""
 msgid "Free memory"
 msgstr "Ledig minne"
 
-msgid "Free memory:"
-msgstr "Ledig minne:"
-
 msgid "Free swap"
 msgstr ""
 
 msgid "Free to Air (FTA) Service"
 msgstr ""
-
-msgid "Free:"
-msgstr "Ledig"
 
 #
 msgid "French"
@@ -9288,11 +9247,6 @@ msgstr "Frekvens søking steg størrelse(khz)"
 #
 msgid "Frequency steps"
 msgstr "Frekvens steg"
-
-#
-#, fuzzy
-msgid "Frequency:"
-msgstr "Frekvens"
 
 #
 #, fuzzy
@@ -10055,9 +10009,6 @@ msgstr ""
 
 msgid "Hostname or IP address"
 msgstr ""
-
-msgid "Hostname: "
-msgstr "Vertsnavn:"
 
 msgid "Hotbird 13.0e"
 msgstr ""
@@ -12098,9 +12049,6 @@ msgstr ""
 msgid "Message pop up timeout"
 msgstr ""
 
-msgid "Message..."
-msgstr ""
-
 msgid "Metering mode"
 msgstr ""
 
@@ -13371,9 +13319,6 @@ msgstr ""
 
 msgid "NodeID"
 msgstr "NodeID"
-
-msgid "NodeID: "
-msgstr "NodeID:"
 
 msgid "Nominate how many IP Addresses are to be checked for active connections."
 msgstr ""
@@ -15259,10 +15204,6 @@ msgstr "Fremskritt søyle høyre"
 msgid "Progress info font size"
 msgstr "Skriftstørrelsen på kanalinfo"
 
-#, fuzzy
-msgid "Progress:"
-msgstr "Framgang"
-
 #
 msgid "Properties of current title"
 msgstr "Egenskaper til gjeldende tittel"
@@ -15316,9 +15257,6 @@ msgstr "Tilbyder"
 
 msgid "Provider Name: "
 msgstr "Tilbyder navn:"
-
-msgid "Provider: "
-msgstr "Tilbyder:"
 
 #
 msgid "Providers"
@@ -16651,10 +16589,6 @@ msgid "SSID"
 msgstr ""
 
 #
-msgid "SSID:"
-msgstr "SSID:"
-
-#
 #, fuzzy
 msgid "Sailing"
 msgstr "Taster:"
@@ -16942,9 +16876,6 @@ msgstr[1] ""
 
 msgid "Scanning failed!"
 msgstr "Skanning mislykket!"
-
-msgid "Scanning..."
-msgstr "Søker..."
 
 #. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
 #, python-format
@@ -18258,9 +18189,6 @@ msgstr "Server:"
 msgid "Servers"
 msgstr "Server"
 
-msgid "Servers:"
-msgstr "Server:"
-
 #
 msgid "Service"
 msgstr "Kanal"
@@ -19192,6 +19120,10 @@ msgstr "Vis favorittliste ved oppstart"
 msgid "Show build information"
 msgstr ""
 
+#, python-format
+msgid "Show cards with uphop %s"
+msgstr ""
+
 #
 msgid "Show channel number in InfoBar"
 msgstr "Vis kanalnummer i infolinjen"
@@ -19778,9 +19710,6 @@ msgstr "Signalkvaliteten"
 
 msgid "Signal strength"
 msgstr ""
-
-msgid "Signal strength:"
-msgstr "Signal styrke:"
 
 #
 msgid "Signal: "
@@ -20517,9 +20446,6 @@ msgid "Status of the display in standby mode"
 msgstr ""
 
 msgid "Status unavailable!"
-msgstr ""
-
-msgid "Status:"
 msgstr ""
 
 msgid "Step"
@@ -22324,10 +22250,6 @@ msgid "Timer selection"
 msgstr "Timer valg"
 
 #
-msgid "Timer selection..."
-msgstr "Timer valg..."
-
-#
 msgid "Timer type"
 msgstr "Timer type"
 
@@ -22547,10 +22469,6 @@ msgstr "Transponder"
 
 msgid "Transcoding"
 msgstr ""
-
-#, fuzzy
-msgid "Transcoding: "
-msgstr "AAC omkoding"
 
 msgid "Translate Subs On This Service"
 msgstr ""
@@ -22845,9 +22763,6 @@ msgstr ""
 msgid "Type of scan"
 msgstr "Søketype"
 
-msgid "Type: "
-msgstr "Type: "
-
 msgid "UBINIZE"
 msgstr ""
 
@@ -23048,28 +22963,8 @@ msgstr "Ikke støttet"
 msgid "Until standby/restart"
 msgstr "til dvalemodus/restart"
 
-msgid "Unused 0x22"
-msgstr ""
-
-msgid "Unused 0x52"
-msgstr ""
-
-msgid "Unused 0x53"
-msgstr ""
-
-msgid "Unused 0x54"
-msgstr ""
-
-msgid "Unused 0x71"
-msgstr ""
-
-msgid "Unused 0x72"
-msgstr ""
-
-msgid "Unused 0xb1"
-msgstr ""
-
-msgid "Unused 0xb2"
+#, python-format
+msgid "Unused %s"
 msgstr ""
 
 msgid "Unzipping Image"
@@ -23744,10 +23639,6 @@ msgid ""
 "\n"
 "The next output port will be automatically tried in 10 seconds."
 msgstr ""
-
-#, fuzzy
-msgid "Video: "
-msgstr "Video PID"
 
 #, python-format
 msgid "Video: %s fps"
@@ -24944,14 +24835,8 @@ msgstr "Plassering"
 msgid "Zoom In/Out TV"
 msgstr "Zoom inn/ut TV..."
 
-msgid "Zoom In/Out TV..."
-msgstr "Zoom inn/ut TV..."
-
 #, fuzzy
 msgid "Zoom Off"
-msgstr "Zoom av..."
-
-msgid "Zoom Off..."
 msgstr "Zoom av..."
 
 msgid "Zoom from left"
@@ -25618,9 +25503,6 @@ msgstr "ikke brukt"
 msgid "not used"
 msgstr "ikke brukt"
 
-msgid "not_tested"
-msgstr ""
-
 #
 msgid "nothing connected"
 msgstr "Ingenting tilkoblet"
@@ -25796,36 +25678,6 @@ msgstr "vise alle kortene"
 
 msgid "show all tags"
 msgstr "vise alle tag"
-
-msgid "show cards with uphop 0"
-msgstr "vise kortene med uphop "
-
-msgid "show cards with uphop 1"
-msgstr "vise kortene med uphop 1"
-
-msgid "show cards with uphop 2"
-msgstr "vise kortene med uphop 2"
-
-msgid "show cards with uphop 3"
-msgstr "vise kortene med uphop 3"
-
-msgid "show cards with uphop 4"
-msgstr "vise kortene med uphop 4"
-
-msgid "show cards with uphop 5"
-msgstr "vise kortene med uphop 5"
-
-msgid "show cards with uphop 6"
-msgstr "vise kortene med uphop 6"
-
-msgid "show cards with uphop 7"
-msgstr "vise kortene med uphop 7"
-
-msgid "show cards with uphop 8"
-msgstr "vise kortene med uphop 8"
-
-msgid "show cards with uphop 9"
-msgstr "vise kortene med uphop 9"
 
 msgid "show program information..."
 msgstr "vise informasjon om programmet ..."
@@ -26079,10 +25931,6 @@ msgstr[1] "med %d feil"
 msgid "with errors"
 msgstr "med %d feil"
 
-#, fuzzy
-msgid "with_errors"
-msgstr "med %d feil"
-
 #
 msgid "working"
 msgstr "arbeider"
@@ -26097,6 +25945,130 @@ msgstr "ja (behold feeds)"
 
 msgid "®"
 msgstr ""
+
+#
+#~ msgid "Access point:"
+#~ msgstr "Tilgangspunkt:"
+
+#, fuzzy
+#~ msgid "Arts & Culture"
+#~ msgstr "Kunst/Kultur"
+
+#~ msgid "Autostart:"
+#~ msgstr "Autostart:"
+
+#
+#~ msgid "Bitrate:"
+#~ msgstr "Bitrate:"
+
+#
+#~ msgid "Channel:"
+#~ msgstr "Kanal:"
+
+#
+#~ msgid "Chapter:"
+#~ msgstr "Kapittel:"
+
+#
+#~ msgid "Encryption:"
+#~ msgstr "Kryptering:"
+
+#
+#, fuzzy
+#~ msgid "Failed:"
+#~ msgstr "Feilet"
+
+#~ msgid "Free memory:"
+#~ msgstr "Ledig minne:"
+
+#~ msgid "Free:"
+#~ msgstr "Ledig"
+
+#
+#, fuzzy
+#~ msgid "Frequency:"
+#~ msgstr "Frekvens"
+
+#~ msgid "Hostname: "
+#~ msgstr "Vertsnavn:"
+
+#~ msgid "NodeID: "
+#~ msgstr "NodeID:"
+
+#, fuzzy
+#~ msgid "Progress:"
+#~ msgstr "Framgang"
+
+#~ msgid "Provider: "
+#~ msgstr "Tilbyder:"
+
+#
+#~ msgid "SSID:"
+#~ msgstr "SSID:"
+
+#~ msgid "Scanning..."
+#~ msgstr "Søker..."
+
+#~ msgid "Servers:"
+#~ msgstr "Server:"
+
+#~ msgid "Signal strength:"
+#~ msgstr "Signal styrke:"
+
+#
+#~ msgid "Timer selection..."
+#~ msgstr "Timer valg..."
+
+#, fuzzy
+#~ msgid "Transcoding: "
+#~ msgstr "AAC omkoding"
+
+#~ msgid "Type: "
+#~ msgstr "Type: "
+
+#, fuzzy
+#~ msgid "Video: "
+#~ msgstr "Video PID"
+
+#~ msgid "Zoom In/Out TV..."
+#~ msgstr "Zoom inn/ut TV..."
+
+#~ msgid "Zoom Off..."
+#~ msgstr "Zoom av..."
+
+#~ msgid "show cards with uphop 0"
+#~ msgstr "vise kortene med uphop "
+
+#~ msgid "show cards with uphop 1"
+#~ msgstr "vise kortene med uphop 1"
+
+#~ msgid "show cards with uphop 2"
+#~ msgstr "vise kortene med uphop 2"
+
+#~ msgid "show cards with uphop 3"
+#~ msgstr "vise kortene med uphop 3"
+
+#~ msgid "show cards with uphop 4"
+#~ msgstr "vise kortene med uphop 4"
+
+#~ msgid "show cards with uphop 5"
+#~ msgstr "vise kortene med uphop 5"
+
+#~ msgid "show cards with uphop 6"
+#~ msgstr "vise kortene med uphop 6"
+
+#~ msgid "show cards with uphop 7"
+#~ msgstr "vise kortene med uphop 7"
+
+#~ msgid "show cards with uphop 8"
+#~ msgstr "vise kortene med uphop 8"
+
+#~ msgid "show cards with uphop 9"
+#~ msgstr "vise kortene med uphop 9"
+
+#, fuzzy
+#~ msgid "with_errors"
+#~ msgstr "med %d feil"
 
 #
 #~ msgid "off"

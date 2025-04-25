@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-21 09:40+0000\n"
+"POT-Creation-Date: 2025-04-25 10:13+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/he/>\n"
@@ -1852,10 +1852,6 @@ msgstr ""
 msgid "Access point"
 msgstr ""
 
-#
-msgid "Access point:"
-msgstr ":נקודת גישה"
-
 msgid "Access to geolocation information requires an Internet connection."
 msgstr ""
 
@@ -2652,9 +2648,6 @@ msgstr "טורקית"
 msgid "Artist"
 msgstr "אומן"
 
-msgid "Arts & Culture"
-msgstr ""
-
 msgid "Arts/Culture"
 msgstr ""
 
@@ -2924,9 +2917,6 @@ msgid "Automatically update Log-Fullscreen View"
 msgstr ""
 
 msgid "Autostart"
-msgstr ""
-
-msgid "Autostart:"
 msgstr ""
 
 msgid "Available format variables"
@@ -3217,10 +3207,6 @@ msgid "Bislama"
 msgstr ""
 
 msgid "Bitrate"
-msgstr ""
-
-#
-msgid "Bitrate:"
 msgstr ""
 
 msgid "Black"
@@ -4123,10 +4109,6 @@ msgid "Channel zap delay mode"
 msgstr ""
 
 #
-msgid "Channel:"
-msgstr ":ערוץ"
-
-#
 #, fuzzy
 msgid "ChannelEPG Settings"
 msgstr "בחירת ערוץ"
@@ -4145,9 +4127,6 @@ msgstr "Chap."
 
 msgid "Chapter"
 msgstr "פרק"
-
-msgid "Chapter:"
-msgstr ":פרק"
 
 #
 #, fuzzy
@@ -7100,9 +7079,6 @@ msgstr ""
 msgid "EPG only"
 msgstr ""
 
-msgid "EPG:"
-msgstr ""
-
 msgid "EPGSearch"
 msgstr ""
 
@@ -7549,9 +7525,6 @@ msgstr "מפתח קידוד"
 #, fuzzy
 msgid "Encryption key type"
 msgstr "שיטת מפתח קידוד"
-
-msgid "Encryption:"
-msgstr ":קידוד"
 
 msgid "End"
 msgstr ""
@@ -8395,10 +8368,6 @@ msgstr "נכשל"
 msgid "Failed to write /tmp/positionersetup.log: "
 msgstr ""
 
-#, fuzzy
-msgid "Failed:"
-msgstr "נכשל"
-
 msgid "Falkland Islands (Malvinas)"
 msgstr ""
 
@@ -8888,16 +8857,10 @@ msgstr ""
 msgid "Free memory"
 msgstr ""
 
-msgid "Free memory:"
-msgstr ""
-
 msgid "Free swap"
 msgstr ""
 
 msgid "Free to Air (FTA) Service"
-msgstr ""
-
-msgid "Free:"
 msgstr ""
 
 #
@@ -8937,11 +8900,6 @@ msgstr ""
 #
 msgid "Frequency steps"
 msgstr "קפיצות תדרים"
-
-#
-#, fuzzy
-msgid "Frequency:"
-msgstr "תדר"
 
 #
 #, fuzzy
@@ -9672,9 +9630,6 @@ msgid "Hostname cannot be resolved to IP address!"
 msgstr ""
 
 msgid "Hostname or IP address"
-msgstr ""
-
-msgid "Hostname: "
 msgstr ""
 
 msgid "Hotbird 13.0e"
@@ -11680,9 +11635,6 @@ msgstr ""
 msgid "Message pop up timeout"
 msgstr ""
 
-msgid "Message..."
-msgstr "...הודעה"
-
 msgid "Metering mode"
 msgstr ""
 
@@ -12920,9 +12872,6 @@ msgid "No, show the RecordTimer Overview"
 msgstr ""
 
 msgid "NodeID"
-msgstr ""
-
-msgid "NodeID: "
 msgstr ""
 
 msgid "Nominate how many IP Addresses are to be checked for active connections."
@@ -14746,11 +14695,6 @@ msgstr ""
 msgid "Progress info font size"
 msgstr "Serviceinfo"
 
-#
-#, fuzzy
-msgid "Progress:"
-msgstr "בפעולה"
-
 msgid "Properties of current title"
 msgstr "Properties of current title"
 
@@ -14800,9 +14744,6 @@ msgid "Provider"
 msgstr "Provider"
 
 msgid "Provider Name: "
-msgstr ""
-
-msgid "Provider: "
 msgstr ""
 
 #
@@ -16084,10 +16025,6 @@ msgstr ""
 msgid "SSID"
 msgstr ""
 
-#
-msgid "SSID:"
-msgstr "SSID:"
-
 #, fuzzy
 msgid "Sailing"
 msgstr ":מחייג"
@@ -16370,9 +16307,6 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "Scanning failed!"
-msgstr ""
-
-msgid "Scanning..."
 msgstr ""
 
 #. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
@@ -17662,9 +17596,6 @@ msgstr "סריקת שירותים"
 msgid "Servers"
 msgstr ""
 
-msgid "Servers:"
-msgstr ""
-
 #
 msgid "Service"
 msgstr "שירות"
@@ -18576,6 +18507,10 @@ msgstr ""
 msgid "Show build information"
 msgstr ""
 
+#, python-format
+msgid "Show cards with uphop %s"
+msgstr ""
+
 #, fuzzy
 msgid "Show channel number in InfoBar"
 msgstr "transponder  הראה מידע על ה"
@@ -19158,11 +19093,6 @@ msgstr "Signal: "
 
 msgid "Signal strength"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Signal strength:"
-msgstr "Signal Strength:"
 
 #
 msgid "Signal: "
@@ -19885,9 +19815,6 @@ msgid "Status of the display in standby mode"
 msgstr ""
 
 msgid "Status unavailable!"
-msgstr ""
-
-msgid "Status:"
 msgstr ""
 
 msgid "Step"
@@ -21644,11 +21571,6 @@ msgstr "בחירת טיימר"
 
 #
 #, fuzzy
-msgid "Timer selection..."
-msgstr "בחירת טיימר"
-
-#
-#, fuzzy
 msgid "Timer type"
 msgstr "סוג הטיימר"
 
@@ -21870,9 +21792,6 @@ msgid "Transcode"
 msgstr "Transponder"
 
 msgid "Transcoding"
-msgstr ""
-
-msgid "Transcoding: "
 msgstr ""
 
 msgid "Translate Subs On This Service"
@@ -22155,9 +22074,6 @@ msgstr ""
 msgid "Type of scan"
 msgstr "סוג סריקה"
 
-msgid "Type: "
-msgstr ""
-
 msgid "UBINIZE"
 msgstr ""
 
@@ -22354,28 +22270,8 @@ msgstr "לא נתמך"
 msgid "Until standby/restart"
 msgstr "Until standby/restart"
 
-msgid "Unused 0x22"
-msgstr ""
-
-msgid "Unused 0x52"
-msgstr ""
-
-msgid "Unused 0x53"
-msgstr ""
-
-msgid "Unused 0x54"
-msgstr ""
-
-msgid "Unused 0x71"
-msgstr ""
-
-msgid "Unused 0x72"
-msgstr ""
-
-msgid "Unused 0xb1"
-msgstr ""
-
-msgid "Unused 0xb2"
+#, python-format
+msgid "Unused %s"
 msgstr ""
 
 msgid "Unzipping Image"
@@ -23027,10 +22923,6 @@ msgid ""
 "\n"
 "The next output port will be automatically tried in 10 seconds."
 msgstr ""
-
-#, fuzzy
-msgid "Video: "
-msgstr "S-Video"
 
 #, python-format
 msgid "Video: %s fps"
@@ -24183,13 +24075,7 @@ msgstr "מיקום"
 msgid "Zoom In/Out TV"
 msgstr ""
 
-msgid "Zoom In/Out TV..."
-msgstr ""
-
 msgid "Zoom Off"
-msgstr ""
-
-msgid "Zoom Off..."
 msgstr ""
 
 msgid "Zoom from left"
@@ -24810,9 +24696,6 @@ msgstr "לא בשימוש"
 msgid "not used"
 msgstr "לא בשימוש"
 
-msgid "not_tested"
-msgstr ""
-
 msgid "nothing connected"
 msgstr "nothing connected"
 
@@ -24977,36 +24860,6 @@ msgid "show all cards"
 msgstr ""
 
 msgid "show all tags"
-msgstr ""
-
-msgid "show cards with uphop 0"
-msgstr ""
-
-msgid "show cards with uphop 1"
-msgstr ""
-
-msgid "show cards with uphop 2"
-msgstr ""
-
-msgid "show cards with uphop 3"
-msgstr ""
-
-msgid "show cards with uphop 4"
-msgstr ""
-
-msgid "show cards with uphop 5"
-msgstr ""
-
-msgid "show cards with uphop 6"
-msgstr ""
-
-msgid "show cards with uphop 7"
-msgstr ""
-
-msgid "show cards with uphop 8"
-msgstr ""
-
-msgid "show cards with uphop 9"
 msgstr ""
 
 msgid "show program information..."
@@ -25241,9 +25094,6 @@ msgstr[1] ""
 msgid "with errors"
 msgstr ""
 
-msgid "with_errors"
-msgstr ""
-
 msgid "working"
 msgstr "עובד"
 
@@ -25255,6 +25105,55 @@ msgstr "כן (שמור פידים)"
 
 msgid "®"
 msgstr ""
+
+#
+#~ msgid "Access point:"
+#~ msgstr ":נקודת גישה"
+
+#
+#~ msgid "Channel:"
+#~ msgstr ":ערוץ"
+
+#~ msgid "Chapter:"
+#~ msgstr ":פרק"
+
+#~ msgid "Encryption:"
+#~ msgstr ":קידוד"
+
+#, fuzzy
+#~ msgid "Failed:"
+#~ msgstr "נכשל"
+
+#
+#, fuzzy
+#~ msgid "Frequency:"
+#~ msgstr "תדר"
+
+#~ msgid "Message..."
+#~ msgstr "...הודעה"
+
+#
+#, fuzzy
+#~ msgid "Progress:"
+#~ msgstr "בפעולה"
+
+#
+#~ msgid "SSID:"
+#~ msgstr "SSID:"
+
+#
+#, fuzzy
+#~ msgid "Signal strength:"
+#~ msgstr "Signal Strength:"
+
+#
+#, fuzzy
+#~ msgid "Timer selection..."
+#~ msgstr "בחירת טיימר"
+
+#, fuzzy
+#~ msgid "Video: "
+#~ msgstr "S-Video"
 
 #
 #~ msgid "off"

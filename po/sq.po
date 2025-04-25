@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-21 09:40+0000\n"
+"POT-Creation-Date: 2025-04-25 10:13+0000\n"
 "PO-Revision-Date: 2023-12-11 00:50+0000\n"
 "Last-Translator: W L <wl@mailhole.de>\n"
 "Language-Team: Albanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sq/>\n"
@@ -1774,9 +1774,6 @@ msgstr ""
 msgid "Access point"
 msgstr "Pika e hyrjes"
 
-msgid "Access point:"
-msgstr "Pika e hyrjes"
-
 msgid "Access to geolocation information requires an Internet connection."
 msgstr "Qasja në informacionin e gjeolokacionit kërkon një lidhje interneti."
 
@@ -2521,9 +2518,6 @@ msgstr "Armenisht"
 msgid "Artist"
 msgstr "Artist"
 
-msgid "Arts & Culture"
-msgstr "Artet & Kultura"
-
 msgid "Arts/Culture"
 msgstr "Arte/Kulturë"
 
@@ -2770,9 +2764,6 @@ msgid "Automatically update Log-Fullscreen View"
 msgstr ""
 
 msgid "Autostart"
-msgstr "Fillim Automatik"
-
-msgid "Autostart:"
 msgstr "Fillim Automatik"
 
 msgid "Available format variables"
@@ -3054,9 +3045,6 @@ msgstr "Bislama"
 
 msgid "Bitrate"
 msgstr "Bitrate"
-
-msgid "Bitrate:"
-msgstr "Shpejtësia e biteve:"
 
 msgid "Black"
 msgstr "E zezë"
@@ -3916,9 +3904,6 @@ msgstr "Butoni i parë i vonesës së bllokimit të kanalit"
 msgid "Channel zap delay mode"
 msgstr "Modaliteti i vonesës së bllokimit të kanalit"
 
-msgid "Channel:"
-msgstr "Kanali"
-
 msgid "ChannelEPG Settings"
 msgstr "Rregullimet ChannelEPG"
 
@@ -3936,9 +3921,6 @@ msgstr "Kapitull."
 
 msgid "Chapter"
 msgstr "Kapitulli"
-
-msgid "Chapter:"
-msgstr "Kapitulli:"
 
 msgid "Character device"
 msgstr "Pajisja me karakter"
@@ -6816,9 +6798,6 @@ msgstr "Vendndodhja e EPG"
 msgid "EPG only"
 msgstr ""
 
-msgid "EPG:"
-msgstr ""
-
 msgid "EPGSearch"
 msgstr "EPGSearch"
 
@@ -7230,9 +7209,6 @@ msgstr "Çelësi i enkriptimit"
 
 msgid "Encryption key type"
 msgstr "Lloji i çelësit të enkriptimit"
-
-msgid "Encryption:"
-msgstr "Enkriptimi"
 
 msgid "End"
 msgstr "fund"
@@ -8070,9 +8046,6 @@ msgstr "Dështoi"
 msgid "Failed to write /tmp/positionersetup.log: "
 msgstr "Shkrimi i /tmp/positionersetup.log dështoi:"
 
-msgid "Failed:"
-msgstr "Dështoi:"
-
 msgid "Falkland Islands (Malvinas)"
 msgstr "Ishujt Falkland (Malvinas)"
 
@@ -8539,17 +8512,11 @@ msgstr "Flash falas"
 msgid "Free memory"
 msgstr "Memorie e lirë"
 
-msgid "Free memory:"
-msgstr "Memorie e lirë"
-
 msgid "Free swap"
 msgstr "Shkëmbim falas"
 
 msgid "Free to Air (FTA) Service"
 msgstr ""
-
-msgid "Free:"
-msgstr "Falas:"
 
 msgid "French"
 msgstr "Frëngjisht"
@@ -8580,9 +8547,6 @@ msgstr "Madhësia e hapit të skanimit të frekuencës (khz)"
 
 msgid "Frequency steps"
 msgstr "Hapat e frekuencës"
-
-msgid "Frequency:"
-msgstr "Frekuenca:"
 
 msgid "Frequency: "
 msgstr "Frekuenca:"
@@ -9277,9 +9241,6 @@ msgstr ""
 
 msgid "Hostname or IP address"
 msgstr ""
-
-msgid "Hostname: "
-msgstr "Emri i hostit:"
 
 msgid "Hotbird 13.0e"
 msgstr "Hotbird 13.0e"
@@ -11152,9 +11113,6 @@ msgstr ""
 msgid "Message pop up timeout"
 msgstr ""
 
-msgid "Message..."
-msgstr ""
-
 msgid "Metering mode"
 msgstr ""
 
@@ -12285,9 +12243,6 @@ msgid "No, show the RecordTimer Overview"
 msgstr ""
 
 msgid "NodeID"
-msgstr ""
-
-msgid "NodeID: "
 msgstr ""
 
 msgid "Nominate how many IP Addresses are to be checked for active connections."
@@ -13995,9 +13950,6 @@ msgstr ""
 msgid "Progress info font size"
 msgstr ""
 
-msgid "Progress:"
-msgstr "Progesi:"
-
 msgid "Properties of current title"
 msgstr ""
 
@@ -14047,9 +13999,6 @@ msgid "Provider"
 msgstr ""
 
 msgid "Provider Name: "
-msgstr ""
-
-msgid "Provider: "
 msgstr ""
 
 msgid "Providers"
@@ -15262,9 +15211,6 @@ msgstr ""
 msgid "SSID"
 msgstr ""
 
-msgid "SSID:"
-msgstr "SSID"
-
 msgid "Sailing"
 msgstr "Lundron"
 
@@ -15526,9 +15472,6 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "Scanning failed!"
-msgstr ""
-
-msgid "Scanning..."
 msgstr ""
 
 #. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
@@ -16787,9 +16730,6 @@ msgstr ""
 msgid "Servers"
 msgstr ""
 
-msgid "Servers:"
-msgstr ""
-
 msgid "Service"
 msgstr ""
 
@@ -17654,6 +17594,10 @@ msgstr ""
 msgid "Show build information"
 msgstr ""
 
+#, python-format
+msgid "Show cards with uphop %s"
+msgstr ""
+
 msgid "Show channel number in InfoBar"
 msgstr ""
 
@@ -18182,9 +18126,6 @@ msgstr "Cilësia e sinjalit"
 
 msgid "Signal strength"
 msgstr "Forca e sinjalit"
-
-msgid "Signal strength:"
-msgstr "Fuqia e sinjalit:"
 
 msgid "Signal: "
 msgstr "Sinjali:"
@@ -18860,9 +18801,6 @@ msgid "Status of the display in standby mode"
 msgstr ""
 
 msgid "Status unavailable!"
-msgstr ""
-
-msgid "Status:"
 msgstr ""
 
 msgid "Step"
@@ -20538,9 +20476,6 @@ msgstr ""
 msgid "Timer selection"
 msgstr ""
 
-msgid "Timer selection..."
-msgstr ""
-
 msgid "Timer type"
 msgstr ""
 
@@ -20745,9 +20680,6 @@ msgid "Transcode"
 msgstr ""
 
 msgid "Transcoding"
-msgstr ""
-
-msgid "Transcoding: "
 msgstr ""
 
 msgid "Translate Subs On This Service"
@@ -21000,9 +20932,6 @@ msgstr ""
 msgid "Type of scan"
 msgstr ""
 
-msgid "Type: "
-msgstr ""
-
 msgid "UBINIZE"
 msgstr ""
 
@@ -21186,28 +21115,8 @@ msgstr ""
 msgid "Until standby/restart"
 msgstr "deri në gatishmëri/rinisje"
 
-msgid "Unused 0x22"
-msgstr ""
-
-msgid "Unused 0x52"
-msgstr ""
-
-msgid "Unused 0x53"
-msgstr ""
-
-msgid "Unused 0x54"
-msgstr ""
-
-msgid "Unused 0x71"
-msgstr ""
-
-msgid "Unused 0x72"
-msgstr ""
-
-msgid "Unused 0xb1"
-msgstr ""
-
-msgid "Unused 0xb2"
+#, python-format
+msgid "Unused %s"
 msgstr ""
 
 msgid "Unzipping Image"
@@ -21835,9 +21744,6 @@ msgid ""
 "\n"
 "The next output port will be automatically tried in 10 seconds."
 msgstr ""
-
-msgid "Video: "
-msgstr "Video:"
 
 #, python-format
 msgid "Video: %s fps"
@@ -22958,13 +22864,7 @@ msgstr ""
 msgid "Zoom In/Out TV"
 msgstr ""
 
-msgid "Zoom In/Out TV..."
-msgstr ""
-
 msgid "Zoom Off"
-msgstr ""
-
-msgid "Zoom Off..."
 msgstr ""
 
 msgid "Zoom from left"
@@ -23559,9 +23459,6 @@ msgstr ""
 msgid "not used"
 msgstr ""
 
-msgid "not_tested"
-msgstr ""
-
 msgid "nothing connected"
 msgstr ""
 
@@ -23720,36 +23617,6 @@ msgid "show all cards"
 msgstr ""
 
 msgid "show all tags"
-msgstr ""
-
-msgid "show cards with uphop 0"
-msgstr ""
-
-msgid "show cards with uphop 1"
-msgstr ""
-
-msgid "show cards with uphop 2"
-msgstr ""
-
-msgid "show cards with uphop 3"
-msgstr ""
-
-msgid "show cards with uphop 4"
-msgstr ""
-
-msgid "show cards with uphop 5"
-msgstr ""
-
-msgid "show cards with uphop 6"
-msgstr ""
-
-msgid "show cards with uphop 7"
-msgstr ""
-
-msgid "show cards with uphop 8"
-msgstr ""
-
-msgid "show cards with uphop 9"
 msgstr ""
 
 msgid "show program information..."
@@ -23971,9 +23838,6 @@ msgstr[1] "me gabime %d"
 msgid "with errors"
 msgstr "me gabime"
 
-msgid "with_errors"
-msgstr "me_gabime"
-
 msgid "working"
 msgstr "duke punuar"
 
@@ -23985,6 +23849,57 @@ msgstr "Po (mbani ushqim)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Access point:"
+#~ msgstr "Pika e hyrjes"
+
+#~ msgid "Arts & Culture"
+#~ msgstr "Artet & Kultura"
+
+#~ msgid "Autostart:"
+#~ msgstr "Fillim Automatik"
+
+#~ msgid "Bitrate:"
+#~ msgstr "Shpejtësia e biteve:"
+
+#~ msgid "Channel:"
+#~ msgstr "Kanali"
+
+#~ msgid "Chapter:"
+#~ msgstr "Kapitulli:"
+
+#~ msgid "Encryption:"
+#~ msgstr "Enkriptimi"
+
+#~ msgid "Failed:"
+#~ msgstr "Dështoi:"
+
+#~ msgid "Free memory:"
+#~ msgstr "Memorie e lirë"
+
+#~ msgid "Free:"
+#~ msgstr "Falas:"
+
+#~ msgid "Frequency:"
+#~ msgstr "Frekuenca:"
+
+#~ msgid "Hostname: "
+#~ msgstr "Emri i hostit:"
+
+#~ msgid "Progress:"
+#~ msgstr "Progesi:"
+
+#~ msgid "SSID:"
+#~ msgstr "SSID"
+
+#~ msgid "Signal strength:"
+#~ msgstr "Fuqia e sinjalit:"
+
+#~ msgid "Video: "
+#~ msgstr "Video:"
+
+#~ msgid "with_errors"
+#~ msgstr "me_gabime"
 
 #~ msgid "Delete the currently highlighted service from the Volume Offsets list"
 #~ msgstr "Elemino shërbimin e theksuar aktualisht nga lista Volume Offsets"

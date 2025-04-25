@@ -8,12 +8,13 @@
 # Karol Sz <kaolsz@interia.pl>, 2022, 2023, 2024.
 # Tomasz X <wladyslaw.lam@gmail.com>, 2022.
 # sq9 <sq9hhc1@o2.pl>, 2023.
+# Paweł <paps@poczta.onet.pl>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-21 09:40+0000\n"
-"PO-Revision-Date: 2025-04-14 12:33+0000\n"
+"POT-Creation-Date: 2025-04-25 10:13+0000\n"
+"PO-Revision-Date: 2025-04-25 14:28+0000\n"
 "Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -21,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.11.1-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -925,7 +926,7 @@ msgstr[2] "%d źródeł pakietów zostało uaktualnionych."
 
 #, python-format
 msgid "%d jobs are running in the background!"
-msgstr ""
+msgstr "%d zadań jest uruchomionych w tle!"
 
 #, python-format
 msgid "%d kB"
@@ -1807,9 +1808,6 @@ msgstr "Powyżej 200Mbps"
 msgid "Access point"
 msgstr "Punkt dostępowy"
 
-msgid "Access point:"
-msgstr "Punkt dostępu:"
-
 msgid "Access to geolocation information requires an Internet connection."
 msgstr "Dostęp do danych geolokacji wymaga połączenia z internetem."
 
@@ -1928,7 +1926,7 @@ msgid "Add RecordTimer"
 msgstr "Dodaj timer nagrywania"
 
 msgid "Add Service"
-msgstr ""
+msgstr "Dodaj kanał"
 
 msgid "Add Service To Bouquet"
 msgstr "Dodaj kanał do listy"
@@ -1952,7 +1950,7 @@ msgid "Add a DNS entry"
 msgstr "Dodaj wpis DNS"
 
 msgid "Add a RADIO service to the Volume Offset list"
-msgstr ""
+msgstr "Dodaj kanał RADIO do listy przesunięcia głośności"
 
 msgid "Add a RecordTimer"
 msgstr "Dodaj timer nagrywania"
@@ -1961,7 +1959,7 @@ msgid "Add a RecordTimer for current event"
 msgstr "Dodaj timer nagrywania dla bieżącego wydarzenia"
 
 msgid "Add a TV service to the Volume Offset list"
-msgstr ""
+msgstr "Dodaj kanał TV do listy przesunięcia głośności"
 
 msgid "Add a ZapTimer for current event"
 msgstr "Dodaj zap timer dla bieżącego wydarzenia"
@@ -2084,7 +2082,7 @@ msgid "Add/Remove highlighted plugin to/from update list"
 msgstr "Dodaj/Usuń podświetloną wtyczkę do/z listy aktualizacji"
 
 msgid "Add/Remove the current service to/from the Volume Offset list"
-msgstr ""
+msgstr "Dodaj/usuń bieżący kanał do/z listy przesunięć głośnosci"
 
 msgid "Adding schedule..."
 msgstr "Dodawanie harmonogramu..."
@@ -2373,7 +2371,7 @@ msgstr "Zdalny amlogic"
 
 #, python-format
 msgid "Amount %d / Success %d / Failed %d"
-msgstr ""
+msgstr "Ilość %d / Sukces %d / Niepowodzenie %d"
 
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr "Podjęto próbę przechwytywania aktualnego stanu TV. Jeśli nie jest to możliwe z powodu nieprawidłowych lub brakujących komunikatów o stanie, może spowodować nieoczekiwane działanie odbiornika. Z drugiej strony stara się lepiej reagować na różne warunki pracy."
@@ -2554,9 +2552,6 @@ msgstr "Ormiański"
 msgid "Artist"
 msgstr "Artysta"
 
-msgid "Arts & Culture"
-msgstr "Kultura i Sztuka"
-
 msgid "Arts/Culture"
 msgstr "Kultura/Sztuka"
 
@@ -2728,7 +2723,7 @@ msgid "Auto multi-selection"
 msgstr "Automatyczny wybór wielokrotny"
 
 msgid "Auto show volume level"
-msgstr ""
+msgstr "Automatyczne wyświetlanie poziomu głośności"
 
 msgid "Auto shut down"
 msgstr "Automatyczne wyłączenie"
@@ -2804,9 +2799,6 @@ msgstr "Automatyczna aktualizacja logów - widok pełnoekranowy"
 
 msgid "Autostart"
 msgstr "Autostart"
-
-msgid "Autostart:"
-msgstr "Automatyczny start:"
 
 msgid "Available format variables"
 msgstr "Dostępne zmienne formatu"
@@ -3087,9 +3079,6 @@ msgstr "Bislama"
 
 msgid "Bitrate"
 msgstr "Przepustowość"
-
-msgid "Bitrate:"
-msgstr "Szybkość transmisji:"
 
 msgid "Black"
 msgstr "Czarny"
@@ -3755,7 +3744,7 @@ msgid "Catalan / Valencian"
 msgstr "Kataloński / Walencki"
 
 msgid "Catch Up Player Actions"
-msgstr ""
+msgstr "Akcje odtwarzacza Catch Up"
 
 msgid "Cayman Islands"
 msgstr "Kajmany"
@@ -3949,9 +3938,6 @@ msgstr "Tryb opóźnienia kanału pierwszy przycisk"
 msgid "Channel zap delay mode"
 msgstr "Tryb opóźnienia kanału"
 
-msgid "Channel:"
-msgstr "Kanał:"
-
 msgid "ChannelEPG Settings"
 msgstr "Ustawienia EPG kanału"
 
@@ -3969,9 +3955,6 @@ msgstr "Rozdz."
 
 msgid "Chapter"
 msgstr "Rozdział"
-
-msgid "Chapter:"
-msgstr "Rozdział:"
 
 msgid "Character device"
 msgstr "Postać urządzenia"
@@ -5351,7 +5334,7 @@ msgid "Currently Defined Volume Offsets:"
 msgstr "Aktualnie zdefiniowane Przesunięcia głośności:"
 
 msgid "Currently Remembered Volume Levels:"
-msgstr ""
+msgstr "Aktualnie zapamiętane poziomy głośności:"
 
 msgid "Custom"
 msgstr "Niestandardowy"
@@ -5824,7 +5807,7 @@ msgid "Defined / Active"
 msgstr "Zdefiniowany/Aktywny"
 
 msgid "Defined volume offset"
-msgstr ""
+msgstr "Zdefiniowane przesunięcie głośności"
 
 msgid "Defines how fast the time jumps are repeated. Values lower than 500ms may be problematic with NAS."
 msgstr "Określa, jak szybko czas skoków są powtarzane. Wartości mniejsze niż 500ms mogą okazać się problematyczne z NAS."
@@ -6088,19 +6071,19 @@ msgid "Descending"
 msgstr "Malejąco"
 
 msgid "Descramble end time"
-msgstr ""
+msgstr "Odszyfruj czas zakończenia"
 
 msgid "Descramble in Standby"
-msgstr ""
+msgstr "Odszyfruj w trybie gotowości"
 
 msgid "Descramble in Standby finished"
-msgstr ""
+msgstr "Odszyfrowywanie w trybie gotowości zakończone"
 
 msgid "Descramble recordings before Shutdown"
-msgstr ""
+msgstr "Odszyfruj nagrania przed wyłączeniem"
 
 msgid "Descramble start time"
-msgstr ""
+msgstr "Czas rozpoczęcia odszyfrowania"
 
 msgid "Descrambling options"
 msgstr "Opcje dekodowania"
@@ -6869,9 +6852,6 @@ msgstr "Lokalizacja EPG"
 msgid "EPG only"
 msgstr "Tylko EPG"
 
-msgid "EPG:"
-msgstr "EPG:"
-
 msgid "EPGSearch"
 msgstr "Wyszukiwanie EPG"
 
@@ -7283,9 +7263,6 @@ msgstr "Hasło sieci"
 
 msgid "Encryption key type"
 msgstr "Typ klucza szyfrującego"
-
-msgid "Encryption:"
-msgstr "Szyfrowanie:"
 
 msgid "End"
 msgstr "Koniec"
@@ -8127,9 +8104,6 @@ msgstr "Błąd"
 msgid "Failed to write /tmp/positionersetup.log: "
 msgstr "Nie można zapisać pliku /tmp/positionersetup.log: "
 
-msgid "Failed:"
-msgstr "Błąd:"
-
 msgid "Falkland Islands (Malvinas)"
 msgstr "Falklandy"
 
@@ -8596,17 +8570,11 @@ msgstr "Wolne (flash)"
 msgid "Free memory"
 msgstr "Wolna pamięć"
 
-msgid "Free memory:"
-msgstr "Wolna pamięć:"
-
 msgid "Free swap"
 msgstr "Wolne (swap)"
 
 msgid "Free to Air (FTA) Service"
 msgstr "Usługa niekodowana (FTA)"
-
-msgid "Free:"
-msgstr "Wolne:"
 
 msgid "French"
 msgstr "Francuski"
@@ -8637,9 +8605,6 @@ msgstr "Częstotliwość rozmiaru skanowania(khz)"
 
 msgid "Frequency steps"
 msgstr "Częstotliwość kroków"
-
-msgid "Frequency:"
-msgstr "Częstotliwość:"
 
 msgid "Frequency: "
 msgstr "Częstotliwość: "
@@ -9334,9 +9299,6 @@ msgstr "Nazwy hosta nie można przekształcić na adres IP!"
 
 msgid "Hostname or IP address"
 msgstr "Nazwa hosta lub adres IP"
-
-msgid "Hostname: "
-msgstr "Nazwa hosta: "
 
 msgid "Hotbird 13.0e"
 msgstr "Hotbird 13.0e"
@@ -10474,7 +10436,7 @@ msgid "Last used share: "
 msgstr "Ostatnio używane udziały: "
 
 msgid "Last used/set volume"
-msgstr ""
+msgstr "Ostatnio używana/ustawiona głośność"
 
 msgctxt "third event: 'third' event label"
 msgid "Later"
@@ -11211,9 +11173,6 @@ msgstr "Funkcje MessageBox"
 
 msgid "Message pop up timeout"
 msgstr "Limit czasu wyświetlania komunikatu"
-
-msgid "Message..."
-msgstr "Wiadomość..."
 
 msgid "Metering mode"
 msgstr "Tryb pomiaru"
@@ -12369,9 +12328,6 @@ msgstr "Nie, pokaż przegląd RecordTimera"
 msgid "NodeID"
 msgstr "Węzeł ID"
 
-msgid "NodeID: "
-msgstr "ID Węzła: "
-
 msgid "Nominate how many IP Addresses are to be checked for active connections."
 msgstr "Określ, ile adresów IP ma być sprawdzanych pod kątem aktywnych połączeń."
 
@@ -13314,7 +13270,7 @@ msgid "Play back media files"
 msgstr "Odtwórz pliki multimedialne"
 
 msgid "Play catch up service archive"
-msgstr ""
+msgstr "Archiwum usługi Play catch up"
 
 msgid "Play entry"
 msgstr "Odtwórz"
@@ -14094,9 +14050,6 @@ msgstr "Pasek postępu/Pozostałe minuty z prawej"
 msgid "Progress info font size"
 msgstr "Rozmiar czcionki informacji o postępie"
 
-msgid "Progress:"
-msgstr "Postęp:"
-
 msgid "Properties of current title"
 msgstr "Właściwości aktualnego tytułu"
 
@@ -14147,9 +14100,6 @@ msgstr "Nadawca"
 
 msgid "Provider Name: "
 msgstr "Nazwa Nadawcy: "
-
-msgid "Provider: "
-msgstr "Nadawca: "
 
 msgid "Providers"
 msgstr "Nadawcy"
@@ -15363,9 +15313,6 @@ msgstr "SSH"
 msgid "SSID"
 msgstr "SSID"
 
-msgid "SSID:"
-msgstr "SSID:"
-
 msgid "Sailing"
 msgstr "Żeglarstwo"
 
@@ -15554,7 +15501,7 @@ msgid "Saving EPG Cache..."
 msgstr "Zapisywanie pamięci podręcznej EPG..."
 
 msgid "Saving time shift buffer, this might take a while."
-msgstr "Zapisywanie time shift jako film. To może chwilę potrwać!"
+msgstr "Zapisywanie buforu time shift, to może chwilę potrwać."
 
 msgid "Saving time shift files"
 msgstr "Zapisywanie plików time shift"
@@ -15630,9 +15577,6 @@ msgstr[2] "Zakończono skanowanie, znaleziono %d kanałów."
 
 msgid "Scanning failed!"
 msgstr "Skanowanie nie powiodło się!"
-
-msgid "Scanning..."
-msgstr "Skanowanie..."
 
 #. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
 #, python-format
@@ -15808,7 +15752,7 @@ msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB spec
 msgstr "Wybierz \"pasmo\", jeśli używasz \"uniwersalnego\" konwertera, w przeciwnym razie zapoznaj się z arkuszem specyfikacji konwertera."
 
 msgid "Select 'Disabled' to disable all automated volume adjustments. Select 'Defined volume offsets' to assign a specified offset to the service's volume level. Select 'Last used/set volume' to remember the volume level last used for each service."
-msgstr ""
+msgstr "Wybierz „Wyłączone”, aby wyłączyć wszystkie automatyczne regulacje głośności. Wybierz „Zdefiniowane przesunięcia głośności”, aby przypisać określone przesunięcie do poziomu głośności kanału. Wybierz „Ostatnio używane/ustawione głośność”, aby zapamiętać poziom głośności ostatnio używany dla każdego kanału."
 
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr "Wybierz „Włącz”, aby uruchomić CI+ helper."
@@ -16042,7 +15986,7 @@ msgid "Select 'Yes' to show the current directory in the list of directories. No
 msgstr "Wybierz \"Tak\", aby wyświetlić bieżący katalog na liście katalogów. Należy pamiętać, że aby ta zmiana zaczęła obowiązywać, należy ponownie uruchomić File Commander."
 
 msgid "Select 'Yes' to show the volume level on any automated changes of volume level."
-msgstr ""
+msgstr "Wybierz „Tak”, aby poziom głośności był wyświetlany przy każdej automatycznej zmianie poziomu głośności."
 
 msgid "Select 'Yes' to show this plugin in the Plugin Browser."
 msgstr "Wybierz opcję „Tak”, aby wyświetlić tę wtyczkę w przeglądarce wtyczek."
@@ -16051,7 +15995,7 @@ msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Wybierz opcję „Tak”, aby wyświetlić pakiety łączy internetowych na ekranie pobierania wtyczek."
 
 msgid "Select 'Yes' to shut down immediately instead of starting the descramble."
-msgstr ""
+msgstr "Wybierz „Tak”, aby natychmiast wyłączyć urządzenie zamiast rozpoczynać deszyfrowanie."
 
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr "Wybierz 'Tak', aby podzielić zadania na osobne działania."
@@ -16187,10 +16131,10 @@ msgid "Select a script to run:"
 msgstr "Wybierz skrypt do uruchomienia:"
 
 msgid "Select a time, when in Standby mode, after which the descramble can proceed."
-msgstr ""
+msgstr "Wybierz czas, po którym w trybie gotowości będzie można kontynuować deszyfrowanie."
 
 msgid "Select a time, when in Standby, before which descramble can proceed."
-msgstr ""
+msgstr "Wybierz czas, w którym urządzenie jest w trybie gotowości, przed upływem którego deszyfrowanie będzie możliwe."
 
 msgid "Select a tuner"
 msgstr "Wybierz tuner"
@@ -16912,9 +16856,6 @@ msgstr "Serwer nie działa"
 msgid "Servers"
 msgstr "Serwery"
 
-msgid "Servers:"
-msgstr "Kanały:"
-
 msgid "Service"
 msgstr "Kanał"
 
@@ -17203,7 +17144,7 @@ msgid "Set the time to hide the second infobar. The bar also disappears on press
 msgstr "Ustaw czas po którym zniknie drugi infobar. Pasek znika również po naciśnięciu 'OK'."
 
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
-msgstr "Ustaw czas oczekiwania na wykonanie domyślnej akcji w komunikatach o zamknięciu, gotowości lub ponownym uruchomieniu, np.: używane w RecordTimer, PowerTimer, SleepTimer itp."
+msgstr "Ustaw czas oczekiwania na wykonanie domyślnej akcji w komunikatach o wyłączeniu, przejściu w tryb gotowości lub ponownym uruchomieniu, np. używanych w RecordTimer, Scheduler, SleepTimer itp."
 
 msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
 msgstr "Ustaw położenie lewego górnego rogu zajętego spinnera. Współrzędne są skalowane w taki sposób, że lewy górny róg to (0,0), a dolny prawy to (1260,700). Należy pamiętać, że położenie to lewy górny róg pokrętła, a nie środek spinnera."
@@ -17213,7 +17154,7 @@ msgstr "Ustaw typ postępu na ekranie wyboru kanału."
 
 #, python-format
 msgid "Set the volume level for the '%s' service."
-msgstr ""
+msgstr "Ustaw poziom głośności dla kanału '%s'."
 
 #, python-format
 msgid "Set the volume offset for the '%s' service."
@@ -17244,10 +17185,10 @@ msgid "Set to 'Disabled' to replace underscore characters, '_', in file and dire
 msgstr "Jeśli ta opcja jest wyłączona, znaki podkreślenia w nazwach plików i katalogów nie są wyświetlane i są zastępowane spacjami."
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby mode before shutting down."
-msgstr ""
+msgstr "Ustaw na „Włączone”, aby odszyfrować zakodowane nagrania w kolejce w trybie gotowości przed wyłączeniem."
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
-msgstr ""
+msgstr "Ustaw na „Włączone”, aby odszyfrować zakodowane nagrania w kolejce w trybie gotowości."
 
 msgid "Set to 'Yes', to enable automatic recording of the background timeshift buffer."
 msgstr "Jeżeli ustawione na 'tak', włączy nagrywanie automatycznie w tle z timeshiftem."
@@ -17791,6 +17732,10 @@ msgstr "Pokaż listy kanałów po uruchomieniu"
 msgid "Show build information"
 msgstr "Pokaż informacje o kompilacji"
 
+#, python-format
+msgid "Show cards with uphop %s"
+msgstr "Pokaż karty z uphop %s"
+
 msgid "Show channel number in InfoBar"
 msgstr "Pokaż numer kanału na pasku informacyjnym"
 
@@ -18319,9 +18264,6 @@ msgstr "Jakość sygnału"
 
 msgid "Signal strength"
 msgstr "Siła sygnału"
-
-msgid "Signal strength:"
-msgstr "Siła sygnału:"
 
 msgid "Signal: "
 msgstr "Sygnał: "
@@ -19008,9 +18950,6 @@ msgstr "Status wyświetlacza w trybie czuwania"
 
 msgid "Status unavailable!"
 msgstr "Status nie dostępny!"
-
-msgid "Status:"
-msgstr "Status:"
 
 msgid "Step"
 msgstr "Krok"
@@ -20041,7 +19980,7 @@ msgstr "Katalog picon już istnieje i musi zostać usunięty. Czy chcesz kontynu
 
 #, python-format
 msgid "The process will take approximately %d minutes to complete."
-msgstr ""
+msgstr "Proces ten potrwa około %d minut."
 
 #, python-format
 msgid "The results have been written to %s."
@@ -20162,9 +20101,9 @@ msgstr "Istniejąc oczekujące zadania:"
 #, python-format
 msgid "There is %d scrambled recording, which will be unscrambled during Standby."
 msgid_plural "There are %d scrambled recordings, which will be unscrambled during Standby."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Istnieje %d zakodowane nagranie, które zostanie odkodowane w trybie gotowości."
+msgstr[1] "Istnieją %d zakodowane nagrania, które zostaną odkodowane w trybie gotowości."
+msgstr[2] "Istnieje %d zakodowanych nagrań, które zostaną odkodowane w trybie gotowości."
 
 #, python-format
 msgid "There is a risk that your %s %s will not boot or may malfunction after such a large on-line update."
@@ -20735,9 +20674,6 @@ msgstr "Lokalizacja nagrań z timera"
 msgid "Timer selection"
 msgstr "Wybór timera"
 
-msgid "Timer selection..."
-msgstr "Wybór timera..."
-
 msgid "Timer type"
 msgstr "Typ timera"
 
@@ -20827,7 +20763,7 @@ msgid "Toggle between bouquet/EPG lists"
 msgstr "Przełącz między listami kanałów/EPG"
 
 msgid "Toggle between the available TV and RADIO services"
-msgstr ""
+msgstr "Przełączaj się między dostępnymi usługami TV i RADIO"
 
 msgid "Toggle display of image information"
 msgstr "Przełącz wyświetlanie informacji o systemie"
@@ -20943,9 +20879,6 @@ msgstr "Transkoduj"
 
 msgid "Transcoding"
 msgstr "Transkodowanie"
-
-msgid "Transcoding: "
-msgstr "Transkodowanie: "
 
 msgid "Translate Subs On This Service"
 msgstr "Tłumaczenie napisów w tej usłudze"
@@ -21197,9 +21130,6 @@ msgstr "Typ urządzenia"
 msgid "Type of scan"
 msgstr "Typ skanowania"
 
-msgid "Type: "
-msgstr "Typ: "
-
 msgid "UBINIZE"
 msgstr "UBINIZE"
 
@@ -21385,29 +21315,9 @@ msgstr "Nieobsługiwany"
 msgid "Until standby/restart"
 msgstr "do czuwania/restartu"
 
-msgid "Unused 0x22"
-msgstr "Niewykorzystane 0x22"
-
-msgid "Unused 0x52"
-msgstr "Niewykorzystane 0x52"
-
-msgid "Unused 0x53"
-msgstr "Niewykorzystane 0x53"
-
-msgid "Unused 0x54"
-msgstr "Niewykorzystane 0x54"
-
-msgid "Unused 0x71"
-msgstr "Niewykorzystane 0x71"
-
-msgid "Unused 0x72"
-msgstr "Niewykorzystane 0x72"
-
-msgid "Unused 0xb1"
-msgstr "Niewykorzystane 0xb1"
-
-msgid "Unused 0xb2"
-msgstr "Niewykorzystane 0xb2"
+#, python-format
+msgid "Unused %s"
+msgstr "Nieużywane %s"
 
 msgid "Unzipping Image"
 msgstr "Rozpakowywanie systemu"
@@ -22074,9 +21984,6 @@ msgstr ""
 "\n"
 "Kolejny port wyjściowy zostanie automatycznie wybrany za 10 sekund."
 
-msgid "Video: "
-msgstr "Obraz: "
-
 #, python-format
 msgid "Video: %s fps"
 msgstr "Wideo: %s fps"
@@ -22191,13 +22098,13 @@ msgid "Volume Adjust Service Selection"
 msgstr "Regulacja głośności Wybór usługi"
 
 msgid "Volume Adjust Service Selection Actions"
-msgstr ""
+msgstr "Akcje wyboru usługi regulacji głośności"
 
 msgid "Volume Adjust Settings"
 msgstr "Ustawienia regulacji głośności"
 
 msgid "Volume adjustment mode"
-msgstr ""
+msgstr "Tryb regulacji głośności"
 
 msgid "Volume down"
 msgstr "Ciszej"
@@ -23204,14 +23111,8 @@ msgstr "Akcje powiększania"
 msgid "Zoom In/Out TV"
 msgstr "Zoom In/Out TV"
 
-msgid "Zoom In/Out TV..."
-msgstr "Zoom +/- na TV..."
-
 msgid "Zoom Off"
 msgstr "Zoom wyłączony"
-
-msgid "Zoom Off..."
-msgstr "Wyłącz powiększenie..."
 
 msgid "Zoom from left"
 msgstr "Zoom z lewej"
@@ -23807,9 +23708,6 @@ msgstr "nie testowany"
 msgid "not used"
 msgstr "nie używany"
 
-msgid "not_tested"
-msgstr "nie_testowany"
-
 msgid "nothing connected"
 msgstr "Nie podłączone"
 
@@ -23973,36 +23871,6 @@ msgstr "pokaż wszystkie karty"
 
 msgid "show all tags"
 msgstr "pokaż wszystkie znaczniki"
-
-msgid "show cards with uphop 0"
-msgstr "pokaż karty z uphop 0"
-
-msgid "show cards with uphop 1"
-msgstr "pokaż karty z uphop 1"
-
-msgid "show cards with uphop 2"
-msgstr "pokaż karty z uphop 2"
-
-msgid "show cards with uphop 3"
-msgstr "pokaż karty z uphop 3"
-
-msgid "show cards with uphop 4"
-msgstr "pokaż karty z uphop 4"
-
-msgid "show cards with uphop 5"
-msgstr "pokaż karty z uphop 5"
-
-msgid "show cards with uphop 6"
-msgstr "pokaż karty z uphop 6"
-
-msgid "show cards with uphop 7"
-msgstr "pokaż karty z uphop 7"
-
-msgid "show cards with uphop 8"
-msgstr "pokaż karty z uphop 8"
-
-msgid "show cards with uphop 9"
-msgstr "pokaż karty z uphop 9"
 
 msgid "show program information..."
 msgstr "Pokaż informacje o programie..."
@@ -24224,9 +24092,6 @@ msgstr[2] "z %d błędów"
 msgid "with errors"
 msgstr "z błędami"
 
-msgid "with_errors"
-msgstr "z_błędami"
-
 msgid "working"
 msgstr "pracuje"
 
@@ -24238,6 +24103,150 @@ msgstr "tak (zachować feed'y)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Access point:"
+#~ msgstr "Punkt dostępu:"
+
+#~ msgid "Arts & Culture"
+#~ msgstr "Kultura i Sztuka"
+
+#~ msgid "Autostart:"
+#~ msgstr "Automatyczny start:"
+
+#~ msgid "Bitrate:"
+#~ msgstr "Szybkość transmisji:"
+
+#~ msgid "Channel:"
+#~ msgstr "Kanał:"
+
+#~ msgid "Chapter:"
+#~ msgstr "Rozdział:"
+
+#~ msgid "EPG:"
+#~ msgstr "EPG:"
+
+#~ msgid "Encryption:"
+#~ msgstr "Szyfrowanie:"
+
+#~ msgid "Failed:"
+#~ msgstr "Błąd:"
+
+#~ msgid "Free memory:"
+#~ msgstr "Wolna pamięć:"
+
+#~ msgid "Free:"
+#~ msgstr "Wolne:"
+
+#~ msgid "Frequency:"
+#~ msgstr "Częstotliwość:"
+
+#~ msgid "Hostname: "
+#~ msgstr "Nazwa hosta: "
+
+#~ msgid "Message..."
+#~ msgstr "Wiadomość..."
+
+#~ msgid "NodeID: "
+#~ msgstr "ID Węzła: "
+
+#~ msgid "Progress:"
+#~ msgstr "Postęp:"
+
+#~ msgid "Provider: "
+#~ msgstr "Nadawca: "
+
+#~ msgid "SSID:"
+#~ msgstr "SSID:"
+
+#~ msgid "Scanning..."
+#~ msgstr "Skanowanie..."
+
+#~ msgid "Servers:"
+#~ msgstr "Kanały:"
+
+#~ msgid "Signal strength:"
+#~ msgstr "Siła sygnału:"
+
+#~ msgid "Status:"
+#~ msgstr "Status:"
+
+#~ msgid "Timer selection..."
+#~ msgstr "Wybór timera..."
+
+#~ msgid "Transcoding: "
+#~ msgstr "Transkodowanie: "
+
+#~ msgid "Type: "
+#~ msgstr "Typ: "
+
+#~ msgid "Unused 0x22"
+#~ msgstr "Niewykorzystane 0x22"
+
+#~ msgid "Unused 0x52"
+#~ msgstr "Niewykorzystane 0x52"
+
+#~ msgid "Unused 0x53"
+#~ msgstr "Niewykorzystane 0x53"
+
+#~ msgid "Unused 0x54"
+#~ msgstr "Niewykorzystane 0x54"
+
+#~ msgid "Unused 0x71"
+#~ msgstr "Niewykorzystane 0x71"
+
+#~ msgid "Unused 0x72"
+#~ msgstr "Niewykorzystane 0x72"
+
+#~ msgid "Unused 0xb1"
+#~ msgstr "Niewykorzystane 0xb1"
+
+#~ msgid "Unused 0xb2"
+#~ msgstr "Niewykorzystane 0xb2"
+
+#~ msgid "Video: "
+#~ msgstr "Obraz: "
+
+#~ msgid "Zoom In/Out TV..."
+#~ msgstr "Zoom +/- na TV..."
+
+#~ msgid "Zoom Off..."
+#~ msgstr "Wyłącz powiększenie..."
+
+#~ msgid "not_tested"
+#~ msgstr "nie_testowany"
+
+#~ msgid "show cards with uphop 0"
+#~ msgstr "pokaż karty z uphop 0"
+
+#~ msgid "show cards with uphop 1"
+#~ msgstr "pokaż karty z uphop 1"
+
+#~ msgid "show cards with uphop 2"
+#~ msgstr "pokaż karty z uphop 2"
+
+#~ msgid "show cards with uphop 3"
+#~ msgstr "pokaż karty z uphop 3"
+
+#~ msgid "show cards with uphop 4"
+#~ msgstr "pokaż karty z uphop 4"
+
+#~ msgid "show cards with uphop 5"
+#~ msgstr "pokaż karty z uphop 5"
+
+#~ msgid "show cards with uphop 6"
+#~ msgstr "pokaż karty z uphop 6"
+
+#~ msgid "show cards with uphop 7"
+#~ msgstr "pokaż karty z uphop 7"
+
+#~ msgid "show cards with uphop 8"
+#~ msgstr "pokaż karty z uphop 8"
+
+#~ msgid "show cards with uphop 9"
+#~ msgstr "pokaż karty z uphop 9"
+
+#~ msgid "with_errors"
+#~ msgstr "z_błędami"
 
 #~ msgid "Delete the currently highlighted service from the Volume Offsets list"
 #~ msgstr "Usuń aktualnie podświetlony kanał z listy Przesunięć głośności"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-21 09:40+0000\n"
+"POT-Creation-Date: 2025-04-25 10:13+0000\n"
 "PO-Revision-Date: 2025-03-14 06:36+0000\n"
 "Last-Translator: DrAlves <dralves@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pt/>\n"
@@ -1825,10 +1825,6 @@ msgstr "Acima de 200 Mbps"
 msgid "Access point"
 msgstr "Ponto de acesso"
 
-#
-msgid "Access point:"
-msgstr "Ponto de Acesso:"
-
 msgid "Access to geolocation information requires an Internet connection."
 msgstr "O acesso às informações de geolocalização requer uma ligação à Internet."
 
@@ -2627,9 +2623,6 @@ msgstr "Armenian"
 msgid "Artist"
 msgstr "Artista"
 
-msgid "Arts & Culture"
-msgstr "Artes/Cultura"
-
 msgid "Arts/Culture"
 msgstr "Arte/Cultura"
 
@@ -2896,9 +2889,6 @@ msgstr ""
 
 msgid "Autostart"
 msgstr "Início automático"
-
-msgid "Autostart:"
-msgstr "Início automático:"
 
 #
 msgid "Available format variables"
@@ -3194,9 +3184,6 @@ msgid "Bislama"
 msgstr "Bislama"
 
 msgid "Bitrate"
-msgstr "Taxa de bits"
-
-msgid "Bitrate:"
 msgstr "Taxa de bits"
 
 msgid "Black"
@@ -4078,10 +4065,6 @@ msgid "Channel zap delay mode"
 msgstr "Modo de atraso do zap do canal"
 
 #
-msgid "Channel:"
-msgstr "Canal:"
-
-#
 msgid "ChannelEPG Settings"
 msgstr "Definições de EPG do canal"
 
@@ -4101,10 +4084,6 @@ msgstr "Cap."
 #
 msgid "Chapter"
 msgstr "Capítulo"
-
-#
-msgid "Chapter:"
-msgstr "Capítulo:"
 
 #
 msgid "Character device"
@@ -7095,9 +7074,6 @@ msgstr ""
 msgid "EPG only"
 msgstr ""
 
-msgid "EPG:"
-msgstr ""
-
 msgid "EPGSearch"
 msgstr "Pesquisar EPG"
 
@@ -7539,10 +7515,6 @@ msgstr "Chave de Encriptação"
 #
 msgid "Encryption key type"
 msgstr "Tipo de Chave de Encriptação"
-
-#
-msgid "Encryption:"
-msgstr "Encriptação:"
 
 msgid "End"
 msgstr "Fim"
@@ -8401,10 +8373,6 @@ msgstr "Falhou"
 msgid "Failed to write /tmp/positionersetup.log: "
 msgstr "Falhou a escrita em /tmp/positionersetup.log: "
 
-#
-msgid "Failed:"
-msgstr "Falhou:"
-
 msgid "Falkland Islands (Malvinas)"
 msgstr ""
 
@@ -8895,17 +8863,11 @@ msgstr ""
 msgid "Free memory"
 msgstr "Memória livre"
 
-msgid "Free memory:"
-msgstr "Memória livre:"
-
 msgid "Free swap"
 msgstr ""
 
 msgid "Free to Air (FTA) Service"
 msgstr ""
-
-msgid "Free:"
-msgstr "Livre:"
 
 #
 msgid "French"
@@ -8943,10 +8905,6 @@ msgstr "Tamanho das etapas de frequência(khz)"
 #
 msgid "Frequency steps"
 msgstr "Etapas da frequência "
-
-#
-msgid "Frequency:"
-msgstr "Frequência:"
 
 #
 msgid "Frequency: "
@@ -9672,9 +9630,6 @@ msgid "Hostname cannot be resolved to IP address!"
 msgstr ""
 
 msgid "Hostname or IP address"
-msgstr ""
-
-msgid "Hostname: "
 msgstr ""
 
 msgid "Hotbird 13.0e"
@@ -11653,9 +11608,6 @@ msgstr "Ações da Caixa de Mensagem"
 msgid "Message pop up timeout"
 msgstr ""
 
-msgid "Message..."
-msgstr "Mensagem..."
-
 msgid "Metering mode"
 msgstr ""
 
@@ -12891,9 +12843,6 @@ msgid "No, show the RecordTimer Overview"
 msgstr ""
 
 msgid "NodeID"
-msgstr ""
-
-msgid "NodeID: "
 msgstr ""
 
 msgid "Nominate how many IP Addresses are to be checked for active connections."
@@ -14720,9 +14669,6 @@ msgstr "Barra de progresso/Minutos restantes à direita"
 msgid "Progress info font size"
 msgstr "Tamanho da fonte das informações de progresso"
 
-msgid "Progress:"
-msgstr "Progresso:"
-
 #
 msgid "Properties of current title"
 msgstr "Propriedades do título actual"
@@ -14776,9 +14722,6 @@ msgstr "Operador"
 
 msgid "Provider Name: "
 msgstr "Nome do Operador: "
-
-msgid "Provider: "
-msgstr "Operador: "
 
 #
 msgid "Providers"
@@ -16071,10 +16014,6 @@ msgid "SSID"
 msgstr ""
 
 #
-msgid "SSID:"
-msgstr "SSID:"
-
-#
 msgid "Sailing"
 msgstr "Navegação"
 
@@ -16359,9 +16298,6 @@ msgstr[1] ""
 
 msgid "Scanning failed!"
 msgstr "Pesquisa falhou!"
-
-msgid "Scanning..."
-msgstr "A pesquisar..."
 
 #. TRANSLATORS: The receiver is performing a service scan, progress percentage is printed in '%d' (and '%%' will show a single '%' symbol).
 #, python-format
@@ -17661,9 +17597,6 @@ msgstr "Servidor inativo"
 msgid "Servers"
 msgstr ""
 
-msgid "Servers:"
-msgstr ""
-
 #
 msgid "Service"
 msgstr "Canal"
@@ -18565,6 +18498,10 @@ msgstr ""
 msgid "Show build information"
 msgstr ""
 
+#, python-format
+msgid "Show cards with uphop %s"
+msgstr ""
+
 msgid "Show channel number in InfoBar"
 msgstr "Mostrar número do canal na Barra de Informações"
 
@@ -19126,10 +19063,6 @@ msgstr "Qualidade do sinal"
 
 msgid "Signal strength"
 msgstr ""
-
-#
-msgid "Signal strength:"
-msgstr "Força de sinal:"
 
 #
 msgid "Signal: "
@@ -19845,9 +19778,6 @@ msgid "Status of the display in standby mode"
 msgstr ""
 
 msgid "Status unavailable!"
-msgstr ""
-
-msgid "Status:"
 msgstr ""
 
 msgid "Step"
@@ -21586,10 +21516,6 @@ msgid "Timer selection"
 msgstr "Selecção do agendamento"
 
 #
-msgid "Timer selection..."
-msgstr "Selecção do temporizador..."
-
-#
 msgid "Timer type"
 msgstr "Tipo de Temporizador"
 
@@ -21804,9 +21730,6 @@ msgid "Transcode"
 msgstr "Transcodificar"
 
 msgid "Transcoding"
-msgstr ""
-
-msgid "Transcoding: "
 msgstr ""
 
 msgid "Translate Subs On This Service"
@@ -22089,9 +22012,6 @@ msgstr ""
 msgid "Type of scan"
 msgstr "Tipo de pesquisa"
 
-msgid "Type: "
-msgstr "Tipo:"
-
 msgid "UBINIZE"
 msgstr ""
 
@@ -22285,28 +22205,8 @@ msgstr "Não suportado"
 msgid "Until standby/restart"
 msgstr "Até Standby/reiniciar"
 
-msgid "Unused 0x22"
-msgstr ""
-
-msgid "Unused 0x52"
-msgstr ""
-
-msgid "Unused 0x53"
-msgstr ""
-
-msgid "Unused 0x54"
-msgstr ""
-
-msgid "Unused 0x71"
-msgstr ""
-
-msgid "Unused 0x72"
-msgstr ""
-
-msgid "Unused 0xb1"
-msgstr ""
-
-msgid "Unused 0xb2"
+#, python-format
+msgid "Unused %s"
 msgstr ""
 
 msgid "Unzipping Image"
@@ -22965,9 +22865,6 @@ msgid ""
 "\n"
 "The next output port will be automatically tried in 10 seconds."
 msgstr ""
-
-msgid "Video: "
-msgstr "Vídeo: "
 
 #, python-format
 msgid "Video: %s fps"
@@ -24143,13 +24040,7 @@ msgstr "Ações de zoom"
 msgid "Zoom In/Out TV"
 msgstr ""
 
-msgid "Zoom In/Out TV..."
-msgstr ""
-
 msgid "Zoom Off"
-msgstr ""
-
-msgid "Zoom Off..."
 msgstr ""
 
 msgid "Zoom from left"
@@ -24797,9 +24688,6 @@ msgstr "não testado"
 msgid "not used"
 msgstr "não utilizado"
 
-msgid "not_tested"
-msgstr ""
-
 #
 msgid "nothing connected"
 msgstr "nada ligado"
@@ -24978,36 +24866,6 @@ msgstr ""
 
 msgid "show all tags"
 msgstr "mostrar todas as etiquetas"
-
-msgid "show cards with uphop 0"
-msgstr ""
-
-msgid "show cards with uphop 1"
-msgstr ""
-
-msgid "show cards with uphop 2"
-msgstr ""
-
-msgid "show cards with uphop 3"
-msgstr ""
-
-msgid "show cards with uphop 4"
-msgstr ""
-
-msgid "show cards with uphop 5"
-msgstr ""
-
-msgid "show cards with uphop 6"
-msgstr ""
-
-msgid "show cards with uphop 7"
-msgstr ""
-
-msgid "show cards with uphop 8"
-msgstr ""
-
-msgid "show cards with uphop 9"
-msgstr ""
 
 msgid "show program information..."
 msgstr ""
@@ -25251,9 +25109,6 @@ msgstr[1] "com %d erros"
 msgid "with errors"
 msgstr "com erros"
 
-msgid "with_errors"
-msgstr ""
-
 #
 msgid "working"
 msgstr "a trabalhar"
@@ -25268,6 +25123,75 @@ msgstr "sim (mantenha os feeds)"
 
 msgid "®"
 msgstr ""
+
+#
+#~ msgid "Access point:"
+#~ msgstr "Ponto de Acesso:"
+
+#~ msgid "Arts & Culture"
+#~ msgstr "Artes/Cultura"
+
+#~ msgid "Autostart:"
+#~ msgstr "Início automático:"
+
+#~ msgid "Bitrate:"
+#~ msgstr "Taxa de bits"
+
+#
+#~ msgid "Channel:"
+#~ msgstr "Canal:"
+
+#
+#~ msgid "Chapter:"
+#~ msgstr "Capítulo:"
+
+#
+#~ msgid "Encryption:"
+#~ msgstr "Encriptação:"
+
+#
+#~ msgid "Failed:"
+#~ msgstr "Falhou:"
+
+#~ msgid "Free memory:"
+#~ msgstr "Memória livre:"
+
+#~ msgid "Free:"
+#~ msgstr "Livre:"
+
+#
+#~ msgid "Frequency:"
+#~ msgstr "Frequência:"
+
+#~ msgid "Message..."
+#~ msgstr "Mensagem..."
+
+#~ msgid "Progress:"
+#~ msgstr "Progresso:"
+
+#~ msgid "Provider: "
+#~ msgstr "Operador: "
+
+#
+#~ msgid "SSID:"
+#~ msgstr "SSID:"
+
+#~ msgid "Scanning..."
+#~ msgstr "A pesquisar..."
+
+#
+#~ msgid "Signal strength:"
+#~ msgstr "Força de sinal:"
+
+#
+#~ msgid "Timer selection..."
+#~ msgstr "Selecção do temporizador..."
+
+#~ msgid "Type: "
+#~ msgstr "Tipo:"
+
+#~ msgid "Video: "
+#~ msgstr "Vídeo: "
 
 #~ msgid "Volume Adjust"
 #~ msgstr "Ajuste de volume"
