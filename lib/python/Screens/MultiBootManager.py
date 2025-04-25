@@ -694,6 +694,7 @@ arg=${bootargs} logo=osd0,loaded,0x7f800000 vout=1080p50hz,enable hdmimode=1080p
 			ACTION_CREATE: _("Create Slots")
 		}.get(self.green, _("Invalid")))
 
+
 class ChkrootInit(Screen):
 	skin = """
 	<screen name="ChkrootInit" title="Chkroot MultiBoot Manager" position="center,center" size="900,600" resolution="1280,720">

@@ -743,12 +743,12 @@ class MultiBootClass():
 			rmdir(self.tempDir)
 			self.callback(0)
 
-	def is_fat32(self, device):
+	def isFat32(self, device):
 		try:
-			with open(device, 'rb') as f:
-				boot_sector = f.read(512)
-				fs_type = boot_sector[82:90].decode('ascii', errors='ignore')
-				return fs_type.strip() == "FAT32"
+			with open(device, "rb") as fd:
+				bootSector = fd.read(512)
+				fsType = bootSector[82:90].decode("ascii", errors="ignore")
+				return fsType.strip() == "FAT32"
 		except Exception:
 			return False
 
