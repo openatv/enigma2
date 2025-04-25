@@ -114,7 +114,7 @@ class Setup(ConfigListScreen, Screen):
 				self["config"].list.sort()
 			self.moveToItem(currentItem)
 
-	def addItems(self, parentNode, including=True, indent=0):
+	def addItems(self, parentNode, including=True, indent=""):
 		for element in parentNode:
 			if not element.tag:
 				continue
@@ -125,8 +125,7 @@ class Setup(ConfigListScreen, Screen):
 				if including and include:
 					self.addItem(element, indent=indent)
 			elif element.tag == "if":
-				indent = element.get("indent", "")
-				indent = int(indent) if indent and indent.isnumeric() and int(indent) > 0 else None
+				indent = element.get("indent", indent)
 				if including:
 					self.addItems(element, including=include, indent=indent)
 			elif element.tag == "elif":
@@ -134,7 +133,7 @@ class Setup(ConfigListScreen, Screen):
 			elif element.tag == "else":
 				including = True
 
-	def addItem(self, element, indent=0):
+	def addItem(self, element, indent=""):
 		if self.pluginLanguageDomain:
 			itemText = dgettext(self.pluginLanguageDomain, element.get("text", "??"))
 			itemDescription = dgettext(self.pluginLanguageDomain, element.get("description", " "))
@@ -142,8 +141,8 @@ class Setup(ConfigListScreen, Screen):
 			itemText = _(element.get("text", "??"))
 			itemDescription = _(element.get("description", " "))
 		restart = element.get("restart", "").lower()
-		indent = element.get("indent", "") or str(indent)
-		indent = int(indent) if indent and indent.isnumeric() and int(indent) > 0 else None
+		indent = element.get("indent", indent)
+		indent = int(indent) if indent and indent.isnumeric() else None
 		if restart == "gui" and not itemText.endswith("*"):  # Add "*" as restart indicator based on the restart attribute.
 			itemText = f"{itemText}*"
 		elif restart == "system" and not itemText.endswith("#"):  # Add "#" as reboot indicator based on the restart attribute.
@@ -152,10 +151,8 @@ class Setup(ConfigListScreen, Screen):
 		if item == "":
 			self.list.append((self.formatItemText(itemText),))  # Add the comment line to the config list.
 		elif not isinstance(item, ConfigNothing):
-			if indent:
-				self.list.append(((self.formatItemText(itemText), indent), item, self.formatItemDescription(item, itemDescription)))  # Add the item to the config list.
-			else:
-				self.list.append((self.formatItemText(itemText), item, self.formatItemDescription(item, itemDescription)))  # Add the item to the config list.
+			label = (self.formatItemText(itemText), indent) if indent else self.formatItemText(itemText)
+			self.list.append((label, item, self.formatItemDescription(item, itemDescription)))  # Add the item to the config list.
 		if item is config.usage.setupShowDefault:
 			self.showDefaultChanged = True
 		if item is config.usage.boolean_graphic:
