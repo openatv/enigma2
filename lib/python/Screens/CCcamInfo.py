@@ -947,19 +947,22 @@ class CCcamShareViewMenu(Screen):
 		self["reshare"] = Label()
 		self["title"] = Label()
 
+		def buttonHelp(value):
+			return _("Show cards with uphop %s") % value
+
 		self["actions"] = HelpableNumberActionMap(self, "CCcamInfoActions",
 			{
 				"cancel": (self.exit, _("close share view")),
-				"0": (self.getUphop, _("show cards with uphop 0")),
-				"1": (self.getUphop, _("show cards with uphop 1")),
-				"2": (self.getUphop, _("show cards with uphop 2")),
-				"3": (self.getUphop, _("show cards with uphop 3")),
-				"4": (self.getUphop, _("show cards with uphop 4")),
-				"5": (self.getUphop, _("show cards with uphop 5")),
-				"6": (self.getUphop, _("show cards with uphop 6")),
-				"7": (self.getUphop, _("show cards with uphop 7")),
-				"8": (self.getUphop, _("show cards with uphop 8")),
-				"9": (self.getUphop, _("show cards with uphop 9")),
+				"0": (self.getUphop, buttonHelp(0)),
+				"1": (self.getUphop, buttonHelp(1)),
+				"2": (self.getUphop, buttonHelp(2)),
+				"3": (self.getUphop, buttonHelp(3)),
+				"4": (self.getUphop, buttonHelp(4)),
+				"5": (self.getUphop, buttonHelp(5)),
+				"6": (self.getUphop, buttonHelp(6)),
+				"7": (self.getUphop, buttonHelp(7)),
+				"8": (self.getUphop, buttonHelp(8)),
+				"9": (self.getUphop, buttonHelp(9)),
 				"green": (self.showAll, _("show all cards")),
 				"incUphop": (self.incUphop, _("increase uphop by 1")),
 				"decUphop": (self.decUphop, _("decrease uphop by 1")),

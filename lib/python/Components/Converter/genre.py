@@ -282,7 +282,7 @@ class GenresAUSIceTV:
 		2: (
 			_("News"),  # 0x20
 			_("Weather"),  # 0x21
-			_("Unused 0x22"),  # 0x22
+			_("Unused %s") % "0x22",  # 0x22
 			_("Documentary"),  # 0x23
 		),
 		# Show/Games show
@@ -315,9 +315,9 @@ class GenresAUSIceTV:
 		5: (
 			_("Children"),  # 0x50
 			_("Cartoon"),  # 0x51 remapped from 0x55
-			_("Unused 0x52"),  # 0x52
-			_("Unused 0x53"),  # 0x53
-			_("Unused 0x54"),  # 0x54
+			_("Unused %s") % "0x52",  # 0x52
+			_("Unused %s") % "0x53",  # 0x53
+			_("Unused %s") % "0x54",  # 0x54
 			_("Animation"),  # 0x55
 		),
 		# Music/Ballet/Dance
@@ -329,8 +329,8 @@ class GenresAUSIceTV:
 		# Arts/Culture
 		7: (
 			_("Arts & Culture"),  # 0x70
-			_("Unused 0x71"),  # 0x71
-			_("Unused 0x72"),  # 0x72
+			_("Unused %s") % "0x71",  # 0x71
+			_("Unused %s") % "0x72",  # 0x72
 			_("Religion"),  # 0x73
 		),
 		# Social/Political/Economics
@@ -363,8 +363,8 @@ class GenresAUSIceTV:
 		# Special
 		11: (
 			_("Special"),  # 0xb0
-			_("Unused 0xb1"),  # 0xb1
-			_("Unused 0xb2"),  # 0xb2
+			_("Unused %s") % "0xb1",  # 0xb1
+			_("Unused %s") % "0xb2",  # 0xb2
 			_("Live"),  # 0xb3
 		),
 		# Comedy

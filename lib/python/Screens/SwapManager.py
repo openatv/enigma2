@@ -100,7 +100,7 @@ class Swap(Screen):
 		self['labplace'] = Label()
 		self['lab3'] = Label(_("Swap Size:"))
 		self['labsize'] = Label()
-		self['lab4'] = Label(_("Status:"))
+		self['lab4'] = Label(_("Status") + ":")
 		self['inactive'] = Label(_("Inactive"))
 		self['active'] = Label(_("Active"))
 		self['key_red'] = Label(_("Activate"))

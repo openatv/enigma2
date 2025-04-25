@@ -455,32 +455,32 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 			self.results[index]["status"] = status
 		elif oldstatus == _("successful"):
 			if status == _("failed"):
-				self.results[index]["status"] = _("with_errors")
+				self.results[index]["status"] = _("with errors")
 			elif status == _("successful"):
 				self.results[index]["status"] = oldstatus
-			elif status == _("with_errors"):
-				self.results[index]["status"] = _("with_errors")
-			elif status == _("not_tested"):
+			elif status == _("with errors"):
+				self.results[index]["status"] = _("with errors")
+			elif status == _("not tested"):
 				self.results[index]["status"] = oldstatus
 		elif oldstatus == _("failed"):
 			if status == _("failed"):
 				self.results[index]["status"] = oldstatus
 			elif status == _("successful"):
-				self.results[index]["status"] = _("with_errors")
-			elif status == _("with_errors"):
-				self.results[index]["status"] = _("with_errors")
-			elif status == _("not_tested"):
+				self.results[index]["status"] = _("with errors")
+			elif status == _("with errors"):
+				self.results[index]["status"] = _("with errors")
+			elif status == _("not tested"):
 				self.results[index]["status"] = oldstatus
-		elif oldstatus == _("with_errors"):
+		elif oldstatus == _("with errors"):
 			if status == _("failed"):
 				self.results[index]["status"] = oldstatus
 			elif status == _("successful"):
 				self.results[index]["status"] = oldstatus
-			elif status == _("with_errors"):
+			elif status == _("with errors"):
 				self.results[index]["status"] = oldstatus
-			elif status == _("not_tested"):
+			elif status == _("not tested"):
 				self.results[index]["status"] = oldstatus
-		elif oldstatus == _("not_tested"):
+		elif oldstatus == _("not tested"):
 			self.results[index]["status"] = status
 
 		if self.results[index]["status"] != _("working"):
@@ -500,7 +500,7 @@ class DiseqcTester(Screen, TuneTest, ResultParser):
 		if len(self.failedTune) > 0 and len(self.successfullyTune) > 0:
 			self.changeProgressListStatus(self.currentlyTestedIndex, _("with errors"))
 			self["witherrors_counter"].setText(str(int(self["witherrors_counter"].getText()) + 1))
-			self.addResult(self.currentlyTestedIndex, _("with_errors"), self.failedTune, self.successfullyTune)
+			self.addResult(self.currentlyTestedIndex, _("with errors"), self.failedTune, self.successfullyTune)
 		elif len(self.failedTune) == 0 and len(self.successfullyTune) == 0:
 			self.changeProgressListStatus(self.currentlyTestedIndex, _("not tested"))
 			self["untestable_counter"].setText(str(int(self["untestable_counter"].getText()) + 1))

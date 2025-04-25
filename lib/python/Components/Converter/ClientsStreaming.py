@@ -98,7 +98,7 @@ class ClientsStreaming(Converter, Poll):
 		elif self.type == self.NAME:
 			return " ".join(names)
 		elif self.type == self.ENCODER:
-			return _("Transcoding: ") + " ".join(encoders)
+			return f"{_("Transcoding")}: {" ".join(encoders)}"
 		elif self.type == self.NUMBER:
 			return str(len(clients))
 		elif self.type == self.EXTRA_INFO:

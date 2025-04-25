@@ -4141,7 +4141,7 @@ class InfoBarRedButton:
 class InfoBarTimerButton:
 	def __init__(self):
 		self["TimerButtonActions"] = HelpableActionMap(self, "InfobarTimerButtonActions", {
-			"timerSelection": (self.timerSelection, _("Timer selection...")),
+			"timerSelection": (self.timerSelection, _("Timer selection")),
 		}, prio=0, description=_("Timer Actions"))
 
 	def timerSelection(self):
@@ -4843,8 +4843,8 @@ class InfoBarZoom:
 		self.zoomrate = 0
 		self.zoomin = 1
 		self["ZoomActions"] = HelpableActionMap(self, "InfobarZoomActions", {
-			"ZoomInOut": (self.ZoomInOut, _("Zoom In/Out TV...")),
-			"ZoomOff": (self.ZoomOff, _("Zoom Off...")),
+			"ZoomInOut": (self.ZoomInOut, _("Zoom In/Out TV")),
+			"ZoomOff": (self.ZoomOff, _("Zoom Off")),
 		}, prio=2, description=_("Zoom Actions"))
 
 	def ZoomInOut(self):
