@@ -747,8 +747,14 @@ class MultiBootClass():
 		try:
 			with open(device, "rb") as fd:
 				bootSector = fd.read(512)
-				fsType = bootSector[82:90].decode("ascii", errors="ignore")
-				return fsType.strip() == "FAT32"
+				fsType = bootSector[82:90].decode("ascii", errors="ignore").strip()
+				if fsType == "FAT32":
+					return True
+				else:
+					sectorsPerFat_32 = int.from_bytes(bootSector[36:40], 'little')
+					if sectorsPerFat_32 != 0:
+						return True
+					return False
 		except Exception:
 			return False
 
