@@ -719,10 +719,10 @@ class ChkrootInit(Screen):
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions"], {
 			"ok": (self.close, _("Close the Chkroot MultiBoot Manager")),
 			"cancel": (self.close, _("Close the Chkroot MultiBoot Manager")),
-			"red": (self.close, _("Close the Chkroot MultiBoot Manager")),
+			"red": (self.disableChkroot, _("Disable the MultiBoot option")),
 			"green": (self.rootInit, _("Start the Chkroot initialization"))
 		}, prio=-1, description=_("Chkroot Manager Actions"))
-		self["key_red"].setText(_("Close"))
+		self["key_red"].setText(_("Disable Chkroot"))
 		self["key_green"].setText(_("Initialize"))
 		self.descriptionSuffix = _("The %s %s will reboot within 1 seconds.") % getBoxDisplayName()
 		self["description"].setText("%s\n\n%s" % (_("Press GREEN to enable MultiBoot!"), self.descriptionSuffix))
@@ -736,15 +736,57 @@ class ChkrootInit(Screen):
 		mountpoint = "/boot"
 		mtdRootFs = BoxInfo.getItem("mtdrootfs")
 		mtdKernel = BoxInfo.getItem("mtdkernel")
+		machinebuild = BoxInfo.getItem("machinebuild")
+		if machinebuild in ("dm900", "dm920", "dm820", "dm7080"):
+			with open("/sys/block/mmcblk0/mmcblk0p1/size", "r") as fd:
+				sectors = int(fd.read().strip())
+			if sectors < 2097152:
+				rootMap = [
+					("mmcblk0p1", "linuxrootfs1"),
+					("mmcblk0p1", "linuxrootfs1"),
+					("mmcblk0p2", "linuxrootfs2"),
+					("mmcblk0p2", "linuxrootfs3"),
+					("mmcblk0p2", "linuxrootfs4")
+				]
+			else:
+				rootMap = [
+					("mmcblk0p1", "linuxrootfs1"),
+					("mmcblk0p1", "linuxrootfs1"),
+					("mmcblk0p1", "linuxrootfs2"),
+					("mmcblk0p2", "linuxrootfs3"),
+					("mmcblk0p2", "linuxrootfs4")
+				]
+		else:
+			rootMap = [
+				(mtdRootFs, "linuxrootfs1"),
+				(mtdRootFs, "linuxrootfs1"),
+				(mtdRootFs, "linuxrootfs2"),
+				(mtdRootFs, "linuxrootfs3"),
+				(mtdRootFs, "linuxrootfs4")
+			]
+
 		cmdList = [
 			f"mkfs.vfat -F 32 -n CHKROOT {device}",
 			f"mkdir -p {mountpoint}",
 			f"mount {device} {mountpoint}",
-			f"echo 'kernel=/dev/{mtdKernel} root=/dev/{mtdRootFs} rootsubdir=linuxrootfs1' > {mountpoint}/STARTUP",
-			f"echo 'kernel=/dev/{mtdKernel} root=/dev/{mtdRootFs} rootsubdir=linuxrootfs1' > {mountpoint}/STARTUP_1",
-			f"echo 'kernel=/dev/{mtdKernel} root=/dev/{mtdRootFs} rootsubdir=linuxrootfs2' > {mountpoint}/STARTUP_2",
-			f"echo 'kernel=/dev/{mtdKernel} root=/dev/{mtdRootFs} rootsubdir=linuxrootfs3' > {mountpoint}/STARTUP_3",
-			f"echo 'kernel=/dev/{mtdKernel} root=/dev/{mtdRootFs} rootsubdir=linuxrootfs4' > {mountpoint}/STARTUP_4",
-			f"umount {mountpoint}"
 		]
+
+		for idx, (rootdev, subdir) in enumerate(rootMap):
+			suffix = "" if idx == 0 else f"_{idx}"
+			cmdList.append(f"echo 'kernel=/dev/{mtdKernel} root=/dev/{rootdev} rootsubdir={subdir}' > {mountpoint}/STARTUP{suffix}")
+
+		cmdList.append(f"umount {mountpoint}")
 		Console().eBatch(cmdList, rootInitCallback, debug=True)
+
+	def disableChkroot(self):
+		def disableChkrootCallback(answer):
+			if answer:
+				try:
+					with open("/etc/.disableChkroot", "w") as fd:
+						fd.write("disabled\n")
+				except OSError as err:
+						print("[MultiBootManager] Error %d: Unable to disable MultiBoot option. (%s)" % (err.errno, err.strerror))
+				self.close()
+
+		self.session.openWithCallback(disableChkrootCallback, MessageBox, "%s\n" % _("Permanently disable the MultiBoot option?"), simple=True)
+
