@@ -668,7 +668,7 @@ class FlashImage(Screen):
 				cmdArgs = ["-rmmcblk0p1"] if rootSubDir is None else ["-r%s" % mtdRootFS, "-m%s" % self.slotCode]
 			elif MultiBoot.canMultiBoot() and not self.slotCode == "R":  # Receiver with SD card MultiBoot if (rootSubDir) is None.
 				if BoxInfo.getItem("model") in ("dm900", "dm920"):
-					cmdArgs = ["-r%s" % mtdRootFS, "-k%s" % mtdKernel, "-m0"] if (rootSubDir) is None else ["-r%s" % mtdRootFS, "-k%s" % mtdKernel, "-m%s" % self.slotCode]
+					cmdArgs = ["-r%s" % mtdRootFS, "-k%s" % mtdKernel, "-m0"] if (rootSubDir) is None else ["-r%s" % mtdRootFS, "-m%s" % self.slotCode]
 				else:
 					cmdArgs = ["-r%s" % mtdRootFS, "-k%s" % mtdKernel, "-m0"] if (rootSubDir) is None else ["-r", "-k", "-m%s" % self.slotCode]
 			elif BoxInfo.getItem("model") in ("dm800se", "dm500hd"):  # Temp solution ofgwrite auto detection not ready.
