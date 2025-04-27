@@ -741,22 +741,44 @@ class ChkrootInit(Screen):
 		if machinebuild in ("dm900", "dm920", "dm820", "dm7080"):
 			with open("/sys/block/mmcblk0/mmcblk0p1/size", "r") as fd:
 				sectors = int(fd.read().strip())
-			if sectors < 2097152:
-				rootMap = [
-					("mmcblk0p1", "linuxrootfs1"),
-					("mmcblk0p1", "linuxrootfs1"),
-					("mmcblk0p2", "linuxrootfs2"),
-					("mmcblk0p2", "linuxrootfs3"),
-					("mmcblk0p2", "linuxrootfs4")
-				]
+			if machinebuild in ("dm900", "dm920"):
+				if sectors < 2097152:
+					rootMap = [
+						("mmcblk0p2", "linuxrootfs1"),
+						("mmcblk0p2", "linuxrootfs1"),
+						("mmcblk0p3", "linuxrootfs2"),
+						("mmcblk0p3", "linuxrootfs3"),
+						("mmcblk0p3", "linuxrootfs4"),
+						("mmcblk0p3", "linuxrootfs5"),
+						("mmcblk0p3", "linuxrootfs6")
+					]
+				else:
+					rootMap = [
+						("mmcblk0p2", "linuxrootfs1"),
+						("mmcblk0p2", "linuxrootfs1"),
+						("mmcblk0p2", "linuxrootfs2"),
+						("mmcblk0p3", "linuxrootfs3"),
+						("mmcblk0p3", "linuxrootfs4"),
+						("mmcblk0p3", "linuxrootfs5"),
+						("mmcblk0p3", "linuxrootfs6")
+					]
 			else:
-				rootMap = [
-					("mmcblk0p1", "linuxrootfs1"),
-					("mmcblk0p1", "linuxrootfs1"),
-					("mmcblk0p1", "linuxrootfs2"),
-					("mmcblk0p2", "linuxrootfs3"),
-					("mmcblk0p2", "linuxrootfs4")
-				]
+				if sectors < 2097152:
+					rootMap = [
+						("mmcblk0p1", "linuxrootfs1"),
+						("mmcblk0p1", "linuxrootfs1"),
+						("mmcblk0p2", "linuxrootfs2"),
+						("mmcblk0p2", "linuxrootfs3"),
+						("mmcblk0p2", "linuxrootfs4")
+					]
+				else:
+					rootMap = [
+						("mmcblk0p1", "linuxrootfs1"),
+						("mmcblk0p1", "linuxrootfs1"),
+						("mmcblk0p1", "linuxrootfs2"),
+						("mmcblk0p2", "linuxrootfs3"),
+						("mmcblk0p2", "linuxrootfs4")
+					]
 		else:
 			rootMap = [
 				(mtdRootFs, "linuxrootfs1"),
