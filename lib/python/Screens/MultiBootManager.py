@@ -742,43 +742,27 @@ class ChkrootInit(Screen):
 			with open("/sys/block/mmcblk0/mmcblk0p1/size", "r") as fd:
 				sectors = int(fd.read().strip())
 			if machinebuild in ("dm900", "dm920"):
-				if sectors < 2097152:
-					rootMap = [
-						("mmcblk0p2", "linuxrootfs1"),
-						("mmcblk0p2", "linuxrootfs1"),
-						("mmcblk0p3", "linuxrootfs2"),
-						("mmcblk0p3", "linuxrootfs3"),
-						("mmcblk0p3", "linuxrootfs4"),
-						("mmcblk0p3", "linuxrootfs5"),
-						("mmcblk0p3", "linuxrootfs6")
-					]
-				else:
-					rootMap = [
-						("mmcblk0p2", "linuxrootfs1"),
-						("mmcblk0p2", "linuxrootfs1"),
-						("mmcblk0p2", "linuxrootfs2"),
-						("mmcblk0p3", "linuxrootfs3"),
-						("mmcblk0p3", "linuxrootfs4"),
-						("mmcblk0p3", "linuxrootfs5"),
-						("mmcblk0p3", "linuxrootfs6")
-					]
+				rootMap = [
+					("mmcblk0p2", "linuxrootfs1"),
+					("mmcblk0p2", "linuxrootfs1")
+				]
+				rootMap.append(("mmcblk0p3" if sectors < 2097152 else "mmcblk0p2", "linuxrootfs2"))
+				rootMap.extend([
+					("mmcblk0p3", "linuxrootfs3"),
+					("mmcblk0p3", "linuxrootfs4"),
+					("mmcblk0p3", "linuxrootfs5"),
+					("mmcblk0p3", "linuxrootfs6")
+				])
 			else:
-				if sectors < 2097152:
-					rootMap = [
-						("mmcblk0p1", "linuxrootfs1"),
-						("mmcblk0p1", "linuxrootfs1"),
-						("mmcblk0p2", "linuxrootfs2"),
-						("mmcblk0p2", "linuxrootfs3"),
-						("mmcblk0p2", "linuxrootfs4")
-					]
-				else:
-					rootMap = [
-						("mmcblk0p1", "linuxrootfs1"),
-						("mmcblk0p1", "linuxrootfs1"),
-						("mmcblk0p1", "linuxrootfs2"),
-						("mmcblk0p2", "linuxrootfs3"),
-						("mmcblk0p2", "linuxrootfs4")
-					]
+				rootMap = [
+					("mmcblk0p1", "linuxrootfs1"),
+					("mmcblk0p1", "linuxrootfs1")
+				]
+				rootMap.append(("mmcblk0p2" if sectors < 2097152 else "mmcblk0p1", "linuxrootfs2"))
+				rootMap.extend([
+					("mmcblk0p2", "linuxrootfs3"),
+					("mmcblk0p2", "linuxrootfs4")
+				])
 		else:
 			rootMap = [
 				(mtdRootFs, "linuxrootfs1"),
@@ -804,12 +788,7 @@ class ChkrootInit(Screen):
 	def disableChkroot(self):
 		def disableChkrootCallback(answer):
 			if answer:
-				try:
-					with open("/etc/.disableChkroot", "w") as fd:
-						fd.write("disabled\n")
-				except OSError as err:
-						print("[MultiBootManager] Error %d: Unable to disable MultiBoot option. (%s)" % (err.errno, err.strerror))
+				fileWriteLine("/etc/.disableChkroot", "disabled\n", source=MODULE_NAME)
 				self.close()
 
-		self.session.openWithCallback(disableChkrootCallback, MessageBox, "%s\n" % _("Permanently disable the MultiBoot option?"), simple=True)
-
+		self.session.openWithCallback(disableChkrootCallback, MessageBox, _("Permanently disable the MultiBoot option?"), simple=True)
