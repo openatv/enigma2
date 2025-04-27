@@ -664,10 +664,10 @@ class FlashImage(Screen):
 				cmdArgs = ["-r%s" % mtdRootFS, "-k%s" % mtdKernel]
 			elif BoxInfo.getItem("model") in ("dreamone", "dreamtwo") and BoxInfo.getItem("HasGPT"):  # Temp solution ofgwrite auto detection not ready.
 				cmdArgs = ["-r%s" % mtdRootFS, "-a"]
+			elif BoxInfo.getItem("model") in ("dm820", "dm7080"):  # Temp solution ofgwrite auto detection not ready.
+				cmdArgs = ["-rmmcblk0p1"] if rootSubDir is None else ["-r%s" % mtdRootFS, "-m%s" % self.slotCode]
 			elif MultiBoot.canMultiBoot() and not self.slotCode == "R":  # Receiver with SD card MultiBoot if (rootSubDir) is None.
 				cmdArgs = ["-r%s" % mtdRootFS, "-k%s" % mtdKernel, "-m0"] if (rootSubDir) is None else ["-r", "-k", "-m%s" % self.slotCode]
-			elif BoxInfo.getItem("model") in ("dm820", "dm7080"):  # Temp solution ofgwrite auto detection not ready.
-				cmdArgs = ["-rmmcblk0p1"]
 			elif BoxInfo.getItem("model") in ("dm800se", "dm500hd"):  # Temp solution ofgwrite auto detection not ready.
 				cmdArgs = ["-r%s" % mtdRootFS, "-f"]
 			elif BoxInfo.getItem("model") in ("zgemmah82h",):  # Temp solution ofgwrite kill e2 not allways works.
