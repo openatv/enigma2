@@ -649,6 +649,7 @@ class FlashImage(Screen):
 				mtdRootFS = bootSlots[self.slotCode]["device"] if bootSlots[self.slotCode].get("ubi") else bootSlots[self.slotCode]["device"].split(sep)[2]
 				if MultiBoot.hasRootSubdir(self.slotCode):
 					rootSubDir = bootSlots[self.slotCode]["rootsubdir"]
+					currentSlot = MultiBoot.getCurrentSlotCode()
 			else:
 				mtdKernel = BoxInfo.getItem("mtdkernel")
 				mtdRootFS = BoxInfo.getItem("mtdrootfs")
@@ -668,7 +669,7 @@ class FlashImage(Screen):
 				cmdArgs = ["-rmmcblk0p1"] if rootSubDir is None else ["-r%s" % mtdRootFS, "-m%s" % self.slotCode]
 			elif MultiBoot.canMultiBoot() and not self.slotCode == "R":  # Receiver with SD card MultiBoot if (rootSubDir) is None.
 				if BoxInfo.getItem("chkrootmb"):
-					cmdArgs = ["-r%s" % mtdRootFS, "-m%s" % self.slotCode]
+					cmdArgs = ["-r%s" % mtdRootFS, "-c%s" % currentSlot, "-m%s" % self.slotCode]
 				else:
 					cmdArgs = ["-r%s" % mtdRootFS, "-k%s" % mtdKernel, "-m0"] if (rootSubDir) is None else ["-r", "-k", "-m%s" % self.slotCode]
 			elif BoxInfo.getItem("model") in ("dm800se", "dm500hd"):  # Temp solution ofgwrite auto detection not ready.
