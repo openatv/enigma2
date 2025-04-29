@@ -484,9 +484,9 @@ BoxInfo.setItem("AISubs", exists("/etc/init.d/aisocket"))
 # Vu+ EAC3Fix
 BoxInfo.setItem("VuEAC3Fix", MODEL in ("vuultimo4k", "vuduo4kse"))
 
-BoxInfo.setItem("CanDescrambleInStandby", "PVR" in fileReadLine("/proc/stb/tsmux/ci0_input_choices", default="", source=MODULE_NAME))
+BoxInfo.setItem("CanDescrambleInStandby", any(x in fileReadLine("/proc/stb/tsmux/ci0_input_choices", default="", source=MODULE_NAME) for x in ("PVR", "DVR0")))
 
-BoxInfo.setItem("CanOfflineDecode", MODEL in ("hd51", "h7", "et10000", "et8000", "hd2400", "vs1500"))
+BoxInfo.setItem("CanOfflineDecode", MODEL in ("hd51", "h7", "h17", "et10000", "et8000", "hd2400", "vs1500", "8100s"))
 
 
 updateSysSoftCam()
