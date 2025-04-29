@@ -930,7 +930,7 @@ nprint:				isprintable=0;
 	return 0;
 }
 
-void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &cbackground, const gRGB &foreground, bool border)
+void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &cbackground, const gRGB &foreground, bool border, bool marked)
 {
 	if (glyphs.empty()) return;
 
@@ -956,7 +956,7 @@ void eTextPara::blit(gDC &dc, const ePoint &offset, const gRGB &cbackground, con
 	dc.getPixmap(target);
 	gUnmanagedSurface *surface = target->surface;
 	gRGB currentforeground = foreground;
-	const gRGB background = (m_blend && surface->bpp == 32) ? gRGB(currentforeground.r, currentforeground.g, currentforeground.b, 200) : cbackground;
+	const gRGB background = (m_blend && surface->bpp == 32 && !marked) ? gRGB(currentforeground.r, currentforeground.g, currentforeground.b, 200) : cbackground;
 
 	register int opcode = -1;
 

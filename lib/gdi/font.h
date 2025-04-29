@@ -170,7 +170,7 @@ public:
 
 	void setBlend(bool blend) { m_blend = blend; }
 
-	void blit(gDC &dc, const ePoint &offset, const gRGB &background, const gRGB &foreground, bool border = false);
+	void blit(gDC &dc, const ePoint &offset, const gRGB &background, const gRGB &foreground, bool border = false, bool marked = false);
 
 	enum
 	{

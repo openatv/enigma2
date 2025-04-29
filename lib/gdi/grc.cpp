@@ -1005,7 +1005,7 @@ void gDC::exec(const gOpcode *o)
 		}
 		else
 		{
-			para->blit(*this, offset, m_background_color_rgb, m_foreground_color_rgb);
+			para->blit(*this, offset, m_background_color_rgb, m_foreground_color_rgb, false, markedpos != -1);
 		}
 		delete o->parm.renderText;
 		break;
