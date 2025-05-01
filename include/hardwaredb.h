@@ -329,7 +329,8 @@ static std::unordered_map<std::string, std::string> HardwareDB{
 	{"/devices/rdb.1/f0470300.ehci_v2/usb3/3-1/3-1:1.0", "Back, lower USB"},
 	{"/devices/rdb.1/f0480500.ehci_v2/usb6/6-1/6-1:1.0", "Front USB"}
 #elif HWVUZERO4K   // CHECKED
-	{"/devices/platform/rdb/f0b00300.ehci_v2/usb1/1-1/1-1:1.0", "Back USB"}
+	{"/devices/platform/rdb/f0b00300.ehci_v2/usb1/1-1/1-1:1.0", "Back USB"},
+	{"/devices/platform/rdb/f0b00300.ehci_v2/usb1/1-1/1-2:1.0", "Back USB"}	
 #else
 
 #endif
