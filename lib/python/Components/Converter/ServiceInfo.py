@@ -180,7 +180,7 @@ class ServiceInfo(Converter):
 				case self.IS_CRYPTED:
 					result = info.getInfo(iServiceInformation.sIsCrypted) == 1
 				case self.IS_HD:
-					result = videoHeight > 700 and videoHeight <= 1080 and videoGamma = 0
+					result = videoHeight > 700 and videoHeight <= 1080 and videoGamma == 0
 				case self.IS_HDHDR:
 					result = videoWidth > 720 and videoWidth < 1980 and videoGamma > 0
 				case self.IS_HDR:
