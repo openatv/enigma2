@@ -139,7 +139,7 @@ class CIHelper:
 		if NavigationInstance.instance.getRecordings():
 			if self.ServiceIsAssigned(service):
 				for timer in NavigationInstance.instance.RecordTimer.timer_list:
-					if timer.state == TimerEntry.StateRunning:
+					if timer.state == TimerEntry.StateRunning and timer.descramble:
 						if timer.justplay:
 							pass
 						else:
