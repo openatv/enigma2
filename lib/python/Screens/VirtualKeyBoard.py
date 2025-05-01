@@ -234,6 +234,21 @@ class VirtualKeyboard(Screen):
 			"TABICON": "self['text'].char(self.TAB_GLYPH)"
 		}
 		self.footer = ["FIRSTICON", "LEFTICON", "RIGHTICON", "LASTICON", self.SPACE, self.SPACE, self.SPACE, self.SPACE, self.SPACE, self.SPACE, "EXITICON", "LOCALEICON", "CLEARICON", "DELETEICON"]
+		self.bulgarian = [
+			[
+				["`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", ".", "BACKSPACEICON"],
+				["TABICON", ",", "\u0443", "\u0435", "\u0438", "\u0448", "\u0449", "\u043A", "\u0441", "\u0434", "\u0437", "\u0446", ";", "("],
+				["CAPSLOCKICON", "\u044C", "\u044F", "\u0430", "\u043E", "\u0436", "\u0433", "\u0442", "\u043D", "\u0432", "\u043C", "\u0447", self.green, self.green],
+				["SHIFTICON", "\\", "\u044E", "\u0439", "\u044A", "\u044D", "\u0444", "\u0445", "\u043F", "\u0440", "\u043B", "\u0431", "SHIFTICON", "SHIFTICON"],
+				self.footer
+			], [
+				["~", "!", "?", "+", "\"", "%", "=", ":", "/", "_", "\u2116", "\u0406", "V", "BACKSPACEICON"],
+				["TABICON", "\u044B", "\u0423", "\u0415", "\u0418", "\u0428", "\u0429", "\u041A", "\u0421", "\u0414", "\u0417", "\u0426", "\u00A7", ")"],
+				["CAPSLOCKICON", "\u042C", "\u042F", "\u0410", "\u041E", "\u0416", "\u0413", "\u0422", "\u041D", "\u0412", "\u041C", "\u0427", self.green, self.green],
+				["SHIFTICON", "|", "\u042E", "\u0419", "\u042A", "\u042D", "\u0424", "\u0425", "\u041F", "\u0420", "\u041B", "\u0411", "SHIFTICON", "SHIFTICON"],
+				self.footer
+			]
+		]
 		self.czech = [
 			[
 				[";", "+", "\u011B", "\u0161", "\u010D", "\u0159", "\u017E", "\u00FD", "\u00E1", "\u00ED", "\u00E9", "=", "", "BACKSPACEICON"],
@@ -462,6 +477,7 @@ class VirtualKeyboard(Screen):
 			"ar_SY": [self.arabic(self.english), None],
 			"ar_AE": [self.arabic(self.english), None],
 			"ar_YE": [self.arabic(self.english), None],
+			"bg_BG": [self.bulgarian, None],
 			"cs_CZ": [self.czech, None],
 			"nl_NL": [self.dutch(self.english), None],
 			"en_AU": [self.english, None],
