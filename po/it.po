@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-25 10:13+0000\n"
-"PO-Revision-Date: 2025-04-23 16:01+0000\n"
+"POT-Creation-Date: 2025-04-25 18:12+0000\n"
+"PO-Revision-Date: 2025-04-27 04:35+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11.1-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
 
 msgid ""
@@ -3974,6 +3974,15 @@ msgstr "Cinese"
 msgid "Chinese (Simplified)"
 msgstr "Cinese semplificato)"
 
+msgid "Chkroot Manager Actions"
+msgstr "Azioni del gestore Chkroot"
+
+msgid "Chkroot MultiBoot Initialization in progress!"
+msgstr "Inizializzazione di Chkroot MultiBoot in corso!"
+
+msgid "Chkroot MultiBoot Manager"
+msgstr "Gestore Chkroot MultiBoot"
+
 msgid "Choice Box"
 msgstr "Scegli opzione"
 
@@ -4222,6 +4231,9 @@ msgstr "Chiudi finestra"
 
 msgid "Close screen"
 msgstr "Chiudi schermata"
+
+msgid "Close the Chkroot MultiBoot Manager"
+msgstr "Chiudi Gestore Chkroot MultiBoot"
 
 msgid "Close the Device Manager screen"
 msgstr "Chiudi la schermata Gestione dispositivi"
@@ -6950,6 +6962,9 @@ msgstr "Abilita audio BT"
 
 msgid "Enable Bouquet Edit"
 msgstr "Abilita modifica bouquet"
+
+msgid "Enable Chkroot MultiBoot"
+msgstr "Abilita Chkroot MultiBoot"
 
 msgid "Enable EIT EPG"
 msgstr "Abilita EIT EPG"
@@ -17676,7 +17691,7 @@ msgstr "Mostra informazioni build"
 
 #, python-format
 msgid "Show cards with uphop %s"
-msgstr ""
+msgstr "Mostra carte con uphop %s"
 
 msgid "Show channel number in InfoBar"
 msgstr "Mostra numero canale nella barra informazioni"
@@ -18791,7 +18806,7 @@ msgid "Start date"
 msgstr "Data d'inizio"
 
 msgid "Start edit at line end"
-msgstr "Inizia modifica alla fine della riga"
+msgstr "Avvia modifica alla fine della riga"
 
 msgid "Start edit mode"
 msgstr "Avvia modalità di modifica"
@@ -18823,6 +18838,9 @@ msgstr "Avvio il televideo"
 msgid "Start test"
 msgstr "Avvio il test"
 
+msgid "Start the Chkroot initialization"
+msgstr "Avvia inizializzazione di Chkroot"
+
 msgid "Start the Kexec initialization"
 msgstr "Avvia l'inizializzazione di Kexec"
 
@@ -18839,7 +18857,7 @@ msgid "Start time shift"
 msgstr "Avvio timeshift"
 
 msgid "Start/stop slide show"
-msgstr "Avvia / arresta la presentazione"
+msgstr "Avvia o ferma la presentazione"
 
 msgid "Start/stop/select cam"
 msgstr "Avvia, ferma, seleziona cam"
@@ -19651,6 +19669,10 @@ msgstr "Il %s %s legge i dati memorizzati dell'EPG ogni (ore)."
 
 msgid "The %s %s stores the EPG data every (hours)."
 msgstr "Il %s %s salva i dati dell'EPG ogni (ore)."
+
+#, python-format
+msgid "The %s %s will reboot within 1 seconds."
+msgstr "Il %s %s verrà riavviato entro 1 secondo."
 
 #, python-format
 msgid "The %s %s will reboot within 10 seconds, unless there are eMMC slots to restore. Restoring eMMC slots can take from 1 to 5 minutes per slot."
@@ -21255,7 +21277,7 @@ msgstr "Fino allo standby o riavvio"
 
 #, python-format
 msgid "Unused %s"
-msgstr ""
+msgstr "%s inutilizzati"
 
 msgid "Unzipping Image"
 msgstr "Decompressione immagine"

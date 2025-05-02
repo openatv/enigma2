@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-25 10:13+0000\n"
-"PO-Revision-Date: 2025-04-25 14:28+0000\n"
+"POT-Creation-Date: 2025-04-25 18:12+0000\n"
+"PO-Revision-Date: 2025-05-01 11:02+0000\n"
 "Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.11.1-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -4018,6 +4018,15 @@ msgstr "Chiński"
 msgid "Chinese (Simplified)"
 msgstr "Chiński (Uproszczony)"
 
+msgid "Chkroot Manager Actions"
+msgstr "Akcje menadżera Chkroot"
+
+msgid "Chkroot MultiBoot Initialization in progress!"
+msgstr "Inicjalizacja Chkroot MultiBoot w toku!"
+
+msgid "Chkroot MultiBoot Manager"
+msgstr "Menadżer Chkroot MultiBoot"
+
 msgid "Choice Box"
 msgstr "Okno wyboru"
 
@@ -4268,6 +4277,9 @@ msgstr "Zamknij okno dialogowe"
 
 msgid "Close screen"
 msgstr "Zamknij ekran"
+
+msgid "Close the Chkroot MultiBoot Manager"
+msgstr "Zamknij menadżera Chkroot MultiBoot"
 
 msgid "Close the Device Manager screen"
 msgstr "Zamknij ekran Menedżera urządzeń"
@@ -6999,6 +7011,9 @@ msgstr "Włącz BT Audio"
 msgid "Enable Bouquet Edit"
 msgstr "Włącz edycję listy kanałów"
 
+msgid "Enable Chkroot MultiBoot"
+msgstr "Włącz Chkroot MultiBoot"
+
 msgid "Enable EIT EPG"
 msgstr "Włącz EIT EPG"
 
@@ -7054,7 +7069,7 @@ msgid "Enable Quad PiP"
 msgstr "Włącz Quad PIP"
 
 msgid "Enable Swap at startup"
-msgstr "Uruchom plik wymiany przy starcie"
+msgstr "Uruchom plik swap przy starcie"
 
 msgid "Enable Up/Down buttons for the 'all up/down' functions (at the beginning/end of the column)?"
 msgstr "Włączyć przyciski Góra/Dół dla funkcji „wszystkich góra/dół” (na początku/końcu kolumny)?"
@@ -18884,6 +18899,9 @@ msgstr "Uruchom telegazete"
 msgid "Start test"
 msgstr "Testuj"
 
+msgid "Start the Chkroot initialization"
+msgstr "Rozpocznij inicjalizację Chkroot"
+
 msgid "Start the Kexec initialization"
 msgstr "Rozpocznij inicjowanie Kexec"
 
@@ -19712,6 +19730,10 @@ msgstr "%s %s odczytuje zapisane dane EPG co (godz.)."
 
 msgid "The %s %s stores the EPG data every (hours)."
 msgstr "%s %s przechowuje dane EPG co (godz.)."
+
+#, python-format
+msgid "The %s %s will reboot within 1 seconds."
+msgstr "%s %s zostanie uruchomiony ponownie w ciągu 1 sekundy."
 
 #, python-format
 msgid "The %s %s will reboot within 10 seconds, unless there are eMMC slots to restore. Restoring eMMC slots can take from 1 to 5 minutes per slot."
@@ -22834,7 +22856,7 @@ msgid "You have selected no logs to delete."
 msgstr "Nie zostały wybrane żadne logi do usunięcia."
 
 msgid "You have to create a Swap File before to activate the autostart."
-msgstr "Uruchomienie może być aktywowane tylko wtedy gdy plik wymiany został stworzony."
+msgstr "Aby aktywować autostart, musisz utworzyć plik swap."
 
 #, python-format
 msgid "You have to wait %s!"

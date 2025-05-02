@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-25 10:13+0000\n"
-"PO-Revision-Date: 2025-04-25 08:01+0000\n"
+"POT-Creation-Date: 2025-04-25 18:12+0000\n"
+"PO-Revision-Date: 2025-04-27 01:17+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.11.1-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 msgid ""
 "\n"
@@ -4011,6 +4011,15 @@ msgstr "čínština"
 msgid "Chinese (Simplified)"
 msgstr "Čínština (zjednodušená)"
 
+msgid "Chkroot Manager Actions"
+msgstr "Akcie správcu Chkroot"
+
+msgid "Chkroot MultiBoot Initialization in progress!"
+msgstr "Prebieha inicializácia Chkroot MultiBoot!"
+
+msgid "Chkroot MultiBoot Manager"
+msgstr "Správca Chkroot MultiBoot"
+
 msgid "Choice Box"
 msgstr "Výber možnosti"
 
@@ -4260,6 +4269,9 @@ msgstr "Zatvoriť dialóg"
 
 msgid "Close screen"
 msgstr "Zatvoriť obrazovku"
+
+msgid "Close the Chkroot MultiBoot Manager"
+msgstr "Zavrieť správcu Chkroot MultiBoot"
 
 msgid "Close the Device Manager screen"
 msgstr "Zavrieť obrazovku správcu zariadení"
@@ -6990,6 +7002,9 @@ msgstr "Zapnúť BT audio"
 
 msgid "Enable Bouquet Edit"
 msgstr "Zapnúť úpravu prehľadu"
+
+msgid "Enable Chkroot MultiBoot"
+msgstr "Zapnúť Chkroot MultiBoot"
 
 msgid "Enable EIT EPG"
 msgstr "Povoliť EIT EPG"
@@ -17725,7 +17740,7 @@ msgstr "Zobraziť informácie o zostavení"
 
 #, python-format
 msgid "Show cards with uphop %s"
-msgstr ""
+msgstr "Zobraziť karty s uphop %s"
 
 msgid "Show channel number in InfoBar"
 msgstr "Zobraziť číslo kanála v infolište"
@@ -18874,6 +18889,9 @@ msgstr "Spustiť teletext"
 msgid "Start test"
 msgstr "Spustiť test"
 
+msgid "Start the Chkroot initialization"
+msgstr "Spustiť inicializáciu Chkroot"
+
 msgid "Start the Kexec initialization"
 msgstr "Spustiť inicializáciu Kexec"
 
@@ -19702,6 +19720,10 @@ msgstr "%s %s načíta uložené dáta EPG každých (hodín)."
 
 msgid "The %s %s stores the EPG data every (hours)."
 msgstr "%s %s uloží EPG údaje každých (hodín)."
+
+#, python-format
+msgid "The %s %s will reboot within 1 seconds."
+msgstr "%s %s sa v priebehu 1 sekundy reštartuje."
 
 #, python-format
 msgid "The %s %s will reboot within 10 seconds, unless there are eMMC slots to restore. Restoring eMMC slots can take from 1 to 5 minutes per slot."
@@ -21307,7 +21329,7 @@ msgstr "Do pohotovostného režimu/reštartu"
 
 #, python-format
 msgid "Unused %s"
-msgstr ""
+msgstr "Nevyužívané %s"
 
 msgid "Unzipping Image"
 msgstr "Rozbaľovanie image"

@@ -8,16 +8,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-25 10:13+0000\n"
-"PO-Revision-Date: 2025-04-07 13:02+0000\n"
-"Last-Translator: Marchella1983 <marchella_ru@mail.ru>\n"
+"POT-Creation-Date: 2025-04-25 18:12+0000\n"
+"PO-Revision-Date: 2025-04-27 01:17+0000\n"
+"Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 "X-Poedit-SourceCharset: iso-8859-5\n"
 
 msgid ""
@@ -920,7 +920,7 @@ msgstr[2] "Обновлено %d пакетов с каталогами фидо
 
 #, python-format
 msgid "%d jobs are running in the background!"
-msgstr ""
+msgstr "%d заданий выполняются в фоновом режиме!"
 
 #, python-format
 msgid "%d kB"
@@ -1918,7 +1918,7 @@ msgid "Add RecordTimer"
 msgstr "Добавить таймер записи"
 
 msgid "Add Service"
-msgstr ""
+msgstr "Добавить канал"
 
 msgid "Add Service To Bouquet"
 msgstr "Добавить канал в букет"
@@ -1942,7 +1942,7 @@ msgid "Add a DNS entry"
 msgstr "Добавить запись DNS"
 
 msgid "Add a RADIO service to the Volume Offset list"
-msgstr ""
+msgstr "Добавить сервис РАДИО в список смещения громкости"
 
 msgid "Add a RecordTimer"
 msgstr "Добавить таймер записи"
@@ -1951,7 +1951,7 @@ msgid "Add a RecordTimer for current event"
 msgstr "Добавить таймер записи для данной передачи"
 
 msgid "Add a TV service to the Volume Offset list"
-msgstr ""
+msgstr "Добавьте телесервис в список смещения громкости"
 
 msgid "Add a ZapTimer for current event"
 msgstr "Добавить таймер переключения для данной передачи"
@@ -2074,7 +2074,7 @@ msgid "Add/Remove highlighted plugin to/from update list"
 msgstr "Добавить/удалить выделенный плагин в/из списка обновлений"
 
 msgid "Add/Remove the current service to/from the Volume Offset list"
-msgstr ""
+msgstr "Добавить/удалить текущий сервис в/из списка смещения громкости"
 
 msgid "Adding schedule..."
 msgstr "Добавление задания..."
@@ -2363,7 +2363,7 @@ msgstr "Amlogic пульт"
 
 #, python-format
 msgid "Amount %d / Success %d / Failed %d"
-msgstr ""
+msgstr "Сумма %d / Успех %d / Неудача %d"
 
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr "Предпринята попытка зафиксировать текущий статус ТВ. Если это невозможно из-за неправильных или отсутствующих сообщений о состоянии, это может привести к неожиданному ответу получателя. С другой стороны, старается лучше реагировать на разные условия эксплуатации."
@@ -2715,7 +2715,7 @@ msgid "Auto multi-selection"
 msgstr "Авто мульти-выбор"
 
 msgid "Auto show volume level"
-msgstr ""
+msgstr "Автоматическое отображение уровня громкости"
 
 msgid "Auto shut down"
 msgstr "Автоматическое выключение"
@@ -3736,7 +3736,7 @@ msgid "Catalan / Valencian"
 msgstr "Каталанский / Валенсийский"
 
 msgid "Catch Up Player Actions"
-msgstr ""
+msgstr "Действия игрока догоняющего"
 
 msgid "Cayman Islands"
 msgstr "Каймановы острова"
@@ -4010,6 +4010,15 @@ msgstr "Китайский"
 msgid "Chinese (Simplified)"
 msgstr "Китайский (упрощённый)"
 
+msgid "Chkroot Manager Actions"
+msgstr "Действия менеджера Chkroot"
+
+msgid "Chkroot MultiBoot Initialization in progress!"
+msgstr "Выполняется инициализация Chkroot MultiBoot!"
+
+msgid "Chkroot MultiBoot Manager"
+msgstr "Менеджер Chkroot MultiBoot"
+
 msgid "Choice Box"
 msgstr "Меню выбора"
 
@@ -4259,6 +4268,9 @@ msgstr "Закрыть окно"
 
 msgid "Close screen"
 msgstr "Закрыть экран"
+
+msgid "Close the Chkroot MultiBoot Manager"
+msgstr "Закройте Chkroot MultiBoot Manager"
 
 msgid "Close the Device Manager screen"
 msgstr "Закройте экран диспетчера устройств"
@@ -4872,7 +4884,7 @@ msgid "Connected to"
 msgstr "Подключен к"
 
 msgid "Connected transcoding, limit - no PiP!"
-msgstr ""
+msgstr "Подключено транскодирование, ограничение - нет PiP!"
 
 msgid "Connected: "
 msgstr "Подключен "
@@ -4881,7 +4893,7 @@ msgid "Connection information"
 msgstr "Информация о подключении"
 
 msgid "Connector"
-msgstr ""
+msgstr "Коннектор"
 
 msgid "Console"
 msgstr "Консоль"
@@ -5325,7 +5337,7 @@ msgid "Currently Defined Volume Offsets:"
 msgstr "Текущие настройки отключения звука:"
 
 msgid "Currently Remembered Volume Levels:"
-msgstr ""
+msgstr "Текущие сохраненные уровни громкости:"
 
 msgid "Custom"
 msgstr "Пользовательские"
@@ -5798,7 +5810,7 @@ msgid "Defined / Active"
 msgstr "Определено / Активно"
 
 msgid "Defined volume offset"
-msgstr ""
+msgstr "Определённое смещение объёма"
 
 msgid "Defines how fast the time jumps are repeated. Values lower than 500ms may be problematic with NAS."
 msgstr "Определяет время повторного запроса. Значения ниже 500 мс могут быть проблемой при использовании NAS."
@@ -6062,19 +6074,19 @@ msgid "Descending"
 msgstr "По убыванию"
 
 msgid "Descramble end time"
-msgstr ""
+msgstr "Время окончания декодирования"
 
 msgid "Descramble in Standby"
-msgstr ""
+msgstr "Дескремблирование в режиме ожидания"
 
 msgid "Descramble in Standby finished"
-msgstr ""
+msgstr "Дескремблирование в режиме ожидания завершено"
 
 msgid "Descramble recordings before Shutdown"
-msgstr ""
+msgstr "Расшифруйте записи перед выключением"
 
 msgid "Descramble start time"
-msgstr ""
+msgstr "Декодировать время начала"
 
 msgid "Descrambling options"
 msgstr "Варианты дескремблирования"
@@ -6989,6 +7001,9 @@ msgstr "Включить BT Аудио"
 
 msgid "Enable Bouquet Edit"
 msgstr "Редактировать букет"
+
+msgid "Enable Chkroot MultiBoot"
+msgstr "Включить Chkroot MultiBoot"
 
 msgid "Enable EIT EPG"
 msgstr "Включить ТВ-гид EIT"
@@ -9848,10 +9863,10 @@ msgid "Input "
 msgstr "Вход "
 
 msgid "Input 1"
-msgstr ""
+msgstr "Вход 1"
 
 msgid "Input 2"
-msgstr ""
+msgstr "Вход 2"
 
 msgid "Input Device Settings"
 msgstr "Настройка устройства ввода"
@@ -10426,7 +10441,7 @@ msgid "Last used share: "
 msgstr "Последний сетевой диск "
 
 msgid "Last used/set volume"
-msgstr ""
+msgstr "Последний использованный/установленный объём"
 
 msgctxt "third event: 'third' event label"
 msgid "Later"
@@ -13053,10 +13068,10 @@ msgid "Pass-through"
 msgstr "Пропускать"
 
 msgid "Passthrough audio handling delay AC3"
-msgstr ""
+msgstr "Задержка обработки сквозного звука AC3"
 
 msgid "Passthrough audio handling delay AC3+"
-msgstr ""
+msgstr "Задержка обработки сквозного звука AC3+"
 
 msgid "Password"
 msgstr "Пароль"
@@ -13260,7 +13275,7 @@ msgid "Play back media files"
 msgstr "Проигрыватель медиа файлов"
 
 msgid "Play catch up service archive"
-msgstr ""
+msgstr "Архив сервиса Play catch up"
 
 msgid "Play entry"
 msgstr "Смотреть"
@@ -15491,7 +15506,7 @@ msgid "Saving EPG Cache..."
 msgstr "Сохранение кэша EPG ..."
 
 msgid "Saving time shift buffer, this might take a while."
-msgstr "Файл тайшифта сохраняется как фильм. Это займёт некоторое время!"
+msgstr "Файл таймшифта сохраняется как фильм. Это займёт некоторое время."
 
 msgid "Saving time shift files"
 msgstr "Сохранение файлов таймшифта"
@@ -15742,7 +15757,7 @@ msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB spec
 msgstr "Выберите 'Диапазон', если используете 'Универсальный' LNB, в противном случае обратитесь к спецификациям LNB."
 
 msgid "Select 'Disabled' to disable all automated volume adjustments. Select 'Defined volume offsets' to assign a specified offset to the service's volume level. Select 'Last used/set volume' to remember the volume level last used for each service."
-msgstr ""
+msgstr "Выберите 'Отключено', чтобы отключить все автоматические регулировки громкости. Выберите 'Определённые смещения громкости', чтобы назначить указанное смещение уровню громкости сервиса. Выберите 'Последний использованный/установленный уровень громкост', чтобы запомнить последний использованный уровень громкости для каждого сервиса."
 
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr "Выберите 'Включить', чтобы запустить помощник CI+."
@@ -15976,7 +15991,7 @@ msgid "Select 'Yes' to show the current directory in the list of directories. No
 msgstr "Выберите 'Да', чтобы отобразить текущий каталог в списке каталогов. Обратите внимание, что File Commander необходимо перезапустить, чтобы это изменение вступило в силу."
 
 msgid "Select 'Yes' to show the volume level on any automated changes of volume level."
-msgstr ""
+msgstr "Выберите 'Да', чтобы отображать уровень громкости при любых автоматических изменениях уровня громкости."
 
 msgid "Select 'Yes' to show this plugin in the Plugin Browser."
 msgstr "Выберите 'Да', чтобы отобразить этот плагин в браузере плагинов."
@@ -15985,7 +16000,7 @@ msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Выберите 'Да', чтобы отобразить пакеты веб-ссылок в диалоге загрузки плагинов."
 
 msgid "Select 'Yes' to shut down immediately instead of starting the descramble."
-msgstr ""
+msgstr "Выберите 'Да', чтобы немедленно завершить работу, не запуская декодирование."
 
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr "Выберите 'Да', чтобы разделить задачи на отдельные действия."
@@ -16121,10 +16136,10 @@ msgid "Select a script to run:"
 msgstr "Выбор скрипта для запуска"
 
 msgid "Select a time, when in Standby mode, after which the descramble can proceed."
-msgstr ""
+msgstr "Выберите время в режиме ожидания, после которого можно будет продолжить декодирование."
 
 msgid "Select a time, when in Standby, before which descramble can proceed."
-msgstr ""
+msgstr "Выберите время в режиме ожидания, до которого может быть выполнено дешифрование."
 
 msgid "Select a tuner"
 msgstr "Выберите тюнер"
@@ -16471,7 +16486,7 @@ msgid "Select the initial position of the timeline marker. The marker is the ver
 msgstr "Выберите начальное положение маркера временной шкалы. Маркер — это вертикальная линия, нарисованная в EPG, которая показывает текущее время. Чем больше значение, тем больше маркер будет двигаться вправо, показывая больше истории и меньше предстоящих событий."
 
 msgid "Select the input connector you want to use."
-msgstr ""
+msgstr "Выберите входной разъём, который вы хотите использовать."
 
 msgid "Select the last item in list or move to the end of text"
 msgstr "Выберите последний элемент в списке или перейдите в конец текста"
@@ -17134,7 +17149,7 @@ msgid "Set the time to hide the second infobar. The bar also disappears on press
 msgstr "Время показа второй инфопанели."
 
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
-msgstr "Установите время ожидания выполнения действия по умолчанию в сообщениях о выключении, режиме ожидания или перезапуске. (например, используется в Timer, PowerTimer, Sleeptimer, ...)"
+msgstr "Установите время ожидания для выполнения действия по умолчанию в сообщениях о выключении, режиме ожидания или перезагрузке, например, используемого в RecordTimer, Scheduler, SleepTimer и т. д."
 
 msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
 msgstr "Установите верхнее левое местоположение занятого счётчика. Координаты масштабируются таким образом, что верхний левый угол равен (0,0), а нижний правый — (1260,700). Обратите внимание, что это положение находится в левом верхнем углу счётчика, а не в центре счетчика."
@@ -17144,7 +17159,7 @@ msgstr "Выберите тип отображения прогресса в м�
 
 #, python-format
 msgid "Set the volume level for the '%s' service."
-msgstr ""
+msgstr "Установите уровень громкости для сервиса '%s'."
 
 #, python-format
 msgid "Set the volume offset for the '%s' service."
@@ -17175,10 +17190,10 @@ msgid "Set to 'Disabled' to replace underscore characters, '_', in file and dire
 msgstr "Если отключено, символы подчеркивания в именах файлов и каталогов не отображаются и заменяются пробелами."
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby mode before shutting down."
-msgstr ""
+msgstr "Установите значение 'Включено', чтобы расшифровывать зашифрованные записи, находящиеся в очереди, в режиме ожидания перед выключением."
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
-msgstr ""
+msgstr "Установите значение 'Включено', чтобы расшифровывать зашифрованные записи, находящиеся в очереди, в режиме ожидания."
 
 msgid "Set to 'Yes', to enable automatic recording of the background timeshift buffer."
 msgstr "Если выберете 'Да', то будет включена автоматическая запись буфера таймшифта в фоновом режиме."
@@ -17724,7 +17739,7 @@ msgstr "Показывать информацию о сборке"
 
 #, python-format
 msgid "Show cards with uphop %s"
-msgstr ""
+msgstr "Показать карточки с uphop %s"
 
 msgid "Show channel number in InfoBar"
 msgstr "Показывать номер канала в инфопанели"
@@ -18873,6 +18888,9 @@ msgstr "Запуск телетекста"
 msgid "Start test"
 msgstr "Начать тест"
 
+msgid "Start the Chkroot initialization"
+msgstr "Запустить инициализацию Chkroot"
+
 msgid "Start the Kexec initialization"
 msgstr "Запустите инициализацию Kexec"
 
@@ -19457,7 +19475,7 @@ msgid "TMDB Search"
 msgstr "Поиск по TMDB"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Коррекция перевода Monja 01.03.2025"
+msgstr "Коррекция перевода Monja 26.04.2025"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл слишком большой для ISO9660 уровень 1!"
@@ -19701,6 +19719,10 @@ msgstr "Ваш %s %s считывает данные ТВ-гида каждые 
 
 msgid "The %s %s stores the EPG data every (hours)."
 msgstr "Ваш %s %s сохраняет данные ТВ-гида каждые (часов)."
+
+#, python-format
+msgid "The %s %s will reboot within 1 seconds."
+msgstr "%s %s перезагрузится в течение 1 секунды."
 
 #, python-format
 msgid "The %s %s will reboot within 10 seconds, unless there are eMMC slots to restore. Restoring eMMC slots can take from 1 to 5 minutes per slot."
@@ -19969,7 +19991,7 @@ msgstr "Каталог пиконов уже существует и долже�
 
 #, python-format
 msgid "The process will take approximately %d minutes to complete."
-msgstr ""
+msgstr "Процесс займёт приблизительно %d минут."
 
 #, python-format
 msgid "The results have been written to %s."
@@ -20090,9 +20112,9 @@ msgstr "Есть незавершённые задачи:"
 #, python-format
 msgid "There is %d scrambled recording, which will be unscrambled during Standby."
 msgid_plural "There are %d scrambled recordings, which will be unscrambled during Standby."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Имеется %d зашифрованная запись, которая будет расшифрована в режиме ожидания."
+msgstr[1] "Имеется %d зашифрованные записи, которые будут расшифрованы в режиме ожидания."
+msgstr[2] "Имеется %d зашифрованных записей, которые будут расшифрованы в режиме ожидания."
 
 #, python-format
 msgid "There is a risk that your %s %s will not boot or may malfunction after such a large on-line update."
@@ -20752,7 +20774,7 @@ msgid "Toggle between bouquet/EPG lists"
 msgstr "Переключение между списком букетов и ТВ-гидом"
 
 msgid "Toggle between the available TV and RADIO services"
-msgstr ""
+msgstr "Переключение между доступными сервисами ТВ и РАДИО"
 
 msgid "Toggle display of image information"
 msgstr "Переключить отображение информации об изображении"
@@ -21306,7 +21328,7 @@ msgstr "До режима ожидания/перезагрузки"
 
 #, python-format
 msgid "Unused %s"
-msgstr ""
+msgstr "Неиспользуемый %s"
 
 msgid "Unzipping Image"
 msgstr "Распаковка образа"
@@ -21671,10 +21693,10 @@ msgid "Used service scan type"
 msgstr "Используемый тип поиска"
 
 msgid "Used to specify delay when switching between services and AC3 passthrough is enabled."
-msgstr ""
+msgstr "Используется для указания задержки при переключении между сервисами и включении сквозной передачи AC3."
 
 msgid "Used to specify delay when switching between services and AC3+/Atmos passthrough is enabled."
-msgstr ""
+msgstr "Используется для указания задержки при переключении между службами и включении сквозной передачи AC3+/Atmos."
 
 msgid "Used:"
 msgstr "Занято"
@@ -22087,13 +22109,13 @@ msgid "Volume Adjust Service Selection"
 msgstr "Выбор канала регулировки громкости"
 
 msgid "Volume Adjust Service Selection Actions"
-msgstr ""
+msgstr "Действия по выбору сервиса регулировки громкости"
 
 msgid "Volume Adjust Settings"
 msgstr "Настройки регулировки громкости"
 
 msgid "Volume adjustment mode"
-msgstr ""
+msgstr "Режим регулировки громкости"
 
 msgid "Volume down"
 msgstr "Тише"

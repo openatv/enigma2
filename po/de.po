@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-25 10:13+0000\n"
-"PO-Revision-Date: 2025-04-23 16:01+0000\n"
+"POT-Creation-Date: 2025-04-25 18:12+0000\n"
+"PO-Revision-Date: 2025-04-27 01:17+0000\n"
 "Last-Translator: VfBFan <drop0815@posteo.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11.1-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1322,7 +1322,7 @@ msgid "* Only available if more than one interface is active."
 msgstr "* Nur verfügbar, wenn mehr als ein Netzwerkadapter aktiv ist."
 
 msgid "* current animation"
-msgstr "* gewählte Animation"
+msgstr "* aktuelle Animation"
 
 msgid "+24 Hours"
 msgstr "+24 Stunden"
@@ -4190,6 +4190,15 @@ msgstr "Chinesisch"
 msgid "Chinese (Simplified)"
 msgstr "Vereinfachtes Chinesisch"
 
+msgid "Chkroot Manager Actions"
+msgstr "Chkroot Manager Aktionen"
+
+msgid "Chkroot MultiBoot Initialization in progress!"
+msgstr "Chkroot MultiBoot-Initialisierung läuft!"
+
+msgid "Chkroot MultiBoot Manager"
+msgstr "Chkroot MultiBoot-Manager"
+
 msgid "Choice Box"
 msgstr "Bitte eine Auswahl treffen"
 
@@ -4452,6 +4461,9 @@ msgstr "Dialog schließen"
 
 msgid "Close screen"
 msgstr "Bildschirm schließen"
+
+msgid "Close the Chkroot MultiBoot Manager"
+msgstr "Chkroot MultiBoot-Manager schließen"
 
 msgid "Close the Device Manager screen"
 msgstr "Geräteverwaltung schließen"
@@ -7330,6 +7342,9 @@ msgstr "Bluetooth-Audio aktivieren"
 msgid "Enable Bouquet Edit"
 msgstr "Bouquet bearbeiten aktivieren"
 
+msgid "Enable Chkroot MultiBoot"
+msgstr "Chkroot MultiBoot aktivieren"
+
 msgid "Enable EIT EPG"
 msgstr "EIT-EPG aktivieren"
 
@@ -8739,7 +8754,7 @@ msgstr "Erweiterungen filtern"
 
 msgid "Filter files to be listed by the defined extension. Note that the symbol '(*)' will appear in the title if filtering is in effect."
 msgstr ""
-"Dateien filtern, die mit der gewählten Erweiterung angezeigt werden sollen.\n"
+"Dateien filtern, die mit der ausgewählten Erweiterung angezeigt werden sollen.\n"
 "Das Symbol '(*)' erscheint in der Überschrift, wenn die Filterung stattfindet."
 
 msgid "Final position at"
@@ -9299,7 +9314,7 @@ msgid "Grab"
 msgstr "Grab"
 
 msgid "Graphical DVB subtitles will be displayed in the selected color, instead of the original colors."
-msgstr "Grafische DVB-Untertitel werden in der gewählten statt der Originalfarben dargestellt."
+msgstr "Grafische DVB-Untertitel werden in der ausgewählten Farbe statt der Originalfarben dargestellt."
 
 msgid "Graphical EPG"
 msgstr "Grafischer EPG"
@@ -16454,7 +16469,7 @@ msgid "Scan wireless networks"
 msgstr "WLAN-Netzwerke suchen"
 
 msgid "Scan your network for wireless access points and connect to them using your selected wireless device."
-msgstr "Durchsucht das Netzwerk nach WLAN-Zugangspunkten und stellt eine Verbindung mit Hilfe des gewählten WLAN-Gerätes her."
+msgstr "Durchsucht das Netzwerk nach WLAN-Zugangspunkten und stellt eine Verbindung mit Hilfe des ausgewählten WLAN-Gerätes her."
 
 msgid "Scanning"
 msgstr "Suchlauf"
@@ -16893,7 +16908,7 @@ msgid "Select 'Yes' to show system plugin packages in the Download Plugins scree
 msgstr "Bei 'Ja' werden Systemplugins in der Downloadliste angezeigt."
 
 msgid "Select 'Yes' to show the 'Movie Selection' entry in the Main Menu. This can provide access to the Movie Selection screen when there is no assigned button on the remote control."
-msgstr "'Ja' wählen, um den Eintrag 'Filmauswahl' im Hauptmenü anzuzeigen. Dies kann den Zugriff auf die Filmauswahl ermöglichen, falls auf der Fernbedienung dafür keine Taste vorhanden ist."
+msgstr "'Ja' auswählen, um den Eintrag 'Filmauswahl' im Hauptmenü anzuzeigen. Dies kann den Zugriff auf die Filmauswahl ermöglichen, falls auf der Fernbedienung dafür keine Taste vorhanden ist."
 
 msgid "Select 'Yes' to show the advanced setting options."
 msgstr "'Ja' auswählen, um die erweiterten Einstellungen anzuzeigen."
@@ -18764,7 +18779,7 @@ msgstr "Build-Informationen anzeigen"
 
 #, python-format
 msgid "Show cards with uphop %s"
-msgstr ""
+msgstr "Cards mit Uphop %s anzeigen"
 
 msgid "Show channel number in InfoBar"
 msgstr "Sendernummer in der Infoleiste anzeigen"
@@ -19964,7 +19979,7 @@ msgid "Start or Stop service"
 msgstr "Dienst starten oder stoppen"
 
 msgid "Start recording current event"
-msgstr "Starte Aufnahme der aktuellen Sendung"
+msgstr "Aufnahme der aktuellen Sendung starten"
 
 msgid "Start teletext"
 msgstr "Videotext"
@@ -19973,11 +19988,14 @@ msgstr "Videotext"
 msgid "Start test"
 msgstr "Test starten"
 
+msgid "Start the Chkroot initialization"
+msgstr "Chkroot-Initialisierung starten"
+
 msgid "Start the Kexec initialization"
 msgstr "Kexec-Initialisierung starten"
 
 msgid "Start the backup of the selected image"
-msgstr "Sicherung des gewählten Images starten"
+msgstr "Sicherung des ausgewählten Images starten"
 
 msgid "Start the highlighted plugin"
 msgstr "Das markierte Plugin starten"
@@ -20850,6 +20868,10 @@ msgstr "Die %s %s liest die gespeicherten EPG-Daten nach der eingestellten Zeit 
 
 msgid "The %s %s stores the EPG data every (hours)."
 msgstr "Die %s %s speichert die EPG-Daten nach der eingestellten Zeit automatisch."
+
+#, python-format
+msgid "The %s %s will reboot within 1 seconds."
+msgstr "Die %s %s startet innerhalb von 1 Sekunde neu."
 
 #, python-format
 msgid "The %s %s will reboot within 10 seconds, unless there are eMMC slots to restore. Restoring eMMC slots can take from 1 to 5 minutes per slot."
@@ -22562,7 +22584,7 @@ msgstr "Bis zum Standby/Neustart"
 
 #, python-format
 msgid "Unused %s"
-msgstr ""
+msgstr "Nicht verwendet %s"
 
 msgid "Unzipping Image"
 msgstr "Entpacke Image"
@@ -23259,7 +23281,7 @@ msgid ""
 "The next output port will be automatically tried in 10 seconds."
 msgstr ""
 "Videoausgang auswählen.\n"
-"Sicherstellen, dass am TV der richtige Eingang gewählt ist.\n"
+"Sicherstellen, dass am TV der richtige Eingang ausgewählt ist.\n"
 "OK drücken, wenn dieses Bild auf dem TV zu sehen ist, ansonsten wird in 10 Sekunden der nächste Port versucht."
 
 #, python-format
@@ -24875,7 +24897,7 @@ msgid "gardening"
 msgstr "Gartenarbeit"
 
 msgid "get the cards' server"
-msgstr "Einlesen der Card-Server"
+msgstr "Einlesen der Cardserver"
 
 #
 msgid "grab this frame as bitmap"

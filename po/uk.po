@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-25 10:13+0000\n"
-"PO-Revision-Date: 2025-04-14 12:33+0000\n"
+"POT-Creation-Date: 2025-04-25 18:12+0000\n"
+"PO-Revision-Date: 2025-04-27 01:17+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.11-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -922,7 +922,7 @@ msgstr[2] "%d сервер каталогів пакетів оновлено."
 
 #, python-format
 msgid "%d jobs are running in the background!"
-msgstr ""
+msgstr "%d завдань виконується у фоновому режимі!"
 
 #, python-format
 msgid "%d kB"
@@ -1920,7 +1920,7 @@ msgid "Add RecordTimer"
 msgstr "Додати Таймер Запису"
 
 msgid "Add Service"
-msgstr ""
+msgstr "Додати Канал"
 
 msgid "Add Service To Bouquet"
 msgstr "Додати канал в фаворит"
@@ -1944,7 +1944,7 @@ msgid "Add a DNS entry"
 msgstr "Добавити запис DNS"
 
 msgid "Add a RADIO service to the Volume Offset list"
-msgstr ""
+msgstr "Додати Радіо-канал до списку зміщення гучності"
 
 msgid "Add a RecordTimer"
 msgstr "Додати таймер запису"
@@ -1953,7 +1953,7 @@ msgid "Add a RecordTimer for current event"
 msgstr "Додати таймер запису для поточного події"
 
 msgid "Add a TV service to the Volume Offset list"
-msgstr ""
+msgstr "Додати ТВ-канал до списку зміщення гучності"
 
 msgid "Add a ZapTimer for current event"
 msgstr "Додати таймер перемикання для даної передачі"
@@ -2076,7 +2076,7 @@ msgid "Add/Remove highlighted plugin to/from update list"
 msgstr "Додати/Видалити виділений плагін до/із списку оновлень"
 
 msgid "Add/Remove the current service to/from the Volume Offset list"
-msgstr ""
+msgstr "Додати/видалити поточний канал до/із списку зміщення звуку"
 
 msgid "Adding schedule..."
 msgstr "Додавання завдання..."
@@ -2365,7 +2365,7 @@ msgstr "Пульт Amlogic"
 
 #, python-format
 msgid "Amount %d / Success %d / Failed %d"
-msgstr ""
+msgstr "Кількість %d / Успіх %d / Невдача %d"
 
 msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
 msgstr "Зроблено спробу зафіксувати поточний статус телевізора. Якщо це неможливо через неправильні, або відсутні повідомлення про статус, це може призвести до неочікуваної відповіді приймача. З іншого боку, намагається краще реагувати на різні умови експлуатації."
@@ -2717,7 +2717,7 @@ msgid "Auto multi-selection"
 msgstr "Автоматичний багаторазовий вибір"
 
 msgid "Auto show volume level"
-msgstr ""
+msgstr "Автоматичне відображення рівня гучності"
 
 msgid "Auto shut down"
 msgstr "Автоматичне відключення"
@@ -3738,7 +3738,7 @@ msgid "Catalan / Valencian"
 msgstr "Каталонська / Валенсійська"
 
 msgid "Catch Up Player Actions"
-msgstr ""
+msgstr "Дії кнопок плеєра"
 
 msgid "Cayman Islands"
 msgstr "Кайманові острови"
@@ -4012,6 +4012,15 @@ msgstr "Китайська"
 msgid "Chinese (Simplified)"
 msgstr "Китайська (спрощена)"
 
+msgid "Chkroot Manager Actions"
+msgstr "Дії менеджера Chkroot"
+
+msgid "Chkroot MultiBoot Initialization in progress!"
+msgstr "Триває ініціалізація Chkroot MultiBoot!"
+
+msgid "Chkroot MultiBoot Manager"
+msgstr "Менеджер Chkroot MultiBoot"
+
 msgid "Choice Box"
 msgstr "Зробіть вибір"
 
@@ -4261,6 +4270,9 @@ msgstr "Закрити діалог"
 
 msgid "Close screen"
 msgstr "Закрити вікно"
+
+msgid "Close the Chkroot MultiBoot Manager"
+msgstr "Закрийте диспетчер Chkroot MultiBoot"
 
 msgid "Close the Device Manager screen"
 msgstr "Закрити екран диспетчера пристроїв"
@@ -5327,7 +5339,7 @@ msgid "Currently Defined Volume Offsets:"
 msgstr "Поточні зміщення гучності:"
 
 msgid "Currently Remembered Volume Levels:"
-msgstr ""
+msgstr "Поточні рівні гучності, що запам'ятовуються:"
 
 msgid "Custom"
 msgstr "Користувацька"
@@ -5800,7 +5812,7 @@ msgid "Defined / Active"
 msgstr "Визначено / Активно"
 
 msgid "Defined volume offset"
-msgstr ""
+msgstr "Визначений зсув звуку"
 
 msgid "Defines how fast the time jumps are repeated. Values lower than 500ms may be problematic with NAS."
 msgstr "Визначає час повторного запиту. Значення нижче 500 мс можуть бути проблематичними з NAS."
@@ -6064,19 +6076,19 @@ msgid "Descending"
 msgstr "По зменшуванню"
 
 msgid "Descramble end time"
-msgstr ""
+msgstr "Час завершення дешифрування"
 
 msgid "Descramble in Standby"
-msgstr ""
+msgstr "Декодування в режимі очікування"
 
 msgid "Descramble in Standby finished"
-msgstr ""
+msgstr "Дешифрування в режимі очікування завершено"
 
 msgid "Descramble recordings before Shutdown"
-msgstr ""
+msgstr "Дешифрування записів перед вимкненням"
 
 msgid "Descramble start time"
-msgstr ""
+msgstr "Час початку дешифрування"
 
 msgid "Descrambling options"
 msgstr "Параметри дешифрування"
@@ -6991,6 +7003,9 @@ msgstr "Активувати BT Аудіо"
 
 msgid "Enable Bouquet Edit"
 msgstr "Ввімкнути редагування фавориту"
+
+msgid "Enable Chkroot MultiBoot"
+msgstr "Увімкнути Chkroot MultiBoot"
 
 msgid "Enable EIT EPG"
 msgstr "Включити EIT EPG"
@@ -10428,7 +10443,7 @@ msgid "Last used share: "
 msgstr "Останній мережевий диск: "
 
 msgid "Last used/set volume"
-msgstr ""
+msgstr "Останнє використовуване/налаштоване значення звуку"
 
 msgctxt "third event: 'third' event label"
 msgid "Later"
@@ -13262,7 +13277,7 @@ msgid "Play back media files"
 msgstr "Відтворення медіа файлів"
 
 msgid "Play catch up service archive"
-msgstr ""
+msgstr "Архів сервісу Play catch up"
 
 msgid "Play entry"
 msgstr "Відтворити запис"
@@ -15493,7 +15508,7 @@ msgid "Saving EPG Cache..."
 msgstr "Збереження кеша ЕПГ..."
 
 msgid "Saving time shift buffer, this might take a while."
-msgstr "Файл тайшифта зберігається як фільм. Це займе деякий час!"
+msgstr "Файл тайм-шифта зберігається як фільм. Це займе деякий час."
 
 msgid "Saving time shift files"
 msgstr "Збереження файлів таймшифта"
@@ -15744,7 +15759,7 @@ msgid "Select 'Band' if using a 'Universal' LNB, otherwise consult your LNB spec
 msgstr "Виберіть 'band', якщо використовується \"універсальний\" LNB, інакше зверніться до специфікації LNB."
 
 msgid "Select 'Disabled' to disable all automated volume adjustments. Select 'Defined volume offsets' to assign a specified offset to the service's volume level. Select 'Last used/set volume' to remember the volume level last used for each service."
-msgstr ""
+msgstr "Виберіть 'Вимкнено', щоб вимкнути всі автоматичні налаштування гучності. Виберіть 'Визначені зміщення гучності', щоб призначити певне зміщення рівню гучності каналу. Виберіть 'Останній використаний/встановлений рівень гучності', щоб запам’ятати рівень гучності, який використовувався останнім для кожної послуги."
 
 msgid "Select 'Enable' to start the CI+ helper."
 msgstr "Виберіть 'Увімкнути', щоб запустити помічник CI+."
@@ -15978,7 +15993,7 @@ msgid "Select 'Yes' to show the current directory in the list of directories. No
 msgstr "Виберіть 'Так', щоб показати поточний каталог у списку каталогів. Зауважте, що File Commander потрібно перезапустити, щоб ця зміна набула чинності."
 
 msgid "Select 'Yes' to show the volume level on any automated changes of volume level."
-msgstr ""
+msgstr "Виберіть 'Так', щоб відображати рівень гучності під час будь-яких автоматичних змін рівня гучності."
 
 msgid "Select 'Yes' to show this plugin in the Plugin Browser."
 msgstr "Виберіть 'Так', щоб відобразити цей плагін у браузері плагінів."
@@ -15987,7 +16002,7 @@ msgid "Select 'Yes' to show web link packages in the Download Plugins screen."
 msgstr "Виберіть 'Так', щоб відобразити пакети веб-посилань на екрані завантаження плагінів."
 
 msgid "Select 'Yes' to shut down immediately instead of starting the descramble."
-msgstr ""
+msgstr "Виберіть 'Так', щоб негайно вимкнути пристрій, а не розпочати дешифрування."
 
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr "Виберіть 'Так', щоб розділити завдання на окремі дії."
@@ -16123,10 +16138,10 @@ msgid "Select a script to run:"
 msgstr "Вибір скрипта для запуску:"
 
 msgid "Select a time, when in Standby mode, after which the descramble can proceed."
-msgstr ""
+msgstr "Виберіть час у режимі очікування, після якого може продовжитися декодування."
 
 msgid "Select a time, when in Standby, before which descramble can proceed."
-msgstr ""
+msgstr "Виберіть час у режимі очікування, до якого може розпочатися декодування."
 
 msgid "Select a tuner"
 msgstr "Вибір тюнера"
@@ -17136,7 +17151,7 @@ msgid "Set the time to hide the second infobar. The bar also disappears on press
 msgstr "Встановіть час показу другого інфобара. Він також зникне при натисненні 'OK'."
 
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
-msgstr "Встановіть час очікування виконання стандартних дій у повідомленнях про завершення роботи, очікування, або перезапуск. (наприклад, використовується в різних таймерах ...)"
+msgstr "Встановіть час очікування виконання стандартних дій у повідомленнях про завершення роботи, очікування, або перезапуск. (наприклад, використовується в різних таймерах."
 
 msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
 msgstr "Встановіть верхнє ліве розташування спінера. Координати масштабуються таким чином, що верхній лівий кут знаходився на (0,0), а нижній правий — на (1260,700). Зауважте, що позиція знаходиться у верхньому лівому куті спінера, а не в його центрі."
@@ -17146,7 +17161,7 @@ msgstr "Встановіть тип відображення прогресу в
 
 #, python-format
 msgid "Set the volume level for the '%s' service."
-msgstr ""
+msgstr "Встановіть рівень гучності для каналу '%s'."
 
 #, python-format
 msgid "Set the volume offset for the '%s' service."
@@ -17177,10 +17192,10 @@ msgid "Set to 'Disabled' to replace underscore characters, '_', in file and dire
 msgstr "Якщо вимкнено, символи підкреслення в назвах файлів і каталогів не відображаються і замінюються пробілами."
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby mode before shutting down."
-msgstr ""
+msgstr "Встановіть 'Увімкнено', щоб дешифрувати зашифровані записи з черги в режимі очікування перед вимиканням."
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
-msgstr ""
+msgstr "Встановіть значення 'Увімкнено', щоб дешифрувати зашифровані записи з черги в режимі очікування."
 
 msgid "Set to 'Yes', to enable automatic recording of the background timeshift buffer."
 msgstr "Якщо вибрано 'Так', буде включено автоматичний запис таймшифта у фоновому режимі."
@@ -17726,7 +17741,7 @@ msgstr "Показати інформацію про збірку"
 
 #, python-format
 msgid "Show cards with uphop %s"
-msgstr ""
+msgstr "Показати картки з uphop %s"
 
 msgid "Show channel number in InfoBar"
 msgstr "Показати номер каналу в Інфобарі"
@@ -18875,6 +18890,9 @@ msgstr "Запуск телетексту"
 msgid "Start test"
 msgstr "Почати тест"
 
+msgid "Start the Chkroot initialization"
+msgstr "Запустіть ініціалізацію Chkroot"
+
 msgid "Start the Kexec initialization"
 msgstr "Запустити ініціалізацію Kexec"
 
@@ -19459,7 +19477,7 @@ msgid "TMDB Search"
 msgstr "TMDB Пошук"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 01.04.2025"
+msgstr "Переклад: kvinto - 26.04.2025"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -19703,6 +19721,10 @@ msgstr "Ваш %s %s зчитує дані ЕПГ кожні (годин)."
 
 msgid "The %s %s stores the EPG data every (hours)."
 msgstr "Ваш %s %s зберігає дані ЕПГ автоматично кожні (годин)."
+
+#, python-format
+msgid "The %s %s will reboot within 1 seconds."
+msgstr "%s %s перезавантажиться протягом 1 секунди."
 
 #, python-format
 msgid "The %s %s will reboot within 10 seconds, unless there are eMMC slots to restore. Restoring eMMC slots can take from 1 to 5 minutes per slot."
@@ -19971,7 +19993,7 @@ msgstr "Каталог піконів уже існує і його потріб
 
 #, python-format
 msgid "The process will take approximately %d minutes to complete."
-msgstr ""
+msgstr "Процес триватиме приблизно %d хвилин."
 
 #, python-format
 msgid "The results have been written to %s."
@@ -20092,9 +20114,9 @@ msgstr "Є незавершені завдання:"
 #, python-format
 msgid "There is %d scrambled recording, which will be unscrambled during Standby."
 msgid_plural "There are %d scrambled recordings, which will be unscrambled during Standby."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Є %d зашифрований запис, який буде розшифровано в режимі очікування."
+msgstr[1] "Є %d зашифрованих записи, які буде розшифровано в режимі очікування."
+msgstr[2] "Є %d зашифрованих записів, які буде розшифровано в режимі очікування."
 
 #, python-format
 msgid "There is a risk that your %s %s will not boot or may malfunction after such a large on-line update."
@@ -20754,7 +20776,7 @@ msgid "Toggle between bouquet/EPG lists"
 msgstr "Перемикання між списками фаворити/телегід"
 
 msgid "Toggle between the available TV and RADIO services"
-msgstr ""
+msgstr "Перемикання між доступними ТВ та Радіо Каналами"
 
 msgid "Toggle display of image information"
 msgstr "Перемкнути відображення інформації про імідж"
@@ -21308,7 +21330,7 @@ msgstr "до режиму очікування/перезавантаження"
 
 #, python-format
 msgid "Unused %s"
-msgstr ""
+msgstr "Невикористані %s"
 
 msgid "Unzipping Image"
 msgstr "Розархівування Іміджу"
@@ -22089,13 +22111,13 @@ msgid "Volume Adjust Service Selection"
 msgstr "Вибір каналу регулювання гучності"
 
 msgid "Volume Adjust Service Selection Actions"
-msgstr ""
+msgstr "Дії кнопок Вибору послуги Регулювання Гучності"
 
 msgid "Volume Adjust Settings"
 msgstr "Налаштування гучності"
 
 msgid "Volume adjustment mode"
-msgstr ""
+msgstr "Режим регулювання гучності"
 
 msgid "Volume down"
 msgstr "Гучність нижче"

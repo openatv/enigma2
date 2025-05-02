@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-25 10:13+0000\n"
-"PO-Revision-Date: 2025-04-22 14:29+0000\n"
+"POT-Creation-Date: 2025-04-25 18:12+0000\n"
+"PO-Revision-Date: 2025-04-27 04:35+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Weblate 5.11.1-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 "X-SourceCharset: UTF-8\n"
 "X-Generated: TM2TURK by thawtes\n"
 
@@ -3975,6 +3975,15 @@ msgstr "中文"
 msgid "Chinese (Simplified)"
 msgstr "简体中文"
 
+msgid "Chkroot Manager Actions"
+msgstr "Chkroot 管理器操作"
+
+msgid "Chkroot MultiBoot Initialization in progress!"
+msgstr "Chkroot 多系统启动初始化中！"
+
+msgid "Chkroot MultiBoot Manager"
+msgstr "Chkroot 多系统启动管理器"
+
 msgid "Choice Box"
 msgstr "选择机顶盒"
 
@@ -4224,6 +4233,9 @@ msgstr "关闭对话框"
 msgid "Close screen"
 msgstr "关闭屏幕"
 
+msgid "Close the Chkroot MultiBoot Manager"
+msgstr "关闭 Chkroot 多系统启动管理器"
+
 msgid "Close the Device Manager screen"
 msgstr "关闭设备管理器屏幕"
 
@@ -4231,7 +4243,7 @@ msgid "Close the Device Manager screen and exit all menus"
 msgstr "关闭设备管理器屏幕并退出所有菜单"
 
 msgid "Close the Kexec MultiBoot Manager"
-msgstr "关闭 Kexec MultiBoot 管理器"
+msgstr "关闭 Kexec 多系统启动管理器"
 
 msgid "Close the Plugin Browser screen"
 msgstr "关闭插件浏览器屏幕"
@@ -6952,6 +6964,9 @@ msgstr "启用蓝牙音频"
 msgid "Enable Bouquet Edit"
 msgstr "启用频道群编辑"
 
+msgid "Enable Chkroot MultiBoot"
+msgstr "启用 Chkroot 多系统启动"
+
 msgid "Enable EIT EPG"
 msgstr "启用 EIT（事件信息表） EPG"
 
@@ -6980,7 +6995,7 @@ msgid "Enable InfoBar fade-out"
 msgstr "启用信息栏淡出"
 
 msgid "Enable Kexec MultiBoot"
-msgstr "启用 Kexec MultiBoot"
+msgstr "启用 Kexec 多系统启动"
 
 msgid "Enable MHW EPG"
 msgstr "启用 MHW EPG"
@@ -7128,7 +7143,7 @@ msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "启用高级 HDMI-CEC 设置选项。"
 
 msgid "Enable this option to add MultiBoot information detected during system boot to the debug log file."
-msgstr "启用此选项可将系统启动期间检测到的多重引导信息添加到调试日志文件中。"
+msgstr "启用此选项可将系统启动期间检测到的多系统启动信息添加到调试日志文件中。"
 
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "启用此选项可将操作映射/远程控制映射数据添加到调试日志文件。"
@@ -9009,7 +9024,7 @@ msgid "Harddisk Setup"
 msgstr "硬盘设置"
 
 msgid "Hardware MultiBoot device"
-msgstr "硬件多重引导设备"
+msgstr "硬件多系统启动设备"
 
 msgid "Hardware information"
 msgstr "硬件信息"
@@ -9664,7 +9679,7 @@ msgid "Include EPG data"
 msgstr "包含 EPG 数据"
 
 msgid "Include MultiBoot data *"
-msgstr "包括多重引导数据*"
+msgstr "包括多系统启动数据*"
 
 msgid "Include SDT, BAT in http streams"
 msgstr "http 串流中包含 SDT，BAT数据"
@@ -10179,16 +10194,16 @@ msgid "Kernel version"
 msgstr "内核版本"
 
 msgid "Kexec MultiBoot Actions"
-msgstr "Kexec 多重引导操作"
+msgstr "Kexec 多系统启动操作"
 
 msgid "Kexec MultiBoot Initialization in progress!"
-msgstr "正在进行 Kexec 多重引导初始化！"
+msgstr "正在进行 Kexec 多系统启动初始化！"
 
 msgid "Kexec MultiBoot Manager"
-msgstr "Kexec 多重引导管理器"
+msgstr "Kexec 多系统启动管理器"
 
 msgid "Kexec MultiBoot files are missing."
-msgstr "Kexec 多重引导文件丢失。"
+msgstr "Kexec 多系统启动文件丢失。"
 
 msgid "Key"
 msgstr "键"
@@ -11619,22 +11634,22 @@ msgid "Multi EPG"
 msgstr "多路 EPG"
 
 msgid "MultiBoot"
-msgstr "多重引导"
+msgstr "多系统启动"
 
 msgid "MultiBoot Information"
-msgstr "多重引导信息"
+msgstr "多系统启动信息"
 
 msgid "MultiBoot Manager"
-msgstr "多重引导管理器"
+msgstr "多系统启动管理器"
 
 msgid "MultiBoot Manager Actions"
-msgstr "多重引导管理器操作"
+msgstr "多系统启动管理器操作"
 
 msgid "MultiBoot boot mode"
-msgstr "多重引导引导模式"
+msgstr "多系统启动引导模式"
 
 msgid "MultiBoot startup file"
-msgstr "多重引导启动文件"
+msgstr "多系统启动启动文件"
 
 msgid "MultiEPG Settings"
 msgstr "多路 EPG 设置"
@@ -11646,7 +11661,7 @@ msgid "MultiTranscoding"
 msgstr "多重转码"
 
 msgid "Multiboot Image created:"
-msgstr "创建的多重启动镜像："
+msgstr "创建的多系统启动镜像："
 
 msgid "Multimedia Packages"
 msgstr "多媒体软件包"
@@ -13094,7 +13109,7 @@ msgid "Permanently remove all deleted items"
 msgstr "永久删除所有已删除项目"
 
 msgid "Permanently remove the MultiBoot files?"
-msgstr "是否永久删除多重引导文件？"
+msgstr "是否永久删除多系统启动文件？"
 
 msgid "Permissions"
 msgstr "权限"
@@ -13766,10 +13781,10 @@ msgid "Press EXIT to return to the help screen."
 msgstr "按 EXIT 键返回帮助屏幕。"
 
 msgid "Press GREEN to enable MultiBoot!"
-msgstr "按绿键启用多重引导！"
+msgstr "按绿键启用多系统启动！"
 
 msgid "Press OK for MultiBoot selection."
-msgstr "请按 OK 键进行多重引导选择。"
+msgstr "请按 OK 键进行多系统启动选择。"
 
 msgid "Press OK on your remote control to continue."
 msgstr "按遥控器上的 OK 键继续。"
@@ -14722,7 +14737,7 @@ msgid "Remove the Line from CCcam.cfg"
 msgstr "从 CCcam.cfg 中删除行"
 
 msgid "Remove the MultiBoot files"
-msgstr "删除多重引导文件"
+msgstr "删除多系统启动文件"
 
 msgid "Remove the current bookmark"
 msgstr "删除当前书签"
@@ -17677,7 +17692,7 @@ msgstr "显示构建信息"
 
 #, python-format
 msgid "Show cards with uphop %s"
-msgstr ""
+msgstr "显示卡片（uphop: %s）"
 
 msgid "Show channel number in InfoBar"
 msgstr "在信息栏上显示频道编号"
@@ -18535,7 +18550,7 @@ msgid "Software Manager Settings"
 msgstr "软件管理器设置"
 
 msgid "Software MultiBoot"
-msgstr "软件多重引导"
+msgstr "软件多系统启动"
 
 msgid "Software Restore"
 msgstr "软件恢复"
@@ -18823,6 +18838,9 @@ msgstr "启动图文电视"
 
 msgid "Start test"
 msgstr "开始测试"
+
+msgid "Start the Chkroot initialization"
+msgstr "启动 Chkroot 初始化"
 
 msgid "Start the Kexec initialization"
 msgstr "开始 Kexec 初始化"
@@ -19652,6 +19670,10 @@ msgstr "%s %s 读取存储的 EPG 数据每（小时）。"
 
 msgid "The %s %s stores the EPG data every (hours)."
 msgstr "%s %s 存储 EPG 数据 每（小时）。"
+
+#, python-format
+msgid "The %s %s will reboot within 1 seconds."
+msgstr "%s %s 将在 1 秒后重启。"
 
 #, python-format
 msgid "The %s %s will reboot within 10 seconds, unless there are eMMC slots to restore. Restoring eMMC slots can take from 1 to 5 minutes per slot."
@@ -21125,7 +21147,7 @@ msgid "Ukrainian"
 msgstr "乌克兰语"
 
 msgid "Unable to initialize Kexec MultiBoot!"
-msgstr "无法初始化 Kexec 多重引导！"
+msgstr "无法初始化 Kexec 多系统启动！"
 
 msgid "Unattended upgrade without GUI"
 msgstr "无人值守升级，没有图形用户界面"
@@ -21256,7 +21278,7 @@ msgstr "直到待机/重新启动"
 
 #, python-format
 msgid "Unused %s"
-msgstr ""
+msgstr "未使用 %s"
 
 msgid "Unzipping Image"
 msgstr "正在解压镜像"
@@ -22061,7 +22083,7 @@ msgid "Volume/Mute display timer"
 msgstr "音量/静音显示定时器"
 
 msgid "Vu+ MultiBoot"
-msgstr "Vu+ 多重引导"
+msgstr "Vu+ 多系统启动"
 
 msgid "W"
 msgstr "W"

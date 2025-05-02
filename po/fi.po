@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-25 10:13+0000\n"
-"PO-Revision-Date: 2025-04-21 21:23+0000\n"
+"POT-Creation-Date: 2025-04-25 18:12+0000\n"
+"PO-Revision-Date: 2025-04-27 01:17+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.11.1-dev\n"
+"X-Generator: Weblate 5.12-dev\n"
 
 msgid ""
 "\n"
@@ -3984,6 +3984,15 @@ msgstr "Kiina"
 msgid "Chinese (Simplified)"
 msgstr "Kiina (yksinkertaistettu)"
 
+msgid "Chkroot Manager Actions"
+msgstr "Chkroot toiminnot"
+
+msgid "Chkroot MultiBoot Initialization in progress!"
+msgstr "Chkroot MultiBoot Alustus käynnissä!"
+
+msgid "Chkroot MultiBoot Manager"
+msgstr "Chkroot MultiBoot Hallinta"
+
 msgid "Choice Box"
 msgstr "Kortin Tiedot"
 
@@ -4232,6 +4241,9 @@ msgstr "Sulje valinta"
 
 msgid "Close screen"
 msgstr "Sulje näyttö"
+
+msgid "Close the Chkroot MultiBoot Manager"
+msgstr "Sulje Chkroot MultiBoot hallinta"
 
 msgid "Close the Device Manager screen"
 msgstr "Sulje Laite hallinta näyttö"
@@ -6960,6 +6972,9 @@ msgstr "Aktivoi Bluetooth Ääni"
 
 msgid "Enable Bouquet Edit"
 msgstr "Kanavalistojen lisäys ja poisto"
+
+msgid "Enable Chkroot MultiBoot"
+msgstr "Ottaa käyttöön Chkroot MultiBoot"
 
 msgid "Enable EIT EPG"
 msgstr "Ota käyttöön EIT EPG"
@@ -17713,7 +17728,7 @@ msgstr "Näytä koontiversion tiedot"
 
 #, python-format
 msgid "Show cards with uphop %s"
-msgstr ""
+msgstr "Näytä kortit joissa ylöshyppy %s"
 
 msgid "Show channel number in InfoBar"
 msgstr "Näytä kanavanumero tietopalkissa"
@@ -18860,6 +18875,9 @@ msgstr "Teksti-TV"
 msgid "Start test"
 msgstr "Aloita testi"
 
+msgid "Start the Chkroot initialization"
+msgstr "Aloita Chkroot alustaminen"
+
 msgid "Start the Kexec initialization"
 msgstr "Aloita Kexec alustus"
 
@@ -19690,6 +19708,10 @@ msgstr "%s %s lukee tallennetun EPG-tiedon joka (tuntia)."
 
 msgid "The %s %s stores the EPG data every (hours)."
 msgstr "%s %s tallentaa EPG-tiedon joka (tuntia)."
+
+#, python-format
+msgid "The %s %s will reboot within 1 seconds."
+msgstr "%s %s uudelleen käynnistyy 1 sekunnin kuluttua."
 
 #, python-format
 msgid "The %s %s will reboot within 10 seconds, unless there are eMMC slots to restore. Restoring eMMC slots can take from 1 to 5 minutes per slot."
@@ -21299,7 +21321,7 @@ msgstr "valmiustilaan/uudelleenkäynnistykseen asti"
 
 #, python-format
 msgid "Unused %s"
-msgstr ""
+msgstr "Käyttämätön %s"
 
 msgid "Unzipping Image"
 msgstr "Puretaan Ohjelmistoa"
