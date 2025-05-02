@@ -2,7 +2,7 @@ from datetime import datetime
 from glob import glob
 from hashlib import md5
 from os import listdir, mkdir, rename, rmdir, stat
-from os.path import basename, exists, isdir, isfile, ismount, join
+from os.path import basename, exists, isdir, isfile, ismount, join, islink, realpath
 from struct import calcsize, pack, unpack, error
 from tempfile import mkdtemp
 
@@ -27,8 +27,9 @@ STARTUP_TEMPLATE = "STARTUP_*"
 STARTUP_ANDROID = "STARTUP_ANDROID"
 STARTUP_ANDROID_LINUXSE = "STARTUP_ANDROID_LINUXSE"
 STARTUP_RECOVERY = "STARTUP_RECOVERY"
+STARTUP_FLASH = "STARTUP_FLASH"
 STARTUP_BOXMODE = "BOXMODE"  # This is known as bootCode in this code.
-BOOT_DEVICE_LIST = ("/dev/mmcblk0p1", "/dev/mmcblk1p1", "/dev/mmcblk0p3", "/dev/mmcblk0p4", "/dev/mtdblock2", "/dev/block/by-name/bootoptions", "/dev/block/by-name/others")
+BOOT_DEVICE_LIST = ("/dev/mmcblk0p1", "/dev/mmcblk1p1", "/dev/mmcblk0p3", "/dev/mmcblk0p4", "/dev/mtdblock2", "/dev/block/by-name/bootoptions", "/dev/block/by-name/others", "/dev/block/by-name/startup")
 BOOT_DEVICE_LIST_VUPLUS = ("/dev/mmcblk0p4", "/dev/mmcblk0p7", "/dev/mmcblk0p9")  # Kexec kernel Vu+ MultiBoot.
 
 
@@ -115,7 +116,7 @@ class MultiBootClass():
 				if isfile(cmdFile) or isfile(startupFile):
 					file = cmdFile if isfile(cmdFile) else startupFile
 					startupCmdLine = " ".join(x.strip() for x in fileReadLines(file, default=[], source=MODULE_NAME) if x.strip())
-					bootDevice = device
+					bootDevice = self.resolveDevice(device)
 				self.console.ePopen([UMOUNT, UMOUNT, tempDir])
 				rmdir(tempDir)
 			if bootDevice:
@@ -153,6 +154,9 @@ class MultiBootClass():
 				elif file == STARTUP_RECOVERY:
 					bootCode = ""
 					slotCode = "R"
+				elif file == STARTUP_FLASH:
+					bootCode = ""
+					slotCode = "F"
 				elif STARTUP_BOXMODE in file:
 					parts = file.rsplit("_", 3)
 					bootCode = parts[3]
@@ -204,6 +208,9 @@ class MultiBootClass():
 							if "rootsubdir" in line:
 								bootSlots[slotCode]["kernel"] = self.getParam(line, "kernel")
 								bootSlots[slotCode]["rootsubdir"] = self.getParam(line, "rootsubdir")
+							elif "flash" in line:
+								bootSlots[slotCode]["kernel"] = self.getParam(line, "kernel")
+								bootSlots[slotCode]["rootfs"] = self.getParam(line, "root")
 							elif bootDevice:
 								device = bootDevice[0]
 								saveKernel(bootSlots, slotCode, f"/dev/{device}{line.split(device, 1)[1].split(" ", 1)[0]}")
@@ -382,6 +389,12 @@ class MultiBootClass():
 				self.imageList[self.slotCode]["imagename"] = _("Recovery")
 				self.imageList[self.slotCode]["imagelogname"] = "Recovery"
 				self.imageList[self.slotCode]["status"] = "recovery"
+				self.findSlot()
+			elif self.slotCode == "F":
+				self.imageList[self.slotCode]["detection"] = "Found a Flash Image slot"
+				self.imageList[self.slotCode]["imagename"] = _("Flash")
+				self.imageList[self.slotCode]["imagelogname"] = "Flash"
+				self.imageList[self.slotCode]["status"] = "flash"
 				self.findSlot()
 			elif self.bootSlots[self.slotCode].get("device"):
 				self.device = self.bootSlots[self.slotCode]["device"]
@@ -755,5 +768,10 @@ class MultiBootClass():
 		except Exception:
 			return False
 
+	def resolveDevice(self, path):
+		if islink(path):
+			return realpath(path)
+		else:
+			return path
 
 MultiBoot = MultiBootClass()

@@ -629,8 +629,12 @@ class DistributionInformation(InformationBase):
 			else:
 				if BoxInfo.getItem("HasKexecMultiboot"):
 					device = MultiBoot.bootSlots[slotCode]["device"]
+				elif BoxInfo.getItem("HasChkrootMultiboot"):
+					device = MultiBoot.bootSlots[slotCode]["device"]
 				if "mmcblk" in device:
 					device = _("eMMC slot %s%s") % (slotCode, f"  -  {device}" if device else "")
+				elif "mtd" in device:
+					device = _("MTD slot %s%s") % (slotCode, f"  -  {device}" if device else "")
 				else:
 					device = _("USB slot %s%s") % (slotCode, f"  -  {device}" if device else "")
 			info.append(formatLine("P1", _("Hardware MultiBoot device"), device))
@@ -907,7 +911,8 @@ class MultiBootInformation(InformationBase):
 					indent = "P0V" if boot == "" else "P1V"
 					if current:
 						indent = indent.replace("P", "F").replace("V", "F")
-					slotType = "eMMC" if "mmcblk" in self.slotImages[slot]["device"] else "USB"
+					device = self.slotImages[slot]["device"]
+					slotType = "eMMC" if "mmcblk" in device else "MTD" if "mtd" in device else "USB"
 					imageLists[boot].append(formatLine(indent, _("Slot '%s' %s") % (slot, slotType), f"{self.slotImages[slot]['imagename']}{current}"))
 			count = 0
 			for bootCode in sorted(imageLists.keys()):
