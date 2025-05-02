@@ -208,7 +208,7 @@ class MultiBootClass():
 							if "rootsubdir" in line:
 								bootSlots[slotCode]["kernel"] = self.getParam(line, "kernel")
 								bootSlots[slotCode]["rootsubdir"] = self.getParam(line, "rootsubdir")
-							elif "flash" in line:
+							elif "flash=1" in line:
 								bootSlots[slotCode]["kernel"] = self.getParam(line, "kernel")
 								bootSlots[slotCode]["rootfs"] = self.getParam(line, "root")
 							elif bootDevice:
