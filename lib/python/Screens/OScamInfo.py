@@ -98,7 +98,7 @@ class OSCamGlobals():
 		ret = _("No system softcam configured!")
 		if BoxInfo.getItem("ShowOscamInfo"):
 			webif, port, api, ipv6compiled, signstatus, conffile, error = self.confPath()  # (True, 'http', '127.0.0.1', '8080', '/etc/tuxbox/config/oscam-trunk/', True, 'CN=...', 'oscam.conf', None)
-			proto, blocked = "http", False  # Assume that oscam webif is NOT blocking localhost, IPv6 is also configured if it is compiled in, and no user and password are required
+			ip, proto, blocked = "127.0.0.1", "http", False  # Assume that oscam webif is NOT blocking localhost, IPv6 is also configured if it is compiled in, and no user and password are required
 			user = pwd = None
 			conffile = "%s" % (conffile or "oscam.conf")
 			ret = _("OSCam webif disabled") if not error else error
