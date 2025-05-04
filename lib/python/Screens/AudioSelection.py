@@ -284,7 +284,7 @@ class AudioSelection(ConfigListScreen, Screen):
 
 		elif self.settings.menupage.value == PAGE_SUBTITLES:
 
-			self.setTitle(_("Subtitle selection"))
+			self.setTitle(_("Subtitle Selection"))
 
 			idx = 0
 			if (subtitlelist is not None):

@@ -202,7 +202,7 @@ class MediaPlayer(Screen, InfoBarBase, InfoBarScreenSaver, InfoBarSeek, InfoBarA
 				"delete": (self.deletePlaylistEntry, _("Delete play list entry")),
 				"shift_stop": (self.clear_playlist, _("Clear play list")),
 				"shift_record": (self.playlist.PlayListShuffle, _("Shuffle play list")),
-				"subtitles": (self.subtitleSelection, _("Subtitle selection")),
+				"subtitles": (self.subtitleSelection, _("Subtitle Selection")),
 			}, -2)
 
 		self["InfobarEPGActions"] = HelpableActionMap(self, "InfobarEPGActions",

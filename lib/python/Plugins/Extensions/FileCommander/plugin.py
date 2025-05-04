@@ -1403,7 +1403,7 @@ class FileCommander(Screen, NumericalTextInput, StatInfo):
 								continue
 							msg.append(f"- '{basename(file)}'")
 						choiceList = [
-							(_("Cancel selection"), ""),
+							(_("Cancel the selection"), ""),
 							(_("Toggle all related files"), "TOGGLEALL")
 						]
 						if path in selectedItems:
