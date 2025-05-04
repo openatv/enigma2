@@ -140,13 +140,13 @@ def InitUsageConfig():
 	])
 	config.usage.multibouquet = ConfigYesNo(default=True)
 	config.usage.numberZapDigits = ConfigSelection(default=4, choices=[(x, ngettext("%d Digit", "%d Digits", x) % x) for x in range(1, 6)])
-	config.usage.numzaptimeoutmode = ConfigSelection(default="standard", choices=[
-		("standard", _("Standard")),
-		("userdefined", _("User defined")),
-		("off", _("Off"))
+	config.usage.numberZapTimeoutFirst = ConfigSelection(default=3000, choices=[(x, ngettext("%.2f Second", "%.2f Seconds", x / 1000.0) % (x / 1000.0)) for x in range(500, 5001, 250)])
+	config.usage.numberZapTimeoutOther = ConfigSelection(default=1000, choices=[(x, ngettext("%.2f Second", "%.2f Seconds", x / 1000.0) % (x / 1000.0)) for x in range(0, 5001, 250)])
+	config.usage.numberZapTimeouts = ConfigSelection(default="default", choices=[
+		("off", _("Off")),
+		("default", _("Default")),
+		("user", _("User defined"))
 	])
-	config.usage.numzaptimeout1 = ConfigSlider(default=3000, increment=250, limits=(500, 5000))
-	config.usage.numzaptimeout2 = ConfigSlider(default=1000, increment=250, limits=(0, 5000))
 	config.usage.numzappicon = ConfigYesNo(default=False)
 	config.usage.use_pig = ConfigYesNo(default=False)
 	config.usage.update_available = NoSave(ConfigYesNo(default=False))

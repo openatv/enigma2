@@ -1212,11 +1212,11 @@ class NumberZap(Screen):
 			self["servicename"].setText(ServiceReference(self.service).getServiceName())
 
 	def keyNumberGlobal(self, number):
-		if config.usage.numzaptimeoutmode.value != "off":
-			if config.usage.numzaptimeoutmode.value == "standard":
+		if config.usage.numberZapTimeouts.value != "off":
+			if config.usage.numberZapTimeouts.value == "default":
 				self.Timer.start(1000, True)
 			else:
-				self.Timer.start(config.usage.numzaptimeout2.value, True)
+				self.Timer.start(config.usage.numberZapTimeoutOther.value, True)
 		self.numberString += str(number)
 		self["number"].setText(self.numberString)
 		self["servicenumber"].setText(self.numberString)
@@ -1273,11 +1273,11 @@ class NumberZap(Screen):
 		self.Timer.callback.append(self.keyOK)
 		if config.usage.numberZapDigits.value == 1:
 			self.Timer.start(100, True)
-		elif config.usage.numzaptimeoutmode.value != "off":
-			if config.usage.numzaptimeoutmode.value == "standard":
+		elif config.usage.numberZapTimeouts.value != "off":
+			if config.usage.numberZapTimeouts.value == "default":
 				self.Timer.start(3000, True)
 			else:
-				self.Timer.start(config.usage.numzaptimeout1.value, True)
+				self.Timer.start(config.usage.numberZapTimeoutFirst.value, True)
 
 
 class InfoBarNumberZap:
