@@ -129,6 +129,7 @@
 		</if>
 		<item level="1" text="Zap mode" description="Setup how to control the channel changing." requires="ZapMode">config.misc.zapmode</item>
 		<item level="2" text="Number of digits in service number" description="This allows you to set the maximum number of digits in a service number, up to 5.">config.usage.numberZapDigits</item>
+		<item level="2" text="Service zap screen contents" description="Select the preferred service information to display, in addition to the service number, for the service selection pop up screen.">config.usage.numberZapDisplay</item>
 		<item level="2" text="Service zap delay mode" description="Select if data entry timeouts are to be applied when entering digits into the service selection pop up screen. When a timeout is exceeded the currently entered number will be used for the service selection. The default timeouts are first digit 3 seconds, other digits 1 second.">config.usage.numberZapTimeouts</item>
 		<if conditional="config.usage.numberZapTimeouts.value == 'user'">
 			<item level="2" text="Service zap first button delay" description="Select the delay to wait after pressing the first digit button to select a new service.">config.usage.numberZapTimeoutFirst</item>
@@ -1074,8 +1075,10 @@
 		<item level="0" text="2nd InfoBar timeout" description="Set the time to hide the second infobar. The bar also disappears on pressing 'OK'.">config.usage.second_infobar_timeout</item>
 		<item level="0" text="Show InfoBar picons" description="Option to disable picons on the Infobar.">config.usage.showpicon</item>
 		<item level="0" text="Show InfoBar lite *" description="Set the screen type you get on pressing 'OK' when the info bar shows to 2nd infobar Lite or event info.">config.usage.show_infobar_lite</item>
-		<item level="0" text="Enable InfoBar fade-out" description="Fade the InfoBar on hide." requires="CanChangeOsdAlpha">config.usage.show_infobar_do_dimming</item>
-		<item level="0" text="InfoBar fade-out speed" description="Control the InfoBar fading speed." requires="CanChangeOsdAlpha">config.usage.show_infobar_dimming_speed</item>
+		<if requires="CanChangeOsdAlpha">
+			<item level="0" text="Enable InfoBar fade-out" description="Fade the InfoBar on hide.">config.usage.show_infobar_do_dimming</item>
+			<item level="0" text="InfoBar fade-out speed" description="Control the InfoBar fading speed." conditional="config.usage.show_infobar_do_dimming.value">config.usage.show_infobar_dimming_speed</item>
+		</if>
 		<item level="0" text="InfoBar EPG mode" description="Select how to activate the Quick EPG mode." requires="InfoBarEpg">config.plisettings.InfoBarEpg_mode</item>
 		<item level="0" text="Time delay of the shutdown messages" description="Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc.">config.usage.shutdown_msgbox_timeout</item>
 		<item level="1" text="Show job tasks in Extension Menu" description="With this option you can hide Job Tasks from the Extension Menu screen (BLUE button press).">config.usage.jobtaksextensions</item>

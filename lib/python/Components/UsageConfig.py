@@ -9,7 +9,7 @@ from enigma import Misc_Options, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIG
 
 from keyids import KEYIDS
 from skin import getcomponentTemplateNames, parameters, domScreens
-from Components.config import ConfigBoolean, ConfigClock, ConfigDirectory, ConfigDictionarySet, ConfigFloat, ConfigInteger, ConfigIP, ConfigLocations, ConfigNumber, ConfigSelectionNumber, ConfigPassword, ConfigSequence, ConfigSelection, ConfigSet, ConfigSlider, ConfigSubsection, ConfigText, ConfigYesNo, NoSave, config, configfile
+from Components.config import ConfigBoolean, ConfigClock, ConfigDictionarySet, ConfigDirectory, ConfigFloat, ConfigInteger, ConfigIP, ConfigLocations, ConfigNumber, ConfigPassword, ConfigSelection, ConfigSelectionNumber, ConfigSequence, ConfigSet, ConfigSlider, ConfigSubDict, ConfigSubsection, ConfigText, ConfigYesNo, NoSave, config, configfile
 from Components.Harddisk import harddiskmanager
 from Components.International import international
 from Components.NimManager import nimmanager
@@ -140,6 +140,12 @@ def InitUsageConfig():
 	])
 	config.usage.multibouquet = ConfigYesNo(default=True)
 	config.usage.numberZapDigits = ConfigSelection(default=4, choices=[(x, ngettext("%d Digit", "%d Digits", x) % x) for x in range(1, 6)])
+	config.usage.numberZapDisplay = ConfigSelection(default="number", choices=[
+		("number", _("Number only")),
+		("name", _("Number and name")),
+		("picon", _("Number and picon")),
+		("both", _("Number, name and picon"))
+	])
 	config.usage.numberZapTimeoutFirst = ConfigSelection(default=3000, choices=[(x, ngettext("%.2f Second", "%.2f Seconds", x / 1000.0) % (x / 1000.0)) for x in range(500, 5001, 250)])
 	config.usage.numberZapTimeoutOther = ConfigSelection(default=1000, choices=[(x, ngettext("%.2f Second", "%.2f Seconds", x / 1000.0) % (x / 1000.0)) for x in range(0, 5001, 250)])
 	config.usage.numberZapTimeouts = ConfigSelection(default="default", choices=[
