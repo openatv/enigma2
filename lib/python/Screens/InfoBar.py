@@ -57,38 +57,36 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 			self.skinName = "InfoBarLite"
 
 		self["actions"] = HelpableActionMap(self, "InfobarActions", {
-			"showMovies": (self.showMovies, _("Play recorded movies")),
-			"showRadio": (self.showRadioButton, _("Show the radio player")),
-			"showTv": (self.showTvButton, _("Show the tv player")),
-			"toogleTvRadio": (self.toogleTvRadio, _("Toggles between tv and radio")),
-			"openBouquetList": (self.openBouquetList, _("Open bouquetlist")),
-			"showMediaPlayer": (self.showMediaPlayer, _("Show the media player")),
-			"openTimerList": (self.openTimerList, _("Open Timerlist")),
-			"openAutoTimerList": (self.openAutoTimerList, _("Open AutoTimerlist")),
+			"showMovies": (self.showMovies, _("Open Movie Selection")),
+			"showRadio": (self.showRadioButton, _("Open Radio bouquet selection")),
+			"showTv": (self.showTvButton, _("Open TV bouquet selection")),
+			"toogleTvRadio": (self.toogleTvRadio, _("Toggles between TV and Radio")),
+			"openBouquetList": (self.openBouquetList, _("Open Bouquet selection")),
+			"showMediaPlayer": (self.showMediaPlayer, _("Open Media Player")),
+			"openTimerList": (self.openTimerList, _("Open RecordTimer Overview")),
+			"openAutoTimerList": (self.openAutoTimerList, _("Open AutoTimer Overview")),
 			"openEPGSearch": (self.openEPGSearch, _("Open EPGSearch")),
 			"openIMDB": (self.openIMDB, _("Open IMDb")),
-			"showMC": (self.showMediaCenter, _("Show the media center")),
-			"openSleepTimer": (self.openSleepTimer, _("Show the SleepTimer")),
-			"openSchedulerList": (self.openSchedulerList, _("Show the Scheduler")),
+			"showMC": (self.showMediaCenter, _("Open MediaCenter")),
+			"openSleepTimer": (self.openSleepTimer, _("Open SleepTimer Settings")),
+			"openSchedulerList": (self.openSchedulerList, _("Open Scheduler Overview")),
 			"ZoomInOut": (self.ZoomInOut, _("Zoom In/Out TV")),
 			"ZoomOff": (self.ZoomOff, _("Zoom Off")),
 			"showWWW": (self.showPORTAL, _("Open MediaStream")),
-			"showSetup": (self.showSetup, _("Show setup")),
-			"showInformation": (self.showInformation, _("Show Information")),
-			"showFormat": (self.showFormat, _("Show Format Setup")),
-			"showPluginBrowser": (self.showPluginBrowser, _("Show the plugins")),
-			"showBoxPortal": (self.showBoxPortal, _("Show Box Portal")),
-			"openSimpleUnmount": (self.openSimpleUnmount, _("Simple umounter mass storage device.")),
+			"showSetup": (self.showSetup, _("Open Setup menu")),
+			"showInformation": (self.showInformation, _("Open Information menu")),
+			"showFormat": (self.showFormat, _("Open VideoMode")),
+			"showPluginBrowser": (self.showPluginBrowser, _("Open Plugin Browser")),
+			"showBoxPortal": (self.showBoxPortal, _("Open Box Portal")),
+			"openSimpleUnmount": (self.openSimpleUnmount, _("Open Simple Umount")),
 			}, prio=2, description=_("Live TV Actions"))
 
 		self["key_red"] = Label()
 		self["key_yellow"] = Label()
 		self["key_blue"] = Label()
 		self["key_green"] = Label()
-
 		self.allowPiP = True
 		self.radioTV = 0
-
 		for x in InfoBarBase, InfoBarShowHide, \
 				InfoBarNumberZap, InfoBarChannelSelection, InfoBarMenu, InfoBarEPG, InfoBarRdsDecoder, \
 				InfoBarInstantRecord, InfoBarAudioSelection, InfoBarRedButton, InfoBarTimerButton, InfoBarUnhandledKey, InfoBarLongKeyDetection, InfoBarResolutionSelection, InfoBarVmodeButton, \
@@ -97,15 +95,12 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 				InfoBarTeletextPlugin, InfoBarExtensions, InfoBarPiP, InfoBarSubtitleSupport, InfoBarJobman, InfoBarZoom, InfoBarSleepTimer, InfoBarOpenOnTopHelper, InfoBarHandleBsod, \
 				InfoBarHdmi, InfoBarPlugins, InfoBarServiceErrorPopupSupport, InfoBarButtonSetup:
 			x.__init__(self)
-
-		self.helpList.append((self["actions"], "InfobarActions", [("showMovies", _("Watch recordings"))]))
-		self.helpList.append((self["actions"], "InfobarActions", [("showRadio", _("Listen to the radio"))]))
-
+		# self.helpList.append((self["actions"], "InfobarActions", [("showMovies", _("Open Movie Selection"))]))
+		# self.helpList.append((self["actions"], "InfobarActions", [("showRadio", _("Open Radio bouquet selection"))]))
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
-				enigma.iPlayableService.evUpdatedEventInfo: self.__eventInfoChanged,
-				enigma.iPlayableService.evUpdateTags: self.__eventInfoChanged
-			})
-
+			enigma.iPlayableService.evUpdatedEventInfo: self.__eventInfoChanged,
+			enigma.iPlayableService.evUpdateTags: self.__eventInfoChanged
+		})
 		self.current_begin_time = 0
 		assert InfoBar.instance is None, "class InfoBar is a singleton class and just one instance of this class is allowed!"
 		InfoBar.instance = self
@@ -510,8 +505,8 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 		self["statusicon"] = MultiPixmap()
 
 		self["actions"] = HelpableActionMap(self, "MoviePlayerActions", {
-			"leavePlayer": (self.leavePlayer, _("leave movie player")),
-			"leavePlayerOnExit": (self.leavePlayerOnExit, _("leave movie player"))
+			"leavePlayer": (self.leavePlayer, _("Leave movie player")),
+			"leavePlayerOnExit": (self.leavePlayerOnExit, _("Leave movie player"))
 		}, prio=0, description=_("Movie Player Actions"))
 
 		self.allowPiP = True
