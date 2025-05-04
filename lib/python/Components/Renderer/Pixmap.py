@@ -21,7 +21,7 @@ class Pixmap(Renderer):
 			else:
 				attributes.append((attrib, value))
 		self.skinAttributes = attributes
-		Renderer.applySkin(self, desktop, parent)
+		return Renderer.applySkin(self, desktop, parent)
 
 	def postWidgetCreate(self, instance):
 		self.changed((self.CHANGED_DEFAULT,))
