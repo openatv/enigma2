@@ -1226,7 +1226,7 @@ class NumberZap(Screen):
 		self["service_summary"].setText(self["servicename"].getText())
 		if config.usage.numzappicon.value:
 			self.showPicon()
-		if len(self.numberString) >= int(config.usage.maxchannelnumlen.value):
+		if len(self.numberString) >= config.usage.numberZapDigits.value:
 			if self.Timer.isActive():
 				self.Timer.stop()
 			self.Timer.start(100, True)
@@ -1271,7 +1271,7 @@ class NumberZap(Screen):
 		}, prio=0, description=_("Service Selection/Zap Actions"))
 		self.Timer = eTimer()
 		self.Timer.callback.append(self.keyOK)
-		if config.usage.maxchannelnumlen.value == "1":
+		if config.usage.numberZapDigits.value == 1:
 			self.Timer.start(100, True)
 		elif config.usage.numzaptimeoutmode.value != "off":
 			if config.usage.numzaptimeoutmode.value == "standard":

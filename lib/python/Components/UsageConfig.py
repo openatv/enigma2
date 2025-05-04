@@ -139,7 +139,7 @@ def InitUsageConfig():
 		("off", _("Off"))
 	])
 	config.usage.multibouquet = ConfigYesNo(default=True)
-	config.usage.maxchannelnumlen = ConfigSelection(default="4", choices=[(str(x), ngettext("%d Digit", "%d Digits", x) % x) for x in range(1, 6)])
+	config.usage.numberZapDigits = ConfigSelection(default=4, choices=[(x, ngettext("%d Digit", "%d Digits", x) % x) for x in range(1, 6)])
 	config.usage.numzaptimeoutmode = ConfigSelection(default="standard", choices=[
 		("standard", _("Standard")),
 		("userdefined", _("User defined")),

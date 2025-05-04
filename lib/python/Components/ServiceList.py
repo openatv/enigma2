@@ -237,7 +237,7 @@ class ServiceListTemplateParser(TemplateParser):
 					serviceNumberObjects = selectedtemplate.findall(".//text[@value='Number']")
 					for serviceNumberObject in serviceNumberObjects:
 						serviceNumberFont = int(serviceNumberObject.get("font"))
-						serviceNumberWidth = config.usage.alternative_number_mode.value and getTextBoundarySize(self.instance, self.fonts.get(serviceNumberFont), self.instance.size(), "0" * int(config.usage.maxchannelnumlen.value)).width() or getTextBoundarySize(self.instance, self.fonts.get(serviceNumberFont), self.instance.size(), "00000").width()
+						serviceNumberWidth = config.usage.alternative_number_mode.value and getTextBoundarySize(self.instance, self.fonts.get(serviceNumberFont), self.instance.size(), "0" * config.usage.numberZapDigits.value).width() or getTextBoundarySize(self.instance, self.fonts.get(serviceNumberFont), self.instance.size(), "00000").width()
 						size = serviceNumberObject.attrib["size"].split(",")
 						if int(size[0]) < serviceNumberWidth:
 							serviceNumberObject.attrib["size"] = f"{serviceNumberWidth},{size[1]}"
@@ -810,7 +810,7 @@ class ServiceListLegacy(ServiceListBase):
 			channelNumberWidth = 0
 			channelNumberSpace = self.listMarginLeft
 		else:
-			channelNumberWidth = config.usage.alternative_number_mode.value and getTextBoundarySize(self.instance, self.ServiceNumberFont, self.instance.size(), "0" * int(config.usage.maxchannelnumlen.value)).width() or getTextBoundarySize(self.instance, self.ServiceNumberFont, self.instance.size(), "00000").width()
+			channelNumberWidth = config.usage.alternative_number_mode.value and getTextBoundarySize(self.instance, self.ServiceNumberFont, self.instance.size(), "0" * config.usage.numberZapDigits.value).width() or getTextBoundarySize(self.instance, self.ServiceNumberFont, self.instance.size(), "00000").width()
 			channelNumberSpace = self.fieldMargins + self.listMarginLeft
 
 		numberHeight = self.ItemHeight // 2 if twoLines and config.usage.servicelist_servicenumber_valign.value == "1" else self.ItemHeight
