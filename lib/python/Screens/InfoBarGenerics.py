@@ -3528,7 +3528,7 @@ class InfoBarPiP:
 		self.lastPiPService = None
 		if BoxInfo.getItem("PIPAvailable") and isinstance(self, InfoBarEPG):
 			self["PiPActions"] = HelpableActionMap(self, "InfobarPiPActions", {
-				"activatePiP": (self.activePiP, pipHelp()),
+				"activatePiP": (self.activePiP, pipHelp),
 			}, prio=0, description=_("Picture in Picture Actions"))
 			if self.allowPiP:
 				self.addExtension((self.getShowHideName, self.showPiP, lambda: True), "blue")
