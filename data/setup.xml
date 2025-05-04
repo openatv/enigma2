@@ -627,12 +627,49 @@
 		<item level="2" text="Behavior when a movie is stopped" description="Configure the behavior when movie playback is manually stopped.">config.usage.on_movie_stop</item>
 		<item level="2" text="Action at end of media" description="Configure the behavior when reaching the end of a movie, during movie playback.">config.usage.on_movie_eof</item>
 		<item level="2" text="Display message before playing next movie" description="When enabled, a pop up message will be shown when a movie has finished and the next one will start.">config.usage.next_movie_msg</item>
+		<item level="1" text="Show InfoBar on skip forward/backward" description="Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback.">config.usage.show_infobar_on_skip</item>
+		<item level="1" text="Show PVR status in MoviePlayer InfoBar" description="This option moves the PVR status display from a separate window into the MoviePlayer InfoBar.">config.usage.movieplayer_pvrstate</item>
 		<item level="2" text="Behavior of 'pause' when paused" description="Configure the behavior of the 'pause' key when movie playback is already paused.">config.seek.on_pause</item>
+		<item level="1" text="Show persistent InfoBar while paused" description="Select 'Yes' the keep the InfoBar displayed, with no timeout, while media playback is paused.">config.usage.show_infobar_locked_on_pause</item>
+		<item level="2" text="SeekBar activation" description="Select SeekBar to be activated by arrow L/R (long) or &lt;&lt; &gt;&gt; (long).">config.seek.baractivation</item>
+		<item level="2" text="Arrow skip mode" description="Select how the arrow ('UP', 'DOWN', 'LEFT', and 'RIGHT') buttons will act during seek actions.">config.seek.arrowSkipMode</item>
+		<if conditional="config.seek.arrowSkipMode.value == 's'">
+			<item level="2" text="Skip sensibility (Horizontal)" description="Set the LEFT/RIGHT button skip percentage for the SeekBar.">config.seek.sensibilityHorizontal</item>
+			<item level="2" text="Skip sensibility (Vertical)" description="Set the UP/DOWN button skip percentage for the SeekBar.">config.seek.sensibilityVertical</item>
+		<elif conditional="config.seek.arrowSkipMode.value == 'd'" />
+			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button." data="UP">config.seek.defined["UP"]</item>
+			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button." data="LEFT">config.seek.defined["LEFT"]</item>
+			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button." data="RIGHT">config.seek.defined["RIGHT"]</item>
+			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button." data="DOWN">config.seek.defined["DOWN"]</item>
+		</if>
+		<item level="2" text="Numeric skip mode" description="Select how the number buttons will act during seek actions.">config.seek.numberSkipMode</item>
+		<if conditional="config.seek.numberSkipMode.value == 's'">
+			<item level="2" text="Skip time for '%s'/'%s' buttons" description="Set the skip time interval for the '%s'/'%s' buttons." data="1,3">config.seek.defined[13]</item>
+			<item level="2" text="Skip time for '%s'/'%s' buttons" description="Set the skip time interval for the '%s'/'%s' buttons." data="4,6">config.seek.defined[46]</item>
+			<item level="2" text="Skip time for '%s'/'%s' buttons" description="Set the skip time interval for the '%s'/'%s' buttons." data="7,9">config.seek.defined[79]</item>
+		<elif conditional="config.seek.numberSkipMode.value == 'd'" />
+			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button." data="1">config.seek.defined[1]</item>
+			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button." data="2">config.seek.defined[2]</item>
+			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button." data="3">config.seek.defined[3]</item>
+			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button." data="4">config.seek.defined[4]</item>
+			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button." data="5">config.seek.defined[5]</item>
+			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button." data="6">config.seek.defined[6]</item>
+			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button." data="7">config.seek.defined[7]</item>
+			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button." data="8">config.seek.defined[8]</item>
+			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button." data="9">config.seek.defined[9]</item>
+			<item level="2" text="Skip time for '%s' button" description="Set the skip time interval for the '%s' button." data="0">config.seek.defined[0]</item>
+		</if>
+		<item level="2" text="CutList skip time for '%s' button" description="Set the skip time interval for the '%s' button." data="UP">config.seek.defined["CUT_UP"]</item>
+		<item level="2" text="CutList skip time for '%s' button" description="Set the skip time interval for the '%s' button." data="LEFT">config.seek.defined["CUT_LEFT"]</item>
+		<item level="2" text="CutList skip time for '%s' button" description="Set the skip time interval for the '%s' button." data="RIGHT">config.seek.defined["CUT_RIGHT"]</item>
+		<item level="2" text="CutList skip time for '%s' button" description="Set the skip time interval for the '%s' button." data="DOWN">config.seek.defined["CUT_DOWN"]</item>
+		<item level="2" text="CutList skip time for '%s'/'%s' buttons" description="Set the CutList Editor skip time interval for the '%s'/'%s' buttons." data="1,3">config.seek.defined["CUT_13"]</item>
+		<item level="2" text="CutList skip time for '%s'/'%s' buttons" description="Set the CutList Editor skip time interval for the '%s'/'%s' buttons." data="4,6">config.seek.defined["CUT_46"]</item>
+		<item level="2" text="CutList skip time for '%s'/'%s' buttons" description="Set the CutList Editor skip time interval for the '%s'/'%s' buttons." data="7,9">config.seek.defined["CUT_79"]</item>
+		<item level="2" text="Seekbar sensibility" description="Set the jump-size of the seekbar.">config.seek.sensibility</item>
 		<item level="2" text="Custom skip time for '1'/'3' buttons" description="Configure the skip time interval for the '1'/'3' buttons.">config.seek.selfdefined_13</item>
 		<item level="2" text="Custom skip time for '4'/'6' buttons" description="Configure the skip time interval for the '4'/'6' buttons.">config.seek.selfdefined_46</item>
 		<item level="2" text="Custom skip time for '7'/'9' buttons" description="Configure the skip time interval for the '7'/'9' buttons.">config.seek.selfdefined_79</item>
-		<item level="2" text="Seekbar activation" description="Select seekbar to be activated by arrow L/R (long) or &lt;&lt; &gt;&gt; (long).">config.seek.baractivation</item>
-		<item level="2" text="Seekbar sensibility" description="Set the jump-size of the seekbar.">config.seek.sensibility</item>
 		<item level="2" text="Fast forward speeds" description="Configure the possible fast forward speeds.">config.seek.speeds_forward</item>
 		<item level="2" text="Rewind speeds" description="Configure the possible rewind speeds.">config.seek.speeds_backward</item>
 		<item level="2" text="Slow motion speeds" description="Configure the slow motion speeds.">config.seek.speeds_slowmotion</item>

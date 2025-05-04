@@ -1433,6 +1433,43 @@ def InitUsageConfig():
 		("leftright", _("Long Left/Right")),
 		("ffrw", _("Long << / >>"))
 	])
+	config.seek.sensibilityHorizontal = ConfigSelection(default=1.0, choices=[(x, f"{x:.1f}%") for x in [0.1, 0.2, 0.5, 1.0, 2.0, 5.0, 10.0]])
+	config.seek.sensibilityVertical = ConfigSelection(default=2.0, choices=[(x, f"{x:.1f}%") for x in [0.1, 0.2, 0.5, 1.0, 2.0, 5.0, 10.0]])
+	config.seek.arrowSkipMode = ConfigSelection(default="t", choices=[
+		("t", _("Traditional")),
+		("s", _("Symmetrical skips")),
+		("d", _("Defined skips"))
+	])
+	config.seek.numberSkipMode = ConfigSelection(default="s", choices=[
+		("s", _("Symmetrical skips")),
+		("d", _("Defined skips")),
+		("p", _("Percentage skips"))
+	])
+	config.seek.defined = ConfigSubDict()
+	config.seek.defined[13] = ConfigSelectionNumber(default=15, min=1, max=300, stepwidth=1, wraparound=True)
+	config.seek.defined[46] = ConfigSelectionNumber(default=60, min=1, max=600, stepwidth=1, wraparound=True)
+	config.seek.defined[79] = ConfigSelectionNumber(default=300, min=1, max=1200, stepwidth=1, wraparound=True)
+	config.seek.defined[1] = ConfigSelectionNumber(default=-15, min=-1800, max=1800, stepwidth=1, wraparound=True)
+	config.seek.defined[2] = ConfigSelectionNumber(default=10, min=-1800, max=1800, stepwidth=1, wraparound=True)
+	config.seek.defined[3] = ConfigSelectionNumber(default=15, min=-1800, max=1800, stepwidth=1, wraparound=True)
+	config.seek.defined[4] = ConfigSelectionNumber(default=-60, min=-1800, max=1800, stepwidth=1, wraparound=True)
+	config.seek.defined[5] = ConfigSelectionNumber(default=30, min=-1800, max=1800, stepwidth=1, wraparound=True)
+	config.seek.defined[6] = ConfigSelectionNumber(default=60, min=-1800, max=1800, stepwidth=1, wraparound=True)
+	config.seek.defined[7] = ConfigSelectionNumber(default=-300, min=-1800, max=1800, stepwidth=1, wraparound=True)
+	config.seek.defined[8] = ConfigSelectionNumber(default=180, min=-1800, max=1800, stepwidth=1, wraparound=True)
+	config.seek.defined[9] = ConfigSelectionNumber(default=300, min=-1800, max=1800, stepwidth=1, wraparound=True)
+	config.seek.defined[0] = ConfigSelectionNumber(default=300, min=-1800, max=1800, stepwidth=1, wraparound=True)
+	config.seek.defined["UP"] = ConfigSelectionNumber(default=180, min=-1800, max=1800, stepwidth=1, wraparound=True)
+	config.seek.defined["LEFT"] = ConfigSelectionNumber(default=-10, min=-1800, max=1800, stepwidth=1, wraparound=True)
+	config.seek.defined["RIGHT"] = ConfigSelectionNumber(default=15, min=-1800, max=1800, stepwidth=1, wraparound=True)
+	config.seek.defined["DOWN"] = ConfigSelectionNumber(default=-120, min=-1800, max=1800, stepwidth=1, wraparound=True)
+	config.seek.defined["CUT_13"] = ConfigSelectionNumber(default=10, min=-1800, max=1800, stepwidth=1, wraparound=True)
+	config.seek.defined["CUT_46"] = ConfigSelectionNumber(default=30, min=-1800, max=1800, stepwidth=1, wraparound=True)
+	config.seek.defined["CUT_79"] = ConfigSelectionNumber(default=90, min=-1800, max=1800, stepwidth=1, wraparound=True)
+	config.seek.defined["CUT_UP"] = ConfigSelectionNumber(default=300, min=-600, max=600, stepwidth=1, wraparound=True)
+	config.seek.defined["CUT_LEFT"] = ConfigSelectionNumber(default=-1, min=-600, max=600, stepwidth=1, wraparound=True)
+	config.seek.defined["CUT_RIGHT"] = ConfigSelectionNumber(default=1, min=-600, max=600, stepwidth=1, wraparound=True)
+	config.seek.defined["CUT_DOWN"] = ConfigSelectionNumber(default=-300, min=-600, max=600, stepwidth=1, wraparound=True)
 	config.seek.sensibility = ConfigSelectionNumber(min=1, max=10, stepwidth=1, default=10, wraparound=True)
 	config.seek.selfdefined_13 = ConfigSelectionNumber(min=1, max=300, stepwidth=1, default=15, wraparound=True)
 	config.seek.selfdefined_46 = ConfigSelectionNumber(min=1, max=600, stepwidth=1, default=60, wraparound=True)
@@ -1441,16 +1478,13 @@ def InitUsageConfig():
 	config.seek.speeds_forward = ConfigSet(default=[2, 4, 8, 16, 32, 64, 128], choices=[2, 4, 6, 8, 12, 16, 24, 32, 48, 64, 96, 128])
 	config.seek.speeds_backward = ConfigSet(default=[2, 4, 8, 16, 32, 64, 128], choices=[1, 2, 4, 6, 8, 12, 16, 24, 32, 48, 64, 96, 128])
 	config.seek.speeds_slowmotion = ConfigSet(default=[2, 4, 8], choices=[2, 4, 6, 8, 12, 16, 25])
-
 	config.seek.enter_forward = ConfigSelection(default="2", choices=["2", "4", "6", "8", "12", "16", "24", "32", "48", "64", "96", "128"])
 	config.seek.enter_backward = ConfigSelection(default="1", choices=["1", "2", "4", "6", "8", "12", "16", "24", "32", "48", "64", "96", "128"])
-
 	config.seek.on_pause = ConfigSelection(default="play", choices=[
 		("play", _("Play")),
 		("step", _("Single step (GOP)")),
 		("last", _("Last speed"))
 	])
-
 	config.seek.withjumps = ConfigYesNo(default=True)
 	config.seek.withjumps_after_ff_speed = ConfigSelection(default="4", choices=[
 		("1", _("Never")),
