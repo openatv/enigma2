@@ -300,6 +300,7 @@ class VolumeAdjust:
 		else:
 			VolumeAdjust.instance = self
 			self.session = session
+			self.serviceReference = None
 			self.volumeControl = eDVBVolumecontrol.getInstance()
 			config.volumeAdjust = ConfigSubsection()
 			config.volumeAdjust.adjustMode = ConfigSelection(default=self.MODE_DISABLED, choices=[
