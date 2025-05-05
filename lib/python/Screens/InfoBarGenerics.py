@@ -1336,12 +1336,7 @@ class InfoBarSeek:
 		self.setSeekState(self.SEEK_STATE_PAUSE)
 
 	def pauseServiceYellow(self):
-		# if config.plugins.infopanel_yellowkey.list.value == "0":
 		self.audioSelection()
-		# elif config.plugins.infopanel_yellowkey.list.value == "2":
-		# 	ToggleVideo()
-		# else:
-		# 	self.playpauseService()
 
 	def unPauseService(self):
 		BoxInfo.setMutableItem("StatePlayPause", False)
@@ -3951,37 +3946,6 @@ class InfoBarAudioSelection:
 	def yellow_key(self):
 		from Screens.AudioSelection import AudioSelection
 		self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
-		# if not hasattr(self, "LongButtonPressed"):
-		# 	self.LongButtonPressed = False
-		# global AUDIO
-		# if not self.LongButtonPressed:
-		# 	if config.plugins.infopanel_yellowkey.list.value == "0":
-		# 		from Screens.AudioSelection import AudioSelection
-		# 		self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
-		# 	elif config.plugins.infopanel_yellowkey.list.value == "2":
-		# 		AUDIO = True
-		# 		ToggleVideo()
-		# 	elif config.plugins.infopanel_yellowkey.list.value == "3":
-		# 		self.startTeletext()
-		# 	else:
-		# 		try:
-		# 			self.startTimeshift()
-		# 		except Exception:
-		# 			pass
-		# else:
-		# 	if config.plugins.infopanel_yellowkey.listLong.value == "0":
-		# 		from Screens.AudioSelection import AudioSelection
-		# 		self.session.openWithCallback(self.audioSelected, AudioSelection, infobar=self)
-		# 	elif config.plugins.infopanel_yellowkey.listLong.value == "2":
-		# 		AUDIO = True
-		# 		ToggleVideo()
-		# 	elif config.plugins.infopanel_yellowkey.listLong.value == "3":
-		# 		self.startTeletext()
-		# 	else:
-		# 		try:
-		# 			self.startTimeshift()
-		# 		except Exception:
-		# 			pass
 
 	def audioSelection(self):
 		from Screens.AudioSelection import AudioSelection

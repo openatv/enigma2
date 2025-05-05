@@ -251,7 +251,7 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		else:
 			self.session.open(MoviePlayer, service, slist=self.servicelist, lastservice=ref, fromMovieSelection=fromMovieSelection)
 
-	def showMediaPlayer(self):
+	def showMediaPlayer(self):  # Used by BoxPortal.py
 		try:
 			from Plugins.Extensions.MediaPlayer.plugin import MediaPlayer
 			self.session.open(MediaPlayer)
