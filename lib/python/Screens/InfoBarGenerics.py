@@ -65,7 +65,7 @@ from Tools.Directories import SCOPE_CONFIG, SCOPE_SKINS, fileReadLines, fileWrit
 MODULE_NAME = __name__.split(".")[-1]
 
 AUDIO = False
-seek_withjumps_muted = False
+# seek_withjumps_muted = False
 jump_pts_adder = 0
 jump_last_pts = None
 jump_last_pos = None
@@ -1209,11 +1209,11 @@ class InfoBarSeek:
 			self.activityTimer.start(int(config.seek.withjumps_repeat_ms.getValue()), False)
 			for c in self.onPlayStateChanged:
 				c(self.seekstate)
-		global seek_withjumps_muted
-		if seek_withjumps_muted and eDVBVolumecontrol.getInstance().isMuted(True):
-			print("[InfoBarGenerics] STILL MUTED AFTER FFWD/FBACK !!!!!!!! so we unMute")
-			seek_withjumps_muted = False
-			eDVBVolumecontrol.getInstance().volumeUnMute()
+		# global seek_withjumps_muted
+		# if seek_withjumps_muted and eDVBVolumecontrol.getInstance().isMuted(True):
+		# 	print("[InfoBarGenerics] STILL MUTED AFTER FFWD/FBACK !!!!!!!! so we unMute")
+		# 	seek_withjumps_muted = False
+		# 	eDVBVolumecontrol.getInstance().volumeUnMute()
 
 	def doActivityTimer(self):
 		if self.isSeekable():
@@ -1313,8 +1313,8 @@ class InfoBarSeek:
 		if self.seekAction != 0:
 			self.seekAction = 0
 			self.doPause(False)
-			global seek_withjumps_muted
-			seek_withjumps_muted = False
+			# global seek_withjumps_muted
+			# seek_withjumps_muted = False
 			return
 		if self.seekstate == self.SEEK_STATE_PLAY:
 			self.pauseService()
@@ -1432,8 +1432,8 @@ class InfoBarSeek:
 		if self.seekAction == 0:
 			self.LastseekAction = False
 			self.doPause(False)
-			global seek_withjumps_muted
-			seek_withjumps_muted = False
+			# global seek_withjumps_muted
+			# seek_withjumps_muted = False
 			self.setSeekState(self.SEEK_STATE_PLAY)
 
 	def isServiceTypeTS(self):
@@ -1460,8 +1460,8 @@ class InfoBarSeek:
 	def seekFwd_new(self):
 		self.LastseekAction = True
 		self.doPause(True)
-		global seek_withjumps_muted
-		seek_withjumps_muted = True
+		# global seek_withjumps_muted
+		# seek_withjumps_muted = True
 		if self.seekAction >= 0:
 			self.seekAction = self.getHigher(abs(self.seekAction), config.seek.speeds_forward.value) or config.seek.speeds_forward.value[-1]
 		else:
@@ -1474,8 +1474,8 @@ class InfoBarSeek:
 	def seekBack_new(self):
 		self.LastseekAction = True
 		self.doPause(True)
-		global seek_withjumps_muted
-		seek_withjumps_muted = True
+		# global seek_withjumps_muted
+		# seek_withjumps_muted = True
 		if self.seekAction <= 0:
 			self.seekAction = -self.getHigher(abs(self.seekAction), config.seek.speeds_backward.value) or -config.seek.speeds_backward.value[-1]
 		else:
@@ -1642,11 +1642,11 @@ class InfoBarSeek:
 	def __evEOF(self):
 		if self.seekstate == self.SEEK_STATE_EOF:
 			return
-		global seek_withjumps_muted
-		if seek_withjumps_muted and eDVBVolumecontrol.getInstance().isMuted():
-			print("[InfoBarGenerics] STILL MUTED AFTER FFWD/FBACK !!!!!!!! so we unMute")
-			seek_withjumps_muted = False
-			eDVBVolumecontrol.getInstance().volumeUnMute()
+		# global seek_withjumps_muted
+		# if seek_withjumps_muted and eDVBVolumecontrol.getInstance().isMuted():
+		# 	print("[InfoBarGenerics] STILL MUTED AFTER FFWD/FBACK !!!!!!!! so we unMute")
+		# 	seek_withjumps_muted = False
+		# 	eDVBVolumecontrol.getInstance().volumeUnMute()
 		# If we are seeking forward, we try to end up ~1s before the end, and pause there.
 		seekstate = self.seekstate
 		if self.seekstate != self.SEEK_STATE_PAUSE:
