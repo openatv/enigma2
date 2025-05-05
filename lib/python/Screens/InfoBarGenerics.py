@@ -5099,53 +5099,49 @@ class InfoBarOpenOnTopHelper:
 
 
 # ################################################################
-# Handle bsod (python crashes) and show information after crash. #
+# Handle BSOD (python crashes) and show information after crash. #
 # ################################################################
 #
 class InfoBarHandleBsod:
 	def __init__(self):
-		self.lastBsod = 0
-		self.infoBsodIsShown = False
-		self.lastestBsodWarning = False
-		self.checkBsodTimer = eTimer()
-		self.checkBsodTimer.callback.append(self.checkBsodCallback)
-		self.checkBsodTimer.start(1000, True)
+		self.bsodCount = 0
+		self.bsodIsShown = False
+		self.bsodLastWarning = False
+		self.bsodTimer = eTimer()
+		self.bsodTimer.callback.append(self.bsodTimeout)
+		self.bsodTimer.start(1000, True)
 		config.crash.bsodpython_ready.setValue(True)
 
-	def checkBsodCallback(self):
-		self.checkBsodTimer.start(1000, True)
-		if Screens.Standby.inStandby or self.infoBsodIsShown:
-			return
-		bsodcnt = getBsodCounter()
-		if config.crash.bsodpython.value and self.lastBsod < bsodcnt:
-			maxbs = int(config.crash.bsodmax.value) or 100
-			writelog = bsodcnt == 1 or not bsodcnt > int(config.crash.bsodhide.value) or bsodcnt >= maxbs
-			txt = _("Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n") % bsodcnt
-			txt += _("(Attention: There will be a restart after %d crashes.)") % maxbs
-			if writelog:
-				txt += "\n" + "-" * 80 + "\n"
-				txt += _("A crash log was %s created in '%s'") % ((_("not"), "")[int(writelog)], config.crash.debug_path.value)
-			# if not writelog:
-			# 	txt += "\n" + "-"*80 + "\n"
-			# 	txt += _("(It is set that '%s' crash logs are displayed and written.\nInfo: It will always write the first, last but one and lastest crash log.)") % str(int(config.crash.bsodhide.value) or _("Never"))
-			if bsodcnt >= maxbs:
-				txt += "\n" + "-" * 80 + "\n"
-				txt += _("Warning: This is the last crash before an automatic restart is performed.\n")
-				txt += _("Should the crash counter be reset to prevent a restart?")
-				self.lastestBsodWarning = True
-			try:
-				self.session.openWithCallback(self.infoBsodCallback, MessageBox, txt, type=MessageBox.TYPE_YESNO if self.lastestBsodWarning else MessageBox.TYPE_ERROR, default=False, close_on_any_key=not self.lastestBsodWarning, typeIcon=MessageBox.TYPE_ERROR)
-				self.infoBsodIsShown = True
-			except Exception as e:
-				# print("[InfoBarHandleBsod] Exception:", e)
-				self.checkBsodTimer.stop()
-				self.checkBsodTimer.start(5000, True)
-				self.infoBsodCallback(False)
-				raise
-		self.lastBsod = bsodcnt
+	def bsodTimeout(self):
+		def bsodTimeoutCallback(answer):
+			if answer and self.bsodLastWarning:
+				resetBsodCounter()
+			self.bsodIsShown = False
+			self.bsodLastWarning = False
 
-	def infoBsodCallback(self, ret):
-		if ret and self.lastestBsodWarning:
-			resetBsodCounter()
-		self.infoBsodIsShown = False
-		self.lastestBsodWarning = False
+		self.bsodTimer.start(1000, True)
+		if not Screens.Standby.inStandby and not self.bsodIsShown:
+			bsodOccurences = getBsodCounter()
+			if config.crash.bsodpython.value and self.bsodCount < bsodOccurences:
+				bsodMax = int(config.crash.bsodmax.value) or 100
+				writeLog = bsodOccurences == 1 or not bsodOccurences > int(config.crash.bsodhide.value) or bsodOccurences >= bsodMax
+				crashText = _("Your Receiver has a Software problem detected. Since the last reboot it has occurred %d times.\n") % bsodOccurences
+				crashText += _("(Attention: There will be a restart after %d crashes.)") % bsodMax
+				if writeLog:
+					crashText += f"\n{"-" * 80}\n"
+					crashText += _("A crash log was %s created in '%s'") % ((_("not"), "")[int(writeLog)], config.crash.debug_path.value)
+				if bsodOccurences >= bsodMax:
+					crashText += f"\n{"-" * 80}\n"
+					crashText += _("Warning: This is the last crash before an automatic restart is performed.\n")
+					crashText += _("Should the crash counter be reset to prevent a restart?")
+					self.bsodLastWarning = True
+				try:
+					self.session.openWithCallback(bsodTimeoutCallback, MessageBox, crashText, type=MessageBox.TYPE_YESNO if self.bsodLastWarning else MessageBox.TYPE_ERROR, default=False, close_on_any_key=not self.bsodLastWarning, typeIcon=MessageBox.TYPE_ERROR)
+					self.bsodIsShown = True
+				except Exception as err:
+					print(f"[InfoBarGenerics] InfoBarHandleBsod: Error 'str(err)' displaying crash screen!")
+					self.bsodTimer.stop()
+					self.bsodTimer.start(5000, True)
+					bsodTimeoutCallback(False)
+					raise
+			self.bsodCount = bsodOccurences
