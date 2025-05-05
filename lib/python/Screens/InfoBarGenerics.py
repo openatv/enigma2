@@ -618,30 +618,30 @@ class InfoBarExtensions:
 
 # Depends on InfoBarExtensions
 #
-class InfoBarPlugins:
+class InfoBarPlugins:  # Depends on InfoBarExtensions.
 	def __init__(self):
 		self.addExtension(extension=self.getPluginList, type=InfoBarExtensions.EXTENSION_LIST)
 
-	def getPluginName(self, name):
+	def getPluginName(self, name):  # Used in plugins
 		return name
 
-	def getPluginList(self):
-		l = []
-		for p in plugins.getPlugins(where=PluginDescriptor.WHERE_EXTENSIONSMENU):
+	def getPluginList(self):  # Used in plugins
+		pluginList = []
+		for plugin in plugins.getPlugins(where=PluginDescriptor.WHERE_EXTENSIONSMENU):
 			args = getfullargspec(p.__call__)[0]  # FIME: This is a performance issue and should be replaced.
-			if len(args) == 1 or len(args) == 2 and isinstance(self, InfoBarChannelSelection):
-				l.append(((boundFunction(self.getPluginName, p.name), boundFunction(self.runPlugin, p), lambda: True), None, p.name))
-		l.sort(key=lambda e: e[2])  # Sort by name.
-		return l
+			if len(args) in (1, 2) and isinstance(self, InfoBarChannelSelection):
+				pluginList.append(((boundFunction(self.getPluginName, plugin.name), boundFunction(self.runPlugin, plugin), lambda: True), None, plugin.name))
+		pluginList.sort(key=lambda x: x[2])  # Sort by name.
+		return pluginList
 
-	def runPlugin(self, plugin):
+	def runPlugin(self, plugin):  # Used in AudioSelection.py
 		if isinstance(self, InfoBarChannelSelection):
 			plugin(session=self.session, servicelist=self.servicelist)
 		else:
 			try:
 				plugin(session=self.session)
 			except Exception as err:
-				print("[InfoBarGenerics] Error: ", err)
+				print(f"[InfoBarGenerics] InfoBarPlugins: Error: {str(err)}!")
 
 
 class HideVBILine(Screen):
