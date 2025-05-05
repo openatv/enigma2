@@ -3944,7 +3944,6 @@ class InfoBarAudioSelection:
 			"audioSelectionLong": (self.audioDownmixToggle, _("Toggle Dolby Digital down mix")),
 		}, prio=0, description=_("Audio Actions"))
 
-
 	def audioSelection(self):
 		def audioSelectionCallback(result=None):
 			print(f"[InfoBarGenerics] InfoBarAudioSelection: Result='{result}'.")
@@ -5135,7 +5134,7 @@ class InfoBarHandleBsod:
 					self.session.openWithCallback(bsodTimeoutCallback, MessageBox, crashText, type=MessageBox.TYPE_YESNO if self.bsodLastWarning else MessageBox.TYPE_ERROR, default=False, close_on_any_key=not self.bsodLastWarning, typeIcon=MessageBox.TYPE_ERROR)
 					self.bsodIsShown = True
 				except Exception as err:
-					print(f"[InfoBarGenerics] InfoBarHandleBsod: Error 'str(err)' displaying crash screen!")
+					print(f"[InfoBarGenerics] InfoBarHandleBsod: Error '{str(err)}' displaying crash screen!")
 					self.bsodTimer.stop()
 					self.bsodTimer.start(5000, True)
 					bsodTimeoutCallback(False)
