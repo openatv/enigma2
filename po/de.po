@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-25 18:12+0000\n"
-"PO-Revision-Date: 2025-04-27 01:17+0000\n"
+"POT-Creation-Date: 2025-05-04 12:30+0000\n"
+"PO-Revision-Date: 2025-05-05 21:49+0000\n"
 "Last-Translator: VfBFan <drop0815@posteo.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -230,6 +230,12 @@ msgstr "%.0f MB"
 #, python-format
 msgid "%.2f GB"
 msgstr "%.2f GB"
+
+#, python-format
+msgid "%.2f Second"
+msgid_plural "%.2f Seconds"
+msgstr[0] "%.2f Sekunde"
+msgstr[1] "%.2f Sekunden"
 
 #, python-format
 msgid "%02d.%02d."
@@ -1747,10 +1753,6 @@ msgstr ""
 "Eine Timeraufnahme konnte nicht gestartet werden!\n"
 "TV-Sender umschalten und erneut versuchen?\n"
 
-#, python-format
-msgid "Aspect ratio set to '%s'."
-msgstr "AV-Seitenverhältnis ist %s."
-
 #
 msgid "AAC downmix"
 msgstr "AAC-Downmix"
@@ -1888,7 +1890,7 @@ msgid "Activate Expander"
 msgstr "Expander aktivieren"
 
 msgid "Activate HbbTV (RED button)"
-msgstr "HbbTV einschalten"
+msgstr "HbbTV einschalten (Taste ROT)"
 
 msgid "Activate MAC address configuration"
 msgstr "Aktiviere MAC-Adresskonfiguration"
@@ -2645,6 +2647,9 @@ msgstr "Armenien"
 msgid "Armenian"
 msgstr "Armenisch"
 
+msgid "Arrow skip mode"
+msgstr "Pfeiltasten-Sprungmodus"
+
 msgid "Artist"
 msgstr "Künstler"
 
@@ -2673,16 +2678,19 @@ msgstr "Fragen ('Ja' voreingestellt)"
 msgid "Aspect"
 msgstr "Aspekt"
 
+msgid "Aspect Ratio"
+msgstr "Seitenverhältnis"
+
 #
 msgid "Aspect Ratio Actions"
 msgstr "Seitenverhältnisaktionen"
 
-#
-msgid "Open Aspect Ratio Settings"
-msgstr "Seitenverhältnis..."
-
 msgid "Aspect ratio"
 msgstr "Seitenverhältnis"
+
+#, python-format
+msgid "Aspect ratio set to '%s'."
+msgstr "AV-Seitenverhältnis ist %s."
 
 msgid "Aspect switch"
 msgstr "Seitenverhältnis umschalten"
@@ -2768,10 +2776,6 @@ msgstr "Ton-Sprachauswahl 3"
 
 msgid "Audio language selection 4"
 msgstr "Ton-Sprachauswahl 4"
-
-#
-msgid "Open Audio options"
-msgstr "Toneinstellungen..."
 
 msgid "Australia"
 msgstr "Australien"
@@ -3805,9 +3809,6 @@ msgstr "Entpacken abbrechen"
 msgid "Cancel save time shift as movie"
 msgstr "Timeshift nicht als Film speichern"
 
-msgid "Cancel the selection"
-msgstr "Auswahl abbrechen"
-
 msgid "Cancel selection and exit"
 msgstr "Auswahl abbrechen und beenden"
 
@@ -3839,6 +3840,9 @@ msgstr "Suchlauf abbrechen und alle Menüs verlassen"
 
 msgid "Cancel the scan and exit the scanner"
 msgstr "Suchlauf abbrechen und beenden"
+
+msgid "Cancel the selection"
+msgstr "Auswahl abbrechen"
 
 msgid "Cancel the selection and exit"
 msgstr "Auswahl abbrechen und beenden"
@@ -4098,15 +4102,6 @@ msgstr "Senderliste:"
 msgid "Channel up"
 msgstr "Nächster Sender"
 
-msgid "Service zap other button delay"
-msgstr "Umschaltverzögerung weiterer Ziffern"
-
-msgid "Service zap first button delay"
-msgstr "Umschaltverzögerung der ersten Ziffer"
-
-msgid "Service zap delay mode"
-msgstr "Umschaltverzögerung"
-
 msgid "ChannelEPG Settings"
 msgstr "Sender-EPG-Einstellungen"
 
@@ -4206,7 +4201,7 @@ msgid "Choice List Actions"
 msgstr "Auswahlisten-Aktionen"
 
 msgid "Choice List Navigation Actions"
-msgstr "Auswahlisten-Navigationsaktionen"
+msgstr "Auswahlisten Navigationsaktionen"
 
 msgid "Choice List Order Actions"
 msgstr "Auswahlisten-Sortier-Aktionen"
@@ -5623,6 +5618,12 @@ msgstr "Anpassen von Enigma2 an die eigenen Bedürfnisse."
 msgid "Cut"
 msgstr "Schneiden"
 
+msgid "CutList skip time for '%s' button"
+msgstr "CutList-Sprungzeit für die Taste '%s'"
+
+msgid "CutList skip time for '%s'/'%s' buttons"
+msgstr "CutList-Sprungzeit für die Tasten '%s'/'%s'"
+
 msgid "Cutlist Editor"
 msgstr "Schnitteditor"
 
@@ -5634,6 +5635,13 @@ msgstr "Cyan"
 
 msgid "Cycle PiP(zap)"
 msgstr "Zirkuliere Bild-im-Bild (Zap)"
+
+msgid "Cycle through the InfoBars"
+msgstr "Zwischen Infoleisten wechseln"
+
+#
+msgid "Cycle through the available aspect ratios"
+msgstr "Zwischen möglichen Seitenverhältnissen wechseln"
 
 msgid "Cycling"
 msgstr "Radfahren"
@@ -6071,6 +6079,9 @@ msgstr "Einhänge-Optionen für das Dateisystem festlegen."
 
 msgid "Defined / Active"
 msgstr "Definiert / Aktiv"
+
+msgid "Defined skips"
+msgstr "Definierte Sprünge"
 
 msgid "Defined volume offset"
 msgstr "Definierter Lautstärke-Offset"
@@ -6545,6 +6556,9 @@ msgstr "Deaktivieren"
 msgid "Disable Animations"
 msgstr "Animation deaktivieren"
 
+msgid "Disable Chkroot"
+msgstr "Chkroot deaktivieren"
+
 msgid "Disable FCC during recordings"
 msgstr "FCC während Aufnahmen deaktivieren"
 
@@ -6580,6 +6594,9 @@ msgstr "Operator-Profile deaktivieren"
 # Box Display
 msgid "Disable the HDD Process on VFD."
 msgstr "Die Anzeige des Festplattensymbols auf dem Display einstellen."
+
+msgid "Disable the MultiBoot option"
+msgstr "MultiBoot-Option deaktivieren"
 
 #
 msgid "Disable timer"
@@ -7736,10 +7753,6 @@ msgstr "Eingeben, ob sich der Receiver nördlich oder südlich des Äquators bef
 msgid "Enter if you are in the East or West hemisphere."
 msgstr "Eingeben, ob sich der Receiver in der östlichen oder westlichen Hemisphäre befindet."
 
-#
-msgid "Open Main Menu"
-msgstr "Hauptmenü öffnen..."
-
 msgid "Enter new directory name:"
 msgstr "Neuen Verzeichnisnamen eingeben:"
 
@@ -8692,7 +8705,7 @@ msgid "File Commander Move"
 msgstr "File Commander Bewegen"
 
 msgid "File Commander Navigation Actions"
-msgstr "File Commander Navigations-Aktionen"
+msgstr "File Commander Navigationsaktionen"
 
 msgid "File Commander Selection Actions"
 msgstr "File Commander Auswahl-Aktionen"
@@ -8825,6 +8838,9 @@ msgstr "Fest"
 
 msgid "Fixed X11 font (SD)"
 msgstr "Feste X11 Schriftart (SD)"
+
+msgid "Flash"
+msgstr "Flash"
 
 msgid "Flash Expander"
 msgstr "Flash-Expander"
@@ -9668,7 +9684,7 @@ msgid "History Zap Actions"
 msgstr "Umschalthistorie-Aktionen"
 
 msgid "History Zap Navigation Actions"
-msgstr "Umschalthistorie-Navigationsaktionen"
+msgstr "Umschalthistorie Navigationsaktionen"
 
 msgid "History back"
 msgstr "Historie zurück"
@@ -10262,24 +10278,11 @@ msgstr "Infoleiste"
 msgid "InfoBar EPG"
 msgstr "Infoleisten-EPG"
 
-msgid "InfoBar EPG Actions"
-msgstr "Infoleiste EPG-Aktionen"
-
 msgid "InfoBar EPG Settings"
 msgstr "Infoleisten-EPG"
 
 msgid "InfoBar EPG mode"
 msgstr "Infoleisten EPG-Modus"
-
-msgid "InfoBar Event View Actions"
-msgstr "Infoleiste Sendungsanzeige-Aktionen"
-
-#
-msgid "RDS Actions"
-msgstr "Infoleiste RDS-Aktionen"
-
-msgid "Show/Hide Actions"
-msgstr "Infoleiste Aktionen ein-/ausblenden"
 
 msgid "InfoBar fade-out speed"
 msgstr "Infoleiste Ausblendegeschwindigkeit"
@@ -10961,6 +10964,10 @@ msgstr "Lettisch"
 msgid "Leave DVD player?"
 msgstr "DVD-Player verlassen?"
 
+#
+msgid "Leave movie player"
+msgstr "Movieplayer verlassen"
+
 msgid "Leave this set to 'Yes' unless you fully understand why you are adjusting it."
 msgstr "Diese Einstellung auf 'Ja' belassen, es sei denn, es wird vollständig verstanden, warum sie angepasst wird."
 
@@ -10999,18 +11006,18 @@ msgid "Legacy mode"
 msgstr "Alter Modus"
 
 msgid "Leisure hobbies"
-msgstr "Freizeit Hobbys"
+msgstr "Freizeit-Hobbys"
 
 msgid "Lesotho"
 msgstr "Lesotho"
+
+msgid "LetterBox zoom"
+msgstr "Letterbox-Zoom"
 
 #
 #. TRANSLATORS: Aspect ratio policy: Black bars on top/bottom in doubt, keep English term.
 msgid "Letterbox"
 msgstr "Letterbox"
-
-msgid "LetterBox zoom"
-msgstr "Letterbox Zoom"
 
 msgid "Liberia"
 msgstr "Liberia"
@@ -11102,12 +11109,12 @@ msgstr "Verknüpfte Titel mit einem DVD-Menü"
 msgid "Links"
 msgstr "Links"
 
+msgid "List Navigation Actions"
+msgstr "Listen Navigationsaktionen"
+
 #
 msgid "List available EPG functions"
 msgstr "EPG-Funktionen anzeigen..."
-
-msgid "List Navigation Actions"
-msgstr "Navigationsaktionen anzeigen"
 
 msgid "List available networks"
 msgstr "Verfügbare Netzwerke anzeigen"
@@ -11127,10 +11134,6 @@ msgstr[1] "Listenversion %d, %d Sender gefunden."
 
 msgid "List/Fav"
 msgstr "List/Fav"
-
-#
-msgid "Listen to the radio"
-msgstr "Radio hören"
 
 msgid "Lists reloaded!"
 msgstr "Listen neu geladen!"
@@ -11402,6 +11405,10 @@ msgstr "MTD-Kernel"
 
 msgid "MTD root"
 msgstr "MTD-Stamm"
+
+#, python-format
+msgid "MTD slot %s%s"
+msgstr "MTD-Slot %s%s"
 
 msgid "MTU"
 msgstr "MTU"
@@ -12215,14 +12222,14 @@ msgstr "Filmereignis Ansicht Aktionen"
 msgid "Movie List"
 msgstr "Filmauswahl"
 
-msgid "Movie Selection Actions"
-msgstr "Filmauswahlaktionen"
-
 msgid "Movie Player Actions"
 msgstr "Movieplayer-Aktionen"
 
 msgid "Movie Selection"
 msgstr "Filmauswahl"
+
+msgid "Movie Selection Actions"
+msgstr "Filmauswahl-Aktionen"
 
 msgid "Movie Selection Settings"
 msgstr "Filmauswahl-Einstellungen"
@@ -13142,6 +13149,12 @@ msgstr ""
 msgid "Number"
 msgstr "Nummer"
 
+msgid "Number and name"
+msgstr "Nummer und Name"
+
+msgid "Number and picon"
+msgstr "Nummer und Picon"
+
 msgid "Number of IP Addresses"
 msgstr "Anzahl der IP-Adressen"
 
@@ -13154,12 +13167,21 @@ msgstr "Anzahl der Zeilen"
 msgid "Number of rows to display."
 msgstr "Die Anzahl der anzuzeigenden Zeilen."
 
+msgid "Number only"
+msgstr "Nur Nummer"
+
 #
 msgid "Number or SMS style data entry"
 msgstr "Zahlen- oder SMS-Eingabemethode"
 
+msgid "Number, name and picon"
+msgstr "Nummer, Name und Picon"
+
 msgid "Numbering mode"
 msgstr "Nummerierungsmodus"
+
+msgid "Numeric skip mode"
+msgstr "Numerischer Sprungmodus"
 
 msgid "OEM model"
 msgstr "OEM-Modell"
@@ -13339,38 +13361,141 @@ msgstr "Nur beim Start"
 msgid "Open"
 msgstr "Öffnen"
 
+#
+msgid "Open Aspect Ratio Settings"
+msgstr "Seitenverhältnis..."
+
+#
+msgid "Open Audio options"
+msgstr "Toneinstellungen..."
+
 msgid "Open AutoTimer"
 msgstr "AutoTimer anzeigen"
+
+msgid "Open AutoTimer OverView"
+msgstr "AutoTimer-Übersicht öffnen"
 
 #
 msgid "Open AutoTimer Overview"
 msgstr "AutoTimer-Liste anzeigen"
 
+#
+msgid "Open Bouquet selection"
+msgstr "Favoritenliste öffnen"
+
+msgid "Open Box Portal"
+msgstr "Box-Portal anzeigen"
+
+msgid "Open DreamPlex"
+msgstr "DreamPlex-Player anzeigen..."
+
+#
+msgid "Open EPG"
+msgstr "Standard-EPG anzeigen"
+
+msgid "Open EPG for current service"
+msgstr "EPG vom aktuellen Sender anzeigen"
+
 msgid "Open EPGSearch"
 msgstr "EPG-Suche öffnen"
+
+msgid "Open Extensions"
+msgstr "Erweiterungen anzeigen..."
+
+msgid "Open HDMIRecord Settings"
+msgstr "HDMIRecord-Einstellungen anzeigen..."
 
 msgid "Open IMDb"
 msgstr "IMDb öffnen"
 
+#
+msgid "Open Information menu"
+msgstr "Informationen anzeigen"
+
 msgid "Open Log"
 msgstr "Log öffnen"
+
+#
+msgid "Open Main Menu"
+msgstr "Hauptmenü öffnen..."
+
+msgid "Open Media Player"
+msgstr "Mediaplayer anzeigen"
+
+msgid "Open MediaCenter"
+msgstr "Mediacenter anzeigen"
 
 msgid "Open MediaStream"
 msgstr "MediaStream öffnen"
 
-msgid "Open Settings"
-msgstr "Einstellungen öffnen"
+#
+msgid "Open Movie Selection"
+msgstr "Aufgenommene Filme anzeigen"
 
-msgid "Open Similar List Channel List"
-msgstr "Ähnliche Senderliste öffnen"
+msgid "Open Network Settings"
+msgstr "Netzwerkeinstellungen anzeigen..."
+
+msgid "Open Plugin Browser"
+msgstr "Plugins anzeigen"
+
+#
+msgid "Open QuickMenu"
+msgstr "Schnellstartmenü..."
+
+msgid "Open RFmod Settings"
+msgstr "RFmod-Einstellungen anzeigen..."
+
+#
+msgid "Open Radio bouquet selection"
+msgstr "Radio-Wiedergabemodus"
 
 #
 msgid "Open RecordTimer Overview"
 msgstr "Timer anzeigen"
 
+msgid "Open Satellites selection"
+msgstr "Satellitenliste öffnen"
+
+msgid "Open Scheduler Overview"
+msgstr "Aufgabenplanung anzeigen"
+
+msgid "Open Services / Reception selection"
+msgstr "Senderliste öffnen"
+
+msgid "Open Settings"
+msgstr "Einstellungen öffnen"
+
+msgid "Open Setup"
+msgstr "Einstellungen anzeigen..."
+
+msgid "Open Setup menu"
+msgstr "Einstellungen anzeigen"
+
+msgid "Open Similar List Channel List"
+msgstr "Ähnliche Senderliste öffnen"
+
+msgid "Open Simple Umount"
+msgstr "Einfaches Entfernen des Datenträgers."
+
 #
-msgid "Open Bouquet selection"
-msgstr "Favoritenliste öffnen"
+msgid "Open SleepTimer Settings"
+msgstr "Ausschalttimer anzeigen"
+
+msgid "Open Subservices selection"
+msgstr "Unterkanäle auswählen"
+
+msgid "Open Subtitle options"
+msgstr "Untertitel auswählen..."
+
+#
+msgid "Open TV bouquet selection"
+msgstr "TV-Wiedergabemodus"
+
+msgid "Open Usage and GUI Settings"
+msgstr "OSD-Einstellungen anzeigen..."
+
+msgid "Open VideoMode"
+msgstr "Öffne VideoMode"
 
 msgid "Open context menu"
 msgstr "Kontextmenü öffnen"
@@ -13378,33 +13503,27 @@ msgstr "Kontextmenü öffnen"
 msgid "Open context menu (contains settings menu)"
 msgstr "Kontextmenü inklusive Einstellungsmenü öffnen"
 
+msgid "Open event information"
+msgstr "Informationen zur aktuellen Sendung anzeigen."
+
 msgid "Open external subtitle management screen"
 msgstr "Externe Untertitel-Verwaltung öffnen"
-
-msgid "Open favorites list"
-msgstr "Favoritenliste öffnen"
 
 msgid "Open file sort menu"
 msgstr "Sortierungsmenü öffnen"
 
-msgid "Open Satellites selection"
-msgstr "Satellitenliste öffnen"
-
-msgid "Open Services / Reception selection"
-msgstr "Senderliste öffnen"
-
 #
-msgid "Open service list and select next channel"
+msgid "Open service list and select next service"
 msgstr "Senderliste öffnen und nächsten Sender auswählen"
 
-msgid "Open service list and select next channel for PiP"
+msgid "Open service list and select next service for PiP"
 msgstr "Senderliste öffnen und nächsten Sender für Bild-im-Bild auswählen"
 
 #
-msgid "Open service list and select previous channel"
+msgid "Open service list and select previous service"
 msgstr "Senderliste öffnen und vorherigen Sender auswählen"
 
-msgid "Open service list and select previous channel for PiP"
+msgid "Open service list and select previous service for PiP"
 msgstr "Senderliste öffnen und vorherigen Sender für Bild-im-Bild auswählen"
 
 msgid "Open the Channel Selection Settings screen"
@@ -13427,10 +13546,6 @@ msgstr "Die virtuelle Tastatur zur Texteingabe öffnen"
 
 msgid "Open the context menu"
 msgstr "Kontextmenü öffnen"
-
-#
-msgid "Open the movie list"
-msgstr "Filmauswahl öffnen"
 
 msgid "Open the multi service EPG view"
 msgstr "Multi-EPG-Ansicht öffnen"
@@ -13840,6 +13955,9 @@ msgstr "Prozent links"
 msgid "Percentage right"
 msgstr "Prozent rechts"
 
+msgid "Percentage skips"
+msgstr "Prozentualer Sprungmodus"
+
 msgid "Percentage/Progress bar left"
 msgstr "Prozent/Fortschrittsanzeige links"
 
@@ -13854,6 +13972,9 @@ msgstr "Das Upgrade durchführen?"
 
 msgid "Permanently delete all recordings in the trashcan?"
 msgstr "Alle Aufnahmen im Papierkorb endgültig löschen?"
+
+msgid "Permanently disable the MultiBoot option?"
+msgstr "MultiBoot-Option dauerhaft deaktivieren?"
 
 msgid "Permanently ignore this device"
 msgstr "Dieses Gerät dauerhaft ignorieren"
@@ -13885,10 +14006,6 @@ msgstr "Philippinen"
 
 msgid "PiP"
 msgstr "Bild-im-Bild"
-
-# UsageConfig.py:295
-msgid "Picture in Picture Actions"
-msgstr "Bild-im-Bild Aktionen"
 
 msgid "PiP with OSD"
 msgstr "Bild-im-Bild mit OSD"
@@ -13928,6 +14045,10 @@ msgstr "Aktionen für Bildinformationen"
 
 msgid "Picture in EPG"
 msgstr "MiniTV im vertikalen EPG anzeigen"
+
+# UsageConfig.py:295
+msgid "Picture in Picture Actions"
+msgstr "Bild-im-Bild Aktionen"
 
 #
 msgid "Picture in Picture Settings"
@@ -14037,10 +14158,6 @@ msgstr "Nächsten abspielen (zurück zum letzten Sender)"
 
 msgid "Play previous"
 msgstr "Vorherigen abspielen"
-
-#
-msgid "Open Movie Selection"
-msgstr "Aufgenommene Filme abspielen"
 
 msgid "Play selected service in a PiP window"
 msgstr "Gewählten Kanal ins Bild-im-Bild Fenster"
@@ -14384,7 +14501,7 @@ msgid "Plugin Browser Install Actions"
 msgstr "Plugin-Manager Installationsaktionen"
 
 msgid "Plugin Browser Navigation Actions"
-msgstr "Plugin-Manager Steuerungsaktionen"
+msgstr "Plugin-Manager Navigationsaktionen"
 
 msgid "Plugin Browser Remove Actions"
 msgstr "Plugin-Manager Löschaktionen"
@@ -15013,10 +15130,6 @@ msgstr "Schnellstartmenü"
 msgid "Quick Menu Actions"
 msgstr "Schnellstartmenü Aktionen"
 
-#
-msgid "Open QuickMenu"
-msgstr "Schnellstartmenü..."
-
 msgid "QuickEPG mode"
 msgstr "Grafischen Infoleisten-EPG aufrufen"
 
@@ -15066,6 +15179,10 @@ msgstr "FB ausgewählter Name"
 msgid "RC selected type"
 msgstr "FB ausgewählter Typ"
 
+#
+msgid "RDS Actions"
+msgstr "Infoleiste RDS-Aktionen"
+
 msgid "REC"
 msgstr "REC"
 
@@ -15083,6 +15200,10 @@ msgstr "Blinkendes Aufnahmesymbol im Betrieb"
 
 msgid "RED button"
 msgstr "Taste ROT"
+
+#
+msgid "RED button / HbbTV"
+msgstr "Taste ROT / HbbTV"
 
 msgid "RED long"
 msgstr "ROT lang"
@@ -15362,10 +15483,6 @@ msgstr "Wartungsmodus"
 
 msgid "Red"
 msgstr "Rot"
-
-#
-msgid "RED button / HbbTV"
-msgstr "Taste ROT..."
 
 msgid "Red colored"
 msgstr "Roter Sendername"
@@ -16569,6 +16686,9 @@ msgstr "Scrollgeschwindigkeit (Software-Renderer)"
 msgid "Search"
 msgstr "Suche"
 
+msgid "Search EPG for current event"
+msgstr "Im EPG nach aktueller Sendung suchen."
+
 msgid "Search IMDb for information about current event"
 msgstr "IMDb-Suche für die ausgewählte Sendung."
 
@@ -16587,9 +16707,6 @@ msgstr "Nach Netzwerkfreigaben suchen"
 
 msgid "Search for similar events"
 msgstr "Suche nach ähnlichen Sendungen"
-
-msgid "Search EPG for current event"
-msgstr "Im EPG nach aktueller Sendung suchen."
 
 msgid "Search weather location ID"
 msgstr "Wetter-Städtecode suchen"
@@ -16661,11 +16778,11 @@ msgstr "Vorwärts suchen (Zeit eingeben)"
 msgid "Seek forward long"
 msgstr "Suche vorwärts lang"
 
-msgid "Seekbar"
-msgstr "Suchleiste"
-
 msgid "SeekBar activation"
 msgstr "Aktivierung der Suchleiste"
+
+msgid "Seekbar"
+msgstr "Suchleiste"
 
 msgid "Seekbar sensibility"
 msgstr "Sprungweite der Suchleiste"
@@ -17001,6 +17118,9 @@ msgstr "Sendergruppe auswählen"
 msgid "Select Satellites"
 msgstr "Satelliten auswählen"
 
+msgid "Select SeekBar to be activated by arrow L/R (long) or << >> (long)."
+msgstr "Die Tasten für die Suchleistenaktivierung einstellen, Pfeil Links/Rechts lang oder <</>> lang."
+
 msgid "Select Shares"
 msgstr "Freigaben auswählen"
 
@@ -17162,6 +17282,12 @@ msgstr "Auswählen, wie dieser Timer wiederholt werden soll."
 msgid "Select how quickly the dish should move between satellites."
 msgstr "Auswählen, wie schnell sich die Antenne zwischen den Satelliten bewegen soll."
 
+msgid "Select how the arrow ('UP', 'DOWN', 'LEFT', and 'RIGHT') buttons will act during seek actions."
+msgstr ""
+
+msgid "Select how the number buttons will act during seek actions."
+msgstr ""
+
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr "Auswählen, wie die Satellitenschüssel eingerichtet ist (feste Schüssel, einzelner LNB, DiSEqC-Schalter, Rotor usw.)."
 
@@ -17174,6 +17300,11 @@ msgstr "Aktualisierungsmodus auswählen."
 
 msgid "Select if an end time is required."
 msgstr "Auswählen, ob eine Endzeit erforderlich ist."
+
+msgid "Select if data entry timeouts are to be applied when entering digits into the service selection pop up screen. When a timeout is exceeded the currently entered number will be used for the service selection. The default timeouts are first digit 3 seconds, other digits 1 second."
+msgstr ""
+"Einstellen, ob es bei der Eingabe von Ziffern in das Popup-Fenster für die Sendernummer ein Zeitlimit geben soll. Wenn dieses überschritten wird, wird die aktuell eingegebene Zahl als Sendernummer verwendet.\n"
+"Das Zeitlimit beträgt für die erste Ziffer 3 Sekunden und für die anderen Ziffern je 1 Sekunde."
 
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr "Einstellen, ob der Standardwert angezeigt wird, und wenn ja, wo er im Verhältnis zur Beschreibung angezeigt wird."
@@ -17245,9 +17376,6 @@ msgstr "Anbieter zum Hinzufügen auswählen..."
 msgid "Select refresh rate"
 msgstr "Bildwiederholrate auswählen"
 
-msgid "Select SeekBar to be activated by arrow L/R (long) or << >> (long)."
-msgstr "Die Tasten für die Suchleistenaktivierung einstellen, Pfeil Links/Rechts lang oder <</>> lang."
-
 msgid "Select service information to view:"
 msgstr "Anzuzeigende Information auswählen:"
 
@@ -17257,9 +17385,6 @@ msgstr "Programm zum Hinzufügen auswählen..."
 
 msgid "Select sort method:"
 msgstr "Sortiermethode auswählen:"
-
-msgid "Open Subservices selection"
-msgstr "Unterkanäle auswählen"
 
 msgid "Select system information to view:"
 msgstr "Die anzuzeigenden System-Informationen auswählen:"
@@ -17367,6 +17492,9 @@ msgstr "Den aktuell markierten Sender auswählen"
 msgid "Select the currently highlighted service and exit"
 msgstr "Den aktuell markierten Sender auswählen und beenden"
 
+msgid "Select the currently highlighted timer"
+msgstr "Aktuell markierten Timer auswählen"
+
 msgid "Select the date from which this timer will become active."
 msgstr "Das Datum auswählen, ab dem dieser Timer aktiv werden soll."
 
@@ -17390,6 +17518,12 @@ msgstr "Die Verzögerung auswählen, bevor der Timer aktiviert wird."
 
 msgid "Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for boxes with multiple satellite tuners."
 msgstr "Die Verzögerung auswählen, die beim Wechsel von einem Stream-Relay-Sender verwendet wird, bevor der Tuner auf einen anderen Sender wechselt. Die Verwendung von '0' wird nur für Boxen mit mehreren Satelliten-Tunern empfohlen."
+
+msgid "Select the delay to wait after pressing more digit buttons to select a new service."
+msgstr "Die Umschaltverzögerung der weiteren Zifferntasten einstellen."
+
+msgid "Select the delay to wait after pressing the first digit button to select a new service."
+msgstr "Die Umschaltverzögerung der ersten Zifferntaste einstellen."
 
 msgid "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to toggle between the lists. Select an assigned function and click on 'OK' to deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned functions."
 msgstr "Gewünschte Funktion auswählen und OK drücken, um sie zu belegen. Mit P+/CH+ oder P-/CH- zwischen den Listen umschalten. Zugeordnete Funktion auswählen und OK drücken, um die Belegung zu entfernen. Mit '<' oder '>' die Funktionen sortieren."
@@ -17512,6 +17646,9 @@ msgstr "Den nächsten Eintrag in der Liste auswählen oder den Cursor nach recht
 
 msgid "Select the next item in the list"
 msgstr "Den nächsten Eintrag in der Liste auswählen"
+
+msgid "Select the preferred service information to display, in addition to the service number, for the service selection pop up screen."
+msgstr "Bevorzugte Sender-Informationen auswählen, die zusätzlich zur Sendernummer auf dem Popup-Bildschirm für die Senderauswahl angezeigt werden sollen."
 
 msgid "Select the previous item in list or move the cursor left"
 msgstr "Den vorherigen Eintrag in der Liste auswählen oder den Cursor nach links bewegen"
@@ -17879,15 +18016,9 @@ msgstr "Suchlauf-Aktionen"
 msgid "Service Selection Actions"
 msgstr "Kanalauswahl-Aktionen"
 
-msgid "Service Selection/Zap Actions"
-msgstr "Kanalauswahl/Umschaltaktionen"
-
 #
 msgid "Service Title mode"
 msgstr "Anzeigemodus-Einstellungen"
-
-msgid "Service Zap Actions"
-msgstr "Kanal-Umschaltaktionen"
 
 msgid "Service and PID information"
 msgstr "Sender- und PID-Information"
@@ -17961,6 +18092,18 @@ msgstr ""
 #
 msgid "Service width"
 msgstr "Sendernamen Breite"
+
+msgid "Service zap delay mode"
+msgstr "Umschaltverzögerung"
+
+msgid "Service zap first button delay"
+msgstr "Umschaltverzögerung der ersten Ziffer"
+
+msgid "Service zap other button delay"
+msgstr "Umschaltverzögerung weiterer Ziffern"
+
+msgid "Service zap screen contents"
+msgstr ""
 
 msgid "ServiceName"
 msgstr "Sendername"
@@ -18063,10 +18206,19 @@ msgstr "Startkanal auswählen"
 msgid "Set system"
 msgstr "System einstellen"
 
+msgid "Set the CutList Editor skip time interval for the '%s'/'%s' buttons."
+msgstr "Definiere CutList-Editor-Sprungzeit für die Tasten '%s'/'%s'."
+
+msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
+msgstr ""
+
 # NetworkSetup.py
 #, python-format
 msgid "Set the MAC address of your %s %s."
 msgstr "Die MAC-Adresse der %s %s einstellen."
+
+msgid "Set the UP/DOWN button skip percentage for the SeekBar."
+msgstr ""
 
 msgid "Set the User ID of the OpenWebif from your fallback tuner"
 msgstr "Die Benutzer-ID vom OpenWebif des Reserve-Tuners eintragen"
@@ -18134,6 +18286,12 @@ msgstr "Die Scrollgeschwindigkeit für Text im Display einstellen (wird vom Soft
 
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Die Scrollgeschwindigkeit für Text im Display einstellen."
+
+msgid "Set the skip time interval for the '%s' button."
+msgstr "Definierte Sprungzeit für die Taste '%s'"
+
+msgid "Set the skip time interval for the '%s'/'%s' buttons."
+msgstr "Definierte Sprungzeit für die Tasten '%s'/'%s'"
 
 msgid "Set the time before checking video source for resolution information."
 msgstr "Die Verzögerungszeit einstellen, bevor die automatische Auflösung die Videoquelle prüft."
@@ -18303,9 +18461,6 @@ msgstr "Konfiguration Bild/Ton"
 
 msgid "Setup Videomode"
 msgstr "Konfiguration Bild"
-
-msgid "Select if data entry timeouts are to be applied when entering digits into the service selection pop up screen. When a timeout is exceeded the currently entered number will be used for the service selection. The default timeouts are first digit 3 seconds, other digits 1 second."
-msgstr "Verzögerungsmodus beim Umschalten ein- oder ausstellen."
 
 msgid "Setup each tuner for your satellite system"
 msgstr "Einstellungen für jeden Tuner"
@@ -18515,9 +18670,6 @@ msgstr "Audiomenü"
 msgid "Show AutoTimer List"
 msgstr "Alle AutoTimer anzeigen"
 
-msgid "Open Box Portal"
-msgstr "Box-Portal anzeigen"
-
 msgid "Show CCcam Info"
 msgstr "CCcam Info anzeigen"
 
@@ -18542,18 +18694,12 @@ msgstr "Treiber anzeigen"
 msgid "Show EPG"
 msgstr "EPG anzeigen"
 
-msgid "Open EPG for current service"
-msgstr "EPG vom aktuellen Sender anzeigen"
-
 #
 msgid "Show EventView"
 msgstr "Sendungsinformation anzeigen"
 
 msgid "Show Extension packages"
 msgstr "Erweiterungspakete anzeigen"
-
-msgid "Open VideoMode"
-msgstr "Samba-Einstellungen anzeigen"
 
 msgid "Show Graphical EPG"
 msgstr "Grafischen EPG anzeigen"
@@ -18567,9 +18713,6 @@ msgstr "Die Anzeige der HDMI-Auflösung auf dem Display einstellen."
 
 msgid "Show HDMI-Output Res"
 msgstr "HDMI-Auflösung anzeigen"
-
-msgid "Open HDMIRecord Settings"
-msgstr "HDMIRecord-Einstellungen anzeigen..."
 
 msgid "Show InfoBar"
 msgstr "Infoleiste anzeigen"
@@ -18592,10 +18735,6 @@ msgstr "Infoleiste beim Spulen anzeigen"
 #
 msgid "Show InfoBar picons"
 msgstr "Senderlogo (Picon) in der Infoleiste anzeigen"
-
-#
-msgid "Open Information menu"
-msgstr "Informationen anzeigen"
 
 msgid "Show Kernel packages"
 msgstr "Kernelmodule anzeigen"
@@ -18666,9 +18805,6 @@ msgstr "Picon-Pakete anzeigen"
 
 msgid "Show Plugin Skin packages"
 msgstr "Plugin-Skin-Pakete anzeigen"
-
-msgid "Open RFmod Settings"
-msgstr "RFmod-Einstellungen anzeigen..."
 
 msgid "Show Record Movies"
 msgstr "Aufnahmen anzeigen"
@@ -18862,9 +18998,6 @@ msgstr "Erweiterte Beschreibung anzeigen"
 msgid "Show extension selection"
 msgstr "Erweiterungsauswahl anzeigen"
 
-msgid "Open Extensions"
-msgstr "Erweiterungen anzeigen..."
-
 msgid "Show extra spacing in Information"
 msgstr "Zusätzlichen Abstand in Informationen anzeigen"
 
@@ -18953,9 +19086,6 @@ msgstr "Filmauswahl"
 
 msgid "Show multi channel EPG"
 msgstr "Multi-EPG anzeigen"
-
-msgid "Open Network Settings"
-msgstr "Netzwerkeinstellungen anzeigen..."
 
 msgid "Show next commit log"
 msgstr "Nächstes Commit-Log anzeigen"
@@ -19049,10 +19179,6 @@ msgstr "Vorherigen Senderinformationsbildschirm anzeigen"
 msgid "Show previous system information screen"
 msgstr "Vorherigen Systeminformationsbildschirm anzeigen"
 
-# HelpMenu
-msgid "Show quickmenu..."
-msgstr "Schnellstartmenü anzeigen"
-
 msgid "Show record indicator"
 msgstr "Aufnahmeindikator anzeigen"
 
@@ -19102,14 +19228,8 @@ msgstr "Servicetyp-Symbole anzeigen"
 msgid "Show servicelist or movies"
 msgstr "Senderliste oder Filme anzeigen"
 
-msgid "Open Setup menu"
-msgstr "Einstellungen anzeigen"
-
 msgid "Show setup default value"
 msgstr "Standardwert-Anzeige"
-
-msgid "Open Setup"
-msgstr "Einstellungen anzeigen..."
 
 #
 msgid "Show shut down menu"
@@ -19160,9 +19280,6 @@ msgstr "Infos anzeigen, wenn der File Commander nicht läuft und alle Aufgaben e
 msgid "Show the CCcam Info Screen"
 msgstr "CCcam-Infobildschirm anzeigen"
 
-msgid "Open DreamPlex"
-msgstr "DreamPlex-Player anzeigen..."
-
 msgid "Show the EIT Now/Next data in the InfoBar."
 msgstr "EIT jetzt/gleich in der Infoleiste anzeigen"
 
@@ -19172,50 +19289,11 @@ msgstr "Log-Einstellung anzeigen"
 msgid "Show the OSCam information screen"
 msgstr "OSCam Info-Bildschirm anzeigen"
 
-msgid "Open Scheduler Overview"
-msgstr "Aufgabenplanung anzeigen"
-
-#
-msgid "Open SleepTimer Settings"
-msgstr "Ausschalttimer anzeigen"
-
-msgid "Open event information"
-msgstr "Informationen zur aktuellen Sendung anzeigen."
-
 msgid "Show the last opkg command's output"
 msgstr "Letzte 'opkg' Ausgabe anzeigen"
 
-msgid "Show the list of AutoTimers."
-msgstr "Liste der AutoTimer anzeigen."
-
-msgid "Show the list of timers."
-msgstr "Liste der Timer anzeigen."
-
-msgid "Open MediaCenter"
-msgstr "Mediacenter anzeigen"
-
-msgid "Open Media Player"
-msgstr "Mediaplayer anzeigen"
-
-msgid "Show the media player..."
-msgstr "Mediaplayer anzeigen"
-
-msgid "Show the plugin browser.."
-msgstr "Plugin-Manager anzeigen."
-
-msgid "Open Plugin Browser"
-msgstr "Plugins anzeigen"
-
-#
-msgid "Open Radio bouquet selection"
-msgstr "Radio-Wiedergabemodus"
-
 msgid "Show the task list"
 msgstr "Aufgabenliste anzeigen"
-
-#
-msgid "Open TV bouquet selection"
-msgstr "TV-Wiedergabemodus"
 
 msgid "Show time elapsed as positive"
 msgstr "Verstrichene Zeit mit positivem Vorzeichen"
@@ -19247,9 +19325,6 @@ msgstr "Unbekannte Geräte anzeigen"
 msgid "Show unknown video format as"
 msgstr "Unbekannte Videoauflösung anzeigen als"
 
-msgid "Open Usage and GUI Settings"
-msgstr "OSD-Einstellungen anzeigen..."
-
 msgid "Show vertical Program Guide"
 msgstr "Vertikalen EPG anzeigen"
 
@@ -19266,6 +19341,9 @@ msgstr "Statusanzeige in der Filmauswahl anzeigen"
 #
 msgid "Show/Games show"
 msgstr "Show/Spielshow"
+
+msgid "Show/Hide Actions"
+msgstr "Infoleiste Aktionen ein-/ausblenden"
 
 msgid "Show/Hide focus bar"
 msgstr "Fokusrahmen anzeigen/verstecken"
@@ -19360,9 +19438,6 @@ msgstr "Einfaches Verblassen"
 msgid "Simple titleset (compatibility for legacy players)"
 msgstr "Schlicht (bessere Kompatibilität mit alten DVD-Playern)"
 
-msgid "Open Simple Umount"
-msgstr "Einfaches Entfernen des Datenträgers."
-
 msgid "Simple zoom"
 msgstr "Einfacher Zoom"
 
@@ -19439,6 +19514,13 @@ msgstr "Skinauswahl"
 msgid "Skip back"
 msgstr "Rückwärts spulen"
 
+msgid "Skip backward"
+msgstr "Rückwärts springen"
+
+#
+msgid "Skip backward (enter time)"
+msgstr "Rückwärts springen (Zeit eingeben)"
+
 #
 msgid "Skip empty services"
 msgstr "Überspringen leerer Dienste"
@@ -19446,11 +19528,27 @@ msgstr "Überspringen leerer Dienste"
 msgid "Skip forward"
 msgstr "Vorwärts spulen"
 
+#
+msgid "Skip forward (enter time)"
+msgstr "Vorwärts springen (Zeit eingeben)"
+
 msgid "Skip jumping to live while timeshifting with plugins"
 msgstr "Bei Timeshift mittels Plugins nicht zur Live-Übertragung springen"
 
 msgid "Skip package installation, only core packages will be available"
 msgstr "Die Paketinstallation überspringen. Nur die Kernpakete werden verfügbar sein."
+
+msgid "Skip sensibility (Horizontal)"
+msgstr "Horizontale Empfindlichkeit überspringen"
+
+msgid "Skip sensibility (Vertical)"
+msgstr "Vertikale Empfindlichkeit überspringen"
+
+msgid "Skip time for '%s' button"
+msgstr ""
+
+msgid "Skip time for '%s'/'%s' buttons"
+msgstr ""
 
 msgid "Sleep"
 msgstr "Sleeptimer"
@@ -20284,6 +20382,9 @@ msgstr "Untertitel-Aktionen"
 msgid "Subtitle Quickmenu"
 msgstr "Untertitel-Schnellstartmenü"
 
+msgid "Subtitle Selection"
+msgstr "Untertitel auswählen"
+
 msgid "Subtitle Settings"
 msgstr "Untertitel"
 
@@ -20319,12 +20420,6 @@ msgstr "Untertitel-Sprachauswahl 4"
 
 msgid "Subtitle position"
 msgstr "Untertitelposition vertikal"
-
-msgid "Subtitle Selection"
-msgstr "Untertitel auswählen"
-
-msgid "Open Subtitle options"
-msgstr "Untertitel auswählen..."
 
 #
 msgid "Subtitles"
@@ -20448,10 +20543,6 @@ msgstr "Zwischen Dateiliste und Playlist umschalten"
 msgid "Switch config"
 msgstr "Konfiguration umschalten"
 
-#
-msgid "Zap to next service"
-msgstr "Zum nächsten Sender wechseln"
-
 msgid "Switch off the TV to correct input"
 msgstr "TV ausschalten, um den Eingang zu korrigieren"
 
@@ -20487,10 +20578,6 @@ msgstr "Zur Dateiliste wechseln"
 msgid "Switch to next EPG Event"
 msgstr "Zum nächsten EPG-Ereignis wechseln"
 
-#
-msgid "Zap to next service in the history"
-msgstr "Zum nächsten Sender in der Historie wechseln"
-
 # Mediaplayer Filelist Menue
 msgid "Switch to play list"
 msgstr "Zur Playlist wechseln"
@@ -20498,14 +20585,6 @@ msgstr "Zur Playlist wechseln"
 #
 msgid "Switch to previous EPG Event"
 msgstr "Zum vorherigen EPG-Ereignis wechseln"
-
-#
-msgid "Zap to previous service"
-msgstr "Zum vorherigen Sender wechseln"
-
-#
-msgid "Zap to previous service in the history"
-msgstr "Zum vorherigen Sender in der Historie wechseln"
 
 msgid "Switch to the available RADIO services"
 msgstr "Wechsel zu den verfügbaren Radio-Sendern"
@@ -20537,6 +20616,9 @@ msgstr "Symbolrate"
 
 msgid "Symbolic link"
 msgstr "Symbolischer Link"
+
+msgid "Symmetrical skips"
+msgstr ""
 
 msgid "Sync NTP every (minutes)"
 msgstr "Synchronisierungsintervall mit NTP-Server"
@@ -21854,6 +21936,9 @@ msgstr "Timer-Log-Aktionen"
 msgid "Timer Sanity Error"
 msgstr "Timereinstellungen unklar"
 
+msgid "Timer Selection Actions"
+msgstr "Timerauswahl-Aktionen"
+
 msgid "Timer edit"
 msgstr "Timer bearbeiten"
 
@@ -21976,10 +22061,6 @@ msgstr "Temporären Einhängepunkt für das aktuelle Gerät umschalten"
 msgid "Toggle all related files"
 msgstr "Alle zugehörigen Dateien umschalten"
 
-#
-msgid "Cycle through the available aspect ratios"
-msgstr "Seitenverhältnis ändern"
-
 msgid "Toggle auto refresh On/Off"
 msgstr "Automatische Aktualisierung ein-/ausschalten"
 
@@ -21991,9 +22072,6 @@ msgstr "Zwischen verfügbaren TV- und Radio-Sendern wechseln"
 
 msgid "Toggle display of image information"
 msgstr "Umschalten der Anzeige von Bildinformationen"
-
-msgid "Cycle through the InfoBars"
-msgstr "Anzeige der Infoleiste umschalten"
 
 msgid "Toggle display of the image status overlay"
 msgstr "Umschalten der Anzeige des Bildstatus-Overlays"
@@ -22099,6 +22177,9 @@ msgstr "Insgesamt:\t"
 #
 msgid "Track"
 msgstr "Spur"
+
+msgid "Traditional"
+msgstr "Traditional"
 
 msgid "Traditional Chinese"
 msgstr "Traditionelles Chinesisch"
@@ -23008,12 +23089,6 @@ msgstr "Benutzerdefiniert"
 msgid "User defined 0x%02x"
 msgstr "Benutzerdefiniert 0x%02x"
 
-msgid "Select the delay to wait after pressing more digit buttons to select a new service."
-msgstr "Die Umschaltverzögerung der weiteren Zifferntasten einstellen."
-
-msgid "Select the delay to wait after pressing the first digit button to select a new service."
-msgstr "Die Umschaltverzögerung der ersten Zifferntaste einstellen."
-
 #
 msgid "User defined transponder"
 msgstr "Benutzerdefinierter Transponder"
@@ -23321,6 +23396,10 @@ msgstr "Datei anzeigen"
 msgid "View Rass interactive"
 msgstr "RaSS Interaktiv anzeigen"
 
+#
+msgid "View Teletext"
+msgstr "Videotext anzeigen"
+
 msgid "View as grid"
 msgstr "Als Kacheln anzeigen"
 
@@ -23341,10 +23420,6 @@ msgstr "Skript '%s' anzeigen oder bearbeiten"
 # geändert 03.01.13 husky
 msgid "View photos..."
 msgstr "Fotos ansehen..."
-
-#
-msgid "View Teletext"
-msgstr "Videotext anzeigen"
 
 msgid "View the archive contents"
 msgstr "Inhalt des Archives anzeigen"
@@ -23559,10 +23634,6 @@ msgstr "Warnung: Kein LNB! Benutze Werkseinstellungen."
 # hinzu  03.01.13 husky
 msgid "Watch movies..."
 msgstr "Filme ansehen"
-
-#
-msgid "Watch recordings"
-msgstr "Aufnahmen ansehen"
 
 #
 msgid "Weather"
@@ -24171,9 +24242,7 @@ msgstr "Diese Funktion kann übersprungen und der TV ausgeschaltet werden, wenn 
 # Satconfig.py
 #, python-format
 msgid "You can switch with left and right this tuner types %s"
-msgstr ""
-"Hier kann mit den Pfeiltasten Links/Rechts\n"
-"der Tuner-Typ geändert werden. %s"
+msgstr "Mit den Pfeiltasten Links/Rechts kann der Tuner-Typ geändert werden. %s"
 
 #
 msgid "You cannot delete this!"
@@ -24477,6 +24546,28 @@ msgstr "Zum Sender umschalten (Einstellung im Menü)"
 
 msgid "Zap to channel and close (setup in menu)"
 msgstr "Zum Sender umschalten und schließen (Einstellung im Menü)"
+
+#
+msgid "Zap to next service"
+msgstr "Zum nächsten Sender wechseln"
+
+msgid "Zap to next service in the current bouquet"
+msgstr "Zum nächsten Sender im aktuellen Bouquet wechseln"
+
+#
+msgid "Zap to next service in history"
+msgstr "Zum nächsten Sender in der Historie wechseln"
+
+#
+msgid "Zap to previous service"
+msgstr "Zum vorherigen Sender wechseln"
+
+msgid "Zap to previous service in the current bouquet"
+msgstr "Zum vorherigen Sender im aktuellen Bouquet wechseln"
+
+#
+msgid "Zap to previous service in history"
+msgstr "Zum vorherigen Sender in der Historie wechseln"
 
 msgid "Zap up"
 msgstr "Kanal -"
@@ -25009,10 +25100,6 @@ msgid "languages"
 msgstr "Sprachen"
 
 #
-msgid "Leave movie player"
-msgstr "Movieplayer verlassen"
-
-#
 msgid "left"
 msgstr "Links"
 
@@ -25325,18 +25412,11 @@ msgstr "Shell"
 msgid "show DVD main menu"
 msgstr "DVD-Hauptmenü anzeigen"
 
-#
-msgid "Open EPG"
-msgstr "Standard-EPG anzeigen"
-
 msgid "show all cards"
 msgstr "Alle Smartcards anzeigen"
 
 msgid "show all tags"
 msgstr "Alle Tags anzeigen"
-
-msgid "show program information..."
-msgstr "Programm-Informationen anzeigen"
 
 msgid "show/game show (general)"
 msgstr "Show/Spielshow (allgemein)"
@@ -25356,16 +25436,8 @@ msgid "skip backward"
 msgstr "Rückwärts springen"
 
 #
-msgid "Skip backward (enter time)"
-msgstr "Rückwärts springen (Zeit eingeben)"
-
-#
 msgid "skip forward"
 msgstr "Vorwärts springen"
-
-#
-msgid "Skip forward (enter time)"
-msgstr "Vorwärts springen (Zeit eingeben)"
 
 msgid "slow"
 msgstr "Langsam"
@@ -25525,18 +25597,11 @@ msgstr "Untestbar"
 msgid "update"
 msgstr "Update"
 
-msgid "userdefined"
-msgstr "benutzerdefiniert"
-
 msgid "using:"
 msgstr "Benutzen:"
 
 msgid "variety show"
 msgstr "Variete"
-
-#
-msgid "view extensions..."
-msgstr "Erweiterungen anzeigen"
 
 msgid "violet"
 msgstr "Violett"
@@ -25590,6 +25655,59 @@ msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "InfoBar EPG Actions"
+#~ msgstr "Infoleiste EPG-Aktionen"
+
+#~ msgid "InfoBar Event View Actions"
+#~ msgstr "Infoleiste Sendungsanzeige-Aktionen"
+
+#
+#~ msgid "Listen to the radio"
+#~ msgstr "Radio hören"
+
+#~ msgid "Open favorites list"
+#~ msgstr "Favoritenliste öffnen"
+
+#
+#~ msgid "Open the movie list"
+#~ msgstr "Filmauswahl öffnen"
+
+#~ msgid "Service Selection/Zap Actions"
+#~ msgstr "Kanalauswahl/Umschaltaktionen"
+
+#~ msgid "Service Zap Actions"
+#~ msgstr "Kanal-Umschaltaktionen"
+
+# HelpMenu
+#~ msgid "Show quickmenu..."
+#~ msgstr "Schnellstartmenü anzeigen"
+
+#~ msgid "Show the list of AutoTimers."
+#~ msgstr "Liste der AutoTimer anzeigen."
+
+#~ msgid "Show the list of timers."
+#~ msgstr "Liste der Timer anzeigen."
+
+#~ msgid "Show the media player..."
+#~ msgstr "Mediaplayer anzeigen"
+
+#~ msgid "Show the plugin browser.."
+#~ msgstr "Plugin-Manager anzeigen."
+
+#
+#~ msgid "Watch recordings"
+#~ msgstr "Aufnahmen ansehen"
+
+#~ msgid "show program information..."
+#~ msgstr "Programm-Informationen anzeigen"
+
+#~ msgid "userdefined"
+#~ msgstr "benutzerdefiniert"
+
+#
+#~ msgid "view extensions..."
+#~ msgstr "Erweiterungen anzeigen"
 
 #
 #~ msgid "Access point:"

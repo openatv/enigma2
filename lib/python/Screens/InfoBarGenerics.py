@@ -2552,17 +2552,17 @@ class InfoBarChannelSelection:
 		def serviceListHelp(direction):
 			match direction:
 				case "up":
-					helpText = _("Open service list and select previous channel")
+					helpText = _("Open service list and select previous service")
 				case "down":
-					helpText = _("Open service list and select next channel")
+					helpText = _("Open service list and select next service")
 			return helpText
 
 		def pipListHelp(direction):
 			match direction:
 				case "up":
-					helpText = _("Open service list and select previous channel for PiP")
+					helpText = _("Open service list and select previous service for PiP")
 				case "down":
-					helpText = _("Open service list and select next channel for PiP")
+					helpText = _("Open service list and select next service for PiP")
 			return helpText
 
 		def serviceZapHelp(direction):
@@ -2586,8 +2586,8 @@ class InfoBarChannelSelection:
 			"switchChannelDownLong": (self.switchChannelDown, pipListHelp("down")),
 			"zapUp": (self.zapUp, _("Zap to previous service")),
 			"zapDown": (self.zapDown, _("Zap to next service")),
-			"historyBack": (self.historyBack, _("Zap to previous service in the history")),
-			"historyNext": (self.historyNext, _("Zap to next service in the history")),
+			"historyBack": (self.historyBack, _("Zap to previous service in history")),
+			"historyNext": (self.historyNext, _("Zap to next service in history")),
 			"openServiceList": (self.openServiceList, _("Open Services / Reception selection")),
 			"openSatellites": (self.openSatellites, _("Open Satellites selection")),
 			"openBouquets": (self.openBouquets, _("Open Bouquet selection")),

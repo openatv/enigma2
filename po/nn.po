@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-25 18:12+0000\n"
+"POT-Creation-Date: 2025-05-04 12:30+0000\n"
 "PO-Revision-Date: 2016-04-02 23:09+0200\n"
 "Last-Translator: Stig-O <stiose@hotmail.com>\n"
 "Language-Team: Stig-O\n"
@@ -230,6 +230,12 @@ msgstr ""
 #, python-format
 msgid "%.2f GB"
 msgstr ""
+
+#, python-format
+msgid "%.2f Second"
+msgid_plural "%.2f Seconds"
+msgstr[0] ""
+msgstr[1] ""
 
 #, fuzzy, python-format
 msgid "%02d.%02d."
@@ -1862,10 +1868,6 @@ msgstr ""
 "En timer startet ikke opptak.\n"
 "Bytt program og prøv igjen?\n"
 
-#, python-format
-msgid "Aspect ratio set to '%s'."
-msgstr "AV-aspektet er %s."
-
 msgid "AAC downmix"
 msgstr "AAC downmix"
 
@@ -2787,6 +2789,9 @@ msgstr ""
 msgid "Armenian"
 msgstr "Tyrkisk"
 
+msgid "Arrow skip mode"
+msgstr ""
+
 #
 msgid "Artist"
 msgstr "Artist"
@@ -2817,15 +2822,19 @@ msgstr ""
 msgid "Aspect"
 msgstr "Breddeforhold"
 
+msgid "Aspect Ratio"
+msgstr ""
+
 #, fuzzy
 msgid "Aspect Ratio Actions"
 msgstr "Breddeforhold"
 
-msgid "Open Aspect Ratio Settings"
-msgstr ""
-
 msgid "Aspect ratio"
 msgstr "Breddeforhold"
+
+#, python-format
+msgid "Aspect ratio set to '%s'."
+msgstr "AV-aspektet er %s."
 
 msgid "Aspect switch"
 msgstr ""
@@ -2910,9 +2919,6 @@ msgstr "Lyd språk valg 3"
 
 msgid "Audio language selection 4"
 msgstr "Lyd språk valg 4"
-
-msgid "Open Audio options"
-msgstr "Lyd valg..."
 
 #
 #, fuzzy
@@ -3954,11 +3960,6 @@ msgstr ""
 msgid "Cancel save time shift as movie"
 msgstr "Avbryt å lagre timeshift som film"
 
-#
-#, fuzzy
-msgid "Cancel the selection"
-msgstr "Kanalvalg"
-
 msgid "Cancel selection and exit"
 msgstr ""
 
@@ -3992,6 +3993,11 @@ msgstr ""
 
 msgid "Cancel the scan and exit the scanner"
 msgstr ""
+
+#
+#, fuzzy
+msgid "Cancel the selection"
+msgstr "Kanalvalg"
 
 msgid "Cancel the selection and exit"
 msgstr ""
@@ -4257,15 +4263,6 @@ msgid "Channel selection:"
 msgstr "Kanalvalg"
 
 msgid "Channel up"
-msgstr ""
-
-msgid "Service zap other button delay"
-msgstr ""
-
-msgid "Service zap first button delay"
-msgstr ""
-
-msgid "Service zap delay mode"
 msgstr ""
 
 #
@@ -5802,6 +5799,12 @@ msgstr ""
 msgid "Cut"
 msgstr "Klipp ut"
 
+msgid "CutList skip time for '%s' button"
+msgstr ""
+
+msgid "CutList skip time for '%s'/'%s' buttons"
+msgstr ""
+
 #, fuzzy
 msgid "Cutlist Editor"
 msgstr "Klippliste editor"
@@ -5815,6 +5818,12 @@ msgstr ""
 
 msgid "Cycle PiP(zap)"
 msgstr ""
+
+msgid "Cycle through the InfoBars"
+msgstr ""
+
+msgid "Cycle through the available aspect ratios"
+msgstr "Veksle størrelsesforhold..."
 
 msgid "Cycling"
 msgstr ""
@@ -6274,6 +6283,9 @@ msgid "Define the file system mount options."
 msgstr ""
 
 msgid "Defined / Active"
+msgstr ""
+
+msgid "Defined skips"
 msgstr ""
 
 msgid "Defined volume offset"
@@ -6752,6 +6764,9 @@ msgstr "Slå av"
 msgid "Disable Animations"
 msgstr ""
 
+msgid "Disable Chkroot"
+msgstr ""
+
 msgid "Disable FCC during recordings"
 msgstr ""
 
@@ -6788,6 +6803,9 @@ msgid "Disable operator profiles"
 msgstr ""
 
 msgid "Disable the HDD Process on VFD."
+msgstr ""
+
+msgid "Disable the MultiBoot option"
 msgstr ""
 
 #
@@ -7950,10 +7968,6 @@ msgstr ""
 msgid "Enter if you are in the East or West hemisphere."
 msgstr ""
 
-#
-msgid "Open Main Menu"
-msgstr "Åpne hovedmenyen"
-
 msgid "Enter new directory name:"
 msgstr ""
 
@@ -9038,6 +9052,9 @@ msgid "Fixed"
 msgstr "Fikset"
 
 msgid "Fixed X11 font (SD)"
+msgstr ""
+
+msgid "Flash"
 msgstr ""
 
 msgid "Flash Expander"
@@ -10545,28 +10562,12 @@ msgid "InfoBar EPG"
 msgstr "Informasjonslinje EPG"
 
 #
-#, fuzzy
-msgid "InfoBar EPG Actions"
-msgstr "InfoBar EPG modus"
-
-#
 msgid "InfoBar EPG Settings"
 msgstr "InfobarEPG innstillinger"
 
 #
 msgid "InfoBar EPG mode"
 msgstr "InfoBar EPG modus"
-
-msgid "InfoBar Event View Actions"
-msgstr ""
-
-#
-#, fuzzy
-msgid "RDS Actions"
-msgstr "Informasjon"
-
-msgid "Show/Hide Actions"
-msgstr ""
 
 msgid "InfoBar fade-out speed"
 msgstr ""
@@ -11272,6 +11273,11 @@ msgstr "Latvisk"
 msgid "Leave DVD player?"
 msgstr "Avslutt DVD Spiller?"
 
+#
+#, fuzzy
+msgid "Leave movie player"
+msgstr "Forlat filmspiller..."
+
 msgid "Leave this set to 'Yes' unless you fully understand why you are adjusting it."
 msgstr ""
 
@@ -11317,13 +11323,13 @@ msgid "Lesotho"
 msgstr ""
 
 #
+msgid "LetterBox zoom"
+msgstr "LetterBox zoom"
+
+#
 #. TRANSLATORS: Aspect ratio policy: Black bars on top/bottom in doubt, keep English term.
 msgid "Letterbox"
 msgstr "Letterbox"
-
-#
-msgid "LetterBox zoom"
-msgstr "LetterBox zoom"
 
 msgid "Liberia"
 msgstr ""
@@ -11417,11 +11423,11 @@ msgstr "Koblede titler med en DVD-meny"
 msgid "Links"
 msgstr ""
 
-msgid "List available EPG functions"
-msgstr "Liste EPG funksjoner..."
-
 msgid "List Navigation Actions"
 msgstr ""
+
+msgid "List available EPG functions"
+msgstr "Liste EPG funksjoner..."
 
 msgid "List available networks"
 msgstr "Vis tilgjengelige nettverk"
@@ -11441,11 +11447,6 @@ msgstr[1] "List versjon %d, fant %d kanaler"
 
 msgid "List/Fav"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Listen to the radio"
-msgstr "Høre på radio..."
 
 msgid "Lists reloaded!"
 msgstr ""
@@ -11724,6 +11725,10 @@ msgid "MTD kernel"
 msgstr ""
 
 msgid "MTD root"
+msgstr ""
+
+#, python-format
+msgid "MTD slot %s%s"
 msgstr ""
 
 msgid "MTU"
@@ -12553,16 +12558,16 @@ msgstr "Filmliste"
 
 #
 #, fuzzy
-msgid "Movie Selection Actions"
-msgstr "Film utvalg"
-
-#
-#, fuzzy
 msgid "Movie Player Actions"
 msgstr "Film utvalg"
 
 #
 msgid "Movie Selection"
+msgstr "Film utvalg"
+
+#
+#, fuzzy
+msgid "Movie Selection Actions"
 msgstr "Film utvalg"
 
 msgid "Movie Selection Settings"
@@ -13494,6 +13499,12 @@ msgstr "Bruk kontrast innstillningen for å justere lysstyrke på bakgrunnen så
 msgid "Number"
 msgstr "Antall"
 
+msgid "Number and name"
+msgstr ""
+
+msgid "Number and picon"
+msgstr ""
+
 msgid "Number of IP Addresses"
 msgstr ""
 
@@ -13506,10 +13517,19 @@ msgstr "Antall rader"
 msgid "Number of rows to display."
 msgstr ""
 
+msgid "Number only"
+msgstr ""
+
 msgid "Number or SMS style data entry"
 msgstr ""
 
+msgid "Number, name and picon"
+msgstr ""
+
 msgid "Numbering mode"
+msgstr ""
+
+msgid "Numeric skip mode"
 msgstr ""
 
 msgid "OEM model"
@@ -13685,40 +13705,152 @@ msgstr ""
 msgid "Open"
 msgstr ""
 
+msgid "Open Aspect Ratio Settings"
+msgstr ""
+
+msgid "Open Audio options"
+msgstr "Lyd valg..."
+
 msgid "Open AutoTimer"
+msgstr ""
+
+msgid "Open AutoTimer OverView"
 msgstr ""
 
 #, fuzzy
 msgid "Open AutoTimer Overview"
 msgstr "Vis AutoTimer Listen"
 
+#
+#, fuzzy
+msgid "Open Bouquet selection"
+msgstr "avslutt favoritt editering"
+
+msgid "Open Box Portal"
+msgstr ""
+
+msgid "Open DreamPlex"
+msgstr "Vis DreamPlex spilleren..."
+
+msgid "Open EPG"
+msgstr "vis EPG..."
+
+msgid "Open EPG for current service"
+msgstr "Vis EPG for gjeldende kanal..."
+
 #, fuzzy
 msgid "Open EPGSearch"
 msgstr "EPG Søk"
 
+msgid "Open Extensions"
+msgstr "Vis utvidelser..."
+
+#, fuzzy
+msgid "Open HDMIRecord Settings"
+msgstr "Vis RFmod oppsett..."
+
 msgid "Open IMDb"
 msgstr ""
+
+#, fuzzy
+msgid "Open Information menu"
+msgstr "vise informasjon om programmet ..."
 
 msgid "Open Log"
 msgstr ""
 
+#
+msgid "Open Main Menu"
+msgstr "Åpne hovedmenyen"
+
+#
+#, fuzzy
+msgid "Open Media Player"
+msgstr "Vis radio spilleren"
+
+#, fuzzy
+msgid "Open MediaCenter"
+msgstr "Vis listen over timer."
+
 msgid "Open MediaStream"
 msgstr ""
 
-msgid "Open Settings"
+#
+#, fuzzy
+msgid "Open Movie Selection"
+msgstr "Spill av filmopptak..."
+
+msgid "Open Network Settings"
 msgstr ""
 
-msgid "Open Similar List Channel List"
+#, fuzzy
+msgid "Open Plugin Browser"
+msgstr "Vis plugin visning..."
+
+msgid "Open QuickMenu"
 msgstr ""
+
+msgid "Open RFmod Settings"
+msgstr "Vis RFmod oppsett..."
+
+#
+#, fuzzy
+msgid "Open Radio bouquet selection"
+msgstr "Vis radio spilleren"
 
 #, fuzzy
 msgid "Open RecordTimer Overview"
 msgstr "Timer Listen"
 
+msgid "Open Satellites selection"
+msgstr "Åpne satellitt liste"
+
+msgid "Open Scheduler Overview"
+msgstr ""
+
+msgid "Open Services / Reception selection"
+msgstr "Åpen kanalliste"
+
+msgid "Open Settings"
+msgstr ""
+
+msgid "Open Setup"
+msgstr ""
+
+#, fuzzy
+msgid "Open Setup menu"
+msgstr "Vis epg"
+
+msgid "Open Similar List Channel List"
+msgstr ""
+
 #
 #, fuzzy
-msgid "Open Bouquet selection"
-msgstr "avslutt favoritt editering"
+msgid "Open Simple Umount"
+msgstr "Liste over lagringsenheter"
+
+#
+#, fuzzy
+msgid "Open SleepTimer Settings"
+msgstr "Vis TV spilleren"
+
+msgid "Open Subservices selection"
+msgstr ""
+
+msgid "Open Subtitle options"
+msgstr "Undertekst valg"
+
+#
+#, fuzzy
+msgid "Open TV bouquet selection"
+msgstr "Vis TV spilleren"
+
+msgid "Open Usage and GUI Settings"
+msgstr ""
+
+#, fuzzy
+msgid "Open VideoMode"
+msgstr "Vis RFmod oppsett..."
 
 msgid "Open context menu"
 msgstr ""
@@ -13726,31 +13858,26 @@ msgstr ""
 msgid "Open context menu (contains settings menu)"
 msgstr ""
 
-msgid "Open external subtitle management screen"
-msgstr ""
+#, fuzzy
+msgid "Open event information"
+msgstr "Søk IMDb for informasjon om aktuelle program."
 
-msgid "Open favorites list"
+msgid "Open external subtitle management screen"
 msgstr ""
 
 msgid "Open file sort menu"
 msgstr ""
 
-msgid "Open Satellites selection"
-msgstr "Åpne satellitt liste"
-
-msgid "Open Services / Reception selection"
-msgstr "Åpen kanalliste"
-
-msgid "Open service list and select next channel"
+msgid "Open service list and select next service"
 msgstr "Åpne kanallisten, og velg neste kanal"
 
-msgid "Open service list and select next channel for PiP"
+msgid "Open service list and select next service for PiP"
 msgstr "Åpne kanallisten, og velg neste kanal for BiB"
 
-msgid "Open service list and select previous channel"
+msgid "Open service list and select previous service"
 msgstr "Åpne kanallisten, og velg forrige kanal"
 
-msgid "Open service list and select previous channel for PiP"
+msgid "Open service list and select previous service for PiP"
 msgstr "Åpne kanallisten, og velg forrige kanal for BiB"
 
 msgid "Open the Channel Selection Settings screen"
@@ -13773,9 +13900,6 @@ msgstr ""
 
 msgid "Open the context menu"
 msgstr ""
-
-msgid "Open the movie list"
-msgstr "Åpne filmliste"
 
 msgid "Open the multi service EPG view"
 msgstr ""
@@ -14188,6 +14312,9 @@ msgstr "Prosent Venstre"
 msgid "Percentage right"
 msgstr "Prosent Høyre"
 
+msgid "Percentage skips"
+msgstr ""
+
 #, fuzzy
 msgid "Percentage/Progress bar left"
 msgstr "Fremskritt søyle venstre"
@@ -14204,6 +14331,9 @@ msgstr ""
 
 msgid "Permanently delete all recordings in the trashcan?"
 msgstr "Permanent slette alle opptak i søppelbøtta?"
+
+msgid "Permanently disable the MultiBoot option?"
+msgstr ""
 
 msgid "Permanently ignore this device"
 msgstr ""
@@ -14235,10 +14365,6 @@ msgstr ""
 
 msgid "PiP"
 msgstr "BiB"
-
-#, fuzzy
-msgid "Picture in Picture Actions"
-msgstr "Hurtig Handlinger"
 
 msgid "PiP with OSD"
 msgstr ""
@@ -14277,6 +14403,10 @@ msgstr ""
 #, fuzzy
 msgid "Picture in EPG"
 msgstr "Bilde i grafikk"
+
+#, fuzzy
+msgid "Picture in Picture Actions"
+msgstr "Hurtig Handlinger"
 
 msgid "Picture in Picture Settings"
 msgstr ""
@@ -14387,11 +14517,6 @@ msgstr "Spill neste (gå til forrige kanal)"
 
 msgid "Play previous"
 msgstr "Spil forrige"
-
-#
-#, fuzzy
-msgid "Open Movie Selection"
-msgstr "Spill av filmopptak..."
 
 msgid "Play selected service in a PiP window"
 msgstr ""
@@ -15384,9 +15509,6 @@ msgstr ""
 msgid "Quick Menu Actions"
 msgstr ""
 
-msgid "Open QuickMenu"
-msgstr ""
-
 msgid "QuickEPG mode"
 msgstr ""
 
@@ -15438,6 +15560,11 @@ msgstr ""
 
 #
 #, fuzzy
+msgid "RDS Actions"
+msgstr "Informasjon"
+
+#
+#, fuzzy
 msgid "REC"
 msgstr "FEC"
 
@@ -15455,6 +15582,9 @@ msgstr ""
 
 #, fuzzy
 msgid "RED button"
+msgstr "Rød knapp..."
+
+msgid "RED button / HbbTV"
 msgstr "Rød knapp..."
 
 msgid "RED long"
@@ -15746,9 +15876,6 @@ msgstr "Spille inn"
 
 msgid "Red"
 msgstr "Rød"
-
-msgid "RED button / HbbTV"
-msgstr "Rød knapp..."
 
 msgid "Red colored"
 msgstr ""
@@ -16963,6 +17090,9 @@ msgstr ""
 msgid "Search"
 msgstr "Søk"
 
+msgid "Search EPG for current event"
+msgstr "Søk i epg for aktuelle program."
+
 msgid "Search IMDb for information about current event"
 msgstr "Søk IMDb for informasjon om aktuelle program."
 
@@ -16981,9 +17111,6 @@ msgstr ""
 
 msgid "Search for similar events"
 msgstr "Søk etter lignende program"
-
-msgid "Search EPG for current event"
-msgstr "Søk i epg for aktuelle program."
 
 #
 #, fuzzy
@@ -17056,13 +17183,13 @@ msgstr "Søk forover (angi tid)"
 msgid "Seek forward long"
 msgstr "Søk forover"
 
+msgid "SeekBar activation"
+msgstr "Søkbar aktivering"
+
 #
 #, fuzzy
 msgid "Seekbar"
 msgstr "Søk"
-
-msgid "SeekBar activation"
-msgstr "Søkbar aktivering"
 
 msgid "Seekbar sensibility"
 msgstr "Søkbar sensibilitet"
@@ -17394,6 +17521,9 @@ msgstr ""
 msgid "Select Satellites"
 msgstr ""
 
+msgid "Select SeekBar to be activated by arrow L/R (long) or << >> (long)."
+msgstr "Velg søkefelt for å bli aktivert av pil V/H (lang) eller << >> (lang)."
+
 msgid "Select Shares"
 msgstr ""
 
@@ -17558,6 +17688,12 @@ msgstr ""
 msgid "Select how quickly the dish should move between satellites."
 msgstr ""
 
+msgid "Select how the arrow ('UP', 'DOWN', 'LEFT', and 'RIGHT') buttons will act during seek actions."
+msgstr ""
+
+msgid "Select how the number buttons will act during seek actions."
+msgstr ""
+
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr ""
 
@@ -17568,6 +17704,9 @@ msgid "Select how your box will upgrade."
 msgstr ""
 
 msgid "Select if an end time is required."
+msgstr ""
+
+msgid "Select if data entry timeouts are to be applied when entering digits into the service selection pop up screen. When a timeout is exceeded the currently entered number will be used for the service selection. The default timeouts are first digit 3 seconds, other digits 1 second."
 msgstr ""
 
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
@@ -17640,9 +17779,6 @@ msgstr "Velg tilbyder å legge til..."
 msgid "Select refresh rate"
 msgstr "Velg oppfriskningsrate"
 
-msgid "Select SeekBar to be activated by arrow L/R (long) or << >> (long)."
-msgstr "Velg søkefelt for å bli aktivert av pil V/H (lang) eller << >> (lang)."
-
 msgid "Select service information to view:"
 msgstr ""
 
@@ -17651,9 +17787,6 @@ msgid "Select service to add..."
 msgstr "BH Velg kanal å legge til..."
 
 msgid "Select sort method:"
-msgstr ""
-
-msgid "Open Subservices selection"
 msgstr ""
 
 msgid "Select system information to view:"
@@ -17758,6 +17891,9 @@ msgstr ""
 msgid "Select the currently highlighted service and exit"
 msgstr ""
 
+msgid "Select the currently highlighted timer"
+msgstr ""
+
 msgid "Select the date from which this timer will become active."
 msgstr ""
 
@@ -17780,6 +17916,12 @@ msgid "Select the delay before the timer activates."
 msgstr ""
 
 msgid "Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for boxes with multiple satellite tuners."
+msgstr ""
+
+msgid "Select the delay to wait after pressing more digit buttons to select a new service."
+msgstr ""
+
+msgid "Select the delay to wait after pressing the first digit button to select a new service."
 msgstr ""
 
 msgid "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to toggle between the lists. Select an assigned function and click on 'OK' to deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned functions."
@@ -17896,6 +18038,9 @@ msgid "Select the next item in list or move the cursor right"
 msgstr ""
 
 msgid "Select the next item in the list"
+msgstr ""
+
+msgid "Select the preferred service information to display, in addition to the service number, for the service selection pop up screen."
 msgstr ""
 
 msgid "Select the previous item in list or move the cursor left"
@@ -18256,17 +18401,8 @@ msgstr ""
 msgid "Service Selection Actions"
 msgstr "Film utvalg"
 
-#, fuzzy
-msgid "Service Selection/Zap Actions"
-msgstr "Serviceinformasjon"
-
 msgid "Service Title mode"
 msgstr "Kanal tittel modus"
-
-#
-#, fuzzy
-msgid "Service Zap Actions"
-msgstr "Vis kanaltype ikoner"
 
 msgid "Service and PID information"
 msgstr ""
@@ -18341,6 +18477,18 @@ msgstr ""
 
 msgid "Service width"
 msgstr "Kanal bredde"
+
+msgid "Service zap delay mode"
+msgstr ""
+
+msgid "Service zap first button delay"
+msgstr ""
+
+msgid "Service zap other button delay"
+msgstr ""
+
+msgid "Service zap screen contents"
+msgstr ""
 
 msgid "ServiceName"
 msgstr ""
@@ -18440,10 +18588,19 @@ msgstr ""
 msgid "Set system"
 msgstr "Sett System"
 
+msgid "Set the CutList Editor skip time interval for the '%s'/'%s' buttons."
+msgstr ""
+
+msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
+msgstr ""
+
 #
 #, python-format
 msgid "Set the MAC address of your %s %s."
 msgstr "Endre MAC-adresse konfigurasjon for din %s %s."
+
+msgid "Set the UP/DOWN button skip percentage for the SeekBar."
+msgstr ""
 
 msgid "Set the User ID of the OpenWebif from your fallback tuner"
 msgstr ""
@@ -18497,6 +18654,12 @@ msgstr ""
 
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Angir rullehastigheten av tekst på frontdisplayet."
+
+msgid "Set the skip time interval for the '%s' button."
+msgstr ""
+
+msgid "Set the skip time interval for the '%s'/'%s' buttons."
+msgstr ""
 
 msgid "Set the time before checking video source for resolution information."
 msgstr "Still inn tiden før du sjekker videokilde for informasjon om oppløsningen."
@@ -18662,9 +18825,6 @@ msgid "Setup Video/Audio"
 msgstr ""
 
 msgid "Setup Videomode"
-msgstr ""
-
-msgid "Select if data entry timeouts are to be applied when entering digits into the service selection pop up screen. When a timeout is exceeded the currently entered number will be used for the service selection. The default timeouts are first digit 3 seconds, other digits 1 second."
 msgstr ""
 
 msgid "Setup each tuner for your satellite system"
@@ -18872,9 +19032,6 @@ msgstr ""
 msgid "Show AutoTimer List"
 msgstr "Vis AutoTimer Listen"
 
-msgid "Open Box Portal"
-msgstr ""
-
 msgid "Show CCcam Info"
 msgstr ""
 
@@ -18899,18 +19056,11 @@ msgstr ""
 msgid "Show EPG"
 msgstr ""
 
-msgid "Open EPG for current service"
-msgstr "Vis EPG for gjeldende kanal..."
-
 msgid "Show EventView"
 msgstr ""
 
 msgid "Show Extension packages"
 msgstr ""
-
-#, fuzzy
-msgid "Open VideoMode"
-msgstr "Vis RFmod oppsett..."
 
 msgid "Show Graphical EPG"
 msgstr ""
@@ -18923,10 +19073,6 @@ msgstr ""
 
 msgid "Show HDMI-Output Res"
 msgstr ""
-
-#, fuzzy
-msgid "Open HDMIRecord Settings"
-msgstr "Vis RFmod oppsett..."
 
 msgid "Show InfoBar"
 msgstr ""
@@ -18948,10 +19094,6 @@ msgstr "Vis infobar ved hopp fram/tilbake"
 
 msgid "Show InfoBar picons"
 msgstr ""
-
-#, fuzzy
-msgid "Open Information menu"
-msgstr "vise informasjon om programmet ..."
 
 msgid "Show Kernel packages"
 msgstr ""
@@ -19023,9 +19165,6 @@ msgstr ""
 
 msgid "Show Plugin Skin packages"
 msgstr ""
-
-msgid "Open RFmod Settings"
-msgstr "Vis RFmod oppsett..."
 
 msgid "Show Record Movies"
 msgstr ""
@@ -19231,9 +19370,6 @@ msgstr "Vis utvidet beskrivelse"
 msgid "Show extension selection"
 msgstr ""
 
-msgid "Open Extensions"
-msgstr "Vis utvidelser..."
-
 msgid "Show extra spacing in Information"
 msgstr ""
 
@@ -19324,9 +19460,6 @@ msgid "Show movies"
 msgstr ""
 
 msgid "Show multi channel EPG"
-msgstr ""
-
-msgid "Open Network Settings"
 msgstr ""
 
 msgid "Show next commit log"
@@ -19430,9 +19563,6 @@ msgstr ""
 msgid "Show previous system information screen"
 msgstr ""
 
-msgid "Show quickmenu..."
-msgstr ""
-
 msgid "Show record indicator"
 msgstr ""
 
@@ -19480,14 +19610,7 @@ msgstr "Vis kanaltype ikoner"
 msgid "Show servicelist or movies"
 msgstr ""
 
-#, fuzzy
-msgid "Open Setup menu"
-msgstr "Vis epg"
-
 msgid "Show setup default value"
-msgstr ""
-
-msgid "Open Setup"
 msgstr ""
 
 #
@@ -19542,9 +19665,6 @@ msgstr ""
 msgid "Show the CCcam Info Screen"
 msgstr ""
 
-msgid "Open DreamPlex"
-msgstr "Vis DreamPlex spilleren..."
-
 msgid "Show the EIT Now/Next data in the InfoBar."
 msgstr "Vis EIT nå/neste i infolinjen"
 
@@ -19554,58 +19674,11 @@ msgstr ""
 msgid "Show the OSCam information screen"
 msgstr ""
 
-msgid "Open Scheduler Overview"
-msgstr ""
-
-#
-#, fuzzy
-msgid "Open SleepTimer Settings"
-msgstr "Vis TV spilleren"
-
-#, fuzzy
-msgid "Open event information"
-msgstr "Søk IMDb for informasjon om aktuelle program."
-
 msgid "Show the last opkg command's output"
 msgstr ""
 
-msgid "Show the list of AutoTimers."
-msgstr "Vis listen over AutoTimer."
-
-msgid "Show the list of timers."
-msgstr "Vis listen over timer."
-
-#, fuzzy
-msgid "Open MediaCenter"
-msgstr "Vis listen over timer."
-
-#
-#, fuzzy
-msgid "Open Media Player"
-msgstr "Vis radio spilleren"
-
-msgid "Show the media player..."
-msgstr ""
-
-msgid "Show the plugin browser.."
-msgstr "Vis plugin visning..."
-
-#, fuzzy
-msgid "Open Plugin Browser"
-msgstr "Vis plugin visning..."
-
-#
-#, fuzzy
-msgid "Open Radio bouquet selection"
-msgstr "Vis radio spilleren"
-
 msgid "Show the task list"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Open TV bouquet selection"
-msgstr "Vis TV spilleren"
 
 msgid "Show time elapsed as positive"
 msgstr "Vis medgått tid som positivt"
@@ -19637,9 +19710,6 @@ msgstr ""
 msgid "Show unknown video format as"
 msgstr ""
 
-msgid "Open Usage and GUI Settings"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Show vertical Program Guide"
@@ -19658,6 +19728,9 @@ msgstr "Vis status ikoner i opptakslisten"
 #, fuzzy
 msgid "Show/Games show"
 msgstr "Vis spill showet"
+
+msgid "Show/Hide Actions"
+msgstr ""
 
 msgid "Show/Hide focus bar"
 msgstr ""
@@ -19752,11 +19825,6 @@ msgstr ""
 msgid "Simple titleset (compatibility for legacy players)"
 msgstr "Simple titleset (compatibility for legacy players)"
 
-#
-#, fuzzy
-msgid "Open Simple Umount"
-msgstr "Liste over lagringsenheter"
-
 msgid "Simple zoom"
 msgstr ""
 
@@ -19839,6 +19907,13 @@ msgstr ""
 msgid "Skip back"
 msgstr ""
 
+msgid "Skip backward"
+msgstr ""
+
+#
+msgid "Skip backward (enter time)"
+msgstr "hopp bakover (skriv inn tid)"
+
 #
 msgid "Skip empty services"
 msgstr "Hoppe over tomme kanaler"
@@ -19846,10 +19921,26 @@ msgstr "Hoppe over tomme kanaler"
 msgid "Skip forward"
 msgstr ""
 
+#
+msgid "Skip forward (enter time)"
+msgstr "hopp framover (skriv inn tid)"
+
 msgid "Skip jumping to live while timeshifting with plugins"
 msgstr ""
 
 msgid "Skip package installation, only core packages will be available"
+msgstr ""
+
+msgid "Skip sensibility (Horizontal)"
+msgstr ""
+
+msgid "Skip sensibility (Vertical)"
+msgstr ""
+
+msgid "Skip time for '%s' button"
+msgstr ""
+
+msgid "Skip time for '%s'/'%s' buttons"
 msgstr ""
 
 msgid "Sleep"
@@ -20710,6 +20801,10 @@ msgstr "Undertekst valg"
 msgid "Subtitle Quickmenu"
 msgstr "Undertekst Hurtigmeny"
 
+#
+msgid "Subtitle Selection"
+msgstr "Undertekst valg"
+
 msgid "Subtitle Settings"
 msgstr "Undertekst innstillinger"
 
@@ -20746,13 +20841,6 @@ msgstr "Undertekst språkvalg 4"
 
 msgid "Subtitle position"
 msgstr "Undertekst posisjon"
-
-#
-msgid "Subtitle Selection"
-msgstr "Undertekst valg"
-
-msgid "Open Subtitle options"
-msgstr "Undertekst valg"
 
 #
 msgid "Subtitles"
@@ -20876,9 +20964,6 @@ msgstr "Bytt mellom fileliste/spilleliste"
 msgid "Switch config"
 msgstr "Bytt konfig"
 
-msgid "Zap to next service"
-msgstr "Bytt til neste kanal"
-
 #, fuzzy
 msgid "Switch off the TV to correct input"
 msgstr "Bytt TV til riktig inngang"
@@ -20917,9 +21002,6 @@ msgstr ""
 msgid "Switch to next EPG Event"
 msgstr "Bytt til neste underkanal"
 
-msgid "Zap to next service in the history"
-msgstr "Bytt til neste kanal i historikken"
-
 #
 msgid "Switch to play list"
 msgstr "Bytt til spilliste"
@@ -20928,12 +21010,6 @@ msgstr "Bytt til spilliste"
 #, fuzzy
 msgid "Switch to previous EPG Event"
 msgstr "Bytt til forrige underkanal"
-
-msgid "Zap to previous service"
-msgstr "Bytt til forrige kanal"
-
-msgid "Zap to previous service in the history"
-msgstr "Bytt til forrige kanal i historikken"
 
 msgid "Switch to the available RADIO services"
 msgstr ""
@@ -20964,6 +21040,9 @@ msgid "Symbol rate"
 msgstr "Symbol rate"
 
 msgid "Symbolic link"
+msgstr ""
+
+msgid "Symmetrical skips"
 msgstr ""
 
 msgid "Sync NTP every (minutes)"
@@ -22239,6 +22318,9 @@ msgstr ""
 msgid "Timer Sanity Error"
 msgstr "Timer feil"
 
+msgid "Timer Selection Actions"
+msgstr ""
+
 msgid "Timer edit"
 msgstr ""
 
@@ -22358,9 +22440,6 @@ msgstr ""
 msgid "Toggle all related files"
 msgstr ""
 
-msgid "Cycle through the available aspect ratios"
-msgstr "Veksle størrelsesforhold..."
-
 msgid "Toggle auto refresh On/Off"
 msgstr ""
 
@@ -22371,9 +22450,6 @@ msgid "Toggle between the available TV and RADIO services"
 msgstr ""
 
 msgid "Toggle display of image information"
-msgstr ""
-
-msgid "Cycle through the InfoBars"
 msgstr ""
 
 msgid "Toggle display of the image status overlay"
@@ -22480,6 +22556,9 @@ msgstr "Totalt:"
 #
 msgid "Track"
 msgstr "Spor"
+
+msgid "Traditional"
+msgstr ""
 
 msgid "Traditional Chinese"
 msgstr ""
@@ -23395,12 +23474,6 @@ msgstr "Brukerdefinert"
 msgid "User defined 0x%02x"
 msgstr "Brukerdefinert"
 
-msgid "Select the delay to wait after pressing more digit buttons to select a new service."
-msgstr ""
-
-msgid "Select the delay to wait after pressing the first digit button to select a new service."
-msgstr ""
-
 #
 msgid "User defined transponder"
 msgstr "Brukerdefinert transponder"
@@ -23703,6 +23776,10 @@ msgstr ""
 msgid "View Rass interactive"
 msgstr "Vis Rass interaktiv..."
 
+#
+msgid "View Teletext"
+msgstr "Vis teletext..."
+
 msgid "View as grid"
 msgstr ""
 
@@ -23722,10 +23799,6 @@ msgstr ""
 #
 msgid "View photos..."
 msgstr "Vis bilder..."
-
-#
-msgid "View Teletext"
-msgstr "Vis teletext..."
 
 msgid "View the archive contents"
 msgstr ""
@@ -23937,11 +24010,6 @@ msgstr "Advarsel: ingen LNB; bruker fabrikkinnstillingene."
 #
 msgid "Watch movies..."
 msgstr "Se på film..."
-
-#
-#, fuzzy
-msgid "Watch recordings"
-msgstr "Se på opptak ..."
 
 #, fuzzy
 msgid "Weather"
@@ -24831,6 +24899,24 @@ msgstr "Zap til kanal (oppsett i menyen)"
 msgid "Zap to channel and close (setup in menu)"
 msgstr "Zap til kanal og lukk (oppsett i menyen)"
 
+msgid "Zap to next service"
+msgstr "Bytt til neste kanal"
+
+msgid "Zap to next service in the current bouquet"
+msgstr ""
+
+msgid "Zap to next service in history"
+msgstr "Bytt til neste kanal i historikken"
+
+msgid "Zap to previous service"
+msgstr "Bytt til forrige kanal"
+
+msgid "Zap to previous service in the current bouquet"
+msgstr ""
+
+msgid "Zap to previous service in history"
+msgstr "Bytt til forrige kanal i historikken"
+
 msgid "Zap up"
 msgstr ""
 
@@ -25367,11 +25453,6 @@ msgid "languages"
 msgstr "språk"
 
 #
-#, fuzzy
-msgid "Leave movie player"
-msgstr "Forlat filmspiller..."
-
-#
 msgid "left"
 msgstr "venstre"
 
@@ -25692,17 +25773,11 @@ msgstr ""
 msgid "show DVD main menu"
 msgstr "vis DVD hovedmeny"
 
-msgid "Open EPG"
-msgstr "vis EPG..."
-
 msgid "show all cards"
 msgstr "vise alle kortene"
 
 msgid "show all tags"
 msgstr "vise alle tag"
-
-msgid "show program information..."
-msgstr "vise informasjon om programmet ..."
 
 msgid "show/game show (general)"
 msgstr "show/game show (generelt)"
@@ -25722,16 +25797,8 @@ msgid "skip backward"
 msgstr "hopp bakover"
 
 #
-msgid "Skip backward (enter time)"
-msgstr "hopp bakover (skriv inn tid)"
-
-#
 msgid "skip forward"
 msgstr "hopp framover"
-
-#
-msgid "Skip forward (enter time)"
-msgstr "hopp framover (skriv inn tid)"
 
 msgid "slow"
 msgstr "langsom"
@@ -25899,20 +25966,11 @@ msgstr "Aktiver"
 msgid "update"
 msgstr "Oppdater"
 
-#
-#, fuzzy
-msgid "userdefined"
-msgstr "Brukerdefinert"
-
 msgid "using:"
 msgstr "bruker:"
 
 msgid "variety show"
 msgstr "rekke show"
-
-#
-msgid "view extensions..."
-msgstr "Vis utvidelser..."
 
 msgid "violet"
 msgstr ""
@@ -25967,6 +26025,54 @@ msgstr "ja (behold feeds)"
 
 msgid "®"
 msgstr ""
+
+#
+#, fuzzy
+#~ msgid "InfoBar EPG Actions"
+#~ msgstr "InfoBar EPG modus"
+
+#
+#, fuzzy
+#~ msgid "Listen to the radio"
+#~ msgstr "Høre på radio..."
+
+#~ msgid "Open the movie list"
+#~ msgstr "Åpne filmliste"
+
+#, fuzzy
+#~ msgid "Service Selection/Zap Actions"
+#~ msgstr "Serviceinformasjon"
+
+#
+#, fuzzy
+#~ msgid "Service Zap Actions"
+#~ msgstr "Vis kanaltype ikoner"
+
+#~ msgid "Show the list of AutoTimers."
+#~ msgstr "Vis listen over AutoTimer."
+
+#~ msgid "Show the list of timers."
+#~ msgstr "Vis listen over timer."
+
+#~ msgid "Show the plugin browser.."
+#~ msgstr "Vis plugin visning..."
+
+#
+#, fuzzy
+#~ msgid "Watch recordings"
+#~ msgstr "Se på opptak ..."
+
+#~ msgid "show program information..."
+#~ msgstr "vise informasjon om programmet ..."
+
+#
+#, fuzzy
+#~ msgid "userdefined"
+#~ msgstr "Brukerdefinert"
+
+#
+#~ msgid "view extensions..."
+#~ msgstr "Vis utvidelser..."
 
 #
 #~ msgid "Access point:"

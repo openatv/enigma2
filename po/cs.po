@@ -3,13 +3,14 @@
 # Jiří Engelthaler <engycz@gmail.com>, 2023, 2024.
 # vlkan “vlkanboy” vlkan1 <vlkanboy@gmail.com>, 2024.
 # Libor Rejč <l.rejc@seznam.cz>, 2025.
+# Warder <ciksa@seznam.cz>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-25 18:12+0000\n"
-"PO-Revision-Date: 2025-05-03 10:01+0000\n"
-"Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
+"POT-Creation-Date: 2025-05-04 12:30+0000\n"
+"PO-Revision-Date: 2025-05-05 21:48+0000\n"
+"Last-Translator: Warder <ciksa@seznam.cz>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -220,6 +221,13 @@ msgstr "%.0f MB"
 #, python-format
 msgid "%.2f GB"
 msgstr "%.2f GB"
+
+#, python-format
+msgid "%.2f Second"
+msgid_plural "%.2f Seconds"
+msgstr[0] "%.2f Sekunda"
+msgstr[1] "%.2f Sekundy"
+msgstr[2] "%.2f Sekund"
 
 #, python-format
 msgid "%02d.%02d."
@@ -1701,10 +1709,6 @@ msgstr ""
 "Nahrávání z časovače selhalo!\n"
 "Zakázat TV a zkusit to znovu?\n"
 
-#, python-format
-msgid "Aspect ratio set to '%s'."
-msgstr "Náhled videa je %s."
-
 msgid "AAC downmix"
 msgstr "AAC downmix (převod do sterea)"
 
@@ -1877,7 +1881,7 @@ msgid "Add Alternatives"
 msgstr "Přidat alternativy"
 
 msgid "Add AutoTimer"
-msgstr "Přidat aut. časovač"
+msgstr "Přidat AutoTimer"
 
 msgid "Add Bookmark"
 msgstr "K oblíbeným"
@@ -2539,6 +2543,9 @@ msgstr "Arménie"
 msgid "Armenian"
 msgstr "Arménský"
 
+msgid "Arrow skip mode"
+msgstr "Režim přeskakování šipkami"
+
 msgid "Artist"
 msgstr "Umělec"
 
@@ -2566,14 +2573,18 @@ msgstr "Zeptat se a standardně zvolit 'Ano'"
 msgid "Aspect"
 msgstr "Poměr stran"
 
+msgid "Aspect Ratio"
+msgstr "Poměr stran"
+
 msgid "Aspect Ratio Actions"
 msgstr "Akce poměru stran"
 
-msgid "Open Aspect Ratio Settings"
-msgstr "Seznam aspektů..."
-
 msgid "Aspect ratio"
 msgstr "Poměr stran"
+
+#, python-format
+msgid "Aspect ratio set to '%s'."
+msgstr "Náhled videa je %s."
 
 msgid "Aspect switch"
 msgstr "Přepínač poměru stran"
@@ -2654,9 +2665,6 @@ msgstr "Volba jazyka zvuku 3"
 
 msgid "Audio language selection 4"
 msgstr "Volba jazyka zvuku 4"
-
-msgid "Open Audio options"
-msgstr "Zvukové možnosti..."
 
 msgid "Australia"
 msgstr "Austrálie"
@@ -3641,9 +3649,6 @@ msgstr "Zrušit extrakci"
 msgid "Cancel save time shift as movie"
 msgstr "Zrušit uložení časového posunu jako filmu"
 
-msgid "Cancel the selection"
-msgstr "Zrušit výběr"
-
 msgid "Cancel selection and exit"
 msgstr "Zrušit výběr a odejít"
 
@@ -3673,6 +3678,9 @@ msgstr "Zrušit skenování a opustit všechny nabídky"
 
 msgid "Cancel the scan and exit the scanner"
 msgstr "Zrušit skenování a opustit skener"
+
+msgid "Cancel the selection"
+msgstr "Zrušit výběr"
 
 msgid "Cancel the selection and exit"
 msgstr "Zrušit výběr a ukončit"
@@ -3918,15 +3926,6 @@ msgstr "Výběr kanálu:"
 
 msgid "Channel up"
 msgstr "Kanál nahoru"
-
-msgid "Service zap other button delay"
-msgstr "Zpoždění dalších tlačítek při přepínání"
-
-msgid "Service zap first button delay"
-msgstr "Zpoždění prvního tlačítka při přepínání"
-
-msgid "Service zap delay mode"
-msgstr "Zpoždění při přepnutí kanálu"
 
 msgid "ChannelEPG Settings"
 msgstr "Nastavení kanálu-EPG"
@@ -5367,6 +5366,12 @@ msgstr "Osobní přizpůsobení systému Enigma2"
 msgid "Cut"
 msgstr "Střih"
 
+msgid "CutList skip time for '%s' button"
+msgstr "Čas přeskočení CutList pro tlačítko '%s'"
+
+msgid "CutList skip time for '%s'/'%s' buttons"
+msgstr "Čas přeskočení CutListu pro tlačítka '%s'/'%s'"
+
 msgid "Cutlist Editor"
 msgstr "Editor střihu"
 
@@ -5378,6 +5383,12 @@ msgstr "Azurová"
 
 msgid "Cycle PiP(zap)"
 msgstr "Cyklus PiP (přepínání)"
+
+msgid "Cycle through the InfoBars"
+msgstr "Přepnout zobrazení informačního panelu"
+
+msgid "Cycle through the available aspect ratios"
+msgstr "Procházení dostupných poměrů stran"
 
 msgid "Cycling"
 msgstr "Cyklování"
@@ -5806,6 +5817,9 @@ msgstr "Definovat možnosti připojení systému souborů."
 
 msgid "Defined / Active"
 msgstr "Definováno / Aktivní"
+
+msgid "Defined skips"
+msgstr "Definované přeskakování"
 
 msgid "Defined volume offset"
 msgstr "Definovaný offset hlasitosti"
@@ -6256,6 +6270,9 @@ msgstr "Zakázat"
 msgid "Disable Animations"
 msgstr "Animace vypnuté"
 
+msgid "Disable Chkroot"
+msgstr "Zakázat Chkroot"
+
 msgid "Disable FCC during recordings"
 msgstr "Zakázat FCC během nahrávání"
 
@@ -6288,6 +6305,9 @@ msgstr "Zakázat profily operátora"
 
 msgid "Disable the HDD Process on VFD."
 msgstr "Vypnout ikonu HDD na VFD."
+
+msgid "Disable the MultiBoot option"
+msgstr "Zakázat možnost MultiBoot"
 
 msgid "Disable timer"
 msgstr "Zakázat časovač"
@@ -7382,9 +7402,6 @@ msgstr "Zadejte, pokud jste na sever nebo na jih od rovníku."
 msgid "Enter if you are in the East or West hemisphere."
 msgstr "Zadejte, pokud jste na východní nebo západní polokouli."
 
-msgid "Open Main Menu"
-msgstr "Vstoupit do hlavního menu..."
-
 msgid "Enter new directory name:"
 msgstr "Zadejte nový název adresáře:"
 
@@ -8417,6 +8434,9 @@ msgstr "Pevná"
 
 msgid "Fixed X11 font (SD)"
 msgstr "Opravené písmo X11 (SD)"
+
+msgid "Flash"
+msgstr "Flash"
 
 msgid "Flash Expander"
 msgstr "Flash Expander"
@@ -9800,23 +9820,11 @@ msgstr "Informační panel"
 msgid "InfoBar EPG"
 msgstr "InfoBar EPG"
 
-msgid "InfoBar EPG Actions"
-msgstr "Akce informačního panelu EPG"
-
 msgid "InfoBar EPG Settings"
 msgstr "Nastavení InfobarEPG"
 
 msgid "InfoBar EPG mode"
 msgstr "Režim aktivace EPG v Infobaru"
-
-msgid "InfoBar Event View Actions"
-msgstr "Akce zobrazení událostí informačního panelu"
-
-msgid "RDS Actions"
-msgstr "Akce informačního panelu RDS"
-
-msgid "Show/Hide Actions"
-msgstr "Akce informačního panelu Zobrazit/Skrýt"
 
 msgid "InfoBar fade-out speed"
 msgstr "Rychlost zvolna mizíciho Infobaru"
@@ -10460,6 +10468,9 @@ msgstr "Lotyšsky"
 msgid "Leave DVD player?"
 msgstr "Zavřít DVD přehrávač?"
 
+msgid "Leave movie player"
+msgstr "opustit přehrávač filmů"
+
 msgid "Leave this set to 'Yes' unless you fully understand why you are adjusting it."
 msgstr "Ponechte toto nastavení na „ano“, pokud plně nerozumíte tomu, proč jej upravujete."
 
@@ -10502,12 +10513,12 @@ msgstr "Volný čas, zájmy, koníčky"
 msgid "Lesotho"
 msgstr "Lesotho"
 
+msgid "LetterBox zoom"
+msgstr "Nastavit Letterbox"
+
 #. TRANSLATORS: Aspect ratio policy: Black bars on top/bottom in doubt, keep English term.
 msgid "Letterbox"
 msgstr "Letterbox"
-
-msgid "LetterBox zoom"
-msgstr "Nastavit Letterbox"
 
 msgid "Liberia"
 msgstr "Libérie"
@@ -10591,11 +10602,11 @@ msgstr "Připojené tituly s DVD nabídkou"
 msgid "Links"
 msgstr "Odkazy"
 
-msgid "List available EPG functions"
-msgstr "Seznam funkcí EPG..."
-
 msgid "List Navigation Actions"
 msgstr "Seznam navigačních akcí"
+
+msgid "List available EPG functions"
+msgstr "Seznam dostupných funkcí EPG"
 
 msgid "List available networks"
 msgstr "Seznam dostupných sítí"
@@ -10615,9 +10626,6 @@ msgstr[2] "Seznam verze %d, nalezeno %d kanálů"
 
 msgid "List/Fav"
 msgstr "Seznam/Oblíbené"
-
-msgid "Listen to the radio"
-msgstr "Poslouchat rádio"
 
 msgid "Lists reloaded!"
 msgstr "Seznamy obnoveny!"
@@ -10868,6 +10876,10 @@ msgstr "MTD jádro"
 
 msgid "MTD root"
 msgstr "MTD root"
+
+#, python-format
+msgid "MTD slot %s%s"
+msgstr "MTD slot %s%s"
 
 msgid "MTU"
 msgstr "MTU"
@@ -11625,14 +11637,14 @@ msgstr "Akce zobrazení události filmu"
 msgid "Movie List"
 msgstr "Filmotéka"
 
-msgid "Movie Selection Actions"
-msgstr "Akce seznamu filmů"
-
 msgid "Movie Player Actions"
 msgstr "Akce přehrávače filmů"
 
 msgid "Movie Selection"
 msgstr "Výběr filmů"
+
+msgid "Movie Selection Actions"
+msgstr "Akce seznamu filmů"
 
 msgid "Movie Selection Settings"
 msgstr "Nastavení filmotéky"
@@ -12471,6 +12483,12 @@ msgstr "Nyní použijte nastavení kontrastu pro nastavení světlosti pozadí n
 msgid "Number"
 msgstr "Počet"
 
+msgid "Number and name"
+msgstr "Číslo a jméno"
+
+msgid "Number and picon"
+msgstr "Číslo a picon"
+
 msgid "Number of IP Addresses"
 msgstr "Počet IP adres"
 
@@ -12483,11 +12501,20 @@ msgstr "Počet řádků"
 msgid "Number of rows to display."
 msgstr "Počet zobrazených řádků."
 
+msgid "Number only"
+msgstr "Pouze číslo"
+
 msgid "Number or SMS style data entry"
 msgstr "Zadání dat ve stylu čísla nebo SMS"
 
+msgid "Number, name and picon"
+msgstr "Číslo, název a picon"
+
 msgid "Numbering mode"
 msgstr "Režim číslování"
+
+msgid "Numeric skip mode"
+msgstr "Režim číselného přeskakování"
 
 msgid "OEM model"
 msgstr "OEM model"
@@ -12653,35 +12680,128 @@ msgstr "Po startu přijímače"
 msgid "Open"
 msgstr "Otevřít"
 
+msgid "Open Aspect Ratio Settings"
+msgstr "Otevřít nastavení poměru stran"
+
+msgid "Open Audio options"
+msgstr "Otevřít možnosti zvuku"
+
 msgid "Open AutoTimer"
 msgstr "Otevřít automatický časovač"
+
+msgid "Open AutoTimer OverView"
+msgstr "Otevřít přehled automatického časovače"
 
 msgid "Open AutoTimer Overview"
 msgstr "Otevřít seznam automatických časovačů"
 
+msgid "Open Bouquet selection"
+msgstr "Otevřít seznam"
+
+msgid "Open Box Portal"
+msgstr "Zobrazit Box Portal"
+
+msgid "Open DreamPlex"
+msgstr "Otevřít DreamPlex"
+
+msgid "Open EPG"
+msgstr "Otevřít EPG"
+
+msgid "Open EPG for current service"
+msgstr "Otevřít EPG pro aktuální program"
+
 msgid "Open EPGSearch"
 msgstr "Otevřít vyhledávání EPG"
+
+msgid "Open Extensions"
+msgstr "Otevřít rozšíření"
+
+msgid "Open HDMIRecord Settings"
+msgstr "Otevřít nastavení HDMIRecord"
 
 msgid "Open IMDb"
 msgstr "Otevřít IMDb"
 
+msgid "Open Information menu"
+msgstr "Zobrazit informace"
+
 msgid "Open Log"
 msgstr "Otevřít protokol"
+
+msgid "Open Main Menu"
+msgstr "Otevřít hlavní nabídku"
+
+msgid "Open Media Player"
+msgstr "Zobrazit přehrávač médií"
+
+msgid "Open MediaCenter"
+msgstr "Zobrazit centrum médií"
 
 msgid "Open MediaStream"
 msgstr "Otevřít Stream médií"
 
-msgid "Open Settings"
-msgstr "Otevřít nastavení"
+msgid "Open Movie Selection"
+msgstr "Přehrát nahrané filmy"
 
-msgid "Open Similar List Channel List"
-msgstr "Otevřít seznam podobných kanálů"
+msgid "Open Network Settings"
+msgstr "Otevřít nastavení sítě"
+
+msgid "Open Plugin Browser"
+msgstr "Zobrazit pluginy"
+
+msgid "Open QuickMenu"
+msgstr "Otevřít Rychlou nabídku"
+
+msgid "Open RFmod Settings"
+msgstr "Otevřít nastavení RFmodu"
+
+msgid "Open Radio bouquet selection"
+msgstr "Zobrazit přehrávač rádií"
 
 msgid "Open RecordTimer Overview"
 msgstr "Otevřít seznam časovačů"
 
-msgid "Open Bouquet selection"
-msgstr "Otevřít seznam"
+msgid "Open Satellites selection"
+msgstr "Otevřít seznam satelitů"
+
+msgid "Open Scheduler Overview"
+msgstr "Zobrazit Plánovač"
+
+msgid "Open Services / Reception selection"
+msgstr "Otevřít přehled programů"
+
+msgid "Open Settings"
+msgstr "Otevřít nastavení"
+
+msgid "Open Setup"
+msgstr "Otevřít nastavení"
+
+msgid "Open Setup menu"
+msgstr "Zobrazit nastavení"
+
+msgid "Open Similar List Channel List"
+msgstr "Otevřít seznam podobných kanálů"
+
+msgid "Open Simple Umount"
+msgstr "Otevřít jednoduché odpojení"
+
+msgid "Open SleepTimer Settings"
+msgstr "Zobrazit časovač vypnutí"
+
+msgid "Open Subservices selection"
+msgstr "Vybrat podslužby"
+
+msgid "Open Subtitle options"
+msgstr "Otevřít možnosti titulků"
+
+msgid "Open TV bouquet selection"
+msgstr "Zobrazit TV přehrávač"
+
+msgid "Open Usage and GUI Settings"
+msgstr "Otevřít nastavení použití a grafického uživatelského rozhraní"
+
+msgid "Open VideoMode"
+msgstr "Zobrazit nastavení formátu"
 
 msgid "Open context menu"
 msgstr "Otevřít kontextovou nabídku"
@@ -12689,31 +12809,25 @@ msgstr "Otevřít kontextovou nabídku"
 msgid "Open context menu (contains settings menu)"
 msgstr "Otevřít kontextovou nabídku (obsahuje nabídku nastavení)"
 
+msgid "Open event information"
+msgstr "Otevřít informace o události"
+
 msgid "Open external subtitle management screen"
 msgstr "Otevřít obrazovku správy externích titulků"
-
-msgid "Open favorites list"
-msgstr "Otevřít seznam oblíbených položek"
 
 msgid "Open file sort menu"
 msgstr "Otevřít nabídku řazení souborů"
 
-msgid "Open Satellites selection"
-msgstr "Otevřít seznam satelitů"
-
-msgid "Open Services / Reception selection"
-msgstr "Otevřít přehled programů"
-
-msgid "Open service list and select next channel"
+msgid "Open service list and select next service"
 msgstr "Otevřít přehled programů a vybrat další kanál"
 
-msgid "Open service list and select next channel for PiP"
+msgid "Open service list and select next service for PiP"
 msgstr "Otevřít seznam programů a vybrat další kanál pro PiP"
 
-msgid "Open service list and select previous channel"
+msgid "Open service list and select previous service"
 msgstr "Otevřít seznam programů a vybrat předchozí kanál"
 
-msgid "Open service list and select previous channel for PiP"
+msgid "Open service list and select previous service for PiP"
 msgstr "Otevřít seznam programů a vybrat předchozí kanál pro PiP"
 
 msgid "Open the Channel Selection Settings screen"
@@ -12736,9 +12850,6 @@ msgstr "Otevřete VirtualKeyBoard a zadejte text"
 
 msgid "Open the context menu"
 msgstr "Otevřít kontextovou nabídku"
-
-msgid "Open the movie list"
-msgstr "Otevřít seznam filmů"
 
 msgid "Open the multi service EPG view"
 msgstr "Otevřít zobrazení EPG pro více služeb"
@@ -13123,6 +13234,9 @@ msgstr "Procenta vlevo"
 msgid "Percentage right"
 msgstr "Procenta vpravo"
 
+msgid "Percentage skips"
+msgstr "Procentuální přeskakování"
+
 msgid "Percentage/Progress bar left"
 msgstr "Ukazatel procent/průběhu vlevo"
 
@@ -13137,6 +13251,9 @@ msgstr "Provést aktualizaci?"
 
 msgid "Permanently delete all recordings in the trashcan?"
 msgstr "Trvale odstranit všechny záznamy z koše?"
+
+msgid "Permanently disable the MultiBoot option?"
+msgstr "Trvale zakázat možnost MultiBoot?"
 
 msgid "Permanently ignore this device"
 msgstr "Toto zařízení trvale ignorovat"
@@ -13168,9 +13285,6 @@ msgstr "Filipíny"
 
 msgid "PiP"
 msgstr "PiP"
-
-msgid "Picture in Picture Actions"
-msgstr "Akce PiP"
 
 msgid "PiP with OSD"
 msgstr "PIP s OSD"
@@ -13207,6 +13321,9 @@ msgstr "Akce informace o obrázku"
 
 msgid "Picture in EPG"
 msgstr "Obrázek v EPG"
+
+msgid "Picture in Picture Actions"
+msgstr "Akce PiP"
 
 msgid "Picture in Picture Settings"
 msgstr "Nastavení obrazu v obraze"
@@ -13304,9 +13421,6 @@ msgstr "Přehrát další (návrat na předchozí program)"
 
 msgid "Play previous"
 msgstr "Přehrát předchozí"
-
-msgid "Open Movie Selection"
-msgstr "Přehrát nahrané filmy"
 
 msgid "Play selected service in a PiP window"
 msgstr "Přehrát vybranou službu v okně PiP"
@@ -14203,9 +14317,6 @@ msgstr "Rychlé Menu"
 msgid "Quick Menu Actions"
 msgstr "Akce rychlé nabídky"
 
-msgid "Open QuickMenu"
-msgstr "Rychlé Menu..."
-
 msgid "QuickEPG mode"
 msgstr "Aktivace QuickEPG"
 
@@ -14254,6 +14365,9 @@ msgstr "Zvolený název RC"
 msgid "RC selected type"
 msgstr "Zvolený typ RC"
 
+msgid "RDS Actions"
+msgstr "Akce informačního panelu RDS"
+
 msgid "REC"
 msgstr "REC"
 
@@ -14271,6 +14385,9 @@ msgstr "REC Symbol je používán"
 
 msgid "RED button"
 msgstr "ČERVENÉ tlačítko"
+
+msgid "RED button / HbbTV"
+msgstr "ČERVENÉ tlačítko / HbbTV"
 
 msgid "RED long"
 msgstr "Červené - dlouhý stisk"
@@ -14532,9 +14649,6 @@ msgstr "Režim obnovení"
 
 msgid "Red"
 msgstr "Červené"
-
-msgid "RED button / HbbTV"
-msgstr "Červené tlačítko..."
 
 msgid "Red colored"
 msgstr "Červené barvy"
@@ -15652,8 +15766,11 @@ msgstr "Rychlost rolování (provádí software)"
 msgid "Search"
 msgstr "Hledat"
 
+msgid "Search EPG for current event"
+msgstr "Vyhledat EPG pro aktuální událost"
+
 msgid "Search IMDb for information about current event"
-msgstr "Hledat IMDb informace o aktuální události."
+msgstr "Vyhledejte si informace o aktuální události na IMDb"
 
 msgid "Search Sats"
 msgstr "Hledání družic (SAT Finder)"
@@ -15669,9 +15786,6 @@ msgstr "Hledat sdílené síťě"
 
 msgid "Search for similar events"
 msgstr "Hledat podobné pořady"
-
-msgid "Search EPG for current event"
-msgstr "Hledat EPG pro aktuální událost."
 
 msgid "Search weather location ID"
 msgstr "Vyhledat ID polohy počasí"
@@ -15730,11 +15844,11 @@ msgstr "Přeskočit dopředu (zadat čas)"
 msgid "Seek forward long"
 msgstr "Procházení dopředu - dlouhý stisk"
 
-msgid "Seekbar"
-msgstr "Panel vyhledávání"
-
 msgid "SeekBar activation"
 msgstr "Aktivace hledání"
+
+msgid "Seekbar"
+msgstr "Panel vyhledávání"
 
 msgid "Seekbar sensibility"
 msgstr "Citlivost hledání"
@@ -16063,6 +16177,9 @@ msgstr "Vybrat Quad Channels"
 msgid "Select Satellites"
 msgstr "Vybrat satelity"
 
+msgid "Select SeekBar to be activated by arrow L/R (long) or << >> (long)."
+msgstr "Vyberte aktivaci lišty šipkou L/R (dlouhý stisk) nebo << >> (dlouhý stisk)."
+
 msgid "Select Shares"
 msgstr "Vyberte Sdílené položky"
 
@@ -16218,6 +16335,12 @@ msgstr "Vyberte, jak často se má tento časovač opakovat."
 msgid "Select how quickly the dish should move between satellites."
 msgstr "Vyberte, jak rychle se má parabola pohybovat mezi satelity."
 
+msgid "Select how the arrow ('UP', 'DOWN', 'LEFT', and 'RIGHT') buttons will act during seek actions."
+msgstr "Vyberte, jak se budou tlačítka se šipkami („NAHORU“, „DOLŮ“, „VLEVO“ a „VPRAVO“) chovat během vyhledávání."
+
+msgid "Select how the number buttons will act during seek actions."
+msgstr "Vyberte, jak se budou číselná tlačítka chovat během vyhledávání."
+
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr "Vyberte způsob nastavení satelitní antény. tj. pevná parabola, jednoduchý LNB, DiSEqC přepínač, polohovač atd."
 
@@ -16229,6 +16352,9 @@ msgstr "Nastavte si podrobnosti vašich aktualizací."
 
 msgid "Select if an end time is required."
 msgstr "Vyberte, je-li vyžadován čas ukončení."
+
+msgid "Select if data entry timeouts are to be applied when entering digits into the service selection pop up screen. When a timeout is exceeded the currently entered number will be used for the service selection. The default timeouts are first digit 3 seconds, other digits 1 second."
+msgstr "Nastavení režimu zpoždění při přepínání kanálů."
 
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr "Vyberte, zda se zobrazí výchozí hodnota položky nastavení, a pokud ano, kde se zobrazí ve vztahu k popisu."
@@ -16296,9 +16422,6 @@ msgstr "Vyberte poskytovatele služeb..."
 msgid "Select refresh rate"
 msgstr "Vyberte obnovovací frekvenci"
 
-msgid "Select SeekBar to be activated by arrow L/R (long) or << >> (long)."
-msgstr "Vyberte aktivaci lišty šipkou L/R (dlouhý stisk) nebo << >> (dlouhý stisk)."
-
 msgid "Select service information to view:"
 msgstr "Vyberte servisní informace, které chcete zobrazit:"
 
@@ -16307,9 +16430,6 @@ msgstr "Vyberte program(y) pro přidání..."
 
 msgid "Select sort method:"
 msgstr "Vybrat způsob řazení:"
-
-msgid "Open Subservices selection"
-msgstr "Vybrat podslužby"
 
 msgid "Select system information to view:"
 msgstr "Vyberte systémové informace, které chcete zobrazit:"
@@ -16413,6 +16533,9 @@ msgstr "Vyberte aktuálně označenou službu"
 msgid "Select the currently highlighted service and exit"
 msgstr "Vyberte aktuálně zvýrazněnou službu a odejděte"
 
+msgid "Select the currently highlighted timer"
+msgstr "Vyberte aktuálně zvýrazněný časovač"
+
 msgid "Select the date from which this timer will become active."
 msgstr "Vyberte datum, od kterého se tento časovač stane aktivním."
 
@@ -16436,6 +16559,12 @@ msgstr "Zvolte prodlevu před aktivací časovače."
 
 msgid "Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for boxes with multiple satellite tuners."
 msgstr "Vyberte zpoždění, které se použije při uzavření služby Stream Relay před přerozdělením tuneru pro jinou službu. Použití „0“ se doporučuje pouze pro boxy s více satelitními tunery."
+
+msgid "Select the delay to wait after pressing more digit buttons to select a new service."
+msgstr "Uživatelské nastavení zpoždění přepnutí kanálu po zadání dalších čísel."
+
+msgid "Select the delay to wait after pressing the first digit button to select a new service."
+msgstr "Uživatelské nastavení zpoždění přepnutí kanálu po zadání prvního čísla."
 
 msgid "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to toggle between the lists. Select an assigned function and click on 'OK' to deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned functions."
 msgstr "Stiskem \"OK\" vyberete a přiřadíte požadovanou funkci. \"CH +/-\" umožňuje přepínat mezi seznamy. Stiskem \"OK\" můžete již přiřazenou funkci také vyřadit. Tlačítkem \"Další / Předchozí\" změňte pořadí přiřazených funkcí."
@@ -16552,6 +16681,9 @@ msgstr "Vyberte další položku v seznamu nebo posuňte kurzor vpravo"
 
 msgid "Select the next item in the list"
 msgstr "Vyberte další položku v seznamu"
+
+msgid "Select the preferred service information to display, in addition to the service number, for the service selection pop up screen."
+msgstr "Vyberte preferované informace o službě, které se mají zobrazit, kromě čísla služby, na vyskakovací obrazovce s výběrem služby."
 
 msgid "Select the previous item in list or move the cursor left"
 msgstr "Vyberte předchozí položku v seznamu nebo posuňte kurzor vlevo"
@@ -16904,14 +17036,8 @@ msgstr "Akce skenování služeb"
 msgid "Service Selection Actions"
 msgstr "Akce pro výběr služeb"
 
-msgid "Service Selection/Zap Actions"
-msgstr "Akce výběru služby/přepnutí"
-
 msgid "Service Title mode"
 msgstr "Názvy programů"
-
-msgid "Service Zap Actions"
-msgstr "Akce Zap služby"
 
 msgid "Service and PID information"
 msgstr "Servisní a PID informace"
@@ -16979,6 +17105,18 @@ msgstr ""
 
 msgid "Service width"
 msgstr "Šířka názvu kanálu"
+
+msgid "Service zap delay mode"
+msgstr "Zpoždění při přepnutí kanálu"
+
+msgid "Service zap first button delay"
+msgstr "Zpoždění prvního tlačítka při přepínání"
+
+msgid "Service zap other button delay"
+msgstr "Zpoždění dalších tlačítek při přepínání"
+
+msgid "Service zap screen contents"
+msgstr "Obsah obrazovky pro přepnutí služby"
 
 msgid "ServiceName"
 msgstr "Název programu"
@@ -17073,9 +17211,18 @@ msgstr "Nastavit spuštění programu"
 msgid "Set system"
 msgstr "Nastavit systém"
 
+msgid "Set the CutList Editor skip time interval for the '%s'/'%s' buttons."
+msgstr "Nastavte časový interval přeskočení editoru CutList pro tlačítka '%s'/'%s'."
+
+msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
+msgstr "Nastavte procento přeskakování tlačítek LEFT/RIGHT pro SeekBar."
+
 #, python-format
 msgid "Set the MAC address of your %s %s."
 msgstr "Nastavení MAC-Adresy pro Váš %s %s."
+
+msgid "Set the UP/DOWN button skip percentage for the SeekBar."
+msgstr "Nastavte procento přeskakování tlačítek NAHORU/DOLŮ pro SeekBar."
 
 msgid "Set the User ID of the OpenWebif from your fallback tuner"
 msgstr "Nastavte uživatelské jméno pro OpenWebIf z Vašeho záložního tuneru"
@@ -17127,6 +17274,12 @@ msgstr "Nastavení rychlosti rolování textu na předním displeji, Provedení 
 
 msgid "Set the scrolling speed of text on the front display."
 msgstr "Nastavte rolování textu na čelním displeji."
+
+msgid "Set the skip time interval for the '%s' button."
+msgstr "Nastavte interval přeskočení pro tlačítko '%s'."
+
+msgid "Set the skip time interval for the '%s'/'%s' buttons."
+msgstr "Nastavte interval přeskakování pro tlačítka '%s'/'%s'."
 
 msgid "Set the time before checking video source for resolution information."
 msgstr "Nastavte čas pro zpoždění kontroly rozlišení videa."
@@ -17292,9 +17445,6 @@ msgstr "Nastavení Video/Audio"
 
 msgid "Setup Videomode"
 msgstr "Nastavení video módů"
-
-msgid "Select if data entry timeouts are to be applied when entering digits into the service selection pop up screen. When a timeout is exceeded the currently entered number will be used for the service selection. The default timeouts are first digit 3 seconds, other digits 1 second."
-msgstr "Nastavení režimu zpoždění při přepínání kanálů."
 
 msgid "Setup each tuner for your satellite system"
 msgstr "Nastavení a aktivace všech tunerů pro satelitní a pozemní příjem"
@@ -17489,9 +17639,6 @@ msgstr "Nastavení zvuku"
 msgid "Show AutoTimer List"
 msgstr "Zobrazí seznam automatického časovače"
 
-msgid "Open Box Portal"
-msgstr "Zobrazit Box Portal"
-
 msgid "Show CCcam Info"
 msgstr "Zobrazit informace CCcam"
 
@@ -17516,17 +17663,11 @@ msgstr "Zobrazit balíčky ovladačů"
 msgid "Show EPG"
 msgstr "Zobrazit EPG"
 
-msgid "Open EPG for current service"
-msgstr "Zobrazit EPG pro aktuální kanál..."
-
 msgid "Show EventView"
 msgstr "Zobrazit událost"
 
 msgid "Show Extension packages"
 msgstr "Zobrazit balíčky rozšíření"
-
-msgid "Open VideoMode"
-msgstr "Zobrazit nastavení formátu"
 
 msgid "Show Graphical EPG"
 msgstr "Zobrazit Grafické EPG"
@@ -17539,9 +17680,6 @@ msgstr "Zobrazí rozlišení HDMI výstupu."
 
 msgid "Show HDMI-Output Res"
 msgstr "Zobrazit rozlišení HDMI-výstupu"
-
-msgid "Open HDMIRecord Settings"
-msgstr "Zobrazit nastavení záznamu HDMI..."
 
 msgid "Show InfoBar"
 msgstr "Zobrazit Infobar"
@@ -17560,9 +17698,6 @@ msgstr "Zobrazit Infobar při přeskočení dopředu/zpět"
 
 msgid "Show InfoBar picons"
 msgstr "Zobrazit Infobar s picony"
-
-msgid "Open Information menu"
-msgstr "Zobrazit informace"
 
 msgid "Show Kernel packages"
 msgstr "Zobrazit balíčky jádra"
@@ -17629,9 +17764,6 @@ msgstr "Zobrazit balíčky Picon"
 
 msgid "Show Plugin Skin packages"
 msgstr "Zobrazit balíčky vzhledu pluginu"
-
-msgid "Open RFmod Settings"
-msgstr "Zobrazit nastavení RFmod..."
 
 msgid "Show Record Movies"
 msgstr "Zobrazit nahrávání filmů"
@@ -17817,9 +17949,6 @@ msgstr "Zobrazit rozšířený popis"
 msgid "Show extension selection"
 msgstr "Rozšířená nabídka"
 
-msgid "Open Extensions"
-msgstr "Zobrazit rozšíření..."
-
 msgid "Show extra spacing in Information"
 msgstr "Zobrazit další mezery v informacích"
 
@@ -17904,9 +18033,6 @@ msgstr "Zobrazit filmy"
 
 msgid "Show multi channel EPG"
 msgstr "Zobrazit EPG z více kanálů"
-
-msgid "Open Network Settings"
-msgstr "Zobrazit nabídku nastavení sítě..."
 
 msgid "Show next commit log"
 msgstr "Zobrazit další protokol potvrzení"
@@ -17998,9 +18124,6 @@ msgstr "Zobrazit obrazovku s předchozími servisními informacemi"
 msgid "Show previous system information screen"
 msgstr "Zobrazit předchozí obrazovku s informacemi o systému"
 
-msgid "Show quickmenu..."
-msgstr "Zobrazit rychlé menu..."
-
 msgid "Show record indicator"
 msgstr "Zobrazit indikátor nahrávání"
 
@@ -18046,14 +18169,8 @@ msgstr "Zobrazit ikony typu kanálu"
 msgid "Show servicelist or movies"
 msgstr "Zobrazit seznam programů nebo filmů"
 
-msgid "Open Setup menu"
-msgstr "Zobrazit nastavení"
-
 msgid "Show setup default value"
 msgstr "Zobrazit výchozí hodnotu nastavení"
-
-msgid "Open Setup"
-msgstr "Zobrazit nabídku nastavení..."
 
 msgid "Show shut down menu"
 msgstr "Zobrazit \"Vypínací\" menu"
@@ -18103,9 +18220,6 @@ msgstr "Zobrazit zprávy o úkolech, pokud File Commander není spuštěn a vše
 msgid "Show the CCcam Info Screen"
 msgstr "Zobrazit informační obrazovku CCcam"
 
-msgid "Open DreamPlex"
-msgstr "Zobrazit přehrávač DreamPlex..."
-
 msgid "Show the EIT Now/Next data in the InfoBar."
 msgstr "Zobrazit EIT Nyní/Další v informačním panelu."
 
@@ -18115,47 +18229,11 @@ msgstr "Zobrazit obrazovku Nastavení protokolů"
 msgid "Show the OSCam information screen"
 msgstr "Zobrazit obrazovku s informacemi o OSCamu"
 
-msgid "Open Scheduler Overview"
-msgstr "Zobrazit Plánovač"
-
-msgid "Open SleepTimer Settings"
-msgstr "Zobrazit časovač vypnutí"
-
-msgid "Open event information"
-msgstr "Zobrazit informace o aktuální události."
-
 msgid "Show the last opkg command's output"
 msgstr "Zobrazit výstup posledního příkazu opkg"
 
-msgid "Show the list of AutoTimers."
-msgstr "Zobrazit seznam automatických časovačů."
-
-msgid "Show the list of timers."
-msgstr "Zobrazit seznam časovačů."
-
-msgid "Open MediaCenter"
-msgstr "Zobrazit centrum médií"
-
-msgid "Open Media Player"
-msgstr "Zobrazit přehrávač médií"
-
-msgid "Show the media player..."
-msgstr "Zobrazit přehrávač médií..."
-
-msgid "Show the plugin browser.."
-msgstr "Zobrazit prohlížeč pluginů..."
-
-msgid "Open Plugin Browser"
-msgstr "Zobrazit pluginy"
-
-msgid "Open Radio bouquet selection"
-msgstr "Zobrazit přehrávač rádií"
-
 msgid "Show the task list"
 msgstr "Zobrazit seznam úkolů"
-
-msgid "Open TV bouquet selection"
-msgstr "Zobrazit TV přehrávač"
 
 msgid "Show time elapsed as positive"
 msgstr "Zobrazit uplynulý čas jako pozitivní"
@@ -18187,9 +18265,6 @@ msgstr "Zobrazit neznámá zařízení"
 msgid "Show unknown video format as"
 msgstr "Zobrazit neznámý formát videa jako"
 
-msgid "Open Usage and GUI Settings"
-msgstr "Zobrazit menu použití a grafického uživatelského rozhraní..."
-
 msgid "Show vertical Program Guide"
 msgstr "Zobrazit vertikálního programového průvodce"
 
@@ -18204,6 +18279,9 @@ msgstr "Zobrazit ikony stavu v seznamu filmů"
 
 msgid "Show/Games show"
 msgstr "Show/herní show"
+
+msgid "Show/Hide Actions"
+msgstr "Akce informačního panelu Zobrazit/Skrýt"
 
 msgid "Show/Hide focus bar"
 msgstr "Zobrazit/skrýt panel rozšíření"
@@ -18289,9 +18367,6 @@ msgstr "Jednoduché pozvolné mizení"
 msgid "Simple titleset (compatibility for legacy players)"
 msgstr "Jednoduché (kompatibilita pro starší přehrávače)"
 
-msgid "Open Simple Umount"
-msgstr "Jednoduché velkokapacitní úložné zařízení."
-
 msgid "Simple zoom"
 msgstr "Jednoduché pozvolné zvětšení"
 
@@ -18364,17 +18439,38 @@ msgstr "Výběr skinu"
 msgid "Skip back"
 msgstr "Přeskočit zpět"
 
+msgid "Skip backward"
+msgstr "Přeskočit zpět"
+
+msgid "Skip backward (enter time)"
+msgstr "přeskočit zpět (zadat čas)"
+
 msgid "Skip empty services"
 msgstr "Přeskakovat prázdné programy"
 
 msgid "Skip forward"
 msgstr "Přeskočit vpřed"
 
+msgid "Skip forward (enter time)"
+msgstr "přeskočit dopředu (zadat čas)"
+
 msgid "Skip jumping to live while timeshifting with plugins"
 msgstr "Vynechat živé přeskakování při timeshiftu pomocí pluginů"
 
 msgid "Skip package installation, only core packages will be available"
 msgstr "Přeskočit instalaci balíčku, k dispozici budou pouze základní balíčky"
+
+msgid "Skip sensibility (Horizontal)"
+msgstr "Citlivost přeskočení (horizontální)"
+
+msgid "Skip sensibility (Vertical)"
+msgstr "Citlivost přeskočení (vertikální)"
+
+msgid "Skip time for '%s' button"
+msgstr "Čas přeskočení pro tlačítko '%s'"
+
+msgid "Skip time for '%s'/'%s' buttons"
+msgstr "Čas přeskočení pro tlačítka '%s'/'%s'vvvvvv"
 
 msgid "Sleep"
 msgstr "Spánek"
@@ -19169,6 +19265,9 @@ msgstr "Akce s titulky"
 msgid "Subtitle Quickmenu"
 msgstr "Rychlé nastavení titulků"
 
+msgid "Subtitle Selection"
+msgstr "Výběr titulků"
+
 msgid "Subtitle Settings"
 msgstr "Nastavení titulků"
 
@@ -19204,12 +19303,6 @@ msgstr "Volba jazyka titulků 4"
 
 msgid "Subtitle position"
 msgstr "Pozice titulků"
-
-msgid "Subtitle Selection"
-msgstr "Výběr titulků"
-
-msgid "Open Subtitle options"
-msgstr "Výběr titulků..."
 
 msgid "Subtitles"
 msgstr "Titulky"
@@ -19322,9 +19415,6 @@ msgstr "Přepínání mezi seznamem souborů/seznamem přehrávání"
 msgid "Switch config"
 msgstr "Nastavit přepínání"
 
-msgid "Zap to next service"
-msgstr "Další program"
-
 msgid "Switch off the TV to correct input"
 msgstr "Vypněte televizor, aby vstup byl správný"
 
@@ -19358,20 +19448,11 @@ msgstr "Přepnout na panel seznamu souborů"
 msgid "Switch to next EPG Event"
 msgstr "Přepnout na další EPG událost"
 
-msgid "Zap to next service in the history"
-msgstr "Přepnout na další program v historii"
-
 msgid "Switch to play list"
 msgstr "Přepnout na seznam přehrávání"
 
 msgid "Switch to previous EPG Event"
 msgstr "Přepnutí na předchozí EPG událost"
-
-msgid "Zap to previous service"
-msgstr "Předchozí podprogram"
-
-msgid "Zap to previous service in the history"
-msgstr "Přepnout na předchozí program v historii"
 
 msgid "Switch to the available RADIO services"
 msgstr "Přepnout na dostupné služby RÁDIA"
@@ -19402,6 +19483,9 @@ msgstr "Sym. rychlost"
 
 msgid "Symbolic link"
 msgstr "Symbolický odkaz"
+
+msgid "Symmetrical skips"
+msgstr "Symetrické přeskakování"
 
 msgid "Sync NTP every (minutes)"
 msgstr "Synchronizovat NTP po (min)"
@@ -20653,6 +20737,9 @@ msgstr "Akce protokolu časovače"
 msgid "Timer Sanity Error"
 msgstr "Nelogické časování"
 
+msgid "Timer Selection Actions"
+msgstr "Akce výběru časovače"
+
 msgid "Timer edit"
 msgstr "Upravit časovač"
 
@@ -20733,7 +20820,7 @@ msgid "Today"
 msgstr "Dnes"
 
 msgid "Toggle Dolby Digital down mix"
-msgstr "Přepnout digitální downmix..."
+msgstr "Přepnout mix Dolby Digital"
 
 msgid "Toggle HDMI-In PiP"
 msgstr "Přepnout HDMI-vstup na PIP"
@@ -20762,9 +20849,6 @@ msgstr "Přepnout dočasné připojení pro aktuální zařízení"
 msgid "Toggle all related files"
 msgstr "Přepnout všechny související soubory"
 
-msgid "Cycle through the available aspect ratios"
-msgstr "Přepnout poměr stran..."
-
 msgid "Toggle auto refresh On/Off"
 msgstr "Zapnout/vypnout automatické obnovování"
 
@@ -20776,9 +20860,6 @@ msgstr "Přepínání mezi dostupnými televizními a rozhlasovými službami"
 
 msgid "Toggle display of image information"
 msgstr "Přepnout zobrazení informací o obrázku"
-
-msgid "Cycle through the InfoBars"
-msgstr "Přepnout zobrazení informačního panelu"
 
 msgid "Toggle display of the image status overlay"
 msgstr "Přepnout zobrazení překrytí stavu obrázku"
@@ -20879,6 +20960,9 @@ msgstr "Celkem:"
 
 msgid "Track"
 msgstr "Stopa"
+
+msgid "Traditional"
+msgstr "Tradiční"
 
 msgid "Traditional Chinese"
 msgstr "Tradiční čínština"
@@ -21721,12 +21805,6 @@ msgstr "Uživatelsky definované"
 msgid "User defined 0x%02x"
 msgstr "Uživatelem definované 0x%02x"
 
-msgid "Select the delay to wait after pressing more digit buttons to select a new service."
-msgstr "Uživatelské nastavení zpoždění přepnutí kanálu po zadání dalších čísel."
-
-msgid "Select the delay to wait after pressing the first digit button to select a new service."
-msgstr "Uživatelské nastavení zpoždění přepnutí kanálu po zadání prvního čísla."
-
 msgid "User defined transponder"
 msgstr "Uživatem definovaný transpondér"
 
@@ -22027,6 +22105,9 @@ msgstr "Zobrazit soubor"
 msgid "View Rass interactive"
 msgstr "Prohlížet Rass interaktivně"
 
+msgid "View Teletext"
+msgstr "Zobrazit teletext"
+
 msgid "View as grid"
 msgstr "Zobrazit jako mřížku"
 
@@ -22045,9 +22126,6 @@ msgstr "Zobrazit nebo upravit tento %s skript"
 
 msgid "View photos..."
 msgstr "Zobrazit fotografie..."
-
-msgid "View Teletext"
-msgstr "Teletext..."
 
 msgid "View the archive contents"
 msgstr "Zobrazit obsah archivu"
@@ -22245,9 +22323,6 @@ msgstr "Varování: žádný LNB; použiváno tovární nastavení."
 
 msgid "Watch movies..."
 msgstr "Sledovat filmy..."
-
-msgid "Watch recordings"
-msgstr "Sledovat nahrávky"
 
 msgid "Weather"
 msgstr "Počasí"
@@ -23099,6 +23174,24 @@ msgstr "Přepnout kanál (menu nastavení)"
 msgid "Zap to channel and close (setup in menu)"
 msgstr "Přepnout kanál a zavřít (menu nastavení)"
 
+msgid "Zap to next service"
+msgstr "Další program"
+
+msgid "Zap to next service in the current bouquet"
+msgstr "Přeskočit na další službu v aktuálním seznamu"
+
+msgid "Zap to next service in history"
+msgstr "Přepnout na další program v historii"
+
+msgid "Zap to previous service"
+msgstr "Předchozí podprogram"
+
+msgid "Zap to previous service in the current bouquet"
+msgstr "Přejít na předchozí službu v aktuálním seznamu"
+
+msgid "Zap to previous service in history"
+msgstr "Přepnout na předchozí program v historii"
+
 msgid "Zap up"
 msgstr "Přepnout nahoru"
 
@@ -23582,9 +23675,6 @@ msgstr "skok na kapitolu podle čísla"
 msgid "languages"
 msgstr "jazyky"
 
-msgid "Leave movie player"
-msgstr "opustit přehrávač filmů"
-
 msgid "left"
 msgstr "vlevo"
 
@@ -23872,17 +23962,11 @@ msgstr "shell"
 msgid "show DVD main menu"
 msgstr "zobrazit hlavní menu DVD"
 
-msgid "Open EPG"
-msgstr "zobrazit EPG…"
-
 msgid "show all cards"
 msgstr "zobrazit všechny karty"
 
 msgid "show all tags"
 msgstr "zobrazit všechny značky"
-
-msgid "show program information..."
-msgstr "zobrazit informace o programu..."
 
 msgid "show/game show (general)"
 msgstr "show/game show (obecně)"
@@ -23899,14 +23983,8 @@ msgstr "velikost"
 msgid "skip backward"
 msgstr "přeskočit zpět"
 
-msgid "Skip backward (enter time)"
-msgstr "přeskočit zpět (zadat čas)"
-
 msgid "skip forward"
 msgstr "přeskočit dopředu"
-
-msgid "Skip forward (enter time)"
-msgstr "přeskočit dopředu (zadat čas)"
 
 msgid "slow"
 msgstr "pomalu"
@@ -24052,17 +24130,11 @@ msgstr "netestovatelné"
 msgid "update"
 msgstr "aktualizace"
 
-msgid "userdefined"
-msgstr "uživatelsky definované"
-
 msgid "using:"
 msgstr "použít:"
 
 msgid "variety show"
 msgstr "varieté"
-
-msgid "view extensions..."
-msgstr "zobrazit rozšíření..."
 
 msgid "violet"
 msgstr "fialový"
@@ -24112,6 +24184,54 @@ msgstr "ano (uchovat zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "InfoBar EPG Actions"
+#~ msgstr "Akce informačního panelu EPG"
+
+#~ msgid "InfoBar Event View Actions"
+#~ msgstr "Akce zobrazení událostí informačního panelu"
+
+#~ msgid "Listen to the radio"
+#~ msgstr "Poslouchat rádio"
+
+#~ msgid "Open favorites list"
+#~ msgstr "Otevřít seznam oblíbených položek"
+
+#~ msgid "Open the movie list"
+#~ msgstr "Otevřít seznam filmů"
+
+#~ msgid "Service Selection/Zap Actions"
+#~ msgstr "Akce výběru služby/přepnutí"
+
+#~ msgid "Service Zap Actions"
+#~ msgstr "Akce Zap služby"
+
+#~ msgid "Show quickmenu..."
+#~ msgstr "Zobrazit rychlé menu..."
+
+#~ msgid "Show the list of AutoTimers."
+#~ msgstr "Zobrazit seznam automatických časovačů."
+
+#~ msgid "Show the list of timers."
+#~ msgstr "Zobrazit seznam časovačů."
+
+#~ msgid "Show the media player..."
+#~ msgstr "Zobrazit přehrávač médií..."
+
+#~ msgid "Show the plugin browser.."
+#~ msgstr "Zobrazit prohlížeč pluginů..."
+
+#~ msgid "Watch recordings"
+#~ msgstr "Sledovat nahrávky"
+
+#~ msgid "show program information..."
+#~ msgstr "zobrazit informace o programu..."
+
+#~ msgid "userdefined"
+#~ msgstr "uživatelsky definované"
+
+#~ msgid "view extensions..."
+#~ msgstr "zobrazit rozšíření..."
 
 #~ msgid "Access point:"
 #~ msgstr "Přístupový bod:"

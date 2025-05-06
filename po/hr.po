@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-25 18:12+0000\n"
+"POT-Creation-Date: 2025-05-04 12:30+0000\n"
 "PO-Revision-Date: 2024-11-03 19:00+0000\n"
 "Last-Translator: Dejan <pitbul@vip.hr>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hr/>\n"
@@ -226,6 +226,12 @@ msgstr "%.0f MB"
 #, python-format
 msgid "%.2f GB"
 msgstr "%.2f GB"
+
+#, python-format
+msgid "%.2f Second"
+msgid_plural "%.2f Seconds"
+msgstr[0] ""
+msgstr[1] ""
 
 #, python-format
 msgid "%02d.%02d."
@@ -1760,10 +1766,6 @@ msgstr ""
 "Tajmer nije snimao!\n"
 "Onemogućite TV i pokušajte ponovno?\n"
 
-#, python-format
-msgid "Aspect ratio set to '%s'."
-msgstr "A/V omjer stranica je '%s'."
-
 msgid "AAC downmix"
 msgstr ""
 
@@ -2666,6 +2668,9 @@ msgstr ""
 msgid "Armenian"
 msgstr "armenski"
 
+msgid "Arrow skip mode"
+msgstr ""
+
 #
 msgid "Artist"
 msgstr "Izvođač"
@@ -2695,15 +2700,19 @@ msgstr "Pitati korisnika (Osnovna postavka 'Da')"
 msgid "Aspect"
 msgstr ""
 
+msgid "Aspect Ratio"
+msgstr ""
+
 #
 msgid "Aspect Ratio Actions"
 msgstr "Akcije omjera slike"
 
-msgid "Open Aspect Ratio Settings"
-msgstr "Lista omjera..."
-
 msgid "Aspect ratio"
 msgstr "Omjer slike"
+
+#, python-format
+msgid "Aspect ratio set to '%s'."
+msgstr "A/V omjer stranica je '%s'."
 
 msgid "Aspect switch"
 msgstr "Preklop omjera"
@@ -2786,9 +2795,6 @@ msgstr "Audio odabir jezika 3"
 
 msgid "Audio language selection 4"
 msgstr "Audio odabir jezika 4"
-
-msgid "Open Audio options"
-msgstr "Audio opcije..."
 
 #
 msgid "Australia"
@@ -3826,10 +3832,6 @@ msgstr "Poništiti izdvajanje"
 msgid "Cancel save time shift as movie"
 msgstr "Poništiti spremanje time shift-a kao film"
 
-#
-msgid "Cancel the selection"
-msgstr "Poništiti odabir"
-
 msgid "Cancel selection and exit"
 msgstr "Poništiti odabir i zatvori"
 
@@ -3861,6 +3863,10 @@ msgstr "Poništiti pretraživanje i zatvoriti sve izbornike"
 
 msgid "Cancel the scan and exit the scanner"
 msgstr "Poništiti pretraživanje i zatvoriti pretraživač"
+
+#
+msgid "Cancel the selection"
+msgstr "Poništiti odabir"
 
 msgid "Cancel the selection and exit"
 msgstr "Poništiti odabir i zatvoriti"
@@ -4120,15 +4126,6 @@ msgstr "Selekcija kanala:"
 
 msgid "Channel up"
 msgstr "Kanal gore"
-
-msgid "Service zap other button delay"
-msgstr "Kašnjenje za odabir slijedeće tipke kod biranja kanala"
-
-msgid "Service zap first button delay"
-msgstr "Kašnjenje nakon pritiska prve tipke"
-
-msgid "Service zap delay mode"
-msgstr "Kašnjenje kod biranja kanala"
 
 #
 msgid "ChannelEPG Settings"
@@ -5633,6 +5630,12 @@ msgstr ""
 msgid "Cut"
 msgstr "Odreži"
 
+msgid "CutList skip time for '%s' button"
+msgstr ""
+
+msgid "CutList skip time for '%s'/'%s' buttons"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Cutlist Editor"
@@ -5646,6 +5649,12 @@ msgid "Cyan"
 msgstr ""
 
 msgid "Cycle PiP(zap)"
+msgstr ""
+
+msgid "Cycle through the InfoBars"
+msgstr ""
+
+msgid "Cycle through the available aspect ratios"
 msgstr ""
 
 msgid "Cycling"
@@ -6104,6 +6113,9 @@ msgid "Define the file system mount options."
 msgstr ""
 
 msgid "Defined / Active"
+msgstr ""
+
+msgid "Defined skips"
 msgstr ""
 
 msgid "Defined volume offset"
@@ -6587,6 +6599,9 @@ msgstr "Onemogući"
 msgid "Disable Animations"
 msgstr ""
 
+msgid "Disable Chkroot"
+msgstr ""
+
 msgid "Disable FCC during recordings"
 msgstr ""
 
@@ -6622,6 +6637,9 @@ msgid "Disable operator profiles"
 msgstr ""
 
 msgid "Disable the HDD Process on VFD."
+msgstr ""
+
+msgid "Disable the MultiBoot option"
 msgstr ""
 
 #
@@ -7769,10 +7787,6 @@ msgstr ""
 msgid "Enter if you are in the East or West hemisphere."
 msgstr ""
 
-#
-msgid "Open Main Menu"
-msgstr "Uđi u Glavni Izbornik"
-
 msgid "Enter new directory name:"
 msgstr ""
 
@@ -8850,6 +8864,9 @@ msgid "Fixed"
 msgstr ""
 
 msgid "Fixed X11 font (SD)"
+msgstr ""
+
+msgid "Flash"
 msgstr ""
 
 msgid "Flash Expander"
@@ -10337,11 +10354,6 @@ msgstr ""
 msgid "InfoBar EPG"
 msgstr ""
 
-#
-#, fuzzy
-msgid "InfoBar EPG Actions"
-msgstr "InfoBar "
-
 msgid "InfoBar EPG Settings"
 msgstr ""
 
@@ -10349,17 +10361,6 @@ msgstr ""
 #, fuzzy
 msgid "InfoBar EPG mode"
 msgstr "InfoBar "
-
-msgid "InfoBar Event View Actions"
-msgstr ""
-
-#
-#, fuzzy
-msgid "RDS Actions"
-msgstr "Informacije"
-
-msgid "Show/Hide Actions"
-msgstr ""
 
 msgid "InfoBar fade-out speed"
 msgstr ""
@@ -11066,6 +11067,10 @@ msgstr ""
 msgid "Leave DVD player?"
 msgstr "napusti video ..."
 
+#
+msgid "Leave movie player"
+msgstr "napusti player filma"
+
 msgid "Leave this set to 'Yes' unless you fully understand why you are adjusting it."
 msgstr ""
 
@@ -11112,14 +11117,14 @@ msgid "Lesotho"
 msgstr ""
 
 #
-#. TRANSLATORS: Aspect ratio policy: Black bars on top/bottom in doubt, keep English term.
-msgid "Letterbox"
-msgstr ""
-
-#
 #, fuzzy
 msgid "LetterBox zoom"
 msgstr "4:3 Letterbox"
+
+#
+#. TRANSLATORS: Aspect ratio policy: Black bars on top/bottom in doubt, keep English term.
+msgid "Letterbox"
+msgstr ""
 
 msgid "Liberia"
 msgstr ""
@@ -11215,10 +11220,10 @@ msgstr ""
 msgid "Links"
 msgstr ""
 
-msgid "List available EPG functions"
+msgid "List Navigation Actions"
 msgstr ""
 
-msgid "List Navigation Actions"
+msgid "List available EPG functions"
 msgstr ""
 
 msgid "List available networks"
@@ -11240,11 +11245,6 @@ msgstr[1] ""
 
 msgid "List/Fav"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Listen to the radio"
-msgstr "slušaj radio..."
 
 msgid "Lists reloaded!"
 msgstr ""
@@ -11522,6 +11522,10 @@ msgid "MTD kernel"
 msgstr ""
 
 msgid "MTD root"
+msgstr ""
+
+#, python-format
+msgid "MTD slot %s%s"
 msgstr ""
 
 msgid "MTU"
@@ -12356,17 +12360,17 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Movie Selection Actions"
-msgstr "Korekcija vremena "
-
-#
-#, fuzzy
 msgid "Movie Player Actions"
 msgstr "Korekcija vremena "
 
 #
 #, fuzzy
 msgid "Movie Selection"
+msgstr "Korekcija vremena "
+
+#
+#, fuzzy
+msgid "Movie Selection Actions"
 msgstr "Korekcija vremena "
 
 msgid "Movie Selection Settings"
@@ -13292,6 +13296,12 @@ msgstr ""
 msgid "Number"
 msgstr ""
 
+msgid "Number and name"
+msgstr ""
+
+msgid "Number and picon"
+msgstr ""
+
 msgid "Number of IP Addresses"
 msgstr ""
 
@@ -13304,10 +13314,19 @@ msgstr ""
 msgid "Number of rows to display."
 msgstr ""
 
+msgid "Number only"
+msgstr ""
+
 msgid "Number or SMS style data entry"
 msgstr ""
 
+msgid "Number, name and picon"
+msgstr ""
+
 msgid "Numbering mode"
+msgstr ""
+
+msgid "Numeric skip mode"
 msgstr ""
 
 msgid "OEM model"
@@ -13484,7 +13503,16 @@ msgstr ""
 msgid "Open"
 msgstr ""
 
+msgid "Open Aspect Ratio Settings"
+msgstr "Lista omjera..."
+
+msgid "Open Audio options"
+msgstr "Audio opcije..."
+
 msgid "Open AutoTimer"
+msgstr ""
+
+msgid "Open AutoTimer OverView"
 msgstr ""
 
 #
@@ -13492,33 +13520,140 @@ msgstr ""
 msgid "Open AutoTimer Overview"
 msgstr "Dodaj Tajmer"
 
+#
+#, fuzzy
+msgid "Open Bouquet selection"
+msgstr "završi editiranje paketa"
+
+msgid "Open Box Portal"
+msgstr ""
+
+msgid "Open DreamPlex"
+msgstr ""
+
+msgid "Open EPG"
+msgstr "prikaži EPG..."
+
+msgid "Open EPG for current service"
+msgstr ""
+
 msgid "Open EPGSearch"
+msgstr ""
+
+msgid "Open Extensions"
+msgstr ""
+
+msgid "Open HDMIRecord Settings"
 msgstr ""
 
 msgid "Open IMDb"
 msgstr ""
 
+#
+#, fuzzy
+msgid "Open Information menu"
+msgstr "Informacije"
+
 msgid "Open Log"
 msgstr ""
+
+#
+msgid "Open Main Menu"
+msgstr "Uđi u Glavni Izbornik"
+
+#
+#, fuzzy
+msgid "Open Media Player"
+msgstr "Prikaži Radio ..."
+
+#
+#, fuzzy
+msgid "Open MediaCenter"
+msgstr "Prikaži Radio ..."
 
 msgid "Open MediaStream"
 msgstr ""
 
-msgid "Open Settings"
+#
+#, fuzzy
+msgid "Open Movie Selection"
+msgstr "Pokreni snimljene filmove..."
+
+msgid "Open Network Settings"
 msgstr ""
 
-msgid "Open Similar List Channel List"
+#
+#, fuzzy
+msgid "Open Plugin Browser"
+msgstr "Obriši dodatke"
+
+msgid "Open QuickMenu"
 msgstr ""
+
+msgid "Open RFmod Settings"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Open Radio bouquet selection"
+msgstr "Prikaži Radio ..."
 
 #
 #, fuzzy
 msgid "Open RecordTimer Overview"
 msgstr "Editiranje tajmera"
 
+msgid "Open Satellites selection"
+msgstr ""
+
+msgid "Open Scheduler Overview"
+msgstr ""
+
+msgid "Open Services / Reception selection"
+msgstr ""
+
+msgid "Open Settings"
+msgstr ""
+
+msgid "Open Setup"
+msgstr ""
+
 #
 #, fuzzy
-msgid "Open Bouquet selection"
-msgstr "završi editiranje paketa"
+msgid "Open Setup menu"
+msgstr "prikaži citat menia"
+
+msgid "Open Similar List Channel List"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Open Simple Umount"
+msgstr "Lista uređaja za pohranu"
+
+#
+#, fuzzy
+msgid "Open SleepTimer Settings"
+msgstr "Prikaži tv player..."
+
+msgid "Open Subservices selection"
+msgstr ""
+
+msgid "Open Subtitle options"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Open TV bouquet selection"
+msgstr "Prikaži tv player..."
+
+msgid "Open Usage and GUI Settings"
+msgstr ""
+
+#
+#, fuzzy
+msgid "Open VideoMode"
+msgstr "prikaži citat menia"
 
 msgid "Open context menu"
 msgstr ""
@@ -13526,31 +13661,27 @@ msgstr ""
 msgid "Open context menu (contains settings menu)"
 msgstr ""
 
-msgid "Open external subtitle management screen"
-msgstr ""
+#
+#, fuzzy
+msgid "Open event information"
+msgstr "Informacije hierhije"
 
-msgid "Open favorites list"
+msgid "Open external subtitle management screen"
 msgstr ""
 
 msgid "Open file sort menu"
 msgstr ""
 
-msgid "Open Satellites selection"
+msgid "Open service list and select next service"
 msgstr ""
 
-msgid "Open Services / Reception selection"
+msgid "Open service list and select next service for PiP"
 msgstr ""
 
-msgid "Open service list and select next channel"
+msgid "Open service list and select previous service"
 msgstr ""
 
-msgid "Open service list and select next channel for PiP"
-msgstr ""
-
-msgid "Open service list and select previous channel"
-msgstr ""
-
-msgid "Open service list and select previous channel for PiP"
+msgid "Open service list and select previous service for PiP"
 msgstr ""
 
 msgid "Open the Channel Selection Settings screen"
@@ -13572,9 +13703,6 @@ msgid "Open the VirtualKeyBoard for text entry"
 msgstr ""
 
 msgid "Open the context menu"
-msgstr ""
-
-msgid "Open the movie list"
 msgstr ""
 
 msgid "Open the multi service EPG view"
@@ -13983,6 +14111,9 @@ msgstr ""
 msgid "Percentage right"
 msgstr "desni cirkularni"
 
+msgid "Percentage skips"
+msgstr ""
+
 msgid "Percentage/Progress bar left"
 msgstr ""
 
@@ -13998,6 +14129,9 @@ msgid "Perform the upgrade?"
 msgstr ""
 
 msgid "Permanently delete all recordings in the trashcan?"
+msgstr ""
+
+msgid "Permanently disable the MultiBoot option?"
 msgstr ""
 
 msgid "Permanently ignore this device"
@@ -14030,11 +14164,6 @@ msgstr ""
 
 msgid "PiP"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Picture in Picture Actions"
-msgstr "Opis"
 
 msgid "PiP with OSD"
 msgstr ""
@@ -14073,6 +14202,11 @@ msgstr ""
 #, fuzzy
 msgid "Picture in EPG"
 msgstr "Premjesti Sliku u Slici"
+
+#
+#, fuzzy
+msgid "Picture in Picture Actions"
+msgstr "Opis"
 
 msgid "Picture in Picture Settings"
 msgstr ""
@@ -14184,11 +14318,6 @@ msgstr ""
 
 msgid "Play previous"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Open Movie Selection"
-msgstr "Pokreni snimljene filmove..."
 
 msgid "Play selected service in a PiP window"
 msgstr ""
@@ -15175,9 +15304,6 @@ msgstr ""
 msgid "Quick Menu Actions"
 msgstr ""
 
-msgid "Open QuickMenu"
-msgstr ""
-
 msgid "QuickEPG mode"
 msgstr ""
 
@@ -15228,6 +15354,11 @@ msgstr ""
 
 #
 #, fuzzy
+msgid "RDS Actions"
+msgstr "Informacije"
+
+#
+#, fuzzy
 msgid "REC"
 msgstr "FEC"
 
@@ -15244,6 +15375,9 @@ msgid "REC Symbol in use"
 msgstr ""
 
 msgid "RED button"
+msgstr ""
+
+msgid "RED button / HbbTV"
 msgstr ""
 
 msgid "RED long"
@@ -15540,9 +15674,6 @@ msgid "Recovery Mode"
 msgstr "Snimi  "
 
 msgid "Red"
-msgstr ""
-
-msgid "RED button / HbbTV"
 msgstr ""
 
 msgid "Red colored"
@@ -16753,6 +16884,9 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
+msgid "Search EPG for current event"
+msgstr ""
+
 msgid "Search IMDb for information about current event"
 msgstr ""
 
@@ -16770,9 +16904,6 @@ msgid "Search for network shares"
 msgstr ""
 
 msgid "Search for similar events"
-msgstr ""
-
-msgid "Search EPG for current event"
 msgstr ""
 
 #
@@ -16850,13 +16981,13 @@ msgstr ""
 msgid "Seek forward long"
 msgstr "Mapa tipkovnice"
 
+msgid "SeekBar activation"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Seekbar"
 msgstr "Traži"
-
-msgid "SeekBar activation"
-msgstr ""
 
 msgid "Seekbar sensibility"
 msgstr ""
@@ -17188,6 +17319,9 @@ msgstr ""
 msgid "Select Satellites"
 msgstr ""
 
+msgid "Select SeekBar to be activated by arrow L/R (long) or << >> (long)."
+msgstr ""
+
 msgid "Select Shares"
 msgstr ""
 
@@ -17355,6 +17489,12 @@ msgstr ""
 msgid "Select how quickly the dish should move between satellites."
 msgstr ""
 
+msgid "Select how the arrow ('UP', 'DOWN', 'LEFT', and 'RIGHT') buttons will act during seek actions."
+msgstr ""
+
+msgid "Select how the number buttons will act during seek actions."
+msgstr ""
+
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr ""
 
@@ -17365,6 +17505,9 @@ msgid "Select how your box will upgrade."
 msgstr ""
 
 msgid "Select if an end time is required."
+msgstr ""
+
+msgid "Select if data entry timeouts are to be applied when entering digits into the service selection pop up screen. When a timeout is exceeded the currently entered number will be used for the service selection. The default timeouts are first digit 3 seconds, other digits 1 second."
 msgstr ""
 
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
@@ -17438,9 +17581,6 @@ msgstr ""
 msgid "Select refresh rate"
 msgstr ""
 
-msgid "Select SeekBar to be activated by arrow L/R (long) or << >> (long)."
-msgstr ""
-
 msgid "Select service information to view:"
 msgstr ""
 
@@ -17449,9 +17589,6 @@ msgid "Select service to add..."
 msgstr ""
 
 msgid "Select sort method:"
-msgstr ""
-
-msgid "Open Subservices selection"
 msgstr ""
 
 msgid "Select system information to view:"
@@ -17556,6 +17693,9 @@ msgstr ""
 msgid "Select the currently highlighted service and exit"
 msgstr ""
 
+msgid "Select the currently highlighted timer"
+msgstr ""
+
 msgid "Select the date from which this timer will become active."
 msgstr ""
 
@@ -17578,6 +17718,12 @@ msgid "Select the delay before the timer activates."
 msgstr ""
 
 msgid "Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for boxes with multiple satellite tuners."
+msgstr ""
+
+msgid "Select the delay to wait after pressing more digit buttons to select a new service."
+msgstr ""
+
+msgid "Select the delay to wait after pressing the first digit button to select a new service."
 msgstr ""
 
 msgid "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to toggle between the lists. Select an assigned function and click on 'OK' to deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned functions."
@@ -17695,6 +17841,9 @@ msgid "Select the next item in list or move the cursor right"
 msgstr ""
 
 msgid "Select the next item in the list"
+msgstr ""
+
+msgid "Select the preferred service information to display, in addition to the service number, for the service selection pop up screen."
 msgstr ""
 
 msgid "Select the previous item in list or move the cursor left"
@@ -18049,16 +18198,8 @@ msgstr ""
 msgid "Service Selection Actions"
 msgstr "Korekcija vremena "
 
-msgid "Service Selection/Zap Actions"
-msgstr ""
-
 msgid "Service Title mode"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Service Zap Actions"
-msgstr "Prikaži usluge koje počinju s"
 
 msgid "Service and PID information"
 msgstr ""
@@ -18133,6 +18274,18 @@ msgstr ""
 "Provjerite konfiguraciju tunera"
 
 msgid "Service width"
+msgstr ""
+
+msgid "Service zap delay mode"
+msgstr "Kašnjenje kod biranja kanala"
+
+msgid "Service zap first button delay"
+msgstr "Kašnjenje nakon pritiska prve tipke"
+
+msgid "Service zap other button delay"
+msgstr "Kašnjenje za odabir slijedeće tipke kod biranja kanala"
+
+msgid "Service zap screen contents"
 msgstr ""
 
 msgid "ServiceName"
@@ -18235,10 +18388,19 @@ msgstr ""
 msgid "Set system"
 msgstr ""
 
+msgid "Set the CutList Editor skip time interval for the '%s'/'%s' buttons."
+msgstr ""
+
+msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
+msgstr ""
+
 #
 #, fuzzy, python-format
 msgid "Set the MAC address of your %s %s."
 msgstr "Konfiguracija Tunera"
+
+msgid "Set the UP/DOWN button skip percentage for the SeekBar."
+msgstr ""
 
 msgid "Set the User ID of the OpenWebif from your fallback tuner"
 msgstr "Postavite korisnički ID OpenWebif sučelja iz rezervnog tjunera"
@@ -18289,6 +18451,12 @@ msgid "Set the scrolling speed of text on the front display, this is used by sof
 msgstr ""
 
 msgid "Set the scrolling speed of text on the front display."
+msgstr ""
+
+msgid "Set the skip time interval for the '%s' button."
+msgstr ""
+
+msgid "Set the skip time interval for the '%s'/'%s' buttons."
 msgstr ""
 
 msgid "Set the time before checking video source for resolution information."
@@ -18455,9 +18623,6 @@ msgid "Setup Video/Audio"
 msgstr ""
 
 msgid "Setup Videomode"
-msgstr ""
-
-msgid "Select if data entry timeouts are to be applied when entering digits into the service selection pop up screen. When a timeout is exceeded the currently entered number will be used for the service selection. The default timeouts are first digit 3 seconds, other digits 1 second."
 msgstr ""
 
 msgid "Setup each tuner for your satellite system"
@@ -18663,9 +18828,6 @@ msgstr ""
 msgid "Show AutoTimer List"
 msgstr ""
 
-msgid "Open Box Portal"
-msgstr ""
-
 msgid "Show CCcam Info"
 msgstr ""
 
@@ -18690,19 +18852,11 @@ msgstr ""
 msgid "Show EPG"
 msgstr ""
 
-msgid "Open EPG for current service"
-msgstr ""
-
 msgid "Show EventView"
 msgstr ""
 
 msgid "Show Extension packages"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Open VideoMode"
-msgstr "prikaži citat menia"
 
 msgid "Show Graphical EPG"
 msgstr ""
@@ -18714,9 +18868,6 @@ msgid "Show HDMI Output Resolution."
 msgstr ""
 
 msgid "Show HDMI-Output Res"
-msgstr ""
-
-msgid "Open HDMIRecord Settings"
 msgstr ""
 
 msgid "Show InfoBar"
@@ -18739,11 +18890,6 @@ msgstr "Prikaži info traku na presk. naprijed/unazad"
 
 msgid "Show InfoBar picons"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Open Information menu"
-msgstr "Informacije"
 
 msgid "Show Kernel packages"
 msgstr ""
@@ -18811,9 +18957,6 @@ msgid "Show Picon packages"
 msgstr ""
 
 msgid "Show Plugin Skin packages"
-msgstr ""
-
-msgid "Open RFmod Settings"
 msgstr ""
 
 msgid "Show Record Movies"
@@ -19017,9 +19160,6 @@ msgstr "prikaži proširene informacije"
 msgid "Show extension selection"
 msgstr ""
 
-msgid "Open Extensions"
-msgstr ""
-
 msgid "Show extra spacing in Information"
 msgstr ""
 
@@ -19109,9 +19249,6 @@ msgid "Show movies"
 msgstr ""
 
 msgid "Show multi channel EPG"
-msgstr ""
-
-msgid "Open Network Settings"
 msgstr ""
 
 msgid "Show next commit log"
@@ -19215,9 +19352,6 @@ msgstr ""
 msgid "Show previous system information screen"
 msgstr ""
 
-msgid "Show quickmenu..."
-msgstr ""
-
 msgid "Show record indicator"
 msgstr ""
 
@@ -19267,15 +19401,7 @@ msgstr "Prikaži usluge koje počinju s"
 msgid "Show servicelist or movies"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Open Setup menu"
-msgstr "prikaži citat menia"
-
 msgid "Show setup default value"
-msgstr ""
-
-msgid "Open Setup"
 msgstr ""
 
 #
@@ -19330,9 +19456,6 @@ msgstr ""
 msgid "Show the CCcam Info Screen"
 msgstr ""
 
-msgid "Open DreamPlex"
-msgstr ""
-
 msgid "Show the EIT Now/Next data in the InfoBar."
 msgstr ""
 
@@ -19342,61 +19465,11 @@ msgstr ""
 msgid "Show the OSCam information screen"
 msgstr ""
 
-msgid "Open Scheduler Overview"
-msgstr ""
-
-#
-#, fuzzy
-msgid "Open SleepTimer Settings"
-msgstr "Prikaži tv player..."
-
-#
-#, fuzzy
-msgid "Open event information"
-msgstr "Informacije hierhije"
-
 msgid "Show the last opkg command's output"
 msgstr ""
 
-msgid "Show the list of AutoTimers."
-msgstr ""
-
-msgid "Show the list of timers."
-msgstr ""
-
-#
-#, fuzzy
-msgid "Open MediaCenter"
-msgstr "Prikaži Radio ..."
-
-#
-#, fuzzy
-msgid "Open Media Player"
-msgstr "Prikaži Radio ..."
-
-msgid "Show the media player..."
-msgstr ""
-
-msgid "Show the plugin browser.."
-msgstr ""
-
-#
-#, fuzzy
-msgid "Open Plugin Browser"
-msgstr "Obriši dodatke"
-
-#
-#, fuzzy
-msgid "Open Radio bouquet selection"
-msgstr "Prikaži Radio ..."
-
 msgid "Show the task list"
 msgstr ""
-
-#
-#, fuzzy
-msgid "Open TV bouquet selection"
-msgstr "Prikaži tv player..."
 
 msgid "Show time elapsed as positive"
 msgstr ""
@@ -19428,9 +19501,6 @@ msgstr ""
 msgid "Show unknown video format as"
 msgstr ""
 
-msgid "Open Usage and GUI Settings"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Show vertical Program Guide"
@@ -19446,6 +19516,9 @@ msgid "Show watch status"
 msgstr ""
 
 msgid "Show/Games show"
+msgstr ""
+
+msgid "Show/Hide Actions"
 msgstr ""
 
 msgid "Show/Hide focus bar"
@@ -19542,11 +19615,6 @@ msgstr ""
 msgid "Simple titleset (compatibility for legacy players)"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Open Simple Umount"
-msgstr "Lista uređaja za pohranu"
-
 msgid "Simple zoom"
 msgstr ""
 
@@ -19630,6 +19698,13 @@ msgstr ""
 msgid "Skip back"
 msgstr ""
 
+msgid "Skip backward"
+msgstr ""
+
+#
+msgid "Skip backward (enter time)"
+msgstr "preskoči unazad (unesi vrijeme)"
+
 #
 #, fuzzy
 msgid "Skip empty services"
@@ -19638,10 +19713,26 @@ msgstr "Zaštiti usluge"
 msgid "Skip forward"
 msgstr ""
 
+#
+msgid "Skip forward (enter time)"
+msgstr "preskoči naprijed (unesi vrijeme)"
+
 msgid "Skip jumping to live while timeshifting with plugins"
 msgstr ""
 
 msgid "Skip package installation, only core packages will be available"
+msgstr ""
+
+msgid "Skip sensibility (Horizontal)"
+msgstr ""
+
+msgid "Skip sensibility (Vertical)"
+msgstr ""
+
+msgid "Skip time for '%s' button"
+msgstr ""
+
+msgid "Skip time for '%s'/'%s' buttons"
 msgstr ""
 
 msgid "Sleep"
@@ -20494,6 +20585,10 @@ msgstr "Sekcija titlova"
 msgid "Subtitle Quickmenu"
 msgstr "Sekcija titlova"
 
+#
+msgid "Subtitle Selection"
+msgstr "Sekcija titlova"
+
 msgid "Subtitle Settings"
 msgstr ""
 
@@ -20528,13 +20623,6 @@ msgid "Subtitle language selection 4"
 msgstr ""
 
 msgid "Subtitle position"
-msgstr ""
-
-#
-msgid "Subtitle Selection"
-msgstr "Sekcija titlova"
-
-msgid "Open Subtitle options"
 msgstr ""
 
 #
@@ -20660,9 +20748,6 @@ msgstr "prebaci u datoteknu listu"
 msgid "Switch config"
 msgstr ""
 
-msgid "Zap to next service"
-msgstr ""
-
 msgid "Switch off the TV to correct input"
 msgstr ""
 
@@ -20700,9 +20785,6 @@ msgstr ""
 msgid "Switch to next EPG Event"
 msgstr "prebaci na sljedeću poduslugu "
 
-msgid "Zap to next service in the history"
-msgstr ""
-
 #
 #, fuzzy
 msgid "Switch to play list"
@@ -20712,12 +20794,6 @@ msgstr "prebaci u playlistu"
 #, fuzzy
 msgid "Switch to previous EPG Event"
 msgstr "prebaci u predhodnu poduslugu "
-
-msgid "Zap to previous service"
-msgstr ""
-
-msgid "Zap to previous service in the history"
-msgstr ""
 
 msgid "Switch to the available RADIO services"
 msgstr ""
@@ -20748,6 +20824,9 @@ msgid "Symbol rate"
 msgstr ""
 
 msgid "Symbolic link"
+msgstr ""
+
+msgid "Symmetrical skips"
 msgstr ""
 
 msgid "Sync NTP every (minutes)"
@@ -21953,6 +22032,9 @@ msgstr ""
 msgid "Timer Sanity Error"
 msgstr "Greška nerazumnog tajmera"
 
+msgid "Timer Selection Actions"
+msgstr ""
+
 msgid "Timer edit"
 msgstr ""
 
@@ -22076,9 +22158,6 @@ msgstr ""
 msgid "Toggle all related files"
 msgstr ""
 
-msgid "Cycle through the available aspect ratios"
-msgstr ""
-
 msgid "Toggle auto refresh On/Off"
 msgstr ""
 
@@ -22089,9 +22168,6 @@ msgid "Toggle between the available TV and RADIO services"
 msgstr ""
 
 msgid "Toggle display of image information"
-msgstr ""
-
-msgid "Cycle through the InfoBars"
 msgstr ""
 
 msgid "Toggle display of the image status overlay"
@@ -22198,6 +22274,9 @@ msgstr ""
 
 #
 msgid "Track"
+msgstr ""
+
+msgid "Traditional"
 msgstr ""
 
 msgid "Traditional Chinese"
@@ -23111,12 +23190,6 @@ msgstr "Korisnički def"
 msgid "User defined 0x%02x"
 msgstr "Korisnički def"
 
-msgid "Select the delay to wait after pressing more digit buttons to select a new service."
-msgstr ""
-
-msgid "Select the delay to wait after pressing the first digit button to select a new service."
-msgstr ""
-
 #
 #, fuzzy
 msgid "User defined transponder"
@@ -23410,6 +23483,10 @@ msgstr ""
 msgid "View Rass interactive"
 msgstr "Gledaj Rass interaktivno..."
 
+#
+msgid "View Teletext"
+msgstr "Pregled teleteksta..."
+
 msgid "View as grid"
 msgstr ""
 
@@ -23430,10 +23507,6 @@ msgstr ""
 #, fuzzy
 msgid "View photos..."
 msgstr "gledaj ekstenzije..."
-
-#
-msgid "View Teletext"
-msgstr "Pregled teleteksta..."
 
 msgid "View the archive contents"
 msgstr ""
@@ -23645,11 +23718,6 @@ msgstr ""
 #, fuzzy
 msgid "Watch movies..."
 msgstr "Pokreni snimljene filmove..."
-
-#
-#, fuzzy
-msgid "Watch recordings"
-msgstr "snimanje..."
 
 msgid "Weather"
 msgstr ""
@@ -24510,6 +24578,24 @@ msgstr ""
 msgid "Zap to channel and close (setup in menu)"
 msgstr ""
 
+msgid "Zap to next service"
+msgstr ""
+
+msgid "Zap to next service in the current bouquet"
+msgstr ""
+
+msgid "Zap to next service in history"
+msgstr ""
+
+msgid "Zap to previous service"
+msgstr ""
+
+msgid "Zap to previous service in the current bouquet"
+msgstr ""
+
+msgid "Zap to previous service in history"
+msgstr ""
+
 msgid "Zap up"
 msgstr ""
 
@@ -25032,10 +25118,6 @@ msgid "languages"
 msgstr "jezici"
 
 #
-msgid "Leave movie player"
-msgstr "napusti player filma"
-
-#
 msgid "left"
 msgstr "lijevi"
 
@@ -25352,17 +25434,11 @@ msgstr "ljuska"
 msgid "show DVD main menu"
 msgstr "prikaži DVD glavni menu"
 
-msgid "Open EPG"
-msgstr "prikaži EPG..."
-
 msgid "show all cards"
 msgstr "prikaži sve kartice"
 
 msgid "show all tags"
 msgstr "prikaži sve oznake"
-
-msgid "show program information..."
-msgstr "prikaži informacije o programu..."
 
 msgid "show/game show (general)"
 msgstr "show/igraći show (općenito)"
@@ -25382,16 +25458,8 @@ msgid "skip backward"
 msgstr "preskoči unazad"
 
 #
-msgid "Skip backward (enter time)"
-msgstr "preskoči unazad (unesi vrijeme)"
-
-#
 msgid "skip forward"
 msgstr "preskoči unaprijed"
-
-#
-msgid "Skip forward (enter time)"
-msgstr "preskoči naprijed (unesi vrijeme)"
 
 msgid "slow"
 msgstr "sporo"
@@ -25550,19 +25618,11 @@ msgstr "neprovjereno"
 msgid "update"
 msgstr "ažurirati"
 
-#
-msgid "userdefined"
-msgstr "korisnički definirano"
-
 msgid "using:"
 msgstr "pomoću:"
 
 msgid "variety show"
 msgstr "estrada"
-
-#
-msgid "view extensions..."
-msgstr "gledaj ekstenzije..."
 
 msgid "violet"
 msgstr "ljubičasto"
@@ -25616,6 +25676,37 @@ msgstr "Da ( zadrži feedove)"
 
 msgid "®"
 msgstr "®"
+
+#
+#, fuzzy
+#~ msgid "InfoBar EPG Actions"
+#~ msgstr "InfoBar "
+
+#
+#, fuzzy
+#~ msgid "Listen to the radio"
+#~ msgstr "slušaj radio..."
+
+#
+#, fuzzy
+#~ msgid "Service Zap Actions"
+#~ msgstr "Prikaži usluge koje počinju s"
+
+#
+#, fuzzy
+#~ msgid "Watch recordings"
+#~ msgstr "snimanje..."
+
+#~ msgid "show program information..."
+#~ msgstr "prikaži informacije o programu..."
+
+#
+#~ msgid "userdefined"
+#~ msgstr "korisnički definirano"
+
+#
+#~ msgid "view extensions..."
+#~ msgstr "gledaj ekstenzije..."
 
 #
 #~ msgid "Access point:"

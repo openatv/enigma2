@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-25 18:12+0000\n"
-"PO-Revision-Date: 2025-04-27 04:35+0000\n"
+"POT-Creation-Date: 2025-05-04 12:30+0000\n"
+"PO-Revision-Date: 2025-05-05 05:50+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -221,6 +221,12 @@ msgstr "%.0f MB"
 #, python-format
 msgid "%.2f GB"
 msgstr "%.2f GB"
+
+#, python-format
+msgid "%.2f Second"
+msgid_plural "%.2f Seconds"
+msgstr[0] "%.2f 秒"
+msgstr[1] "%.2f 秒"
 
 #, python-format
 msgid "%02d.%02d."
@@ -1668,10 +1674,6 @@ msgstr ""
 "定时器录像失败！\n"
 "禁用电视并再试一次?\n"
 
-#, python-format
-msgid "Aspect ratio set to '%s'."
-msgstr "音视频宽高比为 %s。"
-
 msgid "AAC downmix"
 msgstr "AAC 缩混"
 
@@ -2506,6 +2508,9 @@ msgstr "亚美尼亚"
 msgid "Armenian"
 msgstr "亚美尼亚语"
 
+msgid "Arrow skip mode"
+msgstr ""
+
 msgid "Artist"
 msgstr "艺术家"
 
@@ -2533,14 +2538,18 @@ msgstr "询问用户（默认为'是'）"
 msgid "Aspect"
 msgstr "长宽比"
 
+msgid "Aspect Ratio"
+msgstr "宽高比"
+
 msgid "Aspect Ratio Actions"
 msgstr "长宽比操作"
 
-msgid "Open Aspect Ratio Settings"
-msgstr "长宽比列表..."
-
 msgid "Aspect ratio"
 msgstr "长宽比"
+
+#, python-format
+msgid "Aspect ratio set to '%s'."
+msgstr "音视频宽高比为 %s。"
 
 msgid "Aspect switch"
 msgstr "长宽比切换"
@@ -2621,9 +2630,6 @@ msgstr "伴音语言选择 3"
 
 msgid "Audio language selection 4"
 msgstr "伴音语言选择 4"
-
-msgid "Open Audio options"
-msgstr "音频选项..."
 
 msgid "Australia"
 msgstr "澳大利亚"
@@ -3608,9 +3614,6 @@ msgstr "取消提取"
 msgid "Cancel save time shift as movie"
 msgstr "取消保存时移为影片"
 
-msgid "Cancel the selection"
-msgstr "取消选择"
-
 msgid "Cancel selection and exit"
 msgstr "取消选择并退出"
 
@@ -3640,6 +3643,9 @@ msgstr "取消扫描并退出所有菜单"
 
 msgid "Cancel the scan and exit the scanner"
 msgstr "取消扫描并退出扫描器"
+
+msgid "Cancel the selection"
+msgstr "取消选择"
 
 msgid "Cancel the selection and exit"
 msgstr "取消选择并退出"
@@ -3885,15 +3891,6 @@ msgstr "选择频道："
 
 msgid "Channel up"
 msgstr "频道 +"
-
-msgid "Service zap other button delay"
-msgstr "频道切换其他按键延迟"
-
-msgid "Service zap first button delay"
-msgstr "频道切换首按键延迟"
-
-msgid "Service zap delay mode"
-msgstr "频道切换延迟模式"
 
 msgid "ChannelEPG Settings"
 msgstr "频道 EPG 设置"
@@ -5332,6 +5329,12 @@ msgstr "自定义 enigma2 个人设置"
 msgid "Cut"
 msgstr "剪切"
 
+msgid "CutList skip time for '%s' button"
+msgstr ""
+
+msgid "CutList skip time for '%s'/'%s' buttons"
+msgstr ""
+
 msgid "Cutlist Editor"
 msgstr "剪切列表编辑器"
 
@@ -5343,6 +5346,12 @@ msgstr "青色"
 
 msgid "Cycle PiP(zap)"
 msgstr "循环画中画 (切换)"
+
+msgid "Cycle through the InfoBars"
+msgstr "信息栏显示开关"
+
+msgid "Cycle through the available aspect ratios"
+msgstr "切换宽高比..."
 
 msgid "Cycling"
 msgstr "骑自行车"
@@ -5771,6 +5780,9 @@ msgstr "定义文件系统挂载选项。"
 
 msgid "Defined / Active"
 msgstr "定义/活动"
+
+msgid "Defined skips"
+msgstr ""
 
 msgid "Defined volume offset"
 msgstr "已定义的音量偏移"
@@ -6221,6 +6233,9 @@ msgstr "禁用"
 msgid "Disable Animations"
 msgstr "禁用动画"
 
+msgid "Disable Chkroot"
+msgstr "禁用 Chkroot"
+
 msgid "Disable FCC during recordings"
 msgstr "在录制过程中禁用 FCC"
 
@@ -6253,6 +6268,9 @@ msgstr "禁用操作员配置文件"
 
 msgid "Disable the HDD Process on VFD."
 msgstr "禁用 VFD 上的 HDD 进程。"
+
+msgid "Disable the MultiBoot option"
+msgstr "禁用多系统启动选项"
 
 msgid "Disable timer"
 msgstr "禁用定时器"
@@ -7344,9 +7362,6 @@ msgstr "如果您在赤道以北或以南，请输入。"
 msgid "Enter if you are in the East or West hemisphere."
 msgstr "如果您在东半球或西半球，请输入。"
 
-msgid "Open Main Menu"
-msgstr "进入主菜单..."
-
 msgid "Enter new directory name:"
 msgstr "输入新目录名称："
 
@@ -8379,6 +8394,9 @@ msgstr "固定"
 
 msgid "Fixed X11 font (SD)"
 msgstr "等宽 X11 字体（标清）"
+
+msgid "Flash"
+msgstr "Flash"
 
 msgid "Flash Expander"
 msgstr "闪存扩展器"
@@ -9762,23 +9780,11 @@ msgstr "信息栏"
 msgid "InfoBar EPG"
 msgstr "信息栏 EPG"
 
-msgid "InfoBar EPG Actions"
-msgstr "信息栏 EPG 操作"
-
 msgid "InfoBar EPG Settings"
 msgstr "信息栏 EPG 设置"
 
 msgid "InfoBar EPG mode"
 msgstr "信息栏 EPG 模式"
-
-msgid "InfoBar Event View Actions"
-msgstr "信息栏事件查看操作"
-
-msgid "RDS Actions"
-msgstr "信息栏 RDS 操作"
-
-msgid "Show/Hide Actions"
-msgstr "信息栏显示/隐藏操作"
 
 msgid "InfoBar fade-out speed"
 msgstr "信息栏淡入淡出速度"
@@ -10421,6 +10427,9 @@ msgstr "拉脱维亚语"
 msgid "Leave DVD player?"
 msgstr "退出 DVD 播放器？"
 
+msgid "Leave movie player"
+msgstr "退出电影播放器"
+
 msgid "Leave this set to 'Yes' unless you fully understand why you are adjusting it."
 msgstr "将此设置保留为“是”，除非您完全理解为什么要调整它。"
 
@@ -10463,12 +10472,12 @@ msgstr "休闲爱好"
 msgid "Lesotho"
 msgstr "莱索托"
 
+msgid "LetterBox zoom"
+msgstr "信箱模式缩放"
+
 #. TRANSLATORS: Aspect ratio policy: Black bars on top/bottom in doubt, keep English term.
 msgid "Letterbox"
 msgstr "信箱模式/上下黑边"
-
-msgid "LetterBox zoom"
-msgstr "信箱模式缩放"
 
 msgid "Liberia"
 msgstr "利比里亚"
@@ -10552,11 +10561,11 @@ msgstr "带有 DVD 菜单的链接标题"
 msgid "Links"
 msgstr "链接"
 
-msgid "List available EPG functions"
-msgstr "EPG 功能列表..."
-
 msgid "List Navigation Actions"
 msgstr "列出导航操作"
+
+msgid "List available EPG functions"
+msgstr "EPG 功能列表..."
 
 msgid "List available networks"
 msgstr "可用网络列表"
@@ -10575,9 +10584,6 @@ msgstr[1] "列表版本 %d，找到 %d 个频道"
 
 msgid "List/Fav"
 msgstr "列表/收藏"
-
-msgid "Listen to the radio"
-msgstr "收听广播"
 
 msgid "Lists reloaded!"
 msgstr "列表已重新加载！"
@@ -10828,6 +10834,10 @@ msgstr "MTD 內核"
 
 msgid "MTD root"
 msgstr "MTD root"
+
+#, python-format
+msgid "MTD slot %s%s"
+msgstr "MTD 插槽 %s%s"
 
 msgid "MTU"
 msgstr "MTU"
@@ -11585,14 +11595,14 @@ msgstr "电影事件视图操作"
 msgid "Movie List"
 msgstr "电影列表"
 
-msgid "Movie Selection Actions"
-msgstr "影片列表操作"
-
 msgid "Movie Player Actions"
 msgstr "电影播放器操作"
 
 msgid "Movie Selection"
 msgstr "影片选择"
+
+msgid "Movie Selection Actions"
+msgstr "影片列表操作"
 
 msgid "Movie Selection Settings"
 msgstr "影片列表设置"
@@ -12431,6 +12441,12 @@ msgstr "现在，使用对比度设置尽可能多地调高背景的亮度，但
 msgid "Number"
 msgstr "编号"
 
+msgid "Number and name"
+msgstr "编号和名称"
+
+msgid "Number and picon"
+msgstr "编号和频道图标"
+
 msgid "Number of IP Addresses"
 msgstr "IP 地址数"
 
@@ -12443,11 +12459,20 @@ msgstr "行数"
 msgid "Number of rows to display."
 msgstr "要显示的行数。"
 
+msgid "Number only"
+msgstr "仅编号"
+
 msgid "Number or SMS style data entry"
 msgstr "数字或 SMS 样式的数据输入"
 
+msgid "Number, name and picon"
+msgstr "编号，名称和频道图标"
+
 msgid "Numbering mode"
 msgstr "编号模式"
+
+msgid "Numeric skip mode"
+msgstr ""
 
 msgid "OEM model"
 msgstr "OEM 型号"
@@ -12613,35 +12638,128 @@ msgstr "仅在启动时"
 msgid "Open"
 msgstr "打开"
 
+msgid "Open Aspect Ratio Settings"
+msgstr "长宽比列表..."
+
+msgid "Open Audio options"
+msgstr "音频选项..."
+
 msgid "Open AutoTimer"
 msgstr "打开自动定时器"
+
+msgid "Open AutoTimer OverView"
+msgstr "打开自动定时器概览"
 
 msgid "Open AutoTimer Overview"
 msgstr "打开自动定时器列表"
 
+msgid "Open Bouquet selection"
+msgstr "打开频道群列表"
+
+msgid "Open Box Portal"
+msgstr "显示机顶盒门户"
+
+msgid "Open DreamPlex"
+msgstr "显示 DreamPlex 播放器..."
+
+msgid "Open EPG"
+msgstr "显示 EPG..."
+
+msgid "Open EPG for current service"
+msgstr "显示当前频道的 EPG ..."
+
 msgid "Open EPGSearch"
 msgstr "打开 EPGSearch"
+
+msgid "Open Extensions"
+msgstr "显示扩展..."
+
+msgid "Open HDMIRecord Settings"
+msgstr "显示 HDMIRecord 设置..."
 
 msgid "Open IMDb"
 msgstr "打开 IMDb"
 
+msgid "Open Information menu"
+msgstr "显示信息"
+
 msgid "Open Log"
 msgstr "打开日志"
+
+msgid "Open Main Menu"
+msgstr "进入主菜单..."
+
+msgid "Open Media Player"
+msgstr "显示媒体播放器"
+
+msgid "Open MediaCenter"
+msgstr "显示媒体中心"
 
 msgid "Open MediaStream"
 msgstr "打开媒体流"
 
-msgid "Open Settings"
-msgstr "打开徽墨"
+msgid "Open Movie Selection"
+msgstr "播放录制的影片"
 
-msgid "Open Similar List Channel List"
-msgstr "打开相似列表频道列表"
+msgid "Open Network Settings"
+msgstr "显示网络设置菜单..."
+
+msgid "Open Plugin Browser"
+msgstr "显示插件"
+
+msgid "Open QuickMenu"
+msgstr "快捷菜单..."
+
+msgid "Open RFmod Settings"
+msgstr "显示 RFmod 设置..."
+
+msgid "Open Radio bouquet selection"
+msgstr "显示收音机播放器"
 
 msgid "Open RecordTimer Overview"
 msgstr "打开定时器列表"
 
-msgid "Open Bouquet selection"
-msgstr "打开频道群列表"
+msgid "Open Satellites selection"
+msgstr "打开卫星列表"
+
+msgid "Open Scheduler Overview"
+msgstr "显示计划任务"
+
+msgid "Open Services / Reception selection"
+msgstr "打开频道列表"
+
+msgid "Open Settings"
+msgstr "打开徽墨"
+
+msgid "Open Setup"
+msgstr "显示设置菜单..."
+
+msgid "Open Setup menu"
+msgstr "显示设置"
+
+msgid "Open Similar List Channel List"
+msgstr "打开相似列表频道列表"
+
+msgid "Open Simple Umount"
+msgstr "简单未挂载大容量存储设备。"
+
+msgid "Open SleepTimer Settings"
+msgstr "显示睡眠定时器"
+
+msgid "Open Subservices selection"
+msgstr "选择子频道"
+
+msgid "Open Subtitle options"
+msgstr "字幕选择..."
+
+msgid "Open TV bouquet selection"
+msgstr "显示电视播放器"
+
+msgid "Open Usage and GUI Settings"
+msgstr "显示使用习惯和图形界面菜单..."
+
+msgid "Open VideoMode"
+msgstr "显示格式设置"
 
 msgid "Open context menu"
 msgstr "打开上下文菜单"
@@ -12649,31 +12767,25 @@ msgstr "打开上下文菜单"
 msgid "Open context menu (contains settings menu)"
 msgstr "打开上下文菜单（包含设置菜单）"
 
+msgid "Open event information"
+msgstr "显示当前事件的信息。"
+
 msgid "Open external subtitle management screen"
 msgstr "打开外挂字幕管理屏幕"
-
-msgid "Open favorites list"
-msgstr "打开收藏夹列表"
 
 msgid "Open file sort menu"
 msgstr "打开文件排序菜单"
 
-msgid "Open Satellites selection"
-msgstr "打开卫星列表"
-
-msgid "Open Services / Reception selection"
-msgstr "打开频道列表"
-
-msgid "Open service list and select next channel"
+msgid "Open service list and select next service"
 msgstr "打开频道列表并选择下一个频道"
 
-msgid "Open service list and select next channel for PiP"
+msgid "Open service list and select next service for PiP"
 msgstr "打开画中画中的频道列表并选择下一频道"
 
-msgid "Open service list and select previous channel"
+msgid "Open service list and select previous service"
 msgstr "打开频道列表并选择前一个频道"
 
-msgid "Open service list and select previous channel for PiP"
+msgid "Open service list and select previous service for PiP"
 msgstr "打开画中画中的频道列表并选择上一频道"
 
 msgid "Open the Channel Selection Settings screen"
@@ -12696,9 +12808,6 @@ msgstr "打开虚拟键盘进行文本输入"
 
 msgid "Open the context menu"
 msgstr "打开上下文菜单"
-
-msgid "Open the movie list"
-msgstr "打开电影列表"
 
 msgid "Open the multi service EPG view"
 msgstr "打开多频道 EPG 视图"
@@ -13083,6 +13192,9 @@ msgstr "百分比显示在左侧"
 msgid "Percentage right"
 msgstr "百分比显示在右侧"
 
+msgid "Percentage skips"
+msgstr ""
+
 msgid "Percentage/Progress bar left"
 msgstr "百分比/进度条左侧"
 
@@ -13097,6 +13209,9 @@ msgstr "是否执行升级？"
 
 msgid "Permanently delete all recordings in the trashcan?"
 msgstr "永久删除所有回收站中的录像吗？"
+
+msgid "Permanently disable the MultiBoot option?"
+msgstr "永久禁用多系统启动选项吗？"
 
 msgid "Permanently ignore this device"
 msgstr "永久忽略此设备"
@@ -13128,9 +13243,6 @@ msgstr "菲律宾"
 
 msgid "PiP"
 msgstr "画中画"
-
-msgid "Picture in Picture Actions"
-msgstr "画中画操作"
 
 msgid "PiP with OSD"
 msgstr "带 OSD 的画中画"
@@ -13167,6 +13279,9 @@ msgstr "图片信息操作"
 
 msgid "Picture in EPG"
 msgstr "EPG中的图片"
+
+msgid "Picture in Picture Actions"
+msgstr "画中画操作"
 
 msgid "Picture in Picture Settings"
 msgstr "画中画设置"
@@ -13264,9 +13379,6 @@ msgstr "播放下一个（返回到上一频道）"
 
 msgid "Play previous"
 msgstr "播放上一个"
-
-msgid "Open Movie Selection"
-msgstr "播放录制的影片"
 
 msgid "Play selected service in a PiP window"
 msgstr "在画中画窗口中播放所选频道"
@@ -14161,9 +14273,6 @@ msgstr "快捷启动菜单"
 msgid "Quick Menu Actions"
 msgstr "快速菜单操作"
 
-msgid "Open QuickMenu"
-msgstr "快捷菜单..."
-
 msgid "QuickEPG mode"
 msgstr "快速 EPG 模式"
 
@@ -14212,6 +14321,9 @@ msgstr "遥控器选定名称"
 msgid "RC selected type"
 msgstr "遥控器选定类型"
 
+msgid "RDS Actions"
+msgstr "信息栏 RDS 操作"
+
 msgid "REC"
 msgstr "REC"
 
@@ -14229,6 +14341,9 @@ msgstr "使用 REC 符号"
 
 msgid "RED button"
 msgstr "红键"
+
+msgid "RED button / HbbTV"
+msgstr "红键..."
 
 msgid "RED long"
 msgstr "长按红键"
@@ -14490,9 +14605,6 @@ msgstr "恢复模式"
 
 msgid "Red"
 msgstr "红色"
-
-msgid "RED button / HbbTV"
-msgstr "红键..."
 
 msgid "Red colored"
 msgstr "红色"
@@ -15607,6 +15719,9 @@ msgstr "滚动速度 （软件渲染器）"
 msgid "Search"
 msgstr "搜索"
 
+msgid "Search EPG for current event"
+msgstr "搜索当前事件的 EPG。"
+
 msgid "Search IMDb for information about current event"
 msgstr "搜索当前事件的 IMDb 相关信息。"
 
@@ -15624,9 +15739,6 @@ msgstr "搜索网络共享"
 
 msgid "Search for similar events"
 msgstr "搜索相似的事件"
-
-msgid "Search EPG for current event"
-msgstr "搜索当前事件的 EPG。"
 
 msgid "Search weather location ID"
 msgstr "搜索天气位置 ID"
@@ -15685,11 +15797,11 @@ msgstr "向前搜索（输入时间）"
 msgid "Seek forward long"
 msgstr "长按向前搜索"
 
-msgid "Seekbar"
-msgstr "进度条"
-
 msgid "SeekBar activation"
 msgstr "进度条激活"
+
+msgid "Seekbar"
+msgstr "进度条"
 
 msgid "Seekbar sensibility"
 msgstr "进度条灵敏度"
@@ -16018,6 +16130,9 @@ msgstr "选择四画面频道"
 msgid "Select Satellites"
 msgstr "选择卫星"
 
+msgid "Select SeekBar to be activated by arrow L/R (long) or << >> (long)."
+msgstr "选择要激活的进度条，通过（长按）左/右键或（长按）<< >>。"
+
 msgid "Select Shares"
 msgstr "选择共享"
 
@@ -16173,6 +16288,12 @@ msgstr "选择此定时器的重复频率。"
 msgid "Select how quickly the dish should move between satellites."
 msgstr "选择天线在卫星之间移动的速度。"
 
+msgid "Select how the arrow ('UP', 'DOWN', 'LEFT', and 'RIGHT') buttons will act during seek actions."
+msgstr ""
+
+msgid "Select how the number buttons will act during seek actions."
+msgstr ""
+
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr "选择卫星天线的设置方式。 即固定天线、单高频头、DiSEqC 开关、极轴等。"
 
@@ -16184,6 +16305,9 @@ msgstr "选择您的机顶盒如何升级。"
 
 msgid "Select if an end time is required."
 msgstr "选择是否需要结束时间。"
+
+msgid "Select if data entry timeouts are to be applied when entering digits into the service selection pop up screen. When a timeout is exceeded the currently entered number will be used for the service selection. The default timeouts are first digit 3 seconds, other digits 1 second."
+msgstr "设置换台延迟模式。"
 
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr "选择是否显示设置条目的默认值，如果显示，则选择与描述相关的显示位置。"
@@ -16251,9 +16375,6 @@ msgstr "选择供应商添加..."
 msgid "Select refresh rate"
 msgstr "选择刷新率"
 
-msgid "Select SeekBar to be activated by arrow L/R (long) or << >> (long)."
-msgstr "选择要激活的进度条，通过（长按）左/右键或（长按）<< >>。"
-
 msgid "Select service information to view:"
 msgstr "选择要查看的频道信息："
 
@@ -16262,9 +16383,6 @@ msgstr "选择频道来添加..."
 
 msgid "Select sort method:"
 msgstr "选择排序方法："
-
-msgid "Open Subservices selection"
-msgstr "选择子频道"
 
 msgid "Select system information to view:"
 msgstr "选择要查看的系统信息："
@@ -16368,6 +16486,9 @@ msgstr "选择当前突出显示的频道"
 msgid "Select the currently highlighted service and exit"
 msgstr "选择当前突出显示的频道并退出"
 
+msgid "Select the currently highlighted timer"
+msgstr "选择当前高亮的定时器"
+
 msgid "Select the date from which this timer will become active."
 msgstr "选择此定时器开始生效的日期。"
 
@@ -16391,6 +16512,12 @@ msgstr "选择定时器激活前的延迟时间。"
 
 msgid "Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for boxes with multiple satellite tuners."
 msgstr "在将调谐器重新分配给其他服务之前，选择关闭流中继服务时使用的延迟。仅建议对具有多个卫星调谐器的盒子使用“0”。"
+
+msgid "Select the delay to wait after pressing more digit buttons to select a new service."
+msgstr "当您按下其他按键切换到频道时，用户定义的延迟。"
+
+msgid "Select the delay to wait after pressing the first digit button to select a new service."
+msgstr "当您按下第一个按键切换到频道时，用户定义的延迟。"
 
 msgid "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to toggle between the lists. Select an assigned function and click on 'OK' to deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned functions."
 msgstr "选择所需的功能并单击“确定”进行分配。 使用“CH+/-”在列表之间切换。 选择分配的功能并单击“确定”以取消分配。 使用“下一个/上一个”更改分配功能的顺序。"
@@ -16507,6 +16634,9 @@ msgstr "选择列表中的下一项或向右移动光标"
 
 msgid "Select the next item in the list"
 msgstr "选择列表中的下一项"
+
+msgid "Select the preferred service information to display, in addition to the service number, for the service selection pop up screen."
+msgstr ""
 
 msgid "Select the previous item in list or move the cursor left"
 msgstr "选择列表中的上一项或向左移动光标"
@@ -16859,14 +16989,8 @@ msgstr "频道扫描操作"
 msgid "Service Selection Actions"
 msgstr "频道选择操作"
 
-msgid "Service Selection/Zap Actions"
-msgstr "频道选择/切换操作"
-
 msgid "Service Title mode"
 msgstr "频道标题模式"
-
-msgid "Service Zap Actions"
-msgstr "频道切换操作"
 
 msgid "Service and PID information"
 msgstr "频道和 PID 信息"
@@ -16934,6 +17058,18 @@ msgstr ""
 
 msgid "Service width"
 msgstr "频道宽度"
+
+msgid "Service zap delay mode"
+msgstr "频道切换延迟模式"
+
+msgid "Service zap first button delay"
+msgstr "频道切换首按键延迟"
+
+msgid "Service zap other button delay"
+msgstr "频道切换其他按键延迟"
+
+msgid "Service zap screen contents"
+msgstr ""
 
 msgid "ServiceName"
 msgstr "频道名称"
@@ -17028,9 +17164,18 @@ msgstr "设为开机频道"
 msgid "Set system"
 msgstr "设置系统"
 
+msgid "Set the CutList Editor skip time interval for the '%s'/'%s' buttons."
+msgstr ""
+
+msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
+msgstr ""
+
 #, python-format
 msgid "Set the MAC address of your %s %s."
 msgstr "设置 %s %s 的 MAC 地址。"
+
+msgid "Set the UP/DOWN button skip percentage for the SeekBar."
+msgstr ""
 
 msgid "Set the User ID of the OpenWebif from your fallback tuner"
 msgstr "从备用调谐器设置 OpenWebif 的用户 ID"
@@ -17082,6 +17227,12 @@ msgstr "设置前端显示屏上文本的滚动速度，用于某些皮肤中的
 
 msgid "Set the scrolling speed of text on the front display."
 msgstr "设置前端显示屏上文本的滚动速度。"
+
+msgid "Set the skip time interval for the '%s' button."
+msgstr ""
+
+msgid "Set the skip time interval for the '%s'/'%s' buttons."
+msgstr ""
 
 msgid "Set the time before checking video source for resolution information."
 msgstr "设置检查视频源的分辨率信息之前的时间。"
@@ -17247,9 +17398,6 @@ msgstr "设置视频、音频"
 
 msgid "Setup Videomode"
 msgstr "设置视频模式"
-
-msgid "Select if data entry timeouts are to be applied when entering digits into the service selection pop up screen. When a timeout is exceeded the currently entered number will be used for the service selection. The default timeouts are first digit 3 seconds, other digits 1 second."
-msgstr "设置换台延迟模式。"
 
 msgid "Setup each tuner for your satellite system"
 msgstr "设置卫星系统的各个调谐器"
@@ -17444,9 +17592,6 @@ msgstr "显示音轨选择"
 msgid "Show AutoTimer List"
 msgstr "显示自动定时器列表"
 
-msgid "Open Box Portal"
-msgstr "显示机顶盒门户"
-
 msgid "Show CCcam Info"
 msgstr "显示 CCcam 信息"
 
@@ -17471,17 +17616,11 @@ msgstr "显示驱动程序包"
 msgid "Show EPG"
 msgstr "显示 EPG"
 
-msgid "Open EPG for current service"
-msgstr "显示当前频道的 EPG ..."
-
 msgid "Show EventView"
 msgstr "显示事件视图"
 
 msgid "Show Extension packages"
 msgstr "显示扩展包"
-
-msgid "Open VideoMode"
-msgstr "显示格式设置"
 
 msgid "Show Graphical EPG"
 msgstr "显示图形化 EPG"
@@ -17494,9 +17633,6 @@ msgstr "显示 HDMI 输出分辨率。"
 
 msgid "Show HDMI-Output Res"
 msgstr "显示 HDMI 输出分辨率"
-
-msgid "Open HDMIRecord Settings"
-msgstr "显示 HDMIRecord 设置..."
 
 msgid "Show InfoBar"
 msgstr "显示信息栏"
@@ -17515,9 +17651,6 @@ msgstr "快进/快退时显示信息栏"
 
 msgid "Show InfoBar picons"
 msgstr "显示信息栏频道图标"
-
-msgid "Open Information menu"
-msgstr "显示信息"
 
 msgid "Show Kernel packages"
 msgstr "显示内核包"
@@ -17584,9 +17717,6 @@ msgstr "显示频道图标包"
 
 msgid "Show Plugin Skin packages"
 msgstr "显示插件皮肤包"
-
-msgid "Open RFmod Settings"
-msgstr "显示 RFmod 设置..."
 
 msgid "Show Record Movies"
 msgstr "显示录制的影片"
@@ -17772,9 +17902,6 @@ msgstr "显示扩展描述"
 msgid "Show extension selection"
 msgstr "显示扩展选择"
 
-msgid "Open Extensions"
-msgstr "显示扩展..."
-
 msgid "Show extra spacing in Information"
 msgstr "在信息中显示额外的间距"
 
@@ -17859,9 +17986,6 @@ msgstr "显示影片"
 
 msgid "Show multi channel EPG"
 msgstr "显示多频道 EPG"
-
-msgid "Open Network Settings"
-msgstr "显示网络设置菜单..."
 
 msgid "Show next commit log"
 msgstr "显示下一个提交日志"
@@ -17953,9 +18077,6 @@ msgstr "显示上一个频道信息屏幕"
 msgid "Show previous system information screen"
 msgstr "显示上一个系统信息屏幕"
 
-msgid "Show quickmenu..."
-msgstr "显示快捷菜单..."
-
 msgid "Show record indicator"
 msgstr "显示录像指示符"
 
@@ -18001,14 +18122,8 @@ msgstr "显示频道类型图标"
 msgid "Show servicelist or movies"
 msgstr "显示频道列表或影片"
 
-msgid "Open Setup menu"
-msgstr "显示设置"
-
 msgid "Show setup default value"
 msgstr "显示设置默认值"
-
-msgid "Open Setup"
-msgstr "显示设置菜单..."
 
 msgid "Show shut down menu"
 msgstr "显示关机菜单"
@@ -18058,9 +18173,6 @@ msgstr "如果文件指挥官未运行，且所有任务均已完成，则显示
 msgid "Show the CCcam Info Screen"
 msgstr "显示 CCcam 信息屏"
 
-msgid "Open DreamPlex"
-msgstr "显示 DreamPlex 播放器..."
-
 msgid "Show the EIT Now/Next data in the InfoBar."
 msgstr "在信息栏显示 当前/下一个 EIT（事件信息表）数据。"
 
@@ -18070,47 +18182,11 @@ msgstr "显示日志设备屏"
 msgid "Show the OSCam information screen"
 msgstr "显示 OSCam 信息屏幕"
 
-msgid "Open Scheduler Overview"
-msgstr "显示计划任务"
-
-msgid "Open SleepTimer Settings"
-msgstr "显示睡眠定时器"
-
-msgid "Open event information"
-msgstr "显示当前事件的信息。"
-
 msgid "Show the last opkg command's output"
 msgstr "显示最后一个 opkg 命令的输出"
 
-msgid "Show the list of AutoTimers."
-msgstr "显示自动定时器列表。"
-
-msgid "Show the list of timers."
-msgstr "显示定时器列表。"
-
-msgid "Open MediaCenter"
-msgstr "显示媒体中心"
-
-msgid "Open Media Player"
-msgstr "显示媒体播放器"
-
-msgid "Show the media player..."
-msgstr "显示媒体播放器..."
-
-msgid "Show the plugin browser.."
-msgstr "显示插件浏览器..."
-
-msgid "Open Plugin Browser"
-msgstr "显示插件"
-
-msgid "Open Radio bouquet selection"
-msgstr "显示收音机播放器"
-
 msgid "Show the task list"
 msgstr "显示任务列表"
-
-msgid "Open TV bouquet selection"
-msgstr "显示电视播放器"
 
 msgid "Show time elapsed as positive"
 msgstr "以正数显示已用时间"
@@ -18142,9 +18218,6 @@ msgstr "显示未知设备"
 msgid "Show unknown video format as"
 msgstr "将未知的视频格式显示为"
 
-msgid "Open Usage and GUI Settings"
-msgstr "显示使用习惯和图形界面菜单..."
-
 msgid "Show vertical Program Guide"
 msgstr "显示纵向节目指南"
 
@@ -18159,6 +18232,9 @@ msgstr "显示观看状态"
 
 msgid "Show/Games show"
 msgstr "显示/游戏秀"
+
+msgid "Show/Hide Actions"
+msgstr "信息栏显示/隐藏操作"
 
 msgid "Show/Hide focus bar"
 msgstr "显示/隐藏 聚焦条"
@@ -18244,9 +18320,6 @@ msgstr "简单的淡入淡出"
 msgid "Simple titleset (compatibility for legacy players)"
 msgstr "简单的标题集（兼容传统播放器）"
 
-msgid "Open Simple Umount"
-msgstr "简单未挂载大容量存储设备。"
-
 msgid "Simple zoom"
 msgstr "简单缩放"
 
@@ -18319,17 +18392,38 @@ msgstr "皮肤选择"
 msgid "Skip back"
 msgstr "往后跳"
 
+msgid "Skip backward"
+msgstr "后退"
+
+msgid "Skip backward (enter time)"
+msgstr "快退（输入时间）"
+
 msgid "Skip empty services"
 msgstr "跳过空频道"
 
 msgid "Skip forward"
 msgstr "向前跳"
 
+msgid "Skip forward (enter time)"
+msgstr "快进（输入时间）"
+
 msgid "Skip jumping to live while timeshifting with plugins"
 msgstr "使用插件进行时移时跳过跳转到直播"
 
 msgid "Skip package installation, only core packages will be available"
 msgstr "跳过软件包安装，只有核心软件包可用"
+
+msgid "Skip sensibility (Horizontal)"
+msgstr ""
+
+msgid "Skip sensibility (Vertical)"
+msgstr ""
+
+msgid "Skip time for '%s' button"
+msgstr ""
+
+msgid "Skip time for '%s'/'%s' buttons"
+msgstr ""
 
 msgid "Sleep"
 msgstr "睡眠"
@@ -19122,6 +19216,9 @@ msgstr "字幕操作"
 msgid "Subtitle Quickmenu"
 msgstr "字幕快捷菜单"
 
+msgid "Subtitle Selection"
+msgstr "字幕选择"
+
 msgid "Subtitle Settings"
 msgstr "字幕设置"
 
@@ -19157,12 +19254,6 @@ msgstr "字幕语言选择4"
 
 msgid "Subtitle position"
 msgstr "字幕位置"
-
-msgid "Subtitle Selection"
-msgstr "字幕选择"
-
-msgid "Open Subtitle options"
-msgstr "字幕选择..."
 
 msgid "Subtitles"
 msgstr "字幕"
@@ -19275,9 +19366,6 @@ msgstr "在文件列表/播放列表之间切换"
 msgid "Switch config"
 msgstr "切换配置"
 
-msgid "Zap to next service"
-msgstr "切换到下一频道"
-
 msgid "Switch off the TV to correct input"
 msgstr "关闭电视以纠正输入"
 
@@ -19311,20 +19399,11 @@ msgstr "切换到文件列表面板"
 msgid "Switch to next EPG Event"
 msgstr "切换到下一个 EPG 事件"
 
-msgid "Zap to next service in the history"
-msgstr "切换到历史中的下一频道"
-
 msgid "Switch to play list"
 msgstr "切换到播放列表"
 
 msgid "Switch to previous EPG Event"
 msgstr "切换到上一个 EPG 事件"
-
-msgid "Zap to previous service"
-msgstr "切换到前一频道"
-
-msgid "Zap to previous service in the history"
-msgstr "切换到历史中的上一频道"
 
 msgid "Switch to the available RADIO services"
 msgstr "切换到可用的广播频道"
@@ -19355,6 +19434,9 @@ msgstr "符号率"
 
 msgid "Symbolic link"
 msgstr "REC 符号正在使用"
+
+msgid "Symmetrical skips"
+msgstr ""
 
 msgid "Sync NTP every (minutes)"
 msgstr "同步 NTP 每（分钟）"
@@ -20605,6 +20687,9 @@ msgstr "定时器日志动作"
 msgid "Timer Sanity Error"
 msgstr "定时器健全性错误"
 
+msgid "Timer Selection Actions"
+msgstr ""
+
 msgid "Timer edit"
 msgstr "编辑定时器"
 
@@ -20714,9 +20799,6 @@ msgstr "为当前设备切换临时挂载"
 msgid "Toggle all related files"
 msgstr "切换所有相关文件"
 
-msgid "Cycle through the available aspect ratios"
-msgstr "切换宽高比..."
-
 msgid "Toggle auto refresh On/Off"
 msgstr "打开/关闭自动刷新"
 
@@ -20728,9 +20810,6 @@ msgstr "在可用电视与广播频道之间切换"
 
 msgid "Toggle display of image information"
 msgstr "切换镜像信息的显示"
-
-msgid "Cycle through the InfoBars"
-msgstr "信息栏显示开关"
 
 msgid "Toggle display of the image status overlay"
 msgstr "切换图像状态叠加层的显示"
@@ -20831,6 +20910,9 @@ msgstr "总计："
 
 msgid "Track"
 msgstr "音轨"
+
+msgid "Traditional"
+msgstr ""
 
 msgid "Traditional Chinese"
 msgstr "繁体中文"
@@ -21673,12 +21755,6 @@ msgstr "用户自定义"
 msgid "User defined 0x%02x"
 msgstr "用户定义 0x%02x"
 
-msgid "Select the delay to wait after pressing more digit buttons to select a new service."
-msgstr "当您按下其他按键切换到频道时，用户定义的延迟。"
-
-msgid "Select the delay to wait after pressing the first digit button to select a new service."
-msgstr "当您按下第一个按键切换到频道时，用户定义的延迟。"
-
 msgid "User defined transponder"
 msgstr "用户定义的转发器"
 
@@ -21979,6 +22055,9 @@ msgstr "查看文件"
 msgid "View Rass interactive"
 msgstr "查看 Rass 互动"
 
+msgid "View Teletext"
+msgstr "查看图文电视..."
+
 msgid "View as grid"
 msgstr "以网格形式查看"
 
@@ -21997,9 +22076,6 @@ msgstr "查看或编辑这个 %s 脚本"
 
 msgid "View photos..."
 msgstr "查看照片..."
-
-msgid "View Teletext"
-msgstr "查看图文电视..."
 
 msgid "View the archive contents"
 msgstr "查看存档内容"
@@ -22197,9 +22273,6 @@ msgstr "警告：没有高频头；使用工厂默认值。"
 
 msgid "Watch movies..."
 msgstr "观看影片..."
-
-msgid "Watch recordings"
-msgstr "观看录像"
 
 msgid "Weather"
 msgstr "天气"
@@ -23051,6 +23124,24 @@ msgstr "切换到频道（在菜单中设置）"
 msgid "Zap to channel and close (setup in menu)"
 msgstr "切换到频道并关闭（在菜单中设置）"
 
+msgid "Zap to next service"
+msgstr "切换到下一频道"
+
+msgid "Zap to next service in the current bouquet"
+msgstr ""
+
+msgid "Zap to next service in history"
+msgstr "切换到历史中的下一频道"
+
+msgid "Zap to previous service"
+msgstr "切换到前一频道"
+
+msgid "Zap to previous service in the current bouquet"
+msgstr ""
+
+msgid "Zap to previous service in history"
+msgstr "切换到历史中的上一频道"
+
 msgid "Zap up"
 msgstr "向上切换"
 
@@ -23534,9 +23625,6 @@ msgstr "通过数字跳到章节"
 msgid "languages"
 msgstr "语言"
 
-msgid "Leave movie player"
-msgstr "退出电影播放器"
-
 msgid "left"
 msgstr "左"
 
@@ -23824,17 +23912,11 @@ msgstr "shell"
 msgid "show DVD main menu"
 msgstr "显示 DVD 主菜单"
 
-msgid "Open EPG"
-msgstr "显示 EPG..."
-
 msgid "show all cards"
 msgstr "显示所有卡片"
 
 msgid "show all tags"
 msgstr "显示所有标签"
-
-msgid "show program information..."
-msgstr "显示节目信息..."
 
 msgid "show/game show (general)"
 msgstr "秀/游戏展（常规）"
@@ -23851,14 +23933,8 @@ msgstr "大小"
 msgid "skip backward"
 msgstr "快退"
 
-msgid "Skip backward (enter time)"
-msgstr "快退（输入时间）"
-
 msgid "skip forward"
 msgstr "快进"
-
-msgid "Skip forward (enter time)"
-msgstr "快进（输入时间）"
 
 msgid "slow"
 msgstr "慢速"
@@ -24004,17 +24080,11 @@ msgstr "不可测试"
 msgid "update"
 msgstr "更新"
 
-msgid "userdefined"
-msgstr "用户自定义"
-
 msgid "using:"
 msgstr "使用："
 
 msgid "variety show"
 msgstr "综艺节目"
-
-msgid "view extensions..."
-msgstr "查看扩展..."
 
 msgid "violet"
 msgstr "紫色"
@@ -24063,6 +24133,54 @@ msgstr "是（保留订阅源）"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "InfoBar EPG Actions"
+#~ msgstr "信息栏 EPG 操作"
+
+#~ msgid "InfoBar Event View Actions"
+#~ msgstr "信息栏事件查看操作"
+
+#~ msgid "Listen to the radio"
+#~ msgstr "收听广播"
+
+#~ msgid "Open favorites list"
+#~ msgstr "打开收藏夹列表"
+
+#~ msgid "Open the movie list"
+#~ msgstr "打开电影列表"
+
+#~ msgid "Service Selection/Zap Actions"
+#~ msgstr "频道选择/切换操作"
+
+#~ msgid "Service Zap Actions"
+#~ msgstr "频道切换操作"
+
+#~ msgid "Show quickmenu..."
+#~ msgstr "显示快捷菜单..."
+
+#~ msgid "Show the list of AutoTimers."
+#~ msgstr "显示自动定时器列表。"
+
+#~ msgid "Show the list of timers."
+#~ msgstr "显示定时器列表。"
+
+#~ msgid "Show the media player..."
+#~ msgstr "显示媒体播放器..."
+
+#~ msgid "Show the plugin browser.."
+#~ msgstr "显示插件浏览器..."
+
+#~ msgid "Watch recordings"
+#~ msgstr "观看录像"
+
+#~ msgid "show program information..."
+#~ msgstr "显示节目信息..."
+
+#~ msgid "userdefined"
+#~ msgstr "用户自定义"
+
+#~ msgid "view extensions..."
+#~ msgstr "查看扩展..."
 
 #~ msgid "Access point:"
 #~ msgstr "接入点："
