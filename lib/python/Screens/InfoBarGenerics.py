@@ -241,7 +241,7 @@ class InfoBarUnhandledKey:
 
 class InfoBarLongKeyDetection:
 	def __init__(self):
-		eActionMap.getInstance().bindAction("", -maxsize - 2, self.detection)  # Highest priority.
+		eActionMap.getInstance().bindAction("", -maxsize - 1, self.detection)  # Highest priority.
 		self.LongButtonPressed = False
 
 	def detection(self, key, flag):  # This function is called on every key press!
@@ -321,32 +321,28 @@ class ExtensionsList(ChoiceBox):
 		}
 		extensionListAll = []
 		for extension in extensions:
-			if extension[0] == 0:  # EXTENSION_SINGLE
+			if extension[0] == InfoBarExtensions.EXTENSION_SINGLE:
 				if extension[1][2]():
 					extensionListAll.append((extension[1][0](), extension[1], extension[2], colorKeys.get(extension[2], 0)))
 			else:
 				for subExtension in extension[1]():
 					if subExtension[0][2]():
 						extensionListAll.append((subExtension[0][0](), subExtension[0], subExtension[1], colorKeys.get(subExtension[1], 0)))
-
 		if config.usage.sortExtensionslist.value == "alpha":
 			extensionListAll.sort(key=lambda x: (x[3], x[0]))
 		else:
 			extensionListAll.sort(key=lambda x: x[3])
-
-		allkeys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+		allKeys = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
 		extensionList = []
 		extensionKeys = []
-
 		for extension in extensionListAll:
 			key = extension[2]
-			if not key and allkeys:
-				key = allkeys.pop(0)
+			if not key and allKeys:
+				key = allKeys.pop(0)
 			extensionKeys.append(key or "")
 			extensionList.append((extension[0], extension[1]))
-
 		reorderConfig = "extensionOrder" if config.usage.sortExtensionslist.value == "user" else ""
-		ChoiceBox.__init__(self, session, title=_("Please choose an extension..."), list=extensionList, keys=extensionKeys, reorderConfig=reorderConfig, skin_name="ExtensionsList")
+		ChoiceBox.__init__(self, session, title=_("Extensions"), list=extensionList, keys=extensionKeys, reorderConfig=reorderConfig, skinName="ExtensionsList")
 
 
 class InfoBarExtensions:
