@@ -3522,13 +3522,13 @@ class InfoBarPiP:  # Depends on InfoBarExtensions.
 				"activatePiP": (self.activePiP, pipHelp),
 			}, prio=0, description=_("Picture in Picture Actions"))
 			if self.allowPiP:
-				self.addExtension((self.getShowHideName, self.showPiP, lambda: True), "blue")
-				self.addExtension((self.getMoveName, self.movePiP, self.pipShown), "green")
-				self.addExtension((self.getSwapName, self.swapPiP, lambda: self.pipShown() and isStandardInfoBar(self)), "yellow")
-				self.addExtension((self.getTogglePipzapName, self.togglePipzap, self.pipShown), "red")
+				self.addExtension((self.extShowHideName, self.showPiP, lambda: True), "blue")
+				self.addExtension((self.extMoveName, self.movePiP, self.pipShown), "green")
+				self.addExtension((self.extSwapName, self.swapPiP, lambda: self.pipShown() and isStandardInfoBar(self)), "yellow")
+				self.addExtension((self.extTogglePipZapName, self.togglePipZap, self.pipShown), "red")
 			else:
-				self.addExtension((self.getShowHideName, self.showPiP, self.pipShown), "blue")
-				self.addExtension((self.getMoveName, self.movePiP, self.pipShown), "green")
+				self.addExtension((self.extShowHideName, self.showPiP, self.pipShown), "blue")
+				self.addExtension((self.extMoveName, self.movePiP, self.pipShown), "green")
 		self.lastPiPServiceTimeoutTimer = eTimer()
 		self.lastPiPServiceTimeoutTimer.callback.append(self.clearLastPiPService)
 
@@ -3538,7 +3538,7 @@ class InfoBarPiP:  # Depends on InfoBarExtensions.
 		else:
 			self.togglePipzap()
 
-	def getShowHideName(self):
+	def extShowHideName(self):
 		return _("Disable Picture in Picture") if self.session.pipshown else _("Activate Picture in Picture")
 
 	def showPiP(self):
@@ -3601,45 +3601,47 @@ class InfoBarPiP:  # Depends on InfoBarExtensions.
 	def pipShown(self):
 		return self.session.pipshown
 
-	def getMoveName(self):
+	def extMoveName(self):
 		return _("Picture in Picture Settings")
 
 	def movePiP(self):
 		if self.pipShown():
 			self.session.open(PiPSetup, pip=self.session.pip)
 
-	def getSwapName(self):
+	def extSwapName(self):
 		return _("Swap services")
 
 	def swapPiP(self):
 		if self.pipShown():
-			swapservice = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-			pipref = self.session.pip.getCurrentService()
-			if swapservice and pipref and pipref.toString() != swapservice.toString():
+			swapService = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			pipServiceReference = self.session.pip.getCurrentService()
+			if swapService and pipServiceReference and pipServiceReference.toString() != swapService.toString():
 				currentServicePath = self.servicelist.getCurrentServicePath()
 				currentBouquet = self.servicelist and self.servicelist.getRoot()
 				self.servicelist.setCurrentServicePath(self.session.pip.servicePath, doZap=False)
-				self.session.pip.playService(swapservice)
+				self.session.pip.playService(swapService)
 				self.session.nav.stopService()  # Stop portal.
-				self.session.nav.playService(pipref, checkParentalControl=False, adjust=False)
+				self.session.nav.playService(pipServiceReference, checkParentalControl=False, adjust=False)
 				self.session.pip.servicePath = currentServicePath
 				self.session.pip.servicePath[1] = currentBouquet
-				if self.servicelist.dopipzap:
-					# This unfortunately won't work with subservices.
+				if self.servicelist.dopipzap:  # This unfortunately won't work with subservices.
 					self.servicelist.setCurrentSelection(self.session.pip.getCurrentService())
 
-	def getTogglePipzapName(self):
+	def extTogglePipZapName(self):
 		serviceList = self.servicelist
 		return _("Zap focus to main screen") if serviceList and serviceList.dopipzap else _("Zap focus to Picture in Picture")
 
-	def togglePipzap(self):
+	def togglePipzap(self):  # called from ButtonSetup
+		return self.togglePipZap()
+
+	def togglePipZap(self):
 		if not self.session.pipshown:
 			self.showPiP()
-		slist = self.servicelist
-		if slist and self.session.pipshown:
-			slist.togglePipzap()
-			if slist.dopipzap:
-				currentServicePath = slist.getCurrentServicePath()
+		serviceList = self.servicelist
+		if serviceList and self.session.pipshown:
+			serviceList.togglePipzap()
+			if serviceList.dopipzap:
+				currentServicePath = serviceList.getCurrentServicePath()
 				self.servicelist.setCurrentServicePath(self.session.pip.servicePath, doZap=False)
 				self.session.pip.servicePath = currentServicePath
 
@@ -4371,7 +4373,7 @@ class InfoBarNotifications:
 				self.hide()
 				dlg.show()
 				self.notificationDialog = dlg
-				eActionMap.getInstance().bindAction("", -maxsize - 4, self.keypressNotification)
+				eActionMap.getInstance().bindAction("", -maxsize - 1, self.keypressNotification)
 			else:
 				dlg = self.session.open(n[1], *n[2], **n[3])
 			# Remember that this notification is currently active.
