@@ -618,17 +618,17 @@ class InfoBarPlugins:  # Depends on InfoBarExtensions.
 	def __init__(self):
 		self.addExtension(extension=self.getPluginList, type=InfoBarExtensions.EXTENSION_LIST)
 
-	def getPluginName(self, name):  # Used in plugins
-		return name
-
 	def getPluginList(self):  # Used in plugins
 		pluginList = []
 		for plugin in plugins.getPlugins(where=PluginDescriptor.WHERE_EXTENSIONSMENU):
-			args = getfullargspec(p.__call__)[0]  # FIME: This is a performance issue and should be replaced.
+			args = getfullargspec(plugin.__call__)[0]  # FIME: This is a performance issue and should be replaced.
 			if len(args) in (1, 2) and isinstance(self, InfoBarChannelSelection):
 				pluginList.append(((boundFunction(self.getPluginName, plugin.name), boundFunction(self.runPlugin, plugin), lambda: True), None, plugin.name))
 		pluginList.sort(key=lambda x: x[2])  # Sort by name.
 		return pluginList
+
+	def getPluginName(self, name):  # Used in plugins
+		return name
 
 	def runPlugin(self, plugin):  # Used in AudioSelection.py
 		if isinstance(self, InfoBarChannelSelection):
