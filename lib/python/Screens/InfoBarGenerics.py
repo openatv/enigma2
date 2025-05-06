@@ -3011,13 +3011,13 @@ class InfoBarEPG:
 		else:
 			pluginlist = self.getEPGPluginList()
 			if pluginlist:
-				pluginlist.append((_("Select default EPG type..."), self.SelectDefaultGuidePlugin))
+				pluginlist.append((_("Select default EPG type"), self.SelectDefaultGuidePlugin))
 				self.session.openWithCallback(self.EventGuidePluginChosen, ChoiceBox, title=_("Please choose an extension..."), list=pluginlist, skin_name="EPGExtensionsList")
 			else:
 				self.openSingleServiceEPG()
 
 	def SelectDefaultGuidePlugin(self):
-		self.session.openWithCallback(self.DefaultGuidePluginChosen, ChoiceBox, title=_("Please select a default EPG type..."), list=self.getEPGPluginList(), skin_name="EPGExtensionsList")
+		self.session.openWithCallback(self.DefaultGuidePluginChosen, ChoiceBox, title=_("Select default EPG type:"), list=self.getEPGPluginList(), skin_name="EPGExtensionsList")
 
 	def DefaultGuidePluginChosen(self, answer):
 		if answer is not None:
@@ -3808,7 +3808,7 @@ class InfoBarInstantRecord:
 				value = int(value.replace(" ", "") or "0")
 				if value:
 					entry.autoincrease = False
-				print(f"[InfoBarGenerics] Instant recording due to stop after {value} minutes.")
+				print(f"[InfoBarGenerics] InfoBarInstantRecord: Instant recording due to stop after {value} minutes.")
 				entry.end = int(time()) + 60 * value
 				entry.eventEnd = entry.end
 				entry.marginAfter = 0
@@ -3821,7 +3821,7 @@ class InfoBarInstantRecord:
 	def changeEndtime(self, entry):
 		def changeEndtimeCallback(result):
 			if len(result) > 1 and result[0]:
-				print(f"[InfoBarGenerics] Instant recording due to stop at {strftime('%F %T', localtime(result[1]))}.")
+				print(f"[InfoBarGenerics] InfoBarInstantRecord: Instant recording due to stop at {strftime('%F %T', localtime(result[1]))}.")
 				if recordingEntry.end != result[1]:
 					recordingEntry.autoincrease = False
 				recordingEntry.end = result[1]
@@ -3900,13 +3900,13 @@ class InfoBarInstantRecord:
 		else:
 			if len(simulTimerList) > 1:  # With other recording.
 				name = simulTimerList[1].name
-				name_date = " ".join((name, strftime("%F %T", localtime(simulTimerList[1].begin))))
-				# print(f"[InfoBarGenerics] InstantTimer conflicts with {name_date}!")
+				nameDate = " ".join((name, strftime("%F %T", localtime(simulTimerList[1].begin))))
+				# print(f"[InfoBarGenerics] InfoBarInstantRecord: InstantTimer conflicts with {nameDate}!")
 				recording.autoincrease = True  # Start with max available length, then increment.
 				if recording.setAutoincreaseEnd():
 					self.session.nav.RecordTimer.record(recording)
 					self.recording.append(recording)
-					self.session.open(MessageBox, _("Record time limited due to conflicting timer:%s") % f"\n\t'{name_date}'", MessageBox.TYPE_INFO)
+					self.session.open(MessageBox, _("Recording time limited due to conflicting timer:%s") % f"\n\t'{nameDate}'", MessageBox.TYPE_INFO)
 				else:
 					self.session.open(MessageBox, _("Could not record due to conflicting timer:%s") % f"\n\t'{name}'", MessageBox.TYPE_INFO)
 			else:
