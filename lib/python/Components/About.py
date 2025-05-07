@@ -343,16 +343,15 @@ def getPythonVersionString():
 
 
 def getVersionFromOpkg(fileName):
-	return next((line[9:].split("+")[0] for line in fileReadLines(f'/var/lib/opkg/info/{fileName}.control', source=MODULE_NAME) if line.startswith("Version:")), ("Not Installed"))
+	return next((line[9:].split("+")[0] for line in fileReadLines(f"/var/lib/opkg/info/{fileName}.control", source=MODULE_NAME) if line.startswith("Version:")), ("Not Installed"))
 
 
 def getFileCompressionInfo():
-	p = Popen("strings /bin/bash | grep '$Id: UPX.*Copyright'", stdout=PIPE, shell=True, text=True)
-	#$Id: UPX 4.24 Copyright (C) 1996-2024 the UPX Team. All Rights Reserved. $
-	stdout = p.communicate()[0]
-	if p.returncode == 0:
-		return "%s (%s %s)" % (_("Enabled"), stdout.split(" ")[1], stdout.split(" ")[2])
-	return _("Disabled")
+	result = Popen("strings /bin/bash | grep '$Id: UPX.*Copyright'", stdout=PIPE, shell=True, text=True)
+	# $Id: UPX 4.24 Copyright (C) 1996-2024 the UPX Team. All Rights Reserved. $
+	output = result.communicate()[0]
+	parts = output.strip().split() if result.returncode == 0 and output else []
+	return f"{_("Enabled")} ({parts[1].lower()} {parts[2]})" if len(parts) >= 3 else _("Disabled")
 
 
 # For modules that do "from About import about"
