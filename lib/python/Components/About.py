@@ -9,6 +9,7 @@ from platform import libc_ver
 from re import search
 from socket import AF_INET, SOCK_DGRAM, inet_ntoa, socket
 from struct import pack, unpack
+from subprocess import Popen, PIPE
 from sys import maxsize, modules, version as pyversion
 from time import localtime, strftime
 
@@ -99,15 +100,6 @@ def getEnigmaVersionString():
 def getGStreamerVersionString():
 	from enigma import getGStreamerVersionString
 	return getGStreamerVersionString()
-
-
-def getFFmpegVersionString():
-	lines = fileReadLines("/var/lib/opkg/info/ffmpeg.control", source=MODULE_NAME)
-	if lines:
-		for line in lines:
-			if line[0:8] == "Version:":
-				return line[9:].split("+")[0]
-	return _("Not Installed")
 
 
 def getKernelVersionString():
@@ -350,13 +342,17 @@ def getPythonVersionString():
 		return _("Unknown")
 
 
-def getopensslVersionString():
-	lines = fileReadLines("/var/lib/opkg/info/openssl.control", source=MODULE_NAME)
-	if lines:
-		for line in lines:
-			if line[0:8] == "Version:":
-				return line[9:].split("+")[0]
-	return _("Not Installed")
+def getVersionFromOpkg(fileName):
+	return next((line[9:].split("+")[0] for line in fileReadLines(f'/var/lib/opkg/info/{fileName}.control', source=MODULE_NAME) if line.startswith("Version:")), ("Not Installed"))
+
+
+def getFileCompressionInfo():
+	p = Popen("strings /bin/bash | grep '$Id: UPX.*Copyright'", stdout=PIPE, shell=True, text=True)
+	#$Id: UPX 4.24 Copyright (C) 1996-2024 the UPX Team. All Rights Reserved. $
+	stdout = p.communicate()[0]
+	if p.returncode == 0:
+		return "%s (%s %s)" % (_("Enabled"), stdout.split(" ")[1], stdout.split(" ")[2])
+	return _("Disabled")
 
 
 # For modules that do "from About import about"

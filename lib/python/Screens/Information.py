@@ -682,6 +682,7 @@ class DistributionInformation(InformationBase):
 			info.append(formatLine("P1", _("Distribution folder"), BoxInfo.getItem("imagedir")))
 		if BoxInfo.getItem("imagefs"):
 			info.append(formatLine("P1", _("Distribution file system"), BoxInfo.getItem("imagefs").strip()))
+		info.append(formatLine("P1", _("File compression"), about.getFileCompressionInfo()))
 		info.append(formatLine("P1", _("Feed URL"), BoxInfo.getItem("feedsurl")))
 		info.append(formatLine("P1", _("Compiled by"), BoxInfo.getItem("developername")))
 		info.append("")
@@ -690,10 +691,11 @@ class DistributionInformation(InformationBase):
 			info.append("")
 		info.append(formatLine("P1", _("GCC version"), about.getGccVersion()))
 		info.append(formatLine("P1", _("Glibc version"), about.getGlibcVersion()))
-		info.append(formatLine("P1", _("OpenSSL version"), about.getopensslVersionString()))
+		info.append(formatLine("P1", _("OpenSSL version"), about.getVersionFromOpkg("openssl")))
 		info.append(formatLine("P1", _("Python version"), about.getPythonVersionString()))
+		info.append(formatLine("P1", _("Samba version"), about.getVersionFromOpkg("samba")))
 		info.append(formatLine("P1", _("GStreamer version"), about.getGStreamerVersionString().replace("GStreamer ", "")))
-		info.append(formatLine("P1", _("FFmpeg version"), about.getFFmpegVersionString()))
+		info.append(formatLine("P1", _("FFmpeg version"), about.getVersionFromOpkg("ffmpeg")))
 		bootId = fileReadLine("/proc/sys/kernel/random/boot_id", source=MODULE_NAME)
 		if bootId:
 			info.append(formatLine("P1", _("Boot ID"), bootId))
