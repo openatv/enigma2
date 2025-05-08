@@ -694,14 +694,13 @@ class RecordTimerEntry(TimerEntry):
 			elif config.recording.ecm_data.value == "normal":
 				self.descramble = True
 				self.record_ecm = False
+			if self.descramble or not self.record_ecm:
+				if cihelper.ServiceIsAssigned(self.service_ref.ref):
+					self.descramble = False
+					self.record_ecm = True
 		else:
 			self.descramble = descramble
 			self.record_ecm = record_ecm
-
-		if self.descramble or not self.record_ecm:
-			if cihelper.ServiceIsAssigned(self.service_ref.ref):
-				self.descramble = False
-				self.record_ecm = True
 
 		config.usage.frontend_priority_intval.setValue(calcFrontendPriorityIntval(config.usage.frontend_priority, config.usage.frontend_priority_multiselect, config.usage.frontend_priority_strictly))
 		config.usage.recording_frontend_priority_intval.setValue(calcFrontendPriorityIntval(config.usage.recording_frontend_priority, config.usage.recording_frontend_priority_multiselect, config.usage.recording_frontend_priority_strictly))
