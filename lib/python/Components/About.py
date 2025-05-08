@@ -343,7 +343,7 @@ def getPythonVersionString():
 
 
 def getVersionFromOpkg(fileName):
-	return next((line[9:].split("+")[0] for line in (fileReadLines(f"/var/lib/opkg/info/{fileName}.control", source=MODULE_NAME) or []) if line.startswith("Version:")), "Not Installed")
+	return next((line[9:].split("+")[0] for line in (fileReadLines(f"/var/lib/opkg/info/{fileName}.control", source=MODULE_NAME) or []) if line.startswith("Version:")), _("Not Installed"))
 
 
 def getFileCompressionInfo():
