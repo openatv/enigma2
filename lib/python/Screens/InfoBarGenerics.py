@@ -4133,16 +4133,6 @@ class InfoBarRedButton:
 		# x()
 
 
-class InfoBarTimerButton:
-	def __init__(self):
-		self["TimerButtonActions"] = HelpableActionMap(self, "InfobarTimerButtonActions", {
-			"timerSelection": (self.timerSelection, _("Open RecordTimer Overview")),
-		}, prio=0, description=_("Timer Actions"))
-
-	def timerSelection(self):
-		self.session.open(RecordTimerOverview)
-
-
 class InfoBarAspectSelection:
 	STATE_HIDDEN = 0
 	STATE_ASPECT = 1
