@@ -470,9 +470,6 @@ class InfoBarExtensions:
 		from Screens.OScamInfo import OSCamInfo
 		self.session.open(OSCamInfo)
 
-	def showTimerList(self):
-		self.session.open(RecordTimerOverview)
-
 	def openLogManager(self):
 		from Screens.LogManager import LogManager
 		self.session.open(LogManager)
@@ -491,86 +488,6 @@ class InfoBarExtensions:
 			self.session.open(RestartNetwork)
 		except Exception:
 			print("[INFOBARGENERICS] failed to restart network")
-
-	def showAutoTimerList(self):
-		if isPluginInstalled("AutoTimer"):
-			from Plugins.Extensions.AutoTimer.plugin import main, autostart
-			from Plugins.Extensions.AutoTimer.AutoTimer import AutoTimer
-			from Plugins.Extensions.AutoTimer.AutoPoller import AutoPoller
-			self.autopoller = AutoPoller()
-			self.autotimer = AutoTimer()
-			try:
-				self.autotimer.readXml()
-			except SyntaxError as se:
-				self.session.open(
-					MessageBox,
-					_("Your config file is not well-formed:\n%s") % (str(se)),
-					type=MessageBox.TYPE_ERROR,
-					timeout=10
-				)
-				return
-			# Do not run in background while editing, this might screw things up.
-			if self.autopoller is not None:
-				self.autopoller.stop()
-			from Plugins.Extensions.AutoTimer.AutoTimerOverview import AutoTimerOverview
-			self.session.openWithCallback(
-				self.editCallback,
-				AutoTimerOverview,
-				self.autotimer
-			)
-		else:
-			self.session.open(MessageBox, _("The AutoTimer plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
-
-	def editCallback(self, session):
-		# XXX: Canceling of GUI (Overview) won't affect config values which might have been changed - is this intended?
-		# Don't parse EPG if editing was canceled.
-		if session is not None:
-			self.autotimer.writeXml()  # Save XML.
-			self.autotimer.parseEPG()  # Poll EPGCache.
-		if config.plugins.autotimer.autopoll.value:  # Start autopoller again if wanted.
-			if self.autopoller is None:
-				from Plugins.Extensions.AutoTimer.AutoPoller import AutoPoller
-				self.autopoller = AutoPoller()
-			self.autopoller.start()
-		else:  # Remove instance if not running in background.
-			self.autopoller = None
-			self.autotimer = None
-
-	def showEPGSearch(self):
-		from Plugins.Extensions.EPGSearch.EPGSearch import EPGSearch
-		s = self.session.nav.getCurrentService()
-		if s:
-			info = s.info()
-			event = info.getEvent(0)  # 0 = Now, 1 = Next.
-			if event:
-				name = event.getEventName() or ""
-			else:
-				name = self.session.nav.getCurrentlyPlayingServiceOrGroup().toString()
-				name = name.split("/")
-				name = name[-1]
-				name = name.replace(".", " ")
-				name = name.split("-")
-				name = name[0]
-				if name.endswith(" "):
-					name = name[:-1]
-			if name:
-				self.session.open(EPGSearch, name, False)
-			else:
-				self.session.open(EPGSearch)
-		else:
-			self.session.open(EPGSearch)
-
-	def showIMDB(self):
-		if isPluginInstalled("IMDb"):
-			from Plugins.Extensions.IMDb.plugin import IMDB
-			s = self.session.nav.getCurrentService()
-			if s:
-				info = s.info()
-				event = info.getEvent(0)  # 0 = Now, 1 = Next.
-				name = event and event.getEventName() or ""
-				self.session.open(IMDB, name)
-		else:
-			self.session.open(MessageBox, _("The IMDb plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 
 # Depends on InfoBarExtensions
