@@ -350,29 +350,17 @@ class InfoBarExtensions:
 	EXTENSION_LIST = 1
 
 	def __init__(self):
+		def extensionsHelp():
+			return _("Open QuickMenu") if config.workaround.blueswitch.value else _("Open Extensions")
+
+		def quickMenuHelp():
+			return _("Open Extensions") if config.workaround.blueswitch.value else _("Open QuickMenu")
+
 		self.list = []
-		if config.plisettings.ColouredButtons.value:
-			self["InstantExtensionsActions"] = HelpableActionMap(self, "InfobarExtensions", {
-				"extensions": (self.bluekey_ex, _("Open Extensions")),
-				"quickmenu": (self.bluekey_qm, _("Open QuickMenu")),
-				"showPluginBrowser": (self.showPluginBrowser, _("Open Plugin Browser")),
-				"showEventInfo": (self.SelectopenEventView, _("Open event information")),
-				"openTimerList": (self.showTimerList, _("Open RecordTimer Overview")),
-				"openAutoTimerList": (self.showAutoTimerList, _("Open AutoTimer OverView")),
-				"openEPGSearch": (self.showEPGSearch, _("Search EPG for current event")),
-				"openIMDB": (self.showIMDB, _("Search IMDb for information about current event")),
-				"showMediaPlayer": (self.showMediaPlayer, _("Open Media Player")),
-				"openDreamPlex": (self.showDreamPlex, _("Open DreamPlex"))
-			}, prio=1, description=_("Extension Actions"))  # Lower priority.
-		else:
-			self["InstantExtensionsActions"] = HelpableActionMap(self, "InfobarExtensions", {
-				"extensions": (self.bluekey_ex, _("Open Extensions")),
-				"quickmenu": (self.bluekey_qm, _("Open QuickMenu")),
-				"showPluginBrowser": (self.showPluginBrowser, _("Open Plugin Browser")),
-				"showEventInfo": (self.SelectopenEventView, _("Open event information")),
-				"showMediaPlayer": (self.showMediaPlayer, _("Open Media Player")),
-				"showDreamPlex": (self.showDreamPlex, _("Open DreamPlex"))
-			}, prio=1, description=_("Extension Actions"))  # Lower priority.
+		self["InstantExtensionsActions"] = HelpableActionMap(self, "ColorActions", {
+			"blue_long": (self.keyExtensions, extensionsHelp),
+			"blue": (self.keyQuickMenu, quickMenuHelp)
+		}, prio=1, description=_("Extension Actions"))  # Lower priority.
 		self.addExtension((lambda: _("Manually import from fallback tuner"), self.importChannels, lambda: config.usage.remote_fallback_extension_menu.value and config.usage.remote_fallback_import.value))
 		self.addExtension(extension=self.getLogManager, type=InfoBarExtensions.EXTENSION_LIST)
 		self.addExtension(extension=self.getOsd3DSetup, type=InfoBarExtensions.EXTENSION_LIST)
@@ -384,19 +372,19 @@ class InfoBarExtensions:
 		for p in plugins.getPlugins(PluginDescriptor.WHERE_EXTENSIONSINGLE):
 			p(self)
 
-	def bluekey_qm(self):
+	def keyQuickMenu(self):
 		if config.workaround.blueswitch.value:
 			self.showExtensionSelection()
 		else:
-			self.quickmenuStart()
+			self.quickMenuStart()
 
-	def bluekey_ex(self):
+	def keyExtensions(self):
 		if config.workaround.blueswitch.value:
-			self.quickmenuStart()
+			self.quickMenuStart()
 		else:
 			self.showExtensionSelection()
 
-	def quickmenuStart(self):
+	def quickMenuStart(self):
 		try:
 			if self.session.pipshown:
 				self.showExtensionSelection()
@@ -409,12 +397,6 @@ class InfoBarExtensions:
 	def importChannels(self):
 		from Components.ImportChannels import ImportChannels
 		ImportChannels()
-
-	def SelectopenEventView(self):
-		try:
-			self.openEventView()
-		except Exception:
-			pass
 
 	def getLMname(self):
 		return _("Log Manager")
@@ -479,10 +461,6 @@ class InfoBarExtensions:
 	def extensionCallback(self, answer):
 		if answer is not None:
 			answer[1][1]()
-
-	def showPluginBrowser(self):
-		from Screens.PluginBrowser import PluginBrowser
-		self.session.open(PluginBrowser)
 
 	def openCCcamInfo(self):
 		from Screens.CCcamInfo import CCcamInfoMain
@@ -593,23 +571,6 @@ class InfoBarExtensions:
 				self.session.open(IMDB, name)
 		else:
 			self.session.open(MessageBox, _("The IMDb plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
-
-	def showMediaPlayer(self):
-		if isinstance(self, InfoBarExtensions):
-			if isinstance(self, InfoBar):
-				try:  # If it is not installed.
-					from Plugins.Extensions.MediaPlayer.plugin import MediaPlayer
-					self.session.open(MediaPlayer)
-					no_plugin = False
-				except Exception as e:
-					self.session.open(MessageBox, _("The MediaPlayer plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
-
-	def showDreamPlex(self):
-		if isPluginInstalled("DreamPlex"):
-			from Plugins.Extensions.DreamPlex.plugin import DPS_MainMenu
-			self.session.open(DPS_MainMenu)
-		else:
-			self.session.open(MessageBox, _("The DreamPlex plugin is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
 
 
 # Depends on InfoBarExtensions
