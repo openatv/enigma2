@@ -356,33 +356,24 @@ class InfoBarExtensions:
 		def quickMenuHelp():
 			return _("Open Extensions") if config.workaround.blueswitch.value else _("Open QuickMenu")
 
-		self.list = []
+		self.extensionList = []
 		self["InstantExtensionsActions"] = HelpableActionMap(self, "ColorActions", {
 			"blue_long": (self.keyExtensions, extensionsHelp),
 			"blue": (self.keyQuickMenu, quickMenuHelp)
 		}, prio=1, description=_("Extension Actions"))  # Lower priority.
-		self.addExtension((lambda: _("Manually import from fallback tuner"), self.importChannels, lambda: config.usage.remote_fallback_extension_menu.value and config.usage.remote_fallback_import.value))
-		self.addExtension(extension=self.getLogManager, type=InfoBarExtensions.EXTENSION_LIST)
-		self.addExtension(extension=self.getOsd3DSetup, type=InfoBarExtensions.EXTENSION_LIST)
-		self.addExtension(extension=self.getCCcamInfo, type=InfoBarExtensions.EXTENSION_LIST)
-		self.addExtension(extension=self.getOScamInfo, type=InfoBarExtensions.EXTENSION_LIST)
-		self.addExtension(extension=self.getSoftcamSetup, type=InfoBarExtensions.EXTENSION_LIST)
+		self.addExtension((lambda: _("Manually import from fallback tuner"), self.extImportChannels, lambda: config.usage.remote_fallback_extension_menu.value and config.usage.remote_fallback_import.value))
+		self.addExtension(extension=self.extLogManager, type=InfoBarExtensions.EXTENSION_LIST)
+		self.addExtension(extension=self.extOsd3DSetup, type=InfoBarExtensions.EXTENSION_LIST)
+		self.addExtension(extension=self.extCCcamInfo, type=InfoBarExtensions.EXTENSION_LIST)
+		self.addExtension(extension=self.extOScamInfo, type=InfoBarExtensions.EXTENSION_LIST)
+		self.addExtension(extension=self.extSoftcamSetup, type=InfoBarExtensions.EXTENSION_LIST)
 		if config.usage.show_restart_network_extensionslist.getValue() is True:
-			self.addExtension(extension=self.getRestartNetwork, type=InfoBarExtensions.EXTENSION_LIST)
-		for p in plugins.getPlugins(PluginDescriptor.WHERE_EXTENSIONSINGLE):
-			p(self)
+			self.addExtension(extension=self.extRestartNetwork, type=InfoBarExtensions.EXTENSION_LIST)
+		for plugin in plugins.getPlugins(PluginDescriptor.WHERE_EXTENSIONSINGLE):
+			plugin(self)
 
-	def keyQuickMenu(self):
-		if config.workaround.blueswitch.value:
-			self.showExtensionSelection()
-		else:
-			self.quickMenuStart()
-
-	def keyExtensions(self):
-		if config.workaround.blueswitch.value:
-			self.quickMenuStart()
-		else:
-			self.showExtensionSelection()
+	def addExtension(self, extension, key=None, type=EXTENSION_SINGLE):
+		self.extensionList.append((type, extension, key))
 
 	def quickMenuStart(self):
 		try:
@@ -390,108 +381,109 @@ class InfoBarExtensions:
 				self.showExtensionSelection()
 				return
 		except Exception:
-			print("[INFOBARGENERICS] QuickMenu: error pipshow, starting Quick Menu")
+			print("[InfoBarGenerics] QuickMenu: Error pipshow, starting Quick Menu!")
 		from Screens.QuickMenu import QuickMenu
 		self.session.open(QuickMenu)
 
-	def importChannels(self):
+	def showExtensionSelection(self):
+		def showExtensionSelectionCallback(answer):
+			if answer is not None:
+				answer[1][1]()
+
+		self.session.openWithCallback(showExtensionSelectionCallback, ExtensionsList, self.extensionList)
+
+	def keyExtensions(self):
+		if config.workaround.blueswitch.value:
+			self.quickMenuStart()
+		else:
+			self.showExtensionSelection()
+
+	def keyQuickMenu(self):
+		if config.workaround.blueswitch.value:
+			self.showExtensionSelection()
+		else:
+			self.quickMenuStart()
+
+	def extImportChannels(self):
 		from Components.ImportChannels import ImportChannels
 		ImportChannels()
 
-	def getLMname(self):
-		return _("Log Manager")
+	def extLogManager(self):
+		def logManagerName():
+			return _("Log Manager")
 
-	def getLogManager(self):
-		if config.logmanager.showinextensions.value:
-			return [((boundFunction(self.getLMname), boundFunction(self.openLogManager), lambda: True), None)]
-		else:
-			return []
+		def logManager():
+			from Screens.LogManager import LogManager
+			self.session.open(LogManager)
 
-	def getSoftcamSetupname(self):
-		return _("Softcam Settings")
+		return [((boundFunction(logManagerName), boundFunction(logManager), lambda: True), None)] if config.logmanager.showinextensions.value else []
 
-	def getSoftcamSetup(self):
-		return [((boundFunction(self.getSoftcamSetupname), boundFunction(self.openSoftcamSetup), lambda: True), None)] if BoxInfo.getItem("SoftCam") else []
+	def extOsd3DSetup(self):
+		def osd3DSetupName():
+			return _("OSD 3D Settings")
 
-	def getRestartNetworkname(self):
-		return _("Restart Network")
+		def osd3DSetup():
+			from Screens.Setup import Setup
+			self.session.open(Setup, "OSD3D")
 
-	def getRestartNetwork(self):
-		return [((boundFunction(self.getRestartNetworkname), boundFunction(self.openRestartNetwork), lambda: True), None)]
+		return [((boundFunction(osd3DSetupName), boundFunction(osd3DSetup), lambda: True), None)] if config.osd.show3dextensions.value else []
 
-	def get3DSetupname(self):
-		return _("OSD 3D Settings")
+	def extCCcamInfo(self):
+		def cCcamInfoName():
+			return _("CCcam Info")
 
-	def getOsd3DSetup(self):
-		if config.osd.show3dextensions.value:
-			return [((boundFunction(self.get3DSetupname), boundFunction(self.open3DSetup), lambda: True), None)]
-		else:
-			return []
+		def cCcamInfo():
+			from Screens.CCcamInfo import CCcamInfoMain
+			self.session.open(CCcamInfoMain)
 
-	def getCCname(self):
-		return _("CCcam Info")
-
-	def getCCcamInfo(self):
 		if pathExists("/usr/bin/"):
 			softcams = listdir("/usr/bin/")
 		for softcam in softcams:
 			if softcam.lower().startswith("cccam") and config.softcam.showInExtensions.value:
-				return [((boundFunction(self.getCCname), boundFunction(self.openCCcamInfo), lambda: True), None)] or []
+				return [((boundFunction(cCcamInfoName), boundFunction(cCcamInfo), lambda: True), None)] or []
 		else:
 			return []
 
-	def getOSname(self):
-		return _("OSCam Info")
+	def extOScamInfo(self):
+		def oScamInfoName():
+			return _("OSCam Info")
 
-	def getOScamInfo(self):
+		def oScamInfo():
+			from Screens.OScamInfo import OSCamInfo
+			self.session.open(OSCamInfo)
+
 		if pathExists("/usr/bin/"):
 			softcams = listdir("/usr/bin/")
 		for softcam in softcams:
 			if softcam.lower().startswith("oscam") and config.softcam.showInExtensions.value:
-				return [((boundFunction(self.getOSname), boundFunction(self.openOScamInfo), lambda: True), None)] or []
+				return [((boundFunction(oScamInfoName), boundFunction(oScamInfo), lambda: True), None)] or []
 		else:
 			return []
 
-	def addExtension(self, extension, key=None, type=EXTENSION_SINGLE):
-		self.list.append((type, extension, key))
+	def extRestartNetwork(self):
+		def restartNetworkName():
+			return _("Restart Network")
 
-	def showExtensionSelection(self):
-		self.session.openWithCallback(self.extensionCallback, ExtensionsList, self.list)
+		def restartNetwork():
+			try:
+				from Screens.RestartNetwork import RestartNetwork
+				self.session.open(RestartNetwork)
+			except Exception:
+				print("[InfoBarGenerics] InfoBarExtensions: Error: Failed to restart network!")
 
-	def extensionCallback(self, answer):
-		if answer is not None:
-			answer[1][1]()
+		return [((boundFunction(restartNetworkName), boundFunction(restartNetwork), lambda: True), None)]
 
-	def openCCcamInfo(self):
-		from Screens.CCcamInfo import CCcamInfoMain
-		self.session.open(CCcamInfoMain)
+	def extSoftcamSetup(self):
+		def softcamSetupName():
+			return _("Softcam Settings")
 
-	def openOScamInfo(self):
-		from Screens.OScamInfo import OSCamInfo
-		self.session.open(OSCamInfo)
+		def softcamSetup():
+			from Screens.SoftcamSetup import SoftcamSetup
+			self.session.open(SoftcamSetup)
 
-	def openLogManager(self):
-		from Screens.LogManager import LogManager
-		self.session.open(LogManager)
-
-	def open3DSetup(self):
-		from Screens.Setup import Setup
-		self.session.open(Setup, "OSD3D")
-
-	def openSoftcamSetup(self):
-		from Screens.SoftcamSetup import SoftcamSetup
-		self.session.open(SoftcamSetup)
-
-	def openRestartNetwork(self):
-		try:
-			from Screens.RestartNetwork import RestartNetwork
-			self.session.open(RestartNetwork)
-		except Exception:
-			print("[INFOBARGENERICS] failed to restart network")
+		return [((boundFunction(softcamSetupName), boundFunction(softcamSetup), lambda: True), None)] if BoxInfo.getItem("SoftCam") else []
 
 
-# Depends on InfoBarExtensions
-#
 class InfoBarPlugins:  # Depends on InfoBarExtensions.
 	def __init__(self):
 		self.addExtension(extension=self.getPluginList, type=InfoBarExtensions.EXTENSION_LIST)
