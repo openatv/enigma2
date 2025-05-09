@@ -3532,32 +3532,6 @@ class InfoBarPiP:  # Depends on InfoBarExtensions.
 				self.showPiP()
 
 
-class InfoBarQuickMenu:
-	def __init__(self):
-		def quickMenuHelp():
-			return _("Open Extensions") if config.workaround.blueswitch.value else _("Open QuickMenu")
-
-		self["QuickMenuActions"] = HelpableActionMap(self, "InfoBarQuickMenu", {
-			"quickmenu": (self.quickMenu, quickMenuHelp()),
-		}, prio=0, description=_("QuickMenu Actions"))
-
-	def quickMenu(self):
-		def quickMenuStart():
-			try:
-				if self.session.pipshown:
-					self.showExtensionSelection()
-					return
-			except Exception:
-				print("[InfoBarGenerics] QuickMenu: Error pipshow, starting Quick Menu!")
-			from Screens.QuickMenu import QuickMenu  # This is here to avoid a cyclic import.
-			self.session.open(QuickMenu)
-
-		if config.workaround.blueswitch.value:
-			self.showExtensionSelection()
-		else:
-			quickmenuStart()
-
-
 class InfoBarInstantRecord:
 	"""Instant Record - Handles the instantRecord action in order to start/stop instant recordings."""
 
