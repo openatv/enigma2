@@ -1758,8 +1758,6 @@ class SecondInfoBar(Screen):
 		self["FullDescription"].pageDown()
 
 	def __Show(self):
-		if config.plisettings.ColouredButtons.value:
-			self["key_yellow"].setText(_("Search"))
 		self["key_red"].setText(_("Similar"))
 		self["key_blue"].setText(_("Extensions"))
 		self["SecondInfoBar"].doBind()
