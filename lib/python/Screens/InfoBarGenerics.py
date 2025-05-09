@@ -358,7 +358,7 @@ class InfoBarExtensions:
 
 		self.extensionList = []
 		self["InstantExtensionsActions"] = HelpableActionMap(self, "ColorActions", {
-			"blue_long": (self.keyExtensions, extensionsHelp),
+			"bluelong": (self.keyExtensions, extensionsHelp),
 			"blue": (self.keyQuickMenu, quickMenuHelp)
 		}, prio=1, description=_("Extension Actions"))  # Lower priority.
 		self.addExtension((lambda: _("Manually import from fallback tuner"), self.extImportChannels, lambda: config.usage.remote_fallback_extension_menu.value and config.usage.remote_fallback_import.value))
