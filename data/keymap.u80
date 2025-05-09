@@ -28,28 +28,6 @@
 		<key id="KEY_VMODE" mapto="toggleAspectRatio" flags="b" />
 	</map>
 
-	<map context="InfobarExtensions">
-		<key id="KEY_RED" mapto="RedPressed" flags="b" />
-		<!--
-		<key id="KEY_RED" mapto="showEventInfo" flags="l" />
-		<key id="KEY_GREEN" mapto="openTimerList" flags="b" />
-		<key id="KEY_GREEN" mapto="openAutoTimerList" flags="l" />
-		<key id="KEY_YELLOW" mapto="openEPGSearch" flags="b" />
-		<key id="KEY_YELLOW" mapto="openIMDB" flags="l" />
-		<key id="KEY_BLUE" mapto="showPluginBrowser" flags="l" />
-		-->
-		<key id="KEY_F1" mapto="RedPressed" flags="b" />
-		<key id="KEY_F1" mapto="showEventInfo" flags="l" />
-		<key id="KEY_F2" mapto="openTimerList" flags="b" />
-		<key id="KEY_F2" mapto="openAutoTimerList" flags="l" />
-		<key id="KEY_F3" mapto="openEPGSearch" flags="b" />
-		<key id="KEY_F3" mapto="openIMDB" flags="l" />
-		<key id="KEY_F4" mapto="showPluginBrowser" flags="l" />
-		<key id="KEY_F4" mapto="extensions" flags="b" />
-		<!--key id="KEY_BLUE" mapto="extensions" flags="l" /-->
-		<!--key id="KEY_BLUE" mapto="quickmenu" flags="b" /-->
-	</map>
-
 	<map context="InfobarChannelSelection">
 		<key id="KEY_LEFT" mapto="LeftPressed" flags="mr" />
 		<key id="KEY_RIGHT" mapto="RightPressed" flags="mr" />

@@ -272,7 +272,7 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Channel Info"), "Module/Screens.Information/ServiceInformation", textSetup))
 	ButtonSetupFunctions.append((_("SkinSelection"), "Module/Screens.SkinSelection/SkinSelection", textSetup))
 	ButtonSetupFunctions.append((_("RecordTimer"), "Module/Screens.Timers/RecordTimerOverview", textSetup))
-	ButtonSetupFunctions.append((_("Open AutoTimer"), "Infobar/showAutoTimerList", textSetup))
+	ButtonSetupFunctions.append((_("Open AutoTimer"), "Infobar/openAutoTimerList", textSetup))
 	for plugin in plugins.getPluginsForMenu("system"):
 		if plugin[2]:
 			ButtonSetupFunctions.append((plugin[0], "MenuPlugin/system/" + plugin[2], textSetup))

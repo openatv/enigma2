@@ -123,15 +123,6 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		self.showMainMenu()
 
 	def doButtonsCheck(self):
-		if config.plisettings.ColouredButtons.value:
-			self["key_yellow"].setText(_("Search"))
-			self["key_red"].setText(_("Single EPG"))
-			if config.usage.subservice.value == 0:
-				self["key_green"].setText(_("Timers"))
-			elif config.usage.subservice.value == 1:
-				self["key_green"].setText(_("Plugins"))
-			else:
-				self["key_green"].setText(_("Subservices"))
 		self["key_blue"].setText(_("Extensions"))
 
 	def __onClose(self):
@@ -567,9 +558,6 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 					setAudioTrack(service)
 
 	def doButtonsCheck(self):
-		if config.plisettings.ColouredButtons.value:
-			self["key_yellow"].setText(_("Search"))
-			self["key_green"].setText(_("Timers"))
 		self["key_blue"].setText(_("Extensions"))
 
 	def __onClose(self):
