@@ -387,7 +387,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				self.advancedSatsEntry = getConfigListEntry(_("Satellite"), nimConfig.advanced.sats, _("Select the satellite you want to configure. Once configured you can select and configure other satellites that will be accessed using this same tuner."))
 				self.list.append(self.advancedSatsEntry)
 				current_config_sats = nimConfig.advanced.sats.value
-				if current_config_sats in ("3605", "3606"):
+				if current_config_sats in (3605, 3606):
 					self.advancedSelectSatsEntry = getConfigListEntry(_("Press OK to select satellites"), nimConfig.pressOKtoList, _("Selecting this option allows you to configure a group of satellites in one block."))
 					self.list.append(self.advancedSelectSatsEntry)
 					self.fillListWithAdvancedSatEntrys(nimConfig.advanced.sat[int(current_config_sats)])
@@ -809,7 +809,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 
 	def keyOk(self):
 		if self["config"].getCurrent() == self.advancedSelectSatsEntry and self.advancedSelectSatsEntry:
-			conf = self.nimConfig.dvbs.advanced.sat[int(self.nimConfig.dvbs.advanced.sats.value)].userSatellitesList
+			conf = self.nimConfig.dvbs.advanced.sat[self.nimConfig.dvbs.advanced.sats.value].userSatellitesList
 			self.session.openWithCallback(boundFunction(self.updateConfUserSatellitesList, conf), SelectSatsEntryScreen, userSatlist=conf.value)
 		elif self["config"].getCurrent() == self.selectSatsEntry and self.selectSatsEntry:
 			conf = self.nimConfig.dvbs.userSatellitesList
