@@ -589,24 +589,73 @@ inline bool compareServices(const eServiceReference &src, const eServiceReferenc
 
 bool eListboxPythonServiceContent::checkServiceIsRecorded(eServiceReference ref, pNavigation::RecordType type)
 {
-	std::map<ePtr<iRecordableService>, eServiceReference, std::less<iRecordableService *>> recordedServices;
-	recordedServices = eNavigation::getInstance()->getRecordingsServices(type);
-	for (std::map<ePtr<iRecordableService>, eServiceReference>::iterator it = recordedServices.begin(); it != recordedServices.end(); ++it)
+
+	const bool isGroup = ref.flags & eServiceReference::isGroup;
+
+	eBouquet *bouquet = nullptr;
+	if (isGroup)
 	{
-		if (ref.flags & eServiceReference::isGroup)
+		static ePtr<eDVBResourceManager> res = nullptr;
+		if (!res)
+			eDVBResourceManager::getInstance(res);
+		if (res)
 		{
 			ePtr<iDVBChannelList> db;
-			ePtr<eDVBResourceManager> res;
-			eDVBResourceManager::getInstance(res);
 			res->getChannelList(db);
-			eBouquet *bouquet = 0;
-			db->getBouquet(ref, bouquet);
-			for (std::list<eServiceReference>::iterator i(bouquet->m_services.begin()); i != bouquet->m_services.end(); ++i)
-				if (*i == it->second || compareServices(*i, it->second))
-					return true;
+			if (db)
+				db->getBouquet(ref, bouquet);
 		}
-		else if (ref == it->second || compareServices(ref, it->second))
-			return true;
+		if (!bouquet)
+			return false;
+	}
+
+	std::vector<eServiceReference> recordedServices;
+	eNavigation::getInstance()->getRecordingsServicesOnly(recordedServices, type);
+
+	if (!recordedServices.empty())
+	{
+		if (isGroup)
+		{
+			for (const auto &service : bouquet->m_services)
+			{
+				for (const auto &recordedService : recordedServices)
+				{
+					if (service == recordedService || compareServices(service, recordedService))
+						return true;
+				}
+			}
+		}
+		else
+		{
+			for (const auto &recordedService : recordedServices)
+			{
+				if (ref == recordedService || compareServices(ref, recordedService))
+					return true;
+			}
+		}
+	}
+
+	if (type & pNavigation::isStreaming)
+	{
+		const auto &streamServices = eNavigation::getInstance()->getStreamServiceList();
+		if (!streamServices.empty())
+		{
+			const std::string refString = ref.toString();
+
+			if (isGroup)
+			{
+				for (const auto &service : bouquet->m_services)
+				{
+					if (std::find(streamServices.begin(), streamServices.end(),service.toString()) != streamServices.end())
+						return true;
+				}
+			}
+			else
+			{
+				if (std::find(streamServices.begin(), streamServices.end(),refString) != streamServices.end())
+					return true;
+			}
+		}
 	}
 	return false;
 }
