@@ -263,6 +263,25 @@ RESULT eNavigation::pause(int dop)
 		return p->unpause();
 }
 
+void eNavigation::addStreamService(const std::string ref)
+{
+	std::vector<std::string>::iterator it = std::find(m_streamservices.begin(), m_streamservices.end(), ref);
+	if (it == m_streamservices.end())
+		m_streamservices.push_back(ref);
+}
+
+void eNavigation::removeStreamService(const std::string ref)
+{
+	std::vector<std::string>::iterator it = std::find(m_streamservices.begin(), m_streamservices.end(), ref);
+	if (it != m_streamservices.end())
+		m_streamservices.erase(it);
+}
+
+std::vector<std::string> eNavigation::getStreamServiceList()
+{
+	return m_streamservices;
+}
+
 eNavigation::eNavigation(iServiceHandler *serviceHandler, int decoder)
 {
 	ASSERT(serviceHandler);

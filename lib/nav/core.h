@@ -105,6 +105,12 @@ public:
 	eNavigation(iServiceHandler *serviceHandler, int decoder = 0);
 	static eNavigation *getInstance() { return instance; }
 	virtual ~eNavigation();
+
+	std::vector<std::string> m_streamservices;
+
+	void removeStreamService(const std::string ref);
+	void addStreamService(const std::string ref);
+	std::vector<std::string> getStreamServiceList();
 };
 
 #endif
