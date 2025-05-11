@@ -12,6 +12,7 @@ from Components.config import config
 from Components.ImportChannels import ImportChannels
 from Components.ParentalControl import parentalControl
 from Components.PluginComponent import plugins
+from Components.RecordingConfig import recType
 from Components.SystemInfo import BoxInfo
 from Plugins.Plugin import PluginDescriptor
 from Screens.InfoBar import InfoBar, MoviePlayer
@@ -541,6 +542,15 @@ class Navigation:
 		if not self.currentlyPlayingService:
 			self.currentlyPlayingService = self.pnav and self.pnav.getCurrentService()
 		return self.currentlyPlayingService
+
+	def getAnyRecordingsCount(self):
+		return len(self.getRecordings(False, pNavigation.isAnyRecording))
+
+	def getIndicatorRecordingsCount(self):
+		return len(self.getRecordings(False, recType(config.recording.show_rec_symbol_for_rec_types.getValue())))
+
+	def getRealRecordingsCount(self):
+		return len(self.getRecordings(False, pNavigation.isRealRecording))
 
 	def stopService(self):
 		if self.pnav:
