@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-04 12:30+0000\n"
+"POT-Creation-Date: 2025-05-07 16:24+0000\n"
 "PO-Revision-Date: 2025-04-14 12:33+0000\n"
 "Last-Translator: tanerkaderli <taner.kaderli@live.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -8627,6 +8627,9 @@ msgstr "Dosya Sistemi Paketleri"
 msgid "File appears to be busy!\n"
 msgstr "Dosya kullanımda.\n"
 
+msgid "File compression"
+msgstr ""
+
 msgid ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
@@ -14116,9 +14119,6 @@ msgstr "Lütfen devam etmek için OK tuşuna basın."
 msgid "Please press OK when ready"
 msgstr "Lütfen hazır olduğunuzda OK tuşuna basın"
 
-msgid "Select default EPG type:"
-msgstr "Varsayılan EPG tipini seçin..."
-
 msgid "Please select a distribution from which you would like to flash an image:"
 msgstr "Lütfen bir görüntü flaşlamak istediğiniz bir dağıtım seçin:"
 
@@ -15189,11 +15189,6 @@ msgstr "Sonrakini kaydet"
 msgid "Record now"
 msgstr "Şimdikini kaydet"
 
-#
-#, python-format
-msgid "Recording time limited due to conflicting timer:%s"
-msgstr "%s zamanlayıcısı ile çakışmadan dolayı kayıt süresi sınırlandırılmış"
-
 msgid "Record write error (no space on disk?)"
 msgstr "Kayıt yazma hatası (diskte yer yok mu?)"
 
@@ -15251,6 +15246,11 @@ msgstr "Kayıt başladı! Zaman-kaydırma şimdi durduruluyor ..."
 
 msgid "Recording stopped"
 msgstr "Kayıt durduruldu"
+
+#
+#, python-format
+msgid "Recording time limited due to conflicting timer:%s"
+msgstr "%s zamanlayıcısı ile çakışmadan dolayı kayıt süresi sınırlandırılmış"
 
 msgid "Recording tuning failed"
 msgstr "Kayıt ayarı başarısız oldu"
@@ -16164,6 +16164,9 @@ msgstr "Samba Server"
 msgid "Samba Settings"
 msgstr ""
 
+msgid "Samba version"
+msgstr ""
+
 msgid "Same as in active"
 msgstr "Aktif ile aynı"
 
@@ -17035,6 +17038,9 @@ msgstr "Kopya için hedef seçin:"
 
 msgid "Select default EPG type"
 msgstr "Varsayılan ERPG tipini seçin..."
+
+msgid "Select default EPG type:"
+msgstr "Varsayılan EPG tipini seçin..."
 
 msgid "Select default File Commander directory:"
 msgstr "Varsayılan File Commander dizinini seçin:"
@@ -24193,20 +24199,20 @@ msgstr "Zapla ve kapat (menüde ayar)"
 msgid "Zap to next service"
 msgstr "Sonraki kanala geçiş"
 
-msgid "Zap to next service in the current bouquet"
-msgstr ""
-
 msgid "Zap to next service in history"
 msgstr "Geçmişteki sonraki kanala geçiş"
+
+msgid "Zap to next service in the current bouquet"
+msgstr ""
 
 msgid "Zap to previous service"
 msgstr "Önceki kanala geçiş"
 
-msgid "Zap to previous service in the current bouquet"
-msgstr ""
-
 msgid "Zap to previous service in history"
 msgstr "Geçmişteki önceki kanala geçiş"
+
+msgid "Zap to previous service in the current bouquet"
+msgstr ""
 
 msgid "Zap up"
 msgstr "Zap yukarı"

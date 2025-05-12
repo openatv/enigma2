@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-04 12:30+0000\n"
-"PO-Revision-Date: 2025-05-05 08:12+0000\n"
+"POT-Creation-Date: 2025-05-07 16:24+0000\n"
+"PO-Revision-Date: 2025-05-08 05:07+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -8343,6 +8343,9 @@ msgstr "Пакети файлової системи"
 msgid "File appears to be busy!\n"
 msgstr "Файл зайнятий.\n"
 
+msgid "File compression"
+msgstr "Стиснення файлів"
+
 msgid ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
@@ -13540,9 +13543,6 @@ msgstr "Будь ласка, натисніть OK для продовження
 msgid "Please press OK when ready"
 msgstr "Натисніть OK, коли будете готові"
 
-msgid "Select default EPG type:"
-msgstr "Будь ласка, виберіть тип ЕПГ за замовчуванням..."
-
 msgid "Please select a distribution from which you would like to flash an image:"
 msgstr "Будь ласка, виберіть дистрибутив, з якого ви хочете прошити імідж:"
 
@@ -14549,10 +14549,6 @@ msgstr "Записати наступне"
 msgid "Record now"
 msgstr "Записати зараз"
 
-#, python-format
-msgid "Recording time limited due to conflicting timer:%s"
-msgstr "Час запису обмежено через конфлікт таймера %s"
-
 msgid "Record write error (no space on disk?)"
 msgstr "Помилка при записі (на диску немає місця?)"
 
@@ -14609,6 +14605,10 @@ msgstr "Розпочато запис! Зупинка таймшифта ..."
 
 msgid "Recording stopped"
 msgstr "Запис зупинено"
+
+#, python-format
+msgid "Recording time limited due to conflicting timer:%s"
+msgstr "Час запису обмежено через конфлікт таймера %s"
 
 msgid "Recording tuning failed"
 msgstr "Налаштування запису невдале"
@@ -15466,6 +15466,9 @@ msgstr "Samba Сервер"
 msgid "Samba Settings"
 msgstr "Налаштування Samba"
 
+msgid "Samba version"
+msgstr "Версія Самби"
+
 msgid "Same as in active"
 msgstr "Те ж, що при активності"
 
@@ -16303,7 +16306,10 @@ msgid "Select copy destination for:"
 msgstr "Виберіть місце для копіювання:"
 
 msgid "Select default EPG type"
-msgstr "Вибір тип ЕПГ за умовчанням..."
+msgstr "Вибір типу EPG за замовчуванням"
+
+msgid "Select default EPG type:"
+msgstr "Виберіть тип EPG за замовчуванням:"
 
 msgid "Select default File Commander directory:"
 msgstr "Вибрати каталог File Commander за замовчуванням:"
@@ -19560,7 +19566,7 @@ msgid "TMDB Search"
 msgstr "TMDB Пошук"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 05.05.2025"
+msgstr "Переклад: kvinto - 08.05.2025"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -23180,20 +23186,20 @@ msgstr "Переключити на канал і закрити (налашту
 msgid "Zap to next service"
 msgstr "Переключити на наступний канал"
 
-msgid "Zap to next service in the current bouquet"
-msgstr "Перехід до наступного каналу в поточному фавориті"
-
 msgid "Zap to next service in history"
 msgstr "Переключити на наступний канал в історії"
+
+msgid "Zap to next service in the current bouquet"
+msgstr "Перехід до наступного каналу в поточному фавориті"
 
 msgid "Zap to previous service"
 msgstr "Переключити на попередній канал"
 
-msgid "Zap to previous service in the current bouquet"
-msgstr "Перехід до попереднього каналу в поточному фавориті"
-
 msgid "Zap to previous service in history"
 msgstr "Переключити на попередній канал в історії"
+
+msgid "Zap to previous service in the current bouquet"
+msgstr "Перехід до попереднього каналу в поточному фавориті"
 
 msgid "Zap up"
 msgstr "Переключити вгору"

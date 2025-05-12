@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-04 12:30+0000\n"
+"POT-Creation-Date: 2025-05-07 16:24+0000\n"
 "PO-Revision-Date: 2025-05-05 05:50+0000\n"
 "Last-Translator: Balázs Sólyom <balazs@solyom.online>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -8344,6 +8344,9 @@ msgstr ""
 msgid "File appears to be busy!\n"
 msgstr "A fájl használatban van.\n"
 
+msgid "File compression"
+msgstr ""
+
 msgid ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
@@ -13629,9 +13632,6 @@ msgstr "A folytatáshoz nyomja le az OK-t."
 msgid "Please press OK when ready"
 msgstr ""
 
-msgid "Select default EPG type:"
-msgstr "Válasszon egy alapértelmezett EPG típust..."
-
 msgid "Please select a distribution from which you would like to flash an image:"
 msgstr ""
 
@@ -14638,10 +14638,6 @@ msgstr "Következőt felveszi"
 msgid "Record now"
 msgstr "Felvesz most"
 
-#, python-format
-msgid "Recording time limited due to conflicting timer:%s"
-msgstr "A felvételi idő rövidítve lett időzítés ütközés miatt: %s"
-
 msgid "Record write error (no space on disk?)"
 msgstr "Rekordírási hiba (nincs hely a lemezen?)"
 
@@ -14698,6 +14694,10 @@ msgstr "A felvétel elkezdődött! A Timeshift megállítása most ..."
 
 msgid "Recording stopped"
 msgstr "A felvétel leállítva"
+
+#, python-format
+msgid "Recording time limited due to conflicting timer:%s"
+msgstr "A felvételi idő rövidítve lett időzítés ütközés miatt: %s"
 
 msgid "Recording tuning failed"
 msgstr "A felvétel hangolása nem sikerült"
@@ -15557,6 +15557,9 @@ msgstr ""
 msgid "Samba Settings"
 msgstr ""
 
+msgid "Samba version"
+msgstr ""
+
 msgid "Same as in active"
 msgstr "Ugyanaz, mint az aktív"
 
@@ -16399,6 +16402,9 @@ msgstr "Másolási cél kiválasztása ehhez:"
 
 msgid "Select default EPG type"
 msgstr "Válassza ki az alapértelmezett EPG típusát ..."
+
+msgid "Select default EPG type:"
+msgstr "Válasszon egy alapértelmezett EPG típust..."
 
 msgid "Select default File Commander directory:"
 msgstr ""
@@ -23233,20 +23239,20 @@ msgstr "Ugrás a csatornára és bezárás (beállítás a menüben)"
 msgid "Zap to next service"
 msgstr "Váltás a következő csatornára"
 
-msgid "Zap to next service in the current bouquet"
-msgstr ""
-
 msgid "Zap to next service in history"
 msgstr "Következő csatorna az előzményekben"
+
+msgid "Zap to next service in the current bouquet"
+msgstr ""
 
 msgid "Zap to previous service"
 msgstr "Ugrás az előző csatornára"
 
-msgid "Zap to previous service in the current bouquet"
-msgstr ""
-
 msgid "Zap to previous service in history"
 msgstr "Előző csatorna az előzményekben"
+
+msgid "Zap to previous service in the current bouquet"
+msgstr ""
 
 msgid "Zap up"
 msgstr "Ugrás felfelé"

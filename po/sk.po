@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-04 12:30+0000\n"
-"PO-Revision-Date: 2025-05-05 22:22+0000\n"
+"POT-Creation-Date: 2025-05-07 16:24+0000\n"
+"PO-Revision-Date: 2025-05-07 18:25+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
@@ -4511,7 +4511,7 @@ msgid "Configure if service picons will be shown in quickzap."
 msgstr "Nastavte, či sa majú pri rýchlom prepnutí zobrazovať pikony staníc."
 
 msgid "Configure if service picons will be shown in the service list."
-msgstr "Nastavte, či sa majú v zozname staníc zobrazovať pikony."
+msgstr "Nastavte, či sa majú v zozname staníc zobrazovať pikony staníc."
 
 msgid "Configure if service type icons will be shown."
 msgstr "Nastavte, či sa majú zobrazovať ikony typu služby."
@@ -8342,6 +8342,9 @@ msgstr "Balíčky súborového systému"
 
 msgid "File appears to be busy!\n"
 msgstr "Súbor sa zdá byť zaneprázdnený.\n"
+
+msgid "File compression"
+msgstr "Kompresia súboru"
 
 msgid ""
 "File oscam.conf not found.\n"
@@ -13540,9 +13543,6 @@ msgstr "Na pokračovanie stlačte OK, prosím."
 msgid "Please press OK when ready"
 msgstr "Prosím, stlačte OK, keď budete pripravení"
 
-msgid "Select default EPG type:"
-msgstr "Prosím, zvoľte predvolený typ EPG…"
-
 msgid "Please select a distribution from which you would like to flash an image:"
 msgstr "Prosím, vyberte distribúciu, z ktorej chcete flashovať image:"
 
@@ -14549,10 +14549,6 @@ msgstr "Nahrať nasledujúce"
 msgid "Record now"
 msgstr "Nahrávať hneď"
 
-#, python-format
-msgid "Recording time limited due to conflicting timer:%s"
-msgstr "Čas nahrávania je obmedzený kvôli konfliktu časovačov %s"
-
 msgid "Record write error (no space on disk?)"
 msgstr "Chyba pri zapisovaní nahrávky (nedostatok miesta na disku?)"
 
@@ -14609,6 +14605,10 @@ msgstr "Nahrávanie spustené, zastavuje sa timeshift."
 
 msgid "Recording stopped"
 msgstr "Nahrávanie zastavené"
+
+#, python-format
+msgid "Recording time limited due to conflicting timer:%s"
+msgstr "Čas nahrávania je obmedzený kvôli konfliktu časovačov %s"
 
 msgid "Recording tuning failed"
 msgstr "Ladenie nahrávania neúspešné"
@@ -15466,6 +15466,9 @@ msgstr "Server Samba"
 msgid "Samba Settings"
 msgstr "Nastavenia Samba"
 
+msgid "Samba version"
+msgstr "Verzia Samby"
+
 msgid "Same as in active"
 msgstr "Rovnako ako pri zapnutí"
 
@@ -16303,7 +16306,10 @@ msgid "Select copy destination for:"
 msgstr "Vyberte umiestnenie kópie pre:"
 
 msgid "Select default EPG type"
-msgstr "Vyberte predvolený typ EPG…"
+msgstr "Vyberte predvolený typ EPG"
+
+msgid "Select default EPG type:"
+msgstr "Vyberte predvolený typ EPG:"
 
 msgid "Select default File Commander directory:"
 msgstr "Vyberte predvolený priečinok Správcu súborov:"
@@ -23180,20 +23186,20 @@ msgstr "Prepnúť na kanál a zavrieť (nastavenie v menu)"
 msgid "Zap to next service"
 msgstr "Prepnúť na ďalší kanál"
 
-msgid "Zap to next service in the current bouquet"
-msgstr "Prepnúť na ďalšiu stanicu/službu v aktuálnom prehľade"
-
 msgid "Zap to next service in history"
 msgstr "Prepnúť na ďalší kanál v histórii"
+
+msgid "Zap to next service in the current bouquet"
+msgstr "Prepnúť na ďalšiu stanicu/službu v aktuálnom prehľade"
 
 msgid "Zap to previous service"
 msgstr "Prepnúť na predchádzajúci kanál"
 
-msgid "Zap to previous service in the current bouquet"
-msgstr "Prepnúť na predchádzajúcu stanicu/službu v aktuálnom prehľade"
-
 msgid "Zap to previous service in history"
 msgstr "Prepnúť na predchádzajúci kanál v histórii"
+
+msgid "Zap to previous service in the current bouquet"
+msgstr "Prepnúť na predchádzajúcu stanicu/službu v aktuálnom prehľade"
 
 msgid "Zap up"
 msgstr "Prepnúť nahor"

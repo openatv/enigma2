@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-04 12:30+0000\n"
-"PO-Revision-Date: 2025-05-05 21:48+0000\n"
-"Last-Translator: Warder <ciksa@seznam.cz>\n"
+"POT-Creation-Date: 2025-05-07 16:24+0000\n"
+"PO-Revision-Date: 2025-05-10 04:44+0000\n"
+"Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -8340,6 +8340,9 @@ msgstr "Balíčky souborového systému"
 msgid "File appears to be busy!\n"
 msgstr "Soubor je asi zaneprázdněn.\n"
 
+msgid "File compression"
+msgstr "Komprese souborů"
+
 msgid ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
@@ -13537,9 +13540,6 @@ msgstr "Stiskněte OK pro pokračování."
 msgid "Please press OK when ready"
 msgstr "Až budete připraveni, stiskněte OK"
 
-msgid "Select default EPG type:"
-msgstr "Zvolte preferovaný typ EPG..."
-
 msgid "Please select a distribution from which you would like to flash an image:"
 msgstr "Vyberte distribuci, ze které chcete flashnout obraz:"
 
@@ -14546,10 +14546,6 @@ msgstr "Nahrát další"
 msgid "Record now"
 msgstr "Nová nahrávka"
 
-#, python-format
-msgid "Recording time limited due to conflicting timer:%s"
-msgstr "Nahrávaný čas je omezen z důvodu konfliktu časovače %s"
-
 msgid "Record write error (no space on disk?)"
 msgstr "Chyba zápisu záznamu (žádné místo na disku?)"
 
@@ -14606,6 +14602,10 @@ msgstr "Nahrávání zahájeno! Zastavuji časový posun..."
 
 msgid "Recording stopped"
 msgstr "Nahrávání zastaveno"
+
+#, python-format
+msgid "Recording time limited due to conflicting timer:%s"
+msgstr "Nahrávaný čas je omezen z důvodu konfliktu časovače %s"
 
 msgid "Recording tuning failed"
 msgstr "Ladění nahrávání se nezdařilo"
@@ -15463,6 +15463,9 @@ msgstr "Server Samba"
 msgid "Samba Settings"
 msgstr "Nastavení Samby"
 
+msgid "Samba version"
+msgstr "Verze Samby"
+
 msgid "Same as in active"
 msgstr "Stejně jako při zapnutém přijímači"
 
@@ -16300,7 +16303,10 @@ msgid "Select copy destination for:"
 msgstr "Zvolte umístění kopie pro:"
 
 msgid "Select default EPG type"
-msgstr "Zvolte preferovaný typ EPG..."
+msgstr "Vyberte výchozí typ EPG"
+
+msgid "Select default EPG type:"
+msgstr "Vyberte výchozí typ EPG:"
 
 msgid "Select default File Commander directory:"
 msgstr "Vyberte výchozí adresář File Commander:"
@@ -23177,20 +23183,20 @@ msgstr "Přepnout kanál a zavřít (menu nastavení)"
 msgid "Zap to next service"
 msgstr "Další program"
 
-msgid "Zap to next service in the current bouquet"
-msgstr "Přeskočit na další službu v aktuálním seznamu"
-
 msgid "Zap to next service in history"
 msgstr "Přepnout na další program v historii"
+
+msgid "Zap to next service in the current bouquet"
+msgstr "Přeskočit na další službu v aktuálním seznamu"
 
 msgid "Zap to previous service"
 msgstr "Předchozí podprogram"
 
-msgid "Zap to previous service in the current bouquet"
-msgstr "Přejít na předchozí službu v aktuálním seznamu"
-
 msgid "Zap to previous service in history"
 msgstr "Přepnout na předchozí program v historii"
+
+msgid "Zap to previous service in the current bouquet"
+msgstr "Přejít na předchozí službu v aktuálním seznamu"
 
 msgid "Zap up"
 msgstr "Přepnout nahoru"

@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-04 12:30+0000\n"
-"PO-Revision-Date: 2025-05-06 04:43+0000\n"
+"POT-Creation-Date: 2025-05-07 16:24+0000\n"
+"PO-Revision-Date: 2025-05-10 04:44+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -5341,9 +5341,8 @@ msgstr "Leikkaa"
 msgid "CutList skip time for '%s' button"
 msgstr "Leikkauskohtien ohitusaika '%s'näppäin"
 
-#, fuzzy
 msgid "CutList skip time for '%s'/'%s' buttons"
-msgstr "Leikkauskohtien pituuden"
+msgstr "Leikkauslistan ohitusaika '%s'/'%s' painikkeille"
 
 msgid "Cutlist Editor"
 msgstr "Leikkauskohtien editori"
@@ -5792,7 +5791,7 @@ msgid "Defined / Active"
 msgstr "Määritetty / Aktiivinen"
 
 msgid "Defined skips"
-msgstr ""
+msgstr "Määritelty ohitus"
 
 msgid "Defined volume offset"
 msgstr "Määritetty äänenvoimakkuus"
@@ -6244,7 +6243,7 @@ msgid "Disable Animations"
 msgstr "Estä animaatiot"
 
 msgid "Disable Chkroot"
-msgstr ""
+msgstr "Poista käytöstä Chkroot"
 
 msgid "Disable FCC during recordings"
 msgstr "Poista FCC käytöstä tallennuksen aikana"
@@ -6280,7 +6279,7 @@ msgid "Disable the HDD Process on VFD."
 msgstr "Kiintolevyn etenemispalkki päälle/pois"
 
 msgid "Disable the MultiBoot option"
-msgstr ""
+msgstr "Poista MultiBoot vaihtoehto"
 
 msgid "Disable timer"
 msgstr "Keskeytä ajastus"
@@ -8310,6 +8309,9 @@ msgstr "Tiedostojärjestelmä paketit"
 msgid "File appears to be busy!\n"
 msgstr "Tiedosto näyttää olevan käytössä.\n"
 
+msgid "File compression"
+msgstr "Tiedostopakkaus"
+
 msgid ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
@@ -8438,7 +8440,7 @@ msgid "Flash and restore settings and no plugins"
 msgstr "Päivitä ja palauta asetukset, ei laajennuksia"
 
 msgid "Flash and restore settings and selected plugins (Ask user)"
-msgstr "Päivitä ja palauta setukset ja valitut laajennukset (Kysy käyttäjältä)"
+msgstr "Päivitä ja palauta asetukset ja valitut laajennukset (Kysy käyttäjältä)"
 
 #, python-format
 msgid "Flash directory '%s' not allowed!"
@@ -12495,7 +12497,7 @@ msgid "Numbering mode"
 msgstr "Numerointitila"
 
 msgid "Numeric skip mode"
-msgstr ""
+msgstr "Numeerinen ohitustila"
 
 msgid "OEM model"
 msgstr "Malli"
@@ -13216,7 +13218,7 @@ msgid "Percentage right"
 msgstr "Prosentit oikealla"
 
 msgid "Percentage skips"
-msgstr ""
+msgstr "Prosentti ohitus"
 
 msgid "Percentage/Progress bar left"
 msgstr "Etenemispalkki vasemmalla"
@@ -13234,7 +13236,7 @@ msgid "Permanently delete all recordings in the trashcan?"
 msgstr "Poista kaikki roskakorin tallenteet pysyvästi?"
 
 msgid "Permanently disable the MultiBoot option?"
-msgstr ""
+msgstr "Pysyvästi poista MultiBoot valikko?"
 
 msgid "Permanently ignore this device"
 msgstr "Unohda tämä laite pysyvästi"
@@ -13517,9 +13519,6 @@ msgstr "Jatka painamalla OK."
 
 msgid "Please press OK when ready"
 msgstr "Paina OK kun olet valmis"
-
-msgid "Select default EPG type:"
-msgstr "Valitse oletus ohjelmaoppaan tyyppi."
 
 msgid "Please select a distribution from which you would like to flash an image:"
 msgstr "Valitse jakelija, jolta haluat päivittää ohjelmiston:"
@@ -14525,10 +14524,6 @@ msgstr "Tallenna seuraava"
 msgid "Record now"
 msgstr "Tallenna heti"
 
-#, python-format
-msgid "Recording time limited due to conflicting timer:%s"
-msgstr "Ajastusaika rajoitettu, ristiriita ajastukseen %s"
-
 msgid "Record write error (no space on disk?)"
 msgstr "Tallennus kirjoitusvirhe (levy täynnä?)"
 
@@ -14585,6 +14580,10 @@ msgstr "Tallennus alkoi! Ajansiirto pysähtyy nyt..."
 
 msgid "Recording stopped"
 msgstr "Tallennus keskeytetty"
+
+#, python-format
+msgid "Recording time limited due to conflicting timer:%s"
+msgstr "Ajastusaika rajoitettu, ristiriita ajastukseen %s"
 
 msgid "Recording tuning failed"
 msgstr "Virittimen asettaminen tallennusta varten epäonnistui"
@@ -15442,6 +15441,9 @@ msgstr "Samba Serveri"
 msgid "Samba Settings"
 msgstr "Samba asetukset"
 
+msgid "Samba version"
+msgstr "Samba versio"
+
 msgid "Same as in active"
 msgstr "Sama kuin aktiivinen"
 
@@ -16288,6 +16290,9 @@ msgstr "Valitse kohde kopioinnille:"
 msgid "Select default EPG type"
 msgstr "Valitse oletus ohjelmaoppaan tyyppi."
 
+msgid "Select default EPG type:"
+msgstr "Valitse oletus ohjelmaoppaan tyyppi."
+
 msgid "Select default File Commander directory:"
 msgstr "Valitse File Commander oletushakemisto:"
 
@@ -16322,10 +16327,10 @@ msgid "Select how quickly the dish should move between satellites."
 msgstr "Valitse kuinka nopeasti antennin pitäisi liikkua satelliittien välillä."
 
 msgid "Select how the arrow ('UP', 'DOWN', 'LEFT', and 'RIGHT') buttons will act during seek actions."
-msgstr ""
+msgstr "Valitse, miten nuolipainikkeet ('YLÖS', 'ALAS', 'VASEN' ja 'OIKEA') toimivat haun aikana."
 
 msgid "Select how the number buttons will act during seek actions."
-msgstr ""
+msgstr "Valitse, miten numero näppäimet toimivat haun aikana."
 
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr ""
@@ -16522,7 +16527,7 @@ msgid "Select the currently highlighted service and exit"
 msgstr "Valitse korostettu kanava ja poistu"
 
 msgid "Select the currently highlighted timer"
-msgstr ""
+msgstr "Valitse tällä hetkellä korostettu ajastin"
 
 msgid "Select the date from which this timer will become active."
 msgstr "Valitse päivämäärä, josta alkaen ajastus on aktiivinen."
@@ -16671,7 +16676,7 @@ msgid "Select the next item in the list"
 msgstr "Valitse listan seuraavan kohteen"
 
 msgid "Select the preferred service information to display, in addition to the service number, for the service selection pop up screen."
-msgstr ""
+msgstr "Valitse suosittu kanavan tieto näytettäväksi numeron lisäksi kanavan valinta ponnahdus ikkunassa."
 
 msgid "Select the previous item in list or move the cursor left"
 msgstr "Valitse luettelon edellinen kohde tai siirrä kursori vasemmalle"
@@ -17202,17 +17207,17 @@ msgid "Set system"
 msgstr "Aseta järjestelmä"
 
 msgid "Set the CutList Editor skip time interval for the '%s'/'%s' buttons."
-msgstr ""
+msgstr "Aseta Leikkauskohtien ohitusaikaväli '%s'/'%s' näppäimille."
 
 msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
-msgstr ""
+msgstr "Aseta VASEN/OIKEA näppäiten ohitus prosentti hakupalkille."
 
 #, python-format
 msgid "Set the MAC address of your %s %s."
 msgstr "Määritä %s %s:n MAC-osoite."
 
 msgid "Set the UP/DOWN button skip percentage for the SeekBar."
-msgstr ""
+msgstr "Aseta YLÖS/ALAS painikkeen ohitus prosentti hakupalkille."
 
 msgid "Set the User ID of the OpenWebif from your fallback tuner"
 msgstr "Aseta etävastaanottimen OpenWebIf käyttäjätunnus"
@@ -17266,10 +17271,10 @@ msgid "Set the scrolling speed of text on the front display."
 msgstr "Määrittää tekstin vieritysnopeuden etupaneelissa."
 
 msgid "Set the skip time interval for the '%s' button."
-msgstr ""
+msgstr "Aseta ohitusaikaväli '%s' näppäimille."
 
 msgid "Set the skip time interval for the '%s'/'%s' buttons."
-msgstr ""
+msgstr "Aseta ohitusajan aikaväli '%s'/'%s' painikkeille."
 
 msgid "Set the time before checking video source for resolution information."
 msgstr "Määritä aika ennen kuin lähteen resoluutio tarkistetaan."
@@ -18430,7 +18435,7 @@ msgid "Skip back"
 msgstr "Siirry taaksepäin"
 
 msgid "Skip backward"
-msgstr ""
+msgstr "siirry taaksepäin"
 
 msgid "Skip backward (enter time)"
 msgstr "siirry taaksepäin (syötä aika)"
@@ -18451,16 +18456,16 @@ msgid "Skip package installation, only core packages will be available"
 msgstr "Ohita paketin asennus, vain ydin paketit ovat käytettävissä"
 
 msgid "Skip sensibility (Horizontal)"
-msgstr ""
+msgstr "Ohituksen herkkyys (vaakasuora)"
 
 msgid "Skip sensibility (Vertical)"
-msgstr ""
+msgstr "Ohituksen herkkyys (pystysuora)"
 
 msgid "Skip time for '%s' button"
-msgstr ""
+msgstr "Painikkeen '%s' ohitusaika"
 
 msgid "Skip time for '%s'/'%s' buttons"
-msgstr ""
+msgstr "Painikkeiden '%s'/'%s' ohitusaika"
 
 msgid "Sleep"
 msgstr "Uniajastin"
@@ -19473,7 +19478,7 @@ msgid "Symbolic link"
 msgstr "Symbolinen linkki"
 
 msgid "Symmetrical skips"
-msgstr ""
+msgstr "Symmetriset ohitukset"
 
 msgid "Sync NTP every (minutes)"
 msgstr "Synkronoi NTP joka (minuuttia)"
@@ -19546,7 +19551,7 @@ msgstr "TMDB Haku"
 
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Suomenkielinen käännös: 22.4.2025\n"
+"Suomenkielinen käännös: 8.5.2025\n"
 "tomppaa"
 
 msgid "TS file is too large for ISO9660 level 1!"
@@ -20731,7 +20736,7 @@ msgid "Timer Sanity Error"
 msgstr "Päällekkäinen ajastus"
 
 msgid "Timer Selection Actions"
-msgstr ""
+msgstr "Ajastimen valinta toimet"
 
 msgid "Timer edit"
 msgstr "Ajastuksen muokkaus"
@@ -20955,7 +20960,7 @@ msgid "Track"
 msgstr "Raita"
 
 msgid "Traditional"
-msgstr ""
+msgstr "Perinteinen"
 
 msgid "Traditional Chinese"
 msgstr "Kiina"
@@ -23177,20 +23182,20 @@ msgstr "Vaihda kanavalle ja sulje (määritettävissä asetuksissa)"
 msgid "Zap to next service"
 msgstr "Vaihda seuraavalle kanavalle"
 
-msgid "Zap to next service in the current bouquet"
-msgstr ""
-
 msgid "Zap to next service in history"
 msgstr "Vaihda seuraavalle kanavalle historiassa"
+
+msgid "Zap to next service in the current bouquet"
+msgstr "Vaihda seuraavaan kanavaan nykyisessä kanavalistassa"
 
 msgid "Zap to previous service"
 msgstr "Vaihda edelliselle kanavalle"
 
-msgid "Zap to previous service in the current bouquet"
-msgstr ""
-
 msgid "Zap to previous service in history"
 msgstr "Vaihda edelliselle kanavalle historiassa"
+
+msgid "Zap to previous service in the current bouquet"
+msgstr "Vaihda edelliseen kanavaan nykyisessä kanavalistassa"
 
 msgid "Zap up"
 msgstr "Kanava ylös"

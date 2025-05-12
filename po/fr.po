@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-04 12:30+0000\n"
+"POT-Creation-Date: 2025-05-07 16:24+0000\n"
 "PO-Revision-Date: 2024-12-24 18:34+0000\n"
 "Last-Translator: Mathieu13006 <llapaca@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fr/>\n"
@@ -8300,6 +8300,9 @@ msgstr ""
 msgid "File appears to be busy!\n"
 msgstr "Le fichier semble être occupé.\n"
 
+msgid "File compression"
+msgstr ""
+
 msgid ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
@@ -13499,9 +13502,6 @@ msgstr "Veuillez appuyer sur OK pour continuer."
 msgid "Please press OK when ready"
 msgstr ""
 
-msgid "Select default EPG type:"
-msgstr "Veuillez choisir le type d'EPG par défaut…"
-
 msgid "Please select a distribution from which you would like to flash an image:"
 msgstr ""
 
@@ -14503,10 +14503,6 @@ msgstr "Enregistrer suivant"
 msgid "Record now"
 msgstr "Enregistrer maintenant"
 
-#, python-format
-msgid "Recording time limited due to conflicting timer:%s"
-msgstr "Temps d'enregistrement limité à cause d'un conflit de programmations %s"
-
 msgid "Record write error (no space on disk?)"
 msgstr "Erreur d’écriture d’enregistrement (pas d’espace sur le disque ?)"
 
@@ -14563,6 +14559,10 @@ msgstr "Le record est lancé ! Arrêt du décalage temporel maintenant ..."
 
 msgid "Recording stopped"
 msgstr "Enregistrement arrêté"
+
+#, python-format
+msgid "Recording time limited due to conflicting timer:%s"
+msgstr "Temps d'enregistrement limité à cause d'un conflit de programmations %s"
 
 msgid "Recording tuning failed"
 msgstr "Échec du réglage de l'enregistrement"
@@ -15423,6 +15423,9 @@ msgstr ""
 msgid "Samba Settings"
 msgstr ""
 
+msgid "Samba version"
+msgstr ""
+
 msgid "Same as in active"
 msgstr "Le même qu'en actif"
 
@@ -16258,6 +16261,9 @@ msgstr "Sélectionnez la destination de la copie pour :"
 
 msgid "Select default EPG type"
 msgstr "Choisir le type d'EPG par défaut…"
+
+msgid "Select default EPG type:"
+msgstr "Veuillez choisir le type d'EPG par défaut…"
 
 msgid "Select default File Commander directory:"
 msgstr ""
@@ -23067,20 +23073,20 @@ msgstr "Zapper vers une chaîne et fermer (config dans le menu)"
 msgid "Zap to next service"
 msgstr "Permuter chaîne suivante"
 
-msgid "Zap to next service in the current bouquet"
-msgstr ""
-
 msgid "Zap to next service in history"
 msgstr "Basculer vers la chaîne suivante dans l'historique"
+
+msgid "Zap to next service in the current bouquet"
+msgstr ""
 
 msgid "Zap to previous service"
 msgstr "Basculer vers la chaîne précédente"
 
-msgid "Zap to previous service in the current bouquet"
-msgstr ""
-
 msgid "Zap to previous service in history"
 msgstr "Basculer vers la chaîne précédente dans l'historique"
+
+msgid "Zap to previous service in the current bouquet"
+msgstr ""
 
 msgid "Zap up"
 msgstr "Zap haut"

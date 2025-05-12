@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-04 12:30+0000\n"
-"PO-Revision-Date: 2025-04-25 20:16+0000\n"
+"POT-Creation-Date: 2025-05-07 16:24+0000\n"
+"PO-Revision-Date: 2025-05-12 13:02+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
 "Language: el\n"
@@ -226,8 +226,8 @@ msgstr "%.2f GB"
 #, python-format
 msgid "%.2f Second"
 msgid_plural "%.2f Seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%.2f δευτερόλεπτο"
+msgstr[1] "%.2f δευτερόλεπτα"
 
 #, python-format
 msgid "%02d.%02d."
@@ -2510,7 +2510,7 @@ msgid "Armenian"
 msgstr "Αρμένικα"
 
 msgid "Arrow skip mode"
-msgstr ""
+msgstr "Λειτουργία βέλους παράκαμψης"
 
 msgid "Artist"
 msgstr "Καλλιτέχνης"
@@ -2540,7 +2540,7 @@ msgid "Aspect"
 msgstr "Λόγος πλευρών"
 
 msgid "Aspect Ratio"
-msgstr ""
+msgstr "Λόγος πλευρών"
 
 msgid "Aspect Ratio Actions"
 msgstr "Ενέργειες λόγου πλευρών"
@@ -5331,10 +5331,10 @@ msgid "Cut"
 msgstr "Αποκοπή"
 
 msgid "CutList skip time for '%s' button"
-msgstr ""
+msgstr "Χρόνος παράλειψης λίστας αποκοπών για το πλήκτρο '%s'"
 
 msgid "CutList skip time for '%s'/'%s' buttons"
-msgstr ""
+msgstr "Χρόνος παράλειψης λίστας αποκοπών για τα πλήκτρα '%s'/'%s'"
 
 msgid "Cutlist Editor"
 msgstr "Επεξεργασία αποκοπών"
@@ -5352,7 +5352,7 @@ msgid "Cycle through the InfoBars"
 msgstr "Εναλλαγή εμφάνισης μπάρας πληροφοριών"
 
 msgid "Cycle through the available aspect ratios"
-msgstr "Εναλλαγή λόγου πλευρών..."
+msgstr "Εναλλαγή διαθέσιμων λόγων πλευρών"
 
 msgid "Cycling"
 msgstr "Ποδηλασία"
@@ -5783,7 +5783,7 @@ msgid "Defined / Active"
 msgstr "Ορισμένο / Ενεργό"
 
 msgid "Defined skips"
-msgstr ""
+msgstr "Καθορισμένες παραλείψεις"
 
 msgid "Defined volume offset"
 msgstr "Ορισμός ολίσθησης έντασης ήχου"
@@ -6235,7 +6235,7 @@ msgid "Disable Animations"
 msgstr "Απενεργοποίηση κινούμενων γραφικών"
 
 msgid "Disable Chkroot"
-msgstr ""
+msgstr "Απενεργοποίηση του Chkroot"
 
 msgid "Disable FCC during recordings"
 msgstr "Απενεργοποίηση του FCC κατά τη διάρκεια των εγγραφών"
@@ -6271,7 +6271,7 @@ msgid "Disable the HDD Process on VFD."
 msgstr "Απενεργοποίηση ενεργειών HDD στην οθόνη VFD."
 
 msgid "Disable the MultiBoot option"
-msgstr ""
+msgstr "Απενεργοποίηση της πολλαπλής εκκίνησης"
 
 msgid "Disable timer"
 msgstr "Απενεργοποίηση χρονοδιακόπτη"
@@ -8301,6 +8301,9 @@ msgstr "Πακέτα συστήματος αρχείων"
 msgid "File appears to be busy!\n"
 msgstr "Το αρχείο φαίνεται να είναι απασχολημένο.\n"
 
+msgid "File compression"
+msgstr "Συμπίεση αρχείου"
+
 msgid ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
@@ -8397,7 +8400,7 @@ msgid "Fixed X11 font (SD)"
 msgstr "Σταθερή γραμματοσειρά X11 (SD)"
 
 msgid "Flash"
-msgstr ""
+msgstr "Φλασάρισμα"
 
 msgid "Flash Expander"
 msgstr "Επέκταση flash"
@@ -10566,7 +10569,7 @@ msgid "List Navigation Actions"
 msgstr "Ενέργειες πλοήγησης λίστας"
 
 msgid "List available EPG functions"
-msgstr "Λειτουργίες λίστας EPG..."
+msgstr "Λίστα διαθέσιμων λειτουργιών EPG"
 
 msgid "List available networks"
 msgstr "Λίστα διαθέσιμων δικτύων"
@@ -10838,7 +10841,7 @@ msgstr "Φάκελος ρίζας MTD"
 
 #, python-format
 msgid "MTD slot %s%s"
-msgstr ""
+msgstr "MTD θύρα %s%s"
 
 msgid "MTU"
 msgstr "MTU"
@@ -12443,10 +12446,10 @@ msgid "Number"
 msgstr "Αριθμός"
 
 msgid "Number and name"
-msgstr ""
+msgstr "Αριθμός και όνομα"
 
 msgid "Number and picon"
-msgstr ""
+msgstr "Αριθμός και λογότυπο"
 
 msgid "Number of IP Addresses"
 msgstr "Αριθμός διευθύνσεων IP"
@@ -12461,19 +12464,19 @@ msgid "Number of rows to display."
 msgstr "Αριθμός γραμμών προς εμφάνιση."
 
 msgid "Number only"
-msgstr ""
+msgstr "Μόνο αριθμός"
 
 msgid "Number or SMS style data entry"
 msgstr "Στυλ εισόδου ως αριθμός ή SMS"
 
 msgid "Number, name and picon"
-msgstr ""
+msgstr "Αριθμός, όνομα και λογότυπο"
 
 msgid "Numbering mode"
 msgstr "Λειτουργία αρίθμησης"
 
 msgid "Numeric skip mode"
-msgstr ""
+msgstr "Λειτουργία αριθμητικής παράκαμψης"
 
 msgid "OEM model"
 msgstr "OEM μοντέλο"
@@ -12640,16 +12643,16 @@ msgid "Open"
 msgstr "Άνοιγμα"
 
 msgid "Open Aspect Ratio Settings"
-msgstr "Λίστα λόγων πλευρών..."
+msgstr "Άνοιγμα ρυθμίσεων λόγου πλευρών"
 
 msgid "Open Audio options"
-msgstr "Επιλογές ήχου..."
+msgstr "Άνοιγμα επιλογών ήχου"
 
 msgid "Open AutoTimer"
 msgstr "Άνοιγμα αυτόματου χρονοδιακόπτη"
 
 msgid "Open AutoTimer OverView"
-msgstr ""
+msgstr "Άνοιγμα προεπισκόπησης αυτόματων χρονοδιακοπτών"
 
 msgid "Open AutoTimer Overview"
 msgstr "Άνοιγμα λίστας αυτόματων χρονοδιακοπτών"
@@ -12661,22 +12664,22 @@ msgid "Open Box Portal"
 msgstr "Εμφάνιση portal δέκτη"
 
 msgid "Open DreamPlex"
-msgstr "Εμφάνιση του αναπαραγωγού DreamPlex..."
+msgstr "Άνοιγμα του DreamPlex"
 
 msgid "Open EPG"
-msgstr "εμφάνιση EPG..."
+msgstr "Άνοιγμα EPG"
 
 msgid "Open EPG for current service"
-msgstr "Εμφάνιση EPG για το τρέχον κανάλι..."
+msgstr "Άνοιγμα EPG για την τρέχουσα υπηρεσία"
 
 msgid "Open EPGSearch"
 msgstr "Άνοιγμα αναζήτησης EPG"
 
 msgid "Open Extensions"
-msgstr "Εμφάνιση επεκτάσεων..."
+msgstr "Άνοιγμα επεκτάσεων"
 
 msgid "Open HDMIRecord Settings"
-msgstr "Εμφάνιση ρυθμίσεων εγγραφής HDMI..."
+msgstr "Άνοιγμα ρυθμίσεων εγγραφής HDMI"
 
 msgid "Open IMDb"
 msgstr "Άνοιγμα IMDb"
@@ -12688,7 +12691,7 @@ msgid "Open Log"
 msgstr "Άνοιγμα καταγραφής"
 
 msgid "Open Main Menu"
-msgstr "Είσοδος στο κύριο μενού..."
+msgstr "Άνοιγμα κεντρικού μενού"
 
 msgid "Open Media Player"
 msgstr "Εμφάνιση αναπαραγωγού πολυμέσων"
@@ -12703,16 +12706,16 @@ msgid "Open Movie Selection"
 msgstr "Αναπαραγωγή εγγραφών"
 
 msgid "Open Network Settings"
-msgstr "Εμφάνιση μενού ρυθμίσεων δικτύου..."
+msgstr "Άνοιγμα ρυθμίσεων δικτύου"
 
 msgid "Open Plugin Browser"
 msgstr "Εμφάνιση των προσθέτων"
 
 msgid "Open QuickMenu"
-msgstr "Γρήγορο μενού..."
+msgstr "'Ανοιγμα γρήγορου μενού"
 
 msgid "Open RFmod Settings"
-msgstr "Εμφάνιση ρυθμίσεων RFmod..."
+msgstr "Άνοιγμα ρυθμίσεων RFmod"
 
 msgid "Open Radio bouquet selection"
 msgstr "Εμφάνιση του ραδιοφώνου"
@@ -12733,7 +12736,7 @@ msgid "Open Settings"
 msgstr "Άνοιγμα ρυθμίσεων"
 
 msgid "Open Setup"
-msgstr "Εμφάνιση μενού ρυθμίσεων..."
+msgstr "Άνοιγμα ρυθμίσεων"
 
 msgid "Open Setup menu"
 msgstr "Εμφάνιση ρυθμίσεων"
@@ -12742,7 +12745,7 @@ msgid "Open Similar List Channel List"
 msgstr "Άνοιγμα παρόμοιας λίστας καναλιών"
 
 msgid "Open Simple Umount"
-msgstr "Απλή αποπροσάρτηση συσκευής δίσκου αποθήκευσης."
+msgstr "Άνοιγμα απλής αποπροσάρτησης"
 
 msgid "Open SleepTimer Settings"
 msgstr "Εμφάνιση χρονοδιακόπτη ύπνου"
@@ -12751,13 +12754,13 @@ msgid "Open Subservices selection"
 msgstr "Επιλογή υπο-υπηρεσιών"
 
 msgid "Open Subtitle options"
-msgstr "Επιλογή υποτίτλων..."
+msgstr "Άνοιγμα επιλογών υποτίτλων"
 
 msgid "Open TV bouquet selection"
 msgstr "Εμφάνιση της TV"
 
 msgid "Open Usage and GUI Settings"
-msgstr "Εμφάνιση μενού χρήσης και διεπαφής χρήστη..."
+msgstr "Άνοιγμα ρυθμίσεων χρήσης και διεπαφής χρήστη"
 
 msgid "Open VideoMode"
 msgstr "Εμφάνιση ρυθμίσεων διαμόρφωσης"
@@ -12769,7 +12772,7 @@ msgid "Open context menu (contains settings menu)"
 msgstr "Άνοιγμα μενού περιεχομένων (περιέχει το μενού ρυθμίσεων)"
 
 msgid "Open event information"
-msgstr "Εμφάνιση πληροφοριών τρέχοντος προγράμματος."
+msgstr "Άνοιγμα πληροφοριών προγράμματος"
 
 msgid "Open external subtitle management screen"
 msgstr "Άνοιγμα οθόνης διαχείρισης εξωτερικών υποτίτλων"
@@ -13194,7 +13197,7 @@ msgid "Percentage right"
 msgstr "Ποσοστό δεξιά"
 
 msgid "Percentage skips"
-msgstr ""
+msgstr "Ποσοστό παρακάμψεων"
 
 msgid "Percentage/Progress bar left"
 msgstr "Ποσοστό/μπάρα προόδου αριστερά"
@@ -13212,7 +13215,7 @@ msgid "Permanently delete all recordings in the trashcan?"
 msgstr "Οριστική διαγραφή όλων των εγγραφών από τον κάδο;"
 
 msgid "Permanently disable the MultiBoot option?"
-msgstr ""
+msgstr "Μόνιμη απενεργοποίηση της πολλαπλής εκκίνησης;"
 
 msgid "Permanently ignore this device"
 msgstr "Μόνιμη αγνόηση αυτής της συσκευής"
@@ -13495,9 +13498,6 @@ msgstr "Πιέστε ΟΚ για να συνεχίσετε."
 
 msgid "Please press OK when ready"
 msgstr "Πιέστε ΟΚ όταν είστε έτοιμοι"
-
-msgid "Select default EPG type:"
-msgstr "Επιλέξτε τον προεπιλεγμένο τύπο EPG..."
 
 msgid "Please select a distribution from which you would like to flash an image:"
 msgstr "Επιλέξτε μία διανομή από την οποία θα θέλατε να κάνετε φλασάρισμα ενός image:"
@@ -14344,7 +14344,7 @@ msgid "RED button"
 msgstr "Κόκκινο πλήκτρο"
 
 msgid "RED button / HbbTV"
-msgstr "Κόκκινο πλήκτρο..."
+msgstr "Κόκκινο πλήκτρο/HbbTV"
 
 msgid "RED long"
 msgstr "Κόκκινο παρατεταμένο"
@@ -14503,10 +14503,6 @@ msgstr "Εγγραφή του επόμενου"
 msgid "Record now"
 msgstr "Εγγραφή τώρα"
 
-#, python-format
-msgid "Recording time limited due to conflicting timer:%s"
-msgstr "Ο χρόνος εγγραφής περιορίστηκε λόγω διένεξης του χρονοδιακόπτη %s"
-
 msgid "Record write error (no space on disk?)"
 msgstr "Σφάλμα εγγραφής (δεν υπάρχει χώρος στον δίσκο;)"
 
@@ -14563,6 +14559,10 @@ msgstr "Η εγγραφή ξεκίνησε! Διακοπή της χρονομε
 
 msgid "Recording stopped"
 msgstr "Η εγγραφή σταμάτησε"
+
+#, python-format
+msgid "Recording time limited due to conflicting timer:%s"
+msgstr "Ο χρόνος εγγραφής περιορίστηκε λόγω διένεξης του χρονοδιακόπτη %s"
 
 msgid "Recording tuning failed"
 msgstr "Αποτυχία συντονισμού για εγγραφή"
@@ -15420,6 +15420,9 @@ msgstr "Διακομιστής samba"
 msgid "Samba Settings"
 msgstr "Ρυθμίσεις Samba"
 
+msgid "Samba version"
+msgstr "Έκδοση samba"
+
 msgid "Same as in active"
 msgstr "Όπως στο ενεργό"
 
@@ -15654,7 +15657,7 @@ msgstr "Η ανίχνευση απέτυχε!"
 #, python-format
 msgid "Scanning: %d%% complete"
 msgid_plural "Scanning: %d%% complete"
-msgstr[0] "Ανίχνευση: ολοκληρώθηκε το %d%%"
+msgstr[0] "Ανίχνευση: ολοκλήρωση του %d%%"
 msgstr[1] "Ανίχνευση: ολοκληρώθηκε το %d%%"
 
 msgid "Scans default lamedbs sorted by satellite with a connected dish positioner"
@@ -15721,10 +15724,10 @@ msgid "Search"
 msgstr "Αναζήτηση"
 
 msgid "Search EPG for current event"
-msgstr "Ανίχνευση στο epg για το τρέχον πρόγραμμα."
+msgstr "Ανίχνευση στο EPG για το τρέχον πρόγραμμα"
 
 msgid "Search IMDb for information about current event"
-msgstr "Αναζήτηση πληροφοριών στο IMDb για το τρέχον πρόγραμμα."
+msgstr "Αναζήτηση στο IMDb για πληροφορίες σχετικά με το τρέχον πρόγραμμα"
 
 msgid "Search Sats"
 msgstr "Ανίχνευση δορυφόρων"
@@ -16254,7 +16257,10 @@ msgid "Select copy destination for:"
 msgstr "Επιλογή προορισμού αντιγραφής για το:"
 
 msgid "Select default EPG type"
-msgstr "Επιλογή προεπιλεγμένου τύπου EPG..."
+msgstr "Επιλογή προεπιλεγμένου τύπου EPG"
+
+msgid "Select default EPG type:"
+msgstr "Επιλογή του προεπιλεγμένο τύπου EPG:"
 
 msgid "Select default File Commander directory:"
 msgstr "Επιλογή προεπιλεγμένου φακέλου του File Commander:"
@@ -16290,10 +16296,10 @@ msgid "Select how quickly the dish should move between satellites."
 msgstr "Επιλέξτε το πόσο γρήγορα θα κινείται το κάτοπτρο μεταξύ των δορυφόρων."
 
 msgid "Select how the arrow ('UP', 'DOWN', 'LEFT', and 'RIGHT') buttons will act during seek actions."
-msgstr ""
+msgstr "Επιλέξτε πώς τα βέλη ('ΕΠΑΝΩ', 'ΚΑΤΩ', 'ΑΡΙΣΤΕΡΑ', και 'ΔΕΞΙΑ') θα συμπεριφέρονται κατά τη διάρκεια της αναζήτησης."
 
 msgid "Select how the number buttons will act during seek actions."
-msgstr ""
+msgstr "Επιλέξτε πώς θα συμπεριφέρονται τα αριθμητικά πλήκτρα κατά την αναζήτηση."
 
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr "Επιλέξτε τον τρόπο ρύθμισης του δορυφορικού σας κατόπτρου π.χ. σταθερό, μονό LNB, διακόπτης DiSEqC, μοτέρ κλπ."
@@ -16488,7 +16494,7 @@ msgid "Select the currently highlighted service and exit"
 msgstr "Επιλογή της τρέχουσας επισημασμένης υπηρεσίας και έξοδος"
 
 msgid "Select the currently highlighted timer"
-msgstr ""
+msgstr "Επιλογή του τρέχοντος επισημασμένου χρονοδιακόπτη"
 
 msgid "Select the date from which this timer will become active."
 msgstr "Επιλέξτε την ημερομηνία από την οποία ο χρονοδιακόπτης θα ενεργοποιηθεί."
@@ -16637,7 +16643,7 @@ msgid "Select the next item in the list"
 msgstr "Επιλογή του επόμενου στοιχείου στη λίστα"
 
 msgid "Select the preferred service information to display, in addition to the service number, for the service selection pop up screen."
-msgstr ""
+msgstr "Επιλέξτε τις επιθυμητές πληροφορίες υπηρεσίας προς εμφάνιση, μαζί με τον αριθμό της για τα αναδυόμενα μηνύματα."
 
 msgid "Select the previous item in list or move the cursor left"
 msgstr "Επιλογή του προηγούμενου στοιχείου στη λίστα ή κίνηση του κέρσορα αριστερά"
@@ -17070,7 +17076,7 @@ msgid "Service zap other button delay"
 msgstr "Καθυστέρηση ζάπινγκ άλλου πλήκτρου"
 
 msgid "Service zap screen contents"
-msgstr ""
+msgstr "Περιεχόμενα οθόνης κατά το ζάπινγκ υπηρεσιών"
 
 msgid "ServiceName"
 msgstr "Όνομα υπηρεσίας"
@@ -17166,17 +17172,17 @@ msgid "Set system"
 msgstr "Ορισμός συστήματος"
 
 msgid "Set the CutList Editor skip time interval for the '%s'/'%s' buttons."
-msgstr ""
+msgstr "Ορισμός του ενδιάμεσου χρόνου παράκαμψης της λίστας αποκοπών για τα πλήκτρα '%s'/'%s'."
 
 msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
-msgstr ""
+msgstr "Ορισμός ποσοστού παράκαμψης για τα πλήκτρα ΑΡΙΣΤΕΡΑ/ΔΕΞΙΑ στη μπάρα αναζήτησης."
 
 #, python-format
 msgid "Set the MAC address of your %s %s."
 msgstr "Ορισμός της διεύθυνσης MAC του %s %s σας."
 
 msgid "Set the UP/DOWN button skip percentage for the SeekBar."
-msgstr ""
+msgstr "Ορισμός ποσοστού παράκαμψης για τα πλήκτρα ΕΠΑΝΩ/ΚΑΤΩ στη μπάρα αναζήτησης."
 
 msgid "Set the User ID of the OpenWebif from your fallback tuner"
 msgstr "Ορισμός του ID χρήστη του OpenWebif από το εφεδρικό σας tuner"
@@ -17230,10 +17236,10 @@ msgid "Set the scrolling speed of text on the front display."
 msgstr "Ορισμός της ταχύτητας κύλισης του κειμένου στην οθόνη πρόσοψης."
 
 msgid "Set the skip time interval for the '%s' button."
-msgstr ""
+msgstr "Ορισμός ενδιάμεσου χρόνου παράκαμψης για το πλήκτρο '%s'."
 
 msgid "Set the skip time interval for the '%s'/'%s' buttons."
-msgstr ""
+msgstr "Ορισμός ενδιάμεσου χρόνου παράκαμψης για τα πλήκτρα '%s'/'%s'."
 
 msgid "Set the time before checking video source for resolution information."
 msgstr "Ορισμός του χρόνου πριν ελεγχθεί η πηγή βίντεο για πληροφορίες ανάλυσης."
@@ -18394,7 +18400,7 @@ msgid "Skip back"
 msgstr "Υπερπήδηση προς τα πίσω"
 
 msgid "Skip backward"
-msgstr ""
+msgstr "Παράκαμψη προς τα πίσω"
 
 msgid "Skip backward (enter time)"
 msgstr "υπερπήδηση προς τα εμπρός (εισαγωγή χρόνου)"
@@ -18415,16 +18421,16 @@ msgid "Skip package installation, only core packages will be available"
 msgstr "Παράβλεψη εγκατάστασης πακέτων, θα είναι διαθέσιμα μόνο τα βασικά πακέτα"
 
 msgid "Skip sensibility (Horizontal)"
-msgstr ""
+msgstr "Ευαισθησία παράκαμψης (οριζόντια)"
 
 msgid "Skip sensibility (Vertical)"
-msgstr ""
+msgstr "Ευαισθησία παράκαμψης (κάθετα)"
 
 msgid "Skip time for '%s' button"
-msgstr ""
+msgstr "Χρόνος παράκαμψης για το πλήκτρο '%s'"
 
 msgid "Skip time for '%s'/'%s' buttons"
-msgstr ""
+msgstr "Χρόνος παράκαμψης για τα πλήκτρα '%s'/'%s'"
 
 msgid "Sleep"
 msgstr "Ύπνος"
@@ -19437,7 +19443,7 @@ msgid "Symbolic link"
 msgstr "Συντόμευση"
 
 msgid "Symmetrical skips"
-msgstr ""
+msgstr "Συμμετρικές παρακάμψεις"
 
 msgid "Sync NTP every (minutes)"
 msgstr "Συγχρονισμός NTP κάθε (λεπτά)"
@@ -20689,7 +20695,7 @@ msgid "Timer Sanity Error"
 msgstr "Σφάλμα ακεραιότητας χρονοδιακόπτη"
 
 msgid "Timer Selection Actions"
-msgstr ""
+msgstr "Ενέργειες επιλογής χρονοδιακόπτη"
 
 msgid "Timer edit"
 msgstr "Επεξεργασία χρονοδιακόπτη"
@@ -20771,7 +20777,7 @@ msgid "Today"
 msgstr "Σήμερα"
 
 msgid "Toggle Dolby Digital down mix"
-msgstr "Εναλλαγή ψηφιακής μίξης ήχου..."
+msgstr "Εναλλαγή υποβάθμισης και μίξης Dolby Digital"
 
 msgid "Toggle HDMI-In PiP"
 msgstr "Εναλλαγή HDMI-In PiP"
@@ -20913,7 +20919,7 @@ msgid "Track"
 msgstr "Κομμάτι"
 
 msgid "Traditional"
-msgstr ""
+msgstr "Παραδοσιακό"
 
 msgid "Traditional Chinese"
 msgstr "Παραδοσιακά Κινεζικά"
@@ -22057,7 +22063,7 @@ msgid "View Rass interactive"
 msgstr "Προβολή διαδραστικού Rass"
 
 msgid "View Teletext"
-msgstr "Προβολή τηλεκειμένου..."
+msgstr "Προβολή τηλεκειμένου"
 
 msgid "View as grid"
 msgstr "Προβολή ως πλέγμα"
@@ -23128,20 +23134,20 @@ msgstr "Μετάβαση στο κανάλι και κλείσιμο (ρυθμί
 msgid "Zap to next service"
 msgstr "Αλλαγή στο επόμενο κανάλι"
 
-msgid "Zap to next service in the current bouquet"
-msgstr ""
-
 msgid "Zap to next service in history"
 msgstr "Επόμενο κανάλι στο ιστορικό"
+
+msgid "Zap to next service in the current bouquet"
+msgstr "Μετάβαση στην επόμενη υπηρεσία στο τρέχον μπουκέτο"
 
 msgid "Zap to previous service"
 msgstr "Προώθηση στην προηγούμενη υπό-υπηρεσία"
 
-msgid "Zap to previous service in the current bouquet"
-msgstr ""
-
 msgid "Zap to previous service in history"
 msgstr "Μετάβαση στο προηγούμενο κανάλι στο ιστορικό"
+
+msgid "Zap to previous service in the current bouquet"
+msgstr "Μετάβαση στην προηγούμενη υπηρεσία στο τρέχον μπουκέτο"
 
 msgid "Zap up"
 msgstr "Ζάπινγκ προς τα επάνω"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-04 12:30+0000\n"
+"POT-Creation-Date: 2025-05-07 16:24+0000\n"
 "PO-Revision-Date: 2025-02-12 12:57+0000\n"
 "Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ta/>\n"
@@ -8299,6 +8299,9 @@ msgstr "கோப்பு முறைமை தொகுப்புகள்"
 msgid "File appears to be busy!\n"
 msgstr ""
 
+msgid "File compression"
+msgstr ""
+
 msgid ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
@@ -13490,9 +13493,6 @@ msgstr "தொடர சரி என்பதை அழுத்தவும்
 msgid "Please press OK when ready"
 msgstr "தயாராக இருக்கும்போது சரி என்பதை அழுத்தவும்"
 
-msgid "Select default EPG type:"
-msgstr "இயல்புநிலை EPG வகையைத் தேர்ந்தெடுக்கவும் ..."
-
 msgid "Please select a distribution from which you would like to flash an image:"
 msgstr "நீங்கள் ஒரு படத்தை ஒளிரும் விநியோகத்தைத் தேர்ந்தெடுக்கவும்:"
 
@@ -14497,10 +14497,6 @@ msgstr "அடுத்து பதிவு"
 msgid "Record now"
 msgstr "இப்போது பதிவு செய்யுங்கள்"
 
-#, python-format
-msgid "Recording time limited due to conflicting timer:%s"
-msgstr "முரண்பட்ட நேரங்குறிகருவி காரணமாக பதிவு நேரம் வரையறுக்கப்பட்டுள்ளது:%s"
-
 msgid "Record write error (no space on disk?)"
 msgstr "பதிவு எழுதும் பிழை (வட்டில் இடம் இல்லையா?)"
 
@@ -14557,6 +14553,10 @@ msgstr "பதிவு தொடங்கியது! இப்போது �
 
 msgid "Recording stopped"
 msgstr "பதிவு நிறுத்தப்பட்டது"
+
+#, python-format
+msgid "Recording time limited due to conflicting timer:%s"
+msgstr "முரண்பட்ட நேரங்குறிகருவி காரணமாக பதிவு நேரம் வரையறுக்கப்பட்டுள்ளது:%s"
 
 msgid "Recording tuning failed"
 msgstr "பதிவுசெய்தல் டியூனிங் தோல்வியடைந்தது"
@@ -15414,6 +15414,9 @@ msgstr "சம்பா சேவையகம்"
 msgid "Samba Settings"
 msgstr "சம்பா அமைப்புகள்"
 
+msgid "Samba version"
+msgstr ""
+
 msgid "Same as in active"
 msgstr "செயலில் உள்ளதைப் போலவே"
 
@@ -16248,6 +16251,9 @@ msgid "Select copy destination for:"
 msgstr "இதற்கான நகலை நகலெடு என்பதைத் தேர்ந்தெடுக்கவும்:"
 
 msgid "Select default EPG type"
+msgstr "இயல்புநிலை EPG வகையைத் தேர்ந்தெடுக்கவும் ..."
+
+msgid "Select default EPG type:"
 msgstr "இயல்புநிலை EPG வகையைத் தேர்ந்தெடுக்கவும் ..."
 
 msgid "Select default File Commander directory:"
@@ -23119,20 +23125,20 @@ msgstr "சேனலுக்கு சாப் மற்றும் மூட
 msgid "Zap to next service"
 msgstr "அடுத்த சேனலை மாற்றவும்"
 
-msgid "Zap to next service in the current bouquet"
-msgstr ""
-
 msgid "Zap to next service in history"
 msgstr "வரலாற்றில் அடுத்த சேனலுக்கு மாறவும்"
+
+msgid "Zap to next service in the current bouquet"
+msgstr ""
 
 msgid "Zap to previous service"
 msgstr "முந்தைய சேனலுக்கு மாறவும்"
 
-msgid "Zap to previous service in the current bouquet"
-msgstr ""
-
 msgid "Zap to previous service in history"
 msgstr "வரலாற்றில் முந்தைய சேனலுக்கு மாறவும்"
+
+msgid "Zap to previous service in the current bouquet"
+msgstr ""
 
 msgid "Zap up"
 msgstr "சாப் அப்"

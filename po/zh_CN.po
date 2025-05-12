@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-04 12:30+0000\n"
-"PO-Revision-Date: 2025-05-05 05:50+0000\n"
+"POT-Creation-Date: 2025-05-07 16:24+0000\n"
+"PO-Revision-Date: 2025-05-11 09:01+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -2509,7 +2509,7 @@ msgid "Armenian"
 msgstr "亚美尼亚语"
 
 msgid "Arrow skip mode"
-msgstr ""
+msgstr "箭头跳过模式"
 
 msgid "Artist"
 msgstr "艺术家"
@@ -2539,20 +2539,20 @@ msgid "Aspect"
 msgstr "长宽比"
 
 msgid "Aspect Ratio"
-msgstr "宽高比"
+msgstr "画面比例"
 
 msgid "Aspect Ratio Actions"
-msgstr "长宽比操作"
+msgstr "画面比例操作"
 
 msgid "Aspect ratio"
-msgstr "长宽比"
+msgstr "画面比例"
 
 #, python-format
 msgid "Aspect ratio set to '%s'."
-msgstr "音视频宽高比为 %s。"
+msgstr "画面比例设为 %s。"
 
 msgid "Aspect switch"
-msgstr "长宽比切换"
+msgstr "画面比例切换"
 
 msgid "Assamese"
 msgstr "阿萨姆语"
@@ -4393,7 +4393,7 @@ msgid "Complete Backup"
 msgstr "完整备份"
 
 msgid "Complex (allows mixing audio tracks and aspects)"
-msgstr "复杂（允许混合音轨及其他相关功能）"
+msgstr "复合模式（可混音音频轨道与画面比例）"
 
 msgid "Composition of the recording filenames"
 msgstr "录像文件名的组成"
@@ -4522,7 +4522,7 @@ msgid "Configure the amount of time that will be presented."
 msgstr "配置将显示的时间量。"
 
 msgid "Configure the aspect ratio of the screen."
-msgstr "配置屏幕的宽高比。"
+msgstr "配置屏幕的画面比例。"
 
 msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
 msgstr "配置在电影回放已经暂停的情况下\"pause\" 键的行为。"
@@ -5330,16 +5330,16 @@ msgid "Cut"
 msgstr "剪切"
 
 msgid "CutList skip time for '%s' button"
-msgstr ""
+msgstr "“%s”按钮的剪辑列表跳过时间"
 
 msgid "CutList skip time for '%s'/'%s' buttons"
-msgstr ""
+msgstr "'%s'/'%s' 按钮的剪辑列表跳过时间"
 
 msgid "Cutlist Editor"
-msgstr "剪切列表编辑器"
+msgstr "剪辑列表编辑器"
 
 msgid "Cutlist editor..."
-msgstr "剪切列表编辑器..."
+msgstr "剪辑列表编辑器..."
 
 msgid "Cyan"
 msgstr "青色"
@@ -5351,7 +5351,7 @@ msgid "Cycle through the InfoBars"
 msgstr "信息栏显示开关"
 
 msgid "Cycle through the available aspect ratios"
-msgstr "切换宽高比..."
+msgstr "循环切换可用画面比例"
 
 msgid "Cycling"
 msgstr "骑自行车"
@@ -5782,7 +5782,7 @@ msgid "Defined / Active"
 msgstr "定义/活动"
 
 msgid "Defined skips"
-msgstr ""
+msgstr "预定义跳过"
 
 msgid "Defined volume offset"
 msgstr "已定义的音量偏移"
@@ -8300,6 +8300,9 @@ msgstr "文件系统软件包"
 msgid "File appears to be busy!\n"
 msgstr "文件似乎忙。\n"
 
+msgid "File compression"
+msgstr "文件压缩"
+
 msgid ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
@@ -10565,7 +10568,7 @@ msgid "List Navigation Actions"
 msgstr "列出导航操作"
 
 msgid "List available EPG functions"
-msgstr "EPG 功能列表..."
+msgstr "列出可用的 EPG 功能"
 
 msgid "List available networks"
 msgstr "可用网络列表"
@@ -12472,7 +12475,7 @@ msgid "Numbering mode"
 msgstr "编号模式"
 
 msgid "Numeric skip mode"
-msgstr ""
+msgstr "数字跳过模式"
 
 msgid "OEM model"
 msgstr "OEM 型号"
@@ -12639,10 +12642,10 @@ msgid "Open"
 msgstr "打开"
 
 msgid "Open Aspect Ratio Settings"
-msgstr "长宽比列表..."
+msgstr "打开画面比例设置"
 
 msgid "Open Audio options"
-msgstr "音频选项..."
+msgstr "打开音频选项"
 
 msgid "Open AutoTimer"
 msgstr "打开自动定时器"
@@ -12660,22 +12663,22 @@ msgid "Open Box Portal"
 msgstr "显示机顶盒门户"
 
 msgid "Open DreamPlex"
-msgstr "显示 DreamPlex 播放器..."
+msgstr "打开 DreamPlex"
 
 msgid "Open EPG"
-msgstr "显示 EPG..."
+msgstr "打开 EPG"
 
 msgid "Open EPG for current service"
-msgstr "显示当前频道的 EPG ..."
+msgstr "打开当前频道的 EPG"
 
 msgid "Open EPGSearch"
 msgstr "打开 EPGSearch"
 
 msgid "Open Extensions"
-msgstr "显示扩展..."
+msgstr "打开扩展"
 
 msgid "Open HDMIRecord Settings"
-msgstr "显示 HDMIRecord 设置..."
+msgstr "打开 HDMIRecord 设置"
 
 msgid "Open IMDb"
 msgstr "打开 IMDb"
@@ -12687,7 +12690,7 @@ msgid "Open Log"
 msgstr "打开日志"
 
 msgid "Open Main Menu"
-msgstr "进入主菜单..."
+msgstr "打开主菜单"
 
 msgid "Open Media Player"
 msgstr "显示媒体播放器"
@@ -12702,16 +12705,16 @@ msgid "Open Movie Selection"
 msgstr "播放录制的影片"
 
 msgid "Open Network Settings"
-msgstr "显示网络设置菜单..."
+msgstr "打开网络设置"
 
 msgid "Open Plugin Browser"
 msgstr "显示插件"
 
 msgid "Open QuickMenu"
-msgstr "快捷菜单..."
+msgstr "打开快捷菜单"
 
 msgid "Open RFmod Settings"
-msgstr "显示 RFmod 设置..."
+msgstr "打开 RFmod 设置"
 
 msgid "Open Radio bouquet selection"
 msgstr "显示收音机播放器"
@@ -12732,7 +12735,7 @@ msgid "Open Settings"
 msgstr "打开徽墨"
 
 msgid "Open Setup"
-msgstr "显示设置菜单..."
+msgstr "打开设置"
 
 msgid "Open Setup menu"
 msgstr "显示设置"
@@ -12741,7 +12744,7 @@ msgid "Open Similar List Channel List"
 msgstr "打开相似列表频道列表"
 
 msgid "Open Simple Umount"
-msgstr "简单未挂载大容量存储设备。"
+msgstr "打开简易卸载"
 
 msgid "Open SleepTimer Settings"
 msgstr "显示睡眠定时器"
@@ -12750,13 +12753,13 @@ msgid "Open Subservices selection"
 msgstr "选择子频道"
 
 msgid "Open Subtitle options"
-msgstr "字幕选择..."
+msgstr "打开字幕选项"
 
 msgid "Open TV bouquet selection"
 msgstr "显示电视播放器"
 
 msgid "Open Usage and GUI Settings"
-msgstr "显示使用习惯和图形界面菜单..."
+msgstr "打开使用习惯和图形界面设置"
 
 msgid "Open VideoMode"
 msgstr "显示格式设置"
@@ -12768,7 +12771,7 @@ msgid "Open context menu (contains settings menu)"
 msgstr "打开上下文菜单（包含设置菜单）"
 
 msgid "Open event information"
-msgstr "显示当前事件的信息。"
+msgstr "打开事件信息"
 
 msgid "Open external subtitle management screen"
 msgstr "打开外挂字幕管理屏幕"
@@ -13193,7 +13196,7 @@ msgid "Percentage right"
 msgstr "百分比显示在右侧"
 
 msgid "Percentage skips"
-msgstr ""
+msgstr "百分比跳过"
 
 msgid "Percentage/Progress bar left"
 msgstr "百分比/进度条左侧"
@@ -13495,9 +13498,6 @@ msgstr "请按 OK 键继续。"
 msgid "Please press OK when ready"
 msgstr "准备好后请按“确定”"
 
-msgid "Select default EPG type:"
-msgstr "请选择默认的 EPG 类型..."
-
 msgid "Please select a distribution from which you would like to flash an image:"
 msgstr "请选择要刷入的发行版镜像："
 
@@ -13514,7 +13514,7 @@ msgid "Please select a resolution..."
 msgstr "请选择分辨率..."
 
 msgid "Please select an aspect ratio..."
-msgstr "请选择宽高比..."
+msgstr "请选择画面比例...."
 
 msgid "Please select device to use as swap file location"
 msgstr "请选择要用作交换文件位置的设备"
@@ -14343,7 +14343,7 @@ msgid "RED button"
 msgstr "红键"
 
 msgid "RED button / HbbTV"
-msgstr "红键..."
+msgstr "红键 / HbbTV"
 
 msgid "RED long"
 msgstr "长按红键"
@@ -14502,10 +14502,6 @@ msgstr "录制下一个"
 msgid "Record now"
 msgstr "现在录制"
 
-#, python-format
-msgid "Recording time limited due to conflicting timer:%s"
-msgstr "由于定时器冲突，录像时间受到限制：%s"
-
 msgid "Record write error (no space on disk?)"
 msgstr "录制写入错误(磁盘上没有空间?)"
 
@@ -14562,6 +14558,10 @@ msgstr "录像开始！ 现在停止时移..."
 
 msgid "Recording stopped"
 msgstr "录制已停止"
+
+#, python-format
+msgid "Recording time limited due to conflicting timer:%s"
+msgstr "由于定时器冲突，录像时间受到限制：%s"
 
 msgid "Recording tuning failed"
 msgstr "录制调制失败"
@@ -15419,6 +15419,9 @@ msgstr "Samba 服务器"
 msgid "Samba Settings"
 msgstr "Samba 设置"
 
+msgid "Samba version"
+msgstr "Samba 版本"
+
 msgid "Same as in active"
 msgstr "与活动的相同"
 
@@ -15720,10 +15723,10 @@ msgid "Search"
 msgstr "搜索"
 
 msgid "Search EPG for current event"
-msgstr "搜索当前事件的 EPG。"
+msgstr "搜索当前事件的 EPG"
 
 msgid "Search IMDb for information about current event"
-msgstr "搜索当前事件的 IMDb 相关信息。"
+msgstr "在 IMDb 搜索当前节目的详细信息"
 
 msgid "Search Sats"
 msgstr "搜索卫星"
@@ -16253,7 +16256,10 @@ msgid "Select copy destination for:"
 msgstr "选择复制目标为："
 
 msgid "Select default EPG type"
-msgstr "选择默认 EPG 类型..."
+msgstr "选择默认 EPG 类型"
+
+msgid "Select default EPG type:"
+msgstr "请选择默认的 EPG 类型..."
 
 msgid "Select default File Commander directory:"
 msgstr "选择文件指挥官默认的目录："
@@ -16289,10 +16295,10 @@ msgid "Select how quickly the dish should move between satellites."
 msgstr "选择天线在卫星之间移动的速度。"
 
 msgid "Select how the arrow ('UP', 'DOWN', 'LEFT', and 'RIGHT') buttons will act during seek actions."
-msgstr ""
+msgstr "设置方向键（‘上’、‘下’、‘左’、‘右’）在跳转操作时的行为。"
 
 msgid "Select how the number buttons will act during seek actions."
-msgstr ""
+msgstr "设置数字键在跳转操作时的行为。"
 
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr "选择卫星天线的设置方式。 即固定天线、单高频头、DiSEqC 开关、极轴等。"
@@ -16636,7 +16642,7 @@ msgid "Select the next item in the list"
 msgstr "选择列表中的下一项"
 
 msgid "Select the preferred service information to display, in addition to the service number, for the service selection pop up screen."
-msgstr ""
+msgstr "选择频道选择弹窗中，除频道号外还需显示的信息内容。"
 
 msgid "Select the previous item in list or move the cursor left"
 msgstr "选择列表中的上一项或向左移动光标"
@@ -17069,7 +17075,7 @@ msgid "Service zap other button delay"
 msgstr "频道切换其他按键延迟"
 
 msgid "Service zap screen contents"
-msgstr ""
+msgstr "频道切换画面显示内容"
 
 msgid "ServiceName"
 msgstr "频道名称"
@@ -17165,17 +17171,17 @@ msgid "Set system"
 msgstr "设置系统"
 
 msgid "Set the CutList Editor skip time interval for the '%s'/'%s' buttons."
-msgstr ""
+msgstr "设置‘%s’/‘%s’按钮的剪辑列表跳过时间间隔。"
 
 msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
-msgstr ""
+msgstr "设置进度条的左/右按键跳过百分比。"
 
 #, python-format
 msgid "Set the MAC address of your %s %s."
 msgstr "设置 %s %s 的 MAC 地址。"
 
 msgid "Set the UP/DOWN button skip percentage for the SeekBar."
-msgstr ""
+msgstr "设置进度条的上/下按键跳过百分比。"
 
 msgid "Set the User ID of the OpenWebif from your fallback tuner"
 msgstr "从备用调谐器设置 OpenWebif 的用户 ID"
@@ -17229,10 +17235,10 @@ msgid "Set the scrolling speed of text on the front display."
 msgstr "设置前端显示屏上文本的滚动速度。"
 
 msgid "Set the skip time interval for the '%s' button."
-msgstr ""
+msgstr "设置‘%s’按钮的跳过时间间隔。"
 
 msgid "Set the skip time interval for the '%s'/'%s' buttons."
-msgstr ""
+msgstr "设置‘%s’/‘%s’按钮的跳过时间间隔。"
 
 msgid "Set the time before checking video source for resolution information."
 msgstr "设置检查视频源的分辨率信息之前的时间。"
@@ -18414,16 +18420,16 @@ msgid "Skip package installation, only core packages will be available"
 msgstr "跳过软件包安装，只有核心软件包可用"
 
 msgid "Skip sensibility (Horizontal)"
-msgstr ""
+msgstr "跳过灵敏度（横向）"
 
 msgid "Skip sensibility (Vertical)"
-msgstr ""
+msgstr "跳过灵敏度（纵向）"
 
 msgid "Skip time for '%s' button"
-msgstr ""
+msgstr "'%s'按钮跳过时间"
 
 msgid "Skip time for '%s'/'%s' buttons"
-msgstr ""
+msgstr "%s'/'%s'按钮跳过时间"
 
 msgid "Sleep"
 msgstr "睡眠"
@@ -19436,7 +19442,7 @@ msgid "Symbolic link"
 msgstr "REC 符号正在使用"
 
 msgid "Symmetrical skips"
-msgstr ""
+msgstr "对称跳过"
 
 msgid "Sync NTP every (minutes)"
 msgstr "同步 NTP 每（分钟）"
@@ -19912,7 +19918,7 @@ msgstr ""
 "请安装。"
 
 msgid "The aspect ratio of the recording."
-msgstr "录像的宽高比。"
+msgstr "录像的画面比例。"
 
 msgid "The authors are NOT RESPONSIBLE for DATA LOSS OR DAMAGE!"
 msgstr "作者对 数据丢失 或 损坏 不 承担任何责任！"
@@ -20688,7 +20694,7 @@ msgid "Timer Sanity Error"
 msgstr "定时器健全性错误"
 
 msgid "Timer Selection Actions"
-msgstr ""
+msgstr "定时器选择操作"
 
 msgid "Timer edit"
 msgstr "编辑定时器"
@@ -20770,7 +20776,7 @@ msgid "Today"
 msgstr "今天"
 
 msgid "Toggle Dolby Digital down mix"
-msgstr "切换数字缩混..."
+msgstr "切换杜比数字缩混"
 
 msgid "Toggle HDMI-In PiP"
 msgstr "切换HDMI-In 画中画"
@@ -20912,7 +20918,7 @@ msgid "Track"
 msgstr "音轨"
 
 msgid "Traditional"
-msgstr ""
+msgstr "传统"
 
 msgid "Traditional Chinese"
 msgstr "繁体中文"
@@ -22056,7 +22062,7 @@ msgid "View Rass interactive"
 msgstr "查看 Rass 互动"
 
 msgid "View Teletext"
-msgstr "查看图文电视..."
+msgstr "查看图文电视"
 
 msgid "View as grid"
 msgstr "以网格形式查看"
@@ -22327,11 +22333,11 @@ msgid ""
 "\n"
 "Then seek to the end, press OK, select 'end cut'. That's it."
 msgstr ""
-"欢迎使用剪切列表编辑器。\n"
+"欢迎使用剪辑列表编辑器。\n"
 "\n"
-"搜寻你想要切除东西的起点。按下 OK 键，选择 “开始剪切”。\n"
+"搜寻你想要切除东西的起点。按下 OK 键，选择 “开始剪辑”。\n"
 "\n"
-"然后搜寻结束点，按下 OK 键，选择 “结束剪切”。就这样。"
+"然后搜寻结束点，按下 OK 键，选择 “结束剪辑”。就这样。"
 
 msgid "Welcome to the image upgrade wizard. The wizard will assist you in upgrading the firmware of the %s %s by providing a backup facility for the current settings and a short explanation of how to upgrade the firmware."
 msgstr "欢迎使用镜像升级向导。 该向导将为当前设置提供备份功能，并简要说明如何升级固件，从而帮助您升级 %s %s 的镜像。"
@@ -22451,7 +22457,7 @@ msgid "When enabled, authentication is required to watch http streams."
 msgstr "启用时，需要进行身份验证才能观看http流。"
 
 msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fit the screen."
-msgstr "启用时，宽高比为4:3的内容将被拉伸以适合屏幕。"
+msgstr "启用时，画面比例为 4:3 的内容将被拉伸以适合屏幕。"
 
 msgid "When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels."
 msgstr "启用后，换台到当前频道群的最后一个频道时，继续到下一个频道群。"
@@ -22562,10 +22568,10 @@ msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted se
 msgstr "当设置为“是”时，可以为每个加密频道分配一个特定的Softcam。"
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
-msgstr "当内容的宽高比为16:9时，选择是否缩放/拉伸图片。"
+msgstr "当内容画面比例为 16:9 时，选择是否缩放/拉伸图片。"
 
 msgid "When the content has an aspect ratio of 4:3, choose whether to scale/stretch the picture."
-msgstr "当内容的宽高比为4:3时，选择是否缩放/拉伸图片。"
+msgstr "当内容画面比例为 4:3 时，选择是否缩放/拉伸图片。"
 
 msgid "When the input cursor reaches this point (percentage of the width, from either side) scroll the text to the cursor."
 msgstr "当输入光标到达该点（宽度的百分比，从任意一侧）时，将文本滚动到光标处。"
@@ -23127,20 +23133,20 @@ msgstr "切换到频道并关闭（在菜单中设置）"
 msgid "Zap to next service"
 msgstr "切换到下一频道"
 
-msgid "Zap to next service in the current bouquet"
-msgstr ""
-
 msgid "Zap to next service in history"
 msgstr "切换到历史中的下一频道"
+
+msgid "Zap to next service in the current bouquet"
+msgstr "切换到当前频道群中的下一个频道"
 
 msgid "Zap to previous service"
 msgstr "切换到前一频道"
 
-msgid "Zap to previous service in the current bouquet"
-msgstr ""
-
 msgid "Zap to previous service in history"
 msgstr "切换到历史中的上一频道"
+
+msgid "Zap to previous service in the current bouquet"
+msgstr "切换到当前频道群中的上一个频道"
 
 msgid "Zap up"
 msgstr "向上切换"

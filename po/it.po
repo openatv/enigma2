@@ -2,12 +2,13 @@
 # mapi68 <mapi68@gmail.com>, 2022.
 # Massimo Pissarello <mapi68@gmail.com>, 2022, 2023, 2024, 2025.
 # Ivan Montemurro <anonm4d@gmail.com>, 2022.
+# formiano <formianodicastellone@hotmail.it>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-04 12:30+0000\n"
-"PO-Revision-Date: 2025-05-06 04:43+0000\n"
+"POT-Creation-Date: 2025-05-07 16:24+0000\n"
+"PO-Revision-Date: 2025-05-09 04:42+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -23,7 +24,7 @@ msgid ""
 "<This tuner is configured automatically>"
 msgstr ""
 "\n"
-"<Questo tuner è configurato automaticamente>"
+"<Questo tuner è configurato automaticamente >"
 
 msgid ""
 "\n"
@@ -8299,6 +8300,9 @@ msgstr "Pacchetti file system"
 msgid "File appears to be busy!\n"
 msgstr "Il file sembra occupato.\n"
 
+msgid "File compression"
+msgstr "Compressione dei file"
+
 msgid ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
@@ -13494,9 +13498,6 @@ msgstr "Premi OK per continuare."
 msgid "Please press OK when ready"
 msgstr "Premi OK quando sei pronto"
 
-msgid "Select default EPG type:"
-msgstr "Seleziona tipo di EPG predefinito..."
-
 msgid "Please select a distribution from which you would like to flash an image:"
 msgstr "Seleziona distribuzione da installare nel ricevitore"
 
@@ -14501,10 +14502,6 @@ msgstr "Registrazione successiva"
 msgid "Record now"
 msgstr "Registra ora"
 
-#, python-format
-msgid "Recording time limited due to conflicting timer:%s"
-msgstr "Tempo di registrazione limitato a causa di un conflitto tra timer %s"
-
 msgid "Record write error (no space on disk?)"
 msgstr "Errore di scrittura (non c'è spazio su disco?)"
 
@@ -14561,6 +14558,10 @@ msgstr "Registrazione iniziata! Arresto timeshift ora..."
 
 msgid "Recording stopped"
 msgstr "Registrazione interrotta"
+
+#, python-format
+msgid "Recording time limited due to conflicting timer:%s"
+msgstr "Tempo di registrazione limitato a causa di un conflitto tra timer %s"
 
 msgid "Recording tuning failed"
 msgstr "Errore di sintonizzazione della registrazione"
@@ -15418,6 +15419,9 @@ msgstr "Server Samba"
 msgid "Samba Settings"
 msgstr "Impostazioni Samba"
 
+msgid "Samba version"
+msgstr "Versione Samba"
+
 msgid "Same as in active"
 msgstr "Come da attivo"
 
@@ -16252,7 +16256,10 @@ msgid "Select copy destination for:"
 msgstr "Seleziona destinazione della copia per:"
 
 msgid "Select default EPG type"
-msgstr "Seleziona tipo EPG predefinito..."
+msgstr "Seleziona tipo di EPG predefinito"
+
+msgid "Select default EPG type:"
+msgstr "Seleziona tipo di EPG predefinito:"
 
 msgid "Select default File Commander directory:"
 msgstr "Seleziona cartella predefinita di File Commander:"
@@ -23126,20 +23133,20 @@ msgstr "Zap al canale e chiudi (configurazione nel menu)"
 msgid "Zap to next service"
 msgstr "Zap al servizio successivo"
 
-msgid "Zap to next service in the current bouquet"
-msgstr "Zap al servizio successivo nel bouquet attuale"
-
 msgid "Zap to next service in history"
 msgstr "Zap al servizio successivo nella cronologia"
+
+msgid "Zap to next service in the current bouquet"
+msgstr "Zap al servizio successivo nel bouquet attuale"
 
 msgid "Zap to previous service"
 msgstr "Zap al canale precedente"
 
-msgid "Zap to previous service in the current bouquet"
-msgstr "Zap al servizio precedente nel bouquet attuale"
-
 msgid "Zap to previous service in history"
 msgstr "Zap al canale precedente della cronologia"
+
+msgid "Zap to previous service in the current bouquet"
+msgstr "Zap al servizio precedente nel bouquet attuale"
 
 msgid "Zap up"
 msgstr "Zap su"

@@ -16,9 +16,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-04 12:30+0000\n"
-"PO-Revision-Date: 2025-05-05 21:49+0000\n"
-"Last-Translator: VfBFan <drop0815@posteo.de>\n"
+"POT-Creation-Date: 2025-05-07 16:24+0000\n"
+"PO-Revision-Date: 2025-05-10 07:44+0000\n"
+"Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -8732,6 +8732,9 @@ msgstr "Dateisystem-Pakete"
 msgid "File appears to be busy!\n"
 msgstr "Datei scheint in Benutzung zu sein!\n"
 
+msgid "File compression"
+msgstr "Dateikomprimierung"
+
 msgid ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
@@ -11110,7 +11113,7 @@ msgid "Links"
 msgstr "Links"
 
 msgid "List Navigation Actions"
-msgstr "Listen Navigationsaktionen"
+msgstr "Navigationsaktionen"
 
 #
 msgid "List available EPG functions"
@@ -13495,7 +13498,7 @@ msgid "Open Usage and GUI Settings"
 msgstr "OSD-Einstellungen anzeigen..."
 
 msgid "Open VideoMode"
-msgstr "Öffne VideoMode"
+msgstr "VideoMode öffnen"
 
 msgid "Open context menu"
 msgstr "Kontextmenü öffnen"
@@ -14284,9 +14287,6 @@ msgstr "OK drücken, um fortzufahren."
 
 msgid "Please press OK when ready"
 msgstr "OK drücken, wenn bereit"
-
-msgid "Select default EPG type:"
-msgstr "Bitte einen Standard-EPG-Typ auswählen..."
 
 msgid "Please select a distribution from which you would like to flash an image:"
 msgstr "Eine Distribution auswählen, von der ein Image geflasht werden soll:"
@@ -15373,10 +15373,6 @@ msgstr "Nächste Sendung aufnehmen"
 msgid "Record now"
 msgstr "Laufende Sendung aufnehmen"
 
-#, python-format
-msgid "Recording time limited due to conflicting timer:%s"
-msgstr "Aufnahmezeit aufgrund kollidierender Timer '%s' begrenzt"
-
 msgid "Record write error (no space on disk?)"
 msgstr "Aufnahmefehler! Kein Speicherplatz auf der Festplatte?"
 
@@ -15434,6 +15430,10 @@ msgstr "Aufnahme gestartet! Timeshift wird gestoppt..."
 
 msgid "Recording stopped"
 msgstr "Aufnahme angehalten"
+
+#, python-format
+msgid "Recording time limited due to conflicting timer:%s"
+msgstr "Aufnahmezeit aufgrund kollidierender Timer '%s' begrenzt!"
 
 msgid "Recording tuning failed"
 msgstr "Tuner für Aufnahme einstellen ist fehlgeschlagen!"
@@ -16362,6 +16362,9 @@ msgstr "Samba-Server"
 msgid "Samba Settings"
 msgstr "Samba"
 
+msgid "Samba version"
+msgstr "Samba-Version"
+
 msgid "Same as in active"
 msgstr "Gleich wie bei Box aktiv"
 
@@ -17248,6 +17251,9 @@ msgstr "Kopierziel auswählen:"
 msgid "Select default EPG type"
 msgstr "Standard-EPG-Typ auswählen..."
 
+msgid "Select default EPG type:"
+msgstr "Standard-EPG-Typ auswählen:"
+
 msgid "Select default File Commander directory:"
 msgstr "File Commander Standardverzeichnis auswählen:"
 
@@ -17283,10 +17289,10 @@ msgid "Select how quickly the dish should move between satellites."
 msgstr "Auswählen, wie schnell sich die Antenne zwischen den Satelliten bewegen soll."
 
 msgid "Select how the arrow ('UP', 'DOWN', 'LEFT', and 'RIGHT') buttons will act during seek actions."
-msgstr ""
+msgstr "Das Verhalten der Tasten 'Hoch', 'Runter, 'Links' und 'Rechts' für die Sprungaktionen auswählen."
 
 msgid "Select how the number buttons will act during seek actions."
-msgstr ""
+msgstr "Das Verhalten der Nummerntasten für die Sprungaktionen auswählen."
 
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr "Auswählen, wie die Satellitenschüssel eingerichtet ist (feste Schüssel, einzelner LNB, DiSEqC-Schalter, Rotor usw.)."
@@ -18103,7 +18109,7 @@ msgid "Service zap other button delay"
 msgstr "Umschaltverzögerung weiterer Ziffern"
 
 msgid "Service zap screen contents"
-msgstr ""
+msgstr "Bildschirminhalt beim Umschalten"
 
 msgid "ServiceName"
 msgstr "Sendername"
@@ -18207,10 +18213,10 @@ msgid "Set system"
 msgstr "System einstellen"
 
 msgid "Set the CutList Editor skip time interval for the '%s'/'%s' buttons."
-msgstr "Definiere CutList-Editor-Sprungzeit für die Tasten '%s'/'%s'."
+msgstr "CutList-Editor-Sprungzeit für die Tasten '%s'/'%s' definieren."
 
 msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
-msgstr ""
+msgstr "Den Prozentsatz für das Überspringen in der Suchleiste für die Tasten Links/Rechts festlegen."
 
 # NetworkSetup.py
 #, python-format
@@ -18218,7 +18224,7 @@ msgid "Set the MAC address of your %s %s."
 msgstr "Die MAC-Adresse der %s %s einstellen."
 
 msgid "Set the UP/DOWN button skip percentage for the SeekBar."
-msgstr ""
+msgstr "Den Prozentsatz für das Überspringen in der Suchleiste für die Tasten Hoch/Runter festlegen."
 
 msgid "Set the User ID of the OpenWebif from your fallback tuner"
 msgstr "Die Benutzer-ID vom OpenWebif des Reserve-Tuners eintragen"
@@ -18288,10 +18294,10 @@ msgid "Set the scrolling speed of text on the front display."
 msgstr "Die Scrollgeschwindigkeit für Text im Display einstellen."
 
 msgid "Set the skip time interval for the '%s' button."
-msgstr "Definierte Sprungzeit für die Taste '%s'"
+msgstr "Sprungzeit für die Taste '%s' definieren."
 
 msgid "Set the skip time interval for the '%s'/'%s' buttons."
-msgstr "Definierte Sprungzeit für die Tasten '%s'/'%s'"
+msgstr "Sprungzeit für die Tasten '%s'/'%s' definieren."
 
 msgid "Set the time before checking video source for resolution information."
 msgstr "Die Verzögerungszeit einstellen, bevor die automatische Auflösung die Videoquelle prüft."
@@ -19545,10 +19551,10 @@ msgid "Skip sensibility (Vertical)"
 msgstr "Vertikale Empfindlichkeit überspringen"
 
 msgid "Skip time for '%s' button"
-msgstr ""
+msgstr "Sprungzeit für die Taste '%s'"
 
 msgid "Skip time for '%s'/'%s' buttons"
-msgstr ""
+msgstr "Sprungzeit für die Tasten '%s'/'%s'"
 
 msgid "Sleep"
 msgstr "Sleeptimer"
@@ -20618,7 +20624,7 @@ msgid "Symbolic link"
 msgstr "Symbolischer Link"
 
 msgid "Symmetrical skips"
-msgstr ""
+msgstr "Symetrische Sprünge"
 
 msgid "Sync NTP every (minutes)"
 msgstr "Synchronisierungsintervall mit NTP-Server"
@@ -24551,23 +24557,23 @@ msgstr "Zum Sender umschalten und schließen (Einstellung im Menü)"
 msgid "Zap to next service"
 msgstr "Zum nächsten Sender wechseln"
 
-msgid "Zap to next service in the current bouquet"
-msgstr "Zum nächsten Sender im aktuellen Bouquet wechseln"
-
 #
 msgid "Zap to next service in history"
 msgstr "Zum nächsten Sender in der Historie wechseln"
+
+msgid "Zap to next service in the current bouquet"
+msgstr "Zum nächsten Sender im aktuellen Bouquet wechseln"
 
 #
 msgid "Zap to previous service"
 msgstr "Zum vorherigen Sender wechseln"
 
-msgid "Zap to previous service in the current bouquet"
-msgstr "Zum vorherigen Sender im aktuellen Bouquet wechseln"
-
 #
 msgid "Zap to previous service in history"
 msgstr "Zum vorherigen Sender in der Historie wechseln"
+
+msgid "Zap to previous service in the current bouquet"
+msgstr "Zum vorherigen Sender im aktuellen Bouquet wechseln"
 
 msgid "Zap up"
 msgstr "Kanal -"

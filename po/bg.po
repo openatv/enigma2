@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-04 12:30+0000\n"
+"POT-Creation-Date: 2025-05-07 16:24+0000\n"
 "PO-Revision-Date: 2023-08-06 06:22+0000\n"
 "Last-Translator: Salif Mehmed <mail@salif.eu>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/bg/>\n"
@@ -8281,6 +8281,9 @@ msgstr ""
 msgid "File appears to be busy!\n"
 msgstr "Изглежда, че файлът е зает.\n"
 
+msgid "File compression"
+msgstr ""
+
 msgid ""
 "File oscam.conf not found.\n"
 "Please enter username/password manually."
@@ -13470,9 +13473,6 @@ msgstr "Моля, натиснете OK, за да продължите."
 msgid "Please press OK when ready"
 msgstr ""
 
-msgid "Select default EPG type:"
-msgstr "Моля, изберете тип EPG по подразбиране...."
-
 msgid "Please select a distribution from which you would like to flash an image:"
 msgstr ""
 
@@ -14474,10 +14474,6 @@ msgstr "Запиши следващия"
 msgid "Record now"
 msgstr "Запиши сега"
 
-#, python-format
-msgid "Recording time limited due to conflicting timer:%s"
-msgstr "Времето за запис е ограничено поради конфликт с таймер %s"
-
 msgid "Record write error (no space on disk?)"
 msgstr "Грешка при запис (няма място на диска?)"
 
@@ -14534,6 +14530,10 @@ msgstr "Записът стартира! Спиране TimeShift сега ..."
 
 msgid "Recording stopped"
 msgstr "Записът е спрян"
+
+#, python-format
+msgid "Recording time limited due to conflicting timer:%s"
+msgstr "Времето за запис е ограничено поради конфликт с таймер %s"
 
 msgid "Recording tuning failed"
 msgstr "Неуспешна настройка на записа"
@@ -15391,6 +15391,9 @@ msgstr ""
 msgid "Samba Settings"
 msgstr ""
 
+msgid "Samba version"
+msgstr ""
+
 msgid "Same as in active"
 msgstr "Също като в активна"
 
@@ -16227,6 +16230,9 @@ msgstr "Изберете цел на копирането за:"
 
 msgid "Select default EPG type"
 msgstr "Изберете по подразбиране тип EPG ..."
+
+msgid "Select default EPG type:"
+msgstr "Моля, изберете тип EPG по подразбиране...."
 
 msgid "Select default File Commander directory:"
 msgstr ""
@@ -23011,20 +23017,20 @@ msgstr "Превключване на и затвори (настройка в �
 msgid "Zap to next service"
 msgstr "Превключване на следващ канал"
 
-msgid "Zap to next service in the current bouquet"
-msgstr ""
-
 msgid "Zap to next service in history"
 msgstr "Превключване към следващ канал в историята"
+
+msgid "Zap to next service in the current bouquet"
+msgstr ""
 
 msgid "Zap to previous service"
 msgstr "Превключване към предишния канал"
 
-msgid "Zap to previous service in the current bouquet"
-msgstr ""
-
 msgid "Zap to previous service in history"
 msgstr "Превключване към предишен канал в историята"
+
+msgid "Zap to previous service in the current bouquet"
+msgstr ""
 
 msgid "Zap up"
 msgstr "Превключване нагоре"

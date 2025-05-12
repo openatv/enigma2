@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-04 12:30+0000\n"
-"PO-Revision-Date: 2025-05-05 05:50+0000\n"
+"POT-Creation-Date: 2025-05-07 16:24+0000\n"
+"PO-Revision-Date: 2025-05-12 13:02+0000\n"
 "Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -2043,7 +2043,7 @@ msgid "Add recording (Stop after current event)"
 msgstr "Dodaj nagrywanie (stop po aktualnym wydarzeniu)"
 
 msgid "Add service"
-msgstr "Dodaj usługę"
+msgstr "Dodaj kanał"
 
 msgid "Add service names"
 msgstr "Dodaj nazwy usług"
@@ -2052,7 +2052,7 @@ msgid "Add service names to each #SERVICE entry."
 msgstr "Dodaj nazwy usług do każdego wpisu #SERVICE."
 
 msgid "Add service to AutoCam"
-msgstr "Dodaj usługę do AutoCam"
+msgstr "Dodaj kanał do AutoCam"
 
 msgid "Add services to this bouquet?"
 msgstr "Dodać kanał do listy ulubionych?"
@@ -2593,7 +2593,7 @@ msgstr "Proporcje obrazu"
 
 #, python-format
 msgid "Aspect ratio set to '%s'."
-msgstr "Proporcje AV wynoszą %s."
+msgstr "Proporcje obrazu ustawiono na '%s'."
 
 msgid "Aspect switch"
 msgstr "Przełącznik proporcji"
@@ -4927,10 +4927,10 @@ msgid "Consult your motor's specifications for this information, or leave the de
 msgstr "Aby uzyskać te informacje, zapoznaj się z arkuszem specyfikacji silnika lub pozostaw ustawienie domyślne."
 
 msgid "Consult your receiver's manual for more information on power management."
-msgstr "Zarządzanie energią. Więcej informacji można znaleźć w instrukcji obsługi odbiornika."
+msgstr "Więcej informacji na temat zarządzania energią znajdziesz w instrukcji obsługi odbiornika."
 
 msgid "Consult your receiver's manual for more information on power threshold."
-msgstr "Próg mocy. Więcej informacji można znaleźć w instrukcji obsługi odbiornika."
+msgstr "Więcej informacji na temat progu mocy znajdziesz w instrukcji obsługi odbiornika."
 
 #, python-format
 msgid "Contacting IceTV server and setting up your %s %s."
@@ -5395,7 +5395,7 @@ msgid "Cycle PiP(zap)"
 msgstr "Cykl PIP(przełącz)"
 
 msgid "Cycle through the InfoBars"
-msgstr "Przełączanie wyświetlania paska InfoBar"
+msgstr "Przechodź przez paski informacyjne"
 
 msgid "Cycle through the available aspect ratios"
 msgstr "Przejrzyj dostępne proporcje obrazu"
@@ -6374,7 +6374,7 @@ msgid "Display more information about this file"
 msgstr "Wyświetl więcej informacji nt. tego pliku"
 
 msgid "Display oscam information."
-msgstr "Wyświetl informacje oscama."
+msgstr "Wyświetl informacje o oscam."
 
 msgid "Display selection list as a selection menu"
 msgstr "Wyświetl listę wyboru jako menu wyboru"
@@ -8200,7 +8200,7 @@ msgid "Fast"
 msgstr "Szybko"
 
 msgid "Fast Channel Change"
-msgstr "Szybka Zmiana Kanałów"
+msgstr "Szybka zmiana kanałów (FCC)"
 
 msgid "Fast Channel Change Setup"
 msgstr "Konfiguracja Szybkiej Zmiany Kanałów"
@@ -8349,6 +8349,9 @@ msgstr "Pakiety systemu plików"
 
 msgid "File appears to be busy!\n"
 msgstr "Wygląda na to, że plik jest zajęty!\n"
+
+msgid "File compression"
+msgstr "Kompresja plików"
 
 msgid ""
 "File oscam.conf not found.\n"
@@ -9248,7 +9251,7 @@ msgid "History"
 msgstr "Historia"
 
 msgid "History Prev/Next"
-msgstr "Historia Poprzedni/Następny"
+msgstr "Historia poprzedni/następny"
 
 msgid "History Zap"
 msgstr "Historia przełączania kanałów"
@@ -10480,7 +10483,7 @@ msgid "Leave DVD player?"
 msgstr "Opuścić odtwarzacz DVD?"
 
 msgid "Leave movie player"
-msgstr "zamknij odtwarzacz filmów"
+msgstr "Opuść odtwarzacz filmów"
 
 msgid "Leave this set to 'Yes' unless you fully understand why you are adjusting it."
 msgstr "Pozostaw tę opcję na 'tak', chyba że w pełni rozumiesz, dlaczego ją dostosowujesz."
@@ -11070,7 +11073,7 @@ msgid "Max memory positions"
 msgstr "Maksymalna pamięć pozycji"
 
 msgid "Max. bitrate: "
-msgstr "Maks. szybkość transmisji: "
+msgstr "Maks. szybkość: "
 
 msgid "Maxdown +"
 msgstr "Maks.w dół +"
@@ -12549,7 +12552,7 @@ msgid "OSCam Info"
 msgstr "Info o OSCam"
 
 msgid "OSCam Information"
-msgstr "OSCam Info"
+msgstr "OSCam info"
 
 msgid "OSCam Information Settings"
 msgstr "Ustawienia informacji OSCam"
@@ -12558,24 +12561,24 @@ msgid "OSCam webif disabled"
 msgstr "OSCam webif wyłączony"
 
 msgid "OSCamInfo Actions"
-msgstr "Działania OSCamInfo"
+msgstr "Działania OSCam Info"
 
 msgid "OSCamInfo Log Actions"
-msgstr "Akcje logów OSCamInfo"
+msgstr "Akcje logów OSCam Info"
 
 #, python-format
 msgid "OSCamInfo: %s Entitlements for '%s'"
-msgstr "OSCamInfo: %s uprawnienia dla '%s'"
+msgstr "OSCam Info: %s uprawnienia dla '%s'"
 
 #, python-format
 msgid "OSCamInfo: Entitlements for '%s'"
-msgstr "OSCamInfo: Uprawnienia dla '%s'"
+msgstr "OSCam Info: Uprawnienia dla '%s'"
 
 msgid "OSCamInfo: Information"
-msgstr "OSCamInfo: Informacje"
+msgstr "OSCam Info: Informacje"
 
 msgid "OSCamInfo: Log"
-msgstr "OSCamInfo: Log"
+msgstr "OSCam Info: Log"
 
 msgid "OSD"
 msgstr "OSD"
@@ -12707,10 +12710,10 @@ msgid "Open AutoTimer Overview"
 msgstr "Otwórz listę auto timera"
 
 msgid "Open Bouquet selection"
-msgstr "Rozwiń listę kanałów"
+msgstr "Otwórz listę kanałów"
 
 msgid "Open Box Portal"
-msgstr "Pokaż Box Portal"
+msgstr "Otwórz Box Portal"
 
 msgid "Open DreamPlex"
 msgstr "Otwórz DreamPlex"
@@ -12734,7 +12737,7 @@ msgid "Open IMDb"
 msgstr "Otwórz IMDb"
 
 msgid "Open Information menu"
-msgstr "Pokaż informacje"
+msgstr "Otwórz menu Informacje"
 
 msgid "Open Log"
 msgstr "Otwórz dziennik"
@@ -12743,10 +12746,10 @@ msgid "Open Main Menu"
 msgstr "Otwórz menu główne"
 
 msgid "Open Media Player"
-msgstr "Pokaż odtwarzacz multimedialny"
+msgstr "Otwórz odtwarzacz multimedialny"
 
 msgid "Open MediaCenter"
-msgstr "Pokaż centrum multimedialne"
+msgstr "Otwórz centrum multimedialne"
 
 msgid "Open MediaStream"
 msgstr "Otwórz MediaStream"
@@ -12758,7 +12761,7 @@ msgid "Open Network Settings"
 msgstr "Otwórz ustawienia sieciowe"
 
 msgid "Open Plugin Browser"
-msgstr "Pokaż wtyczki"
+msgstr "Otwórz przeglądarkę wtyczek"
 
 msgid "Open QuickMenu"
 msgstr "Otwórz szybkie menu"
@@ -12767,7 +12770,7 @@ msgid "Open RFmod Settings"
 msgstr "Otwórz ustawienia RFmod"
 
 msgid "Open Radio bouquet selection"
-msgstr "Pokaż odtwarzacz Radiowy"
+msgstr "Otwórz wybór listy kanałów radiowych"
 
 msgid "Open RecordTimer Overview"
 msgstr "Otwórz listę timerów"
@@ -12797,16 +12800,16 @@ msgid "Open Simple Umount"
 msgstr "Otwórz Simple Umount"
 
 msgid "Open SleepTimer Settings"
-msgstr "Pokaż timer czuwania"
+msgstr "Otwórz ustawienia SleepTimer"
 
 msgid "Open Subservices selection"
-msgstr "Wybierz podusługi"
+msgstr "Otwórz wybór podusług"
 
 msgid "Open Subtitle options"
 msgstr "Otwórz opcje napisów"
 
 msgid "Open TV bouquet selection"
-msgstr "Pokaż odtwarzacz TV"
+msgstr "Otwórz wybór listy kanałów tv"
 
 msgid "Open Usage and GUI Settings"
 msgstr "Otwórz ustawienia użytkowania i interfejsu graficznego"
@@ -13547,9 +13550,6 @@ msgstr "Naciśnij 'OK' aby kontynuować."
 
 msgid "Please press OK when ready"
 msgstr "Naciśnij 'OK', gdy będziesz gotowy"
-
-msgid "Select default EPG type:"
-msgstr "Wybierz domyślny typ EPG..."
 
 msgid "Please select a distribution from which you would like to flash an image:"
 msgstr "Wybierz dystrybucję, z której chcesz flaszować system:"
@@ -14377,7 +14377,7 @@ msgid "RC selected type"
 msgstr "Wybrany typ RC"
 
 msgid "RDS Actions"
-msgstr "Akcje RDS Paska Informacyjnego"
+msgstr "Akcje RDS"
 
 msgid "REC"
 msgstr "REC"
@@ -14557,10 +14557,6 @@ msgstr "Nagraj następny"
 msgid "Record now"
 msgstr "Nagraj teraz"
 
-#, python-format
-msgid "Recording time limited due to conflicting timer:%s"
-msgstr "Czas nagrywania ograniczony z powodu konfliktu timera:%s"
-
 msgid "Record write error (no space on disk?)"
 msgstr "Błąd zapisu nagrywania (brak miejsca na dysku?)"
 
@@ -14617,6 +14613,10 @@ msgstr "Nagrywanie rozpoczęte! Zatrzymywanie timeshift'u..."
 
 msgid "Recording stopped"
 msgstr "Nagrywanie zatrzymane"
+
+#, python-format
+msgid "Recording time limited due to conflicting timer:%s"
+msgstr "Czas nagrywania jest ograniczony z powodu konfliktu timera:%s"
 
 msgid "Recording tuning failed"
 msgstr "Strojenie nagrywania nie powiodło się"
@@ -15474,6 +15474,9 @@ msgstr "Serwer Samba"
 msgid "Samba Settings"
 msgstr "Ustawienia samby"
 
+msgid "Samba version"
+msgstr "Wersja Samby"
+
 msgid "Same as in active"
 msgstr "Taki sam jak w aktywnym"
 
@@ -16105,7 +16108,7 @@ msgid "Select 'Yes' to show the advanced setting options."
 msgstr "Wybierz \"Tak\", aby wyświetlić zaawansowane opcje ustawień."
 
 msgid "Select 'Yes' to show the bouquet selection screen every time you open the EPG."
-msgstr "Jeśli jest ustawione na 'tak', listy kanałów pokażą się po każdym otwarciu EPG."
+msgstr "Wybierz „Tak”, aby za każdym razem, gdy otworzysz EPG, wyświetlał się ekran wyboru kanałów."
 
 msgid "Select 'Yes' to show the channel list after switching between Radio and TV modes."
 msgstr "Jeśli jest ustawione na 'tak', lista kanałów pojawi się po przełączeniu między trybami radia i TV."
@@ -16311,7 +16314,10 @@ msgid "Select copy destination for:"
 msgstr "Wybierz miejsce docelowe kopii na:"
 
 msgid "Select default EPG type"
-msgstr "Wybierz domyślny typ EPG..."
+msgstr "Wybierz domyślny typ EPG"
+
+msgid "Select default EPG type:"
+msgstr "Wybierz domyślny typ EPG:"
 
 msgid "Select default File Commander directory:"
 msgstr "Wybierz domyślny katalog File Commander:"
@@ -16365,7 +16371,7 @@ msgid "Select if an end time is required."
 msgstr "Wybierz, czy wymagany jest czas zakończenia."
 
 msgid "Select if data entry timeouts are to be applied when entering digits into the service selection pop up screen. When a timeout is exceeded the currently entered number will be used for the service selection. The default timeouts are first digit 3 seconds, other digits 1 second."
-msgstr "Ustaw tryb opóźnienia podczas przełączania kanałów."
+msgstr "Wybierz, czy limity czasu wprowadzania danych mają być stosowane podczas wprowadzania cyfr do wyskakującego ekranu wyboru usługi. Po przekroczeniu limitu czasu aktualnie wpisana liczba zostanie użyta do wyboru usługi. Domyślne limity czasu to pierwsza cyfra 3 sekundy, pozostałe cyfry 1 sekunda."
 
 msgid "Select if the default value for a setup entry is shown and, if so, where it is displayed in relation to the description."
 msgstr "Ta opcja pozwoli ci wybrać jeśli domyślna wartość ustawień elementu jest widoczna i jeśli jest wyświetlana w relacji do tego opisu."
@@ -16572,10 +16578,10 @@ msgid "Select the delay to use when closing a Stream Relay service before reallo
 msgstr "Wybierz opóźnienie, które będzie używane podczas zamykania usługi Stream Relay przed ponownym przydzieleniem tunera dla innej usługi. Używanie „0” jest zalecane tylko w przypadku odbiorników z wieloma tunerami satelitarnymi."
 
 msgid "Select the delay to wait after pressing more digit buttons to select a new service."
-msgstr "Zdefiniowane przez użytkownika opóźnienie po naciśnięciu innego przycisku, aby przejść do kanału."
+msgstr "Wybierz opóźnienie, jakie należy odczekać po naciśnięciu większej liczby przycisków numerycznych w celu wybrania nowej usługi."
 
 msgid "Select the delay to wait after pressing the first digit button to select a new service."
-msgstr "Zdefiniowane przez użytkownika opóźnienie po naciśnięciu pierwszego przycisku, aby przejść do kanału."
+msgstr "Wybierz opóźnienie, jakie należy odczekać po naciśnięciu pierwszego przycisku cyfrowego w celu wybrania nowej usługi."
 
 msgid "Select the desired function and click on 'OK' to assign it. Use 'CH+/-' to toggle between the lists. Select an assigned function and click on 'OK' to deassign it. Use 'NEXT/PREVIOUS' to change the order of the assigned functions."
 msgstr "Wybierz żądaną funkcję i kliknij 'OK ', aby go przypisać.Użyj 'CH +/-' aby przełączać między listami.Wybierz przypisaną funkcję i kliknij 'OK ' aby przypisać. Użyj 'następny/poprzedni 'aby zmienić kolejność przypisanych funkcji."
@@ -16694,7 +16700,7 @@ msgid "Select the next item in the list"
 msgstr "Wybierz następną pozycję na liście"
 
 msgid "Select the preferred service information to display, in addition to the service number, for the service selection pop up screen."
-msgstr "Wybierz informacje o preferowanej usłudze, które będą wyświetlane na ekranie wyboru usługi, oprócz numeru usługi."
+msgstr "Wybierz informacje o preferowanej usłudze, które będą wyświetlane na ekranie wyboru usługi, oprócz jej numeru."
 
 msgid "Select the previous item in list or move the cursor left"
 msgstr "Wybierz poprzednią pozycję na liście lub przesuń kursor w lewo"
@@ -18292,7 +18298,7 @@ msgid "Show/Games show"
 msgstr "Przedstawienie/Pokaz gier"
 
 msgid "Show/Hide Actions"
-msgstr "Pasek informacyjny Pokaż/Ukryj akcje"
+msgstr "Akcje Pokaż/Ukryj"
 
 msgid "Show/Hide focus bar"
 msgstr "Pokaż/Ukryj pasek ostrości"
@@ -19542,7 +19548,7 @@ msgid "System information"
 msgstr "Informacje o systemie"
 
 msgid "System temperature"
-msgstr "Temperatura systemu"
+msgstr "Temperatura układu"
 
 msgid "System: "
 msgstr "System: "
@@ -21480,7 +21486,7 @@ msgid "Update/Backup your firmware, Backup/Restore settings"
 msgstr "Aktualizuj/Utwórz kopię zapasową oprogramowania, Utwórz kopię zapasową/Przywróć ustawienia"
 
 msgid "Update/Backup/Restore your box"
-msgstr "Aktualizuj-Utwórz kopię zapasową-Przywróć ustawienia"
+msgstr "Aktualizuj - Utwórz kopię zapasową - Przywróć ustawienia"
 
 msgid "Updated"
 msgstr "Zaktualizowano"
@@ -22531,7 +22537,7 @@ msgid "When enabled, graphical DVB subtitles will be displayed at their original
 msgstr "Gdy włączone, graficzne napisy DVB będą wyświetlane w ich oryginalnym położeniu."
 
 msgid "When enabled, it is possible to leave the movie player with exit."
-msgstr "Gdy jest włączona,możliwe jest opuszczenie Odtwarzacz filmów przyciskiem 'Exit'."
+msgstr "Po włączeniu tej opcji możliwe jest wyjście z odtwarzacza filmów za pomocą przycisku wyjścia."
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Gdy włączone, pomiar zużycia energii w celu wykrycia, kiedy rotor zatrzymuje obrót (jeśli jest obsługa w tunerze)."
@@ -23005,7 +23011,7 @@ msgid ""
 msgstr ""
 "%s %s nie został prawidłowo wyłączony.\n"
 "\n"
-"Czy chcesz przejść w tryb %s?"
+"Czy chcesz umieścić to w %s?"
 
 #, python-format
 msgid "Your %s %s will Reboot..."
@@ -23096,7 +23102,7 @@ msgstr ""
 "To może zająć kilka minut"
 
 msgid "Your network configuration has been activated."
-msgstr "Ustawienia sieci została aktywowana."
+msgstr "Konfiguracja sieciowa została aktywowana."
 
 msgid "Your password must have at least 5 characters."
 msgstr "Twoje hasło musi mieć co najmniej 5 znaków."
@@ -23189,20 +23195,20 @@ msgstr "Przełącz na kanał i zamknij (ustawienia w menu)"
 msgid "Zap to next service"
 msgstr "Przełącz na następny kanał"
 
-msgid "Zap to next service in the current bouquet"
-msgstr "Przejdź do następnego kanału w bieżącej liscie kanałów"
-
 msgid "Zap to next service in history"
 msgstr "Przełącz do następnego kanału w historii"
+
+msgid "Zap to next service in the current bouquet"
+msgstr "Przejdź do następnego kanału w bieżącej liscie kanałów"
 
 msgid "Zap to previous service"
 msgstr "Przełącz na poprzedni kanał"
 
-msgid "Zap to previous service in the current bouquet"
-msgstr "Przejdź do poprzedniego kanału w bieżącej liscie kanałów"
-
 msgid "Zap to previous service in history"
 msgstr "Przełącz na poprzedni kanał w historii"
+
+msgid "Zap to previous service in the current bouquet"
+msgstr "Przejdź do poprzedniego kanału w bieżącej liscie kanałów"
 
 msgid "Zap up"
 msgstr "Przełącz w górę"
