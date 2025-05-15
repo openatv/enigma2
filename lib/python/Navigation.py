@@ -530,8 +530,8 @@ class Navigation:
 				lastrecordEnd = 0
 				for timer in self.RecordTimer.timer_list:
 					if lastrecordEnd == 0 or lastrecordEnd >= timer.begin:
-						if timer.afterEvent < 2:
-							timer.afterEvent = 2
+						if timer.afterEvent < 2 and timer.forceDeepStandby is False:
+							timer.forceDeepStandby = True
 							print(f"[Navigation] Set after-event for recording '{timer.name}' to deep standby.")
 						if timer.end > lastrecordEnd:
 							lastrecordEnd = timer.end + 900

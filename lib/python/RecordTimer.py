@@ -671,6 +671,7 @@ class RecordTimerEntry(TimerEntry):
 		self.justplay = justplay
 		self.always_zap = always_zap
 		self.afterEvent = afterEvent
+		self.forceDeepStandby = False
 		self.dirname = dirname
 		self.dirnameHadToFallback = False
 		self.autoincrease = False
@@ -1009,7 +1010,7 @@ class RecordTimerEntry(TimerEntry):
 				self.wasInStandby = False
 				self.resetTimerWakeup()
 				return True
-			if self.afterEvent == AFTEREVENT.DEEPSTANDBY or (wasRecTimerWakeup and self.afterEvent == AFTEREVENT.AUTO and self.wasInStandby):
+			if self.forceDeepStandby or self.afterEvent == AFTEREVENT.DEEPSTANDBY or (wasRecTimerWakeup and self.afterEvent == AFTEREVENT.AUTO and self.wasInStandby):
 				if not Screens.Standby.inTryQuitMainloop:  # No shutdown as message box is open.
 					if not boxInStandby and not tvNotActive:  # Not already in standby.
 						message = _("A finished record timer wants to shut down\nyour %s %s. Shutdown now?") % getBoxDisplayName()
