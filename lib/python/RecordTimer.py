@@ -671,6 +671,7 @@ class RecordTimerEntry(TimerEntry):
 		self.justplay = justplay
 		self.always_zap = always_zap
 		self.afterEvent = afterEvent
+		self.forceDeepStandby = False
 		self.dirname = dirname
 		self.dirnameHadToFallback = False
 		self.autoincrease = False
@@ -1009,15 +1010,16 @@ class RecordTimerEntry(TimerEntry):
 				self.wasInStandby = False
 				self.resetTimerWakeup()
 				return True
-			if self.afterEvent == AFTEREVENT.DEEPSTANDBY or (wasRecTimerWakeup and self.afterEvent == AFTEREVENT.AUTO and self.wasInStandby):
+			if self.forceDeepStandby or self.afterEvent == AFTEREVENT.DEEPSTANDBY or (wasRecTimerWakeup and self.afterEvent == AFTEREVENT.AUTO and self.wasInStandby):
 				if not Screens.Standby.inTryQuitMainloop:  # No shutdown as message box is open.
 					if not boxInStandby and not tvNotActive:  # Not already in standby.
-						message = _("A finished record timer wants to shut down\nyour %s %s. Shutdown now?") % getBoxDisplayName()
-						timeout = int(config.usage.shutdown_msgbox_timeout.value)
-						if InfoBar and InfoBar.instance:
-							InfoBar.instance.openInfoBarMessageWithCallback(self.sendTryQuitMainloopNotification, message, MessageBox.TYPE_YESNO, timeout=timeout, default=True)
-						else:
-							AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, message, MessageBox.TYPE_YESNO, timeout=timeout, default=True)
+						if not self.forceDeepStandby:  # Don't show the shutdown message again.
+							message = _("A finished record timer wants to shut down\nyour %s %s. Shutdown now?") % getBoxDisplayName()
+							timeout = int(config.usage.shutdown_msgbox_timeout.value)
+							if InfoBar and InfoBar.instance:
+								InfoBar.instance.openInfoBarMessageWithCallback(self.sendTryQuitMainloopNotification, message, MessageBox.TYPE_YESNO, timeout=timeout, default=True)
+							else:
+								AddNotificationWithCallback(self.sendTryQuitMainloopNotification, MessageBox, message, MessageBox.TYPE_YESNO, timeout=timeout, default=True)
 					else:
 						print("[RecordTimer] quitMainloop #1.")
 						quitMainloop(1)
@@ -1403,8 +1405,8 @@ class RecordTimerEntry(TimerEntry):
 
 	def gotRecordEvent(self, record, event):
 		# DEBUG: This is not working (never true), please fix. (Comparing two swig wrapped ePtrs.)
-		#if self.__record_service.__deref__() != record.__deref__():
-		#	return
+		if self.__record_service.__deref__() != record.__deref__():
+			return
 		# self.log(16, f"Record event {event}.")
 		if event == iRecordableService.evRecordWriteError:
 			if self.record_service:
