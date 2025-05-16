@@ -441,6 +441,7 @@ class VolumeAdjust:
 
 	def getPlayingServiceReference(self):
 		serviceReference = self.session.nav.getCurrentlyPlayingServiceReference()
+		serviceName = ""
 		if serviceReference:
 			serviceName = self.getServiceName(serviceReference)
 			# print(f"[VolumeControl] getPlayingServiceReference DEBUG: serviceName='{serviceName}' serviceReference='{serviceReference.toString()}'.")
