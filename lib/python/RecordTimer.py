@@ -13,7 +13,7 @@ from Components.config import config
 from Components.Harddisk import findMountPoint
 import Components.RecordingConfig
 Components.RecordingConfig.InitRecordingConfig()
-from Components.SystemInfo import getBoxDisplayName
+from Components.SystemInfo import getBoxDisplayName, BoxInfo
 from Components.ScrambledRecordings import ScrambledRecordings
 from Components.TimerSanityCheck import TimerSanityCheck
 from Components.UsageConfig import defaultMoviePath, calcFrontendPriorityIntval
@@ -695,10 +695,9 @@ class RecordTimerEntry(TimerEntry):
 			elif config.recording.ecm_data.value == "normal":
 				self.descramble = True
 				self.record_ecm = False
-			if self.descramble or not self.record_ecm:
-				if cihelper.ServiceIsAssigned(self.service_ref.ref):
-					self.descramble = False
-					self.record_ecm = True
+			if (self.descramble or not self.record_ecm) and BoxInfo.getItem("CanDescrambleInStandby") and config.recording.standbyDescramble.value and cihelper.ServiceIsAssigned(self.service_ref.ref):
+				self.descramble = False
+				self.record_ecm = True
 		else:
 			self.descramble = descramble
 			self.record_ecm = record_ecm
