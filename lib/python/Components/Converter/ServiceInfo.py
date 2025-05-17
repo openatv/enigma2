@@ -172,7 +172,7 @@ class ServiceInfo(Converter):
 				case self.IS_480:
 					result = videoHeight > 0 and videoHeight <= 480
 				case self.IS_4K:
-					result = videoHeight > 1500 and videoWidth <= 3840 and videoGamma == 0
+					result = videoHeight > 1500 and videoWidth <= 3840 and videoGamma < 1
 				case self.IS_576:
 					result = videoHeight > 500 and videoHeight <= 576
 				case self.IS_720:
@@ -180,7 +180,7 @@ class ServiceInfo(Converter):
 				case self.IS_CRYPTED:
 					result = info.getInfo(iServiceInformation.sIsCrypted) == 1
 				case self.IS_HD:
-					result = videoHeight > 700 and videoHeight <= 1080 and videoGamma == 0
+					result = videoHeight > 700 and videoHeight <= 1080 and videoGamma < 1
 				case self.IS_HDHDR:
 					result = videoWidth > 720 and videoWidth < 1980 and videoGamma > 0
 				case self.IS_HDR:
@@ -196,7 +196,7 @@ class ServiceInfo(Converter):
 				case self.IS_SD:
 					result = videoHeight < 720
 				case self.IS_SDR:
-					result = videoWidth > 2160 and videoWidth <= 3840 and videoGamma == 0
+					result = videoWidth > 2160 and videoWidth <= 3840 and videoGamma < 1
 				case self.IS_SD_AND_NOT_WIDESCREEN:
 					result = videoHeight < 720 and videoAspect not in WIDESCREEN
 				case self.IS_SD_AND_WIDESCREEN:
