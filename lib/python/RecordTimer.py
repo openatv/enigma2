@@ -13,7 +13,7 @@ from Components.config import config
 from Components.Harddisk import findMountPoint
 import Components.RecordingConfig
 Components.RecordingConfig.InitRecordingConfig()
-from Components.SystemInfo import getBoxDisplayName, BoxInfo
+from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.ScrambledRecordings import ScrambledRecordings
 from Components.TimerSanityCheck import TimerSanityCheck
 from Components.UsageConfig import defaultMoviePath, calcFrontendPriorityIntval
