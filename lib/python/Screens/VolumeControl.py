@@ -300,7 +300,6 @@ class VolumeAdjust:
 		else:
 			VolumeAdjust.instance = self
 			self.session = session
-			self.serviceReference = None
 			self.volumeControl = eDVBVolumecontrol.getInstance()
 			config.volumeAdjust = ConfigSubsection()
 			config.volumeAdjust.adjustMode = ConfigSelection(default=self.MODE_DISABLED, choices=[
@@ -314,6 +313,7 @@ class VolumeAdjust:
 			config.volumeAdjust.mpegMax = ConfigSelectionNumber(default=100, min=10, max=100, stepwidth=5)
 			config.volumeAdjust.showVolumeBar = ConfigYesNo(default=False)
 			self.onClose = []  # This is used by ServiceEventTracker.
+			self.serviceReference = None
 			self.eventTracker = ServiceEventTracker(screen=self, eventmap={
 				iPlayableService.evStart: self.eventStart,
 				iPlayableService.evEnd: self.eventEnd,
@@ -441,7 +441,6 @@ class VolumeAdjust:
 
 	def getPlayingServiceReference(self):
 		serviceReference = self.session.nav.getCurrentlyPlayingServiceReference()
-		serviceName = ""
 		if serviceReference:
 			serviceName = self.getServiceName(serviceReference)
 			# print(f"[VolumeControl] getPlayingServiceReference DEBUG: serviceName='{serviceName}' serviceReference='{serviceReference.toString()}'.")
@@ -451,6 +450,8 @@ class VolumeAdjust:
 					serviceReference = eServiceReference(info.getInfoString(serviceReference, iServiceInformation.sServiceref))  # Get eServicereference from meta file. No need to know if eServiceReference is valid.
 					serviceName = self.getServiceName(serviceReference)
 					# print(f"[VolumeControl] getPlayingServiceReference DEBUG: resolved serviceName='{serviceName}' serviceReference='{serviceReference.toString()}'.")
+		else:
+			serviceName = ""
 		return serviceReference, serviceName
 
 	def getServiceName(self, serviceReference):
