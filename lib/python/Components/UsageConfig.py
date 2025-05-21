@@ -1476,11 +1476,11 @@ def InitUsageConfig():
 	config.seek.defined["CUT_LEFT"] = ConfigSelectionNumber(default=-1, min=-600, max=600, stepwidth=1, wraparound=True)
 	config.seek.defined["CUT_RIGHT"] = ConfigSelectionNumber(default=1, min=-600, max=600, stepwidth=1, wraparound=True)
 	config.seek.defined["CUT_DOWN"] = ConfigSelectionNumber(default=-300, min=-600, max=600, stepwidth=1, wraparound=True)
-	config.seek.sensibility = ConfigSelectionNumber(min=1, max=10, stepwidth=1, default=10, wraparound=True)
-	config.seek.selfdefined_13 = ConfigSelectionNumber(min=1, max=300, stepwidth=1, default=15, wraparound=True)
-	config.seek.selfdefined_46 = ConfigSelectionNumber(min=1, max=600, stepwidth=1, default=60, wraparound=True)
-	config.seek.selfdefined_79 = ConfigSelectionNumber(min=1, max=1200, stepwidth=1, default=300, wraparound=True)
-
+	# The following 4 items are legacy and kept for plugin compatibility.
+	config.seek.sensibility = ConfigSelectionNumber(default=10, min=1, max=10, stepwidth=1, wraparound=True)
+	config.seek.selfdefined_13 = ConfigSelectionNumber(default=15, min=1, max=300, stepwidth=1, wraparound=True)
+	config.seek.selfdefined_46 = ConfigSelectionNumber(default=60, min=1, max=600, stepwidth=1, wraparound=True)
+	config.seek.selfdefined_79 = ConfigSelectionNumber(default=300, min=1, max=1200, stepwidth=1, wraparound=True)
 	config.seek.speeds_forward = ConfigSet(default=[2, 4, 8, 16, 32, 64, 128], choices=[2, 4, 6, 8, 12, 16, 24, 32, 48, 64, 96, 128])
 	config.seek.speeds_backward = ConfigSet(default=[2, 4, 8, 16, 32, 64, 128], choices=[1, 2, 4, 6, 8, 12, 16, 24, 32, 48, 64, 96, 128])
 	config.seek.speeds_slowmotion = ConfigSet(default=[2, 4, 8], choices=[2, 4, 6, 8, 12, 16, 25])
