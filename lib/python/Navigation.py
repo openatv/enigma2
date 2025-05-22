@@ -2,7 +2,7 @@ from os import remove
 from os.path import exists
 from time import ctime, time
 
-from enigma import eServiceCenter, eServiceReference, eTimer, getBestPlayableServiceReference, iPlayableService, iServiceInformation, iRecordableServicePtr, pNavigation
+from enigma import eServiceCenter, eServiceReference, eStreamServer, eTimer, getBestPlayableServiceReference, iPlayableService, iServiceInformation, iRecordableService, iRecordableServicePtr, pNavigation
 
 import NavigationInstance
 import RecordTimer
@@ -45,9 +45,14 @@ class Navigation:
 			raise NavigationInstance.instance
 		NavigationInstance.instance = self  # This is needed to prevent circular imports
 		self.ServiceHandler = eServiceCenter.getInstance()
+		self.activeStreamings = []
+		self.indicatorRecordingsCount = None
+		self.anyRecordingsCount = None
+		self.realRecordingsCount = None
 		self.pnav = pNavigation()
 		self.pnav.m_event.get().append(self.dispatchEvent)
 		self.pnav.m_record_event.get().append(self.dispatchRecordEvent)
+		eStreamServer.getInstance().streamStatusChanged.get().append(self.streamStatusChangedCB)
 		self.event = []
 		self.record_event = []
 		self.currentBouquetName = ""
@@ -284,6 +289,9 @@ class Navigation:
 
 	def dispatchRecordEvent(self, rec_service, event):
 		# print(f"[Navigation] Record_event {rec_service}, {event}.")
+		self.anyRecordingsCount = None
+		self.indicatorRecordingsCount = None
+		self.realRecordingsCount = None
 		for x in self.record_event:
 			x(rec_service, event)
 
@@ -497,8 +505,25 @@ class Navigation:
 			ret = self.pnav and self.pnav.stopRecordService(service)
 		return ret
 
+	def streamStatusChangedCB(self, status, sref):
+		recService = iRecordableServicePtr()  # This is only a dummy variable
+		if status == 0:
+			self.activeStreamings = [recService]  # TODO: Check if this is correct. Add support for multiple streams.
+		else:
+			self.activeStreamings = []
+
+		self.anyRecordingsCount = None
+		self.indicatorRecordingsCount = None
+		self.realRecordingsCount = None
+
+		for x in self.record_event:
+			x(recService, iRecordableService.evStart if status == 0 else iRecordableService.evEnd)
+
 	def getRecordings(self, simulate=False, type=pNavigation.isAnyRecording):
-		return self.pnav and self.pnav.getRecordings(simulate, type)
+		if ((type == pNavigation.isAnyRecording) or (type & pNavigation.isStreaming == pNavigation.isStreaming)) and self.activeStreamings:
+			return self.pnav and self.pnav.getRecordings(simulate, type) + self.activeStreamings
+		else:
+			return self.pnav and self.pnav.getRecordings(simulate, type)
 
 	def getRecordingsServices(self, type=pNavigation.isAnyRecording):
 		return self.pnav and self.pnav.getRecordingsServices(type)
@@ -544,13 +569,19 @@ class Navigation:
 		return self.currentlyPlayingService
 
 	def getAnyRecordingsCount(self):
-		return len(self.getRecordings(False, pNavigation.isAnyRecording))
+		if self.anyRecordingsCount is None:
+			self.anyRecordingsCount = len(self.getRecordings(False, pNavigation.isAnyRecording))
+		return self.anyRecordingsCount
 
 	def getIndicatorRecordingsCount(self):
-		return len(self.getRecordings(False, recType(config.recording.show_rec_symbol_for_rec_types.getValue())))
+		if self.indicatorRecordingsCount is None:
+			self.indicatorRecordingsCount = len(self.getRecordings(False, recType(config.recording.show_rec_symbol_for_rec_types.getValue())))
+		return self.indicatorRecordingsCount
 
 	def getRealRecordingsCount(self):
-		return len(self.getRecordings(False, pNavigation.isRealRecording))
+		if self.realRecordingsCount is None:
+			self.realRecordingsCount = len(self.getRecordings(False, pNavigation.isRealRecording))
+		return self.realRecordingsCount
 
 	def stopService(self):
 		if self.pnav:
