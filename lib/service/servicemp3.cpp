@@ -522,6 +522,8 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	m_is_live = false;
 	m_use_prefillbuffer = false;
 	m_paused = false;
+	m_clear_buffers = true;
+	m_initial_start = false;
 	m_first_paused = false;
 	m_cuesheet_loaded = false; /* cuesheet CVR */
 	m_audiosink_not_running = false;
@@ -1290,11 +1292,12 @@ RESULT eServiceMP3::trickSeek(gdouble ratio)
 		ret = gst_element_get_state(m_gst_playbin, &state, &pending, 3LL * GST_SECOND);
 		if (state == GST_STATE_PLAYING && pending == GST_STATE_PAUSED)
 		{
-
+			m_clear_buffers = true;
 			if (m_currentAudioStream >= 0)
 				selectAudioStream(m_currentAudioStream, true);
 			else
 				selectAudioStream(0, true);
+			m_clear_buffers = false;
 
 			if (pos_ret >= 0)
 			{
@@ -1981,11 +1984,16 @@ RESULT eServiceMP3::selectTrack(unsigned int i)
 		return m_currentAudioStream;
 	eDebug("[eServiceMP3 selectTrack %d", i);
 
-	return selectAudioStream(i);
+	m_clear_buffers = true;
+	int result = selectAudioStream(i);
+	m_clear_buffers = false;
+	return result;
 }
 
-void eServiceMP3::clearBuffers()
+void eServiceMP3::clearBuffers(bool force)
 {
+	if (!m_clear_buffers && !force) return;
+
 	bool validposition = false;
 	pts_t ppos = 0;
 	if (getPlayPosition(ppos) >= 0)
@@ -1997,16 +2005,14 @@ void eServiceMP3::clearBuffers()
 	}
 	if (validposition)
 	{
-		//flush
+		/* flush */
 		seekTo(ppos);
 	}
 }
 
-
 int eServiceMP3::selectAudioStream(int i, bool skipAudioFix)
 {
 	int current_audio, current_audio_orig;
-
 	g_object_get (m_gst_playbin, "current-audio", &current_audio_orig, NULL);
 	g_object_set (m_gst_playbin, "current-audio", i, NULL);
 	g_object_get (m_gst_playbin, "current-audio", &current_audio, NULL);
@@ -2358,10 +2364,17 @@ void eServiceMP3::gstBusCall(GstMessage *msg)
 						}
 
 						if (autoaudio)
-							selectTrack(autoaudio);
+							selectAudioStream(autoaudio);
 					}
-					else {
-						selectTrack(m_currentAudioStream);
+					else
+					{
+						selectAudioStream(m_currentAudioStream);
+					}
+					m_clear_buffers = false;
+					if (!m_initial_start)
+					{
+						seekTo(0);
+						m_initial_start = true;
 					}
 					if (!m_first_paused)
 						m_event((iPlayableService*)this, evGstreamerPlayStarted);
