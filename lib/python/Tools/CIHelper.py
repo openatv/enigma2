@@ -136,7 +136,7 @@ class CIHelper:
 
 	def isPlayable(self, service):
 		service = eServiceReference(service)
-		if NavigationInstance.instance.getRecordings():
+		if NavigationInstance.instance.getAnyRecordingsCount():
 			if self.ServiceIsAssigned(service):
 				for timer in NavigationInstance.instance.RecordTimer.timer_list:
 					if timer.state == TimerEntry.StateRunning and timer.descramble:
