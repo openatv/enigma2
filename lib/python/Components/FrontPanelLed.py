@@ -78,11 +78,10 @@ class FrontPanelLed:
 		if not self._session:
 			return
 		if event == iRecordableService.evEnd:
-			recordings = self._session.nav.getRecordings()
-			if not recordings:
-				FrontPanelLed.stopRecording()
-			else:
+			if self._session.nav.getAnyRecordingsCount():
 				FrontPanelLed.recording()
+			else:
+				FrontPanelLed.stopRecording()
 		elif event == iRecordableService.evStart:
 			FrontPanelLed.recording()
 
