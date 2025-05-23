@@ -316,6 +316,7 @@ private:
 	bool m_paused;
 	bool m_clear_buffers;
 	bool m_initial_start;
+	bool m_send_ev_start;
 	bool m_first_paused;
 	/* cuesheet load check */
 	bool m_cuesheet_loaded;
