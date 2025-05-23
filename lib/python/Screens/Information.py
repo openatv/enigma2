@@ -1696,7 +1696,8 @@ class ServiceInformation(InformationBase):
 				3: _("ASS file"),
 				4: _("SRT file"),
 				5: _("VOB file"),
-				6: _("PGS file")
+				6: _("PGS file"),
+				7: "WebVTT",
 			}
 			subtitleSelected = self.service and self.service.subtitle().getCachedSubtitle()
 			if subtitleSelected:

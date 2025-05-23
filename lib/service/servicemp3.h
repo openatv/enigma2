@@ -118,7 +118,7 @@ public:
 typedef struct _GstElement GstElement;
 
 typedef enum { atUnknown, atMPEG, atMP3, atAC3, atDTS, atAAC, atPCM, atOGG, atFLAC, atWMA, atDRA, atEAC3 } audiotype_t;
-typedef enum { stUnknown, stPlainText, stSSA, stASS, stSRT, stVOB, stPGS, stDVB } subtype_t;
+typedef enum { stUnknown, stPlainText, stSSA, stASS, stSRT, stVOB, stPGS, stWebVTT, stDVB } subtype_t;
 typedef enum { ctNone, ctMPEGTS, ctMPEGPS, ctMKV, ctAVI, ctMP4, ctVCD, ctCDA, ctASF, ctOGG, ctWEBM, ctDRA } containertype_t;
 
 class eServiceMP3: public iPlayableService, public iPauseableService,
@@ -219,6 +219,7 @@ public:
 		audiotype_t type;
 		std::string language_code; /* iso-639, if available. */
 		std::string codec; /* clear text codec description */
+		std::string title;
 		audioStream()
 			:pad(0), type(atUnknown)
 		{

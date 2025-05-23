@@ -132,7 +132,7 @@ class TrackInfo(Poll, Converter):
 
 						elif selectedSubtitle[0] == 2:
 							types = (_("unknown"), _("embedded"), _("SSA file"), _("ASS file"),
-								_("SRT file"), _("VOB file"), _("PGS file"))
+								_("SRT file"), _("VOB file"), _("PGS file"), "WebVTT")
 							try:
 								description = types[x[2]]
 							except:
