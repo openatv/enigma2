@@ -1,4 +1,4 @@
-from enigma import iPlayableService, eTimer, eSize
+from enigma import eDVBDB, iPlayableService, eTimer, eSize
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.ActionMap import NumberActionMap
 from Components.ConfigList import ConfigListScreen
@@ -473,8 +473,11 @@ class AudioSelection(ConfigListScreen, Screen):
 	def changeAudio(self, audio):
 		track = int(audio)
 		if isinstance(track, int):
-			if self.session.nav.getCurrentService().audioTracks().getNumberOfTracks() > track:
+			service = self.session.nav.getCurrentService()
+			if service.audioTracks().getNumberOfTracks() > track:
 				self.audioTracks.selectTrack(track)
+				if self.session.nav.isCurrentServiceIPTV():
+					eDVBDB.getInstance().saveIptvServicelist()
 
 	def keyLeft(self):
 		if self.focus == FOCUS_CONFIG:
@@ -577,6 +580,8 @@ class AudioSelection(ConfigListScreen, Screen):
 				else:
 					self.enableSubtitle(cur[0][:5])
 					self.__updatedInfo()
+				if self.session.nav.isCurrentServiceIPTV():
+					eDVBDB.getInstance().saveIptvServicelist()
 			self.close(0)
 		elif self.focus == FOCUS_CONFIG:
 			self.keyRight()
