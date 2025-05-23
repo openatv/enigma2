@@ -1350,7 +1350,7 @@ def PositionerMain(session, **kwargs):
 		if len(nimList) == 0:
 			messageText = _("No positioner capable frontend found.")
 		else:
-			if len(session.nav.getRecordings(False, pNavigation.isAnyRecording)) > 0:
+			if session.nav.getAnyRecordingsCount():
 				messageText = _("A recording is currently running. Please stop the recording before trying to configure the positioner.")
 			else:
 				usableNims = []
