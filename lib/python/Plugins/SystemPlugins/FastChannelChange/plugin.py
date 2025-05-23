@@ -169,7 +169,7 @@ class FCCSupport:
 
 	# get current recording state
 	def getRecordings(self):
-		self.recordings = bool(self.session.nav.getRecordings())
+		self.recordings = self.session.nav.getAnyRecordingsCount() > 0
 
 	def addRecordEventCallback(self, enable=True):
 		if enable:
