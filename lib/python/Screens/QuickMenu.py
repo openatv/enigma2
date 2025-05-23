@@ -392,7 +392,7 @@ class QuickMenu(Screen, ProtectedScreen):
 			PositionerMain(self.session)
 
 		def satfinderMain():
-			if len(NavigationInstance.instance.getRecordings(False, pNavigation.isAnyRecording)) > 0:
+			if NavigationInstance.instance.getAnyRecordingsCount():
 				self.session.open(MessageBox, _("A recording is currently running. Please stop the recording before trying to start the satellite finder."), MessageBox.TYPE_ERROR, windowTitle=self.getTitle())
 			else:
 				from Plugins.SystemPlugins.Satfinder.plugin import Satfinder
