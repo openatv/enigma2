@@ -900,7 +900,7 @@ class ServiceList(ServiceListBase, ServiceListTemplateParser):
 	def getRecordingList(self, configElement=None):
 		self.recordingList = {}
 		if config.channelSelection.showTimers.value:
-			if NavigationInstance.instance.getRecordings():
+			if NavigationInstance.instance.getAnyRecordingsCount():
 				for timer in NavigationInstance.instance.RecordTimer.timer_list:
 					if timer.state == TimerEntry.StateRunning and not timer.justplay and hasattr(timer, "Filename"):
 						self.recordingList[str(timer.service_ref)] = 1
