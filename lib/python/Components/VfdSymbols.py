@@ -150,7 +150,7 @@ class VFDSymbolsUpdater:
 
 	def setRecording(self):
 		if self.recMode:
-			recordings = len(self.session.nav.getRecordings(False, recType(config.recording.show_rec_symbol_for_rec_types.value)))
+			recordings = self.session.nav.getIndicatorRecordingsCount()
 			match self.recMode:
 				case 1:
 					value = "3" if recordings else "0"
