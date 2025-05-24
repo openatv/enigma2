@@ -59,8 +59,8 @@ def InitRecordingConfig():
 		("real_streaming", _("Real recordings or streaming")),
 		("real_pseudo", _("Real or pseudo recordings"))
 	]
-	config.recording.show_rec_symbol_for_rec_types = ConfigSelection(default="real_streaming", choices=choices)
-	config.recording.warn_box_restart_rec_types = ConfigSelection(default="real_streaming", choices=choices)
+	config.recording.show_rec_symbol_for_rec_types = ConfigSelection(default="real", choices=choices)
+	config.recording.warn_box_restart_rec_types = ConfigSelection(default="real", choices=choices)
 	choices = [
 		("ask", _("Ask user")),
 		("abort_no_msg", _("Just abort, no message")),
