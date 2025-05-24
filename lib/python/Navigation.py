@@ -506,6 +506,8 @@ class Navigation:
 		return ret
 
 	def streamStatusChangedCB(self, status, sref, host):
+		if "127.0.0.1" in host:  # Ignore local host.
+			return
 		print(f"[Navigation] Stream status changed: {status}, {sref}, {host}.")
 		recService = iRecordableServicePtr()  # This is only a dummy variable
 		if status == 0:
