@@ -71,11 +71,11 @@ public:
 
 	static eStreamServer *getInstance();
 	void stopStream();
-	void startStream(const std::string serviceref);
+	void startStream(const std::string serviceref, const std::string remotehost);
 	bool stopStreamClient(const std::string remotehost, const std::string serviceref);
 	PyObject *getConnectedClients();
 	PyObject *getConnectedClientDetails(int index);
-	PSignal2<void,int,const char *> streamStatusChanged;
+	PSignal3<void,int,const char *,const char *> streamStatusChanged;
 
 	enum
 	{

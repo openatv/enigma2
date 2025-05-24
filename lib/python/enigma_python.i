@@ -340,9 +340,15 @@ public:
 	$1 = $input->get();
 }
 
-%template(PSignal2VIS) PSignal2<void,int,const char *c>;
+template<class R, class P0, class P1, class P2> class PSignal3
+{
+public:
+	PyObject *get();
+};
 
-%typemap(out) PSignal2VIS {
+%template(PSignal3VISS) PSignal3<void,int,const char *,const char *>;
+
+%typemap(out) PSignal3VISS {
 	$1 = $input->get();
 }
 
