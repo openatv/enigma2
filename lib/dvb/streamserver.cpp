@@ -360,6 +360,8 @@ void eStreamServer::connectionLost(eStreamClient *client)
 	if (it != clients.end())
 	{
         std::string serviceref = it->getServiceref();
+		if(serviceref.empty())
+			serviceref = it->getDVBService().toString();
         std::string client = it->getRemoteHost();
 		clients.erase(it);
 		streamStatusChanged(2,serviceref.c_str(), client.c_str());
