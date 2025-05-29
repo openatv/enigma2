@@ -7,9 +7,9 @@ Standard: c++17
 # Modern indentation
 IndentWidth: 4
 TabWidth: 4
-UseTab: Never
+UseTab: Always
 ContinuationIndentWidth: 4
-NamespaceIndentation: None
+NamespaceIndentation: Inner
 AccessModifierOffset: -4
 
 # Modern code layout
@@ -40,9 +40,9 @@ AllowShortCaseLabelsOnASingleLine: false
 PointerAlignment: Left
 AlignAfterOpenBracket: Align  # Changed from AlignOrBreak to Align
 AlignOperands: true
-AlignTrailingComments: true
-AlignConsecutiveAssignments: true
-AlignConsecutiveDeclarations: true
+AlignTrailingComments: false
+AlignConsecutiveAssignments: false
+AlignConsecutiveDeclarations: false
 
 # Modern breaking rules
 AllowAllParametersOfDeclarationOnNextLine: true
