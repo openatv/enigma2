@@ -1,6 +1,5 @@
 import time
 import sys
-import six
 
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
@@ -57,7 +56,8 @@ class SABnzbdSetupScreen(Screen):
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.InstalldataAvail)
 
 	def InstalldataAvail(self, str, retval, extra_args):
-		str = six.ensure_str(str)
+		if isinstance(str, bytes):
+			str = str.decode(encoding='utf-8', errors='strict')
 		if not str:
 			restartbox = self.session.openWithCallback(self.InstallPackage, MessageBox, _('Your %s %s will be restarted after the installation of service.\n\nDo you want to install now ?') % getBoxDisplayName(), MessageBox.TYPE_YESNO)
 			restartbox.setTitle(_('Ready to install "%s"?') % self.service_name)
@@ -85,7 +85,8 @@ class SABnzbdSetupScreen(Screen):
 		self.Console.ePopen('/usr/bin/opkg list_installed ' + self.service_name, self.UninstalldataAvail)
 
 	def UninstalldataAvail(self, str, retval, extra_args):
-		str = six.ensure_str(str)
+		if isinstance(str, bytes):
+			str = str.decode(encoding='utf-8', errors='strict')
 		if str:
 			restartbox = self.session.openWithCallback(self.RemovePackage, MessageBox, _("Your %s %s will be restarted after the removal of service\nDo you want to remove now?") % getBoxDisplayName(), MessageBox.TYPE_YESNO)
 			restartbox.setTitle(_("Ready to remove \"%s\"?") % self.service_name)
