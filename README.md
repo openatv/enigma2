@@ -2,7 +2,7 @@
 
 ## Build status
 
-[![enigma2 build](https://github.com/openatv/enigma2/actions/workflows/enigma2.yml/badge.svg)](https://github.com/openatv/enigma2/actions/workflows/enigma2.yml)
+[![enigma2 build](https://github.com/openatv/enigma2/actions/workflows/build.yml/badge.svg)](https://github.com/openatv/enigma2/actions/workflows/build.yml)
 
 [Active Build Status](https://images.mynonpublic.com/openatv/build_status_arm_751.html "Active Build Status") - shows which box is currently being built 
 

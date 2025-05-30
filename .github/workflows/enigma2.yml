@@ -1,10 +1,7 @@
-name: enigma2 build
+name: enigma2 build old
 
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -101,7 +98,6 @@ jobs:
           CC: "gcc-${{ matrix.gcc }}"
           CXX: "g++-${{ matrix.gcc }}"
         run: |
-          pip3 install six
           echo "compiling enigma2"
           autoreconf -i
           ./configure --with-libsdl=no --with-boxtype=nobox --enable-dependency-tracking ac_cv_prog_c_openmp=-fopenmp --with-gstversion=1.0 --with-textlcd

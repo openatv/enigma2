@@ -1,0 +1,32 @@
+name: enigma2 build
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build enigma2
+    runs-on: ubuntu-24.04
+    container:
+      image: ghcr.io/openatv/enigma2-buildenv/enigma2-buildenv:latest
+      options: --user root
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build enigma2
+        env:
+          CC: "gcc-14"
+          CXX: "g++-14"
+        run: |
+          echo "compiling enigma2"
+          autoreconf -i
+          export LIBS="-L/usr/lib/x86_64-linux-gnu -lpython3.13"
+          export CPPFLAGS="-I/usr/include/python3.13"
+          ./configure PYTHON=python3.13 --with-libsdl=no --with-boxtype=nobox --enable-dependency-tracking ac_cv_prog_c_openmp=-fopenmp --with-gstversion=1.0 --with-textlcd
+          make
+          python3.13 -m compileall .
+          echo done!
