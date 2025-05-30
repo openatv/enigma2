@@ -12,7 +12,6 @@ from os import system, stat as mystat, path, remove, rename
 from enigma import eTimer
 from glob import glob
 import stat
-import six
 
 config.usage.swapautostart = ConfigYesNo(default=False)
 
@@ -36,7 +35,8 @@ class StartSwap:
 
 	def startSwap2(self, result=None, retval=None, extra_args=None):
 		if result is not None:
-			result = six.ensure_str(result)
+			if isinstance(result, bytes):
+				result = result.decode(encoding='utf-8', errors='strict')
 		swap_place = ""
 		if result and result.find('sd') != -1:
 			for line in result.split('\n'):
@@ -149,7 +149,8 @@ class Swap(Screen):
 
 	def updateSwap2(self, result=None, retval=None, extra_args=None):
 		if result is not None:
-			result = six.ensure_str(result)
+			if isinstance(result, bytes):
+				result = result.decode(encoding='utf-8', errors='strict')
 		self.swapsize = 0
 		self.swap_place = ''
 		self.swap_active = False
