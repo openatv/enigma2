@@ -6,7 +6,6 @@ Copyright (C) 2014 Peter Urbanec
 All Right Reserved
 License: Proprietary / Commercial - contact enigma.licensing (at) urbanec.net
 '''
-import six
 
 import requests
 import json
@@ -42,14 +41,23 @@ def isServerReachable():
     return False
 
 
+def ensure_binary(s, encoding='utf-8', errors='strict'):
+    if isinstance(s, bytes):
+        return s
+    if isinstance(s, str):
+        return s.encode(encoding, errors)
+    raise TypeError("not expecting type '%s'" % type(s))
+
+
 def getMacAddress(ifname):
     result = "00:00:00:00:00:00"
     sock = socket(AF_INET, SOCK_DGRAM)
     # noinspection PyBroadException
     try:
-        iface = pack('256s', six.ensure_binary(ifname[:15], "utf-8"))
+        iface = pack('256s', ensure_binary(ifname[:15], "utf-8"))
         info = ioctl(sock.fileno(), 0x8927, iface)
-        result = ''.join(['%02x:' % six.byte2int([char]) for char in info[18:24]])[:-1].upper()
+        result = ''.join(['%02x:' % char for char in info[18:24]])[:-1].upper()
+        # result = ''.join(['%02x:' % six.byte2int([char]) for char in info[18:24]])[:-1].upper()
     except:
         pass
     sock.close()
