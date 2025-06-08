@@ -509,9 +509,8 @@ class Navigation:
 		if "127.0.0.1" in host:  # Ignore local host.
 			return
 		print(f"[Navigation] Stream status changed: {status}, {sref}, {host}.")
-		recService = iRecordableServicePtr()  # This is only a dummy variable
 		if status == 0:
-			self.activeStreamings = [recService]  # TODO: Check if this is correct. Add support for multiple streams.
+			self.activeStreamings = [sref]  # TODO: Check if this is correct. Add support for multiple streams.
 		else:
 			self.activeStreamings = []
 
@@ -520,7 +519,7 @@ class Navigation:
 		self.realRecordingsCount = None
 
 		for x in self.record_event:
-			x(recService, iRecordableService.evStart if status == 0 else iRecordableService.evEnd)
+			x(None, iRecordableService.evStart if status == 0 else iRecordableService.evEnd)
 
 	def getRecordings(self, simulate=False, type=pNavigation.isAnyRecording):
 		if ((type == pNavigation.isAnyRecording) or (type & pNavigation.isStreaming == pNavigation.isStreaming)) and self.activeStreamings:

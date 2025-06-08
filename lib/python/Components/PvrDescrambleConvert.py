@@ -235,36 +235,37 @@ class PVRDescrambleConvert():
 				nav.record_event.remove(self.gotRecordEvent)
 
 	def gotRecordEvent(self, service, event):
-		if self.debug:
-			print("[PVRDescramble] gotRecordEvent : ", service, event, service.getServiceType())
-		if service.getServiceType() == SERVICETYPE_PVR_DESCRAMBLE:
+		if service:
 			if self.debug:
-				print("[PVRDescramble] gotRecordEvent SERVICETYPE_PVR_DESCRAMBLE self.converting / self.convertFilename", self.converting, self.convertFilename)
-			if self.converting:
-				if self.convertFilename:
-					if self.debug:
-						print("[PVRDescramble] gotRecordEvent SERVICETYPE_PVR_DESCRAMBLE self.convertFilename[0]", self.convertFilename[0])
-						print("[PVRDescramble] gotRecordEvent SERVICETYPE_PVR_DESCRAMBLE self.pvrListsTried", self.pvrListsTried)
-					pvrOri = self.convertFilename[0]
-					if pvrOri not in self.pvrListsTried:
-						self.pvrListsTried.append(pvrOri)
-			if event == iRecordableService.evEnd:
-				if self.getInstandby():
-					self.beginConvert()
-			elif event == iRecordableService.evPvrEof:
-				self.stopConvert(convertFinished=True)
-			elif event == iRecordableService.evRecordFailed:
-				self.descrableError = True
-				self.startStopConvertTimer()
-		else:
-			if event in (iRecordableService.evPvrTuneStart, iRecordableService.evTuneStart):
-				if self.currentPvr:
-					self.pvrLists.insert(0, self.currentPvr)
-					self.currentPvr = None
+				print("[PVRDescramble] gotRecordEvent : ", service, event, service.getServiceType())
+			if service.getServiceType() == SERVICETYPE_PVR_DESCRAMBLE:
+				if self.debug:
+					print("[PVRDescramble] gotRecordEvent SERVICETYPE_PVR_DESCRAMBLE self.converting / self.convertFilename", self.converting, self.convertFilename)
+				if self.converting:
+					if self.convertFilename:
+						if self.debug:
+							print("[PVRDescramble] gotRecordEvent SERVICETYPE_PVR_DESCRAMBLE self.convertFilename[0]", self.convertFilename[0])
+							print("[PVRDescramble] gotRecordEvent SERVICETYPE_PVR_DESCRAMBLE self.pvrListsTried", self.pvrListsTried)
+						pvrOri = self.convertFilename[0]
+						if pvrOri not in self.pvrListsTried:
+							self.pvrListsTried.append(pvrOri)
+				if event == iRecordableService.evEnd:
+					if self.getInstandby():
+						self.beginConvert()
+				elif event == iRecordableService.evPvrEof:
+					self.stopConvert(convertFinished=True)
+				elif event == iRecordableService.evRecordFailed:
+					self.descrableError = True
 					self.startStopConvertTimer()
-			elif event == iRecordableService.evEnd:
-				if self.getInstandby():
-					self.beginConvert()
+			else:
+				if event in (iRecordableService.evPvrTuneStart, iRecordableService.evTuneStart):
+					if self.currentPvr:
+						self.pvrLists.insert(0, self.currentPvr)
+						self.currentPvr = None
+						self.startStopConvertTimer()
+				elif event == iRecordableService.evEnd:
+					if self.getInstandby():
+						self.beginConvert()
 
 	def loadScrambledPvrList(self):
 		if self.debug:

@@ -1404,7 +1404,7 @@ class RecordTimerEntry(TimerEntry):
 
 	def gotRecordEvent(self, record, event):
 		# DEBUG: This is not working (never true), please fix. (Comparing two swig wrapped ePtrs.)
-		if self.__record_service.__deref__() != record.__deref__():
+		if record is None or self.__record_service.__deref__() != record.__deref__():
 			return
 		# self.log(16, f"Record event {event}.")
 		if event == iRecordableService.evRecordWriteError:
