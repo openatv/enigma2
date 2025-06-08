@@ -25,6 +25,7 @@ def getCaidData():
 		("0x1800", "0x18ff", "Nagra", "N", True),
 		("0x2600", "0x2600", "Biss", "Bi", False),
 		("0x4ae0", "0x4ae1", "Dre", "D", False),
+		("0x4aea", "0x4aea", "Cryptoguard", "CG", False),
 		("0x4aee", "0x4aee", "BulCrypt", "B1", False),
 		("0x5581", "0x5581", "BulCrypt", "B2", False)
 	)
