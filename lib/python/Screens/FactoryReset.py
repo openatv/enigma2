@@ -114,7 +114,7 @@ class FactoryReset(Setup, ProtectedScreen):
 				self.resumePoints.append(file)
 			elif file in ("settings",):
 				self.settings.append(file)
-			elif file in ("autotimer.xml", "pm_timers.xml", "timers.xml"):
+			elif file in ("autotimer.xml", "pm_timers.xml", "timers.xml", "scheduler.xml"):
 				self.timers.append(file)
 			elif file.startswith("bouquets."):
 				self.bouquets.append(file)
