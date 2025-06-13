@@ -372,9 +372,11 @@ class SchedulerList(TimerListBase):
 		minorWidth = (textWidth - self.statusOffset) // 4 - 5
 		majorWidth = textWidth - self.statusOffset - minorWidth - 10
 		res = [None]
+		functionName = timer.function and functionTimer.getItem(timer.function).get("name")
+		typeText = functionName or SCHEDULER_TYPE_NAMES.get(timer.timerType, UNKNOWN)
 		if repeatIcon:
 			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, self.indent, ((self.topHeight - self.iconHeight) // 2), self.iconWidth, self.iconHeight, repeatIcon, None, None, BT_SCALE))
-		res.append((eListboxPythonMultiContent.TYPE_TEXT, leftOffset, 0, halfWidth, self.topHeight, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, SCHEDULER_TYPE_NAMES.get(timer.timerType, UNKNOWN)))
+		res.append((eListboxPythonMultiContent.TYPE_TEXT, leftOffset, 0, halfWidth, self.topHeight, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, typeText))
 		if topText:
 			res.append((eListboxPythonMultiContent.TYPE_TEXT, leftOffset + halfWidth + 10, 0, halfWidth, self.topHeight, 2, RT_HALIGN_RIGHT | RT_VALIGN_CENTER, topText))
 		if stateIcon:
