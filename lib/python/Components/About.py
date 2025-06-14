@@ -342,16 +342,42 @@ def getPythonVersionString():
 		return _("Unknown")
 
 
-def getVersionFromOpkg(fileName):
-	return next((line[9:].split("+")[0] for line in (fileReadLines(f"/var/lib/opkg/info/{fileName}.control", source=MODULE_NAME) or []) if line.startswith("Version:")), _("Not Installed"))
+def getRustVersion():
+	try:
+		major, minor = pyversion.split('.')[:2]
+		so_path = f"/usr/lib/python{major}.{minor}/site-packages/bcrypt/_bcrypt.cpython-{major}{minor}-arm-linux-gnueabihf.so"
+
+		with open(so_path, "rb") as f:
+			content = f.read()
+
+		# Search for something like 'rustc-1.85.1' in the binary content
+		match = search(rb'rustc-([0-9]+.[0-9]+(.[0-9]+)?)', content)
+		if match:
+			return match.group(1).decode("utf-8")
+	except:
+		pass
+
+	return _("Unknown")
 
 
 def getFileCompressionInfo():
-	result = Popen("strings /bin/bash | grep '$Id: UPX.*Copyright'", stdout=PIPE, shell=True, text=True)
-	# $Id: UPX 4.24 Copyright (C) 1996-2024 the UPX Team. All Rights Reserved. $
-	output = result.communicate()[0]
-	parts = output.strip().split() if result.returncode == 0 and output else []
-	return f"{_("Enabled")} ({parts[1].lower()} {parts[2]})" if len(parts) >= 3 else _("Disabled")
+	try:
+		with open("/bin/bash", "rb") as f:
+			content = f.read()
+
+		# Search for something like 'Id: UPX 4.24 Copyright (C) 1996-2024 the UPX Team. All Rights Reserved.' in the binary content
+		match = search(rb'Id: UPX.*Copyright', content)
+		if match:
+			parts = match.group(0).decode("utf-8").strip().split()
+			return f"{_("Enabled")} ({parts[1].lower()} {parts[2]})" if len(parts) >= 3 else _("Disabled")
+	except:
+		pass
+
+	return _("Disabled")
+
+
+def getVersionFromOpkg(fileName):
+	return next((line[9:].split("+")[0] for line in (fileReadLines(f"/var/lib/opkg/info/{fileName}.control", source=MODULE_NAME) or []) if line.startswith("Version:")), _("Not Installed"))
 
 
 # For modules that do "from About import about"
