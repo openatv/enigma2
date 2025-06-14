@@ -10,6 +10,7 @@
 #include <lib/service/iservice.h>
 /* for subtitles */
 #include <lib/gui/esubtitle.h>
+#include <mutex>
 
 class eStaticServiceMP3Info;
 
@@ -410,10 +411,11 @@ private:
 	struct subtitle_page_t {
 		uint32_t start_ms;
 		uint32_t end_ms;
+		int64_t vtt_mpegts_base;
 		std::string text;
 
 		subtitle_page_t(uint32_t start_ms_in, uint32_t end_ms_in, const std::string& text_in)
-			: start_ms(start_ms_in), end_ms(end_ms_in), text(text_in) {}
+			: start_ms(start_ms_in), end_ms(end_ms_in), vtt_mpegts_base(0), text(text_in) {}
 	};
 
 	typedef std::map<uint32_t, subtitle_page_t> subtitle_pages_map_t;
@@ -430,6 +432,9 @@ private:
 
 	pts_t m_prev_decoder_time;
 	int m_decoder_time_valid_state;
+	int64_t m_initial_vtt_mpegts;
+	int64_t m_vtt_live_base_time;
+	bool m_vtt_live;
 
 	void pushDVBSubtitles();
 	void pushSubtitles();
@@ -449,6 +454,8 @@ private:
 	std::string m_extra_headers;
 	RESULT trickSeek(gdouble ratio);
 	ePtr<iTSMPEGDecoder> m_decoder; // for showSinglePic when radio
+	int64_t getLiveDecoderTime();
+	std::mutex m_subtitle_pages_mutex;
 
 	std::string m_external_subtitle_path;
 	std::string m_external_subtitle_language;
