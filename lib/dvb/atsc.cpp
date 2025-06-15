@@ -378,7 +378,7 @@ MasterGuideTable::MasterGuideTable(const uint8_t * const buffer)
 	numberBytes = UINT32(&buffer[5]);
 	descriptorsLoopLength = UINT16(&buffer[9]) & 0xfff;
 
-	for (uint16_t i = 11; i < descriptorsLoopLength + 11; i += buffer[i + 1] + 2)
+	for (uint32_t i = 11; i < descriptorsLoopLength + 11; i += buffer[i + 1] + 2)
 	{
 		descriptor(&buffer[i], SCOPE_SI);
 	}
@@ -435,7 +435,7 @@ const MasterGuideTableList *MasterGuideTableSection::getTables(void) const
 
 ATSCEvent::ATSCEvent(const uint8_t * const buffer)
 {
-	uint16_t i;
+	uint32_t i;
 	eventId = UINT16(&buffer[0]) & 0x3fff;
 	startTime = UINT32(&buffer[2]);
 	ETMLocation = (buffer[6] >> 4) & 0x3;

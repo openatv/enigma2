@@ -237,7 +237,7 @@ std::string freesatHuffmanDecoder::decode(const unsigned char *src, size_t size)
 				while ( currentEntry != NULL )
 				{
 					unsigned mask = 0, maskbit = 0x80000000;
-					short kk;
+					uint16_t kk;
 					for ( kk = 0; kk < currentEntry->bits; kk++)
 					{
 						mask |= maskbit;
