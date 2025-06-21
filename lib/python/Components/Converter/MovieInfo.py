@@ -13,12 +13,15 @@ class MovieInfo(Converter):
 	MOVIE_REC_SERVICE_REF = 3  # referance of recording service
 	MOVIE_REC_FILESIZE = 4  # filesize of recording
 	MOVIE_NAME = 5  # recording name or directory name
+	MOVIE_FULL_DESCRIPTION = 6  # full description of the movie
 
 	def __init__(self, type):
 		if type == "ShortDescription":
 			self.type = self.MOVIE_SHORT_DESCRIPTION
 		elif type == "MetaDescription":
 			self.type = self.MOVIE_META_DESCRIPTION
+		elif type == "FullDescription":
+			self.type = self.MOVIE_FULL_DESCRIPTION
 		elif type == "RecordServiceName":
 			self.type = self.MOVIE_REC_SERVICE_NAME
 		elif type == "FileSize":
@@ -28,11 +31,19 @@ class MovieInfo(Converter):
 		elif type == "Name":
 			self.type = self.MOVIE_NAME
 		else:
-			raise ElementError("'%s' is not <ShortDescription|MetaDescription|RecordServiceName|FileSize> for MovieInfo converter" % type)
+			raise ElementError("'%s' is not <ShortDescription|MetaDescription|FullDescription|RecordServiceName|FileSize> for MovieInfo converter" % type)
 		Converter.__init__(self, type)
 
 	@cached
 	def getText(self):
+
+		def formatDescription(description, extended):
+			if description[:20] == extended[:20]:
+				return extended
+			if description and extended:
+				description = f"{description}\n"
+			return f"{description}{extended}"
+
 		service = self.source.service
 		info = self.source.info
 		event = self.source.event
@@ -49,6 +60,13 @@ class MovieInfo(Converter):
 				return ((event and (event.getExtendedDescription() or event.getShortDescription()))
 						or info.getInfoString(service, iServiceInformation.sDescription)
 						or service.getPath())
+			elif self.type == self.MOVIE_FULL_DESCRIPTION:
+				shortDesc = ""
+				if event:
+					shortDesc = formatDescription(event.getShortDescription(), event.getExtendedDescription())
+				if not shortDesc:
+					shortDesc = info.getInfoString(service, iServiceInformation.sDescription) or service.getPath()
+				return shortDesc
 			elif self.type == self.MOVIE_REC_SERVICE_NAME:
 				rec_ref_str = info.getInfoString(service, iServiceInformation.sServiceref)
 				return ServiceReference(rec_ref_str).getServiceName()
