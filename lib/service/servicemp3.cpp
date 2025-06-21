@@ -650,6 +650,7 @@ RESULT eMP3ServiceOfflineOperations::getListOfFilenames(std::list<std::string>& 
 	if ((pos = filename.rfind('.')) != std::string::npos) {
 		filename.erase(pos + 1);
 		res.push_back(filename + ".eit");
+		res.push_back(filename + ".txt");
 	}
 	return 0;
 }
