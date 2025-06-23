@@ -66,6 +66,8 @@ protected:
 	unsigned startTimeBcd	: 32;
 	unsigned duration	: 24;
 	unsigned crc32		: 32;
+	unsigned genreId	: 8;
+	unsigned parentalRating	: 8;
 	std::string title;
 
 public:
@@ -78,6 +80,8 @@ public:
 	uint32_t getStartTime(void) const;
 	uint16_t getEventId(void) const;
 	uint32_t getDuration(void) const;
+	uint8_t getGenreId(void) const;
+	uint8_t getParentalRating(void) const;
 	void setChannelId(uint16_t channelid);
 	void setEventId(uint16_t eventId);
 };
