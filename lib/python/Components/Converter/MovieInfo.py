@@ -65,8 +65,11 @@ class MovieInfo(Converter):
 				if event:
 					shortDesc = formatDescription(event.getShortDescription(), event.getExtendedDescription())
 				if not shortDesc:
-					shortDesc = info.getInfoString(service, iServiceInformation.sDescription) or service.getPath()
-				return shortDesc
+					shortDesc = info.getInfoString(service, iServiceInformation.sDescription)
+					extendetDesc = info.getInfoString(service, iServiceInformation.sExtendedDescription)
+					if shortDesc or extendetDesc:
+						shortDesc = formatDescription(shortDesc, extendetDesc)
+				return shortDesc or service.getPath()
 			elif self.type == self.MOVIE_REC_SERVICE_NAME:
 				rec_ref_str = info.getInfoString(service, iServiceInformation.sServiceref)
 				return ServiceReference(rec_ref_str).getServiceName()

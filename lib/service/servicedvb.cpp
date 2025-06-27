@@ -350,8 +350,7 @@ eStaticServiceDVBPVRInformation::eStaticServiceDVBPVRInformation(const eServiceR
 {
 	m_ref = ref;
 	m_parser.parseFile(ref.path);
-	if (m_parser.m_description.empty())
-		m_txtdescription = m_parser.parseTxtFile(ref.path);
+	m_txtdescription = m_parser.parseTxtFile(ref.path);
 }
 
 static bool looksLikeRecording(const std::string& n)
@@ -446,6 +445,8 @@ int eStaticServiceDVBPVRInformation::getInfo(const eServiceReference &ref, int w
 	{
 	case iServiceInformation::sDescription:
 		return iServiceInformation::resIsString;
+	case iServiceInformation::sExtendedDescription:
+		return iServiceInformation::resIsString;
 	case iServiceInformation::sServiceref:
 		return iServiceInformation::resIsString;
 	case iServiceInformation::sFileSize:
@@ -467,9 +468,9 @@ std::string eStaticServiceDVBPVRInformation::getInfoString(const eServiceReferen
 	switch (w)
 	{
 	case iServiceInformation::sDescription:
-		if (m_parser.m_description.empty() && !m_txtdescription.empty())
-			return m_txtdescription;
 		return m_parser.m_description;
+	case iServiceInformation::sExtendedDescription:
+		return m_txtdescription;
 	case iServiceInformation::sServiceref:
 		return m_parser.m_ref.toString();
 	case iServiceInformation::sTags:

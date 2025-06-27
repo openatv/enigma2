@@ -43,6 +43,7 @@ class eStaticServiceM2TSInformation: public iStaticServiceInformation
 	DECLARE_REF(eStaticServiceM2TSInformation);
 	eServiceReference m_ref;
 	eDVBMetaParser m_parser;
+	std::string m_txtdescription;
 public:
 	eStaticServiceM2TSInformation(const eServiceReference &ref);
 	RESULT getName(const eServiceReference &ref, std::string &name);
@@ -60,6 +61,7 @@ eStaticServiceM2TSInformation::eStaticServiceM2TSInformation(const eServiceRefer
 {
 	m_ref = ref;
 	m_parser.parseFile(ref.path);
+	m_txtdescription = m_parser.parseTxtFile(ref.path);
 }
 
 RESULT eStaticServiceM2TSInformation::getName(const eServiceReference &ref, std::string &name)
@@ -118,6 +120,8 @@ int eStaticServiceM2TSInformation::getInfo(const eServiceReference &ref, int w)
 	{
 	case iServiceInformation::sDescription:
 		return iServiceInformation::resIsString;
+	case iServiceInformation::sExtendedDescription:
+		return iServiceInformation::resIsString;
 	case iServiceInformation::sServiceref:
 		return iServiceInformation::resIsString;
 	case iServiceInformation::sFileSize:
@@ -138,6 +142,8 @@ std::string eStaticServiceM2TSInformation::getInfoString(const eServiceReference
 	{
 	case iServiceInformation::sDescription:
 		return m_parser.m_description;
+	case iServiceInformation::sExtendedDescription:
+		return m_txtdescription;
 	case iServiceInformation::sServiceref:
 		return m_parser.m_ref.toString();
 	case iServiceInformation::sTags:
