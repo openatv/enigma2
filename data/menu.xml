@@ -180,7 +180,7 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 					<item key="backup_excluded" level="2" text="Select Excluded Backup Files" description="Here you can select which files should be excluded from the backup." weight="16"><plugin system="SoftwareManager" screen="BackupHelper">7</plugin></item>
 					<item key="package_manager" level="2" text="Package Manager" description="View, install and remove available or installed packages." weight="16"><screen module="PluginBrowser" screen="PackageAction">4</screen></item>
 					<item key="upgrade_source" level="2" text="Select Upgrade Source" description="Edit the upgrade source address." weight="16"><plugin system="SoftwareManager" screen="IPKGMenu" /></item>
-					<item key="upgrade_settings" level="2" text="Software Manager Settings" description="Here you can select which files should be updated with a online update" weight="16"><setup setupKey="SoftwareManagerLogs" /></item>
+					<item key="upgrade_settings" level="2" text="Software Manager Settings" description="Here you can select which files should be updated with a online update" weight="16"><setup setupKey="SoftwareManager" /></item>
 				</menu>
 			</menu>
 			<!-- Menu / Setup / Network -->

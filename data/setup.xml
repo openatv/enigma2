@@ -928,6 +928,7 @@
 		<item level="2" text="Overwrite Bootlogo Files?" description="Overwrite bootlogo files during software upgrade?">config.plugins.softwaremanager.overwriteBootlogoFiles</item>
 		<item level="2" text="Overwrite Spinner Files?" description="Overwrite spinner files during software upgrade?">config.plugins.softwaremanager.overwriteSpinnerFiles</item>
 		<item level="2" text="Mode for autorestore" description="Turbo: One reboot after flash; Fast: One reboot after flash, one reboot after restore; Slow: One reboot after flash, one reboot after restore in GUI.">config.plugins.softwaremanager.restoremode</item>
+		<item level="2" text="Settings Backup Target" description="Define the default settings backup target location. Select 'Ask user' to prompt the user for the target location when the backup is run.">config.plugins.softwaremanager.backuptarget</item>
 	</setup>
 	<setup key="SpecialFeatures" title="Special Features Settings">
 		<!-- This is just a placeholder, the 'specialfeatures' menu is currently disabled. -->
