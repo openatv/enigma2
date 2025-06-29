@@ -126,12 +126,12 @@ class InformationBase(Screen):
 			"close": (self.closeRecursive, _("Close the screen and exit all menus")),
 			"save": (self.refreshInformation, _("Refresh the screen")),
 			"ok": (self.refreshInformation, _("Refresh the screen")),
-			"top": (self["information"].moveTop, _("Move to first line / screen")),
-			"pageUp": (self["information"].pageUp, _("Move up a screen")),
-			"up": (self["information"].moveUp, _("Move up a line")),
-			"down": (self["information"].moveDown, _("Move down a line")),
-			"pageDown": (self["information"].pageDown, _("Move down a screen")),
-			"bottom": (self["information"].moveBottom, _("Move to last line / screen"))
+			"top": (self["information"].goTop, _("Move to first line / screen")),
+			"pageUp": (self["information"].goPageUp, _("Move up a screen")),
+			"up": (self["information"].goLineUp, _("Move up a line")),
+			"down": (self["information"].goLineDown, _("Move down a line")),
+			"pageDown": (self["information"].goPageDown, _("Move down a screen")),
+			"bottom": (self["information"].goBottom, _("Move to last line / screen"))
 		}, prio=0, description=_("Common Information Actions"))
 		colors = parameters.get("InformationColors", (0x00ffffff, 0x00ffffff, 0x00ffffff, 0x00cccccc, 0x00cccccc, 0x00ffff00, 0x0000ffff))
 		if len(colors) == len(INFO_COLORS):
