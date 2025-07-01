@@ -2943,9 +2943,11 @@ class FileTransferTask(Task):
 				self.progressTimer.callback.append(self.progressUpdate)
 
 	def progressUpdate(self):
-		dstSize = float((self.dirSize(self.dstPath) - self.initialSize) if isdir(self.dstPath) else getsize(self.dstPath))
-		progress = dstSize / self.srcSize * 100.0
-		self.setProgress(progress)
+		if exists(self.dstPath):
+			dstSize = float((self.dirSize(self.dstPath) - self.initialSize) if isdir(self.dstPath) else getsize(self.dstPath))
+			self.setProgress(dstSize / self.srcSize * 100.0)
+		else:
+			self.setProgress(100)
 		self.progressTimer.start(self.updateTime, True)
 
 	def prepare(self):
