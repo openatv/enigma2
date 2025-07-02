@@ -1361,6 +1361,9 @@ int ePicLoad::getData(ePtr<gPixmap>& result) {
 		unsigned char* origin = m_filepara->pic_buffer;
 		unsigned char* tmp_buffer = ((unsigned char*)(surface->data));
 		if (m_filepara->bits == 8) {
+			surface->clut.data = m_filepara->palette;
+			surface->clut.colors = m_filepara->palette_size;
+			m_filepara->palette = NULL; // transfer ownership
 			memcpy(tmp_buffer, origin, scrx * scry);
 		} else if (m_filepara->bits == 24) {
 			for (int y = 0; y < scry; ++y) {
