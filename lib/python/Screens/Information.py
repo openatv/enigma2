@@ -937,7 +937,7 @@ class MultiBootInformation(InformationBase):
 					if current:
 						indent = indent.replace("P", "F").replace("V", "F")
 					device = self.slotImages[slot]["device"]
-					slotType = "eMMC" if "mmcblk" in device else "MTD" if "mtd" in device else "USB"
+					slotType = "eMMC" if "mmcblk" in device else "MTD" if "mtd" in device else "UBI" if "ubi" in device else "USB"
 					imageLists[boot].append(formatLine(indent, _("Slot '%s' %s") % (slot, slotType), f"{self.slotImages[slot]['imagename']}{current}"))
 			count = 0
 			for bootCode in sorted(imageLists.keys()):
