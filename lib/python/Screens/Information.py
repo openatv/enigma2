@@ -859,6 +859,20 @@ class MemoryInformation(InformationBase):
 		info.append(formatLine("P1", _("Total flash"), f"{scaleNumber(diskSize)}  ({scaleNumber(diskSize, 'Iec')})"))
 		info.append(formatLine("P1", _("Used flash"), f"{scaleNumber(diskUsed)}  ({scaleNumber(diskUsed, 'Iec')})"))
 		info.append(formatLine("P1", _("Free flash"), f"{scaleNumber(diskFree)}  ({scaleNumber(diskFree, 'Iec')})"))
+		try:
+			with open("/proc/mtd") as mtd:
+				for line in mtd:
+					if '"kernel' in line:
+						parts = line.split()
+						name = parts[3].strip('"')
+						size = int(parts[1], 16)
+						if name == "kernel":
+							label = _("Kernel partition")
+						else:
+							label = _("Kernel%s partition") % name.replace("kernel", "")
+						info.append(formatLine("P1", label, "%s (%s)" % (scaleNumber(size), scaleNumber(size, "Iec"))))
+		except:
+			pass
 		info.append("")
 		info.append(formatLine("S", _("RAM (Details)")))
 		if self.extraSpacing:
