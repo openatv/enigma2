@@ -99,14 +99,15 @@ class ImageBackup(Screen):
 		def getImageListCallback(imageList):
 			currentImageSlot = MultiBoot.getCurrentSlotCode()
 			rootSlot = BoxInfo.getItem("HasKexecMultiboot") and currentImageSlot == "R"
+			flashSlot = currentImageSlot == "F"
 			currentImageSlot = int(currentImageSlot) if currentImageSlot and currentImageSlot.isdecimal() else 1
 			print(f"[ImageBackup] Current slot={currentImageSlot}, rootSlot={rootSlot}.")
 			images = []  # ChoiceEntryComponent(key, (Label, slotCode, recovery))
 			if imageList:
 				for slotCode in sorted(imageList.keys()):
 					print(f"[ImageBackup]     Slot {slotCode}: {imageList[slotCode]}")
-					if imageList[slotCode]["status"] == "active":
-						slotText = f"{slotCode} {"eMMC" if "mmcblk" in imageList[slotCode]["device"] else "USB"}"
+					if imageList[slotCode]["status"] == "active" or imageList[slotCode]["status"] == "flash":
+						slotText = f'{slotCode} {"eMMC" if "mmcblk" in imageList[slotCode]["device"] else "MTD" if "mtd" in imageList[slotCode]["device"] else "UBI" if "ubi" in imageList[slotCode]["device"] else "USB"}'
 						if slotCode == "1" and currentImageSlot == 1 and BoxInfo.getItem("canRecovery"):
 							images.append(ChoiceEntryComponent(None, (_("Slot %s: %s as USB Recovery") % (slotText, imageList[slotCode]["imagename"]), slotCode, True)))
 						if rootSlot:
@@ -115,6 +116,8 @@ class ImageBackup(Screen):
 							images.append(ChoiceEntryComponent(None, ((_("Slot %s: %s (Current image)") if slotCode == str(currentImageSlot) else _("Slot %s: %s")) % (slotText, imageList[slotCode]["imagename"]), slotCode, False)))
 				if rootSlot:
 					images.append(ChoiceEntryComponent(None, (_("Slot R: Root Slot Image Backup (Current image)"), "R", False)))
+				elif flashSlot:
+					images.append(ChoiceEntryComponent(None, (_("Slot F: Flash Slot Image Backup (Current image)"), "F", False)))
 			else:
 				if BoxInfo.getItem("canRecovery"):
 					images.append(ChoiceEntryComponent(None, (_("Internal flash: %s %s as USB Recovery") % (displayDistro, imageVersion), "slotCode", True)))
@@ -217,7 +220,8 @@ class ImageBackup(Screen):
 			cmdLines.append(f"{self.makeDirCmd} -p {mountPoint}")
 			cmdLines.append(f"{self.echoCmd} \"{_("Mount root file system.")}\"")  # Mount the root file system.
 			if MultiBoot.canMultiBoot():
-				mountArgs = f"/dev/{mtdRootFs} {mountPoint}"
+				if MultiBoot.canMultiBoot():
+					mountArgs = f"-t ubifs {mtdRootFs} {mountPoint}" if mtdRootFs.startswith("ubi0:") else f"/dev/{mtdRootFs} {mountPoint}"
 				if rootfsSubDir:
 					if hasMultiBootMDT:
 						mountArgs = f"-t ubifs {mtdRootFs} {mountPoint}"
