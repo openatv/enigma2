@@ -227,16 +227,30 @@ bool Cexif::DecodeExifPNG(const char* filename) {
 		return false;
 	}
 
+	png_set_keep_unknown_chunks(png_ptr, PNG_HANDLE_CHUNK_ALWAYS, (png_bytep) "eXIf", 1);
+
 	png_init_io(png_ptr, hFile);
 	png_read_info(png_ptr, info_ptr);
 	png_get_IHDR(png_ptr, info_ptr, &width, &height, &bit_depth, &color_type, NULL, NULL, NULL);
 	channels = png_get_channels(png_ptr, info_ptr);
+
+	// --- get eXIf-Chunk ---
+	png_unknown_chunkp unknowns = NULL;
+	int num_unknowns = png_get_unknown_chunks(png_ptr, info_ptr, &unknowns);
+	for (int i = 0; i < num_unknowns; ++i) {
+		if (memcmp(unknowns[i].name, "eXIf", 4) == 0) {
+			m_szLastError[0] = '\0';
+			m_exifinfo->IsExif = process_EXIF(unknowns[i].data, unknowns[i].size);
+			break;
+		}
+	}
 
 	png_byte* row = (unsigned char*)malloc(width * channels * bit_depth / 8);
 	for (png_uint_32 i = 0; i < height; i++)
 		png_read_row(png_ptr, row, NULL);
 	png_read_end(png_ptr, info_ptr);
 
+	// --- Fallback: Text-Chunks ---
 	png_textp text_ptr;
 	int num_text;
 	if (png_get_text(png_ptr, info_ptr, &text_ptr, &num_text)) {
@@ -268,6 +282,7 @@ bool Cexif::DecodeExifPNG(const char* filename) {
 					}
 					m_szLastError[0] = '\0';
 					m_exifinfo->IsExif = process_EXIF(Data, size);
+					free(Data);
 				}
 			} else if (!strcmp(text_ptr[i].key, "exif:ImageWidth"))
 				m_exifinfo->Width = atoi(s);
@@ -331,6 +346,8 @@ int Cexif::Get16m(void* Short) {
 }
 
 int Cexif::Get16u(void* Short) {
+	if (!Short)
+		return 0;
 	if (MotorolaOrder)
 		return (((unsigned char*)Short)[0] << 8) | ((unsigned char*)Short)[1];
 	else
@@ -650,7 +667,7 @@ bool Cexif::ProcessExifDir(unsigned char* DirStart, unsigned char* OffsetBase, u
 				break;
 				// default:
 				//	eDebug("[picexif] unsupported tag %d format %d: %d components %d bytes)", Tag, Format, Components,
-				//BytesCount);
+				// BytesCount);
 		}
 
 		if (Tag == TAG_EXIF_OFFSET || Tag == TAG_INTEROP_OFFSET) {
