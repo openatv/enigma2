@@ -348,7 +348,8 @@ def getRustVersion():
 		so_path = f"/usr/lib/python{major}.{minor}/site-packages/bcrypt/_bcrypt.cpython-{major}{minor}-arm-linux-gnueabihf.so"
 
 		with open(so_path, "rb") as f:
-			content = f.read()
+			f.seek(428000)
+			content = f.read(20000)
 
 		# Search for something like 'rustc-1.85.1' in the binary content
 		match = search(rb'rustc-([0-9]+.[0-9]+(.[0-9]+)?)', content)
@@ -363,7 +364,8 @@ def getRustVersion():
 def getFileCompressionInfo():
 	try:
 		with open("/bin/bash", "rb") as f:
-			content = f.read()
+			f.seek(399000)
+			content = f.read(1000)
 
 		# Search for something like 'Id: UPX 4.24 Copyright (C) 1996-2024 the UPX Team. All Rights Reserved.' in the binary content
 		match = search(rb'Id: UPX.*Copyright', content)
