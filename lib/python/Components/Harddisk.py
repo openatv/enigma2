@@ -594,7 +594,7 @@ class HarddiskManager:
 		print("[Harddisk] Enumerating block devices.")
 		black = BoxInfo.getItem("mtdblack")
 		for blockdev in listdir("/sys/block"):
-			if blockdev.startswith(("ram", "loop", black)):
+			if blockdev.startswith(("ram", "rom", "loop", black)):
 				continue
 			# print(f"[Harddisk] Enumerating block device '{blockdev}'.")
 			error, blacklisted, removable, is_cdrom, partitions, medium_found = self.addHotplugPartition(blockdev)
