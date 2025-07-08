@@ -859,7 +859,7 @@ class MemoryInformation(InformationBase):
 		info.append(formatLine("P1", _("Total flash"), f"{scaleNumber(diskSize)}  ({scaleNumber(diskSize, 'Iec')})"))
 		info.append(formatLine("P1", _("Used flash"), f"{scaleNumber(diskUsed)}  ({scaleNumber(diskUsed, 'Iec')})"))
 		info.append(formatLine("P1", _("Free flash"), f"{scaleNumber(diskFree)}  ({scaleNumber(diskFree, 'Iec')})"))
-		for line in fileReadLines("/proc/mtd", [], source=MODULE_NAME)
+		for line in fileReadLines("/proc/mtd", [], source=MODULE_NAME):
 			if "\"kernel" in line:
 				data = line.split()
 				name = data[3].strip("\"")
