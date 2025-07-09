@@ -35,7 +35,7 @@ def write_cache(cache_file, cache_data):  # Does a cPickle dump.
 		except OSError:
 			print("%s is a file" % dirname(cache_file))
 	with open(cache_file, "wb") as fd:
-		dump(cache_data, fd, -1)
+		dump(cache_data, fd, protocol=5)
 
 
 def valid_cache(cache_file, cache_ttl):  # See if the cache file exists and is still living.

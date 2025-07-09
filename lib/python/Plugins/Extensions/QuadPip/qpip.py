@@ -104,7 +104,7 @@ class QuadPipChannelData:
 
 	def dataSave(self):
 		with open(self.pipChannelDataPath, "wb") as fd:
-			dump(self.PipChannelList, fd)
+			dump(self.PipChannelList, fd, protocol=5)
 		# print("[*] dataSave")
 
 	def dataLoad(self):

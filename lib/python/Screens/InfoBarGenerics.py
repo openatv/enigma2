@@ -4,7 +4,7 @@ from inspect import getfullargspec
 from itertools import groupby
 from os import listdir
 from os.path import exists, isfile, ismount, realpath, splitext
-from pickle import HIGHEST_PROTOCOL, dump, load
+from pickle import dump, load
 from re import match
 from socket import AF_UNIX, SOCK_STREAM, socket
 from sys import maxsize
@@ -133,7 +133,7 @@ def saveResumePoints():
 	global resumePointCache, resumePointCacheLast
 	try:
 		f = open("/etc/enigma2/resumepoints.pkl", "wb")
-		dump(resumePointCache, f, HIGHEST_PROTOCOL)
+		dump(resumePointCache, f, protocol=5)
 		f.close()
 	except Exception as ex:
 		print("[InfoBarGenerics] Failed to write resumepoints:", ex)
