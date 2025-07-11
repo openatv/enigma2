@@ -642,6 +642,8 @@ class DistributionInformation(InformationBase):
 					device = _("eMMC slot %s%s") % (slotCode, f"  -  {device}" if device else "")
 				elif "mtd" in device:
 					device = _("MTD slot %s%s") % (slotCode, f"  -  {device}" if device else "")
+				elif "ubi" in device:
+					device = _("UBI slot %s%s") % (slotCode, f"  -  {device}" if device else "")
 				else:
 					device = _("USB slot %s%s") % (slotCode, f"  -  {device}" if device else "")
 			info.append(formatLine("P1", _("Hardware MultiBoot device"), device))

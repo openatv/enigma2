@@ -176,7 +176,7 @@ class MultiBootClass():
 							# print(f"[MultiBoot] loadBootSlots DEBUG: 'UUID=' found for device '{uuidDevice}'.")
 							if uuidDevice:
 								device = uuidDevice
-						if exists(device) or device in ("ubi0:ubifs", "ubi0:rootfs"):
+						if exists(device) or device in ("ubi0:ubifs", "ubi0:rootfs", "ubi0:dreambox-rootfs"):
 							if slotCode not in bootSlots:
 								bootSlots[slotCode] = {}
 								# print(f"[MultiBoot] Root dictionary entry in slot '{slotCode}' created.")

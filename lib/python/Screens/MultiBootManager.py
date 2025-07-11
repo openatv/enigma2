@@ -875,7 +875,10 @@ class UBISlotManager(Setup):
 		uuidRootFS = fileReadLine(f"/dev/uuid/{device}2", default=None, source=MODULE_NAME)
 		diskSize = self.partitionSizeGB(f"/dev/{device}")
 
-		startupContent = f"kernel=/dev/{mtdKernel} ubi.mtd=rootfs root=ubi0:rootfs flash=1 rootfstype=ubifs\n"
+		machinebuild = BoxInfo.getItem("machinebuild")
+		rootfsName = "dreambox-rootfs" if machinebuild == "dm520" else "rootfs"
+		startupContent = f"kernel=/dev/{mtdKernel} ubi.mtd=rootfs root=ubi0:{rootfsName} flash=1 rootfstype=ubifs\n"
+
 		with open(f"{MOUNTPOINT}/STARTUP", "w") as fd:
 			fd.write(startupContent)
 		with open(f"{MOUNTPOINT}/STARTUP_FLASH", "w") as fd:
