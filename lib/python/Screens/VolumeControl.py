@@ -334,15 +334,15 @@ class VolumeAdjust:
 			print(f"[VolumeControl] Volume adjustment data initialized from '{self.VOLUME_FILE}'.")
 			for offsets in volumeDom.findall("offsets"):
 				for entry in offsets.findall("offset"):
-					serviceReference = unescape(entry.get("serviceReference"))
-					serviceName = unescape(entry.get("serviceName"))
+					serviceReference = unescape(entry.get("serviceReference", ""))
+					serviceName = unescape(entry.get("serviceName", ""))
 					offset = int(entry.get("value", 0))
 					if serviceReference and serviceName:
 						volumeOffsets[serviceReference] = [serviceName, offset]
 			for remembered in volumeDom.findall("remembered"):
 				for entry in remembered.findall("remember"):
-					serviceReference = unescape(entry.get("serviceReference"))
-					serviceName = unescape(entry.get("serviceName"))
+					serviceReference = unescape(entry.get("serviceReference", ""))
+					serviceName = unescape(entry.get("serviceName", ""))
 					last = int(entry.get("value", self.DEFAULT_VOLUME))
 					if serviceReference and serviceName:
 						volumeRemembered[serviceReference] = [serviceName, last]
