@@ -2593,10 +2593,13 @@ RESULT eDVBDB::addOrUpdateBouquet(const std::string &name, const std::string &fi
 		/* bouquet doesn't yet exist, create a new one */
 		if (!db->getBouquet(rootref, bouquet) && bouquet)
 		{
-			if (isAddedFirst)
-				bouquet->m_services.push_front(bouquetref);
-			else
-				bouquet->m_services.push_back(bouquetref);
+			if (filename.find("subbouquet.") == std::string::npos)
+			{
+				if (isAddedFirst)
+					bouquet->m_services.push_front(bouquetref);
+				else
+					bouquet->m_services.push_back(bouquetref);
+			}
 			bouquet->flushChanges();
 		}
 		/* loading the bouquet seems to be the only way to add it to the bouquet list */
@@ -2719,6 +2722,13 @@ RESULT eDVBDB::removeBouquet(const std::string &filename_regex)
 			std::string path = entry->d_name;
 			if (std::regex_search(path, std::regex(filename_regex)))
 			{
+				if (path.find("subbouquet.") != std::string::npos) {
+					int status = std::remove((p+path).c_str());
+					if (status != 0) {
+						eDebug("[eDVBDB] Error: remove file '%s'.", path.c_str());
+					}
+					continue;
+				}
 				std::string bouquetquery = "FROM BOUQUET \"" + path + "\" ORDER BY bouquet";
 				eServiceReference bouquetref(eServiceReference::idDVB, eServiceReference::flagDirectory, bouquetquery);
 				bouquetref.setData(0, type); 
