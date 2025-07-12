@@ -941,7 +941,7 @@ class UBISlotManager(Setup):
 			self.deviceData = {}
 
 			for (name, hdd) in harddiskmanager.HDDList():
-				if any(hdd.dev_path.startswith(black) for black in blacklist):
+				if any(hdd.dev_path.startswith(black) for black in blacklist) or hdd.dev_path.startswith("/dev/romblock"):
 					continue
 
 				deviceID = hdd.dev_path.split("/")[-1]
