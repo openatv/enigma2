@@ -344,21 +344,11 @@ def getPythonVersionString():
 
 def getRustVersion():
 	try:
-		major, minor = pyversion.split('.')[:2]
-		so_path = f"/usr/lib/python{major}.{minor}/site-packages/bcrypt/_bcrypt.cpython-{major}{minor}-arm-linux-gnueabihf.so"
+		from bcrypt import _rustVersion_ as rustversion
+	except ImportError:
+		rustversion = None
 
-		with open(so_path, "rb") as f:
-			f.seek(428000)
-			content = f.read(20000)
-
-		# Search for something like 'rustc-1.85.1' in the binary content
-		match = search(rb'rustc-([0-9]+.[0-9]+(.[0-9]+)?)', content)
-		if match:
-			return match.group(1).decode("utf-8")
-	except:
-		pass
-
-	return _("Unknown")
+	return rustversion if rustversion else _("Unknown")
 
 
 def getFileCompressionInfo():
