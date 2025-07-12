@@ -629,7 +629,7 @@ class DistributionInformation(InformationBase):
 		slotCode, bootCode = MultiBoot.getCurrentSlotAndBootCodes()
 		if MultiBoot.canMultiBoot():
 			device = MultiBoot.getBootDevice()
-			if BoxInfo.getItem("HasHiSi") and "sda" in device:
+			if BoxInfo.getItem("HasHiSi") and "sda" in device and slotCode != "F":
 				slotCode = int(slotCode)
 				image = slotCode - 4 if slotCode > 4 else slotCode - 1
 				device = _("SDcard slot %s%s") % (image, f"  -  {device}" if device else "")
