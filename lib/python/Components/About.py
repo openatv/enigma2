@@ -348,8 +348,8 @@ def getRustVersion():
 		so_path = f"/usr/lib/python{major}.{minor}/site-packages/bcrypt/_bcrypt.cpython-{major}{minor}-arm-linux-gnueabihf.so"
 
 		with open(so_path, "rb") as f:
-			f.seek(428000)
-			content = f.read(20000)
+			f.seek(390000)
+			content = f.read(200000)
 
 		# Search for something like 'rustc-1.85.1' in the binary content
 		match = search(rb'rustc-([0-9]+.[0-9]+(.[0-9]+)?)', content)
