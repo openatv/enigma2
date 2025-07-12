@@ -9,7 +9,6 @@ from platform import libc_ver
 from re import search
 from socket import AF_INET, SOCK_DGRAM, inet_ntoa, socket
 from struct import pack, unpack
-from subprocess import Popen, PIPE
 from sys import maxsize, modules, version as pyversion
 from time import localtime, strftime
 
@@ -95,11 +94,6 @@ def getUpdateDateString():
 
 def getEnigmaVersionString():
 	return str(BoxInfo.getItem("imageversion"))
-
-
-def getGStreamerVersionString():
-	from enigma import getGStreamerVersionString
-	return getGStreamerVersionString()
 
 
 def getKernelVersionString():
@@ -212,10 +206,6 @@ def getSystemTemperature():
 	if temperature:
 		return "%s%s C" % (temperature, "\u00B0")
 	return temperature
-
-
-def getChipSetString():
-	return str(BoxInfo.getItem("ChipsetString"))
 
 
 def getCPUBrand():
