@@ -225,7 +225,7 @@ def getDriverInstalledDate():
 			for line in fileReadLines(filenames[0], default=[], source=MODULE_NAME):
 				if line[0:8] == "Version:":
 					value = line[8:].strip()
-					match = search("\d{8}", value)
+					match = search(r"\d{8}", value)
 					result = match[0] if match else value
 					break
 		if result:
