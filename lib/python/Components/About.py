@@ -300,31 +300,6 @@ def getPythonVersionString():
 	return result
 
 
-def getRustVersion():
-	try:
-		from bcrypt import _rustVersion_ as result
-	except ImportError:
-		result = _("Unknown")
-	return result
-
-
-def getFileCompressionInfo():
-	try:
-		with open("/bin/bash", "rb") as fd:
-			fd.seek(399000)
-			content = fd.read(1000)
-		# Search for something like "Id: UPX 4.24 Copyright (C) 1996-2024 the UPX Team. All Rights Reserved." in the binary content
-		match = search(rb"Id: UPX.*Copyright", content)
-		if match:
-			parts = match.group(0).decode("UTF-8").strip().split()
-			result = f"{_("Enabled")} ({parts[1].lower()} {parts[2]})" if len(parts) >= 3 else _("Disabled")
-		else:
-			result = _("Disabled")
-	except Exception:
-		result = _("Disabled")
-	return result
-
-
 def getVersionFromOpkg(fileName):
 	return next((line[9:].split("+")[0] for line in fileReadLines(f"/var/lib/opkg/info/{fileName}.control", default=[], source=MODULE_NAME) if line.startswith("Version:")), _("Not Installed"))
 
