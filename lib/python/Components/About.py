@@ -17,46 +17,38 @@ from Tools.Directories import fileReadLine, fileReadLines
 
 MODULE_NAME = __name__.split(".")[-1]
 
-socfamily = BoxInfo.getItem("socfamily")
-MODEL = BoxInfo.getItem("model")
+DEGREE = "\u00B0"
 
 
-def _ifinfo(sock, addr, ifname):
-	iface = pack('256s', bytes(ifname[:15], 'utf-8'))
-	info = ioctl(sock.fileno(), addr, iface)
-	if addr == 0x8927:
-		return ''.join(['%02x:' % ord(chr(char)) for char in info[18:24]])[:-1].upper()
-	else:
-		return inet_ntoa(info[20:24])
+def getIfConfig(interfaceName):
+	def interfaceInfo(sock, value, interfaceName):
+		interface = pack("256s", bytes(interfaceName[:15], "UTF-8"))
+		info = ioctl(sock.fileno(), value, interface)
+		return "".join([f"{ord(chr(character)):02x}:" for character in info[18:24]])[:-1].upper() if value == 0x8927 else inet_ntoa(info[20:24])
 
-
-def getIfConfig(ifname):
-	ifreq = {"ifname": ifname}
-	infos = {}
-	sock = socket(AF_INET, SOCK_DGRAM)
+	interface = {"ifname": interfaceName}
+	info = {}
 	# Offsets defined in /usr/include/linux/sockios.h on linux 2.6.
-	infos["addr"] = 0x8915  # SIOCGIFADDR
-	infos["brdaddr"] = 0x8919  # SIOCGIFBRDADDR
-	infos["hwaddr"] = 0x8927  # SIOCSIFHWADDR
-	infos["netmask"] = 0x891b  # SIOCGIFNETMASK
+	info["addr"] = 0x8915  # SIOCGIFADDR
+	info["brdaddr"] = 0x8919  # SIOCGIFBRDADDR
+	info["hwaddr"] = 0x8927  # SIOCSIFHWADDR
+	info["netmask"] = 0x891b  # SIOCGIFNETMASK
+	sock = socket(AF_INET, SOCK_DGRAM)
 	try:
-		for k, v in infos.items():
-			ifreq[k] = _ifinfo(sock, v, ifname)
-	except Exception as ex:
-		print("[About] getIfConfig Ex: %s" % str(ex))
-		pass
+		for key, value in info.items():
+			interface[key] = interfaceInfo(sock, value, interfaceName)
+	except Exception as err:
+		print("[About] Error: getIfConfig returned an error!  ({str(err)})")
 	sock.close()
-	return ifreq
+	return interface
 
 
-def getIfTransferredData(ifname):
-	lines = fileReadLines("/proc/net/dev", source=MODULE_NAME)
-	if lines:
-		for line in lines:
-			if ifname in line:
-				data = line.split("%s:" % ifname)[1].split()
-				rx_bytes, tx_bytes = (data[0], data[8])
-				return rx_bytes, tx_bytes
+def getIfTransferredData(interfaceName):
+	for line in fileReadLines("/proc/net/dev", default=[], source=MODULE_NAME):
+		if interfaceName in line:
+			data = line.split(f"{interfaceName}:")[1].split()
+			rxBytes, txBytes = (data[0], data[8])
+			return rxBytes, txBytes
 
 
 def getVersionString():
@@ -69,27 +61,20 @@ def getImageVersionString():
 
 def getFlashDateString():
 	try:
-		tm = localtime(stat("/home").st_ctime)
-		if tm.tm_year >= 2011:
-			return strftime(_("%Y-%m-%d"), tm)
-		else:
-			return _("Unknown")
-	except:
+		localTime = localtime(stat("/home").st_ctime)
+		return strftime(_("%Y-%m-%d"), localTime) if localTime.tm_year >= 2011 else _("Unknown")
+	except Exception:
 		return _("Unknown")
 
 
 def getBuildDateString():
-	version = fileReadLine("/etc/version", source=MODULE_NAME)
-	if version is None:
-		return _("Unknown")
-	return "%s-%s-%s" % (version[:4], version[4:6], version[6:8])
+	version = fileReadLine("/etc/version", default="", source=MODULE_NAME)
+	return f"{version[:4]}-{version[4:6]}-{version[6:8]}" if version else _("Unknown")
 
 
 def getUpdateDateString():
 	build = BoxInfo.getItem("compiledate")
-	if build and build.isdigit():
-		return "%s-%s-%s" % (build[:4], build[4:6], build[6:])
-	return _("Unknown")
+	return f"{build[:4]}-{build[4:6]}-{build[6:]}" if build and build.isdigit() else _("Unknown")
 
 
 def getEnigmaVersionString():
@@ -97,30 +82,29 @@ def getEnigmaVersionString():
 
 
 def getKernelVersionString():
-	version = fileReadLine("/proc/version", source=MODULE_NAME)
-	if version is None:
-		return _("Unknown")
-	return version.split(" ", 4)[2].split("-", 2)[0]
+	version = fileReadLine("/proc/version", default="", source=MODULE_NAME)
+	return version.split(" ", 4)[2].split("-", 2)[0] if version else _("Unknown")
 
 
 def getCPUSerial():
-	lines = fileReadLines("/proc/cpuinfo", source=MODULE_NAME)
-	if lines:
-		for line in lines:
-			if line[0:6] == "Serial":
-				return line[10:26]
-	return _("Undefined")
+	result = _("Undefined")
+	for line in fileReadLines("/proc/cpuinfo", default=[], source=MODULE_NAME):
+		if line[0:6] == "Serial":
+			result = line[10:26]
+			break
+	return result
 
 
 def _getCPUSpeedMhz():
-	if MODEL in ('hzero', 'h8', 'sfx6008', 'sfx6018'):
-		return 1200
-	elif MODEL in ('dreamone', 'dreamtwo', 'dreamseven'):
-		return 1800
-	elif MODEL in ('vuduo4k',):
-		return 2100
-	else:
-		return 0
+	result = 0
+	model = BoxInfo.getItem("model")
+	if model in ("hzero", "h8", "sfx6008", "sfx6018"):
+		result = 1200
+	elif model in ("dreamone", "dreamtwo", "dreamseven"):
+		result = 1800
+	elif model in ("vuduo4k",):
+		result = 2100
+	return result
 
 
 def getCPUInfoString():
@@ -128,146 +112,125 @@ def getCPUInfoString():
 	cpuSpeedStr = "-"
 	cpuSpeedMhz = _getCPUSpeedMhz()
 	processor = ""
-	lines = fileReadLines("/proc/cpuinfo", source=MODULE_NAME)
-	if lines:
-		for line in lines:
-			line = [x.strip() for x in line.strip().split(":", 1)]
-			if not processor and line[0] in ("system type", "model name", "Processor"):
-				processor = line[1].split()[0]
-			elif not cpuSpeedMhz and line[0] == "cpu MHz":
-				cpuSpeedMhz = float(line[1])
-			elif line[0] == "processor":
-				cpuCount += 1
-		if processor.startswith("ARM") and isfile("/proc/stb/info/chipset"):
-			processor = "%s (%s)" % (fileReadLine("/proc/stb/info/chipset", "", source=MODULE_NAME).upper(), processor)
-		if not cpuSpeedMhz:
-			cpuSpeed = fileReadLine("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq", source=MODULE_NAME)
-			if cpuSpeed:
-				cpuSpeedMhz = int(cpuSpeed) / 1000
-			else:
-				try:
-					cpuSpeedMhz = int(int(hexlify(open("/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency", "rb").read()), 16) / 100000000) * 100
-				except:
-					cpuSpeedMhz = 1500
-
-		temperature = None
-		if isfile("/proc/stb/fp/temp_sensor_avs"):
-			temperature = fileReadLine("/proc/stb/fp/temp_sensor_avs", source=MODULE_NAME)
-		elif isfile("/proc/stb/power/avs"):
-			temperature = fileReadLine("/proc/stb/power/avs", source=MODULE_NAME)
-#		elif isfile("/proc/stb/fp/temp_sensor"):
-#			temperature = fileReadLine("/proc/stb/fp/temp_sensor", source=MODULE_NAME)
-#		elif isfile("/proc/stb/sensors/temp0/value"):
-#			temperature = fileReadLine("/proc/stb/sensors/temp0/value", source=MODULE_NAME)
-#		elif isfile("/proc/stb/sensors/temp/value"):
-#			temperature = fileReadLine("/proc/stb/sensors/temp/value", source=MODULE_NAME)
-		elif isfile("/sys/devices/virtual/thermal/thermal_zone0/temp"):
-			temperature = fileReadLine("/sys/devices/virtual/thermal/thermal_zone0/temp", source=MODULE_NAME)
-			if temperature:
-				temperature = int(temperature) / 1000
-		elif isfile("/sys/class/thermal/thermal_zone0/temp"):
-			temperature = fileReadLine("/sys/class/thermal/thermal_zone0/temp", source=MODULE_NAME)
-			if temperature:
-				temperature = int(temperature) / 1000
-		elif isfile("/proc/hisi/msp/pm_cpu"):
-			lines = fileReadLines("/proc/hisi/msp/pm_cpu", source=MODULE_NAME)
-			if lines:
-				for line in lines:
-					if "temperature = " in line:
-						temperature = int(line.split("temperature = ")[1].split()[0])
-
-		if cpuSpeedMhz and cpuSpeedMhz >= 1000:
-			cpuSpeedStr = _("%s GHz") % format_string("%.1f", cpuSpeedMhz / 1000)
+	for line in fileReadLines("/proc/cpuinfo", default=[], source=MODULE_NAME):
+		line = [x.strip() for x in line.strip().split(":", 1)]
+		if not processor and line[0] in ("system type", "model name", "Processor"):
+			processor = line[1].split()[0]
+		elif not cpuSpeedMhz and line[0] == "cpu MHz":
+			cpuSpeedMhz = float(line[1])
+		elif line[0] == "processor":
+			cpuCount += 1
+	if processor.startswith("ARM") and isfile("/proc/stb/info/chipset"):
+		processor = f"{fileReadLine("/proc/stb/info/chipset", default="", source=MODULE_NAME).upper()} ({processor})"
+	if not cpuSpeedMhz:
+		cpuSpeed = fileReadLine("/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq", default="", source=MODULE_NAME)
+		if cpuSpeed:
+			cpuSpeedMhz = int(cpuSpeed) / 1000
 		else:
-			cpuSpeedStr = _("%d MHz") % int(cpuSpeedMhz)
-
+			try:
+				cpuSpeedMhz = int(int(hexlify(open("/sys/firmware/devicetree/base/cpus/cpu@0/clock-frequency", "rb").read()), 16) / 100000000) * 100
+			except Exception:
+				cpuSpeedMhz = 1500
+	temperature = None
+	if isfile("/proc/stb/fp/temp_sensor_avs"):
+		temperature = fileReadLine("/proc/stb/fp/temp_sensor_avs", default=None, source=MODULE_NAME)
+	elif isfile("/proc/stb/power/avs"):
+		temperature = fileReadLine("/proc/stb/power/avs", default=None, source=MODULE_NAME)
+	# elif isfile("/proc/stb/fp/temp_sensor"):
+	# 	temperature = fileReadLine("/proc/stb/fp/temp_sensor", default=None, source=MODULE_NAME)
+	# elif isfile("/proc/stb/sensors/temp0/value"):
+	# 	temperature = fileReadLine("/proc/stb/sensors/temp0/value", default=None, source=MODULE_NAME)
+	# elif isfile("/proc/stb/sensors/temp/value"):
+	# 	temperature = fileReadLine("/proc/stb/sensors/temp/value", default=None, source=MODULE_NAME)
+	elif isfile("/sys/devices/virtual/thermal/thermal_zone0/temp"):
+		temperature = fileReadLine("/sys/devices/virtual/thermal/thermal_zone0/temp", default=None, source=MODULE_NAME)
 		if temperature:
-			degree = "\u00B0"
-			if not isinstance(degree, str):
-				degree = degree.encode("UTF-8", errors="ignore")
-			if isinstance(temperature, float):
-				temperature = format_string("%.1f", temperature)
-			else:
-				temperature = str(temperature)
-			return (processor, cpuSpeedStr, ngettext("%d core", "%d cores", cpuCount) % cpuCount, "%s%s C" % (temperature, degree))
-			#return ("%s %s MHz (%s) %s%sC") % (processor, cpuSpeed, ngettext("%d core", "%d cores", cpuCount) % cpuCount, temperature, degree)
-		return (processor, cpuSpeedStr, ngettext("%d core", "%d cores", cpuCount) % cpuCount, "")
-		#return ("%s %s MHz (%s)") % (processor, cpuSpeed, ngettext("%d core", "%d cores", cpuCount) % cpuCount)
+			temperature = int(temperature) / 1000
+	elif isfile("/sys/class/thermal/thermal_zone0/temp"):
+		temperature = fileReadLine("/sys/class/thermal/thermal_zone0/temp", default=None, source=MODULE_NAME)
+		if temperature:
+			temperature = int(temperature) / 1000
+	elif isfile("/proc/hisi/msp/pm_cpu"):
+		for line in fileReadLines("/proc/hisi/msp/pm_cpu", default=[], source=MODULE_NAME):
+			if "temperature = " in line:
+				temperature = int(line.split("temperature = ")[1].split()[0])
+				# break  # Without this break the code returns the last line containing the string!
+	cpuSpeedStr = _("%s GHz") % format_string("%.1f", cpuSpeedMhz / 1000) if cpuSpeedMhz and cpuSpeedMhz >= 1000 else _("%d MHz") % int(cpuSpeedMhz)
+	if temperature:
+		if not isinstance(temperature, str):
+			temperature = temperature.encode("UTF-8", errors="ignore")
+		if isinstance(temperature, float):
+			temperature = format_string("%.1f", temperature)
+		else:
+			temperature = str(temperature)
+		return (processor, cpuSpeedStr, ngettext("%d core", "%d cores", cpuCount) % cpuCount, f"{temperature}{DEGREE}C")
+		# return f"{processor} {cpuSpeed} MHz ({ngettext("%d core", "%d cores", cpuCount) % cpuCount}) {temperature}{DEGREE}C"
+	return (processor, cpuSpeedStr, ngettext("%d core", "%d cores", cpuCount) % cpuCount, "")
+	# return f"{processor} {cpuSpeed} MHz ({ngettext("%d core", "%d cores", cpuCount) % cpuCount})"
 
 
 def getSystemTemperature():
-	temperature = ""
 	if isfile("/proc/stb/sensors/temp0/value"):
-		temperature = fileReadLine("/proc/stb/sensors/temp0/value", source=MODULE_NAME)
+		temperature = fileReadLine("/proc/stb/sensors/temp0/value", default=None, source=MODULE_NAME)
 	elif isfile("/proc/stb/sensors/temp/value"):
-		temperature = fileReadLine("/proc/stb/sensors/temp/value", source=MODULE_NAME)
+		temperature = fileReadLine("/proc/stb/sensors/temp/value", default=None, source=MODULE_NAME)
 	elif isfile("/proc/stb/fp/temp_sensor"):
-		temperature = fileReadLine("/proc/stb/fp/temp_sensor", source=MODULE_NAME)
-	if temperature:
-		return "%s%s C" % (temperature, "\u00B0")
-	return temperature
+		temperature = fileReadLine("/proc/stb/fp/temp_sensor", default=None, source=MODULE_NAME)
+	else:
+		temperature = None
+	return f"{temperature}{DEGREE}C" if temperature else ""
 
 
 def getCPUBrand():
+	socFamily = BoxInfo.getItem("socfamily")
 	if BoxInfo.getItem("AmlogicFamily"):
-		return _("Amlogic")
+		result = _("Amlogic")
 	elif BoxInfo.getItem("HiSilicon"):
-		return _("HiSilicon")
-	elif socfamily.startswith("smp"):
-		return _("Sigma Designs")
-	elif socfamily.startswith("bcm") or BoxInfo.getItem("brand") == "rpi":
-		return _("Broadcom")
-	print("[About] No CPU brand?")
-	return _("Undefined")
+		result = _("HiSilicon")
+	elif socFamily.startswith("smp"):
+		result = _("Sigma Designs")
+	elif socFamily.startswith("bcm") or BoxInfo.getItem("brand") == "rpi":
+		result = _("Broadcom")
+	else:
+		print("[About] Error: No CPU brand!")
+		result = _("Undefined")
+	return result
 
 
 def getCPUArch():
 	if BoxInfo.getItem("ArchIsARM64"):
-		return _("ARM64")
+		result = _("ARM64")
 	elif BoxInfo.getItem("ArchIsARM"):
-		return _("ARM")
-	return _("Mipsel")
+		result = _("ARM")
+	else:
+		result = _("Mipsel")
+	return result
 
 
 def getFlashType():
 	if BoxInfo.getItem("SmallFlash"):
-		return _("Small - Tiny image")
+		result = _("Small - Tiny image")
 	elif BoxInfo.getItem("MiddleFlash"):
-		return _("Middle - Lite image")
-	return _("Normal - Standard image")
+		result = _("Middle - Lite image")
+	else:
+		result = _("Normal - Standard image")
+	return result
 
 
 def getDriverInstalledDate():
-
-	def extractDate(value):
-		match = search('[0-9]{8}', value)
-		if match:
-			return match[0]
-		else:
-			return value
-
-	filenames = glob("/var/lib/opkg/info/*dvb-modules*.control")
-	if filenames:
-		lines = fileReadLines(filenames[0], source=MODULE_NAME)
-		if lines:
-			for line in lines:
+	result = None
+	for template in ("/var/lib/opkg/info/*dvb-modules*.control", "/var/lib/opkg/info/*dvb-proxy*.control", "/var/lib/opkg/info/*platform-util*.control"):
+		filenames = glob(template)
+		if filenames:
+			for line in fileReadLines(filenames[0], default=[], source=MODULE_NAME):
 				if line[0:8] == "Version:":
-					return extractDate(line)
-	filenames = glob("/var/lib/opkg/info/*dvb-proxy*.control")
-	if filenames:
-		lines = fileReadLines(filenames[0], source=MODULE_NAME)
-		if lines:
-			for line in lines:
-				if line[0:8] == "Version:":
-					return extractDate(line)
-	filenames = glob("/var/lib/opkg/info/*platform-util*.control")
-	if filenames:
-		lines = fileReadLines(filenames[0], source=MODULE_NAME)
-		if lines:
-			for line in lines:
-				if line[0:8] == "Version:":
-					return extractDate(line)
-	return _("Unknown")
+					value = line[8:].strip()
+					match = search(r"\d{8}", value)
+					result = match[0] if match else value
+					break
+		if result:
+			break
+	return result if result else _("Unknown")
 
 
 def GetIPsFromNetworkInterfaces():
@@ -293,73 +256,77 @@ def GetIPsFromNetworkInterfaces():
 
 
 def getBoxUptime():
-	upTime = fileReadLine("/proc/uptime", source=MODULE_NAME)
-	if upTime is None:
-		return "-"
-	secs = int(upTime.split(".")[0])
-	times = []
-	if secs > 86400:
-		days = secs // 86400
-		secs = secs % 86400
-		times.append(ngettext("%d Day", "%d Days", days) % days)
-	h = secs // 3600
-	m = (secs % 3600) // 60
-	times.append(ngettext("%d Hour", "%d Hours", h) % h)
-	times.append(ngettext("%d Minute", "%d Minutes", m) % m)
-	return " ".join(times)
+	upTime = fileReadLine("/proc/uptime", default=None, source=MODULE_NAME)
+	if upTime:
+		seconds = int(upTime.split(".")[0])
+		times = []
+		if seconds > 86400:
+			days = seconds // 86400
+			seconds = seconds % 86400
+			times.append(ngettext("%d Day", "%d Days", days) % days)
+		hours = seconds // 3600
+		minutes = (seconds % 3600) // 60
+		times.append(ngettext("%d Hour", "%d Hours", hours) % hours)
+		times.append(ngettext("%d Minute", "%d Minutes", minutes) % minutes)
+		result = " ".join(times)
+	else:
+		result = "-"
+	return result
 
 
 def getGlibcVersion():
 	try:
-		return libc_ver()[1]
-	except:
-		print("[About] Get glibc version failed.")
-	return _("Unknown")
+		result = libc_ver()[1]
+	except Exception:
+		print("[About] Error: Get glibc version failed!")
+		result = _("Unknown")
+	return result
 
 
 def getGccVersion():
 	try:
-		return pyversion.split("[GCC ")[1].replace("]", "")
-	except:
-		print("[About] Get gcc version failed.")
-	return _("Unknown")
+		result = pyversion.split("[GCC ")[1].replace("]", "")
+	except Exception:
+		print("[About] Error: Get gcc version failed!")
+		result = _("Unknown")
+	return result
 
 
 def getPythonVersionString():
 	try:
-		return pyversion.split(' ')[0]
-	except:
-		return _("Unknown")
+		result = pyversion.split(" ")[0]
+	except Exception:
+		result = _("Unknown")
+	return result
 
 
 def getRustVersion():
 	try:
-		from bcrypt import _rustVersion_ as rustversion
+		from bcrypt import _rustVersion_ as result
 	except ImportError:
-		rustversion = None
-
-	return rustversion if rustversion else _("Unknown")
+		result = _("Unknown")
+	return result
 
 
 def getFileCompressionInfo():
 	try:
-		with open("/bin/bash", "rb") as f:
-			f.seek(399000)
-			content = f.read(1000)
-
-		# Search for something like 'Id: UPX 4.24 Copyright (C) 1996-2024 the UPX Team. All Rights Reserved.' in the binary content
-		match = search(rb'Id: UPX.*Copyright', content)
+		with open("/bin/bash", "rb") as fd:
+			fd.seek(399000)
+			content = fd.read(1000)
+		# Search for something like "Id: UPX 4.24 Copyright (C) 1996-2024 the UPX Team. All Rights Reserved." in the binary content
+		match = search(rb"Id: UPX.*Copyright", content)
 		if match:
-			parts = match.group(0).decode("utf-8").strip().split()
-			return f"{_("Enabled")} ({parts[1].lower()} {parts[2]})" if len(parts) >= 3 else _("Disabled")
-	except:
-		pass
-
-	return _("Disabled")
+			parts = match.group(0).decode("UTF-8").strip().split()
+			result = f"{_("Enabled")} ({parts[1].lower()} {parts[2]})" if len(parts) >= 3 else _("Disabled")
+		else:
+			result = _("Disabled")
+	except Exception:
+		result = _("Disabled")
+	return result
 
 
 def getVersionFromOpkg(fileName):
-	return next((line[9:].split("+")[0] for line in (fileReadLines(f"/var/lib/opkg/info/{fileName}.control", source=MODULE_NAME) or []) if line.startswith("Version:")), _("Not Installed"))
+	return next((line[9:].split("+")[0] for line in fileReadLines(f"/var/lib/opkg/info/{fileName}.control", default=[], source=MODULE_NAME) if line.startswith("Version:")), _("Not Installed"))
 
 
 # For modules that do "from About import about"
