@@ -343,6 +343,7 @@ class FlashImage(Screen):
 		}, prio=-1, description=_("Image Flash Actions"))
 		self.hide()
 		self.callLater(self.confirmation)
+		self.backupBasePath = config.plugins.configurationbackup.backuplocation.value if not exists("/media/hdd/") else "/media/hdd/"
 
 	def keyCancel(self, reply=None):
 		if self.containerOFGWrite or self.getImageList:
@@ -469,8 +470,8 @@ class FlashImage(Screen):
 			text = _("Please select what to do after flash of the following image:")
 			text = "%s\n%s" % (text, self.imageName)
 			if BoxInfo.getItem("distro") in self.imageName:
-				if exists("/media/hdd/images/config/myrestore.sh"):
-					text = "%s\n%s" % (text, _("(The file '/media/hdd/images/config/myrestore.sh' exists and will be run after the image is flashed.)"))
+				if exists(join(self.backupBasePath, "images/config/myrestore.sh")):
+					text = "%s\n%s" % (text, _(f"(The file '{join(self.backupBasePath, "images/config/myrestore.sh")}' exists and will be run after the image is flashed.)"))
 				choices = [
 					(_("Upgrade (Flash & restore all)"), "restoresettingsandallplugins"),
 					(_("Clean (Just flash and start clean)"), "wizard"),
@@ -500,24 +501,24 @@ class FlashImage(Screen):
 
 	def selectPrevPostFlashAction(self):
 		index = 1
-		if exists("/media/hdd/images/config/settings"):
+		if exists(join(self.backupBasePath, "images/config/settings")):
 			index = 3
-			if exists("/media/hdd/images/config/noplugins"):
+			if exists(join(self.backupBasePath, "images/config/noplugins")):
 				index = 2
-			if exists("/media/hdd/images/config/plugins"):
+			if exists(join(self.backupBasePath, "images/config/plugins")):
 				index = 0
 		return index
 
 	def postFlashActionCallback(self, choice):
 		if choice:
 			knownFlagFiles = ("settings", "plugins", "noplugins", "slow", "fast", "turbo")
-			for directory in listdir("/media"):  # Remove known flag files from devices other than /media/hdd.
-				if directory not in ("audiocd", "autofs", "hdd"):
+			for directory in listdir("/media"):  # Remove known flag files from devices other than self.backupBasePath.
+				if directory not in ("audiocd", "autofs", basename(self.backupBasePath.rstrip("/"))):
 					for flagFile in knownFlagFiles:
 						flagPath = join("/media", directory, "images/config", flagFile)
 						if isfile(flagPath) and getsize(flagPath) == 0:
 							unlink(flagPath)
-			rootFolder = "/media/hdd/images/config"
+			rootFolder = join(self.backupBasePath, "images/config")
 			if choice != "abort" and not self.recordCheck:
 				self.recordCheck = True
 				recording = self.session.nav.RecordTimer.isRecording()
