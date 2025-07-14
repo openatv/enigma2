@@ -977,7 +977,7 @@ class AVSwitchBase:
 		"NTSC",
 		"Multi"
 	]
-	chipSetString = str(BoxInfo.getItem("ChipsetString"))
+	chipSetString = BoxInfo.getItem("ChipsetString")
 	if AMLOGIC:
 		modes["HDMI"] = ["720p", "1080p", "smpte", "2160p30", "2160p", "1080i", "576p", "576i", "480p", "480i"]
 	elif (chipSetString in ("7366", "7376", "5272s", "7444", "7445", "7445s")):
