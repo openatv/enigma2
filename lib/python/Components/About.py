@@ -157,8 +157,6 @@ def getCPUInfoString():
 				# break  # Without this break the code returns the last line containing the string!
 	cpuSpeedStr = _("%s GHz") % format_string("%.1f", cpuSpeedMhz / 1000) if cpuSpeedMhz and cpuSpeedMhz >= 1000 else _("%d MHz") % int(cpuSpeedMhz)
 	if temperature:
-		if not isinstance(temperature, str):
-			temperature = temperature.encode("UTF-8", errors="ignore")
 		if isinstance(temperature, float):
 			temperature = format_string("%.1f", temperature)
 		else:
