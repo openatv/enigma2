@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-07 16:24+0000\n"
+"POT-Creation-Date: 2025-07-09 04:53+0000\n"
 "PO-Revision-Date: 2025-06-11 19:04+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
@@ -1068,6 +1068,10 @@ msgid_plural "%d services found."
 msgstr[0] "%d канал найден."
 msgstr[1] "%d канала найдено."
 msgstr[2] "%d каналов найдено."
+
+#, python-format
+msgid "%d slots have been created on the device.\n"
+msgstr ""
 
 #, python-format
 msgid "%d times"
@@ -5182,6 +5186,9 @@ msgstr "Создать корневую журналируемую флеш-фа
 msgid "Create separate radio user bouquet"
 msgstr "Создание отдельного радио букета"
 
+msgid "Create slots for the selected device"
+msgstr ""
+
 msgid "Create swap"
 msgstr "Создать swap"
 
@@ -5813,6 +5820,9 @@ msgstr "Задайте DNS-суффикс."
 
 msgid "Define the custom mountpoint for the device."
 msgstr "Определите пользовательскую точку монтирования для устройства."
+
+msgid "Define the default settings backup target location. Select 'Ask user' to prompt the user for the target location when the backup is run."
+msgstr ""
 
 msgid "Define the file system mount options."
 msgstr "Определите параметры монтирования файловой системы."
@@ -10242,8 +10252,15 @@ msgstr "Пакеты ядра"
 msgid "Kernel file"
 msgstr "Файл ядра"
 
+msgid "Kernel partition"
+msgstr ""
+
 msgid "Kernel version"
 msgstr "Версия ядра"
+
+#, python-format
+msgid "Kernel%s partition"
+msgstr ""
 
 msgid "Kexec MultiBoot Actions"
 msgstr "Действия MultiBoot Kexec"
@@ -12694,9 +12711,6 @@ msgstr "Открыть параметры звука"
 msgid "Open AutoTimer"
 msgstr "Запустить автотаймер"
 
-msgid "Open AutoTimer OverView"
-msgstr "Открыть AutoTimer Обзор"
-
 msgid "Open AutoTimer Overview"
 msgstr "Открыть список автотаймеров"
 
@@ -12705,9 +12719,6 @@ msgstr "Открыть список букетов"
 
 msgid "Open Box Portal"
 msgstr "Показать Box Portal"
-
-msgid "Open DreamPlex"
-msgstr "Открыть DreamPlex"
 
 msgid "Open EPG"
 msgstr "Открыть ЭПГ"
@@ -14325,9 +14336,6 @@ msgstr "Режим быстрый ТВ-гид"
 msgid "QuickMenu"
 msgstr "Быстрое меню"
 
-msgid "QuickMenu Actions"
-msgstr "Действия быстрого меню"
-
 msgid "QuickMenu/Extensions"
 msgstr "Быстрое меню/Дополнения"
 
@@ -15356,6 +15364,9 @@ msgstr "Русский"
 msgid "Russian Federation"
 msgstr "Российская Федерация"
 
+msgid "Rust version"
+msgstr ""
+
 msgid "Rwanda"
 msgstr "Руанда"
 
@@ -15770,12 +15781,6 @@ msgstr "Скорость прокрутки (Программный рендер
 
 msgid "Search"
 msgstr "Поиск"
-
-msgid "Search EPG for current event"
-msgstr "Поиск EPG для текущего события"
-
-msgid "Search IMDb for information about current event"
-msgstr "Поиск информации о текущем событии на IMDb"
 
 msgid "Search Sats"
 msgstr "Поиск спутников"
@@ -16215,6 +16220,9 @@ msgstr "Выберите букет"
 msgid "Select a debug log file to view:"
 msgstr "Выберите файл лога отладки для просмотра:"
 
+msgid "Select a device to create multiboot slots"
+msgstr ""
+
 msgid "Select a device to use as the flash expander"
 msgstr "Выберите устройство, которое будет использоваться для расширения флеш-памяти"
 
@@ -16441,6 +16449,9 @@ msgstr "Выбор метода сортировки"
 
 msgid "Select system information to view:"
 msgstr "Выберите системную информацию для просмотра:"
+
+msgid "Select target device for slot creation"
+msgstr ""
 
 msgid "Select temporary directory sort order for the current column"
 msgstr "Выберите порядок сортировки временного каталога для текущего столбца"
@@ -17398,6 +17409,9 @@ msgstr "Настоятельно рекомендуется установить
 
 msgid "Settings"
 msgstr "Настройка"
+
+msgid "Settings Backup Target"
+msgstr ""
 
 msgid "Settings mode"
 msgstr "Режим настроек"
@@ -18594,6 +18608,9 @@ msgstr "Слот '%s' %s"
 #, python-format
 msgid "Slot '%s' %s: %s%s"
 msgstr "Слот '%s' %s: %s%s"
+
+msgid "Slot F: Flash Slot Image Backup (Current image)"
+msgstr ""
 
 msgid "Slot Manager"
 msgstr "Менеджер слотов"
@@ -19847,13 +19864,6 @@ msgid "The DVD standard doesn't support H.264 (HDTV) video streams."
 msgstr "DVD стандарт не поддерживает видеопотоки H.264 (HDTV)."
 
 msgid ""
-"The DreamPlex plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Плагин DreamPlex не установлен!\n"
-"Пожалуйста, установите его."
-
-msgid ""
 "The EPGSearch plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -20735,9 +20745,6 @@ msgstr "Редактор таймеров"
 
 msgid "Timeline scale"
 msgstr "Шкала времени"
-
-msgid "Timer Actions"
-msgstr "Действия по таймеру"
 
 msgid "Timer Log Actions"
 msgstr "Действия лога таймера"
@@ -24192,6 +24199,31 @@ msgstr "Да (оставить фиды)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Open AutoTimer OverView"
+#~ msgstr "Открыть AutoTimer Обзор"
+
+#~ msgid "Open DreamPlex"
+#~ msgstr "Открыть DreamPlex"
+
+#~ msgid "QuickMenu Actions"
+#~ msgstr "Действия быстрого меню"
+
+#~ msgid "Search EPG for current event"
+#~ msgstr "Поиск EPG для текущего события"
+
+#~ msgid "Search IMDb for information about current event"
+#~ msgstr "Поиск информации о текущем событии на IMDb"
+
+#~ msgid ""
+#~ "The DreamPlex plugin is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Плагин DreamPlex не установлен!\n"
+#~ "Пожалуйста, установите его."
+
+#~ msgid "Timer Actions"
+#~ msgstr "Действия по таймеру"
 
 #~ msgid "InfoBar EPG Actions"
 #~ msgstr "Режим ТВ-гида"

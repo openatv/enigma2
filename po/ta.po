@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-07 16:24+0000\n"
+"POT-Creation-Date: 2025-07-09 04:53+0000\n"
 "PO-Revision-Date: 2025-06-17 15:01+0000\n"
 "Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ta/>\n"
@@ -1031,6 +1031,10 @@ msgid "%d service found."
 msgid_plural "%d services found."
 msgstr[0] "%d பணி காணப்பட்டது."
 msgstr[1] "%d சேவைகள் காணப்பட்டன."
+
+#, python-format
+msgid "%d slots have been created on the device.\n"
+msgstr ""
 
 #, python-format
 msgid "%d times"
@@ -5142,6 +5146,9 @@ msgstr "ரூட் சர்னலிங் ஃபிளாச் கோப்
 msgid "Create separate radio user bouquet"
 msgstr "தனி வானொலி பயனர் பூச்செண்டை உருவாக்கவும்"
 
+msgid "Create slots for the selected device"
+msgstr ""
+
 msgid "Create swap"
 msgstr "இடமாற்றத்தை உருவாக்கவும்"
 
@@ -5773,6 +5780,9 @@ msgstr "டிஎன்எச் பின்னொட்டை வரையற�
 
 msgid "Define the custom mountpoint for the device."
 msgstr "சாதனத்திற்கான தனிப்பயன் மவுண்ட்பாயிண்ட் வரையறுக்கவும்."
+
+msgid "Define the default settings backup target location. Select 'Ask user' to prompt the user for the target location when the backup is run."
+msgstr ""
 
 msgid "Define the file system mount options."
 msgstr "கோப்பு முறைமை மவுண்ட் விருப்பங்களை வரையறுக்கவும்."
@@ -10198,8 +10208,15 @@ msgstr "கர்னல் தொகுப்புகள்"
 msgid "Kernel file"
 msgstr "கர்னல் கோப்பு"
 
+msgid "Kernel partition"
+msgstr ""
+
 msgid "Kernel version"
 msgstr "கர்னல் பதிப்பு"
+
+#, python-format
+msgid "Kernel%s partition"
+msgstr ""
 
 msgid "Kexec MultiBoot Actions"
 msgstr "கெக்செக் மல்டிபூட் செயல்கள்"
@@ -12649,9 +12666,6 @@ msgstr "ஆடியோ விருப்பங்கள் ..."
 msgid "Open AutoTimer"
 msgstr "திறந்த ஆட்டோடிமர்"
 
-msgid "Open AutoTimer OverView"
-msgstr "ஆட்டோடிமர் கண்ணோட்டத்தைத் திறக்கவும்"
-
 msgid "Open AutoTimer Overview"
 msgstr "ஆட்டோடிமெர்லிச்ட் திறந்த"
 
@@ -12660,9 +12674,6 @@ msgstr "பூச்செண்டு பட்டியல்"
 
 msgid "Open Box Portal"
 msgstr "பெட்டி போர்ட்டலைக் காட்டு"
-
-msgid "Open DreamPlex"
-msgstr "ட்ரீம்ப்ளெக்ச் பிளேயரைக் காட்டு ..."
 
 msgid "Open EPG"
 msgstr "EPG ஐக் காட்டு ..."
@@ -14278,9 +14289,6 @@ msgstr "Quickepg பயன்முறை"
 msgid "QuickMenu"
 msgstr "குயிக்மெனு"
 
-msgid "QuickMenu Actions"
-msgstr "குயிக்மெனு செயல்கள்"
-
 msgid "QuickMenu/Extensions"
 msgstr "குயிக்மெனு/நீட்டிப்புகள்"
 
@@ -15309,6 +15317,9 @@ msgstr "ரச்ய"
 msgid "Russian Federation"
 msgstr "ரச்யன் கூட்டமைப்பு"
 
+msgid "Rust version"
+msgstr ""
+
 msgid "Rwanda"
 msgstr "ருவாண்டா"
 
@@ -15720,12 +15731,6 @@ msgstr "ச்க்ரோலிங் விரைவு (மென்பொர
 
 msgid "Search"
 msgstr "தேடல்"
-
-msgid "Search EPG for current event"
-msgstr "தற்போதைய நிகழ்வுக்கு EPG ஐத் தேடுங்கள்."
-
-msgid "Search IMDb for information about current event"
-msgstr "தற்போதைய நிகழ்வு பற்றிய தகவலுக்கு IMDB ஐத் தேடுங்கள்."
 
 msgid "Search Sats"
 msgstr "சாட்சைத் தேடுங்கள்"
@@ -16165,6 +16170,9 @@ msgstr "ஒரு பூச்செண்டு என்பதைத் தே
 msgid "Select a debug log file to view:"
 msgstr "பார்க்க பிழைத்திருத்த பதிவு கோப்பைத் தேர்ந்தெடுக்கவும்:"
 
+msgid "Select a device to create multiboot slots"
+msgstr ""
+
 msgid "Select a device to use as the flash expander"
 msgstr "ஃபிளாச் விரிவாக்கமாக பயன்படுத்த ஒரு சாதனத்தைத் தேர்ந்தெடுக்கவும்"
 
@@ -16391,6 +16399,9 @@ msgstr "வரிசை முறையைத் தேர்ந்தெடு�
 
 msgid "Select system information to view:"
 msgstr "பார்க்க கணினி தகவல்களைத் தேர்ந்தெடுக்கவும்:"
+
+msgid "Select target device for slot creation"
+msgstr ""
 
 msgid "Select temporary directory sort order for the current column"
 msgstr "தற்போதைய நெடுவரிசைக்கு தற்காலிக அடைவு வரிசை வரிசையைத் தேர்ந்தெடுக்கவும்"
@@ -17348,6 +17359,9 @@ msgstr "உங்கள் STB இணையத்திற்கு திறந
 
 msgid "Settings"
 msgstr "அமைப்புகள்"
+
+msgid "Settings Backup Target"
+msgstr ""
 
 msgid "Settings mode"
 msgstr "அமைப்புகள் பயன்முறை"
@@ -18542,6 +18556,9 @@ msgstr "ச்லாட் ' %s' %s"
 #, python-format
 msgid "Slot '%s' %s: %s%s"
 msgstr "ச்லாட் ' %s' %s: %s %s"
+
+msgid "Slot F: Flash Slot Image Backup (Current image)"
+msgstr ""
 
 msgid "Slot Manager"
 msgstr "ச்லாட் மேலாளர்"
@@ -19795,13 +19812,6 @@ msgid "The DVD standard doesn't support H.264 (HDTV) video streams."
 msgstr "டிவிடி தரநிலை H.264 (HDTV) வீடியோ ச்ட்ரீம்களை ஆதரிக்காது."
 
 msgid ""
-"The DreamPlex plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"ட்ரீம் பிளெக்ச் சொருகி நிறுவப்படவில்லை!\n"
-" அதை நிறுவவும்."
-
-msgid ""
 "The EPGSearch plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -20682,9 +20692,6 @@ msgstr "காலவரிசை மார்க்கர்"
 
 msgid "Timeline scale"
 msgstr "காலவரிசை அளவு"
-
-msgid "Timer Actions"
-msgstr "நேரங்குறிகருவி செயல்கள்"
 
 msgid "Timer Log Actions"
 msgstr "நேரங்குறிகருவி பதிவு செயல்கள்"
@@ -24138,6 +24145,31 @@ msgstr "ஆம் (ஊட்டங்களை வைத்திருங்க
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Open AutoTimer OverView"
+#~ msgstr "ஆட்டோடிமர் கண்ணோட்டத்தைத் திறக்கவும்"
+
+#~ msgid "Open DreamPlex"
+#~ msgstr "ட்ரீம்ப்ளெக்ச் பிளேயரைக் காட்டு ..."
+
+#~ msgid "QuickMenu Actions"
+#~ msgstr "குயிக்மெனு செயல்கள்"
+
+#~ msgid "Search EPG for current event"
+#~ msgstr "தற்போதைய நிகழ்வுக்கு EPG ஐத் தேடுங்கள்."
+
+#~ msgid "Search IMDb for information about current event"
+#~ msgstr "தற்போதைய நிகழ்வு பற்றிய தகவலுக்கு IMDB ஐத் தேடுங்கள்."
+
+#~ msgid ""
+#~ "The DreamPlex plugin is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "ட்ரீம் பிளெக்ச் சொருகி நிறுவப்படவில்லை!\n"
+#~ " அதை நிறுவவும்."
+
+#~ msgid "Timer Actions"
+#~ msgstr "நேரங்குறிகருவி செயல்கள்"
 
 #~ msgid "InfoBar EPG Actions"
 #~ msgstr "இன்போபார் ஈபிசி செயல்கள்"

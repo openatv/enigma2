@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-07 16:24+0000\n"
+"POT-Creation-Date: 2025-07-09 04:53+0000\n"
 "PO-Revision-Date: 2025-05-09 04:42+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -1033,6 +1033,10 @@ msgid "%d service found."
 msgid_plural "%d services found."
 msgstr[0] "%d zender gevonden."
 msgstr[1] "%d zenders gevonden."
+
+#, python-format
+msgid "%d slots have been created on the device.\n"
+msgstr ""
 
 #, python-format
 msgid "%d times"
@@ -5257,6 +5261,9 @@ msgstr "Root-journaling-flash-bestandssysteem opslaan."
 msgid "Create separate radio user bouquet"
 msgstr "Maak een extra favorietenlijst voor radio"
 
+msgid "Create slots for the selected device"
+msgstr ""
+
 msgid "Create swap"
 msgstr "Een Swapfile maken"
 
@@ -5888,6 +5895,9 @@ msgstr "Het DNS-achtervoegsel invullen."
 
 msgid "Define the custom mountpoint for the device."
 msgstr "Een custom mountpunt voor dit apparaat configureren."
+
+msgid "Define the default settings backup target location. Select 'Ask user' to prompt the user for the target location when the backup is run."
+msgstr ""
 
 msgid "Define the file system mount options."
 msgstr "De mount-opties voor het bestandssysteem invoeren."
@@ -10347,8 +10357,15 @@ msgstr "Kernel"
 msgid "Kernel file"
 msgstr "Kernel bestand"
 
+msgid "Kernel partition"
+msgstr ""
+
 msgid "Kernel version"
 msgstr "Kernel versie"
+
+#, python-format
+msgid "Kernel%s partition"
+msgstr ""
 
 msgid "Kexec MultiBoot Actions"
 msgstr "Kexec MultiBoot Acties"
@@ -12801,9 +12818,6 @@ msgstr "Audio opties..."
 msgid "Open AutoTimer"
 msgstr "Open AutoTimer"
 
-msgid "Open AutoTimer OverView"
-msgstr "AutoTimer-overzicht openen"
-
 msgid "Open AutoTimer Overview"
 msgstr "Open AutoTimerlijst"
 
@@ -12812,9 +12826,6 @@ msgstr "Open favorietenlijst"
 
 msgid "Open Box Portal"
 msgstr "Toon Box Portal"
-
-msgid "Open DreamPlex"
-msgstr "Toon de Dreamplex speler..."
 
 msgid "Open EPG"
 msgstr "Toon EPG..."
@@ -14435,9 +14446,6 @@ msgstr "QuickEPG functie"
 msgid "QuickMenu"
 msgstr "Snelstartmenu"
 
-msgid "QuickMenu Actions"
-msgstr "Snelstartmenu Acties"
-
 msgid "QuickMenu/Extensions"
 msgstr "Snelstartmenu/Extensies"
 
@@ -15466,6 +15474,9 @@ msgstr "Russisch"
 msgid "Russian Federation"
 msgstr "Rusland"
 
+msgid "Rust version"
+msgstr ""
+
 msgid "Rwanda"
 msgstr "Rwanda"
 
@@ -15879,12 +15890,6 @@ msgstr "Scroll-snelheid (software renderer)"
 
 msgid "Search"
 msgstr "Zoek"
-
-msgid "Search EPG for current event"
-msgstr "Doorzoek de EPG voor het huidige programma ."
-
-msgid "Search IMDb for information about current event"
-msgstr "Zoek op IMDB naar informatie over het huidige programma."
 
 msgid "Search Sats"
 msgstr "Satelliet signaal zoeken"
@@ -16332,6 +16337,9 @@ msgstr "Selecteer een favorietenlijst"
 msgid "Select a debug log file to view:"
 msgstr "Selecteer een debug log-bestand:"
 
+msgid "Select a device to create multiboot slots"
+msgstr ""
+
 msgid "Select a device to use as the flash expander"
 msgstr "Selecteer een apparaat dat u wilt gebruiken als Flash-Expander"
 
@@ -16558,6 +16566,9 @@ msgstr "Selecteer sorteermethode:"
 
 msgid "Select system information to view:"
 msgstr "Welke systeeminformatie wilt u zien:"
+
+msgid "Select target device for slot creation"
+msgstr ""
 
 msgid "Select temporary directory sort order for the current column"
 msgstr "Selecteer de sorteervolgorde van de tijdelijke map in de huidige kolom"
@@ -17531,6 +17542,9 @@ msgstr "Wij adviseren u een wachtwoord in te stellen wanneer uw ontvanger is ver
 
 msgid "Settings"
 msgstr "Instellingen"
+
+msgid "Settings Backup Target"
+msgstr ""
 
 msgid "Settings mode"
 msgstr "Toegangsniveau instellen"
@@ -18742,6 +18756,9 @@ msgstr "Slot '%s' %s"
 #, python-format
 msgid "Slot '%s' %s: %s%s"
 msgstr "Slot '%s' %s: %s%s"
+
+msgid "Slot F: Flash Slot Image Backup (Current image)"
+msgstr ""
 
 msgid "Slot Manager"
 msgstr "Slot Manager"
@@ -19998,13 +20015,6 @@ msgid "The DVD standard doesn't support H.264 (HDTV) video streams."
 msgstr "De DVD standaard ondersteunt geen H.264 (HDTV) video streams."
 
 msgid ""
-"The DreamPlex plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"De DreamPlex plugin is niet geïnstalleerd!\n"
-"A.u.b. deze eerst installeren."
-
-msgid ""
 "The EPGSearch plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -20927,9 +20937,6 @@ msgstr "Tijdlijn historie"
 
 msgid "Timeline scale"
 msgstr "Tijdlijn schaal"
-
-msgid "Timer Actions"
-msgstr "Timer acties"
 
 msgid "Timer Log Actions"
 msgstr "Timer-Log Acties"
@@ -24409,6 +24416,31 @@ msgstr "ja (bewaar feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Open AutoTimer OverView"
+#~ msgstr "AutoTimer-overzicht openen"
+
+#~ msgid "Open DreamPlex"
+#~ msgstr "Toon de Dreamplex speler..."
+
+#~ msgid "QuickMenu Actions"
+#~ msgstr "Snelstartmenu Acties"
+
+#~ msgid "Search EPG for current event"
+#~ msgstr "Doorzoek de EPG voor het huidige programma ."
+
+#~ msgid "Search IMDb for information about current event"
+#~ msgstr "Zoek op IMDB naar informatie over het huidige programma."
+
+#~ msgid ""
+#~ "The DreamPlex plugin is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "De DreamPlex plugin is niet geïnstalleerd!\n"
+#~ "A.u.b. deze eerst installeren."
+
+#~ msgid "Timer Actions"
+#~ msgstr "Timer acties"
 
 #~ msgid "InfoBar EPG Actions"
 #~ msgstr "Informatiebalk-EPG acties"

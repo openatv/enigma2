@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-07 16:24+0000\n"
+"POT-Creation-Date: 2025-07-09 04:53+0000\n"
 "PO-Revision-Date: 2024-01-13 10:34+0000\n"
 "Last-Translator: Reza Almanda <rezaalmanda27@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/id/>\n"
@@ -1160,6 +1160,10 @@ msgid "%d service found."
 msgid_plural "%d services found."
 msgstr[0] ""
 msgstr[1] ""
+
+#, python-format
+msgid "%d slots have been created on the device.\n"
+msgstr ""
 
 #, fuzzy, python-format
 msgid "%d times"
@@ -5347,6 +5351,9 @@ msgstr ""
 msgid "Create separate radio user bouquet"
 msgstr "Create separate radio user bouquet"
 
+msgid "Create slots for the selected device"
+msgstr ""
+
 msgid "Create swap"
 msgstr ""
 
@@ -5986,6 +5993,9 @@ msgid "Define the DNS suffix."
 msgstr ""
 
 msgid "Define the custom mountpoint for the device."
+msgstr ""
+
+msgid "Define the default settings backup target location. Select 'Ask user' to prompt the user for the target location when the backup is run."
 msgstr ""
 
 msgid "Define the file system mount options."
@@ -10498,7 +10508,14 @@ msgstr ""
 msgid "Kernel file"
 msgstr ""
 
+msgid "Kernel partition"
+msgstr ""
+
 msgid "Kernel version"
+msgstr ""
+
+#, python-format
+msgid "Kernel%s partition"
 msgstr ""
 
 msgid "Kexec MultiBoot Actions"
@@ -13024,9 +13041,6 @@ msgstr "Open Audio options"
 msgid "Open AutoTimer"
 msgstr "Buka PewaktuAuto"
 
-msgid "Open AutoTimer OverView"
-msgstr ""
-
 #, fuzzy
 msgid "Open AutoTimer Overview"
 msgstr "Buka Daftar PewaktuAuto..."
@@ -13038,9 +13052,6 @@ msgstr "Open bouquetlist..."
 #, fuzzy
 msgid "Open Box Portal"
 msgstr "Show Box Portal..."
-
-msgid "Open DreamPlex"
-msgstr "Open DreamPlex"
 
 msgid "Open EPG"
 msgstr "Open EPG"
@@ -14707,10 +14718,6 @@ msgstr "QuickEPG mode"
 msgid "QuickMenu"
 msgstr "QuickMenu"
 
-#, fuzzy
-msgid "QuickMenu Actions"
-msgstr "Quick Actions"
-
 msgid "QuickMenu/Extensions"
 msgstr "QuickMenu/Extensions"
 
@@ -15763,6 +15770,9 @@ msgstr "Russian"
 msgid "Russian Federation"
 msgstr "Russian Federation"
 
+msgid "Rust version"
+msgstr ""
+
 msgid "Rwanda"
 msgstr "Rwanda"
 
@@ -16183,12 +16193,6 @@ msgstr "Scrolling speed (software renderer)"
 
 msgid "Search"
 msgstr "Search"
-
-msgid "Search EPG for current event"
-msgstr "Search EPG for current event"
-
-msgid "Search IMDb for information about current event"
-msgstr "Search IMDb for information about current event"
 
 msgid "Search Sats"
 msgstr "Search Sats"
@@ -16632,6 +16636,9 @@ msgstr "Select a bouquet"
 msgid "Select a debug log file to view:"
 msgstr ""
 
+msgid "Select a device to create multiboot slots"
+msgstr ""
+
 msgid "Select a device to use as the flash expander"
 msgstr ""
 
@@ -16857,6 +16864,9 @@ msgid "Select sort method:"
 msgstr "Select sort method:"
 
 msgid "Select system information to view:"
+msgstr ""
+
+msgid "Select target device for slot creation"
 msgstr ""
 
 msgid "Select temporary directory sort order for the current column"
@@ -17816,6 +17826,9 @@ msgstr ""
 
 msgid "Settings"
 msgstr "Settings"
+
+msgid "Settings Backup Target"
+msgstr ""
 
 msgid "Settings mode"
 msgstr "Mode pengaturan"
@@ -19034,6 +19047,9 @@ msgstr ""
 
 #, python-format
 msgid "Slot '%s' %s: %s%s"
+msgstr ""
+
+msgid "Slot F: Flash Slot Image Backup (Current image)"
 msgstr ""
 
 msgid "Slot Manager"
@@ -20315,13 +20331,6 @@ msgid "The DVD standard doesn't support H.264 (HDTV) video streams."
 msgstr "The DVD standard doesn't support H.264 (HDTV) video streams."
 
 msgid ""
-"The DreamPlex plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"The DreamPlex plugin is not installed!\n"
-"Please install it."
-
-msgid ""
 "The EPGSearch plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -21196,10 +21205,6 @@ msgstr "Pengubah pewaktu"
 
 msgid "Timeline scale"
 msgstr ""
-
-#, fuzzy
-msgid "Timer Actions"
-msgstr "Tindakan pewaktu"
 
 msgid "Timer Log Actions"
 msgstr ""
@@ -24686,6 +24691,30 @@ msgstr "yes (keep feeds)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Open DreamPlex"
+#~ msgstr "Open DreamPlex"
+
+#, fuzzy
+#~ msgid "QuickMenu Actions"
+#~ msgstr "Quick Actions"
+
+#~ msgid "Search EPG for current event"
+#~ msgstr "Search EPG for current event"
+
+#~ msgid "Search IMDb for information about current event"
+#~ msgstr "Search IMDb for information about current event"
+
+#~ msgid ""
+#~ "The DreamPlex plugin is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "The DreamPlex plugin is not installed!\n"
+#~ "Please install it."
+
+#, fuzzy
+#~ msgid "Timer Actions"
+#~ msgstr "Tindakan pewaktu"
 
 #, fuzzy
 #~ msgid "InfoBar EPG Actions"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-07 16:24+0000\n"
+"POT-Creation-Date: 2025-07-09 04:53+0000\n"
 "PO-Revision-Date: 2025-06-11 19:04+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -1066,6 +1066,10 @@ msgid_plural "%d services found."
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
+
+#, python-format
+msgid "%d slots have been created on the device.\n"
+msgstr ""
 
 #, python-format
 msgid "%d times"
@@ -5193,6 +5197,9 @@ msgstr ""
 msgid "Create separate radio user bouquet"
 msgstr "Sukurti atskirą vartotojo radijo paketą"
 
+msgid "Create slots for the selected device"
+msgstr ""
+
 msgid "Create swap"
 msgstr ""
 
@@ -5823,6 +5830,9 @@ msgid "Define the DNS suffix."
 msgstr ""
 
 msgid "Define the custom mountpoint for the device."
+msgstr ""
+
+msgid "Define the default settings backup target location. Select 'Ask user' to prompt the user for the target location when the backup is run."
 msgstr ""
 
 msgid "Define the file system mount options."
@@ -10247,8 +10257,15 @@ msgstr ""
 msgid "Kernel file"
 msgstr "Branduolio failas"
 
+msgid "Kernel partition"
+msgstr ""
+
 msgid "Kernel version"
 msgstr "Branduolio versija"
+
+#, python-format
+msgid "Kernel%s partition"
+msgstr ""
 
 msgid "Kexec MultiBoot Actions"
 msgstr ""
@@ -12696,9 +12713,6 @@ msgstr "Garso parinktys..."
 msgid "Open AutoTimer"
 msgstr "Atverti auto laikmatį"
 
-msgid "Open AutoTimer OverView"
-msgstr ""
-
 msgid "Open AutoTimer Overview"
 msgstr "Atidaryti automatinį sąrašą"
 
@@ -12707,9 +12721,6 @@ msgstr "Atverti paketų sąrašą"
 
 msgid "Open Box Portal"
 msgstr "Rodyti lauko portalą"
-
-msgid "Open DreamPlex"
-msgstr "Rodyti DreamPlex grotuvą..."
 
 msgid "Open EPG"
 msgstr "rodyti EPG..."
@@ -14327,9 +14338,6 @@ msgstr "Greitas EPG režimas"
 msgid "QuickMenu"
 msgstr "Greitasis meniu"
 
-msgid "QuickMenu Actions"
-msgstr "Greito menlu veiksmai"
-
 msgid "QuickMenu/Extensions"
 msgstr "Greitasis meniu/plėtiniai"
 
@@ -15358,6 +15366,9 @@ msgstr "Rusų"
 msgid "Russian Federation"
 msgstr "Rusijos Federacija"
 
+msgid "Rust version"
+msgstr ""
+
 msgid "Rwanda"
 msgstr "Ruanda"
 
@@ -15772,12 +15783,6 @@ msgstr "Teksto slinkties greitis (programinis)"
 
 msgid "Search"
 msgstr "Ieškoti"
-
-msgid "Search EPG for current event"
-msgstr "Ieškoti EPG apie šį įvykį."
-
-msgid "Search IMDb for information about current event"
-msgstr "Ieškoti informacijos apie šį įvykį IMDb."
 
 msgid "Search Sats"
 msgstr "Ieškoti palydovų"
@@ -16217,6 +16222,9 @@ msgstr "Pasirinkite paketą"
 msgid "Select a debug log file to view:"
 msgstr "Pasirinkite derinimo žurnalo failą, kurį norite peržiūrėti:"
 
+msgid "Select a device to create multiboot slots"
+msgstr ""
+
 msgid "Select a device to use as the flash expander"
 msgstr ""
 
@@ -16443,6 +16451,9 @@ msgstr "Pasirinkite rūšiavimo būdą:"
 
 msgid "Select system information to view:"
 msgstr "Pasirinkite sistemos informaciją, kurią norite peržiūrėti:"
+
+msgid "Select target device for slot creation"
+msgstr ""
 
 msgid "Select temporary directory sort order for the current column"
 msgstr "Pasirinkite dabartinio stulpelio laikiną katalogų rūšiavimo tvarką"
@@ -17388,6 +17399,9 @@ msgstr "Slaptažodžio nustatymas primygtinai rekomenduojamas, jei jūsų STB yr
 
 msgid "Settings"
 msgstr "Nustatymai"
+
+msgid "Settings Backup Target"
+msgstr ""
 
 msgid "Settings mode"
 msgstr "Parametrų režimas"
@@ -18583,6 +18597,9 @@ msgstr ""
 
 #, python-format
 msgid "Slot '%s' %s: %s%s"
+msgstr ""
+
+msgid "Slot F: Flash Slot Image Backup (Current image)"
 msgstr ""
 
 msgid "Slot Manager"
@@ -19831,11 +19848,6 @@ msgid "The DVD standard doesn't support H.264 (HDTV) video streams."
 msgstr "DVD standartas nepalaiko H.264 (HDTV) vaizdo srautų."
 
 msgid ""
-"The DreamPlex plugin is not installed!\n"
-"Please install it."
-msgstr "DreamPlex priedas neįdiegtas! Prašome jį įdiegti."
-
-msgid ""
 "The EPGSearch plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -20702,9 +20714,6 @@ msgstr "Laiko istorija"
 
 msgid "Timeline scale"
 msgstr "Laiko skalė"
-
-msgid "Timer Actions"
-msgstr "Laikmačio veiksmai"
 
 msgid "Timer Log Actions"
 msgstr ""
@@ -24141,6 +24150,26 @@ msgstr "taip (išsaugoti šaltinius)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Open DreamPlex"
+#~ msgstr "Rodyti DreamPlex grotuvą..."
+
+#~ msgid "QuickMenu Actions"
+#~ msgstr "Greito menlu veiksmai"
+
+#~ msgid "Search EPG for current event"
+#~ msgstr "Ieškoti EPG apie šį įvykį."
+
+#~ msgid "Search IMDb for information about current event"
+#~ msgstr "Ieškoti informacijos apie šį įvykį IMDb."
+
+#~ msgid ""
+#~ "The DreamPlex plugin is not installed!\n"
+#~ "Please install it."
+#~ msgstr "DreamPlex priedas neįdiegtas! Prašome jį įdiegti."
+
+#~ msgid "Timer Actions"
+#~ msgstr "Laikmačio veiksmai"
 
 #~ msgid "InfoBar EPG Actions"
 #~ msgstr "Info juostos EPG veiksmai"

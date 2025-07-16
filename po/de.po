@@ -16,16 +16,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-07 16:24+0000\n"
-"PO-Revision-Date: 2025-05-10 07:44+0000\n"
-"Last-Translator: jbleyel <jbleyel@gmx.net>\n"
+"POT-Creation-Date: 2025-07-09 04:53+0000\n"
+"PO-Revision-Date: 2025-07-09 18:58+0000\n"
+"Last-Translator: Makumbo <tokioplo@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.12-dev\n"
+"X-Generator: Weblate 5.13-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1046,6 +1046,10 @@ msgid "%d service found."
 msgid_plural "%d services found."
 msgstr[0] "%d Sender gefunden."
 msgstr[1] "%d Sender gefunden."
+
+#, python-format
+msgid "%d slots have been created on the device.\n"
+msgstr "%d Slots wurden auf dem ausgewählten Gerät erstellt.\n"
 
 #, python-format
 msgid "%d times"
@@ -5422,6 +5426,9 @@ msgstr "Root-Journaling-Flash-Dateisystem erstellen."
 msgid "Create separate radio user bouquet"
 msgstr "Separates Radiobouquet erstellen"
 
+msgid "Create slots for the selected device"
+msgstr "Slots für ausgewähltes Gerät erstellen"
+
 msgid "Create swap"
 msgstr "Swap erstellen"
 
@@ -6073,6 +6080,9 @@ msgstr "Legt den DNS-Suffix fest."
 
 msgid "Define the custom mountpoint for the device."
 msgstr "Benutzerdefinierten Einhängepunkt für das Gerät festlegen."
+
+msgid "Define the default settings backup target location. Select 'Ask user' to prompt the user for the target location when the backup is run."
+msgstr "Das Ziel für die Einstellungssicherung vorgeben. Bei 'Benutzer fragen' kann es vor einer Sicherung geändert werden."
 
 msgid "Define the file system mount options."
 msgstr "Einhänge-Optionen für das Dateisystem festlegen."
@@ -7544,7 +7554,7 @@ msgid "Enable the advanced HDMI-CEC setting options."
 msgstr "Erweiterte HDMI-CEC-Einstellungsoptionen aktivieren."
 
 msgid "Enable this option to add MultiBoot information detected during system boot to the debug log file."
-msgstr "Aktivieren, um dem Debug-Log während des Systemstarts erkannte Multiboot-Informationen hinzuzufügen."
+msgstr "Aktivieren, um dem Debug-Log während des Systemstarts erkannte MultiBoot-Informationen hinzuzufügen."
 
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "Aktivieren, um dem Debug-Log Action-Map-Daten hinzuzufügen."
@@ -9518,7 +9528,7 @@ msgid "Harddisk Setup"
 msgstr "Konfiguration der Festplatte"
 
 msgid "Hardware MultiBoot device"
-msgstr "Multiboot-Gerät"
+msgstr "MultiBoot-Gerät"
 
 msgid "Hardware information"
 msgstr "Hardware-Informationen"
@@ -10193,7 +10203,7 @@ msgid "Include EPG data"
 msgstr "Inklusive EPG-Daten"
 
 msgid "Include MultiBoot data *"
-msgstr "Inklusive Multiboot-Daten *"
+msgstr "Inklusive MultiBoot-Daten *"
 
 msgid "Include SDT, BAT in http streams"
 msgstr "SDT und BAT in HTTP-Stream integrieren"
@@ -10725,8 +10735,15 @@ msgstr "Kernelmodule"
 msgid "Kernel file"
 msgstr "Kerneldatei"
 
+msgid "Kernel partition"
+msgstr "Kernel Partition"
+
 msgid "Kernel version"
-msgstr "Kernelversion"
+msgstr "Kernel Version"
+
+#, python-format
+msgid "Kernel%s partition"
+msgstr "Kernel%s Partition"
 
 msgid "Kexec MultiBoot Actions"
 msgstr "Kexec MultiBoot-Aktionen"
@@ -11435,7 +11452,7 @@ msgid "Main Menu"
 msgstr "Hauptmenü"
 
 msgid "Maintain your multi boot device."
-msgstr "Das Multiboot-Gerät verwalten."
+msgstr "Das MultiBoot-Gerät verwalten."
 
 msgid "Make"
 msgstr "Marke"
@@ -12274,22 +12291,22 @@ msgid "Multi EPG"
 msgstr "Multi-EPG"
 
 msgid "MultiBoot"
-msgstr "Multiboot"
+msgstr "MultiBoot"
 
 msgid "MultiBoot Information"
-msgstr "Multiboot-Informationen"
+msgstr "MultiBoot-Informationen"
 
 msgid "MultiBoot Manager"
-msgstr "Multiboot-Verwaltung"
+msgstr "MultiBoot-Verwaltung"
 
 msgid "MultiBoot Manager Actions"
-msgstr "Multiboot-Manager-Aktionen"
+msgstr "MultiBoot-Manager-Aktionen"
 
 msgid "MultiBoot boot mode"
-msgstr "Multiboot-Startmodus"
+msgstr "MultiBoot-Startmodus"
 
 msgid "MultiBoot startup file"
-msgstr "Multiboot-Startdatei"
+msgstr "MultiBoot-Startdatei"
 
 msgid "MultiEPG Settings"
 msgstr "Multi-EPG"
@@ -12301,7 +12318,7 @@ msgid "MultiTranscoding"
 msgstr "MultiTranscoding"
 
 msgid "Multiboot Image created:"
-msgstr "Multiboot-Image erstellt:"
+msgstr "MultiBoot-Image erstellt:"
 
 msgid "Multimedia Packages"
 msgstr "Multimedia-Pakete"
@@ -13375,9 +13392,6 @@ msgstr "Toneinstellungen..."
 msgid "Open AutoTimer"
 msgstr "AutoTimer anzeigen"
 
-msgid "Open AutoTimer OverView"
-msgstr "AutoTimer-Übersicht öffnen"
-
 #
 msgid "Open AutoTimer Overview"
 msgstr "AutoTimer-Liste anzeigen"
@@ -13388,9 +13402,6 @@ msgstr "Favoritenliste öffnen"
 
 msgid "Open Box Portal"
 msgstr "Box-Portal anzeigen"
-
-msgid "Open DreamPlex"
-msgstr "DreamPlex-Player anzeigen..."
 
 #
 msgid "Open EPG"
@@ -14719,7 +14730,7 @@ msgid "Press GREEN to enable MultiBoot!"
 msgstr "GRÜN drücken, um MultiBoot zu aktivieren!"
 
 msgid "Press OK for MultiBoot selection."
-msgstr "OK drücken für die Multiboot-Auswahl."
+msgstr "OK drücken für die MultiBoot-Auswahl."
 
 #
 msgid "Press OK on your remote control to continue."
@@ -15135,10 +15146,6 @@ msgstr "Grafischen Infoleisten-EPG aufrufen"
 
 msgid "QuickMenu"
 msgstr "Schnellstartmenü"
-
-# UsageConfig.py:295
-msgid "QuickMenu Actions"
-msgstr "Schnellstartmenü-Aktionen"
 
 msgid "QuickMenu/Extensions"
 msgstr "Schnellstartmenü/Erweiterungen"
@@ -16250,6 +16257,9 @@ msgstr "Russisch"
 msgid "Russian Federation"
 msgstr "Russland"
 
+msgid "Rust version"
+msgstr "Rust Version"
+
 msgid "Rwanda"
 msgstr "Ruanda"
 
@@ -16688,12 +16698,6 @@ msgstr "Scrollgeschwindigkeit (Software-Renderer)"
 
 msgid "Search"
 msgstr "Suche"
-
-msgid "Search EPG for current event"
-msgstr "Im EPG nach aktueller Sendung suchen."
-
-msgid "Search IMDb for information about current event"
-msgstr "IMDb-Suche für die ausgewählte Sendung."
 
 msgid "Search Sats"
 msgstr "Satellitensuche und Pegelanzeige"
@@ -17156,6 +17160,9 @@ msgstr "Bouquet auswählen"
 msgid "Select a debug log file to view:"
 msgstr "Ein Debug-Log zur Ansicht auswählen:"
 
+msgid "Select a device to create multiboot slots"
+msgstr "Ein Gerät für MultiBoot-Slots auswählen"
+
 msgid "Select a device to use as the flash expander"
 msgstr "Ein Gerät auswählen, welches als Flash-Expander verwendet werden soll"
 
@@ -17394,6 +17401,9 @@ msgstr "Sortiermethode auswählen:"
 
 msgid "Select system information to view:"
 msgstr "Die anzuzeigenden System-Informationen auswählen:"
+
+msgid "Select target device for slot creation"
+msgstr "Das Zielgerät für die Slot-Erstellung auswählen"
 
 msgid "Select temporary directory sort order for the current column"
 msgstr "Sortierreihenfolge des temporären Verzeichnisses für die aktuelle Spalte auswählen"
@@ -18409,6 +18419,9 @@ msgstr "Es wird dringend empfohlen, ein Passwort festzulegen, wenn der Receiver 
 
 msgid "Settings"
 msgstr "Einstellungen"
+
+msgid "Settings Backup Target"
+msgstr "Ziel der Einstellungssicherung"
 
 msgid "Settings mode"
 msgstr "Einstellungsansicht"
@@ -19643,7 +19656,7 @@ msgstr "Von oben nach unten"
 #
 #, python-format
 msgid "Slot %d"
-msgstr "Steckplatz %d"
+msgstr "Slot %d"
 
 #, python-format
 msgid "Slot %s / FBC in %s"
@@ -19673,6 +19686,9 @@ msgstr "Slot '%s' %s"
 msgid "Slot '%s' %s: %s%s"
 msgstr "Slot '%s' %s: %s%s"
 
+msgid "Slot F: Flash Slot Image Backup (Current image)"
+msgstr "Slot F: Flash Slot Komplettsicherung (aktuelles Image)"
+
 msgid "Slot Manager"
 msgstr "Slot-Verwaltung"
 
@@ -19680,7 +19696,7 @@ msgid "Slot Manager Actions"
 msgstr "Slot-Manager Aktionen"
 
 msgid "Slot R: Root Slot Image Backup (Current image)"
-msgstr "Slot R: Root Slot Komplettbackup (aktuelles Image)"
+msgstr "Slot R: Root Slot Komplettsicherung (aktuelles Image)"
 
 msgid "Slot count"
 msgstr "Anzahl der Slots"
@@ -19782,7 +19798,7 @@ msgid "Software Manager Settings"
 msgstr "Updateeinstellungen"
 
 msgid "Software MultiBoot"
-msgstr "Software-Multiboot"
+msgstr "Software-MultiBoot"
 
 #
 msgid "Software Restore"
@@ -20994,13 +21010,6 @@ msgid "The DVD standard doesn't support H.264 (HDTV) video streams."
 msgstr "Der DVD-Standard unterstützt keine H.264-Videostreams (HDTV)."
 
 msgid ""
-"The DreamPlex plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Das DreamPlex-Plugin ist nicht installiert!\n"
-"Bitte installieren."
-
-msgid ""
 "The EPGSearch plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -21931,9 +21940,6 @@ msgstr "Zeithistorie"
 
 msgid "Timeline scale"
 msgstr "Zeitskala"
-
-msgid "Timer Actions"
-msgstr "Timeraktionen"
 
 msgid "Timer Log Actions"
 msgstr "Timer-Log-Aktionen"
@@ -25661,6 +25667,32 @@ msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Open AutoTimer OverView"
+#~ msgstr "AutoTimer-Übersicht öffnen"
+
+#~ msgid "Open DreamPlex"
+#~ msgstr "DreamPlex-Player anzeigen..."
+
+# UsageConfig.py:295
+#~ msgid "QuickMenu Actions"
+#~ msgstr "Schnellstartmenü-Aktionen"
+
+#~ msgid "Search EPG for current event"
+#~ msgstr "Im EPG nach aktueller Sendung suchen."
+
+#~ msgid "Search IMDb for information about current event"
+#~ msgstr "IMDb-Suche für die ausgewählte Sendung."
+
+#~ msgid ""
+#~ "The DreamPlex plugin is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Das DreamPlex-Plugin ist nicht installiert!\n"
+#~ "Bitte installieren."
+
+#~ msgid "Timer Actions"
+#~ msgstr "Timeraktionen"
 
 #~ msgid "InfoBar EPG Actions"
 #~ msgstr "Infoleiste EPG-Aktionen"

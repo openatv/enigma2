@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-07 16:24+0000\n"
+"POT-Creation-Date: 2025-07-09 04:53+0000\n"
 "PO-Revision-Date: 2024-07-23 13:09+0000\n"
 "Last-Translator: Ricky From Hong Kong <lamricky11@hotmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -1037,6 +1037,10 @@ msgstr "%d detik"
 msgid "%d service found."
 msgid_plural "%d services found."
 msgstr[0] ""
+
+#, python-format
+msgid "%d slots have been created on the device.\n"
+msgstr ""
 
 #, fuzzy, python-format
 msgid "%d times"
@@ -5333,6 +5337,9 @@ msgstr ""
 msgid "Create separate radio user bouquet"
 msgstr ""
 
+msgid "Create slots for the selected device"
+msgstr ""
+
 msgid "Create swap"
 msgstr ""
 
@@ -5991,6 +5998,9 @@ msgid "Define the DNS suffix."
 msgstr ""
 
 msgid "Define the custom mountpoint for the device."
+msgstr ""
+
+msgid "Define the default settings backup target location. Select 'Ask user' to prompt the user for the target location when the backup is run."
 msgstr ""
 
 msgid "Define the file system mount options."
@@ -10585,7 +10595,14 @@ msgstr ""
 msgid "Kernel file"
 msgstr ""
 
+msgid "Kernel partition"
+msgstr ""
+
 msgid "Kernel version"
+msgstr ""
+
+#, python-format
+msgid "Kernel%s partition"
 msgstr ""
 
 msgid "Kexec MultiBoot Actions"
@@ -13186,9 +13203,6 @@ msgstr ""
 msgid "Open AutoTimer"
 msgstr "導入自動計時器"
 
-msgid "Open AutoTimer OverView"
-msgstr ""
-
 #, fuzzy
 msgid "Open AutoTimer Overview"
 msgstr "添加自動定時..."
@@ -13200,10 +13214,6 @@ msgstr "結束自定義組編輯"
 #, fuzzy
 msgid "Open Box Portal"
 msgstr "顯示藍色面板..."
-
-#, fuzzy
-msgid "Open DreamPlex"
-msgstr "廣播重播模式下..."
 
 msgid "Open EPG"
 msgstr "顯示 EPG..."
@@ -14924,10 +14934,6 @@ msgid "QuickMenu"
 msgstr "快速"
 
 #, fuzzy
-msgid "QuickMenu Actions"
-msgstr "快速按鍵"
-
-#, fuzzy
 msgid "QuickMenu/Extensions"
 msgstr "擴展"
 
@@ -16028,6 +16034,9 @@ msgstr "俄語"
 msgid "Russian Federation"
 msgstr ""
 
+msgid "Rust version"
+msgstr ""
+
 msgid "Rwanda"
 msgstr ""
 
@@ -16458,13 +16467,6 @@ msgstr ""
 
 msgid "Search"
 msgstr "搜索"
-
-#, fuzzy
-msgid "Search EPG for current event"
-msgstr "為當前事件定制"
-
-msgid "Search IMDb for information about current event"
-msgstr ""
 
 #, fuzzy
 msgid "Search Sats"
@@ -16923,6 +16925,9 @@ msgstr ""
 msgid "Select a debug log file to view:"
 msgstr ""
 
+msgid "Select a device to create multiboot slots"
+msgstr ""
+
 msgid "Select a device to use as the flash expander"
 msgstr ""
 
@@ -17157,6 +17162,9 @@ msgid "Select sort method:"
 msgstr "設定視頻模式"
 
 msgid "Select system information to view:"
+msgstr ""
+
+msgid "Select target device for slot creation"
 msgstr ""
 
 msgid "Select temporary directory sort order for the current column"
@@ -18130,6 +18138,9 @@ msgstr ""
 
 msgid "Settings"
 msgstr "設定"
+
+msgid "Settings Backup Target"
+msgstr ""
 
 msgid "Settings mode"
 msgstr ""
@@ -19426,6 +19437,9 @@ msgstr ""
 
 #, python-format
 msgid "Slot '%s' %s: %s%s"
+msgstr ""
+
+msgid "Slot F: Flash Slot Image Backup (Current image)"
 msgstr ""
 
 msgid "Slot Manager"
@@ -20746,14 +20760,6 @@ msgstr ""
 
 #, fuzzy
 msgid ""
-"The DreamPlex plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"WLAN插件未安裝!\n"
-"請先安裝."
-
-#, fuzzy
-msgid ""
 "The EPGSearch plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -21603,10 +21609,6 @@ msgstr "計時器編輯"
 
 msgid "Timeline scale"
 msgstr ""
-
-#, fuzzy
-msgid "Timer Actions"
-msgstr "計時器選擇"
 
 msgid "Timer Log Actions"
 msgstr ""
@@ -25129,6 +25131,30 @@ msgstr "是 (保留)"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Open DreamPlex"
+#~ msgstr "廣播重播模式下..."
+
+#, fuzzy
+#~ msgid "QuickMenu Actions"
+#~ msgstr "快速按鍵"
+
+#, fuzzy
+#~ msgid "Search EPG for current event"
+#~ msgstr "為當前事件定制"
+
+#, fuzzy
+#~ msgid ""
+#~ "The DreamPlex plugin is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "WLAN插件未安裝!\n"
+#~ "請先安裝."
+
+#, fuzzy
+#~ msgid "Timer Actions"
+#~ msgstr "計時器選擇"
 
 #, fuzzy
 #~ msgid "InfoBar EPG Actions"

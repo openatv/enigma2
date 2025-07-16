@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-07 16:24+0000\n"
+"POT-Creation-Date: 2025-07-09 04:53+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1027,6 +1027,10 @@ msgstr "%d giây"
 msgid "%d service found."
 msgid_plural "%d services found."
 msgstr[0] ""
+
+#, python-format
+msgid "%d slots have been created on the device.\n"
+msgstr ""
 
 #, python-format
 msgid "%d times"
@@ -5176,6 +5180,9 @@ msgstr ""
 msgid "Create separate radio user bouquet"
 msgstr "Tạo gói kênh radio riêng"
 
+msgid "Create slots for the selected device"
+msgstr ""
+
 msgid "Create swap"
 msgstr ""
 
@@ -5816,6 +5823,9 @@ msgid "Define the DNS suffix."
 msgstr ""
 
 msgid "Define the custom mountpoint for the device."
+msgstr ""
+
+msgid "Define the default settings backup target location. Select 'Ask user' to prompt the user for the target location when the backup is run."
 msgstr ""
 
 msgid "Define the file system mount options."
@@ -10287,7 +10297,14 @@ msgstr ""
 msgid "Kernel file"
 msgstr ""
 
+msgid "Kernel partition"
+msgstr ""
+
 msgid "Kernel version"
+msgstr ""
+
+#, python-format
+msgid "Kernel%s partition"
 msgstr ""
 
 msgid "Kexec MultiBoot Actions"
@@ -12806,9 +12823,6 @@ msgstr "Tùy chọn âm thanh ..."
 msgid "Open AutoTimer"
 msgstr "Mở AutoTimer"
 
-msgid "Open AutoTimer OverView"
-msgstr ""
-
 #, fuzzy
 msgid "Open AutoTimer Overview"
 msgstr "Mở danh sách tự động ..."
@@ -12820,9 +12834,6 @@ msgstr "Mở danh sách gói kênh ..."
 #, fuzzy
 msgid "Open Box Portal"
 msgstr "Hiển thị Cổng thông tin ..."
-
-msgid "Open DreamPlex"
-msgstr "Hiển thị trình phát DreamPlex ..."
 
 msgid "Open EPG"
 msgstr "hiển thị EPG ..."
@@ -14465,10 +14476,6 @@ msgstr "Chế độ QuickEPG"
 msgid "QuickMenu"
 msgstr "Menu nhanh"
 
-#, fuzzy
-msgid "QuickMenu Actions"
-msgstr "Thao tác nhanh"
-
 msgid "QuickMenu/Extensions"
 msgstr "QuickMothy / Tiện ích mở rộng"
 
@@ -15511,6 +15518,9 @@ msgstr "Tiếng nga"
 msgid "Russian Federation"
 msgstr "Tiếng nga"
 
+msgid "Rust version"
+msgstr ""
+
 msgid "Rwanda"
 msgstr "Rwanda"
 
@@ -15925,12 +15935,6 @@ msgstr "Tốc độ cuộn (trình kết xuất phần mềm)"
 
 msgid "Search"
 msgstr "Tìm kiếm"
-
-msgid "Search EPG for current event"
-msgstr "Tìm kiếm epg cho sự kiện hiện tại."
-
-msgid "Search IMDb for information about current event"
-msgstr "Tìm kiếm IMDb để biết thông tin về sự kiện hiện tại."
 
 msgid "Search Sats"
 msgstr "Tìm kiếm Sats"
@@ -16374,6 +16378,9 @@ msgstr "Chọn một gói kênh"
 msgid "Select a debug log file to view:"
 msgstr ""
 
+msgid "Select a device to create multiboot slots"
+msgstr ""
+
 msgid "Select a device to use as the flash expander"
 msgstr ""
 
@@ -16599,6 +16606,9 @@ msgid "Select sort method:"
 msgstr "Chọn phương pháp sắp xếp:"
 
 msgid "Select system information to view:"
+msgstr ""
+
+msgid "Select target device for slot creation"
 msgstr ""
 
 msgid "Select temporary directory sort order for the current column"
@@ -17552,6 +17562,9 @@ msgstr ""
 
 msgid "Settings"
 msgstr "Cài đặt"
+
+msgid "Settings Backup Target"
+msgstr ""
 
 msgid "Settings mode"
 msgstr "Chế độ cài đặt"
@@ -18753,6 +18766,9 @@ msgstr ""
 
 #, python-format
 msgid "Slot '%s' %s: %s%s"
+msgstr ""
+
+msgid "Slot F: Flash Slot Image Backup (Current image)"
 msgstr ""
 
 msgid "Slot Manager"
@@ -20025,13 +20041,6 @@ msgid "The DVD standard doesn't support H.264 (HDTV) video streams."
 msgstr "Chuẩn DVD không hỗ trợ luồng video H.264 (HDTV)."
 
 msgid ""
-"The DreamPlex plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Plugin DreamPlex chưa được cài đặt!\n"
-"Vui lòng cài đặt nó."
-
-msgid ""
 "The EPGSearch plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -20890,10 +20899,6 @@ msgstr "Lịch sử thời gian"
 
 msgid "Timeline scale"
 msgstr "Quy mô thời gian"
-
-#, fuzzy
-msgid "Timer Actions"
-msgstr "Hành động hẹn giờ"
 
 msgid "Timer Log Actions"
 msgstr ""
@@ -24355,6 +24360,30 @@ msgstr "có (giữ thức ăn)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Open DreamPlex"
+#~ msgstr "Hiển thị trình phát DreamPlex ..."
+
+#, fuzzy
+#~ msgid "QuickMenu Actions"
+#~ msgstr "Thao tác nhanh"
+
+#~ msgid "Search EPG for current event"
+#~ msgstr "Tìm kiếm epg cho sự kiện hiện tại."
+
+#~ msgid "Search IMDb for information about current event"
+#~ msgstr "Tìm kiếm IMDb để biết thông tin về sự kiện hiện tại."
+
+#~ msgid ""
+#~ "The DreamPlex plugin is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Plugin DreamPlex chưa được cài đặt!\n"
+#~ "Vui lòng cài đặt nó."
+
+#, fuzzy
+#~ msgid "Timer Actions"
+#~ msgstr "Hành động hẹn giờ"
 
 #, fuzzy
 #~ msgid "InfoBar EPG Actions"

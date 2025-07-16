@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-07 16:24+0000\n"
+"POT-Creation-Date: 2025-07-09 04:53+0000\n"
 "PO-Revision-Date: 2024-10-02 07:35+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/es/>\n"
@@ -1047,6 +1047,10 @@ msgid "%d service found."
 msgid_plural "%d services found."
 msgstr[0] "%d servicio encontrado."
 msgstr[1] "%d servicios encontrados."
+
+#, python-format
+msgid "%d slots have been created on the device.\n"
+msgstr ""
 
 #
 #, python-format
@@ -5372,6 +5376,9 @@ msgstr ""
 msgid "Create separate radio user bouquet"
 msgstr "Crear un userbouquet de radio independiente"
 
+msgid "Create slots for the selected device"
+msgstr ""
+
 msgid "Create swap"
 msgstr ""
 
@@ -6027,6 +6034,9 @@ msgid "Define the DNS suffix."
 msgstr ""
 
 msgid "Define the custom mountpoint for the device."
+msgstr ""
+
+msgid "Define the default settings backup target location. Select 'Ask user' to prompt the user for the target location when the backup is run."
 msgstr ""
 
 msgid "Define the file system mount options."
@@ -10694,8 +10704,15 @@ msgstr ""
 msgid "Kernel file"
 msgstr "Fichero del núcleo"
 
+msgid "Kernel partition"
+msgstr ""
+
 msgid "Kernel version"
 msgstr "Versión del núcleo"
+
+#, python-format
+msgid "Kernel%s partition"
+msgstr ""
 
 msgid "Kexec MultiBoot Actions"
 msgstr ""
@@ -13328,9 +13345,6 @@ msgstr "Opciones de audio..."
 msgid "Open AutoTimer"
 msgstr "Abrir autotemporizadores"
 
-msgid "Open AutoTimer OverView"
-msgstr ""
-
 msgid "Open AutoTimer Overview"
 msgstr "Abrir lista de temporizadores automáticos "
 
@@ -13340,9 +13354,6 @@ msgstr "Abrir lista de bouquet"
 
 msgid "Open Box Portal"
 msgstr "Mostrar portal Box"
-
-msgid "Open DreamPlex"
-msgstr "Mostrar reproductor DreamPlex..."
 
 msgid "Open EPG"
 msgstr "Mostrar EPG..."
@@ -15079,9 +15090,6 @@ msgstr "Modo de EPG rápido"
 msgid "QuickMenu"
 msgstr "Menú rápido"
 
-msgid "QuickMenu Actions"
-msgstr "Acciones del menú rápido"
-
 msgid "QuickMenu/Extensions"
 msgstr "Menú Rápido / Extensiones"
 
@@ -16197,6 +16205,9 @@ msgstr "Ruso"
 msgid "Russian Federation"
 msgstr "Federación Rusa"
 
+msgid "Rust version"
+msgstr ""
+
 msgid "Rwanda"
 msgstr "Ruanda"
 
@@ -16634,12 +16645,6 @@ msgstr "Velocidad de scroll (renderizado por software)"
 
 msgid "Search"
 msgstr "Búsqueda"
-
-msgid "Search EPG for current event"
-msgstr "Buscar en el epg para el evento actual."
-
-msgid "Search IMDb for information about current event"
-msgstr "Buscar IMDb para información sobre el evento actual."
 
 msgid "Search Sats"
 msgstr "Buscar satélites"
@@ -17099,6 +17104,9 @@ msgstr "Seleccionar un grupo"
 msgid "Select a debug log file to view:"
 msgstr "Seleccione un archivo de registro de depuración para verlo:"
 
+msgid "Select a device to create multiboot slots"
+msgstr ""
+
 msgid "Select a device to use as the flash expander"
 msgstr ""
 
@@ -17337,6 +17345,9 @@ msgstr "Seleccione el método de ordenación:"
 
 msgid "Select system information to view:"
 msgstr "Seleccione la información del sistema que desea ver:"
+
+msgid "Select target device for slot creation"
+msgstr ""
 
 msgid "Select temporary directory sort order for the current column"
 msgstr ""
@@ -18321,6 +18332,9 @@ msgstr ""
 
 msgid "Settings"
 msgstr "Ajustes"
+
+msgid "Settings Backup Target"
+msgstr ""
 
 #
 msgid "Settings mode"
@@ -19613,6 +19627,9 @@ msgstr ""
 
 #, python-format
 msgid "Slot '%s' %s: %s%s"
+msgstr ""
+
+msgid "Slot F: Flash Slot Image Backup (Current image)"
 msgstr ""
 
 msgid "Slot Manager"
@@ -20982,13 +20999,6 @@ msgid "The DVD standard doesn't support H.264 (HDTV) video streams."
 msgstr "El estándar DVD no admite flujos de vídeo H.264 (HDTV)."
 
 msgid ""
-"The DreamPlex plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"El complemento DreamPlex no está instalado.\n"
-"Por favor, instálalo."
-
-msgid ""
 "The EPGSearch plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -21889,10 +21899,6 @@ msgstr "Editor de temporizador"
 
 msgid "Timeline scale"
 msgstr "Escala de tiempo"
-
-#, fuzzy
-msgid "Timer Actions"
-msgstr "Temporizador de acción"
 
 msgid "Timer Log Actions"
 msgstr ""
@@ -25658,6 +25664,29 @@ msgstr "Sí (conservar fuentes)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Open DreamPlex"
+#~ msgstr "Mostrar reproductor DreamPlex..."
+
+#~ msgid "QuickMenu Actions"
+#~ msgstr "Acciones del menú rápido"
+
+#~ msgid "Search EPG for current event"
+#~ msgstr "Buscar en el epg para el evento actual."
+
+#~ msgid "Search IMDb for information about current event"
+#~ msgstr "Buscar IMDb para información sobre el evento actual."
+
+#~ msgid ""
+#~ "The DreamPlex plugin is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "El complemento DreamPlex no está instalado.\n"
+#~ "Por favor, instálalo."
+
+#, fuzzy
+#~ msgid "Timer Actions"
+#~ msgstr "Temporizador de acción"
 
 #~ msgid "InfoBar EPG Actions"
 #~ msgstr "Acciones de la barra de información EPG"

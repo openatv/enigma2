@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-07 16:24+0000\n"
-"PO-Revision-Date: 2025-05-11 09:01+0000\n"
+"POT-Creation-Date: 2025-07-09 04:53+0000\n"
+"PO-Revision-Date: 2025-07-13 12:01+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Weblate 5.12-dev\n"
+"X-Generator: Weblate 5.13-dev\n"
 "X-SourceCharset: UTF-8\n"
 "X-Generated: TM2TURK by thawtes\n"
 
@@ -1032,6 +1032,10 @@ msgid "%d service found."
 msgid_plural "%d services found."
 msgstr[0] "找到 %d 个频道。"
 msgstr[1] "找到 %d 个频道。"
+
+#, python-format
+msgid "%d slots have been created on the device.\n"
+msgstr "已在设备上创建 %d 个插槽。\n"
 
 #, python-format
 msgid "%d times"
@@ -5143,6 +5147,9 @@ msgstr "创建根日志闪存文件系统。"
 msgid "Create separate radio user bouquet"
 msgstr "创建单独的广播用户频道群"
 
+msgid "Create slots for the selected device"
+msgstr "为所选设备创建插槽"
+
 msgid "Create swap"
 msgstr "创建交换分区"
 
@@ -5774,6 +5781,9 @@ msgstr "定义 DNS 后缀。"
 
 msgid "Define the custom mountpoint for the device."
 msgstr "定义设备的自定义挂载点。"
+
+msgid "Define the default settings backup target location. Select 'Ask user' to prompt the user for the target location when the backup is run."
+msgstr "定义默认设置备份目标位置。选择“询问用户”可在运行备份时提示用户选择目标位置。"
 
 msgid "Define the file system mount options."
 msgstr "定义文件系统挂载选项。"
@@ -10199,8 +10209,15 @@ msgstr "内核包"
 msgid "Kernel file"
 msgstr "内核文件"
 
+msgid "Kernel partition"
+msgstr "内核分区"
+
 msgid "Kernel version"
 msgstr "内核版本"
+
+#, python-format
+msgid "Kernel%s partition"
+msgstr "内核 %s 分区"
 
 msgid "Kexec MultiBoot Actions"
 msgstr "Kexec 多系统启动操作"
@@ -12650,9 +12667,6 @@ msgstr "打开音频选项"
 msgid "Open AutoTimer"
 msgstr "打开自动定时器"
 
-msgid "Open AutoTimer OverView"
-msgstr "打开自动定时器概览"
-
 msgid "Open AutoTimer Overview"
 msgstr "打开自动定时器列表"
 
@@ -12661,9 +12675,6 @@ msgstr "打开频道群列表"
 
 msgid "Open Box Portal"
 msgstr "显示机顶盒门户"
-
-msgid "Open DreamPlex"
-msgstr "打开 DreamPlex"
 
 msgid "Open EPG"
 msgstr "打开 EPG"
@@ -14279,9 +14290,6 @@ msgstr "快速 EPG 模式"
 msgid "QuickMenu"
 msgstr "快捷菜单"
 
-msgid "QuickMenu Actions"
-msgstr "快捷菜单操作"
-
 msgid "QuickMenu/Extensions"
 msgstr "快捷菜单/扩展"
 
@@ -15310,6 +15318,9 @@ msgstr "俄语"
 msgid "Russian Federation"
 msgstr "俄罗斯联邦"
 
+msgid "Rust version"
+msgstr "Rust 版本"
+
 msgid "Rwanda"
 msgstr "卢旺达"
 
@@ -15721,12 +15732,6 @@ msgstr "滚动速度 （软件渲染器）"
 
 msgid "Search"
 msgstr "搜索"
-
-msgid "Search EPG for current event"
-msgstr "搜索当前事件的 EPG"
-
-msgid "Search IMDb for information about current event"
-msgstr "在 IMDb 搜索当前节目的详细信息"
 
 msgid "Search Sats"
 msgstr "搜索卫星"
@@ -16166,6 +16171,9 @@ msgstr "选择一个频道群"
 msgid "Select a debug log file to view:"
 msgstr "选择要查看的调试日志文件："
 
+msgid "Select a device to create multiboot slots"
+msgstr "选择设备以创建多系统启动插槽"
+
 msgid "Select a device to use as the flash expander"
 msgstr "选择要用作闪存扩展器的设备"
 
@@ -16392,6 +16400,9 @@ msgstr "选择排序方法："
 
 msgid "Select system information to view:"
 msgstr "选择要查看的系统信息："
+
+msgid "Select target device for slot creation"
+msgstr "选择目标设备以创建插槽"
 
 msgid "Select temporary directory sort order for the current column"
 msgstr "选择当前列的临时目录排序顺序"
@@ -17349,6 +17360,9 @@ msgstr "如果您的机顶盒对 Internet 开放，强烈建议设置密码。 �
 
 msgid "Settings"
 msgstr "设置"
+
+msgid "Settings Backup Target"
+msgstr "设置备份目标位置"
 
 msgid "Settings mode"
 msgstr "设置模式"
@@ -18543,6 +18557,9 @@ msgstr "插槽“%s”%s"
 #, python-format
 msgid "Slot '%s' %s: %s%s"
 msgstr "插槽“%s”%s：%s%s"
+
+msgid "Slot F: Flash Slot Image Backup (Current image)"
+msgstr "插槽 F：闪存插槽镜像备份（当前镜像）"
 
 msgid "Slot Manager"
 msgstr "插槽管理器"
@@ -19796,13 +19813,6 @@ msgid "The DVD standard doesn't support H.264 (HDTV) video streams."
 msgstr "DVD标准不支持H.264（HDTV）视频流。"
 
 msgid ""
-"The DreamPlex plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"DreamPlex 插件没有安装！\n"
-"请安装。"
-
-msgid ""
 "The EPGSearch plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -20683,9 +20693,6 @@ msgstr "时间线标记"
 
 msgid "Timeline scale"
 msgstr "时间线尺度"
-
-msgid "Timer Actions"
-msgstr "定时器动作"
 
 msgid "Timer Log Actions"
 msgstr "定时器日志动作"
@@ -24139,6 +24146,31 @@ msgstr "是（保留订阅源）"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Open AutoTimer OverView"
+#~ msgstr "打开自动定时器概览"
+
+#~ msgid "Open DreamPlex"
+#~ msgstr "打开 DreamPlex"
+
+#~ msgid "QuickMenu Actions"
+#~ msgstr "快捷菜单操作"
+
+#~ msgid "Search EPG for current event"
+#~ msgstr "搜索当前事件的 EPG"
+
+#~ msgid "Search IMDb for information about current event"
+#~ msgstr "在 IMDb 搜索当前节目的详细信息"
+
+#~ msgid ""
+#~ "The DreamPlex plugin is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "DreamPlex 插件没有安装！\n"
+#~ "请安装。"
+
+#~ msgid "Timer Actions"
+#~ msgstr "定时器动作"
 
 #~ msgid "InfoBar EPG Actions"
 #~ msgstr "信息栏 EPG 操作"

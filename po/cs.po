@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-07 16:24+0000\n"
-"PO-Revision-Date: 2025-05-10 04:44+0000\n"
+"POT-Creation-Date: 2025-07-09 04:53+0000\n"
+"PO-Revision-Date: 2025-07-11 07:01+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.12-dev\n"
+"X-Generator: Weblate 5.13-dev\n"
 
 msgid ""
 "\n"
@@ -1066,6 +1066,10 @@ msgid_plural "%d services found."
 msgstr[0] "Nalezena %d služba."
 msgstr[1] "Byly nalezeny %d služby."
 msgstr[2] "Bylo nalezeno %d služeb."
+
+#, python-format
+msgid "%d slots have been created on the device.\n"
+msgstr "Na zařízení bylo vytvořeno %d slotů.\n"
 
 #, python-format
 msgid "%d times"
@@ -5180,6 +5184,9 @@ msgstr "Vytvořit kořenový žurnálovací systém souborů flash."
 msgid "Create separate radio user bouquet"
 msgstr "Vytvořit samostatný uživatelský přehled rádií"
 
+msgid "Create slots for the selected device"
+msgstr "Vytvořit sloty pro vybrané zařízení"
+
 msgid "Create swap"
 msgstr "Vytvořit swap"
 
@@ -5811,6 +5818,9 @@ msgstr "Určete příponu DNS."
 
 msgid "Define the custom mountpoint for the device."
 msgstr "Definovat vlastní přípojný bod pro zařízení."
+
+msgid "Define the default settings backup target location. Select 'Ask user' to prompt the user for the target location when the backup is run."
+msgstr "Definujte výchozí cílové umístění zálohy nastavení. Vyberte možnost „Zeptat se uživatele“, chcete-li, aby se uživatel při spuštění zálohy dozvěděl o cílovém umístění."
 
 msgid "Define the file system mount options."
 msgstr "Definovat možnosti připojení systému souborů."
@@ -10240,8 +10250,15 @@ msgstr "Balíčky jádra"
 msgid "Kernel file"
 msgstr "Soubor jádra"
 
+msgid "Kernel partition"
+msgstr "Oddíl jádra"
+
 msgid "Kernel version"
 msgstr "Verze jádra"
+
+#, python-format
+msgid "Kernel%s partition"
+msgstr "Oddíl jádra%s"
 
 msgid "Kexec MultiBoot Actions"
 msgstr "Akce Kexec MultiBoot"
@@ -12692,9 +12709,6 @@ msgstr "Otevřít možnosti zvuku"
 msgid "Open AutoTimer"
 msgstr "Otevřít automatický časovač"
 
-msgid "Open AutoTimer OverView"
-msgstr "Otevřít přehled automatického časovače"
-
 msgid "Open AutoTimer Overview"
 msgstr "Otevřít seznam automatických časovačů"
 
@@ -12703,9 +12717,6 @@ msgstr "Otevřít seznam"
 
 msgid "Open Box Portal"
 msgstr "Zobrazit Box Portal"
-
-msgid "Open DreamPlex"
-msgstr "Otevřít DreamPlex"
 
 msgid "Open EPG"
 msgstr "Otevřít EPG"
@@ -14323,9 +14334,6 @@ msgstr "Aktivace QuickEPG"
 msgid "QuickMenu"
 msgstr "Rychlá nabídka"
 
-msgid "QuickMenu Actions"
-msgstr "Akce rychlé nabídky"
-
 msgid "QuickMenu/Extensions"
 msgstr "Rychlé Menu / Rozšířená nabídka"
 
@@ -15354,6 +15362,9 @@ msgstr "Rusky"
 msgid "Russian Federation"
 msgstr "Ruská Federace"
 
+msgid "Rust version"
+msgstr "Rust verze"
+
 msgid "Rwanda"
 msgstr "Rwanda"
 
@@ -15768,12 +15779,6 @@ msgstr "Rychlost rolování (provádí software)"
 
 msgid "Search"
 msgstr "Hledat"
-
-msgid "Search EPG for current event"
-msgstr "Vyhledat EPG pro aktuální událost"
-
-msgid "Search IMDb for information about current event"
-msgstr "Vyhledejte si informace o aktuální události na IMDb"
 
 msgid "Search Sats"
 msgstr "Hledání družic (SAT Finder)"
@@ -16213,6 +16218,9 @@ msgstr "Vyberte přehled"
 msgid "Select a debug log file to view:"
 msgstr "Vyberte soubor protokolu ladění, který chcete zobrazit:"
 
+msgid "Select a device to create multiboot slots"
+msgstr "Vyberte zařízení pro vytvoření slotů pro více systémů"
+
 msgid "Select a device to use as the flash expander"
 msgstr "Vyberte zařízení, které chcete použít jako expandér flash"
 
@@ -16439,6 +16447,9 @@ msgstr "Vybrat způsob řazení:"
 
 msgid "Select system information to view:"
 msgstr "Vyberte systémové informace, které chcete zobrazit:"
+
+msgid "Select target device for slot creation"
+msgstr "Vyberte cílové zařízení pro vytvoření slotu"
 
 msgid "Select temporary directory sort order for the current column"
 msgstr "Vyberte dočasné řazení adresáře pro aktuální sloupec"
@@ -17396,6 +17407,9 @@ msgstr "Nastavení hesla se důrazně doporučuje, pokud je váš přijímač p�
 
 msgid "Settings"
 msgstr "Nastavení"
+
+msgid "Settings Backup Target"
+msgstr "Cíl zálohy nastavení"
 
 msgid "Settings mode"
 msgstr "Nastavovací režim"
@@ -18592,6 +18606,9 @@ msgstr "Slot '%s' %s"
 #, python-format
 msgid "Slot '%s' %s: %s%s"
 msgstr "Slot '%s' %s: %s%s"
+
+msgid "Slot F: Flash Slot Image Backup (Current image)"
+msgstr "Slot F: Záloha obrazu slotu Flash (aktuální obraz)"
 
 msgid "Slot Manager"
 msgstr "Správce slotů"
@@ -19845,13 +19862,6 @@ msgid "The DVD standard doesn't support H.264 (HDTV) video streams."
 msgstr "Standard DVD nepodporuje toky videa H.264 (HDTV)."
 
 msgid ""
-"The DreamPlex plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Plugin DreamPlex není nainstalován!\n"
-"Nainstalujte jej prosím."
-
-msgid ""
 "The EPGSearch plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -20733,9 +20743,6 @@ msgstr "Značka časové osy"
 
 msgid "Timeline scale"
 msgstr "Měřítko času"
-
-msgid "Timer Actions"
-msgstr "Akce časovače"
 
 msgid "Timer Log Actions"
 msgstr "Akce protokolu časovače"
@@ -24190,6 +24197,31 @@ msgstr "ano (uchovat zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Open AutoTimer OverView"
+#~ msgstr "Otevřít přehled automatického časovače"
+
+#~ msgid "Open DreamPlex"
+#~ msgstr "Otevřít DreamPlex"
+
+#~ msgid "QuickMenu Actions"
+#~ msgstr "Akce rychlé nabídky"
+
+#~ msgid "Search EPG for current event"
+#~ msgstr "Vyhledat EPG pro aktuální událost"
+
+#~ msgid "Search IMDb for information about current event"
+#~ msgstr "Vyhledejte si informace o aktuální události na IMDb"
+
+#~ msgid ""
+#~ "The DreamPlex plugin is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Plugin DreamPlex není nainstalován!\n"
+#~ "Nainstalujte jej prosím."
+
+#~ msgid "Timer Actions"
+#~ msgstr "Akce časovače"
 
 #~ msgid "InfoBar EPG Actions"
 #~ msgstr "Akce informačního panelu EPG"

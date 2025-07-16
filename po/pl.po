@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-07 16:24+0000\n"
-"PO-Revision-Date: 2025-06-16 09:06+0000\n"
+"POT-Creation-Date: 2025-07-09 04:53+0000\n"
+"PO-Revision-Date: 2025-07-15 23:03+0000\n"
 "Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.12-dev\n"
+"X-Generator: Weblate 5.13-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1073,6 +1073,10 @@ msgid_plural "%d services found."
 msgstr[0] "Znaleziono %d kanał."
 msgstr[1] "Znaleziono %d kanały."
 msgstr[2] "Znaleziono %d kanałów."
+
+#, python-format
+msgid "%d slots have been created on the device.\n"
+msgstr "Na urządzeniu utworzono %d slotów.\n"
 
 #, python-format
 msgid "%d times"
@@ -4398,10 +4402,10 @@ msgid "Commit Information Actions"
 msgstr "Akcje informacji o commicie"
 
 msgid "Commit Log"
-msgstr "Dziennik Commitów"
+msgstr "Logi Commitów"
 
 msgid "Commit Log Information"
-msgstr "Informacje z dziennika commitów"
+msgstr "Informacje z commitów"
 
 msgid "Commit Logs"
 msgstr "Logi commitów"
@@ -5190,6 +5194,9 @@ msgstr "Utwórz główny system plików flash dziennika."
 msgid "Create separate radio user bouquet"
 msgstr "Utwórz osobną listę kanałów dla radia"
 
+msgid "Create slots for the selected device"
+msgstr "Utwórz sloty dla wybranego urządzenia"
+
 msgid "Create swap"
 msgstr "Utwórz plik wymiany"
 
@@ -5821,6 +5828,9 @@ msgstr "Zdefiniuj DNS suffix."
 
 msgid "Define the custom mountpoint for the device."
 msgstr "Zdefiniuj niestandardowy punkt montowania dla urządzenia."
+
+msgid "Define the default settings backup target location. Select 'Ask user' to prompt the user for the target location when the backup is run."
+msgstr "Zdefiniuj domyślne ustawienia docelowej lokalizacji kopii zapasowej. Wybierz 'Zapytaj użytkownika', aby wyświetlić monit o podanie docelowej lokalizacji podczas wykonywania kopii zapasowej."
 
 msgid "Define the file system mount options."
 msgstr "Zdefiniuj opcje montowania systemu plików."
@@ -10250,8 +10260,15 @@ msgstr "Pakiety kernel"
 msgid "Kernel file"
 msgstr "Plik kernel"
 
+msgid "Kernel partition"
+msgstr "Partycja kernel"
+
 msgid "Kernel version"
 msgstr "Wersja kernel"
+
+#, python-format
+msgid "Kernel%s partition"
+msgstr "Partycja kernel%s"
 
 msgid "Kexec MultiBoot Actions"
 msgstr "Akcje Kexec MultiBoot"
@@ -12703,9 +12720,6 @@ msgstr "Otwórz opcje audio"
 msgid "Open AutoTimer"
 msgstr "Otwórz auto timer"
 
-msgid "Open AutoTimer OverView"
-msgstr "Otwórz AutoTimer Overview"
-
 msgid "Open AutoTimer Overview"
 msgstr "Otwórz listę auto timera"
 
@@ -12714,9 +12728,6 @@ msgstr "Otwórz listę kanałów"
 
 msgid "Open Box Portal"
 msgstr "Otwórz Box Portal"
-
-msgid "Open DreamPlex"
-msgstr "Otwórz DreamPlex"
 
 msgid "Open EPG"
 msgstr "Otwórz EPG"
@@ -14334,9 +14345,6 @@ msgstr "Tryb szybkiego graficznego EPG"
 msgid "QuickMenu"
 msgstr "Szybkie menu"
 
-msgid "QuickMenu Actions"
-msgstr "Akcje QuickMenu"
-
 msgid "QuickMenu/Extensions"
 msgstr "Szybkie Menu/Rozszerzenia"
 
@@ -15365,6 +15373,9 @@ msgstr "Rosyjski"
 msgid "Russian Federation"
 msgstr "Rosja"
 
+msgid "Rust version"
+msgstr "Wersja Rust"
+
 msgid "Rwanda"
 msgstr "Rwanda"
 
@@ -15779,12 +15790,6 @@ msgstr "Prędkość przewijania(oprogramowanie renderujące)"
 
 msgid "Search"
 msgstr "Szukaj"
-
-msgid "Search EPG for current event"
-msgstr "Wyszukaj bieżące wydarzenie w EPG"
-
-msgid "Search IMDb for information about current event"
-msgstr "Wyszukaj w bazie IMDb informacje o bieżących wydarzeniach"
 
 msgid "Search Sats"
 msgstr "Miernik poziomu sygnału sat"
@@ -16224,6 +16229,9 @@ msgstr "Wybierz listę kanałów"
 msgid "Select a debug log file to view:"
 msgstr "Wybierz plik loga debugowania do wyświetlenia:"
 
+msgid "Select a device to create multiboot slots"
+msgstr "Wybierz urządzenie, aby utworzyć sloty multiboot"
+
 msgid "Select a device to use as the flash expander"
 msgstr "Wybierz urządzenie, aby skorzystać z rozszerzacza flash"
 
@@ -16450,6 +16458,9 @@ msgstr "Wybierz metodę sortowania:"
 
 msgid "Select system information to view:"
 msgstr "Wybierz informacje o systemie do wyświetlenia:"
+
+msgid "Select target device for slot creation"
+msgstr "Wybierz urządzenie docelowe do utworzenia slotu"
 
 msgid "Select temporary directory sort order for the current column"
 msgstr "Wybierz kolejność sortowania katalogu tymczasowego dla bieżącej kolumny"
@@ -17407,6 +17418,9 @@ msgstr "Ustawienie hasła jest zdecydowanie zalecane, jeśli Twój STB jest otwa
 
 msgid "Settings"
 msgstr "Ustawienia"
+
+msgid "Settings Backup Target"
+msgstr "Lokalizacja docelowej kopii zapasowej"
 
 msgid "Settings mode"
 msgstr "Tryb konfiguracji"
@@ -18604,6 +18618,9 @@ msgstr "Slot '%s' %s"
 msgid "Slot '%s' %s: %s%s"
 msgstr "Slot '%s' %s: %s%s"
 
+msgid "Slot F: Flash Slot Image Backup (Current image)"
+msgstr "Slot F: Kopia zapasowa systemu slotu Flash (bieżący system)"
+
 msgid "Slot Manager"
 msgstr "Menadżer slotów"
 
@@ -19575,7 +19592,7 @@ msgid "TMDB Search"
 msgstr "Wyszukiwanie TMDB"
 
 msgid "TRANSLATOR_INFO"
-msgstr "@pololoko111, @djpimpek, @blzr, @marinner"
+msgstr "@pololoko111"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "Plik TS jest za duży dla ISO9660 level 1!"
@@ -19855,13 +19872,6 @@ msgstr ""
 
 msgid "The DVD standard doesn't support H.264 (HDTV) video streams."
 msgstr "Standard DVD nie obsługuje strumieni wideo H.264 (HDTV)."
-
-msgid ""
-"The DreamPlex plugin is not installed!\n"
-"Please install it."
-msgstr ""
-"Wtyczka DreamPlex nie jest zainstalowana!\n"
-"Proszę zainstalować."
 
 msgid ""
 "The EPGSearch plugin is not installed!\n"
@@ -20746,9 +20756,6 @@ msgstr "Historia czasu"
 msgid "Timeline scale"
 msgstr "Skala czasu"
 
-msgid "Timer Actions"
-msgstr "Akcje timera"
-
 msgid "Timer Log Actions"
 msgstr "Działania logów timera"
 
@@ -21486,7 +21493,7 @@ msgid "Update/Backup your firmware, Backup/Restore settings"
 msgstr "Aktualizuj/Utwórz kopię zapasową oprogramowania, Utwórz kopię zapasową/Przywróć ustawienia"
 
 msgid "Update/Backup/Restore your box"
-msgstr "Aktualizuj - Utwórz kopię zapasową - Przywróć ustawienia"
+msgstr "Aktualizuj / Utwórz kopię zapasową / Przywróć ustawienia"
 
 msgid "Updated"
 msgstr "Zaktualizowano"
@@ -24202,6 +24209,31 @@ msgstr "tak (zachować feed'y)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Open AutoTimer OverView"
+#~ msgstr "Otwórz AutoTimer Overview"
+
+#~ msgid "Open DreamPlex"
+#~ msgstr "Otwórz DreamPlex"
+
+#~ msgid "QuickMenu Actions"
+#~ msgstr "Akcje QuickMenu"
+
+#~ msgid "Search EPG for current event"
+#~ msgstr "Wyszukaj bieżące wydarzenie w EPG"
+
+#~ msgid "Search IMDb for information about current event"
+#~ msgstr "Wyszukaj w bazie IMDb informacje o bieżących wydarzeniach"
+
+#~ msgid ""
+#~ "The DreamPlex plugin is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Wtyczka DreamPlex nie jest zainstalowana!\n"
+#~ "Proszę zainstalować."
+
+#~ msgid "Timer Actions"
+#~ msgstr "Akcje timera"
 
 #~ msgid "InfoBar EPG Actions"
 #~ msgstr "Akcje EPG na pasku informacyjnym"

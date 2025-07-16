@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-07 16:24+0000\n"
+"POT-Creation-Date: 2025-07-09 04:53+0000\n"
 "PO-Revision-Date: 2025-03-14 06:36+0000\n"
 "Last-Translator: DrAlves <dralves@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pt/>\n"
@@ -1043,6 +1043,10 @@ msgid "%d service found."
 msgid_plural "%d services found."
 msgstr[0] "%d serviço encontrado."
 msgstr[1] "%d serviços encontrados."
+
+#, python-format
+msgid "%d slots have been created on the device.\n"
+msgstr ""
 
 #
 #, python-format
@@ -5356,6 +5360,9 @@ msgstr ""
 msgid "Create separate radio user bouquet"
 msgstr ""
 
+msgid "Create slots for the selected device"
+msgstr ""
+
 msgid "Create swap"
 msgstr ""
 
@@ -6014,6 +6021,9 @@ msgid "Define the DNS suffix."
 msgstr ""
 
 msgid "Define the custom mountpoint for the device."
+msgstr ""
+
+msgid "Define the default settings backup target location. Select 'Ask user' to prompt the user for the target location when the backup is run."
 msgstr ""
 
 msgid "Define the file system mount options."
@@ -10623,7 +10633,14 @@ msgstr ""
 msgid "Kernel file"
 msgstr ""
 
+msgid "Kernel partition"
+msgstr ""
+
 msgid "Kernel version"
+msgstr ""
+
+#, python-format
+msgid "Kernel%s partition"
 msgstr ""
 
 msgid "Kexec MultiBoot Actions"
@@ -13230,9 +13247,6 @@ msgstr "Opções de áudio..."
 msgid "Open AutoTimer"
 msgstr ""
 
-msgid "Open AutoTimer OverView"
-msgstr ""
-
 msgid "Open AutoTimer Overview"
 msgstr "Abrir lista temporizadores automáticos"
 
@@ -13241,9 +13255,6 @@ msgid "Open Bouquet selection"
 msgstr "Abrir lista de bouquet"
 
 msgid "Open Box Portal"
-msgstr ""
-
-msgid "Open DreamPlex"
 msgstr ""
 
 msgid "Open EPG"
@@ -14969,9 +14980,6 @@ msgstr ""
 msgid "QuickMenu"
 msgstr ""
 
-msgid "QuickMenu Actions"
-msgstr ""
-
 msgid "QuickMenu/Extensions"
 msgstr ""
 
@@ -16070,6 +16078,9 @@ msgstr "Russo"
 msgid "Russian Federation"
 msgstr ""
 
+msgid "Rust version"
+msgstr ""
+
 msgid "Rwanda"
 msgstr ""
 
@@ -16507,12 +16518,6 @@ msgstr ""
 
 msgid "Search"
 msgstr ""
-
-msgid "Search EPG for current event"
-msgstr "Pesquisar o epg para o evento atual."
-
-msgid "Search IMDb for information about current event"
-msgstr "Pesquisar no IMDb para obter informações sobre o evento atual."
 
 msgid "Search Sats"
 msgstr ""
@@ -16968,6 +16973,9 @@ msgstr ""
 msgid "Select a debug log file to view:"
 msgstr ""
 
+msgid "Select a device to create multiboot slots"
+msgstr ""
+
 msgid "Select a device to use as the flash expander"
 msgstr ""
 
@@ -17204,6 +17212,9 @@ msgstr "Seleccione método de ordenação:"
 
 msgid "Select system information to view:"
 msgstr "Selecione as informações do sistema para visualizar:"
+
+msgid "Select target device for slot creation"
+msgstr ""
 
 msgid "Select temporary directory sort order for the current column"
 msgstr ""
@@ -18162,6 +18173,9 @@ msgstr ""
 #
 msgid "Settings"
 msgstr "Definições"
+
+msgid "Settings Backup Target"
+msgstr ""
 
 msgid "Settings mode"
 msgstr "Modo de configuração"
@@ -19414,6 +19428,9 @@ msgstr ""
 
 #, python-format
 msgid "Slot '%s' %s: %s%s"
+msgstr ""
+
+msgid "Slot F: Flash Slot Image Backup (Current image)"
 msgstr ""
 
 msgid "Slot Manager"
@@ -20727,11 +20744,6 @@ msgid "The DVD standard doesn't support H.264 (HDTV) video streams."
 msgstr ""
 
 msgid ""
-"The DreamPlex plugin is not installed!\n"
-"Please install it."
-msgstr ""
-
-msgid ""
 "The EPGSearch plugin is not installed!\n"
 "Please install it."
 msgstr ""
@@ -21582,9 +21594,6 @@ msgstr "História do tempo"
 
 msgid "Timeline scale"
 msgstr "Escala do tempo"
-
-msgid "Timer Actions"
-msgstr "Ações do Temporizador"
 
 msgid "Timer Log Actions"
 msgstr ""
@@ -25215,6 +25224,15 @@ msgstr "sim (mantenha os feeds)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Search EPG for current event"
+#~ msgstr "Pesquisar o epg para o evento atual."
+
+#~ msgid "Search IMDb for information about current event"
+#~ msgstr "Pesquisar no IMDb para obter informações sobre o evento atual."
+
+#~ msgid "Timer Actions"
+#~ msgstr "Ações do Temporizador"
 
 #
 #~ msgid "InfoBar EPG Actions"
