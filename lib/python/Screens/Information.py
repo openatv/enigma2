@@ -669,7 +669,7 @@ class DistributionInformation(InformationBase):
 			enigmaVersion = f"{enigmaVersion[0]}"
 		else:
 			enigmaVersion = f"{enigmaVersion[0]} ({enigmaVersion[1].capitalize()})"
-		info.append(formatLine("P1", _("Enigma2 version"), enigmaVersion))
+		info.append(formatLine("P1", _("%s version") % "Enigma2", enigmaVersion))
 		info.append(formatLine("P1", _("Enigma2 revision"), getE2Rev()))
 		compileDate = str(BoxInfo.getItem("compiledate"))
 		info.append(formatLine("P1", _("Last update"), formatDate(f"{compileDate[:4]}{compileDate[4:6]}{compileDate[6:]}")))
@@ -692,21 +692,25 @@ class DistributionInformation(InformationBase):
 		if BoxInfo.getItem("imagefs"):
 			info.append(formatLine("P1", _("Distribution file system"), BoxInfo.getItem("imagefs").strip()))
 		upxVersion = BoxInfo.getItem("upx")
-		info.append(formatLine("P1", _("File compression"), f"{_("Enabled")} ({upxVersion})" if upxVersion else _("Disabled")))
+		info.append(formatLine("P1", _("File compression"), f"{_("Enabled")} / {_("%s version") % "UPX"} {upxVersion}" if upxVersion else _("Disabled")))
 		info.append(formatLine("P1", _("Feed URL"), BoxInfo.getItem("feedsurl")))
 		info.append(formatLine("P1", _("Compiled by"), BoxInfo.getItem("developername")))
 		info.append("")
 		info.append(formatLine("S", _("Software information")))
 		if self.extraSpacing:
 			info.append("")
-		info.append(formatLine("P1", _("GCC version"), about.getGccVersion()))
-		info.append(formatLine("P1", _("Glibc version"), about.getGlibcVersion()))
-		info.append(formatLine("P1", _("OpenSSL version"), about.getVersionFromOpkg("openssl")))
-		info.append(formatLine("P1", _("Python version"), about.getPythonVersionString()))
-		info.append(formatLine("P1", _("Rust version"), BoxInfo.getItem("rust")))
-		info.append(formatLine("P1", _("Samba version"), about.getVersionFromOpkg("samba")))
-		info.append(formatLine("P1", _("GStreamer version"), getGStreamerVersionString().replace("GStreamer ", "")))
-		info.append(formatLine("P1", _("FFmpeg version"), about.getVersionFromOpkg("ffmpeg")))
+		versions = [
+			("GCC", about.getGccVersion()),
+			("Glibc", about.getGlibcVersion()),
+			("OpenSSL", about.getVersionFromOpkg("openssl")),
+			("Python", about.getPythonVersionString()),
+			("Rust", BoxInfo.getItem("rust")),
+			("Samba", about.getVersionFromOpkg("samba")),
+			("GStreamer", getGStreamerVersionString().replace("GStreamer ", "")),
+			("FFmpeg", about.getVersionFromOpkg("ffmpeg"))
+		]
+		for version in versions:
+			info.append(formatLine("P1", _("%s version") % version[0], version[1]))
 		bootId = fileReadLine("/proc/sys/kernel/random/boot_id", source=MODULE_NAME)
 		if bootId:
 			info.append(formatLine("P1", _("Boot ID"), bootId))
@@ -2337,7 +2341,7 @@ class TunerInformation(InformationBase):
 				info.append(formatLine("P1", _("Modulation modes"), ", ".join(QAM)))
 			api = tunerData.get("api")
 			if api:
-				info.append(formatLine("P1", _("DVB API version"), api))
+				info.append(formatLine("P1", _("%s version") % "DVB API", api))
 		if info:
 			info.append("")
 		info.append(formatLine("S", _("Transcoding"), (_("Yes") if BoxInfo.getItem("transcoding") else _("No"))))
