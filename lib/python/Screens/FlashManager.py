@@ -471,7 +471,7 @@ class FlashImage(Screen):
 			text = "%s\n%s" % (text, self.imageName)
 			if BoxInfo.getItem("distro") in self.imageName:
 				if exists(join(self.backupBasePath, "images/config/myrestore.sh")):
-					text = "%s\n%s" % (text, _(f"(The file '{join(self.backupBasePath, "images/config/myrestore.sh")}' exists and will be run after the image is flashed.)"))
+					text = "%s\n%s" % (text, _("(The file '/media/hdd/images/config/myrestore.sh' exists and will be run after the image is flashed.)"))
 				choices = [
 					(_("Upgrade (Flash & restore all)"), "restoresettingsandallplugins"),
 					(_("Clean (Just flash and start clean)"), "wizard"),
