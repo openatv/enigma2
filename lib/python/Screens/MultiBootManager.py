@@ -858,7 +858,7 @@ class UBISlotManager(Setup):
 			cmdlist.append(f"/usr/sbin/parted --script {TARGET_DEVICE} mkpart rootfs ext4 5MB 100%")
 			cmdlist.append(f"/usr/sbin/partprobe {TARGET_DEVICE}")
 			cmdlist.append(f"/usr/sbin/mkfs.vfat -F 32 -n STARTUP {TARGET_DEVICE}1")
-			cmdlist.append(f"/sbin/mkfs.ext4 -F -L rootfs {TARGET_DEVICE}2")
+			cmdlist.append(f"/sbin/mkfs.ext4 -O ^metadata_csum,^64bit -F -L rootfs {TARGET_DEVICE}2")
 			cmdlist.append(f"/bin/mkdir -p {MOUNTPOINT}")
 			cmdlist.append(f"/bin/umount {MOUNTPOINT} > /dev/null 2>&1")
 			cmdlist.append(f"/bin/mount {TARGET_DEVICE}1 {MOUNTPOINT}")
