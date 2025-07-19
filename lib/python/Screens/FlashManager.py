@@ -33,12 +33,7 @@ USER_AGENT = {"User-agent": "Mozilla/5.0 (Windows; U; Windows NT 5.1; en; rv:1.9
 
 
 def checkImageFiles(files):
-	return sum(x.endswith(".nfi") for x in files) == 1 or \
-		sum(("kernel" in x and ".bin" in x) or x in {
-			"zImage", "uImage", "root_cfe_auto.bin", "root_cfe_auto.jffs2",
-			"oe_kernel.bin", "oe_rootfs.bin", "e2jffs2.img", "rootfs.tar.bz2",
-			"rootfs.ubi", "rootfs.bin", "rootfs-one.tar.bz2", "rootfs-two.tar.bz2"
-		} for x in files) >= 2
+	return sum(f.endswith((".nfi", ".tar.xz")) for f in files) == 1 or sum(("kernel" in f and f.endswith(".bin")) or f in {"zImage", "uImage", "root_cfe_auto.bin", "root_cfe_auto.jffs2","oe_kernel.bin", "oe_rootfs.bin", "e2jffs2.img", "rootfs.ubi","rootfs.bin", "rootfs.tar.bz2", "rootfs-one.tar.bz2", "rootfs-two.tar.bz2"} for f in files) >= 2
 
 
 class FlashManager(Screen):
