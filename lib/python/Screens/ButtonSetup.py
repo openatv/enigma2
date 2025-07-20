@@ -36,7 +36,7 @@ BUTTON_SETUP_KEYS = [
 	(_("Left"), "cross_left", ""),
 	(_("Left"), "cross_left_long", ""),
 	(_("Right"), "cross_right", ""),
-	(_("Right"), "cross_right_long", "Infobar/seekFwdVod"),
+	(_("Right"), "cross_right_long", ""),
 	(_("Up"), "cross_up", ""),
 	(_("Down"), "cross_down", ""),
 	(_("PageUp"), "pageup", ""),
