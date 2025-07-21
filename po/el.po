@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-09 04:53+0000\n"
+"POT-Creation-Date: 2025-07-17 17:20+0000\n"
 "PO-Revision-Date: 2025-05-12 13:02+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -1214,6 +1214,10 @@ msgstr "%s παρατεταμένο"
 #, python-format
 msgid "%s not available."
 msgstr "Το %s δεν είναι διαθέσιμο."
+
+#, python-format
+msgid "%s version"
+msgstr ""
 
 #, python-format
 msgid "%s%d min"
@@ -5428,9 +5432,6 @@ msgstr "DTS/DTS-HD HR/DTS-HD MA/DTS:X"
 msgid "DUAL LAYER DVD"
 msgstr "DVD ΔΙΠΛΗΣ ΣΤΡΩΣΗΣ"
 
-msgid "DVB API version"
-msgstr "Έκδοση DVB API"
-
 msgid "DVB CI Delay"
 msgstr "Καθυστέρηση DVB CI"
 
@@ -7333,9 +7334,6 @@ msgstr "Πληροφορίες enigma2"
 msgid "Enigma2 revision"
 msgstr "Αναθεώρηση enigma2"
 
-msgid "Enigma2 version"
-msgstr "Έκδοση enigma2"
-
 msgid "Enigmalight"
 msgstr "Enigmalight"
 
@@ -8054,9 +8052,6 @@ msgstr "Ανιχνευτής FFmpeg"
 msgid "FFmpeg is not installed so '.mvi' file actions are not available!"
 msgstr "Το FFmpeg δεν είναι εγκατεστημένο, οπότε οι ενέργειες αρχείων '.mvi' δεν είναι διαθέσιμες!"
 
-msgid "FFmpeg version"
-msgstr "Έκδοση FFmpeg"
-
 msgid "FIFO"
 msgstr "FIFO"
 
@@ -8655,9 +8650,6 @@ msgstr "FullHD Τεστ"
 msgid "G"
 msgstr "G"
 
-msgid "GCC version"
-msgstr "Έκδοση GCC"
-
 msgid "GREEN button"
 msgstr "Πράσινο πλήκτρο"
 
@@ -8669,9 +8661,6 @@ msgstr "Κατηγορία καταγραφής αποσφαλμάτωσης GSt
 
 msgid "GStreamer debug log level *"
 msgstr "Επίπεδο καταγραφής αποσφαλμάτωσης GStreamer *"
-
-msgid "GStreamer version"
-msgstr "Έκδοση GStreamer"
 
 msgid "GUI Skin *"
 msgstr "Θέμα GUI *"
@@ -8769,9 +8758,6 @@ msgstr "Γιβραλτάρ"
 
 msgid "Given device id"
 msgstr "Αναγνωριστικό συσκευής που δόθηκε"
-
-msgid "Glibc version"
-msgstr "Έκδοση Glibc"
 
 msgid "Go back to the previous step"
 msgstr "Επιστροφή στο προηγούμενο βήμα"
@@ -12842,9 +12828,6 @@ msgstr "Αρχική σελίδα OpenDNS"
 msgid "OpenPLi Packages"
 msgstr "Πακέτα OpenPLi"
 
-msgid "OpenSSL version"
-msgstr "Έκδοση OpenSSL"
-
 msgid "OpenVPN"
 msgstr "OpenVPN"
 
@@ -14237,9 +14220,6 @@ msgstr "Πακέτα ανάπτυξης python"
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python του tuner για το /tmp/mmi.socket"
 
-msgid "Python version"
-msgstr "Έκδοση python"
-
 msgid "Qatar"
 msgstr "Κατάρ"
 
@@ -15319,9 +15299,6 @@ msgstr "Ρωσικά"
 msgid "Russian Federation"
 msgstr "Ρωσική Ομοσπονδία"
 
-msgid "Rust version"
-msgstr ""
-
 msgid "Rwanda"
 msgstr "Ρουάντα"
 
@@ -15430,9 +15407,6 @@ msgstr "Διακομιστής samba"
 
 msgid "Samba Settings"
 msgstr "Ρυθμίσεις Samba"
-
-msgid "Samba version"
-msgstr "Έκδοση samba"
 
 msgid "Same as in active"
 msgstr "Όπως στο ενεργό"
@@ -21187,6 +21161,10 @@ msgstr "Τύπος συσκευής"
 msgid "Type of scan"
 msgstr "Τύπος ανίχνευσης"
 
+#, python-format
+msgid "UBI slot %s%s"
+msgstr ""
+
 msgid "UBINIZE"
 msgstr "UBINIZE"
 
@@ -24147,6 +24125,33 @@ msgstr "ναι (διατήρηση των feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "DVB API version"
+#~ msgstr "Έκδοση DVB API"
+
+#~ msgid "Enigma2 version"
+#~ msgstr "Έκδοση enigma2"
+
+#~ msgid "FFmpeg version"
+#~ msgstr "Έκδοση FFmpeg"
+
+#~ msgid "GCC version"
+#~ msgstr "Έκδοση GCC"
+
+#~ msgid "GStreamer version"
+#~ msgstr "Έκδοση GStreamer"
+
+#~ msgid "Glibc version"
+#~ msgstr "Έκδοση Glibc"
+
+#~ msgid "OpenSSL version"
+#~ msgstr "Έκδοση OpenSSL"
+
+#~ msgid "Python version"
+#~ msgstr "Έκδοση python"
+
+#~ msgid "Samba version"
+#~ msgstr "Έκδοση samba"
 
 #~ msgid "Open AutoTimer OverView"
 #~ msgstr "Άνοιγμα προεπισκόπησης αυτόματων χρονοδιακοπτών"

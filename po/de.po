@@ -16,9 +16,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-09 04:53+0000\n"
-"PO-Revision-Date: 2025-07-09 18:58+0000\n"
-"Last-Translator: Makumbo <tokioplo@web.de>\n"
+"POT-Creation-Date: 2025-07-17 17:20+0000\n"
+"PO-Revision-Date: 2025-07-17 20:17+0000\n"
+"Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -1231,6 +1231,10 @@ msgstr "%s lang"
 #, python-format
 msgid "%s not available."
 msgstr "%s nicht verfügbar."
+
+#, python-format
+msgid "%s version"
+msgstr "%s-Version"
 
 #, python-format
 msgid "%s%d min"
@@ -5720,9 +5724,6 @@ msgstr "DTS/DTS-HD HR/DTS-HD MA/DTS:X"
 msgid "DUAL LAYER DVD"
 msgstr "Dual-Layer-DVD"
 
-msgid "DVB API version"
-msgstr "DVB-API-Version"
-
 msgid "DVB CI Delay"
 msgstr "DVB-CI-Verzögerung"
 
@@ -7722,9 +7723,6 @@ msgstr "Enigma2-Informationen"
 msgid "Enigma2 revision"
 msgstr "Enigma2-Revision"
 
-msgid "Enigma2 version"
-msgstr "Enigma2-Version"
-
 msgid "Enigmalight"
 msgstr "Enigmalight"
 
@@ -8479,9 +8477,6 @@ msgstr "FFmpeg Probe"
 msgid "FFmpeg is not installed so '.mvi' file actions are not available!"
 msgstr "FFmpeg ist nicht installiert! Es können deshalb keine '.mvi'-Dateien bearbeitet werden."
 
-msgid "FFmpeg version"
-msgstr "FFmpeg-Version"
-
 msgid "FIFO"
 msgstr "FIFO"
 
@@ -9114,9 +9109,6 @@ msgstr "FullHD-Test"
 msgid "G"
 msgstr "G"
 
-msgid "GCC version"
-msgstr "GCC-Version"
-
 msgid "GREEN button"
 msgstr "Taste GRÜN"
 
@@ -9128,9 +9120,6 @@ msgstr "GStreamer Debug-Log Kategorie *"
 
 msgid "GStreamer debug log level *"
 msgstr "GStreamer Debug-Log Meldungstyp *"
-
-msgid "GStreamer version"
-msgstr "GStreamer-Version"
 
 msgid "GUI Skin *"
 msgstr "GUI-Skin *"
@@ -9235,9 +9224,6 @@ msgstr "Gibraltar"
 
 msgid "Given device id"
 msgstr "Angegebene Geräte-ID"
-
-msgid "Glibc version"
-msgstr "Glibc-Version"
 
 msgid "Go back to the previous step"
 msgstr "Einen Schritt zuück"
@@ -13579,9 +13565,6 @@ msgstr "OpenDNS-Startseite"
 msgid "OpenPLi Packages"
 msgstr "OpenPLi"
 
-msgid "OpenSSL version"
-msgstr "OpenSSL-Version"
-
 msgid "OpenVPN"
 msgstr "OpenVPN"
 
@@ -15091,9 +15074,6 @@ msgstr "Python-Entwicklungspakete"
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python-Frontend für '/tmp/mmi.socket'"
 
-msgid "Python version"
-msgstr "Python-Version"
-
 msgid "Qatar"
 msgstr "Katar"
 
@@ -16257,9 +16237,6 @@ msgstr "Russisch"
 msgid "Russian Federation"
 msgstr "Russland"
 
-msgid "Rust version"
-msgstr "Rust Version"
-
 msgid "Rwanda"
 msgstr "Ruanda"
 
@@ -16371,9 +16348,6 @@ msgstr "Samba-Server"
 
 msgid "Samba Settings"
 msgstr "Samba"
-
-msgid "Samba version"
-msgstr "Samba-Version"
 
 msgid "Same as in active"
 msgstr "Gleich wie bei Box aktiv"
@@ -22477,6 +22451,10 @@ msgstr "Gerätetyp"
 msgid "Type of scan"
 msgstr "Art des Suchlaufs"
 
+#, python-format
+msgid "UBI slot %s%s"
+msgstr "UBI Slot %s%s"
+
 msgid "UBINIZE"
 msgstr "UBINIZE"
 
@@ -25667,6 +25645,36 @@ msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "DVB API version"
+#~ msgstr "DVB-API-Version"
+
+#~ msgid "Enigma2 version"
+#~ msgstr "Enigma2-Version"
+
+#~ msgid "FFmpeg version"
+#~ msgstr "FFmpeg-Version"
+
+#~ msgid "GCC version"
+#~ msgstr "GCC-Version"
+
+#~ msgid "GStreamer version"
+#~ msgstr "GStreamer-Version"
+
+#~ msgid "Glibc version"
+#~ msgstr "Glibc-Version"
+
+#~ msgid "OpenSSL version"
+#~ msgstr "OpenSSL-Version"
+
+#~ msgid "Python version"
+#~ msgstr "Python-Version"
+
+#~ msgid "Rust version"
+#~ msgstr "Rust Version"
+
+#~ msgid "Samba version"
+#~ msgstr "Samba-Version"
 
 #~ msgid "Open AutoTimer OverView"
 #~ msgstr "AutoTimer-Übersicht öffnen"

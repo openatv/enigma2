@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-09 04:53+0000\n"
-"PO-Revision-Date: 2025-07-11 07:01+0000\n"
+"POT-Creation-Date: 2025-07-17 17:20+0000\n"
+"PO-Revision-Date: 2025-07-18 21:03+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
@@ -1248,6 +1248,10 @@ msgstr "%s dlouhé"
 #, python-format
 msgid "%s not available."
 msgstr "%s není dostupný."
+
+#, python-format
+msgid "%s version"
+msgstr "Verze %s"
 
 #, python-format
 msgid "%s%d min"
@@ -5464,9 +5468,6 @@ msgstr "DTS/DTS-HD HR/DTS-HD MA/DTS:X"
 msgid "DUAL LAYER DVD"
 msgstr "DVOUVRSTVÉ DVD"
 
-msgid "DVB API version"
-msgstr "Verze DVB API"
-
 msgid "DVB CI Delay"
 msgstr "Zpoždění DVB CI"
 
@@ -7372,9 +7373,6 @@ msgstr "Informace o systému Enigma2"
 msgid "Enigma2 revision"
 msgstr "Revize Enigma2"
 
-msgid "Enigma2 version"
-msgstr "Verze Enigma2"
-
 msgid "Enigmalight"
 msgstr "Enigmalight"
 
@@ -8093,9 +8091,6 @@ msgstr "Sonda FFmpeg"
 msgid "FFmpeg is not installed so '.mvi' file actions are not available!"
 msgstr "FFmpeg není nainstalován, takže akce souboru '.mvi' nejsou dostupné!"
 
-msgid "FFmpeg version"
-msgstr "Verze FFmpeg"
-
 msgid "FIFO"
 msgstr "FIFO"
 
@@ -8694,9 +8689,6 @@ msgstr "FullHD test"
 msgid "G"
 msgstr "G"
 
-msgid "GCC version"
-msgstr "Verze GCC"
-
 msgid "GREEN button"
 msgstr "ZELENÉ tlačítko"
 
@@ -8708,9 +8700,6 @@ msgstr "Kategorie protokolu ladění GStreamer *"
 
 msgid "GStreamer debug log level *"
 msgstr "Úroveň protokolu ladění GStreamer *"
-
-msgid "GStreamer version"
-msgstr "Verze GStreamer"
 
 msgid "GUI Skin *"
 msgstr "Vzhled GUI *"
@@ -8808,9 +8797,6 @@ msgstr "Gibraltar"
 
 msgid "Given device id"
 msgstr "Zadané id zařízení"
-
-msgid "Glibc version"
-msgstr "Verze Glibc"
 
 msgid "Go back to the previous step"
 msgstr "Vrátit se k předchozímu kroku"
@@ -12883,9 +12869,6 @@ msgstr "Domovská stránka OpenDNS"
 msgid "OpenPLi Packages"
 msgstr "OpenPLi balíčky"
 
-msgid "OpenSSL version"
-msgstr "Verze OpenSSL"
-
 msgid "OpenVPN"
 msgstr "OpenVPN"
 
@@ -14280,9 +14263,6 @@ msgstr "Vývojové balíčky Pythonu"
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python frontend pro /tmp/mmi.socket"
 
-msgid "Python version"
-msgstr "Verze Pythonu"
-
 msgid "Qatar"
 msgstr "Katar"
 
@@ -15362,9 +15342,6 @@ msgstr "Rusky"
 msgid "Russian Federation"
 msgstr "Ruská Federace"
 
-msgid "Rust version"
-msgstr "Rust verze"
-
 msgid "Rwanda"
 msgstr "Rwanda"
 
@@ -15473,9 +15450,6 @@ msgstr "Server Samba"
 
 msgid "Samba Settings"
 msgstr "Nastavení Samby"
-
-msgid "Samba version"
-msgstr "Verze Samby"
 
 msgid "Same as in active"
 msgstr "Stejně jako při zapnutém přijímači"
@@ -21236,6 +21210,10 @@ msgstr "Typ zařízení"
 msgid "Type of scan"
 msgstr "Typ prohledávání"
 
+#, python-format
+msgid "UBI slot %s%s"
+msgstr "UBI slot %s%s"
+
 msgid "UBINIZE"
 msgstr "UBINIZE"
 
@@ -24197,6 +24175,36 @@ msgstr "ano (uchovat zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "DVB API version"
+#~ msgstr "Verze DVB API"
+
+#~ msgid "Enigma2 version"
+#~ msgstr "Verze Enigma2"
+
+#~ msgid "FFmpeg version"
+#~ msgstr "Verze FFmpeg"
+
+#~ msgid "GCC version"
+#~ msgstr "Verze GCC"
+
+#~ msgid "GStreamer version"
+#~ msgstr "Verze GStreamer"
+
+#~ msgid "Glibc version"
+#~ msgstr "Verze Glibc"
+
+#~ msgid "OpenSSL version"
+#~ msgstr "Verze OpenSSL"
+
+#~ msgid "Python version"
+#~ msgstr "Verze Pythonu"
+
+#~ msgid "Rust version"
+#~ msgstr "Rust verze"
+
+#~ msgid "Samba version"
+#~ msgstr "Verze Samby"
 
 #~ msgid "Open AutoTimer OverView"
 #~ msgstr "Otevřít přehled automatického časovače"

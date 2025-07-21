@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-09 04:53+0000\n"
-"PO-Revision-Date: 2025-07-03 11:02+0000\n"
+"POT-Creation-Date: 2025-07-17 17:20+0000\n"
+"PO-Revision-Date: 2025-07-20 15:03+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -1251,6 +1251,10 @@ msgstr "%s довго"
 #, python-format
 msgid "%s not available."
 msgstr "%s недоступний."
+
+#, python-format
+msgid "%s version"
+msgstr "Версія %s"
 
 #, python-format
 msgid "%s%d min"
@@ -5467,9 +5471,6 @@ msgstr "DTS/DTS-HD HR/DTS-HD MA/DTS:X"
 msgid "DUAL LAYER DVD"
 msgstr "ДВОШАРОВИЙ DVD"
 
-msgid "DVB API version"
-msgstr "Версія DVB API"
-
 msgid "DVB CI Delay"
 msgstr "Затримка DVB CI"
 
@@ -7375,9 +7376,6 @@ msgstr "Інформація про Enigma2"
 msgid "Enigma2 revision"
 msgstr "Ревізія Enigma2"
 
-msgid "Enigma2 version"
-msgstr "Версія Enigma2"
-
 msgid "Enigmalight"
 msgstr "Енігма-light"
 
@@ -8096,9 +8094,6 @@ msgstr "FFmpeg Проба"
 msgid "FFmpeg is not installed so '.mvi' file actions are not available!"
 msgstr "FFmpeg не встановлено, тому дії з файлами '.mvi' недоступні!"
 
-msgid "FFmpeg version"
-msgstr "Версія FFmpeg"
-
 msgid "FIFO"
 msgstr "FIFO"
 
@@ -8697,9 +8692,6 @@ msgstr "Тест FullHD"
 msgid "G"
 msgstr "G"
 
-msgid "GCC version"
-msgstr "Версія GCC"
-
 msgid "GREEN button"
 msgstr "Зелена кнопка"
 
@@ -8711,9 +8703,6 @@ msgstr "Категорія журналу налагодження GStreamer *"
 
 msgid "GStreamer debug log level *"
 msgstr "Рівень журналу налагодження GStreamer *"
-
-msgid "GStreamer version"
-msgstr "Версія GStreamer"
 
 msgid "GUI Skin *"
 msgstr "Скін Графічного інтерфейсу *"
@@ -8811,9 +8800,6 @@ msgstr "Гібралтар"
 
 msgid "Given device id"
 msgstr "ID пристрою"
-
-msgid "Glibc version"
-msgstr "Версія Glibc"
 
 msgid "Go back to the previous step"
 msgstr "Повернутися до попереднього кроку"
@@ -10254,14 +10240,14 @@ msgid "Kernel file"
 msgstr "Файл ядра"
 
 msgid "Kernel partition"
-msgstr ""
+msgstr "Розділ ядра"
 
 msgid "Kernel version"
 msgstr "Версія ядра"
 
 #, python-format
 msgid "Kernel%s partition"
-msgstr ""
+msgstr "Розділ ядра%s"
 
 msgid "Kexec MultiBoot Actions"
 msgstr "Kexec MultiBoot Дії"
@@ -12886,9 +12872,6 @@ msgstr "Домашня сторінка OpenDNS"
 msgid "OpenPLi Packages"
 msgstr "Пакети OpenPLi"
 
-msgid "OpenSSL version"
-msgstr "Версія OpenSSL"
-
 msgid "OpenVPN"
 msgstr "OpenVPN"
 
@@ -14283,9 +14266,6 @@ msgstr "Пакети розробки Python"
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python інтерфейс для /tmp/mmi.socket"
 
-msgid "Python version"
-msgstr "Версія Python"
-
 msgid "Qatar"
 msgstr "Катар"
 
@@ -15365,9 +15345,6 @@ msgstr "Російська"
 msgid "Russian Federation"
 msgstr "Росія"
 
-msgid "Rust version"
-msgstr ""
-
 msgid "Rwanda"
 msgstr "Руанда"
 
@@ -15476,9 +15453,6 @@ msgstr "Samba Сервер"
 
 msgid "Samba Settings"
 msgstr "Налаштування Samba"
-
-msgid "Samba version"
-msgstr "Версія Самби"
 
 msgid "Same as in active"
 msgstr "Те ж, що при активності"
@@ -18611,7 +18585,7 @@ msgid "Slot '%s' %s: %s%s"
 msgstr "Слот '%s' %s: %s%s"
 
 msgid "Slot F: Flash Slot Image Backup (Current image)"
-msgstr ""
+msgstr "Слот F: Резервне копіювання флеш-пам'яті (поточний імідж)"
 
 msgid "Slot Manager"
 msgstr "Менеджер слотів"
@@ -19583,7 +19557,7 @@ msgid "TMDB Search"
 msgstr "TMDB Пошук"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 02.07.2025"
+msgstr "Переклад: kvinto - 19.07.2025"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -21238,6 +21212,10 @@ msgstr "Тип пристрою"
 
 msgid "Type of scan"
 msgstr "Тип сканування"
+
+#, python-format
+msgid "UBI slot %s%s"
+msgstr "Слот UBI %s%s"
 
 msgid "UBINIZE"
 msgstr "UBINIZE"
@@ -24200,6 +24178,33 @@ msgstr "так (зберігати фіди)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "DVB API version"
+#~ msgstr "Версія DVB API"
+
+#~ msgid "Enigma2 version"
+#~ msgstr "Версія Enigma2"
+
+#~ msgid "FFmpeg version"
+#~ msgstr "Версія FFmpeg"
+
+#~ msgid "GCC version"
+#~ msgstr "Версія GCC"
+
+#~ msgid "GStreamer version"
+#~ msgstr "Версія GStreamer"
+
+#~ msgid "Glibc version"
+#~ msgstr "Версія Glibc"
+
+#~ msgid "OpenSSL version"
+#~ msgstr "Версія OpenSSL"
+
+#~ msgid "Python version"
+#~ msgstr "Версія Python"
+
+#~ msgid "Samba version"
+#~ msgstr "Версія Самби"
 
 #~ msgid "Open AutoTimer OverView"
 #~ msgstr "Відкрити огляд автотаймера"

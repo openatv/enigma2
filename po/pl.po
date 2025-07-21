@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-09 04:53+0000\n"
-"PO-Revision-Date: 2025-07-15 23:03+0000\n"
+"POT-Creation-Date: 2025-07-17 17:20+0000\n"
+"PO-Revision-Date: 2025-07-17 19:25+0000\n"
 "Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -1256,6 +1256,10 @@ msgstr "%s długo"
 #, python-format
 msgid "%s not available."
 msgstr "%s nie dostępne."
+
+#, python-format
+msgid "%s version"
+msgstr "Wersja %s"
 
 #, python-format
 msgid "%s%d min"
@@ -5378,7 +5382,7 @@ msgid "Customize System Settings"
 msgstr "Ustawienia zaawansowane"
 
 msgid "Customize enigma2 personal settings"
-msgstr "Dostosuj ustawienia osobiste Enigmy2"
+msgstr "Dostosuj ustawienia osobiste Enigma2"
 
 msgid "Cut"
 msgstr "Wytnij"
@@ -5473,9 +5477,6 @@ msgstr "DTS/DTS-HD HR/DTS-HD MA/DTS:X"
 
 msgid "DUAL LAYER DVD"
 msgstr "Dwuwarstwowe DVD"
-
-msgid "DVB API version"
-msgstr "Wersja DVB API"
 
 msgid "DVB CI Delay"
 msgstr "Opóźnienie DVB CI"
@@ -7380,10 +7381,7 @@ msgid "Enigma2 information"
 msgstr "Informacje o Enigma2"
 
 msgid "Enigma2 revision"
-msgstr "Rewizja Enigmy2"
-
-msgid "Enigma2 version"
-msgstr "Wersja Enigmy2"
+msgstr "Rewizja Enigma2"
 
 msgid "Enigmalight"
 msgstr "Enigmalight"
@@ -8103,9 +8101,6 @@ msgstr "Sonda FFmpeg"
 msgid "FFmpeg is not installed so '.mvi' file actions are not available!"
 msgstr "FFmpeg nie jest zainstalowany, więc akcje dla plików '.mvi' nie są dostępne!"
 
-msgid "FFmpeg version"
-msgstr "Wersja FFmpeg"
-
 msgid "FIFO"
 msgstr "FIFO"
 
@@ -8704,9 +8699,6 @@ msgstr "Test FullHD"
 msgid "G"
 msgstr "G"
 
-msgid "GCC version"
-msgstr "Wersja GCC"
-
 msgid "GREEN button"
 msgstr "Zielony przycisk"
 
@@ -8718,9 +8710,6 @@ msgstr "Kategoria dziennika debugowania GStreamer *"
 
 msgid "GStreamer debug log level *"
 msgstr "Poziom logów debugowania GStreamer *"
-
-msgid "GStreamer version"
-msgstr "Wersja GStreamer"
 
 msgid "GUI Skin *"
 msgstr "Skórka GUI *"
@@ -8818,9 +8807,6 @@ msgstr "Gibraltar"
 
 msgid "Given device id"
 msgstr "Podany identyfikator urządzenia"
-
-msgid "Glibc version"
-msgstr "Wersja Glibc"
 
 msgid "Go back to the previous step"
 msgstr "Wróć do poprzedniego kroku"
@@ -12894,9 +12880,6 @@ msgstr "OpenDNS Home"
 msgid "OpenPLi Packages"
 msgstr "Pakiety OpenPLi"
 
-msgid "OpenSSL version"
-msgstr "Wersja OpenSSL"
-
 msgid "OpenVPN"
 msgstr "OpenVPN"
 
@@ -14291,9 +14274,6 @@ msgstr "Pakiety programistyczne Pythona"
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python nakładka na /tmp/mmi.socket"
 
-msgid "Python version"
-msgstr "Wersja Python"
-
 msgid "Qatar"
 msgstr "Katar"
 
@@ -15373,9 +15353,6 @@ msgstr "Rosyjski"
 msgid "Russian Federation"
 msgstr "Rosja"
 
-msgid "Rust version"
-msgstr "Wersja Rust"
-
 msgid "Rwanda"
 msgstr "Rwanda"
 
@@ -15484,9 +15461,6 @@ msgstr "Serwer Samba"
 
 msgid "Samba Settings"
 msgstr "Ustawienia samby"
-
-msgid "Samba version"
-msgstr "Wersja Samby"
 
 msgid "Same as in active"
 msgstr "Taki sam jak w aktywnym"
@@ -16014,7 +15988,7 @@ msgid "Select 'Yes' to only send the DiSEqC command when changing from one satel
 msgstr "Wybierz 'tak' aby wysyłać komendę DiSEqC tylko przy zmianie satelity na innego, lub wybierz 'nie' aby komenda DiSEqC była wysyłana ponownie przy każdym zapie."
 
 msgid "Select 'Yes' to remove all main settings configuration data. Selecting this option will set all Enigma2 settings back to their default values. This will also cause Enigma2 to run the Welcome Wizard on restart."
-msgstr "Wybierz „Tak”, aby usunąć wszystkie dane konfiguracyjne ustawień głównych. Wybranie tej opcji spowoduje przywrócenie wszystkich ustawień Enigmy2 do ich wartości domyślnych. Spowoduje to również, że Enigma2 uruchomi Kreatora Powitalnego przy ponownym uruchomieniu."
+msgstr "Wybierz „Tak”, aby usunąć wszystkie główne dane konfiguracyjne ustawień. Wybranie tej opcji spowoduje przywrócenie wszystkich ustawień Enigma2 do wartości domyślnych. Spowoduje to również uruchomienie Kreatora powitalnego po ponownym uruchomieniu Enigma2."
 
 msgid "Select 'Yes' to remove all media player resume data. Selecting this option will remove the data used to allow playback of media files to resume from the position where playback was last stopped. Playback position of recordings is not affected."
 msgstr "Wybierz \"Tak\", aby usunąć wszystkie dane wznowienia odtwarzacza multimedialnego. Wybranie tej opcji spowoduje usunięcie danych używanych do wznowienia odtwarzania plików multimedialnych z pozycji, w której odtwarzanie zostało ostatnio zatrzymane. Nie ma to wpływu na pozycję odtwarzania nagrań."
@@ -17442,7 +17416,7 @@ msgid "Setup Audiomode"
 msgstr "Ustawienia trybu dźwięku"
 
 msgid "Setup Enigma2"
-msgstr "Ustawienia Enigmy2"
+msgstr "Konfiguracja Enigma2"
 
 msgid "Setup Inadyn"
 msgstr "Ustawienia Inadyn"
@@ -21248,6 +21222,10 @@ msgstr "Typ urządzenia"
 msgid "Type of scan"
 msgstr "Typ skanowania"
 
+#, python-format
+msgid "UBI slot %s%s"
+msgstr "UBI slot %s%s"
+
 msgid "UBINIZE"
 msgstr "UBINIZE"
 
@@ -24209,6 +24187,36 @@ msgstr "tak (zachować feed'y)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "DVB API version"
+#~ msgstr "Wersja DVB API"
+
+#~ msgid "Enigma2 version"
+#~ msgstr "Wersja Enigmy2"
+
+#~ msgid "FFmpeg version"
+#~ msgstr "Wersja FFmpeg"
+
+#~ msgid "GCC version"
+#~ msgstr "Wersja GCC"
+
+#~ msgid "GStreamer version"
+#~ msgstr "Wersja GStreamer"
+
+#~ msgid "Glibc version"
+#~ msgstr "Wersja Glibc"
+
+#~ msgid "OpenSSL version"
+#~ msgstr "Wersja OpenSSL"
+
+#~ msgid "Python version"
+#~ msgstr "Wersja Python"
+
+#~ msgid "Rust version"
+#~ msgstr "Wersja Rust"
+
+#~ msgid "Samba version"
+#~ msgstr "Wersja Samby"
 
 #~ msgid "Open AutoTimer OverView"
 #~ msgstr "Otwórz AutoTimer Overview"

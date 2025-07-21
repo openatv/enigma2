@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-09 04:53+0000\n"
-"PO-Revision-Date: 2025-07-08 22:01+0000\n"
+"POT-Creation-Date: 2025-07-17 17:20+0000\n"
+"PO-Revision-Date: 2025-07-20 15:03+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -1209,6 +1209,10 @@ msgstr "%s pitkä"
 #, python-format
 msgid "%s not available."
 msgstr "%s ei saatavilla."
+
+#, python-format
+msgid "%s version"
+msgstr "%s versio"
 
 #, python-format
 msgid "%s%d min"
@@ -5436,9 +5440,6 @@ msgstr "DTS/DTS-HD HR/DTS-HD MA/DTS:X"
 msgid "DUAL LAYER DVD"
 msgstr "DUAL LAYER DVD"
 
-msgid "DVB API version"
-msgstr "DVB API versio"
-
 msgid "DVB CI Delay"
 msgstr "DVB CI Viive"
 
@@ -7341,9 +7342,6 @@ msgstr "Järjestelmä tiedot"
 msgid "Enigma2 revision"
 msgstr "Järjestelmä tiedot"
 
-msgid "Enigma2 version"
-msgstr "Järjestelmä Versio"
-
 msgid "Enigmalight"
 msgstr "Enigmalight"
 
@@ -8062,9 +8060,6 @@ msgstr "FFmpeg Probe"
 msgid "FFmpeg is not installed so '.mvi' file actions are not available!"
 msgstr "FFmpeg ei ole asennettu, joten '.mvi' tiedostot eivät ole käytettävissä!"
 
-msgid "FFmpeg version"
-msgstr "FFmpeg versio"
-
 msgid "FIFO"
 msgstr "FIFO"
 
@@ -8663,9 +8658,6 @@ msgstr "FullHD Testi"
 msgid "G"
 msgstr "G"
 
-msgid "GCC version"
-msgstr "GCC versio"
-
 msgid "GREEN button"
 msgstr "Vihreä näppäin"
 
@@ -8677,9 +8669,6 @@ msgstr "GStreamerin debug loki luokka *"
 
 msgid "GStreamer debug log level *"
 msgstr "GStreamer virheenkorjauslokin taso *"
-
-msgid "GStreamer version"
-msgstr "GStreamer versio"
 
 msgid "GUI Skin *"
 msgstr "Käyttöliittymän teema *"
@@ -8777,9 +8766,6 @@ msgstr "Gibraltari"
 
 msgid "Given device id"
 msgstr "Annettu laitetunnus"
-
-msgid "Glibc version"
-msgstr "Glibc versio"
 
 msgid "Go back to the previous step"
 msgstr "Palaa edelliseen vaiheeseen"
@@ -10224,14 +10210,14 @@ msgid "Kernel file"
 msgstr "Kerneli tiedosto"
 
 msgid "Kernel partition"
-msgstr ""
+msgstr "Kernel osio"
 
 msgid "Kernel version"
 msgstr "Kernel tiedot"
 
 #, python-format
 msgid "Kernel%s partition"
-msgstr ""
+msgstr "Kernel%s osio"
 
 msgid "Kexec MultiBoot Actions"
 msgstr "Kexec MultiBoot Toiminnot"
@@ -12863,9 +12849,6 @@ msgstr "OpenDNS Koti"
 msgid "OpenPLi Packages"
 msgstr "OpenPLi Paketit"
 
-msgid "OpenSSL version"
-msgstr "OpenSSL versio"
-
 msgid "OpenVPN"
 msgstr "OpenVPN"
 
@@ -14258,9 +14241,6 @@ msgstr "Pythonin kehityspakettit"
 msgid "Python frontend for /tmp/mmi.socket"
 msgstr "Python-liittymä /tmp/mmi.socket"
 
-msgid "Python version"
-msgstr "Python versio"
-
 msgid "Qatar"
 msgstr "Qatar"
 
@@ -15340,9 +15320,6 @@ msgstr "Venäjä"
 msgid "Russian Federation"
 msgstr "Venäjä"
 
-msgid "Rust version"
-msgstr ""
-
 msgid "Rwanda"
 msgstr "Rwanda"
 
@@ -15451,9 +15428,6 @@ msgstr "Samba Serveri"
 
 msgid "Samba Settings"
 msgstr "Samba asetukset"
-
-msgid "Samba version"
-msgstr "Samba versio"
 
 msgid "Same as in active"
 msgstr "Sama kuin aktiivinen"
@@ -21229,6 +21203,10 @@ msgstr "Laitteen tyyppi"
 msgid "Type of scan"
 msgstr "Hakutapa"
 
+#, python-format
+msgid "UBI slot %s%s"
+msgstr ""
+
 msgid "UBINIZE"
 msgstr "UBINIZE"
 
@@ -24195,6 +24173,33 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "DVB API version"
+#~ msgstr "DVB API versio"
+
+#~ msgid "Enigma2 version"
+#~ msgstr "Järjestelmä Versio"
+
+#~ msgid "FFmpeg version"
+#~ msgstr "FFmpeg versio"
+
+#~ msgid "GCC version"
+#~ msgstr "GCC versio"
+
+#~ msgid "GStreamer version"
+#~ msgstr "GStreamer versio"
+
+#~ msgid "Glibc version"
+#~ msgstr "Glibc versio"
+
+#~ msgid "OpenSSL version"
+#~ msgstr "OpenSSL versio"
+
+#~ msgid "Python version"
+#~ msgstr "Python versio"
+
+#~ msgid "Samba version"
+#~ msgstr "Samba versio"
 
 #~ msgid "Open AutoTimer OverView"
 #~ msgstr "Avaa Automaattiset ajastukset"
