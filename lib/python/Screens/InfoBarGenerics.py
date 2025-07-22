@@ -32,6 +32,8 @@ from Components.TimerList import TimerList  # Deprecated!
 from Components.Timeshift import InfoBarTimeshift
 from Components.UsageConfig import defaultMoviePath, preferredInstantRecordPath, preferredTimerPath
 from Components.VolumeControl import VolumeControl
+from Components.Renderer.PositionGauge import PositionGauge
+from Components.Renderer.Progress import Progress
 from Components.Sources.Boolean import Boolean
 from Components.Sources.ServiceEvent import ServiceEvent
 from Components.Sources.StaticText import StaticText
@@ -854,74 +856,262 @@ class InfoBarNumberZap:
 		self.selectAndStartService(service, bouquet)
 
 
-class Seekbar(Screen):
-	def __init__(self, session, fwd):
-		Screen.__init__(self, session)
-		self.setTitle(_("Seek"))
-		self.fwd = fwd
-		self.percent = 0.0
-		self.length = None
+class SeekBar(Screen):
+	skin = """
+	<screen name="SeekBar" position="center,10" size="800,50" flags="wfNoBorder" resolution="1280,720">
+		<widget name="target" position="10,15" size="100,20" font="Regular;20" horizontalAlignment="right" transparent="1" verticalAlignment="center" />
+		<widget source="session.CurrentService" render="PositionGauge" position="120,15" size="560,20" foregroundColor="#000000CF" pointer="sliders/position_pointer.png:545,0" transparent="1">
+			<convert type="ServicePosition">Gauge</convert>
+		</widget>
+		<widget name="cursor" position="0,0" size="8,36" pixmap="sliders/position_arrow.png" alphatest="blend" transparent="1" zPosition="+1" />
+		<widget name="length" position="690,15" size="100,20" font="Regular;20" transparent="1" verticalAlignment="center" />
+	</screen>"""
+
+	ARROW_SYMMETRICAL = "s"
+	ARROW_DEFINED = "d"
+	SKIP_SYMMETRICAL = "s"
+	SKIP_DEFINED = "d"
+	SKIP_PERCENTAGE = "p"
+
+	def __init__(self, session):
+		def sensibilityHelp(button):
+			match button:
+				case "UP":
+					helpText = _("Skip forward %s%%") % f"{config.seek.sensibilityVertical.value:.1f}"
+				case "LEFT":
+					helpText = _("Skip backward %s%%") % f"{config.seek.sensibilityHorizontal.value:.1f}"
+				case "RIGHT":
+					helpText = _("Skip forward %s%%") % f"{config.seek.sensibilityHorizontal.value:.1f}"
+				case "DOWN":
+					helpText = _("Skip backward %s%%") % f"{config.seek.sensibilityVertical.value:.1f}"
+			return helpText
+
+		def symmetricalHelp(button):
+			match button:
+				case 1 | 3:
+					value = config.seek.defined[13].value
+				case 4 | 6:
+					value = config.seek.defined[46].value
+				case 7 | 9:
+					value = config.seek.defined[79].value
+			helpText = (ngettext("Skip backward %d second", "Skip backward %d seconds", value) if button % 3 else ngettext("Skip forward %d second", "Skip forward %d seconds", value)) % value
+			return helpText
+
+		def definedHelp(button):
+			value = config.seek.defined[button].value
+			if value < 0:
+				value = abs(value)
+				helpText = ngettext("Skip backward %d second", "Skip backward %d seconds", value) % value
+			elif value > 0:
+				helpText = ngettext("Skip forward %d second", "Skip forward %d seconds", value) % value
+			else:
+				helpText = _("Skip for '%s' is disabled") % button
+			return helpText
+
+		def percentageHelp(button):
+			if button:
+				helpText = _("Skip to %s0%% position (Add %s%% on second press)") % (button, button)
+			else:
+				# helpText = _("Skip to 0% (start) position (Skip to 100% on second press)")  # Make 00 equal to 100%.
+				helpText = _("Skip to 0% (start) position")
+			return helpText
+
+		Screen.__init__(self, session, mandatoryWidgets=["length"], enableHelp=True)
+		self.setTitle(_("Seek Bar"))
+		self["target"] = Label()
+		self["cursor"] = MovingPixmap()
+		self["length"] = Label()
+		self["actions"] = HelpableActionMap(self, ["OkCancelActions"], {
+			"ok": (self.keyOK, "Close the SeekBar at the current location"),
+			"cancel": (self.keyCancel, _("Close the Seekbar after returning to the starting point"))
+		}, prio=0, description=_("SeekBar Actions"))
+		match config.seek.arrowSkipMode.value:
+			case self.ARROW_SYMMETRICAL:
+				self["arrowSeekActions"] = HelpableActionMap(self, ["NavigationActions"], {
+					"up": (self.keyUp, boundFunction(sensibilityHelp, "UP")),
+					"left": (self.keyLeft, boundFunction(sensibilityHelp, "LEFT")),
+					"right": (self.keyRight, boundFunction(sensibilityHelp, "RIGHT")),
+					"down": (self.keyDown, boundFunction(sensibilityHelp, "DOWN"))
+				}, prio=0, description=_("SeekBar Actions"))
+			case self.ARROW_DEFINED:
+				self["arrowSeekActions"] = HelpableActionMap(self, ["NavigationActions"], {
+					"up": (self.keyUp, boundFunction(definedHelp, "UP")),
+					"left": (self.keyLeft, boundFunction(definedHelp, "LEFT")),
+					"right": (self.keyRight, boundFunction(definedHelp, "RIGHT")),
+					"down": (self.keyDown, boundFunction(definedHelp, "DOWN"))
+				}, prio=0, description=_("SeekBar Actions"))
+		match config.seek.numberSkipMode.value:
+			case self.SKIP_SYMMETRICAL:
+				self["numberSeekActions"] = HelpableNumberActionMap(self, ["NumberActions"], {
+					"1": (self.keyNumberGlobal, boundFunction(symmetricalHelp, 1)),
+					"3": (self.keyNumberGlobal, boundFunction(symmetricalHelp, 3)),
+					"4": (self.keyNumberGlobal, boundFunction(symmetricalHelp, 4)),
+					"6": (self.keyNumberGlobal, boundFunction(symmetricalHelp, 6)),
+					"7": (self.keyNumberGlobal, boundFunction(symmetricalHelp, 7)),
+					"9": (self.keyNumberGlobal, boundFunction(symmetricalHelp, 9))
+				}, prio=0, description=_("SeekBar Actions"))
+			case self.SKIP_DEFINED:
+				self["numberSeekActions"] = HelpableNumberActionMap(self, ["NumberActions"], {
+					"1": (self.keyNumberGlobal, boundFunction(definedHelp, 1)),
+					"2": (self.keyNumberGlobal, boundFunction(definedHelp, 2)),
+					"3": (self.keyNumberGlobal, boundFunction(definedHelp, 3)),
+					"4": (self.keyNumberGlobal, boundFunction(definedHelp, 4)),
+					"5": (self.keyNumberGlobal, boundFunction(definedHelp, 5)),
+					"6": (self.keyNumberGlobal, boundFunction(definedHelp, 6)),
+					"7": (self.keyNumberGlobal, boundFunction(definedHelp, 7)),
+					"8": (self.keyNumberGlobal, boundFunction(definedHelp, 8)),
+					"9": (self.keyNumberGlobal, boundFunction(definedHelp, 9)),
+					"0": (self.keyNumberGlobal, boundFunction(definedHelp, 0))
+				}, prio=0, description=_("SeekBar Actions"))
+			case self.SKIP_PERCENTAGE:
+				self["numberSeekActions"] = HelpableNumberActionMap(self, ["NumberActions"], {
+					"1": (self.keyNumberGlobal, percentageHelp(1)),
+					"2": (self.keyNumberGlobal, percentageHelp(2)),
+					"3": (self.keyNumberGlobal, percentageHelp(3)),
+					"4": (self.keyNumberGlobal, percentageHelp(4)),
+					"5": (self.keyNumberGlobal, percentageHelp(5)),
+					"6": (self.keyNumberGlobal, percentageHelp(6)),
+					"7": (self.keyNumberGlobal, percentageHelp(7)),
+					"8": (self.keyNumberGlobal, percentageHelp(8)),
+					"9": (self.keyNumberGlobal, percentageHelp(9)),
+					"0": (self.keyNumberGlobal, percentageHelp(0))
+				}, prio=0, description=_("SeekBar Actions"))
+		self.seekable = False
 		service = session.nav.getCurrentService()
 		if service:
 			self.seek = service.seek()
-			if self.seek:
-				self.length = self.seek.getLength()
-				position = self.seek.getPlayPosition()
-				if self.length and position and int(self.length[1]) > 0:
-					if int(position[1]) > 0:
-						self.percent = float(position[1]) * 100.0 / float(self.length[1])
-				else:
-					self.close()
-		self["cursor"] = MovingPixmap()
-		self["time"] = Label()
-		self["actions"] = HelpableActionMap(self, ["WizardActions", "DirectionActions"], {
-			"back": (self.exit, _("Cancel the selection")),
-			"ok": (self.keyOK, _("Seek forward long")),
-			"left": (self.keyLeft, _("Seek back short")),
-			"right": (self.keyRight, _("Seek forward  short"))
-		}, prio=-1, description=_("Seek Actions"))
+			if not self.seek:
+				print("[InfoBarGenerics] SeekBar: The current service does not support seeking!")
+				self.close()
+			if self.seek.isCurrentlySeekable():
+				self.seekable = True
+		else:
+			print("[InfoBarGenerics] SeekBar: There is no current service so there is nothing to seek!")
+			self.close()
+		serviceReference = self.session.nav.getCurrentlyPlayingServiceReference()
+		self.length = self.seek.getLength()[1] if serviceReference and serviceReference.getPath() else None
+		self.eventTracker = ServiceEventTracker(screen=self, eventmap={
+			iPlayableService.evEOF: self.endOfFile
+		})
+		self.gaugeX = 0
+		self.gaugeY = 0
+		self.gaugeW = 0
+		self.gaugeH = 0
+		self.cursorW = 0
+		self.cursorH = 0
 		self.cursorTimer = eTimer()
 		self.cursorTimer.callback.append(self.updateCursor)
-		self.cursorTimer.start(200, False)
+		self.cursorTimer.start(250)  # This is a auto repeating timer to update the UI.
+		self.target = self.seek.getPlayPosition()[1]  # Set initial target position to the current media position.
+		self.start = self.target if self.seekable else None  # Remember the start position if we allow immediate media seeking.
+		self.digitTime = 0.0
+		self.firstDigit = True
+		self.onShown.append(self.screenShown)
 
-	def updateCursor(self):
-		if self.length:
-			screenwidth = getDesktop(0).size().width()
-			if screenwidth and screenwidth == 1920:
-				x = 218 + int(4.05 * self.percent)
-				self["cursor"].moveTo(x, 23, 1)
-			else:
-				x = 145 + int(2.7 * self.percent)
-				self["cursor"].moveTo(x, 15, 1)
-			self["cursor"].startMoving()
-			pts = int(float(self.length[1]) / 100.0 * self.percent)
-			self["time"].setText("%d:%02d" % ((pts / 60 / 90000), ((pts / 90000) % 60)))
-
-	def exit(self):
+	def endOfFile(self):
 		self.cursorTimer.stop()
+		print("[InfoBarGenerics] SeekBar: The SeekBar playback has reached the end of file, exiting.")
 		self.close()
 
+	def updateCursor(self):
+		length = self.seek.getLength()[1] if self.length is None else self.length
+		target = self.target // 90000
+		self["target"].setText(f"{target // 60}:{target % 60:02d}")
+		cursorX = self.gaugeX + (self.target * self.gaugeW / length) - self.cursorC
+		self["cursor"].moveTo(cursorX, self.cursorY, 1)
+		self["cursor"].startMoving()
+		length //= 90000
+		self["length"].setText(f"{length // 60}:{length % 60:02d}")
+
+	def screenShown(self):
+		for component in self.activeComponents:
+			if isinstance(component, (PositionGauge, Progress)):  # Progress is used for composite widgets like in Metrix.
+				for attribute, value in component.skinAttributes:
+					match attribute:
+						case "position":
+							self.gaugeX = value[0]
+							self.gaugeY = value[1]
+						case "size":
+							self.gaugeW = value[0]
+							self.gaugeH = value[1]
+				break
+		for attribute, value in self["cursor"].skinAttributes:
+			if attribute == "size":
+				self.cursorW = value[0]
+				self.cursorH = value[1]
+				self.cursorC = (self.cursorW - 1) // 2
+				self.cursorY = self.gaugeY + (self.gaugeH // 2) - (self.cursorH // 2)
+				break
+
 	def keyOK(self):
-		if self.length:
-			self.seek.seekTo(int(float(self.length[1]) / 100.0 * self.percent))
-			self.exit()
+		self.cursorTimer.stop()
+		self.seek.seekTo(self.target)
+		self.close()
+
+	def keyCancel(self):
+		self.cursorTimer.stop()
+		if self.seekable and self.start is not None:  # Restore the initial media position if we allowed immediate media seeking.
+			self.seek.seekTo(self.start)
+		self.close()
+
+	def keyUp(self):
+		self.target = self.sensibilityTarget(1, config.seek.sensibilityVertical.value) if config.seek.arrowSkipMode.value == "s" else self.updateTarget(config.seek.defined["UP"].value)
 
 	def keyLeft(self):
-		self.percent -= float(config.seek.sensibility.value) / 10.0
-		if self.percent < 0.0:
-			self.percent = 0.0
+		self.target = self.sensibilityTarget(-1, config.seek.sensibilityHorizontal.value) if config.seek.arrowSkipMode.value == "s" else self.updateTarget(config.seek.defined["LEFT"].value)
 
 	def keyRight(self):
-		self.percent += float(config.seek.sensibility.value) / 10.0
-		if self.percent > 100.0:
-			self.percent = 100.0
+		self.target = self.sensibilityTarget(1, config.seek.sensibilityHorizontal.value) if config.seek.arrowSkipMode.value == "s" else self.updateTarget(config.seek.defined["RIGHT"].value)
+
+	def keyDown(self):
+		self.target = self.sensibilityTarget(-1, config.seek.sensibilityVertical.value) if config.seek.arrowSkipMode.value == "s" else self.updateTarget(config.seek.defined["DOWN"].value)
 
 	def keyNumberGlobal(self, number):
-		sel = self["config"].getCurrent()[1]
-		if sel == self.positionEntry:
-			self.percent = float(number) * 10.0
-		else:
-			ConfigListScreen.keyNumberGlobal(self, number)
+		match config.seek.numberSkipMode.value:
+			case self.SKIP_SYMMETRICAL:
+				match number:
+					case 1 | 3:
+						skip = config.seek.defined[13].value
+					case 4 | 6:
+						skip = config.seek.defined[46].value
+					case 7 | 9:
+						skip = config.seek.defined[79].value
+				direction = -1 if number % 3 else 1
+				self.target = self.updateTarget(skip * direction)
+			case self.SKIP_DEFINED:
+				self.target = self.updateTarget(config.seek.defined[number].value)
+			case self.SKIP_PERCENTAGE:
+				now = time()
+				if now - self.digitTime >= 1.0:  # Second percentage digit must be pressed within 1 second else data entry resets.
+					self.firstDigit = True
+				self.digitTime = now
+				length = self.seek.getLength()[1] if self.length is None else self.length
+				if self.firstDigit:
+					self.firstDigit = False
+					self.target = 0
+					self.target = self.updateTarget(float(length * number * 10) / 9000000.0)
+				else:
+					self.firstDigit = True
+					# if number == 0:  # Make 00 equal to 100%.
+					# 	number = 100
+					self.target = self.updateTarget(float(length * number) / 9000000.0)
+
+	def sensibilityTarget(self, direction, sensibility):
+		self.firstDigit = True
+		length = self.seek.getLength()[1] if self.length is None else self.length
+		skip = (direction * length * sensibility / 100.0) / 90000.0
+		return self.updateTarget(skip)
+
+	def updateTarget(self, skip):
+		target = self.target + int(skip * 90000)
+		if target < 0:
+			target = 0
+		length = self.seek.getLength()[1] if self.length is None else self.length
+		if target >= length:
+			self.endOfFile()
+		if self.seekable:
+			self.seek.seekTo(target)
+		return target
 
 
 class InfoBarSeek:
@@ -1426,13 +1616,13 @@ class InfoBarSeek:
 
 	def seekFwdManual(self, fwd=True):
 		if config.seek.baractivation.value == "leftright":
-			self.session.open(Seekbar, fwd)
+			self.session.open(SeekBar)
 		else:
 			self.session.openWithCallback(self.fwdSeekTo, MinuteInput)
 
 	def seekBackManual(self, fwd=False):
 		if config.seek.baractivation.value == "leftright":
-			self.session.open(Seekbar, fwd)
+			self.session.open(SeekBar)
 		else:
 			self.session.openWithCallback(self.rwdSeekTo, MinuteInput)
 
@@ -1442,13 +1632,13 @@ class InfoBarSeek:
 			return
 		else:
 			if config.seek.baractivation.value == "leftright":
-				self.session.open(Seekbar, fwd)
+				self.session.open(SeekBar)
 			else:
 				self.session.openWithCallback(self.fwdSeekTo, MinuteInput)
 
 	def seekFwdSeekbar(self, fwd=True):
 		if not config.seek.baractivation.value == "leftright":
-			self.session.open(Seekbar, fwd)
+			self.session.open(SeekBar)
 		else:
 			self.session.openWithCallback(self.fwdSeekTo, MinuteInput)
 
@@ -1457,7 +1647,7 @@ class InfoBarSeek:
 
 	def seekBackSeekbar(self, fwd=False):
 		if not config.seek.baractivation.value == "leftright":
-			self.session.open(Seekbar, fwd)
+			self.session.open(SeekBar)
 		else:
 			self.session.openWithCallback(self.rwdSeekTo, MinuteInput)
 
