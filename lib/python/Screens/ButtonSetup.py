@@ -239,7 +239,7 @@ def getButtonSetupFunctions():
 	ButtonSetupFunctions.append((_("Show subtitle selection"), "Infobar/subtitleSelection", textInfoBar))
 	ButtonSetupFunctions.append((_("Show subtitle quick menu"), "Infobar/subtitleQuickMenu", textInfoBar))
 	ButtonSetupFunctions.append((_("LetterBox zoom"), "Infobar/vmodeSelection", textInfoBar))
-	ButtonSetupFunctions.append((_("Seekbar"), "Infobar/seekFwdVod", textInfoBar))
+	ButtonSetupFunctions.append((_("SeekBar"), "Infobar/seekFwdVod", textInfoBar))
 	if BoxInfo.getItem("PIPAvailable"):
 		ButtonSetupFunctions.append((_("Show PiP"), "Infobar/showPiP", textInfoBar))
 		ButtonSetupFunctions.append((_("Swap PiP"), "Infobar/swapPiP", textInfoBar))

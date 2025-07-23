@@ -1420,16 +1420,6 @@ self.autoResize()
 		<widget name="Goto" position="5,184" size="50,17" zPosition="1" font="Regular;17" halign="left" transparent="1" />
 		<widget name="posGoto" position="57,180" size="70,20" zPosition="1" font="Regular;20" halign="left" transparent="1" />
 	</screen>
-	<screen name="Seekbar" position="center,40" size="560,55" flags="wfNoBorder">
-		<widget name="cursor" position="0,15" size="8,18" pixmap="skin_default/position_arrow.png" alphatest="on" />
-		<widget source="session.CurrentService" render="PositionGauge" position="145,30" size="270,10" zPosition="2" pointer="skin_default/position_pointer.png:540,0" transparent="1" foregroundColor="#20224f">
-			<convert type="ServicePosition">Gauge</convert>
-		</widget>
-		<widget name="time" position="50,25" size="100,20" font="Regular;20" halign="left" backgroundColor="#4e5a74" transparent="1" />
-		<widget source="session.CurrentService" render="Label" position="420,25" size="90,24" font="Regular;20" halign="right" backgroundColor="#4e5a74" transparent="1">
-			<convert type="ServicePosition">Length</convert>
-		</widget>
-	</screen>
 	<screen name="InputDeviceSetup" position="center,center" size="560,460">
 		<panel name="BasicTemplate" />
 		<panel name="Red2Panel" />

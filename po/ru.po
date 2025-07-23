@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-17 17:20+0000\n"
-"PO-Revision-Date: 2025-06-11 19:04+0000\n"
+"PO-Revision-Date: 2025-07-22 17:05+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
 "Language: ru\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.12-dev\n"
+"X-Generator: Weblate 5.13-dev\n"
 "X-Poedit-SourceCharset: iso-8859-5\n"
 
 msgid ""
@@ -1071,7 +1071,7 @@ msgstr[2] "%d каналов найдено."
 
 #, python-format
 msgid "%d slots have been created on the device.\n"
-msgstr ""
+msgstr "%d слотов создано на устройстве.\n"
 
 #, python-format
 msgid "%d times"
@@ -1253,7 +1253,7 @@ msgstr "%s недоступно."
 
 #, python-format
 msgid "%s version"
-msgstr ""
+msgstr "%s версия"
 
 #, python-format
 msgid "%s%d min"
@@ -5191,7 +5191,7 @@ msgid "Create separate radio user bouquet"
 msgstr "Создание отдельного радио букета"
 
 msgid "Create slots for the selected device"
-msgstr ""
+msgstr "Создать слоты для выбранного устройства"
 
 msgid "Create swap"
 msgstr "Создать swap"
@@ -5823,7 +5823,7 @@ msgid "Define the custom mountpoint for the device."
 msgstr "Определите пользовательскую точку монтирования для устройства."
 
 msgid "Define the default settings backup target location. Select 'Ask user' to prompt the user for the target location when the backup is run."
-msgstr ""
+msgstr "Определите целевое расположение резервной копии настроек по умолчанию. Выберите 'Спросить пользователя', чтобы запросить у пользователя целевое расположение при запуске резервного копирования."
 
 msgid "Define the file system mount options."
 msgstr "Определите параметры монтирования файловой системы."
@@ -10239,14 +10239,14 @@ msgid "Kernel file"
 msgstr "Файл ядра"
 
 msgid "Kernel partition"
-msgstr ""
+msgstr "Раздел ядра"
 
 msgid "Kernel version"
 msgstr "Версия ядра"
 
 #, python-format
 msgid "Kernel%s partition"
-msgstr ""
+msgstr "Раздел ядра%s"
 
 msgid "Kexec MultiBoot Actions"
 msgstr "Действия MultiBoot Kexec"
@@ -15831,10 +15831,10 @@ msgstr "Перемотка вперёд длинная"
 msgid "SeekBar activation"
 msgstr "Вызов панели перемотки"
 
-msgid "Seekbar"
+msgid "SeekBar"
 msgstr "Панель перемотки"
 
-msgid "Seekbar sensibility"
+msgid "SeekBar sensibility"
 msgstr "Точность перемотки"
 
 msgid "Seeking connected events"
@@ -15906,7 +15906,7 @@ msgstr "Если выберете 'Да', то во время паузы инф
 msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
 msgstr "Выберите 'Да', чтобы разрешить автоматически экспортировать каждое обнаруженное устройство хранения данных как общий ресурс Samba."
 
-msgid "Select 'Yes' to allow use of the seek bar to jump to a selected point within the event."
+msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
 msgstr "Выбор 'Да' позволяет использовать панель перемотки для перехода к нужному моменту внутри передачи."
 
 msgid "Select 'Yes' to always show the bouquet screen first when opening the channel list. Select 'No' to open the channel list using the current bouquet."
@@ -16195,7 +16195,7 @@ msgid "Select a debug log file to view:"
 msgstr "Выберите файл лога отладки для просмотра:"
 
 msgid "Select a device to create multiboot slots"
-msgstr ""
+msgstr "Выберите устройство для создания мультизагрузочных слотов"
 
 msgid "Select a device to use as the flash expander"
 msgstr "Выберите устройство, которое будет использоваться для расширения флеш-памяти"
@@ -16425,7 +16425,7 @@ msgid "Select system information to view:"
 msgstr "Выберите системную информацию для просмотра:"
 
 msgid "Select target device for slot creation"
-msgstr ""
+msgstr "Выберите целевое устройство для создания слота"
 
 msgid "Select temporary directory sort order for the current column"
 msgstr "Выберите порядок сортировки временного каталога для текущего столбца"
@@ -17244,7 +17244,7 @@ msgstr "Установите метод сортировки по умолчан
 msgid "Set the delay time between repeated loops, this is used by software renderer in some skins."
 msgstr "Установите время задержки между повторениями, используется программный рендеринг в некоторых скинах."
 
-msgid "Set the jump-size of the seekbar."
+msgid "Set the jump-size of the SeekBar."
 msgstr "Задайте шаг перехода для панели перемотки."
 
 msgid "Set the number of lines to be saved for 'stout' and 'sterr' output in scripts."
@@ -17385,7 +17385,7 @@ msgid "Settings"
 msgstr "Настройка"
 
 msgid "Settings Backup Target"
-msgstr ""
+msgstr "Настройки Резервное копирование Цели"
 
 msgid "Settings mode"
 msgstr "Режим настроек"
@@ -18584,7 +18584,7 @@ msgid "Slot '%s' %s: %s%s"
 msgstr "Слот '%s' %s: %s%s"
 
 msgid "Slot F: Flash Slot Image Backup (Current image)"
-msgstr ""
+msgstr "Слот F: Резервное копирование образа слота флэш-памяти (текущее изображение)"
 
 msgid "Slot Manager"
 msgstr "Менеджер слотов"
@@ -19556,7 +19556,7 @@ msgid "TMDB Search"
 msgstr "Поиск по TMDB"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Коррекция перевода Monja 22.05.2025"
+msgstr "Коррекция перевода Monja 21.07.2025"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл слишком большой для ISO9660 уровень 1!"
@@ -21214,7 +21214,7 @@ msgstr "Тип поиска"
 
 #, python-format
 msgid "UBI slot %s%s"
-msgstr ""
+msgstr "Слот UBI %s%s"
 
 msgid "UBINIZE"
 msgstr "UBINIZE"
