@@ -859,12 +859,15 @@ class InfoBarNumberZap:
 class SeekBar(Screen):
 	skin = """
 	<screen name="SeekBar" position="center,10" size="800,50" flags="wfNoBorder" resolution="1280,720">
-		<widget name="target" position="10,15" size="100,20" font="Regular;20" horizontalAlignment="right" transparent="1" verticalAlignment="center" />
-		<widget source="session.CurrentService" render="PositionGauge" position="120,15" size="560,20" foregroundColor="#000000CF" pointer="sliders/position_pointer.png:545,0" transparent="1">
+		<widget name="target" position="10,10" size="100,20" font="Regular;20" horizontalAlignment="right" transparent="1" verticalAlignment="center" />
+		<widget source="session.CurrentService" render="PositionGauge" position="120,10" size="e-240,20" foregroundColor="#000000CF" transparent="1">
 			<convert type="ServicePosition">Gauge</convert>
 		</widget>
-		<widget name="cursor" position="0,0" size="8,36" pixmap="sliders/position_arrow.png" alphatest="blend" transparent="1" zPosition="+1" />
-		<widget name="length" position="690,15" size="100,20" font="Regular;20" transparent="1" verticalAlignment="center" />
+		<widget source="session.CurrentService" render="Progress" position="120,18" size="e-240,4" backgroundColor="#000000CF" borderWidth="0" foregroundColor="#0000CF00" zPosition="+1">
+			<convert type="ServicePosition">Position</convert>
+		</widget>
+		<widget name="cursor" position="0,0" size="8,18" pixmap="sliders/position_arrow.png" alphatest="blend" zPosition="+2" />
+		<widget name="length" position="e-110,10" size="100,20" font="Regular;20" transparent="1" verticalAlignment="center" />
 	</screen>"""
 
 	ARROW_SYMMETRICAL = "s"
@@ -923,7 +926,7 @@ class SeekBar(Screen):
 		self["length"] = Label()
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions"], {
 			"ok": (self.keyOK, "Close the SeekBar at the current location"),
-			"cancel": (self.keyCancel, _("Close the Seekbar after returning to the starting point"))
+			"cancel": (self.keyCancel, _("Close the SeekBar after returning to the starting point"))
 		}, prio=0, description=_("SeekBar Actions"))
 		match config.seek.arrowSkipMode.value:
 			case self.ARROW_SYMMETRICAL:
