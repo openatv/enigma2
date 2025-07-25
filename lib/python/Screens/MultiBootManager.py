@@ -874,7 +874,8 @@ class UBISlotManager(Setup):
 		mtdRootFs = BoxInfo.getItem("mtdrootfs")
 		mtdKernel = BoxInfo.getItem("mtdkernel")
 		device = self.UBISlotManagerDevice
-		uuidRootFS = fileReadLine(f"/dev/uuid/{device}2", default=None, source=MODULE_NAME)
+		PART_SUFFIX = "p" if "mmcblk" in device else ""
+		uuidRootFS = fileReadLine(f"/dev/uuid/{device}{PART_SUFFIX}2", default=None, source=MODULE_NAME)
 		diskSize = self.partitionSizeGB(f"/dev/{device}")
 
 		machinebuild = BoxInfo.getItem("machinebuild")
@@ -889,6 +890,7 @@ class UBISlotManager(Setup):
 			startupContent = f"kernel=/dev/{mtdKernel} root=UUID={uuidRootFS} rootsubdir=linuxrootfs{i} rootfstype=ext4\n"
 			with open(f"{MOUNTPOINT}/STARTUP_{i}", "w") as fd:
 				fd.write(startupContent)
+		Console().ePopen(["/bin/sync"])
 		Console().ePopen(["/bin/umount", "/bin/umount", f"{MOUNTPOINT}"])
 		self.session.openWithCallback(closeStartUpCallback, MessageBox, _("%d slots have been created on the device.\n") % count, type=MessageBox.TYPE_INFO, close_on_any_key=True, timeout=10)
 
