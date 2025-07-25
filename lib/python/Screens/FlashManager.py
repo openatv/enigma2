@@ -1,5 +1,5 @@
 from json import load
-from os import W_OK, access, listdir, major, makedirs, minor, mkdir, sep, stat, statvfs, unlink, walk
+from os import W_OK, access, listdir, major, makedirs, minor, mkdir, remove, sep, stat, statvfs, unlink, walk
 from os.path import basename, exists, isdir, isfile, islink, ismount, splitext, join, getsize
 from shutil import rmtree
 from time import time
@@ -627,6 +627,13 @@ class FlashImage(Screen):
 			zipData = ZipFile(self.zippedImage, mode="r")
 			zipData.extractall(self.unzippedImage)  # NOSONAR
 			zipData.close()
+			target = next(
+				(join(p, "rootfs.tar.bz2") for p, _, f in walk(self.unzippedImage)
+					if "rootfs.ubi" in f and "rootfs.tar.bz2" in f),
+				None
+			)
+			if target and exists(target):
+				remove(target)
 			self.flashImage()
 		except Exception as err:
 			print("[FlashManager] startUnzip Error: %s!" % str(err))
