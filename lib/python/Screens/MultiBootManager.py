@@ -845,6 +845,8 @@ class UBISlotManager(Setup):
 
 		TARGET = self.deviceData[self.UBISlotManagerDevice][0].split("/")[-1]
 		TARGET_DEVICE = f"/dev/{TARGET}"
+		PART_SUFFIX = "p" if "mmcblk" in TARGET else ""
+		PART = lambda n: f"{TARGET_DEVICE}{PART_SUFFIX}{n}"
 		MOUNTPOINT = "/tmp/boot"
 
 		if exists(TARGET_DEVICE):
@@ -857,11 +859,11 @@ class UBISlotManager(Setup):
 			cmdlist.append(f"/usr/sbin/parted --script {TARGET_DEVICE} mkpart startup fat32 8192s 5MB")
 			cmdlist.append(f"/usr/sbin/parted --script {TARGET_DEVICE} mkpart rootfs ext4 5MB 100%")
 			cmdlist.append(f"/usr/sbin/partprobe {TARGET_DEVICE}")
-			cmdlist.append(f"/usr/sbin/mkfs.vfat -F 32 -n STARTUP {TARGET_DEVICE}1")
-			cmdlist.append(f"/sbin/mkfs.ext4 -O ^64bit,^extent,^flex_bg,^huge_file,^dir_nlink,^extra_isize,^metadata_csum -F -L rootfs {TARGET_DEVICE}2")
+			cmdlist.append(f"/usr/sbin/mkfs.vfat -F 32 -n STARTUP {PART(1)}")
+			cmdlist.append(f"/sbin/mkfs.ext4 -O ^64bit,^extent,^flex_bg,^huge_file,^dir_nlink,^extra_isize,^metadata_csum -F -L rootfs {PART(2)}")
 			cmdlist.append(f"/bin/mkdir -p {MOUNTPOINT}")
 			cmdlist.append(f"/bin/umount {MOUNTPOINT} > /dev/null 2>&1")
-			cmdlist.append(f"/bin/mount {TARGET_DEVICE}1 {MOUNTPOINT}")
+			cmdlist.append(f"/bin/mount {PART(1)} {MOUNTPOINT}")
 			self.session.openWithCallback(self.formatDeviceCallback, ConsoleScreen, title=self.getTitle(), cmdlist=cmdlist)
 
 	def formatDeviceCallback(self):
