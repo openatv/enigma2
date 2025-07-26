@@ -981,17 +981,17 @@ class SeekBar(Screen):
 				}, prio=0, description=_("SeekBar Actions"))
 		self.seekable = False
 		service = session.nav.getCurrentService()
+		serviceReference = self.session.nav.getCurrentlyPlayingServiceReference()
 		if service:
 			self.seek = service.seek()
 			if not self.seek:
 				print("[InfoBarGenerics] SeekBar: The current service does not support seeking!")
 				self.close()
-			if self.seek.isCurrentlySeekable():
+			if self.seek.isCurrentlySeekable() in (1, 3) and serviceReference and serviceReference.type == 1:  # 0=Not seek-able, 1=Blu-ray, 3=Fully seek-able. Type == 1 solves an issue in GStreamer where all media is always seek-able!
 				self.seekable = True
 		else:
 			print("[InfoBarGenerics] SeekBar: There is no current service so there is nothing to seek!")
 			self.close()
-		serviceReference = self.session.nav.getCurrentlyPlayingServiceReference()
 		self.length = self.seek.getLength()[1] if serviceReference and serviceReference.getPath() else None
 		self.eventTracker = ServiceEventTracker(screen=self, eventmap={
 			iPlayableService.evEOF: self.endOfFile
