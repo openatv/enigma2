@@ -405,6 +405,10 @@
 	<setup key="FlashExpander" title="Flash Expander">
 		<item level="0" text="Target location" description="Choose the target location for the expanded '/usr' directory.">config.flashExpander.location</item>
 	</setup>
+	<setup key="ChkrootSlotManager" title="Slot Manager">
+		<item level="0" text="Target location" description="Choose the target device for the slots.">self.ChkrootSlotManagerLocation</item>
+		<item level="0" text="Slot count" description="Choose the amount of additional slots." conditional="self.ChkrootSlotManagerLocation.value">self.ChkrootSlotManagerSlots</item>
+	</setup>
 	<setup key="GPTSlotManager" title="Slot Manager">
 		<item level="0" text="Target location" description="Choose the target device for the slots.">self.GPTSlotManagerLocation</item>
 	</setup>

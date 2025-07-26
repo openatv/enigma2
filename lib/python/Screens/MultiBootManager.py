@@ -1,5 +1,6 @@
-from os import W_OK, access, remove, stat, statvfs
-from os.path import exists, isdir, join
+from os import W_OK, access,listdir , remove, stat, statvfs
+from os.path import exists, isdir, join, realpath
+from re import compile
 from shlex import split
 
 from Components.ActionMap import HelpableActionMap
@@ -15,7 +16,7 @@ from Screens.LocationBox import DEFAULT_INHIBIT_DEVICES
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
 from Screens.Setup import Setup
-from Screens.Standby import QUIT_REBOOT, TryQuitMainloop
+from Screens.Standby import QUIT_REBOOT, QUIT_RESTART, TryQuitMainloop
 from Tools.Directories import fileReadLines, fileWriteLine, fileReadLine
 from Tools.MultiBoot import MultiBoot
 
@@ -91,7 +92,7 @@ class MultiBootManager(Screen):
 			"blue": (self.restoreImage, _("Restore the highlighted slot"))
 		}, prio=0, description=_("MultiBoot Manager Actions"))
 		self["restoreActions"].setEnabled(False)
-		if BoxInfo.getItem("HasKexecMultiboot") or BoxInfo.getItem("HasGPT"):
+		if (BoxInfo.getItem("HasKexecMultiboot") or BoxInfo.getItem("HasGPT") or BoxInfo.getItem("HasChkrootMultiboot")) and not BoxInfo.getItem("hasUBIMB"):
 			self["moreSlotActions"] = HelpableActionMap(self, ["ColorActions"], {
 				"blue": (self.moreSlots, _("Add more slots"))
 			}, prio=0, description=_("MultiBoot Manager Actions"))
@@ -150,7 +151,10 @@ class MultiBootManager(Screen):
 		self.close(True)
 
 	def deleteImage(self):
-		self.session.openWithCallback(self.deleteImageAnswer, MessageBox, "%s\n\n%s" % (self["slotlist"].l.getCurrentSelection()[0][0], _("Are you sure you want to delete this image?")), simple=True, windowTitle=self.getTitle())
+		if BoxInfo.getItem("HasChkrootMultiboot") and not BoxInfo.getItem("hasUBIMB"):
+			self.session.openWithCallback(self.disableChkrootAnswer, MessageBox, _("Are you sure you want to disable Chkroot Multiboot?"), simple=True, windowTitle=self.getTitle())
+		else:
+			self.session.openWithCallback(self.deleteImageAnswer, MessageBox, "%s\n\n%s" % (self["slotlist"].l.getCurrentSelection()[0][0], _("Are you sure you want to delete this image?")), simple=True, windowTitle=self.getTitle())
 
 	def deleteImageAnswer(self, answer):
 		if answer:
@@ -165,9 +169,22 @@ class MultiBootManager(Screen):
 			print("[MultiBootManager] %s marked as deleted." % currentSelected[0])
 		self.getImagesList()
 
+	def disableChkrootAnswer(self, answer):
+		if answer:
+			MultiBoot.wipeChkroot(self.disableChkrootCallback)
+
+	def disableChkrootCallback(self, result):
+		if result not in (0, 1):
+			print("[MultiBootManager] disable was not completely successful, status %d!" % result)
+			self.session.open(MessageBox, _("Disabling Chkroot failed!"), MessageBox.TYPE_ERROR, timeout=5)
+		else:
+			self.session.open(TryQuitMainloop, QUIT_REBOOT)
+
 	def moreSlots(self):
 		if BoxInfo.getItem("HasGPT"):
 			self.session.open(GPTSlotManager)
+		elif BoxInfo.getItem("HasChkrootMultiboot") and not BoxInfo.getItem("hasUBIMB"):
+			self.session.open(ChkrootSlotManager)
 		else:
 			self.session.open(KexecSlotManager)
 
@@ -201,8 +218,17 @@ class MultiBootManager(Screen):
 		slot = currentSelected[1][0]
 		status = currentSelected[1][2]
 		ubi = currentSelected[1][3]
-		# current = currentSelected[1][4]
-		if slot == slotCode or status in ("android", "androidlinuxse", "recovery"):
+		current = currentSelected[1][4]
+		if BoxInfo.getItem("HasChkrootMultiboot") and slot == "1" and current and not BoxInfo.getItem("hasUBIMB"):
+			self["description"].setText(_("Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that image. If available, YELLOW will disable Multiboot, delete, or wipe the selected image. Press BLUE to add more slots."))
+			self["key_green"].setText(_("Reboot"))
+			self["key_yellow"].setText(_("Disable"))
+			self["key_blue"].setText(_("Add more slots"))
+			self["restartActions"].setEnabled(True)
+			self["deleteActions"].setEnabled(True)
+			self["restoreActions"].setEnabled(False)
+			self["moreSlotActions"].setEnabled(True)
+		elif slot == slotCode or status in ("android", "androidlinuxse", "recovery"):
 			self["key_green"].setText(_("Reboot"))
 			self["key_yellow"].setText("")
 			self["key_blue"].setText("")
@@ -789,6 +815,197 @@ class ChkrootInit(Screen):
 				self.close()
 
 		self.session.openWithCallback(disableChkrootCallback, MessageBox, _("Permanently disable the MultiBoot option?"), simple=True)
+
+class ChkrootSlotManager(Setup):
+	def __init__(self, session):
+		def getGreenHelpText():
+			return {
+				ACTION_SELECT: _("Select a device to create multiboot slots"),
+				ACTION_CREATE: _("Create slots for the selected device")
+			}.get(self.green, _("Help text uninitialized"))
+
+		self.ChkrootSlotManagerLocation = ConfigSelection(default=None, choices=[(None, _("<Select a device>"))])
+		self.ChkrootSlotManagerSlots = ConfigInteger(default=10, limits=(1, 20))
+		self.ChkrootSlotManagerDevice = None
+		Setup.__init__(self, session=session, setup="ChkrootSlotManager")
+		self.setTitle(_("Slot Manager"))
+		self["fullUIActions"] = HelpableActionMap(self, ["CancelSaveActions"], {
+			"cancel": (self.keyCancel, _("Cancel any changed settings and exit")),
+			"close": (self.closeRecursive, _("Cancel any changed settings and exit all menus"))
+		}, prio=0, description=_("Common Setup Actions"))  # Override the ConfigList "fullUIActions" action map so that we can control the GREEN button here.
+		self["actions"] = HelpableActionMap(self, ["ColorActions"], {
+			"green": (self.keyGreen, getGreenHelpText)
+		}, prio=-1, description=_("Slot Manager Actions"))
+		self.console = Console()
+		self.deviceData = {}
+		self.green = ACTION_SELECT
+
+	def layoutFinished(self):
+		Setup.layoutFinished(self)
+		self.readDevices()
+
+	def selectionChanged(self):
+		Setup.selectionChanged(self)
+		self.updateStatus()
+
+	def changedEntry(self):
+		Setup.changedEntry(self)
+		self.updateStatus()
+
+	def keySelect(self):
+		if self.getCurrentItem() == self.ChkrootSlotManagerLocation:
+			self.showDeviceSelection()
+		else:
+			Setup.keySelect(self)
+
+	def keyGreen(self):
+		if self.ChkrootSlotManagerDevice:
+			self.createSlots()
+		else:
+			self.showDeviceSelection()
+
+	def createSlots(self):
+		if not self.ChkrootSlotManagerDevice:
+			self.showDeviceSelection()
+			return
+
+		TARGET = self.deviceData[self.ChkrootSlotManagerDevice][0].split("/")[-1]
+		TARGET_DEVICE = f"/dev/{TARGET}"
+		PART_SUFFIX = "p" if "mmcblk" in TARGET else ""
+		PART = lambda n: f"{TARGET_DEVICE}{PART_SUFFIX}{n}"
+		MOUNTPOINT = "/tmp/boot"
+		symlinkPath = "/dev/block/by-name/others"
+		if exists(symlinkPath):
+			realDevice = realpath(symlinkPath)
+			if realDevice == "/dev/mmcblk0boot1":
+				try:
+					with open("/sys/block/mmcblk0boot1/force_ro", "w") as fn:
+						fn.write("0")
+				except Exception as e:
+					pass
+
+			if exists(TARGET_DEVICE):
+				cmdlist = []
+				cmdlist.append(f"for n in {TARGET_DEVICE}* ; do umount -lf $n > /dev/null 2>&1 ; done")
+				cmdlist.append(f"/usr/sbin/sgdisk -z {TARGET_DEVICE}")
+				cmdlist.append(f"/bin/touch /dev/nomount.{TARGET} > /dev/null 2>&1")
+				cmdlist.append(f"/usr/sbin/parted --script {TARGET_DEVICE} mklabel gpt")
+				cmdlist.append(f"/usr/sbin/partprobe {TARGET_DEVICE}")
+				cmdlist.append(f"/usr/sbin/parted --script {TARGET_DEVICE} mkpart rootfs ext4 1MB 100%")
+				cmdlist.append(f"/usr/sbin/partprobe {TARGET_DEVICE}")
+				cmdlist.append(f"/sbin/mkfs.ext4 -O ^64bit,^extent,^flex_bg,^huge_file,^dir_nlink,^extra_isize,^metadata_csum -F -L rootfs {PART(1)}")
+				cmdlist.append(f"/bin/mkdir -p {MOUNTPOINT}")
+				cmdlist.append(f"/bin/umount {MOUNTPOINT} > /dev/null 2>&1")
+				cmdlist.append(f"/bin/mount {realDevice} {MOUNTPOINT}")
+				cmdlist.append(f"find {MOUNTPOINT} -maxdepth 1 -type f -name 'STARTUP_*' -exec grep -q 'extra=true' {{}} \\; -exec rm -f {{}} \\;")
+				self.session.openWithCallback(self.formatDeviceCallback, ConsoleScreen, title=self.getTitle(), cmdlist=cmdlist)
+		else:
+			self.session.open(MessageBox, _("Startup device not found!"), MessageBox.TYPE_ERROR, timeout=5)
+			self.close()
+
+	def formatDeviceCallback(self):
+		def closeStartUpCallback(answer):
+			if answer:
+				self.session.open(TryQuitMainloop, QUIT_RESTART)
+		MOUNTPOINT = "/tmp/boot"
+		mtdRootFs = BoxInfo.getItem("mtdrootfs")
+		mtdKernel = BoxInfo.getItem("mtdkernel")
+		device = self.ChkrootSlotManagerDevice
+		PART_SUFFIX = "p" if "mmcblk" in device else ""
+		uuidRootFS = fileReadLine(f"/dev/uuid/{device}{PART_SUFFIX}1", default=None, source=MODULE_NAME)
+		diskSize = self.partitionSizeGB(f"/dev/{device}")
+
+		existingNumbers = []
+		startupRe = compile(r"^STARTUP_(\d+)$")
+
+		for fname in listdir(MOUNTPOINT):
+			match = startupRe.match(fname)
+			if match:
+				existingNumbers.append(int(match.group(1)))
+
+		startIndex = max(existingNumbers) + 1 if existingNumbers else 1
+		maxSlots = min(diskSize, self.ChkrootSlotManagerSlots.value)
+		remainingSlots = maxSlots - len(existingNumbers)
+		endIndex = startIndex + remainingSlots - 1
+		created = 0 
+		for i in range(startIndex, endIndex + 1):
+			startupContent = f"kernel=/dev/{mtdKernel} root=UUID={uuidRootFS} rootsubdir=linuxrootfs{i} rootfstype=ext4 extra=true\n"
+			with open(f"{MOUNTPOINT}/STARTUP_{i}", "w") as fd:
+				fd.write(startupContent)
+			created += 1
+		Console().ePopen(["/bin/sync"])
+		Console().ePopen(["/bin/umount", "/bin/umount", f"{MOUNTPOINT}"])
+		self.session.openWithCallback(closeStartUpCallback, MessageBox, _("Slots have been extended by %d..\n") % created, type=MessageBox.TYPE_INFO, close_on_any_key=True, timeout=10)
+
+	def showDeviceSelection(self):
+		def readDevicesCallback():
+			choiceList = [(_("Cancel"), None)]
+			for device_id, (path, name) in self.deviceData.items():
+				choiceList.append(("%s (%s)" % (name, path), device_id))
+			self.session.openWithCallback(self.deviceSelectionCallback, MessageBox, text=_("Select target device for slot creation"), list=choiceList, windowTitle=self.getTitle())
+		self.readDevices(readDevicesCallback)
+
+	def deviceSelectionCallback(self, selection):
+		if not selection:
+			return
+
+		print(f"[ChkrootSlotManager] deviceSelectionCallback: selected device ID = {selection}")
+		self.ChkrootSlotManagerDevice = selection
+		locations = self.ChkrootSlotManagerLocation.getSelectionList()
+		path = self.deviceData[selection][0]
+		name = self.deviceData[selection][1]
+		if (path, path) not in locations:
+			locations.append((path, path))
+			self.ChkrootSlotManagerLocation.setSelectionList(default=None, choices=locations)
+			self.ChkrootSlotManagerLocation.value = path
+			self.createSetup()
+		self.updateStatus("Selected device: %s" % self.deviceData[selection][1])
+
+	def partitionSizeGB(self, dev):
+		try:
+			base = dev.replace("/dev/", "")
+			path = f"/sys/class/block/{base}/size"
+			path = path if exists(path) else f"/sys/block/{base}/size"
+			with open(path) as fd:
+				blocks = int(fd.read().strip())
+				return (blocks * 512) // (1024 * 1024 * 1024)
+		except Exception as e:
+			return 0
+
+	def readDevices(self, callback=None):
+		def readDevicesCallback(output=None, retVal=None, extraArgs=None):
+			def getDeviceID(deviceInfo):
+				mode = "UUID="
+				for token in deviceInfo:
+					if token.startswith(mode):
+						return token[len(mode):]
+				return None
+
+			print("[ChkrootSlotManager] readDevicesCallback DEBUG: retVal=%s, output='%s'." % (retVal, output))
+			mtdblack = BoxInfo.getItem("mtdblack") or ""
+			blacklist = mtdblack.strip().split()
+
+			self.deviceData = {}
+
+			for (name, hdd) in harddiskmanager.HDDList():
+				if any(hdd.dev_path.startswith(black) for black in blacklist) or hdd.dev_path.startswith("/dev/romblock"):
+					continue
+
+				deviceID = hdd.dev_path.split("/")[-1]
+				self.deviceData[deviceID] = (hdd.dev_path, name)
+
+			self.updateStatus()
+			if callback and callable(callback):
+				callback()
+
+		self.console.ePopen(["/sbin/blkid", "/sbin/blkid"], callback=readDevicesCallback)
+
+	def updateStatus(self, footnote=None):
+		self.green = ACTION_CREATE if self.ChkrootSlotManagerDevice else ACTION_SELECT
+		self["key_green"].setText({
+			ACTION_SELECT: _("Select Device"),
+			ACTION_CREATE: _("Create Slots")
+		}.get(self.green, _("Invalid")))
 
 
 class UBISlotManager(Setup):
