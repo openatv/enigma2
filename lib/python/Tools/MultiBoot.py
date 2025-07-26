@@ -774,4 +774,24 @@ class MultiBootClass():
 		else:
 			return path
 
+	def wipeChkroot(self, callback):
+		self.callback = callback
+		symlinkPath = "/dev/block/by-name/others"
+		if exists(symlinkPath):
+			realDevice = realpath(symlinkPath)
+			if realDevice == "/dev/mmcblk0boot1":
+				try:
+					with open("/sys/block/mmcblk0boot1/force_ro", "w") as fn:
+						fn.write("0")
+				except Exception as e:
+					self.callback(2)
+					return
+			if exists(realDevice) and exists(f"/sys/block/{basename(realDevice)}"):
+				self.console.ePopen(["dd", "dd", "if=/dev/zero", f"of={realDevice}", "bs=512"], self.wipeChkrootComplete)
+		else:
+			self.callback(2)
+
+	def wipeChkrootComplete(self, result, retval, extra_args=None):
+		self.callback(retval)
+
 MultiBoot = MultiBootClass()
