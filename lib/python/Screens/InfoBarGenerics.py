@@ -870,6 +870,7 @@ class SeekBar(Screen):
 		<widget name="length" position="e-110,10" size="100,20" font="Regular;20" transparent="1" verticalAlignment="center" />
 	</screen>"""
 
+	ARROW_TRADITIONAL = "t"
 	ARROW_SYMMETRICAL = "s"
 	ARROW_DEFINED = "d"
 	SKIP_SYMMETRICAL = "s"
@@ -929,6 +930,11 @@ class SeekBar(Screen):
 			"cancel": (self.keyCancel, _("Close the SeekBar after returning to the starting point"))
 		}, prio=0, description=_("SeekBar Actions"))
 		match config.seek.arrowSkipMode.value:
+			case self.ARROW_TRADITIONAL:
+				self["arrowSeekActions"] = HelpableActionMap(self, ["NavigationActions"], {
+					"left": (self.keyLeft, boundFunction(sensibilityHelp, "LEFT")),
+					"right": (self.keyRight, boundFunction(sensibilityHelp, "RIGHT"))
+				}, prio=0, description=_("SeekBar Actions"))
 			case self.ARROW_SYMMETRICAL:
 				self["arrowSeekActions"] = HelpableActionMap(self, ["NavigationActions"], {
 					"up": (self.keyUp, boundFunction(sensibilityHelp, "UP")),
@@ -981,18 +987,18 @@ class SeekBar(Screen):
 				}, prio=0, description=_("SeekBar Actions"))
 		self.seekable = False
 		service = session.nav.getCurrentService()
-		if service:
+		serviceReference = self.session.nav.getCurrentlyPlayingServiceReference()
+		if service and serviceReference:
 			self.seek = service.seek()
 			if not self.seek:
 				print("[InfoBarGenerics] SeekBar: The current service does not support seeking!")
 				self.close()
-			if self.seek.isCurrentlySeekable():
+			if self.seek.isCurrentlySeekable() in (1, 3) and serviceReference.type == 1:  # 0=Not seek-able, 1=Blu-ray, 3=Fully seek-able. Type == 1 solves an issue in GStreamer where all media is always seek-able!
 				self.seekable = True
 		else:
 			print("[InfoBarGenerics] SeekBar: There is no current service so there is nothing to seek!")
 			self.close()
-		serviceReference = self.session.nav.getCurrentlyPlayingServiceReference()
-		self.length = self.seek.getLength()[1] if serviceReference and serviceReference.getPath() else None
+		self.length = self.seek.getLength()[1] if serviceReference.getPath() else None
 		self.eventTracker = ServiceEventTracker(screen=self, eventmap={
 			iPlayableService.evEOF: self.endOfFile
 		})
