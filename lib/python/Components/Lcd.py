@@ -585,9 +585,9 @@ def InitLcd():
 		config.lcd.mode = ConfigNothing()
 		config.lcd.hdd = ConfigNothing()
 		config.lcd.scrollSpeed = ConfigSelection(choices=[
-			(500, _("slow")),
-			(300, _("normal")),
-			(100, _("fast"))
+			(500, _("Slow")),
+			(300, _("Normal")),
+			(100, _("Fast"))
 		], default=300)
 		delayChoices = [(x, _("%d Seconds") % x) for x in (10, 20, 30, 40, 50)] + [(x * 60, ngettext("%d Minute", "%d Minutes", x) % x) for x in (1, 2, 3, 5, 10, 15)] + [(0, _("Off"))]
 		config.lcd.scrollDelay = ConfigSelection(default=10, choices=delayChoices)
