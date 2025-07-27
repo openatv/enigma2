@@ -2055,7 +2055,7 @@ def InitUsageConfig():
 	config.plisettings = ConfigSubsection()
 	config.plisettings.InfoBarEpg_mode = ConfigSelection(default="0", choices=[
 		("0", _("As plugin in extended bar")),
-		("1", _("With long OK press")),
+		("1", _("With long OK button")),
 		("2", _("With EXIT button")),
 		("3", _("With LEFT/RIGHT buttons"))
 	])
