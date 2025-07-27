@@ -1,7 +1,4 @@
 <setupxml>
-	<setup key="audio_setup" title="Audio Settings">
-		<!-- This is just a placeholder, the Videomode plugin implements this sub menu. -->
-	</setup>
 	<setup key="Audio" title="Audio Settings" level="1" showOpenWebif="1">
 		<item level="1" text="Volume steps" description="Select the size of the volume step when the VOLUME buttons are pressed.">config.volumeControl.pressStep</item>
 		<item level="1" text="Long press volume steps" description="Select the size of the volume steps when the VOLUME buttons are held down.">config.volumeControl.longStep</item>
@@ -29,6 +26,9 @@
 		<item level="1" text="Audio Auto Volume Level" description="This option configures you can set Auto Volume Level." requires="CanAutoVolume">config.av.autovolume</item>
 		<item level="1" text="Enable BT Audio" description="This Option allows you to switch Audio to BT Speakers." requires="CanBTAudio">config.av.btaudio</item>
 		<item level="1" text="General BT Audio delay" description="This option configures the general audio delay for BT Speakers." requires="CanBTAudioDelay">config.av.btaudiodelay</item>
+	</setup>
+	<setup key="audio_setup" title="Audio Settings">
+		<!-- This is just a placeholder, the Videomode plugin implements this sub menu. -->
 	</setup>
 	<setup key="AutoCam" title="AutoCam Settings">
 		<item level="0" text="Use AutoCam" description="When set to 'Yes' a specific Softcam can be assigned to each encrypted service.">config.misc.autocamEnabled</item>
@@ -71,12 +71,6 @@
 		<item level="0" text="Username" description="Edit the username.">config.cccaminfo.username</item>
 		<item level="0" text="Password" description="Edit the password.">config.cccaminfo.password</item>
 		<item level="0" text="Port" description="Edit the remote CCCam port.">config.cccaminfo.port</item>
-	</setup>
-	<setup key="CiSelection" title="Common Interface">
-		<item level="0" text="Common Settings"></item>
-		<item level="0" text="CI+ Helper*" description="Select 'Enable' to start the CI+ helper." requires="CIPlusHelper">config.cimisc.cihelperenabled</item>
-		<item level="0" text="DVB CI Delay" description="Set DVB CI delay." requires="CommonInterfaceCIDelay">config.cimisc.dvbCiDelay</item>
-		<item level="0" text="CI Boot Delay" description="Set CI Boot delay.">config.cimisc.bootDelay</item>
 	</setup>
 	<setup key="ChannelSelection" title="Channel Selection Settings" showOpenWebif="1">
 		<item text="Channel Selection Screen" description="Select the screen layout, from the options provided by the skin, to be used for the ChannelSelection screen." conditional="len(config.channelSelection.screenStyle.choices) > 1">config.channelSelection.screenStyle</item>
@@ -136,6 +130,16 @@
 			<item level="2" text="Service zap other button delay" description="Select the delay to wait after pressing more digit buttons to select a new service.">config.usage.numberZapTimeoutOther</item>
 		</if>
 		<item level="0" text="Set action for 'Info' key" description="Here you can set what is called when pressing the 'Info' key.">config.usage.servicelist_infokey</item>
+	</setup>
+	<setup key="ChkrootSlotManager" title="Slot Manager">
+		<item level="0" text="Target location" description="Choose the target device for the slots.">self.ChkrootSlotManagerLocation</item>
+		<item level="0" text="Slot count" description="Choose the amount of additional slots." conditional="self.ChkrootSlotManagerLocation.value">self.ChkrootSlotManagerSlots</item>
+	</setup>
+	<setup key="CiSelection" title="Common Interface">
+		<item level="0" text="Common Settings"></item>
+		<item level="0" text="CI+ Helper*" description="Select 'Enable' to start the CI+ helper." requires="CIPlusHelper">config.cimisc.cihelperenabled</item>
+		<item level="0" text="DVB CI Delay" description="Set DVB CI delay." requires="CommonInterfaceCIDelay">config.cimisc.dvbCiDelay</item>
+		<item level="0" text="CI Boot Delay" description="Set CI Boot delay.">config.cimisc.bootDelay</item>
 	</setup>
 	<setup key="Display" title="Display Settings" showOpenWebif="1">
 		<item level="0" text="Clone TV screen to LCD" description="Shows live tv or informations on LCD." requires="FBLCDDisplay">config.lcd.fblcddisplay</item>
@@ -414,16 +418,8 @@
 	<setup key="FlashExpander" title="Flash Expander">
 		<item level="0" text="Target location" description="Choose the target location for the expanded '/usr' directory.">config.flashExpander.location</item>
 	</setup>
-	<setup key="ChkrootSlotManager" title="Slot Manager">
-		<item level="0" text="Target location" description="Choose the target device for the slots.">self.ChkrootSlotManagerLocation</item>
-		<item level="0" text="Slot count" description="Choose the amount of additional slots." conditional="self.ChkrootSlotManagerLocation.value">self.ChkrootSlotManagerSlots</item>
-	</setup>
 	<setup key="GPTSlotManager" title="Slot Manager">
 		<item level="0" text="Target location" description="Choose the target device for the slots.">self.GPTSlotManagerLocation</item>
-	</setup>
-	<setup key="UBISlotManager" title="Slot Manager">
-		<item level="0" text="Target location" description="Choose the target device for the slots.">self.UBISlotManagerLocation</item>
-		<item level="0" text="Slot count" description="Choose the amount of additional slots." conditional="self.UBISlotManagerLocation.value">self.UBISlotManagerSlots</item>
 	</setup>
 	<setup key="HardDisk" title="Hard Disk Settings" showOpenWebif="1">
 		<item level="0" text="Hard disk standby after" description="Configure the hard disk drive to go to standby after the specified idle time.">config.usage.hdd_standby</item>
@@ -1014,6 +1010,10 @@
 		<item level="2" text="Ignore DVB-C namespace sub network" description="On valid ONIDs, ignore frequency sub network part.">config.usage.subnetwork_cable</item>
 		<item level="2" text="Ignore DVB-T namespace sub network" description="On valid ONIDs, ignore frequency sub network part.">config.usage.subnetwork_terrestrial</item>
 		<item level="1" text="Delivery system workaround" description="Workaround for old tuner driver." requires="need_dsw">config.usage.enable_delivery_system_workaround</item>
+	</setup>
+	<setup key="UBISlotManager" title="Slot Manager">
+		<item level="0" text="Target location" description="Choose the target device for the slots.">self.UBISlotManagerLocation</item>
+		<item level="0" text="Slot count" description="Choose the amount of additional slots." conditional="self.UBISlotManagerLocation.value">self.UBISlotManagerSlots</item>
 	</setup>
 	<setup key="Usage" title="Customize System Settings" showOpenWebif="1">
 		<item level="0" text="Settings mode" description="Choose which level of menu/setting's to display. 'Expert'-level shows all items.">config.usage.setup_level</item>
