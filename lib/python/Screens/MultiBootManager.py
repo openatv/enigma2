@@ -1,4 +1,4 @@
-from os import W_OK, access,listdir , remove, stat, statvfs
+from os import W_OK, access, listdir, remove, stat, statvfs
 from os.path import exists, isdir, join, realpath
 from re import compile
 from shlex import split
@@ -816,6 +816,7 @@ class ChkrootInit(Screen):
 
 		self.session.openWithCallback(disableChkrootCallback, MessageBox, _("Permanently disable the MultiBoot option?"), simple=True)
 
+
 class ChkrootSlotManager(Setup):
 	def __init__(self, session):
 		def getGreenHelpText():
@@ -927,7 +928,7 @@ class ChkrootSlotManager(Setup):
 		maxSlots = min(diskSize, self.ChkrootSlotManagerSlots.value)
 		remainingSlots = maxSlots - len(existingNumbers)
 		endIndex = startIndex + remainingSlots - 1
-		created = 0 
+		created = 0
 		for i in range(startIndex, endIndex + 1):
 			startupContent = f"kernel=/dev/{mtdKernel} root=UUID={uuidRootFS} rootsubdir=linuxrootfs{i} rootfstype=ext4 extra=true\n"
 			with open(f"{MOUNTPOINT}/STARTUP_{i}", "w") as fd:
