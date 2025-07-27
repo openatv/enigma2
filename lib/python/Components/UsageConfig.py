@@ -135,7 +135,7 @@ def InitUsageConfig():
 	])
 	config.usage.showdish = ConfigSelection(default="flashing", choices=[
 		("flashing", _("Flashing")),
-		("normal", _("Not Flashing")),
+		("normal", _("Non-flashing")),
 		("off", _("Off"))
 	])
 	config.usage.multibouquet = ConfigYesNo(default=True)
@@ -209,20 +209,20 @@ def InitUsageConfig():
 
 	config.usage.servicetype_icon_mode = ConfigSelection(default="0", choices=[
 		("0", _("None")),
-		("1", _("Left from service name")),
-		("2", _("Right from service name"))
+		("1", _("Left of service name")),
+		("2", _("Right of service name"))
 	])
 	config.usage.servicetype_icon_mode.addNotifier(refreshServiceList)
 	config.usage.crypto_icon_mode = ConfigSelection(default="0", choices=[
 		("0", _("None")),
-		("1", _("Left from service name")),
-		("2", _("Right from service name"))
+		("1", _("Left of service name")),
+		("2", _("Right of service name"))
 	])
 	config.usage.crypto_icon_mode.addNotifier(refreshServiceList)
 	config.usage.record_indicator_mode = ConfigSelection(default="3", choices=[
 		("0", _("None")),
-		("1", _("Left from service name")),
-		("2", _("Right from service name")),
+		("1", _("Left of service name")),
+		("2", _("Right of service name")),
 		("3", _("Red colored"))
 	])
 	config.usage.record_indicator_mode.addNotifier(refreshServiceList)
@@ -299,8 +299,8 @@ def InitUsageConfig():
 	config.channelSelection.showCryptoIcon = ConfigYesNo(default=False)
 	config.channelSelection.recordIndicatorMode = ConfigSelection(default=2, choices=[
 		(0, _("None")),
-		(1, _("Record Icon")),
-		(2, _("Colored Text"))
+		(1, _("Record icon")),
+		(2, _("Colored text"))
 	])
 	config.channelSelection.piconRatio = ConfigSelection(default=167, choices=[
 		(167, _("XPicon, ZZZPicon")),
@@ -369,8 +369,8 @@ def InitUsageConfig():
 		(2, _("Always"))
 	])
 	config.usage.subservice = ConfigSelection(default=3, choices=[
-		(0, _("No, show the RecordTimer Overview")),
-		(1, _("No, show the Plugin Browser")),
+		(0, _("No, show RecordTimer Overview")),
+		(1, _("No, show Plugin Browser")),
 		(2, _("Yes, show RecordTimer if unavailable")),
 		(3, _("Yes, show Plugin Browser if unavailable"))
 	])
@@ -533,8 +533,8 @@ def InitUsageConfig():
 	config.usage.movielist_trashcan_days = ConfigSelection(default=8, choices=[(x, ngettext("%d Day", "%d Days", x) % x) for x in range(1, 32)])
 	config.usage.movielist_trashcan_reserve = ConfigNumber(default=40)
 	config.usage.on_movie_start = ConfigSelection(default="ask yes", choices=[
-		("ask yes", _("Ask user (with default as 'Yes')")),
-		("ask no", _("Ask user (with default as 'No')")),
+		("ask yes", _("Ask user (with default of 'Yes')")),
+		("ask no", _("Ask user (with default of 'No')")),
 		("resume", _("Resume from last position")),
 		("beginning", _("Start from the beginning"))])
 	config.usage.on_movie_stop = ConfigSelection(default="movielist", choices=[
@@ -589,7 +589,7 @@ def InitUsageConfig():
 		("standby", _("Standby")),
 		("standby_noTVshutdown", _("Standby without TV shut down")),
 		("sleeptimer", _("SleepTimer")),
-		("schedulerStandby", _("Scheduler Standby")),
+		("schedulerStandby", _("Scheduler standby")),
 		("schedulerDeepStandby", _("Scheduler deep standby"))
 	]
 	config.usage.on_long_powerpress = ConfigSelection(default="show_menu", choices=choiceList)
@@ -815,8 +815,8 @@ def InitUsageConfig():
 	# In use.
 	if BoxInfo.getItem("displaytype") in ("textlcd",):
 		config.usage.blinking_rec_symbol_during_recording = ConfigSelection(default="Channel", choices=[
-			("Rec", _("REC Symbol")),
-			("RecBlink", _("Blinking REC Symbol")),
+			("Rec", _("REC symbol")),
+			("RecBlink", _("Blinking REC symbol")),
 			("Channel", _("Channel name"))
 		])
 	if BoxInfo.getItem("displaytype") in ("7segment",):
@@ -835,7 +835,7 @@ def InitUsageConfig():
 
 	config.usage.show_in_operation = ConfigSelection(default="time", choices=[
 		("time", _("Time")),
-		("number", _("Channel Number")),
+		("number", _("Channel number")),
 		("nothing", _("Nothing"))
 	])
 
@@ -852,7 +852,7 @@ def InitUsageConfig():
 
 	config.usage.swap_snr_on_osd = ConfigYesNo(default=False)
 	choiceList = [
-		("0", _("Skin Setting")),
+		("0", _("Skin setting")),
 		("1", _("Minutes")),
 		("2", _("Minutes Seconds")),
 		("3", _("Hours Minutes")),
@@ -1368,7 +1368,7 @@ def InitUsageConfig():
 	config.misc.epgcachefilename.addNotifier(EpgCacheChanged, immediate_feedback=False)
 
 	choiceList = [
-		("", _("Auto Detect")),
+		("", _("Auto detect")),
 		("ETSI", _("Generic")),
 		("AUS", _("Australia"))
 	]
@@ -1426,8 +1426,8 @@ def InitUsageConfig():
 
 	config.seek = ConfigSubsection()
 	config.seek.baractivation = ConfigSelection(default="leftright", choices=[
-		("leftright", _("Long Left/Right")),
-		("ffrw", _("Long << / >>"))
+		("leftright", _("Long LEFT/RIGHT")),
+		("ffrw", _("Long <</>>"))
 	])
 	config.seek.sensibilityHorizontal = ConfigSelection(default=1.0, choices=[(x, f"{x:.1f}%") for x in [0.1, 0.2, 0.5, 1.0, 2.0, 5.0, 10.0]])
 	config.seek.sensibilityVertical = ConfigSelection(default=2.0, choices=[(x, f"{x:.1f}%") for x in [0.1, 0.2, 0.5, 1.0, 2.0, 5.0, 10.0]])
@@ -1617,7 +1617,7 @@ def InitUsageConfig():
 	config.misc.erase_speed.addNotifier(updateEraseSpeed, immediate_feedback=False)
 	config.misc.erase_flags = ConfigSelection(default="1", choices=[
 		("0", _("Disable")),
-		("1", _("Internal hdd only")),
+		("1", _("Internal disk only")),
 		("3", _("Everywhere"))
 	])
 	config.misc.erase_flags.addNotifier(updateEraseFlags, immediate_feedback=False)
@@ -1627,7 +1627,7 @@ def InitUsageConfig():
 			fileWriteLine(BoxInfo.getItem("ZapMode"), el.value, source=MODULE_NAME)
 
 		config.misc.zapmode = ConfigSelection(default="mute", choices=[
-			("mute", _("Black Screen")),
+			("mute", _("Black screen")),
 			("hold", _("Hold screen")),
 			("mutetilllock", _("Black screen till locked")),
 			("holdtilllock", _("Hold till locked"))
@@ -2111,16 +2111,16 @@ def InitUsageConfig():
 	config.epgselection.infobar_primetimehour = ConfigSelectionNumber(default=20, stepwidth=1, min=00, max=23, wraparound=True)
 	config.epgselection.infobar_primetimemins = ConfigSelectionNumber(default=15, stepwidth=1, min=00, max=59, wraparound=True)
 	# config.epgselection.infobar_servicetitle_mode = ConfigSelection(default="servicename", choices=[
-	# 	("servicename", _("Service Name")),
+	# 	("servicename", _("Service name")),
 	# 	("picon", _("Picon")),
-	# 	("picon+servicename", _("Picon and Service Name"))
+	# 	("picon+servicename", _("Picon and service name"))
 	# ])
 	titleChoiceList = [
-		("servicename", _("Service Name")),
+		("servicename", _("Service name")),
 		("picon", _("Picon")),
-		("servicenumber+picon+servicename", _("Service Number, Picon and Service Name")),
-		("servicenumber+servicename", _("Service Number and Service Name")),
-		("picon+servicename", _("Picon and Service Name"))
+		("servicenumber+picon+servicename", _("Service number, picon and service name")),
+		("servicenumber+servicename", _("Service number and service name")),
+		("picon+servicename", _("Picon and service name"))
 	]
 	config.epgselection.infobar_servicetitle_mode = ConfigSelection(default="picon+servicename", choices=titleChoiceList)
 	config.epgselection.infobar_servfs = ConfigSelectionNumber(default=0, stepwidth=1, min=-8, max=10, wraparound=True)
@@ -2168,7 +2168,7 @@ def InitUsageConfig():
 		("standard", _("Standard")),
 		("primetime", _("Prime time")),
 		("channel1", _("Channel 1")),
-		("channel1+primetime", _("Channel 1 with Prime time"))
+		("channel1+primetime", _("Channel 1 with prime time"))
 	])
 	config.epgselection.graph_servfs = ConfigSelectionNumber(default=0, stepwidth=1, min=-8, max=10, wraparound=True)
 	config.epgselection.graph_eventfs = ConfigSelectionNumber(default=0, stepwidth=1, min=-8, max=10, wraparound=True)
@@ -2247,7 +2247,7 @@ def InitUsageConfig():
 	])
 	config.epgselection.vertical_channelbtn = ConfigSelection(default="page", choices=[
 		("page", _("Previous/Next page")),
-		("scroll", _("all up/down")),
+		("scroll", _("All up/down")),
 		("24", _("-24h/+24 Hours"))
 	])
 	config.epgselection.vertical_channelbtn_invert = ConfigYesNo(default=False)
@@ -2262,7 +2262,7 @@ def InitUsageConfig():
 		("standard", _("Standard")),
 		("primetime", _("Prime time")),
 		("channel1", _("Channel 1")),
-		("channel1+primetime", _("Channel 1 with Prime time"))
+		("channel1+primetime", _("Channel 1 with prime time"))
 	])
 	config.epgselection.vertical_prevtime = ConfigClock(default=time())
 	choiceList = [
@@ -2375,9 +2375,9 @@ def InitUsageConfig():
 		("cold", _("Unattended upgrade without GUI"))
 	])
 	config.plugins.softwaremanager.restoremode = ConfigSelection(default="turbo", choices=[
-		("turbo", _("turbo")),
-		("fast", _("fast")),
-		("slow", _("slow"))
+		("turbo", _("Turbo")),
+		("fast", _("Fast")),
+		("slow", _("Slow"))
 	])
 	config.plugins.softwaremanager.epgcache = ConfigYesNo(default=False)
 

@@ -458,7 +458,7 @@ def InitAVSwitch():
 		config.av.sync_mode = ConfigSelection(default="slow", choices=[
 			("slow", _("Slow Motion")),
 			("hold", _("Hold First Frame")),
-			("black", _("Black Screen")),
+			("black", _("Black screen")),
 		])
 		config.av.sync_mode.addNotifier(setSyncMode)
 	else:
