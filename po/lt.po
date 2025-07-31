@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-17 17:20+0000\n"
+"POT-Creation-Date: 2025-07-27 15:35+0000\n"
 "PO-Revision-Date: 2025-06-11 19:04+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -98,7 +98,7 @@ msgstr " atnaujinta"
 msgid "!! Boot loader Upgrade !!"
 msgstr "!! Įkrovos tvarkyklės atnaujinimas !!"
 
-msgid "# = Reboot Required"
+msgid "# = Reboot required if this item is changed."
 msgstr ""
 
 msgid "%-H:%M"
@@ -1345,7 +1345,7 @@ msgstr "(tuščia)"
 msgid "(show optional DVD audio menu)"
 msgstr "(rodyti pasirinktinį DVD garso meniu)"
 
-msgid "* = Restart Required"
+msgid "* = Restart required if this item is changed."
 msgstr "* = Būtina paleisti iš naujo"
 
 msgid "* Only available if more than one interface is active."
@@ -2240,6 +2240,9 @@ msgstr "Visų kanalų teikėjas"
 msgid "All supported"
 msgstr "Visi palaikomi"
 
+msgid "All up/down"
+msgstr "visi aukštyn/žemyn"
+
 msgid "Allocate"
 msgstr "Paskirti"
 
@@ -2515,6 +2518,9 @@ msgstr "Ar tikrai norite pašalinti šį žurnalą:\n"
 msgid "Are you sure you want to delete this?"
 msgstr "Ar tikrai norite tai ištrinti?"
 
+msgid "Are you sure you want to disable Chkroot Multiboot?"
+msgstr ""
+
 msgid "Are you sure you want to exit this wizard?"
 msgstr "Ar tikrai norite išjungti šį vedlį?"
 
@@ -2698,9 +2704,6 @@ msgstr "Kūrimas"
 msgid "Auto"
 msgstr "Auto"
 
-msgid "Auto detect"
-msgstr "Automatiškai aptikti"
-
 msgid "Auto Language"
 msgstr "Automatinė kalba"
 
@@ -2724,6 +2727,9 @@ msgstr "Automatinis skyriaus perskėlimas kiekvieną? minutę (0=niekada)"
 
 msgid "Auto deep standby"
 msgstr "Automatinis gilaus budėjimo režimas"
+
+msgid "Auto detect"
+msgstr "Automatiškai aptikti"
 
 msgid "Auto flesh"
 msgstr "Auto minkštinimas"
@@ -3101,8 +3107,8 @@ msgstr "Sparta bitais"
 msgid "Black"
 msgstr "Juoda"
 
-msgid "Black Screen"
-msgstr ""
+msgid "Black screen"
+msgstr "Juodas ekranas"
 
 msgid "Black screen till locked"
 msgstr "Juodas ekranas iki užrakinimo"
@@ -3872,9 +3878,6 @@ msgstr "Kanalo informacija"
 msgid "Channel List"
 msgstr "Kanalų sąrašas"
 
-msgid "Channel number"
-msgstr ""
-
 msgid "Channel Selection"
 msgstr "Kanalo pasirinkimas"
 
@@ -3934,6 +3937,9 @@ msgstr "Kanalų sąrašo tipas"
 
 msgid "Channel name"
 msgstr "Kanalo pavadinimas"
+
+msgid "Channel number"
+msgstr ""
 
 msgid "Channel preview mode"
 msgstr "Kanalo peržiūros režimas"
@@ -4299,6 +4305,9 @@ msgid "Close the Kexec MultiBoot Manager"
 msgstr ""
 
 msgid "Close the Plugin Browser screen"
+msgstr ""
+
+msgid "Close the SeekBar after returning to the starting point"
 msgstr ""
 
 msgid "Close the choice box"
@@ -6344,6 +6353,9 @@ msgstr "PiP išjungtas.\n"
 
 msgid "Disabled or WPA/WPA2"
 msgstr "Išjungta arba WPA/WPA2"
+
+msgid "Disabling Chkroot failed!"
+msgstr ""
 
 msgid "Dish"
 msgstr "Palydovinė lėkštė"
@@ -10010,6 +10022,9 @@ msgstr ""
 msgid "Internal USB"
 msgstr "Vidinis USB"
 
+msgid "Internal disk only"
+msgstr "Tik vidinis kietas diskas"
+
 msgid "Internal flash"
 msgstr "Vidinė atmintis"
 
@@ -10020,9 +10035,6 @@ msgstr "Vidinė atmintis:  %s %s "
 #, python-format
 msgid "Internal flash: %s %s as USB Recovery"
 msgstr "Vidinis įdiegimas: %s %s kaip USB atkūrimas"
-
-msgid "Internal disk only"
-msgstr "Tik vidinis kietas diskas"
 
 msgid "Internet"
 msgstr "Internetas"
@@ -12359,6 +12371,9 @@ msgstr "Nurodykite, kiek IP adresų reikia patikrinti, ar nėra aktyvių ryšių
 msgid "Non-Linear"
 msgstr ""
 
+msgid "Non-flashing"
+msgstr "Nediegiama"
+
 msgid "None"
 msgstr "Nėra"
 
@@ -12415,9 +12430,6 @@ msgstr "Neklasifikuotas"
 
 msgid "Not Defined"
 msgstr "Neapibrėžta"
-
-msgid "Non-flashing"
-msgstr "Nediegiama"
 
 msgid "Not Installed"
 msgstr "Neįdiegta"
@@ -14026,6 +14038,9 @@ msgstr "Paspauskite OK, kad naudotumėte šią lokalę.  [%s]"
 msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that image. If available, YELLOW will either delete or wipe the image. A deleted image can be restored with the BLUE button. A wiped image is completely removed and cannot be restored!"
 msgstr "Paspauskite mygtukus AUKŠTYN / ŽEMYN, kad pasirinktumėte lizdą, ir paspauskite Gerai arba ŽALIA, kad iš naujo paleistumėte į tą vaizdą. Jei įmanoma, geltona ištrins arba nušluostys vaizdą. Panaikintą vaizdą galima atkurti mygtuku MĖLYNA. Nuvalytas vaizdas visiškai pašalinamas ir jo negalima atkurti!"
 
+msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that image. If available, YELLOW will disable Multiboot, delete, or wipe the selected image. Press BLUE to add more slots."
+msgstr ""
+
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Paspauskite šį mygtuką, kad emuliuoti ilgą mygtuko paspaudimą vėliau (tai yra viršiau už visas kitas, jam pavestus mygtuko emuliacijos veiksmus)."
 
@@ -14366,14 +14381,14 @@ msgstr "ĮRAŠ."
 msgid "REC "
 msgstr "ĮRAŠ. "
 
-msgid "REC symbol"
-msgstr "Simbolis REC"
-
 msgid "REC Symbol in Standby"
 msgstr "REC simbolis laukimo režime"
 
 msgid "REC Symbol in use"
 msgstr "REC simbolis, naudojamas"
+
+msgid "REC symbol"
+msgstr "Simbolis REC"
 
 msgid "RED button"
 msgstr "RAUDONAS mygtukas"
@@ -15716,14 +15731,14 @@ msgstr "Įjungimo laikmačio apžvalga"
 msgid "Scheduler Settings"
 msgstr ""
 
-msgid "Scheduler standby"
-msgstr "Įjungimo laikmatis. Budėjimo režimas"
-
 msgid "Scheduler deep standby"
 msgstr "Įjungimo laikmatis budėjimo režime"
 
 msgid "Scheduler log"
 msgstr "Maitinimo laikmačio žurnalas"
+
+msgid "Scheduler standby"
+msgstr "Įjungimo laikmatis. Budėjimo režimas"
 
 msgid "Sci-Fi"
 msgstr "Mokslinė fantastika"
@@ -15809,8 +15824,8 @@ msgstr "Ieškoti"
 msgid "Seek Actions"
 msgstr "Ieškoti veiksmų"
 
-msgid "Seek back short"
-msgstr "Persukti greitai atgal"
+msgid "Seek Bar"
+msgstr ""
 
 msgid "Seek backward"
 msgstr "Ieškoti atgal"
@@ -15821,20 +15836,17 @@ msgstr "Ieškoti atgal (įrašykite laiką)"
 msgid "Seek forward"
 msgstr "Persukti pirmyn"
 
-msgid "Seek forward  short"
-msgstr "Persukti greitai  atgal"
-
 msgid "Seek forward (enter time)"
 msgstr "Persukti pirmyn (įrašykite laiką)"
 
-msgid "Seek forward long"
-msgstr "Ilgai spausti pirmyn"
+msgid "SeekBar"
+msgstr "Paieškos juostos jautrumas"
+
+msgid "SeekBar Actions"
+msgstr ""
 
 msgid "SeekBar activation"
 msgstr "Paieškos juostos aktyvavimas"
-
-msgid "SeekBar"
-msgstr "Paieškos juostos jautrumas"
 
 msgid "SeekBar sensibility"
 msgstr "Paieškos juostos jautrumas"
@@ -17007,15 +17019,6 @@ msgstr "Kanalo informacija"
 msgid "Service Information Actions"
 msgstr ""
 
-msgid "Service Name"
-msgstr "Kanalo pavadinimas"
-
-msgid "Service number and service name"
-msgstr "Kanalo numeris ir kanalo pavadinimas"
-
-msgid "Service number, picon and service name"
-msgstr "Kanalo numeris, logotipas ir kanalo pavadinimas"
-
 msgid "Service Scan"
 msgstr "Kanalų paieška"
 
@@ -17064,8 +17067,14 @@ msgstr ""
 "Kanalas nerastas!\n"
 "(SID nėra PAT)"
 
+msgid "Service number and service name"
+msgstr "Kanalo numeris ir kanalo pavadinimas"
+
 msgid "Service number font size"
 msgstr "Kanalo numerio šrifto dydis"
+
+msgid "Service number, picon and service name"
+msgstr "Kanalo numeris, logotipas ir kanalo pavadinimas"
 
 msgid "Service off-air"
 msgstr "Netransliuojamas"
@@ -18413,11 +18422,11 @@ msgstr ""
 msgid "Skin Packages"
 msgstr ""
 
-msgid "Skin setting"
-msgstr "Temos nustatyme"
-
 msgid "Skin Settings"
 msgstr "Temos parametrai"
+
+msgid "Skin setting"
+msgstr "Temos nustatyme"
 
 msgid "SkinSelection"
 msgstr ""
@@ -18428,14 +18437,40 @@ msgstr "Praleisti atgal"
 msgid "Skip backward"
 msgstr ""
 
+#, python-format
+msgid "Skip backward %d second"
+msgid_plural "Skip backward %d seconds"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "Skip backward %s%%"
+msgstr ""
+
 msgid "Skip backward (enter time)"
 msgstr "praleisti atgal (įrašykite laiką)"
 
 msgid "Skip empty services"
 msgstr "Praleisti tuščius kanalus"
 
+#, python-format
+msgid "Skip for '%s' is disabled"
+msgstr ""
+
 msgid "Skip forward"
 msgstr "Praleisti į priekį"
+
+#, python-format
+msgid "Skip forward %d second"
+msgid_plural "Skip forward %d seconds"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "Skip forward %s%%"
+msgstr ""
 
 msgid "Skip forward (enter time)"
 msgstr "praleisti į priekį (įrašykite laiką)"
@@ -18456,6 +18491,13 @@ msgid "Skip time for '%s' button"
 msgstr ""
 
 msgid "Skip time for '%s'/'%s' buttons"
+msgstr ""
+
+#, python-format
+msgid "Skip to %s0%% position (Add %s%% on second press)"
+msgstr ""
+
+msgid "Skip to 0% (start) position"
 msgstr ""
 
 msgid "Sleep"
@@ -18586,6 +18628,10 @@ msgid "Slot R: Root Slot Image Backup (Current image)"
 msgstr ""
 
 msgid "Slot count"
+msgstr ""
+
+#, python-format
+msgid "Slots have been extended by %d..\n"
 msgstr ""
 
 msgid "Slovak"
@@ -19015,6 +19061,9 @@ msgstr "Pradedama"
 
 msgid "Starts in a few seconds"
 msgstr "Prasidės po kelių sekundžių"
+
+msgid "Startup device not found!"
+msgstr ""
 
 #. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
@@ -21106,6 +21155,9 @@ msgstr "Derinimo algoritmas"
 
 msgid "Tunisia"
 msgstr "Tunisas"
+
+msgid "Turbo"
+msgstr "Turbo"
 
 msgid "Turbo: One reboot after flash; Fast: One reboot after flash, one reboot after restore; Slow: One reboot after flash, one reboot after restore in GUI."
 msgstr "Turbo: vienas paleidimas iš naujo po įdiegimo; Greitas: vienas paleidimas iš naujo po įdiegimo, vienas paleidimas po atkūrimo; Lėtas: vienas paleidimas iš naujo po įdiegimo, vienas paleidimas po grafinės aplinkos atkūrimo"
@@ -23199,9 +23251,6 @@ msgstr "nuotykių/vesternas/karinis"
 msgid "advertisement/shopping"
 msgstr "reklama/prekyba"
 
-msgid "All up/down"
-msgstr "visi aukštyn/žemyn"
-
 msgid "alpha then oldest"
 msgstr "alfa, tada seniausia"
 
@@ -23730,9 +23779,6 @@ msgstr "neįdėta, arba neatpažįstama kortelė"
 msgid "no storage devices found"
 msgstr "laikmenos įrenginių nerasta"
 
-msgid "normal"
-msgstr "normalus"
-
 msgid "not"
 msgstr "ne"
 
@@ -23927,9 +23973,6 @@ msgstr "praleisti atgal"
 msgid "skip forward"
 msgstr "praleisti į priekį"
 
-msgid "slow"
-msgstr "lėtas"
-
 msgid "soap/melodrama/folkloric"
 msgstr "muilo opera/melodrama/folkloras"
 
@@ -24032,9 +24075,6 @@ msgstr "tradicinis (greitas), sureguliuokite"
 msgid "tree delete"
 msgstr "trinti"
 
-msgid "Turbo"
-msgstr "Turbo"
-
 msgid "uShare"
 msgstr "uShare"
 
@@ -24125,6 +24165,24 @@ msgstr "taip (išsaugoti šaltinius)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Seek back short"
+#~ msgstr "Persukti greitai atgal"
+
+#~ msgid "Seek forward  short"
+#~ msgstr "Persukti greitai  atgal"
+
+#~ msgid "Seek forward long"
+#~ msgstr "Ilgai spausti pirmyn"
+
+#~ msgid "Service Name"
+#~ msgstr "Kanalo pavadinimas"
+
+#~ msgid "normal"
+#~ msgstr "normalus"
+
+#~ msgid "slow"
+#~ msgstr "lėtas"
 
 #~ msgid "DVB API version"
 #~ msgstr "DVB API versija"
@@ -25939,6 +25997,3 @@ msgstr "®"
 
 #~ msgid "(Pip)"
 #~ msgstr "(PiP)"
-
-#~ msgid "Black screen"
-#~ msgstr "Juodas ekranas"

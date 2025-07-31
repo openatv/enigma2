@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-17 17:20+0000\n"
+"POT-Creation-Date: 2025-07-27 15:35+0000\n"
 "PO-Revision-Date: 2025-05-05 05:50+0000\n"
 "Last-Translator: Balázs Sólyom <balazs@solyom.online>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -99,7 +99,7 @@ msgstr " Frissítve"
 msgid "!! Boot loader Upgrade !!"
 msgstr "!! Bootloader frissítés !!"
 
-msgid "# = Reboot Required"
+msgid "# = Reboot required if this item is changed."
 msgstr "# = újraindítás szükséges"
 
 msgid "%-H:%M"
@@ -1340,7 +1340,7 @@ msgstr "(üres)"
 msgid "(show optional DVD audio menu)"
 msgstr "(DVD audió menü megjelenítése, ha van)"
 
-msgid "* = Restart Required"
+msgid "* = Restart required if this item is changed."
 msgstr "* = Újraindítás szükséges"
 
 msgid "* Only available if more than one interface is active."
@@ -2239,6 +2239,9 @@ msgstr "Minden szolgáltató"
 msgid "All supported"
 msgstr "nem támogatott"
 
+msgid "All up/down"
+msgstr "minden fel/le"
+
 msgid "Allocate"
 msgstr "Hozzárendelés"
 
@@ -2512,6 +2515,9 @@ msgstr "Biztos benne, hogy törölné ezt a naplót:\n"
 msgid "Are you sure you want to delete this?"
 msgstr ""
 
+msgid "Are you sure you want to disable Chkroot Multiboot?"
+msgstr ""
+
 msgid "Are you sure you want to exit this wizard?"
 msgstr "Biztos benne, hogy kilép a Varázslóból?"
 
@@ -2698,9 +2704,6 @@ msgstr "Authoring mód"
 msgid "Auto"
 msgstr "Automatikus"
 
-msgid "Auto detect"
-msgstr "Automatikus észlelés"
-
 msgid "Auto Language"
 msgstr "Automatikus nyelvválasztás"
 
@@ -2724,6 +2727,9 @@ msgstr "Automatikus fejezet készítés ? percenként (0=soha)"
 
 msgid "Auto deep standby"
 msgstr "Automatikus kikapcsolás"
+
+msgid "Auto detect"
+msgstr "Automatikus észlelés"
 
 msgid "Auto flesh"
 msgstr "Auto-flash"
@@ -3105,8 +3111,8 @@ msgstr "Bitráta"
 msgid "Black"
 msgstr "Fekete"
 
-msgid "Black Screen"
-msgstr ""
+msgid "Black screen"
+msgstr "Fekete képernyő"
 
 msgid "Black screen till locked"
 msgstr "Fekete képernyő lezárásig"
@@ -3868,9 +3874,6 @@ msgstr "Csatorna információ"
 msgid "Channel List"
 msgstr "Csatornalista"
 
-msgid "Channel number"
-msgstr ""
-
 msgid "Channel Selection"
 msgstr "Csatorna választás"
 
@@ -3930,6 +3933,9 @@ msgstr "Csatornalista típusa"
 
 msgid "Channel name"
 msgstr "Csatornanév"
+
+msgid "Channel number"
+msgstr ""
 
 msgid "Channel preview mode"
 msgstr "Csatorna előnézeti mód"
@@ -4296,6 +4302,9 @@ msgid "Close the Kexec MultiBoot Manager"
 msgstr ""
 
 msgid "Close the Plugin Browser screen"
+msgstr ""
+
+msgid "Close the SeekBar after returning to the starting point"
 msgstr ""
 
 msgid "Close the choice box"
@@ -6348,6 +6357,9 @@ msgid "Disabled PiP.\n"
 msgstr "Kép-a-Képben letiltva\n"
 
 msgid "Disabled or WPA/WPA2"
+msgstr ""
+
+msgid "Disabling Chkroot failed!"
 msgstr ""
 
 msgid "Dish"
@@ -10024,6 +10036,9 @@ msgstr ""
 msgid "Internal USB"
 msgstr "Belső USB"
 
+msgid "Internal disk only"
+msgstr "Csak a belső háttértárról"
+
 msgid "Internal flash"
 msgstr "Belső Flash"
 
@@ -10034,9 +10049,6 @@ msgstr ""
 #, python-format
 msgid "Internal flash: %s %s as USB Recovery"
 msgstr ""
-
-msgid "Internal disk only"
-msgstr "Csak a belső háttértárról"
 
 msgid "Internet"
 msgstr "Internet"
@@ -12421,6 +12433,9 @@ msgstr ""
 msgid "Non-Linear"
 msgstr ""
 
+msgid "Non-flashing"
+msgstr "Nem villog"
+
 msgid "None"
 msgstr "Nincs"
 
@@ -12480,9 +12495,6 @@ msgstr "Nem minősített"
 
 msgid "Not Defined"
 msgstr "Nincs megadva"
-
-msgid "Non-flashing"
-msgstr "Nem villog"
 
 #, fuzzy
 msgid "Not Installed"
@@ -14111,6 +14123,9 @@ msgstr ""
 msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that image. If available, YELLOW will either delete or wipe the image. A deleted image can be restored with the BLUE button. A wiped image is completely removed and cannot be restored!"
 msgstr ""
 
+msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that image. If available, YELLOW will disable Multiboot, delete, or wipe the selected image. Press BLUE to add more slots."
+msgstr ""
+
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Nyomja meg ezt a gombot, hogy kipróbálja a nyomógomb hosszú nyomását a gomb lenyomása után (ez felülbírálja az emuláció gombhoz rendelt bármely más műveletet is)."
 
@@ -14453,14 +14468,14 @@ msgstr "FELV"
 msgid "REC "
 msgstr ""
 
-msgid "REC symbol"
-msgstr "FELV szimbólum"
-
 msgid "REC Symbol in Standby"
 msgstr "FELV szimbólum készenléti állapotban"
 
 msgid "REC Symbol in use"
 msgstr "FELV szimbólum használatban"
+
+msgid "REC symbol"
+msgstr "FELV szimbólum"
 
 msgid "RED button"
 msgstr "Piros gomb"
@@ -15805,14 +15820,14 @@ msgstr "Kikapcsolás Időzítő Áttekintés"
 msgid "Scheduler Settings"
 msgstr ""
 
-msgid "Scheduler standby"
-msgstr "Kikapcsolás Időzítő Készenléti állapot"
-
 msgid "Scheduler deep standby"
 msgstr "Kikapcsolás Időzítő Kikapcsolás"
 
 msgid "Scheduler log"
 msgstr "PowerTimer napló"
+
+msgid "Scheduler standby"
+msgstr "Kikapcsolás Időzítő Készenléti állapot"
 
 msgid "Sci-Fi"
 msgstr "Sci-Fi"
@@ -15899,9 +15914,8 @@ msgstr "Ugrás"
 msgid "Seek Actions"
 msgstr "Gyors műveletek"
 
-#, fuzzy
-msgid "Seek back short"
-msgstr "Vissza kihagyása"
+msgid "Seek Bar"
+msgstr ""
 
 msgid "Seek backward"
 msgstr "Vissza kihagyása"
@@ -15912,22 +15926,17 @@ msgstr "Ugrás visszafelé (adja meg az időt)"
 msgid "Seek forward"
 msgstr "Előre kihagyása"
 
-#, fuzzy
-msgid "Seek forward  short"
-msgstr "Előre kihagyása"
-
 msgid "Seek forward (enter time)"
 msgstr "Ugrás előre (adja meg az időt)"
 
-#, fuzzy
-msgid "Seek forward long"
-msgstr "Előre kihagyása"
+msgid "SeekBar"
+msgstr "Keresősáv"
+
+msgid "SeekBar Actions"
+msgstr ""
 
 msgid "SeekBar activation"
 msgstr "Keresősáv aktiválása"
-
-msgid "SeekBar"
-msgstr "Keresősáv"
 
 msgid "SeekBar sensibility"
 msgstr "Keresősáv érzékenysége"
@@ -17103,15 +17112,6 @@ msgstr ""
 msgid "Service Information Actions"
 msgstr ""
 
-msgid "Service Name"
-msgstr "Csatornanév"
-
-msgid "Service number and service name"
-msgstr "Csatorna száma és Csatorna neve"
-
-msgid "Service number, picon and service name"
-msgstr "Csatorna száma, Picon és Csatorna neve"
-
 msgid "Service Scan"
 msgstr ""
 
@@ -17161,8 +17161,14 @@ msgstr ""
 "A csatorna nem található!\n"
 "(Nincs SID a PAT-ban)"
 
+msgid "Service number and service name"
+msgstr "Csatorna száma és Csatorna neve"
+
 msgid "Service number font size"
 msgstr "Csatorna számának betű mérete"
+
+msgid "Service number, picon and service name"
+msgstr "Csatorna száma, Picon és Csatorna neve"
 
 msgid "Service off-air"
 msgstr "Szolgáltatás kívülről"
@@ -18514,11 +18520,11 @@ msgstr ""
 msgid "Skin Packages"
 msgstr ""
 
-msgid "Skin setting"
-msgstr "Kinézet beállítása"
-
 msgid "Skin Settings"
 msgstr "Kinézet beállítása (Skin)"
+
+msgid "Skin setting"
+msgstr "Kinézet beállítása"
 
 msgid "SkinSelection"
 msgstr ""
@@ -18529,14 +18535,38 @@ msgstr "Vissza kihagyása"
 msgid "Skip backward"
 msgstr ""
 
+#, python-format
+msgid "Skip backward %d second"
+msgid_plural "Skip backward %d seconds"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Skip backward %s%%"
+msgstr ""
+
 msgid "Skip backward (enter time)"
 msgstr "visszafelé kihagyása (adja meg az időt)"
 
 msgid "Skip empty services"
 msgstr "Üres csatornák átugrása"
 
+#, python-format
+msgid "Skip for '%s' is disabled"
+msgstr ""
+
 msgid "Skip forward"
 msgstr "Előre kihagyása"
+
+#, python-format
+msgid "Skip forward %d second"
+msgid_plural "Skip forward %d seconds"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Skip forward %s%%"
+msgstr ""
 
 msgid "Skip forward (enter time)"
 msgstr "előre kihagyása (adja meg az időt)"
@@ -18557,6 +18587,13 @@ msgid "Skip time for '%s' button"
 msgstr ""
 
 msgid "Skip time for '%s'/'%s' buttons"
+msgstr ""
+
+#, python-format
+msgid "Skip to %s0%% position (Add %s%% on second press)"
+msgstr ""
+
+msgid "Skip to 0% (start) position"
 msgstr ""
 
 msgid "Sleep"
@@ -18685,6 +18722,10 @@ msgid "Slot R: Root Slot Image Backup (Current image)"
 msgstr ""
 
 msgid "Slot count"
+msgstr ""
+
+#, python-format
+msgid "Slots have been extended by %d..\n"
 msgstr ""
 
 msgid "Slovak"
@@ -19118,6 +19159,9 @@ msgstr ""
 
 msgid "Starts in a few seconds"
 msgstr "Néhány másodperc múlva kezdődik"
+
+msgid "Startup device not found!"
+msgstr ""
 
 #. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
@@ -21221,6 +21265,9 @@ msgstr "Tuningolási algoritmus"
 msgid "Tunisia"
 msgstr "Tunézia"
 
+msgid "Turbo"
+msgstr "Turbo"
+
 msgid "Turbo: One reboot after flash; Fast: One reboot after flash, one reboot after restore; Slow: One reboot after flash, one reboot after restore in GUI."
 msgstr "Turbo: Egy újraindítás Flashelés után; Gyors: Egy újraindítás Flashelés után, egy újraindítás a visszaállítás után; Lassú: Egy újraindítás Flashelés után, egy újraindítás a visszaállítás után a GUI-ban"
 
@@ -23303,9 +23350,6 @@ msgstr "kaland/western/háború"
 msgid "advertisement/shopping"
 msgstr "reklám/televíziós vásárlás"
 
-msgid "All up/down"
-msgstr "minden fel/le"
-
 msgid "alpha then oldest"
 msgstr "abc mint régebbi"
 
@@ -23835,9 +23879,6 @@ msgstr "nincs vagy ismeretlen kártya behelyezve"
 msgid "no storage devices found"
 msgstr "nem található semmilyen háttértár"
 
-msgid "normal"
-msgstr ""
-
 msgid "not"
 msgstr "nem"
 
@@ -24032,9 +24073,6 @@ msgstr "vissza kihagyása"
 msgid "skip forward"
 msgstr "előre kihagyása"
 
-msgid "slow"
-msgstr "lassú"
-
 msgid "soap/melodrama/folkloric"
 msgstr "szappanopera/melodráma"
 
@@ -24138,9 +24176,6 @@ msgstr "hagyományos (gyors), újra hangolás"
 msgid "tree delete"
 msgstr ""
 
-msgid "Turbo"
-msgstr "Turbo"
-
 msgid "uShare"
 msgstr "uShare"
 
@@ -24230,6 +24265,24 @@ msgstr "igen (állapotok megtartása)"
 
 msgid "®"
 msgstr "®"
+
+#, fuzzy
+#~ msgid "Seek back short"
+#~ msgstr "Vissza kihagyása"
+
+#, fuzzy
+#~ msgid "Seek forward  short"
+#~ msgstr "Előre kihagyása"
+
+#, fuzzy
+#~ msgid "Seek forward long"
+#~ msgstr "Előre kihagyása"
+
+#~ msgid "Service Name"
+#~ msgstr "Csatornanév"
+
+#~ msgid "slow"
+#~ msgstr "lassú"
 
 #~ msgid "Open DreamPlex"
 #~ msgstr "DreamPlex Player mutatása..."
@@ -25864,6 +25917,3 @@ msgstr "®"
 
 #~ msgid "use_hdmi_cacenter"
 #~ msgstr "use_hdmi_cacenter"
-
-#~ msgid "Black screen"
-#~ msgstr "Fekete képernyő"

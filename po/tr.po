@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-17 17:20+0000\n"
+"POT-Creation-Date: 2025-07-27 15:35+0000\n"
 "PO-Revision-Date: 2025-04-14 12:33+0000\n"
 "Last-Translator: tanerkaderli <taner.kaderli@live.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -107,7 +107,7 @@ msgstr " güncellenmiş"
 msgid "!! Boot loader Upgrade !!"
 msgstr "!! Bootloader Yükseltme !!"
 
-msgid "# = Reboot Required"
+msgid "# = Reboot required if this item is changed."
 msgstr "# = Yeniden başlatmak gerekir"
 
 #
@@ -1299,7 +1299,7 @@ msgstr "(boş)"
 msgid "(show optional DVD audio menu)"
 msgstr "(seçimli DVD ses menüsünü göster)"
 
-msgid "* = Restart Required"
+msgid "* = Restart required if this item is changed."
 msgstr "* = Yeniden başlatılmalı"
 
 #
@@ -2258,6 +2258,9 @@ msgstr "Tüm servis sağlayıcı"
 msgid "All supported"
 msgstr "Tüm desteklenen"
 
+msgid "All up/down"
+msgstr "hepsi yukarı / aşağı"
+
 msgid "Allocate"
 msgstr "Ayır"
 
@@ -2540,6 +2543,9 @@ msgstr "Bu günlüğü silmek istediğinizden emin misiniz:\n"
 msgid "Are you sure you want to delete this?"
 msgstr "Bunu silmek istediğinizden emin misiniz?"
 
+msgid "Are you sure you want to disable Chkroot Multiboot?"
+msgstr ""
+
 #
 msgid "Are you sure you want to exit this wizard?"
 msgstr "Sihirbazdan çıkmak istiyor musunuz?"
@@ -2732,10 +2738,6 @@ msgstr "Yayınlama kipi"
 msgid "Auto"
 msgstr "Otomatik"
 
-#
-msgid "Auto detect"
-msgstr "Otomatik algılama"
-
 msgid "Auto Language"
 msgstr "Ses Dili"
 
@@ -2762,6 +2764,10 @@ msgstr "Belirtilen sürelerde otomatik bölümlere ayrılsın mı? dakika (0=ay�
 #
 msgid "Auto deep standby"
 msgstr "Oto Derin Uyku"
+
+#
+msgid "Auto detect"
+msgstr "Otomatik algılama"
 
 #
 msgid "Auto flesh"
@@ -3161,7 +3167,7 @@ msgstr "Bitrate"
 msgid "Black"
 msgstr "Siyah"
 
-msgid "Black Screen"
+msgid "Black screen"
 msgstr "Siyah ekran"
 
 msgid "Black screen till locked"
@@ -3957,9 +3963,6 @@ msgstr "Kanal Bilgisi"
 msgid "Channel List"
 msgstr "Kanal Listesi"
 
-msgid "Channel number"
-msgstr "Kanal Numarası"
-
 #
 msgid "Channel Selection"
 msgstr "Kanal Seçimi"
@@ -4021,6 +4024,9 @@ msgstr "Kanal liste tipi"
 
 msgid "Channel name"
 msgstr "Kanal adı"
+
+msgid "Channel number"
+msgstr "Kanal Numarası"
 
 msgid "Channel preview mode"
 msgstr "Kanal önizleme kipi"
@@ -4400,6 +4406,9 @@ msgstr "Kexec MultiBoot Yöneticisini kapatın"
 
 msgid "Close the Plugin Browser screen"
 msgstr "Eklenti Tarayıcı ekranını kapatın"
+
+msgid "Close the SeekBar after returning to the starting point"
+msgstr ""
 
 msgid "Close the choice box"
 msgstr "Seçim kutusunu kapat"
@@ -6527,6 +6536,9 @@ msgstr "Engelli PIP.\n"
 
 msgid "Disabled or WPA/WPA2"
 msgstr "Devre dışı veya WPA/WPA2"
+
+msgid "Disabling Chkroot failed!"
+msgstr ""
 
 msgid "Dish"
 msgstr "Çanak"
@@ -10375,6 +10387,9 @@ msgstr ""
 msgid "Internal USB"
 msgstr "Dahili USB"
 
+msgid "Internal disk only"
+msgstr "Sadece dahili hdd"
+
 #
 msgid "Internal flash"
 msgstr "İç Flaş"
@@ -10386,9 +10401,6 @@ msgstr "Dahili flaş:  %s%s "
 #, python-format
 msgid "Internal flash: %s %s as USB Recovery"
 msgstr "Dahili flaş: %s %s USB Kurtarma olarak"
-
-msgid "Internal disk only"
-msgstr "Sadece dahili hdd"
 
 msgid "Internet"
 msgstr "İnternet"
@@ -12875,6 +12887,9 @@ msgstr "Aktif bağlantılar için kaç IP Adresinin kontrol edileceğini belirle
 msgid "Non-Linear"
 msgstr "Doğrusal Olmayan"
 
+msgid "Non-flashing"
+msgstr "Flaşlanmıyor"
+
 #
 msgid "None"
 msgstr "Yok"
@@ -12937,9 +12952,6 @@ msgstr "Sınıflandırılmamış"
 
 msgid "Not Defined"
 msgstr "Tanımlanmamış"
-
-msgid "Non-flashing"
-msgstr "Flaşlanmıyor"
 
 #
 msgid "Not Installed"
@@ -14639,6 +14651,9 @@ msgstr "Bu yerel ayarı kullanmak için Tamam'a basın. [%s]"
 msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that image. If available, YELLOW will either delete or wipe the image. A deleted image can be restored with the BLUE button. A wiped image is completely removed and cannot be restored!"
 msgstr "Bir yuva seçmek için YUKARI/AŞAĞI düğmelerine basın ve o görüntüyü yeniden başlatmak için Tamam veya YEŞİL'e basın. Varsa, SARI görüntüyü siler veya siler. MAVİ düğme ile silinen bir görüntü geri yüklenebilir. Silinen bir görüntü tamamen kaldırılır ve geri yüklenemez!"
 
+msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that image. If available, YELLOW will disable Multiboot, delete, or wipe the selected image. Press BLUE to add more slots."
+msgstr ""
+
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Daha sonra basılan bir düğmeye uzun süre basmak için bu düğmeye basın (bu, öykünme düğmesine atanan diğer eylemleri geçersiz kılar)."
 
@@ -14992,14 +15007,14 @@ msgstr "REC"
 msgid "REC "
 msgstr "REC "
 
-msgid "REC symbol"
-msgstr "REC Sembolü"
-
 msgid "REC Symbol in Standby"
 msgstr "Bekleme modunda REC Symbol"
 
 msgid "REC Symbol in use"
 msgstr "REC Sembol kullanımda"
+
+msgid "REC symbol"
+msgstr "REC Sembolü"
 
 msgid "RED button"
 msgstr "Kırmızı buton"
@@ -16430,14 +16445,14 @@ msgstr "Zamanlayıcı genel bakış"
 msgid "Scheduler Settings"
 msgstr ""
 
-msgid "Scheduler standby"
-msgstr "Scheduler standby"
-
 msgid "Scheduler deep standby"
 msgstr "Scheduler deep standby"
 
 msgid "Scheduler log"
 msgstr "Zamanlayıcı günlüğü"
+
+msgid "Scheduler standby"
+msgstr "Scheduler standby"
 
 msgid "Sci-Fi"
 msgstr "Bilim Kurgu"
@@ -16531,8 +16546,8 @@ msgstr "Ara"
 msgid "Seek Actions"
 msgstr "Eylemleri Ara"
 
-msgid "Seek back short"
-msgstr "Kısa ara"
+msgid "Seek Bar"
+msgstr ""
 
 msgid "Seek backward"
 msgstr "Geriye doğru arayın"
@@ -16543,21 +16558,18 @@ msgstr "Geriye doğru arayın (zamanı girin)"
 msgid "Seek forward"
 msgstr "İleriye doğru arayın"
 
-msgid "Seek forward  short"
-msgstr "Kısa ileri arama"
-
 msgid "Seek forward (enter time)"
 msgstr "İleriye doğru ara (zaman girin)"
-
-msgid "Seek forward long"
-msgstr "Uzun süre ileriye bak"
-
-msgid "SeekBar activation"
-msgstr "Arama çubuğu etkinleştirme"
 
 #
 msgid "SeekBar"
 msgstr "SeekBar"
+
+msgid "SeekBar Actions"
+msgstr ""
+
+msgid "SeekBar activation"
+msgstr "Arama çubuğu etkinleştirme"
 
 msgid "SeekBar sensibility"
 msgstr "Arama-çubuğu duyarlılığı"
@@ -17762,15 +17774,6 @@ msgstr "Hizmet Bilgileri"
 msgid "Service Information Actions"
 msgstr "Hizmet Bilgi İşlemleri"
 
-msgid "Service Name"
-msgstr "Kanal Adı"
-
-msgid "Service number and service name"
-msgstr "Servis Numarası ve Servis Adı"
-
-msgid "Service number, picon and service name"
-msgstr "Servis Numarası, Picon ve Servis Adı"
-
 msgid "Service Scan"
 msgstr ""
 
@@ -17821,8 +17824,14 @@ msgstr ""
 "Kanal bulunamadı!\n"
 "(SID, PAT içerisinde bulunamadı)"
 
+msgid "Service number and service name"
+msgstr "Servis Numarası ve Servis Adı"
+
 msgid "Service number font size"
 msgstr "Kanal numarası yazı tipi boyutu"
+
+msgid "Service number, picon and service name"
+msgstr "Servis Numarası, Picon ve Servis Adı"
 
 msgid "Service off-air"
 msgstr "Hizmet dışı"
@@ -19226,11 +19235,11 @@ msgstr "Cilt Bileşen Paketleri"
 msgid "Skin Packages"
 msgstr "Cilt Paketleri"
 
-msgid "Skin setting"
-msgstr "Görsel-arayüz Ayarı"
-
 msgid "Skin Settings"
 msgstr "Arayüz Ayarları"
+
+msgid "Skin setting"
+msgstr "Görsel-arayüz Ayarı"
 
 msgid "SkinSelection"
 msgstr "Görünüm Seçimi"
@@ -19241,6 +19250,15 @@ msgstr "Geriye Atla"
 msgid "Skip backward"
 msgstr ""
 
+#, python-format
+msgid "Skip backward %d second"
+msgid_plural "Skip backward %d seconds"
+msgstr[0] ""
+
+#, python-format
+msgid "Skip backward %s%%"
+msgstr ""
+
 #
 msgid "Skip backward (enter time)"
 msgstr "geri atla (zaman gir)"
@@ -19248,8 +19266,21 @@ msgstr "geri atla (zaman gir)"
 msgid "Skip empty services"
 msgstr "Boş Kanalları atla"
 
+#, python-format
+msgid "Skip for '%s' is disabled"
+msgstr ""
+
 msgid "Skip forward"
 msgstr "Ileri atlamak"
+
+#, python-format
+msgid "Skip forward %d second"
+msgid_plural "Skip forward %d seconds"
+msgstr[0] ""
+
+#, python-format
+msgid "Skip forward %s%%"
+msgstr ""
 
 #
 msgid "Skip forward (enter time)"
@@ -19271,6 +19302,13 @@ msgid "Skip time for '%s' button"
 msgstr ""
 
 msgid "Skip time for '%s'/'%s' buttons"
+msgstr ""
+
+#, python-format
+msgid "Skip to %s0%% position (Add %s%% on second press)"
+msgstr ""
+
+msgid "Skip to 0% (start) position"
 msgstr ""
 
 msgid "Sleep"
@@ -19401,6 +19439,10 @@ msgstr "Yuva R: Kök Yuvası Tam Yedekleme (Mevcut görüntü)"
 
 msgid "Slot count"
 msgstr "Yuva sayısı"
+
+#, python-format
+msgid "Slots have been extended by %d..\n"
+msgstr ""
 
 msgid "Slovak"
 msgstr "Slovakca"
@@ -19851,6 +19893,9 @@ msgstr "Başlangıç zamanı"
 
 msgid "Starts in a few seconds"
 msgstr "Birkaç saniye içinde başlar"
+
+msgid "Startup device not found!"
+msgstr ""
 
 #. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
@@ -22063,6 +22108,9 @@ msgstr "Tuning algoritması"
 msgid "Tunisia"
 msgstr "Tunus"
 
+msgid "Turbo"
+msgstr "Turbo"
+
 msgid "Turbo: One reboot after flash; Fast: One reboot after flash, one reboot after restore; Slow: One reboot after flash, one reboot after restore in GUI."
 msgstr "Turbo: Flaş sonrası bir yeniden başlatma; Hızlı: Flaş sonrası bir yeniden başlatma, geri yükleme sonrası bir yeniden başlatma; Yavaş: Bir flaş sonrası yeniden başlatma, GUI’de geri yükleme sonrasında bir başlatma"
 
@@ -24266,9 +24314,6 @@ msgstr "macera/kovboy/savaş filmi"
 msgid "advertisement/shopping"
 msgstr "reklam/alışveriş"
 
-msgid "All up/down"
-msgstr "hepsi yukarı / aşağı"
-
 msgid "alpha then oldest"
 msgstr "alfa sonra en eski"
 
@@ -24839,9 +24884,6 @@ msgstr "kart yok veya tanınmıyor"
 msgid "no storage devices found"
 msgstr "depolama aygıtı bulunamadı"
 
-msgid "normal"
-msgstr "normal"
-
 #
 msgid "not"
 msgstr "yok"
@@ -25058,9 +25100,6 @@ msgstr "geri atla"
 msgid "skip forward"
 msgstr "ileri atla"
 
-msgid "slow"
-msgstr "yavaş"
-
 msgid "soap/melodrama/folkloric"
 msgstr "soap/melodrama/folkloric"
 
@@ -25172,9 +25211,6 @@ msgstr "geleneksel (hızlı), yeniden ayar"
 msgid "tree delete"
 msgstr "ağaç silme"
 
-msgid "Turbo"
-msgstr "Turbo"
-
 msgid "uShare"
 msgstr "uShare"
 
@@ -25273,6 +25309,27 @@ msgstr "evet (beslemeleri tut)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Black Screen"
+#~ msgstr "Siyah ekran"
+
+#~ msgid "Seek back short"
+#~ msgstr "Kısa ara"
+
+#~ msgid "Seek forward  short"
+#~ msgstr "Kısa ileri arama"
+
+#~ msgid "Seek forward long"
+#~ msgstr "Uzun süre ileriye bak"
+
+#~ msgid "Service Name"
+#~ msgstr "Kanal Adı"
+
+#~ msgid "normal"
+#~ msgstr "normal"
+
+#~ msgid "slow"
+#~ msgstr "yavaş"
 
 #~ msgid "DVB API version"
 #~ msgstr "DVB API sürümü"
@@ -27257,6 +27314,3 @@ msgstr "®"
 
 #~ msgid "use_hdmi_cacenter"
 #~ msgstr "hdmi_cacenter_kullanın"
-
-#~ msgid "Black screen"
-#~ msgstr "Siyah ekran"

@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-17 17:20+0000\n"
-"PO-Revision-Date: 2025-07-18 21:03+0000\n"
-"Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
+"POT-Creation-Date: 2025-07-27 15:35+0000\n"
+"PO-Revision-Date: 2025-07-28 20:51+0000\n"
+"Last-Translator: Libor Rejč <l.rejc@seznam.cz>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -98,7 +98,7 @@ msgstr " aktualizováno"
 msgid "!! Boot loader Upgrade !!"
 msgstr "!! Upgrade zavaděče !!"
 
-msgid "# = Reboot Required"
+msgid "# = Reboot required if this item is changed."
 msgstr "# = Je vyžadován restart"
 
 msgid "%-H:%M"
@@ -1343,7 +1343,7 @@ msgstr "(prázdné)"
 msgid "(show optional DVD audio menu)"
 msgstr "(zobrazit případné DVD audio menu)"
 
-msgid "* = Restart Required"
+msgid "* = Restart required if this item is changed."
 msgstr "* = Vyžaduje Restart"
 
 msgid "* Only available if more than one interface is active."
@@ -2230,6 +2230,9 @@ msgstr "Poskytovatel všech programů"
 msgid "All supported"
 msgstr "Podporováno vše"
 
+msgid "All up/down"
+msgstr "vše nahoru/dolů"
+
 msgid "Allocate"
 msgstr "Přidělení"
 
@@ -2503,6 +2506,9 @@ msgstr "Opravdu chcete smazat tuto zprávu:\n"
 msgid "Are you sure you want to delete this?"
 msgstr "Opravdu to chcete smazat?"
 
+msgid "Are you sure you want to disable Chkroot Multiboot?"
+msgstr "Opravdu chcete zakázat Chkroot Multiboot?"
+
 msgid "Are you sure you want to exit this wizard?"
 msgstr "Opravdu chcete ukončit tohoto průvodce?"
 
@@ -2686,9 +2692,6 @@ msgstr "Režim authoringu"
 msgid "Auto"
 msgstr "Auto"
 
-msgid "Auto detect"
-msgstr "Auto detekce"
-
 msgid "Auto Language"
 msgstr "Jazyk zvuku a titulků"
 
@@ -2712,6 +2715,9 @@ msgstr "Automaticky vytvořit kapitoly každých ? minut (0=žádné)"
 
 msgid "Auto deep standby"
 msgstr "Automatické úplné vypnutí"
+
+msgid "Auto detect"
+msgstr "Auto detekce"
 
 msgid "Auto flesh"
 msgstr "Automatický jas"
@@ -3089,7 +3095,7 @@ msgstr "Bitrate"
 msgid "Black"
 msgstr "Černé"
 
-msgid "Black Screen"
+msgid "Black screen"
 msgstr "Černá obrazovka"
 
 msgid "Black screen till locked"
@@ -3860,9 +3866,6 @@ msgstr "Info o kanálu"
 msgid "Channel List"
 msgstr "Seznam kanálů"
 
-msgid "Channel number"
-msgstr "Číslo kanálu"
-
 msgid "Channel Selection"
 msgstr "Výběr kanálú"
 
@@ -3922,6 +3925,9 @@ msgstr "Seznam kanálů typu"
 
 msgid "Channel name"
 msgstr "Název kanálu"
+
+msgid "Channel number"
+msgstr "Číslo kanálu"
 
 msgid "Channel preview mode"
 msgstr "Režim náhledu kanálu"
@@ -4288,6 +4294,9 @@ msgstr "Zavřít Správce multibootů Kexec"
 
 msgid "Close the Plugin Browser screen"
 msgstr "Zavřít obrazovku prohlížeče pluginů"
+
+msgid "Close the SeekBar after returning to the starting point"
+msgstr "Zavřete SeekBar po návratu do počátečního bodu"
 
 msgid "Close the choice box"
 msgstr "Zavřít políčko s výběrem"
@@ -6332,6 +6341,9 @@ msgstr "Vypnout PiP.\n"
 msgid "Disabled or WPA/WPA2"
 msgstr "Zakázat nebo WPA/WPA2"
 
+msgid "Disabling Chkroot failed!"
+msgstr "Zakázání Chkrootu se nezdařilo!"
+
 msgid "Dish"
 msgstr "Dish"
 
@@ -6439,7 +6451,7 @@ msgid "Do another manual service scan?"
 msgstr "Provést další ruční servisní sken?"
 
 msgid "Do not backup the image"
-msgstr "Obrázek nezálohujte"
+msgstr "Nezálohovat image"
 
 msgid "Do not change"
 msgstr "Neměnit"
@@ -9630,7 +9642,7 @@ msgid "Image Flash Actions"
 msgstr "Akce flashování obrazu"
 
 msgid "Image created:"
-msgstr "Obrázek vytvořen:"
+msgstr "Image vytvořen:"
 
 msgid "Image creation failed!"
 msgstr "Vytvoření obrázku se nezdařilo!"
@@ -10003,6 +10015,9 @@ msgstr "Interní SSD"
 msgid "Internal USB"
 msgstr "Interní USB"
 
+msgid "Internal disk only"
+msgstr "Jen na interním disku"
+
 msgid "Internal flash"
 msgstr "Interní flash"
 
@@ -10013,9 +10028,6 @@ msgstr "Interní flash: %s %s "
 #, python-format
 msgid "Internal flash: %s %s as USB Recovery"
 msgstr "Interní flash: %s %s jako obnovení z USB"
-
-msgid "Internal disk only"
-msgstr "Jen na interním disku"
 
 msgid "Internet"
 msgstr "Internet"
@@ -12355,6 +12367,9 @@ msgstr "Určete, kolik IP adres má být zkontrolováno pro aktivní připojení
 msgid "Non-Linear"
 msgstr "Nelineární"
 
+msgid "Non-flashing"
+msgstr "Nenahrávat"
+
 msgid "None"
 msgstr "Ne"
 
@@ -12411,9 +12426,6 @@ msgstr "Neklasifikováno"
 
 msgid "Not Defined"
 msgstr "Není definováno"
-
-msgid "Non-flashing"
-msgstr "Nenahrávat"
 
 msgid "Not Installed"
 msgstr "Není nainstalováno"
@@ -14020,7 +14032,10 @@ msgid "Press OK to use this locale.  [%s]"
 msgstr "Stiskněte tlačítko OK, abyste použili toto místní nastavení.  [%s]"
 
 msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that image. If available, YELLOW will either delete or wipe the image. A deleted image can be restored with the BLUE button. A wiped image is completely removed and cannot be restored!"
-msgstr "Stisknutím tlačítek NAHORU/DOLŮ vyberte slot a stisknutím tlačítka OK nebo ZELENÝ restartujte do tohoto obrázku. Pokud je k dispozici, ŽLUTÁ obrázek odstraníte nebo vymažete. Smazaný obraz lze obnovit pomocí MODRÉHO tlačítka. Vymazaný obraz je zcela odstraněn a nelze jej obnovit!"
+msgstr "Stisknutím tlačítek NAHORU/DOLŮ vyberte slot a stisknutím tlačítka OK nebo ZELENÉHO tlačítka restartujte do tohoto image. Pokud je k dispozici, ŽLUTÉ tlačítko image odstraní nebo vyčistí. Smazaný image lze obnovit pomocí MODRÉHO tlačítka. Vyčištěný image je zcela odstraněn a nelze jej obnovit!"
+
+msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that image. If available, YELLOW will disable Multiboot, delete, or wipe the selected image. Press BLUE to add more slots."
+msgstr "Stisknutím tlačítek NAHORU/DOLŮ vyberte slot a poté stiskněte OK nebo ZELENÉ tlačítko pro restartování do daného obrazu. Pokud je k dispozici, ŽLUTÉ tlačítko deaktivuje Multiboot, odstraní nebo vymaže vybraný obraz. Stisknutím MODRÉHO tlačítka přidáte další sloty."
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Stisknutím tohoto tlačítka emulujete dlouhé stisknutí tlačítka, které bylo stisknuto poté (tímto také přepíšete všechny ostatní akce přiřazené k tlačítku emulace)."
@@ -14362,14 +14377,14 @@ msgstr "REC"
 msgid "REC "
 msgstr "REC "
 
-msgid "REC symbol"
-msgstr "Symbol REC"
-
 msgid "REC Symbol in Standby"
 msgstr "Symbol REC v pohotovostním režimu"
 
 msgid "REC Symbol in use"
 msgstr "REC Symbol je používán"
+
+msgid "REC symbol"
+msgstr "Symbol REC"
 
 msgid "RED button"
 msgstr "ČERVENÉ tlačítko"
@@ -15712,14 +15727,14 @@ msgstr "Časovač napájení - přehled"
 msgid "Scheduler Settings"
 msgstr "Nastavení plánovače"
 
-msgid "Scheduler standby"
-msgstr "Časovač napájení (vypnout do pohotovosti)"
-
 msgid "Scheduler deep standby"
 msgstr "Časovač napájení (úplně vypnout)"
 
 msgid "Scheduler log"
 msgstr "Časovač napájení - protokol"
+
+msgid "Scheduler standby"
+msgstr "Časovač napájení (vypnout do pohotovosti)"
 
 msgid "Sci-Fi"
 msgstr "Sci-Fi"
@@ -15805,8 +15820,8 @@ msgstr "Posun"
 msgid "Seek Actions"
 msgstr "Akce vyhledávání"
 
-msgid "Seek back short"
-msgstr "Procházení dozadu - krátký stisk"
+msgid "Seek Bar"
+msgstr "Vyhledávací lišta"
 
 msgid "Seek backward"
 msgstr "Přeskočit dozadu"
@@ -15817,20 +15832,17 @@ msgstr "Přeskočit dozadu (zadat čas)"
 msgid "Seek forward"
 msgstr "Přeskočit dopředu"
 
-msgid "Seek forward  short"
-msgstr "Procházení dopředu - krátký stisk"
-
 msgid "Seek forward (enter time)"
 msgstr "Přeskočit dopředu (zadat čas)"
 
-msgid "Seek forward long"
-msgstr "Procházení dopředu - dlouhý stisk"
+msgid "SeekBar"
+msgstr "Panel vyhledávání"
+
+msgid "SeekBar Actions"
+msgstr "Akce vyhledávací lišty"
 
 msgid "SeekBar activation"
 msgstr "Aktivace hledání"
-
-msgid "SeekBar"
-msgstr "Panel vyhledávání"
 
 msgid "SeekBar sensibility"
 msgstr "Citlivost hledání"
@@ -17009,15 +17021,6 @@ msgstr "Servisní informace"
 msgid "Service Information Actions"
 msgstr "Akce s informacemi o službě"
 
-msgid "Service Name"
-msgstr "Název programu"
-
-msgid "Service number and service name"
-msgstr "Číslo programu a název programu"
-
-msgid "Service number, picon and service name"
-msgstr "Číslo programu, pikona a název programu"
-
 msgid "Service Scan"
 msgstr "Skenování služby"
 
@@ -17066,8 +17069,14 @@ msgstr ""
 "Kanál nebyl nalezen!\n"
 "(SID nebyl nalezen v PAT)"
 
+msgid "Service number and service name"
+msgstr "Číslo programu a název programu"
+
 msgid "Service number font size"
 msgstr "Velikost fontu čísla programů"
+
+msgid "Service number, picon and service name"
+msgstr "Číslo programu, pikona a název programu"
 
 msgid "Service off-air"
 msgstr "Servis mimo vysílání"
@@ -18421,10 +18430,10 @@ msgstr "Balíčky součástí vzhledu"
 msgid "Skin Packages"
 msgstr "Balíčky vzhledu"
 
-msgid "Skin setting"
+msgid "Skin Settings"
 msgstr "Nastavení vzhledu"
 
-msgid "Skin Settings"
+msgid "Skin setting"
 msgstr "Nastavení vzhledu"
 
 msgid "SkinSelection"
@@ -18436,14 +18445,40 @@ msgstr "Přeskočit zpět"
 msgid "Skip backward"
 msgstr "Přeskočit zpět"
 
+#, python-format
+msgid "Skip backward %d second"
+msgid_plural "Skip backward %d seconds"
+msgstr[0] "Přeskočit zpět %d sekundu"
+msgstr[1] "Přeskočit zpět %d sekundy"
+msgstr[2] "Přeskočit zpět %d sekund"
+
+#, python-format
+msgid "Skip backward %s%%"
+msgstr "Přeskočit zpět %s%%"
+
 msgid "Skip backward (enter time)"
 msgstr "přeskočit zpět (zadat čas)"
 
 msgid "Skip empty services"
 msgstr "Přeskakovat prázdné programy"
 
+#, python-format
+msgid "Skip for '%s' is disabled"
+msgstr "Přeskočení pro '%s' je zakázáno"
+
 msgid "Skip forward"
 msgstr "Přeskočit vpřed"
+
+#, python-format
+msgid "Skip forward %d second"
+msgid_plural "Skip forward %d seconds"
+msgstr[0] "Přeskočit vpřed %d sekundu"
+msgstr[1] "Přeskočit vpřed %d sekundy"
+msgstr[2] "Přeskočit vpřed %d sekund"
+
+#, python-format
+msgid "Skip forward %s%%"
+msgstr "Přeskočit vpřed %s%%"
 
 msgid "Skip forward (enter time)"
 msgstr "přeskočit dopředu (zadat čas)"
@@ -18465,6 +18500,13 @@ msgstr "Čas přeskočení pro tlačítko '%s'"
 
 msgid "Skip time for '%s'/'%s' buttons"
 msgstr "Čas přeskočení pro tlačítka '%s'/'%s'vvvvvv"
+
+#, python-format
+msgid "Skip to %s0%% position (Add %s%% on second press)"
+msgstr "Přejít na pozici %s0%% (Přidat %s%% při druhém stisknutí)"
+
+msgid "Skip to 0% (start) position"
+msgstr "Přejít na pozici 0 % (počáteční)"
 
 msgid "Sleep"
 msgstr "Spánek"
@@ -18595,6 +18637,10 @@ msgstr "Slot R: Úplná záloha kořenového slotu (aktuální obraz)"
 
 msgid "Slot count"
 msgstr "Počet slotů"
+
+#, python-format
+msgid "Slots have been extended by %d..\n"
+msgstr "Sloty byly prodlouženy %d..\n"
 
 msgid "Slovak"
 msgstr "Slovensky"
@@ -19023,6 +19069,9 @@ msgstr "Čas začátku"
 
 msgid "Starts in a few seconds"
 msgstr "Začíná za několik sekund"
+
+msgid "Startup device not found!"
+msgstr "Spouštěcí zařízení nebylo nalezeno!"
 
 #. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
@@ -21138,6 +21187,9 @@ msgstr "Ladicí algoritmus"
 msgid "Tunisia"
 msgstr "Tunisko"
 
+msgid "Turbo"
+msgstr "Turbo"
+
 msgid "Turbo: One reboot after flash; Fast: One reboot after flash, one reboot after restore; Slow: One reboot after flash, one reboot after restore in GUI."
 msgstr "Turbo: Jeden restart po flashi; Rychlý: Jeden restart po flashi, jeden restart po obnovení; Pomalý: Jeden restart po flashi, jeden restart po obnovení v GUI."
 
@@ -23246,9 +23298,6 @@ msgstr "dobrodružný/western/válečný"
 msgid "advertisement/shopping"
 msgstr "reklama/nakupování"
 
-msgid "All up/down"
-msgstr "vše nahoru/dolů"
-
 msgid "alpha then oldest"
 msgstr "alfa pak nejstarší"
 
@@ -23777,9 +23826,6 @@ msgstr "není vložena žádná nebo neznámá karta"
 msgid "no storage devices found"
 msgstr "nebyla nalezena žádná úložná zařízení"
 
-msgid "normal"
-msgstr "normální"
-
 msgid "not"
 msgstr "ne"
 
@@ -23974,9 +24020,6 @@ msgstr "přeskočit zpět"
 msgid "skip forward"
 msgstr "přeskočit dopředu"
 
-msgid "slow"
-msgstr "pomalu"
-
 msgid "soap/melodrama/folkloric"
 msgstr "soap/melodrama/folklórní"
 
@@ -24079,9 +24122,6 @@ msgstr "tradiční (rychlý), přeladit"
 msgid "tree delete"
 msgstr "smazat strom"
 
-msgid "Turbo"
-msgstr "Turbo"
-
 msgid "uShare"
 msgstr "uShare"
 
@@ -24172,6 +24212,27 @@ msgstr "ano (uchovat zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Black Screen"
+#~ msgstr "Černá obrazovka"
+
+#~ msgid "Seek back short"
+#~ msgstr "Procházení dozadu - krátký stisk"
+
+#~ msgid "Seek forward  short"
+#~ msgstr "Procházení dopředu - krátký stisk"
+
+#~ msgid "Seek forward long"
+#~ msgstr "Procházení dopředu - dlouhý stisk"
+
+#~ msgid "Service Name"
+#~ msgstr "Název programu"
+
+#~ msgid "normal"
+#~ msgstr "normální"
+
+#~ msgid "slow"
+#~ msgstr "pomalu"
 
 #~ msgid "DVB API version"
 #~ msgstr "Verze DVB API"
@@ -26256,6 +26317,3 @@ msgstr "®"
 
 #~ msgid "(Pip)"
 #~ msgstr "(Pip)"
-
-#~ msgid "Black screen"
-#~ msgstr "Černá obrazovka"

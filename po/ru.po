@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-17 17:20+0000\n"
+"POT-Creation-Date: 2025-07-27 15:35+0000\n"
 "PO-Revision-Date: 2025-07-22 17:05+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
@@ -100,7 +100,7 @@ msgstr " обновлено"
 msgid "!! Boot loader Upgrade !!"
 msgstr "!! Обновление загрузчика !!"
 
-msgid "# = Reboot Required"
+msgid "# = Reboot required if this item is changed."
 msgstr "# = Требуется перезагрузка"
 
 msgid "%-H:%M"
@@ -1345,7 +1345,7 @@ msgstr "(Пусто)"
 msgid "(show optional DVD audio menu)"
 msgstr "(Показать дополнительное аудио-меню DVD)"
 
-msgid "* = Restart Required"
+msgid "* = Restart required if this item is changed."
 msgstr "* = Требуется перезагрузка"
 
 msgid "* Only available if more than one interface is active."
@@ -2232,6 +2232,9 @@ msgstr "Все каналы оператора"
 msgid "All supported"
 msgstr "Все поддерживаемые"
 
+msgid "All up/down"
+msgstr "все вверх/вниз"
+
 msgid "Allocate"
 msgstr "Выделить"
 
@@ -2505,6 +2508,9 @@ msgstr "Действительно удалить этот журнал:\n"
 msgid "Are you sure you want to delete this?"
 msgstr "Вы уверены, что хотите удалить это?"
 
+msgid "Are you sure you want to disable Chkroot Multiboot?"
+msgstr ""
+
 msgid "Are you sure you want to exit this wizard?"
 msgstr "Уверены, что хотите выйти из этого мастера?"
 
@@ -2688,9 +2694,6 @@ msgstr "Режиме разработки"
 msgid "Auto"
 msgstr "Автоматически"
 
-msgid "Auto detect"
-msgstr "Автоопределение"
-
 msgid "Auto Language"
 msgstr "Автовыбор языка"
 
@@ -2714,6 +2717,9 @@ msgstr "Автоматически разделять на главы кажды
 
 msgid "Auto deep standby"
 msgstr "Автоматическое выключение"
+
+msgid "Auto detect"
+msgstr "Автоопределение"
 
 msgid "Auto flesh"
 msgstr "Авто-флеш"
@@ -3091,7 +3097,7 @@ msgstr "Битрейт"
 msgid "Black"
 msgstr "Чёрный"
 
-msgid "Black Screen"
+msgid "Black screen"
 msgstr "Чёрный экран"
 
 msgid "Black screen till locked"
@@ -3862,9 +3868,6 @@ msgstr "Информация канала"
 msgid "Channel List"
 msgstr "Список каналов"
 
-msgid "Channel number"
-msgstr "Номер канала"
-
 msgid "Channel Selection"
 msgstr "Выбор канала"
 
@@ -3924,6 +3927,9 @@ msgstr "Тип списка каналов"
 
 msgid "Channel name"
 msgstr "Название канала"
+
+msgid "Channel number"
+msgstr "Номер канала"
 
 msgid "Channel preview mode"
 msgstr "Режим предпросмотра канала"
@@ -4290,6 +4296,9 @@ msgstr "Закройте диспетчер Kexec MultiBoot"
 
 msgid "Close the Plugin Browser screen"
 msgstr "Закройте экран браузера плагинов"
+
+msgid "Close the SeekBar after returning to the starting point"
+msgstr ""
 
 msgid "Close the choice box"
 msgstr "Закройте окно выбора"
@@ -6333,6 +6342,9 @@ msgstr "Отключение PiP\n"
 
 msgid "Disabled or WPA/WPA2"
 msgstr "Выключено или WPA/WPA2"
+
+msgid "Disabling Chkroot failed!"
+msgstr ""
 
 msgid "Dish"
 msgstr "Антенна"
@@ -10005,6 +10017,9 @@ msgstr "Внутренний SSD"
 msgid "Internal USB"
 msgstr "Внутренний разьем USB"
 
+msgid "Internal disk only"
+msgstr "Только внутренний жёсткий диск"
+
 msgid "Internal flash"
 msgstr "Встроенная флеш-память"
 
@@ -10015,9 +10030,6 @@ msgstr "Встроенная флеш-память:  %s %s "
 #, python-format
 msgid "Internal flash: %s %s as USB Recovery"
 msgstr "Встроенная флеш-память: %s %s как USB-устройство для восстановления системы"
-
-msgid "Internal disk only"
-msgstr "Только внутренний жёсткий диск"
 
 msgid "Internet"
 msgstr "Интернет"
@@ -12357,6 +12369,9 @@ msgstr "Укажите, сколько IP-адресов должно быть �
 msgid "Non-Linear"
 msgstr "Нелинейный"
 
+msgid "Non-flashing"
+msgstr "Не мигающая кнопка"
+
 msgid "None"
 msgstr "Нет"
 
@@ -12413,9 +12428,6 @@ msgstr "Не классифицировано"
 
 msgid "Not Defined"
 msgstr "Не определен"
-
-msgid "Non-flashing"
-msgstr "Не мигающая кнопка"
 
 msgid "Not Installed"
 msgstr "Не установлено"
@@ -14024,6 +14036,9 @@ msgstr "Нажмите OK, чтобы использовать эту локал
 msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that image. If available, YELLOW will either delete or wipe the image. A deleted image can be restored with the BLUE button. A wiped image is completely removed and cannot be restored!"
 msgstr "Нажимайте кнопки ВВЕРХ/ВНИЗ, для выбора слота, и нажмите OK или ЗЕЛЁНУЮ кнопку для перезагрузки и запуска этого образа. ЖЁЛТАЯ кнопка, если активна, удалит или сотрёт образ. Удалённый образ можно восстановить СИНЕЙ кнопкой. Стёртый образ удаляется окончательно и восстановить его невозможно!"
 
+msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that image. If available, YELLOW will disable Multiboot, delete, or wipe the selected image. Press BLUE to add more slots."
+msgstr ""
+
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Нажмите эту кнопку для включения эмуляции долгого нажатия кнопки, которая будет нажата следующей (это заменяет любые другие функции назначенные на эту кнопку)."
 
@@ -14364,14 +14379,14 @@ msgstr "REC"
 msgid "REC "
 msgstr "ЗАПИСЬ"
 
-msgid "REC symbol"
-msgstr "Значок записи REC"
-
 msgid "REC Symbol in Standby"
 msgstr "Символ REC в режиме ожидания"
 
 msgid "REC Symbol in use"
 msgstr "Используемый символ REC"
+
+msgid "REC symbol"
+msgstr "Значок записи REC"
 
 msgid "RED button"
 msgstr "Красная кнопка"
@@ -15714,14 +15729,14 @@ msgstr "Просмотр таймеров питания"
 msgid "Scheduler Settings"
 msgstr "Настройки планировщика"
 
-msgid "Scheduler standby"
-msgstr "Таймер питания в 'Режим ожидания'"
-
 msgid "Scheduler deep standby"
 msgstr "Таймер питания в 'Глубокий сон'"
 
 msgid "Scheduler log"
 msgstr "Лог таймеров питания"
+
+msgid "Scheduler standby"
+msgstr "Таймер питания в 'Режим ожидания'"
 
 msgid "Sci-Fi"
 msgstr "Научная фантастика"
@@ -15807,8 +15822,8 @@ msgstr "Искать"
 msgid "Seek Actions"
 msgstr "Поиск действий"
 
-msgid "Seek back short"
-msgstr "Перемотка назад"
+msgid "Seek Bar"
+msgstr ""
 
 msgid "Seek backward"
 msgstr "Перемотка назад"
@@ -15819,20 +15834,17 @@ msgstr "Перемотать назад (Введите время)"
 msgid "Seek forward"
 msgstr "Перемотка вперёд"
 
-msgid "Seek forward  short"
-msgstr "Перемотка вперёд  короткая"
-
 msgid "Seek forward (enter time)"
 msgstr "Перемотать вперёд (Введите время)"
 
-msgid "Seek forward long"
-msgstr "Перемотка вперёд длинная"
+msgid "SeekBar"
+msgstr "Панель перемотки"
+
+msgid "SeekBar Actions"
+msgstr ""
 
 msgid "SeekBar activation"
 msgstr "Вызов панели перемотки"
-
-msgid "SeekBar"
-msgstr "Панель перемотки"
 
 msgid "SeekBar sensibility"
 msgstr "Точность перемотки"
@@ -17011,15 +17023,6 @@ msgstr "Информация об услуге"
 msgid "Service Information Actions"
 msgstr "Действия с информацией о канале"
 
-msgid "Service Name"
-msgstr "Название канала"
-
-msgid "Service number and service name"
-msgstr "Пикон и номер канала"
-
-msgid "Service number, picon and service name"
-msgstr "Номер канала, пикон и название канала"
-
 msgid "Service Scan"
 msgstr "Сканирование каналов"
 
@@ -17068,8 +17071,14 @@ msgstr ""
 "Канал не найден!\n"
 "(SID не найден в PAT)"
 
+msgid "Service number and service name"
+msgstr "Пикон и номер канала"
+
 msgid "Service number font size"
 msgstr "Размер шрифта для номера канала"
+
+msgid "Service number, picon and service name"
+msgstr "Номер канала, пикон и название канала"
 
 msgid "Service off-air"
 msgstr "Обслуживание вне эфира"
@@ -18423,11 +18432,11 @@ msgstr "Пакеты компонентов скина"
 msgid "Skin Packages"
 msgstr "Пакеты скинов"
 
-msgid "Skin setting"
-msgstr "Настройки скина"
-
 msgid "Skin Settings"
 msgstr "Выбор скина"
+
+msgid "Skin setting"
+msgstr "Настройки скина"
 
 msgid "SkinSelection"
 msgstr "Выбор скина"
@@ -18438,14 +18447,40 @@ msgstr "Перейти назад"
 msgid "Skip backward"
 msgstr "Перейти назад"
 
+#, python-format
+msgid "Skip backward %d second"
+msgid_plural "Skip backward %d seconds"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "Skip backward %s%%"
+msgstr ""
+
 msgid "Skip backward (enter time)"
 msgstr "Перейти назад (Введите время)"
 
 msgid "Skip empty services"
 msgstr "Пропускать пустые каналы"
 
+#, python-format
+msgid "Skip for '%s' is disabled"
+msgstr ""
+
 msgid "Skip forward"
 msgstr "Перейти вперёд"
+
+#, python-format
+msgid "Skip forward %d second"
+msgid_plural "Skip forward %d seconds"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "Skip forward %s%%"
+msgstr ""
 
 msgid "Skip forward (enter time)"
 msgstr "Перейти вперёд (Введите время)"
@@ -18467,6 +18502,13 @@ msgstr "Пропустить время для кнопки '%s'"
 
 msgid "Skip time for '%s'/'%s' buttons"
 msgstr "Пропустить время для кнопок '%s'/'%s'"
+
+#, python-format
+msgid "Skip to %s0%% position (Add %s%% on second press)"
+msgstr ""
+
+msgid "Skip to 0% (start) position"
+msgstr ""
 
 msgid "Sleep"
 msgstr "Сон"
@@ -18597,6 +18639,10 @@ msgstr "Слот R: Резервная копия образа из корнев
 
 msgid "Slot count"
 msgstr "Количество слотов"
+
+#, python-format
+msgid "Slots have been extended by %d..\n"
+msgstr ""
 
 msgid "Slovak"
 msgstr "Словацкий"
@@ -19025,6 +19071,9 @@ msgstr "Время начала"
 
 msgid "Starts in a few seconds"
 msgstr "Запускается через несколько секунд"
+
+msgid "Startup device not found!"
+msgstr ""
 
 #. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
@@ -21140,6 +21189,9 @@ msgstr "Алгоритм настройки"
 msgid "Tunisia"
 msgstr "Тунис"
 
+msgid "Turbo"
+msgstr "Турбо"
+
 msgid "Turbo: One reboot after flash; Fast: One reboot after flash, one reboot after restore; Slow: One reboot after flash, one reboot after restore in GUI."
 msgstr "Турбо: одна перезагрузка после прошивки; Быстро: одна перезагрузка после прошивки, одна перезагрузка после восстановления; Медленно: одна перезагрузка после прошивки, одна перезагрузка после восстановления в графическом интерфейсе."
 
@@ -23248,9 +23300,6 @@ msgstr "Приключения/Вестерн/Военные"
 msgid "advertisement/shopping"
 msgstr "Реклама/Телемагазин"
 
-msgid "All up/down"
-msgstr "все вверх/вниз"
-
 msgid "alpha then oldest"
 msgstr "Альфа и далее по алфавиту"
 
@@ -23779,9 +23828,6 @@ msgstr "Карта отсутствует или неизвестная"
 msgid "no storage devices found"
 msgstr "Устройства не найдены"
 
-msgid "normal"
-msgstr "нормальный"
-
 msgid "not"
 msgstr "нет"
 
@@ -23976,9 +24022,6 @@ msgstr "Перемотка назад"
 msgid "skip forward"
 msgstr "Перемотка вперёд"
 
-msgid "slow"
-msgstr "Медленно"
-
 msgid "soap/melodrama/folkloric"
 msgstr "Мыльные оперы/Мелодрама/Фольклор"
 
@@ -24081,9 +24124,6 @@ msgstr "классический (быстрый)"
 msgid "tree delete"
 msgstr "удалить дерево"
 
-msgid "Turbo"
-msgstr "Турбо"
-
 msgid "uShare"
 msgstr "uShare"
 
@@ -24174,6 +24214,27 @@ msgstr "Да (оставить фиды)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Black Screen"
+#~ msgstr "Чёрный экран"
+
+#~ msgid "Seek back short"
+#~ msgstr "Перемотка назад"
+
+#~ msgid "Seek forward  short"
+#~ msgstr "Перемотка вперёд  короткая"
+
+#~ msgid "Seek forward long"
+#~ msgstr "Перемотка вперёд длинная"
+
+#~ msgid "Service Name"
+#~ msgstr "Название канала"
+
+#~ msgid "normal"
+#~ msgstr "нормальный"
+
+#~ msgid "slow"
+#~ msgstr "Медленно"
 
 #~ msgid "DVB API version"
 #~ msgstr "Версия API DVB"
@@ -26172,9 +26233,6 @@ msgstr "®"
 
 #~ msgid "Add bouquet"
 #~ msgstr "Добавить букет"
-
-#~ msgid "Black screen"
-#~ msgstr "Чёрный экран"
 
 #~ msgid "no"
 #~ msgstr "нет"

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-17 17:20+0000\n"
-"PO-Revision-Date: 2025-07-18 21:03+0000\n"
+"POT-Creation-Date: 2025-07-27 15:35+0000\n"
+"PO-Revision-Date: 2025-07-31 17:18+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -98,7 +98,7 @@ msgstr " 已更新"
 msgid "!! Boot loader Upgrade !!"
 msgstr "！！ 引导加载程序升级！！"
 
-msgid "# = Reboot Required"
+msgid "# = Reboot required if this item is changed."
 msgstr "# = 需要重新启动"
 
 msgid "%-H:%M"
@@ -1308,7 +1308,7 @@ msgstr "（空）"
 msgid "(show optional DVD audio menu)"
 msgstr "（显示可选 DVD 音频菜单）"
 
-msgid "* = Restart Required"
+msgid "* = Restart required if this item is changed."
 msgstr "* = 需要重启"
 
 msgid "* Only available if more than one interface is active."
@@ -1749,7 +1749,7 @@ msgid "Abort Alternatives Edit"
 msgstr "中止备选方案编辑"
 
 msgid "Abort Bouquet Edit"
-msgstr "中止频道群编辑"
+msgstr "中止频道分组编辑"
 
 msgid "Abort Favorites Edit"
 msgstr "中止收藏夹编辑"
@@ -1860,10 +1860,10 @@ msgid "Add Bookmark"
 msgstr "添加书签"
 
 msgid "Add Bouquet"
-msgstr "添加频道群"
+msgstr "添加频道分组"
 
 msgid "Add Bouquet To Parental Protection"
-msgstr "将频道群添加到家长保护"
+msgstr "将频道分组添加到家长保护"
 
 msgid "Add Current"
 msgstr "添加当前"
@@ -1881,10 +1881,10 @@ msgid "Add File Commander to the Main Menu list of options."
 msgstr "将文件指挥官添加到主菜单的选项列表中。"
 
 msgid "Add HDMI-IN To Bouquet"
-msgstr "添加 HDMI-IN 到频道群"
+msgstr "添加 HDMI-IN 到频道分组"
 
 msgid "Add Marker To Bouquet"
-msgstr "添加标记到频道群"
+msgstr "添加标记到频道分组"
 
 msgid "Add New Quad Channel Entry"
 msgstr "添加新的四画面频道条目"
@@ -1896,7 +1896,7 @@ msgid "Add Service"
 msgstr "添加频道"
 
 msgid "Add Service To Bouquet"
-msgstr "添加频道到频道群"
+msgstr "添加频道到频道分组"
 
 msgid "Add Service To Favorites"
 msgstr "添加频道到收藏夹"
@@ -1938,7 +1938,7 @@ msgid "Add a mark"
 msgstr "添加标记"
 
 msgid "Add a new bouquet"
-msgstr "添加新频道群"
+msgstr "添加新频道分组"
 
 msgid "Add a new marker before the current service"
 msgstr "在当前频道之前添加新标记"
@@ -2019,7 +2019,7 @@ msgid "Add service to AutoCam"
 msgstr "添加频道到 自动 CAM"
 
 msgid "Add services to this bouquet?"
-msgstr "添加频道到此频道群吗?"
+msgstr "添加频道到此频道分组吗?"
 
 msgid "Add the current directory as a bookmark"
 msgstr "将当前目录添加为书签"
@@ -2028,7 +2028,7 @@ msgid "Add the current/active service to the Volume Offset list"
 msgstr "添加当前频道到音量补偿列表"
 
 msgid "Add the selected service to a bouquet or alternative"
-msgstr "将所选频道添加到频道群或备选中"
+msgstr "将所选频道添加到频道分组或备选中"
 
 msgid "Add title"
 msgstr "添加标题"
@@ -2195,6 +2195,9 @@ msgstr "全部频道供应商"
 msgid "All supported"
 msgstr "所有支持的"
 
+msgid "All up/down"
+msgstr "全部 向上/向下"
+
 msgid "Allocate"
 msgstr "分配"
 
@@ -2316,7 +2319,7 @@ msgid "Always include ECM messages in recordings. This overrides the individual 
 msgstr "录像中总是包含 ECM 消息。这将全局覆盖各个定时器设置。如果您的接收器支持，它允许录像在之后始终被解密（有时称为离线解码）。"
 
 msgid "Always show bouquets"
-msgstr "总是显示频道群"
+msgstr "总是显示频道分组"
 
 msgid "Always use smart1080p mode"
 msgstr "总是使用 智能1080p 模式"
@@ -2428,7 +2431,7 @@ msgid "Are you sure to delete all cuts and marks?"
 msgstr "确定要删除所有剪切和标记吗？"
 
 msgid "Are you sure to purge all deleted user bouquets?"
-msgstr "确定要清除所有已删除的用户频道群吗？"
+msgstr "确定要清除所有已删除的用户频道分组吗？"
 
 #, python-format
 msgid "Are you sure to remove all %d.%d%s%s services?"
@@ -2467,6 +2470,9 @@ msgstr "是否确定删除这个日志：\n"
 
 msgid "Are you sure you want to delete this?"
 msgstr "是否确定删除这个？"
+
+msgid "Are you sure you want to disable Chkroot Multiboot?"
+msgstr "确定要禁用 Chkroot 多系统启动吗？"
 
 msgid "Are you sure you want to exit this wizard?"
 msgstr "确定要退出该向导吗？"
@@ -2651,9 +2657,6 @@ msgstr "创作模式"
 msgid "Auto"
 msgstr "自动"
 
-msgid "Auto detect"
-msgstr "自动检测"
-
 msgid "Auto Language"
 msgstr "自动语言"
 
@@ -2677,6 +2680,9 @@ msgstr "每隔? 分钟自动分割章节.（0=从不）"
 
 msgid "Auto deep standby"
 msgstr "自动深度待机"
+
+msgid "Auto detect"
+msgstr "自动检测"
 
 msgid "Auto flesh"
 msgstr "自动肤色"
@@ -3054,7 +3060,7 @@ msgstr "比特率"
 msgid "Black"
 msgstr "黑色"
 
-msgid "Black Screen"
+msgid "Black screen"
 msgstr "黑屏"
 
 msgid "Black screen till locked"
@@ -3146,25 +3152,25 @@ msgid "Bottom"
 msgstr "底部"
 
 msgid "Bouquet Edit"
-msgstr "编辑频道群"
+msgstr "编辑频道分组"
 
 msgid "Bouquet List"
-msgstr "频道群列表"
+msgstr "频道分组列表"
 
 msgid "Bouquet Selector"
-msgstr "频道群选择器"
+msgstr "频道分组选择器"
 
 msgid "Bouquet Selector Actions"
-msgstr "频道群选择器操作"
+msgstr "频道分组选择器操作"
 
 msgid "Bouquet Selector Navigation Actions"
-msgstr "频道群选择器导航操作"
+msgstr "频道分组选择器导航操作"
 
 msgid "Bouquets"
-msgstr "频道群"
+msgstr "频道分组"
 
 msgid "Bouquets start at 1"
-msgstr "频道群从 1 开始"
+msgstr "频道分组编号从 1 开始"
 
 msgid "Bouvet Island"
 msgstr "布维岛"
@@ -3225,7 +3231,7 @@ msgid "Build"
 msgstr "创建"
 
 msgid "Build Brand"
-msgstr "打造品牌"
+msgstr "构建品牌"
 
 msgid "Build Information"
 msgstr "构建信息"
@@ -3374,7 +3380,7 @@ msgid "CH%s"
 msgstr "频道 %s"
 
 msgid "CHANGE BOUQUET"
-msgstr "更改频道群"
+msgstr "更改频道分组"
 
 msgid "CHANNEL +/-"
 msgstr "频道 +/-"
@@ -3632,7 +3638,7 @@ msgid "Cancel the Reset Feeds command currently being processed"
 msgstr "取消当前正在处理的重置订阅源命令"
 
 msgid "Cancel the bouquet selection"
-msgstr "取消频道群选择"
+msgstr "取消频道分组选择"
 
 msgid "Cancel the flash process"
 msgstr "取消刷机进程"
@@ -3766,7 +3772,7 @@ msgid "Change Timer"
 msgstr "更改定时器"
 
 msgid "Change bouquets in quickzap"
-msgstr "在快速换台里更改频道群"
+msgstr "在快速换台里更改频道分组"
 
 msgid "Change execute permissions (755/644)"
 msgstr "更改执行权限（755/644）"
@@ -3799,7 +3805,7 @@ msgid "Change to TV services mode"
 msgstr "更改为电视频道模式"
 
 msgid "Change to bouquet"
-msgstr "更改到频道群"
+msgstr "更改到频道分组"
 
 msgid "Changed"
 msgstr "已更改"
@@ -3824,9 +3830,6 @@ msgstr "频道信息"
 
 msgid "Channel List"
 msgstr "频道列表"
-
-msgid "Channel number"
-msgstr "频道号"
 
 msgid "Channel Selection"
 msgstr "频道选择"
@@ -3887,6 +3890,9 @@ msgstr "频道列表类型"
 
 msgid "Channel name"
 msgstr "频道名称"
+
+msgid "Channel number"
+msgstr "频道号"
 
 msgid "Channel preview mode"
 msgstr "频道预览模式"
@@ -4227,10 +4233,10 @@ msgid "Close Task View"
 msgstr "关闭任务视图"
 
 msgid "Close bouquet list"
-msgstr "关闭频道群列表"
+msgstr "关闭频道分组列表"
 
 msgid "Close bouquet list."
-msgstr "关闭频道群列表。"
+msgstr "关闭频道分组列表。"
 
 msgid "Close dialog"
 msgstr "关闭对话框"
@@ -4252,6 +4258,9 @@ msgstr "关闭 Kexec 多系统启动管理器"
 
 msgid "Close the Plugin Browser screen"
 msgstr "关闭插件浏览器屏幕"
+
+msgid "Close the SeekBar after returning to the starting point"
+msgstr "返回起始点后关闭进度条"
 
 msgid "Close the choice box"
 msgstr "关闭选择框"
@@ -4988,7 +4997,7 @@ msgid "Copy"
 msgstr "复制"
 
 msgid "Copy To Bouquet"
-msgstr "复制到频道群"
+msgstr "复制到频道分组"
 
 msgid "Copy To Stream Relay"
 msgstr "复制到串流中继"
@@ -5149,7 +5158,7 @@ msgid "Create root journaling flash file system."
 msgstr "创建根日志闪存文件系统。"
 
 msgid "Create separate radio user bouquet"
-msgstr "创建单独的广播用户频道群"
+msgstr "创建单独的广播用户频道分组"
 
 msgid "Create slots for the selected device"
 msgstr "为所选设备创建插槽"
@@ -6295,6 +6304,9 @@ msgstr "已禁用画中画。\n"
 msgid "Disabled or WPA/WPA2"
 msgstr "禁用或 WPA/WPA2"
 
+msgid "Disabling Chkroot failed!"
+msgstr "禁用 Chkroot 失败！"
+
 msgid "Dish"
 msgstr "天线"
 
@@ -6774,7 +6786,7 @@ msgid "EPG Actions"
 msgstr "EPG 操作"
 
 msgid "EPG Bouquet Actions"
-msgstr "EPG 频道群操作"
+msgstr "EPG 频道分组操作"
 
 msgid "EPG Cache Check"
 msgstr "EPG 缓存检查"
@@ -6991,7 +7003,7 @@ msgid "Enable BT Audio"
 msgstr "启用蓝牙音频"
 
 msgid "Enable Bouquet Edit"
-msgstr "启用频道群编辑"
+msgstr "启用频道分组编辑"
 
 msgid "Enable Chkroot MultiBoot"
 msgstr "启用 Chkroot 多系统启动"
@@ -7145,7 +7157,7 @@ msgid "Enable intro screen"
 msgstr "启用屏幕介绍"
 
 msgid "Enable multiple bouquets"
-msgstr "启用多个频道群"
+msgstr "启用多个频道分组"
 
 msgid "Enable network traffic check"
 msgstr "启用网络流量检查"
@@ -7268,7 +7280,7 @@ msgid "End Alternatives Edit"
 msgstr "结束备选方案编辑"
 
 msgid "End Bouquet Edit"
-msgstr "结束频道群编辑"
+msgstr "结束频道分组编辑"
 
 msgid "End Favorites Edit"
 msgstr "结束收藏夹编辑"
@@ -8446,7 +8458,7 @@ msgid "Flash on the fly your your Receiver software."
 msgstr "直接刷写接收机软件。"
 
 msgid "Flash type"
-msgstr "刷机类型"
+msgstr "闪存类型"
 
 msgid "Flash used"
 msgstr "闪存已使用"
@@ -8822,7 +8834,7 @@ msgid "Goto last channel"
 msgstr "转到末频道"
 
 msgid "Goto next bouquet"
-msgstr "转到下个频道群"
+msgstr "转到下个频道分组"
 
 msgid "Goto next channel"
 msgstr "转到下个频道"
@@ -8837,7 +8849,7 @@ msgid "Goto position"
 msgstr "转到位置"
 
 msgid "Goto previous bouquet"
-msgstr "转到前个频道群"
+msgstr "转到前个频道分组"
 
 msgid "Goto previous channel"
 msgstr "转到前个频道"
@@ -9963,6 +9975,9 @@ msgstr "内置固态硬盘"
 msgid "Internal USB"
 msgstr "内部 USB"
 
+msgid "Internal disk only"
+msgstr "仅内置硬盘"
+
 msgid "Internal flash"
 msgstr "内部闪存"
 
@@ -9973,9 +9988,6 @@ msgstr "内部闪存： %s %s "
 #, python-format
 msgid "Internal flash: %s %s as USB Recovery"
 msgstr "内部闪存：%s %s 作为 USB 恢复"
-
-msgid "Internal disk only"
-msgstr "仅内置硬盘"
 
 msgid "Internet"
 msgstr "互联网"
@@ -10140,7 +10152,7 @@ msgid "Just boot"
 msgstr "仅开机"
 
 msgid "Just change Bouquet"
-msgstr "仅更改频道群"
+msgstr "仅更改频道分组"
 
 msgid "Just change channels"
 msgstr "只切换频道"
@@ -10458,7 +10470,7 @@ msgid "Left column file sort"
 msgstr "左列文件排序"
 
 msgid "Left of service name"
-msgstr "频道名称左起"
+msgstr "频道名称左侧"
 
 msgid "Left, back USB"
 msgstr "左侧，背面 USB"
@@ -10619,7 +10631,7 @@ msgid "Load tags from the timer and recordings"
 msgstr "从定时器和录像中加载标签"
 
 msgid "Load unlinked user bouquets"
-msgstr "载入断开链接的用户频道群"
+msgstr "载入断开链接的用户频道分组"
 
 msgid "Loading information, please wait..."
 msgstr "正在加载信息，请稍候..."
@@ -11042,7 +11054,7 @@ msgid "Maximum no of days"
 msgstr "最长天数"
 
 msgid "Maximum number of days in EPG"
-msgstr "EPG中的最大天数"
+msgstr "EPG 最大天数"
 
 msgid "Maximum space used (MB)"
 msgstr "使用的最大空间（MB）"
@@ -11494,13 +11506,13 @@ msgid "Move to last line / screen in the panel"
 msgstr "移动到面板中的末行/屏幕"
 
 msgid "Move to next bouquet"
-msgstr "移到下一个频道群"
+msgstr "移到下一个频道分组"
 
 msgid "Move to next marker"
 msgstr "移到下一个标记"
 
 msgid "Move to previous bouquet"
-msgstr "移到上一个频道群"
+msgstr "移到上一个频道分组"
 
 msgid "Move to previous marker"
 msgstr "移到上一个标记"
@@ -12021,7 +12033,7 @@ msgid "Next"
 msgstr "下一个"
 
 msgid "Next Bouquet"
-msgstr "下一频道群"
+msgstr "下一频道分组"
 
 msgid "Next Page"
 msgstr "下一页"
@@ -12130,7 +12142,7 @@ msgid "No event information found, recording default is 24 hours."
 msgstr "未找到事件信息，录制默认为 24 小时。"
 
 msgid "No fast winding possible yet.. but you can use the number buttons to skip forward/backward!"
-msgstr "还没有快进可用..但你可以使用数字键向前/向后跳过！"
+msgstr "当前不支持连续快进/快退，但可使用数字键跳转前进/后退！"
 
 msgid "No free index available"
 msgstr "没有剩余索引可用"
@@ -12313,6 +12325,9 @@ msgstr "指定要检查活动连接的 IP 地址数。"
 msgid "Non-Linear"
 msgstr "非线性"
 
+msgid "Non-flashing"
+msgstr "不闪烁"
+
 msgid "None"
 msgstr "无"
 
@@ -12329,7 +12344,7 @@ msgid "Normal"
 msgstr "正常"
 
 msgid "Normal - Standard image"
-msgstr "正常 - 标准镜像"
+msgstr "常规 - 标准镜像"
 
 msgid "Normal No ScaleUp"
 msgstr "正常 无放大"
@@ -12369,9 +12384,6 @@ msgstr "未分类"
 
 msgid "Not Defined"
 msgstr "未定义"
-
-msgid "Non-flashing"
-msgstr "不闪烁"
 
 msgid "Not Installed"
 msgstr "未安装"
@@ -12657,7 +12669,7 @@ msgid "Open AutoTimer Overview"
 msgstr "打开自动定时器列表"
 
 msgid "Open Bouquet selection"
-msgstr "打开频道群列表"
+msgstr "打开频道分组列表"
 
 msgid "Open Box Portal"
 msgstr "显示机顶盒门户"
@@ -13275,7 +13287,7 @@ msgid "Picture Information Actions"
 msgstr "图片信息操作"
 
 msgid "Picture in EPG"
-msgstr "EPG中的图片"
+msgstr "EPG 节目缩略图"
 
 msgid "Picture in Picture Actions"
 msgstr "画中画操作"
@@ -13429,7 +13441,7 @@ msgid "Please enter a name for the HDMI-IN"
 msgstr "请输入 HDMI-IN 的名称"
 
 msgid "Please enter a name for the new bouquet"
-msgstr "请输入新频道群的名称"
+msgstr "请输入新频道分组的名称"
 
 msgid "Please enter a name for the new directory:"
 msgstr "请输入新目录的名称："
@@ -13561,7 +13573,7 @@ msgid ""
 "Press OK to go back to the TV mode or EXIT to cancel the moving."
 msgstr ""
 "请使用方向键移动画中画窗口。\n"
-"按频道群 +/- 调整窗口大小。\n"
+"按 Bouquet +/- 调整窗口大小。\n"
 "请按 OK 键返回电视模式或 按 EXIT 键取消移动。"
 
 msgid "Please wait"
@@ -13571,7 +13583,7 @@ msgid "Please wait for activation of your network configuration..."
 msgstr "请等待激活您的网络配置..."
 
 msgid "Please wait while LCN bouquets are created/updated..."
-msgstr "正在创建/更新 LCN 频道群，请稍候..."
+msgstr "正在创建/更新 LCN 频道分组，请稍候..."
 
 msgid "Please wait while feeds are updated..."
 msgstr "正在更新订阅源，请稍候..."
@@ -13978,6 +13990,9 @@ msgstr "按“确定”使用此区域设置。[%s]"
 msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that image. If available, YELLOW will either delete or wipe the image. A deleted image can be restored with the BLUE button. A wiped image is completely removed and cannot be restored!"
 msgstr "按向上/向下按钮选择一个槽位，然后按 OK 或 绿键 重新启动到该镜像。 如果可用，黄键将删除或擦除镜像。 可以使用蓝键恢复已删除的镜像。 擦除的镜像被完全删除，无法恢复！"
 
+msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that image. If available, YELLOW will disable Multiboot, delete, or wipe the selected image. Press BLUE to add more slots."
+msgstr "使用 上/下 键选择槽位，按 OK 或绿键重启进入对应系统镜像。若可用，黄键可禁用多系统启动、删除或清除所选镜像。按蓝键可添加更多槽位。"
+
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "按下此按钮以模拟之后按下的按钮的长按操作（此操作还会覆盖分配给模拟按钮的任何其他功能）。"
 
@@ -13985,7 +14000,7 @@ msgid "Press yellow to set this interface as the default interface."
 msgstr "请按黄键来设置这个界面为默认界面。"
 
 msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
-msgstr "按下紧急键，可将频道号切换为首个频道群中的频道号。"
+msgstr "按下紧急键，可将频道号切换为首个频道分组中的频道号。"
 
 msgid "Prev quad PiP channel"
 msgstr "上一个四路画中画频道"
@@ -14000,7 +14015,7 @@ msgid "Previous"
 msgstr "上一个"
 
 msgid "Previous Bouquet"
-msgstr "上一频道群"
+msgstr "上一频道分组"
 
 msgid "Previous Page"
 msgstr "上一页"
@@ -14009,7 +14024,7 @@ msgid "Previous channel page"
 msgstr "上一频道页"
 
 msgid "Previous/Next bouquet"
-msgstr "前一/后一个频道群"
+msgstr "前一/后一个频道分组"
 
 msgid "Previous/Next page"
 msgstr "上一/下一页"
@@ -14190,7 +14205,7 @@ msgid "Purge 'Trash' after (days)"
 msgstr "（天）后清除“垃圾”"
 
 msgid "Purge Deleted User Bouquets"
-msgstr "清除已删除的频道群"
+msgstr "清除已删除的频道分组"
 
 msgid "Purge all but / Add / Delete the currently highlighted locale/language"
 msgstr "清除所有但/添加/删除当前突出显示的区域设置/语言"
@@ -14318,14 +14333,14 @@ msgstr "REC"
 msgid "REC "
 msgstr "REC "
 
-msgid "REC symbol"
-msgstr "REC 字符"
-
 msgid "REC Symbol in Standby"
 msgstr "待机中的 REC 符号"
 
 msgid "REC Symbol in use"
 msgstr "使用 REC 符号"
+
+msgid "REC symbol"
+msgstr "REC 字符"
 
 msgid "RED button"
 msgstr "红键"
@@ -14680,7 +14695,7 @@ msgid "Reloading EPG Cache..."
 msgstr "正在重新载入 EPG 缓存..."
 
 msgid "Reloading bouquets and services."
-msgstr "重新装载频道群和频道。"
+msgstr "重新装载频道分组和频道。"
 
 msgid "Remaining"
 msgstr "剩余"
@@ -14741,7 +14756,7 @@ msgid "Remove Bookmark"
 msgstr "移除书签"
 
 msgid "Remove Bouquet From Parental Protection"
-msgstr "从家长保护中删除频道群"
+msgstr "从家长保护中删除频道分组"
 
 msgid "Remove Cable Services"
 msgstr "删除有线电视频道"
@@ -14786,7 +14801,7 @@ msgid "Remove a mark"
 msgstr "移除标记"
 
 msgid "Remove all bouquet/tuning data"
-msgstr "删除所有频道群/调谐数据"
+msgstr "删除所有频道分组/调谐数据"
 
 msgid "Remove all cuts and marks"
 msgstr "删除所有剪切和标记"
@@ -15071,7 +15086,7 @@ msgid "Restore"
 msgstr "还原"
 
 msgid "Restore Deleted User Bouquets"
-msgstr "还原已删除的用户频道群"
+msgstr "还原已删除的用户频道分组"
 
 msgid "Restore MetrixHD Settings"
 msgstr "还原 MetrixHD 设置"
@@ -15168,7 +15183,7 @@ msgid "Return to previous service"
 msgstr "返回到上一频道"
 
 msgid "Reverse bouquet buttons"
-msgstr "反转频道群按钮"
+msgstr "反转频道分组按钮"
 
 msgid "Reverse list"
 msgstr "反转列表"
@@ -15198,7 +15213,7 @@ msgid "Right column file sort"
 msgstr "右列文件排序"
 
 msgid "Right of service name"
-msgstr "频道名称右起"
+msgstr "频道名称右侧"
 
 msgid "Right, back USB"
 msgstr "右侧，背面 USB"
@@ -15604,7 +15619,7 @@ msgid "Scan for local extensions and install them."
 msgstr "扫描本地扩展并安装。"
 
 msgid "Scan for terrestrial LCNs and create LCN bouquets"
-msgstr "扫描地面波 LCN 并创建 LCN 频道群"
+msgstr "扫描地面波 LCN 并创建 LCN 频道分组"
 
 msgid "Scan wireless networks"
 msgstr "扫描无线网络"
@@ -15665,14 +15680,14 @@ msgstr "计划任务概览"
 msgid "Scheduler Settings"
 msgstr "计划任务设置"
 
-msgid "Scheduler standby"
-msgstr "计划任务待机"
-
 msgid "Scheduler deep standby"
 msgstr "计划任务深度待机"
 
 msgid "Scheduler log"
 msgstr "计划任务日志"
+
+msgid "Scheduler standby"
+msgstr "计划任务待机"
 
 msgid "Sci-Fi"
 msgstr "科幻小说"
@@ -15758,8 +15773,8 @@ msgstr "搜索"
 msgid "Seek Actions"
 msgstr "搜索动作"
 
-msgid "Seek back short"
-msgstr "向后搜索 短按"
+msgid "Seek Bar"
+msgstr "进度条"
 
 msgid "Seek backward"
 msgstr "向后搜索"
@@ -15770,20 +15785,17 @@ msgstr "向后搜索（输入时间）"
 msgid "Seek forward"
 msgstr "向前搜索"
 
-msgid "Seek forward  short"
-msgstr "向前搜索 短按"
-
 msgid "Seek forward (enter time)"
 msgstr "向前搜索（输入时间）"
 
-msgid "Seek forward long"
-msgstr "长按向前搜索"
-
-msgid "SeekBar activation"
-msgstr "进度条激活"
-
 msgid "SeekBar"
 msgstr "进度条"
+
+msgid "SeekBar Actions"
+msgstr "进度条操作"
+
+msgid "SeekBar activation"
+msgstr "激活进度条"
 
 msgid "SeekBar sensibility"
 msgstr "进度条灵敏度"
@@ -15828,7 +15840,7 @@ msgid "Select 'Provider' to scan from the predefined list of cable multiplexes. 
 msgstr "选择“提供商”以从预定义的有线电视多路复用列表中进行扫描。 选择“波段”仅扫描频谱的某些部分。 选择“步进”以按特定频率带宽的步进进行扫描。"
 
 msgid "Select 'Unique numbering' to assign unique numbers for every service in every bouquet. Use 'Bouquets start at 1' to start numbering each bouquet from 1. Use 'LCN numbering' to use consistent service LCNs where ever that service is used."
-msgstr "选择“唯一编号”为每个频道群中的每个频道分配唯一编号。使用“频道群从 1 开始”可从 1 开始对每个频道群进行编号。使用“LCN 编号”可在使用该频道时使用一致的频道 LCN。"
+msgstr "选择“唯一编号”为每个频道分组中的每个频道分配唯一编号。使用“频道分组编号从 1 开始”可从 1 开始对每个频道分组进行编号。使用“LCN 编号”可在使用该频道时使用一致的频道 LCN。"
 
 msgid "Select 'Yes' if an end time is required for this timer."
 msgstr "如果此定时器需要结束时间，请选择“是”。"
@@ -15861,7 +15873,7 @@ msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point with
 msgstr "选择“是”以允许使用进度条跳转到事件中的选定点。"
 
 msgid "Select 'Yes' to always show the bouquet screen first when opening the channel list. Select 'No' to open the channel list using the current bouquet."
-msgstr "选择“是”在打开频道列表时始终首先显示频道群屏幕。选择“否”以使用当前频道群打开频道列表。"
+msgstr "选择“是”在打开频道列表时始终首先显示频道分组屏幕。选择“否”以使用当前频道分组打开频道列表。"
 
 msgid "Select 'Yes' to check if network connections are coming from nominated IP Addresses at the activation time of the timer. If so, the timer will be deactivated."
 msgstr "选择“是”以检查在定时器激活时网络连接是否来自指定的 IP 地址。如果是，定时器将被停用。"
@@ -15903,7 +15915,7 @@ msgid "Select 'Yes' to enable preview of channels while in the EPG list. Press '
 msgstr "选择“是”可在 EPG 列表中启用频道预览。按“确定”预览当前选择的频道。再次按“确定”退出 EPG 并切换到所选频道。 按“EXIT”退出 EPG 并返回之前选择的频道。"
 
 msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages."
-msgstr "选择“是”以启用加载未链接的用户频道群。也就是说，将加载未包含在 bouquets.tv 或 bouquets.radio 文件中的用户频道群。例如，这允许您创建与设置包中的频道群不冲突或不被其替换的频道群。"
+msgstr "选择“是”以启用加载未链接的用户频道分组。也就是说，将加载未包含在 bouquets.tv 或 bouquets.radio 文件中的用户频道分组。例如，这允许您创建与设置包中的频道分组不冲突或不被其替换的频道分组。"
 
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr "选择“是”以启用左/右按钮作为上页/下页功能（当左/右按钮未定义其他功能时）。此功能为偏好传统导航方式的用户提供支持。"
@@ -15951,7 +15963,7 @@ msgid "Select 'Yes' to remove all timer configuration data. Selecting this optio
 msgstr "选择“是”删除所有定时器配置数据。选择此选项将清除所有定时器、自动定时器和电源定时器。"
 
 msgid "Select 'Yes' to remove all tuning data. Selecting this option will remove all tuning and bouquet data and will make timers non functional until the receiver is retuned."
-msgstr "选择“是”删除所有调谐数据。选择此选项将删除所有调谐和频道群数据，并使定时器在接收机重新调谐之前不起作用。"
+msgstr "选择“是”删除所有调谐数据。选择此选项将删除所有调谐和频道分组数据，并使定时器在接收机重新调谐之前不起作用。"
 
 msgid "Select 'Yes' to remove all user customizations of skin data. Selecting this option will remove all user based skin customizations. All affected skins will return to their standard settings. This will also clear any customized boot logos and backdrops."
 msgstr "选择“是”以删除皮肤数据的所有用户自定义设置。选择此选项将删除所有基于用户的皮肤自定义。所有受影响的皮肤将恢复其标准设置。这也将清除任何定制的启动徽标和背景。"
@@ -16029,7 +16041,7 @@ msgid "Select 'Yes' to show the advanced setting options."
 msgstr "选择“是”以显示高级设置选项。"
 
 msgid "Select 'Yes' to show the bouquet selection screen every time you open the EPG."
-msgstr "选择“是”以在每次打开 EPG 时显示频道群选择屏幕。"
+msgstr "选择“是”以在每次打开 EPG 时显示频道分组选择屏幕。"
 
 msgid "Select 'Yes' to show the channel list after switching between Radio and TV modes."
 msgstr "选择“是”以在广播和电视模式之间切换后，显示频道列表。"
@@ -16140,7 +16152,7 @@ msgid "Select a Softcam from the available list."
 msgstr "从可用列表中选择一个Softcam。"
 
 msgid "Select a bouquet"
-msgstr "选择一个频道群"
+msgstr "选择一个频道分组"
 
 msgid "Select a debug log file to view:"
 msgstr "选择要查看的调试日志文件："
@@ -16466,7 +16478,7 @@ msgid "Select the currently highlighted action"
 msgstr "选择当前突出显示的操作"
 
 msgid "Select the currently highlighted bouquet"
-msgstr "选择当前突出显示的频道群"
+msgstr "选择当前突出显示的频道分组"
 
 msgid "Select the currently highlighted locale/language for the user interface"
 msgstr "为用户界面选择当前突出显示的区域设置/语言"
@@ -16962,15 +16974,6 @@ msgstr "频道信息"
 msgid "Service Information Actions"
 msgstr "频道信息操作"
 
-msgid "Service Name"
-msgstr "频道名称"
-
-msgid "Service number and service name"
-msgstr "频道编号和频率名称"
-
-msgid "Service number, picon and service name"
-msgstr "频道编号，频道图标和频道名称"
-
 msgid "Service Scan"
 msgstr "频道扫描"
 
@@ -17019,8 +17022,14 @@ msgstr ""
 "没有找到频道！\n"
 "（PAT 里没有找到 SID）"
 
+msgid "Service number and service name"
+msgstr "频道编号和频率名称"
+
 msgid "Service number font size"
 msgstr "频道序号字体大小"
+
+msgid "Service number, picon and service name"
+msgstr "频道编号，频道图标和频道名称"
 
 msgid "Service off-air"
 msgstr "频道停播"
@@ -17075,7 +17084,7 @@ msgid "Services"
 msgstr "频道"
 
 msgid "Services may be grouped in bouquets. When enabled, you can use more than one bouquet."
-msgstr "频道可在频道群中分组。启用后，可以使用多于一个频道群。"
+msgstr "频道可在频道分组中分组。启用后，可以使用多于一个频道分组。"
 
 msgid "Set As Startup Service"
 msgstr "设置为启动频道"
@@ -17809,7 +17818,7 @@ msgid "Show background when tuned to a radio channel."
 msgstr "调到广播频道时显示背景。"
 
 msgid "Show bouquet on launch"
-msgstr "启动时显示频道群"
+msgstr "启动时显示频道分组"
 
 msgid "Show build information"
 msgstr "显示构建信息"
@@ -17949,7 +17958,7 @@ msgid "Show last image"
 msgstr "显示最后一个镜像"
 
 msgid "Show list of bouquets"
-msgstr "显示频道群列表"
+msgstr "显示频道分组列表"
 
 msgid "Show list of providers"
 msgstr "显示供应商列表"
@@ -18374,10 +18383,10 @@ msgstr "皮肤部件包"
 msgid "Skin Packages"
 msgstr "皮肤包"
 
-msgid "Skin setting"
+msgid "Skin Settings"
 msgstr "皮肤设置"
 
-msgid "Skin Settings"
+msgid "Skin setting"
 msgstr "皮肤设置"
 
 msgid "SkinSelection"
@@ -18387,7 +18396,17 @@ msgid "Skip back"
 msgstr "往后跳"
 
 msgid "Skip backward"
-msgstr "后退"
+msgstr "快退"
+
+#, python-format
+msgid "Skip backward %d second"
+msgid_plural "Skip backward %d seconds"
+msgstr[0] "快退 %d 秒"
+msgstr[1] "快退 %d 秒"
+
+#, python-format
+msgid "Skip backward %s%%"
+msgstr "快退 %s%%"
 
 msgid "Skip backward (enter time)"
 msgstr "快退（输入时间）"
@@ -18395,8 +18414,22 @@ msgstr "快退（输入时间）"
 msgid "Skip empty services"
 msgstr "跳过空频道"
 
+#, python-format
+msgid "Skip for '%s' is disabled"
+msgstr "%s 跳过已禁用"
+
 msgid "Skip forward"
-msgstr "向前跳"
+msgstr "快进"
+
+#, python-format
+msgid "Skip forward %d second"
+msgid_plural "Skip forward %d seconds"
+msgstr[0] "快进 %d 秒"
+msgstr[1] "快进 %d 秒"
+
+#, python-format
+msgid "Skip forward %s%%"
+msgstr "快进 %s%%"
 
 msgid "Skip forward (enter time)"
 msgstr "快进（输入时间）"
@@ -18418,6 +18451,13 @@ msgstr "'%s'按钮跳过时间"
 
 msgid "Skip time for '%s'/'%s' buttons"
 msgstr "%s'/'%s'按钮跳过时间"
+
+#, python-format
+msgid "Skip to %s0%% position (Add %s%% on second press)"
+msgstr "跳转至 %s0%% 位置（第二次按下追加 %s%%）"
+
+msgid "Skip to 0% (start) position"
+msgstr "跳转到 0%（起始）位置"
 
 msgid "Sleep"
 msgstr "睡眠"
@@ -18546,6 +18586,10 @@ msgstr "插槽 R：根插槽镜像备份（当前镜像）"
 
 msgid "Slot count"
 msgstr "插槽数"
+
+#, python-format
+msgid "Slots have been extended by %d..\n"
+msgstr "槽位已扩展 %d 个...\n"
 
 msgid "Slovak"
 msgstr "斯洛伐克语"
@@ -18974,6 +19018,9 @@ msgstr "开始时间"
 
 msgid "Starts in a few seconds"
 msgstr "几秒钟后开始"
+
+msgid "Startup device not found!"
+msgstr "未找到启动设备！"
 
 #. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
@@ -20184,7 +20231,7 @@ msgid "This allows you to set the maximum number of digits in a service number, 
 msgstr "如果您有超过9999个频道，这允许您将数字位数设置为5。"
 
 msgid "This bouquet is protected by a parental control PIN!"
-msgstr "此频道群由家长控制密码保护！"
+msgstr "此频道分组由家长控制密码保护！"
 
 #, python-format
 msgid "This field allows you to search an additional symbol rate up to %s."
@@ -20790,7 +20837,7 @@ msgid "Toggle auto refresh On/Off"
 msgstr "打开/关闭自动刷新"
 
 msgid "Toggle between bouquet/EPG lists"
-msgstr "在频道群/EPG 列表之间切换"
+msgstr "在频道分组/EPG 列表之间切换"
 
 msgid "Toggle between the available TV and RADIO services"
 msgstr "在可用电视与广播频道之间切换"
@@ -21087,6 +21134,9 @@ msgstr "调整算法"
 
 msgid "Tunisia"
 msgstr "突尼斯"
+
+msgid "Turbo"
+msgstr "Turbo"
 
 msgid "Turbo: One reboot after flash; Fast: One reboot after flash, one reboot after restore; Slow: One reboot after flash, one reboot after restore in GUI."
 msgstr "Turbo：刷机后重启一次；快速：刷机后重启一次，恢复后重启一次；慢：刷机后重启一次，在用户界面中恢复后重启一次。"
@@ -21632,7 +21682,7 @@ msgid "Use spacer lines"
 msgstr "使用间隔线"
 
 msgid "Use spacer lines to pad the bouquet to make the #SERVICE line numbers match the LCN."
-msgstr "使用间隔线填充频道群，使 #频道 行号与 LCN 匹配。"
+msgstr "使用间隔线填充频道分组，使 #频道 行号与 LCN 匹配。"
 
 msgid "Use the LEFT/RIGHT buttons on your remote to adjust the height of the OSD. LEFT button decreases the height, RIGHT increases the height."
 msgstr "使用遥控器上的向左/向右按钮调整 OSD 的高度。左按钮降低高度，右按钮增加高度。"
@@ -21728,7 +21778,7 @@ msgid "User  (keymap.usr)"
 msgstr "用户 (keymap.usr)"
 
 msgid "User - Bouquets"
-msgstr "用户 － 频道群"
+msgstr "用户 － 频道分组"
 
 msgid "User Feed URL"
 msgstr "用户订阅源地址"
@@ -22445,7 +22495,7 @@ msgid "When enabled, content with an aspect ratio of 4:3 will be stretched to fi
 msgstr "启用时，画面比例为 4:3 的内容将被拉伸以适合屏幕。"
 
 msgid "When enabled, continue to the next bouquet when the last channel of the current bouquet is reached while changing channels."
-msgstr "启用后，换台到当前频道群的最后一个频道时，继续到下一个频道群。"
+msgstr "启用后，换台到当前频道分组的最后一个频道时，继续到下一个频道分组。"
 
 msgid "When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately."
 msgstr "启用后，已删除的录像会移至回收站，而不是立即删除。"
@@ -22472,7 +22522,7 @@ msgid "When enabled, number markers will be hidden."
 msgstr "启用时，数字标记将会被隐藏。"
 
 msgid "When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history."
-msgstr "启用后，按“0”将会切换到第一个频道群中的第一个频道，并删除您的换台历史记录。"
+msgstr "启用后，按“0”将会切换到第一个频道分组中的第一个频道，并删除您的换台历史记录。"
 
 msgid "When enabled, reformat subtitles to match the width of the screen."
 msgstr "启用后，重新格式化字幕以匹配屏幕宽度。"
@@ -23122,7 +23172,7 @@ msgid "Zap to next service in history"
 msgstr "切换到历史中的下一频道"
 
 msgid "Zap to next service in the current bouquet"
-msgstr "切换到当前频道群中的下一个频道"
+msgstr "切换到当前频道分组中的下一个频道"
 
 msgid "Zap to previous service"
 msgstr "切换到前一频道"
@@ -23131,7 +23181,7 @@ msgid "Zap to previous service in history"
 msgstr "切换到历史中的上一频道"
 
 msgid "Zap to previous service in the current bouquet"
-msgstr "切换到当前频道群中的上一个频道"
+msgstr "切换到当前频道分组中的上一个频道"
 
 msgid "Zap up"
 msgstr "向上切换"
@@ -23195,9 +23245,6 @@ msgstr "冒险/西部/战争"
 
 msgid "advertisement/shopping"
 msgstr "广告/购物"
-
-msgid "All up/down"
-msgstr "全部 向上/向下"
 
 msgid "alpha then oldest"
 msgstr "按 字母先后/由旧到新 排序"
@@ -23727,9 +23774,6 @@ msgstr "没有或未知卡插入"
 msgid "no storage devices found"
 msgstr "未发现存储设备"
 
-msgid "normal"
-msgstr "正常"
-
 msgid "not"
 msgstr "否"
 
@@ -23924,9 +23968,6 @@ msgstr "快退"
 msgid "skip forward"
 msgstr "快进"
 
-msgid "slow"
-msgstr "慢速"
-
 msgid "soap/melodrama/folkloric"
 msgstr "肥皂 /音乐剧/民俗"
 
@@ -24029,9 +24070,6 @@ msgstr "传统（快速），重新调谐"
 msgid "tree delete"
 msgstr "删除树"
 
-msgid "Turbo"
-msgstr "Turbo"
-
 msgid "uShare"
 msgstr "uShare"
 
@@ -24121,6 +24159,27 @@ msgstr "是（保留订阅源）"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Black Screen"
+#~ msgstr "黑屏"
+
+#~ msgid "Seek back short"
+#~ msgstr "向后搜索 短按"
+
+#~ msgid "Seek forward  short"
+#~ msgstr "向前搜索 短按"
+
+#~ msgid "Seek forward long"
+#~ msgstr "长按向前搜索"
+
+#~ msgid "Service Name"
+#~ msgstr "频道名称"
+
+#~ msgid "normal"
+#~ msgstr "正常"
+
+#~ msgid "slow"
+#~ msgstr "慢速"
 
 #~ msgid "DVB API version"
 #~ msgstr "DVB API 版本"
@@ -25873,6 +25932,3 @@ msgstr "®"
 
 #~ msgid "use_hdmi_cacenter"
 #~ msgstr "使用hdmi作为主信号"
-
-#~ msgid "Black screen"
-#~ msgstr "黑屏"

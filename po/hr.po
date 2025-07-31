@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-17 17:20+0000\n"
+"POT-Creation-Date: 2025-07-27 15:35+0000\n"
 "PO-Revision-Date: 2024-11-03 19:00+0000\n"
 "Last-Translator: Dejan <pitbul@vip.hr>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hr/>\n"
@@ -99,7 +99,7 @@ msgstr " osvježeno"
 msgid "!! Boot loader Upgrade !!"
 msgstr "!! \"Boot loader\" nadogradnja !!"
 
-msgid "# = Reboot Required"
+msgid "# = Reboot required if this item is changed."
 msgstr ""
 
 #
@@ -1368,7 +1368,7 @@ msgstr "(prazno)"
 msgid "(show optional DVD audio menu)"
 msgstr "(prikaži dodatni DVD audio izbornik)"
 
-msgid "* = Restart Required"
+msgid "* = Restart required if this item is changed."
 msgstr "* = Restart obavezan"
 
 #
@@ -2341,6 +2341,9 @@ msgstr "Svi pružatelji usluga"
 msgid "All supported"
 msgstr "Sve podržano"
 
+msgid "All up/down"
+msgstr ""
+
 msgid "Allocate"
 msgstr "Dodijeliti"
 
@@ -2625,6 +2628,9 @@ msgstr "Da li ste sigurni da želite obrisati ovaj log:\n"
 msgid "Are you sure you want to delete this?"
 msgstr "Da li ste sigurni da želite ovo obrisati?"
 
+msgid "Are you sure you want to disable Chkroot Multiboot?"
+msgstr ""
+
 #
 msgid "Are you sure you want to exit this wizard?"
 msgstr "Da li ste sigurni da želite izaći iz ovog čarobnjaka?"
@@ -2819,10 +2825,6 @@ msgstr "Autorski način rada"
 msgid "Auto"
 msgstr "Auto"
 
-#
-msgid "Auto detect"
-msgstr "Automatski detektiraj"
-
 msgid "Auto Language"
 msgstr "Automatski jezik"
 
@@ -2850,6 +2852,10 @@ msgstr "Automatski podijeli poglavlje svakih ? minuta (0=nikada)"
 #
 msgid "Auto deep standby"
 msgstr "Automatski odi u deep standby"
+
+#
+msgid "Auto detect"
+msgstr "Automatski detektiraj"
 
 #
 msgid "Auto flesh"
@@ -3248,8 +3254,8 @@ msgstr ""
 msgid "Black"
 msgstr "Crna"
 
-msgid "Black Screen"
-msgstr "Crni ekran"
+msgid "Black screen"
+msgstr ""
 
 msgid "Black screen till locked"
 msgstr "Crni ekran do zaključavanja"
@@ -4056,9 +4062,6 @@ msgstr "Informacija o kanalu"
 msgid "Channel List"
 msgstr "Lista kanala"
 
-msgid "Channel number"
-msgstr ""
-
 #
 msgid "Channel Selection"
 msgstr "Odabir kanala"
@@ -4121,6 +4124,9 @@ msgstr "Tip liste kanala"
 
 msgid "Channel name"
 msgstr "Ime kanala"
+
+msgid "Channel number"
+msgstr ""
 
 msgid "Channel preview mode"
 msgstr "Način pretpregled kanala"
@@ -4503,6 +4509,9 @@ msgstr "Zatvorite Kexec MultiBoot Manager"
 
 msgid "Close the Plugin Browser screen"
 msgstr "Zatvorite ekran preglednika plugin-a"
+
+msgid "Close the SeekBar after returning to the starting point"
+msgstr ""
 
 msgid "Close the choice box"
 msgstr "Zatvori okvir za izbor"
@@ -6666,6 +6675,9 @@ msgid "Disabled PiP.\n"
 msgstr ""
 
 msgid "Disabled or WPA/WPA2"
+msgstr ""
+
+msgid "Disabling Chkroot failed!"
 msgstr ""
 
 msgid "Dish"
@@ -10569,6 +10581,9 @@ msgstr ""
 msgid "Internal USB"
 msgstr ""
 
+msgid "Internal disk only"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Internal flash"
@@ -10580,9 +10595,6 @@ msgstr ""
 
 #, python-format
 msgid "Internal flash: %s %s as USB Recovery"
-msgstr ""
-
-msgid "Internal disk only"
 msgstr ""
 
 msgid "Internet"
@@ -13156,6 +13168,9 @@ msgstr ""
 msgid "Non-Linear"
 msgstr ""
 
+msgid "Non-flashing"
+msgstr ""
+
 #
 msgid "None"
 msgstr "Prazno"
@@ -13220,9 +13235,6 @@ msgid "Not Classified"
 msgstr ""
 
 msgid "Not Defined"
-msgstr ""
-
-msgid "Non-flashing"
 msgstr ""
 
 #
@@ -14987,6 +14999,9 @@ msgstr ""
 msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that image. If available, YELLOW will either delete or wipe the image. A deleted image can be restored with the BLUE button. A wiped image is completely removed and cannot be restored!"
 msgstr ""
 
+msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that image. If available, YELLOW will disable Multiboot, delete, or wipe the selected image. Press BLUE to add more slots."
+msgstr ""
+
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr ""
 
@@ -15353,13 +15368,13 @@ msgstr "FEC"
 msgid "REC "
 msgstr ""
 
-msgid "REC symbol"
-msgstr ""
-
 msgid "REC Symbol in Standby"
 msgstr ""
 
 msgid "REC Symbol in use"
+msgstr ""
+
+msgid "REC symbol"
 msgstr ""
 
 msgid "RED button"
@@ -16830,13 +16845,13 @@ msgstr ""
 msgid "Scheduler Settings"
 msgstr ""
 
-msgid "Scheduler standby"
-msgstr ""
-
 msgid "Scheduler deep standby"
 msgstr ""
 
 msgid "Scheduler log"
+msgstr ""
+
+msgid "Scheduler standby"
 msgstr ""
 
 msgid "Sci-Fi"
@@ -16938,10 +16953,8 @@ msgstr "Traži"
 msgid "Seek Actions"
 msgstr "EPG selektor "
 
-#
-#, fuzzy
-msgid "Seek back short"
-msgstr "Traži"
+msgid "Seek Bar"
+msgstr ""
 
 msgid "Seek backward"
 msgstr ""
@@ -16952,24 +16965,19 @@ msgstr ""
 msgid "Seek forward"
 msgstr ""
 
-msgid "Seek forward  short"
-msgstr ""
-
 msgid "Seek forward (enter time)"
-msgstr ""
-
-#
-#, fuzzy
-msgid "Seek forward long"
-msgstr "Mapa tipkovnice"
-
-msgid "SeekBar activation"
 msgstr ""
 
 #
 #, fuzzy
 msgid "SeekBar"
 msgstr "Traži"
+
+msgid "SeekBar Actions"
+msgstr ""
+
+msgid "SeekBar activation"
+msgstr ""
 
 msgid "SeekBar sensibility"
 msgstr ""
@@ -18169,15 +18177,6 @@ msgstr ""
 msgid "Service Information Actions"
 msgstr ""
 
-msgid "Service Name"
-msgstr ""
-
-msgid "Service number and service name"
-msgstr ""
-
-msgid "Service number, picon and service name"
-msgstr ""
-
 msgid "Service Scan"
 msgstr ""
 
@@ -18232,7 +18231,13 @@ msgstr ""
 "Usluga nije pronađena!\n"
 "(SID nije pronađen u PATu)"
 
+msgid "Service number and service name"
+msgstr ""
+
 msgid "Service number font size"
+msgstr ""
+
+msgid "Service number, picon and service name"
 msgstr ""
 
 #
@@ -19680,10 +19685,10 @@ msgstr ""
 msgid "Skin Packages"
 msgstr ""
 
-msgid "Skin setting"
+msgid "Skin Settings"
 msgstr ""
 
-msgid "Skin Settings"
+msgid "Skin setting"
 msgstr ""
 
 msgid "SkinSelection"
@@ -19695,6 +19700,16 @@ msgstr ""
 msgid "Skip backward"
 msgstr ""
 
+#, python-format
+msgid "Skip backward %d second"
+msgid_plural "Skip backward %d seconds"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Skip backward %s%%"
+msgstr ""
+
 #
 msgid "Skip backward (enter time)"
 msgstr "preskoči unazad (unesi vrijeme)"
@@ -19704,7 +19719,21 @@ msgstr "preskoči unazad (unesi vrijeme)"
 msgid "Skip empty services"
 msgstr "Zaštiti usluge"
 
+#, python-format
+msgid "Skip for '%s' is disabled"
+msgstr ""
+
 msgid "Skip forward"
+msgstr ""
+
+#, python-format
+msgid "Skip forward %d second"
+msgid_plural "Skip forward %d seconds"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Skip forward %s%%"
 msgstr ""
 
 #
@@ -19727,6 +19756,13 @@ msgid "Skip time for '%s' button"
 msgstr ""
 
 msgid "Skip time for '%s'/'%s' buttons"
+msgstr ""
+
+#, python-format
+msgid "Skip to %s0%% position (Add %s%% on second press)"
+msgstr ""
+
+msgid "Skip to 0% (start) position"
 msgstr ""
 
 msgid "Sleep"
@@ -19858,6 +19894,10 @@ msgid "Slot R: Root Slot Image Backup (Current image)"
 msgstr ""
 
 msgid "Slot count"
+msgstr ""
+
+#, python-format
+msgid "Slots have been extended by %d..\n"
 msgstr ""
 
 msgid "Slovak"
@@ -20306,6 +20346,9 @@ msgid "Starting time"
 msgstr ""
 
 msgid "Starts in a few seconds"
+msgstr ""
+
+msgid "Startup device not found!"
 msgstr ""
 
 #. TRANSLATORS: "State" is location information and not condition based information.
@@ -22490,6 +22533,9 @@ msgstr ""
 msgid "Tunisia"
 msgstr ""
 
+msgid "Turbo"
+msgstr "Turbo"
+
 msgid "Turbo: One reboot after flash; Fast: One reboot after flash, one reboot after restore; Slow: One reboot after flash, one reboot after restore in GUI."
 msgstr ""
 
@@ -24657,9 +24703,6 @@ msgstr ""
 msgid "advertisement/shopping"
 msgstr ""
 
-msgid "All up/down"
-msgstr ""
-
 msgid "alpha then oldest"
 msgstr ""
 
@@ -25230,9 +25273,6 @@ msgstr "umetnuta nijedna ili nepoznata kartica"
 msgid "no storage devices found"
 msgstr "nisu pronađeni uređaji za pohranu"
 
-msgid "normal"
-msgstr "normalno"
-
 #
 msgid "not"
 msgstr "Ne"
@@ -25449,9 +25489,6 @@ msgstr "preskoči unazad"
 msgid "skip forward"
 msgstr "preskoči unaprijed"
 
-msgid "slow"
-msgstr "sporo"
-
 msgid "soap/melodrama/folkloric"
 msgstr "sapunica/melodrama/folklor"
 
@@ -25564,9 +25601,6 @@ msgstr "tradicionalno (brzo), ponovno podesi"
 msgid "tree delete"
 msgstr "stablo za brisanje"
 
-msgid "Turbo"
-msgstr "Turbo"
-
 msgid "uShare"
 msgstr "uShare"
 
@@ -25664,6 +25698,25 @@ msgstr "Da ( zadrži feedove)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Black Screen"
+#~ msgstr "Crni ekran"
+
+#
+#, fuzzy
+#~ msgid "Seek back short"
+#~ msgstr "Traži"
+
+#
+#, fuzzy
+#~ msgid "Seek forward long"
+#~ msgstr "Mapa tipkovnice"
+
+#~ msgid "normal"
+#~ msgstr "normalno"
+
+#~ msgid "slow"
+#~ msgstr "sporo"
 
 #
 #, fuzzy

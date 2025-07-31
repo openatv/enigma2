@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-17 17:20+0000\n"
+"POT-Creation-Date: 2025-07-27 15:35+0000\n"
 "PO-Revision-Date: 2025-04-13 08:35+0000\n"
 "Last-Translator: Daniel Nylander <daniel@danielnylander.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sv/>\n"
@@ -102,7 +102,7 @@ msgstr "Uppdatera"
 msgid "!! Boot loader Upgrade !!"
 msgstr ""
 
-msgid "# = Reboot Required"
+msgid "# = Reboot required if this item is changed."
 msgstr "# = Omstart krävs"
 
 #
@@ -1445,7 +1445,7 @@ msgstr "(tom)"
 msgid "(show optional DVD audio menu)"
 msgstr "(visa utökad DVD ljudmeny)"
 
-msgid "* = Restart Required"
+msgid "* = Restart required if this item is changed."
 msgstr "* =Omstart Krävs"
 
 #
@@ -2435,6 +2435,10 @@ msgstr "Alla kanaloperatörer"
 msgid "All supported"
 msgstr "stöds ej"
 
+#, fuzzy
+msgid "All up/down"
+msgstr "Flytta ner en sida"
+
 msgid "Allocate"
 msgstr "Allokera"
 
@@ -2727,6 +2731,9 @@ msgstr "Är du säker på att du vill ta bort denna logg:\n"
 msgid "Are you sure you want to delete this?"
 msgstr ""
 
+msgid "Are you sure you want to disable Chkroot Multiboot?"
+msgstr ""
+
 #
 msgid "Are you sure you want to exit this wizard?"
 msgstr "Är du säker på att du vill avsluta den här guiden?"
@@ -2926,11 +2933,6 @@ msgstr "Författarläge"
 msgid "Auto"
 msgstr "Auto"
 
-#
-#, fuzzy
-msgid "Auto detect"
-msgstr "AutoAvstängning"
-
 msgid "Auto Language"
 msgstr ""
 
@@ -2957,6 +2959,11 @@ msgstr "Auto kapitelsplit varje ? minut (0=aldrig)"
 
 #
 msgid "Auto deep standby"
+msgstr "AutoAvstängning"
+
+#
+#, fuzzy
+msgid "Auto detect"
 msgstr "AutoAvstängning"
 
 #
@@ -3368,8 +3375,8 @@ msgstr "Bithastighet:"
 msgid "Black"
 msgstr "Svart"
 
-msgid "Black Screen"
-msgstr ""
+msgid "Black screen"
+msgstr "Svart skärm"
 
 msgid "Black screen till locked"
 msgstr "Svart skärm tills låsning"
@@ -4167,9 +4174,6 @@ msgstr "Kanal info"
 msgid "Channel List"
 msgstr "Kanallista"
 
-msgid "Channel number"
-msgstr ""
-
 #
 msgid "Channel Selection"
 msgstr "Kanallista"
@@ -4234,6 +4238,9 @@ msgid "Channel list type"
 msgstr "Typ av kanallista"
 
 msgid "Channel name"
+msgstr ""
+
+msgid "Channel number"
 msgstr ""
 
 msgid "Channel preview mode"
@@ -4630,6 +4637,9 @@ msgid "Close the Kexec MultiBoot Manager"
 msgstr ""
 
 msgid "Close the Plugin Browser screen"
+msgstr ""
+
+msgid "Close the SeekBar after returning to the starting point"
 msgstr ""
 
 msgid "Close the choice box"
@@ -6808,6 +6818,9 @@ msgid "Disabled PiP.\n"
 msgstr ""
 
 msgid "Disabled or WPA/WPA2"
+msgstr ""
+
+msgid "Disabling Chkroot failed!"
 msgstr ""
 
 msgid "Dish"
@@ -10764,6 +10777,9 @@ msgstr ""
 msgid "Internal USB"
 msgstr ""
 
+msgid "Internal disk only"
+msgstr "Endast Intern HDD"
+
 #
 msgid "Internal flash"
 msgstr "Intern Flash"
@@ -10775,9 +10791,6 @@ msgstr ""
 #, python-format
 msgid "Internal flash: %s %s as USB Recovery"
 msgstr ""
-
-msgid "Internal disk only"
-msgstr "Endast Intern HDD"
 
 #
 msgid "Internet"
@@ -13353,6 +13366,9 @@ msgstr ""
 msgid "Non-Linear"
 msgstr ""
 
+msgid "Non-flashing"
+msgstr "Flashning misslyckades"
+
 #
 msgid "None"
 msgstr "Inga"
@@ -13419,9 +13435,6 @@ msgstr "Inte associerad"
 
 msgid "Not Defined"
 msgstr ""
-
-msgid "Non-flashing"
-msgstr "Flashning misslyckades"
 
 #
 #, fuzzy
@@ -15196,6 +15209,9 @@ msgstr ""
 msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that image. If available, YELLOW will either delete or wipe the image. A deleted image can be restored with the BLUE button. A wiped image is completely removed and cannot be restored!"
 msgstr ""
 
+msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that image. If available, YELLOW will disable Multiboot, delete, or wipe the selected image. Press BLUE to add more slots."
+msgstr ""
+
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr ""
 
@@ -15572,13 +15588,13 @@ msgstr "FEC"
 msgid "REC "
 msgstr ""
 
-msgid "REC symbol"
-msgstr ""
-
 msgid "REC Symbol in Standby"
 msgstr ""
 
 msgid "REC Symbol in use"
+msgstr ""
+
+msgid "REC symbol"
 msgstr ""
 
 #, fuzzy
@@ -17059,14 +17075,14 @@ msgstr "Översikt Strömtimer"
 msgid "Scheduler Settings"
 msgstr ""
 
-msgid "Scheduler standby"
-msgstr ""
-
 msgid "Scheduler deep standby"
 msgstr ""
 
 msgid "Scheduler log"
 msgstr "StrömtimerHanterare logg"
+
+msgid "Scheduler standby"
+msgstr ""
 
 msgid "Sci-Fi"
 msgstr ""
@@ -17164,9 +17180,8 @@ msgstr "Sök"
 msgid "Seek Actions"
 msgstr "Välj sökväg"
 
-#, fuzzy
-msgid "Seek back short"
-msgstr "Sök bakåt"
+msgid "Seek Bar"
+msgstr ""
 
 msgid "Seek backward"
 msgstr "Sök bakåt"
@@ -17177,24 +17192,19 @@ msgstr "Sök bakåt (ange tid)"
 msgid "Seek forward"
 msgstr "Sök framåt"
 
-#, fuzzy
-msgid "Seek forward  short"
-msgstr "Sök framåt"
-
 msgid "Seek forward (enter time)"
 msgstr "Sök framåt (ange tid)"
-
-#, fuzzy
-msgid "Seek forward long"
-msgstr "Sök framåt"
-
-msgid "SeekBar activation"
-msgstr "Aktivering sökfält"
 
 #
 #, fuzzy
 msgid "SeekBar"
 msgstr "Sök"
+
+msgid "SeekBar Actions"
+msgstr ""
+
+msgid "SeekBar activation"
+msgstr "Aktivering sökfält"
 
 msgid "SeekBar sensibility"
 msgstr "Sökfältets noggrannhet"
@@ -18399,17 +18409,6 @@ msgstr ""
 msgid "Service Information Actions"
 msgstr ""
 
-msgid "Service Name"
-msgstr "Kanalnamn"
-
-#, fuzzy
-msgid "Service number and service name"
-msgstr "Picon och Kanalnamn"
-
-#, fuzzy
-msgid "Service number, picon and service name"
-msgstr "Picon och Kanalnamn"
-
 msgid "Service Scan"
 msgstr ""
 
@@ -18463,8 +18462,16 @@ msgstr ""
 "Kanal inte funnen!\n"
 "(SID inte funnen i PAT)"
 
+#, fuzzy
+msgid "Service number and service name"
+msgstr "Picon och Kanalnamn"
+
 msgid "Service number font size"
 msgstr "Fontstorlek på kanalnummer"
+
+#, fuzzy
+msgid "Service number, picon and service name"
+msgstr "Picon och Kanalnamn"
 
 #, fuzzy
 msgid "Service off-air"
@@ -19926,11 +19933,11 @@ msgstr ""
 msgid "Skin Packages"
 msgstr ""
 
-msgid "Skin setting"
-msgstr "Beroende på 'skin'"
-
 msgid "Skin Settings"
 msgstr ""
+
+msgid "Skin setting"
+msgstr "Beroende på 'skin'"
 
 msgid "SkinSelection"
 msgstr ""
@@ -19942,6 +19949,16 @@ msgstr "Hoppa bakåt"
 msgid "Skip backward"
 msgstr ""
 
+#, python-format
+msgid "Skip backward %d second"
+msgid_plural "Skip backward %d seconds"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Skip backward %s%%"
+msgstr ""
+
 #
 msgid "Skip backward (enter time)"
 msgstr "hoppa bakåt (ange tid)"
@@ -19950,9 +19967,23 @@ msgstr "hoppa bakåt (ange tid)"
 msgid "Skip empty services"
 msgstr "Hoppa över tomma kanaler"
 
+#, python-format
+msgid "Skip for '%s' is disabled"
+msgstr ""
+
 #
 msgid "Skip forward"
 msgstr "Hoppa framåt"
+
+#, python-format
+msgid "Skip forward %d second"
+msgid_plural "Skip forward %d seconds"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Skip forward %s%%"
+msgstr ""
 
 #
 msgid "Skip forward (enter time)"
@@ -19974,6 +20005,13 @@ msgid "Skip time for '%s' button"
 msgstr ""
 
 msgid "Skip time for '%s'/'%s' buttons"
+msgstr ""
+
+#, python-format
+msgid "Skip to %s0%% position (Add %s%% on second press)"
+msgstr ""
+
+msgid "Skip to 0% (start) position"
 msgstr ""
 
 #
@@ -20107,6 +20145,10 @@ msgid "Slot R: Root Slot Image Backup (Current image)"
 msgstr ""
 
 msgid "Slot count"
+msgstr ""
+
+#, python-format
+msgid "Slots have been extended by %d..\n"
 msgstr ""
 
 msgid "Slovak"
@@ -20575,6 +20617,9 @@ msgstr ""
 #, fuzzy
 msgid "Starts in a few seconds"
 msgstr "Starta avkodning offline"
+
+msgid "Startup device not found!"
+msgstr ""
 
 #. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
@@ -22827,6 +22872,9 @@ msgstr ""
 msgid "Tunisia"
 msgstr ""
 
+msgid "Turbo"
+msgstr ""
+
 msgid "Turbo: One reboot after flash; Fast: One reboot after flash, one reboot after restore; Slow: One reboot after flash, one reboot after restore in GUI."
 msgstr ""
 
@@ -25039,10 +25087,6 @@ msgstr "äventyr / västern / krig"
 msgid "advertisement/shopping"
 msgstr "reklam / shopping"
 
-#, fuzzy
-msgid "All up/down"
-msgstr "Flytta ner en sida"
-
 msgid "alpha then oldest"
 msgstr ""
 
@@ -25630,9 +25674,6 @@ msgstr "inget eller okänt kort isatt"
 msgid "no storage devices found"
 msgstr "inga lagringsenheter hittades"
 
-msgid "normal"
-msgstr ""
-
 #
 #, fuzzy
 msgid "not"
@@ -25847,9 +25888,6 @@ msgstr "hoppa bakåt"
 msgid "skip forward"
 msgstr "hoppa framåt"
 
-msgid "slow"
-msgstr "långsam"
-
 msgid "soap/melodrama/folkloric"
 msgstr "såpa/melodram/folklore"
 
@@ -25967,9 +26005,6 @@ msgstr ""
 msgid "tree delete"
 msgstr ""
 
-msgid "Turbo"
-msgstr ""
-
 msgid "uShare"
 msgstr ""
 
@@ -26070,6 +26105,24 @@ msgstr "ja (behåll feeds)"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Seek back short"
+#~ msgstr "Sök bakåt"
+
+#, fuzzy
+#~ msgid "Seek forward  short"
+#~ msgstr "Sök framåt"
+
+#, fuzzy
+#~ msgid "Seek forward long"
+#~ msgstr "Sök framåt"
+
+#~ msgid "Service Name"
+#~ msgstr "Kanalnamn"
+
+#~ msgid "slow"
+#~ msgstr "långsam"
 
 #~ msgid "Open DreamPlex"
 #~ msgstr "Visa DreamPlex spelaren..."
@@ -27168,6 +27221,3 @@ msgstr ""
 #
 #~ msgid "show event details"
 #~ msgstr "visa programdetaljer"
-
-#~ msgid "Black screen"
-#~ msgstr "Svart skärm"

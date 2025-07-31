@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-17 17:20+0000\n"
+"POT-Creation-Date: 2025-07-27 15:35+0000\n"
 "PO-Revision-Date: 2025-05-09 04:42+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -99,7 +99,7 @@ msgstr " bijgewerkt"
 msgid "!! Boot loader Upgrade !!"
 msgstr "!! Bootloader update !!"
 
-msgid "# = Reboot Required"
+msgid "# = Reboot required if this item is changed."
 msgstr "# = Herstart noodzakelijk"
 
 msgid "%-H:%M"
@@ -1309,7 +1309,7 @@ msgstr "(leeg)"
 msgid "(show optional DVD audio menu)"
 msgstr "(optioneel DVD audio menu weergeven)"
 
-msgid "* = Restart Required"
+msgid "* = Restart required if this item is changed."
 msgstr "* = Herstart noodzakelijk"
 
 msgid "* Only available if more than one interface is active."
@@ -2204,6 +2204,9 @@ msgstr "Alle zender providers"
 msgid "All supported"
 msgstr "Alle ondersteunde"
 
+msgid "All up/down"
+msgstr "Alle omhoog/omlaag"
+
 msgid "Allocate"
 msgstr "Toewijzen"
 
@@ -2477,6 +2480,9 @@ msgstr "Weet u zeker dat u dit log wilt verwijderen:\n"
 msgid "Are you sure you want to delete this?"
 msgstr "Weet u zeker dat u dit wil verwijderen?"
 
+msgid "Are you sure you want to disable Chkroot Multiboot?"
+msgstr ""
+
 msgid "Are you sure you want to exit this wizard?"
 msgstr "Weet u zeker dat u de wizard wilt afsluiten?"
 
@@ -2659,9 +2665,6 @@ msgstr "Bewerkingswijze"
 msgid "Auto"
 msgstr "Automatisch"
 
-msgid "Auto detect"
-msgstr "Automatisch herkennen"
-
 msgid "Auto Language"
 msgstr "Automatische taalkeuze"
 
@@ -2685,6 +2688,9 @@ msgstr "Automatisch hoofdstuk splitsen elke ? minuten (0=nooit)"
 
 msgid "Auto deep standby"
 msgstr "Automatisch uitschakelen"
+
+msgid "Auto detect"
+msgstr "Automatisch herkennen"
 
 msgid "Auto flesh"
 msgstr "Automatische huidskleur tint"
@@ -3064,7 +3070,7 @@ msgstr "Bitrate"
 msgid "Black"
 msgstr "Zwart"
 
-msgid "Black Screen"
+msgid "Black screen"
 msgstr "Zwart scherm"
 
 msgid "Black screen till locked"
@@ -3835,9 +3841,6 @@ msgstr "Zender info"
 msgid "Channel List"
 msgstr "Zenderlijst"
 
-msgid "Channel number"
-msgstr "Zendernummer"
-
 msgid "Channel Selection"
 msgstr "Zenderlijst"
 
@@ -3897,6 +3900,9 @@ msgstr "Zenderlijsttype"
 
 msgid "Channel name"
 msgstr "Zender naam"
+
+msgid "Channel number"
+msgstr "Zendernummer"
 
 msgid "Channel preview mode"
 msgstr "Zender voorbeeld in EPG"
@@ -4267,6 +4273,9 @@ msgstr "Sluit de Kexec MultiBoot Manager"
 
 msgid "Close the Plugin Browser screen"
 msgstr "De Plugin Browser afsluiten"
+
+msgid "Close the SeekBar after returning to the starting point"
+msgstr ""
 
 msgid "Close the choice box"
 msgstr "Keuzemenu sluiten"
@@ -6416,6 +6425,9 @@ msgstr "PiP uitgeschakeld.\n"
 
 msgid "Disabled or WPA/WPA2"
 msgstr "Uitgeschakeld of WPA/WPA2"
+
+msgid "Disabling Chkroot failed!"
+msgstr ""
 
 msgid "Dish"
 msgstr "Schotel"
@@ -10111,6 +10123,9 @@ msgstr "Interne SSD"
 msgid "Internal USB"
 msgstr "Interne USB"
 
+msgid "Internal disk only"
+msgstr "Alleen interne HDD"
+
 msgid "Internal flash"
 msgstr "Intern geheugen"
 
@@ -10121,9 +10136,6 @@ msgstr "Interne flash:  %s %s "
 #, python-format
 msgid "Internal flash: %s %s as USB Recovery"
 msgstr "Interne flash: %s %s als USB back-up"
-
-msgid "Internal disk only"
-msgstr "Alleen interne HDD"
 
 msgid "Internet"
 msgstr "Internet"
@@ -12461,6 +12473,9 @@ msgstr "Opgeven hoeveel IP-adressen op actieve verbindingen moeten worden gecont
 msgid "Non-Linear"
 msgstr "Non-Linear"
 
+msgid "Non-flashing"
+msgstr "Een niet knipperend icon"
+
 msgid "None"
 msgstr "Geen"
 
@@ -12517,9 +12532,6 @@ msgstr "Niet geassocieerd"
 
 msgid "Not Defined"
 msgstr "Niet gedefinieerd"
-
-msgid "Non-flashing"
-msgstr "Een niet knipperend icon"
 
 msgid "Not Installed"
 msgstr "Niet geïnstalleerd"
@@ -14134,6 +14146,9 @@ msgstr ""
 "Druk op OMHOOG/OMLAAG knoppen om een slot te selecteren en druk OK of GROEN om opnieuw te starten naar dat image. Wanneer beschikbaar, kan met GEEL het image worden \"verwijderd\" of \"gewist\".\n"
 "Een \"verwijderde\" image kan hersteld worden met de BLAUWE-knop. Een \"gewiste\" image is compleet verwijderd en kan NIET hersteld worden!"
 
+msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that image. If available, YELLOW will disable Multiboot, delete, or wipe the selected image. Press BLUE to add more slots."
+msgstr ""
+
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Druk deze knop om een lange knop druk te emuleren op de eerst volgende knop (dit overschrijft alle andere acties toegewezen aan de emulatie knop)."
 
@@ -14474,14 +14489,14 @@ msgstr "REC"
 msgid "REC "
 msgstr "REC "
 
-msgid "REC symbol"
-msgstr "REC-symbool"
-
 msgid "REC Symbol in Standby"
 msgstr "REC-symbool in stand-by"
 
 msgid "REC Symbol in use"
 msgstr "REC-symbool in het display"
+
+msgid "REC symbol"
+msgstr "REC-symbool"
 
 msgid "RED button"
 msgstr "RODE-knop"
@@ -15823,14 +15838,14 @@ msgstr "PowerTimer overzicht"
 msgid "Scheduler Settings"
 msgstr "PowerTimer instellingen"
 
-msgid "Scheduler standby"
-msgstr "PowerTimer stand-by"
-
 msgid "Scheduler deep standby"
 msgstr "PowerTimer uitschakelen"
 
 msgid "Scheduler log"
 msgstr "Powerbeheer log"
+
+msgid "Scheduler standby"
+msgstr "PowerTimer stand-by"
 
 msgid "Sci-Fi"
 msgstr "Sci-Fi"
@@ -15918,8 +15933,8 @@ msgstr "Spoelen"
 msgid "Seek Actions"
 msgstr "Zoek Acties"
 
-msgid "Seek back short"
-msgstr "Terug spoelen kort"
+msgid "Seek Bar"
+msgstr ""
 
 msgid "Seek backward"
 msgstr "Terug zoeken"
@@ -15930,20 +15945,17 @@ msgstr "Terug zoeken (tijd invoeren)"
 msgid "Seek forward"
 msgstr "Vooruit spoelen"
 
-msgid "Seek forward  short"
-msgstr "Vooruit spoelen Kort"
-
 msgid "Seek forward (enter time)"
 msgstr "Vooruit spoelen (tijd invoeren)"
 
-msgid "Seek forward long"
-msgstr "Vooruit spoelen Lang"
+msgid "SeekBar"
+msgstr "Zoekbalk"
+
+msgid "SeekBar Actions"
+msgstr ""
 
 msgid "SeekBar activation"
 msgstr "Zoekbalk activeren"
-
-msgid "SeekBar"
-msgstr "Zoekbalk"
 
 msgid "SeekBar sensibility"
 msgstr "Grootte tijdsprong op de Zoekbalk"
@@ -17136,15 +17148,6 @@ msgstr "Zenderinformatie"
 msgid "Service Information Actions"
 msgstr "Zenderinformatie Acties"
 
-msgid "Service Name"
-msgstr "Zendernaam"
-
-msgid "Service number and service name"
-msgstr "Zendernummer en zendernaam"
-
-msgid "Service number, picon and service name"
-msgstr "Zendernummer, Picon en zendernaam"
-
 msgid "Service Scan"
 msgstr "Zenders scannen"
 
@@ -17193,8 +17196,14 @@ msgstr ""
 "Zender niet gevonden!\n"
 "(SID not found in PAT)"
 
+msgid "Service number and service name"
+msgstr "Zendernummer en zendernaam"
+
 msgid "Service number font size"
 msgstr "Zendernummer grootte"
+
+msgid "Service number, picon and service name"
+msgstr "Zendernummer, Picon en zendernaam"
 
 msgid "Service off-air"
 msgstr "Zender 'uit de lucht'"
@@ -18573,11 +18582,11 @@ msgstr "Skinparts"
 msgid "Skin Packages"
 msgstr "Skins"
 
-msgid "Skin setting"
-msgstr "Skin instelling"
-
 msgid "Skin Settings"
 msgstr "Skin selecteren"
+
+msgid "Skin setting"
+msgstr "Skin instelling"
 
 msgid "SkinSelection"
 msgstr "Skin selectie"
@@ -18588,14 +18597,38 @@ msgstr "Spring terug"
 msgid "Skip backward"
 msgstr "Terug springen"
 
+#, python-format
+msgid "Skip backward %d second"
+msgid_plural "Skip backward %d seconds"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Skip backward %s%%"
+msgstr ""
+
 msgid "Skip backward (enter time)"
 msgstr "Spring terug (tijd invoeren)"
 
 msgid "Skip empty services"
 msgstr "Zenders zonder EPG-info overslaan"
 
+#, python-format
+msgid "Skip for '%s' is disabled"
+msgstr ""
+
 msgid "Skip forward"
 msgstr "Spring vooruit"
+
+#, python-format
+msgid "Skip forward %d second"
+msgid_plural "Skip forward %d seconds"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Skip forward %s%%"
+msgstr ""
 
 msgid "Skip forward (enter time)"
 msgstr "Spring vooruit (tijd invoeren)"
@@ -18617,6 +18650,13 @@ msgstr "Tijdsprong voor de knop '%s'"
 
 msgid "Skip time for '%s'/'%s' buttons"
 msgstr "Tijdsprong voor de knoppen '%s'/'%s'"
+
+#, python-format
+msgid "Skip to %s0%% position (Add %s%% on second press)"
+msgstr ""
+
+msgid "Skip to 0% (start) position"
+msgstr ""
 
 msgid "Sleep"
 msgstr "Slaap"
@@ -18745,6 +18785,10 @@ msgstr "Slot R: Root Slot Volledige back-up (actuele Image)"
 
 msgid "Slot count"
 msgstr "Aantal slots"
+
+#, python-format
+msgid "Slots have been extended by %d..\n"
+msgstr ""
 
 msgid "Slovak"
 msgstr "Slovaaks"
@@ -19172,6 +19216,9 @@ msgstr "Start tijd"
 
 msgid "Starts in a few seconds"
 msgstr "Begint over enkele seconden"
+
+msgid "Startup device not found!"
+msgstr ""
 
 #. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
@@ -21332,6 +21379,9 @@ msgstr "Afstemalgoritme"
 msgid "Tunisia"
 msgstr "Tunesië"
 
+msgid "Turbo"
+msgstr "Turbo"
+
 msgid "Turbo: One reboot after flash; Fast: One reboot after flash, one reboot after restore; Slow: One reboot after flash, one reboot after restore in GUI."
 msgstr "Turbo: 1 herstart na flash; Fast: 1 herstart na flash, 1 herstart na herstellen; Slow: 1 herstart na flash, 1 herstart na herstellen in GUI."
 
@@ -23468,9 +23518,6 @@ msgstr "avontuur / western / oorlog"
 msgid "advertisement/shopping"
 msgstr "reclame / shopping"
 
-msgid "All up/down"
-msgstr "Alle omhoog/omlaag"
-
 msgid "alpha then oldest"
 msgstr "Alfa dan oudste"
 
@@ -23999,9 +24046,6 @@ msgstr "Geen of onbekende kaart geplaatst"
 msgid "no storage devices found"
 msgstr "Geen opslagmedia gevonden!"
 
-msgid "normal"
-msgstr "normaal"
-
 msgid "not"
 msgstr "niet"
 
@@ -24194,9 +24238,6 @@ msgstr "Terug springen"
 msgid "skip forward"
 msgstr "Vooruit springen"
 
-msgid "slow"
-msgstr "langzaam"
-
 msgid "soap/melodrama/folkloric"
 msgstr "soap/melodrama/folklore"
 
@@ -24299,9 +24340,6 @@ msgstr "traditioneel (snel), retune"
 msgid "tree delete"
 msgstr "Tree verwijderen"
 
-msgid "Turbo"
-msgstr "Turbo"
-
 msgid "uShare"
 msgstr "uShare"
 
@@ -24391,6 +24429,27 @@ msgstr "ja (bewaar feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Black Screen"
+#~ msgstr "Zwart scherm"
+
+#~ msgid "Seek back short"
+#~ msgstr "Terug spoelen kort"
+
+#~ msgid "Seek forward  short"
+#~ msgstr "Vooruit spoelen Kort"
+
+#~ msgid "Seek forward long"
+#~ msgstr "Vooruit spoelen Lang"
+
+#~ msgid "Service Name"
+#~ msgstr "Zendernaam"
+
+#~ msgid "normal"
+#~ msgstr "normaal"
+
+#~ msgid "slow"
+#~ msgstr "langzaam"
 
 #~ msgid "DVB API version"
 #~ msgstr "DVB API versie"
@@ -26403,9 +26462,6 @@ msgstr "®"
 
 #~ msgid "Add bouquet"
 #~ msgstr "Favorietenlijst toevoegen"
-
-#~ msgid "Black screen"
-#~ msgstr "Zwart scherm"
 
 #~ msgid "no"
 #~ msgstr "Nee"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-17 17:20+0000\n"
+"POT-Creation-Date: 2025-07-27 15:35+0000\n"
 "PO-Revision-Date: 2024-07-23 13:09+0000\n"
 "Last-Translator: Ricky From Hong Kong <lamricky11@hotmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -90,7 +90,7 @@ msgstr " 已更新"
 msgid "!! Boot loader Upgrade !!"
 msgstr ""
 
-msgid "# = Reboot Required"
+msgid "# = Reboot required if this item is changed."
 msgstr ""
 
 #, fuzzy
@@ -1316,7 +1316,7 @@ msgstr "(空的)"
 msgid "(show optional DVD audio menu)"
 msgstr "(顯示可選的DVD音頻功能表)"
 
-msgid "* = Restart Required"
+msgid "* = Restart required if this item is changed."
 msgstr ""
 
 msgid "* Only available if more than one interface is active."
@@ -2266,6 +2266,9 @@ msgstr "已分配的 頻道/供應商"
 msgid "All supported"
 msgstr "不支援的"
 
+msgid "All up/down"
+msgstr ""
+
 msgid "Allocate"
 msgstr ""
 
@@ -2552,6 +2555,9 @@ msgstr "確定要刪除此日誌：\n"
 msgid "Are you sure you want to delete this?"
 msgstr ""
 
+msgid "Are you sure you want to disable Chkroot Multiboot?"
+msgstr ""
+
 msgid "Are you sure you want to exit this wizard?"
 msgstr "確定要退出此嚮導?"
 
@@ -2743,10 +2749,6 @@ msgid "Auto"
 msgstr "自動"
 
 #, fuzzy
-msgid "Auto detect"
-msgstr "深度休眠"
-
-#, fuzzy
 msgid "Auto Language"
 msgstr "語言"
 
@@ -2772,6 +2774,10 @@ msgstr "每隔? 分鐘自動分割.(0=從不) "
 
 #, fuzzy
 msgid "Auto deep standby"
+msgstr "深度休眠"
+
+#, fuzzy
+msgid "Auto detect"
 msgstr "深度休眠"
 
 msgid "Auto flesh"
@@ -3172,7 +3178,7 @@ msgstr "誤碼率:"
 msgid "Black"
 msgstr "黑色"
 
-msgid "Black Screen"
+msgid "Black screen"
 msgstr ""
 
 msgid "Black screen till locked"
@@ -3976,9 +3982,6 @@ msgstr "頻道"
 msgid "Channel List"
 msgstr "頻道"
 
-msgid "Channel number"
-msgstr ""
-
 msgid "Channel Selection"
 msgstr ""
 
@@ -4048,6 +4051,9 @@ msgstr ""
 #, fuzzy
 msgid "Channel name"
 msgstr "頻道"
+
+msgid "Channel number"
+msgstr ""
 
 #, fuzzy
 msgid "Channel preview mode"
@@ -4424,6 +4430,9 @@ msgid "Close the Kexec MultiBoot Manager"
 msgstr ""
 
 msgid "Close the Plugin Browser screen"
+msgstr ""
+
+msgid "Close the SeekBar after returning to the starting point"
 msgstr ""
 
 msgid "Close the choice box"
@@ -6529,6 +6538,9 @@ msgid "Disabled PiP.\n"
 msgstr "已禁用畫中畫。\n"
 
 msgid "Disabled or WPA/WPA2"
+msgstr ""
+
+msgid "Disabling Chkroot failed!"
 msgstr ""
 
 msgid "Dish"
@@ -10337,6 +10349,9 @@ msgstr ""
 msgid "Internal USB"
 msgstr "間隔"
 
+msgid "Internal disk only"
+msgstr ""
+
 msgid "Internal flash"
 msgstr ""
 
@@ -10346,9 +10361,6 @@ msgstr ""
 
 #, python-format
 msgid "Internal flash: %s %s as USB Recovery"
-msgstr ""
-
-msgid "Internal disk only"
 msgstr ""
 
 #, fuzzy
@@ -12825,6 +12837,10 @@ msgstr ""
 msgid "Non-Linear"
 msgstr ""
 
+#, fuzzy
+msgid "Non-flashing"
+msgstr "CF卡"
+
 msgid "None"
 msgstr "無"
 
@@ -12887,10 +12903,6 @@ msgstr "未啟用"
 #, fuzzy
 msgid "Not Defined"
 msgstr "未啟用"
-
-#, fuzzy
-msgid "Non-flashing"
-msgstr "CF卡"
 
 #, fuzzy
 msgid "Not Installed"
@@ -14589,6 +14601,9 @@ msgstr ""
 msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that image. If available, YELLOW will either delete or wipe the image. A deleted image can be restored with the BLUE button. A wiped image is completely removed and cannot be restored!"
 msgstr ""
 
+msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that image. If available, YELLOW will disable Multiboot, delete, or wipe the selected image. Press BLUE to add more slots."
+msgstr ""
+
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr ""
 
@@ -14964,15 +14979,15 @@ msgstr "FEC"
 msgid "REC "
 msgstr ""
 
-#, fuzzy
-msgid "REC symbol"
-msgstr "符號率"
-
 msgid "REC Symbol in Standby"
 msgstr ""
 
 msgid "REC Symbol in use"
 msgstr ""
+
+#, fuzzy
+msgid "REC symbol"
+msgstr "符號率"
 
 msgid "RED button"
 msgstr ""
@@ -16396,16 +16411,16 @@ msgid "Scheduler Settings"
 msgstr ""
 
 #, fuzzy
-msgid "Scheduler standby"
-msgstr "深度休眠"
-
-#, fuzzy
 msgid "Scheduler deep standby"
 msgstr "深度休眠"
 
 #, fuzzy
 msgid "Scheduler log"
 msgstr "軟體管理器"
+
+#, fuzzy
+msgid "Scheduler standby"
+msgstr "深度休眠"
 
 msgid "Sci-Fi"
 msgstr ""
@@ -16498,9 +16513,8 @@ msgstr "跳過"
 msgid "Seek Actions"
 msgstr "快速按鍵"
 
-#, fuzzy
-msgid "Seek back short"
-msgstr "跳過"
+msgid "Seek Bar"
+msgstr ""
 
 msgid "Seek backward"
 msgstr ""
@@ -16511,24 +16525,19 @@ msgstr ""
 msgid "Seek forward"
 msgstr ""
 
-#, fuzzy
-msgid "Seek forward  short"
-msgstr "快進"
-
 msgid "Seek forward (enter time)"
 msgstr ""
 
 #, fuzzy
-msgid "Seek forward long"
-msgstr "快進"
+msgid "SeekBar"
+msgstr "跳過"
+
+msgid "SeekBar Actions"
+msgstr ""
 
 #, fuzzy
 msgid "SeekBar activation"
 msgstr "啟動交換檔"
-
-#, fuzzy
-msgid "SeekBar"
-msgstr "跳過"
 
 #, fuzzy
 msgid "SeekBar sensibility"
@@ -17722,16 +17731,6 @@ msgstr ""
 msgid "Service Information Actions"
 msgstr ""
 
-#, fuzzy
-msgid "Service Name"
-msgstr "頻道掃描"
-
-msgid "Service number and service name"
-msgstr ""
-
-msgid "Service number, picon and service name"
-msgstr ""
-
 msgid "Service Scan"
 msgstr ""
 
@@ -17785,9 +17784,15 @@ msgstr ""
 "頻道未找到!\n"
 "(在PAT中找不以SID)"
 
+msgid "Service number and service name"
+msgstr ""
+
 #, fuzzy
 msgid "Service number font size"
 msgstr "檢視服務號碼"
+
+msgid "Service number, picon and service name"
+msgstr ""
 
 #, fuzzy
 msgid "Service off-air"
@@ -19251,12 +19256,12 @@ msgid "Skin Packages"
 msgstr ""
 
 #, fuzzy
-msgid "Skin setting"
-msgstr "OSD 設定"
-
-#, fuzzy
 msgid "Skin Settings"
 msgstr "Gemini 設定"
+
+#, fuzzy
+msgid "Skin setting"
+msgstr "OSD 設定"
 
 msgid "SkinSelection"
 msgstr ""
@@ -19268,15 +19273,37 @@ msgstr "快倒"
 msgid "Skip backward"
 msgstr ""
 
+#, python-format
+msgid "Skip backward %d second"
+msgid_plural "Skip backward %d seconds"
+msgstr[0] ""
+
+#, python-format
+msgid "Skip backward %s%%"
+msgstr ""
+
 msgid "Skip backward (enter time)"
 msgstr "快倒 (輸入時間)"
 
 msgid "Skip empty services"
 msgstr ""
 
+#, python-format
+msgid "Skip for '%s' is disabled"
+msgstr ""
+
 #, fuzzy
 msgid "Skip forward"
 msgstr "快進"
+
+#, python-format
+msgid "Skip forward %d second"
+msgid_plural "Skip forward %d seconds"
+msgstr[0] ""
+
+#, python-format
+msgid "Skip forward %s%%"
+msgstr ""
 
 msgid "Skip forward (enter time)"
 msgstr "快進 (輸入時間)"
@@ -19297,6 +19324,13 @@ msgid "Skip time for '%s' button"
 msgstr ""
 
 msgid "Skip time for '%s'/'%s' buttons"
+msgstr ""
+
+#, python-format
+msgid "Skip to %s0%% position (Add %s%% on second press)"
+msgstr ""
+
+msgid "Skip to 0% (start) position"
 msgstr ""
 
 #, fuzzy
@@ -19426,6 +19460,10 @@ msgid "Slot R: Root Slot Image Backup (Current image)"
 msgstr ""
 
 msgid "Slot count"
+msgstr ""
+
+#, python-format
+msgid "Slots have been extended by %d..\n"
 msgstr ""
 
 msgid "Slovak"
@@ -19881,6 +19919,9 @@ msgstr ""
 #, fuzzy
 msgid "Starts in a few seconds"
 msgstr "錄製後的空白時間"
+
+msgid "Startup device not found!"
+msgstr ""
 
 #. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
@@ -22024,6 +22065,9 @@ msgstr ""
 msgid "Tunisia"
 msgstr ""
 
+msgid "Turbo"
+msgstr ""
+
 msgid "Turbo: One reboot after flash; Fast: One reboot after flash, one reboot after restore; Slow: One reboot after flash, one reboot after restore in GUI."
 msgstr ""
 
@@ -24159,9 +24203,6 @@ msgstr ""
 msgid "advertisement/shopping"
 msgstr ""
 
-msgid "All up/down"
-msgstr ""
-
 msgid "alpha then oldest"
 msgstr ""
 
@@ -24698,9 +24739,6 @@ msgstr ""
 msgid "no storage devices found"
 msgstr ""
 
-msgid "normal"
-msgstr ""
-
 #, fuzzy
 msgid "not"
 msgstr "否"
@@ -24900,9 +24938,6 @@ msgstr "快倒"
 msgid "skip forward"
 msgstr "快進"
 
-msgid "slow"
-msgstr ""
-
 msgid "soap/melodrama/folkloric"
 msgstr ""
 
@@ -25008,9 +25043,6 @@ msgstr ""
 msgid "tree delete"
 msgstr ""
 
-msgid "Turbo"
-msgstr ""
-
 #, fuzzy
 msgid "uShare"
 msgstr "共用"
@@ -25106,6 +25138,22 @@ msgstr "是 (保留)"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Seek back short"
+#~ msgstr "跳過"
+
+#, fuzzy
+#~ msgid "Seek forward  short"
+#~ msgstr "快進"
+
+#, fuzzy
+#~ msgid "Seek forward long"
+#~ msgstr "快進"
+
+#, fuzzy
+#~ msgid "Service Name"
+#~ msgstr "頻道掃描"
 
 #, fuzzy
 #~ msgid "Open DreamPlex"

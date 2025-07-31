@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-17 17:20+0000\n"
+"POT-Creation-Date: 2025-07-27 15:35+0000\n"
 "PO-Revision-Date: 2025-07-20 15:03+0000\n"
 "Last-Translator: kvinto <badsystem@ukr.net>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
@@ -101,7 +101,7 @@ msgstr " оновлено"
 msgid "!! Boot loader Upgrade !!"
 msgstr "!! Завантажувач оновлено !!"
 
-msgid "# = Reboot Required"
+msgid "# = Reboot required if this item is changed."
 msgstr "# = Потрібне перезавантаження"
 
 msgid "%-H:%M"
@@ -1346,7 +1346,7 @@ msgstr "(відсутній)"
 msgid "(show optional DVD audio menu)"
 msgstr "(показати додаткове DVD аудіо меню)"
 
-msgid "* = Restart Required"
+msgid "* = Restart required if this item is changed."
 msgstr "* = Потрібне перезавантаження"
 
 msgid "* Only available if more than one interface is active."
@@ -2233,6 +2233,9 @@ msgstr "Всі канали провайдера"
 msgid "All supported"
 msgstr "Усі підтримуються"
 
+msgid "All up/down"
+msgstr "все вверх/вниз"
+
 msgid "Allocate"
 msgstr "Призначити"
 
@@ -2506,6 +2509,9 @@ msgstr "Ви дійсно бажаєте видалити цей лог:\n"
 msgid "Are you sure you want to delete this?"
 msgstr "Ви впевнені, що хочете видалити це?"
 
+msgid "Are you sure you want to disable Chkroot Multiboot?"
+msgstr ""
+
 msgid "Are you sure you want to exit this wizard?"
 msgstr "Ви дійсно бажаєте вийти з помічника?"
 
@@ -2689,9 +2695,6 @@ msgstr "Режим авторизації"
 msgid "Auto"
 msgstr "Авто"
 
-msgid "Auto detect"
-msgstr "Автовизначення"
-
 msgid "Auto Language"
 msgstr "Авто мова"
 
@@ -2715,6 +2718,9 @@ msgstr "Автоматичний поділ на заголовки кожні ?
 
 msgid "Auto deep standby"
 msgstr "Авто виключення"
+
+msgid "Auto detect"
+msgstr "Автовизначення"
 
 msgid "Auto flesh"
 msgstr "Авто флеш"
@@ -3092,7 +3098,7 @@ msgstr "Бітрейт"
 msgid "Black"
 msgstr "Чорний"
 
-msgid "Black Screen"
+msgid "Black screen"
 msgstr "Чорний екран"
 
 msgid "Black screen till locked"
@@ -3863,9 +3869,6 @@ msgstr "Інформація каналу"
 msgid "Channel List"
 msgstr "Список каналів"
 
-msgid "Channel number"
-msgstr "Номер Каналу"
-
 msgid "Channel Selection"
 msgstr "Вибір каналу"
 
@@ -3925,6 +3928,9 @@ msgstr "Тип списку каналів"
 
 msgid "Channel name"
 msgstr "Назва каналу"
+
+msgid "Channel number"
+msgstr "Номер Каналу"
 
 msgid "Channel preview mode"
 msgstr "Режим прев'ю каналу"
@@ -4291,6 +4297,9 @@ msgstr "Закрийте Kexec MultiBoot Менеджер"
 
 msgid "Close the Plugin Browser screen"
 msgstr "Закрийте екран браузера плагінів"
+
+msgid "Close the SeekBar after returning to the starting point"
+msgstr ""
 
 msgid "Close the choice box"
 msgstr "Закрити вікно вибору"
@@ -6334,6 +6343,9 @@ msgstr "Відключення ПІП.\n"
 
 msgid "Disabled or WPA/WPA2"
 msgstr "Вимкнено, або WPA/WPA2"
+
+msgid "Disabling Chkroot failed!"
+msgstr ""
 
 msgid "Dish"
 msgstr "Антена"
@@ -10006,6 +10018,9 @@ msgstr "Внутрішній SSD"
 msgid "Internal USB"
 msgstr "Внутрішній USB"
 
+msgid "Internal disk only"
+msgstr "Тільки внутрішній жорсткий диск"
+
 msgid "Internal flash"
 msgstr "Внутрішня пам’ять"
 
@@ -10016,9 +10031,6 @@ msgstr "Внутрішня пам’ять: %s %s"
 #, python-format
 msgid "Internal flash: %s %s as USB Recovery"
 msgstr "Внутрішній пам’ять: %s %s як USB Recovery"
-
-msgid "Internal disk only"
-msgstr "Тільки внутрішній жорсткий диск"
 
 msgid "Internet"
 msgstr "Інтернет"
@@ -12358,6 +12370,9 @@ msgstr "Вкажіть, скільки IP-адрес потрібно перев
 msgid "Non-Linear"
 msgstr "Нелінійний"
 
+msgid "Non-flashing"
+msgstr "Не блимаюча іконка"
+
 msgid "None"
 msgstr "Нічого"
 
@@ -12414,9 +12429,6 @@ msgstr "Не класифіковано"
 
 msgid "Not Defined"
 msgstr "Не визначений"
-
-msgid "Non-flashing"
-msgstr "Не блимаюча іконка"
 
 msgid "Not Installed"
 msgstr "Не встановлено"
@@ -14025,6 +14037,9 @@ msgstr "Натисніть OK, щоб використовувати цей ре
 msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that image. If available, YELLOW will either delete or wipe the image. A deleted image can be restored with the BLUE button. A wiped image is completely removed and cannot be restored!"
 msgstr "Натисніть кнопки ВГОРУ/ВНИЗ, щоб вибрати слот і натисніть OK, або ЗЕЛЕНУ, щоб 'Перезавантажити' це зображення. Якщо доступний, ЖОВТА буде 'Видалити', або 'Стерти' імідж. 'Видалений' імідж можна 'відновити' за допомогою СИНЬОЇ кнопки. Повністю вилучений імідж НЕМОЖЛИВО відновити!"
 
+msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that image. If available, YELLOW will disable Multiboot, delete, or wipe the selected image. Press BLUE to add more slots."
+msgstr ""
+
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Натисніть цю кнопку, щоб емулювати тривале натискання на кнопку натиснутою після (це також скасовує будь-які інші дії, призначені для кнопки емуляції)."
 
@@ -14365,14 +14380,14 @@ msgstr "REC"
 msgid "REC "
 msgstr "REC "
 
-msgid "REC symbol"
-msgstr "Значок запису"
-
 msgid "REC Symbol in Standby"
 msgstr "REC в Режимі очікування"
 
 msgid "REC Symbol in use"
 msgstr "Використовується символ REC"
+
+msgid "REC symbol"
+msgstr "Значок запису"
 
 msgid "RED button"
 msgstr "Червона кнопка"
@@ -15715,14 +15730,14 @@ msgstr "Перегляд таймерів живлення"
 msgid "Scheduler Settings"
 msgstr "Параметри таймера живлення"
 
-msgid "Scheduler standby"
-msgstr "Таймер живлення в режимі очікування"
-
 msgid "Scheduler deep standby"
 msgstr "Таймер живлення в режимі глибокого очікування"
 
 msgid "Scheduler log"
 msgstr "Лог мененджера живлення"
+
+msgid "Scheduler standby"
+msgstr "Таймер живлення в режимі очікування"
 
 msgid "Sci-Fi"
 msgstr "Наукова фантастика"
@@ -15808,8 +15823,8 @@ msgstr "Шукати"
 msgid "Seek Actions"
 msgstr "Дії для Пошуку"
 
-msgid "Seek back short"
-msgstr "Швидкий пошук"
+msgid "Seek Bar"
+msgstr ""
 
 msgid "Seek backward"
 msgstr "Перемотка назад"
@@ -15820,20 +15835,17 @@ msgstr "Перемотати назад (введіть час)"
 msgid "Seek forward"
 msgstr "Перемотка вперед"
 
-msgid "Seek forward  short"
-msgstr "Швидкий пошук вперед"
-
 msgid "Seek forward (enter time)"
 msgstr "Перемотка вперед (введіть час)"
 
-msgid "Seek forward long"
-msgstr "Пошук вперед довго"
+msgid "SeekBar"
+msgstr "Панель пошуку"
+
+msgid "SeekBar Actions"
+msgstr ""
 
 msgid "SeekBar activation"
 msgstr "Активація Seekbar"
-
-msgid "SeekBar"
-msgstr "Панель пошуку"
 
 msgid "SeekBar sensibility"
 msgstr "Крок Seekbar"
@@ -17012,15 +17024,6 @@ msgstr "Інформація Каналу"
 msgid "Service Information Actions"
 msgstr "Інформаційні дії щодо каналу"
 
-msgid "Service Name"
-msgstr "Назва Каналу"
-
-msgid "Service number and service name"
-msgstr "Номер каналу і Назва каналу"
-
-msgid "Service number, picon and service name"
-msgstr "Номер каналу, Пікон і Назва каналу"
-
 msgid "Service Scan"
 msgstr "Пошук Каналів"
 
@@ -17069,8 +17072,14 @@ msgstr ""
 "Канал не знайдено!\n"
 "(SID не знайдено в PAT)"
 
+msgid "Service number and service name"
+msgstr "Номер каналу і Назва каналу"
+
 msgid "Service number font size"
 msgstr "Розмір шрифту для номера каналу"
+
+msgid "Service number, picon and service name"
+msgstr "Номер каналу, Пікон і Назва каналу"
 
 msgid "Service off-air"
 msgstr "Канал поза ефіром"
@@ -18424,11 +18433,11 @@ msgstr "Пакети компонентів скінів"
 msgid "Skin Packages"
 msgstr "Пакети скінів"
 
-msgid "Skin setting"
-msgstr "Налаштування скіну"
-
 msgid "Skin Settings"
 msgstr "Вибір скіну"
+
+msgid "Skin setting"
+msgstr "Налаштування скіну"
 
 msgid "SkinSelection"
 msgstr "Вибір Скіна"
@@ -18439,14 +18448,40 @@ msgstr "Перейти назад"
 msgid "Skip backward"
 msgstr "Перейти назад"
 
+#, python-format
+msgid "Skip backward %d second"
+msgid_plural "Skip backward %d seconds"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "Skip backward %s%%"
+msgstr ""
+
 msgid "Skip backward (enter time)"
 msgstr "перемотати назад (введіть час)"
 
 msgid "Skip empty services"
 msgstr "Пропускати порожні канали"
 
+#, python-format
+msgid "Skip for '%s' is disabled"
+msgstr ""
+
 msgid "Skip forward"
 msgstr "Перейти вперед"
+
+#, python-format
+msgid "Skip forward %d second"
+msgid_plural "Skip forward %d seconds"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-format
+msgid "Skip forward %s%%"
+msgstr ""
 
 msgid "Skip forward (enter time)"
 msgstr "перемотати вперед (введіть час)"
@@ -18468,6 +18503,13 @@ msgstr "Пропустити час для кнопки '%s'"
 
 msgid "Skip time for '%s'/'%s' buttons"
 msgstr "Пропустити час для кнопок '%s'/'%s'"
+
+#, python-format
+msgid "Skip to %s0%% position (Add %s%% on second press)"
+msgstr ""
+
+msgid "Skip to 0% (start) position"
+msgstr ""
 
 msgid "Sleep"
 msgstr "Очікування"
@@ -18598,6 +18640,10 @@ msgstr "Слот R: повна резервна копія кореневого 
 
 msgid "Slot count"
 msgstr "Кількість слотів"
+
+#, python-format
+msgid "Slots have been extended by %d..\n"
+msgstr ""
 
 msgid "Slovak"
 msgstr "Словацька"
@@ -19026,6 +19072,9 @@ msgstr "Час початку"
 
 msgid "Starts in a few seconds"
 msgstr "Починається через кілька секунд"
+
+msgid "Startup device not found!"
+msgstr ""
 
 #. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
@@ -21141,6 +21190,9 @@ msgstr "Алгоритм налаштування"
 msgid "Tunisia"
 msgstr "Туніс"
 
+msgid "Turbo"
+msgstr "турбо"
+
 msgid "Turbo: One reboot after flash; Fast: One reboot after flash, one reboot after restore; Slow: One reboot after flash, one reboot after restore in GUI."
 msgstr "Турбо: Одне перезавантаження після перепрошивки; Швидко: Одне перезавантаження після перепрошивки, одне перезавантаження після відновлення; Повільно: Одне перезавантаження після перепрошивки, одне перезавантаження після відновлення в інтерфейсі."
 
@@ -23249,9 +23301,6 @@ msgstr "пригоди/вестерн/війна"
 msgid "advertisement/shopping"
 msgstr "реклама/покупки"
 
-msgid "All up/down"
-msgstr "все вверх/вниз"
-
 msgid "alpha then oldest"
 msgstr "старий алфавіт"
 
@@ -23780,9 +23829,6 @@ msgstr "відсутня або невідома карта"
 msgid "no storage devices found"
 msgstr "пристрої не знайдені"
 
-msgid "normal"
-msgstr "типовий"
-
 msgid "not"
 msgstr "не"
 
@@ -23977,9 +24023,6 @@ msgstr "перемотати назад"
 msgid "skip forward"
 msgstr "перемотати вперед"
 
-msgid "slow"
-msgstr "повільно"
-
 msgid "soap/melodrama/folkloric"
 msgstr "мило/мелодрама/фольклор"
 
@@ -24082,9 +24125,6 @@ msgstr "звичайний (швидкий), переналаштування"
 msgid "tree delete"
 msgstr "видалити дерево каталогів"
 
-msgid "Turbo"
-msgstr "турбо"
-
 msgid "uShare"
 msgstr "uShare"
 
@@ -24175,6 +24215,27 @@ msgstr "так (зберігати фіди)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Black Screen"
+#~ msgstr "Чорний екран"
+
+#~ msgid "Seek back short"
+#~ msgstr "Швидкий пошук"
+
+#~ msgid "Seek forward  short"
+#~ msgstr "Швидкий пошук вперед"
+
+#~ msgid "Seek forward long"
+#~ msgstr "Пошук вперед довго"
+
+#~ msgid "Service Name"
+#~ msgstr "Назва Каналу"
+
+#~ msgid "normal"
+#~ msgstr "типовий"
+
+#~ msgid "slow"
+#~ msgstr "повільно"
 
 #~ msgid "DVB API version"
 #~ msgstr "Версія DVB API"
@@ -26308,9 +26369,6 @@ msgstr "®"
 
 #~ msgid "Add bouquet"
 #~ msgstr "Додати фаворит"
-
-#~ msgid "Black screen"
-#~ msgstr "Чорний екран"
 
 #~ msgid "no"
 #~ msgstr "ні"

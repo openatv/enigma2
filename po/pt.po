@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-17 17:20+0000\n"
+"POT-Creation-Date: 2025-07-27 15:35+0000\n"
 "PO-Revision-Date: 2025-03-14 06:36+0000\n"
 "Last-Translator: DrAlves <dralves@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pt/>\n"
@@ -102,7 +102,7 @@ msgstr " Actualizar"
 msgid "!! Boot loader Upgrade !!"
 msgstr "!! Carregador de arranque actualizado!!"
 
-msgid "# = Reboot Required"
+msgid "# = Reboot required if this item is changed."
 msgstr "# = Necessário Reiniciar"
 
 #
@@ -1332,7 +1332,7 @@ msgstr "(vazio)"
 msgid "(show optional DVD audio menu)"
 msgstr "(mostrar menu áudio opcional do DVD)"
 
-msgid "* = Restart Required"
+msgid "* = Restart required if this item is changed."
 msgstr "* = Reinício obrigatorio"
 
 #
@@ -2295,6 +2295,9 @@ msgstr "Todos os serviços do operador"
 msgid "All supported"
 msgstr "Todos suportados"
 
+msgid "All up/down"
+msgstr "todos para cima/para baixo"
+
 msgid "Allocate"
 msgstr "Alocar"
 
@@ -2578,6 +2581,9 @@ msgstr "Tem a certeza que pretende eliminar este registo:\n"
 msgid "Are you sure you want to delete this?"
 msgstr "Tem certeza de que deseja apagar isso?"
 
+msgid "Are you sure you want to disable Chkroot Multiboot?"
+msgstr ""
+
 #
 msgid "Are you sure you want to exit this wizard?"
 msgstr "Tem a certeza que deseja sair deste assistente?"
@@ -2772,10 +2778,6 @@ msgstr "Modo de criação"
 msgid "Auto"
 msgstr "Auto"
 
-#
-msgid "Auto detect"
-msgstr "Detecção automática"
-
 msgid "Auto Language"
 msgstr "Selecção automática do idioma"
 
@@ -2802,6 +2804,10 @@ msgstr "Auto separação de capítulos ? minutos (0=nunca)"
 #
 msgid "Auto deep standby"
 msgstr "Deep Standby automático"
+
+#
+msgid "Auto detect"
+msgstr "Detecção automática"
 
 #
 msgid "Auto flesh"
@@ -3203,8 +3209,9 @@ msgstr "Taxa de bits"
 msgid "Black"
 msgstr "Preto"
 
-msgid "Black Screen"
-msgstr "Écra Preto"
+#
+msgid "Black screen"
+msgstr "Ecrã preto"
 
 msgid "Black screen till locked"
 msgstr "Ecrã preto até bloquear"
@@ -3991,9 +3998,6 @@ msgstr "Informação de Canais"
 msgid "Channel List"
 msgstr "Lista de Canais"
 
-msgid "Channel number"
-msgstr ""
-
 #
 msgid "Channel Selection"
 msgstr "Selecção do Canal"
@@ -4055,6 +4059,9 @@ msgstr "Tipo de lista de canais"
 
 msgid "Channel name"
 msgstr "Nome do canal"
+
+msgid "Channel number"
+msgstr ""
 
 msgid "Channel preview mode"
 msgstr "Modo de pré-visualização de canal"
@@ -4436,6 +4443,9 @@ msgid "Close the Kexec MultiBoot Manager"
 msgstr ""
 
 msgid "Close the Plugin Browser screen"
+msgstr ""
+
+msgid "Close the SeekBar after returning to the starting point"
 msgstr ""
 
 msgid "Close the choice box"
@@ -6557,6 +6567,9 @@ msgid "Disabled PiP.\n"
 msgstr "PIP desactivado.\n"
 
 msgid "Disabled or WPA/WPA2"
+msgstr ""
+
+msgid "Disabling Chkroot failed!"
 msgstr ""
 
 msgid "Dish"
@@ -10377,6 +10390,9 @@ msgstr ""
 msgid "Internal USB"
 msgstr "USB interno"
 
+msgid "Internal disk only"
+msgstr "Apenas no disco rígido interno"
+
 #
 msgid "Internal flash"
 msgstr "Flash Interna"
@@ -10388,9 +10404,6 @@ msgstr "Flash interna:  %s %s "
 #, python-format
 msgid "Internal flash: %s %s as USB Recovery"
 msgstr "Flash interna: %s %s como recuperação USB"
-
-msgid "Internal disk only"
-msgstr "Apenas no disco rígido interno"
 
 msgid "Internet"
 msgstr ""
@@ -12879,6 +12892,9 @@ msgstr ""
 msgid "Non-Linear"
 msgstr ""
 
+msgid "Non-flashing"
+msgstr ""
+
 #
 msgid "None"
 msgstr "Nenhum"
@@ -12940,9 +12956,6 @@ msgid "Not Classified"
 msgstr "Não classificado"
 
 msgid "Not Defined"
-msgstr ""
-
-msgid "Non-flashing"
 msgstr ""
 
 #
@@ -14653,6 +14666,9 @@ msgstr ""
 msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that image. If available, YELLOW will either delete or wipe the image. A deleted image can be restored with the BLUE button. A wiped image is completely removed and cannot be restored!"
 msgstr ""
 
+msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that image. If available, YELLOW will disable Multiboot, delete, or wipe the selected image. Press BLUE to add more slots."
+msgstr ""
+
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr ""
 
@@ -15009,13 +15025,13 @@ msgstr ""
 msgid "REC "
 msgstr ""
 
-msgid "REC symbol"
-msgstr ""
-
 msgid "REC Symbol in Standby"
 msgstr "Símbolo REC em standby"
 
 msgid "REC Symbol in use"
+msgstr ""
+
+msgid "REC symbol"
 msgstr ""
 
 msgid "RED button"
@@ -16451,13 +16467,13 @@ msgstr "Visão geral do Temporizador de energia"
 msgid "Scheduler Settings"
 msgstr ""
 
-msgid "Scheduler standby"
-msgstr ""
-
 msgid "Scheduler deep standby"
 msgstr ""
 
 msgid "Scheduler log"
+msgstr ""
+
+msgid "Scheduler standby"
 msgstr ""
 
 msgid "Sci-Fi"
@@ -16553,9 +16569,8 @@ msgstr "Pesquisar"
 msgid "Seek Actions"
 msgstr "Buscar Ações"
 
-#
-msgid "Seek back short"
-msgstr "Procurar para trás curto"
+msgid "Seek Bar"
+msgstr ""
 
 msgid "Seek backward"
 msgstr "Procurar para trás"
@@ -16566,22 +16581,18 @@ msgstr "Procurar para trás (inserir tempo)"
 msgid "Seek forward"
 msgstr "Procurar para a frente"
 
-msgid "Seek forward  short"
-msgstr "Procurar para a frente curto"
-
 msgid "Seek forward (enter time)"
 msgstr "Procurar para a frente (inserir tempo)"
 
 #
-msgid "Seek forward long"
-msgstr "Procurar avançar por muito tempo"
+msgid "SeekBar"
+msgstr "Barra de busca"
+
+msgid "SeekBar Actions"
+msgstr ""
 
 msgid "SeekBar activation"
 msgstr "Ativação da barra de busca"
-
-#
-msgid "SeekBar"
-msgstr "Barra de busca"
 
 msgid "SeekBar sensibility"
 msgstr "Sensibilidade da barra de busca"
@@ -17770,15 +17781,6 @@ msgstr ""
 msgid "Service Information Actions"
 msgstr ""
 
-msgid "Service Name"
-msgstr ""
-
-msgid "Service number and service name"
-msgstr ""
-
-msgid "Service number, picon and service name"
-msgstr ""
-
 msgid "Service Scan"
 msgstr ""
 
@@ -17830,7 +17832,13 @@ msgstr ""
 "Canal não encontrado!\n"
 "(SID não encontrado no PAT)"
 
+msgid "Service number and service name"
+msgstr ""
+
 msgid "Service number font size"
+msgstr ""
+
+msgid "Service number, picon and service name"
 msgstr ""
 
 msgid "Service off-air"
@@ -19241,11 +19249,11 @@ msgstr ""
 msgid "Skin Packages"
 msgstr ""
 
-msgid "Skin setting"
-msgstr "Definições de skin"
-
 msgid "Skin Settings"
 msgstr "Definições de Skin"
+
+msgid "Skin setting"
+msgstr "Definições de skin"
 
 msgid "SkinSelection"
 msgstr ""
@@ -19256,6 +19264,16 @@ msgstr ""
 msgid "Skip backward"
 msgstr ""
 
+#, python-format
+msgid "Skip backward %d second"
+msgid_plural "Skip backward %d seconds"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Skip backward %s%%"
+msgstr ""
+
 #
 msgid "Skip backward (enter time)"
 msgstr "retroceder (inserir tempo)"
@@ -19263,7 +19281,21 @@ msgstr "retroceder (inserir tempo)"
 msgid "Skip empty services"
 msgstr "Ignorar serviços vazios"
 
+#, python-format
+msgid "Skip for '%s' is disabled"
+msgstr ""
+
 msgid "Skip forward"
+msgstr ""
+
+#, python-format
+msgid "Skip forward %d second"
+msgid_plural "Skip forward %d seconds"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Skip forward %s%%"
 msgstr ""
 
 #
@@ -19286,6 +19318,13 @@ msgid "Skip time for '%s' button"
 msgstr ""
 
 msgid "Skip time for '%s'/'%s' buttons"
+msgstr ""
+
+#, python-format
+msgid "Skip to %s0%% position (Add %s%% on second press)"
+msgstr ""
+
+msgid "Skip to 0% (start) position"
 msgstr ""
 
 msgid "Sleep"
@@ -19417,6 +19456,10 @@ msgid "Slot R: Root Slot Image Backup (Current image)"
 msgstr ""
 
 msgid "Slot count"
+msgstr ""
+
+#, python-format
+msgid "Slots have been extended by %d..\n"
 msgstr ""
 
 msgid "Slovak"
@@ -19863,6 +19906,9 @@ msgstr ""
 
 msgid "Starts in a few seconds"
 msgstr "Inicia em alguns segundos"
+
+msgid "Startup device not found!"
+msgstr ""
 
 #. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
@@ -22023,6 +22069,9 @@ msgid "Tuning algorithm"
 msgstr ""
 
 msgid "Tunisia"
+msgstr ""
+
+msgid "Turbo"
 msgstr ""
 
 msgid "Turbo: One reboot after flash; Fast: One reboot after flash, one reboot after restore; Slow: One reboot after flash, one reboot after restore in GUI."
@@ -24190,9 +24239,6 @@ msgstr "aventura/guerra"
 msgid "advertisement/shopping"
 msgstr "anúncios/vendas"
 
-msgid "All up/down"
-msgstr "todos para cima/para baixo"
-
 msgid "alpha then oldest"
 msgstr ""
 
@@ -24764,9 +24810,6 @@ msgstr ""
 msgid "no storage devices found"
 msgstr "dispositivos de armazenamento não encontrados"
 
-msgid "normal"
-msgstr ""
-
 #
 msgid "not"
 msgstr "não"
@@ -24983,9 +25026,6 @@ msgstr "retroceder"
 msgid "skip forward"
 msgstr "avançar"
 
-msgid "slow"
-msgstr ""
-
 msgid "soap/melodrama/folkloric"
 msgstr ""
 
@@ -25097,9 +25137,6 @@ msgstr ""
 msgid "tree delete"
 msgstr ""
 
-msgid "Turbo"
-msgstr ""
-
 msgid "uShare"
 msgstr ""
 
@@ -25199,6 +25236,20 @@ msgstr "sim (mantenha os feeds)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Black Screen"
+#~ msgstr "Écra Preto"
+
+#
+#~ msgid "Seek back short"
+#~ msgstr "Procurar para trás curto"
+
+#~ msgid "Seek forward  short"
+#~ msgstr "Procurar para a frente curto"
+
+#
+#~ msgid "Seek forward long"
+#~ msgstr "Procurar avançar por muito tempo"
 
 #~ msgid "Search EPG for current event"
 #~ msgstr "Pesquisar o epg para o evento atual."
@@ -26475,7 +26526,3 @@ msgstr ""
 
 #~ msgid "(Pip)"
 #~ msgstr "(Pip)"
-
-#
-#~ msgid "Black screen"
-#~ msgstr "Ecrã preto"

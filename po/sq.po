@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-17 17:20+0000\n"
+"POT-Creation-Date: 2025-07-27 15:35+0000\n"
 "PO-Revision-Date: 2023-12-11 00:50+0000\n"
 "Last-Translator: W L <wl@mailhole.de>\n"
 "Language-Team: Albanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sq/>\n"
@@ -99,7 +99,7 @@ msgstr " përditësuar"
 msgid "!! Boot loader Upgrade !!"
 msgstr "!! Përditësimi i Bootloader-it !!"
 
-msgid "# = Reboot Required"
+msgid "# = Reboot required if this item is changed."
 msgstr ""
 
 msgid "%-H:%M"
@@ -1309,7 +1309,7 @@ msgstr "(Bosh)"
 msgid "(show optional DVD audio menu)"
 msgstr "(Shfaq menynë opsionale audio dvd)"
 
-msgid "* = Restart Required"
+msgid "* = Restart required if this item is changed."
 msgstr "* = Rinisja kërkohet"
 
 msgid "* Only available if more than one interface is active."
@@ -2204,6 +2204,9 @@ msgstr "I gjithë ofruesi i shërbimeve"
 msgid "All supported"
 msgstr "Të gjitha të mbështetura"
 
+msgid "All up/down"
+msgstr ""
+
 msgid "Allocate"
 msgstr "Alokuar"
 
@@ -2477,6 +2480,9 @@ msgstr "A je i sigurt që dëshiron të eleminosh këtë log:\n"
 msgid "Are you sure you want to delete this?"
 msgstr "Je i sigurt që do ta eleminosh këtë?"
 
+msgid "Are you sure you want to disable Chkroot Multiboot?"
+msgstr ""
+
 msgid "Are you sure you want to exit this wizard?"
 msgstr "Je i sigurt që do të dalësh nga ky magjistar?"
 
@@ -2660,9 +2666,6 @@ msgstr "Modalitet autorisimi"
 msgid "Auto"
 msgstr "Auto"
 
-msgid "Auto detect"
-msgstr "Detekton auto"
-
 msgid "Auto Language"
 msgstr "Gjuha automatike"
 
@@ -2686,6 +2689,9 @@ msgstr "Kapitulli i autovetit i ndan të gjitha? minuta (0=never)"
 
 msgid "Auto deep standby"
 msgstr "Auto deep standby"
+
+msgid "Auto detect"
+msgstr "Detekton auto"
 
 msgid "Auto flesh"
 msgstr "Mish auto"
@@ -3063,8 +3069,8 @@ msgstr "Bitrate"
 msgid "Black"
 msgstr "E zezë"
 
-msgid "Black Screen"
-msgstr ""
+msgid "Black screen"
+msgstr "Ekran i zi"
 
 msgid "Black screen till locked"
 msgstr "Ekran i zi deri të kyçur"
@@ -3834,9 +3840,6 @@ msgstr "Informacioni i kanalit"
 msgid "Channel List"
 msgstr "Lista e kanaleve"
 
-msgid "Channel number"
-msgstr ""
-
 msgid "Channel Selection"
 msgstr "Zgjedhja e kanalit"
 
@@ -3896,6 +3899,9 @@ msgstr "Lloji i listës së kanaleve"
 
 msgid "Channel name"
 msgstr "Emri i kanalit"
+
+msgid "Channel number"
+msgstr ""
 
 msgid "Channel preview mode"
 msgstr "Modaliteti i shikimit paraprak të kanalit"
@@ -4260,6 +4266,9 @@ msgid "Close the Kexec MultiBoot Manager"
 msgstr ""
 
 msgid "Close the Plugin Browser screen"
+msgstr ""
+
+msgid "Close the SeekBar after returning to the starting point"
 msgstr ""
 
 msgid "Close the choice box"
@@ -6295,6 +6304,9 @@ msgstr "Çaktivizuar PIP.\n"
 
 msgid "Disabled or WPA/WPA2"
 msgstr "I çaktivizuar ose WPA/WPA2"
+
+msgid "Disabling Chkroot failed!"
+msgstr ""
 
 msgid "Dish"
 msgstr "Pjatë"
@@ -9954,6 +9966,9 @@ msgstr ""
 msgid "Internal USB"
 msgstr ""
 
+msgid "Internal disk only"
+msgstr ""
+
 msgid "Internal flash"
 msgstr ""
 
@@ -9963,9 +9978,6 @@ msgstr ""
 
 #, python-format
 msgid "Internal flash: %s %s as USB Recovery"
-msgstr ""
-
-msgid "Internal disk only"
 msgstr ""
 
 msgid "Internet"
@@ -12282,6 +12294,9 @@ msgstr ""
 msgid "Non-Linear"
 msgstr ""
 
+msgid "Non-flashing"
+msgstr ""
+
 msgid "None"
 msgstr ""
 
@@ -12337,9 +12352,6 @@ msgid "Not Classified"
 msgstr ""
 
 msgid "Not Defined"
-msgstr ""
-
-msgid "Non-flashing"
 msgstr ""
 
 msgid "Not Installed"
@@ -13932,6 +13944,9 @@ msgstr ""
 msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that image. If available, YELLOW will either delete or wipe the image. A deleted image can be restored with the BLUE button. A wiped image is completely removed and cannot be restored!"
 msgstr ""
 
+msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that image. If available, YELLOW will disable Multiboot, delete, or wipe the selected image. Press BLUE to add more slots."
+msgstr ""
+
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr ""
 
@@ -14272,14 +14287,14 @@ msgstr "REC"
 msgid "REC "
 msgstr "REC "
 
-msgid "REC symbol"
-msgstr "Simboli REC"
-
 msgid "REC Symbol in Standby"
 msgstr "Simboli REC në Standby"
 
 msgid "REC Symbol in use"
 msgstr "Simboli REC në përdorim"
+
+msgid "REC symbol"
+msgstr "Simboli REC"
 
 msgid "RED button"
 msgstr "Butoni RED"
@@ -15617,13 +15632,13 @@ msgstr ""
 msgid "Scheduler Settings"
 msgstr ""
 
-msgid "Scheduler standby"
-msgstr ""
-
 msgid "Scheduler deep standby"
 msgstr ""
 
 msgid "Scheduler log"
+msgstr ""
+
+msgid "Scheduler standby"
 msgstr ""
 
 msgid "Sci-Fi"
@@ -15710,7 +15725,7 @@ msgstr ""
 msgid "Seek Actions"
 msgstr ""
 
-msgid "Seek back short"
+msgid "Seek Bar"
 msgstr ""
 
 msgid "Seek backward"
@@ -15722,19 +15737,16 @@ msgstr ""
 msgid "Seek forward"
 msgstr ""
 
-msgid "Seek forward  short"
-msgstr ""
-
 msgid "Seek forward (enter time)"
 msgstr ""
 
-msgid "Seek forward long"
+msgid "SeekBar"
+msgstr ""
+
+msgid "SeekBar Actions"
 msgstr ""
 
 msgid "SeekBar activation"
-msgstr ""
-
-msgid "SeekBar"
 msgstr ""
 
 msgid "SeekBar sensibility"
@@ -16893,15 +16905,6 @@ msgstr ""
 msgid "Service Information Actions"
 msgstr ""
 
-msgid "Service Name"
-msgstr ""
-
-msgid "Service number and service name"
-msgstr ""
-
-msgid "Service number, picon and service name"
-msgstr ""
-
 msgid "Service Scan"
 msgstr ""
 
@@ -16946,7 +16949,13 @@ msgid ""
 "(SID not found in PAT)"
 msgstr ""
 
+msgid "Service number and service name"
+msgstr ""
+
 msgid "Service number font size"
+msgstr ""
+
+msgid "Service number, picon and service name"
 msgstr ""
 
 msgid "Service off-air"
@@ -18293,10 +18302,10 @@ msgstr ""
 msgid "Skin Packages"
 msgstr ""
 
-msgid "Skin setting"
+msgid "Skin Settings"
 msgstr "Vendosja e lëkurës"
 
-msgid "Skin Settings"
+msgid "Skin setting"
 msgstr "Vendosja e lëkurës"
 
 msgid "SkinSelection"
@@ -18308,14 +18317,38 @@ msgstr "Kalo prapa"
 msgid "Skip backward"
 msgstr ""
 
+#, python-format
+msgid "Skip backward %d second"
+msgid_plural "Skip backward %d seconds"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Skip backward %s%%"
+msgstr ""
+
 msgid "Skip backward (enter time)"
 msgstr ""
 
 msgid "Skip empty services"
 msgstr "Kapërceni shërbimet boshe"
 
+#, python-format
+msgid "Skip for '%s' is disabled"
+msgstr ""
+
 msgid "Skip forward"
 msgstr "Kalo përpara"
+
+#, python-format
+msgid "Skip forward %d second"
+msgid_plural "Skip forward %d seconds"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Skip forward %s%%"
+msgstr ""
 
 msgid "Skip forward (enter time)"
 msgstr ""
@@ -18336,6 +18369,13 @@ msgid "Skip time for '%s' button"
 msgstr ""
 
 msgid "Skip time for '%s'/'%s' buttons"
+msgstr ""
+
+#, python-format
+msgid "Skip to %s0%% position (Add %s%% on second press)"
+msgstr ""
+
+msgid "Skip to 0% (start) position"
 msgstr ""
 
 msgid "Sleep"
@@ -18464,6 +18504,10 @@ msgid "Slot R: Root Slot Image Backup (Current image)"
 msgstr ""
 
 msgid "Slot count"
+msgstr ""
+
+#, python-format
+msgid "Slots have been extended by %d..\n"
 msgstr ""
 
 msgid "Slovak"
@@ -18885,6 +18929,9 @@ msgid "Starting time"
 msgstr ""
 
 msgid "Starts in a few seconds"
+msgstr ""
+
+msgid "Startup device not found!"
 msgstr ""
 
 #. TRANSLATORS: "State" is location information and not condition based information.
@@ -20951,6 +20998,9 @@ msgstr ""
 msgid "Tunisia"
 msgstr ""
 
+msgid "Turbo"
+msgstr "Turbo"
+
 msgid "Turbo: One reboot after flash; Fast: One reboot after flash, one reboot after restore; Slow: One reboot after flash, one reboot after restore in GUI."
 msgstr ""
 
@@ -23010,9 +23060,6 @@ msgstr ""
 msgid "advertisement/shopping"
 msgstr ""
 
-msgid "All up/down"
-msgstr ""
-
 msgid "alpha then oldest"
 msgstr ""
 
@@ -23539,9 +23586,6 @@ msgstr ""
 msgid "no storage devices found"
 msgstr ""
 
-msgid "normal"
-msgstr ""
-
 msgid "not"
 msgstr ""
 
@@ -23732,9 +23776,6 @@ msgstr ""
 msgid "skip forward"
 msgstr ""
 
-msgid "slow"
-msgstr ""
-
 msgid "soap/melodrama/folkloric"
 msgstr ""
 
@@ -23836,9 +23877,6 @@ msgstr "tradicional (i shpejtë), ribashkim"
 
 msgid "tree delete"
 msgstr ""
-
-msgid "Turbo"
-msgstr "Turbo"
 
 msgid "uShare"
 msgstr "uShare"
@@ -24963,6 +25001,3 @@ msgstr "®"
 
 #~ msgid "use_hdmi_cacenter"
 #~ msgstr "use_hdmi_cacenter"
-
-#~ msgid "Black screen"
-#~ msgstr "Ekran i zi"

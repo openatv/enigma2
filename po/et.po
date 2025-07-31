@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-17 17:20+0000\n"
+"POT-Creation-Date: 2025-07-27 15:35+0000\n"
 "PO-Revision-Date: 2022-12-04 20:43+0000\n"
 "Last-Translator: rimasx <riks_12@hot.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -94,7 +94,7 @@ msgstr " uuendatud"
 msgid "!! Boot loader Upgrade !!"
 msgstr "!! Alglaaduri uuendus !!"
 
-msgid "# = Reboot Required"
+msgid "# = Reboot required if this item is changed."
 msgstr ""
 
 msgid "%-H:%M"
@@ -1304,7 +1304,7 @@ msgstr "(tühi)"
 msgid "(show optional DVD audio menu)"
 msgstr "(näita DVD valikulist helimenüüd)"
 
-msgid "* = Restart Required"
+msgid "* = Restart required if this item is changed."
 msgstr "* = Vajalik taaskäivitus"
 
 msgid "* Only available if more than one interface is active."
@@ -2217,6 +2217,9 @@ msgstr "Kõik levitajad"
 msgid "All supported"
 msgstr "Kõik toetatud"
 
+msgid "All up/down"
+msgstr "kõik üles/alla"
+
 msgid "Allocate"
 msgstr "Jaota"
 
@@ -2493,6 +2496,9 @@ msgstr "Kas kustutada see logi:\n"
 msgid "Are you sure you want to delete this?"
 msgstr ""
 
+msgid "Are you sure you want to disable Chkroot Multiboot?"
+msgstr ""
+
 msgid "Are you sure you want to exit this wizard?"
 msgstr "Kas väljuda seadistusabilisest?"
 
@@ -2683,9 +2689,6 @@ msgstr "DVD loomine"
 msgid "Auto"
 msgstr "Auto"
 
-msgid "Auto detect"
-msgstr "Automaatne tuvastus"
-
 #
 msgid "Auto Language"
 msgstr "Automaatne keelevalik"
@@ -2711,6 +2714,9 @@ msgstr "Automaatne peatüki lõikamine pärast iga ? minutit (0=mitte kunagi)"
 
 msgid "Auto deep standby"
 msgstr "Automaatne puhkeseisund"
+
+msgid "Auto detect"
+msgstr "Automaatne tuvastus"
 
 msgid "Auto flesh"
 msgstr "Nahatooni esiletoomine"
@@ -3098,8 +3104,8 @@ msgstr "Bitikiirus"
 msgid "Black"
 msgstr "Must"
 
-msgid "Black Screen"
-msgstr ""
+msgid "Black screen"
+msgstr "Must ekraan"
 
 msgid "Black screen till locked"
 msgstr "Must ekraan lukustumiseni"
@@ -3874,9 +3880,6 @@ msgstr "Kanaliinfo"
 msgid "Channel List"
 msgstr "Kanalinimekiri"
 
-msgid "Channel number"
-msgstr ""
-
 msgid "Channel Selection"
 msgstr "Kanalivalik"
 
@@ -3937,6 +3940,9 @@ msgstr "Kanalinimekirja stiil"
 
 msgid "Channel name"
 msgstr "Kanali nimi"
+
+msgid "Channel number"
+msgstr ""
 
 msgid "Channel preview mode"
 msgstr "Kanali eelvaatlus"
@@ -4306,6 +4312,9 @@ msgid "Close the Kexec MultiBoot Manager"
 msgstr ""
 
 msgid "Close the Plugin Browser screen"
+msgstr ""
+
+msgid "Close the SeekBar after returning to the starting point"
 msgstr ""
 
 msgid "Close the choice box"
@@ -6390,6 +6399,9 @@ msgid "Disabled PiP.\n"
 msgstr "PIP lülitati välja.\n"
 
 msgid "Disabled or WPA/WPA2"
+msgstr ""
+
+msgid "Disabling Chkroot failed!"
 msgstr ""
 
 #
@@ -10132,6 +10144,9 @@ msgstr ""
 msgid "Internal USB"
 msgstr "Sisemine USB pesa"
 
+msgid "Internal disk only"
+msgstr "Ainult sisesel kõvakettal"
+
 msgid "Internal flash"
 msgstr "Sisemälu"
 
@@ -10142,9 +10157,6 @@ msgstr ""
 #, python-format
 msgid "Internal flash: %s %s as USB Recovery"
 msgstr ""
-
-msgid "Internal disk only"
-msgstr "Ainult sisesel kõvakettal"
 
 msgid "Internet"
 msgstr "Internet"
@@ -12594,6 +12606,9 @@ msgstr ""
 msgid "Non-Linear"
 msgstr ""
 
+msgid "Non-flashing"
+msgstr "Pidev"
+
 msgid "None"
 msgstr "Pole"
 
@@ -12654,9 +12669,6 @@ msgstr "Sidumata"
 
 msgid "Not Defined"
 msgstr "Määratlemata"
-
-msgid "Non-flashing"
-msgstr "Pidev"
 
 #, fuzzy
 msgid "Not Installed"
@@ -14326,6 +14338,9 @@ msgstr ""
 msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboot to that image. If available, YELLOW will either delete or wipe the image. A deleted image can be restored with the BLUE button. A wiped image is completely removed and cannot be restored!"
 msgstr ""
 
+msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that image. If available, YELLOW will disable Multiboot, delete, or wipe the selected image. Press BLUE to add more slots."
+msgstr ""
+
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Pärast selle nupu vajutamist emuleeritakse järgmise nupu vajutus pika nupuvajutusena. See kaalub üle kõik muud nupule määratud toimingud."
 
@@ -14678,14 +14693,14 @@ msgstr "REC"
 msgid "REC "
 msgstr ""
 
-msgid "REC symbol"
-msgstr "REC sümbol"
-
 msgid "REC Symbol in Standby"
 msgstr "REC sümbol ooteseisundis"
 
 msgid "REC Symbol in use"
 msgstr "REC sümbol kasutuses"
+
+msgid "REC symbol"
+msgstr "REC sümbol"
 
 msgid "RED button"
 msgstr "Punane nupp"
@@ -16065,14 +16080,14 @@ msgstr "Toiteaimeri ülevaade"
 msgid "Scheduler Settings"
 msgstr ""
 
-msgid "Scheduler standby"
-msgstr "Ooteeseisundi toitetaimer"
-
 msgid "Scheduler deep standby"
 msgstr "Puhkeseisundi toitetaimer"
 
 msgid "Scheduler log"
 msgstr "Toitetaimeri logi"
+
+msgid "Scheduler standby"
+msgstr "Ooteeseisundi toitetaimer"
 
 msgid "Sci-Fi"
 msgstr ""
@@ -16160,9 +16175,8 @@ msgstr "Otsi"
 msgid "Seek Actions"
 msgstr "Kiirtegevused"
 
-#, fuzzy
-msgid "Seek back short"
-msgstr "Keri tagasi"
+msgid "Seek Bar"
+msgstr ""
 
 msgid "Seek backward"
 msgstr "Keri tagasi"
@@ -16173,22 +16187,17 @@ msgstr "Keri tagasi (sisesta aeg)"
 msgid "Seek forward"
 msgstr "Keri edasi"
 
-#, fuzzy
-msgid "Seek forward  short"
-msgstr "Keri edasi"
-
 msgid "Seek forward (enter time)"
 msgstr "Keri edasi (sisesta aeg)"
 
-#, fuzzy
-msgid "Seek forward long"
-msgstr "Keri edasi"
+msgid "SeekBar"
+msgstr "Otsiriba"
+
+msgid "SeekBar Actions"
+msgstr ""
 
 msgid "SeekBar activation"
 msgstr "Otsiriba käivitamine"
-
-msgid "SeekBar"
-msgstr "Otsiriba"
 
 msgid "SeekBar sensibility"
 msgstr "Otsiriba tundlikkus"
@@ -17375,15 +17384,6 @@ msgstr ""
 msgid "Service Information Actions"
 msgstr ""
 
-msgid "Service Name"
-msgstr "Kanali nimi"
-
-msgid "Service number and service name"
-msgstr "Kanali number ja kanali nimi"
-
-msgid "Service number, picon and service name"
-msgstr "Kanali number, pikon ja kanali nimi"
-
 msgid "Service Scan"
 msgstr ""
 
@@ -17433,8 +17433,14 @@ msgstr ""
 "Kanalit ei leitud!\n"
 "(SID ei leitud PAT-st)"
 
+msgid "Service number and service name"
+msgstr "Kanali number ja kanali nimi"
+
 msgid "Service number font size"
 msgstr "Kanali numbri tähesuurus"
+
+msgid "Service number, picon and service name"
+msgstr "Kanali number, pikon ja kanali nimi"
 
 #, fuzzy
 msgid "Service off-air"
@@ -18814,11 +18820,11 @@ msgstr ""
 msgid "Skin Packages"
 msgstr ""
 
-msgid "Skin setting"
-msgstr "Kujunduse seaded"
-
 msgid "Skin Settings"
 msgstr "Kujunduse valik"
+
+msgid "Skin setting"
+msgstr "Kujunduse seaded"
 
 msgid "SkinSelection"
 msgstr ""
@@ -18829,14 +18835,38 @@ msgstr "Tagasihüpe"
 msgid "Skip backward"
 msgstr ""
 
+#, python-format
+msgid "Skip backward %d second"
+msgid_plural "Skip backward %d seconds"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Skip backward %s%%"
+msgstr ""
+
 msgid "Skip backward (enter time)"
 msgstr "Hüppa tagasi (sisesta aeg)"
 
 msgid "Skip empty services"
 msgstr "Tühje kanaleid ei kuvata"
 
+#, python-format
+msgid "Skip for '%s' is disabled"
+msgstr ""
+
 msgid "Skip forward"
 msgstr "Edasihüpe"
+
+#, python-format
+msgid "Skip forward %d second"
+msgid_plural "Skip forward %d seconds"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "Skip forward %s%%"
+msgstr ""
 
 msgid "Skip forward (enter time)"
 msgstr "Hüppa edasi (sisesta aeg)"
@@ -18857,6 +18887,13 @@ msgid "Skip time for '%s' button"
 msgstr ""
 
 msgid "Skip time for '%s'/'%s' buttons"
+msgstr ""
+
+#, python-format
+msgid "Skip to %s0%% position (Add %s%% on second press)"
+msgstr ""
+
+msgid "Skip to 0% (start) position"
 msgstr ""
 
 msgid "Sleep"
@@ -18988,6 +19025,10 @@ msgid "Slot R: Root Slot Image Backup (Current image)"
 msgstr ""
 
 msgid "Slot count"
+msgstr ""
+
+#, python-format
+msgid "Slots have been extended by %d..\n"
 msgstr ""
 
 msgid "Slovak"
@@ -19429,6 +19470,9 @@ msgstr ""
 #, fuzzy
 msgid "Starts in a few seconds"
 msgstr "Käivita võrguta dekodeerimine"
+
+msgid "Startup device not found!"
+msgstr ""
 
 #. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
@@ -21579,6 +21623,9 @@ msgstr "Häälestumise algorütm"
 msgid "Tunisia"
 msgstr "Tuneesia"
 
+msgid "Turbo"
+msgstr "Turbo"
+
 msgid "Turbo: One reboot after flash; Fast: One reboot after flash, one reboot after restore; Slow: One reboot after flash, one reboot after restore in GUI."
 msgstr "Turbo: Üks taaskäivitus pärast püsivara paigaldust; Kiire: Üks taaskäivitus pärast püsivara paigaldust, üks pärast taastamist; Aeglane: Üks taaskäivitus pärast püsivara paigaldust, üks pärast menüü kaudu taastamist"
 
@@ -23712,9 +23759,6 @@ msgstr "seiklus/vestern/sõda"
 msgid "advertisement/shopping"
 msgstr "reklaam/ostukanal"
 
-msgid "All up/down"
-msgstr "kõik üles/alla"
-
 msgid "alpha then oldest"
 msgstr "Tähestikuline, vanemad ees"
 
@@ -24264,9 +24308,6 @@ msgstr "tundmatu või puuduv kaart"
 msgid "no storage devices found"
 msgstr "andmekandjaid ei leitud"
 
-msgid "normal"
-msgstr ""
-
 msgid "not"
 msgstr "mitte"
 
@@ -24461,9 +24502,6 @@ msgstr "Hüppa tagasi"
 msgid "skip forward"
 msgstr "Hüppa edasi"
 
-msgid "slow"
-msgstr "Aeglane"
-
 msgid "soap/melodrama/folkloric"
 msgstr "seep/melodraama/rahvapärimus"
 
@@ -24569,9 +24607,6 @@ msgstr "klassikaline (kiire)"
 msgid "tree delete"
 msgstr ""
 
-msgid "Turbo"
-msgstr "Turbo"
-
 msgid "uShare"
 msgstr "uShare"
 
@@ -24661,6 +24696,24 @@ msgstr "Jah (säilita fiidid)"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Seek back short"
+#~ msgstr "Keri tagasi"
+
+#, fuzzy
+#~ msgid "Seek forward  short"
+#~ msgstr "Keri edasi"
+
+#, fuzzy
+#~ msgid "Seek forward long"
+#~ msgstr "Keri edasi"
+
+#~ msgid "Service Name"
+#~ msgstr "Kanali nimi"
+
+#~ msgid "slow"
+#~ msgstr "Aeglane"
 
 #~ msgid "Open DreamPlex"
 #~ msgstr "DreamPlex mängija"
@@ -26278,6 +26331,3 @@ msgstr ""
 
 #~ msgid "show event details"
 #~ msgstr "Kuva saateinfo"
-
-#~ msgid "Black screen"
-#~ msgstr "Must ekraan"
