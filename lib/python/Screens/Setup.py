@@ -222,10 +222,10 @@ class Setup(ConfigListScreen, Screen):
 	def setFootnote(self, footnote):
 		if footnote is None:
 			if self.getCurrentEntry().endswith("*"):
-				self["footnote"].setText(_("* = Restart required if this item is changed."))
+				self["footnote"].setText(_("* = Restart Required"))
 				self["footnote"].show()
 			elif self.getCurrentEntry().endswith("#"):
-				self["footnote"].setText(_("# = Reboot required if this item is changed."))
+				self["footnote"].setText(_("# = Reboot Required"))
 				self["footnote"].show()
 			else:
 				self["footnote"].setText("")
