@@ -145,9 +145,9 @@ class Setup(ConfigListScreen, Screen):
 		indent = element.get("indent", indent)
 		indent = int(indent) if indent and indent.isnumeric() else None
 		if restart == "gui" and not itemText.endswith("*"):  # Add "*" as restart indicator based on the restart attribute.
-			itemText = f"{itemText}*"
+			itemText = f"{itemText} *"
 		elif restart == "system" and not itemText.endswith("#"):  # Add "#" as reboot indicator based on the restart attribute.
-			itemText = f"{itemText}#"
+			itemText = f"{itemText} #"
 		item = eval(element.text) if element.text else ""
 		if item == "":
 			self.list.append((self.formatItemText(itemText, data),))  # Add the comment line to the config list.
@@ -222,10 +222,10 @@ class Setup(ConfigListScreen, Screen):
 	def setFootnote(self, footnote):
 		if footnote is None:
 			if self.getCurrentEntry().endswith("*"):
-				self["footnote"].setText(_("* = Restart Required"))
+				self["footnote"].setText(_("* = Restart required if this item is changed."))
 				self["footnote"].show()
 			elif self.getCurrentEntry().endswith("#"):
-				self["footnote"].setText(_("# = Reboot Required"))
+				self["footnote"].setText(_("# = Reboot required if this item is changed."))
 				self["footnote"].show()
 			else:
 				self["footnote"].setText("")
