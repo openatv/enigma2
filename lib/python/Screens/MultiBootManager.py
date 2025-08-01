@@ -1074,6 +1074,7 @@ class UBISlotManager(Setup):
 			cmdlist.append(f"for n in {TARGET_DEVICE}* ; do umount -lf $n > /dev/null 2>&1 ; done")
 			cmdlist.append(f"/usr/sbin/sgdisk -z {TARGET_DEVICE}")
 			cmdlist.append(f"/bin/touch /dev/nomount.{TARGET} > /dev/null 2>&1")
+			cmdlist.append(f"/bin/touch /dev/nomount.{TARGET}1 > /dev/null 2>&1")
 			cmdlist.append(f"/usr/sbin/parted --script {TARGET_DEVICE} mklabel gpt")
 			cmdlist.append(f"/usr/sbin/partprobe {TARGET_DEVICE}")
 			cmdlist.append(f"/usr/sbin/parted --script {TARGET_DEVICE} mkpart startup fat32 8192s 5MB")
