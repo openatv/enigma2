@@ -146,7 +146,7 @@ class HotPlugManager:
 				knownDevices.append(f"{ID_FS_UUID}:{mountPointHdd}")
 				fileWriteLines("/etc/udev/known_devices", knownDevices)
 				fstab = fileReadLines("/etc/fstab")
-				newFstab = [x for x in fstab if f"UUID={ID_FS_UUID}" not in x and EXPANDER_MOUNT not in x]
+				newFstab = [x for x in fstab if f"UUID={ID_FS_UUID}" not in x]
 				newFstab.append(f"UUID={ID_FS_UUID} {mountPointHdd} {ID_FS_TYPE} defaults 0 0")
 				fileWriteLines("/etc/fstab", newFstab)
 				if not exists(mountPointHdd):
@@ -178,19 +178,19 @@ class HotPlugManager:
 							Console().ePopen(f"/bin/mount -t {ID_FS_TYPE} {DEVNAME} {mountPoint}")
 						elif answer == 3:
 							knownDevices.append(f"{ID_FS_UUID}:{mountPoint}")
-							newFstab = [x for x in fstab if f"UUID={ID_FS_UUID}" not in x and EXPANDER_MOUNT not in x]
+							newFstab = [x for x in fstab if f"UUID={ID_FS_UUID}" not in x]
 							newFstab.append(f"UUID={ID_FS_UUID} {mountPoint} {ID_FS_TYPE} defaults 0 0")
 							fileWriteLines("/etc/fstab", newFstab)
 							self.callMount = True
 						elif answer == 4:
 							knownDevices.append(f"{ID_FS_UUID}:{mountPointHdd}")
-							newFstab = [x for x in fstab if f"UUID={ID_FS_UUID}" not in x and EXPANDER_MOUNT not in x]
+							newFstab = [x for x in fstab if f"UUID={ID_FS_UUID}" not in x]
 							newFstab.append(f"UUID={ID_FS_UUID} {mountPointHdd} {ID_FS_TYPE} defaults 0 0")
 							fileWriteLines("/etc/fstab", newFstab)
 							self.callMount = True
 						elif answer == 5:
 							knownDevices.append(f"{ID_FS_UUID}:{mountPointDevice}")
-							newFstab = [x for x in fstab if f"UUID={ID_FS_UUID}" not in x and EXPANDER_MOUNT not in x]
+							newFstab = [x for x in fstab if f"UUID={ID_FS_UUID}" not in x]
 							newFstab.append(f"UUID={ID_FS_UUID} {mountPointDevice} {ID_FS_TYPE} defaults 0 0")
 							fileWriteLines("/etc/fstab", newFstab)
 							self.callMount = True
