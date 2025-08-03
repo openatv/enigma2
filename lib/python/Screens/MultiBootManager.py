@@ -152,7 +152,10 @@ class MultiBootManager(Screen):
 		self.close(True)
 
 	def deleteImage(self):
-		if BoxInfo.getItem("HasChkrootMultiboot") and not BoxInfo.getItem("hasUBIMB"):
+		currentSelected = self["slotlist"].l.getCurrentSelection()[0]
+		slot = currentSelected[1][0]
+		current = currentSelected[1][4]
+		if BoxInfo.getItem("HasChkrootMultiboot") and slot == "1" and current and not BoxInfo.getItem("hasUBIMB"):
 			self.session.openWithCallback(self.disableChkrootAnswer, MessageBox, _("Are you sure you want to disable Chkroot Multiboot?"), simple=True, windowTitle=self.getTitle())
 		else:
 			self.session.openWithCallback(self.deleteImageAnswer, MessageBox, "%s\n\n%s" % (self["slotlist"].l.getCurrentSelection()[0][0], _("Are you sure you want to delete this image?")), simple=True, windowTitle=self.getTitle())
