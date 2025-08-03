@@ -110,8 +110,8 @@ class Setup(ConfigListScreen, Screen):
 		elif self.list != oldList or self.showDefaultChanged or self.graphicSwitchChanged:
 			currentItem = self["config"].getCurrent()
 			self["config"].setList(self.list)
-			if config.usage.sort_settings.value:
-				self["config"].list.sort()
+			#if config.usage.sort_settings.value:
+			#	self["config"].list.sort()
 			self.moveToItem(currentItem)
 
 	def addItems(self, parentNode, including=True, indent=""):

@@ -262,8 +262,8 @@ class VideoSetup(ConfigListScreen, Screen):
 
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
-		if config.usage.sort_settings.value:
-			self["config"].list.sort()
+		#if config.usage.sort_settings.value:
+		#	self["config"].list.sort()
 
 	def getVerify_videomode(self, setmode, setrate):
 		config_port, config_mode, config_res, config_pol, config_rate = getConfig_videomode(config.av.videomode, config.av.videorate)
