@@ -102,8 +102,8 @@ class VideoEnhancementSetup(ConfigListScreen, Screen):
 		self.color_spaceEntry = addToConfigList(_("Color space"), config.pep.color_space, _("This option sets the picture color space."))
 		self["config"].list = self.list
 		self["config"].l.setList(self.list)
-		if config.usage.sort_settings.value:
-			self["config"].list.sort()
+		#if config.usage.sort_settings.value:
+		#	self["config"].list.sort()
 
 	def SelectionChanged(self):
 		self["description"].setText(self["config"].getCurrent()[2])
