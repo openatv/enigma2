@@ -148,14 +148,15 @@ class Swap(Screen):
 		self.Console.ePopen("sfdisk -l /dev/sd? 2>/dev/null | grep swap", self.updateSwap2)
 
 	def updateSwap2(self, result=None, retval=None, extra_args=None):
-		if result is not None:
-			if isinstance(result, bytes):
-				result = result.decode(encoding='utf-8', errors='strict')
+		if result is not None and isinstance(result, bytes):
+			result = result.decode(encoding='utf-8', errors='strict')
+
 		self.swapsize = 0
 		self.swap_place = ''
 		self.swap_active = False
 		self.device = False
-		if result.find('sd') > 0:
+
+		if result and result.find('sd') > 0:
 			self['key_green'].setText("")
 			for line in result.split('\n'):
 				if line.find('sd') > 0:
@@ -164,14 +165,14 @@ class Swap(Screen):
 					if self.swap_place == 'sfdisk:':
 						self.swap_place = ''
 					self.device = True
-				f = open('/proc/swaps')
-				for line in f.readlines():
+
+			with open('/proc/swaps') as f:
+				for line in f:
 					parts = line.strip().split()
 					if line.find('partition') != -1:
 						self.swap_active = True
-						self.swapsize = parts[2]
-						continue
-				f.close()
+						if len(parts) >= 3 and parts[2].isdigit():
+							self.swapsize = int(parts[2])
 		else:
 			self['key_green'].setText(_("Create"))
 			devicelist = []
@@ -179,14 +180,13 @@ class Swap(Screen):
 				d = path.normpath(p.mountpoint)
 				if path.exists(p.mountpoint) and p.mountpoint != "/" and not p.mountpoint.startswith('/media/net') and not p.mountpoint.startswith('/media/autofs'):
 					devicelist.append((p.description, d))
-			if len(devicelist):
-				for device in devicelist:
-					for filename in glob(device[1] + '/swap*'):
-						self.swap_place = filename
-						self['key_green'].setText(_("Delete"))
-						info = mystat(self.swap_place)
-						self.swapsize = info[stat.ST_SIZE]
-						continue
+
+			for device in devicelist:
+				for filename in glob(device[1] + '/swap*'):
+					self.swap_place = filename
+					self['key_green'].setText(_("Delete"))
+					info = mystat(self.swap_place)
+					self.swapsize = int(info[stat.ST_SIZE]) // 1024
 
 		if config.usage.swapautostart.value and self.swap_place:
 			self['autostart_off'].hide()
@@ -197,35 +197,31 @@ class Swap(Screen):
 			configfile.save()
 			self['autostart_on'].hide()
 			self['autostart_off'].show()
+
 		self['labplace'].setText(self.swap_place)
 		self['labplace'].show()
 
-		f = open('/proc/swaps')
-		for line in f.readlines():
-			parts = line.strip().split()
-			if line.find('partition') != -1:
-				self.swap_active = True
-				continue
-			elif line.find('file') != -1:
-				self.swap_active = True
-				continue
-		f.close()
+		with open('/proc/swaps') as f:
+			for line in f:
+				if 'partition' in line or 'file' in line:
+					self.swap_active = True
 
 		if self.swapsize > 0:
-			if self.swapsize >= 1024:
-				self.swapsize = int(self.swapsize) // 1024
-				if self.swapsize >= 1024:
-					self.swapsize = int(self.swapsize) // 1024
-				self.swapsize = str(self.swapsize) + ' ' + 'MB'
-			else:
-				self.swapsize = str(self.swapsize) + ' ' + 'KB'
+			display_size = self.swapsize
+			unit = 'KB'
+			if display_size >= 1024:
+				display_size //= 1024
+				unit = 'MB'
+				if display_size >= 1024:
+					display_size //= 1024
+					unit = 'GB'
+			self['labsize'].setText(f"{display_size} {unit}")
 		else:
-			self.swapsize = ''
+			self['labsize'].setText('')
 
-		self['labsize'].setText(self.swapsize)
 		self['labsize'].show()
 
-		if self.swap_active is True:
+		if self.swap_active:
 			self['inactive'].hide()
 			self['active'].show()
 			self['key_red'].setText(_("Deactivate"))
