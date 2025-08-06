@@ -105,7 +105,7 @@ class ResolveLists:
 		skin.clear()
 		lcdSkin.clear()
 		fonts.clear()
-		
+
 
 def resolveFilename(scope, base="", path_prefix=None):
 	def addIfExists(paths):
