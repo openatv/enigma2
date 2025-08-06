@@ -93,16 +93,18 @@ def InitDefaultPaths():
 	resolveFilename(SCOPE_CONFIG)
 
 
-skinResolveList = []
-lcdskinResolveList = []
-fontsResolveList = []
+class ResolveLists:
+	skin = []
+	lcdSkin = []
+	fonts = []
 
+	def __init__(self):
+		pass
 
-def clearResolveLists():
-	global skinResolveList, lcdskinResolveList, fontsResolveList
-	skinResolveList = []
-	lcdskinResolveList = []
-	fontsResolveList = []
+	def clearResolveLists(self):
+		skin.clear()
+		lcdSkin.clear()
+		fonts.clear()
 
 
 def resolveFilename(scope, base="", path_prefix=None):
@@ -163,11 +165,10 @@ def resolveFilename(scope, base="", path_prefix=None):
 				if len(pluginCode) > 2:
 					path = join(plugins, pluginCode[0], pluginCode[1])
 	elif scope == SCOPE_GUISKIN:
-		global skinResolveList
-		if not skinResolveList:
+		if not ResolveLists.skin:
 			from Components.config import config  # This import must be here as this module finds the config file as part of the config initialization.
 			skin = dirname(config.skin.primary_skin.value)
-			skinResolveList = addIfExists([
+			ResolveLists.skin = addIfExists([
 				join(scopeConfig, skin),
 				join(scopeConfig, "skin_common"),
 				join(scopeGUISkin, skin),
@@ -176,17 +177,16 @@ def resolveFilename(scope, base="", path_prefix=None):
 				scopeGUISkin  # Deprecate top level of SCOPE_GUISKIN directory to allow a clean up.
 			])
 		if base.endswith(".xml"):  # If the base filename ends with ".xml" then add scopeConfig to the resolveList for support of old skins.
-			resolveList = skinResolveList[:]
+			resolveList = ResolveLists.skin[:]
 			resolveList.insert(2, scopeConfig)
 			path = checkPaths(resolveList, base)
 		else:
-			path = checkPaths(skinResolveList, base)
+			path = checkPaths(ResolveLists.skin, base)
 	elif scope == SCOPE_LCDSKIN:
-		global lcdskinResolveList
-		if not lcdskinResolveList:
+		if not ResolveLists.lcdSkin:
 			from Components.config import config  # This import must be here as this module finds the config file as part of the config initialization.
 			skin = dirname(config.skin.display_skin.value) if hasattr(config.skin, "display_skin") else ""
-			lcdskinResolveList = addIfExists([
+			ResolveLists.lcdSkin = addIfExists([
 				join(scopeConfig, "display", skin),
 				join(scopeConfig, "display", "skin_common"),
 				join(scopeLCDSkin, skin),
@@ -194,10 +194,9 @@ def resolveFilename(scope, base="", path_prefix=None):
 				join(scopeLCDSkin, "skin_default"),
 				scopeLCDSkin  # Deprecate top level of SCOPE_LCDSKIN directory to allow a clean up.
 			])
-		path = checkPaths(lcdskinResolveList, base)
+		path = checkPaths(ResolveLists.lcdSkin, base)
 	elif scope == SCOPE_FONTS:
-		global fontsResolveList
-		if not fontsResolveList:
+		if not ResolveLists.fonts:
 			from Components.config import config  # This import must be here as this module finds the config file as part of the config initialization.
 			skin = dirname(config.skin.primary_skin.value)
 			display = dirname(config.skin.display_skin.value) if hasattr(config.skin, "display_skin") else None
@@ -221,8 +220,8 @@ def resolveFilename(scope, base="", path_prefix=None):
 			resolveList.append(join(scopeLCDSkin, "skin_default", "fonts"))
 			resolveList.append(join(scopeLCDSkin, "skin_default"))
 			resolveList.append(scopeFonts)
-			fontsResolveList = addIfExists(resolveList)
-		path = checkPaths(fontsResolveList, base)
+			ResolveLists.fonts = addIfExists(resolveList)
+		path = checkPaths(ResolveLists.fonts, base)
 	elif scope == SCOPE_PLUGIN:
 		file = join(scopePlugins, base)
 		if exists(file):
@@ -341,7 +340,7 @@ def fileReadXML(filename, default=None, source=DEFAULT_MODULE_NAME, debug=False)
 		if err.errno == ENOENT:  # No such file or directory.
 			print(f"[{source}] Warning: File '{filename}' does not exist!")
 		else:
-			print("[%s] Error %d: Opening file '%s'!  (%s)" % (source, err.errno, filename, err.strerror))
+			print(f"[{source}] Error {err.errno}: Opening file '{filename}'!  ({err.strerror})")
 	except Exception as err:
 		print(f"[{source}] Error: Unexpected error opening/parsing file '{filename}'!  ({err})")
 		print_exc()
@@ -445,15 +444,15 @@ def copyFile(src, dst):
 	# 		try:
 	# 			chmod(dst, S_IMODE(status.st_mode))
 	# 		except OSError as err:
-	# 			print("[Directories] Error %d: Setting modes from '%s' to '%s'!  (%s)" % (err.errno, src, dst, err.strerror))
+	# 			print(f"[Directories] Error {err.errno}: Setting modes from '{src}' to '{dst}'!  ({err.strerror})")
 	# 		try:
 	# 			utime(dst, (status.st_atime, status.st_mtime))
 	# 		except OSError as err:
-	# 			print("[Directories] Error %d: Setting times from '%s' to '%s'!  (%s)" % (err.errno, src, dst, err.strerror))
+	# 			print(f"[Directories] Error {err.errno}: Setting times from '{src}' to '{dst}'!  ({err.strerror})")
 	# 	except OSError as err:
-	# 		print("[Directories] Error %d: Obtaining status from '%s'!  (%s)" % (err.errno, src, err.strerror))
+	# 		print(f"[Directories] Error {err.errno}: Obtaining status from '{src}'!  ({err.strerror})")
 	# except OSError as err:
-	# 	print("[Directories] Error %d: Copying file '%s' to '%s'!  (%s)" % (err.errno, src, dst, err.strerror))
+	# 	print(f"[Directories] Error {err.errno}: Copying file '{src}' to '{dst}'!  ({err.strerror})")
 	# 	return -1
 	# return 0
 
@@ -532,7 +531,7 @@ def moveFiles(fileList):
 
 
 def comparePaths(leftPath, rightPath):
-	print(f"[Directories] comparePaths DEBUG: left='{leftPath}', right='{rightPath}'.")
+	# print(f"[Directories] comparePaths DEBUG: left='{leftPath}', right='{rightPath}'.")
 	if leftPath.endswith(sep):
 		leftPath = leftPath[:-1]
 	left = leftPath.split(sep)
