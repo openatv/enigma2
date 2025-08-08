@@ -426,19 +426,16 @@ void eDVBCIInterfaces::executeRecheckPMTHandlersInMainloop()
 }
 
 // has to run in the e2 mainloop to be able to access the pmt handler
-void eDVBCIInterfaces::recheckPMTHandlers()
-{
+void eDVBCIInterfaces::recheckPMTHandlers() {
 	singleLock s1(m_pmt_handler_lock);
 	singleLock s2(m_slot_lock);
 	eTrace("[CI] recheckPMTHAndlers()");
-	for (PMTHandlerList::iterator it(m_pmt_handlers.begin());
-		 it != m_pmt_handlers.end(); ++it)
-	{
+	for (PMTHandlerList::iterator it(m_pmt_handlers.begin()); it != m_pmt_handlers.end(); ++it) {
 		CAID_LIST caids;
 		ePtr<eDVBService> service;
 		eServiceReferenceDVB ref;
-		eDVBCISlot *tmp = it->cislot;
-		eDVBServicePMTHandler *pmthandler = it->pmthandler;
+		eDVBCISlot* tmp = it->cislot;
+		eDVBServicePMTHandler* pmthandler = it->pmthandler;
 		eDVBServicePMTHandler::program p;
 		bool plugged_cis_exist = false;
 
@@ -450,31 +447,27 @@ void eDVBCIInterfaces::recheckPMTHandlers()
 		ref.path = "";
 
 		for (eSmartPtrList<eDVBCISlot>::iterator ci_it(m_slots.begin()); ci_it != m_slots.end(); ++ci_it)
-			if (ci_it->plugged && ci_it->getCAManager())
-			{
-				eDebug("[CI] Slot %d plugged", ci_it->getSlotID());
+			if (ci_it->plugged && ci_it->getCAManager()) {
+				eTrace("[CI] Slot %d plugged", ci_it->getSlotID());
 				ci_it->plugged = false;
 				plugged_cis_exist = true;
 			}
 
 		// check if this pmt handler has already assigned CI(s) .. and this CI(s) are already running
-		if (!plugged_cis_exist)
-		{
-			while (tmp)
-			{
+		if (!plugged_cis_exist) {
+			while (tmp) {
 				if (!tmp->running_services.empty())
 					break;
 				tmp = tmp->linked_next;
 			}
-			if (tmp) // we dont like to change tsmux for running services
-			{
+			// we dont like to change tsmux for running services
+			if (tmp) {
 				eTrace("[CI] already assigned and running CI!\n");
 				continue;
 			}
 		}
 
-		if (!pmthandler->getProgramInfo(p))
-		{
+		if (!pmthandler->getProgramInfo(p)) {
 			int cnt = 0;
 			std::set<eDVBServicePMTHandler::program::capid_pair> set(p.caids.begin(), p.caids.end());
 			for (std::set<eDVBServicePMTHandler::program::capid_pair>::reverse_iterator x(set.rbegin()); x != set.rend(); ++x, ++cnt)
@@ -489,102 +482,121 @@ void eDVBCIInterfaces::recheckPMTHandlers()
 		if (caids.empty())
 			continue; // unscrambled service
 
-		for (eSmartPtrList<eDVBCISlot>::iterator ci_it(m_slots.begin()); ci_it != m_slots.end(); ++ci_it)
-		{
+		bool is_assigned = false;
+
+		for (eSmartPtrList<eDVBCISlot>::iterator ci_it(m_slots.begin()); ci_it != m_slots.end(); ++ci_it) {
+			if (it->cislot) {
+				eTrace("[CI] CI already assigned to this pmthandler, skip other slots");
+				break;
+			}
 			eTrace("[CI] check Slot %d", ci_it->getSlotID());
 			bool useThis = false;
 			bool user_mapped = true;
-			eDVBCICAManagerSession *ca_manager = ci_it->getCAManager();
+			eDVBCICAManagerSession* ca_manager = ci_it->getCAManager();
 
-			if (ca_manager)
-			{
+			if (ca_manager) {
 				int mask = 0;
-				if (!ci_it->possible_services.empty())
-				{
+				if (!ci_it->possible_services.empty()) {
+					eTrace("[CI] The CI in Slot %d possible_services not empty", ci_it->getSlotID());
 					mask |= 1;
 					serviceSet::iterator it = ci_it->possible_services.find(ref);
-					if (it != ci_it->possible_services.end())
-					{
-						eDebug("[CI] '%s' is in service list of slot %d... so use it", ref.toString().c_str(), ci_it->getSlotID());
+					if (it != ci_it->possible_services.end()) {
+						eTrace("[CI] '%s' is in service list of slot %d... so use it", ref.toString().c_str(), ci_it->getSlotID());
 						useThis = true;
-					}
-					else // check parent
-					{
+					} else {
+						// check parent
 						eServiceReferenceDVB parent_ref = ref.getParentServiceReference();
-						if (parent_ref)
-						{
+						if (parent_ref) {
 							it = ci_it->possible_services.find(ref);
-							if (it != ci_it->possible_services.end())
-							{
-								eDebug("[CI] parent '%s' of '%s' is in service list of slot %d... so use it",
-									   parent_ref.toString().c_str(), ref.toString().c_str(), ci_it->getSlotID());
+							if (it != ci_it->possible_services.end()) {
+								eTrace("[CI] parent '%s' of '%s' is in service list of slot %d... so use it", parent_ref.toString().c_str(), ref.toString().c_str(), ci_it->getSlotID());
 								useThis = true;
 							}
 						}
 					}
 				}
-				if (!useThis && !ci_it->possible_providers.empty())
-				{
+				if (!useThis && !ci_it->possible_providers.empty()) {
+					eTrace("[CI] The CI in Slot %d possible_providers not empty", ci_it->getSlotID());
 					eDVBNamespace ns = ref.getDVBNamespace();
 					mask |= 2;
 
-					if(PVR && !service)
-					{
+					if (PVR && !service) {
+						eTrace("[CI] getting service for PVR");
 						eDVBDB::getInstance()->getService(ref, service);
-					} 
-					else if (!service) // subservice?
-					{
+						if (service) {
+							eTrace("[CI] service success / provider %s", service->m_provider_name.c_str());
+						}
+					} else if (!service) {
+						// subservice?
 						eServiceReferenceDVB parent_ref = ref.getParentServiceReference();
 						eDVBDB::getInstance()->getService(parent_ref, service);
 					}
-					if (service)
-					{
+					if (service) {
 						providerSet::iterator it = ci_it->possible_providers.find(providerPair(service->m_provider_name, ns.get()));
-						if (it != ci_it->possible_providers.end())
-						{
-							eDebug("[CI] '%s/%08x' is in provider list of slot %d... so use it", service->m_provider_name.c_str(), ns.get(), ci_it->getSlotID());
+						if (it != ci_it->possible_providers.end()) {
+							eTrace("[CI] '%s/%08x' is in provider list of slot %d... so use it", service->m_provider_name.c_str(), ns.get(), ci_it->getSlotID());
 							useThis = true;
 						}
 					}
 				}
-				if (!useThis && !ci_it->possible_caids.empty())
-				{
+				if (!useThis && !ci_it->possible_caids.empty()) {
+					eTrace("[CI] The CI in Slot %d possible_caids not empty", ci_it->getSlotID());
 					mask |= 4;
-					for (CAID_LIST::iterator ca(caids.begin()); ca != caids.end(); ++ca)
-					{
+					for (CAID_LIST::iterator ca(caids.begin()); ca != caids.end(); ++ca) {
 						caidSet::iterator it = ci_it->possible_caids.find(*ca);
-						if (it != ci_it->possible_caids.end())
-						{
-							eDebug("[CI] caid '%04x' is in caid list of slot %d... so use it", *ca, ci_it->getSlotID());
+						if (it != ci_it->possible_caids.end()) {
+							eTrace("[CI] caid '%04x' is in caid list of slot %d... so use it", *ca, ci_it->getSlotID());
 							useThis = true;
 							break;
 						}
 					}
 				}
-				if (!useThis && !mask)
-				{
-					const std::vector<uint16_t> &ci_caids = ca_manager->getCAIDs();
-					for (CAID_LIST::iterator ca(caids.begin()); ca != caids.end(); ++ca)
-					{
-						std::vector<uint16_t>::const_iterator z =
-							std::lower_bound(ci_caids.begin(), ci_caids.end(), *ca);
-						if (z != ci_caids.end() && *z == *ca)
-						{
-							eDebug("[CI] The CI in Slot %d has said it can handle caid %04x... so use it", ci_it->getSlotID(), *z);
+
+				eTrace("[CI] The CI in Slot %d useThis %d mask %d", ci_it->getSlotID(), useThis, mask);
+
+				if (!useThis && !mask) {
+					const std::vector<uint16_t>& ci_caids = ca_manager->getCAIDs();
+					for (CAID_LIST::iterator ca(caids.begin()); ca != caids.end(); ++ca) {
+						std::vector<uint16_t>::const_iterator z = std::lower_bound(ci_caids.begin(), ci_caids.end(), *ca);
+						if (z != ci_caids.end() && *z == *ca) {
+							eTrace("[CI] The CI in Slot %d has said it can handle caid %04x... so use it", ci_it->getSlotID(), *z);
 							useThis = true;
 							user_mapped = false;
 							break;
 						}
 					}
 				}
+
+				if (useThis) {
+					bool caid_match = false;
+					const std::vector<uint16_t>& ci_caids = ca_manager->getCAIDs();
+					for (CAID_LIST::iterator ca(caids.begin()); ca != caids.end(); ++ca) {
+						if (std::binary_search(ci_caids.begin(), ci_caids.end(), *ca)) {
+							eTrace("[CI] Slot %d CAID match found: %04x", ci_it->getSlotID(), *ca);
+							caid_match = true;
+							break;
+						}
+					}
+					if (!caid_match) {
+						eTrace("[CI] Slot %d skipped due to missing CAID match", ci_it->getSlotID());
+						useThis = false;
+					}
+				}
+				/*
+				if (!useThis)
+				{
+					if (ci_it->use_count > 0 && !canDescrambleMultipleServices(ci_it))
+						eTrace("[CI] Slot %d already in use (use_count=%d) - cannot multi-decode, skipping",ci_it->getSlotID(), ci_it->use_count);
+					else
+						eTrace("[CI] Slot %d does not match service or CAID – skipping", ci_it->getSlotID());
+				}
+				*/
 			}
 
-			if (useThis)
-			{
+			if (useThis) {
 				// check if this CI is already assigned to this pmthandler
-				eDVBCISlot *tmp = it->cislot;
-				while (tmp)
-				{
+				eDVBCISlot* tmp = it->cislot;
+				while (tmp) {
 					if (tmp == ci_it)
 						break;
 					tmp = tmp->linked_next;
@@ -600,32 +612,26 @@ void eDVBCIInterfaces::recheckPMTHandlers()
 					bool found = false;
 					useThis = false;
 					PMTHandlerList::iterator tmp = m_pmt_handlers.begin();
-					while (!found && tmp != m_pmt_handlers.end())
-					{
+					while (!found && tmp != m_pmt_handlers.end()) {
 						eTrace("[CI] .");
-						eDVBCISlot *tmp_cislot = tmp->cislot;
-						while (!found && tmp_cislot)
-						{
+						eDVBCISlot* tmp_cislot = tmp->cislot;
+						while (!found && tmp_cislot) {
 							eTrace("[CI] ..");
 							eServiceReferenceDVB ref2;
 							tmp->pmthandler->getServiceReference(ref2);
-							if (tmp_cislot == ci_it && it->pmthandler != tmp->pmthandler)
-							{
+							if (tmp_cislot == ci_it && it->pmthandler != tmp->pmthandler) {
 								eTrace("[CI] check pmthandler %s for same service/tp", ref2.toString().c_str());
 								eDVBChannelID s1, s2;
-								if (ref != ref2)
-								{
+								if (ref != ref2) {
 									eTrace("[CI] different services!");
 									ref.getChannelID(s1);
 									ref2.getChannelID(s2);
 								}
-								if (ref == ref2 || (s1 == s2 && canDescrambleMultipleServices(tmp_cislot)))
-								{
+								if (ref == ref2 || (s1 == s2 && canDescrambleMultipleServices(tmp_cislot))) {
 									found = true;
 									eTrace("[CI] found!");
-									eDVBCISlot *tmpci = it->cislot = tmp->cislot;
-									while (tmpci)
-									{
+									eDVBCISlot* tmpci = it->cislot = tmp->cislot;
+									while (tmpci) {
 										++tmpci->use_count;
 										eTrace("[CI] (2)CISlot %d, usecount now %d", tmpci->getSlotID(), tmpci->use_count);
 										tmpci = tmpci->linked_next;
@@ -639,77 +645,59 @@ void eDVBCIInterfaces::recheckPMTHandlers()
 					}
 				}
 
-				if (useThis)
-				{
-					if (ci_it->user_mapped) // we dont like to link user mapped CIs
-					{
+				if (useThis) {
+					if (ci_it->user_mapped) {
+						// we dont like to link user mapped CIs
 						eTrace("[CI] user mapped CI already in use... dont link!");
 						continue;
 					}
 
 					++ci_it->use_count;
-					eDebug("[CI] (1)Slot %d, usecount now %d", ci_it->getSlotID(), ci_it->use_count);
+					eTrace("[CI] (1)Slot %d, usecount now %d", ci_it->getSlotID(), ci_it->use_count);
 
 					std::stringstream ci_source;
 					ci_source << "CI" << ci_it->getSlotID();
 
-					if (!it->cislot)
-					{
+					if (!it->cislot) {
 						int tunernum = -1;
 						eUsePtr<iDVBChannel> channel;
-						if (!pmthandler->getChannel(channel))
-						{
+						if (!pmthandler->getChannel(channel)) {
 							ePtr<iDVBFrontend> frontend;
-							if (!channel->getFrontend(frontend))
-							{
-								eDVBFrontend *fe = (eDVBFrontend *)&(*frontend);
+							if (!channel->getFrontend(frontend)) {
+								eDVBFrontend* fe = (eDVBFrontend*)&(*frontend);
 								tunernum = fe->getSlotID();
 							}
-							if (tunernum != -1)
-							{
+
+							if (tunernum != -1) {
 								setInputSource(tunernum, ci_source.str());
 #ifdef DREAMBOX_DUAL_TUNER
 								ci_it->setSource(getTunerLetterDM(tunernum));
 #else
 								ci_it->setSource(eDVBCISlot::getTunerLetter(tunernum));
 #endif
-							}
-							else
-							{
-								/*
-								 * No associated frontend, this must be a DVR source
-								 *
-								 * No need to set tuner input (setInputSource), because we have no tuner.
-								 */
-
-								switch (m_stream_interface)
-								{
-								case interface_use_dvr:
-								{
-									std::stringstream source;
-									source << "DVR" << channel->getDvrId();
-									ci_it->setSource(source.str());
-									break;
-								}
-
-								case interface_use_pvr:
-								{
-									ci_it->setSource("PVR");
-									break;
-								}
-
-								default:
-								{
-									eDebug("[CI] warning: no valid CI streaming interface");
-									break;
-								}
+							} else {
+								// No associated frontend, this must be a DVR source
+								// No need to set tuner input (setInputSource), because we have no tuner.
+								switch (m_stream_interface) {
+									case interface_use_dvr: {
+										std::stringstream source;
+										source << "DVR" << channel->getDvrId();
+										ci_it->setSource(source.str());
+										break;
+									}
+									case interface_use_pvr: {
+										ci_it->setSource("PVR");
+										break;
+									}
+									default: {
+										eTrace("[CI] warning: no valid CI streaming interface");
+										break;
+									}
 								}
 							}
 						}
 						ci_it->current_tuner = tunernum;
-					}
-					else
-					{
+					} else {
 						ci_it->current_tuner = it->cislot->current_tuner;
 						ci_it->linked_next = it->cislot;
 						ci_it->setSource(ci_it->linked_next->current_source);
@@ -719,6 +707,7 @@ void eDVBCIInterfaces::recheckPMTHandlers()
 					it->cislot->setCamMgrRoutingActive(true);
 					eTrace("[CI] assigned!");
 					gotPMT(pmthandler);
+					is_assigned = true; // we have assigned a CI to this pmthandler
 				}
 
 				if (it->cislot && user_mapped) // CI assigned to this pmthandler in this run.. and user mapped? then we break here.. we dont like to link other CIs to user mapped CIs
@@ -726,6 +715,11 @@ void eDVBCIInterfaces::recheckPMTHandlers()
 					eTrace("[CI] user mapped CI assigned... dont link CIs!");
 					break;
 				}
+			}
+
+			if (is_assigned) {
+				eTrace("[CI] break, we have assigned a CI to this pmthandler");
+				break;
 			}
 		}
 	}
