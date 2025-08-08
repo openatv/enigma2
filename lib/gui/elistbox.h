@@ -487,6 +487,7 @@ public:
 		return 0;
 	}
 	int getMaxItemTextWidth() { return m_content->getMaxItemTextWidth(); }
+	void redrawItemByIndex(int index) { entryChanged(index); }
 
 #ifndef SWIG
 	struct eListboxStyle *getLocalStyle(void);
