@@ -92,7 +92,8 @@ class Timer:
 	def timeChanged(self, timer):
 		timer.timeChanged()
 		if timer.state == TimerEntry.StateEnded:
-			self.processed_timers.remove(timer)
+			if timer in self.processed_timers:
+				self.processed_timers.remove(timer)
 		else:
 			try:
 				self.timer_list.remove(timer)
