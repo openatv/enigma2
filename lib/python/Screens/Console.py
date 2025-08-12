@@ -167,17 +167,11 @@ class Console(Screen):
 		print(f"[Console] Running command {self.run + 1}: '{self.cmdList[self.run]}'.")
 		self["text"].appendText(f"{self.commandColorStart}>>> {_("Running command %d: '%s'.") % (self.run + 1, self.cmdList[self.run])}{self.commandColorEnd}\n")
 		if self.showScripts:
-			if isinstance(cmd, (list, tuple)) and cmd[0].endswith((".sh", ".py")):
-				cmdLine = cmd[0]
+			cmdLine = cmd[0] if isinstance(cmd, (list, tuple)) else cmd.split()[0]
+			if cmdLine.endswith((".sh", ".py")) and isfile(cmdLine):
 				lines = fileReadLines(cmdLine, default=None, source=MODULE_NAME)
-			else:
-				cmdLine = cmd.split()[0]
-				if cmdLine.endswith((".sh", ".py")):
-					lines = fileReadLines(cmdLine, default=None, source=MODULE_NAME)
-				else:
-					lines = None
-			if lines:
-				self["text"].appendText(f"{self.scriptColorStart}>>> Command script '{cmdLine}' contents:\n{"\n".join(lines)}\n>>> End of script.{self.scriptColorEnd}\n")
+				if lines:
+					self["text"].appendText(f"{self.scriptColorStart}>>> Command script '{cmdLine}' contents:\n{"\n".join(lines)}\n>>> End of script.{self.scriptColorEnd}\n")
 		self["text"].appendText("\n")
 		return self.container.execute(cmd[0], *cmd) if isinstance(cmd, (list, tuple)) else self.container.execute(cmd)
 
