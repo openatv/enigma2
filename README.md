@@ -4,7 +4,7 @@
 
 [![enigma2 build](https://github.com/openatv/enigma2/actions/workflows/build.yml/badge.svg)](https://github.com/openatv/enigma2/actions/workflows/build.yml)
 
-[Active Build Status](https://images.mynonpublic.com/openatv/build_status_arm_751.html "Active Build Status") - shows which box is currently being built 
+[Active Build Status](https://images.mynonpublic.com/openatv/build_status_arm_76.html "Active Build Status") - shows which box is currently being built 
 
 ## SonarCloud status
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=openatv_enigma2&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=openatv_enigma2)
@@ -22,26 +22,26 @@
 
 ## Current OS
 
-> Ubuntu 24.04.01 LTS (GNU/Linux 6.8.0-51-generic x86_64)
+> Ubuntu 24.04.1 (GNU/Linux 6.8.0-51-generic x86_64)
 
 ## Hardware requirements
 
-> RAM:  16GB
+> RAM: 16GB
 >
 > SWAP: 8GB
 >
-> CPU:  Multi core\thread Model
+> CPU: CPU: Multi-Core/Multi-Threaded
 >
-> HDD:  for Single Build 250GB Free, for Multibuild 500GB or more
+> Storage: 250 GB free for a single build; 500 GB+ for multi-builds
 
 ## Git repositories involved
 
-* [OE Alliance Core](https://github.com/oe-alliance/oe-alliance-core/tree/5.5.1 "OE Alliance Core") - Core framework
-* [OpenATV 7.5.1](https://github.com/openatv/enigma2/tree/master "OpenATV 7.5.1") - OpenATV core
-* [MetrixHD](https://github.com/openatv/MetrixHD/tree/master "OpenATV Skin") - Default OpenATV skin
-* [OpenWebif](https://github.com/oe-alliance "OpenWebif") - OpenWebif
+* [OE Alliance Core](https://github.com/oe-alliance/oe-alliance-core.git "OE Alliance Core") - Core framework
+* [OpenATV 7.6](https://github.com/openatv/enigma2.git "OpenATV 7.6") - OpenATV core
+* [MetrixHD](https://github.com/openatv/MetrixHD.git "OpenATV Skin") - Default OpenATV skin
+* [OpenWebif](https://github.com/oe-alliance/OpenWebif.git "OpenWebif") - OpenWebif
 * [OE Alliance Plugins](https://github.com/oe-alliance/oe-alliance-plugins "OE Alliance Plugins") - OE Alliance Plugins
-* [Enigm2 Plugins](https://github.com/oe-alliance/enigma2-plugins "Enigma2 Plugins") - Enigma2 Plugins
+* [Enigma2 Plugins](https://github.com/oe-alliance/enigma2-plugins "Enigma2 Plugins") - Enigma2 Plugins
 * [E2OpenPlugins](https://github.com/E2OpenPlugins "E2OpenPlugins") - E2OpenPlugins
 * ...
 
@@ -111,22 +111,22 @@
     git config --global user.name "Your Name"
     ```
 
-1. Create folder openatv7.5.1
+1. Create folder openatv7.6
 
     ```sh
-    mkdir -p openatv7.5.1
+    mkdir -p openatv7.6
     ```
 
-1. Switch to folder openatv7.5.1
+1. Switch to folder openatv7.6
 
     ```sh
-    cd openatv7.5.1
+    cd openatv7.6
     ```
 
 1. Clone oe-alliance repository
 
     ```sh
-    git clone https://github.com/oe-alliance/build-enviroment.git -b 5.5.1
+    git clone https://github.com/oe-alliance/build-enviroment.git -b 7.6
     ```
 
 1. Switch to folder build-enviroment
@@ -142,6 +142,12 @@
     ```
 
 1. Finally, you can either:
+
+* Download all sources
+
+    ```sh
+    MACHINE=zgemmah9combo DISTRO=openatv DISTRO_TYPE=release make download
+    ```
 
 * Build an image with feed (build time 5-12h)
 
