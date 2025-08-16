@@ -126,7 +126,7 @@
 1. Clone oe-alliance repository
 
     ```sh
-    git clone https://github.com/oe-alliance/build-enviroment.git -b 7.6
+    git clone https://github.com/oe-alliance/build-enviroment.git -b 5.6
     ```
 
 1. Switch to folder build-enviroment
