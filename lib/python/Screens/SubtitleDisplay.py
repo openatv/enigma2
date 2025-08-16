@@ -17,8 +17,8 @@ class SubtitleDisplay(Screen):
 		widgetInstance = self["subtitles"].instance
 		fontStyle = subtitleFonts.get("Subtitle_Regular", {})
 		fontSize = int(config.subtitles.subtitle_fontsize.value)
-		fontFace = fontStyle.get("font", f"Regular;{fontSize * getSkinFactor()}")
-		font = parseFont(fontFace)
+		fontFace = fontStyle.get("font", "Regular").split(";")[0]
+		font = parseFont(f"{fontFace};{fontSize * getSkinFactor()}")
 		widgetInstance.setFont(font)
 		widgetInstance.setZPosition(1)
 		widgetInstance.setWrap(0)
