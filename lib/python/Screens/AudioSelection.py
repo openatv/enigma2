@@ -588,7 +588,7 @@ class AudioSelection(ConfigListScreen, Screen):
 					if len(cur[0]) > 6 and callable(cur[0][6]):
 						cur[0][6](cur[0])
 					else:
-						if len(self.infobar.selected_subtitle) > 6:
+						if self.infobar.selected_subtitle and len(self.infobar.selected_subtitle) > 6:
 							self.infobar.selected_subtitle[6](None)
 						self.enableSubtitle(cur[0][:5])
 					self.__updatedInfo()
