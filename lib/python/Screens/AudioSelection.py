@@ -1,10 +1,10 @@
-from enigma import eDVBDB, iPlayableService, eTimer, eSize
-from Components.ServiceEventTracker import ServiceEventTracker
+from enigma import eDVBDB, eSize, eTimer, iPlayableService, iServiceInformation
 from Components.ActionMap import NumberActionMap
 from Components.ConfigList import ConfigListScreen
 from Components.config import config, ConfigSlider, ConfigSubsection, getConfigListEntry, ConfigNothing, ConfigSelection, ConfigOnOff
 from Components.Label import Label
 from Components.Pixmap import Pixmap
+from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Sources.Boolean import Boolean
 from Components.Sources.StaticText import StaticText
 from Components.Sources.List import List
@@ -31,6 +31,12 @@ def getConfigMenuItem(configElementName):
 
 
 class AudioSelection(ConfigListScreen, Screen):
+	TYPE_ALL = 0
+	TYPE_AUDIO = 1
+	TYPE_SUBTITLE = 2
+	hooks = []
+	audioHooks = []
+	subtitleHooks = []
 	fillSubtitleExt = None
 
 	def __init__(self, session, infobar=None, page=PAGE_AUDIO):
@@ -50,6 +56,8 @@ class AudioSelection(ConfigListScreen, Screen):
 
 		ConfigListScreen.__init__(self, [])
 		self.infobar = infobar or self.session.infobar
+		if not hasattr(self.infobar, "selected_subtitle"):
+			self.infobar.selected_subtitle = None
 
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 				iPlayableService.evUpdatedInfo: self.__updatedInfo
@@ -88,6 +96,20 @@ class AudioSelection(ConfigListScreen, Screen):
 		self.settings.menupage = ConfigSelection(choices=choicelist, default=page)
 		self.onLayoutFinish.append(self.__layoutFinished)
 
+	def runHooks(self, type):
+		if type == self.TYPE_ALL:
+			for hook in AudioSelection.hooks:
+				if callable(hook):
+					hook()
+		elif type == self.TYPE_AUDIO:
+			for hook in AudioSelection.audioHooks:
+				if callable(hook):
+					hook()
+		elif type == self.TYPE_SUBTITLE:
+			for hook in AudioSelection.subtitleHooks:
+				if callable(hook):
+					hook()
+
 	def __layoutFinished(self):
 		self["config"].instance.setSelectionEnable(False)
 		self.focus = FOCUS_STREAMS
@@ -116,10 +138,10 @@ class AudioSelection(ConfigListScreen, Screen):
 			n = audio and audio.getNumberOfTracks() or 0
 
 			if BoxInfo.getItem("CanDownmixAC3"):
-				if BoxInfo.getItem("machinebuild") in ('dm900', 'dm920', 'dm7080', 'dm800'):
+				if BoxInfo.getItem("machinebuild") in ("dm900", "dm920", "dm7080", "dm800"):
 					choice_list = [("downmix", _("Downmix")), ("passthrough", _("Pass-through")), ("multichannel", _("Convert to multi-channel PCM")), ("hdmi_best", _("Use best / Controlled by HDMI"))]
 					self.settings.downmix_ac3 = ConfigSelection(choices=choice_list, default=config.av.downmix_ac3.value)
-				elif BoxInfo.getItem("machinebuild") in ('dreamone', 'dreamtwo'):
+				elif BoxInfo.getItem("machinebuild") in ("dreamone", "dreamtwo"):
 					choice_list = [("0", _("Downmix")), ("1", _("Pass-through")), ("2", _("Use best / Controlled by HDMI"))]
 					self.settings.downmix_ac3 = ConfigSelection(choices=choice_list, default=config.av.downmix_ac3.value)
 				else:
@@ -133,10 +155,10 @@ class AudioSelection(ConfigListScreen, Screen):
 				conflist.append(getConfigListEntry(_("DTS downmix"), self.settings.downmix_dts, None))
 
 			if BoxInfo.getItem("CanDownmixAAC"):
-				if BoxInfo.getItem("machinebuild") in ('dm900', 'dm920', 'dm7080', 'dm800'):
+				if BoxInfo.getItem("machinebuild") in ("dm900", "dm920", "dm7080", "dm800"):
 					choice_list = [("downmix", _("Downmix")), ("passthrough", _("Pass-through")), ("multichannel", _("Convert to multi-channel PCM")), ("hdmi_best", _("Use best / Controlled by HDMI"))]
 					self.settings.downmix_aac = ConfigSelection(choices=choice_list, default=config.av.downmix_aac.value)
-				elif BoxInfo.getItem("machinebuild") in ('gbquad4k', 'gbquad4kpro', 'gbue4k', 'gbx34k'):
+				elif BoxInfo.getItem("machinebuild") in ("gbquad4k", "gbquad4kpro", "gbue4k", "gbx34k"):
 					choice_list = [("downmix", _("Downmix")), ("passthrough", _("Pass-through")), ("multichannel", _("Convert to multi-channel PCM")), ("force_ac3", _("Convert to AC3")), ("force_dts", _("Convert to DTS")), ("use_hdmi_caps", _("Use best / Controlled by HDMI"))]
 					self.settings.downmix_aac = ConfigSelection(choices=choice_list, default=config.av.downmix_aac.value)
 				else:
@@ -157,10 +179,10 @@ class AudioSelection(ConfigListScreen, Screen):
 				conflist.append(getConfigListEntry(_("AAC transcoding"), self.settings.transcodeaac, None))
 
 			if BoxInfo.getItem("CanAC3plusTranscode"):
-				if BoxInfo.getItem("machinebuild") in ('dm900', 'dm920', 'dm7080', 'dm800'):
+				if BoxInfo.getItem("machinebuild") in ("dm900", "dm920", "dm7080", "dm800"):
 					choice_list = [("use_hdmi_caps", _("Controlled by HDMI")), ("force_ac3", _("Convert to AC3")), ("multichannel", _("Convert to multi-channel PCM")), ("hdmi_best", _("Use best / Controlled by HDMI")), ("force_ddp", _("Force AC3plus"))]
 					self.settings.transcodeac3plus = ConfigSelection(choices=choice_list, default=config.av.transcodeac3plus.value)
-				elif BoxInfo.getItem("machinebuild") in ('gbquad4k', 'gbquad4kpro', 'gbue4k', 'gbx34k'):
+				elif BoxInfo.getItem("machinebuild") in ("gbquad4k", "gbquad4kpro", "gbue4k", "gbx34k"):
 					choice_list = [("downmix", _("Downmix")), ("passthrough", _("Pass-through")), ("force_ac3", _("Convert to AC3")), ("multichannel", _("Convert to multi-channel PCM")), ("force_dts", _("Convert to DTS"))]
 					self.settings.transcodeac3plus = ConfigSelection(choices=choice_list, default=config.av.transcodeac3plus.value)
 				else:
@@ -170,7 +192,7 @@ class AudioSelection(ConfigListScreen, Screen):
 				conflist.append(getConfigListEntry(_("AC3plus transcoding"), self.settings.transcodeac3plus, None))
 
 			if BoxInfo.getItem("CanPcmMultichannel"):
-				if BoxInfo.getItem("machinebuild") in ('dm900', 'dm920', 'dm7080', 'dm800'):
+				if BoxInfo.getItem("machinebuild") in ("dm900", "dm920", "dm7080", "dm800"):
 					choice_list = [("downmix", _("Downmix")), ("passthrough", _("Pass-through")), ("multichannel", _("Convert to multi-channel PCM")), ("hdmi_best", _("Use best / Controlled by HDMI"))]
 					self.settings.pcm_multichannel = ConfigSelection(choices=choice_list, default=config.av.pcm_multichannel.value)
 				else:
@@ -215,7 +237,7 @@ class AudioSelection(ConfigListScreen, Screen):
 				for x in list(range(n)):
 					number = str(x + 1)
 					i = audio.getTrackInfo(x)
-					languages = i.getLanguage().split('/')
+					languages = i.getLanguage().split("/")
 					description = i.getDescription()
 					selected = ""
 					language = ""
@@ -243,7 +265,7 @@ class AudioSelection(ConfigListScreen, Screen):
 					streams.append((x, "", number, description, language, selected))
 
 			else:
-				conflist.append(('',))
+				conflist.append(("",))
 
 			if BoxInfo.getItem("Can3DSurround"):
 				choice_list = [("none", _("Off")), ("hdmi", _("HDMI")), ("spdif", _("SPDIF")), ("dac", _("DAC"))]
@@ -382,25 +404,22 @@ class AudioSelection(ConfigListScreen, Screen):
 			self.infobar.enableSubtitle(subtitle)
 
 	def change3DSurround(self, surround_3d):
-		if surround_3d.value:
-			config.av.surround_3d.value = surround_3d.value
+		config.av.surround_3d.value = surround_3d.value
 		config.av.surround_3d.save()
 
 	def change3DSurroundSpeaker(self, surround_3d_speaker):
-		if surround_3d_speaker.value:
-			config.av.surround_3d_speaker.value = surround_3d_speaker.value
+		config.av.surround_3d_speaker.value = surround_3d_speaker.value
 		config.av.surround_3d_speaker.save()
 
 	def changeAutoVolume(self, autovolume):
-		if autovolume.value:
-			config.av.autovolume.value = autovolume.value
+		config.av.autovolume.value = autovolume.value
 		config.av.autovolume.save()
 
 	def changeVolume(self, volume):
 		VolumeControl.instance.volumeControl.setVolume(volume.value, volume.value)
 
 	def changeAC3Downmix(self, downmix):
-		if BoxInfo.getItem("machinebuild") in ('dm900', 'dm920', 'dm7080', 'dm800', 'dreamone', 'dreamtwo'):
+		if BoxInfo.getItem("machinebuild") in ("dm900", "dm920", "dm7080", "dm800", "dreamone", "dreamtwo"):
 			config.av.downmix_ac3.setValue(downmix.value)
 		else:
 			if downmix.value:
@@ -419,7 +438,7 @@ class AudioSelection(ConfigListScreen, Screen):
 		config.av.btaudio.save()
 
 	def changePCMMultichannel(self, multichan):
-		if BoxInfo.getItem("machinebuild") in ('dm900', 'dm920', 'dm7080', 'dm800'):
+		if BoxInfo.getItem("machinebuild") in ("dm900", "dm920", "dm7080", "dm800"):
 			config.av.pcm_multichannel.setValue(multichan.value)
 		else:
 			if multichan.value:
@@ -430,7 +449,7 @@ class AudioSelection(ConfigListScreen, Screen):
 		self.fillList()
 
 	def changeAACDownmix(self, downmix):
-		if BoxInfo.getItem("machinebuild") in ('dm900', 'dm920', 'dm7080', 'dm800', 'gbquad4k', 'gbquad4kpro', 'gbue4k', 'gbx34k'):
+		if BoxInfo.getItem("machinebuild") in ("dm900", "dm920", "dm7080", "dm800", "gbquad4k", "gbquad4kpro", "gbue4k", "gbx34k"):
 			config.av.downmix_aac.setValue(downmix.value)
 		else:
 			if downmix.value:
@@ -527,9 +546,9 @@ class AudioSelection(ConfigListScreen, Screen):
 
 	def keyAudioSubtitle(self):
 		if self.settings.menupage.value == PAGE_AUDIO:
-			self.settings.menupage.setValue('subtitles')
+			self.settings.menupage.setValue("subtitles")
 		else:
-			self.settings.menupage.setValue('audio')
+			self.settings.menupage.setValue("audio")
 
 	def colorkey(self, idx):
 		self["config"].setCurrentIndex(idx)
@@ -575,6 +594,7 @@ class AudioSelection(ConfigListScreen, Screen):
 			if self.settings.menupage.value == PAGE_AUDIO and cur[0] is not None:
 				self.changeAudio(cur[0])
 				self.__updatedInfo()
+				self.runHooks(self.TYPE_AUDIO)
 			if self.settings.menupage.value == PAGE_SUBTITLES and cur[0] is not None:
 				if self.infobar.selected_subtitle and self.infobar.selected_subtitle[:4] == cur[0][:4]:
 					if len(cur[0]) > 6 and callable(cur[0][6]):
@@ -584,6 +604,7 @@ class AudioSelection(ConfigListScreen, Screen):
 					selectedidx = self["streams"].getIndex()
 					self.__updatedInfo()
 					self["streams"].setIndex(selectedidx)
+					self.runHooks(self.TYPE_SUBTITLE)
 				else:
 					if len(cur[0]) > 6 and callable(cur[0][6]):
 						cur[0][6](cur[0])
@@ -594,6 +615,7 @@ class AudioSelection(ConfigListScreen, Screen):
 					self.__updatedInfo()
 				if self.session.nav.isCurrentServiceIPTV():
 					eDVBDB.getInstance().saveIptvServicelist()
+			self.runHooks(self.TYPE_ALL)
 			self.close(0)
 		elif self.focus == FOCUS_CONFIG:
 			self.keyRight()
@@ -744,7 +766,6 @@ class QuickSubtitlesConfigMenu(ConfigListScreen, Screen):
 		self.infobar.setSeekState(self.infobar.SEEK_STATE_PLAY)
 
 	def getFps(self):
-		from enigma import iServiceInformation
 		service = self.session.nav.getCurrentService()
 		info = service and service.info()
 		if not info:
