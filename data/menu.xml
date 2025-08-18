@@ -225,7 +225,7 @@ else:
 			<item key="shutdown" level="0" text="Shutdown" weight="5" requires="!DeepstandbySupport"><screen module="Standby" screen="TryQuitMainloop">1</screen></item>
 			<item key="multiboot" level="0" text="MultiBoot Manager" weight="6" requires="canMultiBoot"><screen module="MultiBootManager" screen="MultiBootManager" /></item>
 			<item key="kexec_multiboot" level="2" text="Enable Kexec MultiBoot" weight="6" requires="cankexec"><screen module="MultiBootManager" screen="KexecInit">1</screen></item>
-			<item key="chroot_multiboot" level="2" text="Enable Chkroot MultiBoot" weight="6" requires="canchkroot"><screen module="MultiBootManager" screen="ChkrootInit">1</screen></item>
+			<item key="chkroot_multiboot" level="2" text="Enable Chkroot MultiBoot" weight="6" requires="canchkroot"><screen module="MultiBootManager" screen="ChkrootInit">1</screen></item>
 			<!--item key="SDswap" level="0" text="SDroot" weight="7" requires="HasSDswap"><screen module="SDswap" screen="SDswap">1</screen></item-->
 			<item key="wol_standby" level="0" text="WOL Standby" weight="10" requires="GBWOL">
 				<code>
