@@ -756,11 +756,13 @@ class RestorePlugins(Screen):
 					else:
 						pluginlist.append(x[0])
 
-		cmdList = []
+		cmdList = ["opkg update"]
 		if pluginlistfirst:
-			cmdList.append("opkg install " + " ".join(pluginlistfirst) + " ; opkg update")
+			cmdList.append("opkg install " + " ".join(pluginlistfirst))
+			cmdList.append("opkg update")
 		if myipklistfirst:
-			cmdList.append("opkg install " + " ".join(myipklistfirst) + " ; opkg update")
+			cmdList.append("opkg install " + " ".join(myipklistfirst))
+			cmdList.append("opkg update")
 		if myipklist:
 			cmdList.append("opkg install " + " ".join(myipklist))
 		if pluginlist:
