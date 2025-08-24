@@ -163,7 +163,7 @@ int eServiceMP3Record::doPrepare()
 
 		// set uridecodebin properties and notify
 		g_object_set(m_source, "uri", uri, NULL);
-		g_object_set(m_source, "caps", gst_caps_from_string("video/mpegts;video/x-flv;video/x-matroska;video/quicktime;video/x-msvideo;video/x-ms-asf;audio/mpeg;audio/x-flac;audio/x-ac3"), NULL);
+		g_object_set(m_source, "caps", gst_caps_from_string("video/mpegts;video/x-flv;video/x-matroska;video/quicktime;video/x-msvideo;video/x-ms-asf;audio/mpeg;audio/x-flac;audio/x-ac3;text/x-raw;text/x-pango-markup"), NULL);
 		g_signal_connect(m_source, "notify::source", G_CALLBACK(handleUridecNotifySource), this);
 		g_signal_connect(m_source, "pad-added", G_CALLBACK(handlePadAdded), sink);
 		g_signal_connect(m_source, "autoplug-continue", G_CALLBACK(handleAutoPlugCont), this);

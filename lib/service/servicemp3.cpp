@@ -4228,7 +4228,7 @@ RESULT eServiceMP3::getCachedSubtitle(struct SubtitleTrack& track) {
 
 	// Initialize cache if needed
 	if (m_cachedSubtitleStream == -2 && !m_subtitleStreams.empty()) {
-		m_cachedSubtitleStream = 0;
+		m_cachedSubtitleStream = -1;
 
 		// Get configured languages
 		configvalue = eSubtitleSettings::subtitle_autoselect1;
