@@ -394,16 +394,27 @@ int eWidget::event(int event, void *data, void *data2)
 					painter.setRadius(r, m_cornerRadiusEdges);
 				if (r && drawborder)
 				{
-					painter.setBackgroundColor(m_border_color);
-					painter.drawRectangle(eRect(ePoint(0, 0), size()));
-					if (r)
-						painter.setRadius(r, m_cornerRadiusEdges);
-					painter.setBackgroundColor(m_have_background_color ? m_background_color : gRGB(0, 0, 0));
-					painter.drawRectangle(eRect(m_border_width, m_border_width, size().width() - m_border_width * 2, size().height() - m_border_width * 2));
+
+					if(!m_gradient_set)
+					{
+						painter.setBackgroundColor(m_have_background_color ? m_background_color : gRGB(0, 0, 0));
+						painter.setBorder(m_border_color, m_border_width);
+						painter.drawRectangle(eRect(ePoint(0, 0), size()), m_alphaBlend);
+					}
+					else
+					{
+						painter.setBackgroundColor(m_border_color);
+						painter.drawRectangle(eRect(ePoint(0, 0), size()));
+						if (r)
+							painter.setRadius(r, m_cornerRadiusEdges);
+						painter.setBackgroundColor(m_have_background_color ? m_background_color : gRGB(0, 0, 0));
+						painter.drawRectangle(eRect(m_border_width, m_border_width, size().width() - m_border_width * 2, size().height() - m_border_width * 2));
+					}
+
 					drawborder = false;
 				}
 				else
-					painter.drawRectangle(eRect(ePoint(0, 0), size()));
+					painter.drawRectangle(eRect(ePoint(0, 0), size()), !m_gradient_set && m_alphaBlend);
 			}
 			else
 			{
@@ -415,7 +426,15 @@ int eWidget::event(int event, void *data, void *data2)
 				}
 				else
 				{
-					painter.clear();
+					if(m_alphaBlend)
+					{
+						if(drawborder)
+							painter.setBorder(m_border_color, m_border_width);
+						painter.drawRectangle(eRect(ePoint(0, 0), size()), true);
+						drawborder = false;
+					}
+					else
+						painter.clear();
 				}
 			}
 			if (drawborder)
