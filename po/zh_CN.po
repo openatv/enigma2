@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-27 15:35+0000\n"
-"PO-Revision-Date: 2025-07-31 17:18+0000\n"
+"PO-Revision-Date: 2025-08-27 12:02+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Weblate 5.13-dev\n"
+"X-Generator: Weblate 5.13\n"
 "X-SourceCharset: UTF-8\n"
 "X-Generated: TM2TURK by thawtes\n"
 
@@ -99,7 +99,7 @@ msgid "!! Boot loader Upgrade !!"
 msgstr "！！ 引导加载程序升级！！"
 
 msgid "# = Reboot required if this item is changed."
-msgstr "# = 需要重新启动"
+msgstr "# = 如果更改此项，则需要重新启动。"
 
 msgid "%-H:%M"
 msgstr "%-H:%M"
@@ -1309,7 +1309,7 @@ msgid "(show optional DVD audio menu)"
 msgstr "（显示可选 DVD 音频菜单）"
 
 msgid "* = Restart required if this item is changed."
-msgstr "* = 需要重启"
+msgstr "* = 如果更改此项，则需要重新启动。"
 
 msgid "* Only available if more than one interface is active."
 msgstr "* 仅当有多个网卡处于活动状态时可用。"
@@ -1575,7 +1575,7 @@ msgid ""
 "A finished record timer wants to set your\n"
 "%s %s to standby. Do that now?"
 msgstr ""
-"一个已结束的录像定时器\n"
+"一个已结束的录制定时器\n"
 "要将 %s %s 置为到待机状态，是否执行？"
 
 #, python-format
@@ -1583,7 +1583,7 @@ msgid ""
 "A finished record timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
-"一个已结束的录像定时器\n"
+"一个已结束的录制定时器\n"
 "想要关闭 %s %s。要关闭吗？"
 
 #, python-format
@@ -1612,24 +1612,24 @@ msgid ""
 "A recording has been started:\n"
 "%s"
 msgstr ""
-"录像已开始：\n"
+"已开始录制：\n"
 "%s"
 
 msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
 msgstr ""
-"录像正在进行。\n"
+"正在进行录制。\n"
 "您需要做什么？"
 
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
-msgstr "录像正在进行。配置极轴前请先停止录像。"
+msgstr "正在进行录制。配置极轴前请先停止录制。"
 
 msgid "A recording is currently running. Please stop the recording before trying to scan."
-msgstr "录像正在进行。扫描前请先停止录像。"
+msgstr "正在进行录制。扫描前请先停止录制。"
 
 msgid "A recording is currently running. Please stop the recording before trying to start the satellite finder."
-msgstr "录像正在进行。 开始寻星前请先停止录像。"
+msgstr "正在进行录制。 开始寻星前请先停止录制。"
 
 #, python-format
 msgid ""
@@ -1637,7 +1637,7 @@ msgid ""
 "\n"
 "Go to Deep Standby now?"
 msgstr ""
-"录像、录像定时器或电源定时器正在运行或将在 15 分钟内开始。 %s 延长至 30 分钟。 您的 %s %s 将在录像或电源定时器事件后进入深度待机。\n"
+"录制、录制定时器或电源定时器正在运行或将在 15 分钟内开始。 %s 延长至 30 分钟。 您的 %s %s 将在录制或电源定时器事件后进入深度待机。\n"
 "\n"
 "现在进入深度待机？"
 
@@ -1658,28 +1658,28 @@ msgid ""
 "A timer failed to record!\n"
 "Abort pseudo recordings (e.g. EPG refresh) and try again?\n"
 msgstr ""
-"定时器录像失败。\n"
+"定时器录制失败。\n"
 "中止伪录制（如 EPG刷新）后再试一次?\n"
 
 msgid ""
 "A timer failed to record!\n"
 "Abort streaming and try again?\n"
 msgstr ""
-"定时录像失败！\n"
+"定时录制失败！\n"
 "中止串流并再试一次?\n"
 
 msgid ""
 "A timer failed to record!\n"
 "Disable PiP and try again?\n"
 msgstr ""
-"定时器录像失败！\n"
+"定时器录制失败！\n"
 "禁用画中画后再试一次?\n"
 
 msgid ""
 "A timer failed to record!\n"
 "Disable TV and try again?\n"
 msgstr ""
-"定时器录像失败！\n"
+"定时器录制失败！\n"
 "禁用电视并再试一次?\n"
 
 msgid "AAC downmix"
@@ -1890,7 +1890,7 @@ msgid "Add New Quad Channel Entry"
 msgstr "添加新的四画面频道条目"
 
 msgid "Add RecordTimer"
-msgstr "添加录像定时器"
+msgstr "添加录制定时器"
 
 msgid "Add Service"
 msgstr "添加频道"
@@ -1908,7 +1908,7 @@ msgid "Add To Parental Protection"
 msgstr "添加到家长保护"
 
 msgid "Add Zap+RecordTimer"
-msgstr "添加换台+录像定时器"
+msgstr "添加换台+录制定时器"
 
 msgid "Add ZapTimer"
 msgstr "添加换台定时器"
@@ -1920,10 +1920,10 @@ msgid "Add a RADIO service to the Volume Offset list"
 msgstr "将广播频道添加到音量偏移列表"
 
 msgid "Add a RecordTimer"
-msgstr "添加录像定时器"
+msgstr "添加录制定时器"
 
 msgid "Add a RecordTimer for current event"
-msgstr "为当前事件添加录像定时器"
+msgstr "为当前事件添加录制定时器"
 
 msgid "Add a TV service to the Volume Offset list"
 msgstr "将电视频道添加到音量偏移列表"
@@ -2118,7 +2118,7 @@ msgid "After event"
 msgstr "事件后"
 
 msgid "After recording"
-msgstr "录像后"
+msgstr "录制后"
 
 msgid "After zap"
 msgstr "换台后"
@@ -2316,7 +2316,7 @@ msgid "Always include ECM in recordings"
 msgstr "录像中总是包含 ECM（授权控制信息）"
 
 msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver."
-msgstr "录像中总是包含 ECM 消息。这将全局覆盖各个定时器设置。如果您的接收器支持，它允许录像在之后始终被解密（有时称为离线解码）。"
+msgstr "录制中总是包含 ECM 消息。这将全局覆盖各个定时器设置。如果您的接收器支持，它允许录制在之后始终被解密（有时称为离线解码）。"
 
 msgid "Always show bouquets"
 msgstr "总是显示频道分组"
@@ -2389,7 +2389,7 @@ msgid "Any activity"
 msgstr "任何活动"
 
 msgid "Any recordings"
-msgstr "任何录像"
+msgstr "任何录制"
 
 msgid "Aperture F number"
 msgstr "光圈值"
@@ -3581,7 +3581,7 @@ msgid "Can't play the previous time shift file! You can try again."
 msgstr "无法播放之前的时移文件！ 你可以再试一次。"
 
 msgid "Can't unmount partition, make sure it is not being used for swap or record/time shift paths"
-msgstr "无法卸载分区，请确认此分区没有用作交换空间或录像/时移路径"
+msgstr "无法卸载分区，请确认此分区没有用作交换空间或录制/时移路径"
 
 msgid "Canada"
 msgstr "加拿大"
@@ -3784,10 +3784,10 @@ msgid "Change pin code"
 msgstr "更改 PIN 码"
 
 msgid "Change recording (Duration)"
-msgstr "更改录像（时长）"
+msgstr "更改录制（时长）"
 
 msgid "Change recording (End time)"
-msgstr "更改录像（结束时间）"
+msgstr "更改录制（结束时间）"
 
 msgid "Change repeat and delay settings?"
 msgstr "更改重复和延迟的设置？"
@@ -4063,7 +4063,7 @@ msgid "Choose the option to correct invalid EPG data."
 msgstr "选择纠正无效 EPG 数据的选项。"
 
 msgid "Choose the skin to be used for the GUI interface. Press 'GREEN' to activate the skin."
-msgstr "选择用于 GUI 界面的皮肤。按“绿键”激活皮肤。"
+msgstr "选择用于图形用户界面的皮肤。按“绿键”激活皮肤。"
 
 msgid "Choose the skin to be used for the LCD/front panel interface. Press 'GREEN' to activate the skin."
 msgstr "选择用于液晶显示屏/前面板接口的皮肤。按“绿键”激活皮肤。"
@@ -4440,7 +4440,7 @@ msgid "Configuration mode"
 msgstr "配置模式"
 
 msgid "Configuration options for the HELP screen can be found in 'MENU > Setup > Usage & User Interface > Settings'."
-msgstr "帮助屏幕的配置选项可在“菜单>设置>使用习惯/用户界面>设置”中找到。"
+msgstr "帮助屏幕的配置选项可在“菜单>设置>使用偏好/用户界面>设置”中找到。"
 
 msgid "Configure DNS (name servers)"
 msgstr "配置 DNS（名称服务器）"
@@ -4455,7 +4455,7 @@ msgid "Configure default setting for new timers. Need a restart after changing."
 msgstr "配置新定时器的默认设置。修改后需要重新启动。"
 
 msgid "Configure for which types of recordings a warning about active recordings is shown when attempting to restart the box or the GUI."
-msgstr "配置在尝试重启机顶盒或用户界面时，针对哪些类型的录像显示有关活动录制的警告。"
+msgstr "配置在尝试重启机顶盒或图形界面时，针对哪些类型的录像显示有关活动录制的警告。"
 
 msgid "Configure front panel LEDs"
 msgstr "配置前面板指示灯"
@@ -4473,7 +4473,7 @@ msgid "Configure if and how service type icons will be shown."
 msgstr "配置是否以及如何显示频道类型图标。"
 
 msgid "Configure if and how the record indicator will be shown in the channel selection list."
-msgstr "配置在频道选择列表中是否及如何显示录像指示器。"
+msgstr "配置在频道选择列表中是否及如何显示录制指示器。"
 
 msgid "Configure if and how wide the service name column will be shown in the channel selection list."
 msgstr "配置频道选择列表中是否显示频道名称列以及显示的宽度。"
@@ -4788,7 +4788,7 @@ msgid "Configure which color format should be used on the SCART output."
 msgstr "配置SCART输出使用的色彩格式。"
 
 msgid "Configure which tuner for recordings will be preferred, when more than one tuner is available."
-msgstr "当有多个调谐器可用时，配置首选哪个调谐器进行录像。"
+msgstr "当有多个调谐器可用时，配置首选哪个调谐器进行录制。"
 
 msgid "Configure which tuner type will be preferred, when the same service is available on different types of tuners."
 msgstr "配置哪种调谐器类型将是首选，当相同的频道可用于不同类型的调谐器时。"
@@ -6423,7 +6423,7 @@ msgid "Do not flash image"
 msgstr "不要刷机"
 
 msgid "Do not record"
-msgstr "不要录像"
+msgstr "不要录制"
 
 msgid "Do nothing"
 msgstr "不执行任何操作"
@@ -6637,7 +6637,7 @@ msgid "Don't Translate Subs On This Service"
 msgstr "不要翻译此频道上的字幕"
 
 msgid "Don't add this recording"
-msgstr "不添加此录像"
+msgstr "不添加此录制"
 
 msgid "Don't ask again!"
 msgstr "不要再询问！"
@@ -6746,7 +6746,7 @@ msgid "Duplicate the current line"
 msgstr "复制当前行"
 
 msgid "During this time, the transmitter and the recording destination are checked. If the recording destination (eg NAS) does not ready in time for recording, this time can be increased."
-msgstr "在此期间，将检查发送器和录像目标。如果录像目标(如 NAS)没有及时准备好进行录制，则可以增加此时间。"
+msgstr "在此期间，将检查发送器和录制目标。如果录制目标(如 NAS)没有及时准备好进行录制，则可以增加此时间。"
 
 msgid "Dutch"
 msgstr "荷兰语"
@@ -6997,7 +6997,7 @@ msgid "Enable 5V for active antenna"
 msgstr "为有源天线启用 5V"
 
 msgid "Enable Autorecord"
-msgstr "启用自动录像"
+msgstr "启用自动录制"
 
 msgid "Enable BT Audio"
 msgstr "启用蓝牙音频"
@@ -7075,7 +7075,7 @@ msgid "Enable VPS by default (new timers)"
 msgstr "默认启用 VPS（新定时器）"
 
 msgid "Enable VPS on instant records"
-msgstr "即时录像启用 VPS"
+msgstr "即时录制启用 VPS"
 
 msgid "Enable VPS-Plugin"
 msgstr "启用 VPS 插件"
@@ -7109,10 +7109,10 @@ msgid "Enable autorefresh templates."
 msgstr "启用自动刷新模板。"
 
 msgid "Enable blinking rec symbol on the LCD Display in Standby."
-msgstr "在待机状态下启用 LCD 显示屏上闪烁的录像符号。"
+msgstr "在待机状态下启用 LCD 显示屏上闪烁的录制符号。"
 
 msgid "Enable blinking rec symbol on the LCD Display."
-msgstr "在 LCD 显示屏上启用闪烁的录像符号。"
+msgstr "在 LCD 显示屏上启用闪烁的录制符号。"
 
 msgid "Enable chapter support for video files"
 msgstr "启用视频文件章节支持"
@@ -7788,10 +7788,10 @@ msgid "Even if a 'Wakeup' scheduled task starting?"
 msgstr "即使“唤醒”电源定时器启动？"
 
 msgid "Even if a 'Zap and Record' recording timer starting?"
-msgstr "即使“换台并录像”的录像定时器启动？"
+msgstr "即使“换台并录制”的录制定时器启动？"
 
 msgid "Even if a 'Zap' recording timer starting?"
-msgstr "即使“换台”录像定时器启动？"
+msgstr "即使“换台”录制定时器启动？"
 
 msgid "Event Info"
 msgstr "事件信息"
@@ -7943,7 +7943,7 @@ msgid "Experimental mode"
 msgstr "实验模式"
 
 msgid "Experimental: strict limitation to preferred tuners for recordings"
-msgstr "实验：严格限制录像首选调谐器"
+msgstr "实验：严格限制录制首选调谐器"
 
 msgid "Expert"
 msgstr "专家"
@@ -8674,7 +8674,7 @@ msgid "GStreamer debug log level *"
 msgstr "GStreamer 调试日志级别*"
 
 msgid "GUI Skin *"
-msgstr "用户界面皮肤 *"
+msgstr "图形界面皮肤 *"
 
 msgid "Gabon"
 msgstr "加蓬"
@@ -8969,7 +8969,7 @@ msgid "HDMI HDR Type"
 msgstr "HDMI HDR 类型"
 
 msgid "HDMI Recording Settings"
-msgstr "HDMI 录像设置"
+msgstr "HDMI 录制设置"
 
 msgid "HDMI color depth"
 msgstr "HDMI 色深"
@@ -8990,7 +8990,7 @@ msgid "HDMI-IN Actions"
 msgstr "HDMI-IN 操作"
 
 msgid "HDMI-In Recording Settings"
-msgstr "HDMI-IN 录像设置"
+msgstr "HDMI-IN 录制设置"
 
 msgid "HDMIin"
 msgstr "HDMIin"
@@ -9508,7 +9508,7 @@ msgid "If enabled the video will always be de-interlaced."
 msgstr "如果启用，视频将始终隔行扫描。"
 
 msgid "If enabled, AIT data is included in recordings."
-msgstr "如果启用，AIT（应用信息表）数据将包含在录像中。"
+msgstr "如果启用，AIT（应用信息表）数据将包含在录制中。"
 
 msgid "If enabled, a log will be kept of CEC protocol traffic. The log files are located with the other log files but named 'Enigma2-hdmicec-[date].log'."
 msgstr "如果启用，将保留 CEC 协议流量的日志。日志文件位于其他日志文件中，但名为“Enigma2-hdmicec-[date].log”。"
@@ -9641,7 +9641,7 @@ msgid "In addition to the check at an event start, a repetitive check can be use
 msgstr "除了在事件开始处的检查之外，可以使用重复检查，使得更早地检测条件“以小时为单位的缓冲器限制”或“检查可用空间”。"
 
 msgid "In expert mode, configure which tuners will be preferred for recordings, when more than one tuner is available."
-msgstr "在专家模式下，当有多个调谐器可用时，配置哪些调谐器会被用来录像。"
+msgstr "在专家模式下，当有多个调谐器可用时，配置哪些调谐器会被用来录制。"
 
 msgid "In most cases this should be set to No. Only enable if you have a very specific need."
 msgstr "在大多数情况下，应将其设置为“否”。仅在您有特定需求时才启用。"
@@ -9651,7 +9651,7 @@ msgid ""
 "\n"
 "If you already have an IceTV subscription or trial, please select 'Existing or trial customer', if not, then select 'New customer'."
 msgstr ""
-"为了让您能够使用 IceTV 智能录像服务的所有功能，我们需要收集一些基本信息。\n"
+"为了让您能够使用 IceTV 智能录制服务的所有功能，我们需要收集一些基本信息。\n"
 "\n"
 "如果您已经订阅或试用了 IceTV，请选择“现有或试用客户”，如果没有，请选择“新客户”。"
 
@@ -9663,7 +9663,7 @@ msgstr ""
 "\n"
 
 msgid "In order to record a timer, the TV was switched to the recording service!\n"
-msgstr "要录制一个定时器，电视要切换到录像频道！\n"
+msgstr "要录制一个定时器，电视要切换到录制频道！\n"
 
 msgid "In progress"
 msgstr "进行中"
@@ -9684,7 +9684,7 @@ msgid "Include AIT in http streams"
 msgstr "http 串流中包含 AIT（应用信息表）"
 
 msgid "Include AIT in recordings"
-msgstr "录像中包括 AIT（应用信息表）"
+msgstr "录制中包括 AIT（应用信息表）"
 
 msgid "Include CI assignment"
 msgstr "包括 CI 分配"
@@ -9930,16 +9930,16 @@ msgid "Installing package."
 msgstr "正在安装软件包。"
 
 msgid "Instant Recording Actions"
-msgstr "即时录像动作"
+msgstr "即时录制动作"
 
 msgid "Instant Recording End Time"
-msgstr "即时录像结束时间"
+msgstr "即时录制结束时间"
 
 msgid "Instant record"
-msgstr "即时录像"
+msgstr "即时录制"
 
 msgid "Instant recording location"
-msgstr "即时录像位置"
+msgstr "即时录制位置"
 
 msgid "Interface"
 msgstr "接口"
@@ -10525,7 +10525,7 @@ msgid "Limburgan / Limburger / Limburgish"
 msgstr "林堡"
 
 msgid "Limit character set for recording filenames"
-msgstr "限制录像文件名称的字符集"
+msgstr "限制录制文件名称的字符集"
 
 msgid "Limit debug log size (MB)"
 msgstr "限制调试日志大小 （MB）"
@@ -11972,7 +11972,7 @@ msgid "Never decrypt the content while recording. This overrides the individual 
 msgstr "录制时绝不解密内容。这将全局覆盖各个定时器设置。如果启用，录制内容将以加密形式存储，之后必须解密（有时称为离线解码）。"
 
 msgid "Never decrypt while recording"
-msgstr "录像时从不解密"
+msgstr "录制时从不解密"
 
 msgid "New"
 msgstr "新近"
@@ -12226,7 +12226,7 @@ msgid "No transparency"
 msgstr "不透明"
 
 msgid "No tuner is available for recording a timer!"
-msgstr "没有调谐器可用于录像定时器！"
+msgstr "没有调谐器可用于录制定时器！"
 
 msgid ""
 "No tuner is available for recording a timer!\n"
@@ -12234,7 +12234,7 @@ msgid ""
 "The following methods of freeing a tuner were tried without success:\n"
 "\n"
 msgstr ""
-"没有调谐器可用于录像定时器！\n"
+"没有调谐器可用于录制定时器！\n"
 "\n"
 "尝试了以下释放调谐器的方法没有成功：\n"
 "\n"
@@ -12314,7 +12314,7 @@ msgid "No, show Plugin Browser"
 msgstr "否，显示插件浏览器"
 
 msgid "No, show RecordTimer Overview"
-msgstr "否，显示录像定时器概述"
+msgstr "否，显示录制定时器概述"
 
 msgid "NodeID"
 msgstr "节点ID"
@@ -12768,7 +12768,7 @@ msgid "Open TV bouquet selection"
 msgstr "显示电视播放器"
 
 msgid "Open Usage and GUI Settings"
-msgstr "打开使用习惯和图形界面设置"
+msgstr "打开使用偏好和图形界面设置"
 
 msgid "Open VideoMode"
 msgstr "显示格式设置"
@@ -13217,7 +13217,7 @@ msgid "Perform the upgrade?"
 msgstr "是否执行升级？"
 
 msgid "Permanently delete all recordings in the trashcan?"
-msgstr "永久删除所有回收站中的录像吗？"
+msgstr "永久删除所有回收站中的录制吗？"
 
 msgid "Permanently disable the MultiBoot option?"
 msgstr "永久禁用多系统启动选项吗？"
@@ -13414,7 +13414,7 @@ msgid "Playback Time:"
 msgstr "播放时间："
 
 msgid "Playback, Recording & Time Shift"
-msgstr "回放、录像和时移"
+msgstr "播放、录制及时移"
 
 msgid "Playlist"
 msgstr "播放列表"
@@ -13559,7 +13559,7 @@ msgid "Please select the region that most closely matches your physical location
 msgstr "请选择与您的实际位置最匹配的区域。 区域是必需的，以便我们能够为您可以接收的频道提供正确的指南信息。"
 
 msgid "Please select the sub-service to record:"
-msgstr "请选择要录像的子频道："
+msgstr "请选择要录制的子频道："
 
 msgid "Please select the target location to save the backup:"
 msgstr "请选择保存备份的目标位置："
@@ -13854,34 +13854,34 @@ msgid "Preferred tuner ATSC"
 msgstr "首选 ATSC 调谐器"
 
 msgid "Preferred tuner ATSC for recordings"
-msgstr "录像首选 ATSC 调谐器"
+msgstr "录制首选 ATSC 调谐器"
 
 msgid "Preferred tuner DVB-C"
 msgstr "首选 DVB-C 调谐器"
 
 msgid "Preferred tuner DVB-C for recordings"
-msgstr "录像首选 DVB-C 调谐器"
+msgstr "录制首选 DVB-C 调谐器"
 
 msgid "Preferred tuner DVB-S"
 msgstr "首选 DVB-S 调谐器"
 
 msgid "Preferred tuner DVB-S for recordings"
-msgstr "录像首选 DVB-S 调谐器"
+msgstr "录制首选 DVB-S 调谐器"
 
 msgid "Preferred tuner DVB-T"
 msgstr "首选 DVB-T 调谐器"
 
 msgid "Preferred tuner DVB-T for recordings"
-msgstr "录像首选 DVB-T 调谐器"
+msgstr "录制首选 DVB-T 调谐器"
 
 msgid "Preferred tuner for recordings"
-msgstr "录像首选调谐器"
+msgstr "录制首选调谐器"
 
 msgid "Preferred tuners for recordings, multiple selection allowed"
-msgstr "录像首选调谐器，允许多选"
+msgstr "录制首选调谐器，允许多选"
 
 msgid "Preparation time for recording"
-msgstr "录像准备时间"
+msgstr "录制准备时间"
 
 msgid "Preparing... Please wait"
 msgstr "正在准备，请稍等"
@@ -14491,13 +14491,13 @@ msgid "Record"
 msgstr "录像"
 
 msgid "Record - same as record button"
-msgstr "录像-与录像按键相同"
+msgstr "录像 - 与录像按键相同"
 
 msgid "Record Actions"
-msgstr "录像动作"
+msgstr "录制操作"
 
 msgid "Record icon"
-msgstr "录像图标"
+msgstr "录制图标"
 
 msgid "Record next"
 msgstr "录制下一个"
@@ -14509,31 +14509,31 @@ msgid "Record write error (no space on disk?)"
 msgstr "录制写入错误(磁盘上没有空间?)"
 
 msgid "RecordTimer"
-msgstr "录像定时器"
+msgstr "录制定时器"
 
 msgid "RecordTimer Actions"
-msgstr "录像定时器动作"
+msgstr "录制定时器操作"
 
 msgid "RecordTimer Overview"
-msgstr "录像定时器概览"
+msgstr "录制定时器概览"
 
 msgid "RecordTimer Settings"
-msgstr "录像定时器设置"
+msgstr "录制定时器设置"
 
 msgid "RecordTimers"
-msgstr "录像定时器"
+msgstr "录制定时器"
 
 msgid "Recordable media toolbox"
 msgstr "可录制的媒体工具箱"
 
 msgid "Recording"
-msgstr "录像"
+msgstr "录制"
 
 msgid "Recording Settings"
-msgstr "录像设置"
+msgstr "录制设置"
 
 msgid "Recording Setup"
-msgstr "录像设置"
+msgstr "录制设置"
 
 msgid "Recording aborted"
 msgstr "录制已中止"
@@ -14548,7 +14548,7 @@ msgid "Recording in progress!"
 msgstr "正在录制！"
 
 msgid "Recording location"
-msgstr "录像位置"
+msgstr "录制位置"
 
 msgid "Recording running"
 msgstr "正在录制"
@@ -14557,45 +14557,45 @@ msgid "Recording started"
 msgstr "录制已开始"
 
 msgid "Recording started, stopping time shift now."
-msgstr "录像开始！ 现在停止时移..."
+msgstr "录制已开始，正在停止时移。"
 
 msgid "Recording stopped"
 msgstr "录制已停止"
 
 #, python-format
 msgid "Recording time limited due to conflicting timer:%s"
-msgstr "由于定时器冲突，录像时间受到限制：%s"
+msgstr "由于定时器冲突，录制时间受到限制：%s"
 
 msgid "Recording tuning failed"
 msgstr "录制调制失败"
 
 msgid "Recording type"
-msgstr "录像类型"
+msgstr "录制类型"
 
 msgid "Recording(s) are in progress or coming up in few seconds!"
-msgstr "录像正在进行或在几秒钟内开始！"
+msgstr "正在进行录制或在几秒钟内开始！"
 
 msgid ""
 "Recording(s) are in progress or coming up in few seconds!\n"
 "Entering standby, after recording the box will shutdown."
 msgstr ""
-"录像正在进行或在几秒钟内开始！\n"
-"正在进入待机，录像后机顶盒将会关闭。"
+"正在进行录制或在几秒钟内开始！\n"
+"正在进入待机，录制后机顶盒将会关闭。"
 
 msgid "Recordings"
-msgstr "录像"
+msgstr "录制"
 
 msgid "Recordings abort PiP"
-msgstr "录像中止画中画"
+msgstr "录制中止画中画"
 
 msgid "Recordings abort pseudo recordings"
-msgstr "录像中止伪录制"
+msgstr "录制中止伪录制"
 
 msgid "Recordings abort streaming"
-msgstr "录像中止串流"
+msgstr "录制中止串流"
 
 msgid "Recordings always have priority"
-msgstr "录像总是有优先权"
+msgstr "录制总是有优先权"
 
 msgid "Recordings may not work correctly without an acceptable directory."
 msgstr "如果没有可接受的目录，录制可能无法正常工作。"
@@ -15038,16 +15038,16 @@ msgid "Restart"
 msgstr "重启"
 
 msgid "Restart GUI"
-msgstr "重启用户界面"
+msgstr "重启图形界面"
 
 msgid "Restart GUI after x crashes"
-msgstr "崩溃 x 次后重启用户界面"
+msgstr "崩溃 x 次后重启图形界面"
 
 msgid "Restart GUI now to start using the new locale/language?"
-msgstr "立即重新启动用户界面以开始使用新的区域设置/语言？"
+msgstr "立即重新启动图形界面以开始使用新的区域设置/语言？"
 
 msgid "Restart GUI now?"
-msgstr "马上重启用户界面？"
+msgstr "马上重启图形界面？"
 
 msgid "Restart Network"
 msgstr "重启网络"
@@ -15062,7 +15062,7 @@ msgid "Restart enigma"
 msgstr "重启 Enigma"
 
 msgid "Restart necessary, restart GUI now?"
-msgstr "需要重启，马上重启用户界面吗？"
+msgstr "需要重启，马上重启图形界面吗？"
 
 msgid "Restart needed, press OK to restart"
 msgstr "需要重启，按确定重启"
@@ -15516,7 +15516,7 @@ msgid "Save all changed tags and exit"
 msgstr "保存所有更改的标签并退出"
 
 msgid "Save and record"
-msgstr "保存并录像"
+msgstr "保存并录制"
 
 msgid "Save and stop"
 msgstr "保存并停止"
@@ -15855,10 +15855,10 @@ msgid "Select 'Yes' if you are using a multi-switch which requires a DiSEqC Port
 msgstr "如果您使用需要 DiSEqC 端口 A 命令信号的多路开关，请选择“是”。 为所有其他设置选择“否”。"
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap and Record' recording timer is starting."
-msgstr "如果您想在“换台并录像”录像定时器启动时唤醒电视，请选择“是”。"
+msgstr "如果您想在“换台并录制”录制定时器启动时唤醒电视，请选择“是”。"
 
 msgid "Select 'Yes' if you want to wake the TV for a 'Zap' recording timer is starting."
-msgstr "如果您想在“换台”录像定时器启动时唤醒电视，请选择“是”。"
+msgstr "如果您想在“换台”录制定时器启动时唤醒电视，请选择“是”。"
 
 msgid "Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting."
 msgstr "如果您想因“唤醒”电源定时器启动而唤醒电视，请选择“是”。"
@@ -16346,7 +16346,7 @@ msgid "Select if this timer is to be repeated."
 msgstr "选择是否重复此定时器。"
 
 msgid "Select if time shift must continue when set to record."
-msgstr "选择设置为录像时是否必须继续时移。"
+msgstr "选择设置为录制时是否必须继续时移。"
 
 msgid "Select if you want the Subservice mode to be activated."
 msgstr "选择是否激活子频道模式。"
@@ -16590,7 +16590,7 @@ msgid "Select the locale from a menu"
 msgstr "从菜单中选择区域设置"
 
 msgid "Select the location in which to store the recording:"
-msgstr "选择存储录像的位置："
+msgstr "选择存储录制的位置："
 
 msgid "Select the location where the picon files will be installed."
 msgstr "选择频道图标文件的安装位置。"
@@ -16717,7 +16717,7 @@ msgid "Select the starting/initial column to be activated on File Commander star
 msgstr "选择要在文件指挥官启动时激活的起始/初始列。"
 
 msgid "Select the tags that should be used for this recording."
-msgstr "选择应用于此录像的标签。"
+msgstr "选择本次录制的标签。"
 
 msgid "Select the time after which this timer can start."
 msgstr "选择此定时器可以启动的时间。"
@@ -16735,7 +16735,7 @@ msgid "Select the time to which the EPG should be positioned. Press LEFT/RIGHT t
 msgstr "选择 EPG 应定位的时间。按向左/向右可将时间减少/增加一小时。按 PREV/NEXT 可将时间减少/增加一天。"
 
 msgid "Select the time when this instant recording timer should end. Press LEFT/RIGHT to decrease/increase the time by a minute. Press PREV/NEXT to decrease/increase the time by an hour."
-msgstr "选择此即时录像定时器应结束的时间。按向左/向右可将时间减少/增加一分钟。按 PREV/NEXT 可将时间减少/增加一小时。"
+msgstr "选择此即时录制定时器应结束的时间。按向左/向右可将时间减少/增加一分钟。按 PREV/NEXT 可将时间减少/增加一小时。"
 
 msgid "Select the time when this timer should end."
 msgstr "选择此定时器应结束的时间。"
@@ -16831,7 +16831,7 @@ msgid "Select what you want the Up/Down button to activate."
 msgstr "选择希望 上/下 按钮激活的功能。"
 
 msgid "Select where the recording should be saved."
-msgstr "选择录像应保存的位置。"
+msgstr "选择录制保存的位置。"
 
 msgid "Select wireless network"
 msgstr "选择无线网络"
@@ -17184,7 +17184,7 @@ msgid "Set the aspect ratio of the service picons."
 msgstr "设置频道图标的宽高比。"
 
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
-msgstr "设置即时录像的默认位置。按 “OK” 添加新位置，按“左”/“右”从先前定义的位置中选择。"
+msgstr "设置即时录制的默认位置。按 “OK” 添加新位置，按“左”/“右”从先前定义的位置中选择。"
 
 msgid "Set the default location to save your time shift recording files. Press 'OK' to add new locations, press LEFT/RIGHT to select from previously defined locations."
 msgstr "设置保存时移录像文件的默认位置。按“确定”添加新位置，按向左/向右从先前定义的位置中进行选择。"
@@ -17217,7 +17217,7 @@ msgid "Set the port of the OpenWebif from your fallback tuner"
 msgstr "从备用调谐器设置 OpenWebif 的端口"
 
 msgid "Set the position of the recording icons."
-msgstr "设置录像图标的位置。"
+msgstr "设置录制图标的位置。"
 
 msgid "Set the screen type you get on pressing 'OK' when the info bar shows to 2nd infobar Lite or event info."
 msgstr "当信息栏显示为第二个信息栏精简或事件信息时，设置按下“确定”时的屏幕类型。"
@@ -17253,7 +17253,7 @@ msgid "Set the time to hide the second infobar. The bar also disappears on press
 msgstr "设置隐藏第二个信息栏的时间。 按下“确定”后，该栏也会消失。"
 
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
-msgstr "设置等待执行关机、待机或重启消息中默认操作的时间，例如用于录像定时器、电源定时器、睡眠定时器等。"
+msgstr "设置等待执行关机、待机或重启消息中默认操作的时间，例如用于录制定时器、电源定时器、睡眠定时器等。"
 
 msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
 msgstr "设置繁忙旋转器的左上角位置。坐标经过缩放，使得左上角位于 (0,0)，右下角位于 (1260,700)。请注意，该位置是旋转器的左上角，而不是旋转器的中心。"
@@ -17490,7 +17490,7 @@ msgid "Setup your positioner for your satellite system"
 msgstr "设置卫星系统的定位器"
 
 msgid "Setup your recording config"
-msgstr "设置录像配置"
+msgstr "设置录制配置"
 
 msgid "Setup your remote buttons"
 msgstr "设置遥控按键"
@@ -17979,7 +17979,7 @@ msgid "Show menu"
 msgstr "显示菜单"
 
 msgid "Show message when recording starts"
-msgstr "录像开始时显示消息"
+msgstr "录制开始时显示消息"
 
 msgid "Show movie lengths in movie list"
 msgstr "在影片列表中显示影片长度"
@@ -18081,10 +18081,10 @@ msgid "Show previous system information screen"
 msgstr "显示上一个系统信息屏幕"
 
 msgid "Show record indicator"
-msgstr "显示录像指示符"
+msgstr "显示录制指示符"
 
 msgid "Show recording symbol"
-msgstr "显示录像符号"
+msgstr "显示录制符号"
 
 msgid "Show satellites list"
 msgstr "显示卫星列表"
@@ -18589,7 +18589,7 @@ msgstr "插槽数"
 
 #, python-format
 msgid "Slots have been extended by %d..\n"
-msgstr "槽位已扩展 %d 个...\n"
+msgstr "已扩展 %d 个槽位...\n"
 
 msgid "Slovak"
 msgstr "斯洛伐克语"
@@ -18936,7 +18936,7 @@ msgid "Start Wizard"
 msgstr "开始向导"
 
 msgid "Start an instant recording"
-msgstr "开始即时录像"
+msgstr "开始即时录制"
 
 msgid "Start date"
 msgstr "开始日期"
@@ -18951,10 +18951,10 @@ msgid "Start from the beginning"
 msgstr "从头开始"
 
 msgid "Start instant recording"
-msgstr "开始即时录像"
+msgstr "开始即时录制"
 
 msgid "Start instant recording?"
-msgstr "开始即时录像？"
+msgstr "开始即时录制？"
 
 msgid "Start mode"
 msgstr "启动模式"
@@ -19132,7 +19132,7 @@ msgid "Stop time shift while recording"
 msgstr "录制时停止时移"
 
 msgid "Stop timer recording"
-msgstr "停止定时录像"
+msgstr "停止定时录制"
 
 msgid "Stopped"
 msgstr "已停止"
@@ -19932,7 +19932,7 @@ msgstr ""
 "请安装。"
 
 msgid "The TV was switched to the recording service!\n"
-msgstr "电视已切换到录像频道！\n"
+msgstr "电视已切换到录制频道！\n"
 
 msgid ""
 "The VPS-Plugin couldn't check if the selected channel supports VPS for manually programmed timers!\n"
@@ -19949,7 +19949,7 @@ msgstr ""
 "请安装。"
 
 msgid "The aspect ratio of the recording."
-msgstr "录像的画面比例。"
+msgstr "录制的画面比例。"
 
 msgid "The authors are NOT RESPONSIBLE for DATA LOSS OR DAMAGE!"
 msgstr "作者对 数据丢失 或 损坏 不 承担任何责任！"
@@ -20671,10 +20671,10 @@ msgid "Time shift save location"
 msgstr "时移保存位置"
 
 msgid "Time shift save recording (Select event)"
-msgstr "时移保存录像（选择事件）"
+msgstr "时移保存录制（选择事件）"
 
 msgid "Time shift save recording (Stop after current event)"
-msgstr "时移保存录像（当前事件后停止）"
+msgstr "时移保存录制（当前事件后停止）"
 
 msgid "Time shift saved to your hard disk drive!"
 msgstr "时移已保存到硬盘！"
@@ -20749,7 +20749,7 @@ msgid "Timer overlap in '%s' detected! Please check all the timers."
 msgstr "检测到“%s”中的定时器重叠！ 请检查所有定时器。"
 
 msgid "Timer recording location"
-msgstr "定时器录像位置"
+msgstr "定时器录制位置"
 
 msgid "Timer selection"
 msgstr "定时器选择"
@@ -21139,7 +21139,7 @@ msgid "Turbo"
 msgstr "Turbo"
 
 msgid "Turbo: One reboot after flash; Fast: One reboot after flash, one reboot after restore; Slow: One reboot after flash, one reboot after restore in GUI."
-msgstr "Turbo：刷机后重启一次；快速：刷机后重启一次，恢复后重启一次；慢：刷机后重启一次，在用户界面中恢复后重启一次。"
+msgstr "Turbo：刷机后重启一次；快速：刷机后重启一次，恢复后重启一次；慢：刷机后重启一次，在图形界面中恢复后重启一次。"
 
 msgid "Turkey"
 msgstr "土耳其"
@@ -21273,7 +21273,7 @@ msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "无法初始化 Kexec 多系统启动！"
 
 msgid "Unattended upgrade without GUI"
-msgstr "无人值守升级，没有图形用户界面"
+msgstr "无人值守升级，没有图形界面"
 
 msgid "Undefined"
 msgstr "未定义"
@@ -21493,7 +21493,7 @@ msgstr ""
 "这可能需要几分钟"
 
 msgid "Upgrade with GUI"
-msgstr "通过图形用户界面升级"
+msgstr "通过图形界面升级"
 
 msgid "Uphops +"
 msgstr "Uphops +"
@@ -21523,7 +21523,7 @@ msgid "Uruguay"
 msgstr "乌拉圭"
 
 msgid "Usage & GUI"
-msgstr "使用习惯 / 用户界面"
+msgstr "使用偏好 / 图形界面"
 
 msgid "Usage Setup"
 msgstr "用法设置"
@@ -22297,7 +22297,7 @@ msgid "Warning: Overrides are currently active!"
 msgstr "警告：覆盖当前处于活动状态！"
 
 msgid "Warning: Recordings should not be stored on the Flash disk!"
-msgstr "警告：录像不应存储在闪存上！"
+msgstr "警告：录制不应存储在闪存上！"
 
 #, python-format
 msgid "Warning: There are %d update packages!"
@@ -22471,16 +22471,16 @@ msgid "When enabled, a pop up message will be shown when a recording starts."
 msgstr "启用后，开始录制时将显示一条弹出消息。"
 
 msgid "When enabled, a recording is allowed to abort picture-in-picture mode, when there are no free tuners."
-msgstr "启用时，当没有可用的调谐器，允许录像中止画中画模式。"
+msgstr "启用时，当没有可用的调谐器，允许录制中止画中画模式。"
 
 msgid "When enabled, a recording is allowed to abort pseudo recordings, when there are no free tuners."
-msgstr "启用时，当没有可用的调谐器，允许录像中止伪录制。"
+msgstr "启用时，当没有可用的调谐器，允许录制中止伪录制。"
 
 msgid "When enabled, a recording is allowed to abort streaming, when there are no free tuners."
-msgstr "启用时，当没有空闲调谐器，允许录像中止串流。"
+msgstr "启用时，当没有空闲调谐器，允许录制中止串流。"
 
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
-msgstr "启用时，当没有空闲的调谐器，允许录像中断直播电视。"
+msgstr "启用时，当没有空闲的调谐器，允许录制中断直播电视。"
 
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "启用后，将显示警告，用户将获得停止或继续时移的选项。"
@@ -22549,7 +22549,7 @@ msgid "When enabled, the VCR SCART option will be shown on the main menu."
 msgstr "启用后，VCR SCART 选项将显示在主菜单上。"
 
 msgid "When enabled, the length of each recording will be shown in the movie list (this might cause some additional loading time)."
-msgstr "启用后，每个录像的长度将显示在影片列表中（这可能会导致一些额外的加载时间）。"
+msgstr "启用后，每个录制的长度将显示在影片列表中（这可能会导致一些额外的加载时间）。"
 
 msgid "When enabled, the receiver will automatically use the audio track which you selected before."
 msgstr "启用时，接收机将自动使用您之前选择的音轨。"
@@ -22564,7 +22564,7 @@ msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "启用时，接收机将选择一条AC3 +音轨（如果可用）。"
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
-msgstr "启用时，此设置的权重大于“录像首选调谐器”。"
+msgstr "启用时，此设置的权重大于“录制首选调谐器”。"
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner'."
 msgstr "启用时，此设置的权重大于“首选调谐器”。"
@@ -22621,13 +22621,13 @@ msgid "When tuned to a service the system will normally scan the transponder for
 msgstr "当调谐到频道时，系统通常会扫描转发器的任何改动并保存它们。 仅当你在完全确定自己在做什么时设为“是”。"
 
 msgid "When yes, VPS will be enabled on instant records (stop after current event), if the channel supports VPS."
-msgstr "选 是 时，即时录像中 VPS 将被启用（在当前事件后停止），如果频道支持 VPS。"
+msgstr "选 是 时，即时录制中 VPS 将被启用（在当前事件后停止），如果频道支持 VPS。"
 
 msgid "Where do you want to backup your settings?"
 msgstr "要备份你的设置到哪里？"
 
 msgid "Where do you want to save temporary time shift recordings?"
-msgstr "您希望将临时时移录像保存到哪里？"
+msgstr "您希望将临时时移录制保存到哪里？"
 
 msgid "Which time shift buffer event do you want to save?"
 msgstr "您要永久保存哪个事件？"
@@ -22847,7 +22847,7 @@ msgid "Yes, show Plugin Browser if unavailable"
 msgstr "是，如果不可用，则显示插件浏览器"
 
 msgid "Yes, show RecordTimer if unavailable"
-msgstr "是，如果不可用，则显示录像定时器"
+msgstr "是，如果不可用，则显示录制定时器"
 
 msgid "Yes, shut down now."
 msgstr "是，现在关机。"
@@ -22874,7 +22874,7 @@ msgid "You can have the list sorted by time or alphanumerical."
 msgstr "你可以按时间或字母数字排序列表。"
 
 msgid "You can only burn Dreambox recordings!"
-msgstr "只能烧制 Dreambox 录像！"
+msgstr "只能烧制 Dreambox 录制！"
 
 msgid "You can skip this function and turn off the TV when you wake the receiver from standby and immediately switch back to standby."
 msgstr "将接收机从待机状态唤醒并立即切换回待机状态时，可以跳过此功能并关闭电视。"
@@ -23124,7 +23124,7 @@ msgid "Zap Up/Down"
 msgstr "向上/向下切换"
 
 msgid "Zap and record"
-msgstr "换台并录像"
+msgstr "换台并录制"
 
 msgid "Zap back to previously tuned service?"
 msgstr "切换回上次调谐的频道？"
@@ -23217,16 +23217,16 @@ msgid "Zulu"
 msgstr "祖鲁语"
 
 msgid "[Timeshift] Merging records failed!"
-msgstr "[时间平移]合并录像失败!"
+msgstr "[时光平移]合并录制失败!"
 
 msgid "[Timeshift] Restarting time shift!"
 msgstr "[时移] 正在重启时移!"
 
 msgid "a gui to assign services/providers to common interface modules"
-msgstr "将频道/供应商分配给通用接口模块的用户界面"
+msgstr "用于为通用接口模块分配频道/供应商的图形用户界面"
 
 msgid "a gui to assign services/providers/caids to common interface modules"
-msgstr "将 频道/供应商/CAID 分配给通用接口模块的用户界面"
+msgstr "用于为通用接口模块分配频道/供应商/CAID的图形用户界面"
 
 msgid "activatePiP"
 msgstr "激活画中画"
@@ -23640,7 +23640,7 @@ msgid "insert mark here"
 msgstr "在这里插入标记"
 
 msgid "instant record"
-msgstr "即时录像"
+msgstr "即时录制"
 
 msgid "internally loopthrough to"
 msgstr "内部环通到"

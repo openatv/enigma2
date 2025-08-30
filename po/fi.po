@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-27 15:35+0000\n"
-"PO-Revision-Date: 2025-07-20 15:03+0000\n"
+"PO-Revision-Date: 2025-08-11 20:02+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -2480,7 +2480,7 @@ msgid "Are you sure you want to delete this?"
 msgstr "Haluatko varmasti poistaa tämän?"
 
 msgid "Are you sure you want to disable Chkroot Multiboot?"
-msgstr ""
+msgstr "Haluatko poistaa Chkroot Multibootin käytöstä?"
 
 msgid "Are you sure you want to exit this wizard?"
 msgstr "Haluatko lopettaa avustustoiminnon?"
@@ -4269,7 +4269,7 @@ msgid "Close the Plugin Browser screen"
 msgstr "Sulje lisäosa selain näyttö"
 
 msgid "Close the SeekBar after returning to the starting point"
-msgstr ""
+msgstr "Sulje hakupalkkia palattuaan lähtöpisteeseen"
 
 msgid "Close the choice box"
 msgstr "Sulje valinta ruutu"
@@ -6314,7 +6314,7 @@ msgid "Disabled or WPA/WPA2"
 msgstr "Poistettu tai WPA/WPA2"
 
 msgid "Disabling Chkroot failed!"
-msgstr ""
+msgstr "Pysäyttäminen Chkroot epäonnistu!"
 
 msgid "Dish"
 msgstr "Lautasantenni"
@@ -14013,7 +14013,7 @@ msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboo
 msgstr "Paina YLÖS/ALAS painikkeita valitaksesi image paikan ja paina OK tai VIHREÄ Uudelleen käynnistääksesi kyseiseen image paikan, jos on käytettävissä, KELTAINEN Poista image paikka. Poistettua ohjelmistoa ei voi palauttaa!"
 
 msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that image. If available, YELLOW will disable Multiboot, delete, or wipe the selected image. Press BLUE to add more slots."
-msgstr ""
+msgstr "Paina Ylös/Alas painikkeita valitsemaan paikka, paina sitten OK tai Vihreä uudelleen käynnistettäväksi kyseiseen ohjelmiston. Jos käytettävissä, Keltainen poistaa Multibootin käytöstä, poista tai pyyhkii valitun ohjelmiston. Paina Sininen lisätäksesi lisää paikkoja."
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Painamalla tätä painiketta voit jäljitellä pitkään painettua painiketta myöhemmin (tämä myös ohitetaan kaikki muut emulointipainikkeelle määritetyt toiminnot)."
@@ -15796,7 +15796,7 @@ msgid "Seek Actions"
 msgstr "Haku toiminnot"
 
 msgid "Seek Bar"
-msgstr ""
+msgstr "Hakupalkki"
 
 msgid "Seek backward"
 msgstr "Hae taaksepäin"
@@ -15814,7 +15814,7 @@ msgid "SeekBar"
 msgstr "Etsi"
 
 msgid "SeekBar Actions"
-msgstr ""
+msgstr "Hakupalkki toiminnot"
 
 msgid "SeekBar activation"
 msgstr "Hakupalkin aktivointi"
@@ -18437,12 +18437,12 @@ msgstr "siirry taaksepäin"
 #, python-format
 msgid "Skip backward %d second"
 msgid_plural "Skip backward %d seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Siirry taaksepäin %d sekunti"
+msgstr[1] "Siirry taaksepäin %d sekuntia"
 
 #, python-format
 msgid "Skip backward %s%%"
-msgstr ""
+msgstr "Siirry taaksepäin %s%%"
 
 msgid "Skip backward (enter time)"
 msgstr "siirry taaksepäin (syötä aika)"
@@ -18452,7 +18452,7 @@ msgstr "Ohita tyhjät kanavat"
 
 #, python-format
 msgid "Skip for '%s' is disabled"
-msgstr ""
+msgstr "Hyppy kohteeseen '%s' on poistettu käytöstä"
 
 msgid "Skip forward"
 msgstr "Siirry eteenpäin"
@@ -18460,12 +18460,12 @@ msgstr "Siirry eteenpäin"
 #, python-format
 msgid "Skip forward %d second"
 msgid_plural "Skip forward %d seconds"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Siirry eteenpäin %d sekuntia"
+msgstr[1] "Siirry eteenpäin %d sekuntia"
 
 #, python-format
 msgid "Skip forward %s%%"
-msgstr ""
+msgstr "Hyppää eteenpäin %s%%"
 
 msgid "Skip forward (enter time)"
 msgstr "siirry eteenpäin (syötä aika)"
@@ -18490,10 +18490,10 @@ msgstr "Painikkeiden '%s'/'%s' ohitusaika"
 
 #, python-format
 msgid "Skip to %s0%% position (Add %s%% on second press)"
-msgstr ""
+msgstr "Hyppää kohtaan %s0 %% (lisää %s %% toisella painalluksella)"
 
 msgid "Skip to 0% (start) position"
-msgstr ""
+msgstr "Hyppää 0 % (aloitus) kohtaan"
 
 msgid "Sleep"
 msgstr "Uniajastin"
@@ -18608,8 +18608,9 @@ msgstr "Paikka '%s' %s"
 msgid "Slot '%s' %s: %s%s"
 msgstr "Paikka '%s' %s: %s%s"
 
+#, fuzzy
 msgid "Slot F: Flash Slot Image Backup (Current image)"
-msgstr ""
+msgstr "Paikka F: Päivitä ohjelmiston varmuuskopio (nykyinen ohjelmisto)"
 
 msgid "Slot Manager"
 msgstr "Paikkojen Hallinta"
@@ -18625,7 +18626,7 @@ msgstr "Paikkojen määrä"
 
 #, python-format
 msgid "Slots have been extended by %d..\n"
-msgstr ""
+msgstr "Paikkoja on laajennettu %d..\n"
 
 msgid "Slovak"
 msgstr "Slovakia"

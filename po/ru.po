@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-27 15:35+0000\n"
-"PO-Revision-Date: 2025-07-22 17:05+0000\n"
+"PO-Revision-Date: 2025-08-18 16:27+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
 "Language: ru\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.13-dev\n"
+"X-Generator: Weblate 5.13\n"
 "X-Poedit-SourceCharset: iso-8859-5\n"
 
 msgid ""
@@ -101,7 +101,7 @@ msgid "!! Boot loader Upgrade !!"
 msgstr "!! Обновление загрузчика !!"
 
 msgid "# = Reboot required if this item is changed."
-msgstr "# = Требуется перезагрузка"
+msgstr "# = При изменении этого элемента требуется перезагрузка."
 
 msgid "%-H:%M"
 msgstr "%-H:%M"
@@ -977,23 +977,23 @@ msgstr[2] "%d пакетов установлено."
 #, python-format
 msgid "%d package marked for install."
 msgid_plural "%d packages marked for install."
-msgstr[0] "%d пакет помечен для установки."
-msgstr[1] "%d пакета помечено для установки."
-msgstr[2] "%d пакетов помечено для установки."
+msgstr[0] "%d пакет отмечен для установки."
+msgstr[1] "%d пакета отмечено для установки."
+msgstr[2] "%d пакетов отмечено для установки."
 
 #, python-format
 msgid "%d package marked for remove."
 msgid_plural "%d packages marked for remove."
-msgstr[0] "%d пакет помечен для удаления."
-msgstr[1] "%d пакета помечено для удаления."
-msgstr[2] "%d пакетов помечено для удаления."
+msgstr[0] "%d пакет отмечен для удаления."
+msgstr[1] "%d пакета отмечено для удаления."
+msgstr[2] "%d пакетов отмечено для удаления."
 
 #, python-format
 msgid "%d package marked for update."
 msgid_plural "%d packages marked for update."
-msgstr[0] "%d пакет помечен для обновления."
-msgstr[1] "%d пакета помечено для обновления."
-msgstr[2] "%d пакетов помечено для обновления."
+msgstr[0] "%d пакет отмечен для обновления."
+msgstr[1] "%d пакета отмечено для обновления."
+msgstr[2] "%d пакетов отмечено для обновления."
 
 #, python-format
 msgid "%d package upgraded."
@@ -1346,7 +1346,7 @@ msgid "(show optional DVD audio menu)"
 msgstr "(Показать дополнительное аудио-меню DVD)"
 
 msgid "* = Restart required if this item is changed."
-msgstr "* = Требуется перезагрузка"
+msgstr "* = При изменении этого элемента требуется перезагрузка."
 
 msgid "* Only available if more than one interface is active."
 msgstr "* Доступно, если активно более одного интерфейса."
@@ -2509,7 +2509,7 @@ msgid "Are you sure you want to delete this?"
 msgstr "Вы уверены, что хотите удалить это?"
 
 msgid "Are you sure you want to disable Chkroot Multiboot?"
-msgstr ""
+msgstr "Вы уверены, что хотите отключить Chkroot Multiboot?"
 
 msgid "Are you sure you want to exit this wizard?"
 msgstr "Уверены, что хотите выйти из этого мастера?"
@@ -4298,7 +4298,7 @@ msgid "Close the Plugin Browser screen"
 msgstr "Закройте экран браузера плагинов"
 
 msgid "Close the SeekBar after returning to the starting point"
-msgstr ""
+msgstr "Закройте SeekBar после возвращения в исходную точку"
 
 msgid "Close the choice box"
 msgstr "Закройте окно выбора"
@@ -6344,7 +6344,7 @@ msgid "Disabled or WPA/WPA2"
 msgstr "Выключено или WPA/WPA2"
 
 msgid "Disabling Chkroot failed!"
-msgstr ""
+msgstr "Отключение Chkroot не удалось!"
 
 msgid "Dish"
 msgstr "Антенна"
@@ -9538,7 +9538,7 @@ msgid "If a programme is interrupted and divided into separate events, the plugi
 msgstr "Если программа прерывается и делится на отдельные события, плагин будет искать связанные события."
 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
-msgstr "Если действие может настраиваться пользователем, то в справке оно будет помечено суффиксом '(C)'."
+msgstr "Если действие может настраиваться пользователем, то в справке оно будет отмечено суффиксом '(C)'."
 
 msgid "If enabled and necessary, the plugin will wake up the Receiver from Deep-Standby for the defined starting time to control whether the programme begins earlier."
 msgstr "Если включено, плагин по необходимости будет пробуждать ресивер из глубокого сна на определённое для его запуска время, чтобы проверить, не начнётся ли передача раньше."
@@ -14037,7 +14037,7 @@ msgid "Press the UP/DOWN buttons to select a slot and press OK or GREEN to reboo
 msgstr "Нажимайте кнопки ВВЕРХ/ВНИЗ, для выбора слота, и нажмите OK или ЗЕЛЁНУЮ кнопку для перезагрузки и запуска этого образа. ЖЁЛТАЯ кнопка, если активна, удалит или сотрёт образ. Удалённый образ можно восстановить СИНЕЙ кнопкой. Стёртый образ удаляется окончательно и восстановить его невозможно!"
 
 msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reboot into that image. If available, YELLOW will disable Multiboot, delete, or wipe the selected image. Press BLUE to add more slots."
-msgstr ""
+msgstr "С помощью кнопок ВВЕРХ/ВНИЗ выберите слот, затем нажмите кнопку OK или ЗЕЛЁНУЮ кнопку, чтобы перезагрузить устройство в этот образ. ЖЁЛТАЯ кнопка (если доступна) отключит мультизагрузку, удалит или сотрет выбранный образ. Нажмите СИНЮЮ кнопку, чтобы добавить слоты."
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Нажмите эту кнопку для включения эмуляции долгого нажатия кнопки, которая будет нажата следующей (это заменяет любые другие функции назначенные на эту кнопку)."
@@ -15823,7 +15823,7 @@ msgid "Seek Actions"
 msgstr "Поиск действий"
 
 msgid "Seek Bar"
-msgstr ""
+msgstr "Панель поиска"
 
 msgid "Seek backward"
 msgstr "Перемотка назад"
@@ -15841,7 +15841,7 @@ msgid "SeekBar"
 msgstr "Панель перемотки"
 
 msgid "SeekBar Actions"
-msgstr ""
+msgstr "Действия панели поиска"
 
 msgid "SeekBar activation"
 msgstr "Вызов панели перемотки"
@@ -18450,13 +18450,13 @@ msgstr "Перейти назад"
 #, python-format
 msgid "Skip backward %d second"
 msgid_plural "Skip backward %d seconds"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Перейти назад на %d секунду"
+msgstr[1] "Перейти назад на %d секунд"
+msgstr[2] "Перейти назад на %d секунды"
 
 #, python-format
 msgid "Skip backward %s%%"
-msgstr ""
+msgstr "Перейти назад %s%%"
 
 msgid "Skip backward (enter time)"
 msgstr "Перейти назад (Введите время)"
@@ -18466,7 +18466,7 @@ msgstr "Пропускать пустые каналы"
 
 #, python-format
 msgid "Skip for '%s' is disabled"
-msgstr ""
+msgstr "Пропустить для '%s' отключено"
 
 msgid "Skip forward"
 msgstr "Перейти вперёд"
@@ -18474,13 +18474,13 @@ msgstr "Перейти вперёд"
 #, python-format
 msgid "Skip forward %d second"
 msgid_plural "Skip forward %d seconds"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Перейти вперед на %d секунду"
+msgstr[1] "Перейти вперед на %d секунд"
+msgstr[2] "Перейти вперед на %d секунды"
 
 #, python-format
 msgid "Skip forward %s%%"
-msgstr ""
+msgstr "Перейти вперёд %s%%"
 
 msgid "Skip forward (enter time)"
 msgstr "Перейти вперёд (Введите время)"
@@ -18505,10 +18505,10 @@ msgstr "Пропустить время для кнопок '%s'/'%s'"
 
 #, python-format
 msgid "Skip to %s0%% position (Add %s%% on second press)"
-msgstr ""
+msgstr "Перейти к позиции %s0%% (Добавить %s%% при втором нажатии)"
 
 msgid "Skip to 0% (start) position"
-msgstr ""
+msgstr "Перейти к позиции 0% (старт)"
 
 msgid "Sleep"
 msgstr "Сон"
@@ -18642,7 +18642,7 @@ msgstr "Количество слотов"
 
 #, python-format
 msgid "Slots have been extended by %d..\n"
-msgstr ""
+msgstr "Слоты были расширены на %d..\n"
 
 msgid "Slovak"
 msgstr "Словацкий"
@@ -19073,7 +19073,7 @@ msgid "Starts in a few seconds"
 msgstr "Запускается через несколько секунд"
 
 msgid "Startup device not found!"
-msgstr ""
+msgstr "Устройство запуска не найдено!"
 
 #. TRANSLATORS: "State" is location information and not condition based information.
 msgid "State"
@@ -19605,7 +19605,7 @@ msgid "TMDB Search"
 msgstr "Поиск по TMDB"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Коррекция перевода Monja 21.07.2025"
+msgstr "Коррекция перевода Monja 03.08.2025"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл слишком большой для ISO9660 уровень 1!"
