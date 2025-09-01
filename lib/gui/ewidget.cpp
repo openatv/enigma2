@@ -395,7 +395,7 @@ int eWidget::event(int event, void *data, void *data2)
 				if (r && drawborder)
 				{
 
-					if(!m_gradient_set)
+					if(!m_gradient_set && m_alphaBlend) // use new drawRectangle only if no gradient and alphaBlend because otherwise we have a problem with eVideoWidget
 					{
 						painter.setBackgroundColor(m_have_background_color ? m_background_color : gRGB(0, 0, 0));
 						painter.setBorder(m_border_color, m_border_width);
