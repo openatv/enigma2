@@ -249,7 +249,7 @@ class International:
 		"yi": ("Yiddish", _("Yiddish"), "ייִדיש", "", "", ("US",)),
 		"yo": ("Yoruba", _("Yoruba"), "Yorùbá", "", "", ("NG",)),
 		"za": ("Zhuang / Chuang", _("Zhuang / Chuang"), "Saɯ cueŋƅ / Saw cuengh", "", "", ()),
-		"zh": ("Chinese", _("Chinese"), "中文", "", "", ("CN", "HK", "SG", "TW")),
+		"zh": ("Chinese", _("Chinese"), "中文", "", "", ("CN", "HK", "MO", "SG", "TW")),
 		"zu": ("Zulu", _("Zulu"), "isiZulu", "", "", ("ZA",))
 	}
 
