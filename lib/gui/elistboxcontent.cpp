@@ -1562,7 +1562,8 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					y += zoomoffs.y();
 				}
 
-				eRect rect(x + bwidth, y + bwidth, width - bwidth * 2, height - bwidth * 2);
+				int radiusBorderWidth = (cornerRadius && cornerEdges) ? 0 : bwidth;
+				eRect rect(x + radiusBorderWidth, y + radiusBorderWidth, width - radiusBorderWidth * 2, height - radiusBorderWidth * 2);
 				painter.clip(rect);
 				{
 					bool mustClear = (selected && pbackColorSelected) || (!selected && pbackColor);
@@ -1714,7 +1715,8 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					y += zoomoffs.y();
 				}
 
-				eRect rect(x + bwidth, y + bwidth, width - bwidth * 2, height - bwidth * 2);
+				int radiusBorderWidth = (radius) ? 0 : bwidth;
+				eRect rect(x + radiusBorderWidth, y + radiusBorderWidth, width - radiusBorderWidth * 2, height - radiusBorderWidth * 2);
 				painter.clip(rect);
 				{
 					gRegion rc(rect);
