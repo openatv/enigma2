@@ -1568,14 +1568,17 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					bool mustClear = (selected && pbackColorSelected) || (!selected && pbackColor);
 					if (cornerRadius && cornerEdges)
 					{
+						bool blend = false;
 						painter.setRadius(cornerRadius, cornerEdges);
 						if(mustClear) {
-							uint32_t color = PyLong_AsUnsignedLongMask(selected ? pbackColorSelected : pbackColor);
-							painter.setBackgroundColor(gRGB(color));
+							gRGB color = gRGB((uint32_t)PyLong_AsUnsignedLongMask(selected ? pbackColorSelected : pbackColor));
+							painter.setBackgroundColor(color);
+							blend = color.a > 0;
 						}
 						else
 						{
 							painter.setBackgroundColor(defaultBackColor);
+							blend = defaultBackColor.a > 0;
 						}
 
 						if(bwidth && pborderColor)
@@ -1584,7 +1587,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 							painter.setBorder(gRGB(color), bwidth);
 						}
 						bwidth = 0;
-						painter.drawRectangle(rect);
+						painter.drawRectangle(rect, blend);
 					}
 					else
 					{
@@ -1719,13 +1722,17 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					bool mustClear = (selected && pbackColorSelected) || (!selected && pbackColor);
 					if (radius)
 					{
+						bool blend = false;
 						painter.setRadius(radius, edges);
 						if(mustClear) {
-							uint32_t color = PyLong_AsUnsignedLongMask(selected ? pbackColorSelected : pbackColor);
-							painter.setBackgroundColor(gRGB(color));
+							gRGB color = gRGB((uint32_t)PyLong_AsUnsignedLongMask(selected ? pbackColorSelected : pbackColor));
+							painter.setBackgroundColor(color);
+							blend = color.a > 0;
 						}
-						else
+						else {
 							painter.setBackgroundColor(defaultBackColor);
+							blend = defaultBackColor.a > 0;
+						}
 
 						if(bwidth && pborderColor)
 						{
@@ -1733,7 +1740,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 							painter.setBorder(gRGB(color), bwidth);
 						}
 						bwidth = 0;
-						painter.drawRectangle(rect);
+						painter.drawRectangle(rect, blend);
 
 						if (selected)
 						{
