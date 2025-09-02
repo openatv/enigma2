@@ -62,6 +62,11 @@ public:
 			invalidate(); 
 		}
 
+	virtual void setWidgetAlphaBlend(bool blend) { 
+			m_alphaBlend = blend;
+			invalidate(); 
+		}
+
 	virtual void setPadding(const eRect &padding) { m_padding = padding; }
 	virtual eRect getPadding() { return m_padding; }
 
@@ -132,6 +137,7 @@ protected:
 	int m_border_width;
 	gRGB m_border_color;
 	eRect m_padding;
+	bool m_alphaBlend = false; 
 
 public:
 

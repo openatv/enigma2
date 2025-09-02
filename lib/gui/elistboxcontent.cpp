@@ -1526,8 +1526,6 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 					if (size > 9)
 						pborderColorSelected = lookupColor(PyTuple_GET_ITEM(item, 9), data);
-					else
-						pborderColorSelected = pborderColor;
 				}
 
 				if (size > 10)
@@ -1550,8 +1548,6 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 
 				int cornerRadius = pCornerRadius ? PyLong_AsLong(pCornerRadius) : 0;
 				int cornerEdges = pCornerEdges ? PyLong_AsLong(pCornerEdges) : 15;
-				if (cornerRadius || cornerEdges)
-					bwidth = 0; // border not supported for rounded edges
 
 				if (selected && itemZoomContent)
 				{
@@ -1566,22 +1562,33 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					y += zoomoffs.y();
 				}
 
-				eRect rect(x + bwidth, y + bwidth, width - bwidth * 2, height - bwidth * 2);
+				int radiusBorderWidth = (cornerRadius && cornerEdges) ? 0 : bwidth;
+				eRect rect(x + radiusBorderWidth, y + radiusBorderWidth, width - radiusBorderWidth * 2, height - radiusBorderWidth * 2);
 				painter.clip(rect);
 				{
 					bool mustClear = (selected && pbackColorSelected) || (!selected && pbackColor);
 					if (cornerRadius && cornerEdges)
 					{
+						bool blend = false;
 						painter.setRadius(cornerRadius, cornerEdges);
 						if(mustClear) {
-							uint32_t color = PyLong_AsUnsignedLongMask(selected ? pbackColorSelected : pbackColor);
-							painter.setBackgroundColor(gRGB(color));
+							gRGB color = gRGB((uint32_t)PyLong_AsUnsignedLongMask(selected ? pbackColorSelected : pbackColor));
+							painter.setBackgroundColor(color);
+							blend = color.a > 0;
 						}
 						else
 						{
 							painter.setBackgroundColor(defaultBackColor);
+							blend = defaultBackColor.a > 0;
 						}
-						painter.drawRectangle(rect);
+
+						if(bwidth && pborderColor)
+						{
+							uint32_t color = PyLong_AsUnsignedLongMask((selected && pborderColorSelected) ? pborderColorSelected : pborderColor);
+							painter.setBorder(gRGB(color), bwidth);
+						}
+						bwidth = 0;
+						painter.drawRectangle(rect, blend);
 					}
 					else
 					{
@@ -1591,14 +1598,14 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				}
 				painter.clippop();
 
-				if (bwidth && cornerRadius == 0)
+				if(bwidth && pborderColor)
 				{
 					eRect rect(eRect(x, y, width, height));
 					painter.clip(rect);
 
 					if (pborderColor)
 					{
-						uint32_t color = PyLong_AsUnsignedLongMask(selected ? pborderColorSelected : pborderColor);
+						uint32_t color = PyLong_AsUnsignedLongMask(selected && pborderColorSelected ? pborderColorSelected : pborderColor);
 						painter.setForegroundColor(gRGB(color));
 					}
 
@@ -1708,10 +1715,8 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					y += zoomoffs.y();
 				}
 
-				if (radius)
-					bwidth = 0; // border is not supported yet
-
-				eRect rect(x + bwidth, y + bwidth, width - bwidth * 2, height - bwidth * 2);
+				int radiusBorderWidth = (radius > 0) ? 0 : bwidth;
+				eRect rect(x + radiusBorderWidth, y + radiusBorderWidth, width - radiusBorderWidth * 2, height - radiusBorderWidth * 2);
 				painter.clip(rect);
 				{
 					gRegion rc(rect);
@@ -1719,14 +1724,25 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					bool mustClear = (selected && pbackColorSelected) || (!selected && pbackColor);
 					if (radius)
 					{
+						bool blend = false;
 						painter.setRadius(radius, edges);
 						if(mustClear) {
-							uint32_t color = PyLong_AsUnsignedLongMask(selected ? pbackColorSelected : pbackColor);
-							painter.setBackgroundColor(gRGB(color));
+							gRGB color = gRGB((uint32_t)PyLong_AsUnsignedLongMask(selected ? pbackColorSelected : pbackColor));
+							painter.setBackgroundColor(color);
+							blend = color.a > 0;
 						}
-						else
+						else {
 							painter.setBackgroundColor(defaultBackColor);
-						painter.drawRectangle(rect);
+							blend = defaultBackColor.a > 0;
+						}
+
+						if(bwidth && pborderColor)
+						{
+							uint32_t color = PyLong_AsUnsignedLongMask(pborderColor);
+							painter.setBorder(gRGB(color), bwidth);
+						}
+						bwidth = 0;
+						painter.drawRectangle(rect, blend);
 
 						if (selected)
 						{

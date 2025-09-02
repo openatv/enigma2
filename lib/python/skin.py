@@ -900,6 +900,9 @@ class AttributeParser:
 	def applyVerticalScale(self, value):
 		return int(parseInteger(value) * self.scaleTuple[1][0] / self.scaleTuple[1][1])
 
+	def alphaBlend(self, value):
+		self.guiObject.setWidgetAlphaBlend(parseBoolean("alphablend", value))
+
 	def alphaTest(self, value):
 		self.guiObject.setAlphatest(parseAlphaTest(value))
 
