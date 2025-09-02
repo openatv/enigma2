@@ -1715,7 +1715,7 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 					y += zoomoffs.y();
 				}
 
-				int radiusBorderWidth = (radius) ? 0 : bwidth;
+				int radiusBorderWidth = (radius > 0) ? 0 : bwidth;
 				eRect rect(x + radiusBorderWidth, y + radiusBorderWidth, width - radiusBorderWidth * 2, height - radiusBorderWidth * 2);
 				painter.clip(rect);
 				{
