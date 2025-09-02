@@ -95,12 +95,14 @@ class MultiContentTemplateParser(TemplateParser):
 							flags = item.get("_flags", 0)
 							match item["type"]:
 								case "text":
+									textBorderColor = item.get("textBorderColor")
+									textBorderWidth = int(item.get("textBorderWidth", "0"))
 									foregroundColorSelected = item.get("foregroundColorSelected")
 									foregroundColor = item.get("foregroundColor")
 									font = int(item.get("font", 0))
 									if index == -1:
 										index = item.get("text", "")
-									modeData.append((eListboxPythonMultiContent.TYPE_TEXT, pos[0], pos[1], size[0], size[1], font or 0, flags, index, foregroundColor, foregroundColorSelected, backgroundColor, backgroundColorSelected, borderWidth, borderColor, cornerRadius, cornerEdges))
+									modeData.append((eListboxPythonMultiContent.TYPE_TEXT, pos[0], pos[1], size[0], size[1], font or 0, flags, index, foregroundColor, foregroundColorSelected, backgroundColor, backgroundColorSelected, borderWidth, borderColor, cornerRadius, cornerEdges, textBorderWidth, textBorderColor))
 								case "pixmap":
 									if index == -1:
 										index = item.get("pixmap", "")
