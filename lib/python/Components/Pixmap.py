@@ -20,6 +20,9 @@ class Pixmap(GUIComponent):
 		size = self.instance.size()
 		return size.width(), size.height()
 
+	def setPixmap(self, pixmap):
+		self.instance.setPixmap(pixmap)
+
 	def applySkin(self, desktop, screen):
 		if self.skinAttributes is not None:
 			attribs = []
