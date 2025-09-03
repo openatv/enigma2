@@ -1101,7 +1101,7 @@ class AttributeParser:
 		self.guiObject.setOrientation(parseListOrientation(value))
 
 	def noWrap(self, value):
-		self.wrap("0" if parseBoolean("noWrap", value) else "1")
+		self.wrap("0" if parseBoolean("nowrap", value) else "1")
 		# attribDeprecationWarning("noWrap", "wrap")
 
 	def objectTypes(self, value):
@@ -1539,7 +1539,7 @@ def loadSingleSkinData(desktop, screenID, domSkin, pathSkin, scope=SCOPE_GUISKIN
 			style.setLabelFont(parseFont(label.attrib.get("font", "Regular;20"), ((1, 1), (1, 1))))
 		for listBox in tag.findall("listbox"):
 			pageSize = parseInteger(listBox.attrib.get("pageSize", eListbox.DefaultPageSize), eListbox.DefaultPageSize)
-			enableWrapAround = parseBoolean("enableWrapAround", listBox.attrib.get("enableWrapAround", "True" if eListbox.DefaultWrapAround else "False"))
+			enableWrapAround = parseBoolean("enablewraparound", listBox.attrib.get("enableWrapAround", "True" if eListbox.DefaultWrapAround else "False"))
 			style.setListboxFont(parseFont(listBox.attrib.get("font", "Regular;20"), ((1, 1), (1, 1))))
 			scrollbarBorderWidth = parseInteger(listBox.attrib.get("scrollbarBorderWidth", eListbox.DefaultScrollBarBorderWidth), eListbox.DefaultScrollBarBorderWidth)
 			if "scrollbarBorderWidth" not in scrollLabelStyle:
