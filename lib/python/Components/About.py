@@ -38,7 +38,7 @@ def getIfConfig(interfaceName):
 		for key, value in info.items():
 			interface[key] = interfaceInfo(sock, value, interfaceName)
 	except Exception as err:
-		print("[About] Error: getIfConfig returned an error!  ({str(err)})")
+		print(f"[About] Error: getIfConfig returned an error!  ({str(err)})")
 	sock.close()
 	return interface
 
