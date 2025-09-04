@@ -8,9 +8,9 @@ class TemplatedMultiContent(StringList):
 
 	def __init__(self, args):
 		StringList.__init__(self, args)
-		from enigma import BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, RADIUS_TOP_LEFT, RADIUS_TOP_RIGHT, RADIUS_TOP, RADIUS_BOTTOM_LEFT, RADIUS_BOTTOM_RIGHT, RADIUS_BOTTOM, RADIUS_LEFT, RADIUS_RIGHT, RADIUS_ALL, RT_BLEND, RT_ELLIPSIS, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_BOTTOM, RT_VALIGN_CENTER, RT_VALIGN_TOP, RT_WRAP, gFont
-		from skin import getSkinFactor, parseFont
-		from Components.MultiContent import MultiContentEntryLinearGradient, MultiContentEntryLinearGradientAlphaBlend, MultiContentEntryPixmap, MultiContentEntryPixmapAlphaBlend, MultiContentEntryPixmapAlphaTest, MultiContentEntryProgress, MultiContentEntryProgressPixmap, MultiContentEntryRectangle, MultiContentEntryText, MultiContentTemplateColor
+		from enigma import BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, RADIUS_TOP_LEFT, RADIUS_TOP_RIGHT, RADIUS_TOP, RADIUS_BOTTOM_LEFT, RADIUS_BOTTOM_RIGHT, RADIUS_BOTTOM, RADIUS_LEFT, RADIUS_RIGHT, RADIUS_ALL, RT_BLEND, RT_ELLIPSIS, RT_HALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_BOTTOM, RT_VALIGN_CENTER, RT_VALIGN_TOP, RT_WRAP, gFont  # noqa: F401
+		from skin import getSkinFactor, parseFont  # noqa: F401
+		from Components.MultiContent import MultiContentEntryLinearGradient, MultiContentEntryLinearGradientAlphaBlend, MultiContentEntryPixmap, MultiContentEntryPixmapAlphaBlend, MultiContentEntryPixmapAlphaTest, MultiContentEntryProgress, MultiContentEntryProgressPixmap, MultiContentEntryRectangle, MultiContentEntryText, MultiContentTemplateColor  # noqa: F401
 		f = getSkinFactor()  # This is needed for special OpenViX skins using f in the template.
 		loc = locals()
 		del loc["self"]  # Cleanup locals a bit.

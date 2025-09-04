@@ -588,7 +588,7 @@ class MovieList(GUIComponent):
 					self.list.append((serviceref, info, begin, -1))
 					numberOfDirs += 1
 				continue
-			if serviceref.getPath().endswith(".jpg"): # Ignore all JPEG files as they are often added as movie posters but should not be listed as extra media.
+			if serviceref.getPath().endswith(".jpg"):  # Ignore all JPEG files as they are often added as movie posters but should not be listed as extra media.
 				continue
 			# Convert space-separated list of tags into a set.
 			this_tags = info.getInfoString(serviceref, iServiceInformation.sTags).split(" ")

@@ -70,7 +70,7 @@ class GUISkin:
 				self.instance.setTitle(title)
 			self["Title"].text = title
 			self.summaries.setTitle(title)
-		except:
+		except Exception:
 			pass
 
 	def getTitle(self):

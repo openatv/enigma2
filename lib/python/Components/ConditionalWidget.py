@@ -29,7 +29,7 @@ class ConditionalWidget(GUIComponent):
 		if self.conditionalFunction is not None:
 			try:
 				self.activateCondition(self.conditionalFunction())
-			except:
+			except Exception:
 				self.conditionalFunction = None
 				self.activateCondition(False)
 
