@@ -11,7 +11,7 @@ class ValueRange(Converter):
 	def getBoolean(self):
 		try:
 			sourcevalue = int(self.source.value)
-		except:
+		except Exception:
 			sourcevalue = self.source.value
 		if self.lower <= self.upper:
 			return self.lower <= sourcevalue <= self.upper

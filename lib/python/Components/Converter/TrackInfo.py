@@ -63,7 +63,7 @@ class TrackInfo(Poll, Converter):
 						return description
 					else:
 						return language
-				except:
+				except Exception:
 					pass
 			return ""
 		elif self.type == self.SUBTITLE or self.type == self.SUBTITLE_TYPE or self.type == self.SUBTITLE_LANG:
@@ -93,7 +93,7 @@ class TrackInfo(Poll, Converter):
 				try:
 					from Plugins.Extensions.Kodi.plugin import KodiVideoPlayer
 					kodi = KodiVideoPlayer.instance
-				except:
+				except ImportError:
 					kodi = None
 				if kodi and isPluginInstalled("SubsSupport"):
 					if kodi.embeddedEnabled:
@@ -121,7 +121,7 @@ class TrackInfo(Poll, Converter):
 									language = _(LanguageCodes[x[4]][0])
 								else:
 									language = x[4]
-						except:
+						except Exception:
 							pass
 
 						if selectedSubtitle[0] == 0:
@@ -135,7 +135,7 @@ class TrackInfo(Poll, Converter):
 								_("SRT file"), _("VOB file"), _("PGS file"), "WebVTT")
 							try:
 								description = types[x[2]]
-							except:
+							except Exception:
 								description = _("unknown") + ": %s" % x[2]
 						if self.type == self.SUBTITLE:
 							return description + ' | ' + language

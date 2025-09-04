@@ -99,7 +99,7 @@ class RunningText(Renderer):
 					x = min(limit, int(val))
 				else:
 					x = max(limit, int(val))
-			except:
+			except Exception:
 				x = default
 			return x
 

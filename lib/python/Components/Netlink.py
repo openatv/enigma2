@@ -22,7 +22,7 @@ class NetlinkSocket(socket.socket):
 				try:
 					k, v = item.split('=', 1)
 					event[k] = v
-				except:
+				except Exception:
 					event[None] = item
 
 

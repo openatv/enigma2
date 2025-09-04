@@ -16,7 +16,7 @@ def bigStorage(minFree):
 			if free > minFree:
 				print()
 				return candidate
-		except:
+		except Exception:
 			pass
 	return None
 

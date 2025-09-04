@@ -49,10 +49,10 @@ class pstrCnvrt(Converter):
 		try:
 			if not isdir("/tmp/poster"):
 				mkdir("/tmp/poster")
-			with open("/tmp/poster/poster.jpg", "wb") as f:
-				f.write(urlopen(url_poster).read())
+			with open("/tmp/poster/poster.jpg", "wb") as fd:
+				fd.write(urlopen(url_poster).read())
 				# return self.evntNm
-		except:
+		except Exception:
 			pass
 
 	def sessionEpisode(self, event):

@@ -187,7 +187,7 @@ class SecConfigure:
 						slot.multi_type = {}
 						for tunertype in types:
 							slot.multi_type[str(types.index(tunertype))] = tunertype
-		except:
+		except Exception:
 			pass
 
 		for slot in nim_slots:
@@ -342,7 +342,7 @@ class SecConfigure:
 					self.linked[connto].append(slotid)
 				else:
 					advanced.unicableconnectedTo.save_forced = False
-		except:
+		except Exception:
 			pass
 
 		lnbSat = {}
@@ -772,7 +772,7 @@ class NIM:
 			if self.isMultiType():
 				_type = self.multi_type[self.config.multiType.value]
 				return _type
-		except:
+		except Exception:
 			pass
 		return self.type
 
@@ -1081,7 +1081,7 @@ class NimManager:
 						slot.multi_type = {}
 						for tunertype in types:
 							slot.multi_type[str(types.index(tunertype))] = tunertype
-		except:
+		except Exception:
 			pass
 
 		if self.hasNimType("DVB-S"):
@@ -1456,7 +1456,7 @@ class NimManager:
 					if "configMode" in nimConfig.content.items and nimConfig.configMode.value == "loopthrough" and int(nimConfig.connectedTo.value) == testnim:
 						slots.remove(testnim)
 						break
-				except:
+				except Exception:
 					pass
 
 		slots.sort()

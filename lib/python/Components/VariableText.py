@@ -11,7 +11,7 @@ class VariableText:
 			self.message = text
 			if self.instance:
 				self.instance.setText(self.message or "")
-		except:
+		except Exception:
 			self.message = ""
 			self.instance.setText(self.message or "")
 
@@ -27,5 +27,5 @@ class VariableText:
 	def postWidgetCreate(self, instance):
 		try:
 			instance.setText(self.message or "")
-		except:
+		except Exception:
 			pass

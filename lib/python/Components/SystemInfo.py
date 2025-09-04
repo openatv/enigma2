@@ -40,7 +40,7 @@ class BoxInformation:  # To maintain data integrity class variables should not b
 						self.enigmaInfoList.append(item)
 						try:
 							self.boxInfo[item] = literal_eval(value)
-						except:  # Remove this code when the build system is updated.
+						except Exception:  # Remove this code when the build system is updated.
 							self.boxInfo[item] = value
 						# except Exception as err:  # Activate this replacement code when the build system is updated.
 						# 	print(f"[SystemInfo] Error: Information variable '{item}' with a value of '{value}' can not be loaded into BoxInfo!  ({err})")

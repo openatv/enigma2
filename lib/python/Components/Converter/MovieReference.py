@@ -7,10 +7,10 @@
 #	<convert type="MovieReference"/>
 #</widget>
 
+from enigma import iServiceInformation, eServiceReference, iPlayableServicePtr
 
 from Components.Converter.Converter import Converter
 from Components.Element import cached
-from enigma import iServiceInformation, eServiceReference, iPlayableServicePtr
 
 
 class MovieReference(Converter):
@@ -36,10 +36,9 @@ class MovieReference(Converter):
 			path = refstr and eServiceReference(refstr).getPath()
 			if path:
 				try:
-					fd = open("%s.meta" % (path))
-					refstr = fd.readline().strip()
-					fd.close()
-				except:
+					with open("%s.meta" % (path)) as fd:
+						refstr = fd.readline().strip()
+				except OSError:
 					pass
 			return refstr
 		else:

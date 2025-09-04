@@ -89,7 +89,7 @@ class ServiceEventTracker:
 		try:
 			if infobar.instance:
 				raise AssertionError("FATAL: Infobar '" + str(infobar) + "' is already active!")
-		except:
+		except Exception:
 			pass
 		set.InfoBarStack.append(infobar)
 		set.InfoBarStackSize += 1

@@ -41,7 +41,7 @@ class VtiTempFan(Poll, Converter):
 			with open('/proc/stb/sensors/temp0/unit', 'rb') as fd:
 				unit = fd.readline().strip()
 			return 'TEMP: %s %s%s' % (str(temp), '\u00B0', str(unit))
-		except:
+		except OSError:
 			pass
 
 	def fanfile(self):
@@ -51,7 +51,7 @@ class VtiTempFan(Poll, Converter):
 				fan = fd.readline().strip()
 			faninfo = 'FAN: %s' % (str(fan))
 			return faninfo
-		except:
+		except OSError:
 			pass
 
 	def changed(self, what):

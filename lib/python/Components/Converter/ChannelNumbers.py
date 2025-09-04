@@ -45,7 +45,7 @@ class ChannelNumbers:
 		description = ""
 		try:
 			description = nimmanager.getTerrestrialDescription(nim)
-		except:
+		except Exception:
 			print("[ChannelNumber] nimmanager.getTerrestrialDescription(nim) failed, nim:", nim)
 		return description
 
