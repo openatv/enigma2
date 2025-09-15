@@ -1280,6 +1280,9 @@ class AttributeParser:
 	def tabWidth(self, value):
 		self.guiObject.setTabWidth(parseTabWidth(value, -1))
 
+	def tag(self, value):
+		self.guiObject.setTag(parseInteger(value, 0))
+
 	def text(self, value):
 		if value:
 			value = _(value)
