@@ -46,7 +46,7 @@ class ServiceInfoBar(GUIAddon):
 		self.autoresizeMode = "auto"  # possible values: auto, fixed, condensed
 		self.font = gFont("Regular", 18)
 		self.__event_tracker = None
-		self.current_crypto = ""
+		self.currentCrypto = ""
 		self.tuner_string = ""
 		self.textRenderer = Label("")
 		self.permanentIcons = []
@@ -54,8 +54,8 @@ class ServiceInfoBar(GUIAddon):
 		self.streamServer = eStreamServer.getInstance()
 		self.currentServiceSource = None
 		self.frontendInfoSource = None
-		self.is_cryptedDetected = False
-		self.tuner_colors = parameters.get("FrontendInfoColors", (0x0000FF00, 0x00FFFF00, 0x007F7F7F))  # tuner active, busy, available colors
+		self.isCryptedDetected = False
+		self.tunerColors = parameters.get("FrontendInfoColors", (0x0000FF00, 0x00FFFF00, 0x007F7F7F))  # tuner active, busy, available colors
 
 	def onContainerShown(self):
 		self.textRenderer.GUIcreate(self.relatedScreen.instance)
@@ -98,11 +98,11 @@ class ServiceInfoBar(GUIAddon):
 				yield item
 
 	def gotRecordEvent(self, service, event):
-		prev_records = self.records_running
+		prevRecords = self.records_running
 		if event in (iRecordableService.evEnd, iRecordableService.evStart, None):
 			recs = self.nav.getRecordings()
 			self.records_running = len(recs)
-			if self.records_running != prev_records:
+			if self.records_running != prevRecords:
 				self.updateAddon()
 
 	def scheduleAddonUpdate(self):
@@ -115,9 +115,9 @@ class ServiceInfoBar(GUIAddon):
 			service = NavigationInstance.instance.getCurrentService()
 			info = service and service.info()
 			if info:
-				new_crypto = createCurrentCaidLabel(info)
-				if new_crypto != self.current_crypto and self.is_cryptedDetected:
-					self.current_crypto = new_crypto
+				newCrypto = createCurrentCaidLabel(info)
+				if newCrypto != self.currentCrypto and self.isCryptedDetected:
+					self.currentCrypto = newCrypto
 					self.updateAddon()
 
 	def updateAddon(self):
@@ -156,7 +156,7 @@ class ServiceInfoBar(GUIAddon):
 				return None
 
 			if "%3a//" in pending_sref and pending_service_ref and not pending_service_ref.getStreamRelay():
-				self.is_cryptedDetected = False
+				self.isCryptedDetected = False
 
 			video_height = None
 			# video_aspect = None
@@ -187,7 +187,7 @@ class ServiceInfoBar(GUIAddon):
 				if "%3a//" in pending_sref and pending_service_ref and not pending_service_ref.getStreamRelay():
 					return key + "_off"
 				if info.getInfo(iServiceInformation.sIsCrypted) == 1:
-					self.is_cryptedDetected = True
+					self.isCryptedDetected = True
 					return key
 			elif key == "audiotrack" and not isRef:
 				audio = service.audioTracks()
@@ -212,10 +212,10 @@ class ServiceInfoBar(GUIAddon):
 			elif key == "currentCrypto":
 				if "%3a//" in pending_sref and pending_service_ref and not pending_service_ref.getStreamRelay():
 					self.refreshCryptoInfo.stop()
-					self.current_crypto = ""
+					self.currentCrypto = ""
 					return key + "_off"
 				if not isRef:
-					self.current_crypto = createCurrentCaidLabel(info)
+					self.currentCrypto = createCurrentCaidLabel(info)
 				self.refreshCryptoInfo.start(1000)
 				return key
 			elif key == "record":
@@ -235,9 +235,9 @@ class ServiceInfoBar(GUIAddon):
 					for n in nimmanager.nim_slots:
 						if n.enabled:
 							if n.slot == self.frontendInfoSource.slot_number:
-								color = Hex2strColor(self.tuner_colors[0])
+								color = Hex2strColor(self.tunerColors[0])
 							elif self.frontendInfoSource.tuner_mask & 1 << n.slot:
-								color = Hex2strColor(self.tuner_colors[1])
+								color = Hex2strColor(self.tunerColors[1])
 							else:
 								continue
 							if string:
@@ -324,7 +324,7 @@ class ServiceInfoBar(GUIAddon):
 					if enabledKey == "tuners":
 						res_string = self.tuner_string
 					else:
-						res_string = self.current_crypto
+						res_string = self.currentCrypto
 					if res_string:
 						textWidth = self._calcTextWidth(res_string, font=self.font, size=eSize(self.getDesktopWith() // 3, 0))
 						res.append(MultiContentEntryText(

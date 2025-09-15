@@ -36,9 +36,9 @@ class ButtonSequence(GUIAddon):
 	GUI_WIDGET = eListbox
 
 	def updateAddon(self, sequence):
-		l_list = []
-		l_list.append((sequence,))
-		self.l.setList(l_list)
+		lList = []
+		lList.append((sequence,))
+		self.l.setList(lList)
 
 	def buildEntry(self, sequence):
 		xPos = self.instance.size().width() if self.alignment == "right" else 0
@@ -50,19 +50,19 @@ class ButtonSequence(GUIAddon):
 			if x in self.pixmaps:
 				pic = LoadPixmap(resolveFilename(SCOPE_GUISKIN, self.pixmaps[x]))
 				if pic:
-					pixd_size = pic.size()
-					pixd_width = pixd_size.width()
-					pixd_height = pixd_size.height()
-					pic_x_pos = (xPos - pixd_width) if self.alignment == "right" else xPos
+					pixdSize = pic.size()
+					pixdWidth = pixdSize.width()
+					pixdHeight = pixdSize.height()
+					picXPos = (xPos - pixdWidth) if self.alignment == "right" else xPos
 					res.append(MultiContentEntryPixmapAlphaBlend(
-						pos=(pic_x_pos, yPos),
-						size=(pixd_width, pixd_height),
+						pos=(picXPos, yPos),
+						size=(pixdWidth, pixdHeight),
 						png=pic,
 						backcolor=None, backcolor_sel=None, flags=BT_ALIGN_CENTER))
 					if self.alignment == "right":
-						xPos -= pixd_width + self.spacing
+						xPos -= pixdWidth + self.spacing
 					else:
-						xPos += pixd_width + self.spacing
+						xPos += pixdWidth + self.spacing
 		return res
 
 	def postWidgetCreate(self, instance):

@@ -118,12 +118,12 @@ class MainMenu(GUIAddon):
 			if textWidth > self.longestMenuTextWidth:
 				self.longestMenuTextWidth = textWidth
 		curSize = self.instance.size()
-		dest_width = self.iconSize + 20 * 2 + 10
-		dest_width += self.longestMenuTextWidth
-		if dest_width > self.maxWidth:
-			dest_width = self.maxWidth
-		if dest_width > self.minWidth:
-			self.instance.resize(eSize(dest_width, curSize.height()))
+		destWidth = self.iconSize + 20 * 2 + 10
+		destWidth += self.longestMenuTextWidth
+		if destWidth > self.maxWidth:
+			destWidth = self.maxWidth
+		if destWidth > self.minWidth:
+			self.instance.resize(eSize(destWidth, curSize.height()))
 			self.relatedScreen.screenContentChanged()
 		self.l.setList(self.source.list)
 
