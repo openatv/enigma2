@@ -199,6 +199,14 @@ public:
 		RADIUS_ALL = 15,
 	};
 
+
+	virtual std::string getClassName() const { return std::string("eWidget"); }
+
+	virtual std::string dumpObject() const {
+		std::ostringstream oss;
+		oss << "<" << getClassName() << " Size=(" << size().width() << "," << size().height() << ") Position=(" << position().x() << "," << position().y() << ") Tag=" << getTag() << ">";
+		return oss.str();
+	}
 };
 
 extern eWidgetDesktop* getDesktop(int which);

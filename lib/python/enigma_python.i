@@ -583,3 +583,8 @@ extern bool checkLogin(const char *user, const char *pwd);
 
 %include <lib/python/python_console.i>
 %include <lib/python/python_base.i>
+%extend eWidget {
+    std::string __str__() {
+        return $self->dumpObject();
+    }
+}

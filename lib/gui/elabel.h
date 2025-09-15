@@ -53,6 +53,7 @@ protected:
 	int m_pos;
 	int m_text_offset = 0;
 	int m_text_shaddowoffset = 0;
+	std::string getClassName() const override { return std::string("eLabel"); }
 
 private:
 	int m_have_foreground_color = 0;

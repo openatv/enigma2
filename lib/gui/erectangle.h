@@ -11,6 +11,7 @@ public:
 protected:
 	int event(int event, void* data = 0, void* data2 = 0);
 
+	std::string getClassName() const override { return std::string("eRectangle"); }
 };
 
 #endif
