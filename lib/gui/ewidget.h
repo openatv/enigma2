@@ -145,6 +145,8 @@ protected:
 	gRGB m_border_color;
 	eRect m_padding;
 	bool m_alphaBlend = false;
+	uint8_t m_align = eStackAlignNone;
+	virtual void invalidateChilds() {}
 
 public:
 	// all in local space!
@@ -199,6 +201,19 @@ public:
 		RADIUS_ALL = 15,
 	};
 
+	enum {
+		eStackAlignNone = 0,
+		eStackAlignLeft = 1,
+		eStackAlignRight = 2,
+		eStackAlignTop = 4,
+		eStackAlignBottom = 8,
+		eStackAlignCenter = 16
+	};
+
+	void setAlign(uint8_t a) { m_align = a; }
+	uint8_t align() const { return m_align; }
+	eWidget* m_stack;
+	void setStack(eWidget* stack) { m_stack = stack; }
 
 	virtual std::string getClassName() const { return std::string("eWidget"); }
 
