@@ -89,6 +89,10 @@ public:
 	ePoint getAbsolutePosition();
 
 	eWidgetAnimation m_animation;
+
+	int getTag() const { return m_tag; }
+	void setTag(int tag) { m_tag = tag; }
+
 private:
 	eWidgetDesktop* m_desktop;
 
@@ -128,6 +132,7 @@ private:
 
 	int m_cornerRadius;
 	uint8_t m_cornerRadiusEdges;
+	int m_tag;
 
 protected:
 	void mayKillFocus();
