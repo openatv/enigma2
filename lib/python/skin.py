@@ -1097,10 +1097,10 @@ class AttributeParser:
 		# print(f"[Skin] DEBUG: Scale itemWidth {int(value)} -> {self.applyHorizontalScale(value)}.")
 		self.guiObject.setItemWidth(self.applyHorizontalScale(value))
 
-	def label(self, value):
+	def label(self, value):  # This is a dummy method for the parser.
 		pass
 
-	def layout(self, value):
+	def layout(self, value):  # This is a dummy method for the parser.
 		pass
 
 	def listOrientation(self, value):  # Used by eListBox.
@@ -1110,7 +1110,7 @@ class AttributeParser:
 		self.wrap("0" if parseBoolean("nowrap", value) else "1")
 		# attribDeprecationWarning("noWrap", "wrap")
 
-	def objectTypes(self, value):
+	def objectTypes(self, value):  # This is a dummy method for the parser.
 		pass
 
 	def orientation(self, value):  # Used by eSlider.
@@ -1139,7 +1139,7 @@ class AttributeParser:
 	def position(self, value):
 		self.guiObject.move(ePoint(*value) if isinstance(value, tuple) else parsePosition(value, self.scaleTuple, self.guiObject, self.desktop, self.guiObject.csize()))
 
-	def resolution(self, value):
+	def resolution(self, value):  # This is a dummy method for the parser.
 		pass
 
 	def scale(self, value):
@@ -1286,7 +1286,7 @@ class AttributeParser:
 	def spacingColor(self, value):
 		self.guiObject.setSpacingColor(parseColor(value, 0x00000000))
 
-	def stack(self, value):
+	def stack(self, value):  # This is a dummy method for the parser.
 		pass
 
 	def tabWidth(self, value):
@@ -2189,7 +2189,7 @@ def readSkin(screen, skin, names, desktop):
 		except ValueError:
 			pass
 
-	def processNone(widget, context, stack=None):
+	def processNone(widget, context, stack=None):  # This is a dummy method for the parser.
 		pass
 
 	def proccesStackAddition(widget, stack, target):

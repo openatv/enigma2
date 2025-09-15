@@ -27,8 +27,8 @@ class GUIAddon(GUIComponent):
 		container.onShow.append(self.onContainerShown)
 		self.relatedScreen = container
 
-	def onContainerShown(self):
+	def onContainerShown(self):  # This will be overwritten by subclass
 		pass
 
-	def onSourceVisibleChanged(self):
+	def onSourceVisibleChanged(self):  # This will be overwritten by subclass
 		pass
