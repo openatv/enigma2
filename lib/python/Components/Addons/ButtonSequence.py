@@ -73,10 +73,7 @@ class ButtonSequence(GUIAddon):
 	def constructButtonSequence(self):
 		sequence = []
 		for x, val in self.sources.items():
-			if isinstance(val, Boolean) and val.boolean:
-				if x not in sequence:
-					sequence.append(x)
-			elif isinstance(val, StaticText) and val.text:
+			if (isinstance(val, Boolean) and val.boolean) or (isinstance(val, StaticText) and val.text):
 				if x not in sequence:
 					sequence.append(x)
 
@@ -86,7 +83,7 @@ class ButtonSequence(GUIAddon):
 		attribs = []
 		for (attrib, value) in self.skinAttributes[:]:
 			if attrib == "pixmaps":
-				self.pixmaps = dict(item.split(':') for item in value.split(','))
+				self.pixmaps = {k: v for k, v in (item.split(':') for item in value.split(','))}
 			elif attrib == "spacing":
 				self.spacing = parseScale(value)
 			elif attrib == "alignment":

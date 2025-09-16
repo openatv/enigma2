@@ -210,7 +210,7 @@ class ScreenButtonsBar(GUIAddon):
 			if attrib == "actionButtonsPos":
 				self.actionButtonsPosition = value
 			elif attrib == "pixmaps":
-				self.pixmaps = dict(item.split(':') for item in value.split(','))
+				self.pixmaps = {k: v for k, v in (item.split(':') for item in value.split(','))}
 			elif attrib == "spacingColor":
 				self.spacingButtons = parseScale(value)
 			elif attrib == "spacingColorTight":
@@ -238,7 +238,7 @@ class ScreenButtonsBar(GUIAddon):
 			elif attrib == "foregroundColor":
 				self.foreColor = parseColor(value).argb()
 			elif attrib == "textColors":
-				self.colors = dict(item.split(':') for item in value.split(','))
+				self.colors = {k: v for k, v in (item.split(':') for item in value.split(','))}
 			elif attrib == "buttonCornerRadius":
 				self.cornerRadius = parseScale(value)
 			elif attrib == "renderType":

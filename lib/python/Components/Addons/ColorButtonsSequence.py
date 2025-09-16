@@ -152,7 +152,7 @@ class ColorButtonsSequence(GUIAddon):
 		attribs = []
 		for (attrib, value) in self.skinAttributes[:]:
 			if attrib == "pixmaps":
-				self.pixmaps = dict(item.split(':') for item in value.split(','))
+				self.pixmaps = {k: v for k, v in (item.split(':') for item in value.split(','))}
 			elif attrib == "spacing":
 				self.spacingButtons = parseScale(value)
 			elif attrib == "spacingPixmapText":
@@ -174,7 +174,7 @@ class ColorButtonsSequence(GUIAddon):
 			elif attrib == "foregroundColor":
 				self.foreColor = parseColor(value).argb()
 			elif attrib == "textColors":
-				self.colors = dict(item.split(':') for item in value.split(','))
+				self.colors = {k: v for k, v in (item.split(':') for item in value.split(','))}
 			elif attrib == "buttonCornerRadius":
 				self.cornerRadius = parseScale(value)
 			elif attrib == "renderType":

@@ -360,9 +360,9 @@ class ServiceInfoBar(GUIAddon):
 		attribs = []
 		for (attrib, value) in self.skinAttributes[:]:
 			if attrib == "pixmaps":
-				self.pixmaps = dict(item.split(':') for item in value.split(','))
+				self.pixmaps = {k: v for k, v in (item.split(':') for item in value.split(','))}
 			if attrib == "pixmapsDisabled":
-				self.pixmapsDisabled = dict(item.split(':') for item in value.split(','))
+				self.pixmapsDisabled = {k: v for k, v in (item.split(':') for item in value.split(','))}
 			elif attrib == "spacing":
 				self.spacing = parseScale(value)
 			elif attrib == "alignment":
