@@ -1,6 +1,8 @@
 #include <lib/gui/estack.h>
 
-eStack::eStack(eWidget* parent, LayoutDirection dir) : eWidget(parent), m_direction(dir), m_spacing(0) {}
+eStack::eStack(eWidget* parent, LayoutDirection dir) : eWidget(parent), m_direction(dir) {
+	m_spacing = 0;
+}
 
 void eStack::setLayoutDirection(LayoutDirection dir) {
 	m_direction = dir;
@@ -20,9 +22,9 @@ void eStack::removeChild(eWidget* child) {
 	if (!child)
 		return;
 
-	auto it = std::find(m_stackchilds.begin(), m_stackchilds.end(), child);
-	if (it != m_stackchilds.end())
+	if (auto it = std::ranges::find(m_stackchilds, child); it != m_stackchilds.end()) {
 		m_stackchilds.erase(it);
+	}
 
 	recalcLayout();
 }
@@ -62,8 +64,7 @@ void eStack::recalcLayout() {
 		int cx = 0, cy = 0;
 		int cw = csize.width();
 		int ch = csize.height();
-		int align = child->align();
-		if (align == 0)
+		if (child->align() == 0)
 			continue;
 
 		if (m_direction == Horizontal) {

@@ -146,7 +146,7 @@ protected:
 	eRect m_padding;
 	bool m_alphaBlend = false;
 	uint8_t m_align = eStackAlignNone;
-	virtual void invalidateChilds() {}
+	virtual void invalidateChilds() {} // This will be overwritten in subclass
 
 public:
 	// all in local space!

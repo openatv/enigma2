@@ -27,7 +27,7 @@ public:
 	std::string dumpObject() const override {
 		std::ostringstream oss;
 		oss << "<eStack Size=(" << size().width() << "," << size().height() << ") Position=(" << position().x() << "," << position().y() << ") Tag=" << getTag() << ">";
-		if (m_stackchilds.size() > 0)
+		if (!m_stackchilds.empty())
 			oss << "\nChilds:\n";
 		for (auto child : m_stackchilds) {
 			oss << "\t" << child->dumpObject();
