@@ -97,7 +97,7 @@ class Timer:
 		else:
 			try:
 				self.timer_list.remove(timer)
-			except:
+			except Exception:
 				print("[Timer] Error: Failed to remove timer as it isn't in the timer list!")
 				return
 		if timer.state == TimerEntry.StateEnded:  # Give the timer a chance to re-enqueue.
