@@ -514,7 +514,7 @@ class vps_timer:
 					self.timer.vpsplugin_wasTimerWakeup = False
 					if not Screens.Standby.inTryQuitMainloop:
 						RecordTimerEntry.TryQuitMainloop(False)
-			except:
+			except Exception:
 				pass
 
 		return self.nextExecution
@@ -590,7 +590,7 @@ class vps:
 			for timer in self.session.nav.RecordTimer.timer_list:
 				if timer.vpsplugin_enabled and timer.state == TimerEntry.StateWaiting and not timer.justplay and not timer.repeated and not timer.disabled:
 					return (timer.begin - (config.plugins.vps.initial_time.value * 60))
-		except:
+		except Exception:
 			pass
 
 		return -1

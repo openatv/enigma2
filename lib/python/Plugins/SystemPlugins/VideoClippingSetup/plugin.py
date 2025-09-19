@@ -111,7 +111,7 @@ def setPosition(clip_left, clip_width, clip_top, clip_height):
 		file = open("/proc/stb/vmpeg/0/clip_height", "w")
 		file.write('%X' % clip_height)
 		file.close()
-	except:
+	except OSError:
 		return
 
 

@@ -333,7 +333,7 @@ class CIconfigMenu(Screen):
 					read_provider_dvbname = provider.get("dvbnamespace")
 					self.read_providers.append((read_provider_name, read_provider_dvbname))
 				self.ci_config.append((int(read_slot), (self.read_services, self.read_providers, self.usingcaid)))
-		except:
+		except Exception:
 			print("[CI_Config_CI%d] error parsing xml..." % self.ci_slot)
 			try:
 				remove(self.filename)
@@ -546,7 +546,7 @@ class myProviderSelection(ChannelSelectionBase):
 								try:
 									# why we need this cast?
 									service_name = str(nimmanager.getSatDescription(orbpos))
-								except:
+								except Exception:
 									if unsigned_orbpos == 0xFFFF:  # Cable
 										service_name = _("Cable")
 									elif unsigned_orbpos == 0xEEEE:  # Terrestrial

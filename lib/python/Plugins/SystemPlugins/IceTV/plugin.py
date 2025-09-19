@@ -1078,7 +1078,7 @@ class EPGFetcher:
                     if local_timer.ice_timer_id is not None:
                         NavigationInstance.instance.RecordTimer.saveTimers()
                         self.deferredPostStatus(local_timer)
-                except:
+                except Exception:
                     self.addLog("Couldn't get IceTV timer id for timer '%s'" % local_timer.name)
 
             except (OSError, RuntimeError, KeyError) as ex:
@@ -1657,7 +1657,7 @@ class IceTVLogin(Screen, IceTVUIBase):
         try:
             if ice.haveCredentials():
                 ice.Logout().delete()
-        except:
+        except Exception:
             # Failure to logout is not a show-stopper
             pass
         try:

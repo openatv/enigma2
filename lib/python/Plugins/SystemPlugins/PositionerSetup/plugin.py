@@ -236,7 +236,7 @@ class PositionerSetup(Screen):
 			self.rotorPositions = lnb.rotorPositions.value
 			self.turningspeedH = lnb.turningspeedH.float
 			self.turningspeedV = lnb.turningspeedV.float
-		except:  # some reasonable defaults from NimManager
+		except Exception:  # some reasonable defaults from NimManager
 			self.sitelon = 5.1
 			self.longitudeOrientation = 'east'
 			self.sitelat = 50.767

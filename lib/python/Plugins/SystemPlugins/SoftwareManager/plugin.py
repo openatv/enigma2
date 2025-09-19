@@ -307,7 +307,7 @@ class BackupHelper(Screen):
 				from Plugins.Extensions.MediaScanner.plugin import scan
 				scan(self.session, self)
 				doClose = False
-			except:
+			except ImportError:
 				self.session.open(MessageBox, _("Sorry, %s has not been installed!") % ("MediaScanner"), MessageBox.TYPE_INFO, timeout=10)
 		elif self.args == 5:
 			self.session.open(BackupSelection, title=_("Default files/folders to backup"), configBackupDirs=config.plugins.configurationbackup.backupdirs_default, readOnly=True, mode="backupfiles")

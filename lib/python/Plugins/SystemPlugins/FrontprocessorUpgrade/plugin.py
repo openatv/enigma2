@@ -86,7 +86,7 @@ def Plugins(**kwargs):
 	try:
 		msg = open("/proc/stb/message").read()
 		list.append(PluginDescriptor(name=_("System Message Check"), where=PluginDescriptor.WHERE_WIZARD, needsRestart=True, fnc=(9, SystemMessage, msg)))
-	except:
+	except OSError:
 		pass
 
 	return list

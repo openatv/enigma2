@@ -147,7 +147,7 @@ def restoreUserDB():
 				try:
 					subprocess.check_call(cmd)
 					groupsuccess = True
-				except:
+				except Exception:
 					groupsuccess = False
 
 			# Re-create the user if the group still exists or was successfully re-created ...
@@ -166,7 +166,7 @@ def restoreUserDB():
 				try:
 					subprocess.check_call(cmd)
 					usersuccess = True
-				except:
+				except Exception:
 					usersuccess = False
 
 		if usersuccess:

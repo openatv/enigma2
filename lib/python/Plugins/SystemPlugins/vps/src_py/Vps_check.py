@@ -39,7 +39,7 @@ class VPS_check_PDC:
 						self.checked_services[serviceref]["default_vps"] = int(default_vps)
 					else:
 						self.checked_services[serviceref]["default_vps"] = 0
-		except:
+		except Exception:
 			pass
 
 	def save_pdc(self):
@@ -78,7 +78,7 @@ class VPS_check_PDC:
 				return self.checked_services[service_str]["has_pdc"], self.checked_services[service_str]["last_check"], self.checked_services[service_str]["default_vps"]
 			else:
 				return -1, 0, 0
-		except:
+		except Exception:
 			return -1, 0, 0
 
 	def setServicePDC(self, service, state, default_vps):
@@ -87,7 +87,7 @@ class VPS_check_PDC:
 		if state == -1 and default_vps == 0:
 			try:
 				del self.checked_services[service_str]
-			except:
+			except Exception:
 				pass
 		else:
 			self.checked_services[service_str] = {}

@@ -58,7 +58,7 @@ def getMacAddress(ifname):
         info = ioctl(sock.fileno(), 0x8927, iface)
         result = ''.join(['%02x:' % char for char in info[18:24]])[:-1].upper()
         # result = ''.join(['%02x:' % six.byte2int([char]) for char in info[18:24]])[:-1].upper()
-    except:
+    except Exception:
         pass
     sock.close()
     return result
