@@ -11,7 +11,7 @@ def orbpos(pos):
 def getTunerDescription(nim):
 	try:
 		return nimmanager.getTerrestrialDescription(nim)
-	except:
+	except Exception:
 		print("[Transponder] nimmanager.getTerrestrialDescription(nim) failed, nim: %s" % nim)
 	return ""
 

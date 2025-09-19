@@ -57,7 +57,7 @@ class FallbackTimerList():
 		if self.url:
 			try:
 				self.getUrl("api/timerlist").addCallback(self.gotFallbackTimerList).addErrback(self.fallback)
-			except:
+			except Exception:
 				self.fallback(_("Unexpected error while retrieving fallback tuner's timer information"))
 		else:
 			self.fallback()

@@ -21,9 +21,9 @@ class HardwareInfo:
 				file = open("/proc/stb/info/version")
 				HardwareInfo.device_version = file.readline().strip()
 				file.close()
-			except:
+			except OSError:
 				pass
-		except:
+		except Exception:
 			print("----------------")
 			print("you should upgrade to new drivers for the hardware detection to work properly")
 			print("----------------")
@@ -36,7 +36,7 @@ class HardwareInfo:
 				elif "Brcm7401 V0.0" in rd:
 					HardwareInfo.device_name = "dm800"
 					print("dm800 detected!")
-			except:
+			except Exception:
 				pass
 
 	def get_device_name(self):
@@ -57,5 +57,5 @@ class HardwareInfo:
 	def linux_kernel(self):
 		try:
 			return open("/proc/version").read().split(' ', 4)[2].split('-', 2)[0]
-		except:
+		except Exception:
 			return "unknown"

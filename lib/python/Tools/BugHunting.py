@@ -11,7 +11,7 @@ def getFrames(deep=2):
 	for x in list(range(2, 3 + deep)):
 		try:
 			frames.append(sys._getframe(x))
-		except:
+		except Exception:
 			break
 	return frames
 
