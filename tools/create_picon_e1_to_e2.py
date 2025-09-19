@@ -64,18 +64,18 @@ while len(f) > 2:
 
 	try:
 		makedirs(f"{sat}/{servicetype}")
-	except:
+	except OSError:
 		pass
 
 	print(f"{sat[0:2]}.{sat[-1:]}E_{ref[0]:X}.png")
 	try:
 		rename(f"{sat[0:-1]}E_{ref[0]:X}.png", f"{sat}/{servicetype}/{filename}")
-	except:
+	except OSError:
 		pass
 
 	try:
 		symlink(filename, f"{sat}/{servicetype}/{filename}")
-	except:
+	except OSError:
 		pass
 
 	f = f[3:]

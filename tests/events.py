@@ -45,7 +45,7 @@ def end_log(test_name):
 		f = open(test_name + ".results", "rb")
 		expected = f.read()
 		f.close()
-	except:
+	except OSError:
 		print("NO TEST RESULT FOUND, creating new")
 		f = open(test_name + ".new_results", "wb")
 		f.write(results)
