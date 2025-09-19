@@ -321,7 +321,7 @@ class CableTransponderSearchSupport:
 			if bus is None:
 				print("ERROR: could not get I2C device for nim", nim_idx, "for cable transponder search")
 				bus = 2
-		except:
+		except Exception:
 			# older API
 			if nim_idx < 2:
 				if BoxInfo.getItem("model") == "dm500hd":

@@ -180,7 +180,7 @@ class EventViewBase:
 					if simulTimerList is not None:
 						try:
 							from Screens.TimerEdit import TimerSanityConflict
-						except:  # maybe already been imported from another module
+						except Exception:  # maybe already been imported from another module
 							pass
 						self.session.openWithCallback(self.finishSanityCorrection, TimerSanityConflict, simulTimerList)
 			self["key_green"].setText(_("Change Timer"))

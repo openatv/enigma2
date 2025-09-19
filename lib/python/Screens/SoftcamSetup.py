@@ -246,7 +246,7 @@ class CamSetupHelper:
 				else:
 					direction = _("E")
 				orbposText = "%d.%d %s%s" % (orbpos / 10, orbpos % 10, "\u00B0", direction)
-		except:
+		except Exception:
 			pass
 		return orbpos, orbposText
 

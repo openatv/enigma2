@@ -328,7 +328,7 @@ class AudioSelection(ConfigListScreen, Screen):
 								language = _(LanguageCodes[x[4]][0])
 							else:
 								language = x[4]
-					except:
+					except Exception:
 						language = ""
 
 					languagetype = ""
@@ -350,7 +350,7 @@ class AudioSelection(ConfigListScreen, Screen):
 								"SRT file", "VOB file", "PGS file", "WebVTT")
 						try:
 							description = types[x[2]]
-						except:
+						except Exception:
 							description = _("unknown") + ": %s" % x[2]
 						number = str(int(number) + 1)
 
@@ -396,7 +396,7 @@ class AudioSelection(ConfigListScreen, Screen):
 	def subtitlesEnabled(self):
 		try:
 			return self.infobar.subtitle_window.shown
-		except:
+		except Exception:
 			return False
 
 	def enableSubtitle(self, subtitle):

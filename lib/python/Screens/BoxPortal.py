@@ -12,7 +12,7 @@ def isExtension_installed(pname):
 		for plugin in plugins.getPlugins([PluginDescriptor.WHERE_PLUGINMENU, PluginDescriptor.WHERE_EXTENSIONSMENU]):
 			if plugin.name == pname:
 				return True
-	except:
+	except Exception:
 		return False
 
 

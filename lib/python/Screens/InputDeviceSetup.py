@@ -360,7 +360,7 @@ class RemoteControlType(Setup):
 			with open("/proc/stb/info/boxtype") as fd:
 				boxType = fd.read()
 				return boxType
-		except:
+		except OSError:
 			pass
 		return "Default"
 

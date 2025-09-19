@@ -50,5 +50,5 @@ class Scart(Screen):
 				try:
 					if notification[1].msgBoxID == "scart_msgbox":
 						notification[1].close()
-				except:
+				except Exception:
 					print("other notification is open. try another one.")

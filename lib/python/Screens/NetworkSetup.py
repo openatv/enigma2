@@ -968,7 +968,7 @@ class AdapterSetupConfiguration(Screen):
 		if iNetwork.isWirelessInterface(self.iface):
 			try:
 				from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
-			except:
+			except Exception:
 				self["statuspic"].setPixmapNum(1)
 				self["statuspic"].show()
 			else:
@@ -1430,7 +1430,7 @@ class NetworkAdapterTest(Screen):
 		if iface in iNetwork.wlan_interfaces:
 			try:
 				from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
-			except:
+			except Exception:
 				self["Network"].setForegroundColorNum(1)
 				self["Network"].setText(_("disconnected"))
 				self["NetworkInfo_Check"].setPixmapNum(1)

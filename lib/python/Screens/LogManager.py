@@ -107,7 +107,7 @@ class LogManagerPoller:
 					fh.write(data)
 					fh.truncate()
 					fh.close()
-			except:
+			except OSError:
 				pass
 		self.TrimTimer.startLongTimer(3600)  # once an hour
 
@@ -161,7 +161,7 @@ class LogManagerPoller:
 					for name in dirs:
 						try:
 							rmdir(join(root, name))
-						except:
+						except OSError:
 							pass
 					candidates.sort()
 					# Now we have a list of ctime, candidates, size. Sorted by ctime (=deletion time)
@@ -257,7 +257,7 @@ class LogManager(Screen):
 	def changeSelectionState(self):
 		try:
 			self.sel = self["list"].getCurrent()[0]
-		except:
+		except Exception:
 			self.sel = None
 		if self.sel:
 			self["list"].changeSelectionState()
@@ -281,13 +281,13 @@ class LogManager(Screen):
 			path = self["list"].getPath()
 			if path:
 				self.session.open(LogManagerViewLog, path)
-		except:
+		except Exception:
 			pass
 
 	def deletelog(self):
 		try:
 			self.sel = self["list"].getCurrent()[0]
-		except:
+		except Exception:
 			self.sel = None
 		self.selectedFiles = self["list"].getSelectedList()
 		if self.selectedFiles:
@@ -414,7 +414,7 @@ class LogInfo(VariableText, GUIComponent):
 				else:
 					total_size = _("%d GB") % (total_size >> 30)
 				self.setText(_("Space used:") + " " + total_size)
-			except:
+			except Exception:
 				# occurs when f_blocks is 0 or a similar error
 				self.setText("-?-")
 

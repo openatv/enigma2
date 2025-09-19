@@ -45,7 +45,7 @@ class SetupFallbacktuner(Setup):
 		try:
 			ipDefault = [int(x) for x in config.usage.remote_fallback.value.split(":")[1][2:].split(".")]
 			portDefault = int(config.usage.remote_fallback.value.split(":")[2])
-		except:
+		except Exception:
 			ipDefault = [0, 0, 0, 0]
 			portDefault = 8001
 		self.ip = ConfigIP(default=ipDefault, auto_jump=True)

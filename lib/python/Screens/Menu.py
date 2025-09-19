@@ -947,14 +947,14 @@ class IconMain(Screen):
 			try:
 				dpointer = f"/usr/share/enigma2/{dskin[0]}/pointer.png"
 				self["pointer"].instance.setPixmapFromFile(dpointer)
-			except:
+			except Exception:
 				dpointer = "/usr/share/enigma2/skin_default/pointer.png"
 				self["pointer"].instance.setPixmapFromFile(dpointer)
 		else:
 			try:
 				dpointer = f"/usr/share/enigma2/{dskin[0]}/blank.png"
 				self["pointer"].instance.setPixmapFromFile(dpointer)
-			except:
+			except Exception:
 				dpointer = "/usr/share/enigma2/skin_default/blank.png"
 				self["pointer"].instance.setPixmapFromFile(dpointer)
 
