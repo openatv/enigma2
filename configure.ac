@@ -966,6 +966,7 @@ lib/Makefile
 lib/base/eenv.cpp
 lib/python/Makefile
 lib/python/Components/Makefile
+lib/python/Components/Addons/Makefile
 lib/python/Components/Converter/Makefile
 lib/python/Components/Renderer/Makefile
 lib/python/Components/Sources/Makefile
