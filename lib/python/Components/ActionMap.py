@@ -17,9 +17,7 @@ def addKeyBinding(filename, keyId, context, mapto, flags):
 
 
 def queryKeyBinding(context, mapto):  # Returns a list of (keyId, flags) for a specified "mapto" action in a context.
-	if (context, mapto) in keyBindings:
-		return [(x[0], x[2]) for x in keyBindings[(context, mapto)]]
-	return []
+	return [(x[0], x[2]) for x in keyBindings[(context, mapto)]] if (context, mapto) in keyBindings else []
 
 
 def getKeyBindingKeys(filterFunction=lambda key: True):
@@ -44,14 +42,14 @@ def removeKeyBinding(keyId, context, mapto, wild=True):
 		for contxt, mapto in keyBindings.keys():
 			if contxt == context:
 				removeKeyBinding(keyId, context, mapto, False)
-		return
-	contextAction = (context, mapto)
-	if contextAction in keyBindings:
-		bind = [x for x in keyBindings[contextAction] if x[0] != keyId]
-		if bind:
-			keyBindings[contextAction] = bind
-		else:
-			del keyBindings[contextAction]
+	else:
+		contextAction = (context, mapto)
+		if contextAction in keyBindings:
+			bind = [x for x in keyBindings[contextAction] if x[0] != keyId]
+			if bind:
+				keyBindings[contextAction] = bind
+			else:
+				del keyBindings[contextAction]
 
 
 def removeKeyBindings(filename):  # Remove all entries of filename "domain".
@@ -63,6 +61,13 @@ def parseKeymap(filename, context, actionMapInstance, device, domKeys):
 	unmapDict = {}
 	error = False
 	keyId = -1
+	flagToValue = {
+		"m": 1,
+		"b": 2,
+		"r": 4,
+		"l": 8,
+		"s": 32,
+	}
 	for key in domKeys.findall("key"):
 		keyName = key.attrib.get("id")
 		if keyName is None:
@@ -103,14 +108,7 @@ def parseKeymap(filename, context, actionMapInstance, device, domKeys):
 			print(f"[ActionMap] Error: Attribute 'flag' in context '{context}' id '{keyName}' ({keyId}) in file '{filename}' must be specified!")
 			error = True
 		else:
-			flagToValue = lambda x: {
-				"m": 1,
-				"b": 2,
-				"r": 4,
-				"l": 8,
-				"s": 32
-			}[x]
-			newFlags = sum(map(flagToValue, flags))
+			newFlags = sum(flagToValue[x] for x in flags)
 			if not newFlags:
 				print(f"[ActionMap] Error: Attribute 'flag' value '{flags}' in context '{context}' id '{keyName}' ({keyId}) in file '{filename}' appears invalid!")
 				error = True
@@ -145,26 +143,25 @@ def getKeyId(id):
 	return keyid
 
 
-def parseTrans(filename, actionmap, device, keys):
-	for toggle in keys.findall("toggle"):
-		get_attr = toggle.attrib.get
-		toggle_key = get_attr("from")
-		toggle_key = getKeyId(toggle_key)
-		actionmap.bindToggle(filename, device, toggle_key)
-	for key in keys.findall("key"):
-		get_attr = key.attrib.get
-		keyin = get_attr("from")
-		keyout = get_attr("to")
-		toggle = get_attr("toggle") or "0"
-		assert keyin, f"[ActionMap] {filename}: must specify key to translate from '{keyin}'"
-		assert keyout, f"[ActionMap] {filename}: must specify key to translate to '{keyout}'"
-		keyin = getKeyId(keyin)
-		keyout = getKeyId(keyout)
-		toggle = int(toggle)
-		actionmap.bindTranslation(filename, device, keyin, keyout, toggle)
-
-
 def loadKeymap(filename, replace=False):
+	def parseTrans(filename, actionmap, device, keys):
+		for toggle in keys.findall("toggle"):
+			get_attr = toggle.attrib.get
+			toggle_key = get_attr("from")
+			toggle_key = getKeyId(toggle_key)
+			actionmap.bindToggle(filename, device, toggle_key)
+		for key in keys.findall("key"):
+			get_attr = key.attrib.get
+			keyin = get_attr("from")
+			keyout = get_attr("to")
+			toggle = get_attr("toggle") or "0"
+			assert keyin, f"[ActionMap] {filename}: Error: Must specify key to translate from '{keyin}'!"
+			assert keyout, f"[ActionMap] {filename}: Error: Must specify key to translate to '{keyout}'!"
+			keyin = getKeyId(keyin)
+			keyout = getKeyId(keyout)
+			toggle = int(toggle)
+			actionmap.bindTranslation(filename, device, keyin, keyout, toggle)
+
 	actionMapInstance = eActionMap.getInstance()
 	domKeymap = fileReadXML(filename, source=MODULE_NAME)
 	if domKeymap is not None:
@@ -200,7 +197,7 @@ class ActionMap:
 		self.execActive = False
 		self.enabled = True
 		self.legacyBound = False
-		self.parentScreen = parentScreen.__class__.__name__ if parentScreen and [x for x in parentScreen.__class__.__mro__ if x.__name__ == "Screen"] else "N/A"
+		self.parentScreen = parentScreen.__class__.__name__ if parentScreen else "N/A"  # and [x for x in parentScreen.__class__.__mro__ if x.__name__ == "Screen"] else "N/A"
 		undefinedAction = list(self.actions.keys())
 		leftActionDefined = "left" in undefinedAction
 		rightActionDefined = "right" in undefinedAction
@@ -218,9 +215,7 @@ class ActionMap:
 					break
 		if leftAction and rightAction and config.misc.actionLeftRightToPageUpPageDown.value:
 			if config.crash.debugActionMaps.value:
-				print("[ActionMap] DEBUG: Creating legacy navigation action map.")
-				print(leftAction)
-				print(rightAction)
+				print(f"[ActionMap] DEBUG: Creating legacy LEFT/RIGHT navigation action map entries. Left: '{leftAction}' / Right: '{rightAction}'.")
 			self.legacyActions = {
 				"left": leftAction,
 				"right": rightAction
@@ -228,11 +223,7 @@ class ActionMap:
 		else:
 			self.legacyActions = {}
 		if undefinedAction:
-			context = "', '".join(sorted(self.contexts))
-			contextPlural = "s" if len(self.contexts) > 1 else ""
-			action = "', '".join(sorted(undefinedAction))
-			actionPlural = "s" if len(undefinedAction) > 1 else ""
-			print(f"[ActionMap] Map context{contextPlural} '{context}': Undefined action{actionPlural} '{action}'.")
+			print(f"[ActionMap] Map context{"s" if len(self.contexts) > 1 else ""} '{", ".join(sorted(self.contexts))}': Undefined action{"s" if len(undefinedAction) > 1 else ""} '{", ".join(sorted(undefinedAction))}'!")
 
 	def getEnabled(self):
 		return self.enabled
@@ -275,23 +266,20 @@ class ActionMap:
 
 	def action(self, context, action):
 		if action in self.actions:
-			print(f"[ActionMap] Map screen '{self.parentScreen}' context '{context}' -> Action '{action}'.")
+			if config.crash.debugActionMaps.value:
+				print(f"[ActionMap] Map screen '{self.parentScreen}' context '{context}' -> Action '{action}'.")
 			response = self.actions[action]()
-			if response is not None:
-				return response
-			return 1
+			return response if response is not None else 1
 		print(f"[ActionMap] Map screen '{self.parentScreen}' context '{context}' -> Unknown action '{action}'!  (Typo in map?)")
 		return 0
 
 	def legacyAction(self, context, action):
 		if action in self.legacyActions:
-			print(f"[ActionMap] Map screen '{self.parentScreen}' context '{context}' -> Legacy action '{action}'.")
 			if config.crash.debugActionMaps.value:
+				print(f"[ActionMap] Map screen '{self.parentScreen}' context '{context}' -> Legacy action '{action}'.")
 				print(self.legacyActions[action])
 			response = self.legacyActions[action]()
-			if response is not None:
-				return response
-			return 1
+			return response if response is not None else 1
 		print(f"[ActionMap] Map screen '{self.parentScreen}' context '{context}' -> Unknown legacy action '{action}'!  (Typo in map?)")
 		return 0
 
@@ -303,9 +291,9 @@ class NumberActionMap(ActionMap):
 	def action(self, contexts, action):
 		if action in ("0", "1", "2", "3", "4", "5", "6", "7", "8", "9") and action in self.actions:
 			response = self.actions[action](int(action))
-			if response is not None:
-				return response
-			return 1
+			if config.crash.debugActionMaps.value:
+				print(f"[ActionMap] Map screen '{self.parentScreen}' context '{contexts}' -> function'{self.actions[action]}'.")
+			return response if response is not None else 1
 		return ActionMap.action(self, contexts, action)
 
 
