@@ -1168,6 +1168,7 @@ int eDVBFrontend::calculateSignalPercentage(int signalqualitydb)
 	}
 	return signalqualitydb >= maxdb ? 65535 : (signalqualitydb * 65535 / maxdb);
 }
+
 void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &signalqualitydb)
 {
 	int ret = 0x12345678;
@@ -1329,14 +1330,21 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		else
 			ret = 2700;
 	}
-	else if (strstr(m_description, "BCM4506")
-		|| strstr(m_description, "BCM4506 (internal)")
-		|| strstr(m_description, "BCM4505")
-		|| strstr(m_description, "BCM73625 (G3)")
-		|| strstr(m_description, "BCM45208")
-		|| strstr(m_description, "BCM45308")
-		|| strstr(m_description, "BCM3158")
-		)
+	else if (strstr(m_description, "Si2166B")) // DM7080HD/DM7020HD/DM820/DM800se DVB-S2 Dual NIM
+	{
+		ret = (snr * 240) >> 8;
+	}
+	else if (strstr(m_description, "Vuplus DVB-C NIM(BCM3158)")) // VU+ 4K FBC DVB-C
+	{
+		ret = (int)(snr / 15.61);
+	}
+	else if (strstr(m_description, "BCM4506") ||
+		strstr(m_description, "BCM4505") ||
+		strstr(m_description, "BCM45208") ||
+		strstr(m_description, "BCM45308") ||
+		strstr(m_description, "BCM4506 (internal)") ||
+		strstr(m_description, "BCM73625 (G3)") ||
+		strstr(m_description, "BCM3158")) // DM9O0/DM920 FBC "BCM3158 (DVB-C)"
 	{
 		ret = (snr * 100) >> 8;
 	}
@@ -1344,18 +1352,10 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	{
 		ret = snr*10;
 	}
-	else if (!strcmp(m_description, "Hi3716 Internal S2")) // SFX6008 S2
-	{
-		ret = snr;
-	}
 	else if (!strcmp(m_description, "ATBM7821 DVB-T2/C")) //SF8008
 	{
 		ret = snr*10;
 		ter_max = cab_max = 4200;
-	}
-	else if (strstr(m_description, "Si2166B"))
-	{
-		ret = (snr * 240) >> 8;
 	}
 	else if (!strcmp(m_description, "Vuplus DVB-S NIM(AVL2108)")) // VU+Ultimo/VU+Uno DVB-S2 NIM
 	{
@@ -1370,69 +1370,28 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		if (!strcmp(m_description, "Vuplus DVB-S NIM(AVL6222)"))
 			sat_max = 1490;
 	}
-	else if (!strcmp(m_description, "BCM7356 DVB-S2 NIM (internal)")) // VU+ Solo2
+	else if (!strcmp(m_description, "BCM7346 (internal)")) // MaxDigital XP1000
 	{
-		ret = (int)((((double(snr) / (65535.0 / 100.0)) * 0.1800) - 1.0000) * 100);
+		ret = (int)((((double(snr) / (65535.0 / 100.0)) * 0.1880) + 0.1959) * 100);
 	}
 	else if (!strcmp(m_description, "Vuplus DVB-S NIM(7376 FBC)")) // VU+ Solo4k
 	{
 		ret = (int)((((double(snr) / (65535.0 / 100.0)) * 0.1480) + 0.9560) * 100);
 	}
-	else if (!strcmp(m_description, "BCM7346 (internal)")) // MaxDigital XP1000
-	{
-		ret = (int)((((double(snr) / (65535.0 / 100.0)) * 0.1880) + 0.1959) * 100);
-	}
 	else if (!strcmp(m_description, "BCM7362 (internal) DVB-S2")) // Xsarius
 	{
 		ret = (int)((((double(snr) / (65535.0 / 100.0)) * 0.28) - 10.0) * 100);
 	}
-	else if (!strcmp(m_description, "BCM7356 DVB-S2 NIM (internal)")
-		|| !strcmp(m_description, "BCM7346 DVB-S2 NIM (internal)")
-		|| !strcmp(m_description, "BCM7358 DVB-S2 NIM (internal)")
-		|| !strcmp(m_description, "BCM7362 DVB-S2 NIM (internal)")
-		|| !strcmp(m_description, "GIGA DVB-S2 NIM (Internal)")
-		|| !strcmp(m_description, "GIGA DVB-S2 NIM (SP2246T)")
-		|| !strcmp(m_description, "GIGA DVB-S2 NIM (TS2M08)")
+	else if (strstr(m_description, "NIM(45308 FBC)")
+		|| strstr(m_description, "NIM(45208 FBC)")
+		|| strstr(m_description, "NIM(45308X FBC)")
 		)
 	{
-		ret = (int)((((double(snr) / (65535.0 / 100.0)) * 0.1710) - 1.0000) * 100);
-	}
-	else if (!strcmp(m_description, "GIGA DVB-S2 NIM (TS3L10)") || !strcmp(m_description, "GIGA DVB-S2 NIM (TS2L08)")) //GB IP 4K
-	{
-		ret = snr;
-	}
-	else if (!strcmp(m_description, "DVB-S2 NIM(45208 FBC)")
-		|| !strcmp(m_description, "DVB-S2 NIM(45308 FBC)")
-		)
-	{
-		ret = (int)((((double(snr) / (65535.0 / 100.0)) * 0.1950) - 1.0000) * 100);
+		ret = (int)(snr < 57500 ? (snr < 52500 ? (snr < 32200 ? 0.02640 * snr + 0.0 :  0.02604 * snr + 11.55125) : 0.01310 * snr + 661.55172) : 0.02826 * snr - 210.);
 	}
 	else if (!strcmp(m_description, "DVB-C NIM(3128 FBC)"))
 	{
 		ret = (int)(snr / 17);
-	}
-	else if (!strcmp(m_description, "GIGA DVB-C/T NIM (SP8221L)")
-		|| !strcmp(m_description, "GIGA DVB-C/T NIM (SI4765)")
-		|| !strcmp(m_description, "GIGA DVB-C/T NIM (SI41652)")
-		|| !strcmp(m_description, "GIGA DVB-C/T2 NIM (SI4768)")
-		|| !strcmp(m_description, "GIGA DVB-C/T2 NIM (SI41682)")
-		|| !strcmp(m_description, "GIGA DVB-T2/C NIM (TT2L10)")
-		|| !strcmp(m_description, "GIGA DVB-T2/C NIM (TT3L10)")
-		)
-	{
-		int type = -1;
-		oparm.getSystem(type);
-		switch (type)
-		{
-			case feCable:
-				ret = (int)(snr / 15);
-				cab_max = 4200;
-				break;
-			case feTerrestrial:
-				ret = (int)(snr / 30);
-				ter_max = 4200;
-				break;
-		}
 	}
 	else if (!strcmp(m_description, "Genpix"))
 	{
@@ -1499,6 +1458,50 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		ret = (int)(snr / 40.5);
 		sat_max = 1900;
 	}
+	else if (strstr(m_description, "BCM3148")) // VU+ 4K FBC "Vuplus DVB-C NIM(BCM3148)"
+	{
+		ret = (int)(snr / 15.61);
+	}
+	else if (!strcmp(m_description, "GIGA DVB-S2 NIM (TS3L10)") || !strcmp(m_description, "GIGA DVB-S2 NIM (TS2L08)")) //GB IP 4K
+	{
+		ret = snr;
+	}
+	else if (!strcmp(m_description, "GIGA DVB-C/T NIM (SP8221L)")
+		|| !strcmp(m_description, "GIGA DVB-C/T NIM (SI4765)")
+		|| !strcmp(m_description, "GIGA DVB-C/T NIM (SI41652)")
+		|| !strcmp(m_description, "GIGA DVB-C/T2 NIM (SI4768)")
+		|| !strcmp(m_description, "GIGA DVB-C/T2 NIM (SI41682)")
+		|| !strcmp(m_description, "GIGA DVB-T2/C NIM (TT2L10)")
+		|| !strcmp(m_description, "GIGA DVB-T2/C NIM (TT3L10)")
+		)
+	{
+		int type = -1;
+		oparm.getSystem(type);
+		switch (type)
+		{
+			case feCable:
+				ret = (int)(snr / 15);
+				cab_max = 4200;
+				break;
+			case feTerrestrial:
+				ret = (int)(snr / 30);
+				ter_max = 4200;
+				break;
+		}
+	}
+	else if (!strcmp(m_description, "BCM7356 DVB-S2 NIM (internal)")) // VU+ Solo2
+	{
+		ret = (int)((((double(snr) / (65535.0 / 100.0)) * 0.1800) - 1.0000) * 100);
+	}
+	else if (!strcmp(m_description, "BCM7346 DVB-S2 NIM (internal)")
+		|| !strcmp(m_description, "BCM7358 DVB-S2 NIM (internal)")
+		|| !strcmp(m_description, "BCM7362 DVB-S2 NIM (internal)")
+		|| !strcmp(m_description, "GIGA DVB-S2 NIM (Internal)")
+		|| !strcmp(m_description, "GIGA DVB-S2 NIM (SP2246T)")
+		|| !strcmp(m_description, "GIGA DVB-S2 NIM (TS2M08)"))
+	{
+		ret = (int)((((double(snr) / (65535.0 / 100.0)) * 0.1710) - 1.0000) * 100);
+	}
 	else if(!strcmp(m_description, "TBS-5925") || !strcmp(m_description, "DVBS2BOX"))
 	{
 		ret = (snr * 2000) / 0xFFFF;
@@ -1508,22 +1511,6 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 	{
 		ret = (int)(snr / 46.8);
 		sat_max = 1620;
-	}
-	else if (!strcmp(m_description, "Si21682") || !strcmp(m_description, "Si2168")) // SF4008 T/T2/C and Zgemma TC Models
-	{
-		int type = -1;
-		oparm.getSystem(type);
-		switch (type)
-		{
-			case feCable:
-				ret = (int)(snr / 17);
-				cab_max = 3800;
-				break;
-			case feTerrestrial:
-				ret = (int)(snr / 22.3);
-				ter_max = 2900;
-				break;
-		}
 	}
 	else if(!strcmp(m_description, "WinTV HVR-850") || !strcmp(m_description, "Hauppauge") || !strcmp(m_description, "LG Electronics LGDT3306A VSB/QAM Frontend"))
 	{
@@ -1549,6 +1536,26 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 				sat_max = 1550;
 				break;
 		}
+	}
+	else if (!strcmp(m_description, "Si21682") || !strcmp(m_description, "Si2168")) // SF4008 T/T2/C and Zgemma TC Models
+	{
+		int type = -1;
+		oparm.getSystem(type);
+		switch (type)
+		{
+			case feCable:
+				ret = (int)(snr / 17);
+				cab_max = 3800;
+				break;
+			case feTerrestrial:
+				ret = (int)(snr / 22.3);
+				ter_max = 2900;
+				break;
+		}
+	}
+	else if (!strcmp(m_description, "Hi3716 Internal S2")) // SFX6008 S2
+	{
+		ret = snr;
 	}
 	else if (!strncmp(m_description, "Si2166D", 7)) // SF8008 S2
 	{
