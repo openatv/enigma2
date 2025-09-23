@@ -162,6 +162,7 @@ class eDVBDB: public iDVBChannelList
 private:
 	void loadServiceListV5(FILE * f);
 	std::map<eServiceReferenceDVB, LCNData> m_lcnmap;
+	bool m_debug;
 public:
 // iDVBChannelList
 	RESULT removeFlags(unsigned int flagmask, int dvb_namespace=-1, int tsid=-1, int onid=-1, unsigned int orb_pos=0xFFFFFFFF);

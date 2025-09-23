@@ -478,7 +478,8 @@ void eDVBDB::loadIPTVCachefile(const char *file)
 			scount ++;
 		}
 	}
-	eDebug("[eDVBDB] loaded %d iptv channels from cache file.", scount);
+	if(m_debug)
+		eDebug("[eDVBDB] loaded %d iptv channels from cache file.", scount);
 }
 
 void eDVBDB::parseIPTVServiceData(ePtr<eDVBService> s, std::string str)
@@ -786,7 +787,8 @@ void eDVBDB::loadServiceListV5(FILE * f)
 			scount++;
 		}
 	}
-	eDebug("[eDVBDB] Loaded %d channels/transponders and %d services.", tcount, scount);
+	if(m_debug)
+		eDebug("[eDVBDB] Loaded %d channels/transponders and %d services.", tcount, scount);
 }
 
 void eDVBDB::resetLcnDB(int dvb_namespace)
@@ -829,14 +831,16 @@ void eDVBDB::addLcnToDB(int ns, int onid, int tsid, int sid, uint16_t lcn, uint3
 
 void eDVBDB::loadServicelist(const char *file)
 {
-	eDebug("[eDVBDB] Opening lame channel db.");
+	if(m_debug)
+		eDebug("[eDVBDB] Opening lame channel db.");
 	CFile f(file, "rt");
 	if (!f) {
 		eDebug("[eDVBDB] Error: Can't open '%s'!  (%m)", file);
 		return;
 	}
 
-	eDebug("[eDVBDB] Opening lcn db.");
+	if(m_debug)
+		eDebug("[eDVBDB] Opening lcn db.");
 	char line[256];
 	m_lcnmap.clear();
 	int lcnversion = 0;
@@ -863,12 +867,14 @@ void eDVBDB::loadServicelist(const char *file)
 				m_lcnmap.insert(std::pair<eServiceReferenceDVB, LCNData>(s, lcndata));
 
 		}
-		eDebug("[eDVBDB] Reading lcn db version %d done. %lu services found.", lcnversion, m_lcnmap.size());
+		if(m_debug)
+			eDebug("[eDVBDB] Reading lcn db version %d done. %lu services found.", lcnversion, m_lcnmap.size());
 	}
 
 	if(lcnversion == 1)
 	{
-		eDebug("[eDVBDB] save updated lcn db");
+		if(m_debug)
+			eDebug("[eDVBDB] save updated lcn db");
 		saveLcnDB();
 	}
 
@@ -878,7 +884,8 @@ void eDVBDB::loadServicelist(const char *file)
 		eDebug("[eDVBDB] Error: Not a valid services file!");
 		return;
 	}
-	eDebug("[eDVBDB] Reading services (version %d).", version);
+	if(m_debug)
+		eDebug("[eDVBDB] Reading services (version %d).", version);
 
 	if (version == 5) {
 		loadServiceListV5(f);
@@ -969,7 +976,8 @@ void eDVBDB::loadServicelist(const char *file)
 		scount++;
 	}
 
-	eDebug("[eDVBDB] Loaded %d channels/transponders and %d services.", tcount, scount);
+	if(m_debug)
+		eDebug("[eDVBDB] Loaded %d channels/transponders and %d services.", tcount, scount);
 }
 
 static std::string encode(const std::string s)
@@ -994,7 +1002,8 @@ static std::string encode(const std::string s)
 
 void eDVBDB::saveServicelist(const char *file)
 {
-	eDebug("[eDVBDB] Saving lame channel db.");
+	if(m_debug)
+		eDebug("[eDVBDB] Saving lame channel db.");
 	std::string filename = file;
 
 	CFile f((filename + ".writing").c_str(), "w");
@@ -1220,7 +1229,8 @@ void eDVBDB::saveServicelist(const char *file)
 	if (g)
 		fprintf(g, "# done. %d channels and %d services\n", channels, services);
 
-	eDebug("[eDVBDB] Saved %d channels and %d services.", channels, services);
+	if(m_debug)
+		eDebug("[eDVBDB] Saved %d channels and %d services.", channels, services);
 	f.sync();
 	rename((filename + ".writing").c_str(), filename.c_str());
 	if (g) {
@@ -1248,10 +1258,12 @@ void eDVBDB::saveIptvServicelist(const char *file)
 		eFatal("[eDVBDB] couldn't save iptv cache file!");
 	else
 	{
-		eDebug("[eDVBDB] saveIptvServicelist");
+		if(m_debug)
+			eDebug("[eDVBDB] saveIptvServicelist");
 		for(std::vector<ePtr<eDVBService>>::iterator it = iptv_services.begin(); it != iptv_services.end(); ++it)
 		{
-			eDebug("[eDVBDB] saveIptvServicelist %s",(*it)->m_reference_str.c_str());
+			if(m_debug)
+				eDebug("[eDVBDB] saveIptvServicelist %s",(*it)->m_reference_str.c_str());
 			fprintf(f, "s:%s", (*it)->m_reference_str.c_str());
 			for (int x=0; x < eDVBService::cacheMax; ++x)
 			{
@@ -1365,7 +1377,8 @@ void eDVBDB::loadBouquet(const char *path)
 		}
 	}
 
-	eDebug("[eDVBDB] Loading bouquet '%s'.", file_path.c_str());
+	if(m_debug)
+		eDebug("[eDVBDB] Loading bouquet '%s'.", file_path.c_str());
 	CFile fp(file_path, "rt");
 
 	if (fp)
@@ -1454,7 +1467,8 @@ void eDVBDB::loadBouquet(const char *path)
 		{
 			if (m_load_unlinked_userbouquets)
 			{
-				eDebug("[eDVBDB] Adding additional userbouquet '%s'.", userbouquetsfiles[i].c_str());
+				if(m_debug)
+					eDebug("[eDVBDB] Adding additional userbouquet '%s'.", userbouquetsfiles[i].c_str());
 				char buf[256];
 				if (!strcmp(path, "bouquets.tv"))
 					snprintf(buf, sizeof(buf), "1:7:1:0:0:0:0:0:0:0:FROM BOUQUET \"%s\" ORDER BY bouquet", userbouquetsfiles[i].c_str());
@@ -1473,13 +1487,15 @@ void eDVBDB::loadBouquet(const char *path)
 				std::string filename = eEnv::resolve("${sysconfdir}/enigma2/" + userbouquetsfiles[i]);
 				std::string newfilename(filename);
 				newfilename.append(".del");
-				eDebug("[eDVBDB] Rename unlinked bouquet file '%s' to '%s'.", filename.c_str(), newfilename.c_str());
+				if(m_debug)
+					eDebug("[eDVBDB] Rename unlinked bouquet file '%s' to '%s'.", filename.c_str(), newfilename.c_str());
 				rename(filename.c_str(), newfilename.c_str());
 			}
 		}
 		bouquet.flushChanges();
 	}
-	eDebug("[eDVBDB] %d entries in bouquet '%s'.", entries, bouquet_name.c_str());
+	if(m_debug)
+		eDebug("[eDVBDB] %d entries in bouquet '%s'.", entries, bouquet_name.c_str());
 }
 
 void eDVBDB::reloadBouquets()
@@ -1523,7 +1539,8 @@ void eDVBDB::reloadBouquets()
 
 void eDVBDB::renumberBouquet()
 {
-	eDebug("[eDVBDB] Renumbering bouquets.");
+	if(m_debug)
+		eDebug("[eDVBDB] Renumbering bouquets.");
 	renumberBouquet( m_bouquets["bouquets.tv"] );
 	renumberBouquet( m_bouquets["bouquets.radio"] );
 }
@@ -1540,10 +1557,12 @@ void eDVBDB::setNumberingMode(int numberingMode)
 
 int eDVBDB::renumberBouquet(eBouquet &bouquet, int startChannelNum)
 {
-	if(m_numbering_mode == 2) // LCN
-		eDebug("[eDVBDB] Renumber '%s' via LCN.", bouquet.m_bouquet_name.c_str());
-	else
-		eDebug("[eDVBDB] Renumber '%s' starting at %d.", bouquet.m_bouquet_name.c_str(), startChannelNum);
+	if(m_debug) {
+		if(m_numbering_mode == 2) // LCN
+			eDebug("[eDVBDB] Renumber '%s' via LCN.", bouquet.m_bouquet_name.c_str());
+		else
+			eDebug("[eDVBDB] Renumber '%s' starting at %d.", bouquet.m_bouquet_name.c_str(), startChannelNum);
+	}
 	std::list<eServiceReference> &list = bouquet.m_services;
 	bool addBQFlag = (bouquet.m_bouquet_name != "Last Scanned");
 
@@ -1612,6 +1631,7 @@ eDVBDB::eDVBDB()
 {
 	instance = this;
 	m_numbering_mode = eSimpleConfig::getInt("config.usage.numberMode", 0);
+	m_debug = eSimpleConfig::getBool("config.crash.debugDVBDB", false);
 	reloadServicelist();
 	loadIPTVCachefile(eEnv::resolve("${sysconfdir}/enigma2/iptvcache").c_str());
 }
@@ -2326,10 +2346,11 @@ RESULT eDVBDB::removeServices(eDVBChannelID chid, unsigned int orbpos)
 			remove=false;
 		if ( remove )
 		{
-			eDebug("[eDVBDB] Remove %08x %04x %04x.",
-				ch.dvbnamespace.get(),
-				ch.original_network_id.get(),
-				ch.transport_stream_id.get());
+			if(m_debug)
+				eDebug("[eDVBDB] Remove %08x %04x %04x.",
+					ch.dvbnamespace.get(),
+					ch.original_network_id.get(),
+					ch.transport_stream_id.get());
 			removed_chids.insert(it->first);
 			m_channels.erase(it++);
 		}
@@ -2625,11 +2646,13 @@ RESULT eDVBDB::addOrUpdateBouquet(const std::string &name, const std::string &fi
 			return -1;
 		}
 		const char *tmpstr = PyUnicode_AsUTF8(refstr);
-		eDebug("[eDVBDB] ParsedReference: %s", tmpstr);
+		if(m_debug)
+			eDebug("[eDVBDB] ParsedReference: %s", tmpstr);
 		eServiceReference ref(tmpstr);
 		if (ref.valid())
 		{
-			eDebug("eDVBDB::appendServicesToBouquet push ref %s", tmpstr);
+			if(m_debug)
+				eDebug("eDVBDB::appendServicesToBouquet push ref %s", tmpstr);
 			bouquet->m_services.push_front(ref);
 		}
 		else
@@ -2681,7 +2704,8 @@ RESULT eDVBDB::appendServicesToBouquet(const std::string &filename, ePyObject se
 			eServiceReference ref(tmpstr);
 			if (ref.valid())
 			{
-				eDebug("eDVBDB::appendServicesToBouquet push ref %s", tmpstr);
+				if(m_debug)
+					eDebug("eDVBDB::appendServicesToBouquet push ref %s", tmpstr);
 				bouquet->m_services.push_front(ref);
 			}
 			else
