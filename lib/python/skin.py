@@ -4,7 +4,7 @@ from os import listdir, unlink
 from traceback import print_exc
 from xml.etree.ElementTree import Element, ElementTree, fromstring
 
-from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, addFont, eLabel, eListbox, eListboxPythonMultiContent, eStack, ePixmap, ePoint, eRect, eRectangle, eSize, eSlider, eSubtitleWidget, eWidget, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gMainDC, gRGB
+from enigma import BT_ALPHABLEND, BT_ALPHATEST, BT_HALIGN_CENTER, BT_HALIGN_LEFT, BT_HALIGN_RIGHT, BT_KEEP_ASPECT_RATIO, BT_SCALE, BT_VALIGN_BOTTOM, BT_VALIGN_CENTER, BT_VALIGN_TOP, addFont, eLabel, eListbox, eListboxPythonMultiContent, eStack, ePixmap, ePoint, eRect, eRectangle, eScrollConfig, eSize, eSlider, eSubtitleWidget, eWidget, eWindow, eWindowStyleManager, eWindowStyleSkinned, getDesktop, gFont, getFontFaces, gMainDC, gRGB
 
 from Components.config import ConfigEnableDisable, ConfigSelection, ConfigSubsection, ConfigText, config
 from Components.SystemInfo import BoxInfo
@@ -757,6 +757,53 @@ def parseScrollbarScroll(value):
 	return parseOptions(options, "scrollbarScroll", value, 0)
 
 
+def parseScrollText(value):
+	directions = {
+		"left": eScrollConfig.scrollLeft,
+		"right": eScrollConfig.scrollRight,
+		"top": eScrollConfig.scrollTop,
+		"bottom": eScrollConfig.scrollBottom
+	}
+
+	modes = {
+		"cached": eScrollConfig.scrollModeCached,
+		"bounce": eScrollConfig.scrollModeBounce,
+		"bounceCached": eScrollConfig.scrollModeBounceCached,
+		"roll": eScrollConfig.scrollModeRoll,
+	}
+
+	direction = eScrollConfig.scrollNone
+	stepDelay = 100
+	startDelay = 0
+	endDelay = 0
+	repeat = 0
+	stepSize = 2
+	mode = eScrollConfig.scrollModeNormal
+
+	for part in value.split(","):
+		if "=" in part:
+			key, val = (s.strip() for s in part.split("=", 1))
+			match key:
+				case "direction":
+					direction = directions.get(val, eLabel.scrollNone)
+				case "stepDelay":
+					stepDelay = parseInteger(val)
+				case "startDelay":
+					startDelay = parseInteger(val)
+				case "endDelay":
+					endDelay = parseInteger(val)
+				case "repeat":
+					repeat = parseInteger(val)
+				case "stepSize":
+					stepSize = parseInteger(val)
+				case "mode":
+					mode = modes.get(val)
+				case _:
+					pass
+
+	return (direction, stepDelay, startDelay, endDelay, repeat, stepSize, mode)
+
+
 def parseSeparator(attribute, value):
 	"""
 		left, top, width, height
@@ -1218,6 +1265,9 @@ class AttributeParser:
 
 	def scrollbarWidth(self, value):
 		self.guiObject.setScrollbarWidth(self.applyHorizontalScale(value))
+
+	def scrollText(self, value):
+		self.guiObject.setScrollText(*parseScrollText(value))
 
 	def secondFont(self, value):
 		self.valueFont(value)
