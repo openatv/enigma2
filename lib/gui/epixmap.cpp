@@ -373,7 +373,7 @@ void ePixmap::nextFrame() {
 	// Advance to next frame
 	m_currentFrame++;
 
-	if (m_currentFrame >= m_frames.size()) {
+	if (static_cast<size_t>(m_currentFrame) >= m_frames.size()) {
 		if (m_playOnce) {
 			// Stop after the last frame when playing once
 			m_currentFrame = m_frames.size() - 1; // stay on last frame
