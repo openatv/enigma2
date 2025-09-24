@@ -435,9 +435,9 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 				flags |= gPainter::RT_BLEND;
 
 			eRect position = eRect(text_offset, itemRect.size());
-			int scroll_text_direction = m_listbox->m_scroll_config.direction;
+			int scroll_text_direction = (m_listbox) ? m_listbox->m_scroll_config.direction : 0;
 
-			if(selected && scroll_text_direction && m_scroll_index != m_cursor)
+			if(m_listbox && selected && scroll_text_direction && m_scroll_index != m_cursor)
 				m_listbox->m_scroll_rect = position;
 
 			if (local_style)
