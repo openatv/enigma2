@@ -1,6 +1,6 @@
 from enigma import eListboxPythonMultiContent
 
-from skin import SkinContext, SkinContextStack, TemplateParser, parseFont
+from skin import SkinContext, SkinContextStack, TemplateParser, parseFont, parsePadding
 from Components.Converter.StringList import StringList
 
 
@@ -95,6 +95,7 @@ class MultiContentTemplateParser(TemplateParser):
 							flags = item.get("_flags", 0)
 							match item["type"]:
 								case "text":
+									padding = parsePadding("padding", item.get("padding", "0,0,0,0"))
 									textBorderColor = item.get("textBorderColor")
 									textBorderWidth = int(item.get("textBorderWidth", "0"))
 									foregroundColorSelected = item.get("foregroundColorSelected")
@@ -102,7 +103,7 @@ class MultiContentTemplateParser(TemplateParser):
 									font = int(item.get("font", 0))
 									if index == -1:
 										index = item.get("text", "")
-									modeData.append((eListboxPythonMultiContent.TYPE_TEXT, pos[0], pos[1], size[0], size[1], font or 0, flags, index, foregroundColor, foregroundColorSelected, backgroundColor, backgroundColorSelected, borderWidth, borderColor, cornerRadius, cornerEdges, textBorderWidth, textBorderColor))
+									modeData.append((eListboxPythonMultiContent.TYPE_TEXT, pos[0] + padding[0], pos[1] + padding[1], size[0] - padding[2], size[1] - padding[3], font or 0, flags, index, foregroundColor, foregroundColorSelected, backgroundColor, backgroundColorSelected, borderWidth, borderColor, cornerRadius, cornerEdges, textBorderWidth, textBorderColor))
 								case "pixmap":
 									if index == -1:
 										index = item.get("pixmap", "")
