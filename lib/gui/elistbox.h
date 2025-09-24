@@ -489,6 +489,7 @@ public:
 	int getMaxItemTextWidth() { return m_content->getMaxItemTextWidth(); }
 	void redrawItemByIndex(int index) { entryChanged(index); }
 
+	int getScrollbarListOffset();
 #ifndef SWIG
 	struct eListboxStyle *getLocalStyle(void);
 

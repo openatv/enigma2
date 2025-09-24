@@ -461,6 +461,13 @@ void eListbox::updateScrollBar()
 	}
 	if (scrollbarvisible != scrollbarvisibleOld)
 		recalcSizeAlignment(scrollbarvisible);
+
+int eListbox::getScrollbarListOffset()
+{
+	if (m_orientation == orHorizontal)
+		return (m_scrollbar && m_scrollbar->isVisible()) ? m_scrollbar_height + m_scrollbar_offset : 0;
+	else
+		return (m_scrollbar && m_scrollbar->isVisible()) ? m_scrollbar_width + m_scrollbar_offset : 0;
 }
 
 int eListbox::getEntryTop()
