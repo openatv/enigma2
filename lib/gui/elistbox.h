@@ -2,6 +2,7 @@
 #define __lib_listbox_h
 
 #include <lib/gui/ewidget.h>
+#include <lib/gui/elabel.h>
 #include <connection.h>
 #include <vector>
 
@@ -57,6 +58,7 @@ protected:
 	virtual int getItemWidth() { return -1; }
 	virtual uint8_t getOrientation() { return 1; }
 	virtual int getMaxItemTextWidth() { return 1; }
+	virtual int getScollPos() { return 0; }
 
 	eListbox *m_listbox;
 #endif
@@ -490,6 +492,10 @@ public:
 	void redrawItemByIndex(int index) { entryChanged(index); }
 
 	int getScrollbarListOffset();
+
+	void setScrollText(int direction, long delay, long startDelay, long endDelay, int repeat, int stepSize, int mode);
+
+
 #ifndef SWIG
 	struct eListboxStyle *getLocalStyle(void);
 
@@ -504,6 +510,12 @@ public:
 
 	int getEntryTop();
 	void invalidate(const gRegion &region = gRegion::invalidRegion()) override;
+
+	// scroll
+	eScrollConfig m_scroll_config;
+	bool m_paint_pixmap = false;
+	eRect m_scroll_rect;
+	ePtr<gPixmap> m_textPixmap;
 
 protected:
 	int event(int event, void *data = 0, void *data2 = 0);

@@ -1,3 +1,38 @@
+/*
+
+Scroll Text Feature of eListBox
+
+Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License
+
+Copyright (c) 2025 jbleyel
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+1. Non-Commercial Use: You may not use the Software or any derivative works
+   for commercial purposes without obtaining explicit permission from the
+   copyright holder.
+2. Share Alike: If you distribute or publicly perform the Software or any
+   derivative works, you must do so under the same license terms, and you
+   must make the source code of any derivative works available to the
+   public.
+3. Attribution: You must give appropriate credit to the original author(s)
+   of the Software by including a prominent notice in your derivative works.
+THE SOFTWARE IS PROVIDED "AS IS," WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL
+THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR
+OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE,
+ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
+
+For more details about the CC BY-NC-SA 4.0 License, please visit:
+https://creativecommons.org/licenses/by-nc-sa/4.0/
+*/
+
 #include <lib/gui/elistbox.h>
 #include <lib/gui/elistboxcontent.h>
 #include <lib/gui/eslider.h>
@@ -20,7 +55,7 @@ uint8_t eListbox::defaultScrollBarMode = eListbox::DefaultScrollBarMode;
 uint8_t eListbox::defaultScrollbarRadiusEdges = 0;
 bool eListbox::defaultWrapAround = eListbox::DefaultWrapAround;
 
-eListbox::eListbox(eWidget *parent) : eWidget(parent), m_prev_scrollbar_page(-1), m_scrollbar_mode(showNever), m_scrollbar_scroll(byPage),
+eListbox::eListbox(eWidget *parent) : eWidget(parent), m_textPixmap(nullptr), m_prev_scrollbar_page(-1), m_scrollbar_mode(showNever), m_scrollbar_scroll(byPage),
 									  m_content_changed(false), m_enabled_wrap_around(false), m_itemwidth_set(false), m_itemheight_set(false), m_scrollbar_width(10),
 									  m_scrollbar_height(10), m_scrollbar_length(0), m_top(0), m_left(0), m_selected(0), m_itemheight(25), m_itemwidth(25),
 									  m_orientation(orVertical), m_max_columns(0), m_max_rows(0), m_selection_enabled(1), m_page_size(0), m_item_alignment(0), xOffset(0), yOffset(0),
@@ -502,6 +537,30 @@ int eListbox::event(int event, void *data, void *data2)
 			return 0;
 
 		gPainter &painter = *(gPainter *)data2;
+
+		if (m_paint_pixmap && m_textPixmap) {
+			int srcX = m_scroll_rect.x();
+			int srcY = m_scroll_rect.y();
+
+			int scrollX = 0;
+			int scrollY = 0;
+
+			// determine source offset based on scroll direction
+			if (m_scroll_config.direction == eScrollConfig::scrollLeft || m_scroll_config.direction == eScrollConfig::scrollRight)
+				scrollX = m_content->getScollPos();
+			else if (m_scroll_config.direction == eScrollConfig::scrollTop || m_scroll_config.direction == eScrollConfig::scrollBottom)
+				scrollY = m_content->getScollPos();
+
+			// perform blit of the text pixmap
+			eSize s(m_scroll_rect.width(), m_scroll_rect.height());
+			eRect rec = m_scroll_rect;
+			painter.blit(m_textPixmap, eRect(ePoint(srcX-scrollX, srcY-scrollY), s), rec, 0);
+
+			m_paint_pixmap = false;
+			// skip the normal renderText logic for scrolling
+			return 0;
+		}
+
 		gRegion entryRect;
 		m_content->cursorSave();
 		if (m_orientation == orVertical)
@@ -1872,4 +1931,18 @@ void eListbox::setItemGradientMarked(const gRGB &startcolor, const gRGB &midcolo
 void eListbox::setItemGradientMarkedandSelected(const gRGB &startcolor, const gRGB &midcolor, const gRGB &endcolor, uint8_t direction, bool alphablend)
 {
 	setItemGradientInternal(3, startcolor, midcolor, endcolor, direction, alphablend);
+}
+
+void eListbox::setScrollText(int direction, long delay, long startDelay, long endDelay, int repeat, int stepSize, int mode) {
+	if (m_scroll_config.direction == direction || direction == 0)
+		return;
+
+	m_scroll_config.direction = direction;
+	m_scroll_config.repeat = repeat;
+	m_scroll_config.startDelay = std::min(startDelay, 10000L);
+	m_scroll_config.endDelay = std::min(endDelay, 10000L);
+	m_scroll_config.delay = std::max(delay, (long)50);
+	m_scroll_config.stepSize = std::max(stepSize, 1);
+	m_scroll_config.mode = mode;
+	m_scroll_config.cached = (mode == eScrollConfig::scrollModeBounceCached || mode == eScrollConfig::scrollModeCached || mode == eScrollConfig::scrollModeRoll);
 }

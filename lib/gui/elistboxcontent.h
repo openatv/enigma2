@@ -51,10 +51,26 @@ protected:
 
 	int getItemHeight() { return m_itemheight; }
 	int getItemWidth() { return m_itemwidth; }
+	int getScollPos() { return m_scroll_pos; }
 
 private:
 	int m_saved_cursor_line;
 	ePtr<gFont> m_font_zoomed;
+	// scroll
+	int m_scroll_pos = 0;
+	bool m_scroll_text = false;
+	bool m_scroll_started = false;
+	int m_repeat_count = 0;
+	bool m_scroll_swap = false;
+	bool m_end_delay_active = false;
+	eSize m_text_size;
+	eSize m_scroll_size;
+	void updateScrollPosition();
+	void updateTextSize(std::string &text, gFont* font, int flags, gRGB &border_color, int border_size);
+	std::string m_scroll_text_str;
+	int m_scroll_index = -1;
+	void createScrollPixmap(std::string &text, gFont* font, int flags, gRGB &border_color, int border_size);
+	ePtr<eTimer> scrollTimer;
 
 protected:
 	int m_cursor;
