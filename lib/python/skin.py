@@ -764,14 +764,12 @@ def parseScrollText(value):
 		"top": eScrollConfig.scrollTop,
 		"bottom": eScrollConfig.scrollBottom
 	}
-
 	modes = {
 		"cached": eScrollConfig.scrollModeCached,
 		"bounce": eScrollConfig.scrollModeBounce,
 		"bounceCached": eScrollConfig.scrollModeBounceCached,
 		"roll": eScrollConfig.scrollModeRoll,
 	}
-
 	direction = eScrollConfig.scrollNone
 	stepDelay = 100
 	startDelay = 0
@@ -779,28 +777,26 @@ def parseScrollText(value):
 	repeat = 0
 	stepSize = 2
 	mode = eScrollConfig.scrollModeNormal
-
-	for part in value.split(","):
+	for part in value.split(","):  # The strip of spaces is done by the following split and strip.
 		if "=" in part:
-			key, val = (s.strip() for s in part.split("=", 1))
+			key, val = (x.strip() for x in part.split("=", 1))
 			match key:
 				case "direction":
 					direction = directions.get(val, eLabel.scrollNone)
-				case "stepDelay":
-					stepDelay = parseInteger(val)
-				case "startDelay":
-					startDelay = parseInteger(val)
 				case "endDelay":
 					endDelay = parseInteger(val)
-				case "repeat":
-					repeat = parseInteger(val)
-				case "stepSize":
-					stepSize = parseInteger(val)
 				case "mode":
 					mode = modes.get(val)
+				case "repeat":
+					repeat = parseInteger(val)
+				case "startDelay":
+					startDelay = parseInteger(val)
+				case "stepDelay":
+					stepDelay = parseInteger(val)
+				case "stepSize":
+					stepSize = parseInteger(val)
 				case _:
 					pass
-
 	return (direction, stepDelay, startDelay, endDelay, repeat, stepSize, mode)
 
 
@@ -912,7 +908,6 @@ def collectAttributes(skinAttributes, node, context, skinPath=None, ignore=(), f
 					selectionZoomSize = newValue
 				case _:
 					skinAttributes.append((attrib, newValue))
-
 	if selectionZoom is not None:  # The "selectionZoom" attribute must be after the item size attributes.
 		skinAttributes.append(("selectionZoom", selectionZoom))
 	if selectionZoomSize is not None:  # The "selectionZoomSize" attribute must be after the item size attributes.
@@ -988,14 +983,6 @@ class AttributeParser:
 		else:
 			self.guiObject.setBackgroundColorSelected(parseColor(value, 0x00000000))
 
-	# def backgroundCrypted(self, value):  # This appears to be unused.
-	# 	self.guiObject.setBackgroundColor(parseColor(value, 0x00000000))
-	# 	attribDeprecationWarning("backgroundCrypted", "backgroundColor")
-
-	# def backgroundEncrypted(self, value):  # This appears to be unused.
-	# 	self.guiObject.setBackgroundColor(parseColor(value, 0x00000000))
-	# 	attribDeprecationWarning("backgroundEncrypted", "backgroundColor")
-
 	def backgroundGradient(self, value):
 		self.guiObject.setBackgroundGradient(*parseGradient(value))
 		attribDeprecationWarning("backgroundGradient", "backgroundColor")
@@ -1003,10 +990,6 @@ class AttributeParser:
 	def backgroundGradientSelected(self, value):
 		self.guiObject.setBackgroundGradientSelected(*parseGradient(value))
 		attribDeprecationWarning("backgroundGradientSelected", "backgroundColorSelected")
-
-	# def backgroundNotCrypted(self, value):  # This appears to be unused.
-	# 	self.guiObject.setBackgroundColor(parseColor(value, 0x00000000))
-	# 	attribDeprecationWarning("backgroundNotCrypted", "backgroundColor")
 
 	def backgroundPixmap(self, value):
 		self.guiObject.setBackgroundPixmap(parsePixmap(value, self.desktop))
@@ -1061,21 +1044,9 @@ class AttributeParser:
 	def foregroundColorSelected(self, value):
 		self.guiObject.setForegroundColorSelected(parseColor(value, 0x00FFFFFF))
 
-	# def foregroundCrypted(self, value):  # This appears to be unused.
-	# 	self.guiObject.setForegroundColor(parseColor(value, 0x00FFFFFF))
-	# 	attribDeprecationWarning("foregroundCrypted", "foregroundColor")
-
-	# def foregroundEncrypted(self, value):  # This appears to be unused.
-	# 	self.guiObject.setForegroundColor(parseColor(value, 0x00FFFFFF))
-	# 	attribDeprecationWarning("foregroundEncrypted", "foregroundColor")
-
 	def foregroundGradient(self, value):
 		self.guiObject.setForegroundGradient(*parseGradient(value))
 		attribDeprecationWarning("foregroundGradient", "foregroundColor")
-
-	# def foregroundNotCrypted(self, value):  # This appears to be unused.
-	# 	self.guiObject.setForegroundColor(parseColor(value, 0x00FFFFFF))
-	# 	attribDeprecationWarning("foregroundNotCrypted", "foregroundColor")
 
 	def hAlign(self, value):  # This typo catcher definition uses an inconsistent name, use 'horizontalAlignment' instead!
 		self.horizontalAlignment(value)
@@ -1669,7 +1640,7 @@ def reloadWindowStyles():
 
 class additionalWidget:
 	def __init__(self):
-		self.childs = []
+		self.children = []
 
 
 class ComponentTemplates():
@@ -2371,14 +2342,13 @@ def readSkin(screen, skin, names, desktop):
 				addonClass = my_import(".".join(("Components", "Addons", widgetClass))).__dict__.get(widgetClass)
 			except ImportError:
 				raise SkinError(f"GUI Addon '{widgetClass}' not found")
-
 			if not widgetConnection:
 				raise SkinError(f"The widget is from addon type: {widgetClass} , but no connection is specified.")
-			i = 0
+			index = 0
 			widgetClassNameBase = f"{name}_{widgetClass}_{widgetConnection}_"
-			while f"{widgetClassNameBase}{i}" in usedComponents:
-				i += 1
-			widgetClassName = f"{widgetClassNameBase}{i}"
+			while f"{widgetClassNameBase}{index}" in usedComponents:
+				index += 1
+			widgetClassName = f"{widgetClassNameBase}{index}"
 			usedComponents.add(widgetClassName)
 			screen[widgetClassName] = addonClass()
 			screen[widgetClassName].connectRelatedElement(widgetConnection, screen)
@@ -2407,7 +2377,7 @@ def readSkin(screen, skin, names, desktop):
 		item = proccesStackAddition(widget, stack, item)
 		screen.additionalWidgets.append(item)
 		if stack:
-			stack.childs.append(item)
+			stack.children.append(item)
 
 	def processPixmap(widget, context, stack=None):
 		item = additionalWidget()
@@ -2417,7 +2387,7 @@ def readSkin(screen, skin, names, desktop):
 		item = proccesStackAddition(widget, stack, item)
 		screen.additionalWidgets.append(item)
 		if stack:
-			stack.childs.append(item)
+			stack.children.append(item)
 
 	def processRectangle(widget, context, stack=None):
 		item = additionalWidget()
@@ -2427,7 +2397,7 @@ def readSkin(screen, skin, names, desktop):
 		item = proccesStackAddition(widget, stack, item)
 		screen.additionalWidgets.append(item)
 		if stack:
-			stack.childs.append(item)
+			stack.children.append(item)
 
 	def processScreen(widget, context, stack=None):
 		widgets = widget
@@ -2492,7 +2462,7 @@ def readSkin(screen, skin, names, desktop):
 		contextClass = classes.get(layout, SkinContext)
 		try:
 			item.skinAttributes = []
-			item.childs = []
+			item.children = []
 			contextScreen = contextClass(context, widget.attrib.get("position"), widget.attrib.get("size"), widget.attrib.get("font"))
 			spacing = widget.attrib.get("spacing")
 			if spacing:
@@ -2507,7 +2477,7 @@ def readSkin(screen, skin, names, desktop):
 			raise SkinError(f"Failed to create skin context (position='{widget.attrib.get('position')}', size='{widget.attrib.get('size')}', font='{widget.attrib.get('font')}') in context '{context}': {err}")
 		processScreen(widget, contextScreen, item)
 		if stack:
-			stack.childs.append(item)
+			stack.children.append(item)
 
 	processors = {
 		None: processNone,
@@ -2534,8 +2504,7 @@ def readSkin(screen, skin, names, desktop):
 	except Exception as err:
 		print(f"[Skin] Error: Screen '{myName}' {str(err)}!")
 		print_exc()
-
-	from Components.GUIComponent import GUIComponent
+	from Components.GUIComponent import GUIComponent  # This must be here to avoid a boot loop.
 	unusedComponents = [x for x in set(screen.keys()) - usedComponents if isinstance(x, GUIComponent)]
 	assert not unusedComponents, f"[Skin] The following components in '{myName}' don't have a skin entry: {', '.join(unusedComponents)}"
 	# This may look pointless, but it unbinds "screen" from the nested scope. A better
