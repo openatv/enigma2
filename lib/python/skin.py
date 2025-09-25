@@ -782,7 +782,7 @@ def parseScrollText(value):
 			key, val = (x.strip() for x in part.split("=", 1))
 			match key:
 				case "direction":
-					direction = directions.get(val, eLabel.scrollNone)
+					direction = directions.get(val, eScrollConfig.scrollNone)
 				case "endDelay":
 					endDelay = parseInteger(val)
 				case "mode":
