@@ -189,6 +189,9 @@ int eLabel::event(int event, void* data, void* data2) {
 }
 
 void eLabel::updateTextSize() {
+	if (m_scroll_config.direction == eScrollConfig::scrollNone)
+		return;
+
 	m_scroll_text = false;
 
 	if (m_scroll_config.direction == eScrollConfig::scrollLeft || m_scroll_config.direction == eScrollConfig::scrollRight) {
@@ -502,6 +505,7 @@ void eLabel::updateScrollPosition() {
 			// handle end delay
 			if (!m_end_delay_active && m_scroll_config.endDelay > 0) {
 				m_end_delay_active = true;
+				m_scroll_started = false;
 				scrollTimer->start(m_scroll_config.endDelay);
 				return;
 			}
@@ -510,6 +514,7 @@ void eLabel::updateScrollPosition() {
 			// classic repeat/stop behavior
 			if (!m_end_delay_active && m_scroll_config.endDelay > 0) {
 				m_end_delay_active = true;
+				m_scroll_started = false;
 				scrollTimer->start(m_scroll_config.endDelay);
 				if (m_scroll_config.repeat != -1)
 					m_repeat_count++;
@@ -520,6 +525,7 @@ void eLabel::updateScrollPosition() {
 			if (m_scroll_config.repeat == 0 || (m_scroll_config.repeat != -1 && m_repeat_count >= m_scroll_config.repeat)) {
 				// Run once → stop scrolling
 				scrollTimer->stop();
+				m_scroll_started = false;
 				m_scroll_text = false;
 				m_repeat_count = 0;
 				invalidate();
