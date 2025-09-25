@@ -600,7 +600,7 @@ static eSize calculateTextSize(gFont* font, const std::string& string, eSize tar
 	return para.getBoundBox().size();
 }
 
-void eListboxPythonStringContent::updateTextSize(std::string &text, gFont* font, int flags, gRGB &border_color, int border_size) {
+void eListboxPythonStringContent::updateTextSize(std::string& text, gFont* font, int flags, gRGB& border_color, int border_size) {
 	m_scroll_text = false;
 
 	if (m_listbox) {
@@ -661,7 +661,7 @@ void eListboxPythonStringContent::updateTextSize(std::string &text, gFont* font,
 	}
 }
 
-void eListboxPythonStringContent::createScrollPixmap(std::string &text, gFont* font, int flags, gRGB &border_color, int border_size) {
+void eListboxPythonStringContent::createScrollPixmap(std::string& text, gFont* font, int flags, gRGB& border_color, int border_size) {
 	if (!m_scroll_text || !m_listbox)
 		return;
 
@@ -772,6 +772,7 @@ void eListboxPythonStringContent::updateScrollPosition() {
 				// handle end delay
 				if (!m_end_delay_active && end_delay > 0) {
 					m_end_delay_active = true;
+					m_scroll_started = false;
 					scrollTimer->start(end_delay);
 					return;
 				}
@@ -780,6 +781,7 @@ void eListboxPythonStringContent::updateScrollPosition() {
 				// classic repeat/stop behavior
 				if (!m_end_delay_active && end_delay > 0) {
 					m_end_delay_active = true;
+					m_scroll_started = false;
 					scrollTimer->start(end_delay);
 					if (repeat != -1)
 						m_repeat_count++;
@@ -790,6 +792,7 @@ void eListboxPythonStringContent::updateScrollPosition() {
 				if (repeat == 0 || (repeat != -1 && m_repeat_count >= repeat)) {
 					// Run once → stop scrolling
 					scrollTimer->stop();
+					m_scroll_started = false;
 					m_scroll_text = false;
 					m_repeat_count = 0;
 					m_listbox->entryChanged(m_scroll_index);
