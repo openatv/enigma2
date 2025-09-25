@@ -3,8 +3,7 @@
 
 #include <lib/gui/ewidget.h>
 
-struct eScrollConfig
-{
+struct eScrollConfig {
 	enum {
 		scrollNone,
 		scrollLeft,
@@ -86,7 +85,6 @@ protected:
 
 private:
 	int buildFlags() const {
-
 		int flags = 0;
 		if (m_valign == alignTop)
 			flags |= gPainter::RT_VALIGN_TOP;
@@ -138,6 +136,7 @@ private:
 	void updateScrollPosition();
 	void updateTextSize();
 	void createScrollPixmap();
+	void stopScroll();
 	ePtr<gPixmap> m_textPixmap;
 
 	enum eLabelEvent {
