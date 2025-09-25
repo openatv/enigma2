@@ -1989,6 +1989,28 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				if (size > 17)
 					pTextBorderColor = lookupColor(PyTuple_GET_ITEM(item, 17), data);
 
+				int paddingLeft = 0;
+				int paddingTop = 0;
+				int paddingRight = 0;
+				int paddingBottom = 0;
+
+				if (size > 18) {
+					ePyObject pPadding = PyTuple_GET_ITEM(item, 18);
+					paddingLeft = PyFloat_Check(pPadding) ? (int)PyFloat_AsDouble(pPadding) : PyLong_AsLong(pPadding);
+				}
+				if (size > 19) {
+					ePyObject pPadding = PyTuple_GET_ITEM(item, 19);
+					paddingTop = PyFloat_Check(pPadding) ? (int)PyFloat_AsDouble(pPadding) : PyLong_AsLong(pPadding);
+				}
+				if (size > 20) {
+					ePyObject pPadding = PyTuple_GET_ITEM(item, 20);
+					paddingRight = PyFloat_Check(pPadding) ? (int)PyFloat_AsDouble(pPadding) : PyLong_AsLong(pPadding);
+				}
+				if (size > 21) {
+					ePyObject pPadding = PyTuple_GET_ITEM(item, 21);
+					paddingBottom = PyFloat_Check(pPadding) ? (int)PyFloat_AsDouble(pPadding) : PyLong_AsLong(pPadding);
+				}
+
 				if (PyLong_Check(pstring) && data) /* if the string is in fact a number, it refers to the 'data' list. */
 					pstring = PyTuple_GetItem(data, PyLong_AsLong(pstring));
 
@@ -2110,13 +2132,15 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				else
 					painter.setFont(m_fonts[fnt]);
 
+				eRect textRect = eRect(rect.x() + paddingLeft, rect.y() + paddingTop, rect.width() - paddingLeft - paddingRight, rect.height() - paddingTop - paddingBottom);
+
 				if (pTextBorderColor && btwidth)
 				{
 					uint32_t textBColor = PyLong_AsUnsignedLongMask(pTextBorderColor);
-					painter.renderText(rect, string, flags, gRGB(textBColor), btwidth);
+					painter.renderText(textRect, string, flags, gRGB(textBColor), btwidth);
 				}
 				else
-					painter.renderText(rect, string, flags, border_color, border_size);
+					painter.renderText(textRect, string, flags, border_color, border_size);
 
 				painter.clippop();
 
@@ -2634,6 +2658,28 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				if (size > 10)
 					edges = PyLong_AsLong(PyTuple_GET_ITEM(item, 10));
 
+				int paddingLeft = 0;
+				int paddingTop = 0;
+				int paddingRight = 0;
+				int paddingBottom = 0;
+
+				if (size > 11) {
+					ePyObject pPadding = PyTuple_GET_ITEM(item, 11);
+					paddingLeft = PyFloat_Check(pPadding) ? (int)PyFloat_AsDouble(pPadding) : PyLong_AsLong(pPadding);
+				}
+				if (size > 12) {
+					ePyObject pPadding = PyTuple_GET_ITEM(item, 12);
+					paddingTop = PyFloat_Check(pPadding) ? (int)PyFloat_AsDouble(pPadding) : PyLong_AsLong(pPadding);
+				}
+				if (size > 13) {
+					ePyObject pPadding = PyTuple_GET_ITEM(item, 13);
+					paddingRight = PyFloat_Check(pPadding) ? (int)PyFloat_AsDouble(pPadding) : PyLong_AsLong(pPadding);
+				}
+				if (size > 14) {
+					ePyObject pPadding = PyTuple_GET_ITEM(item, 14);
+					paddingBottom = PyFloat_Check(pPadding) ? (int)PyFloat_AsDouble(pPadding) : PyLong_AsLong(pPadding);
+				}
+
 				if (selected && itemZoomContent)
 				{
 					x = (x * local_style->m_selection_zoom) + offs.x();
@@ -2661,7 +2707,9 @@ void eListboxPythonMultiContent::paint(gPainter &painter, eWindowStyle &style, c
 				if (radius && edges)
 					painter.setRadius(radius, edges);
 
-				painter.blit(pixmap, rect, rect, flags);
+				eRect imgRect = eRect(rect.x() + paddingLeft, rect.y() + paddingTop, rect.width() - paddingLeft - paddingRight, rect.height() - paddingTop - paddingBottom);
+
+				painter.blit(pixmap, imgRect, imgRect, flags);
 				painter.clippop();
 				break;
 			}
