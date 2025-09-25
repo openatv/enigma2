@@ -757,8 +757,7 @@ static void svg_load(Cfilepara* filepara, bool forceRGB = false) {
 		return;
 	}
 
-	eDebug("[ePicLoad] svg_load max %dx%d from %dx%d scale %f new %dx%d", filepara->max_x, filepara->max_y,
-		   (int)image->width, (int)image->height, scale, w, h);
+	eDebug("[ePicLoad] svg_load max %dx%d from %dx%d scale %f new %dx%d", filepara->max_x, filepara->max_y, (int)image->width, (int)image->height, scale, w, h);
 	// Rasterizes SVG image, returns RGBA image (non-premultiplied alpha)
 	nsvgRasterize(rast, image, 0, 0, scale, pic_buffer, w, h, w * 4);
 
@@ -969,9 +968,7 @@ static void webp_load(Cfilepara* filepara, bool forceRGB = false) {
 
 //---------------------------------------------------------------------------------------------
 
-ePicLoad::ePicLoad()
-	: m_filepara(NULL), m_exif(NULL), threadrunning(false), m_conf(), msg_thread(this, 1, "ePicLoad_thread"),
-	  msg_main(eApp, 1, "ePicLoad_main") {
+ePicLoad::ePicLoad() : m_filepara(NULL), m_exif(NULL), threadrunning(false), m_conf(), msg_thread(this, 1, "ePicLoad_thread"), msg_main(eApp, 1, "ePicLoad_main") {
 	CONNECT(msg_thread.recv_msg, ePicLoad::gotMessage);
 	CONNECT(msg_main.recv_msg, ePicLoad::gotMessage);
 }
@@ -1017,8 +1014,7 @@ void ePicLoad::decodePic() {
 			png_load(m_filepara, m_conf.background);
 			break;
 		case F_JPEG:
-			m_filepara->pic_buffer =
-				jpeg_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy, m_filepara->max_x, m_filepara->max_y);
+			m_filepara->pic_buffer = jpeg_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy, m_filepara->max_x, m_filepara->max_y);
 			m_filepara->transparent = false;
 			break;
 		case F_BMP:
@@ -1107,8 +1103,7 @@ void ePicLoad::decodeThumb() {
 			png_load(m_filepara, m_conf.background, true);
 			break;
 		case F_JPEG:
-			m_filepara->pic_buffer =
-				jpeg_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy, m_filepara->max_x, m_filepara->max_y);
+			m_filepara->pic_buffer = jpeg_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy, m_filepara->max_x, m_filepara->max_y);
 			break;
 		case F_BMP:
 			m_filepara->pic_buffer = bmp_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy);
@@ -1147,8 +1142,7 @@ void ePicLoad::decodeThumb() {
 			}
 
 			if (m_filepara->bits == 8)
-				m_filepara->pic_buffer =
-					simple_resize_8(m_filepara->pic_buffer, m_filepara->ox, m_filepara->oy, imx, imy);
+				m_filepara->pic_buffer = simple_resize_8(m_filepara->pic_buffer, m_filepara->ox, m_filepara->oy, imx, imy);
 			else
 				m_filepara->pic_buffer = color_resize(m_filepara->pic_buffer, m_filepara->ox, m_filepara->oy, imx, imy);
 
@@ -1313,8 +1307,7 @@ PyObject* ePicLoad::getInfo(const char* filename) {
 		PyList_SET_ITEM(list, pos++, PyUnicode_FromString(m_exif->m_exifinfo->CameraMake));
 		PyList_SET_ITEM(list, pos++, PyUnicode_FromString(m_exif->m_exifinfo->CameraModel));
 		PyList_SET_ITEM(list, pos++, PyUnicode_FromString(m_exif->m_exifinfo->DateTime));
-		PyList_SET_ITEM(list, pos++,
-						PyUnicode_FromFormat("%d x %d", m_exif->m_exifinfo->Width, m_exif->m_exifinfo->Height));
+		PyList_SET_ITEM(list, pos++, PyUnicode_FromFormat("%d x %d", m_exif->m_exifinfo->Width, m_exif->m_exifinfo->Height));
 		PyList_SET_ITEM(list, pos++, PyUnicode_FromString(m_exif->m_exifinfo->FlashUsed));
 		PyList_SET_ITEM(list, pos++, PyUnicode_FromString(m_exif->m_exifinfo->Orientation));
 		PyList_SET_ITEM(list, pos++, PyUnicode_FromString(m_exif->m_exifinfo->Comments));
@@ -1381,16 +1374,14 @@ int ePicLoad::getData(ePtr<gPixmap>& result) {
 #ifdef DEBUG_PICLOAD
 	Stopwatch s;
 #endif
-	result = new gPixmap(m_filepara->max_x, m_filepara->max_y, m_filepara->bits == 8 ? 8 : 32, NULL,
-						 m_filepara->bits == 8 ? gPixmap::accelAlways : gPixmap::accelAuto);
+	result = new gPixmap(m_filepara->max_x, m_filepara->max_y, m_filepara->bits == 8 ? 8 : 32, NULL, m_filepara->bits == 8 ? gPixmap::accelAlways : gPixmap::accelAuto);
 	gUnmanagedSurface* surface = result->surface;
 
 	int scrx = m_filepara->max_x;
 	int scry = m_filepara->max_y;
 
-	eTrace("[getData] ox=%d oy=%d max_x=%d max_y=%d bits=%d", m_filepara->ox, m_filepara->oy, scrx, scry,
-		   m_filepara->bits);
-	
+	eTrace("[getData] ox=%d oy=%d max_x=%d max_y=%d bits=%d", m_filepara->ox, m_filepara->oy, scrx, scry, m_filepara->bits);
+
 	if (m_filepara->ox == scrx && m_filepara->oy == scry && (m_filepara->bits == 24 || m_filepara->bits == 32)) {
 		unsigned char* origin = m_filepara->pic_buffer;
 		unsigned char* tmp_buffer = ((unsigned char*)(surface->data));
@@ -1443,10 +1434,8 @@ int ePicLoad::getData(ePtr<gPixmap>& result) {
 	// after aspect calc : scrx, scry
 	// center image      : xoff, yoff
 	// Aspect ratio calculation
-	int orientation =
-		m_conf.auto_orientation ? (m_exif && m_exif->m_exifinfo->Orient ? m_exif->m_exifinfo->Orient : 1) : 1;
-	if ((m_conf.aspect_ratio > -0.1) &&
-		(m_conf.aspect_ratio < 0.1)) // do not keep aspect ratio but just fill the destination area
+	int orientation = m_conf.auto_orientation ? (m_exif && m_exif->m_exifinfo->Orient ? m_exif->m_exifinfo->Orient : 1) : 1;
+	if ((m_conf.aspect_ratio > -0.1) && (m_conf.aspect_ratio < 0.1)) // do not keep aspect ratio but just fill the destination area
 	{
 		scrx = m_filepara->max_x;
 		scry = m_filepara->max_y;
@@ -1467,8 +1456,7 @@ int ePicLoad::getData(ePtr<gPixmap>& result) {
 			scry = m_filepara->max_y;
 		}
 	}
-	float xscale = (float)(orientation < 5 ? m_filepara->ox : m_filepara->oy) /
-				   (float)scrx; // scale factor as result of screen and image size
+	float xscale = (float)(orientation < 5 ? m_filepara->ox : m_filepara->oy) / (float)scrx; // scale factor as result of screen and image size
 	float yscale = (float)(orientation < 5 ? m_filepara->oy : m_filepara->ox) / (float)scry;
 	int xoff = (m_filepara->max_x - scrx) / 2; // borders as result of screen and image aspect
 	int yoff = (m_filepara->max_y - scry) / 2;
@@ -1486,7 +1474,14 @@ int ePicLoad::getData(ePtr<gPixmap>& result) {
 
 	// fill borders with background color
 	if (xoff != 0 || yoff != 0) {
-		unsigned int background = m_conf.background;
+		unsigned int background;
+		if (m_filepara->bits == 8) {
+			gRGB bg(m_conf.background);
+			background = surface->clut.findOrAddColor(bg);
+		} else {
+			background = m_conf.background;
+		}
+
 		if (yoff != 0) {
 			if (m_filepara->bits == 8) {
 				unsigned char* row_buffer;
@@ -1528,8 +1523,7 @@ int ePicLoad::getData(ePtr<gPixmap>& result) {
 #pragma omp parallel for
 			for (int y = yoff + 1; y < scry; ++y) { // copy from first line
 				memcpy(tmp_buffer + y * surface->stride, tmp_buffer + yoff * surface->stride, xoff * surface->bypp);
-				memcpy(tmp_buffer + y * surface->stride + (xoff + scrx) * surface->bypp,
-					   tmp_buffer + yoff * surface->stride + (xoff + scrx) * surface->bypp,
+				memcpy(tmp_buffer + y * surface->stride + (xoff + scrx) * surface->bypp, tmp_buffer + yoff * surface->stride + (xoff + scrx) * surface->bypp,
 					   (m_filepara->max_x - scrx - xoff) * surface->bypp);
 			}
 		}
@@ -1650,8 +1644,7 @@ int ePicLoad::getData(ePtr<gPixmap>& result) {
 			enum AVPixelFormat src_fmt = (m_filepara->bits == 32) ? AV_PIX_FMT_RGBA : AV_PIX_FMT_RGB24;
 			enum AVPixelFormat dst_fmt = AV_PIX_FMT_BGRA;
 
-			SwsContext* sws_ctx = sws_getContext(m_filepara->ox, m_filepara->oy, src_fmt, scrx, scry, dst_fmt, sws_algo,
-												 NULL, NULL, NULL);
+			SwsContext* sws_ctx = sws_getContext(m_filepara->ox, m_filepara->oy, src_fmt, scrx, scry, dst_fmt, sws_algo, NULL, NULL, NULL);
 
 			if (sws_ctx) {
 				uint8_t* src_slices[4] = {origin, NULL, NULL, NULL};
@@ -1786,8 +1779,7 @@ RESULT ePicLoad::setPara(PyObject* val) {
 	}
 }
 
-RESULT ePicLoad::setPara(int width, int height, double aspectRatio, int as, bool useCache, int resizeType,
-						 const char* bg_str, bool auto_orientation) {
+RESULT ePicLoad::setPara(int width, int height, double aspectRatio, int as, bool useCache, int resizeType, const char* bg_str, bool auto_orientation) {
 	m_conf.max_x = width;
 	m_conf.max_y = height;
 	m_conf.aspect_ratio = as == 0 ? 0.0 : aspectRatio / as;
@@ -1797,9 +1789,8 @@ RESULT ePicLoad::setPara(int width, int height, double aspectRatio, int as, bool
 
 	if (bg_str[0] == '#' && strlen(bg_str) == 9)
 		m_conf.background = static_cast<uint32_t>(strtoul(bg_str + 1, NULL, 16));
-	eTrace("[ePicLoad] setPara max-X=%d max-Y=%d aspect_ratio=%lf cache=%d resize=%d bg=#%08X auto_orient=%d",
-		   m_conf.max_x, m_conf.max_y, m_conf.aspect_ratio, (int)m_conf.usecache, (int)m_conf.resizetype,
-		   m_conf.background, m_conf.auto_orientation);
+	eTrace("[ePicLoad] setPara max-X=%d max-Y=%d aspect_ratio=%lf cache=%d resize=%d bg=#%08X auto_orient=%d", m_conf.max_x, m_conf.max_y, m_conf.aspect_ratio, (int)m_conf.usecache,
+		   (int)m_conf.resizetype, m_conf.background, m_conf.auto_orientation);
 	return 1;
 }
 
@@ -1826,8 +1817,7 @@ int ePicLoad::getFileType(const char* file) {
 	else if (id[0] == 'G' && id[1] == 'I' && id[2] == 'F')
 		return F_GIF;
 #ifdef HAVE_WEBP
-	else if (id[0] == 'R' && id[1] == 'I' && id[2] == 'F' && id[3] == 'F' && id[8] == 'W' && id[9] == 'E' &&
-			 id[10] == 'B' && id[11] == 'P')
+	else if (id[0] == 'R' && id[1] == 'I' && id[2] == 'F' && id[3] == 'F' && id[8] == 'W' && id[9] == 'E' && id[10] == 'B' && id[11] == 'P')
 		return F_WEBP;
 #endif
 	else if (id[0] == '<' && id[1] == 's' && id[2] == 'v' && id[3] == 'g')
@@ -1841,8 +1831,7 @@ int ePicLoad::getFileType(const char* file) {
 
 // for old plugins
 SWIG_VOID(int)
-loadPic(ePtr<gPixmap>& result, std::string filename, int x, int y, int aspect, int resize_mode, int rotate,
-		unsigned int background, std::string cachefile) {
+loadPic(ePtr<gPixmap>& result, std::string filename, int x, int y, int aspect, int resize_mode, int rotate, unsigned int background, std::string cachefile) {
 	long asp1, asp2;
 	eDebug("[ePicLoad] deprecated loadPic function used!!! please use the non blocking version! you can see demo code "
 		   "in Pictureplayer plugin... this function is removed in the near future!");

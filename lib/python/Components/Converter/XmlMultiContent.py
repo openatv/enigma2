@@ -1,6 +1,6 @@
 from enigma import eListboxPythonMultiContent
 
-from skin import SkinContext, SkinContextStack, TemplateParser, parseFont
+from skin import SkinContext, SkinContextStack, TemplateParser, parseFont, parsePadding
 from Components.Converter.StringList import StringList
 
 
@@ -95,6 +95,7 @@ class MultiContentTemplateParser(TemplateParser):
 							flags = item.get("_flags", 0)
 							match item["type"]:
 								case "text":
+									padding = parsePadding("padding", item.get("padding", "0,0,0,0"))
 									textBorderColor = item.get("textBorderColor")
 									textBorderWidth = int(item.get("textBorderWidth", "0"))
 									foregroundColorSelected = item.get("foregroundColorSelected")
@@ -102,7 +103,7 @@ class MultiContentTemplateParser(TemplateParser):
 									font = int(item.get("font", 0))
 									if index == -1:
 										index = item.get("text", "")
-									modeData.append((eListboxPythonMultiContent.TYPE_TEXT, pos[0], pos[1], size[0], size[1], font or 0, flags, index, foregroundColor, foregroundColorSelected, backgroundColor, backgroundColorSelected, borderWidth, borderColor, cornerRadius, cornerEdges, textBorderWidth, textBorderColor))
+									modeData.append((eListboxPythonMultiContent.TYPE_TEXT, pos[0] + padding[0], pos[1] + padding[1], size[0] - padding[2], size[1] - padding[3], font or 0, flags, index, foregroundColor, foregroundColorSelected, backgroundColor, backgroundColorSelected, borderWidth, borderColor, cornerRadius, cornerEdges, textBorderWidth, textBorderColor))
 								case "pixmap":
 									if index == -1:
 										index = item.get("pixmap", "")
@@ -125,6 +126,19 @@ class MultiContentTemplateParser(TemplateParser):
 									foregroundColor = item.get("foregroundColor", None)
 									gradientDirection, gradientAlpha, gradientStart, gradientEnd, gradientMid, gradientStartSelected, gradientEndSelected, gradientMidSelected = item.get("_gradient", (0, 0, None, None, None, None, None, None))
 									modeData.append((eListboxPythonMultiContent.TYPE_PROGRESS, pos[0], pos[1], size[0], size[1], index, borderWidth, foregroundColor, foregroundColorSelected, borderColor, gradientStart, gradientMid, gradientEnd, gradientStartSelected, gradientMidSelected, gradientEndSelected, cornerRadius, cornerEdges))
+						maxX = 0
+						maxIndexX = -1
+						for modeItemIndex, modeItem in enumerate(modeData):
+							if (modeItem[1] + modeItem[3]) > maxX:
+								maxX = modeItem[1] + modeItem[3]
+								maxIndexX = modeItemIndex
+
+						if maxIndexX != -1:
+							modeItem = list(modeData[maxIndexX])
+							if modeItem[0] == eListboxPythonMultiContent.TYPE_TEXT:
+								modeItem[3] = -modeItem[3]
+								modeData[maxIndexX] = tuple(modeItem)
+
 						self.template["modes"][modeName] = ((modeItemWidth, modeItemHeight), modeData)
 		except Exception as err:
 			# TODO: DEBUG: Remove the following two lines before publication.

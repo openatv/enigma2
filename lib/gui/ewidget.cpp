@@ -3,8 +3,7 @@
 
 extern void dumpRegion(const gRegion &region);
 
-eWidget::eWidget(eWidget *parent) : m_animation(this), m_parent(parent ? parent->child() : 0)
-{
+eWidget::eWidget(eWidget* parent) : m_animation(this), m_parent(parent ? parent->child() : 0) {
 	m_gradient_set = false;
 	m_gradient_direction = 0;
 	m_vis = 0;
@@ -15,8 +14,7 @@ eWidget::eWidget(eWidget *parent) : m_animation(this), m_parent(parent ? parent-
 	m_client_offset = eSize(0, 0);
 	if (m_parent)
 		m_vis = wVisShow;
-	if (m_parent)
-	{
+	if (m_parent) {
 		insertIntoParent();
 		m_parent->getStyle(m_style);
 	}
@@ -29,6 +27,8 @@ eWidget::eWidget(eWidget *parent) : m_animation(this), m_parent(parent ? parent-
 	m_have_border_color = false;
 	m_border_width = 0;
 	m_padding = eRect(0, 0, 0, 0);
+	m_tag = 0;
+	m_stack = nullptr;
 }
 
 void eWidget::move(ePoint pos)
@@ -49,6 +49,8 @@ void eWidget::move(ePoint pos)
 	/* try native move if supported. */
 	if ((m_vis & wVisShow) && ((!m_desktop) || m_desktop->movedWidget(this)))
 		invalidate();
+	if (m_stack)
+		m_stack->invalidateChilds();
 }
 
 void eWidget::resize(eSize size)
@@ -87,6 +89,8 @@ void eWidget::resize(eSize size)
 
 	recalcClipRegionsWhenVisible();
 	invalidate();
+	if (m_stack)
+		m_stack->invalidateChilds();
 }
 
 void eWidget::invalidate(const gRegion &region)
@@ -169,6 +173,8 @@ void eWidget::show()
 		abs.moveBy(abspos);
 		root->m_desktop->invalidate(abs, this, target_layer);
 	}
+	if (m_stack)
+		m_stack->invalidateChilds();
 }
 
 void eWidget::hide()
@@ -206,6 +212,8 @@ void eWidget::hide()
 		root->m_desktop->recalcClipRegions(root);
 		root->m_desktop->invalidate(abs);
 	}
+	if (m_stack)
+		m_stack->invalidateChilds();
 }
 
 void eWidget::raise()

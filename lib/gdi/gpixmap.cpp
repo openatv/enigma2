@@ -2719,6 +2719,56 @@ gColor gPalette::findColor(const gRGB rgb) const
 	return best_choice;
 }
 
+gColor gPalette::findOrAddColor(const gRGB rgb) {
+	if (!data)
+		return (rgb.r + rgb.g + rgb.b) / 3;
+
+	if (rgb.a == 255) /* Fully transparent, then RGB does not matter */
+	{
+		for (int t = 0; t < colors; t++)
+			if (data[t].a == 255)
+				return t;
+	}
+
+	for (int t = 0; t < colors; t++) {
+		if (data[t].r == rgb.r && data[t].g == rgb.g && data[t].b == rgb.b && data[t].a == rgb.a) {
+			return t;
+		}
+	}
+
+	if (colors < 256) {
+		gRGB* newData = new gRGB[colors + 1];
+		if (data) {
+			std::copy_n(data, colors, newData);
+			delete[] data;
+		}
+		data = newData;
+		data[colors] = rgb;
+		return colors++;
+	}
+
+	int best_choice = 0;
+	int difference = INT_MAX;
+
+	for (int t = 0; t < colors; t++) {
+		int dr = rgb.r - data[t].r;
+		int dg = rgb.g - data[t].g;
+		int db = rgb.b - data[t].b;
+		int da = rgb.a - data[t].a;
+
+		int ttd = dr * dr + dg * dg + db * db + da * da;
+
+		if (ttd < difference) {
+			difference = ttd;
+			best_choice = t;
+			if (ttd == 0)
+				break;
+		}
+	}
+
+	return best_choice;
+}
+
 DEFINE_REF(gPixmap);
 
 gPixmap::~gPixmap()
