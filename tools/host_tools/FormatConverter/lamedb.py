@@ -29,6 +29,8 @@ class lamedb(datasource):
 		transpondersreading = False
 		sats = {}
 		transponders = {}
+		onid = None
+		tsid = None
 		for line in lines:
 			if line.strip() == "transponders":
 				transpondersreading = True
