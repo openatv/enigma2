@@ -15,9 +15,9 @@ class slot:
 
 timers = set()
 
-import time
+import time  # noqa: E402
 
-from events import eventfnc
+from events import eventfnc  # noqa: E402
 
 ##################### ENIGMA BASE
 
@@ -276,7 +276,7 @@ eServiceCenter()
 ##################### ENIGMA CHROOT
 
 print("import directories")
-import Tools.Directories
+import Tools.Directories  # noqa: E402
 print("done")
 
 chroot = "."
@@ -290,7 +290,7 @@ Tools.Directories.defaultPaths[Tools.Directories.SCOPE_CONFIG] = ("/etc/enigma2/
 ##################### ENIGMA CONFIG
 
 print("import config")
-import Components.config
+import Components.config  # noqa: E402
 print("done")
 
 my_config = [

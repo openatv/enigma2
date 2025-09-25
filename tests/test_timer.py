@@ -77,12 +77,12 @@ enigma.init_record_config()
 enigma.init_parental_control()
 
 
-from events import log
+from events import log  # noqa: E402
 
-import calendar
+import calendar  # noqa: E402
 
 
-import os
+import os  # noqa: E402
 # we are operating in CET/CEST
 os.environ['TZ'] = 'CET'
 time.tzset()
