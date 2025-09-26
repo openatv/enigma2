@@ -563,13 +563,13 @@ class EPGSelection(Screen):
 		elif self.type == EPG_TYPE_VERTICAL:
 			curr = self[f"list{self.activeList}"].getSelectedEventId()
 			currPrg = self.myServices[self.getActivePrg()]
-			l = self[f"list{self.activeList}"]
-			l.recalcEntrySize()
+			entry = self[f"list{self.activeList}"]
+			entry.recalcEntrySize()
 			service = ServiceReference(currPrg[0])
 			stime = None
 			if self.ask_time > time():
 				stime = self.ask_time
-			l.fillSingleEPG(service, stime)
+			entry.fillSingleEPG(service, stime)
 			self[f"list{self.activeList}"].moveToEventId(curr)
 
 	def moveUp(self):
@@ -1241,15 +1241,15 @@ class EPGSelection(Screen):
 		self.onCreate()
 
 	def eventViewCallback(self, setEvent, setService, val):
-		l = self[f"list{self.activeList}"]
-		old = l.getCurrent()
+		entry = self[f"list{self.activeList}"]
+		old = entry.getCurrent()
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			self.updEvent(val, False)
 		elif val == -1:
 			self.moveUp()
 		elif val == +1:
 			self.moveDown()
-		cur = l.getCurrent()
+		cur = entry.getCurrent()
 		if (self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH) and cur[0] is None and cur[1].ref != old[1].ref:
 			self.eventViewCallback(setEvent, setService, val)
 		else:
@@ -2130,11 +2130,11 @@ class EPGSelection(Screen):
 		if x >= 0 and CurrentPrg[0]:
 			self["list1"].show()
 			self["currCh1"].setText(str(CurrentPrg[1]))
-			l = self["list1"]
-			l.recalcEntrySize()
+			entry = self["list1"]
+			entry.recalcEntrySize()
 			myService = ServiceReference(CurrentPrg[0])
 			self["piconCh1"].newService(myService.ref)
-			l.fillSingleEPG(myService, stime)
+			entry.fillSingleEPG(myService, stime)
 		else:
 			self["Active1"].hide()
 			self["piconCh1"].newService(None)
@@ -2145,11 +2145,11 @@ class EPGSelection(Screen):
 			self["list2"].show()
 			CurrentPrg = self.myServices[prgIndex]
 			self["currCh2"].setText(str(CurrentPrg[1]))
-			l = self["list2"]
-			l.recalcEntrySize()
+			entry = self["list2"]
+			entry.recalcEntrySize()
 			myService = ServiceReference(CurrentPrg[0])
 			self["piconCh2"].newService(myService.ref)
-			l.fillSingleEPG(myService, stime)
+			entry.fillSingleEPG(myService, stime)
 		else:
 			self["piconCh2"].newService(None)
 			self["currCh2"].setText(" ")
@@ -2159,11 +2159,11 @@ class EPGSelection(Screen):
 			self["list3"].show()
 			CurrentPrg = self.myServices[prgIndex]
 			self["currCh3"].setText(str(CurrentPrg[1]))
-			l = self["list3"]
-			l.recalcEntrySize()
+			entry = self["list3"]
+			entry.recalcEntrySize()
 			myService = ServiceReference(CurrentPrg[0])
 			self["piconCh3"].newService(myService.ref)
-			l.fillSingleEPG(myService, stime)
+			entry.fillSingleEPG(myService, stime)
 		else:
 			self["piconCh3"].newService(None)
 			self["currCh3"].setText(" ")
@@ -2174,11 +2174,11 @@ class EPGSelection(Screen):
 				self["list4"].show()
 				CurrentPrg = self.myServices[prgIndex]
 				self["currCh4"].setText(str(CurrentPrg[1]))
-				l = self["list4"]
-				l.recalcEntrySize()
+				entry = self["list4"]
+				entry.recalcEntrySize()
 				myService = ServiceReference(CurrentPrg[0])
 				self["piconCh4"].newService(myService.ref)
-				l.fillSingleEPG(myService, stime)
+				entry.fillSingleEPG(myService, stime)
 			else:
 				self["piconCh4"].newService(None)
 				self["currCh4"].setText(" ")
@@ -2189,11 +2189,11 @@ class EPGSelection(Screen):
 				self["list5"].show()
 				CurrentPrg = self.myServices[prgIndex]
 				self["currCh5"].setText(str(CurrentPrg[1]))
-				l = self["list5"]
-				l.recalcEntrySize()
+				entry = self["list5"]
+				entry.recalcEntrySize()
 				myService = ServiceReference(CurrentPrg[0])
 				self["piconCh5"].newService(myService.ref)
-				l.fillSingleEPG(myService, stime)
+				entry.fillSingleEPG(myService, stime)
 			else:
 				self["piconCh5"].newService(None)
 				self["currCh5"].setText(" ")

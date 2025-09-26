@@ -1,3 +1,5 @@
+import math
+
 from Screens.Screen import Screen
 from Components.config import config
 from Components.Sources.CanvasSource import CanvasSource
@@ -365,18 +367,17 @@ class VideoFinetune(Screen):
 		for y in list(range(0, height, 4)):
 			c.fill(offset_x, offset_y + y, width // 2, 2, RGB(255, 255, 255))
 
-		l = 0
+		posY = 0
 		fnt = gFont("Regular", height // 14)
-		import math
 		for i in list(range(1, 15)):
 			y = i * height // 14
-			h = y - l
+			h = y - posY
 			gamma = 0.6 + i * 0.2
 			col = int(math.pow(.5, 1.0 / gamma) * 256.0)
-			c.fill(offset_x + width // 2, offset_y + l, width // 2, h, RGB(col, col, col))
+			c.fill(offset_x + width // 2, offset_y + posY, width // 2, h, RGB(col, col, col))
 
-			c.writeText(offset_x + width // 2, offset_y + l, width // 2, h, RGB(0, 0, 0), RGB(col, col, col), fnt, "%1.2f" % gamma, RT_WRAP | RT_HALIGN_RIGHT)
-			l = y
+			c.writeText(offset_x + width // 2, offset_y + posY, width // 2, h, RGB(0, 0, 0), RGB(col, col, col), fnt, "%1.2f" % gamma, RT_WRAP | RT_HALIGN_RIGHT)
+			posY = y
 
 		c.flush()
 

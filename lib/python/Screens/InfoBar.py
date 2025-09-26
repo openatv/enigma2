@@ -276,9 +276,9 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 		# AutoTimer plugin descriptor that opens the AutoTimer
 		# overview and is always present.
 
-		for l in plugins.getPlugins(PluginDescriptor.WHERE_MENU):
-			if l.name == _("Auto Timers"):  # Must use translated name same as in the po of plugin autotimer
-				menuEntry = l("timermenu")
+		for plugin in plugins.getPlugins(PluginDescriptor.WHERE_MENU):
+			if plugin.name == _("Auto Timers"):  # Must use translated name same as in the po of plugin autotimer
+				menuEntry = plugin("timermenu")
 				if menuEntry and len(menuEntry[0]) > 1 and callable(menuEntry[0][1]):
 					return menuEntry[0][1]
 		return None

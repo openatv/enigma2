@@ -45,7 +45,7 @@ class StartSwap:
 				if "sd" in line or "mmcblk" in line:
 					parts = line.strip().split()
 					swapPlace = parts[0]
-					open("/etc/fstab.tmp", "w").writelines([l for l in open("/etc/fstab").readlines() if swapPlace not in l])
+					open("/etc/fstab.tmp", "w").writelines([x for x in open("/etc/fstab").readlines() if swapPlace not in x])
 					rename("/etc/fstab.tmp", "/etc/fstab")
 					print(f"[SwapManager] Found a swap partition:{swapPlace}")
 		else:
