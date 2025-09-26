@@ -852,7 +852,7 @@ class CreateMetaTask(Task):
 			for line in dl:
 				file.write(line + '\n')
 			file.close()
-		except:
+		except OSError:
 			Task.processFinished(self, 1)
 		Task.processFinished(self, 0)
 		self.project.finished_burning = True

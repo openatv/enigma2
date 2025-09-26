@@ -969,7 +969,7 @@ class QuadPipScreen(Screen, FocusShowHide):
 				config.plugins.fccsetup.activate.value = False
 				from Plugins.SystemPlugins.FastChannelChange.plugin import FCCChanged
 				FCCChanged()
-		except:
+		except Exception:
 			self.oldFccEnable = False
 
 	def enableFCC(self):
@@ -978,7 +978,7 @@ class QuadPipScreen(Screen, FocusShowHide):
 				config.plugins.fccsetup.activate.value = self.oldFccEnable
 				from Plugins.SystemPlugins.FastChannelChange.plugin import FCCChanged
 				FCCChanged()
-			except:
+			except Exception:
 				pass
 
 	def disableMiniTV(self):
@@ -986,12 +986,12 @@ class QuadPipScreen(Screen, FocusShowHide):
 			self.oldMinitvEanble = config.plugins.minitv.enable.value
 			if self.oldMinitvEanble:
 				config.plugins.minitv.enable.value = False
-		except:
+		except Exception:
 			self.oldFccEnable = False
 
 	def enableMiniTV(self):
 		if self.oldMinitvEanble:
 			try:
 				config.plugins.minitv.enable.value = self.oldMinitvEanble
-			except:
+			except Exception:
 				pass

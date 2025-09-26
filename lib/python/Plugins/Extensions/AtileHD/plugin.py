@@ -609,7 +609,7 @@ class AtileHDScreens(Screen):
 		self.title = _("%s additional screens") % cur_skin
 		try:
 			self["title"] = StaticText(self.title)
-		except:
+		except Exception:
 			print('self["title"] was not found in skin')
 
 		self["key_red"] = StaticText(_("Exit"))

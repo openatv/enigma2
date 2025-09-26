@@ -510,7 +510,7 @@ class ImagePrepareTask(Task):
 			self.Menus.fontsizes = [s.fontsize_headline.getValue(), s.fontsize_title.getValue(), s.fontsize_subtitle.getValue()]
 			self.Menus.fonts = [(truetype(s.fontface_headline.getValue(), self.Menus.fontsizes[0])), (truetype(s.fontface_title.getValue(), self.Menus.fontsizes[1])), (truetype(s.fontface_subtitle.getValue(), self.Menus.fontsizes[2]))]
 			Task.processFinished(self, 0)
-		except:
+		except Exception:
 			Task.processFinished(self, 1)
 
 
@@ -596,7 +596,7 @@ class MenuImageTask(Task):
 				try:
 					thumbIm = Image_open(title.inputfile.rsplit('.', 1)[0] + ".png")
 					im_cell_bg.paste(thumbIm, thumbPos)
-				except:
+				except Exception:
 					draw_cell_bg.rectangle(box, fill=(64, 127, 127, 127))
 				border = s.thumb_border.getValue()
 				if border:

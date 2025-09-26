@@ -101,7 +101,7 @@ class Project:
 			for x in list:
 				file.write(x)
 			file.close()
-		except:
+		except OSError:
 			return False
 		return filename
 

@@ -487,7 +487,7 @@ class Pic_Full_View(Screen):
 			try:
 				text = picInfo.split('\n', 1)
 				text = "(" + str(self.index + 1) + "/" + str(self.maxentry + 1) + ") " + text[0].split('/')[-1]
-			except:
+			except Exception:
 				pass
 			self.currPic = []
 			self.currPic.append(text)

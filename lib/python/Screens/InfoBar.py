@@ -816,7 +816,7 @@ class MoviePlayer(InfoBarAspectSelection, InfoBarSimpleEventView, InfoBarBase, I
 				# no selection? Continue where we left off
 				if ref and not self.session.nav.getCurrentlyPlayingServiceOrGroup():
 					self.session.nav.playService(ref)
-			except:
+			except Exception:
 				pass
 
 	def getPlaylistServiceInfo(self, service):

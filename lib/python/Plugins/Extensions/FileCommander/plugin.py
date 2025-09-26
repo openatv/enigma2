@@ -2507,7 +2507,7 @@ class FileCommanderInformation(FileCommanderData, StatInfo):
 				treeSize = None
 				try:
 					treeSize = int([x for x in self.textBuffer.split("\n") if x][-1].split("\t")[0]) if self.textBuffer else None
-				except:
+				except Exception:
 					pass
 				if treeSize:
 					info[directorySizeIndex] = f"{_("Tree size")}:|{treeSize:,}   ({numberScaler.scale(treeSize, style="Si", maxNumLen=3, decimals=3)})   ({NumberScaler().scale(treeSize, style="Iec", maxNumLen=3, decimals=3)})"

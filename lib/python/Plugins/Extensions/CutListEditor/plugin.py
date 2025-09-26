@@ -17,7 +17,7 @@ from enigma import getDesktop, iPlayableService
 
 try:
 	from Plugins.Extensions.MovieCut.plugin import main as MovieCut
-except:
+except ImportError:
 	print("[CutListEditor] import MovieCut failed")
 
 import bisect
@@ -444,7 +444,7 @@ class CutListEditor(Screen, InfoBarBase, InfoBarSeek, InfoBarCueSheetSupport):
 			self.pauseService()
 			try:
 				MovieCut(session=self.session, service=cservice)
-			except:
+			except Exception:
 				print("[CutListEditor] calling MovieCut failed")
 
 	def crashFix(self):
