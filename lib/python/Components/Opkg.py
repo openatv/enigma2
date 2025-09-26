@@ -467,6 +467,7 @@ class OpkgComponent:
 			lines = infoData.splitlines()
 			token = None
 			entry = {}
+			value = ""
 			for line in lines:
 				if line == "":
 					if "Package" in entry:
@@ -549,6 +550,7 @@ class OpkgComponent:
 
 
 # The following code is a deprecated and due to be removed soon.
+
 
 	def startCmd(self, cmd, args=None):
 		self.nextCommand = None

@@ -2077,6 +2077,10 @@ class SecondInfoBar(Screen):
 						if change_time:
 							simulTimerList = self.session.nav.RecordTimer.record(entry)
 					if simulTimerList is not None:
+						try:
+							from Screens.TimerEdit import TimerSanityConflict
+						except Exception:  # maybe already been imported from another module
+							pass
 						self.session.openWithCallback(self.finishSanityCorrection, TimerSanityConflict, simulTimerList)
 			self["key_green"].setText(_("Remove timer"))
 			self.key_green_choice = self.REMOVE_TIMER
