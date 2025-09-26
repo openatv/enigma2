@@ -255,11 +255,11 @@ class HotPlugManager:
 					self.removeTimer.stop()
 					self.removeTimer.start(2000)
 			elif action == "ifup":
-				interface = eventData.get("INTERFACE")
+				interface = eventData.get("INTERFACE")  # noqa F841
 			elif action == "ifdown":
-				interface = eventData.get("INTERFACE")
+				interface = eventData.get("INTERFACE")  # noqa F841
 			elif action == "online":
-				state = eventData.get("STATE")
+				state = eventData.get("STATE")  # noqa F841
 
 		else:
 			device = eventData.get("DEVPATH", "").split("/")[-1]

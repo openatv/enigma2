@@ -153,7 +153,7 @@ class NetworkAdapterSelection(Screen):
 
 	def setDefaultInterface(self):
 		selection = self["list"].getCurrent()
-		num_if = len(self.list)
+		# num_if = len(self.list)
 		old_default_gw = None
 		num_configured_if = len(iNetwork.getConfiguredAdapters())
 		if exists("/etc/default_gw"):
@@ -301,7 +301,7 @@ class DNSSettings(Setup):
 			self.dnsServers = self.dnsOptions[config.usage.dns.value][:]
 		elif current not in (config.usage.dnsMode, config.usage.dnsSuffix) and self.dnsStart <= index < self.dnsStart + self.dnsLength:
 			self.dnsServers[index - self.dnsStart] = current.value[:]
-			option = self.dnsCheck(self.dnsServers, refresh=True)
+			option = self.dnsCheck(self.dnsServers, refresh=True)  # noqa F841
 		Setup.changedEntry(self)
 		self.updateControls()
 
@@ -372,7 +372,7 @@ class DNSSettings(Setup):
 		gateways = []
 		lines = []
 		lines = fileReadLines("/proc/net/route", lines, source=MODULE_NAME)
-		headings = lines.pop(0)
+		headings = lines.pop(0)  # noqa F841
 		for line in lines:
 			data = line.split()
 			if data[1] == "00000000" and int(data[3]) & 0x03 and data[7] == "00000000":  # If int(flags) & 0x03 is True this is a gateway (0x02) and it is up (0x01).
@@ -862,7 +862,7 @@ class AdapterSetupConfiguration(Screen):
 			from wifi.exceptions import InterfaceError
 			try:
 				system(f"ifconfig {self.iface} up")
-				wlanresponse = list(Cell.all(iface))
+				wlanresponse = list(Cell.all(iface))  # noqa F841
 			except InterfaceError as ie:
 				print(f"[NetworkSetup] queryWirelessDevice InterfaceError: {str(ie)}")
 				return False

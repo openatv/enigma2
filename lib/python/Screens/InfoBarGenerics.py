@@ -3549,7 +3549,7 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 	def __timeshiftEventName(self, state):
 		if self.timeshiftEnabled() and exists("%spts_livebuffer_%s.meta" % (config.timeshift.path.value, self.pts_currplaying)):
 			readmetafile = open("%spts_livebuffer_%s.meta" % (config.timeshift.path.value, self.pts_currplaying))
-			servicerefname = readmetafile.readline()[0:-1]
+			servicerefname = readmetafile.readline()[0:-1]  # noqa F841
 			eventname = readmetafile.readline()[0:-1]
 			readmetafile.close()
 			self.pvrStateDialog["eventname"].setText(eventname)
@@ -4158,15 +4158,15 @@ class InfoBarRedButton:
 		for x in self.onReadyForAIT:
 			try:
 				x(orgId)
-			except Exception as ErrMsg:
-				print("[InfoBarGenerics] updateAIT error", ErrMsg)
+			except Exception as err:
+				print(f"[InfoBarGenerics] updateAIT error {err}")
 				# self.onReadyForAIT.remove(x)
 
 	def updateInfomation(self):
 		try:
 			self["HbbtvApplication"].setApplicationName("")
 			self.updateAIT()
-		except Exception as ErrMsg:
+		except Exception:
 			pass
 
 	def detectedHbbtvApplication(self):
@@ -4179,7 +4179,7 @@ class InfoBarRedButton:
 					self.updateAIT(x[3])
 					self["HbbtvApplication"].setApplicationName(x[1])
 					break
-		except Exception as ErrMsg:
+		except Exception:
 			pass
 
 	def activateRedButton(self):
@@ -4802,7 +4802,7 @@ class InfoBarSubtitleSupport:
 	def subtitleQuickMenu(self):
 		service = self.session.nav.getCurrentService()
 		subtitle = service and service.subtitle()
-		subtitlelist = subtitle and subtitle.getSubtitleList()
+		subtitlelist = subtitle and subtitle.getSubtitleList()  # noqa F841
 		if self.selected_subtitle and self.selected_subtitle != (0, 0, 0, 0):
 			from Screens.AudioSelection import QuickSubtitlesConfigMenu
 			self.session.open(QuickSubtitlesConfigMenu, self)

@@ -65,7 +65,7 @@ def SecSetupMain(Session, **kwargs):
 
 
 def SecSetupStart(menuid):
-	show = False
+	show = False  # noqa F841
 
 	# other menu than "scan"?
 	if menuid != "scan":

@@ -293,7 +293,7 @@ class SetupSummary(ScreenSummary):
 def setupDom(setup=None, plugin=None):
 	# Constants for checkItems()
 	ROOT_ALLOWED = ("setup", )  # Tags allowed in top level of setupxml entry.
-	ELEMENT_ALLOWED = ("item", "if")  # Tags allowed in top level of setup entry.
+	ELEMENT_ALLOWED = ("item", "if")  # Tags allowed in top level of setup entry. # noqa F841
 	IF_ALLOWED = ("item", "if", "elif", "else")  # Tags allowed inside <if />.
 	AFTER_ELSE_ALLOWED = ("item", "if")  # Tags allowed after <elif /> or <else />.
 	CHILDREN_ALLOWED = ("setup", "if", )  # Tags that may have children.

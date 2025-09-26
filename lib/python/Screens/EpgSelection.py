@@ -1272,7 +1272,7 @@ class EPGSelection(Screen):
 	def OpenSingleEPG(self):
 		cur = self[f"list{self.activeList}"].getCurrent()
 		if cur[0] is not None:
-			event = cur[0]
+			event = cur[0]  # noqa F841
 			serviceref = cur[1].ref
 			if serviceref is not None:
 				self.session.open(SingleEPG, serviceref)
@@ -1553,8 +1553,8 @@ class EPGSelection(Screen):
 		serviceref = cur[1]
 		if event is None:
 			return
-		eventid = event.getEventId()
-		refstr = serviceref.ref.toString()
+		eventid = event.getEventId()  # noqa F841
+		refstr = serviceref.ref.toString()  # noqa F841
 		newEntry = RecordTimerEntry(serviceref, checkOldTimers=True, dirname=preferredTimerPath(), *parseEvent(event, isZapTimer=zap), justplay=zap)
 		self.InstantRecordDialog = self.session.instantiateDialog(InstantRecordTimerEntry, newEntry, zap, zaprecord)
 		retval = [True, self.InstantRecordDialog.retval()]

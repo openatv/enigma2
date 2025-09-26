@@ -886,7 +886,7 @@ class ChkrootSlotManager(Setup):
 				try:
 					with open("/sys/block/mmcblk0boot1/force_ro", "w") as fn:
 						fn.write("0")
-				except Exception as e:
+				except Exception:
 					pass
 
 			if exists(TARGET_DEVICE):
@@ -915,7 +915,7 @@ class ChkrootSlotManager(Setup):
 			if answer:
 				self.session.open(TryQuitMainloop, QUIT_RESTART)
 		MOUNTPOINT = "/tmp/boot"
-		mtdRootFs = BoxInfo.getItem("mtdrootfs")
+		mtdRootFs = BoxInfo.getItem("mtdrootfs")  # noqa F841
 		mtdKernel = BoxInfo.getItem("mtdkernel")
 		device = self.ChkrootSlotManagerDevice
 		PART_SUFFIX = "p" if "mmcblk" in device else ""
@@ -960,7 +960,7 @@ class ChkrootSlotManager(Setup):
 		self.ChkrootSlotManagerDevice = selection
 		locations = self.ChkrootSlotManagerLocation.getSelectionList()
 		path = self.deviceData[selection][0]
-		name = self.deviceData[selection][1]
+		name = self.deviceData[selection][1]  # noqa F841
 		if (path, path) not in locations:
 			locations.append((path, path))
 			self.ChkrootSlotManagerLocation.setSelectionList(default=None, choices=locations)
@@ -976,7 +976,7 @@ class ChkrootSlotManager(Setup):
 			with open(path) as fd:
 				blocks = int(fd.read().strip())
 				return ceil((blocks * 512) / (1024 * 1024 * 1024))
-		except Exception as e:
+		except Exception:
 			return 0
 
 	def readDevices(self, callback=None):
@@ -1099,7 +1099,7 @@ class UBISlotManager(Setup):
 			if answer:
 				self.session.open(TryQuitMainloop, QUIT_REBOOT)
 		MOUNTPOINT = "/tmp/boot"
-		mtdRootFs = BoxInfo.getItem("mtdrootfs")
+		mtdRootFs = BoxInfo.getItem("mtdrootfs")  # noqa F841
 		mtdKernel = BoxInfo.getItem("mtdkernel")
 		device = self.UBISlotManagerDevice
 		PART_SUFFIX = "p" if "mmcblk" in device else ""
@@ -1139,7 +1139,7 @@ class UBISlotManager(Setup):
 		self.UBISlotManagerDevice = selection
 		locations = self.UBISlotManagerLocation.getSelectionList()
 		path = self.deviceData[selection][0]
-		name = self.deviceData[selection][1]
+		name = self.deviceData[selection][1]  # noqa F841
 		if (path, path) not in locations:
 			locations.append((path, path))
 			self.UBISlotManagerLocation.setSelectionList(default=None, choices=locations)
@@ -1155,7 +1155,7 @@ class UBISlotManager(Setup):
 			with open(path) as fd:
 				blocks = int(fd.read().strip())
 				return ceil((blocks * 512) / (1024 * 1024 * 1024))
-		except Exception as e:
+		except Exception:
 			return 0
 
 	def readDevices(self, callback=None):

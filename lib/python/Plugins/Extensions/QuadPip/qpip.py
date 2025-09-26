@@ -429,7 +429,7 @@ class QuadPiPChannelSelection(Screen):
 		pw, ph = {1080: ("center", "center"), 720: ("center", "center"), 576: ("center", "20%")}.get(dh, ("center", "center"))
 		(sw, sh) = {1080: (dw / 3, dh / 2), 720: (int(dw / 2), int(dh / 1.5)), 576: (int(dw / 1.3), int(dh / 1.5))}.get(dh, (28, 24))
 		button_margin = 5
-		button_h = 40
+		button_h = 40  # noqa F841
 		list_y = 40 + button_margin * 3
 		self.fontSize = {1080: (28, 24), 720: (24, 20), 576: (20, 18)}.get(dh, (28, 24))
 		self.skin = QuadPiPChannelSelection.skin % (pw, ph,
@@ -925,7 +925,7 @@ class QuadPipScreen(Screen, FocusShowHide):
 
 			(sname, sref) = chInfo
 
-			qPipShown = False
+			qPipShown = False  # noqa F841
 
 			decoderIdx = self.decoderIdxMap[idx]
 			pos = self.eVideoPosMap[idx]

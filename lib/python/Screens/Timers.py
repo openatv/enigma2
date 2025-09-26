@@ -1178,7 +1178,7 @@ class ConflictTimerOverview(TimerOverviewBase):
 							(_("Don't stop current event but disable future events"), "stoponlycoming")
 						)
 						self.session.openWithCallback(boundFunction(self.toggleTimerCallback, timer), ChoiceBox, title=_("Repeating event is currently recording, what do you want to do?"), list=choiceList)
-						timerChanged = False
+						timerChanged = False  # noqa F841
 				else:
 					timer.disable()
 					self.session.nav.RecordTimer.timeChanged(timer)

@@ -409,5 +409,5 @@ class CronTimersConfig(ConfigListScreen, Screen):
 		config.crontimers.runwhen.value = "Daily"
 		config.crontimers.dayofweek.value = "Monday"
 		config.crontimers.dayofmonth.value = 1
-		config.crontimers.cmdtime.value, mytmpt = ([0, 0], [0, 0])
+		config.crontimers.cmdtime.value, mytmpt = ([0, 0], [0, 0])  # noqa F841
 		self.close()

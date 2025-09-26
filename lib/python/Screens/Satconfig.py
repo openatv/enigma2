@@ -768,7 +768,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				try:
 					nim_slot = nimmanager.nim_slots[slot]
 					if nim_slot == self.nimConfig:
-						self_idx = slot
+						self_idx = slot   # noqa F841
 					if nim_slot.config.dvbs.configMode.value == "advanced":
 						if nim_slot.config.dvbs.advanced.unicableconnected.value is True:
 							connect_count += 1
@@ -797,7 +797,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 				try:
 					nim_slot = nimmanager.nim_slots[slot]
 					if nim_slot == self.nimConfig:
-						self_idx = slot
+						self_idx = slot  # noqa F841
 					if nim_slot.config.dvbs.configMode.value == "loopthrough":
 						loopthrough_count += 1
 				except Exception:
@@ -897,7 +897,7 @@ class NimSelection(Screen):
 
 	def loadFBCLinks(self):
 		for x in nimmanager.nim_slots:
-			slotid = x.slot
+			slotid = x.slot   # noqa F841
 			if self.showNim(x):
 				if x.isCompatible("DVB-S"):
 					nimConfig = nimmanager.getNimConfig(x.slot).dvbs

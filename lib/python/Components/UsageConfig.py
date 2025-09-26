@@ -28,9 +28,9 @@ visuallyImpairedCommentary = "NAR qad"
 def InitUsageConfig():
 	AvailRemotes = [splitext(x)[0] for x in glob("/usr/share/enigma2/hardware/*.xml")]
 	RemoteChoices = []
-	DefaultRemote = BoxInfo.getItem("rcname")
+	DefaultRemote = BoxInfo.getItem("rcname")  # noqa F841
 
-	remoteSelectable = False
+	remoteSelectable = False  # noqa F841
 	if AvailRemotes is not None:
 		for remote in AvailRemotes:
 			pngfile = f"{remote}.png"
@@ -913,7 +913,7 @@ def InitUsageConfig():
 			debugString = "{debugString}Forced +"
 		if (int(elem2) > 0) and (int(elem2) & eDVBFrontend.preferredFrontendPrioHigh):
 			elem2 = int(elem2) - eDVBFrontend.preferredFrontendPrioHigh
-			debugString = "{debugString}High +"
+			debugString = "{debugString}High +"  # noqa F841
 		setPreferredTuner(int(config.usage.frontend_priority_intval.value))
 	config.usage.frontend_priority.addNotifier(PreferredTunerChanged)
 	config.usage.frontend_priority_multiselect.addNotifier(PreferredTunerChanged)

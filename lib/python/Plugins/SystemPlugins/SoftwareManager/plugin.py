@@ -148,7 +148,7 @@ class IPKGSource(Screen):
 			except OSError:
 				pass
 		desk = getDesktop(0)
-		x = int(desk.size().width())
+		x = int(desk.size().width())  # noqa F841
 		y = int(desk.size().height())
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))

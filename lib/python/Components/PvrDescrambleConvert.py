@@ -51,7 +51,7 @@ def secondsToTimespanBegin(begin_config, end_config):
 	(end_h, end_m) = end_config
 	cur_time = time()
 	begin = calculateTime(begin_h, begin_m)
-	end = calculateTime(end_h, end_m)
+	end = calculateTime(end_h, end_m)  # noqa F841
 	if cur_time <= begin:
 		sec = int(begin - cur_time)
 	else:

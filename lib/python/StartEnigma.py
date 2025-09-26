@@ -323,7 +323,7 @@ class PowerKey:
 	def finishedAdd(self, answer):
 		if not isinstance(answer, bool) and answer[0]:
 			entry = answer[1]
-			simulTimerList = self.session.nav.Scheduler.record(entry)
+			simulTimerList = self.session.nav.Scheduler.record(entry)  # noqa F841
 
 	def sleepStandby(self):
 		self.doAction(action="schedulerStandby")
@@ -431,15 +431,15 @@ def runScreenTest():
 	if not RestoreSettings:
 		runNextScreen(session, screensToRun)
 	enigma.eProfileWrite("VolumeControl Screen")
-	vol = VolumeControl(session)
+	vol = VolumeControl(session)  # noqa F841
 	enigma.eProfileWrite("VolumeAdjust")
-	vol = VolumeAdjust(session)
+	vol = VolumeAdjust(session)  # noqa F841
 	enigma.eProfileWrite("Processing Screen")
-	processing = Processing(session)
+	processing = Processing(session)  # noqa F841
 	enigma.eProfileWrite("Global MessageBox Screen")
-	modalmessagebox = ModalMessageBox(session)
+	modalmessagebox = ModalMessageBox(session)  # noqa F841
 	enigma.eProfileWrite("PowerKey")
-	power = PowerKey(session)
+	power = PowerKey(session)  # noqa F841
 	if enigma.getVFDSymbolsPoll():
 		enigma.eProfileWrite("VFDSymbolsCheck")
 		from Components.VfdSymbols import SymbolsCheck

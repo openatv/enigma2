@@ -1039,7 +1039,7 @@ class EPGFetcher:
                 timer["state"] = "pending"
                 timer["message"] = "Will record on %s" % config.plugins.icetv.device.label.value
             req.data["timers"] = [timer]
-            res = req.put().json()
+            res = req.put().json()  # noqa F841
             self.addLog("Timer '%s' updated OK" % local_timer.name)
         except (OSError, RuntimeError, KeyError) as ex:
             _logResponseException(self, _("Can not update timer"), ex)
@@ -1098,12 +1098,12 @@ class EPGFetcher:
 
     def postStatus(self, timer, state, message):
         try:
-            channel_id = self.serviceToIceChannelId(timer.service_ref)
+            channel_id = self.serviceToIceChannelId(timer.service_ref)  # noqa F841
             req = ice.Timer(timer.ice_timer_id)
             req.data["message"] = message
             req.data["state"] = state
             # print "[EPGFetcher] postStatus", timer.name, message, state
-            res = req.put()
+            res = req.put()  # noqa F841
         except (OSError, RuntimeError, KeyError) as ex:
             _logResponseException(self, _("Can not update timer status"), ex)
         self.deferredPostStatus(timer)

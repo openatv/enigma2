@@ -256,7 +256,7 @@ class Standby2(Screen):
 		if self.paused_service:
 			self.paused_service.unPauseService()
 		elif self.prev_running_service:
-			service = self.prev_running_service.toString()
+			# service = self.prev_running_service.toString()
 			if config.servicelist.startupservice_onstandby.value:
 				self.session.nav.playService(eServiceReference(config.servicelist.startupservice.value))
 				self.correctChannelNumber = True

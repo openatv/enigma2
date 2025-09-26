@@ -121,7 +121,7 @@ class VideoFinetune(Screen):
 		Screen.__init__(self, session)
 		self.setTitle(_("VideoFinetune"))
 
-		port = config.av.videoport.value
+		port = config.av.videoport.value  # noqa F841
 		self.hasUHD = False
 		#self.hasUHD = port and config.av.videomode[port].value.startswith("2160")
 
@@ -186,7 +186,7 @@ class VideoFinetune(Screen):
 
 		xres, yres = getDesktop(0).size().width(), getDesktop(0).size().height()
 
-		bbw, bbh = xres // 192, yres // 192
+		bbw, bbh = xres // 192, yres // 192  # noqa F841
 		c.fill(0, 0, xres, yres, RGB(0, 0, 0))
 
 		for i in list(range(15)):
@@ -224,11 +224,11 @@ class VideoFinetune(Screen):
 
 		xres, yres = getDesktop(0).size().width(), getDesktop(0).size().height()
 
-		bbw, bbh = xres // 192, yres // 192
+		bbw, bbh = xres // 192, yres // 192  # noqa F841
 		c.fill(0, 0, xres, yres, RGB(0, 0, 0))
 
-		bbw = xres // 192
-		bbh = yres // 192
+		bbw = xres // 192  # noqa F841
+		bbh = yres // 192  # noqa F841
 		c.fill(0, 0, xres, yres, RGB(255, 255, 255))
 
 		for i in list(range(15)):

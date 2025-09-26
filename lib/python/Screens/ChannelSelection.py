@@ -394,7 +394,7 @@ class ChannelSelectionBase(Screen):
 	def getBouquetNumOffset(self, bouquet):
 		if not config.usage.multibouquet.value:
 			return 0
-		bStr = bouquet.toString()  # TODO Do we need this?
+		bStr = bouquet.toString()  # TODO Do we need this?  # noqa F841
 		offset = 0
 		if "userbouquet." in bouquet.toCompareString():
 			serviceHandler = eServiceCenter.getInstance()
@@ -1026,7 +1026,7 @@ class ChannelSelectionEdit:
 	def removeBouquet(self):
 		# refstr = self.getCurrentSelection().toString()  # DEBUG NOTE: This doesn't appear to be used.
 		# pos = refstr.find("FROM BOUQUET \"")  # DEBUG NOTE: This doesn't appear to be used.
-		filename = None
+		# filename = None
 		self.removeCurrentService(bouquet=True)
 
 	def removeSatelliteService(self):
@@ -2054,7 +2054,7 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 			eventidnext = None
 		else:
 			eventidnext = self.list[1][0]
-		eventname = str(self.list[0][1])
+		eventname = str(self.list[0][1])  # noqa F841
 		if eventid is None:
 			return
 		menu1 = _("Record now")
@@ -2755,7 +2755,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			pos += 1
 		# self.delhistpoint = pos + 1  # TODO Do we need this?
 		if pos < hlen and pos != self.history_pos:
-			tmp = self.history[pos]
+			tmp = self.history[pos]  # noqa F841
 			# self.history.append(tmp)
 			# del self.history[pos]
 			self.history_pos = pos

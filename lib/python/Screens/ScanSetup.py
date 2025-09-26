@@ -138,7 +138,7 @@ vtuner_need_idx_list = ('TURBO2')
 
 
 def GetDeviceId(filter, nim_idx):
-	tuners = {}
+	# tuners = {}
 	device_id = 0
 	socket_id = 0
 	for nim in nimmanager.nim_slots:
@@ -1520,7 +1520,7 @@ class ScanSetup(ConfigListScreen, Screen, CableTransponderSearchSupport, Terrest
 		if nim.isCompatible("DVB-S"):
 			print("is compatible with DVB-S")
 			if "multisat" in self.scan_type.value:
-				SatList = nimmanager.getSatListForNim(index_to_scan)
+				SatList = nimmanager.getSatListForNim(index_to_scan)  # noqa F841
 				for x in self.multiscanlist:
 					if x[1].value:
 						print("   " + str(x[0]))
@@ -1928,9 +1928,9 @@ class ScanSimple(ConfigListScreen, Screen, CableTransponderSearchSupport, Terres
 		self.session.postScanService = session.nav.getCurrentlyPlayingServiceOrGroup()
 
 		self.list = []
-		tlist = []
+		# tlist = []
 
-		known_networks = []
+		# known_networks = []
 		nims_to_scan = set()
 		self.finished_cb = None
 

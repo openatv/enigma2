@@ -679,7 +679,7 @@ class EPGList(GUIComponent):
 				if self.showPicon:
 					piconw = config.epgselection.graph_piconwidth.value
 				if self.showServiceNumber:
-					font = gFont(self.serviceFontNameGraph, self.serviceFontSizeGraph + config.epgselection.graph_servfs.value)
+					font = gFont(self.serviceFontNameGraph, self.serviceFontSizeGraph + config.epgselection.graph_servfs.value)  # noqa F841
 					# channelw = getTextBoundarySize(self.instance, font, self.instance.size(), "0000").width()
 			elif self.type == EPG_TYPE_INFOBARGRAPH:
 				if self.showServiceTitle:
@@ -687,7 +687,7 @@ class EPGList(GUIComponent):
 				if self.showPicon:
 					piconw = config.epgselection.infobar_piconwidth.value
 				if self.showServiceNumber:
-					font = gFont(self.serviceFontNameGraph, self.serviceFontSizeGraph + config.epgselection.infobar_servfs.value)
+					font = gFont(self.serviceFontNameGraph, self.serviceFontSizeGraph + config.epgselection.infobar_servfs.value)  # noqa F841
 					# channelw = getTextBoundarySize(self.instance, font, self.instance.size(), "0000").width()
 			w = (piconw + servicew)
 			self.service_rect = Rect(0, 0, w, height)
