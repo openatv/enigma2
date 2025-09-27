@@ -1,5 +1,5 @@
 from pickle import dump, load
-from os import W_OK, access, listdir, mkdir, rename, rmdir, stat
+from os import W_OK, access, listdir, mkdir, rename, stat
 from os.path import abspath, exists, isdir, isfile, join, normpath, pardir, realpath, split, splitext
 from time import time
 

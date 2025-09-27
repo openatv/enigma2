@@ -2,7 +2,7 @@ from os import listdir, remove, rename
 from os.path import join
 from time import localtime, strftime, time
 
-from enigma import eActionMap, eDBoxLCD, eDVBDB, eEPGCache, ePoint, eRCInput, eServiceCenter, eServiceReference, eServiceReferenceDVB, eTimer, getPrevAsciiCode, iPlayableService, iServiceInformation, loadPNG, getBestPlayableServiceReference
+from enigma import eActionMap, eDBoxLCD, eDVBDB, eEPGCache, ePoint, eRCInput, eServiceCenter, eServiceReference, eServiceReferenceDVB, eTimer, getPrevAsciiCode, iPlayableService, iServiceInformation, loadPNG
 
 from RecordTimer import AFTEREVENT, RecordTimerEntry, TIMERTYPE
 from ServiceReference import ServiceReference, getStreamRelayRef, hdmiInServiceRef, serviceRefAppendPath, service_types_radio_ref, service_types_tv_ref

@@ -1354,7 +1354,7 @@ class EPGSelection(Screen):
 		global autopoller
 		global autotimer
 		try:
-			from Plugins.Extensions.AutoTimer.plugin import main, autostart
+			# from Plugins.Extensions.AutoTimer.plugin import main, autostart
 			from Plugins.Extensions.AutoTimer.AutoTimer import AutoTimer
 			from Plugins.Extensions.AutoTimer.AutoPoller import AutoPoller
 			autopoller = AutoPoller()

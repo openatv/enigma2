@@ -6,7 +6,7 @@ from enigma import eConsoleAppContainer
 
 from Components.config import config
 from Components.SystemInfo import BoxInfo
-from Tools.Directories import SCOPE_LIBDIR, fileReadLines, fileWriteLine, resolveFilename
+from Tools.Directories import fileWriteLine
 
 MODULE_NAME = __name__.split(".")[-1]
 

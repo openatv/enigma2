@@ -4,9 +4,7 @@ from json import loads
 from locale import format_string
 from os import listdir, remove, statvfs
 from os.path import basename, getmtime, isdir, isfile, join
-from select import select
 from subprocess import PIPE, Popen
-from time import localtime, strftime, strptime
 from urllib.request import urlopen
 
 from enigma import eAVControl, eDVBFrontendParametersSatellite, eDVBResourceManager, eGetEnigmaDebugLvl, eRTSPStreamServer, eServiceCenter, eStreamServer, eTimer, getDesktop, getE2Rev, getGStreamerVersionString, iPlayableService, iServiceInformation
@@ -14,10 +12,10 @@ from enigma import eAVControl, eDVBFrontendParametersSatellite, eDVBResourceMana
 from ServiceReference import ServiceReference
 from skin import parameters
 from Components.About import about
-from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
+from Components.ActionMap import HelpableActionMap
 from Components.config import config
 from Components.Console import Console
-from Components.Harddisk import Harddisk, harddiskmanager
+from Components.Harddisk import harddiskmanager
 from Components.InputDevice import remoteControl
 from Components.Label import Label
 from Components.Network import iNetwork
@@ -29,11 +27,10 @@ from Components.ServiceEventTracker import ServiceEventTracker
 from Components.SystemInfo import BoxInfo, getBoxDisplayName, getDemodVersion
 from Components.Sources.StaticText import StaticText
 from Screens.MessageBox import MessageBox
-from Screens.ChoiceBox import ChoiceBox
 from Screens.Screen import Screen, ScreenSummary
 from Screens.Setup import Setup
 from Tools.Conversions import scaleNumber, formatDate
-from Tools.Directories import SCOPE_GUISKIN, SCOPE_SKINS, fileReadLine, fileReadLines, fileWriteLine, resolveFilename
+from Tools.Directories import SCOPE_SKINS, fileReadLine, fileReadLines, fileWriteLine, resolveFilename
 from Tools.Geolocation import geolocation
 from Tools.LoadPixmap import LoadPixmap
 from Tools.MultiBoot import MultiBoot

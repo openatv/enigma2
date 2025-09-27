@@ -1,3 +1,5 @@
+# flake8: noqa F401
+
 from bisect import insort
 from datetime import datetime
 from inspect import getfullargspec

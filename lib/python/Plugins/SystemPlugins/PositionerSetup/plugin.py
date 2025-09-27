@@ -4,7 +4,7 @@ from random import SystemRandom
 from threading import Thread
 from threading import Event
 
-from enigma import eDVBDiseqcCommand, eDVBFrontendParametersSatellite, eDVBResourceManager, eTimer, iDVBFrontend, pNavigation
+from enigma import eDVBDiseqcCommand, eDVBFrontendParametersSatellite, eDVBResourceManager, eTimer, iDVBFrontend
 
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox

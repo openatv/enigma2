@@ -1,7 +1,6 @@
 from os import listdir
 from os.path import exists, getsize, isdir, join
 from re import sub
-from unicodedata import normalize
 from enigma import ePixmap  # , ePicLoad
 from Components.config import config
 from Components.Harddisk import harddiskmanager

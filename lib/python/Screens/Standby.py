@@ -18,7 +18,7 @@ from GlobalActions import globalActionMap
 import Screens.InfoBar
 from Screens.MessageBox import MessageBox, MessageBoxSummary
 from Screens.Screen import Screen, ScreenSummary
-from Tools.Directories import fileWriteLine, mediaFilesInUse
+from Tools.Directories import mediaFilesInUse
 import Tools.Notifications
 
 

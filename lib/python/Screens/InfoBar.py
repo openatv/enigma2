@@ -11,7 +11,7 @@ from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.Label import Label
 from Components.Pixmap import MultiPixmap
-from Components.SystemInfo import BoxInfo, getBoxDisplayName
+from Components.SystemInfo import BoxInfo, getBoxDisplayName  # noqa F401
 from Tools.Directories import fileExists
 from Screens.ButtonSetup import InfoBarButtonSetup
 

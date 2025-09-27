@@ -5,7 +5,7 @@ from Components.SystemInfo import BoxInfo
 from Tools.BoundFunction import boundFunction
 
 import NavigationInstance
-from enigma import iRecordableService, pNavigation
+from enigma import iRecordableService
 
 
 class FanControl:

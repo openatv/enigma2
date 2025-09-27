@@ -10,7 +10,7 @@ from Components.Sources.Boolean import Boolean
 from Components.Sources.StaticText import StaticText
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
-from . import VideoEnhancement
+from . import VideoEnhancement  # noqa F401
 
 
 class VideoEnhancementSetup(ConfigListScreen, Screen):

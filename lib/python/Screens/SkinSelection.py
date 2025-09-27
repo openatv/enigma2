@@ -1,5 +1,5 @@
 from os import listdir
-from os.path import dirname, exists, isdir, isfile, join, split
+from os.path import exists, isdir, isfile, join, split
 
 from enigma import ePicLoad
 

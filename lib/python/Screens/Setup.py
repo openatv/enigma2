@@ -8,7 +8,7 @@ from Components.Label import Label
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Sources.StaticText import StaticText
 from Screens.Screen import Screen, ScreenSummary
-from Tools.Directories import SCOPE_GUISKIN, SCOPE_PLUGINS, SCOPE_SKINS, fileReadXML, resolveFilename
+from Tools.Directories import SCOPE_GUISKIN, SCOPE_PLUGINS, SCOPE_SKINS, fileReadXML, resolveFilename  # noqa F401
 
 MODULE_NAME = __name__.split(".")[-1]
 

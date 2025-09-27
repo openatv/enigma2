@@ -1,11 +1,9 @@
-from os import path
 
-from enigma import eAVControl, eServiceReference, iPlayableService, iServiceInformation
+from enigma import eAVControl, iPlayableService, iServiceInformation
 
 from Components.Element import cached
 from Components.Converter.Converter import Converter
 # from Components.Converter.Poll import Poll
-from Tools.Directories import fileReadLine
 from Tools.Transponder import ConvertToHumanReadable
 
 MODULE_NAME = __name__.split(".")[-1]

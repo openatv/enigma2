@@ -11,7 +11,7 @@ from Components.config import ConfigSelection, ConfigSlider, ConfigSubsection, C
 from Components.Console import Console
 from Components.International import international
 from Components.SystemInfo import BoxInfo
-from Tools.Directories import SCOPE_KEYMAPS, SCOPE_SKINS, fileReadLine, fileReadLines, fileReadXML, fileWriteLine, resolveFilename
+from Tools.Directories import SCOPE_KEYMAPS, SCOPE_SKINS, fileReadLine, fileReadXML, fileWriteLine, resolveFilename
 
 MODULE_NAME = __name__.split(".")[-1]
 

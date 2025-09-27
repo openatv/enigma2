@@ -4,7 +4,7 @@ from xml.sax.handler import ContentHandler
 from enigma import ePoint, eTimer
 
 from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
-from Components.config import ConfigPassword, ConfigText, KEY_0, KEY_ASCII, KEY_BACKSPACE, KEY_DELETE, KEY_LEFT, KEY_RIGHT, config
+from Components.config import ConfigPassword, ConfigText, KEY_0, KEY_ASCII, KEY_BACKSPACE, KEY_DELETE, KEY_LEFT, KEY_RIGHT, config  # noqa F401
 from Components.ConfigList import ConfigList
 from Components.Label import Label
 from Components.Pixmap import Pixmap

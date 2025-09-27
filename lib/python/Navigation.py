@@ -9,7 +9,7 @@ import RecordTimer
 import Scheduler
 import ServiceReference
 from Components.config import config
-from Components.ImportChannels import ImportChannels
+from Components.ImportChannels import ImportChannels  # noqa F401
 from Components.ParentalControl import parentalControl
 from Components.PluginComponent import plugins
 from Components.RecordingConfig import recType

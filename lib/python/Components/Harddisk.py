@@ -1,5 +1,5 @@
 from glob import glob
-from os import listdir, lstat, mkdir, popen, remove, statvfs, system, walk
+from os import listdir, lstat, mkdir, remove, statvfs, system, walk
 from os.path import abspath, dirname, exists, isfile, islink, ismount, join, realpath
 from re import search, sub
 from time import sleep, time

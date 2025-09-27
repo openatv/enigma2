@@ -1,3 +1,5 @@
+# flake8: noqa: F401
+
 from os import stat
 from os.path import join, normpath, realpath, split, splitext
 from random import shuffle
