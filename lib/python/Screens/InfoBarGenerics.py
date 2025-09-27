@@ -2046,7 +2046,7 @@ class SecondInfoBar(Screen):
 		refstr = serviceref.ref.toString()
 		for timer in self.session.nav.RecordTimer.timer_list:
 			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
-				cb_func = lambda ret: not ret or self.removeTimer(timer)
+				cb_func = lambda ret: not ret or self.removeTimer(timer)  # noqa E731
 				self.session.openWithCallback(cb_func, MessageBox, _("Do you really want to delete '%s'?") % event.getEventName())
 				break
 		else:

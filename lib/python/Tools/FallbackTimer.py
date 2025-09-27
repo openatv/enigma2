@@ -3,7 +3,6 @@ from Components.config import config
 from Screens.MessageBox import MessageBox
 from timer import TimerEntry as TimerObject
 from urllib.parse import quote
-from xml.etree.ElementTree import fromstring
 from json import loads
 from requests import get, exceptions
 from twisted.internet.threads import deferToThread

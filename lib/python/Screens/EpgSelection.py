@@ -1429,17 +1429,17 @@ class EPGSelection(Screen):
 		if foundtimer:
 			timer = foundtimer
 			if timer.isRunning():
-				cb_func1 = lambda ret: self.removeTimer(timer)
-				cb_func2 = lambda ret: self.editTimer(timer)
+				cb_func1 = lambda ret: self.removeTimer(timer)  # noqa E731
+				cb_func2 = lambda ret: self.editTimer(timer)  # noqa E731
 				menu = [
 					(_("Delete Timer"), "CALLFUNC", self.RemoveChoiceBoxCB, cb_func1),
 					(_("Edit Timer"), "CALLFUNC", self.RemoveChoiceBoxCB, cb_func2)
 				]
 			else:
-				cb_func1 = lambda ret: self.removeTimer(timer)
-				cb_func2 = lambda ret: self.editTimer(timer)
-				cb_func3 = lambda ret: self.disableTimer(timer)
-				cb_func4 = lambda ret: self.enableTimer(timer)
+				cb_func1 = lambda ret: self.removeTimer(timer)  # noqa E731
+				cb_func2 = lambda ret: self.editTimer(timer)  # noqa E731
+				cb_func3 = lambda ret: self.disableTimer(timer)  # noqa E731
+				cb_func4 = lambda ret: self.enableTimer(timer)  # noqa E731
 				menu = [
 					(_("Delete Timer"), "CALLFUNC", self.RemoveChoiceBoxCB, cb_func1),
 					(_("Edit Timer"), "CALLFUNC", self.RemoveChoiceBoxCB, cb_func2)
@@ -1451,7 +1451,7 @@ class EPGSelection(Screen):
 			title = _("Select action for timer %s:") % event.getEventName()
 		else:
 			if not manual:
-				cb_func1 = lambda ret: self.doRecordTimer(True)
+				cb_func1 = lambda ret: self.doRecordTimer(True)  # noqa E731
 				menu = [
 					(_("Add RecordTimer"), "CALLFUNC", self.RemoveChoiceBoxCB, cb_func1),
 					(_("Add ZapTimer"), "CALLFUNC", self.ChoiceBoxCB, self.doZapTimer),

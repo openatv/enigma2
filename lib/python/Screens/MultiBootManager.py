@@ -112,7 +112,7 @@ class MultiBootManager(Screen):
 		imageList = []
 		if slotImages:
 			slotCode, bootCode = MultiBoot.getCurrentSlotAndBootCodes()
-			slotImageList = sorted(slotImages.keys(), key=lambda x: (not x.isnumeric(), int(x) if x.isnumeric() else x))
+			slotImageList = sorted(slotImages.keys(), key=lambda x: (not x.isnumeric(), int(x) if x.isnumeric() else x))  # noqa E731
 			currentMsg = "  -  %s" % _("Current")
 			slotMsg = _("Slot '%s' %s: %s%s")
 			imageLists = {}
@@ -877,7 +877,7 @@ class ChkrootSlotManager(Setup):
 		TARGET = self.deviceData[self.ChkrootSlotManagerDevice][0].split("/")[-1]
 		TARGET_DEVICE = f"/dev/{TARGET}"
 		PART_SUFFIX = "p" if "mmcblk" in TARGET else ""
-		PART = lambda n: f"{TARGET_DEVICE}{PART_SUFFIX}{n}"
+		PART = lambda n: f"{TARGET_DEVICE}{PART_SUFFIX}{n}"  # noqa E731
 		MOUNTPOINT = "/tmp/boot"
 		symlinkPath = "/dev/block/by-name/others"
 		if exists(symlinkPath):
@@ -1071,7 +1071,7 @@ class UBISlotManager(Setup):
 		TARGET = self.deviceData[self.UBISlotManagerDevice][0].split("/")[-1]
 		TARGET_DEVICE = f"/dev/{TARGET}"
 		PART_SUFFIX = "p" if "mmcblk" in TARGET else ""
-		PART = lambda n: f"{TARGET_DEVICE}{PART_SUFFIX}{n}"
+		PART = lambda n: f"{TARGET_DEVICE}{PART_SUFFIX}{n}"  # noqa E731
 		MOUNTPOINT = "/tmp/boot"
 
 		if exists(TARGET_DEVICE):

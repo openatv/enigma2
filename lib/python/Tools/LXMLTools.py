@@ -5,7 +5,7 @@ def elementsWithTag(el, tag):
 	# fiiixme! (works but isn't nice)
 	if isinstance(tag, str):
 		s = tag
-		tag = lambda x: x == s
+		tag = lambda x: x == s  # noqa E731
 
 	for x in el:
 		if not x.tag:
