@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-27 15:35+0000\n"
-"PO-Revision-Date: 2025-08-27 12:02+0000\n"
+"PO-Revision-Date: 2025-09-10 05:02+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Weblate 5.13\n"
+"X-Generator: Weblate 5.14-dev\n"
 "X-SourceCharset: UTF-8\n"
 "X-Generated: TM2TURK by thawtes\n"
 
@@ -1277,7 +1277,7 @@ msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV
 msgstr "“处理来自电视的待机”比“处理来自电视的输入”具有更高的优先级。"
 
 msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
-msgstr "如果在录制时解扰失败，'解扰和录制ECM' 提供之后进行解扰的选项。'不解扰，录制 ECM'则保存加扰录像，可在回放时进行解扰。 “正常”表示解扰录像，但不录制 ECM。"
+msgstr "如果在录制时解扰失败，'解扰和录制ECM' 提供之后进行解扰的选项。'不解扰，录制 ECM'则保存加扰录像，可在播放时进行解扰。 “正常”表示解扰录像，但不录制 ECM。"
 
 msgid "'WeatherPlugin' is not installed!"
 msgstr "'天气插件' 未安装！"
@@ -4440,7 +4440,7 @@ msgid "Configuration mode"
 msgstr "配置模式"
 
 msgid "Configuration options for the HELP screen can be found in 'MENU > Setup > Usage & User Interface > Settings'."
-msgstr "帮助屏幕的配置选项可在“菜单>设置>使用偏好/用户界面>设置”中找到。"
+msgstr "帮助屏幕的配置选项可在“菜单>设置>使用偏好/图形界面>设置”中找到。"
 
 msgid "Configure DNS (name servers)"
 msgstr "配置 DNS（名称服务器）"
@@ -4542,10 +4542,10 @@ msgid "Configure the aspect ratio of the screen."
 msgstr "配置屏幕的画面比例。"
 
 msgid "Configure the behavior of the 'pause' key when movie playback is already paused."
-msgstr "配置在电影回放已经暂停的情况下\"pause\" 键的行为。"
+msgstr "配置在电影播放已经暂停的情况下\"pause\" 键的行为。"
 
 msgid "Configure the behavior when movie playback is manually stopped."
-msgstr "配置手动停止电影回放后的行为。"
+msgstr "配置手动停止电影播放后的行为。"
 
 msgid "Configure the behavior when movie playback is started."
 msgstr "配置影片播放开始后的行为。"
@@ -4922,7 +4922,7 @@ msgid "Continue in background"
 msgstr "在后台继续"
 
 msgid "Continue playback"
-msgstr "继续回放"
+msgstr "继续播放"
 
 msgid "Continue playing"
 msgstr "继续播放"
@@ -13408,13 +13408,13 @@ msgid "Play the selected service"
 msgstr "播放选择的频道"
 
 msgid "Playback Settings"
-msgstr "回放设置"
+msgstr "播放设置"
 
 msgid "Playback Time:"
 msgstr "播放时间："
 
 msgid "Playback, Recording & Time Shift"
-msgstr "播放、录制及时移"
+msgstr "播放 / 录制 / 时移"
 
 msgid "Playlist"
 msgstr "播放列表"
@@ -16116,7 +16116,7 @@ msgid "Select Media Location"
 msgstr "选择媒体位置"
 
 msgid "Select Playback Location"
-msgstr "选择回放位置"
+msgstr "选择播放位置"
 
 msgid "Select Quad Channels"
 msgstr "选择四画面频道"
@@ -16481,7 +16481,7 @@ msgid "Select the currently highlighted bouquet"
 msgstr "选择当前突出显示的频道分组"
 
 msgid "Select the currently highlighted locale/language for the user interface"
-msgstr "为用户界面选择当前突出显示的区域设置/语言"
+msgstr "为图形界面选择当前突出显示的区域设置/语言"
 
 msgid "Select the currently highlighted service"
 msgstr "选择当前突出显示的频道"
@@ -20116,7 +20116,7 @@ msgstr ""
 
 #, python-format
 msgid "The user interface of your %s %s is restarting"
-msgstr "正在重新启动 %s %s 的用户界面"
+msgstr "正在重新启动 %s %s 的图形界面"
 
 #, python-format
 msgid ""
@@ -20124,7 +20124,7 @@ msgid ""
 "due to an error in StartEnigma.py"
 msgstr ""
 "由于 StartEnigma.py 的错误。\n"
-"%s %s 的用户界面正在重启"
+"%s %s 的图形界面正在重启"
 
 #, python-format
 msgid "The user interface of your %s %s will be stopped to run Kodi"
@@ -21800,7 +21800,7 @@ msgid "User defined transponder"
 msgstr "用户定义的转发器"
 
 msgid "User interface settings"
-msgstr "用户界面设置"
+msgstr "图形界面设置"
 
 msgid "User logo:"
 msgstr "用户 LOGO："
