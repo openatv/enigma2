@@ -139,7 +139,7 @@ class CronTimers(Screen):
 			name = str(self["list"].getCurrent()[0]) if self["list"].getCurrent() else ""
 		except Exception:
 			name = ""
-		desc = "%s: %s" % (_("Current status"), self.summary_running)
+		desc = "%s %s" % (_("Current Status:"), self.summary_running)
 		for cb in self.onChangedEntry:
 			cb(name, desc)
 

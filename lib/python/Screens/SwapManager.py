@@ -227,12 +227,12 @@ class Swap(Screen):
 			self["inactive"].hide()
 			self["active"].show()
 			self["key_red"].setText(_("Deactivate"))
-			self["swapactive_summary"].setText(f"{_("Current Status: ")} {_("Active")}")
+			self["swapactive_summary"].setText(f"{_("Current Status:")} {_("Active")}")
 		else:
 			self["inactive"].show()
 			self["active"].hide()
 			self["key_red"].setText(_("Activate"))
-			self["swapactive_summary"].setText(f"{_("Current Status: ")} {_("Inactive")}")
+			self["swapactive_summary"].setText(f"{_("Current Status:")} {_("Inactive")}")
 
 		scanning = _("Enable Swap at startup")
 		self["lab1"].setText(scanning)

@@ -125,3 +125,8 @@ translate = _("Upper USB")
 translate = _("eMMC")
 translate = _("eSATA")
 translate = _("Playback Time:")  # used in Metrix skin
+
+
+# temprary for disabled code in Setup.py
+translate = _("Setup entry sort")
+translate = _("Enable to display setup entries alphabetically.")
