@@ -12,7 +12,7 @@ from Components.SelectionList import SelectionList
 from Components.Sources.StaticText import StaticText
 from Components.SystemInfo import BoxInfo
 from Plugins.Plugin import PluginDescriptor
-from Screens.ChannelSelection import *
+from Screens.ChannelSelection import *  # noqa: F403
 from Screens.ChoiceBox import ChoiceBox
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
@@ -21,6 +21,8 @@ from ServiceReference import ServiceReference
 from Tools.BoundFunction import boundFunction
 from Tools.CIHelper import cihelper
 from Tools.XMLTools import stringToXML
+
+# flake8: noqa: F405
 
 
 class CIselectMainMenu(Screen):
