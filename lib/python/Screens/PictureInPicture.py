@@ -107,7 +107,7 @@ class PictureInPicture(Screen):
 		config.av.pip.value[0] = x
 		config.av.pip.value[1] = y
 		w = config.av.pip.value[2]
-		h = config.av.pip.value[3]
+		h = config.av.pip.value[3]  # noqa F841
 		if config.av.pip_mode.value == "cascade":
 			x = MAX_X - w
 			y = 0

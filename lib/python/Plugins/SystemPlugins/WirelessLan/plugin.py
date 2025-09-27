@@ -314,13 +314,12 @@ class WlanScan(Screen):
 		return essid, bssid, _("Signal: ") + str(signal), _("Max. bitrate: ") + str(maxrate), _("Encrypted: ") + encryption, _("Interface: ") + str(iface), frequency_norm, self.divpng
 
 	def updateAPList(self):
-		newList = []
-		newList = self.getAccessPoints(refresh=True)
+		newList = self.getAccessPoints(refresh=True)  # noqa F841
 		self.newAPList = []
 		tmpList = []
 		newListIndex = None
 		currentListEntry = None
-		currentListIndex = None
+		currentListIndex = None  # noqa F841
 
 		for ap in list(self.oldlist.keys()):
 			data = self.oldlist[ap]['data']

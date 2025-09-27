@@ -1,6 +1,6 @@
 from time import time
 
-from enigma import eEPGCache, eServiceReference, eServiceCenter, iPlayableService, iServiceInformation, eTimer
+from enigma import eEPGCache, eServiceReference, eServiceCenter, iPlayableService, iServiceInformation
 
 from Components.Element import cached
 from Components.PerServiceDisplay import PerServiceBase

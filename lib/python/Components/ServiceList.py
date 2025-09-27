@@ -1338,6 +1338,7 @@ class ServiceList(ServiceListBase, ServiceListTemplateParser):
 							res.append((MultiContentEntryLinearGradient(pos=pos, size=size, direction=gradientDirection, startColor=gradientStart, midColor=gradientMid, endColor=gradientEnd, startColorSelected=gradientStartSelected, midColorSelected=gradientMidSelected, endColorSelected=gradientEndSelected, cornerRadius=cornerRadius, cornerEdges=cornerEdges)))
 					else:
 						borderColor = item.get("borderColor", defaults.get("borderColor"))
+						borderWidth = int(item.get("borderWidth", 0))
 						borderColorSelected = item.get("borderColorSelected", defaults.get("borderColorSelected"))
 						res.append((MultiContentEntryRectangle(pos=pos, size=size, backgroundColor=foregroundColor, backgroundColorSelected=foregroundColorSelected, borderWidth=borderWidth, borderColor=borderColor, borderColorSelected=borderColorSelected, cornerRadius=cornerRadius, cornerEdges=cornerEdges)))
 

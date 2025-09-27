@@ -42,7 +42,7 @@ class InputDeviceSelection(Screen):
 
 	def buildInterfaceList(self, device, description, type, isinputdevice=True):
 		divpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "div-h.png"))
-		activepng = None
+		# activepng = None
 		devicepng = None
 		enabled = inputDevices.getDeviceAttribute(device, "enabled")
 		if type == "remote":
@@ -131,7 +131,7 @@ class InputDeviceSetup(Setup):
 		# self.skinName.insert(0, "InputDeviceDriverSetup")
 		self.onClose.append(self.cleanup)
 		# For generating strings into .po only.
-		devicenames = [
+		devicenames = [  # noqa: F841
 			_("%s %s front panel") % getBoxDisplayName(),
 			_("%s %s front panel") % getBoxDisplayName(),
 			_("%s %s remote control (native)") % getBoxDisplayName(),

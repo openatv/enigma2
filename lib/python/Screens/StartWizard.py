@@ -1,7 +1,6 @@
 from os import listdir, makedirs, stat, statvfs
 from os.path import join, isdir
 from re import search
-from shlex import split
 
 from enigma import eTimer
 

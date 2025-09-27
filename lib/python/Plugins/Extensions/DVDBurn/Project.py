@@ -3,6 +3,7 @@ from Components.config import config, ConfigSubsection, ConfigInteger, ConfigTex
 from . import Title
 import xml.dom.minidom
 from Tools.Directories import resolveFilename, SCOPE_PLUGINS, SCOPE_FONTS
+from Tools.ISO639 import ISO639Language
 
 
 class ConfigColor(ConfigSequence):
@@ -101,7 +102,7 @@ class Project:
 			for x in list:
 				file.write(x)
 			file.close()
-		except:
+		except OSError:
 			return False
 		return filename
 
@@ -250,9 +251,6 @@ class MenuTemplate(Project):
 		ret = Project.loadProject(self, filename)
 		Project.error = self.error
 		return ret
-
-
-from Tools.ISO639 import ISO639Language
 
 
 class DVDISO639Language(ISO639Language):

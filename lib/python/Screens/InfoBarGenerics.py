@@ -1,3 +1,5 @@
+# flake8: noqa F401, E402
+
 from bisect import insort
 from datetime import datetime
 from inspect import getfullargspec
@@ -94,12 +96,12 @@ def setResumePoint(session):
 			if not pos[0]:
 				key = ref.toString()
 				lru = int(time())
-				l = seek.getLength()
-				if l:
-					l = l[1]
+				length = seek.getLength()
+				if length:
+					length = length[1]
 				else:
-					l = None
-				resumePointCache[key] = [lru, pos[1], l]
+					length = None
+				resumePointCache[key] = [lru, pos[1], length]
 				for k, v in list(resumePointCache.items()):
 					if v[0] < lru:
 						candidate = k
@@ -2046,7 +2048,7 @@ class SecondInfoBar(Screen):
 		refstr = serviceref.ref.toString()
 		for timer in self.session.nav.RecordTimer.timer_list:
 			if timer.eit == eventid and timer.service_ref.ref.toString() == refstr:
-				cb_func = lambda ret: not ret or self.removeTimer(timer)
+				cb_func = lambda ret: not ret or self.removeTimer(timer)  # noqa E731
 				self.session.openWithCallback(cb_func, MessageBox, _("Do you really want to delete '%s'?") % event.getEventName())
 				break
 		else:
@@ -2077,6 +2079,10 @@ class SecondInfoBar(Screen):
 						if change_time:
 							simulTimerList = self.session.nav.RecordTimer.record(entry)
 					if simulTimerList is not None:
+						try:
+							from Screens.TimerEdit import TimerSanityConflict
+						except Exception:  # maybe already been imported from another module
+							pass
 						self.session.openWithCallback(self.finishSanityCorrection, TimerSanityConflict, simulTimerList)
 			self["key_green"].setText(_("Remove timer"))
 			self.key_green_choice = self.REMOVE_TIMER
@@ -3549,7 +3555,7 @@ class InfoBarTimeshiftState(InfoBarPVRState):
 	def __timeshiftEventName(self, state):
 		if self.timeshiftEnabled() and exists("%spts_livebuffer_%s.meta" % (config.timeshift.path.value, self.pts_currplaying)):
 			readmetafile = open("%spts_livebuffer_%s.meta" % (config.timeshift.path.value, self.pts_currplaying))
-			servicerefname = readmetafile.readline()[0:-1]
+			servicerefname = readmetafile.readline()[0:-1]  # noqa F841
 			eventname = readmetafile.readline()[0:-1]
 			readmetafile.close()
 			self.pvrStateDialog["eventname"].setText(eventname)
@@ -4158,15 +4164,15 @@ class InfoBarRedButton:
 		for x in self.onReadyForAIT:
 			try:
 				x(orgId)
-			except Exception as ErrMsg:
-				print("[InfoBarGenerics] updateAIT error", ErrMsg)
+			except Exception as err:
+				print(f"[InfoBarGenerics] updateAIT error {err}")
 				# self.onReadyForAIT.remove(x)
 
 	def updateInfomation(self):
 		try:
 			self["HbbtvApplication"].setApplicationName("")
 			self.updateAIT()
-		except Exception as ErrMsg:
+		except Exception:
 			pass
 
 	def detectedHbbtvApplication(self):
@@ -4179,7 +4185,7 @@ class InfoBarRedButton:
 					self.updateAIT(x[3])
 					self["HbbtvApplication"].setApplicationName(x[1])
 					break
-		except Exception as ErrMsg:
+		except Exception:
 			pass
 
 	def activateRedButton(self):
@@ -4511,9 +4517,9 @@ class InfoBarCueSheetSupport:
 			# Hmm, this implies we don't resume if the length is unknown.
 			if (last > 900000) and (not length[1] or (last < length[1] - 900000)):
 				self.resume_point = last
-				l = last // 90000
+				last = last // 90000
 				if "ask" in config.usage.on_movie_start.value or not length[1]:
-					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Do you want to resume this playback?") + "\n" + (_("Resume position at %s") % ("%d:%02d:%02d" % (l / 3600, l % 3600 / 60, l % 60))), timeout=30, default="yes" in config.usage.on_movie_start.value)
+					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Do you want to resume this playback?") + "\n" + (_("Resume position at %s") % ("%d:%02d:%02d" % (last / 3600, last % 3600 / 60, last % 60))), timeout=30, default="yes" in config.usage.on_movie_start.value)
 				elif config.usage.on_movie_start.value == "resume":
 					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Resuming playback"), timeout=2, type=MessageBox.TYPE_INFO)
 
@@ -4802,7 +4808,7 @@ class InfoBarSubtitleSupport:
 	def subtitleQuickMenu(self):
 		service = self.session.nav.getCurrentService()
 		subtitle = service and service.subtitle()
-		subtitlelist = subtitle and subtitle.getSubtitleList()
+		subtitlelist = subtitle and subtitle.getSubtitleList()  # noqa F841
 		if self.selected_subtitle and self.selected_subtitle != (0, 0, 0, 0):
 			from Screens.AudioSelection import QuickSubtitlesConfigMenu
 			self.session.open(QuickSubtitlesConfigMenu, self)

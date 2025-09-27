@@ -102,7 +102,7 @@ def stripUnchangedMsgstrs(poEntry):
         if (poEntry.msgid_plural == poEntry.msgstr_plural[1]):
           poEntry.msgstr_plural[1] = ""
           percentCleared += 50
-      except:
+      except Exception:
         pass  # let's just pretend that didn't happen >_<
     elif poEntry.msgid == poEntry.msgstr:
       poEntry.msgstr = ""
@@ -260,7 +260,7 @@ def normaliseAllPoFiles(filesGlob):
               tcomment="normalised"
             )
             poFile.append(newEntry)
-          except:
+          except Exception:
             print("error adding")
             pass
         elif len(matchedEntries) == 1 and matchedEntries[0].obsolete:

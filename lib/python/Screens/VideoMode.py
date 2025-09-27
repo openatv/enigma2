@@ -153,7 +153,7 @@ class VideoSetup(ConfigListScreen, Screen):
 				self.getVerify_videomode(config.av.autores_mode_sd, config.av.autores_rate_sd)
 				self.list.append(getConfigListEntry(pgettext(_("Video output mode for SD"), _("%sMode for SD (up to 576p)") % self.prev_sd), config.av.autores_mode_sd[config.av.videoport.value], _("This option configures the video output mode (or resolution)."), "check_sd"))
 				self.list.append(getConfigListEntry(_("%sRefresh rate for SD") % self.prev_sd, config.av.autores_rate_sd[config.av.autores_mode_sd[config.av.videoport.value].value], _("Configure the refresh rate of the screen."), "check_sd"))
-				modelist = avSwitch.getModeList(config.av.videoport.value)
+				modelist = avSwitch.getModeList(config.av.videoport.value)  # noqa F841
 				if "720p" in avSwitch.readAvailableModes():
 					self.getVerify_videomode(config.av.autores_mode_hd, config.av.autores_rate_hd)
 					self.list.append(getConfigListEntry(pgettext(_("Video output mode for HD"), _("%sMode for HD (up to 720p)") % self.prev_hd), config.av.autores_mode_hd[config.av.videoport.value], _("This option configures the video output mode (or resolution)."), "check_hd"))
@@ -576,8 +576,8 @@ class AutoVideoMode(Screen):
 			current_pol = "i"
 		elif "p" in current_mode:
 			current_pol = "p"
-		current_res = current_pol and current_mode.split(current_pol)[0].replace("\n", "") or ""
-		current_rate = current_pol and current_mode.split(current_pol)[0].replace("\n", "") and current_mode.split(current_pol)[1].replace("\n", "") or ""
+		current_res = current_pol and current_mode.split(current_pol)[0].replace("\n", "") or ""  # noqa F841
+		current_rate = current_pol and current_mode.split(current_pol)[0].replace("\n", "") and current_mode.split(current_pol)[1].replace("\n", "") or ""  # noqa F841
 
 		write_mode = None
 		new_mode = None

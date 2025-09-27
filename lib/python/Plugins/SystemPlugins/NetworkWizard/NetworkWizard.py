@@ -242,7 +242,7 @@ class NetworkWizard(Wizard, ShowRemoteControl):
 					text3 = _("SSID") + ":\t" + str(status[self.selectedInterface]["essid"]) + "\n"
 					text4 = _("Link quality:") + "\t" + str(status[self.selectedInterface]["quality"]) + "\n"
 					text5 = _("Signal strength") + ":\t" + str(status[self.selectedInterface]["signal"]) + "\n"
-					text6 = _("Bitrate") + ":\t" + str(status[self.selectedInterface]["bitrate"]) + "\n"
+					text6 = _("Bitrate") + ":\t" + str(status[self.selectedInterface]["bitrate"]) + "\n"  # noqa F841
 					text7 = _("Encryption") + ": " + str(status[self.selectedInterface]["encryption"]) + "\n"
 					text8 = _("Please press OK to continue.")
 					infotext = text1 + text2 + text3 + text4 + text5 + text7 + "\n" + text8
@@ -352,7 +352,7 @@ class NetworkWizard(Wizard, ShowRemoteControl):
 
 	def isWlanPluginInstalled(self):
 		try:
-			from Plugins.SystemPlugins.WirelessLan.Wlan import iWlan
+			from Plugins.SystemPlugins.WirelessLan.Wlan import iWlan  # noqa F401
 		except ImportError:
 			self.WlanPluginInstalled = False
 		else:

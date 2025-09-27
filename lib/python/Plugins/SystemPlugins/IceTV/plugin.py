@@ -782,7 +782,7 @@ class EPGFetcher:
         channels = list(set(channels) - added_channels)
         added_channels = list(added_channels)
         epgcache = eEPGCache.getInstance()
-        channels_lists = [l for l in (added_channels, channels) if l]
+        channels_lists = [x for x in (added_channels, channels) if x]
         last_update_time = 0
         shows = None
         mapping_errors = set()
@@ -1039,7 +1039,7 @@ class EPGFetcher:
                 timer["state"] = "pending"
                 timer["message"] = "Will record on %s" % config.plugins.icetv.device.label.value
             req.data["timers"] = [timer]
-            res = req.put().json()
+            res = req.put().json()  # noqa F841
             self.addLog("Timer '%s' updated OK" % local_timer.name)
         except (OSError, RuntimeError, KeyError) as ex:
             _logResponseException(self, _("Can not update timer"), ex)
@@ -1098,12 +1098,12 @@ class EPGFetcher:
 
     def postStatus(self, timer, state, message):
         try:
-            channel_id = self.serviceToIceChannelId(timer.service_ref)
+            channel_id = self.serviceToIceChannelId(timer.service_ref)  # noqa F841
             req = ice.Timer(timer.ice_timer_id)
             req.data["message"] = message
             req.data["state"] = state
             # print "[EPGFetcher] postStatus", timer.name, message, state
-            res = req.put()
+            res = req.put()  # noqa F841
         except (OSError, RuntimeError, KeyError) as ex:
             _logResponseException(self, _("Can not update timer status"), ex)
         self.deferredPostStatus(timer)
@@ -1122,7 +1122,7 @@ class EPGFetcher:
             _logResponseException(self, _("Can not post scan information"), ex)
 
     def postPvrLogs(self):
-        log_list = [l for l in self.log if not l.sent]
+        log_list = [x for x in self.log if not x.sent]
         print("[EPGFetcher] postPvrLogs", len(log_list))
         if not log_list:
             return
@@ -1131,8 +1131,8 @@ class EPGFetcher:
             req.data["logs"] = log_list
             res = req.post()
             print("[EPGFetcher] postPvrLogs", res, res.json()["count_of_log_entries"])
-            for l in log_list:
-                l.sent = True
+            for line in log_list:
+                line.sent = True
         except (OSError, RuntimeError, KeyError) as ex:
             _logResponseException(self, _("Can not post PVR log information"), ex)
 
@@ -1290,7 +1290,7 @@ class IceTVMain(ChoiceBox):
         _session.open(IceTVNeedPassword)
 
     def showLog(self, res=None):
-        _session.open(IceTVLogView, "\n".join(str(l) for l in fetcher.log))
+        _session.open(IceTVLogView, "\n".join(str(x) for x in fetcher.log))
 
 
 class IceTVLogView(TextBox):

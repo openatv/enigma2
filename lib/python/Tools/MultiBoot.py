@@ -582,7 +582,7 @@ class MultiBootClass():
 			if date.startswith("1970"):
 				date = datetime.fromtimestamp(stat(join(path, "usr/share/bootlogo.mvi")).st_mtime).strftime("%Y%m%d")
 			date = max(date, datetime.fromtimestamp(stat(join(path, "usr/bin/enigma2")).st_mtime).strftime("%Y%m%d"))
-		except OSError as err:
+		except OSError:
 			date = "00000000"
 		return date
 
@@ -783,7 +783,7 @@ class MultiBootClass():
 				try:
 					with open("/sys/block/mmcblk0boot1/force_ro", "w") as fn:
 						fn.write("0")
-				except Exception as e:
+				except Exception:
 					self.callback(2)
 					return
 			if exists(realDevice) and exists(f"/sys/block/{basename(realDevice)}"):
@@ -793,5 +793,6 @@ class MultiBootClass():
 
 	def wipeChkrootComplete(self, result, retval, extra_args=None):
 		self.callback(retval)
+
 
 MultiBoot = MultiBootClass()

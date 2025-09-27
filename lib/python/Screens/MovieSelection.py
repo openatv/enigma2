@@ -1,5 +1,5 @@
 from pickle import dump, load
-from os import W_OK, access, listdir, mkdir, rename, rmdir, stat
+from os import W_OK, access, listdir, mkdir, rename, stat
 from os.path import abspath, exists, isdir, isfile, join, normpath, pardir, realpath, split, splitext
 from time import time
 
@@ -354,10 +354,10 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 		tPreview = _("Preview")
 		tFwd = f"{_("skip forward")} ({tPreview})"
 		tBack = f"{_("skip backward")} ({tPreview})"
-		sfwd = lambda: self.seekRelative(1, config.seek.selfdefined_46.value * 90000)
-		ssfwd = lambda: self.seekRelative(1, config.seek.selfdefined_79.value * 90000)
-		sback = lambda: self.seekRelative(-1, config.seek.selfdefined_46.value * 90000)
-		ssback = lambda: self.seekRelative(-1, config.seek.selfdefined_79.value * 90000)
+		sfwd = lambda: self.seekRelative(1, config.seek.selfdefined_46.value * 90000)  # noqa E731
+		ssfwd = lambda: self.seekRelative(1, config.seek.selfdefined_79.value * 90000)  # noqa E731
+		sback = lambda: self.seekRelative(-1, config.seek.selfdefined_46.value * 90000)  # noqa E731
+		ssback = lambda: self.seekRelative(-1, config.seek.selfdefined_79.value * 90000)  # noqa E731
 		self["SeekActions"] = HelpableActionMap(self, ["MovielistSeekActions"], {
 			"playpauseService": (self.preview, _("Preview")),
 			"seekFwd": (sfwd, tFwd),
@@ -802,7 +802,7 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 		if not playInForeground:
 			print("[MovieSelection] Not playing anything in foreground.")
 			return
-		current = self.getCurrent()
+		current = self.getCurrent()  # noqa F841
 		self.session.nav.stopService()
 		self.list.playInBackground = None
 		self.list.playInForeground = None
@@ -985,7 +985,7 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 				with open(path, "rb") as fd:
 					updates = load(fd)
 				self.applyConfigSettings(updates)
-			except OSError as err:  # Ignore fail to open errors.
+			except OSError:  # Ignore fail to open errors.
 				updates = {
 					"moviesort": config.movielist.moviesort.default,
 					"description": config.movielist.description.default,
@@ -1134,7 +1134,7 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 		if self.reload_sel is None:
 			self.reload_sel = self.getCurrent()
 		if config.usage.movielist_trashcan.value and access(config.movielist.last_videodir.value, W_OK):
-			trash = createTrashcan(config.movielist.last_videodir.value)
+			trash = createTrashcan(config.movielist.last_videodir.value)  # noqa F841
 		self.loadLocalSettings()
 		self["list"].reload(self.current_ref, self.selected_tags)
 		self.updateTags()
@@ -1383,7 +1383,7 @@ class MovieSelection(Screen, SelectionEventInfo, InfoBarBase, ProtectedScreen):
 				if isfile(meta):
 					metafile = open(meta, "r+")
 					sid = metafile.readline()
-					oldtitle = metafile.readline()
+					oldtitle = metafile.readline()  # noqa F841
 					rest = metafile.read()
 					metafile.seek(0)
 					metafile.write(f"{sid}{name}\n{rest}")

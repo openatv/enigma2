@@ -4,6 +4,8 @@ from os.path import exists
 import sys  # This is needed for the twisted redirection access to stderr and stdout.
 from time import time
 
+# flake8: noqa F401, E402
+
 import Tools.RedirectOutput  # Don't remove this line. This import facilitates connecting stdout and stderr redirections to the log files.
 
 import enigma  # Establish enigma2 connections to processing methods.
@@ -64,7 +66,7 @@ class Session:
 		for plugin in plugins.getPlugins(PluginDescriptor.WHERE_SESSIONSTART):
 			try:
 				plugin.__call__(reason=0, session=self)
-			except:
+			except Exception:
 				print("[StartEnigma] Error: Plugin raised exception at WHERE_SESSIONSTART!")
 				from traceback import print_exc
 				print_exc()
@@ -323,7 +325,7 @@ class PowerKey:
 	def finishedAdd(self, answer):
 		if not isinstance(answer, bool) and answer[0]:
 			entry = answer[1]
-			simulTimerList = self.session.nav.Scheduler.record(entry)
+			simulTimerList = self.session.nav.Scheduler.record(entry)  # noqa F841
 
 	def sleepStandby(self):
 		self.doAction(action="schedulerStandby")
@@ -431,15 +433,15 @@ def runScreenTest():
 	if not RestoreSettings:
 		runNextScreen(session, screensToRun)
 	enigma.eProfileWrite("VolumeControl Screen")
-	vol = VolumeControl(session)
+	vol = VolumeControl(session)  # noqa F841
 	enigma.eProfileWrite("VolumeAdjust")
-	vol = VolumeAdjust(session)
+	vol = VolumeAdjust(session)  # noqa F841
 	enigma.eProfileWrite("Processing Screen")
-	processing = Processing(session)
+	processing = Processing(session)  # noqa F841
 	enigma.eProfileWrite("Global MessageBox Screen")
-	modalmessagebox = ModalMessageBox(session)
+	modalmessagebox = ModalMessageBox(session)  # noqa F841
 	enigma.eProfileWrite("PowerKey")
-	power = PowerKey(session)
+	power = PowerKey(session)  # noqa F841
 	if enigma.getVFDSymbolsPoll():
 		enigma.eProfileWrite("VFDSymbolsCheck")
 		from Components.VfdSymbols import SymbolsCheck

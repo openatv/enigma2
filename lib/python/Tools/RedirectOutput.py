@@ -8,12 +8,8 @@ class EnigmaLog:
 		self.line = ""
 
 	def write(self, data):
-		if sys.version_info[0] >= 3:
-			if isinstance(data, bytes):
-				data = data.decode(encoding="UTF-8", errors="ignore")
-		else:
-			if isinstance(data, unicode):
-				data = data.encode(encoding="UTF-8", errors="ignore")
+		if isinstance(data, bytes):
+			data = data.decode(encoding="UTF-8", errors="ignore")
 		self.line += data
 		if "\n" in data:
 			ePythonOutput(self.line, self.level)

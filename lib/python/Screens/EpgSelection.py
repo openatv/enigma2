@@ -563,13 +563,13 @@ class EPGSelection(Screen):
 		elif self.type == EPG_TYPE_VERTICAL:
 			curr = self[f"list{self.activeList}"].getSelectedEventId()
 			currPrg = self.myServices[self.getActivePrg()]
-			l = self[f"list{self.activeList}"]
-			l.recalcEntrySize()
+			entry = self[f"list{self.activeList}"]
+			entry.recalcEntrySize()
 			service = ServiceReference(currPrg[0])
 			stime = None
 			if self.ask_time > time():
 				stime = self.ask_time
-			l.fillSingleEPG(service, stime)
+			entry.fillSingleEPG(service, stime)
 			self[f"list{self.activeList}"].moveToEventId(curr)
 
 	def moveUp(self):
@@ -1241,15 +1241,15 @@ class EPGSelection(Screen):
 		self.onCreate()
 
 	def eventViewCallback(self, setEvent, setService, val):
-		l = self[f"list{self.activeList}"]
-		old = l.getCurrent()
+		entry = self[f"list{self.activeList}"]
+		old = entry.getCurrent()
 		if self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH:
 			self.updEvent(val, False)
 		elif val == -1:
 			self.moveUp()
 		elif val == +1:
 			self.moveDown()
-		cur = l.getCurrent()
+		cur = entry.getCurrent()
 		if (self.type == EPG_TYPE_MULTI or self.type == EPG_TYPE_GRAPH or self.type == EPG_TYPE_INFOBARGRAPH) and cur[0] is None and cur[1].ref != old[1].ref:
 			self.eventViewCallback(setEvent, setService, val)
 		else:
@@ -1272,7 +1272,7 @@ class EPGSelection(Screen):
 	def OpenSingleEPG(self):
 		cur = self[f"list{self.activeList}"].getCurrent()
 		if cur[0] is not None:
-			event = cur[0]
+			event = cur[0]  # noqa F841
 			serviceref = cur[1].ref
 			if serviceref is not None:
 				self.session.open(SingleEPG, serviceref)
@@ -1354,7 +1354,7 @@ class EPGSelection(Screen):
 		global autopoller
 		global autotimer
 		try:
-			from Plugins.Extensions.AutoTimer.plugin import main, autostart
+			# from Plugins.Extensions.AutoTimer.plugin import main, autostart
 			from Plugins.Extensions.AutoTimer.AutoTimer import AutoTimer
 			from Plugins.Extensions.AutoTimer.AutoPoller import AutoPoller
 			autopoller = AutoPoller()
@@ -1429,17 +1429,17 @@ class EPGSelection(Screen):
 		if foundtimer:
 			timer = foundtimer
 			if timer.isRunning():
-				cb_func1 = lambda ret: self.removeTimer(timer)
-				cb_func2 = lambda ret: self.editTimer(timer)
+				cb_func1 = lambda ret: self.removeTimer(timer)  # noqa E731
+				cb_func2 = lambda ret: self.editTimer(timer)  # noqa E731
 				menu = [
 					(_("Delete Timer"), "CALLFUNC", self.RemoveChoiceBoxCB, cb_func1),
 					(_("Edit Timer"), "CALLFUNC", self.RemoveChoiceBoxCB, cb_func2)
 				]
 			else:
-				cb_func1 = lambda ret: self.removeTimer(timer)
-				cb_func2 = lambda ret: self.editTimer(timer)
-				cb_func3 = lambda ret: self.disableTimer(timer)
-				cb_func4 = lambda ret: self.enableTimer(timer)
+				cb_func1 = lambda ret: self.removeTimer(timer)  # noqa E731
+				cb_func2 = lambda ret: self.editTimer(timer)  # noqa E731
+				cb_func3 = lambda ret: self.disableTimer(timer)  # noqa E731
+				cb_func4 = lambda ret: self.enableTimer(timer)  # noqa E731
 				menu = [
 					(_("Delete Timer"), "CALLFUNC", self.RemoveChoiceBoxCB, cb_func1),
 					(_("Edit Timer"), "CALLFUNC", self.RemoveChoiceBoxCB, cb_func2)
@@ -1451,7 +1451,7 @@ class EPGSelection(Screen):
 			title = _("Select action for timer %s:") % event.getEventName()
 		else:
 			if not manual:
-				cb_func1 = lambda ret: self.doRecordTimer(True)
+				cb_func1 = lambda ret: self.doRecordTimer(True)  # noqa E731
 				menu = [
 					(_("Add RecordTimer"), "CALLFUNC", self.RemoveChoiceBoxCB, cb_func1),
 					(_("Add ZapTimer"), "CALLFUNC", self.ChoiceBoxCB, self.doZapTimer),
@@ -1553,8 +1553,8 @@ class EPGSelection(Screen):
 		serviceref = cur[1]
 		if event is None:
 			return
-		eventid = event.getEventId()
-		refstr = serviceref.ref.toString()
+		eventid = event.getEventId()  # noqa F841
+		refstr = serviceref.ref.toString()  # noqa F841
 		newEntry = RecordTimerEntry(serviceref, checkOldTimers=True, dirname=preferredTimerPath(), *parseEvent(event, isZapTimer=zap), justplay=zap)
 		self.InstantRecordDialog = self.session.instantiateDialog(InstantRecordTimerEntry, newEntry, zap, zaprecord)
 		retval = [True, self.InstantRecordDialog.retval()]
@@ -2130,11 +2130,11 @@ class EPGSelection(Screen):
 		if x >= 0 and CurrentPrg[0]:
 			self["list1"].show()
 			self["currCh1"].setText(str(CurrentPrg[1]))
-			l = self["list1"]
-			l.recalcEntrySize()
+			entry = self["list1"]
+			entry.recalcEntrySize()
 			myService = ServiceReference(CurrentPrg[0])
 			self["piconCh1"].newService(myService.ref)
-			l.fillSingleEPG(myService, stime)
+			entry.fillSingleEPG(myService, stime)
 		else:
 			self["Active1"].hide()
 			self["piconCh1"].newService(None)
@@ -2145,11 +2145,11 @@ class EPGSelection(Screen):
 			self["list2"].show()
 			CurrentPrg = self.myServices[prgIndex]
 			self["currCh2"].setText(str(CurrentPrg[1]))
-			l = self["list2"]
-			l.recalcEntrySize()
+			entry = self["list2"]
+			entry.recalcEntrySize()
 			myService = ServiceReference(CurrentPrg[0])
 			self["piconCh2"].newService(myService.ref)
-			l.fillSingleEPG(myService, stime)
+			entry.fillSingleEPG(myService, stime)
 		else:
 			self["piconCh2"].newService(None)
 			self["currCh2"].setText(" ")
@@ -2159,11 +2159,11 @@ class EPGSelection(Screen):
 			self["list3"].show()
 			CurrentPrg = self.myServices[prgIndex]
 			self["currCh3"].setText(str(CurrentPrg[1]))
-			l = self["list3"]
-			l.recalcEntrySize()
+			entry = self["list3"]
+			entry.recalcEntrySize()
 			myService = ServiceReference(CurrentPrg[0])
 			self["piconCh3"].newService(myService.ref)
-			l.fillSingleEPG(myService, stime)
+			entry.fillSingleEPG(myService, stime)
 		else:
 			self["piconCh3"].newService(None)
 			self["currCh3"].setText(" ")
@@ -2174,11 +2174,11 @@ class EPGSelection(Screen):
 				self["list4"].show()
 				CurrentPrg = self.myServices[prgIndex]
 				self["currCh4"].setText(str(CurrentPrg[1]))
-				l = self["list4"]
-				l.recalcEntrySize()
+				entry = self["list4"]
+				entry.recalcEntrySize()
 				myService = ServiceReference(CurrentPrg[0])
 				self["piconCh4"].newService(myService.ref)
-				l.fillSingleEPG(myService, stime)
+				entry.fillSingleEPG(myService, stime)
 			else:
 				self["piconCh4"].newService(None)
 				self["currCh4"].setText(" ")
@@ -2189,11 +2189,11 @@ class EPGSelection(Screen):
 				self["list5"].show()
 				CurrentPrg = self.myServices[prgIndex]
 				self["currCh5"].setText(str(CurrentPrg[1]))
-				l = self["list5"]
-				l.recalcEntrySize()
+				entry = self["list5"]
+				entry.recalcEntrySize()
 				myService = ServiceReference(CurrentPrg[0])
 				self["piconCh5"].newService(myService.ref)
-				l.fillSingleEPG(myService, stime)
+				entry.fillSingleEPG(myService, stime)
 			else:
 				self["piconCh5"].newService(None)
 				self["currCh5"].setText(" ")

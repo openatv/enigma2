@@ -1,4 +1,4 @@
-from os import F_OK, R_OK, W_OK, access, listdir, makedirs, mkdir, stat
+from os import F_OK, R_OK, W_OK, access, listdir, makedirs, mkdir, stat  # noqa F401
 from os.path import dirname, exists, isdir, isfile, join as pathjoin
 from stat import ST_MTIME
 from pickle import dump, load
@@ -8,11 +8,11 @@ from enigma import getDesktop
 
 from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
 from Components.config import config
-from Components.Harddisk import harddiskmanager
+from Components.Harddisk import harddiskmanager  # noqa F401
 from Components.Input import Input
 from Components.MenuList import MenuList
 from Components.Opkg import OpkgComponent
-from Components.PluginComponent import plugins
+from Components.PluginComponent import plugins  # noqa F401
 from Components.SelectionList import SelectionList
 from Components.SystemInfo import BoxInfo
 from Components.Sources.StaticText import StaticText
@@ -148,7 +148,7 @@ class IPKGSource(Screen):
 			except OSError:
 				pass
 		desk = getDesktop(0)
-		x = int(desk.size().width())
+		x = int(desk.size().width())  # noqa F841
 		y = int(desk.size().height())
 		self["key_red"] = StaticText(_("Cancel"))
 		self["key_green"] = StaticText(_("Save"))

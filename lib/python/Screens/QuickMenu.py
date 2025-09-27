@@ -1,6 +1,6 @@
 from os.path import exists, isdir, join
 
-from enigma import pNavigation
+from enigma import pNavigation  # noqa F401
 
 import NavigationInstance
 from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
@@ -16,7 +16,7 @@ from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.PluginBrowser import PackageAction
 from Screens.Screen import Screen
 from Screens.Setup import Setup
-from Tools.Directories import SCOPE_PLUGINS, SCOPE_SKIN, fileReadLines, isPluginInstalled, resolveFilename
+from Tools.Directories import SCOPE_PLUGINS, SCOPE_SKIN, isPluginInstalled, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 
 MODULE_NAME = __name__.split(".")[-1]

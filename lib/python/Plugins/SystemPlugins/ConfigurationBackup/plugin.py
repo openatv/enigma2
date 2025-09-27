@@ -9,7 +9,7 @@ from Components.config import ConfigSelection, ConfigSubsection, KEY_LEFT, KEY_R
 from Components.ConfigList import ConfigList
 from Plugins.Plugin import PluginDescriptor
 
-from Tools.Directories import *
+from Tools.Directories import *  # noqa: F403
 from os import makedirs, listdir
 from os.path import ismount, exists
 from time import localtime

@@ -360,11 +360,11 @@ class CreateIndexTask(Task):
 		INDEXES[0:4] = struct.pack('>L', len(INDEXES) - 4)
 		indexbuffer += INDEXES
 
-		f = open(self.job.workspace + "BDMV/index.bdmv", 'w')
-		f.write(buffer(indexbuffer))
+		f = open(self.job.workspace + "BDMV/index.bdmv", 'wb')
+		f.write(indexbuffer)
 		f.close()
-		f = open(self.job.workspace + "BDMV/BACKUP/index.bdmv", 'w')
-		f.write(buffer(indexbuffer))
+		f = open(self.job.workspace + "BDMV/BACKUP/index.bdmv", 'wb')
+		f.write(indexbuffer)
 		f.close()
 
 
@@ -599,11 +599,11 @@ class CreateMplsTask(Task):
 		mplsbuffer += struct.pack('>L', len(PlayListMark))
 		mplsbuffer += PlayListMark
 
-		f = open(self.job.workspace + "BDMV/PLAYLIST/%05d.mpls" % self.mpls_num, 'w')
-		f.write(buffer(mplsbuffer))
+		f = open(self.job.workspace + "BDMV/PLAYLIST/%05d.mpls" % self.mpls_num, 'wb')
+		f.write(mplsbuffer)
 		f.close()
-		f = open(self.job.workspace + "BDMV/BACKUP/PLAYLIST/%05d.mpls" % self.mpls_num, 'w')
-		f.write(buffer(mplsbuffer))
+		f = open(self.job.workspace + "BDMV/BACKUP/PLAYLIST/%05d.mpls" % self.mpls_num, 'wb')
+		f.write(mplsbuffer)
 		f.close()
 
 
@@ -852,7 +852,7 @@ class CreateMetaTask(Task):
 			for line in dl:
 				file.write(line + '\n')
 			file.close()
-		except:
+		except OSError:
 			Task.processFinished(self, 1)
 		Task.processFinished(self, 0)
 		self.project.finished_burning = True

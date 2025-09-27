@@ -181,11 +181,11 @@ class EITFile():
                         extendedDescriptor = DescriptorExtended(lang, chunk)
                         descriptors.append(extendedDescriptor)
 
-                l = 0
+                descriptorSize = 0
                 for descriptor in descriptors:
-                    l += descriptor.size
+                    descriptorSize += descriptor.size
 
-                header = Header(event_id, start, event_duration, False, 0, l)
+                header = Header(event_id, start, event_duration, False, 0, descriptorSize)
 
                 self.Data.b.extend(header.getBytes())
 

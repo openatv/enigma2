@@ -3,12 +3,9 @@ from os.path import exists
 
 from enigma import eAVControl, getDesktop
 
-from Components.ActionMap import HelpableActionMap
-from Components.AVSwitch import avSwitch
-from Components.config import ConfigNumber, ConfigSelection, ConfigSelectionInteger, ConfigSlider, ConfigSubsection, ConfigText, ConfigYesNo, NoSave, config, configfile
+from Components.config import config, configfile
 from Components.Label import Label
 from Components.SystemInfo import BoxInfo
-from Components.Sources.StaticText import StaticText
 from Screens.Setup import Setup
 from Tools.Directories import fileReadLine, fileWriteLine
 

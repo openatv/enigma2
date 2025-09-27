@@ -1,4 +1,4 @@
-from os.path import isdir, isfile
+from os.path import isfile
 
 from enigma import eRCInput, eTimer, eWindow, getDesktop
 

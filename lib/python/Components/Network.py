@@ -188,7 +188,7 @@ class Network:
 		(iface, data, callback) = extra_args
 		ipRegexp = r"[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"
 		ipPattern = compile(ipRegexp)
-		ipLinePattern = compile(ipRegexp)
+		# ipLinePattern = compile(ipRegexp)
 		for line in result.splitlines():
 			print("[Network] %s" % line[0:7])
 			if line[0:7] == "0.0.0.0":
@@ -724,8 +724,8 @@ class Network:
 		return "wext"
 
 	def calcNetmask(self, nmask):
-		mask = 1 << 31
-		xnet = (1 << 32) - 1
+		# mask = 1 << 31
+		# xnet = (1 << 32) - 1
 		cidrRange = range(0, 32)
 		cidr = int(nmask)
 		if cidr not in cidrRange:

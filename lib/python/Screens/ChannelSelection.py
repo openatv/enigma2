@@ -2,7 +2,7 @@ from os import listdir, remove, rename
 from os.path import join
 from time import localtime, strftime, time
 
-from enigma import eActionMap, eDBoxLCD, eDVBDB, eEPGCache, ePoint, eRCInput, eServiceCenter, eServiceReference, eServiceReferenceDVB, eTimer, getPrevAsciiCode, iPlayableService, iServiceInformation, loadPNG, getBestPlayableServiceReference
+from enigma import eActionMap, eDBoxLCD, eDVBDB, eEPGCache, ePoint, eRCInput, eServiceCenter, eServiceReference, eServiceReferenceDVB, eTimer, getPrevAsciiCode, iPlayableService, iServiceInformation, loadPNG
 
 from RecordTimer import AFTEREVENT, RecordTimerEntry, TIMERTYPE
 from ServiceReference import ServiceReference, getStreamRelayRef, hdmiInServiceRef, serviceRefAppendPath, service_types_radio_ref, service_types_tv_ref
@@ -394,7 +394,7 @@ class ChannelSelectionBase(Screen):
 	def getBouquetNumOffset(self, bouquet):
 		if not config.usage.multibouquet.value:
 			return 0
-		bStr = bouquet.toString()  # TODO Do we need this?
+		bStr = bouquet.toString()  # TODO Do we need this?  # noqa F841
 		offset = 0
 		if "userbouquet." in bouquet.toCompareString():
 			serviceHandler = eServiceCenter.getInstance()
@@ -1026,7 +1026,7 @@ class ChannelSelectionEdit:
 	def removeBouquet(self):
 		# refstr = self.getCurrentSelection().toString()  # DEBUG NOTE: This doesn't appear to be used.
 		# pos = refstr.find("FROM BOUQUET \"")  # DEBUG NOTE: This doesn't appear to be used.
-		filename = None
+		# filename = None
 		self.removeCurrentService(bouquet=True)
 
 	def removeSatelliteService(self):
@@ -1253,14 +1253,14 @@ class ChannelSelectionEdit:
 		self.session.openWithCallback(self.exitContext, ChannelContextMenu, self)
 
 	def exitContext(self, close=False):
-		l = self["list"]
-		l.setFontsize()
-		l.setItemsPerPage()
-		# l.setMode("MODE_TV") # disabled because there is something wrong
-		# l.setMode("MODE_TV") automatically sets "hide number marker" to
+		entry = self["list"]
+		entry.setFontsize()
+		entry.setItemsPerPage()
+		# entry.setMode("MODE_TV") # disabled because there is something wrong
+		# entry.setMode("MODE_TV") automatically sets "hide number marker" to
 		# the config.usage.hide_number_markers.value so when we are in "move mode"
-		# we need to force display of the markers here after l.setMode("MODE_TV")
-		# has run. If l.setMode("MODE_TV") were ever removed above,
+		# we need to force display of the markers here after entry.setMode("MODE_TV")
+		# has run. If entry.setMode("MODE_TV") were ever removed above,
 		# "self.servicelist.setHideNumberMarker(False)" could be moved
 		# directly to the "else" clause of "def toggleMoveMode".
 		if self.movemode:
@@ -2054,7 +2054,7 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 			eventidnext = None
 		else:
 			eventidnext = self.list[1][0]
-		eventname = str(self.list[0][1])
+		eventname = str(self.list[0][1])  # noqa F841
 		if eventid is None:
 			return
 		menu1 = _("Record now")
@@ -2151,12 +2151,12 @@ class ChannelSelectionEPG(InfoBarButtonSetup):
 			return
 		for timer in self.session.nav.RecordTimer.timer_list:
 			if timer.eit == eventid and ":".join(timer.service_ref.ref.toString().split(":")[:11]) == refstr:
-				rt_func = lambda ret: self.removeTimer(timer)
+				rt_func = lambda ret: self.removeTimer(timer)  # noqa E731
 				if not next:
 					menu = [(_("Delete Timer"), "CALLFUNC", rt_func), (_("No"), "CALLFUNC", self.closeChoiceBoxDialog)]
 					title = _("Do you really want to remove the timer for %s?") % eventname
 				else:
-					cb_func2 = lambda ret: self.editTimer(timer)
+					cb_func2 = lambda ret: self.editTimer(timer)  # noqa E731
 					menu = [
 						(_("Delete Timer"), "CALLFUNC", self.RemoveTimerDialogCB, rt_func),
 						(_("Edit Timer"), "CALLFUNC", self.RemoveTimerDialogCB, cb_func2)
@@ -2755,7 +2755,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 			pos += 1
 		# self.delhistpoint = pos + 1  # TODO Do we need this?
 		if pos < hlen and pos != self.history_pos:
-			tmp = self.history[pos]
+			tmp = self.history[pos]  # noqa F841
 			# self.history.append(tmp)
 			# del self.history[pos]
 			self.history_pos = pos

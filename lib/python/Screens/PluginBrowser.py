@@ -1053,8 +1053,8 @@ class PackageAction(Screen, NumericalTextInput):
 			self.setWaiting(None)
 			print("[PluginBrowser] PackageAction Note: User aborted the 'opkg' plugin refresh!")
 		else:
-			if self.pluginsChanged:
-				plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
+			#if self.pluginsChanged:
+			#	plugins.readPluginList(resolveFilename(SCOPE_PLUGINS))
 			if self.reloadSettings:
 				self["description"].setText(_("Reloading bouquets and services."))
 				eDVBDB.getInstance().reloadServicelist()

@@ -429,7 +429,7 @@ class QuadPiPChannelSelection(Screen):
 		pw, ph = {1080: ("center", "center"), 720: ("center", "center"), 576: ("center", "20%")}.get(dh, ("center", "center"))
 		(sw, sh) = {1080: (dw / 3, dh / 2), 720: (int(dw / 2), int(dh / 1.5)), 576: (int(dw / 1.3), int(dh / 1.5))}.get(dh, (28, 24))
 		button_margin = 5
-		button_h = 40
+		button_h = 40  # noqa F841
 		list_y = 40 + button_margin * 3
 		self.fontSize = {1080: (28, 24), 720: (24, 20), 576: (20, 18)}.get(dh, (28, 24))
 		self.skin = QuadPiPChannelSelection.skin % (pw, ph,
@@ -781,9 +781,9 @@ class QuadPipScreen(Screen, FocusShowHide):
 
 		self.fontSize = {1080: 40, 720: 28, 576: 18}.get(h, 40)
 		ww = int(w / 2 - 10)
-		l = int(w / 2 + 5)
-		self.text1Pos = (l, h - h18 - h18, ww, h18)
-		self.text2Pos = (l, h - h18, ww, h18)
+		x = int(w / 2 + 5)
+		self.text1Pos = (x, h - h18 - h18, ww, h18)
+		self.text2Pos = (x, h - h18, ww, h18)
 
 	def moveFrame(self):
 		self.showFocus()
@@ -925,7 +925,7 @@ class QuadPipScreen(Screen, FocusShowHide):
 
 			(sname, sref) = chInfo
 
-			qPipShown = False
+			qPipShown = False  # noqa F841
 
 			decoderIdx = self.decoderIdxMap[idx]
 			pos = self.eVideoPosMap[idx]
@@ -969,7 +969,7 @@ class QuadPipScreen(Screen, FocusShowHide):
 				config.plugins.fccsetup.activate.value = False
 				from Plugins.SystemPlugins.FastChannelChange.plugin import FCCChanged
 				FCCChanged()
-		except:
+		except Exception:
 			self.oldFccEnable = False
 
 	def enableFCC(self):
@@ -978,7 +978,7 @@ class QuadPipScreen(Screen, FocusShowHide):
 				config.plugins.fccsetup.activate.value = self.oldFccEnable
 				from Plugins.SystemPlugins.FastChannelChange.plugin import FCCChanged
 				FCCChanged()
-			except:
+			except Exception:
 				pass
 
 	def disableMiniTV(self):
@@ -986,12 +986,12 @@ class QuadPipScreen(Screen, FocusShowHide):
 			self.oldMinitvEanble = config.plugins.minitv.enable.value
 			if self.oldMinitvEanble:
 				config.plugins.minitv.enable.value = False
-		except:
+		except Exception:
 			self.oldFccEnable = False
 
 	def enableMiniTV(self):
 		if self.oldMinitvEanble:
 			try:
 				config.plugins.minitv.enable.value = self.oldMinitvEanble
-			except:
+			except Exception:
 				pass

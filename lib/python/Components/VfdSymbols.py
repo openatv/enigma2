@@ -7,7 +7,6 @@ from Components.config import config
 from Components.ParentalControl import parentalControl
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.SystemInfo import BoxInfo
-from Components.RecordingConfig import recType
 import Screens.Standby
 from Tools.Directories import fileWriteLine
 

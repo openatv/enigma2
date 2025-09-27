@@ -46,10 +46,10 @@ class CamControl:
 
 	def current(self):
 		try:
-			l = readlink(self.link)
+			line = readlink(self.link)
 			prefix = f"{self.name}."
-			if prefix in l:
-				return pathsplit(l)[1].split(prefix, 2)[1]
+			if prefix in line:
+				return pathsplit(line)[1].split(prefix, 2)[1]
 		except (OSError, IndexError):
 			pass
 		return None

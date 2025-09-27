@@ -1,5 +1,5 @@
 from Screens.Setup import Setup
-from Components.config import config, configfile, ConfigSelection, ConfigIP, ConfigInteger, ConfigBoolean
+from Components.config import config, configfile, ConfigSelection, ConfigIP, ConfigInteger
 from Components.ImportChannels import ImportChannels
 
 from enigma import getPeerStreamingBoxes
@@ -27,9 +27,9 @@ class SetupFallbacktuner(Setup):
 			self.avahi_atsc = ConfigSelection(default=default, choices=seperateBoxes)
 
 		self.peerStreamingBoxes = getPeerStreamingBoxes() + [("ip", _("Enter IP address")), ("url", _("Enter URL"))]
-		peerDefault = peerDefault_sepearate = None
+		peerDefault = None
 		if config.usage.remote_fallback.value:
-			peerDefault = peerDefault_sepearate = config.usage.remote_fallback.value
+			peerDefault = config.usage.remote_fallback.value
 			if config.usage.remote_fallback.value and config.usage.remote_fallback.value not in self.peerStreamingBoxes:
 				self.peerStreamingBoxes = [config.usage.remote_fallback.value] + self.peerStreamingBoxes
 			if config.usage.remote_fallback_import_url.value and config.usage.remote_fallback_import_url.value not in self.peerStreamingBoxes:

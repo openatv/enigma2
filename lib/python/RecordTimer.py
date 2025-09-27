@@ -27,6 +27,7 @@ from Tools.Notifications import AddNotification, AddNotificationWithCallback, Ad
 from Tools import Trashcan
 from Tools.XMLTools import stringToXML
 
+# flake8: noqa E402
 
 # try:  # Import later (no error message on system start)!
 # 	from Screens.InfoBar import InfoBar

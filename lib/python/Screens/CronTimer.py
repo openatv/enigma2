@@ -247,7 +247,7 @@ class CronTimers(Screen):
 			mysel = self["list"].getCurrent()
 			if mysel:
 				myline = mysel[1]
-				open("/etc/cron/crontabs/root.tmp", "w").writelines([l for l in open("/etc/cron/crontabs/root").readlines() if myline not in l])
+				open("/etc/cron/crontabs/root.tmp", "w").writelines([x for x in open("/etc/cron/crontabs/root").readlines() if myline not in x])
 				rename("/etc/cron/crontabs/root.tmp", "/etc/cron/crontabs/root")
 				Console().ePopen(["/usr/bin/crontab", "/usr/bin/crontab", "/etc/cron/crontabs/root", "-c", "/etc/cron/crontabs"], self.doDelCronResult)
 
@@ -409,5 +409,5 @@ class CronTimersConfig(ConfigListScreen, Screen):
 		config.crontimers.runwhen.value = "Daily"
 		config.crontimers.dayofweek.value = "Monday"
 		config.crontimers.dayofmonth.value = 1
-		config.crontimers.cmdtime.value, mytmpt = ([0, 0], [0, 0])
+		config.crontimers.cmdtime.value, mytmpt = ([0, 0], [0, 0])  # noqa F841
 		self.close()

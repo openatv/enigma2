@@ -119,9 +119,9 @@ class brcmWLConfig:
 
 	def writeConfig(self, iface):
 		essid = config.plugins.wlan.essid.value
-		hiddenessid = config.plugins.wlan.hiddenessid.value
+		hiddenessid = config.plugins.wlan.hiddenessid.value  # noqa F841
 		encryption = config.plugins.wlan.encryption.value
-		wepkeytype = config.plugins.wlan.wepkeytype.value
+		wepkeytype = config.plugins.wlan.wepkeytype.value  # noqa F841
 		psk = config.plugins.wlan.psk.value
 		contents = ["ssid=%s\n" % essid]
 		if encryption in ("WPA", "WPA2", "WPA/WPA2", "WEP"):
@@ -193,7 +193,7 @@ class wpaSupplicant:
 		lines = fileReadLines(configFile, default=None, source=MODULE_NAME)
 		if lines is None:
 			print("[Wlan] Error: Unable to parse '%s'!" % configFile)
-			wsconfig = {
+			wsconfig = {  # noqa F841
 				"hiddenessid": False,
 				"ssid": "",
 				"encryption": "WPA2",
@@ -276,7 +276,7 @@ class wpaSupplicant:
 				"key": "",
 			}
 		else:
-			essid = None
+			essid = None  # noqa F841
 			encryption = "Unencrypted"
 			for line in lines:
 				split = line.strip().split("=", 1)

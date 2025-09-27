@@ -8,7 +8,7 @@ from Components.Label import Label
 from Components.SystemInfo import BoxInfo, getBoxDisplayName
 from Components.Sources.StaticText import StaticText
 from Screens.Screen import Screen, ScreenSummary
-from Tools.Directories import SCOPE_GUISKIN, SCOPE_PLUGINS, SCOPE_SKINS, fileReadXML, resolveFilename
+from Tools.Directories import SCOPE_GUISKIN, SCOPE_PLUGINS, SCOPE_SKINS, fileReadXML, resolveFilename  # noqa F401
 
 MODULE_NAME = __name__.split(".")[-1]
 
@@ -293,7 +293,7 @@ class SetupSummary(ScreenSummary):
 def setupDom(setup=None, plugin=None):
 	# Constants for checkItems()
 	ROOT_ALLOWED = ("setup", )  # Tags allowed in top level of setupxml entry.
-	ELEMENT_ALLOWED = ("item", "if")  # Tags allowed in top level of setup entry.
+	ELEMENT_ALLOWED = ("item", "if")  # Tags allowed in top level of setup entry. # noqa F841
 	IF_ALLOWED = ("item", "if", "elif", "else")  # Tags allowed inside <if />.
 	AFTER_ELSE_ALLOWED = ("item", "if")  # Tags allowed after <elif /> or <else />.
 	CHILDREN_ALLOWED = ("setup", "if", )  # Tags that may have children.
