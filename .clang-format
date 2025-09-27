@@ -13,7 +13,7 @@ NamespaceIndentation: Inner
 AccessModifierOffset: -4
 
 # Modern code layout
-ColumnLimit: 120
+ColumnLimit: 200
 MaxEmptyLinesToKeep: 2
 KeepEmptyLinesAtTheStartOfBlocks: false
 
@@ -46,8 +46,9 @@ AlignConsecutiveDeclarations: false
 
 # Modern breaking rules
 AllowAllParametersOfDeclarationOnNextLine: true
+AllowShortEnumsOnASingleLine: false
 AllowShortBlocksOnASingleLine: Empty
-AllowShortFunctionsOnASingleLine: Empty
+AllowShortFunctionsOnASingleLine: Inline
 AllowShortIfStatementsOnASingleLine: Never
 AllowShortLoopsOnASingleLine: false
 AlwaysBreakAfterReturnType: None
