@@ -1,4 +1,4 @@
-# flake8: noqa F401
+# flake8: noqa F401, E402
 
 from bisect import insort
 from datetime import datetime

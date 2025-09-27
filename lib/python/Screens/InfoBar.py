@@ -1,3 +1,5 @@
+# flake8: noqa E402
+
 from glob import glob
 from os.path import splitext
 

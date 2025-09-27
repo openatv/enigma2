@@ -4,7 +4,7 @@ from os.path import exists
 import sys  # This is needed for the twisted redirection access to stderr and stdout.
 from time import time
 
-# flake8: noqa F401, F402
+# flake8: noqa F401, E402
 
 import Tools.RedirectOutput  # Don't remove this line. This import facilitates connecting stdout and stderr redirections to the log files.
 

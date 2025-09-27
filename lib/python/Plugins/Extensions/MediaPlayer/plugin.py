@@ -4,13 +4,6 @@ import random
 
 from enigma import iPlayableService, eTimer, eServiceCenter, iServiceInformation, ePicLoad, eServiceReference
 
-from ServiceReference import ServiceReference
-from Screens.Screen import Screen
-from Screens.MessageBox import MessageBox
-from Screens.InputBox import InputBox
-from Screens.ChoiceBox import ChoiceBox
-from Screens.InfoBar import InfoBar, setAudioTrack
-from Screens.InfoBarGenerics import InfoBarSeek, InfoBarScreenSaver, InfoBarAudioSelection, InfoBarAspectSelection, InfoBarCueSheetSupport, InfoBarNotifications, InfoBarSubtitleSupport, InfoBarResolutionSelection
 from Components.ActionMap import NumberActionMap, HelpableActionMap
 from Components.Label import Label
 from Components.Pixmap import Pixmap, MultiPixmap
@@ -22,6 +15,14 @@ from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Components.Playlist import PlaylistIOInternal, PlaylistIOM3U, PlaylistIOPLS
 from Components.config import config
 from Components.SystemInfo import BoxInfo
+from Plugins.Plugin import PluginDescriptor
+from ServiceReference import ServiceReference
+from Screens.Screen import Screen
+from Screens.MessageBox import MessageBox
+from Screens.InputBox import InputBox
+from Screens.ChoiceBox import ChoiceBox
+from Screens.InfoBar import InfoBar, setAudioTrack
+from Screens.InfoBarGenerics import InfoBarSeek, InfoBarScreenSaver, InfoBarAudioSelection, InfoBarAspectSelection, InfoBarCueSheetSupport, InfoBarNotifications, InfoBarSubtitleSupport, InfoBarResolutionSelection
 from Tools.Directories import fileExists, resolveFilename, SCOPE_CONFIG, SCOPE_PLAYLIST, SCOPE_GUISKIN
 from Tools.BoundFunction import boundFunction
 from .settings import MediaPlayerSetup, Load_defaults
@@ -1259,9 +1260,6 @@ def filescan(**kwargs):
 			openfnc=audioCD_open,
 		),
 		]
-
-
-from Plugins.Plugin import PluginDescriptor
 
 
 def Plugins(**kwargs):
