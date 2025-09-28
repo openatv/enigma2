@@ -22,8 +22,8 @@ class GUIAddon(GUIComponent):
 				if x in container:
 					component = container[x]
 					self.sources[x] = component
-					if isinstance(component, GUIComponent) and x not in container.handledWidgets:
-						container.handledWidgets.append(x)
+					if isinstance(component, GUIComponent) and x not in container.ignoreWidgets:
+						container.ignoreWidgets.append(x)
 		container.onShow.append(self.onContainerShown)
 		self.relatedScreen = container
 
