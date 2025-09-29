@@ -6,8 +6,10 @@
 #include <lib/dvb_ci/aes_xcbc_mac.h>
 #include <lib/dvb_ci/descrambler.h>
 #include <lib/dvb_ci/dvbci_ccmgr_helper.h>
+#include <lib/dvb_ci/dvbci_ui.h>
 
 #include <openssl/aes.h>
+#include <openssl/err.h>
 
 eDVBCICcSession::eDVBCICcSession(eDVBCISlot *slot, int version) : m_slot(slot), m_akh_index(0),
 																  m_root_ca_store(nullptr), m_cust_cert(nullptr), m_device_cert(nullptr),
@@ -131,6 +133,8 @@ void eDVBCICcSession::send(const unsigned char *tag, const void *data, int len)
 
 void eDVBCICcSession::addProgram(uint16_t program_number, std::vector<uint16_t> &pids)
 {
+	// add program means probably decoding on this slot is about to begin. So mark this slot as ready for descramble
+	eDVBCI_UI::getInstance()->setDecodingState(m_slot->getSlotID(), 1);
 	// first open ca device and set descrambler key if it's not set yet
 	set_descrambler_key();
 
@@ -155,6 +159,9 @@ void eDVBCICcSession::removeProgram(uint16_t program_number, std::vector<uint16_
 
 	if (m_slot->getDescramblingOptions() == 1 || m_slot->getDescramblingOptions() == 3)
 		descrambler_deinit(m_descrambler_fd);
+
+	// removing program means probably decoding on this slot is ending. So mark this slot as not descrambling
+	eDVBCI_UI::getInstance()->setDecodingState(m_slot->getSlotID(), 0);
 }
 
 void eDVBCICcSession::cc_open_req()

@@ -12,6 +12,7 @@ struct slot_ui_data
 {
 	std::string appName;
 	int state;
+	int decoding_state;
 	ePyObject mmiScreen;
 	int mmiTuplePos;
 	int mmiScreenReady;
@@ -28,7 +29,9 @@ protected:
 	virtual ~eMMI_UI();
 public:
 	int getState(int slot);
+	int getDecodingState(int slot);
 	void setState(int slot, int state);
+	void setDecodingState(int slot, int state);
 	std::string getAppName(int slot);
 	void setAppName(int slot, const char *name);
 #ifndef SWIG

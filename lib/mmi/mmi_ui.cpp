@@ -136,11 +136,30 @@ int eMMI_UI::getState(int slot)
 	return 0;
 }
 
+int eMMI_UI::getDecodingState(int slot)
+{
+	if (slot < m_max_slots)
+		return slotdata[slot].decoding_state;
+	return 0;
+}
+
 void eMMI_UI::setState(int slot, int newState)
 {
 	if (slot < m_max_slots)
 	{
 		slotdata[slot].state = newState;
+		stateChanged(slot);
+	}
+}
+
+void eMMI_UI::setDecodingState(int slot, int newState)
+{
+	if (slot < m_max_slots)
+	{
+		if (slotdata[slot].decoding_state == 1 && newState == 2)
+			slotdata[slot].decoding_state = 2;
+		else if (newState != 2)
+			slotdata[slot].decoding_state = newState;
 		stateChanged(slot);
 	}
 }
