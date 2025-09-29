@@ -170,6 +170,7 @@ void eLabel::updateTextSize() {
 	if (m_scroll_config.direction == eScrollConfig::scrollLeft || m_scroll_config.direction == eScrollConfig::scrollRight) {
 		m_text_size = calculateTextSize(m_font, m_text, size(), true); // nowrap
 		if (m_text_size.width() > size().width()) {
+			m_text_size.setWidth(m_text_size.width() + m_font->pointSize / 10); // avoid issues with rounding
 			m_scroll_text = true;
 			if (m_scroll_config.mode == eScrollConfig::scrollModeRoll)
 				m_text_size.setWidth(m_text_size.width() + size().width() * 1.5);
@@ -177,6 +178,7 @@ void eLabel::updateTextSize() {
 	} else if (m_scroll_config.direction == eScrollConfig::scrollTop || m_scroll_config.direction == eScrollConfig::scrollBottom) {
 		m_text_size = calculateTextSize(m_font, m_text, size(), false); // allow wrap
 		if (m_text_size.height() > size().height()) {
+			m_text_size.setHeight(m_text_size.height() + m_font->pointSize / 10); // avoid issues with rounding
 			if (m_scroll_config.mode == eScrollConfig::scrollModeRoll)
 				m_text_size.setHeight(m_text_size.height() + size().height() * 1.5);
 			m_scroll_text = true;
