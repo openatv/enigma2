@@ -1,6 +1,11 @@
 from os import stat
+from os.path import exists
 from time import time
+
+from enigma import eDVBCI_UI, iServiceInformation
+
 from Components.config import config
+from Components.SystemInfo import BoxInfo
 
 ECM_INFO = "/tmp/ecm.info"
 EMPTY_ECM_INFO = "", "0", "0", "0"
@@ -9,6 +14,8 @@ old_ecm_time = time()
 info = {}
 ecm = ""
 data = EMPTY_ECM_INFO
+
+dvbCIUI = eDVBCI_UI.getInstance()
 
 
 def getCaidData():
@@ -30,6 +37,45 @@ def getCaidData():
 		("0x4aee", "0x4aee", "BulCrypt", "B1", "BUL", False),
 		("0x5581", "0x5581", "BulCrypt", "B2", "BUL", False)
 	)
+
+
+def createCurrentCaidLabel(info, currentCaid=None, currentDevice=None):
+	def getCryptoInfo():
+		if info and info.getInfo(iServiceInformation.sIsCrypted) == 1 or exists("/tmp/ecm.info"):
+			data = ecmdata.getEcmData()
+		else:
+			data = ("", "0", "0", "0", "")
+		# source, caid, provid, ecmpid, device
+		return data[0], data[1], data[2], data[3], data[4]
+
+	if not currentCaid:
+		cryptoInfo = getCryptoInfo()
+		currentCaid = cryptoInfo[1]
+		currentDevice = cryptoInfo[4]
+	result = ""
+	decodingCiSlot = -1
+	NUM_CI = BoxInfo.getItem("CommonInterface")
+	if NUM_CI and NUM_CI > 0:
+		if dvbCIUI:
+			for slot in range(NUM_CI):
+				stateDecoding = dvbCIUI.getDecodingState(slot)
+				stateSlot = dvbCIUI.getState(slot)
+				if stateDecoding == 2 and stateSlot not in (-1, 0, 3):
+					decodingCiSlot = slot
+
+	if not exists("/tmp/ecm.info") and decodingCiSlot == -1:
+		return "FTA"
+
+	if decodingCiSlot > -1 and not exists("/tmp/ecm.info"):
+		return "CI%d" % (decodingCiSlot)
+
+	for caidData in getCaidData():
+		if int(caidData[0], 16) <= int(currentCaid, 16) <= int(caidData[1], 16):
+			result = caidData[4]
+	if decodingCiSlot > -1:
+		return f"CI{decodingCiSlot}{result}"
+	deviceName = ecmdata.createCurrentDevice(currentDevice, False)
+	return result + ((f"@{deviceName}") if deviceName else "")
 
 
 class GetEcmInfo:
@@ -159,3 +205,27 @@ class GetEcmInfo:
 			provid = "0"
 			ecmpid = "0"
 		return self.textValue, decCI, provid, ecmpid
+
+	def createCurrentDevice(self, device, isLong):
+		if device:
+			device_lower = device.lower()
+			# Mapping: key -> (long_name_template, short_name)
+			mapping = {
+				"/sci0": (_("Card reader %d") % 1, "CRD 1"),
+				"/sci1": (_("Card reader %d") % 2, "CRD 2"),
+				"/ttyusb0": (_("USB reader %d") % 1, "USB 1"),
+				"/ttyusb1": (_("USB reader %d") % 2, "USB 2"),
+				"/ttyusb2": (_("USB reader %d") % 3, "USB 3"),
+				"/ttyusb3": (_("USB reader %d") % 4, "USB 4"),
+				"/ttyusb4": (_("USB reader %d") % 5, "USB 5"),
+				"emulator": (_("Emulator"), "EMU"),
+				"const": (_("Constcw"), "CCW")
+			}
+			for key, (long_name, short_name) in mapping.items():
+				if key in device_lower:
+					return long_name if isLong else short_name
+
+		return ""
+
+
+ecmdata = GetEcmInfo()
