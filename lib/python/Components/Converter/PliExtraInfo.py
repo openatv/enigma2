@@ -216,7 +216,7 @@ class PliExtraInfo(Converter, Poll):
 							color = self.infoColors[1]
 				except Exception:
 					pass
-			if color != self.infoColors[2] or caidData[4]:
+			if color != self.infoColors[2] or caidData[5]:
 				data.append(f"{color}{caidData[3]}")
 		return f"{' '.join(data)}{self.infoColors[3]}"
 
