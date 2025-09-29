@@ -45,24 +45,18 @@ using namespace std;
 	other way, as it involves iterating trough the list.
  */
 
-iListboxContent::~iListboxContent()
-{
-}
+iListboxContent::~iListboxContent() {}
 
-iListboxContent::iListboxContent() : m_listbox(0)
-{
-}
+iListboxContent::iListboxContent() : m_listbox(0) {}
 
-void iListboxContent::setListbox(eListbox *lb)
-{
+void iListboxContent::setListbox(eListbox* lb) {
 	m_listbox = lb;
 	m_listbox->setOrientation(getOrientation());
 	m_listbox->setItemHeight(getItemHeight());
 	m_listbox->setItemWidth(getItemWidth());
 }
 
-int iListboxContent::currentCursorSelectable()
-{
+int iListboxContent::currentCursorSelectable() {
 	return 1;
 }
 
@@ -71,28 +65,23 @@ int iListboxContent::currentCursorSelectable()
 DEFINE_REF(eListboxPythonStringContent);
 
 eListboxPythonStringContent::eListboxPythonStringContent()
-	: m_saved_cursor_line(0), scrollTimer(eTimer::create(eApp)), m_cursor(0), m_saved_cursor(0), m_itemheight(25), m_itemwidth(25), m_max_text_width(0), m_orientation(1)
-{
+	: m_saved_cursor_line(0), scrollTimer(eTimer::create(eApp)), m_cursor(0), m_saved_cursor(0), m_itemheight(25), m_itemwidth(25), m_max_text_width(0), m_orientation(1) {
 	CONNECT(scrollTimer->timeout, eListboxPythonStringContent::updateScrollPosition);
 }
 
-eListboxPythonStringContent::~eListboxPythonStringContent()
-{
+eListboxPythonStringContent::~eListboxPythonStringContent() {
 	Py_XDECREF(m_list);
 }
 
-void eListboxPythonStringContent::cursorHome()
-{
+void eListboxPythonStringContent::cursorHome() {
 	m_cursor = 0;
 }
 
-void eListboxPythonStringContent::cursorEnd()
-{
+void eListboxPythonStringContent::cursorEnd() {
 	m_cursor = size();
 }
 
-int eListboxPythonStringContent::cursorMove(int count)
-{
+int eListboxPythonStringContent::cursorMove(int count) {
 	m_cursor += count;
 
 	if (m_cursor < 0)
@@ -102,13 +91,11 @@ int eListboxPythonStringContent::cursorMove(int count)
 	return 0;
 }
 
-int eListboxPythonStringContent::cursorValid()
-{
+int eListboxPythonStringContent::cursorValid() {
 	return m_cursor < size();
 }
 
-int eListboxPythonStringContent::cursorSet(int n)
-{
+int eListboxPythonStringContent::cursorSet(int n) {
 	m_cursor = n;
 
 	if (m_cursor < 0)
@@ -118,15 +105,12 @@ int eListboxPythonStringContent::cursorSet(int n)
 	return 0;
 }
 
-int eListboxPythonStringContent::cursorGet()
-{
+int eListboxPythonStringContent::cursorGet() {
 	return m_cursor;
 }
 
-int eListboxPythonStringContent::currentCursorSelectable()
-{
-	if (m_list && cursorValid())
-	{
+int eListboxPythonStringContent::currentCursorSelectable() {
+	if (m_list && cursorValid()) {
 		ePyObject item = PyList_GET_ITEM(m_list, m_cursor);
 		if (!PyTuple_Check(item))
 			return 1;
@@ -136,42 +120,35 @@ int eListboxPythonStringContent::currentCursorSelectable()
 	return 0;
 }
 
-void eListboxPythonStringContent::cursorSave()
-{
+void eListboxPythonStringContent::cursorSave() {
 	m_saved_cursor = m_cursor;
 }
 
-void eListboxPythonStringContent::cursorRestore()
-{
+void eListboxPythonStringContent::cursorRestore() {
 	m_cursor = m_saved_cursor;
 }
 
-void eListboxPythonStringContent::cursorSaveLine(int line)
-{
+void eListboxPythonStringContent::cursorSaveLine(int line) {
 	m_saved_cursor_line = line;
 }
 
-int eListboxPythonStringContent::cursorRestoreLine()
-{
+int eListboxPythonStringContent::cursorRestoreLine() {
 	return m_saved_cursor_line;
 }
 
-int eListboxPythonStringContent::size()
-{
+int eListboxPythonStringContent::size() {
 	if (!m_list)
 		return 0;
 	return PyList_Size(m_list);
 }
 
-void eListboxPythonStringContent::setSize(const eSize &size)
-{
+void eListboxPythonStringContent::setSize(const eSize& size) {
 	m_itemsize = size;
 }
 
-int eListboxPythonStringContent::getMaxItemTextWidth()
-{
+int eListboxPythonStringContent::getMaxItemTextWidth() {
 	ePtr<gFont> fnt;
-	eListboxStyle *local_style = 0;
+	eListboxStyle* local_style = 0;
 	int m_text_offset = 1;
 	if (m_listbox)
 		local_style = m_listbox->getLocalStyle();
@@ -179,18 +156,17 @@ int eListboxPythonStringContent::getMaxItemTextWidth()
 		fnt = local_style->m_font;
 		m_text_offset = local_style->m_text_padding.x();
 	}
-	if (!fnt) fnt = new gFont("Regular", 20);
+	if (!fnt)
+		fnt = new gFont("Regular", 20);
 
-	for (int i = 0; i < size(); i++)
-	{
+	for (int i = 0; i < size(); i++) {
 		ePyObject item = PyList_GET_ITEM(m_list, i);
-		if (PyTuple_Check(item))
-		{
+		if (PyTuple_Check(item)) {
 			item = PyTuple_GET_ITEM(item, 0);
 		}
 		if (item != Py_None) {
-			const char *string = PyUnicode_Check(item) ? PyUnicode_AsUTF8(item) : "<not-a-string>";
-			eRect textRect = eRect(0,0, 8000, 100);
+			const char* string = PyUnicode_Check(item) ? PyUnicode_AsUTF8(item) : "<not-a-string>";
+			eRect textRect = eRect(0, 0, 8000, 100);
 
 			ePtr<eTextPara> para = new eTextPara(textRect);
 			para->setFont(fnt);
@@ -202,7 +178,7 @@ int eListboxPythonStringContent::getMaxItemTextWidth()
 		}
 	}
 
-	return m_max_text_width + (m_text_offset*2);
+	return m_max_text_width + (m_text_offset * 2);
 }
 
 void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, const ePoint &offset, int selected)
@@ -481,15 +457,11 @@ void eListboxPythonStringContent::paint(gPainter &painter, eWindowStyle &style, 
 	painter.clippop();
 }
 
-void eListboxPythonStringContent::setList(ePyObject list)
-{
+void eListboxPythonStringContent::setList(ePyObject list) {
 	Py_XDECREF(m_list);
-	if (!PyList_Check(list))
-	{
+	if (!PyList_Check(list)) {
 		m_list = ePyObject();
-	}
-	else
-	{
+	} else {
 		m_list = list;
 		Py_INCREF(m_list);
 	}
@@ -504,41 +476,34 @@ void eListboxPythonStringContent::setList(ePyObject list)
 	}
 }
 
-void eListboxPythonStringContent::updateEntry(int index, ePyObject entry)
-{
-	if (index < size())
-	{
+void eListboxPythonStringContent::updateEntry(int index, ePyObject entry) {
+	if (index < size()) {
 		PyList_SET_ITEM(m_list, index, entry);
 		if (m_listbox)
 			m_listbox->entryChanged(index);
 	}
 }
 
-void eListboxPythonStringContent::setOrientation(uint8_t orientation)
-{
+void eListboxPythonStringContent::setOrientation(uint8_t orientation) {
 	m_orientation = orientation;
-	if (m_listbox)
-	{
+	if (m_listbox) {
 		m_listbox->setOrientation(orientation);
 	}
 }
 
-void eListboxPythonStringContent::setItemHeight(int height)
-{
+void eListboxPythonStringContent::setItemHeight(int height) {
 	m_itemheight = height;
 	if (m_listbox)
 		m_listbox->setItemHeight(height);
 }
 
-void eListboxPythonStringContent::setItemWidth(int width)
-{
+void eListboxPythonStringContent::setItemWidth(int width) {
 	m_itemwidth = width;
 	if (m_listbox)
 		m_listbox->setItemWidth(width);
 }
 
-PyObject *eListboxPythonStringContent::getCurrentSelection()
-{
+PyObject* eListboxPythonStringContent::getCurrentSelection() {
 	if (!(m_list && cursorValid()))
 		Py_RETURN_NONE;
 
@@ -547,16 +512,13 @@ PyObject *eListboxPythonStringContent::getCurrentSelection()
 	return r;
 }
 
-void eListboxPythonStringContent::invalidateEntry(int index)
-{
+void eListboxPythonStringContent::invalidateEntry(int index) {
 	if (m_listbox)
 		m_listbox->entryChanged(index);
 }
 
-void eListboxPythonStringContent::invalidate()
-{
-	if (m_listbox)
-	{
+void eListboxPythonStringContent::invalidate() {
+	if (m_listbox) {
 		int s = size();
 		if (m_cursor >= s)
 			m_listbox->moveSelectionTo(s ? s - 1 : 0);
