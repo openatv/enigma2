@@ -1007,6 +1007,9 @@ class AttributeParser:
 	def conditional(self, value):
 		pass
 
+	def connection(self, value):  # This is only used for Addons.
+		pass
+
 	def cornerRadius(self, value):
 		radius, edgeValue = parseRadius(value)
 		self.guiObject.setCornerRadius(radius, edgeValue)
