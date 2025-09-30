@@ -35,7 +35,10 @@ class ETSIClassifications(dict):
 				age += 3
 				return "ratings/ETSI-%d.png" % age
 
-		self.update([(index, (shortRating(classification), longRating(classification), imageRating(classification))) for index, classification in enumerate(range(16))])
+		#            0         1         2          3        4         5          6         7         8         9        10        11        12        13        14        15
+		colors = (0x000000, 0x00A822, 0x00A822, 0x00A822, 0x007DCA, 0x007DCA, 0x007DCA, 0xFF7900, 0xFF7900, 0xFF7900, 0xFF5594, 0xFF5594, 0xFF5594, 0xD70723, 0xD70723, 0xD70723)
+
+		self.update([(index, (shortRating(classification), longRating(classification), imageRating(classification), colors[index])) for index, classification in enumerate(range(16))])
 
 
 class AusClassifications(dict):
@@ -65,7 +68,67 @@ class AusClassifications(dict):
 			"AV": "ratings/AUS-AV.png",
 			"R": "ratings/AUS-R.png"
 		}
-		self.update([(index, (classification, longText[classification], images[classification])) for index, classification in enumerate(shortText)])
+
+		#            0         1         2          3        4         5          6         7         8         9        10        11        12        13        14        15
+		colors = (0x000000, 0x00A822, 0x00A822, 0x00A822, 0x007DCA, 0x007DCA, 0x007DCA, 0xFF7900, 0xFF7900, 0xFF7900, 0xFF5594, 0xFF5594, 0xFF5594, 0xD70723, 0xD70723, 0xD70723)
+
+		self.update([(index, (classification, longText[classification], images[classification], colors[index])) for index, classification in enumerate(shortText)])
+
+
+class GBrClassifications(dict):
+	def __init__(self):
+		# British Board of Film Classification
+		#            0   1   2    3    4    5    6     7     8     9     10    11    12    13    14    15
+		shortText = ("", "", "", "U", "U", "U", "PG", "PG", "PG", "12", "12", "12", "15", "15", "15", "18")
+		longText = {
+			"": _("Not Classified"),
+			"U": _("U - Suitable for all"),
+			"PG": _("PG - Parental Guidance"),
+			"12": _("Suitable for ages 12+"),
+			"15": _("Suitable for ages 15+"),
+			"18": _("Suitable only for Adults")
+		}
+		images = {
+			"": "ratings/blank.png",
+			"U": "ratings/GBR-U.png",
+			"PG": "ratings/GBR-PG.png",
+			"12": "ratings/GBR-12.png",
+			"15": "ratings/GBR-15.png",
+			"18": "ratings/GBR-18.png"
+		}
+
+		#            0         1         2          3        4         5          6         7         8         9        10        11        12        13        14        15
+		colors = (0x000000, 0x000000, 0x000000, 0x00A822, 0x00A822, 0x00A822, 0xFAB800, 0xFAB800, 0xFAB800, 0xFF7900, 0xFF7900, 0xFF7900, 0xFF5594, 0xFF5594, 0xFF5594, 0xD70723)
+
+		self.update([(index, (classification, longText[classification], images[classification], colors[index])) for index, classification in enumerate(shortText)])
+
+
+class ItaClassifications(dict):
+	def __init__(self):
+		# The classifications used by Sky Italia
+		#            0   1   2    3    4    5    6     7     8     9     10    11    12    13    14    15
+		shortText = ("", "", "", "T", "T", "T", "BA", "BA", "BA", "12", "12", "12", "14", "14", "14", "18")
+		longText = {
+			"": _("Non Classificato"),
+			"T": _("Per Tutti"),
+			"BA": _("Bambini Accompagnati"),
+			"12": _("Dai 12 anni in su"),
+			"14": _("Dai 14 anni in su"),
+			"18": _("Dai 18 anni in su")
+		}
+		images = {
+			"": "ratings/blank.png",
+			"T": "ratings/ITA-T.png",
+			"BA": "ratings/ITA-BA.png",
+			"12": "ratings/ITA-12.png",
+			"14": "ratings/ITA-14.png",
+			"18": "ratings/ITA-18.png"
+		}
+
+		#            0         1         2          3        4         5          6         7         8         9        10        11        12        13        14        15
+		colors = (0x000000, 0x00A822, 0x00A822, 0x00A822, 0x007DCA, 0x007DCA, 0x007DCA, 0xFF7900, 0xFF7900, 0xFF7900, 0xFF5594, 0xFF5594, 0xFF5594, 0xD70723, 0xD70723, 0xD70723)
+
+		self.update([(index, (classification, longText[classification], images[classification], colors[index])) for index, classification in enumerate(shortText)])
 
 
 # Each country classification object in the map tuple must be an object that
@@ -78,7 +141,20 @@ class AusClassifications(dict):
 #
 COUNTRIES = {
 	"ETSI": (ETSIClassifications(), lambda age: (_("bc%d") % age, _("Rating defined by broadcaster - %d") % age, "ratings/ETSI-na.png")),
-	"AUS": (AusClassifications(), lambda age: (_("BC%d") % age, _("Rating defined by broadcaster - %d") % age, "ratings/AUS-na.png"))
+	"AUS": (AusClassifications(), lambda age: (_("BC%d") % age, _("Rating defined by broadcaster - %d") % age, "ratings/AUS-na.png")),
+	"GBR": (GBrClassifications(), lambda age: (_("BC%d") % age, _("Rating defined by broadcaster - %d") % age, "ratings/GBR-na.png")),
+	"ITA": (ItaClassifications(), lambda age: (_("BC%d") % age, _("Rating defined by broadcaster - %d") % age, "ratings/ITA-na.png"))
+}
+
+
+# OpenTV country codes: epgchanneldata.cpp
+# eEPGChannelData::getOpenTvParentalRating
+OPENTV_COUNTRIES = {
+	"OT1": "GBR",
+	"OT2": "ITA",
+	"OT3": "AUS",
+	"OT4": "NZL",
+	"OTV": "ETSI"
 }
 
 
@@ -133,9 +209,12 @@ class EventInfo(Converter, Poll):
 	THIRD_TIMES = 47
 	TIMES = 48
 
+	RATING_RAW_AND_COUNTRY = 49
+
 	RATING_SHORT = 0
 	RATING_LONG = 1
 	RATING_IMAGE = 2
+	RATING_COLOR = 3
 
 	RATING_NORMAL = 0
 	RATING_DEFAULT = 1
@@ -185,6 +264,8 @@ class EventInfo(Converter, Poll):
 			"RatingIcon": ("token", self.RATING_ICON, 0),
 			"RatingRaw": ("token", self.RATING_RAW, 0),
 			"RawRating": ("token", self.RATING_RAW, 0),
+			"RawRatingAndCountry": ("token", self.RATING_RAW_AND_COUNTRY, 0),
+			"RatingRawAndCountry": ("token", self.RATING_RAW_AND_COUNTRY, 0),
 			"Remaining": ("token", self.REMAINING, 60000),
 			"RemainingVFD": ("token", self.REMAINING_VFD, 60000),
 			"RunningStatus": ("token", self.RUNNING_STATUS, 0),
@@ -306,9 +387,13 @@ class EventInfo(Converter, Poll):
 								genres = genres[0:1]
 							rating = event.getParentalData()
 							country = rating.getCountryCode().upper() if rating else "ETSI"
-							if config.misc.epggenrecountry.value:
-								country = config.misc.epggenrecountry.value
-							result = self.separator.join((genreText for genreText in (trimText(getGenreStringSub(genre[0], genre[1], country=country)) for genre in genres) if genreText))
+							if country in OPENTV_COUNTRIES:
+								country = OPENTV_COUNTRIES[country] + "OpenTV"
+								result = self.separator.join((genreText for genreText in (trimText(getGenreStringSub(genre[0], genre[1], country=country)) for genre in genres) if genreText))
+							else:
+								if config.misc.epggenrecountry.value:
+									country = config.misc.epggenrecountry.value
+								result = self.separator.join((genreText for genreText in (trimText(getGenreStringSub(genre[0], genre[1], country=country)) for genre in genres) if genreText))
 				case self.ID:
 					result = trimText(event.getEventId())
 				case self.MEDIA_PATH:
@@ -381,6 +466,10 @@ class EventInfo(Converter, Poll):
 					rating = event.getParentalData()
 					if rating:
 						result = f"{rating.getRating()}"
+				case self.RATING_RAW_AND_COUNTRY:
+					rating = event.getParentalData()
+					if rating:
+						return f"{rating.getRating()};{rating.getCountryCode().upper()}"
 				case self.RUNNING_STATUS:
 					if event.getPdcPil():
 						result = {
