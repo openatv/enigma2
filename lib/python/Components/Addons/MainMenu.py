@@ -138,6 +138,9 @@ class MainMenu(GUIAddon):
 			self.instance.resize(eSize(destWidth, curSize.height()))
 			self.relatedScreen.screenContentChanged()
 		self.l.setList(self.source.list)
+		if self.relatedScreen is not None:
+			self.relatedScreen["navigationActions"].setEnabled(False)
+			self.relatedScreen["menu"].enableAutoNavigation(True)
 
 	def applySkin(self, desktop, parent):
 		attribs = []
