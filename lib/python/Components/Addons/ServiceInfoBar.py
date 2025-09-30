@@ -364,7 +364,7 @@ class ServiceInfoBar(GUIAddon):
 			if attrib == "pixmapsDisabled":
 				self.pixmapsDisabled = {k: v for k, v in (item.split(':') for item in value.split(','))}
 			elif attrib == "spacing":
-				self.spacing = parseScale(value)
+				self.spacing = self.parseScale(value)
 			elif attrib == "alignment":
 				self.alignment = value
 			elif attrib == "orientation":
@@ -380,7 +380,7 @@ class ServiceInfoBar(GUIAddon):
 			elif attrib == "separatorLineColor":
 				self.foreColor = parseColor(value).argb()
 			elif attrib == "separatorLineThickness":
-				self.separatorLineThickness = parseScale(value)
+				self.separatorLineThickness = self.parseScale(value)
 			elif attrib == "autoresizeMode":
 				self.autoresizeMode = value
 			elif attrib == "font":

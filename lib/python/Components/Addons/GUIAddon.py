@@ -1,4 +1,5 @@
 from Components.GUIComponent import GUIComponent
+from skin import getSkinFactor
 
 
 class GUIAddon(GUIComponent):
@@ -7,6 +8,19 @@ class GUIAddon(GUIComponent):
 		self.source = None
 		self.sources = {}
 		self.relatedScreen = None
+
+	def parseScale(self, value):
+		# Replaces "f" with skin factor in non-coordinte fields and evaluates the formula
+		try:
+			val = int(value)
+		except ValueError:
+			f = getSkinFactor()  # noqa: F841
+			try:
+				val = int(eval(value))
+			except Exception as err:
+				print("[Skin] parseScale: %s '%s': formula '%s' cannot be evaluated!" % (type(err).__name__, err, value))
+				val = 0
+		return val
 
 	def connectRelatedElement(self, relatedElementName, container):
 		relatedElementNames = relatedElementName.split(",")

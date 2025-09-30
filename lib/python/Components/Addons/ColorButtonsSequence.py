@@ -2,7 +2,7 @@ from Components.Addons.GUIAddon import GUIAddon
 
 from enigma import eListbox, eListboxPythonMultiContent, BT_ALIGN_CENTER, RT_VALIGN_CENTER, RT_HALIGN_LEFT, RT_HALIGN_CENTER, RT_BLEND, BT_SCALE, eSize, getDesktop, gFont
 
-from skin import parseScale, parseColor, parseFont, applySkinFactor
+from skin import parseColor, parseFont, applySkinFactor
 
 from Components.MultiContent import MultiContentEntryPixmapAlphaBlend, MultiContentEntryText
 from Components.Label import Label
@@ -154,9 +154,9 @@ class ColorButtonsSequence(GUIAddon):
 			if attrib == "pixmaps":
 				self.pixmaps = {k: v for k, v in (item.split(':') for item in value.split(','))}
 			elif attrib == "spacing":
-				self.spacingButtons = parseScale(value)
+				self.spacingButtons = self.parseScale(value)
 			elif attrib == "spacingPixmapText":
-				self.spacingPixmapText = parseScale(value)
+				self.spacingPixmapText = self.parseScale(value)
 			elif attrib == "layoutStyle":
 				self.layoutStyle = value
 			elif attrib == "alignment":
@@ -176,7 +176,7 @@ class ColorButtonsSequence(GUIAddon):
 			elif attrib == "textColors":
 				self.colors = {k: v for k, v in (item.split(':') for item in value.split(','))}
 			elif attrib == "buttonCornerRadius":
-				self.cornerRadius = parseScale(value)
+				self.cornerRadius = self.parseScale(value)
 			elif attrib == "renderType":
 				self.renderType = value
 			else:

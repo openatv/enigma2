@@ -2,7 +2,7 @@ from Components.Addons.GUIAddon import GUIAddon
 
 from enigma import eListbox, eListboxPythonMultiContent, BT_ALIGN_CENTER, BT_VALIGN_CENTER, RT_BLEND, gFont, eSize, getDesktop, RT_HALIGN_CENTER, RT_VALIGN_CENTER
 
-from skin import parseScale, applySkinFactor, parseFont, parseColor
+from skin import applySkinFactor, parseFont, parseColor
 
 from Components.MultiContent import MultiContentEntryPixmapAlphaBlend, MultiContentEntryText
 from Components.Sources.List import List
@@ -271,11 +271,11 @@ class Pager(GUIAddon):
 				if pic:
 					self.picShevronDown = pic
 			elif attrib == "itemHeight":
-				self.l.setItemHeight(parseScale(value))
+				self.l.setItemHeight(self.parseScale(value))
 			elif attrib == "itemWidth":
-				self.l.setItemWidth(parseScale(value))
+				self.l.setItemWidth(self.parseScale(value))
 			elif attrib == "spacing":
-				self.spacing = parseScale(value)
+				self.spacing = self.parseScale(value)
 			elif attrib == "showIcons":
 				self.showIcons = value
 			elif attrib == "maxPages":
@@ -285,7 +285,7 @@ class Pager(GUIAddon):
 			elif attrib == "bubbletextFont":
 				self.font = parseFont(value, parent.scale)
 			elif attrib == "bubbletextPadding":
-				self.bubbletextPadding = parseScale(value)
+				self.bubbletextPadding = self.parseScale(value)
 			elif attrib == "foregroundColor":
 				self.foreColor = parseColor(value).argb()
 			elif attrib == "bubbletextBackgroundColor":
