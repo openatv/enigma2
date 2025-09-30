@@ -1,15 +1,12 @@
-from enigma import eListbox, eListboxPythonMultiContent, BT_ALIGN_CENTER, iPlayableService, iRecordableService, eServiceReference, iServiceInformation, gFont, RT_HALIGN_LEFT, RT_VALIGN_CENTER, RT_VALIGN_TOP, RT_HALIGN_CENTER, eTimer, getDesktop, eSize, eStreamServer
-from skin import parseScale, applySkinFactor, parseColor, parseFont, parameters
+from enigma import eAVControl, eListbox, eListboxPythonMultiContent, BT_ALIGN_CENTER, iPlayableService, iRecordableService, eServiceReference, iServiceInformation, gFont, RT_HALIGN_LEFT, RT_VALIGN_CENTER, RT_VALIGN_TOP, RT_HALIGN_CENTER, eTimer, getDesktop, eSize, eStreamServer
+from skin import applySkinFactor, parseColor, parseFont, parameters
 
 from Components.Addons.GUIAddon import GUIAddon
-from Components.Converter.ServiceInfo import getVideoHeight
-from Components.Converter.VAudioInfo import StdAudioDesc
 from Components.Label import Label
 from Components.MultiContent import MultiContentEntryPixmapAlphaBlend, MultiContentEntryText
 from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Sources.StreamService import StreamServiceList
 from Components.NimManager import nimmanager
-from Screens.InfoBarGenerics import hasActiveSubservicesForCurrentChannel
 from Tools.Directories import resolveFilename, SCOPE_GUISKIN
 from Tools.GetEcmInfo import createCurrentCaidLabel
 from Tools.LoadPixmap import LoadPixmap
@@ -17,6 +14,15 @@ from Tools.Hex2strColor import Hex2strColor
 
 import NavigationInstance
 import re
+
+
+def StdAudioDesc(desc):
+	return desc
+
+
+def getVideoHeight(info):
+	val = eAVControl.getInstance().getResolutionY(0)
+	return val if val else info.getInfo(iServiceInformation.sVideoHeight)
 
 
 class ServiceInfoBar(GUIAddon):
@@ -56,6 +62,7 @@ class ServiceInfoBar(GUIAddon):
 		self.frontendInfoSource = None
 		self.isCryptedDetected = False
 		self.tunerColors = parameters.get("FrontendInfoColors", (0x0000FF00, 0x00FFFF00, 0x007F7F7F))  # tuner active, busy, available colors
+		self.instanceInfoBarSubserviceSelection = None
 
 	def onContainerShown(self):
 		self.textRenderer.GUIcreate(self.relatedScreen.instance)
@@ -100,8 +107,8 @@ class ServiceInfoBar(GUIAddon):
 	def gotRecordEvent(self, service, event):
 		prevRecords = self.records_running
 		if event in (iRecordableService.evEnd, iRecordableService.evStart, None):
-			recs = self.nav.getRecordings()
-			self.records_running = len(recs)
+			recs = self.nav.getRealRecordingsCount()
+			self.records_running = recs
 			if self.records_running != prevRecords:
 				self.updateAddon()
 
@@ -202,8 +209,12 @@ class ServiceInfoBar(GUIAddon):
 				if info.getInfoString(iServiceInformation.sHBBTVUrl) != "":
 					return key
 			elif key == "subservices" and not isRef:
-				if hasActiveSubservicesForCurrentChannel(service):
-					return key
+				if self.instanceInfoBarSubserviceSelection is None:
+					from Screens.InfoBarGenerics import instanceInfoBarSubserviceSelection  # This must be here as the class won't be initialized at module load time.
+					self.instanceInfoBarSubserviceSelection = instanceInfoBarSubserviceSelection
+				if info and self.instanceInfoBarSubserviceSelection:
+					if self.instanceInfoBarSubserviceSelection.hasActiveSubservicesForCurrentService(info.getInfoString(iServiceInformation.sServiceref)):
+						return key
 			elif key == "stream" and not isRef:
 				if self.streamServer is None:
 					return None
