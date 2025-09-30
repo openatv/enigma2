@@ -10,7 +10,7 @@ def __resolveColor(color):
 		try:
 			return parseColor(color).argb()
 		except Exception as err:
-			print("[MultiContent] Error: Resolve color '%s'" % str(err))
+			print(f"[MultiContent] Error: Resolve color '{color}' / '{err}'")
 		return None
 	return color
 
@@ -20,7 +20,7 @@ def __resolvePixmap(pixmap):
 		try:
 			return LoadPixmap(resolveFilename(SCOPE_GUISKIN, pixmap))
 		except Exception as err:
-			print("[MultiContent] Error: Resolve pixmap '%s'" % str(err))
+			print(f"[MultiContent] Error: Resolve pixmap '{pixmap}' / '{err}'")
 		return None
 	return pixmap
 
