@@ -22,6 +22,7 @@ class Element:
 		self.source = None
 		self.__suspended = True
 		self.cache = None
+		self.onChanged = []
 
 	def connectDownstream(self, downstream):
 		self.downstream_elements.append(downstream)
@@ -59,6 +60,8 @@ class Element:
 		self.cache = {}
 		self.downstream_elements.changed(*args, **kwargs)
 		self.cache = None
+		for method in self.onChanged:
+			method()
 
 	def setSuspend(self, suspended):
 		changed = self.__suspended != suspended
@@ -74,7 +77,7 @@ class Element:
 	suspended = property(lambda self: self.__suspended, setSuspend)
 
 	def checkSuspend(self):
-		self.suspended = reduce(lambda x, y: x and y.__suspended, self.downstream_elements, True)
+		self.suspended = self.downstream_elements and reduce(lambda x, y: x and y.__suspended, self.downstream_elements, True)
 
 	def doSuspend(self, suspend):
 		pass
