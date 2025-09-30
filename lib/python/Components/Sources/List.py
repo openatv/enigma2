@@ -24,7 +24,11 @@ to generate HTML."""
 		self.listStyle = "default"  # Style might be an optional string which can be used to define different visualizations in the skin.
 		self.listIndexNames = indexNames or {}
 		self.onSelectionChanged = []
+		self.onListUpdated = []
 		self.disableCallbacks = False
+		self.__current = None # current element set from connected GUI element
+		self.__index = None # current index set from connected GUI element
+		self.connectedGuiElement = None # manuallyconnected GUI element
 
 	def enableAutoNavigation(self, enabled):
 		try:
@@ -39,6 +43,7 @@ to generate HTML."""
 	def setList(self, listData):
 		self.listData = listData
 		self.changed((self.CHANGED_ALL,))
+		self.listUpdated()
 
 	list = property(getList, setList)
 
@@ -65,6 +70,15 @@ to generate HTML."""
 		except AttributeError:
 			pass
 
+	# this is for manually set which is the GUI element connected with the list
+	# For use in case of addons where there is no source so to rely on the master
+	def setConnectedGuiElement(self, guiElement):
+		self.connectedGuiElement = guiElement
+		index = guiElement.instance.getCurrentIndex()
+		self.__current = self.listData[index]
+		self.__index = index
+		self.changed((self.CHANGED_ALL,))
+
 	def selectionChanged(self, index):
 		if not self.disableCallbacks:
 			for element in self.downstream_elements:  # Update all non-master targets.
@@ -79,18 +93,23 @@ to generate HTML."""
 
 	@cached
 	def getCurrent(self):
-		return self.master is not None and self.master.current
+		return self.master.current if self.master and hasattr(self.master, "current") else self.__current
 
 	current = property(getCurrent)
 
 	@cached
 	def getCurrentIndex(self):
-		return self.master.index if self.master is not None else 0  # None - The 0 is a hack to avoid badly written code from crashing!
+		return self.master.index if self.master is not None and hasattr(self.master, "index") else self.__index
 
 	def setCurrentIndex(self, index):
 		if self.master is not None:
-			self.master.index = index
+			if hasattr(self.master, "index"):
+				self.master.index = index
+			else:
+				self.__index = index
 			self.selectionChanged(index)
+		if self.connectedGuiElement is not None:
+			self.connectedGuiElement.moveSelection(index)
 
 	index = property(getCurrentIndex, setCurrentIndex)
 
@@ -245,6 +264,10 @@ to generate HTML."""
 			instance.goBottom()
 		except AttributeError:
 			pass
+
+	def listUpdated(self):
+		for method in self.onListUpdated:
+			method()
 
 	# These hacks protect code that was modified to use the previous up/down hack!   These methods should be found and removed from all code.
 	#
