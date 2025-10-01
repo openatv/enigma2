@@ -1,4 +1,4 @@
-from enigma import eListbox, eListboxPythonConfigContent, ePoint, eRCInput, eTimer, gRGB
+from enigma import eListbox, eListboxPythonConfigContent, ePoint, eRCInput, eTimer
 
 from skin import parameters
 from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
