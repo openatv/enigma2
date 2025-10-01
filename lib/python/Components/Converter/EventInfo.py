@@ -40,7 +40,7 @@ class ETSIClassifications(dict):
 		self.update([(index, (shortRating(classification), longRating(classification), imageRating(classification), colors[index])) for index, classification in enumerate(range(16))])
 
 
-class AusClassifications(dict): # Note: Australia does not color its ratings.  In most cases the rating icon is preferred!
+class AusClassifications(dict):  # Note: Australia does not color its ratings.  In most cases the rating icon is preferred!
 	def __init__(self):
 		# In Australia "Not Classified" (NC) is to be displayed as an empty string.
 		#            0   1   2    3    4    5    6    7    8     9     10   11   12    13    14    15
@@ -461,7 +461,15 @@ class EventInfo(Converter, Poll):
 				case self.RATING_RAW_AND_COUNTRY:
 					rating = event.getParentalData()
 					if rating:
-						return f"{rating.getRating()};{rating.getCountryCode().upper()}"
+						age = rating.getRating()
+						country = rating.getCountryCode().upper()
+						if country in OPENTV_COUNTRIES:
+							country = OPENTV_COUNTRIES[country]
+						country = COUNTRIES[country] if country in COUNTRIES else COUNTRIES["ETSI"]
+						rating = country[self.RATING_NORMAL].get(age, country[self.RATING_DEFAULT](age))
+						ageText = rating[self.RATING_SHORT].strip().replace("+", "")
+						color = rating[self.RATING_COLOR]
+						return f"{ageText};{hex(color)}"
 				case self.RUNNING_STATUS:
 					if event.getPdcPil():
 						result = {
