@@ -5,6 +5,7 @@ class VariableText:
 		object.__init__(self)
 		self.message = ""
 		self.instance = None
+		self.onChanged = []
 
 	def setText(self, text):
 		try:
@@ -14,6 +15,8 @@ class VariableText:
 		except Exception:
 			self.message = ""
 			self.instance.setText(self.message or "")
+		for method in self.onChanged:
+			method()
 
 	def setMarkedPos(self, pos):
 		if self.instance:
