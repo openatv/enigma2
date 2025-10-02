@@ -186,7 +186,7 @@ class EventInfo(Converter, Poll):
 	RATING_COUNTRY = 31
 	RATING_ICON = 32
 	RATING_RAW = 33
-	RATING_RAW_AND_COUNTRY = 34
+	RATING_TEXT_AND_COLOR = 34
 	REMAINING = 35
 	REMAINING_VFD = 36
 	RUNNING_STATUS = 37
@@ -255,9 +255,8 @@ class EventInfo(Converter, Poll):
 			"RatingCountry": ("token", self.RATING_COUNTRY, 0),
 			"RatingIcon": ("token", self.RATING_ICON, 0),
 			"RatingRaw": ("token", self.RATING_RAW, 0),
-			"RatingRawAndCountry": ("token", self.RATING_RAW_AND_COUNTRY, 0),
+			"RatingTextAndColor": ("token", self.RATING_TEXT_AND_COLOR, 0),
 			"RawRating": ("token", self.RATING_RAW, 0),
-			"RawRatingAndCountry": ("token", self.RATING_RAW_AND_COUNTRY, 0),
 			"Remaining": ("token", self.REMAINING, 60000),
 			"RemainingVFD": ("token", self.REMAINING_VFD, 60000),
 			"RunningStatus": ("token", self.RUNNING_STATUS, 0),
@@ -458,7 +457,7 @@ class EventInfo(Converter, Poll):
 					rating = event.getParentalData()
 					if rating:
 						result = f"{rating.getRating()}"
-				case self.RATING_RAW_AND_COUNTRY:
+				case self.RATING_TEXT_AND_COLOR:
 					rating = event.getParentalData()
 					if rating:
 						age = rating.getRating()
