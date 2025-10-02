@@ -2417,28 +2417,39 @@ void gPixmap::blit(const gPixmap& src, const eRect& _pos, const gRegion& clip, i
 					}
 				} else if (flag & blitAlphaTest) {
 					while (width--) {
-						if (!((*srcp) & 0xFF000000)) {
-							srcp++;
+						uint32_t icol = *srcp++;
+						uint8_t a = (icol >> 24) & 0xFF;
+
+						if (a == 0) {
 							dstp++;
 						} else {
-							uint32_t icol = *srcp++;
+							uint8_t r = (icol >> 16) & 0xFF;
+							uint8_t g = (icol >> 8) & 0xFF;
+							uint8_t b = icol & 0xFF;
+
 #if BYTE_ORDER == LITTLE_ENDIAN
-							*dstp++ = bswap_16(((icol & 0xFF) >> 3) << 11 | ((icol & 0xFF00) >> 10) << 5 |
-											   (icol & 0xFF0000) >> 19);
+							*dstp++ = bswap_16((b >> 3) << 11 | (g >> 2) << 5 | (r >> 3));
 #else
-							*dstp++ =
-								((icol & 0xFF) >> 3) << 11 | ((icol & 0xFF00) >> 10) << 5 | (icol & 0xFF0000) >> 19;
+							*dstp++ = (b >> 3) << 11 | (g >> 2) << 5 | (r >> 3);
 #endif
 						}
 					}
 				} else {
 					while (width--) {
 						uint32_t icol = *srcp++;
+						uint8_t a = (icol >> 24) & 0xFF;
+						uint8_t r = (icol >> 16) & 0xFF;
+						uint8_t g = (icol >> 8) & 0xFF;
+						uint8_t b = icol & 0xFF;
+
+						if (a == 0) {
+							r = g = b = 0;
+						}
+
 #if BYTE_ORDER == LITTLE_ENDIAN
-						*dstp++ = bswap_16(((icol & 0xFF) >> 3) << 11 | ((icol & 0xFF00) >> 10) << 5 |
-										   (icol & 0xFF0000) >> 19);
+						*dstp++ = bswap_16((b >> 3) << 11 | (g >> 2) << 5 | (r >> 3));
 #else
-						*dstp++ = ((icol & 0xFF) >> 3) << 11 | ((icol & 0xFF00) >> 10) << 5 | (icol & 0xFF0000) >> 19;
+						*dstp++ = (b >> 3) << 11 | (g >> 2) << 5 | (r >> 3);
 #endif
 					}
 				}
