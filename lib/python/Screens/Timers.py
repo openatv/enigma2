@@ -225,6 +225,7 @@ class TimerListBase(GUIComponent):
 		self.iconAutoTimer = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/timer_autotimer.png"))
 		self.iconIceTVTimer = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/timer_icetv.png"))
 		self.line = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "div-h.png"))
+		self.l = self.timerListWidget  # This is for compatibility reasons
 
 	def postWidgetCreate(self, instance):
 		instance.setContent(self.timerListWidget)
