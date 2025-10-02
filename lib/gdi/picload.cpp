@@ -1454,7 +1454,7 @@ int ePicLoad::getData(ePtr<gPixmap>& result) {
 			gRGB bg(m_conf.background);
 			background = surface->clut.findOrAddColor(bg);
 		} else {
-			background = m_conf.background;
+			background = m_conf.background ^ 0xFF000000;
 		}
 
 		if (yoff != 0) {
