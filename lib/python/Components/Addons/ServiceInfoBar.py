@@ -162,7 +162,7 @@ class ServiceInfoBar(GUIAddon):
 			if not info:
 				return None
 
-			if "%3a//" in pending_sref and pending_service_ref and not pending_service_ref.getStreamRelay():
+			if "%3a//" in pending_sref and pending_service_ref and not pending_service_ref.getIsStreamRelay():
 				self.isCryptedDetected = False
 
 			video_height = None
@@ -191,7 +191,7 @@ class ServiceInfoBar(GUIAddon):
 							return key
 						idx += 1
 			elif key == "crypt" and not isRef:
-				if "%3a//" in pending_sref and pending_service_ref and not pending_service_ref.getStreamRelay():
+				if "%3a//" in pending_sref and pending_service_ref and not pending_service_ref.getIsStreamRelay():
 					return key + "_off"
 				if info.getInfo(iServiceInformation.sIsCrypted) == 1:
 					self.isCryptedDetected = True
@@ -221,7 +221,7 @@ class ServiceInfoBar(GUIAddon):
 				if service.streamed() is not None and ((self.streamServer.getConnectedClients() or StreamServiceList) and True or False):
 					return key
 			elif key == "currentCrypto":
-				if "%3a//" in pending_sref and pending_service_ref and not pending_service_ref.getStreamRelay():
+				if "%3a//" in pending_sref and pending_service_ref and not pending_service_ref.getIsStreamRelay():
 					self.refreshCryptoInfo.stop()
 					self.currentCrypto = ""
 					return key + "_off"
@@ -262,7 +262,7 @@ class ServiceInfoBar(GUIAddon):
 				if match and int(match.group(1)) > 0:
 					return key
 			elif key == "servicetype":
-				if "%3a//" in pending_sref.lower() and pending_service_ref and not pending_service_ref.getStreamRelay():
+				if "%3a//" in pending_sref.lower() and pending_service_ref and not pending_service_ref.getIsStreamRelay():
 					return "iptv"
 				elif not isRef:
 					if self.frontendInfoSource:
