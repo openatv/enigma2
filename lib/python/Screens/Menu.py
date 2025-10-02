@@ -431,13 +431,11 @@ class Menu(Screen, ProtectedScreen):
 			numberText = f"{number}  {entry[MENU_TEXT]}" if config.usage.menuEntryStyle.value in ("number", "both") else entry[MENU_TEXT]  # This is for compatibility with older skins.
 			menu.append((numberText, entry[MENU_IMAGE], str(number), entry[MENU_TEXT], entry[MENU_DESCRIPTION], entry[MENU_KEY], entry[MENU_WEIGHT], entry[MENU_MODULE]))
 		self["menu"].setList(menu)
-		self.screenContentChanged()
 
 	def layoutFinished(self):
 		self["menu"].enableAutoNavigation(False)
 		self["menu"].setStyle(config.usage.menuEntryStyle.value)
 		self.selectionChanged()
-		self.screenContentChanged()
 
 	def selectionChanged(self):
 		current = self["menu"].getCurrent()
