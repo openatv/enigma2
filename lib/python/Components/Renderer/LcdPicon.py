@@ -166,7 +166,8 @@ class LcdPicon(Renderer):
 					pngname = self.defaultpngname
 				if self.pngname != pngname:
 					if pngname:  # We need to used ePicLoad to support 32Bit Picons for all Display types
-						self.PicLoad.setPara((self.piconsize[0], self.piconsize[1], 0, 0, 1, 1, "#FF000000"))
+						# Note: 1 + 100 is for 16 Bit LCD to force RGB
+						self.PicLoad.setPara((self.piconsize[0], self.piconsize[1], 0, 0, 1, 101, "#FF000000"))
 						self.PicLoad.startDecode(pngname)
 					else:
 						self.instance.hide()

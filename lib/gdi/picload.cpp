@@ -994,7 +994,7 @@ void ePicLoad::decodePic() {
 		getExif(m_filepara->file, m_filepara->id);
 	switch (m_filepara->id) {
 		case F_PNG:
-			png_load(m_filepara, m_conf.background);
+			png_load(m_filepara, m_conf.background, m_conf.forceRGB);
 			break;
 		case F_JPEG:
 			m_filepara->pic_buffer = jpeg_load(m_filepara->file, &m_filepara->ox, &m_filepara->oy, m_filepara->max_x, m_filepara->max_y);
@@ -1768,7 +1768,17 @@ RESULT ePicLoad::setPara(int width, int height, double aspectRatio, int as, bool
 	m_conf.aspect_ratio = as == 0 ? 0.0 : aspectRatio / as;
 	m_conf.usecache = useCache;
 	m_conf.auto_orientation = auto_orientation;
-	m_conf.resizetype = resizeType;
+	m_conf.forceRGB = false;
+
+	if (resizeType > 100)
+	{
+#ifdef LCD_FORCE_RGB
+		m_conf.forceRGB = true;
+#endif
+		m_conf.resizetype = resizeType - 100;
+	}
+	else
+		m_conf.resizetype = resizeType;
 
 	if (bg_str[0] == '#' && strlen(bg_str) == 9)
 		m_conf.background = static_cast<uint32_t>(strtoul(bg_str + 1, NULL, 16));

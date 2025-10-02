@@ -67,6 +67,7 @@ class ePicLoad : public eMainloop, public eThread, public sigc::trackable, publi
 		bool auto_orientation;
 		int thumbnailsize;
 		int test;
+		bool forceRGB;
 		PConf();
 	} m_conf;
 
