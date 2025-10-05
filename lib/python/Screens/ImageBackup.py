@@ -56,7 +56,7 @@ class ImageBackup(Screen):
 			"pageDown": (self["config"].goPageDown, _("Move down a screen")),
 			"bottom": (self["config"].goBottom, _("Move to last line / screen"))
 		}, prio=0, description=_("Image Backup Actions"))
-		self.bzip2Cmd = "/usr/bin/bzip2"
+		self.bzip2Cmd = "/usr/bin/pbzip2"
 		self.catCmd = "/bin/cat"
 		self.copyCmd = "/bin/cp"
 		self.cutCmd = "/usr/bin/cut"
