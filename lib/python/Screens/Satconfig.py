@@ -622,7 +622,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 					self.list.append(getConfigListEntry(_("Threshold"), currLnb.threshold, _("Consult your SCR device specifications for this information.")))
 					self.list.append(getConfigListEntry(_("LNB/Switch Bootup time [ms]"), currLnb.bootuptimeuser))
 				elif currLnb.unicable.value == "unicable_matrix":
-					nimmanager.sec.reconstructUnicableDate(currLnb.unicableMatrixManufacturer, currLnb.unicableMatrix, currLnb)
+					nimmanager.sec.reconstructUnicableData(currLnb.unicableMatrixManufacturer, currLnb.unicableMatrix, currLnb)
 					manufacturer_name = ensure_text(currLnb.unicableMatrixManufacturer.value)
 					manufacturer = currLnb.unicableMatrix[manufacturer_name]
 					product_name = ensure_text(manufacturer.product.value)
@@ -636,7 +636,7 @@ class NimSetup(Screen, ConfigListScreen, ServiceStopScreen):
 						self.list.append(self.advancedSCR)
 						self.list.append(getConfigListEntry(_("Frequency"), manufacturer.vco[product_name][manufacturer.scr[product_name].index], _("Select the User Band frequency to be assigned to this tuner. This is the frequency the SCR switch uses to pass the requested transponder to the tuner.")))
 				elif currLnb.unicable.value == "unicable_lnb":
-					nimmanager.sec.reconstructUnicableDate(currLnb.unicableLnbManufacturer, currLnb.unicableLnb, currLnb)
+					nimmanager.sec.reconstructUnicableData(currLnb.unicableLnbManufacturer, currLnb.unicableLnb, currLnb)
 					manufacturer_name = ensure_text(currLnb.unicableLnbManufacturer.value)
 					manufacturer = currLnb.unicableLnb[manufacturer_name]
 					product_name = ensure_text(manufacturer.product.value)

@@ -450,10 +450,10 @@ class SecConfigure:
 						sec.setLNBSatCRpositions(64)
 						sec.setLNBBootupTime(currLnb.bootuptimeuser.value)
 					elif currLnb.unicable.value == "unicable_matrix":
-						self.reconstructUnicableDate(currLnb.unicableMatrixManufacturer, currLnb.unicableMatrix, currLnb)
+						self.reconstructUnicableData(currLnb.unicableMatrixManufacturer, currLnb.unicableMatrix, currLnb)
 						setupUnicable(currLnb.unicableMatrixManufacturer, currLnb.unicableMatrix)
 					elif currLnb.unicable.value == "unicable_lnb":
-						self.reconstructUnicableDate(currLnb.unicableLnbManufacturer, currLnb.unicableLnb, currLnb)
+						self.reconstructUnicableData(currLnb.unicableLnbManufacturer, currLnb.unicableLnb, currLnb)
 						setupUnicable(currLnb.unicableLnbManufacturer, currLnb.unicableLnb)
 				elif currLnb.lof.value == "c_band":
 					sec.setLNBLOFL(5150000)
@@ -606,7 +606,7 @@ class SecConfigure:
 					else:
 						sec.setRotorPosNum(0)  # USALS
 
-	def reconstructUnicableDate(self, configManufacturer, ProductDict, currLnb):
+	def reconstructUnicableData(self, configManufacturer, ProductDict, currLnb):
 		val = currLnb.content.stored_values
 		if currLnb.unicable.value == "unicable_lnb":
 			ManufacturerName = val.get('unicableLnbManufacturer', 'none')
@@ -616,11 +616,11 @@ class SecConfigure:
 			SDict = val.get('unicableMatrix', None)
 		else:
 			return
-		#print "[reconstructUnicableDate] SDict %s" % SDict
+		# print "[reconstructUnicableData] SDict %s" % SDict
 		if SDict is None:
 			return
 
-		print("[NimManager] [reconstructUnicableDate] ManufacturerName %s" % ManufacturerName)
+		print("[NimManager] [reconstructUnicableData] ManufacturerName %s" % ManufacturerName)
 
 		PDict = SDict.get(ManufacturerName, None)			#dict contained last stored device data
 		if PDict is None:
@@ -634,8 +634,8 @@ class SecConfigure:
 			tmp = ProductDict[ManufacturerName]
 			if PN in tmp.product.choices.choices:
 				return
-		else:								#if manufacture not in list, then generate new ConfigSubsection
-			print("[NimManager] [reconstructUnicableDate] Manufacturer %s not in unicable.xml" % ManufacturerName)
+		else:  # if manufacture not in list, then generate new ConfigSubsection
+			print("[NimManager] [reconstructUnicableData] Manufacturer %s not in unicable.xml" % ManufacturerName)
 			tmp = ConfigSubsection()
 			tmp.scr = ConfigSubDict()
 			tmp.vco = ConfigSubDict()
@@ -649,7 +649,7 @@ class SecConfigure:
 			tmp.positionsoffset = ConfigSubDict()
 
 		if PN not in tmp.product.choices.choices:
-			print("[NimManager] [reconstructUnicableDate] Product %s not in unicable.xml" % PN)
+			print("[NimManager] [reconstructUnicableData] Product %s not in unicable.xml" % PN)
 			scrlist = []
 			SatCR = int(PDict.get('scr', {PN: 1}).get(PN, 1)) - 1
 			vco = int(PDict.get('vco', {PN: 0}).get(PN, 0).get(str(SatCR), 1))
