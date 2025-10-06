@@ -27,7 +27,7 @@ def getTrashcan(path=None):  # Returns trashcan folder without symbolic links.
 		else:
 			trashcan = join(join(findMountPoint(path), "movie") if "/movie" in path else findMountPoint(path), TRASHCAN)
 	except OSError as err:
-		print("[Trashcan] Error %d: Unable to locate trashcan folder!  (%s)" % (err.errno, err.strerror))
+		print(f"[Trashcan] Error {err.errno}: Unable to locate trashcan folder!  ({err.strerror})")
 		trashcan = ""
 	return trashcan
 
@@ -39,7 +39,7 @@ def createTrashcan(path=None):
 			try:
 				mkdir(trashcan)
 			except OSError as err:
-				print("[Trashcan] Error %d: Unable to create trashcan folder '%s'!  (%s)" % (err.errno, trashcan, err.strerror))
+				print(f"[Trashcan] Error {err.errno}: Unable to create trashcan folder '{trashcan}'!  ({err.strerror})")
 				trashcan = None
 	else:
 		trashcan = None
@@ -59,13 +59,14 @@ def getTrashcanSize(startPath="."):
 					path = join(root, file)
 					trashcanSize += getsize(path)
 				except OSError as err:
-					print("[Trashcan] Error %d: Unable to get directory size for '%s'!  (%s)" % (err.errno, path, err.strerror))
+					print(f"[Trashcan] Error {err.errno}: Unable to get directory size for '{path}'!  ({err.strerror})")
 	return trashcanSize
 
 
 class Trashcan:
 	def __init__(self, session):
 		self.session = session
+		self.realRecordingCount = 0
 		session.nav.record_event.append(self.gotRecordEvent)
 		self.gotRecordEvent(None, None)
 
@@ -73,8 +74,9 @@ class Trashcan:
 		self.destroy()
 
 	def gotRecordEvent(self, service, event):
-		self.recordings = len(self.session.nav.getRecordings(False, pNavigation.isRealRecording))
-		if event == iRecordableService.evEnd:
+		oldRecordingsCount = self.realRecordingCount
+		self.realRecordingCount = self.session.nav.getRealRecordingsCount()
+		if event == iRecordableService.evEnd and oldRecordingsCount != self.realRecordingCount:
 			self.cleanIfIdle()
 
 	def destroy(self):
@@ -83,8 +85,8 @@ class Trashcan:
 		self.session = None
 
 	def cleanIfIdle(self):  # RecordTimer calls this when preparing a recording. That is a nice moment to clean up.
-		if self.recordings:
-			print("[Trashcan] %d recording(s) are in progress." % self.recordings)
+		if self.realRecordingCount:
+			print(f"[Trashcan] {self.realRecordingCount} recording(s) are in progress.")
 			return
 		timeLimit = int(time()) - (config.usage.movielist_trashcan_days.value * 3600 * 24)
 		reserveBytes = 1024 * 1024 * 1024 * config.usage.movielist_trashcan_reserve.value
@@ -119,16 +121,16 @@ def cleanAll(path=None):
 				try:
 					eBackgroundFileEraser.getInstance().erase(path)
 				except Exception as err:
-					print("[Trashcan] Error: Failed to erase '%s'!  (%s)" % (path, err))
+					print(f"[Trashcan] Error: Failed to erase '{path}'!  ({err})")
 			for dir in dirs:  # Remove empty directories if possible.
 				path = join(root, dir)
 				try:
 					rmdir(path)
 				except OSError as err:
 					if err.errno != ENOTEMPTY:
-						print("[Trashcan] Error %d: Unable to remove directory '%s'!  (%s)" % (err.errno, path, err.strerror))
+						print(f"[Trashcan] Error {err.errno}: Unable to remove directory '{path}'!  ({err.strerror})")
 	else:
-		print("[Trashcan] Trashcan '%s' is not a directory!" % trashcan)
+		print(f"[Trashcan] Trashcan '{trashcan}' is not a directory!")
 
 
 def initTrashcan(session):
@@ -162,16 +164,16 @@ class CleanTrashTask(PythonTask):
 				matches.append(join(mount, "movie", TRASHCAN))
 		print("[Trashcan] Found the following trashcans '%s'." % "', '".join(matches))
 		for trashcan in matches:
-			print("[Trashcan] Looking in trashcan '%s'." % trashcan)
+			print(f"[Trashcan] Looking in trashcan '{trashcan}'.")
 			trashcanSize = getTrashcanSize(trashcan)
 			try:
 				trashcanStatus = statvfs(trashcan)
 				freeSpace = trashcanStatus.f_bfree * trashcanStatus.f_bsize
 			except OSError as err:
-				print("[Trashcan] Error %d: Unable to get status for directory '%s'!  (%s)" % (err.errno, trashcan, err.strerror))
+				print(f"[Trashcan] Error {err.errno}: Unable to get status for directory '{trashcan}'!  ({err.strerror})")
 				freeSpace = 0
 			bytesToRemove = self.reserveBytes - freeSpace
-			print("[Trashcan] Trashcan '%s' size is %d bytes." % (trashcan, trashcanSize))
+			print(f"[Trashcan] Trashcan '{trashcan}' size is {trashcanSize} bytes.")
 			candidates = []
 			size = 0
 			for root, dirs, files in walk(trashcan, topdown=False):
@@ -186,16 +188,16 @@ class CleanTrashTask(PythonTask):
 							candidates.append((status.st_ctime, path, status.st_size))
 							size += status.st_size
 					except OSError as err:
-						print("[Trashcan] Error %d: Unable to get status for '%s'!  (%s)" % (err.errno, path, err.strerror))
+						print(f"[Trashcan] Error {err.errno}: Unable to get status for '{path}'!  ({err.strerror})")
 					except Exception as err:
-						print("[Trashcan] Error: Failed to erase '%s'!  (%s)" % (file, err))
+						print(f"[Trashcan] Error: Failed to erase '{file}'!  ({err})")
 				for dir in dirs:  # Remove empty directories if possible.
 					try:
 						path = join(root, dir)
 						rmdir(path)
 					except OSError as err:
 						if err.errno != ENOTEMPTY:
-							print("[Trashcan] Error %d: Unable to remove directory '%s'!  (%s)" % (err.errno, path, err.strerror))
+							print(f"[Trashcan] Error {err.errno}: Unable to remove directory '{path}'!  ({err.strerror})")
 				candidates.sort()  # Now we have a list of ctime, candidates, size. Sorted by ctime (deletion time).
 				for pathTime, path, pathSize in candidates:
 					if bytesToRemove < 0:
@@ -203,10 +205,10 @@ class CleanTrashTask(PythonTask):
 					try:  # Sometimes the path doesn't exist. This can happen if trashcan is on a network or other code is emptying the trashcan at same time.
 						eBackgroundFileEraser.getInstance().erase(path)
 					except Exception as err:
-						print("[Trashcan] Error: Failed to erase '%s'!  (%s)" % (path, err))  # Should we ignore any deletion errors?
+						print(f"[Trashcan] Error: Failed to erase '{path}'!  ({err})")  # Should we ignore any deletion errors?
 					bytesToRemove -= pathSize
 					size -= pathSize
-				print("[Trashcan] Trashcan '%s' is now using %d bytes." % (trashcan, size))
+				print(f"[Trashcan] Trashcan '{trashcan}' is now using {size} bytes.")
 		if not matches:
 			print("[Trashcan] No trashcans found!")
 
@@ -219,4 +221,4 @@ class TrashInfo(VariableText, GUIComponent):
 		GUIComponent.__init__(self)
 
 	def update(self, path):
-		self.setText("%s: %s" % (_("Trashcan"), scaleNumber(getTrashcanSize(getTrashcan(path)))))
+		self.setText(f"{_('Trashcan')}: {scaleNumber(getTrashcanSize(getTrashcan(path)))}")
