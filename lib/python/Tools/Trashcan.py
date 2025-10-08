@@ -3,7 +3,7 @@ from os import W_OK, access, mkdir, rmdir, stat, statvfs, walk
 from os.path import getsize, isdir, join, realpath, split
 from time import time
 
-from enigma import eBackgroundFileEraser, eLabel, iRecordableService, pNavigation
+from enigma import eBackgroundFileEraser, eLabel, iRecordableService
 
 from Components.config import config
 from Components.GUIComponent import GUIComponent
