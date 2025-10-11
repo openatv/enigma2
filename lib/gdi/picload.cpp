@@ -1027,7 +1027,7 @@ void ePicLoad::decodeThumb() {
 	std::string cachedir = "/.Thumbnails";
 
 	getExif(m_filepara->file, m_filepara->id, 1);
-	if (m_exif && m_exif->m_exifinfo->IsExif) {
+	if (m_exif && m_exif->m_exifinfo && m_exif->m_exifinfo->IsExif) {
 		if (m_exif->m_exifinfo->Thumnailstate == 2) {
 			free(m_filepara->file);
 			m_filepara->file = strdup(THUMBNAILTMPFILE);
@@ -1281,7 +1281,7 @@ PyObject* ePicLoad::getInfo(const char* filename) {
 
 	// FIXME : m_filepara destroyed by getData. Need refactor this but plugins rely in it :(
 	getExif(filename, m_filepara ? m_filepara->id : -1);
-	if (m_exif && m_exif->m_exifinfo->IsExif) {
+	if (m_exif && m_exif->m_exifinfo && m_exif->m_exifinfo->IsExif) {
 		char tmp[256];
 		int pos = 0;
 		list = PyList_New(23);
@@ -1332,6 +1332,10 @@ bool ePicLoad::getExif(const char* filename, int fileType, int Thumb) {
 			fileType = getFileType(filename);
 		if (fileType == F_PNG || fileType == F_JPEG)
 			return m_exif->DecodeExif(filename, Thumb, fileType);
+		else {
+			strcpy(m_exif->m_szLastError, "No exif data found");
+			return false;
+		}
 	}
 	return true;
 }
