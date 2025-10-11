@@ -91,6 +91,12 @@
 		<key id="KEY_F3" mapto="f3" flags="m" />
 	</map>
 
+	<map context="HelpAction">
+		<key id="KEY_HELP" mapto="displayHelp" flags="m" />
+		<!-- Keyboard specific buttons -->
+		<key id="KEY_F1" mapto="displayHelp" flags="m" />
+	</map>
+
 	<map context="HelpActions">
 		<key id="KEY_EXIT" mapto="cancel" flags="m" />
 		<key id="KEY_OK" mapto="select" flags="m" />
