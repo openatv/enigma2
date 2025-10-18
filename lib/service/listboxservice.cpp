@@ -62,6 +62,7 @@ void eListboxServiceContent::removeCurrent()
 void eListboxServiceContent::FillFinished()
 {
 	m_size = m_list.size();
+	m_size_visible = cursorResolve(m_size - 1) + 1;
 	cursorHome();
 
 	if (m_listbox)
