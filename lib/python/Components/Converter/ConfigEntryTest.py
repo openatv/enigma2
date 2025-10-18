@@ -20,34 +20,27 @@ class ConfigEntryTest(Converter):
 			if "config." in args[0]:
 				self.configKey = args[0]
 				self.configValue = args[1]
+				argMap = {
+					"Invert": "invert",
+					"Ignore": "ignore",
+					"CheckSourceBoolean": "checkSourceBoolean",
+					"CheckInvertSourceBoolean": "checkInvertSourceBoolean"
+				}
 
-				def checkArg(arg):
-					if arg == "Invert":
-						self.invert = True
-					elif arg == "Ignore":
-						self.ignore = True
-					elif arg == "CheckSourceBoolean":
-						self.checkSourceBoolean = True
-					elif arg == "CheckInvertSourceBoolean":
-						self.checkInvertSourceBoolean = True
+				for arg in args[2:5]:  # check args[2], args[3], args[4]
+					if arg in argMap:
+						setattr(self, argMap[arg], True)
 					else:
 						self.argError = True
-
-				if len(args) > 2:
-					checkArg(args[2])
-				if len(args) > 3:
-					checkArg(args[3])
-				if len(args) > 4:
-					checkArg(args[4])
 			else:
 				self.argError = True
 		if self.argError:
-			print("[ConfigEntryTest] Converter got incorrect arguments '%s'! The arg[0] must start with 'config.', arg[1] is the compare string, arg[2] - arg[4] are optional arguments and must be 'Invert', 'Ignore', 'CheckSourceBoolean' or 'CheckInvertSourceBoolean'." % str(args))
+			print(f"[ConfigEntryTest] Converter got incorrect arguments '{str(args)}'! The arg[0] must start with 'config.', arg[1] is the compare string, arg[2] - arg[4] are optional arguments and must be 'Invert', 'Ignore', 'CheckSourceBoolean' or 'CheckInvertSourceBoolean'.")
 
 	@cached
 	def getBoolean(self):
 		if self.argError:
-			print("[ConfigEntryTest] Got invalid arguments '%s', force True!" % self.converter_arguments)
+			print(f"[ConfigEntryTest] Got invalid arguments '{self.converter_arguments}', force True!")
 			return True
 		if self.checkSourceBoolean and not self.source.boolean:
 			return False
@@ -55,7 +48,7 @@ class ConfigEntryTest(Converter):
 			return False
 		value = configfile.getResolvedKey(self.configKey, silent=True)  # Invalid/non-existent keys will return None.
 		if value is None and not self.ignore:
-			print("[ConfigEntryTest] Converter argument '%s' is missing or invalid!" % self.configKey)
+			print(f"[ConfigEntryTest] Converter argument '{self.configKey}' is missing or invalid!")
 		retVal = value == self.configValue
 		return retVal ^ self.invert
 
