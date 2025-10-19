@@ -873,6 +873,7 @@ eServiceMP3::eServiceMP3(eServiceReference ref)
 	m_clear_buffers = true;
 	m_initial_start = false;
 	m_send_ev_start = true;
+	m_pending_seek_pos = 0;
 	m_first_paused = false;
 	m_cuesheet_loaded = false; /* cuesheet CVR */
 	m_audiosink_not_running = false;
@@ -1649,6 +1650,19 @@ RESULT eServiceMP3::seekToImpl(pts_t to) {
 	// eDebug("[eServiceMP3] seekToImpl pts_t to %" G_GINT64_FORMAT, (gint64)to);
 	/* convert pts to nanoseconds */
 	m_last_seek_pos = to;
+
+	if(m_pending_seek_pos == 0 && to > 0)
+	{
+		GstState state;
+		gst_element_get_state(m_gst_playbin, &state, NULL, 0);
+
+		if (state < GST_STATE_PAUSED) {
+			eDebug("[eServiceMP3] seekTo delayed (state=%d)", state);
+			m_pending_seek_pos = to;
+			return 0;
+		}
+	}
+
 	if (!gst_element_seek(m_gst_playbin, m_currentTrickRatio, GST_FORMAT_TIME,
 						  (GstSeekFlags)(GST_SEEK_FLAG_FLUSH | GST_SEEK_FLAG_KEY_UNIT), GST_SEEK_TYPE_SET,
 						  (gint64)(m_last_seek_pos * 11111LL), GST_SEEK_TYPE_NONE, GST_CLOCK_TIME_NONE)) {
@@ -1681,7 +1695,7 @@ RESULT eServiceMP3::seekToImpl(pts_t to) {
  */
 RESULT eServiceMP3::seekTo(pts_t to) {
 	RESULT ret = -1;
-	// eDebug("[eServiceMP3] seekTo(pts_t to)");
+	// eDebug("[eServiceMP3] seekTo pts_t to %" G_GINT64_FORMAT, (gint64)to);
 	if (m_gst_playbin) {
 		m_prev_decoder_time = -1;
 		m_decoder_time_valid_state = 0;
@@ -3174,6 +3188,12 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 					eDebug("[eServiceMP3] GST_MESSAGE_ASYNC_DONE before evUpdatedInfo");
 					m_event((iPlayableService*)this, evUpdatedInfo);
 				}
+
+				if (m_pending_seek_pos > 0) {
+					eDebug("[eServiceMP3] Performing deferred seek to %llds", m_pending_seek_pos);
+					seekTo(m_pending_seek_pos);
+				}
+
 			} else {
 				m_send_ev_start = true;
 			}

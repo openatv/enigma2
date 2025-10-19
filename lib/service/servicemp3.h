@@ -374,6 +374,7 @@ private:
 	gint m_last_seek_count;
 	bool m_seeking_or_paused;
 	bool m_to_paused;
+	gint64 m_pending_seek_pos;
 	bufferInfo m_bufferInfo;
 	errorInfo m_errorInfo;
 	std::string m_download_buffer_path;
