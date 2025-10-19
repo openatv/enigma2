@@ -27,9 +27,7 @@ extern "C" {
 #define NANOSVGRAST_IMPLEMENTATION
 #include <nanosvgrast.h>
 
-#ifdef HAVE_WEBP
 #include <webp/decode.h>
-#endif
 
 #ifdef HAVE_SWSCALE
 extern "C" {
@@ -879,8 +877,6 @@ ERROR_R:
 #endif
 }
 
-#ifdef HAVE_WEBP
-
 static void webp_load(Cfilepara* filepara, bool forceRGB = false) {
 	FILE* f = fopen(filepara->file, "rb");
 	if (!f) {
@@ -947,8 +943,6 @@ static void webp_load(Cfilepara* filepara, bool forceRGB = false) {
 	filepara->pic_buffer = decoded;
 }
 
-#endif
-
 //---------------------------------------------------------------------------------------------
 
 ePicLoad::ePicLoad() : m_filepara(NULL), m_exif(NULL), threadrunning(false), m_conf(), msg_thread(this, 1, "ePicLoad_thread"), msg_main(eApp, 1, "ePicLoad_main") {
@@ -1010,11 +1004,9 @@ void ePicLoad::decodePic() {
 		case F_SVG:
 			svg_load(m_filepara);
 			break;
-#ifdef HAVE_WEBP
 		case F_WEBP:
 			webp_load(m_filepara);
 			break;
-#endif
 	}
 }
 
@@ -1097,11 +1089,9 @@ void ePicLoad::decodeThumb() {
 		case F_SVG:
 			svg_load(m_filepara, true);
 			break;
-#ifdef HAVE_WEBP
 		case F_WEBP:
 			webp_load(m_filepara, true);
 			break;
-#endif
 	}
 	// eDebug("[ePicLoad] getThumb picture loaded %s", m_filepara->file);
 
@@ -1813,10 +1803,8 @@ int ePicLoad::getFileType(const char* file) {
 		return F_BMP;
 	else if (id[0] == 'G' && id[1] == 'I' && id[2] == 'F')
 		return F_GIF;
-#ifdef HAVE_WEBP
 	else if (id[0] == 'R' && id[1] == 'I' && id[2] == 'F' && id[3] == 'F' && id[8] == 'W' && id[9] == 'E' && id[10] == 'B' && id[11] == 'P')
 		return F_WEBP;
-#endif
 	else if (id[0] == '<' && id[1] == 's' && id[2] == 'v' && id[3] == 'g')
 		return F_SVG;
 	else if (endsWith(file, ".svg"))

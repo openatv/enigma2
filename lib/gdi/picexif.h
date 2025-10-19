@@ -10,7 +10,7 @@
 #define MAX_SECTIONS 20
 #define THUMBNAILTMPFILE "/tmp/.thumbcache"
 
-enum { F_PNG, F_JPEG, F_BMP, F_GIF, F_SVG };
+enum { F_PNG, F_JPEG, F_BMP, F_GIF, F_SVG, F_WEBP };
 
 typedef struct tag_ExifInfo {
 	char Version[5];

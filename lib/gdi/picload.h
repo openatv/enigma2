@@ -47,7 +47,7 @@ struct Cfilepara {
 class ePicLoad : public eMainloop, public eThread, public sigc::trackable, public iObject {
 	DECLARE_REF(ePicLoad);
 
-	enum { F_PNG, F_JPEG, F_BMP, F_GIF, F_SVG, F_WEBP };
+//	enum { F_PNG, F_JPEG, F_BMP, F_GIF, F_SVG, F_WEBP };
 
 	void decodePic();
 	void decodeThumb();
