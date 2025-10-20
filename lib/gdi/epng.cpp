@@ -13,6 +13,11 @@
 #include <string>
 #include <lib/base/elock.h>
 
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <fcntl.h>
+
 extern "C" {
 #include <jpeglib.h>
 #include <gif_lib.h>
@@ -620,17 +625,20 @@ int loadWEBP(ePtr<gPixmap>& result, const char* filename, int cached) {
 	return 0;
 }
 
-int loadImage(ePtr<gPixmap> &result, const char *filename, int accel, int width, int height, int cached, float scale, int keepAspect, int align)
-{
-	if (endsWith(filename, ".png"))
+int loadImage(ePtr<gPixmap>& result, const char* filename, int accel, int width, int height, int cached, float scale, int keepAspect, int align, bool autoDetect) {
+	int detect = -1;
+	if (autoDetect)
+		detect = detectImageType(filename);
+
+	if (detect == F_PNG || endsWith(filename, ".png"))
 		return loadPNG(result, filename, accel, cached == -1 ? 1 : cached);
-	else if (endsWith(filename, ".svg"))
+	else if (detect == F_SVG || endsWith(filename, ".svg"))
 		return loadSVG(result, filename, cached == -1 ? 1 : cached, width, height, scale, keepAspect, align);
-	else if (endsWith(filename, ".jpg"))
+	else if (detect == F_JPEG || endsWith(filename, ".jpg"))
 		return loadJPG(result, filename, cached == -1 ? 0 : cached);
-	else if (endsWith(filename, ".gif"))
+	else if (detect == F_GIF || endsWith(filename, ".gif"))
 		return loadGIF(result, filename, accel, cached == -1 ? 0 : cached);
-	else if (endsWith(filename, ".webp"))
+	else if (detect == F_WEBP || endsWith(filename, ".webp"))
 		return loadWEBP(result, filename, cached == -1 ? 0 : cached);
 	return 0;
 }
