@@ -495,6 +495,36 @@ int loadSVG(ePtr<gPixmap> &result, const char *filename, int cached, int width, 
 }
 
 
+int detectImageType(const char* filename) {
+	unsigned char id[12] = {0};
+	int fd = ::open(filename, O_RDONLY);
+	if (fd != -1) {
+		ssize_t n = ::read(fd, id, sizeof(id));
+		::close(fd);
+
+		if (n > 4) {
+			if (id[1] == 'P' && id[2] == 'N' && id[3] == 'G')
+				return F_PNG;
+
+			if ((n > 9 && id[6] == 'J' && id[7] == 'F' && id[8] == 'I' && id[9] == 'F') || (id[0] == 0xFF && id[1] == 0xD8 && id[2] == 0xFF))
+				return F_JPEG;
+
+			if (id[0] == 'B' && id[1] == 'M')
+				return F_BMP;
+
+			if (id[0] == 'G' && id[1] == 'I' && id[2] == 'F')
+				return F_GIF;
+
+			if (n > 11 && id[0] == 'R' && id[1] == 'I' && id[2] == 'F' && id[3] == 'F' && id[8] == 'W' && id[9] == 'E' && id[10] == 'B' && id[11] == 'P')
+				return F_WEBP;
+
+			if (id[0] == '<' && (id[1] == 's' || id[1] == 'S') && (id[2] == 'v' || id[2] == 'V') && (id[3] == 'g' || id[3] == 'G'))
+				return F_SVG;
+		}
+	}
+	return -1;
+}
+
 int loadWEBP(ePtr<gPixmap>& result, const char* filename, int cached) {
 	if (cached && (result = PixmapCache::Get(filename)))
 		return 0;

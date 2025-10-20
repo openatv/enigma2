@@ -45,4 +45,5 @@ SWIG_VOID(int) loadWEBP(ePtr<gPixmap> &SWIG_OUTPUT, const char* filename, int ca
 SWIG_VOID(int) loadImage(ePtr<gPixmap> &SWIG_OUTPUT, const char *filename, int accel = 0, int width = 0, int height = 0, int cached = -1, float scale = 0, int keepAspect = 0, int align = 0);
 int savePNG(const char *filename, gPixmap *pixmap);
 
+int detectImageType(const char *filename);
 #endif
