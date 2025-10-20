@@ -78,9 +78,9 @@ class EPGList(GUIComponent):
 		self.showServiceNumber = False
 		self.skinUsingForeColorByTime = False
 		self.skinUsingBackColorByTime = False
-		#//vertical
+		# //vertical
 		self.days = (_("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat"), _("Sun"))
-		#//
+		# //
 
 		self.listRows = 8
 		self.listFirstServiceIndex = 0
@@ -475,7 +475,7 @@ class EPGList(GUIComponent):
 			self.findBestEvent()
 
 	def findBestEvent(self, getnow=False):
-		old_service = self.cur_service  #(service, service_name, events, picon)
+		old_service = self.cur_service  # (service, service_name, events, picon)
 		cur_service = self.cur_service = self.l.getCurrentSelection()
 		time_base = self.getTimeBase()
 		now = last_time = time()
@@ -763,7 +763,7 @@ class EPGList(GUIComponent):
 			backColor = self.backColor
 			foreColorSel = self.foreColorSelected
 			backColorSel = self.backColorSelected
-		#don't apply new defaults to old skins:
+		# don't apply new defaults to old skins:
 		if not self.skinUsingForeColorByTime:
 			foreColor = None
 			foreColorSel = None
@@ -783,16 +783,18 @@ class EPGList(GUIComponent):
 			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, datetime, foreColor, foreColorSel, backColor, backColorSel)
 		]
 
+		offset = 0
 		for typeIcon in self.getIcons(clock_types, service, beginTime):
+			offset += self.picx * 2 + self.gap
 			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x + r3.w - self.picx * 2 - self.gap - self.posx, (r3.h / 2 - self.posy), self.picx, self.picy, typeIcon))
 
 		if clock_types:
 			res.extend((
 				(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x + r3.w - self.picx - self.posx, (r3.h / 2 - self.posy), self.picx, self.picy, self.clocks[clock_types]),
-				(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w - self.picx - self.posx, r3.h, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, EventName, foreColor, foreColorSel, backColor, backColorSel)
+				(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w - self.picx - self.posx - offset, r3.h, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, EventName, foreColor, foreColorSel, backColor, backColorSel)
 				))
 		else:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, EventName, foreColor, foreColorSel, backColor, backColorSel))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w - offset, r3.h, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, EventName, foreColor, foreColorSel, backColor, backColorSel))
 		return res
 
 	def buildSimilarEntry(self, service, eventId, beginTime, service_name, duration):
@@ -809,16 +811,18 @@ class EPGList(GUIComponent):
 			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r1.h, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, strftime(_("%e/%m, %-H:%M"), t))
 		]
 
+		offset = 0
 		for typeIcon in self.getIcons(clock_types, service, beginTime):
+			offset += self.picx * 2 + self.gap
 			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x + r3.w - self.picx * 2 - self.gap - self.posx, (r3.h / 2 - self.posy), self.picx, self.picy, typeIcon))
 
 		if clock_types:
 			res.extend((
 				(eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r3.x + r3.w - self.picx - self.posx, (r3.h / 2 - self.posy), self.picx, self.picy, self.clocks[clock_types]),
-				(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w - self.picx - (self.gap * 2) - self.posx, r3.h, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, service_name)
+				(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w - self.picx - (self.gap * 2) - self.posx - offset, r3.h, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, service_name)
 			))
 		else:
-			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, service_name))
+			res.append((eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w - offset, r3.h, 0, RT_HALIGN_LEFT | RT_VALIGN_CENTER, service_name))
 		return res
 
 	def buildMultiEntry(self, changecount, service, eventId, beginTime, duration, EventName, nowTime, service_name):
@@ -1064,7 +1068,7 @@ class EPGList(GUIComponent):
 			end = start + self.time_epoch * 60
 
 			now = time()
-			for ev in events:  #(event_id, event_title, begin_time, duration)
+			for ev in events:  # (event_id, event_title, begin_time, duration)
 				stime = ev[2]
 				duration = ev[3]
 				xpos, ewidth = self.calcEntryPosAndWidthHelper(stime, duration, start, end, width)
@@ -1206,7 +1210,7 @@ class EPGList(GUIComponent):
 							flags=BT_SCALE))
 
 				# recording icons
-				if clock_types is not None and ewidth > 23:
+				if ewidth > 23:
 					if config.epgselection.graph_rec_icon_height.value != "hide":
 						if config.epgselection.graph_rec_icon_height.value == "middle":
 							RecIconHeight = top + (height / 2) - self.posy
@@ -1214,15 +1218,20 @@ class EPGList(GUIComponent):
 							RecIconHeight = top + self.gap
 						else:
 							RecIconHeight = top + height - self.picy - self.gap
-						if clock_types in (1, 6, 11):
-							pos = (left + xpos + ewidth - self.picx, RecIconHeight)
-						elif clock_types in (5, 10, 15):
-							pos = (left + xpos - self.picx - self.posx, RecIconHeight)
+
+						if clock_types is not None:
+							if clock_types in (1, 6, 11):
+								pos = (left + xpos + ewidth - self.picx, RecIconHeight)
+							elif clock_types in (5, 10, 15):
+								pos = (left + xpos - self.picx - self.posx, RecIconHeight)
+							else:
+								pos = (left + xpos + ewidth - self.picx - self.posx, RecIconHeight)
+							res.append(MultiContentEntryPixmapAlphaBlend(
+								pos=pos, size=(self.picx, self.picy),
+								png=clocks))
 						else:
 							pos = (left + xpos + ewidth - self.picx - self.posx, RecIconHeight)
-						res.append(MultiContentEntryPixmapAlphaBlend(
-							pos=pos, size=(self.picx, self.picy),
-							png=clocks))
+
 						for typeIcon in self.getIcons(clock_types, service, ev[0]):
 							res.append(MultiContentEntryPixmapAlphaBlend(
 								pos=(pos[0] - self.picx - self.gap, pos[1]), size=(self.picx, self.picy),
@@ -1250,7 +1259,7 @@ class EPGList(GUIComponent):
 			foreColorSel = self.foreColorSelected
 			backColorSel = self.backColorSelected
 
-		#don't apply new defaults to old skins:
+		# don't apply new defaults to old skins:
 		if not self.skinUsingForeColorByTime:
 			foreColor = None
 			foreColorSel = None
@@ -1284,7 +1293,7 @@ class EPGList(GUIComponent):
 			backColor = backColorPrimeTime
 		res = [
 			None,
-			(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT, ' ', foreColor, foreColorSel, backColor, backColorSel),			#//background event
+			(eListboxPythonMultiContent.TYPE_TEXT, r3.x, r3.y, r3.w, r3.h, 0, RT_HALIGN_LEFT, ' ', foreColor, foreColorSel, backColor, backColorSel),  # //background event
 			(eListboxPythonMultiContent.TYPE_TEXT, r2.x, r2.y, r2.w, r2.h, 0, RT_HALIGN_LEFT, ' ', foreColorTime, foreColorSel, backColorTime, backColorSel),  # //background time
 			]
 		if pt:
@@ -1303,7 +1312,7 @@ class EPGList(GUIComponent):
 		if clock_types:
 			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, r2.w - self.picx - self.posx, r2.h / 2 - self.posy, self.picx, self.picy, self.clocks[clock_types]))
 		res.extend((
-				(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT, ' ', foreColor, foreColorSel, borderColor, borderColor),		#//parting line
+				(eListboxPythonMultiContent.TYPE_TEXT, r1.x, r1.y, r1.w, r1.h, 0, RT_HALIGN_LEFT, ' ', foreColor, foreColorSel, borderColor, borderColor),  # //parting line
 				(eListboxPythonMultiContent.TYPE_TEXT, r3.x + self.posx, r3.y, r3.w - self.posx, r3.h, 1, RT_HALIGN_LEFT | RT_WRAP, EventName, foreColor, foreColorSel, backColor, backColorSel)
 				))
 		return res
@@ -1352,7 +1361,7 @@ class EPGList(GUIComponent):
 		return int(selx), int(sely)
 
 	def selEntry(self, dir, visible=True):
-		cur_service = self.cur_service    #(service, service_name, events, picon)
+		cur_service = self.cur_service  # (service, service_name, events, picon)
 		self.recalcEntrySize()
 		valid_event = self.cur_event is not None
 		now = time() - int(config.epg.histminutes.value) * 60
@@ -1527,10 +1536,10 @@ class EPGList(GUIComponent):
 			self.time_base = int(stime)
 		if services is None:
 			time_base = self.time_base + self.offs * self.time_epoch * 60
-			#// set new time base without offset
+			# // set new time base without offset
 			self.time_base = time_base
 			self.offs = 0
-			#//
+			# //
 			endRow = min(self.listFirstServiceIndex + self.listRows, len(self.serviceList))
 			for i in range(self.listFirstServiceIndex, endRow):
 				test.append((self.serviceList[i].ref.toString(), 0, self.time_base, self.time_epoch))
@@ -1739,7 +1748,7 @@ class TimelineText(GUIComponent):
 			self.l.setFont(0, gFont(self.timelineFontName, self.timelineFontSize + config.epgselection.infobar_timelinefs.value))
 
 	def postWidgetCreate(self, instance):
-		#self.setTimeLineFontsize()
+		# self.setTimeLineFontsize()
 		instance.setContent(self.l)
 
 	def setEntries(self, epgList, timeline_now, time_lines, force):
@@ -1979,7 +1988,7 @@ class EPGBouquetList(GUIComponent):
 		instance.selectionChanged.get().append(self.selectionChanged)
 		instance.setContent(self.l)
 		# self.l.setSelectionClip(eRect(0,0,0,0), False)
-		#self.setBouquetFontsize()
+		# self.setBouquetFontsize()
 
 	def preWidgetRemove(self, instance):
 		instance.selectionChanged.get().append(self.selectionChanged)
