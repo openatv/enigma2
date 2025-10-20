@@ -18,8 +18,12 @@ extern "C" {
 #include <gif_lib.h>
 }
 
+#include <webp/decode.h>
+
 #include <nanosvg.h>
 #include <nanosvgrast.h>
+
+#include <lib/gdi/picexif.h>
 
 /* TODO: I wonder why this function ALWAYS returns 0 */
 int loadPNG(ePtr<gPixmap> &result, const char *filename, int accel, int cached)
@@ -490,6 +494,58 @@ int loadSVG(ePtr<gPixmap> &result, const char *filename, int cached, int width, 
 	return 0;
 }
 
+
+int loadWEBP(ePtr<gPixmap>& result, const char* filename, int cached) {
+	if (cached && (result = PixmapCache::Get(filename)))
+		return 0;
+
+	CFile infile(filename, "rb");
+	result = 0;
+
+	FILE* f = infile;
+	if (!f)
+		return -1;
+
+	fseek(f, 0, SEEK_END);
+	long file_size = ftell(f);
+	fseek(f, 0, SEEK_SET);
+
+	if (file_size <= 0)
+		return -1;
+
+	std::vector<uint8_t> data(file_size);
+	if (fread(data.data(), 1, file_size, f) != (size_t)file_size)
+		return -1;
+
+	int width = 0, height = 0;
+	WebPBitstreamFeatures features;
+	if (WebPGetFeatures(data.data(), data.size(), &features) != VP8_STATUS_OK) {
+		eWarning("[loadWEBP] WebP decode failed: %s", filename);
+		return -1;
+	}
+
+	uint8_t* decoded = WebPDecodeRGBA(data.data(), data.size(), &width, &height);
+	if (!decoded) {
+		eWarning("[loadWEBP] WebP decode failed: %s", filename);
+		return -1;
+	}
+
+	result = new gPixmap(width, height, 32, cached ? PixmapCache::PixmapDisposed : NULL);
+	result->surface->transparent = features.has_alpha;
+
+	unsigned char* dst = (unsigned char*)result->surface->data;
+	int stride = result->surface->stride;
+	for (int y = 0; y < height; ++y)
+		memcpy(dst + y * stride, decoded + y * width * 4, width * 4);
+
+	WebPFree(decoded);
+
+	if (cached)
+		PixmapCache::Set(filename, result);
+
+	return 0;
+}
+
 int loadImage(ePtr<gPixmap> &result, const char *filename, int accel, int width, int height, int cached, float scale, int keepAspect, int align)
 {
 	if (endsWith(filename, ".png"))
@@ -500,6 +556,8 @@ int loadImage(ePtr<gPixmap> &result, const char *filename, int accel, int width,
 		return loadJPG(result, filename, cached == -1 ? 0 : cached);
 	else if (endsWith(filename, ".gif"))
 		return loadGIF(result, filename, accel, cached == -1 ? 0 : cached);
+	else if (endsWith(filename, ".webp"))
+		return loadWEBP(result, filename, cached == -1 ? 0 : cached);
 	return 0;
 }
 
