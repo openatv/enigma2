@@ -1308,7 +1308,25 @@ def InitUsageConfig():
 		eEPGCache.getInstance().setEpgmaxdays(config.epg.maxdays.getValue())
 	config.epg.maxdays.addNotifier(EpgmaxdaysChanged)
 
-	config.epg.histminutes = ConfigSelectionNumber(min=0, max=1440, stepwidth=30, default=0, wraparound=True)
+	def displayPeriod(number):
+		for minutes, singular, plural in [
+			(60 * 24 * 7, "%d Week", "%d Weeks"),
+			(60 * 24, "%d Day", "%d Days"),
+			(60, "%d Hour", "%d Hours"),
+			(1, "%d Minute", "%d Minutes")
+		]:
+			value = int(number / minutes)
+			if value:
+				return ngettext(singular, plural, value) % value
+
+	choices = [(0, _("None"))] + [(x, displayPeriod(x)) for x in (
+		[x * 15 for x in range(1, 4)] +  # 15, 30, 45 minutes.
+		[x * 60 for x in range(1, 9)] +  # 60, 120, ..., 480 minutes (1 to 8 hours).
+		[x * 120 for x in range(5, 12)] +  # 600, 720, ..., 1320 minutes (10 to 22 hours).
+		[x * 60 * 24 for x in range(1, 7)] +  # 1440, 2880, ..., 8640 minutes (1 to 6 days).
+		[x * 60 * 24 * 7 for x in range(1, 5)]  # 10080, 20160, ..., 40320 minutes (1 to 4 weeks).
+	)]
+	config.epg.histminutes = ConfigSelection(default=0, choices=choices)
 
 	def EpgHistorySecondsChanged(configElement):
 		eEPGCache.getInstance().setEpgHistorySeconds(config.epg.histminutes.value * 60)
