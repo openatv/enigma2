@@ -46,4 +46,6 @@ SWIG_VOID(int) loadImage(ePtr<gPixmap> &SWIG_OUTPUT, const char *filename, int a
 int savePNG(const char *filename, gPixmap *pixmap);
 
 int detectImageType(const char *filename);
+bool isAnimatedGIF(const char *filename);
+
 #endif

@@ -525,6 +525,50 @@ int detectImageType(const char* filename) {
 	return -1;
 }
 
+bool isAnimatedGIF(const char* filename) {
+	int fd = ::open(filename, O_RDONLY);
+	if (fd != -1) {
+		char header[6];
+		ssize_t n = ::read(fd, header, 6);
+		if (n != 6) {
+			::close(fd);
+			return false;
+		}
+
+		if (!(header[0] == 'G' && header[1] == 'I' && header[2] == 'F' && header[4] == '8')) {
+			::close(fd);
+			return false;
+		}
+
+		int frameCount = 0;
+		unsigned char byte = 0;
+		unsigned char label = 0;
+
+		while (true) {
+			ssize_t bytesRead = ::read(fd, &byte, 1);
+			if (bytesRead != 1)
+				break;
+
+			if (byte == 0x21) {
+				if (::read(fd, &label, 1) != 1)
+					break;
+				if (label == 0xF9) {
+					::lseek(fd, 6, SEEK_CUR);
+				}
+			} else if (byte == 0x2C) {
+				frameCount++;
+				if (frameCount > 1) {
+					::close(fd);
+					return true;
+				}
+				::lseek(fd, 9, SEEK_CUR);
+			}
+		}
+		::close(fd);
+	}
+	return false;
+}
+
 int loadWEBP(ePtr<gPixmap>& result, const char* filename, int cached) {
 	if (cached && (result = PixmapCache::Get(filename)))
 		return 0;
