@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-27 15:35+0000\n"
+"POT-Creation-Date: 2025-09-27 10:09+0000\n"
 "PO-Revision-Date: 2025-08-18 16:27+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
@@ -4063,7 +4063,7 @@ msgstr "Выберите страну для декодирования инфо
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr "Выберите ярлык, который будет идентифицировать это устройство в сервисах IceTV."
 
-msgid "Choose how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful when you need information about an event which has recently finished."
+msgid "Select how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful for information about an event which has finished."
 msgstr "Выберите, сколько истории EPG, если таковая имеется, будет храниться в кэше EPG. Эти данные истории можно просматривать в любом из представлений EPG. Это может быть полезно, когда Вам нужна информация о недавно завершившемся событии."
 
 msgid "Choose how often to connect to IceTV server to check for updates."
@@ -5326,9 +5326,6 @@ msgstr "Текущий режим %s \n"
 msgid "Current settings:"
 msgstr "Текущие настройки"
 
-msgid "Current status"
-msgstr "Текущий статус"
-
 msgid "Current time"
 msgstr "Текущее время"
 
@@ -6313,6 +6310,9 @@ msgstr "Отключить режим перемещения"
 msgid "Disable Picture in Picture"
 msgstr "Отключить режим PiP"
 
+msgid "Disable ServiceHiSilicon"
+msgstr ""
+
 msgid "Disable background scanning"
 msgstr "Отключить фоновый поиск"
 
@@ -7228,6 +7228,9 @@ msgstr "Включите этот параметр, чтобы добавить 
 
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "Включите этот параметр, чтобы добавить данные сопоставления карты действий / удалённого управления в файл лога отладки."
+
+msgid "Enable this option to add bouquet database information to the debug log file."
+msgstr ""
 
 msgid "Enable this option to add extra DVB details to the debug log file."
 msgstr "Включите эту опцию, чтобы добавить дополнительные сведения о DVB в файл журнала отладки."
@@ -9758,6 +9761,9 @@ msgstr "Включить SDT, BAT в потоки http"
 msgid "Include action map data"
 msgstr "Включить данные карты действий"
 
+msgid "Include bouquet DB data"
+msgstr ""
+
 msgid "Include international data *"
 msgstr "Включить международные данные *"
 
@@ -10226,7 +10232,7 @@ msgstr "Казахский"
 msgid "Kazakhstan"
 msgstr "Казахстан"
 
-msgid "Keep EPG history (in minutes)"
+msgid "EPG history"
 msgstr "Хранить историю EPG (в минутах)"
 
 msgid "Keep service"
@@ -15933,6 +15939,9 @@ msgstr "Выберите 'Да', чтобы непрерывно отображ�
 msgid "Select 'Yes' to disable multi-selection mode after each operation. Select 'No' to leave multi-selection mode active and the selections unchanged."
 msgstr "Выберите 'Да', чтобы отключить режим множественного выбора после каждой операции. Выберите 'Нет', чтобы оставить активным режим множественного выбора и выборы без изменений."
 
+msgid "Select 'Yes' to disable the ServiceHiSilicon plugin to allow use of the default internal media player code."
+msgstr ""
+
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr "Если выберете 'Да', в ТВ-гиде будет показываться уменьшенная картинка телеканала (PIG - Картинка в Графике)."
 
@@ -19099,6 +19108,9 @@ msgstr "Состояние дисплея в режиме ожидания"
 
 msgid "Status unavailable!"
 msgstr "Статус недоступен!"
+
+msgid "Status:"
+msgstr "Статус"
 
 msgid "Step"
 msgstr "Шаг"
@@ -24215,6 +24227,9 @@ msgstr "Да (оставить фиды)"
 msgid "®"
 msgstr "®"
 
+#~ msgid "Current status"
+#~ msgstr "Текущий статус"
+
 #~ msgid "Black Screen"
 #~ msgstr "Чёрный экран"
 
@@ -24398,9 +24413,6 @@ msgstr "®"
 
 #~ msgid "Signal strength:"
 #~ msgstr "Уровень сигнала"
-
-#~ msgid "Status:"
-#~ msgstr "Статус"
 
 #~ msgid "Timer selection..."
 #~ msgstr "Выбор таймера ..."

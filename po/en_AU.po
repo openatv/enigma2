@@ -2,13 +2,13 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # openATV <openatv@gmail.com>, 2021.
-# jbleyel <jbleyel@gmx.net>, 2022.
+# jbleyel <jbleyel@gmx.net>, 2022, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-27 15:35+0000\n"
-"PO-Revision-Date: 2022-08-01 08:46+0000\n"
+"POT-Creation-Date: 2025-09-27 10:09+0000\n"
+"PO-Revision-Date: 2025-10-20 17:11+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: English (Australia) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/en_AU/>\n"
 "Language: en_AU\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 4.14-dev\n"
+"X-Generator: Weblate 5.14-dev\n"
 
 msgid ""
 "\n"
@@ -791,8 +791,8 @@ msgstr ""
 #, python-format
 msgid "%d Hour"
 msgid_plural "%d Hours"
-msgstr[0] "%d hour"
-msgstr[1] "%d hours"
+msgstr[0] ""
+msgstr[1] ""
 
 #, python-format
 msgid "%d Hours"
@@ -830,8 +830,8 @@ msgstr ""
 #, python-format
 msgid "%d Min"
 msgid_plural "%d Mins"
-msgstr[0] "%d Min"
-msgstr[1] "%d Mins"
+msgstr[0] ""
+msgstr[1] ""
 
 #, python-format
 msgid "%d Minute"
@@ -868,8 +868,8 @@ msgstr ""
 #, python-format
 msgid "%d Second"
 msgid_plural "%d Seconds"
-msgstr[0] "%d Second"
-msgstr[1] "%d Seconds"
+msgstr[0] ""
+msgstr[1] ""
 
 #, python-format
 msgid "%d Seconds"
@@ -1036,8 +1036,8 @@ msgstr ""
 #, python-format
 msgid "%d wireless network found!"
 msgid_plural "%d wireless networks found!"
-msgstr[0] "%d wireless network found!"
-msgstr[1] "%d wireless networks found!"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "%d+%b_"
 msgstr ""
@@ -1567,39 +1567,27 @@ msgid ""
 "A finished record timer wants to set your\n"
 "%s %s to standby. Do that now?"
 msgstr ""
-"A finished record timer wants to set your\n"
-"%s %s to standby. Do that now?"
 
 #, python-format
 msgid ""
 "A finished record timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
-"A finished record timer wants to shut down\n"
-"your %s %s. Shutdown now?"
 
 #, python-format
 msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
 msgstr ""
-"A finished PowerTimer wants to reboot your %s %s.\n"
-"Do that now?"
 
 msgid "A finished scheduled timer wants to restart the user interface. Do that now?"
 msgstr ""
-"A finished PowerTimer wants to restart the user interface.\n"
-"Do that now?"
 
 #, python-format
 msgid "A finished scheduled timer wants to set your %s %s to standby. Do that now?"
 msgstr ""
-"A finished PowerTimer wants to set your\n"
-"%s %s to standby. Do that now?"
 
 #, python-format
 msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
 msgstr ""
-"A finished PowerTimer wants to shutdown your %s %s.\n"
-"Do that now?"
 
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr ""
@@ -1612,8 +1600,6 @@ msgid ""
 "A recording has been started:\n"
 "%s"
 msgstr ""
-"A recording has been started:\n"
-"%s"
 
 msgid ""
 "A recording is currently running.\n"
@@ -1645,9 +1631,6 @@ msgid ""
 "\n"
 "Do you want to disable the second network interface?"
 msgstr ""
-"A second configured interface has been found.\n"
-"\n"
-"Do you want to disable the second network interface?"
 
 msgid ""
 "A timer failed to record!\n"
@@ -1668,8 +1651,6 @@ msgid ""
 "A timer failed to record!\n"
 "Disable TV and try again?\n"
 msgstr ""
-"A timer failed to record!\n"
-"Disable TV and try again?\n"
 
 msgid "AAC downmix"
 msgstr ""
@@ -2442,8 +2423,6 @@ msgid ""
 "Are you sure you want to delete\n"
 "the following backup:\n"
 msgstr ""
-"Are you sure you want to delete\n"
-"the following backup:\n"
 
 msgid "Are you sure you want to delete all selected logs:\n"
 msgstr ""
@@ -2479,17 +2458,11 @@ msgid ""
 "%s\n"
 "Your receiver will restart after the backup has been restored!"
 msgstr ""
-"Are you sure you want to restore\n"
-"the following backup:\n"
-"%s\n"
-"Your receiver will restart after the backup has been restored!"
 
 msgid ""
 "Are you sure you want to restore the backup?\n"
 "Your receiver will restart after the backup has been restored!"
 msgstr ""
-"Are you sure you want to restore the backup?\n"
-"Your receiver will restart after the backup has been restored!"
 
 #, python-format
 msgid ""
@@ -4001,7 +3974,7 @@ msgstr ""
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr ""
 
-msgid "Choose how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful when you need information about an event which has recently finished."
+msgid "Select how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful for information about an event which has finished."
 msgstr ""
 
 msgid "Choose how often to connect to IceTV server to check for updates."
@@ -4092,7 +4065,7 @@ msgid "Choose whether multi channel sound tracks should be output as PCM."
 msgstr ""
 
 msgid "Choose whether or not to show an icon when a motorized dish is moving."
-msgstr "Choose whether or not to show an icon when a motorized dish is moving."
+msgstr ""
 
 msgid "Choose which level of menu/setting's to display. 'Expert'-level shows all items."
 msgstr ""
@@ -5256,9 +5229,6 @@ msgstr ""
 msgid "Current settings:"
 msgstr ""
 
-msgid "Current status"
-msgstr ""
-
 msgid "Current time"
 msgstr ""
 
@@ -6195,7 +6165,7 @@ msgstr ""
 
 #, python-format
 msgid "Directory '%s' not writable!"
-msgstr "Directory '%s' not writeable!"
+msgstr ""
 
 msgid "Directory browser"
 msgstr ""
@@ -6235,6 +6205,9 @@ msgid "Disable Move Mode"
 msgstr ""
 
 msgid "Disable Picture in Picture"
+msgstr ""
+
+msgid "Disable ServiceHiSilicon"
 msgstr ""
 
 msgid "Disable background scanning"
@@ -6395,8 +6368,6 @@ msgid ""
 "Do you really want to check the file system?\n"
 "This could take a long time!"
 msgstr ""
-"Do you really want to check the file system?\n"
-"This could take a long time!"
 
 msgid ""
 "Do you really want to convert the file system?\n"
@@ -6610,8 +6581,8 @@ msgstr ""
 #, python-format
 msgid "Done - Installed, upgraded or removed %d package (%s)"
 msgid_plural "Done - Installed, upgraded or removed %d packages (%s)"
-msgstr[0] "Done - Installed, upgraded or removed %d package (%s)"
-msgstr[1] "Done - Installed, upgraded or removed %d packages (%s)"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Down"
 msgstr ""
@@ -7124,6 +7095,9 @@ msgstr ""
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr ""
 
+msgid "Enable this option to add bouquet database information to the debug log file."
+msgstr ""
+
 msgid "Enable this option to add extra DVB details to the debug log file."
 msgstr ""
 
@@ -7560,8 +7534,6 @@ msgid ""
 "Error: %s\n"
 "Retry?"
 msgstr ""
-"Error: %s\n"
-"Retry?"
 
 msgid "Error: An empty filename is illegal!"
 msgstr ""
@@ -9618,6 +9590,9 @@ msgstr ""
 msgid "Include action map data"
 msgstr ""
 
+msgid "Include bouquet DB data"
+msgstr ""
+
 msgid "Include international data *"
 msgstr ""
 
@@ -10086,7 +10061,7 @@ msgstr ""
 msgid "Kazakhstan"
 msgstr ""
 
-msgid "Keep EPG history (in minutes)"
+msgid "EPG history"
 msgstr ""
 
 msgid "Keep service"
@@ -15762,6 +15737,9 @@ msgstr ""
 msgid "Select 'Yes' to disable multi-selection mode after each operation. Select 'No' to leave multi-selection mode active and the selections unchanged."
 msgstr ""
 
+msgid "Select 'Yes' to disable the ServiceHiSilicon plugin to allow use of the default internal media player code."
+msgstr ""
+
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr ""
 
@@ -18891,6 +18869,9 @@ msgid "Status of the display in standby mode"
 msgstr ""
 
 msgid "Status unavailable!"
+msgstr ""
+
+msgid "Status:"
 msgstr ""
 
 msgid "Step"
@@ -23853,8 +23834,8 @@ msgstr ""
 #, python-format
 msgid "with %d error"
 msgid_plural "with %d errors"
-msgstr[0] "with %d error"
-msgstr[1] "with %d errors"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "with errors"
 msgstr ""

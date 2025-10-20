@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-27 15:35+0000\n"
+"POT-Creation-Date: 2025-09-27 10:09+0000\n"
 "PO-Revision-Date: 2025-06-11 19:04+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -4073,7 +4073,7 @@ msgstr "Pasirinkite šalies schemą EPG renginių reitingo informacijos dekodavi
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr "Pasirinkite etiketę, kuri atpažins šį įrenginį IceTV paslaugose."
 
-msgid "Choose how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful when you need information about an event which has recently finished."
+msgid "Select how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful for information about an event which has finished."
 msgstr "Pasirinkite, kiek EPG istorijos, jei tokia yra, norite laikyti EPG talpykloje. Šiuos istorinius duomenis galima naršyti bet kuriame EPG rodinyje. Tai gali būti naudinga, kai jums reikia informacijos apie neseniai pasibaigusį įvykį."
 
 msgid "Choose how often to connect to IceTV server to check for updates."
@@ -5337,9 +5337,6 @@ msgstr "Dabartinis režimas: %s \n"
 msgid "Current settings:"
 msgstr "Dabartiniai nustatymai:"
 
-msgid "Current status"
-msgstr "Dabartinė būsena"
-
 msgid "Current time"
 msgstr "Dabartinis laikas"
 
@@ -6324,6 +6321,9 @@ msgstr "išjungti perkėlimą"
 msgid "Disable Picture in Picture"
 msgstr "Išjungti vaizdą vaizde"
 
+msgid "Disable ServiceHiSilicon"
+msgstr ""
+
 msgid "Disable background scanning"
 msgstr "Išjungti paiešką fone"
 
@@ -7231,6 +7231,9 @@ msgstr "Įjunkite šią parinktį, kad prie derinimo žurnalo failo pridėtumėt
 
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "Įjunkite šią parinktį, jei norite pridėti veiksmų schemą / nuotolinio valdymo susiejimo duomenis į derinimo žurnalo failą."
+
+msgid "Enable this option to add bouquet database information to the debug log file."
+msgstr ""
 
 msgid "Enable this option to add extra DVB details to the debug log file."
 msgstr ""
@@ -9763,6 +9766,9 @@ msgstr "Įtraukite SDT, BAT į http srautus"
 msgid "Include action map data"
 msgstr "Įtraukti veiksmų struktūros duomenis"
 
+msgid "Include bouquet DB data"
+msgstr ""
+
 msgid "Include international data *"
 msgstr ""
 
@@ -10231,7 +10237,7 @@ msgstr "Kazachų"
 msgid "Kazakhstan"
 msgstr "Kazachstanas"
 
-msgid "Keep EPG history (in minutes)"
+msgid "EPG history"
 msgstr "Saugokite EPG istoriją (minutėmis)"
 
 msgid "Keep service"
@@ -15935,6 +15941,9 @@ msgstr "Pasirinkite \"Taip\", jei norite, kad visi vaizdai būtų nuolat rodomi 
 msgid "Select 'Yes' to disable multi-selection mode after each operation. Select 'No' to leave multi-selection mode active and the selections unchanged."
 msgstr ""
 
+msgid "Select 'Yes' to disable the ServiceHiSilicon plugin to allow use of the default internal media player code."
+msgstr ""
+
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr "Jei nustatyta 'taip', EPG lange rodys mažą TV ekraną su esamu įvykiu."
 
@@ -19089,6 +19098,9 @@ msgstr "Ekrano būsena laukimo režime"
 
 msgid "Status unavailable!"
 msgstr "Būsena nepasiekiama!"
+
+msgid "Status:"
+msgstr "Būsena:"
 
 msgid "Step"
 msgstr ""
@@ -24166,6 +24178,9 @@ msgstr "taip (išsaugoti šaltinius)"
 msgid "®"
 msgstr "®"
 
+#~ msgid "Current status"
+#~ msgstr "Dabartinė būsena"
+
 #~ msgid "Seek back short"
 #~ msgstr "Persukti greitai atgal"
 
@@ -24335,9 +24350,6 @@ msgstr "®"
 
 #~ msgid "Signal strength:"
 #~ msgstr "Signalo stiprumas:"
-
-#~ msgid "Status:"
-#~ msgstr "Būsena:"
 
 #~ msgid "Timer selection..."
 #~ msgstr "Laikmačio pasirinkimas..."

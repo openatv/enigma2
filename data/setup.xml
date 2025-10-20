@@ -218,7 +218,7 @@
 		<item level="2" text="Enable Virgin EPG" description="Use Virgin EPG information when it is available.">config.epg.virgin</item>
 		<item level="2" text="Enable OpenTV EPG" description="Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG.">config.epg.opentv</item>
 		<item level="2" text="Maximum number of days in EPG" description="Use for load only x days in EPG.">config.epg.maxdays</item>
-		<item level="2" text="Keep EPG history (in minutes)" description="Choose how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful when you need information about an event which has recently finished.">config.epg.histminutes</item>
+		<item level="2" text="EPG history" description="Select how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful for information about an event which has finished.">config.epg.histminutes</item>
 		<item level="2" text="Include EIT in http streams" description="When enabled, EIT data will be included in http streams. This allows a client receiver to show EPG.">config.streaming.stream_eit</item>
 		<item level="2" text="Include AIT in http streams" description="When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV.">config.streaming.stream_ait</item>
 		<item level="2" text="Include SDT, BAT in http streams" description="When enabled, SDT, BAT data will be included in http streams.">config.streaming.stream_sdtbat</item>

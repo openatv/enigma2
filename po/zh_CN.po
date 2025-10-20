@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-27 15:35+0000\n"
-"PO-Revision-Date: 2025-09-10 05:02+0000\n"
+"POT-Creation-Date: 2025-09-27 10:09+0000\n"
+"PO-Revision-Date: 2025-09-28 12:02+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -3125,7 +3125,7 @@ msgstr "需要更新 Bootloader！"
 
 #, python-format
 msgid "Boot slot information for %s %s"
-msgstr "%s %s 引导位置信息"
+msgstr "%s %s 引导槽位信息"
 
 msgid "Boot time"
 msgstr "启动时间"
@@ -4026,7 +4026,7 @@ msgstr "选择用于解码 EPG 事件中的评级信息的国家/地区方案。
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr "选择可在 IceTV 服务中识别此设备的标签。"
 
-msgid "Choose how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful when you need information about an event which has recently finished."
+msgid "Select how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful for information about an event which has finished."
 msgstr "选择在 EPG 缓存中保留多少 EPG 历史记录（如果有）。 可以在任何 EPG 视图中浏览此历史数据。 当您需要有关最近完成的事件的信息时，这会很有用。"
 
 msgid "Choose how often to connect to IceTV server to check for updates."
@@ -5287,9 +5287,6 @@ msgstr "当前模式： %s \n"
 msgid "Current settings:"
 msgstr "当前设置："
 
-msgid "Current status"
-msgstr "当前状态"
-
 msgid "Current time"
 msgstr "当前时间"
 
@@ -6274,6 +6271,9 @@ msgstr "禁用移动模式"
 msgid "Disable Picture in Picture"
 msgstr "禁用画中画"
 
+msgid "Disable ServiceHiSilicon"
+msgstr "禁用 ServiceHiSilicon"
+
 msgid "Disable background scanning"
 msgstr "禁止后台扫描"
 
@@ -7188,6 +7188,9 @@ msgstr "启用此选项可将系统启动期间检测到的多系统启动信息
 
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "启用此选项可将操作映射/远程控制映射数据添加到调试日志文件。"
+
+msgid "Enable this option to add bouquet database information to the debug log file."
+msgstr "启用此选项，可将频道分组数据库信息添加到调试日志文件中。"
 
 msgid "Enable this option to add extra DVB details to the debug log file."
 msgstr "启用此选项可将额外的 DVB 详细信息添加到调试日志文件中。"
@@ -9716,6 +9719,9 @@ msgstr "http 串流中包含 SDT，BAT数据"
 msgid "Include action map data"
 msgstr "包含动作映射数据"
 
+msgid "Include bouquet DB data"
+msgstr "包含频道分组数据库数据"
+
 msgid "Include international data *"
 msgstr "包括国际数据*"
 
@@ -10184,7 +10190,7 @@ msgstr "哈萨克语"
 msgid "Kazakhstan"
 msgstr "哈萨克斯坦"
 
-msgid "Keep EPG history (in minutes)"
+msgid "EPG history"
 msgstr "保留 EPG 历史记录（以分钟为单位）"
 
 msgid "Keep service"
@@ -15159,13 +15165,13 @@ msgid "Retrieving '%s' log, please wait..."
 msgstr "正在检索“%s”日志，请稍候..."
 
 msgid "Retrieving boot slot information..."
-msgstr "正在检索引导位置信息..."
+msgstr "正在检索引导槽位信息..."
 
 msgid "Retrieving image list, please wait..."
 msgstr "正在检索镜像列表，请稍候..."
 
 msgid "Retrieving image slots - Please wait..."
-msgstr "正在检索镜像位置 - 请稍候..."
+msgstr "正在检索镜像插槽 - 请稍候..."
 
 msgid "Retrieving network server information, please wait..."
 msgstr "正在检索网络服务器信息，请稍候..."
@@ -15883,6 +15889,9 @@ msgstr "选择“是”可连续循环显示所有图像，选择“否”可显
 
 msgid "Select 'Yes' to disable multi-selection mode after each operation. Select 'No' to leave multi-selection mode active and the selections unchanged."
 msgstr "选择“是”可在每次操作后禁用多选模式。选择“否”以保持多选模式处于活动状态，选择内容不变。"
+
+msgid "Select 'Yes' to disable the ServiceHiSilicon plugin to allow use of the default internal media player code."
+msgstr "选择“是”将禁用 ServiceHiSilicon 插件，以允许使用默认的内部媒体播放器代码。"
 
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr "选择“是”以在 EPG 屏幕内显示一个小的电视图像（PiG - 画中画）。"
@@ -18542,7 +18551,7 @@ msgstr "从上到下滑动"
 
 #, python-format
 msgid "Slot %d"
-msgstr "位置 %d"
+msgstr "插槽 %d"
 
 #, python-format
 msgid "Slot %s / FBC in %s"
@@ -18554,15 +18563,15 @@ msgstr "插槽 %s/FBC 虚拟 %s"
 
 #, python-format
 msgid "Slot %s: %s"
-msgstr "位置 %s: %s"
+msgstr "插槽 %s: %s"
 
 #, python-format
 msgid "Slot %s: %s (Current image)"
-msgstr "位置 %s: %s （当前镜像）"
+msgstr "插槽 %s: %s （当前镜像）"
 
 #, python-format
 msgid "Slot %s: %s as USB Recovery"
-msgstr "位置 %s: %s 作为 USB 恢复"
+msgstr "插槽 %s: %s 作为 USB 恢复"
 
 #, python-format
 msgid "Slot '%s' %s"
@@ -19046,6 +19055,9 @@ msgstr "启动机顶盒进入待机状态"
 
 msgid "Status unavailable!"
 msgstr "状态不可用！"
+
+msgid "Status:"
+msgstr "状态："
 
 msgid "Step"
 msgstr "步"
@@ -24160,6 +24172,9 @@ msgstr "是（保留订阅源）"
 msgid "®"
 msgstr "®"
 
+#~ msgid "Current status"
+#~ msgstr "当前状态"
+
 #~ msgid "Black Screen"
 #~ msgstr "黑屏"
 
@@ -24346,9 +24361,6 @@ msgstr "®"
 
 #~ msgid "Signal strength:"
 #~ msgstr "信号强度："
-
-#~ msgid "Status:"
-#~ msgstr "状态："
 
 #~ msgid "Timer selection..."
 #~ msgstr "定时器选择..."

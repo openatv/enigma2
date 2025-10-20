@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-27 15:35+0000\n"
-"PO-Revision-Date: 2025-08-27 12:02+0000\n"
+"POT-Creation-Date: 2025-09-27 10:09+0000\n"
+"PO-Revision-Date: 2025-10-06 17:02+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.13\n"
+"X-Generator: Weblate 5.14-dev\n"
 
 msgid ""
 "\n"
@@ -4061,7 +4061,7 @@ msgstr "Vyberte schéma země pro dekódování informací o hodnocení v událo
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr "Vyberte štítek, který bude toto zařízení identifikovat ve službách IceTV."
 
-msgid "Choose how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful when you need information about an event which has recently finished."
+msgid "Select how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful for information about an event which has finished."
 msgstr "Vyberte, kolik historie EPG (pokud existuje) chcete uchovávat v mezipaměti EPG. Tato historická data lze procházet v libovolném zobrazení EPG. To může být užitečné, když potřebujete informace o události, která nedávno skončila."
 
 msgid "Choose how often to connect to IceTV server to check for updates."
@@ -5324,9 +5324,6 @@ msgstr "Aktuální volba: %s \n"
 msgid "Current settings:"
 msgstr "Aktuální nastavení:"
 
-msgid "Current status"
-msgstr "Aktuální stav"
-
 msgid "Current time"
 msgstr "Akt. čas"
 
@@ -6311,6 +6308,9 @@ msgstr "zakázat přesun"
 msgid "Disable Picture in Picture"
 msgstr "Vypnout obraz v obraze"
 
+msgid "Disable ServiceHiSilicon"
+msgstr "Zakázat službu ServiceHiSilicon"
+
 msgid "Disable background scanning"
 msgstr "Zakázat prohledávání na pozadí"
 
@@ -7226,6 +7226,9 @@ msgstr "Povolením této možnosti přidáte do souboru protokolu ladění infor
 
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "Tuto možnost povolte, chcete-li do souboru protokolu ladění přidat data mapování akcí / vzdáleného ovládání."
+
+msgid "Enable this option to add bouquet database information to the debug log file."
+msgstr "Povolte tuto možnost, chcete-li do souboru ladicího protokolu přidat informace o databázi seznamů."
 
 msgid "Enable this option to add extra DVB details to the debug log file."
 msgstr "Povolením této možnosti přidáte další podrobnosti DVB do souboru protokolu ladění."
@@ -9756,6 +9759,9 @@ msgstr "Zahrnout SDT, BAT do http streamů"
 msgid "Include action map data"
 msgstr "Zahrnout data mapy akcí"
 
+msgid "Include bouquet DB data"
+msgstr "Zahrnout data databáze seznamů"
+
 msgid "Include international data *"
 msgstr "Zahrnout mezinárodní údaje *"
 
@@ -10224,7 +10230,7 @@ msgstr "Kazašština"
 msgid "Kazakhstan"
 msgstr "Kazachstán"
 
-msgid "Keep EPG history (in minutes)"
+msgid "EPG history"
 msgstr "Uchovávat historii EPG (v minutách)"
 
 msgid "Keep service"
@@ -15931,6 +15937,9 @@ msgstr "Vyberte „Ano“ pro nepřetržité zobrazení všech snímků ve smyč
 msgid "Select 'Yes' to disable multi-selection mode after each operation. Select 'No' to leave multi-selection mode active and the selections unchanged."
 msgstr "Chcete-li po každé operaci deaktivovat režim vícenásobného výběru, vyberte možnost „Ano“. Chcete-li režim vícenásobného výběru ponechat aktivní a výběry nezměněny, vyberte „Ne“."
 
+msgid "Select 'Yes' to disable the ServiceHiSilicon plugin to allow use of the default internal media player code."
+msgstr "Vyberte „Ano“ pro deaktivaci pluginu ServiceHiSilicon a povolení použití výchozího interního kódu přehrávače médií."
+
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr "Pokud nastavíte na 'ano' zobrazí se náhled TV obrazovky v EPG."
 
@@ -19097,6 +19106,9 @@ msgstr "Stav displeje v pohotovostním režimu"
 
 msgid "Status unavailable!"
 msgstr "Stav není k dispozici!"
+
+msgid "Status:"
+msgstr "Kraj:"
 
 msgid "Step"
 msgstr "Krok"
@@ -24213,6 +24225,9 @@ msgstr "ano (uchovat zdroje)"
 msgid "®"
 msgstr "®"
 
+#~ msgid "Current status"
+#~ msgstr "Aktuální stav"
+
 #~ msgid "Black Screen"
 #~ msgstr "Černá obrazovka"
 
@@ -24399,9 +24414,6 @@ msgstr "®"
 
 #~ msgid "Signal strength:"
 #~ msgstr "Síla signálu:"
-
-#~ msgid "Status:"
-#~ msgstr "Kraj:"
 
 #~ msgid "Timer selection..."
 #~ msgstr "Výběr časovače..."

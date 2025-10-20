@@ -16,16 +16,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-27 15:35+0000\n"
-"PO-Revision-Date: 2025-07-28 20:51+0000\n"
-"Last-Translator: jbleyel <jbleyel@gmx.net>\n"
+"POT-Creation-Date: 2025-09-27 10:09+0000\n"
+"PO-Revision-Date: 2025-10-18 00:10+0000\n"
+"Last-Translator: VfBFan <drop0815@posteo.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.13-dev\n"
+"X-Generator: Weblate 5.14-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -4239,7 +4239,7 @@ msgstr "Länderschema zum Dekodieren von Bewertungsinformationen in EPG-Ereignis
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr "Eine Beschriftung auswählen, damit IceTV-Dienste das Gerät zuordnen können."
 
-msgid "Choose how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful when you need information about an event which has recently finished."
+msgid "Select how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful for information about an event which has finished."
 msgstr "Auswählen, ob und wie viele historische EPG-Daten gespeichert werden sollen. Diese Daten können in jeder der EPG-Ansichten durchsucht werden. Dies kann nützlich sein, wenn Informationen über ein Ereignis benötigt werden, welches kürzlich beendet wurde."
 
 msgid "Choose how often to connect to IceTV server to check for updates."
@@ -5568,9 +5568,6 @@ msgstr "Aktueller Modus: %s \n"
 msgid "Current settings:"
 msgstr "Einstellungen:"
 
-msgid "Current status"
-msgstr "Aktueller Status"
-
 msgid "Current time"
 msgstr "Momentane Zeit"
 
@@ -6599,14 +6596,17 @@ msgstr "Verschiebemodus ausschalten"
 msgid "Disable Picture in Picture"
 msgstr "Bild-im-Bild deaktivieren"
 
+msgid "Disable ServiceHiSilicon"
+msgstr "ServiceHiSilicon deaktivieren"
+
 msgid "Disable background scanning"
 msgstr "Suchlauf im Hintergrund deaktivieren"
 
 msgid "Disable digital downmix"
-msgstr "Dolby Digital Downmix deaktivieren"
+msgstr "Dolby-Digital-Downmix deaktivieren"
 
 msgid "Disable intro screen"
-msgstr "Begrüßungsbildschirm abschalten"
+msgstr "Begrüßungsbildschirm ausschalten"
 
 msgid "Disable operator profiles"
 msgstr "Operator-Profile deaktivieren"
@@ -6971,7 +6971,7 @@ msgid "Documentary"
 msgstr "Dokumentarfilm"
 
 msgid "Dolby Digital downmix is now"
-msgstr "Dolby Digital Downmix ist jetzt"
+msgstr "Dolby-Digital-Downmix ist jetzt"
 
 msgid "Domain"
 msgstr "Bereich"
@@ -7524,7 +7524,7 @@ msgid "Enable debug log *"
 msgstr "Debug-Log aktivieren *"
 
 msgid "Enable digital downmix"
-msgstr "Dolby Digital Downmix aktivieren"
+msgstr "Dolby-Digital-Downmix aktivieren"
 
 msgid "Enable fallback remote receiver"
 msgstr "Remote-Receiver aktivieren"
@@ -7571,6 +7571,9 @@ msgstr "Aktivieren, um dem Debug-Log während des Systemstarts erkannte MultiBoo
 
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "Aktivieren, um dem Debug-Log Action-Map-Daten hinzuzufügen."
+
+msgid "Enable this option to add bouquet database information to the debug log file."
+msgstr "Aktivieren, um dem Debug-Log Favoriten-Datenbank-Informationen hinzuzufügen."
 
 msgid "Enable this option to add extra DVB details to the debug log file."
 msgstr "Aktivieren, um dem Debug-Log zusätzlich DVB-Details hinzuzufügen."
@@ -10209,6 +10212,9 @@ msgstr "SDT und BAT in HTTP-Stream integrieren"
 msgid "Include action map data"
 msgstr "Inklusive Action-Map-Daten"
 
+msgid "Include bouquet DB data"
+msgstr "Inklusive Favoriten-Datenbankdaten"
+
 msgid "Include international data *"
 msgstr "Inklusive internationaler Daten *"
 
@@ -10710,7 +10716,7 @@ msgstr "Kasachisch"
 msgid "Kazakhstan"
 msgstr "Kasachstan"
 
-msgid "Keep EPG history (in minutes)"
+msgid "EPG history"
 msgstr "Alte EPG-Daten für x Minuten halten"
 
 msgid "Keep service"
@@ -16863,6 +16869,9 @@ msgstr "'Ja' auswählen, um alle Bilder in einer sich wiederholenden Schleife an
 msgid "Select 'Yes' to disable multi-selection mode after each operation. Select 'No' to leave multi-selection mode active and the selections unchanged."
 msgstr "'Ja', um den Multi-Selektion-Modus nach jeder Operation zu beenden. 'Nein', um ihn aktiv zu belassen."
 
+msgid "Select 'Yes' to disable the ServiceHiSilicon plugin to allow use of the default internal media player code."
+msgstr "'Ja', um das ServiceHiSilicon-Plugin zu deaktivieren und den standardmäßigen internen Mediaplayer-Code zu verwenden."
+
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr "Bei 'Ja' wird ein kleines TV-Bild (PiG) im EPG angezeigt."
 
@@ -18523,10 +18532,10 @@ msgid "Setup your System"
 msgstr "Einstellen des Systems"
 
 msgid "Setup your Tuner and search for channels"
-msgstr "Einstellen der Tuner und Sendersuche."
+msgstr "Einstellen der Tuner und Sendersuche"
 
 msgid "Setup your Video Mode, Video Output and other Video Settings"
-msgstr "Videomodus, Videoausgang und andere Videoeinstellungen."
+msgstr "Videomodus, Videoausgang und andere Videoeinstellungen"
 
 # Quick Menue
 msgid "Setup your display"
@@ -18536,10 +18545,10 @@ msgid "Setup your local network"
 msgstr "Konfiguration des Netzwerks"
 
 msgid "Setup your local network. For Wlan you need to boot with a USB-Wlan stick"
-msgstr "Konfigurieren des Netzwerks. Für WLAN muss ein WLAN-USB-Stick installiert sein."
+msgstr "Konfigurieren des Netzwerks, für WLAN muss ein WLAN-USB-Stick installiert sein"
 
 msgid "Setup your mounts for network"
-msgstr "Konfigurieren der Netzlaufwerke."
+msgstr "Konfigurieren der Netzlaufwerke"
 
 msgid "Setup your network interface. If no Wlan stick is used, you only can select Lan"
 msgstr "Konfiguration der Netzwerkschnittstelle. Wenn kein WLAN-Stick verwendet wird, kann nur LAN ausgewählt werden."
@@ -20195,6 +20204,9 @@ msgstr "Status des Displays im Standby"
 
 msgid "Status unavailable!"
 msgstr "kein Status!"
+
+msgid "Status:"
+msgstr "Status:"
 
 msgid "Step"
 msgstr "Schritt"
@@ -23570,7 +23582,7 @@ msgid "WMA Pro"
 msgstr "WMA Pro"
 
 msgid "WMA Pro downmix"
-msgstr "WMA Pro Downmix"
+msgstr "WMA-Pro-Downmix"
 
 msgid "WOL Standby"
 msgstr "WOL-Standby"
@@ -25677,6 +25689,9 @@ msgstr "Ja (Feeds beibehalten)"
 msgid "®"
 msgstr "®"
 
+#~ msgid "Current status"
+#~ msgstr "Aktueller Status"
+
 #~ msgid "Black Screen"
 #~ msgstr "Schwarzer Bildschirm"
 
@@ -25879,9 +25894,6 @@ msgstr "®"
 
 #~ msgid "Signal strength:"
 #~ msgstr "Signalstärke:"
-
-#~ msgid "Status:"
-#~ msgstr "Status:"
 
 #
 #~ msgid "Timer selection..."

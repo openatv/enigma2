@@ -2,7 +2,7 @@
 #
 # openATV <openatv@gmail.com>, 2021.
 # kvinto <badsystem@ukr.net>, 2021, 2022, 2023, 2024, 2025.
-# igorrrrr <igorzhugan66@gmail.com>, 2021, 2022, 2023.
+# igorrrrr <igorzhugan66@gmail.com>, 2021, 2022, 2023, 2025.
 # Tymofii Lytvynenko <till.svit@gmail.com>, 2021.
 # Artem <artem@molotov.work>, 2022.
 # Fqwe1 <Fqwe1@users.noreply.hosted.weblate.org>, 2024.
@@ -10,16 +10,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-27 15:35+0000\n"
-"PO-Revision-Date: 2025-08-02 02:02+0000\n"
-"Last-Translator: kvinto <badsystem@ukr.net>\n"
+"POT-Creation-Date: 2025-09-27 10:09+0000\n"
+"PO-Revision-Date: 2025-10-14 15:07+0000\n"
+"Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.13-dev\n"
+"X-Generator: Weblate 5.14-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -959,7 +959,7 @@ msgid "%d package has an update"
 msgid_plural "%d packages have updates."
 msgstr[0] "%d пакет має оновлення"
 msgstr[1] "%d пакети мають оновлення."
-msgstr[2] "%d пакет мають оновлення."
+msgstr[2] "%d пакетів мають оновлення."
 
 #, python-format
 msgid "%d package installable."
@@ -1318,7 +1318,7 @@ msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if un
 msgstr "'Розкодувати і записати ECM' - дозволяє записати і розкодувати при відтворенні, коли при записі не вдається розкодувати. 'Не розкодовувати і записати ECM' зберігає закодовані записи, які можуть бути розкодовані під час відтворення. 'Звичайний' розкодовані записи без запису ECM."
 
 msgid "'WeatherPlugin' is not installed!"
-msgstr "'weatherplugin' не встановлений!"
+msgstr "'Плагін погоди' не встановлений!"
 
 #, python-format
 msgid "(Access to the '%s' commit log requires an Internet connection.)"
@@ -2120,10 +2120,10 @@ msgid "Advanced"
 msgstr "Розширений"
 
 msgid "Advanced Options"
-msgstr "Розширені Параметри"
+msgstr "Розширені параметри"
 
 msgid "Advanced Restore"
-msgstr "Розширене Відновлення"
+msgstr "Розширене відновлення"
 
 msgid "Advanced Settings"
 msgstr "Розширені Налаштування"
@@ -4064,7 +4064,7 @@ msgstr "Виберіть країну для визначення рейтинг
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr "Виберіть емблему, яка буде ідентифікувати цей пристрій у послугах IceTV."
 
-msgid "Choose how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful when you need information about an event which has recently finished."
+msgid "Select how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful for information about an event which has finished."
 msgstr "Виберіть, скільки передач EPG, якщо така є, зберігати в кеші EPG. Ці історичні дані можна переглядати в будь-якому перегляді EPG. Це може бути корисно, коли Вам потрібна інформація про передачу, яка нещодавно завершилася."
 
 msgid "Choose how often to connect to IceTV server to check for updates."
@@ -4801,7 +4801,7 @@ msgid "Configure the width of the TrueType font letters used for teletext."
 msgstr "Налаштування ширини букв шрифту TrueType для телетексту."
 
 msgid "Configure this tuner using Simple or Advanced options, loop it through to another tuner, copy a configuration from another tuner or disable it."
-msgstr "Налаштуйте тюнер, використовуючи прості або розширені параметри, використайте параметри іншого тюнер, або скопіюйте їх на другий тюнер, або вимкніть його."
+msgstr "Налаштуйте тюнер, використовуючи прості або розширені параметри, використайте параметри іншого тюнера, або скопіюйте їх на другий тюнер, або вимкніть його."
 
 msgid "Configure to show channel names, numbers, picons or all three inside EPG."
 msgstr "Налаштуйте відображення назв каналів, чисел, піконів, або всіх трьох у EPG."
@@ -5326,9 +5326,6 @@ msgstr "Поточний режим: %s \n"
 
 msgid "Current settings:"
 msgstr "Поточні налаштування:"
-
-msgid "Current status"
-msgstr "Current status"
 
 msgid "Current time"
 msgstr "Поточний час"
@@ -6314,6 +6311,9 @@ msgstr "Вимкнути режим переміщення"
 msgid "Disable Picture in Picture"
 msgstr "Вимкнути Картинка в Картинці"
 
+msgid "Disable ServiceHiSilicon"
+msgstr "Вимкнути ServiceHiSilicon"
+
 msgid "Disable background scanning"
 msgstr "Вимкнути сканування у фоні"
 
@@ -7230,6 +7230,9 @@ msgstr "Увімкніть цей параметр, щоб додати інфо
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "Увімкніть цю опцію, щоб додати дані відображення карти дій/віддаленого керування до файлу журналу налагодження."
 
+msgid "Enable this option to add bouquet database information to the debug log file."
+msgstr "Ввімкніть цю опцію, щоб додати інформацію про базу даних фаворитів до файлу журналу налагодження."
+
 msgid "Enable this option to add extra DVB details to the debug log file."
 msgstr "Увімкніть цей параметр, щоб додати додаткові відомості про DVB до файлу журналу налагодження."
 
@@ -7971,7 +7974,7 @@ msgid "Exit quad PiP"
 msgstr "Вийти з чотирьохекранного ПІП"
 
 msgid "Exit the wizard"
-msgstr "Вийти з помічник"
+msgstr "Вийти з помічника"
 
 msgid "Exit viewer"
 msgstr "Вийти з програми перегляду"
@@ -8128,7 +8131,7 @@ msgid "FTP"
 msgstr "FTP"
 
 msgid "Factory Reset"
-msgstr "Скидання на Заводські налаштування"
+msgstr "Скидання до заводських налаштувань"
 
 msgid "Factory release"
 msgstr "Заводський випуск"
@@ -8482,7 +8485,7 @@ msgid "Flash Manager Actions"
 msgstr "Флеш-менеджер дії"
 
 msgid "Flash Online"
-msgstr "Прошити приймач он-лайн"
+msgstr "Прошити приймач онлайн"
 
 msgid "Flash Online a new image"
 msgstr "Прошити приймач новим іміджем"
@@ -9632,7 +9635,7 @@ msgid "Ignore unexpectedly wake up and stay in standby"
 msgstr "Ігнорувати несподіване включення і залишитися в режимі очікування"
 
 msgid "Image Backup"
-msgstr "Бекап Іміджу"
+msgstr "Бекап іміджу"
 
 msgid "Image Backup Actions"
 msgstr "Дії резервного копіювання"
@@ -9758,6 +9761,9 @@ msgstr "Долучити SDT, BAT у потоки HTTP"
 
 msgid "Include action map data"
 msgstr "Включити дані карти дій"
+
+msgid "Include bouquet DB data"
+msgstr "Включити дані бази даних фаворитів"
 
 msgid "Include international data *"
 msgstr "Включити міжнародні дані *"
@@ -9892,7 +9898,7 @@ msgid "Input Device Settings"
 msgstr "Налаштування Пристрою введення"
 
 msgid "Input Devices Settings"
-msgstr "Налаштування Пристроїв введення"
+msgstr "Налаштування пристроїв введення"
 
 msgid "Input Stream ID"
 msgstr "Вхідний ID потоку"
@@ -10227,7 +10233,7 @@ msgstr "Казахська"
 msgid "Kazakhstan"
 msgstr "Казахстан"
 
-msgid "Keep EPG history (in minutes)"
+msgid "EPG history"
 msgstr "Зберігати історію EPG (в хвилинах)"
 
 msgid "Keep service"
@@ -10667,7 +10673,7 @@ msgid "Load"
 msgstr "Завантажити"
 
 msgid "Load EPG Cache"
-msgstr "Завантажити Кеш EPG"
+msgstr "Завантажити кеш EPG"
 
 msgid "Load play list"
 msgstr "Завантаження списку відтворення"
@@ -10976,7 +10982,7 @@ msgid "Manage Locale/Language Selection settings"
 msgstr "Керування налаштуваннями Вибору Регіону/Мови"
 
 msgid "Manage Plugins"
-msgstr "Управління Плагінами"
+msgstr "Управління плагінами"
 
 msgid "Manage Plugins. This will remove/install Plugins on your box"
 msgstr "Керування плагінами. Допомога при видаленні/встановленні плагінів на вашому пристрої"
@@ -12594,7 +12600,7 @@ msgid "OSD 3D Settings"
 msgstr "OSD Налаштування 3D"
 
 msgid "OSD Calibration"
-msgstr "OSD Позиція"
+msgstr "Калібрування екранного меню"
 
 msgid "OSD Calibration Settings"
 msgstr "Налаштування калібрування OSD"
@@ -13207,7 +13213,7 @@ msgid "Password Actions"
 msgstr "Дії з паролем"
 
 msgid "Password Settings"
-msgstr "Налаштування Пароля"
+msgstr "Налаштування пароля"
 
 msgid "Password changed."
 msgstr "Пароль змінено."
@@ -15755,7 +15761,7 @@ msgid "Screen saver movement"
 msgstr "Переміщення екранної заставки"
 
 msgid "Script Manager"
-msgstr "Менеджер Скриптів"
+msgstr "Менеджер скриптів"
 
 msgid "ScriptRunner"
 msgstr "Запуск скрипта"
@@ -15933,6 +15939,9 @@ msgstr "Виберіть 'Так', щоб безперервно відобра�
 
 msgid "Select 'Yes' to disable multi-selection mode after each operation. Select 'No' to leave multi-selection mode active and the selections unchanged."
 msgstr "Виберіть 'Так', щоб вимкнути режим багаторазового вибору після кожної операції. Виберіть 'Ні', щоб залишити режим багаторазового вибору активним і вибір незмінним."
+
+msgid "Select 'Yes' to disable the ServiceHiSilicon plugin to allow use of the default internal media player code."
+msgstr "Виберіть 'Так', щоб вимкнути плагін ServiceHiSilicon та дозволити використання вбудованого коду медіаплеєра за замовчуванням."
 
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr "Якщо вибрано 'так', в телегіді буде показуватися маленьке ТБ-вікно."
@@ -18404,7 +18413,7 @@ msgid "Single step (GOP)"
 msgstr "Визначити крок (GOP)"
 
 msgid "SingleEPG Settings"
-msgstr "Налаштування Простого ЕПГ"
+msgstr "Налаштування простого ЕПГ"
 
 msgid "Sinhala / Sinhalese"
 msgstr "Sinhala / Sinhalese"
@@ -19101,6 +19110,9 @@ msgstr "Стан дисплея в режимі очікування"
 msgid "Status unavailable!"
 msgstr "Статус недоступний!"
 
+msgid "Status:"
+msgstr "Статус:"
+
 msgid "Step"
 msgstr "Крок"
 
@@ -19606,7 +19618,7 @@ msgid "TMDB Search"
 msgstr "TMDB Пошук"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - 01.08.2025"
+msgstr "Переклад: kvinto - 28.09.2025"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -21182,7 +21194,7 @@ msgid "Tuners"
 msgstr "Тюнери"
 
 msgid "Tuners, Scanning & Reception"
-msgstr "Тюнери та Пошук каналів"
+msgstr "Тюнери, сканування та прийом"
 
 msgid "Tuning algorithm"
 msgstr "Алгоритм налаштування"
@@ -22033,7 +22045,7 @@ msgid "Vertical turning speed"
 msgstr "Швидкість повороту по вертикалі"
 
 msgid "VerticalEPG Settings"
-msgstr "Налаштування Вертикального ЕПГ"
+msgstr "Налаштування вертикального ЕПГ"
 
 msgid "Very fast"
 msgstr "Дуже швидко"
@@ -24216,6 +24228,9 @@ msgstr "так (зберігати фіди)"
 msgid "®"
 msgstr "®"
 
+#~ msgid "Current status"
+#~ msgstr "Current status"
+
 #~ msgid "Black Screen"
 #~ msgstr "Чорний екран"
 
@@ -24399,9 +24414,6 @@ msgstr "®"
 
 #~ msgid "Signal strength:"
 #~ msgstr "Сила cигналу:"
-
-#~ msgid "Status:"
-#~ msgstr "Статус:"
 
 #~ msgid "Timer selection..."
 #~ msgstr "Вибір таймера..."

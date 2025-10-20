@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-27 15:35+0000\n"
+"POT-Creation-Date: 2025-09-27 10:09+0000\n"
 "PO-Revision-Date: 2025-04-14 12:33+0000\n"
 "Last-Translator: tanerkaderli <taner.kaderli@live.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -4166,7 +4166,7 @@ msgstr "EPG olaylarında derecelendirme bilgilerinin kodunu çözmek için bir �
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr "IceTV hizmetlerinde bu cihazı tanımlayacak bir etiket seçin."
 
-msgid "Choose how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful when you need information about an event which has recently finished."
+msgid "Select how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful for information about an event which has finished."
 msgstr "Varsa, EPG önbelleğinde ne kadar EPG geçmişi tutulacağını seçin. Bu geçmiş veriler EPG görünümlerinden herhangi birinde taranabilir. Bu, yakın zamanda bitmiş bir etkinlik hakkında bilgiye ihtiyaç duyduğunuzda faydalı olabilir."
 
 msgid "Choose how often to connect to IceTV server to check for updates."
@@ -5471,9 +5471,6 @@ msgstr "Mevcut kip: %s \n"
 msgid "Current settings:"
 msgstr "Geçerli ayarlar:"
 
-msgid "Current status"
-msgstr "Mevcut durum"
-
 msgid "Current time"
 msgstr "Geçerli zaman"
 
@@ -6506,6 +6503,9 @@ msgstr "Hareket modunu devre dışı bırakın"
 msgid "Disable Picture in Picture"
 msgstr "Resim içinde resim (PIP) kapat"
 
+msgid "Disable ServiceHiSilicon"
+msgstr ""
+
 msgid "Disable background scanning"
 msgstr "Arkaplan taramasını kapat"
 
@@ -7464,6 +7464,9 @@ msgstr "Sistem önyüklemesi sırasında algılanan MultiBoot bilgilerini hata a
 
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "Hata ayıklama günlük dosyasına eylem haritası / uzaktan kumanda eşleme verileri eklemek için bu seçeneği etkinleştirin."
+
+msgid "Enable this option to add bouquet database information to the debug log file."
+msgstr ""
 
 msgid "Enable this option to add extra DVB details to the debug log file."
 msgstr ""
@@ -10107,6 +10110,9 @@ msgstr "SDT, BAT'ı http akışlarına dahil edin"
 msgid "Include action map data"
 msgstr "Eylem haritası verilerini dahil et"
 
+msgid "Include bouquet DB data"
+msgstr ""
+
 msgid "Include international data *"
 msgstr "Uluslararası verileri dahil edin *"
 
@@ -10605,7 +10611,7 @@ msgstr "Kazak"
 msgid "Kazakhstan"
 msgstr "Kazakistan"
 
-msgid "Keep EPG history (in minutes)"
+msgid "EPG history"
 msgstr "EPG geçmişini tut (dakika olarak)"
 
 #
@@ -16659,6 +16665,9 @@ msgstr "Tüm görüntüleri bir döngü içinde sürekli olarak görüntülemek 
 msgid "Select 'Yes' to disable multi-selection mode after each operation. Select 'No' to leave multi-selection mode active and the selections unchanged."
 msgstr "Her işlemden sonra çoklu seçim modunu devre dışı bırakmak için 'Evet'i seçin. Çoklu seçim modunu etkin ve seçimleri değiştirmeden bırakmak için 'Hayır'ı seçin."
 
+msgid "Select 'Yes' to disable the ServiceHiSilicon plugin to allow use of the default internal media player code."
+msgstr ""
+
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr "'evet' EPG'de küçük TV ekranı gösterir."
 
@@ -19921,6 +19930,9 @@ msgstr "Bekleme modunda ekranın durumu"
 
 msgid "Status unavailable!"
 msgstr "Durum mevcut değil!"
+
+msgid "Status:"
+msgstr "Durum:"
 
 msgid "Step"
 msgstr "Adım"
@@ -25310,6 +25322,9 @@ msgstr "evet (beslemeleri tut)"
 msgid "®"
 msgstr "®"
 
+#~ msgid "Current status"
+#~ msgstr "Mevcut durum"
+
 #~ msgid "Black Screen"
 #~ msgstr "Siyah ekran"
 
@@ -25499,9 +25514,6 @@ msgstr "®"
 #
 #~ msgid "Signal strength:"
 #~ msgstr "Sinyal gücü:"
-
-#~ msgid "Status:"
-#~ msgstr "Durum:"
 
 #
 #~ msgid "Timer selection..."

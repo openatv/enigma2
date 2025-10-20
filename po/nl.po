@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-27 15:35+0000\n"
+"POT-Creation-Date: 2025-09-27 10:09+0000\n"
 "PO-Revision-Date: 2025-05-09 04:42+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -4036,7 +4036,7 @@ msgstr "Kies een land voor het decoderen van rating informatie uit de EPG."
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr "Kies een omschrijving waarmee dit apparaat in de IceTV instellingen wordt herkend."
 
-msgid "Choose how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful when you need information about an event which has recently finished."
+msgid "Select how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful for information about an event which has finished."
 msgstr "Kies hoeveel EPG historie bewaard moet worden in de EPG cache. Deze historische gegevens kunnen in elk EPG-overzicht worden bekeken. Dit kan handig zijn wanneer u informatie zoekt over een programma dat net is afgelopen."
 
 msgid "Choose how often to connect to IceTV server to check for updates."
@@ -5401,9 +5401,6 @@ msgstr "Huidige modus: %s \n"
 msgid "Current settings:"
 msgstr "Huidige instellingen:"
 
-msgid "Current status"
-msgstr "Huidige status"
-
 msgid "Current time"
 msgstr "Huidige tijd"
 
@@ -6396,6 +6393,9 @@ msgstr "Verplaatsen deactiveren"
 msgid "Disable Picture in Picture"
 msgstr "Picture in Picture uitschakelen"
 
+msgid "Disable ServiceHiSilicon"
+msgstr ""
+
 msgid "Disable background scanning"
 msgstr "Scannen op de achtergrond uitschakelen"
 
@@ -7316,6 +7316,9 @@ msgstr "Schakel deze optie in om MultiBoot-informatie die tijdens het opstarten 
 
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "Activeer deze optie om gebruik van de afstandsbediening mee te nemen in het debug log bestand."
+
+msgid "Enable this option to add bouquet database information to the debug log file."
+msgstr ""
 
 msgid "Enable this option to add extra DVB details to the debug log file."
 msgstr "Activeren, om extra DVB-details aan het debug-log bestand toe te voegen."
@@ -9864,6 +9867,9 @@ msgstr "SDT en BAT in http streams opnemen"
 msgid "Include action map data"
 msgstr "Inclusief action map data"
 
+msgid "Include bouquet DB data"
+msgstr ""
+
 msgid "Include international data *"
 msgstr "Inclusief internationale gegevens *"
 
@@ -10332,7 +10338,7 @@ msgstr "Kazachs"
 msgid "Kazakhstan"
 msgstr "Kazachstan"
 
-msgid "Keep EPG history (in minutes)"
+msgid "EPG history"
 msgstr "EPG historie bewaren (in minuten)"
 
 msgid "Keep service"
@@ -16046,6 +16052,9 @@ msgstr "Selecteer 'Ja' om alle afbeeldingen continu in een lus weer te geven, of
 msgid "Select 'Yes' to disable multi-selection mode after each operation. Select 'No' to leave multi-selection mode active and the selections unchanged."
 msgstr "Kies 'Ja' om de multi-selectie modus na elk gebruik te beëindigen. Kies 'Nee' om de multi-selectie modus actief te laten."
 
+msgid "Select 'Yes' to disable the ServiceHiSilicon plugin to allow use of the default internal media player code."
+msgstr ""
+
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr "Bij 'Ja' ziet u een Mini-TV in de EPG."
 
@@ -19244,6 +19253,9 @@ msgstr "Status van het display in stand-by"
 
 msgid "Status unavailable!"
 msgstr "De status is onbekend!"
+
+msgid "Status:"
+msgstr "Status:"
 
 msgid "Step"
 msgstr "Stap"
@@ -24430,6 +24442,9 @@ msgstr "ja (bewaar feeds)"
 msgid "®"
 msgstr "®"
 
+#~ msgid "Current status"
+#~ msgstr "Huidige status"
+
 #~ msgid "Black Screen"
 #~ msgstr "Zwart scherm"
 
@@ -24613,9 +24628,6 @@ msgstr "®"
 
 #~ msgid "Signal strength:"
 #~ msgstr "Signaalsterkte:"
-
-#~ msgid "Status:"
-#~ msgstr "Status:"
 
 #~ msgid "Timer selection..."
 #~ msgstr "Timerselectie"

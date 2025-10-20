@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-27 15:35+0000\n"
+"POT-Creation-Date: 2025-09-27 10:09+0000\n"
 "PO-Revision-Date: 2024-10-02 07:35+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/es/>\n"
@@ -4217,7 +4217,7 @@ msgstr "Elegir un esquema de país para decodificar la información de clasifica
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr "Seleccionar la etiqueta que identificará a este dispositivo en el servicio IceTV."
 
-msgid "Choose how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful when you need information about an event which has recently finished."
+msgid "Select how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful for information about an event which has finished."
 msgstr "Elija la cuanto historial de la EPG desea ver, en caso de que haya alguno, para mantenerlo en la caché de la EPG. Estos datos históricos se pueden consultar en cualquiera de las vistas de la EPG. Esto puede ser útil cuando se necesita información sobre un evento que ha terminado recientemente."
 
 msgid "Choose how often to connect to IceTV server to check for updates."
@@ -5520,9 +5520,6 @@ msgstr "Modo actual: %s \n"
 msgid "Current settings:"
 msgstr "Configuración actual:"
 
-msgid "Current status"
-msgstr "Estado actual"
-
 msgid "Current time"
 msgstr "Hora actual"
 
@@ -6551,6 +6548,9 @@ msgstr "Deshabilitar modo movimiento"
 msgid "Disable Picture in Picture"
 msgstr "Deshabilitar Picture in Picture"
 
+msgid "Disable ServiceHiSilicon"
+msgstr ""
+
 msgid "Disable background scanning"
 msgstr "Deshabilitar la búsqueda en segundo plano"
 
@@ -7520,6 +7520,9 @@ msgstr "Active esta opción para añadir la información de MultiBoot detectada 
 
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
 msgstr "Habilitar esta opción para agregar datos de mapeo de mapa de acción / control remoto al archivo de registro de depuración."
+
+msgid "Enable this option to add bouquet database information to the debug log file."
+msgstr ""
 
 msgid "Enable this option to add extra DVB details to the debug log file."
 msgstr ""
@@ -10178,6 +10181,9 @@ msgstr "Incluir SDT, BAT en los flujos http"
 msgid "Include action map data"
 msgstr "Incluir los datos del mapa de acción"
 
+msgid "Include bouquet DB data"
+msgstr ""
+
 msgid "Include international data *"
 msgstr ""
 
@@ -10680,7 +10686,7 @@ msgstr "Kazajo"
 msgid "Kazakhstan"
 msgstr "Kazajistán"
 
-msgid "Keep EPG history (in minutes)"
+msgid "EPG history"
 msgstr "Mantener el historial de EPG (en minutos)"
 
 msgid "Keep service"
@@ -16810,6 +16816,9 @@ msgstr ""
 msgid "Select 'Yes' to disable multi-selection mode after each operation. Select 'No' to leave multi-selection mode active and the selections unchanged."
 msgstr ""
 
+msgid "Select 'Yes' to disable the ServiceHiSilicon plugin to allow use of the default internal media player code."
+msgstr ""
+
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr "Si se ajusta a ‘sí’, se mostrará una pantalla pequeña de TV en el EPG."
 
@@ -20154,6 +20163,9 @@ msgstr ""
 
 msgid "Status unavailable!"
 msgstr ""
+
+msgid "Status:"
+msgstr "Estado:"
 
 msgid "Step"
 msgstr ""
@@ -25673,6 +25685,9 @@ msgstr "Sí (conservar fuentes)"
 msgid "®"
 msgstr "®"
 
+#~ msgid "Current status"
+#~ msgstr "Estado actual"
+
 #
 #, fuzzy
 #~ msgid "Seek back short"
@@ -25863,9 +25878,6 @@ msgstr "®"
 
 #~ msgid "Signal strength:"
 #~ msgstr "Potencia de la señal:"
-
-#~ msgid "Status:"
-#~ msgstr "Estado:"
 
 #~ msgid "Timer selection..."
 #~ msgstr "Selección del temporizador …"

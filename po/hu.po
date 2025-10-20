@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-27 15:35+0000\n"
+"POT-Creation-Date: 2025-09-27 10:09+0000\n"
 "PO-Revision-Date: 2025-05-05 05:50+0000\n"
 "Last-Translator: Balázs Sólyom <balazs@solyom.online>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -4071,7 +4071,7 @@ msgstr "Válasszon egy országsémát az EPG-események minősítési adatainak 
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr "Válasszon olyan címkét, amely azonosítja ezt az eszközt az IceTV szolgáltatásokon belül."
 
-msgid "Choose how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful when you need information about an event which has recently finished."
+msgid "Select how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful for information about an event which has finished."
 msgstr ""
 
 msgid "Choose how often to connect to IceTV server to check for updates."
@@ -5331,9 +5331,6 @@ msgstr "Aktuális mód: %s\n"
 msgid "Current settings:"
 msgstr "Aktuális beállítások:"
 
-msgid "Current status"
-msgstr ""
-
 msgid "Current time"
 msgstr "Aktuális idő"
 
@@ -6329,6 +6326,9 @@ msgstr "mozgatási mód letiltása"
 msgid "Disable Picture in Picture"
 msgstr "Kép-a-Képben kikapcsolása"
 
+msgid "Disable ServiceHiSilicon"
+msgstr ""
+
 msgid "Disable background scanning"
 msgstr "Háttér csatornakeresés tiltása"
 
@@ -7231,6 +7231,9 @@ msgid "Enable this option to add MultiBoot information detected during system bo
 msgstr ""
 
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
+msgstr ""
+
+msgid "Enable this option to add bouquet database information to the debug log file."
 msgstr ""
 
 msgid "Enable this option to add extra DVB details to the debug log file."
@@ -9774,6 +9777,9 @@ msgstr ""
 msgid "Include action map data"
 msgstr "Legyen AIT a HTTP jelfolyamba"
 
+msgid "Include bouquet DB data"
+msgstr ""
+
 msgid "Include international data *"
 msgstr ""
 
@@ -10249,7 +10255,7 @@ msgstr "Kazahsztán"
 msgid "Kazakhstan"
 msgstr "Kazahsztán"
 
-msgid "Keep EPG history (in minutes)"
+msgid "EPG history"
 msgstr ""
 
 msgid "Keep service"
@@ -16025,6 +16031,9 @@ msgstr ""
 msgid "Select 'Yes' to disable multi-selection mode after each operation. Select 'No' to leave multi-selection mode active and the selections unchanged."
 msgstr ""
 
+msgid "Select 'Yes' to disable the ServiceHiSilicon plugin to allow use of the default internal media player code."
+msgstr ""
+
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr "Ha az 'igen'-t választja, akkor a műsor előnézeti képét jeleníti meg az EPG műsorújságban."
 
@@ -19187,6 +19196,9 @@ msgstr "A kijelző állapota készenléti üzemmódban"
 
 msgid "Status unavailable!"
 msgstr ""
+
+msgid "Status:"
+msgstr "Állapot:"
 
 msgid "Step"
 msgstr ""
@@ -24418,9 +24430,6 @@ msgstr "®"
 
 #~ msgid "Signal strength:"
 #~ msgstr "Jelerősség:"
-
-#~ msgid "Status:"
-#~ msgstr "Állapot:"
 
 #~ msgid "Timer selection..."
 #~ msgstr "Időzítés kiválasztása..."
