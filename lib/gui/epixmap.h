@@ -14,7 +14,7 @@ public:
 
 	void setPixmap(gPixmap* pixmap);
 	void setPixmap(ePtr<gPixmap>& pixmap);
-	void setPixmapFromFile(const char* filename);
+	void setPixmapFromFile(const char* filename, bool autoDetect = false);
 	void setAlphatest(int alphatest); /* 1 for alphatest, 2 for alphablend */
 	void setScale(int scale); // DEPRECATED
 	void setPixmapScale(int flags);
