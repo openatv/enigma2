@@ -468,7 +468,7 @@ class EventInfo(Converter, Poll):
 						rating = country[self.RATING_NORMAL].get(age, country[self.RATING_DEFAULT](age))
 						ageText = rating[self.RATING_SHORT].strip().replace("+", "")
 						color = rating[self.RATING_COLOR]
-						return f"{ageText};{hex(color)}"
+						return f"{ageText};#{color:08X}"
 				case self.RUNNING_STATUS:
 					if event.getPdcPil():
 						result = {
