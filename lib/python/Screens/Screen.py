@@ -190,8 +190,9 @@ class Screen(dict):
 				"menu": menus,
 				"setup": setups
 			}.get(source, screens)
-			defaultImage = images.get("default", "")
-			screenImage = images.get(image, defaultImage)
+			if not isinstance(self, ScreenSummary):  # Ignore Summary Screens
+				defaultImage = images.get("default", "")
+				screenImage = images.get(image, defaultImage)
 			if screenImage:
 				screenImage = resolveFilename(SCOPE_GUISKIN, screenImage)
 				msg = f"{'Default' if screenImage == defaultImage and image != 'default' else 'Specified'} {source if source else 'screen'} image for '{image}' is '{screenImage}'"
