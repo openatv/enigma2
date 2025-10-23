@@ -923,7 +923,7 @@ int eMPEGStreamParserTS::processPacket(const unsigned char *pkt, off_t offset)
 			//}
 			//eDebugNoNewLine("\n");
 
-			return 0;
+			return -2;
 		}
 
 		if (pkt[7] & 0x80) // PTS present?
@@ -1083,7 +1083,7 @@ inline int eMPEGStreamParserTS::wantPacket(const unsigned char *pkt) const
 	return m_streamtype == eDVBVideo::MPEG2; /* we need all packets for MPEG2, but only PUSI packets for H.264 */
 }
 
-void eMPEGStreamParserTS::parseData(off_t offset, const void *data, unsigned int len)
+int eMPEGStreamParserTS::parseData(off_t offset, const void *data, unsigned int len)
 {
 	const unsigned char *packet = (const unsigned char*)data;
 	const unsigned char *packet_start = packet;
@@ -1159,7 +1159,9 @@ void eMPEGStreamParserTS::parseData(off_t offset, const void *data, unsigned int
 
 			if (m_pktptr == m_packetsize)
 			{
-				m_need_next_packet = processPacket(m_pkt, offset + (packet - packet_start));
+				int res = processPacket(m_pkt, offset + (packet - packet_start));
+				if (res != 0) return res;
+				m_need_next_packet = res;
 				m_pktptr = 0;
 			}
 		} else if (len >= (unsigned int)m_header_offset + 4)  /* if we have a full header... */
@@ -1168,7 +1170,9 @@ void eMPEGStreamParserTS::parseData(off_t offset, const void *data, unsigned int
 			{
 				if (len >= (unsigned int)m_packetsize)          /* packet complete? */
 				{
-					m_need_next_packet = processPacket(packet, offset + (packet - packet_start)); /* process it now. */
+					int res = processPacket(packet, offset + (packet - packet_start));
+					if (res != 0) return res;
+					m_need_next_packet = res;
 				} else
 				{
 					memcpy(m_pkt, packet, len);  /* otherwise queue it up */
@@ -1194,6 +1198,7 @@ void eMPEGStreamParserTS::parseData(off_t offset, const void *data, unsigned int
 		}
 	}
 	commit();
+	return 0;
 }
 
 void eMPEGStreamParserTS::addAccessPoint(off_t offset, pts_t pts, bool streamtime)
