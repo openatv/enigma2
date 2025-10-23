@@ -848,6 +848,10 @@ public:
 
 	virtual RESULT setRadioPic(const std::string &filename) = 0;
 
+	virtual bool canFlush() const { return false; }
+
+	virtual RESULT flush() const { return -1; }
+
 	struct videoEvent
 	{
 		enum { eventUnknown = 0,

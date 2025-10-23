@@ -222,6 +222,9 @@ public:
 	RESULT fccSetPids(int fe_id, int vpid, int vtype, int pcrpid);
 	RESULT fccGetFD();
 	RESULT fccFreeFD();
+
+	bool canFlush() const { return true; }
+
 };
 
 #endif

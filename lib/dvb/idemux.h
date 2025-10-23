@@ -55,6 +55,7 @@ public:
 		eventReachedBoundary,
 				/* the programmed boundary was reached. you might set a new target fd. you can close the */
 				/* old one. */
+		eventStreamCorrupt
 	};
 	virtual RESULT connectEvent(const sigc::slot<void(int)> &event, ePtr<eConnection> &conn)=0;
 };

@@ -550,7 +550,14 @@ int eDVBRecordFileThread::asyncWrite(int len)
 	gettimeofday(&starttime, NULL);
 #endif
 	if(!getProtocol())
-		m_ts_parser.parseData(m_current_offset, m_buffer, len);
+	{
+		int parse_result = m_ts_parser.parseData(m_current_offset, m_buffer, len);
+		if (parse_result == -2)
+		{
+			m_event(eFilePushThreadRecorder::evtStreamCorrupt);
+			return len;
+		}
+	}
 
 #ifdef SHOW_WRITE_TIME
 	gettimeofday(&now, NULL);
@@ -1022,6 +1029,10 @@ void eDVBTSRecorder::filepushEvent(int event)
 	{
 	case eFilePushThread::evtWriteError:
 		m_event(eventWriteError);
+		break;
+	case eFilePushThreadRecorder::evtStreamCorrupt:
+		eDebug("[eDVBTSRecorder] Stream corruption detected, emitting signal!");
+		m_event(eventStreamCorrupt);
 		break;
 	}
 }

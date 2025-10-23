@@ -249,6 +249,7 @@ protected:
 
 	/* pvr */
 	bool m_is_pvr;
+	pts_t m_pause_position;
 	int m_is_paused, m_timeshift_enabled, m_timeshift_active, m_timeshift_changed, m_save_timeshift;
 	int m_first_program_info;
 
@@ -335,6 +336,23 @@ protected:
 	void video_event(struct iTSMPEGDecoder::videoEvent);
 
 	virtual ePtr<iTsSource> createTsSource(eServiceReferenceDVB& ref, int packetsize = 188);
+
+	ePtr<eConnection> m_con_record_event;
+	void recordEvent(int event);
+
+private:
+	// -- START: Precise Recovery System --
+	// This system handles stream corruption during timeshift, with support for a custom recovery delay.
+	ePtr<eTimer> m_precise_recovery_timer;
+	bool m_stream_corruption_detected;
+	pts_t m_original_timeshift_delay; // Stores the target timeshift delay.
+	bool m_delay_calculated; // Flag to ensure delay is calculated only once.
+	int m_recovery_delay_seconds; // Custom recovery delay in seconds, set via API.
+
+	void handleEofRecovery();
+	void startPreciseRecoveryCheck();
+	void resetRecoveryState(); // Resets all recovery state variables.
+	// -- END: Precise Recovery System --
 };
 
 class eStaticServiceDVBBouquetInformation : public iStaticServiceInformation {

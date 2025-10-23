@@ -3,17 +3,19 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>
+#include <poll.h>
 
 //#define SHOW_WRITE_TIME
 
 DEFINE_REF(eFilePushThread);
-eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level, int blocksize, size_t buffersize)
+eFilePushThread::eFilePushThread(int io_prio_class, int io_prio_level, int blocksize, size_t buffersize, int flags)
 	: prio_class(io_prio_class),
 	  prio(io_prio_level),
 	  m_sg(NULL),
 	  m_stop(1),
 	  m_send_pvr_commit(0),
 	  m_stream_mode(0),
+	  m_flags(flags),
 	  m_blocksize(blocksize),
 	  m_buffersize(buffersize),
 	  m_buffer((unsigned char *)malloc(buffersize)),
@@ -37,6 +39,14 @@ static void signal_handler(int x)
 
 static void ignore_but_report_signals()
 {
+#ifndef HAVE_HISILICON
+	/* we must set a signal mask for the thread otherwise signals don't have any effect */
+	sigset_t sigmask;
+	sigemptyset(&sigmask);
+	sigaddset(&sigmask, SIGUSR1);
+	pthread_sigmask(SIG_UNBLOCK, &sigmask, NULL);
+#endif
+	
 	/* we set the signal to not restart syscalls, so we can detect our signal. */
 	struct sigaction act = {};
 	act.sa_handler = signal_handler; // no, SIG_IGN doesn't do it. we want to receive the -EINTR
@@ -63,6 +73,7 @@ void eFilePushThread::thread()
 
 		while (!m_stop)
 		{
+			// eTrace("[FilePushThread][DATA] Pumping data at pos=%lld", (long long)m_current_position);
 			if (m_sg && !current_span_remaining)
 			{
 				m_sg->getNextSourceSpan(m_current_position, bytes_read, current_span_offset, current_span_remaining, m_blocksize, m_sof);
@@ -135,7 +146,7 @@ void eFilePushThread::thread()
 							eDebug("[eFilePushThread] wait for driver eof timeout - %ds", poll_timeout_count / 4);
 						continue;
 					case 1:
-						eDebug("[eFilePushThread] wait for driver eof ok");
+						eDebug("[eFilePushThread] wait for driver eof ok / m_flags %d" , m_flags);
 						break;
 					default:
 						eDebug("[eFilePushThread] wait for driver eof aborted by signal");
@@ -160,10 +171,13 @@ void eFilePushThread::thread()
 				else
 					sendEvent(evtUser); // start of file event
 
-				if (m_stream_mode)
-				{
+				if (m_stream_mode) {
 					eDebug("[eFilePushThread] reached EOF, but we are in stream mode. delaying 1 second.");
 					sleep(1);
+					continue;
+				}
+				else if (m_flags == 1) { // timeshift
+					usleep(200000);  // 200 milliseconds
 					continue;
 				}
 				else if (++eofcount < 10)
@@ -199,7 +213,7 @@ void eFilePushThread::thread()
 							sleep(2);
 #endif
 #if HAVE_HISILICON
-							usleep(100000);
+							usleep(100000); // 100 milliseconds
 #endif
 							continue;
 						}
@@ -482,18 +496,23 @@ int eFilePushThreadRecorder::read_dmx(int fd, void *m_buffer, int size)
 
 void eFilePushThreadRecorder::thread()
 {
+#ifndef HAVE_HISILICON
+	ignore_but_report_signals();
+	hasStarted(); /* "start()" blocks until we get here */
+#endif
 	setIoPrio(IOPRIO_CLASS_RT, 7);
-
 	eDebug("[eFilePushThreadRecorder] THREAD START");
 
+#ifdef HAVE_HISILICON
 	/* we set the signal to not restart syscalls, so we can detect our signal. */
 	struct sigaction act = {};
 	memset(&act, 0, sizeof(act));
 	act.sa_handler = signal_handler; // no, SIG_IGN doesn't do it. we want to receive the -EINTR
 	act.sa_flags = 0;
 	sigaction(SIGUSR1, &act, 0);
-
 	hasStarted();
+#endif
+
 	if (m_protocol == _PROTO_RTSP_TCP)
 	{
 		int flags = fcntl(m_fd_source, F_GETFL, 0);
@@ -501,22 +520,44 @@ void eFilePushThreadRecorder::thread()
 		if (fcntl(m_fd_source, F_SETFL, flags) == -1)
 			eDebug("failed setting DMX handle %d in non-blocking mode, error %d: %s", m_fd_source, errno, strerror(errno));
 	}
-	/* m_stop must be evaluated after each syscall. */
+	/* m_stop must be evaluated after each syscall */
+	/* if it isn't, there's a chance of the thread becoming deadlocked when recordings are finishing */
 	while (!m_stop)
 	{
 		ssize_t bytes;
 		if (m_protocol == _PROTO_RTSP_TCP)
 			bytes = read_dmx(m_fd_source, m_buffer, m_buffersize);
 		else
-			bytes = ::read(m_fd_source, m_buffer, m_buffersize);
+		{
+#ifndef HAVE_HISILICON
+		/* this works around the buggy Broadcom encoder that always returns even if there is no data */
+		/* (works like O_NONBLOCK even when not opened as such), prevent idle waiting for the data */
+		/* this won't ever hurt, because it will return immediately when there is data or an error condition */
+
+		struct pollfd pfd = { m_fd_source, POLLIN, 0 };
+		poll(&pfd, 1, 100);
+		/* Reminder: m_stop *must* be evaluated after each syscall. */
+		if (m_stop)
+			break;
+
+		bytes = ::read(m_fd_source, m_buffer, m_buffersize);
+		/* And again: Check m_stop regardless of read success. */
+		if (m_stop)
+			break;
+#else
+		bytes = ::read(m_fd_source, m_buffer, m_buffersize);
+#endif
+		}
 		if (bytes < 0)
 		{
 			bytes = 0;
+#if HAVE_HISILICON
 			/* Check m_stop after interrupted syscall. */
 			if (m_stop)
 			{
 				break;
 			}
+#endif
 			if (errno == EINTR || errno == EBUSY || errno == EAGAIN)
 			{
 #if HAVE_HISILICON

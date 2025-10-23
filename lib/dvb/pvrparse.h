@@ -115,7 +115,7 @@ class eMPEGStreamParserTS: public eMPEGStreamInformationWriter
 {
 public:
 	eMPEGStreamParserTS(int packetsize = 188);
-	void parseData(off_t offset, const void *data, unsigned int len);
+	int parseData(off_t offset, const void *data, unsigned int len);
 	void setPid(int pid, iDVBTSRecorder::timing_pid_type pidtype, int streamtype);
 	int getLastPTS(pts_t &last_pts);
 	int getFirstPTS(pts_t &first_pts);

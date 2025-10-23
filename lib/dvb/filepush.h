@@ -19,7 +19,7 @@ class eFilePushThread: public eThread, public sigc::trackable, public iObject
 {
 	DECLARE_REF(eFilePushThread);
 public:
-	eFilePushThread(int prio_class=IOPRIO_CLASS_BE, int prio_level=0, int blocksize=188, size_t buffersize=188*1024);
+	eFilePushThread(int prio_class=IOPRIO_CLASS_BE, int prio_level=0, int blocksize=188, size_t buffersize=188*1024, int flags=0);
 	~eFilePushThread();
 	void thread();
 	void stop();
@@ -48,6 +48,7 @@ private:
 	int m_fd_dest;
 	int m_send_pvr_commit;
 	int m_stream_mode;
+	int m_flags;
 	int m_sof;
 	int m_blocksize;
 	size_t m_buffersize;
@@ -72,7 +73,7 @@ public:
 	void stop();
 	void start(int sourcefd);
 
-	enum { evtEOF, evtReadError, evtWriteError, evtUser, evtStopped };
+	enum { evtEOF, evtReadError, evtWriteError, evtUser, evtStopped, evtStreamCorrupt };
 	sigc::signal<void(int)> m_event;
 
 	int getProtocol() { return m_protocol;}
