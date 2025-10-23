@@ -157,25 +157,27 @@ OpenTvTitle::OpenTvTitle(const uint8_t * const buffer, uint16_t startMjd)
 		uint8_t descriptor_length = buffer[1];
 		uint8_t titleLength = descriptor_length > 7 ? descriptor_length-7 : 0;
 
-		uint32_t startSecond = (UINT16(&buffer[2]) << 1);
+		// HACK: startSecond is detected as being from the previous 
+		// mjd date when the h:m:s is sent as greater than 1 day.
+		// when this occurs, shifted two's complement has a negative 
+		// sign bit of a signed integer, and is not a positive number.
+
+		int32_t startSecond = UINT16(&buffer[2]) << 1;
+
+		// if h:m:s is sent as greater than 1 day in seconds,
+		// first bit is a negative sign bit without padding.
+
+		if (startSecond >= 86400)
+			startSecond = 0xFFFE0000 | (startSecond & 0x1FFFF);
 
 		startTimeBcd = ((startMjd - 40587) * 86400) + startSecond;
-
-		// HACK ALERT: There is a bug somewhere in the data that causes some
-		// events to be cataloged 0x20000 seconds further into the future
-		// than they should be. In these cases "startSecond" will have a value
-		// of 86400 seconds or greater. i.e. more than one day. When this
-		// happens it indicates that the bug is present for the current event
-		// and therefore the excess 0x20000 seconds is removed from "startTimeBcd".
-		if (startSecond >= 86400)
-			startTimeBcd -= 0x20000;
 
 		duration = UINT16(&buffer[4]) << 1;
 
 		//genre content
-		//uint8_t flag1 = buffer[6];
-		//uint8_t flag2 = buffer[7];
-		//uint8_t flag3 = buffer[8];
+		genreId = buffer[6];
+		//uint8_t flag = buffer[7];
+		parentalRating = buffer[8] & 0x0f;
 
 		char tmp[OPENTV_EVENT_TITLE_LENGTH];
 		memset(tmp, '\0', OPENTV_EVENT_TITLE_LENGTH);
@@ -227,6 +229,16 @@ uint16_t OpenTvTitle::getEventId(void) const
 uint32_t OpenTvTitle::getDuration(void) const
 {
 	return duration;
+}
+
+uint8_t OpenTvTitle::getGenreId(void) const
+{
+	return genreId;
+}
+
+uint8_t OpenTvTitle::getParentalRating(void) const
+{
+	return parentalRating;
 }
 
 void OpenTvTitle::setChannelId(uint16_t channelid)
