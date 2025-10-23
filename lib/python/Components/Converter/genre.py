@@ -13,7 +13,7 @@ class GenresETSI:
 		_("Reserved"),
 		_("Movie/Drama"),
 		_("News/Current Affairs"),
-		_("Show/Games show"),
+		_("Show/Game show"),
 		_("Sports"),
 		_("Children/Youth"),
 		_("Music/Ballet/Dance"),
@@ -21,7 +21,7 @@ class GenresETSI:
 		_("Social/Political/Economics"),
 		_("Education/Science/Factual"),
 		_("Leisure hobbies"),
-		_("Other")
+		_("Special characteristics")
 	)
 
 	subtype = {
@@ -120,7 +120,7 @@ class GenresETSI:
 			_("languages")
 		),
 
-		# Leisure hobies
+		# Leisure hobbies
 		10: (
 			_("leisure hobbies (general)"),
 			_("tourism/travel"),
@@ -131,7 +131,7 @@ class GenresETSI:
 			_("advertisement/shopping"),
 			_("gardening")
 		),
-		# Other
+		# Special characteristics
 		11: (
 			_("original language"),
 			_("black & white"),
@@ -225,7 +225,7 @@ class GenresAUSIceTV:
 		_("Miscellaneous"),
 		_("Movie/Drama"),
 		_("News/Current Affairs"),
-		_("Show/Games show"),
+		_("Show/Game show"),
 		_("Sports"),
 		_("Children/Youth"),
 		_("Music/Ballet/Dance"),
