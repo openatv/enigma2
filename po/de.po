@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-27 10:09+0000\n"
-"PO-Revision-Date: 2025-10-18 00:10+0000\n"
+"POT-Creation-Date: 2025-10-21 11:50+0000\n"
+"PO-Revision-Date: 2025-10-22 05:45+0000\n"
 "Last-Translator: VfBFan <drop0815@posteo.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -3260,6 +3260,9 @@ msgstr "Blau"
 msgid "Bluetooth"
 msgstr "Bluetooth"
 
+msgid "Bluetooth Audio"
+msgstr "Bluetooth-Audio"
+
 msgid "Bluetooth Setup"
 msgstr "Bluetooth-Einstellungen"
 
@@ -3896,6 +3899,10 @@ msgstr "Kein Signal gefunden! Abbruch!"
 msgid "Cape Verde"
 msgstr "Kap Verde"
 
+#, python-format
+msgid "Card reader %d"
+msgstr "Kartenleser %d"
+
 msgid "Cards: "
 msgstr "Karten: "
 
@@ -4238,9 +4245,6 @@ msgstr "Länderschema zum Dekodieren von Bewertungsinformationen in EPG-Ereignis
 
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr "Eine Beschriftung auswählen, damit IceTV-Dienste das Gerät zuordnen können."
-
-msgid "Select how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful for information about an event which has finished."
-msgstr "Auswählen, ob und wie viele historische EPG-Daten gespeichert werden sollen. Diese Daten können in jeder der EPG-Ansichten durchsucht werden. Dies kann nützlich sein, wenn Informationen über ein Ereignis benötigt werden, welches kürzlich beendet wurde."
 
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Das Intervall auswählen, wie oft eine Verbindung zum IceTV-Server hergestellt werden soll, um nach Updates zu suchen."
@@ -5156,6 +5160,9 @@ msgstr "Konsole Pakete"
 
 msgid "Console Utility Packages"
 msgstr "Konsole Tools-Pakete"
+
+msgid "Constcw"
+msgstr "Constcw"
 
 msgid "Constellation"
 msgstr "Konstellation"
@@ -7186,6 +7193,9 @@ msgstr "Taste EPG"
 msgid "EPG filename"
 msgstr "EPG-Dateiname"
 
+msgid "EPG history"
+msgstr "EPG-Historie"
+
 msgid ""
 "EPG key : Switch to channel list\n"
 "Ok key : Remove selected channel\n"
@@ -7359,6 +7369,9 @@ msgstr "Leer"
 
 msgid "Empty file"
 msgstr "Leere Datei"
+
+msgid "Emulator"
+msgstr "Emulator"
 
 #
 msgid "Enable"
@@ -9558,6 +9571,9 @@ msgstr "Höhe"
 msgid "Help"
 msgstr "Hilfe"
 
+msgid "Help Action"
+msgstr "Hilfe-Aktionen"
+
 msgid "Help Screen Information"
 msgstr "Informationen zum Hilfebildschirm"
 
@@ -10715,9 +10731,6 @@ msgstr "Kasachisch"
 
 msgid "Kazakhstan"
 msgstr "Kasachstan"
-
-msgid "EPG history"
-msgstr "Alte EPG-Daten für x Minuten halten"
 
 msgid "Keep service"
 msgstr "Laufender Kanal"
@@ -13753,6 +13766,9 @@ msgstr "PCR-PID"
 
 msgid "PDC"
 msgstr "PDC"
+
+msgid "PG - Parental Guidance"
+msgstr "PG - Elterliche Anleitung"
 
 msgid "PGS file"
 msgstr "PGS-Datei"
@@ -17281,6 +17297,9 @@ msgstr "Auswählen, wie lange Aufgaben- und Skriptmeldungen angezeigt werden sol
 msgid "Select how long, in seconds, that the volume and mute displays are shown before they automatically hide."
 msgstr "Auswählen, wie viele Sekunden das Lautstärkesymbol oder die Stummschaltung angezeigt werden sollen, bevor sie ausgeblendet werden."
 
+msgid "Select how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful for information about an event which has finished."
+msgstr "Auswählen, ob und wie viele historische EPG-Daten gespeichert werden sollen. Diese Daten können in jeder der EPG-Ansichten durchsucht werden. Dies kann nützlich sein, wenn Informationen über ein beendetes Ereignis benötigt werden."
+
 msgid "Select how often this timer is to be repeated."
 msgstr "Auswählen, wie dieser Timer wiederholt werden soll."
 
@@ -20485,6 +20504,15 @@ msgstr "Erfolgreich:"
 msgid "Sudan"
 msgstr "Sudan"
 
+msgid "Suitable for ages 12+"
+msgstr "Geeignet für Kinder ab 12 Jahren"
+
+msgid "Suitable for ages 15+"
+msgstr "Geeignet für Kinder ab 15 Jahren"
+
+msgid "Suitable only for Adults"
+msgstr "Nur für Erwachsene geeignet"
+
 #
 msgid "Sun"
 msgstr "So."
@@ -22509,6 +22537,9 @@ msgstr "Gerätetyp"
 msgid "Type of scan"
 msgstr "Art des Suchlaufs"
 
+msgid "U - Suitable for all"
+msgstr "U - Für alle Altersgruppen geeignet"
+
 #, python-format
 msgid "UBI slot %s%s"
 msgstr "UBI Slot %s%s"
@@ -22544,6 +22575,10 @@ msgstr "USB 3.0 hinten außen"
 #
 msgid "USB Stick"
 msgstr "USB-Stick"
+
+#, python-format
+msgid "USB reader %d"
+msgstr "USB-Kartenleser %d"
 
 #, python-format
 msgid "USB slot %s%s"
@@ -25688,6 +25723,24 @@ msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Bambini Accompagnati"
+#~ msgstr "Kinder"
+
+#~ msgid "Dai 12 anni in su"
+#~ msgstr "Ab 12 Jahren"
+
+#~ msgid "Dai 14 anni in su"
+#~ msgstr "Ab 14 Jahren"
+
+#~ msgid "Dai 18 anni in su"
+#~ msgstr "Ab 18 Jahren"
+
+#~ msgid "Non Classificato"
+#~ msgstr "Nicht klassifiziert"
+
+#~ msgid "Per Tutti"
+#~ msgstr "Für alle"
 
 #~ msgid "Current status"
 #~ msgstr "Aktueller Status"
