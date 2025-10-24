@@ -423,7 +423,7 @@ class GenresGBROpenTV:
 		2: (
 			_("No Category"),  # 0x20
 			_("Adult"),  # 0x21
-			_("Unused 0x22"),  # 0x22
+			_("Unused %s") % "0x22",  # 0x22
 			_("Shopping"),  # 0x23
 		),
 		# Children
@@ -485,17 +485,17 @@ class GenresGBROpenTV:
 			_("Hip Hop"),  # 0x8a
 			_("Soul/Rhythm Blues"),  # 0x8b
 			_("Dance"),  # 0x8c
-			_("Unused 0x8d"),  # 0x8d
-			_("Unused 0x8e"),  # 0x8e
-			_("Unused 0x8f"),  # 0x8f
+			_("Unused %s") % "0x8d",  # 0x8d
+			_("Unused %s") % "0x8e",  # 0x8e
+			_("Unused %s") % "0x8f",  # 0x8f
 		),
 		# Music cont...
 		9: (
 			_("Features"),  # 0x90
-			_("Unused 0x91"),  # 0x91
-			_("Unused 0x92"),  # 0x92
-			_("Unused 0x93"),  # 0x93
-			_("Unused 0x94"),  # 0x94
+			_("Unused %s") % "0x91",  # 0x91
+			_("Unused %s") % "0x92",  # 0x92
+			_("Unused %s") % "0x93",  # 0x93
+			_("Unused %s") % "0x94",  # 0x94
 			_("Lifestyle"),  # 0x95
 			_("News and Weather"),  # 0x96
 			_("Easy Listening"),  # 0x97
@@ -535,11 +535,11 @@ class GenresGBROpenTV:
 			_("General"),  # 0xc0
 			_("Action"),  # 0xc1
 			_("Animation"),  # 0xc2
-			_("Unused 0xc3"),  # 0xc3
+			_("Unused %s") % "0xc3",  # 0xc3
 			_("Comedy"),  # 0xc4
 			_("Family"),  # 0xc5
 			_("Drama"),  # 0xc6
-			_("Unused 0xc7"),  # 0xc7
+			_("Unused %s") % "0xc7",  # 0xc7
 			_("Sci-Fi"),  # 0xc8
 			_("Thriller"),  # 0xc9
 			_("Horror"),  # 0xca
