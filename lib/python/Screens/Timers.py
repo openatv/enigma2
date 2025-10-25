@@ -4,7 +4,7 @@ from time import localtime, mktime, strftime, time
 
 from enigma import BT_SCALE, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_VALIGN_CENTER, eEPGCache, eLabel, eListbox, eListboxPythonMultiContent, eSize, eTimer
 
-from Scheduler import AFTEREVENT as SCHEDULER_AFTEREVENT, SchedulerEntry, TIMERTYPE as SCHEDULER_TYPE, functionTimer
+from Scheduler import AFTEREVENT as SCHEDULER_AFTEREVENT, SchedulerEntry, TIMERTYPE as SCHEDULER_TYPE, functionTimers
 from RecordTimer import AFTEREVENT as RECORD_AFTEREVENT, RecordTimerEntry, TIMERTYPE as RECORD_TIMERTYPE, parseEvent
 from ServiceReference import ServiceReference
 from skin import parseBoolean, parseFont, parseInteger
@@ -373,7 +373,7 @@ class SchedulerList(TimerListBase):
 		minorWidth = (textWidth - self.statusOffset) // 4 - 5
 		majorWidth = textWidth - self.statusOffset - minorWidth - 10
 		res = [None]
-		functionName = timer.function and functionTimer.getItem(timer.function).get("name")
+		functionName = timer.function and functionTimers.getNameForItem(timer.function)
 		typeText = functionName or SCHEDULER_TYPE_NAMES.get(timer.timerType, UNKNOWN)
 		if repeatIcon:
 			res.append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, self.indent, ((self.topHeight - self.iconHeight) // 2), self.iconWidth, self.iconHeight, repeatIcon, None, None, BT_SCALE))
@@ -1241,7 +1241,7 @@ class SchedulerEdit(Setup):
 			repeated = None
 			weekday = DAY_LIST[int(strftime("%u", localtime(self.timer.begin))) - 1]
 			days[weekday] = True
-		functionTimerItems = functionTimer.get()
+		functionTimerItems = functionTimers.getList()
 		choices = [
 			# (SCHEDULER_TYPES.get(SCHEDULER_TYPE.NONE), SCHEDULER_TYPE_NAMES.get(SCHEDULER_TYPE.NONE)),
 			(SCHEDULER_TYPES.get(SCHEDULER_TYPE.WAKEUP), SCHEDULER_TYPE_NAMES.get(SCHEDULER_TYPE.WAKEUP)),
@@ -1260,6 +1260,16 @@ class SchedulerEdit(Setup):
 			("no", _("Standard (Always)")),
 			("noquery", _("Without query"))
 		])
+
+		self.timerFunctionStandby = ConfigSelection(default=self.timer.functionStandby, choices=[
+			(0, _("Ignore Standby")),
+			(1, _("Only in Standby")),
+			(2, _("Never in Standby"))
+		])
+		self.timerFunctionStandbyRetry = ConfigYesNo(default=self.timer.functionStandbyRetry)
+		self.timerFunctionRetryCountOnError = ConfigSelection(default=self.timer.functionRetryCountOnError, choices=[(0, _("Disabled"))] + [(x, x) for x in (1, 2, 3)])
+		self.timerFunctionRetryDelayOnError = ConfigSelection(default=self.timer.functionRetryDelayOnError, choices=[(x * 60, ngettext("%d Minute", "%d Minutes", x) % x) for x in (3, 5, 10)])
+
 		self.timerSleepDelay = ConfigSelection(default=self.timer.autosleepdelay, choices=[
 			(1, _("%d Minute") % 1),
 			(3, _("%d Minutes") % 3),
@@ -1305,7 +1315,18 @@ class SchedulerEdit(Setup):
 		for callback in onSchedulerCreate:
 			callback(self)
 
+	def isFunctionTimer(self):
+		return self.timerType.value in functionTimers.getList()
+
 	def createSetup(self):  # NOSONAR silence S2638
+		if self.isFunctionTimer():
+			self.timerSetEndTime.value = True
+			begin = self.getTimeStamp(self.timerRepeatStartDate.value, self.timerStartTime.value)
+			end = self.getTimeStamp(self.timerRepeatStartDate.value, self.timerEndTime.value)
+			if end <= begin + 60:
+				end = begin + 120 * 60  # Ensure at least 2 minutes duration.
+				tm = localtime(end)
+				self.timerEndTime.value = [tm.tm_hour, tm.tm_min]
 		Setup.createSetup(self)
 		for callback in onSchedulerSetup:
 			callback(self)
@@ -1331,7 +1352,7 @@ class SchedulerEdit(Setup):
 			self.timerEndTime.value = self.timerStartTime.value
 		now = int(time())
 		self.timer.resetRepeated()
-		if self.timerType.value in functionTimer.get():
+		if self.timerType.value in functionTimers.getList():
 			self.timer.timerType = SCHEDULER_TYPE.OTHER
 			self.timer.function = self.timerType.value
 		else:
@@ -1360,6 +1381,12 @@ class SchedulerEdit(Setup):
 			if self.timerSleepWindow.value:
 				self.timer.autosleepbegin = self.getTimeStamp(now, self.timerSleepStart.value)
 				self.timer.autosleepend = self.getTimeStamp(now, self.timerSleepEnd.value)
+		if self.timer.function:
+			self.timer.functionStandby = self.timerFunctionStandby.value
+			self.timer.functionStandbyRetry = self.timerFunctionStandbyRetry.value
+			self.timer.functionRetryCountOnError = self.timerFunctionRetryCountOnError.value
+			self.timer.functionRetryDelayOnError = self.timerFunctionRetryDelayOnError.value
+
 		if self.timerRepeat.value == "repeated":
 			if self.timerRepeatPeriod.value == "daily":
 				for day in (0, 1, 2, 3, 4, 5, 6):

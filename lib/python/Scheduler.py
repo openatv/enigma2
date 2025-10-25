@@ -10,6 +10,8 @@ from enigma import eActionMap, quitMainloop
 
 import NavigationInstance
 from timer import Timer, TimerEntry
+from threading import Thread
+
 from Components.config import config
 from Components.SystemInfo import getBoxDisplayName
 from Components.TimerSanityCheck import TimerSanityCheck
@@ -91,9 +93,54 @@ def parseEvent(event):
 	return (begin, end)
 
 
+class FunctionTimerThread(Thread):
+	def __init__(self, entryFunction, callbackFunction, timerEnty):
+		Thread.__init__(self)
+		self.entryFunction = entryFunction
+		self.callbackFunction = callbackFunction
+		self.timerEnty = timerEnty
+		self.daemon = True
+
+	def run(self):
+		result = self.entryFunction(self.timerEnty)
+		if self.callbackFunction and callable(self.callbackFunction):
+			self.callbackFunction(result)
+
+
 class Scheduler(Timer):
 	def __init__(self):
 		Timer.__init__(self)
+		config.misc.standbyCounter.addNotifier(self.enterStandby, initial_call=False)
+
+	def leaveStandby(self):
+		if DEBUG:
+			print("[Scheduler] leaveStandby called.")
+		recheck = False
+		for timer in self.timer_list:
+			if DEBUG:
+				print(f"[Scheduler] timer: {timer}, conditionFlag: {timer.conditionFlag}")
+			if not timer.disabled and timer.conditionFlag == 2:
+				timer.conditionFlag = 0
+				timer.state = SchedulerEntry.StateWaiting
+				recheck = True
+		if recheck:
+			self.calcNextActivation()
+
+	def enterStandby(self, value):
+		if DEBUG:
+			print("[Scheduler] enterStandby called.")
+		from Screens.Standby import inStandby
+		inStandby.onClose.append(self.leaveStandby)
+		recheck = False
+		for timer in self.timer_list:
+			if DEBUG:
+				print(f"[Scheduler] timer: {timer}, conditionFlag: {timer.conditionFlag}")
+			if not timer.disabled and timer.conditionFlag == 1:
+				timer.conditionFlag = 0
+				timer.state = SchedulerEntry.StateWaiting
+				recheck = True
+		if recheck:
+			self.calcNextActivation()
 
 	def loadTimers(self):
 
@@ -163,6 +210,10 @@ class Scheduler(Timer):
 			timerEntry.append(f"ipadress=\"{timer.ipadress}\"")
 			if timer.function:
 				timerEntry.append(f"function=\"{timer.function}\"")
+				timerEntry.append(f"runinstandby=\"{timer.functionStandby}\"")
+				timerEntry.append(f"runinstandbyretry=\"{int(timer.functionStandbyRetry)}\"")
+				timerEntry.append(f"retryonerrorcount=\"{int(timer.functionRetryCountOnError)}\"")
+				timerEntry.append(f"retryonerrordelay=\"{int(timer.functionRetryDelayOnError)}\"")
 
 			timerLog = []
 			for logTime, logCode, logMsg in timer.log_entries:
@@ -224,6 +275,12 @@ class Scheduler(Timer):
 		entry.netip = timerDom.get("netip", "false").lower() in ("true", "yes")
 		entry.ipadress = timerDom.get("ipadress", "0.0.0.0")
 		entry.function = timerDom.get("function")
+		if entry.function:
+			entry.functionStandby = int(timerDom.get("runinstandby", "0"))
+			entry.functionStandbyRetry = int(timerDom.get("runinstandbyretry", "0"))
+			entry.functionRetryCountOnError = int(timerDom.get("retryonerrorcount", "3"))
+			entry.functionRetryDelayOnError = int(timerDom.get("retryonerrordelay", "3"))
+
 		for log in timerDom.findall("log"):
 			entry.log_entries.append((int(log.get("time")), int(log.get("code")), log.text.strip()))
 		return entry
@@ -239,10 +296,11 @@ class Scheduler(Timer):
 			# state is kept. The timer entry itself will fix up the delay.
 			if timer.activate():
 				timer.state += 1
-		try:
-			self.timer_list.remove(timer)
-		except ValueError:
-			print("[Scheduler] Remove timer from timer list failed!")
+		if timer in self.timer_list:
+			try:
+				self.timer_list.remove(timer)
+			except ValueError:
+				print("[Scheduler] Remove timer from timer list failed!")
 		if timer.state < SchedulerEntry.StateEnded:  # Did this timer reached the last state?
 			insort(self.timer_list, timer)  # No, sort it into active list.
 		else:  # Yes, process repeated, and re-add.
@@ -374,9 +432,6 @@ class Scheduler(Timer):
 		timer.abort()  # Abort timer. This sets the end time to current time, so timer will be stopped.
 		if timer.state != timer.StateEnded:
 			self.timeChanged(timer)
-		# print("[Scheduler] State: %s." % timer.state)
-		# print("[Scheduler] In processed: %s." % timer in self.processed_timers)
-		# print("[Scheduler] In running: %s." % timer in self.timer_list)
 		if timer.state != TimerEntry.StateEnded:  # Disable timer first.
 			timer.disable()
 		if not timer.dontSave:  # Auto increase instant timer if possible.
@@ -385,6 +440,11 @@ class Scheduler(Timer):
 					self.timeChanged(timerItem)
 		if timer in self.processed_timers:  # Now the timer should be in the processed_timers list, remove it from there.
 			self.processed_timers.remove(timer)
+
+		if timer.timerType == TIMERTYPE.OTHER and timer.function:
+			timer.state = timer.StateEnded - 1
+			timer.activate()  # force cancel
+
 		self.saveTimers()
 
 	def getNextZapTime(self):
@@ -422,7 +482,8 @@ class Scheduler(Timer):
 class SchedulerEntry(TimerEntry):
 	def __init__(self, begin, end, disabled=False, afterEvent=AFTEREVENT.NONE, timerType=TIMERTYPE.WAKEUP, checkOldTimers=False, autosleepdelay=60):
 		TimerEntry.__init__(self, int(begin), int(end))
-		print("[SchedulerEntry] DEBUG: Running init code.")
+		if DEBUG:
+			print("[SchedulerEntry] DEBUG: Running init code.")
 		if checkOldTimers and self.begin < int(time()) - 1209600:
 			self.begin = int(time())
 		# Check auto Scheduler.
@@ -458,6 +519,11 @@ class SchedulerEntry(TimerEntry):
 		self.resetState()
 		self.messageBoxAnswerPending = False
 		self.keyPressHooked = False
+		self.cancelFunction = None
+		self.functionStandby = 0  # 0 Always / 1 Standby / 2 Online
+		self.functionStandbyRetry = False
+		self.functionRetryCountOnError = 3
+		self.functionRetryDelayOnError = 3  # minutes
 
 	def __repr__(self, getType=False):
 		timertype = {
@@ -480,6 +546,8 @@ class SchedulerEntry(TimerEntry):
 			return f"SchedulerEntry(type={timertype}, begin={ctime(self.begin)} Disabled)"
 
 	def activate(self):
+		if DEBUG:
+			print(f"[Scheduler] DEBUG activate state={self.state}")
 		global DSsave, InfoBar, RBsave, RSsave, aeDSsave, wasTimerWakeup
 		if not InfoBar:
 			try:
@@ -809,38 +877,43 @@ class SchedulerEntry(TimerEntry):
 			elif self.timerType == TIMERTYPE.OTHER and self.function:
 				if DEBUG:
 					print(f"[Scheduler] self.timerType == TIMERTYPE.OTHER: / function = {self.function}")
-				functionTimerEntry = functionTimer.getItem(self.function)
+				functionTimerEntry = functionTimers.getItem(self.function)
 				if functionTimerEntry:
-					functionTimerEntryFunction = functionTimerEntry.get("fnc")
+					functionTimerEntryFunction = functionTimerEntry.get("entryFunction")
+					functionTimerCancelFunction = functionTimerEntry.get("cancelFunction")
+					functionTimerUseOwnThread = functionTimerEntry.get("useOwnThread")
+					if DEBUG:
+						print(f"[Scheduler] functionTimerEntryFunction = {functionTimerEntryFunction}")
 
-					doFunc = False
-					#if self.exec_fnc_when == "standby" and Screens.Standby.inStandby:
-					#	doFunc = True
-					#elif self.exec_fnc_when == "stb_on" and not Screens.Standby.inStandby:
-					#	doFunc = True
-					#elif self.exec_fnc_when == "always":
-					#	doFunc = True
-
+					self.conditionFlag = 0
 					doFunc = True
+					if self.functionStandby == 1 and not Screens.Standby.inStandby:
+						doFunc = False
+					if self.functionStandby == 2 and Screens.Standby.inStandby:
+						doFunc = False
 
 					if doFunc:
-						self.end += 7200
-						if functionTimerEntryFunction and callable(functionTimerEntryFunction):
-							functionTimerEntryFunction()
-
-						#if "isThreaded" in functionTimerEntry and not functionTimerEntry["isThreaded"]:
-						#	self.is_threaded = False
-						#elif "isScreen" in functionTimerEntry and not functionTimerEntry["isScreen"]:
-						#	self.is_threaded = False
-						#self.execnotifyafter = self.notify_after_t
-						#if self.notify_t and not Screens.Standby.inStandby:
-						#	Notifications.AddNotificationWithCallback(self.askForScheduledTimer, MessageBox, _("An scheduled task wants to execute following function at your STB\n\n %s \n\nContinue?") % functionTimerEntry["name"], timeout = 20)
-						#else:
-						#	self.askForScheduledTimer(True)
+						if functionTimerEntryFunction and callable(functionTimerEntryFunction) and functionTimerCancelFunction and callable(functionTimerCancelFunction):
+							self.startFunctionTimer(functionTimerEntryFunction, functionTimerCancelFunction, functionTimerUseOwnThread)
+					elif self.functionStandbyRetry:
+						if NavigationInstance.instance.Scheduler:
+							self.conditionFlag = self.functionStandby  # 1 Standby / 2 Online
+							if DEBUG:
+								print("[Scheduler] Function timer postponed due to standby state.")
 
 				return True
 
 		elif nextState == self.StateEnded:
+			if DEBUG:
+				print(f"[Scheduler] DEBUG nextState self.StateEnded / self.cancelled={self.cancelled} / self.failed={self.failed}")
+			if self.timerType == TIMERTYPE.OTHER and self.function:
+				if self.cancelled:
+					if self.cancelFunction and callable(self.cancelFunction):
+						if DEBUG:
+							print("[Scheduler] DEBUG Call cancelFunction")
+						self.cancelFunction()
+						self.cancelFunction = None
+						return True
 			if self.afterEvent == AFTEREVENT.WAKEUP:
 				Screens.Standby.TVinStandby.skipHdmiCecNow("wakeuppowertimer")
 				if Screens.Standby.inStandby:
@@ -918,6 +991,23 @@ class SchedulerEntry(TimerEntry):
 			if DEBUG:
 				print("[Scheduler] Reset wakeup state.")
 		wasTimerWakeup = False
+
+	def startFunctionTimer(self, entryFunction, cancelFunction, useOwnThread):
+		if DEBUG:
+			print("[Scheduler] DEBUG startFunctionTimer")
+		self.cancelFunction = cancelFunction
+		if useOwnThread:
+			result = entryFunction(self.functionTimerCallback, self)
+			if DEBUG:
+				print(f"[Scheduler] DEBUG startFunctionTimer own thread started {result}")
+		else:
+			self.timerThread = FunctionTimerThread(entryFunction, self.functionTimerCallback, self)
+			self.timerThread.start()
+
+	def functionTimerCallback(self, success):
+		self.failed = not success
+		self.end = int(time()) - 1
+		NavigationInstance.instance.Scheduler.doActivate(self)
 
 	def getNextActivation(self):
 		if self.state in (self.StateEnded, self.StateFailed):
@@ -1140,23 +1230,46 @@ class SchedulerEntry(TimerEntry):
 		return False
 
 
-class FunctionTimer:
+class FunctionTimers:
 	def __init__(self):
 		self.items = {}
 
-	def add(self, fnc):
-		if isinstance(fnc, (tuple, list)) and len(fnc) == 2 and isinstance(fnc[0], str) and isinstance(fnc[1], dict) and fnc[0] not in self.items:
-			self.items[fnc[0]] = fnc[1]
+	def add(self, key, info):
+		if isinstance(key, str) and isinstance(info, dict):
+			if key not in self.items:
+				if callable(info.get("entryFunction")) and callable(info.get("cancelFunction")):
+					self.items[key] = info
+				else:
+					print("[FunctionTimers] Error: Both 'entryFunction' and 'cancelFunction' must be callable functions!")
+			else:
+				print(f"[FunctionTimers] Error: The key '{key}' is already defined!")
+		else:
+			print("[FunctionTimers] Error: Parameter 'key' must be a string and 'info' must be a dictionary!")
 
-	def remove(self, fncid):
-		if isinstance(fncid, str) and fncid in self.items:
-			self.items.pop(fncid)
+	def remove(self, key):
+		if key in self.items:
+			del self.items[key]
+		else:
+			print(f"[FunctionTimers] Error: The key '{key}' was not found!")
 
-	def get(self):
+	def getList(self):
 		return self.items
 
-	def getItem(self, item):
-		return self.items.get(item)
+	def getItem(self, key):
+		return self.items.get(key)
+
+	def getNameForItem(self, key):
+		return self.items.get(key, {}).get("name")
 
 
-functionTimer = FunctionTimer()
+functionTimers = FunctionTimers()
+
+
+def addFunctionTimer(key: str, name: str, entryFunction, cancelFunction, useOwnThread=False):
+	"""Convenience wrapper for adding a function timer entry."""
+	functionTimers.add(key, {
+		"name": name,
+		"entryFunction": entryFunction,
+		"cancelFunction": cancelFunction,
+		"useOwnThread": useOwnThread
+	})

@@ -892,10 +892,17 @@
 				</if>
 			</if>
 			<item level="0" text="Start time" description="Select the time when this timer will start.">self.timerStartTime</item>
-			<item level="0" text="Set end time" description="Select 'Yes' if an end time is required for this timer.">self.timerSetEndTime</item>
+			<item level="0" text="Set end time" description="Select 'Yes' if an end time is required for this timer." conditional="not self.isFunctionTimer()">self.timerSetEndTime</item>
 			<if conditional="self.timerSetEndTime.value">
 				<item level="0" text="End time" description="Select the time when this timer should end.">self.timerEndTime</item>
 				<item level="0" text="After event" description="Select the action to perform when the timer ends.">self.timerAfterEvent</item>
+			</if>
+			<if conditional="self.isFunctionTimer()">
+				<item level="0" text="Standby execution" description="Select how the schedule is handled with respect to Standby mode.">self.timerFunctionStandby</item>
+				<item level="0" text="Start retry" description="Select 'Yes' to reschedule the task to when the receiver goes in to/out of Standby mode. The state change must happen within the task schedule window or else the task will not be run." conditional="self.timerFunctionStandby.value > 0">self.timerFunctionStandbyRetry</item>
+				<item level="0" text="Error Retry" />
+				<item level="0" text="Retry count" description="Select the number of times to retry the task should an error be encountered when running the task.">self.timerFunctionRetryCountOnError</item>
+				<item level="0" text="Retry delay" description="Select the amount of time to wait, after a task error, before trying to run the task again." conditional="self.timerFunctionRetryCountOnError.value > 0">self.timerFunctionRetryDelayOnError</item>
 			</if>
 		</if>
 	</setup>
