@@ -63,6 +63,8 @@ class Pager(GUIAddon):
 		height = self.l.getItemSize().height()
 		xPos = width
 		yPos = height
+		pixdWidth = 0
+		pixdHeight = 0
 
 		if self.picDotPage:
 			pixdSize = self.picDotPage.size()
@@ -73,12 +75,14 @@ class Pager(GUIAddon):
 			xPos = (width - widthDots) / 2 - pixdWidth / 2 if self.showIcons == "showAll" else 0
 			yPos = (height - heightDots) / 2 - pixdHeight / 2 if self.showIcons == "showAll" else 0
 		res = [None]
+		if not self.picDotPage:
+			return res
 		if self.showIcons == "showAll" and pageCount > 0 and self.maxPages > 0 and pageCount > self.maxPages:
 			widthDots = pixdWidth + (pixdWidth + self.spacing) * (2 if currentPage > 0 and currentPage < pageCount else 1)
 			xPos = (width - widthDots) / 2 - pixdWidth / 2
 			yPos = (height - heightDots) / 2 - pixdHeight / 2
 			if self.orientation == eListbox.orHorizontal:
-				if currentPage > 0:
+				if currentPage > 0 and self.picShevronLeft:
 					res.append(MultiContentEntryPixmapAlphaBlend(
 						pos=(xPos, 0),
 						size=(pixdWidth, pixdHeight),
@@ -108,7 +112,7 @@ class Pager(GUIAddon):
 						png=self.picDotCurPage,
 						backcolor=None, backcolor_sel=None, flags=BT_ALIGN_CENTER))
 					xPos += pixdWidth + self.spacing
-				if currentPage < pageCount:
+				if currentPage < pageCount and self.picShevronRight:
 					res.append(MultiContentEntryPixmapAlphaBlend(
 						pos=(xPos, 0),
 						size=(pixdWidth, pixdHeight),
@@ -128,7 +132,7 @@ class Pager(GUIAddon):
 					png=self.picDotCurPage,
 					backcolor=None, backcolor_sel=None, flags=BT_ALIGN_CENTER))
 				yPos += pixdHeight + self.spacing
-				if currentPage < pageCount:
+				if currentPage < pageCount and self.picShevronRight:
 					res.append(MultiContentEntryPixmapAlphaBlend(
 						pos=(0, yPos),
 						size=(pixdWidth, pixdHeight),
