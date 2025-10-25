@@ -230,72 +230,86 @@ class InfoBarTimeshift:
 		self.__evSOF()
 
 	def __evSOF(self):
-		if not self.timeshiftEnabled() or self.pts_CheckFileChanged_timer.isActive() or self.pts_SeekBack_timer.isActive() or self.pts_StartSeekBackTimer.isActive() or self.pts_SeekToPos_timer.isActive():
-			return
-		self.pts_switchtolive = False
-		self.pts_lastplaying = self.pts_currplaying
-		self.pts_nextplaying = 0
-		if self.pts_currplaying > self.pts_firstplayable:
-			self.pts_currplaying -= 1
-		else:
-			self.setSeekState(self.SEEK_STATE_PLAY)
-			self.doSeek(0)
-			self.posDiff = 0
-			if self.pts_FileJump_timer.isActive():
-				self.pts_FileJump_timer.stop()
-				AddNotification(MessageBox, _("First playable time shift file!"), MessageBox.TYPE_INFO, timeout=3)
-			if not self.pts_FileJump_timer.isActive():
-				self.pts_FileJump_timer.start(5000, True)
-			return
-		# Switch to previous TS file by seeking forward to next file.
-		if fileExists("%spts_livebuffer_%s" % (config.timeshift.path.value, self.pts_currplaying), "r"):
-			self.ptsSetNextPlaybackFile("pts_livebuffer_%s" % self.pts_currplaying)
-			self.setSeekState(self.SEEK_STATE_PLAY)
-			self.doSeek(3600 * 24 * 90000)
-			self.pts_CheckFileChanged_counter = 1
-			self.pts_CheckFileChanged_timer.start(1000, False)
-			self.pts_file_changed = False
-		else:
-			print("[Timeshift] 'pts_livebuffer_%s' file was not found -> Put pointer to the first (current) 'pts_livebuffer_%s' file." % (self.pts_currplaying, self.pts_currplaying + 1))
-			self.pts_currplaying += 1
-			self.pts_firstplayable += 1
-			self.setSeekState(self.SEEK_STATE_PLAY)
-			self.doSeek(0)
-			self.posDiff = 0
+		if self.timeshiftEnabled():
+			service = self.session.nav.getCurrentService()
+			info = service and service.info()
+			if info and info.getInfo(iServiceInformation.sIsRecoveringStream):
+				print("[Timeshift.py] SOF event ignored: C++ is handling stream recovery.")
+				return  # Exit immediately, letting C++ take full control.
+
+			if self.pts_CheckFileChanged_timer.isActive() or self.pts_SeekBack_timer.isActive() or self.pts_StartSeekBackTimer.isActive() or self.pts_SeekToPos_timer.isActive():
+				return
+			self.pts_switchtolive = False
+			self.pts_lastplaying = self.pts_currplaying
+			self.pts_nextplaying = 0
+			if self.pts_currplaying > self.pts_firstplayable:
+				self.pts_currplaying -= 1
+			else:
+				self.setSeekState(self.SEEK_STATE_PLAY)
+				self.doSeek(0)
+				self.posDiff = 0
+				if self.pts_FileJump_timer.isActive():
+					self.pts_FileJump_timer.stop()
+					AddNotification(MessageBox, _("First playable time shift file!"), MessageBox.TYPE_INFO, timeout=3)
+				if not self.pts_FileJump_timer.isActive():
+					self.pts_FileJump_timer.start(5000, True)
+				return
+			# Switch to previous TS file by seeking forward to next file.
+			if fileExists("%spts_livebuffer_%s" % (config.timeshift.path.value, self.pts_currplaying), "r"):
+				self.ptsSetNextPlaybackFile("pts_livebuffer_%s" % self.pts_currplaying)
+				self.setSeekState(self.SEEK_STATE_PLAY)
+				self.doSeek(3600 * 24 * 90000)
+				self.pts_CheckFileChanged_counter = 1
+				self.pts_CheckFileChanged_timer.start(1000, False)
+				self.pts_file_changed = False
+			else:
+				print("[Timeshift] 'pts_livebuffer_%s' file was not found -> Put pointer to the first (current) 'pts_livebuffer_%s' file." % (self.pts_currplaying, self.pts_currplaying + 1))
+				self.pts_currplaying += 1
+				self.pts_firstplayable += 1
+				self.setSeekState(self.SEEK_STATE_PLAY)
+				self.doSeek(0)
+				self.posDiff = 0
 
 	def evEOF(self, posDiff=0):  # Called from InfoBarGenerics.py.
 		self.posDiff = posDiff
 		self.__evEOF()
 
 	def __evEOF(self):
-		if not self.timeshiftEnabled() or self.pts_CheckFileChanged_timer.isActive() or self.pts_SeekBack_timer.isActive() or self.pts_StartSeekBackTimer.isActive() or self.pts_SeekToPos_timer.isActive():
-			return
-		self.pts_switchtolive = False
-		self.pts_lastposition = self.ptsGetPosition()
-		self.pts_lastplaying = self.pts_currplaying
-		self.pts_nextplaying = 0
-		self.pts_currplaying += 1
-		# Switch to next TS file by seeking forward to next file.
-		if fileExists("%spts_livebuffer_%s" % (config.timeshift.path.value, self.pts_currplaying), "r"):
-			self.ptsSetNextPlaybackFile("pts_livebuffer_%s" % self.pts_currplaying)
-			self.setSeekState(self.SEEK_STATE_PLAY)
-			self.doSeek(3600 * 24 * 90000)
-			self.pts_CheckFileChanged_counter = 1
-			self.pts_CheckFileChanged_timer.start(1000, False)
-			self.pts_file_changed = False
-		else:
-			if not config.timeshift.startDelay.value and config.timeshift.showLiveTVMsg.value:
-				AddNotification(MessageBox, _("Switching to live TV - time shift is still active!"), MessageBox.TYPE_INFO, timeout=3)
-			self.posDiff = 0
-			self.pts_lastposition = 0
-			self.pts_currplaying -= 1
-			self.pts_switchtolive = True
-			self.ptsSetNextPlaybackFile("")
-			self.setSeekState(self.SEEK_STATE_PLAY)
-			self.doSeek(3600 * 24 * 90000)
-			self.pts_CheckFileChanged_counter = 1
-			self.pts_CheckFileChanged_timer.start(1000, False)
-			self.pts_file_changed = False
+		if self.timeshiftEnabled():
+			service = self.session.nav.getCurrentService()
+			info = service and service.info()
+			if info and info.getInfo(iServiceInformation.sIsRecoveringStream):
+				print("[Timeshift.py] EOF event ignored: C++ is handling stream recovery.")
+				return  # Exit immediately, letting C++ take full control.
+
+			if self.pts_CheckFileChanged_timer.isActive() or self.pts_SeekBack_timer.isActive() or self.pts_StartSeekBackTimer.isActive() or self.pts_SeekToPos_timer.isActive():
+				return
+			self.pts_switchtolive = False
+			self.pts_lastposition = self.ptsGetPosition()
+			self.pts_lastplaying = self.pts_currplaying
+			self.pts_nextplaying = 0
+			self.pts_currplaying += 1
+			# Switch to next TS file by seeking forward to next file.
+			if fileExists("%spts_livebuffer_%s" % (config.timeshift.path.value, self.pts_currplaying), "r"):
+				self.ptsSetNextPlaybackFile("pts_livebuffer_%s" % self.pts_currplaying)
+				self.setSeekState(self.SEEK_STATE_PLAY)
+				self.doSeek(3600 * 24 * 90000)
+				self.pts_CheckFileChanged_counter = 1
+				self.pts_CheckFileChanged_timer.start(1000, False)
+				self.pts_file_changed = False
+			else:
+				if not config.timeshift.startDelay.value and config.timeshift.showLiveTVMsg.value:
+					AddNotification(MessageBox, _("Switching to live TV - time shift is still active!"), MessageBox.TYPE_INFO, timeout=3)
+				self.posDiff = 0
+				self.pts_lastposition = 0
+				self.pts_currplaying -= 1
+				self.pts_switchtolive = True
+				self.ptsSetNextPlaybackFile("")
+				self.setSeekState(self.SEEK_STATE_PLAY)
+				self.doSeek(3600 * 24 * 90000)
+				self.pts_CheckFileChanged_counter = 1
+				self.pts_CheckFileChanged_timer.start(1000, False)
+				self.pts_file_changed = False
 
 	def __evInfoChanged(self):
 		if self.service_changed:

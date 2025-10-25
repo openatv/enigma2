@@ -2288,6 +2288,8 @@ int eDVBServicePlay::getInfo(int w)
 		return resIsString;
 	case sDVBState:
 		return m_tune_state;
+	case sIsRecoveringStream:
+		return m_stream_corruption_detected ? 1 : 0;
 	default:
 		break;
 	}
