@@ -177,7 +177,7 @@ class BackupScreen(ConfigListScreen, Screen):
 							installed = set(line.split()[0] for line in pkgs)
 							preinstalled = set(line.split()[0] for line in fd)
 							removed = preinstalled - installed
-							removed = [package for package in removed if package.startswith("enigma2-plugin-") or package.startswith("enigma2-locale-")]
+							removed = [x for x in removed]
 							if removed:
 								fileWriteLines("/tmp/removed-list.txt", removed)
 								backupDirs += " tmp/removed-list.txt"
@@ -335,7 +335,7 @@ class BackupSelection(Screen):
 	def saveSelection(self):
 		if self.readOnly:
 			pass
-			#self.close(None)
+			# self.close(None)
 		else:
 			self.selectedFiles = self["checkList"].getSelectedList()
 			self.configBackupDirs.setValue(self.selectedFiles)
