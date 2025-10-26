@@ -3192,6 +3192,7 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 				if (m_pending_seek_pos > 0) {
 					eDebug("[eServiceMP3] Performing deferred seek to %llds", m_pending_seek_pos);
 					seekTo(m_pending_seek_pos);
+					m_pending_seek_pos = -1;
 				}
 
 			} else {
