@@ -1,8 +1,8 @@
 ---
 name: Verbesserungsvorschlag
 about: Eine Idee/Vorschlag zur Verbesserung
-title: ''
-labels: Feature Request 💡
+title: "[Feature Request]: "
+type: feature
 assignees: ''
 
 ---
