@@ -49,10 +49,10 @@ class OSCamGlobals():
 		webif = ipv6compiled = False
 		port = signstatus = data = error = conffile = url = verfile = None
 		cam = cam if cam in BoxInfo.getItem("CurrentSoftcam").split("/")[-1].lower() else "oscam"
-		verfilename = "%s.version" % cam
-		api = "%s%s" % (cam, api)
+		verfilename = f"{cam}.version"
+		api = f"{cam}{api}"
 		if config.oscaminfo.userDataFromConf.value:  # Find and parse running oscam, ncam (auto)
-			verfile = "/tmp/.%s/%s" % (verfilename.split('.')[0], verfilename)
+			verfile = f"/tmp/.{verfilename.split('.')[0]}/{verfilename}"
 			if exists(verfile):
 				data = Path(verfile).read_text()
 		else:  # Find and parse running oscam, ncam (api)
@@ -82,17 +82,17 @@ class OSCamGlobals():
 					if port == "0":
 						port = None
 				elif "configdir:" in i.lower():
-					conffile = "%s%s" % (i.split(":")[1].strip(), verfilename.replace("version", "conf"))
+					conffile = f"{i.split(':')[1].strip()}{verfilename.replace('version', 'conf')}"
 				elif "ipv6 support:" in i.lower():
 					ipv6compiled = {"no": False, "yes": True}.get(i.split(":")[1].strip())
 				elif "signature:" in i.lower():
 					signstatus = i.split(":")[1].strip()
 				elif "subject:" in i.lower():
-					signstatus = "%s (%s)" % (i.split(":")[1].strip(), signstatus)
+					signstatus = f"{i.split(':')[1].strip()} ({signstatus})"
 				else:
 					continue
 		else:
-			error = "unexpected result from %s%s" % ((verfile or ""), (url or "")) if not error else error
+			error = f"unexpected result from {(verfile or '')}{(url or '')}" if not error else error
 		return webif, port, api, ipv6compiled, signstatus, conffile, error
 
 	def getUserData(self):
@@ -101,7 +101,7 @@ class OSCamGlobals():
 			webif, port, api, ipv6compiled, signstatus, conffile, error = self.confPath()  # (True, 'http', '127.0.0.1', '8080', '/etc/tuxbox/config/oscam-trunk/', True, 'CN=...', 'oscam.conf', None)
 			ip, proto, blocked = "127.0.0.1", "http", False  # Assume that oscam webif is NOT blocking localhost, IPv6 is also configured if it is compiled in, and no user and password are required
 			user = pwd = None
-			conffile = "%s" % (conffile or "oscam.conf")
+			conffile = f"{conffile or 'oscam.conf'}"
 			ret = _("OSCam webif disabled") if not error else error
 			if webif and port is not None:  # oscam reports it got webif support and webif is running (Port != 0)
 				if config.oscaminfo.userDataFromConf.value:  # Find and parse running oscam, ncam (auto)
@@ -139,12 +139,12 @@ class OSCamGlobals():
 		webhandler = HTTPHandler if proto == "http" else HTTPSHandler(context=(create_default_context() if config.oscaminfo.verifycert.value else SkipCertificateVerification()))  # NOSONAR silence S4830 + S5527
 		if part in ["status", "userstats"]:
 			style, appendix = ("html", "&appendlog=1") if log else (fmt, "")
-			url = "%s://%s:%s/%s.%s?part=status%s" % (proto, ip, port, api, style, appendix)  # e.g. http://127.0.0.1:8080/oscamapi.html?part=status&appendlog=1
+			url = f"{proto}://{ip}:{port}/{api}.{style}?part=status{appendix}"
 		elif part in ["restart", "shutdown"]:
-			url = "%s://%s:%s/shutdown.html?action=%s" % (proto, ip, port, part)  # e.g. http://127.0.0.1:8080//shutdown.html?action=restart or ...?action=shutdown
+			url = f"{proto}://{ip}:{port}/shutdown.html?action={part}"
 		elif label:
 			key = "file" if part == "files" else "label"                                            # e.g. http://127.0.0.1:8080/oscamapi.html?part=files&file=oscam.conf
-			url = "%s://%s:%s/%s.%s?part=%s&%s=%s" % (proto, ip, port, api, fmt, part, key, label)  # e.g. http://127.0.0.1:8080/oscamapi.json?part=entitlement&label=MyReader
+			url = f"{proto}://{ip}:{port}/{api}.{fmt}?part={part}&{key}={label}"                    # e.g. http://127.0.0.1:8080/oscamapi.json?part=entitlement&label=MyReader
 		opener = build_opener(webhandler)
 		if username and password and url:
 			pwman = HTTPPasswordMgrWithDefaultRealm()
@@ -162,7 +162,7 @@ class OSCamGlobals():
 				errmsg = str(error.errno)
 			else:
 				errmsg = str(error)
-			print("[%s] ERROR in module 'callApi': Unexpected error accessing WebIF: %s" % (MODULE_NAME, errmsg))
+			print(f"[{MODULE_NAME}] ERROR in module 'callApi': Unexpected error accessing WebIF: {errmsg}")
 			return False, url, errmsg.encode(encoding="latin-1", errors="ignore")
 
 	def getCapabilities(self):
@@ -171,7 +171,7 @@ class OSCamGlobals():
 			idx = content.lower().find("web interface support")
 			if idx != -1:
 				section = content[idx:]
-				return True, "\n" % (section)
+				return True, f"\n{section}"
 		return False, "<no capabilities found>"
 
 	def updateLog(self):
