@@ -73,7 +73,8 @@ class OSCamGlobals():
 				error = result
 
 		if data:
-			for i in data.splitlines():
+			self.confPath.__func__._content = data
+			for i in self.confPath.__func__._content.splitlines():
 				if "web interface support:" in i.lower():
 					webif = {"no": False, "yes": True}.get(i.split(":")[1].strip(), False)
 				elif "webifport:" in i.lower():
@@ -125,7 +126,7 @@ class OSCamGlobals():
 									if "::1" not in allowed:
 										ip = "127.0.0.1"
 				else:  #Use custom defined parameters
-					proto = proto = "https" if config.oscaminfo.usessl.value else "http"
+					proto = "https" if config.oscaminfo.usessl.value else "http"
 					ip = str(config.oscaminfo.ip.value)
 					port = str(config.oscaminfo.port.value)
 					user = str(config.oscaminfo.username.value)
@@ -163,6 +164,15 @@ class OSCamGlobals():
 				errmsg = str(error)
 			print("[%s] ERROR in module 'callApi': Unexpected error accessing WebIF: %s" % (MODULE_NAME, errmsg))
 			return False, url, errmsg.encode(encoding="latin-1", errors="ignore")
+
+	def getCapabilities(self):
+		if hasattr(self.confPath.__func__, "_content") and self.confPath.__func__._content:
+			content = self.confPath.__func__._content
+			idx = content.lower().find("web interface support")
+			if idx != -1:
+				section = content[idx:]
+				return True, "\n" % (section)
+		return False, "<no capabilities found>"
 
 	def updateLog(self):
 		webifok, api, url, signstatus, result = self.openWebIF(log=True)
@@ -234,9 +244,11 @@ class OSCamInfo(Screen, OSCamGlobals):
 			<widget source="resident" render="Label" position="1575,964" size="330,42" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
 			<eLabel name="red" position="20,1010" size="10,65" backgroundColor="red" zPosition="1" />
 			<eLabel name="green" position="320,1010" size="10,65" backgroundColor="green" zPosition="1" />
+			<eLabel name="yellow" position="620,1010" size="10,65" backgroundColor="yellow" zPosition="1" />
 			<eLabel name="blue" position="920,1010" size="10,65" backgroundColor="blue" zPosition="1" />
 			<widget source="key_red" render="Label" position="40,1020" size="380,42" font="Regular;30" halign="left" valign="center" foregroundColor="grey" />
 			<widget source="key_green" render="Label" position="340,1020" size="380,42" font="Regular;30" halign="left" valign="center" foregroundColor="grey" />
+			<widget source="key_yellow" render="Label" position="640,1020" size="380,42" font="Regular;30" halign="left" valign="center" foregroundColor="grey" />
 			<widget source="key_blue" render="Label" position="940,1020" size="380,42" font="Regular;30" halign="left" valign="center" foregroundColor="grey" />
 			<widget source="key_OK" render="Label" position="1185,1020" size="60,42" font="Regular;30" halign="center" valign="center" foregroundColor="black" backgroundColor="grey">
 				<convert type="ConditionalShowHide" />
@@ -268,6 +280,7 @@ class OSCamInfo(Screen, OSCamGlobals):
 		self["resident"] = StaticText()
 		self["key_red"] = StaticText(_("Shutdown OSCam"))
 		self["key_green"] = StaticText(_("Restart OSCam"))
+		self["key_yellow"] = StaticText(_("Show Capabilities"))
 		self["key_blue"] = StaticText(_("Show Log"))
 		self["key_OK"] = StaticText()
 		self["key_entitlements"] = StaticText()
@@ -279,6 +292,7 @@ class OSCamInfo(Screen, OSCamGlobals):
 			"menu": (self.keyMenu, _("Open Settings")),
 			"red": (self.keyShutdown, _("Shutdown OSCam")),
 			"green": (self.keyRestart, _("Restart OSCam")),
+			"yellow": (self.keyInfo, _("Open Capability")),
 			"blue": (self.keyBlue, _("Open Log"))
 			}, prio=1, description=_("OSCamInfo Actions"))
 		self.loop = eTimer()
@@ -428,6 +442,10 @@ class OSCamInfo(Screen, OSCamGlobals):
 
 	def keyRestart(self):
 		self.session.openWithCallback(boundFunction(self.msgboxCB, "restart"), MessageBox, _("Do you really want to restart OSCam?\n\nHINT: This will take about 5 seconds!"), MessageBox.TYPE_YESNO, timeout=10, default=False)
+
+	def keyInfo(self):
+		self.loop.stop()
+		self.session.openWithCallback(self.keyCallback, OSCamInfoCapability)
 
 	def keyBlue(self):
 		self.loop.stop()
@@ -802,6 +820,53 @@ class OSCamEntitleDetails(Screen, OSCamGlobals):
 			"ok": (self.close, _("Close the screen")),
 			"cancel": (self.close, _("Close the screen")),
 			}, prio=1, description=_("OSCamInfo Actions"))
+
+
+class OSCamInfoCapability(Screen, OSCamGlobals):
+	skin = """
+		<screen name="OSCamInfoCapability" position="center,center" size="1920,1080" backgroundColor="#10101010" title="OSCamInfo Capabilities" flags="wfNoBorder" resolution="1920,1080">
+			<widget source="Title" render="Label" position="15,15" size="1905,60" font="Regular;40" halign="center" valign="center" foregroundColor="white" backgroundColor="#10101010" />
+			<widget source="global.CurrentTime" render="Label" position="1635,15" size="260,60" font="Regular;40" halign="right" valign="center" foregroundColor="#0092CBDF" backgroundColor="#10101010">
+				<convert type="ClockToText">Format:%H:%M:%S</convert>
+			</widget>
+			<widget name="captext" position="15,70" size="1890,995" font="Fixed;24" halign="left" valign="top" foregroundColor="black" backgroundColor="#ECEAF6" noWrap="0" scrollbarMode="showOnDemand" scrollbarForegroundColor="black" />
+		</screen>
+		"""
+
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self.skinName = "OSCamInfoCapability"
+		self.setTitle(_("OSCamInfo: Capabilities"))
+		self["captext"] = ScrollLabel(_("<no capabilities found>"))
+		self["actions"] = HelpableActionMap(self, ["NavigationActions", "OkCancelActions"], {
+			"ok": (self.exit, _("Close the screen")),
+			"cancel": (self.exit, _("Close the screen")),
+			"pageUp": (self.keyPageUp, _("Move up a page")),
+			"up": (self.keyPageUp, _("Move up a page")),
+			"down": (self.keyPageDown, _("Move down a page")),
+			"pageDown": (self.keyPageDown, _("Move down a page"))
+			}, prio=1, description=_("OSCamInfo Capability Actions"))
+		self.onLayoutFinish.append(self.onLayoutFinished)
+
+	def onLayoutFinished(self):
+		self.displayCapabilities()
+
+	def displayCapabilities(self):
+		capok, result = self.getCapabilities()
+		if capok:
+			self["captext"].setText(result)
+			self["captext"].moveTop()
+		else:
+			self["captext"].setText(_("Unexpected error accessing WebIF: %s" % result))
+
+	def keyPageDown(self):
+		self["captext"].pageDown()
+
+	def keyPageUp(self):
+		self["captext"].pageUp()
+
+	def exit(self):
+		self.close()
 
 
 class OSCamInfoLog(Screen, OSCamGlobals):
