@@ -2108,14 +2108,8 @@ void gPixmap::blit(const gPixmap& src, const eRect& _pos, const gRegion& clip, i
 #endif
 
 #ifdef FORCE_NO_ACCELERATION_SCALE
-		if (accel && (flag & blitScale)) {
-			// Reset width in case of round issue
-			if (src.size().width() != srcarea.width())
-				srcarea.setWidth(src.size().width());
-
-			// Reset height in case of round issue
-			if (src.size().height() != srcarea.height())
-				srcarea.setHeight(src.size().height());
+		if (accel && (flag & blitScale) && (src.size().width() != srcarea.width() || src.size().height() != srcarea.height())) {
+			accel = false;
 		}
 #endif
 		if (accel) {
