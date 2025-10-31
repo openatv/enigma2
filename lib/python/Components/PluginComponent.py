@@ -129,6 +129,13 @@ class PluginComponent:
 			result += plugin(menuID)
 		return result
 
+	def getPluginsForMenuWithDescription(self, menuid):
+		return [
+			(item, plugin.description)
+			for plugin in self.getPlugins(PluginDescriptor.WHERE_MENU)
+			for item in plugin(menuid)
+		]
+
 	def getDescriptionForMenuEntryID(self, menuID, entryID):
 		result = ""
 		for plugin in self.getPlugins(PluginDescriptor.WHERE_MENU):
