@@ -392,6 +392,7 @@ class FlashImage(Screen):
 
 	def checkMedia(self, choice):
 		if choice:
+			self.recordCheck = not MultiBoot.canMultiBoot() or MultiBoot.getCurrentSlotCode() == choice[0]  # Ignore recordCheck if not the current slot
 			def findMedia(paths):
 				def availableSpace(path):
 					if isdir(path) and access(path, W_OK):
@@ -519,8 +520,8 @@ class FlashImage(Screen):
 						if isfile(flagPath) and getsize(flagPath) == 0:
 							unlink(flagPath)
 			rootFolder = join(self.backupBasePath, "images/config")
-			if choice != "abort" and not self.recordCheck:
-				self.recordCheck = True
+			if choice != "abort" and self.recordCheck:
+				self.recordCheck = False
 				recording = self.session.nav.RecordTimer.isRecording()
 				nextRecordingTime = self.session.nav.RecordTimer.getNextRecordingTime()
 				if recording or (nextRecordingTime > 0 and (nextRecordingTime - time()) < 360):
