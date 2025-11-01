@@ -311,7 +311,8 @@ class WlanScan(Screen):
 
 	def buildEntryComponent(self, essid, bssid, encrypted, iface, maxrate, signal, frequency_norm):
 		encryption = encrypted and _("Yes") or _("No")
-		return essid, bssid, _("Signal: ") + str(signal), _("Max. bitrate: ") + str(maxrate), _("Encrypted: ") + encryption, _("Interface: ") + str(iface), frequency_norm, self.divpng
+		maxrate = maxrate[-1] if isinstance(maxrate, list) else maxrate
+		return essid, bssid, _("Signal: ") + str(signal) + " dB", _("Max. bitrate: ") + str(maxrate), _("Encrypted: ") + encryption, _("Interface: ") + str(iface), frequency_norm, self.divpng
 
 	def updateAPList(self):
 		newList = self.getAccessPoints(refresh=True)  # noqa F841
