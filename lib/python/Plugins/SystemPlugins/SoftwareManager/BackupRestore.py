@@ -229,14 +229,22 @@ class BackupScreen(ConfigListScreen, Screen):
 			self.session.open(MessageBox, _("No suitable backup locations found!"), MessageBox.TYPE_ERROR, timeout=5)
 
 	def backupFinishedCB(self, retval=None):
-		print("[BackupScreen] DEBUG backupFinishedCB")
-		if self.finishedCallback:
-			self.finishedCallback()
+		# print("[BackupScreen] DEBUG backupFinishedCB")
+		try:
+			fullbackupFilename = join(self.backuppath, getBackupFilename())
+			fileOK = exists(fullbackupFilename) and stat(fullbackupFilename).st_size > 0
+		except OSError:
+			fileOK = False
+		if fileOK:
+			if self.finishedCallback:
+				self.finishedCallback()
+			else:
+				config.usage.shutdownOK.setValue(self.shutdownOKOld)
+				config.usage.shutdownOK.save()
+				configfile.save()
+				self.close(True)
 		else:
-			config.usage.shutdownOK.setValue(self.shutdownOKOld)
-			config.usage.shutdownOK.save()
-			configfile.save()
-			self.close(True)
+			self.backupErrorCB()
 
 	def backupErrorCB(self, retval=None):
 		if self.finishedCallback:
