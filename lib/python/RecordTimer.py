@@ -272,9 +272,15 @@ class RecordTimer(Timer):
 		timer.vpsplugin_enabled = (vpsEnabled and vpsEnabled == "1")
 		if vpsTime and vpsTime != "None":
 			timer.vpsplugin_time = int(vpsTime)
+		logCount = 0
 		for log in timerDom.findall("log"):
+			logCount += 1
 			timer.log_entries.append((int(log.get("time")), int(log.get("code")), log.text.strip()))
-		timer.failed = int(timerDom.get("failed") or "0")
+		if logCount < 2 and timer.end < time():
+			timer.log_entries.append((int(time()), 0, "Timer not started because of power failure"))
+			timer.failed = True
+		else:
+			timer.failed = int(timerDom.get("failed") or "0")
 		return timer
 
 	def timeChanged(self, timer):
