@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-21 11:50+0000\n"
-"PO-Revision-Date: 2025-10-21 11:47+0000\n"
+"POT-Creation-Date: 2025-10-23 18:55+0000\n"
+"PO-Revision-Date: 2025-10-25 04:25+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.14-dev\n"
+"X-Generator: Weblate 5.14.1-dev\n"
 
 msgid ""
 "\n"
@@ -7456,6 +7456,9 @@ msgstr "Zadajte PIN kód"
 msgid "Enter text via an attached keyboard"
 msgstr "Zadajte text pomocou pripojenej klávesnice"
 
+msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
+msgstr "Zadajte dobu, ktorá sa pridá do vyrov. pamäte pre streamovanie po chybe v streamovaní. Predíde sa tak ďalším chybám kvôli nedostatočnej vyrovnávacej pamäti."
+
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the specifications of your LNB."
 msgstr "Zadajte frekvenciu, pri ktorej sa LNB prepína medzi nízkym a vysokým pásmom. Viac informácií získate v špecifikáciách vášho LNB."
 
@@ -8751,7 +8754,7 @@ msgid "Gambia"
 msgstr "Gambia"
 
 msgid "Game Show"
-msgstr "Herné show"
+msgstr "Herná show"
 
 msgid "Ganda"
 msgstr "Ganda"
@@ -18312,7 +18315,7 @@ msgid "Show watch status"
 msgstr "Zobraziť stavové ikony v zozname filmov"
 
 msgid "Show/Game show"
-msgstr "Show/herné show"
+msgstr "Show/herná show"
 
 msgid "Show/Hide Actions"
 msgstr "Zobraziť/skryť akcie infolišty"
@@ -18957,6 +18960,9 @@ msgstr "Špeciálne 2"
 msgid "Special Features Settings"
 msgstr "Nastavenie osobitných funkcií"
 
+msgid "Special characteristics"
+msgstr "Špeciálne charakteristiky"
+
 msgid "Specify the directory to use when starting Media Player."
 msgstr "Zadajte priečinok, ktorý sa použije pri spustení prehrávača médií."
 
@@ -19297,6 +19303,9 @@ msgstr "Informácie o streamujúcom tuneri"
 
 msgid "Streaming recording ended"
 msgstr "Nahrávanie streamovania ukončené"
+
+msgid "Streaming recovery delay"
+msgstr "Oneskorenie obnovenia streamovania"
 
 #, python-format
 msgid "Streaming tuner information for %s %s"
@@ -24053,7 +24062,7 @@ msgid "show all tags"
 msgstr "zobraziť všetky tagy"
 
 msgid "show/game show (general)"
-msgstr "show/game show (všeobecne)"
+msgstr "show/herná show (všeobecne)"
 
 msgid "shuffle"
 msgstr "náhodné zoradenie"

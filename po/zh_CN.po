@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-21 11:50+0000\n"
-"PO-Revision-Date: 2025-10-22 05:45+0000\n"
+"POT-Creation-Date: 2025-10-23 18:55+0000\n"
+"PO-Revision-Date: 2025-10-25 18:22+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Weblate 5.14-dev\n"
+"X-Generator: Weblate 5.14.1-dev\n"
 "X-SourceCharset: UTF-8\n"
 "X-Generated: TM2TURK by thawtes\n"
 
@@ -7412,6 +7412,9 @@ msgstr "输入 PIN 码"
 
 msgid "Enter text via an attached keyboard"
 msgstr "通过连接的键盘输入文本"
+
+msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
+msgstr "输入流媒体错误后要添加到流媒体缓冲区的持续时间。这个额外的缓冲区有助于避免因缓冲区空间不足而导致的进一步流媒体问题。"
 
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the specifications of your LNB."
 msgstr "输入高频头在低频段和高频段之间切换的频率。有关更多信息，请参阅高频头的规格。"
@@ -18903,6 +18906,9 @@ msgstr "特殊2"
 msgid "Special Features Settings"
 msgstr "特别功能设置"
 
+msgid "Special characteristics"
+msgstr "特殊属性"
+
 msgid "Specify the directory to use when starting Media Player."
 msgstr "指定启动媒体播放器时要使用的目录。"
 
@@ -19243,6 +19249,9 @@ msgstr "串流调谐器信息"
 
 msgid "Streaming recording ended"
 msgstr "流媒体录制结束"
+
+msgid "Streaming recovery delay"
+msgstr "流媒体恢复延迟"
 
 #, python-format
 msgid "Streaming tuner information for %s %s"
