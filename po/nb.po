@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-27 10:09+0000\n"
+"POT-Creation-Date: 2025-10-23 18:55+0000\n"
 "PO-Revision-Date: 2021-08-19 14:13+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nb_NO/>\n"
@@ -3064,6 +3064,9 @@ msgstr "Blå"
 msgid "Bluetooth"
 msgstr ""
 
+msgid "Bluetooth Audio"
+msgstr ""
+
 msgid "Bluetooth Setup"
 msgstr ""
 
@@ -3668,6 +3671,10 @@ msgstr "Finner ikke signal..., avbryter!"
 msgid "Cape Verde"
 msgstr ""
 
+#, python-format
+msgid "Card reader %d"
+msgstr ""
+
 msgid "Cards: "
 msgstr ""
 
@@ -3992,9 +3999,6 @@ msgid "Choose a country scheme for decoding rating information in EPG events."
 msgstr ""
 
 msgid "Choose a label that will identify this device within IceTV services."
-msgstr ""
-
-msgid "Select how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful for information about an event which has finished."
 msgstr ""
 
 msgid "Choose how often to connect to IceTV server to check for updates."
@@ -4849,6 +4853,9 @@ msgid "Console Packages"
 msgstr ""
 
 msgid "Console Utility Packages"
+msgstr ""
+
+msgid "Constcw"
 msgstr ""
 
 msgid "Constellation"
@@ -6760,6 +6767,9 @@ msgstr ""
 msgid "EPG filename"
 msgstr ""
 
+msgid "EPG history"
+msgstr ""
+
 msgid ""
 "EPG key : Switch to channel list\n"
 "Ok key : Remove selected channel\n"
@@ -6912,6 +6922,9 @@ msgid "Empty"
 msgstr ""
 
 msgid "Empty file"
+msgstr ""
+
+msgid "Emulator"
 msgstr ""
 
 msgid "Enable"
@@ -7326,6 +7339,9 @@ msgid "Enter pin code"
 msgstr "Tast inn pin kode"
 
 msgid "Enter text via an attached keyboard"
+msgstr ""
+
+msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
 msgstr ""
 
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the specifications of your LNB."
@@ -8992,6 +9008,9 @@ msgstr ""
 msgid "Help"
 msgstr ""
 
+msgid "Help Action"
+msgstr ""
+
 msgid "Help Screen Information"
 msgstr ""
 
@@ -10088,9 +10107,6 @@ msgstr ""
 
 msgid "Kazakhstan"
 msgstr "Kasakhstan"
-
-msgid "EPG history"
-msgstr ""
 
 msgid "Keep service"
 msgstr "Behold kanal"
@@ -12883,6 +12899,9 @@ msgstr "PCR PID"
 
 msgid "PDC"
 msgstr "PDC"
+
+msgid "PG - Parental Guidance"
+msgstr ""
 
 msgid "PGS file"
 msgstr "PGS fil"
@@ -16161,6 +16180,9 @@ msgstr ""
 msgid "Select how long, in seconds, that the volume and mute displays are shown before they automatically hide."
 msgstr ""
 
+msgid "Select how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful for information about an event which has finished."
+msgstr ""
+
 msgid "Select how often this timer is to be repeated."
 msgstr ""
 
@@ -18085,7 +18107,7 @@ msgstr "Vis varsling når timeskift stoppes"
 msgid "Show watch status"
 msgstr "Vis avspillings indikator i opptaksliste"
 
-msgid "Show/Games show"
+msgid "Show/Game show"
 msgstr ""
 
 msgid "Show/Hide Actions"
@@ -18722,6 +18744,9 @@ msgstr "Spesial 2"
 msgid "Special Features Settings"
 msgstr ""
 
+msgid "Special characteristics"
+msgstr ""
+
 msgid "Specify the directory to use when starting Media Player."
 msgstr ""
 
@@ -19063,6 +19088,9 @@ msgstr ""
 msgid "Streaming recording ended"
 msgstr ""
 
+msgid "Streaming recovery delay"
+msgstr ""
+
 #, python-format
 msgid "Streaming tuner information for %s %s"
 msgstr ""
@@ -19160,6 +19188,15 @@ msgstr "Vellykket:"
 
 msgid "Sudan"
 msgstr "Sudan"
+
+msgid "Suitable for ages 12+"
+msgstr ""
+
+msgid "Suitable for ages 15+"
+msgstr ""
+
+msgid "Suitable only for Adults"
+msgstr ""
 
 msgid "Sun"
 msgstr "Søn"
@@ -20987,6 +21024,9 @@ msgstr ""
 msgid "Type of scan"
 msgstr "Søketype"
 
+msgid "U - Suitable for all"
+msgstr ""
+
 #, python-format
 msgid "UBI slot %s%s"
 msgstr ""
@@ -21019,6 +21059,10 @@ msgid "USB 3.0 (Back, outer)"
 msgstr ""
 
 msgid "USB Stick"
+msgstr ""
+
+#, python-format
+msgid "USB reader %d"
 msgstr ""
 
 #, python-format

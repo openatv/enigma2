@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-27 10:09+0000\n"
-"PO-Revision-Date: 2025-10-14 15:07+0000\n"
+"POT-Creation-Date: 2025-10-23 18:55+0000\n"
+"PO-Revision-Date: 2025-10-22 05:45+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -923,9 +923,9 @@ msgstr[2] "%d ядер"
 #, python-format
 msgid "%d feed catalog package was updated."
 msgid_plural "%d feed catalog packages were updated."
-msgstr[0] "%d сервер каталогу пакетів оновлено."
-msgstr[1] "%d сервер каталогів пакетів оновлено."
-msgstr[2] "%d сервер каталогів пакетів оновлено."
+msgstr[0] "%d пакет каталогу каналів оновлено."
+msgstr[1] "%d пакета каталогу каналів оновлено."
+msgstr[2] "%d пакетів каталогу каналів оновлено."
 
 #, python-format
 msgid "%d jobs are running in the background!"
@@ -3125,6 +3125,9 @@ msgstr "Синя"
 msgid "Bluetooth"
 msgstr "Bluetooth"
 
+msgid "Bluetooth Audio"
+msgstr "Bluetooth-аудіо"
+
 msgid "Bluetooth Setup"
 msgstr "Налаштування Bluetooth"
 
@@ -3737,6 +3740,10 @@ msgstr "Неможливо знайти будь-який сигнал ..., ск
 msgid "Cape Verde"
 msgstr "Кабо Верде"
 
+#, python-format
+msgid "Card reader %d"
+msgstr "Зчитувач карт %d"
+
 msgid "Cards: "
 msgstr "Карти: "
 
@@ -4063,9 +4070,6 @@ msgstr "Виберіть країну для визначення рейтинг
 
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr "Виберіть емблему, яка буде ідентифікувати цей пристрій у послугах IceTV."
-
-msgid "Select how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful for information about an event which has finished."
-msgstr "Виберіть, скільки передач EPG, якщо така є, зберігати в кеші EPG. Ці історичні дані можна переглядати в будь-якому перегляді EPG. Це може бути корисно, коли Вам потрібна інформація про передачу, яка нещодавно завершилася."
 
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Виберіть частоту підключення до сервера IceTV, щоб перевірити наявність оновлень."
@@ -4926,6 +4930,9 @@ msgstr "Пакети консолі"
 
 msgid "Console Utility Packages"
 msgstr "Пакети утиліт консолі"
+
+msgid "Constcw"
+msgstr ""
 
 msgid "Constellation"
 msgstr "Констеляція"
@@ -6865,6 +6872,9 @@ msgstr "Режим кнопки EPG"
 msgid "EPG filename"
 msgstr "Назва файлу EPG"
 
+msgid "EPG history"
+msgstr "Зберігати історію EPG (в хвилинах)"
+
 msgid ""
 "EPG key : Switch to channel list\n"
 "Ok key : Remove selected channel\n"
@@ -7026,6 +7036,9 @@ msgstr "Порожній"
 
 msgid "Empty file"
 msgstr "Порожній файл"
+
+msgid "Emulator"
+msgstr "Емулятор"
 
 msgid "Enable"
 msgstr "Ввімкнути"
@@ -7442,6 +7455,9 @@ msgstr "Введіть пін-код"
 
 msgid "Enter text via an attached keyboard"
 msgstr "Введіть текст за допомогою підключеної клавіатури"
+
+msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
+msgstr ""
 
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the specifications of your LNB."
 msgstr "Введіть частоту порогу перемикання нижнього і верхнього піддіапазону частот LNB. Для отримання додаткової інформації зверніться до специфікації вашого LNB."
@@ -8823,7 +8839,7 @@ msgid "Go down the list"
 msgstr "Перейти вниз списку"
 
 msgid "Go to deep standby"
-msgstr "Вимкнути приймач"
+msgstr "Перейти в режим глибокого очікування"
 
 msgid "Go to first movie or last item"
 msgstr "Перейти до першого або останнього фільму"
@@ -9127,6 +9143,9 @@ msgstr "Висота"
 
 msgid "Help"
 msgstr "Допомога"
+
+msgid "Help Action"
+msgstr "Довідкова дія"
 
 msgid "Help Screen Information"
 msgstr "Інформаційний Екран Допомоги"
@@ -10232,9 +10251,6 @@ msgstr "Казахська"
 
 msgid "Kazakhstan"
 msgstr "Казахстан"
-
-msgid "EPG history"
-msgstr "Зберігати історію EPG (в хвилинах)"
 
 msgid "Keep service"
 msgstr "Зберігати поточний канал"
@@ -13046,6 +13062,9 @@ msgstr "PID PCR"
 
 msgid "PDC"
 msgstr "PDC"
+
+msgid "PG - Parental Guidance"
+msgstr "PG - батьківський нагляд"
 
 msgid "PGS file"
 msgstr "PGS файл"
@@ -16341,6 +16360,9 @@ msgstr "Виберіть, як довго відображати спливаю�
 msgid "Select how long, in seconds, that the volume and mute displays are shown before they automatically hide."
 msgstr "Виберіть час у секундах, протягом якого відображатимуться іконки гучності та вимкнення звуку, перш ніж вони автоматично зникнуть."
 
+msgid "Select how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful for information about an event which has finished."
+msgstr "Виберіть, скільки передач EPG, якщо така є, зберігати в кеші EPG. Ці історичні дані можна переглядати в будь-якому перегляді EPG. Це може бути корисно, коли Вам потрібна інформація про передачу, яка нещодавно завершилася."
+
 msgid "Select how often this timer is to be repeated."
 msgstr "Виберіть, як часто цей таймер має повторюватися."
 
@@ -18292,7 +18314,7 @@ msgstr "Показати попередження при зупинці тайм
 msgid "Show watch status"
 msgstr "Показати статус іконок у списку записів"
 
-msgid "Show/Games show"
+msgid "Show/Game show"
 msgstr "Шоу/шоу-ігри"
 
 msgid "Show/Hide Actions"
@@ -18548,7 +18570,7 @@ msgid "SleepTimer Overview"
 msgstr "Огляд таймера сну"
 
 msgid "SleepTimer Settings"
-msgstr "Налаштування Таймера Вимкнення"
+msgstr "Налаштування таймера сну"
 
 msgid "SleepTimer action"
 msgstr "Дія таймера вимкнення"
@@ -18938,6 +18960,9 @@ msgstr "Особливі 2"
 msgid "Special Features Settings"
 msgstr "Особливі налаштування"
 
+msgid "Special characteristics"
+msgstr ""
+
 msgid "Specify the directory to use when starting Media Player."
 msgstr "Вкажіть каталог, який використовуватиметься під час запуску Media Player."
 
@@ -19279,6 +19304,9 @@ msgstr "Інформація про потоковий тюнер"
 msgid "Streaming recording ended"
 msgstr "Потоковий запис закінчився"
 
+msgid "Streaming recovery delay"
+msgstr ""
+
 #, python-format
 msgid "Streaming tuner information for %s %s"
 msgstr "Інформація про потоковий тюнер для%s %s"
@@ -19376,6 +19404,15 @@ msgstr "Успішно:"
 
 msgid "Sudan"
 msgstr "Судан"
+
+msgid "Suitable for ages 12+"
+msgstr "Підходить для дітей віком від 12 років"
+
+msgid "Suitable for ages 15+"
+msgstr "Підходить для віку від 15 років"
+
+msgid "Suitable only for Adults"
+msgstr "Підходить лише для дорослих"
 
 msgid "Sun"
 msgstr "Нед"
@@ -21277,6 +21314,9 @@ msgstr "Тип пристрою"
 msgid "Type of scan"
 msgstr "Тип сканування"
 
+msgid "U - Suitable for all"
+msgstr "U - підходить для всіх"
+
 #, python-format
 msgid "UBI slot %s%s"
 msgstr "Слот UBI %s%s"
@@ -21310,6 +21350,10 @@ msgstr "USB 3.0 (ззаду, зовнішній)"
 
 msgid "USB Stick"
 msgstr "USB Носій"
+
+#, python-format
+msgid "USB reader %d"
+msgstr "USB-зчитувач %d"
 
 #, python-format
 msgid "USB slot %s%s"

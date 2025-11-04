@@ -16,8 +16,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-27 10:09+0000\n"
-"PO-Revision-Date: 2025-10-18 00:10+0000\n"
+"POT-Creation-Date: 2025-10-23 18:55+0000\n"
+"PO-Revision-Date: 2025-11-01 11:01+0000\n"
 "Last-Translator: VfBFan <drop0815@posteo.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.14-dev\n"
+"X-Generator: Weblate 5.14.1-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1181,7 +1181,7 @@ msgstr "%s-Einrichtung"
 
 #, python-format
 msgid "%s Browser Manage Actions"
-msgstr "%s Verwaltungsaktionen"
+msgstr "%s-Verwaltungsaktionen"
 
 #, python-format
 msgid "%s GHz"
@@ -1189,19 +1189,19 @@ msgstr "%s GHz"
 
 #, python-format
 msgid "%s Information"
-msgstr "%s Informationen"
+msgstr "%s-Informationen"
 
 #, python-format
 msgid "%s Information Actions"
-msgstr "%s Informationen Aktionen"
+msgstr "%s-Informationen Aktionen"
 
 #, python-format
 msgid "%s Setup"
-msgstr "%s Einrichtung"
+msgstr "%s-Einrichtung"
 
 #, python-format
 msgid "%s View"
-msgstr "%s Ansicht"
+msgstr "%s-Ansicht"
 
 #, python-format
 msgid "%s additional screens"
@@ -2444,7 +2444,7 @@ msgid "Always include ECM in recordings"
 msgstr "Immer ECM mit aufnehmen"
 
 msgid "Always include ECM messages in recordings. This overrides the individual timer settings globally. It allows recordings to be always decrypted afterwards (sometimes called offline decoding), if supported by your receiver."
-msgstr "Bei 'Ja' setzt diese Funktion die Timer Einstellung außer Kraft. Aufzeichnungen werden immer verschlüsselt gespeichert und nachträglich entschlüsselt, wenn die Hardware diese Funktion unterstützt."
+msgstr "Bei 'Ja' setzt diese Funktion die Timereinstellung außer Kraft. Aufnahmen werden immer verschlüsselt gespeichert und nachträglich entschlüsselt, wenn die Hardware diese Funktion unterstützt."
 
 msgid "Always show bouquets"
 msgstr "Favoritenlisten anzeigen"
@@ -3084,22 +3084,22 @@ msgstr ""
 
 #, python-format
 msgid "Backup tool for %s %s"
-msgstr "Sicherungs-Tool für %s %s"
+msgstr "Sicherungstool für %s %s"
 
 msgid "Backup your %s %s settings."
 msgstr "Einstellungen der %s %s sichern."
 
 msgid "Backup your current image"
-msgstr "Sicherung vom ganzen Image"
+msgstr "Sicherung des ganzen Images"
 
 msgid "Backup your current image to HDD or USB. This will make a 1:1 copy of your box"
-msgstr "Sicherung vom ganzen Image auf Festplatte oder USB. Es wird eine 1:1-Kopie des Receivers erstellt."
+msgstr "Sicherung des ganzen Images auf Festplatte oder USB. Es wird eine 1:1-Kopie des Receivers erstellt."
 
 msgid "Backup your current settings"
-msgstr "Einstellungen sichern"
+msgstr "Sicherung der Einstellungen"
 
 msgid "Backup your current settings. This includes E2-setup, channels, network and all selected files"
-msgstr "Sichern der E2-Einstellungen, Sender, Netzwerk und alle ausgewählten Dateien."
+msgstr "Sichern der aktuellen E2-Einstellungen, Sender, des Netzwerks und aller ausgewählten Dateien."
 
 msgid "Backup your running %s %s image to HDD or USB."
 msgstr "Sicherung des laufenden Images der %s %s auf Festplatte oder USB."
@@ -3259,6 +3259,9 @@ msgstr "Blau"
 
 msgid "Bluetooth"
 msgstr "Bluetooth"
+
+msgid "Bluetooth Audio"
+msgstr "Bluetooth-Audio"
 
 msgid "Bluetooth Setup"
 msgstr "Bluetooth-Einstellungen"
@@ -3896,6 +3899,10 @@ msgstr "Kein Signal gefunden! Abbruch!"
 msgid "Cape Verde"
 msgstr "Kap Verde"
 
+#, python-format
+msgid "Card reader %d"
+msgstr "Kartenleser %d"
+
 msgid "Cards: "
 msgstr "Karten: "
 
@@ -4238,9 +4245,6 @@ msgstr "Länderschema zum Dekodieren von Bewertungsinformationen in EPG-Ereignis
 
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr "Eine Beschriftung auswählen, damit IceTV-Dienste das Gerät zuordnen können."
-
-msgid "Select how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful for information about an event which has finished."
-msgstr "Auswählen, ob und wie viele historische EPG-Daten gespeichert werden sollen. Diese Daten können in jeder der EPG-Ansichten durchsucht werden. Dies kann nützlich sein, wenn Informationen über ein Ereignis benötigt werden, welches kürzlich beendet wurde."
 
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Das Intervall auswählen, wie oft eine Verbindung zum IceTV-Server hergestellt werden soll, um nach Updates zu suchen."
@@ -5157,6 +5161,9 @@ msgstr "Konsole Pakete"
 msgid "Console Utility Packages"
 msgstr "Konsole Tools-Pakete"
 
+msgid "Constcw"
+msgstr "Constcw"
+
 msgid "Constellation"
 msgstr "Konstellation"
 
@@ -5403,7 +5410,7 @@ msgid "Create a symbolic link"
 msgstr "Einen symbolischen Link erstellen"
 
 msgid "Create application loader dump."
-msgstr "Anwendungs-Loader-Dump erstellen."
+msgstr "Anwendungsloader-Dump erstellen."
 
 msgid "Create backup image zip file."
 msgstr "Image-Sicherungs-Zip-Datei erstellen."
@@ -7186,6 +7193,9 @@ msgstr "Taste EPG"
 msgid "EPG filename"
 msgstr "EPG-Dateiname"
 
+msgid "EPG history"
+msgstr "EPG-Historie"
+
 msgid ""
 "EPG key : Switch to channel list\n"
 "Ok key : Remove selected channel\n"
@@ -7359,6 +7369,9 @@ msgstr "Leer"
 
 msgid "Empty file"
 msgstr "Leere Datei"
+
+msgid "Emulator"
+msgstr "Emulator"
 
 #
 msgid "Enable"
@@ -7612,7 +7625,7 @@ msgid "Enable this option to add timer debugging data to the debug log file."
 msgstr "Aktivieren, um dem Debug-Log Timer-Daten hinzuzufügen."
 
 msgid "Enable this option to show all the available Information screens in the Information menu item list."
-msgstr "Aktivieren, um alle verfügbaren Informations-Bildschirme in der Informations-Menü-Liste anzuzeigen."
+msgstr "Aktivieren, um alle verfügbaren Informationsbildschirme in der Informations-Menüliste anzuzeigen."
 
 msgid "Enable this option to show unknown storage devices in device manager."
 msgstr "Aktivieren, um auch unbekannte Datenträger in der Geräteverwaltung anzuzeigen."
@@ -7791,6 +7804,9 @@ msgstr "PIN-Code eingeben"
 
 msgid "Enter text via an attached keyboard"
 msgstr "Texteingabe über eine angeschlossene Tastatur"
+
+msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
+msgstr "Die Dauer eingeben, die nach einem Streaming-Fehler zum Streaming-Puffer hinzugefügt werden soll. Dieser zusätzliche Puffer kann dazu beitragen, weitere Streaming-Probleme aufgrund von unzureichendem Pufferspeicherplatz zu vermeiden."
 
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the specifications of your LNB."
 msgstr "Die Frequenz eingeben, mit welcher der LNB zwischen Low- und High-Band wechselt. Weitere Informationen befinden sich im Datenblatt des LNBs."
@@ -9513,7 +9529,7 @@ msgid "Handle wake up from TV"
 msgstr "TV-Wakeup verwalten"
 
 msgid "Hard Disk Settings"
-msgstr "Konfiguration der Festplatte"
+msgstr "Festplatteneinstellungen"
 
 #
 msgid "Hard disk standby after"
@@ -9526,7 +9542,7 @@ msgid "Harddisk"
 msgstr "Festplatte"
 
 msgid "Harddisk Setup"
-msgstr "Konfiguration der Festplatte"
+msgstr "Festplatteneinstellungen"
 
 msgid "Hardware MultiBoot device"
 msgstr "MultiBoot-Gerät"
@@ -9557,6 +9573,9 @@ msgstr "Höhe"
 
 msgid "Help"
 msgstr "Hilfe"
+
+msgid "Help Action"
+msgstr "Hilfe-Aktionen"
 
 msgid "Help Screen Information"
 msgstr "Informationen zum Hilfebildschirm"
@@ -9998,7 +10017,7 @@ msgstr "Bei 'Ja' wird das Bild immer deinterlaced."
 
 # /data/setup.xml
 msgid "If enabled, AIT data is included in recordings."
-msgstr "Bei 'Ja' sind in den Aufzeichnungen AIT-Daten enthalten."
+msgstr "Bei 'Ja' sind in den Aufnahmen AIT-Daten enthalten."
 
 msgid "If enabled, a log will be kept of CEC protocol traffic. The log files are located with the other log files but named 'Enigma2-hdmicec-[date].log'."
 msgstr "Bei 'Ja' wird ein Log des CEC-Protokolls erstellt. Die Logdateien befinden sich zusammen mit den anderen Logs, haben jedoch den Namen 'Enigma2-hdmicec-[Datum].log'."
@@ -10715,9 +10734,6 @@ msgstr "Kasachisch"
 
 msgid "Kazakhstan"
 msgstr "Kasachstan"
-
-msgid "EPG history"
-msgstr "Alte EPG-Daten für x Minuten halten"
 
 msgid "Keep service"
 msgstr "Laufender Kanal"
@@ -11730,7 +11746,7 @@ msgid "Menu Navigation Actions"
 msgstr "Menü Navigationsaktionen"
 
 msgid "Menu config"
-msgstr "Menü-Einstellungen"
+msgstr "Menüeinstellungen"
 
 msgid "Menu entry sort order"
 msgstr "Sortierung der Menüeinträge"
@@ -12635,7 +12651,7 @@ msgid "Never abort"
 msgstr "Nie abbrechen"
 
 msgid "Never decrypt the content while recording. This overrides the individual timer settings globally. If enabled, recordings are stored in crypted presentation and must be decrypted afterwards (sometimes called offline decoding)."
-msgstr "Bei 'Ja' setzt diese Funktion die Timer Einstellung außer Kraft. Aufzeichnungen werden immer verschlüsselt gespeichert und müssen nachträglich entschlüsselt werden."
+msgstr "Bei 'Ja' setzt diese Funktion die Timereinstellung außer Kraft. Aufnahmen werden immer verschlüsselt gespeichert und müssen nachträglich entschlüsselt werden."
 
 msgid "Never decrypt while recording"
 msgstr "Bei der Aufnahme niemals entschlüsseln"
@@ -13236,7 +13252,7 @@ msgid "OSCam Information"
 msgstr "OSCam Informationen"
 
 msgid "OSCam Information Settings"
-msgstr "OSCam Informations-Einstellungen"
+msgstr "OSCam Informationseinstellungen"
 
 msgid "OSCam webif disabled"
 msgstr "OSCam-Weboberfläche deaktiviert"
@@ -13753,6 +13769,9 @@ msgstr "PCR-PID"
 
 msgid "PDC"
 msgstr "PDC"
+
+msgid "PG - Parental Guidance"
+msgstr "PG - Elterliche Anleitung"
 
 msgid "PGS file"
 msgstr "PGS-Datei"
@@ -14522,7 +14541,7 @@ msgid "Plugin Browser Select Actions"
 msgstr "Plugin-Manager Auswahlaktionen"
 
 msgid "Plugin Browser Settings"
-msgstr "Plugin-Manager Einstellungen"
+msgstr "Plugin-Manager"
 
 msgid "Plugin Browser Update Actions"
 msgstr "Plugin-Manager Aktualisierungsaktionen"
@@ -16032,7 +16051,7 @@ msgid "Restore backups"
 msgstr "Einstellungen wiederherstellen"
 
 msgid "Restore settings from a backup"
-msgstr "Einstellungen wiederherstellen"
+msgstr "Wiederherstellung der Einstellungen"
 
 msgid "Restore settings now"
 msgstr "Einstellungen jetzt wiederherstellen"
@@ -16052,7 +16071,7 @@ msgid "Restore your backups by date."
 msgstr "Wiederherstellen der nach Datum sortierten Sicherungen."
 
 msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
-msgstr "Wiederherstellen der Einstellungen einer Sicherung. Anschließend wird der Receiver neu gestartet."
+msgstr "Wiederherstellen der Einstellungen aus einer Sicherung. Anschließend wird der Receiver neu gestartet."
 
 msgid "Restoring..."
 msgstr "Wiederherstellen..."
@@ -17071,7 +17090,7 @@ msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding dur
 msgstr "Bei 'Ja' wird die Infoleiste bei schnellem Vor- und Rücklauf bei Medienwiedergabe angezeigt."
 
 msgid "Select Additional Backup Files"
-msgstr "Zusätzlich zu sichernde Dateien auswählen"
+msgstr "Zusätzlich zu sichernde Dateien"
 
 msgid "Select AutoCam default Softcam"
 msgstr "Standard-Softcam für AutoCam"
@@ -17090,7 +17109,7 @@ msgid "Select Enigma2 Skin"
 msgstr "Enigma2-Skin auswählen"
 
 msgid "Select Excluded Backup Files"
-msgstr "Nicht zu sichernde Dateien auswählen"
+msgstr "Nicht zu sichernde Dateien"
 
 msgid "Select Fast DiSEqC if your aerial system supports it. If you are unsure select 'No'."
 msgstr "'Ja' auswählen, wenn das Antennensystem schnelles DiSEqC unterstützt. Andernfalls, oder bei Unsicherheit, 'Nein'."
@@ -17260,7 +17279,7 @@ msgid "Select destination for:"
 msgstr "Speicherort auswählen:"
 
 msgid "Select files to exclude from backup"
-msgstr "Nicht zu sichernde Dateien auswählen"
+msgstr "Dateien auswählen, die nicht gesichert werden"
 
 #
 msgid "Select files/folders to backup"
@@ -17280,6 +17299,9 @@ msgstr "Auswählen, wie lange Aufgaben- und Skriptmeldungen angezeigt werden sol
 
 msgid "Select how long, in seconds, that the volume and mute displays are shown before they automatically hide."
 msgstr "Auswählen, wie viele Sekunden das Lautstärkesymbol oder die Stummschaltung angezeigt werden sollen, bevor sie ausgeblendet werden."
+
+msgid "Select how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful for information about an event which has finished."
+msgstr "Auswählen, ob und wie viele historische EPG-Daten gespeichert werden sollen. Diese Daten können in jeder der EPG-Ansichten durchsucht werden. Dies kann nützlich sein, wenn Informationen über ein beendetes Ereignis benötigt werden."
 
 msgid "Select how often this timer is to be repeated."
 msgstr "Auswählen, wie dieser Timer wiederholt werden soll."
@@ -17596,7 +17618,7 @@ msgstr "Das Layout für Informationen im Senderauswahl-Bildschirm anhand der Ski
 msgid "Select the layout of the installed plugins in the Plugin Browser screen. NOTE: The change is not immediate but will be seen when Plugin Browser is restarted!"
 msgstr ""
 "Aussehen der installierten Plugins im Plugin-Manager einstellen.\n"
-"Achtung: Eine Änderung ist erst zu sehen, wenn der Plugin-Manager neu gestartet wird!"
+"Achtung: Eine Änderung ist erst wirksam, wenn der Plugin-Manager neu gestartet wird!"
 
 msgid "Select the list of LCN rules to be applied to the scan."
 msgstr "Auswählen, welche LCN-Regeln beim Suchlauf angewendet werden sollen."
@@ -17606,7 +17628,7 @@ msgid "Select the locale from a menu"
 msgstr "Ein anderes Tastaturlayout auswählen"
 
 msgid "Select the location in which to store the recording:"
-msgstr "Den Speicherort auswählen, an dem die Aufzeichnung gespeichert werden soll:"
+msgstr "Den Speicherort auswählen, an dem die Aufnahme gespeichert werden soll:"
 
 msgid "Select the location where the picon files will be installed."
 msgstr "Auswählen, wohin Picons installiert werden sollen."
@@ -18430,7 +18452,7 @@ msgid "Setup Audio Sync settings"
 msgstr "Audio-Sync-Einstellungen"
 
 msgid "Setup Audiomode"
-msgstr "Konfiguration Ton"
+msgstr "Ton einstellen"
 
 # Quick Menue
 msgid "Setup Enigma2"
@@ -18455,7 +18477,7 @@ msgid "Setup Plugin Browser"
 msgstr "Plugin-Manager einstellen"
 
 msgid "Setup PluginBrowser. Here you can select which Plugins are showed in the PluginBrowser"
-msgstr "Hier wird eingestellt, welche Erweiterungen im Plugin-Manager zu sehen sind."
+msgstr "Hier wird eingestellt, welche Erweiterungen im Plugin-Manager angezeigt werden sollen."
 
 msgid "Setup Plugins"
 msgstr "Plugins / IPKs einrichten"
@@ -18464,10 +18486,10 @@ msgid "Setup Tuner"
 msgstr "Tunereinstellungen"
 
 msgid "Setup Video/Audio"
-msgstr "Konfiguration Bild/Ton"
+msgstr "Bild/Ton-Einstellungen"
 
 msgid "Setup Videomode"
-msgstr "Konfiguration Bild"
+msgstr "Bild einstellen"
 
 msgid "Setup each tuner for your satellite system"
 msgstr "Einstellungen für jeden Tuner"
@@ -18501,18 +18523,18 @@ msgid "Setup uShare"
 msgstr "uShare-Einstellungen"
 
 msgid "Setup your Audio Mode"
-msgstr "Toneinstellungen"
+msgstr "Einstellen des Tons"
 
 # Quick Menue
 msgid "Setup your Channel selection configuration"
-msgstr "Senderlistenkonfiguration einstellen"
+msgstr "Konfigurieren der Senderliste"
 
 msgid "Setup your Device mounts (USB, HDD, others...)"
 msgstr "Geräte-Einhängepunkte einrichten (USB, Festplatte usw.)"
 
 # Quick Menue
 msgid "Setup your EPG config"
-msgstr "EPG-Einstellungen konfigurieren"
+msgstr "Konfigurieren des EPGs"
 
 msgid "Setup your Harddisk"
 msgstr "Konfigurieren der Festplatte"
@@ -18525,7 +18547,7 @@ msgid "Setup your OSD"
 msgstr "Anpassen der Bedienoberfläche/OSD an die eigenen Bedürfnisse."
 
 msgid "Setup your Skin"
-msgstr "Skin-Einstellungen"
+msgstr "Einstellen des Skins"
 
 # Quick Menue
 msgid "Setup your System"
@@ -18542,7 +18564,7 @@ msgid "Setup your display"
 msgstr "Anpassen des Displays an die eigenen Bedürfnisse."
 
 msgid "Setup your local network"
-msgstr "Konfiguration des Netzwerks"
+msgstr "Netzwerkeinstellungen"
 
 msgid "Setup your local network. For Wlan you need to boot with a USB-Wlan stick"
 msgstr "Konfigurieren des Netzwerks, für WLAN muss ein WLAN-USB-Stick installiert sein"
@@ -18560,11 +18582,11 @@ msgid "Setup your positioner"
 msgstr "Rotor einstellen."
 
 msgid "Setup your positioner for your satellite system"
-msgstr "Rotor einstellen"
+msgstr "Einstellen des Rotors"
 
 # Quick Menue
 msgid "Setup your recording config"
-msgstr "Aufnahmeeinstellungen vornehmen"
+msgstr "Einrichten der Aufnahmen"
 
 # Quick Menue
 msgid "Setup your remote buttons"
@@ -18684,7 +18706,7 @@ msgid "Show CI messages"
 msgstr "CI Meldungen anzeigen"
 
 msgid "Show Default Backup Files"
-msgstr "Standardliste gesicherter Dateien anzeigen"
+msgstr "Standardliste gesicherter Dateien"
 
 msgid "Show Development packages"
 msgstr "Entwicklungspakete anzeigen"
@@ -18896,7 +18918,7 @@ msgid "Show all"
 msgstr "Alles anzeigen"
 
 msgid "Show all Information screens"
-msgstr "Alle Informations-Bildschirme anzeigen"
+msgstr "Alle Informationsbildschirme anzeigen"
 
 msgid "Show all available services"
 msgstr "Alle verfügbaren Sender anzeigen"
@@ -19012,7 +19034,7 @@ msgid "Show favorites list"
 msgstr "Favoritenliste anzeigen"
 
 msgid "Show files backed up by default"
-msgstr "Zeige Dateien, die standardmäßig gesichert werden"
+msgstr "Dateien anzeigen, die standardmäßig gesichert werden"
 
 msgid "Show first image"
 msgstr "Erstes Bild anzeigen"
@@ -19346,7 +19368,7 @@ msgid "Show watch status"
 msgstr "Statusanzeige in der Filmauswahl anzeigen"
 
 #
-msgid "Show/Games show"
+msgid "Show/Game show"
 msgstr "Show/Spielshow"
 
 msgid "Show/Hide Actions"
@@ -19706,7 +19728,7 @@ msgid "Slot '%s' %s: %s%s"
 msgstr "Slot '%s' %s: %s%s"
 
 msgid "Slot F: Flash Slot Image Backup (Current image)"
-msgstr "Slot F: Flash Slot Komplettsicherung (aktuelles Image)"
+msgstr "Slot F: Flash-Slot Komplettsicherung (aktuelles Image)"
 
 msgid "Slot Manager"
 msgstr "Slot-Verwaltung"
@@ -19715,7 +19737,7 @@ msgid "Slot Manager Actions"
 msgstr "Slot-Manager Aktionen"
 
 msgid "Slot R: Root Slot Image Backup (Current image)"
-msgstr "Slot R: Root Slot Komplettsicherung (aktuelles Image)"
+msgstr "Slot R: Root-Slot Komplettsicherung (aktuelles Image)"
 
 msgid "Slot count"
 msgstr "Anzahl der Slots"
@@ -20026,6 +20048,9 @@ msgstr "Spezial 2"
 
 msgid "Special Features Settings"
 msgstr "Spezielle Einstellungen"
+
+msgid "Special characteristics"
+msgstr "Spezielle Merkmale"
 
 msgid "Specify the directory to use when starting Media Player."
 msgstr "Das Verzeichnis auswählen, welches beim Starten des Mediaplayers verwendet werden soll."
@@ -20384,6 +20409,9 @@ msgstr "Streaming-Tuner-Informationen"
 msgid "Streaming recording ended"
 msgstr "Streaming-Aufnahme beendet"
 
+msgid "Streaming recovery delay"
+msgstr "Streaming Wiederstellungsverzögerung"
+
 #, python-format
 msgid "Streaming tuner information for %s %s"
 msgstr "Streaming-Tuner-Informationen für %s %s"
@@ -20484,6 +20512,15 @@ msgstr "Erfolgreich:"
 
 msgid "Sudan"
 msgstr "Sudan"
+
+msgid "Suitable for ages 12+"
+msgstr "Geeignet für Kinder ab 12 Jahren"
+
+msgid "Suitable for ages 15+"
+msgstr "Geeignet für Kinder ab 15 Jahren"
+
+msgid "Suitable only for Adults"
+msgstr "Nur für Erwachsene geeignet"
 
 #
 msgid "Sun"
@@ -20695,7 +20732,7 @@ msgid "System"
 msgstr "System"
 
 msgid "System Info"
-msgstr "System-Info"
+msgstr "Systeminfo"
 
 msgid "System Information"
 msgstr "System-Informationen"
@@ -20723,7 +20760,7 @@ msgid "System: "
 msgstr "System: "
 
 msgid "Systeminfo"
-msgstr "System-Info"
+msgstr "Systeminfo"
 
 msgid "T2MI PID"
 msgstr "T2MI-PID"
@@ -22509,6 +22546,9 @@ msgstr "Gerätetyp"
 msgid "Type of scan"
 msgstr "Art des Suchlaufs"
 
+msgid "U - Suitable for all"
+msgstr "U - Für alle Altersgruppen geeignet"
+
 #, python-format
 msgid "UBI slot %s%s"
 msgstr "UBI Slot %s%s"
@@ -22544,6 +22584,10 @@ msgstr "USB 3.0 hinten außen"
 #
 msgid "USB Stick"
 msgstr "USB-Stick"
+
+#, python-format
+msgid "USB reader %d"
+msgstr "USB-Kartenleser %d"
 
 #, python-format
 msgid "USB slot %s%s"
@@ -25688,6 +25732,24 @@ msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Bambini Accompagnati"
+#~ msgstr "Kinder"
+
+#~ msgid "Dai 12 anni in su"
+#~ msgstr "Ab 12 Jahren"
+
+#~ msgid "Dai 14 anni in su"
+#~ msgstr "Ab 14 Jahren"
+
+#~ msgid "Dai 18 anni in su"
+#~ msgstr "Ab 18 Jahren"
+
+#~ msgid "Non Classificato"
+#~ msgstr "Nicht klassifiziert"
+
+#~ msgid "Per Tutti"
+#~ msgstr "Für alle"
 
 #~ msgid "Current status"
 #~ msgstr "Aktueller Status"

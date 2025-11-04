@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-27 10:09+0000\n"
-"PO-Revision-Date: 2025-09-28 12:02+0000\n"
+"POT-Creation-Date: 2025-10-23 18:55+0000\n"
+"PO-Revision-Date: 2025-10-25 18:22+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Weblate 5.14-dev\n"
+"X-Generator: Weblate 5.14.1-dev\n"
 "X-SourceCharset: UTF-8\n"
 "X-Generated: TM2TURK by thawtes\n"
 
@@ -3087,6 +3087,9 @@ msgstr "蓝色"
 msgid "Bluetooth"
 msgstr "蓝牙"
 
+msgid "Bluetooth Audio"
+msgstr "蓝牙音频"
+
 msgid "Bluetooth Setup"
 msgstr "蓝牙设置"
 
@@ -3699,6 +3702,10 @@ msgstr "无法找到任何信号...，正在中止！"
 msgid "Cape Verde"
 msgstr "佛得角"
 
+#, python-format
+msgid "Card reader %d"
+msgstr "卡片读卡器 %d"
+
 msgid "Cards: "
 msgstr "卡片："
 
@@ -4025,9 +4032,6 @@ msgstr "选择用于解码 EPG 事件中的评级信息的国家/地区方案。
 
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr "选择可在 IceTV 服务中识别此设备的标签。"
-
-msgid "Select how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful for information about an event which has finished."
-msgstr "选择在 EPG 缓存中保留多少 EPG 历史记录（如果有）。 可以在任何 EPG 视图中浏览此历史数据。 当您需要有关最近完成的事件的信息时，这会很有用。"
 
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "选择连接到 IceTV 服务器以检查更新的频率。"
@@ -4886,6 +4890,9 @@ msgstr "控制台软件包"
 
 msgid "Console Utility Packages"
 msgstr "控制台实用程序包"
+
+msgid "Constcw"
+msgstr "固定控制字"
 
 msgid "Constellation"
 msgstr "星座"
@@ -6824,6 +6831,9 @@ msgstr "EPG 键模式"
 msgid "EPG filename"
 msgstr "EPG 文件名"
 
+msgid "EPG history"
+msgstr "保留 EPG 历史记录（以分钟为单位）"
+
 msgid ""
 "EPG key : Switch to channel list\n"
 "Ok key : Remove selected channel\n"
@@ -6985,6 +6995,9 @@ msgstr "空"
 
 msgid "Empty file"
 msgstr "空文件"
+
+msgid "Emulator"
+msgstr "仿真器"
 
 msgid "Enable"
 msgstr "启用"
@@ -7399,6 +7412,9 @@ msgstr "输入 PIN 码"
 
 msgid "Enter text via an attached keyboard"
 msgstr "通过连接的键盘输入文本"
+
+msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
+msgstr "输入流媒体错误后要添加到流媒体缓冲区的持续时间。这个额外的缓冲区有助于避免因缓冲区空间不足而导致的进一步流媒体问题。"
 
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the specifications of your LNB."
 msgstr "输入高频头在低频段和高频段之间切换的频率。有关更多信息，请参阅高频头的规格。"
@@ -9085,6 +9101,9 @@ msgstr "高度"
 msgid "Help"
 msgstr "帮助"
 
+msgid "Help Action"
+msgstr "帮助操作"
+
 msgid "Help Screen Information"
 msgstr "帮助屏信息"
 
@@ -10189,9 +10208,6 @@ msgstr "哈萨克语"
 
 msgid "Kazakhstan"
 msgstr "哈萨克斯坦"
-
-msgid "EPG history"
-msgstr "保留 EPG 历史记录（以分钟为单位）"
 
 msgid "Keep service"
 msgstr "保持频道"
@@ -13001,6 +13017,9 @@ msgstr "PCR PID"
 
 msgid "PDC"
 msgstr "PDC"
+
+msgid "PG - Parental Guidance"
+msgstr "PG - 家长指导"
 
 msgid "PGS file"
 msgstr "PGS 文件"
@@ -16291,6 +16310,9 @@ msgstr "选择弹出任务和脚本消息显示的时长。"
 msgid "Select how long, in seconds, that the volume and mute displays are shown before they automatically hide."
 msgstr "选择音量和静音显示在自动隐藏之前显示的时间长度（以秒为单位）。"
 
+msgid "Select how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful for information about an event which has finished."
+msgstr "选择在 EPG 缓存中保留多少 EPG 历史记录（如果有）。 可以在任何 EPG 视图中浏览此历史数据。 当您需要有关最近完成的事件的信息时，这会很有用。"
+
 msgid "Select how often this timer is to be repeated."
 msgstr "选择此定时器的重复频率。"
 
@@ -18242,7 +18264,7 @@ msgstr "时移停止时显示警告"
 msgid "Show watch status"
 msgstr "显示观看状态"
 
-msgid "Show/Games show"
+msgid "Show/Game show"
 msgstr "显示/游戏秀"
 
 msgid "Show/Hide Actions"
@@ -18884,6 +18906,9 @@ msgstr "特殊2"
 msgid "Special Features Settings"
 msgstr "特别功能设置"
 
+msgid "Special characteristics"
+msgstr "特殊属性"
+
 msgid "Specify the directory to use when starting Media Player."
 msgstr "指定启动媒体播放器时要使用的目录。"
 
@@ -19225,6 +19250,9 @@ msgstr "串流调谐器信息"
 msgid "Streaming recording ended"
 msgstr "流媒体录制结束"
 
+msgid "Streaming recovery delay"
+msgstr "流媒体恢复延迟"
+
 #, python-format
 msgid "Streaming tuner information for %s %s"
 msgstr "%s %s 串流调谐器信息"
@@ -19322,6 +19350,15 @@ msgstr "已成功："
 
 msgid "Sudan"
 msgstr "苏丹"
+
+msgid "Suitable for ages 12+"
+msgstr "适合12岁以上"
+
+msgid "Suitable for ages 15+"
+msgstr "适合15岁以上"
+
+msgid "Suitable only for Adults"
+msgstr "仅适合成人"
 
 msgid "Sun"
 msgstr "周日"
@@ -21222,6 +21259,9 @@ msgstr "设备类型"
 msgid "Type of scan"
 msgstr "扫描类型"
 
+msgid "U - Suitable for all"
+msgstr "U - 适合所有人"
+
 #, python-format
 msgid "UBI slot %s%s"
 msgstr "UBI 插槽 %s%s"
@@ -21255,6 +21295,10 @@ msgstr "USB 3.0（背面，外部）"
 
 msgid "USB Stick"
 msgstr "U 盘"
+
+#, python-format
+msgid "USB reader %d"
+msgstr "USB 读卡器 %d"
 
 #, python-format
 msgid "USB slot %s%s"

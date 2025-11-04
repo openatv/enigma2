@@ -57,7 +57,7 @@ class Screen(dict):
 		if self.screenImage:
 			self["Image"] = Pixmap()
 		if enableHelp:
-			self["helpAction"] = HelpableActionMap(self, ["HelpAction"], {
+			self["helpActions"] = HelpableActionMap(self, ["HelpAction"], {
 				# "displayHelp": (self.showHelp, _("Display the context sensitive help screen"))
 				"displayHelp": self.showHelp
 			}, prio=0, description=_("Help Action"))

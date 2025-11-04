@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-27 10:09+0000\n"
-"PO-Revision-Date: 2025-10-07 20:02+0000\n"
+"POT-Creation-Date: 2025-10-23 18:55+0000\n"
+"PO-Revision-Date: 2025-11-02 12:25+0000\n"
 "Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.14-dev\n"
+"X-Generator: Weblate 5.14.1-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -2319,7 +2319,7 @@ msgid "Also import at reboot/restart enigma2"
 msgstr "Importuj również przy ponownym uruchomieniu/restartcie enigma2"
 
 msgid "Also import from the extension menu"
-msgstr "Import także z menu rozszerzeń"
+msgstr "Importuj również z menu rozszerzeń"
 
 msgid "Also import when box is leaving standby"
 msgstr "Importuj również, gdy urządzenie opuszcza tryb czuwania"
@@ -3132,6 +3132,9 @@ msgstr "Niebieski"
 msgid "Bluetooth"
 msgstr "Bluetooth"
 
+msgid "Bluetooth Audio"
+msgstr "Dźwięk Bluetooth"
+
 msgid "Bluetooth Setup"
 msgstr "Ustawienia BT"
 
@@ -3744,6 +3747,10 @@ msgstr "Nie można znaleźć żadnego sygnału... anulowanie!"
 msgid "Cape Verde"
 msgstr "Zielony Przylądek"
 
+#, python-format
+msgid "Card reader %d"
+msgstr "Czytnik kart %d"
+
 msgid "Cards: "
 msgstr "Karty: "
 
@@ -4070,9 +4077,6 @@ msgstr "Wybierz schemat kraju do dekodowania informacji o ocenach w wydarzeniach
 
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr "Wybierz etykietę, która będzie identyfikować to urządzenie w ramach usług IceTV."
-
-msgid "Select how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful for information about an event which has finished."
-msgstr "Wybierz ile historii EPG, jeśli w ogóle, ma być zachowane w pamięci podręcznej EPG. Te historyczne dane mogą być przeglądane w każdym z widoków EPG. Może to być przydatne, gdy potrzebujesz informacji o wydarzeniu, które niedawno się zakończyło."
 
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Wybierz częstotliwość łączenia się z serwerem IceTV w celu sprawdzenia dostępności aktualizacji."
@@ -4934,6 +4938,9 @@ msgstr "Pakiety konsoli"
 
 msgid "Console Utility Packages"
 msgstr "Pakiety narzędzi konsolowych"
+
+msgid "Constcw"
+msgstr "Constcw"
 
 msgid "Constellation"
 msgstr "Konstelacja"
@@ -6873,6 +6880,9 @@ msgstr "Tryb przycisku EPG"
 msgid "EPG filename"
 msgstr "Nazwa pliku EPG"
 
+msgid "EPG history"
+msgstr "Historia EPG"
+
 msgid ""
 "EPG key : Switch to channel list\n"
 "Ok key : Remove selected channel\n"
@@ -7034,6 +7044,9 @@ msgstr "Pusty"
 
 msgid "Empty file"
 msgstr "Pusty plik"
+
+msgid "Emulator"
+msgstr "Emulator"
 
 msgid "Enable"
 msgstr "Włącz"
@@ -7450,6 +7463,9 @@ msgstr "Wpisz PIN"
 
 msgid "Enter text via an attached keyboard"
 msgstr "Wpisz tekst za pomocą dołączonej klawiatury"
+
+msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
+msgstr "Wprowadź czas, jaki ma zostać dodany do bufora strumieniowego po wystąpieniu błędu strumieniowania. Ten dodatkowy bufor może pomóc uniknąć dalszych problemów ze strumieniowaniem spowodowanych brakiem miejsca w buforze."
 
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the specifications of your LNB."
 msgstr "Wprowadź częstotliwość, przy której LNB przełącza się między pasmem niskim i górnym. Aby uzyskać więcej informacji, zapoznaj się z arkuszem specyfikacji swojego LNB."
@@ -9136,6 +9152,9 @@ msgstr "Wysokość"
 msgid "Help"
 msgstr "Help"
 
+msgid "Help Action"
+msgstr "Akcje pomocy"
+
 msgid "Help Screen Information"
 msgstr "Informacje ekranu pomocy"
 
@@ -10240,9 +10259,6 @@ msgstr "Kazachski"
 
 msgid "Kazakhstan"
 msgstr "Kazachstan"
-
-msgid "EPG history"
-msgstr "Zachowaj historię EPG (w minutach)"
 
 msgid "Keep service"
 msgstr "Utrzymaj kanał"
@@ -13055,6 +13071,9 @@ msgstr "PCR PID"
 
 msgid "PDC"
 msgstr "PDC"
+
+msgid "PG - Parental Guidance"
+msgstr "PG - Nadzór rodzicielski"
 
 msgid "PGS file"
 msgstr "plik PGS"
@@ -16350,6 +16369,9 @@ msgstr "Wybierz, jak długo ma być wyświetlane zadanie i komunikat o skrypcie.
 msgid "Select how long, in seconds, that the volume and mute displays are shown before they automatically hide."
 msgstr "Wybierz, jak długo (w sekundach) mają być wyświetlane wskaźniki głośności i wyciszenia, zanim zostaną automatycznie ukryte."
 
+msgid "Select how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful for information about an event which has finished."
+msgstr "Wybierz, ile historii EPG (jeśli w ogóle) ma być przechowywane w pamięci podręcznej EPG. Dane historyczne można przeglądać w dowolnym widoku EPG. Może to być przydatne w przypadku informacji o zakończonym wydarzeniu."
+
 msgid "Select how often this timer is to be repeated."
 msgstr "Wybierz, jak często ten timer ma być powtarzany."
 
@@ -16634,7 +16656,7 @@ msgid "Select the highlighted slot and reboot"
 msgstr "Wybierz podświetlony slot i uruchom ponownie"
 
 msgid "Select the initial position of the timeline marker. The marker is the vertical line drawn on the EPG that shows the current time. The larger the value the more the marker will move to the right showing more history and less of upcoming events."
-msgstr "Wybierz pozycję początkową znacznika osi czasu. Znacznik jest pionową linią narysowaną na EPG, która pokazuje aktualny czas. Im większa wartość, tym bardziej znacznik będzie się przesuwał w prawo pokazując więcej historii, a mniej nadchodzących wydarzeń."
+msgstr "Wybierz początkową pozycję znacznika osi czasu. Znacznik to pionowa linia narysowana na elektronicznym przewodniku po czasie (EPG), która pokazuje aktualny czas. Im większa wartość, tym bardziej znacznik przesunie się w prawo, pokazując więcej historii i mniej nadchodzących wydarzeń."
 
 msgid "Select the input connector you want to use."
 msgstr "Wybierz złącze wejściowe, którego chcesz użyć."
@@ -18301,8 +18323,8 @@ msgstr "Pokaż ostrzeżenie gdy time shift jest zatrzymywany"
 msgid "Show watch status"
 msgstr "Pokaż ikony statusu na liście filmów"
 
-msgid "Show/Games show"
-msgstr "Przedstawienie/Pokaz gier"
+msgid "Show/Game show"
+msgstr "Show/Pokazy gier"
 
 msgid "Show/Hide Actions"
 msgstr "Akcje Pokaż/Ukryj"
@@ -18948,6 +18970,9 @@ msgstr "Specjalne 2"
 msgid "Special Features Settings"
 msgstr "Funkcje Specjalne"
 
+msgid "Special characteristics"
+msgstr "Cechy szczególne"
+
 msgid "Specify the directory to use when starting Media Player."
 msgstr "Określ katalog, który ma być używany podczas uruchamiania Media Playera."
 
@@ -19289,6 +19314,9 @@ msgstr "Informacje o tunerze strumieniowym"
 msgid "Streaming recording ended"
 msgstr "Strumieniowe zakończy nagrywanie"
 
+msgid "Streaming recovery delay"
+msgstr "Opóźnienie odzyskiwania strumieniowego"
+
 #, python-format
 msgid "Streaming tuner information for %s %s"
 msgstr "Informacje o tunerze strumieniowym dla %s %s"
@@ -19386,6 +19414,15 @@ msgstr "Udało się:"
 
 msgid "Sudan"
 msgstr "Sudan"
+
+msgid "Suitable for ages 12+"
+msgstr "Odpowiednie dla osób w wieku 12+"
+
+msgid "Suitable for ages 15+"
+msgstr "Odpowiednie dla osób w wieku 15+"
+
+msgid "Suitable only for Adults"
+msgstr "Odpowiednie tylko dla osób dorosłych"
 
 msgid "Sun"
 msgstr "Nie"
@@ -21287,6 +21324,9 @@ msgstr "Typ urządzenia"
 msgid "Type of scan"
 msgstr "Typ skanowania"
 
+msgid "U - Suitable for all"
+msgstr "U - Odpowiedni dla wszystkich"
+
 #, python-format
 msgid "UBI slot %s%s"
 msgstr "UBI slot %s%s"
@@ -21320,6 +21360,10 @@ msgstr "USB 3.0 (tył, zewnętrzny)"
 
 msgid "USB Stick"
 msgstr "Pamięć USB"
+
+#, python-format
+msgid "USB reader %d"
+msgstr "Czytnik USB %d"
 
 #, python-format
 msgid "USB slot %s%s"
@@ -23300,10 +23344,10 @@ msgid "[Timeshift] Restarting time shift!"
 msgstr "[TimeShift] Uruchamianie ponowne timeshiftu!"
 
 msgid "a gui to assign services/providers to common interface modules"
-msgstr "GUI do przypisywania usług/dostawców do modułów CI"
+msgstr "GUI do przypisywania kanałów/dostawców do modułów CI"
 
 msgid "a gui to assign services/providers/caids to common interface modules"
-msgstr "GUI do przypisywania usług/dostawców/caid do modułów CI"
+msgstr "GUI do przypisywania kanałów/dostawców/caid do modułów CI"
 
 msgid "activatePiP"
 msgstr "Włącz PiP"
@@ -23840,7 +23884,7 @@ msgid "no CAId selected"
 msgstr "Nie wybrano CAId"
 
 msgid "no CI slots found"
-msgstr "nie znaleziono gniazda CI"
+msgstr "Nie znaleziono gniazda CI"
 
 msgid "no module found"
 msgstr "Nie znaleziono modułu"
@@ -24028,7 +24072,7 @@ msgid "show all tags"
 msgstr "pokaż wszystkie znaczniki"
 
 msgid "show/game show (general)"
-msgstr "rozrywka/gry"
+msgstr "show/pokazy gier (ogólny)"
 
 msgid "shuffle"
 msgstr "wymieszaj"

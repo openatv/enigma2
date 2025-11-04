@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-27 10:09+0000\n"
-"PO-Revision-Date: 2025-09-28 12:02+0000\n"
+"POT-Creation-Date: 2025-10-23 18:55+0000\n"
+"PO-Revision-Date: 2025-10-25 18:16+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.14-dev\n"
+"X-Generator: Weblate 5.14.1-dev\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
 
 msgid ""
@@ -3087,6 +3087,9 @@ msgstr "Blu"
 msgid "Bluetooth"
 msgstr "Bluetooth"
 
+msgid "Bluetooth Audio"
+msgstr "Audio Bluetooth"
+
 msgid "Bluetooth Setup"
 msgstr "Impostazioni Bluetooth"
 
@@ -3699,6 +3702,10 @@ msgstr "Impossibile trovare alcun segnale... annullo tutto!"
 msgid "Cape Verde"
 msgstr "Capo Verde"
 
+#, python-format
+msgid "Card reader %d"
+msgstr "Lettore di schede %d"
+
 msgid "Cards: "
 msgstr "Schede: "
 
@@ -4025,9 +4032,6 @@ msgstr "Scegli uno schema nazionale per la decodifica delle informazioni sulla v
 
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr "Scegli un'etichetta che identificherà questo dispositivo all'interno dei servizi IceTV."
-
-msgid "Select how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful for information about an event which has finished."
-msgstr "Scegli quanta cronologia EPG, se presente, conservare nella cache EPG. Questi dati storici possono essere sfogliati in qualsiasi vista EPG. Questo può essere utile quando hai bisogno di informazioni su un evento che è terminato di recente."
 
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Scegli la frequenza con cui connetterti al server IceTV per verificare la presenza di aggiornamenti."
@@ -4886,6 +4890,9 @@ msgstr "Pacchetti per console"
 
 msgid "Console Utility Packages"
 msgstr "Pacchetti utilità per console"
+
+msgid "Constcw"
+msgstr "Constcw"
 
 msgid "Constellation"
 msgstr "Costellazione"
@@ -6824,6 +6831,9 @@ msgstr "Modalità tasto EPG"
 msgid "EPG filename"
 msgstr "Nome del file EPG"
 
+msgid "EPG history"
+msgstr "Mantieni cronologia EPG (in minuti)"
+
 msgid ""
 "EPG key : Switch to channel list\n"
 "Ok key : Remove selected channel\n"
@@ -6985,6 +6995,9 @@ msgstr "Vuoto"
 
 msgid "Empty file"
 msgstr "File vuoto"
+
+msgid "Emulator"
+msgstr "Emulatore"
 
 msgid "Enable"
 msgstr "Abilitato"
@@ -7399,6 +7412,9 @@ msgstr "Inserisci codice PIN"
 
 msgid "Enter text via an attached keyboard"
 msgstr "Inserisci testo tramite una tastiera collegata"
+
+msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
+msgstr "Inserisci la durata da aggiungere al buffer di streaming dopo un errore di streaming. Questo buffer aggiuntivo può aiutare a evitare ulteriori problemi di streaming dovuti alla mancanza di spazio nel buffer."
 
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the specifications of your LNB."
 msgstr "Inserisci la frequenza alla quale l'LNB commuta tra banda bassa e banda alta. Per maggiori informazioni consulta la scheda tecnica dell'LNB."
@@ -9085,6 +9101,9 @@ msgstr "Altezza"
 msgid "Help"
 msgstr "Guida"
 
+msgid "Help Action"
+msgstr "Azione di aiuto"
+
 msgid "Help Screen Information"
 msgstr "Informazioni sulla schermata della guida"
 
@@ -10189,9 +10208,6 @@ msgstr "Kazaco"
 
 msgid "Kazakhstan"
 msgstr "Kazakhstan"
-
-msgid "EPG history"
-msgstr "Mantieni cronologia EPG (in minuti)"
 
 msgid "Keep service"
 msgstr "Mantieni servizio"
@@ -13001,6 +13017,9 @@ msgstr "PCR PID"
 
 msgid "PDC"
 msgstr "PDC"
+
+msgid "PG - Parental Guidance"
+msgstr "PG - Guida genitoriale"
 
 msgid "PGS file"
 msgstr "File PGS"
@@ -16291,6 +16310,9 @@ msgstr "Seleziona per quanto tempo visualizzare l'attività e il messaggio popup
 msgid "Select how long, in seconds, that the volume and mute displays are shown before they automatically hide."
 msgstr "Seleziona per quanto tempo visualizzare, in secondi, i controlli del volume e dell'audio prima della loro scomparsa automatica."
 
+msgid "Select how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful for information about an event which has finished."
+msgstr "Scegli quanta cronologia EPG, se presente, conservare nella cache EPG. Questi dati storici possono essere sfogliati in qualsiasi vista EPG. Questo può essere utile quando hai bisogno di informazioni su un evento che è terminato di recente."
+
 msgid "Select how often this timer is to be repeated."
 msgstr "Seleziona frequenza con cui questo timer deve essere ripetuto."
 
@@ -18242,7 +18264,7 @@ msgstr "Mostra avviso quando il timeshift viene interrotto"
 msgid "Show watch status"
 msgstr "Mostra stato dell'orologio"
 
-msgid "Show/Games show"
+msgid "Show/Game show"
 msgstr "Mostra Spettacoli/Giochi"
 
 msgid "Show/Hide Actions"
@@ -18884,6 +18906,9 @@ msgstr "SPECIALE 2"
 msgid "Special Features Settings"
 msgstr "Caratteristiche speciali"
 
+msgid "Special characteristics"
+msgstr "Caratteristiche speciali"
+
 msgid "Specify the directory to use when starting Media Player."
 msgstr "Specifica la cartella da usare all'avvio di Media Player."
 
@@ -19225,6 +19250,9 @@ msgstr "Informazioni sul tuner in streaming"
 msgid "Streaming recording ended"
 msgstr "La registrazione in streaming è terminata"
 
+msgid "Streaming recovery delay"
+msgstr "Ritardo recupero streaming"
+
 #, python-format
 msgid "Streaming tuner information for %s %s"
 msgstr "Informazioni sul tuner in streaming per %s %s"
@@ -19322,6 +19350,15 @@ msgstr "Riusciti:"
 
 msgid "Sudan"
 msgstr "Sudan"
+
+msgid "Suitable for ages 12+"
+msgstr "Adatto a partire dai 12 anni"
+
+msgid "Suitable for ages 15+"
+msgstr "Adatto a partire dai 15 anni"
+
+msgid "Suitable only for Adults"
+msgstr "Adatto solo per adulti"
 
 msgid "Sun"
 msgstr "Dom"
@@ -21222,6 +21259,9 @@ msgstr "Tipo di dispositivo"
 msgid "Type of scan"
 msgstr "Tipo ricerca"
 
+msgid "U - Suitable for all"
+msgstr "U - Adatto a tutti"
+
 #, python-format
 msgid "UBI slot %s%s"
 msgstr "Slot UBI %s%s"
@@ -21255,6 +21295,10 @@ msgstr "USB 3.0 (posteriore, esterno)"
 
 msgid "USB Stick"
 msgstr "Chiavetta USB"
+
+#, python-format
+msgid "USB reader %d"
+msgstr "Lettore USB %d"
 
 #, python-format
 msgid "USB slot %s%s"

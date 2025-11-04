@@ -850,7 +850,7 @@ public:
 
 	virtual bool canFlush() const { return false; }
 
-	virtual RESULT flush() const { return -1; }
+	virtual RESULT flush() { return -1; }
 
 	struct videoEvent
 	{

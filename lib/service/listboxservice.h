@@ -83,6 +83,7 @@ public:
 		picServiceEventProgressbar,
 		picCrypto,
 		picRecord,
+		picCatchup,
 		picElements
 	};
 

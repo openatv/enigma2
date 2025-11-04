@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-27 10:09+0000\n"
-"PO-Revision-Date: 2025-09-04 17:01+0000\n"
+"POT-Creation-Date: 2025-10-23 18:55+0000\n"
+"PO-Revision-Date: 2025-10-23 18:23+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.13.1-rc\n"
+"X-Generator: Weblate 5.14.1-dev\n"
 
 msgid ""
 "\n"
@@ -3095,6 +3095,9 @@ msgstr "Sininen"
 msgid "Bluetooth"
 msgstr "Bluetooth"
 
+msgid "Bluetooth Audio"
+msgstr "Bluetooth Ääni"
+
 msgid "Bluetooth Setup"
 msgstr "Bluetooth asetukset"
 
@@ -3708,6 +3711,10 @@ msgstr "Signaalia ei löydy... keskeytetään!"
 msgid "Cape Verde"
 msgstr "Cape Verde"
 
+#, python-format
+msgid "Card reader %d"
+msgstr "kortinlukija %d"
+
 msgid "Cards: "
 msgstr "Kortit: "
 
@@ -4034,9 +4041,6 @@ msgstr "Valitse maa asetus ohjelmaoppaan arvostelutietojen purkuun."
 
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr "Valitse etiketti, joka tunnistaa tämän laitteen IceTV palveluista."
-
-msgid "Select how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful for information about an event which has finished."
-msgstr "Valitse, kuinka paljon Ohjelmaopas historiaa EPG välimuistissa säilytetään. Näitä historiatietoja voi selata missä tahansa EPG näkymässä. Tämä voi olla hyödyllistä, kun tarvitset tietoja äskettäin päättyneestä tapahtumasta."
 
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Valitse, kuinka usein yhteys muodostetaan IceTV palvelimeen päivitysten tarkistamiseksi."
@@ -4895,6 +4899,9 @@ msgstr "Konsoli paketit"
 
 msgid "Console Utility Packages"
 msgstr "Konsoli työkalut"
+
+msgid "Constcw"
+msgstr "Constcw"
 
 msgid "Constellation"
 msgstr "Merkistö"
@@ -6281,7 +6288,7 @@ msgid "Disable Picture in Picture"
 msgstr "Sulje PiP-kuva"
 
 msgid "Disable ServiceHiSilicon"
-msgstr ""
+msgstr "Poista käytöstö ServiceHiSilicon"
 
 msgid "Disable background scanning"
 msgstr "Poista taustahaku käytöstä"
@@ -6833,6 +6840,9 @@ msgstr "EPG näppäimen toiminto"
 msgid "EPG filename"
 msgstr "Ohjelmaoppaan tiedostonimi"
 
+msgid "EPG history"
+msgstr "Säilytä EPG historia (minuutteina)"
+
 msgid ""
 "EPG key : Switch to channel list\n"
 "Ok key : Remove selected channel\n"
@@ -6994,6 +7004,9 @@ msgstr "Tyhjä"
 
 msgid "Empty file"
 msgstr "Tyhjä tiedosto"
+
+msgid "Emulator"
+msgstr "Emulaattori"
 
 msgid "Enable"
 msgstr "Ota käyttöön"
@@ -7199,7 +7212,7 @@ msgid "Enable this option to add action map / remote control mapping data to the
 msgstr "Aktivoi tämä vaihtoehto, jos haluat lisätä toimintakarttatietoja virheenkorjauslokiin."
 
 msgid "Enable this option to add bouquet database information to the debug log file."
-msgstr ""
+msgstr "Tämän vaihtoehdon avulla voit lisätä Kanavalistan tietokannan tietoja debug lokitiedostoon."
 
 msgid "Enable this option to add extra DVB details to the debug log file."
 msgstr "Aktivoi tämä vaihtoehto lisätäksesi DVB lisätietoja debug loki tiedostoon."
@@ -7408,6 +7421,9 @@ msgstr "Syötä PIN koodi"
 
 msgid "Enter text via an attached keyboard"
 msgstr "Kirjoita teksti liitetyn näppäimistön kautta"
+
+msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
+msgstr ""
 
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the specifications of your LNB."
 msgstr "Syötä taajuus, jolla LNB vaihtaa matalan ja korkean taajuuden välillä. Lisätietoja löytyy LNB: n tieto lomakkeesta."
@@ -9094,6 +9110,9 @@ msgstr "Korkeus"
 msgid "Help"
 msgstr "Apua"
 
+msgid "Help Action"
+msgstr "Apua toiminnot"
+
 msgid "Help Screen Information"
 msgstr "Ohje näytön tiedot"
 
@@ -9734,7 +9753,7 @@ msgid "Include action map data"
 msgstr "Sisällytä ohjelmiston toiminta tiedot"
 
 msgid "Include bouquet DB data"
-msgstr ""
+msgstr "Sisältää kanava DB tiedot"
 
 msgid "Include international data *"
 msgstr "Sisällytä kansainväliset tiedot *"
@@ -10203,9 +10222,6 @@ msgstr "Kazakhstan"
 
 msgid "Kazakhstan"
 msgstr "Kazakhstan"
-
-msgid "EPG history"
-msgstr "Säilytä EPG historia (minuutteina)"
 
 msgid "Keep service"
 msgstr "Säilytä kanava"
@@ -13023,6 +13039,9 @@ msgstr "PCR PID"
 
 msgid "PDC"
 msgstr "PDC"
+
+msgid "PG - Parental Guidance"
+msgstr "PG - Vanhempien ohjaus"
 
 msgid "PGS file"
 msgstr "Ohjelmaoppaan tiedostonimi"
@@ -15921,7 +15940,7 @@ msgid "Select 'Yes' to disable multi-selection mode after each operation. Select
 msgstr "Valitse Kyllä, jos haluat poistaa moni valinta tilan käytöstä jokaisen toiminnon jälkeen. Valitse Ei, jos haluat jättää valinta tilan aktiiviseksi ja valinnat ennalleen."
 
 msgid "Select 'Yes' to disable the ServiceHiSilicon plugin to allow use of the default internal media player code."
-msgstr ""
+msgstr "Valitse \"Kyllä\" poistaaksesi ServiceHiSilicon laajennuksen, jotta voit käyttää oletusarvoista sisäistä mediasoittimen koodia."
 
 msgid "Select 'Yes' to display a small TV image (PiG - Picture in Graphic) within the EPG screen."
 msgstr "'Kyllä' valinnalla näytetään pieni TV-kuva EPG:ssä."
@@ -16322,6 +16341,9 @@ msgstr "Valitse, kuinka kauan tehtävä- ja komentosarjaviestin ponnahdusikkuna 
 
 msgid "Select how long, in seconds, that the volume and mute displays are shown before they automatically hide."
 msgstr "Valitse, kuinka kauan sekunneissa äänenvoimakkuus ja mykistys näyttö näkyvät ennen kuin ne piiloutuvat automaattisesti."
+
+msgid "Select how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful for information about an event which has finished."
+msgstr "Valitse, kuinka paljon Ohjelmaopas historiaa EPG välimuistissa säilytetään. Näitä historiatietoja voi selata missä tahansa EPG näkymässä. Tämä voi olla hyödyllistä, kun tarvitset tietoja äskettäin päättyneestä tapahtumasta."
 
 msgid "Select how often this timer is to be repeated."
 msgstr "Valitse, kuinka usein tämä ajastin toistetaan."
@@ -18278,7 +18300,7 @@ msgstr "Näytä varoitus kun ajansiirto on pysäytetty"
 msgid "Show watch status"
 msgstr "Tallenneluettelon tilakuvakkeet"
 
-msgid "Show/Games show"
+msgid "Show/Game show"
 msgstr "Peli show"
 
 msgid "Show/Hide Actions"
@@ -18920,6 +18942,9 @@ msgstr "Erikois 2"
 msgid "Special Features Settings"
 msgstr "Erikois ominaisuudet"
 
+msgid "Special characteristics"
+msgstr ""
+
 msgid "Specify the directory to use when starting Media Player."
 msgstr "Määritä hakemisto, jota käytetään käynnistettäessä Media Soitinta."
 
@@ -19261,6 +19286,9 @@ msgstr "Etäasiakkaiden tiedot"
 msgid "Streaming recording ended"
 msgstr "Suoratoiston tallennus on päättynyt"
 
+msgid "Streaming recovery delay"
+msgstr ""
+
 #, python-format
 msgid "Streaming tuner information for %s %s"
 msgstr "Etäasiakkaan virittimen tiedot: %s %s"
@@ -19358,6 +19386,15 @@ msgstr "Onnistui:"
 
 msgid "Sudan"
 msgstr "Sudan"
+
+msgid "Suitable for ages 12+"
+msgstr "Soveltuu ikäisille 12+"
+
+msgid "Suitable for ages 15+"
+msgstr "Soveltuu ikäisille 15+"
+
+msgid "Suitable only for Adults"
+msgstr "Soveltuu vain aikuisille"
 
 msgid "Sun"
 msgstr "Su"
@@ -21265,6 +21302,9 @@ msgstr "Laitteen tyyppi"
 msgid "Type of scan"
 msgstr "Hakutapa"
 
+msgid "U - Suitable for all"
+msgstr "U - Sopii kaikille"
+
 #, python-format
 msgid "UBI slot %s%s"
 msgstr "UBI paikka %s%s"
@@ -21298,6 +21338,10 @@ msgstr "USB 3.0 (takana)"
 
 msgid "USB Stick"
 msgstr "USB muistitikku"
+
+#, python-format
+msgid "USB reader %d"
+msgstr "USB lukija %d"
 
 #, python-format
 msgid "USB slot %s%s"

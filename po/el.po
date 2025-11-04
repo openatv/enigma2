@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-27 10:09+0000\n"
-"PO-Revision-Date: 2025-10-06 17:02+0000\n"
+"POT-Creation-Date: 2025-10-23 18:55+0000\n"
+"PO-Revision-Date: 2025-10-25 04:24+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
 "Language: el\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.14-dev\n"
+"X-Generator: Weblate 5.14.1-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -3088,6 +3088,9 @@ msgstr "Μπλε"
 msgid "Bluetooth"
 msgstr "Bluetooth"
 
+msgid "Bluetooth Audio"
+msgstr "Ήχος bluetooth"
+
 msgid "Bluetooth Setup"
 msgstr "Ρυθμίσεις Bluetooth"
 
@@ -3700,6 +3703,10 @@ msgstr "Αδυναμία εύρεσης σήματος ..., ματαίωση !"
 msgid "Cape Verde"
 msgstr "Πράσινο Ακρωτήρι"
 
+#, python-format
+msgid "Card reader %d"
+msgstr "Αναγνώστης κάρτας %d"
+
 msgid "Cards: "
 msgstr "Κάρτες: "
 
@@ -4026,9 +4033,6 @@ msgstr "Επιλέξτε τον συνδυασμό χωρών για την απ
 
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr "Επιλέξτε μία ετικέτα αναγνώρισης αυτής της συσκευής εντός των υπηρεσιών IceTV."
-
-msgid "Select how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful for information about an event which has finished."
-msgstr "Επιλογή μεγέθους ιστορικού του EPG, αν υπάρχει, για διατήρηση στην μνήμη αποθήκευσης EPG. Μπορεί να γίνει περιήγηση σε αυτά τα δεδομένα σε κάθε προβολή EPG. Αυτό μπορεί να είναι χρήσιμο όταν χρειάζεστε πληροφορίες για ένα πρόγραμμα που έχει τελειώσει πρόσφατα."
 
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Επιλέξτε πόσο συχνά θα γίνεται σύνδεση στον διακομιστή IceTV για έλεγχο ενημερώσεων."
@@ -4887,6 +4891,9 @@ msgstr "Πακέτα κονσόλας"
 
 msgid "Console Utility Packages"
 msgstr "Πακέτα συνοδευτικών κονσόλας"
+
+msgid "Constcw"
+msgstr "Constcw"
 
 msgid "Constellation"
 msgstr "Αστερισμός"
@@ -6825,6 +6832,9 @@ msgstr "Λειτουργία πλήκτρου EPG"
 msgid "EPG filename"
 msgstr "Όνομα αρχείου EPG"
 
+msgid "EPG history"
+msgstr "Διατήρηση του ιστορικού EPG (σε λεπτά)"
+
 msgid ""
 "EPG key : Switch to channel list\n"
 "Ok key : Remove selected channel\n"
@@ -6986,6 +6996,9 @@ msgstr "Άδειο"
 
 msgid "Empty file"
 msgstr "Άδειο αρχείο"
+
+msgid "Emulator"
+msgstr "Emulator"
 
 msgid "Enable"
 msgstr "Ενεργοποίηση"
@@ -7400,6 +7413,9 @@ msgstr "Εισαγωγή κωδικού pin"
 
 msgid "Enter text via an attached keyboard"
 msgstr "Εισάγετε κείμενο μέσω ενός συνδεδεμένου πληκτρολογίου"
+
+msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
+msgstr "Εισάγετε τη διάρκεια που θα προστεθεί στην προσωρινή αποθήκευση της ροής μετά από σφάλμα της. Αυτή η πρόσθετη αποθήκευση μπορεί να βοηθήσει στην αποφυγή περαιτέρω λαθών ροής λόγω έλλειψης αποθηκευτικού χώρου."
 
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the specifications of your LNB."
 msgstr "Εισάγετε τη συχνότητα αλλαγής μεταξύ της χαμηλής και της υψηλής μπάντας του LNB. Για περισσότερες πληροφορίες ανατρέξτε στον πίνακα χαρακτηριστικών του LNB σας."
@@ -9086,6 +9102,9 @@ msgstr "Ύψος"
 msgid "Help"
 msgstr "Help"
 
+msgid "Help Action"
+msgstr "Ενέργεια βοήθειας"
+
 msgid "Help Screen Information"
 msgstr "Πληροφορίες οθόνης βοήθειας"
 
@@ -10190,9 +10209,6 @@ msgstr "Καζακικά"
 
 msgid "Kazakhstan"
 msgstr "Καζακστάν"
-
-msgid "EPG history"
-msgstr "Διατήρηση του ιστορικού EPG (σε λεπτά)"
 
 msgid "Keep service"
 msgstr "Διατήρηση υπηρεσίας"
@@ -13002,6 +13018,9 @@ msgstr "PCR PID"
 
 msgid "PDC"
 msgstr "PDC"
+
+msgid "PG - Parental Guidance"
+msgstr "ΓΣ - Γονική συναίνεση"
 
 msgid "PGS file"
 msgstr "αρχείο PGS"
@@ -16292,6 +16311,9 @@ msgstr "Επιλέξτε το χρονικό διάστημα για το οπο
 msgid "Select how long, in seconds, that the volume and mute displays are shown before they automatically hide."
 msgstr "Επιλέξτε τη διάρκεια σε δευτερόλεπτα, όπου θα εμφανίζονται οι ενδείξεις έντασης και σίγασης πριν γίνει αυτόματη απόκρυψή τους."
 
+msgid "Select how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful for information about an event which has finished."
+msgstr "Επιλογή μεγέθους ιστορικού του EPG, αν υπάρχει, για διατήρηση στην μνήμη αποθήκευσης EPG. Μπορεί να γίνει περιήγηση σε αυτά τα δεδομένα σε κάθε προβολή EPG. Αυτό μπορεί να είναι χρήσιμο όταν χρειάζεστε πληροφορίες για ένα πρόγραμμα που έχει τελειώσει πρόσφατα."
+
 msgid "Select how often this timer is to be repeated."
 msgstr "Επιλέξτε πόσο συχνά θα επαναλαμβάνεται αυτός ο χρονοδιακόπτης."
 
@@ -18243,7 +18265,7 @@ msgstr "Εμφάνιση προειδοποίησης όταν η χρονομε
 msgid "Show watch status"
 msgstr "Εμφάνιση της κατάστασης παρακολούθησης"
 
-msgid "Show/Games show"
+msgid "Show/Game show"
 msgstr "Σόου/τηλεπαιχνίδι"
 
 msgid "Show/Hide Actions"
@@ -18885,6 +18907,9 @@ msgstr "Ειδικοί 2"
 msgid "Special Features Settings"
 msgstr "Ρυθμίσεις ειδικών λειτουργιών"
 
+msgid "Special characteristics"
+msgstr "Ειδικά χαρακτηριστικά"
+
 msgid "Specify the directory to use when starting Media Player."
 msgstr "Ορισμός του φακέλου χρήσης όταν ξεκινά ο αναπαραγωγός ταινιών."
 
@@ -19226,6 +19251,9 @@ msgstr "Πληροφορίες tuner ροής"
 msgid "Streaming recording ended"
 msgstr "Η εγγραφή της ροής τελείωσε"
 
+msgid "Streaming recovery delay"
+msgstr "Καθυστέρηση επανάκτησης ροής"
+
 #, python-format
 msgid "Streaming tuner information for %s %s"
 msgstr "Πληροφορίες tuner ροής για τον %s %s"
@@ -19323,6 +19351,15 @@ msgstr "Επιτυχία:"
 
 msgid "Sudan"
 msgstr "Σουδάν"
+
+msgid "Suitable for ages 12+"
+msgstr "Κατάλληλο για ηλικίες 12+"
+
+msgid "Suitable for ages 15+"
+msgstr "Κατάλληλο για ηλικίες 15+"
+
+msgid "Suitable only for Adults"
+msgstr "Κατάλληλο μόνο για ενήλικες"
 
 msgid "Sun"
 msgstr "Κυρ"
@@ -21223,6 +21260,9 @@ msgstr "Τύπος συσκευής"
 msgid "Type of scan"
 msgstr "Τύπος ανίχνευσης"
 
+msgid "U - Suitable for all"
+msgstr "Κ - Κατάλληλο για όλους"
+
 #, python-format
 msgid "UBI slot %s%s"
 msgstr "Θέση UBI %s%s"
@@ -21256,6 +21296,10 @@ msgstr "USB 3.0 (πίσω, εξωτερικό)"
 
 msgid "USB Stick"
 msgstr "USB στικ"
+
+#, python-format
+msgid "USB reader %d"
+msgstr "Αναγνώστης USB %d"
 
 #, python-format
 msgid "USB slot %s%s"

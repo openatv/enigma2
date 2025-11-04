@@ -1,5 +1,4 @@
 [tool.ruff]
-line-length = 1000
 builtins = ["_", "ngettext", "pgettext"]
 select = ["E","F","W"]
-ignore = ["W191"]
+ignore = ["W191","E501"]

@@ -1,8 +1,8 @@
 ---
 name: Fehlerreport
 about: Erstelle einen Fehlerreport um uns zu helfen das Produkt zu verbessern
-title: ''
-labels: BUG 🐞
+title: "[Bug]: "
+type: bug
 assignees: ''
 
 ---

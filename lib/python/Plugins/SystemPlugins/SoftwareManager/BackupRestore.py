@@ -177,7 +177,7 @@ class BackupScreen(ConfigListScreen, Screen):
 							installed = set(line.split()[0] for line in pkgs)
 							preinstalled = set(line.split()[0] for line in fd)
 							removed = preinstalled - installed
-							removed = [package for package in removed if package.startswith("enigma2-plugin-") or package.startswith("enigma2-locale-")]
+							removed = [x for x in removed]
 							if removed:
 								fileWriteLines("/tmp/removed-list.txt", removed)
 								backupDirs += " tmp/removed-list.txt"
@@ -229,14 +229,22 @@ class BackupScreen(ConfigListScreen, Screen):
 			self.session.open(MessageBox, _("No suitable backup locations found!"), MessageBox.TYPE_ERROR, timeout=5)
 
 	def backupFinishedCB(self, retval=None):
-		print("[BackupScreen] DEBUG backupFinishedCB")
-		if self.finishedCallback:
-			self.finishedCallback()
+		# print("[BackupScreen] DEBUG backupFinishedCB")
+		try:
+			fullbackupFilename = join(self.backuppath, getBackupFilename())
+			fileOK = exists(fullbackupFilename) and stat(fullbackupFilename).st_size > 0
+		except OSError:
+			fileOK = False
+		if fileOK:
+			if self.finishedCallback:
+				self.finishedCallback()
+			else:
+				config.usage.shutdownOK.setValue(self.shutdownOKOld)
+				config.usage.shutdownOK.save()
+				configfile.save()
+				self.close(True)
 		else:
-			config.usage.shutdownOK.setValue(self.shutdownOKOld)
-			config.usage.shutdownOK.save()
-			configfile.save()
-			self.close(True)
+			self.backupErrorCB()
 
 	def backupErrorCB(self, retval=None):
 		if self.finishedCallback:
@@ -335,7 +343,7 @@ class BackupSelection(Screen):
 	def saveSelection(self):
 		if self.readOnly:
 			pass
-			#self.close(None)
+			# self.close(None)
 		else:
 			self.selectedFiles = self["checkList"].getSelectedList()
 			self.configBackupDirs.setValue(self.selectedFiles)

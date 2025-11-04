@@ -272,9 +272,15 @@ class RecordTimer(Timer):
 		timer.vpsplugin_enabled = (vpsEnabled and vpsEnabled == "1")
 		if vpsTime and vpsTime != "None":
 			timer.vpsplugin_time = int(vpsTime)
+		logCount = 0
 		for log in timerDom.findall("log"):
+			logCount += 1
 			timer.log_entries.append((int(log.get("time")), int(log.get("code")), log.text.strip()))
-		timer.failed = int(timerDom.get("failed") or "0")
+		if logCount < 2 and timer.end < time():
+			timer.log_entries.append((int(time()), 0, "Timer not started because of power failure"))
+			timer.failed = True
+		else:
+			timer.failed = int(timerDom.get("failed") or "0")
 		return timer
 
 	def timeChanged(self, timer):
@@ -385,6 +391,9 @@ class RecordTimer(Timer):
 	# DEBUG: Rename "ignoreTSC" to be "ignoreConflict" to be more clear.  This is used by MovieSelection.py.
 	def record(self, timer, ignoreTSC=False, dosave=True):  # This is called by loadTimers with dosave=False.
 		timer.check_justplay()
+		duplicateBegin = [x for x in self.timer_list if not x.disabled and x.begin == timer.begin]
+		if duplicateBegin:
+			timer.begin = timer.begin - 10  # - 10 seconds begin time
 		timerSanityCheck = TimerSanityCheck(self.timer_list, timer)
 		if not timerSanityCheck.check():
 			if not ignoreTSC:

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-27 10:09+0000\n"
+"POT-Creation-Date: 2025-10-23 18:55+0000\n"
 "PO-Revision-Date: 2025-05-05 05:50+0000\n"
 "Last-Translator: Balázs Sólyom <balazs@solyom.online>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -3138,6 +3138,9 @@ msgstr "Kék"
 msgid "Bluetooth"
 msgstr ""
 
+msgid "Bluetooth Audio"
+msgstr ""
+
 msgid "Bluetooth Setup"
 msgstr "Bluetooth eszköz beállítása"
 
@@ -3741,6 +3744,10 @@ msgstr "Nem található jel... művelet megszakítva!"
 msgid "Cape Verde"
 msgstr "Zöld-foki Köztársaság"
 
+#, python-format
+msgid "Card reader %d"
+msgstr ""
+
 msgid "Cards: "
 msgstr "Kártyák: "
 
@@ -4070,9 +4077,6 @@ msgstr "Válasszon egy országsémát az EPG-események minősítési adatainak 
 
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr "Válasszon olyan címkét, amely azonosítja ezt az eszközt az IceTV szolgáltatásokon belül."
-
-msgid "Select how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful for information about an event which has finished."
-msgstr ""
 
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Válassza ki, hogy milyen gyakran szeretne csatlakozni az IceTV kiszolgálóhoz a frissítések kereséséhez."
@@ -4926,6 +4930,9 @@ msgid "Console Packages"
 msgstr ""
 
 msgid "Console Utility Packages"
+msgstr ""
+
+msgid "Constcw"
 msgstr ""
 
 msgid "Constellation"
@@ -6867,6 +6874,9 @@ msgstr "EPG gomb mód"
 msgid "EPG filename"
 msgstr "EPG fájlnév"
 
+msgid "EPG history"
+msgstr ""
+
 msgid ""
 "EPG key : Switch to channel list\n"
 "Ok key : Remove selected channel\n"
@@ -7028,6 +7038,9 @@ msgid "Empty"
 msgstr ""
 
 msgid "Empty file"
+msgstr ""
+
+msgid "Emulator"
 msgstr ""
 
 msgid "Enable"
@@ -7443,6 +7456,9 @@ msgid "Enter pin code"
 msgstr "Adja meg a PIN-kódot"
 
 msgid "Enter text via an attached keyboard"
+msgstr ""
+
+msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
 msgstr ""
 
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the specifications of your LNB."
@@ -9138,6 +9154,9 @@ msgstr "Magasság"
 msgid "Help"
 msgstr "Súgó"
 
+msgid "Help Action"
+msgstr ""
+
 #, fuzzy
 msgid "Help Screen Information"
 msgstr "Eszközinformáció"
@@ -10254,9 +10273,6 @@ msgstr "Kazahsztán"
 
 msgid "Kazakhstan"
 msgstr "Kazahsztán"
-
-msgid "EPG history"
-msgstr ""
 
 msgid "Keep service"
 msgstr "Maradjon a csatornán"
@@ -13132,6 +13148,9 @@ msgstr "PCR PID"
 
 msgid "PDC"
 msgstr "PDC"
+
+msgid "PG - Parental Guidance"
+msgstr ""
 
 #, fuzzy
 msgid "PGS file"
@@ -16432,6 +16451,9 @@ msgstr ""
 msgid "Select how long, in seconds, that the volume and mute displays are shown before they automatically hide."
 msgstr ""
 
+msgid "Select how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful for information about an event which has finished."
+msgstr ""
+
 msgid "Select how often this timer is to be repeated."
 msgstr ""
 
@@ -18378,8 +18400,8 @@ msgstr "Figyelmeztetés Timeshift megállításakor"
 msgid "Show watch status"
 msgstr "Állapotjelző ikonok megjelenítése a felvétel listában"
 
-msgid "Show/Games show"
-msgstr "Show/Games show"
+msgid "Show/Game show"
+msgstr "Show/Game show"
 
 msgid "Show/Hide Actions"
 msgstr ""
@@ -19024,6 +19046,9 @@ msgstr "Különleges 2"
 msgid "Special Features Settings"
 msgstr "Speciális tulajdonságok"
 
+msgid "Special characteristics"
+msgstr ""
+
 msgid "Specify the directory to use when starting Media Player."
 msgstr ""
 
@@ -19366,6 +19391,9 @@ msgstr ""
 msgid "Streaming recording ended"
 msgstr "A streamelési felvétel véget ért"
 
+msgid "Streaming recovery delay"
+msgstr ""
+
 #, python-format
 msgid "Streaming tuner information for %s %s"
 msgstr ""
@@ -19464,6 +19492,15 @@ msgstr "Sikeres:"
 
 msgid "Sudan"
 msgstr "Szudán"
+
+msgid "Suitable for ages 12+"
+msgstr ""
+
+msgid "Suitable for ages 15+"
+msgstr ""
+
+msgid "Suitable only for Adults"
+msgstr ""
 
 msgid "Sun"
 msgstr "Vas"
@@ -21354,6 +21391,9 @@ msgstr ""
 msgid "Type of scan"
 msgstr "Keresés típusa"
 
+msgid "U - Suitable for all"
+msgstr ""
+
 #, python-format
 msgid "UBI slot %s%s"
 msgstr ""
@@ -21388,6 +21428,10 @@ msgstr ""
 
 msgid "USB Stick"
 msgstr "USB-stick"
+
+#, python-format
+msgid "USB reader %d"
+msgstr ""
 
 #, python-format
 msgid "USB slot %s%s"

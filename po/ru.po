@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-09-27 10:09+0000\n"
+"POT-Creation-Date: 2025-10-23 18:55+0000\n"
 "PO-Revision-Date: 2025-08-18 16:27+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
@@ -3124,6 +3124,9 @@ msgstr "Синий"
 msgid "Bluetooth"
 msgstr "Bluetooth"
 
+msgid "Bluetooth Audio"
+msgstr ""
+
 msgid "Bluetooth Setup"
 msgstr "Настройки Bluetooth"
 
@@ -3736,6 +3739,10 @@ msgstr "Сигнал не найден, прерываем!"
 msgid "Cape Verde"
 msgstr "Кабо-Верде"
 
+#, python-format
+msgid "Card reader %d"
+msgstr ""
+
 msgid "Cards: "
 msgstr "Карты "
 
@@ -4062,9 +4069,6 @@ msgstr "Выберите страну для декодирования инфо
 
 msgid "Choose a label that will identify this device within IceTV services."
 msgstr "Выберите ярлык, который будет идентифицировать это устройство в сервисах IceTV."
-
-msgid "Select how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful for information about an event which has finished."
-msgstr "Выберите, сколько истории EPG, если таковая имеется, будет храниться в кэше EPG. Эти данные истории можно просматривать в любом из представлений EPG. Это может быть полезно, когда Вам нужна информация о недавно завершившемся событии."
 
 msgid "Choose how often to connect to IceTV server to check for updates."
 msgstr "Выберите, как часто нужно подключаться к серверу IceTV для проверки обновлений."
@@ -4925,6 +4929,9 @@ msgstr "Консольные пакеты"
 
 msgid "Console Utility Packages"
 msgstr "Пакеты консольных утилит"
+
+msgid "Constcw"
+msgstr ""
 
 msgid "Constellation"
 msgstr "Созвездие"
@@ -6864,6 +6871,9 @@ msgstr "Кнопка EPG"
 msgid "EPG filename"
 msgstr "Название файла ТВ-гида"
 
+msgid "EPG history"
+msgstr "Хранить историю EPG (в минутах)"
+
 msgid ""
 "EPG key : Switch to channel list\n"
 "Ok key : Remove selected channel\n"
@@ -7025,6 +7035,9 @@ msgstr "Пустой"
 
 msgid "Empty file"
 msgstr "Пустой файл"
+
+msgid "Emulator"
+msgstr ""
 
 msgid "Enable"
 msgstr "Включить"
@@ -7441,6 +7454,9 @@ msgstr "Введите PIN-код"
 
 msgid "Enter text via an attached keyboard"
 msgstr "Ввод текста с подключенной клавиатуры"
+
+msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
+msgstr ""
 
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the specifications of your LNB."
 msgstr "Введите частоту, на которой LNB переключается между диапазоном низких и высоких частот. Для получения дополнительной информации обратитесь к спецификации вашего LNB."
@@ -9127,6 +9143,9 @@ msgstr "Высота"
 msgid "Help"
 msgstr "Help"
 
+msgid "Help Action"
+msgstr ""
+
 msgid "Help Screen Information"
 msgstr "Информация о экране справки"
 
@@ -10231,9 +10250,6 @@ msgstr "Казахский"
 
 msgid "Kazakhstan"
 msgstr "Казахстан"
-
-msgid "EPG history"
-msgstr "Хранить историю EPG (в минутах)"
 
 msgid "Keep service"
 msgstr "Сохранить канал"
@@ -13045,6 +13061,9 @@ msgstr "PCR PID"
 
 msgid "PDC"
 msgstr "PDC"
+
+msgid "PG - Parental Guidance"
+msgstr ""
 
 msgid "PGS file"
 msgstr "Файл PGS"
@@ -16340,6 +16359,9 @@ msgstr "Выберите, как долго отображать задание 
 msgid "Select how long, in seconds, that the volume and mute displays are shown before they automatically hide."
 msgstr "Выберите, как долго (в секундах) будут отображаться индикаторы громкости и отключения звука, прежде чем они автоматически исчезнут."
 
+msgid "Select how much EPG history, if any, to keep in the EPG cache. This historic data can be browsed in any of the EPG views. This can be useful for information about an event which has finished."
+msgstr "Выберите, сколько истории EPG, если таковая имеется, будет храниться в кэше EPG. Эти данные истории можно просматривать в любом из представлений EPG. Это может быть полезно, когда Вам нужна информация о недавно завершившемся событии."
+
 msgid "Select how often this timer is to be repeated."
 msgstr "Выберите, как часто этот таймер должен повторяться."
 
@@ -18291,7 +18313,7 @@ msgstr "Показывать предупреждение при останов�
 msgid "Show watch status"
 msgstr "Показывать статус просмотра"
 
-msgid "Show/Games show"
+msgid "Show/Game show"
 msgstr "Шоу/Игровое шоу"
 
 msgid "Show/Hide Actions"
@@ -18937,6 +18959,9 @@ msgstr "Спецсимволы 2"
 msgid "Special Features Settings"
 msgstr "Особые настройки"
 
+msgid "Special characteristics"
+msgstr ""
+
 msgid "Specify the directory to use when starting Media Player."
 msgstr "Укажите каталог, который будет использоваться при запуске Media Player."
 
@@ -19278,6 +19303,9 @@ msgstr "Сетевое вещание"
 msgid "Streaming recording ended"
 msgstr "Потоковая запись завершена"
 
+msgid "Streaming recovery delay"
+msgstr ""
+
 #, python-format
 msgid "Streaming tuner information for %s %s"
 msgstr "Сведения о передаваемых %s %s в сеть потоках"
@@ -19375,6 +19403,15 @@ msgstr "Успешно:"
 
 msgid "Sudan"
 msgstr "Судан"
+
+msgid "Suitable for ages 12+"
+msgstr ""
+
+msgid "Suitable for ages 15+"
+msgstr ""
+
+msgid "Suitable only for Adults"
+msgstr ""
 
 msgid "Sun"
 msgstr "Вс"
@@ -21276,6 +21313,9 @@ msgstr "Тип устройства"
 msgid "Type of scan"
 msgstr "Тип поиска"
 
+msgid "U - Suitable for all"
+msgstr ""
+
 #, python-format
 msgid "UBI slot %s%s"
 msgstr "Слот UBI %s%s"
@@ -21309,6 +21349,10 @@ msgstr "USB 3.0 (сзади, снаружи)"
 
 msgid "USB Stick"
 msgstr "USB-накопитель"
+
+#, python-format
+msgid "USB reader %d"
+msgstr ""
 
 #, python-format
 msgid "USB slot %s%s"

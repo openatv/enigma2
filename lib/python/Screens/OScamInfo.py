@@ -49,10 +49,10 @@ class OSCamGlobals():
 		webif = ipv6compiled = False
 		port = signstatus = data = error = conffile = url = verfile = None
 		cam = cam if cam in BoxInfo.getItem("CurrentSoftcam").split("/")[-1].lower() else "oscam"
-		verfilename = "%s.version" % cam
-		api = "%s%s" % (cam, api)
+		verfilename = f"{cam}.version"
+		api = f"{cam}{api}"
 		if config.oscaminfo.userDataFromConf.value:  # Find and parse running oscam, ncam (auto)
-			verfile = "/tmp/.%s/%s" % (verfilename.split('.')[0], verfilename)
+			verfile = f"/tmp/.{verfilename.split('.')[0]}/{verfilename}"
 			if exists(verfile):
 				data = Path(verfile).read_text()
 		else:  # Find and parse running oscam, ncam (api)
@@ -73,7 +73,8 @@ class OSCamGlobals():
 				error = result
 
 		if data:
-			for i in data.splitlines():
+			self.confPath.__func__._content = data
+			for i in self.confPath.__func__._content.splitlines():
 				if "web interface support:" in i.lower():
 					webif = {"no": False, "yes": True}.get(i.split(":")[1].strip(), False)
 				elif "webifport:" in i.lower():
@@ -81,17 +82,17 @@ class OSCamGlobals():
 					if port == "0":
 						port = None
 				elif "configdir:" in i.lower():
-					conffile = "%s%s" % (i.split(":")[1].strip(), verfilename.replace("version", "conf"))
+					conffile = f"{i.split(':')[1].strip()}{verfilename.replace('version', 'conf')}"
 				elif "ipv6 support:" in i.lower():
 					ipv6compiled = {"no": False, "yes": True}.get(i.split(":")[1].strip())
 				elif "signature:" in i.lower():
 					signstatus = i.split(":")[1].strip()
 				elif "subject:" in i.lower():
-					signstatus = "%s (%s)" % (i.split(":")[1].strip(), signstatus)
+					signstatus = f"{i.split(':')[1].strip()} ({signstatus})"
 				else:
 					continue
 		else:
-			error = "unexpected result from %s%s" % ((verfile or ""), (url or "")) if not error else error
+			error = f"unexpected result from {(verfile or '')}{(url or '')}" if not error else error
 		return webif, port, api, ipv6compiled, signstatus, conffile, error
 
 	def getUserData(self):
@@ -100,7 +101,7 @@ class OSCamGlobals():
 			webif, port, api, ipv6compiled, signstatus, conffile, error = self.confPath()  # (True, 'http', '127.0.0.1', '8080', '/etc/tuxbox/config/oscam-trunk/', True, 'CN=...', 'oscam.conf', None)
 			ip, proto, blocked = "127.0.0.1", "http", False  # Assume that oscam webif is NOT blocking localhost, IPv6 is also configured if it is compiled in, and no user and password are required
 			user = pwd = None
-			conffile = "%s" % (conffile or "oscam.conf")
+			conffile = f"{conffile or 'oscam.conf'}"
 			ret = _("OSCam webif disabled") if not error else error
 			if webif and port is not None:  # oscam reports it got webif support and webif is running (Port != 0)
 				if config.oscaminfo.userDataFromConf.value:  # Find and parse running oscam, ncam (auto)
@@ -125,7 +126,7 @@ class OSCamGlobals():
 									if "::1" not in allowed:
 										ip = "127.0.0.1"
 				else:  #Use custom defined parameters
-					proto = proto = "https" if config.oscaminfo.usessl.value else "http"
+					proto = "https" if config.oscaminfo.usessl.value else "http"
 					ip = str(config.oscaminfo.ip.value)
 					port = str(config.oscaminfo.port.value)
 					user = str(config.oscaminfo.username.value)
@@ -138,12 +139,12 @@ class OSCamGlobals():
 		webhandler = HTTPHandler if proto == "http" else HTTPSHandler(context=(create_default_context() if config.oscaminfo.verifycert.value else SkipCertificateVerification()))  # NOSONAR silence S4830 + S5527
 		if part in ["status", "userstats"]:
 			style, appendix = ("html", "&appendlog=1") if log else (fmt, "")
-			url = "%s://%s:%s/%s.%s?part=status%s" % (proto, ip, port, api, style, appendix)  # e.g. http://127.0.0.1:8080/oscamapi.html?part=status&appendlog=1
+			url = f"{proto}://{ip}:{port}/{api}.{style}?part=status{appendix}"
 		elif part in ["restart", "shutdown"]:
-			url = "%s://%s:%s/shutdown.html?action=%s" % (proto, ip, port, part)  # e.g. http://127.0.0.1:8080//shutdown.html?action=restart or ...?action=shutdown
+			url = f"{proto}://{ip}:{port}/shutdown.html?action={part}"
 		elif label:
 			key = "file" if part == "files" else "label"                                            # e.g. http://127.0.0.1:8080/oscamapi.html?part=files&file=oscam.conf
-			url = "%s://%s:%s/%s.%s?part=%s&%s=%s" % (proto, ip, port, api, fmt, part, key, label)  # e.g. http://127.0.0.1:8080/oscamapi.json?part=entitlement&label=MyReader
+			url = f"{proto}://{ip}:{port}/{api}.{fmt}?part={part}&{key}={label}"                    # e.g. http://127.0.0.1:8080/oscamapi.json?part=entitlement&label=MyReader
 		opener = build_opener(webhandler)
 		if username and password and url:
 			pwman = HTTPPasswordMgrWithDefaultRealm()
@@ -161,8 +162,17 @@ class OSCamGlobals():
 				errmsg = str(error.errno)
 			else:
 				errmsg = str(error)
-			print("[%s] ERROR in module 'callApi': Unexpected error accessing WebIF: %s" % (MODULE_NAME, errmsg))
+			print(f"[{MODULE_NAME}] ERROR in module 'callApi': Unexpected error accessing WebIF: {errmsg}")
 			return False, url, errmsg.encode(encoding="latin-1", errors="ignore")
+
+	def getCapabilities(self):
+		if hasattr(self.confPath.__func__, "_content") and self.confPath.__func__._content:
+			content = self.confPath.__func__._content
+			idx = content.lower().find("web interface support")
+			if idx != -1:
+				section = content[idx:]
+				return True, section
+		return False, "<no capabilities found>"
 
 	def updateLog(self):
 		webifok, api, url, signstatus, result = self.openWebIF(log=True)
@@ -223,7 +233,7 @@ class OSCamInfo(Screen, OSCamGlobals):
 					}
 				</convert>
 			</widget>
-			<widget name="logtext" position="15,812" size="1890,150" font="Regular;24" halign="left" valign="top" foregroundColor="black" backgroundColor="#10ECEAF6" noWrap="0" scrollbarMode="showNever" />
+			<widget name="logtext" position="15,812" size="1890,150" font="Regular;24" halign="left" valign="top" padding="10,0,10,0" foregroundColor="black" backgroundColor="#10ECEAF6" noWrap="0" scrollbarMode="showNever" />
 			<eLabel text="System Ram" position="15,964" size="171,42" font="Regular;27" halign="center" valign="center" foregroundColor="#FFFF30" backgroundColor="#105a5a5a" />
 			<widget source="total" render="Label" position="188,964" size="228,42" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
 			<widget source="used" render="Label" position="418,964" size="228,42" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
@@ -234,9 +244,11 @@ class OSCamInfo(Screen, OSCamGlobals):
 			<widget source="resident" render="Label" position="1575,964" size="330,42" font="Regular;27" halign="center" valign="center" foregroundColor="white" backgroundColor="#105a5a5a" />
 			<eLabel name="red" position="20,1010" size="10,65" backgroundColor="red" zPosition="1" />
 			<eLabel name="green" position="320,1010" size="10,65" backgroundColor="green" zPosition="1" />
+			<eLabel name="yellow" position="620,1010" size="10,65" backgroundColor="yellow" zPosition="1" />
 			<eLabel name="blue" position="920,1010" size="10,65" backgroundColor="blue" zPosition="1" />
 			<widget source="key_red" render="Label" position="40,1020" size="380,42" font="Regular;30" halign="left" valign="center" foregroundColor="grey" />
 			<widget source="key_green" render="Label" position="340,1020" size="380,42" font="Regular;30" halign="left" valign="center" foregroundColor="grey" />
+			<widget source="key_yellow" render="Label" position="640,1020" size="380,42" font="Regular;30" halign="left" valign="center" foregroundColor="grey" />
 			<widget source="key_blue" render="Label" position="940,1020" size="380,42" font="Regular;30" halign="left" valign="center" foregroundColor="grey" />
 			<widget source="key_OK" render="Label" position="1185,1020" size="60,42" font="Regular;30" halign="center" valign="center" foregroundColor="black" backgroundColor="grey">
 				<convert type="ConditionalShowHide" />
@@ -268,6 +280,7 @@ class OSCamInfo(Screen, OSCamGlobals):
 		self["resident"] = StaticText()
 		self["key_red"] = StaticText(_("Shutdown OSCam"))
 		self["key_green"] = StaticText(_("Restart OSCam"))
+		self["key_yellow"] = StaticText(_("Show Capabilities"))
 		self["key_blue"] = StaticText(_("Show Log"))
 		self["key_OK"] = StaticText()
 		self["key_entitlements"] = StaticText()
@@ -279,6 +292,7 @@ class OSCamInfo(Screen, OSCamGlobals):
 			"menu": (self.keyMenu, _("Open Settings")),
 			"red": (self.keyShutdown, _("Shutdown OSCam")),
 			"green": (self.keyRestart, _("Restart OSCam")),
+			"yellow": (self.keyInfo, _("Open Capability")),
 			"blue": (self.keyBlue, _("Open Log"))
 			}, prio=1, description=_("OSCamInfo Actions"))
 		self.loop = eTimer()
@@ -428,6 +442,10 @@ class OSCamInfo(Screen, OSCamGlobals):
 
 	def keyRestart(self):
 		self.session.openWithCallback(boundFunction(self.msgboxCB, "restart"), MessageBox, _("Do you really want to restart OSCam?\n\nHINT: This will take about 5 seconds!"), MessageBox.TYPE_YESNO, timeout=10, default=False)
+
+	def keyInfo(self):
+		self.loop.stop()
+		self.session.openWithCallback(self.keyCallback, OSCamInfoCapability)
 
 	def keyBlue(self):
 		self.loop.stop()
@@ -804,6 +822,53 @@ class OSCamEntitleDetails(Screen, OSCamGlobals):
 			}, prio=1, description=_("OSCamInfo Actions"))
 
 
+class OSCamInfoCapability(Screen, OSCamGlobals):
+	skin = """
+		<screen name="OSCamInfoCapability" position="center,center" size="1920,1080" backgroundColor="#10101010" title="OSCamInfo Capabilities" flags="wfNoBorder" resolution="1920,1080">
+			<widget source="Title" render="Label" position="15,15" size="1905,60" font="Regular;40" halign="center" valign="center" foregroundColor="white" backgroundColor="#10101010" />
+			<widget source="global.CurrentTime" render="Label" position="1635,15" size="260,60" font="Regular;40" halign="right" valign="center" foregroundColor="#0092CBDF" backgroundColor="#10101010">
+				<convert type="ClockToText">Format:%H:%M:%S</convert>
+			</widget>
+			<widget name="captext" position="15,70" size="1890,995" font="Fixed;24" halign="left" valign="top" padding="10,0,10,0" foregroundColor="black" backgroundColor="#ECEAF6" noWrap="0" scrollbarMode="showOnDemand" scrollbarForegroundColor="black" />
+		</screen>
+		"""
+
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		self.skinName = "OSCamInfoCapability"
+		self.setTitle(_("OSCamInfo: Capabilities"))
+		self["captext"] = ScrollLabel(_("<no capabilities found>"))
+		self["actions"] = HelpableActionMap(self, ["NavigationActions", "OkCancelActions"], {
+			"ok": (self.exit, _("Close the screen")),
+			"cancel": (self.exit, _("Close the screen")),
+			"pageUp": (self.keyPageUp, _("Move up a page")),
+			"up": (self.keyPageUp, _("Move up a page")),
+			"down": (self.keyPageDown, _("Move down a page")),
+			"pageDown": (self.keyPageDown, _("Move down a page"))
+			}, prio=1, description=_("OSCamInfo Capability Actions"))
+		self.onLayoutFinish.append(self.onLayoutFinished)
+
+	def onLayoutFinished(self):
+		self.displayCapabilities()
+
+	def displayCapabilities(self):
+		capok, result = self.getCapabilities()
+		if capok:
+			self["captext"].setText(result)
+			self["captext"].moveTop()
+		else:
+			self["captext"].setText(_("Unexpected error accessing WebIF: %s" % result))
+
+	def keyPageDown(self):
+		self["captext"].pageDown()
+
+	def keyPageUp(self):
+		self["captext"].pageUp()
+
+	def exit(self):
+		self.close()
+
+
 class OSCamInfoLog(Screen, OSCamGlobals):
 	skin = """
 		<screen name="OSCamInfoLog" position="center,center" size="1920,1080" backgroundColor="#10101010" title="OSCamInfo Log" flags="wfNoBorder" resolution="1920,1080">
@@ -811,7 +876,7 @@ class OSCamInfoLog(Screen, OSCamGlobals):
 			<widget source="global.CurrentTime" render="Label" position="1635,15" size="260,60" font="Regular;40" halign="right" valign="center" foregroundColor="#0092CBDF" backgroundColor="#10101010">
 				<convert type="ClockToText">Format:%H:%M:%S</convert>
 			</widget>
-			<widget name="logtext" position="15,70" size="1890,995" font="Regular;24" halign="left" valign="top" foregroundColor="black" backgroundColor="#ECEAF6" noWrap="0" scrollbarMode="showOnDemand" scrollbarForegroundColor="black" />
+			<widget name="logtext" position="15,70" size="1890,995" font="Regular;24" halign="left" valign="top" padding="10,0,10,0" foregroundColor="black" backgroundColor="#ECEAF6" noWrap="0" scrollbarMode="showOnDemand" scrollbarForegroundColor="black" />
 		</screen>
 		"""
 
