@@ -391,6 +391,9 @@ class RecordTimer(Timer):
 	# DEBUG: Rename "ignoreTSC" to be "ignoreConflict" to be more clear.  This is used by MovieSelection.py.
 	def record(self, timer, ignoreTSC=False, dosave=True):  # This is called by loadTimers with dosave=False.
 		timer.check_justplay()
+		duplicateBegin = [x for x in self.timer_list if not x.disabled and x.begin == timer.begin]
+		if duplicateBegin:
+			timer.begin = timer.begin - 10  # - 10 seconds begin time
 		timerSanityCheck = TimerSanityCheck(self.timer_list, timer)
 		if not timerSanityCheck.check():
 			if not ignoreTSC:
