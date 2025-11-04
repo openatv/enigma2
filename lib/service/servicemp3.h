@@ -431,11 +431,13 @@ private:
 	ePtr<eConnection> m_new_dvb_subtitle_page_connection;
 	void newDVBSubtitlePage(const eDVBSubtitlePage& p);
 
-	pts_t m_prev_decoder_time;
-	int m_decoder_time_valid_state;
-	int64_t m_initial_vtt_mpegts;
-	int64_t m_vtt_live_base_time;
-	bool m_vtt_live;
+	pts_t m_prev_decoder_time = -1;
+	int m_decoder_time_valid_state = 0;
+	int64_t m_initial_vtt_mpegts = 0;
+	int64_t m_vtt_live_base_time = -1;
+	bool m_vtt_live = false;
+	int64_t m_base_mpegts = -1;
+
 
 	void pushDVBSubtitles();
 	void pushSubtitles();

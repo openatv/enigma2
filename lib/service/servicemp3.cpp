@@ -219,6 +219,7 @@ struct SubtitleEntry {
 	uint64_t start_time_ms;
 	uint64_t end_time_ms;
 	uint64_t vtt_mpegts_base;
+	uint64_t local_offset_ms;
 	std::string text;
 };
 
@@ -278,6 +279,10 @@ bool parseWebVTT(const std::string& vtt_data, std::vector<SubtitleEntry>& subs_o
 	uint64_t start_ms = 0, end_ms = 0, vtt_mpegts_base = 0, local_offset_ms = 0;
 	bool expecting_text = false;
 
+	// Persistent across calls to detect MPEGTS jumps between segments
+	static uint64_t s_last_mpegts_ms = 0;
+	static bool s_has_last_mpegts = false;
+
 	while (std::getline(stream, line)) {
 		if (!line.empty() && line.back() == '\r')
 			line.pop_back();
@@ -300,6 +305,18 @@ bool parseWebVTT(const std::string& vtt_data, std::vector<SubtitleEntry>& subs_o
 				if (vtt_mpegts_base < 1000000) // Ignore less than 1000000
 					vtt_mpegts_base = 0;
 				parse_timecode(local_str, local_offset_ms);
+				// Detect backward jumps in MPEGTS (advertisement -> content switch)
+				if (vtt_mpegts_base > 0) {
+					const uint64_t local_mpegts_ms = vtt_mpegts_base / 90; // 90kHz -> ms
+					if (s_has_last_mpegts && local_mpegts_ms < s_last_mpegts_ms) {
+						// If MPEGTS jump back -> deactivate this segment.
+						eDebug("[parseWebVTT] MPEGTS backward jump detected: %llu -> %llu, disabling mapping for this segment", (unsigned long long)s_last_mpegts_ms,
+							   (unsigned long long)local_mpegts_ms);
+						vtt_mpegts_base = 0; // reset offsets
+					}
+					s_last_mpegts_ms = local_mpegts_ms;
+					s_has_last_mpegts = true;
+				}
 			}
 			continue;
 		}
@@ -310,6 +327,7 @@ bool parseWebVTT(const std::string& vtt_data, std::vector<SubtitleEntry>& subs_o
 				entry.start_time_ms = start_ms;
 				entry.end_time_ms = end_ms;
 				entry.vtt_mpegts_base = vtt_mpegts_base;
+				entry.local_offset_ms = local_offset_ms;
 				entry.text = current_text;
 				subs_out.push_back(entry);
 				current_text.clear();
@@ -326,11 +344,9 @@ bool parseWebVTT(const std::string& vtt_data, std::vector<SubtitleEntry>& subs_o
 			// Apply timestamp mapping adjustment
 			// ignore for now
 			/*
-			if (vtt_mpegts_base > 0)
-			{
+			if (vtt_mpegts_base > 0) {
 				const uint64_t local_mpegts_ms = vtt_mpegts_base / 90; // MPEGTS-Ticks (90 kHz) → ms
 				const int64_t delta = static_cast<int64_t>(local_mpegts_ms) - static_cast<int64_t>(local_offset_ms);
-
 				start_ms += delta;
 				end_ms += delta;
 			}
@@ -354,6 +370,7 @@ bool parseWebVTT(const std::string& vtt_data, std::vector<SubtitleEntry>& subs_o
 		entry.start_time_ms = start_ms;
 		entry.end_time_ms = end_ms;
 		entry.vtt_mpegts_base = vtt_mpegts_base;
+		entry.local_offset_ms = local_offset_ms;
 		entry.text = current_text;
 		subs_out.push_back(entry);
 	}
@@ -1395,6 +1412,7 @@ RESULT eServiceMP3::start() {
 	ASSERT(m_state == stIdle);
 
 	m_subtitles_paused = false;
+	m_base_mpegts = -1;  // Reset MPEGTS base for WebVTT at new start
 	if (m_gst_playbin) {
 		eDebug("[eServiceMP3] *** starting pipeline ****");
 		GstStateChangeReturn ret;
@@ -1650,6 +1668,7 @@ RESULT eServiceMP3::seekToImpl(pts_t to) {
 	// eDebug("[eServiceMP3] seekToImpl pts_t to %" G_GINT64_FORMAT, (gint64)to);
 	/* convert pts to nanoseconds */
 	m_last_seek_pos = to;
+	m_base_mpegts = -1;  // Reset when seeking to avoid stale base
 
 	if(m_pending_seek_pos == 0 && to > 0)
 	{
@@ -3769,8 +3788,6 @@ void eServiceMP3::pullSubtitle(GstBuffer* buffer) {
 			// eDebug(">>>\n%s\n<<<", vtt_string.c_str());
 
 			if (parseWebVTT(vtt_string, parsed_subs)) {
-				static int64_t base_mpegts = 0; // Store first MPEGTS as base
-
 				for (const auto& sub : parsed_subs) {
 					if (sub.vtt_mpegts_base) {
 						if (!m_vtt_live)
@@ -3779,8 +3796,8 @@ void eServiceMP3::pullSubtitle(GstBuffer* buffer) {
 						int64_t delta = 0;
 
 						// Initialize base MPEGTS with first subtitle's MPEGTS
-						if (base_mpegts == 0) {
-							base_mpegts = sub.vtt_mpegts_base;
+						if (m_base_mpegts == -1) {
+							m_base_mpegts = sub.vtt_mpegts_base;
 						}
 
 						if (decoder_pts >= 0) {
@@ -3788,7 +3805,7 @@ void eServiceMP3::pullSubtitle(GstBuffer* buffer) {
 							const uint64_t pts_mask = (1ULL << 33) - 1; // 33-bit mask
 
 							// Calculate delta based on MPEGTS difference
-							delta = (sub.vtt_mpegts_base - base_mpegts) / 90; // Convert to ms
+							delta = (sub.vtt_mpegts_base - m_base_mpegts) / 90; // Convert to ms
 						}
 
 						int64_t adjusted_start = sub.start_time_ms + delta;
@@ -4144,6 +4161,9 @@ RESULT eServiceMP3::enableSubtitles(iSubtitleUser* user, struct SubtitleTrack& t
 		m_dvb_subtitle_sync_timer->stop();
 		m_dvb_subtitle_pages.clear();
 		m_subtitle_pages.clear();
+		m_initial_vtt_mpegts = 0;
+		m_vtt_live = false;
+		m_vtt_live_base_time = -1;
 		m_prev_decoder_time = -1;
 		m_decoder_time_valid_state = 0;
 		m_currentSubtitleStream = track.pid;
@@ -4195,6 +4215,9 @@ RESULT eServiceMP3::disableSubtitles() {
 	m_dvb_subtitle_sync_timer->stop();
 	m_dvb_subtitle_pages.clear();
 	m_subtitle_pages.clear();
+	m_initial_vtt_mpegts = 0;
+	m_vtt_live = false;
+	m_vtt_live_base_time = -1;
 	m_prev_decoder_time = -1;
 	m_decoder_time_valid_state = 0;
 	if (m_subtitle_widget)
