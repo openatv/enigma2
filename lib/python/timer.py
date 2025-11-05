@@ -48,7 +48,7 @@ class Timer:
 		self.lastActivation = now
 		when = now + self.MaxWaitTime
 		self.timer_list and self.timer_list.sort()  # Re-sort/Refresh list, try to fix hanging timers.
-		timerList = [x for x in self.timer_list if not x.disabled]  # Calculate next activation point.
+		timerList = [x for x in self.timer_list if not x.disabled and x.conditionFlag == 0]  # Calculate next activation point.
 		if timerList:
 			next = timerList[0].getNextActivation()
 			if next < when:
@@ -203,6 +203,7 @@ class TimerEntry:
 		self.backoff = 0
 		self.disabled = False
 		self.failed = False
+		self.conditionFlag = 0
 
 	def __lt__(self, value):
 		return self.getNextActivation() < value.getNextActivation()
