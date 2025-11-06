@@ -899,25 +899,22 @@ class SchedulerEntry(TimerEntry):
 					if doFunc:
 						if functionTimerEntryFunction and callable(functionTimerEntryFunction) and functionTimerCancelFunction and callable(functionTimerCancelFunction):
 							self.startFunctionTimer(functionTimerEntryFunction, functionTimerCancelFunction, functionTimerUseOwnThread)
-					elif self.functionStandbyRetry:
-						if NavigationInstance.instance.Scheduler:
-							self.conditionFlag = self.functionStandby  # 1 Standby / 2 Online
-							if DEBUG:
-								print("[Scheduler] Function timer postponed due to standby state.")
+					elif self.functionStandbyRetry and NavigationInstance.instance.Scheduler:
+						self.conditionFlag = self.functionStandby  # 1 Standby / 2 Online
+						if DEBUG:
+							print("[Scheduler] Function timer postponed due to standby state.")
 
 				return True
 
 		elif nextState == self.StateEnded:
 			if DEBUG:
 				print(f"[Scheduler] DEBUG nextState self.StateEnded / self.cancelled={self.cancelled} / self.failed={self.failed}")
-			if self.timerType == TIMERTYPE.OTHER and self.function:
-				if self.cancelled:
-					if self.cancelFunction and callable(self.cancelFunction):
-						if DEBUG:
-							print("[Scheduler] DEBUG Call cancelFunction")
-						self.cancelFunction()
-						self.cancelFunction = None
-						return True
+			if self.timerType == TIMERTYPE.OTHER and self.function and self.cancelled and self.cancelFunction and callable(self.cancelFunction):
+				if DEBUG:
+					print("[Scheduler] DEBUG Call cancelFunction")
+				self.cancelFunction()
+				self.cancelFunction = None
+				return True
 			if self.afterEvent == AFTEREVENT.WAKEUP:
 				Screens.Standby.TVinStandby.skipHdmiCecNow("wakeuppowertimer")
 				if Screens.Standby.inStandby:

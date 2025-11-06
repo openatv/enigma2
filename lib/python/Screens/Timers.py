@@ -1314,9 +1314,8 @@ class SchedulerEdit(Setup):
 		return self.timerType.value in functionTimers.getList()
 
 	def createSetup(self):  # NOSONAR silence S2638
-		if self.isFunctionTimer():
-			if self.timer.isNewTimer:
-				self.checkEndDate()
+		if self.isFunctionTimer() and self.timer.isNewTimer:
+			self.checkEndDate()
 		Setup.createSetup(self)
 		for callback in onSchedulerSetup:
 			callback(self)
