@@ -1392,8 +1392,12 @@ def InitUsageConfig():
 		("ETSI", _("Generic")),
 		("AUS", _("Australia"))
 	]
-	config.misc.epgratingcountry = ConfigSelection(default="", choices=choiceList)
 	config.misc.epggenrecountry = ConfigSelection(default="", choices=choiceList)
+	choiceList.extend([
+		("GBR", _("United Kingdom")),
+		("ITA", _("Italy"))
+	])
+	config.misc.epgratingcountry = ConfigSelection(default="", choices=choiceList)
 
 	def setHDDStandby(configElement):
 		for hdd in harddiskmanager.HDDList():
