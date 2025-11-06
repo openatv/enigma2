@@ -95,10 +95,10 @@ int eLabel::event(int event, void* data, void* data2) {
 			/* For horizontal scroll we need full text width, height = visibleH.
 			   For vertical scroll we need full text height, width = visibleW.
 			   For non-scrolling modes we keep the visible area. */
-			if (m_scroll_config.direction == eScrollConfig::scrollLeft || m_scroll_config.direction == eScrollConfig::scrollRight) {
+			if (m_scroll_text && (m_scroll_config.direction == eScrollConfig::scrollLeft || m_scroll_config.direction == eScrollConfig::scrollRight)) {
 				rectW = m_text_size.width(); // full text width (no-wrap computed earlier)
 				rectH = visibleH;
-			} else if (m_scroll_config.direction == eScrollConfig::scrollTop || m_scroll_config.direction == eScrollConfig::scrollBottom) {
+			} else if (m_scroll_text && (m_scroll_config.direction == eScrollConfig::scrollTop || m_scroll_config.direction == eScrollConfig::scrollBottom)) {
 				rectW = visibleW;
 				rectH = m_text_size.height(); // full text height (wrapped)
 			} else {
