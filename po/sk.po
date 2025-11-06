@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-23 18:55+0000\n"
-"PO-Revision-Date: 2025-10-25 04:25+0000\n"
+"POT-Creation-Date: 2025-11-06 08:27+0000\n"
+"PO-Revision-Date: 2025-11-06 12:15+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.14.1-dev\n"
+"X-Generator: Weblate 5.15-dev\n"
 
 msgid ""
 "\n"
@@ -1580,6 +1580,9 @@ msgstr "<umiestnenie posledného časovača>"
 
 msgid "<Select a device>"
 msgstr "<Vyberte zariadenie>"
+
+msgid "<no capabilities found>"
+msgstr "<žiadne schopnosti>"
 
 msgid "<no log found>"
 msgstr "<záznam denníka sa nenašiel"
@@ -7601,6 +7604,12 @@ msgstr "Pri načítaní denníka o odovzdaní '%s' nastala chyba '%s'!"
 msgid "Error Download Setting"
 msgstr "Chyba pri sťahovaní settingu"
 
+msgid "Error Retry count"
+msgstr "Počet opakovaní po chybe"
+
+msgid "Error Retry delay"
+msgstr "Oneskorenie opakovaní po chybe"
+
 msgid "Error code"
 msgstr "Kód chyby"
 
@@ -9649,6 +9658,9 @@ msgstr "Ignorovať podsieť DVB-S"
 
 msgid "Ignore DVB-T namespace sub network"
 msgstr "Ignorovať podsieť DVB-T"
+
+msgid "Ignore Standby"
+msgstr "Ignorovať pohotovostný režim"
 
 msgid "Ignore unexpectedly wake up and stay in standby"
 msgstr "Ignorovať neočakávané prebudenie a zostať v pohotovostnom režime"
@@ -12041,6 +12053,9 @@ msgstr "Nikdy nedekódovať obsah počas nahrávania. Týmto sa globálne prepí
 msgid "Never decrypt while recording"
 msgstr "Nikdy nedekódovať počas nahrávania"
 
+msgid "Never in Standby"
+msgstr "Nikdy v pohotovostnom režime"
+
 msgid "New"
 msgstr "Nové"
 
@@ -12089,7 +12104,7 @@ msgstr "Nový priečinok"
 msgid "News"
 msgstr "Správy"
 
-msgid "News/Current Affairs"
+msgid "News/Current affairs"
 msgstr "Spravodajstvo/aktuálne udalosti"
 
 msgid "Next"
@@ -12592,12 +12607,18 @@ msgstr "Oscam webif vypnutý"
 msgid "OSCamInfo Actions"
 msgstr "Akcie pre OSCamInfo"
 
+msgid "OSCamInfo Capability Actions"
+msgstr "Akcie pre schopnosti OSCamInfo"
+
 msgid "OSCamInfo Log Actions"
 msgstr "Akcie pre denník OSCamInfo"
 
 #, python-format
 msgid "OSCamInfo: %s Entitlements for '%s'"
 msgstr "OSCamInfo: %s oprávnenia pre '%s'"
+
+msgid "OSCamInfo: Capabilities"
+msgstr "OSCamInfo: schopnosti"
 
 #, python-format
 msgid "OSCamInfo: Entitlements for '%s'"
@@ -12739,7 +12760,10 @@ msgid "Open Bouquet selection"
 msgstr "Otvoriť zoznam prehľadov"
 
 msgid "Open Box Portal"
-msgstr "Zobraziť Box Portal"
+msgstr "Otvoriť Box Portal"
+
+msgid "Open Capability"
+msgstr "Schopnosť otvorenia"
 
 msgid "Open EPG"
 msgstr "Otvoriť EPG"
@@ -16049,6 +16073,9 @@ msgstr "Ak chcete odstrániť všetky údaje prispôsobenia vzhľadu používate
 msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all key map, menu and setup override data and restore the default definitions."
 msgstr "Ak chcete odstrániť všetky údaje používateľského rozhrania, vyberte možnosť 'Áno'. Tým sa odstránia všetky mapovania tlačidiel, menu a zmeny nastavení a obnovia sa predvolené definície."
 
+msgid "Select 'Yes' to reschedule the task to when the receiver goes in to/out of Standby mode. The state change must happen within the task schedule window or else the task will not be run."
+msgstr "Ak chcete úlohu znovu naplánovať na čas, keď prijímač prejde do/z pohotovostného režimu, vyberte možnosť 'Áno'. Zmena stavu musí nastať v priebehu naplánovaného okna pre úlohu, inak sa úloha nespustí."
+
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr "Ak chcete vykonať reset konfigurácie siete na predvolené hodnoty, vyberte možnosť 'Áno'. Tým sa povolí ethernetový port, ak existuje, a prijímač sa nastaví na používanie DHCP. Všetky ostatné sieťové rozhrania budú odstránené."
 
@@ -16378,6 +16405,9 @@ msgstr "Vyberte, ako sa budú počas vyhľadávania správať číselné tlačid
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr "Vyberte spôsob inštalácie satelitnej paraboly. Napríklad pevná parabola, jeden LNB, DiSEqC prepínač, pozícionér, a podobne."
 
+msgid "Select how the schedule is handled with respect to Standby mode."
+msgstr "Vyberte, ako sa má spracovávať plán vzhľadom na pohotovostný režim."
+
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Vyberte spôsob aktivácie režimu Quick EPG."
 
@@ -16528,6 +16558,9 @@ msgstr "Vyberte akciu pre '%s'"
 msgid "Select the action to perform when the timer ends."
 msgstr "Vyberte akciu, ktorá sa vykoná po skončení časovača."
 
+msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
+msgstr "Vyberte dobu čakania po chybe úlohy, než sa úloha spustí znovu."
+
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
 msgstr "Vyberte rýchlosť animácie indikátorov tlačidiel na obrazovkách pomocníka. Voľba 'Zakázané' animáciu vypne, a indikátory budú preskakovať medzi tlačidlami."
 
@@ -16624,6 +16657,9 @@ msgstr "Vyberte poradie zobrazenia predtým navštívených služieb."
 msgid "Select the duration of inactivity before the screen saver will be displayed."
 msgstr "Nastavte dobu neaktivity pred tým, než sa zobrazí šetrič obrazovky."
 
+msgid "Select the end time before which this timer can be activated.  After this time the timer won't be activated even if other conditions are met."
+msgstr "Vyberte čas ukončenia, pred ktorým sa môže časovač aktivovať. Po tomto čase sa časovač neaktivuje ani v prípade, že by boli splnené ostatné podmienky."
+
 #, python-format
 msgid "Select the file sort order for the %s column:"
 msgstr "Vyberte poradie zoraďovania súborov pre stĺpec %s:"
@@ -16719,6 +16755,9 @@ msgstr "Vybrať ďalšiu položku v zozname alebo presunúť kurzor doprava"
 msgid "Select the next item in the list"
 msgstr "Vyberte ďalšiu položku v zozname"
 
+msgid "Select the number of times to retry a task if an error occurs when running the task."
+msgstr "Vyberte počet pokusov o zopakovanie úlohy v prípade, že počas jej vykonávania dôjde k chybe."
+
 msgid "Select the preferred service information to display, in addition to the service number, for the service selection pop up screen."
 msgstr "Vyberte preferovanú informáciu o stanici/službe, ktorá sa zobrazí okrem jej čísla, na vyskakovacej obrazovke pre výber stanice/služby."
 
@@ -16793,6 +16832,9 @@ msgstr "Vyberte zdrojové umiestnenie na získanie aktualizačných súborov."
 
 msgid "Select the source of the default DNS settings."
 msgstr "Vyberte zdroj predvolených nastavení DNS."
+
+msgid "Select the start time after which this timer can be activated.  Before this time the timer won't be activated even if other conditions are met."
+msgstr "Vyberte čas spustenia, po ktorom sa môže tento časovač aktivovať. Pred týmto časom sa časovač neaktivuje ani v prípade, že by boli splnené ostatné podmienky."
 
 msgid "Select the starting/initial column to be activated on File Commander start up."
 msgstr "Vyberte počiatočný stĺpec, ktorý sa aktivuje pri spustení Správcu súborov."
@@ -17681,6 +17723,9 @@ msgstr "Zobraziť informácie o CCcam"
 
 msgid "Show CI messages"
 msgstr "Zobraziť správy CI"
+
+msgid "Show Capabilities"
+msgstr "Zobraziť schopnosti"
 
 msgid "Show Default Backup Files"
 msgstr "Zobraziť predvolené záložné súbory"
@@ -19005,6 +19050,9 @@ msgstr "Pohotovostný režim"
 msgid "Standby / Restart"
 msgstr "Vypnutie / Reštart"
 
+msgid "Standby execution"
+msgstr "Vyvolanie pohotovostného režimu"
+
 msgid "Standby without TV shut down"
 msgstr "Pohotovostný režim bez vypnutia TV"
 
@@ -19055,6 +19103,9 @@ msgstr "Spustiť alebo zastaviť službu"
 
 msgid "Start recording current event"
 msgstr "Spustiť nahrávanie aktuálnej udalosti"
+
+msgid "Start retry"
+msgstr "Spustiť opakovanie"
 
 msgid "Start teletext"
 msgstr "Spustiť teletext"
@@ -20834,6 +20885,9 @@ msgstr "Upraviť časovač"
 msgid "Timer editor"
 msgstr "Úprava časovača"
 
+msgid "Timer end window"
+msgstr "Okno pre koniec časovača"
+
 msgid "Timer entry"
 msgstr "Zadanie časovača"
 
@@ -20857,6 +20911,9 @@ msgstr "Umiestnenie nahrávok podľa časovača"
 
 msgid "Timer selection"
 msgstr "Výber časovača"
+
+msgid "Timer start window"
+msgstr "Okno pre spustenie časovača"
 
 msgid "Timer type"
 msgstr "Typ časovača"
@@ -23345,16 +23402,16 @@ msgstr "aktivovaťPiP"
 msgid "address:"
 msgstr "adresa:"
 
-msgid "adult movie/drama"
+msgid "Adult movie/Drama"
 msgstr "pre dospelých/dráma"
 
 msgid "advanced"
 msgstr "pokročilé"
 
-msgid "adventure/western/war"
+msgid "Adventure/Western/War"
 msgstr "dobrodružný/western/vojnový"
 
-msgid "advertisement/shopping"
+msgid "Advertisement/Shopping"
 msgstr "reklama/nakupovanie"
 
 msgid "alpha then oldest"
@@ -23388,7 +23445,7 @@ msgstr "umenie/kultúra (všeobecne)"
 msgid "arts/culture (without music, general)"
 msgstr "umenie/kultúra (bez hudby, všeobecne)"
 
-msgid "arts/culture magazine"
+msgid "Arts/Culture magazines"
 msgstr "umenie/kultúrny magazín"
 
 msgid "athletics"
@@ -23430,13 +23487,13 @@ msgstr "lepšie"
 msgid "black"
 msgstr "čierne"
 
-msgid "black & white"
+msgid "Black & White"
 msgstr "čiernobiele"
 
 msgid "blue"
 msgstr "modré"
 
-msgid "broadcasting/press"
+msgid "Broadcasting/Press"
 msgstr "vysielanie/tlač"
 
 #, python-format
@@ -23458,7 +23515,7 @@ msgstr "karta"
 msgid "card reader"
 msgstr "čítačka kariet"
 
-msgid "cartoon/puppets"
+msgid "Cartoons/Puppets"
 msgstr "rozprávka/bábky"
 
 msgid "chapters"
@@ -23518,7 +23575,7 @@ msgstr "vymazať"
 msgid "delete cut"
 msgstr "vymazať strih"
 
-msgid "detective/thriller"
+msgid "Detective/Thriller"
 msgstr "detektívka/thriller"
 
 msgid "disabled"
@@ -23527,7 +23584,7 @@ msgstr "zakázané"
 msgid "disconnected"
 msgstr "odpojené"
 
-msgid "discussion/interview/debate"
+msgid "Discussion/Interview/Debate"
 msgstr "diskusia/rozhovor/debata"
 
 msgid "documentary"
@@ -23558,7 +23615,7 @@ msgstr "čas ecm:"
 msgid "ecm.info"
 msgstr "ecm.info"
 
-msgid "economics/social advisory"
+msgid "Economics/Social advisory"
 msgstr "ekonomika/sociálne poradenstvo"
 
 msgid "education/information (general)"
@@ -23594,7 +23651,7 @@ msgstr "zábava (všeobecne)"
 msgid "equal to"
 msgstr "zhodné s"
 
-msgid "equestrian"
+msgid "Equestrian"
 msgstr "jazdectvo"
 
 msgid "execute cuts (requires MovieCut plugin)"
@@ -23603,7 +23660,7 @@ msgstr "vykonať strih (vyžaduje sa plugin MovieCut)"
 msgid "exit DVD player or return to file browser"
 msgstr "zatvoriť DVD prehrávač alebo sa vrátiť do správcu súborov"
 
-msgid "experimental film/video"
+msgid "Experimental film/video"
 msgstr "experimentálny film/video"
 
 msgid "externally loopthrough to"
@@ -23612,7 +23669,7 @@ msgstr "externá slučka na"
 msgid "failed"
 msgstr "neúspešné"
 
-msgid "fashion"
+msgid "Fashion"
 msgstr "móda"
 
 msgid "file can not displayed - file not found"
@@ -23624,13 +23681,13 @@ msgstr "formáty súborov (BMP, PNG, JPG, GIF)"
 msgid "filename"
 msgstr "názov súboru"
 
-msgid "film/cinema"
+msgid "Film/Cinema"
 msgstr "film/kino"
 
-msgid "fine arts"
+msgid "Fine arts"
 msgstr "výtvarné umenie"
 
-msgid "fitness & health"
+msgid "Fitness and Health"
 msgstr "fitness & zdravie"
 
 msgid "flat alphabetic"
@@ -23639,13 +23696,13 @@ msgstr "abecedne, vrátane priečinkov"
 msgid "flat alphabetic reverse"
 msgstr "abecedne obrátene, vrátane priečinkov"
 
-msgid "folk/traditional music"
+msgid "Folk/Traditional music"
 msgstr "folk/tradičná hudba"
 
-msgid "football/soccer"
+msgid "Football/Soccer"
 msgstr "futbal"
 
-msgid "foreign countries/expeditions"
+msgid "Foreign countries/Expeditions"
 msgstr "cudzie krajiny/expedície"
 
 msgid "forward to the next chapter"
@@ -23660,10 +23717,10 @@ msgstr "voľné miesto na disku"
 msgid "from"
 msgstr "od"
 
-msgid "further education"
+msgid "Further education"
 msgstr "ďalšie vzdelávanie"
 
-msgid "game show/quiz/contest"
+msgid "Game show/Quiz/Contest"
 msgstr "hra/kvíz/súťaž"
 
 msgid "gardening"
@@ -23696,7 +23753,7 @@ msgstr "h:mmAM/PM"
 msgid "h:mmam/pm"
 msgstr "h:mmam/pm"
 
-msgid "handicraft"
+msgid "Handicraft"
 msgstr "ručné práce"
 
 msgid "handled"
@@ -23783,10 +23840,10 @@ msgstr "dĺžka"
 msgid "lime"
 msgstr "limetková"
 
-msgid "literature"
+msgid "Literature"
 msgstr "literatúra"
 
-msgid "live broadcast"
+msgid "Live broadcast"
 msgstr "živé vysielanie"
 
 msgid "locked"
@@ -23798,16 +23855,16 @@ msgstr "dlho"
 msgid "loopthrough to"
 msgstr "prepojiť slučkou na"
 
-msgid "magazines/reports/documentary"
+msgid "Magazines/Reports/Documentary"
 msgstr "magazíny/reportáže/dokumenty"
 
 msgid "manual"
 msgstr "ručne"
 
-msgid "martial sports"
+msgid "Martial sports"
 msgstr "bojové športy"
 
-msgid "medicine/physiology/psychology"
+msgid "Medicine/Physiology/Psychology"
 msgstr "medicína/fyziológia/psychológia"
 
 msgid "min"
@@ -23822,7 +23879,7 @@ msgstr "mesiac"
 msgid "motor sport"
 msgstr "motoristické športy"
 
-msgid "motoring"
+msgid "Motoring"
 msgstr "motorizmus"
 
 msgid "move"
@@ -23843,7 +23900,7 @@ msgstr "hudba (všeobecne)"
 msgid "music/ballet/dance (general)"
 msgstr "hudba/balet/tanec (všeobecne)"
 
-msgid "musical/opera"
+msgid "Musical/Opera"
 msgstr "muzikál/opera"
 
 msgid "n/a"
@@ -23852,22 +23909,22 @@ msgstr "nie je k dispozícii"
 msgid "name"
 msgstr "názov"
 
-msgid "nature/animals/environment"
+msgid "Nature/Animals/Environment"
 msgstr "príroda/zvieratá/životné prostredie"
 
-msgid "new media"
+msgid "New media"
 msgstr "nové médium"
 
 msgid "news (general)"
 msgstr "správy (všeobecne)"
 
-msgid "news magazine"
+msgid "News magazine"
 msgstr "spravodajský magazín"
 
 msgid "news/current affairs (general)"
 msgstr "správy/publicistika (všeobecne)"
 
-msgid "news/weather report"
+msgid "News/Weather report"
 msgstr "správy/správa o počasí"
 
 msgid "no CAId selected"
@@ -23933,7 +23990,7 @@ msgstr "balíček"
 msgid "packages"
 msgstr "balíčky"
 
-msgid "performing arts"
+msgid "Performing arts"
 msgstr "scénické umenie"
 
 msgid "pid:"
@@ -23954,7 +24011,7 @@ msgstr "pluginy"
 msgid "pm"
 msgstr "pm"
 
-msgid "popular culture/traditional arts"
+msgid "Popular culture/Traditional arts"
 msgstr "ľudová kultúra/tradičné umenie"
 
 msgid "pre-school children's program"
@@ -23981,7 +24038,7 @@ msgstr "spoľahlivé, opätovne naladiť"
 msgid "religion"
 msgstr "náboženstvo"
 
-msgid "remarkable people"
+msgid "Remarkable people"
 msgstr "pozoruhodní ľudia"
 
 msgid "remove after this position"
@@ -24005,8 +24062,8 @@ msgstr "pretočiť na predchádzajúcu kapitolu"
 msgid "right"
 msgstr "pravý"
 
-msgid "rock/pop"
-msgstr "rock/pop"
+msgid "Rock/Pop"
+msgstr "Rock/Pop"
 
 msgid "romance"
 msgstr "romantika"
@@ -24028,7 +24085,7 @@ msgstr ""
 msgid "scan state"
 msgstr "stav vyhľadávania"
 
-msgid "science fiction/fantasy/horror"
+msgid "Science fiction/Fantasy/Horror"
 msgstr "sci-fi/fantasy/horor"
 
 msgid "search EPG..."
@@ -24037,10 +24094,10 @@ msgstr "hľadanie v EPG…"
 msgid "select CAId's"
 msgstr "vyberte CAID"
 
-msgid "serious music/classic music"
+msgid "Serious music/Classic music"
 msgstr "vážna hudba/klasická hudba"
 
-msgid "serious/classical/religious/historical movie/drama"
+msgid "Serious/Classical/Religious/Historical/Drama"
 msgstr "závažný/klasický/náboženský/historický film/dráma"
 
 msgid "service PIN"
@@ -24079,13 +24136,13 @@ msgstr "skok dozadu"
 msgid "skip forward"
 msgstr "preskočiť dopredu"
 
-msgid "soap/melodrama/folkloric"
+msgid "Soap/Melodrama/Folkloric"
 msgstr "soap/melodráma/folklór"
 
 msgid "social/political issues/economics (general)"
 msgstr "spoločnosť/politické témy/ekonomika (všeobecne)"
 
-msgid "social/spiritual science"
+msgid "Social/Spiritual sciences"
 msgstr "sociálne/duchovné vedy"
 
 msgid "softcam"
@@ -24106,7 +24163,7 @@ msgstr "šport (všeobecne)"
 msgid "sports (general)"
 msgstr "športy (všeobecne)"
 
-msgid "sports magazine"
+msgid "Sports magazines"
 msgstr "športový magazín"
 
 msgid "standard"
@@ -24148,7 +24205,7 @@ msgstr "talk show"
 msgid "team sports"
 msgstr "tímové športy"
 
-msgid "technology/natural science"
+msgid "Technology/Natural sciences"
 msgstr "technológie/prírodné vedy"
 
 msgid "teletext"
@@ -24157,7 +24214,7 @@ msgstr "teletext"
 msgid "template file"
 msgstr "súbor šablóny"
 
-msgid "tennis/squash"
+msgid "Tennis/Squash"
 msgstr "tenis/squash"
 
 msgid "text"
@@ -24169,7 +24226,7 @@ msgstr "táto nahrávka"
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "prepínať medzi časom, kapitolou, zvukom a titulkami"
 
-msgid "tourism/travel"
+msgid "Tourism/Travel"
 msgstr "turistika/cestovanie"
 
 msgid "traditional (fast)"
@@ -24208,7 +24265,7 @@ msgstr "neznáme"
 msgid "unknown error"
 msgstr "neznáma chyba"
 
-msgid "unpublished"
+msgid "Unpublished"
 msgstr "nepublikované"
 
 msgid "untestable"
@@ -24220,7 +24277,7 @@ msgstr "aktualizovať"
 msgid "using:"
 msgstr "s použitím:"
 
-msgid "variety show"
+msgid "Variety show"
 msgstr "varieté"
 
 msgid "violet"
@@ -24232,7 +24289,7 @@ msgstr "čaká sa na CI…"
 msgid "wait for mmi..."
 msgstr "čaká sa na mmi…"
 
-msgid "water sport"
+msgid "Water sport"
 msgstr "vodné športy"
 
 msgid "west"
@@ -24244,7 +24301,7 @@ msgstr "biele"
 msgid "width"
 msgstr "šírka"
 
-msgid "winter sport"
+msgid "Winter sport"
 msgstr "zimné športy"
 
 msgid "wireless network interface"

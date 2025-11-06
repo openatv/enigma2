@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-23 18:55+0000\n"
+"POT-Creation-Date: 2025-11-06 08:27+0000\n"
 "PO-Revision-Date: 2022-12-04 20:43+0000\n"
 "Last-Translator: rimasx <riks_12@hot.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -1549,6 +1549,9 @@ msgid "<Last timer location>"
 msgstr "<Viimase taimeri asukoht>"
 
 msgid "<Select a device>"
+msgstr ""
+
+msgid "<no capabilities found>"
 msgstr ""
 
 msgid "<no log found>"
@@ -7669,6 +7672,12 @@ msgstr ""
 msgid "Error Download Setting"
 msgstr "Viga kanalinimekirja hankimisel"
 
+msgid "Error Retry count"
+msgstr ""
+
+msgid "Error Retry delay"
+msgstr ""
+
 msgid "Error code"
 msgstr "Veakood"
 
@@ -9766,6 +9775,9 @@ msgstr "Eira DVB-S nimeruumi alamvõrku"
 
 msgid "Ignore DVB-T namespace sub network"
 msgstr "Eira DVB-T nimeruumi alamvõrku"
+
+msgid "Ignore Standby"
+msgstr ""
 
 msgid "Ignore unexpectedly wake up and stay in standby"
 msgstr "Eira ootamatut äratust ja püsi ooteseisundis"
@@ -12263,6 +12275,9 @@ msgstr "Ära dekrüpti sisu salvestamise ajal. See valik alistab üksiku taimeri
 msgid "Never decrypt while recording"
 msgstr "Ära kunagi dekrüpti salvestamise ajal"
 
+msgid "Never in Standby"
+msgstr ""
+
 msgid "New"
 msgstr "Uus"
 
@@ -12315,7 +12330,7 @@ msgid "News"
 msgstr ""
 
 #, fuzzy
-msgid "News/Current Affairs"
+msgid "News/Current affairs"
 msgstr "Uudised sündmused"
 
 msgid "Next"
@@ -12835,11 +12850,17 @@ msgstr "oscam veebiliides keelatud"
 msgid "OSCamInfo Actions"
 msgstr ""
 
+msgid "OSCamInfo Capability Actions"
+msgstr ""
+
 msgid "OSCamInfo Log Actions"
 msgstr ""
 
 #, python-format
 msgid "OSCamInfo: %s Entitlements for '%s'"
+msgstr ""
+
+msgid "OSCamInfo: Capabilities"
 msgstr ""
 
 #, python-format
@@ -12991,6 +13012,9 @@ msgstr "Kuva lemmiknimekirjad."
 #, fuzzy
 msgid "Open Box Portal"
 msgstr "Box Portal"
+
+msgid "Open Capability"
+msgstr ""
 
 msgid "Open EPG"
 msgstr "Saatekava"
@@ -16402,6 +16426,9 @@ msgstr ""
 msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all key map, menu and setup override data and restore the default definitions."
 msgstr ""
 
+msgid "Select 'Yes' to reschedule the task to when the receiver goes in to/out of Standby mode. The state change must happen within the task schedule window or else the task will not be run."
+msgstr ""
+
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr ""
 
@@ -16736,6 +16763,9 @@ msgstr ""
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr "Vali antenni seadistus, nt. üksik LNB, DiSEqC lüliti, ajam jne."
 
+msgid "Select how the schedule is handled with respect to Standby mode."
+msgstr ""
+
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Vali, kuidas käivitada Inforiba EPG:"
 
@@ -16888,6 +16918,9 @@ msgstr ""
 msgid "Select the action to perform when the timer ends."
 msgstr ""
 
+msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
+msgstr ""
+
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
 msgstr ""
 
@@ -16985,6 +17018,9 @@ msgstr ""
 msgid "Select the duration of inactivity before the screen saver will be displayed."
 msgstr "Määra aeg ekraanisäästja käivitamiseni (min)."
 
+msgid "Select the end time before which this timer can be activated.  After this time the timer won't be activated even if other conditions are met."
+msgstr ""
+
 #, python-format
 msgid "Select the file sort order for the %s column:"
 msgstr ""
@@ -17078,6 +17114,9 @@ msgstr ""
 msgid "Select the next item in the list"
 msgstr ""
 
+msgid "Select the number of times to retry a task if an error occurs when running the task."
+msgstr ""
+
 msgid "Select the preferred service information to display, in addition to the service number, for the service selection pop up screen."
 msgstr ""
 
@@ -17153,6 +17192,9 @@ msgid "Select the source location from where to obtain the upgrade files."
 msgstr ""
 
 msgid "Select the source of the default DNS settings."
+msgstr ""
+
+msgid "Select the start time after which this timer can be activated.  Before this time the timer won't be activated even if other conditions are met."
 msgstr ""
 
 msgid "Select the starting/initial column to be activated on File Commander start up."
@@ -18052,6 +18094,9 @@ msgstr ""
 
 msgid "Show CI messages"
 msgstr "Kuva CI teated"
+
+msgid "Show Capabilities"
+msgstr ""
 
 msgid "Show Default Backup Files"
 msgstr "Vaikimisi varundatavad failid"
@@ -19401,6 +19446,9 @@ msgstr "Ooteseisund"
 msgid "Standby / Restart"
 msgstr "Seiskamine"
 
+msgid "Standby execution"
+msgstr ""
+
 msgid "Standby without TV shut down"
 msgstr "Ooteseisundisse telerit sulgemata"
 
@@ -19451,6 +19499,9 @@ msgid "Start or Stop service"
 msgstr ""
 
 msgid "Start recording current event"
+msgstr ""
+
+msgid "Start retry"
 msgstr ""
 
 msgid "Start teletext"
@@ -21255,6 +21306,9 @@ msgstr "Taimeri muutmine"
 msgid "Timer editor"
 msgstr "Taimerid"
 
+msgid "Timer end window"
+msgstr ""
+
 msgid "Timer entry"
 msgstr "Taimer"
 
@@ -21277,6 +21331,9 @@ msgstr "Taimeriga salvestuse asukoht"
 #
 msgid "Timer selection"
 msgstr "Taimeri valik"
+
+msgid "Timer start window"
+msgstr ""
 
 msgid "Timer type"
 msgstr "Taimeri liik"
@@ -23803,16 +23860,16 @@ msgstr "PiP käivitamine"
 msgid "address:"
 msgstr "aadress:"
 
-msgid "adult movie/drama"
+msgid "Adult movie/Drama"
 msgstr "täiskasvanute film/draama"
 
 msgid "advanced"
 msgstr "lisavalikud"
 
-msgid "adventure/western/war"
+msgid "Adventure/Western/War"
 msgstr "seiklus/vestern/sõda"
 
-msgid "advertisement/shopping"
+msgid "Advertisement/Shopping"
 msgstr "reklaam/ostukanal"
 
 msgid "alpha then oldest"
@@ -23847,7 +23904,7 @@ msgstr "kunst/kultuur (välja arvatud muusika)"
 msgid "arts/culture (without music, general)"
 msgstr "kunst/kultuur (välja arvatud muusika)"
 
-msgid "arts/culture magazine"
+msgid "Arts/Culture magazines"
 msgstr "kunst/kultuurimagasin"
 
 msgid "athletics"
@@ -23891,13 +23948,13 @@ msgstr "parem"
 msgid "black"
 msgstr "Must"
 
-msgid "black & white"
+msgid "Black & White"
 msgstr "mustvalge"
 
 msgid "blue"
 msgstr "Sinine"
 
-msgid "broadcasting/press"
+msgid "Broadcasting/Press"
 msgstr "ringhääling/ajakirjandus"
 
 #
@@ -23920,7 +23977,7 @@ msgstr "kaart"
 msgid "card reader"
 msgstr "kaardilugeja"
 
-msgid "cartoon/puppets"
+msgid "Cartoons/Puppets"
 msgstr "joonis/nukufilm"
 
 msgid "chapters"
@@ -23984,7 +24041,7 @@ msgstr "Kustuta"
 msgid "delete cut"
 msgstr "Kustuta lõige"
 
-msgid "detective/thriller"
+msgid "Detective/Thriller"
 msgstr "detektiiv/triller"
 
 msgid "disabled"
@@ -23993,7 +24050,7 @@ msgstr "Keelatud"
 msgid "disconnected"
 msgstr "ühendamata"
 
-msgid "discussion/interview/debate"
+msgid "Discussion/Interview/Debate"
 msgstr "arutelu/vestlus/debatt"
 
 msgid "documentary"
@@ -24026,7 +24083,7 @@ msgstr "ecm aeg:"
 msgid "ecm.info"
 msgstr "ecm.info"
 
-msgid "economics/social advisory"
+msgid "Economics/Social advisory"
 msgstr "majandus/hoolekanne"
 
 #, fuzzy
@@ -24064,7 +24121,7 @@ msgstr "meelelahutus (6-14 aastastele)"
 msgid "equal to"
 msgstr "on võrdne"
 
-msgid "equestrian"
+msgid "Equestrian"
 msgstr "ratsutamine"
 
 msgid "execute cuts (requires MovieCut plugin)"
@@ -24073,7 +24130,7 @@ msgstr "Teosta lõikamine (vajalik MovieCut plugin)"
 msgid "exit DVD player or return to file browser"
 msgstr "Välju DVD-mängijast või naase failisirvijasse"
 
-msgid "experimental film/video"
+msgid "Experimental film/video"
 msgstr "eksperimentaalne film/video"
 
 # NimManager.py
@@ -24083,7 +24140,7 @@ msgstr "väline läbiviik kuni"
 msgid "failed"
 msgstr "nurjus"
 
-msgid "fashion"
+msgid "Fashion"
 msgstr "mood"
 
 msgid "file can not displayed - file not found"
@@ -24095,13 +24152,13 @@ msgstr "Failivormingud (BMP, PNG, JPG, GIF)"
 msgid "filename"
 msgstr "faili nimi"
 
-msgid "film/cinema"
+msgid "Film/Cinema"
 msgstr "film/kino"
 
-msgid "fine arts"
+msgid "Fine arts"
 msgstr "kaunid kunstid"
 
-msgid "fitness & health"
+msgid "Fitness and Health"
 msgstr "kehakultuur ja tervis"
 
 msgid "flat alphabetic"
@@ -24110,13 +24167,13 @@ msgstr "Tähestikuline, kaustad kaasatud"
 msgid "flat alphabetic reverse"
 msgstr "Pööratud tähestikuline, kaustad kaasatud"
 
-msgid "folk/traditional music"
+msgid "Folk/Traditional music"
 msgstr "folk/rahvamuusika"
 
-msgid "football/soccer"
+msgid "Football/Soccer"
 msgstr "jalgpall"
 
-msgid "foreign countries/expeditions"
+msgid "Foreign countries/Expeditions"
 msgstr "välisriigid/ekspeditsioonid"
 
 msgid "forward to the next chapter"
@@ -24131,10 +24188,10 @@ msgstr "vaba kettaruumi"
 msgid "from"
 msgstr "asukohast"
 
-msgid "further education"
+msgid "Further education"
 msgstr "täiendõpe"
 
-msgid "game show/quiz/contest"
+msgid "Game show/Quiz/Contest"
 msgstr "telemäng/viktoriin/võistlus"
 
 msgid "gardening"
@@ -24167,7 +24224,7 @@ msgstr "h:mmAM/PM"
 msgid "h:mmam/pm"
 msgstr "h:mmam/pm"
 
-msgid "handicraft"
+msgid "Handicraft"
 msgstr "käsitöö"
 
 msgid "handled"
@@ -24258,10 +24315,10 @@ msgstr "Pikkus"
 msgid "lime"
 msgstr ""
 
-msgid "literature"
+msgid "Literature"
 msgstr "kirjandus"
 
-msgid "live broadcast"
+msgid "Live broadcast"
 msgstr "otsesaade"
 
 msgid "locked"
@@ -24273,16 +24330,16 @@ msgstr "pikk"
 msgid "loopthrough to"
 msgstr "läbiviik kuni"
 
-msgid "magazines/reports/documentary"
+msgid "Magazines/Reports/Documentary"
 msgstr "magasinid/reportaažid/dokumentaal"
 
 msgid "manual"
 msgstr "juhend"
 
-msgid "martial sports"
+msgid "Martial sports"
 msgstr "võitluskunstid"
 
-msgid "medicine/physiology/psychology"
+msgid "Medicine/Physiology/Psychology"
 msgstr "meditsiin/füsioloogia/psühholoogia"
 
 #, fuzzy
@@ -24298,7 +24355,7 @@ msgstr "kuu"
 msgid "motor sport"
 msgstr "motosport"
 
-msgid "motoring"
+msgid "Motoring"
 msgstr "autondus"
 
 msgid "move"
@@ -24321,7 +24378,7 @@ msgstr "sport"
 msgid "music/ballet/dance (general)"
 msgstr "muusika/ballett/tants"
 
-msgid "musical/opera"
+msgid "Musical/Opera"
 msgstr "muusikal/ooper"
 
 msgid "n/a"
@@ -24330,23 +24387,23 @@ msgstr "puudub"
 msgid "name"
 msgstr ""
 
-msgid "nature/animals/environment"
+msgid "Nature/Animals/Environment"
 msgstr "loodus/loomad/keskkond"
 
-msgid "new media"
+msgid "New media"
 msgstr "uus meedia"
 
 #, fuzzy
 msgid "news (general)"
 msgstr "sport"
 
-msgid "news magazine"
+msgid "News magazine"
 msgstr "uudistemagasin"
 
 msgid "news/current affairs (general)"
 msgstr "uudised/päevakajalised sündmused"
 
-msgid "news/weather report"
+msgid "News/Weather report"
 msgstr "uudised/ilm"
 
 msgid "no CAId selected"
@@ -24412,7 +24469,7 @@ msgstr ""
 msgid "packages"
 msgstr ""
 
-msgid "performing arts"
+msgid "Performing arts"
 msgstr "lavakunst"
 
 msgid "pid:"
@@ -24433,7 +24490,7 @@ msgstr ""
 msgid "pm"
 msgstr "õhtul"
 
-msgid "popular culture/traditional arts"
+msgid "Popular culture/Traditional arts"
 msgstr "popkultuur/pärimuskunst"
 
 msgid "pre-school children's program"
@@ -24460,7 +24517,7 @@ msgstr "töökindel"
 msgid "religion"
 msgstr "religioon"
 
-msgid "remarkable people"
+msgid "Remarkable people"
 msgstr "tähelepanuväärsed inimesed"
 
 msgid "remove after this position"
@@ -24484,8 +24541,8 @@ msgstr "Tagasi eelmisele peatükile"
 msgid "right"
 msgstr "Parem"
 
-msgid "rock/pop"
-msgstr "rock/pop"
+msgid "Rock/Pop"
+msgstr "Rock/Pop"
 
 msgid "romance"
 msgstr "romantika"
@@ -24507,7 +24564,7 @@ msgstr ""
 msgid "scan state"
 msgstr "otsingu seis"
 
-msgid "science fiction/fantasy/horror"
+msgid "Science fiction/Fantasy/Horror"
 msgstr "ulme/fantaasia/õudus"
 
 msgid "search EPG..."
@@ -24516,10 +24573,10 @@ msgstr "EPG otsing"
 msgid "select CAId's"
 msgstr "Vali CAIDid"
 
-msgid "serious music/classic music"
+msgid "Serious music/Classic music"
 msgstr "süvamuusika/klassikaline muusika"
 
-msgid "serious/classical/religious/historical movie/drama"
+msgid "Serious/Classical/Religious/Historical/Drama"
 msgstr "tõsine/klassikaline/religioosne/ajalooline film/draama"
 
 msgid "service PIN"
@@ -24558,13 +24615,13 @@ msgstr "Hüppa tagasi"
 msgid "skip forward"
 msgstr "Hüppa edasi"
 
-msgid "soap/melodrama/folkloric"
+msgid "Soap/Melodrama/Folkloric"
 msgstr "seep/melodraama/rahvapärimus"
 
 msgid "social/political issues/economics (general)"
 msgstr "sotsiaalteemad/poliitika/majandus"
 
-msgid "social/spiritual science"
+msgid "Social/Spiritual sciences"
 msgstr "sotsiaalteemad/hingeteadus"
 
 msgid "softcam"
@@ -24587,7 +24644,7 @@ msgstr "sport"
 msgid "sports (general)"
 msgstr "sport"
 
-msgid "sports magazine"
+msgid "Sports magazines"
 msgstr "spordimagasin"
 
 msgid "standard"
@@ -24629,7 +24686,7 @@ msgstr "jutusaade"
 msgid "team sports"
 msgstr "meeskonnasport"
 
-msgid "technology/natural science"
+msgid "Technology/Natural sciences"
 msgstr "tehnoloogia/loodusteadus"
 
 #, fuzzy
@@ -24639,8 +24696,8 @@ msgstr "Teletekst"
 msgid "template file"
 msgstr "mall"
 
-msgid "tennis/squash"
-msgstr "tennis/squash"
+msgid "Tennis/Squash"
+msgstr "Tennis/Squash"
 
 msgid "text"
 msgstr ""
@@ -24651,7 +24708,7 @@ msgstr "see salvestus"
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "aja, salvestuse, heli, subtiitri info vahetamine"
 
-msgid "tourism/travel"
+msgid "Tourism/Travel"
 msgstr "turism/reisimine"
 
 msgid "traditional (fast)"
@@ -24690,7 +24747,7 @@ msgstr "tundmatu"
 msgid "unknown error"
 msgstr "Tundmatu tõrge"
 
-msgid "unpublished"
+msgid "Unpublished"
 msgstr "avaldamata"
 
 msgid "untestable"
@@ -24702,7 +24759,7 @@ msgstr "Uuendus"
 msgid "using:"
 msgstr "kasutuses:"
 
-msgid "variety show"
+msgid "Variety show"
 msgstr "mitmesugust"
 
 msgid "violet"
@@ -24714,7 +24771,7 @@ msgstr ""
 msgid "wait for mmi..."
 msgstr "mmi ootel..."
 
-msgid "water sport"
+msgid "Water sport"
 msgstr "veesport"
 
 msgid "west"
@@ -24726,7 +24783,7 @@ msgstr ""
 msgid "width"
 msgstr "Laius"
 
-msgid "winter sport"
+msgid "Winter sport"
 msgstr "talisport"
 
 msgid "wireless network interface"

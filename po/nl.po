@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-23 18:55+0000\n"
+"POT-Creation-Date: 2025-11-06 08:27+0000\n"
 "PO-Revision-Date: 2025-05-09 04:42+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -1543,6 +1543,9 @@ msgstr "<Laatste timer locatie>"
 
 msgid "<Select a device>"
 msgstr "<Selecteer een apparaat>"
+
+msgid "<no capabilities found>"
+msgstr ""
 
 msgid "<no log found>"
 msgstr "<geen log gevonden"
@@ -7696,6 +7699,12 @@ msgstr "Fout '%s' bij het ophalen van het %s commit log overzicht!"
 msgid "Error Download Setting"
 msgstr "Foute download instelling"
 
+msgid "Error Retry count"
+msgstr ""
+
+msgid "Error Retry delay"
+msgstr ""
+
 msgid "Error code"
 msgstr "Foutcode"
 
@@ -9754,6 +9763,9 @@ msgstr "Negeer DVB-S subnetwerk"
 
 msgid "Ignore DVB-T namespace sub network"
 msgstr "Negeer DVB-T subnetwerk"
+
+msgid "Ignore Standby"
+msgstr ""
 
 msgid "Ignore unexpectedly wake up and stay in standby"
 msgstr "Negeer onvoorzien ontwaken en blijf in stand-by"
@@ -12144,6 +12156,9 @@ msgstr "Nooit inhoud decoderen tijdens het opnemen. Dit overschrijft alle indivi
 msgid "Never decrypt while recording"
 msgstr "Nooit decoderen tijdens opnames"
 
+msgid "Never in Standby"
+msgstr ""
+
 msgid "New"
 msgstr "Nieuw"
 
@@ -12192,7 +12207,7 @@ msgstr "Nieuwe Map"
 msgid "News"
 msgstr "Nieuws"
 
-msgid "News/Current Affairs"
+msgid "News/Current affairs"
 msgstr "Nieuws/Actualiteiten"
 
 msgid "Next"
@@ -12698,12 +12713,18 @@ msgstr "OSCam webif uitgeschakeld"
 msgid "OSCamInfo Actions"
 msgstr "OSCamInfo Acties"
 
+msgid "OSCamInfo Capability Actions"
+msgstr ""
+
 msgid "OSCamInfo Log Actions"
 msgstr "OSCamInfo Log Acties"
 
 #, python-format
 msgid "OSCamInfo: %s Entitlements for '%s'"
 msgstr "OSCamInfo: %s Entitlements voor '%s'"
+
+msgid "OSCamInfo: Capabilities"
+msgstr ""
 
 #, python-format
 msgid "OSCamInfo: Entitlements for '%s'"
@@ -12846,6 +12867,9 @@ msgstr "Open favorietenlijst"
 
 msgid "Open Box Portal"
 msgstr "Toon Box Portal"
+
+msgid "Open Capability"
+msgstr ""
 
 msgid "Open EPG"
 msgstr "Toon EPG..."
@@ -16161,6 +16185,9 @@ msgstr "Kies 'Ja' om alle skin wijzigingen te verwijderen. Hierdoor worden alle 
 msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all key map, menu and setup override data and restore the default definitions."
 msgstr "Kies 'Ja' om alle gebruikers interface data te verwijderen. Hierdoor worden alle keymap, menu en door de gebruiker gemaakte wijzigingen hersteld naar default."
 
+msgid "Select 'Yes' to reschedule the task to when the receiver goes in to/out of Standby mode. The state change must happen within the task schedule window or else the task will not be run."
+msgstr ""
+
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr "Kies 'Ja' om de netwerkconfiguratie te herstellen naar default. Hierdoor zal de Ethernet poort worden geactiveerd (wanneer beschikbaar) en zal de ontvanger DHCP gebruiken. Alle andere netwerk interfaces worden verwijderd."
 
@@ -16494,6 +16521,9 @@ msgstr "Selecteer de functie van de nummer-knoppen tijdens Zoek Acties."
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr "Stel in hoe uw schotel is opgesteld.. keuzes zijn vaste schotel, DiSEqC switch, motor etc."
 
+msgid "Select how the schedule is handled with respect to Standby mode."
+msgstr ""
+
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Kies hier met welke knop u Quick-EPG wilt starten, of schakel deze functie UIT."
 
@@ -16644,6 +16674,9 @@ msgstr "Actie voor '%s' selecteren"
 msgid "Select the action to perform when the timer ends."
 msgstr "Opgeven wat er moet gebeuren wanneer de Timer is uitgevoerd."
 
+msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
+msgstr ""
+
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
 msgstr "Stel de animatiesnelheid in van de knop pictogrammen in het Help scherm. 'Uitgeschakeld' voorkomt een animatie."
 
@@ -16741,6 +16774,9 @@ msgstr "De volgorde van de bekeken zenders opgeven."
 
 msgid "Select the duration of inactivity before the screen saver will be displayed."
 msgstr "Hier kunt u een screensaver activeren en instellen na hoeveel minuten deze moet starten."
+
+msgid "Select the end time before which this timer can be activated.  After this time the timer won't be activated even if other conditions are met."
+msgstr ""
 
 #, python-format
 msgid "Select the file sort order for the %s column:"
@@ -16841,6 +16877,9 @@ msgstr "Selecteer het volgende item in de lijst of ga met de cursor naar rechts"
 msgid "Select the next item in the list"
 msgstr "Selecteer het volgende item in de lijst"
 
+msgid "Select the number of times to retry a task if an error occurs when running the task."
+msgstr ""
+
 msgid "Select the preferred service information to display, in addition to the service number, for the service selection pop up screen."
 msgstr "Selecteer de zenderinformatie, die als naast het zendernummer op het Pop-up scherm voor de zenderkeuze moeten worden getoond."
 
@@ -16915,6 +16954,9 @@ msgstr "Selecteer de locatie waar u de upgradebestanden wilt ophalen."
 
 msgid "Select the source of the default DNS settings."
 msgstr "De gegevensbron van de default DNS instellingen selecteren."
+
+msgid "Select the start time after which this timer can be activated.  Before this time the timer won't be activated even if other conditions are met."
+msgstr ""
 
 msgid "Select the starting/initial column to be activated on File Commander start up."
 msgstr "Selecteer de start-/beginkolom die moet worden geactiveerd bij het opstarten van File Commander."
@@ -17822,6 +17864,9 @@ msgstr "Toon CCcam Info"
 
 msgid "Show CI messages"
 msgstr "Toon CI berichten"
+
+msgid "Show Capabilities"
+msgstr ""
 
 msgid "Show Default Backup Files"
 msgstr "Standaard back-up bestanden"
@@ -19149,6 +19194,9 @@ msgstr "Stand-by"
 msgid "Standby / Restart"
 msgstr "Afsluiten"
 
+msgid "Standby execution"
+msgstr ""
+
 msgid "Standby without TV shut down"
 msgstr "Stand-by zonder uitschakelen TV"
 
@@ -19199,6 +19247,9 @@ msgstr "Service starten of stoppen"
 
 msgid "Start recording current event"
 msgstr "Het huidige programma nu opnemen"
+
+msgid "Start retry"
+msgstr ""
 
 msgid "Start teletext"
 msgstr "Start Teletekst"
@@ -21023,6 +21074,9 @@ msgstr "Timer bewerken"
 msgid "Timer editor"
 msgstr "Timer bewerken"
 
+msgid "Timer end window"
+msgstr ""
+
 msgid "Timer entry"
 msgstr "Timer invoer"
 
@@ -21046,6 +21100,9 @@ msgstr "Timer opnamelocatie"
 
 msgid "Timer selection"
 msgstr "Timerselectie"
+
+msgid "Timer start window"
+msgstr ""
 
 msgid "Timer type"
 msgstr "Timer soort"
@@ -23562,16 +23619,16 @@ msgstr "activeer PiP"
 msgid "address:"
 msgstr "adres:"
 
-msgid "adult movie/drama"
+msgid "Adult movie/Drama"
 msgstr "erotiek / drama"
 
 msgid "advanced"
 msgstr "geavanceerd"
 
-msgid "adventure/western/war"
+msgid "Adventure/Western/War"
 msgstr "avontuur / western / oorlog"
 
-msgid "advertisement/shopping"
+msgid "Advertisement/Shopping"
 msgstr "reclame / shopping"
 
 msgid "alpha then oldest"
@@ -23605,7 +23662,7 @@ msgstr "kunst / cultuur (algemeen)"
 msgid "arts/culture (without music, general)"
 msgstr "kunst / cultuur (algemeen)"
 
-msgid "arts/culture magazine"
+msgid "Arts/Culture magazines"
 msgstr "kunst / cultuurmagazine"
 
 msgid "athletics"
@@ -23647,13 +23704,13 @@ msgstr "beter"
 msgid "black"
 msgstr "zwart"
 
-msgid "black & white"
+msgid "Black & White"
 msgstr "zwart & wit"
 
 msgid "blue"
 msgstr "blauw"
 
-msgid "broadcasting/press"
+msgid "Broadcasting/Press"
 msgstr "omroep/pers"
 
 #, python-format
@@ -23675,7 +23732,7 @@ msgstr "kaart"
 msgid "card reader"
 msgstr "Kaartlezer"
 
-msgid "cartoon/puppets"
+msgid "Cartoons/Puppets"
 msgstr "tekenfilm/poppen"
 
 msgid "chapters"
@@ -23735,8 +23792,8 @@ msgstr "Verwijderen"
 msgid "delete cut"
 msgstr "Wis snijpunt"
 
-msgid "detective/thriller"
-msgstr "detective/thriller"
+msgid "Detective/Thriller"
+msgstr "Detective/Thriller"
 
 msgid "disabled"
 msgstr "gedeactiveerd"
@@ -23744,7 +23801,7 @@ msgstr "gedeactiveerd"
 msgid "disconnected"
 msgstr "Verbroken"
 
-msgid "discussion/interview/debate"
+msgid "Discussion/Interview/Debate"
 msgstr "discussie/interview/debat"
 
 msgid "documentary"
@@ -23775,7 +23832,7 @@ msgstr "ecm tijd:"
 msgid "ecm.info"
 msgstr "ecm.info"
 
-msgid "economics/social advisory"
+msgid "Economics/Social advisory"
 msgstr "economie/sociale zaken"
 
 msgid "education/information (general)"
@@ -23811,7 +23868,7 @@ msgstr "Entertainment (algemeen)"
 msgid "equal to"
 msgstr "gelijk aan"
 
-msgid "equestrian"
+msgid "Equestrian"
 msgstr "ruitersport"
 
 msgid "execute cuts (requires MovieCut plugin)"
@@ -23820,7 +23877,7 @@ msgstr "Geknipte stukken overslaan (gebruik hiervoor de MovieCut plugin)"
 msgid "exit DVD player or return to file browser"
 msgstr "DVD-speler afsluiten of terug naar bestandslijst"
 
-msgid "experimental film/video"
+msgid "Experimental film/video"
 msgstr "experimentele film/video"
 
 msgid "externally loopthrough to"
@@ -23829,7 +23886,7 @@ msgstr "Extern doorgelust naar"
 msgid "failed"
 msgstr "mislukt"
 
-msgid "fashion"
+msgid "Fashion"
 msgstr "mode"
 
 msgid "file can not displayed - file not found"
@@ -23841,13 +23898,13 @@ msgstr "Bestandsformaat (BMP, PNG, JPG, GIF)"
 msgid "filename"
 msgstr "bestandnaam"
 
-msgid "film/cinema"
+msgid "Film/Cinema"
 msgstr "film/bioscoop"
 
-msgid "fine arts"
+msgid "Fine arts"
 msgstr "beeldende kunsten"
 
-msgid "fitness & health"
+msgid "Fitness and Health"
 msgstr "fitness & gezondheid"
 
 msgid "flat alphabetic"
@@ -23856,13 +23913,13 @@ msgstr "plat alfabetisch"
 msgid "flat alphabetic reverse"
 msgstr "omgekeerd plat alfabetisch"
 
-msgid "folk/traditional music"
+msgid "Folk/Traditional music"
 msgstr "volks/traditionele muziek"
 
-msgid "football/soccer"
+msgid "Football/Soccer"
 msgstr "voetbal"
 
-msgid "foreign countries/expeditions"
+msgid "Foreign countries/Expeditions"
 msgstr "buitenland/expedities"
 
 msgid "forward to the next chapter"
@@ -23877,10 +23934,10 @@ msgstr "Schijfruimte vrij"
 msgid "from"
 msgstr "van"
 
-msgid "further education"
+msgid "Further education"
 msgstr "vervolgonderwijs"
 
-msgid "game show/quiz/contest"
+msgid "Game show/Quiz/Contest"
 msgstr "spelshow/quiz/wedstrijd"
 
 msgid "gardening"
@@ -23913,7 +23970,7 @@ msgstr "h:mmAM/PM"
 msgid "h:mmam/pm"
 msgstr "h:mmam/pm"
 
-msgid "handicraft"
+msgid "Handicraft"
 msgstr "handvaardigheid"
 
 msgid "handled"
@@ -24000,10 +24057,10 @@ msgstr "lengte"
 msgid "lime"
 msgstr "limoen"
 
-msgid "literature"
+msgid "Literature"
 msgstr "literatuur"
 
-msgid "live broadcast"
+msgid "Live broadcast"
 msgstr "live uitzending"
 
 msgid "locked"
@@ -24015,16 +24072,16 @@ msgstr "lang"
 msgid "loopthrough to"
 msgstr "Doorlus naar"
 
-msgid "magazines/reports/documentary"
+msgid "Magazines/Reports/Documentary"
 msgstr "tijdschriften/reportages/documentaire"
 
 msgid "manual"
 msgstr "handmatig"
 
-msgid "martial sports"
+msgid "Martial sports"
 msgstr "vechtsporten"
 
-msgid "medicine/physiology/psychology"
+msgid "Medicine/Physiology/Psychology"
 msgstr "medicijnen/psychologie/fysiologie"
 
 msgid "min"
@@ -24039,7 +24096,7 @@ msgstr "maand"
 msgid "motor sport"
 msgstr "motorsport"
 
-msgid "motoring"
+msgid "Motoring"
 msgstr "autorijden"
 
 msgid "move"
@@ -24060,8 +24117,8 @@ msgstr "muziek (algemeen)"
 msgid "music/ballet/dance (general)"
 msgstr "muziek/ballet/dans (algemeen)"
 
-msgid "musical/opera"
-msgstr "musical/opera"
+msgid "Musical/Opera"
+msgstr "Musical/Opera"
 
 msgid "n/a"
 msgstr "Niet beschikbaar"
@@ -24069,22 +24126,22 @@ msgstr "Niet beschikbaar"
 msgid "name"
 msgstr "Naam"
 
-msgid "nature/animals/environment"
+msgid "Nature/Animals/Environment"
 msgstr "natuur/dieren/milieu"
 
-msgid "new media"
+msgid "New media"
 msgstr "nieuwe media"
 
 msgid "news (general)"
 msgstr "nieuws (algemeen)"
 
-msgid "news magazine"
+msgid "News magazine"
 msgstr "nieuwsmagazine"
 
 msgid "news/current affairs (general)"
 msgstr "nieuws/actualiteiten (algemeen)"
 
-msgid "news/weather report"
+msgid "News/Weather report"
 msgstr "nieuws/weer"
 
 msgid "no CAId selected"
@@ -24150,7 +24207,7 @@ msgstr "Pakket"
 msgid "packages"
 msgstr "Pakketten"
 
-msgid "performing arts"
+msgid "Performing arts"
 msgstr "podiumkunsten"
 
 msgid "pid:"
@@ -24171,7 +24228,7 @@ msgstr "Plugins"
 msgid "pm"
 msgstr "pm"
 
-msgid "popular culture/traditional arts"
+msgid "Popular culture/Traditional arts"
 msgstr "populaire cultuur/traditionele kunst"
 
 msgid "pre-school children's program"
@@ -24198,7 +24255,7 @@ msgstr "betrouwbaar,retune"
 msgid "religion"
 msgstr "religie"
 
-msgid "remarkable people"
+msgid "Remarkable people"
 msgstr "bijzondere mensen"
 
 msgid "remove after this position"
@@ -24222,7 +24279,7 @@ msgstr "terugspoelen naar vorig hoofdstuk"
 msgid "right"
 msgstr "Rechts"
 
-msgid "rock/pop"
+msgid "Rock/Pop"
 msgstr "rock / pop"
 
 msgid "romance"
@@ -24243,7 +24300,7 @@ msgstr ""
 msgid "scan state"
 msgstr "zoekstatus"
 
-msgid "science fiction/fantasy/horror"
+msgid "Science fiction/Fantasy/Horror"
 msgstr "science fiction/fantasie/horror"
 
 msgid "search EPG..."
@@ -24252,10 +24309,10 @@ msgstr "zoek in EPG..."
 msgid "select CAId's"
 msgstr "Selecteer CAId's"
 
-msgid "serious music/classic music"
+msgid "Serious music/Classic music"
 msgstr "serieuze/klassieke muziek"
 
-msgid "serious/classical/religious/historical movie/drama"
+msgid "Serious/Classical/Religious/Historical/Drama"
 msgstr "serieuze/klassieke/religieuze/Historische film/drama"
 
 msgid "service PIN"
@@ -24294,13 +24351,13 @@ msgstr "Terug springen"
 msgid "skip forward"
 msgstr "Vooruit springen"
 
-msgid "soap/melodrama/folkloric"
+msgid "Soap/Melodrama/Folkloric"
 msgstr "soap/melodrama/folklore"
 
 msgid "social/political issues/economics (general)"
 msgstr "sociaal/politieke issues/ecomomie (algemeen)"
 
-msgid "social/spiritual science"
+msgid "Social/Spiritual sciences"
 msgstr "sociale/spirituele wetenschap"
 
 msgid "softcam"
@@ -24321,7 +24378,7 @@ msgstr "sport (algemeen)"
 msgid "sports (general)"
 msgstr "sport (algemeen)"
 
-msgid "sports magazine"
+msgid "Sports magazines"
 msgstr "Sportrubriek"
 
 msgid "standard"
@@ -24363,7 +24420,7 @@ msgstr "talkshow"
 msgid "team sports"
 msgstr "teamsporten"
 
-msgid "technology/natural science"
+msgid "Technology/Natural sciences"
 msgstr "technologisch/natuurwetenschappen"
 
 msgid "teletext"
@@ -24372,8 +24429,8 @@ msgstr "Teletekst"
 msgid "template file"
 msgstr "sjabloonbestand"
 
-msgid "tennis/squash"
-msgstr "tennis/squash"
+msgid "Tennis/Squash"
+msgstr "Tennis/Squash"
 
 msgid "text"
 msgstr "Tekst"
@@ -24384,7 +24441,7 @@ msgstr "Deze opname"
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "Tijd, hoofdstuk, audio en ondertitels instellen"
 
-msgid "tourism/travel"
+msgid "Tourism/Travel"
 msgstr "toerisme/reizen"
 
 msgid "traditional (fast)"
@@ -24423,7 +24480,7 @@ msgstr "onbekend"
 msgid "unknown error"
 msgstr "onbekende fout"
 
-msgid "unpublished"
+msgid "Unpublished"
 msgstr "niet gepubliceerd"
 
 msgid "untestable"
@@ -24435,7 +24492,7 @@ msgstr "update"
 msgid "using:"
 msgstr "Gebruikt:"
 
-msgid "variety show"
+msgid "Variety show"
 msgstr "diverse shows"
 
 msgid "violet"
@@ -24447,7 +24504,7 @@ msgstr "Wachten op CI..."
 msgid "wait for mmi..."
 msgstr "wacht op mmi..."
 
-msgid "water sport"
+msgid "Water sport"
 msgstr "watersport"
 
 msgid "west"
@@ -24459,7 +24516,7 @@ msgstr "Wit"
 msgid "width"
 msgstr "breedte"
 
-msgid "winter sport"
+msgid "Winter sport"
 msgstr "wintersport"
 
 msgid "wireless network interface"

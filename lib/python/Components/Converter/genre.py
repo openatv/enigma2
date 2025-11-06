@@ -12,7 +12,7 @@ class GenresETSI:
 	maintype = (
 		_("Reserved"),
 		_("Movie/Drama"),
-		_("News/Current Affairs"),
+		_("News/Current affairs"),
 		_("Show/Game show"),
 		_("Sports"),
 		_("Children/Youth"),
@@ -28,44 +28,44 @@ class GenresETSI:
 		# Movie/Drama
 		1: (
 			_("movie/drama (general)"),
-			_("detective/thriller"),
-			_("adventure/western/war"),
-			_("science fiction/fantasy/horror"),
-			_("comedy"),
-			_("soap/melodrama/folkloric"),
-			_("romance"),
-			_("serious/classical/religious/historical movie/drama"),
-			_("adult movie/drama")
+			_("Detective/Thriller"),
+			_("Adventure/Western/War"),
+			_("Science fiction/Fantasy/Horror"),
+			_("Comedy"),
+			_("Soap/Melodrama/Folkloric"),
+			_("Romance"),
+			_("Serious/Classical/Religious/Historical/Drama"),
+			_("Adult movie/Drama")
 		),
 		# News/Current Affairs
 		2: (
-			_("news/current affairs (general)"),
-			_("news/weather report"),
-			_("news magazine"),
-			_("documentary"),
-			_("discussion/interview/debate")
+			_("News/Current affairs"),
+			_("News/Weather report"),
+			_("News magazine"),
+			_("Documentary"),
+			_("Discussion/Interview/Debate")
 		),
 		# Show/Game show
 		3: (
-			_("show/game show (general)"),
-			_("game show/quiz/contest"),
-			_("variety show"),
-			_("talk show")
+			_("Show/Game show"),
+			_("Game show/Quiz/Contest"),
+			_("Variety show"),
+			_("Talk show")
 		),
 		# Sports
 		4: (
-			_("sports (general)"),
+			_("Sports"),
 			_("special events"),
-			_("sports magazine"),
-			_("football/soccer"),
-			_("tennis/squash"),
+			_("Sports magazines"),
+			_("Football/Soccer"),
+			_("Tennis/Squash"),
 			_("team sports"),
-			_("athletics"),
-			_("motor sport"),
-			_("water sport"),
-			_("winter sport"),
-			_("equestrian"),
-			_("martial sports")
+			_("Athletics"),
+			_("Motor sport"),
+			_("Water sport"),
+			_("Winter sport"),
+			_("Equestrian"),
+			_("Martial sports")
 		),
 		# Children/Youth
 		5: (
@@ -74,69 +74,69 @@ class GenresETSI:
 			_("entertainment (6-14 year old)"),
 			_("entertainment (10-16 year old)"),
 			_("information/education/school program"),
-			_("cartoon/puppets")
+			_("Cartoons/Puppets")
 		),
 		# Music/Ballet/Dance
 		6: (
-			_("music/ballet/dance (general)"),
-			_("rock/pop"),
-			_("serious music/classic music"),
-			_("folk/traditional music"),
-			_("jazz"),
-			_("musical/opera"),
-			_("ballet")
+			_("Music/Ballet/Dance"),
+			_("Rock/Pop"),
+			_("Serious music/Classic music"),
+			_("Folk/Traditional music"),
+			_("Jazz"),
+			_("Musical/Opera"),
+			_("Ballet")
 		),
 		# Arts/Culture
 		7: (
 			_("arts/culture (without music, general)"),
-			_("performing arts"),
-			_("fine arts"),
-			_("religion"),
-			_("popular culture/traditional arts"),
-			_("literature"),
-			_("film/cinema"),
-			_("experimental film/video"),
-			_("broadcasting/press"),
-			_("new media"),
-			_("arts/culture magazine"),
-			_("fashion")
+			_("Performing arts"),
+			_("Fine arts"),
+			_("Religion"),
+			_("Popular culture/Traditional arts"),
+			_("Literature"),
+			_("Film/Cinema"),
+			_("Experimental film/video"),
+			_("Broadcasting/Press"),
+			_("New media"),
+			_("Arts/Culture magazines"),
+			_("Fashion")
 		),
 		# Social/Political/Economics
 		8: (
 			_("social/political issues/economics (general)"),
-			_("magazines/reports/documentary"),
-			_("economics/social advisory"),
-			_("remarkable people")
+			_("Magazines/Reports/Documentary"),
+			_("Economics/Social advisory"),
+			_("Remarkable people")
 		),
 		# Education/Science/...
 		9: (
-			_("education/science/factual topics (general)"),
-			_("nature/animals/environment"),
-			_("technology/natural science"),
-			_("medicine/physiology/psychology"),
-			_("foreign countries/expeditions"),
-			_("social/spiritual science"),
-			_("further education"),
-			_("languages")
+			_("Education/Science/Factual"),
+			_("Nature/Animals/Environment"),
+			_("Technology/Natural sciences"),
+			_("Medicine/Physiology/Psychology"),
+			_("Foreign countries/Expeditions"),
+			_("Social/Spiritual sciences"),
+			_("Further education"),
+			_("Languages")
 		),
 
 		# Leisure hobbies
 		10: (
-			_("leisure hobbies (general)"),
-			_("tourism/travel"),
-			_("handicraft"),
-			_("motoring"),
-			_("fitness & health"),
-			_("cooking"),
-			_("advertisement/shopping"),
-			_("gardening")
+			_("Leisure hobbies"),
+			_("Tourism/Travel"),
+			_("Handicraft"),
+			_("Motoring"),
+			_("Fitness and Health"),
+			_("Cooking"),
+			_("Advertisement/Shopping"),
+			_("Gardening")
 		),
 		# Special characteristics
 		11: (
-			_("original language"),
-			_("black & white"),
-			_("unpublished"),
-			_("live broadcast")
+			_("Original language"),
+			_("Black & White"),
+			_("Unpublished"),
+			_("Live broadcast")
 		),
 	}
 
@@ -224,7 +224,7 @@ class GenresAUSIceTV:
 	maintype = (
 		_("Miscellaneous"),
 		_("Movie/Drama"),
-		_("News/Current Affairs"),
+		_("News/Current affairs"),
 		_("Show/Game show"),
 		_("Sports"),
 		_("Children/Youth"),

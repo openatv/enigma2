@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-23 18:55+0000\n"
+"POT-Creation-Date: 2025-11-06 08:27+0000\n"
 "PO-Revision-Date: 2024-10-02 07:35+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/es/>\n"
@@ -1598,6 +1598,9 @@ msgstr "<Ubicación de la última grabación>"
 
 msgid "<Select a device>"
 msgstr "<Seleccionar dispositivo>"
+
+msgid "<no capabilities found>"
+msgstr ""
 
 msgid "<no log found>"
 msgstr "<sin registros>"
@@ -7905,6 +7908,12 @@ msgstr "¡Error '%s' encontrado al recuperar el registro de transacciones '%s'!"
 msgid "Error Download Setting"
 msgstr "Ajuste de la descarga de errores"
 
+msgid "Error Retry count"
+msgstr ""
+
+msgid "Error Retry delay"
+msgstr ""
+
 msgid "Error code"
 msgstr "Código de error"
 
@@ -10066,6 +10075,9 @@ msgstr "Ignorar la subred del espacio DVB-S"
 
 msgid "Ignore DVB-T namespace sub network"
 msgstr "Ignorar la subred del espacio DVB-T"
+
+msgid "Ignore Standby"
+msgstr ""
 
 msgid "Ignore unexpectedly wake up and stay in standby"
 msgstr "Ignorar el encendido inesperado y permanecer en espera"
@@ -12615,6 +12627,9 @@ msgstr "No desencriptar el contenido mientras se graba. Esto anula los ajustes i
 msgid "Never decrypt while recording"
 msgstr "Nunca descifrar durante la grabación"
 
+msgid "Never in Standby"
+msgstr ""
+
 #
 msgid "New"
 msgstr "Nuevo"
@@ -12666,7 +12681,7 @@ msgstr ""
 msgid "News"
 msgstr "Noticias"
 
-msgid "News/Current Affairs"
+msgid "News/Current affairs"
 msgstr "Noticias/Actualidad"
 
 msgid "Next"
@@ -13216,11 +13231,17 @@ msgstr "OScam webif desactivado"
 msgid "OSCamInfo Actions"
 msgstr ""
 
+msgid "OSCamInfo Capability Actions"
+msgstr ""
+
 msgid "OSCamInfo Log Actions"
 msgstr ""
 
 #, python-format
 msgid "OSCamInfo: %s Entitlements for '%s'"
+msgstr ""
+
+msgid "OSCamInfo: Capabilities"
 msgstr ""
 
 #, python-format
@@ -13375,6 +13396,9 @@ msgstr "Abrir lista de bouquet"
 
 msgid "Open Box Portal"
 msgstr "Mostrar portal Box"
+
+msgid "Open Capability"
+msgstr ""
 
 msgid "Open EPG"
 msgstr "Mostrar EPG..."
@@ -16925,6 +16949,9 @@ msgstr "Seleccione \"Sí\" para eliminar todas las personalizaciones del usuario
 msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all key map, menu and setup override data and restore the default definitions."
 msgstr "Seleccione \"Sí\" para eliminar todos los datos de la interfaz de usuario. Al seleccionar esta opción, se eliminarán todos los datos del mapa de teclas, de los menús y de la configuración y se restaurarán las definiciones por defecto."
 
+msgid "Select 'Yes' to reschedule the task to when the receiver goes in to/out of Standby mode. The state change must happen within the task schedule window or else the task will not be run."
+msgstr ""
+
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr "Seleccione \"Sí\" para restablecer la configuración de red por defecto. Esto habilitará el puerto Ethernet si existe y configurará el receptor para usar DHCP. Todas las demás interfaces de red serán eliminadas."
 
@@ -17264,6 +17291,9 @@ msgstr ""
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr "Seleccione cómo está configurada la antena parabólica, es decir, antena fija, LNB único, interruptor DiSEqC, posicionador, etc."
 
+msgid "Select how the schedule is handled with respect to Standby mode."
+msgstr ""
+
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Seleccione cómo activar el modo EPG rápido."
 
@@ -17421,6 +17451,9 @@ msgstr ""
 msgid "Select the action to perform when the timer ends."
 msgstr "Seleccione la acción a realizar cuando el temporizador termine."
 
+msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
+msgstr ""
+
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
 msgstr "Seleccione la velocidad de animación de los indicadores de los botones en las pantallas de ayuda. 'Desactivado' desactiva la animación para que los indicadores salten entre los botones."
 
@@ -17517,6 +17550,9 @@ msgstr ""
 msgid "Select the duration of inactivity before the screen saver will be displayed."
 msgstr "Configura la duración en minutos para el salvapantallas."
 
+msgid "Select the end time before which this timer can be activated.  After this time the timer won't be activated even if other conditions are met."
+msgstr ""
+
 #, python-format
 msgid "Select the file sort order for the %s column:"
 msgstr ""
@@ -17610,6 +17646,9 @@ msgstr "Seleccionar el siguiente elemento de la lista o mover el cursor hacia la
 msgid "Select the next item in the list"
 msgstr "Seleccione el siguiente elemento de la lista"
 
+msgid "Select the number of times to retry a task if an error occurs when running the task."
+msgstr ""
+
 msgid "Select the preferred service information to display, in addition to the service number, for the service selection pop up screen."
 msgstr ""
 
@@ -17683,6 +17722,9 @@ msgid "Select the source location from where to obtain the upgrade files."
 msgstr ""
 
 msgid "Select the source of the default DNS settings."
+msgstr ""
+
+msgid "Select the start time after which this timer can be activated.  Before this time the timer won't be activated even if other conditions are met."
 msgstr ""
 
 msgid "Select the starting/initial column to be activated on File Commander start up."
@@ -18623,6 +18665,9 @@ msgstr ""
 
 msgid "Show CI messages"
 msgstr "Mostrar mensajes CI"
+
+msgid "Show Capabilities"
+msgstr ""
 
 msgid "Show Default Backup Files"
 msgstr "Mostrar archivos incluidos por defecto en la copia de seguridad"
@@ -20050,6 +20095,9 @@ msgstr "Modo de espera"
 msgid "Standby / Restart"
 msgstr "Apagado / Reinicio"
 
+msgid "Standby execution"
+msgstr ""
+
 msgid "Standby without TV shut down"
 msgstr ""
 
@@ -20103,6 +20151,9 @@ msgid "Start or Stop service"
 msgstr ""
 
 msgid "Start recording current event"
+msgstr ""
+
+msgid "Start retry"
 msgstr ""
 
 msgid "Start teletext"
@@ -21982,6 +22033,9 @@ msgstr "Editar temporizador"
 msgid "Timer editor"
 msgstr "Editor de temporizador"
 
+msgid "Timer end window"
+msgstr ""
+
 #
 msgid "Timer entry"
 msgstr "Entrada de temporizador"
@@ -22006,6 +22060,9 @@ msgstr "Ruta de grabación del temporizador"
 
 msgid "Timer selection"
 msgstr "Selección de grabación"
+
+msgid "Timer start window"
+msgstr ""
 
 #
 msgid "Timer type"
@@ -24685,16 +24742,16 @@ msgstr "Activar PiP"
 msgid "address:"
 msgstr "Dirección:"
 
-msgid "adult movie/drama"
+msgid "Adult movie/Drama"
 msgstr "Película para adultos / drama"
 
 msgid "advanced"
 msgstr "avanzado"
 
-msgid "adventure/western/war"
+msgid "Adventure/Western/War"
 msgstr "Aventura occidental guerra"
 
-msgid "advertisement/shopping"
+msgid "Advertisement/Shopping"
 msgstr "Publicidad / compras"
 
 msgid "alpha then oldest"
@@ -24729,7 +24786,7 @@ msgstr "Artes / cultura (sin música, general)"
 msgid "arts/culture (without music, general)"
 msgstr "Artes / cultura (sin música, general)"
 
-msgid "arts/culture magazine"
+msgid "Arts/Culture magazines"
 msgstr "Revista de artes y cultura"
 
 msgid "athletics"
@@ -24779,14 +24836,14 @@ msgstr "Mejor"
 msgid "black"
 msgstr "Negro"
 
-msgid "black & white"
+msgid "Black & White"
 msgstr "blanco y negro"
 
 #
 msgid "blue"
 msgstr "Azul"
 
-msgid "broadcasting/press"
+msgid "Broadcasting/Press"
 msgstr "prensa/redifusión"
 
 #
@@ -24809,7 +24866,7 @@ msgstr "Tarjeta"
 msgid "card reader"
 msgstr "Lector de tarjetas"
 
-msgid "cartoon/puppets"
+msgid "Cartoons/Puppets"
 msgstr "dibujos animados/marionetas"
 
 #
@@ -24879,7 +24936,7 @@ msgstr "Borrar"
 msgid "delete cut"
 msgstr "Borrar corte"
 
-msgid "detective/thriller"
+msgid "Detective/Thriller"
 msgstr "investigación/thriller"
 
 #
@@ -24890,7 +24947,7 @@ msgstr "Deshabilitado"
 msgid "disconnected"
 msgstr "Desconectado"
 
-msgid "discussion/interview/debate"
+msgid "Discussion/Interview/Debate"
 msgstr "debate/entrevista/discusión"
 
 msgid "documentary"
@@ -24923,7 +24980,7 @@ msgstr "ecm time:"
 msgid "ecm.info"
 msgstr "ecm.info"
 
-msgid "economics/social advisory"
+msgid "Economics/Social advisory"
 msgstr "economía/asesores"
 
 #, fuzzy
@@ -24964,7 +25021,7 @@ msgstr "entretenimiento (6-14 años)"
 msgid "equal to"
 msgstr "igual a"
 
-msgid "equestrian"
+msgid "Equestrian"
 msgstr "ecuestre"
 
 msgid "execute cuts (requires MovieCut plugin)"
@@ -24974,7 +25031,7 @@ msgstr "Ejecutar cortes (requiere MovieCut plugin)"
 msgid "exit DVD player or return to file browser"
 msgstr "Salir del reproductor de DVD o volver al navegador de archivos"
 
-msgid "experimental film/video"
+msgid "Experimental film/video"
 msgstr "cine/video experimental"
 
 # NimManager.py
@@ -24984,7 +25041,7 @@ msgstr "Bucle externo a"
 msgid "failed"
 msgstr "Fallido"
 
-msgid "fashion"
+msgid "Fashion"
 msgstr "mora"
 
 #, fuzzy
@@ -24999,13 +25056,13 @@ msgstr "Formatos de archivo (BMP, PNG, JPG, GIF)"
 msgid "filename"
 msgstr "Nombre de archivo"
 
-msgid "film/cinema"
+msgid "Film/Cinema"
 msgstr "cine/películas"
 
-msgid "fine arts"
+msgid "Fine arts"
 msgstr "bellas artes"
 
-msgid "fitness & health"
+msgid "Fitness and Health"
 msgstr "ejercicio y salud"
 
 msgid "flat alphabetic"
@@ -25014,13 +25071,13 @@ msgstr "Orden alfabético plano"
 msgid "flat alphabetic reverse"
 msgstr "Invertir a orden alfabético plano"
 
-msgid "folk/traditional music"
+msgid "Folk/Traditional music"
 msgstr "Música folklórica / tradicional"
 
-msgid "football/soccer"
+msgid "Football/Soccer"
 msgstr "fútbol Futbol"
 
-msgid "foreign countries/expeditions"
+msgid "Foreign countries/Expeditions"
 msgstr "Países extranjeros / expediciones"
 
 #
@@ -25038,10 +25095,10 @@ msgstr "Espacio libre en disco"
 msgid "from"
 msgstr "de"
 
-msgid "further education"
+msgid "Further education"
 msgstr "educación avanzada"
 
-msgid "game show/quiz/contest"
+msgid "Game show/Quiz/Contest"
 msgstr "Concurso de juegos"
 
 msgid "gardening"
@@ -25076,7 +25133,7 @@ msgstr ""
 msgid "h:mmam/pm"
 msgstr ""
 
-msgid "handicraft"
+msgid "Handicraft"
 msgstr "artesanía"
 
 msgid "handled"
@@ -25174,10 +25231,10 @@ msgstr "Longitud"
 msgid "lime"
 msgstr ""
 
-msgid "literature"
+msgid "Literature"
 msgstr "literatura"
 
-msgid "live broadcast"
+msgid "Live broadcast"
 msgstr "transmisión en vivo"
 
 #
@@ -25190,17 +25247,17 @@ msgstr "largo"
 msgid "loopthrough to"
 msgstr "bucle a través de"
 
-msgid "magazines/reports/documentary"
+msgid "Magazines/Reports/Documentary"
 msgstr "documentales/entrevistas/informes"
 
 #
 msgid "manual"
 msgstr "Manual"
 
-msgid "martial sports"
+msgid "Martial sports"
 msgstr "Deportes marciales"
 
-msgid "medicine/physiology/psychology"
+msgid "Medicine/Physiology/Psychology"
 msgstr "Medicina / fisiología / psicología"
 
 #
@@ -25218,7 +25275,7 @@ msgstr "Mes"
 msgid "motor sport"
 msgstr "Deporte de motor"
 
-msgid "motoring"
+msgid "Motoring"
 msgstr "automovilismo"
 
 msgid "move"
@@ -25243,8 +25300,8 @@ msgstr "Deportes (general)"
 msgid "music/ballet/dance (general)"
 msgstr "Música / ballet / danza (general)"
 
-msgid "musical/opera"
-msgstr "musical/opera"
+msgid "Musical/Opera"
+msgstr "Musical/Opera"
 
 msgid "n/a"
 msgstr ""
@@ -25252,23 +25309,23 @@ msgstr ""
 msgid "name"
 msgstr ""
 
-msgid "nature/animals/environment"
+msgid "Nature/Animals/Environment"
 msgstr "Naturaleza / animales / recurso ambiente"
 
-msgid "new media"
+msgid "New media"
 msgstr "nuevos recursos de comunicacion"
 
 #, fuzzy
 msgid "news (general)"
 msgstr "Deportes (general)"
 
-msgid "news magazine"
+msgid "News magazine"
 msgstr "revista de noticias"
 
 msgid "news/current affairs (general)"
 msgstr "Noticias / actualidad (general)"
 
-msgid "news/weather report"
+msgid "News/Weather report"
 msgstr "Noticias / informe meteorológico"
 
 #
@@ -25347,7 +25404,7 @@ msgstr ""
 msgid "packages"
 msgstr ""
 
-msgid "performing arts"
+msgid "Performing arts"
 msgstr "las artes escénicas"
 
 msgid "pid:"
@@ -25369,7 +25426,7 @@ msgstr ""
 msgid "pm"
 msgstr "pm"
 
-msgid "popular culture/traditional arts"
+msgid "Popular culture/Traditional arts"
 msgstr "Cultura popular / artes tradicionales"
 
 msgid "pre-school children's program"
@@ -25399,7 +25456,7 @@ msgstr ""
 msgid "religion"
 msgstr "religión"
 
-msgid "remarkable people"
+msgid "Remarkable people"
 msgstr "gente destacada"
 
 #
@@ -25428,8 +25485,8 @@ msgstr "Rebobinar al capítulo anterior"
 msgid "right"
 msgstr "derecha"
 
-msgid "rock/pop"
-msgstr "rock/pop"
+msgid "Rock/Pop"
+msgstr "Rock/Pop"
 
 msgid "romance"
 msgstr "romance"
@@ -25452,7 +25509,7 @@ msgstr ""
 msgid "scan state"
 msgstr "Estado de la búsqueda"
 
-msgid "science fiction/fantasy/horror"
+msgid "Science fiction/Fantasy/Horror"
 msgstr "Ciencia ficción / fantasía / horror"
 
 msgid "search EPG..."
@@ -25462,10 +25519,10 @@ msgstr "Búsqueda EPG ..."
 msgid "select CAId's"
 msgstr "Seleccionar CAId's"
 
-msgid "serious music/classic music"
+msgid "Serious music/Classic music"
 msgstr "Música seria / música clásica"
 
-msgid "serious/classical/religious/historical movie/drama"
+msgid "Serious/Classical/Religious/Historical/Drama"
 msgstr "Seria / clásica / religiosa / película histórica / drama"
 
 msgid "service PIN"
@@ -25508,13 +25565,13 @@ msgstr "Salto atrás"
 msgid "skip forward"
 msgstr "Salto adelante"
 
-msgid "soap/melodrama/folkloric"
+msgid "Soap/Melodrama/Folkloric"
 msgstr "Jabón / melodram / folclórico"
 
 msgid "social/political issues/economics (general)"
 msgstr "Cuestiones sociales / políticas / economía (general)"
 
-msgid "social/spiritual science"
+msgid "Social/Spiritual sciences"
 msgstr "Ciencia social / espiritual"
 
 msgid "softcam"
@@ -25537,7 +25594,7 @@ msgstr "Deportes (general)"
 msgid "sports (general)"
 msgstr "Deportes (general)"
 
-msgid "sports magazine"
+msgid "Sports magazines"
 msgstr "Revista de deportes"
 
 #
@@ -25587,7 +25644,7 @@ msgstr "programa de entrevistas"
 msgid "team sports"
 msgstr "deportes de equipo"
 
-msgid "technology/natural science"
+msgid "Technology/Natural sciences"
 msgstr "Tecnología / ciencia natural"
 
 #, fuzzy
@@ -25598,7 +25655,7 @@ msgstr "Teletexto"
 msgid "template file"
 msgstr "Archivo de plantilla"
 
-msgid "tennis/squash"
+msgid "Tennis/Squash"
 msgstr "tenis/squash"
 
 msgid "text"
@@ -25612,7 +25669,7 @@ msgstr "Esta grabación"
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "Configurar hora, capítulo, audio, información de subtítulos"
 
-msgid "tourism/travel"
+msgid "Tourism/Travel"
 msgstr "viajes/turismo"
 
 #, fuzzy
@@ -25657,7 +25714,7 @@ msgstr "Desconocido"
 msgid "unknown error"
 msgstr "Canal desconocido"
 
-msgid "unpublished"
+msgid "Unpublished"
 msgstr "no publicado"
 
 #
@@ -25672,7 +25729,7 @@ msgstr "actualización"
 msgid "using:"
 msgstr "Utilizando:"
 
-msgid "variety show"
+msgid "Variety show"
 msgstr "show de variedades"
 
 msgid "violet"
@@ -25685,7 +25742,7 @@ msgstr ""
 msgid "wait for mmi..."
 msgstr "esperar a MMI…"
 
-msgid "water sport"
+msgid "Water sport"
 msgstr "deportes acuáticos"
 
 msgid "west"
@@ -25697,7 +25754,7 @@ msgstr "Blanco"
 msgid "width"
 msgstr "Ancho"
 
-msgid "winter sport"
+msgid "Winter sport"
 msgstr "deportes de invierno"
 
 msgid "wireless network interface"

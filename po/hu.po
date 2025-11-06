@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-23 18:55+0000\n"
+"POT-Creation-Date: 2025-11-06 08:27+0000\n"
 "PO-Revision-Date: 2025-05-05 05:50+0000\n"
 "Last-Translator: Balázs Sólyom <balazs@solyom.online>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -1576,6 +1576,9 @@ msgid "<Last timer location>"
 msgstr "<Időzítés utolsó helye>"
 
 msgid "<Select a device>"
+msgstr ""
+
+msgid "<no capabilities found>"
 msgstr ""
 
 msgid "<no log found>"
@@ -7603,6 +7606,12 @@ msgstr ""
 msgid "Error Download Setting"
 msgstr "Letöltési hiba Beállítás"
 
+msgid "Error Retry count"
+msgstr ""
+
+msgid "Error Retry delay"
+msgstr ""
+
 msgid "Error code"
 msgstr "Hibakód"
 
@@ -9662,6 +9671,9 @@ msgstr "A DVB-S névtér alhálózatának figyelmen kívül hagyása"
 
 msgid "Ignore DVB-T namespace sub network"
 msgstr "A DVB-T névtér alhálózatának figyelmen kívül hagyása"
+
+msgid "Ignore Standby"
+msgstr ""
 
 msgid "Ignore unexpectedly wake up and stay in standby"
 msgstr "Hagyja figyelmen kívül a váratlan ébredést és maradjon készenléti állapotban"
@@ -12103,6 +12115,9 @@ msgstr "Felvétel közben sosem végez dekódolást. Ez általánosan felülírj
 msgid "Never decrypt while recording"
 msgstr "Felvétel alatt soha nincs dekódolás"
 
+msgid "Never in Standby"
+msgstr ""
+
 msgid "New"
 msgstr "Új"
 
@@ -12152,7 +12167,7 @@ msgstr ""
 msgid "News"
 msgstr "Hírek"
 
-msgid "News/Current Affairs"
+msgid "News/Current affairs"
 msgstr "Hírek/Aktuális ügyek"
 
 msgid "Next"
@@ -12659,11 +12674,17 @@ msgstr "oscam webif letiltva"
 msgid "OSCamInfo Actions"
 msgstr ""
 
+msgid "OSCamInfo Capability Actions"
+msgstr ""
+
 msgid "OSCamInfo Log Actions"
 msgstr ""
 
 #, python-format
 msgid "OSCamInfo: %s Entitlements for '%s'"
+msgstr ""
+
+msgid "OSCamInfo: Capabilities"
 msgstr ""
 
 #, python-format
@@ -12810,6 +12831,9 @@ msgstr "Csatornacsomag lista megnyitása..."
 #, fuzzy
 msgid "Open Box Portal"
 msgstr "Box Portal megnyitása..."
+
+msgid "Open Capability"
+msgstr ""
 
 msgid "Open EPG"
 msgstr "az EPG megjelenítése..."
@@ -16140,6 +16164,9 @@ msgstr ""
 msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all key map, menu and setup override data and restore the default definitions."
 msgstr ""
 
+msgid "Select 'Yes' to reschedule the task to when the receiver goes in to/out of Standby mode. The state change must happen within the task schedule window or else the task will not be run."
+msgstr ""
+
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr ""
 
@@ -16469,6 +16496,9 @@ msgstr ""
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr "Válassza ki a műholdas antenna beállítását. vagyis rögzített dish, egyetlen LNB, DiSEqC kapcsoló, pozícionáló stb..."
 
+msgid "Select how the schedule is handled with respect to Standby mode."
+msgstr ""
+
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Válassza ki, hogyan aktiválja a Gyors EPG módot:"
 
@@ -16619,6 +16649,9 @@ msgstr ""
 msgid "Select the action to perform when the timer ends."
 msgstr ""
 
+msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
+msgstr ""
+
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
 msgstr ""
 
@@ -16716,6 +16749,9 @@ msgstr ""
 msgid "Select the duration of inactivity before the screen saver will be displayed."
 msgstr "Állítsa be a képernyővédő időtartamát percekben."
 
+msgid "Select the end time before which this timer can be activated.  After this time the timer won't be activated even if other conditions are met."
+msgstr ""
+
 #, python-format
 msgid "Select the file sort order for the %s column:"
 msgstr ""
@@ -16809,6 +16845,9 @@ msgstr ""
 msgid "Select the next item in the list"
 msgstr ""
 
+msgid "Select the number of times to retry a task if an error occurs when running the task."
+msgstr ""
+
 msgid "Select the preferred service information to display, in addition to the service number, for the service selection pop up screen."
 msgstr ""
 
@@ -16884,6 +16923,9 @@ msgid "Select the source location from where to obtain the upgrade files."
 msgstr ""
 
 msgid "Select the source of the default DNS settings."
+msgstr ""
+
+msgid "Select the start time after which this timer can be activated.  Before this time the timer won't be activated even if other conditions are met."
 msgstr ""
 
 msgid "Select the starting/initial column to be activated on File Commander start up."
@@ -17764,6 +17806,9 @@ msgstr ""
 
 msgid "Show CI messages"
 msgstr "CI üzenetek mutatása"
+
+msgid "Show Capabilities"
+msgstr ""
 
 msgid "Show Default Backup Files"
 msgstr "Alapértelmezett mentési fájlok"
@@ -19091,6 +19136,9 @@ msgstr "Készenlét"
 msgid "Standby / Restart"
 msgstr "Készenlét / Újraindítás"
 
+msgid "Standby execution"
+msgstr ""
+
 msgid "Standby without TV shut down"
 msgstr "Készenlét a TV leállítása nélkül"
 
@@ -19141,6 +19189,9 @@ msgid "Start or Stop service"
 msgstr ""
 
 msgid "Start recording current event"
+msgstr ""
+
+msgid "Start retry"
 msgstr ""
 
 msgid "Start teletext"
@@ -20904,6 +20955,9 @@ msgstr "Időzítő módosítása"
 msgid "Timer editor"
 msgstr "Időzítések"
 
+msgid "Timer end window"
+msgstr ""
+
 msgid "Timer entry"
 msgstr "Időzítés megadása"
 
@@ -20925,6 +20979,9 @@ msgstr "Időzített felvételek helye"
 
 msgid "Timer selection"
 msgstr "Időzítés kiválasztása"
+
+msgid "Timer start window"
+msgstr ""
 
 msgid "Timer type"
 msgstr "Időzítés típusa"
@@ -23394,16 +23451,16 @@ msgstr "Kép-a-Képben bekapcsolása"
 msgid "address:"
 msgstr "cím:"
 
-msgid "adult movie/drama"
+msgid "Adult movie/Drama"
 msgstr "felnőtt/dráma"
 
 msgid "advanced"
 msgstr "haladó"
 
-msgid "adventure/western/war"
+msgid "Adventure/Western/War"
 msgstr "kaland/western/háború"
 
-msgid "advertisement/shopping"
+msgid "Advertisement/Shopping"
 msgstr "reklám/televíziós vásárlás"
 
 msgid "alpha then oldest"
@@ -23437,7 +23494,7 @@ msgstr "művészet/kultúra (általános)"
 msgid "arts/culture (without music, general)"
 msgstr "művészet/kultúra (prózai, általános)"
 
-msgid "arts/culture magazine"
+msgid "Arts/Culture magazines"
 msgstr "művészet/kultúra magazin"
 
 msgid "athletics"
@@ -23479,13 +23536,13 @@ msgstr "jobb"
 msgid "black"
 msgstr "fekete"
 
-msgid "black & white"
+msgid "Black & White"
 msgstr "fekete és fehér"
 
 msgid "blue"
 msgstr "kék"
 
-msgid "broadcasting/press"
+msgid "Broadcasting/Press"
 msgstr "közvetítés/sajtó"
 
 #, python-format
@@ -23507,7 +23564,7 @@ msgstr "kártya"
 msgid "card reader"
 msgstr "kártyaolvasó"
 
-msgid "cartoon/puppets"
+msgid "Cartoons/Puppets"
 msgstr "rajzfilm/báb"
 
 msgid "chapters"
@@ -23567,7 +23624,7 @@ msgstr "törlés"
 msgid "delete cut"
 msgstr "vágópont törlése"
 
-msgid "detective/thriller"
+msgid "Detective/Thriller"
 msgstr "dekektív/thriller"
 
 msgid "disabled"
@@ -23576,7 +23633,7 @@ msgstr "kikapcsolva"
 msgid "disconnected"
 msgstr "nincs csatlakoztatva"
 
-msgid "discussion/interview/debate"
+msgid "Discussion/Interview/Debate"
 msgstr "beszélgetés/interjú/vita"
 
 msgid "documentary"
@@ -23607,7 +23664,7 @@ msgstr "ecm idő:"
 msgid "ecm.info"
 msgstr "ecm.info"
 
-msgid "economics/social advisory"
+msgid "Economics/Social advisory"
 msgstr "gazdaság/szocilális"
 
 msgid "education/information (general)"
@@ -23643,7 +23700,7 @@ msgstr "szórakozás (általános)"
 msgid "equal to"
 msgstr "egyenlő"
 
-msgid "equestrian"
+msgid "Equestrian"
 msgstr "lovaglás"
 
 msgid "execute cuts (requires MovieCut plugin)"
@@ -23652,7 +23709,7 @@ msgstr "vágások végrehajtása (MovieCut bővítmény szükséges)"
 msgid "exit DVD player or return to file browser"
 msgstr "a DVD Player bezárása és visszatérés a keresőbe"
 
-msgid "experimental film/video"
+msgid "Experimental film/video"
 msgstr "kísérleti filmezés"
 
 msgid "externally loopthrough to"
@@ -23661,7 +23718,7 @@ msgstr "külsőleg átfűzés ide"
 msgid "failed"
 msgstr "sikertelen"
 
-msgid "fashion"
+msgid "Fashion"
 msgstr "divat"
 
 msgid "file can not displayed - file not found"
@@ -23673,13 +23730,13 @@ msgstr "fájlformátumok (BMP, PNG, JPG, GIF)"
 msgid "filename"
 msgstr "fájlnév"
 
-msgid "film/cinema"
+msgid "Film/Cinema"
 msgstr "mozi"
 
-msgid "fine arts"
+msgid "Fine arts"
 msgstr "művészet"
 
-msgid "fitness & health"
+msgid "Fitness and Health"
 msgstr "fitnessz/egészség"
 
 msgid "flat alphabetic"
@@ -23688,13 +23745,13 @@ msgstr "ábécé szerinti rendezés"
 msgid "flat alphabetic reverse"
 msgstr "fordított ABC"
 
-msgid "folk/traditional music"
+msgid "Folk/Traditional music"
 msgstr "folklór/népzene"
 
-msgid "football/soccer"
+msgid "Football/Soccer"
 msgstr "futball/foci"
 
-msgid "foreign countries/expeditions"
+msgid "Foreign countries/Expeditions"
 msgstr "külföldi országok/kirándulás"
 
 msgid "forward to the next chapter"
@@ -23709,10 +23766,10 @@ msgstr "szabad tárterület"
 msgid "from"
 msgstr "ból"
 
-msgid "further education"
+msgid "Further education"
 msgstr "továbboktatás"
 
-msgid "game show/quiz/contest"
+msgid "Game show/Quiz/Contest"
 msgstr "játék/show/kvíz"
 
 msgid "gardening"
@@ -23745,7 +23802,7 @@ msgstr "h:mmAM/PM"
 msgid "h:mmam/pm"
 msgstr "h:mmam/pm"
 
-msgid "handicraft"
+msgid "Handicraft"
 msgstr "kézművesség"
 
 msgid "handled"
@@ -23833,10 +23890,10 @@ msgstr "hossz"
 msgid "lime"
 msgstr ""
 
-msgid "literature"
+msgid "Literature"
 msgstr "irodalom"
 
-msgid "live broadcast"
+msgid "Live broadcast"
 msgstr "élő adás"
 
 msgid "locked"
@@ -23848,16 +23905,16 @@ msgstr "hosszú"
 msgid "loopthrough to"
 msgstr "átfűzés ide"
 
-msgid "magazines/reports/documentary"
+msgid "Magazines/Reports/Documentary"
 msgstr "magazin/riport/dokumentum"
 
 msgid "manual"
 msgstr "kézi"
 
-msgid "martial sports"
+msgid "Martial sports"
 msgstr "harci sportok"
 
-msgid "medicine/physiology/psychology"
+msgid "Medicine/Physiology/Psychology"
 msgstr "egészség"
 
 msgid "min"
@@ -23872,7 +23929,7 @@ msgstr "hónap"
 msgid "motor sport"
 msgstr "motorsport"
 
-msgid "motoring"
+msgid "Motoring"
 msgstr "motor"
 
 msgid "move"
@@ -23893,8 +23950,8 @@ msgstr "zene (általános)"
 msgid "music/ballet/dance (general)"
 msgstr "zene/balett/tánc (általános)"
 
-msgid "musical/opera"
-msgstr "musical/opera"
+msgid "Musical/Opera"
+msgstr "Musical/Opera"
 
 msgid "n/a"
 msgstr "n/a"
@@ -23902,22 +23959,22 @@ msgstr "n/a"
 msgid "name"
 msgstr ""
 
-msgid "nature/animals/environment"
+msgid "Nature/Animals/Environment"
 msgstr "természet/állatvilág/környezet"
 
-msgid "new media"
+msgid "New media"
 msgstr "új média"
 
 msgid "news (general)"
 msgstr "hírek (általános)"
 
-msgid "news magazine"
+msgid "News magazine"
 msgstr "hírmagazin"
 
 msgid "news/current affairs (general)"
 msgstr "hírek/gazdaság (általános)"
 
-msgid "news/weather report"
+msgid "News/Weather report"
 msgstr "hírek/időjárás"
 
 msgid "no CAId selected"
@@ -23983,7 +24040,7 @@ msgstr ""
 msgid "packages"
 msgstr ""
 
-msgid "performing arts"
+msgid "Performing arts"
 msgstr "előadóművészet"
 
 msgid "pid:"
@@ -24004,7 +24061,7 @@ msgstr ""
 msgid "pm"
 msgstr "du"
 
-msgid "popular culture/traditional arts"
+msgid "Popular culture/Traditional arts"
 msgstr "néprajz"
 
 msgid "pre-school children's program"
@@ -24031,7 +24088,7 @@ msgstr "megbízható, újra hangolás"
 msgid "religion"
 msgstr "vallás"
 
-msgid "remarkable people"
+msgid "Remarkable people"
 msgstr "nevezetes emberek"
 
 msgid "remove after this position"
@@ -24055,8 +24112,8 @@ msgstr "visszatekerés az előző chapterhez"
 msgid "right"
 msgstr "jobb"
 
-msgid "rock/pop"
-msgstr "rock/pop"
+msgid "Rock/Pop"
+msgstr "Rock/Pop"
 
 msgid "romance"
 msgstr "románc"
@@ -24078,7 +24135,7 @@ msgstr ""
 msgid "scan state"
 msgstr "keresési állapot"
 
-msgid "science fiction/fantasy/horror"
+msgid "Science fiction/Fantasy/Horror"
 msgstr "szcifi/fantasy/horror"
 
 msgid "search EPG..."
@@ -24087,10 +24144,10 @@ msgstr "keresés EPG..."
 msgid "select CAId's"
 msgstr "a CAId-k kijelölése"
 
-msgid "serious music/classic music"
+msgid "Serious music/Classic music"
 msgstr "komolyzene"
 
-msgid "serious/classical/religious/historical movie/drama"
+msgid "Serious/Classical/Religious/Historical/Drama"
 msgstr "komolyzene/klasszikus/vallási/történelmi/dráma"
 
 msgid "service PIN"
@@ -24129,13 +24186,13 @@ msgstr "vissza kihagyása"
 msgid "skip forward"
 msgstr "előre kihagyása"
 
-msgid "soap/melodrama/folkloric"
+msgid "Soap/Melodrama/Folkloric"
 msgstr "szappanopera/melodráma"
 
 msgid "social/political issues/economics (general)"
 msgstr "szociális/politikai/gazdasági (általános)"
 
-msgid "social/spiritual science"
+msgid "Social/Spiritual sciences"
 msgstr "szociális/spirituális"
 
 msgid "softcam"
@@ -24156,7 +24213,7 @@ msgstr "sport (általános)"
 msgid "sports (general)"
 msgstr "sport (általános)"
 
-msgid "sports magazine"
+msgid "Sports magazines"
 msgstr "sportmagazin"
 
 msgid "standard"
@@ -24198,7 +24255,7 @@ msgstr "beszédműsor"
 msgid "team sports"
 msgstr "csapat sport"
 
-msgid "technology/natural science"
+msgid "Technology/Natural sciences"
 msgstr "technológia/természettudomány"
 
 #, fuzzy
@@ -24208,7 +24265,7 @@ msgstr "Teletext"
 msgid "template file"
 msgstr "sablon fájl"
 
-msgid "tennis/squash"
+msgid "Tennis/Squash"
 msgstr "tenisz/fallabda"
 
 msgid "text"
@@ -24220,7 +24277,7 @@ msgstr "ez a felvétel"
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "idő, chapter, hangsáv, feliratsáv választás"
 
-msgid "tourism/travel"
+msgid "Tourism/Travel"
 msgstr "turizmus/utazás"
 
 msgid "traditional (fast)"
@@ -24259,7 +24316,7 @@ msgstr "ismeretlen"
 msgid "unknown error"
 msgstr "ismeretlen hiba"
 
-msgid "unpublished"
+msgid "Unpublished"
 msgstr "kiadatlan"
 
 msgid "untestable"
@@ -24271,7 +24328,7 @@ msgstr "frissítés"
 msgid "using:"
 msgstr "használva:"
 
-msgid "variety show"
+msgid "Variety show"
 msgstr "varieté"
 
 msgid "violet"
@@ -24283,7 +24340,7 @@ msgstr ""
 msgid "wait for mmi..."
 msgstr "várakozás mmi-re..."
 
-msgid "water sport"
+msgid "Water sport"
 msgstr "vizi sport"
 
 msgid "west"
@@ -24295,7 +24352,7 @@ msgstr "fehér"
 msgid "width"
 msgstr "szélesség"
 
-msgid "winter sport"
+msgid "Winter sport"
 msgstr "téli sport"
 
 msgid "wireless network interface"

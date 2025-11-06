@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-23 18:55+0000\n"
+"POT-Creation-Date: 2025-11-06 08:27+0000\n"
 "PO-Revision-Date: 2025-10-22 05:45+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
@@ -1580,6 +1580,9 @@ msgstr "<Розташування останнього таймера>"
 
 msgid "<Select a device>"
 msgstr "<Виберіть пристрій>"
+
+msgid "<no capabilities found>"
+msgstr ""
 
 msgid "<no log found>"
 msgstr "<лог не знайдено"
@@ -7601,6 +7604,12 @@ msgstr "Під час отримання журналів фіксації %s с
 msgid "Error Download Setting"
 msgstr "Помилка Завантаження Налаштувань"
 
+msgid "Error Retry count"
+msgstr ""
+
+msgid "Error Retry delay"
+msgstr ""
+
 msgid "Error code"
 msgstr "Код помилки"
 
@@ -9649,6 +9658,9 @@ msgstr "Ігнорувати імена підмережі DVB-S"
 
 msgid "Ignore DVB-T namespace sub network"
 msgstr "Ігнорувати імена підмережі DVB-T"
+
+msgid "Ignore Standby"
+msgstr ""
 
 msgid "Ignore unexpectedly wake up and stay in standby"
 msgstr "Ігнорувати несподіване включення і залишитися в режимі очікування"
@@ -12041,6 +12053,9 @@ msgstr "Ніколи не розкодовувати передачі під ч�
 msgid "Never decrypt while recording"
 msgstr "Ніколи не розшифровувати під час запису"
 
+msgid "Never in Standby"
+msgstr ""
+
 msgid "New"
 msgstr "Нові"
 
@@ -12089,7 +12104,7 @@ msgstr "Новий каталог"
 msgid "News"
 msgstr "Новини"
 
-msgid "News/Current Affairs"
+msgid "News/Current affairs"
 msgstr "Новини/Поточні справи"
 
 msgid "Next"
@@ -12592,12 +12607,18 @@ msgstr "oscam webif відключено"
 msgid "OSCamInfo Actions"
 msgstr "Дії OSCamInfo"
 
+msgid "OSCamInfo Capability Actions"
+msgstr ""
+
 msgid "OSCamInfo Log Actions"
 msgstr "Дії для логу OSCamInfo"
 
 #, python-format
 msgid "OSCamInfo: %s Entitlements for '%s'"
 msgstr "OSCamInfo: %s права для '%s'"
+
+msgid "OSCamInfo: Capabilities"
+msgstr ""
 
 #, python-format
 msgid "OSCamInfo: Entitlements for '%s'"
@@ -12740,6 +12761,9 @@ msgstr "Відкрити фаворитний список"
 
 msgid "Open Box Portal"
 msgstr "Показати портали тюнера"
+
+msgid "Open Capability"
+msgstr ""
 
 msgid "Open EPG"
 msgstr "Відкрити EPG"
@@ -16049,6 +16073,9 @@ msgstr "Виберіть 'Так', щоб видалити всі користу
 msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all key map, menu and setup override data and restore the default definitions."
 msgstr "Виберіть 'Так', щоб видалити всі дані інтерфейсу користувача. Вибір цієї опції видалить усі дані, що замінюють розкладку, меню та налаштування, а також відновить визначення за замовчуванням."
 
+msgid "Select 'Yes' to reschedule the task to when the receiver goes in to/out of Standby mode. The state change must happen within the task schedule window or else the task will not be run."
+msgstr ""
+
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr "Виберіть 'Так', щоб скинути конфігурацію мережі до стандартних. Це активує порт Ethernet, якщо він існує, і налаштує приймач на використання DHCP. Усі інші мережеві інтерфейси будуть видалені."
 
@@ -16378,6 +16405,9 @@ msgstr "Виберіть, як цифрові кнопки працюватим�
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr "Виберіть спосіб налаштування супутникової антени, окремого LNB, перемикача DiSEqC, позиціонера, тощо."
 
+msgid "Select how the schedule is handled with respect to Standby mode."
+msgstr ""
+
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Вибір активації режиму швидкого ЕПГ."
 
@@ -16528,6 +16558,9 @@ msgstr "Вибрати дію для '%s'"
 msgid "Select the action to perform when the timer ends."
 msgstr "Виберіть дію, яку потрібно виконати після завершення таймера."
 
+msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
+msgstr ""
+
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
 msgstr "Керуйте швидкістю анімації індикаторів кнопок на екрані довідки. 'Вимкнено' вимикає анімацію, щоб індикатори переходили між кнопками."
 
@@ -16624,6 +16657,9 @@ msgstr "Виберіть послідовність відображення п�
 msgid "Select the duration of inactivity before the screen saver will be displayed."
 msgstr "Через якийсь час показати заставку."
 
+msgid "Select the end time before which this timer can be activated.  After this time the timer won't be activated even if other conditions are met."
+msgstr ""
+
 #, python-format
 msgid "Select the file sort order for the %s column:"
 msgstr "Виберіть порядок сортування файлів для стовпця %s:"
@@ -16719,6 +16755,9 @@ msgstr "Виберіть наступний елемент у списку, аб
 msgid "Select the next item in the list"
 msgstr "Виберіть наступний елемент у списку"
 
+msgid "Select the number of times to retry a task if an error occurs when running the task."
+msgstr ""
+
 msgid "Select the preferred service information to display, in addition to the service number, for the service selection pop up screen."
 msgstr "Виберіть потрібну інформацію про канал, яка відображатиметься, окрім номера каналу, на спливаючому екрані вибору каналу."
 
@@ -16793,6 +16832,9 @@ msgstr "Виберіть джерело, звідки отримати файл�
 
 msgid "Select the source of the default DNS settings."
 msgstr "Виберіть джерело налаштувань DNS за замовчуванням."
+
+msgid "Select the start time after which this timer can be activated.  Before this time the timer won't be activated even if other conditions are met."
+msgstr ""
 
 msgid "Select the starting/initial column to be activated on File Commander start up."
 msgstr "Виберіть стартовий/початковий стовпець, який буде активовано під час запуску File Commander."
@@ -17681,6 +17723,9 @@ msgstr "Показати CCcam Інфо"
 
 msgid "Show CI messages"
 msgstr "Показати повідомлення СІ"
+
+msgid "Show Capabilities"
+msgstr ""
 
 msgid "Show Default Backup Files"
 msgstr "Файли резервної копії"
@@ -19005,6 +19050,9 @@ msgstr "Режим очікування"
 msgid "Standby / Restart"
 msgstr "Вимкнення"
 
+msgid "Standby execution"
+msgstr ""
+
 msgid "Standby without TV shut down"
 msgstr "Режим очікування без вимкнення телевізора"
 
@@ -19055,6 +19103,9 @@ msgstr "Запуск або зупинка каналу"
 
 msgid "Start recording current event"
 msgstr "Почати запис поточної події"
+
+msgid "Start retry"
+msgstr ""
 
 msgid "Start teletext"
 msgstr "Запуск телетексту"
@@ -20834,6 +20885,9 @@ msgstr "Редагувати таймер"
 msgid "Timer editor"
 msgstr "Редактор таймеру"
 
+msgid "Timer end window"
+msgstr ""
+
 msgid "Timer entry"
 msgstr "Додати таймер"
 
@@ -20857,6 +20911,9 @@ msgstr "Розташування записів таймера"
 
 msgid "Timer selection"
 msgstr "Вибір таймера"
+
+msgid "Timer start window"
+msgstr ""
 
 msgid "Timer type"
 msgstr "Тип таймера"
@@ -23345,16 +23402,16 @@ msgstr "активувати ПІП"
 msgid "address:"
 msgstr "адреса:"
 
-msgid "adult movie/drama"
+msgid "Adult movie/Drama"
 msgstr "дорослий фільм/драма"
 
 msgid "advanced"
 msgstr "розширений"
 
-msgid "adventure/western/war"
+msgid "Adventure/Western/War"
 msgstr "пригоди/вестерн/війна"
 
-msgid "advertisement/shopping"
+msgid "Advertisement/Shopping"
 msgstr "реклама/покупки"
 
 msgid "alpha then oldest"
@@ -23388,7 +23445,7 @@ msgstr "мистецтво/культура (загальна)"
 msgid "arts/culture (without music, general)"
 msgstr "мистецтво/культура (без музики, загальна)"
 
-msgid "arts/culture magazine"
+msgid "Arts/Culture magazines"
 msgstr "предача про мистецтво/культуру"
 
 msgid "athletics"
@@ -23430,13 +23487,13 @@ msgstr "кращий"
 msgid "black"
 msgstr "чорний"
 
-msgid "black & white"
+msgid "Black & White"
 msgstr "чорний та білий"
 
 msgid "blue"
 msgstr "синій"
 
-msgid "broadcasting/press"
+msgid "Broadcasting/Press"
 msgstr "мовлення/преса"
 
 #, python-format
@@ -23458,7 +23515,7 @@ msgstr "карта"
 msgid "card reader"
 msgstr "кард-рідер"
 
-msgid "cartoon/puppets"
+msgid "Cartoons/Puppets"
 msgstr "мультфільм/ляльки"
 
 msgid "chapters"
@@ -23518,7 +23575,7 @@ msgstr "видалити"
 msgid "delete cut"
 msgstr "видалити відмічене"
 
-msgid "detective/thriller"
+msgid "Detective/Thriller"
 msgstr "детектив/трілер"
 
 msgid "disabled"
@@ -23527,7 +23584,7 @@ msgstr "вимкнуто"
 msgid "disconnected"
 msgstr "роз'єднано"
 
-msgid "discussion/interview/debate"
+msgid "Discussion/Interview/Debate"
 msgstr "обговорення/інтерв'ю/дебати"
 
 msgid "documentary"
@@ -23558,7 +23615,7 @@ msgstr "час ecm:"
 msgid "ecm.info"
 msgstr "ecm.інформація"
 
-msgid "economics/social advisory"
+msgid "Economics/Social advisory"
 msgstr "економіка/соціальне консультування"
 
 msgid "education/information (general)"
@@ -23594,7 +23651,7 @@ msgstr "розваги (загальна)"
 msgid "equal to"
 msgstr "дорівнює"
 
-msgid "equestrian"
+msgid "Equestrian"
 msgstr "кінний спорт"
 
 msgid "execute cuts (requires MovieCut plugin)"
@@ -23603,7 +23660,7 @@ msgstr "виконання редагувань (потрібно MovieCut пл�
 msgid "exit DVD player or return to file browser"
 msgstr "вийти з ДВД програвача до оглядача файлів"
 
-msgid "experimental film/video"
+msgid "Experimental film/video"
 msgstr "експериментальний фільм/відео"
 
 msgid "externally loopthrough to"
@@ -23612,7 +23669,7 @@ msgstr "зовнішня петля до"
 msgid "failed"
 msgstr "невдале"
 
-msgid "fashion"
+msgid "Fashion"
 msgstr "мода"
 
 msgid "file can not displayed - file not found"
@@ -23624,13 +23681,13 @@ msgstr "формати файлів (BMP, PNG, JPG, GIF)"
 msgid "filename"
 msgstr "назва файлу"
 
-msgid "film/cinema"
+msgid "Film/Cinema"
 msgstr "фільм/кіно"
 
-msgid "fine arts"
+msgid "Fine arts"
 msgstr "образотворче мистецтво"
 
-msgid "fitness & health"
+msgid "Fitness and Health"
 msgstr "фітнес і здоров'я"
 
 msgid "flat alphabetic"
@@ -23639,13 +23696,13 @@ msgstr "сортувати за алфавітом"
 msgid "flat alphabetic reverse"
 msgstr "зворотньо по алфавіту"
 
-msgid "folk/traditional music"
+msgid "Folk/Traditional music"
 msgstr "народна/традиційна музика"
 
-msgid "football/soccer"
+msgid "Football/Soccer"
 msgstr "футбол/малий футбол"
 
-msgid "foreign countries/expeditions"
+msgid "Foreign countries/Expeditions"
 msgstr "зарубіжні країни/експедиції"
 
 msgid "forward to the next chapter"
@@ -23660,10 +23717,10 @@ msgstr "вільно місця"
 msgid "from"
 msgstr "з"
 
-msgid "further education"
+msgid "Further education"
 msgstr "подальшу освіту"
 
-msgid "game show/quiz/contest"
+msgid "Game show/Quiz/Contest"
 msgstr "ігрові шоу/вікторина/конкурс"
 
 msgid "gardening"
@@ -23696,7 +23753,7 @@ msgstr "г:хх AM/PM"
 msgid "h:mmam/pm"
 msgstr "г:хх am/pm"
 
-msgid "handicraft"
+msgid "Handicraft"
 msgstr "ремесло"
 
 msgid "handled"
@@ -23783,10 +23840,10 @@ msgstr "тривалість"
 msgid "lime"
 msgstr "вапняний"
 
-msgid "literature"
+msgid "Literature"
 msgstr "література"
 
-msgid "live broadcast"
+msgid "Live broadcast"
 msgstr "пряма трансляція"
 
 msgid "locked"
@@ -23798,16 +23855,16 @@ msgstr "довге натискання"
 msgid "loopthrough to"
 msgstr "петля до"
 
-msgid "magazines/reports/documentary"
+msgid "Magazines/Reports/Documentary"
 msgstr "журнали/репортажі/документальні фільми"
 
 msgid "manual"
 msgstr "ручний"
 
-msgid "martial sports"
+msgid "Martial sports"
 msgstr "бойові види спорту"
 
-msgid "medicine/physiology/psychology"
+msgid "Medicine/Physiology/Psychology"
 msgstr "медицина/фізіологія/психологія"
 
 msgid "min"
@@ -23822,7 +23879,7 @@ msgstr "місяць"
 msgid "motor sport"
 msgstr "мотоспорт"
 
-msgid "motoring"
+msgid "Motoring"
 msgstr "автомобільна справа"
 
 msgid "move"
@@ -23843,7 +23900,7 @@ msgstr "музика (загальна)"
 msgid "music/ballet/dance (general)"
 msgstr "музика/балет/танці (загальна)"
 
-msgid "musical/opera"
+msgid "Musical/Opera"
 msgstr "музична/оперна"
 
 msgid "n/a"
@@ -23852,22 +23909,22 @@ msgstr "не визначено"
 msgid "name"
 msgstr "назва"
 
-msgid "nature/animals/environment"
+msgid "Nature/Animals/Environment"
 msgstr "природа/тварини/навколишнє середовище"
 
-msgid "new media"
+msgid "New media"
 msgstr "нові медіа"
 
 msgid "news (general)"
 msgstr "новини (загальна)"
 
-msgid "news magazine"
+msgid "News magazine"
 msgstr "програма новин"
 
 msgid "news/current affairs (general)"
 msgstr "новини/поточні події (загальні)"
 
-msgid "news/weather report"
+msgid "News/Weather report"
 msgstr "новини/прогноз погоди"
 
 msgid "no CAId selected"
@@ -23933,7 +23990,7 @@ msgstr "пакет"
 msgid "packages"
 msgstr "пакети"
 
-msgid "performing arts"
+msgid "Performing arts"
 msgstr "виконавські види мистецтва"
 
 msgid "pid:"
@@ -23954,7 +24011,7 @@ msgstr "плагіни"
 msgid "pm"
 msgstr "після обіду"
 
-msgid "popular culture/traditional arts"
+msgid "Popular culture/Traditional arts"
 msgstr "популярна культура/традиційні мистецтва"
 
 msgid "pre-school children's program"
@@ -23981,7 +24038,7 @@ msgstr "надійний, перенастроюється"
 msgid "religion"
 msgstr "релігія"
 
-msgid "remarkable people"
+msgid "Remarkable people"
 msgstr "відомі люди"
 
 msgid "remove after this position"
@@ -24005,7 +24062,7 @@ msgstr "перейти до попереднього фрагменту"
 msgid "right"
 msgstr "правий"
 
-msgid "rock/pop"
+msgid "Rock/Pop"
 msgstr "рок/поп"
 
 msgid "romance"
@@ -24028,7 +24085,7 @@ msgstr ""
 msgid "scan state"
 msgstr "стан сканування"
 
-msgid "science fiction/fantasy/horror"
+msgid "Science fiction/Fantasy/Horror"
 msgstr "наукова фантастика/фентезі/жахи"
 
 msgid "search EPG..."
@@ -24037,10 +24094,10 @@ msgstr "пошук ЕПГ..."
 msgid "select CAId's"
 msgstr "вибрати CAId'и"
 
-msgid "serious music/classic music"
+msgid "Serious music/Classic music"
 msgstr "серйозна музика/класична музика"
 
-msgid "serious/classical/religious/historical movie/drama"
+msgid "Serious/Classical/Religious/Historical/Drama"
 msgstr "серйозний/класичний/релігійний/історичний фільм/драма"
 
 msgid "service PIN"
@@ -24079,13 +24136,13 @@ msgstr "перемотати назад"
 msgid "skip forward"
 msgstr "перемотати вперед"
 
-msgid "soap/melodrama/folkloric"
+msgid "Soap/Melodrama/Folkloric"
 msgstr "мило/мелодрама/фольклор"
 
 msgid "social/political issues/economics (general)"
 msgstr "соціальні/політичні проблеми/економіка (загальна)"
 
-msgid "social/spiritual science"
+msgid "Social/Spiritual sciences"
 msgstr "соціальна/духовна наука"
 
 msgid "softcam"
@@ -24106,7 +24163,7 @@ msgstr "спорт (загальний)"
 msgid "sports (general)"
 msgstr "спорт (загальний)"
 
-msgid "sports magazine"
+msgid "Sports magazines"
 msgstr "спортивний журнал"
 
 msgid "standard"
@@ -24148,7 +24205,7 @@ msgstr "розмовне шоу"
 msgid "team sports"
 msgstr "командні види спорту"
 
-msgid "technology/natural science"
+msgid "Technology/Natural sciences"
 msgstr "технології/природознавство"
 
 msgid "teletext"
@@ -24157,7 +24214,7 @@ msgstr "телетекст"
 msgid "template file"
 msgstr "файл шаблону"
 
-msgid "tennis/squash"
+msgid "Tennis/Squash"
 msgstr "теніс/сквош"
 
 msgid "text"
@@ -24169,7 +24226,7 @@ msgstr "цей запис"
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "основна інформація"
 
-msgid "tourism/travel"
+msgid "Tourism/Travel"
 msgstr "туризм/подорожі"
 
 msgid "traditional (fast)"
@@ -24208,7 +24265,7 @@ msgstr "невідомий"
 msgid "unknown error"
 msgstr "невідома помилка"
 
-msgid "unpublished"
+msgid "Unpublished"
 msgstr "неоприлюднений"
 
 msgid "untestable"
@@ -24220,7 +24277,7 @@ msgstr "оновлено"
 msgid "using:"
 msgstr "за допомогою:"
 
-msgid "variety show"
+msgid "Variety show"
 msgstr "вар’єте шоу"
 
 msgid "violet"
@@ -24232,7 +24289,7 @@ msgstr "очікування на ci..."
 msgid "wait for mmi..."
 msgstr "почекайте на mmi..."
 
-msgid "water sport"
+msgid "Water sport"
 msgstr "водяний вид спорту"
 
 msgid "west"
@@ -24244,7 +24301,7 @@ msgstr "білий"
 msgid "width"
 msgstr "ширина"
 
-msgid "winter sport"
+msgid "Winter sport"
 msgstr "зимовий спорт"
 
 msgid "wireless network interface"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-23 18:55+0000\n"
+"POT-Creation-Date: 2025-11-06 08:27+0000\n"
 "PO-Revision-Date: 2025-10-25 04:24+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -1543,6 +1543,9 @@ msgstr "<Τελευταία τοποθεσία χρονοδιακόπτη>"
 
 msgid "<Select a device>"
 msgstr "<Επιλογή συσκευής>"
+
+msgid "<no capabilities found>"
+msgstr ""
 
 msgid "<no log found>"
 msgstr "<δεν βρέθηκε αρχείο καταγραφής>"
@@ -7559,6 +7562,12 @@ msgstr "Προέκυψε σφάλμα '%s' κατά την ανάκτηση τη
 msgid "Error Download Setting"
 msgstr "Σφάλμα λήψης ρύθμισης"
 
+msgid "Error Retry count"
+msgstr ""
+
+msgid "Error Retry delay"
+msgstr ""
+
 msgid "Error code"
 msgstr "Κωδικός σφάλματος"
 
@@ -9607,6 +9616,9 @@ msgstr "Αγνόηση του υπο-δικτύου στον χώρο ονόμα
 
 msgid "Ignore DVB-T namespace sub network"
 msgstr "Αγνόηση του υπο-δικτύου στον χώρο ονόματος DVB-T"
+
+msgid "Ignore Standby"
+msgstr ""
 
 msgid "Ignore unexpectedly wake up and stay in standby"
 msgstr "Αγνόηση της ξαφνικής αφύπνισης και παραμονή σε αναμονή"
@@ -11997,6 +12009,9 @@ msgstr "Να μη γίνεται ποτέ αποκωδικοποίηση του 
 msgid "Never decrypt while recording"
 msgstr "Να μη γίνεται ποτέ αποκωδικοποίηση κατά την εγγραφή"
 
+msgid "Never in Standby"
+msgstr ""
+
 msgid "New"
 msgstr "Νέο"
 
@@ -12045,7 +12060,7 @@ msgstr "Νέος κατάλογος"
 msgid "News"
 msgstr "Ειδήσεις"
 
-msgid "News/Current Affairs"
+msgid "News/Current affairs"
 msgstr "Ειδήσεις/Επικαιρότητα"
 
 msgid "Next"
@@ -12548,12 +12563,18 @@ msgstr "Διεπαφή OScam ανενεργή"
 msgid "OSCamInfo Actions"
 msgstr "Ενέργειες πληροφοριών OSCam"
 
+msgid "OSCamInfo Capability Actions"
+msgstr ""
+
 msgid "OSCamInfo Log Actions"
 msgstr "Ενέργειες καταγραφής πληροφοριών OSCam"
 
 #, python-format
 msgid "OSCamInfo: %s Entitlements for '%s'"
 msgstr "OSCamInfo: %s Entitlements για το '%s'"
+
+msgid "OSCamInfo: Capabilities"
+msgstr ""
 
 #, python-format
 msgid "OSCamInfo: Entitlements for '%s'"
@@ -12696,6 +12717,9 @@ msgstr "Άνοιγμα λίστας μπουκέτων"
 
 msgid "Open Box Portal"
 msgstr "Εμφάνιση portal δέκτη"
+
+msgid "Open Capability"
+msgstr ""
 
 msgid "Open EPG"
 msgstr "Άνοιγμα EPG"
@@ -16000,6 +16024,9 @@ msgstr "Επιλέξτε 'ναι' για διαγραφή όλων των δεδ
 msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all key map, menu and setup override data and restore the default definitions."
 msgstr "Επιλέξτε 'ναι' για διαγραφή όλων των δεδομένων διεπαφής χρήστη. Επιλέγοντας αυτό, θα διαγραφούν όλα τα δεδομένα χάρτη πληκτρολογίου, μενού και παράκαμψης των ρυθμίσεων, και θα γίνει επαναφορά στις αρχικές τους τιμές."
 
+msgid "Select 'Yes' to reschedule the task to when the receiver goes in to/out of Standby mode. The state change must happen within the task schedule window or else the task will not be run."
+msgstr ""
+
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr "Επιλέξτε 'ναι' για επαναφορά των ρυθμίσεων δικτύου στις προεπιλογές. Αυτό θα ενεργοποιήσει τη θύρα ethernet, αν υπάρχει, και θα γίνει χρήση του DHCP από τον δέκτη. Όλες οι υπόλοιπες διεπαφές δικτύου θα διαγραφούν."
 
@@ -16329,6 +16356,9 @@ msgstr "Επιλέξτε πώς θα συμπεριφέρονται τα αρι�
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr "Επιλέξτε τον τρόπο ρύθμισης του δορυφορικού σας κατόπτρου π.χ. σταθερό, μονό LNB, διακόπτης DiSEqC, μοτέρ κλπ."
 
+msgid "Select how the schedule is handled with respect to Standby mode."
+msgstr ""
+
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Επιλογή του τρόπου ενεργοποίησης λειτουργίας του γρήγορου EPG."
 
@@ -16479,6 +16509,9 @@ msgstr "Επιλογή ενέργειας για το '%s'"
 msgid "Select the action to perform when the timer ends."
 msgstr "Επιλογή ενέργειας όταν ένας χρονοδιακόπτης τελειώνει."
 
+msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
+msgstr ""
+
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
 msgstr "Επιλογή της ταχύτητας κίνησης των δεικτών πλήκτρων στις οθόνες βοήθειας. Το 'Ανενεργό' απενεργοποιεί την κίνηση ώστε οι δείκτες να μεταβαίνουν μεταξύ των πλήκτρων."
 
@@ -16575,6 +16608,9 @@ msgstr "Επιλέξτε την ακολουθία εμφάνισης των υ�
 msgid "Select the duration of inactivity before the screen saver will be displayed."
 msgstr "Ρύθμιση της διάρκειας σε λεπτά πριν την εμφάνιση της προφύλαξης οθόνης."
 
+msgid "Select the end time before which this timer can be activated.  After this time the timer won't be activated even if other conditions are met."
+msgstr ""
+
 #, python-format
 msgid "Select the file sort order for the %s column:"
 msgstr "Επιλέξτε τη σειρά ταξινόμησης των αρχείων για τη στήλη %s:"
@@ -16670,6 +16706,9 @@ msgstr "Επιλογή του επόμενου στοιχείου στη λίσ�
 msgid "Select the next item in the list"
 msgstr "Επιλογή του επόμενου στοιχείου στη λίστα"
 
+msgid "Select the number of times to retry a task if an error occurs when running the task."
+msgstr ""
+
 msgid "Select the preferred service information to display, in addition to the service number, for the service selection pop up screen."
 msgstr "Επιλέξτε τις επιθυμητές πληροφορίες υπηρεσίας προς εμφάνιση, μαζί με τον αριθμό της για τα αναδυόμενα μηνύματα."
 
@@ -16744,6 +16783,9 @@ msgstr "Επιλέξτε τη θέση προέλευσης από την οπο
 
 msgid "Select the source of the default DNS settings."
 msgstr "Επιλογή της πηγής ρυθμίσεων του προεπιλεγμένου DNS."
+
+msgid "Select the start time after which this timer can be activated.  Before this time the timer won't be activated even if other conditions are met."
+msgstr ""
 
 msgid "Select the starting/initial column to be activated on File Commander start up."
 msgstr "Επιλέξτε την αρχική στήλη εκκίνησης που θα ενεργοποιείται κατά την εκκίνηση του File Commander."
@@ -17632,6 +17674,9 @@ msgstr "Εμφάνιση πληροφοριών CCcam"
 
 msgid "Show CI messages"
 msgstr "Εμφάνιση μηνυμάτων CI"
+
+msgid "Show Capabilities"
+msgstr ""
 
 msgid "Show Default Backup Files"
 msgstr "Εμφάνιση προεπιλεγμένων αρχείων εφεδρείας"
@@ -18952,6 +18997,9 @@ msgstr "Αναμονή"
 msgid "Standby / Restart"
 msgstr "Αναμονή / Επανεκκίνηση"
 
+msgid "Standby execution"
+msgstr ""
+
 msgid "Standby without TV shut down"
 msgstr "Αναμονή χωρίς σβήσιμο της TV"
 
@@ -19002,6 +19050,9 @@ msgstr "Εκκίνηση ή διακοπή υπηρεσίας"
 
 msgid "Start recording current event"
 msgstr "Έναρξη εγγραφής τρέχοντος προγράμματος"
+
+msgid "Start retry"
+msgstr ""
 
 msgid "Start teletext"
 msgstr "Εκκίνηση τηλεκειμένου"
@@ -20780,6 +20831,9 @@ msgstr "Επεξεργασία χρονοδιακόπτη"
 msgid "Timer editor"
 msgstr "Επεξεργασία χρονοδιακοπτών"
 
+msgid "Timer end window"
+msgstr ""
+
 msgid "Timer entry"
 msgstr "Καταχώρηση χρονοδιακόπτη"
 
@@ -20803,6 +20857,9 @@ msgstr "Τοποθεσία εγγραφής χρονοδιακόπτη"
 
 msgid "Timer selection"
 msgstr "Επιλογή χρονοδιακόπτη"
+
+msgid "Timer start window"
+msgstr ""
 
 msgid "Timer type"
 msgstr "Τύπος χρονοδιακόπτη"
@@ -23291,16 +23348,16 @@ msgstr "ενεργοποίηση PiP"
 msgid "address:"
 msgstr "διεύθυνση:"
 
-msgid "adult movie/drama"
+msgid "Adult movie/Drama"
 msgstr "ταινία ενηλίκων/δράμα"
 
 msgid "advanced"
 msgstr "προχωρημένο"
 
-msgid "adventure/western/war"
+msgid "Adventure/Western/War"
 msgstr "περιπέτεια/γουέστερν/πόλεμος"
 
-msgid "advertisement/shopping"
+msgid "Advertisement/Shopping"
 msgstr "διαφήμιση/αγορές"
 
 msgid "alpha then oldest"
@@ -23334,7 +23391,7 @@ msgstr "τέχνες/πολιτισμός (γενικά)"
 msgid "arts/culture (without music, general)"
 msgstr "τέχνες/πολιτισμός (χωρίς μουσική, γενικά)"
 
-msgid "arts/culture magazine"
+msgid "Arts/Culture magazines"
 msgstr "τέχνες/πολιτιστικό μαγκαζίνο"
 
 msgid "athletics"
@@ -23376,13 +23433,13 @@ msgstr "καλύτερα"
 msgid "black"
 msgstr "μαύρο"
 
-msgid "black & white"
+msgid "Black & White"
 msgstr "άσπρο & μαύρο"
 
 msgid "blue"
 msgstr "μπλε"
 
-msgid "broadcasting/press"
+msgid "Broadcasting/Press"
 msgstr "μεταδόσεις/τύπος"
 
 #, python-format
@@ -23404,7 +23461,7 @@ msgstr "κάρτα"
 msgid "card reader"
 msgstr "αναγνώστης κάρτας"
 
-msgid "cartoon/puppets"
+msgid "Cartoons/Puppets"
 msgstr "καρτούν/μαριονέτες"
 
 msgid "chapters"
@@ -23464,7 +23521,7 @@ msgstr "διαγραφή"
 msgid "delete cut"
 msgstr "διαγραφή αποκοπής"
 
-msgid "detective/thriller"
+msgid "Detective/Thriller"
 msgstr "αστυνομικά/θρίλερ"
 
 msgid "disabled"
@@ -23473,7 +23530,7 @@ msgstr "ανενεργό"
 msgid "disconnected"
 msgstr "αποσυνδεδεμένο"
 
-msgid "discussion/interview/debate"
+msgid "Discussion/Interview/Debate"
 msgstr "συζητήσεις/συνέντευξη/ντιμπέιτ"
 
 msgid "documentary"
@@ -23504,7 +23561,7 @@ msgstr "χρόνος ecm:"
 msgid "ecm.info"
 msgstr "ecm.info"
 
-msgid "economics/social advisory"
+msgid "Economics/Social advisory"
 msgstr "οικονομία/κοινωνική συμβουλευτική"
 
 msgid "education/information (general)"
@@ -23540,7 +23597,7 @@ msgstr "ψυχαγωγία (γενικά)"
 msgid "equal to"
 msgstr "ίσο με"
 
-msgid "equestrian"
+msgid "Equestrian"
 msgstr "ιπποδρομίες"
 
 msgid "execute cuts (requires MovieCut plugin)"
@@ -23549,7 +23606,7 @@ msgstr "εκτέλεση περικοπών (απαιτείται το πρόσ�
 msgid "exit DVD player or return to file browser"
 msgstr "έξοδος απο την αναπαραγωγή DVD ή επιστροφή στον πλοηγό αρχείων"
 
-msgid "experimental film/video"
+msgid "Experimental film/video"
 msgstr "πειραματικές ταινίες/βίντεο"
 
 msgid "externally loopthrough to"
@@ -23558,7 +23615,7 @@ msgstr "εξωτερικό loopthrough στο"
 msgid "failed"
 msgstr "αποτυχία"
 
-msgid "fashion"
+msgid "Fashion"
 msgstr "μόδα"
 
 msgid "file can not displayed - file not found"
@@ -23570,13 +23627,13 @@ msgstr "τύποι αρχείων (BMP, PNG, JPG, GIF)"
 msgid "filename"
 msgstr "όνομα αρχείου"
 
-msgid "film/cinema"
+msgid "Film/Cinema"
 msgstr "φιλμ/κινηματογράφος"
 
-msgid "fine arts"
+msgid "Fine arts"
 msgstr "καλές τέχνες"
 
-msgid "fitness & health"
+msgid "Fitness and Health"
 msgstr "άσκηση & υγεία"
 
 msgid "flat alphabetic"
@@ -23585,13 +23642,13 @@ msgstr "αλφαβητική ταξινόμηση"
 msgid "flat alphabetic reverse"
 msgstr "αλφαβητική αντιστροφή"
 
-msgid "folk/traditional music"
+msgid "Folk/Traditional music"
 msgstr "λαϊκή/παραδοσιακή μουσική"
 
-msgid "football/soccer"
+msgid "Football/Soccer"
 msgstr "ποδόσφαιρο"
 
-msgid "foreign countries/expeditions"
+msgid "Foreign countries/Expeditions"
 msgstr "ξένες χώρες/εκδρομές"
 
 msgid "forward to the next chapter"
@@ -23606,10 +23663,10 @@ msgstr "ελεύθερος χώρος δίσκου"
 msgid "from"
 msgstr "από"
 
-msgid "further education"
+msgid "Further education"
 msgstr "ανώτερη εκπαίδευση"
 
-msgid "game show/quiz/contest"
+msgid "Game show/Quiz/Contest"
 msgstr "τηλεπαιχνίδι/κουίζ/διαγωνισμός"
 
 msgid "gardening"
@@ -23642,7 +23699,7 @@ msgstr "ω:λλΠΜ/ΜΜ"
 msgid "h:mmam/pm"
 msgstr "ω:λλπμ/μμ"
 
-msgid "handicraft"
+msgid "Handicraft"
 msgstr "χειροτεχνία"
 
 msgid "handled"
@@ -23729,10 +23786,10 @@ msgstr "διάρκεια"
 msgid "lime"
 msgstr "λεμονί"
 
-msgid "literature"
+msgid "Literature"
 msgstr "λογοτεχνία"
 
-msgid "live broadcast"
+msgid "Live broadcast"
 msgstr "ζωντανή μετάδοση"
 
 msgid "locked"
@@ -23744,16 +23801,16 @@ msgstr "παρατεταμένο"
 msgid "loopthrough to"
 msgstr "loopthrough σε"
 
-msgid "magazines/reports/documentary"
+msgid "Magazines/Reports/Documentary"
 msgstr "περιοδικά/εκθέσεις/ντοκιμαντέρ"
 
 msgid "manual"
 msgstr "χειροκίνητα"
 
-msgid "martial sports"
+msgid "Martial sports"
 msgstr "πολεμικά σπορ"
 
-msgid "medicine/physiology/psychology"
+msgid "Medicine/Physiology/Psychology"
 msgstr "ιατρική/φυσιολογία/ψυχολογία"
 
 msgid "min"
@@ -23768,7 +23825,7 @@ msgstr "μήνας"
 msgid "motor sport"
 msgstr "μηχανοκίνητος αθλητισμός"
 
-msgid "motoring"
+msgid "Motoring"
 msgstr "αυτοκίνηση"
 
 msgid "move"
@@ -23789,7 +23846,7 @@ msgstr "μουσική (γενικά)"
 msgid "music/ballet/dance (general)"
 msgstr "μουσική/μπαλέτο/χορός (γενικά)"
 
-msgid "musical/opera"
+msgid "Musical/Opera"
 msgstr "μιούζικαλ/όπερα"
 
 msgid "n/a"
@@ -23798,22 +23855,22 @@ msgstr "μ/δ"
 msgid "name"
 msgstr "όνομα"
 
-msgid "nature/animals/environment"
+msgid "Nature/Animals/Environment"
 msgstr "φύση/ζώα/περιβάλλον"
 
-msgid "new media"
+msgid "New media"
 msgstr "νέα πολυμέσα"
 
 msgid "news (general)"
 msgstr "ειδήσεις (γενικά)"
 
-msgid "news magazine"
+msgid "News magazine"
 msgstr "ειδησεογραφικό μαγκαζίνο"
 
 msgid "news/current affairs (general)"
 msgstr "ειδήσεις/επικαιρότητα (γενικά)"
 
-msgid "news/weather report"
+msgid "News/Weather report"
 msgstr "ειδήσεις/δελτίο καιρού"
 
 msgid "no CAId selected"
@@ -23879,7 +23936,7 @@ msgstr "πακέτο"
 msgid "packages"
 msgstr "πακέτα"
 
-msgid "performing arts"
+msgid "Performing arts"
 msgstr "τέχνες και θεάματα"
 
 msgid "pid:"
@@ -23900,7 +23957,7 @@ msgstr "πρόσθετα"
 msgid "pm"
 msgstr "πμ"
 
-msgid "popular culture/traditional arts"
+msgid "Popular culture/Traditional arts"
 msgstr "λαϊκή κουλτούρα/παραδοσιακές τέχνες"
 
 msgid "pre-school children's program"
@@ -23927,7 +23984,7 @@ msgstr "έμπιστη, επανασυντονισμός"
 msgid "religion"
 msgstr "θρησκεία"
 
-msgid "remarkable people"
+msgid "Remarkable people"
 msgstr "σημαίνοντα πρόσωπα"
 
 msgid "remove after this position"
@@ -23951,7 +24008,7 @@ msgstr "μετάβαση στο προηγούμενο κεφάλαιο"
 msgid "right"
 msgstr "δεξιά"
 
-msgid "rock/pop"
+msgid "Rock/Pop"
 msgstr "ροκ/ποπ"
 
 msgid "romance"
@@ -23974,7 +24031,7 @@ msgstr ""
 msgid "scan state"
 msgstr "κατάσταση ανίχνευσης"
 
-msgid "science fiction/fantasy/horror"
+msgid "Science fiction/Fantasy/Horror"
 msgstr "επιστημονικής φαντασίας/τρόμου"
 
 msgid "search EPG..."
@@ -23983,10 +24040,10 @@ msgstr "αναζήτηση στο EPG..."
 msgid "select CAId's"
 msgstr "επιλογή CAId's"
 
-msgid "serious music/classic music"
+msgid "Serious music/Classic music"
 msgstr "σοβαρή μουσική/κλασική μουσική"
 
-msgid "serious/classical/religious/historical movie/drama"
+msgid "Serious/Classical/Religious/Historical/Drama"
 msgstr "σοβαρή/κλασική/θρησκευτική/ιστορική ταινία/δράμα"
 
 msgid "service PIN"
@@ -24025,13 +24082,13 @@ msgstr "μεταπήδηση πίσω"
 msgid "skip forward"
 msgstr "μεταπήδηση εμπρός"
 
-msgid "soap/melodrama/folkloric"
+msgid "Soap/Melodrama/Folkloric"
 msgstr "σαπουνόπερα/μελόδραμα/φολκλόρ"
 
 msgid "social/political issues/economics (general)"
 msgstr "κοινωνικά/πολιτική επικαιρότητα/οικονομία (γενικά)"
 
-msgid "social/spiritual science"
+msgid "Social/Spiritual sciences"
 msgstr "κοινωνικά/διανόηση"
 
 msgid "softcam"
@@ -24052,7 +24109,7 @@ msgstr "αθλητικά (γενικά)"
 msgid "sports (general)"
 msgstr "αθλητικά (γενικά)"
 
-msgid "sports magazine"
+msgid "Sports magazines"
 msgstr "αθλητικό μαγκαζίνο"
 
 msgid "standard"
@@ -24094,7 +24151,7 @@ msgstr "συζητήσεις"
 msgid "team sports"
 msgstr "ομαδικά αθλήματα"
 
-msgid "technology/natural science"
+msgid "Technology/Natural sciences"
 msgstr "τεχνολογία/φυσικές επιστήμες"
 
 msgid "teletext"
@@ -24103,7 +24160,7 @@ msgstr "τηλεκείμενο"
 msgid "template file"
 msgstr "αρχείο προτύπου"
 
-msgid "tennis/squash"
+msgid "Tennis/Squash"
 msgstr "τένις/σκουώς"
 
 msgid "text"
@@ -24115,7 +24172,7 @@ msgstr "αυτή η εγγραφή"
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "εναλλαγή πληροφοριών χρόνου, κεφαλαίου, ήχου, υποτίτλων"
 
-msgid "tourism/travel"
+msgid "Tourism/Travel"
 msgstr "τουρισμός/ταξίδια"
 
 msgid "traditional (fast)"
@@ -24154,7 +24211,7 @@ msgstr "άγνωστο"
 msgid "unknown error"
 msgstr "άγνωστο σφάλμα"
 
-msgid "unpublished"
+msgid "Unpublished"
 msgstr "ανέκδοτο"
 
 msgid "untestable"
@@ -24166,7 +24223,7 @@ msgstr "ενημέρωση"
 msgid "using:"
 msgstr "χρήση:"
 
-msgid "variety show"
+msgid "Variety show"
 msgstr "βαριετέ"
 
 msgid "violet"
@@ -24178,7 +24235,7 @@ msgstr "αναμονή για κοινή διεπαφή (ci)..."
 msgid "wait for mmi..."
 msgstr "αναμονή για mmi..."
 
-msgid "water sport"
+msgid "Water sport"
 msgstr "θαλάσσια σπορ"
 
 msgid "west"
@@ -24190,7 +24247,7 @@ msgstr "λευκό"
 msgid "width"
 msgstr "πλάτος"
 
-msgid "winter sport"
+msgid "Winter sport"
 msgstr "χειμερινά σπορ"
 
 msgid "wireless network interface"

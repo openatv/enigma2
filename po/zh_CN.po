@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-23 18:55+0000\n"
+"POT-Creation-Date: 2025-11-06 08:27+0000\n"
 "PO-Revision-Date: 2025-10-25 18:22+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -1542,6 +1542,9 @@ msgstr "<最后一个定时器位置>"
 
 msgid "<Select a device>"
 msgstr "<选择设备>"
+
+msgid "<no capabilities found>"
+msgstr ""
 
 msgid "<no log found>"
 msgstr "<未找到日志>"
@@ -7558,6 +7561,12 @@ msgstr "错误 “%s” 在检索 “%s” 提交日志时遇到！"
 msgid "Error Download Setting"
 msgstr "下载设置错误"
 
+msgid "Error Retry count"
+msgstr ""
+
+msgid "Error Retry delay"
+msgstr ""
+
 msgid "Error code"
 msgstr "错误代码"
 
@@ -9606,6 +9615,9 @@ msgstr "忽略 DVB-S 名称空间子网络"
 
 msgid "Ignore DVB-T namespace sub network"
 msgstr "忽略 DVB-T 名称空间子网络"
+
+msgid "Ignore Standby"
+msgstr ""
 
 msgid "Ignore unexpectedly wake up and stay in standby"
 msgstr "忽略意外唤醒并保持待机状态"
@@ -11996,6 +12008,9 @@ msgstr "录制时绝不解密内容。这将全局覆盖各个定时器设置。
 msgid "Never decrypt while recording"
 msgstr "录制时从不解密"
 
+msgid "Never in Standby"
+msgstr ""
+
 msgid "New"
 msgstr "新近"
 
@@ -12044,7 +12059,7 @@ msgstr "新建目录"
 msgid "News"
 msgstr "新闻"
 
-msgid "News/Current Affairs"
+msgid "News/Current affairs"
 msgstr "新闻/时事"
 
 msgid "Next"
@@ -12547,12 +12562,18 @@ msgstr "已禁用 OSCam 网页接口"
 msgid "OSCamInfo Actions"
 msgstr "OSCam信息操作"
 
+msgid "OSCamInfo Capability Actions"
+msgstr ""
+
 msgid "OSCamInfo Log Actions"
 msgstr "OSCam信息日志操作"
 
 #, python-format
 msgid "OSCamInfo: %s Entitlements for '%s'"
 msgstr "OSCam 信息：“%s”的 %s 权利"
+
+msgid "OSCamInfo: Capabilities"
+msgstr ""
 
 #, python-format
 msgid "OSCamInfo: Entitlements for '%s'"
@@ -12695,6 +12716,9 @@ msgstr "打开频道分组列表"
 
 msgid "Open Box Portal"
 msgstr "显示机顶盒门户"
+
+msgid "Open Capability"
+msgstr ""
 
 msgid "Open EPG"
 msgstr "打开 EPG"
@@ -15999,6 +16023,9 @@ msgstr "选择“是”以删除皮肤数据的所有用户自定义设置。选
 msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all key map, menu and setup override data and restore the default definitions."
 msgstr "选择“是”删除所有用户界面数据。选择此选项将删除所有按键映射、菜单和设置覆盖数据，并恢复默认定义。"
 
+msgid "Select 'Yes' to reschedule the task to when the receiver goes in to/out of Standby mode. The state change must happen within the task schedule window or else the task will not be run."
+msgstr ""
+
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr "选择“是”将网络配置重置为默认值。这将启用以太网端口（如果存在），并将接收机设置为使用 DHCP。 所有其他网络接口都将被删除。"
 
@@ -16328,6 +16355,9 @@ msgstr "设置数字键在跳转操作时的行为。"
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr "选择卫星天线的设置方式。 即固定天线、单高频头、DiSEqC 开关、极轴等。"
 
+msgid "Select how the schedule is handled with respect to Standby mode."
+msgstr ""
+
 msgid "Select how to activate the Quick EPG mode."
 msgstr "选择如何激活快速 EPG 模式。"
 
@@ -16478,6 +16508,9 @@ msgstr "选择“%s”的操作"
 msgid "Select the action to perform when the timer ends."
 msgstr "选择定时器结束时要执行的操作。"
 
+msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
+msgstr ""
+
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
 msgstr "在帮助屏幕中选择按钮指示器的动画速度。 “禁用”关闭动画，以便指示器在按钮之间跳转。"
 
@@ -16574,6 +16607,9 @@ msgstr "选择以前访问过频道的显示顺序。"
 msgid "Select the duration of inactivity before the screen saver will be displayed."
 msgstr "配置屏幕保护程序显示前的持续时间（分钟）。"
 
+msgid "Select the end time before which this timer can be activated.  After this time the timer won't be activated even if other conditions are met."
+msgstr ""
+
 #, python-format
 msgid "Select the file sort order for the %s column:"
 msgstr "选择第 %s 列的文件排序顺序："
@@ -16669,6 +16705,9 @@ msgstr "选择列表中的下一项或向右移动光标"
 msgid "Select the next item in the list"
 msgstr "选择列表中的下一项"
 
+msgid "Select the number of times to retry a task if an error occurs when running the task."
+msgstr ""
+
 msgid "Select the preferred service information to display, in addition to the service number, for the service selection pop up screen."
 msgstr "选择频道选择弹窗中，除频道号外还需显示的信息内容。"
 
@@ -16743,6 +16782,9 @@ msgstr "选择获取升级文件的源位置。"
 
 msgid "Select the source of the default DNS settings."
 msgstr "选择默认 DNS 设置的来源。"
+
+msgid "Select the start time after which this timer can be activated.  Before this time the timer won't be activated even if other conditions are met."
+msgstr ""
 
 msgid "Select the starting/initial column to be activated on File Commander start up."
 msgstr "选择要在文件指挥官启动时激活的起始/初始列。"
@@ -17631,6 +17673,9 @@ msgstr "显示 CCcam 信息"
 
 msgid "Show CI messages"
 msgstr "显示 CI 消息"
+
+msgid "Show Capabilities"
+msgstr ""
 
 msgid "Show Default Backup Files"
 msgstr "显示默认备份文件"
@@ -18951,6 +18996,9 @@ msgstr "待机"
 msgid "Standby / Restart"
 msgstr "待机 / 重启"
 
+msgid "Standby execution"
+msgstr ""
+
 msgid "Standby without TV shut down"
 msgstr "待机而不关闭电视"
 
@@ -19001,6 +19049,9 @@ msgstr "启动或停止服务"
 
 msgid "Start recording current event"
 msgstr "开始录制当前事件"
+
+msgid "Start retry"
+msgstr ""
 
 msgid "Start teletext"
 msgstr "启动图文电视"
@@ -20779,6 +20830,9 @@ msgstr "编辑定时器"
 msgid "Timer editor"
 msgstr "定时器编辑器"
 
+msgid "Timer end window"
+msgstr ""
+
 msgid "Timer entry"
 msgstr "定时器条目"
 
@@ -20802,6 +20856,9 @@ msgstr "定时器录制位置"
 
 msgid "Timer selection"
 msgstr "定时器选择"
+
+msgid "Timer start window"
+msgstr ""
 
 msgid "Timer type"
 msgstr "定时器类型"
@@ -23290,16 +23347,16 @@ msgstr "激活画中画"
 msgid "address:"
 msgstr "地址："
 
-msgid "adult movie/drama"
+msgid "Adult movie/Drama"
 msgstr "成人电影／戏剧"
 
 msgid "advanced"
 msgstr "高级"
 
-msgid "adventure/western/war"
+msgid "Adventure/Western/War"
 msgstr "冒险/西部/战争"
 
-msgid "advertisement/shopping"
+msgid "Advertisement/Shopping"
 msgstr "广告/购物"
 
 msgid "alpha then oldest"
@@ -23333,7 +23390,7 @@ msgstr "艺术/文化（一般）"
 msgid "arts/culture (without music, general)"
 msgstr "艺术/文化（无音乐，常规）"
 
-msgid "arts/culture magazine"
+msgid "Arts/Culture magazines"
 msgstr "艺术/文化杂志"
 
 msgid "athletics"
@@ -23375,13 +23432,13 @@ msgstr "较好"
 msgid "black"
 msgstr "黑色"
 
-msgid "black & white"
+msgid "Black & White"
 msgstr "黑与白"
 
 msgid "blue"
 msgstr "蓝键"
 
-msgid "broadcasting/press"
+msgid "Broadcasting/Press"
 msgstr "广播/新闻"
 
 #, python-format
@@ -23403,7 +23460,7 @@ msgstr "卡片"
 msgid "card reader"
 msgstr "读卡器"
 
-msgid "cartoon/puppets"
+msgid "Cartoons/Puppets"
 msgstr "卡通/木偶"
 
 msgid "chapters"
@@ -23463,7 +23520,7 @@ msgstr "删除"
 msgid "delete cut"
 msgstr "删除剪辑"
 
-msgid "detective/thriller"
+msgid "Detective/Thriller"
 msgstr "侦探/悬疑"
 
 msgid "disabled"
@@ -23472,7 +23529,7 @@ msgstr "已禁用"
 msgid "disconnected"
 msgstr "已断开"
 
-msgid "discussion/interview/debate"
+msgid "Discussion/Interview/Debate"
 msgstr "讨论/面谈/辩论"
 
 msgid "documentary"
@@ -23503,7 +23560,7 @@ msgstr "ECM 时间："
 msgid "ecm.info"
 msgstr "ecm 信息"
 
-msgid "economics/social advisory"
+msgid "Economics/Social advisory"
 msgstr "经济/社会咨询"
 
 msgid "education/information (general)"
@@ -23539,7 +23596,7 @@ msgstr "娱乐(常规)"
 msgid "equal to"
 msgstr "等于"
 
-msgid "equestrian"
+msgid "Equestrian"
 msgstr "马术"
 
 msgid "execute cuts (requires MovieCut plugin)"
@@ -23548,7 +23605,7 @@ msgstr "执行剪切（需要MovieCut插件）"
 msgid "exit DVD player or return to file browser"
 msgstr "退出 DVD 播放器或返回文件浏览器"
 
-msgid "experimental film/video"
+msgid "Experimental film/video"
 msgstr "探索实验电影/视频"
 
 msgid "externally loopthrough to"
@@ -23557,7 +23614,7 @@ msgstr "外部环通到"
 msgid "failed"
 msgstr "失败"
 
-msgid "fashion"
+msgid "Fashion"
 msgstr "时尚"
 
 msgid "file can not displayed - file not found"
@@ -23569,13 +23626,13 @@ msgstr "文件格式 (BMP, PNG, JPG, GIF)"
 msgid "filename"
 msgstr "文件名"
 
-msgid "film/cinema"
+msgid "Film/Cinema"
 msgstr "电影/影院"
 
-msgid "fine arts"
+msgid "Fine arts"
 msgstr "美术"
 
-msgid "fitness & health"
+msgid "Fitness and Health"
 msgstr "健身与健康"
 
 msgid "flat alphabetic"
@@ -23584,13 +23641,13 @@ msgstr "按字母顺序排列"
 msgid "flat alphabetic reverse"
 msgstr "按字母反向顺序"
 
-msgid "folk/traditional music"
+msgid "Folk/Traditional music"
 msgstr "民歌/传统音乐"
 
-msgid "football/soccer"
+msgid "Football/Soccer"
 msgstr "足球运动/足球"
 
-msgid "foreign countries/expeditions"
+msgid "Foreign countries/Expeditions"
 msgstr "外国/探险"
 
 msgid "forward to the next chapter"
@@ -23605,10 +23662,10 @@ msgstr "剩余磁盘空间"
 msgid "from"
 msgstr "从"
 
-msgid "further education"
+msgid "Further education"
 msgstr "继续教育"
 
-msgid "game show/quiz/contest"
+msgid "Game show/Quiz/Contest"
 msgstr "游戏节目/测验/竞赛"
 
 msgid "gardening"
@@ -23641,7 +23698,7 @@ msgstr "12小时制 时:分分:秒秒 上午/下午"
 msgid "h:mmam/pm"
 msgstr "12小时制 时:分分 上午/下午"
 
-msgid "handicraft"
+msgid "Handicraft"
 msgstr "手工艺品"
 
 msgid "handled"
@@ -23728,10 +23785,10 @@ msgstr "长度"
 msgid "lime"
 msgstr "石灰"
 
-msgid "literature"
+msgid "Literature"
 msgstr "文学"
 
-msgid "live broadcast"
+msgid "Live broadcast"
 msgstr "现场直播"
 
 msgid "locked"
@@ -23743,16 +23800,16 @@ msgstr "长按"
 msgid "loopthrough to"
 msgstr "环路输出"
 
-msgid "magazines/reports/documentary"
+msgid "Magazines/Reports/Documentary"
 msgstr "杂志/报告/纪录片"
 
 msgid "manual"
 msgstr "手动"
 
-msgid "martial sports"
+msgid "Martial sports"
 msgstr "武术运动"
 
-msgid "medicine/physiology/psychology"
+msgid "Medicine/Physiology/Psychology"
 msgstr "医学/生理学/心理学"
 
 msgid "min"
@@ -23767,7 +23824,7 @@ msgstr "月"
 msgid "motor sport"
 msgstr "赛车运动"
 
-msgid "motoring"
+msgid "Motoring"
 msgstr "驾驶"
 
 msgid "move"
@@ -23788,7 +23845,7 @@ msgstr "音乐(普通)"
 msgid "music/ballet/dance (general)"
 msgstr "音乐/芭蕾/舞蹈（常规）"
 
-msgid "musical/opera"
+msgid "Musical/Opera"
 msgstr "音乐剧/歌剧"
 
 msgid "n/a"
@@ -23797,22 +23854,22 @@ msgstr "n/a"
 msgid "name"
 msgstr "名称"
 
-msgid "nature/animals/environment"
+msgid "Nature/Animals/Environment"
 msgstr "自然/动物/环境"
 
-msgid "new media"
+msgid "New media"
 msgstr "新媒体"
 
 msgid "news (general)"
 msgstr "新闻(普通)"
 
-msgid "news magazine"
+msgid "News magazine"
 msgstr "新闻杂志"
 
 msgid "news/current affairs (general)"
 msgstr "新闻/时事（常规）"
 
-msgid "news/weather report"
+msgid "News/Weather report"
 msgstr "新闻/天气报告"
 
 msgid "no CAId selected"
@@ -23878,7 +23935,7 @@ msgstr "软件包"
 msgid "packages"
 msgstr "软件包"
 
-msgid "performing arts"
+msgid "Performing arts"
 msgstr "表演艺术"
 
 msgid "pid:"
@@ -23899,7 +23956,7 @@ msgstr "插件"
 msgid "pm"
 msgstr "pm"
 
-msgid "popular culture/traditional arts"
+msgid "Popular culture/Traditional arts"
 msgstr "流行文化/传统艺术"
 
 msgid "pre-school children's program"
@@ -23926,7 +23983,7 @@ msgstr "可靠，重新调整"
 msgid "religion"
 msgstr "宗教"
 
-msgid "remarkable people"
+msgid "Remarkable people"
 msgstr "名人"
 
 msgid "remove after this position"
@@ -23950,7 +24007,7 @@ msgstr "退回上一个章节"
 msgid "right"
 msgstr "右"
 
-msgid "rock/pop"
+msgid "Rock/Pop"
 msgstr "摇滚/流行"
 
 msgid "romance"
@@ -23973,7 +24030,7 @@ msgstr ""
 msgid "scan state"
 msgstr "扫描状态"
 
-msgid "science fiction/fantasy/horror"
+msgid "Science fiction/Fantasy/Horror"
 msgstr "科幻小说/魔幻/惊险"
 
 msgid "search EPG..."
@@ -23982,10 +24039,10 @@ msgstr "搜索 EPG ..."
 msgid "select CAId's"
 msgstr "选择 CAId"
 
-msgid "serious music/classic music"
+msgid "Serious music/Classic music"
 msgstr "严肃音乐/经典音乐"
 
-msgid "serious/classical/religious/historical movie/drama"
+msgid "Serious/Classical/Religious/Historical/Drama"
 msgstr "严肃/经典/宗教/历史影片/戏剧"
 
 msgid "service PIN"
@@ -24024,13 +24081,13 @@ msgstr "快退"
 msgid "skip forward"
 msgstr "快进"
 
-msgid "soap/melodrama/folkloric"
+msgid "Soap/Melodrama/Folkloric"
 msgstr "肥皂 /音乐剧/民俗"
 
 msgid "social/political issues/economics (general)"
 msgstr "社会/政治问题/经济（常规）"
 
-msgid "social/spiritual science"
+msgid "Social/Spiritual sciences"
 msgstr "社会/精神科学"
 
 msgid "softcam"
@@ -24051,7 +24108,7 @@ msgstr "体育(普通)"
 msgid "sports (general)"
 msgstr "体育（常规）"
 
-msgid "sports magazine"
+msgid "Sports magazines"
 msgstr "体育杂志"
 
 msgid "standard"
@@ -24093,7 +24150,7 @@ msgstr "脱口秀"
 msgid "team sports"
 msgstr "团队竞技"
 
-msgid "technology/natural science"
+msgid "Technology/Natural sciences"
 msgstr "技术/自然科学"
 
 msgid "teletext"
@@ -24102,7 +24159,7 @@ msgstr "图文"
 msgid "template file"
 msgstr "模板文件"
 
-msgid "tennis/squash"
+msgid "Tennis/Squash"
 msgstr "网球/壁球"
 
 msgid "text"
@@ -24114,7 +24171,7 @@ msgstr "这段录像"
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "切换时间，章节，音频，字幕信息"
 
-msgid "tourism/travel"
+msgid "Tourism/Travel"
 msgstr "旅游/旅行"
 
 msgid "traditional (fast)"
@@ -24153,7 +24210,7 @@ msgstr "未知"
 msgid "unknown error"
 msgstr "未知错误"
 
-msgid "unpublished"
+msgid "Unpublished"
 msgstr "未发布"
 
 msgid "untestable"
@@ -24165,7 +24222,7 @@ msgstr "更新"
 msgid "using:"
 msgstr "使用："
 
-msgid "variety show"
+msgid "Variety show"
 msgstr "综艺节目"
 
 msgid "violet"
@@ -24177,7 +24234,7 @@ msgstr "等待 CI..."
 msgid "wait for mmi..."
 msgstr "等待 mmi..."
 
-msgid "water sport"
+msgid "Water sport"
 msgstr "水上运动"
 
 msgid "west"
@@ -24189,7 +24246,7 @@ msgstr "白色"
 msgid "width"
 msgstr "宽度"
 
-msgid "winter sport"
+msgid "Winter sport"
 msgstr "冬季运动"
 
 msgid "wireless network interface"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-23 18:55+0000\n"
+"POT-Creation-Date: 2025-11-06 08:27+0000\n"
 "PO-Revision-Date: 2024-07-23 13:09+0000\n"
 "Last-Translator: Ricky From Hong Kong <lamricky11@hotmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -1565,6 +1565,9 @@ msgid "<Last timer location>"
 msgstr "<最近一次定時錄影位置>"
 
 msgid "<Select a device>"
+msgstr ""
+
+msgid "<no capabilities found>"
 msgstr ""
 
 msgid "<no log found>"
@@ -7809,6 +7812,12 @@ msgstr ""
 msgid "Error Download Setting"
 msgstr "下載中"
 
+msgid "Error Retry count"
+msgstr ""
+
+msgid "Error Retry delay"
+msgstr ""
+
 msgid "Error code"
 msgstr ""
 
@@ -9955,6 +9964,9 @@ msgid "Ignore DVB-S namespace sub network"
 msgstr ""
 
 msgid "Ignore DVB-T namespace sub network"
+msgstr ""
+
+msgid "Ignore Standby"
 msgstr ""
 
 msgid "Ignore unexpectedly wake up and stay in standby"
@@ -12491,6 +12503,9 @@ msgstr ""
 msgid "Never decrypt while recording"
 msgstr ""
 
+msgid "Never in Standby"
+msgstr ""
+
 msgid "New"
 msgstr "新增"
 
@@ -12545,7 +12560,7 @@ msgstr ""
 msgid "News"
 msgstr "LT 新聞"
 
-msgid "News/Current Affairs"
+msgid "News/Current affairs"
 msgstr ""
 
 msgid "Next"
@@ -13073,11 +13088,17 @@ msgstr ""
 msgid "OSCamInfo Actions"
 msgstr ""
 
+msgid "OSCamInfo Capability Actions"
+msgstr ""
+
 msgid "OSCamInfo Log Actions"
 msgstr ""
 
 #, python-format
 msgid "OSCamInfo: %s Entitlements for '%s'"
+msgstr ""
+
+msgid "OSCamInfo: Capabilities"
 msgstr ""
 
 #, python-format
@@ -13234,6 +13255,9 @@ msgstr "結束自定義組編輯"
 #, fuzzy
 msgid "Open Box Portal"
 msgstr "顯示藍色面板..."
+
+msgid "Open Capability"
+msgstr ""
 
 msgid "Open EPG"
 msgstr "顯示 EPG..."
@@ -16742,6 +16766,9 @@ msgstr ""
 msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all key map, menu and setup override data and restore the default definitions."
 msgstr ""
 
+msgid "Select 'Yes' to reschedule the task to when the receiver goes in to/out of Standby mode. The state change must happen within the task schedule window or else the task will not be run."
+msgstr ""
+
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr ""
 
@@ -17085,6 +17112,9 @@ msgstr ""
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr ""
 
+msgid "Select how the schedule is handled with respect to Standby mode."
+msgstr ""
+
 msgid "Select how to activate the Quick EPG mode."
 msgstr ""
 
@@ -17239,6 +17269,9 @@ msgstr ""
 msgid "Select the action to perform when the timer ends."
 msgstr ""
 
+msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
+msgstr ""
+
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
 msgstr ""
 
@@ -17335,6 +17368,9 @@ msgstr ""
 msgid "Select the duration of inactivity before the screen saver will be displayed."
 msgstr ""
 
+msgid "Select the end time before which this timer can be activated.  After this time the timer won't be activated even if other conditions are met."
+msgstr ""
+
 #, python-format
 msgid "Select the file sort order for the %s column:"
 msgstr ""
@@ -17428,6 +17464,9 @@ msgstr ""
 msgid "Select the next item in the list"
 msgstr ""
 
+msgid "Select the number of times to retry a task if an error occurs when running the task."
+msgstr ""
+
 msgid "Select the preferred service information to display, in addition to the service number, for the service selection pop up screen."
 msgstr ""
 
@@ -17502,6 +17541,9 @@ msgid "Select the source location from where to obtain the upgrade files."
 msgstr ""
 
 msgid "Select the source of the default DNS settings."
+msgstr ""
+
+msgid "Select the start time after which this timer can be activated.  Before this time the timer won't be activated even if other conditions are met."
 msgstr ""
 
 msgid "Select the starting/initial column to be activated on File Commander start up."
@@ -18435,6 +18477,9 @@ msgstr ""
 #, fuzzy
 msgid "Show CI messages"
 msgstr "顯示Softcam名稱"
+
+msgid "Show Capabilities"
+msgstr ""
 
 #, fuzzy
 msgid "Show Default Backup Files"
@@ -19846,6 +19891,9 @@ msgstr "待機"
 msgid "Standby / Restart"
 msgstr "待機 / 重啟"
 
+msgid "Standby execution"
+msgstr ""
+
 msgid "Standby without TV shut down"
 msgstr ""
 
@@ -19897,6 +19945,9 @@ msgid "Start or Stop service"
 msgstr ""
 
 msgid "Start recording current event"
+msgstr ""
+
+msgid "Start retry"
 msgstr ""
 
 #, fuzzy
@@ -21689,6 +21740,9 @@ msgstr ""
 msgid "Timer editor"
 msgstr ""
 
+msgid "Timer end window"
+msgstr ""
+
 msgid "Timer entry"
 msgstr "計時器項目"
 
@@ -21710,6 +21764,9 @@ msgstr ""
 
 msgid "Timer selection"
 msgstr "計時器選擇"
+
+msgid "Timer start window"
+msgstr ""
 
 msgid "Timer type"
 msgstr "定時類型"
@@ -24247,16 +24304,16 @@ msgstr "啟動交換檔"
 msgid "address:"
 msgstr "IP地址"
 
-msgid "adult movie/drama"
+msgid "Adult movie/Drama"
 msgstr ""
 
 msgid "advanced"
 msgstr "高級"
 
-msgid "adventure/western/war"
+msgid "Adventure/Western/War"
 msgstr ""
 
-msgid "advertisement/shopping"
+msgid "Advertisement/Shopping"
 msgstr ""
 
 msgid "alpha then oldest"
@@ -24289,7 +24346,7 @@ msgstr ""
 msgid "arts/culture (without music, general)"
 msgstr ""
 
-msgid "arts/culture magazine"
+msgid "Arts/Culture magazines"
 msgstr ""
 
 msgid "athletics"
@@ -24331,13 +24388,13 @@ msgstr "較好"
 msgid "black"
 msgstr "黑色"
 
-msgid "black & white"
+msgid "Black & White"
 msgstr ""
 
 msgid "blue"
 msgstr "藍色"
 
-msgid "broadcasting/press"
+msgid "Broadcasting/Press"
 msgstr ""
 
 #, python-format
@@ -24359,7 +24416,7 @@ msgstr ""
 msgid "card reader"
 msgstr ""
 
-msgid "cartoon/puppets"
+msgid "Cartoons/Puppets"
 msgstr ""
 
 msgid "chapters"
@@ -24421,7 +24478,7 @@ msgstr "刪除"
 msgid "delete cut"
 msgstr "刪除剪輯"
 
-msgid "detective/thriller"
+msgid "Detective/Thriller"
 msgstr ""
 
 msgid "disabled"
@@ -24430,7 +24487,7 @@ msgstr "不可用"
 msgid "disconnected"
 msgstr "斷開"
 
-msgid "discussion/interview/debate"
+msgid "Discussion/Interview/Debate"
 msgstr ""
 
 msgid "documentary"
@@ -24463,7 +24520,7 @@ msgstr "移除計時器"
 msgid "ecm.info"
 msgstr "顯示ECM資訊"
 
-msgid "economics/social advisory"
+msgid "Economics/Social advisory"
 msgstr ""
 
 msgid "education/information (general)"
@@ -24500,7 +24557,7 @@ msgstr "娛樂"
 msgid "equal to"
 msgstr "相同"
 
-msgid "equestrian"
+msgid "Equestrian"
 msgstr ""
 
 msgid "execute cuts (requires MovieCut plugin)"
@@ -24509,7 +24566,7 @@ msgstr ""
 msgid "exit DVD player or return to file browser"
 msgstr "退出DVD播放器或返回檔流覽器"
 
-msgid "experimental film/video"
+msgid "Experimental film/video"
 msgstr ""
 
 #, fuzzy
@@ -24519,7 +24576,7 @@ msgstr "聯繫"
 msgid "failed"
 msgstr "失敗"
 
-msgid "fashion"
+msgid "Fashion"
 msgstr ""
 
 msgid "file can not displayed - file not found"
@@ -24531,13 +24588,13 @@ msgstr "檔格式 (BMP, PNG, JPG, GIF)"
 msgid "filename"
 msgstr "檔案名"
 
-msgid "film/cinema"
+msgid "Film/Cinema"
 msgstr ""
 
-msgid "fine arts"
+msgid "Fine arts"
 msgstr ""
 
-msgid "fitness & health"
+msgid "Fitness and Health"
 msgstr ""
 
 msgid "flat alphabetic"
@@ -24546,13 +24603,13 @@ msgstr ""
 msgid "flat alphabetic reverse"
 msgstr ""
 
-msgid "folk/traditional music"
+msgid "Folk/Traditional music"
 msgstr ""
 
-msgid "football/soccer"
+msgid "Football/Soccer"
 msgstr ""
 
-msgid "foreign countries/expeditions"
+msgid "Foreign countries/Expeditions"
 msgstr ""
 
 msgid "forward to the next chapter"
@@ -24567,10 +24624,10 @@ msgstr "剩餘磁碟空間"
 msgid "from"
 msgstr "來自"
 
-msgid "further education"
+msgid "Further education"
 msgstr ""
 
-msgid "game show/quiz/contest"
+msgid "Game show/Quiz/Contest"
 msgstr ""
 
 msgid "gardening"
@@ -24603,7 +24660,7 @@ msgstr ""
 msgid "h:mmam/pm"
 msgstr ""
 
-msgid "handicraft"
+msgid "Handicraft"
 msgstr ""
 
 msgid "handled"
@@ -24692,10 +24749,10 @@ msgstr "長度"
 msgid "lime"
 msgstr ""
 
-msgid "literature"
+msgid "Literature"
 msgstr ""
 
-msgid "live broadcast"
+msgid "Live broadcast"
 msgstr ""
 
 msgid "locked"
@@ -24707,16 +24764,16 @@ msgstr ""
 msgid "loopthrough to"
 msgstr "聯繫"
 
-msgid "magazines/reports/documentary"
+msgid "Magazines/Reports/Documentary"
 msgstr ""
 
 msgid "manual"
 msgstr "手動"
 
-msgid "martial sports"
+msgid "Martial sports"
 msgstr ""
 
-msgid "medicine/physiology/psychology"
+msgid "Medicine/Physiology/Psychology"
 msgstr ""
 
 #, fuzzy
@@ -24732,7 +24789,7 @@ msgstr "月份"
 msgid "motor sport"
 msgstr ""
 
-msgid "motoring"
+msgid "Motoring"
 msgstr ""
 
 msgid "move"
@@ -24753,7 +24810,7 @@ msgstr ""
 msgid "music/ballet/dance (general)"
 msgstr ""
 
-msgid "musical/opera"
+msgid "Musical/Opera"
 msgstr ""
 
 msgid "n/a"
@@ -24762,22 +24819,22 @@ msgstr ""
 msgid "name"
 msgstr ""
 
-msgid "nature/animals/environment"
+msgid "Nature/Animals/Environment"
 msgstr ""
 
-msgid "new media"
+msgid "New media"
 msgstr ""
 
 msgid "news (general)"
 msgstr ""
 
-msgid "news magazine"
+msgid "News magazine"
 msgstr ""
 
 msgid "news/current affairs (general)"
 msgstr ""
 
-msgid "news/weather report"
+msgid "News/Weather report"
 msgstr ""
 
 msgid "no CAId selected"
@@ -24845,7 +24902,7 @@ msgstr ""
 msgid "packages"
 msgstr ""
 
-msgid "performing arts"
+msgid "Performing arts"
 msgstr ""
 
 msgid "pid:"
@@ -24866,7 +24923,7 @@ msgstr ""
 msgid "pm"
 msgstr ""
 
-msgid "popular culture/traditional arts"
+msgid "Popular culture/Traditional arts"
 msgstr ""
 
 msgid "pre-school children's program"
@@ -24896,7 +24953,7 @@ msgstr ""
 msgid "religion"
 msgstr ""
 
-msgid "remarkable people"
+msgid "Remarkable people"
 msgstr ""
 
 msgid "remove after this position"
@@ -24920,7 +24977,7 @@ msgstr "退回上一個章節"
 msgid "right"
 msgstr "右"
 
-msgid "rock/pop"
+msgid "Rock/Pop"
 msgstr ""
 
 msgid "romance"
@@ -24939,7 +24996,7 @@ msgstr ""
 msgid "scan state"
 msgstr "掃描狀態"
 
-msgid "science fiction/fantasy/horror"
+msgid "Science fiction/Fantasy/Horror"
 msgstr ""
 
 #, fuzzy
@@ -24949,10 +25006,10 @@ msgstr "顯示 EPG..."
 msgid "select CAId's"
 msgstr "選擇 CAId's"
 
-msgid "serious music/classic music"
+msgid "Serious music/Classic music"
 msgstr ""
 
-msgid "serious/classical/religious/historical movie/drama"
+msgid "Serious/Classical/Religious/Historical/Drama"
 msgstr ""
 
 #, fuzzy
@@ -24994,13 +25051,13 @@ msgstr "快倒"
 msgid "skip forward"
 msgstr "快進"
 
-msgid "soap/melodrama/folkloric"
+msgid "Soap/Melodrama/Folkloric"
 msgstr ""
 
 msgid "social/political issues/economics (general)"
 msgstr ""
 
-msgid "social/spiritual science"
+msgid "Social/Spiritual sciences"
 msgstr ""
 
 msgid "softcam"
@@ -25021,7 +25078,7 @@ msgstr ""
 msgid "sports (general)"
 msgstr ""
 
-msgid "sports magazine"
+msgid "Sports magazines"
 msgstr ""
 
 msgid "standard"
@@ -25064,7 +25121,7 @@ msgstr ""
 msgid "team sports"
 msgstr ""
 
-msgid "technology/natural science"
+msgid "Technology/Natural sciences"
 msgstr ""
 
 #, fuzzy
@@ -25074,7 +25131,7 @@ msgstr "刪除"
 msgid "template file"
 msgstr ""
 
-msgid "tennis/squash"
+msgid "Tennis/Squash"
 msgstr ""
 
 msgid "text"
@@ -25086,7 +25143,7 @@ msgstr "這個錄影"
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "切換時間, 章節, 音頻,字幕資訊"
 
-msgid "tourism/travel"
+msgid "Tourism/Travel"
 msgstr ""
 
 #, fuzzy
@@ -25131,7 +25188,7 @@ msgstr "未知"
 msgid "unknown error"
 msgstr "未知頻道"
 
-msgid "unpublished"
+msgid "Unpublished"
 msgstr ""
 
 #, fuzzy
@@ -25144,7 +25201,7 @@ msgstr "更新"
 msgid "using:"
 msgstr ""
 
-msgid "variety show"
+msgid "Variety show"
 msgstr ""
 
 msgid "violet"
@@ -25156,7 +25213,7 @@ msgstr ""
 msgid "wait for mmi..."
 msgstr "等待mmi..."
 
-msgid "water sport"
+msgid "Water sport"
 msgstr ""
 
 msgid "west"
@@ -25168,7 +25225,7 @@ msgstr ""
 msgid "width"
 msgstr ""
 
-msgid "winter sport"
+msgid "Winter sport"
 msgstr ""
 
 msgid "wireless network interface"

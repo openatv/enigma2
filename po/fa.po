@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-10-23 18:55+0000\n"
+"POT-Creation-Date: 2025-11-06 08:27+0000\n"
 "PO-Revision-Date: 2021-09-15 14:20+0000\n"
 "Last-Translator: Hamed Beyrami <h.beyrami@outlook.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fa/>\n"
@@ -1613,6 +1613,9 @@ msgid "<Last timer location>"
 msgstr "<آخرین مکان زمان>"
 
 msgid "<Select a device>"
+msgstr ""
+
+msgid "<no capabilities found>"
 msgstr ""
 
 msgid "<no log found>"
@@ -7745,6 +7748,12 @@ msgstr ""
 msgid "Error Download Setting"
 msgstr "در حال دانلود"
 
+msgid "Error Retry count"
+msgstr ""
+
+msgid "Error Retry delay"
+msgstr ""
+
 msgid "Error code"
 msgstr "کد خطا"
 
@@ -9829,6 +9838,9 @@ msgid "Ignore DVB-S namespace sub network"
 msgstr ""
 
 msgid "Ignore DVB-T namespace sub network"
+msgstr ""
+
+msgid "Ignore Standby"
 msgstr ""
 
 msgid "Ignore unexpectedly wake up and stay in standby"
@@ -12306,6 +12318,9 @@ msgstr ""
 msgid "Never decrypt while recording"
 msgstr "ترکیب نام های فایل های ضبط"
 
+msgid "Never in Standby"
+msgstr ""
+
 msgid "New"
 msgstr "جدید"
 
@@ -12358,7 +12373,7 @@ msgstr ""
 msgid "News"
 msgstr ""
 
-msgid "News/Current Affairs"
+msgid "News/Current affairs"
 msgstr ""
 
 msgid "Next"
@@ -12878,11 +12893,17 @@ msgstr ""
 msgid "OSCamInfo Actions"
 msgstr ""
 
+msgid "OSCamInfo Capability Actions"
+msgstr ""
+
 msgid "OSCamInfo Log Actions"
 msgstr ""
 
 #, python-format
 msgid "OSCamInfo: %s Entitlements for '%s'"
+msgstr ""
+
+msgid "OSCamInfo: Capabilities"
 msgstr ""
 
 #, python-format
@@ -13031,6 +13052,9 @@ msgid "Open Bouquet selection"
 msgstr "پایان ویرایش لیست"
 
 msgid "Open Box Portal"
+msgstr ""
+
+msgid "Open Capability"
 msgstr ""
 
 msgid "Open EPG"
@@ -16454,6 +16478,9 @@ msgstr ""
 msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all key map, menu and setup override data and restore the default definitions."
 msgstr ""
 
+msgid "Select 'Yes' to reschedule the task to when the receiver goes in to/out of Standby mode. The state change must happen within the task schedule window or else the task will not be run."
+msgstr ""
+
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr ""
 
@@ -16788,6 +16815,9 @@ msgstr ""
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr ""
 
+msgid "Select how the schedule is handled with respect to Standby mode."
+msgstr ""
+
 msgid "Select how to activate the Quick EPG mode."
 msgstr ""
 
@@ -16939,6 +16969,9 @@ msgstr ""
 msgid "Select the action to perform when the timer ends."
 msgstr ""
 
+msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
+msgstr ""
+
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
 msgstr ""
 
@@ -17035,6 +17068,9 @@ msgstr ""
 msgid "Select the duration of inactivity before the screen saver will be displayed."
 msgstr ""
 
+msgid "Select the end time before which this timer can be activated.  After this time the timer won't be activated even if other conditions are met."
+msgstr ""
+
 #, python-format
 msgid "Select the file sort order for the %s column:"
 msgstr ""
@@ -17129,6 +17165,9 @@ msgstr ""
 msgid "Select the next item in the list"
 msgstr ""
 
+msgid "Select the number of times to retry a task if an error occurs when running the task."
+msgstr ""
+
 msgid "Select the preferred service information to display, in addition to the service number, for the service selection pop up screen."
 msgstr ""
 
@@ -17203,6 +17242,9 @@ msgid "Select the source location from where to obtain the upgrade files."
 msgstr ""
 
 msgid "Select the source of the default DNS settings."
+msgstr ""
+
+msgid "Select the start time after which this timer can be activated.  Before this time the timer won't be activated even if other conditions are met."
 msgstr ""
 
 msgid "Select the starting/initial column to be activated on File Commander start up."
@@ -18091,6 +18133,9 @@ msgid "Show CCcam Info"
 msgstr ""
 
 msgid "Show CI messages"
+msgstr ""
+
+msgid "Show Capabilities"
 msgstr ""
 
 msgid "Show Default Backup Files"
@@ -19450,6 +19495,9 @@ msgstr "خاموشی موقت"
 msgid "Standby / Restart"
 msgstr "خاموشی موقت / راه اندازی مجدد"
 
+msgid "Standby execution"
+msgstr ""
+
 msgid "Standby without TV shut down"
 msgstr ""
 
@@ -19501,6 +19549,9 @@ msgid "Start or Stop service"
 msgstr ""
 
 msgid "Start recording current event"
+msgstr ""
+
+msgid "Start retry"
 msgstr ""
 
 msgid "Start teletext"
@@ -21248,6 +21299,9 @@ msgstr ""
 msgid "Timer editor"
 msgstr ""
 
+msgid "Timer end window"
+msgstr ""
+
 msgid "Timer entry"
 msgstr "مورد زمان"
 
@@ -21270,6 +21324,9 @@ msgstr "محل زمان ضبط"
 
 msgid "Timer selection"
 msgstr "انتخاب زمان"
+
+msgid "Timer start window"
+msgstr ""
 
 #, fuzzy
 msgid "Timer type"
@@ -23755,16 +23812,16 @@ msgstr ""
 msgid "address:"
 msgstr ""
 
-msgid "adult movie/drama"
+msgid "Adult movie/Drama"
 msgstr ""
 
 msgid "advanced"
 msgstr "پیشرفته"
 
-msgid "adventure/western/war"
+msgid "Adventure/Western/War"
 msgstr ""
 
-msgid "advertisement/shopping"
+msgid "Advertisement/Shopping"
 msgstr ""
 
 msgid "alpha then oldest"
@@ -23796,7 +23853,7 @@ msgstr ""
 msgid "arts/culture (without music, general)"
 msgstr ""
 
-msgid "arts/culture magazine"
+msgid "Arts/Culture magazines"
 msgstr ""
 
 msgid "athletics"
@@ -23838,13 +23895,13 @@ msgstr "بهتر"
 msgid "black"
 msgstr "سیاه"
 
-msgid "black & white"
+msgid "Black & White"
 msgstr "سیاه و سفید"
 
 msgid "blue"
 msgstr "آبی"
 
-msgid "broadcasting/press"
+msgid "Broadcasting/Press"
 msgstr ""
 
 #, python-format
@@ -23866,7 +23923,7 @@ msgstr ""
 msgid "card reader"
 msgstr ""
 
-msgid "cartoon/puppets"
+msgid "Cartoons/Puppets"
 msgstr ""
 
 msgid "chapters"
@@ -23926,7 +23983,7 @@ msgstr ""
 msgid "delete cut"
 msgstr "حذف برش"
 
-msgid "detective/thriller"
+msgid "Detective/Thriller"
 msgstr ""
 
 msgid "disabled"
@@ -23935,7 +23992,7 @@ msgstr "غیر فعال شد"
 msgid "disconnected"
 msgstr "قطع شد"
 
-msgid "discussion/interview/debate"
+msgid "Discussion/Interview/Debate"
 msgstr ""
 
 msgid "documentary"
@@ -23966,7 +24023,7 @@ msgstr ""
 msgid "ecm.info"
 msgstr ""
 
-msgid "economics/social advisory"
+msgid "Economics/Social advisory"
 msgstr ""
 
 msgid "education/information (general)"
@@ -24002,7 +24059,7 @@ msgstr ""
 msgid "equal to"
 msgstr "مساوی با"
 
-msgid "equestrian"
+msgid "Equestrian"
 msgstr ""
 
 msgid "execute cuts (requires MovieCut plugin)"
@@ -24011,7 +24068,7 @@ msgstr ""
 msgid "exit DVD player or return to file browser"
 msgstr "خروج از پخش کننده DVD یا بازگشت به مرورگر فایل"
 
-msgid "experimental film/video"
+msgid "Experimental film/video"
 msgstr ""
 
 msgid "externally loopthrough to"
@@ -24020,7 +24077,7 @@ msgstr ""
 msgid "failed"
 msgstr ""
 
-msgid "fashion"
+msgid "Fashion"
 msgstr ""
 
 msgid "file can not displayed - file not found"
@@ -24033,13 +24090,13 @@ msgstr "فرمت های فایل (BMP, PNG, JPG, GIF)"
 msgid "filename"
 msgstr "نام فایل"
 
-msgid "film/cinema"
+msgid "Film/Cinema"
 msgstr ""
 
-msgid "fine arts"
+msgid "Fine arts"
 msgstr ""
 
-msgid "fitness & health"
+msgid "Fitness and Health"
 msgstr ""
 
 msgid "flat alphabetic"
@@ -24048,13 +24105,13 @@ msgstr ""
 msgid "flat alphabetic reverse"
 msgstr ""
 
-msgid "folk/traditional music"
+msgid "Folk/Traditional music"
 msgstr ""
 
-msgid "football/soccer"
+msgid "Football/Soccer"
 msgstr ""
 
-msgid "foreign countries/expeditions"
+msgid "Foreign countries/Expeditions"
 msgstr ""
 
 msgid "forward to the next chapter"
@@ -24069,10 +24126,10 @@ msgstr "فضای خالی دیسک"
 msgid "from"
 msgstr "از"
 
-msgid "further education"
+msgid "Further education"
 msgstr ""
 
-msgid "game show/quiz/contest"
+msgid "Game show/Quiz/Contest"
 msgstr ""
 
 msgid "gardening"
@@ -24106,7 +24163,7 @@ msgstr ""
 msgid "h:mmam/pm"
 msgstr ""
 
-msgid "handicraft"
+msgid "Handicraft"
 msgstr ""
 
 msgid "handled"
@@ -24195,10 +24252,10 @@ msgstr "طول"
 msgid "lime"
 msgstr ""
 
-msgid "literature"
+msgid "Literature"
 msgstr ""
 
-msgid "live broadcast"
+msgid "Live broadcast"
 msgstr ""
 
 msgid "locked"
@@ -24210,16 +24267,16 @@ msgstr ""
 msgid "loopthrough to"
 msgstr ""
 
-msgid "magazines/reports/documentary"
+msgid "Magazines/Reports/Documentary"
 msgstr ""
 
 msgid "manual"
 msgstr "دستی"
 
-msgid "martial sports"
+msgid "Martial sports"
 msgstr ""
 
-msgid "medicine/physiology/psychology"
+msgid "Medicine/Physiology/Psychology"
 msgstr ""
 
 #, fuzzy
@@ -24235,7 +24292,7 @@ msgstr "ماه"
 msgid "motor sport"
 msgstr ""
 
-msgid "motoring"
+msgid "Motoring"
 msgstr ""
 
 msgid "move"
@@ -24257,7 +24314,7 @@ msgstr ""
 msgid "music/ballet/dance (general)"
 msgstr ""
 
-msgid "musical/opera"
+msgid "Musical/Opera"
 msgstr ""
 
 msgid "n/a"
@@ -24266,22 +24323,22 @@ msgstr ""
 msgid "name"
 msgstr ""
 
-msgid "nature/animals/environment"
+msgid "Nature/Animals/Environment"
 msgstr ""
 
-msgid "new media"
+msgid "New media"
 msgstr ""
 
 msgid "news (general)"
 msgstr ""
 
-msgid "news magazine"
+msgid "News magazine"
 msgstr ""
 
 msgid "news/current affairs (general)"
 msgstr ""
 
-msgid "news/weather report"
+msgid "News/Weather report"
 msgstr ""
 
 #
@@ -24350,7 +24407,7 @@ msgstr ""
 msgid "packages"
 msgstr ""
 
-msgid "performing arts"
+msgid "Performing arts"
 msgstr ""
 
 msgid "pid:"
@@ -24371,7 +24428,7 @@ msgstr ""
 msgid "pm"
 msgstr ""
 
-msgid "popular culture/traditional arts"
+msgid "Popular culture/Traditional arts"
 msgstr ""
 
 msgid "pre-school children's program"
@@ -24399,7 +24456,7 @@ msgstr ""
 msgid "religion"
 msgstr ""
 
-msgid "remarkable people"
+msgid "Remarkable people"
 msgstr ""
 
 msgid "remove after this position"
@@ -24423,7 +24480,7 @@ msgstr "بازگشت به فصل قبلی"
 msgid "right"
 msgstr "راست"
 
-msgid "rock/pop"
+msgid "Rock/Pop"
 msgstr ""
 
 msgid "romance"
@@ -24442,7 +24499,7 @@ msgstr ""
 msgid "scan state"
 msgstr "حالت اسکن"
 
-msgid "science fiction/fantasy/horror"
+msgid "Science fiction/Fantasy/Horror"
 msgstr ""
 
 msgid "search EPG..."
@@ -24451,10 +24508,10 @@ msgstr ""
 msgid "select CAId's"
 msgstr "انتخاب CAId's"
 
-msgid "serious music/classic music"
+msgid "Serious music/Classic music"
 msgstr ""
 
-msgid "serious/classical/religious/historical movie/drama"
+msgid "Serious/Classical/Religious/Historical/Drama"
 msgstr ""
 
 msgid "service PIN"
@@ -24493,13 +24550,13 @@ msgstr "پرش به عقب"
 msgid "skip forward"
 msgstr "پرش به جلو"
 
-msgid "soap/melodrama/folkloric"
+msgid "Soap/Melodrama/Folkloric"
 msgstr ""
 
 msgid "social/political issues/economics (general)"
 msgstr ""
 
-msgid "social/spiritual science"
+msgid "Social/Spiritual sciences"
 msgstr ""
 
 msgid "softcam"
@@ -24520,7 +24577,7 @@ msgstr ""
 msgid "sports (general)"
 msgstr ""
 
-msgid "sports magazine"
+msgid "Sports magazines"
 msgstr ""
 
 msgid "standard"
@@ -24562,7 +24619,7 @@ msgstr ""
 msgid "team sports"
 msgstr ""
 
-msgid "technology/natural science"
+msgid "Technology/Natural sciences"
 msgstr ""
 
 #, fuzzy
@@ -24572,7 +24629,7 @@ msgstr "حذف"
 msgid "template file"
 msgstr "قالب فایل"
 
-msgid "tennis/squash"
+msgid "Tennis/Squash"
 msgstr ""
 
 msgid "text"
@@ -24584,7 +24641,7 @@ msgstr "این ضبط کردن"
 msgid "toggle time, chapter, audio, subtitle info"
 msgstr "اطلاعات زمان ، فصل ، صدا ، زیرنویس"
 
-msgid "tourism/travel"
+msgid "Tourism/Travel"
 msgstr ""
 
 msgid "traditional (fast)"
@@ -24623,7 +24680,7 @@ msgstr "نامشخص"
 msgid "unknown error"
 msgstr "خطای نامشخص"
 
-msgid "unpublished"
+msgid "Unpublished"
 msgstr ""
 
 #, fuzzy
@@ -24637,7 +24694,7 @@ msgstr "به روز رسانی"
 msgid "using:"
 msgstr ""
 
-msgid "variety show"
+msgid "Variety show"
 msgstr ""
 
 msgid "violet"
@@ -24649,7 +24706,7 @@ msgstr ""
 msgid "wait for mmi..."
 msgstr "صبر کردن برای mmi"
 
-msgid "water sport"
+msgid "Water sport"
 msgstr ""
 
 msgid "west"
@@ -24661,7 +24718,7 @@ msgstr ""
 msgid "width"
 msgstr "عرض"
 
-msgid "winter sport"
+msgid "Winter sport"
 msgstr ""
 
 msgid "wireless network interface"
