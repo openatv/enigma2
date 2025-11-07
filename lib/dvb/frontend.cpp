@@ -1499,6 +1499,14 @@ void eDVBFrontend::calculateSignalQuality(int snr, int &signalquality, int &sign
 		ret = (int)(snr / 40.5);
 		sat_max = 1900;
 	}
+	else if (strstr(m_description, "BCM3148")) // VU+ 4K FBC "Vuplus DVB-C NIM(BCM3148)"
+	{
+		ret = (int)(snr / 15.61);
+	}
+	else if (strstr(m_description, "Vuplus DVB-T NIM(BCM3466)")) // VU+ Dual DVB-T2
+	{
+		ret = (int)(snr / 22.8);
+	}
 	else if(!strcmp(m_description, "TBS-5925") || !strcmp(m_description, "DVBS2BOX"))
 	{
 		ret = (snr * 2000) / 0xFFFF;
