@@ -151,7 +151,7 @@ class GenresAUS:
 		_("Children's"),
 		_("Music"),
 		_("Arts/Culture"),
-		_("Current Affairs"),
+		_("Current affairs"),
 		_("Education/Information"),
 		_("Infotainment"),
 		_("Special"),
@@ -237,7 +237,7 @@ class GenresAUSIceTV:
 		_("Comedy"),
 		_("Drama"),
 		_("Documentary"),
-		_("Real Life"),
+		_("Real life"),
 	)
 
 	subtype = {
@@ -248,14 +248,14 @@ class GenresAUSIceTV:
 			_("Youth"),  # 0x02 remapped from 0x01
 			_("Wrestling"),  # 0x03 remapped from 0x01
 			_("Violence"),  # 0x04 remapped from 0x01
-			_("Short Film"),  # 0x05 remapped from 0x01
+			_("Short film"),  # 0x05 remapped from 0x01
 			_("Sailing"),  # 0x06 remapped from 0x01
 			_("Renovation"),  # 0x07 remapped from 0x01
-			_("Mini Series"),  # 0x08 remapped from 0x01
+			_("Mini series"),  # 0x08 remapped from 0x01
 			_("MMA"),  # 0x09 remapped from 0x01
-			_("Horse Racing"),  # 0x0a remapped from 0x01
+			_("Horse racing"),  # 0x0a remapped from 0x01
 			_("Finance"),  # 0x0b remapped from 0x01
-			_("Film-Noir"),  # 0x0c remapped from 0x01
+			_("Film-noir"),  # 0x0c remapped from 0x01
 			_("Family"),  # 0x0d remapped from 0x01
 			_("Cycling"),  # 0x0e remapped from 0x01
 		),
@@ -266,7 +266,7 @@ class GenresAUSIceTV:
 			_("Adventure"),  # 0x12
 			_("Sci-Fi"),  # 0x13
 			_("Comedy"),  # 0x14
-			_("Soap Opera"),  # 0x15
+			_("Soap opera"),  # 0x15
 			_("Romance"),  # 0x16
 			_("Historical"),  # 0x17
 			_("Adult"),  # 0x18
@@ -288,9 +288,9 @@ class GenresAUSIceTV:
 		# Show/Games show
 		3: (
 			_("Entertainment"),  # 0x30
-			_("Game Show"),  # 0x31
+			_("Game show"),  # 0x31
 			_("Variety"),  # 0x32
-			_("Talk Show"),  # 0x33
+			_("Talk show"),  # 0x33
 		),
 		# Sports
 		4: (
@@ -301,11 +301,11 @@ class GenresAUSIceTV:
 			_("Tennis"),  # 0x44
 			_("Football"),  # 0x45
 			_("Athletics"),  # 0x46
-			_("Motor Sport"),  # 0x47
+			_("Motor sport"),  # 0x47
 			_("Swimming"),  # 0x48
-			_("Winter Sports"),  # 0x49
+			_("Winter sport"),  # 0x49
 			_("Boxing"),  # 0x4a remapped from 0x40
-			_("Rugby League"),  # 0x4b remapped from 0x45
+			_("Rugby league"),  # 0x4b remapped from 0x45
 			_("Rugby"),  # 0x4c remapped from 0x45
 			_("Netball"),  # 0x4d remapped from 0x45
 			_("Hockey"),  # 0x4e remapped from 0x45
@@ -336,7 +336,7 @@ class GenresAUSIceTV:
 		# Social/Political/Economics
 		8: (
 			_("Society & Culture"),  # 0x80
-			_("Current Affairs"),  # 0x81
+			_("Current affairs"),  # 0x81
 			_("Parliament"),  # 0x82 remapped from 0x80
 			_("Biography"),  # 0x83
 			_("Business & Finance"),  # 0x84 remapped from 0x80
@@ -381,13 +381,13 @@ class GenresAUSIceTV:
 		),
 		# Real Life
 		15: (
-			_("Real Life"),  # 0xf0
+			_("Real life"),  # 0xf0
 			_("Horror"),  # 0xf1 remapped from 0x13
 			_("Fantasy"),  # 0xf2 remapped from 0x13
 			_("Sitcom"),  # 0xf3 remapped from 0x14
 			_("Basketball"),  # 0xf4 remapped from 0x45
 			_("Baseball"),  # 0xf5 remapped from 0x45
-			_("American Football"),  # 0xf6 remapped from 0x45
+			_("American football"),  # 0xf6 remapped from 0x45
 			_("AFL"),  # 0xf7 remapped from 0x45
 			_("Rowing"),  # 0xf8 remapped from 0x48
 		),
@@ -444,7 +444,7 @@ class GenresGBROpenTV:
 			_("Comedy"),  # 0x62
 			_("Detective"),  # 0x63
 			_("Drama"),  # 0x64
-			_("Game Show"),  # 0x65
+			_("Game show"),  # 0x65
 			_("Sci-FI"),  # 0x66
 			_("Soap"),  # 0x67
 			_("Animation"),  # 0x68
@@ -559,7 +559,7 @@ class GenresGBROpenTV:
 		# Sports
 		14: (
 			_("General"),  # 0xe0
-			_("American Football"),  # 0xe1
+			_("American football"),  # 0xe1
 			_("Athletics"),  # 0xe2
 			_("Baseball"),  # 0xe3
 			_("Basketball"),  # 0xe4
@@ -569,11 +569,11 @@ class GenresGBROpenTV:
 			_("Football"),  # 0xe8
 			_("Golf"),  # 0xe9
 			_("Ice Hockey"),  # 0xea
-			_("Motor Sport"),  # 0xeb
+			_("Motor sport"),  # 0xeb
 			_("Racing"),  # 0xec
 			_("Rugby"),  # 0xed
 			_("Equestrian"),  # 0xee
-			_("Winter Sports"),  # 0xef
+			_("Winter sport"),  # 0xef
 		),
 		# Sports cont...
 		15: (
@@ -619,7 +619,7 @@ class GenresITAOpenTV:
 			"Sit Com",  # 0x22
 			"Show",  # 0x23
 			"Telefilm",  # 0x24
-			"Soap Opera",  # 0x25
+			"Soap opera",  # 0x25
 			"Telenovela",  # 0x26
 			"Fantascienza",  # 0x27
 			"Animazione",  # 0x28
@@ -629,7 +629,7 @@ class GenresITAOpenTV:
 			"Miniserie",  # 0x2c
 			"Spettacolo",  # 0x2d
 			"Quiz",  # 0x2e
-			"Talk Show",  # 0x2f
+			"Talk show",  # 0x2f
 		),
 		# Intrattenimento cont..
 		3: (
