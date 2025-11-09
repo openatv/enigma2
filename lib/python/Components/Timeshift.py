@@ -555,14 +555,10 @@ class InfoBarTimeshift:
 			self.pts_eventcount += 1  # Update internal event counter.
 			if (BoxInfo.getItem("machinebuild") == "vuuno" or BoxInfo.getItem("machinebuild") == "vuduo") and exists("/proc/stb/lcd/symbol_timeshift"):
 				if self.session.nav.RecordTimer.isRecording():
-					f = open("/proc/stb/lcd/symbol_timeshift", "w")
-					f.write("0")
-					f.close()
+					fileWriteLine("/proc/stb/lcd/symbol_timeshift", "0", source=MODULE_NAME)
 			elif BoxInfo.getItem("model") == "u41" and exists("/proc/stb/lcd/symbol_record"):
 				if self.session.nav.RecordTimer.isRecording():
-					f = open("/proc/stb/lcd/symbol_record", "w")
-					f.write("0")
-					f.close()
+					fileWriteLine("/proc/stb/lcd/symbol_record", "0", source=MODULE_NAME)
 			self.pts_starttime = time()
 			self.save_timeshift_postaction = None
 			self.ptsGetEventInfo()
@@ -1013,30 +1009,18 @@ class InfoBarTimeshift:
 			return
 		if action == "start":
 			if exists("/proc/stb/fp/led_set_pattern"):
-				f = open("/proc/stb/fp/led_set_pattern", "w")
-				f.write("0xa7fccf7a")
-				f.close()
+				fileWriteLine("/proc/stb/fp/led_set_pattern", "0xa7fccf7a", source=MODULE_NAME)
 			elif exists("/proc/stb/fp/led0_pattern"):
-				f = open("/proc/stb/fp/led0_pattern", "w")
-				f.write("0x55555555")
-				f.close()
+				fileWriteLine("/proc/stb/fp/led0_pattern", "0x55555555", source=MODULE_NAME)
 			if exists("/proc/stb/fp/led_pattern_speed"):
-				f = open("/proc/stb/fp/led_pattern_speed", "w")
-				f.write("20")
-				f.close()
+				fileWriteLine("/proc/stb/fp/led_pattern_speed", "20", source=MODULE_NAME)
 			elif exists("/proc/stb/fp/led_set_speed"):
-				f = open("/proc/stb/fp/led_set_speed", "w")
-				f.write("20")
-				f.close()
+				fileWriteLine("/proc/stb/fp/led_set_speed", "20", source=MODULE_NAME)
 		elif action == "stop":
 			if exists("/proc/stb/fp/led_set_pattern"):
-				f = open("/proc/stb/fp/led_set_pattern", "w")
-				f.write("0")
-				f.close()
+				fileWriteLine("/proc/stb/fp/led_set_pattern", "0", source=MODULE_NAME)
 			elif exists("/proc/stb/fp/led0_pattern"):
-				f = open("/proc/stb/fp/led0_pattern", "w")
-				f.write("0")
-				f.close()
+				fileWriteLine("/proc/stb/fp/led0_pattern", "0", source=MODULE_NAME)
 
 	def ptsCreateHardlink(self):
 		for filename in listdir(config.timeshift.path.value):
