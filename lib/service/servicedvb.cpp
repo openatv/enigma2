@@ -1276,8 +1276,10 @@ void eDVBServicePlay::serviceEvent(int event)
 	case eDVBServicePMTHandler::eventNoPAT:
 	case eDVBServicePMTHandler::eventNoPMT:
 	{
+		bool recovery_enabled = eSimpleConfig::getBool("config.timeshift.preciseRecovery", true);
+
 		// Check if timeshift is active and we are not already in a recovery state
-		if (m_timeshift_enabled && !m_stream_corruption_detected)
+		if (recovery_enabled && m_timeshift_enabled && !m_stream_corruption_detected)
 		{
 			eTrace("[PreciseRecovery] Tune Failed/Signal Loss during timeshift. Initiating recovery.");
 			
@@ -2917,23 +2919,24 @@ RESULT eDVBServicePlay::startTimeshift()
 	return 0;
 }
 
-void eDVBServicePlay::recordEvent(int event)
-{
-	switch (event)
-	{
-	case iDVBTSRecorder::eventWriteError:
-		eWarning("[eDVBServicePlay] recordEvent write error");
-		return;
-	case iDVBTSRecorder::eventStreamCorrupt:
-		// Do not re-trigger if a recovery is already in progress.
-		if (m_stream_corruption_detected) return;
+void eDVBServicePlay::recordEvent(int event) {
+	switch (event) {
+		case iDVBTSRecorder::eventWriteError:
+			eWarning("[eDVBServicePlay] recordEvent write error");
+			return;
+		case iDVBTSRecorder::eventStreamCorrupt: {
+			// Do not re-trigger if a recovery is already in progress.
+			bool recovery_enabled = eSimpleConfig::getBool("config.timeshift.preciseRecovery", true);
+			if (m_stream_corruption_detected || !recovery_enabled)
+				return;
 
-		eWarning("[eDVBServicePlay] recordEvent eventStreamCorrupt, initiating recovery.");
-		m_stream_corruption_detected = true;
-		handleEofRecovery(); // The entire redesigned recovery logic is now centralized here.
-		return;
-	default:
-		eDebug("[eDVBServicePlay] recordEvent unhandled record event %d", event);
+			eWarning("[eDVBServicePlay] recordEvent eventStreamCorrupt, initiating recovery.");
+			m_stream_corruption_detected = true;
+			handleEofRecovery(); // The entire redesigned recovery logic is now centralized here.
+			return;
+		}
+		default:
+			eDebug("[eDVBServicePlay] recordEvent unhandled record event %d", event);
 	}
 }
 
