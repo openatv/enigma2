@@ -155,7 +155,16 @@ class InfoBarTimeshift:
 		self.pts_curevent_servicerefname = ""
 		self.pts_curevent_station = ""
 		self.pts_curevent_eventid = None
-		# Init PTS Infobar
+
+	def getCurrentEventName(self):
+		return self.pts_curevent_name.replace("\n", " ") if self.pts_curevent_name else ""
+
+	currentEventName = property(getCurrentEventName)
+
+	def getCurrentEventDescription(self):
+		return self.pts_curevent_description.replace("\n", " ") if self.pts_curevent_description else ""
+
+	currentEventDescription = property(getCurrentEventDescription)
 
 	def __seekableStatusChanged(self):
 		# print(f"[Timeshift] PTS_currplaying {self.pts_currplaying}, pts_nextplaying {self.pts_nextplaying}, pts_eventcount {self.pts_eventcount}, pts_firstplayable {self.pts_firstplayable}.")
@@ -176,7 +185,7 @@ class InfoBarTimeshift:
 			self.pts_lastplaying = self.pts_currplaying = self.pts_eventcount
 			self.pts_nextplaying = 0
 			self.pts_file_changed = True
-			self.ptsSetNextPlaybackFile("pts_livebuffer_%s" % self.pts_eventcount)
+			self.ptsSetNextPlaybackFile(f"pts_livebuffer_{self.pts_eventcount}")
 
 	def __serviceStarted(self):
 		self.service_changed = 1
@@ -191,10 +200,10 @@ class InfoBarTimeshift:
 	def __serviceEnd(self):
 		if self.save_current_timeshift:
 			if self.pts_curevent_end > time():
-				self.SaveTimeshift("pts_livebuffer_%s" % self.pts_eventcount, mergelater=True)
+				self.SaveTimeshift(f"pts_livebuffer_{self.pts_eventcount}", mergelater=True)
 				self.ptsRecordCurrentEvent()
 			else:
-				self.SaveTimeshift("pts_livebuffer_%s" % self.pts_eventcount)
+				self.SaveTimeshift(f"pts_livebuffer_{self.pts_eventcount}")
 		self.service_changed = 0
 		# if not config.timeshift.isRecording.value:
 		# 	self.__seekableStatusChanged()
@@ -242,15 +251,15 @@ class InfoBarTimeshift:
 					self.pts_FileJump_timer.start(5000, True)
 				return
 			# Switch to previous TS file by seeking backwards to the previous file.
-			if fileExists("%spts_livebuffer_%s" % (config.timeshift.path.value, self.pts_currplaying), "r"):
-				self.ptsSetNextPlaybackFile("pts_livebuffer_%s" % self.pts_currplaying)
+			if fileExists(join(config.timeshift.path.value, f"pts_livebuffer_{self.pts_currplaying}"), "r"):
+				self.ptsSetNextPlaybackFile(f"pts_livebuffer_{self.pts_currplaying}")
 				self.setSeekState(self.SEEK_STATE_PLAY)
 				self.doSeek(3600 * 24 * 90000)
 				self.pts_CheckFileChanged_counter = 1
 				self.pts_CheckFileChanged_timer.start(1000, False)
 				self.pts_file_changed = False
 			else:
-				print("[Timeshift] 'pts_livebuffer_%s' file was not found -> Put pointer to the first (current) 'pts_livebuffer_%s' file." % (self.pts_currplaying, self.pts_currplaying + 1))
+				print(f"[Timeshift] 'pts_livebuffer_{self.pts_currplaying}' file was not found -> Put pointer to the first (current) 'pts_livebuffer_{self.pts_currplaying + 1}' file.")
 				self.pts_currplaying += 1
 				self.pts_firstplayable += 1
 				self.setSeekState(self.SEEK_STATE_PLAY)
@@ -277,8 +286,8 @@ class InfoBarTimeshift:
 			self.pts_nextplaying = 0
 			self.pts_currplaying += 1
 			# Switch to next TS file by seeking forward to the next file.
-			if fileExists("%spts_livebuffer_%s" % (config.timeshift.path.value, self.pts_currplaying), "r"):
-				self.ptsSetNextPlaybackFile("pts_livebuffer_%s" % self.pts_currplaying)
+			if fileExists(join(config.timeshift.path.value, f"pts_livebuffer_{self.pts_currplaying}"), "r"):
+				self.ptsSetNextPlaybackFile(f"pts_livebuffer_{self.pts_currplaying}")
 				self.setSeekState(self.SEEK_STATE_PLAY)
 				self.doSeek(3600 * 24 * 90000)
 				self.pts_CheckFileChanged_counter = 1
@@ -302,7 +311,7 @@ class InfoBarTimeshift:
 		if self.service_changed:
 			self.service_changed = 0
 			if self.save_current_timeshift:  # We zapped away before saving the file, save it now!
-				self.SaveTimeshift("pts_livebuffer_%s" % self.pts_eventcount)
+				self.SaveTimeshift(f"pts_livebuffer_{self.pts_eventcount}")
 			if config.timeshift.deleteAfterZap.value:  # Delete time shift recordings on zap.
 				self.ptsEventCleanTimerSTOP()
 			self.pts_firstplayable = self.pts_eventcount + 1
@@ -483,7 +492,10 @@ class InfoBarTimeshift:
 					# InfoBarTimeshift.saveTimeshiftActions(self, "savetimeshiftandrecord", returnFunction)
 				else:
 					message = _("You seem to be in time shift, do you want to leave time shift?")
-					choice = [(_("Yes"), config.timeshift.favoriteSaveAction.value), (_("No"), "no")]
+					choice = [
+						(_("Yes"), config.timeshift.favoriteSaveAction.value),
+						(_("No"), "no")
+					]
 					self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple=True, list=choice, timeout=30)
 		elif self.save_current_timeshift:
 			# The user has chosen "no warning" when time shift is stopped (config.timeshift.check=False)
@@ -512,12 +524,12 @@ class InfoBarTimeshift:
 	def eraseTimeshiftFile(self):
 		for filename in listdir(config.timeshift.path.value):
 			if filename.startswith("timeshift.") and not filename.endswith(".del") and not filename.endswith(".copy"):
-				self.BgFileEraser.erase("%s%s" % (config.timeshift.path.value, filename))
+				self.BgFileEraser.erase(join(config.timeshift.path.value, filename))
 
 	def autostartPermanentTimeshift(self):
 		ts = self.getTimeshift()
 		if ts is None:
-			print("[Timeshift] Tune lock failed, could not start time shift.")
+			print("[Timeshift] Error: Tune lock failed, could not start time shift!")
 			return 0
 		if self.pts_delay_timer.isActive():
 			self.pts_delay_timer.stop()
@@ -537,7 +549,7 @@ class InfoBarTimeshift:
 			# setNextPlaybackFile() on event change while time shifting.
 			if self.isSeekable():
 				self.pts_nextplaying = self.pts_currplaying + 1
-				self.ptsSetNextPlaybackFile("pts_livebuffer_%s" % self.pts_nextplaying)
+				self.ptsSetNextPlaybackFile(f"pts_livebuffer_{self.pts_nextplaying}")
 				self.switchToLive = False  # Do not switch back to live TV while time shifting.
 			else:
 				self.switchToLive = True
@@ -545,7 +557,7 @@ class InfoBarTimeshift:
 		else:
 			if self.pts_currplaying < self.pts_eventcount:
 				self.pts_nextplaying = self.pts_currplaying + 1
-				self.ptsSetNextPlaybackFile("pts_livebuffer_%s" % self.pts_nextplaying)
+				self.ptsSetNextPlaybackFile(f"pts_livebuffer_{self.pts_nextplaying}")
 			else:
 				self.pts_nextplaying = 0
 				self.ptsSetNextPlaybackFile("")
@@ -568,12 +580,11 @@ class InfoBarTimeshift:
 		elif ts and ts.startTimeshift():
 			self.ptsGetEventInfo()
 			try:
-				metafile = open("%spts_livebuffer_%s.meta" % (config.timeshift.path.value, self.pts_eventcount), "w")  # Rewrite META and EIT files.
-				metafile.write("%s\n%s\n%s\n%i\n" % (self.pts_curevent_servicerefname, self.pts_curevent_name.replace("\n", ""), self.pts_curevent_description.replace("\n", ""), int(self.pts_starttime)))
-				metafile.close()
-				self.ptsCreateEITFile("%spts_livebuffer_%s" % (config.timeshift.path.value, self.pts_eventcount))
-			except Exception:
-				print("[Timeshift] Failed to rewrite meta and eit files.")
+				with open(join(config.timeshift.path.value, f"pts_livebuffer_{self.pts_eventcount}.meta", "w")) as metafile:  # Rewrite META and EIT files.
+					metafile.write(f"{self.pts_curevent_servicerefname}\n{self.currentEventName}\n{self.currentEventDescription}\n{int(self.pts_starttime)}\n")
+				self.ptsCreateEITFile(join(config.timeshift.path.value, f"pts_livebuffer_{self.pts_eventcount}"))
+			except OSError as err:
+				print("[Timeshift] Error {err.errno}: Failed to rewrite META and/or EIT file!  ({err.strerror})")
 			self.ptsEventCleanTimerSTART()
 		else:
 			self.ptsEventCleanTimerSTOP()
@@ -590,7 +601,7 @@ class InfoBarTimeshift:
 			try:
 				makedirs(timeshiftdir)
 			except OSError as err:
-				print("[Timeshift] Error %d: Failed to create '%s'!  (%s)" % (err.errno, timeshiftdir, err.strerror))
+				print(f"[Timeshift] Error {err.errno}: Failed to create '{timeshiftdir}'!  ({err.strerror})")
 
 	def restartTimeshift(self):
 		self.activatePermanentTimeshift()
@@ -599,36 +610,35 @@ class InfoBarTimeshift:
 	def saveTimeshiftEventPopup(self):
 		self.saveTimeshiftEventPopupActive = True
 		filecount = 0
-		entrylist = [(_("Current Event:") + " %s" % self.pts_curevent_name, "savetimeshift")]
+		entrylist = [(f"{_("Current Event:")} {self.pts_curevent_name}", "savetimeshift")]
 		filelist = listdir(config.timeshift.path.value)
 		if filelist is not None:
 			try:
 				filelist = sorted(filelist, key=lambda x: int(x.split("pts_livebuffer_")[1]) if x.startswith("pts_livebuffer") and not splitext(x)[1] else x)
 			except Exception:
-				print("[Timeshift] Error: File sorting error, using standard sorting method.")
+				print("[Timeshift] Error: File sorting error, using standard sorting method!")
 				filelist.sort()
 			for filename in filelist:
 				if filename.startswith("pts_livebuffer") and not splitext(filename)[1]:
-					statinfo = stat("%s%s" % (config.timeshift.path.value, filename))
+					statinfo = stat(join(config.timeshift.path.value, filename))
 					if statinfo.st_mtime < (time() - 5.0):
-						readmetafile = open("%s%s.meta" % (config.timeshift.path.value, filename))  # Get event information from META file.
-						servicerefname = readmetafile.readline()[0:-1]
-						eventname = readmetafile.readline()[0:-1]
-						description = readmetafile.readline()[0:-1]  # noqa F841
-						begintime = readmetafile.readline()[0:-1]
-						readmetafile.close()
+						with open(f"{config.timeshift.path.value}{filename}.meta") as readmetafile:  # Get event information from META file.
+							servicerefname = readmetafile.readline()[0:-1]
+							eventname = readmetafile.readline()[0:-1]
+							description = readmetafile.readline()[0:-1]
+							begintime = readmetafile.readline()[0:-1]
 						filecount += 1  # Add event to list.
 						if config.timeshift.deleteAfterZap.value and servicerefname == self.pts_curevent_servicerefname:
-							entrylist.append((_("Record") + " #%s (%s): %s" % (filecount, strftime("%H:%M", localtime(int(begintime))), eventname), "%s" % filename))
+							entrylist.append((f"{_("Record")} #{filecount} ({strftime('%H:%M', localtime(int(begintime)))}): {eventname}", filename))
 						else:
 							servicename = ServiceReference(servicerefname).getServiceName()
-							entrylist.append(("[%s] %s : %s" % (strftime("%H:%M", localtime(int(begintime))), servicename, eventname), "%s" % filename))
+							entrylist.append((f"[{strftime("%H:%M", localtime(int(begintime)))}] {servicename} : {eventname}", filename))
 			self.session.openWithCallback(self.recordQuestionCallback, ChoiceBox, title=_("Which time shift buffer event do you want to save?"), list=entrylist)
 
 	def saveTimeshiftActions(self, action=None, returnFunction=None):
 		timeshiftfile = None
 		if self.pts_currplaying != self.pts_eventcount:
-			timeshiftfile = "pts_livebuffer_%s" % self.pts_currplaying
+			timeshiftfile = f"pts_livebuffer_{self.pts_currplaying}"
 		if action == "savetimeshift":
 			self.SaveTimeshift(timeshiftfile)
 		elif action == "savetimeshiftandrecord":
@@ -655,7 +665,7 @@ class InfoBarTimeshift:
 		if savefilename is None:
 			for filename in listdir(config.timeshift.path.value):
 				if filename.startswith("timeshift.") and not filename.endswith(".del") and not filename.endswith(".copy") and not filename.endswith(".sc"):
-					statinfo = stat("%s%s" % (config.timeshift.path.value, filename))
+					statinfo = stat(join(config.timeshift.path.value, filename))
 					if statinfo.st_mtime > (time() - 5.0):
 						savefilename = filename
 		if savefilename is None:
@@ -673,64 +683,62 @@ class InfoBarTimeshift:
 				if timeshiftfile is None:
 					if self.pts_starttime >= (time() - 60):  # Save current event by creating hard link to its ts file.
 						self.pts_starttime -= 60
-					ptsfilename = "%s - %s - %s" % (strftime("%Y%m%d %H%M", localtime(self.pts_starttime)), self.pts_curevent_station, self.pts_curevent_name.replace("\n", ""))
+					eventstarttime = strftime("%Y%m%d %H%M", localtime(self.pts_starttime))
+					ptsfilename = f"{eventstarttime} - {self.pts_curevent_station} - {self.currentEventName}"
 					try:
 						if config.usage.setup_level.index >= 2:
-							if config.recording.filename_composition.value == "long" and self.pts_curevent_name.replace("\n", "") != self.pts_curevent_description.replace("\n", ""):
-								ptsfilename = "%s - %s - %s - %s" % (strftime("%Y%m%d %H%M", localtime(self.pts_starttime)), self.pts_curevent_station, self.pts_curevent_name.replace("\n", ""), self.pts_curevent_description.replace("\n", ""))
+							if config.recording.filename_composition.value == "long" and self.currentEventName != self.currentEventDescription:
+								ptsfilename = f"{eventstarttime} - {self.pts_curevent_station} - {self.currentEventName} - {self.currentEventDescription}"
 							elif config.recording.filename_composition.value == "short":
-								ptsfilename = "%s - %s" % (strftime("%Y%m%d", localtime(self.pts_starttime)), self.pts_curevent_name.replace("\n", ""))
+								ptsfilename = f"{eventstarttime} - {self.currentEventName}"
 							elif config.recording.filename_composition.value == "veryshort":
-								ptsfilename = "%s - %s" % (self.pts_curevent_name.replace("\n", ""), strftime("%Y%m%d %H%M", localtime(self.pts_starttime)))
+								ptsfilename = f"{self.currentEventName} - {eventstarttime}"
 							elif config.recording.filename_composition.value == "veryveryshort":
-								ptsfilename = "%s - %s" % (self.pts_curevent_name.replace("\n", ""), strftime("%Y%m%d %H%M", localtime(self.pts_starttime)))
+								ptsfilename = f"{self.currentEventName} - {eventstarttime}"
 					except Exception:
 						print("[Timeshift] Using default filename.")
 					if config.recording.ascii_filenames.value:
 						ptsfilename = legacyEncode(ptsfilename)
 					fullname = getRecordingFilename(ptsfilename, recordingPath)
-					link("%s%s" % (config.timeshift.path.value, savefilename), "%s.ts" % fullname)
-					metafile = open("%s.ts.meta" % fullname, "w")
-					metafile.write("%s\n%s\n%s\n%i\n%s" % (self.pts_curevent_servicerefname, self.pts_curevent_name.replace("\n", ""), self.pts_curevent_description.replace("\n", ""), int(self.pts_starttime), metamergestring))
-					metafile.close()
+					link(join(config.timeshift.path.value, savefilename), f"{fullname}.ts")
+					with open(f"{fullname}.ts.meta", "w") as metafile:
+						metafile.write(f"{self.pts_curevent_servicerefname}\n{self.getCurrentEventName}\n{self.currentEventDescription}\n{int(self.pts_starttime)}\n{metamergestring}")
 					self.ptsCreateEITFile(fullname)
 				elif timeshiftfile.startswith("pts_livebuffer"):
-					readmetafile = open("%s%s.meta" % (config.timeshift.path.value, timeshiftfile))  # Save stored time shift buffer by creating hard link to ts file.
-					servicerefname = readmetafile.readline()[0:-1]
-					eventname = readmetafile.readline()[0:-1]
-					description = readmetafile.readline()[0:-1]
-					begintime = readmetafile.readline()[0:-1]
-					readmetafile.close()
+					with open(join(config.timeshift.path.value, f"{timeshiftfile}.meta")) as readmetafile:  # Save stored time shift buffer by creating hard link to ts file.
+						servicerefname = readmetafile.readline()[0:-1]
+						eventname = readmetafile.readline()[0:-1]
+						description = readmetafile.readline()[0:-1]
+						begintime = readmetafile.readline()[0:-1]
 					if config.timeshift.deleteAfterZap.value and servicerefname == self.pts_curevent_servicerefname:
 						servicename = self.pts_curevent_station
 					else:
 						servicename = ServiceReference(servicerefname).getServiceName()
-					ptsfilename = "%s - %s - %s" % (strftime("%Y%m%d %H%M", localtime(int(begintime))), servicename, eventname)
+					ptsfilename = f"{strftime("%Y%m%d %H%M", localtime(int(begintime)))} - {servicename} - {eventname}"
 					try:
 						if config.usage.setup_level.index >= 2:
 							if config.recording.filename_composition.value == "long" and eventname != description:
-								ptsfilename = "%s - %s - %s - %s" % (strftime("%Y%m%d %H%M", localtime(int(begintime))), servicename, eventname, description)
+								ptsfilename = f"{strftime("%Y%m%d %H%M", localtime(int(begintime)))} - {servicename} - {eventname} - {description}"
 							elif config.recording.filename_composition.value == "short":
-								ptsfilename = "%s - %s" % (strftime("%Y%m%d", localtime(int(begintime))), eventname)
+								ptsfilename = f"{strftime("%Y%m%d", localtime(int(begintime)))} - {eventname}"
 							elif config.recording.filename_composition.value == "veryshort":
-								ptsfilename = "%s - %s" % (eventname, strftime("%Y%m%d %H%M", localtime(int(begintime))))
+								ptsfilename = f"{eventname} - {strftime("%Y%m%d %H%M", localtime(int(begintime)))}"
 							elif config.recording.filename_composition.value == "veryveryshort":
-								ptsfilename = "%s - %s" % (eventname, strftime("%Y%m%d %H%M", localtime(int(begintime))))
+								ptsfilename = f"{eventname} - {strftime("%Y%m%d %H%M", localtime(int(begintime)))}"
 					except Exception:
 						print("[Timeshift] Using default filename.")
 					if config.recording.ascii_filenames.value:
 						ptsfilename = legacyEncode(ptsfilename)
 					fullname = getRecordingFilename(ptsfilename, recordingPath)
-					link("%s%s" % (config.timeshift.path.value, timeshiftfile), "%s.ts" % fullname)
-					link("%s%s.meta" % (config.timeshift.path.value, timeshiftfile), "%s.ts.meta" % fullname)
-					if exists("%s%s.eit" % (config.timeshift.path.value, timeshiftfile)):
-						link("%s%s.eit" % (config.timeshift.path.value, timeshiftfile), "%s.eit" % fullname)
+					link(join(config.timeshift.path.value, timeshiftfile), f"{fullname}.ts")
+					link(join(config.timeshift.path.value, f"{timeshiftfile}.meta"), f"{fullname}.ts.meta")
+					if exists(join(config.timeshift.path.value, f"{timeshiftfile}.eit")):
+						link(join(config.timeshift.path.value, f"{timeshiftfile}.eit"), f"{fullname}.eit")
 					if mergelater:  # Add merge tag to META file.
-						metafile = open("%s.ts.meta" % fullname, "a")
-						metafile.write("%s\n" % metamergestring)
-						metafile.close()
+						with open(f"{fullname}.ts.meta", "a") as metafile:
+							metafile.write(f"{metamergestring}\n")
 				if not mergelater:  # Create AP and SC Files when not merging.
-					self.ptsCreateAPSCFiles(fullname + ".ts")
+					self.ptsCreateAPSCFiles(f"{fullname}.ts")
 			except Exception as err:
 				timeshift_saved = False
 				timeshift_saveerror1 = str(err)
@@ -743,51 +751,48 @@ class InfoBarTimeshift:
 					randomint = randint(1, 999)
 					if timeshiftfile is None:
 
-						filesize = int(getsize("%s%s" % (config.timeshift.path.value, savefilename)) / (1024 * 1024))  # Get file size for free space check.
+						filesize = int(getsize(join(config.timeshift.path.value, savefilename)) / (1024 * 1024))  # Get file size for free space check.
 						if filesize <= freespace:  # Save current event by copying it to the other device.
-							link("%s%s" % (config.timeshift.path.value, savefilename), "%s%s.%s.copy" % (config.timeshift.path.value, savefilename, randomint))
+							link(join(config.timeshift.path.value, savefilename), join(config.timeshift.path.value, f"{savefilename}.{randomint}.copy"))
 							copy_file = savefilename
-							metafile = open("%s.ts.meta" % fullname, "w")
-							metafile.write("%s\n%s\n%s\n%i\n%s" % (self.pts_curevent_servicerefname, self.pts_curevent_name.replace("\n", ""), self.pts_curevent_description.replace("\n", ""), int(self.pts_starttime), metamergestring))
-							metafile.close()
+							with open(f"{fullname}.ts.meta", "w") as metafile:
+								metafile.write(f"{self.pts_curevent_servicerefname}\n{self.currentEventName}\n{self.currentEventDescription}\n{int(self.pts_starttime)}\n{metamergestring}")
 							self.ptsCreateEITFile(fullname)
 					elif timeshiftfile.startswith("pts_livebuffer"):
-						filesize = int(getsize("%s%s" % (config.timeshift.path.value, timeshiftfile)) / (1024 * 1024))  # Get file size for free space check.
+						filesize = int(getsize(f"{config.timeshift.path.value}{timeshiftfile}") / (1024 * 1024))  # Get file size for free space check.
 						if filesize <= freespace:  # Save stored time shift buffer by copying it to the other device.
-							link("%s%s" % (config.timeshift.path.value, timeshiftfile), "%s%s.%s.copy" % (config.timeshift.path.value, timeshiftfile, randomint))
-							copyfile("%s%s.meta" % (config.timeshift.path.value, timeshiftfile), "%s.ts.meta" % fullname)
-							if exists("%s%s.eit" % (config.timeshift.path.value, timeshiftfile)):
-								copyfile("%s%s.eit" % (config.timeshift.path.value, timeshiftfile), "%s.eit" % fullname)
+							link(join(config.timeshift.path.value, timeshiftfile), join(config.timeshift.path.value, f"{timeshiftfile}.{randomint}.copy"))
+							copyfile(join(config.timeshift.path.value, f"{timeshiftfile}.meta"), f"{fullname}.ts.meta")
+							if exists(join(config.timeshift.path.value, f"{timeshiftfile}.eit")):
+								copyfile(join(config.timeshift.path.value, f"{timeshiftfile}.eit"), f"{fullname}.eit")
 							copy_file = timeshiftfile
 						if mergelater:  # Add merge tag to META file.
-							metafile = open("%s.ts.meta" % fullname, "a")
-							metafile.write("%s\n" % metamergestring)
-							metafile.close()
+							with open(f"{fullname}.ts.meta", "a") as metafile:
+								metafile.write(f"{metamergestring}\n")
 					if filesize <= freespace:  # Only copy file when enough disk space is available.
 						timeshift_saved = True
-						copy_file = copy_file + "." + str(randomint)
-						if exists("%s.ts.meta" % fullname):  # Get event information from META file.
-							readmetafile = open("%s.ts.meta" % fullname)
-							servicerefname = readmetafile.readline()[0:-1]
-							eventname = readmetafile.readline()[0:-1]
-							readmetafile.close()
+						copy_file = f"{copy_file}.{randomint}"
+						if exists(f"{fullname}.ts.meta"):  # Get event information from META file.
+							with open(f"{fullname}.ts.meta") as readmetafile:
+								servicerefname = readmetafile.readline()[0:-1]
+								eventname = readmetafile.readline()[0:-1]
 						else:
 							eventname = ""
-						JobManager.AddJob(CopyTimeshiftJob(self, "mv \"%s%s.copy\" \"%s.ts\"" % (config.timeshift.path.value, copy_file, fullname), copy_file, fullname, eventname))
+						JobManager.AddJob(CopyTimeshiftJob(self, f"mv \"{join(config.timeshift.path.value, {copy_file}.copy)}\" \"{fullname}.ts\"", copy_file, fullname, eventname))
 						if not Screens.Standby.inTryQuitMainloop and not Screens.Standby.inStandby and not mergelater and self.save_timeshift_postaction != "standby":
 							AddNotification(MessageBox, _("Saving time shift buffer, this might take a while."), MessageBox.TYPE_INFO, timeout=30)
 					else:
 						timeshift_saved = False
 						timeshift_saveerror1 = ""
 						timeshift_saveerror2 = _("Not enough free disk space!\n\nFilesize: %sMB\nFree Space: %sMB\nPath: %s" % (filesize, freespace, recordingPath))
-				except Exception as errormsg:
+				except Exception as err:
 					timeshift_saved = False
-					timeshift_saveerror2 = errormsg
+					timeshift_saveerror2 = str(err)
 			if not timeshift_saved:
 				config.timeshift.isRecording.value = False
 				self.save_timeshift_postaction = None
-				errormessage = str(timeshift_saveerror1) + "\n" + str(timeshift_saveerror2)
-				AddNotification(MessageBox, _("Time shift save failed!") + "\n\n%s" % errormessage, MessageBox.TYPE_ERROR, timeout=30)
+				errormessage = f"{timeshift_saveerror1}\n{timeshift_saveerror2}"
+				AddNotification(MessageBox, f"{_("Time shift save failed!")}\n\n{errormessage}", MessageBox.TYPE_ERROR, timeout=30)
 
 	def ptsAskUser(self, what):
 		if self.ptsAskUser_wait:
@@ -895,11 +900,11 @@ class InfoBarTimeshift:
 		removeFiles = []
 		if timeshiftEnabled:
 			if isSeekable:
-				for i in list(range(self.pts_currplaying, self.pts_eventcount + 1)):
-					lockedFiles.append(("pts_livebuffer_%s") % i)
+				for index in range(self.pts_currplaying, self.pts_eventcount + 1):
+					lockedFiles.append(f"pts_livebuffer_{index}")
 			else:
 				if not self.event_changed:
-					lockedFiles.append(("pts_livebuffer_%s") % self.pts_currplaying)
+					lockedFiles.append(f"pts_livebuffer_{self.pts_currplaying}")
 		if freespace:
 			try:
 				status = statvfs(config.timeshift.path.value)
@@ -907,59 +912,62 @@ class InfoBarTimeshift:
 			except Exception as err:
 				print(f"[Timeshift] Error {err.errno}: Unable to evaluate disk free space with 'statvfs' call!  ({err.strerror})")
 		if freespace < config.timeshift.checkFreeSpace.value:
-			for i in list(range(1, self.pts_eventcount + 1)):
-				removeFiles.append(("pts_livebuffer_%s") % i)
+			for index in range(1, self.pts_eventcount + 1):
+				removeFiles.append(f"pts_livebuffer_{index}")
 			print(f"[Timeshift] Less than {config.timeshift.checkFreeSpace.value}MB disk space available. Try deleting all unused time shift files.")
 		elif self.pts_eventcount - config.timeshift.maxEvents.value >= 0:
-			if self.event_changed or len(lockedFiles) == 0:
-				for i in list(range(1, self.pts_eventcount - config.timeshift.maxEvents.value + 2)):
-					removeFiles.append(("pts_livebuffer_%s") % i)
-			else:
-				for i in list(range(1, self.pts_eventcount - config.timeshift.maxEvents.value + 1)):
-					removeFiles.append(("pts_livebuffer_%s") % i)
+			offset = 2 if self.event_changed or len(lockedFiles) == 0 else 1
+			for index in range(1, self.pts_eventcount - config.timeshift.maxEvents.value + offset):
+				removeFiles.append(f"pts_livebuffer_{index}")
 		for filename in listdir(config.timeshift.path.value):
-			if (exists("%s%s" % (config.timeshift.path.value, filename))) and ((filename.startswith("timeshift.") or filename.startswith("pts_livebuffer_"))):
+			if exists(join(config.timeshift.path.value, filename)) and filename.startswith(("timeshift.", "pts_livebuffer_")):
 				try:
-					statinfo = stat("%s%s" % (config.timeshift.path.value, filename))
+					statinfo = stat(join(config.timeshift.path.value, filename))
 				except OSError:
 					statinfo = None  # A .del file may have been deleted between "exists" and "stat".
-				if (justZapped is True) and (filename.endswith(".del") is False) and (filename.endswith(".copy") is False):
-					filesize += getsize("%s%s" % (config.timeshift.path.value, filename))  # After zapping, remove all regular time shift files.
-					self.BgFileEraser.erase("%s%s" % (config.timeshift.path.value, filename))
+				if justZapped and not filename.endswith(".del") and not filename.endswith(".copy"):
+					filesize += getsize(join(config.timeshift.path.value, filename))  # After zapping, remove all regular time shift files.
+					self.BgFileEraser.erase(join(config.timeshift.path.value, filename))
+				elif statinfo and not filename.endswith((".eit", ".meta", ".sc", ".del", ".copy")):
 					# Remove old files, but only complete sets of files (base file, EIT, META, SC),
 					# and not while saveTimeshiftEventPopup is active (avoid deleting files about to be saved)
 					# and don't delete files from currently playing up to the last event.
 					if not filename.startswith("timeshift."):
 						filecounter += 1
-					if ((statinfo.st_mtime < (time() - 3600 * config.timeshift.maxHours.value)) or any(filename in s for s in removeFiles)) and (self.saveTimeshiftEventPopupActive is False) and not any(filename in s for s in lockedFiles):
+					if ((statinfo.st_mtime < (time() - 3600 * config.timeshift.maxHours.value)) or any(filename in x for x in removeFiles)) and (self.saveTimeshiftEventPopupActive is False) and not any(filename in x for x in lockedFiles):
 						# print(f"[Timeshift] Erasing set of old time shift files (base file, EIT, META, SC) '{filename}'.")
-						filesize += getsize("%s%s" % (config.timeshift.path.value, filename))
-						self.BgFileEraser.erase("%s%s" % (config.timeshift.path.value, filename))
-						if exists("%s%s.eit" % (config.timeshift.path.value, filename)):
-							filesize += getsize("%s%s.eit" % (config.timeshift.path.value, filename))
-							self.BgFileEraser.erase("%s%s.eit" % (config.timeshift.path.value, filename))
-						if exists("%s%s.meta" % (config.timeshift.path.value, filename)):
-							filesize += getsize("%s%s.meta" % (config.timeshift.path.value, filename))
-							self.BgFileEraser.erase("%s%s.meta" % (config.timeshift.path.value, filename))
-						if exists("%s%s.sc" % (config.timeshift.path.value, filename)):
-							filesize += getsize("%s%s.sc" % (config.timeshift.path.value, filename))
-							self.BgFileEraser.erase("%s%s.sc" % (config.timeshift.path.value, filename))
+						filesize += getsize(join(config.timeshift.path.value, filename))
+						self.BgFileEraser.erase(join(config.timeshift.path.value, filename))
+						path = join(config.timeshift.path.value, f"{filename}.eit")
+						if exists(path):
+							filesize += getsize(path)
+							self.BgFileEraser.erase(path)
+						path = join(config.timeshift.path.value, f"{filename}.meta")
+						if exists(path):
+							filesize += getsize(path)
+							self.BgFileEraser.erase(path)
+						path = join(config.timeshift.path.value, f"{filename}.sc")
+						if exists(path):
+							filesize += getsize(path)
+							self.BgFileEraser.erase(path)
 						if not filename.startswith("timeshift."):
 							filecounter -= 1
 				elif statinfo:
 					if statinfo.st_mtime < (time() - 3600 * (24 + config.timeshift.maxHours.value)):  # Remove anything left over 24 hours later.
 						# print(f"[Timeshift] Erasing very old time shift file '{filename}'.")
+						path = join(config.timeshift.path.value, filename)
 						if filename.endswith(".del") is True:
-							filesize += getsize("%s%s" % (config.timeshift.path.value, filename))
+							filesize += getsize(path)
 							try:
-								rename("%s%s" % (config.timeshift.path.value, filename), "%s%s.del_again" % (config.timeshift.path.value, filename))
-								self.BgFileEraser.erase("%s%s.del_again" % (config.timeshift.path.value, filename))
-							except Exception:
-								print("[Timeshift] - can't rename %s%s." % (config.timeshift.path.value, filename))
-								self.BgFileEraser.erase("%s%s" % (config.timeshift.path.value, filename))
+								newPath = join(config.timeshift.path.value, f"{filename}.del_again")
+								rename(path, newPath)
+								self.BgFileEraser.erase(newPath)
+							except Exception as err:
+								print(f"[Timeshift] Error {err.errno}: Can't rename '{path}'!  ({err.strerror})")
+								self.BgFileEraser.erase(path)
 						else:
-							filesize += getsize("%s%s" % (config.timeshift.path.value, filename))
-							self.BgFileEraser.erase("%s%s" % (config.timeshift.path.value, filename))
+							filesize += getsize(path)
+							self.BgFileEraser.erase(path)
 		if filecounter == 0:
 			self.ptsEventCleanTimerSTOP()
 		else:
@@ -994,8 +1002,8 @@ class InfoBarTimeshift:
 			service = self.session.nav.getCurrentService()
 			info = service and service.info()
 			event = info and info.getEvent(0)
-		except Exception as errormsg:
-			AddNotification(MessageBox, _("Getting event information failed!") + "\n\n%s" % errormsg, MessageBox.TYPE_ERROR, timeout=10)
+		except Exception as err:
+			AddNotification(MessageBox, f"{_("Getting event information failed!")}\n\n{str(err)}", MessageBox.TYPE_ERROR, timeout=10)
 		if event is not None:
 			curEvent = parseEvent(event)
 			self.pts_curevent_begin = int(curEvent[0])
@@ -1024,32 +1032,34 @@ class InfoBarTimeshift:
 
 	def ptsCreateHardlink(self):
 		for filename in listdir(config.timeshift.path.value):
-			if filename.startswith("timeshift.") and not filename.endswith(".sc") and not filename.endswith(".del") and not filename.endswith(".copy") and not filename.endswith(".ap"):
-				if exists("%spts_livebuffer_%s.eit" % (config.timeshift.path.value, self.pts_eventcount)):
-					self.BgFileEraser.erase("%spts_livebuffer_%s.eit" % (config.timeshift.path.value, self.pts_eventcount))
-				if exists("%spts_livebuffer_%s.meta" % (config.timeshift.path.value, self.pts_eventcount)):
-					self.BgFileEraser.erase("%spts_livebuffer_%s.meta" % (config.timeshift.path.value, self.pts_eventcount))
-				if exists("%spts_livebuffer_%s" % (config.timeshift.path.value, self.pts_eventcount)):
-					self.BgFileEraser.erase("%spts_livebuffer_%s" % (config.timeshift.path.value, self.pts_eventcount))
-				if exists("%spts_livebuffer_%s.sc" % (config.timeshift.path.value, self.pts_eventcount)):
-					self.BgFileEraser.erase("%spts_livebuffer_%s.sc" % (config.timeshift.path.value, self.pts_eventcount))
+			if filename.startswith("timeshift.") and not filename.endswith((".sc", ".del", ".copy", ".ap")):
+				path = join(config.timeshift.path.value, f"pts_livebuffer_{self.pts_eventcount}.eit")
+				if exists(path):
+					self.BgFileEraser.erase(path)
+				path = join(config.timeshift.path.value, f"pts_livebuffer_{self.pts_eventcount}.meta")
+				if exists(path):
+					self.BgFileEraser.erase(path)
+				path = join(config.timeshift.path.value, f"pts_livebuffer_{self.pts_eventcount}")
+				if exists(path):
+					self.BgFileEraser.erase(path)
+				path = join(config.timeshift.path.value, f"pts_livebuffer_{self.pts_eventcount}.sc")
+				if exists(path):
+					self.BgFileEraser.erase(path)
 				try:
-					link("%s%s" % (config.timeshift.path.value, filename), "%spts_livebuffer_%s" % (config.timeshift.path.value, self.pts_eventcount))  # Create link to pts_livebuffer file.
-					link("%s%s.sc" % (config.timeshift.path.value, filename), "%spts_livebuffer_%s.sc" % (config.timeshift.path.value, self.pts_eventcount))
-					metafile = open("%spts_livebuffer_%s.meta" % (config.timeshift.path.value, self.pts_eventcount), "w")  # Create a META file.
-					metafile.write("%s\n%s\n%s\n%i\n" % (self.pts_curevent_servicerefname, self.pts_curevent_name.replace("\n", ""), self.pts_curevent_description.replace("\n", ""), int(self.pts_starttime)))
-					metafile.close()
+					link(join(config.timeshift.path.value, filename), join(config.timeshift.path.value, f"pts_livebuffer_{self.pts_eventcount}"))  # Create link to pts_livebuffer file.
+					link(join(config.timeshift.path.value, f"{filename}.sc"), join(config.timeshift.path.value, f"pts_livebuffer_{self.pts_eventcount}.sc"))
+					with open(f"{config.timeshift.path.value}pts_livebuffer_{self.pts_eventcount}.meta", "w") as metafile:  # Create a META file.
+						metafile.write(f"{self.pts_curevent_servicerefname}\n{self.currentEventName}\n{self.currentEventDescription}\n{int(self.pts_starttime)}\n")
 				except Exception as errormsg:
-					AddNotification(MessageBox, _("Creating hard link to time shift file failed!") + "\n" + _("The file system on your time shift device does not support hard links.\nMake sure it is formatted in EXT2, EXT3 or EXT4!") + "\n\n%s" % errormsg, MessageBox.TYPE_ERROR, timeout=30)
-				self.ptsCreateEITFile("%spts_livebuffer_%s" % (config.timeshift.path.value, self.pts_eventcount))  # Create EIT file.
+					AddNotification(MessageBox, _("Creating hard link to time shift file failed!") + "\n" + _("The file system on your time shift device does not support hard links.\nMake sure it is formatted in EXT2, EXT3 or EXT4!") + f"\n\n{errormsg}", MessageBox.TYPE_ERROR, timeout=30)
+				self.ptsCreateEITFile(f"{config.timeshift.path.value}pts_livebuffer_{self.pts_eventcount}")  # Create EIT file.
 
 				if config.timeshift.autorecord.value:  # Autorecord
 					try:
-						fullname = getRecordingFilename("%s - %s - %s" % (strftime("%Y%m%d %H%M", localtime(self.pts_starttime)), self.pts_curevent_station, self.pts_curevent_name), preferredTimeShiftRecordingPath())
-						link("%s%s" % (config.timeshift.path.value, filename), "%s.ts" % fullname)
-						metafile = open("%s.ts.meta" % fullname, "w")  # Create a META file.
-						metafile.write("%s\n%s\n%s\n%i\nautosaved\n" % (self.pts_curevent_servicerefname, self.pts_curevent_name.replace("\n", ""), self.pts_curevent_description.replace("\n", ""), int(self.pts_starttime)))
-						metafile.close()
+						fullname = getRecordingFilename(f"{strftime('%Y%m%d %H%M', localtime(self.pts_starttime))} - {self.pts_curevent_station} - {self.pts_curevent_name}", preferredTimeShiftRecordingPath())
+						link(join(config.timeshift.path.value, filename), f"{fullname}.ts")
+						with open(f"{fullname}.ts.meta", "w") as metafile:  # Create a META file.
+							metafile.write(f"{self.pts_curevent_servicerefname}\n{self.currentEventName}\n{self.currentEventDescription}\n{int(self.pts_starttime)}\nautosaved\n")
 					except Exception as errormsg:
 						print(f"[Timeshift] autorecord Error: '{errormsg}'")
 
@@ -1074,24 +1084,26 @@ class InfoBarTimeshift:
 			filelist.sort()
 		for filename in filelist:
 			if filename.endswith(".meta"):
-				readmetafile = open("%s%s" % (recordingPath, filename))  # Get event information from META file.
-				servicerefname = readmetafile.readline()[0:-1]
-				eventname = readmetafile.readline()[0:-1]
-				eventtitle = readmetafile.readline()[0:-1]
-				eventtime = readmetafile.readline()[0:-1]
-				eventtag = readmetafile.readline()[0:-1]
-				readmetafile.close()
+				with open(f"{recordingPath}{filename}") as readmetafile:  # Get event information from META file.
+					servicerefname = readmetafile.readline()[0:-1]
+					eventname = readmetafile.readline()[0:-1]
+					eventtitle = readmetafile.readline()[0:-1]
+					eventtime = readmetafile.readline()[0:-1]
+					eventtag = readmetafile.readline()[0:-1]
 				if ptsgetnextfile:
 					ptsgetnextfile = False
 					ptsmergeSRC = filename[0:-5]
 					if legacyEncode(eventname) == legacyEncode(ptsmergeeventname):
-						if fileExists("%s%s.eit" % (recordingPath, ptsmergeSRC[0:-3])):  # Copy EIT file.
-							copyfile("%s%s.eit" % (recordingPath, ptsmergeSRC[0:-3]), "%s%s.eit" % (recordingPath, ptsmergeDEST[0:-3]))
-						if exists("%s%s.ap" % (recordingPath, ptsmergeDEST)):  # Delete AP and SC files.
-							self.BgFileEraser.erase("%s%s.ap" % (recordingPath, ptsmergeDEST))
-						if exists("%s%s.sc" % (recordingPath, ptsmergeDEST)):
-							self.BgFileEraser.erase("%s%s.sc" % (recordingPath, ptsmergeDEST))
-						JobManager.AddJob(MergeTimeshiftJob(self, "cat \"%s%s\" >> \"%s%s\"" % (recordingPath, ptsmergeSRC, recordingPath, ptsmergeDEST), ptsmergeSRC, ptsmergeDEST, eventname))  # Add merge job to JobManager.
+						path = join(recordingPath, f"{ptsmergeSRC[0:-3]}.eit")
+						if fileExists(path):  # Copy EIT file.
+							copyfile(path, join(recordingPath, f"{ptsmergeDEST[0:-3]}.eit"))
+						path = join(recordingPath, f"{ptsmergeDEST}.ap")
+						if exists(path):  # Delete AP and SC files.
+							self.BgFileEraser.erase(path)
+						path = join(recordingPath, f"{ptsmergeDEST}.sc")
+						if exists(path):
+							self.BgFileEraser.erase(path)
+						JobManager.AddJob(MergeTimeshiftJob(self, f"cat \"{join(recordingPath, ptsmergeSRC)}\" >> \"{join(recordingPath, ptsmergeDEST)}\"", ptsmergeSRC, ptsmergeDEST, eventname))  # Add merge job to JobManager.
 						config.timeshift.isRecording.value = True
 						ptsfilemerged = True
 					else:
@@ -1101,31 +1113,26 @@ class InfoBarTimeshift:
 					ptsmergeDEST = filename[0:-5]
 					ptsmergeeventname = eventname
 					ptsfilemerged = False
-					# If still recording or transfering, try again later ...
-					if fileExists("%s%s" % (recordingPath, ptsmergeDEST)):
-						statinfo = stat("%s%s" % (recordingPath, ptsmergeDEST))
+					path = join(recordingPath, ptsmergeDEST)  # If still recording or transfering, try again later.
+					if fileExists(path):
+						statinfo = stat(path)
 						if statinfo.st_mtime > (time() - 10.0):
 							self.pts_mergeRecords_timer.start(120000, True)
 							return
-					# Rewrite Meta File to get rid of pts_merge tag
-					metafile = open("%s%s.meta" % (recordingPath, ptsmergeDEST), "w")
-					metafile.write("%s\n%s\n%s\n%i\n" % (servicerefname, eventname.replace("\n", ""), eventtitle.replace("\n", ""), int(eventtime)))
-					metafile.close()
-		# Merging failed :(
-		if not ptsfilemerged and ptsgetnextfile:
+					with open(f"{path}.meta", "w") as metafile:  # Rewrite META file to get rid of pts_merge tag.
+						metafile.write(f"{servicerefname}\n{eventname.replace("\n", "")}\n{eventtitle.replace("\n", "")}\n{int(eventtime)}\n")
+		if not ptsfilemerged and ptsgetnextfile:  # Merging failed! :(
 			AddNotification(MessageBox, _("[Timeshift] Merging records failed!"), MessageBox.TYPE_ERROR, timeout=30)
 
 	def ptsCreateAPSCFiles(self, filename):
 		if fileExists(filename, "r"):
-			if fileExists("%s.meta" % filename, "r"):
-				# Get Event Info from meta file.
-				readmetafile = open(filename + ".meta")
-				servicerefname = readmetafile.readline()[0:-1]  # noqa F841
-				eventname = readmetafile.readline()[0:-1]
-				readmetafile.close()
+			if fileExists(f"{filename}.meta", "r"):
+				with open(f"{filename}.meta") as readmetafile:  # Get event information from META file.
+					servicerefname = readmetafile.readline()[0:-1]
+					eventname = readmetafile.readline()[0:-1]
 			else:
 				eventname = ""
-			JobManager.AddJob(CreateAPSCFilesJob(self, "/usr/lib/enigma2/python/Components/createapscfiles \"%s\" > /dev/null" % filename, eventname))
+			JobManager.AddJob(CreateAPSCFilesJob(self, f"/usr/lib/enigma2/python/Components/createapscfiles \"{filename}\" > /dev/null", eventname))
 		else:
 			self.ptsSaveTimeshiftFinished()
 
@@ -1133,9 +1140,9 @@ class InfoBarTimeshift:
 		if self.pts_curevent_eventid is not None:
 			try:
 				serviceref = ServiceReference(self.session.nav.getCurrentlyPlayingServiceOrGroup()).ref
-				eEPGCache.getInstance().saveEventToFile(filename + ".eit", serviceref, self.pts_curevent_eventid, -1, -1)
+				eEPGCache.getInstance().saveEventToFile(f"{filename}.eit", serviceref, self.pts_curevent_eventid, -1, -1)
 			except Exception as err:
-				print("[Timeshift] Error: %s" % str(err))
+				print(f"[Timeshift] Error: {str(err)}")
 
 	def ptsCopyFilefinished(self, srcfile, destfile):
 		if fileExists(srcfile):  # Erase source file.
@@ -1149,15 +1156,14 @@ class InfoBarTimeshift:
 	def ptsMergeFilefinished(self, srcfile, destfile):
 		if self.session.nav.RecordTimer.isRecording() or len(JobManager.getPendingJobs()) >= 1:
 			self.pts_mergeCleanUp_timer.start(120000, True)  # Rename files and delete them later.
-			system("echo \"\" > \"%s.pts.del\"" % (srcfile[0:-3]))
+			system(f"echo \"\" > \"{srcfile[0:-3]}.pts.del\"")
 		else:
-			# Delete Instant Record permanently now ... R.I.P.
-			self.BgFileEraser.erase("%s" % srcfile)
-			self.BgFileEraser.erase("%s.ap" % srcfile)
-			self.BgFileEraser.erase("%s.sc" % srcfile)
-			self.BgFileEraser.erase("%s.meta" % srcfile)
-			self.BgFileEraser.erase("%s.cuts" % srcfile)
-			self.BgFileEraser.erase("%s.eit" % (srcfile[0:-3]))
+			self.BgFileEraser.erase(srcfile)  # Delete instant recordings permanently now. R.I.P.
+			self.BgFileEraser.erase(f"{srcfile}.ap")
+			self.BgFileEraser.erase(f"{srcfile}.sc")
+			self.BgFileEraser.erase(f"{srcfile}.meta")
+			self.BgFileEraser.erase(f"{srcfile}.cuts")
+			self.BgFileEraser.erase(f"{srcfile[0:-3]}.eit")
 		self.ptsCreateAPSCFiles(destfile)  # Create AP and SC files.
 		self.pts_mergeRecords_timer.start(10000, True)  # Run merge process one more time to check if there are more recordings to merge.
 
@@ -1181,14 +1187,14 @@ class InfoBarTimeshift:
 		filelist = listdir(recordingPath)
 		for filename in filelist:
 			if filename.endswith(".pts.del"):
-				srcfile = recordingPath + "/" + filename[0:-8] + ".ts"
-				self.BgFileEraser.erase("%s" % srcfile)
-				self.BgFileEraser.erase("%s.ap" % srcfile)
-				self.BgFileEraser.erase("%s.sc" % srcfile)
-				self.BgFileEraser.erase("%s.meta" % srcfile)
-				self.BgFileEraser.erase("%s.cuts" % srcfile)
-				self.BgFileEraser.erase("%s.eit" % (srcfile[0:-3]))
-				self.BgFileEraser.erase("%s.pts.del" % (srcfile[0:-3]))
+				srcfile = join(recordingPath, f"{filename[0:-8]}.ts")
+				self.BgFileEraser.erase(srcfile)
+				self.BgFileEraser.erase(f"{srcfile}.ap")
+				self.BgFileEraser.erase(f"{srcfile}.sc")
+				self.BgFileEraser.erase(f"{srcfile}.meta")
+				self.BgFileEraser.erase(f"{srcfile}.cuts")
+				self.BgFileEraser.erase(f"{srcfile[0:-3]}.eit")
+				self.BgFileEraser.erase(f"{srcfile[0:-3]}.pts.del")
 				if Screens.Standby.inTryQuitMainloop and self.pts_QuitMainloop_timer.isActive():  # Restart QuitMainloop timer to give BgFileEraser enough time.
 					self.pts_QuitMainloop_timer.start(60000, True)
 
@@ -1325,8 +1331,8 @@ class InfoBarTimeshift:
 			if self.pts_nextplaying:
 				self.pts_currplaying = self.pts_nextplaying
 			self.pts_nextplaying = self.pts_currplaying + 1
-			if fileExists("%spts_livebuffer_%s" % (config.timeshift.path.value, self.pts_nextplaying), "r"):  # Get next PTS file.
-				self.ptsSetNextPlaybackFile("pts_livebuffer_%s" % self.pts_nextplaying)
+			if fileExists(join(config.timeshift.path.value, f"pts_livebuffer_{self.pts_nextplaying}"), "r"):  # Get next PTS file.
+				self.ptsSetNextPlaybackFile(f"pts_livebuffer_{self.pts_nextplaying}")
 				self.pts_switchtolive = False
 			else:
 				self.ptsSetNextPlaybackFile("")
@@ -1335,10 +1341,7 @@ class InfoBarTimeshift:
 	def ptsSetNextPlaybackFile(self, nexttsfile):
 		ts = self.getTimeshift()
 		if ts:
-			if nexttsfile:
-				ts.setNextPlaybackFile("%s%s" % (config.timeshift.path.value, nexttsfile))
-			else:
-				ts.setNextPlaybackFile("")
+			ts.setNextPlaybackFile(join(config.timeshift.path.value, nexttsfile) if nexttsfile else "")
 
 	def ptsSeekToPos(self):
 		length = self.ptsGetLength()
@@ -1363,10 +1366,7 @@ class InfoBarTimeshift:
 		self.pts_StartSeekBackTimer.start(1000, True)
 
 	def ptsStartSeekBackTimer(self):
-		if self.pts_lastseekspeed == 0:
-			self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.value)))
-		else:
-			self.setSeekState(self.makeStateBackward(int(-self.pts_lastseekspeed)))
+		self.setSeekState(self.makeStateBackward(int(config.seek.enter_backward.value) if self.pts_lastseekspeed == 0 else -self.pts_lastseekspeed))
 
 	def ptsCheckTimeshiftPath(self):
 		if fileExists(config.timeshift.path.value, "w"):
@@ -1427,8 +1427,8 @@ class AddCopyTimeshiftTask(Task):
 		Task.__init__(self, job, eventname)
 		self.toolbox = job.toolbox
 		self.setCmdline(cmdline)
-		self.srcfile = join(config.timeshift.path.value, "%s.copy" % srcfile)
-		self.destfile = "%s.ts" % destfile
+		self.srcfile = join(config.timeshift.path.value, f"{srcfile}.copy")
+		self.destfile = f"{destfile}.ts"
 		self.ProgressTimer = eTimer()
 		self.ProgressTimer.callback.append(self.ProgressUpdate)
 
