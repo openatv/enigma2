@@ -584,7 +584,7 @@ class InfoBarTimeshift:
 					metafile.write(f"{self.pts_curevent_servicerefname}\n{self.currentEventName}\n{self.currentEventDescription}\n{int(self.pts_starttime)}\n")
 				self.ptsCreateEITFile(join(config.timeshift.path.value, f"pts_livebuffer_{self.pts_eventcount}"))
 			except OSError as err:
-				print("[Timeshift] Error {err.errno}: Failed to rewrite META and/or EIT file!  ({err.strerror})")
+				print(f"[Timeshift] Error {err.errno}: Failed to rewrite META and/or EIT file!  ({err.strerror})")
 			self.ptsEventCleanTimerSTART()
 		else:
 			self.ptsEventCleanTimerSTOP()
@@ -625,7 +625,7 @@ class InfoBarTimeshift:
 						with open(f"{config.timeshift.path.value}{filename}.meta") as readmetafile:  # Get event information from META file.
 							servicerefname = readmetafile.readline()[0:-1]
 							eventname = readmetafile.readline()[0:-1]
-							description = readmetafile.readline()[0:-1]
+							description = readmetafile.readline()[0:-1]  # noqa F841
 							begintime = readmetafile.readline()[0:-1]
 						filecount += 1  # Add event to list.
 						if config.timeshift.deleteAfterZap.value and servicerefname == self.pts_curevent_servicerefname:
@@ -1128,7 +1128,7 @@ class InfoBarTimeshift:
 		if fileExists(filename, "r"):
 			if fileExists(f"{filename}.meta", "r"):
 				with open(f"{filename}.meta") as readmetafile:  # Get event information from META file.
-					servicerefname = readmetafile.readline()[0:-1]
+					servicerefname = readmetafile.readline()[0:-1]  # noqa F841
 					eventname = readmetafile.readline()[0:-1]
 			else:
 				eventname = ""
@@ -1382,7 +1382,7 @@ class InfoBarTimeshift:
 	def ptsTimerEntryStateChange(self, timer):
 		if config.timeshift.stopWhileRecording.value:
 			self.pts_record_running = self.session.nav.RecordTimer.isRecording()
-			if self.session.screen["Standby"].boolean == False:  # Abort here when box is in standby mode.
+			if not self.session.screen["Standby"].boolean:  # Abort here when box is in standby mode.
 				if timer.state == TimerEntry.StateRunning and self.timeshiftEnabled() and self.pts_record_running:  # Stop time shift when recording started.
 					if self.seekstate != self.SEEK_STATE_PLAY:
 						self.setSeekState(self.SEEK_STATE_PLAY)
