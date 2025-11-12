@@ -102,7 +102,11 @@ class FunctionTimerThread(Thread):
 		self.daemon = True
 
 	def run(self):
-		result = self.entryFunction(self.timerEnty)
+		try:
+			result = self.entryFunction(self.timerEnty)
+		except Exception as err:
+			result = False
+			print(f"[Scheduler] Error in FunctionTimerThread: {err}")
 		if self.callbackFunction and callable(self.callbackFunction):
 			self.callbackFunction(result)
 
