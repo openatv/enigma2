@@ -97,7 +97,7 @@ int main(int argc, char *argv[])
 				{
 					if (strcmp(action, "add") == 0)
 					{
-						if (getenv("DEVNAME"))
+						if (getenv("DEVNAME") && getenv("ID_FS_UUID"))
 						{
 							char devsize[50];
 							if (getenv("ID_PART_ENTRY_SIZE"))
@@ -147,7 +147,7 @@ int main(int argc, char *argv[])
 					}
 					else if (strcmp(action, "remove") == 0)
 					{
-						if (getenv("DEVNAME"))
+						if (getenv("DEVNAME") && getenv("ID_FS_UUID"))
 						{
 							snprintf(data, sizeof(data) - 1, "ACTION=%s\nDEVPATH=%s\nID_TYPE=%s\nDEVTYPE=%s\nDEVNAME=%s\nID_FS_UUID=%s", action, devpath, getenv("ID_TYPE") ? getenv("ID_TYPE") : "disk", getenv("DEVTYPE"), getenv("DEVNAME"), getenv("ID_FS_UUID"));
 							data[sizeof(data) - 1] = 0;
