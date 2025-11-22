@@ -1,14 +1,13 @@
 from os import listdir
 from os.path import exists, getsize, isdir, join
 from re import sub
-from unicodedata import normalize
 from enigma import ePixmap, ePicLoad
 from Components.Harddisk import harddiskmanager
 from Components.Renderer.Renderer import Renderer
 from Components.SystemInfo import BoxInfo
 from ServiceReference import ServiceReference
 from Tools.Alternatives import GetWithAlternative
-from Tools.Directories import SCOPE_SKINS, SCOPE_GUISKIN, resolveFilename
+from Tools.Directories import SCOPE_SKINS, SCOPE_GUISKIN, resolveFilename, sanitizeFilename
 
 searchPaths = []
 lastLcdPiconPath = None
@@ -96,15 +95,9 @@ def getLcdPiconName(serviceName):
 		fields[2] = "1"  # Fallback to 1 for services with different service types
 		pngname = findLcdPicon("_".join(fields))
 	if not pngname:
-		name = ServiceReference(serviceName).getServiceName()  # Picon by channel name
-		name = normalize("NFKD", name).encode("ASCII", "ignore").decode()
-		name = sub("[^a-z0-9]", "", name.replace("&", "and").replace("+", "plus").replace("*", "star").lower())
-		if name:
-			pngname = findLcdPicon(name)
-			if not pngname:
-				name = sub("(fhd|uhd|hd|sd|4k)$", "", name)
-				if name:
-					pngname = findLcdPicon(name)
+		if (sName := ServiceReference(serviceName).getServiceName().replace('\x80', '').replace('\x86', '').replace('\x87', '')) and "SID 0x" not in sName and (utf8Name := sanitizeFilename(sName).lower()) and utf8Name != "__":  # avoid lookups on zero length service names
+			legacyName = sub("[^a-z0-9]", "", utf8Name.replace("&", "and").replace("+", "plus").replace("*", "star"))  # legacy ascii service name picons
+			pngname = findLcdPicon(utf8Name) or legacyName and findLcdPicon(legacyName) or findLcdPicon(sub(r"(fhd|uhd|hd|sd|4k)$", "", utf8Name).strip()) or legacyName and findLcdPicon(sub(r"(fhd|uhd|hd|sd|4k)$", "", legacyName).strip())
 	return pngname
 
 
