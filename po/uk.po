@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-06 08:27+0000\n"
-"PO-Revision-Date: 2025-10-22 05:45+0000\n"
+"PO-Revision-Date: 2025-11-11 20:51+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.14-dev\n"
+"X-Generator: Weblate 5.15-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1582,7 +1582,7 @@ msgid "<Select a device>"
 msgstr "<Виберіть пристрій>"
 
 msgid "<no capabilities found>"
-msgstr ""
+msgstr "<можливостей не знайдено>"
 
 msgid "<no log found>"
 msgstr "<лог не знайдено"
@@ -4935,7 +4935,7 @@ msgid "Console Utility Packages"
 msgstr "Пакети утиліт консолі"
 
 msgid "Constcw"
-msgstr ""
+msgstr "Constcw"
 
 msgid "Constellation"
 msgstr "Констеляція"
@@ -7460,7 +7460,7 @@ msgid "Enter text via an attached keyboard"
 msgstr "Введіть текст за допомогою підключеної клавіатури"
 
 msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
-msgstr ""
+msgstr "Введіть тривалість, яку потрібно додати до буфера потокового передавання після помилки потокового передавання. Цей додатковий буфер може допомогти уникнути подальших проблем із потоковим передаванням через брак місця в буфері."
 
 msgid "Enter the frequency at which you LNB switches between low band and high band. For more information consult the specifications of your LNB."
 msgstr "Введіть частоту порогу перемикання нижнього і верхнього піддіапазону частот LNB. Для отримання додаткової інформації зверніться до специфікації вашого LNB."
@@ -7605,10 +7605,10 @@ msgid "Error Download Setting"
 msgstr "Помилка Завантаження Налаштувань"
 
 msgid "Error Retry count"
-msgstr ""
+msgstr "Кількість повторних спроб помилок"
 
 msgid "Error Retry delay"
-msgstr ""
+msgstr "Затримка повторної спроби помилки"
 
 msgid "Error code"
 msgstr "Код помилки"
@@ -9660,7 +9660,7 @@ msgid "Ignore DVB-T namespace sub network"
 msgstr "Ігнорувати імена підмережі DVB-T"
 
 msgid "Ignore Standby"
-msgstr ""
+msgstr "Ігнорувати режим очікування"
 
 msgid "Ignore unexpectedly wake up and stay in standby"
 msgstr "Ігнорувати несподіване включення і залишитися в режимі очікування"
@@ -12054,7 +12054,7 @@ msgid "Never decrypt while recording"
 msgstr "Ніколи не розшифровувати під час запису"
 
 msgid "Never in Standby"
-msgstr ""
+msgstr "Ніколи не в режимі очікування"
 
 msgid "New"
 msgstr "Нові"
@@ -12608,7 +12608,7 @@ msgid "OSCamInfo Actions"
 msgstr "Дії OSCamInfo"
 
 msgid "OSCamInfo Capability Actions"
-msgstr ""
+msgstr "Дії можливостей OSCamInfo"
 
 msgid "OSCamInfo Log Actions"
 msgstr "Дії для логу OSCamInfo"
@@ -12618,7 +12618,7 @@ msgid "OSCamInfo: %s Entitlements for '%s'"
 msgstr "OSCamInfo: %s права для '%s'"
 
 msgid "OSCamInfo: Capabilities"
-msgstr ""
+msgstr "OSCamInfo: Можливості"
 
 #, python-format
 msgid "OSCamInfo: Entitlements for '%s'"
@@ -12763,7 +12763,7 @@ msgid "Open Box Portal"
 msgstr "Показати портали тюнера"
 
 msgid "Open Capability"
-msgstr ""
+msgstr "Відкриті можливості"
 
 msgid "Open EPG"
 msgstr "Відкрити EPG"
@@ -16074,7 +16074,7 @@ msgid "Select 'Yes' to remove all user interface data. Selecting this option wil
 msgstr "Виберіть 'Так', щоб видалити всі дані інтерфейсу користувача. Вибір цієї опції видалить усі дані, що замінюють розкладку, меню та налаштування, а також відновить визначення за замовчуванням."
 
 msgid "Select 'Yes' to reschedule the task to when the receiver goes in to/out of Standby mode. The state change must happen within the task schedule window or else the task will not be run."
-msgstr ""
+msgstr "Виберіть 'Так', щоб перенести завдання на час переходу/виходу приймача з режиму очікування. Зміна стану має відбутися у вікні розкладу завдання, інакше завдання не буде виконано."
 
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr "Виберіть 'Так', щоб скинути конфігурацію мережі до стандартних. Це активує порт Ethernet, якщо він існує, і налаштує приймач на використання DHCP. Усі інші мережеві інтерфейси будуть видалені."
@@ -16406,7 +16406,7 @@ msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiS
 msgstr "Виберіть спосіб налаштування супутникової антени, окремого LNB, перемикача DiSEqC, позиціонера, тощо."
 
 msgid "Select how the schedule is handled with respect to Standby mode."
-msgstr ""
+msgstr "Виберіть, як розклад оброблятиметься стосовно режиму очікування."
 
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Вибір активації режиму швидкого ЕПГ."
@@ -16559,7 +16559,7 @@ msgid "Select the action to perform when the timer ends."
 msgstr "Виберіть дію, яку потрібно виконати після завершення таймера."
 
 msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
-msgstr ""
+msgstr "Виберіть час очікування після помилки завдання, перш ніж спробувати запустити завдання знову."
 
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
 msgstr "Керуйте швидкістю анімації індикаторів кнопок на екрані довідки. 'Вимкнено' вимикає анімацію, щоб індикатори переходили між кнопками."
@@ -16658,7 +16658,7 @@ msgid "Select the duration of inactivity before the screen saver will be display
 msgstr "Через якийсь час показати заставку."
 
 msgid "Select the end time before which this timer can be activated.  After this time the timer won't be activated even if other conditions are met."
-msgstr ""
+msgstr "Виберіть час завершення, до якого цей таймер можна активувати. Після цього часу таймер не буде активовано, навіть якщо будуть виконані інші умови."
 
 #, python-format
 msgid "Select the file sort order for the %s column:"
@@ -16756,7 +16756,7 @@ msgid "Select the next item in the list"
 msgstr "Виберіть наступний елемент у списку"
 
 msgid "Select the number of times to retry a task if an error occurs when running the task."
-msgstr ""
+msgstr "Виберіть кількість разів, коли потрібно повторити завдання, якщо під час його виконання виникла помилка."
 
 msgid "Select the preferred service information to display, in addition to the service number, for the service selection pop up screen."
 msgstr "Виберіть потрібну інформацію про канал, яка відображатиметься, окрім номера каналу, на спливаючому екрані вибору каналу."
@@ -16834,7 +16834,7 @@ msgid "Select the source of the default DNS settings."
 msgstr "Виберіть джерело налаштувань DNS за замовчуванням."
 
 msgid "Select the start time after which this timer can be activated.  Before this time the timer won't be activated even if other conditions are met."
-msgstr ""
+msgstr "Виберіть час початку, після якого цей таймер можна активувати. До цього часу таймер не буде активовано, навіть якщо будуть виконані інші умови."
 
 msgid "Select the starting/initial column to be activated on File Commander start up."
 msgstr "Виберіть стартовий/початковий стовпець, який буде активовано під час запуску File Commander."
@@ -17725,7 +17725,7 @@ msgid "Show CI messages"
 msgstr "Показати повідомлення СІ"
 
 msgid "Show Capabilities"
-msgstr ""
+msgstr "Показати можливості"
 
 msgid "Show Default Backup Files"
 msgstr "Файли резервної копії"
@@ -19006,7 +19006,7 @@ msgid "Special Features Settings"
 msgstr "Особливі налаштування"
 
 msgid "Special characteristics"
-msgstr ""
+msgstr "Особливі характеристики"
 
 msgid "Specify the directory to use when starting Media Player."
 msgstr "Вкажіть каталог, який використовуватиметься під час запуску Media Player."
@@ -19051,7 +19051,7 @@ msgid "Standby / Restart"
 msgstr "Вимкнення"
 
 msgid "Standby execution"
-msgstr ""
+msgstr "Виконання в режимі очікування"
 
 msgid "Standby without TV shut down"
 msgstr "Режим очікування без вимкнення телевізора"
@@ -19105,7 +19105,7 @@ msgid "Start recording current event"
 msgstr "Почати запис поточної події"
 
 msgid "Start retry"
-msgstr ""
+msgstr "Почати повторну спробу"
 
 msgid "Start teletext"
 msgstr "Запуск телетексту"
@@ -19356,7 +19356,7 @@ msgid "Streaming recording ended"
 msgstr "Потоковий запис закінчився"
 
 msgid "Streaming recovery delay"
-msgstr ""
+msgstr "Затримка відновлення потокового передавання"
 
 #, python-format
 msgid "Streaming tuner information for %s %s"
@@ -20886,7 +20886,7 @@ msgid "Timer editor"
 msgstr "Редактор таймеру"
 
 msgid "Timer end window"
-msgstr ""
+msgstr "Вікно закінчення таймера"
 
 msgid "Timer entry"
 msgstr "Додати таймер"
@@ -20913,7 +20913,7 @@ msgid "Timer selection"
 msgstr "Вибір таймера"
 
 msgid "Timer start window"
-msgstr ""
+msgstr "Вікно запуску таймера"
 
 msgid "Timer type"
 msgstr "Тип таймера"

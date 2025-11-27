@@ -4,12 +4,13 @@
 # vlkan “vlkanboy” vlkan1 <vlkanboy@gmail.com>, 2024.
 # Libor Rejč <l.rejc@seznam.cz>, 2025.
 # Warder <ciksa@seznam.cz>, 2025.
+# Libor Rejč <lir@mail.cz>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-06 08:27+0000\n"
-"PO-Revision-Date: 2025-10-27 12:17+0000\n"
+"PO-Revision-Date: 2025-11-14 17:56+0000\n"
 "Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
@@ -17,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.14.1-dev\n"
+"X-Generator: Weblate 5.15-dev\n"
 
 msgid ""
 "\n"
@@ -1579,7 +1580,7 @@ msgid "<Select a device>"
 msgstr "<Vyberte zařízení>"
 
 msgid "<no capabilities found>"
-msgstr ""
+msgstr "<nenalezeny žádné funkce>"
 
 msgid "<no log found>"
 msgstr "<žádný protokol nebyl nalezen>"
@@ -7602,10 +7603,10 @@ msgid "Error Download Setting"
 msgstr "Chyba při stahování nastavení"
 
 msgid "Error Retry count"
-msgstr ""
+msgstr "Počet opakování chyb"
 
 msgid "Error Retry delay"
-msgstr ""
+msgstr "Zpoždění opakování chyby"
 
 msgid "Error code"
 msgstr "Kód chyby"
@@ -9657,7 +9658,7 @@ msgid "Ignore DVB-T namespace sub network"
 msgstr "Ignorovat podsíť jmenného prostoru DVB-T"
 
 msgid "Ignore Standby"
-msgstr ""
+msgstr "Ignorovat pohotovostní režim"
 
 msgid "Ignore unexpectedly wake up and stay in standby"
 msgstr "Ignorovat neočekávané probuzení a zůstat v pohotovostním režimu"
@@ -12051,7 +12052,7 @@ msgid "Never decrypt while recording"
 msgstr "Během nahrávání nikdy nedešifrovat"
 
 msgid "Never in Standby"
-msgstr ""
+msgstr "Nikdy v pohotovostním režimu"
 
 msgid "New"
 msgstr "Přidat"
@@ -12605,7 +12606,7 @@ msgid "OSCamInfo Actions"
 msgstr "Akce OSCamInfo"
 
 msgid "OSCamInfo Capability Actions"
-msgstr ""
+msgstr "Akce funkcí OSCamInfo"
 
 msgid "OSCamInfo Log Actions"
 msgstr "Akce protokolu OSCamInfo"
@@ -12615,7 +12616,7 @@ msgid "OSCamInfo: %s Entitlements for '%s'"
 msgstr "OSCamInfo: %s Oprávnění pro '%s'"
 
 msgid "OSCamInfo: Capabilities"
-msgstr ""
+msgstr "OSCamInfo: Možnosti"
 
 #, python-format
 msgid "OSCamInfo: Entitlements for '%s'"
@@ -12760,7 +12761,7 @@ msgid "Open Box Portal"
 msgstr "Zobrazit Box Portal"
 
 msgid "Open Capability"
-msgstr ""
+msgstr "Otevřít možnosti"
 
 msgid "Open EPG"
 msgstr "Otevřít EPG"
@@ -13378,7 +13379,7 @@ msgid "Picture Information Actions"
 msgstr "Akce informace o obrázku"
 
 msgid "Picture in EPG"
-msgstr "Obrázek v EPG"
+msgstr "Obraz v EPG"
 
 msgid "Picture in Picture Actions"
 msgstr "Akce PiP"
@@ -16071,7 +16072,7 @@ msgid "Select 'Yes' to remove all user interface data. Selecting this option wil
 msgstr "Chcete-li odstranit všechna data uživatelského rozhraní, vyberte možnost „Ano“. Výběrem této možnosti odstraníte všechna přepisovací data keymap, menu a nastavení a obnovíte výchozí definice."
 
 msgid "Select 'Yes' to reschedule the task to when the receiver goes in to/out of Standby mode. The state change must happen within the task schedule window or else the task will not be run."
-msgstr ""
+msgstr "Vyberte „Ano“ pro přesunutí úlohy na čas, kdy přijímač přejde do/z pohotovostního režimu. Změna stavu musí proběhnout v rámci okna plánu úlohy, jinak se úloha nespustí."
 
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr "Výběrem možnosti „Ano“ resetujete konfiguraci sítě na výchozí. Tím povolíte ethernetový port, pokud existuje, a nastavíte přijímač na použití DHCP. Všechna ostatní síťová rozhraní budou odstraněna."
@@ -16403,7 +16404,7 @@ msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiS
 msgstr "Vyberte způsob nastavení satelitní antény. tj. pevná parabola, jednoduchý LNB, DiSEqC přepínač, polohovač atd."
 
 msgid "Select how the schedule is handled with respect to Standby mode."
-msgstr ""
+msgstr "Vyberte, jak se má s plánem zacházet s ohledem na pohotovostní režim."
 
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Vyberte způsob aktivace režimu Quick EPG."
@@ -16556,7 +16557,7 @@ msgid "Select the action to perform when the timer ends."
 msgstr "Vyberte akci, která se má provést po skončení časovače."
 
 msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
-msgstr ""
+msgstr "Vyberte dobu, po které se má po chybě úlohy čekat, než se ji pokusíte spustit znovu."
 
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
 msgstr "Zvolte rychlost animace indikátorů tlačítek na obrazovkách nápovědy. Možnost 'Zakázáno' vypne animaci, takže indikátory přeskakují mezi tlačítky."
@@ -16655,7 +16656,7 @@ msgid "Select the duration of inactivity before the screen saver will be display
 msgstr "Nastavení doby v minutách pro spořič obrazovky."
 
 msgid "Select the end time before which this timer can be activated.  After this time the timer won't be activated even if other conditions are met."
-msgstr ""
+msgstr "Vyberte čas ukončení, před kterým lze tento časovač aktivovat. Po uplynutí této doby se časovač neaktivuje, i když jsou splněny ostatní podmínky."
 
 #, python-format
 msgid "Select the file sort order for the %s column:"
@@ -16753,7 +16754,7 @@ msgid "Select the next item in the list"
 msgstr "Vyberte další položku v seznamu"
 
 msgid "Select the number of times to retry a task if an error occurs when running the task."
-msgstr ""
+msgstr "Vyberte, kolikrát se má úloha opakovat, pokud při jejím spuštění dojde k chybě."
 
 msgid "Select the preferred service information to display, in addition to the service number, for the service selection pop up screen."
 msgstr "Vyberte preferované informace o službě, které se mají zobrazit, kromě čísla služby, na vyskakovací obrazovce s výběrem služby."
@@ -16831,7 +16832,7 @@ msgid "Select the source of the default DNS settings."
 msgstr "Zvolte zdroj výchozích nastavení DNS."
 
 msgid "Select the start time after which this timer can be activated.  Before this time the timer won't be activated even if other conditions are met."
-msgstr ""
+msgstr "Vyberte čas spuštění, po kterém lze tento časovač aktivovat. Před uplynutím této doby se časovač neaktivuje, i když jsou splněny ostatní podmínky."
 
 msgid "Select the starting/initial column to be activated on File Commander start up."
 msgstr "Vyberte počáteční sloupec, který se má aktivovat při spuštění File Commanderu."
@@ -17722,7 +17723,7 @@ msgid "Show CI messages"
 msgstr "Zobrazit zprávy CI"
 
 msgid "Show Capabilities"
-msgstr ""
+msgstr "Zobrazit možnosti"
 
 msgid "Show Default Backup Files"
 msgstr "Zobrazit výchozí soubory záloh"
@@ -19048,7 +19049,7 @@ msgid "Standby / Restart"
 msgstr "Vypnutí / Restart"
 
 msgid "Standby execution"
-msgstr ""
+msgstr "Pohotovostní spuštění"
 
 msgid "Standby without TV shut down"
 msgstr "Pohotovostní režim bez vypnutí TV"
@@ -19102,7 +19103,7 @@ msgid "Start recording current event"
 msgstr "Spustit záznam aktuální události"
 
 msgid "Start retry"
-msgstr ""
+msgstr "Opakovaný start"
 
 msgid "Start teletext"
 msgstr "Spustit teletext"
@@ -20883,7 +20884,7 @@ msgid "Timer editor"
 msgstr "Časovače - editace"
 
 msgid "Timer end window"
-msgstr ""
+msgstr "Okno konce časovače"
 
 msgid "Timer entry"
 msgstr "Záznam časovače"
@@ -20910,7 +20911,7 @@ msgid "Timer selection"
 msgstr "Výběr časovače"
 
 msgid "Timer start window"
-msgstr ""
+msgstr "Okno začátku časovače"
 
 msgid "Timer type"
 msgstr "Typ časovače"
@@ -23685,7 +23686,7 @@ msgid "Fine arts"
 msgstr "výtvarné umění"
 
 msgid "Fitness and Health"
-msgstr "fitness & zdraví"
+msgstr "Fitness a zdraví"
 
 msgid "flat alphabetic"
 msgstr "abecedně (včetně složek)"

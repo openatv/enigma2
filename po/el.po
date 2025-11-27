@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-11-06 08:27+0000\n"
-"PO-Revision-Date: 2025-10-25 04:24+0000\n"
+"PO-Revision-Date: 2025-11-16 05:28+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
 "Language: el\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.14.1-dev\n"
+"X-Generator: Weblate 5.15-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -1545,7 +1545,7 @@ msgid "<Select a device>"
 msgstr "<Επιλογή συσκευής>"
 
 msgid "<no capabilities found>"
-msgstr ""
+msgstr "<δεν βρέθηκαν δυνατότητες>"
 
 msgid "<no log found>"
 msgstr "<δεν βρέθηκε αρχείο καταγραφής>"
@@ -7563,10 +7563,10 @@ msgid "Error Download Setting"
 msgstr "Σφάλμα λήψης ρύθμισης"
 
 msgid "Error Retry count"
-msgstr ""
+msgstr "Αριθμός προσπαθειών σφάλματος"
 
 msgid "Error Retry delay"
-msgstr ""
+msgstr "Καθυστέρηση προσπάθειας σφάλματος"
 
 msgid "Error code"
 msgstr "Κωδικός σφάλματος"
@@ -9618,7 +9618,7 @@ msgid "Ignore DVB-T namespace sub network"
 msgstr "Αγνόηση του υπο-δικτύου στον χώρο ονόματος DVB-T"
 
 msgid "Ignore Standby"
-msgstr ""
+msgstr "Αγνόηση κατάστασης αναμονής"
 
 msgid "Ignore unexpectedly wake up and stay in standby"
 msgstr "Αγνόηση της ξαφνικής αφύπνισης και παραμονή σε αναμονή"
@@ -12010,7 +12010,7 @@ msgid "Never decrypt while recording"
 msgstr "Να μη γίνεται ποτέ αποκωδικοποίηση κατά την εγγραφή"
 
 msgid "Never in Standby"
-msgstr ""
+msgstr "Ποτέ σε κατάσταση αναμονής"
 
 msgid "New"
 msgstr "Νέο"
@@ -12564,7 +12564,7 @@ msgid "OSCamInfo Actions"
 msgstr "Ενέργειες πληροφοριών OSCam"
 
 msgid "OSCamInfo Capability Actions"
-msgstr ""
+msgstr "Ενέργειες δυνατοτήτων του OSCamInfo"
 
 msgid "OSCamInfo Log Actions"
 msgstr "Ενέργειες καταγραφής πληροφοριών OSCam"
@@ -12574,7 +12574,7 @@ msgid "OSCamInfo: %s Entitlements for '%s'"
 msgstr "OSCamInfo: %s Entitlements για το '%s'"
 
 msgid "OSCamInfo: Capabilities"
-msgstr ""
+msgstr "OSCamInfo: δυνατότητες"
 
 #, python-format
 msgid "OSCamInfo: Entitlements for '%s'"
@@ -12719,7 +12719,7 @@ msgid "Open Box Portal"
 msgstr "Εμφάνιση portal δέκτη"
 
 msgid "Open Capability"
-msgstr ""
+msgstr "Άνοιγμα δυνατότητας"
 
 msgid "Open EPG"
 msgstr "Άνοιγμα EPG"
@@ -16025,7 +16025,7 @@ msgid "Select 'Yes' to remove all user interface data. Selecting this option wil
 msgstr "Επιλέξτε 'ναι' για διαγραφή όλων των δεδομένων διεπαφής χρήστη. Επιλέγοντας αυτό, θα διαγραφούν όλα τα δεδομένα χάρτη πληκτρολογίου, μενού και παράκαμψης των ρυθμίσεων, και θα γίνει επαναφορά στις αρχικές τους τιμές."
 
 msgid "Select 'Yes' to reschedule the task to when the receiver goes in to/out of Standby mode. The state change must happen within the task schedule window or else the task will not be run."
-msgstr ""
+msgstr "Επιλέξτε 'ναι' για να επαναπρογραμματίσετε την εργασία με την οποία ο δέκτης θα μεταβαίνει ή θα επανέρχεται από την κατάσταση αναμονής. Η αλλαγή κατάστασης πρέπει να συμβαίνει εντός του χρονικού παραθύρου της εργασίας, αλλιώς δεν θα εκτελείται."
 
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr "Επιλέξτε 'ναι' για επαναφορά των ρυθμίσεων δικτύου στις προεπιλογές. Αυτό θα ενεργοποιήσει τη θύρα ethernet, αν υπάρχει, και θα γίνει χρήση του DHCP από τον δέκτη. Όλες οι υπόλοιπες διεπαφές δικτύου θα διαγραφούν."
@@ -16357,7 +16357,7 @@ msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiS
 msgstr "Επιλέξτε τον τρόπο ρύθμισης του δορυφορικού σας κατόπτρου π.χ. σταθερό, μονό LNB, διακόπτης DiSEqC, μοτέρ κλπ."
 
 msgid "Select how the schedule is handled with respect to Standby mode."
-msgstr ""
+msgstr "Επιλογή του τρόπου χειρισμού του προγράμματος κατά τη λειτουργία αναμονής."
 
 msgid "Select how to activate the Quick EPG mode."
 msgstr "Επιλογή του τρόπου ενεργοποίησης λειτουργίας του γρήγορου EPG."
@@ -16510,7 +16510,7 @@ msgid "Select the action to perform when the timer ends."
 msgstr "Επιλογή ενέργειας όταν ένας χρονοδιακόπτης τελειώνει."
 
 msgid "Select the amount of time to wait, after a task error, before trying to run the task again."
-msgstr ""
+msgstr "Επιλογή του χρόνου αναμονής μετά το σφάλμα στην εργασία, πριν την προσπάθεια εκτέλεσής της εκ νέου."
 
 msgid "Select the animation speed of the button indicators in the help screens. 'Disabled' turns off animation so that indicators jump between buttons."
 msgstr "Επιλογή της ταχύτητας κίνησης των δεικτών πλήκτρων στις οθόνες βοήθειας. Το 'Ανενεργό' απενεργοποιεί την κίνηση ώστε οι δείκτες να μεταβαίνουν μεταξύ των πλήκτρων."
@@ -16609,7 +16609,7 @@ msgid "Select the duration of inactivity before the screen saver will be display
 msgstr "Ρύθμιση της διάρκειας σε λεπτά πριν την εμφάνιση της προφύλαξης οθόνης."
 
 msgid "Select the end time before which this timer can be activated.  After this time the timer won't be activated even if other conditions are met."
-msgstr ""
+msgstr "Επιλογή του χρόνου λήξης πριν από τον οποίο θα ενεργοποιείται αυτός ο χρονοδιακόπτης.  Μετά το πέρας αυτού του χρόνου, ο χρονοδιακόπτης δεν θα ενεργοποιείται, ακόμα και αν συντρέχουν διαφορετικές συνθήκες."
 
 #, python-format
 msgid "Select the file sort order for the %s column:"
@@ -16707,7 +16707,7 @@ msgid "Select the next item in the list"
 msgstr "Επιλογή του επόμενου στοιχείου στη λίστα"
 
 msgid "Select the number of times to retry a task if an error occurs when running the task."
-msgstr ""
+msgstr "Επιλογή του αριθμού επαναπροσπαθειών εκτέλεσης μίας εργασίας αν προκύψει κάποιο σφάλμα κατά την εκτέλεσή της."
 
 msgid "Select the preferred service information to display, in addition to the service number, for the service selection pop up screen."
 msgstr "Επιλέξτε τις επιθυμητές πληροφορίες υπηρεσίας προς εμφάνιση, μαζί με τον αριθμό της για τα αναδυόμενα μηνύματα."
@@ -16785,7 +16785,7 @@ msgid "Select the source of the default DNS settings."
 msgstr "Επιλογή της πηγής ρυθμίσεων του προεπιλεγμένου DNS."
 
 msgid "Select the start time after which this timer can be activated.  Before this time the timer won't be activated even if other conditions are met."
-msgstr ""
+msgstr "Επιλογή του χρόνου εκκίνησης μετά τον οποίο θα ενεργοποιείται αυτός ο χρονοδιακόπτης.  Πριν από αυτό τον χρόνο, ο χρονοδιακόπτης δεν θα ενεργοποιείται, ακόμα και αν συντρέχουν διαφορετικές συνθήκες."
 
 msgid "Select the starting/initial column to be activated on File Commander start up."
 msgstr "Επιλέξτε την αρχική στήλη εκκίνησης που θα ενεργοποιείται κατά την εκκίνηση του File Commander."
@@ -17676,7 +17676,7 @@ msgid "Show CI messages"
 msgstr "Εμφάνιση μηνυμάτων CI"
 
 msgid "Show Capabilities"
-msgstr ""
+msgstr "Εμφάνιση δυνατοτήτων"
 
 msgid "Show Default Backup Files"
 msgstr "Εμφάνιση προεπιλεγμένων αρχείων εφεδρείας"
@@ -18998,7 +18998,7 @@ msgid "Standby / Restart"
 msgstr "Αναμονή / Επανεκκίνηση"
 
 msgid "Standby execution"
-msgstr ""
+msgstr "Εκτέλεση κατάστασης αναμονής"
 
 msgid "Standby without TV shut down"
 msgstr "Αναμονή χωρίς σβήσιμο της TV"
@@ -19052,7 +19052,7 @@ msgid "Start recording current event"
 msgstr "Έναρξη εγγραφής τρέχοντος προγράμματος"
 
 msgid "Start retry"
-msgstr ""
+msgstr "Εκκίνηση επαναπροσπάθειας"
 
 msgid "Start teletext"
 msgstr "Εκκίνηση τηλεκειμένου"
@@ -20832,7 +20832,7 @@ msgid "Timer editor"
 msgstr "Επεξεργασία χρονοδιακοπτών"
 
 msgid "Timer end window"
-msgstr ""
+msgstr "Χρονικό παράθυρο λήξης χρονοδιακόπτη"
 
 msgid "Timer entry"
 msgstr "Καταχώρηση χρονοδιακόπτη"
@@ -20859,7 +20859,7 @@ msgid "Timer selection"
 msgstr "Επιλογή χρονοδιακόπτη"
 
 msgid "Timer start window"
-msgstr ""
+msgstr "Χρονικό παράθυρο εκκίνησης χρονοδιακόπτη"
 
 msgid "Timer type"
 msgstr "Τύπος χρονοδιακόπτη"
@@ -23634,7 +23634,7 @@ msgid "Fine arts"
 msgstr "καλές τέχνες"
 
 msgid "Fitness and Health"
-msgstr "άσκηση & υγεία"
+msgstr "Άσκηση και υγεία"
 
 msgid "flat alphabetic"
 msgstr "αλφαβητική ταξινόμηση"
