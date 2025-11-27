@@ -347,7 +347,6 @@ private:
 	bool m_stream_corruption_detected;
 	pts_t m_original_timeshift_delay; // Stores the target timeshift delay.
 	bool m_delay_calculated; // Flag to ensure delay is calculated only once.
-	int m_recovery_delay_seconds; // Custom recovery delay in seconds, set via API.
 
 	void handleEofRecovery();
 	void startPreciseRecoveryCheck();

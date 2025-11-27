@@ -2459,7 +2459,6 @@ def InitUsageConfig():
 	config.timeshift.startDelay = ConfigSelection(default=0, choices=choiceList)
 	config.timeshift.stopWhileRecording = ConfigYesNo(default=False)
 	config.timeshift.recoveryBufferDelay = ConfigSelection(default=300, choices=[(x, _("%d ms") % x) for x in range(100, 1500, 100)])
-	config.timeshift.preciseRecovery = ConfigYesNo(default=True)
 
 	defaultPath = resolveFilename(SCOPE_TIMESHIFT)
 	config.timeshift.allowedPaths = ConfigLocations(default=[defaultPath])
