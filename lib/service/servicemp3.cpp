@@ -2549,9 +2549,10 @@ RESULT eServiceMP3::selectTrack(unsigned int i) {
  * @param[in] force If true, forces the clearing of buffers even if not initially started.
  */
 void eServiceMP3::clearBuffers(bool force) {
+#ifdef PASSTHROUGH_FIX
 	if ((!m_initial_start || !m_clear_buffers) && !force)
 		return;
-
+#endif
 	bool validposition = false;
 	pts_t ppos = 0;
 	if (getPlayPosition(ppos) >= 0) {
@@ -2935,18 +2936,27 @@ void eServiceMP3::gstBusCall(GstMessage* msg) {
 								}
 							}
 						}
-
 						if (autoaudio)
+#ifdef PASSTHROUGH_FIX
 							selectAudioStream(autoaudio);
+#else
+							selectTrack(autoaudio);
+#endif
 					} else {
+#ifdef PASSTHROUGH_FIX
 						selectAudioStream(m_currentAudioStream);
+#else
+						selectTrack(m_currentAudioStream);
+#endif
 					}
+#ifdef PASSTHROUGH_FIX
 					m_clear_buffers = false;
 					if (!m_initial_start) {
 						if (!m_sourceinfo.is_streaming)
 							seekTo(0);
 						m_initial_start = true;
 					}
+#endif
 					if (!m_first_paused)
 						m_event((iPlayableService*)this, evGstreamerPlayStarted);
 					m_first_paused = false;
