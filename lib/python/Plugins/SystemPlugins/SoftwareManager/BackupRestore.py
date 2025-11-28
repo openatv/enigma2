@@ -5,7 +5,6 @@ from os.path import exists, isdir, join
 
 from enigma import eTimer, eEnv, eConsoleAppContainer, eEPGCache
 from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
-from Components.Button import Button
 from Components.config import NoSave, configfile, ConfigSubsection, ConfigText, ConfigLocations
 from Components.config import config
 from Components.ConfigList import ConfigListScreen
