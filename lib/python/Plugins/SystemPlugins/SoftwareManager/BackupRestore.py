@@ -702,6 +702,28 @@ class installedPlugins(Screen):
 
 
 class RestorePlugins(Screen):
+	skin = """
+	<screen name="RestorePlugins" position="center,center" size="720,600" resolution="1280,720">
+		<widget source="menu" render="Listbox" position="10,10" size="700,490" scrollbarMode="showOnDemand">
+			<convert type="TemplatedMultiContent">
+				{"template": [
+					MultiContentEntryText(pos = (50, 1), size = (650, 25), font=0, flags = RT_HALIGN_LEFT|RT_VALIGN_TOP, text = 0),
+					MultiContentEntryPixmapAlphaBlend(pos = (5, 1), size = (24, 24), png = 1, flags = BT_SCALE),
+					],
+					"fonts": [gFont("Regular",19), gFont("Regular",16)],
+					"itemHeight": 30
+				}
+			</convert>
+		</widget>
+		<widget source="key_red" render="Label" position="0,e-40" size="180,40" backgroundColor="key_red" font="Regular;20" foregroundColor="key_text" horizontalAlignment="center" noWrap="1" verticalAlignment="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_green" render="Label" position="190,e-40" size="180,40" backgroundColor="key_green" font="Regular;20" foregroundColor="key_text" horizontalAlignment="center" noWrap="1" verticalAlignment="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>
+	"""
+
 	def __init__(self, session, menulist, removelist=None):
 		Screen.__init__(self, session)
 		self.setTitle(_("Restore Plugins"))
@@ -715,8 +737,8 @@ class RestorePlugins(Screen):
 		self.container = eConsoleAppContainer()
 		self["menu"] = List([])
 		self["menu"].onSelectionChanged.append(self.selectionChanged)
-		self["key_green"] = Button(_("Install"))
-		self["key_red"] = Button(_("Cancel"))
+		self["key_green"] = StaticText(_("Install"))
+		self["key_red"] = StaticText(_("Cancel"))
 		self["summary_description"] = StaticText("")
 
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
