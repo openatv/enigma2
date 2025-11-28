@@ -92,7 +92,7 @@
 		<item level="1" text="Enable panic button" description="When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history.">config.usage.panicbutton</item>
 		<item level="1" text="Panic channel" description="Pressing the panic button will zap you to this channel number in your first bouquet.">config.usage.panicchannel</item>
 		<item level="2" text="Show picons in quickzap" description="Configure if service picons will be shown in quickzap.">config.usage.numzappicon</item>
-		<item level="1" text="Jump first press in channel selection" description="This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first), when 'Quick Actions' preset actions are performed.">config.usage.show_channel_jump_in_servicelist</item>
+		<item level="1" text="Jump first press in channel selection" description="This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first), when 'Quick Actions' preset actions are performed. ">config.usage.show_channel_jump_in_servicelist</item>
 		<if conditional="config.channelSelection.screenStyle.value == ''">
 			<item level="0" text="Show channel numbers in channel selection" description="When enabled, show channel numbers in the channel selection screen.">config.usage.show_channel_numbers_in_servicelist</item>
 			<item level="1" text="Show picons in service list" description="Configure if service picons will be shown in the service list.">config.usage.service_icon_enable</item>
@@ -327,7 +327,7 @@
 		<item level="2" text="Font size" description="Configure the font size relative to default size, so 1 increases by 1 point size, and -1 decreases by 1 point size.">config.epgselection.vertical_eventfs</item>
 		<item level="2" text="Channel buttons" description="Set to what you want the button to do.">config.epgselection.vertical_channelbtn</item>
 		<item level="2" text="Channel buttons invert" description="Inverts the button function.">config.epgselection.vertical_channelbtn_invert</item>
-		<item level="2" text="Up/Down buttons also for 'all up/down'" description="Enable Up/Down buttons for the 'all up/down' functions (at the beginning/end of the column).">config.epgselection.vertical_updownbtn</item>
+		<item level="2" text="Up/Down buttons also for 'all up/down'." description="Enable Up/Down buttons for the 'all up/down' functions (at the beginning/end of the column)?">config.epgselection.vertical_updownbtn</item>
 		<item level="2" text="OK button (short)" description="Set to what you want the button to do.">config.epgselection.vertical_ok</item>
 		<item level="2" text="OK button (long)" description="Set to what you want the button to do.">config.epgselection.vertical_oklong</item>
 		<item level="2" text="Info button (short)" description="Set to what you want the button to do.">config.epgselection.vertical_info</item>
@@ -356,7 +356,7 @@
 	</setup>
 	<setup key="Fallbacktuner" title="Fallback tuner setup" level="2">
 		<item text="Enable fallback remote receiver" description="Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001.">config.usage.remote_fallback_enabled</item>
-		<item text="Import from remote receiver URL" description="Import channels and/or EPG from remote receiver URL when receiver is booted.">config.usage.remote_fallback_import</item>
+		<item text="Import from remote receiver URL" description="Import channels and/or EPG from remote receiver URL when receiver is booted">config.usage.remote_fallback_import</item>
 		<if conditional="config.usage.remote_fallback_enabled.value">
 			<item text="Enable import timer from fallback tuner" description="When enabled the timer from the fallback tuner is imported">config.usage.remote_fallback_external_timer</item>
 			<item text="Select the timer from the fallback tuner by default" description="When enabled the timer from the fallback tuner is the default timer" conditional="config.usage.remote_fallback_external_timer.value">config.usage.remote_fallback_external_timer_default</item>
@@ -375,20 +375,20 @@
 				<elif conditional="self.avahiselect_seperate.value == 'url'"/>
 					<item text="Fallback remote receiver URL" description="URL of fallback remote receiver">config.usage.remote_fallback_import_url</item>
 				</if>
-				<item text="Also import at reboot/restart enigma2" description="Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted.">config.usage.remote_fallback_import_restart</item>
-				<item text="Also import when box is leaving standby" description="Import channels and/or EPG from remote receiver URL also when the receiver is getting out of standby.">config.usage.remote_fallback_import_standby</item>
-				<item text="Also import from the extension menu" description="Make it possible to manually initiate the channels import and/or EPG via the extension menu.">config.usage.remote_fallback_extension_menu</item>
-				<item text="Show notification when import channels was successful" description="Show notification when import channels and/or EPG from remote receiver URL is completed.">config.usage.remote_fallback_ok</item>
-				<item text="Show notification when import channels was not successful" description="Show notification when import channels and/or EPG from remote receiver URL did not complete.">config.usage.remote_fallback_nok</item>
+				<item text="Also import at reboot/restart enigma2" description="Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted">config.usage.remote_fallback_import_restart</item>
+				<item text="Also import when box is leaving standby" description="Import channels and/or EPG from remote receiver URL also when the receiver is getting out of standby">config.usage.remote_fallback_import_standby</item>
+				<item text="Also import from the extension menu" description="Make it possible to manually initiate the channels import and/or EPG via the extension menu">config.usage.remote_fallback_extension_menu</item>
+				<item text="Show notification when import channels was successful" description="Show notification when import channels and/or EPG from remote receiver URL is completed">config.usage.remote_fallback_ok</item>
+				<item text="Show notification when import channels was not successful" description="Show notification when import channels and/or EPG from remote receiver URL did not complete">config.usage.remote_fallback_nok</item>
 			</if>
 			<if conditional="config.usage.remote_fallback.value">
 				<item text="Customize OpenWebIF settings for fallback tuner" description="When enabled you can customize the OpenWebIf settings for the fallback tuner">config.usage.remote_fallback_openwebif_customize</item>
 				<if conditional="config.usage.remote_fallback_openwebif_customize.value">
-					<item text="User ID" description="Set the User ID of the OpenWebif from your fallback tuner.">config.usage.remote_fallback_openwebif_userid</item>
-					<item text="Password" description="Set the password of the OpenWebif from your fallback tuner.">config.usage.remote_fallback_openwebif_password</item>
-					<item text="Port" description="Set the port of the OpenWebif from your fallback tuner.">config.usage.remote_fallback_openwebif_port</item>
+					<item text="User ID" description="Set the User ID of the OpenWebif from your fallback tuner">config.usage.remote_fallback_openwebif_userid</item>
+					<item text="Password" description="Set the password of the OpenWebif from your fallback tuner">config.usage.remote_fallback_openwebif_password</item>
+					<item text="Port" description="Set the port of the OpenWebif from your fallback tuner">config.usage.remote_fallback_openwebif_port</item>
 				</if>
-				<item text="Alternative URLs for DVB-T/C or ATSC" description="Set alternative fallback tuners for DVB-T/C or ATSC.">config.usage.remote_fallback_alternative</item>
+				<item text="Alternative URLs for DVB-T/C or ATSC" description="Set alternative fallback tuners for DVB-T/C or ATSC">config.usage.remote_fallback_alternative</item>
 				<if conditional="config.usage.remote_fallback_alternative.value">
 					<item text="Fallback remote receiver for DVB-T" description="Destination of fallback remote receiver for DVB-T">self.avahi_dvb_t</item>
 					<if conditional="self.avahi_dvb_t.value == 'ip'">
@@ -442,7 +442,7 @@
 				<item level="0" text="Even if a 'Wakeup' scheduled task starting?" description="Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting.">config.hdmicec.tv_wakeup_wakeuppowertimer</item>
 			</if>
 			<item level="0" text="Switch TV to correct input" description="When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected.">config.hdmicec.report_active_source</item>
-			<item level="0" text="Switch off the TV to correct input" description="Some TVs can't switch to the correct input if another HDMI port is active. This setting sets the TV to standby before the switch if the TV does not turn back on it may require a slower transmission interval or the repetition of the wake-up command." conditional="config.hdmicec.advanced_settings.value and config.hdmicec.report_active_source.value">config.hdmicec.workaround_activesource</item>
+			<item level="0" text="Switch off the TV to correct input" description="Some TVs can't switch to the correct input if another HDMI port is active. This setting sets the TV to standby before the switch. (If the TV does not turn back on it may require a slower transmission interval or the repetition of the wake-up command.)" conditional="config.hdmicec.advanced_settings.value and config.hdmicec.report_active_source.value">config.hdmicec.workaround_activesource</item>
 			<item level="0" text="Handle wake up from TV" description="When enabled the receiver will automatically wake from standby when the TV is turned on.">config.hdmicec.handle_tv_wakeup</item>
 			<item level="0" text="Handle standby from TV" description="When enabled the receiver will automatically return to standby when the TV is turned off.">config.hdmicec.handle_tv_standby</item>
 			<if conditional="config.hdmicec.advanced_settings.value">
