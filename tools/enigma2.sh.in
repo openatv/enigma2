@@ -45,18 +45,6 @@ if [ -x "@bindir@/showiframe" ]; then
 	else
 		killall -9 showiframe; sleep 1
 	fi
-	SKIN=`sed -En 's|^config\.skin\.primary_skin=(.+)/skin\.xml$|\1|p' "@sysconfdir@/enigma2/settings"`
-	if [ -n "${SKIN}" ]; then
-		SEARCHDIRS="@sysconfdir@/enigma2/$SKIN @sysconfdir@/enigma2/skin_common @sysconfdir@/enigma2 @datadir@/enigma2/$SKIN @datadir@/enigma2/skin_default @datadir@/enigma2 @datadir@"
-	else
-		SEARCHDIRS="@sysconfdir@/enigma2/skin_common @sysconfdir@/enigma2 @datadir@/enigma2/skin_default @datadir@/enigma2 @datadir@"
-	fi
-	for DIR in $SEARCHDIRS; do
-		if [ -d "${DIR}" ] && [ -f "${DIR}/backdrop.mvi" ]; then
-			"@bindir@/showiframe" "${DIR}/backdrop.mvi"
-			break
-		fi
-	done
 fi
 
 # hook to execute dhcp wait script
