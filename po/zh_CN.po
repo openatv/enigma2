@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-28 22:18+0000\n"
+"POT-Creation-Date: 2025-12-02 15:40+0000\n"
 "PO-Revision-Date: 2025-12-02 11:00+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -2549,6 +2549,9 @@ msgstr "艺术"
 msgid "Arts/Culture"
 msgstr "艺术/文化"
 
+msgid "Arts/Culture (without music)"
+msgstr "艺术/文化（无音乐，常规）"
+
 msgid "Arts/Culture magazines"
 msgstr "艺术/文化杂志"
 
@@ -4010,6 +4013,9 @@ msgstr "儿童"
 
 msgid "Children's"
 msgstr "儿童"
+
+msgid "Children's/Youth programs"
+msgstr "儿童/青少年节目（常规）"
 
 msgid "Children/Youth"
 msgstr "儿童/青少年"
@@ -7511,6 +7517,12 @@ msgstr "输入您的个人订阅源地址，允许您从个人订阅源中选择
 msgid "Entertainment"
 msgstr "娱乐"
 
+msgid "Entertainment programs for 10 to 16"
+msgstr "娱乐（10-16岁）"
+
+msgid "Entertainment programs for 6 to 14"
+msgstr "娱乐（6-14岁）"
+
 msgid "Entitlements"
 msgstr "权利"
 
@@ -9980,6 +9992,9 @@ msgstr "信息栏前端数据源"
 msgid "Information"
 msgstr "信息"
 
+msgid "Informational/Educational/School programs"
+msgstr "信息/教育/学校课程"
+
 msgid "Infotainment"
 msgstr "资讯娱乐"
 
@@ -10836,6 +10851,9 @@ msgstr "本地信息"
 
 msgid "Local network"
 msgstr "本地网络"
+
+msgid "Local or Regional"
+msgstr ""
 
 msgid "Local time"
 msgstr "当地时间"
@@ -12302,9 +12320,6 @@ msgstr "在远程接收器上找不到“epg.dat”文件！"
 msgid "No (supported) DVDROM found!"
 msgstr "没有找到（支持的）DVDROM！"
 
-msgid "No category"
-msgstr "无类别"
-
 msgid "No Connection"
 msgstr "没有连接"
 
@@ -12346,6 +12361,9 @@ msgstr "找不到有线电视调谐器！"
 
 msgid "No card inserted!"
 msgstr "卡片未插入！"
+
+msgid "No category"
+msgstr "无类别"
 
 msgid "No channel"
 msgstr "没有频道"
@@ -13572,6 +13590,9 @@ msgstr "像素测试"
 msgid "Pixels\n"
 msgstr "像素\n"
 
+msgid "Plano-stereoscopic"
+msgstr ""
+
 msgid "Platform"
 msgstr "平台"
 
@@ -14074,6 +14095,9 @@ msgstr "开机显示"
 
 msgid "Power threshold in mA"
 msgstr "功率阈值（mA）"
+
+msgid "Pre-school children's programs"
+msgstr "学前儿童节目"
 
 msgid "Predefined"
 msgstr "预定义"
@@ -15962,17 +15986,14 @@ msgstr "计划任务日志"
 msgid "Scheduler standby"
 msgstr "计划任务待机"
 
-msgid "Science fiction"
-msgstr "科幻"
-
-msgid "Sci-Fi"
-msgstr "科幻小说"
-
 msgid "Science"
 msgstr "科学"
 
 msgid "Science & Tech"
 msgstr "科学与技术"
+
+msgid "Science fiction"
+msgstr "科幻"
 
 msgid "Science fiction/Fantasy/Horror"
 msgstr "科幻小说/魔幻/惊险"
@@ -18969,6 +18990,9 @@ msgstr "肥皂 /音乐剧/民俗"
 msgid "Soccer"
 msgstr "足球"
 
+msgid "Social/Political issues/Economics"
+msgstr "社会/政治问题/经济（常规）"
+
 msgid "Social/Political/Economics"
 msgstr "社会/政治/经济"
 
@@ -19198,6 +19222,9 @@ msgstr "特别功能设置"
 
 msgid "Special characteristics"
 msgstr "特殊属性"
+
+msgid "Special events (Olympic games, World cup, etc.)"
+msgstr "特殊事件"
 
 msgid "Specify the directory to use when starting Media Player."
 msgstr "指定启动媒体播放器时要使用的目录。"
@@ -19988,6 +20015,9 @@ msgstr "任务视图操作"
 
 msgid "Tatar"
 msgstr "鞑靼"
+
+msgid "Team sports (excluding Football)"
+msgstr "团队竞技"
 
 msgid "Technology"
 msgstr "科技"
@@ -23655,12 +23685,6 @@ msgstr "am"
 msgid "aqua"
 msgstr "湖绿色"
 
-msgid "arts/culture (general)"
-msgstr "艺术/文化（一般）"
-
-msgid "Arts/Culture (without music)"
-msgstr "艺术/文化（无音乐，常规）"
-
 #, python-format
 msgid "audio track (%s) format"
 msgstr "音轨（%s）格式"
@@ -23719,20 +23743,11 @@ msgstr "读卡器"
 msgid "chapters"
 msgstr "剧集"
 
-msgid "children's (general)"
-msgstr "儿童（一般）"
-
-msgid "Children's/Youth programs"
-msgstr "儿童/青少年节目（常规）"
-
 msgid "clip overscan / letterbox borders"
 msgstr "裁切过扫描/黑边"
 
 msgid "close share view"
 msgstr "关闭共享视图"
-
-msgid "comedy (general)"
-msgstr "喜剧(常规)"
 
 msgid "config menu"
 msgstr "配置菜单"
@@ -23745,9 +23760,6 @@ msgstr "已连接"
 
 msgid "copy"
 msgstr "复制"
-
-msgid "current affairs (general)"
-msgstr "时事(常规)"
 
 msgid "date"
 msgstr "日期"
@@ -23773,12 +23785,6 @@ msgstr "已禁用"
 msgid "disconnected"
 msgstr "已断开"
 
-msgid "documentary (general)"
-msgstr "纪录片(常规)"
-
-msgid "drama (general)"
-msgstr "戏剧(常规)"
-
 msgid "eMMC"
 msgstr "eMMC"
 
@@ -23798,9 +23804,6 @@ msgstr "ECM 时间："
 msgid "ecm.info"
 msgstr "ecm 信息"
 
-msgid "education/information (general)"
-msgstr "教育/信息(常规)"
-
 msgid "embedded"
 msgstr "嵌入式"
 
@@ -23812,15 +23815,6 @@ msgstr "已启用"
 
 msgid "end cut here"
 msgstr "在此处结束剪切"
-
-msgid "Entertainment programs for 10 to 16"
-msgstr "娱乐（10-16岁）"
-
-msgid "Entertainment programs for 6 to 14"
-msgstr "娱乐（6-14岁）"
-
-msgid "entertainment (general)"
-msgstr "娱乐(常规)"
 
 msgid "equal to"
 msgstr "等于"
@@ -23927,12 +23921,6 @@ msgstr "闲置"
 msgid "increase uphop by 1"
 msgstr "增加 uphop 1 点"
 
-msgid "Informational/Educational/School programs"
-msgstr "信息/教育/学校课程"
-
-msgid "infotainment (general)"
-msgstr "资讯娱乐（一般）"
-
 msgid "init module"
 msgstr "模块初始化"
 
@@ -23990,26 +23978,14 @@ msgstr "月"
 msgid "move"
 msgstr "移动"
 
-msgid "movie (general)"
-msgstr "电影(常规)"
-
-msgid "movie/drama (general)"
-msgstr "电影/戏剧 （常规）"
-
 msgid "multi"
 msgstr "多个"
-
-msgid "music (general)"
-msgstr "音乐(普通)"
 
 msgid "n/a"
 msgstr "n/a"
 
 msgid "name"
 msgstr "名称"
-
-msgid "news (general)"
-msgstr "新闻(普通)"
 
 msgid "no CAId selected"
 msgstr "没有选择 CAId"
@@ -24088,9 +24064,6 @@ msgstr "插件"
 
 msgid "pm"
 msgstr "pm"
-
-msgid "Pre-school children's programs"
-msgstr "学前儿童节目"
 
 msgid "provid:"
 msgstr "提供："
@@ -24187,23 +24160,11 @@ msgstr "快退"
 msgid "skip forward"
 msgstr "快进"
 
-msgid "Social/Political issues/Economics"
-msgstr "社会/政治问题/经济（常规）"
-
 msgid "softcam"
 msgstr "softcam"
 
 msgid "softcams"
 msgstr "softcam"
-
-msgid "special (general)"
-msgstr "特殊(普通)"
-
-msgid "Special events (Olympic games, World cup, etc.)"
-msgstr "特殊事件"
-
-msgid "sport (general)"
-msgstr "体育(普通)"
 
 msgid "standard"
 msgstr "标准"
@@ -24237,9 +24198,6 @@ msgstr "切换到下一个语言字幕"
 
 msgid "system:"
 msgstr "系统："
-
-msgid "Team sports (excluding Football)"
-msgstr "团队竞技"
 
 msgid "teletext"
 msgstr "图文"
@@ -24342,6 +24300,54 @@ msgstr "是（保留订阅源）"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Sci-Fi"
+#~ msgstr "科幻小说"
+
+#~ msgid "arts/culture (general)"
+#~ msgstr "艺术/文化（一般）"
+
+#~ msgid "children's (general)"
+#~ msgstr "儿童（一般）"
+
+#~ msgid "comedy (general)"
+#~ msgstr "喜剧(常规)"
+
+#~ msgid "current affairs (general)"
+#~ msgstr "时事(常规)"
+
+#~ msgid "documentary (general)"
+#~ msgstr "纪录片(常规)"
+
+#~ msgid "drama (general)"
+#~ msgstr "戏剧(常规)"
+
+#~ msgid "education/information (general)"
+#~ msgstr "教育/信息(常规)"
+
+#~ msgid "entertainment (general)"
+#~ msgstr "娱乐(常规)"
+
+#~ msgid "infotainment (general)"
+#~ msgstr "资讯娱乐（一般）"
+
+#~ msgid "movie (general)"
+#~ msgstr "电影(常规)"
+
+#~ msgid "movie/drama (general)"
+#~ msgstr "电影/戏剧 （常规）"
+
+#~ msgid "music (general)"
+#~ msgstr "音乐(普通)"
+
+#~ msgid "news (general)"
+#~ msgstr "新闻(普通)"
+
+#~ msgid "special (general)"
+#~ msgstr "特殊(普通)"
+
+#~ msgid "sport (general)"
+#~ msgstr "体育(普通)"
 
 #~ msgid "/usr/share/enigma2 directory"
 #~ msgstr "/usr/share/enigma2 目录"

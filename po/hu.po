@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-28 22:18+0000\n"
+"POT-Creation-Date: 2025-12-02 15:40+0000\n"
 "PO-Revision-Date: 2025-05-05 05:50+0000\n"
 "Last-Translator: Balázs Sólyom <balazs@solyom.online>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -2594,6 +2594,9 @@ msgstr ""
 msgid "Arts/Culture"
 msgstr "Művészet/Kultúra"
 
+msgid "Arts/Culture (without music)"
+msgstr "művészet/kultúra (prózai, általános)"
+
 msgid "Arts/Culture magazines"
 msgstr "művészet/kultúra magazin"
 
@@ -4054,6 +4057,9 @@ msgstr "Gyermek"
 
 msgid "Children's"
 msgstr "Gyerekek"
+
+msgid "Children's/Youth programs"
+msgstr "általános gyermekműsor"
 
 msgid "Children/Youth"
 msgstr "Gyermek/Fiatalság"
@@ -7556,6 +7562,12 @@ msgstr ""
 msgid "Entertainment"
 msgstr "Szórakozás"
 
+msgid "Entertainment programs for 10 to 16"
+msgstr "szórakoztató (10-16 éves korosztály"
+
+msgid "Entertainment programs for 6 to 14"
+msgstr "szórakoztató (6-14 éves korosztály"
+
 msgid "Entitlements"
 msgstr "Jogosultságok"
 
@@ -10040,6 +10052,9 @@ msgstr "Információs sáv adat forrása"
 msgid "Information"
 msgstr "Információk"
 
+msgid "Informational/Educational/School programs"
+msgstr "információ/oktatás/isklola"
+
 msgid "Infotainment"
 msgstr "Infotainment"
 
@@ -10909,6 +10924,9 @@ msgstr ""
 
 msgid "Local network"
 msgstr "Helyi hálózat"
+
+msgid "Local or Regional"
+msgstr ""
 
 msgid "Local time"
 msgstr ""
@@ -12411,9 +12429,6 @@ msgstr ""
 msgid "No (supported) DVDROM found!"
 msgstr "Nincs (támogatott) DVD ROM!"
 
-msgid "No category"
-msgstr ""
-
 msgid "No Connection"
 msgstr "Nincs kapcsolat"
 
@@ -12456,6 +12471,9 @@ msgstr "Nem található kábeltuner!"
 
 msgid "No card inserted!"
 msgstr "Nincs kártya behelyezve!"
+
+msgid "No category"
+msgstr ""
 
 msgid "No channel"
 msgstr "Nincs csatorna"
@@ -13707,6 +13725,9 @@ msgstr ""
 msgid "Pixels\n"
 msgstr ""
 
+msgid "Plano-stereoscopic"
+msgstr ""
+
 msgid "Platform"
 msgstr ""
 
@@ -14206,6 +14227,9 @@ msgstr "LCD kijelző legyen bekapcsolva"
 
 msgid "Power threshold in mA"
 msgstr "Áram határérték (mA)"
+
+msgid "Pre-school children's programs"
+msgstr "óvodásoknak"
 
 msgid "Predefined"
 msgstr "Előre definiált"
@@ -16103,17 +16127,14 @@ msgstr "PowerTimer napló"
 msgid "Scheduler standby"
 msgstr "Kikapcsolás Időzítő Készenléti állapot"
 
-msgid "Science fiction"
-msgstr ""
-
-msgid "Sci-Fi"
-msgstr "Sci-Fi"
-
 msgid "Science"
 msgstr "Tudomány"
 
 msgid "Science & Tech"
 msgstr "Tudomány & Tech"
+
+msgid "Science fiction"
+msgstr ""
 
 msgid "Science fiction/Fantasy/Horror"
 msgstr "szcifi/fantasy/horror"
@@ -19108,6 +19129,9 @@ msgstr "szappanopera/melodráma"
 msgid "Soccer"
 msgstr "Foci"
 
+msgid "Social/Political issues/Economics"
+msgstr "szociális/politikai/gazdasági (általános)"
+
 msgid "Social/Political/Economics"
 msgstr "Szociális/Politika/Gazdaság"
 
@@ -19339,6 +19363,9 @@ msgstr "Speciális tulajdonságok"
 
 msgid "Special characteristics"
 msgstr ""
+
+msgid "Special events (Olympic games, World cup, etc.)"
+msgstr "különleges események"
 
 msgid "Specify the directory to use when starting Media Player."
 msgstr ""
@@ -20146,6 +20173,9 @@ msgstr ""
 #, fuzzy
 msgid "Tatar"
 msgstr "Katar"
+
+msgid "Team sports (excluding Football)"
+msgstr "csapat sport"
 
 msgid "Technology"
 msgstr ""
@@ -23760,12 +23790,6 @@ msgstr "de"
 msgid "aqua"
 msgstr ""
 
-msgid "arts/culture (general)"
-msgstr "művészet/kultúra (általános)"
-
-msgid "Arts/Culture (without music)"
-msgstr "művészet/kultúra (prózai, általános)"
-
 #, python-format
 msgid "audio track (%s) format"
 msgstr "hangsáv (%s) formátuma"
@@ -23824,20 +23848,11 @@ msgstr "kártyaolvasó"
 msgid "chapters"
 msgstr "jelenetek"
 
-msgid "children's (general)"
-msgstr "gyermekek (általános)"
-
-msgid "Children's/Youth programs"
-msgstr "általános gyermekműsor"
-
 msgid "clip overscan / letterbox borders"
 msgstr "clip overscan / letterbox határok"
 
 msgid "close share view"
 msgstr "megosztás nézet bezárása"
-
-msgid "comedy (general)"
-msgstr "vígjáték (általános)"
 
 msgid "config menu"
 msgstr "menü beállítás"
@@ -23850,9 +23865,6 @@ msgstr "csatlakoztatva"
 
 msgid "copy"
 msgstr "másolás"
-
-msgid "current affairs (general)"
-msgstr "aktuális ügyek (általános)"
 
 msgid "date"
 msgstr ""
@@ -23878,12 +23890,6 @@ msgstr "kikapcsolva"
 msgid "disconnected"
 msgstr "nincs csatlakoztatva"
 
-msgid "documentary (general)"
-msgstr "dokumentumfilm (általános)"
-
-msgid "drama (general)"
-msgstr "dráma (általános)"
-
 msgid "eMMC"
 msgstr "eMMC"
 
@@ -23903,9 +23909,6 @@ msgstr "ecm idő:"
 msgid "ecm.info"
 msgstr "ecm.info"
 
-msgid "education/information (general)"
-msgstr "oktatás/tájékoztatás (általános)"
-
 msgid "embedded"
 msgstr ""
 
@@ -23917,15 +23920,6 @@ msgstr "engedélyezve"
 
 msgid "end cut here"
 msgstr "vágás kilépő pontja"
-
-msgid "Entertainment programs for 10 to 16"
-msgstr "szórakoztató (10-16 éves korosztály"
-
-msgid "Entertainment programs for 6 to 14"
-msgstr "szórakoztató (6-14 éves korosztály"
-
-msgid "entertainment (general)"
-msgstr "szórakozás (általános)"
 
 msgid "equal to"
 msgstr "egyenlő"
@@ -24032,12 +24026,6 @@ msgstr ""
 msgid "increase uphop by 1"
 msgstr "increase uphop by 1"
 
-msgid "Informational/Educational/School programs"
-msgstr "információ/oktatás/isklola"
-
-msgid "infotainment (general)"
-msgstr "infotainment (általános)"
-
 msgid "init module"
 msgstr "modul inicializálása"
 
@@ -24096,26 +24084,14 @@ msgstr "hónap"
 msgid "move"
 msgstr "mozgatás"
 
-msgid "movie (general)"
-msgstr "film (általános)"
-
-msgid "movie/drama (general)"
-msgstr "mozi/színház (általános)"
-
 msgid "multi"
 msgstr "multi"
-
-msgid "music (general)"
-msgstr "zene (általános)"
 
 msgid "n/a"
 msgstr "n/a"
 
 msgid "name"
 msgstr ""
-
-msgid "news (general)"
-msgstr "hírek (általános)"
 
 msgid "no CAId selected"
 msgstr "nincs kijelölt CAId"
@@ -24194,9 +24170,6 @@ msgstr ""
 
 msgid "pm"
 msgstr "du"
-
-msgid "Pre-school children's programs"
-msgstr "óvodásoknak"
 
 msgid "provid:"
 msgstr "szolgáltató Id:"
@@ -24293,23 +24266,11 @@ msgstr "vissza kihagyása"
 msgid "skip forward"
 msgstr "előre kihagyása"
 
-msgid "Social/Political issues/Economics"
-msgstr "szociális/politikai/gazdasági (általános)"
-
 msgid "softcam"
 msgstr ""
 
 msgid "softcams"
 msgstr ""
-
-msgid "special (general)"
-msgstr "különleges (általános)"
-
-msgid "Special events (Olympic games, World cup, etc.)"
-msgstr "különleges események"
-
-msgid "sport (general)"
-msgstr "sport (általános)"
 
 msgid "standard"
 msgstr "hagyományos"
@@ -24343,9 +24304,6 @@ msgstr "átkapcsolás a következő felirat nyelvre"
 
 msgid "system:"
 msgstr "rendszer:"
-
-msgid "Team sports (excluding Football)"
-msgstr "csapat sport"
 
 #, fuzzy
 msgid "teletext"
@@ -24449,6 +24407,54 @@ msgstr "igen (állapotok megtartása)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Sci-Fi"
+#~ msgstr "Sci-Fi"
+
+#~ msgid "arts/culture (general)"
+#~ msgstr "művészet/kultúra (általános)"
+
+#~ msgid "children's (general)"
+#~ msgstr "gyermekek (általános)"
+
+#~ msgid "comedy (general)"
+#~ msgstr "vígjáték (általános)"
+
+#~ msgid "current affairs (general)"
+#~ msgstr "aktuális ügyek (általános)"
+
+#~ msgid "documentary (general)"
+#~ msgstr "dokumentumfilm (általános)"
+
+#~ msgid "drama (general)"
+#~ msgstr "dráma (általános)"
+
+#~ msgid "education/information (general)"
+#~ msgstr "oktatás/tájékoztatás (általános)"
+
+#~ msgid "entertainment (general)"
+#~ msgstr "szórakozás (általános)"
+
+#~ msgid "infotainment (general)"
+#~ msgstr "infotainment (általános)"
+
+#~ msgid "movie (general)"
+#~ msgstr "film (általános)"
+
+#~ msgid "movie/drama (general)"
+#~ msgstr "mozi/színház (általános)"
+
+#~ msgid "music (general)"
+#~ msgstr "zene (általános)"
+
+#~ msgid "news (general)"
+#~ msgstr "hírek (általános)"
+
+#~ msgid "special (general)"
+#~ msgstr "különleges (általános)"
+
+#~ msgid "sport (general)"
+#~ msgstr "sport (általános)"
 
 #~ msgid "/usr/share/enigma2 directory"
 #~ msgstr "/usr/share/enigma2 mappa"
