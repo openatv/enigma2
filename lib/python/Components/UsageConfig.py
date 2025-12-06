@@ -41,7 +41,7 @@ def InitUsageConfig():
 	config.misc.SettingsVersion.value = [1, 1]
 	config.misc.SettingsVersion.save_forced = True
 	config.misc.SettingsVersion.save()
-	config.misc.useNTPminutes = ConfigSelection(default=30, choices=[(30, _("%d Minutes") % 30)] + [(x * 60, ngettext("%d Hour", "%d Hours", x) % x) for x in (1, 24)])
+	config.misc.useNTPminutes = ConfigSelection(default=30, choices=[(30, ngettext("%d Minute", "%d Minutes", 30) % 30)] + [(x * 60, ngettext("%d Hour", "%d Hours", x) % x) for x in (1, 24)])
 	config.misc.remotecontrol_text_support = ConfigYesNo(default=True)
 
 	config.misc.extraopkgpackages = ConfigYesNo(default=False)
@@ -572,7 +572,7 @@ def InitUsageConfig():
 	choiceList = [
 		(0, _("Disabled")),
 		(-1, _("At end of current program"))
-	] + [(x * 60, _("%d Minutes") % x) for x in range(15, 241, 15)]
+	] + [(x * 60, ngettext("%d Minute", "%d Minutes", x) % x) for x in range(15, 241, 15)]
 	config.usage.sleepTimer = ConfigSelection(default=0, choices=choiceList)
 	choiceList = [
 		(0, _("Disabled"))
@@ -875,14 +875,8 @@ def InitUsageConfig():
 	config.usage.swap_time_remaining_on_vfd = ConfigSelection(default="0", choices=choiceList)
 	config.usage.elapsed_time_positive_osd = ConfigYesNo(default=False)
 	config.usage.elapsed_time_positive_vfd = ConfigYesNo(default=False)
-	config.usage.lcd_scroll_delay = ConfigSelection(default="10000", choices=[
-		("10000", _("%d Seconds") % 10),
-		("20000", _("%d Seconds") % 20),
-		("30000", _("%d Seconds") % 30),
-		("60000", _("%d Minute") % 1),
-		("300000", _("%d Minutes") % 5),
-		("noscrolling", _("Off"))
-	])
+	choices = [(str(x * 1000), ngettext("%d Second", "%d Seconds", x) % x) for x in [10, 20, 30]] + [(str(x * 60000), ngettext("%d Minute", "%d Minutes", x) % x) for x in [1, 5]] + [("noscrolling", _("Off"))]
+	config.usage.lcd_scroll_delay = ConfigSelection(default="10000", choices=choices)
 	config.usage.lcd_scroll_speed = ConfigSelection(default="300", choices=[
 		("500", _("Slow")),
 		("300", _("Normal")),
@@ -2128,10 +2122,10 @@ def InitUsageConfig():
 	config.epgselection.infobar_ok = ConfigSelection(default="Zap", choices=choiceList)
 	config.epgselection.infobar_oklong = ConfigSelection(default="Zap + Exit", choices=choiceList)
 	config.epgselection.infobar_itemsperpage = ConfigSelectionNumber(default=2, stepwidth=1, min=1, max=4, wraparound=True)
-	config.epgselection.infobar_roundto = ConfigSelection(default="15", choices=[(str(x), _("%d Minutes") % x) for x in (15, 30, 60)])
-	config.epgselection.infobar_histminutes = ConfigSelection(default="0", choices=[(str(x), _("%d Minutes") % x) for x in range(0, 121, 15)])
+	config.epgselection.infobar_roundto = ConfigSelection(default="15", choices=[(str(x), ngettext("%d Minute", "%d Minutes", x) % x) for x in (15, 30, 60)])
+	config.epgselection.infobar_histminutes = ConfigSelection(default="0", choices=[(str(x), ngettext("%d Minute", "%d Minutes", x) % x) for x in range(0, 121, 15)])
 	config.epgselection.infobar_prevtime = ConfigClock(default=time())
-	config.epgselection.infobar_prevtimeperiod = ConfigSelection(default="180", choices=[(str(x), _("%d Minutes") % x) for x in (60, 90, 120, 150, 180, 210, 240, 270, 300)])
+	config.epgselection.infobar_prevtimeperiod = ConfigSelection(default="180", choices=[(str(x), ngettext("%d Minute", "%d Minutes", x) % x) for x in (60, 90, 120, 150, 180, 210, 240, 270, 300)])
 	config.epgselection.infobar_primetimehour = ConfigSelectionNumber(default=20, stepwidth=1, min=00, max=23, wraparound=True)
 	config.epgselection.infobar_primetimemins = ConfigSelectionNumber(default=15, stepwidth=1, min=00, max=59, wraparound=True)
 	# config.epgselection.infobar_servicetitle_mode = ConfigSelection(default="servicename", choices=[
@@ -2181,10 +2175,10 @@ def InitUsageConfig():
 		("Channel Info", _("Channel Info")),
 		("Single EPG", _("Single EPG"))
 	])
-	config.epgselection.graph_roundto = ConfigSelection(default="15", choices=[(str(x), _("%d Minutes") % x) for x in (15, 30, 60)])
-	config.epgselection.graph_histminutes = ConfigSelection(default="0", choices=[(str(x), _("%d Minutes") % x) for x in range(0, 121, 15)])
+	config.epgselection.graph_roundto = ConfigSelection(default="15", choices=[(str(x), ngettext("%d Minute", "%d Minutes", x) % x) for x in (15, 30, 60)])
+	config.epgselection.graph_histminutes = ConfigSelection(default="0", choices=[(str(x), ngettext("%d Minute", "%d Minutes", x) % x) for x in range(0, 121, 15)])
 	config.epgselection.graph_prevtime = ConfigClock(default=time())
-	config.epgselection.graph_prevtimeperiod = ConfigSelection(default="180", choices=[(str(x), _("%d Minutes") % x) for x in (60, 90, 120, 150, 180, 210, 240, 270, 300)])
+	config.epgselection.graph_prevtimeperiod = ConfigSelection(default="180", choices=[(str(x), ngettext("%d Minute", "%d Minutes", x) % x) for x in (60, 90, 120, 150, 180, 210, 240, 270, 300)])
 	config.epgselection.graph_primetimehour = ConfigSelectionNumber(default=20, stepwidth=1, min=00, max=23, wraparound=True)
 	config.epgselection.graph_primetimemins = ConfigSelectionNumber(default=15, stepwidth=1, min=00, max=59, wraparound=True)
 	config.epgselection.graph_servicetitle_mode = ConfigSelection(default="picon+servicename", choices=titleChoiceList)

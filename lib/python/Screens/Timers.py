@@ -1266,11 +1266,9 @@ class SchedulerEdit(Setup):
 		self.timerFunctionRetryCount = ConfigSelection(default=self.timer.functionRetryCount, choices=[(0, _("Disabled"))] + [(x, str(x)) for x in range(1, 6)])
 		self.timerFunctionRetryDelay = ConfigSelection(default=self.timer.functionRetryDelay, choices=[(x * 60, ngettext("%d Minute", "%d Minutes", x) % x) for x in (3, 5, 10, 20, 30, 60)])
 		self.timerSleepDelay = ConfigSelection(default=self.timer.autosleepdelay, choices=[
-			(1, _("%d Minute") % 1),
-			(3, _("%d Minutes") % 3),
-			(5, _("%d Minutes") % 5),
-			(10, _("%d Minutes") % 10)
-		] + [(x, _("%d Minutes") % x) for x in range(15, 301, 15)])
+			(x, ngettext("%d Minute", "%d Minutes", x) % x)
+			for x in [1, 3, 5, 10] + list(range(15, 301, 15))
+		])
 		self.timerRepeat = ConfigSelection(default=type, choices=REPEAT_CHOICES)
 		self.timerAutoSleepRepeat = ConfigSelection(default=self.timer.autosleeprepeat, choices=REPEAT_CHOICES)
 		self.timerSleepWindow = ConfigYesNo(default=self.timer.autosleepwindow)

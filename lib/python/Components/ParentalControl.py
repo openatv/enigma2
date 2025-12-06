@@ -19,13 +19,7 @@ TYPE_BOUQUET = "BOUQUET"
 LIST_BLACKLIST = "blacklist"
 
 config.ParentalControl = ConfigSubsection()
-config.ParentalControl.storeservicepin = ConfigSelection(default="never", choices=[
-	("never", _("Never")),
-	("5", _("%d Minutes") % 5),
-	("30", _("%d Minutes") % 30),
-	("60", _("%d Minutes") % 60),
-	("standby", _("Until standby/restart"))
-])
+config.ParentalControl.storeservicepin = ConfigSelection(default="never", choices=[("never", _("Never"))] + [(str(x), ngettext("%d Minute", "%d Minutes", x) % x) for x in [5, 30, 60]] + [("standby", _("Until standby/restart"))])
 config.ParentalControl.configured = ConfigYesNo(default=False)
 config.ParentalControl.setuppinactive = ConfigYesNo(default=False)
 config.ParentalControl.retries = ConfigSubsection()
