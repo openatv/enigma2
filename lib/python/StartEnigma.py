@@ -60,7 +60,7 @@ class Session:
 		self.screen = SessionGlobals(self)
 		self.shutdown = False
 		from Components.FrontPanelLed import frontPanelLed
-		frontPanelLed.init(self)
+		frontPanelLed.setSession(self)
 		self.allDialogs = []
 
 		for plugin in plugins.getPlugins(PluginDescriptor.WHERE_SESSIONSTART):
@@ -469,10 +469,10 @@ def runScreenTest():
 		config.usage.shutdownOK.setValue(False)
 		config.usage.shutdownOK.save()
 		configfile.save()
-	from Components.FrontPanelLed import FrontPanelLed
+	from Components.FrontPanelLed import frontPanelLed
 	runReactor()
 	session.shutdown = True
-	FrontPanelLed.shutdown()
+	frontPanelLed.shutdown()
 	print("[StartEnigma] Normal shutdown.")
 	config.misc.startCounter.save()
 	config.usage.shutdownOK.setValue(True)
