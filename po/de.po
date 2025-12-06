@@ -18,8 +18,8 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-12-02 15:40+0000\n"
-"PO-Revision-Date: 2025-12-04 11:00+0000\n"
-"Last-Translator: Masowick <Demian@gmx.co.uk>\n"
+"PO-Revision-Date: 2025-12-06 10:48+0000\n"
+"Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -2403,13 +2403,13 @@ msgstr "Alphabetisch unter Überschriften"
 msgid "Alphanumeric"
 msgstr "Alphanumerisch"
 
-msgid "Also import at reboot/restart enigma2"
-msgstr "Auch bei Neustart von Enigma2 importieren"
+msgid "Also import at reboot/restart"
+msgstr "Auch beim Neustart importieren"
 
 msgid "Also import from the extension menu"
 msgstr "Auch aus dem Erweiterungsmenü importieren"
 
-msgid "Also import when box is leaving standby"
+msgid "Also import when receiver is leaving standby"
 msgstr "Auch importieren, wenn die Box aus dem Standby erwacht"
 
 # ChannelSelection.py
@@ -2478,8 +2478,8 @@ msgstr "Amlogic-Fernbedienung"
 msgid "Amount %d / Success %d / Failed %d"
 msgstr "Anzahl %d / %d Erfolgreich / %d Fehlgeschlagen"
 
-msgid "An attempt is made to capture the current TV status. If this is not possible due to incorrect or missing status messages it may cause the receiver to respond unexpectedly. On the other hand, tries to respond better to different operating conditions."
-msgstr "Es wird versucht, den aktuellen TV-Betriebszustand zu erfassen. Ist dies aufgrund falscher oder fehlender Statusmeldungen nicht möglich, kann der Receiver unerwartet reagieren. Andererseits wird versucht, auf verschiedene Betriebszustände besser zu reagieren."
+msgid "An attempt is made to capture the current TV status. If status messages are incorrect or missing, the receiver may respond unexpectedly. Otherwise, it helps the receiver handle different operating conditions more effectively."
+msgstr "Es wird versucht, den aktuellen TV-Status zu erfassen. Sollten Statusmeldungen falsch sein oder fehlen, kann der Receiver unerwartet reagieren. Andererseits wird versucht, auf verschiedene Betriebszustände besser zu reagieren."
 
 msgid "An unknown error occurred!"
 msgstr "Ein unbekannter Fehler ist aufgetreten!"
@@ -4292,12 +4292,12 @@ msgstr "Das Intervall auswählen, wie oft eine Verbindung zum IceTV-Server herge
 msgid "Choose the amount of additional slots."
 msgstr "Anzahl der zusätzlichen Slots auswählen."
 
-msgid "Choose the display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
+msgid "Choose the display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' the month in digits ('DD' and 'MM' have leading zeros for single digit values). The screen display will be based on your choice but can be influenced by the skin."
 msgstr ""
 "Das Format für das Datum auswählen. 'T'/'TT' ist der Tag, 'M'/'MM' der Monat. Bei 'TT' und 'MM' wird einstelligen Werten eine '0' vorangestellt.\n"
 "Nicht jeder Skin unterstützt jede Einstellung."
 
-msgid "Choose the display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds.  ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
+msgid "Choose the display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' the seconds ('HH' and 'hh' have leading zeros for single digit values). The screen display will be based on your choice but can be influenced by the skin."
 msgstr ""
 "Das Format für die Uhrzeit auswählen. 'H'/'HH' zeigt sie im 24-Stunden-Format, 'h'/'hh' im 12-Stunden-Format an. Bei 'HH' oder 'hh' wird einstelligen Werten eine '0' vorangestellt.\n"
 "Nicht jeder Skin unterstützt jede Einstellung."
@@ -4305,12 +4305,12 @@ msgstr ""
 msgid "Choose the fallback font."
 msgstr "Die Ersatzschriftart auswählen."
 
-msgid "Choose the front panel display formatting style for dates. 'D' / 'DD' is the date and 'M' / 'MM' is the month in digits.  ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
+msgid "Choose the front panel display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' the month in digits ('DD' and 'MM' have leading zeros for single digit values). The screen display will be based on your choice but can be influenced by the skin."
 msgstr ""
 "Auswählen, ob und wie das Datum im Display angezeigt werden soll. 'Keine Anzeige' zeigt es gar nicht an. 'T'/'TT' ist das Datum und 'M'/'MM' der Monat. Bei 'TT' oder 'MM' wird einstelligen Werten eine '0' vorangestellt.\n"
 "Nicht jeder Skin unterstützt jede Einstellung."
 
-msgid "Choose the front panel display formatting style for times. 'H' / 'HH' is the hour for a 24 hour clock, 'h' / 'hh' is the hour for a 12 hour clock, 'mm' is the minutes.  ('HH' and 'hh' have leading zeros for single digit values.) The front panel display will be based on your choice but can be influenced any applicable skin."
+msgid "Choose the front panel display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' the minutes ('HH' and 'hh' have leading zeros for single digit values). The front panel display will be based on your choice but can be influenced any applicable skin."
 msgstr ""
 "Auswählen, ob und wie die Uhrzeit im Display angezeigt werden soll. 'Keine Anzeige' zeigt sie gar nicht an, 'H'/'HH' im 24-Stunden-Format, 'h'/'hh' im 12-Stunden-Format. Bei 'HH' oder 'hh' wird einstelligen Werten eine '0' vorangestellt.\n"
 "Nicht jeder Skin unterstützt jede Einstellung."
@@ -4321,7 +4321,7 @@ msgstr "Speicherort für Crash- und Debug-Logs auswählen."
 msgid "Choose the location where the EPG data will be stored when the %s %s is shut down. The location must be available at boot time."
 msgstr "Ort zur Speicherung der EPG-Daten auswählen, wenn die %s %s ausgeschaltet wird. Dieser Ort muss beim Start verfügbar sein!"
 
-msgid "Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several boxes."
+msgid "Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several receivers."
 msgstr "Dateinamen für die EPG-Daten auswählen, wenn die %s %s ausgeschaltet wird. Das kann nützlich sein, wenn mehrere Receiver verwendet werden."
 
 msgid "Choose the option to correct invalid EPG data."
@@ -4750,21 +4750,14 @@ msgstr ""
 "Nach einer Änderung ist ein Neustart erforderlich!"
 
 # data/setup.xml
-msgid "Configure for which types of recordings a warning about active recordings is shown when attempting to restart the box or the GUI."
+msgid "Configure for which types of recordings a warning about active recordings is shown when attempting to restart the receiver or the GUI."
 msgstr "Legt fest, ob beim Neustart eine Warnung wegen laufender Aufnahmen nur bei echten Aufnahmen oder auch bei Streaming- bzw. Pseudoaufnahmen (beispielsweise in EPG-Refresh) erfolgt."
 
 msgid "Configure front panel LEDs"
 msgstr "LEDs der Vorderseite einstellen"
 
-msgid "Configure how recording filenames are constructed. Standard: Date Time - Channel - Title Very very short: Title Very short: Title - Date Time Short with time: Date Time - Title Short: Date - Title Long: Date Time - Channel - Title - Info"
-msgstr ""
-"Zusammensetzung des Dateinamens:\n"
-"Standard: Datum Zeit – Sender – Titel\n"
-"Extrem kurz: Titel\n"
-"Sehr kurz: Titel – Datum Zeit\n"
-"Kurz mit Zeit: Datum Zeit – Titel\n"
-"Kurz: Datum – Titel\n"
-"Lang: Datum Zeit – Sender – Titel – Info"
+msgid "Configure how recording filenames are constructed. Standard: Date Time - Channel - Title Very very short: Title Very short: Title - Date Time Short with time: Date Time - Title Short: Date - Title Long: Date Time - Channel - Title - Info."
+msgstr "Zusammensetzung des Dateinamens: Standard: Datum Zeit – Sender – Titel, Extrem kurz: Titel, Sehr kurz: Titel – Datum Zeit, Kurz mit Zeit: Datum Zeit – Titel, Kurz: Datum – Titel, Lang: Datum Zeit – Sender – Titel – Info."
 
 msgid "Configure if and how crypto icons will be shown in the channel selection list."
 msgstr "Die Anzeige des Verschlüsselungssymbols in der Senderliste einstellen."
@@ -4939,7 +4932,7 @@ msgstr "Auswählen, was die Tasten < und > bewirken sollen."
 msgid "Configure the gateway."
 msgstr "Das Gateway einstellen."
 
-msgid "Configure the hard disk drive to go to standby after the specified idle time when the box is in standby."
+msgid "Configure the hard disk drive to go to standby after the specified idle time when the receiver is in standby."
 msgstr "Die Leerlaufzeit einstellen, nach welcher die Festplatte in den Ruhezustand gehen soll, wenn sich der Receiver im Standby befindet."
 
 msgid "Configure the hard disk drive to go to standby after the specified idle time."
@@ -5004,7 +4997,7 @@ msgstr "EPG-Sprachwahl 1 einstellen."
 msgid "Configure the refresh rate of the screen."
 msgstr "Bildwiederholrate einstellen."
 
-msgid "Configure the screen resolution for teletext (Not all skins support full-HD teletext)."
+msgid "Configure the teletext screen resolution. Note: Full-HD teletext is not supported by all skins."
 msgstr "Bestimmt die Videotext-Bildschirmauflösung (nicht alle Skins unterstützen Full-HD-Videotext)."
 
 msgid "Configure the second audio language."
@@ -5028,7 +5021,7 @@ msgstr "Das Zeitintervall (in Sekunden) für das Springen mit den Tasten '7' und
 msgid "Configure the slow motion speeds."
 msgstr "Die Zeitlupengeschwindigkeiten einstellen."
 
-msgid "Configure the source of the frontend data as shown on the infobars. 'Settings' is as stored on the settings. 'Tuner' is as reported by the tuner."
+msgid "Configure the source of the frontend data as shown on the InfoBars. 'Settings' is as stored on the settings. 'Tuner' is as reported by the tuner."
 msgstr "Die Datenquelle für die Anzeigen in der Infoleiste einstellen."
 
 msgid "Configure the speed of the background deletion process. Lower speed will consume less hard disk drive performance."
@@ -5098,7 +5091,7 @@ msgid "Configure whether multi channel sound tracks should be downmixed to stere
 msgstr "Das Herunterrechnen von Mehrkanalton zu Stereo konfigurieren."
 
 # data/setup.xml
-msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (e.g. EPGrefresh)."
+msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (e.g. in EPGrefresh)."
 msgstr "Legt fest, ob das Aufnahmesymbol auf Bildschirm und Display nur bei echten Aufnahmen oder auch bei Streaming- bzw. Pseudoaufnahmen (beispielsweise in EPG-Refresh) sichtbar ist."
 
 msgid "Configure which color format should be used on the SCART output."
@@ -5678,7 +5671,7 @@ msgid "Customize"
 msgstr "Extras"
 
 msgid "Customize OpenWebIF settings for fallback tuner"
-msgstr "Reservetuner in den OpenWebif-Einstellungen konfigurieren"
+msgstr "Reservetuner OpenWebif-Einstellungen konfigurieren"
 
 msgid "Customize System Settings"
 msgstr "Systemeinstellungen"
@@ -5759,8 +5752,8 @@ msgstr "DNS-Datenquelle"
 msgid "DNS mode"
 msgstr "DNS-Modus"
 
-msgid "DNS name or IP address"
-msgstr "Hostname oder IP-Adresse"
+msgid "Set the hostname or IP address."
+msgstr "Den Hostnamen oder die IP-Adresse einstellen."
 
 msgid "DNS suffix"
 msgstr "DNS-Suffix"
@@ -6476,8 +6469,8 @@ msgstr ""
 "Die Abwahl von Paketen erfolgt in der Regel, weil die Pakete mit bestehenden Paketen nicht kompatibel sind.\n"
 "Dies ist meist harmlos, aber es kann sein, dass die %s %s Probleme bekommt."
 
-msgid "Destination of fallback remote receiver"
-msgstr "Reservereceiver auswählen"
+msgid "Destination of fallback remote receiver."
+msgstr "Den Reservereceiver auswählen."
 
 msgid "Destination of fallback remote receiver for ATSC"
 msgstr "Bestimmungsort vom Reservereceiver für ATSC"
@@ -6762,7 +6755,7 @@ msgid "Display selection list as a selection menu"
 msgstr "Auswahlliste als Auswahlmenü anzeigen"
 
 # EPG Setup
-msgid "Display the EIT Now/Next event data in InfoBar."
+msgid "Display the EIT Now/Next event data in the InfoBar."
 msgstr "Bei 'Ja' werden EIT-EPG-Informationen Jetzt/Nächstes in der Infoleiste angezeigt."
 
 msgid "Display the base locales or all locales for a language."
@@ -7170,7 +7163,7 @@ msgstr "Duplex"
 msgid "Duplicate the current line"
 msgstr "Aktuelle Zeile duplizieren"
 
-msgid "During this time, the transmitter and the recording destination are checked. If the recording destination (eg NAS) does not ready in time for recording, this time can be increased."
+msgid "During this time, the transmitter and recording destination are checked. If the destination (e.g., NAS) isn’t ready in time, this time can be increased."
 msgstr "In dieser Zeit wird der Sender und das Aufnahmeziel überprüft. Ist das Aufnahmeziel (z. B. NAS) nicht rechtzeitig zur Aufnahme bereit, kann diese Zeit vergrößert werden."
 
 msgid "Dutch"
@@ -7528,7 +7521,7 @@ msgstr "Quad-Bild-im-Bild aktivieren"
 msgid "Enable Swap at startup"
 msgstr "Swap beim Hochfahren aktivieren"
 
-msgid "Enable Up/Down buttons for the 'all up/down' functions (at the beginning/end of the column)?"
+msgid "Activate UP/DOWN buttons for the 'all up/down' functions at the beginning/end of the column."
 msgstr "Die Tasten Hoch/Runter für die Funktion 'Alle Hoch/Runter' am Anfang/Ende der Spalte aktivieren."
 
 msgid "Enable VPS"
@@ -7611,7 +7604,7 @@ msgstr "Dolby-Digital-Downmix aktivieren"
 msgid "Enable fallback remote receiver"
 msgstr "Reservereceiver aktivieren"
 
-msgid "Enable freesat EPG"
+msgid "Enable FreeSat EPG"
 msgstr "Freesat-EPG aktivieren"
 
 msgid "Enable import timer from fallback tuner"
@@ -7639,7 +7632,7 @@ msgstr "Paniktaste aktivieren"
 msgid "Enable preview"
 msgstr "Vorschau aktivieren"
 
-msgid "Enable remote enigma2 receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner. Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_box:8001."
+msgid "Enable remote receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner). Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_receiver:8001."
 msgstr "Mit 'Ja' Remote-Enigma2-Receiver aktivieren, der versucht wird, wenn ein Sender lokal nicht empfangen werden kann (z. B. wenn der Tuner belegt oder der Sender lokal nicht verfügbar ist). Die komplette URL inklusive 'http://' und Portnummer (normalerweise '8001') angeben, also z. B. 'http://zweite_box:8001'."
 
 msgid "Enable teletext caching"
@@ -9683,7 +9676,7 @@ msgstr "Festplatteneinstellungen"
 msgid "Hard disk standby after"
 msgstr "Festplatten-Standby nach"
 
-msgid "Hard disk standby in box standby after"
+msgid "Hard disk standby in receiver standby after"
 msgstr "Festplatten-Standby, wenn Box im Standby nach"
 
 msgid "Harddisk"
@@ -10048,8 +10041,8 @@ msgstr "IP-Adresse ist ungültig!"
 msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr "IP-Adresse des Stream Relay-Servers, um Sender zu entschlüsseln, die nur über Stream Relay entschlüsselt werden können."
 
-msgid "IP of fallback remote receiver"
-msgstr "IP des Reservereceivers"
+msgid "Configure the IP of the fallback remote receiver."
+msgstr "Die IP des Reservereceivers einstellen."
 
 msgid "IPK Installer"
 msgstr "IPK-Installer"
@@ -10182,10 +10175,10 @@ msgstr "Bei 'Ja' wird ein Log des CEC-Protokolls erstellt. Die Logdateien befind
 msgid "If enabled, the new GStreamer playback engine will be used."
 msgstr "Wenn aktiviert, wird die neue GStreamer-Wiedergabe verwendet."
 
-msgid "If enabled, using a time window to detect a wake up from deep standby by a timer. Default setting ist disabled and used a special signal from the receiver. But some devices set a wrong or none signal and the wake up detection can fails."
+msgid "If enabled, a time window is used to detect wake-ups from deep standby triggered by a timer. The default setting is disabled, which uses a special signal from the receiver. However, some devices send an incorrect or no signal, causing wake-up detection to fail."
 msgstr ""
-"Bei 'Ja' kann ein Zeitfenster eingestellt werden, um ein Aufwachen aus dem Deep-Standby durch einen Timer zu erkennen.\n"
-"Bei 'Nein' wird ein spezielles Signal von dem Receiver verwendet. Manche Geräte setzen aber ein falsches oder kein Signal und die Erkennung kann fehlschlagen."
+"Wenn aktiviert, kann ein Zeitfenster eingestellt werden, um ein Aufwachen aus dem Deep-Standby durch einen Timer zu erkennen.\n"
+"Andernfalls wird ein spezielles Signal von dem Receiver verwendet. Manche Geräte setzen aber ein falsches oder kein Signal und die Erkennung kann fehlschlagen."
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Wenn die Logdateien zu viel Speicher belegen, werden die ältesten Dateien gelöscht."
@@ -10193,10 +10186,10 @@ msgstr "Wenn die Logdateien zu viel Speicher belegen, werden die ältesten Datei
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
 msgstr "Wenn möglich, wird die angegebene Anzahl von Minuten vor eigentlichem Beginn der Aufnahme überprüft, ob die Sendung früher anfängt. 0 deaktiviert diese Funktion."
 
-msgid "If set to 'Yes' the same commands will be sent to the TV for deep standby events as are sent during regular standby events."
+msgid "Enables sending the same TV commands for deep standby as for regular standby."
 msgstr "Bei 'Ja' werden bei Deep-Standby-Ereignissen dieselben Befehle an das Fernsehgerät gesendet wie bei normalen Standby-Ereignissen."
 
-msgid "If set to 'yes', allows you to use timeshift with alternative audio plugins."
+msgid "Enables timeshift to use alternative audio plugins."
 msgstr "Bei 'Ja' kann Timeshift mit alternativen Audio-Plugins verwendet werden."
 
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
@@ -10295,13 +10288,13 @@ msgstr "Sofortiges Beenden des Assistenten (nur im Debug-Modus)"
 msgid "Immediately restart selected devices."
 msgstr "Ausgewählte Geräte sofort neu starten."
 
-msgid "Import channels and/or EPG from remote receiver URL also when the receiver is getting out of standby"
+msgid "Import channels and/or EPG from the remote receiver URL, even when the receiver is coming out of standby."
 msgstr "Sender und/oder EPG von der Reservereceiver-URL importieren, auch wenn der Receiver Standby verlässt."
 
-msgid "Import channels and/or EPG from remote receiver URL when receiver is booted"
+msgid "Import channels and/or EPG from remote receiver URL when receiver is booted."
 msgstr "Sender und/oder EPG von der Reservereceiver-URL importieren, wenn der Receiver neu gestartet wird."
 
-msgid "Import channels and/or EPG from remote receiver URL when receiver or enigma2 is restarted"
+msgid "Import channels and/or EPG from remote receiver URL when receiver or GUI is restarted."
 msgstr "Sender und/oder EPG von der Reservereceiver-URL importieren, wenn der Receiver oder Enigma2 neu gestartet wird."
 
 msgid "Import from remote receiver URL"
@@ -10316,7 +10309,7 @@ msgstr "Zusätzlich zur Überprüfung bei Beginn eines Ereignisses kann diese Ei
 msgid "In expert mode, configure which tuners will be preferred for recordings, when more than one tuner is available."
 msgstr "Im Expertenmodus einstellen, welche Tuner für Aufnahmen bevorzugt werden sollen, wenn mehr als ein Tuner verfügbar ist."
 
-msgid "In most cases this should be set to No. Only enable if you have a very specific need."
+msgid "In most cases, leave this disabled. Enable only if you have a very specific need."
 msgstr "In den meisten Fällen sollte dies auf 'Nein' eingestellt sein. Nur aktivieren, wenn ein ganz bestimmter Bedarf besteht."
 
 msgid ""
@@ -10385,7 +10378,7 @@ msgstr "Inklusive EPG-Daten"
 msgid "Include MultiBoot data *"
 msgstr "Inklusive MultiBoot-Daten *"
 
-msgid "Include SDT, BAT in http streams"
+msgid "Include SDT and BAT in http streams"
 msgstr "SDT und BAT in HTTP-Stream integrieren"
 
 msgid "Include action map data"
@@ -11665,7 +11658,7 @@ msgstr "Das MultiBoot-Gerät verwalten."
 msgid "Make"
 msgstr "Marke"
 
-msgid "Make it possible to manually initiate the channels import and/or EPG via the extension menu"
+msgid "Make it possible to manually initiate the channels import and/or EPG via the extension menu."
 msgstr "Erlaubt es, den Senderimport und/oder EPG manuell über das Erweiterungsmenü zu starten."
 
 #
@@ -14847,8 +14840,8 @@ msgstr "Port D"
 msgid "Port number for the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr "Port-Nummer des Stream-Relay-Servers, um Dienste zu entschlüsseln, die nur über Stream Relay entschlüsselt werden können."
 
-msgid "Port of fallback remote receiver"
-msgstr "Port des Reservereceivers"
+msgid "Configure the Port of the fallback remote receiver."
+msgstr "Den Port des Reservereceivers einstellen."
 
 msgid "Portugal"
 msgstr "Portugal"
@@ -15335,7 +15328,7 @@ msgid "Purge"
 msgstr "Bereinigen"
 
 #
-msgid "Purge 'Trash' after (days)"
+msgid "Purge 'Trash' after x days"
 msgstr "Papierkorb nach x Tagen leeren"
 
 # ChannelSelection.py
@@ -15527,7 +15520,7 @@ msgstr "Neue PIN wiederholen"
 msgid "Read Only"
 msgstr "Nur Lesen"
 
-msgid "Read Userdata from oscam.conf"
+msgid "Read Userdata from 'oscam.conf'"
 msgstr "Benutzerdaten von 'oscam.conf' auslesen"
 
 msgid "Read/Write"
@@ -15798,7 +15791,7 @@ msgstr ""
 msgid "Refresh"
 msgstr "Aktualisieren"
 
-msgid "Refresh every (in hours)"
+msgid "Refresh every x hours"
 msgstr "Aktualisierungsintervall (in Stunden)"
 
 #
@@ -16772,7 +16765,7 @@ msgstr "Speichern und beenden"
 msgid "Save directory on EXIT"
 msgstr "Anfangsverzeichnis beim Beenden merken"
 
-msgid "Save every (in hours)"
+msgid "Save every x hours"
 msgstr "Sicherungsintervall (in Stunden)"
 
 #, python-format
@@ -17253,7 +17246,7 @@ msgstr "'Ja' auswählen, um alle Benutzeranpassungen der Skindaten zu entfernen.
 msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all key map, menu and setup override data and restore the default definitions."
 msgstr "'Ja' auswählen, um alle Daten der Bedienoberfläche zu entfernen. Es werden alle Tastaturbelegungs-, Menü- und Setup-Überschreibungsdaten entfernt und die Standarddefinitionen wiederhergestellt."
 
-msgid "Select 'Yes' to reschedule the task to when the receiver goes in to/out of Standby mode. The state change must happen within the task schedule window or else the task will not be run."
+msgid "Reschedule the task to run when the receiver enters or exits standby. The state change must occur within the task’s scheduled window, or the task will not run."
 msgstr "'Ja' auswählen, um die Aufgabe auf den Zeitpunkt zu verschieben, zu dem der Empfänger in Standby wechselt bzw. diesen verlässt. Die Statusänderung muss innerhalb des Zeitfensters für die Aufgabe erfolgen, sonst wird die Aufgabe nicht ausgeführt."
 
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
@@ -17413,7 +17406,7 @@ msgstr "Sendergruppe auswählen"
 msgid "Select Satellites"
 msgstr "Satelliten auswählen"
 
-msgid "Select SeekBar to be activated by arrow L/R (long) or << >> (long)."
+msgid "Select SeekBar to be activated by arrow LEFT/RIGHT (long) or << >> (long)."
 msgstr "Die Tasten für die Suchleistenaktivierung einstellen, Pfeil Links/Rechts lang oder <</>> lang."
 
 msgid "Select Shares"
@@ -17586,7 +17579,7 @@ msgstr "Auswählen, wie dieser Timer wiederholt werden soll."
 msgid "Select how quickly the dish should move between satellites."
 msgstr "Auswählen, wie schnell sich die Antenne zwischen den Satelliten bewegen soll."
 
-msgid "Select how the arrow ('UP', 'DOWN', 'LEFT', and 'RIGHT') buttons will act during seek actions."
+msgid "Select how the arrow buttons 'UP', 'DOWN', 'LEFT' or 'RIGHT' will act during seek actions."
 msgstr "Das Verhalten der Tasten 'Hoch', 'Runter, 'Links' und 'Rechts' für die Sprungaktionen auswählen."
 
 msgid "Select how the number buttons will act during seek actions."
@@ -17602,7 +17595,7 @@ msgid "Select how to activate the Quick EPG mode."
 msgstr "Auswählen, wie der grafische Infoleisten-EPG aufgerufen werden soll."
 
 #
-msgid "Select how your box will upgrade."
+msgid "Select how your receiver will upgrade."
 msgstr "Aktualisierungsmodus auswählen."
 
 msgid "Select if an end time is required."
@@ -17829,7 +17822,7 @@ msgstr "Standardverzeichnis für die rechte Spalte auswählen, wenn kein Verzeic
 msgid "Select the delay before the timer activates."
 msgstr "Die Verzögerung auswählen, bevor der Timer aktiviert wird."
 
-msgid "Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for boxes with multiple satellite tuners."
+msgid "Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for receivers with multiple satellite tuners."
 msgstr "Die Verzögerung auswählen, die beim Wechsel von einem Stream-Relay-Sender verwendet wird, bevor der Tuner auf einen anderen Sender wechselt. Die Verwendung von '0' wird nur für Boxen mit mehreren Satelliten-Tunern empfohlen."
 
 msgid "Select the delay to wait after pressing more digit buttons to select a new service."
@@ -18164,7 +18157,7 @@ msgstr "Auswählen, was die Taste OK bewirken soll."
 msgid "Select what you want the TV button to activate."
 msgstr "Auswählen, was die Taste TV bewirken soll."
 
-msgid "Select what you want the Up/Down button to activate."
+msgid "Select what you want the UP/DOWN button to activate."
 msgstr "Auswählen, was die Tasten Hoch/Runter bewirken sollen."
 
 msgid "Select where the recording should be saved."
@@ -18544,8 +18537,8 @@ msgstr "Die MAC-Adresse der %s %s einstellen."
 msgid "Set the UP/DOWN button skip percentage for the SeekBar."
 msgstr "Den Prozentsatz für das Überspringen in der Suchleiste für die Tasten Hoch/Runter festlegen."
 
-msgid "Set the User ID of the OpenWebif from your fallback tuner"
-msgstr "Die Benutzer-ID vom OpenWebif des Reservetuners eintragen"
+msgid "Set the User ID of the OpenWebif from your fallback tuner."
+msgstr "Die Benutzer-ID vom OpenWebif des Reservetuners eintragen."
 
 msgid "Set the aspect ratio of the service picons."
 msgstr "Das Seitenverhältnis der Picons einstellen."
@@ -18592,17 +18585,17 @@ msgstr "Die Sprungweite für die Suchleiste einstellen."
 msgid "Set the number of lines to be saved for 'stout' and 'sterr' output in scripts."
 msgstr "Anzahl der Zeilen für 'stout' und 'sterr' in Skript Ausgaben festlegen."
 
-msgid "Set the password of the OpenWebif from your fallback tuner"
-msgstr "Das Passwort vom OpenWebif des Reservetuners eintragen"
+msgid "Set the password of the OpenWebif from your fallback tuner."
+msgstr "Das Passwort vom OpenWebif des Reservetuners eintragen."
 
-msgid "Set the port of the OpenWebif from your fallback tuner"
-msgstr "Den Port vom OpenWebif des Reservetuners eintragen"
+msgid "Set the port of the OpenWebif from your fallback tuner."
+msgstr "Den Port vom OpenWebif des Reservetuners eintragen."
 
 msgid "Set the position of the recording icons."
 msgstr "Die Position der Aufnahmesymbole einstellen."
 
 # Menue Anpassungen OSD
-msgid "Set the screen type you get on pressing 'OK' when the info bar shows to 2nd infobar Lite or event info."
+msgid "Set the screen type you get on pressing 'OK' when the InfoBar shows to second InfoBar Lite or event info."
 msgstr "Wenn die Taste OK gedrückt wird, wird bei 'Nein' die komplette Infoleiste angezeigt, ansonsten nur eine einfache Version davon."
 
 msgid "Set the scrolling speed of text on the front display, this is used by software renderer in some skins."
@@ -18629,16 +18622,16 @@ msgstr ""
 "\n"
 "GELB drücken, um die Zeitzone über die Geolokalisierung einzustellen."
 
-msgid "Set the time to hide the infobar."
+msgid "Set the time to hide the InfoBar."
 msgstr "Die Anzeigedauer der Infoleiste einstellen."
 
-msgid "Set the time to hide the second infobar. The bar also disappears on pressing 'OK'."
+msgid "Set how long the second InfoBar stays visible. It also disappears when you press ‘OK’."
 msgstr "Die Anzeigedauer der zweiten Infoleiste einstellen. Diese kann auch mit OK beendet werden."
 
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
 msgstr "Die Wartezeit für das Ausführen der Standardaktion in den Meldungen 'Ausschalten', 'Standby' oder 'Neustart' einstellen (wird zum Beispiel in Aufnahmetimer, Ausschalttimer, Zeitplaneraufgaben usw. verwendet)."
 
-msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
+msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at 0,0 and the bottom right is at 1260,700. Note that the position is the top left of the spinner and not the centre of the spinner."
 msgstr "Obere linke Position des Spinners (Beschäftigungsanzeige) einstellen. Oben links ist 0,0, unten rechts 1260,700. Die Position ist die obere linke Ecke des Spinners, nicht dessen Mitte."
 
 msgid "Set the type of the progress indication in the channel selection screen."
@@ -18673,7 +18666,7 @@ msgstr "'Ja' auswählen, um die Playlists alphabetisch zu sortieren."
 msgid "Set time options"
 msgstr "Zeitoptionen einstellen"
 
-msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
+msgid "Set to 'Disabled' to replace underscore characters '_' in file and directory names with spaces."
 msgstr "Bei 'Nein' werden Unterstriche in Dateien und Verzeichnissen durch Leerzeichen ersetzt."
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby mode before shutting down."
@@ -18682,13 +18675,13 @@ msgstr "Aktivieren, um verschlüsselte Aufnahmen in der Warteschleife vor dem He
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
 msgstr "Aktivieren, um verschlüsselte Aufnahmen in der Warteschleife im Standby zu entschlüsseln."
 
-msgid "Set to 'Yes', to enable automatic recording of the background timeshift buffer."
+msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
 msgstr "'Ja' aktiviert die automatische Aufnahme für Timeshift im Hintergrund."
 
-msgid "Set to the desired primetime (hour)."
+msgid "Set to the desired primetime hour."
 msgstr "Die Stunde der Primetime einstellen."
 
-msgid "Set to the desired primetime (minutes."
+msgid "Set to the desired primetime minutes."
 msgstr "Die Minuten der Primetime einstellen."
 
 msgid "Set to what you want the button to do."
@@ -18722,7 +18715,7 @@ msgstr "Senderlisten"
 msgid "Setting Restored "
 msgstr "Wiederhergestellte Programmliste "
 
-msgid "Setting a password is strongly advised if your STB is open to the Internet. You must set a password in order to be able to use network services like FTP, Telnet or SSH."
+msgid "Setting a password is strongly advised if your receiver is open to the Internet. You must set a password in order to be able to use network services like FTP, Telnet or SSH."
 msgstr "Es wird dringend empfohlen, ein Passwort festzulegen, wenn der Receiver mit dem Internet verbunden ist, um Netzwerkdienste wie FTP, Telnet oder SSH nutzen zu können."
 
 msgid "Settings"
@@ -19256,7 +19249,7 @@ msgstr "Sendernummer anzeigen"
 msgid "Show channel selection"
 msgstr "Sendergruppen anzeigen"
 
-msgid "Show chapter positions for supported video files. (gstreamer version must be greather than 1)"
+msgid "Show chapter positions for supported video files."
 msgstr "Bei 'Ja' werden Kapitelpositionen für unterstützte Videodateien angezeigt (ab GStreamer Version 1)."
 
 msgid "Show columns"
@@ -19441,10 +19434,10 @@ msgstr "Nächsten Senderinformationsbildschirm anzeigen"
 msgid "Show next system information screen"
 msgstr "Nächsten Systeminformationsbildschirm anzeigen"
 
-msgid "Show notification when import channels and/or EPG from remote receiver URL did not complete"
+msgid "Show notification when import channels and/or EPG from remote receiver URL did not complete."
 msgstr "Benachrichtigung anzeigen, wenn der Import von Sendern und/oder EPG von der Reservereceiver-URL nicht abgeschlossen wurde."
 
-msgid "Show notification when import channels and/or EPG from remote receiver URL is completed"
+msgid "Show notification when import channels and/or EPG from remote receiver URL is completed."
 msgstr "Benachrichtigung anzeigen, wenn der Import von Sendern und/oder EPG von der Reservereceiver-URL abgeschlossen ist."
 
 msgid "Show notification when import channels was not successful"
@@ -19453,7 +19446,7 @@ msgstr "Benachrichtigung anzeigen, wenn der Import von Sendern nicht erfolgreich
 msgid "Show notification when import channels was successful"
 msgstr "Benachrichtigung anzeigen, wenn der Import von Sendern erfolgreich war."
 
-msgid "Show or hide the extended description, (skin dependent)."
+msgid "Show or hide the extended description (skin dependent)."
 msgstr "Bei 'Ja' wird eine erweiterte Beschreibung angezeigt (abhängig vom Skin)."
 
 msgid "Show parting lines"
@@ -19610,7 +19603,7 @@ msgstr "Infos anzeigen, wenn der File Commander nicht läuft und alle Aufgaben e
 msgid "Show the CCcam Info Screen"
 msgstr "CCcam-Infobildschirm anzeigen"
 
-msgid "Show the EIT Now/Next data in the InfoBar."
+msgid "Show EIT Now/Next event data in the InfoBar"
 msgstr "EIT Jetzt/Nächstes in der Infoleiste anzeigen"
 
 msgid "Show the Logs Settings screen"
@@ -19693,7 +19686,7 @@ msgstr "Verfügbare Plugins anzeigen, die installiert werden können."
 msgid "Shows available softcams. Here you can download and install them"
 msgstr "Verfügbare Softcams anzeigen, die installiert werden können."
 
-msgid "Shows live tv or informations on LCD."
+msgid "Shows live TV or informations on LCD."
 msgstr "Live-TV oder Informationen auf dem Display anzeigen."
 
 msgid "Shows the icons when new/unseen, else will not show an icon."
@@ -20197,10 +20190,8 @@ msgstr "Somalisch"
 msgid "Somalia"
 msgstr "Somalia"
 
-msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting sets the TV to standby before the switch. (If the TV does not turn back on it may require a slower transmission interval or the repetition of the wake-up command.)"
-msgstr ""
-"Einige TV-Geräte wechseln nicht den Eingang wenn ein anderer HDMI-Port aktiv ist. Diese Einstellung schaltet den TV zuvor in den Standby.\n"
-"(Wenn sich der TV nicht wieder einschaltet, ist möglicherweise ein langsameres Sendeintervall oder die Wiederholung von Aufwachbefehlen erforderlich.)"
+msgid "Some TVs cannot switch to the correct input if another HDMI port is active. This setting puts the TV into standby before switching. If the TV does not turn back on, a slower transmission interval or repeating the wake-up command may be required."
+msgstr "Einige TV-Geräte wechseln nicht den Eingang wenn ein anderer HDMI-Port aktiv ist. Diese Einstellung schaltet den TV zuvor in den Standby. Wenn sich der TV nicht wieder einschaltet, ist möglicherweise ein langsameres Sendeintervall oder die Wiederholung von Aufwachbefehlen erforderlich."
 
 msgid "Sorbian"
 msgstr "Sorbisch"
@@ -20658,7 +20649,7 @@ msgstr "Beendet"
 msgid "Stopping Softcam"
 msgstr "Softcam wird gestoppt"
 
-msgid "Stops time shift being used if a recording is in progress. (Advisable for USB sticks.)"
+msgid "Disables timeshift during recording (advisable for USB sticks)."
 msgstr "Bei 'Ja' wird Timeshift beendet, wenn eine Aufnahme läuft. Ratsam beim Verwenden eines USB-Sticks."
 
 msgid "Storage / Disk Information"
@@ -21033,7 +21024,7 @@ msgstr "Symbolischer Link"
 msgid "Symmetrical skips"
 msgstr "Symetrische Sprünge"
 
-msgid "Sync NTP every (minutes)"
+msgid "Sync NTP every x minutes"
 msgstr "Synchronisierungsintervall mit NTP-Server"
 
 msgid "Sync failure moving back to origin!"
@@ -21370,10 +21361,10 @@ msgstr "Die %s %s hat eine begrenzte Speicherkapazität. Eine Auslagerungsdatei 
 msgid "The %s %s is shutting down. Please wait..."
 msgstr "Die %s %s wird heruntergefahren. Bitte warten …"
 
-msgid "The %s %s reads the stored EPG data every (hours)."
+msgid "The %s %s reads the stored EPG data every x hours."
 msgstr "Die %s %s liest die gespeicherten EPG-Daten nach der eingestellten Zeit neu ein."
 
-msgid "The %s %s stores the EPG data every (hours)."
+msgid "The %s %s stores the EPG data every x hours."
 msgstr "Die %s %s speichert die EPG-Daten nach der eingestellten Zeit automatisch."
 
 #, python-format
@@ -21558,7 +21549,7 @@ msgstr "Die Sicherung war erfolgreich."
 msgid "The backup succeeded. We will now continue to explain the upgrade process."
 msgstr "Die Sicherung war erfolgreich. Es wird nun der Updateprozess erklärt."
 
-msgid "The bitrate of the video encoder. Larger value improves quality and increases file size."
+msgid "Bitrate of the video encoder. Larger values improves quality and increases file size."
 msgstr "Die Bitrate des Videoencoders. Ein größerer Wert verbessert die Qualität, erhöht aber die Dateigröße."
 
 msgid ""
@@ -21578,7 +21569,7 @@ msgstr ""
 "Die Standardliste der zu sichernden Dateien kann nicht verändert werden!\n"
 "Bitte die 'Zusätze' und 'Ausschlüsse' verwenden."
 
-msgid "The default settings are 5 minutes earlier to wake up from deep standby. It possibly may be necessary to change this. (e.g.: the actual wake-up time is inaccurate or to late, waiting to a network-drive, etc.)"
+msgid "Default wake-up is 5 minutes before deep standby. Adjust if the wake-up is too early or late, e.g., for network drives."
 msgstr "Die Standardeinstellung ist 5 Minuten früher aus dem Deep-Standby aufzuwachen. Es kann erforderlich sein, dies zu ändern (z. B.: Die tatsächliche Aufwachzeit ist ungenau oder zu spät, warten auf ein Netzlaufwerk usw.)."
 
 msgid "The default settings are wake up time - 5 minutes and timer begin time + 5 minutes. This setting changed the time window before the wake up time. So can be detected a wake up by a timer even at very early starting receivers."
@@ -21811,10 +21802,10 @@ msgstr "Dieses wiederbeschreibbare Medium ist bereits formatiert. Durch eine Neu
 msgid "This Option allows you to switch Audio to BT Speakers."
 msgstr "Den Ton auf die Bluetooth-Lautsprecher umleiten."
 
-msgid "This allows you change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
+msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
 msgstr "Die Schriftgröße relativ zu den Skineinstellungen ändern, wobei 1 die Größe um 1 erhöht und -1 die Größe um 1 verringert."
 
-msgid "This allows you change the number of rows shown."
+msgid "This allows you to change the number of rows shown."
 msgstr "Die Anzahl der angezeigten Zeilen einstellen."
 
 msgid "This allows you to set the maximum number of digits in a service number, up to 5."
@@ -21831,7 +21822,7 @@ msgstr "In diesem Feld kann nach einer zusätzlichen Symbolrate bis zu %s gesuch
 msgid "This function is not available as processing of large files may take too long to run on this hardware."
 msgstr "Die Funktion zur Bearbeitung großer Dateien ist auf dieser Hardware nicht möglich! Es würde viel zu lange dauern."
 
-msgid "This is a workaround for some devices that wake up again after switching to standby. The wake up command's from other devices will be ignored for few seconds."
+msgid "This is a workaround for devices that wake up immediately after entering standby. Wake-up commands from other devices are ignored for a few seconds."
 msgstr "Dies ist ein Workaround für einige Geräte, die nach dem Umschalten in den Standby wieder geweckt werden. Damit wird das Aufwecken durch andere Geräte für einige Sekunden ignoriert."
 
 #, python-format
@@ -21891,25 +21882,25 @@ msgstr "Die HDR10-Modi für UHD erzwingen."
 msgid "This option allows you can force the HLG Modes for UHD"
 msgstr "Die HLG-Modi für UHD erzwingen."
 
-msgid "This option allows you choose how to display remaining time, or elapsed time, or both."
+msgid "This option allows you to choose how to display remaining time, or elapsed time, or both."
 msgstr "Anzeige der verbleibenden und verstrichenen Zeit bei Live-TV einstellen."
 
-msgid "This option allows you choose how to display the remaining/elapsed time for live tv."
+msgid "This option allows you to choose how to display the remaining/elapsed time for live TV."
 msgstr "Anzeige der verbleibenden und verstrichenen Zeit bei Live-TV einstellen."
 
-msgid "This option allows you choose how to display the remaining/elapsed time for media playback."
+msgid "This option allows you to choose how to display the remaining/elapsed time for media playback."
 msgstr "Anzeige der verbleibenden und verstrichenen Zeit bei Medienwiedergabe einstellen."
 
-msgid "This option allows you choose if the display shows the time or nothing in Standby."
+msgid "This option allows you to choose if the display shows the time or nothing in Standby."
 msgstr "Die Anzeige der Uhrzeit im Standby einstellen."
 
-msgid "This option allows you choose if the display shows the time, channel number or nothing during operation."
+msgid "This option allows you to choose if the display shows the time, channel number or nothing during operation."
 msgstr "Auswählen, ob das Display im Betrieb Zeit, Sendernummer oder nichts anzeigen soll."
 
-msgid "This option allows you choose the background color of transparent picons."
+msgid "This option allows you to choose the background color of transparent picons."
 msgstr "Die Hintergrundfarbe von transparenten Picons einstellen."
 
-msgid "This option allows you choose the option for Subservice indicator or selection."
+msgid "This option allows you to choose the option for Subservice indicator or selection."
 msgstr "Unterkanäle anzeigen oder auswählen."
 
 # VideoEnhancement
@@ -21920,7 +21911,7 @@ msgstr "Den Glättungsfilter für das Dithering-Verfahren aktivieren oder nicht.
 msgid "This option allows you enable the vertical scaler dejagging."
 msgstr "Die vertikale Kantenglättung aktivieren oder nicht."
 
-msgid "This option allows you set the layout view (Text or Graphics)."
+msgid "This option allows you to set the layout view (Text or Graphics)."
 msgstr "Das Aussehen vom EPG (Text oder Grafik) einstellen."
 
 # Box Display
@@ -21976,7 +21967,7 @@ msgstr "Bei 'Ja' wird die verstrichene Zeit mit '+', ansonsten mit '-' angezeigt
 msgid "This option allows you to choose how to display standard definition video on your TV."
 msgstr "Die Anzeigeauflösung von SD-Video einstellen."
 
-msgid "This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first), when 'Quick Actions' preset actions are performed. "
+msgid "This option allows you to choose what the first button press jumps to in channel list screen (pressing '2' jumps to 'A' or '2' first) when 'Quick Actions' preset actions are performed."
 msgstr ""
 "Einstellen, was der erste Tastendruck in der Senderliste bewirken soll.\n"
 "'2' zum Beispiel springt zu '2' wenn es Sendernummern gibt, oder, wenn nicht, zum ersten Sender der mit 'A' anfängt (wie beim Handy)."
@@ -22917,8 +22908,8 @@ msgstr "UP80 ('keymap.u80')"
 msgid "URL"
 msgstr "URL"
 
-msgid "URL of fallback remote receiver"
-msgstr "URL des Reservereceivers"
+msgid "Configure the URL of the fallback remote receiver."
+msgstr "Die URL des Reservereceivers einstellen."
 
 #
 msgid "USALS"
@@ -23125,10 +23116,10 @@ msgstr "Aktiv"
 msgid "Up to 50 Mbps"
 msgstr "Bis zu 50 Mbps"
 
-msgid "Up/Down button mode"
+msgid "UP/DOWN button mode"
 msgstr "Tasten Hoch/Runter"
 
-msgid "Up/Down buttons also for 'all up/down'."
+msgid "UP/DOWN buttons also for 'all up/down'"
 msgstr "Tasten Hoch/Runter für 'Alle Hoch/Runter'"
 
 #
@@ -24218,29 +24209,29 @@ msgstr ""
 "Falls das nicht gewünscht ist, diese Funktion deaktivieren."
 
 # /data/setup.xml
-msgid "When enabled the PiP can be closed by the exit button."
-msgstr "Bei 'Ja' kann der Bild-im-Bild-Modus mit EXIT beendet werden."
+msgid "When enabled, the PiP can be closed using the EXIT button."
+msgstr "Wenn aktiviert, kann der Bild-im-Bild-Modus mit EXIT beendet werden."
 
-msgid "When enabled the receiver will automatically be switched off."
+msgid "When enabled, the receiver will automatically be switched off."
 msgstr "Wenn aktiviert, wird der Receiver automatisch ausgeschaltet."
 
-msgid "When enabled the receiver will automatically be switched on."
+msgid "When enabled, the receiver will automatically be switched on."
 msgstr "Wenn aktiviert, wird der Receiver automatisch eingeschaltet."
 
-msgid "When enabled the receiver will automatically return to standby when the TV is turned off."
+msgid "When enabled, the receiver will automatically return to standby when the TV is turned off."
 msgstr "Wenn aktiviert, wird der Receiver automatisch in den Standby gehen, wenn der Fernseher ausgeschaltet wird."
 
-msgid "When enabled the receiver will automatically wake from standby when the TV is turned on."
+msgid "When enabled, the receiver will automatically wake from standby when the TV is turned on."
 msgstr "Wenn aktiviert, wird der Receiver automatisch aus dem Standby aufwachen, wenn der Fernseher eingeschaltet wird."
 
-msgid "When enabled the timer from the fallback tuner is imported"
-msgstr "Wenn aktiviert, wird der Timer vom Reservetuner importiert"
+msgid "When enabled, the timer from the fallback tuner is imported."
+msgstr "Wenn aktiviert, wird der Timer vom Reservetuner importiert."
 
-msgid "When enabled the timer from the fallback tuner is the default timer"
+msgid "When enabled, the timer from the fallback tuner is the default timer."
 msgstr "Wenn aktiviert, wird der Timer vom Reservetuner als Timer benutzt."
 
-msgid "When enabled you can customize the OpenWebIf settings for the fallback tuner"
-msgstr "Wenn aktiviert, kann der Reservetuner im OpenWebif konfiguriert werden."
+msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
+msgstr "Wenn aktiviert, sind die OpenWebif Einstellungen für den Reservetuner einstellbar."
 
 msgid "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
 msgstr "Bei 'Ja' werden AIT-Daten in HTTP-Streams eingefügt. Dies ermöglicht einem Client-Receiver HbbTV zu nutzen."
@@ -24248,7 +24239,7 @@ msgstr "Bei 'Ja' werden AIT-Daten in HTTP-Streams eingefügt. Dies ermöglicht e
 msgid "When enabled, EIT data will be included in http streams. This allows a client receiver to show EPG."
 msgstr "Bei 'Ja' werden EIT-Daten in HTTP-Streams eingefügt. Dies ermöglicht einem Client-Receiver einen EPG anzuzeigen."
 
-msgid "When enabled, SDT, BAT data will be included in http streams."
+msgid "When enabled, SDT and BAT data will be included in http streams."
 msgstr "Wenn aktiviert, werden Daten von SDT (Service Description Table – Programmbeschreibungstabelle) und BAT (Bouquet Association Table – Bouquetbeschreibungstabelle) in HTTP-Streams eingefügt."
 
 msgid "When enabled, a pop up message will be shown when a movie has finished and the next one will start."
@@ -24275,7 +24266,7 @@ msgstr "Bei 'Ja' darf eine Aufnahme das Live-TV unterbrechen, falls kein freier 
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Bei 'Ja' wird eine Warnung angezeigt und Timeshift kann gestoppt oder fortgeführt werden."
 
-msgid "When enabled, always unscramble receiving http streams. This takes up more resources (unscrambling demuxers), only enable if necessary. Individual streams are always unscrambled if 0x100 is added to the service type, regardless of this setting."
+msgid "Enable to always unscramble received HTTP streams. Uses more resources due to demuxers. Streams with 0x100 in the service type are always unscrambled, regardless of this setting."
 msgstr "Bei 'Ja' werden empfangene HTTP-Streams immer entschlüsselt. Dies verbraucht mehr Ressourcen (Demuxer). Diese Option also nur aktivieren, wenn sie notwendig ist. Individuelle Streams sind immer entschlüsselt, wenn 0x100 zum Servicetyp hinzugefügt wurde, unabhängig von dieser Einstellung."
 
 msgid "When enabled, authentication is required to watch http streams."
@@ -24382,7 +24373,7 @@ msgstr "Die Vorlaufzeit in Minuten einstellen, wann der Umschalttimer vor dem ei
 msgid "When nonzero, a zap timer will stop the nominated period after the ending time indicated in the EPG."
 msgstr "Die Nachlaufzeit in Minuten einstellen, wie lange der Umschalttimer nach dem eigentlichen Ende noch weiter laufen soll."
 
-msgid "When receiver wakes from standby it will command the TV to switch to the HDMI input to which the receiver is connected."
+msgid "When the receiver wakes from standby, it will switch the TV to the HDMI input connected to the receiver."
 msgstr "Wenn der Receiver aus dem Standby aufwacht, wird am Fernseher auf den HDMI Eingang geschaltet, an dem der Receiver angeschlossen ist."
 
 msgid "When set each folder will show the previous state used, when off the default values will be shown."
@@ -24391,8 +24382,8 @@ msgstr "Bei 'Ja' merken sich Verzeichnisse den vorherigen Zustand, ansonsten wir
 msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr "Bei 'Ja' wird, nachdem der Film beendet wurde, Live-TV angezeigt."
 
-msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
-msgstr "Bei 'Ja' kann jedem verschlüsselten Sender eine bestimmte Softcam zugeordnet werden."
+msgid "When enabled, a specific Softcam can be assigned to each encrypted service."
+msgstr "Wenn aktiviert, kann jedem verschlüsselten Sender eine bestimmte Softcam zugeordnet werden."
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr ""
@@ -24413,7 +24404,7 @@ msgstr "Wenn der Receiver aus dem Standby oder Deep-Standby aufwacht, wird auch 
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
 msgstr "Wird der rote Rahmen korrekt angezeigt, die Einstellungen mit GRÜN speichern und beenden."
 
-msgid "When tuned to a service the system will normally scan the transponder for any changes and save them. Only set to 'yes' if you're absolutely sure what you're doing."
+msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you’re doing."
 msgstr "Wenn ein Sender eingestellt ist, durchsucht das System den Transponder nach Änderungen und speichert diese. 'Ja' nur auswählen, wenn die Auswirkungen bekannt sind."
 
 msgid "When yes, VPS will be enabled on instant records (stop after current event), if the channel supports VPS."
@@ -24516,7 +24507,7 @@ msgstr "Das Display im Standby ausschalten."
 msgid "With this option you can switch the LED color or deactivate the LED."
 msgstr "Die LED-Farbe einstellen oder die LED deaktivieren."
 
-msgid "With this setting, you can probably improve the signal quality or eliminate problems that can occur with longer HDMI cables."
+msgid "This setting can help improve signal quality or prevent issues with longer HDMI cables."
 msgstr "Mit dieser Einstellung kann man wahrscheinlich die Signalqualität verbessern oder Probleme beseitigen, die bei längeren HDMI-Kabeln auftreten können."
 
 #
