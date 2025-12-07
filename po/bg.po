@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-02 15:40+0000\n"
+"POT-Creation-Date: 2025-12-06 12:58+0000\n"
 "PO-Revision-Date: 2023-08-06 06:22+0000\n"
 "Last-Translator: Salif Mehmed <mail@salif.eu>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/bg/>\n"
@@ -799,10 +799,6 @@ msgstr[0] "%d час"
 msgstr[1] "%d часове"
 
 #, python-format
-msgid "%d Hours"
-msgstr ""
-
-#, python-format
 msgid "%d MB"
 msgstr ""
 
@@ -844,10 +840,6 @@ msgstr[0] "%d минута"
 msgstr[1] "%d минути"
 
 #, python-format
-msgid "%d Minutes"
-msgstr ""
-
-#, python-format
 msgid "%d Month"
 msgid_plural "%d Months"
 msgstr[0] ""
@@ -874,10 +866,6 @@ msgid "%d Second"
 msgid_plural "%d Seconds"
 msgstr[0] "%d секунда"
 msgstr[1] "%d секунди"
-
-#, python-format
-msgid "%d Seconds"
-msgstr ""
 
 #, python-format
 msgid "%d Week"
@@ -1809,6 +1797,9 @@ msgstr "Активиране на MAC-aдрес конфигурация"
 msgid "Activate Picture in Picture"
 msgstr "Активиране на Картина в Картина"
 
+msgid "Activate UP/DOWN buttons for the 'all up/down' functions at the beginning/end of the column."
+msgstr "Разрешаване на бутоните нагоре/надолу за функцията „всички нагоре/надолу“? (в началото/края на колоната)"
+
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr "Активиране на начин за изпращане на отделни или специфични вътрешни HDMI-CEC команди от командния ред."
 
@@ -2283,7 +2274,7 @@ msgstr "Импортиране при рестарт на приемника/eni
 msgid "Also import from the extension menu"
 msgstr "Добави импортиране в менюто с разширенията"
 
-msgid "Also import when receiver is leaving standby"
+msgid "Also import when leaving standby"
 msgstr "Импортиране при изход от режим готовност"
 
 msgid "Also on standby"
@@ -3078,6 +3069,9 @@ msgstr ""
 
 msgid "Bitrate"
 msgstr "Скорост на предаване"
+
+msgid "Bitrate of the video encoder. Larger values improves quality and increases file size."
+msgstr "Битрейт на видео енкодера. По-голямата стойност подобрява качеството и увеличава размера на файла."
 
 msgid "Black"
 msgstr "Черен"
@@ -4568,11 +4562,20 @@ msgstr "Конфигуриране на DiSEqC режима за този LNB."
 msgid "Configure the IP address."
 msgstr "Конфигуриране на IP адреса."
 
+msgid "Configure the IP of the fallback remote receiver."
+msgstr "IP на резервния отдалечен приемник"
+
 msgid ""
 "Configure the Internet connection by adjusting the values shown.\n"
 "\n"
 "When the settings are correct press OK to continue."
 msgstr ""
+
+msgid "Configure the Port of the fallback remote receiver."
+msgstr "Порт на резервния отдалечен приемник"
+
+msgid "Configure the URL of the fallback remote receiver."
+msgstr "Въведете URL на резервния приемник"
 
 msgid "Configure the alignment of events."
 msgstr "Конфигуриране на подравняването на събитията."
@@ -4607,7 +4610,7 @@ msgstr "Конфигуриране на нивото на яркост на ди
 msgid "Configure the brightness level of the front panel display for normal operation."
 msgstr "Конфигуриране на нивото на яркост на дисплея на предния панел за нормална операция."
 
-msgid "Configure the brightness level of the front panel display for standby."
+msgid "Configure the brightness level of the front panel display for Standby."
 msgstr "Конфигуриране на нивото на яркост на дисплея на предния панел за standby."
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
@@ -4736,9 +4739,6 @@ msgstr "Конфигуриране на първи език за EPG."
 msgid "Configure the refresh rate of the screen."
 msgstr "Конфигуриране на честотата на опресняване на екрана."
 
-msgid "Configure the teletext screen resolution. Note: Full-HD teletext is not supported by all skins."
-msgstr "Конфигуриране на разделителната способност на екрана за телетекст (Не всички кожи поддържат HD телетекст)."
-
 msgid "Configure the second audio language."
 msgstr "Конфигуриране на втори аудио език."
 
@@ -4774,6 +4774,9 @@ msgstr "Конфигуриране на стартовата координат�
 
 msgid "Configure the subtitle delay when timing information is not available."
 msgstr "Конфигуриране на забавяне субтитри, когато инфото за време не е налично."
+
+msgid "Configure the teletext screen resolution. Note: Full-HD teletext is not supported by all skins."
+msgstr "Конфигуриране на разделителната способност на екрана за телетекст (Не всички кожи поддържат HD телетекст)."
 
 msgid "Configure the third audio language."
 msgstr "Конфигуриране на трети аудио език."
@@ -5458,9 +5461,6 @@ msgstr "DNS източник на данни"
 msgid "DNS mode"
 msgstr ""
 
-msgid "Set the hostname or IP address."
-msgstr ""
-
 msgid "DNS suffix"
 msgstr ""
 
@@ -5819,6 +5819,9 @@ msgstr ""
 msgid "Default volume offset"
 msgstr ""
 
+msgid "Default wake-up is 5 minutes before Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
+msgstr "Настройките по подразбиране са 5 минути по-рано, за събуждане от deep standby. Възможно е да е необходимо да промените това. (Напр.: реалното време за събуждане е неточно или късно, чакайки мрежово устройство и т.н.)"
+
 #, python-format
 msgid "Default: '%s'."
 msgstr "По подразбиране: '%s'."
@@ -6154,9 +6157,6 @@ msgstr ""
 msgid "Deselected packages usually occur because those packaged are incompatible with existing packages. While this is mostly harmless it is possible that your %s %s may experience issues."
 msgstr "Премахнатите от избора пакети обикновено се появяват, защото тези пакетирани са несъвместими със съществуващите пакети. Въпреки че това е почти безвредно, възможно е вашият %s %s да има проблеми."
 
-msgid "Destination of fallback remote receiver."
-msgstr "Въведете URL на резервния приемник"
-
 msgid "Destination of fallback remote receiver for ATSC"
 msgstr "Въведете URL на резервния приемник за ARSC"
 
@@ -6165,6 +6165,9 @@ msgstr "Въведете URL на резервния приемник за DVB-C
 
 msgid "Destination of fallback remote receiver for DVB-T"
 msgstr "Въведете URL на резервния приемник за DVB-T"
+
+msgid "Destination of fallback remote receiver."
+msgstr "Въведете URL на резервния приемник"
 
 msgid "Detail of GStreamer log."
 msgstr "Подробности от дневника на GStreamer"
@@ -6358,6 +6361,9 @@ msgstr "Забранен PIP.\n"
 
 msgid "Disabled or WPA/WPA2"
 msgstr "Забранено или WPA/WPA2"
+
+msgid "Disables timeshift during recording (advisable for USB sticks)."
+msgstr "Стоп на използване на timeshift, ако записа е в ход. (Препоръчително за USB стикове)"
 
 msgid "Disabling Chkroot failed!"
 msgstr ""
@@ -7084,6 +7090,9 @@ msgstr "активирайте предпочитана редакция"
 msgid "Enable Focus Animation"
 msgstr "Разрешаване на анимацията за фокусиране"
 
+msgid "Enable FreeSat EPG"
+msgstr "Разрешаване на freesat EPG"
+
 msgid "Enable GStreamer debug log *"
 msgstr "Разрешаване на дневника за отстраняване на грешки на GStreamer *"
 
@@ -7129,9 +7138,6 @@ msgstr "Разрешаване на Quad PIP"
 msgid "Enable Swap at startup"
 msgstr "Разрешаване на Swap при стартиране"
 
-msgid "Activate UP/DOWN buttons for the 'all up/down' functions at the beginning/end of the column."
-msgstr "Разрешаване на бутоните нагоре/надолу за функцията „всички нагоре/надолу“? (в началото/края на колоната)"
-
 msgid "Enable VPS"
 msgstr ""
 
@@ -7172,7 +7178,7 @@ msgstr ""
 msgid "Enable autorefresh templates."
 msgstr ""
 
-msgid "Enable blinking rec symbol on the LCD Display in Standby."
+msgid "Enable blinking rec symbol on the LCD Display in standby."
 msgstr "В режим на готовност запис на LCD дисплея"
 
 msgid "Enable blinking rec symbol on the LCD Display."
@@ -7211,9 +7217,6 @@ msgstr "Разрешаване на цифрово смесване"
 msgid "Enable fallback remote receiver"
 msgstr "Разрешаване на резервния дистанционен приемник"
 
-msgid "Enable FreeSat EPG"
-msgstr "Разрешаване на freesat EPG"
-
 msgid "Enable import timer from fallback tuner"
 msgstr "Активиране импорт на таймери от резервен тунер"
 
@@ -7238,7 +7241,7 @@ msgstr "Разрешаване на паник бутона"
 msgid "Enable preview"
 msgstr "Разрешаване на визуализацията"
 
-msgid "Enable remote receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner). Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_receiver:8001."
+msgid "Enable remote receiver to be tried to tune into services that can't be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner). Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_receiver:8001."
 msgstr "Разрешаване на отдалечения приемник на enigma2, за да се опитате да настроите сервизи, които не могат да бъдат настроени на местно ниво (например тунерът е зает или не е налице тип сервиз в локалния тунер.). ), Например http: // second_box: 8001."
 
 msgid "Enable teletext caching"
@@ -7307,6 +7310,9 @@ msgstr ""
 msgid "Enable to add some extra spacing to the Information screens. This can improve readability."
 msgstr ""
 
+msgid "Enable to always unscramble received HTTP streams. Uses more resources due to demuxers. Streams with 0x100 in the service type are always unscrambled, regardless of this setting."
+msgstr "Когато е активирано, винаги декодирайте получаването на http потоци. Това отнема повече ресурси (декодиране на демуксери), разрешава се само ако е необходимо. Отделните потоци винаги се декодират, ако 0x100 се добави към типа на услугата, независимо от тази настройка."
+
 msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch."
 msgstr "Разрешете за показване на всички вярно/невярно, да/не, включване/изключване и активиране/деактивиране на опциите за настройка като графичен превключвател."
 
@@ -7324,6 +7330,12 @@ msgstr "Разрешен"
 
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Разрешаване на функцията, така че приемникът да може да декриптира потоци (ако данните на ECM са включени в потока и има налична валидна карта)."
+
+msgid "Enables sending the same TV commands for deep standby as for regular standby."
+msgstr "Ако е зададено на „Да“, същите команди ще бъдат изпращани към телевизора за събития в режим на дълбока готовност, както се изпращат по време на редовни събития в режим на готовност."
+
+msgid "Enables timeshift to use alternative audio plugins."
+msgstr ""
 
 msgid "Encrypted: "
 msgstr "Криптирано: "
@@ -9546,9 +9558,6 @@ msgstr ""
 msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr ""
 
-msgid "Configure the IP of the fallback remote receiver."
-msgstr "IP на резервния отдалечен приемник"
-
 msgid "IPK Installer"
 msgstr "IPK инсталатор"
 
@@ -9671,22 +9680,16 @@ msgstr "Ако е разрешено, данните от AIT са включе�
 msgid "If enabled, a log will be kept of CEC protocol traffic. The log files are located with the other log files but named 'Enigma2-hdmicec-[date].log'."
 msgstr "Ако е активирано, ще се съхранява дневник за трафика на CEC протокола. Регистрационните файлове се намират заедно с другите регистрационни файлове, но с име „Enigma2-hdmicec-[date].log“."
 
+msgid "If enabled, a time window is used to detect wake-ups from Deep Standby triggered by a timer. The default setting is disabled, which uses a special signal from the receiver. However, some devices send an incorrect or no signal, causing wake-up detection to fail."
+msgstr "Ако е активирано, използване на времеви прозорец за откриване на събуждане от дълбока готовност чрез таймер. Настройката по подразбиране е деактивирана и използва специален сигнал от приемника. Но някои устройства задават грешен или никакъв сигнал и откриването на събуждане може да се провали."
+
 msgid "If enabled, the new GStreamer playback engine will be used."
 msgstr ""
-
-msgid "If enabled, a time window is used to detect wake-ups from deep standby triggered by a timer. The default setting is disabled, which uses a special signal from the receiver. However, some devices send an incorrect or no signal, causing wake-up detection to fail."
-msgstr "Ако е активирано, използване на времеви прозорец за откриване на събуждане от дълбока готовност чрез таймер. Настройката по подразбиране е деактивирана и използва специален сигнал от приемника. Но някои устройства задават грешен или никакъв сигнал и откриването на събуждане може да се провали."
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Ако дневницитеи зползват определеното максимално използвано пространство, най-старите ще бъдат изтрити."
 
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
-msgstr ""
-
-msgid "Enables sending the same TV commands for deep standby as for regular standby."
-msgstr "Ако е зададено на „Да“, същите команди ще бъдат изпращани към телевизора за събития в режим на дълбока готовност, както се изпращат по време на редовни събития в режим на готовност."
-
-msgid "Enables timeshift to use alternative audio plugins."
 msgstr ""
 
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
@@ -9783,14 +9786,14 @@ msgstr ""
 msgid "Immediately restart selected devices."
 msgstr "Незабавно рестартирайте избраните устройства."
 
-msgid "Import channels and/or EPG from the remote receiver URL, even when the receiver is coming out of standby."
-msgstr "Импортиране на канали/EPG от резервния приемник при изход от режим готовност"
-
 msgid "Import channels and/or EPG from remote receiver URL when receiver is booted."
 msgstr "Импортиране на канали и/или EPG от резервния приемник при старт на приемника"
 
 msgid "Import channels and/or EPG from remote receiver URL when receiver or GUI is restarted."
 msgstr "Импортиране на канали и/или EPG от резервния приемник при рестарт на приемника или enigma2"
+
+msgid "Import channels and/or EPG from the remote receiver URL, even when the receiver is coming out of standby."
+msgstr "Импортиране на канали/EPG от резервния приемник при изход от режим готовност"
 
 msgid "Import from remote receiver URL"
 msgstr "Импортиране от URL на резервния приемник"
@@ -10522,7 +10525,7 @@ msgstr ""
 msgid "LED Standby"
 msgstr "LED режим на готовност"
 
-msgid "LED brightness during deep standby."
+msgid "LED brightness during Deep Standby."
 msgstr "LED яркост по време на дълбока готовност."
 
 msgid "LED brightness during normal operations."
@@ -13084,10 +13087,10 @@ msgstr ""
 msgid "Opera"
 msgstr ""
 
-msgid "Operating LED status in deep standby mode"
+msgid "Operating LED status in Deep Standby"
 msgstr "Работно състояние на светодиода в режим на дълбока готовност"
 
-msgid "Operating LED status in standby mode"
+msgid "Operating LED status in Standby"
 msgstr "Работно състояние на светодиода в режим на готовност"
 
 msgid "Operating LED status while running"
@@ -13105,7 +13108,7 @@ msgstr "Опция"
 msgid "Option to disable picons on the Infobar."
 msgstr "Опция за забраняване на пикони в инфобара"
 
-msgid "Option to enable the Hardware Standby Timer."
+msgid "Option to enable the hardware standby timer."
 msgstr "Опция за разрешаване на Hardware Standby Timer"
 
 msgid "Optional parameter"
@@ -13393,9 +13396,6 @@ msgstr ""
 
 msgid "Password"
 msgstr "Парола"
-
-msgid "Password (httpuser)"
-msgstr "Парола (httpuser)"
 
 msgid "Password (httpwd)"
 msgstr "Парола (httpwd)"
@@ -14005,9 +14005,6 @@ msgstr "Порт D"
 msgid "Port number for the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr ""
 
-msgid "Configure the Port of the fallback remote receiver."
-msgstr "Порт на резервния отдалечен приемник"
-
 msgid "Portugal"
 msgstr ""
 
@@ -14047,7 +14044,7 @@ msgstr ""
 msgid "Power"
 msgstr "Включване"
 
-msgid "Power LED State in Deep-Standby"
+msgid "Power LED State in Deep Standby"
 msgstr "Състояние на светодиода за захранване в режим на дълбока готовност"
 
 msgid "Power LED State in Standby"
@@ -14056,7 +14053,7 @@ msgstr "Състояние на светодиода за захранване �
 msgid "Power LED can be turned on or off here."
 msgstr "Светодиодът за захранване може да бъде включен или изключен тук."
 
-msgid "Power LED state during deep-standby."
+msgid "Power LED state during Deep Standby."
 msgstr "Състояние на светодиода за захранване по време на дълбока готовност."
 
 msgid "Power LED state during standby."
@@ -15234,6 +15231,9 @@ msgstr "Необходим тип носител:"
 msgid "Rereading partition table"
 msgstr "Препрочитане на таблицата на дяловете"
 
+msgid "Reschedule the task to run when the receiver enters or exits standby. The state change must occur within the task’s scheduled window, or the task will not run."
+msgstr ""
+
 msgid "Reserved"
 msgstr "Запазено"
 
@@ -16247,9 +16247,6 @@ msgstr "Изберете „Да“, за да премахнете всички
 msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all key map, menu and setup override data and restore the default definitions."
 msgstr "Изберете „Да“, за да премахнете всички данни от потребителския интерфейс. Избирането на тази опция ще премахне всички данни за отмяна на клавиатурата, менюто и настройките и ще възстанови дефинициите по подразбиране."
 
-msgid "Reschedule the task to run when the receiver enters or exits standby. The state change must occur within the task’s scheduled window, or the task will not run."
-msgstr ""
-
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr "Изберете „Да“, за да нулирате мрежовата конфигурация до фабричните. Това ще активира Ethernet порта, ако съществува, и ще настрои приемника да използва DHCP. Всички останали мрежови интерфейси ще бъдат изтрити."
 
@@ -16479,10 +16476,10 @@ msgstr ""
 msgid "Select a script to run:"
 msgstr "Изберете скрипт за стартиране:"
 
-msgid "Select a time, when in Standby mode, after which the descramble can proceed."
+msgid "Select a time, when in standby mode, after which the descramble can proceed."
 msgstr ""
 
-msgid "Select a time, when in Standby, before which descramble can proceed."
+msgid "Select a time, when in standby, before which descramble can proceed."
 msgstr ""
 
 msgid "Select a tuner"
@@ -16579,7 +16576,7 @@ msgstr ""
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr "Изберете как е настроена сателитната антена. т.е. фиксирана чиния, единичен конвертор, превключвател DiSEqC, позиционер и др."
 
-msgid "Select how the schedule is handled with respect to Standby mode."
+msgid "Select how the schedule is handled with respect to standby mode."
 msgstr ""
 
 msgid "Select how to activate the Quick EPG mode."
@@ -17443,6 +17440,9 @@ msgstr "Задайте фиксиран"
 msgid "Set fps for external subtitles"
 msgstr "Задайте fps за външни субтитри"
 
+msgid "Set how long the second InfoBar stays visible. It also disappears when you press ‘OK’."
+msgstr "Задайте време за скриване на втория инфобар. Барът също изчезва при натискане на 'OK'."
+
 msgid "Set interface as the default Interface"
 msgstr "Задайте интерфейса като интерфейс по подразбиране"
 
@@ -17501,6 +17501,9 @@ msgstr "Задайте по подразбиране метода за сорт�
 msgid "Set the delay time between repeated loops, this is used by software renderer in some skins."
 msgstr "Задайте време за забавяне между повторените цикли, което се използва от софтуера за изобразяване в някои кожи."
 
+msgid "Set the hostname or IP address."
+msgstr ""
+
 msgid "Set the jump-size of the SeekBar."
 msgstr "Задайте размера на скока на seekbar."
 
@@ -17543,9 +17546,6 @@ msgstr ""
 msgid "Set the time to hide the InfoBar."
 msgstr "Задайте време за скриване на инфобара."
 
-msgid "Set how long the second InfoBar stays visible. It also disappears when you press ‘OK’."
-msgstr "Задайте време за скриване на втория инфобар. Барът също изчезва при натискане на 'OK'."
-
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
 msgstr "Задайте времето за изчакване за изпълнение на действието по подразбиране в съобщения за изключване, готовност или рестартиране. (напр. използва се в Таймер, PowerTimer, Sleeptimer, ...)"
 
@@ -17587,7 +17587,7 @@ msgstr ""
 msgid "Set to 'Disabled' to replace underscore characters '_' in file and directory names with spaces."
 msgstr ""
 
-msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby mode before shutting down."
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in standby mode before shutting down."
 msgstr ""
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
@@ -17910,6 +17910,9 @@ msgstr ""
 msgid "Show Driver packages"
 msgstr ""
 
+msgid "Show EIT Now/Next event data in the InfoBar"
+msgstr "Показване на EIT сега/напред в информационната лента"
+
 msgid "Show EPG"
 msgstr "Показване на EPG"
 
@@ -17967,7 +17970,7 @@ msgstr ""
 msgid "Show Media Player in Main Menu"
 msgstr "показване на медия плеър на основното меню"
 
-msgid "Show Media playback Remaining/Elapsed as"
+msgid "Show Media playback remaining/elapsed as"
 msgstr "Показване на възпроизвеждане на мултимедия Оставащо/изминало като"
 
 msgid "Show Merlin EPG Center"
@@ -18469,9 +18472,6 @@ msgstr ""
 
 msgid "Show the CCcam Info Screen"
 msgstr "Показване на информационния екран на CCcam"
-
-msgid "Show EIT Now/Next event data in the InfoBar"
-msgstr "Показване на EIT сега/напред в информационната лента"
 
 msgid "Show the Logs Settings screen"
 msgstr ""
@@ -19030,7 +19030,7 @@ msgstr ""
 msgid "Somalia"
 msgstr ""
 
-msgid "Some TVs cannot switch to the correct input if another HDMI port is active. This setting puts the TV into standby before switching. If the TV does not turn back on, a slower transmission interval or repeating the wake-up command may be required."
+msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting puts the TV into standby before switching. If the TV does not turn back on, a slower transmission interval or repeating the wake-up command may be required."
 msgstr "Някои телевизионни устройства не могат да се превключват, за да коригират входа, ако е активен друг HDMI порт. Тази настройка настройва телевизора в режим на готовност преди превключвателя. (Ако телевизорът не се включи отново, може да се наложи по-бавен интервал на предаване или повторение на командите за събуждане.)"
 
 msgid "Sorbian"
@@ -19359,10 +19359,10 @@ msgstr ""
 msgid "Status of the display during operation"
 msgstr "Състояние на дисплея по време на работа"
 
-msgid "Status of the display in deep standby"
+msgid "Status of the display in Seep Standby"
 msgstr "Състояние на дисплея в дълбока готовност"
 
-msgid "Status of the display in standby mode"
+msgid "Status of the display in Standby"
 msgstr "Състояние на дисплея в режим на готовност"
 
 msgid "Status unavailable!"
@@ -19463,9 +19463,6 @@ msgstr "Спряно"
 
 msgid "Stopping Softcam"
 msgstr "Спиране Softcam"
-
-msgid "Disables timeshift during recording (advisable for USB sticks)."
-msgstr "Стоп на използване на timeshift, ако записа е в ход. (Препоръчително за USB стикове)"
 
 msgid "Storage / Disk Information"
 msgstr ""
@@ -20306,9 +20303,6 @@ msgstr ""
 msgid "The backup succeeded. We will now continue to explain the upgrade process."
 msgstr ""
 
-msgid "Bitrate of the video encoder. Larger values improves quality and increases file size."
-msgstr "Битрейт на видео енкодера. По-голямата стойност подобрява качеството и увеличава размера на файла."
-
 msgid ""
 "The channel may support VPS\n"
 " Do you want to enable VPS?"
@@ -20323,9 +20317,6 @@ msgid ""
 msgstr ""
 "Изборът на архивиране по подразбиране не може да бъде променен.\n"
 "Моля, използвайте 'допълнителен' или 'изключен' избор архивиране."
-
-msgid "Default wake-up is 5 minutes before deep standby. Adjust if the wake-up is too early or late, e.g., for network drives."
-msgstr "Настройките по подразбиране са 5 минути по-рано, за събуждане от deep standby. Възможно е да е необходимо да промените това. (Напр.: реалното време за събуждане е неточно или късно, чакайки мрежово устройство и т.н.)"
 
 msgid "The default settings are wake up time - 5 minutes and timer begin time + 5 minutes. This setting changed the time window before the wake up time. So can be detected a wake up by a timer even at very early starting receivers."
 msgstr "Настройките по подразбиране са времето за събуждане - 5 мин. и началното време на таймера + 5 мин. Тази настройка променя времевия прозорец преди времето за събуждане. Така че може да бъде открито събуждане от таймер дори при много ранни стартови приемници."
@@ -20611,35 +20602,11 @@ msgstr "Тази опция ви позволява да форсирате ре
 msgid "This option allows you can force the HLG Modes for UHD"
 msgstr "Тази опция ви позволява да форсирате режимите HLG за UHD"
 
-msgid "This option allows you to choose how to display remaining time, or elapsed time, or both."
-msgstr "Тази опция ви позволява да изберете как се показва оставащо/изтекло време или и двете."
-
-msgid "This option allows you to choose how to display the remaining/elapsed time for live TV."
-msgstr "Тази опция ви позволява да изберете как се показва оставащо/изтекло време за live tv."
-
-msgid "This option allows you to choose how to display the remaining/elapsed time for media playback."
-msgstr "Тази опция ви позволява да изберете как се показва оставащо/изтекло време при медийно възпроизвеждане."
-
-msgid "This option allows you to choose if the display shows the time or nothing in Standby."
-msgstr "Тази опция ви позволява да изберете как да показвате времето или нищо в режим на готовност"
-
-msgid "This option allows you to choose if the display shows the time, channel number or nothing during operation."
-msgstr ""
-
-msgid "This option allows you to choose the background color of transparent picons."
-msgstr "Тази опция ви позволява да изберете цвета на фона на прозрачните пикони."
-
-msgid "This option allows you to choose the option for Subservice indicator or selection."
-msgstr ""
-
 msgid "This option allows you enable smoothing filter to control the dithering process."
 msgstr "Тази опция ви позволява да рарешите изглаждащ филтър, за да контролира процеса на разсейване."
 
 msgid "This option allows you enable the vertical scaler dejagging."
 msgstr "Тази опция ви позволява да разрешите отстраняването на грешки във вертикална скала."
-
-msgid "This option allows you to set the layout view (Text or Graphics)."
-msgstr "Тази опция ви позволява да зададете оформление изглед (текст или графика)."
 
 msgid "This option allows you to Power Off the display."
 msgstr "Тази опция позволява да изключите дисплея."
@@ -20689,8 +20656,29 @@ msgstr "Тази опция ви позволява да изберете как
 msgid "This option allows you to choose how to display elapsed time, as + or -."
 msgstr "Тази опция ви позволява да избирате как да се показва изминалото време  като + или -"
 
+msgid "This option allows you to choose how to display the remaining time, the elapsed time, or both."
+msgstr "Тази опция ви позволява да изберете как се показва оставащо/изтекло време или и двете."
+
 msgid "This option allows you to choose how to display standard definition video on your TV."
 msgstr "Тази опция ви позволява да изберете как да се показва стандартната разделителна видео способност на вашия ТВ."
+
+msgid "This option allows you to choose how to display the remaining or elapsed time for live TV."
+msgstr "Тази опция ви позволява да изберете как се показва оставащо/изтекло време за live tv."
+
+msgid "This option allows you to choose how to display the remaining or elapsed time for media playback."
+msgstr "Тази опция ви позволява да изберете как се показва оставащо/изтекло време при медийно възпроизвеждане."
+
+msgid "This option allows you to choose if the display shows the time or nothing in standby."
+msgstr "Тази опция ви позволява да изберете как да показвате времето или нищо в режим на готовност"
+
+msgid "This option allows you to choose if the display shows the time, channel number or nothing during operation."
+msgstr ""
+
+msgid "This option allows you to choose the background color of transparent picons."
+msgstr "Тази опция ви позволява да изберете цвета на фона на прозрачните пикони."
+
+msgid "This option allows you to choose the option for Subservice indicator or selection."
+msgstr ""
 
 msgid "This option allows you to choose what the first button press jumps to in channel list screen (pressing '2' jumps to 'A' or '2' first) when 'Quick Actions' preset actions are performed."
 msgstr "Тази опция ви позволява да избирате кой от първите бутони да прескочите в екрана на списъка с канали, (така натискането на \"2\" прескача първо на \"А\" или \"2\"), когато се изпълняват предварително зададени действия \"Бързи действия\". "
@@ -20703,6 +20691,9 @@ msgstr "Тази опция ви позволява да разрешите 3D �
 
 msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr ""
+
+msgid "This option allows you to set the layout view (Text or Graphics)."
+msgstr "Тази опция ви позволява да зададете оформление изглед (текст или графика)."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "Тази опция ви позволява да използвате SNR като процент (не всички приемници поддържат това)."
@@ -20802,6 +20793,9 @@ msgstr "Това задава префикса за всеки ред в дне�
 
 msgid "This setting allows the tuner configuration to be a duplication of another configured tuner."
 msgstr "Тази настройка позволява конфигурацията на тунера да бъде дубликат на начина, по който вече е конфигуриран друг тунер."
+
+msgid "This setting can help improve signal quality or prevent issues with longer HDMI cables."
+msgstr "С тази настройка вероятно можете да подобрите качеството на сигнала или да премахнете проблеми, които могат да възникнат с по-дълги HDMI кабели."
 
 msgid "This setting depends on your cable provider and location. If you don't know the correct setting refer to the menu in the official cable receiver, or get it from your cable provider, or seek help via Internet forum."
 msgstr "Тази настройка зависи от вашия кабелен доставчик и местоположение. Ако не знаете правилната настройка, вижте менюто в официалния кабелен приемник или го вземете от вашия доставчик на кабелни услуги или потърсете помощ чрез интернет форум."
@@ -21548,14 +21542,17 @@ msgstr ""
 msgid "UHD Test"
 msgstr ""
 
+msgid "UP/DOWN button mode"
+msgstr "Режим на бутони нагоре/надолу"
+
+msgid "UP/DOWN buttons also for 'all up/down'"
+msgstr "Бутони нагоре/надолу също за „всички нагоре/надолу“"
+
 msgid "UP80  (keymap.u80)"
 msgstr ""
 
 msgid "URL"
 msgstr ""
-
-msgid "Configure the URL of the fallback remote receiver."
-msgstr "Въведете URL на резервния приемник"
 
 msgid "USALS"
 msgstr ""
@@ -21749,12 +21746,6 @@ msgstr ""
 
 msgid "Up to 50 Mbps"
 msgstr ""
-
-msgid "UP/DOWN button mode"
-msgstr "Режим на бутони нагоре/надолу"
-
-msgid "UP/DOWN buttons also for 'all up/down'"
-msgstr "Бутони нагоре/надолу също за „всички нагоре/надолу“"
 
 msgid "Update"
 msgstr "Актуализация"
@@ -22738,30 +22729,6 @@ msgstr "Какво искаш да правиш?"
 msgid "When 'Enabled', the timer view will show the free space on the target device. This will wake the device from sleep mode."
 msgstr ""
 
-msgid "When enabled, the PiP can be closed using the EXIT button."
-msgstr "Когато е разрешено, PIP може да бъде затворен от изходния бутон."
-
-msgid "When enabled, the receiver will automatically be switched off."
-msgstr "Когато е активиран, приемникът ще се изключи автоматично."
-
-msgid "When enabled, the receiver will automatically be switched on."
-msgstr "Когато е активиран, приемникът ще се включи автоматично."
-
-msgid "When enabled, the receiver will automatically return to standby when the TV is turned off."
-msgstr "Когато е активиран, приемникът автоматично ще се върне в режим на готовност, когато телевизорът бъде изключен."
-
-msgid "When enabled, the receiver will automatically wake from standby when the TV is turned on."
-msgstr "Когато е активиран, приемникът автоматично ще се събужда от режим на готовност, когато телевизорът е включен."
-
-msgid "When enabled, the timer from the fallback tuner is imported."
-msgstr "Ако е включено, таймерът от резервния тунер се импортира"
-
-msgid "When enabled, the timer from the fallback tuner is the default timer."
-msgstr "Ако е включено, таймерът от резервния тунер е по подразбиране"
-
-msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
-msgstr "Ако е включено, можете да персонализирате настройките на OpenWebIf за резервния тунер"
-
 msgid "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
 msgstr "Когато е разрешено, данните за AIT ще бъдат включени в http потоци. Това позволява на клиентския приемник да използва HbbTV."
 
@@ -22789,11 +22756,11 @@ msgstr "Когато е разрешено, записът може да пре�
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "Когато е разрешено, записът може да прекрати телевизията на живо, когато няма свободни тунери."
 
+msgid "When enabled, a specific Softcam can be assigned to each encrypted service."
+msgstr ""
+
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Когато е разрешено, ще се покаже предупреждение и потребителят ще получи опция за спиране или продължаване на timeshift."
-
-msgid "Enable to always unscramble received HTTP streams. Uses more resources due to demuxers. Streams with 0x100 in the service type are always unscrambled, regardless of this setting."
-msgstr "Когато е активирано, винаги декодирайте получаването на http потоци. Това отнема повече ресурси (декодиране на демуксери), разрешава се само ако е необходимо. Отделните потоци винаги се декодират, ако 0x100 се добави към типа на услугата, независимо от тази настройка."
 
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Когато е разрешено, е необходимо удостоверяване за гледане на http потоци."
@@ -22852,11 +22819,23 @@ msgstr "Когато е разрешено, телетекста ще бъде �
 msgid "When enabled, teletext subtitles will be displayed at their original position."
 msgstr "Когато е разрешено, телетекст субтитрите ще бъдат показани в оригиналната си позиция."
 
+msgid "When enabled, the PiP can be closed using the EXIT button."
+msgstr "Когато е разрешено, PIP може да бъде затворен от изходния бутон."
+
 msgid "When enabled, the VCR SCART option will be shown on the main menu."
 msgstr "Когато е разрешено, опцията VCR Scart ще се покаже в основното меню"
 
 msgid "When enabled, the length of each recording will be shown in the movie list (this might cause some additional loading time)."
 msgstr "Когато е разрешено, дължината на всеки запис ще бъде показан в списъка с филми (Това причинява допълълнително време натоварване)."
+
+msgid "When enabled, the receiver will automatically be switched off."
+msgstr "Когато е активиран, приемникът ще се изключи автоматично."
+
+msgid "When enabled, the receiver will automatically be switched on."
+msgstr "Когато е активиран, приемникът ще се включи автоматично."
+
+msgid "When enabled, the receiver will automatically return to standby when the TV is turned off."
+msgstr "Когато е активиран, приемникът автоматично ще се върне в режим на готовност, когато телевизорът бъде изключен."
 
 msgid "When enabled, the receiver will automatically use the audio track which you selected before."
 msgstr "Когато е разрешено, приемникът автоматично използва аудио записа, който вие сте избрали преди."
@@ -22864,11 +22843,20 @@ msgstr "Когато е разрешено, приемникът автомат�
 msgid "When enabled, the receiver will automatically use the subtitles which you selected before."
 msgstr "Когато е разрешено, приемникът автоматично използва субтитрите, които вие сте избрали преди."
 
+msgid "When enabled, the receiver will automatically wake from standby when the TV is turned on."
+msgstr "Когато е активиран, приемникът автоматично ще се събужда от режим на готовност, когато телевизорът е включен."
+
 msgid "When enabled, the receiver will select an AC3 track (when available)."
 msgstr "Когато е разрешено, приемникът ще изберете AC3 track (ако има такъв)."
 
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Когато е разрешено, приемникът ще изберете AC3+ track (ако е налице)."
+
+msgid "When enabled, the timer from the fallback tuner is imported."
+msgstr "Ако е включено, таймерът от резервния тунер се импортира"
+
+msgid "When enabled, the timer from the fallback tuner is the default timer."
+msgstr "Ако е включено, таймерът от резервния тунер е по подразбиране"
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr "Ако е включен, този параметър има по-голяма тежест от 'Приоритетен тунер за записи'."
@@ -22881,6 +22869,9 @@ msgstr "Когато е разрешено, TimeShift започва автом�
 
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Когато е разрешено, използвате DHCP за конфигуриране на IP."
+
+msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
+msgstr "Ако е включено, можете да персонализирате настройките на OpenWebIf за резервния тунер"
 
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "Когато е разрешено, приемникът ви ще открие дейност на VCR SCART входа."
@@ -22897,17 +22888,11 @@ msgstr ""
 msgid "When nonzero, a zap timer will stop the nominated period after the ending time indicated in the EPG."
 msgstr ""
 
-msgid "When the receiver wakes from standby, it will switch the TV to the HDMI input connected to the receiver."
-msgstr "Когато приемникът се събуди от режим на готовност, той ще заповяда на телевизора да превключи към HDMI входа, към който е свързан приемникът."
-
 msgid "When set each folder will show the previous state used, when off the default values will be shown."
 msgstr "Когато е настроен всяка папка ще се появи в предишното използвано състояние, когато се изключат стойностите по подразбиране."
 
 msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr "Когато зададете PIG ще се върне на живо, след като филмът е спрял да се възпроизвежда."
-
-msgid "When enabled, a specific Softcam can be assigned to each encrypted service."
-msgstr ""
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Когато съдържанието има съотношение 16: 9, изберете дали да мащабирате/разтегляте картината."
@@ -22920,6 +22905,9 @@ msgstr "Когато курсорът за въвеждане достигне �
 
 msgid "When the receiver wakes from standby or deep standby it will send a command to the TV to bring it out of standby."
 msgstr "Когато приемникът се събуди от режим на готовност или дълбока готовност, той ще изпрати команда до телевизора да го изведе от режим на готовност."
+
+msgid "When the receiver wakes from standby, it will switch the TV to the HDMI input connected to the receiver."
+msgstr "Когато приемникът се събуди от режим на готовност, той ще заповяда на телевизора да превключи към HDMI входа, към който е свързан приемникът."
 
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
 msgstr ""
@@ -23011,17 +22999,14 @@ msgstr "С тази опция можете да скриете работнит
 msgid "With this option you can switch off the display during operation."
 msgstr "С тази опция можете да изключите дисплея по време на работа."
 
-msgid "With this option you can switch off the display in Deep Standby Mode."
+msgid "With this option you can switch off the display in Deep Standby mode."
 msgstr "С тази опция можете да изключите дисплея в режим на дълбока готовност."
 
-msgid "With this option you can switch off the display in Standby Mode."
+msgid "With this option you can switch off the display in standby mode."
 msgstr "С тази опция можете да изключите дисплея в режим на готовност."
 
 msgid "With this option you can switch the LED color or deactivate the LED."
 msgstr "С тази опция можете да превключите цвета на светодиода или да деактивирате светодиода."
-
-msgid "This setting can help improve signal quality or prevent issues with longer HDMI cables."
-msgstr "С тази настройка вероятно можете да подобрите качеството на сигнала или да премахнете проблеми, които могат да възникнат с по-дълги HDMI кабели."
 
 msgid "Without pop up"
 msgstr "Без изскачащ"
@@ -24184,6 +24169,9 @@ msgstr "да (запази фийдове)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Password (httpuser)"
+#~ msgstr "Парола (httpuser)"
 
 #~ msgid "Sci-Fi"
 #~ msgstr "Научна фантастика"

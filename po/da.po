@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-02 15:40+0000\n"
+"POT-Creation-Date: 2025-12-06 12:58+0000\n"
 "PO-Revision-Date: 2021-11-04 23:53+0000\n"
 "Last-Translator: T. Rylle <dk-translation@pm.me>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/da/>\n"
@@ -799,10 +799,6 @@ msgstr[0] "%d time"
 msgstr[1] "%d timer"
 
 #, python-format
-msgid "%d Hours"
-msgstr ""
-
-#, python-format
 msgid "%d MB"
 msgstr "%d MB"
 
@@ -844,10 +840,6 @@ msgstr[0] "%d Minut"
 msgstr[1] "%d Minutter"
 
 #, python-format
-msgid "%d Minutes"
-msgstr ""
-
-#, python-format
 msgid "%d Month"
 msgid_plural "%d Months"
 msgstr[0] ""
@@ -874,10 +866,6 @@ msgid "%d Second"
 msgid_plural "%d Seconds"
 msgstr[0] "%d sekund"
 msgstr[1] "%d sekunder"
-
-#, python-format
-msgid "%d Seconds"
-msgstr ""
 
 #, python-format
 msgid "%d Week"
@@ -1809,6 +1797,9 @@ msgstr "AKtiver MAC-adresse konfiguration"
 msgid "Activate Picture in Picture"
 msgstr "Aktiver Billede i Billede (PiP)"
 
+msgid "Activate UP/DOWN buttons for the 'all up/down' functions at the beginning/end of the column."
+msgstr "Aktiver Op / Ned knapper for funktionen 'helt op/ned'? (i begyndelsen / ved slutningen af kollonen)"
+
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr ""
 
@@ -2283,7 +2274,7 @@ msgstr ""
 msgid "Also import from the extension menu"
 msgstr "Vis udvidelser i menu"
 
-msgid "Also import when receiver is leaving standby"
+msgid "Also import when leaving standby"
 msgstr ""
 
 msgid "Also on standby"
@@ -3081,6 +3072,9 @@ msgstr ""
 
 msgid "Bitrate"
 msgstr "Bithastighed"
+
+msgid "Bitrate of the video encoder. Larger values improves quality and increases file size."
+msgstr "Bithastigheden af videoindkoder. Høje værdier forbedre kvalitet og øger filstørelse."
 
 msgid "Black"
 msgstr "Sort"
@@ -4578,11 +4572,20 @@ msgstr "Konfigurer DiSEqC tilstanden for denne LBN."
 msgid "Configure the IP address."
 msgstr "Konfigurer IP adressen."
 
+msgid "Configure the IP of the fallback remote receiver."
+msgstr "URL af fallback remote receiver"
+
 msgid ""
 "Configure the Internet connection by adjusting the values shown.\n"
 "\n"
 "When the settings are correct press OK to continue."
 msgstr ""
+
+msgid "Configure the Port of the fallback remote receiver."
+msgstr "URL af fallback remote receiver"
+
+msgid "Configure the URL of the fallback remote receiver."
+msgstr "URL af fallback remote receiver"
 
 msgid "Configure the alignment of events."
 msgstr "Konfigurer justeringen af begivenheder."
@@ -4617,7 +4620,7 @@ msgstr "Konfigurere lysstyrkeniveauet af displayet på frontpanelet i nedtonet d
 msgid "Configure the brightness level of the front panel display for normal operation."
 msgstr "Konfigurere lysstyrkeniveauet af displayet på frontpanelet i normal drift."
 
-msgid "Configure the brightness level of the front panel display for standby."
+msgid "Configure the brightness level of the front panel display for Standby."
 msgstr "Konfigurere lysstyrkeniveauet af displayet på frontpanelet i Standby."
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
@@ -4746,9 +4749,6 @@ msgstr "Konfigurer det primære EPG sprog."
 msgid "Configure the refresh rate of the screen."
 msgstr "Konfigurer opdateringshastigheden for skærmen."
 
-msgid "Configure the teletext screen resolution. Note: Full-HD teletext is not supported by all skins."
-msgstr "Konfigurer skærmopløsningen for Tekst-TV (Ikke alle Teamer understøtter fuld-HD Tekst-TV)."
-
 msgid "Configure the second audio language."
 msgstr "Konfigurere det andet lydsprog."
 
@@ -4784,6 +4784,9 @@ msgstr "Konfigurer startkoordinat i Y af Tekst-TVs visningsområde."
 
 msgid "Configure the subtitle delay when timing information is not available."
 msgstr "Konfigurer undertekstforsinkelse når tidsinformation ikke kan findes."
+
+msgid "Configure the teletext screen resolution. Note: Full-HD teletext is not supported by all skins."
+msgstr "Konfigurer skærmopløsningen for Tekst-TV (Ikke alle Teamer understøtter fuld-HD Tekst-TV)."
 
 msgid "Configure the third audio language."
 msgstr "Konfigurere det tredje lydsprog."
@@ -5469,9 +5472,6 @@ msgstr ""
 msgid "DNS mode"
 msgstr ""
 
-msgid "Set the hostname or IP address."
-msgstr ""
-
 msgid "DNS suffix"
 msgstr ""
 
@@ -5830,6 +5830,9 @@ msgstr ""
 msgid "Default volume offset"
 msgstr ""
 
+msgid "Default wake-up is 5 minutes before Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
+msgstr "Standardindstillingerne er 5 minutter tidligere for at vågne op fra Dyb Standby. Det kan muligvis være nødvendigt at ændre dette. (f.eks. bliver den faktiske opvågningstid unøjagtig eller forsinket, hvis der ventes på et netværksdrev osv.)"
+
 #, python-format
 msgid "Default: '%s'."
 msgstr "Standard: '%s'."
@@ -6165,9 +6168,6 @@ msgstr ""
 msgid "Deselected packages usually occur because those packaged are incompatible with existing packages. While this is mostly harmless it is possible that your %s %s may experience issues."
 msgstr ""
 
-msgid "Destination of fallback remote receiver."
-msgstr "URL af fallback remote receiver"
-
 msgid "Destination of fallback remote receiver for ATSC"
 msgstr "URL af fallback remote receiver"
 
@@ -6175,6 +6175,9 @@ msgid "Destination of fallback remote receiver for DVB-C"
 msgstr "URL af fallback remote receiver"
 
 msgid "Destination of fallback remote receiver for DVB-T"
+msgstr "URL af fallback remote receiver"
+
+msgid "Destination of fallback remote receiver."
 msgstr "URL af fallback remote receiver"
 
 msgid "Detail of GStreamer log."
@@ -6369,6 +6372,9 @@ msgstr "Deaktiver PiP.\n"
 
 msgid "Disabled or WPA/WPA2"
 msgstr ""
+
+msgid "Disables timeshift during recording (advisable for USB sticks)."
+msgstr "Forhindre at Timeshift bliver brugt hvis en optagekse er igang (anbefales for USB nøgler)."
 
 msgid "Disabling Chkroot failed!"
 msgstr ""
@@ -7092,6 +7098,9 @@ msgstr "Aktiver favoritredigering"
 msgid "Enable Focus Animation"
 msgstr "Aktiver Fokus-animation"
 
+msgid "Enable FreeSat EPG"
+msgstr "Aktiver freesat EPG"
+
 msgid "Enable GStreamer debug log *"
 msgstr ""
 
@@ -7137,9 +7146,6 @@ msgstr "Aktiver Firedobbelt PiP"
 msgid "Enable Swap at startup"
 msgstr "Aktiver swap ved opstart"
 
-msgid "Activate UP/DOWN buttons for the 'all up/down' functions at the beginning/end of the column."
-msgstr "Aktiver Op / Ned knapper for funktionen 'helt op/ned'? (i begyndelsen / ved slutningen af kollonen)"
-
 msgid "Enable VPS"
 msgstr ""
 
@@ -7180,7 +7186,7 @@ msgstr ""
 msgid "Enable autorefresh templates."
 msgstr ""
 
-msgid "Enable blinking rec symbol on the LCD Display in Standby."
+msgid "Enable blinking rec symbol on the LCD Display in standby."
 msgstr "Vis Optag på LCD Displayet i Standby"
 
 msgid "Enable blinking rec symbol on the LCD Display."
@@ -7219,9 +7225,6 @@ msgstr "Aktiver digital downmix"
 msgid "Enable fallback remote receiver"
 msgstr "Aktiver tilbagefald til fjernmodtager"
 
-msgid "Enable FreeSat EPG"
-msgstr "Aktiver freesat EPG"
-
 msgid "Enable import timer from fallback tuner"
 msgstr ""
 
@@ -7246,7 +7249,7 @@ msgstr "Aktiver panikknap"
 msgid "Enable preview"
 msgstr "Aktiver forhåndsvisning"
 
-msgid "Enable remote receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner). Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_receiver:8001."
+msgid "Enable remote receiver to be tried to tune into services that can't be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner). Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_receiver:8001."
 msgstr "Aktiver at Enigma2 fjernmodtager forsøges til at finde kanaler der ikke kan findes lokal (f.eks. Tuneren er optaget eller tjenesttype utilgængelig på den lokale Tuner. Angiv en komplet URL inklusiv http:// samt portnummer (normalt ...:8001), eksempelvis http://anden_boks:8001."
 
 msgid "Enable teletext caching"
@@ -7315,6 +7318,9 @@ msgstr ""
 msgid "Enable to add some extra spacing to the Information screens. This can improve readability."
 msgstr ""
 
+msgid "Enable to always unscramble received HTTP streams. Uses more resources due to demuxers. Streams with 0x100 in the service type are always unscrambled, regardless of this setting."
+msgstr "Når dette aktiveres, dekrypteres modtagne http-Streams. Dette kræver flere resurser (dekryptering demuxere), aktiver kun hvis nødvendig. individuelle Streams bliver altid dekrypteret hvis 0x100 ertilføjet til kanaltypen, uanset denne indstilling."
+
 msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch."
 msgstr "Aktiver at alle sand/falsk, ja/nej, tændt/slukket og aktiver/deaktiver opsætningsmuligheder vises som en grafisk kontakt."
 
@@ -7332,6 +7338,12 @@ msgstr "Aktiveret"
 
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Aktiver denne funktion så modtageren kan dekryptere streams (hvis ECM data er inkluderet i streamen og en gyldig kort er tilgængelig)."
+
+msgid "Enables sending the same TV commands for deep standby as for regular standby."
+msgstr ""
+
+msgid "Enables timeshift to use alternative audio plugins."
+msgstr ""
 
 msgid "Encrypted: "
 msgstr "Krypteret: "
@@ -9566,9 +9578,6 @@ msgstr ""
 msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr ""
 
-msgid "Configure the IP of the fallback remote receiver."
-msgstr "URL af fallback remote receiver"
-
 #, fuzzy
 msgid "IPK Installer"
 msgstr "IPK installation"
@@ -9696,22 +9705,16 @@ msgstr "Hvis aktiveret, inkluderes AIT data i optagelser."
 msgid "If enabled, a log will be kept of CEC protocol traffic. The log files are located with the other log files but named 'Enigma2-hdmicec-[date].log'."
 msgstr ""
 
+msgid "If enabled, a time window is used to detect wake-ups from Deep Standby triggered by a timer. The default setting is disabled, which uses a special signal from the receiver. However, some devices send an incorrect or no signal, causing wake-up detection to fail."
+msgstr "Hvis aktiveret, bruger Timeren et tidsrum til at opdage en opvågning fra Dyb Standby. Standard indstilling er deaktiveret og bruger et speciel signal fra modtageren. Men nogle enheder sender et forkert eller ingen signal og opvågninsopdagelse kan mislykkes."
+
 msgid "If enabled, the new GStreamer playback engine will be used."
 msgstr ""
-
-msgid "If enabled, a time window is used to detect wake-ups from deep standby triggered by a timer. The default setting is disabled, which uses a special signal from the receiver. However, some devices send an incorrect or no signal, causing wake-up detection to fail."
-msgstr "Hvis aktiveret, bruger Timeren et tidsrum til at opdage en opvågning fra Dyb Standby. Standard indstilling er deaktiveret og bruger et speciel signal fra modtageren. Men nogle enheder sender et forkert eller ingen signal og opvågninsopdagelse kan mislykkes."
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Hvis logge bruger den maksimale tilladte plads, vil den ældste blive slettet."
 
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
-msgstr ""
-
-msgid "Enables sending the same TV commands for deep standby as for regular standby."
-msgstr ""
-
-msgid "Enables timeshift to use alternative audio plugins."
 msgstr ""
 
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
@@ -9809,13 +9812,13 @@ msgstr ""
 msgid "Immediately restart selected devices."
 msgstr "Genstart straks valgte enheder."
 
-msgid "Import channels and/or EPG from the remote receiver URL, even when the receiver is coming out of standby."
-msgstr ""
-
 msgid "Import channels and/or EPG from remote receiver URL when receiver is booted."
 msgstr "Fallback remote receiver URL"
 
 msgid "Import channels and/or EPG from remote receiver URL when receiver or GUI is restarted."
+msgstr ""
+
+msgid "Import channels and/or EPG from the remote receiver URL, even when the receiver is coming out of standby."
 msgstr ""
 
 msgid "Import from remote receiver URL"
@@ -10562,7 +10565,7 @@ msgstr ""
 msgid "LED Standby"
 msgstr "LED Standby"
 
-msgid "LED brightness during deep standby."
+msgid "LED brightness during Deep Standby."
 msgstr "LED lysstyrke under Dyb Standby."
 
 msgid "LED brightness during normal operations."
@@ -13185,10 +13188,10 @@ msgstr ""
 msgid "Opera"
 msgstr ""
 
-msgid "Operating LED status in deep standby mode"
+msgid "Operating LED status in Deep Standby"
 msgstr "Drift LED status i Dyb Standby-tilstand"
 
-msgid "Operating LED status in standby mode"
+msgid "Operating LED status in Standby"
 msgstr "Drift LED status i Standby-tilstand"
 
 msgid "Operating LED status while running"
@@ -13207,7 +13210,7 @@ msgstr "Option"
 msgid "Option to disable picons on the Infobar."
 msgstr "Mulighed for at deaktivere Pikoner på Infobjælken."
 
-msgid "Option to enable the Hardware Standby Timer."
+msgid "Option to enable the hardware standby timer."
 msgstr "Mulighed for at aktivere hardware Standby-timer"
 
 msgid "Optional parameter"
@@ -13498,9 +13501,6 @@ msgstr ""
 
 msgid "Password"
 msgstr "Adgangskode"
-
-msgid "Password (httpuser)"
-msgstr ""
 
 msgid "Password (httpwd)"
 msgstr "Adgangskode (httpwd)"
@@ -14113,9 +14113,6 @@ msgstr "Port D"
 msgid "Port number for the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr ""
 
-msgid "Configure the Port of the fallback remote receiver."
-msgstr "URL af fallback remote receiver"
-
 msgid "Portugal"
 msgstr "Portugal"
 
@@ -14155,7 +14152,7 @@ msgstr ""
 msgid "Power"
 msgstr "Tænd"
 
-msgid "Power LED State in Deep-Standby"
+msgid "Power LED State in Deep Standby"
 msgstr "Strøm LED tilstand i Dyb Standby"
 
 msgid "Power LED State in Standby"
@@ -14164,7 +14161,7 @@ msgstr "Strøm LED tilstand i Standby"
 msgid "Power LED can be turned on or off here."
 msgstr "Strøm LED kan tændes eller slukkes her."
 
-msgid "Power LED state during deep-standby."
+msgid "Power LED state during Deep Standby."
 msgstr "Strøm LED tilstand i Dyb Standby."
 
 msgid "Power LED state during standby."
@@ -15345,6 +15342,9 @@ msgstr "Nødvendig medietype:"
 msgid "Rereading partition table"
 msgstr "Genindlæser partitionstabel"
 
+msgid "Reschedule the task to run when the receiver enters or exits standby. The state change must occur within the task’s scheduled window, or the task will not run."
+msgstr ""
+
 msgid "Reserved"
 msgstr "Reserveret"
 
@@ -16366,9 +16366,6 @@ msgstr ""
 msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all key map, menu and setup override data and restore the default definitions."
 msgstr ""
 
-msgid "Reschedule the task to run when the receiver enters or exits standby. The state change must occur within the task’s scheduled window, or the task will not run."
-msgstr ""
-
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr ""
 
@@ -16598,10 +16595,10 @@ msgstr ""
 msgid "Select a script to run:"
 msgstr "Vælg skript der skal køres:"
 
-msgid "Select a time, when in Standby mode, after which the descramble can proceed."
+msgid "Select a time, when in standby mode, after which the descramble can proceed."
 msgstr ""
 
-msgid "Select a time, when in Standby, before which descramble can proceed."
+msgid "Select a time, when in standby, before which descramble can proceed."
 msgstr ""
 
 msgid "Select a tuner"
@@ -16698,7 +16695,7 @@ msgstr ""
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr "Vælg hvordan satellit skålen er sat op. f.eks fast skål, enkelt LBN, DiSEqC switch, motor, osv."
 
-msgid "Select how the schedule is handled with respect to Standby mode."
+msgid "Select how the schedule is handled with respect to standby mode."
 msgstr ""
 
 msgid "Select how to activate the Quick EPG mode."
@@ -17566,6 +17563,9 @@ msgstr "Sæt fast"
 msgid "Set fps for external subtitles"
 msgstr "Sæt FPS for eksterne undertekster"
 
+msgid "Set how long the second InfoBar stays visible. It also disappears when you press ‘OK’."
+msgstr "Sæt tiden indtil den sekundære infobjælke skjules. Bjælken forsvinder også ved tryk på 'OK'."
+
 msgid "Set interface as the default Interface"
 msgstr "Sæt grænseflade som standard grænseflade"
 
@@ -17625,6 +17625,9 @@ msgstr "Sæt standard sorteringsmetode."
 msgid "Set the delay time between repeated loops, this is used by software renderer in some skins."
 msgstr "Sæt forsinkelsen mellem gentagne løkker, hvilket bruges af software gengiver i nogle Temaer."
 
+msgid "Set the hostname or IP address."
+msgstr ""
+
 msgid "Set the jump-size of the SeekBar."
 msgstr "Sæt hop-størrelse af søgebjælken."
 
@@ -17667,9 +17670,6 @@ msgstr ""
 msgid "Set the time to hide the InfoBar."
 msgstr "Sæt tiden indtil infobjælken skjules."
 
-msgid "Set how long the second InfoBar stays visible. It also disappears when you press ‘OK’."
-msgstr "Sæt tiden indtil den sekundære infobjælke skjules. Bjælken forsvinder også ved tryk på 'OK'."
-
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
 msgstr "Sæt tiden der ventes før udførelse af standardhandling i nedluknings-, Standby- eller genstartsbeskeder (bruges f.eks i Timer, StrømTimer, DvaleTimer, ...)"
 
@@ -17711,7 +17711,7 @@ msgstr ""
 msgid "Set to 'Disabled' to replace underscore characters '_' in file and directory names with spaces."
 msgstr ""
 
-msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby mode before shutting down."
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in standby mode before shutting down."
 msgstr ""
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
@@ -18034,6 +18034,9 @@ msgstr ""
 msgid "Show Driver packages"
 msgstr ""
 
+msgid "Show EIT Now/Next event data in the InfoBar"
+msgstr "Vis EIT nu/næste i Infobjælke"
+
 msgid "Show EPG"
 msgstr "Vis EPG"
 
@@ -18091,7 +18094,7 @@ msgstr ""
 msgid "Show Media Player in Main Menu"
 msgstr "Vis medieafspiller på hovedmenu"
 
-msgid "Show Media playback Remaining/Elapsed as"
+msgid "Show Media playback remaining/elapsed as"
 msgstr "Vis medieafspilning resterende/forløbet som"
 
 msgid "Show Merlin EPG Center"
@@ -18598,9 +18601,6 @@ msgstr ""
 
 msgid "Show the CCcam Info Screen"
 msgstr ""
-
-msgid "Show EIT Now/Next event data in the InfoBar"
-msgstr "Vis EIT nu/næste i Infobjælke"
 
 msgid "Show the Logs Settings screen"
 msgstr ""
@@ -19161,7 +19161,7 @@ msgstr "Somalia"
 msgid "Somalia"
 msgstr "Somalia"
 
-msgid "Some TVs cannot switch to the correct input if another HDMI port is active. This setting puts the TV into standby before switching. If the TV does not turn back on, a slower transmission interval or repeating the wake-up command may be required."
+msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting puts the TV into standby before switching. If the TV does not turn back on, a slower transmission interval or repeating the wake-up command may be required."
 msgstr ""
 
 #, fuzzy
@@ -19494,10 +19494,10 @@ msgstr ""
 msgid "Status of the display during operation"
 msgstr "Status af skærmern under drift-tilstand"
 
-msgid "Status of the display in deep standby"
+msgid "Status of the display in Seep Standby"
 msgstr "Status af display i Dyb Standby"
 
-msgid "Status of the display in standby mode"
+msgid "Status of the display in Standby"
 msgstr "Status af display i Standby-tilstand"
 
 msgid "Status unavailable!"
@@ -19598,9 +19598,6 @@ msgstr "Stoppet"
 
 msgid "Stopping Softcam"
 msgstr "Stopper Softcam"
-
-msgid "Disables timeshift during recording (advisable for USB sticks)."
-msgstr "Forhindre at Timeshift bliver brugt hvis en optagekse er igang (anbefales for USB nøgler)."
 
 msgid "Storage / Disk Information"
 msgstr ""
@@ -20454,9 +20451,6 @@ msgstr ""
 msgid "The backup succeeded. We will now continue to explain the upgrade process."
 msgstr ""
 
-msgid "Bitrate of the video encoder. Larger values improves quality and increases file size."
-msgstr "Bithastigheden af videoindkoder. Høje værdier forbedre kvalitet og øger filstørelse."
-
 msgid ""
 "The channel may support VPS\n"
 " Do you want to enable VPS?"
@@ -20471,9 +20465,6 @@ msgid ""
 msgstr ""
 "Standard sikkerhedskopieringsvalg kan ikke ændres.\n"
 "Brug venligst 'yderligere' og 'fravalgte' sikkerhedskopieringsvalg."
-
-msgid "Default wake-up is 5 minutes before deep standby. Adjust if the wake-up is too early or late, e.g., for network drives."
-msgstr "Standardindstillingerne er 5 minutter tidligere for at vågne op fra Dyb Standby. Det kan muligvis være nødvendigt at ændre dette. (f.eks. bliver den faktiske opvågningstid unøjagtig eller forsinket, hvis der ventes på et netværksdrev osv.)"
 
 msgid "The default settings are wake up time - 5 minutes and timer begin time + 5 minutes. This setting changed the time window before the wake up time. So can be detected a wake up by a timer even at very early starting receivers."
 msgstr "Standardindstillingerne er opvågningstid - 5 minutter og Timer starttid + 5 minutter. Denne indstilling ændre tidsrummet før opvågningstiden, så en opvågning kan opdages af en timer, selv på meget hurtig startende modtagere."
@@ -20759,35 +20750,11 @@ msgstr "Denne mulighed tillader dig at tvinge HDR10 tilstanden til UHD"
 msgid "This option allows you can force the HLG Modes for UHD"
 msgstr "Denne mulighed tillader dig at tvinge HLG Tilstande til UHD"
 
-msgid "This option allows you to choose how to display remaining time, or elapsed time, or both."
-msgstr "Denne mulighed tillader dig at vælge hvordan resterende tid, forløbene tid eller begge skal vises."
-
-msgid "This option allows you to choose how to display the remaining/elapsed time for live TV."
-msgstr "Denne mulighed tillader dig at vælge hvordan den resterende/forløbene tid vises for Live TV."
-
-msgid "This option allows you to choose how to display the remaining/elapsed time for media playback."
-msgstr "Denne mulighed tillader dig at vælge hvordan den resterende/forløbene tid vises for medieafspilning."
-
-msgid "This option allows you to choose if the display shows the time or nothing in Standby."
-msgstr "Denne mulighed tillader dig at vælge om tiden eller intet vises i Standby"
-
-msgid "This option allows you to choose if the display shows the time, channel number or nothing during operation."
-msgstr ""
-
-msgid "This option allows you to choose the background color of transparent picons."
-msgstr "Denne mulighed tillader dig at vælge baggrundsfarve af gennemsigtige Pikoner."
-
-msgid "This option allows you to choose the option for Subservice indicator or selection."
-msgstr ""
-
 msgid "This option allows you enable smoothing filter to control the dithering process."
 msgstr "Denne mulighed tillader dig at aktivere udjævningsfilter til at styre simuleringsprocessen."
 
 msgid "This option allows you enable the vertical scaler dejagging."
 msgstr "Denne mulighed tillader dig at aktivere lodret dejagging."
-
-msgid "This option allows you to set the layout view (Text or Graphics)."
-msgstr "Denne mulighed tillader dig at sætte visningslayout (Tekst eller Grafik)."
 
 msgid "This option allows you to Power Off the display."
 msgstr "Denne mulighed tillader dig at slukke for skærmen."
@@ -20837,8 +20804,29 @@ msgstr "Denne mulighed tillader dig at vælge hvordan SD progressiv 24Hz vises p
 msgid "This option allows you to choose how to display elapsed time, as + or -."
 msgstr "Denne mulighed tillader dig at vælge om den forløbene tid vises som + eller -."
 
+msgid "This option allows you to choose how to display the remaining time, the elapsed time, or both."
+msgstr "Denne mulighed tillader dig at vælge hvordan resterende tid, forløbene tid eller begge skal vises."
+
 msgid "This option allows you to choose how to display standard definition video on your TV."
 msgstr "Denne mulighed tillader dig at vælge hvordan standard opløsning vises på dit TV."
+
+msgid "This option allows you to choose how to display the remaining or elapsed time for live TV."
+msgstr "Denne mulighed tillader dig at vælge hvordan den resterende/forløbene tid vises for Live TV."
+
+msgid "This option allows you to choose how to display the remaining or elapsed time for media playback."
+msgstr "Denne mulighed tillader dig at vælge hvordan den resterende/forløbene tid vises for medieafspilning."
+
+msgid "This option allows you to choose if the display shows the time or nothing in standby."
+msgstr "Denne mulighed tillader dig at vælge om tiden eller intet vises i Standby"
+
+msgid "This option allows you to choose if the display shows the time, channel number or nothing during operation."
+msgstr ""
+
+msgid "This option allows you to choose the background color of transparent picons."
+msgstr "Denne mulighed tillader dig at vælge baggrundsfarve af gennemsigtige Pikoner."
+
+msgid "This option allows you to choose the option for Subservice indicator or selection."
+msgstr ""
 
 msgid "This option allows you to choose what the first button press jumps to in channel list screen (pressing '2' jumps to 'A' or '2' first) when 'Quick Actions' preset actions are performed."
 msgstr "Denne mulighed tillader dig at vælge hvad det første knaptryk hopper til i kanallisteskærmen, (om tryk på '2' først hopper til 'A' eller '2'), når forudindstillede 'Kvikhandlinger' udføres. "
@@ -20851,6 +20839,9 @@ msgstr "Denne mulighed tillader dig at aktivere 3D Surround Sound."
 
 msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr ""
+
+msgid "This option allows you to set the layout view (Text or Graphics)."
+msgstr "Denne mulighed tillader dig at sætte visningslayout (Tekst eller Grafik)."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "Denne mulighed tillader dig at vis SNR som en procentdel (ikke alle modtagere understøtter dette)."
@@ -20950,6 +20941,9 @@ msgstr "Dette sætter præfiks for hver linje i fejlsøgningsloggen. 'Boot time'
 
 msgid "This setting allows the tuner configuration to be a duplication of another configured tuner."
 msgstr "Denne indstilling tillader at Tuner-konfigurationen at blive en kopi af hvordan en anden Tuner allerede er konfigureret."
+
+msgid "This setting can help improve signal quality or prevent issues with longer HDMI cables."
+msgstr "Med denne indstilling kand du sandsynligvis forbedre signalkvalitet og eliminere problemer som kan forekomme med længere HDMI kabler."
 
 msgid "This setting depends on your cable provider and location. If you don't know the correct setting refer to the menu in the official cable receiver, or get it from your cable provider, or seek help via Internet forum."
 msgstr "Denne indstilling afhænger af din kabeludbyder og placering. Referer til menuen i den officielle kabelmodtager, hvis du ikke har de rigtige indstillinger eller få dem fra din kabeludbyder, eller søg hjælp via forum på Internette."
@@ -21703,14 +21697,17 @@ msgstr ""
 msgid "UHD Test"
 msgstr "UHD Prøve"
 
+msgid "UP/DOWN button mode"
+msgstr "Op/Ned knap tilstand"
+
+msgid "UP/DOWN buttons also for 'all up/down'"
+msgstr "Op/Ned knapper også for 'helt op/net' ?"
+
 msgid "UP80  (keymap.u80)"
 msgstr "UP80  (keymap.u80)"
 
 msgid "URL"
 msgstr "URL"
-
-msgid "Configure the URL of the fallback remote receiver."
-msgstr "URL af fallback remote receiver"
 
 msgid "USALS"
 msgstr "USALS"
@@ -21904,12 +21901,6 @@ msgstr ""
 
 msgid "Up to 50 Mbps"
 msgstr ""
-
-msgid "UP/DOWN button mode"
-msgstr "Op/Ned knap tilstand"
-
-msgid "UP/DOWN buttons also for 'all up/down'"
-msgstr "Op/Ned knapper også for 'helt op/net' ?"
 
 msgid "Update"
 msgstr "Opdater"
@@ -22901,30 +22892,6 @@ msgstr ""
 msgid "When 'Enabled', the timer view will show the free space on the target device. This will wake the device from sleep mode."
 msgstr ""
 
-msgid "When enabled, the PiP can be closed using the EXIT button."
-msgstr "Når dette aktiveres kan PiP lukkes med EXIT knappen."
-
-msgid "When enabled, the receiver will automatically be switched off."
-msgstr ""
-
-msgid "When enabled, the receiver will automatically be switched on."
-msgstr ""
-
-msgid "When enabled, the receiver will automatically return to standby when the TV is turned off."
-msgstr ""
-
-msgid "When enabled, the receiver will automatically wake from standby when the TV is turned on."
-msgstr ""
-
-msgid "When enabled, the timer from the fallback tuner is imported."
-msgstr ""
-
-msgid "When enabled, the timer from the fallback tuner is the default timer."
-msgstr ""
-
-msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
-msgstr ""
-
 msgid "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
 msgstr "Når dette aktiveres, vil AIT data blive inkluderet i http streams. Dette tillader en klient modtager at bruge HbbTV."
 
@@ -22952,11 +22919,11 @@ msgstr "Når dette aktiveres, har en optagelse tilladelse til at afbryde streami
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "Når dette aktiveres, har en optagelse tilladelse til at afbryde Live TV, når der ikke er nogen frie Tunere."
 
+msgid "When enabled, a specific Softcam can be assigned to each encrypted service."
+msgstr ""
+
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Når dette aktiveres, vil en advarsel blive vist og brugeren får mulighed for at stoppe eller fortsætte med Timeshift."
-
-msgid "Enable to always unscramble received HTTP streams. Uses more resources due to demuxers. Streams with 0x100 in the service type are always unscrambled, regardless of this setting."
-msgstr "Når dette aktiveres, dekrypteres modtagne http-Streams. Dette kræver flere resurser (dekryptering demuxere), aktiver kun hvis nødvendig. individuelle Streams bliver altid dekrypteret hvis 0x100 ertilføjet til kanaltypen, uanset denne indstilling."
 
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Når dette aktiveres, kræves der godkendelse for at se http-Streams."
@@ -23015,11 +22982,23 @@ msgstr "Når dette aktiveres, mellemlagres Tekst-TV sider, og tillader hurtigere
 msgid "When enabled, teletext subtitles will be displayed at their original position."
 msgstr "Når dette aktiveres, vil Tekst-TV undertekster blive vist på deres originale position."
 
+msgid "When enabled, the PiP can be closed using the EXIT button."
+msgstr "Når dette aktiveres kan PiP lukkes med EXIT knappen."
+
 msgid "When enabled, the VCR SCART option will be shown on the main menu."
 msgstr "Når dette aktiveres, vil VCR scart muliheden blive vist i hovedmenuen."
 
 msgid "When enabled, the length of each recording will be shown in the movie list (this might cause some additional loading time)."
 msgstr "Når dette aktiveres, vil længden af optagelsen blive vist i Filmlisten (dette kan medføre en lidt længere opstartstid)."
+
+msgid "When enabled, the receiver will automatically be switched off."
+msgstr ""
+
+msgid "When enabled, the receiver will automatically be switched on."
+msgstr ""
+
+msgid "When enabled, the receiver will automatically return to standby when the TV is turned off."
+msgstr ""
 
 msgid "When enabled, the receiver will automatically use the audio track which you selected before."
 msgstr "Når dette aktiveres, vil modtageren automatisk bruge lydsporet som du tidligere valgte."
@@ -23027,11 +23006,20 @@ msgstr "Når dette aktiveres, vil modtageren automatisk bruge lydsporet som du t
 msgid "When enabled, the receiver will automatically use the subtitles which you selected before."
 msgstr "Når dette aktiveres, vil modtageren automatisk bruge de undertekster som du tidligere valgte."
 
+msgid "When enabled, the receiver will automatically wake from standby when the TV is turned on."
+msgstr ""
+
 msgid "When enabled, the receiver will select an AC3 track (when available)."
 msgstr "Når dette aktiveres, vil modtageren vælge et AC3 spor (når tilgængelig)"
 
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Når dette aktiveres, vil modtageren vælge et AC3+ spor (når tilgængelig)"
+
+msgid "When enabled, the timer from the fallback tuner is imported."
+msgstr ""
+
+msgid "When enabled, the timer from the fallback tuner is the default timer."
+msgstr ""
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr "Når aktiveret, vil denne indstilling have mere vægt end 'Foretrukken tuner for optagelser'."
@@ -23044,6 +23032,9 @@ msgstr "Når dette aktiveres, Starter Timeshift automatisk i baggrunden efter an
 
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Når dette aktiveres, benyttes DHCP til IP konfiguration."
+
+msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
+msgstr ""
 
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "Når dette er aktiveret, vil din modtager opdage aktivitet på VCR SCART indgangen."
@@ -23060,17 +23051,11 @@ msgstr ""
 msgid "When nonzero, a zap timer will stop the nominated period after the ending time indicated in the EPG."
 msgstr ""
 
-msgid "When the receiver wakes from standby, it will switch the TV to the HDMI input connected to the receiver."
-msgstr ""
-
 msgid "When set each folder will show the previous state used, when off the default values will be shown."
 msgstr "Når dette er sat vises hver mappe i forrige brugte tilstand, er den slukket vises standardværdier."
 
 msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr "Når dette er sat vil PiG vende tilbage til Live efter afspilning af en film er stoppet."
-
-msgid "When enabled, a specific Softcam can be assigned to each encrypted service."
-msgstr ""
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Vælg om billedet skaleres eller strækkes, når indholdet har et billedformat på 16:9."
@@ -23082,6 +23067,9 @@ msgid "When the input cursor reaches this point (percentage of the width, from e
 msgstr "Når inddata markøren når dette sted (procent af bredden fra hver side) rulles teksten til markøren."
 
 msgid "When the receiver wakes from standby or deep standby it will send a command to the TV to bring it out of standby."
+msgstr ""
+
+msgid "When the receiver wakes from standby, it will switch the TV to the HDMI input connected to the receiver."
 msgstr ""
 
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
@@ -23174,17 +23162,14 @@ msgstr "Med denne mulighed kan du skjule jobopgaver fra skærmbilledet udvidelse
 msgid "With this option you can switch off the display during operation."
 msgstr "Med denne mulighed kan du slukke for displayet i Drift-tilstand."
 
-msgid "With this option you can switch off the display in Deep Standby Mode."
+msgid "With this option you can switch off the display in Deep Standby mode."
 msgstr "Med denne mulighed kan du slukke for displayet i Dyb Standby-tilstand."
 
-msgid "With this option you can switch off the display in Standby Mode."
+msgid "With this option you can switch off the display in standby mode."
 msgstr "Med denne mulighed kan du slukke for displayet i Standby-tilstand."
 
 msgid "With this option you can switch the LED color or deactivate the LED."
 msgstr "Med denne mulighed kan du slukke for LED farven eller deaktiver LED."
-
-msgid "This setting can help improve signal quality or prevent issues with longer HDMI cables."
-msgstr "Med denne indstilling kand du sandsynligvis forbedre signalkvalitet og eliminere problemer som kan forekomme med længere HDMI kabler."
 
 msgid "Without pop up"
 msgstr "Uden Pop-op"

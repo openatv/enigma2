@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-02 15:40+0000\n"
+"POT-Creation-Date: 2025-12-06 12:58+0000\n"
 "PO-Revision-Date: 2025-10-23 18:23+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
@@ -799,10 +799,6 @@ msgstr[0] "%d tunti"
 msgstr[1] "%d tuntia"
 
 #, python-format
-msgid "%d Hours"
-msgstr "%d Tunnit"
-
-#, python-format
 msgid "%d MB"
 msgstr "%d MB"
 
@@ -844,10 +840,6 @@ msgstr[0] "%d Minuutti"
 msgstr[1] "%d Minuuttia"
 
 #, python-format
-msgid "%d Minutes"
-msgstr "%d Minuuttia"
-
-#, python-format
 msgid "%d Month"
 msgid_plural "%d Months"
 msgstr[0] "%d Kuukausi"
@@ -874,10 +866,6 @@ msgid "%d Second"
 msgid_plural "%d Seconds"
 msgstr[0] "%d sekunti"
 msgstr[1] "%d sekuntia"
-
-#, python-format
-msgid "%d Seconds"
-msgstr "%d Sekuntia"
 
 #, python-format
 msgid "%d Week"
@@ -1812,6 +1800,9 @@ msgstr "Aktivoi MAC-osoitteen määritys"
 msgid "Activate Picture in Picture"
 msgstr "Avaa PiP-kuva"
 
+msgid "Activate UP/DOWN buttons for the 'all up/down' functions at the beginning/end of the column."
+msgstr "Otetaanko Ylös / alas painikkeet käyttöön kaikille ylös / alas toiminnolle? (sarakkeen alussa / lopussa)"
+
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr "Aktivoi tapa lähettää yksittäisiä tai tiettyjä sisäisiä HDMI-CEC-komentoja komentoriviltä."
 
@@ -2290,7 +2281,7 @@ msgstr "Tuo uudelleenkäynnistyksessä"
 msgid "Also import from the extension menu"
 msgstr "Lisää valinta laajennusvalikkoon"
 
-msgid "Also import when receiver is leaving standby"
+msgid "Also import when leaving standby"
 msgstr "Tuo valmiustilasta poistuttaessa"
 
 msgid "Also on standby"
@@ -3085,6 +3076,9 @@ msgstr "Bislama"
 
 msgid "Bitrate"
 msgstr "Bittinopeus"
+
+msgid "Bitrate of the video encoder. Larger values improves quality and increases file size."
+msgstr "Videokooderin bittinopeus. Suurempi arvo parantaa laatua ja lisää tiedostokokoa."
 
 msgid "Black"
 msgstr "Musta"
@@ -4581,6 +4575,9 @@ msgstr "Määritä tämän LNB:n DiSEqC-tila."
 msgid "Configure the IP address."
 msgstr "Määritä IP-osoite."
 
+msgid "Configure the IP of the fallback remote receiver."
+msgstr "IP osoite etävastaanottimelle"
+
 msgid ""
 "Configure the Internet connection by adjusting the values shown.\n"
 "\n"
@@ -4589,6 +4586,12 @@ msgstr ""
 "Määritä Internet yhteys säätämällä näytettyjä arvoja.\n"
 "\n"
 "Kun asetukset ovat oikein, jatka painamalla OK."
+
+msgid "Configure the Port of the fallback remote receiver."
+msgstr "Etävastaanottimen portti"
+
+msgid "Configure the URL of the fallback remote receiver."
+msgstr "Etävastaanottimen URL-osoite"
 
 msgid "Configure the alignment of events."
 msgstr "Ohjelmatiedon sijainti."
@@ -4623,7 +4626,7 @@ msgstr "Määrittää etupaneeliin näytön kirkkauden himmennettynä."
 msgid "Configure the brightness level of the front panel display for normal operation."
 msgstr "Määrittää etupaneeliin näytön kirkkauden normaalissa tilassa."
 
-msgid "Configure the brightness level of the front panel display for standby."
+msgid "Configure the brightness level of the front panel display for Standby."
 msgstr "Määrittää etupaneeliin näytön kirkkauden valmiustilassa."
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
@@ -4752,9 +4755,6 @@ msgstr "Määrittää ensisijaisen ohjelmaoppaan kielen."
 msgid "Configure the refresh rate of the screen."
 msgstr "Määrittää näytön virkistystaajuuden."
 
-msgid "Configure the teletext screen resolution. Note: Full-HD teletext is not supported by all skins."
-msgstr "Määritä näytön teksti-tv: n tarkkuus (kaikki teemat eivät tue Full HD teksti-TV:tä)."
-
 msgid "Configure the second audio language."
 msgstr "Määrittää toissijaisen äänen kielen."
 
@@ -4790,6 +4790,9 @@ msgstr "Määritä loppukoordinaatti tekstitv:een Y korkeus."
 
 msgid "Configure the subtitle delay when timing information is not available."
 msgstr "Määrittää tekstityksen viiveen, kun ajoitustietoa ei ole saatavilla."
+
+msgid "Configure the teletext screen resolution. Note: Full-HD teletext is not supported by all skins."
+msgstr "Määritä näytön teksti-tv: n tarkkuus (kaikki teemat eivät tue Full HD teksti-TV:tä)."
 
 msgid "Configure the third audio language."
 msgstr "Määrittää kolmannen äänen kielen."
@@ -5476,9 +5479,6 @@ msgstr "DNS data lähde"
 msgid "DNS mode"
 msgstr "DNS tila"
 
-msgid "Set the hostname or IP address."
-msgstr "DNS nimi tai IP osoite"
-
 msgid "DNS suffix"
 msgstr "DNS pääte"
 
@@ -5837,6 +5837,9 @@ msgstr "Oletus videotila on valittu televisiolle."
 msgid "Default volume offset"
 msgstr "Oletus äänenvoimakkuuden offsetti"
 
+msgid "Default wake-up is 5 minutes before Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
+msgstr "Oletusasetus on herätä valmiustilasta on 5 minuuttia aikaisemmin. Tämä voi tarpeen mukaan muutta (esim. herätysaika on epätarkka tai liian myöhäistä, odottaa verkkoasemaa, jne.)"
+
 #, python-format
 msgid "Default: '%s'."
 msgstr "Oletus: '%s'."
@@ -6172,9 +6175,6 @@ msgstr "Poista vain korostetun tiedoston valinta"
 msgid "Deselected packages usually occur because those packaged are incompatible with existing packages. While this is mostly harmless it is possible that your %s %s may experience issues."
 msgstr "Valitsematta jätetyt paketit eivät ole yhteensopivia olemassa olevien pakettien kanssa. Vaikka tämä on enimmäkseen vaaratonta, on mahdollista, että %s %s voi esiintyä ongelmia."
 
-msgid "Destination of fallback remote receiver."
-msgstr "Etävastaanottimen kohde"
-
 msgid "Destination of fallback remote receiver for ATSC"
 msgstr "Etävastaanottimen kohde"
 
@@ -6183,6 +6183,9 @@ msgstr "Etävastaanottimen kohde DVB-C"
 
 msgid "Destination of fallback remote receiver for DVB-T"
 msgstr "Etävastaanottimen kohde DVB-T"
+
+msgid "Destination of fallback remote receiver."
+msgstr "Etävastaanottimen kohde"
 
 msgid "Detail of GStreamer log."
 msgstr "Yksityiskohtaiset tiedot GStreameri lokista"
@@ -6376,6 +6379,9 @@ msgstr "Poista PiP Käytöstä.\n"
 
 msgid "Disabled or WPA/WPA2"
 msgstr "Poistettu tai WPA/WPA2"
+
+msgid "Disables timeshift during recording (advisable for USB sticks)."
+msgstr "Keskeytä ajansiirto, jos tallennus on käynnissä (suositellaan USB-muistitikuille)"
 
 msgid "Disabling Chkroot failed!"
 msgstr "Pysäyttäminen Chkroot epäonnistu!"
@@ -7110,6 +7116,9 @@ msgstr "Suosikkien lisäys ja poisto"
 msgid "Enable Focus Animation"
 msgstr "Ota tarkemmat animaatiot käyttöön"
 
+msgid "Enable FreeSat EPG"
+msgstr "Ota käyttöön freesat EPG"
+
 msgid "Enable GStreamer debug log *"
 msgstr "Ota GStreamer debug loki käyttöön *"
 
@@ -7155,9 +7164,6 @@ msgstr "Aktivoi 4 kanava PIP"
 msgid "Enable Swap at startup"
 msgstr "Aktivoi swap käynnistettäessä"
 
-msgid "Activate UP/DOWN buttons for the 'all up/down' functions at the beginning/end of the column."
-msgstr "Otetaanko Ylös / alas painikkeet käyttöön kaikille ylös / alas toiminnolle? (sarakkeen alussa / lopussa)"
-
 msgid "Enable VPS"
 msgstr "Ota VPS käyttöön"
 
@@ -7198,7 +7204,7 @@ msgstr "Ota käyttöön automaattinen jakaminen"
 msgid "Enable autorefresh templates."
 msgstr "Ota automaattiset päivitykset käyttöön."
 
-msgid "Enable blinking rec symbol on the LCD Display in Standby."
+msgid "Enable blinking rec symbol on the LCD Display in standby."
 msgstr "Jos 'Kyllä' Tallennus symboli vilkkuu laitteen näytössä valmiustilassa (kaikki vastaanottimet eivät tue tätä)"
 
 msgid "Enable blinking rec symbol on the LCD Display."
@@ -7237,9 +7243,6 @@ msgstr "Vaihda muunto stereoksi"
 msgid "Enable fallback remote receiver"
 msgstr "Ota käyttöön etävastaanotin"
 
-msgid "Enable FreeSat EPG"
-msgstr "Ota käyttöön freesat EPG"
-
 msgid "Enable import timer from fallback tuner"
 msgstr "Tuo ajastimet etävastaanottimelta"
 
@@ -7264,7 +7267,7 @@ msgstr "Ota käyttöön paniikkinäppäin"
 msgid "Enable preview"
 msgstr "Aktivoi esikatselu"
 
-msgid "Enable remote receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner). Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_receiver:8001."
+msgid "Enable remote receiver to be tried to tune into services that can't be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner). Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_receiver:8001."
 msgstr "Salli vastaanottimen virittyä ulkopuolisiin vastaanottimiin (esim. jos viritin on varattu ja lähiverkon palvelu on saatavilla. Määrittele URL-osoite mukaan luettuna http:// ja portin numero (normaalisti :8001), esim. http://second_box:8001."
 
 msgid "Enable teletext caching"
@@ -7333,6 +7336,9 @@ msgstr "Ota ajastus käyttöön"
 msgid "Enable to add some extra spacing to the Information screens. This can improve readability."
 msgstr "Ota käyttöön, jos haluat lisätä ylimääräisiä välilyöntejä Tieto näyttöihin. Tämä voi parantaa luettavuutta."
 
+msgid "Enable to always unscramble received HTTP streams. Uses more resources due to demuxers. Streams with 0x100 in the service type are always unscrambled, regardless of this setting."
+msgstr "Kun valittu, pura vastaanotettavat http streamit. Tämä vaatii enemmän resursseja. Käytä vain jos todella tarvitset. Yksittäiset streamit puretaan aina jos 0x100 on lisätty kanavatietoihin riippumatta tästä asetuksesta. Oletus: Ei."
+
 msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch."
 msgstr "Laittaessasi tämän päälle, kaikki kyllä/ei, päällä/pois päältä asetukset näkyvät graafisena kytkimenä."
 
@@ -7350,6 +7356,12 @@ msgstr "Käytössä"
 
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Ottaa käyttöön toiminnon, jotta vastaanotin voi purkaa striimejä (jos ECM-tiedot on mukana striimissä ja sopiva katselukortti on saatavilla)."
+
+msgid "Enables sending the same TV commands for deep standby as for regular standby."
+msgstr "Jos arvo on Kyllä, televisioon lähetetään samat komennot virransäästö tilassa kuin säännöllisten valmiustilatapahtumien aikana."
+
+msgid "Enables timeshift to use alternative audio plugins."
+msgstr "Jos asetuksena on 'yes', voit käyttää ajansiirtoa vaihtoehtoisten ääniliitännäisten kanssa."
 
 msgid "Encrypted: "
 msgstr "Salattu: "
@@ -9574,9 +9586,6 @@ msgstr "IP-osoite on mitätön!"
 msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr "Striimin välitys -palvelimen IP-osoite, jota käytetään sellaisten palvelujen salauksen purkamiseen, joiden salaus voidaan purkaa vain striimin välityksen kautta."
 
-msgid "Configure the IP of the fallback remote receiver."
-msgstr "IP osoite etävastaanottimelle"
-
 msgid "IPK Installer"
 msgstr "IPK Asennus"
 
@@ -9704,23 +9713,17 @@ msgstr ""
 "Jos tämä on käytössä, CEC protokollan liikenteestä pidetään lokia. Lokitiedostot sijaitsevat muiden lokitiedostojen kanssa, mutta niiden nimi on\n"
 "Enigma2-hdmicec-[päivämäärä].log'."
 
+msgid "If enabled, a time window is used to detect wake-ups from Deep Standby triggered by a timer. The default setting is disabled, which uses a special signal from the receiver. However, some devices send an incorrect or no signal, causing wake-up detection to fail."
+msgstr "Kyllä asetuksella aikaikkuna asettaan herätys valmiustilasta ajastimen avulla. oletus `Ei` ja käyttää vastaanottimen erityistä signaalia. Jotkut laitteet asettavat kuitenkin ei signaalia ja tunnistus voi epäonnistua."
+
 msgid "If enabled, the new GStreamer playback engine will be used."
 msgstr "Jos tämä on käytössä, käytetään uutta GStreameriä."
-
-msgid "If enabled, a time window is used to detect wake-ups from deep standby triggered by a timer. The default setting is disabled, which uses a special signal from the receiver. However, some devices send an incorrect or no signal, causing wake-up detection to fail."
-msgstr "Kyllä asetuksella aikaikkuna asettaan herätys valmiustilasta ajastimen avulla. oletus `Ei` ja käyttää vastaanottimen erityistä signaalia. Jotkut laitteet asettavat kuitenkin ei signaalia ja tunnistus voi epäonnistua."
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Jos lokit käyttävät enemmän levytilaa kuin mitä maksimiarvoksi on määritetty, vanhimmat lokit poistetaan."
 
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
 msgstr "Jos mahdollista, x minuuttia ennen ajastuksen käynnistymistä VPS Plugin, alkaako ohjelma aikaisemmin. (0 poistaa toiminnon käytöstä)"
-
-msgid "Enables sending the same TV commands for deep standby as for regular standby."
-msgstr "Jos arvo on Kyllä, televisioon lähetetään samat komennot virransäästö tilassa kuin säännöllisten valmiustilatapahtumien aikana."
-
-msgid "Enables timeshift to use alternative audio plugins."
-msgstr "Jos asetuksena on 'yes', voit käyttää ajansiirtoa vaihtoehtoisten ääniliitännäisten kanssa."
 
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Jos virransäästötilaa on käytössä , järjestelmä odottaa, kunnes järjestelmän aika on synkronoitu. Vaatimuksista riippuen laitteiden herätystä jatketaan korkeintaan 2 minuutissa."
@@ -9819,14 +9822,14 @@ msgstr "Poistu välittömästi asennustoiminnosta (vain vianmääritystila)"
 msgid "Immediately restart selected devices."
 msgstr "Käynnistä valitut laitteet välittömästi uudelleen."
 
-msgid "Import channels and/or EPG from the remote receiver URL, even when the receiver is coming out of standby."
-msgstr "Tuo kanavat ja/tai ohjelmaopas etävastaanottimelta valmiustilasta poistuttaessa"
-
 msgid "Import channels and/or EPG from remote receiver URL when receiver is booted."
 msgstr "Tuo kanavat ja/tai ohjelmaopas etävastaanottimelta uudelleenkäynnistyksen yhteydessä"
 
 msgid "Import channels and/or EPG from remote receiver URL when receiver or GUI is restarted."
 msgstr "Tuo kanavat ja/tai ohjelmaopas etävastaanottimelta uudelleenkäynnistyksen yhteydessä"
+
+msgid "Import channels and/or EPG from the remote receiver URL, even when the receiver is coming out of standby."
+msgstr "Tuo kanavat ja/tai ohjelmaopas etävastaanottimelta valmiustilasta poistuttaessa"
 
 msgid "Import from remote receiver URL"
 msgstr "Tuo etävastaanottimelta"
@@ -10558,7 +10561,7 @@ msgstr "LED Sammutuksen Väri"
 msgid "LED Standby"
 msgstr "LED valmiustila"
 
-msgid "LED brightness during deep standby."
+msgid "LED brightness during Deep Standby."
 msgstr "LED:in kirkkaus virransäästötilassa."
 
 msgid "LED brightness during normal operations."
@@ -13131,10 +13134,10 @@ msgstr "OpenViX Paketit"
 msgid "Opera"
 msgstr ""
 
-msgid "Operating LED status in deep standby mode"
+msgid "Operating LED status in Deep Standby"
 msgstr "LED tila virransäästötilassa"
 
-msgid "Operating LED status in standby mode"
+msgid "Operating LED status in Standby"
 msgstr "LED tila valmistilassa"
 
 msgid "Operating LED status while running"
@@ -13152,7 +13155,7 @@ msgstr "Vaihtoehto"
 msgid "Option to disable picons on the Infobar."
 msgstr "'Kyllä' valinnalla kanavalogot näytetään tietopalkissa"
 
-msgid "Option to enable the Hardware Standby Timer."
+msgid "Option to enable the hardware standby timer."
 msgstr "Käytä kiintolevyn sisäistä virransäästötoimintoa"
 
 msgid "Optional parameter"
@@ -13440,9 +13443,6 @@ msgstr "AC3+ -äänen läpiviennin käsittelyviive"
 
 msgid "Password"
 msgstr "Salasana"
-
-msgid "Password (httpuser)"
-msgstr "Salasana (httpkäyttäjä)"
 
 msgid "Password (httpwd)"
 msgstr "Salasana (httpwd)"
@@ -14055,9 +14055,6 @@ msgstr "Portti D"
 msgid "Port number for the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr "Striimin välitys palvelimen portti, jota käytetään sellaisten palvelujen salauksen purkamiseen, joiden salaus voidaan purkaa vain striimin välityksen kautta."
 
-msgid "Configure the Port of the fallback remote receiver."
-msgstr "Etävastaanottimen portti"
-
 msgid "Portugal"
 msgstr "Portugali"
 
@@ -14097,7 +14094,7 @@ msgstr "Mahdolliset syyt voivat olla:"
 msgid "Power"
 msgstr "Virta"
 
-msgid "Power LED State in Deep-Standby"
+msgid "Power LED State in Deep Standby"
 msgstr "Virta LED tila virransäästötila"
 
 msgid "Power LED State in Standby"
@@ -14106,7 +14103,7 @@ msgstr "Virta LED tila valmiustilassa"
 msgid "Power LED can be turned on or off here."
 msgstr "Virta ledin voi kytkeä päälle pois täältä."
 
-msgid "Power LED state during deep-standby."
+msgid "Power LED state during Deep Standby."
 msgstr "Virta LED tila virransäästötilan aikana."
 
 msgid "Power LED state during standby."
@@ -15284,6 +15281,9 @@ msgstr "Tarvittava tallennusmedia:"
 msgid "Rereading partition table"
 msgstr "Levyosioita luetaan uudelleen"
 
+msgid "Reschedule the task to run when the receiver enters or exits standby. The state change must occur within the task’s scheduled window, or the task will not run."
+msgstr ""
+
 msgid "Reserved"
 msgstr "Varattu"
 
@@ -16304,9 +16304,6 @@ msgstr "Valitse 'Kyllä' poistaaksesi kaikki käyttäjän teema tiedot. Tämän 
 msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all key map, menu and setup override data and restore the default definitions."
 msgstr "Valitse 'Kyllä' poistaaksesi kaikki käyttöjärjestelmän tiedot. Tämän vaihtoehdon valitseminen poistaa kaikki näppäimistökartta, valikko ja asetusten oletustiedot ja palauttaa oletusmääritykset."
 
-msgid "Reschedule the task to run when the receiver enters or exits standby. The state change must occur within the task’s scheduled window, or the task will not run."
-msgstr ""
-
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr "Valitse 'Kyllä', jos haluat palauttaa verkon oletusasetukset. Tämä ottaa Ethernet portin käyttöön, jos se on olemassa, ja asettaa vastaanottimen käyttämään DHCP:tä. Kaikki muut verkkoliitännät poistetaan."
 
@@ -16538,10 +16535,10 @@ msgstr "Valitse arkiston loki tarkasteltavaksi:"
 msgid "Select a script to run:"
 msgstr "Valitse suoritettava scripti:"
 
-msgid "Select a time, when in Standby mode, after which the descramble can proceed."
+msgid "Select a time, when in standby mode, after which the descramble can proceed."
 msgstr "Valitse aika, jonka kuluttua valmiustilassa salauksen purku voi jatkua."
 
-msgid "Select a time, when in Standby, before which descramble can proceed."
+msgid "Select a time, when in standby, before which descramble can proceed."
 msgstr "Valitse aika, jonka jälkeen valmiustilassa salauksen purku voi jatkua."
 
 msgid "Select a tuner"
@@ -16640,7 +16637,7 @@ msgstr ""
 "Valitse kuinka satelliittiantenni on rakennettu eli kiinteä antenni,\n"
 "yksittäis LNB, DiSEqC-kytkin, asennoitin jne."
 
-msgid "Select how the schedule is handled with respect to Standby mode."
+msgid "Select how the schedule is handled with respect to standby mode."
 msgstr ""
 
 msgid "Select how to activate the Quick EPG mode."
@@ -17512,6 +17509,9 @@ msgstr "Aseta kiinteäksi"
 msgid "Set fps for external subtitles"
 msgstr "Aseta ulkoisen tekstityksen nopeus (fps)"
 
+msgid "Set how long the second InfoBar stays visible. It also disappears when you press ‘OK’."
+msgstr "Määrittää, kuinka kauan 2. tietopalkki näytetään kuvaruudulla. Sen voi piilottaa samantien painamalla 'OK'."
+
 msgid "Set interface as the default Interface"
 msgstr "Määritä sovitin oletussovittimeksi"
 
@@ -17570,6 +17570,9 @@ msgstr "Aseta oletus lajittelujärjestys."
 msgid "Set the delay time between repeated loops, this is used by software renderer in some skins."
 msgstr "Määritä toistettavien silmukoiden välinen viive, ohjelmistopohjainen renderointi käyttää tätä joissain teemoissa."
 
+msgid "Set the hostname or IP address."
+msgstr "DNS nimi tai IP osoite"
+
 msgid "Set the jump-size of the SeekBar."
 msgstr "Aseta hakupalkin hypyn pituus."
 
@@ -17615,9 +17618,6 @@ msgstr ""
 msgid "Set the time to hide the InfoBar."
 msgstr "Määrittää, kuinka kauan tietopalkki näytetään kuvaruudulla."
 
-msgid "Set how long the second InfoBar stays visible. It also disappears when you press ‘OK’."
-msgstr "Määrittää, kuinka kauan 2. tietopalkki näytetään kuvaruudulla. Sen voi piilottaa samantien painamalla 'OK'."
-
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
 msgstr "Aseta aika joka odotettaan ennen kuin suoritettaan oletustoiminto sammutuksessa, valmiustilassa tai uudelleenkäynnistyksessä. (esim .uniajastin, ...)"
 
@@ -17659,7 +17659,7 @@ msgstr "Aika asetusten määrittäminen"
 msgid "Set to 'Disabled' to replace underscore characters '_' in file and directory names with spaces."
 msgstr "Jos asetus ei ole käytössä, tiedosto- ja kansionimien alaviivoja ei näytetä, ja ne korvataan välilyönneillä."
 
-msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby mode before shutting down."
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in standby mode before shutting down."
 msgstr "Aseta 'Käytössä' purkaaksesi jonossa olevat salatut tallenteet valmiustilassa ennen sammutusta."
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
@@ -17985,6 +17985,9 @@ msgstr "Näytä Näyttö paketit"
 msgid "Show Driver packages"
 msgstr "Näytä Ajuri paketit"
 
+msgid "Show EIT Now/Next event data in the InfoBar"
+msgstr "Näytä EIT Nyt/Seuraava tietopalkissa."
+
 msgid "Show EPG"
 msgstr "Näytä Ohjelmaopas"
 
@@ -18042,7 +18045,7 @@ msgstr "Näytä M2k paketit"
 msgid "Show Media Player in Main Menu"
 msgstr "näytä mediatoistin päävalikossa"
 
-msgid "Show Media playback Remaining/Elapsed as"
+msgid "Show Media playback remaining/elapsed as"
 msgstr "Näytä tallenteen jäljellä oleva/kulunut aika muodossa"
 
 msgid "Show Merlin EPG Center"
@@ -18544,9 +18547,6 @@ msgstr "Näytä viesti, jos Tiedostojen hallinta ei ole käynnissä ja kaikki te
 
 msgid "Show the CCcam Info Screen"
 msgstr "Näytä CCcam tiedot näytön näyttäminen"
-
-msgid "Show EIT Now/Next event data in the InfoBar"
-msgstr "Näytä EIT Nyt/Seuraava tietopalkissa."
 
 msgid "Show the Logs Settings screen"
 msgstr "Näytä Lokit asetukset näytössä"
@@ -19105,7 +19105,7 @@ msgstr "Somalia"
 msgid "Somalia"
 msgstr "Somalia"
 
-msgid "Some TVs cannot switch to the correct input if another HDMI port is active. This setting puts the TV into standby before switching. If the TV does not turn back on, a slower transmission interval or repeating the wake-up command may be required."
+msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting puts the TV into standby before switching. If the TV does not turn back on, a slower transmission interval or repeating the wake-up command may be required."
 msgstr "Jotkin TV:eet eivät voi vaihtaa oikeaan sisääntuloon, jos toinen HDMI portti on aktiivinen. Tämä asetus asettaa television valmiustilaan ennen vaihtoa. (Jos televisio ei kytkeydy takaisin päälle, se voi vaatia hitaampaa lähetysväliä tai herätyskomentojen toistamista.)"
 
 msgid "Sorbian"
@@ -19434,10 +19434,10 @@ msgstr "Tilaviestin aikakatkaisu"
 msgid "Status of the display during operation"
 msgstr "Näytön tila käytössä"
 
-msgid "Status of the display in deep standby"
+msgid "Status of the display in Seep Standby"
 msgstr "Näytön tila virransäästötila"
 
-msgid "Status of the display in standby mode"
+msgid "Status of the display in Standby"
 msgstr "Näytön tila valmiustila"
 
 msgid "Status unavailable!"
@@ -19538,9 +19538,6 @@ msgstr "Pysäytetty"
 
 msgid "Stopping Softcam"
 msgstr "Pysäytä Softcam"
-
-msgid "Disables timeshift during recording (advisable for USB sticks)."
-msgstr "Keskeytä ajansiirto, jos tallennus on käynnissä (suositellaan USB-muistitikuille)"
 
 msgid "Storage / Disk Information"
 msgstr "Tallennuslaitteet"
@@ -20401,9 +20398,6 @@ msgstr "Varmuuskopiointi onnistui"
 msgid "The backup succeeded. We will now continue to explain the upgrade process."
 msgstr "Varmuuskopiointi onnistui. Päivitys jatkuu eteenpäin."
 
-msgid "Bitrate of the video encoder. Larger values improves quality and increases file size."
-msgstr "Videokooderin bittinopeus. Suurempi arvo parantaa laatua ja lisää tiedostokokoa."
-
 msgid ""
 "The channel may support VPS\n"
 " Do you want to enable VPS?"
@@ -20420,9 +20414,6 @@ msgid ""
 msgstr ""
 "Oletus varmuuskopiointi valintaa ei voi muuttaa.\n"
 "Käytä vaihtoehtoista ja poissuljettua varmuuskopio valinnasta."
-
-msgid "Default wake-up is 5 minutes before deep standby. Adjust if the wake-up is too early or late, e.g., for network drives."
-msgstr "Oletusasetus on herätä valmiustilasta on 5 minuuttia aikaisemmin. Tämä voi tarpeen mukaan muutta (esim. herätysaika on epätarkka tai liian myöhäistä, odottaa verkkoasemaa, jne.)"
 
 msgid "The default settings are wake up time - 5 minutes and timer begin time + 5 minutes. This setting changed the time window before the wake up time. So can be detected a wake up by a timer even at very early starting receivers."
 msgstr "Vakioasetukset ovat herätysaika - 5 minuuttia ja ajastimen käynnistys + 5 minuuttia. Tämä asetus muuttaa aikaikkunaa ennen herätysaikaa. Tällä tavalla ajastin tunnistaa heräämisen jopa sellaisten vastaanottimien kanssa, jotka käynnistyvät hyvin aikaisin."
@@ -20723,35 +20714,11 @@ msgstr "Tämä asetus pakottaa HDR10-tilat UHD:lle"
 msgid "This option allows you can force the HLG Modes for UHD"
 msgstr "Tämä asetus pakottaaa HLG-tilat UHD:lle"
 
-msgid "This option allows you to choose how to display remaining time, or elapsed time, or both."
-msgstr "Määrittää, kuinka jäljellä oleva/kulunut aika näytetään."
-
-msgid "This option allows you to choose how to display the remaining/elapsed time for live TV."
-msgstr "Määrittää, kuinka jäljellä oleva/kulunut aika näytetään suoraa lähetystä katsottaessa."
-
-msgid "This option allows you to choose how to display the remaining/elapsed time for media playback."
-msgstr "Määrittää, kuinka jäljellä oleva/kulunut aika näytetään tallennetta toistettaessa."
-
-msgid "This option allows you to choose if the display shows the time or nothing in Standby."
-msgstr "Tämä asetus määrittää kuinka aika näytetään valmiustilassa, tai ei näytetä \"ollenkaan\""
-
-msgid "This option allows you to choose if the display shows the time, channel number or nothing during operation."
-msgstr "Tämän asetuksen avulla voit valita, näyttääkö näyttö ajan, kanavanumeron vai ei mitään käytön aikana."
-
-msgid "This option allows you to choose the background color of transparent picons."
-msgstr "Määrittää, minkävärinen taustaväri läpinäkyville kanavalogoille asetetaan."
-
-msgid "This option allows you to choose the option for Subservice indicator or selection."
-msgstr "Tämän vaihtoehdon avulla voit valita miten kanavatyyppi näytettään."
-
 msgid "This option allows you enable smoothing filter to control the dithering process."
 msgstr "Tämä asetus ottaa käyttöön pehmennyssuodattimen sävyjen sekoituksessa."
 
 msgid "This option allows you enable the vertical scaler dejagging."
 msgstr "Tämä asetus ottaa käyttöön skaalaimen pystysuuntaisen sahalaitojen poiston."
-
-msgid "This option allows you to set the layout view (Text or Graphics)."
-msgstr "Määrittää näkymän asettelun (teksti tai graafinen)."
 
 msgid "This option allows you to Power Off the display."
 msgstr ""
@@ -20803,8 +20770,29 @@ msgstr "Määrittää, kuinka SD-kuva 24Hz näytetään (koska kaikki televisiot
 msgid "This option allows you to choose how to display elapsed time, as + or -."
 msgstr "Määrittää, näytetäänkö kulunut aika positiivisena (+) vai negatiivisena (-)"
 
+msgid "This option allows you to choose how to display the remaining time, the elapsed time, or both."
+msgstr "Määrittää, kuinka jäljellä oleva/kulunut aika näytetään."
+
 msgid "This option allows you to choose how to display standard definition video on your TV."
 msgstr "Määrittää, kuinka normaalilla tarkkuudella oleva materiaali näytetään."
+
+msgid "This option allows you to choose how to display the remaining or elapsed time for live TV."
+msgstr "Määrittää, kuinka jäljellä oleva/kulunut aika näytetään suoraa lähetystä katsottaessa."
+
+msgid "This option allows you to choose how to display the remaining or elapsed time for media playback."
+msgstr "Määrittää, kuinka jäljellä oleva/kulunut aika näytetään tallennetta toistettaessa."
+
+msgid "This option allows you to choose if the display shows the time or nothing in standby."
+msgstr "Tämä asetus määrittää kuinka aika näytetään valmiustilassa, tai ei näytetä \"ollenkaan\""
+
+msgid "This option allows you to choose if the display shows the time, channel number or nothing during operation."
+msgstr "Tämän asetuksen avulla voit valita, näyttääkö näyttö ajan, kanavanumeron vai ei mitään käytön aikana."
+
+msgid "This option allows you to choose the background color of transparent picons."
+msgstr "Määrittää, minkävärinen taustaväri läpinäkyville kanavalogoille asetetaan."
+
+msgid "This option allows you to choose the option for Subservice indicator or selection."
+msgstr "Tämän vaihtoehdon avulla voit valita miten kanavatyyppi näytettään."
 
 msgid "This option allows you to choose what the first button press jumps to in channel list screen (pressing '2' jumps to 'A' or '2' first) when 'Quick Actions' preset actions are performed."
 msgstr "Tämä asetus määrittää mitä ensimmäinen näppäimen painallus tekee kanavalistassa, ('2' painallus hyppää joko 'A' tai '2'' kohtaan ensin), kun suoritetaan 'Pikatoimintojen' määritettyjä asetuksia. "
@@ -20817,6 +20805,9 @@ msgstr "Tämä asetus määrittää käyttöön 3D Surround Sound äänet."
 
 msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr "Tämän vaihtoehdon avulla voit asettaa offset arvoja eri Letterbox resoluutioihin."
+
+msgid "This option allows you to set the layout view (Text or Graphics)."
+msgstr "Määrittää näkymän asettelun (teksti tai graafinen)."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "Määrittää, näytetäänkö SNR (signaalikohinasuhde) desibeleinä vai prosentteina (kaikki laitteet eivät tue tätä)."
@@ -20916,6 +20907,9 @@ msgstr "Tämä asettaa etuliitteen jokaiselle debug lokin riville. Käynnistysai
 
 msgid "This setting allows the tuner configuration to be a duplication of another configured tuner."
 msgstr "Tämä asetus sallii viritinasetusten kopioinnin jo valmiiksi säädetystä virittimestä."
+
+msgid "This setting can help improve signal quality or prevent issues with longer HDMI cables."
+msgstr "Tällä asetuksella voit todennäköisesti parantaa signaalin laatua tai poistaa ongelmia, joita voi ilmetä pidemmillä HDMI-kaapeleilla."
 
 msgid "This setting depends on your cable provider and location. If you don't know the correct setting refer to the menu in the official cable receiver, or get it from your cable provider, or seek help via Internet forum."
 msgstr "Tämä asetus riippuu kaapelipalveluntarjoajastasi ja sijainnistasi. Jos et tiedä oikeaa asetusta, selaa laitteesi valikoita, pyydä kaapelipalveluntarjoajalta tai Googleta."
@@ -21665,14 +21659,17 @@ msgstr "UBINIZE"
 msgid "UHD Test"
 msgstr "UHD Testi"
 
+msgid "UP/DOWN button mode"
+msgstr "Ylös/alas -näppäimien toiminto"
+
+msgid "UP/DOWN buttons also for 'all up/down'"
+msgstr "Ylös/Alas näppäimet myös 'kaikki ylös/alas'"
+
 msgid "UP80  (keymap.u80)"
 msgstr "UP80  (keymap.u80)"
 
 msgid "URL"
 msgstr "Osoite"
-
-msgid "Configure the URL of the fallback remote receiver."
-msgstr "Etävastaanottimen URL-osoite"
 
 msgid "USALS"
 msgstr "USALS"
@@ -21866,12 +21863,6 @@ msgstr "Aktiivinen"
 
 msgid "Up to 50 Mbps"
 msgstr "Enintään 50 Mbps"
-
-msgid "UP/DOWN button mode"
-msgstr "Ylös/alas -näppäimien toiminto"
-
-msgid "UP/DOWN buttons also for 'all up/down'"
-msgstr "Ylös/Alas näppäimet myös 'kaikki ylös/alas'"
 
 msgid "Update"
 msgstr "Päivitä"
@@ -22892,30 +22883,6 @@ msgstr "Mitä haluat tehdä?"
 msgid "When 'Enabled', the timer view will show the free space on the target device. This will wake the device from sleep mode."
 msgstr "Kun 'Käytössä', ajastin näkymä näyttää laitteen vapaan tilan. Tämä herättää laitteen lepotilasta."
 
-msgid "When enabled, the PiP can be closed using the EXIT button."
-msgstr "Kun päällä, PiP-kuvan voi sulkea exit-näppäimellä."
-
-msgid "When enabled, the receiver will automatically be switched off."
-msgstr "Kun tämä on käytössä, vastaanotin kytkeytyy automaattisesti pois päältä."
-
-msgid "When enabled, the receiver will automatically be switched on."
-msgstr "Kun tämä on käytössä, vastaanotin kytkeytyy automaattisesti päälle."
-
-msgid "When enabled, the receiver will automatically return to standby when the TV is turned off."
-msgstr "Kun tämä on käytössä, vastaanotin palaa automaattisesti valmiustilaan, kun televisio sammutetaan."
-
-msgid "When enabled, the receiver will automatically wake from standby when the TV is turned on."
-msgstr "Kun tämä on käytössä, vastaanotin herää automaattisesti valmiustilasta, kun televisio kytketään päälle."
-
-msgid "When enabled, the timer from the fallback tuner is imported."
-msgstr "Kun käytössä, ajastukset tuodaan etävastaanottimelta"
-
-msgid "When enabled, the timer from the fallback tuner is the default timer."
-msgstr "Kun käytössä, ajastukset etävastaanottimelta ovat oletuksia"
-
-msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
-msgstr "Käy käytössä, voit määritellä etävastaanottimen OpenWebIf asetuksia"
-
 msgid "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
 msgstr "Kun päällä, AIT-tiedot lähetetään http striimeissä. Tämä mahdollistaa HbbTV:n käyttämisen asiakasvastaanottimessa."
 
@@ -22943,11 +22910,11 @@ msgstr "Kun päällä, tallennus saa keskeyttää suoratoiston, jos vapaita viri
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "Kun päällä, tallennus saa keskeyttää suoran katselun, jos vapaita virittimiä ei ole jäljellä tallennuksen suorittamiseksi."
 
+msgid "When enabled, a specific Softcam can be assigned to each encrypted service."
+msgstr "Kun määrität \"kyllä\" Softcam voidaan määrittää jokaiseen salatullle kanavalle erikseen."
+
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Kun päällä, näytetään varoitus ja käyttäjällä on mahdollisuus pysäyttää tai jatkaa ajansiirtoa."
-
-msgid "Enable to always unscramble received HTTP streams. Uses more resources due to demuxers. Streams with 0x100 in the service type are always unscrambled, regardless of this setting."
-msgstr "Kun valittu, pura vastaanotettavat http streamit. Tämä vaatii enemmän resursseja. Käytä vain jos todella tarvitset. Yksittäiset streamit puretaan aina jos 0x100 on lisätty kanavatietoihin riippumatta tästä asetuksesta. Oletus: Ei."
 
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Kun päällä, hyväksyntä vaaditaan katsottaessa http palveluita."
@@ -23006,11 +22973,23 @@ msgstr "Kun päällä, teksti-tv:n sivut ladataan muistiin ja ne ovat nopeammin 
 msgid "When enabled, teletext subtitles will be displayed at their original position."
 msgstr "Kun päällä, teksti-tv pohjaiset tekstitykset näytetään alkuperäisellä paikallaan."
 
+msgid "When enabled, the PiP can be closed using the EXIT button."
+msgstr "Kun päällä, PiP-kuvan voi sulkea exit-näppäimellä."
+
 msgid "When enabled, the VCR SCART option will be shown on the main menu."
 msgstr "Kun päällä, VCR SCART -valinta näytetään päävalikossa."
 
 msgid "When enabled, the length of each recording will be shown in the movie list (this might cause some additional loading time)."
 msgstr "Kun päällä, tallenteiden kestot näytetään tallenneluettelossa (saattaa hidastaa hieman näkymän latautumista)."
+
+msgid "When enabled, the receiver will automatically be switched off."
+msgstr "Kun tämä on käytössä, vastaanotin kytkeytyy automaattisesti pois päältä."
+
+msgid "When enabled, the receiver will automatically be switched on."
+msgstr "Kun tämä on käytössä, vastaanotin kytkeytyy automaattisesti päälle."
+
+msgid "When enabled, the receiver will automatically return to standby when the TV is turned off."
+msgstr "Kun tämä on käytössä, vastaanotin palaa automaattisesti valmiustilaan, kun televisio sammutetaan."
 
 msgid "When enabled, the receiver will automatically use the audio track which you selected before."
 msgstr "Kun päällä, vastaanotin käyttää kanavalle aiemmin valitsemaasi ääniraitaa automaattisesti."
@@ -23018,11 +22997,20 @@ msgstr "Kun päällä, vastaanotin käyttää kanavalle aiemmin valitsemaasi ä�
 msgid "When enabled, the receiver will automatically use the subtitles which you selected before."
 msgstr "Kun päällä, vastaanotin käyttää kanavalle aiemmin valitsemaasi tekstitystä automaattisesti."
 
+msgid "When enabled, the receiver will automatically wake from standby when the TV is turned on."
+msgstr "Kun tämä on käytössä, vastaanotin herää automaattisesti valmiustilasta, kun televisio kytketään päälle."
+
 msgid "When enabled, the receiver will select an AC3 track (when available)."
 msgstr "Kun päällä, vastaanotin valitsee AC3-ääniraidan (kun saatavilla)."
 
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Kun päällä, vastaanotin valitsee AC3+ ääniraidan (kun saatavilla)."
+
+msgid "When enabled, the timer from the fallback tuner is imported."
+msgstr "Kun käytössä, ajastukset tuodaan etävastaanottimelta"
+
+msgid "When enabled, the timer from the fallback tuner is the default timer."
+msgstr "Kun käytössä, ajastukset etävastaanottimelta ovat oletuksia"
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr "Kun päällä, tämä ohittaa tallennusten ensisijainen viritin valinnan"
@@ -23035,6 +23023,9 @@ msgstr "Kun päällä, ajansiirto alkaa automaattisesti määritetyn ajan kulutt
 
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Kun päällä, käytetään DHCP:tä IP-määritykseen."
+
+msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
+msgstr "Käy käytössä, voit määritellä etävastaanottimen OpenWebIf asetuksia"
 
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "Kun päällä, vastaanotin tunnistaa aktiviteetin VCR SCART-sisäänmenossa."
@@ -23051,17 +23042,11 @@ msgstr "Kun arvo ei ole nolla, kanavan vaihto ajastus alkaa aiemmin kuin ohjelma
 msgid "When nonzero, a zap timer will stop the nominated period after the ending time indicated in the EPG."
 msgstr "Kun arvo ei ole nolla, tallennus päättyy myöhemmin kuin ohjelmaoppaassa oleva lopetusaika."
 
-msgid "When the receiver wakes from standby, it will switch the TV to the HDMI input connected to the receiver."
-msgstr "Kun vastaanotin herää valmiustilasta, se käskee televisiota vaihtamaan HDMI tuloon, johon vastaanotin on liitetty."
-
 msgid "When set each folder will show the previous state used, when off the default values will be shown."
 msgstr "Kun päällä, jokainen hakemisto avautuu aikaisemmin valittuun järjestykseen. Kun pois, käytetään oletusarvoja."
 
 msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr "Kun päällä, pikkukuva jatkaa tv-kanavan toistoa, kun tallenteen katselu päättyy."
-
-msgid "When enabled, a specific Softcam can be assigned to each encrypted service."
-msgstr "Kun määrität \"kyllä\" Softcam voidaan määrittää jokaiseen salatullle kanavalle erikseen."
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Kun ohjelman kuvasuhde on 16:9, valitse skaalataanko/venytetäänkö kuvaa."
@@ -23074,6 +23059,9 @@ msgstr "Kun syöttökursori saavuttaa tämän pisteen (prosenttiosuus leveydest�
 
 msgid "When the receiver wakes from standby or deep standby it will send a command to the TV to bring it out of standby."
 msgstr "Kun vastaanotin herää valmiustilasta tai virransäästötilasta, se lähettää televisiolle komennon, jolla se herätetään valmiustilasta."
+
+msgid "When the receiver wakes from standby, it will switch the TV to the HDMI input connected to the receiver."
+msgstr "Kun vastaanotin herää valmiustilasta, se käskee televisiota vaihtamaan HDMI tuloon, johon vastaanotin on liitetty."
 
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
 msgstr "Kun punainen laatikko on oikein näkyvissä, paina VIHREÄÄ painiketta tallentaaksesi asetukset ja poistuaksesi."
@@ -23168,17 +23156,14 @@ msgstr "Tällä valinnalla voit piilottaa tehtävät (Job Tasks) laajennusvaliko
 msgid "With this option you can switch off the display during operation."
 msgstr "Tämä asetus kytkee näyton päälle ja pois."
 
-msgid "With this option you can switch off the display in Deep Standby Mode."
+msgid "With this option you can switch off the display in Deep Standby mode."
 msgstr "Tämä asetus kytkee näytön pois päältä virransäästötilassa."
 
-msgid "With this option you can switch off the display in Standby Mode."
+msgid "With this option you can switch off the display in standby mode."
 msgstr "Tämä asetus kytkee näyton päälle ja pois valmiustilassa."
 
 msgid "With this option you can switch the LED color or deactivate the LED."
 msgstr "Tällä asetuksella voit vaihtaa LED väriä tai poistaa LED:in käytöstä."
-
-msgid "This setting can help improve signal quality or prevent issues with longer HDMI cables."
-msgstr "Tällä asetuksella voit todennäköisesti parantaa signaalin laatua tai poistaa ongelmia, joita voi ilmetä pidemmillä HDMI-kaapeleilla."
 
 msgid "Without pop up"
 msgstr "Kyllä, älä näytä viestiä"
@@ -24349,6 +24334,21 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%d Seconds"
+#~ msgstr "%d Sekuntia"
+
+#, python-format
+#~ msgid "%d Hours"
+#~ msgstr "%d Tunnit"
+
+#, python-format
+#~ msgid "%d Minutes"
+#~ msgstr "%d Minuuttia"
+
+#~ msgid "Password (httpuser)"
+#~ msgstr "Salasana (httpkäyttäjä)"
 
 #~ msgid "Sci-Fi"
 #~ msgstr "Scifi"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-02 15:40+0000\n"
+"POT-Creation-Date: 2025-12-06 12:58+0000\n"
 "PO-Revision-Date: 2025-06-11 19:04+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -810,10 +810,6 @@ msgstr[1] "%d val."
 msgstr[2] "%d val."
 
 #, python-format
-msgid "%d Hours"
-msgstr "%d Valandos"
-
-#, python-format
 msgid "%d MB"
 msgstr "%d MB"
 
@@ -857,10 +853,6 @@ msgstr[1] "%d Minutės"
 msgstr[2] "%d Minučių"
 
 #, python-format
-msgid "%d Minutes"
-msgstr "%d minutės"
-
-#, python-format
 msgid "%d Month"
 msgid_plural "%d Months"
 msgstr[0] "%d mėnuo"
@@ -891,10 +883,6 @@ msgid_plural "%d Seconds"
 msgstr[0] "%d sekundė"
 msgstr[1] "%d sekundės"
 msgstr[2] "%d sekundžių"
-
-#, python-format
-msgid "%d Seconds"
-msgstr "%d sekundės"
 
 #, python-format
 msgid "%d Week"
@@ -1853,6 +1841,9 @@ msgstr "Aktyvinti MAC adreso konfigūraciją"
 msgid "Activate Picture in Picture"
 msgstr "Įjungti vaizdą vaizde"
 
+msgid "Activate UP/DOWN buttons for the 'all up/down' functions at the beginning/end of the column."
+msgstr "Įjungti aukštyn / žemyn mygtukus 'visoms aukštyn / žemyn' funkcijoms? (stulpelio pradžioje / pabaigoje)"
+
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr "Suaktyvinkite būdą, kaip siųsti individualias arba specifines vidines HDMI-CEC komandas iš komandinės eilutės. Įveskite komandinę eilutę 'echo help > %s' ir tada trumpai perskaitykite failą '%s'."
 
@@ -2327,7 +2318,7 @@ msgstr "Importuoti kanalus perkraunant arba paleidžiant grafinę aplinką iš n
 msgid "Also import from the extension menu"
 msgstr "Taip pat importuoti iš išplėstinio meniu"
 
-msgid "Also import when receiver is leaving standby"
+msgid "Also import when leaving standby"
 msgstr "Importuoti kanalus, kai imtuvas išeina iš budėjimo režimo"
 
 msgid "Also on standby"
@@ -3124,6 +3115,9 @@ msgstr "Bislama"
 
 msgid "Bitrate"
 msgstr "Sparta bitais"
+
+msgid "Bitrate of the video encoder. Larger values improves quality and increases file size."
+msgstr "Vaizdo kodavimo duomenų srautas. Didesnė reikšmė pagerina kokybę ir padidina failo dydį."
 
 msgid "Black"
 msgstr "Juoda"
@@ -4625,11 +4619,20 @@ msgstr "Konfigūruokite šio LNB DiSEqC režimą."
 msgid "Configure the IP address."
 msgstr "Konfigūruokite IP adresą."
 
+msgid "Configure the IP of the fallback remote receiver."
+msgstr "Atsarginio nuotolinio imtuvo IP"
+
 msgid ""
 "Configure the Internet connection by adjusting the values shown.\n"
 "\n"
 "When the settings are correct press OK to continue."
 msgstr ""
+
+msgid "Configure the Port of the fallback remote receiver."
+msgstr "Atsarginio nuotolinio imtuvo jungtis"
+
+msgid "Configure the URL of the fallback remote receiver."
+msgstr "Atsarginio nuotolinio imtuvo internetinis adresas"
 
 msgid "Configure the alignment of events."
 msgstr "Konfigūruokite įvykių lygiavimą."
@@ -4664,7 +4667,7 @@ msgstr "Konfigūruokite priekinio skydelio ekrano šviesumą pritemdytame režim
 msgid "Configure the brightness level of the front panel display for normal operation."
 msgstr "Konfigūruokite priekinio skydelio ekrano šviesumą, kai imtuvas veikia."
 
-msgid "Configure the brightness level of the front panel display for standby."
+msgid "Configure the brightness level of the front panel display for Standby."
 msgstr "Konfigūruokite priekinio skydelio ekrano šviesumą, kai imtuvas yra budėjime."
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
@@ -4793,9 +4796,6 @@ msgstr "Konfigūruokite pagrindinę EPG kalbą."
 msgid "Configure the refresh rate of the screen."
 msgstr "Konfigūruokite ekrano skleistinės dažnį."
 
-msgid "Configure the teletext screen resolution. Note: Full-HD teletext is not supported by all skins."
-msgstr "Konfigūruokite ekrano rezoliuciją, naudojamą teletekstui (Ne visos temos palaiko full-HD teletekstą)."
-
 msgid "Configure the second audio language."
 msgstr "Konfigūruokite antrą garso kalbą."
 
@@ -4831,6 +4831,9 @@ msgstr "Konfigūruokite pradžios koordinates y teleteksto ekrano pločiui."
 
 msgid "Configure the subtitle delay when timing information is not available."
 msgstr "Konfigūruokite subtitrų delsą, kai nėra laiko derinimo informacijos."
+
+msgid "Configure the teletext screen resolution. Note: Full-HD teletext is not supported by all skins."
+msgstr "Konfigūruokite ekrano rezoliuciją, naudojamą teletekstui (Ne visos temos palaiko full-HD teletekstą)."
 
 msgid "Configure the third audio language."
 msgstr "Konfigūruokite trečią garso kalbą."
@@ -5517,9 +5520,6 @@ msgstr "DNS duomenų šaltinis"
 msgid "DNS mode"
 msgstr ""
 
-msgid "Set the hostname or IP address."
-msgstr ""
-
 msgid "DNS suffix"
 msgstr ""
 
@@ -5878,6 +5878,9 @@ msgstr ""
 msgid "Default volume offset"
 msgstr "Numatytasis garsumo poslinkis"
 
+msgid "Default wake-up is 5 minutes before Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
+msgstr "Pagal nutylėjimą iš gilaus budėjimo pabudina 5 minutėmis anksčiau. Galbūt reikia tai pakeisti. (pvz: tikrasis budinimo laikas yra netikslus arba vėlesnis, laukia tinklo tvarkyklės ir kt.)"
+
 #, python-format
 msgid "Default: '%s'."
 msgstr "Numatytasis: '%s'."
@@ -6213,9 +6216,6 @@ msgstr "Panaikinkite tik paryškinto failo pasirinkimą"
 msgid "Deselected packages usually occur because those packaged are incompatible with existing packages. While this is mostly harmless it is possible that your %s %s may experience issues."
 msgstr "Panaikintos pakuotės paprastai atsiranda dėl to, kad supakuotos yra nesuderinamos su esamomis pakuotėmis.  Nors tai dažniausiai nekenksminga, gali būti, kad jūsų %s %s gali susidurti su problemomis."
 
-msgid "Destination of fallback remote receiver."
-msgstr "Atsarginio nuotolinio imtuvo paskirtis"
-
 msgid "Destination of fallback remote receiver for ATSC"
 msgstr "ATSC nuotolinio atsarginio imtuvo paskirties vieta"
 
@@ -6224,6 +6224,9 @@ msgstr "DVB-C nuotolinio atsarginio imtuvo paskirties vieta"
 
 msgid "Destination of fallback remote receiver for DVB-T"
 msgstr "DVB-T nuotolinio atsarginio imtuvo paskirties vieta"
+
+msgid "Destination of fallback remote receiver."
+msgstr "Atsarginio nuotolinio imtuvo paskirtis"
 
 msgid "Detail of GStreamer log."
 msgstr "Išsami GStreamer žurnalo informacija"
@@ -6417,6 +6420,9 @@ msgstr "PiP išjungtas.\n"
 
 msgid "Disabled or WPA/WPA2"
 msgstr "Išjungta arba WPA/WPA2"
+
+msgid "Disables timeshift during recording (advisable for USB sticks)."
+msgstr "Sustabdo laiko poslinkio naudojimą, jei vyksta įrašymas. (Patartina USB atmintinėms.)"
 
 msgid "Disabling Chkroot failed!"
 msgstr ""
@@ -7144,6 +7150,9 @@ msgstr "įjungti mėgstamiausių redagavimą"
 msgid "Enable Focus Animation"
 msgstr "Įjungti fokusavimo animaciją"
 
+msgid "Enable FreeSat EPG"
+msgstr "Įjungti freesat EPG"
+
 msgid "Enable GStreamer debug log *"
 msgstr "Įgalinti GStreamer derinimo žurnalą *"
 
@@ -7189,9 +7198,6 @@ msgstr "Įjungti Quad PIP"
 msgid "Enable Swap at startup"
 msgstr "Įjungti startuojant"
 
-msgid "Activate UP/DOWN buttons for the 'all up/down' functions at the beginning/end of the column."
-msgstr "Įjungti aukštyn / žemyn mygtukus 'visoms aukštyn / žemyn' funkcijoms? (stulpelio pradžioje / pabaigoje)"
-
 msgid "Enable VPS"
 msgstr "Įjungti VPS"
 
@@ -7232,7 +7238,7 @@ msgstr ""
 msgid "Enable autorefresh templates."
 msgstr ""
 
-msgid "Enable blinking rec symbol on the LCD Display in Standby."
+msgid "Enable blinking rec symbol on the LCD Display in standby."
 msgstr "LCD ekrane rodomas laukimo režimas"
 
 msgid "Enable blinking rec symbol on the LCD Display."
@@ -7271,9 +7277,6 @@ msgstr "Įjungti skaitmeninį suliejimą"
 msgid "Enable fallback remote receiver"
 msgstr "Įjungti atsarginį nuotolinį imtuvą"
 
-msgid "Enable FreeSat EPG"
-msgstr "Įjungti freesat EPG"
-
 msgid "Enable import timer from fallback tuner"
 msgstr "Įjungti importo laikmatį iš atsarginio imtuvo"
 
@@ -7298,7 +7301,7 @@ msgstr "Įjungti panikos mygtuką"
 msgid "Enable preview"
 msgstr "Įjungti peržiūrą"
 
-msgid "Enable remote receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner). Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_receiver:8001."
+msgid "Enable remote receiver to be tried to tune into services that can't be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner). Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_receiver:8001."
 msgstr "Įjungti nuotolinį enigma2 imtuvą, kad žiūrėti kanalus, kurie negali būti priimti lokaliai (pvz., imtuvas užimtas, arba vietiniam imtuvui kanalas nepasiekiamas). Nurodykite pilną internetinį adresą, įskaitant http:// ir prievado numerį (paprastai ...:8001), pvz., http://antrasis_imuvas:8001."
 
 msgid "Enable teletext caching"
@@ -7367,6 +7370,9 @@ msgstr ""
 msgid "Enable to add some extra spacing to the Information screens. This can improve readability."
 msgstr "Įgalinkite, kad pridėtumėte papildomų tarpų prie informacijos ekranų. Tai gali pagerinti skaitomumą."
 
+msgid "Enable to always unscramble received HTTP streams. Uses more resources due to demuxers. Streams with 0x100 in the service type are always unscrambled, regardless of this setting."
+msgstr "Kai čia įjungta, gaunamas http srautas bus visada iškoduojamas. Tai pareikalaus gerokai daugiau resursų, todėl įjunkite tik kai būtina. Atskiri srautai visada iškoduojami nepaisant šio nustatymo, jei prie kanalo tipo įrašyta 0x100, nepriklausomai nuo šio nustatymo."
+
 msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch."
 msgstr "Įgalinkite rodyti visas True/False, Yes/Ne, On/Off ir Enable/Disable sąrankos parinktis kaip grafinį jungiklį."
 
@@ -7384,6 +7390,12 @@ msgstr "Įjungta"
 
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Įjungia funkciją, kad imtuvas gali iškoduoti srautus (jei ECM duomenys įtraukti į srautą ir yra galiojanti kortelė)."
+
+msgid "Enables sending the same TV commands for deep standby as for regular standby."
+msgstr "Jei nustatyta į 'taip', į televizorių bus siunčiamos tos pačios komandos gilaus budėjimo režimo įvykiams, kaip ir įprastų laukimo režimo įvykių metu."
+
+msgid "Enables timeshift to use alternative audio plugins."
+msgstr "Jei nustatyta \"taip\", leidžia naudoti laiko keitimą su alternatyviais garso papildiniais."
 
 msgid "Encrypted: "
 msgstr "Koduota: "
@@ -9612,9 +9624,6 @@ msgstr ""
 msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr ""
 
-msgid "Configure the IP of the fallback remote receiver."
-msgstr "Atsarginio nuotolinio imtuvo IP"
-
 msgid "IPK Installer"
 msgstr "IPK įdiegėjas"
 
@@ -9740,23 +9749,17 @@ msgstr "Jei įjungta, AIT duomenys įtraukiami į įrašus."
 msgid "If enabled, a log will be kept of CEC protocol traffic. The log files are located with the other log files but named 'Enigma2-hdmicec-[date].log'."
 msgstr "Jei įjungta, bus saugomas CEC protokolo srauto žurnalas. Žurnalo failai yra su kitais žurnalo failais, bet pavadinti 'Enigma2-hdmicec-[date].log'."
 
+msgid "If enabled, a time window is used to detect wake-ups from Deep Standby triggered by a timer. The default setting is disabled, which uses a special signal from the receiver. However, some devices send an incorrect or no signal, causing wake-up detection to fail."
+msgstr "Jei įjungta, naudokite laiko langą, kad nustatytumėte gilaus budėjimo režimo aktyvinimą laikmačiu. Numatytasis nustatymas yra išjungtas ir naudojamas specialus signalas iš imtuvo. Tačiau kai kuriuose įrenginiuose nustatytas netinkamas signalas arba niekas nepadaryta, ir pabudimas gali neveikti."
+
 msgid "If enabled, the new GStreamer playback engine will be used."
 msgstr "Jei įjungta, bus naudojamas naujas GStreamer atkūrimo variklis."
-
-msgid "If enabled, a time window is used to detect wake-ups from deep standby triggered by a timer. The default setting is disabled, which uses a special signal from the receiver. However, some devices send an incorrect or no signal, causing wake-up detection to fail."
-msgstr "Jei įjungta, naudokite laiko langą, kad nustatytumėte gilaus budėjimo režimo aktyvinimą laikmačiu. Numatytasis nustatymas yra išjungtas ir naudojamas specialus signalas iš imtuvo. Tačiau kai kuriuose įrenginiuose nustatytas netinkamas signalas arba niekas nepadaryta, ir pabudimas gali neveikti."
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Jei žurnalai jau išnaudoja maksimalią jiems skirtą erdvę, įkeliant naują, seniausias bus ištrintas."
 
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
 msgstr "Jeigu galima, X minučių prieš laikmačio pradžią, VPS įskiepis patikrins, ar programa neprasideda anksčiau (0 - funkcija išjungta)"
-
-msgid "Enables sending the same TV commands for deep standby as for regular standby."
-msgstr "Jei nustatyta į 'taip', į televizorių bus siunčiamos tos pačios komandos gilaus budėjimo režimo įvykiams, kaip ir įprastų laukimo režimo įvykių metu."
-
-msgid "Enables timeshift to use alternative audio plugins."
-msgstr "Jei nustatyta \"taip\", leidžia naudoti laiko keitimą su alternatyviais garso papildiniais."
 
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Jei įjungtas gilus pristabdymo sprendimas, palaukite, kol bus sinchronizuojamas sistemos laikas. Priklausomai nuo reikalavimo, prietaisas pabus po 2 minučių."
@@ -9852,14 +9855,14 @@ msgstr ""
 msgid "Immediately restart selected devices."
 msgstr "Nedelsdami iš naujo paleiskite pasirinktus įrenginius."
 
-msgid "Import channels and/or EPG from the remote receiver URL, even when the receiver is coming out of standby."
-msgstr "Importuoti kanalus ir/arba EPG iš nuotolinio imtuvo URL taip pat, kai imtuvas išeina iš budėjimo režimo"
-
 msgid "Import channels and/or EPG from remote receiver URL when receiver is booted."
 msgstr "Importuoti kanalus ir/arba EPG iš nuotolinio imtuvo URL, kai imtuvas yra paleistas"
 
 msgid "Import channels and/or EPG from remote receiver URL when receiver or GUI is restarted."
 msgstr "Importuoti kanalus ir/arba EPG iš nuotolinio imtuvo URL, kai imtuvas arba enigma2 yra paleidžiami iš naujo"
+
+msgid "Import channels and/or EPG from the remote receiver URL, even when the receiver is coming out of standby."
+msgstr "Importuoti kanalus ir/arba EPG iš nuotolinio imtuvo URL taip pat, kai imtuvas išeina iš budėjimo režimo"
 
 msgid "Import from remote receiver URL"
 msgstr "Importuoti epg iš nuotolinio imtuvo URL"
@@ -10592,7 +10595,7 @@ msgstr ""
 msgid "LED Standby"
 msgstr "LED giliame budėjime"
 
-msgid "LED brightness during deep standby."
+msgid "LED brightness during Deep Standby."
 msgstr "LED šviesumas giliame budėjime."
 
 msgid "LED brightness during normal operations."
@@ -13155,10 +13158,10 @@ msgstr ""
 msgid "Opera"
 msgstr ""
 
-msgid "Operating LED status in deep standby mode"
+msgid "Operating LED status in Deep Standby"
 msgstr "LED būsenos veikimas gilaus laukimo režimu"
 
-msgid "Operating LED status in standby mode"
+msgid "Operating LED status in Standby"
 msgstr "LED būsenos veikimas laukimo režimu"
 
 msgid "Operating LED status while running"
@@ -13176,7 +13179,7 @@ msgstr "Parinktis"
 msgid "Option to disable picons on the Infobar."
 msgstr "Ši parinktis leidžia išjungti logotipų rodymą info juostoje"
 
-msgid "Option to enable the Hardware Standby Timer."
+msgid "Option to enable the hardware standby timer."
 msgstr "Ši parinktis leidžia įjungti įrenginio budėjimo režimo laikmatį"
 
 msgid "Optional parameter"
@@ -13464,9 +13467,6 @@ msgstr ""
 
 msgid "Password"
 msgstr "Slaptažodis"
-
-msgid "Password (httpuser)"
-msgstr "Slaptažodis (httpuser)"
 
 msgid "Password (httpwd)"
 msgstr "Slaptažodis (httpwd)"
@@ -14081,9 +14081,6 @@ msgstr "Jungtis D"
 msgid "Port number for the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr ""
 
-msgid "Configure the Port of the fallback remote receiver."
-msgstr "Atsarginio nuotolinio imtuvo jungtis"
-
 msgid "Portugal"
 msgstr "Portugalija"
 
@@ -14123,7 +14120,7 @@ msgstr ""
 msgid "Power"
 msgstr "Įtampa"
 
-msgid "Power LED State in Deep-Standby"
+msgid "Power LED State in Deep Standby"
 msgstr "Maitinimo šviesos diodo būsena giliame laukimo režime"
 
 msgid "Power LED State in Standby"
@@ -14132,7 +14129,7 @@ msgstr "Maitinimo šviesos diodo būsena budėjimo režime"
 msgid "Power LED can be turned on or off here."
 msgstr "Galima įjungti arba išjungti maitinimo LED indikatorių."
 
-msgid "Power LED state during deep-standby."
+msgid "Power LED state during Deep Standby."
 msgstr "Maitinimo šviesos diodo būsena esant giliam laukimo režimui."
 
 msgid "Power LED state during standby."
@@ -15310,6 +15307,9 @@ msgstr "Privalomas laikmenos tipas:"
 msgid "Rereading partition table"
 msgstr "Skaidinių lentelė nuskaitoma iš naujo"
 
+msgid "Reschedule the task to run when the receiver enters or exits standby. The state change must occur within the task’s scheduled window, or the task will not run."
+msgstr ""
+
 msgid "Reserved"
 msgstr "Rezervuota"
 
@@ -16325,9 +16325,6 @@ msgstr "Pasirinkite 'Taip', kad pašalintumėte visus vartotojo temos duomenų p
 msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all key map, menu and setup override data and restore the default definitions."
 msgstr "Norėdami pašalinti visus vartotojo sąsajos duomenis, pasirinkite 'Taip'. Pasirinkus šią parinktį bus pašalinti visi raktų paspaudimai, meniu ir sąranka nepaisys duomenų ir bus atkurti numatytieji apibrėžimai."
 
-msgid "Reschedule the task to run when the receiver enters or exits standby. The state change must occur within the task’s scheduled window, or the task will not run."
-msgstr ""
-
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr "Pasirinkite 'Taip', kad iš naujo nustatytumėte numatytąją tinklo konfigūraciją. Tai leis Ethernet prievadui, jei jis yra, ir nustatys imtuvą naudoti DHCP. Visos kitos tinklo sąsajos bus panaikintos."
 
@@ -16557,10 +16554,10 @@ msgstr "Pasirinkite saugyklos įsipareigojimų žurnalą, kad peržiūrėtumėte
 msgid "Select a script to run:"
 msgstr "Pasirinkite scenarijų, kad paleisti:"
 
-msgid "Select a time, when in Standby mode, after which the descramble can proceed."
+msgid "Select a time, when in standby mode, after which the descramble can proceed."
 msgstr ""
 
-msgid "Select a time, when in Standby, before which descramble can proceed."
+msgid "Select a time, when in standby, before which descramble can proceed."
 msgstr ""
 
 msgid "Select a tuner"
@@ -16657,7 +16654,7 @@ msgstr ""
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr "Pasirinkite, kaip nustatyti palydovinę anteną. t.y. fiksuota antena, viena LNB, DiSEqC jungiklis, pozicionierius ir t.t."
 
-msgid "Select how the schedule is handled with respect to Standby mode."
+msgid "Select how the schedule is handled with respect to standby mode."
 msgstr ""
 
 msgid "Select how to activate the Quick EPG mode."
@@ -17521,6 +17518,9 @@ msgstr "Nustatyti fiksuotą"
 msgid "Set fps for external subtitles"
 msgstr "Nustatykite fps išoriniams subtitrams"
 
+msgid "Set how long the second InfoBar stays visible. It also disappears when you press ‘OK’."
+msgstr "Nustatyti laiką, kad paslėpti antrą info juostą. Info juosta taip pat dingsta ir paspaudus 'OK'."
+
 msgid "Set interface as the default Interface"
 msgstr "Nustatyti sąsają, kaip numatytąją"
 
@@ -17579,6 +17579,9 @@ msgstr "Nustatykite numatytąjį rūšiavimo būdą."
 msgid "Set the delay time between repeated loops, this is used by software renderer in some skins."
 msgstr "Nustatykite delsą tarp pakartotinių teksto slinkties ciklų. Tai naudojama kai kuriose vartotojo aplinkos temose programiniam vaizdo formavimui."
 
+msgid "Set the hostname or IP address."
+msgstr ""
+
 msgid "Set the jump-size of the SeekBar."
 msgstr "Nustatykite šuolio dydį paieškos juostoje."
 
@@ -17621,9 +17624,6 @@ msgstr ""
 msgid "Set the time to hide the InfoBar."
 msgstr "Nustatykite laiką, kad paslėpti info juostą."
 
-msgid "Set how long the second InfoBar stays visible. It also disappears when you press ‘OK’."
-msgstr "Nustatyti laiką, kad paslėpti antrą info juostą. Info juosta taip pat dingsta ir paspaudus 'OK'."
-
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
 msgstr "Nustatykite laiką, per kurį laukiama numatytojo veiksmo vykdant išjungimo, budėjimo režimą ar iš naujo paleidžiant pranešimus. (pvz., naudojami laikmatį, įtampos laikmatį, miego laikmatį ir kt.)"
 
@@ -17665,7 +17665,7 @@ msgstr ""
 msgid "Set to 'Disabled' to replace underscore characters '_' in file and directory names with spaces."
 msgstr "Nustatykite į 'Išjungta', kad failų ir katalogų pavadinimuose pabraukimo simbolius \"_\" pakeistumėte tarpais."
 
-msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby mode before shutting down."
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in standby mode before shutting down."
 msgstr ""
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
@@ -17988,6 +17988,9 @@ msgstr ""
 msgid "Show Driver packages"
 msgstr ""
 
+msgid "Show EIT Now/Next event data in the InfoBar"
+msgstr "Info juostoje rodyti EIT dabar/sekantis"
+
 msgid "Show EPG"
 msgstr "Rodyti EPG"
 
@@ -18045,7 +18048,7 @@ msgstr ""
 msgid "Show Media Player in Main Menu"
 msgstr "Medija grotuvą rodyti pagrindiniame meniu"
 
-msgid "Show Media playback Remaining/Elapsed as"
+msgid "Show Media playback remaining/elapsed as"
 msgstr "Rodyti liko/praėjo medijos atkūrime, kaip"
 
 msgid "Show Merlin EPG Center"
@@ -18547,9 +18550,6 @@ msgstr ""
 
 msgid "Show the CCcam Info Screen"
 msgstr "Rodyti CCcam informacijos ekraną"
-
-msgid "Show EIT Now/Next event data in the InfoBar"
-msgstr "Info juostoje rodyti EIT dabar/sekantis"
 
 msgid "Show the Logs Settings screen"
 msgstr ""
@@ -19112,7 +19112,7 @@ msgstr "Somalių"
 msgid "Somalia"
 msgstr "Somalis"
 
-msgid "Some TVs cannot switch to the correct input if another HDMI port is active. This setting puts the TV into standby before switching. If the TV does not turn back on, a slower transmission interval or repeating the wake-up command may be required."
+msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting puts the TV into standby before switching. If the TV does not turn back on, a slower transmission interval or repeating the wake-up command may be required."
 msgstr "Kai kurie TV įrenginiai negali pataisyti įvesties, jei veikia kitas HDMI prievadas. Šis parametras nustato televizoriaus budėjimo režimą prieš jungiklį. (Jei televizorius neįjungia, gali prireikti lėtesnio perdavimo intervalo arba pažadinimo komandų pasikartojimo.)"
 
 msgid "Sorbian"
@@ -19441,10 +19441,10 @@ msgstr ""
 msgid "Status of the display during operation"
 msgstr "Ekrano būsena veikimo metu"
 
-msgid "Status of the display in deep standby"
+msgid "Status of the display in Seep Standby"
 msgstr "Ekrano būsena gilaus budėjimo režime"
 
-msgid "Status of the display in standby mode"
+msgid "Status of the display in Standby"
 msgstr "Ekrano būsena laukimo režime"
 
 msgid "Status unavailable!"
@@ -19545,9 +19545,6 @@ msgstr "Sustabdyta"
 
 msgid "Stopping Softcam"
 msgstr "Stabdomas emuliatorius"
-
-msgid "Disables timeshift during recording (advisable for USB sticks)."
-msgstr "Sustabdo laiko poslinkio naudojimą, jei vyksta įrašymas. (Patartina USB atmintinėms.)"
 
 msgid "Storage / Disk Information"
 msgstr ""
@@ -20390,9 +20387,6 @@ msgstr ""
 msgid "The backup succeeded. We will now continue to explain the upgrade process."
 msgstr ""
 
-msgid "Bitrate of the video encoder. Larger values improves quality and increases file size."
-msgstr "Vaizdo kodavimo duomenų srautas. Didesnė reikšmė pagerina kokybę ir padidina failo dydį."
-
 msgid ""
 "The channel may support VPS\n"
 " Do you want to enable VPS?"
@@ -20409,9 +20403,6 @@ msgid ""
 msgstr ""
 "Numatytasis atsarginės kopijos pasirinkimas negali būti keičiamas.\n"
 "Naudokite 'papildomus' ir 'neįtrauktinus' atsarginės kopijos pasirinkimus."
-
-msgid "Default wake-up is 5 minutes before deep standby. Adjust if the wake-up is too early or late, e.g., for network drives."
-msgstr "Pagal nutylėjimą iš gilaus budėjimo pabudina 5 minutėmis anksčiau. Galbūt reikia tai pakeisti. (pvz: tikrasis budinimo laikas yra netikslus arba vėlesnis, laukia tinklo tvarkyklės ir kt.)"
 
 msgid "The default settings are wake up time - 5 minutes and timer begin time + 5 minutes. This setting changed the time window before the wake up time. So can be detected a wake up by a timer even at very early starting receivers."
 msgstr "Numatytieji parametrai yra: budinimo laikas - 5 min ir laikmačio pradžios laikas + 5 min. Šis parametras pakeičia laiko langą prieš budinimo laiką. Todėl gali būti aptinkami budinimai pagal laikmatį net ir esant labai anksti startavusiems imtuvams."
@@ -20706,35 +20697,11 @@ msgstr "Ši parinktis leidžia priverstinai naudoti HDR10 režimą dėl UHD"
 msgid "This option allows you can force the HLG Modes for UHD"
 msgstr "Ši parinktis leidžia priverstinai naudoti HLG režimą dėl UHD"
 
-msgid "This option allows you to choose how to display remaining time, or elapsed time, or both."
-msgstr "Ši parinktis leidžia jums pasirinkti, kaip rodyti likusį laiką, ar praėjusį laiką, arba abu."
-
-msgid "This option allows you to choose how to display the remaining/elapsed time for live TV."
-msgstr "Ši parinktis leidžia nustatyti, kaip parodyti likusį / praėjusį laiką TV peržiūros metu."
-
-msgid "This option allows you to choose how to display the remaining/elapsed time for media playback."
-msgstr "Ši parinktis leidžia nustatyti, kaip rodyti likusį / praėjusį laiką medija failų atkūrimo metu."
-
-msgid "This option allows you to choose if the display shows the time or nothing in Standby."
-msgstr "Ši parinktis leidžia pasirinkti, kaip rodyti laiką arba nieko, budėjimo režime"
-
-msgid "This option allows you to choose if the display shows the time, channel number or nothing during operation."
-msgstr ""
-
-msgid "This option allows you to choose the background color of transparent picons."
-msgstr "Ši parinktis leidžia pasirinkti skaidrių logotipų fono spalvą."
-
-msgid "This option allows you to choose the option for Subservice indicator or selection."
-msgstr ""
-
 msgid "This option allows you enable smoothing filter to control the dithering process."
 msgstr "Ši parinktis leidžia įjungti glotninimo filtrą, kad kontroliuoti vaizdų išlyginimo procesą."
 
 msgid "This option allows you enable the vertical scaler dejagging."
 msgstr "Ši parinktis leidžia įjungti vertikalių smailumų glotninimą."
-
-msgid "This option allows you to set the layout view (Text or Graphics)."
-msgstr "Ši parinktis leidžia nustatyti vaizdo išdėstymą (tekstinio ir grafinio)."
 
 msgid "This option allows you to Power Off the display."
 msgstr "Ši parinktis leidžia jums išjunkite ekraną."
@@ -20784,8 +20751,29 @@ msgstr "Ši parinktis leidžia pasirinkti, kaip rodyti SD progr. 24Hz vaizdą j�
 msgid "This option allows you to choose how to display elapsed time, as + or -."
 msgstr "Ši parinktis leidžia pasirinkti, kaip rodyti praėjusį laiką kaip + arba -"
 
+msgid "This option allows you to choose how to display the remaining time, the elapsed time, or both."
+msgstr "Ši parinktis leidžia jums pasirinkti, kaip rodyti likusį laiką, ar praėjusį laiką, arba abu."
+
 msgid "This option allows you to choose how to display standard definition video on your TV."
 msgstr "Ši parinktis leidžia pasirinkti, kaip televizoriuje rodyti standartinės raiškos vaizdo įrašus."
+
+msgid "This option allows you to choose how to display the remaining or elapsed time for live TV."
+msgstr "Ši parinktis leidžia nustatyti, kaip parodyti likusį / praėjusį laiką TV peržiūros metu."
+
+msgid "This option allows you to choose how to display the remaining or elapsed time for media playback."
+msgstr "Ši parinktis leidžia nustatyti, kaip rodyti likusį / praėjusį laiką medija failų atkūrimo metu."
+
+msgid "This option allows you to choose if the display shows the time or nothing in standby."
+msgstr "Ši parinktis leidžia pasirinkti, kaip rodyti laiką arba nieko, budėjimo režime"
+
+msgid "This option allows you to choose if the display shows the time, channel number or nothing during operation."
+msgstr ""
+
+msgid "This option allows you to choose the background color of transparent picons."
+msgstr "Ši parinktis leidžia pasirinkti skaidrių logotipų fono spalvą."
+
+msgid "This option allows you to choose the option for Subservice indicator or selection."
+msgstr ""
 
 msgid "This option allows you to choose what the first button press jumps to in channel list screen (pressing '2' jumps to 'A' or '2' first) when 'Quick Actions' preset actions are performed."
 msgstr "Ši parinktis leidžia pasirinkti, kur pirmu mygtuko paspaudimu peršokama kanalų pasirinkimo sąrašo lange (taip, paspaudus '2', pirma peršoka į 'A', ar pirma į '2'), kai vykdomi \"skubių veiksmų\" iš anksto nustatyti veiksmai. "
@@ -20798,6 +20786,9 @@ msgstr "Ši parinktis leidžia įjungti 3D erdvinį garsą."
 
 msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr ""
+
+msgid "This option allows you to set the layout view (Text or Graphics)."
+msgstr "Ši parinktis leidžia nustatyti vaizdo išdėstymą (tekstinio ir grafinio)."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "Ši parinktis leidžia jums rodyti SNR procentais (ne visi imtuvai tai palaiko)."
@@ -20897,6 +20888,9 @@ msgstr "Taip nustatomas kiekvienos derinimo žurnalo eilutės priešdėlis. 'Įk
 
 msgid "This setting allows the tuner configuration to be a duplication of another configured tuner."
 msgstr "Šis nustatymas leidžia nustatyti imtuvo konfigūraciją, kad dubliuoti kito imtuvo nustatymus."
+
+msgid "This setting can help improve signal quality or prevent issues with longer HDMI cables."
+msgstr "Su šiuo nustatymu tikriausiai galite padidinti signalo kokybę arba pašalinti problemas, kurios gali kilti naudojant ilgesnius HDMI kabelius."
 
 msgid "This setting depends on your cable provider and location. If you don't know the correct setting refer to the menu in the official cable receiver, or get it from your cable provider, or seek help via Internet forum."
 msgstr "Šis nustatymas priklauso nuo kabelinės televizijos teikėjo ir vietos. Jei nežinote teisingo nustatymo, skaitykite oficialaus kabelinio imtuvo meniu arba gaukite jį iš savo kabelinės televizijos paslaugų teikėjo arba kreipkitės pagalbos per interneto forumą."
@@ -21643,14 +21637,17 @@ msgstr "UBINIZE"
 msgid "UHD Test"
 msgstr "UHD testas"
 
+msgid "UP/DOWN button mode"
+msgstr "Aukštyn/žemyn mygtuko režimas"
+
+msgid "UP/DOWN buttons also for 'all up/down'"
+msgstr "Aukštyn / žemyn mygtukai taip pat 'visi aukštyn / žemyn'"
+
 msgid "UP80  (keymap.u80)"
 msgstr "UP80 (keymap.u80)"
 
 msgid "URL"
 msgstr "Internetinis adresas"
-
-msgid "Configure the URL of the fallback remote receiver."
-msgstr "Atsarginio nuotolinio imtuvo internetinis adresas"
 
 msgid "USALS"
 msgstr "USALS"
@@ -21844,12 +21841,6 @@ msgstr ""
 
 msgid "Up to 50 Mbps"
 msgstr ""
-
-msgid "UP/DOWN button mode"
-msgstr "Aukštyn/žemyn mygtuko režimas"
-
-msgid "UP/DOWN buttons also for 'all up/down'"
-msgstr "Aukštyn / žemyn mygtukai taip pat 'visi aukštyn / žemyn'"
 
 msgid "Update"
 msgstr "Atnaujinimas"
@@ -22859,30 +22850,6 @@ msgstr "Ką norėtumėte daryti?"
 msgid "When 'Enabled', the timer view will show the free space on the target device. This will wake the device from sleep mode."
 msgstr ""
 
-msgid "When enabled, the PiP can be closed using the EXIT button."
-msgstr "Kai čia įjungta, PiP gali būti išjungtas su 'EXIT' mygtuku."
-
-msgid "When enabled, the receiver will automatically be switched off."
-msgstr "Įjungus imtuvas bus automatiškai išjungtas."
-
-msgid "When enabled, the receiver will automatically be switched on."
-msgstr "Įjungus imtuvas bus automatiškai įjungtas."
-
-msgid "When enabled, the receiver will automatically return to standby when the TV is turned off."
-msgstr "Kai įjungta, imtuvas automatiškai grįš į budėjimo režimą, kai televizorius bus išjungtas."
-
-msgid "When enabled, the receiver will automatically wake from standby when the TV is turned on."
-msgstr "Kai įjungta, imtuvas automatiškai pažadins budėjimo režimą, kai televizorius bus įjungtas."
-
-msgid "When enabled, the timer from the fallback tuner is imported."
-msgstr "Kai įjungta, atsarginio imtuvo laikmatis yra importuojamas"
-
-msgid "When enabled, the timer from the fallback tuner is the default timer."
-msgstr "Kai įjungta, atsarginio imtuvo laikmatis yra importuojamas"
-
-msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
-msgstr "Kai įjungta, galite pritaikyti OpenWebIf nustatymus atsarginiam imtuvui"
-
 msgid "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
 msgstr "Kai čia įjungta, http sraute bus įtraukti ir AIT duomenys. Tai leis kliento imtuvui naudotis HbbTV."
 
@@ -22910,11 +22877,11 @@ msgstr "Kai čia įjungta, įrašymui leidžiama nutraukti vaizdo transliaciją,
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "Įjungus įrašą leidžiama nutraukti tiesioginę televiziją, kai nėra laisvų imtuvų."
 
+msgid "When enabled, a specific Softcam can be assigned to each encrypted service."
+msgstr ""
+
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Kai čia įjungta, bus rodomas perspėjimas ir vartotojas galės pasirinkti - sustabdyti, ar tęsti laiko poslinkį."
-
-msgid "Enable to always unscramble received HTTP streams. Uses more resources due to demuxers. Streams with 0x100 in the service type are always unscrambled, regardless of this setting."
-msgstr "Kai čia įjungta, gaunamas http srautas bus visada iškoduojamas. Tai pareikalaus gerokai daugiau resursų, todėl įjunkite tik kai būtina. Atskiri srautai visada iškoduojami nepaisant šio nustatymo, jei prie kanalo tipo įrašyta 0x100, nepriklausomai nuo šio nustatymo."
 
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Kai čia įjungta, http srautų žiūrėjimui turėsite nurodyti savo autentifikacijos duomenis."
@@ -22973,11 +22940,23 @@ msgstr "Kai čia įjungta,  teleteksto puslapiai bus išsaugojami atminties pod�
 msgid "When enabled, teletext subtitles will be displayed at their original position."
 msgstr "Kai čia įjungta, teleteksto subtitrai bus rodomi jų numatytojoje vietoje."
 
+msgid "When enabled, the PiP can be closed using the EXIT button."
+msgstr "Kai čia įjungta, PiP gali būti išjungtas su 'EXIT' mygtuku."
+
 msgid "When enabled, the VCR SCART option will be shown on the main menu."
 msgstr "Kai čia įjungta, pagrindiniame meniu bus rodomos VCR scart parinktys"
 
 msgid "When enabled, the length of each recording will be shown in the movie list (this might cause some additional loading time)."
 msgstr "Įjungus, kiekvieno įrašo trukmė bus rodoma filmų sąraše (tai gali sukelti papildomą įkėlimo laiką)."
+
+msgid "When enabled, the receiver will automatically be switched off."
+msgstr "Įjungus imtuvas bus automatiškai išjungtas."
+
+msgid "When enabled, the receiver will automatically be switched on."
+msgstr "Įjungus imtuvas bus automatiškai įjungtas."
+
+msgid "When enabled, the receiver will automatically return to standby when the TV is turned off."
+msgstr "Kai įjungta, imtuvas automatiškai grįš į budėjimo režimą, kai televizorius bus išjungtas."
 
 msgid "When enabled, the receiver will automatically use the audio track which you selected before."
 msgstr "Kai čia įjungta, imtuvas automatiškai pasirinks anksčiau jūsų naudotą garso takelį."
@@ -22985,11 +22964,20 @@ msgstr "Kai čia įjungta, imtuvas automatiškai pasirinks anksčiau jūsų naud
 msgid "When enabled, the receiver will automatically use the subtitles which you selected before."
 msgstr "Kai čia įjungta, imtuvas automatiškai pasirinks anksčiau jūsų naudotus subtitrus."
 
+msgid "When enabled, the receiver will automatically wake from standby when the TV is turned on."
+msgstr "Kai įjungta, imtuvas automatiškai pažadins budėjimo režimą, kai televizorius bus įjungtas."
+
 msgid "When enabled, the receiver will select an AC3 track (when available)."
 msgstr "Kai čia įjungta, esant galimybei, imtuvas pasirinks AC3 takelį."
 
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Kai čia įjungta, esant galimybei, imtuvas pasirinks AC3+ garso takelį."
+
+msgid "When enabled, the timer from the fallback tuner is imported."
+msgstr "Kai įjungta, atsarginio imtuvo laikmatis yra importuojamas"
+
+msgid "When enabled, the timer from the fallback tuner is the default timer."
+msgstr "Kai įjungta, atsarginio imtuvo laikmatis yra importuojamas"
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr "Kai čia įjungta, šis pasirinkimas turi daugiau svorio, nei 'Pageidautinas imtuvas įrašams'."
@@ -23002,6 +22990,9 @@ msgstr "Kai čia įjungta, laiko poslinkis įsijungs po nurodyto laiko automati�
 
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Kai čia įjungta, IP adresą priskirs tinklo DHCP serveris."
+
+msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
+msgstr "Kai įjungta, galite pritaikyti OpenWebIf nustatymus atsarginiam imtuvui"
 
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "Kai čia įjungta, imtuvas aptiks aktyvų VCR SCART įvesties signalą."
@@ -23018,17 +23009,11 @@ msgstr ""
 msgid "When nonzero, a zap timer will stop the nominated period after the ending time indicated in the EPG."
 msgstr ""
 
-msgid "When the receiver wakes from standby, it will switch the TV to the HDMI input connected to the receiver."
-msgstr "Kai imtuvas pažadinamas iš budėjimo režimo, jis duos komandą televizoriui perjungti HDMI įvestį, prie kurios prijungtas imtuvas."
-
 msgid "When set each folder will show the previous state used, when off the default values will be shown."
 msgstr "Kai čia įjungta, kiekvienas katalogas įsimins ir rodys ankstesnį jų naudojimo stovį, o kai išjungta, bus rodoma, kaip numatyta."
 
 msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr "Kai čia įjungta, filmo PIG paveikslėlis išliks ir sustabdžius filmo peržiūrą."
-
-msgid "When enabled, a specific Softcam can be assigned to each encrypted service."
-msgstr ""
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Kai turinys yra kraštinių santykis 16:9, pasirinkti, ar didinti mastelį/ištempti vaizdą."
@@ -23041,6 +23026,9 @@ msgstr "Kai įvesties žymeklis pasiekia šį tašką (pločio procentą iš abi
 
 msgid "When the receiver wakes from standby or deep standby it will send a command to the TV to bring it out of standby."
 msgstr "Kai imtuvas atsibunda iš budėjimo arba gilaus budėjimo režimo, jis išsiųs komandą televizoriui kad išjungti budėjimo režimą."
+
+msgid "When the receiver wakes from standby, it will switch the TV to the HDMI input connected to the receiver."
+msgstr "Kai imtuvas pažadinamas iš budėjimo režimo, jis duos komandą televizoriui perjungti HDMI įvestį, prie kurios prijungtas imtuvas."
 
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
 msgstr ""
@@ -23132,17 +23120,14 @@ msgstr "Naudodami šią parinktį galite paslėpti darbo užduotis plėtinio ekr
 msgid "With this option you can switch off the display during operation."
 msgstr "Naudodami šią parinktį, galite išjungti ekraną veikimo metu."
 
-msgid "With this option you can switch off the display in Deep Standby Mode."
+msgid "With this option you can switch off the display in Deep Standby mode."
 msgstr "Naudodami šią parinktį galite išjungti ekraną gilaus budėjimo režimu."
 
-msgid "With this option you can switch off the display in Standby Mode."
+msgid "With this option you can switch off the display in standby mode."
 msgstr "Naudodami šią parinktį galite išjungti ekraną budėjimo režimu."
 
 msgid "With this option you can switch the LED color or deactivate the LED."
 msgstr "Naudodami šią parinktį galite įjungti LED spalvą arba išjungti LED."
-
-msgid "This setting can help improve signal quality or prevent issues with longer HDMI cables."
-msgstr "Su šiuo nustatymu tikriausiai galite padidinti signalo kokybę arba pašalinti problemas, kurios gali kilti naudojant ilgesnius HDMI kabelius."
 
 msgid "Without pop up"
 msgstr "Be Iššokančio teksto"
@@ -24306,6 +24291,21 @@ msgstr "taip (išsaugoti šaltinius)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%d Seconds"
+#~ msgstr "%d sekundės"
+
+#, python-format
+#~ msgid "%d Hours"
+#~ msgstr "%d Valandos"
+
+#, python-format
+#~ msgid "%d Minutes"
+#~ msgstr "%d minutės"
+
+#~ msgid "Password (httpuser)"
+#~ msgstr "Slaptažodis (httpuser)"
 
 #~ msgid "Sci-Fi"
 #~ msgstr "Mokslinė fantastika"

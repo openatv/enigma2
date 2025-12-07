@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-02 15:40+0000\n"
+"POT-Creation-Date: 2025-12-06 12:58+0000\n"
 "PO-Revision-Date: 2025-04-14 12:33+0000\n"
 "Last-Translator: tanerkaderli <taner.kaderli@live.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -809,10 +809,6 @@ msgid_plural "%d Hours"
 msgstr[0] "%d saat"
 
 #, python-format
-msgid "%d Hours"
-msgstr "%d Saat"
-
-#, python-format
 msgid "%d MB"
 msgstr "%d MB"
 
@@ -852,10 +848,6 @@ msgid_plural "%d Minutes"
 msgstr[0] "%d dakika"
 
 #, python-format
-msgid "%d Minutes"
-msgstr "%d Dakika"
-
-#, python-format
 msgid "%d Month"
 msgid_plural "%d Months"
 msgstr[0] "%d Ay"
@@ -878,10 +870,6 @@ msgstr "%d Piksel"
 msgid "%d Second"
 msgid_plural "%d Seconds"
 msgstr[0] "%d ikinci"
-
-#, python-format
-msgid "%d Seconds"
-msgstr "%d saniye"
 
 #, python-format
 msgid "%d Week"
@@ -1840,6 +1828,9 @@ msgstr "MAC adresi yapılandırmasını etkinleştir"
 msgid "Activate Picture in Picture"
 msgstr "Resim içinde resim (PIP) etkinleştir"
 
+msgid "Activate UP/DOWN buttons for the 'all up/down' functions at the beginning/end of the column."
+msgstr "'Tümü yukarı / aşağı' işlevi için Yukarı / Aşağı düğmelerini etkinleştir? (sütunun başında / sonunda)"
+
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr "Komut satırından bireysel veya belirli dahili HDMI-CEC komutları göndermenin bir yolunu etkinleştirin."
 
@@ -2346,7 +2337,7 @@ msgstr "Enigma2'yi yeniden başlatırken de içe aktarın"
 msgid "Also import from the extension menu"
 msgstr "Eklenti menüsünde göster"
 
-msgid "Also import when receiver is leaving standby"
+msgid "Also import when leaving standby"
 msgstr "Kutu bekleme modundan çıkarken de içe aktar"
 
 msgid "Also on standby"
@@ -3184,6 +3175,9 @@ msgstr "Bislamaca"
 #
 msgid "Bitrate"
 msgstr "Bitrate"
+
+msgid "Bitrate of the video encoder. Larger values improves quality and increases file size."
+msgstr "Video kodlayıcının bit hızı. Daha büyük değer kaliteyi artırır ve dosya boyutunu artırır."
 
 msgid "Black"
 msgstr "Siyah"
@@ -4734,6 +4728,9 @@ msgstr "Bu LNB için doğru DiSEqC kipini seçin."
 msgid "Configure the IP address."
 msgstr "İP adresini yapılandır."
 
+msgid "Configure the IP of the fallback remote receiver."
+msgstr "Yedek cihaz URL"
+
 msgid ""
 "Configure the Internet connection by adjusting the values shown.\n"
 "\n"
@@ -4742,6 +4739,12 @@ msgstr ""
 "Gösterilen değerleri ayarlayarak İnternet bağlantısını yapılandırın.\n"
 "\n"
 "Ayarlar doğru olduğunda devam etmek için OK düğmesine basın."
+
+msgid "Configure the Port of the fallback remote receiver."
+msgstr "Yedek cihaz URL"
+
+msgid "Configure the URL of the fallback remote receiver."
+msgstr "Yedek cihaz URL"
 
 msgid "Configure the alignment of events."
 msgstr "Olayların hizalamasını yapılandırın."
@@ -4776,7 +4779,7 @@ msgstr "Kısık çalışma için ön panel ekranının parlaklık seviyesini yap
 msgid "Configure the brightness level of the front panel display for normal operation."
 msgstr "Normal çalışma için ön panel ekranının parlaklık seviyesini yapılandırın."
 
-msgid "Configure the brightness level of the front panel display for standby."
+msgid "Configure the brightness level of the front panel display for Standby."
 msgstr "Bekleme için ön panel ekranının parlaklık düzeyini yapılandırın."
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
@@ -4906,9 +4909,6 @@ msgstr "İlk EPG dilini belirleyin."
 msgid "Configure the refresh rate of the screen."
 msgstr "Ekran yenileme hızını belirleyin."
 
-msgid "Configure the teletext screen resolution. Note: Full-HD teletext is not supported by all skins."
-msgstr "Teletekst için ekran çözünürlüğünü yapılandırma (Tüm kaplamalar full-HD teleteksti desteklemez)."
-
 msgid "Configure the second audio language."
 msgstr "İkinci ses dilini belirleyin."
 
@@ -4944,6 +4944,9 @@ msgstr "Teletekst görüntüleme alanının y'de başlangıç koordinatını yap
 
 msgid "Configure the subtitle delay when timing information is not available."
 msgstr "Zamanlama bilgisi olmadığında altyazı gecikmesini belirleyin."
+
+msgid "Configure the teletext screen resolution. Note: Full-HD teletext is not supported by all skins."
+msgstr "Teletekst için ekran çözünürlüğünü yapılandırma (Tüm kaplamalar full-HD teleteksti desteklemez)."
 
 msgid "Configure the third audio language."
 msgstr "Üçüncü ses dilini belirleyin."
@@ -5661,9 +5664,6 @@ msgstr "DNS veri kaynağı"
 msgid "DNS mode"
 msgstr "DNS modu"
 
-msgid "Set the hostname or IP address."
-msgstr "DNS adı veya IP adresi"
-
 msgid "DNS suffix"
 msgstr "DNS son eki"
 
@@ -6037,6 +6037,9 @@ msgstr "TV için seçilen varsayılan video modu."
 msgid "Default volume offset"
 msgstr "Varsayılan birim ofseti"
 
+msgid "Default wake-up is 5 minutes before Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
+msgstr "Varsayılan ayarlar derin bekleme modundan uyanmak için 5 dakika öncedir. Bunu değiştirmek muhtemelen gerekli olabilir. (örneğin: gerçek uyanma süresi yanlış veya geç, bir ağ sürücüsünü bekliyor vb.)"
+
 #, python-format
 msgid "Default: '%s'."
 msgstr "Varsayılan: '%s'."
@@ -6383,9 +6386,6 @@ msgstr "Yalnızca vurgulanan dosyanın seçimini kaldır"
 msgid "Deselected packages usually occur because those packaged are incompatible with existing packages. While this is mostly harmless it is possible that your %s %s may experience issues."
 msgstr "Seçimi kaldırılan paketler genellikle, paketlenenler mevcut paketlerle uyumlu olmadığı için oluşur. Bu çoğunlukla zararsız olsa da, %s %s cihazınızda sorunlar olabilir."
 
-msgid "Destination of fallback remote receiver."
-msgstr "Yedek cihaz URL"
-
 msgid "Destination of fallback remote receiver for ATSC"
 msgstr "Yedek cihaz URL"
 
@@ -6393,6 +6393,9 @@ msgid "Destination of fallback remote receiver for DVB-C"
 msgstr "Yedek cihaz URL"
 
 msgid "Destination of fallback remote receiver for DVB-T"
+msgstr "Yedek cihaz URL"
+
+msgid "Destination of fallback remote receiver."
 msgstr "Yedek cihaz URL"
 
 msgid "Detail of GStreamer log."
@@ -6600,6 +6603,9 @@ msgstr "Engelli PIP.\n"
 
 msgid "Disabled or WPA/WPA2"
 msgstr "Devre dışı veya WPA/WPA2"
+
+msgid "Disables timeshift during recording (advisable for USB sticks)."
+msgstr "Bir kaydın devam etmesi durumunda durdurmanın zaman kayması kullanılır. (USB çubukları için tavsiye edilir)"
 
 msgid "Disabling Chkroot failed!"
 msgstr ""
@@ -7374,6 +7380,9 @@ msgstr "Favori Düzenlemeyi Etkinleştir"
 msgid "Enable Focus Animation"
 msgstr "Odak Animasyonunu Etkinleştir"
 
+msgid "Enable FreeSat EPG"
+msgstr "Freesat EPG etkinleştir"
+
 msgid "Enable GStreamer debug log *"
 msgstr "GStreamer hata ayıklama günlüğünü etkinleştir *"
 
@@ -7421,9 +7430,6 @@ msgstr "Quad PIP'yi etkinleştir"
 msgid "Enable Swap at startup"
 msgstr "Başlangıçta Takas Etkinleştir"
 
-msgid "Activate UP/DOWN buttons for the 'all up/down' functions at the beginning/end of the column."
-msgstr "'Tümü yukarı / aşağı' işlevi için Yukarı / Aşağı düğmelerini etkinleştir? (sütunun başında / sonunda)"
-
 msgid "Enable VPS"
 msgstr "VPS'yi Etkinleştir"
 
@@ -7464,7 +7470,7 @@ msgstr ""
 msgid "Enable autorefresh templates."
 msgstr ""
 
-msgid "Enable blinking rec symbol on the LCD Display in Standby."
+msgid "Enable blinking rec symbol on the LCD Display in standby."
 msgstr "LCD Ekrandaki Bekleme Kayıtlarında"
 
 msgid "Enable blinking rec symbol on the LCD Display."
@@ -7503,9 +7509,6 @@ msgstr "Dijital downmix'i etkinleştir"
 msgid "Enable fallback remote receiver"
 msgstr "Yedek uzaktan alıcıyı etkinleştir"
 
-msgid "Enable FreeSat EPG"
-msgstr "Freesat EPG etkinleştir"
-
 msgid "Enable import timer from fallback tuner"
 msgstr "Yedek ayarlayıcıdan içe aktarma zamanlayıcısını etkinleştir"
 
@@ -7531,7 +7534,7 @@ msgstr "Panik tuşunu etkinleştir"
 msgid "Enable preview"
 msgstr "Önizlemeyi etkinleştir"
 
-msgid "Enable remote receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner). Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_receiver:8001."
+msgid "Enable remote receiver to be tried to tune into services that can't be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner). Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_receiver:8001."
 msgstr "Yerel enigma2 alıcısının yerel olarak ayarlanamayan servislere ayarlanmaya çalışılmasını sağlar (örn. Radyo alıcısı veya servis türü yerel alıcıda kullanılamaz. Http: // ve port numarası dahil olmak üzere tam URL'yi belirtin (normal ...: 8001 ), örneğin http: // second_box: 8001."
 
 msgid "Enable teletext caching"
@@ -7600,6 +7603,9 @@ msgstr ""
 msgid "Enable to add some extra spacing to the Information screens. This can improve readability."
 msgstr "Bilgi ekranlarına fazladan boşluk eklemeyi etkinleştirin. Bu, okunabilirliği artırabilir."
 
+msgid "Enable to always unscramble received HTTP streams. Uses more resources due to demuxers. Streams with 0x100 in the service type are always unscrambled, regardless of this setting."
+msgstr "Etkinleştirildiğinde, alınan http akışlarının şifresini her zaman çözün. Bu, daha fazla kaynak gerektirir (çözümleyicileri çözer), yalnızca gerekirse etkinleştirin. Bu ayardan bağımsız olarak hizmet türüne 0x100 eklenirse bireysel akışlar her zaman şifresiz hale gelir."
+
 msgid "Enable to display all True/False, Yes/No, On/Off and Enable/Disable setup options as a graphical switch."
 msgstr "Tüm doğru / yanlış, evet / hayır, açık / kapalı durumlarını göstermeyi etkinleştir ve ayar seçeneklerini grafiksel anahtar olarak etkinleştir / devre dışı bırak."
 
@@ -7618,6 +7624,12 @@ msgstr "Etkin"
 
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Bir alıcının akışları çözebileceği bir özelliği etkinleştirir (akışa ECM verisi eklenmişse ve geçerli bir kart varsa)."
+
+msgid "Enables sending the same TV commands for deep standby as for regular standby."
+msgstr "'evet' olarak ayarlanırsa, normal bekleme olayları sırasında gönderildiği gibi, derin bekleme olayları için aynı komutlar TV'ye gönderilir."
+
+msgid "Enables timeshift to use alternative audio plugins."
+msgstr "'Evet' olarak ayarlanırsa, timeshift'i alternatif ses eklentileriyle kullanmanıza olanak tanır."
 
 #
 msgid "Encrypted: "
@@ -9948,9 +9960,6 @@ msgstr ""
 msgid "IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr "Yalnızca Stream Relay aracılığıyla şifresi çözülebilen hizmetlerin şifresini çözmek için kullanılan Stream Relay sunucusunun IP adresi."
 
-msgid "Configure the IP of the fallback remote receiver."
-msgstr "Yedek cihaz URL"
-
 msgid "IPK Installer"
 msgstr "IPK Yükleyici"
 
@@ -10080,23 +10089,17 @@ msgstr "Etkinse, AIT verileri kayıtlara dahil edilir."
 msgid "If enabled, a log will be kept of CEC protocol traffic. The log files are located with the other log files but named 'Enigma2-hdmicec-[date].log'."
 msgstr "Etkinleştirilirse, CEC protokol trafiğinin bir günlüğü tutulur. Günlük dosyaları, diğer günlük dosyalarıyla birlikte bulunur ancak 'Enigma2-hdmicec-[date].log' olarak adlandırılır."
 
+msgid "If enabled, a time window is used to detect wake-ups from Deep Standby triggered by a timer. The default setting is disabled, which uses a special signal from the receiver. However, some devices send an incorrect or no signal, causing wake-up detection to fail."
+msgstr "Etkinleştirildiğinde, bir zamanlayıcı tarafından derin bekleme modundan uyanmayı algılamak için bir zaman penceresi kullanın. Varsayılan ayar devre dışı bırakılır ve alıcıdan özel bir sinyal kullanılır. Ancak bazı cihazlar yanlış veya hiç sinyal vermiyor ve uyanma tespiti başarısız olabilir."
+
 msgid "If enabled, the new GStreamer playback engine will be used."
 msgstr "Etkinleştirilirse, yeni GStreamer oynatma motoru kullanılacaktır."
-
-msgid "If enabled, a time window is used to detect wake-ups from deep standby triggered by a timer. The default setting is disabled, which uses a special signal from the receiver. However, some devices send an incorrect or no signal, causing wake-up detection to fail."
-msgstr "Etkinleştirildiğinde, bir zamanlayıcı tarafından derin bekleme modundan uyanmayı algılamak için bir zaman penceresi kullanın. Varsayılan ayar devre dışı bırakılır ve alıcıdan özel bir sinyal kullanılır. Ancak bazı cihazlar yanlış veya hiç sinyal vermiyor ve uyanma tespiti başarısız olabilir."
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Günlükler kullanılan maksimum alanı kullanıyorsa, en büyük silinecektir."
 
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
 msgstr "Mümkünse, bir zamanlayıcı başlamadan x dakika önce VPS-Plugin programın daha erken başlayıp başlamayacağını kontrol edecektir. (0 özelliği devre dışı bırakır)"
-
-msgid "Enables sending the same TV commands for deep standby as for regular standby."
-msgstr "'evet' olarak ayarlanırsa, normal bekleme olayları sırasında gönderildiği gibi, derin bekleme olayları için aynı komutlar TV'ye gönderilir."
-
-msgid "Enables timeshift to use alternative audio plugins."
-msgstr "'Evet' olarak ayarlanırsa, timeshift'i alternatif ses eklentileriyle kullanmanıza olanak tanır."
 
 msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "'Derin bekleme geçici çözümü' etkinse, sistem saati eşitlenene kadar bekler. Gereksinime bağlı olarak, uyandırma aygıtları en fazla 2 dakika sonra devam eder."
@@ -10195,14 +10198,14 @@ msgstr "Sihirbazdan hemen çıkın (yalnızca Hata Ayıklama modu)"
 msgid "Immediately restart selected devices."
 msgstr "Seçilen cihazları hemen yeniden başlatın."
 
-msgid "Import channels and/or EPG from the remote receiver URL, even when the receiver is coming out of standby."
-msgstr "Alıcı bekleme modundan çıkarken de uzak alıcı URL'sinden kanalları ve/veya EPG'yi içe aktarın"
-
 msgid "Import channels and/or EPG from remote receiver URL when receiver is booted."
 msgstr "Yedek cihaz URL"
 
 msgid "Import channels and/or EPG from remote receiver URL when receiver or GUI is restarted."
 msgstr "Alıcı veya enigma2 yeniden başlatıldığında, uzak alıcı URL'sinden kanalları ve/veya EPG'yi içe aktarın"
+
+msgid "Import channels and/or EPG from the remote receiver URL, even when the receiver is coming out of standby."
+msgstr "Alıcı bekleme modundan çıkarken de uzak alıcı URL'sinden kanalları ve/veya EPG'yi içe aktarın"
 
 msgid "Import from remote receiver URL"
 msgstr "Yedek cihaz URL"
@@ -10969,7 +10972,7 @@ msgstr "LED Kapatma Rengi"
 msgid "LED Standby"
 msgstr "LED Bekleme"
 
-msgid "LED brightness during deep standby."
+msgid "LED brightness during Deep Standby."
 msgstr "Derin bekleme sırasında LED parlaklığı."
 
 msgid "LED brightness during normal operations."
@@ -13695,10 +13698,10 @@ msgstr "OpenViX Paketleri"
 msgid "Opera"
 msgstr ""
 
-msgid "Operating LED status in deep standby mode"
+msgid "Operating LED status in Deep Standby"
 msgstr "Derin bekleme modunda çalışma LED durumu"
 
-msgid "Operating LED status in standby mode"
+msgid "Operating LED status in Standby"
 msgstr "Bekleme modunda işletim LED durumu"
 
 msgid "Operating LED status while running"
@@ -13717,7 +13720,7 @@ msgstr "Seçenek"
 msgid "Option to disable picons on the Infobar."
 msgstr "Bilgi çubuğundaki piktogramları devre dışı bırakma seçeneği"
 
-msgid "Option to enable the Hardware Standby Timer."
+msgid "Option to enable the hardware standby timer."
 msgstr "Donanım Bekleme Zamanlayıcısı'nı etkinleştirmek için Seçenek"
 
 msgid "Optional parameter"
@@ -14014,9 +14017,6 @@ msgstr ""
 #
 msgid "Password"
 msgstr "Parola"
-
-msgid "Password (httpuser)"
-msgstr "Şifre (httpuser)"
 
 msgid "Password (httpwd)"
 msgstr "Parola (httpwd)"
@@ -14676,9 +14676,6 @@ msgstr "Kapı D"
 msgid "Port number for the Stream Relay server used to descramble services that can only be decrypted via Stream Relay."
 msgstr "Yalnızca Stream Relay aracılığıyla şifresi çözülebilen hizmetlerin şifresini çözmek için kullanılan Stream Relay sunucusunun bağlantı noktası numarası."
 
-msgid "Configure the Port of the fallback remote receiver."
-msgstr "Yedek cihaz URL"
-
 #
 msgid "Portugal"
 msgstr "Portekiz"
@@ -14722,7 +14719,7 @@ msgstr "Olası nedenler şunlar olabilir:"
 msgid "Power"
 msgstr "Power"
 
-msgid "Power LED State in Deep-Standby"
+msgid "Power LED State in Deep Standby"
 msgstr "Derin Beklemede Güç LED'i Durumu"
 
 msgid "Power LED State in Standby"
@@ -14731,7 +14728,7 @@ msgstr "Bekleme Modunda Güç LED'i Durumu"
 msgid "Power LED can be turned on or off here."
 msgstr "Güç LED'i buradan açılabilir veya kapatılabilir."
 
-msgid "Power LED state during deep-standby."
+msgid "Power LED state during Deep Standby."
 msgstr "Bekleme modundayken Güç LED'i durumu."
 
 msgid "Power LED state during standby."
@@ -15982,6 +15979,9 @@ msgstr "İstenen ortam tipi:"
 msgid "Rereading partition table"
 msgstr "Bölüntü tablosu tekrar okunuyor"
 
+msgid "Reschedule the task to run when the receiver enters or exits standby. The state change must occur within the task’s scheduled window, or the task will not run."
+msgstr ""
+
 msgid "Reserved"
 msgstr "Ayrılmış"
 
@@ -17050,9 +17050,6 @@ msgstr "Dış görünüm verilerinin tüm kullanıcı özelleştirmelerini kald�
 msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all key map, menu and setup override data and restore the default definitions."
 msgstr "Tüm kullanıcı arayüzü verilerini kaldırmak için 'Evet'i seçin. Bu seçeneğin seçilmesi, tüm tuş haritası, menü ve kurulum geçersiz kılma verilerini kaldıracak ve varsayılan tanımları geri yükleyecektir."
 
-msgid "Reschedule the task to run when the receiver enters or exits standby. The state change must occur within the task’s scheduled window, or the task will not run."
-msgstr ""
-
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr "Ağ yapılandırmasını varsayılana sıfırlamak için 'Evet'i seçin. Bu, varsa Ethernet bağlantı noktasını etkinleştirecek ve alıcıyı DHCP kullanacak şekilde ayarlayacaktır. Diğer tüm ağ arayüzleri silinecektir."
 
@@ -17285,10 +17282,10 @@ msgstr "Görüntülemek için bir depo commit günlüğü seçin:"
 msgid "Select a script to run:"
 msgstr "Çalıştırılacak bir komut dosyası seçin:"
 
-msgid "Select a time, when in Standby mode, after which the descramble can proceed."
+msgid "Select a time, when in standby mode, after which the descramble can proceed."
 msgstr ""
 
-msgid "Select a time, when in Standby, before which descramble can proceed."
+msgid "Select a time, when in standby, before which descramble can proceed."
 msgstr ""
 
 msgid "Select a tuner"
@@ -17389,7 +17386,7 @@ msgstr ""
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr "Uydu çanağının nasıl ayarlanacağını seçin. yani, sabit çanak, tekli LNB, DiSEqC anahtar, konumlandırıcı, vb."
 
-msgid "Select how the schedule is handled with respect to Standby mode."
+msgid "Select how the schedule is handled with respect to standby mode."
 msgstr ""
 
 msgid "Select how to activate the Quick EPG mode."
@@ -18283,6 +18280,9 @@ msgstr "Sabiti ayarla"
 msgid "Set fps for external subtitles"
 msgstr "Harici altyazılar için fps ayarla"
 
+msgid "Set how long the second InfoBar stays visible. It also disappears when you press ‘OK’."
+msgstr "İkinci bilgi çubuğunu gizlemek için zamanı ayarlayın. Çubuk ayrıca 'OK' düğmesine basıldığında da kaybolur."
+
 msgid "Set interface as the default Interface"
 msgstr "Arabirimi varsayılan Arabirim olarak ayarla"
 
@@ -18341,6 +18341,9 @@ msgstr "Varsayılan sıralama yöntemini ayarlayın."
 msgid "Set the delay time between repeated loops, this is used by software renderer in some skins."
 msgstr "Tekrarlanan döngüler arasındaki gecikme süresini ayarlayın, bu, bazı derilerde yazılım oluşturucu tarafından kullanılır."
 
+msgid "Set the hostname or IP address."
+msgstr "DNS adı veya IP adresi"
+
 msgid "Set the jump-size of the SeekBar."
 msgstr "Arama çubuğunun atlama boyunu belirleyin."
 
@@ -18386,9 +18389,6 @@ msgstr ""
 msgid "Set the time to hide the InfoBar."
 msgstr "Bilgi çubuğunu gizlemek için zamanı ayarlayın."
 
-msgid "Set how long the second InfoBar stays visible. It also disappears when you press ‘OK’."
-msgstr "İkinci bilgi çubuğunu gizlemek için zamanı ayarlayın. Çubuk ayrıca 'OK' düğmesine basıldığında da kaybolur."
-
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
 msgstr "Kapatma, bekleme veya yeniden başlatma mesajlarında varsayılan eylemi yürütmek için bekleme süresini ayarlayın. (ör. Zamanlayıcı, PowerTimer, Sleeptimer, ...'da kullanılır)"
 
@@ -18430,7 +18430,7 @@ msgstr "Zaman seçeneklerini ayarlama"
 msgid "Set to 'Disabled' to replace underscore characters '_' in file and directory names with spaces."
 msgstr "Devre dışı bırakılırsa, dosya ve dizin adlarındaki altı çizili karakterler gösterilmez ve boşluklarla değiştirilir."
 
-msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby mode before shutting down."
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in standby mode before shutting down."
 msgstr ""
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
@@ -18763,6 +18763,9 @@ msgstr "Ekran paketlerini göster"
 msgid "Show Driver packages"
 msgstr "Sürücü paketlerini göster"
 
+msgid "Show EIT Now/Next event data in the InfoBar"
+msgstr "InfoBar'da EIT Now/Next verilerini gösterin."
+
 msgid "Show EPG"
 msgstr "EPG Göster"
 
@@ -18824,7 +18827,7 @@ msgstr "M2k paketlerini göster"
 msgid "Show Media Player in Main Menu"
 msgstr "Medya oynatıcıyı ana menüde göster"
 
-msgid "Show Media playback Remaining/Elapsed as"
+msgid "Show Media playback remaining/elapsed as"
 msgstr "Ortam oynatımında Kalan/Geçen süreyi göster"
 
 msgid "Show Merlin EPG Center"
@@ -19344,9 +19347,6 @@ msgstr "File Commander çalışmıyorsa ve tüm görevler tamamlanmışsa görev
 
 msgid "Show the CCcam Info Screen"
 msgstr "CCcam Bilgi Ekranını Göster"
-
-msgid "Show EIT Now/Next event data in the InfoBar"
-msgstr "InfoBar'da EIT Now/Next verilerini gösterin."
 
 msgid "Show the Logs Settings screen"
 msgstr "Günlük Ayarları ekranını göster"
@@ -19931,7 +19931,7 @@ msgstr "Somali Dili"
 msgid "Somalia"
 msgstr "Somali"
 
-msgid "Some TVs cannot switch to the correct input if another HDMI port is active. This setting puts the TV into standby before switching. If the TV does not turn back on, a slower transmission interval or repeating the wake-up command may be required."
+msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting puts the TV into standby before switching. If the TV does not turn back on, a slower transmission interval or repeating the wake-up command may be required."
 msgstr "Bazı TV cihazları, başka bir HDMI bağlantı noktası etkinse girişi düzeltmek için geçiş yapamaz. Bu ayar, TV'yi anahtardan önce beklemeye alır. (TV tekrar açılmazsa, daha yavaş bir aktarım aralığı veya uyandırma komutlarının tekrarı gerekebilir.)"
 
 #
@@ -20274,10 +20274,10 @@ msgstr "Durum mesajı zaman aşımı"
 msgid "Status of the display during operation"
 msgstr "İşlem sırasında ekranın durumu"
 
-msgid "Status of the display in deep standby"
+msgid "Status of the display in Seep Standby"
 msgstr "Ekranın derin bekleme modunda durumu"
 
-msgid "Status of the display in standby mode"
+msgid "Status of the display in Standby"
 msgstr "Bekleme modunda ekranın durumu"
 
 msgid "Status unavailable!"
@@ -20392,9 +20392,6 @@ msgstr "Durduruldu"
 
 msgid "Stopping Softcam"
 msgstr "Softcam'ı durdurma"
-
-msgid "Disables timeshift during recording (advisable for USB sticks)."
-msgstr "Bir kaydın devam etmesi durumunda durdurmanın zaman kayması kullanılır. (USB çubukları için tavsiye edilir)"
 
 msgid "Storage / Disk Information"
 msgstr "Depolama / Disk Bilgileri"
@@ -21286,9 +21283,6 @@ msgstr "Yedekleme başarılı oldu"
 msgid "The backup succeeded. We will now continue to explain the upgrade process."
 msgstr "Yedekleme başarılı oldu. Şimdi yükseltme işlemini açıklamaya devam edeceğiz."
 
-msgid "Bitrate of the video encoder. Larger values improves quality and increases file size."
-msgstr "Video kodlayıcının bit hızı. Daha büyük değer kaliteyi artırır ve dosya boyutunu artırır."
-
 msgid ""
 "The channel may support VPS\n"
 " Do you want to enable VPS?"
@@ -21305,9 +21299,6 @@ msgid ""
 msgstr ""
 "Varsayılan yedekleme seçimi değiştirilemez.\n"
 "Lütfen 'ek' ve 'hariç' yedek seçimini kullanın."
-
-msgid "Default wake-up is 5 minutes before deep standby. Adjust if the wake-up is too early or late, e.g., for network drives."
-msgstr "Varsayılan ayarlar derin bekleme modundan uyanmak için 5 dakika öncedir. Bunu değiştirmek muhtemelen gerekli olabilir. (örneğin: gerçek uyanma süresi yanlış veya geç, bir ağ sürücüsünü bekliyor vb.)"
 
 msgid "The default settings are wake up time - 5 minutes and timer begin time + 5 minutes. This setting changed the time window before the wake up time. So can be detected a wake up by a timer even at very early starting receivers."
 msgstr "Varsayılan ayarlar uyanma süresidir - 5 dakika ve zamanlayıcı başlama süresi + 5 dakika. Bu ayar, uyandırma saatinden önceki zaman penceresini değiştirdi. Bu yüzden çok erken başlangıç alıcılarında bile bir zamanlayıcı tarafından uyanma algılanabilir."
@@ -21612,35 +21603,11 @@ msgstr "Bu seçenek UHD için HDR10 Modlarını zorlamanıza olanak sağlar"
 msgid "This option allows you can force the HLG Modes for UHD"
 msgstr "Bu seçenek UHD için HLG Modlarını zorlamanıza olanak sağlar"
 
-msgid "This option allows you to choose how to display remaining time, or elapsed time, or both."
-msgstr "Bu seçenek kalan zaman, geçen zaman veya her ikisinin de gösterilme seçiminin yapılmasını sağlar."
-
-msgid "This option allows you to choose how to display the remaining/elapsed time for live TV."
-msgstr "Bu seçenek, canlı TV için kalan / geçen süreyi nasıl görüntüleyeceğinizi seçmenizi sağlar."
-
-msgid "This option allows you to choose how to display the remaining/elapsed time for media playback."
-msgstr "Bu seçenek, medya oynatma için kalan / geçen sürenin nasıl görüntüleneceğini seçmenizi sağlar."
-
-msgid "This option allows you to choose if the display shows the time or nothing in Standby."
-msgstr "Bu seçenek, Bekleme modunda Saatin veya hiçbir şeyin nasıl görüntüleneceğini seçmenize izin verir"
-
-msgid "This option allows you to choose if the display shows the time, channel number or nothing during operation."
-msgstr ""
-
-msgid "This option allows you to choose the background color of transparent picons."
-msgstr "Bu seçenek şeffaf pikoların arka plan rengini seçmenizi sağlar."
-
-msgid "This option allows you to choose the option for Subservice indicator or selection."
-msgstr "Bu seçenek, alt hizmet göstergesi veya seçimi için seçenek belirlemenizi sağlar."
-
 msgid "This option allows you enable smoothing filter to control the dithering process."
 msgstr "Bu seçenek, titreme işlemini kontrol etmek için filtreyi yumuşatmanızı sağlar."
 
 msgid "This option allows you enable the vertical scaler dejagging."
 msgstr "Bu seçenek dikey ölçekleyici dejagging özelliğini etkinleştirmenize izin verir."
-
-msgid "This option allows you to set the layout view (Text or Graphics)."
-msgstr "Bu seçenek düzen görünüşünü belirlemenizi sağlar (Metin veya grafik)."
 
 msgid "This option allows you to Power Off the display."
 msgstr "Bu seçenek ekranın Kapatılmasını sağlar."
@@ -21690,8 +21657,29 @@ msgstr "Bu seçenek, TV'nizde SD aşamalı 24Hz'nin nasıl görüntüleneceğini
 msgid "This option allows you to choose how to display elapsed time, as + or -."
 msgstr "Bu seçenek, geçen süreyi + veya - olarak nasıl göstereceğinizi seçmenize izin verir-"
 
+msgid "This option allows you to choose how to display the remaining time, the elapsed time, or both."
+msgstr "Bu seçenek kalan zaman, geçen zaman veya her ikisinin de gösterilme seçiminin yapılmasını sağlar."
+
 msgid "This option allows you to choose how to display standard definition video on your TV."
 msgstr "Bu seçenek, standart tanımlı videoların TV’nizde nasıl görüntüleneceğini seçmenizi sağlar."
+
+msgid "This option allows you to choose how to display the remaining or elapsed time for live TV."
+msgstr "Bu seçenek, canlı TV için kalan / geçen süreyi nasıl görüntüleyeceğinizi seçmenizi sağlar."
+
+msgid "This option allows you to choose how to display the remaining or elapsed time for media playback."
+msgstr "Bu seçenek, medya oynatma için kalan / geçen sürenin nasıl görüntüleneceğini seçmenizi sağlar."
+
+msgid "This option allows you to choose if the display shows the time or nothing in standby."
+msgstr "Bu seçenek, Bekleme modunda Saatin veya hiçbir şeyin nasıl görüntüleneceğini seçmenize izin verir"
+
+msgid "This option allows you to choose if the display shows the time, channel number or nothing during operation."
+msgstr ""
+
+msgid "This option allows you to choose the background color of transparent picons."
+msgstr "Bu seçenek şeffaf pikoların arka plan rengini seçmenizi sağlar."
+
+msgid "This option allows you to choose the option for Subservice indicator or selection."
+msgstr "Bu seçenek, alt hizmet göstergesi veya seçimi için seçenek belirlemenizi sağlar."
 
 msgid "This option allows you to choose what the first button press jumps to in channel list screen (pressing '2' jumps to 'A' or '2' first) when 'Quick Actions' preset actions are performed."
 msgstr "Bu seçenek, kanal listesi ekranında ilk tuşa basmanın ne yapacağını seçmenize izin verir ('Hızlı Eylemler' önayarı eylemleri gerçekleştirildiğinde, 'ilk önce' A 'ya da' 2 'basar). "
@@ -21704,6 +21692,9 @@ msgstr "Bu seçenek 3B Çepeçevre Sesi etkinleştirmenizi sağlar."
 
 msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr "Bu seçenek, farklı Letterbox çözünürlükleri için ofset değerleri ayarlamanıza olanak tanır."
+
+msgid "This option allows you to set the layout view (Text or Graphics)."
+msgstr "Bu seçenek düzen görünüşünü belirlemenizi sağlar (Metin veya grafik)."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "Bu seçenek SNR'ye yüzde olarak izin verir (tüm alıcılar bunu desteklemez)."
@@ -21804,6 +21795,9 @@ msgstr "Bu, hata ayıklama günlüğündeki her satırın önekini ayarlar. 'Ön
 
 msgid "This setting allows the tuner configuration to be a duplication of another configured tuner."
 msgstr "Bu ayar, tuner yapılandırmasının, başka bir tunerin zaten yapılandırıldığının bir kopyası olmasını sağlar."
+
+msgid "This setting can help improve signal quality or prevent issues with longer HDMI cables."
+msgstr "Bu ayar ile, muhtemelen sinyal kalitesini artırabilir veya daha uzun HDMI kabloları ile oluşabilecek sorunları ortadan kaldırabilirsiniz."
 
 msgid "This setting depends on your cable provider and location. If you don't know the correct setting refer to the menu in the official cable receiver, or get it from your cable provider, or seek help via Internet forum."
 msgstr "Bu ayar, kablo sağlayıcınıza ve bulunduğunuz yere göre değişir. Doğru ayarı bilmiyorsanız, resmi kablo alıcısındaki menüye bakın ya da kablo sağlayıcınızdan alın ya da internet forumundan yardım alın."
@@ -22604,14 +22598,17 @@ msgstr "UBINIZE"
 msgid "UHD Test"
 msgstr "UHD Testi"
 
+msgid "UP/DOWN button mode"
+msgstr "Yukarı / Aşağı düğmesi modu"
+
+msgid "UP/DOWN buttons also for 'all up/down'"
+msgstr "Yukarı/Aşağı düğmeleri ayrıca 'tüm yukarı/aşağı' için’"
+
 msgid "UP80  (keymap.u80)"
 msgstr "Değişen keymap ( s) başarısız oldu"
 
 msgid "URL"
 msgstr "URL"
-
-msgid "Configure the URL of the fallback remote receiver."
-msgstr "Yedek cihaz URL"
 
 #
 msgid "USALS"
@@ -22814,12 +22811,6 @@ msgstr "Yukarı / Aktif"
 
 msgid "Up to 50 Mbps"
 msgstr ""
-
-msgid "UP/DOWN button mode"
-msgstr "Yukarı / Aşağı düğmesi modu"
-
-msgid "UP/DOWN buttons also for 'all up/down'"
-msgstr "Yukarı/Aşağı düğmeleri ayrıca 'tüm yukarı/aşağı' için’"
 
 #
 msgid "Update"
@@ -23886,30 +23877,6 @@ msgstr "Ne yapmak istersin?"
 msgid "When 'Enabled', the timer view will show the free space on the target device. This will wake the device from sleep mode."
 msgstr "'Etkin' olduğunda, zamanlayıcı görünümü hedef cihazdaki boş alanı gösterecektir. Bu, cihazı uyku modundan çıkaracaktır."
 
-msgid "When enabled, the PiP can be closed using the EXIT button."
-msgstr "Etkin olduğunda RiR çıkış düğmesi ile kapatılabilir."
-
-msgid "When enabled, the receiver will automatically be switched off."
-msgstr "Etkinleştirildiğinde, alıcı otomatik olarak kapatılacaktır."
-
-msgid "When enabled, the receiver will automatically be switched on."
-msgstr "Etkinleştirildiğinde, alıcı otomatik olarak açılır."
-
-msgid "When enabled, the receiver will automatically return to standby when the TV is turned off."
-msgstr "Etkinleştirildiğinde, TV kapatıldığında alıcı otomatik olarak bekleme moduna döner."
-
-msgid "When enabled, the receiver will automatically wake from standby when the TV is turned on."
-msgstr "Etkinleştirildiğinde, TV açıldığında alıcı otomatik olarak bekleme modundan çıkar."
-
-msgid "When enabled, the timer from the fallback tuner is imported."
-msgstr "Etkinleştirildiğinde, geri dönüş tunerindeki zamanlayıcı içe aktarılır"
-
-msgid "When enabled, the timer from the fallback tuner is the default timer."
-msgstr "Etkinleştirildiğinde, geri dönüş ayarlayıcıdan gelen zamanlayıcı varsayılan zamanlayıcıdır"
-
-msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
-msgstr "Etkinleştirildiğinde, geri dönüş ayarlayıcı için OpenWebIf ayarlarını özelleştirebilirsiniz"
-
 msgid "When enabled, AIT data will be included in http streams. This allows a client receiver to use HbbTV."
 msgstr "Etkinleşince, AIT verileri http akışına eklenir. Bu, istemci alıcısının HbbTV yi kullanmasını sağlar."
 
@@ -23937,11 +23904,11 @@ msgstr "Etkinleştirildiğinde, serbest tuner olmadığında kayıt akışını 
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "Etkinleştirildiğinde, serbest tuner olmadığında bir kaydın canlı TV'yi kesmesine izin verilir."
 
+msgid "When enabled, a specific Softcam can be assigned to each encrypted service."
+msgstr "'Evet' olarak ayarlandığında, her şifreli servise belirli bir Softcam atanabilir."
+
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Etkinleşince, bir uyarı görünür, kullanıcı devam eder veya zamankaydırmayı durdurur."
-
-msgid "Enable to always unscramble received HTTP streams. Uses more resources due to demuxers. Streams with 0x100 in the service type are always unscrambled, regardless of this setting."
-msgstr "Etkinleştirildiğinde, alınan http akışlarının şifresini her zaman çözün. Bu, daha fazla kaynak gerektirir (çözümleyicileri çözer), yalnızca gerekirse etkinleştirin. Bu ayardan bağımsız olarak hizmet türüne 0x100 eklenirse bireysel akışlar her zaman şifresiz hale gelir."
 
 msgid "When enabled, authentication is required to watch http streams."
 msgstr "Etkinleştirildiğinde, http akışlarını izlemek için kimlik doğrulaması gereklidir."
@@ -24000,11 +23967,23 @@ msgstr "Etkinleştirilince, teletekst sayfaları hızlı erişime izin verecek �
 msgid "When enabled, teletext subtitles will be displayed at their original position."
 msgstr "Etkinleştirilince, teletekst altyazıları özgün konumlarında gösterilecek."
 
+msgid "When enabled, the PiP can be closed using the EXIT button."
+msgstr "Etkin olduğunda RiR çıkış düğmesi ile kapatılabilir."
+
 msgid "When enabled, the VCR SCART option will be shown on the main menu."
 msgstr "Etkinleştirildiğinde, VCR scart seçeneği ana menüde gösterilecektir"
 
 msgid "When enabled, the length of each recording will be shown in the movie list (this might cause some additional loading time)."
 msgstr "Etkinleştirildiğinde, her bir kaydın uzunluğu movieliste gösterilecektir (bu, bazı ek yükleme sürelerine neden olabilir)."
+
+msgid "When enabled, the receiver will automatically be switched off."
+msgstr "Etkinleştirildiğinde, alıcı otomatik olarak kapatılacaktır."
+
+msgid "When enabled, the receiver will automatically be switched on."
+msgstr "Etkinleştirildiğinde, alıcı otomatik olarak açılır."
+
+msgid "When enabled, the receiver will automatically return to standby when the TV is turned off."
+msgstr "Etkinleştirildiğinde, TV kapatıldığında alıcı otomatik olarak bekleme moduna döner."
 
 msgid "When enabled, the receiver will automatically use the audio track which you selected before."
 msgstr "Etkinleştirilince, alıcı önceden seçtiğiniz ses izini otomatik olarak kullanacak."
@@ -24012,11 +23991,20 @@ msgstr "Etkinleştirilince, alıcı önceden seçtiğiniz ses izini otomatik ola
 msgid "When enabled, the receiver will automatically use the subtitles which you selected before."
 msgstr "Etkinleştirilince, alıcı önceden seçtiğiniz altyazıyı otomatik olarak kullanacak."
 
+msgid "When enabled, the receiver will automatically wake from standby when the TV is turned on."
+msgstr "Etkinleştirildiğinde, TV açıldığında alıcı otomatik olarak bekleme modundan çıkar."
+
 msgid "When enabled, the receiver will select an AC3 track (when available)."
 msgstr "Etkinleştirilince, alıcı bir AC3 izi seçecek (varsa)."
 
 msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Etkinleştirildiğinde, alıcı bir AC3 + pisti (mevcut olduğunda) seçecektir."
+
+msgid "When enabled, the timer from the fallback tuner is imported."
+msgstr "Etkinleştirildiğinde, geri dönüş tunerindeki zamanlayıcı içe aktarılır"
+
+msgid "When enabled, the timer from the fallback tuner is the default timer."
+msgstr "Etkinleştirildiğinde, geri dönüş ayarlayıcıdan gelen zamanlayıcı varsayılan zamanlayıcıdır"
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr "Etkinleştirildiğinde, bu ayar 'kayıtları için tercih edilen tuner' den fazla ağırlığa sahiptir."
@@ -24029,6 +24017,9 @@ msgstr "Etkinleştirildiğinde, zaman kayması belirlenen süre sonunda arka pla
 
 msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Etkinleştirilince, İP yapılandırması için DHCP kullanılır."
+
+msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
+msgstr "Etkinleştirildiğinde, geri dönüş ayarlayıcı için OpenWebIf ayarlarını özelleştirebilirsiniz"
 
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "Etkinleştirilince, alıcınız VCR SCART girişindeki etkinliği algılayacak."
@@ -24045,17 +24036,11 @@ msgstr "Sıfır olmadığında, bir zap zamanlayıcısı EPG'de belirtilen başl
 msgid "When nonzero, a zap timer will stop the nominated period after the ending time indicated in the EPG."
 msgstr "Sıfır olmadığında, bir zap zamanlayıcısı EPG'de belirtilen bitiş süresinden sonra belirtilen süreyi durduracaktır."
 
-msgid "When the receiver wakes from standby, it will switch the TV to the HDMI input connected to the receiver."
-msgstr "Alıcı bekleme modundan çıktığında TV'ye alıcının bağlı olduğu HDMI girişine geçmesi için komut verir."
-
 msgid "When set each folder will show the previous state used, when off the default values will be shown."
 msgstr "Ayarlandığında her klasör bir önceki durumda gösterilir, kapatıldığında varsayılan değerler görüntülenir."
 
 msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr "Ayarlanırsa, izlenen film durdurulduğunda PIG canlı yayına döner."
-
-msgid "When enabled, a specific Softcam can be assigned to each encrypted service."
-msgstr "'Evet' olarak ayarlandığında, her şifreli servise belirli bir Softcam atanabilir."
 
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "İçerik 16:9 görüntü oranındaysa, resmin uzatılıp uzatılmayacağını seçiniz."
@@ -24068,6 +24053,9 @@ msgstr "Giriş imleci bu noktaya ulaştığında (her iki taraftan genişliğin 
 
 msgid "When the receiver wakes from standby or deep standby it will send a command to the TV to bring it out of standby."
 msgstr "Alıcı bekleme modundan veya derin bekleme modundan çıktığında, TV'ye onu da bekleme modundan çıkarmak için bir komut gönderir."
+
+msgid "When the receiver wakes from standby, it will switch the TV to the HDMI input connected to the receiver."
+msgstr "Alıcı bekleme modundan çıktığında TV'ye alıcının bağlı olduğu HDMI girişine geçmesi için komut verir."
 
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
 msgstr "Kırmızı kutu doğru şekilde göründüğünde, ayarları kaydetmek ve çıkmak için YEŞİL düğmeye basın."
@@ -24166,17 +24154,14 @@ msgstr "Görevlerin eklentiler ekranında gizlenmesini sağlar (mavi tuşa kısa
 msgid "With this option you can switch off the display during operation."
 msgstr "Bu seçenek ile işlem sırasında ekranı kapatabilirsiniz."
 
-msgid "With this option you can switch off the display in Deep Standby Mode."
+msgid "With this option you can switch off the display in Deep Standby mode."
 msgstr "Bu seçenek ile, Derin Bekleme Modunda ekranı kapatabilirsiniz."
 
-msgid "With this option you can switch off the display in Standby Mode."
+msgid "With this option you can switch off the display in standby mode."
 msgstr "Bu seçenek ile Bekleme Modunda ekranı kapatabilirsiniz."
 
 msgid "With this option you can switch the LED color or deactivate the LED."
 msgstr "Bu seçenekle LED rengini değiştirebilir veya LED'i devre dışı bırakabilirsiniz."
-
-msgid "This setting can help improve signal quality or prevent issues with longer HDMI cables."
-msgstr "Bu ayar ile, muhtemelen sinyal kalitesini artırabilir veya daha uzun HDMI kabloları ile oluşabilecek sorunları ortadan kaldırabilirsiniz."
 
 msgid "Without pop up"
 msgstr "Popup olmadan"
@@ -25451,6 +25436,21 @@ msgstr "evet (beslemeleri tut)"
 
 msgid "®"
 msgstr "®"
+
+#, python-format
+#~ msgid "%d Seconds"
+#~ msgstr "%d saniye"
+
+#, python-format
+#~ msgid "%d Hours"
+#~ msgstr "%d Saat"
+
+#, python-format
+#~ msgid "%d Minutes"
+#~ msgstr "%d Dakika"
+
+#~ msgid "Password (httpuser)"
+#~ msgstr "Şifre (httpuser)"
 
 #~ msgid "Sci-Fi"
 #~ msgstr "Bilim Kurgu"

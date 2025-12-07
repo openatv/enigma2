@@ -146,22 +146,22 @@
 		<item level="0" text="Brightness (Normal)" description="Configure the brightness level of the front panel display for normal operation.">config.lcd.bright</item>
 		<item level="0" text="Brightness (Dimmed)" description="Configure the brightness level of the front panel display for dimmed operation.">config.lcd.dimbright</item>
 		<item level="0" text="Dim delay" description="Dim the LCD to the level from 'Brightness (Dimmed)' after specified time.">config.lcd.dimdelay</item>
-		<item level="0" text="Brightness (Standby)" description="Configure the brightness level of the front panel display for standby.">config.lcd.standby</item>
+		<item level="0" text="Brightness (Standby)" description="Configure the brightness level of the front panel display for Standby.">config.lcd.standby</item>
 		<item level="0" text="Contrast" description="Configure the contrast level of the front panel display." requires="ConfigDisplay">config.lcd.contrast</item>
 		<item level="0" text="LED Normal" description="LED brightness during normal operations.">config.lcd.ledbrightness</item>
 		<item level="0" text="LED Standby" description="LED brightness during standby.">config.lcd.ledbrightnessstandby</item>
-		<item level="0" text="LED Deep Standby" description="LED brightness during deep standby.">config.lcd.ledbrightnessdeepstandby</item>
+		<item level="0" text="LED Deep Standby" description="LED brightness during Deep Standby.">config.lcd.ledbrightnessdeepstandby</item>
 		<item level="0" text="Turn on the power LED" description="Power LED can be turned on or off here." requires="PowerLed">config.usage.lcd_powerled</item>
 		<item level="0" text="Turn on the control LED" description="Control LED can be turned on or off here." requires="PowerLed2">config.usage.lcd_powerled2</item>
 		<item level="0" text="Power LED State in Standby" description="Power LED state during standby." requires="StandbyPowerLed">config.usage.lcd_standbypowerled</item>
-		<item level="0" text="Power LED State in Deep-Standby" description="Power LED state during deep-standby." requires="SuspendPowerLed">config.usage.lcd_deepstandbypowerled</item>
+		<item level="0" text="Power LED State in Deep Standby" description="Power LED state during Deep Standby." requires="SuspendPowerLed">config.usage.lcd_deepstandbypowerled</item>
 		<item level="0" text="Operating LED status while running" description="With this option you can switch the LED color or deactivate the LED." requires="LEDPowerColor">config.usage.lcd_ledpowercolor</item>
-		<item level="0" text="Operating LED status in standby mode" description="With this option you can switch the LED color or deactivate the LED." requires="LEDStandbyColor">config.usage.lcd_ledstandbycolor</item>
-		<item level="0" text="Operating LED status in deep standby mode" description="With this option you can switch the LED color or deactivate the LED." requires="LEDSuspendColor">config.usage.lcd_ledsuspendcolor</item>
+		<item level="0" text="Operating LED status in Standby" description="With this option you can switch the LED color or deactivate the LED." requires="LEDStandbyColor">config.usage.lcd_ledstandbycolor</item>
+		<item level="0" text="Operating LED status in Deep Standby" description="With this option you can switch the LED color or deactivate the LED." requires="LEDSuspendColor">config.usage.lcd_ledsuspendcolor</item>
 		<item level="0" text="Status of the display during operation" description="With this option you can switch off the display during operation." requires="Power4x7On">config.usage.lcd_power4x7on</item>
-		<item level="0" text="Status of the display in standby mode" description="With this option you can switch off the display in Standby Mode." requires="Power4x7Standby">config.usage.lcd_power4x7standby</item>
-		<item level="0" text="Status of the display in deep standby" description="With this option you can switch off the display in Deep Standby Mode." requires="Power4x7Suspend">config.usage.lcd_power4x7suspend</item>
-		<item level="0" text="Show in Standby" description="This option allows you to choose if the display shows the time or nothing in Standby." requires="7segment">config.usage.show_in_standby</item>
+		<item level="0" text="Status of the display in Standby" description="With this option you can switch off the display in standby mode." requires="Power4x7Standby">config.usage.lcd_power4x7standby</item>
+		<item level="0" text="Status of the display in Seep Standby" description="With this option you can switch off the display in Deep Standby mode." requires="Power4x7Suspend">config.usage.lcd_power4x7suspend</item>
+		<item level="0" text="Show in Standby" description="This option allows you to choose if the display shows the time or nothing in standby." requires="7segment">config.usage.show_in_standby</item>
 		<item level="0" text="Show during operation" description="This option allows you to choose if the display shows the time, channel number or nothing during operation." requires="7segment">config.usage.show_in_operation</item>
 		<item level="2" text="Initial scroll delay" description="Delay in milliseconds before start of scrolling text on display." requires="VFD_initial_scroll_delay">config.usage.vfd_initial_scroll_delay</item>
 		<item level="2" text="Final scroll delay" description="Delay in milliseconds after finish scrolling text on display." requires="VFD_final_scroll_delay">config.usage.vfd_final_scroll_delay</item>
@@ -178,14 +178,14 @@
 		</if>
 		<if requires="LCDSKIN">
 			<item level="1" text="REC Symbol in use" description="Enable blinking rec symbol on the LCD Display.">config.usage.blinking_rec_symbol_during_recording</item>
-			<item level="1" text="REC Symbol in Standby" description="Enable blinking rec symbol on the LCD Display in Standby.">config.usage.blinking_display_clock_during_recording</item>
+			<item level="1" text="REC Symbol in Standby" description="Enable blinking rec symbol on the LCD Display in standby.">config.usage.blinking_display_clock_during_recording</item>
 		</if>
 		<item level="1" text="switch 12 to 8 character display mode" description="12, show Latin-1 characters except for greek and cyrillic, switch to 8 if needed." requires="XcoreVFD">config.usage.vfd_xcorevfd</item>
 		<item level="1" text="Show Display Icons" description="Allows you to enable/disable displaying icons on the front panel.">config.lcd.mode</item>
 		<if requires="ConfigDisplay">
-			<item level="1" text="Show time remaining/elapsed" description="This option allows you to choose how to display remaining time, or elapsed time, or both.">config.usage.swap_time_remaining_on_vfd</item>
-			<item level="1" text="Show transponder remaining/elapsed as" description="This option allows you to choose how to display the remaining/elapsed time for live TV.">config.usage.swap_time_display_on_vfd</item>
-			<item level="1" text="Show Media playback Remaining/Elapsed as" description="This option allows you to choose how to display the remaining/elapsed time for media playback.">config.usage.swap_media_time_display_on_vfd</item>
+			<item level="1" text="Show time remaining/elapsed" description="This option allows you to choose how to display the remaining time, the elapsed time, or both.">config.usage.swap_time_remaining_on_vfd</item>
+			<item level="1" text="Show transponder remaining/elapsed as" description="This option allows you to choose how to display the remaining or elapsed time for live TV.">config.usage.swap_time_display_on_vfd</item>
+			<item level="1" text="Show Media playback remaining/elapsed as" description="This option allows you to choose how to display the remaining or elapsed time for media playback.">config.usage.swap_media_time_display_on_vfd</item>
 			<item level="0" text="Show time elapsed as positive" description="This option allows you to choose how to display elapsed time, as + or -.">config.usage.elapsed_time_positive_vfd</item>
 			<item level="0" text="Power On Display" description="This option allows you to Power Off the display.">config.lcd.power</item>
 			<item level="0" text="Show HDMI-Output Res" description="Show HDMI Output Resolution.">config.lcd.showoutputresolution</item>
@@ -355,7 +355,7 @@
 		</if>
 	</setup>
 	<setup key="Fallbacktuner" title="Fallback tuner setup" level="2">
-		<item text="Enable fallback remote receiver" description="Enable remote receiver to be tried to tune into services that cannot be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner). Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_receiver:8001.">config.usage.remote_fallback_enabled</item>
+		<item text="Enable fallback remote receiver" description="Enable remote receiver to be tried to tune into services that can't be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner). Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_receiver:8001.">config.usage.remote_fallback_enabled</item>
 		<item text="Import from remote receiver URL" description="Import channels and/or EPG from remote receiver URL when receiver is booted.">config.usage.remote_fallback_import</item>
 		<if conditional="config.usage.remote_fallback_enabled.value">
 			<item text="Enable import timer from fallback tuner" description="When enabled, the timer from the fallback tuner is imported.">config.usage.remote_fallback_external_timer</item>
@@ -376,7 +376,7 @@
 					<item text="Fallback remote receiver URL" description="Configure the URL of the fallback remote receiver.">config.usage.remote_fallback_import_url</item>
 				</if>
 				<item text="Also import at reboot/restart" description="Import channels and/or EPG from remote receiver URL when receiver or GUI is restarted.">config.usage.remote_fallback_import_restart</item>
-				<item text="Also import when receiver is leaving standby" description="Import channels and/or EPG from the remote receiver URL, even when the receiver is coming out of standby.">config.usage.remote_fallback_import_standby</item>
+				<item text="Also import when leaving standby" description="Import channels and/or EPG from the remote receiver URL, even when the receiver is coming out of standby.">config.usage.remote_fallback_import_standby</item>
 				<item text="Also import from the extension menu" description="Make it possible to manually initiate the channels import and/or EPG via the extension menu.">config.usage.remote_fallback_extension_menu</item>
 				<item text="Show notification when import channels was successful" description="Show notification when import channels and/or EPG from remote receiver URL is completed.">config.usage.remote_fallback_ok</item>
 				<item text="Show notification when import channels was not successful" description="Show notification when import channels and/or EPG from remote receiver URL did not complete.">config.usage.remote_fallback_nok</item>
@@ -424,7 +424,7 @@
 	<setup key="HardDisk" title="Hard Disk Settings" showOpenWebif="1">
 		<item level="0" text="Hard disk standby after" description="Configure the hard disk drive to go to standby after the specified idle time.">config.usage.hdd_standby</item>
 		<item level="0" text="Hard disk standby in receiver standby after" description="Configure the hard disk drive to go to standby after the specified idle time when the receiver is in standby.">config.usage.hdd_standby_in_standby</item>
-		<item level="0" text="Use Harddisk Hardware Standby Timer" description="Option to enable the Hardware Standby Timer.">config.usage.hdd_timer</item>
+		<item level="0" text="Use Harddisk Hardware Standby Timer" description="Option to enable the hardware standby timer.">config.usage.hdd_timer</item>
 		<item level="2" text="Show unknown devices" description="Enable this option to show unknown storage devices in device manager.">config.usage.showUnknownDevices</item>
 	</setup>
 	<setup key="HDMICEC" title="HDMI-CEC Settings">
@@ -442,7 +442,7 @@
 				<item level="0" text="Even if a 'Wakeup' scheduled task starting?" description="Select 'Yes' if you want to wake the TV when a 'Wakeup' scheduled task is starting.">config.hdmicec.tv_wakeup_wakeuppowertimer</item>
 			</if>
 			<item level="0" text="Switch TV to correct input" description="When the receiver wakes from standby, it will switch the TV to the HDMI input connected to the receiver.">config.hdmicec.report_active_source</item>
-			<item level="0" text="Switch off the TV to correct input" description="Some TVs cannot switch to the correct input if another HDMI port is active. This setting puts the TV into standby before switching. If the TV does not turn back on, a slower transmission interval or repeating the wake-up command may be required." conditional="config.hdmicec.advanced_settings.value and config.hdmicec.report_active_source.value">config.hdmicec.workaround_activesource</item>
+			<item level="0" text="Switch off the TV to correct input" description="Some TVs can't switch to the correct input if another HDMI port is active. This setting puts the TV into standby before switching. If the TV does not turn back on, a slower transmission interval or repeating the wake-up command may be required." conditional="config.hdmicec.advanced_settings.value and config.hdmicec.report_active_source.value">config.hdmicec.workaround_activesource</item>
 			<item level="0" text="Handle wake up from TV" description="When enabled, the receiver will automatically wake from standby when the TV is turned on.">config.hdmicec.handle_tv_wakeup</item>
 			<item level="0" text="Handle standby from TV" description="When enabled, the receiver will automatically return to standby when the TV is turned off.">config.hdmicec.handle_tv_standby</item>
 			<if conditional="config.hdmicec.advanced_settings.value">
@@ -490,8 +490,8 @@
 		<item level="1" text="LED Color" description="With this option you can switch the LED color or deactivate the LED.">config.fp.led.default_color</item>
 		<item level="1" text="LED Brightness" description="LED brightness during normal operations.">config.fp.led.default_brightness</item>
 		<item level="1" text="LED Idle Color" description="With this option you can switch the LED color or deactivate the LED.">config.fp.led.standby_color</item>
-		<item level="1" text="LED Idle Brightness" description="LED brightness during deep standby.">config.fp.led.standby_brightness</item>
-		<item level="1" text="LED Shutdown Color" description="Power LED state during deep-standby.">config.fp.led.shutdown_color</item>
+		<item level="1" text="LED Idle Brightness" description="LED brightness during Deep Standby.">config.fp.led.standby_brightness</item>
+		<item level="1" text="LED Shutdown Color" description="Power LED state during Deep Standby.">config.fp.led.shutdown_color</item>
 	</setup>
 	<setup key="Locale" title="Locale Selection Settings" menuTitle="Locale">
 		<item level="0" text="Locales to be displayed" description="Display the base locales or all locales for a language.">config.locales.packageLocales</item>
@@ -760,9 +760,9 @@
 		<if requires="CanDescrambleInStandby">
 			<item level="2" text="Descramble in Standby" description="Set to 'Enabled' to descramble queued scrambled recordings in Standby.">config.recording.standbyDescramble</item>
 			<if conditional="config.recording.standbyDescramble.value" indent="1">
-				<item level="2" text="Descramble recordings before Shutdown" description="Set to 'Enabled' to descramble queued scrambled recordings in Standby mode before shutting down.">config.recording.standbyDescrambleShutdown</item>
-				<item level="2" text="Descramble start time" description="Select a time, when in Standby mode, after which the descramble can proceed.">config.recording.standbyDescrambleStart</item>
-				<item level="2" text="Descramble end time" description="Select a time, when in Standby, before which descramble can proceed.">config.recording.standbyDescrambleEnd</item>
+				<item level="2" text="Descramble recordings before Shutdown" description="Set to 'Enabled' to descramble queued scrambled recordings in standby mode before shutting down.">config.recording.standbyDescrambleShutdown</item>
+				<item level="2" text="Descramble start time" description="Select a time, when in standby mode, after which the descramble can proceed.">config.recording.standbyDescrambleStart</item>
+				<item level="2" text="Descramble end time" description="Select a time, when in standby, before which descramble can proceed.">config.recording.standbyDescrambleEnd</item>
 			</if>
 		</if>
 	</setup>
@@ -904,7 +904,7 @@
 				</if>
 			</if>
 			<if conditional="self.isFunctionTimer()">
-				<item level="0" text="Standby execution" description="Select how the schedule is handled with respect to Standby mode.">self.timerFunctionStandby</item>
+				<item level="0" text="Standby execution" description="Select how the schedule is handled with respect to standby mode.">self.timerFunctionStandby</item>
 				<item level="0" text="Start retry" description="Reschedule the task to run when the receiver enters or exits standby. The state change must occur within the task’s scheduled window, or the task will not run." conditional="self.timerFunctionStandby.value > 0">self.timerFunctionStandbyRetry</item>
 				<item level="0" text="Error Retry count" description="Select the number of times to retry a task if an error occurs when running the task.">self.timerFunctionRetryCount</item>
 				<item level="0" text="Error Retry delay" description="Select the amount of time to wait, after a task error, before trying to run the task again." conditional="self.timerFunctionRetryCount.value > 0">self.timerFunctionRetryDelay</item>
@@ -1059,8 +1059,8 @@
 		<!--item level="2" text="Enable Startup Bootvideo" description="You can Enable or Disable the Startup Bootvideo.">config.misc.bootvideo</item-->
 		<item level="1" text="After PowerLost" description="Select what should be done when the %s %s was shutdown incorrectly, or after the Power was lost.">config.usage.shutdownNOK_action</item>
 		<item level="1" text="Boot-up action" description="Select what should be done when the %s %s was boot-up, normal playing or goto standby.">config.usage.boot_action</item>
-		<item level="2" text="Wake up time before a timer begins [mins]" description="Default wake-up is 5 minutes before deep standby. Adjust if the wake-up is too early or late, e.g., for network drives.">config.workaround.wakeuptime</item>
-		<item level="1" text="Use workaround for wake up from deep-standby" description="If enabled, a time window is used to detect wake-ups from deep standby triggered by a timer. The default setting is disabled, which uses a special signal from the receiver. However, some devices send an incorrect or no signal, causing wake-up detection to fail.">config.workaround.deeprecord</item>
+		<item level="2" text="Wake up time before a timer begins [mins]" description="Default wake-up is 5 minutes before Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives.">config.workaround.wakeuptime</item>
+		<item level="1" text="Use workaround for wake up from deep-standby" description="If enabled, a time window is used to detect wake-ups from Deep Standby triggered by a timer. The default setting is disabled, which uses a special signal from the receiver. However, some devices send an incorrect or no signal, causing wake-up detection to fail.">config.workaround.deeprecord</item>
 		<item level="2" text="Time window for detection of the wake up by a timer [mins]" description="The default settings are wake up time - 5 minutes and timer begin time + 5 minutes. This setting changed the time window before the wake up time. So can be detected a wake up by a timer even at very early starting receivers." requires="config.workaround.deeprecord">config.workaround.wakeupwindow</item>
 		<!--item level="2" text="Remote control model shown" description="Which remote control gets shown. Only influences graphical representation.">config.usage.rc_model</item-->
 		<item level="2" text="Enable cut file support for non *.ts files" description="Enable cut file support for non *.ts files, e.g. mp4.">config.usage.useVideoCuesheet</item>
@@ -1112,11 +1112,11 @@
 		<item level="0" text="Show picon background color" description="This option allows you to choose the background color of transparent picons.">config.usage.show_picon_bkgrn</item>
 		<item level="0" text="Show event genre information" description="This option allows you to choose whether or not to display genre information for the event.">config.usage.show_genre_info</item>
 		<item level="2" text="Show background in Radio Mode" description="Show background when tuned to a radio channel.">config.misc.showradiopic</item>
-		<item level="0" text="Show time remaining/elapsed" description="This option allows you to choose how to display remaining time, or elapsed time, or both.">config.usage.swap_time_remaining_on_osd</item>
+		<item level="0" text="Show time remaining/elapsed" description="This option allows you to choose how to display the remaining time, the elapsed time, or both.">config.usage.swap_time_remaining_on_osd</item>
 		<item level="0" text="Show time elapsed as positive" description="This option allows you to choose how to display elapsed time, as + or -.">config.usage.elapsed_time_positive_osd</item>
-		<item level="0" text="Show transponder remaining/elapsed as" description="This option allows you to choose how to display the remaining/elapsed time for live TV.">config.usage.swap_time_display_on_osd</item>
+		<item level="0" text="Show transponder remaining/elapsed as" description="This option allows you to choose how to display the remaining or elapsed time for live TV.">config.usage.swap_time_display_on_osd</item>
 		<item level="0" text="Show subservices *" description="This option allows you to choose the option for Subservice indicator or selection.">config.usage.showInfoBarSubservices</item>
-		<item level="0" text="Media playback Remaining/Elapsed as" description="This option allows you to choose how to display the remaining/elapsed time for media playback.">config.usage.swap_media_time_display_on_osd</item>
+		<item level="0" text="Media playback Remaining/Elapsed as" description="This option allows you to choose how to display the remaining or elapsed time for media playback.">config.usage.swap_media_time_display_on_osd</item>
 		<item level="0" text="Zap history sequence" description="Select the display sequence of previously visited services.">config.usage.zapHistorySort</item>
 		<item level="2" text="Hide zap errors" description="Hide any zap error messages.">config.usage.hide_zap_errors</item>
 		<item level="2" text="Hide CI messages" description="Hide error messages from the Common Interface module.">config.usage.hide_ci_messages</item>
