@@ -111,7 +111,7 @@ class VideoSetup(ConfigListScreen, Screen):
 			getConfigListEntry(_("Video output"), config.av.videoport, _("Configures which video output connector will be used."))
 		]
 		if config.av.videoport.value in ("HDMI", "YPbPr", "Scart-YPbPr") and not getAutoresPlugin_enabled():
-			self.list.append(getConfigListEntry(_("Automatic resolution"), config.av.autores, _("If enabled the output resolution of the box will try to match the resolution of the video contents resolution")))
+			self.list.append(getConfigListEntry(_("Automatic resolution"), config.av.autores, _("If enabled the output resolution of the receiver will try to match the resolution of the video contents resolution.")))
 			if config.av.autores.value in ("all", "hd"):
 				self.list.append(getConfigListEntry(_("Delay time"), config.av.autores_delay, _("Set the time before checking video source for resolution information.")))
 				self.list.append(getConfigListEntry(_("Automatic resolution label"), config.av.autores_label_timeout, _("Allows you to adjust the amount of time the resolution information display on screen.")))
@@ -498,9 +498,9 @@ class AutoVideoMode(Screen):
 				iPlayableService.evVideoSizeChanged: self.VideoChanged,
 				iPlayableService.evVideoProgressiveChanged: self.VideoChanged,
 				iPlayableService.evVideoFramerateChanged: self.VideoChanged,
-				#iPlayableService.evBuffering: self.BufferInfo, # currently disabled, does this really need? - with some streams will this permanently called (e.g. #SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//62.113.210.250/medienasa-live playpath=ok-wernigerode_high swfUrl=http%3a//www.blitzvideoserver06.de/blitzvideoplayer6.swf live=1 pageUrl=http%3a//iphonetv.in/#stream-id=45:Offener Kanal Wernigerode rtmp)
-				#iPlayableService.evStopped: self.BufferInfoStop # sometimes not called or called before evBuffering -> if bufferfull = False (when evBuffering permanetly called and buffer < 98%) will autoresolution not longer working
-				#iPlayableService.evEnd: self.BufferInfoStop # alternative for 'evStopped'
+				# iPlayableService.evBuffering: self.BufferInfo, # currently disabled, does this really need? - with some streams will this permanently called (e.g. #SERVICE 4097:0:1:0:0:0:0:0:0:0:rtmp%3a//62.113.210.250/medienasa-live playpath=ok-wernigerode_high swfUrl=http%3a//www.blitzvideoserver06.de/blitzvideoplayer6.swf live=1 pageUrl=http%3a//iphonetv.in/#stream-id=45:Offener Kanal Wernigerode rtmp)
+				# iPlayableService.evStopped: self.BufferInfoStop # sometimes not called or called before evBuffering -> if bufferfull = False (when evBuffering permanetly called and buffer < 98%) will autoresolution not longer working
+				# iPlayableService.evEnd: self.BufferInfoStop # alternative for 'evStopped'
 			})
 
 		self.firstrun = True
@@ -539,15 +539,15 @@ class AutoVideoMode(Screen):
 			self.VideoChanged()
 		else:
 			self.bufferfull = False
-		#print '+'*50, 'BufferInfo',bufferInfo[0],self.bufferfull
+		# print '+'*50, 'BufferInfo',bufferInfo[0],self.bufferfull
 
 	def BufferInfoStop(self):
 		self.bufferfull = True
-		#print '-'*50, 'BufferInfoStop'
+		# print '-'*50, 'BufferInfoStop'
 
 	def VideoChanged(self):
 		if config.av.autores.value == "disabled" or getAutoresPlugin_enabled():
-			#print "[VideoMode] autoresolution is disabled - resolution not changed!"
+			# print "[VideoMode] autoresolution is disabled - resolution not changed!"
 			return
 		if self.session.nav.getCurrentlyPlayingServiceReference() and not self.session.nav.getCurrentlyPlayingServiceReference().toString().startswith("4097:"):
 			delay = config.av.autores_delay.value
@@ -881,7 +881,7 @@ class AutoVideoMode(Screen):
 						write_mode = "1080i" + new_rate
 				elif config.av.smart1080p.value == "720p50":
 					write_mode = "720p" + new_rate
-				#print("[VideoMode] smart1080p mode, selecting %s" % write_mode)
+				# print("[VideoMode] smart1080p mode, selecting %s" % write_mode)
 
 			if write_mode and current_mode != write_mode and self.bufferfull or self.firstrun:
 				values = avSwitch.readAvailableModes()

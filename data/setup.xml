@@ -146,21 +146,21 @@
 		<item level="0" text="Brightness (Normal)" description="Configure the brightness level of the front panel display for normal operation.">config.lcd.bright</item>
 		<item level="0" text="Brightness (Dimmed)" description="Configure the brightness level of the front panel display for dimmed operation.">config.lcd.dimbright</item>
 		<item level="0" text="Dim delay" description="Dim the LCD to the level from 'Brightness (Dimmed)' after specified time.">config.lcd.dimdelay</item>
-		<item level="0" text="Brightness (Standby)" description="Configure the brightness level of the front panel display for Standby.">config.lcd.standby</item>
+		<item level="0" text="Brightness (Standby)" description="Configure the brightness level of the front panel display for standby mode.">config.lcd.standby</item>
 		<item level="0" text="Contrast" description="Configure the contrast level of the front panel display." requires="ConfigDisplay">config.lcd.contrast</item>
 		<item level="0" text="LED Normal" description="LED brightness during normal operations.">config.lcd.ledbrightness</item>
 		<item level="0" text="LED Standby" description="LED brightness during standby.">config.lcd.ledbrightnessstandby</item>
-		<item level="0" text="LED Deep Standby" description="LED brightness during Deep Standby.">config.lcd.ledbrightnessdeepstandby</item>
+		<item level="0" text="LED Deep Standby" description="LED brightness during deep standby.">config.lcd.ledbrightnessdeepstandby</item>
 		<item level="0" text="Turn on the power LED" description="Power LED can be turned on or off here." requires="PowerLed">config.usage.lcd_powerled</item>
 		<item level="0" text="Turn on the control LED" description="Control LED can be turned on or off here." requires="PowerLed2">config.usage.lcd_powerled2</item>
 		<item level="0" text="Power LED State in Standby" description="Power LED state during standby." requires="StandbyPowerLed">config.usage.lcd_standbypowerled</item>
-		<item level="0" text="Power LED State in Deep Standby" description="Power LED state during Deep Standby." requires="SuspendPowerLed">config.usage.lcd_deepstandbypowerled</item>
+		<item level="0" text="Power LED State in Deep Standby" description="Power LED state during deep standby." requires="SuspendPowerLed">config.usage.lcd_deepstandbypowerled</item>
 		<item level="0" text="Operating LED status while running" description="With this option you can switch the LED color or deactivate the LED." requires="LEDPowerColor">config.usage.lcd_ledpowercolor</item>
 		<item level="0" text="Operating LED status in Standby" description="With this option you can switch the LED color or deactivate the LED." requires="LEDStandbyColor">config.usage.lcd_ledstandbycolor</item>
 		<item level="0" text="Operating LED status in Deep Standby" description="With this option you can switch the LED color or deactivate the LED." requires="LEDSuspendColor">config.usage.lcd_ledsuspendcolor</item>
 		<item level="0" text="Status of the display during operation" description="With this option you can switch off the display during operation." requires="Power4x7On">config.usage.lcd_power4x7on</item>
 		<item level="0" text="Status of the display in Standby" description="With this option you can switch off the display in standby mode." requires="Power4x7Standby">config.usage.lcd_power4x7standby</item>
-		<item level="0" text="Status of the display in Seep Standby" description="With this option you can switch off the display in Deep Standby mode." requires="Power4x7Suspend">config.usage.lcd_power4x7suspend</item>
+		<item level="0" text="Status of the display in Deep Standby" description="With this option you can switch off the display in deep standby mode." requires="Power4x7Suspend">config.usage.lcd_power4x7suspend</item>
 		<item level="0" text="Show in Standby" description="This option allows you to choose if the display shows the time or nothing in standby." requires="7segment">config.usage.show_in_standby</item>
 		<item level="0" text="Show during operation" description="This option allows you to choose if the display shows the time, channel number or nothing during operation." requires="7segment">config.usage.show_in_operation</item>
 		<item level="2" text="Initial scroll delay" description="Delay in milliseconds before start of scrolling text on display." requires="VFD_initial_scroll_delay">config.usage.vfd_initial_scroll_delay</item>
@@ -204,10 +204,10 @@
 	<setup key="EPG" title="EPG Settings" level="2" showOpenWebif="1">
 		<item level="2" text="EPG location" description="Choose the location where the EPG data will be stored when the %s %s is shut down. The location must be available at boot time.">config.misc.epgcachepath</item>
 		<item level="2" text="EPG filename" description="Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several receivers.">config.misc.epgcachefilename</item>
-		<item level="2" text="Scheduled load of epg.dat" description="Allows the %s %s to read the stored EPG data regularly.">config.epg.cacheloadsched</item>
+		<item level="2" text="Scheduled load of 'epg.dat'" description="Allows the %s %s to read the stored EPG data regularly.">config.epg.cacheloadsched</item>
 		<item level="2" text="Refresh every x hours" description="The %s %s reads the stored EPG data every x hours." requires="config.epg.cacheloadsched">config.epg.cacheloadtimer</item>
-		<item level="2" text="Save EPG data" description="Configure if epg.dat should be saved at all.">config.epg.saveepg</item>
-		<item level="2" text="Scheduled save of epg.dat" description="Allows the %s %s to store the EPG data regularly.">config.epg.cachesavesched</item>
+		<item level="2" text="Save EPG data" description="Configure if 'epg.dat' should be saved at all.">config.epg.saveepg</item>
+		<item level="2" text="Scheduled save of 'epg.dat'" description="Allows the %s %s to store the EPG data regularly.">config.epg.cachesavesched</item>
 		<item level="2" text="Save every x hours" description="The %s %s stores the EPG data every x hours." requires="config.epg.cachesavesched">config.epg.cachesavetimer</item>
 		<item level="2" text="Show EIT Now/Next event data in the InfoBar" description="Display the EIT Now/Next event data in the InfoBar.">config.usage.show_eit_nownext</item>
 		<item level="2" text="Enable EIT EPG" description="Use EIT EPG information when it is available.">config.epg.eit</item>
@@ -490,8 +490,8 @@
 		<item level="1" text="LED Color" description="With this option you can switch the LED color or deactivate the LED.">config.fp.led.default_color</item>
 		<item level="1" text="LED Brightness" description="LED brightness during normal operations.">config.fp.led.default_brightness</item>
 		<item level="1" text="LED Idle Color" description="With this option you can switch the LED color or deactivate the LED.">config.fp.led.standby_color</item>
-		<item level="1" text="LED Idle Brightness" description="LED brightness during Deep Standby.">config.fp.led.standby_brightness</item>
-		<item level="1" text="LED Shutdown Color" description="Power LED state during Deep Standby.">config.fp.led.shutdown_color</item>
+		<item level="1" text="LED Idle Brightness" description="LED brightness during deep standby.">config.fp.led.standby_brightness</item>
+		<item level="1" text="LED Shutdown Color" description="Power LED state during deep standby.">config.fp.led.shutdown_color</item>
 	</setup>
 	<setup key="Locale" title="Locale Selection Settings" menuTitle="Locale">
 		<item level="0" text="Locales to be displayed" description="Display the base locales or all locales for a language.">config.locales.packageLocales</item>
@@ -758,7 +758,7 @@
 		<item level="2" text="Show warning before restart" description="Configure for which types of recordings a warning about active recordings is shown when attempting to restart the receiver or the GUI.">config.recording.warn_box_restart_rec_types</item>
 		<item level="2" text="Show free space in timer view" description="When 'Enabled', the timer view will show the free space on the target device. This will wake the device from sleep mode.">config.recording.timerviewshowfreespace</item>
 		<if requires="CanDescrambleInStandby">
-			<item level="2" text="Descramble in Standby" description="Set to 'Enabled' to descramble queued scrambled recordings in Standby.">config.recording.standbyDescramble</item>
+			<item level="2" text="Descramble in Standby" description="Set to 'Enabled' to descramble queued scrambled recordings in standby.">config.recording.standbyDescramble</item>
 			<if conditional="config.recording.standbyDescramble.value" indent="1">
 				<item level="2" text="Descramble recordings before Shutdown" description="Set to 'Enabled' to descramble queued scrambled recordings in standby mode before shutting down.">config.recording.standbyDescrambleShutdown</item>
 				<item level="2" text="Descramble start time" description="Select a time, when in standby mode, after which the descramble can proceed.">config.recording.standbyDescrambleStart</item>
@@ -1059,7 +1059,7 @@
 		<!--item level="2" text="Enable Startup Bootvideo" description="You can Enable or Disable the Startup Bootvideo.">config.misc.bootvideo</item-->
 		<item level="1" text="After PowerLost" description="Select what should be done when the %s %s was shutdown incorrectly, or after the Power was lost.">config.usage.shutdownNOK_action</item>
 		<item level="1" text="Boot-up action" description="Select what should be done when the %s %s was boot-up, normal playing or goto standby.">config.usage.boot_action</item>
-		<item level="2" text="Wake up time before a timer begins [mins]" description="Default wake-up is 5 minutes before Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives.">config.workaround.wakeuptime</item>
+		<item level="2" text="Wake up time before a timer begins [mins]" description="Default wake-up is 5 minutes before deep standby. Adjust if the wake-up is too early or late, e.g., for network drives.">config.workaround.wakeuptime</item>
 		<item level="1" text="Use workaround for wake up from deep-standby" description="If enabled, a time window is used to detect wake-ups from Deep Standby triggered by a timer. The default setting is disabled, which uses a special signal from the receiver. However, some devices send an incorrect or no signal, causing wake-up detection to fail.">config.workaround.deeprecord</item>
 		<item level="2" text="Time window for detection of the wake up by a timer [mins]" description="The default settings are wake up time - 5 minutes and timer begin time + 5 minutes. This setting changed the time window before the wake up time. So can be detected a wake up by a timer even at very early starting receivers." requires="config.workaround.deeprecord">config.workaround.wakeupwindow</item>
 		<!--item level="2" text="Remote control model shown" description="Which remote control gets shown. Only influences graphical representation.">config.usage.rc_model</item-->

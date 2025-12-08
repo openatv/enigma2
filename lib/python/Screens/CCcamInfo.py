@@ -19,7 +19,7 @@ from Components.MenuList import MenuList
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend
 from Components.ScrollLabel import ScrollLabel
 from Components.Sources.StaticText import StaticText
-#from Screens.InfoBar import InfoBar
+# from Screens.InfoBar import InfoBar
 from Screens.LocationBox import LocationBox
 from Screens.MessageBox import MessageBox
 from Screens.Screen import Screen
@@ -27,7 +27,7 @@ from Screens.Setup import Setup
 from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Tools.Directories import fileExists, SCOPE_GUISKIN, resolveFilename, fileReadLines, fileWriteLines
 
-#TOGGLE_SHOW = InfoBar.toggleShow
+# TOGGLE_SHOW = InfoBar.toggleShow
 
 VERSION = "V3"
 DATE = "01.12.2021"
@@ -40,9 +40,9 @@ AuthHeaders = {
 }
 #############################################################
 
-###global
+# global
 sf = getSkinFactor()
-###global
+# global
 
 
 def searchConfig():
@@ -206,8 +206,8 @@ menu_list = [
 	_("Entitlements"),
 	_("ecm.info"),
 	_("Menu config"),
-	_("Local box"),
-	_("Remote box"),
+	_("Local receiver"),
+	_("Remote receiver"),
 	_("Free memory"),
 	_("Switch config"),
 	_("About")]
@@ -276,7 +276,7 @@ class CCcamLineEdit(Setup):
 			self.username = mysel[3]
 			self.password = mysel[4]
 			if mysel[0] == "N:":
-				#self.deskey = mysel[5] + mysel[6] + mysel[7] + mysel[8] + mysel[9] + mysel[10] + mysel[11] + mysel[12] + mysel[13] + mysel[14] + mysel[15] + mysel[16] + mysel[17] + mysel[18]
+				# self.deskey = mysel[5] + mysel[6] + mysel[7] + mysel[8] + mysel[9] + mysel[10] + mysel[11] + mysel[12] + mysel[13] + mysel[14] + mysel[15] + mysel[16] + mysel[17] + mysel[18]
 				self.deskey = "".join(mysel[5:19])
 			self.extras = mysel[19:]
 
@@ -591,11 +591,11 @@ class CCcamInfoMain(Screen):
 			elif sel == _("Menu config"):
 				self.session.openWithCallback(self.updateMenuList, CCcamInfoMenuConfig)
 
-			elif sel == _("Local box"):
+			elif sel == _("Local receiver"):
 				self.readConfig()
-				self.showInfo(_("Profile: Local box"), _("Local box"))
+				self.showInfo(_("Profile: Local receiver"), _("Local receiver"))
 
-			elif sel == _("Remote box"):
+			elif sel == _("Remote receiver"):
 				self.session.openWithCallback(self.profileSelected, CCcamInfoRemoteBoxMenu)
 
 			elif sel == _("Free memory"):

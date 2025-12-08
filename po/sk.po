@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-12-06 12:58+0000\n"
-"PO-Revision-Date: 2025-12-06 18:19+0000\n"
+"PO-Revision-Date: 2025-12-08 09:22+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
@@ -2977,7 +2977,7 @@ msgstr "Záloha nastavení vášho %s %s."
 msgid "Backup your current image"
 msgstr "Záloha aktuálneho image"
 
-msgid "Backup your current image to HDD or USB. This will make a 1:1 copy of your box"
+msgid "Backup your current image to HDD or USB. This will make a 1:1 copy of your receiver."
 msgstr "Záloha aktuálneho image na HDD alebo USB. Vytvorí sa 1:1 kópia image z vášho prijímača"
 
 msgid "Backup your current settings"
@@ -4281,7 +4281,7 @@ msgstr "Stlačte na diaľkovom ovládači tlačidlo, ktoré chcete zmeniť."
 msgid "Client"
 msgstr "Klient"
 
-msgid "Client is streaming from this box!"
+msgid "Client is streaming from this receiver!"
 msgstr "Z tohto zariadenia práve streamuje klient!"
 
 msgid "ClientIP"
@@ -4567,7 +4567,7 @@ msgstr "Nastavte, či a aký široký sa má zobrazovať stĺpec s názvom stani
 msgid "Configure if crypto icons will be shown in the channel selection list."
 msgstr "Nastavte, či sa v zozname kanálov majú zobrazovať ikony kódovania."
 
-msgid "Configure if epg.dat should be saved at all."
+msgid "Configure if 'epg.dat' should be saved at all."
 msgstr "Nastavte, či sa vo všeobecnosti má ukladať súbor epg.dat."
 
 msgid "Configure if service picons will be shown in quickzap."
@@ -4657,7 +4657,7 @@ msgstr "Nastavte úroveň jasu displeja na prednom paneli – pri stlmení."
 msgid "Configure the brightness level of the front panel display for normal operation."
 msgstr "Nastavte úroveň jasu displeja na prednom paneli – v normálnom režime."
 
-msgid "Configure the brightness level of the front panel display for Standby."
+msgid "Configure the brightness level of the front panel display for standby mode."
 msgstr "Nastavte úroveň jasu displeja na prednom paneli – v pohotov. režime."
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
@@ -5868,7 +5868,7 @@ msgstr "Predvolený režim videa vybraný pre TV."
 msgid "Default volume offset"
 msgstr "Predvolený posun hlasitosti"
 
-msgid "Default wake-up is 5 minutes before Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
+msgid "Default wake-up is 5 minutes before deep standby. Adjust if the wake-up is too early or late, e.g., for network drives."
 msgstr "Predvolené nastavenie je 5 minút pred prebudením z režimu vypnutia. Upravte hodnotu v prípade, že je to príliš skoro alebo neskoro, napríklad pri používaní sieťových zariadení."
 
 #, python-format
@@ -6039,7 +6039,7 @@ msgstr "Vymazať všetky tagy"
 msgid "Delete all the text"
 msgstr "Vymazať celý text"
 
-msgid "Delete and uninstall Plugins. This will remove the Plugin from your box"
+msgid "Delete and uninstall Plugins. This will remove the Plugin from your receiver."
 msgstr "Vymazať a odinštalovať pluginy. Tým sa pluginy odstránia z prijímača"
 
 msgid "Delete character to left of cursor or select AM times"
@@ -7300,7 +7300,7 @@ msgid "Enable preview"
 msgstr "Povoliť náhľad"
 
 msgid "Enable remote receiver to be tried to tune into services that can't be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner). Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_receiver:8001."
-msgstr "Povoliť vzdialený prijímač so systémom enigma2, aby sa pokúsil naladiť stanice, ktoré nie je možné naladiť lokálne (napríklad keď je tuner zaneprázdnený, alebo na lokálnom tuneri nie je dostupný typ stanice). Zadajte celú adresu URL, vrátane prefixu http:// a čísla portu (normálne …:8001), napríklad http://second_receiver:8001."
+msgstr "Povoliť vzdialený prijímač, aby sa pokúsil naladiť stanice, ktoré nie je možné naladiť lokálne (napríklad keď je tuner zaneprázdnený, alebo na lokálnom tuneri nie je dostupný typ stanice/služby). Zadajte celú adresu URL, vrátane prefixu http:// a čísla portu (normálne …:8001), napríklad http://second_receiver:8001."
 
 msgid "Enable teletext caching"
 msgstr "Povoliť vyrovnávaciu pamäť teletextu"
@@ -8644,7 +8644,7 @@ msgstr "Flashovať a obnoviť nastavenia a vybrané pluginy (opýtať sa použí
 msgid "Flash directory '%s' not allowed!"
 msgstr "Flash priečinok '%s' nie je povolený!"
 
-msgid "Flash on the fly your your Receiver software."
+msgid "Flash your receiver software on the fly."
 msgstr "Flashovanie softvéru prijímača počas prevádzky (on the fly)."
 
 msgid "Flash type"
@@ -9730,10 +9730,10 @@ msgstr "V EPG sa vyhľadajú ďalšie záznamy, ktoré patria k nahrávanému pr
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "Ak je akcia konfigurovateľná používateľom, položka pomocníka je označená príponou '(C)'."
 
-msgid "If enabled and necessary, the plugin will wake up the Receiver from Deep-Standby for the defined starting time to control whether the programme begins earlier."
+msgid "If enabled and necessary, the plugin will wake up the receiver from deep standby for the defined starting time to control whether the programme begins earlier."
 msgstr "Ak je to povolené a potrebné, plugin prebudí prijímač na definovanú dobu a skontroluje, či sa program začína skôr."
 
-msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
+msgid "If enabled the output resolution of the receiver will try to match the resolution of the video contents resolution."
 msgstr "Ak je povolené, prijímač sa pokúsi prispôsobiť svoje rozlíšenie rozlíšeniu video-obsahu"
 
 msgid "If enabled the video will always be de-interlaced."
@@ -10591,7 +10591,7 @@ msgstr "Farba LED pri vypnutí"
 msgid "LED Standby"
 msgstr "LED v pohotovostnom režime"
 
-msgid "LED brightness during Deep Standby."
+msgid "LED brightness during deep standby."
 msgstr "Jas LED vo vypnutom stave."
 
 msgid "LED brightness during normal operations."
@@ -10888,7 +10888,7 @@ msgstr "Informácie sa načítavavajú, čakajte, prosím…"
 msgid "Loading slot information, please wait..."
 msgstr "Načítavanie informácií o slote, čakajte, prosím…"
 
-msgid "Local box"
+msgid "Local receiver"
 msgstr "Lokálny box"
 
 msgid "Local date/time"
@@ -11191,7 +11191,7 @@ msgstr "Spravovať miestne nastavenia/výber jazyka"
 msgid "Manage Plugins"
 msgstr "Spravovať pluginy"
 
-msgid "Manage Plugins. This will remove/install Plugins on your box"
+msgid "Manage Plugins. This will remove/install Plugins on your receiver."
 msgstr "Spravovanie pluginov. Tu sa odstraňujú/inštalujú pluginy vášho zariadenia"
 
 msgid "Manage and explore directories and files."
@@ -14128,7 +14128,7 @@ msgstr "Stav LED pri pohotovostnom režime"
 msgid "Power LED can be turned on or off here."
 msgstr "Zapnutie alebo vypnutie LED kontrolky napájania."
 
-msgid "Power LED state during Deep Standby."
+msgid "Power LED state during deep standby."
 msgstr "Stav LED počas vypnutia."
 
 msgid "Power LED state during standby."
@@ -14409,7 +14409,7 @@ msgstr "Informácie o procesore"
 msgid "Profile"
 msgstr "Profil"
 
-msgid "Profile: Local box"
+msgid "Profile: Local receiver"
 msgstr "Profil: Lokálny box"
 
 msgid "Program"
@@ -15065,7 +15065,7 @@ msgstr "Nastavenia tlačidiel diaľkového ovládania"
 msgid "Remote Control Code Settings"
 msgstr "Kód diaľkového ovládania"
 
-msgid "Remote box"
+msgid "Remote receiver"
 msgstr "Vzdialený box"
 
 msgid "Remote control information"
@@ -15459,7 +15459,7 @@ msgstr "Obnoviť %s %s s novým firmwarom."
 msgid "Restore your backups by date."
 msgstr "Obnoviť zo zálohy podľa dátumu."
 
-msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
+msgid "Restore your settings back from a backup. After restore the receiver will restart to activated the new settings."
 msgstr "Obnovenie nastavení zo zálohy. Po obnovení sa prijímač reštartuje a aktivujú sa nové nastavenia"
 
 msgid "Restoring..."
@@ -16009,10 +16009,10 @@ msgstr[2] "Vyhľadávanie: %d%% dokončených"
 msgid "Scans default lamedbs sorted by satellite with a connected dish positioner"
 msgstr "Prehľadať predvolené lamedb zoradené podľa družice a pripojeného pozicionéra"
 
-msgid "Scheduled load of epg.dat"
+msgid "Scheduled load of 'epg.dat'"
 msgstr "Plánované načítanie súboru epg.dat"
 
-msgid "Scheduled save of epg.dat"
+msgid "Scheduled save of 'epg.dat'"
 msgstr "Plánované uloženie súboru epg.dat"
 
 msgid "Scheduler"
@@ -17676,7 +17676,7 @@ msgstr "Ak sa majú v názvoch priečinkov súborov nahradiť znaky popdčiarknu
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in standby mode before shutting down."
 msgstr "Ak chcete pred vypnutím najskôr v pohotovostnom režime dekódovať nahrávky čakajúce vo fronte, nastavte túto voľbu na 'Zapnuté'."
 
-msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in standby."
 msgstr "Ak chcete v pohotovostnom režime dekódovať nahrávky čakajúce vo fronte, nastavte túto voľbu na 'Zapnuté'."
 
 msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
@@ -19124,7 +19124,7 @@ msgid "Somalia"
 msgstr "Somálsko"
 
 msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting puts the TV into standby before switching. If the TV does not turn back on, a slower transmission interval or repeating the wake-up command may be required."
-msgstr "Niektoré televízory nedokážu prepnúť na správny vstup, ak je aktívny iný port HDMI. Týmto nastavením sa televízor pre prepnutím uvedie do pohotovostného režimu. Ak sa televízor opäť nezapne, môže byť potrebný pomalší interval prenosu alebo zopakovanie príkazu na prebudenie."
+msgstr "Niektoré televízory nedokážu prepnúť na správny vstup, ak je aktívny iný port HDMI. Týmto nastavením sa televízor pred prepnutím uvedie do pohotovostného režimu. Ak sa televízor opäť nezapne, môže byť potrebný pomalší interval prenosu alebo zopakovanie príkazu na prebudenie."
 
 msgid "Sorbian"
 msgstr "srbčina"
@@ -19452,7 +19452,7 @@ msgstr "Časový limit pre správu o stave"
 msgid "Status of the display during operation"
 msgstr "Stav displeja počas prevádzky"
 
-msgid "Status of the display in Seep Standby"
+msgid "Status of the display in Deep Standby"
 msgstr "Stav displeja počas vypnutia"
 
 msgid "Status of the display in Standby"
@@ -20784,7 +20784,7 @@ msgid "This option allows you to choose how to display elapsed time, as + or -."
 msgstr "Nastavenie, či sa uplynutý čas zobrazí so znamienkom + alebo -."
 
 msgid "This option allows you to choose how to display the remaining time, the elapsed time, or both."
-msgstr "Voľba zobrazenia zostávajúceho času, uplynutého času alebo obidvoch."
+msgstr "Nastavenie zobrazenia zostávajúceho času, uplynutého času alebo obidvoch."
 
 msgid "This option allows you to choose how to display standard definition video on your TV."
 msgstr "Nastavenie zobrazenia videa v štandardnom rozlíšení na vašom TV."
@@ -21913,7 +21913,7 @@ msgstr "Aktualizovať vybraný plugin/zoznam pluginov"
 msgid "Update/Backup your firmware, Backup/Restore settings"
 msgstr "Aktualizácia/záloha firmware, zálohovanie/obnovenie nastavení"
 
-msgid "Update/Backup/Restore your box"
+msgid "Update/Backup/Restore your receiver"
 msgstr "Aktualizácia/zálohovanie/obnova prijímača"
 
 msgid "Updated"
@@ -23168,7 +23168,7 @@ msgstr "Pomocou tejto možnosti môžete skryť úlohy Job Tasks z obrazovky roz
 msgid "With this option you can switch off the display during operation."
 msgstr "Touto voľbou môžete vypnúť displej počas prevádzky."
 
-msgid "With this option you can switch off the display in Deep Standby mode."
+msgid "With this option you can switch off the display in deep standby mode."
 msgstr "Touto voľbou môžete vypnúť displej v režime vypnutia prijímača."
 
 msgid "With this option you can switch off the display in standby mode."

@@ -2947,7 +2947,7 @@ msgstr "Varmuuskopioi %s %s:n asetukset."
 msgid "Backup your current image"
 msgstr "Luo täydellinen varmuuskopio ohjelmistosta"
 
-msgid "Backup your current image to HDD or USB. This will make a 1:1 copy of your box"
+msgid "Backup your current image to HDD or USB. This will make a 1:1 copy of your receiver."
 msgstr "Varmuuskopioi ohjelmisto kiintolevylle tai USB-muistitikulle. Tämä luo 1:1 kopion laitteen nykyisestä ohjelmistosta"
 
 msgid "Backup your current settings"
@@ -4251,7 +4251,7 @@ msgstr "Määrittää näppäimelle haluamasi toiminnon."
 msgid "Client"
 msgstr "Asiakas"
 
-msgid "Client is streaming from this box!"
+msgid "Client is streaming from this receiver!"
 msgstr "Etäasiakas suora toistaa boxin kautta!"
 
 msgid "ClientIP"
@@ -4536,7 +4536,7 @@ msgstr "Määrittää, kuinka leveänä kanavanimet näytetään kanavalistassa.
 msgid "Configure if crypto icons will be shown in the channel selection list."
 msgstr "Määritä, näkyvätkö salauskuvakkeet kanavan valinta listassa."
 
-msgid "Configure if epg.dat should be saved at all."
+msgid "Configure if 'epg.dat' should be saved at all."
 msgstr "Määrittää, talletetaanko epg.dat -tiedostoa."
 
 msgid "Configure if service picons will be shown in quickzap."
@@ -4626,7 +4626,7 @@ msgstr "Määrittää etupaneeliin näytön kirkkauden himmennettynä."
 msgid "Configure the brightness level of the front panel display for normal operation."
 msgstr "Määrittää etupaneeliin näytön kirkkauden normaalissa tilassa."
 
-msgid "Configure the brightness level of the front panel display for Standby."
+msgid "Configure the brightness level of the front panel display for standby mode."
 msgstr "Määrittää etupaneeliin näytön kirkkauden valmiustilassa."
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
@@ -5837,7 +5837,7 @@ msgstr "Oletus videotila on valittu televisiolle."
 msgid "Default volume offset"
 msgstr "Oletus äänenvoimakkuuden offsetti"
 
-msgid "Default wake-up is 5 minutes before Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
+msgid "Default wake-up is 5 minutes before deep standby. Adjust if the wake-up is too early or late, e.g., for network drives."
 msgstr "Oletusasetus on herätä valmiustilasta on 5 minuuttia aikaisemmin. Tämä voi tarpeen mukaan muutta (esim. herätysaika on epätarkka tai liian myöhäistä, odottaa verkkoasemaa, jne.)"
 
 #, python-format
@@ -6008,7 +6008,7 @@ msgstr "Poista kaikki tunnisteet"
 msgid "Delete all the text"
 msgstr "Poista koko teksti"
 
-msgid "Delete and uninstall Plugins. This will remove the Plugin from your box"
+msgid "Delete and uninstall Plugins. This will remove the Plugin from your receiver."
 msgstr "Poista lisäosia. Tämä poistaa lisäosat vastaanottimestasi"
 
 msgid "Delete character to left of cursor or select AM times"
@@ -8610,7 +8610,7 @@ msgstr "Päivitä ja palauta asetukset ja valitut laajennukset (Kysy käyttäjä
 msgid "Flash directory '%s' not allowed!"
 msgstr "Flash hakemisto '%s' ei ole sallittu!"
 
-msgid "Flash on the fly your your Receiver software."
+msgid "Flash your receiver software on the fly."
 msgstr "Päivitä vastaanottimesi ohjelmisto internetin kautta."
 
 msgid "Flash type"
@@ -9696,10 +9696,10 @@ msgstr "Jos ohjelma keskeytetään ja jaetaan erillisiin tapahtumiin, laajennus 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "Jos toiminto on käyttäjän määritettävissä, se merkitään ohjekirjaan (C) -päätteellä."
 
-msgid "If enabled and necessary, the plugin will wake up the Receiver from Deep-Standby for the defined starting time to control whether the programme begins earlier."
+msgid "If enabled and necessary, the plugin will wake up the receiver from deep standby for the defined starting time to control whether the programme begins earlier."
 msgstr "Jos tämä on käytössä, lisäosa herättää vastaanottimen Virransäästö tilasta määritetym alkamisajan kohdalla ajaksi, jotta voidaan valvoa, alkaako ohjelma aikaisemmin."
 
-msgid "If enabled the output resolution of the box will try to match the resolution of the video contents resolution"
+msgid "If enabled the output resolution of the receiver will try to match the resolution of the video contents resolution."
 msgstr "Jos päällä, ulostulon resoluutio pyritään pitämään samana kuin kanavalla tai tallenteessa"
 
 msgid "If enabled the video will always be de-interlaced."
@@ -10561,7 +10561,7 @@ msgstr "LED Sammutuksen Väri"
 msgid "LED Standby"
 msgstr "LED valmiustila"
 
-msgid "LED brightness during Deep Standby."
+msgid "LED brightness during deep standby."
 msgstr "LED:in kirkkaus virransäästötilassa."
 
 msgid "LED brightness during normal operations."
@@ -10857,7 +10857,7 @@ msgstr "Ladataan tietoja, odota..."
 msgid "Loading slot information, please wait..."
 msgstr "Ladataan image paikka tietoja, odota..."
 
-msgid "Local box"
+msgid "Local receiver"
 msgstr "Paikallinen laite"
 
 msgid "Local date/time"
@@ -11160,7 +11160,7 @@ msgstr "Hallitse Alue/Kieli valinta asetuksia"
 msgid "Manage Plugins"
 msgstr "Hallitse lisäosia"
 
-msgid "Manage Plugins. This will remove/install Plugins on your box"
+msgid "Manage Plugins. This will remove/install Plugins on your receiver."
 msgstr "Hallitse liitännäisiä. Tämä poistaa/asentaa Lisäosat"
 
 msgid "Manage and explore directories and files."
@@ -14103,7 +14103,7 @@ msgstr "Virta LED tila valmiustilassa"
 msgid "Power LED can be turned on or off here."
 msgstr "Virta ledin voi kytkeä päälle pois täältä."
 
-msgid "Power LED state during Deep Standby."
+msgid "Power LED state during deep standby."
 msgstr "Virta LED tila virransäästötilan aikana."
 
 msgid "Power LED state during standby."
@@ -14384,7 +14384,7 @@ msgstr "Prosessorin tiedot"
 msgid "Profile"
 msgstr "Profiili"
 
-msgid "Profile: Local box"
+msgid "Profile: Local receiver"
 msgstr "Profiili: Paikallinen laite"
 
 msgid "Program"
@@ -15040,7 +15040,7 @@ msgstr "Kaukosäädin näppäinten asetukset"
 msgid "Remote Control Code Settings"
 msgstr "Kaukosäätimen koodi"
 
-msgid "Remote box"
+msgid "Remote receiver"
 msgstr "Etälaite"
 
 msgid "Remote control information"
@@ -15434,7 +15434,7 @@ msgstr "Palauta %s %s:n ohjelmisto perustilaan."
 msgid "Restore your backups by date."
 msgstr "Palauta asetukset varmuuskopio päivän mukaan."
 
-msgid "Restore your settings back from a backup. After restore the box will restart to activated the new settings"
+msgid "Restore your settings back from a backup. After restore the receiver will restart to activated the new settings."
 msgstr "Palauta asetukset takaisin varmuuskopiosta. Käynnistä vastaanotin uudelleen aktivoidaksesi uudet asetukset"
 
 msgid "Restoring..."
@@ -15981,10 +15981,10 @@ msgstr[1] "Haetaan - %d%% valmiina"
 msgid "Scans default lamedbs sorted by satellite with a connected dish positioner"
 msgstr "Hakee oletuskanavalistan satelliittijärjestyksessä käyttäen kytkettyä kääntömoottoria"
 
-msgid "Scheduled load of epg.dat"
+msgid "Scheduled load of 'epg.dat'"
 msgstr "Ajoitettu epg:en lataus"
 
-msgid "Scheduled save of epg.dat"
+msgid "Scheduled save of 'epg.dat'"
 msgstr "Ajoitettu epg:en tallennus"
 
 msgid "Scheduler"
@@ -17662,7 +17662,7 @@ msgstr "Jos asetus ei ole käytössä, tiedosto- ja kansionimien alaviivoja ei n
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in standby mode before shutting down."
 msgstr "Aseta 'Käytössä' purkaaksesi jonossa olevat salatut tallenteet valmiustilassa ennen sammutusta."
 
-msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in standby."
 msgstr "Aseta 'Käytössä' purkaaksesi jonossa olevat salatut tallenteet valmiustilassa."
 
 msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
@@ -19434,7 +19434,7 @@ msgstr "Tilaviestin aikakatkaisu"
 msgid "Status of the display during operation"
 msgstr "Näytön tila käytössä"
 
-msgid "Status of the display in Seep Standby"
+msgid "Status of the display in Deep Standby"
 msgstr "Näytön tila virransäästötila"
 
 msgid "Status of the display in Standby"
@@ -21901,7 +21901,7 @@ msgstr "Päivitä valittu lisäosa/ lista lisäosista"
 msgid "Update/Backup your firmware, Backup/Restore settings"
 msgstr "Päivitä/varmuuskopioi ohjelmisto, varmuuskopioi/palauta asetukset"
 
-msgid "Update/Backup/Restore your box"
+msgid "Update/Backup/Restore your receiver"
 msgstr "Päivitä/varmuuskopioi/palauta laitteesi"
 
 msgid "Updated"
@@ -23156,7 +23156,7 @@ msgstr "Tällä valinnalla voit piilottaa tehtävät (Job Tasks) laajennusvaliko
 msgid "With this option you can switch off the display during operation."
 msgstr "Tämä asetus kytkee näyton päälle ja pois."
 
-msgid "With this option you can switch off the display in Deep Standby mode."
+msgid "With this option you can switch off the display in deep standby mode."
 msgstr "Tämä asetus kytkee näytön pois päältä virransäästötilassa."
 
 msgid "With this option you can switch off the display in standby mode."
