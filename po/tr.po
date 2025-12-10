@@ -1249,7 +1249,7 @@ msgstr "'%s' %d dosya ve %d alt-klasör içeriyor.\n"
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "'Saatler içinde tampon' veya 'son olayların sayısı'. Eski zaman kayması dosyalarını silmek için, önce oluşan koşul önceliğe sahiptir."
 
-msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
+msgid "'Handle Standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "'Beklemeyi TV'den işleme', 'TV'den girişi işleme'den daha yüksek önceliğe sahiptir."
 
 msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
@@ -2337,7 +2337,7 @@ msgstr "Enigma2'yi yeniden başlatırken de içe aktarın"
 msgid "Also import from the extension menu"
 msgstr "Eklenti menüsünde göster"
 
-msgid "Also import when leaving standby"
+msgid "Also import when leaving Standby"
 msgstr "Kutu bekleme modundan çıkarken de içe aktar"
 
 msgid "Also on standby"
@@ -2864,7 +2864,7 @@ msgstr "Kanallar için otomatik arama"
 msgid "Automatic shares access"
 msgstr "Otomatik paylaşım erişimi"
 
-msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
+msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr "Alıcı bekleme veya derin bekleme moduna geçtiğinde TV'yi otomatik olarak bekleme moduna alın."
 
 msgid "Automatically start time shift after"
@@ -4779,7 +4779,7 @@ msgstr "Kısık çalışma için ön panel ekranının parlaklık seviyesini yap
 msgid "Configure the brightness level of the front panel display for normal operation."
 msgstr "Normal çalışma için ön panel ekranının parlaklık seviyesini yapılandırın."
 
-msgid "Configure the brightness level of the front panel display for standby mode."
+msgid "Configure the brightness level of the front panel display for Standby mode."
 msgstr "Bekleme için ön panel ekranının parlaklık düzeyini yapılandırın."
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
@@ -4845,10 +4845,10 @@ msgstr "< ve > düğmelerinin işlevini yapılandırın."
 msgid "Configure the gateway."
 msgstr "Ağ geçidini yapılandırın."
 
-msgid "Configure the hard disk drive to go to standby after the specified idle time when the receiver is in standby."
+msgid "Configure the hard disk drive to go to Standby after the specified idle time when the receiver is in Standby."
 msgstr "Kutu bekleme modundayken belirtilen boşta kalma süresinden sonra bekleme moduna geçmek için sabit disk sürücüsünü yapılandırın."
 
-msgid "Configure the hard disk drive to go to standby after the specified idle time."
+msgid "Configure the hard disk drive to go to Standby after the specified idle time."
 msgstr "Belirtilen boşta kalma süresinden sonra bekleme moduna geçmek için sabit disk sürücüsünü yapılandırın."
 
 msgid "Configure the height of the TrueType font letters used for teletext."
@@ -6037,7 +6037,7 @@ msgstr "TV için seçilen varsayılan video modu."
 msgid "Default volume offset"
 msgstr "Varsayılan birim ofseti"
 
-msgid "Default wake-up is 5 minutes before deep standby. Adjust if the wake-up is too early or late, e.g., for network drives."
+msgid "Default wake-up is 5 minutes before Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
 msgstr "Varsayılan ayarlar derin bekleme modundan uyanmak için 5 dakika öncedir. Bunu değiştirmek muhtemelen gerekli olabilir. (örneğin: gerçek uyanma süresi yanlış veya geç, bir ağ sürücüsünü bekliyor vb.)"
 
 #, python-format
@@ -7470,7 +7470,7 @@ msgstr ""
 msgid "Enable autorefresh templates."
 msgstr ""
 
-msgid "Enable blinking rec symbol on the LCD Display in standby."
+msgid "Enable blinking rec symbol on the LCD Display in Standby."
 msgstr "LCD Ekrandaki Bekleme Kayıtlarında"
 
 msgid "Enable blinking rec symbol on the LCD Display."
@@ -7625,7 +7625,7 @@ msgstr "Etkin"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Bir alıcının akışları çözebileceği bir özelliği etkinleştirir (akışa ECM verisi eklenmişse ve geçerli bir kart varsa)."
 
-msgid "Enables sending the same TV commands for deep standby as for regular standby."
+msgid "Enables sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "'evet' olarak ayarlanırsa, normal bekleme olayları sırasında gönderildiği gibi, derin bekleme olayları için aynı komutlar TV'ye gönderilir."
 
 msgid "Enables timeshift to use alternative audio plugins."
@@ -9578,7 +9578,7 @@ msgstr "Python çökmeleriyle baş et"
 msgid "Handle input from TV"
 msgstr "TV'den girişi ele al"
 
-msgid "Handle standby from TV"
+msgid "Handle Standby from TV"
 msgstr "Bekleme TV'den idare edilsin"
 
 msgid "Handle wake up from TV"
@@ -9589,10 +9589,10 @@ msgid "Hard Disk Settings"
 msgstr "HDD kurulumu"
 
 #
-msgid "Hard disk standby after"
+msgid "Hard disk Standby after"
 msgstr "Kullanılmadığında diski bekleme kipine geçir"
 
-msgid "Hard disk standby in receiver standby after"
+msgid "Hard disk Standby in receiver Standby after"
 msgstr "Kutu bekleme modunda sabit disk beklemede"
 
 msgid "Harddisk"
@@ -10101,7 +10101,7 @@ msgstr "Günlükler kullanılan maksimum alanı kullanıyorsa, en büyük siline
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
 msgstr "Mümkünse, bir zamanlayıcı başlamadan x dakika önce VPS-Plugin programın daha erken başlayıp başlamayacağını kontrol edecektir. (0 özelliği devre dışı bırakır)"
 
-msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
+msgid "If the Deep Standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "'Derin bekleme geçici çözümü' etkinse, sistem saati eşitlenene kadar bekler. Gereksinime bağlı olarak, uyandırma aygıtları en fazla 2 dakika sonra devam eder."
 
 msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
@@ -10160,7 +10160,7 @@ msgstr "DVB-T ad alanı alt ağını yoksay"
 msgid "Ignore Standby"
 msgstr ""
 
-msgid "Ignore unexpectedly wake up and stay in standby"
+msgid "Ignore unexpectedly wake up and stay in Standby"
 msgstr "Beklenmedik şekilde uyanmayı ihmal et ve beklemede kal"
 
 msgid "Image Backup"
@@ -10204,7 +10204,7 @@ msgstr "Yedek cihaz URL"
 msgid "Import channels and/or EPG from remote receiver URL when receiver or GUI is restarted."
 msgstr "Alıcı veya enigma2 yeniden başlatıldığında, uzak alıcı URL'sinden kanalları ve/veya EPG'yi içe aktarın"
 
-msgid "Import channels and/or EPG from the remote receiver URL, even when the receiver is coming out of standby."
+msgid "Import channels and/or EPG from the remote receiver URL, even when the receiver is coming out of Standby."
 msgstr "Alıcı bekleme modundan çıkarken de uzak alıcı URL'sinden kanalları ve/veya EPG'yi içe aktarın"
 
 msgid "Import from remote receiver URL"
@@ -10972,13 +10972,13 @@ msgstr "LED Kapatma Rengi"
 msgid "LED Standby"
 msgstr "LED Bekleme"
 
-msgid "LED brightness during deep standby."
+msgid "LED brightness during Deep Standby."
 msgstr "Derin bekleme sırasında LED parlaklığı."
 
 msgid "LED brightness during normal operations."
 msgstr "Normal işlemler sırasında LED parlaklığı."
 
-msgid "LED brightness during standby."
+msgid "LED brightness during Standby."
 msgstr "Bekleme sırasında LED parlaklığı."
 
 msgid "LIRC remote"
@@ -13720,7 +13720,7 @@ msgstr "Seçenek"
 msgid "Option to disable picons on the Infobar."
 msgstr "Bilgi çubuğundaki piktogramları devre dışı bırakma seçeneği"
 
-msgid "Option to enable the hardware standby timer."
+msgid "Option to enable the hardware Standby timer."
 msgstr "Donanım Bekleme Zamanlayıcısı'nı etkinleştirmek için Seçenek"
 
 msgid "Optional parameter"
@@ -14728,10 +14728,10 @@ msgstr "Bekleme Modunda Güç LED'i Durumu"
 msgid "Power LED can be turned on or off here."
 msgstr "Güç LED'i buradan açılabilir veya kapatılabilir."
 
-msgid "Power LED state during deep standby."
+msgid "Power LED state during Deep Standby."
 msgstr "Bekleme modundayken Güç LED'i durumu."
 
-msgid "Power LED state during standby."
+msgid "Power LED state during Standby."
 msgstr "Bekleme sırasında Güç LED'i durumu."
 
 msgid "Power On Display"
@@ -15168,10 +15168,10 @@ msgstr "Kullanılmayan tüm yerel ayarlar/diller temizleniyor..."
 msgid "Pushto / Pashto"
 msgstr "Pushto / Peştuca"
 
-msgid "Put TV in standby"
+msgid "Put TV in Standby"
 msgstr "TV'yi bekleme kipine al"
 
-msgid "Put your AV Receiver in standby"
+msgid "Put your AV Receiver in Standby"
 msgstr "AV Alıcınızı beklemeye alın"
 
 msgid "Python"
@@ -15632,7 +15632,7 @@ msgstr "Ekranı yenile"
 msgid "Refresh the update-able package list"
 msgstr "Güncellenebilir paket listesini yenileyin"
 
-msgid "Regard deep standby as standby"
+msgid "Regard Deep Standby as Standby"
 msgstr "Derin uykuyu, bekleme olarak kabul et"
 
 msgid "Region"
@@ -15979,7 +15979,7 @@ msgstr "İstenen ortam tipi:"
 msgid "Rereading partition table"
 msgstr "Bölüntü tablosu tekrar okunuyor"
 
-msgid "Reschedule the task to run when the receiver enters or exits standby. The state change must occur within the task’s scheduled window, or the task will not run."
+msgid "Reschedule the task to run when the receiver enters or exits Standby. The state change must occur within the task’s scheduled window, or the task will not run."
 msgstr ""
 
 msgid "Reserved"
@@ -17282,10 +17282,10 @@ msgstr "Görüntülemek için bir depo commit günlüğü seçin:"
 msgid "Select a script to run:"
 msgstr "Çalıştırılacak bir komut dosyası seçin:"
 
-msgid "Select a time, when in standby mode, after which the descramble can proceed."
+msgid "Select a time, when in Standby mode, after which the descramble can proceed."
 msgstr ""
 
-msgid "Select a time, when in standby, before which descramble can proceed."
+msgid "Select a time, when in Standby, before which descramble can proceed."
 msgstr ""
 
 msgid "Select a tuner"
@@ -17386,7 +17386,7 @@ msgstr ""
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr "Uydu çanağının nasıl ayarlanacağını seçin. yani, sabit çanak, tekli LNB, DiSEqC anahtar, konumlandırıcı, vb."
 
-msgid "Select how the schedule is handled with respect to standby mode."
+msgid "Select how the schedule is handled with respect to Standby mode."
 msgstr ""
 
 msgid "Select how to activate the Quick EPG mode."
@@ -17917,7 +17917,7 @@ msgstr "Zamanlayıcı kaydı tamamlandıktan sonra ne yapılacağını seçin."
 msgid "Select what do do after the timer zap has completed."
 msgstr "Zamanlayıcı zaplaması tamamlandıktan sonra ne yapacağınızı seçin."
 
-msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
+msgid "Select what should be done when the %s %s was boot-up, normal playing or goto Standby."
 msgstr "Önyükleme %s %s, normal çalma veya bekleme modundayken yapılması gerekenleri seçin."
 
 msgid "Select what should be done when the %s %s was shutdown incorrectly, or after the Power was lost."
@@ -18430,10 +18430,10 @@ msgstr "Zaman seçeneklerini ayarlama"
 msgid "Set to 'Disabled' to replace underscore characters '_' in file and directory names with spaces."
 msgstr "Devre dışı bırakılırsa, dosya ve dizin adlarındaki altı çizili karakterler gösterilmez ve boşluklarla değiştirilir."
 
-msgid "Set to 'Enabled' to descramble queued scrambled recordings in standby mode before shutting down."
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby mode before shutting down."
 msgstr ""
 
-msgid "Set to 'Enabled' to descramble queued scrambled recordings in standby."
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
 msgstr ""
 
 msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
@@ -19931,7 +19931,7 @@ msgstr "Somali Dili"
 msgid "Somalia"
 msgstr "Somali"
 
-msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting puts the TV into standby before switching. If the TV does not turn back on, a slower transmission interval or repeating the wake-up command may be required."
+msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting puts the TV into Standby before switching. If the TV does not turn back on, a slower transmission interval or repeating the wake-up command may be required."
 msgstr "Bazı TV cihazları, başka bir HDMI bağlantı noktası etkinse girişi düzeltmek için geçiş yapamaz. Bu ayar, TV'yi anahtardan önce beklemeye alır. (TV tekrar açılmazsa, daha yavaş bir aktarım aralığı veya uyandırma komutlarının tekrarı gerekebilir.)"
 
 #
@@ -21290,7 +21290,7 @@ msgstr ""
 "Kanal VPS'yi destekleyebilir\n"
 " VPS'yi etkinleştirmek istiyor musunuz?"
 
-msgid "The command to wake from standby will be sent multiple times."
+msgid "The command to wake from Standby will be sent multiple times."
 msgstr "Bekleme modundan uyanma komutu birden çok kez gönderilecektir."
 
 msgid ""
@@ -21547,7 +21547,7 @@ msgstr "Bu alan %s değerine kadar ek bir sembol oranı aramanıza izin verir."
 msgid "This function is not available as processing of large files may take too long to run on this hardware."
 msgstr "Büyük dosyaların işlenmesi bu donanımda çok uzun sürebileceğinden bu işlev kullanılamaz."
 
-msgid "This is a workaround for devices that wake up immediately after entering standby. Wake-up commands from other devices are ignored for a few seconds."
+msgid "This is a workaround for devices that wake up immediately after entering Standby. Wake-up commands from other devices are ignored for a few seconds."
 msgstr "Bu, bekleme moduna geçtikten sonra tekrar uyanan bazı cihazlar için bir geçici çözümdür. Diğer cihazlardan gelen uyandırma komutu birkaç saniyeliğine yok sayılacaktır."
 
 #, python-format
@@ -21669,7 +21669,7 @@ msgstr "Bu seçenek, canlı TV için kalan / geçen süreyi nasıl görüntüley
 msgid "This option allows you to choose how to display the remaining or elapsed time for media playback."
 msgstr "Bu seçenek, medya oynatma için kalan / geçen sürenin nasıl görüntüleneceğini seçmenizi sağlar."
 
-msgid "This option allows you to choose if the display shows the time or nothing in standby."
+msgid "This option allows you to choose if the display shows the time or nothing in Standby."
 msgstr "Bu seçenek, Bekleme modunda Saatin veya hiçbir şeyin nasıl görüntüleneceğini seçmenize izin verir"
 
 msgid "This option allows you to choose if the display shows the time, channel number or nothing during operation."
@@ -21933,7 +21933,7 @@ msgstr "Tekrarlanan iletim için zaman gecikmesi"
 msgid "Time delay of the shutdown messages"
 msgstr "Kapatma mesajlarının zaman gecikmesi"
 
-msgid "Time delay until standby or deep standby"
+msgid "Time delay until Standby or Deep Standby"
 msgstr "Beklemede veya derin bekleme modunda"
 
 msgid "Time for next LCD scrolling"
@@ -23692,7 +23692,7 @@ msgstr "Bölüntü için bekleyin"
 msgid "Wake up"
 msgstr "Uyandır"
 
-msgid "Wake up TV from standby"
+msgid "Wake up TV from Standby"
 msgstr "TV'yi uyandır"
 
 msgid "Wake up from Deep-Standby is allowed"
@@ -23704,7 +23704,7 @@ msgstr "Bir zamanlayıcı başlamadan önce uyanma süresi [dk]"
 msgid "Wake up to standby"
 msgstr "Beklemeye uyandır"
 
-msgid "Wake up your AV Receiver from standby"
+msgid "Wake up your AV Receiver from Standby"
 msgstr "AV Alıcınızı bekleme modundan uyandırın"
 
 msgid "Wallis and Futuna"
@@ -23982,7 +23982,7 @@ msgstr "Etkinleştirildiğinde, alıcı otomatik olarak kapatılacaktır."
 msgid "When enabled, the receiver will automatically be switched on."
 msgstr "Etkinleştirildiğinde, alıcı otomatik olarak açılır."
 
-msgid "When enabled, the receiver will automatically return to standby when the TV is turned off."
+msgid "When enabled, the receiver will automatically return to Standby when the TV is turned off."
 msgstr "Etkinleştirildiğinde, TV kapatıldığında alıcı otomatik olarak bekleme moduna döner."
 
 msgid "When enabled, the receiver will automatically use the audio track which you selected before."
@@ -23991,7 +23991,7 @@ msgstr "Etkinleştirilince, alıcı önceden seçtiğiniz ses izini otomatik ola
 msgid "When enabled, the receiver will automatically use the subtitles which you selected before."
 msgstr "Etkinleştirilince, alıcı önceden seçtiğiniz altyazıyı otomatik olarak kullanacak."
 
-msgid "When enabled, the receiver will automatically wake from standby when the TV is turned on."
+msgid "When enabled, the receiver will automatically wake from Standby when the TV is turned on."
 msgstr "Etkinleştirildiğinde, TV açıldığında alıcı otomatik olarak bekleme modundan çıkar."
 
 msgid "When enabled, the receiver will select an AC3 track (when available)."
@@ -24051,10 +24051,10 @@ msgstr "İçerik 4:3 görüntü oranındaysa, resmin uzatılıp uzatılmayacağ�
 msgid "When the input cursor reaches this point (percentage of the width, from either side) scroll the text to the cursor."
 msgstr "Giriş imleci bu noktaya ulaştığında (her iki taraftan genişliğin yüzdesi) metni imlece doğru kaydırın."
 
-msgid "When the receiver wakes from standby or deep standby it will send a command to the TV to bring it out of standby."
+msgid "When the receiver wakes from Standby or Deep Standby it will send a command to the TV to bring it out of Standby."
 msgstr "Alıcı bekleme modundan veya derin bekleme modundan çıktığında, TV'ye onu da bekleme modundan çıkarmak için bir komut gönderir."
 
-msgid "When the receiver wakes from standby, it will switch the TV to the HDMI input connected to the receiver."
+msgid "When the receiver wakes from Standby, it will switch the TV to the HDMI input connected to the receiver."
 msgstr "Alıcı bekleme modundan çıktığında TV'ye alıcının bağlı olduğu HDMI girişine geçmesi için komut verir."
 
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
@@ -24154,10 +24154,10 @@ msgstr "Görevlerin eklentiler ekranında gizlenmesini sağlar (mavi tuşa kısa
 msgid "With this option you can switch off the display during operation."
 msgstr "Bu seçenek ile işlem sırasında ekranı kapatabilirsiniz."
 
-msgid "With this option you can switch off the display in deep standby mode."
+msgid "With this option you can switch off the display in Deep Standby mode."
 msgstr "Bu seçenek ile, Derin Bekleme Modunda ekranı kapatabilirsiniz."
 
-msgid "With this option you can switch off the display in standby mode."
+msgid "With this option you can switch off the display in Standby mode."
 msgstr "Bu seçenek ile Bekleme Modunda ekranı kapatabilirsiniz."
 
 msgid "With this option you can switch the LED color or deactivate the LED."
@@ -24343,7 +24343,7 @@ msgstr "Lisyeyi zamana göre veya alfabetik sıralayabilirsiniz."
 msgid "You can only burn Dreambox recordings!"
 msgstr "Sadece Dreambox kayıtlarını yazabilirsiniz!"
 
-msgid "You can skip this function and turn off the TV when you wake the receiver from standby and immediately switch back to standby."
+msgid "You can skip this function and turn off the TV when you wake the receiver from Standby and immediately switch back to Standby."
 msgstr "Alıcıyı bekleme modundan çıkardıktan sonra hemen bekleme moduna geçtiğinizde bu işlevi atlayabilir ve TV'yi kapatabilirsiniz."
 
 #, python-format

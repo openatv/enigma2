@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-12-06 12:58+0000\n"
-"PO-Revision-Date: 2025-12-06 10:48+0000\n"
+"PO-Revision-Date: 2025-12-09 11:14+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -1261,7 +1261,7 @@ msgstr "'%s' 包含 %d 个文件和 %d 个子目录。\n"
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "“缓冲时间（小时）”或“最后事件的数量”。对于删除较旧的时移文件，首先发生的条件具有优先级。"
 
-msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
+msgid "'Handle Standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "“处理来自电视的待机”比“处理来自电视的输入”具有更高的优先级。"
 
 msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
@@ -1797,7 +1797,7 @@ msgid "Activate Picture in Picture"
 msgstr "激活画中画"
 
 msgid "Activate UP/DOWN buttons for the 'all up/down' functions at the beginning/end of the column."
-msgstr "启用“所有向上/向下”功能的向上/向下按钮（在列的开头/末尾）？"
+msgstr "在列的开头/结尾处激活“全部向上/向下”功能的UP/DOWN按钮。"
 
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr "激活从命令行发送单个或特定内部 HDMI-CEC 命令的方式。"
@@ -2273,7 +2273,7 @@ msgstr "也在重新启动/重启 enigma2 时导入"
 msgid "Also import from the extension menu"
 msgstr "也可从扩展菜单导入"
 
-msgid "Also import when leaving standby"
+msgid "Also import when leaving Standby"
 msgstr "当机顶盒离开待机状态时也可导入"
 
 msgid "Also on standby"
@@ -2774,7 +2774,7 @@ msgstr "频道自动扫描"
 msgid "Automatic shares access"
 msgstr "自动共享访问"
 
-msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
+msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr "每当接收机进入待机或深度待机时，自动将电视置于待机状态。"
 
 msgid "Automatically start time shift after"
@@ -2940,7 +2940,7 @@ msgid "Backup your current image"
 msgstr "备份当前镜像"
 
 msgid "Backup your current image to HDD or USB. This will make a 1:1 copy of your receiver."
-msgstr "备份当前镜像到硬盘或 U 盘。这个会1:1复制你的机顶盒"
+msgstr "备份当前镜像到硬盘或 U 盘。这将生成接收机的1:1副本。"
 
 msgid "Backup your current settings"
 msgstr "备份当前设置"
@@ -4507,7 +4507,7 @@ msgid "Configure front panel LEDs"
 msgstr "配置前面板指示灯"
 
 msgid "Configure how recording filenames are constructed. Standard: Date Time - Channel - Title Very very short: Title Very short: Title - Date Time Short with time: Date Time - Title Short: Date - Title Long: Date Time - Channel - Title - Info."
-msgstr "配置如何构造录制文件名。标准：日期时间 - 频道 - 标题非常非常短：标题非常短：标题 - 日期时间短，带时间：日期-时间-标题短：日期-标题长：日期时间-频道-标题-信息"
+msgstr "配置录像文件名的生成规则。标准：日期时间 - 频道 - 标题  极简格式：仅标题  短格式（带时间）：标题 - 日期 时间  带时间的短格式：日期 时间 - 标题  短格式：日期 - 标题  完整格式：日期 时间 - 频道 - 标题 - 附加信息。"
 
 msgid "Configure if and how crypto icons will be shown in the channel selection list."
 msgstr "配置在频道选择列表中是否及如何显示加密方式图标。"
@@ -4567,7 +4567,7 @@ msgid "Configure the IP address."
 msgstr "配置 IP 地址。"
 
 msgid "Configure the IP of the fallback remote receiver."
-msgstr "备用远程接收机 IP"
+msgstr "配置备用远程接收机 IP 地址。"
 
 msgid ""
 "Configure the Internet connection by adjusting the values shown.\n"
@@ -4579,10 +4579,10 @@ msgstr ""
 "设置正确后，按“确定”继续。"
 
 msgid "Configure the Port of the fallback remote receiver."
-msgstr "备用远程接收机的端口"
+msgstr "配置备用远程接收机的端口。"
 
 msgid "Configure the URL of the fallback remote receiver."
-msgstr "备用远程接收机 URL"
+msgstr "配置备用远程接收机的 URL 地址。"
 
 msgid "Configure the alignment of events."
 msgstr "配置事件的对齐方式。"
@@ -4617,7 +4617,7 @@ msgstr "配置前面板显示屏的亮度级别以进行调光操作。"
 msgid "Configure the brightness level of the front panel display for normal operation."
 msgstr "配置前面板显示屏的亮度级别以进行正常操作。"
 
-msgid "Configure the brightness level of the front panel display for standby mode."
+msgid "Configure the brightness level of the front panel display for Standby mode."
 msgstr "设置待机时前置面板的亮度级别。"
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
@@ -4683,10 +4683,10 @@ msgstr "配置< >按键的功能。"
 msgid "Configure the gateway."
 msgstr "配置网关。"
 
-msgid "Configure the hard disk drive to go to standby after the specified idle time when the receiver is in standby."
+msgid "Configure the hard disk drive to go to Standby after the specified idle time when the receiver is in Standby."
 msgstr "配置当机顶盒待机时硬盘驱动器在指定的空闲时间后进入待机状态。"
 
-msgid "Configure the hard disk drive to go to standby after the specified idle time."
+msgid "Configure the hard disk drive to go to Standby after the specified idle time."
 msgstr "配置硬盘驱动器在指定的空闲时间后进入待机状态。"
 
 msgid "Configure the height of the TrueType font letters used for teletext."
@@ -5828,8 +5828,8 @@ msgstr "为电视选择默认视频模式。"
 msgid "Default volume offset"
 msgstr "默认音量偏移"
 
-msgid "Default wake-up is 5 minutes before deep standby. Adjust if the wake-up is too early or late, e.g., for network drives."
-msgstr "默认设置是提前 5 分钟从深度待机中唤醒。可能有必要对此进行更改。（例如：实际唤醒时间不准确或太晚，等待网络驱动器等）"
+msgid "Default wake-up is 5 minutes before Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
+msgstr "默认唤醒时间设置在深度待机前 5 分钟。如果唤醒过早或过晚（例如针对网络驱动器），请进行相应调整。"
 
 #, python-format
 msgid "Default: '%s'."
@@ -6000,7 +6000,7 @@ msgid "Delete all the text"
 msgstr "删除所有文本"
 
 msgid "Delete and uninstall Plugins. This will remove the Plugin from your receiver."
-msgstr "删除并卸载插件。这将从机顶盒移除插件"
+msgstr "删除并卸载插件。这将从机顶盒移除插件。"
 
 msgid "Delete character to left of cursor or select AM times"
 msgstr "删除光标左侧的字符或选择 AM 时间"
@@ -6176,7 +6176,7 @@ msgid "Destination of fallback remote receiver for DVB-T"
 msgstr "DVB-T 备用远程接收机的目的地"
 
 msgid "Destination of fallback remote receiver."
-msgstr "备用远程接收机的目标"
+msgstr "备用远程接收机的目标地址。"
 
 msgid "Detail of GStreamer log."
 msgstr "GStreamer 日志的详细信息。"
@@ -6372,7 +6372,7 @@ msgid "Disabled or WPA/WPA2"
 msgstr "禁用或 WPA/WPA2"
 
 msgid "Disables timeshift during recording (advisable for USB sticks)."
-msgstr "如果正在进行录制，则停止使用时移。 （建议使用 U 盘。）"
+msgstr "录制期间禁用时光移功能（建议用于 U 盘设备）。"
 
 msgid "Disabling Chkroot failed!"
 msgstr "禁用 Chkroot 失败！"
@@ -7195,7 +7195,7 @@ msgstr "启用自动共享"
 msgid "Enable autorefresh templates."
 msgstr "启用自动刷新模板。"
 
-msgid "Enable blinking rec symbol on the LCD Display in standby."
+msgid "Enable blinking rec symbol on the LCD Display in Standby."
 msgstr "在待机状态下启用 LCD 显示屏上闪烁的录制符号。"
 
 msgid "Enable blinking rec symbol on the LCD Display."
@@ -7348,7 +7348,7 @@ msgstr "已启用"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "启用功能，以便接收机可以解密流（如果 ECM（授权控制信息） 数据包含在流中，并且有效的卡可用）。"
 
-msgid "Enables sending the same TV commands for deep standby as for regular standby."
+msgid "Enables sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "如果设置为“是”，那么对于深度待机事件，将向电视发送相同的命令，就像在常规待机事件期间发送的一样。"
 
 msgid "Enables timeshift to use alternative audio plugins."
@@ -8960,7 +8960,7 @@ msgid "Go to the first page of documentation"
 msgstr "转到文档首页"
 
 msgid "Go to the last page of documentation"
-msgstr "转到文档尾页"
+msgstr "转到文档末页"
 
 msgid "Go to the next page of documentation"
 msgstr "转到文档的下一页"
@@ -9211,7 +9211,7 @@ msgstr "处理 Python 崩溃"
 msgid "Handle input from TV"
 msgstr "处理来自电视的输入"
 
-msgid "Handle standby from TV"
+msgid "Handle Standby from TV"
 msgstr "处理来自电视的待机"
 
 msgid "Handle wake up from TV"
@@ -9220,10 +9220,10 @@ msgstr "处理来自电视的唤醒"
 msgid "Hard Disk Settings"
 msgstr "硬盘设置"
 
-msgid "Hard disk standby after"
+msgid "Hard disk Standby after"
 msgstr "硬盘待机在（？分钟之后）"
 
-msgid "Hard disk standby in receiver standby after"
+msgid "Hard disk Standby in receiver Standby after"
 msgstr "硬盘待机在机顶盒待机之后（？分钟）"
 
 msgid "Harddisk"
@@ -9691,7 +9691,7 @@ msgid "If enabled and necessary, the plugin will wake up the receiver from deep 
 msgstr "如果启用且有必要，插件将在定义的启动时间内从深度待机中唤醒接收机，以控制程序是否更早开始。"
 
 msgid "If enabled the output resolution of the receiver will try to match the resolution of the video contents resolution."
-msgstr "如果启用机顶盒的输出分辨率，将尝试匹配初步内容的分辨率"
+msgstr "若启用此选项，接收机的输出分辨率将尝试与视频内容的分辨率保持一致。"
 
 msgid "If enabled the video will always be de-interlaced."
 msgstr "如果启用，视频将始终隔行扫描。"
@@ -9714,7 +9714,7 @@ msgstr "当所有日志达到最大空间时，最旧的将被删除。"
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
 msgstr "如果可能，在定时器启动前 x 分钟，VPS 插件将控制程序是否提前开始。 （0 禁用功能）"
 
-msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
+msgid "If the Deep Standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "如果启用了深度待机解决方案，请等待系统时间同步。根据需要，设备将在最多2分钟后继续唤醒。"
 
 msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
@@ -9771,7 +9771,7 @@ msgstr "忽略 DVB-T 名称空间子网络"
 msgid "Ignore Standby"
 msgstr "忽略待机"
 
-msgid "Ignore unexpectedly wake up and stay in standby"
+msgid "Ignore unexpectedly wake up and stay in Standby"
 msgstr "忽略意外唤醒并保持待机状态"
 
 msgid "Image Backup"
@@ -9809,13 +9809,13 @@ msgid "Immediately restart selected devices."
 msgstr "立即重新启动所选设备。"
 
 msgid "Import channels and/or EPG from remote receiver URL when receiver is booted."
-msgstr "接收机启动时从远程接收机 URL 导入频道和/或 EPG"
+msgstr "接收机启动时，从远程接收机 URL 导入频道和/或 EPG。"
 
 msgid "Import channels and/or EPG from remote receiver URL when receiver or GUI is restarted."
-msgstr "当接收机或 enigma2 重新启动时，从远程接收机 URL 导入频道和/或 EPG"
+msgstr "当接收机或图形界面重启时，从远程接收机 URL 导入频道和/或 EPG。"
 
-msgid "Import channels and/or EPG from the remote receiver URL, even when the receiver is coming out of standby."
-msgstr "当接收机退出待机状态时，也可以从远程接收机 URL 导入频道和/或 EPG"
+msgid "Import channels and/or EPG from the remote receiver URL, even when the receiver is coming out of Standby."
+msgstr "即使接收机从待机状态唤醒时，也会从远程接收机 URL 导入频道和/或 EPG。"
 
 msgid "Import from remote receiver URL"
 msgstr "从远程接收机 URL 导入"
@@ -10547,13 +10547,13 @@ msgstr "LED关机颜色"
 msgid "LED Standby"
 msgstr "LED 待机"
 
-msgid "LED brightness during deep standby."
+msgid "LED brightness during Deep Standby."
 msgstr "深度待机期间 LED 的亮度。"
 
 msgid "LED brightness during normal operations."
 msgstr "正常操作期间 LED 的亮度。"
 
-msgid "LED brightness during standby."
+msgid "LED brightness during Standby."
 msgstr "待机期间 LED 的亮度。"
 
 msgid "LIRC remote"
@@ -11098,7 +11098,7 @@ msgid "Make"
 msgstr "制作"
 
 msgid "Make it possible to manually initiate the channels import and/or EPG via the extension menu."
-msgstr "可以通过扩展菜单手动启动频道导入和/或 EPG"
+msgstr "使通过扩展菜单手动启动频道导入和/或 EPG 成为可能。"
 
 msgid "Make this mark an 'in' point"
 msgstr "使此标记为“入”点"
@@ -11147,7 +11147,7 @@ msgid "Manage Plugins"
 msgstr "插件管理"
 
 msgid "Manage Plugins. This will remove/install Plugins on your receiver."
-msgstr "管理插件。 这将删除/安装您机子上的插件"
+msgstr "管理插件。此功能将移除或安装接收机上的插件。"
 
 msgid "Manage and explore directories and files."
 msgstr "管理和浏览目录和文件。"
@@ -13133,7 +13133,7 @@ msgstr "选项"
 msgid "Option to disable picons on the Infobar."
 msgstr "禁用信息栏上频道图标的选项。"
 
-msgid "Option to enable the hardware standby timer."
+msgid "Option to enable the hardware Standby timer."
 msgstr "启用硬件待机计时器的选项。"
 
 msgid "Optional parameter"
@@ -14081,10 +14081,10 @@ msgstr "待机下的电源指示灯状态"
 msgid "Power LED can be turned on or off here."
 msgstr "这里可以打开或关闭电源指示灯。"
 
-msgid "Power LED state during deep standby."
+msgid "Power LED state during Deep Standby."
 msgstr "深度待机期间电源指示灯状态。"
 
-msgid "Power LED state during standby."
+msgid "Power LED state during Standby."
 msgstr "待机期间的电源指示灯状态。"
 
 msgid "Power On Display"
@@ -14498,10 +14498,10 @@ msgstr "正在清除所有未使用的区域设置/语言..."
 msgid "Pushto / Pashto"
 msgstr "普什图语"
 
-msgid "Put TV in standby"
+msgid "Put TV in Standby"
 msgstr "将电视转为待机"
 
-msgid "Put your AV Receiver in standby"
+msgid "Put your AV Receiver in Standby"
 msgstr "将 AV 接收机置入待机状态"
 
 msgid "Python"
@@ -14937,7 +14937,7 @@ msgstr "刷新屏幕"
 msgid "Refresh the update-able package list"
 msgstr "刷新可更新包列表"
 
-msgid "Regard deep standby as standby"
+msgid "Regard Deep Standby as Standby"
 msgstr "把深度待机当作待机"
 
 msgid "Region"
@@ -15259,7 +15259,7 @@ msgstr "所需介质类型："
 msgid "Rereading partition table"
 msgstr "正在重新读取分区表"
 
-msgid "Reschedule the task to run when the receiver enters or exits standby. The state change must occur within the task’s scheduled window, or the task will not run."
+msgid "Reschedule the task to run when the receiver enters or exits Standby. The state change must occur within the task’s scheduled window, or the task will not run."
 msgstr "选择“是”可将任务重新安排到接收机进入/退出待机模式时执行。状态变化必须发生在计划任务时间窗口内，否则该任务将不会运行。"
 
 msgid "Reserved"
@@ -15413,7 +15413,7 @@ msgid "Restore your backups by date."
 msgstr "按日期恢复备份。"
 
 msgid "Restore your settings back from a backup. After restore the receiver will restart to activated the new settings."
-msgstr "从备份恢复设置。恢复后机顶盒将重启以激活新的设置"
+msgstr "从备份恢复设置。恢复后，接收机将重启以激活新设置。"
 
 msgid "Restoring..."
 msgstr "正在还原..."
@@ -16503,10 +16503,10 @@ msgstr "选择要查看的存储库提交日志："
 msgid "Select a script to run:"
 msgstr "选择要运行的脚本："
 
-msgid "Select a time, when in standby mode, after which the descramble can proceed."
+msgid "Select a time, when in Standby mode, after which the descramble can proceed."
 msgstr "选择待机模式下可开始解扰的延迟时间。"
 
-msgid "Select a time, when in standby, before which descramble can proceed."
+msgid "Select a time, when in Standby, before which descramble can proceed."
 msgstr "设定待机状态下解扰任务执行的截止时间。"
 
 msgid "Select a tuner"
@@ -16603,7 +16603,7 @@ msgstr "设置数字键在跳转操作时的行为。"
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr "选择卫星天线的设置方式。 即固定天线、单高频头、DiSEqC 开关、极轴等。"
 
-msgid "Select how the schedule is handled with respect to standby mode."
+msgid "Select how the schedule is handled with respect to Standby mode."
 msgstr "选择如何在待机模式下处理计划任务。"
 
 msgid "Select how to activate the Quick EPG mode."
@@ -17127,7 +17127,7 @@ msgstr "选择定时器录制完成后做什么。"
 msgid "Select what do do after the timer zap has completed."
 msgstr "选择定时器切换完成后做什么。"
 
-msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
+msgid "Select what should be done when the %s %s was boot-up, normal playing or goto Standby."
 msgstr "选择 %s %s 启动时应该做什么，正常播放或转到待机。"
 
 msgid "Select what should be done when the %s %s was shutdown incorrectly, or after the Power was lost."
@@ -17508,7 +17508,7 @@ msgid "Set the UP/DOWN button skip percentage for the SeekBar."
 msgstr "设置进度条的上/下按键跳过百分比。"
 
 msgid "Set the User ID of the OpenWebif from your fallback tuner."
-msgstr "从备用调谐器设置 OpenWebif 的用户 ID"
+msgstr "设置备用调谐器的 OpenWebif 用户 ID。"
 
 msgid "Set the aspect ratio of the service picons."
 msgstr "设置频道图标的宽高比。"
@@ -17535,7 +17535,7 @@ msgid "Set the delay time between repeated loops, this is used by software rende
 msgstr "设置重复循环之间的延迟时间，用于某些皮肤中的软件渲染器。"
 
 msgid "Set the hostname or IP address."
-msgstr "DNS 名称或 IP 地址"
+msgstr "设置主机名或 IP 地址。"
 
 msgid "Set the jump-size of the SeekBar."
 msgstr "设置进度条的跳跃大小。"
@@ -17544,10 +17544,10 @@ msgid "Set the number of lines to be saved for 'stout' and 'sterr' output in scr
 msgstr "设置要为脚本中的“stout”和“sterr”输出保存的行数。"
 
 msgid "Set the password of the OpenWebif from your fallback tuner."
-msgstr "从备用调谐器设置 OpenWebif 的密码"
+msgstr "设置备用调谐器的 OpenWebif 密码。"
 
 msgid "Set the port of the OpenWebif from your fallback tuner."
-msgstr "从备用调谐器设置 OpenWebif 的端口"
+msgstr "设置备用调谐器的 OpenWebif 端口。"
 
 msgid "Set the position of the recording icons."
 msgstr "设置录制图标的位置。"
@@ -17623,10 +17623,10 @@ msgstr "设置时间选项"
 msgid "Set to 'Disabled' to replace underscore characters '_' in file and directory names with spaces."
 msgstr "设置为“禁用”以用空格替换文件和目录名称中的下划线字符“_”。"
 
-msgid "Set to 'Enabled' to descramble queued scrambled recordings in standby mode before shutting down."
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby mode before shutting down."
 msgstr "设为‘启用’可在关机前对待机模式下已排队的加扰录制内容执行解扰。"
 
-msgid "Set to 'Enabled' to descramble queued scrambled recordings in standby."
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
 msgstr "设为'启用'，可在待机模式下对已排队的加扰内容执行解扰。"
 
 msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
@@ -17950,7 +17950,7 @@ msgid "Show Driver packages"
 msgstr "显示驱动程序包"
 
 msgid "Show EIT Now/Next event data in the InfoBar"
-msgstr "在信息栏显示 当前/下一个 EIT（事件信息表）数据。"
+msgstr "在信息栏显示 当前/下一个 EIT（事件信息表）数据"
 
 msgid "Show EPG"
 msgstr "显示 EPG"
@@ -18173,7 +18173,7 @@ msgid "Show channel selection"
 msgstr "显示频道选择"
 
 msgid "Show chapter positions for supported video files."
-msgstr "显示支持的视频文件的章节位置。（gstreamer版本必须大于1）"
+msgstr "显示支持视频文件的章节位置。"
 
 msgid "Show columns"
 msgstr "显示列"
@@ -18351,10 +18351,10 @@ msgid "Show next system information screen"
 msgstr "显示下一个系统信息屏幕"
 
 msgid "Show notification when import channels and/or EPG from remote receiver URL did not complete."
-msgstr "从远程接收机 URL 导入频道和/或 EPG 未完成时显示通知"
+msgstr "从远程接收机 URL 导入频道和/或 EPG 未完成时显示通知。"
 
 msgid "Show notification when import channels and/or EPG from remote receiver URL is completed."
-msgstr "当从远程接收机 URL 导入频道和/或 EPG 完成时显示通知"
+msgstr "当从远程接收机 URL 导入频道和/或 EPG 完成时显示通知。"
 
 msgid "Show notification when import channels was not successful"
 msgstr "导入频道不成功时显示通知"
@@ -19069,8 +19069,8 @@ msgstr "索马里"
 msgid "Somalia"
 msgstr "索马里"
 
-msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting puts the TV into standby before switching. If the TV does not turn back on, a slower transmission interval or repeating the wake-up command may be required."
-msgstr "如果另一个 HDMI 端口处于活动状态，某些电视无法切换到正确的输入。此设置可在切换前将电视设置为待机状态。（如果电视未重新打开，则可能需要较慢的传输间隔或重复唤醒命令。）"
+msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting puts the TV into Standby before switching. If the TV does not turn back on, a slower transmission interval or repeating the wake-up command may be required."
+msgstr "部分电视在另一个 HDMI 端口处于活动状态时可能无法切换到正确输入。此设置会在切换前将电视置于待机状态。若电视未能重新启动，可能需要调整更慢的传输间隔或重复发送唤醒命令。"
 
 msgid "Sorbian"
 msgstr "索布人"
@@ -20367,7 +20367,7 @@ msgstr ""
 "该频道可能支持VPS\n"
 "是否要启用 VPS？"
 
-msgid "The command to wake from standby will be sent multiple times."
+msgid "The command to wake from Standby will be sent multiple times."
 msgstr "从待机状态唤醒的命令将被发送多次。"
 
 msgid ""
@@ -20618,7 +20618,7 @@ msgstr "此字段允许您搜索高达 %s 的附加符号率。"
 msgid "This function is not available as processing of large files may take too long to run on this hardware."
 msgstr "此功能不可用，因为处理大文件可能需要很长时间才能在此硬件上运行。"
 
-msgid "This is a workaround for devices that wake up immediately after entering standby. Wake-up commands from other devices are ignored for a few seconds."
+msgid "This is a workaround for devices that wake up immediately after entering Standby. Wake-up commands from other devices are ignored for a few seconds."
 msgstr "这是某些设备在切换到待机状态后再次唤醒的解决方法。 来自其他设备的唤醒命令将被忽略几秒钟。"
 
 #, python-format
@@ -20740,7 +20740,7 @@ msgstr "此选项允许您选择如何显示直播电视的剩余/已用时间�
 msgid "This option allows you to choose how to display the remaining or elapsed time for media playback."
 msgstr "此选项允许您选择如何显示媒体播放的剩余/已用时间。"
 
-msgid "This option allows you to choose if the display shows the time or nothing in standby."
+msgid "This option allows you to choose if the display shows the time or nothing in Standby."
 msgstr "此选项允许您选择显示屏在待机状态下是否显示时间或不显示任何内容。"
 
 msgid "This option allows you to choose if the display shows the time, channel number or nothing during operation."
@@ -20753,7 +20753,7 @@ msgid "This option allows you to choose the option for Subservice indicator or s
 msgstr "此选项允许您选择子频道指示器或选择选项。"
 
 msgid "This option allows you to choose what the first button press jumps to in channel list screen (pressing '2' jumps to 'A' or '2' first) when 'Quick Actions' preset actions are performed."
-msgstr "此选项允许您选择在执行“快速操作”预设操作时，第一次按下按钮会跳转到频道列表屏幕中的哪个位置（因此按下“2”会首先跳转到“A”或“2”）。 "
+msgstr "此选项允许您选择在执行“快捷操作”预设动作时，频道列表界面中首次按键的跳转目标（例如：按下“2”时优先跳转至“A”还是“2”）。"
 
 msgid "This option allows you to choose whether or not to display genre information for the event."
 msgstr "此选项允许您选择是否显示事件的流派信息。"
@@ -20994,7 +20994,7 @@ msgstr "重复传输的时间延迟"
 msgid "Time delay of the shutdown messages"
 msgstr "关机消息的时间延迟"
 
-msgid "Time delay until standby or deep standby"
+msgid "Time delay until Standby or Deep Standby"
 msgstr "时间延迟直到待机或深度待机"
 
 msgid "Time for next LCD scrolling"
@@ -21620,7 +21620,7 @@ msgid "UP/DOWN button mode"
 msgstr "向上/向下 键模式"
 
 msgid "UP/DOWN buttons also for 'all up/down'"
-msgstr "向上/向下按钮也用于“全部向上/向下”。"
+msgstr "UP/DOWN 按钮同样用于“全部向上/向下”功能"
 
 msgid "UP80  (keymap.u80)"
 msgstr "UP80  (keymap.u80)"
@@ -22662,7 +22662,7 @@ msgstr "正在等待分区"
 msgid "Wake up"
 msgstr "唤醒"
 
-msgid "Wake up TV from standby"
+msgid "Wake up TV from Standby"
 msgstr "从待机状态唤醒电视"
 
 msgid "Wake up from Deep-Standby is allowed"
@@ -22674,7 +22674,7 @@ msgstr "定时器开始前的唤醒时间 [分钟]"
 msgid "Wake up to standby"
 msgstr "唤醒到待机"
 
-msgid "Wake up your AV Receiver from standby"
+msgid "Wake up your AV Receiver from Standby"
 msgstr "从待机状态唤醒 AV 接收机"
 
 msgid "Wallis and Futuna"
@@ -22945,7 +22945,7 @@ msgstr "启用后，接收机将自动关闭。"
 msgid "When enabled, the receiver will automatically be switched on."
 msgstr "启用后，接收机将自动打开。"
 
-msgid "When enabled, the receiver will automatically return to standby when the TV is turned off."
+msgid "When enabled, the receiver will automatically return to Standby when the TV is turned off."
 msgstr "启用后，接收机将在电视关闭时自动返回待机状态。"
 
 msgid "When enabled, the receiver will automatically use the audio track which you selected before."
@@ -22954,7 +22954,7 @@ msgstr "启用时，接收机将自动使用您之前选择的音轨。"
 msgid "When enabled, the receiver will automatically use the subtitles which you selected before."
 msgstr "启用时，接收机将自动使用您之前选择的字幕。"
 
-msgid "When enabled, the receiver will automatically wake from standby when the TV is turned on."
+msgid "When enabled, the receiver will automatically wake from Standby when the TV is turned on."
 msgstr "启用后，接收机将在电视打开时自动从待机状态唤醒。"
 
 msgid "When enabled, the receiver will select an AC3 track (when available)."
@@ -22964,10 +22964,10 @@ msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "启用时，接收机将选择一条AC3 +音轨（如果可用）。"
 
 msgid "When enabled, the timer from the fallback tuner is imported."
-msgstr "启用后，将导入备用调谐器中的定时器"
+msgstr "启用时，将导入备用调谐器的定时器。"
 
 msgid "When enabled, the timer from the fallback tuner is the default timer."
-msgstr "启用时，默认使用备用调谐器的定时器"
+msgstr "启用时，默认使用备用调谐器的定时器。"
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr "启用时，此设置的权重大于“录制首选调谐器”。"
@@ -22982,7 +22982,7 @@ msgid "When enabled, use DHCP for the IP configuration."
 msgstr "启用时，使用 DHCP 配置 IP。"
 
 msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
-msgstr "启用后，您可以自定义备用调谐器的 OpenWebIf 设置"
+msgstr "启用后，您可以自定义备用调谐器的 OpenWebIf 设置。"
 
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "启用时，接收机将检测VCR SCART输入活动。"
@@ -23014,10 +23014,10 @@ msgstr "当内容画面比例为 4:3 时，选择是否缩放/拉伸图片。"
 msgid "When the input cursor reaches this point (percentage of the width, from either side) scroll the text to the cursor."
 msgstr "当输入光标到达该点（宽度的百分比，从任意一侧）时，将文本滚动到光标处。"
 
-msgid "When the receiver wakes from standby or deep standby it will send a command to the TV to bring it out of standby."
+msgid "When the receiver wakes from Standby or Deep Standby it will send a command to the TV to bring it out of Standby."
 msgstr "当接收机从待机或深度待机中唤醒时，它将向电视发送命令以使其脱离待机状态。"
 
-msgid "When the receiver wakes from standby, it will switch the TV to the HDMI input connected to the receiver."
+msgid "When the receiver wakes from Standby, it will switch the TV to the HDMI input connected to the receiver."
 msgstr "当接收机从待机状态唤醒时，它将命令电视切换到接收机所连接的 HDMI 输入。"
 
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
@@ -23113,10 +23113,10 @@ msgstr "使用此选项，您可在扩展菜单屏幕中隐藏作业任务（按
 msgid "With this option you can switch off the display during operation."
 msgstr "使用此选项，您可以在操作期间关闭显示屏。"
 
-msgid "With this option you can switch off the display in deep standby mode."
+msgid "With this option you can switch off the display in Deep Standby mode."
 msgstr "使用此选项，您可以在深度待机模式下关闭显示屏。"
 
-msgid "With this option you can switch off the display in standby mode."
+msgid "With this option you can switch off the display in Standby mode."
 msgstr "使用此选项，您可以在待机模式下关闭显示屏。"
 
 msgid "With this option you can switch the LED color or deactivate the LED."
@@ -23288,7 +23288,7 @@ msgstr "你可以按时间或字母数字排序列表。"
 msgid "You can only burn Dreambox recordings!"
 msgstr "只能烧制 Dreambox 录制！"
 
-msgid "You can skip this function and turn off the TV when you wake the receiver from standby and immediately switch back to standby."
+msgid "You can skip this function and turn off the TV when you wake the receiver from Standby and immediately switch back to Standby."
 msgstr "将接收机从待机状态唤醒并立即切换回待机状态时，可以跳过此功能并关闭电视。"
 
 #, python-format

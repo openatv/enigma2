@@ -1297,7 +1297,7 @@ msgstr "'%s' obsahuje %d soubor(ů) a %d podadresářů.\n"
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "'Buffer v hodinách' nebo 'počet posledních událostí'. Pro smazání starších Timeshift souborů. Stav, který nastal dčíve má prioritu."
 
-msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
+msgid "'Handle Standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "'Ovládání pohotovostního režimu z televizoru' má vyšší prioritu než 'Ovládání vstupu z televizoru'."
 
 msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
@@ -2309,7 +2309,7 @@ msgstr "Importovat též při restartu přijímače/enigma2"
 msgid "Also import from the extension menu"
 msgstr "Import z menu rozšíření"
 
-msgid "Also import when leaving standby"
+msgid "Also import when leaving Standby"
 msgstr "Importovat též při přechodu ze standby"
 
 msgid "Also on standby"
@@ -2810,7 +2810,7 @@ msgstr "Autonaticky vyhledá dostupné programy"
 msgid "Automatic shares access"
 msgstr "Automatický přístup ke sdílení"
 
-msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
+msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr "Automaticky přepne televizor do pohotovostního režimu, kdykoli přijímač přejde do pohotovostního režimu nebo hlubokého spánku."
 
 msgid "Automatically start time shift after"
@@ -4655,7 +4655,7 @@ msgstr "Nastavuje úroveň jasu předního displeje v ztlumeném provozu."
 msgid "Configure the brightness level of the front panel display for normal operation."
 msgstr "Nastavuje úroveň jasu předního displeje v běžném provozu."
 
-msgid "Configure the brightness level of the front panel display for standby mode."
+msgid "Configure the brightness level of the front panel display for Standby mode."
 msgstr "Nastavuje úroveň jasu předního displeje v pohotovostním režimu."
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
@@ -4721,10 +4721,10 @@ msgstr "Nakonfigurujte funkci tlačítek < a >."
 msgid "Configure the gateway."
 msgstr "Nastavuje bránu."
 
-msgid "Configure the hard disk drive to go to standby after the specified idle time when the receiver is in standby."
+msgid "Configure the hard disk drive to go to Standby after the specified idle time when the receiver is in Standby."
 msgstr "Nastavuje čas nečinnosti, po kterém přejde pevný disk do úsporného režimu (jestliže je přijímač vypnutý)."
 
-msgid "Configure the hard disk drive to go to standby after the specified idle time."
+msgid "Configure the hard disk drive to go to Standby after the specified idle time."
 msgstr "Nastavuje čas nečinnosti, po kterém přejde pevný disk do úsporného režimu."
 
 msgid "Configure the height of the TrueType font letters used for teletext."
@@ -5866,7 +5866,7 @@ msgstr "Pro televizor je vybrán výchozí režim videa."
 msgid "Default volume offset"
 msgstr "Výchozí posun hlasitosti"
 
-msgid "Default wake-up is 5 minutes before deep standby. Adjust if the wake-up is too early or late, e.g., for network drives."
+msgid "Default wake-up is 5 minutes before Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
 msgstr "Výchozí nastavení je pro probuzení z hlubokého spánku o 5 minut dříve. Možná bude nutné toto změnit. (např.: skutečná doba probuzení je nepřesná nebo pozdě, čekání na síťový disk atd.)"
 
 #, python-format
@@ -7234,7 +7234,7 @@ msgstr "Povolit automatické sdílení"
 msgid "Enable autorefresh templates."
 msgstr "Povolit automatické obnovování šablon."
 
-msgid "Enable blinking rec symbol on the LCD Display in standby."
+msgid "Enable blinking rec symbol on the LCD Display in Standby."
 msgstr "V pohotovostním režimu nahrávání na LCD displeji."
 
 msgid "Enable blinking rec symbol on the LCD Display."
@@ -7387,7 +7387,7 @@ msgstr "Povolen"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Povolí přijímači dešifrovat streamy. (V případě, že údaje ECMjsou zahrnuty ve streamech a k dispozici je aktivní karta)."
 
-msgid "Enables sending the same TV commands for deep standby as for regular standby."
+msgid "Enables sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "Je-li nastaveno na „Ano“, budou do televizoru odesílány stejné příkazy pro události hlubokého spánku, jaké jsou odesílány během běžných událostí pohotovostního režimu."
 
 msgid "Enables timeshift to use alternative audio plugins."
@@ -9252,7 +9252,7 @@ msgstr "Ošetřit pády Pythonu"
 msgid "Handle input from TV"
 msgstr "Ovládání vstupu z TV"
 
-msgid "Handle standby from TV"
+msgid "Handle Standby from TV"
 msgstr "Vypnutí ovládat z TV"
 
 msgid "Handle wake up from TV"
@@ -9261,10 +9261,10 @@ msgstr "Probuzení ovládat z TV"
 msgid "Hard Disk Settings"
 msgstr "Nastavení pevného disku"
 
-msgid "Hard disk standby after"
+msgid "Hard disk Standby after"
 msgstr "Pevný disk uspat za (při zapnutém přijímači)"
 
-msgid "Hard disk standby in receiver standby after"
+msgid "Hard disk Standby in receiver Standby after"
 msgstr "Pevný disk uspat za (při vypnutém přijímači)"
 
 msgid "Harddisk"
@@ -9755,7 +9755,7 @@ msgstr "Pokud používáte zprávy a je nastaven max. využitý prostor,budou ne
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
 msgstr "Pokud je to možné, kontroluje se x minut před skutečným začátkem, zda program nezačíná dříve. (0 deaktivuje tuto možnost)"
 
-msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
+msgid "If the Deep Standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Pokud je povoleno řešení hlubokého spánku, počkejte, dokud nebude synchronizován systémový čas. V závislosti na požadavku bude buzení zařízení pokračovat maximálně po 2 minutách."
 
 msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
@@ -9812,7 +9812,7 @@ msgstr "Ignorovat podsíť jmenného prostoru DVB-T"
 msgid "Ignore Standby"
 msgstr "Ignorovat pohotovostní režim"
 
-msgid "Ignore unexpectedly wake up and stay in standby"
+msgid "Ignore unexpectedly wake up and stay in Standby"
 msgstr "Ignorovat neočekávané probuzení a zůstat v pohotovostním režimu"
 
 msgid "Image Backup"
@@ -9855,7 +9855,7 @@ msgstr "Ze záložního přijímače se importují programy a/nebo EPG po spušt
 msgid "Import channels and/or EPG from remote receiver URL when receiver or GUI is restarted."
 msgstr "Ze záložního přijímače se importují programy a/nebo EPG také v případě, že jsou přijímač nebo enigma2 zrestartovány"
 
-msgid "Import channels and/or EPG from the remote receiver URL, even when the receiver is coming out of standby."
+msgid "Import channels and/or EPG from the remote receiver URL, even when the receiver is coming out of Standby."
 msgstr "Ze záložního přijímače se importují programy a/nebo EPG také v případě probuzení z pohotovostního režimu"
 
 msgid "Import from remote receiver URL"
@@ -10589,13 +10589,13 @@ msgstr "Barva LED při vypnutí"
 msgid "LED Standby"
 msgstr "LED ve standby"
 
-msgid "LED brightness during deep standby."
+msgid "LED brightness during Deep Standby."
 msgstr "Jas LED ve vypnutém stavu."
 
 msgid "LED brightness during normal operations."
 msgstr "Jas LED pracovním režimu."
 
-msgid "LED brightness during standby."
+msgid "LED brightness during Standby."
 msgstr "Jas LED ve Standby."
 
 msgid "LIRC remote"
@@ -13176,7 +13176,7 @@ msgstr "Volba"
 msgid "Option to disable picons on the Infobar."
 msgstr "Možnost povolit nebo zakázat picony v informačním panelu."
 
-msgid "Option to enable the hardware standby timer."
+msgid "Option to enable the hardware Standby timer."
 msgstr "Volba aktivace hardware-časovače vypnutí."
 
 msgid "Optional parameter"
@@ -14126,10 +14126,10 @@ msgstr "Stav kontrolky napájení v pohotovostním režimu"
 msgid "Power LED can be turned on or off here."
 msgstr "Zapnutí nebo vypnutí kontrolky napájení."
 
-msgid "Power LED state during deep standby."
+msgid "Power LED state during Deep Standby."
 msgstr "Stav kontrolky napájení během hlubokého spánku."
 
-msgid "Power LED state during standby."
+msgid "Power LED state during Standby."
 msgstr "Stav kontrolky napájení během pohotovostního režimu."
 
 msgid "Power On Display"
@@ -14543,10 +14543,10 @@ msgstr "Mazání všech nepoužívaných národních prostředí/jazyků..."
 msgid "Pushto / Pashto"
 msgstr "Pushto / Pashto"
 
-msgid "Put TV in standby"
+msgid "Put TV in Standby"
 msgstr "Uspat TV"
 
-msgid "Put your AV Receiver in standby"
+msgid "Put your AV Receiver in Standby"
 msgstr "Přepněte AV přijímač do pohotovostního režimu"
 
 msgid "Python"
@@ -14982,7 +14982,7 @@ msgstr "Obnovení obrazovky"
 msgid "Refresh the update-able package list"
 msgstr "Obnovení seznamu balíčků, které lze aktualizovat"
 
-msgid "Regard deep standby as standby"
+msgid "Regard Deep Standby as Standby"
 msgstr "Považovat Vypnutí za Standby"
 
 msgid "Region"
@@ -15304,7 +15304,7 @@ msgstr "Požadovaný typ média:"
 msgid "Rereading partition table"
 msgstr "Znovunačítání tabulky rozdělení disku"
 
-msgid "Reschedule the task to run when the receiver enters or exits standby. The state change must occur within the task’s scheduled window, or the task will not run."
+msgid "Reschedule the task to run when the receiver enters or exits Standby. The state change must occur within the task’s scheduled window, or the task will not run."
 msgstr "Vyberte „Ano“ pro přesunutí úlohy na čas, kdy přijímač přejde do/z pohotovostního režimu. Změna stavu musí proběhnout v rámci okna plánu úlohy, jinak se úloha nespustí."
 
 msgid "Reserved"
@@ -16551,10 +16551,10 @@ msgstr "Vyberte protokol potvrzení úložiště, který chcete zobrazit:"
 msgid "Select a script to run:"
 msgstr "Vyberte skript ke spuštění:"
 
-msgid "Select a time, when in standby mode, after which the descramble can proceed."
+msgid "Select a time, when in Standby mode, after which the descramble can proceed."
 msgstr "V pohotovostním režimu vyberte čas, po kterém může dekódování pokračovat."
 
-msgid "Select a time, when in standby, before which descramble can proceed."
+msgid "Select a time, when in Standby, before which descramble can proceed."
 msgstr "Vyberte čas v pohotovostním režimu, před kterým může dekódování pokračovat."
 
 msgid "Select a tuner"
@@ -16651,7 +16651,7 @@ msgstr "Vyberte, jak se budou číselná tlačítka chovat během vyhledávání
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr "Vyberte způsob nastavení satelitní antény. tj. pevná parabola, jednoduchý LNB, DiSEqC přepínač, polohovač atd."
 
-msgid "Select how the schedule is handled with respect to standby mode."
+msgid "Select how the schedule is handled with respect to Standby mode."
 msgstr "Vyberte, jak se má s plánem zacházet s ohledem na pohotovostní režim."
 
 msgid "Select how to activate the Quick EPG mode."
@@ -17175,7 +17175,7 @@ msgstr "Vyberte, co dělat po dokončení časovaného nahrávání."
 msgid "Select what do do after the timer zap has completed."
 msgstr "Vyberte, co se má udělat po dokončení časovače."
 
-msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
+msgid "Select what should be done when the %s %s was boot-up, normal playing or goto Standby."
 msgstr "Co má Váš %s %s dělat po startu? Normálně zapnout nebo vypnout do pohotovostního režimu."
 
 msgid "Select what should be done when the %s %s was shutdown incorrectly, or after the Power was lost."
@@ -17671,10 +17671,10 @@ msgstr "Nastavit možnosti času"
 msgid "Set to 'Disabled' to replace underscore characters '_' in file and directory names with spaces."
 msgstr "Chcete-li nahradit znaky podtržení, '_', v názvech souborů a adresářů mezerami, nastavte na 'Zakázáno'."
 
-msgid "Set to 'Enabled' to descramble queued scrambled recordings in standby mode before shutting down."
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby mode before shutting down."
 msgstr "Nastavením na „Povoleno“ se před vypnutím dekódují zakódované nahrávky zařazené do fronty v pohotovostním režimu."
 
-msgid "Set to 'Enabled' to descramble queued scrambled recordings in standby."
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
 msgstr "Nastavením na „Povoleno“ dekódujete kódované nahrávky zařazené do fronty v pohotovostním režimu."
 
 msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
@@ -19121,7 +19121,7 @@ msgstr "Somálština"
 msgid "Somalia"
 msgstr "Somálsko"
 
-msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting puts the TV into standby before switching. If the TV does not turn back on, a slower transmission interval or repeating the wake-up command may be required."
+msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting puts the TV into Standby before switching. If the TV does not turn back on, a slower transmission interval or repeating the wake-up command may be required."
 msgstr "Některé televizory nemohou přepnout na správný vstup, pokud je aktivní jiný port HDMI. Toto nastavení přepne televizor do pohotovostního režimu před přepnutím. (Pokud se televizor znovu nezapne, může vyžadovat pomalejší interval přenosu nebo opakování příkazu k probuzení.)"
 
 msgid "Sorbian"
@@ -20419,7 +20419,7 @@ msgstr ""
 "Kanál může podporovat VPS \n"
 " Chcete povolit VPS?"
 
-msgid "The command to wake from standby will be sent multiple times."
+msgid "The command to wake from Standby will be sent multiple times."
 msgstr "Příkaz k probuzení z pohotovostního režimu bude odeslán vícekrát."
 
 msgid ""
@@ -20671,7 +20671,7 @@ msgstr "Toto pole vám umožňuje vyhledat další symbolovou rychlost až %s."
 msgid "This function is not available as processing of large files may take too long to run on this hardware."
 msgstr "Tato funkce není dostupná, protože zpracování velkých souborů může na tomto hardwaru trvat příliš dlouho."
 
-msgid "This is a workaround for devices that wake up immediately after entering standby. Wake-up commands from other devices are ignored for a few seconds."
+msgid "This is a workaround for devices that wake up immediately after entering Standby. Wake-up commands from other devices are ignored for a few seconds."
 msgstr "Toto je řešení pro některá zařízení, která se po přepnutí do pohotovostního režimu znovu probudí. Příkazy k probuzení z jiných zařízení budou na několik sekund ignorovány."
 
 #, python-format
@@ -20793,7 +20793,7 @@ msgstr "Tato volba vám umožní vybrat, jak se zobrazí při živé TV Zbývaj�
 msgid "This option allows you to choose how to display the remaining or elapsed time for media playback."
 msgstr "Tato volba vám umožní vybrat, jak se zobrazí při přehrávání zbývající/uplynulý čas."
 
-msgid "This option allows you to choose if the display shows the time or nothing in standby."
+msgid "This option allows you to choose if the display shows the time or nothing in Standby."
 msgstr "Tato možnost vám umožňuje vybrat, jak v pohotovostním režimu zobrazit čas nebo nic."
 
 msgid "This option allows you to choose if the display shows the time, channel number or nothing during operation."
@@ -21047,7 +21047,7 @@ msgstr "Časová prodleva pro opakovaný přenos"
 msgid "Time delay of the shutdown messages"
 msgstr "Časová prodleva zpráv pro vypnutí"
 
-msgid "Time delay until standby or deep standby"
+msgid "Time delay until Standby or Deep Standby"
 msgstr "Prodleva před přechodem do pohotovosti nebo spánku"
 
 msgid "Time for next LCD scrolling"
@@ -22715,7 +22715,7 @@ msgstr "Čeká se na oddíl"
 msgid "Wake up"
 msgstr "Při probuzení"
 
-msgid "Wake up TV from standby"
+msgid "Wake up TV from Standby"
 msgstr "Probudit TV z pohotovostního režimu"
 
 msgid "Wake up from Deep-Standby is allowed"
@@ -22727,7 +22727,7 @@ msgstr "Čas probuzení před spuštěním časovače [min]"
 msgid "Wake up to standby"
 msgstr "Probudit TV z pohotovostního režimu"
 
-msgid "Wake up your AV Receiver from standby"
+msgid "Wake up your AV Receiver from Standby"
 msgstr "Probudit AV receiver z pohotovostního režimu"
 
 msgid "Wallis and Futuna"
@@ -22998,7 +22998,7 @@ msgstr "Pokud je tato funkce povolena, přijímač se automaticky vypne."
 msgid "When enabled, the receiver will automatically be switched on."
 msgstr "Pokud je tato funkce povolena, přijímač se automaticky zapne."
 
-msgid "When enabled, the receiver will automatically return to standby when the TV is turned off."
+msgid "When enabled, the receiver will automatically return to Standby when the TV is turned off."
 msgstr "Pokud je tato funkce povolena, přijímač se po vypnutí televizoru automaticky vrátí do pohotovostního režimu."
 
 msgid "When enabled, the receiver will automatically use the audio track which you selected before."
@@ -23007,7 +23007,7 @@ msgstr "Jestliže je povoleno, bude přijímač automaticky používat zvukovou 
 msgid "When enabled, the receiver will automatically use the subtitles which you selected before."
 msgstr "Jestliže je povoleno, bude přijímač automaticky používat titulky, které byly vybrány dříve."
 
-msgid "When enabled, the receiver will automatically wake from standby when the TV is turned on."
+msgid "When enabled, the receiver will automatically wake from Standby when the TV is turned on."
 msgstr "Pokud je tato funkce povolena, přijímač se automaticky probudí z pohotovostního režimu při zapnutí televizoru."
 
 msgid "When enabled, the receiver will select an AC3 track (when available)."
@@ -23067,10 +23067,10 @@ msgstr "Pro obsah s poměrem stran 4:3 zvolte, zda chcete změnit velikost/rozt�
 msgid "When the input cursor reaches this point (percentage of the width, from either side) scroll the text to the cursor."
 msgstr "Když vstupní kurzor dosáhne tohoto bodu (procento šířky z obou stran), posuňte text ke kurzoru."
 
-msgid "When the receiver wakes from standby or deep standby it will send a command to the TV to bring it out of standby."
+msgid "When the receiver wakes from Standby or Deep Standby it will send a command to the TV to bring it out of Standby."
 msgstr "Když se přijímač probudí z pohotovostního režimu nebo hlubokého spánku, odešle do televizoru příkaz, aby jej z pohotovostního režimu probudil."
 
-msgid "When the receiver wakes from standby, it will switch the TV to the HDMI input connected to the receiver."
+msgid "When the receiver wakes from Standby, it will switch the TV to the HDMI input connected to the receiver."
 msgstr "Když se přijímač probudí z pohotovostního režimu, dá televizoru příkaz k přepnutí na vstup HDMI, ke kterému je přijímač připojen."
 
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
@@ -23166,10 +23166,10 @@ msgstr "Pomocí této volby můžete skrýt pracovní úkoly z rozšířené obr
 msgid "With this option you can switch off the display during operation."
 msgstr "Pomocí této možnosti můžete během provozu vypnout displej."
 
-msgid "With this option you can switch off the display in deep standby mode."
+msgid "With this option you can switch off the display in Deep Standby mode."
 msgstr "Touto volbou můžete vypnout displej v režimu hlubokého spánku."
 
-msgid "With this option you can switch off the display in standby mode."
+msgid "With this option you can switch off the display in Standby mode."
 msgstr "Touto volbou můžete vypnout displej v pohotovostním režimu."
 
 msgid "With this option you can switch the LED color or deactivate the LED."
@@ -23341,7 +23341,7 @@ msgstr "Můžete mít seznam seřazen podle času nebo alfanumericky."
 msgid "You can only burn Dreambox recordings!"
 msgstr "Vypalovat můžete pouze nahrávky Dreamboxu!"
 
-msgid "You can skip this function and turn off the TV when you wake the receiver from standby and immediately switch back to standby."
+msgid "You can skip this function and turn off the TV when you wake the receiver from Standby and immediately switch back to Standby."
 msgstr "Tuto funkci můžete přeskočit a po probuzení přijímače z pohotovostního režimu vypnout televizor a ihned jej přepnout zpět do pohotovostního režimu."
 
 #, python-format

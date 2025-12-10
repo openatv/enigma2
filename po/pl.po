@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-12-06 12:58+0000\n"
-"PO-Revision-Date: 2025-12-04 11:00+0000\n"
+"PO-Revision-Date: 2025-12-10 05:52+0000\n"
 "Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -1305,7 +1305,7 @@ msgstr "'%s' zawiera %d plik(ów) i %d podkatalogów.\n"
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "'Limit bufora w godzinach' lub 'Liczba ostatnio zarejestrowanych wydarzeń' spowoduje usunięcie najstarszego pliku timeshiftu, w zależności od tego, który warunek wystąpił jako pierwszy."
 
-msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
+msgid "'Handle Standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "Opcja „Obsługa trybu czuwania z telewizora” ma wyższy priorytet niż opcja „Obsługa sygnału wejściowego z telewizora”."
 
 msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
@@ -1842,7 +1842,7 @@ msgid "Activate Picture in Picture"
 msgstr "Uruchom PiP"
 
 msgid "Activate UP/DOWN buttons for the 'all up/down' functions at the beginning/end of the column."
-msgstr "Włączyć przyciski Góra/Dół dla funkcji „wszystkich góra/dół” (na początku/końcu kolumny)?"
+msgstr "Aktywuj przyciski GÓRA/DÓŁ, aby skorzystać z funkcji 'wszystko w górę/w dół' na początku/końcu kolumny."
 
 msgid "Activate a way to send individual or specific internal HDMI-CEC commands from the command line."
 msgstr "Aktywuj sposób wysyłania pojedynczych lub określonych wewnętrznych poleceń HDMI-CEC z wiersza poleceń."
@@ -2318,7 +2318,7 @@ msgstr "Importuj również przy ponownym uruchomieniu/restartcie enigma2"
 msgid "Also import from the extension menu"
 msgstr "Importuj również z menu rozszerzeń"
 
-msgid "Also import when leaving standby"
+msgid "Also import when leaving Standby"
 msgstr "Importuj również, gdy urządzenie opuszcza tryb czuwania"
 
 msgid "Also on standby"
@@ -2819,7 +2819,7 @@ msgstr "Automatyczne skanowanie kanałów"
 msgid "Automatic shares access"
 msgstr "Automatyczny dostęp do udziałów"
 
-msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
+msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr "Automatyczne przełączanie telewizora w tryb czuwania za każdym razem, gdy odbiornik przejdzie w tryb czuwania lub wyłączenia."
 
 msgid "Automatically start time shift after"
@@ -2985,7 +2985,7 @@ msgid "Backup your current image"
 msgstr "Wykonaj kopię zapasową aktualnego systemu"
 
 msgid "Backup your current image to HDD or USB. This will make a 1:1 copy of your receiver."
-msgstr "Kopia zapasowa bieżącego systemu na HDD lub USB. Spowoduje to utworzenie kopii 1:1 Twojego dekodera"
+msgstr "Utwórz kopię zapasową aktualnego systemu na dysku twardym lub USB. Spowoduje to utworzenie kopii 1:1 Twojego odbiornika."
 
 msgid "Backup your current settings"
 msgstr "Wykonaj kopię zapasowa bieżących ustawień"
@@ -4555,7 +4555,7 @@ msgid "Configure front panel LEDs"
 msgstr "Konfiguracja diod LED na panelu przednim"
 
 msgid "Configure how recording filenames are constructed. Standard: Date Time - Channel - Title Very very short: Title Very short: Title - Date Time Short with time: Date Time - Title Short: Date - Title Long: Date Time - Channel - Title - Info."
-msgstr "Skonfiguruj sposób konstruowania nazw plików nagrań. Standardowe: Data, godzina – kanał – tytuł Bardzo, bardzo krótkie: Tytuł Bardzo krótkie: Tytuł – Data, godzina, krótkie z czasem: Data, godzina – tytuł Krótkie: Data, tytuł Długie: Data, godzina – kanał – tytuł – informacje"
+msgstr "Skonfiguruj sposób konstruowania nazw plików nagrań. Standardowe: Data Godzina - Kanał - Tytuł Bardzo, bardzo krótkie: Tytuł Bardzo krótkie: Tytuł - Data Godzina Krótkie z czasem: Data Godzina - Tytuł Krótkie: Data - Tytuł Długie: Data Godzina - Kanał - Tytuł - Informacje."
 
 msgid "Configure if and how crypto icons will be shown in the channel selection list."
 msgstr "Określić, czy i gdzie ikona kodowania ma być wyświetlana w liście kanałów."
@@ -4615,7 +4615,7 @@ msgid "Configure the IP address."
 msgstr "Skonfiguruj adres IP."
 
 msgid "Configure the IP of the fallback remote receiver."
-msgstr "Adres IP zdalnego odbiornika"
+msgstr "Adres IP zdalnego odbiornika."
 
 msgid ""
 "Configure the Internet connection by adjusting the values shown.\n"
@@ -4627,10 +4627,10 @@ msgstr ""
 "Gdy ustawienia są prawidłowe naciśnij OK, aby kontynuować."
 
 msgid "Configure the Port of the fallback remote receiver."
-msgstr "Port zdalnego odbiornika"
+msgstr "Port zdalnego odbiornika."
 
 msgid "Configure the URL of the fallback remote receiver."
-msgstr "Adres URL zdalnego odbiornika"
+msgstr "Adres URL zdalnego odbiornika."
 
 msgid "Configure the alignment of events."
 msgstr "Skonfiguruj wyrównanie dla wydarzeń."
@@ -4665,7 +4665,7 @@ msgstr "Skonfiguruj poziom jasności wyświetlacza na panelu przednim w celu prz
 msgid "Configure the brightness level of the front panel display for normal operation."
 msgstr "Skonfiguruj poziom jasności wyświetlacza panelu przedniego podczas normalnej pracy."
 
-msgid "Configure the brightness level of the front panel display for standby mode."
+msgid "Configure the brightness level of the front panel display for Standby mode."
 msgstr "Skonfiguruj poziom jasności wyświetlacza panelu przedniego w trybie czuwania."
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
@@ -4731,10 +4731,10 @@ msgstr "Skonfiguruj funkcję przycisków < i >."
 msgid "Configure the gateway."
 msgstr "Skonfiguruj ustawienia 'bramy'."
 
-msgid "Configure the hard disk drive to go to standby after the specified idle time when the receiver is in standby."
+msgid "Configure the hard disk drive to go to Standby after the specified idle time when the receiver is in Standby."
 msgstr "Skonfiguruj dysk twardy tak, aby po upływie określonego czasu bezczynności przechodził w tryb czuwania, gdy dekoder znajduje się w trybie czuwania."
 
-msgid "Configure the hard disk drive to go to standby after the specified idle time."
+msgid "Configure the hard disk drive to go to Standby after the specified idle time."
 msgstr "Skonfiguruj dysk twardy tak, aby po upływie określonego czasu bezczynności przeszedł w tryb czuwania."
 
 msgid "Configure the height of the TrueType font letters used for teletext."
@@ -4831,7 +4831,7 @@ msgid "Configure the subtitle delay when timing information is not available."
 msgstr "Skonfiguruj opóźnienie napisów, gdy informacje o czasie są niedostępne."
 
 msgid "Configure the teletext screen resolution. Note: Full-HD teletext is not supported by all skins."
-msgstr "Skonfiguruj rozdzielczość ekranu dla telegazety (Nie wszystkie skórki obsługują teletekst Full HD)."
+msgstr "Skonfiguruj rozdzielczość ekranu telegazety. Uwaga: telegazeta Full HD nie jest obsługiwana przez wszystkie skórki."
 
 msgid "Configure the third audio language."
 msgstr "Skonfiguruj trzeci język ścieżki audio."
@@ -5876,8 +5876,8 @@ msgstr "Domyślny tryb wideo wybrany dla TV."
 msgid "Default volume offset"
 msgstr "Domyślne przesunięcie głośności"
 
-msgid "Default wake-up is 5 minutes before deep standby. Adjust if the wake-up is too early or late, e.g., for network drives."
-msgstr "Domyślne ustawienia to 5 minut wcześniejsze wybudzenie z trybu wyłączenia. Ewentualnie może być konieczna zmiana tego ustawienia. (np.: rzeczywisty czas wybudzania jest niedokładny lub spóźniony, oczekiwanie na dysk sieciowy itp.)"
+msgid "Default wake-up is 5 minutes before Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
+msgstr "Domyślnie wybudzanie następuje 5 minut przed przejściem w tryb wyłączenia. Dostosuj, jeśli wybudzanie jest zbyt wczesne lub zbyt późne, np. w przypadku dysków sieciowych."
 
 #, python-format
 msgid "Default: '%s'."
@@ -6048,7 +6048,7 @@ msgid "Delete all the text"
 msgstr "Usuń cały tekst"
 
 msgid "Delete and uninstall Plugins. This will remove the Plugin from your receiver."
-msgstr "Usuń i odinstaluj wtyczki. Spowoduje to usunięcie wtyczek z urządzenia"
+msgstr "Usuń i odinstaluj wtyczki. Spowoduje to usunięcie wtyczek z dekodera."
 
 msgid "Delete character to left of cursor or select AM times"
 msgstr "Usuń znak na lewo od kursora lub wybierz godziny AM"
@@ -6224,7 +6224,7 @@ msgid "Destination of fallback remote receiver for DVB-T"
 msgstr "Lokalizacja zdalnego odbiornika dla DVB-T"
 
 msgid "Destination of fallback remote receiver."
-msgstr "Lokalizacja zdalnego odbiornika"
+msgstr "Lokalizacja zdalnego odbiornika."
 
 msgid "Detail of GStreamer log."
 msgstr "Szczegóły logu GStreamer."
@@ -6420,7 +6420,7 @@ msgid "Disabled or WPA/WPA2"
 msgstr "Wyłączone lub WPA/WPA2"
 
 msgid "Disables timeshift during recording (advisable for USB sticks)."
-msgstr "Zatrzymaj timeshift jeśli nagrywanie jest w toku. (Zalecane dla pamięci USB)"
+msgstr "Zatrzymaj timeshift jeśli nagrywanie jest w toku. (Zalecane dla pamięci USB)."
 
 msgid "Disabling Chkroot failed!"
 msgstr "Wyłączenie Chkroot nie powiodło się!"
@@ -7157,7 +7157,7 @@ msgid "Enable Focus Animation"
 msgstr "Włącz ostrość animacji"
 
 msgid "Enable FreeSat EPG"
-msgstr "Włącz freesat EPG"
+msgstr "Włącz FreeSat EPG"
 
 msgid "Enable GStreamer debug log *"
 msgstr "Włącz dziennik debugowania GStreamera *"
@@ -7244,7 +7244,7 @@ msgstr "Włącz automatyczne udostępnianie"
 msgid "Enable autorefresh templates."
 msgstr "Włącz automatyczne odświeżanie szablonów."
 
-msgid "Enable blinking rec symbol on the LCD Display in standby."
+msgid "Enable blinking rec symbol on the LCD Display in Standby."
 msgstr "Włącz migający symbol nagrywania na wyświetlaczu LCD w trybie czuwania."
 
 msgid "Enable blinking rec symbol on the LCD Display."
@@ -7397,7 +7397,7 @@ msgstr "Włączone"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Włącza funkcję, dzięki której odbiornik może odszyfrować strumienie (jeśli dane ECM są zawarte w strumieniu i dostępna jest ważna karta)."
 
-msgid "Enables sending the same TV commands for deep standby as for regular standby."
+msgid "Enables sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "Jeżeli zostanie wybrana opcja „Tak”, do telewizora w przypadku przejścia w tryb wyłączenia będą wysyłane te same polecenia, co w przypadku zwykłego trybu czuwania."
 
 msgid "Enables timeshift to use alternative audio plugins."
@@ -9262,7 +9262,7 @@ msgstr "Awaria obsługi Pythona"
 msgid "Handle input from TV"
 msgstr "Obsługa danych wejściowych z telewizora"
 
-msgid "Handle standby from TV"
+msgid "Handle Standby from TV"
 msgstr "Obsługuj komendę 'czuwania' z TV"
 
 msgid "Handle wake up from TV"
@@ -9271,10 +9271,10 @@ msgstr "Obsługuje komendę 'budzenia' z TV"
 msgid "Hard Disk Settings"
 msgstr "Ustawienia HDD"
 
-msgid "Hard disk standby after"
+msgid "Hard disk Standby after"
 msgstr "Dysk twardy w trybie czuwania po"
 
-msgid "Hard disk standby in receiver standby after"
+msgid "Hard disk Standby in receiver Standby after"
 msgstr "Dysk twardy w trybie czuwania w dekoderze po"
 
 msgid "Harddisk"
@@ -9742,7 +9742,7 @@ msgid "If enabled and necessary, the plugin will wake up the receiver from deep 
 msgstr "Jeżeli jest włączona i zachodzi taka potrzeba, wtyczka wybudzi odbiornik z trybu wyłączenia na określony czas rozpoczęcia, aby kontrolować, czy program rozpocznie się wcześniej."
 
 msgid "If enabled the output resolution of the receiver will try to match the resolution of the video contents resolution."
-msgstr "Jeśli włączone - rozdzielczość wideo tunera spróbuje się dostosować do rozdzielczości wideo materiału"
+msgstr "Jeżeli ta opcja jest włączona, rozdzielczość wyjściowa odbiornika będzie starała się dopasować do rozdzielczości zawartości wideo."
 
 msgid "If enabled the video will always be de-interlaced."
 msgstr "Pozwala określić czy film powinien być zawsze z przeplotem."
@@ -9765,7 +9765,7 @@ msgstr "Jeśli zostanie przekroczona przestrzeń maksymalna,najstarsze zostaną 
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
 msgstr "Jeśli to możliwe, x minut przed uruchomieniem timera Wtyczka VPS będzie kontrolować, czy program rozpocznie się wcześniej. (0 wyłącza funkcję)"
 
-msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
+msgid "If the Deep Standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Jeśli włączono obejście trybu wyłączenia, należy poczekać na synchronizację czasu systemowego. W zależności od wymagań, wybudzanie urządzenia będzie kontynuowane po maksymalnie 2 minutach."
 
 msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
@@ -9822,7 +9822,7 @@ msgstr "Ignoruj przestrzeń nazw podsieci DVB-T"
 msgid "Ignore Standby"
 msgstr "Ignoruj tryb czuwania"
 
-msgid "Ignore unexpectedly wake up and stay in standby"
+msgid "Ignore unexpectedly wake up and stay in Standby"
 msgstr "Ignoruj nieoczekiwane budzenie i pozostań w trybie czuwania"
 
 msgid "Image Backup"
@@ -9860,13 +9860,13 @@ msgid "Immediately restart selected devices."
 msgstr "Natychmiast uruchom ponownie wybrane urządzenia."
 
 msgid "Import channels and/or EPG from remote receiver URL when receiver is booted."
-msgstr "Importuj kanały i / lub EPG ze zdalnego odbiornika wtedy, gdy odbiornik startuje"
+msgstr "Importuj kanały i / lub EPG ze zdalnego odbiornika wtedy, gdy odbiornik startuje."
 
 msgid "Import channels and/or EPG from remote receiver URL when receiver or GUI is restarted."
-msgstr "Importuj kanały i/lub EPG z adresu URL zdalnego odbiornika po ponownym uruchomieniu odbiornika lub enigma2"
+msgstr "Importuj kanały i/lub EPG z adresu URL zdalnego odbiornika po ponownym uruchomieniu odbiornika lub enigma2."
 
-msgid "Import channels and/or EPG from the remote receiver URL, even when the receiver is coming out of standby."
-msgstr "Importuj kanały i / lub EPG ze zdalnego odbiornika również wtedy, gdy odbiornik wychodzi z trybu czuwania"
+msgid "Import channels and/or EPG from the remote receiver URL, even when the receiver is coming out of Standby."
+msgstr "Importuj kanały i / lub EPG ze zdalnego odbiornika również wtedy, gdy odbiornik wychodzi z trybu czuwania."
 
 msgid "Import from remote receiver URL"
 msgstr "Importuj z adresu URL zdalnego odbiornika"
@@ -10599,13 +10599,13 @@ msgstr "Kolor diody LED po wyłączeniu dekodera"
 msgid "LED Standby"
 msgstr "Dioda LED tryb czuwania"
 
-msgid "LED brightness during deep standby."
+msgid "LED brightness during Deep Standby."
 msgstr "Jasność diody LED w trybie wyłączenia."
 
 msgid "LED brightness during normal operations."
 msgstr "Jasność diody LED podczas normalnej pracy."
 
-msgid "LED brightness during standby."
+msgid "LED brightness during Standby."
 msgstr "Jasność diody LED w trybie czuwania."
 
 msgid "LIRC remote"
@@ -11152,7 +11152,7 @@ msgid "Make"
 msgstr "Utwórz"
 
 msgid "Make it possible to manually initiate the channels import and/or EPG via the extension menu."
-msgstr "Umożliw ręczne rozpoczęcie importu kanałów i / lub EPG z poziomu menu rozszerzeń"
+msgstr "Umożliwia ręczne uruchamianie importu kanałów i/lub EPG poprzez menu rozszerzone."
 
 msgid "Make this mark an 'in' point"
 msgstr "Traktuj znacznik jako punkt 'wejścia'"
@@ -11201,7 +11201,7 @@ msgid "Manage Plugins"
 msgstr "Zarządzaj wtyczkami"
 
 msgid "Manage Plugins. This will remove/install Plugins on your receiver."
-msgstr "Zarządzaj wtyczkami. Spowoduje to usunięcie/zainstalowanie wtyczek na urządzeniu"
+msgstr "Zarządzaj wtyczkami. Spowoduje to usunięcie/zainstalowanie wtyczek w dekoderze."
 
 msgid "Manage and explore directories and files."
 msgstr "Zarządzanie i przeglądanie katalogów i plików."
@@ -13187,7 +13187,7 @@ msgstr "Opcja"
 msgid "Option to disable picons on the Infobar."
 msgstr "Opcja wyłączenia pikon na pasku informacyjnym."
 
-msgid "Option to enable the hardware standby timer."
+msgid "Option to enable the hardware Standby timer."
 msgstr "Opcja umożliwiająca włączenie timera czuwania sprzętu."
 
 msgid "Optional parameter"
@@ -14137,10 +14137,10 @@ msgstr "Stan diody LED zasilania podczas czuwania"
 msgid "Power LED can be turned on or off here."
 msgstr "Tutaj można włączyć lub wyłączyć diodę LED zasilania."
 
-msgid "Power LED state during deep standby."
+msgid "Power LED state during Deep Standby."
 msgstr "Stan diody LED zasilania w trybie wyłączenia."
 
-msgid "Power LED state during standby."
+msgid "Power LED state during Standby."
 msgstr "Stan diody LED zasilania podczas czuwania."
 
 msgid "Power On Display"
@@ -14554,10 +14554,10 @@ msgstr "Wymazywanie wszystkich regionów/języków…"
 msgid "Pushto / Pashto"
 msgstr "Pushto / Paszto"
 
-msgid "Put TV in standby"
+msgid "Put TV in Standby"
 msgstr "Przełącz telewizor w tryb czuwania"
 
-msgid "Put your AV Receiver in standby"
+msgid "Put your AV Receiver in Standby"
 msgstr "Przełącz amplituner AV w tryb czuwania"
 
 msgid "Python"
@@ -14993,7 +14993,7 @@ msgstr "Odśwież ekran"
 msgid "Refresh the update-able package list"
 msgstr "Odśwież listę dostępnych aktualizacji"
 
-msgid "Regard deep standby as standby"
+msgid "Regard Deep Standby as Standby"
 msgstr "Traktuj tryb wyłączenia jako czuwanie"
 
 msgid "Region"
@@ -15315,7 +15315,7 @@ msgstr "Wymagany typ nośnika:"
 msgid "Rereading partition table"
 msgstr "Ponowne odczytywanie tablicy partycji"
 
-msgid "Reschedule the task to run when the receiver enters or exits standby. The state change must occur within the task’s scheduled window, or the task will not run."
+msgid "Reschedule the task to run when the receiver enters or exits Standby. The state change must occur within the task’s scheduled window, or the task will not run."
 msgstr "Wybierz 'Tak', aby przeplanować zadanie na moment, gdy odbiornik przejdzie w tryb czuwania lub z niego wyjdzie. Zmiana stanu musi nastąpić w oknie harmonogramu zadań, w przeciwnym razie zadanie nie zostanie uruchomione."
 
 msgid "Reserved"
@@ -15469,7 +15469,7 @@ msgid "Restore your backups by date."
 msgstr "Przywróć kopię według daty."
 
 msgid "Restore your settings back from a backup. After restore the receiver will restart to activated the new settings."
-msgstr "Przywrócić ustawienia z kopii zapasowej? Po przywróceniu odbiornik zostanie ponownie uruchomiony, aby zastosować nowe ustawienia"
+msgstr "Przywróć ustawienia z kopii zapasowej. Po przywróceniu odbiornik uruchomi się ponownie, aby aktywować nowe ustawienia."
 
 msgid "Restoring..."
 msgstr "Przywracanie..."
@@ -16562,10 +16562,10 @@ msgstr "Wybierz log z repozytorium, który chcesz zobaczyć:"
 msgid "Select a script to run:"
 msgstr "Wybierz skrypt do uruchomienia:"
 
-msgid "Select a time, when in standby mode, after which the descramble can proceed."
+msgid "Select a time, when in Standby mode, after which the descramble can proceed."
 msgstr "Wybierz czas, po którym w trybie czuwania będzie można kontynuować deszyfrowanie."
 
-msgid "Select a time, when in standby, before which descramble can proceed."
+msgid "Select a time, when in Standby, before which descramble can proceed."
 msgstr "Wybierz czas, w którym w trybie czuwania będzie można rozpocząć deszyfrowanie."
 
 msgid "Select a tuner"
@@ -16662,7 +16662,7 @@ msgstr "Wybierz sposób działania przycisków numerycznych podczas akcji wyszuk
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr "Wybierz sposób konfiguracji anteny satelitarnej. tj. stała antena, pojedynczy LNB, przełącznik DiSEqC, pozycjoner itp."
 
-msgid "Select how the schedule is handled with respect to standby mode."
+msgid "Select how the schedule is handled with respect to Standby mode."
 msgstr "Wybierz sposób obsługi harmonogramu w odniesieniu do trybu czuwania."
 
 msgid "Select how to activate the Quick EPG mode."
@@ -17186,7 +17186,7 @@ msgstr "Wybierz, co zrobić po zakończeniu nagrywania z timerem."
 msgid "Select what do do after the timer zap has completed."
 msgstr "Wybierz, co zrobić po zakończeniu odliczania czasu."
 
-msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
+msgid "Select what should be done when the %s %s was boot-up, normal playing or goto Standby."
 msgstr "Wybierz, co ma zostać wykonane, gdy %s %s zostanie uruchomiony, będzie odtwarzany normalnie lub przejdzie w tryb czuwania."
 
 msgid "Select what should be done when the %s %s was shutdown incorrectly, or after the Power was lost."
@@ -17567,7 +17567,7 @@ msgid "Set the UP/DOWN button skip percentage for the SeekBar."
 msgstr "Ustaw procent pomijania przycisków GÓRA/DÓŁ dla paska postępu."
 
 msgid "Set the User ID of the OpenWebif from your fallback tuner."
-msgstr "Wpisz nazwę użytkownika do zalogowania do OpenWebif tunera zapasowego"
+msgstr "Wpisz nazwę użytkownika do zalogowania do OpenWebif tunera zapasowego."
 
 msgid "Set the aspect ratio of the service picons."
 msgstr "Ustaw proporcje pikon kanałów."
@@ -17594,7 +17594,7 @@ msgid "Set the delay time between repeated loops, this is used by software rende
 msgstr "Ustaw czas opóźnienia między przejściami przewijania. Jest używany przez renderer oprogramowania w niektórych skórkach."
 
 msgid "Set the hostname or IP address."
-msgstr "Nazwa DNS lub adres IP"
+msgstr "Nazwa DNS lub adres IP."
 
 msgid "Set the jump-size of the SeekBar."
 msgstr "Ustaw skok-rozmiar paska postępu."
@@ -17603,10 +17603,10 @@ msgid "Set the number of lines to be saved for 'stout' and 'sterr' output in scr
 msgstr "Ustawia liczbę linii, które mają być zapisane dla wyjścia 'stout' i 'sterr' w skryptach."
 
 msgid "Set the password of the OpenWebif from your fallback tuner."
-msgstr "Ustaw hasło OpenWebif z tunera zapasowego"
+msgstr "Ustaw hasło OpenWebif z tunera zapasowego."
 
 msgid "Set the port of the OpenWebif from your fallback tuner."
-msgstr "Wpisz port OpenWebif tunera zapasowego"
+msgstr "Wpisz port OpenWebif tunera zapasowego."
 
 msgid "Set the position of the recording icons."
 msgstr "Ustaw położenie ikon nagrywania."
@@ -17682,10 +17682,10 @@ msgstr "Ustaw opcje czasu"
 msgid "Set to 'Disabled' to replace underscore characters '_' in file and directory names with spaces."
 msgstr "Jeśli ta opcja jest wyłączona, znaki podkreślenia w nazwach plików i katalogów nie są wyświetlane i są zastępowane spacjami."
 
-msgid "Set to 'Enabled' to descramble queued scrambled recordings in standby mode before shutting down."
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby mode before shutting down."
 msgstr "Ustaw na „Włączone”, aby odszyfrować zakodowane nagrania w kolejce w trybie czuwania przed wyłączeniem."
 
-msgid "Set to 'Enabled' to descramble queued scrambled recordings in standby."
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
 msgstr "Ustaw na „Włączone”, aby odszyfrować zakodowane nagrania w kolejce w trybie czuwania."
 
 msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
@@ -17861,7 +17861,7 @@ msgid "Setup your local network"
 msgstr "Ustawienia sieci"
 
 msgid "Setup your local network. For Wlan you need to boot with a USB-Wlan stick"
-msgstr "Skonfiguruj sieć lokalną. W przypadku sieci WiFi konieczne jest ponowne uruchomienie dekodera z USB-WLAN"
+msgstr "Skonfiguruj sieć lokalną. W przypadku sieci WLAN konieczne jest uruchomienie urządzenia z pamięcią USB-WLAN"
 
 msgid "Setup your mounts for network"
 msgstr "Ustawienia montowania w sieci"
@@ -18009,7 +18009,7 @@ msgid "Show Driver packages"
 msgstr "Pokaż pakiety sterowników"
 
 msgid "Show EIT Now/Next event data in the InfoBar"
-msgstr "Pokaż EIT Teraz/Następny na pasku informacyjnym."
+msgstr "Pokaż EIT Teraz/Następny na pasku informacyjnym"
 
 msgid "Show EPG"
 msgstr "Pokaż EPG"
@@ -18232,7 +18232,7 @@ msgid "Show channel selection"
 msgstr "Pokaż wybór kanału"
 
 msgid "Show chapter positions for supported video files."
-msgstr "Pokaż pozycje rozdziałów dla obsługiwanych plików wideo. (Wersja gstreamer musi być większa niż 1)"
+msgstr "Pokaż pozycje rozdziałów dla obsługiwanych plików wideo."
 
 msgid "Show columns"
 msgstr "Pokaż kolumny"
@@ -18410,10 +18410,10 @@ msgid "Show next system information screen"
 msgstr "Pokaż następny ekran informacji o systemie"
 
 msgid "Show notification when import channels and/or EPG from remote receiver URL did not complete."
-msgstr "Pokaż powiadomienie, gdy import kanałów i/lub EPG z adresu URL zdalnego odbiornika nie został ukończony"
+msgstr "Pokaż powiadomienie, gdy import kanałów i/lub EPG z adresu URL zdalnego odbiornika nie został ukończony."
 
 msgid "Show notification when import channels and/or EPG from remote receiver URL is completed."
-msgstr "Pokaż powiadomienie po zakończeniu importowania kanałów i/lub EPG z adresu URL zdalnego odbiornika"
+msgstr "Pokaż powiadomienie po zakończeniu importowania kanałów i/lub EPG z adresu URL zdalnego odbiornika."
 
 msgid "Show notification when import channels was not successful"
 msgstr "Pokazuj informację gdy import kanałów się nie powiódł"
@@ -19133,8 +19133,8 @@ msgstr "Somalijski"
 msgid "Somalia"
 msgstr "Somalia"
 
-msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting puts the TV into standby before switching. If the TV does not turn back on, a slower transmission interval or repeating the wake-up command may be required."
-msgstr "Niektóre urządzenia TV nie mogą zostać przełączone na poprawne wejście jeśli jest aktywne inne wejście HDMI. To ustawienie przełącza TV w tryb czuwania przed przełączeniem. (Jeśli telewizor się nie włącza, może wymagać wolniejszego przedziału transmisji lub powtórzenia poleceń budzenia.)"
+msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting puts the TV into Standby before switching. If the TV does not turn back on, a slower transmission interval or repeating the wake-up command may be required."
+msgstr "Niektóre telewizory nie mogą przełączyć się na właściwe wejście, jeśli aktywny jest inny port HDMI. To ustawienie przełącza telewizor w tryb czuwania przed przełączeniem. Jeśli telewizor się nie włączy, może być konieczne wydłużenie interwału transmisji lub powtórzenie polecenia wybudzenia."
 
 msgid "Sorbian"
 msgstr "Serbski"
@@ -20431,7 +20431,7 @@ msgstr ""
 "Kanał może wspierać VPS.\n"
 "Czy chcesz umożliwić VPS?"
 
-msgid "The command to wake from standby will be sent multiple times."
+msgid "The command to wake from Standby will be sent multiple times."
 msgstr "Komenda wybudzania z trybu czuwania będzie wysyłana wielokrotnie."
 
 msgid ""
@@ -20683,7 +20683,7 @@ msgstr "To pole umożliwia wyszukiwanie dodatkowej szybkości transmisji symboli
 msgid "This function is not available as processing of large files may take too long to run on this hardware."
 msgstr "Funkcja nie jest dostępna, ponieważ przetwarzanie dużych plików może trwać zbyt długo, aby uruchomić ją na tym sprzęcie."
 
-msgid "This is a workaround for devices that wake up immediately after entering standby. Wake-up commands from other devices are ignored for a few seconds."
+msgid "This is a workaround for devices that wake up immediately after entering Standby. Wake-up commands from other devices are ignored for a few seconds."
 msgstr "Jest to obejście dla niektórych urządzeń, które budzą się ponownie po przełączeniu w tryb czuwania. Komenda budzenia z innych urządzeń zostanie zignorowana przez kilka sekund."
 
 #, python-format
@@ -20805,7 +20805,7 @@ msgstr "Ta opcja pozwala wybrać sposób wyświetlania pozostałego/upływające
 msgid "This option allows you to choose how to display the remaining or elapsed time for media playback."
 msgstr "Ta opcja pozwala wybrać sposób wyświetlania czasu pozostałego/upływającego w odtwarzaczu multimediów."
 
-msgid "This option allows you to choose if the display shows the time or nothing in standby."
+msgid "This option allows you to choose if the display shows the time or nothing in Standby."
 msgstr "Ta opcja pozwala wybrać, czy w trybie czuwania wyświetlacz ma pokazywać godzinę, czy też nic."
 
 msgid "This option allows you to choose if the display shows the time, channel number or nothing during operation."
@@ -20818,7 +20818,7 @@ msgid "This option allows you to choose the option for Subservice indicator or s
 msgstr "Opcja ta umożliwia wybranie opcji wskaźnika lub wyboru subserwisu."
 
 msgid "This option allows you to choose what the first button press jumps to in channel list screen (pressing '2' jumps to 'A' or '2' first) when 'Quick Actions' preset actions are performed."
-msgstr "Ta opcja pozwala wybrać, do czego przeskakuje pierwsze naciśnięcie przycisku na ekranie listy kanałów (więc naciśnięcie „2” powoduje przejście do „A” lub „2” jako pierwsze), gdy wykonywane są zaprogramowane akcje „Szybkie akcje”. "
+msgstr "Opcja ta umożliwia wybranie, do którego przycisku na ekranie listy kanałów przeskakuje pierwsze naciśnięcie przycisku (naciśnięcie „2” powoduje najpierw przejście do „A” lub „2”), gdy wykonywane są wstępnie ustawione akcje „Szybkie akcje”."
 
 msgid "This option allows you to choose whether or not to display genre information for the event."
 msgstr "Ta opcja pozwala wybrać, czy wyświetlać informacje o gatunku dla zdarzenia."
@@ -21059,7 +21059,7 @@ msgstr "Opóźnienie powtórnej transmisji"
 msgid "Time delay of the shutdown messages"
 msgstr "Opóźnienie komunikatów wyłączania"
 
-msgid "Time delay until standby or deep standby"
+msgid "Time delay until Standby or Deep Standby"
 msgstr "Opóźnienie przejścia w tryb czuwania lub tryb wyłączenia"
 
 msgid "Time for next LCD scrolling"
@@ -21685,7 +21685,7 @@ msgid "UP/DOWN button mode"
 msgstr "Tryb przycisków Góra/Dół"
 
 msgid "UP/DOWN buttons also for 'all up/down'"
-msgstr "Przyciski Góra/Dół również dla „wszystkich góra/dół”."
+msgstr "Przyciski Góra/Dół również dla 'wszystkich góra/dół'"
 
 msgid "UP80  (keymap.u80)"
 msgstr "UP80  (keymap.u80)"
@@ -22727,7 +22727,7 @@ msgstr "Czekaj na utworzenie partycji"
 msgid "Wake up"
 msgstr "Wybudzenie"
 
-msgid "Wake up TV from standby"
+msgid "Wake up TV from Standby"
 msgstr "Wybudzaj TV ze stanu czuwania"
 
 msgid "Wake up from Deep-Standby is allowed"
@@ -22739,7 +22739,7 @@ msgstr "Czas wybudzenia przed rozpoczęciem timera [min]"
 msgid "Wake up to standby"
 msgstr "Wybudzaj ze stanu czuwania"
 
-msgid "Wake up your AV Receiver from standby"
+msgid "Wake up your AV Receiver from Standby"
 msgstr "Wybudź swój amplituner AV ze stanu czuwania"
 
 msgid "Wallis and Futuna"
@@ -23010,7 +23010,7 @@ msgstr "Po włączeniu odbiornik automatycznie się wyłączy."
 msgid "When enabled, the receiver will automatically be switched on."
 msgstr "Po włączeniu tej opcji odbiornik włączy się automatycznie."
 
-msgid "When enabled, the receiver will automatically return to standby when the TV is turned off."
+msgid "When enabled, the receiver will automatically return to Standby when the TV is turned off."
 msgstr "Po włączeniu tej opcji odbiornik automatycznie powróci do trybu czuwania po wyłączeniu telewizora."
 
 msgid "When enabled, the receiver will automatically use the audio track which you selected before."
@@ -23019,7 +23019,7 @@ msgstr "Po włączeniu tej opcji odbiornik automatycznie użyje wybranej wcześn
 msgid "When enabled, the receiver will automatically use the subtitles which you selected before."
 msgstr "Po włączeniu tej opcji odbiornik automatycznie użyje napisów, które wybrałeś wcześniej."
 
-msgid "When enabled, the receiver will automatically wake from standby when the TV is turned on."
+msgid "When enabled, the receiver will automatically wake from Standby when the TV is turned on."
 msgstr "Po włączeniu tej opcji odbiornik będzie automatycznie wybudzał się z trybu czuwania po włączeniu telewizora."
 
 msgid "When enabled, the receiver will select an AC3 track (when available)."
@@ -23029,10 +23029,10 @@ msgid "When enabled, the receiver will select an AC3+ track (when available)."
 msgstr "Po włączeniu tej opcji odbiornik wybierze utwór AC3+ (jeśli jest dostępny)."
 
 msgid "When enabled, the timer from the fallback tuner is imported."
-msgstr "Po włączeniu importowany jest timer zdalnego odbiornika"
+msgstr "Po włączeniu importowany jest timer zdalnego odbiornika."
 
 msgid "When enabled, the timer from the fallback tuner is the default timer."
-msgstr "Po włączeniu timer zdalnego odbiornika staje się domyślnym timerem"
+msgstr "Po włączeniu timer zdalnego odbiornika staje się domyślnym timerem."
 
 msgid "When enabled, this setting has more weight than 'Preferred tuner for recordings'."
 msgstr "Po włączeniu to ustawienie ma większe znaczenie niż „Preferowany tuner do nagrań”."
@@ -23047,7 +23047,7 @@ msgid "When enabled, use DHCP for the IP configuration."
 msgstr "Po włączeniu użyj DHCP do konfiguracji IP."
 
 msgid "When enabled, you can customize the OpenWebIf settings for the fallback tuner."
-msgstr "Po włączeniu możesz dostosować ustawienia OpenWebIf dla zdalnego odbiornika"
+msgstr "Po włączeniu możesz dostosować ustawienia OpenWebIf dla zdalnego odbiornika."
 
 msgid "When enabled, your receiver will detect activity on the VCR SCART input."
 msgstr "Po włączeniu odbiornik będzie wykrywał aktywność na wejściu VCR SCART."
@@ -23079,10 +23079,10 @@ msgstr "Wybierz czy skalować/rozciągać zawartość proporcji obrazu 4:3."
 msgid "When the input cursor reaches this point (percentage of the width, from either side) scroll the text to the cursor."
 msgstr "Gdy kursor wejściowy osiągnie ten punkt (procent szerokości, z obu stron), przewiń tekst do kursora."
 
-msgid "When the receiver wakes from standby or deep standby it will send a command to the TV to bring it out of standby."
+msgid "When the receiver wakes from Standby or Deep Standby it will send a command to the TV to bring it out of Standby."
 msgstr "Gdy odbiornik wybudza się ze stanu czuwania lub trybu wyłączenia, wysyła do telewizora polecenie wyprowadzenia go ze stanu czuwania."
 
-msgid "When the receiver wakes from standby, it will switch the TV to the HDMI input connected to the receiver."
+msgid "When the receiver wakes from Standby, it will switch the TV to the HDMI input connected to the receiver."
 msgstr "Gdy odbiornik wybudzi się ze stanu czuwania, telewizor nakaże mu przełączenie się na wejście HDMI, do którego podłączony jest odbiornik."
 
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
@@ -23178,10 +23178,10 @@ msgstr "Za pomocą tej opcji możesz ukryć zadania robocze na ekranie Menu rozs
 msgid "With this option you can switch off the display during operation."
 msgstr "Za pomocą tej opcji można wyłączyć wyświetlacz podczas pracy urządzenia."
 
-msgid "With this option you can switch off the display in deep standby mode."
+msgid "With this option you can switch off the display in Deep Standby mode."
 msgstr "Za pomocą tej opcji można wyłączyć wyświetlacz w trybie wyłączenia."
 
-msgid "With this option you can switch off the display in standby mode."
+msgid "With this option you can switch off the display in Standby mode."
 msgstr "Za pomocą tej opcji można wyłączyć wyświetlacz w trybie czuwania."
 
 msgid "With this option you can switch the LED color or deactivate the LED."
@@ -23353,7 +23353,7 @@ msgstr "Możesz mieć listę posortowaną według czasu lub alfanumerycznie."
 msgid "You can only burn Dreambox recordings!"
 msgstr "Możesz nagrywać tylko nagrania Dreambox!"
 
-msgid "You can skip this function and turn off the TV when you wake the receiver from standby and immediately switch back to standby."
+msgid "You can skip this function and turn off the TV when you wake the receiver from Standby and immediately switch back to Standby."
 msgstr "Możesz pominąć tę funkcję i wyłączyć telewizor po wybudzeniu odbiornika z trybu czuwania, a następnie od razu przełączyć go z powrotem w tryb czuwania."
 
 #, python-format

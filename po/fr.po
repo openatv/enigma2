@@ -1263,7 +1263,7 @@ msgstr "'%s' contient %d fichier(s) et %d sous-répertoire(s).\n"
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "'Tampon en heure(s)' ou 'nombre de derniers évènements'. Pour effacer les anciens fichiers PauseDirect, la première condition est prioritaire."
 
-msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
+msgid "'Handle Standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "'Gérer la veille du téléviseur' a une priorité plus élevée que 'Gérer l'entrée du téléviseur'."
 
 msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
@@ -2281,7 +2281,7 @@ msgstr "Importer aussi au redémarrage d’Enigma2"
 msgid "Also import from the extension menu"
 msgstr "Importer également depuis le menu des extensions"
 
-msgid "Also import when leaving standby"
+msgid "Also import when leaving Standby"
 msgstr "Importer aussi lorsque le récepteur est laissé en veille"
 
 msgid "Also on standby"
@@ -2782,7 +2782,7 @@ msgstr "Scan automatique des services"
 msgid "Automatic shares access"
 msgstr ""
 
-msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
+msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr "Mettre automatiquement le téléviseur en veille lorsque le récepteur passe en veille ou en veille profonde."
 
 msgid "Automatically start time shift after"
@@ -4622,7 +4622,7 @@ msgstr "Configurer le niveau de l'affichage du panneau avant pour le fonctionnem
 msgid "Configure the brightness level of the front panel display for normal operation."
 msgstr "Configure le niveau de luminosité de l'affichage du panneau avant en mode normal."
 
-msgid "Configure the brightness level of the front panel display for standby mode."
+msgid "Configure the brightness level of the front panel display for Standby mode."
 msgstr "Configure le niveau de luminosité de l'affichage du panneau avant en mode veille."
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
@@ -4688,10 +4688,10 @@ msgstr ""
 msgid "Configure the gateway."
 msgstr "Configure la passerelle."
 
-msgid "Configure the hard disk drive to go to standby after the specified idle time when the receiver is in standby."
+msgid "Configure the hard disk drive to go to Standby after the specified idle time when the receiver is in Standby."
 msgstr "Configure le disque dur pour passer en mode veille après la durée spécifiée d'inactivité lorsque le récepteur est en veille."
 
-msgid "Configure the hard disk drive to go to standby after the specified idle time."
+msgid "Configure the hard disk drive to go to Standby after the specified idle time."
 msgstr "Configure le disque dur pour passer en mode veille après la durée spécifiée d'inactivité."
 
 msgid "Configure the height of the TrueType font letters used for teletext."
@@ -5831,7 +5831,7 @@ msgstr ""
 msgid "Default volume offset"
 msgstr ""
 
-msgid "Default wake-up is 5 minutes before deep standby. Adjust if the wake-up is too early or late, e.g., for network drives."
+msgid "Default wake-up is 5 minutes before Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
 msgstr "Les paramètres par défaut sont 5 minutes plus tôt pour sortir de la veille profonde. Il peut être nécessaire de modifier ce paramètre. (par exemple : l'heure réelle de réveil est inexacte ou trop tardive, attente d'un lecteur réseau, etc.)"
 
 #, python-format
@@ -7193,7 +7193,7 @@ msgstr ""
 msgid "Enable autorefresh templates."
 msgstr ""
 
-msgid "Enable blinking rec symbol on the LCD Display in standby."
+msgid "Enable blinking rec symbol on the LCD Display in Standby."
 msgstr "Dans l'enregistrement de veille sur l'écran LCD"
 
 msgid "Enable blinking rec symbol on the LCD Display."
@@ -7346,7 +7346,7 @@ msgstr "Activer"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Permet une option afin que le récepteur déchiffre des flux (si les données de l'ECM sont incluses dans le flux et une carte valide est disponible)."
 
-msgid "Enables sending the same TV commands for deep standby as for regular standby."
+msgid "Enables sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "Si ce paramètre est réglé sur 'Yes' ; les mêmes commandes seront envoyées au téléviseur pour les événements de mise en veille profonde que pour les événements de mise en veille normale."
 
 msgid "Enables timeshift to use alternative audio plugins."
@@ -9209,7 +9209,7 @@ msgstr "Gérer les crashes Python"
 msgid "Handle input from TV"
 msgstr "Gérer l’entrée du téléviseur"
 
-msgid "Handle standby from TV"
+msgid "Handle Standby from TV"
 msgstr "Gérer le mode veille de la TV"
 
 msgid "Handle wake up from TV"
@@ -9218,10 +9218,10 @@ msgstr "Gérer le mode réveil de la TV"
 msgid "Hard Disk Settings"
 msgstr "Paramètres du disque dur"
 
-msgid "Hard disk standby after"
+msgid "Hard disk Standby after"
 msgstr "Disque dur en veille après"
 
-msgid "Hard disk standby in receiver standby after"
+msgid "Hard disk Standby in receiver Standby after"
 msgstr "Disque dur du récepteur en veille après"
 
 msgid "Harddisk"
@@ -9712,7 +9712,7 @@ msgstr "Si les logs utilisent le maximum d'espace le plus vieux sera supprimé."
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
 msgstr ""
 
-msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
+msgid "If the Deep Standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Si la solution de contournement de la mise en veille profonde est activée, attendez que l'heure du système soit synchronisée. Selon les besoins, le réveil du dispositif se poursuivra après un maximum de 2 minutes."
 
 msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
@@ -9769,7 +9769,7 @@ msgstr "Ignorer le sous-réseau de l'espace de noms DVB-T"
 msgid "Ignore Standby"
 msgstr ""
 
-msgid "Ignore unexpectedly wake up and stay in standby"
+msgid "Ignore unexpectedly wake up and stay in Standby"
 msgstr "Ignorer les réveils inopinés et rester en veille"
 
 msgid "Image Backup"
@@ -9812,7 +9812,7 @@ msgstr "Importer les chaînes et/ou l’EPG depuis l’URL du récepteur distant
 msgid "Import channels and/or EPG from remote receiver URL when receiver or GUI is restarted."
 msgstr "Importer les chaînes et/ou l’EPG depuis l’URL du récepteur distant lorsque le récepteur ou Enigma2 est redémarré"
 
-msgid "Import channels and/or EPG from the remote receiver URL, even when the receiver is coming out of standby."
+msgid "Import channels and/or EPG from the remote receiver URL, even when the receiver is coming out of Standby."
 msgstr "Importer les chaînes et/ou l’EPG depuis l’URL du récepteur distant également lorsque le récepteur sort de veille"
 
 msgid "Import from remote receiver URL"
@@ -10545,13 +10545,13 @@ msgstr ""
 msgid "LED Standby"
 msgstr "LED en veille"
 
-msgid "LED brightness during deep standby."
+msgid "LED brightness during Deep Standby."
 msgstr "Luminosité LED en mode veille profonde."
 
 msgid "LED brightness during normal operations."
 msgstr "Luminosité LED en mode normal."
 
-msgid "LED brightness during standby."
+msgid "LED brightness during Standby."
 msgstr "Luminosité LED en mode veille."
 
 msgid "LIRC remote"
@@ -13134,7 +13134,7 @@ msgstr "Option"
 msgid "Option to disable picons on the Infobar."
 msgstr "Option pour désactiver les picons dans l'infobarre"
 
-msgid "Option to enable the hardware standby timer."
+msgid "Option to enable the hardware Standby timer."
 msgstr "Option pour activer les programmations de mise en veille matérielles"
 
 msgid "Optional parameter"
@@ -14079,10 +14079,10 @@ msgstr "État de la LED d'alimentation en mode veille"
 msgid "Power LED can be turned on or off here."
 msgstr "Le voyant d'alimentation peut être allumé ou éteint ici."
 
-msgid "Power LED state during deep standby."
+msgid "Power LED state during Deep Standby."
 msgstr "État de la DEL d'alimentation pendant la mise en veille profonde."
 
-msgid "Power LED state during standby."
+msgid "Power LED state during Standby."
 msgstr "État de la LED d'alimentation pendant la mise en veille."
 
 msgid "Power On Display"
@@ -14496,10 +14496,10 @@ msgstr "Purger toutes les locales/langues inutilisées..."
 msgid "Pushto / Pashto"
 msgstr "Pushto / Pachtou"
 
-msgid "Put TV in standby"
+msgid "Put TV in Standby"
 msgstr "Mettre la TV en veille"
 
-msgid "Put your AV Receiver in standby"
+msgid "Put your AV Receiver in Standby"
 msgstr "Mettre votre récepteur en mode veille"
 
 msgid "Python"
@@ -14936,7 +14936,7 @@ msgid "Refresh the update-able package list"
 msgstr ""
 
 # TODO
-msgid "Regard deep standby as standby"
+msgid "Regard Deep Standby as Standby"
 msgstr "Gérer la mise en veille profonde comme en veille"
 
 msgid "Region"
@@ -15259,7 +15259,7 @@ msgstr "Type de support requis :"
 msgid "Rereading partition table"
 msgstr "Relecture de la table de partition"
 
-msgid "Reschedule the task to run when the receiver enters or exits standby. The state change must occur within the task’s scheduled window, or the task will not run."
+msgid "Reschedule the task to run when the receiver enters or exits Standby. The state change must occur within the task’s scheduled window, or the task will not run."
 msgstr ""
 
 msgid "Reserved"
@@ -16504,10 +16504,10 @@ msgstr ""
 msgid "Select a script to run:"
 msgstr "Choisir un script à exécuter :"
 
-msgid "Select a time, when in standby mode, after which the descramble can proceed."
+msgid "Select a time, when in Standby mode, after which the descramble can proceed."
 msgstr ""
 
-msgid "Select a time, when in standby, before which descramble can proceed."
+msgid "Select a time, when in Standby, before which descramble can proceed."
 msgstr ""
 
 msgid "Select a tuner"
@@ -16604,7 +16604,7 @@ msgstr ""
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr "Sélectionnez la configuration de votre antenne satellite p.e. antenne fixe, LNB seul, commutateur DiSEqC, positionneur, etc."
 
-msgid "Select how the schedule is handled with respect to standby mode."
+msgid "Select how the schedule is handled with respect to Standby mode."
 msgstr ""
 
 msgid "Select how to activate the Quick EPG mode."
@@ -17122,7 +17122,7 @@ msgstr ""
 msgid "Select what do do after the timer zap has completed."
 msgstr ""
 
-msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
+msgid "Select what should be done when the %s %s was boot-up, normal playing or goto Standby."
 msgstr "Choisir quoi faire lorsque le %s %s est démarré, resté allumé ou se mettre en veille."
 
 msgid "Select what should be done when the %s %s was shutdown incorrectly, or after the Power was lost."
@@ -17613,10 +17613,10 @@ msgstr ""
 msgid "Set to 'Disabled' to replace underscore characters '_' in file and directory names with spaces."
 msgstr ""
 
-msgid "Set to 'Enabled' to descramble queued scrambled recordings in standby mode before shutting down."
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby mode before shutting down."
 msgstr ""
 
-msgid "Set to 'Enabled' to descramble queued scrambled recordings in standby."
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
 msgstr ""
 
 msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
@@ -19057,7 +19057,7 @@ msgstr "Somali"
 msgid "Somalia"
 msgstr "Somalie"
 
-msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting puts the TV into standby before switching. If the TV does not turn back on, a slower transmission interval or repeating the wake-up command may be required."
+msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting puts the TV into Standby before switching. If the TV does not turn back on, a slower transmission interval or repeating the wake-up command may be required."
 msgstr "Certains téléviseurs ne peuvent pas basculer vers la bonne entrée si un autre port HDMI est actif. Ce paramètre permet de mettre le téléviseur en veille avant la commutation. (Si le téléviseur ne se rallume pas, cela peut nécessiter un intervalle de transmission plus lent ou la répétition des commandes de réveil.)"
 
 msgid "Sorbian"
@@ -20342,7 +20342,7 @@ msgid ""
 " Do you want to enable VPS?"
 msgstr ""
 
-msgid "The command to wake from standby will be sent multiple times."
+msgid "The command to wake from Standby will be sent multiple times."
 msgstr "La commande de réveil de la mise en veille sera envoyée plusieurs fois."
 
 msgid ""
@@ -20581,7 +20581,7 @@ msgstr "Ce champ vous permet de chercher un taux de symbole additionnel de %s."
 msgid "This function is not available as processing of large files may take too long to run on this hardware."
 msgstr ""
 
-msgid "This is a workaround for devices that wake up immediately after entering standby. Wake-up commands from other devices are ignored for a few seconds."
+msgid "This is a workaround for devices that wake up immediately after entering Standby. Wake-up commands from other devices are ignored for a few seconds."
 msgstr "Il s'agit d'une solution de contournement pour certains appareils qui se réveillent à nouveau après avoir été mis en veille. Les commandes de réveil des autres appareils seront ignorées pendant quelques secondes."
 
 #, python-format
@@ -20703,7 +20703,7 @@ msgstr "Cette option permet de choisir comment afficher le temps restant/écoul�
 msgid "This option allows you to choose how to display the remaining or elapsed time for media playback."
 msgstr "Cette option permet de choisir comment afficher le temps restant/écoulé du lecteur de média."
 
-msgid "This option allows you to choose if the display shows the time or nothing in standby."
+msgid "This option allows you to choose if the display shows the time or nothing in Standby."
 msgstr "Cette option vous permet de choisir comment afficher l'heure ou rien en mode veille"
 
 msgid "This option allows you to choose if the display shows the time, channel number or nothing during operation."
@@ -20959,7 +20959,7 @@ msgid "Time delay of the shutdown messages"
 msgstr "Temporisation des messages d'arrêt"
 
 # TODO
-msgid "Time delay until standby or deep standby"
+msgid "Time delay until Standby or Deep Standby"
 msgstr "Délai avant la mise en veille ou la mise en veille profonde"
 
 msgid "Time for next LCD scrolling"
@@ -22601,7 +22601,7 @@ msgstr "Attendre pour partitionner"
 msgid "Wake up"
 msgstr "Réveil"
 
-msgid "Wake up TV from standby"
+msgid "Wake up TV from Standby"
 msgstr "Réveil de la TV depuis le mode veille"
 
 msgid "Wake up from Deep-Standby is allowed"
@@ -22613,7 +22613,7 @@ msgstr "Heure de réveil avant qu'un timer démarre [mins]"
 msgid "Wake up to standby"
 msgstr "Réveil en mode veille"
 
-msgid "Wake up your AV Receiver from standby"
+msgid "Wake up your AV Receiver from Standby"
 msgstr "Sortir votre récepteur du mode veille"
 
 msgid "Wallis and Futuna"
@@ -22881,7 +22881,7 @@ msgstr "Lorsqu'il est activé, le récepteur s'éteint automatiquement."
 msgid "When enabled, the receiver will automatically be switched on."
 msgstr "Lorsqu'elle est activée, le récepteur s'allume automatiquement."
 
-msgid "When enabled, the receiver will automatically return to standby when the TV is turned off."
+msgid "When enabled, the receiver will automatically return to Standby when the TV is turned off."
 msgstr "Lorsqu'il est activé, le récepteur retourne automatiquement en mode veille lorsque le téléviseur est éteint."
 
 msgid "When enabled, the receiver will automatically use the audio track which you selected before."
@@ -22890,7 +22890,7 @@ msgstr "Lorsqu'activé, le récepteur sélectionnera automatiquement la piste au
 msgid "When enabled, the receiver will automatically use the subtitles which you selected before."
 msgstr "Lorsqu'activé, le récepteur sélectionnera automatiquement les sous-titres qui étaient sélectionnés précédemment."
 
-msgid "When enabled, the receiver will automatically wake from standby when the TV is turned on."
+msgid "When enabled, the receiver will automatically wake from Standby when the TV is turned on."
 msgstr "Lorsque cette option est activée, le récepteur sort automatiquement de la veille lorsque le téléviseur est allumé."
 
 msgid "When enabled, the receiver will select an AC3 track (when available)."
@@ -22950,10 +22950,10 @@ msgstr "Lorsque le contenu a un format d'image 4:3, choisir de redimensionner/é
 msgid "When the input cursor reaches this point (percentage of the width, from either side) scroll the text to the cursor."
 msgstr "Lorsque le curseur de saisie atteint ce point (pourcentage de la largeur, de part et d'autre), faites défiler le texte jusqu'au curseur."
 
-msgid "When the receiver wakes from standby or deep standby it will send a command to the TV to bring it out of standby."
+msgid "When the receiver wakes from Standby or Deep Standby it will send a command to the TV to bring it out of Standby."
 msgstr "Lorsque le récepteur sort de la veille ou de la veille profonde, il envoie une commande au téléviseur pour le faire sortir de la veille."
 
-msgid "When the receiver wakes from standby, it will switch the TV to the HDMI input connected to the receiver."
+msgid "When the receiver wakes from Standby, it will switch the TV to the HDMI input connected to the receiver."
 msgstr "Lorsque le récepteur sort de la veille, il commande au téléviseur de passer à l'entrée HDMI à laquelle le récepteur est connecté."
 
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
@@ -23046,10 +23046,10 @@ msgstr "Avec cette option vous pouvez cacher Job Tasks du menu des extensions (a
 msgid "With this option you can switch off the display during operation."
 msgstr "Avec cette option, vous pouvez éteindre l'affichage pendant le fonctionnement."
 
-msgid "With this option you can switch off the display in deep standby mode."
+msgid "With this option you can switch off the display in Deep Standby mode."
 msgstr "Avec cette option, vous pouvez éteindre l'affichage en mode Veille Profonde."
 
-msgid "With this option you can switch off the display in standby mode."
+msgid "With this option you can switch off the display in Standby mode."
 msgstr "Avec cette option, vous pouvez éteindre l'affichage en mode Veille Profonde."
 
 msgid "With this option you can switch the LED color or deactivate the LED."
@@ -23221,7 +23221,7 @@ msgstr "Vous pouvez trier cette liste par heure ou par ordre alphanumérique."
 msgid "You can only burn Dreambox recordings!"
 msgstr "Vous pouvez seulement graver des enregistrements Dreambox !"
 
-msgid "You can skip this function and turn off the TV when you wake the receiver from standby and immediately switch back to standby."
+msgid "You can skip this function and turn off the TV when you wake the receiver from Standby and immediately switch back to Standby."
 msgstr "Vous pouvez ignorer cette fonction et éteindre le téléviseur lorsque vous sortez le récepteur du mode veille et revenez immédiatement en mode veille."
 
 #, python-format

@@ -18,8 +18,8 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-12-06 12:58+0000\n"
-"PO-Revision-Date: 2025-12-08 17:50+0000\n"
-"Last-Translator: VfBFan <drop0815@posteo.de>\n"
+"PO-Revision-Date: 2025-12-10 18:19+0000\n"
+"Last-Translator: Masowick <Demian@gmx.co.uk>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -1280,7 +1280,7 @@ msgstr "'%s' enthält %d Datei(en) und %d Verzeichnis(se).\n"
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
 msgstr "'Puffer in Stunden' oder 'Anzahl der letzten Ereignisse'. Priorität beim Löschen älterer Timeshift-Dateien hat die zuerst eingetretene Bedingung."
 
-msgid "'Handle standby from TV' has a higher priority than 'Handle input from TV'."
+msgid "'Handle Standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "'TV-Standby verwalten' besitzt eine höhere Priorität als 'TV-Eingänge verwalten'."
 
 msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
@@ -1688,7 +1688,7 @@ msgstr ""
 msgid "A recording is currently running. Please stop the recording before trying to start the satellite finder."
 msgstr ""
 "Zurzeit läuft eine Aufnahme!\n"
-"Die Aufnahme beenden, bevor der Signal-Finder gestartet wird."
+"Die Aufnahme beenden, bevor der Signalfinder gestartet wird."
 
 #, python-format
 msgid ""
@@ -2400,7 +2400,7 @@ msgstr "Auch beim Neustart importieren"
 msgid "Also import from the extension menu"
 msgstr "Auch aus dem Erweiterungsmenü importieren"
 
-msgid "Also import when leaving standby"
+msgid "Also import when leaving Standby"
 msgstr "Auch beim Verlassen des Standby importieren"
 
 # ChannelSelection.py
@@ -2928,7 +2928,7 @@ msgstr "Automatischer Suchlauf nach Sendern"
 msgid "Automatic shares access"
 msgstr "Auto-Share-Zugriff"
 
-msgid "Automatically put the TV in standby whenever the receiver goes into standby or deep standby."
+msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
 msgstr "Den Fernseher automatisch zusammen mit dem Receiver in den Standby oder Deep-Standby versetzen."
 
 msgid "Automatically start time shift after"
@@ -4867,11 +4867,11 @@ msgstr "Die Helligkeit für das Display im gedimmten Zustand einstellen."
 msgid "Configure the brightness level of the front panel display for normal operation."
 msgstr "Die Helligkeit für das Display im Normalbetrieb einstellen."
 
-msgid "Configure the brightness level of the front panel display for standby mode."
+msgid "Configure the brightness level of the front panel display for Standby mode."
 msgstr "Die Helligkeit für das Display im Standby einstellen."
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
-msgstr "Die Farbe der externen Untertitel, Alternativ (normal in Weiß, kursiv in Gelb, fett in Cyan, Unterstriche in Grün), weiß oder gelb."
+msgstr "Die Farbe der externen Untertitel. Normal in Weiß, kursiv in Gelb, fett in Cyan, Unterstriche in Grün. Alternativ in Weiß oder Gelb."
 
 msgid "Configure the color of the teletext subtitles."
 msgstr "Die Farbe für Videotext-Untertitel einstellen."
@@ -4935,10 +4935,10 @@ msgstr "Auswählen, was die Tasten < und > bewirken sollen."
 msgid "Configure the gateway."
 msgstr "Das Gateway einstellen."
 
-msgid "Configure the hard disk drive to go to standby after the specified idle time when the receiver is in standby."
+msgid "Configure the hard disk drive to go to Standby after the specified idle time when the receiver is in Standby."
 msgstr "Die Leerlaufzeit einstellen, nach welcher die Festplatte in den Ruhezustand gehen soll, wenn sich der Receiver im Standby befindet."
 
-msgid "Configure the hard disk drive to go to standby after the specified idle time."
+msgid "Configure the hard disk drive to go to Standby after the specified idle time."
 msgstr "Die Leerlaufzeit einstellen, nach welcher die Festplatte in den Ruhezustand gehen soll."
 
 msgid "Configure the height of the TrueType font letters used for teletext."
@@ -5359,7 +5359,7 @@ msgid "Copying files"
 msgstr "Dateien werden kopiert"
 
 msgid "Core dumps are helpful for developers in case of a FATAL SIGNAL crash in the C++ code. Typical core dump size is 110 MB so adjust maximum space used and choose proper location."
-msgstr "Core-Dumps sind für Entwickler im Falle eines FATAL SIGNAL-Absturzes im C++-Code hilfreich. Die typische Größe eines Kernspeicherauszugs beträgt 110 MB. Daher den maximal zu verwendenden Speicherplatz anpassen und den richtigen Speicherort auswählen."
+msgstr "Core-Dumps sind für Entwickler im Falle eines 'FATAL SIGNAL'-Absturzes im C++-Code hilfreich. Die typische Größe eines Core-Dumps beträgt 110 MB. Daher den maximal zu verwendenden Speicherplatz anpassen und den richtigen Speicherort auswählen."
 
 msgid "Cornish"
 msgstr "Kornisch"
@@ -6121,7 +6121,7 @@ msgstr "Standardvideomodus für das Fernsehgerät ausgewählt."
 msgid "Default volume offset"
 msgstr "Standard-Lautstärke-Offset"
 
-msgid "Default wake-up is 5 minutes before deep standby. Adjust if the wake-up is too early or late, e.g., for network drives."
+msgid "Default wake-up is 5 minutes before Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
 msgstr "Die Standardeinstellung ist 5 Minuten früher aus dem Deep-Standby aufzuwachen. Es kann erforderlich sein, dies zu ändern (z. B.: Die tatsächliche Aufwachzeit ist ungenau oder zu spät, warten auf ein Netzlaufwerk usw.)."
 
 #, python-format
@@ -7571,7 +7571,7 @@ msgstr "Auto-Share aktivieren"
 msgid "Enable autorefresh templates."
 msgstr "Auto-Refresh der Vorlagen aktivieren."
 
-msgid "Enable blinking rec symbol on the LCD Display in standby."
+msgid "Enable blinking rec symbol on the LCD Display in Standby."
 msgstr "Bei 'Ja' blinkt das Aufnahmesymbol bei Aufnahmen im Standby, bei 'Nein' wird es dauerhaft angezeigt (nicht alle Receiver unterstützen das)."
 
 msgid "Enable blinking rec symbol on the LCD Display."
@@ -7636,7 +7636,7 @@ msgid "Enable preview"
 msgstr "Vorschau aktivieren"
 
 msgid "Enable remote receiver to be tried to tune into services that can't be tuned into locally (e.g. tuner is occupied or service type is unavailable on the local tuner). Specify complete URL including http:// and port number (normally ...:8001), e.g. http://second_receiver:8001."
-msgstr "Mit 'Ja' den Remote-Enigma2-Receiver aktivieren, der versucht wird, wenn ein Sender lokal nicht empfangen werden kann (z. B. wenn der Tuner belegt oder der Sender lokal nicht verfügbar ist). Die komplette URL inklusive 'http://' und Portnummer (normalerweise '8001') angeben, also z. B. 'http://zweite_box:8001'."
+msgstr "Mit 'Ja' den Reservereceiver aktivieren, der versucht wird, wenn ein Sender lokal nicht empfangen werden kann (z. B. wenn der Tuner belegt oder der Sender lokal nicht verfügbar ist). Die komplette URL inklusive 'http://' und Portnummer (normalerweise '8001') angeben, also z. B. 'http://zweiter_receiver:8001'."
 
 msgid "Enable teletext caching"
 msgstr "Videotext-Zwischenspeicher aktivieren"
@@ -7726,7 +7726,7 @@ msgstr "Aktiviert"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Bei 'Ja' wird das Entschlüsseln eines Streams aktiviert (wenn ECM-Daten im Stream enthalten sind und eine Karte vorhanden ist)."
 
-msgid "Enables sending the same TV commands for deep standby as for regular standby."
+msgid "Enables sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "Bei 'Ja' werden bei Deep-Standby-Ereignissen dieselben Befehle an das Fernsehgerät gesendet wie bei normalen Standby-Ereignissen."
 
 msgid "Enables timeshift to use alternative audio plugins."
@@ -9675,7 +9675,7 @@ msgstr "Umgang mit Python-Abstürzen"
 msgid "Handle input from TV"
 msgstr "TV-Eingänge verwalten"
 
-msgid "Handle standby from TV"
+msgid "Handle Standby from TV"
 msgstr "TV-Standby verwalten"
 
 msgid "Handle wake up from TV"
@@ -9685,11 +9685,11 @@ msgid "Hard Disk Settings"
 msgstr "Festplatteneinstellungen"
 
 #
-msgid "Hard disk standby after"
+msgid "Hard disk Standby after"
 msgstr "Festplatten-Standby nach"
 
-msgid "Hard disk standby in receiver standby after"
-msgstr "Festplatten-Standby, wenn Box im Standby nach"
+msgid "Hard disk Standby in receiver Standby after"
+msgstr "Festplatten-Standby, wenn Receiver im Standby nach"
 
 msgid "Harddisk"
 msgstr "Festplatte"
@@ -10195,7 +10195,7 @@ msgstr "Wenn die Logdateien zu viel Speicher belegen, werden die ältesten Datei
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
 msgstr "Wenn möglich, wird die angegebene Anzahl von Minuten vor eigentlichem Beginn der Aufnahme überprüft, ob die Sendung früher anfängt. 0 deaktiviert diese Funktion."
 
-msgid "If the deep standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
+msgid "If the Deep Standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Wenn der Deep-Standby-Workaround aktiviert ist, wird gewartet, bis die Systemzeit synchronisiert wurde. Je nach Erfordernis wird das Aufwecken der Geräte in maximal 2 Minuten fortgesetzt."
 
 msgid "If the free space is less than setting value, then an attempt is made to delete the old time shift files."
@@ -10252,7 +10252,7 @@ msgstr "DVB-T-Subnetzwerk ignorieren"
 msgid "Ignore Standby"
 msgstr "Standby ignorieren"
 
-msgid "Ignore unexpectedly wake up and stay in standby"
+msgid "Ignore unexpectedly wake up and stay in Standby"
 msgstr "Unerwartetes Aufwachen ignorieren und im Standby bleiben"
 
 msgid "Image Backup"
@@ -10297,7 +10297,7 @@ msgstr "Sender und/oder EPG von der Reservereceiver-URL importieren, wenn der Re
 msgid "Import channels and/or EPG from remote receiver URL when receiver or GUI is restarted."
 msgstr "Sender und/oder EPG von der Reservereceiver-URL importieren, wenn der Receiver oder Enigma2 neu gestartet wird."
 
-msgid "Import channels and/or EPG from the remote receiver URL, even when the receiver is coming out of standby."
+msgid "Import channels and/or EPG from the remote receiver URL, even when the receiver is coming out of Standby."
 msgstr "Sender und/oder EPG von der Reservereceiver-URL importieren, auch wenn der Receiver Standby verlässt."
 
 msgid "Import from remote receiver URL"
@@ -11068,13 +11068,13 @@ msgstr "LED-Deep-Standby-Farbe"
 msgid "LED Standby"
 msgstr "LED Standby"
 
-msgid "LED brightness during deep standby."
+msgid "LED brightness during Deep Standby."
 msgstr "LED-Helligkeit im Deep-Standby."
 
 msgid "LED brightness during normal operations."
 msgstr "LED-Helligkeit im Betrieb."
 
-msgid "LED brightness during standby."
+msgid "LED brightness during Standby."
 msgstr "LED-Helligkeit im Standby."
 
 msgid "LIRC remote"
@@ -11440,7 +11440,7 @@ msgstr "Sortierung der Sprachregion"
 
 #
 msgid "Locale/Language Selection"
-msgstr "Orts-/Sprachauswahl"
+msgstr "Sprachregion-/Sprachauswahl"
 
 #
 msgid "Locale/Language Selection Actions"
@@ -11963,7 +11963,7 @@ msgstr "Meldung"
 
 #
 msgid "Message Box Actions"
-msgstr "MessageBox Aktionen"
+msgstr "MessageBox-Aktionen"
 
 msgid "Message pop up timeout"
 msgstr "Anzeigezeit von Meldungen"
@@ -13865,7 +13865,7 @@ msgid "Option to disable picons on the Infobar."
 msgstr "Bei 'Ja' werden Picons in der Infoleiste angezeigt."
 
 # HDD Standby
-msgid "Option to enable the hardware standby timer."
+msgid "Option to enable the hardware Standby timer."
 msgstr "Bei 'Ja' wird der interne Standbytimer der Festplatte verwendet."
 
 msgid "Optional parameter"
@@ -14892,10 +14892,10 @@ msgstr "Power-LED im Standby"
 msgid "Power LED can be turned on or off here."
 msgstr "Die Power-LED kann hier an- oder ausgeschaltet werden."
 
-msgid "Power LED state during deep standby."
+msgid "Power LED state during Deep Standby."
 msgstr "Die Anzeige der Power-LED im Deep-Standby einstellen."
 
-msgid "Power LED state during standby."
+msgid "Power LED state during Standby."
 msgstr "Die Anzeige der Power-LED im Standby einstellen."
 
 msgid "Power On Display"
@@ -15344,10 +15344,10 @@ msgstr "Löschen aller nicht verwendeten Sprachregionen …"
 msgid "Pushto / Pashto"
 msgstr "Pushto / Paschtu"
 
-msgid "Put TV in standby"
+msgid "Put TV in Standby"
 msgstr "TV in Standby versetzen"
 
-msgid "Put your AV Receiver in standby"
+msgid "Put your AV Receiver in Standby"
 msgstr "AV-Receiver in Standby versetzen"
 
 msgid "Python"
@@ -15807,7 +15807,7 @@ msgstr "Bildschirm aktualisieren"
 msgid "Refresh the update-able package list"
 msgstr "Liste der neuen Pakete aktualisieren"
 
-msgid "Regard deep standby as standby"
+msgid "Regard Deep Standby as Standby"
 msgstr "Deep-Standby wie Standby behandeln"
 
 msgid "Region"
@@ -16159,7 +16159,7 @@ msgstr "Erforderlicher Medientyp:"
 msgid "Rereading partition table"
 msgstr "Partitionstabelle erneut lesen"
 
-msgid "Reschedule the task to run when the receiver enters or exits standby. The state change must occur within the task’s scheduled window, or the task will not run."
+msgid "Reschedule the task to run when the receiver enters or exits Standby. The state change must occur within the task’s scheduled window, or the task will not run."
 msgstr "'Ja' auswählen, um die Aufgabe auf den Zeitpunkt zu verschieben, zu dem der Empfänger in Standby wechselt bzw. diesen verlässt. Die Statusänderung muss innerhalb des Zeitfensters für die Aufgabe erfolgen, sonst wird die Aufgabe nicht ausgeführt."
 
 msgid "Reserved"
@@ -16240,7 +16240,7 @@ msgid "Restart GUI after x crashes"
 msgstr "Bedienoberfläche nach x Abstürzen neu starten"
 
 msgid "Restart GUI now to start using the new locale/language?"
-msgstr "Bedienoberfläche jetzt mit der neuen Sprachregion / Sprache starten?"
+msgstr "Bedienoberfläche jetzt mit der neuen Sprachregion/Sprache starten?"
 
 #
 msgid "Restart GUI now?"
@@ -16654,7 +16654,7 @@ msgid "Samba Settings"
 msgstr "Samba"
 
 msgid "Same as in active"
-msgstr "Gleich wie bei Box aktiv"
+msgstr "Gleich wie im aktiven Zustand"
 
 msgid "Same as stream"
 msgstr "Gleich wie Stream"
@@ -16664,7 +16664,7 @@ msgstr "Gleiches Verhalten wie bei der aktuellen Animation"
 
 # 5.1 /Plugins\Extensions\PicturePlayer
 msgid "Same resolution as skin"
-msgstr "Auflösung wie im Skin"
+msgstr "Gleiche Auflösung wie der Skin"
 
 msgid "Samoa"
 msgstr "Samoa"
@@ -16692,7 +16692,7 @@ msgid "Sat"
 msgstr "Sa."
 
 msgid "Sat Finder"
-msgstr "Signal-Finder"
+msgstr "Signalfinder"
 
 msgid "Sat-Sun"
 msgstr "Samstag und Sonntag"
@@ -16702,20 +16702,20 @@ msgid "Satellite"
 msgstr "Satellit"
 
 msgid "Satellite Dish Settings"
-msgstr "Satelliten-Einrichtung"
+msgstr "Satelliteneinrichtung"
 
 msgid "Satellite configuration mode"
-msgstr "Satelliten-Konfigurationsmodus"
+msgstr "Satellitenkonfiguration"
 
 msgid "Satellite equipment setup"
-msgstr "Einstellungen der Sat-Ausrüstung"
+msgstr "Einstellungen der Satellitenausrüstung"
 
 #
 msgid "Satellites"
 msgstr "Satelliten"
 
 msgid "Satfinder"
-msgstr "Signal-Finder"
+msgstr "Signalfinder"
 
 #
 msgid "Sats"
@@ -17483,10 +17483,10 @@ msgstr "Ein Repository-Commit-Log zur Ansicht auswählen:"
 msgid "Select a script to run:"
 msgstr "Zu startendes Skript auswählen:"
 
-msgid "Select a time, when in standby mode, after which the descramble can proceed."
+msgid "Select a time, when in Standby mode, after which the descramble can proceed."
 msgstr "Die Zeit auswählen, nach der die Entschlüsselung im Standby fortgesetzt werden soll."
 
-msgid "Select a time, when in standby, before which descramble can proceed."
+msgid "Select a time, when in Standby, before which descramble can proceed."
 msgstr "Die Zeit auswählen, bevor die Entschlüsselung im Standby fortgesetzt werden soll."
 
 msgid "Select a tuner"
@@ -17585,7 +17585,7 @@ msgstr "Das Verhalten der Nummerntasten für die Sprungaktionen auswählen."
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr "Auswählen, wie die Satellitenschüssel eingerichtet ist (feste Schüssel, einzelner LNB, DiSEqC-Schalter, Rotor usw.)."
 
-msgid "Select how the schedule is handled with respect to standby mode."
+msgid "Select how the schedule is handled with respect to Standby mode."
 msgstr "Auswählen, wie der Zeitplan im Standby behandelt werden soll."
 
 msgid "Select how to activate the Quick EPG mode."
@@ -17820,7 +17820,7 @@ msgid "Select the delay before the timer activates."
 msgstr "Die Verzögerung auswählen, bevor der Timer aktiviert wird."
 
 msgid "Select the delay to use when closing a Stream Relay service before reallocating the tuner for another service. Using '0' is only recommended for receivers with multiple satellite tuners."
-msgstr "Die Verzögerung auswählen, die beim Wechsel von einem Stream-Relay-Sender verwendet wird, bevor der Tuner auf einen anderen Sender wechselt. Die Verwendung von '0' wird nur für Boxen mit mehreren Satelliten-Tunern empfohlen."
+msgstr "Die Verzögerung auswählen, die beim Wechsel von einem Stream-Relay-Sender verwendet wird, bevor der Tuner auf einen anderen Sender wechselt. Die Verwendung von '0' wird nur für Receiver mit mehreren Satelliten-Tunern empfohlen."
 
 msgid "Select the delay to wait after pressing more digit buttons to select a new service."
 msgstr "Die Umschaltverzögerung der weiteren Zifferntasten einstellen."
@@ -18132,7 +18132,7 @@ msgstr "Auswählen, was nach Abschluss der Timeraufnahme geschehen soll. Bei 'Au
 msgid "Select what do do after the timer zap has completed."
 msgstr "Auswählen, was nach Ablauf des Umschalttimers geschehen soll."
 
-msgid "Select what should be done when the %s %s was boot-up, normal playing or goto standby."
+msgid "Select what should be done when the %s %s was boot-up, normal playing or goto Standby."
 msgstr "Auswählen, was geschehen soll, wenn die %s %s gestartet wird."
 
 # Powerlost setup.xml
@@ -18669,10 +18669,10 @@ msgstr "Zeitoptionen einstellen"
 msgid "Set to 'Disabled' to replace underscore characters '_' in file and directory names with spaces."
 msgstr "Bei 'Nein' werden Unterstriche in Dateien und Verzeichnissen durch Leerzeichen ersetzt."
 
-msgid "Set to 'Enabled' to descramble queued scrambled recordings in standby mode before shutting down."
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby mode before shutting down."
 msgstr "Aktivieren, um verschlüsselte Aufnahmen in der Warteschleife vor dem Herunterfahren im Standby zu entschlüsseln."
 
-msgid "Set to 'Enabled' to descramble queued scrambled recordings in standby."
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
 msgstr "Aktivieren, um verschlüsselte Aufnahmen in der Warteschleife im Standby zu entschlüsseln."
 
 msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
@@ -18884,7 +18884,7 @@ msgid "Setup your remote buttons"
 msgstr "Belegung der Fernbedienungstasten einstellen."
 
 msgid "Setup your satellite equipment"
-msgstr "Satelliten-Ausrüstung"
+msgstr "Satellitenausrüstung"
 
 msgid "Seychelles"
 msgstr "Seychellen"
@@ -19730,7 +19730,7 @@ msgid "Sigma Designs"
 msgstr "Sigma Designs"
 
 msgid "Signal Finder"
-msgstr "Signal-Finder"
+msgstr "Signalfinder"
 
 msgid "Signal quality"
 msgstr "Signalqualität"
@@ -19838,7 +19838,7 @@ msgid "SkinSelection"
 msgstr "Skinauswahl"
 
 msgid "Skip back"
-msgstr "Zurück spulen"
+msgstr "Zurückspulen"
 
 msgid "Skip backward"
 msgstr "Rückwärts springen"
@@ -20190,7 +20190,7 @@ msgstr "Somalisch"
 msgid "Somalia"
 msgstr "Somalia"
 
-msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting puts the TV into standby before switching. If the TV does not turn back on, a slower transmission interval or repeating the wake-up command may be required."
+msgid "Some TVs can't switch to the correct input if another HDMI port is active. This setting puts the TV into Standby before switching. If the TV does not turn back on, a slower transmission interval or repeating the wake-up command may be required."
 msgstr "Einige TV-Geräte wechseln nicht den Eingang wenn ein anderer HDMI-Port aktiv ist. Diese Einstellung schaltet den TV zuvor in den Standby. Wenn sich der TV nicht wieder einschaltet, ist möglicherweise ein langsameres Sendeintervall oder die Wiederholung von Aufwachbefehlen erforderlich."
 
 msgid "Sorbian"
@@ -20207,10 +20207,7 @@ msgid "Sorry MiniDLNA Config is Missing"
 msgstr "Die MiniDLNA-Konfiguration fehlt!"
 
 msgid "Sorry feeds are down for maintenance, please try again later."
-msgstr ""
-"Die Feeds sind wegen Wartungsarbeiten nicht verfügbar!\n"
-"Bitte später erneut versuchen.\n"
-"Für weitere Fragen 'https://www.opena.tv' besuchen."
+msgstr "Leider sind die Feeds wegen Wartungsarbeiten nicht verfügbar – bitte später erneut versuchen."
 
 msgid "Sorry it is only possible to record 2 channels at once!"
 msgstr "Es können nur 2 Sender auf einmal aufgenommen werden!"
@@ -21553,7 +21550,7 @@ msgstr ""
 "Der Sender unterstützt vermutlich VPS.\n"
 "Soll VPS aktiviert werden?"
 
-msgid "The command to wake from standby will be sent multiple times."
+msgid "The command to wake from Standby will be sent multiple times."
 msgstr "Das Aufwachkommando vom Standby wird wiederholend gesendet."
 
 msgid ""
@@ -21813,7 +21810,7 @@ msgstr "In diesem Feld kann nach einer zusätzlichen Symbolrate bis zu %s gesuch
 msgid "This function is not available as processing of large files may take too long to run on this hardware."
 msgstr "Die Funktion zur Bearbeitung großer Dateien ist auf dieser Hardware nicht möglich! Es würde viel zu lange dauern."
 
-msgid "This is a workaround for devices that wake up immediately after entering standby. Wake-up commands from other devices are ignored for a few seconds."
+msgid "This is a workaround for devices that wake up immediately after entering Standby. Wake-up commands from other devices are ignored for a few seconds."
 msgstr "Dies ist ein Workaround für einige Geräte, die nach dem Umschalten in den Standby wieder geweckt werden. Damit wird das Aufwecken durch andere Geräte für einige Sekunden ignoriert."
 
 #, python-format
@@ -21943,7 +21940,7 @@ msgstr "Die Anzeige der verbleibenden und verstrichenen Zeit bei Live-TV einstel
 msgid "This option allows you to choose how to display the remaining or elapsed time for media playback."
 msgstr "Die Anzeige der verbleibenden und verstrichenen Zeit bei Medienwiedergabe einstellen."
 
-msgid "This option allows you to choose if the display shows the time or nothing in standby."
+msgid "This option allows you to choose if the display shows the time or nothing in Standby."
 msgstr "Die Anzeige der Uhrzeit im Standby einstellen."
 
 msgid "This option allows you to choose if the display shows the time, channel number or nothing during operation."
@@ -22218,7 +22215,7 @@ msgstr "Zeitverzögerung für die wiederholte Übertragung"
 msgid "Time delay of the shutdown messages"
 msgstr "Zeitverzögerung der Abschaltmeldungen"
 
-msgid "Time delay until standby or deep standby"
+msgid "Time delay until Standby or Deep Standby"
 msgstr "Zeitverzögerung bis zum Standby oder Deep-Standby"
 
 msgid "Time for next LCD scrolling"
@@ -24006,7 +24003,7 @@ msgstr "Auf Partition warten"
 msgid "Wake up"
 msgstr "Aufwachen"
 
-msgid "Wake up TV from standby"
+msgid "Wake up TV from Standby"
 msgstr "TV aus dem Standby aufwecken"
 
 msgid "Wake up from Deep-Standby is allowed"
@@ -24018,7 +24015,7 @@ msgstr "Aufwachzeit bevor ein Timer beginnt (Min)"
 msgid "Wake up to standby"
 msgstr "In Standby aufwachen"
 
-msgid "Wake up your AV Receiver from standby"
+msgid "Wake up your AV Receiver from Standby"
 msgstr "AV-Receiver aus dem Standby aufwecken"
 
 msgid "Wallis and Futuna"
@@ -24310,7 +24307,7 @@ msgstr "Wenn aktiviert, wird der Receiver automatisch ausgeschaltet."
 msgid "When enabled, the receiver will automatically be switched on."
 msgstr "Wenn aktiviert, wird der Receiver automatisch eingeschaltet."
 
-msgid "When enabled, the receiver will automatically return to standby when the TV is turned off."
+msgid "When enabled, the receiver will automatically return to Standby when the TV is turned off."
 msgstr "Wenn aktiviert, wird der Receiver automatisch in den Standby gehen, wenn der Fernseher ausgeschaltet wird."
 
 msgid "When enabled, the receiver will automatically use the audio track which you selected before."
@@ -24319,7 +24316,7 @@ msgstr "Wenn aktiviert, verwendet der Receiver automatisch die zuvor ausgewählt
 msgid "When enabled, the receiver will automatically use the subtitles which you selected before."
 msgstr "Wenn aktiviert, verwendet der Receiver automatisch die Untertitel, die zuvor ausgewählt wurden."
 
-msgid "When enabled, the receiver will automatically wake from standby when the TV is turned on."
+msgid "When enabled, the receiver will automatically wake from Standby when the TV is turned on."
 msgstr "Wenn aktiviert, wird der Receiver automatisch aus dem Standby aufwachen, wenn der Fernseher eingeschaltet wird."
 
 msgid "When enabled, the receiver will select an AC3 track (when available)."
@@ -24383,10 +24380,10 @@ msgstr ""
 msgid "When the input cursor reaches this point (percentage of the width, from either side) scroll the text to the cursor."
 msgstr "Wenn der Eingabecursor diesen Punkt erreicht (Prozentsatz der Breite, von beiden Seiten), den Text zum Cursor scrollen."
 
-msgid "When the receiver wakes from standby or deep standby it will send a command to the TV to bring it out of standby."
+msgid "When the receiver wakes from Standby or Deep Standby it will send a command to the TV to bring it out of Standby."
 msgstr "Wenn der Receiver aus dem Standby oder Deep-Standby aufwacht, wird auch dem Fernseher ein Signal geschickt, um ihn einzuschalten."
 
-msgid "When the receiver wakes from standby, it will switch the TV to the HDMI input connected to the receiver."
+msgid "When the receiver wakes from Standby, it will switch the TV to the HDMI input connected to the receiver."
 msgstr "Wenn der Receiver aus dem Standby aufwacht, wird am Fernseher auf den HDMI Eingang geschaltet, an dem der Receiver angeschlossen ist."
 
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
@@ -24486,10 +24483,10 @@ msgstr "Bei 'Ja' werden noch im Hintergrund laufende Aktionen (Jobs) im Erweiter
 msgid "With this option you can switch off the display during operation."
 msgstr "Das Display während des Betriebs ausschalten."
 
-msgid "With this option you can switch off the display in deep standby mode."
+msgid "With this option you can switch off the display in Deep Standby mode."
 msgstr "Das Display im Deep-Standby ausschalten."
 
-msgid "With this option you can switch off the display in standby mode."
+msgid "With this option you can switch off the display in Standby mode."
 msgstr "Das Display im Standby ausschalten."
 
 msgid "With this option you can switch the LED color or deactivate the LED."
@@ -24676,7 +24673,7 @@ msgstr "Die Liste kann nach Zeit oder alphanumerisch sortiert werden."
 msgid "You can only burn Dreambox recordings!"
 msgstr "Nur Enigma2-Aufnahmen können gebrannt werden!"
 
-msgid "You can skip this function and turn off the TV when you wake the receiver from standby and immediately switch back to standby."
+msgid "You can skip this function and turn off the TV when you wake the receiver from Standby and immediately switch back to Standby."
 msgstr "Diese Funktion kann übersprungen und der TV ausgeschaltet werden, wenn der Receiver aus dem Standby aufgeweckt und sofort wieder zurück in den Standby versetzt wird."
 
 # Satconfig.py
@@ -24734,7 +24731,7 @@ msgid ""
 "You need a PC connected to your %s %s. Visit the website https://www.opena.tv/ for further instructions.\n"
 "The %s %s will now be halted. After you have performed the update instructions from the website, the new firmware will ask you to restore the settings."
 msgstr ""
-"Ein PC muss mit der %s %s verbunden sein!\n"
+"Ein PC muss mit der %s %s verbunden sein.\n"
 "Für weiterführende Informationen 'https://www.opena.tv' besuchen.\n"
 "Die %s %s wird nun angehalten.\n"
 "Nachdem das Update wie auf der Website beschrieben durchgeführt wurde, werden nach Bestätigung die Einstellungen wiederhergestellt."
@@ -24977,7 +24974,7 @@ msgid "Zap mode"
 msgstr "Umschaltmodus"
 
 msgid "Zap next"
-msgstr "Nächste Sendung umschalten"
+msgstr "Bei nächster Sendung umschalten"
 
 msgid "Zap to"
 msgstr "Umschalten"
