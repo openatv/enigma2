@@ -3069,7 +3069,7 @@ msgstr "比斯拉马"
 msgid "Bitrate"
 msgstr "比特率"
 
-msgid "Bitrate of the video encoder. Larger values improves quality and increases file size."
+msgid "Set the bitrate of the video encoder. Larger values improve the quality and also increases the file size."
 msgstr "视频编码器的比特率。 较大的值可提高质量并增加文件大小。"
 
 msgid "Black"
@@ -4072,19 +4072,19 @@ msgstr "选择连接到 IceTV 服务器以检查更新的频率。"
 msgid "Choose the amount of additional slots."
 msgstr "选择额外插槽的数量。"
 
-msgid "Choose the display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' the month in digits ('DD' and 'MM' have leading zeros for single digit values). The screen display will be based on your choice but can be influenced by the skin."
+msgid "Choose the display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' is the month in digits. ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "选择日期的显示格式样式。'D'/'DD'是日期,'M'/'MM'是月份的数字。（'DD'和'MM'有前 导零表示单个数字值。）屏幕显示将基于您的选择而定，可能受皮肤的影响。"
 
-msgid "Choose the display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' the seconds ('HH' and 'hh' have leading zeros for single digit values). The screen display will be based on your choice but can be influenced by the skin."
+msgid "Choose the display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds. ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "选择时间的显示格式样式。'H'/'HH'是24小时制，'h'/'hh'是12小时制,'mm'是 分钟,'ss'是秒,（'HH'和'hh'有前导零表示单个数字值。）屏幕显示将基于您的选择而定，可能受皮肤的影响。"
 
 msgid "Choose the fallback font."
 msgstr "选择备用字体。"
 
-msgid "Choose the front panel display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' the month in digits ('DD' and 'MM' have leading zeros for single digit values). The screen display will be based on your choice but can be influenced by the skin."
+msgid "Choose the front panel display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' is the month in digits. ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "为日期选择前面板显示格式样式。'D'/'DD'是日期，'M'/'MM'是月份的数字。（'DD'和'MM'有前导零表示单个数字值。）屏幕显示基于您的选择而定，可能受皮肤的影响。"
 
-msgid "Choose the front panel display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' the minutes ('HH' and 'hh' have leading zeros for single digit values). The front panel display will be based on your choice but can be influenced any applicable skin."
+msgid "Choose the front panel display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' is the minutes. ('HH' and 'hh' have leading zeros for single digit values.) The front panel display will be based on your choice but can be influenced any applicable skin."
 msgstr "为时间选择前面板显示格式样式。H'/'HH'是24小时制，'h'/'hh'是12小时制,'mm'是分钟。('HH'和'hh'有前导零表示单个数字值。)前面板显示将基于您的选择而定，可能会影响任何适用的外观。"
 
 msgid "Choose the location for crash and debug logs."
@@ -4617,7 +4617,7 @@ msgstr "配置前面板显示屏的亮度级别以进行调光操作。"
 msgid "Configure the brightness level of the front panel display for normal operation."
 msgstr "配置前面板显示屏的亮度级别以进行正常操作。"
 
-msgid "Configure the brightness level of the front panel display for Standby mode."
+msgid "Configure the brightness level of the front panel display for Standby."
 msgstr "设置待机时前置面板的亮度级别。"
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
@@ -4836,7 +4836,7 @@ msgstr "配置是否将首选列表中的另一个调谐器分配给录制内容
 msgid "Configure whether multi channel sound tracks should be downmixed to stereo."
 msgstr "配置多声道音轨是否要缩混为立体声。"
 
-msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (e.g. in EPGrefresh)."
+msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (like in EPGrefresh)."
 msgstr "配置“录制”符号（在显示皮肤和 LCD 皮肤中）是仅对真正录制可见，还是对流媒体和伪录制可见（例如，EPGrefresh）。"
 
 msgid "Configure which color format should be used on the SCART output."
@@ -7351,7 +7351,7 @@ msgstr "启用功能，以便接收机可以解密流（如果 ECM（授权控�
 msgid "Enables sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "如果设置为“是”，那么对于深度待机事件，将向电视发送相同的命令，就像在常规待机事件期间发送的一样。"
 
-msgid "Enables timeshift to use alternative audio plugins."
+msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
 msgstr "如果设置为“是”，则允许您将时移与备用音频插件一起使用。"
 
 msgid "Encrypted: "
@@ -9829,7 +9829,7 @@ msgstr "除了在事件开始处的检查之外，可以使用重复检查，使
 msgid "In expert mode, configure which tuners will be preferred for recordings, when more than one tuner is available."
 msgstr "在专家模式下，当有多个调谐器可用时，配置哪些调谐器会被用来录制。"
 
-msgid "In most cases, leave this disabled. Enable only if you have a very specific need."
+msgid "In most cases this should be set to 'No'. Only set to 'Yes' if you have a very specific need."
 msgstr "在大多数情况下，应将其设置为“否”。仅在您有特定需求时才启用。"
 
 msgid ""
@@ -13130,7 +13130,7 @@ msgstr "Opkg 日志操作"
 msgid "Option"
 msgstr "选项"
 
-msgid "Option to disable picons on the Infobar."
+msgid "Option to disable picons on the InfoBar."
 msgstr "禁用信息栏上频道图标的选项。"
 
 msgid "Option to enable the hardware Standby timer."
@@ -14480,7 +14480,7 @@ msgstr "波多黎各"
 msgid "Purge"
 msgstr "清除"
 
-msgid "Purge 'Trash' after x days"
+msgid "Purge 'Trash' after"
 msgstr "（天）后清除“垃圾”"
 
 msgid "Purge Deleted User Bouquets"
@@ -15259,7 +15259,7 @@ msgstr "所需介质类型："
 msgid "Rereading partition table"
 msgstr "正在重新读取分区表"
 
-msgid "Reschedule the task to run when the receiver enters or exits Standby. The state change must occur within the task’s scheduled window, or the task will not run."
+msgid "Select 'Yes' to reschedule the task to run when the receiver enters or exits Standby. The state change must occur within the task's scheduled window or the task will not be run."
 msgstr "选择“是”可将任务重新安排到接收机进入/退出待机模式时执行。状态变化必须发生在计划任务时间窗口内，否则该任务将不会运行。"
 
 msgid "Reserved"
@@ -16503,7 +16503,7 @@ msgstr "选择要查看的存储库提交日志："
 msgid "Select a script to run:"
 msgstr "选择要运行的脚本："
 
-msgid "Select a time, when in Standby mode, after which the descramble can proceed."
+msgid "Select a time, when in Standby, after which the descramble can proceed."
 msgstr "选择待机模式下可开始解扰的延迟时间。"
 
 msgid "Select a time, when in Standby, before which descramble can proceed."
@@ -16603,7 +16603,7 @@ msgstr "设置数字键在跳转操作时的行为。"
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr "选择卫星天线的设置方式。 即固定天线、单高频头、DiSEqC 开关、极轴等。"
 
-msgid "Select how the schedule is handled with respect to Standby mode."
+msgid "Select how the schedule is handled with respect to Standby."
 msgstr "选择如何在待机模式下处理计划任务。"
 
 msgid "Select how to activate the Quick EPG mode."
@@ -16855,7 +16855,7 @@ msgstr "选择以前访问过频道的显示顺序。"
 msgid "Select the duration of inactivity before the screen saver will be displayed."
 msgstr "配置屏幕保护程序显示前的持续时间（分钟）。"
 
-msgid "Select the end time before which this timer can be activated.  After this time the timer won't be activated even if other conditions are met."
+msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr "选择此定时器可被激活的最晚截止时间。超过此时限后，即使满足其他所有条件，定时器也不再启动。"
 
 #, python-format
@@ -17031,7 +17031,7 @@ msgstr "选择获取升级文件的源位置。"
 msgid "Select the source of the default DNS settings."
 msgstr "选择默认 DNS 设置的来源。"
 
-msgid "Select the start time after which this timer can be activated.  Before this time the timer won't be activated even if other conditions are met."
+msgid "Select the start time after which this timer can be activated. Before this time the timer won't be activated even if other conditions are met."
 msgstr "选择此定时器可被激活的最早起始时间。早于此时限，即使满足其他所有条件，定时器也不会启动。"
 
 msgid "Select the starting/initial column to be activated on File Commander start up."
@@ -17473,7 +17473,7 @@ msgstr "设置固定地址"
 msgid "Set fps for external subtitles"
 msgstr "设置外挂字幕的帧数"
 
-msgid "Set how long the second InfoBar stays visible. It also disappears when you press ‘OK’."
+msgid "Set how long the second InfoBar stays visible. The second InfoBar also disappears when you press 'OK'."
 msgstr "设置隐藏第二个信息栏的时间。 按下“确定”后，该栏也会消失。"
 
 msgid "Set interface as the default Interface"
@@ -17552,7 +17552,7 @@ msgstr "设置备用调谐器的 OpenWebif 端口。"
 msgid "Set the position of the recording icons."
 msgstr "设置录制图标的位置。"
 
-msgid "Set the screen type you get on pressing 'OK' when the InfoBar shows to second InfoBar Lite or event info."
+msgid "Set the screen type you see on pressing 'OK' when the InfoBar shows the second InfoBar Lite or event info."
 msgstr "当信息栏显示为第二个信息栏精简或事件信息时，设置按下“确定”时的屏幕类型。"
 
 msgid "Set the scrolling speed of text on the front display, this is used by software renderer in some skins."
@@ -17623,7 +17623,7 @@ msgstr "设置时间选项"
 msgid "Set to 'Disabled' to replace underscore characters '_' in file and directory names with spaces."
 msgstr "设置为“禁用”以用空格替换文件和目录名称中的下划线字符“_”。"
 
-msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby mode before shutting down."
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby before shutting down."
 msgstr "设为‘启用’可在关机前对待机模式下已排队的加扰录制内容执行解扰。"
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
@@ -18362,7 +18362,7 @@ msgstr "导入频道不成功时显示通知"
 msgid "Show notification when import channels was successful"
 msgstr "导入频道成功时显示通知"
 
-msgid "Show or hide the extended description (skin dependent)."
+msgid "Show or hide the extended description. This functionality may be skin dependent."
 msgstr "显示或隐藏扩展描述，（视皮肤而定）。"
 
 msgid "Show parting lines"
@@ -19854,7 +19854,7 @@ msgstr "REC 符号正在使用"
 msgid "Symmetrical skips"
 msgstr "对称跳过"
 
-msgid "Sync NTP every x minutes"
+msgid "Sync NTP every"
 msgstr "同步 NTP 每（分钟）"
 
 msgid "Sync failure moving back to origin!"
@@ -20734,10 +20734,10 @@ msgstr "此选项允许您选择如何显示剩余时间或已用时间，或两
 msgid "This option allows you to choose how to display standard definition video on your TV."
 msgstr "此选项允许您选择如何在电视上显示标清视频。"
 
-msgid "This option allows you to choose how to display the remaining or elapsed time for live TV."
+msgid "This option allows you to choose how to display the remaining/elapsed time for live TV."
 msgstr "此选项允许您选择如何显示直播电视的剩余/已用时间。"
 
-msgid "This option allows you to choose how to display the remaining or elapsed time for media playback."
+msgid "This option allows you to choose how to display the remaining/elapsed time for media playback."
 msgstr "此选项允许您选择如何显示媒体播放的剩余/已用时间。"
 
 msgid "This option allows you to choose if the display shows the time or nothing in Standby."
@@ -20752,7 +20752,7 @@ msgstr "此选项允许您选择透明频道图标的背景颜色。"
 msgid "This option allows you to choose the option for Subservice indicator or selection."
 msgstr "此选项允许您选择子频道指示器或选择选项。"
 
-msgid "This option allows you to choose what the first button press jumps to in channel list screen (pressing '2' jumps to 'A' or '2' first) when 'Quick Actions' preset actions are performed."
+msgid "This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first), when 'Quick Actions' preset actions are performed."
 msgstr "此选项允许您选择在执行“快捷操作”预设动作时，频道列表界面中首次按键的跳转目标（例如：按下“2”时优先跳转至“A”还是“2”）。"
 
 msgid "This option allows you to choose whether or not to display genre information for the event."
@@ -22867,7 +22867,7 @@ msgstr "启用时，当没有空闲调谐器，允许录制中止串流。"
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "启用时，当没有空闲的调谐器，允许录制中断直播电视。"
 
-msgid "When enabled, a specific Softcam can be assigned to each encrypted service."
+msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
 msgstr "当设置为“是”时，可以为每个加密频道分配一个特定的Softcam。"
 
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
@@ -22930,7 +22930,7 @@ msgstr "启用时，图文电视页面将被缓存，允许更快的访问。"
 msgid "When enabled, teletext subtitles will be displayed at their original position."
 msgstr "启用时，图文电视字幕将显示在其原始位置。"
 
-msgid "When enabled, the PiP can be closed using the EXIT button."
+msgid "When enabled, the PiP can be closed by pressing the EXIT button."
 msgstr "启用后，可通过按 EXIT 键关闭画中画。"
 
 msgid "When enabled, the VCR SCART option will be shown on the main menu."
@@ -23113,10 +23113,10 @@ msgstr "使用此选项，您可在扩展菜单屏幕中隐藏作业任务（按
 msgid "With this option you can switch off the display during operation."
 msgstr "使用此选项，您可以在操作期间关闭显示屏。"
 
-msgid "With this option you can switch off the display in Deep Standby mode."
+msgid "With this option you can switch off the display in Deep Standby."
 msgstr "使用此选项，您可以在深度待机模式下关闭显示屏。"
 
-msgid "With this option you can switch off the display in Standby mode."
+msgid "With this option you can switch off the display in Standby."
 msgstr "使用此选项，您可以在待机模式下关闭显示屏。"
 
 msgid "With this option you can switch the LED color or deactivate the LED."

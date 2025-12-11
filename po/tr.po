@@ -3176,7 +3176,7 @@ msgstr "Bislamaca"
 msgid "Bitrate"
 msgstr "Bitrate"
 
-msgid "Bitrate of the video encoder. Larger values improves quality and increases file size."
+msgid "Set the bitrate of the video encoder. Larger values improve the quality and also increases the file size."
 msgstr "Video kodlayıcının bit hızı. Daha büyük değer kaliteyi artırır ve dosya boyutunu artırır."
 
 msgid "Black"
@@ -4212,19 +4212,19 @@ msgstr "Güncellemeleri kontrol etmek için IceTV sunucusuna ne sıklıkla bağl
 msgid "Choose the amount of additional slots."
 msgstr "Ek yuvaların miktarını seçin."
 
-msgid "Choose the display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' the month in digits ('DD' and 'MM' have leading zeros for single digit values). The screen display will be based on your choice but can be influenced by the skin."
+msgid "Choose the display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' is the month in digits. ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Tarihler için ekran formatlama stilini seçin. 'D' / 'DD' tarih ve 'M' / 'MM' rakamlarla aydır. ('DD' ve 'MM', tek basamaklı değerler için önde gelen sıfırlara sahiptir.) Ekran görüntüsü seçiminize göre olacaktır ancak ciltten etkilenebilir."
 
-msgid "Choose the display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' the seconds ('HH' and 'hh' have leading zeros for single digit values). The screen display will be based on your choice but can be influenced by the skin."
+msgid "Choose the display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds. ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Zamanlar için ekran formatlama stilini seçin. 'H' / 'HH' 24 saatlik bir saattir, 'h' / 'hh' 12 saatlik bir saattir, 'mm' dakikadır ve 'ss saniyedir. ('HH' ve 'hh', tek basamaklı değerler için önde gelen sıfırlara sahiptir.) Ekran görüntüsü seçiminize göre olacaktır ancak ciltten etkilenebilir."
 
 msgid "Choose the fallback font."
 msgstr "Yedek yazı tipini seçin."
 
-msgid "Choose the front panel display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' the month in digits ('DD' and 'MM' have leading zeros for single digit values). The screen display will be based on your choice but can be influenced by the skin."
+msgid "Choose the front panel display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' is the month in digits. ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Tarihler için ön panel ekran formatlama stilini seçin. 'D' / 'DD' tarih ve 'M' / 'MM' rakamlarla aydır. ('DD' ve 'MM', tek basamaklı değerler için önde gelen sıfırlara sahiptir.) Ekran görüntüsü seçiminize göre olacaktır ancak ciltten etkilenebilir."
 
-msgid "Choose the front panel display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' the minutes ('HH' and 'hh' have leading zeros for single digit values). The front panel display will be based on your choice but can be influenced any applicable skin."
+msgid "Choose the front panel display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' is the minutes. ('HH' and 'hh' have leading zeros for single digit values.) The front panel display will be based on your choice but can be influenced any applicable skin."
 msgstr "Zamanlar için ön panel ekran formatlama stilini seçin. 'H' / 'HH' 24 saatlik bir saat, 'h' / 'hh' 12 saatlik bir saat, 'mm' dakikadır. ('HH' ve 'hh', tek basamaklı değerler için önde gelen sıfırlara sahiptir.) Ön panel ekranı seçiminize bağlı olacaktır, ancak uygulanabilir herhangi bir cildi etkileyebilir."
 
 msgid "Choose the location for crash and debug logs."
@@ -4779,7 +4779,7 @@ msgstr "Kısık çalışma için ön panel ekranının parlaklık seviyesini yap
 msgid "Configure the brightness level of the front panel display for normal operation."
 msgstr "Normal çalışma için ön panel ekranının parlaklık seviyesini yapılandırın."
 
-msgid "Configure the brightness level of the front panel display for Standby mode."
+msgid "Configure the brightness level of the front panel display for Standby."
 msgstr "Bekleme için ön panel ekranının parlaklık düzeyini yapılandırın."
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
@@ -4999,7 +4999,7 @@ msgstr "Tercih edilen listeden başka bir tunerin, aynı canlı TV kanalını al
 msgid "Configure whether multi channel sound tracks should be downmixed to stereo."
 msgstr "Çok kanallı ses parçalarının stereoya karıştırılıp karıştırılmayacağını ayarlayın."
 
-msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (e.g. in EPGrefresh)."
+msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (like in EPGrefresh)."
 msgstr "'Kayıt' sembolünün (ekran teninde ve LCD kaplamada) sadece gerçek kayıtlar için mi, yoksa akışlı ve pseuso kayıtları için mi (örn. EPGrefresh) görünüp görünmediğini yapılandırın."
 
 msgid "Configure which color format should be used on the SCART output."
@@ -7628,7 +7628,7 @@ msgstr "Bir alıcının akışları çözebileceği bir özelliği etkinleştiri
 msgid "Enables sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "'evet' olarak ayarlanırsa, normal bekleme olayları sırasında gönderildiği gibi, derin bekleme olayları için aynı komutlar TV'ye gönderilir."
 
-msgid "Enables timeshift to use alternative audio plugins."
+msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
 msgstr "'Evet' olarak ayarlanırsa, timeshift'i alternatif ses eklentileriyle kullanmanıza olanak tanır."
 
 #
@@ -10219,7 +10219,7 @@ msgstr "Bir olay başlangıcındaki kontrole ek olarak, koşulların 'saat cinsi
 msgid "In expert mode, configure which tuners will be preferred for recordings, when more than one tuner is available."
 msgstr "Uzman modunda, birden fazla alıcı mevcut olduğunda, kayıtlar için hangi tarayıcıların tercih edileceğini yapılandırın."
 
-msgid "In most cases, leave this disabled. Enable only if you have a very specific need."
+msgid "In most cases this should be set to 'No'. Only set to 'Yes' if you have a very specific need."
 msgstr "Çoğu durumda bu, Hayır olarak ayarlanmalıdır. Yalnızca çok özel bir gereksiniminiz varsa etkinleştirin."
 
 msgid ""
@@ -13717,7 +13717,7 @@ msgstr "Opkg Günlük İşlemleri"
 msgid "Option"
 msgstr "Seçenek"
 
-msgid "Option to disable picons on the Infobar."
+msgid "Option to disable picons on the InfoBar."
 msgstr "Bilgi çubuğundaki piktogramları devre dışı bırakma seçeneği"
 
 msgid "Option to enable the hardware Standby timer."
@@ -15150,7 +15150,7 @@ msgstr "Porto Riko"
 msgid "Purge"
 msgstr "Tasfiye"
 
-msgid "Purge 'Trash' after x days"
+msgid "Purge 'Trash' after"
 msgstr "Çöp kutusunu (gün) sonra boşalt"
 
 msgid "Purge Deleted User Bouquets"
@@ -15979,7 +15979,7 @@ msgstr "İstenen ortam tipi:"
 msgid "Rereading partition table"
 msgstr "Bölüntü tablosu tekrar okunuyor"
 
-msgid "Reschedule the task to run when the receiver enters or exits Standby. The state change must occur within the task’s scheduled window, or the task will not run."
+msgid "Select 'Yes' to reschedule the task to run when the receiver enters or exits Standby. The state change must occur within the task's scheduled window or the task will not be run."
 msgstr ""
 
 msgid "Reserved"
@@ -17282,7 +17282,7 @@ msgstr "Görüntülemek için bir depo commit günlüğü seçin:"
 msgid "Select a script to run:"
 msgstr "Çalıştırılacak bir komut dosyası seçin:"
 
-msgid "Select a time, when in Standby mode, after which the descramble can proceed."
+msgid "Select a time, when in Standby, after which the descramble can proceed."
 msgstr ""
 
 msgid "Select a time, when in Standby, before which descramble can proceed."
@@ -17386,7 +17386,7 @@ msgstr ""
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr "Uydu çanağının nasıl ayarlanacağını seçin. yani, sabit çanak, tekli LNB, DiSEqC anahtar, konumlandırıcı, vb."
 
-msgid "Select how the schedule is handled with respect to Standby mode."
+msgid "Select how the schedule is handled with respect to Standby."
 msgstr ""
 
 msgid "Select how to activate the Quick EPG mode."
@@ -17643,7 +17643,7 @@ msgstr "Daha önce izlenen servislerin görüntülenme sırasını seçin."
 msgid "Select the duration of inactivity before the screen saver will be displayed."
 msgstr "Ekran koruyucu için süreyi dakika olarak yapılandırın."
 
-msgid "Select the end time before which this timer can be activated.  After this time the timer won't be activated even if other conditions are met."
+msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr ""
 
 #, python-format
@@ -17820,7 +17820,7 @@ msgstr "Yükseltme dosyalarının alınacağı kaynak konumu seçin."
 msgid "Select the source of the default DNS settings."
 msgstr "Varsayılan DNS ayarlarının kaynağını seçin."
 
-msgid "Select the start time after which this timer can be activated.  Before this time the timer won't be activated even if other conditions are met."
+msgid "Select the start time after which this timer can be activated. Before this time the timer won't be activated even if other conditions are met."
 msgstr ""
 
 msgid "Select the starting/initial column to be activated on File Commander start up."
@@ -18280,7 +18280,7 @@ msgstr "Sabiti ayarla"
 msgid "Set fps for external subtitles"
 msgstr "Harici altyazılar için fps ayarla"
 
-msgid "Set how long the second InfoBar stays visible. It also disappears when you press ‘OK’."
+msgid "Set how long the second InfoBar stays visible. The second InfoBar also disappears when you press 'OK'."
 msgstr "İkinci bilgi çubuğunu gizlemek için zamanı ayarlayın. Çubuk ayrıca 'OK' düğmesine basıldığında da kaybolur."
 
 msgid "Set interface as the default Interface"
@@ -18359,7 +18359,7 @@ msgstr "OpenWebif'in bağlantı noktasını yedek ayarlayıcınızdan ayarlayın
 msgid "Set the position of the recording icons."
 msgstr "Kayıt simgelerinin konumunu ayarla"
 
-msgid "Set the screen type you get on pressing 'OK' when the InfoBar shows to second InfoBar Lite or event info."
+msgid "Set the screen type you see on pressing 'OK' when the InfoBar shows the second InfoBar Lite or event info."
 msgstr "Bilgi çubuğu 2. bilgi çubuğuna veya olay bilgisine ulaştığında, 'Tamam' düğmesine basarken aldığınız ekran tipini ayarlayın."
 
 msgid "Set the scrolling speed of text on the front display, this is used by software renderer in some skins."
@@ -18430,7 +18430,7 @@ msgstr "Zaman seçeneklerini ayarlama"
 msgid "Set to 'Disabled' to replace underscore characters '_' in file and directory names with spaces."
 msgstr "Devre dışı bırakılırsa, dosya ve dizin adlarındaki altı çizili karakterler gösterilmez ve boşluklarla değiştirilir."
 
-msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby mode before shutting down."
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby before shutting down."
 msgstr ""
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
@@ -19191,7 +19191,7 @@ msgstr "Kanalları içe aktarma başarılı olmadığında bildirim göster"
 msgid "Show notification when import channels was successful"
 msgstr "Kanalları içe aktarma başarılı olduğunda bildirim göster"
 
-msgid "Show or hide the extended description (skin dependent)."
+msgid "Show or hide the extended description. This functionality may be skin dependent."
 msgstr "Geniş açıklamayı göster ya da gizle, (arayüze bağımlı)."
 
 #
@@ -20765,7 +20765,7 @@ msgstr "Sembolik bağlantı"
 msgid "Symmetrical skips"
 msgstr ""
 
-msgid "Sync NTP every x minutes"
+msgid "Sync NTP every"
 msgstr "NTP her (dakikada) eşzamanla"
 
 msgid "Sync failure moving back to origin!"
@@ -21663,10 +21663,10 @@ msgstr "Bu seçenek kalan zaman, geçen zaman veya her ikisinin de gösterilme s
 msgid "This option allows you to choose how to display standard definition video on your TV."
 msgstr "Bu seçenek, standart tanımlı videoların TV’nizde nasıl görüntüleneceğini seçmenizi sağlar."
 
-msgid "This option allows you to choose how to display the remaining or elapsed time for live TV."
+msgid "This option allows you to choose how to display the remaining/elapsed time for live TV."
 msgstr "Bu seçenek, canlı TV için kalan / geçen süreyi nasıl görüntüleyeceğinizi seçmenizi sağlar."
 
-msgid "This option allows you to choose how to display the remaining or elapsed time for media playback."
+msgid "This option allows you to choose how to display the remaining/elapsed time for media playback."
 msgstr "Bu seçenek, medya oynatma için kalan / geçen sürenin nasıl görüntüleneceğini seçmenizi sağlar."
 
 msgid "This option allows you to choose if the display shows the time or nothing in Standby."
@@ -21681,7 +21681,7 @@ msgstr "Bu seçenek şeffaf pikoların arka plan rengini seçmenizi sağlar."
 msgid "This option allows you to choose the option for Subservice indicator or selection."
 msgstr "Bu seçenek, alt hizmet göstergesi veya seçimi için seçenek belirlemenizi sağlar."
 
-msgid "This option allows you to choose what the first button press jumps to in channel list screen (pressing '2' jumps to 'A' or '2' first) when 'Quick Actions' preset actions are performed."
+msgid "This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first), when 'Quick Actions' preset actions are performed."
 msgstr "Bu seçenek, kanal listesi ekranında ilk tuşa basmanın ne yapacağını seçmenize izin verir ('Hızlı Eylemler' önayarı eylemleri gerçekleştirildiğinde, 'ilk önce' A 'ya da' 2 'basar). "
 
 msgid "This option allows you to choose whether or not to display genre information for the event."
@@ -23904,7 +23904,7 @@ msgstr "Etkinleştirildiğinde, serbest tuner olmadığında kayıt akışını 
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "Etkinleştirildiğinde, serbest tuner olmadığında bir kaydın canlı TV'yi kesmesine izin verilir."
 
-msgid "When enabled, a specific Softcam can be assigned to each encrypted service."
+msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
 msgstr "'Evet' olarak ayarlandığında, her şifreli servise belirli bir Softcam atanabilir."
 
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
@@ -23967,7 +23967,7 @@ msgstr "Etkinleştirilince, teletekst sayfaları hızlı erişime izin verecek �
 msgid "When enabled, teletext subtitles will be displayed at their original position."
 msgstr "Etkinleştirilince, teletekst altyazıları özgün konumlarında gösterilecek."
 
-msgid "When enabled, the PiP can be closed using the EXIT button."
+msgid "When enabled, the PiP can be closed by pressing the EXIT button."
 msgstr "Etkin olduğunda RiR çıkış düğmesi ile kapatılabilir."
 
 msgid "When enabled, the VCR SCART option will be shown on the main menu."
@@ -24154,10 +24154,10 @@ msgstr "Görevlerin eklentiler ekranında gizlenmesini sağlar (mavi tuşa kısa
 msgid "With this option you can switch off the display during operation."
 msgstr "Bu seçenek ile işlem sırasında ekranı kapatabilirsiniz."
 
-msgid "With this option you can switch off the display in Deep Standby mode."
+msgid "With this option you can switch off the display in Deep Standby."
 msgstr "Bu seçenek ile, Derin Bekleme Modunda ekranı kapatabilirsiniz."
 
-msgid "With this option you can switch off the display in Standby mode."
+msgid "With this option you can switch off the display in Standby."
 msgstr "Bu seçenek ile Bekleme Modunda ekranı kapatabilirsiniz."
 
 msgid "With this option you can switch the LED color or deactivate the LED."

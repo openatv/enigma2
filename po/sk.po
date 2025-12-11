@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-12-06 12:58+0000\n"
-"PO-Revision-Date: 2025-12-10 05:52+0000\n"
+"PO-Revision-Date: 2025-12-11 12:21+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
@@ -2813,7 +2813,7 @@ msgid "Automatic shares access"
 msgstr "Automatický prístup k zdieľaniu"
 
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
-msgstr "Automaticky prepnúť TV do pohotovostného režimu vždy keď sa prijímač vypne alebo prepne do pohotovostného režimu."
+msgstr "Automaticky prepnúť TV do pohotovostného režimu vždy, keď sa prijímač vypne alebo prepne do pohotovostného režimu."
 
 msgid "Automatically start time shift after"
 msgstr "Automatické spustenie timeshiftu po"
@@ -3107,7 +3107,7 @@ msgstr "bislama"
 msgid "Bitrate"
 msgstr "Bitrate"
 
-msgid "Bitrate of the video encoder. Larger values improves quality and increases file size."
+msgid "Set the bitrate of the video encoder. Larger values improve the quality and also increases the file size."
 msgstr "Dátový tok video enkódera. Vyššia hodnota zlepší kvalitu a zvýši veľkosť súboru."
 
 msgid "Black"
@@ -4110,19 +4110,19 @@ msgstr "Vyberte, ako často sa má vykonať pripojenie na server IceTV a kontrol
 msgid "Choose the amount of additional slots."
 msgstr "Vyberte si množstvo dodatočných slotov."
 
-msgid "Choose the display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' the month in digits ('DD' and 'MM' have leading zeros for single digit values). The screen display will be based on your choice but can be influenced by the skin."
+msgid "Choose the display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' is the month in digits. ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Vyberte si formát zobrazenia dátumov na obrazovke. 'D'/'DD' označuje deň a 'M'/'MM' označuje mesiac v číselnom vyjadrení. ('DD' a 'MM' obsahujú pre jednociferné hodnoty počiatočné nuly.) Zobrazenie na obrazovke podľa vašej voľby však môže ovplyvniť nastavený vzhľad."
 
-msgid "Choose the display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' the seconds ('HH' and 'hh' have leading zeros for single digit values). The screen display will be based on your choice but can be influenced by the skin."
+msgid "Choose the display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds. ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Vyberte si formát zobrazenia času na obrazovke. 'H'/'HH' označuje hodinu pre 24-hodinový formát, 'h'/'hh' označuje hodiny pre 12-hodinový formát, 'mm' sú minúty a 'ss' sú sekundy. ('HH' a 'hh' obsahujú pre jednociferné hodnoty počiatočné nuly.) Zobrazenie podľa vašej voľby však môže ovplyvniť nastavený vzhľad."
 
 msgid "Choose the fallback font."
 msgstr "Vyberte záložný font."
 
-msgid "Choose the front panel display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' the month in digits ('DD' and 'MM' have leading zeros for single digit values). The screen display will be based on your choice but can be influenced by the skin."
+msgid "Choose the front panel display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' is the month in digits. ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Vyberte si formát zobrazenia dátumu na prednom paneli. 'D'/'DD' označuje dátum a 'M'/'MM' označuje mesiac v číselnom vyjadrení. ('DD' a 'MM' obsahujú pre jednociferné hodnoty počiatočné nuly.) Zobrazenie podľa vašej voľby však môže ovplyvniť nastavený vzhľad."
 
-msgid "Choose the front panel display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' the minutes ('HH' and 'hh' have leading zeros for single digit values). The front panel display will be based on your choice but can be influenced any applicable skin."
+msgid "Choose the front panel display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' is the minutes. ('HH' and 'hh' have leading zeros for single digit values.) The front panel display will be based on your choice but can be influenced any applicable skin."
 msgstr "Vyberte si formát zobrazenia času na prednom paneli. 'H'/'HH' označuje hodinu pre 24-hodinový formát, 'h'/'hh' označuje hodinu pre 12-hodinový formát, 'mm' sú minúty a 'ss' sú sekundy. ('HH' a 'hh' obsahujú pre jednociferné hodnoty počiatočné nuly.) Zobrazenie na prednom paneli podľa vašej voľby však môže ovplyvniť nastavený vzhľad."
 
 msgid "Choose the location for crash and debug logs."
@@ -4448,7 +4448,7 @@ msgid "Command type"
 msgstr "Typ príkazu"
 
 msgid "Commit"
-msgstr "Odovzdať"
+msgstr "Uložené zmeny"
 
 msgid "Commit Information Actions"
 msgstr "Akcie pre odovzdanie informácií"
@@ -4657,7 +4657,7 @@ msgstr "Nastavte úroveň jasu displeja na prednom paneli – pri stlmení."
 msgid "Configure the brightness level of the front panel display for normal operation."
 msgstr "Nastavte úroveň jasu displeja na prednom paneli – v normálnom režime."
 
-msgid "Configure the brightness level of the front panel display for Standby mode."
+msgid "Configure the brightness level of the front panel display for Standby."
 msgstr "Nastavte úroveň jasu displeja na prednom paneli v pohotov. režime."
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
@@ -4724,10 +4724,10 @@ msgid "Configure the gateway."
 msgstr "Nastavte bránu."
 
 msgid "Configure the hard disk drive to go to Standby after the specified idle time when the receiver is in Standby."
-msgstr "Nastavte čas nečinnosti na prechod pevného disku do úsporného režimu ak je prijímač v pohotovostnom režime."
+msgstr "Nastavte prechod pevného disku do pohotovostného režimu po určitom čase nečinnosti, ak je prijímač v pohotovostnom režime."
 
 msgid "Configure the hard disk drive to go to Standby after the specified idle time."
-msgstr "Nastavte čas nečinnosti na prechod pevného disku do úsporného režimu."
+msgstr "Nastavte prechod pevného disku do pohotovostného režimu po určitom čase."
 
 msgid "Configure the height of the TrueType font letters used for teletext."
 msgstr "Nastavte výšku písma TrueType fontu používaného pre teletext."
@@ -4876,7 +4876,7 @@ msgstr "Nastavte, či sa pre nahrávanie pridelí ďalší tuner zo zoznamu pref
 msgid "Configure whether multi channel sound tracks should be downmixed to stereo."
 msgstr "Nastavte, či sa majú viackanálové zvukové stopy zlúčiť (downmix) do režimu stereo."
 
-msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (e.g. in EPGrefresh)."
+msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (like in EPGrefresh)."
 msgstr "Nastavte, či bude symbol 'nahrávania' (v súbore so vzhľadom a vzhľadom LCD) viditeľný iba pre skutočné nahrávanie, alebo bude aktívny aj pri streamovaní a pseudo-nahrávaní (napríklad pri obnove EPG)."
 
 msgid "Configure which color format should be used on the SCART output."
@@ -7390,9 +7390,9 @@ msgid "Enables a feature so that the receiver can decrypt streams (if the ECM da
 msgstr "Povolí prijímaču dekódovať streamy (ak sú v streame zahrnuté ECM dáta a je k dispozícii platná karta)."
 
 msgid "Enables sending the same TV commands for Deep Standby as for regular Standby."
-msgstr "Ak je vybraná možnosť 'Áno', počas vypnutia sa do televízora odosielajú rovnaké príkazy ako počas normálneho pohotovostného režimu."
+msgstr "Aktivuje sa odosielanie rovnakých príkazov do TV pre vypnutie, ako aj pre normálny pohotovostný režim."
 
-msgid "Enables timeshift to use alternative audio plugins."
+msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
 msgstr "Ak je táto možnosť nastavená na 'Áno', môže sa timeshift používať s alternatívnymi audio pluginmi."
 
 msgid "Encrypted: "
@@ -9872,7 +9872,7 @@ msgstr "Okrem kontroly pri začiatku udalosti je možné vykonávať kontrolu aj
 msgid "In expert mode, configure which tuners will be preferred for recordings, when more than one tuner is available."
 msgstr "V expertnom režime nakonfigurujte, ktoré tunery sa uprednostnia pri nahrávaní, ak je k dispozícii viac ako jeden tuner."
 
-msgid "In most cases, leave this disabled. Enable only if you have a very specific need."
+msgid "In most cases this should be set to 'No'. Only set to 'Yes' if you have a very specific need."
 msgstr "Vo väčšine prípadov sa táto voľba ponecháva vypnutá. Aktivujte ju len vo veľmi špecifických prípadoch."
 
 msgid ""
@@ -13175,7 +13175,7 @@ msgstr "Akcie pre denník opkg"
 msgid "Option"
 msgstr "Možnosť (Option)"
 
-msgid "Option to disable picons on the Infobar."
+msgid "Option to disable picons on the InfoBar."
 msgstr "Povolenie/zakázanie zobrazenia pikon v infolište."
 
 msgid "Option to enable the hardware Standby timer."
@@ -14527,7 +14527,7 @@ msgstr "Puerto Rico"
 msgid "Purge"
 msgstr "Vyčistiť"
 
-msgid "Purge 'Trash' after x days"
+msgid "Purge 'Trash' after"
 msgstr "Položky z koša odstraňovať po x dňoch"
 
 msgid "Purge Deleted User Bouquets"
@@ -15306,7 +15306,7 @@ msgstr "Požadovaný druh média:"
 msgid "Rereading partition table"
 msgstr "Opakované načítanie tabuľky partícií"
 
-msgid "Reschedule the task to run when the receiver enters or exits Standby. The state change must occur within the task’s scheduled window, or the task will not run."
+msgid "Select 'Yes' to reschedule the task to run when the receiver enters or exits Standby. The state change must occur within the task's scheduled window or the task will not be run."
 msgstr "Znovu naplánujte úlohu na čas, keď prijímač prejde do/z pohotovostného režimu. Zmena stavu musí nastať v priebehu naplánovaného okna pre úlohu, inak sa úloha nespustí."
 
 msgid "Reserved"
@@ -16553,7 +16553,7 @@ msgstr "Vyberte denník o odovzdaní do repozitára, ktorý sa má zobraziť:"
 msgid "Select a script to run:"
 msgstr "Vyberte skript na spustenie:"
 
-msgid "Select a time, when in Standby mode, after which the descramble can proceed."
+msgid "Select a time, when in Standby, after which the descramble can proceed."
 msgstr "Vyberte čas, v pohotovostnom režime, po ktorom môže dekódovanie pokračovať."
 
 msgid "Select a time, when in Standby, before which descramble can proceed."
@@ -16653,7 +16653,7 @@ msgstr "Vyberte, ako sa budú počas vyhľadávania správať číselné tlačid
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr "Vyberte spôsob inštalácie satelitnej paraboly. Napríklad pevná parabola, jeden LNB, DiSEqC prepínač, pozícionér, a podobne."
 
-msgid "Select how the schedule is handled with respect to Standby mode."
+msgid "Select how the schedule is handled with respect to Standby."
 msgstr "Vyberte, ako sa má spracovávať plán vzhľadom na pohotovostný režim."
 
 msgid "Select how to activate the Quick EPG mode."
@@ -16905,7 +16905,7 @@ msgstr "Vyberte poradie zobrazenia predtým navštívených služieb."
 msgid "Select the duration of inactivity before the screen saver will be displayed."
 msgstr "Nastavte dobu neaktivity pred tým, než sa zobrazí šetrič obrazovky."
 
-msgid "Select the end time before which this timer can be activated.  After this time the timer won't be activated even if other conditions are met."
+msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr "Vyberte čas ukončenia, pred ktorým sa môže časovač aktivovať. Po tomto čase sa časovač neaktivuje ani v prípade, že by boli splnené ostatné podmienky."
 
 #, python-format
@@ -17081,7 +17081,7 @@ msgstr "Vyberte zdrojové umiestnenie na získanie aktualizačných súborov."
 msgid "Select the source of the default DNS settings."
 msgstr "Vyberte zdroj predvolených nastavení DNS."
 
-msgid "Select the start time after which this timer can be activated.  Before this time the timer won't be activated even if other conditions are met."
+msgid "Select the start time after which this timer can be activated. Before this time the timer won't be activated even if other conditions are met."
 msgstr "Vyberte čas spustenia, po ktorom sa môže tento časovač aktivovať. Pred týmto časom sa časovač neaktivuje ani v prípade, že by boli splnené ostatné podmienky."
 
 msgid "Select the starting/initial column to be activated on File Commander start up."
@@ -17523,7 +17523,7 @@ msgstr "Nastaviť napevno"
 msgid "Set fps for external subtitles"
 msgstr "Nastavenie fps pre externé titulky"
 
-msgid "Set how long the second InfoBar stays visible. It also disappears when you press ‘OK’."
+msgid "Set how long the second InfoBar stays visible. The second InfoBar also disappears when you press 'OK'."
 msgstr "Nastavte čas trvania zobrazenia druhej infolišty. Lišta zmizne aj po stlačení 'OK'."
 
 msgid "Set interface as the default Interface"
@@ -17602,7 +17602,7 @@ msgstr "Nastavte port OpenWebif z vášho záložného tunera."
 msgid "Set the position of the recording icons."
 msgstr "Nastavenie pozície ikon nahrávania."
 
-msgid "Set the screen type you get on pressing 'OK' when the InfoBar shows to second InfoBar Lite or event info."
+msgid "Set the screen type you see on pressing 'OK' when the InfoBar shows the second InfoBar Lite or event info."
 msgstr "Nastavenie typu obrazovky, ktorá sa zobrazí po stlačení tlačidla 'OK' pri zobrazení infolišty: 2. infolišta Lite alebo informácie o udalosti."
 
 msgid "Set the scrolling speed of text on the front display, this is used by software renderer in some skins."
@@ -17673,7 +17673,7 @@ msgstr "Nastaviť možnosti pre čas"
 msgid "Set to 'Disabled' to replace underscore characters '_' in file and directory names with spaces."
 msgstr "Ak sa majú v názvoch priečinkov súborov nahradiť znaky popdčiarknutia '_' medzerami, nastavte túto voľbu na 'Zakázané'."
 
-msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby mode before shutting down."
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby before shutting down."
 msgstr "Ak chcete pred vypnutím najskôr v pohotovostnom režime dekódovať nahrávky čakajúce vo fronte, nastavte túto voľbu na 'Zapnuté'."
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
@@ -18412,7 +18412,7 @@ msgstr "Zobraziť notifikáciu pri neúspešnom importovaní kanálov"
 msgid "Show notification when import channels was successful"
 msgstr "Zobraziť notifikáciu po úspešnom importovaní kanálov"
 
-msgid "Show or hide the extended description (skin dependent)."
+msgid "Show or hide the extended description. This functionality may be skin dependent."
 msgstr "Zobraziť/skryť rozšírený popis (závisí od vzhľadu)."
 
 msgid "Show parting lines"
@@ -19908,7 +19908,7 @@ msgstr "Symbolický odkaz"
 msgid "Symmetrical skips"
 msgstr "Symetrické preskočenia"
 
-msgid "Sync NTP every x minutes"
+msgid "Sync NTP every"
 msgstr "Synchronizovať NTP každých x minút"
 
 msgid "Sync failure moving back to origin!"
@@ -20674,7 +20674,7 @@ msgid "This function is not available as processing of large files may take too 
 msgstr "Táto funkcia nie je dostupná, pretože spracovanie veľkých súborov môže na tomto hardvéri trvať príliš dlho."
 
 msgid "This is a workaround for devices that wake up immediately after entering Standby. Wake-up commands from other devices are ignored for a few seconds."
-msgstr "Toto je dočasné riešenie pre zariadenia, ktoré sa po prepnutí do pohotovostného režimu znovu zapnú. Príkazy na prebudenie od iných zariadení sa budú niekoľko sekúnd ignorovať."
+msgstr "Toto je dočasné riešenie pre zariadenia, ktoré sa po vstupe do pohotovostného režimu ihneď prebudia. Príkazy na prebudenie od iných zariadení sa budú niekoľko sekúnd ignorovať."
 
 #, python-format
 msgid "This is the currently selected language.  [%s]"
@@ -20789,10 +20789,10 @@ msgstr "Nastavenie zobrazenia zostávajúceho času, uplynutého času alebo obi
 msgid "This option allows you to choose how to display standard definition video on your TV."
 msgstr "Nastavenie zobrazenia videa v štandardnom rozlíšení na vašom TV."
 
-msgid "This option allows you to choose how to display the remaining or elapsed time for live TV."
+msgid "This option allows you to choose how to display the remaining/elapsed time for live TV."
 msgstr "Nastavenie spôsobu zobrazenia zostávajúceho/uplynutého času pre živé TV vysielanie."
 
-msgid "This option allows you to choose how to display the remaining or elapsed time for media playback."
+msgid "This option allows you to choose how to display the remaining/elapsed time for media playback."
 msgstr "Nastavenie spôsobu zobrazenia zostávajúceho/uplynutého času pri prehrávaní médií."
 
 msgid "This option allows you to choose if the display shows the time or nothing in Standby."
@@ -20807,7 +20807,7 @@ msgstr "Výber farby pozadia priehľadných pikon."
 msgid "This option allows you to choose the option for Subservice indicator or selection."
 msgstr "Voľba umožňuje vybrať možnosť pre indikátor podradenej služby alebo výber."
 
-msgid "This option allows you to choose what the first button press jumps to in channel list screen (pressing '2' jumps to 'A' or '2' first) when 'Quick Actions' preset actions are performed."
+msgid "This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first), when 'Quick Actions' preset actions are performed."
 msgstr "Nastavenie reakcie na prvé stlačenie tlačidla na obrazovke so zoznamom kanálov pri vykonávaní prednastavených 'Rýchlych akcií'. (Takže stlačením '2' sa najskôr preskočí na 'A' alebo '2')."
 
 msgid "This option allows you to choose whether or not to display genre information for the event."
@@ -21050,7 +21050,7 @@ msgid "Time delay of the shutdown messages"
 msgstr "Časové oneskorenie správ o vypínaní"
 
 msgid "Time delay until Standby or Deep Standby"
-msgstr "Časové oneskorenie pred do pohotovostným režimom alebo vypnutím"
+msgstr "Časové oneskorenie do uvedenia do pohotovostného režimu alebo vypnutia"
 
 msgid "Time for next LCD scrolling"
 msgstr "Čas na ďalšie rolovanie LCD"
@@ -22922,7 +22922,7 @@ msgstr "Ak je povolené, nahrávka môže prerušiť streamovanie, ak nie je k d
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "Ak je povolené, nahrávanie môže prerušiť živé vysielanie, ak nie je k dispozícii žiadny voľný tuner."
 
-msgid "When enabled, a specific Softcam can be assigned to each encrypted service."
+msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
 msgstr "Ak je povolené, ku každej šifrovanej stanici je možné priradiť konkrétny softcam."
 
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
@@ -22985,7 +22985,7 @@ msgstr "Ak je povolené, budú sa teletextové stránky ukladať do vyrovnávace
 msgid "When enabled, teletext subtitles will be displayed at their original position."
 msgstr "Ak je povolené, teletextové titulky sa budú zobrazovať na pôvodnej pozícii."
 
-msgid "When enabled, the PiP can be closed using the EXIT button."
+msgid "When enabled, the PiP can be closed by pressing the EXIT button."
 msgstr "Ak je povolené, PiP sa bude dať ukončiť tlačidlom EXIT."
 
 msgid "When enabled, the VCR SCART option will be shown on the main menu."
@@ -23168,10 +23168,10 @@ msgstr "Pomocou tejto možnosti môžete skryť úlohy Job Tasks z obrazovky roz
 msgid "With this option you can switch off the display during operation."
 msgstr "Touto voľbou môžete vypnúť displej počas prevádzky."
 
-msgid "With this option you can switch off the display in Deep Standby mode."
+msgid "With this option you can switch off the display in Deep Standby."
 msgstr "Touto voľbou môžete vypnúť displej v režime vypnutia prijímača."
 
-msgid "With this option you can switch off the display in Standby mode."
+msgid "With this option you can switch off the display in Standby."
 msgstr "Touto voľbou môžete vypnúť displej v pohotovostnom režime."
 
 msgid "With this option you can switch the LED color or deactivate the LED."

@@ -3250,7 +3250,7 @@ msgstr ""
 msgid "Bitrate"
 msgstr "Bitrate:"
 
-msgid "Bitrate of the video encoder. Larger values improves quality and increases file size."
+msgid "Set the bitrate of the video encoder. Larger values improve the quality and also increases the file size."
 msgstr ""
 
 msgid "Black"
@@ -4266,19 +4266,19 @@ msgstr ""
 msgid "Choose the amount of additional slots."
 msgstr ""
 
-msgid "Choose the display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' the month in digits ('DD' and 'MM' have leading zeros for single digit values). The screen display will be based on your choice but can be influenced by the skin."
+msgid "Choose the display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' is the month in digits. ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr ""
 
-msgid "Choose the display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' the seconds ('HH' and 'hh' have leading zeros for single digit values). The screen display will be based on your choice but can be influenced by the skin."
+msgid "Choose the display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds. ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr ""
 
 msgid "Choose the fallback font."
 msgstr ""
 
-msgid "Choose the front panel display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' the month in digits ('DD' and 'MM' have leading zeros for single digit values). The screen display will be based on your choice but can be influenced by the skin."
+msgid "Choose the front panel display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' is the month in digits. ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr ""
 
-msgid "Choose the front panel display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' the minutes ('HH' and 'hh' have leading zeros for single digit values). The front panel display will be based on your choice but can be influenced any applicable skin."
+msgid "Choose the front panel display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' is the minutes. ('HH' and 'hh' have leading zeros for single digit values.) The front panel display will be based on your choice but can be influenced any applicable skin."
 msgstr ""
 
 msgid "Choose the location for crash and debug logs."
@@ -4813,8 +4813,8 @@ msgstr "Configure the brightness level of the front panel display for dimmed ope
 msgid "Configure the brightness level of the front panel display for normal operation."
 msgstr "Configure the brightness level of the front panel display for normal operation."
 
-msgid "Configure the brightness level of the front panel display for Standby mode."
-msgstr "Configure the brightness level of the front panel display for Standby mode."
+msgid "Configure the brightness level of the front panel display for Standby."
+msgstr "Configure the brightness level of the front panel display for Standby."
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
 msgstr "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
@@ -5036,8 +5036,8 @@ msgstr "Configure whether another tuner from the preferred list is allocated for
 msgid "Configure whether multi channel sound tracks should be downmixed to stereo."
 msgstr "Choose whether multi channel sound tracks should be downmixed to stereo."
 
-msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (e.g. in EPGrefresh)."
-msgstr "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (e.g. in EPGrefresh)."
+msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (like in EPGrefresh)."
+msgstr "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (like in EPGrefresh)."
 
 msgid "Configure which color format should be used on the SCART output."
 msgstr "Configure which color format should be used on the SCART output."
@@ -7575,7 +7575,7 @@ msgstr "Enables a feature so that the receiver can decrypt streams (if the ECM d
 msgid "Enables sending the same TV commands for Deep Standby as for regular Standby."
 msgstr ""
 
-msgid "Enables timeshift to use alternative audio plugins."
+msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
 msgstr ""
 
 msgid "Encrypted: "
@@ -10116,7 +10116,7 @@ msgstr "In addition to the check at an event start, a repetitive check can be us
 msgid "In expert mode, configure which tuners will be preferred for recordings, when more than one tuner is available."
 msgstr "In expert mode, configure which tuners will be preferred for recordings, when more than one tuner is available."
 
-msgid "In most cases, leave this disabled. Enable only if you have a very specific need."
+msgid "In most cases this should be set to 'No'. Only set to 'Yes' if you have a very specific need."
 msgstr ""
 
 msgid ""
@@ -13528,8 +13528,8 @@ msgstr ""
 msgid "Option"
 msgstr "Encryption"
 
-msgid "Option to disable picons on the Infobar."
-msgstr "Option to disable picons on the Infobar."
+msgid "Option to disable picons on the InfoBar."
+msgstr "Option to disable picons on the InfoBar."
 
 msgid "Option to enable the hardware Standby timer."
 msgstr "Option to enable the hardware Standby timer."
@@ -14907,8 +14907,8 @@ msgstr "Puerto Rico"
 msgid "Purge"
 msgstr ""
 
-msgid "Purge 'Trash' after x days"
-msgstr "Purge 'Trash' after x days"
+msgid "Purge 'Trash' after"
+msgstr "Purge 'Trash' after"
 
 msgid "Purge Deleted User Bouquets"
 msgstr "Purge Deleted User Bouquets"
@@ -15705,7 +15705,7 @@ msgstr "Required medium type:"
 msgid "Rereading partition table"
 msgstr "Rereading partition table"
 
-msgid "Reschedule the task to run when the receiver enters or exits Standby. The state change must occur within the task’s scheduled window, or the task will not run."
+msgid "Select 'Yes' to reschedule the task to run when the receiver enters or exits Standby. The state change must occur within the task's scheduled window or the task will not be run."
 msgstr ""
 
 msgid "Reserved"
@@ -16966,7 +16966,7 @@ msgstr ""
 msgid "Select a script to run:"
 msgstr "Select a script to run:"
 
-msgid "Select a time, when in Standby mode, after which the descramble can proceed."
+msgid "Select a time, when in Standby, after which the descramble can proceed."
 msgstr ""
 
 msgid "Select a time, when in Standby, before which descramble can proceed."
@@ -17066,7 +17066,7 @@ msgstr ""
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr ""
 
-msgid "Select how the schedule is handled with respect to Standby mode."
+msgid "Select how the schedule is handled with respect to Standby."
 msgstr ""
 
 msgid "Select how to activate the Quick EPG mode."
@@ -17318,7 +17318,7 @@ msgstr ""
 msgid "Select the duration of inactivity before the screen saver will be displayed."
 msgstr "Select the duration of inactivity before the screen saver will be displayed."
 
-msgid "Select the end time before which this timer can be activated.  After this time the timer won't be activated even if other conditions are met."
+msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr ""
 
 #, python-format
@@ -17493,7 +17493,7 @@ msgstr ""
 msgid "Select the source of the default DNS settings."
 msgstr ""
 
-msgid "Select the start time after which this timer can be activated.  Before this time the timer won't be activated even if other conditions are met."
+msgid "Select the start time after which this timer can be activated. Before this time the timer won't be activated even if other conditions are met."
 msgstr ""
 
 msgid "Select the starting/initial column to be activated on File Commander start up."
@@ -17942,8 +17942,8 @@ msgstr "Set fixed"
 msgid "Set fps for external subtitles"
 msgstr "Set fps for external subtitles"
 
-msgid "Set how long the second InfoBar stays visible. It also disappears when you press ‘OK’."
-msgstr "Set how long the second InfoBar stays visible. It also disappears when you press ‘OK’."
+msgid "Set how long the second InfoBar stays visible. The second InfoBar also disappears when you press 'OK'."
+msgstr "Set how long the second InfoBar stays visible. The second InfoBar also disappears when you press 'OK'."
 
 msgid "Set interface as the default Interface"
 msgstr "Set interface as the default Interface"
@@ -18022,8 +18022,8 @@ msgstr "Atur port OpenWebif dari penala terpakai anda"
 msgid "Set the position of the recording icons."
 msgstr "Set the position of the recording icons."
 
-msgid "Set the screen type you get on pressing 'OK' when the InfoBar shows to second InfoBar Lite or event info."
-msgstr "Set the screen type you get on pressing 'OK' when the InfoBar shows to second InfoBar Lite or event info."
+msgid "Set the screen type you see on pressing 'OK' when the InfoBar shows the second InfoBar Lite or event info."
+msgstr "Set the screen type you see on pressing 'OK' when the InfoBar shows the second InfoBar Lite or event info."
 
 msgid "Set the scrolling speed of text on the front display, this is used by software renderer in some skins."
 msgstr "Set the scrolling speed of text on the front display, this is used by software renderer in some skins."
@@ -18090,7 +18090,7 @@ msgstr ""
 msgid "Set to 'Disabled' to replace underscore characters '_' in file and directory names with spaces."
 msgstr ""
 
-msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby mode before shutting down."
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby before shutting down."
 msgstr ""
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
@@ -18842,8 +18842,8 @@ msgstr "Tampilkan pemberitahuan saat impor kanal tidak berhasil"
 msgid "Show notification when import channels was successful"
 msgstr "Tampilkan pemberitahuan saat impor kanal berhasil"
 
-msgid "Show or hide the extended description (skin dependent)."
-msgstr "Show or hide the extended description (skin dependent)."
+msgid "Show or hide the extended description. This functionality may be skin dependent."
+msgstr "Show or hide the extended description. This functionality may be skin dependent."
 
 #, fuzzy
 msgid "Show parting lines"
@@ -20367,8 +20367,8 @@ msgstr ""
 msgid "Symmetrical skips"
 msgstr ""
 
-msgid "Sync NTP every x minutes"
-msgstr "Sync NTP every x minutes"
+msgid "Sync NTP every"
+msgstr "Sync NTP every"
 
 msgid "Sync failure moving back to origin!"
 msgstr "Sync failure moving back to origin!"
@@ -21235,11 +21235,11 @@ msgstr "This option allows you to choose how to display the remaining time, the 
 msgid "This option allows you to choose how to display standard definition video on your TV."
 msgstr "This option allows you to choose how to display standard definition video on your TV."
 
-msgid "This option allows you to choose how to display the remaining or elapsed time for live TV."
-msgstr "This option allows you to choose how to display the remaining or elapsed time for live TV."
+msgid "This option allows you to choose how to display the remaining/elapsed time for live TV."
+msgstr "This option allows you to choose how to display the remaining/elapsed time for live TV."
 
-msgid "This option allows you to choose how to display the remaining or elapsed time for media playback."
-msgstr "This option allows you to choose how to display the remaining or elapsed time for media playback."
+msgid "This option allows you to choose how to display the remaining/elapsed time for media playback."
+msgstr "This option allows you to choose how to display the remaining/elapsed time for media playback."
 
 #, fuzzy
 msgid "This option allows you to choose if the display shows the time or nothing in Standby."
@@ -21254,12 +21254,12 @@ msgstr "This option allows you to choose the background color of transparent pic
 msgid "This option allows you to choose the option for Subservice indicator or selection."
 msgstr ""
 
-msgid "This option allows you to choose what the first button press jumps to in channel list screen (pressing '2' jumps to 'A' or '2' first) when 'Quick Actions' preset actions are performed."
-msgstr "This option allows you to choose what the first button press jumps to in channel list screen (pressing '2' jumps to 'A' or '2' first) when 'Quick Actions' preset actions are performed."
+msgid "This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first), when 'Quick Actions' preset actions are performed."
+msgstr "This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first), when 'Quick Actions' preset actions are performed."
 
 #, fuzzy
 msgid "This option allows you to choose whether or not to display genre information for the event."
-msgstr "This option allows you to choose how to display the remaining or elapsed time for live TV."
+msgstr "This option allows you to choose how to display the remaining/elapsed time for live TV."
 
 msgid "This option allows you to enable 3D Surround Sound."
 msgstr "This option allows you to enable 3D Surround Sound."
@@ -23376,7 +23376,7 @@ msgstr "When enabled, a recording is allowed to abort streaming, when there are 
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 
-msgid "When enabled, a specific Softcam can be assigned to each encrypted service."
+msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
 msgstr ""
 
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
@@ -23439,8 +23439,8 @@ msgstr "When enabled, teletext pages will be cached, allowing faster access."
 msgid "When enabled, teletext subtitles will be displayed at their original position."
 msgstr "When enabled, teletext subtitles will be displayed at their original position."
 
-msgid "When enabled, the PiP can be closed using the EXIT button."
-msgstr "When enabled, the PiP can be closed using the EXIT button."
+msgid "When enabled, the PiP can be closed by pressing the EXIT button."
+msgstr "When enabled, the PiP can be closed by pressing the EXIT button."
 
 msgid "When enabled, the VCR SCART option will be shown on the main menu."
 msgstr "When enabled, the VCR SCART option will be shown on the main menu."
@@ -23619,10 +23619,10 @@ msgstr "With this option you can hide Job Tasks from the Extension Menu screen (
 msgid "With this option you can switch off the display during operation."
 msgstr ""
 
-msgid "With this option you can switch off the display in Deep Standby mode."
+msgid "With this option you can switch off the display in Deep Standby."
 msgstr ""
 
-msgid "With this option you can switch off the display in Standby mode."
+msgid "With this option you can switch off the display in Standby."
 msgstr ""
 
 msgid "With this option you can switch the LED color or deactivate the LED."

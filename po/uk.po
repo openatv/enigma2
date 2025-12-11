@@ -3107,7 +3107,7 @@ msgstr "Креольська"
 msgid "Bitrate"
 msgstr "Бітрейт"
 
-msgid "Bitrate of the video encoder. Larger values improves quality and increases file size."
+msgid "Set the bitrate of the video encoder. Larger values improve the quality and also increases the file size."
 msgstr "Бітрейт відеокодера. Велике значення покращує якість і збільшує розмір файлу."
 
 msgid "Black"
@@ -4110,19 +4110,19 @@ msgstr "Виберіть частоту підключення до сервер
 msgid "Choose the amount of additional slots."
 msgstr "Виберіть кількість додаткових слотів."
 
-msgid "Choose the display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' the month in digits ('DD' and 'MM' have leading zeros for single digit values). The screen display will be based on your choice but can be influenced by the skin."
+msgid "Choose the display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' is the month in digits. ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Виберіть стиль відображення дат. 'D'/'DD' - це дата, а 'M'/'MM' - місяць у цифрах. ('DD' і 'MM' мають на початку нулі для однозначних значень.) Екран буде заснований на вашому виборі, але на нього може вплинути скін."
 
-msgid "Choose the display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' the seconds ('HH' and 'hh' have leading zeros for single digit values). The screen display will be based on your choice but can be influenced by the skin."
+msgid "Choose the display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds. ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Виберіть стиль відображення часу. 'H'/'HH' - час для 24-годинного годинника, 'h'/'hh' - час для 12-годинного годинника, 'mm' - хвилини, а ss - секунди. ('HH' і 'hh' мають на початку нулі для однозначних значень.) Екран буде заснований на вашому виборі, але може впливати скін."
 
 msgid "Choose the fallback font."
 msgstr "Вибрати резервний шрифт."
 
-msgid "Choose the front panel display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' the month in digits ('DD' and 'MM' have leading zeros for single digit values). The screen display will be based on your choice but can be influenced by the skin."
+msgid "Choose the front panel display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' is the month in digits. ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin."
 msgstr "Виберіть стиль відображення на передній панелі для дат. 'D'/'DD' - це дата, а 'M'/'MM' - місяць у цифрах. ('DD' і 'MM' мають на початку нулі для однозначних значень.) Екран буде заснований на вашому виборі, але на нього може вплинути скін."
 
-msgid "Choose the front panel display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' the minutes ('HH' and 'hh' have leading zeros for single digit values). The front panel display will be based on your choice but can be influenced any applicable skin."
+msgid "Choose the front panel display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' is the minutes. ('HH' and 'hh' have leading zeros for single digit values.) The front panel display will be based on your choice but can be influenced any applicable skin."
 msgstr "Виберіть стиль відображення дисплея на передній панелі часу. 'H'/'HH' - час для 24-годинного годинника, 'h'/'hh' - час для 12-годинного годинника, 'mm' - хвилини. ('HH' і 'hh' мають на початку нулі для однозначних значень.) Дисплей на передній панелі буде заснований на вашому виборі, але може вплинути скін."
 
 msgid "Choose the location for crash and debug logs."
@@ -4657,7 +4657,7 @@ msgstr "Регулювання яскравості дисплея на пере
 msgid "Configure the brightness level of the front panel display for normal operation."
 msgstr "Регулювання яскравості дисплея на передній панелі в нормальному режимі."
 
-msgid "Configure the brightness level of the front panel display for Standby mode."
+msgid "Configure the brightness level of the front panel display for Standby."
 msgstr "Регулювання яскравості дисплея на передній панелі."
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
@@ -4876,7 +4876,7 @@ msgstr "Налаштуйте, чи застосувати інший тюнер 
 msgid "Configure whether multi channel sound tracks should be downmixed to stereo."
 msgstr "Налаштуйте, чи слід змішувати багатоканальну звукову доріжку в стерео звук."
 
-msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (e.g. in EPGrefresh)."
+msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (like in EPGrefresh)."
 msgstr "Вкажіть, коли виводити значок 'запис' на дисплей приймача, тільки при записі передач або при потоковій передачі і псевдозаписах також (наприклад, при оновленні EPG)."
 
 msgid "Configure which color format should be used on the SCART output."
@@ -7392,7 +7392,7 @@ msgstr "Включає функцію, за допомогою якої, при�
 msgid "Enables sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "Якщо встановлено значення 'Так', для подій глибокого очікування на телевізор надсилатимуться ті самі команди, що й під час звичайних подій очікування."
 
-msgid "Enables timeshift to use alternative audio plugins."
+msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
 msgstr "Якщо встановлено значення 'так', ви можете використовувати зміщення часу з альтернативними аудіоплагінами."
 
 msgid "Encrypted: "
@@ -9872,7 +9872,7 @@ msgstr "На додаток до перевірки на початку поді
 msgid "In expert mode, configure which tuners will be preferred for recordings, when more than one tuner is available."
 msgstr "У режимі експерт налаштуйте, які тюнери будуть мати перевагу для записів, коли доступно більш ніж один тюнер."
 
-msgid "In most cases, leave this disabled. Enable only if you have a very specific need."
+msgid "In most cases this should be set to 'No'. Only set to 'Yes' if you have a very specific need."
 msgstr "У більшості випадків цей параметр має бути встановлений на Ні. Увімкнути тільки при потребі."
 
 msgid ""
@@ -13175,7 +13175,7 @@ msgstr "Дії логу оpkg"
 msgid "Option"
 msgstr "Вибір"
 
-msgid "Option to disable picons on the Infobar."
+msgid "Option to disable picons on the InfoBar."
 msgstr "Можливість вимкнення піконів в Інфобарі"
 
 msgid "Option to enable the hardware Standby timer."
@@ -14527,7 +14527,7 @@ msgstr "Пуерто Ріко"
 msgid "Purge"
 msgstr "Очистити"
 
-msgid "Purge 'Trash' after x days"
+msgid "Purge 'Trash' after"
 msgstr "Видаляти записи з кошика через (в днях)"
 
 msgid "Purge Deleted User Bouquets"
@@ -15306,7 +15306,7 @@ msgstr "Необхідний тип носія:"
 msgid "Rereading partition table"
 msgstr "Перечитати таблицю розділів"
 
-msgid "Reschedule the task to run when the receiver enters or exits Standby. The state change must occur within the task’s scheduled window, or the task will not run."
+msgid "Select 'Yes' to reschedule the task to run when the receiver enters or exits Standby. The state change must occur within the task's scheduled window or the task will not be run."
 msgstr "Виберіть 'Так', щоб перенести завдання на час переходу/виходу приймача з режиму очікування. Зміна стану має відбутися у вікні розкладу завдання, інакше завдання не буде виконано."
 
 msgid "Reserved"
@@ -16553,7 +16553,7 @@ msgstr "Виберіть журнал фіксації сховища для п�
 msgid "Select a script to run:"
 msgstr "Вибір скрипта для запуску:"
 
-msgid "Select a time, when in Standby mode, after which the descramble can proceed."
+msgid "Select a time, when in Standby, after which the descramble can proceed."
 msgstr "Виберіть час у режимі очікування, після якого може продовжитися декодування."
 
 msgid "Select a time, when in Standby, before which descramble can proceed."
@@ -16653,7 +16653,7 @@ msgstr "Виберіть, як цифрові кнопки працюватим�
 msgid "Select how the satellite dish is set up. i.e. fixed dish, single LNB, DiSEqC switch, positioner, etc."
 msgstr "Виберіть спосіб налаштування супутникової антени, окремого LNB, перемикача DiSEqC, позиціонера, тощо."
 
-msgid "Select how the schedule is handled with respect to Standby mode."
+msgid "Select how the schedule is handled with respect to Standby."
 msgstr "Виберіть, як розклад оброблятиметься стосовно режиму очікування."
 
 msgid "Select how to activate the Quick EPG mode."
@@ -16905,7 +16905,7 @@ msgstr "Виберіть послідовність відображення п�
 msgid "Select the duration of inactivity before the screen saver will be displayed."
 msgstr "Через якийсь час показати заставку."
 
-msgid "Select the end time before which this timer can be activated.  After this time the timer won't be activated even if other conditions are met."
+msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr "Виберіть час завершення, до якого цей таймер можна активувати. Після цього часу таймер не буде активовано, навіть якщо будуть виконані інші умови."
 
 #, python-format
@@ -17081,7 +17081,7 @@ msgstr "Виберіть джерело, звідки отримати файл�
 msgid "Select the source of the default DNS settings."
 msgstr "Виберіть джерело налаштувань DNS за замовчуванням."
 
-msgid "Select the start time after which this timer can be activated.  Before this time the timer won't be activated even if other conditions are met."
+msgid "Select the start time after which this timer can be activated. Before this time the timer won't be activated even if other conditions are met."
 msgstr "Виберіть час початку, після якого цей таймер можна активувати. До цього часу таймер не буде активовано, навіть якщо будуть виконані інші умови."
 
 msgid "Select the starting/initial column to be activated on File Commander start up."
@@ -17523,7 +17523,7 @@ msgstr "Зафіксувати"
 msgid "Set fps for external subtitles"
 msgstr "Вибір fps для зовнішніх субтитрів"
 
-msgid "Set how long the second InfoBar stays visible. It also disappears when you press ‘OK’."
+msgid "Set how long the second InfoBar stays visible. The second InfoBar also disappears when you press 'OK'."
 msgstr "Встановіть час показу другого інфобара. Він також зникне при натисненні 'OK'."
 
 msgid "Set interface as the default Interface"
@@ -17602,7 +17602,7 @@ msgstr "Встановіть порт OpenWebif із резервного тюн
 msgid "Set the position of the recording icons."
 msgstr "Встановіть положення значка запису."
 
-msgid "Set the screen type you get on pressing 'OK' when the InfoBar shows to second InfoBar Lite or event info."
+msgid "Set the screen type you see on pressing 'OK' when the InfoBar shows the second InfoBar Lite or event info."
 msgstr "Вкажіть тип вікна, який буде відображатися при натисканні на кнопку ОК (другий інфобар або інфо події)."
 
 msgid "Set the scrolling speed of text on the front display, this is used by software renderer in some skins."
@@ -17673,7 +17673,7 @@ msgstr "Встановити параметри часу"
 msgid "Set to 'Disabled' to replace underscore characters '_' in file and directory names with spaces."
 msgstr "Якщо вимкнено, символи підкреслення в назвах файлів і каталогів не відображаються і замінюються пробілами."
 
-msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby mode before shutting down."
+msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby before shutting down."
 msgstr "Встановіть 'Увімкнено', щоб дешифрувати зашифровані записи з черги в режимі очікування перед вимиканням."
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
@@ -18412,7 +18412,7 @@ msgstr "Показати сповіщення, коли імпорт канал�
 msgid "Show notification when import channels was successful"
 msgstr "Показати сповіщення, коли імпорт каналів є успішним"
 
-msgid "Show or hide the extended description (skin dependent)."
+msgid "Show or hide the extended description. This functionality may be skin dependent."
 msgstr "Показати або сховати розширений опис, (якщо скін підтримує)."
 
 msgid "Show parting lines"
@@ -19908,7 +19908,7 @@ msgstr "Посилання"
 msgid "Symmetrical skips"
 msgstr "Симетричні пропуски"
 
-msgid "Sync NTP every x minutes"
+msgid "Sync NTP every"
 msgstr "Синхронізувати NTP кожні (у хвилинах)"
 
 msgid "Sync failure moving back to origin!"
@@ -20789,10 +20789,10 @@ msgstr "Цей параметр дозволяє Вам вибрати, як п�
 msgid "This option allows you to choose how to display standard definition video on your TV."
 msgstr "Цей параметр дозволяє Вам встановити, як відображати роздільність для стандартного SD відео."
 
-msgid "This option allows you to choose how to display the remaining or elapsed time for live TV."
+msgid "This option allows you to choose how to display the remaining/elapsed time for live TV."
 msgstr "Цей параметр дозволяє Вам вибрати, як показати час що залишився або минув для каналу, що переглядається."
 
-msgid "This option allows you to choose how to display the remaining or elapsed time for media playback."
+msgid "This option allows you to choose how to display the remaining/elapsed time for media playback."
 msgstr "Цей параметр дозволяє Вам вибрати спосіб відображення часу залишилось/минуло для відтворення мультимедіа."
 
 msgid "This option allows you to choose if the display shows the time or nothing in Standby."
@@ -20807,7 +20807,7 @@ msgstr "Цей параметр дозволяє Вам вибрати колі�
 msgid "This option allows you to choose the option for Subservice indicator or selection."
 msgstr "Ця опція дозволяє вибрати опцію для показу, або вибору субканалу."
 
-msgid "This option allows you to choose what the first button press jumps to in channel list screen (pressing '2' jumps to 'A' or '2' first) when 'Quick Actions' preset actions are performed."
+msgid "This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first), when 'Quick Actions' preset actions are performed."
 msgstr "Дія при першому натисканні кнопки в списку каналів, (так натиснувши '2' переходимо на 'A' або на '2-канал' спочатку), коли дії налаштовані в 'Швидкі дії'. "
 
 msgid "This option allows you to choose whether or not to display genre information for the event."
@@ -22922,7 +22922,7 @@ msgstr "При активації, запис перерве потокове м
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "Якщо включено, запис дозволяє переривати перегляд поточної передачі, якщо немає вільного тюнера."
 
-msgid "When enabled, a specific Softcam can be assigned to each encrypted service."
+msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
 msgstr "Якщо встановлено значення 'Так', кожному закодованому каналу можна призначити певнуй Softcam."
 
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
@@ -22985,7 +22985,7 @@ msgstr "Коли функція включена, сторінки телете�
 msgid "When enabled, teletext subtitles will be displayed at their original position."
 msgstr "Якщо включено, телетекст субтитрів буде відображатися у вихідному положенні."
 
-msgid "When enabled, the PiP can be closed using the EXIT button."
+msgid "When enabled, the PiP can be closed by pressing the EXIT button."
 msgstr "Вкажіть дію по кнопці exit, при активованому піп-вікні."
 
 msgid "When enabled, the VCR SCART option will be shown on the main menu."
@@ -23168,10 +23168,10 @@ msgstr "Ця опція дозволяє приховати завдання з�
 msgid "With this option you can switch off the display during operation."
 msgstr "За допомогою цієї опції ви можете вимкнути дисплей під час роботи."
 
-msgid "With this option you can switch off the display in Deep Standby mode."
+msgid "With this option you can switch off the display in Deep Standby."
 msgstr "За допомогою цієї опції можна вимкнути дисплей у режимі глибокого очікування."
 
-msgid "With this option you can switch off the display in Standby mode."
+msgid "With this option you can switch off the display in Standby."
 msgstr "За допомогою цієї опції можна вимкнути дисплей у режимі очікування."
 
 msgid "With this option you can switch the LED color or deactivate the LED."

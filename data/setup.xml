@@ -31,7 +31,7 @@
 		<!-- This is just a placeholder, the Videomode plugin implements this sub menu. -->
 	</setup>
 	<setup key="AutoCam" title="AutoCam Settings">
-		<item level="0" text="Use AutoCam" description="When enabled, a specific Softcam can be assigned to each encrypted service.">config.misc.autocamEnabled</item>
+		<item level="0" text="Use AutoCam" description="When set to 'Yes' a specific Softcam can be assigned to each encrypted service.">config.misc.autocamEnabled</item>
 		<item level="0" text="Select AutoCam default Softcam" description="Select a Softcam from the available list as the default for AutoCam." conditional="config.misc.autocamEnabled.value">self.autocamDefault</item>
 	</setup>
 	<setup key="AutoLanguage" title="Auto Language Settings" level="1" showOpenWebif="1">
@@ -92,7 +92,7 @@
 		<item level="1" text="Enable panic button" description="When enabled, pressing '0' will zap you to the first channel in your first bouquet and delete your zap-history.">config.usage.panicbutton</item>
 		<item level="1" text="Panic channel" description="Pressing the panic button will zap you to this channel number in your first bouquet.">config.usage.panicchannel</item>
 		<item level="2" text="Show picons in quickzap" description="Configure if service picons will be shown in quickzap.">config.usage.numzappicon</item>
-		<item level="1" text="Jump first press in channel selection" description="This option allows you to choose what the first button press jumps to in channel list screen (pressing '2' jumps to 'A' or '2' first) when 'Quick Actions' preset actions are performed.">config.usage.show_channel_jump_in_servicelist</item>
+		<item level="1" text="Jump first press in channel selection" description="This option allows you to choose what the first button press jumps to in channel list screen, (so pressing '2' jumps to 'A' or '2' first), when 'Quick Actions' preset actions are performed.">config.usage.show_channel_jump_in_servicelist</item>
 		<if conditional="config.channelSelection.screenStyle.value == ''">
 			<item level="0" text="Show channel numbers in channel selection" description="When enabled, show channel numbers in the channel selection screen.">config.usage.show_channel_numbers_in_servicelist</item>
 			<item level="1" text="Show picons in service list" description="Configure if service picons will be shown in the service list.">config.usage.service_icon_enable</item>
@@ -146,7 +146,7 @@
 		<item level="0" text="Brightness (Normal)" description="Configure the brightness level of the front panel display for normal operation.">config.lcd.bright</item>
 		<item level="0" text="Brightness (Dimmed)" description="Configure the brightness level of the front panel display for dimmed operation.">config.lcd.dimbright</item>
 		<item level="0" text="Dim delay" description="Dim the LCD to the level from 'Brightness (Dimmed)' after specified time.">config.lcd.dimdelay</item>
-		<item level="0" text="Brightness (Standby)" description="Configure the brightness level of the front panel display for Standby mode.">config.lcd.standby</item>
+		<item level="0" text="Brightness (Standby)" description="Configure the brightness level of the front panel display for Standby.">config.lcd.standby</item>
 		<item level="0" text="Contrast" description="Configure the contrast level of the front panel display." requires="ConfigDisplay">config.lcd.contrast</item>
 		<item level="0" text="LED Normal" description="LED brightness during normal operations.">config.lcd.ledbrightness</item>
 		<item level="0" text="LED Standby" description="LED brightness during Standby.">config.lcd.ledbrightnessstandby</item>
@@ -159,8 +159,8 @@
 		<item level="0" text="Operating LED status in Standby" description="With this option you can switch the LED color or deactivate the LED." requires="LEDStandbyColor">config.usage.lcd_ledstandbycolor</item>
 		<item level="0" text="Operating LED status in Deep Standby" description="With this option you can switch the LED color or deactivate the LED." requires="LEDSuspendColor">config.usage.lcd_ledsuspendcolor</item>
 		<item level="0" text="Status of the display during operation" description="With this option you can switch off the display during operation." requires="Power4x7On">config.usage.lcd_power4x7on</item>
-		<item level="0" text="Status of the display in Standby" description="With this option you can switch off the display in Standby mode." requires="Power4x7Standby">config.usage.lcd_power4x7standby</item>
-		<item level="0" text="Status of the display in Deep Standby" description="With this option you can switch off the display in Deep Standby mode." requires="Power4x7Suspend">config.usage.lcd_power4x7suspend</item>
+		<item level="0" text="Status of the display in Standby" description="With this option you can switch off the display in Standby." requires="Power4x7Standby">config.usage.lcd_power4x7standby</item>
+		<item level="0" text="Status of the display in Deep Standby" description="With this option you can switch off the display in Deep Standby." requires="Power4x7Suspend">config.usage.lcd_power4x7suspend</item>
 		<item level="0" text="Show in Standby" description="This option allows you to choose if the display shows the time or nothing in Standby." requires="7segment">config.usage.show_in_standby</item>
 		<item level="0" text="Show during operation" description="This option allows you to choose if the display shows the time, channel number or nothing during operation." requires="7segment">config.usage.show_in_operation</item>
 		<item level="2" text="Initial scroll delay" description="Delay in milliseconds before start of scrolling text on display." requires="VFD_initial_scroll_delay">config.usage.vfd_initial_scroll_delay</item>
@@ -184,8 +184,8 @@
 		<item level="1" text="Show Display Icons" description="Allows you to enable/disable displaying icons on the front panel.">config.lcd.mode</item>
 		<if requires="ConfigDisplay">
 			<item level="1" text="Show time remaining/elapsed" description="This option allows you to choose how to display the remaining time, the elapsed time, or both.">config.usage.swap_time_remaining_on_vfd</item>
-			<item level="1" text="Show transponder remaining/elapsed as" description="This option allows you to choose how to display the remaining or elapsed time for live TV.">config.usage.swap_time_display_on_vfd</item>
-			<item level="1" text="Show Media playback remaining/elapsed as" description="This option allows you to choose how to display the remaining or elapsed time for media playback.">config.usage.swap_media_time_display_on_vfd</item>
+			<item level="1" text="Show transponder remaining/elapsed as" description="This option allows you to choose how to display the remaining/elapsed time for live TV.">config.usage.swap_time_display_on_vfd</item>
+			<item level="1" text="Show Media playback remaining/elapsed as" description="This option allows you to choose how to display the remaining/elapsed time for media playback.">config.usage.swap_media_time_display_on_vfd</item>
 			<item level="0" text="Show time elapsed as positive" description="This option allows you to choose how to display elapsed time, as + or -.">config.usage.elapsed_time_positive_vfd</item>
 			<item level="0" text="Power On Display" description="This option allows you to Power Off the display.">config.lcd.power</item>
 			<item level="0" text="Show HDMI-Output Res" description="Show HDMI Output Resolution.">config.lcd.showoutputresolution</item>
@@ -193,8 +193,8 @@
 			<item level="1" text="Scrolling speed (software renderer)" description="Set the scrolling speed of text on the front display, this is used by software renderer in some skins.">config.lcd.scrollSpeed</item>
 			<item level="1" text="Scrolling delay (software renderer)" description="Set the delay time between repeated loops, this is used by software renderer in some skins.">config.lcd.scrollDelay</item>
 		</if>
-		<item level="0" text="Date style" description="Choose the front panel display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' the month in digits ('DD' and 'MM' have leading zeros for single digit values). The screen display will be based on your choice but can be influenced by the skin." requires="config.usage.date.enabled_display">config.usage.date.display</item>
-		<item level="0" text="Time style" description="Choose the front panel display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' the minutes ('HH' and 'hh' have leading zeros for single digit values). The front panel display will be based on your choice but can be influenced any applicable skin." requires="config.usage.time.enabled_display">config.usage.time.display</item>
+		<item level="0" text="Date style" description="Choose the front panel display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' is the month in digits. ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin." requires="config.usage.date.enabled_display">config.usage.date.display</item>
+		<item level="0" text="Time style" description="Choose the front panel display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' is the minutes. ('HH' and 'hh' have leading zeros for single digit values.) The front panel display will be based on your choice but can be influenced any applicable skin." requires="config.usage.time.enabled_display">config.usage.time.display</item>
 	</setup>
 	<setup key="DNS" title="DNS Settings">
 		<item level="0" text="DNS mode" description="Select the mode of the DNS.">config.usage.dnsMode</item>
@@ -469,11 +469,11 @@
 		</if>
 	</setup>
 	<setup key="HDMIRecord" title="HDMI Recording Settings" showOpenWebif="1">
-		<item level="0" text="Bitrate" description="Bitrate of the video encoder. Larger values improves quality and increases file size.">config.hdmirecord.bitrate</item>
+		<item level="0" text="Bitrate" description="Set the bitrate of the video encoder. Larger values improve the quality and also increases the file size.">config.hdmirecord.bitrate</item>
 		<item level="0" text="Width" description="The width of the picture. The input will be scaled to match this value.">config.hdmirecord.width</item>
 		<item level="0" text="Height" description="The height of the picture. The input will be scaled to match this value.">config.hdmirecord.height</item>
 		<item level="0" text="Frame rate" description="The frame rate of the recording. Ideally, this will match the frame rate of the source or be an integer multiple. If in doubt, set to 60, which should work with most sources.">config.hdmirecord.framerate</item>
-		<item level="2" text="Interlaced" description="In most cases, leave this disabled. Enable only if you have a very specific need.">config.hdmirecord.interlaced</item>
+		<item level="2" text="Interlaced" description="In most cases this should be set to 'No'. Only set to 'Yes' if you have a very specific need.">config.hdmirecord.interlaced</item>
 		<item level="1" text="Aspect ratio" description="The aspect ratio of the recording.">config.hdmirecord.aspectratio</item>
 	</setup>
 	<setup key="InputDeviceSetup" title="Input Device Settings">
@@ -491,7 +491,7 @@
 		<item level="1" text="LED Brightness" description="LED brightness during normal operations.">config.fp.led.default_brightness</item>
 		<item level="1" text="LED Idle Color" description="With this option you can switch the LED color or deactivate the LED.">config.fp.led.standby_color</item>
 		<item level="1" text="LED Idle Brightness" description="LED brightness during Deep Standby.">config.fp.led.standby_brightness</item>
-		<item level="1" text="LED Shutdown Color" description="Power LED state during Deep Standby.">config.fp.led.shutdown_color</item>
+		<item level="1" text="LED Shutdown Color" description="LED color during Deep Standby.">config.fp.led.shutdown_color</item>
 	</setup>
 	<setup key="Locale" title="Locale Selection Settings" menuTitle="Locale">
 		<item level="0" text="Locales to be displayed" description="Display the base locales or all locales for a language.">config.locales.packageLocales</item>
@@ -535,7 +535,7 @@
 	</setup>
 	<setup key="MovieSelection" title="Movie Selection Settings" showOpenWebif="1">
 		<item level="0" text="Use 'Trash' in movie list" description="When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately.">config.usage.movielist_trashcan</item>
-		<item level="0" text="Purge 'Trash' after x days" description="Configure the number of days after which items are automatically removed from the trashcan.">config.usage.movielist_trashcan_days</item>
+		<item level="0" text="Purge 'Trash' after" description="Configure the number of days after which items are automatically removed from the trashcan.">config.usage.movielist_trashcan_days</item>
 		<item level="0" text="Clean network 'Trash'" description="When enabled, network trashcans are probed for cleaning.">config.usage.movielist_trashcan_network_clean</item>
 		<item level="0" text="Space to reserve for recordings (GB)" description="Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trashcan.">config.usage.movielist_trashcan_reserve</item>
 		<item level="0" text="Background delete option" description="Configure on which devices the background delete option should be used.">config.misc.erase_flags</item>
@@ -546,7 +546,7 @@
 		<item level="0" text="Use extended List" description="Use the extended List">config.movielist.useextlist</item>
 		<item level="0" text="Update delay for Events in List" description="Update delay for events in list. Scrolling in list is faster with higher delay, especially on big lists!">config.movielist.eventinfo_delay</item>
 		<item level="0" text="Sort" description="Set the default sorting method.">config.movielist.moviesort</item>
-		<item level="0" text="Show extended description" description="Show or hide the extended description (skin dependent).">config.movielist.description</item>
+		<item level="0" text="Show extended description" description="Show or hide the extended description. This functionality may be skin dependent.">config.movielist.description</item>
 		<item level="0" text="Use per directory settings" description="When set each folder will show the previous state used, when off the default values will be shown.">config.movielist.settings_per_directory</item>
 		<item level="0" text="Action at end of media" description="Select what action to take when reaching the end of a media file during playback.">config.usage.on_movie_eof</item>
 		<item level="0" text="Stop service on return to movie list" description="Stop previous broadcasted service on return to movie list.">config.movielist.stop_service</item>
@@ -688,7 +688,7 @@
 		<item level="2" text="Time jump repeat interval for fast forward/backward" description="Defines how fast the time jumps are repeated. Values lower than 500ms may be problematic with NAS.">config.seek.withjumps_repeat_ms</item>
 		<item level="2" text="Time jump avoid zero step size" description="Avoid getting stuck (at the expense of some stuttering) when the jump time is smaller than the time between I-frames.">config.seek.withjumps_avoid_zero</item>
 		<item level="1" text="Use 'Trash' in movie list" description="When enabled, deleted recordings are moved to the trashcan, instead of being deleted immediately.">config.usage.movielist_trashcan</item>
-		<item level="1" text="Purge 'Trash' after x days" description="Configure the number of days after which items are automatically removed from the trashcan.">config.usage.movielist_trashcan_days</item>
+		<item level="1" text="Purge 'Trash' after" description="Configure the number of days after which items are automatically removed from the trashcan.">config.usage.movielist_trashcan_days</item>
 		<item level="1" text="Clean network 'Trash'" description="When enabled, network trashcans are probed for cleaning.">config.usage.movielist_trashcan_network_clean</item>
 		<item level="1" text="Space to reserve for recordings (GB)" description="Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trashcan.">config.usage.movielist_trashcan_reserve</item>
 		<item level="2" text="Background delete option" description="Configure on which devices the background delete option should be used.">config.misc.erase_flags</item>
@@ -742,7 +742,7 @@
 		<item level="2" text="Limit character set for recording filenames" description="Limit the characters that can be used in recording filenames to (7 bit) ASCII. This ensures compatibility with operating systems or file systems with limited character sets.">config.recording.ascii_filenames</item>
 		<item level="2" text="Composition of the recording filenames" description="Configure how recording filenames are constructed. Standard: Date Time - Channel - Title Very very short: Title Very short: Title - Date Time Short with time: Date Time - Title Short: Date - Title Long: Date Time - Channel - Title - Info.">config.recording.filename_composition</item>
 		<item level="2" text="Remove completed timers after" description="Configure the number of days old timers are kept before they are automatically removed from the timer list.">config.recording.keep_timers</item>
-		<item level="1" text="Purge 'Trash' after x days" description="Configure the number of days after which items are automatically removed from the trashcan.">config.usage.movielist_trashcan_days</item>
+		<item level="1" text="Purge 'Trash' after" description="Configure the number of days after which items are automatically removed from the trashcan.">config.usage.movielist_trashcan_days</item>
 		<item level="1" text="Clean network 'Trash'" description="When enabled, network trashcans are probed for cleaning.">config.usage.movielist_trashcan_network_clean</item>
 		<item level="1" text="Space to reserve for recordings (GB)" description="Configure the minimum amount of disk space to be available for recordings. When the amount of space drops below this value, deleted items will be removed from the trashcan.">config.usage.movielist_trashcan_reserve</item>
 		<item level="2" text="Background delete option" description="Configure on which devices the background delete option should be used.">config.misc.erase_flags</item>
@@ -754,14 +754,14 @@
 		<item level="2" text="Default 'Timer type' *" description="Configure default setting for new timers. Need a restart after changing.">config.recording.default_timertype</item>
 		<item level="2" text="Default 'After event' *" description="Configure default setting for new timers. Need a restart after changing.">config.recording.default_afterevent</item>
 		<item level="2" text="Include AIT in recordings" description="If enabled, AIT data is included in recordings.">config.recording.include_ait</item>
-		<item level="2" text="Show recording symbol" description="Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (e.g. in EPGrefresh).">config.recording.show_rec_symbol_for_rec_types</item>
+		<item level="2" text="Show recording symbol" description="Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (like in EPGrefresh).">config.recording.show_rec_symbol_for_rec_types</item>
 		<item level="2" text="Show warning before restart" description="Configure for which types of recordings a warning about active recordings is shown when attempting to restart the receiver or the GUI.">config.recording.warn_box_restart_rec_types</item>
 		<item level="2" text="Show free space in timer view" description="When 'Enabled', the timer view will show the free space on the target device. This will wake the device from sleep mode.">config.recording.timerviewshowfreespace</item>
 		<if requires="CanDescrambleInStandby">
 			<item level="2" text="Descramble in Standby" description="Set to 'Enabled' to descramble queued scrambled recordings in Standby.">config.recording.standbyDescramble</item>
 			<if conditional="config.recording.standbyDescramble.value" indent="1">
-				<item level="2" text="Descramble recordings before Shutdown" description="Set to 'Enabled' to descramble queued scrambled recordings in Standby mode before shutting down.">config.recording.standbyDescrambleShutdown</item>
-				<item level="2" text="Descramble start time" description="Select a time, when in Standby mode, after which the descramble can proceed.">config.recording.standbyDescrambleStart</item>
+				<item level="2" text="Descramble recordings before Shutdown" description="Set to 'Enabled' to descramble queued scrambled recordings in Standby before shutting down.">config.recording.standbyDescrambleShutdown</item>
+				<item level="2" text="Descramble start time" description="Select a time, when in Standby, after which the descramble can proceed.">config.recording.standbyDescrambleStart</item>
 				<item level="2" text="Descramble end time" description="Select a time, when in Standby, before which descramble can proceed.">config.recording.standbyDescrambleEnd</item>
 			</if>
 		</if>
@@ -892,8 +892,8 @@
 				</if>
 			</if>
 			<if conditional="self.isFunctionTimer()">
-				<item level="0" text="Timer start window" description="Select the start time after which this timer can be activated.  Before this time the timer won't be activated even if other conditions are met.">self.timerStartTime</item>
-				<item level="0" text="Timer end window" description="Select the end time before which this timer can be activated.  After this time the timer won't be activated even if other conditions are met.">self.timerEndTime</item>
+				<item level="0" text="Timer start window" description="Select the start time after which this timer can be activated. Before this time the timer won't be activated even if other conditions are met.">self.timerStartTime</item>
+				<item level="0" text="Timer end window" description="Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met.">self.timerEndTime</item>
 				<item level="0" text="After event" description="Select the action to perform when the timer ends.">self.timerAfterEvent</item>
 			<else />
 				<item level="0" text="Start time" description="Select the time when this timer will start.">self.timerStartTime</item>
@@ -904,8 +904,8 @@
 				</if>
 			</if>
 			<if conditional="self.isFunctionTimer()">
-				<item level="0" text="Standby execution" description="Select how the schedule is handled with respect to Standby mode.">self.timerFunctionStandby</item>
-				<item level="0" text="Start retry" description="Reschedule the task to run when the receiver enters or exits Standby. The state change must occur within the task’s scheduled window, or the task will not run." conditional="self.timerFunctionStandby.value > 0">self.timerFunctionStandbyRetry</item>
+				<item level="0" text="Standby execution" description="Select how the schedule is handled with respect to Standby.">self.timerFunctionStandby</item>
+				<item level="0" text="Start retry" description="Select 'Yes' to reschedule the task to run when the receiver enters or exits Standby. The state change must occur within the task's scheduled window or the task will not be run." conditional="self.timerFunctionStandby.value > 0">self.timerFunctionStandbyRetry</item>
 				<item level="0" text="Error Retry count" description="Select the number of times to retry a task if an error occurs when running the task.">self.timerFunctionRetryCount</item>
 				<item level="0" text="Error Retry delay" description="Select the amount of time to wait, after a task error, before trying to run the task again." conditional="self.timerFunctionRetryCount.value > 0">self.timerFunctionRetryDelay</item>
 			</if>
@@ -989,10 +989,10 @@
 		<item level="0" text="Sync time using" description="Synchronize system time using transponder or Internet.">config.misc.SyncTimeUsing</item>
 		<if conditional="config.misc.SyncTimeUsing.value == '1'">
 			<item level="0" text="NTP server" description="Configure your NTP server.">config.misc.NTPserver</item>
-			<item level="0" text="Sync NTP every x minutes" description="Setup network time synchronization interval.">config.misc.useNTPminutes</item>
+			<item level="0" text="Sync NTP every" description="Setup network time synchronization interval.">config.misc.useNTPminutes</item>
 		</if>
-		<item level="0" text="Date style" description="Choose the display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' the month in digits ('DD' and 'MM' have leading zeros for single digit values). The screen display will be based on your choice but can be influenced by the skin." requires="config.usage.date.enabled">config.usage.date.dayfull</item>
-		<item level="0" text="Time style" description="Choose the display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' the seconds ('HH' and 'hh' have leading zeros for single digit values). The screen display will be based on your choice but can be influenced by the skin." requires="config.usage.time.enabled">config.usage.time.long</item>
+		<item level="0" text="Date style" description="Choose the display formatting style for dates. 'D'/'DD' is the date and 'M'/'MM' is the month in digits. ('DD' and 'MM' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin." requires="config.usage.date.enabled">config.usage.date.dayfull</item>
+		<item level="0" text="Time style" description="Choose the display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' is the minutes and 'ss' is the seconds. ('HH' and 'hh' have leading zeros for single digit values.) The screen display will be based on your choice but can be influenced by the skin." requires="config.usage.time.enabled">config.usage.time.long</item>
 	</setup>
 	<setup key="Timeshift" title="Time Shift Settings" level="1" showOpenWebif="1">
 		<item level="2" text="Time shift buffer location" description="Set the default location to store your time shift buffer files. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations.">config.timeshift.path</item>
@@ -1002,7 +1002,7 @@
 		<item level="2" text="Show status messages on switch to live TV" description="When enabled, show status or error messages.">config.timeshift.showLiveTVMsg</item>
 		<item level="2" text="Time shift save action on zap" description="Select if time shift must continue when set to record.">config.timeshift.favoriteSaveAction</item>
 		<item level="2" text="Stop time shift while recording" description="Disables timeshift during recording (advisable for USB sticks).">config.timeshift.stopWhileRecording</item>
-		<item level="2" text="Skip jumping to live while timeshifting with plugins" description="Enables timeshift to use alternative audio plugins.">config.timeshift.skipReturnToLive</item>
+		<item level="2" text="Skip jumping to live while timeshifting with plugins" description="If set to 'Yes', allows the use of time shift with alternative audio plugins.">config.timeshift.skipReturnToLive</item>
 		<item level="2" text="Use time shift SeekBar while time shifting" description="Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event.">config.timeshift.showInfoBar</item>
 		<item level="2" text="Time shift buffer limit" description="Older files in the time shift directory are removed on every event change.">config.timeshift.maxHours</item>
 		<item level="2" text="Time shift event limit" description="'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority.">config.timeshift.maxEvents</item>
@@ -1091,9 +1091,9 @@
 		<item level="0" text="Show Movie Selection in Main Menu" description="Select 'Yes' to show the 'Movie Selection' entry in the Main Menu. This can provide access to the Movie Selection screen when there is no assigned button on the remote control." restart="gui">config.usage.movieSelectionInMenu</item>
 		<item level="0" text="1st InfoBar timeout" description="Set the time to hide the InfoBar.">config.usage.infobar_timeout</item>
 		<item level="0" text="2nd InfoBar" description="Enable and set the duration of the second InfoBar (press 'OK' twice) that may include additional information.">config.usage.show_second_infobar</item>
-		<item level="0" text="2nd InfoBar timeout" description="Set how long the second InfoBar stays visible. It also disappears when you press ‘OK’.">config.usage.second_infobar_timeout</item>
-		<item level="0" text="Show InfoBar picons" description="Option to disable picons on the Infobar.">config.usage.showpicon</item>
-		<item level="0" text="Show InfoBar lite *" description="Set the screen type you get on pressing 'OK' when the InfoBar shows to second InfoBar Lite or event info.">config.usage.show_infobar_lite</item>
+		<item level="0" text="2nd InfoBar timeout" description="Set how long the second InfoBar stays visible. The second InfoBar also disappears when you press 'OK'.">config.usage.second_infobar_timeout</item>
+		<item level="0" text="Show InfoBar picons" description="Option to disable picons on the InfoBar.">config.usage.showpicon</item>
+		<item level="0" text="Show InfoBar lite *" description="Set the screen type you see on pressing 'OK' when the InfoBar shows the second InfoBar Lite or event info.">config.usage.show_infobar_lite</item>
 		<if requires="CanChangeOsdAlpha">
 			<item level="0" text="Enable InfoBar fade-out" description="Fade the InfoBar on hide.">config.usage.show_infobar_do_dimming</item>
 			<item level="0" text="InfoBar fade-out speed" description="Control the InfoBar fading speed." conditional="config.usage.show_infobar_do_dimming.value">config.usage.show_infobar_dimming_speed</item>
@@ -1114,9 +1114,9 @@
 		<item level="2" text="Show background in Radio Mode" description="Show background when tuned to a radio channel.">config.misc.showradiopic</item>
 		<item level="0" text="Show time remaining/elapsed" description="This option allows you to choose how to display the remaining time, the elapsed time, or both.">config.usage.swap_time_remaining_on_osd</item>
 		<item level="0" text="Show time elapsed as positive" description="This option allows you to choose how to display elapsed time, as + or -.">config.usage.elapsed_time_positive_osd</item>
-		<item level="0" text="Show transponder remaining/elapsed as" description="This option allows you to choose how to display the remaining or elapsed time for live TV.">config.usage.swap_time_display_on_osd</item>
+		<item level="0" text="Show transponder remaining/elapsed as" description="This option allows you to choose how to display the remaining/elapsed time for live TV.">config.usage.swap_time_display_on_osd</item>
 		<item level="0" text="Show subservices *" description="This option allows you to choose the option for Subservice indicator or selection.">config.usage.showInfoBarSubservices</item>
-		<item level="0" text="Media playback Remaining/Elapsed as" description="This option allows you to choose how to display the remaining or elapsed time for media playback.">config.usage.swap_media_time_display_on_osd</item>
+		<item level="0" text="Media playback Remaining/Elapsed as" description="This option allows you to choose how to display the remaining/elapsed time for media playback.">config.usage.swap_media_time_display_on_osd</item>
 		<item level="0" text="Zap history sequence" description="Select the display sequence of previously visited services.">config.usage.zapHistorySort</item>
 		<item level="2" text="Hide zap errors" description="Hide any zap error messages.">config.usage.hide_zap_errors</item>
 		<item level="2" text="Hide CI messages" description="Hide error messages from the Common Interface module.">config.usage.hide_ci_messages</item>
@@ -1126,7 +1126,7 @@
 		<item level="2" text="Swap SNR in '&#37;' with SNR in 'db'" description="This option allows you to the SNR as a percentage (not all receivers support this).">config.usage.swap_snr_on_osd</item>
 		<item level="1" text="Behavior of 0 key in PiP-mode" description="Choose what you want the button '0' to do when PiP is active.">config.usage.pip_zero_button</item>
 		<item level="1" text="Show PVR status in MoviePlayer InfoBar" description="This option moves the PVR status display from a separate window into the MoviePlayer InfoBar.">config.usage.movieplayer_pvrstate</item>
-		<item level="2" text="Close PiP on exit" description="When enabled, the PiP can be closed using the EXIT button." requires="PIPAvailable">config.usage.pip_hideOnExit</item>
+		<item level="2" text="Close PiP on exit" description="When enabled, the PiP can be closed by pressing the EXIT button." requires="PIPAvailable">config.usage.pip_hideOnExit</item>
 		<item level="2" text="Remember last service in PiP" description="Configure if and how long the latest service in the PiP will be remembered." requires="PIPAvailable">config.usage.pip_last_service_timeout</item>
 		<item level="2" text="Show VCR SCART on main menu" description="When enabled, the VCR SCART option will be shown on the main menu." requires="ScartSwitch">config.usage.show_vcr_scart</item>
 		<item level="2" text="Spinner Position" description="Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at 0,0 and the bottom right is at 1260,700. Note that the position is the top left of the spinner and not the centre of the spinner.">config.misc.spinnerPosition</item>
