@@ -16,6 +16,7 @@ public:
 	eDVBServiceStream();
 	int start(const char *serviceref, int fd);
 	int stop();
+	RESULT frontendInfo(ePtr<iFrontendInformation>& ptr);
 
 protected:
 	enum { stateIdle, statePrepared, stateRecording };
