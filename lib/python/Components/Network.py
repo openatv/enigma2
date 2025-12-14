@@ -36,7 +36,6 @@ class Network:
 		self.configuredNetworkAdapters = []
 		self.nameservers = []
 		self.ethtool_bin = "/usr/sbin/ethtool"
-		# self.console = Console()
 		self.linkConsole = Console()
 		self.restartConsole = Console()
 		self.deactivateInterfaceConsole = Console()
@@ -151,14 +150,9 @@ class Network:
 				self.ifaces[name]["dhcp"] = item["dhcp"]
 				self.ifaces[name]["ipv6"] = item["ipv6"]
 
+		print(f"[Network] DEBUG: '{iface}' InterfaceData={self.ifaces[iface]}")
 		self.configuredNetworkAdapters = self.configuredInterfaces  # Save configured interface list.
 		self.loadNameserverConfig()  # Load name servers only once.
-		"""
-		if config.usage.dns.value.lower() not in ("dhcp-router"):
-			self.writeNameserverConfig()
-			# print(f"read configured interface: {interfaces}")
-			# print(f"self.ifaces after loading: {self.ifaces}")
-		"""
 		self.config_ready = True
 		self.msgPlugins()
 		if callback and callable(callback):
@@ -167,7 +161,7 @@ class Network:
 	def getAddrInet(self, iface, callback):
 		data = {"up": False, "dhcp": False, "preup": False, "predown": False}
 		try:
-			data["up"] = int(open("/sys/class/net/%s/flags" % iface).read().strip(), 16) & 1 == 1
+			data["up"] = int(open(f"/sys/class/net/{iface}/flags").read().strip(), 16) & 1 == 1
 			if data["up"]:
 				self.configuredInterfaces.append(iface)
 			nit = ni.ifaddresses(iface)
@@ -190,7 +184,7 @@ class Network:
 		ipPattern = compile(ipRegexp)
 		# ipLinePattern = compile(ipRegexp)
 		for line in result.splitlines():
-			print("[Network] %s" % line[0:7])
+			print(f"[Network] {line[0:7]}")
 			if line[0:7] == "0.0.0.0":
 				gateway = self.regExpMatch(ipPattern, line[16:31])
 				if gateway:
@@ -265,10 +259,7 @@ class Network:
 		self.writeNameserverConfig(dhcpAdapter != [])
 
 	def writeNameserverConfig(self, useDHCPforDNS=False):
-		# try:
-		# Console().ePopen("/bin/rm -f '%s'" % self.resolvFile)
 		linesV4 = ["nameserver %d.%d.%d.%d" % tuple(nameserver) for nameserver in self.nameservers if isinstance(nameserver, list)]
-		# linesV4 = [f"nameserver {".".join([str(x) for x in nameserver])}" for nameserver in self.nameservers if isinstance(nameserver, list)]
 		linesV6 = [f"nameserver {nameserver}" for nameserver in self.nameservers if isinstance(nameserver, str)]
 		match config.usage.dnsMode.value:
 			case 0:
@@ -287,9 +278,6 @@ class Network:
 			fileWriteLines(self.nameserverFile, lines, source=MODULE_NAME)
 		elif exists(self.nameserverFile):
 			remove(self.nameserverFile)
-		# self.restartNetwork()
-		# except:
-		# 	print("[Network] resolv.conf or nameserversdns.conf - writing failed")
 
 	def loadNameserverConfig(self):
 		ipRegExpV4 = r"[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"
@@ -360,7 +348,7 @@ class Network:
 				name = name.upper()
 		else:
 			name = _("Unknown")
-		return "%s %s" % (name, _("wireless network interface"))
+		return f"{name} {_('wireless network interface')}"
 
 	def getAdapterName(self, iface):
 		return iface
@@ -409,7 +397,7 @@ class Network:
 		self.commands.append("/etc/init.d/avahi-daemon stop")
 		for iface in self.ifaces.keys():
 			if iface != "eth0" or not self.onRemoteRootFS():
-				self.commands.append("ip addr flush dev %s scope global" % iface)
+				self.commands.append(f"ip addr flush dev {iface} scope global")
 		self.commands.append("/etc/init.d/networking stop")
 		self.commands.append("killall -9 udhcpc")
 		self.commands.append("rm /var/run/udhcpc*")
@@ -435,24 +423,24 @@ class Network:
 		if mode == "lan":
 			dev = "eth0"
 		if dev:
-			lines.append("auto %s" % dev)
-			lines.append("iface %s inet dhcp" % dev)
+			lines.append(f"auto {dev}")
+			lines.append(f"iface {dev} inet dhcp")
 		lines.append("")
 		fileWriteLines(self.networkInterfaceFile, lines, source=MODULE_NAME)
 		self.resetNetworkConsole = Console()
 		self.commands = []
 		if mode == "wlan":
-			self.commands.append("%s eth0 down" % self.networkProgram)
-			self.commands.append("%s ath0 down" % self.networkProgram)
-			self.commands.append("%s wlan0 up" % self.networkProgram)
+			self.commands.append(f"{self.networkProgram} eth0 down")
+			self.commands.append(f"{self.networkProgram} ath0 down")
+			self.commands.append(f"{self.networkProgram} wlan0 up")
 		if mode == "wlan-mpci":
-			self.commands.append("%s eth0 down" % self.networkProgram)
-			self.commands.append("%s wlan0 down" % self.networkProgram)
-			self.commands.append("%s ath0 up" % self.networkProgram)
+			self.commands.append(f"{self.networkProgram} eth0 down")
+			self.commands.append(f"{self.networkProgram} wlan0 down")
+			self.commands.append(f"{self.networkProgram} ath0 up")
 		if mode == "lan":
-			self.commands.append("%s eth0 up" % self.networkProgram)
-			self.commands.append("%s wlan0 down" % self.networkProgram)
-			self.commands.append("%s ath0 down" % self.networkProgram)
+			self.commands.append(f"{self.networkProgram} eth0 up")
+			self.commands.append(f"{self.networkProgram} wlan0 down")
+			self.commands.append(f"{self.networkProgram} ath0 down")
 		self.commands.append("/etc/init.d/avahi-daemon start")
 		self.resetNetworkConsole.eBatch(self.commands, self.resetNetworkFinished, [mode, callback], debug=True)
 
@@ -517,7 +505,7 @@ class Network:
 		for iface in self.ifaces.keys():
 			if iface != "eth0" or not self.onRemoteRootFS():
 				self.commands.append(("/sbin/ifdown", "/sbin/ifdown", iface))
-				self.commands.append("ip addr flush dev %s scope global" % iface)
+				self.commands.append(f"ip addr flush dev {iface} scope global")
 		self.commands.append("/etc/init.d/networking stop")
 		self.commands.append("killall -9 udhcpc")
 		self.commands.append("rm /var/run/udhcpc*")
@@ -534,7 +522,7 @@ class Network:
 				pass
 
 	def getLinkState(self, iface, callback):
-		cmd = "%s %s" % (self.ethtool_bin, iface)
+		cmd = f"{self.ethtool_bin} {iface}"
 		self.linkConsole = Console()
 		self.linkConsole.ePopen(cmd, self.getLinkStateFinished, callback)
 
@@ -565,14 +553,6 @@ class Network:
 			for name in list(self.restartConsole.appContainers.keys()):
 				self.restartConsole.kill(name)
 
-	def stopGetInterfacesConsole(self):
-		pass
-	"""
-		if self.console is not None and len(self.console.appContainers):
-			for name in list(self.console.appContainers.keys()):
-				self.console.kill(name)
-	"""
-
 	def stopDeactivateInterfaceConsole(self):
 		if self.deactivateInterfaceConsole is not None:
 			self.deactivateInterfaceConsole.killAll()
@@ -587,17 +567,17 @@ class Network:
 		if self.getAdapterAttribute(iface, "up") is True:
 			return True
 		else:
-			ret = os_system("ifconfig %s up" % iface)
-			os_system("ifconfig %s down" % iface)
+			ret = os_system(f"ifconfig {iface} up")
+			os_system(f"ifconfig {iface} down")
 			return ret == 0
 
 	def deactivateInterface(self, ifaces, callback=None):
 		def buildCommands(iface):
-			commands.append("ifdown %s" % iface)
-			commands.append("ip addr flush dev %s scope global" % iface)
+			commands.append(f"ifdown {iface}")
+			commands.append(f"ip addr flush dev {iface} scope global")
 			# The wpa_supplicant sometimes doesn't quit properly on SIGTERM.
-			if exists("/var/run/wpa_supplicant/%s" % iface):
-				commands.append("wpa_cli -i%s terminate" % iface)
+			if exists(f"/var/run/wpa_supplicant/{iface}"):
+				commands.append(f"wpa_cli -i{iface} terminate")
 
 		self.config_ready = False
 		self.msgPlugins()
@@ -618,9 +598,9 @@ class Network:
 
 	def deactivateInterfaceFinished(self, extra_args):
 		def checkCommandResult(iface):
-			if self.deactivateInterfaceConsole and "ifdown %s" % iface in self.deactivateInterfaceConsole.appResults:
-				result = str(self.deactivateInterfaceConsole.appResults.get("ifdown %s" % iface)).strip("\n")
-				if result == "ifdown: interface %s not configured" % iface:
+			if self.deactivateInterfaceConsole and f"ifdown {iface}" in self.deactivateInterfaceConsole.appResults:
+				result = str(self.deactivateInterfaceConsole.appResults.get(f"ifdown {iface}")).strip("\n")
+				if result == f"ifdown: interface {iface} not configured":
 					return False
 				else:
 					return True
@@ -630,10 +610,10 @@ class Network:
 		if isinstance(ifaces, (list, tuple)):
 			for iface in ifaces:
 				if checkCommandResult(iface) is False:
-					Console().ePopen(("ifconfig %s down" % iface))
+					Console().ePopen(f"ifconfig {iface} down")
 		else:
 			if checkCommandResult(ifaces) is False:
-				Console().ePopen(("ifconfig %s down" % ifaces))
+				Console().ePopen(f"ifconfig {ifaces} down")
 		if self.deactivateInterfaceConsole:
 			if len(self.deactivateInterfaceConsole.appContainers) == 0 and callback is not None:
 				callback(True)
@@ -648,7 +628,7 @@ class Network:
 			return
 		if not self.activateInterfaceConsole:
 			self.activateInterfaceConsole = Console()
-		commands = ["/sbin/ifup %s" % iface]
+		commands = [f"/sbin/ifup {iface}"]
 		self.activateInterfaceConsole.eBatch(commands, self.activateInterfaceFinished, callback, debug=True)
 
 	def activateInterfaceFinished(self, extra_args):
@@ -662,12 +642,12 @@ class Network:
 						pass
 
 	def sysfsPath(self, iface):
-		return "/sys/class/net/%s" % iface
+		return f"/sys/class/net/{iface}"
 
 	def isWirelessInterface(self, iface):
 		if iface in self.wlan_interfaces:
 			return True
-		if isdir("%s/wireless" % self.sysfsPath(iface)):
+		if isdir(f"{self.sysfsPath(iface)}/wireless"):
 			return True
 		if not exists("/proc/net/wireless"):
 			return False
@@ -684,15 +664,15 @@ class Network:
 		return True if iface in ifnames else False
 
 	def canWakeOnWiFi(self, iface):
-		if self.sysfsPath(iface) == "/sys/class/net/wlan3" and exists("/tmp/bcm/%s" % iface):
+		if self.sysfsPath(iface) == "/sys/class/net/wlan3" and exists(f"/tmp/bcm/{iface}"):
 			return True
 
 	def getWlanModuleDir(self, iface=None):
-		if self.sysfsPath(iface) == "/sys/class/net/wlan3" and exists("/tmp/bcm/%s" % iface):
-			devicedir = "%s/device" % self.sysfsPath("sys0")
+		if self.sysfsPath(iface) == "/sys/class/net/wlan3" and exists(f"/tmp/bcm/{iface}"):
+			devicedir = f"{self.sysfsPath('sys0')}/device"
 		else:
-			devicedir = "%s/device" % self.sysfsPath(iface)
-		moduledir = "%s/driver/module" % devicedir
+			devicedir = f"{self.sysfsPath(iface)}/device"
+		moduledir = f"{devicedir}/driver/module"
 		if isdir(moduledir):
 			return moduledir
 		# Identification is not possible over default module directory.
@@ -700,11 +680,11 @@ class Network:
 			for x in listdir(devicedir):
 				# The rt3070 on kernel 2.6.18 registers wireless devices as usb_device (e.g. 1-1.3:1.0) and identification is only possible over /sys/class/net/"ifacename"/device/1-xxx.
 				if x.startswith("1-"):
-					moduledir = "%s/%s/driver/module" % (devicedir, x)
+					moduledir = f"{devicedir}/{x}/driver/module"
 					if isdir(moduledir):
 						return moduledir
 			# The rt73, zd1211b, r871x_usb_drv on kernel 2.6.12 can be identified over /sys/class/net/"ifacename"/device/driver, so also look here.
-			moduledir = "%s/driver" % devicedir
+			moduledir = f"{devicedir}/driver"
 			if isdir(moduledir):
 				return moduledir
 		except Exception:
@@ -714,8 +694,8 @@ class Network:
 	def detectWlanModule(self, iface=None):
 		if not self.isWirelessInterface(iface):
 			return None
-		devicedir = "%s/device" % self.sysfsPath(iface)
-		if isdir("%s/ieee80211" % devicedir):
+		devicedir = f"{self.sysfsPath(iface)}/device"
+		if isdir(f"{devicedir}/ieee80211"):
 			return "nl80211"
 		moduledir = self.getWlanModuleDir(iface)
 		if moduledir:
@@ -754,10 +734,10 @@ class Network:
 			return
 		action = event["ACTION"]
 		if action == "add":
-			print("[Network] Add new interface: '%s'." % interface)
+			print(f"[Network] Add new interface: '{interface}'.")
 			self.getAddrInet(interface, None)
 		elif action == "remove":
-			print("[Network] Removed interface: '%s'." % interface)
+			print(f"[Network] Removed interface: '{interface}'.")
 			try:
 				del self.ifaces[interface]
 			except KeyError:
@@ -797,7 +777,7 @@ class NetworkCheck:
 				self.Retry = self.Retry - 1
 				self.Timer.start(1000, True)
 			except Exception as err:
-				print("[Network] NetworkCheck: Error %s!" % str(err))
+				print(f"[Network] NetworkCheck: Error {str(err)}!")
 
 	def Start(self):
 		self.Retry = 10
