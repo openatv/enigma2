@@ -1,4 +1,5 @@
 from errno import ETIMEDOUT
+from ipaddress import ip_address
 from glob import glob
 from os import rename, strerror, system, unlink
 from os.path import exists
@@ -216,11 +217,12 @@ class NetworkAdapterSelection(Screen):
 
 class DNSSettings(Setup):
 	def __init__(self, session):
+		iNetwork.loadNameserverConfig()
 		self.dnsInitial = iNetwork.getNameserverList()
 		print(f"[NetworkSetup] DNSSettings: Initial DNS list: {str(self.dnsInitial)}.")
 		self.dnsOptions = {
 			"custom": [[0, 0, 0, 0]],
-			"dhcp-router": [list(x[1]) for x in self.getNetworkRoutes()],
+			"dhcp-router": iNetwork.getNameserverList(),
 		}
 		fileDom = fileReadXML(resolveFilename(SCOPE_SKINS, "dnsservers.xml"), source=MODULE_NAME)
 		for dns in fileDom.findall("dnsserver"):
@@ -257,6 +259,54 @@ class DNSSettings(Setup):
 		}, prio=0, description=dnsDescription)
 		self["moveDownAction"].setEnabled(False)
 
+	def canonDnsList(self, servers, dns_mode):
+		v4 = []
+		v6 = []
+
+		for s in servers or []:
+			if isinstance(s, list) and len(s) == 4 and all(isinstance(x, int) for x in s):  # IPv4 as list [a,b,c,d]
+				if s != [0, 0, 0, 0] and all(0 <= x <= 255 for x in s):  # Basic clamp/validate
+					v4.append(tuple(s))
+				continue
+
+			if isinstance(s, (bytes, bytearray)):
+				s = s.decode("utf-8", "replace")
+			if isinstance(s, str):  # IPv6 / IPv4 as string
+				s = s.strip()
+				if s:
+					try:
+						ip = ip_address(s)
+						if ip.version == 4:
+							v4.append(tuple(int(x) for x in str(ip).split(".")))
+						else:
+							v6.append(ip.compressed)
+					except ValueError:
+						pass
+
+		if dns_mode == 1:  # IPv4 only
+			v6 = []
+		elif dns_mode == 3:  # IPv6 only
+			v4 = []
+
+		# Order-independent compare (also stable with duplicates)
+		v4.sort()
+		v6.sort()
+		return (tuple(v4), tuple(v6))
+
+	def dnsListsMatch(self, cur, opt, mode):
+		cur4, cur6 = cur
+		opt4, opt6 = opt
+
+		if mode == 1:  # IPv4 only
+			return cur4 == opt4
+		elif mode == 3:  # IPv6 only
+			return cur6 == opt6
+
+		# Mixed/Auto: only compare families present in current list
+		if (cur4 and cur4 != opt4) or (cur6 and cur6 != opt6):
+			return False
+		return True
+
 	def dnsCheck(self, dnsServers, refresh=True):
 		def dnsRefresh(refresh):
 			if refresh:
@@ -265,8 +315,18 @@ class DNSSettings(Setup):
 						self["config"].invalidate(item)
 						break
 
-		for option in self.dnsOptions.keys():
-			if dnsServers == self.dnsOptions[option]:
+		if config.usage.dns.value == "dhcp-router":
+			dnsRefresh(refresh)
+			return "dhcp-router"
+
+		mode_val = config.usage.dnsMode.value
+
+		cur = self.canonDnsList(dnsServers, mode_val)
+		for option, opt_list in self.dnsOptions.items():
+			if option == "dhcp-router":
+				continue
+			opt = self.canonDnsList(opt_list, mode_val)
+			if self.dnsListsMatch(cur, opt, mode_val):
 				if option != "custom":
 					self.dnsOptions["custom"] = [[0, 0, 0, 0]]
 				config.usage.dns.value = option
