@@ -431,6 +431,13 @@ eDVBVideo::eDVBVideo(eDVBDemux *demux, int dev, bool fcc_enable)
 		readApiSize(m_fd, m_width, m_height, m_aspect);
 		m_close_invalidates_attributes = (m_width == -1) ? 1 : 0;
 	}
+
+#ifdef DREAMNEXTGEN
+	// AMLogic doesn't send VIDEO_EVENTs, so we poll sysfs for video size changes
+	m_sysfs_poll_timer = eTimer::create(eApp);
+	CONNECT(m_sysfs_poll_timer->timeout, eDVBVideo::sysfs_poll_timeout);
+	m_sysfs_poll_timer->start(500, false); // Poll every 500ms
+#endif
 }
 
 // not finally values i think.. !!
@@ -712,6 +719,10 @@ int eDVBVideo::getPTS(pts_t &now)
 
 eDVBVideo::~eDVBVideo()
 {
+#ifdef DREAMNEXTGEN
+	if (m_sysfs_poll_timer)
+		m_sysfs_poll_timer->stop();
+#endif
 	if (m_fd >= 0)
 		::close(m_fd);
 	if (m_fd_demux >= 0)
@@ -829,6 +840,65 @@ void eDVBVideo::video_event(int)
 		}
 	}
 }
+
+#ifdef DREAMNEXTGEN
+void eDVBVideo::sysfs_poll_timeout()
+{
+	int new_width = -1, new_height = -1, new_framerate = -1, new_progressive = -1;
+	
+	CFile::parseInt(&new_width, "/sys/class/video/frame_width");
+	CFile::parseInt(&new_height, "/sys/class/video/frame_height");
+	CFile::parseInt(&new_framerate, "/proc/stb/vmpeg/0/frame_rate");
+	CFile::parseInt(&new_progressive, "/proc/stb/vmpeg/0/progressive");
+	
+	bool changed = false;
+	
+	// Check if size changed
+	if (new_width > 0 && new_height > 0 && (new_width != m_width || new_height != m_height))
+	{
+		m_width = new_width;
+		m_height = new_height;
+		
+		struct iTSMPEGDecoder::videoEvent event;
+		event.type = iTSMPEGDecoder::videoEvent::eventSizeChanged;
+		event.width = m_width;
+		event.height = m_height;
+		event.aspect = m_aspect;
+		/* emit */ m_event(event);
+		changed = true;
+	}
+	
+	// Check if framerate changed
+	if (new_framerate > 0 && new_framerate != m_framerate)
+	{
+		m_framerate = new_framerate;
+		
+		struct iTSMPEGDecoder::videoEvent event;
+		event.type = iTSMPEGDecoder::videoEvent::eventFrameRateChanged;
+		event.framerate = m_framerate;
+		/* emit */ m_event(event);
+		changed = true;
+	}
+	
+	// Check if progressive changed
+	if (new_progressive >= 0 && new_progressive != m_progressive && new_progressive != 2)
+	{
+		m_progressive = new_progressive;
+		
+		struct iTSMPEGDecoder::videoEvent event;
+		event.type = iTSMPEGDecoder::videoEvent::eventProgressiveChanged;
+		event.progressive = m_progressive;
+		/* emit */ m_event(event);
+		changed = true;
+	}
+	
+	// Stop polling once we have valid values and no more changes
+	if (m_width > 0 && m_height > 0 && m_framerate > 0 && !changed)
+	{
+		m_sysfs_poll_timer->stop();
+	}
+}
+#endif
 
 #ifdef DREAMNEXTGEN
 static int64_t get_pts_video()
