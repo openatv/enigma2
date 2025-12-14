@@ -1,6 +1,3 @@
-from Components.config import config
-
-
 # Genre types taken from DVB standards documentation.
 #
 # Some broadcaster do define other types so this list may grow or be replaced.
