@@ -223,6 +223,8 @@ class DNSSettings(Setup):
 			"custom": [[0, 0, 0, 0]],
 			"dhcp-router": iNetwork.getNameserverList(),
 		}
+		if BoxInfo.getItem("DNSCrypt"):
+			self.dnsOptions["dnscrypt"] = [[127, 0, 0, 1]]
 		fileDom = fileReadXML(resolveFilename(SCOPE_SKINS, "dnsservers.xml"), source=MODULE_NAME)
 		for dns in fileDom.findall("dnsserver"):
 			if dns.get("key", ""):
@@ -358,7 +360,7 @@ class DNSSettings(Setup):
 		index = self["config"].getCurrentIndex()
 		if current == config.usage.dns:
 			self.dnsServers = self.dnsOptions[config.usage.dns.value][:]
-		elif current not in (config.usage.dnsMode, config.usage.dnsSuffix) and self.dnsStart <= index < self.dnsStart + self.dnsLength:
+		elif current not in (config.usage.dnsMode, config.usage.dnsSuffix, config.usage.DNSCrypt_privacy) and self.dnsStart <= index < self.dnsStart + self.dnsLength:
 			self.dnsServers[index - self.dnsStart] = current.value[:]
 			option = self.dnsCheck(self.dnsServers, refresh=True)  # noqa F841
 		Setup.changedEntry(self)
@@ -388,6 +390,8 @@ class DNSSettings(Setup):
 		print(f"[NetworkSetup] DNSSettings: Saved DNS list: {str(iNetwork.getNameserverList())}.")
 		# iNetwork.saveNameserverConfig()
 		iNetwork.writeNameserverConfig()
+		if BoxInfo.getItem("DNSCrypt"):
+			self.WriteDNSCryptToml()
 		Setup.keySave(self)
 
 	def addDNSServer(self):
@@ -437,6 +441,211 @@ class DNSSettings(Setup):
 			if data[1] == "00000000" and int(data[3]) & 0x03 and data[7] == "00000000":  # If int(flags) & 0x03 is True this is a gateway (0x02) and it is up (0x01).
 				gateways.append((data[0], tuple(reversed([int(data[2][x:x + 2], 16) for x in range(0, len(data[2]), 2)]))))
 		return gateways
+
+	def TomlBool(self, val):
+		return "true" if bool(val) else "false"
+
+	def TomlStr(self, val):
+		s = str(val)
+		s = s.replace("\\", "\\\\").replace('"', '\\"')
+		return f'"{s}"'
+
+	def TomlInt(self, val, default=0):
+		try:
+			return str(int(val))
+		except Exception:
+			return str(int(default))
+
+	def ReplaceKeyLine(self, line, key, new_rhs, found_set):
+		ls = line.lstrip()
+		indent = line[:len(line) - len(ls)]
+		active_prefix = f"{key} "
+		active_prefix2 = f"{key}="
+		comment_prefix = f"#{key} "
+		comment_prefix2 = f"#{key}="
+
+		if ls.startswith(active_prefix) or ls.startswith(active_prefix2) or ls.startswith(comment_prefix) or ls.startswith(comment_prefix2):
+			found_set.add(key)
+			return f"{indent}{key} = {new_rhs}"
+
+		return line
+
+	def FindGlobalEnd(self, lines):
+		for i, line in enumerate(lines):
+			s = line.lstrip()
+			if s.startswith("[") and s.rstrip().endswith("]") and not s.startswith("#"):
+				return i
+		return len(lines)
+
+	def InsertGlobalKey(self, lines, key, rhs, anchor_keys, found_set):
+		if key in found_set:
+			return
+
+		end_global = self.FindGlobalEnd(lines)
+		insert_at = None
+
+		for i in range(end_global):
+			s = lines[i].lstrip()
+			for a in anchor_keys:
+				if s.startswith(f"{a} ") or s.startswith(f"{a}=") or s.startswith(f"#{a} ") or s.startswith(f"#{a}="):
+					insert_at = i + 1
+
+		if insert_at is None:
+			insert_at = end_global
+
+		lines.insert(insert_at, f"{key} = {rhs}")
+		found_set.add(key)
+
+	def FindSectionRange(self, lines, section_name):
+		start = None
+		for i, line in enumerate(lines):
+			s = line.lstrip()
+			if s.startswith("[") and s.rstrip().endswith("]") and not s.startswith("#"):
+				name = s.strip()[1:-1].strip()
+				if start is None and name == section_name:
+					start = i + 1
+					continue
+				if start is not None:
+					return (start, i)
+		if start is not None:
+			return (start, len(lines))
+		return (None, None)
+
+	def InsertSectionKey(self, lines, section_name, key, rhs, anchor_keys, found_set):
+		found_token = f"{section_name}.{key}"
+		if found_token in found_set:
+			return
+
+		start, end = self.FindSectionRange(lines, section_name)
+		if start is None:
+			return
+
+		insert_at = None
+		for i in range(start, end):
+			s = lines[i].lstrip()
+			for a in anchor_keys:
+				if s.startswith(f"{a} ") or s.startswith(f"{a}=") or s.startswith(f"#{a} ") or s.startswith(f"#{a}="):
+					insert_at = i + 1
+
+		if insert_at is None:
+			insert_at = end
+
+		lines.insert(insert_at, f"{key} = {rhs}")
+		found_set.add(found_token)
+
+	def WriteDNSCryptToml(self):
+		tomlPath = "/etc/dnscrypt-proxy/dnscrypt-proxy.toml"
+
+		oldLines = fileReadLines(tomlPath, source=MODULE_NAME)
+		if not oldLines:
+			self.session.open(MessageBox, _("Sorry DNSCrypt Config is Missing"), MessageBox.TYPE_INFO)
+			self.close()
+			return
+
+		found = set()
+		newLines = []
+		current_section = None
+
+		for line in oldLines:
+			ls = line.lstrip()
+
+			if ls.startswith("[") and ls.rstrip().endswith("]") and not ls.startswith("#"):
+				current_section = ls.strip()[1:-1].strip()
+				newLines.append(line)
+				continue
+
+			if current_section is None:
+				line = self.ReplaceKeyLine(line, "ipv4_servers", self.TomlBool(config.usage.DNSCrypt_ipv4.value), found)
+				line = self.ReplaceKeyLine(line, "ipv6_servers", self.TomlBool(config.usage.DNSCrypt_ipv6.value), found)
+				line = self.ReplaceKeyLine(line, "dnscrypt_servers", self.TomlBool(config.usage.DNSCrypt_protocol.value), found)
+				line = self.ReplaceKeyLine(line, "doh_servers", self.TomlBool(config.usage.DNSCrypt_doh.value), found)
+				line = self.ReplaceKeyLine(line, "odoh_servers", self.TomlBool(config.usage.DNSCrypt_odoh.value), found)
+				line = self.ReplaceKeyLine(line, "require_dnssec", self.TomlBool(config.usage.DNSCrypt_dnssec.value), found)
+				line = self.ReplaceKeyLine(line, "require_nolog", self.TomlBool(config.usage.DNSCrypt_nolog.value), found)
+				line = self.ReplaceKeyLine(line, "require_nofilter", self.TomlBool(config.usage.DNSCrypt_nofilter.value), found)
+				line = self.ReplaceKeyLine(line, "cache", self.TomlBool(config.usage.DNSCrypt_cache.value), found)
+
+				newLines.append(line)
+				continue
+
+			if current_section == "monitoring_ui":
+				tmpFound = set()
+				line2 = self.ReplaceKeyLine(line, "enabled", self.TomlBool(config.usage.DNSCrypt_ui.value), tmpFound)
+				if "enabled" in tmpFound:
+					found.add("monitoring_ui.enabled")
+					line = line2
+
+				listen_val = self.TomlStr(f"0.0.0.0:{self.TomlInt(config.usage.DNSCrypt_port.value, default=9012)}")
+				tmpFound.clear()
+				line2 = self.ReplaceKeyLine(line, "listen_address", listen_val, tmpFound)
+				if "listen_address" in tmpFound:
+					found.add("monitoring_ui.listen_address")
+					line = line2
+
+				tmpFound.clear()
+				line2 = self.ReplaceKeyLine(line, "username", self.TomlStr(config.usage.DNSCrypt_username.value.strip()), tmpFound)
+				if "username" in tmpFound:
+					found.add("monitoring_ui.username")
+					line = line2
+
+				tmpFound.clear()
+				line2 = self.ReplaceKeyLine(line, "password", self.TomlStr(config.usage.DNSCrypt_password.value.strip()), tmpFound)
+				if "password" in tmpFound:
+					found.add("monitoring_ui.password")
+					line = line2
+
+				tmpFound.clear()
+				line2 = self.ReplaceKeyLine(line, "privacy_level", self.TomlInt(config.usage.DNSCrypt_privacy.value, default=1), tmpFound)
+				if "privacy_level" in tmpFound:
+					found.add("monitoring_ui.privacy_level")
+					line = line2
+
+				newLines.append(line)
+				continue
+
+			newLines.append(line)
+
+		self.InsertGlobalKey(
+			newLines,
+			"require_cache",
+			self.TomlBool(config.usage.DNSCrypt_cache.value),
+			anchor_keys=["require_nofilter", "require_nolog", "require_dnssec"],
+			found_set=found
+		)
+
+		self.InsertSectionKey(
+			newLines, "monitoring_ui", "enabled",
+			self.TomlBool(config.usage.DNSCrypt_ui.value),
+			anchor_keys=["enabled"], found_set=found
+		)
+		self.InsertSectionKey(
+			newLines, "monitoring_ui", "listen_address",
+			self.TomlStr(f"0.0.0.0:{self.TomlInt(config.usage.DNSCrypt_port.value, default=9012)}"),
+			anchor_keys=["enabled", "listen_address"], found_set=found
+		)
+		self.InsertSectionKey(
+			newLines, "monitoring_ui", "username",
+			self.TomlStr(config.usage.DNSCrypt_username.value.strip()),
+			anchor_keys=["listen_address", "username"], found_set=found
+		)
+		self.InsertSectionKey(
+			newLines, "monitoring_ui", "password",
+			self.TomlStr(config.usage.DNSCrypt_password.value.strip()),
+			anchor_keys=["username", "password"], found_set=found
+		)
+		self.InsertSectionKey(
+			newLines, "monitoring_ui", "privacy_level",
+			self.TomlInt(config.usage.DNSCrypt_privacy.value, default=1),
+			anchor_keys=["password", "privacy_level"], found_set=found
+		)
+
+		tmpPath = f"{tomlPath}.tmp"
+		fileWriteLines(tmpPath, newLines)
+
+		if exists(tmpPath):
+			rename(tmpPath, tomlPath)
+
+		self.close()
 
 
 class NameserverSetup(DNSSettings):

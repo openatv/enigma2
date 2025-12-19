@@ -200,6 +200,22 @@
 		<item level="0" text="DNS mode" description="Select the mode of the DNS.">config.usage.dnsMode</item>
 		<item level="0" text="DNS suffix" description="Define the DNS suffix.">config.usage.dnsSuffix</item>
 		<item level="0" text="DNS rotate" description="Rotate DNS servers.">config.usage.dnsRotate</item>
+		<if requires="DNSCrypt">
+			<item level="0" text="Use IPv4 servers" description="Use servers reachable over IPv4.">config.usage.DNSCrypt_ipv4</item>
+			<item level="0" text="Use IPv6 servers" description="Use servers reachable over IPv6 -- Do not enable if you don't have IPv6 connectivity.">config.usage.DNSCrypt_ipv6</item>
+			<item level="0" text="Use dnscrypt servers" description="Use servers implementing the DNSCrypt protocol.">config.usage.DNSCrypt_protocol</item>
+			<item level="0" text="Use doh servers" description="Use servers implementing the DNS-over-HTTPS protocol.">config.usage.DNSCrypt_doh</item>
+			<item level="0" text="Use odoh servers" description="Use servers implementing the Oblivious DoH protocol.">config.usage.DNSCrypt_odoh</item>
+			<item level="0" text="Use only DNSSEC servers" description="Server must support DNS security extensions (DNSSEC).">config.usage.DNSCrypt_dnssec</item>
+			<item level="0" text="Use only nolog servers" description="Server must not log user queries (declarative).">config.usage.DNSCrypt_nolog</item>
+			<item level="0" text="Use only nofilter servers" description="Server must not enforce its own blocklist (for parental control, ads blocking...).">config.usage.DNSCrypt_nofilter</item>
+			<item level="0" text="Enable DNS cache" description="Enable a DNS cache to reduce latency and outgoing traffic.">config.usage.DNSCrypt_cache</item>
+			<item level="0" text="Enable monitoring ui" description="Enable the monitoring UI WebInfo.">config.usage.DNSCrypt_ui</item>
+			<item level="0" text="Set monitoring ui username" description="Set the username for authentication.">config.usage.DNSCrypt_username</item>
+			<item level="0" text="Set monitoring ui password" description="Set the password for authentication.">config.usage.DNSCrypt_password</item>
+			<item level="0" text="Set monitoring ui port" description="Set the listen address port (8080-9999).">config.usage.DNSCrypt_port</item>
+			<item level="0" text="Set privacy level" description="Set the Privacy level for the monitoring UI.">config.usage.DNSCrypt_privacy</item>
+		</if>
 		<item level="0" text="DNS data source" description="Select the source of the default DNS settings.">config.usage.dns</item>
 	</setup>
 	<setup key="EPG" title="EPG Settings" level="2" showOpenWebif="1">

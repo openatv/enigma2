@@ -16,6 +16,7 @@
 	<daemon key="autofs" title="AutoFS" autostart="/etc/rc2.d/S17autofs" autostartservice="autofs" autostartprio="17" running="automount" startservice="autofs"/>
 	<daemon key="chrony" title="Chrony" autostart="/etc/rc2.d/S12chronyd" autostartservice="chronyd" autostartprio="12" running="chronyd" startservice="chronyd"/>
 	<daemon key="cron" title="Cron" autostart="/etc/rc2.d/S90crond" autostartservice="crond" autostartprio="90" running="crond" startservice="crond"/>
+	<daemon key="dnscrypt" title="DNSCrypt" installcheck="/etc/init.d/dnscrypt-proxy" package="dnscrypt-proxy" autostart="/etc/rc2.d/S20dnscrypt-proxy" autostartservice="dnscrypt-proxy" running="dnscrypt-proxy" startservice="dnscrypt-proxy"/>
 	<daemon key="ftp" title="FTP" autostart="/etc/rc2.d/S*0vsftpd" autostartservice="vsftpd" running="vsftpd" startservice="vsftpd"/>
 	<daemon key="inadyn" title="Inadyn" installcheck="/etc/init.d/inadyn-mt" package="inadyn-mt" autostart="/etc/rc2.d/S20inadyn-mt" autostartservice="inadyn-mt" running="inadyn-mt" startservice="inadyn-mt" logpath="/var/log/inadyn.log"/>
 	<daemon key="minidlna" title="MiniDLNA" installcheck="/etc/init.d/minidlna" package="minidlna" autostart="/etc/rc2.d/S20minidlna" autostartservice="minidlna" running="minidlnad" startservice="minidlna" logpath="/var/volatile/log/minidlna.log"/>
