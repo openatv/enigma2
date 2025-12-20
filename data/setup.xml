@@ -201,7 +201,7 @@
 		<item level="0" text="DNS suffix" description="Specify the network DNS suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host.">config.usage.dnsSuffix</item>
 		<item level="0" text="DNS rotate" description="This rotation changes the order in which the list of DNS servers is used and can avoid issues if a DNS server in the list becomes unavailable.">config.usage.dnsRotate</item>
 		<item level="0" text="DNS data source" description="Select the the DNS server/servers that will be used to resolve host lookups.">config.usage.dns</item>
-		<if conditional="config.usage.dns.value='dnscrypt'">
+		<if conditional="config.usage.dns.value=='dnscrypt'">
 			<item level="0" text="Use DNSCrypt servers" description="Only use DNS servers implementing the DNSCrypt protocol.">config.usage.DNSCryptProtocol</item>
 			<item level="0" text="Use DoH servers" description="Only use DNS servers implementing the DNS-over-HTTPS protocol. This causes DNS lookups to be made via the encrypted HTTPS protocol.">config.usage.DNSCryptDoH</item>
 			<item level="0" text="Use ODoH servers" description="Only use DNS servers implementing the Oblivious DNS-over-HTTPS protocol. This adds another layer of privacy by adding a proxy layer to the DNS-over-HTTPS request.">config.usage.DNSCryptODoH</item>
