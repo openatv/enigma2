@@ -216,6 +216,10 @@ class NetworkAdapterSelection(Screen):
 
 class DNSSettings(Setup):
 	def __init__(self, session):
+		self.dnsStart = None
+		self.dnsLength = 0
+		self.dnsServers = []
+		self.entryAdded = False
 		iNetwork.loadNameserverConfig()
 		self.dnsInitial = iNetwork.getNameserverList()
 		print(f"[NetworkSetup] DNSSettings: Initial DNS list: {str(self.dnsInitial)}.")
@@ -343,7 +347,7 @@ class DNSSettings(Setup):
 		Setup.createSetup(self)
 		if config.usage.dns.value == "custom":
 			dnsList = self["config"].getList()
-			if hasattr(self, "dnsStart"):
+			if self.dnsStart is not None and 0 <= self.dnsStart <= len(dnsList):
 				del dnsList[self.dnsStart:]
 			self.dnsStart = len(dnsList)
 			items = [NoSave(ConfigIP(default=x)) for x in self.dnsServers if isinstance(x, list)] + [NoSave(ConfigText(default=x, fixed_size=False)) for x in self.dnsServers if isinstance(x, str)]
@@ -355,6 +359,9 @@ class DNSSettings(Setup):
 				entry.default = [256, 256, 256, 256]  # This triggers a cancel confirmation for unedited new entries.
 				self.entryAdded = False
 			self["config"].setList(dnsList)
+		else:
+			self.dnsStart = None
+			self.dnsLength = 0
 
 	def changedEntry(self):
 		current = self["config"].getCurrent()[1]
@@ -374,6 +381,12 @@ class DNSSettings(Setup):
 
 	def updateControls(self):
 		if config.usage.dns.value == "custom":
+			if self.dnsStart is None:
+				self["key_blue"].setText("")
+				self["removeAction"].setEnabled(False)
+				self["moveUpAction"].setEnabled(False)
+				self["moveDownAction"].setEnabled(False)
+				return
 			index = self["config"].getCurrentIndex() - self.dnsStart
 			if 0 <= index < self.dnsLength:
 				self["key_blue"].setText(_("Delete") if self.dnsLength > 1 or self.dnsServers[0] != [0, 0, 0, 0] else "")
