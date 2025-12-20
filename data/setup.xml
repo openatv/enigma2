@@ -202,8 +202,6 @@
 		<item level="0" text="DNS rotate" description="Rotate DNS servers.">config.usage.dnsRotate</item>
 		<item level="0" text="DNS data source" description="Select the source of the default DNS settings.">config.usage.dns</item>
 		<if conditional="config.usage.dns.value='dnscrypt'">
-			<item level="0" text="Use IPv4 servers" description="Use DNS servers reachable over the IPv4 protocol.">config.usage.DNSCryptIPv4</item>
-			<item level="0" text="Use IPv6 servers" description="Use DNS servers reachable over the IPv6 protocol. Do NOT select 'Yes' if IPv6 connectivity is not available!">config.usage.DNSCryptIPv6</item>
 			<item level="0" text="Use DNSCrypt servers" description="Only use DNS servers implementing the DNSCrypt protocol.">config.usage.DNSCryptProtocol</item>
 			<item level="0" text="Use DoH servers" description="Only use DNS servers implementing the DNS-over-HTTPS protocol. This causes DNS lookups to be made via the encrypted HTTPS protocol.">config.usage.DNSCryptDoH</item>
 			<item level="0" text="Use ODoH servers" description="Only use DNS servers implementing the Oblivious DNS-over-HTTPS protocol. This adds another layer of privacy by adding a proxy layer to the DNS-over-HTTPS request.">config.usage.DNSCryptODoH</item>

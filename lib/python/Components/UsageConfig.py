@@ -180,8 +180,6 @@ def InitUsageConfig():
 	config.usage.dnsSuffix = ConfigText(default="", fixed_size=False)
 	config.usage.dnsRotate = ConfigYesNo(default=False)
 
-	config.usage.DNSCryptIPv4 = ConfigYesNo(default=True)
-	config.usage.DNSCryptIPv6 = ConfigYesNo(default=False)
 	config.usage.DNSCryptProtocol = ConfigYesNo(default=True)
 	config.usage.DNSCryptDoH = ConfigYesNo(default=True)
 	config.usage.DNSCryptODoH = ConfigYesNo(default=False)

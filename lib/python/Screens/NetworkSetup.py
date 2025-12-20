@@ -555,8 +555,8 @@ class DNSSettings(Setup):
 				continue
 
 			if current_section is None:
-				line = self.ReplaceKeyLine(line, "ipv4_servers", self.TomlBool(config.usage.DNSCryptIPv4.value), found)
-				line = self.ReplaceKeyLine(line, "ipv6_servers", self.TomlBool(config.usage.DNSCryptIPv6.value), found)
+				line = self.ReplaceKeyLine(line, "ipv4_servers", self.TomlBool(config.usage.dnsMode.value != 3), found)
+				line = self.ReplaceKeyLine(line, "ipv6_servers", self.TomlBool(config.usage.dnsMode.value != 2), found)
 				line = self.ReplaceKeyLine(line, "dnscrypt_servers", self.TomlBool(config.usage.DNSCryptProtocol.value), found)
 				line = self.ReplaceKeyLine(line, "doh_servers", self.TomlBool(config.usage.DNSCryptDoH.value), found)
 				line = self.ReplaceKeyLine(line, "odoh_servers", self.TomlBool(config.usage.DNSCryptODoH.value), found)
@@ -564,7 +564,6 @@ class DNSSettings(Setup):
 				line = self.ReplaceKeyLine(line, "require_nolog", self.TomlBool(config.usage.DNSCryptNoLog.value), found)
 				line = self.ReplaceKeyLine(line, "require_nofilter", self.TomlBool(config.usage.DNSCryptNoFilter.value), found)
 				line = self.ReplaceKeyLine(line, "cache", self.TomlBool(config.usage.DNSCryptCache.value), found)
-
 				newLines.append(line)
 				continue
 
