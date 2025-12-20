@@ -324,6 +324,10 @@ class DNSSettings(Setup):
 			dnsRefresh(refresh)
 			return "dhcp-router"
 
+		if config.usage.dns.value == "dnscrypt":
+			dnsRefresh(refresh)
+			return "dnscrypt"
+
 		mode_val = config.usage.dnsMode.value
 
 		cur = self.canonDnsList(dnsServers, mode_val)
