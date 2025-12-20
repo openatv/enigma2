@@ -360,7 +360,7 @@ class DNSSettings(Setup):
 		index = self["config"].getCurrentIndex()
 		if current == config.usage.dns:
 			self.dnsServers = self.dnsOptions[config.usage.dns.value][:]
-		elif current not in (config.usage.dnsMode, config.usage.dnsSuffix, config.usage.DNSCrypt_privacy) and self.dnsStart <= index < self.dnsStart + self.dnsLength:
+		elif current not in (config.usage.dnsMode, config.usage.dnsSuffix, config.usage.DNSCryptPrivacy) and self.dnsStart <= index < self.dnsStart + self.dnsLength:
 			self.dnsServers[index - self.dnsStart] = current.value[:]
 			option = self.dnsCheck(self.dnsServers, refresh=True)  # noqa F841
 		Setup.changedEntry(self)
@@ -555,27 +555,27 @@ class DNSSettings(Setup):
 				continue
 
 			if current_section is None:
-				line = self.ReplaceKeyLine(line, "ipv4_servers", self.TomlBool(config.usage.DNSCrypt_ipv4.value), found)
-				line = self.ReplaceKeyLine(line, "ipv6_servers", self.TomlBool(config.usage.DNSCrypt_ipv6.value), found)
-				line = self.ReplaceKeyLine(line, "dnscrypt_servers", self.TomlBool(config.usage.DNSCrypt_protocol.value), found)
-				line = self.ReplaceKeyLine(line, "doh_servers", self.TomlBool(config.usage.DNSCrypt_doh.value), found)
-				line = self.ReplaceKeyLine(line, "odoh_servers", self.TomlBool(config.usage.DNSCrypt_odoh.value), found)
-				line = self.ReplaceKeyLine(line, "require_dnssec", self.TomlBool(config.usage.DNSCrypt_dnssec.value), found)
-				line = self.ReplaceKeyLine(line, "require_nolog", self.TomlBool(config.usage.DNSCrypt_nolog.value), found)
-				line = self.ReplaceKeyLine(line, "require_nofilter", self.TomlBool(config.usage.DNSCrypt_nofilter.value), found)
-				line = self.ReplaceKeyLine(line, "cache", self.TomlBool(config.usage.DNSCrypt_cache.value), found)
+				line = self.ReplaceKeyLine(line, "ipv4_servers", self.TomlBool(config.usage.DNSCryptIPv4.value), found)
+				line = self.ReplaceKeyLine(line, "ipv6_servers", self.TomlBool(config.usage.DNSCryptIPv6.value), found)
+				line = self.ReplaceKeyLine(line, "dnscrypt_servers", self.TomlBool(config.usage.DNSCryptProtocol.value), found)
+				line = self.ReplaceKeyLine(line, "doh_servers", self.TomlBool(config.usage.DNSCryptDoH.value), found)
+				line = self.ReplaceKeyLine(line, "odoh_servers", self.TomlBool(config.usage.DNSCryptODoH.value), found)
+				line = self.ReplaceKeyLine(line, "require_dnssec", self.TomlBool(config.usage.DNSCryptDNSSEC.value), found)
+				line = self.ReplaceKeyLine(line, "require_nolog", self.TomlBool(config.usage.DNSCryptNoLog.value), found)
+				line = self.ReplaceKeyLine(line, "require_nofilter", self.TomlBool(config.usage.DNSCryptNoFilter.value), found)
+				line = self.ReplaceKeyLine(line, "cache", self.TomlBool(config.usage.DNSCryptCache.value), found)
 
 				newLines.append(line)
 				continue
 
 			if current_section == "monitoring_ui":
 				tmpFound = set()
-				line2 = self.ReplaceKeyLine(line, "enabled", self.TomlBool(config.usage.DNSCrypt_ui.value), tmpFound)
+				line2 = self.ReplaceKeyLine(line, "enabled", self.TomlBool(config.usage.DNSCryptUI.value), tmpFound)
 				if "enabled" in tmpFound:
 					found.add("monitoring_ui.enabled")
 					line = line2
 
-				listen_val = self.TomlStr(f"0.0.0.0:{self.TomlInt(config.usage.DNSCrypt_port.value, default=9012)}")
+				listen_val = self.TomlStr(f"0.0.0.0:{self.TomlInt(config.usage.DNSCryptPort.value, default=9012)}")
 				tmpFound.clear()
 				line2 = self.ReplaceKeyLine(line, "listen_address", listen_val, tmpFound)
 				if "listen_address" in tmpFound:
@@ -583,19 +583,19 @@ class DNSSettings(Setup):
 					line = line2
 
 				tmpFound.clear()
-				line2 = self.ReplaceKeyLine(line, "username", self.TomlStr(config.usage.DNSCrypt_username.value.strip()), tmpFound)
+				line2 = self.ReplaceKeyLine(line, "username", self.TomlStr(config.usage.DNSCryptUsername.value.strip()), tmpFound)
 				if "username" in tmpFound:
 					found.add("monitoring_ui.username")
 					line = line2
 
 				tmpFound.clear()
-				line2 = self.ReplaceKeyLine(line, "password", self.TomlStr(config.usage.DNSCrypt_password.value.strip()), tmpFound)
+				line2 = self.ReplaceKeyLine(line, "password", self.TomlStr(config.usage.DNSCryptPassword.value.strip()), tmpFound)
 				if "password" in tmpFound:
 					found.add("monitoring_ui.password")
 					line = line2
 
 				tmpFound.clear()
-				line2 = self.ReplaceKeyLine(line, "privacy_level", self.TomlInt(config.usage.DNSCrypt_privacy.value, default=1), tmpFound)
+				line2 = self.ReplaceKeyLine(line, "privacy_level", self.TomlInt(config.usage.DNSCryptPrivacy.value, default=1), tmpFound)
 				if "privacy_level" in tmpFound:
 					found.add("monitoring_ui.privacy_level")
 					line = line2
@@ -608,34 +608,34 @@ class DNSSettings(Setup):
 		self.InsertGlobalKey(
 			newLines,
 			"require_cache",
-			self.TomlBool(config.usage.DNSCrypt_cache.value),
+			self.TomlBool(config.usage.DNSCryptCache.value),
 			anchor_keys=["require_nofilter", "require_nolog", "require_dnssec"],
 			found_set=found
 		)
 
 		self.InsertSectionKey(
 			newLines, "monitoring_ui", "enabled",
-			self.TomlBool(config.usage.DNSCrypt_ui.value),
+			self.TomlBool(config.usage.DNSCryptUI.value),
 			anchor_keys=["enabled"], found_set=found
 		)
 		self.InsertSectionKey(
 			newLines, "monitoring_ui", "listen_address",
-			self.TomlStr(f"0.0.0.0:{self.TomlInt(config.usage.DNSCrypt_port.value, default=9012)}"),
+			self.TomlStr(f"0.0.0.0:{self.TomlInt(config.usage.DNSCryptPort.value, default=9012)}"),
 			anchor_keys=["enabled", "listen_address"], found_set=found
 		)
 		self.InsertSectionKey(
 			newLines, "monitoring_ui", "username",
-			self.TomlStr(config.usage.DNSCrypt_username.value.strip()),
+			self.TomlStr(config.usage.DNSCryptUsername.value.strip()),
 			anchor_keys=["listen_address", "username"], found_set=found
 		)
 		self.InsertSectionKey(
 			newLines, "monitoring_ui", "password",
-			self.TomlStr(config.usage.DNSCrypt_password.value.strip()),
+			self.TomlStr(config.usage.DNSCryptPassword.value.strip()),
 			anchor_keys=["username", "password"], found_set=found
 		)
 		self.InsertSectionKey(
 			newLines, "monitoring_ui", "privacy_level",
-			self.TomlInt(config.usage.DNSCrypt_privacy.value, default=1),
+			self.TomlInt(config.usage.DNSCryptPrivacy.value, default=1),
 			anchor_keys=["password", "privacy_level"], found_set=found
 		)
 
