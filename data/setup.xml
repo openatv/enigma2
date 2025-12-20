@@ -197,10 +197,10 @@
 		<item level="0" text="Time style" description="Choose the front panel display formatting style for times. 'H'/'HH' is the hour for a 24 hour clock, 'h'/'hh' is the hour for a 12 hour clock, 'mm' is the minutes. ('HH' and 'hh' have leading zeros for single digit values.) The front panel display will be based on your choice but can be influenced any applicable skin." requires="config.usage.time.enabled_display">config.usage.time.display</item>
 	</setup>
 	<setup key="DNS" title="DNS Settings">
-		<item level="0" text="DNS mode" description="Select the mode of the DNS.">config.usage.dnsMode</item>
-		<item level="0" text="DNS suffix" description="Define the DNS suffix.">config.usage.dnsSuffix</item>
-		<item level="0" text="DNS rotate" description="Rotate DNS servers.">config.usage.dnsRotate</item>
-		<item level="0" text="DNS data source" description="Select the source of the default DNS settings.">config.usage.dns</item>
+		<item level="0" text="DNS protocol mode" description="Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred.">config.usage.dnsMode</item>
+		<item level="0" text="DNS suffix" description="Specify the network DNS suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host.">config.usage.dnsSuffix</item>
+		<item level="0" text="DNS rotate" description="This rotation changes the order in which the list of DNS servers is used and can avoid issues if a DNS server in the list becomes unavailable.">config.usage.dnsRotate</item>
+		<item level="0" text="DNS data source" description="Select the the DNS server/servers that will be used to resolve host lookups.">config.usage.dns</item>
 	</setup>
 	<setup key="EPG" title="EPG Settings" level="2" showOpenWebif="1">
 		<item level="2" text="EPG location" description="Choose the location where the EPG data will be stored when the %s %s is shut down. The location must be available at boot time.">config.misc.epgcachepath</item>
