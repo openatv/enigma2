@@ -241,8 +241,15 @@ class DNSSettings(Setup):
 					adresses.extend(ipv6s.split(","))
 				self.dnsOptions[dns.get("key")] = adresses
 
-		option = self.dnsCheck(self.dnsInitial, refresh=False)
-		self.dnsServers = self.dnsOptions[option][:]
+		selected = config.usage.dns.value
+		if selected not in self.dnsOptions:
+			selected = "custom"
+		if selected == "custom":
+			self.dnsOptions["custom"] = self.dnsInitial[:]
+			self.dnsServers = self.dnsInitial[:]
+		else:
+			self.dnsServers = self.dnsOptions[selected][:]
+		self.detectedOption = self.dnsCheck(self.dnsInitial, refresh=False, writeback=False)
 		self.entryAdded = False
 		Setup.__init__(self, session=session, setup="DNS")
 		self["key_yellow"] = StaticText(_("Add"))
@@ -312,7 +319,7 @@ class DNSSettings(Setup):
 			return False
 		return True
 
-	def dnsCheck(self, dnsServers, refresh=True):
+	def dnsCheck(self, dnsServers, refresh=True, writeback=True):
 		def dnsRefresh(refresh):
 			if refresh:
 				for item in self["config"].getList():
@@ -332,19 +339,20 @@ class DNSSettings(Setup):
 
 		cur = self.canonDnsList(dnsServers, mode_val)
 		for option, opt_list in self.dnsOptions.items():
-			if option == "dhcp-router":
+			if option in ("dhcp-router", "dnscrypt"):
 				continue
 			opt = self.canonDnsList(opt_list, mode_val)
-			if self.dnsListsMatch(cur, opt, mode_val):
+			if writeback:
 				if option != "custom":
 					self.dnsOptions["custom"] = [[0, 0, 0, 0]]
 				config.usage.dns.value = option
 				dnsRefresh(refresh)
-				return option
+			return option
 		option = "custom"
-		self.dnsOptions[option] = dnsServers[:]
-		config.usage.dns.value = option
-		dnsRefresh(refresh)
+		if writeback:
+			self.dnsOptions[option] = dnsServers[:]
+			config.usage.dns.value = option
+			dnsRefresh(refresh)
 		return option
 
 	def createSetup(self):  # NOSONAR silence S2638
@@ -370,12 +378,18 @@ class DNSSettings(Setup):
 	def changedEntry(self):
 		current = self["config"].getCurrent()[1]
 		index = self["config"].getCurrentIndex()
+		if current == config.usage.dns:
+			if config.usage.dns.value == "custom":
+				self.dnsServers = self.dnsOptions["custom"][:]
+			else:
+				self.dnsServers = self.dnsOptions[config.usage.dns.value][:]
+			self.createSetup()
 		if config.usage.dns.value == "custom":
 			if current == config.usage.dns:
 				self.dnsServers = self.dnsOptions[config.usage.dns.value][:]
 			elif current not in (config.usage.dnsMode, config.usage.dnsSuffix, config.usage.DNSCryptPrivacy) and self.dnsStart <= index < self.dnsStart + self.dnsLength:
 				self.dnsServers[index - self.dnsStart] = current.value[:]
-				option = self.dnsCheck(self.dnsServers, refresh=True)  # noqa F841
+				option = self.dnsCheck(self.dnsServers, refresh=True, writeback=True)  # noqa F841
 		Setup.changedEntry(self)
 		self.updateControls()
 
