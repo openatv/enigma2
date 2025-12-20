@@ -164,7 +164,7 @@ def InitUsageConfig():
 		("custom", _("Static IP / Custom"))
 	]
 	if BoxInfo.getItem("DNSCrypt"):
-		choices.append(("dnscrypt", _("Use DNSCrypt Resolver")))
+		choices.append(("dnscrypt", _("DNSCrypt Resolver")))
 	fileDom = fileReadXML(resolveFilename(SCOPE_SKINS, "dnsservers.xml"), source=MODULE_NAME)
 	for dns in fileDom.findall("dnsserver"):
 		if dns.get("key", ""):

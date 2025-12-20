@@ -341,28 +341,30 @@ class DNSSettings(Setup):
 
 	def createSetup(self):  # NOSONAR silence S2638
 		Setup.createSetup(self)
-		dnsList = self["config"].getList()
-		if hasattr(self, "dnsStart"):
-			del dnsList[self.dnsStart:]
-		self.dnsStart = len(dnsList)
-		items = [NoSave(ConfigIP(default=x)) for x in self.dnsServers if isinstance(x, list)] + [NoSave(ConfigText(default=x, fixed_size=False)) for x in self.dnsServers if isinstance(x, str)]
-		entry = None
-		for item, entry in enumerate(items, start=1):
-			dnsList.append(getConfigListEntry(_("Name server %d") % item, entry, _("Enter DNS (Dynamic Name Server) %d's IP address.") % item))
-		self.dnsLength = item if items else 0
-		if self.entryAdded and entry:
-			entry.default = [256, 256, 256, 256]  # This triggers a cancel confirmation for unedited new entries.
-			self.entryAdded = False
-		self["config"].setList(dnsList)
+		if config.usage.dns.value == "custom":
+			dnsList = self["config"].getList()
+			if hasattr(self, "dnsStart"):
+				del dnsList[self.dnsStart:]
+			self.dnsStart = len(dnsList)
+			items = [NoSave(ConfigIP(default=x)) for x in self.dnsServers if isinstance(x, list)] + [NoSave(ConfigText(default=x, fixed_size=False)) for x in self.dnsServers if isinstance(x, str)]
+			entry = None
+			for item, entry in enumerate(items, start=1):
+				dnsList.append(getConfigListEntry(_("Name server %d") % item, entry, _("Enter DNS (Dynamic Name Server) %d's IP address.") % item))
+			self.dnsLength = item if items else 0
+			if self.entryAdded and entry:
+				entry.default = [256, 256, 256, 256]  # This triggers a cancel confirmation for unedited new entries.
+				self.entryAdded = False
+			self["config"].setList(dnsList)
 
 	def changedEntry(self):
 		current = self["config"].getCurrent()[1]
 		index = self["config"].getCurrentIndex()
-		if current == config.usage.dns:
-			self.dnsServers = self.dnsOptions[config.usage.dns.value][:]
-		elif current not in (config.usage.dnsMode, config.usage.dnsSuffix, config.usage.DNSCryptPrivacy) and self.dnsStart <= index < self.dnsStart + self.dnsLength:
-			self.dnsServers[index - self.dnsStart] = current.value[:]
-			option = self.dnsCheck(self.dnsServers, refresh=True)  # noqa F841
+		if config.usage.dns.value == "custom":
+			if current == config.usage.dns:
+				self.dnsServers = self.dnsOptions[config.usage.dns.value][:]
+			elif current not in (config.usage.dnsMode, config.usage.dnsSuffix, config.usage.DNSCryptPrivacy) and self.dnsStart <= index < self.dnsStart + self.dnsLength:
+				self.dnsServers[index - self.dnsStart] = current.value[:]
+				option = self.dnsCheck(self.dnsServers, refresh=True)  # noqa F841
 		Setup.changedEntry(self)
 		self.updateControls()
 
@@ -371,17 +373,18 @@ class DNSSettings(Setup):
 		self.updateControls()
 
 	def updateControls(self):
-		index = self["config"].getCurrentIndex() - self.dnsStart
-		if 0 <= index < self.dnsLength:
-			self["key_blue"].setText(_("Delete") if self.dnsLength > 1 or self.dnsServers[0] != [0, 0, 0, 0] else "")
-			self["removeAction"].setEnabled(self.dnsLength > 1 or self.dnsServers[0] != [0, 0, 0, 0])
-			self["moveUpAction"].setEnabled(index > 0)
-			self["moveDownAction"].setEnabled(index < self.dnsLength - 1)
-		else:
-			self["key_blue"].setText("")
-			self["removeAction"].setEnabled(False)
-			self["moveUpAction"].setEnabled(False)
-			self["moveDownAction"].setEnabled(False)
+		if config.usage.dns.value == "custom":
+			index = self["config"].getCurrentIndex() - self.dnsStart
+			if 0 <= index < self.dnsLength:
+				self["key_blue"].setText(_("Delete") if self.dnsLength > 1 or self.dnsServers[0] != [0, 0, 0, 0] else "")
+				self["removeAction"].setEnabled(self.dnsLength > 1 or self.dnsServers[0] != [0, 0, 0, 0])
+				self["moveUpAction"].setEnabled(index > 0)
+				self["moveDownAction"].setEnabled(index < self.dnsLength - 1)
+				return
+		self["key_blue"].setText("")
+		self["removeAction"].setEnabled(False)
+		self["moveUpAction"].setEnabled(False)
+		self["moveDownAction"].setEnabled(False)
 
 	def keySave(self):
 		iNetwork.clearNameservers()
