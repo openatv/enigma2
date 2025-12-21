@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-06 12:58+0000\n"
+"POT-Creation-Date: 2025-12-20 12:54+0000\n"
 "PO-Revision-Date: 2025-11-11 20:51+0000\n"
 "Last-Translator: Daniel Nylander <daniel@danielnylander.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sv/>\n"
@@ -1895,6 +1895,15 @@ msgstr "Aktiva kunder"
 msgid "Active only"
 msgstr "Endast aktiv"
 
+msgid "AdGuard DNS (Ads/Trackers)"
+msgstr ""
+
+msgid "AdGuard DNS (Family)"
+msgstr ""
+
+msgid "AdGuard DNS (Unfiltered)"
+msgstr ""
+
 #
 msgid "Adapter Settings"
 msgstr "Inställningar för adapter"
@@ -3218,9 +3227,6 @@ msgstr "Bislama"
 msgid "Bitrate"
 msgstr "Bitfrekvens"
 
-msgid "Set the bitrate of the video encoder. Larger values improve the quality and also increases the file size."
-msgstr "Videokodarens bithastighet. Större värde förbättrar kvaliteten och ökar filstorleken."
-
 msgid "Black"
 msgstr "Svart"
 
@@ -3585,6 +3591,15 @@ msgstr "CI-plats: "
 
 msgid "CI+ Helper*"
 msgstr "CI+-hjälpare*"
+
+msgid "CIRA Canadian Shield (Family)"
+msgstr ""
+
+msgid "CIRA Canadian Shield (Private)"
+msgstr ""
+
+msgid "CIRA Canadian Shield (Protected)"
+msgstr ""
 
 msgid "CPU"
 msgstr "CPU"
@@ -4394,6 +4409,15 @@ msgstr "Städa upp och ta bort alla avslutade timers"
 msgid "Clean up and remove all completed timers?"
 msgstr "Städa upp och ta bort alla avslutade timers?"
 
+msgid "CleanBrowsing (Adult Filter)"
+msgstr ""
+
+msgid "CleanBrowsing (Family Filter)"
+msgstr ""
+
+msgid "CleanBrowsing (Security Filter)"
+msgstr ""
+
 msgid "Cleaning Trashcan"
 msgstr "Rengöring av papperskorg"
 
@@ -4722,6 +4746,9 @@ msgstr "Konfigurera LED-lampor på frontpanelen"
 msgid "Configure how recording filenames are constructed. Standard: Date Time - Channel - Title Very very short: Title Very short: Title - Date Time Short with time: Date Time - Title Short: Date - Title Long: Date Time - Channel - Title - Info."
 msgstr "Konfigurera hur filnamn för inspelning konstrueras. Standard: Datum Tid - Kanal - Titel Mycket mycket kort: Titel Mycket kort: Titel - Datum Tid Kort med tid: Datum Tid - Titel Kort: Datum - Titel Lång: Datum Tid - Kanal - Titel - Info"
 
+msgid "Configure if 'epg.dat' should be saved at all."
+msgstr "Ställ in om epg.dat ska sparas överhuvudtaget."
+
 msgid "Configure if and how crypto icons will be shown in the channel selection list."
 msgstr "Konfigurera om och hur kryptoikoner ska visas i kanalvalslistan."
 
@@ -4739,9 +4766,6 @@ msgstr "Konfigurera om och hur bred kolumnen för tjänstenamn ska visas i lista
 
 msgid "Configure if crypto icons will be shown in the channel selection list."
 msgstr "Konfigurera om kryptoikoner ska visas i kanalvalslistan."
-
-msgid "Configure if 'epg.dat' should be saved at all."
-msgstr "Ställ in om epg.dat ska sparas överhuvudtaget."
 
 msgid "Configure if service picons will be shown in quickzap."
 msgstr "Konfigurera om servicebilder ska visas i quickzap."
@@ -4825,14 +4849,14 @@ msgstr "Konfigurera beteendet när du når slutet av en film, under filmuppspeln
 msgid "Configure the border width of the subtitles. The dark border makes the subtitles easier to read on a light background."
 msgstr "Konfigurera kantbredden för undertexterna. En mörk kant gör det lättare att läsa undertexterna på en ljus bakgrund."
 
+msgid "Configure the brightness level of the front panel display for Standby."
+msgstr "Konfigurera ljusstyrkan på displayen på frontpanelen för standby."
+
 msgid "Configure the brightness level of the front panel display for dimmed operation."
 msgstr "Konfigurera ljusstyrkan på displayen på frontpanelen för dimmad drift."
 
 msgid "Configure the brightness level of the front panel display for normal operation."
 msgstr "Konfigurera ljusstyrkan på displayen på frontpanelen för normal drift."
-
-msgid "Configure the brightness level of the front panel display for Standby."
-msgstr "Konfigurera ljusstyrkan på displayen på frontpanelen för standby."
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
 msgstr "Konfigurera färgen på den externa undertexten, alternativ (normal i vitt, kursiv i gult, fet i cyan, understrykning i grönt), vit eller gul."
@@ -5238,6 +5262,21 @@ msgstr "Kontrast Video"
 
 msgid "Contrast Video & OSD"
 msgstr "Kontrast Video & OSD"
+
+msgid "Control D (Ads + Tracking)"
+msgstr ""
+
+msgid "Control D (Family Friendly)"
+msgstr ""
+
+msgid "Control D (Malware)"
+msgstr ""
+
+msgid "Control D (Uncensored)"
+msgstr ""
+
+msgid "Control D (Unfiltered)"
+msgstr ""
 
 msgid "Control LED can be turned on or off here."
 msgstr "Kontroll-LED kan sättas på eller stängas av här."
@@ -5718,8 +5757,14 @@ msgstr "DNS datakälla"
 msgid "DNS protocol mode"
 msgstr "DNS-läge"
 
+msgid "Use DNS rotation"
+msgstr ""
+
 msgid "DNS suffix"
 msgstr "DNS-suffix"
+
+msgid "DNS.WATCH (Uncensored)"
+msgstr ""
 
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
@@ -6109,9 +6154,6 @@ msgstr "Definiera softcam för denna tjänst"
 
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "Definiera ytterligare fördröjning i millisekunder före start av http(s)-strömmar."
-
-msgid "Specify the network DNS suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
-msgstr "Definiera DNS-suffixet."
 
 msgid "Define the custom mountpoint for the device."
 msgstr "Definiera den anpassade monteringspunkten för enheten."
@@ -7383,6 +7425,9 @@ msgstr "Utbildning"
 msgid "Education/Information"
 msgstr "Utbildning/Information"
 
+msgid "Education/Science/Factual"
+msgstr ""
+
 msgid "Education/Science/Factual topics"
 msgstr "Utbildning/Vetenskap/Fakta"
 
@@ -7708,9 +7753,6 @@ msgstr "Aktiverar en funktion så att mottagaren kan dekryptera flöden (om ECM-
 
 msgid "Enables sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "Om inställningen är \"Yes\" kommer samma kommandon att skickas till TV:n vid djup standby som vid vanlig standby."
-
-msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
-msgstr "Om inställningen är \"yes\" kan du använda timeshift med alternativa ljudplugins."
 
 #
 msgid "Encrypted: "
@@ -9020,9 +9062,6 @@ msgstr "Flash och återställning av inställningar och valda plugins (Fråga an
 msgid "Flash directory '%s' not allowed!"
 msgstr "Flash-katalogen '%s' är inte tillåten!"
 
-msgid "Flash your receiver software on the fly."
-msgstr "Flash on the fly din Receiver-programvara."
-
 msgid "Flash type"
 msgstr "Typ av blixt"
 
@@ -9032,6 +9071,9 @@ msgstr "Flash används"
 #, python-format
 msgid "Flash your %s %s and reboot now?"
 msgstr "Flasha din %s %s och starta om nu?"
+
+msgid "Flash your receiver software on the fly."
+msgstr "Flash on the fly din Receiver-programvara."
 
 #, python-format
 msgid "FlashExpander on boot is '%s'.  FlashExpander status is '%s'."
@@ -9423,8 +9465,8 @@ msgstr "Guld"
 msgid "Golf"
 msgstr "Golf"
 
-msgid "Google DNS"
-msgstr "Google DNS"
+msgid "Google Public DNS"
+msgstr ""
 
 msgid "Goto"
 msgstr "Goto"
@@ -9664,11 +9706,11 @@ msgstr "hantverk"
 msgid "Handle Python crashes"
 msgstr "Hantera kraschar i Python"
 
-msgid "Handle input from TV"
-msgstr "Hantera ingång från TV"
-
 msgid "Handle Standby from TV"
 msgstr "Hantera standby från TV"
+
+msgid "Handle input from TV"
+msgstr "Hantera ingång från TV"
 
 msgid "Handle wake up from TV"
 msgstr "Handtag vaknar från TV"
@@ -10192,6 +10234,9 @@ msgstr "Om loggarna använder det inställda maximala utrymmet raderas den älds
 
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
 msgstr "Om möjligt, x minuter innan en timer startar kommer VPS-Plugin att styra om programmet startar tidigare. (0 avaktiverar funktionen)"
+
+msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
+msgstr "Om inställningen är \"yes\" kan du använda timeshift med alternativa ljudplugins."
 
 msgid "If the Deep Standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Om lösningen för djup standby är aktiverad väntar du tills systemtiden har synkroniserats. Beroende på vad som krävs fortsätter uppvaknandet av enheten efter högst 2 minuter."
@@ -11075,11 +11120,14 @@ msgstr "LED Standby"
 msgid "LED brightness during Deep Standby."
 msgstr "LED-ljusstyrka under djup standby."
 
+msgid "LED brightness during Standby."
+msgstr "LED-ljusstyrka under standby."
+
 msgid "LED brightness during normal operations."
 msgstr "LED-ljusstyrka under normal drift."
 
-msgid "LED brightness during Standby."
-msgstr "LED-ljusstyrka under standby."
+msgid "LED color during Deep Standby."
+msgstr ""
 
 msgid "LIRC remote"
 msgstr "LIRC fjärrkontroll"
@@ -11399,9 +11447,6 @@ msgstr "Laddar information, vänta..."
 msgid "Loading slot information, please wait..."
 msgstr "Läser in platsinformation, vänta..."
 
-msgid "Local receiver"
-msgstr "Lokal box"
-
 msgid "Local date/time"
 msgstr "Lokalt datum/tid"
 
@@ -11414,6 +11459,9 @@ msgstr "Lokalt nätverk"
 
 msgid "Local or Regional"
 msgstr ""
+
+msgid "Local receiver"
+msgstr "Lokal box"
 
 msgid "Local time"
 msgstr "Lokal tid"
@@ -13808,6 +13856,9 @@ msgstr "OpenDNS Familjeskydd"
 msgid "OpenDNS Home"
 msgstr "OpenDNS Hem"
 
+msgid "OpenDNS Sandbox"
+msgstr ""
+
 msgid "OpenPLi Packages"
 msgstr "OpenPLi-paket"
 
@@ -15342,14 +15393,14 @@ msgstr "Quad PiP-kanal "
 msgid "Quad PiP is not available."
 msgstr "Quad PiP är inte tillgängligt."
 
-msgid "Quad9 DNS"
-msgstr "Quad9 DNS"
+msgid "Quad9 (Malware blocking + DNSSEC)"
+msgstr ""
 
-msgid "Quad9 ECS DNS"
-msgstr "Quad9 ECS DNS"
+msgid "Quad9 (Malware blocking + ECS)"
+msgstr ""
 
-msgid "Quad9 Unsecured DNS"
-msgstr "Quad9 osäkrad DNS"
+msgid "Quad9 (Unsecured / no blocking)"
+msgstr ""
 
 msgid "Quechua"
 msgstr "Quechua"
@@ -15860,14 +15911,14 @@ msgstr "Inställningar för fjärrkontrollens knappar"
 msgid "Remote Control Code Settings"
 msgstr "Inställningar för fjärrkontrollens kod"
 
-msgid "Remote receiver"
-msgstr "Fjärrkontroll"
-
 msgid "Remote control information"
 msgstr "Information om fjärrkontrollen"
 
 msgid "Remote control type"
 msgstr "Typ av fjärrkontroll"
+
+msgid "Remote receiver"
+msgstr "Fjärrkontroll"
 
 #
 msgid "Remove"
@@ -16128,9 +16179,6 @@ msgstr "Nödvändig typ av medium:"
 
 msgid "Rereading partition table"
 msgstr "Omläsning av partitionstabell"
-
-msgid "Select 'Yes' to reschedule the task to run when the receiver enters or exits Standby. The state change must occur within the task's scheduled window or the task will not be run."
-msgstr ""
 
 msgid "Reserved"
 msgstr "Reserverad"
@@ -17211,6 +17259,9 @@ msgstr "Välj \"Yes\" för att ta bort alla användaranpassningar av huddata. Om
 msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all key map, menu and setup override data and restore the default definitions."
 msgstr "Välj \"Yes\" för att ta bort alla data i användargränssnittet. Om du väljer det här alternativet tas alla data för åsidosättning av kartor, menyer och inställningar bort och standarddefinitionerna återställs."
 
+msgid "Select 'Yes' to reschedule the task to run when the receiver enters or exits Standby. The state change must occur within the task's scheduled window or the task will not be run."
+msgstr ""
+
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr "Välj \"Yes\" för att återställa nätverkskonfigurationen till standardinställningarna. Detta aktiverar Ethernet-porten om den finns och ställer in mottagaren så att den använder DHCP. Alla andra nätverksgränssnitt kommer att raderas."
 
@@ -17870,9 +17921,6 @@ msgstr "Välj tillverkare av din SCR-enhet. Om tillverkaren inte finns med i lis
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Välj metod för att återställa skärmupplösning och framebuffer när du lämnar text-TV."
 
-msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
-msgstr "Välj läge för DNS."
-
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Välj modellnummer för din Unicable-enhet. Om modellnumret inte finns med i listan, ställ in \"SCR\" på \"User defined\" och ange enhetens parametrar manuellt enligt specifikationerna."
 
@@ -17984,9 +18032,6 @@ msgstr "Välj sorteringsordning för menyalternativen. Användardefinierat gör 
 msgid "Select the source location from where to obtain the upgrade files."
 msgstr "Välj källplatsen där du vill hämta uppgraderingsfilerna."
 
-msgid "Select the the DNS server/servers that will be used to resolve host lookups."
-msgstr "Välj källa för standardinställningarna för DNS."
-
 msgid "Select the start time after which this timer can be activated. Before this time the timer won't be activated even if other conditions are met."
 msgstr ""
 
@@ -17995,6 +18040,9 @@ msgstr "Välj den start-/initialkolumn som ska aktiveras när File Commander sta
 
 msgid "Select the tags that should be used for this recording."
 msgstr "Välj de taggar som ska användas för den här inspelningen."
+
+msgid "Select the DNS server(s) that will be used to lookup the host name to resolve the IP address."
+msgstr "Välj källa för standardinställningarna för DNS."
 
 msgid "Select the time after which this timer can start."
 msgstr "Välj den tid efter vilken timern ska starta."
@@ -18110,6 +18158,9 @@ msgstr "Välj vad du vill att upp-/nedknappen ska aktivera."
 
 msgid "Select where the recording should be saved."
 msgstr "Välj var inspelningen ska sparas."
+
+msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
+msgstr "Välj läge för DNS."
 
 #
 msgid "Select wireless network"
@@ -18494,6 +18545,9 @@ msgstr "Ställ in användar-ID för OpenWebif från din reservtuner"
 
 msgid "Set the aspect ratio of the service picons."
 msgstr "Ställ in bildförhållandet för servicepikonerna."
+
+msgid "Set the bitrate of the video encoder. Larger values improve the quality and also increases the file size."
+msgstr "Videokodarens bithastighet. Större värde förbättrar kvaliteten och ökar filstorleken."
 
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Ställ in standardplatsen för dina direktinspelningar. Tryck på \"OK\" för att lägga till nya platser, tryck på \"VÄNSTER\"/\"HÖGER\" för att välja bland tidigare definierade platser."
@@ -20295,6 +20349,9 @@ msgstr "särskilda evenemang"
 msgid "Specify the directory to use when starting Media Player."
 msgstr "Ange den katalog som ska användas när Media Player startas."
 
+msgid "Specify the network DNS suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
+msgstr "Definiera DNS-suffixet."
+
 msgid "Speed"
 msgstr "Hastighet"
 
@@ -21869,11 +21926,11 @@ msgstr "Med detta alternativ kan du välja hur du vill visa SD progressiv 24Hz p
 msgid "This option allows you to choose how to display elapsed time, as + or -."
 msgstr "Med det här alternativet kan du välja hur den förflutna tiden ska visas, som + eller -."
 
-msgid "This option allows you to choose how to display the remaining time, the elapsed time, or both."
-msgstr "Med det här alternativet kan du välja om du vill visa återstående tid, förfluten tid eller båda."
-
 msgid "This option allows you to choose how to display standard definition video on your TV."
 msgstr "Med detta alternativ kan du välja hur du vill visa standarddefinitionsvideo på din TV."
+
+msgid "This option allows you to choose how to display the remaining time, the elapsed time, or both."
+msgstr "Med det här alternativet kan du välja om du vill visa återstående tid, förfluten tid eller båda."
 
 msgid "This option allows you to choose how to display the remaining/elapsed time for live TV."
 msgstr "Med det här alternativet kan du välja hur den återstående/förfallna tiden ska visas för live-tv."
@@ -21997,6 +22054,9 @@ msgstr "Detta alternativ ställer in bildskärpan, som används när bilden skal
 
 msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
 msgstr "Denna plugin kan avgöra om ett program börjar tidigare eller varar längre. Kanalen måste tillhandahålla tillförlitliga data."
+
+msgid "Select 'Yes' to enable DNS entry rotation. This rotation changes the order in which the list of DNS servers is used and can avoid issues if a DNS server in the list becomes unavailable."
+msgstr ""
 
 #
 msgid "This service is protected by a parental control PIN!"
@@ -22872,6 +22932,15 @@ msgstr "Ukraina"
 
 msgid "Ukrainian"
 msgstr "Ukrainska"
+
+msgid "UltraDNS Public (Family Secure)"
+msgstr ""
+
+msgid "UltraDNS Public (Threat Protection)"
+msgstr ""
+
+msgid "UltraDNS Public (Unfiltered)"
+msgstr ""
 
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Det gick inte att initiera Kexec MultiBoot!"
@@ -24130,9 +24199,6 @@ msgstr "När den är aktiverad tillåts en inspelning att avbryta streamingen n�
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "När den är aktiverad tillåts en inspelning att avbryta direktsänd TV när det inte finns några lediga tuners."
 
-msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
-msgstr "När inställningen är \"Yes\" kan en specifik softcam tilldelas till varje krypterad tjänst."
-
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "När den är aktiverad visas en varning och användaren får möjlighet att stoppa eller fortsätta tidsomställningen."
 
@@ -24268,6 +24334,9 @@ msgstr "När den är inställd kommer varje mapp att visa det tidigare använda 
 msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr "När den är inställd kommer PIG att återgå till live efter att en film har slutat spelas."
 
+msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
+msgstr "När inställningen är \"Yes\" kan en specifik softcam tilldelas till varje krypterad tjänst."
+
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "När innehållet har ett bildförhållande på 16:9 väljer du om du vill skala/sträcka ut bilden."
 
@@ -24317,6 +24386,9 @@ msgstr "Bredd"
 
 msgid "Width / Height"
 msgstr "Bredd / höjd"
+
+msgid "Winter sport"
+msgstr ""
 
 msgid "Winter sports"
 msgstr "vintersport"
@@ -25673,6 +25745,18 @@ msgstr "ja (behåller flöden)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Google DNS"
+#~ msgstr "Google DNS"
+
+#~ msgid "Quad9 DNS"
+#~ msgstr "Quad9 DNS"
+
+#~ msgid "Quad9 ECS DNS"
+#~ msgstr "Quad9 ECS DNS"
+
+#~ msgid "Quad9 Unsecured DNS"
+#~ msgstr "Quad9 osäkrad DNS"
 
 #, python-format
 #~ msgid "%d Seconds"

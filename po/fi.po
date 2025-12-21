@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-06 12:58+0000\n"
+"POT-Creation-Date: 2025-12-20 12:54+0000\n"
 "PO-Revision-Date: 2025-12-10 05:52+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
@@ -1836,6 +1836,15 @@ msgstr "Aktiiviset asiakkaat"
 msgid "Active only"
 msgstr "Vain aktiivinen"
 
+msgid "AdGuard DNS (Ads/Trackers)"
+msgstr ""
+
+msgid "AdGuard DNS (Family)"
+msgstr ""
+
+msgid "AdGuard DNS (Unfiltered)"
+msgstr ""
+
 msgid "Adapter Settings"
 msgstr "Sovittimen asetukset"
 
@@ -3077,9 +3086,6 @@ msgstr "Bislama"
 msgid "Bitrate"
 msgstr "Bittinopeus"
 
-msgid "Set the bitrate of the video encoder. Larger values improve the quality and also increases the file size."
-msgstr "Videokooderin bittinopeus. Suurempi arvo parantaa laatua ja lisää tiedostokokoa."
-
 msgid "Black"
 msgstr "Musta"
 
@@ -3434,6 +3440,15 @@ msgstr "CI paikka: "
 
 msgid "CI+ Helper*"
 msgstr "CI+ Avustaja"
+
+msgid "CIRA Canadian Shield (Family)"
+msgstr ""
+
+msgid "CIRA Canadian Shield (Private)"
+msgstr ""
+
+msgid "CIRA Canadian Shield (Protected)"
+msgstr ""
 
 msgid "CPU"
 msgstr "Prosessori"
@@ -4213,6 +4228,15 @@ msgstr "Puhdista ja poista kaikki valmiit ajastukset"
 msgid "Clean up and remove all completed timers?"
 msgstr "Puhdista ja poista kaikki valmiit ajastukset?"
 
+msgid "CleanBrowsing (Adult Filter)"
+msgstr ""
+
+msgid "CleanBrowsing (Family Filter)"
+msgstr ""
+
+msgid "CleanBrowsing (Security Filter)"
+msgstr ""
+
 msgid "Cleaning Trashcan"
 msgstr "Roskakorin tyhjennys"
 
@@ -4518,6 +4542,9 @@ msgstr "Määritä etupaneelin LEDit"
 msgid "Configure how recording filenames are constructed. Standard: Date Time - Channel - Title Very very short: Title Very short: Title - Date Time Short with time: Date Time - Title Short: Date - Title Long: Date Time - Channel - Title - Info."
 msgstr "Määritä tallenteiden tiedostonimien rakenne"
 
+msgid "Configure if 'epg.dat' should be saved at all."
+msgstr "Määrittää, talletetaanko epg.dat -tiedostoa."
+
 msgid "Configure if and how crypto icons will be shown in the channel selection list."
 msgstr "Määrittää, näytetäänkö (ja jos niin miten näytetään) salauksen kuvakkeet kanavalistassa."
 
@@ -4535,9 +4562,6 @@ msgstr "Määrittää, kuinka leveänä kanavanimet näytetään kanavalistassa.
 
 msgid "Configure if crypto icons will be shown in the channel selection list."
 msgstr "Määritä, näkyvätkö salauskuvakkeet kanavan valinta listassa."
-
-msgid "Configure if 'epg.dat' should be saved at all."
-msgstr "Määrittää, talletetaanko epg.dat -tiedostoa."
 
 msgid "Configure if service picons will be shown in quickzap."
 msgstr "Määritä, näkyvätkö kanavalogot pikavaihdossa."
@@ -4620,14 +4644,14 @@ msgstr "Määrittää toiminnon, kun tallenteen loppu saavutetaan toiston aikana
 msgid "Configure the border width of the subtitles. The dark border makes the subtitles easier to read on a light background."
 msgstr "Määrittää tekstityksen reunuksen leveyden. Musta reunus tekee teksteistä helpommin luettavia vaaleaa taustaa vasten."
 
+msgid "Configure the brightness level of the front panel display for Standby."
+msgstr "Määrittää etupaneeliin näytön kirkkauden valmiustilassa."
+
 msgid "Configure the brightness level of the front panel display for dimmed operation."
 msgstr "Määrittää etupaneeliin näytön kirkkauden himmennettynä."
 
 msgid "Configure the brightness level of the front panel display for normal operation."
 msgstr "Määrittää etupaneeliin näytön kirkkauden normaalissa tilassa."
-
-msgid "Configure the brightness level of the front panel display for Standby."
-msgstr "Määrittää etupaneeliin näytön kirkkauden valmiustilassa."
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
 msgstr "Määrittää ulkoisen tekstityksen värin, vaihtoehtoinen (normaali valkoisella, kursivoitu keltaisella, lihavoitu sinivihreällä, alleviivattu vihreällä), valkoinen tai keltainen."
@@ -5020,6 +5044,21 @@ msgstr "Kontrasti Video"
 
 msgid "Contrast Video & OSD"
 msgstr "Kontrasti Video & kuvaruutu"
+
+msgid "Control D (Ads + Tracking)"
+msgstr ""
+
+msgid "Control D (Family Friendly)"
+msgstr ""
+
+msgid "Control D (Malware)"
+msgstr ""
+
+msgid "Control D (Uncensored)"
+msgstr ""
+
+msgid "Control D (Unfiltered)"
+msgstr ""
 
 msgid "Control LED can be turned on or off here."
 msgstr "LED voidaan kytkeä päälle tai pois täältä."
@@ -5479,8 +5518,14 @@ msgstr "DNS data lähde"
 msgid "DNS protocol mode"
 msgstr "DNS tila"
 
+msgid "Use DNS rotation"
+msgstr ""
+
 msgid "DNS suffix"
 msgstr "DNS pääte"
+
+msgid "DNS.WATCH (Uncensored)"
+msgstr ""
 
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
@@ -5852,9 +5897,6 @@ msgstr "Softcam tälle kanavalle"
 
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "Määritä vaihtoehtoinen viive millisekunneissa ennen http(s) suora toiston alkamista."
-
-msgid "Specify the network DNS suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
-msgstr "Aseta DNS osoite."
 
 msgid "Define the custom mountpoint for the device."
 msgstr "Määritä laitteen mukautettu liitos."
@@ -7046,6 +7088,9 @@ msgstr "Koulutus"
 msgid "Education/Information"
 msgstr "Koulutus / tiedoitus"
 
+msgid "Education/Science/Factual"
+msgstr ""
+
 msgid "Education/Science/Factual topics"
 msgstr "Koulutus/tiede/tosiasiat (yleinen)"
 
@@ -7359,9 +7404,6 @@ msgstr "Ottaa käyttöön toiminnon, jotta vastaanotin voi purkaa striimejä (jo
 
 msgid "Enables sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "Jos arvo on Kyllä, televisioon lähetetään samat komennot virransäästö tilassa kuin säännöllisten valmiustilatapahtumien aikana."
-
-msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
-msgstr "Jos asetuksena on 'yes', voit käyttää ajansiirtoa vaihtoehtoisten ääniliitännäisten kanssa."
 
 msgid "Encrypted: "
 msgstr "Salattu: "
@@ -8610,9 +8652,6 @@ msgstr "Päivitä ja palauta asetukset ja valitut laajennukset (Kysy käyttäjä
 msgid "Flash directory '%s' not allowed!"
 msgstr "Flash hakemisto '%s' ei ole sallittu!"
 
-msgid "Flash your receiver software on the fly."
-msgstr "Päivitä vastaanottimesi ohjelmisto internetin kautta."
-
 msgid "Flash type"
 msgstr "Ohjelmisto tyyppi"
 
@@ -8622,6 +8661,9 @@ msgstr "Sisäinen muisti käytetty"
 #, python-format
 msgid "Flash your %s %s and reboot now?"
 msgstr "Päivitetäänkö %s %s ja käynnistä uudelleen?"
+
+msgid "Flash your receiver software on the fly."
+msgstr "Päivitä vastaanottimesi ohjelmisto internetin kautta."
 
 #, python-format
 msgid "FlashExpander on boot is '%s'.  FlashExpander status is '%s'."
@@ -8986,8 +9028,8 @@ msgstr "Kulta"
 msgid "Golf"
 msgstr "Golf"
 
-msgid "Google DNS"
-msgstr "Google DNS"
+msgid "Google Public DNS"
+msgstr ""
 
 msgid "Goto"
 msgstr "Mene"
@@ -9217,11 +9259,11 @@ msgstr "käsityö"
 msgid "Handle Python crashes"
 msgstr "Yritä estää järjestelmän kaatuminen"
 
-msgid "Handle input from TV"
-msgstr "Tottele TV:en tuloa"
-
 msgid "Handle Standby from TV"
 msgstr "Tottele sammutuskäskyä TV:ltä"
+
+msgid "Handle input from TV"
+msgstr "Tottele TV:en tuloa"
 
 msgid "Handle wake up from TV"
 msgstr "Tottele käynnistyskäskyä TV:ltä"
@@ -9724,6 +9766,9 @@ msgstr "Jos lokit käyttävät enemmän levytilaa kuin mitä maksimiarvoksi on m
 
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
 msgstr "Jos mahdollista, x minuuttia ennen ajastuksen käynnistymistä VPS Plugin, alkaako ohjelma aikaisemmin. (0 poistaa toiminnon käytöstä)"
+
+msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
+msgstr "Jos asetuksena on 'yes', voit käyttää ajansiirtoa vaihtoehtoisten ääniliitännäisten kanssa."
 
 msgid "If the Deep Standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Jos virransäästötilaa on käytössä , järjestelmä odottaa, kunnes järjestelmän aika on synkronoitu. Vaatimuksista riippuen laitteiden herätystä jatketaan korkeintaan 2 minuutissa."
@@ -10564,11 +10609,14 @@ msgstr "LED valmiustila"
 msgid "LED brightness during Deep Standby."
 msgstr "LED:in kirkkaus virransäästötilassa."
 
+msgid "LED brightness during Standby."
+msgstr "LED:in kirkkaus valmiustilassa."
+
 msgid "LED brightness during normal operations."
 msgstr "LED:in kirkkaus normaalitilassa."
 
-msgid "LED brightness during Standby."
-msgstr "LED:in kirkkaus valmiustilassa."
+msgid "LED color during Deep Standby."
+msgstr ""
 
 msgid "LIRC remote"
 msgstr "LIRC kaukosäädin"
@@ -10857,9 +10905,6 @@ msgstr "Ladataan tietoja, odota..."
 msgid "Loading slot information, please wait..."
 msgstr "Ladataan image paikka tietoja, odota..."
 
-msgid "Local receiver"
-msgstr "Paikallinen laite"
-
 msgid "Local date/time"
 msgstr "Paikallinen päivämäärä/aika"
 
@@ -10871,6 +10916,9 @@ msgstr "Lähiverkko"
 
 msgid "Local or Regional"
 msgstr "Paikallinen tai alueellinen"
+
+msgid "Local receiver"
+msgstr "Paikallinen laite"
 
 msgid "Local time"
 msgstr "Paikallinen aika"
@@ -13122,6 +13170,9 @@ msgstr "OpenDNS Perhesuojaus"
 msgid "OpenDNS Home"
 msgstr "OpenDNS Koti"
 
+msgid "OpenDNS Sandbox"
+msgstr ""
+
 msgid "OpenPLi Packages"
 msgstr "OpenPLi Paketit"
 
@@ -14550,14 +14601,14 @@ msgstr "Neljä PIP Kanava "
 msgid "Quad PiP is not available."
 msgstr "Neljä PIP ei saatavilla."
 
-msgid "Quad9 DNS"
-msgstr "Quad9 DNS"
+msgid "Quad9 (Malware blocking + DNSSEC)"
+msgstr ""
 
-msgid "Quad9 ECS DNS"
-msgstr "Quad9 ECS DNS"
+msgid "Quad9 (Malware blocking + ECS)"
+msgstr ""
 
-msgid "Quad9 Unsecured DNS"
-msgstr "Quad9 Unsecured DNS"
+msgid "Quad9 (Unsecured / no blocking)"
+msgstr ""
 
 msgid "Quechua"
 msgstr "Quechua"
@@ -15040,14 +15091,14 @@ msgstr "Kaukosäädin näppäinten asetukset"
 msgid "Remote Control Code Settings"
 msgstr "Kaukosäätimen koodi"
 
-msgid "Remote receiver"
-msgstr "Etälaite"
-
 msgid "Remote control information"
 msgstr "Kaukosäätimen tiedot"
 
 msgid "Remote control type"
 msgstr "Kaukosäätimen tyyppi"
+
+msgid "Remote receiver"
+msgstr "Etälaite"
 
 msgid "Remove"
 msgstr "Poista"
@@ -15280,9 +15331,6 @@ msgstr "Tarvittava tallennusmedia:"
 
 msgid "Rereading partition table"
 msgstr "Levyosioita luetaan uudelleen"
-
-msgid "Select 'Yes' to reschedule the task to run when the receiver enters or exits Standby. The state change must occur within the task's scheduled window or the task will not be run."
-msgstr "Aikatauluta tehtävä uudelleen suoritettavaksi, kun vastaanotin siirtyy valmiustilaan tai poistuu siitä. Tilamuutoksen on tapahduttava tehtävän aikataulun määrittämässä aikavälissä, muuten tehtävää ei suoriteta."
 
 msgid "Reserved"
 msgstr "Varattu"
@@ -16304,6 +16352,9 @@ msgstr "Valitse 'Kyllä' poistaaksesi kaikki käyttäjän teema tiedot. Tämän 
 msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all key map, menu and setup override data and restore the default definitions."
 msgstr "Valitse 'Kyllä' poistaaksesi kaikki käyttöjärjestelmän tiedot. Tämän vaihtoehdon valitseminen poistaa kaikki näppäimistökartta, valikko ja asetusten oletustiedot ja palauttaa oletusmääritykset."
 
+msgid "Select 'Yes' to reschedule the task to run when the receiver enters or exits Standby. The state change must occur within the task's scheduled window or the task will not be run."
+msgstr "Aikatauluta tehtävä uudelleen suoritettavaksi, kun vastaanotin siirtyy valmiustilaan tai poistuu siitä. Tilamuutoksen on tapahduttava tehtävän aikataulun määrittämässä aikavälissä, muuten tehtävää ei suoriteta."
+
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr "Valitse 'Kyllä', jos haluat palauttaa verkon oletusasetukset. Tämä ottaa Ethernet portin käyttöön, jos se on olemassa, ja asettaa vastaanottimen käyttämään DHCP:tä. Kaikki muut verkkoliitännät poistetaan."
 
@@ -16950,9 +17001,6 @@ msgstr "Valitse SCR-laitteesi valmistaja. Jos valmistajaa ei löydy listalta, as
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Valitse tapa, jolla näytön tarkkuus ja kehyspuskuri palautetaan, kun poistut teksti-tv:stä."
 
-msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
-msgstr "Valitse DNS tila."
-
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Valitse SCR:n mallinumero. Jos mallinumeroa ei löydy listalta, aseta 'SCR' 'käyttäjän määrittelemä' ja syötä laitteen parametrit käsin teknisistä tiedoista."
 
@@ -17062,9 +17110,6 @@ msgstr "Valitse valikon lajittelujärjestys. Käyttäjän määrittelemä mahdol
 msgid "Select the source location from where to obtain the upgrade files."
 msgstr "Valitse lähde, josta päivitys tiedostot haetaan."
 
-msgid "Select the the DNS server/servers that will be used to resolve host lookups."
-msgstr "Valitse lähde oletus DNS asetuksille."
-
 msgid "Select the start time after which this timer can be activated. Before this time the timer won't be activated even if other conditions are met."
 msgstr "Valitse aloitusaika, jonka jälkeen tämä ajastin voidaan aktivoida. Ennen tätä aikaa ajastinta ei aktivoida, vaikka muut ehdot täyttyisivät."
 
@@ -17073,6 +17118,9 @@ msgstr "Valitse käynnistys-/alkusarake, joka aktivoidaan File Commanderin käyn
 
 msgid "Select the tags that should be used for this recording."
 msgstr "Valitse tässä tallenteessa käytettävät tunnisteet."
+
+msgid "Select the DNS server(s) that will be used to lookup the host name to resolve the IP address."
+msgstr "Valitse lähde oletus DNS asetuksille."
 
 msgid "Select the time after which this timer can start."
 msgstr "Valitse aika, jonka jälkeen ajastus voi käynnistyä."
@@ -17187,6 +17235,9 @@ msgstr "Määrittää, mitä ylös/alas -näppäimien painallus tekee."
 
 msgid "Select where the recording should be saved."
 msgstr "Valitse, mihin tallennus tallennetaan."
+
+msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
+msgstr "Valitse DNS tila."
 
 msgid "Select wireless network"
 msgstr "Valitse Langaton verkko"
@@ -17548,6 +17599,9 @@ msgstr "Aseta etävastaanottimen OpenWebIf käyttäjätunnus"
 
 msgid "Set the aspect ratio of the service picons."
 msgstr "Määritä kanavatyypin kuvakkeiden kuvasuhde."
+
+msgid "Set the bitrate of the video encoder. Larger values improve the quality and also increases the file size."
+msgstr "Videokooderin bittinopeus. Suurempi arvo parantaa laatua ja lisää tiedostokokoa."
 
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Määrittää oletushakemisto pikatallennuksien. Paina 'OK' lisätäksesi uusia hakemistoja, vasen/oikea näppäimillä voit valita olemassa olevista vaihtoehdoista."
@@ -19265,6 +19319,9 @@ msgstr "erikoistapahtuma"
 msgid "Specify the directory to use when starting Media Player."
 msgstr "Määritä hakemisto, jota käytetään käynnistettäessä Media Soitinta."
 
+msgid "Specify the network DNS suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
+msgstr "Aseta DNS osoite."
+
 msgid "Speed"
 msgstr "Nopeus"
 
@@ -20770,11 +20827,11 @@ msgstr "Määrittää, kuinka SD-kuva 24Hz näytetään (koska kaikki televisiot
 msgid "This option allows you to choose how to display elapsed time, as + or -."
 msgstr "Määrittää, näytetäänkö kulunut aika positiivisena (+) vai negatiivisena (-)"
 
-msgid "This option allows you to choose how to display the remaining time, the elapsed time, or both."
-msgstr "Määrittää, kuinka jäljellä oleva/kulunut aika näytetään."
-
 msgid "This option allows you to choose how to display standard definition video on your TV."
 msgstr "Määrittää, kuinka normaalilla tarkkuudella oleva materiaali näytetään."
+
+msgid "This option allows you to choose how to display the remaining time, the elapsed time, or both."
+msgstr "Määrittää, kuinka jäljellä oleva/kulunut aika näytetään."
 
 msgid "This option allows you to choose how to display the remaining/elapsed time for live TV."
 msgstr "Määrittää, kuinka jäljellä oleva/kulunut aika näytetään suoraa lähetystä katsottaessa."
@@ -20898,6 +20955,9 @@ msgstr "Tämä asetus määrittää kuvan terävyyden, käytetään kun kuva ska
 
 msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
 msgstr "Tämä lisäosa voi määrittää, alkaako ohjelma aikaisemmin vai kestääkö se pidempään. Kanavan on toimitettava luotettavat tiedot."
+
+msgid "Select 'Yes' to enable DNS entry rotation. This rotation changes the order in which the list of DNS servers is used and can avoid issues if a DNS server in the list becomes unavailable."
+msgstr ""
 
 msgid "This service is protected by a parental control PIN!"
 msgstr "Tämä kanava on suojattu lapsilukolla!"
@@ -21711,6 +21771,15 @@ msgstr "Ukraina"
 
 msgid "Ukrainian"
 msgstr "Ukraina"
+
+msgid "UltraDNS Public (Family Secure)"
+msgstr ""
+
+msgid "UltraDNS Public (Threat Protection)"
+msgstr ""
+
+msgid "UltraDNS Public (Unfiltered)"
+msgstr ""
 
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Kexec MultiBootin alustaminen ei onnistu!"
@@ -22910,9 +22979,6 @@ msgstr "Kun päällä, tallennus saa keskeyttää suoratoiston, jos vapaita viri
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "Kun päällä, tallennus saa keskeyttää suoran katselun, jos vapaita virittimiä ei ole jäljellä tallennuksen suorittamiseksi."
 
-msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
-msgstr "Kun määrität \"kyllä\" Softcam voidaan määrittää jokaiseen salatullle kanavalle erikseen."
-
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Kun päällä, näytetään varoitus ja käyttäjällä on mahdollisuus pysäyttää tai jatkaa ajansiirtoa."
 
@@ -23048,6 +23114,9 @@ msgstr "Kun päällä, jokainen hakemisto avautuu aikaisemmin valittuun järjest
 msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr "Kun päällä, pikkukuva jatkaa tv-kanavan toistoa, kun tallenteen katselu päättyy."
 
+msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
+msgstr "Kun määrität \"kyllä\" Softcam voidaan määrittää jokaiseen salatullle kanavalle erikseen."
+
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Kun ohjelman kuvasuhde on 16:9, valitse skaalataanko/venytetäänkö kuvaa."
 
@@ -23095,6 +23164,9 @@ msgstr "Leveys"
 
 msgid "Width / Height"
 msgstr "Leveys / korkeus"
+
+msgid "Winter sport"
+msgstr ""
 
 msgid "Winter sports"
 msgstr "talviurheilu"
@@ -24334,6 +24406,18 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Google DNS"
+#~ msgstr "Google DNS"
+
+#~ msgid "Quad9 DNS"
+#~ msgstr "Quad9 DNS"
+
+#~ msgid "Quad9 ECS DNS"
+#~ msgstr "Quad9 ECS DNS"
+
+#~ msgid "Quad9 Unsecured DNS"
+#~ msgstr "Quad9 Unsecured DNS"
 
 #, python-format
 #~ msgid "%d Seconds"

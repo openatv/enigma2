@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-06 12:58+0000\n"
+"POT-Creation-Date: 2025-12-20 12:54+0000\n"
 "PO-Revision-Date: 2021-08-15 18:50+0000\n"
 "Last-Translator: openATV <openatv@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/he/>\n"
@@ -1925,6 +1925,15 @@ msgstr ""
 msgid "Active only"
 msgstr ""
 
+msgid "AdGuard DNS (Ads/Trackers)"
+msgstr ""
+
+msgid "AdGuard DNS (Family)"
+msgstr ""
+
+msgid "AdGuard DNS (Unfiltered)"
+msgstr ""
+
 #
 msgid "Adapter Settings"
 msgstr "הגדרת מתאם"
@@ -3241,9 +3250,6 @@ msgstr ""
 msgid "Bitrate"
 msgstr ""
 
-msgid "Set the bitrate of the video encoder. Larger values improve the quality and also increases the file size."
-msgstr ""
-
 msgid "Black"
 msgstr ""
 
@@ -3605,6 +3611,15 @@ msgid "CI slot: "
 msgstr ""
 
 msgid "CI+ Helper*"
+msgstr ""
+
+msgid "CIRA Canadian Shield (Family)"
+msgstr ""
+
+msgid "CIRA Canadian Shield (Private)"
+msgstr ""
+
+msgid "CIRA Canadian Shield (Protected)"
 msgstr ""
 
 msgid "CPU"
@@ -4422,6 +4437,15 @@ msgstr ""
 msgid "Clean up and remove all completed timers?"
 msgstr ""
 
+msgid "CleanBrowsing (Adult Filter)"
+msgstr ""
+
+msgid "CleanBrowsing (Family Filter)"
+msgstr ""
+
+msgid "CleanBrowsing (Security Filter)"
+msgstr ""
+
 msgid "Cleaning Trashcan"
 msgstr ""
 
@@ -4743,6 +4767,9 @@ msgstr ""
 msgid "Configure how recording filenames are constructed. Standard: Date Time - Channel - Title Very very short: Title Very short: Title - Date Time Short with time: Date Time - Title Short: Date - Title Long: Date Time - Channel - Title - Info."
 msgstr ""
 
+msgid "Configure if 'epg.dat' should be saved at all."
+msgstr ""
+
 msgid "Configure if and how crypto icons will be shown in the channel selection list."
 msgstr ""
 
@@ -4759,9 +4786,6 @@ msgid "Configure if and how wide the service name column will be shown in the ch
 msgstr ""
 
 msgid "Configure if crypto icons will be shown in the channel selection list."
-msgstr ""
-
-msgid "Configure if 'epg.dat' should be saved at all."
 msgstr ""
 
 msgid "Configure if service picons will be shown in quickzap."
@@ -4841,13 +4865,13 @@ msgstr ""
 msgid "Configure the border width of the subtitles. The dark border makes the subtitles easier to read on a light background."
 msgstr ""
 
+msgid "Configure the brightness level of the front panel display for Standby."
+msgstr ""
+
 msgid "Configure the brightness level of the front panel display for dimmed operation."
 msgstr ""
 
 msgid "Configure the brightness level of the front panel display for normal operation."
-msgstr ""
-
-msgid "Configure the brightness level of the front panel display for Standby."
 msgstr ""
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
@@ -5244,6 +5268,21 @@ msgid "Contrast Video"
 msgstr ""
 
 msgid "Contrast Video & OSD"
+msgstr ""
+
+msgid "Control D (Ads + Tracking)"
+msgstr ""
+
+msgid "Control D (Family Friendly)"
+msgstr ""
+
+msgid "Control D (Malware)"
+msgstr ""
+
+msgid "Control D (Uncensored)"
+msgstr ""
+
+msgid "Control D (Unfiltered)"
 msgstr ""
 
 msgid "Control LED can be turned on or off here."
@@ -5718,7 +5757,13 @@ msgstr ""
 msgid "DNS protocol mode"
 msgstr ""
 
+msgid "Use DNS rotation"
+msgstr ""
+
 msgid "DNS suffix"
+msgstr ""
+
+msgid "DNS.WATCH (Uncensored)"
 msgstr ""
 
 msgid ""
@@ -6107,9 +6152,6 @@ msgid "Define Softcam For This Service"
 msgstr ""
 
 msgid "Define additional delay in milliseconds before start of http(s) streams."
-msgstr ""
-
-msgid "Specify the network DNS suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
 msgstr ""
 
 msgid "Define the custom mountpoint for the device."
@@ -7329,6 +7371,9 @@ msgstr "Modulation"
 msgid "Education/Information"
 msgstr "מידע"
 
+msgid "Education/Science/Factual"
+msgstr ""
+
 msgid "Education/Science/Factual topics"
 msgstr ""
 
@@ -7656,9 +7701,6 @@ msgid "Enables a feature so that the receiver can decrypt streams (if the ECM da
 msgstr ""
 
 msgid "Enables sending the same TV commands for Deep Standby as for regular Standby."
-msgstr ""
-
-msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
 msgstr ""
 
 #
@@ -8926,9 +8968,6 @@ msgstr ""
 msgid "Flash directory '%s' not allowed!"
 msgstr ""
 
-msgid "Flash your receiver software on the fly."
-msgstr ""
-
 msgid "Flash type"
 msgstr ""
 
@@ -8937,6 +8976,9 @@ msgstr ""
 
 #, python-format
 msgid "Flash your %s %s and reboot now?"
+msgstr ""
+
+msgid "Flash your receiver software on the fly."
 msgstr ""
 
 #, python-format
@@ -9336,7 +9378,7 @@ msgstr ""
 msgid "Golf"
 msgstr ""
 
-msgid "Google DNS"
+msgid "Google Public DNS"
 msgstr ""
 
 msgid "Goto"
@@ -9579,10 +9621,10 @@ msgstr ""
 msgid "Handle Python crashes"
 msgstr ""
 
-msgid "Handle input from TV"
+msgid "Handle Standby from TV"
 msgstr ""
 
-msgid "Handle Standby from TV"
+msgid "Handle input from TV"
 msgstr ""
 
 msgid "Handle wake up from TV"
@@ -10106,6 +10148,9 @@ msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr ""
 
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
+msgstr ""
+
+msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
 msgstr ""
 
 msgid "If the Deep Standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
@@ -10987,10 +11032,13 @@ msgstr ""
 msgid "LED brightness during Deep Standby."
 msgstr ""
 
+msgid "LED brightness during Standby."
+msgstr ""
+
 msgid "LED brightness during normal operations."
 msgstr ""
 
-msgid "LED brightness during Standby."
+msgid "LED color during Deep Standby."
 msgstr ""
 
 msgid "LIRC remote"
@@ -11317,9 +11365,6 @@ msgstr ""
 msgid "Loading slot information, please wait..."
 msgstr ""
 
-msgid "Local receiver"
-msgstr ""
-
 msgid "Local date/time"
 msgstr ""
 
@@ -11331,6 +11376,9 @@ msgid "Local network"
 msgstr "רשת מקומית"
 
 msgid "Local or Regional"
+msgstr ""
+
+msgid "Local receiver"
 msgstr ""
 
 msgid "Local time"
@@ -13748,6 +13796,9 @@ msgstr ""
 msgid "OpenDNS Home"
 msgstr ""
 
+msgid "OpenDNS Sandbox"
+msgstr ""
+
 msgid "OpenPLi Packages"
 msgstr ""
 
@@ -15256,13 +15307,13 @@ msgstr "!שירותים נמצאו %d"
 msgid "Quad PiP is not available."
 msgstr "Update feed not available."
 
-msgid "Quad9 DNS"
+msgid "Quad9 (Malware blocking + DNSSEC)"
 msgstr ""
 
-msgid "Quad9 ECS DNS"
+msgid "Quad9 (Malware blocking + ECS)"
 msgstr ""
 
-msgid "Quad9 Unsecured DNS"
+msgid "Quad9 (Unsecured / no blocking)"
 msgstr ""
 
 msgid "Quechua"
@@ -15772,13 +15823,13 @@ msgstr ""
 msgid "Remote Control Code Settings"
 msgstr ""
 
-msgid "Remote receiver"
-msgstr ""
-
 msgid "Remote control information"
 msgstr ""
 
 msgid "Remote control type"
+msgstr ""
+
+msgid "Remote receiver"
 msgstr ""
 
 msgid "Remove"
@@ -16023,9 +16074,6 @@ msgid "Required medium type:"
 msgstr "Required medium type:"
 
 msgid "Rereading partition table"
-msgstr ""
-
-msgid "Select 'Yes' to reschedule the task to run when the receiver enters or exits Standby. The state change must occur within the task's scheduled window or the task will not be run."
 msgstr ""
 
 msgid "Reserved"
@@ -17093,6 +17141,9 @@ msgstr ""
 msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all key map, menu and setup override data and restore the default definitions."
 msgstr ""
 
+msgid "Select 'Yes' to reschedule the task to run when the receiver enters or exits Standby. The state change must occur within the task's scheduled window or the task will not be run."
+msgstr ""
+
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr ""
 
@@ -17744,9 +17795,6 @@ msgstr ""
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr ""
 
-msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
-msgstr ""
-
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr ""
 
@@ -17855,9 +17903,6 @@ msgstr ""
 msgid "Select the source location from where to obtain the upgrade files."
 msgstr ""
 
-msgid "Select the the DNS server/servers that will be used to resolve host lookups."
-msgstr ""
-
 msgid "Select the start time after which this timer can be activated. Before this time the timer won't be activated even if other conditions are met."
 msgstr ""
 
@@ -17865,6 +17910,9 @@ msgid "Select the starting/initial column to be activated on File Commander star
 msgstr ""
 
 msgid "Select the tags that should be used for this recording."
+msgstr ""
+
+msgid "Select the DNS server(s) that will be used to lookup the host name to resolve the IP address."
 msgstr ""
 
 msgid "Select the time after which this timer can start."
@@ -17976,6 +18024,9 @@ msgid "Select what you want the UP/DOWN button to activate."
 msgstr ""
 
 msgid "Select where the recording should be saved."
+msgstr ""
+
+msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
 msgstr ""
 
 msgid "Select wireless network"
@@ -18343,6 +18394,9 @@ msgid "Set the User ID of the OpenWebif from your fallback tuner."
 msgstr ""
 
 msgid "Set the aspect ratio of the service picons."
+msgstr ""
+
+msgid "Set the bitrate of the video encoder. Larger values improve the quality and also increases the file size."
 msgstr ""
 
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
@@ -20149,6 +20203,9 @@ msgstr ""
 msgid "Specify the directory to use when starting Media Player."
 msgstr ""
 
+msgid "Specify the network DNS suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
+msgstr ""
+
 msgid "Speed"
 msgstr ""
 
@@ -21668,10 +21725,10 @@ msgstr ""
 msgid "This option allows you to choose how to display elapsed time, as + or -."
 msgstr ""
 
-msgid "This option allows you to choose how to display the remaining time, the elapsed time, or both."
+msgid "This option allows you to choose how to display standard definition video on your TV."
 msgstr ""
 
-msgid "This option allows you to choose how to display standard definition video on your TV."
+msgid "This option allows you to choose how to display the remaining time, the elapsed time, or both."
 msgstr ""
 
 msgid "This option allows you to choose how to display the remaining/elapsed time for live TV."
@@ -21795,6 +21852,9 @@ msgid "This option sets up the picture sharpness, used when the picture is being
 msgstr ""
 
 msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
+msgstr ""
+
+msgid "Select 'Yes' to enable DNS entry rotation. This rotation changes the order in which the list of DNS servers is used and can avoid issues if a DNS server in the list becomes unavailable."
 msgstr ""
 
 msgid "This service is protected by a parental control PIN!"
@@ -22674,6 +22734,15 @@ msgid "Ukraine"
 msgstr ""
 
 msgid "Ukrainian"
+msgstr ""
+
+msgid "UltraDNS Public (Family Secure)"
+msgstr ""
+
+msgid "UltraDNS Public (Threat Protection)"
+msgstr ""
+
+msgid "UltraDNS Public (Unfiltered)"
 msgstr ""
 
 msgid "Unable to initialize Kexec MultiBoot!"
@@ -23895,9 +23964,6 @@ msgstr ""
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr ""
 
-msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
-msgstr ""
-
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr ""
 
@@ -24033,6 +24099,9 @@ msgstr ""
 msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr ""
 
+msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
+msgstr ""
+
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr ""
 
@@ -24082,6 +24151,9 @@ msgid "Width"
 msgstr ""
 
 msgid "Width / Height"
+msgstr ""
+
+msgid "Winter sport"
 msgstr ""
 
 msgid "Winter sports"

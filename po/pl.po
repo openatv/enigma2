@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-06 12:58+0000\n"
-"PO-Revision-Date: 2025-12-18 19:52+0000\n"
+"POT-Creation-Date: 2025-12-20 12:54+0000\n"
+"PO-Revision-Date: 2025-12-20 14:51+0000\n"
 "Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -1877,6 +1877,15 @@ msgstr "Aktywnych klientów"
 msgid "Active only"
 msgstr "Tylko aktywne"
 
+msgid "AdGuard DNS (Ads/Trackers)"
+msgstr "AdGuard DNS (Reklamy/Trackery)"
+
+msgid "AdGuard DNS (Family)"
+msgstr "AdGuard DNS (Rodzina)"
+
+msgid "AdGuard DNS (Unfiltered)"
+msgstr "AdGuard DNS (Bez filtrowania)"
+
 msgid "Adapter Settings"
 msgstr "Ustawienia adaptera"
 
@@ -3114,9 +3123,6 @@ msgstr "Bislama"
 msgid "Bitrate"
 msgstr "Przepustowość"
 
-msgid "Set the bitrate of the video encoder. Larger values improve the quality and also increases the file size."
-msgstr "Szybkość transmisji kodera wideo. Większa wartość poprawia jakość i zwiększa rozmiar pliku."
-
 msgid "Black"
 msgstr "Czarny"
 
@@ -3471,6 +3477,15 @@ msgstr "Gniazdo CI: "
 
 msgid "CI+ Helper*"
 msgstr "CI+ Helper*"
+
+msgid "CIRA Canadian Shield (Family)"
+msgstr "CIRA Canadian Shield (Rodzina)"
+
+msgid "CIRA Canadian Shield (Private)"
+msgstr "CIRA Canadian Shield (Prywatna)"
+
+msgid "CIRA Canadian Shield (Protected)"
+msgstr "CIRA Canadian Shield (Chroniona)"
 
 msgid "CPU"
 msgstr "Procesor"
@@ -4249,6 +4264,15 @@ msgstr "Wyczyść i usuń wszystkie ukończone timery"
 msgid "Clean up and remove all completed timers?"
 msgstr "Wyczyścić i usunąć wszystkie ukończone timery?"
 
+msgid "CleanBrowsing (Adult Filter)"
+msgstr "CleanBrowsing (Filtr dla dorosłych)"
+
+msgid "CleanBrowsing (Family Filter)"
+msgstr "CleanBrowsing (Filtr rodzinny)"
+
+msgid "CleanBrowsing (Security Filter)"
+msgstr "CleanBrowsing (Filtr bezpieczeństwa)"
+
 msgid "Cleaning Trashcan"
 msgstr "Oczyszczanie kosza"
 
@@ -4557,6 +4581,9 @@ msgstr "Konfiguracja diod LED na panelu przednim"
 msgid "Configure how recording filenames are constructed. Standard: Date Time - Channel - Title Very very short: Title Very short: Title - Date Time Short with time: Date Time - Title Short: Date - Title Long: Date Time - Channel - Title - Info."
 msgstr "Skonfiguruj sposób konstruowania nazw plików nagrań. Standardowe: Data Godzina - Kanał - Tytuł Bardzo, bardzo krótkie: Tytuł Bardzo krótkie: Tytuł - Data Godzina Krótkie z czasem: Data Godzina - Tytuł Krótkie: Data - Tytuł Długie: Data Godzina - Kanał - Tytuł - Informacje."
 
+msgid "Configure if 'epg.dat' should be saved at all."
+msgstr "Skonfiguruj, czy plik epg.dat ma zostać w ogóle zapisany."
+
 msgid "Configure if and how crypto icons will be shown in the channel selection list."
 msgstr "Określić, czy i gdzie ikona kodowania ma być wyświetlana w liście kanałów."
 
@@ -4574,9 +4601,6 @@ msgstr "Skonfiguruj, czy i jak szeroko kolumna z nazwą kanału będzie wyświet
 
 msgid "Configure if crypto icons will be shown in the channel selection list."
 msgstr "Skonfiguruj, czy ikony kryptograficzne będą wyświetlane na liście wyboru kanałów."
-
-msgid "Configure if 'epg.dat' should be saved at all."
-msgstr "Skonfiguruj, czy plik epg.dat ma zostać w ogóle zapisany."
 
 msgid "Configure if service picons will be shown in quickzap."
 msgstr "Skonfiguruj jeśli pikony mają być wyświetlane w quickzap."
@@ -4659,14 +4683,14 @@ msgstr "Skonfiguruj zachowanie gdy odtwarzanie filmu osiągnie koniec."
 msgid "Configure the border width of the subtitles. The dark border makes the subtitles easier to read on a light background."
 msgstr "Skonfiguruj szerokość krawędzi napisów. Ciemne krawędzie sprawią, że napisy będa bardziej czytelne na jasnym tle."
 
+msgid "Configure the brightness level of the front panel display for Standby."
+msgstr "Skonfiguruj poziom jasności wyświetlacza panelu przedniego w trybie czuwania."
+
 msgid "Configure the brightness level of the front panel display for dimmed operation."
 msgstr "Skonfiguruj poziom jasności wyświetlacza na panelu przednim w celu przyciemniania."
 
 msgid "Configure the brightness level of the front panel display for normal operation."
 msgstr "Skonfiguruj poziom jasności wyświetlacza panelu przedniego podczas normalnej pracy."
-
-msgid "Configure the brightness level of the front panel display for Standby."
-msgstr "Skonfiguruj poziom jasności wyświetlacza panelu przedniego w trybie czuwania."
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
 msgstr "Skonfiguruj kolor napisów zewnętrznych: alternatywny (zwykły w kolorze białym, kursywa w kolorze żółtym, pogrubiony w kolorze cyjanowym, podkreślenie w kolorze zielonym), biały lub żółty."
@@ -5059,6 +5083,21 @@ msgstr "Kontrast wideo"
 
 msgid "Contrast Video & OSD"
 msgstr "Kontrast wideo oraz OSD"
+
+msgid "Control D (Ads + Tracking)"
+msgstr "Control D (Reklamy + Śledzenie)"
+
+msgid "Control D (Family Friendly)"
+msgstr "Control D (Przyjazna rodzinie)"
+
+msgid "Control D (Malware)"
+msgstr "Control D (Złośliwe oprogramowanie)"
+
+msgid "Control D (Uncensored)"
+msgstr "Control D (Bez cenzury)"
+
+msgid "Control D (Unfiltered)"
+msgstr "Control D (Niefiltrowana)"
 
 msgid "Control LED can be turned on or off here."
 msgstr "Tutaj można włączyć/wyłączyć kontrolkę LED."
@@ -5516,10 +5555,16 @@ msgid "DNS data source"
 msgstr "Źródło danych DNS"
 
 msgid "DNS protocol mode"
-msgstr "Tryb DNS"
+msgstr "Tryb protokołu DNS"
+
+msgid "Use DNS rotation"
+msgstr "Rotacja DNS"
 
 msgid "DNS suffix"
 msgstr "DNS suffix"
+
+msgid "DNS.WATCH (Uncensored)"
+msgstr "DNS.WATCH (Bez cenzury)"
 
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
@@ -5891,9 +5936,6 @@ msgstr "Zdefiniuj Softcam dla tej usługi"
 
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "Zdefiniuj dodatkowy czas w (ms) przed startem strumieniowania http(s)."
-
-msgid "Specify the network DNS suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
-msgstr "Zdefiniuj DNS suffix."
 
 msgid "Define the custom mountpoint for the device."
 msgstr "Zdefiniuj niestandardowy punkt montowania dla urządzenia."
@@ -7086,6 +7128,9 @@ msgstr "Edukacja"
 msgid "Education/Information"
 msgstr "Edukacja/Informacje"
 
+msgid "Education/Science/Factual"
+msgstr "Edukacja/Nauka/Fakty"
+
 msgid "Education/Science/Factual topics"
 msgstr "Edukacja/Nauka/Fakty"
 
@@ -7399,9 +7444,6 @@ msgstr "Włącza funkcję, dzięki której odbiornik może odszyfrować strumien
 
 msgid "Enables sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "Jeżeli zostanie wybrana opcja „Tak”, do telewizora w przypadku przejścia w tryb wyłączenia będą wysyłane te same polecenia, co w przypadku zwykłego trybu czuwania."
-
-msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
-msgstr "Jeśli ustawiony jest na 'Tak', pozwala na używanie timeshift z alternatywnymi wtyczkami audio."
 
 msgid "Encrypted: "
 msgstr "Szyfrowany: "
@@ -8652,9 +8694,6 @@ msgstr "Instalowanie i przywracanie ustawień oraz wybranych wtyczek (Zapytaj u�
 msgid "Flash directory '%s' not allowed!"
 msgstr "Katalog '%s' nie może być użyty jako flash!"
 
-msgid "Flash your receiver software on the fly."
-msgstr "Zainstaluj system z sieci."
-
 msgid "Flash type"
 msgstr "Typ Flash"
 
@@ -8664,6 +8703,9 @@ msgstr "Wykorzystano flash"
 #, python-format
 msgid "Flash your %s %s and reboot now?"
 msgstr "Wgraj %s %s i uruchom ponownie teraz?"
+
+msgid "Flash your receiver software on the fly."
+msgstr "Zainstaluj system dekodera z sieci."
 
 #, python-format
 msgid "FlashExpander on boot is '%s'.  FlashExpander status is '%s'."
@@ -9028,8 +9070,8 @@ msgstr "Złoty"
 msgid "Golf"
 msgstr "Golf"
 
-msgid "Google DNS"
-msgstr "DNS Google"
+msgid "Google Public DNS"
+msgstr "Publiczny DNS Google"
 
 msgid "Goto"
 msgstr "Idź do"
@@ -9259,11 +9301,11 @@ msgstr "Rękodzieło"
 msgid "Handle Python crashes"
 msgstr "Awaria obsługi Pythona"
 
+msgid "Handle Standby from TV"
+msgstr "Obsługa trybu czuwania z telewizora"
+
 msgid "Handle input from TV"
 msgstr "Obsługa danych wejściowych z telewizora"
-
-msgid "Handle Standby from TV"
-msgstr "Obsługuj komendę 'czuwania' z TV"
 
 msgid "Handle wake up from TV"
 msgstr "Obsługuje komendę 'budzenia' z TV"
@@ -9764,6 +9806,9 @@ msgstr "Jeśli zostanie przekroczona przestrzeń maksymalna,najstarsze zostaną 
 
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
 msgstr "Jeśli to możliwe, x minut przed uruchomieniem timera Wtyczka VPS będzie kontrolować, czy program rozpocznie się wcześniej. (0 wyłącza funkcję)"
+
+msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
+msgstr "Jeśli ustawiony jest na 'Tak', pozwala na używanie timeshift z alternatywnymi wtyczkami audio."
 
 msgid "If the Deep Standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Jeśli włączono obejście trybu wyłączenia, należy poczekać na synchronizację czasu systemowego. W zależności od wymagań, wybudzanie urządzenia będzie kontynuowane po maksymalnie 2 minutach."
@@ -10602,11 +10647,14 @@ msgstr "Dioda LED tryb czuwania"
 msgid "LED brightness during Deep Standby."
 msgstr "Jasność diody LED w trybie wyłączenia."
 
+msgid "LED brightness during Standby."
+msgstr "Jasność diody LED w trybie czuwania."
+
 msgid "LED brightness during normal operations."
 msgstr "Jasność diody LED podczas normalnej pracy."
 
-msgid "LED brightness during Standby."
-msgstr "Jasność diody LED w trybie czuwania."
+msgid "LED color during Deep Standby."
+msgstr "Kolor diody LED w trybie wyłączenia."
 
 msgid "LIRC remote"
 msgstr "Pilot LIRC"
@@ -10897,9 +10945,6 @@ msgstr "Ładowanie informacji, proszę czekać..."
 msgid "Loading slot information, please wait..."
 msgstr "Ładowanie informacji o slotach, proszę czekać..."
 
-msgid "Local receiver"
-msgstr "Odbiornik lokalny"
-
 msgid "Local date/time"
 msgstr "Lokalna data/czas"
 
@@ -10911,6 +10956,9 @@ msgstr "Sieć lokalna"
 
 msgid "Local or Regional"
 msgstr "Lokalny lub regionalny"
+
+msgid "Local receiver"
+msgstr "Odbiornik lokalny"
 
 msgid "Local time"
 msgstr "Lokalny czas"
@@ -13154,6 +13202,9 @@ msgstr "OpenDNS Family Shield"
 msgid "OpenDNS Home"
 msgstr "OpenDNS Home"
 
+msgid "OpenDNS Sandbox"
+msgstr "Sandbox OpenDNS"
+
 msgid "OpenPLi Packages"
 msgstr "Pakiety OpenPLi"
 
@@ -14419,7 +14470,7 @@ msgid "Profile"
 msgstr "Profil"
 
 msgid "Profile: Local receiver"
-msgstr "Profil: odbiornik lokalny"
+msgstr "Profil: Odbiornik lokalny"
 
 msgid "Program"
 msgstr "Program"
@@ -14584,14 +14635,14 @@ msgstr "Kanał Quad PiP "
 msgid "Quad PiP is not available."
 msgstr "Quad PiP niedostępny."
 
-msgid "Quad9 DNS"
-msgstr "DNS Quad9"
+msgid "Quad9 (Malware blocking + DNSSEC)"
+msgstr "Quad9 (Blokowanie złośliwego oprogramowania + DNSSEC)"
 
-msgid "Quad9 ECS DNS"
-msgstr "Quad9 ECS DNS"
+msgid "Quad9 (Malware blocking + ECS)"
+msgstr "Quad9 (Blokowanie złośliwego oprogramowania + ECS)"
 
-msgid "Quad9 Unsecured DNS"
-msgstr "Quad9 Unsecured DNS"
+msgid "Quad9 (Unsecured / no blocking)"
+msgstr "Quad9 (Niezabezpieczony / Bez blokowania)"
 
 msgid "Quechua"
 msgstr "Keczua"
@@ -15074,14 +15125,14 @@ msgstr "Ustawienia przycisków pilota"
 msgid "Remote Control Code Settings"
 msgstr "Kod do pilota zdalnego sterowania"
 
-msgid "Remote receiver"
-msgstr "Odbiornik zdalny"
-
 msgid "Remote control information"
 msgstr "Informacje o pilocie RC"
 
 msgid "Remote control type"
 msgstr "Typ zdalnego sterowania"
+
+msgid "Remote receiver"
+msgstr "Odbiornik zdalny"
 
 msgid "Remove"
 msgstr "Usuń"
@@ -15314,9 +15365,6 @@ msgstr "Wymagany typ nośnika:"
 
 msgid "Rereading partition table"
 msgstr "Ponowne odczytywanie tablicy partycji"
-
-msgid "Select 'Yes' to reschedule the task to run when the receiver enters or exits Standby. The state change must occur within the task's scheduled window or the task will not be run."
-msgstr "Wybierz 'Tak', aby przeplanować zadanie na moment, gdy odbiornik przejdzie w tryb czuwania lub z niego wyjdzie. Zmiana stanu musi nastąpić w oknie harmonogramu zadań, w przeciwnym razie zadanie nie zostanie uruchomione."
 
 msgid "Reserved"
 msgstr "Zarezerwowany"
@@ -16333,6 +16381,9 @@ msgstr "Wybierz 'Tak', aby usunąć wszystkie personalizacje użytkownika dotycz
 msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all key map, menu and setup override data and restore the default definitions."
 msgstr "Wybierz 'Tak' aby usunąć wszystkie dane interfejsu użytkownika. Wybranie tej opcji spowoduje usunięcie wszystkich danych dotyczących map klawiszy, menu i zastępowania ustawień oraz przywrócenie domyślnych definicji."
 
+msgid "Select 'Yes' to reschedule the task to run when the receiver enters or exits Standby. The state change must occur within the task's scheduled window or the task will not be run."
+msgstr "Wybierz 'Tak', aby przeplanować zadanie na moment, gdy odbiornik przejdzie w tryb czuwania lub z niego wyjdzie. Zmiana stanu musi nastąpić w oknie harmonogramu zadań, w przeciwnym razie zadanie nie zostanie uruchomione."
+
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr "Wybierz 'Tak', aby zresetować konfigurację sieci do wartości domyślnej. To włączy port Ethernet, jeśli istnieje i ustawi odbiornik na używanie DHCP. Wszystkie inne interfejsy sieciowe zostaną usunięte."
 
@@ -16975,9 +17026,6 @@ msgstr "Wybierz producenta swojego urządzenia SCR. Jeśli producenta nie ma na 
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Wybierz metodę przywracania rozdzielczości ekranu i bufora ramki po opuszczeniu telegazety."
 
-msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
-msgstr "Wybierz tryb DNS."
-
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Wybierz numer modelu swojego urządzenia Unicable. Jeśli numeru modelu nie ma na liście, ustaw „SCR” na „zdefiniowane przez użytkownika” i ręcznie wprowadź parametry urządzenia zgodnie z arkuszem specyfikacji."
 
@@ -17087,9 +17135,6 @@ msgstr "Wybierz kolejność sortowania pozycji menu. Zdefiniowane przez użytkow
 msgid "Select the source location from where to obtain the upgrade files."
 msgstr "Wybierz lokalizację źródłową, z której chcesz pobrać pliki aktualizacji."
 
-msgid "Select the the DNS server/servers that will be used to resolve host lookups."
-msgstr "Wybierz źródło domyślnych ustawień DNS."
-
 msgid "Select the start time after which this timer can be activated. Before this time the timer won't be activated even if other conditions are met."
 msgstr "Wybierz godzinę rozpoczęcia, po której timer może zostać aktywowany. Przed upływem tej godziny timer nie zostanie aktywowany, nawet jeśli zostaną spełnione inne warunki."
 
@@ -17098,6 +17143,9 @@ msgstr "Wybierz kolumnę początkową/inicjacyjną, która ma być aktywowana pr
 
 msgid "Select the tags that should be used for this recording."
 msgstr "Wybrać znaczniki, które mają być używane dla tego nagrania."
+
+msgid "Select the DNS server(s) that will be used to lookup the host name to resolve the IP address."
+msgstr "Wybierz serwer / serwery DNS, które będą używane do rozwiązywania wyszukiwań hostów."
 
 msgid "Select the time after which this timer can start."
 msgstr "Wybierz czas, po którym ten timer może się rozpocząć."
@@ -17212,6 +17260,9 @@ msgstr "Wybierz, co chcesz aktywować przyciskiem W górę/W dół."
 
 msgid "Select where the recording should be saved."
 msgstr "Wybierz miejsce, w którym ma być zapisane nagranie."
+
+msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
+msgstr "Wybierz, czy chcesz używać protokołu IPv4, IPv6, czy obu. Jeśli oba są włączone, wybierz, który protokół ma być preferowany."
 
 msgid "Select wireless network"
 msgstr "Wybierz sieć bezprzewodową"
@@ -17571,6 +17622,9 @@ msgstr "Wpisz nazwę użytkownika do zalogowania do OpenWebif tunera zapasowego.
 
 msgid "Set the aspect ratio of the service picons."
 msgstr "Ustaw proporcje pikon kanałów."
+
+msgid "Set the bitrate of the video encoder. Larger values improve the quality and also increases the file size."
+msgstr "Ustaw szybkość transmisji bitów kodera wideo. Wyższe wartości poprawiają jakość, ale zwiększają również rozmiar pliku."
 
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Ustaw domyślną lokalizację dla swoich natychmiastowych nagrań. Naciśnij „OK”, aby dodać nowe lokalizacje, naciśnij „LEWO”/„PRAWO”, aby wybrać spośród wcześniej zdefiniowanych lokalizacji."
@@ -19293,6 +19347,9 @@ msgstr "Wydarzenia specjalne (Igrzyska olimpijskie, mistrzostwa świata itp.)"
 msgid "Specify the directory to use when starting Media Player."
 msgstr "Określ katalog, który ma być używany podczas uruchamiania Media Playera."
 
+msgid "Specify the network DNS suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
+msgstr "Określ suffix sieciowy DNS, który ma zostać zastosowany, gdy podana zostanie tylko nazwa hosta. Ułatwi to programowi rozpoznawania nazw DNS znalezienie żądanego hosta."
+
 msgid "Speed"
 msgstr "Prędkość"
 
@@ -20793,11 +20850,11 @@ msgstr "Ta opcja pozwala na wybór sposobu wyświetlania SD progresywnego 24Hz n
 msgid "This option allows you to choose how to display elapsed time, as + or -."
 msgstr "Ta opcja pozwala wybrać sposób wyświetlania czasu, który upłynął, jako + lub -."
 
-msgid "This option allows you to choose how to display the remaining time, the elapsed time, or both."
-msgstr "Ta opcja pozwala wybrać sposób wyświetlania pozostałego czasu lub upływającego czasu, lub obu."
-
 msgid "This option allows you to choose how to display standard definition video on your TV."
 msgstr "Opcja ta umożliwia wybranie sposobu wyświetlania obrazu w standardowej rozdzielczości na telewizorze."
+
+msgid "This option allows you to choose how to display the remaining time, the elapsed time, or both."
+msgstr "Ta opcja pozwala wybrać sposób wyświetlania pozostałego czasu lub upływającego czasu, lub obu."
 
 msgid "This option allows you to choose how to display the remaining/elapsed time for live TV."
 msgstr "Opcja ta umożliwia wybranie sposobu wyświetlania pozostałego/upływającego czasu transmisji telewizyjnej na żywo."
@@ -20921,6 +20978,9 @@ msgstr "Ta opcja ustawia ostrość obrazu, używana gdy obraz jest powiększony.
 
 msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
 msgstr "Ta wtyczka może określić, czy program zaczyna się wcześniej lub trwa dłużej. Kanał musi dostarczyć wiarygodne dane."
+
+msgid "Select 'Yes' to enable DNS entry rotation. This rotation changes the order in which the list of DNS servers is used and can avoid issues if a DNS server in the list becomes unavailable."
+msgstr "Taka rotacja zmienia kolejność, w jakiej używana jest lista serwerów DNS, i pozwala uniknąć problemów, jeśli serwer DNS na liście stanie się niedostępny."
 
 msgid "This service is protected by a parental control PIN!"
 msgstr "Ten kanał jest chroniony kodem PIN!"
@@ -21733,6 +21793,15 @@ msgstr "Ukraina"
 
 msgid "Ukrainian"
 msgstr "Ukraiński"
+
+msgid "UltraDNS Public (Family Secure)"
+msgstr "UltraDNS Public (Bezpieczny dla całej rodziny)"
+
+msgid "UltraDNS Public (Threat Protection)"
+msgstr "UltraDNS Public (Ochrona przed zagrożeniami)"
+
+msgid "UltraDNS Public (Unfiltered)"
+msgstr "UltraDNS Public (Bez filtrowania)"
 
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Nie udało się zainicjować Kexec MultiBoot!"
@@ -22932,9 +23001,6 @@ msgstr "Po włączeniu nagrywanie może zostać przerwane strumieniowanie, gdy n
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "Po włączeniu tej opcji nagrywanie może przerywać transmisję telewizyjną, jeśli nie ma wolnych tunerów."
 
-msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
-msgstr "Po ustawieniu opcji na „Tak” do każdej zaszyfrowanej usługi można przypisać konkretny Softcam."
-
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Po włączeniu, zostanie wyświetlone ostrzeżenie, a użytkownik otrzyma możliwość zatrzymania lub kontynuowania timeshiftu."
 
@@ -23070,6 +23136,9 @@ msgstr "Po ustawieniu każdy folder pokaże poprzedni stan używany, kiedy wył�
 msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr "W przypadku ustawienia PIG powróci do ostatnio oglądanego programu TV po zakończeniu odtwarzania filmu."
 
+msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
+msgstr "Po ustawieniu opcji na 'Tak' do każdego zaszyfrowanego kanału można przypisać konkretny Softcam."
+
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Wybierz czy skalować/rozciągać zawartość proporcji obrazu 16:9."
 
@@ -23117,6 +23186,9 @@ msgstr "Szerokość"
 
 msgid "Width / Height"
 msgstr "Szerokość / Wysokość"
+
+msgid "Winter sport"
+msgstr "Sporty zimowe"
 
 msgid "Winter sports"
 msgstr "Sporty zimowe"
@@ -24351,6 +24423,18 @@ msgstr "tak (zachować feed'y)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Google DNS"
+#~ msgstr "DNS Google"
+
+#~ msgid "Quad9 DNS"
+#~ msgstr "DNS Quad9"
+
+#~ msgid "Quad9 ECS DNS"
+#~ msgstr "Quad9 ECS DNS"
+
+#~ msgid "Quad9 Unsecured DNS"
+#~ msgstr "Quad9 Unsecured DNS"
 
 #, python-format
 #~ msgid "%d Seconds"
