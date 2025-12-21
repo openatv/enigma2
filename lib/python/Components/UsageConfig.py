@@ -192,9 +192,9 @@ def InitUsageConfig():
 	config.usage.DNSCryptPassword = ConfigPassword(default="enigma2", fixed_size=False)
 	config.usage.DNSCryptPort = ConfigInteger(default=9012, limits=(8080, 9999))
 	config.usage.DNSCryptPrivacy = ConfigSelection(default=1, choices=[
-		(0, _("show all details including client IPs")),
-		(1, _("anonymize client IPs")),
-		(2, _("aggregate data only"))
+		(0, _("Show all details")),
+		(1, _("Anonymize client IPs")),
+		(2, _("Aggregate data only"))
 	])
 	config.usage.subnetwork = ConfigYesNo(default=True)
 	config.usage.subnetwork_cable = ConfigYesNo(default=True)
