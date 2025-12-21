@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-06 12:58+0000\n"
+"POT-Creation-Date: 2025-12-20 12:54+0000\n"
 "PO-Revision-Date: 2025-08-18 16:27+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
@@ -1869,6 +1869,15 @@ msgstr "Активные клиенты"
 msgid "Active only"
 msgstr "Только активный"
 
+msgid "AdGuard DNS (Ads/Trackers)"
+msgstr ""
+
+msgid "AdGuard DNS (Family)"
+msgstr ""
+
+msgid "AdGuard DNS (Unfiltered)"
+msgstr ""
+
 msgid "Adapter Settings"
 msgstr "Настройка адаптера"
 
@@ -3106,9 +3115,6 @@ msgstr "Бислама"
 msgid "Bitrate"
 msgstr "Битрейт"
 
-msgid "Set the bitrate of the video encoder. Larger values improve the quality and also increases the file size."
-msgstr "Битрейт видеокодера. Более высокое значение улучшает качество и увеличивает размер файла."
-
 msgid "Black"
 msgstr "Чёрный"
 
@@ -3463,6 +3469,15 @@ msgstr "Слот CI: "
 
 msgid "CI+ Helper*"
 msgstr "Помощник* CI+"
+
+msgid "CIRA Canadian Shield (Family)"
+msgstr ""
+
+msgid "CIRA Canadian Shield (Private)"
+msgstr ""
+
+msgid "CIRA Canadian Shield (Protected)"
+msgstr ""
 
 msgid "CPU"
 msgstr "ЦП"
@@ -4241,6 +4256,15 @@ msgstr "Очистить и удалить все завершённые тай�
 msgid "Clean up and remove all completed timers?"
 msgstr "Очистить и удалить все завершённые таймеры?"
 
+msgid "CleanBrowsing (Adult Filter)"
+msgstr ""
+
+msgid "CleanBrowsing (Family Filter)"
+msgstr ""
+
+msgid "CleanBrowsing (Security Filter)"
+msgstr ""
+
 msgid "Cleaning Trashcan"
 msgstr "Очистка корзины"
 
@@ -4548,6 +4572,9 @@ msgstr "Настройка индикаторов на передней пане
 msgid "Configure how recording filenames are constructed. Standard: Date Time - Channel - Title Very very short: Title Very short: Title - Date Time Short with time: Date Time - Title Short: Date - Title Long: Date Time - Channel - Title - Info."
 msgstr "Задайте формат имен файлов записей. Стандартный: Дата Время - Канал - Заголовок, Совсем короткий: Заголовок, Очень короткий: Заголовок - Дата Время, Короткий со временем: Дата Время - Заголовок, Короткий: Дата - Заголовок, Длинный: Дата Время - Канал - Название - Информация"
 
+msgid "Configure if 'epg.dat' should be saved at all."
+msgstr "Нужно ли сохранять файл epg.dat вообще."
+
 msgid "Configure if and how crypto icons will be shown in the channel selection list."
 msgstr "Нужно ли показывать значок кодирования в списке каналов и как его показывать."
 
@@ -4565,9 +4592,6 @@ msgstr "Показывать ли названия каналов в списк�
 
 msgid "Configure if crypto icons will be shown in the channel selection list."
 msgstr "Настройте, будут ли отображаться значки шифрования в списке каналов."
-
-msgid "Configure if 'epg.dat' should be saved at all."
-msgstr "Нужно ли сохранять файл epg.dat вообще."
 
 msgid "Configure if service picons will be shown in quickzap."
 msgstr "Показывать ли пиконы каналов в окне быстрого переключения."
@@ -4650,14 +4674,14 @@ msgstr "Укажите, что делать при окончании воспр
 msgid "Configure the border width of the subtitles. The dark border makes the subtitles easier to read on a light background."
 msgstr "Настройте толщину линии контура субтитров. Тёмный контур делает субтитры легко читаемыми на светлом фоне."
 
+msgid "Configure the brightness level of the front panel display for Standby."
+msgstr "Регулировка яркости дисплея на передней панели в режиме ожидания."
+
 msgid "Configure the brightness level of the front panel display for dimmed operation."
 msgstr "Настройте уровень затемнения яркости передней панели дисплея."
 
 msgid "Configure the brightness level of the front panel display for normal operation."
 msgstr "Регулировка яркости дисплея на передней панели в нормальном режиме."
-
-msgid "Configure the brightness level of the front panel display for Standby."
-msgstr "Регулировка яркости дисплея на передней панели в режиме ожидания."
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
 msgstr "Настройте цвет внешних субтитров, альтернативный (нормальный шрифт - белый, курсив - жёлтый, жирный - голубой, подчёркнутый - зелёный), белый или жёлтый цвета."
@@ -5050,6 +5074,21 @@ msgstr "Контрастное видео"
 
 msgid "Contrast Video & OSD"
 msgstr "Контрастное видео и экранного меню"
+
+msgid "Control D (Ads + Tracking)"
+msgstr ""
+
+msgid "Control D (Family Friendly)"
+msgstr ""
+
+msgid "Control D (Malware)"
+msgstr ""
+
+msgid "Control D (Uncensored)"
+msgstr ""
+
+msgid "Control D (Unfiltered)"
+msgstr ""
 
 msgid "Control LED can be turned on or off here."
 msgstr "Здесь можно включить или выключить светодиод управления."
@@ -5509,8 +5548,14 @@ msgstr "Источник данных DNS"
 msgid "DNS protocol mode"
 msgstr "Режим DNS"
 
+msgid "Use DNS rotation"
+msgstr ""
+
 msgid "DNS suffix"
 msgstr "DNS-суффикс"
+
+msgid "DNS.WATCH (Uncensored)"
+msgstr ""
 
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
@@ -5882,9 +5927,6 @@ msgstr "Указать Softcam для этого канала"
 
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "Задайте дополнительную задержку в миллисекундах перед запуском потоков http (s)."
-
-msgid "Specify the network DNS suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
-msgstr "Задайте DNS-суффикс."
 
 msgid "Define the custom mountpoint for the device."
 msgstr "Определите пользовательскую точку монтирования для устройства."
@@ -7077,6 +7119,9 @@ msgstr "Образование"
 msgid "Education/Information"
 msgstr "Образование/Информация"
 
+msgid "Education/Science/Factual"
+msgstr ""
+
 msgid "Education/Science/Factual topics"
 msgstr "Образование/Наука/Факты"
 
@@ -7390,9 +7435,6 @@ msgstr "Включает декодирование потока (Если да�
 
 msgid "Enables sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "Если установлено 'Да', для событий глубокого ожидания на телевизор будут отправляться те же команды, что и во время обычных событий ожидания."
-
-msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
-msgstr "Если установлено значение 'да', позволяет использовать таймшифт с альтернативными аудио-плагинами."
 
 msgid "Encrypted: "
 msgstr "Закодировано "
@@ -8643,9 +8685,6 @@ msgstr "Прошить и восстановить настройки и выб�
 msgid "Flash directory '%s' not allowed!"
 msgstr "Нельзя использовать каталог во флеш-памяти '%s' !"
 
-msgid "Flash your receiver software on the fly."
-msgstr "Прошить ресивер из Интернета или Вашим ПО."
-
 msgid "Flash type"
 msgstr "Тип флеш-памяти"
 
@@ -8655,6 +8694,9 @@ msgstr "Используемая прошивка"
 #, python-format
 msgid "Flash your %s %s and reboot now?"
 msgstr "Прошить %s %s и перезагрузить сейчас?"
+
+msgid "Flash your receiver software on the fly."
+msgstr "Прошить ресивер из Интернета или Вашим ПО."
 
 #, python-format
 msgid "FlashExpander on boot is '%s'.  FlashExpander status is '%s'."
@@ -9019,8 +9061,8 @@ msgstr "Золотой"
 msgid "Golf"
 msgstr "Гольф"
 
-msgid "Google DNS"
-msgstr "Google DNS"
+msgid "Google Public DNS"
+msgstr ""
 
 msgid "Goto"
 msgstr "Позиция"
@@ -9250,11 +9292,11 @@ msgstr "Ремесла"
 msgid "Handle Python crashes"
 msgstr "Обрабатывать сбои Python"
 
-msgid "Handle input from TV"
-msgstr "Обработка ввода с телевизора"
-
 msgid "Handle Standby from TV"
 msgstr "Уйти в режим ожидания с ТВ"
+
+msgid "Handle input from TV"
+msgstr "Обработка ввода с телевизора"
 
 msgid "Handle wake up from TV"
 msgstr "Реакция на включение ТВ"
@@ -9755,6 +9797,9 @@ msgstr "Если логи занимают слишком много памят�
 
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
 msgstr "Если возможно, за Х минут до запуска таймера VPS-плагин будет контролировать, начнётся ли программа раньше. (0 отключает функцию)"
+
+msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
+msgstr "Если установлено значение 'да', позволяет использовать таймшифт с альтернативными аудио-плагинами."
 
 msgid "If the Deep Standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "Если используется обход проблем с режимом глубокого ожидания, дожидаться синхронизации системного времени. В связи с возникающей задержкой устройство продолжит выход из спящего режима максимум через 2 минуты."
@@ -10593,11 +10638,14 @@ msgstr "LED в режиме ожидания"
 msgid "LED brightness during Deep Standby."
 msgstr "Яркость дисплея в глубоком сне."
 
+msgid "LED brightness during Standby."
+msgstr "Яркость дисплея в режиме ожидания."
+
 msgid "LED brightness during normal operations."
 msgstr "Яркость дисплея в нормальном режиме."
 
-msgid "LED brightness during Standby."
-msgstr "Яркость дисплея в режиме ожидания."
+msgid "LED color during Deep Standby."
+msgstr ""
 
 msgid "LIRC remote"
 msgstr "LIRC-пульт"
@@ -10887,9 +10935,6 @@ msgstr "Загрузка информации, подождите..."
 msgid "Loading slot information, please wait..."
 msgstr "Загрузка информации о слоте, пожалуйста, подождите..."
 
-msgid "Local receiver"
-msgstr "Локальный ресивер"
-
 msgid "Local date/time"
 msgstr "Местная дата / время"
 
@@ -10901,6 +10946,9 @@ msgstr "Локальная сеть"
 
 msgid "Local or Regional"
 msgstr ""
+
+msgid "Local receiver"
+msgstr "Локальный ресивер"
 
 msgid "Local time"
 msgstr "Местное время"
@@ -13144,6 +13192,9 @@ msgstr "Семейство OpenDNSShield"
 msgid "OpenDNS Home"
 msgstr "Главная страница OpenDNS"
 
+msgid "OpenDNS Sandbox"
+msgstr ""
+
 msgid "OpenPLi Packages"
 msgstr "Пакеты OpenPLi"
 
@@ -14574,14 +14625,14 @@ msgstr "Четырехканальный PiP-канал "
 msgid "Quad PiP is not available."
 msgstr "4X PiP не доступно."
 
-msgid "Quad9 DNS"
-msgstr "Quad9 DNS"
+msgid "Quad9 (Malware blocking + DNSSEC)"
+msgstr ""
 
-msgid "Quad9 ECS DNS"
-msgstr "Quad9 ECS DNS"
+msgid "Quad9 (Malware blocking + ECS)"
+msgstr ""
 
-msgid "Quad9 Unsecured DNS"
-msgstr "Незащищённый DNS Quad9"
+msgid "Quad9 (Unsecured / no blocking)"
+msgstr ""
 
 msgid "Quechua"
 msgstr "Кечуа"
@@ -15064,14 +15115,14 @@ msgstr "Настройки кнопок пульта ДУ"
 msgid "Remote Control Code Settings"
 msgstr "Код дистанционного управления"
 
-msgid "Remote receiver"
-msgstr "Удалённый ресивер"
-
 msgid "Remote control information"
 msgstr "Пульт"
 
 msgid "Remote control type"
 msgstr "Тип пульта управления"
+
+msgid "Remote receiver"
+msgstr "Удалённый ресивер"
 
 msgid "Remove"
 msgstr "Удалить"
@@ -15304,9 +15355,6 @@ msgstr "Требуемый тип носителя"
 
 msgid "Rereading partition table"
 msgstr "Перечитать таблицу разделов"
-
-msgid "Select 'Yes' to reschedule the task to run when the receiver enters or exits Standby. The state change must occur within the task's scheduled window or the task will not be run."
-msgstr ""
 
 msgid "Reserved"
 msgstr "Резервировано"
@@ -16323,6 +16371,9 @@ msgstr "Выберите 'Да', чтобы удалить все пользов
 msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all key map, menu and setup override data and restore the default definitions."
 msgstr "Выберите 'Да', чтобы удалить все данные пользовательского интерфейса. При выборе этой опции будут удалены все данные раскладки клавиатуры, меню и настроек, а также восстановлены определения по умолчанию."
 
+msgid "Select 'Yes' to reschedule the task to run when the receiver enters or exits Standby. The state change must occur within the task's scheduled window or the task will not be run."
+msgstr ""
+
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr "Выберите 'Да', чтобы восстановить настройки сети по умолчанию. Это активирует порт Ethernet, если он существует, и настроит ресивер на использование DHCP. Все остальные сетевые интерфейсы будут удалены."
 
@@ -16965,9 +17016,6 @@ msgstr "Выберите производителя вашего SCR-устро�
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "Выберите способ восстановления разрешения экрана и видеобуфера (framebuffer) после выхода из телетекста."
 
-msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
-msgstr "Выберите режим DNS."
-
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Выберите номер модели своего устройства Unicable. Если номер модели не указан, установите для параметра 'SCR' значение 'Задается пользователем' и введите параметры устройства вручную в соответствии с его спецификацией."
 
@@ -17077,9 +17125,6 @@ msgstr "Выберите порядок сортировки пунктов ме
 msgid "Select the source location from where to obtain the upgrade files."
 msgstr "Выберите исходное расположение, откуда можно получить файлы обновления."
 
-msgid "Select the the DNS server/servers that will be used to resolve host lookups."
-msgstr "Выберите источник настроек DNS по умолчанию."
-
 msgid "Select the start time after which this timer can be activated. Before this time the timer won't be activated even if other conditions are met."
 msgstr ""
 
@@ -17088,6 +17133,9 @@ msgstr "Выберите стартовый/начальный столбец, �
 
 msgid "Select the tags that should be used for this recording."
 msgstr "Выберите теги, которые следует использовать для этой записи."
+
+msgid "Select the DNS server(s) that will be used to lookup the host name to resolve the IP address."
+msgstr "Выберите источник настроек DNS по умолчанию."
 
 msgid "Select the time after which this timer can start."
 msgstr "Выберите время, после которого этот таймер может запуститься."
@@ -17202,6 +17250,9 @@ msgstr "Выбор действия для красной кнопок Ввер�
 
 msgid "Select where the recording should be saved."
 msgstr "Выберите, где запись должна быть сохранена."
+
+msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
+msgstr "Выберите режим DNS."
 
 msgid "Select wireless network"
 msgstr "Выберите беспроводную сеть"
@@ -17561,6 +17612,9 @@ msgstr "Установить ID пользователя OpenWebif из ваше
 
 msgid "Set the aspect ratio of the service picons."
 msgstr "Настройка соотношения сторон пиконов каналов."
+
+msgid "Set the bitrate of the video encoder. Larger values improve the quality and also increases the file size."
+msgstr "Битрейт видеокодера. Более высокое значение улучшает качество и увеличивает размер файла."
 
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Назначьте стандартное расположение для файлов немедленной записи. Нажмите 'OK' чтобы добавить новый каталог, либо выберите существующий каталог кнопками ВПРАВО/ВЛЕВО."
@@ -19282,6 +19336,9 @@ msgstr "Особые события"
 msgid "Specify the directory to use when starting Media Player."
 msgstr "Укажите каталог, который будет использоваться при запуске Media Player."
 
+msgid "Specify the network DNS suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
+msgstr "Задайте DNS-суффикс."
+
 msgid "Speed"
 msgstr "Скорость"
 
@@ -20782,11 +20839,11 @@ msgstr "Эта опция позволяет выбрать способ выв�
 msgid "This option allows you to choose how to display elapsed time, as + or -."
 msgstr "Эта опция позволяет выбрать, как показать прошедшее время, как + или -"
 
-msgid "This option allows you to choose how to display the remaining time, the elapsed time, or both."
-msgstr "Эта опция позволяет Вам выбрать, как отображать оставшееся время, прошедшее время или и то, и другое."
-
 msgid "This option allows you to choose how to display standard definition video on your TV."
 msgstr "Эта опция позволяет выбрать способ отображения видео стандартной четкости на телевизоре."
+
+msgid "This option allows you to choose how to display the remaining time, the elapsed time, or both."
+msgstr "Эта опция позволяет Вам выбрать, как отображать оставшееся время, прошедшее время или и то, и другое."
 
 msgid "This option allows you to choose how to display the remaining/elapsed time for live TV."
 msgstr "Эта опция позволяет Вам выбрать, как отображать оставшееся/прошедшее время для прямого эфира."
@@ -20910,6 +20967,9 @@ msgstr "Этот параметр влияет на резкость изобр�
 
 msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
 msgstr "Этот плагин может определить, начинается ли программа раньше или длится дольше. Канал должен предоставлять надёжные данные."
+
+msgid "Select 'Yes' to enable DNS entry rotation. This rotation changes the order in which the list of DNS servers is used and can avoid issues if a DNS server in the list becomes unavailable."
+msgstr ""
 
 msgid "This service is protected by a parental control PIN!"
 msgstr "Этот канал защищён пин-кодом!"
@@ -21722,6 +21782,15 @@ msgstr "Украина"
 
 msgid "Ukrainian"
 msgstr "Украинский"
+
+msgid "UltraDNS Public (Family Secure)"
+msgstr ""
+
+msgid "UltraDNS Public (Threat Protection)"
+msgstr ""
+
+msgid "UltraDNS Public (Unfiltered)"
+msgstr ""
 
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Не удалось инициализировать Kexec MultiBoot!"
@@ -22921,9 +22990,6 @@ msgstr "При активации, запись прервёт потоково�
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "Если включено, при начале записи просматриваемая передача будет прервана, если нет свободного тюнера."
 
-msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
-msgstr "Если установлено значение 'Да', для каждого зашифрованного канала можно назначить конкретный Softcam."
-
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Если включено, будет выводиться предупреждение с выбором между остановкой и продолжением работы таймшифта."
 
@@ -23059,6 +23125,9 @@ msgstr "Если выбрано, предыдущее состояние каж�
 msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr "Если включено, то в окне МиниТВ после окончания фильма будет включен ранее просматриваемый канал."
 
+msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
+msgstr "Если установлено значение 'Да', для каждого зашифрованного канала можно назначить конкретный Softcam."
+
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Когда изображение на канале имеет соотношение сторон 16:9, выберите, следует ли масштабировать/растянуть картинку."
 
@@ -23106,6 +23175,9 @@ msgstr "Ширина"
 
 msgid "Width / Height"
 msgstr "Ширина/высота"
+
+msgid "Winter sport"
+msgstr ""
 
 msgid "Winter sports"
 msgstr "Зимний спорт"
@@ -24340,6 +24412,18 @@ msgstr "Да (оставить фиды)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Google DNS"
+#~ msgstr "Google DNS"
+
+#~ msgid "Quad9 DNS"
+#~ msgstr "Quad9 DNS"
+
+#~ msgid "Quad9 ECS DNS"
+#~ msgstr "Quad9 ECS DNS"
+
+#~ msgid "Quad9 Unsecured DNS"
+#~ msgstr "Незащищённый DNS Quad9"
 
 #, python-format
 #~ msgid "%d Seconds"

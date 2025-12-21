@@ -199,8 +199,8 @@
 	<setup key="DNS" title="DNS Settings">
 		<item level="0" text="DNS protocol mode" description="Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred.">config.usage.dnsMode</item>
 		<item level="0" text="DNS suffix" description="Specify the network DNS suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host.">config.usage.dnsSuffix</item>
-		<item level="0" text="DNS rotate" description="This rotation changes the order in which the list of DNS servers is used and can avoid issues if a DNS server in the list becomes unavailable.">config.usage.dnsRotate</item>
-		<item level="0" text="DNS data source" description="Select the the DNS server/servers that will be used to resolve host lookups.">config.usage.dns</item>
+		<item level="0" text="Use DNS rotation" description="Select 'Yes' to enable DNS entry rotation. This rotation changes the order in which the list of DNS servers is used and can avoid issues if a DNS server in the list becomes unavailable.">config.usage.dnsRotate</item>
+		<item level="0" text="DNS data source" description="Select the DNS server(s) that will be used to lookup the host name to resolve the IP address.">config.usage.dns</item>
 	</setup>
 	<setup key="EPG" title="EPG Settings" level="2" showOpenWebif="1">
 		<item level="2" text="EPG location" description="Choose the location where the EPG data will be stored when the %s %s is shut down. The location must be available at boot time.">config.misc.epgcachepath</item>

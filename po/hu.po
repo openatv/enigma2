@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-06 12:58+0000\n"
+"POT-Creation-Date: 2025-12-20 12:54+0000\n"
 "PO-Revision-Date: 2025-05-05 05:50+0000\n"
 "Last-Translator: Balázs Sólyom <balazs@solyom.online>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -1874,6 +1874,15 @@ msgstr "Aktív kliensek"
 msgid "Active only"
 msgstr ""
 
+msgid "AdGuard DNS (Ads/Trackers)"
+msgstr ""
+
+msgid "AdGuard DNS (Family)"
+msgstr ""
+
+msgid "AdGuard DNS (Unfiltered)"
+msgstr ""
+
 msgid "Adapter Settings"
 msgstr "Adapter beállításai"
 
@@ -3120,9 +3129,6 @@ msgstr ""
 msgid "Bitrate"
 msgstr "Bitráta"
 
-msgid "Set the bitrate of the video encoder. Larger values improve the quality and also increases the file size."
-msgstr "A videó kódolás bitrátája. A nagyobb érték javítja a minőséget és növeli a fájlméretet."
-
 msgid "Black"
 msgstr "Fekete"
 
@@ -3474,6 +3480,15 @@ msgid "CI slot: "
 msgstr "CI foglalat: "
 
 msgid "CI+ Helper*"
+msgstr ""
+
+msgid "CIRA Canadian Shield (Family)"
+msgstr ""
+
+msgid "CIRA Canadian Shield (Private)"
+msgstr ""
+
+msgid "CIRA Canadian Shield (Protected)"
 msgstr ""
 
 msgid "CPU"
@@ -4249,6 +4264,15 @@ msgstr ""
 msgid "Clean up and remove all completed timers?"
 msgstr ""
 
+msgid "CleanBrowsing (Adult Filter)"
+msgstr ""
+
+msgid "CleanBrowsing (Family Filter)"
+msgstr ""
+
+msgid "CleanBrowsing (Security Filter)"
+msgstr ""
+
 msgid "Cleaning Trashcan"
 msgstr ""
 
@@ -4556,6 +4580,9 @@ msgstr ""
 msgid "Configure how recording filenames are constructed. Standard: Date Time - Channel - Title Very very short: Title Very short: Title - Date Time Short with time: Date Time - Title Short: Date - Title Long: Date Time - Channel - Title - Info."
 msgstr "Állítsa be a felvételi fájlnevek létrehozásának módját"
 
+msgid "Configure if 'epg.dat' should be saved at all."
+msgstr "Állítsa be, hogy az epg.dat fájl mentésre kerüljön-e."
+
 msgid "Configure if and how crypto icons will be shown in the channel selection list."
 msgstr "A kódolási ikonok megjelenítése a csatornalistában."
 
@@ -4573,9 +4600,6 @@ msgstr "Állítsa be, hogy a Csatorna név oszlopa milyen mértékben jelenik me
 
 msgid "Configure if crypto icons will be shown in the channel selection list."
 msgstr ""
-
-msgid "Configure if 'epg.dat' should be saved at all."
-msgstr "Állítsa be, hogy az epg.dat fájl mentésre kerüljön-e."
 
 msgid "Configure if service picons will be shown in quickzap."
 msgstr "Jelenjenek meg a csatornák picon-jai a gyors Ugrások között."
@@ -4652,14 +4676,14 @@ msgstr "Mi történjen, amikor lejátszás közben eléri a film végét."
 msgid "Configure the border width of the subtitles. The dark border makes the subtitles easier to read on a light background."
 msgstr "A feliratok körvonalának beállítása. Egy sötét körvonal a betűkön könnyebben olvashatóvá teszi a feliratot."
 
+msgid "Configure the brightness level of the front panel display for Standby."
+msgstr "Állítsa be az előlapi kijelző fényerőszintjét készenléti állapotban."
+
 msgid "Configure the brightness level of the front panel display for dimmed operation."
 msgstr "Állítsa be az előlap kijelzőjének fényerősségét a sötétített működés érdekében."
 
 msgid "Configure the brightness level of the front panel display for normal operation."
 msgstr "A normál működés érdekében állítsa be az előlapi kijelző fényerőszintjét."
-
-msgid "Configure the brightness level of the front panel display for Standby."
-msgstr "Állítsa be az előlapi kijelző fényerőszintjét készenléti állapotban."
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
 msgstr "A külső fájlban lévő feliratok színe: fehér, sárga vagy alternatív (normál-fehér, dőlt-sárga, vastag-cián, aláhúzott-zöld)"
@@ -5051,6 +5075,21 @@ msgid "Contrast Video"
 msgstr ""
 
 msgid "Contrast Video & OSD"
+msgstr ""
+
+msgid "Control D (Ads + Tracking)"
+msgstr ""
+
+msgid "Control D (Family Friendly)"
+msgstr ""
+
+msgid "Control D (Malware)"
+msgstr ""
+
+msgid "Control D (Uncensored)"
+msgstr ""
+
+msgid "Control D (Unfiltered)"
 msgstr ""
 
 #, fuzzy
@@ -5514,7 +5553,13 @@ msgstr ""
 msgid "DNS protocol mode"
 msgstr ""
 
+msgid "Use DNS rotation"
+msgstr ""
+
 msgid "DNS suffix"
+msgstr ""
+
+msgid "DNS.WATCH (Uncensored)"
 msgstr ""
 
 msgid ""
@@ -5894,9 +5939,6 @@ msgstr ""
 
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "Egy extra késkeltetés megadása (milliszekundumban) a http(s) stream-ek indítása előtt."
-
-msgid "Specify the network DNS suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
-msgstr ""
 
 msgid "Define the custom mountpoint for the device."
 msgstr ""
@@ -7081,6 +7123,9 @@ msgstr "Oktatás"
 msgid "Education/Information"
 msgstr "Oktatás/tájékoztatás"
 
+msgid "Education/Science/Factual"
+msgstr ""
+
 msgid "Education/Science/Factual topics"
 msgstr "Oktatás/Tudomány/Tényszerű"
 
@@ -7393,9 +7438,6 @@ msgid "Enables a feature so that the receiver can decrypt streams (if the ECM da
 msgstr "Ha engedélyezi ezt a funkciót, akkor a vevőegység dekódolni tudja az adatfolyamot (Ha az adatfolyam tartalmazza az ECM-t és ha érvényes kártya is elérhető)."
 
 msgid "Enables sending the same TV commands for Deep Standby as for regular Standby."
-msgstr ""
-
-msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
 msgstr ""
 
 msgid "Encrypted: "
@@ -8646,9 +8688,6 @@ msgstr ""
 msgid "Flash directory '%s' not allowed!"
 msgstr ""
 
-msgid "Flash your receiver software on the fly."
-msgstr "A készülék szoftverének Flashelése."
-
 msgid "Flash type"
 msgstr ""
 
@@ -8658,6 +8697,9 @@ msgstr ""
 #, python-format
 msgid "Flash your %s %s and reboot now?"
 msgstr ""
+
+msgid "Flash your receiver software on the fly."
+msgstr "A készülék szoftverének Flashelése."
 
 #, python-format
 msgid "FlashExpander on boot is '%s'.  FlashExpander status is '%s'."
@@ -9028,7 +9070,7 @@ msgstr "Arany"
 msgid "Golf"
 msgstr "Golf"
 
-msgid "Google DNS"
+msgid "Google Public DNS"
 msgstr ""
 
 msgid "Goto"
@@ -9261,11 +9303,11 @@ msgstr "kézművesség"
 msgid "Handle Python crashes"
 msgstr "Python összeomlások kezelése"
 
-msgid "Handle input from TV"
-msgstr "Kezelje a bemenetet a TV-ből"
-
 msgid "Handle Standby from TV"
 msgstr "Készenlét fogadása a TV-től"
+
+msgid "Handle input from TV"
+msgstr "Kezelje a bemenetet a TV-ből"
 
 msgid "Handle wake up from TV"
 msgstr "Bekapcsolás fogadása a TV-től"
@@ -9768,6 +9810,9 @@ msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Ha a naplók a beállított maximális hely értékét túllépik, akkor a legidősebb napló törlődik."
 
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
+msgstr ""
+
+msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
 msgstr ""
 
 msgid "If the Deep Standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
@@ -10618,11 +10663,14 @@ msgstr "LED Készenlét"
 msgid "LED brightness during Deep Standby."
 msgstr "LED fényerő kikapcsolt állapotban."
 
+msgid "LED brightness during Standby."
+msgstr "LED fényerő készenléti üzemmódban."
+
 msgid "LED brightness during normal operations."
 msgstr "LED fényerő normál üzemmódban."
 
-msgid "LED brightness during Standby."
-msgstr "LED fényerő készenléti üzemmódban."
+msgid "LED color during Deep Standby."
+msgstr ""
 
 msgid "LIRC remote"
 msgstr ""
@@ -10916,9 +10964,6 @@ msgstr ""
 msgid "Loading slot information, please wait..."
 msgstr ""
 
-msgid "Local receiver"
-msgstr "Helyi box"
-
 msgid "Local date/time"
 msgstr ""
 
@@ -10930,6 +10975,9 @@ msgstr "Helyi hálózat"
 
 msgid "Local or Regional"
 msgstr ""
+
+msgid "Local receiver"
+msgstr "Helyi box"
 
 msgid "Local time"
 msgstr ""
@@ -13230,6 +13278,9 @@ msgstr ""
 msgid "OpenDNS Home"
 msgstr "AutoTimer megnyitása"
 
+msgid "OpenDNS Sandbox"
+msgstr ""
+
 msgid "OpenPLi Packages"
 msgstr ""
 
@@ -14662,13 +14713,13 @@ msgstr "Quad Kép-a-Képben csatorna "
 msgid "Quad PiP is not available."
 msgstr "Négy csatornás Kép-a-Képben nem érhető el."
 
-msgid "Quad9 DNS"
+msgid "Quad9 (Malware blocking + DNSSEC)"
 msgstr ""
 
-msgid "Quad9 ECS DNS"
+msgid "Quad9 (Malware blocking + ECS)"
 msgstr ""
 
-msgid "Quad9 Unsecured DNS"
+msgid "Quad9 (Unsecured / no blocking)"
 msgstr ""
 
 msgid "Quechua"
@@ -15154,14 +15205,14 @@ msgstr ""
 msgid "Remote Control Code Settings"
 msgstr "Távirányító kód"
 
-msgid "Remote receiver"
-msgstr "Távoli készülék"
-
 msgid "Remote control information"
 msgstr ""
 
 msgid "Remote control type"
 msgstr "Távirányító típusa"
+
+msgid "Remote receiver"
+msgstr "Távoli készülék"
 
 msgid "Remove"
 msgstr "Eltávolítás"
@@ -15392,9 +15443,6 @@ msgstr "Szükséges hordozó típusa:"
 
 msgid "Rereading partition table"
 msgstr "Partíciótábla újraolvasása"
-
-msgid "Select 'Yes' to reschedule the task to run when the receiver enters or exits Standby. The state change must occur within the task's scheduled window or the task will not be run."
-msgstr ""
 
 msgid "Reserved"
 msgstr "Fenntartva"
@@ -16416,6 +16464,9 @@ msgstr ""
 msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all key map, menu and setup override data and restore the default definitions."
 msgstr ""
 
+msgid "Select 'Yes' to reschedule the task to run when the receiver enters or exits Standby. The state change must occur within the task's scheduled window or the task will not be run."
+msgstr ""
+
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr ""
 
@@ -17060,9 +17111,6 @@ msgstr "Válassza ki az SCR eszköz gyártóját. Ha a gyártó nincs felsorolva
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "A teletext elhagyásakor válassza ki a képernyőfelbontás és a framebuffer helyreállításának módját."
 
-msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
-msgstr ""
-
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "Válassza ki az Unicable eszköz modellszámát. Ha a modellszám nem szerepel a listában, állítsa az \"SCR\" értéket \"felhasználó által definiált\" beállításra, és adja meg manuálisan az eszköz paramétereit a specifikációs lapjának megfelelően."
 
@@ -17171,9 +17219,6 @@ msgstr ""
 msgid "Select the source location from where to obtain the upgrade files."
 msgstr ""
 
-msgid "Select the the DNS server/servers that will be used to resolve host lookups."
-msgstr ""
-
 msgid "Select the start time after which this timer can be activated. Before this time the timer won't be activated even if other conditions are met."
 msgstr ""
 
@@ -17181,6 +17226,9 @@ msgid "Select the starting/initial column to be activated on File Commander star
 msgstr ""
 
 msgid "Select the tags that should be used for this recording."
+msgstr ""
+
+msgid "Select the DNS server(s) that will be used to lookup the host name to resolve the IP address."
 msgstr ""
 
 msgid "Select the time after which this timer can start."
@@ -17292,6 +17340,9 @@ msgid "Select what you want the UP/DOWN button to activate."
 msgstr "Válassza ki, hogy a távirányító Fel/Le gombjával mit szeretne csinálni:"
 
 msgid "Select where the recording should be saved."
+msgstr ""
+
+msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
 msgstr ""
 
 msgid "Select wireless network"
@@ -17652,6 +17703,9 @@ msgstr "Állítsa be az OpenWebIf felhasználói azonosítót a tartalék tunerb
 
 msgid "Set the aspect ratio of the service picons."
 msgstr "Állítsa be a csatorna képek képarányát."
+
+msgid "Set the bitrate of the video encoder. Larger values improve the quality and also increases the file size."
+msgstr "A videó kódolás bitrátája. A nagyobb érték javítja a minőséget és növeli a fájlméretet."
 
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "Állítsa be az azonnali felvételek alapértelmezett helyét. Új helyek hozzáadásához nyomja meg az \"OK\" gombot, válassza ki a meglévő hely kiválasztásához balra vagy jobbra gombot."
@@ -19370,6 +19424,9 @@ msgstr "különleges események"
 msgid "Specify the directory to use when starting Media Player."
 msgstr ""
 
+msgid "Specify the network DNS suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
+msgstr ""
+
 msgid "Speed"
 msgstr ""
 
@@ -20854,11 +20911,11 @@ msgstr "Ezzel az opcióval kiválaszthatja, hogyan jelenítse meg a progresszív
 msgid "This option allows you to choose how to display elapsed time, as + or -."
 msgstr "Ezzel a beállítással megadhatja, hogy hogyan jelenjen meg az eltelt idő, + vagy - kijelzéssel mutassa. Az 'igen' választása a +, a 'nem' választása a -"
 
-msgid "This option allows you to choose how to display the remaining time, the elapsed time, or both."
-msgstr "Ezzel az opcióval kiválaszthatja, hogyan jelenítse meg a hátralévő időt, az eltelt időt vagy mindkettőt."
-
 msgid "This option allows you to choose how to display standard definition video on your TV."
 msgstr "Ez az opció lehetővé teszi, hogy kiválassza, hogyan jelenítse meg a normál felbontású videót a tévében."
+
+msgid "This option allows you to choose how to display the remaining time, the elapsed time, or both."
+msgstr "Ezzel az opcióval kiválaszthatja, hogyan jelenítse meg a hátralévő időt, az eltelt időt vagy mindkettőt."
 
 msgid "This option allows you to choose how to display the remaining/elapsed time for live TV."
 msgstr "Ezzel az opcióval kiválaszthatja, hogyan jelenítse meg az élő TV adás Hátralévő/Eltelt időjét."
@@ -20981,6 +21038,9 @@ msgid "This option sets up the picture sharpness, used when the picture is being
 msgstr "Ezzel beállítja a kép élességét, amelyet a kép felskálázásnál használ."
 
 msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
+msgstr ""
+
+msgid "Select 'Yes' to enable DNS entry rotation. This rotation changes the order in which the list of DNS servers is used and can avoid issues if a DNS server in the list becomes unavailable."
 msgstr ""
 
 msgid "This service is protected by a parental control PIN!"
@@ -21802,6 +21862,15 @@ msgstr "Ukrajna"
 
 msgid "Ukrainian"
 msgstr "Ukrán"
+
+msgid "UltraDNS Public (Family Secure)"
+msgstr ""
+
+msgid "UltraDNS Public (Threat Protection)"
+msgstr ""
+
+msgid "UltraDNS Public (Unfiltered)"
+msgstr ""
 
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr ""
@@ -22973,9 +23042,6 @@ msgstr "Ha engedélyezve van, a felvétel megszakíthatja az adatfolyamot (Strea
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "Egy felvétel megszakíthatja a TV-nézést, ha nem áll rendelkezésre másik szabad tuner a felvételhez."
 
-msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
-msgstr ""
-
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "Egy figyelmeztetés jelenjen meg a képernyőn választható lehetőséggel, a Timeshift megállítása vagy folytatása miatt."
 
@@ -23111,6 +23177,9 @@ msgstr "Amikor be van állítva, minden mappa megjeleníti az előzőleg haszná
 msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr "Ha beállítja, a PIG vissza fog állni, miután a film meg lesz állítva."
 
+msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
+msgstr ""
+
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "Egy 16:9-es kép méretarányú tartalom nagyítva vagy széthúzva legyen."
 
@@ -23157,6 +23226,9 @@ msgid "Width"
 msgstr "Szélesség"
 
 msgid "Width / Height"
+msgstr ""
+
+msgid "Winter sport"
 msgstr ""
 
 msgid "Winter sports"
