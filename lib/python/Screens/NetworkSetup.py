@@ -357,7 +357,7 @@ class DNSSettings(Setup):
 
 	def createSetup(self):  # NOSONAR silence S2638
 		Setup.createSetup(self)
-		if config.usage.dns.value == "custom":
+		if config.usage.dns.value != "dnscrypt":
 			dnsList = self["config"].getList()
 			if self.dnsStart is not None and 0 <= self.dnsStart <= len(dnsList):
 				del dnsList[self.dnsStart:]
@@ -628,8 +628,6 @@ class DNSSettings(Setup):
 				continue
 
 			newLines.append(line)
-
-		self.insertGlobalKey(newLines, "require_cache", self.tomlBool(config.usage.DNSCryptCache.value), anchorKeys=["require_nofilter", "require_nolog", "require_dnssec"], foundSet=found)
 
 		self.insertSectionKey(newLines, "monitoring_ui", "enabled", self.tomlBool(config.usage.DNSCryptUI.value), anchorKeys=["enabled"], foundSet=found)
 		self.insertSectionKey(newLines, "monitoring_ui", "listen_address", self.tomlStr(f"0.0.0.0:{self.tomlInt(config.usage.DNSCryptPort.value, default=9012)}"), anchorKeys=["enabled", "listen_address"], foundSet=found)
