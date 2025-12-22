@@ -166,7 +166,7 @@ def InitUsageConfig():
 	fileDom = fileReadXML(resolveFilename(SCOPE_SKINS, "dnsservers.xml"), source=MODULE_NAME)
 	for dns in fileDom.findall("dnsserver"):
 		if dns.get("key", ""):
-			choices.append((dns.get("key"), _(dns.get("title"))))
+			choices.append((dns.get("key"), dns.get("title")))
 
 	config.usage.dns = ConfigSelection(default="dhcp-router", choices=choices)
 	config.usage.dnsMode = ConfigSelection(default=0, choices=[
