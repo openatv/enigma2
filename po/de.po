@@ -13,12 +13,13 @@
 # "Mr.Servo" <mrservo@gmx.de>, 2023.
 # VfBFan <VfBFan@users.noreply.hosted.weblate.org>, 2023, 2024.
 # Masowick <Demian@gmx.co.uk>, 2025.
+# Pimmelmann <d.a.isy.mo.k.on.i@gmail.com>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-12-20 12:54+0000\n"
-"PO-Revision-Date: 2025-12-21 09:04+0000\n"
+"PO-Revision-Date: 2025-12-22 20:53+0000\n"
 "Last-Translator: VfBFan <drop0815@posteo.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
@@ -4444,13 +4445,13 @@ msgid "Clean up and remove all completed timers?"
 msgstr "Bereinigen und alle abgeschlossenen Timer entfernen?"
 
 msgid "CleanBrowsing (Adult Filter)"
-msgstr ""
+msgstr "CleanBrowsing (Erwachsenenfilter)"
 
 msgid "CleanBrowsing (Family Filter)"
-msgstr ""
+msgstr "CleanBrowsing (Familienfilter)"
 
 msgid "CleanBrowsing (Security Filter)"
-msgstr ""
+msgstr "CleanBrowsing (Sicherheitsfilter)"
 
 msgid "Cleaning Trashcan"
 msgstr "Papierkorb leeren"
@@ -5304,19 +5305,22 @@ msgid "Contrast Video & OSD"
 msgstr "Video- und OSD-Kontrast"
 
 msgid "Control D (Ads + Tracking)"
-msgstr ""
+msgstr "Control D (Werbung/Tracker)"
 
+#, fuzzy
 msgid "Control D (Family Friendly)"
-msgstr ""
+msgstr "Control D (Familienfreundlich)"
 
 msgid "Control D (Malware)"
-msgstr ""
+msgstr "Control D (Schadsoftware)"
 
+#, fuzzy
 msgid "Control D (Uncensored)"
-msgstr ""
+msgstr "Control D (Unzensiert)"
 
+#, fuzzy
 msgid "Control D (Unfiltered)"
-msgstr ""
+msgstr "Control D (Ungefiltert)"
 
 #
 msgid "Control LED can be turned on or off here."
@@ -5791,18 +5795,18 @@ msgstr "DNS-Einstellungen"
 msgid "DNS data source"
 msgstr "DNS-Datenquelle"
 
-#, fuzzy
 msgid "DNS protocol mode"
-msgstr "DNS-Modus"
+msgstr "DNS-Protokoll-Modus"
 
 msgid "Use DNS rotation"
-msgstr ""
+msgstr "DNS-Rotation verwenden"
 
 msgid "DNS suffix"
 msgstr "DNS-Suffix"
 
+#, fuzzy
 msgid "DNS.WATCH (Uncensored)"
-msgstr ""
+msgstr "DNS.WATCH (Unzensiert)"
 
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
@@ -7448,10 +7452,10 @@ msgid "Education/Information"
 msgstr "Bildung/Information"
 
 msgid "Education/Science/Factual"
-msgstr "Bildung/Wissenschaft/Sachlich"
+msgstr "Bildung/Wissenschaft/Sachfragen"
 
 msgid "Education/Science/Factual topics"
-msgstr "Bildung/Wissenschaft/Sachverhalt"
+msgstr "Bildung/Wissenschaft/Sachthemen"
 
 msgid "Educational"
 msgstr "Bildung"
@@ -9482,7 +9486,7 @@ msgid "Golf"
 msgstr "Golf"
 
 msgid "Google Public DNS"
-msgstr ""
+msgstr "Google-DNS"
 
 msgid "Goto"
 msgstr "Gehe zu"
@@ -13879,8 +13883,9 @@ msgstr "OpenDNS-FamilyShield"
 msgid "OpenDNS Home"
 msgstr "OpenDNS-Startseite"
 
+#, fuzzy
 msgid "OpenDNS Sandbox"
-msgstr ""
+msgstr "OpenDNS Sandbox"
 
 msgid "OpenPLi Packages"
 msgstr "OpenPLi"
@@ -15428,13 +15433,13 @@ msgid "Quad PiP is not available."
 msgstr "Quad-Bild-im-Bild ist nicht verfügbar!"
 
 msgid "Quad9 (Malware blocking + DNSSEC)"
-msgstr ""
+msgstr "Quad9 (Malware blocken + DNSSEC)"
 
 msgid "Quad9 (Malware blocking + ECS)"
-msgstr ""
+msgstr "Quad9 (Malware blocken + ECS)"
 
 msgid "Quad9 (Unsecured / no blocking)"
-msgstr ""
+msgstr "Quad9 (Unzensiert / nicht blocken)"
 
 msgid "Quechua"
 msgstr "Quechua"
@@ -18088,9 +18093,8 @@ msgstr "Startspalten vom File Commander auswählen."
 msgid "Select the tags that should be used for this recording."
 msgstr "Die Tags auswählen, die für diese Aufnahme verwendet werden sollen."
 
-#, fuzzy
 msgid "Select the DNS server(s) that will be used to lookup the host name to resolve the IP address."
-msgstr "Die Quelle der voreingestellen DNS-Einstellungen auswählen."
+msgstr "Den/die DNS-Server auswählen, die zum Nachschlagen des Hostnamens verwendet werden sollen, um die IP-Adresse aufzulösen."
 
 msgid "Select the time after which this timer can start."
 msgstr "Die Zeit auswählen, nach der dieser Timer starten kann."
@@ -18210,9 +18214,8 @@ msgstr "Auswählen, was die Tasten Hoch/Runter bewirken sollen."
 msgid "Select where the recording should be saved."
 msgstr "Auswählen, wohin die Aufnahme gespeichert werden soll."
 
-#, fuzzy
 msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
-msgstr "DNS-Modus auswählen."
+msgstr "Auswählen, ob IPv4, IPv6 oder beide Protokolle verwendet werden sollen. Wenn beide aktiviert sind, welches soll bevorzugt werden?"
 
 msgid "Select wireless network"
 msgstr "Das WLAN-Netzwerk auswählen"
@@ -20416,9 +20419,8 @@ msgstr "Großereignisse"
 msgid "Specify the directory to use when starting Media Player."
 msgstr "Das Verzeichnis auswählen, welches beim Starten des Mediaplayers verwendet werden soll."
 
-#, fuzzy
 msgid "Specify the network DNS suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
-msgstr "Legt den DNS-Suffix fest."
+msgstr "Das Netzwerk-DNS-Suffix angeben, das verwendet werden soll, wenn nur der Hostname angegeben ist. Dies hilft dem DNS-Resolver, den angeforderten Host zu finden."
 
 msgid "Speed"
 msgstr "Geschwindigkeit"
@@ -22126,7 +22128,7 @@ msgid "This plugin can determine whether a programme begins earlier or lasts lon
 msgstr "Das VPS-Plugin kann feststellen, ob eine Sendung früher beginnt oder länger dauert als im Timer programmiert wurde. Der Sender muss allerdings verlässliche Daten liefern!"
 
 msgid "Select 'Yes' to enable DNS entry rotation. This rotation changes the order in which the list of DNS servers is used and can avoid issues if a DNS server in the list becomes unavailable."
-msgstr "Diese Rotation ändert die Reihenfolge, in der die Liste der DNS-Server verwendet wird, und kann Probleme vermeiden, wenn ein DNS-Server in der Liste nicht mehr verfügbar ist."
+msgstr "Mit 'Ja' wird das Durchwechseln der DNS-Einträge aktiviert. Dies ändert die Abfolge, in der die DNS-Serverliste verwendet wird, und kann Probleme vermeiden, wenn ein DNS-Server aus der Liste nicht mehr verfügbar ist."
 
 #
 msgid "This service is protected by a parental control PIN!"
@@ -23010,13 +23012,13 @@ msgid "Ukrainian"
 msgstr "Ukrainisch"
 
 msgid "UltraDNS Public (Family Secure)"
-msgstr ""
+msgstr "UltraDNS Öffentlich (Familienschutz)"
 
 msgid "UltraDNS Public (Threat Protection)"
-msgstr ""
+msgstr "UltraDNS Öffentlich (Schutz vor Bedrohungen)"
 
 msgid "UltraDNS Public (Unfiltered)"
-msgstr ""
+msgstr "UltraDNS Öffentlich (Ungefiltert)"
 
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Kexec MultiBoot kann nicht initialisiert werden!"
@@ -23027,7 +23029,7 @@ msgstr "Automatische Aktualisierung ohne Bedienoberfläche"
 
 #
 msgid "Undefined"
-msgstr "Undefiniert"
+msgstr "Unbestimmt"
 
 msgid "Under 5"
 msgstr "Unter 5"
