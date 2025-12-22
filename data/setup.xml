@@ -201,20 +201,20 @@
 		<item level="0" text="DNS suffix" description="Specify the network DNS suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host.">config.usage.dnsSuffix</item>
 		<item level="0" text="Use DNS rotation" description="Select 'Yes' to enable DNS entry rotation. This rotation changes the order in which the list of DNS servers is used and can avoid issues if a DNS server in the list becomes unavailable.">config.usage.dnsRotate</item>
 		<item level="0" text="DNS data source" description="Select the DNS server(s) that will be used to lookup the host name to resolve the IP address.">config.usage.dns</item>
-		<if conditional="config.usage.dns.value=='dnscrypt'">
+		<if conditional="config.usage.dns.value == 'dnscrypt'">
 			<item level="0" text="Use DNSCrypt servers" description="Only use DNS servers implementing the DNSCrypt protocol.">config.usage.DNSCryptProtocol</item>
 			<item level="0" text="Use DoH servers" description="Only use DNS servers implementing the DNS-over-HTTPS protocol. This causes DNS lookups to be made via the encrypted HTTPS protocol.">config.usage.DNSCryptDoH</item>
 			<item level="0" text="Use ODoH servers" description="Only use DNS servers implementing the Oblivious DNS-over-HTTPS protocol. This adds another layer of privacy by adding a proxy layer to the DNS-over-HTTPS request.">config.usage.DNSCryptODoH</item>
 			<item level="0" text="Use only DNSSEC servers" description="Server must support DNS Security Extensions (DNSSEC). This is a data signing option that protects the integrity of the DNS data against compromises like cache poisoning.">config.usage.DNSCryptDNSSEC</item>
 			<item level="0" text="Use only no-log servers" description="Server must not log user queries (declarative). This can improve the privacy of DNS lookups by not not logging the request on the server providing the data.">config.usage.DNSCryptNoLog</item>
 			<item level="0" text="Use only no-filter servers" description="Server must not enforce its own blocklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons.">config.usage.DNSCryptNoFilter</item>
-			<item level="0" text="Use DNS cache" description="Use a DNS cache to locally store recent DNS lookups to reduce latency and outgoing traffic.">config.usage.DNSCryptCache</item>
+			<item level="0" text="Use DNS cache" description="Use a DNS cache to locally store recent DNS lookups to improve performance, reduce latency and outgoing traffic.">config.usage.DNSCryptCache</item>
 			<item level="0" text="Enable monitoring UI" description="Select 'Yes' to enable the monitoring UI web interface for the DNSCrypt subsystem.">config.usage.DNSCryptUI</item>
 			<if conditional="config.usage.DNSCryptUI.value">
-				<item level="0" text="Set monitoring UI username" description="Set the username for the monitoring UI web interface.">config.usage.DNSCryptUsername</item>
-				<item level="0" text="Set monitoring UI password" description="Set the password for the monitoring UI web interface.">config.usage.DNSCryptPassword</item>
-				<item level="0" text="Set monitoring UI port" description="Set the port address (8080-9999) for the monitoring UI web interface.">config.usage.DNSCryptPort</item>
-				<item level="0" text="Set privacy level" description="Set the privacy level for the monitoring UI web interface.">config.usage.DNSCryptPrivacy</item>
+				<item level="0" text="Monitoring UI username" description="Set the username for the monitoring UI web interface.">config.usage.DNSCryptUsername</item>
+				<item level="0" text="Monitoring UI password" description="Set the password for the monitoring UI web interface.">config.usage.DNSCryptPassword</item>
+				<item level="0" text="Monitoring UI port" description="Set the port address (8080-9999) for the monitoring UI web interface.">config.usage.DNSCryptPort</item>
+				<item level="0" text="Privacy level" description="Set the privacy level for the monitoring UI web interface.">config.usage.DNSCryptPrivacy</item>
 			</if>
 		</if>
 	</setup>
