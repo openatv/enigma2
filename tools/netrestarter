@@ -186,8 +186,6 @@ do_restart() {
 
   start_service /etc/init.d/networking
   
-  restart_dnscrypt_if_present
-
   for iface in $ACTIVE_IFACES; do
     if [ "$iface" = "eth0" ] && [ "$REMOTE_ROOT" -eq 1 ]; then
       continue
@@ -196,7 +194,7 @@ do_restart() {
   done
 
   start_service /etc/init.d/avahi-daemon
-
+  restart_dnscrypt_if_present
   log "Done."
 }
 
