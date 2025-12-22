@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-12-20 12:54+0000\n"
-"PO-Revision-Date: 2025-12-13 13:01+0000\n"
+"PO-Revision-Date: 2025-12-22 10:07+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
@@ -20,14 +20,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.15-dev\n"
+"X-Generator: Weblate 5.15.1\n"
 
 msgid ""
 "\n"
 "<This tuner is configured automatically>"
 msgstr ""
 "\n"
-"<Tento tuner je konfigurovaný automaticky>"
+"<Tento tuner sa konfiguruje automaticky>"
 
 msgid ""
 "\n"
@@ -63,13 +63,13 @@ msgid " (disabled)"
 msgstr " (vypnuté)"
 
 msgid " (higher than any auto)"
-msgstr " (vyššie ako akékoľvek autom.)"
+msgstr " (vyššie ako akékoľvek automat. nastavenie)"
 
 msgid " (higher than rotor any auto)"
-msgstr " (vyššie ako rotor, akékoľvek autom.)"
+msgstr " (vyššie ako rotor, akékoľvek autom. nastavenie)"
 
 msgid " (lower than any auto)"
-msgstr " (nižšie ako akékoľvek autom.)"
+msgstr " (nižšie ako akékoľvek autom. nastavenie)"
 
 msgid " <No Channel>"
 msgstr " <Žiadny kanál>"
@@ -88,9 +88,9 @@ msgid ""
 "\n"
 "Do you want to install the new settings list?"
 msgstr ""
-" dostupné!\n"
+" dostupný!\n"
 "\n"
-"Chcete nainštalovať nový zoznam so settingom?"
+"Chcete nainštalovať nový zoznam nastavení?"
 
 msgid " of "
 msgstr " z "
@@ -102,7 +102,7 @@ msgid "!! Boot loader Upgrade !!"
 msgstr "!!Upgrade zavádzača!!"
 
 msgid "# = Reboot required if this item is changed."
-msgstr "# = Ak sa táto položka zmení, vyžaduje sa opätovné spustenie."
+msgstr "# = Ak sa táto položka zmení, je potrebný reštart."
 
 msgid "%-H:%M"
 msgstr "%-H:%M"
@@ -130,16 +130,16 @@ msgstr "%-I:%M:%S%^p"
 
 #. TRANSLATORS: Full date representation daynum monthname year in strftime() format! See 'man strftime'.
 msgid "%-d %B %Y"
-msgstr "%-d %B %Y"
+msgstr "%-d. %B %Y"
 
 #. TRANSLATORS: Small date representation daynum short monthname in strftime() format! See 'man strftime'.
 #. TRANSLATORS: Compact date representation (for VFD) daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%-d %b"
-msgstr "%-d %b"
+msgstr "%-d. %b"
 
 #. TRANSLATORS: Long date representation daynum short monthname year in strftime() format! See 'man strftime'.
 msgid "%-d %b %Y"
-msgstr "%-d %b %Y"
+msgstr "%-d. %b %Y"
 
 msgid "%-d+%b_"
 msgstr "%-d+%b_"
@@ -261,10 +261,10 @@ msgstr "%A"
 
 #. TRANSLATORS: Short date representation dayname daynum short monthname in strftime() format! See 'man strftime'.
 msgid "%A %-d %B"
-msgstr "%A %-d %B"
+msgstr "%A %-d. %B"
 
 msgid "%A %-d %B %Y"
-msgstr "%A %-d %B %Y"
+msgstr "%A %-d. %B %Y"
 
 msgid "%A %-d-%B"
 msgstr "%A %-d-%B"
@@ -844,9 +844,9 @@ msgstr "%d MHz"
 #, python-format
 msgid "%d Min"
 msgid_plural "%d Mins"
-msgstr[0] "%d min"
-msgstr[1] "%d minúty"
-msgstr[2] "%d minút"
+msgstr[0] "%d min."
+msgstr[1] "%d min."
+msgstr[2] "%d min."
 
 #, python-format
 msgid "%d Minute"
@@ -911,9 +911,9 @@ msgstr[2] "%d jadier"
 #, python-format
 msgid "%d feed catalog package was updated."
 msgid_plural "%d feed catalog packages were updated."
-msgstr[0] "Aktualizovaný bol %d balík s katalógovým zdrojom."
-msgstr[1] "Aktualizované boli %d balíky s katalógovým zdrojom."
-msgstr[2] "Aktualizovaných bolo %d balíkov s katalógovým zdrojom."
+msgstr[0] "Aktualizovaný bol %d balíček so zdrojovým katalógom."
+msgstr[1] "Aktualizované boli %d balíčky so zdrojovým katalógom."
+msgstr[2] "Aktualizovaných bolo %d balíčkov so zdrojovým katalógom."
 
 #, python-format
 msgid "%d jobs are running in the background!"
@@ -925,7 +925,7 @@ msgstr "%d kB"
 
 #, python-format
 msgid "%d min"
-msgstr "%d min"
+msgstr "%d min."
 
 #, python-format
 msgid "%d minutes"
@@ -945,9 +945,9 @@ msgstr[2] "Našlo sa %d balíčkov."
 #, python-format
 msgid "%d package has an update"
 msgid_plural "%d packages have updates."
-msgstr[0] "Aktualizáciu má %d balíček"
-msgstr[1] "Aktualizáciu majú %d balíčky."
-msgstr[2] "Aktualizáciu má %d balíčkov."
+msgstr[0] "Je dostupná aktualizácia pre %d balíček"
+msgstr[1] "Je dostupná aktualizácia pre %d balíčky."
+msgstr[2] "Je dostupná aktualizácia pre %d balíčkov."
 
 #, python-format
 msgid "%d package installable."
@@ -959,37 +959,37 @@ msgstr[2] "Je možné nainštalovať %d balíčkov."
 #, python-format
 msgid "%d package installed."
 msgid_plural "%d packages installed."
-msgstr[0] "Bol nainštalovaný %d balíček."
-msgstr[1] "Boli nainštalované %d balíčky."
-msgstr[2] "Bolo nainštalovaných %d balíčkov."
+msgstr[0] "Nainštaloval sa %d balíček."
+msgstr[1] "Nainštalovali sa %d balíčky."
+msgstr[2] "Nainštalovalo sa %d balíčkov."
 
 #, python-format
 msgid "%d package marked for install."
 msgid_plural "%d packages marked for install."
-msgstr[0] "Na inštaláciu bol vybraný %d balíček."
-msgstr[1] "Na inštaláciu boli vybrané %d balíčky."
-msgstr[2] "Na inštaláciu bolo vybraných %d balíčkov."
+msgstr[0] "Na inštaláciu je vybratý %d balíček."
+msgstr[1] "Na inštaláciu sú vybraté %d balíčky."
+msgstr[2] "Na inštaláciu je vybraných %d balíčkov."
 
 #, python-format
 msgid "%d package marked for remove."
 msgid_plural "%d packages marked for remove."
-msgstr[0] "Na odstránenie bol vybraný %d balíček."
-msgstr[1] "Na odstránenie boli vybrané %d balíčky."
-msgstr[2] "Na odstránenie bolo vybraných %d balíčkov."
+msgstr[0] "Na odstránenie je vybraný %d balíček."
+msgstr[1] "Na odstránenie sú vybrané %d balíčky."
+msgstr[2] "Na odstránenie je vybraných %d balíčkov."
 
 #, python-format
 msgid "%d package marked for update."
 msgid_plural "%d packages marked for update."
-msgstr[0] "%d balíček označený na aktualizáciu."
-msgstr[1] "%d balíčky označené na aktualizáciu."
-msgstr[2] "%d balíčkov označených na aktualizáciu."
+msgstr[0] "Na aktualizáciu je vybraný %d balíček."
+msgstr[1] "Na aktualizáciu sú vybrané %d balíčky."
+msgstr[2] "Na aktualizáciu je vybraných %d balíčkov."
 
 #, python-format
 msgid "%d package upgraded."
 msgid_plural "%d packages upgraded."
-msgstr[0] "Aktualizovaný bol %d balíček."
-msgstr[1] "Aktualizované boli %d balíčky."
-msgstr[2] "Aktualizovaných bolo %d balíčkov."
+msgstr[0] "Aktualizoval sa %d balíček."
+msgstr[1] "Aktualizovali sa %d balíčky."
+msgstr[2] "Aktualizovalo sa %d balíčkov."
 
 #, python-format
 msgid "%d package was configured."
@@ -1022,23 +1022,23 @@ msgstr[2] "Bolo potrebné aktualizovať %d balíčkov."
 #, python-format
 msgid "%d package was installed."
 msgid_plural "%d packages were installed."
-msgstr[0] "Nainštalovaný bol %d balíček."
-msgstr[1] "Nainštalované boli %d balíčky."
-msgstr[2] "Nainštalovaných bolo %d balíčkov."
+msgstr[0] "Nainštaloval sa %d balíček."
+msgstr[1] "Nainštalovali sa %d balíčky."
+msgstr[2] "Nainštalovalo sa %d balíčkov."
 
 #, python-format
 msgid "%d package was removed."
 msgid_plural "%d packages were removed."
-msgstr[0] "Odstránený bol %d balíček."
-msgstr[1] "Odstránené boli %d balíčky."
-msgstr[2] "Odstránených bolo %d balíčkov."
+msgstr[0] "Odstránil sa %d balíček."
+msgstr[1] "Odstránili sa %d balíčky."
+msgstr[2] "Odstránilo sa %d balíčkov."
 
 #, python-format
 msgid "%d package was upgraded."
 msgid_plural "%d packages were upgraded."
-msgstr[0] "Aktualizovaný bol %d balíček."
-msgstr[1] "Aktualizované boli %d balíčky."
-msgstr[2] "Aktualizovaných bolo %d balíčkov."
+msgstr[0] "Aktualizoval sa %d balíček."
+msgstr[1] "Aktualizovali sa %d balíčky."
+msgstr[2] "Aktualizovalo sa %d balíčkov."
 
 #, python-format
 msgid "%d plugin is not available:"
@@ -1054,9 +1054,9 @@ msgstr "%d s"
 #, python-format
 msgid "%d service found."
 msgid_plural "%d services found."
-msgstr[0] "%d nájdená stanica alebo služba."
-msgstr[1] "%d nájdené stanice alebo služby."
-msgstr[2] "%d nájdených staníc alebo služieb."
+msgstr[0] "Našla sa %d stanica/služba."
+msgstr[1] "Našli sa %d stanice/služby."
+msgstr[2] "Našlo sa %d staníc/služieb."
 
 #, python-format
 msgid "%d slots have been created on the device.\n"
@@ -1169,11 +1169,11 @@ msgstr "%s %s predný panel"
 
 #, python-format
 msgid "%s %s ir keyboard"
-msgstr "%s %s ir klávesnica"
+msgstr "%s %s IR klávesnica"
 
 #, python-format
 msgid "%s %s ir mouse"
-msgstr "%s %s ir myš"
+msgstr "%s %s IR myš"
 
 #, python-format
 msgid "%s %s remote control (native)"
@@ -1189,7 +1189,7 @@ msgstr "%s – Nastavenie"
 
 #, python-format
 msgid "%s Browser Manage Actions"
-msgstr "%s Správa aktivít"
+msgstr "%s Prehliadač spravovania aktivít"
 
 #, python-format
 msgid "%s GHz"
@@ -1258,7 +1258,7 @@ msgstr "%s/%s: %s"
 
 #, python-format
 msgid "%sMode for FHD (up to 1080p)"
-msgstr "%sRežim pre Full HD (do 1080p)"
+msgstr "%sRežim pre FHD (do 1080p)"
 
 #, python-format
 msgid "%sMode for HD (up to 720p)"
@@ -1297,13 +1297,13 @@ msgid "'%s' contains %d file(s) and %d sub-directories.\n"
 msgstr "'%s' obsahuje %d súb. a %d priečinkov.\n"
 
 msgid "'Buffer in hours' or 'number of last events'. For deleting older time shift files, the condition which occurred first has priority."
-msgstr "'Vyrovnávacia pamäť v hodinách' alebo 'počet posledných udalostí'. Pri vymazávaní starých súborov funkcie timeshift má prioritu podmienka, ktorá nastala skôr."
+msgstr "'Vyrovnávacia pamäť v hodinách' alebo 'počet posledných udalostí'. Pri vymazávaní starších súborov timeshiftu má prednosť podmienka, ktorá nastala skôr."
 
 msgid "'Handle Standby from TV' has a higher priority than 'Handle input from TV'."
 msgstr "'Preberať pohotovostný režim z TV' má vyššiu prioritu ako 'Preberať vstup z TV'."
 
 msgid "'Unscramble & record ECM' gives the option to unscramble afterwards if unscrambling on recording failed. 'Don't unscramble, record ECM' save a scramble recording that can be unscrambled on playback. 'Normal' means unscramble the recording and don't record ECM."
-msgstr "'Dekódovať a nahrať ECM' umožňuje dekódovať nahrávky aj dodatočne ak zlyhá dekódovanie pri nahrávaní. Voľba 'Nedekódovať, nahrať ECM' uloží nahrávku zakódovanú a dekóduje sa pri prehrávaní. Voľba 'Normálne' znamená dekódovať nahrávku a nenahrávať ECM."
+msgstr "'Dekódovať a nahrať ECM' umožňuje dekódovať nahrávky aj dodatočne, ak zlyhá dekódovanie pri nahrávaní. Voľba 'Nedekódovať, nahrať ECM' uloží nahrávku zakódovanú a dekóduje sa pri prehrávaní. Voľba 'Normálne' znamená dekódovať nahrávku a nenahrávať ECM."
 
 msgid "'WeatherPlugin' is not installed!"
 msgstr "'WeatherPlugin' nie je nainštalovaný!"
@@ -1335,10 +1335,10 @@ msgid "(show optional DVD audio menu)"
 msgstr "(zobraziť doplnkové menu zvuku DVD)"
 
 msgid "* = Restart required if this item is changed."
-msgstr "* = Ak sa táto položka zmení, vyžaduje sa reštart."
+msgstr "* = po zmene tejto položky je potrebný reštart."
 
 msgid "* Only available if more than one interface is active."
-msgstr "* Dostupné len ak je aktívne viac ako jedno rozhranie."
+msgstr "* Dostupné len ak je aktívnych viac rozhraní."
 
 msgid "* current animation"
 msgstr "* aktuálna animácia"
@@ -1354,7 +1354,7 @@ msgid "-"
 msgstr "-"
 
 msgid "- No space left on backup device."
-msgstr "- Na zálohovacom zariadení nezostalo žiadne miesto."
+msgstr "- Na zálohovacom zariadení nie je miesto."
 
 msgid "- No write permission on backup device."
 msgstr "- Žiadne oprávnenie na zápis do zálohovacieho zariadenia."
@@ -1567,7 +1567,7 @@ msgid "<no capabilities found>"
 msgstr "<žiadne schopnosti>"
 
 msgid "<no log found>"
-msgstr "<záznam denníka sa nenašiel"
+msgstr "<nenašiel sa žiadny záznam denníka>"
 
 msgid "A"
 msgstr "A"
@@ -1580,11 +1580,11 @@ msgstr "Zoznam rozšírení (oddelených čiarkou), ktoré sa majú použiť pre
 
 #, python-format
 msgid "A completed task wants to set your %s %s to standby. Do that now?"
-msgstr "Dokončená úloha chce uviesť %s %s do pohotovostného režimu. Chcete to povoliť?"
+msgstr "Dokončená úloha chce prepnúť zariadenie %s %s do pohotovostného režimu. Chcete to povoliť?"
 
 #, python-format
 msgid "A completed task wants to shut down your %s %s. Shutdown now?"
-msgstr "Dokončená úloha chce %s %s vypnúť. Vypnúť hneď?"
+msgstr "Dokončená úloha chce vypnúť zariadenie %s %s. Chcete ho vypnúť hneď?"
 
 #, python-format
 msgid "A crash log was %s created in '%s'"
@@ -1598,7 +1598,7 @@ msgid ""
 "A finished record timer wants to set your\n"
 "%s %s to standby. Do that now?"
 msgstr ""
-"Časovač nahrávania skončil a chce prepnúť\n"
+"Časovač nahrávania sa skončil a chce prepnúť zariadenie\n"
 "%s %s do pohotovostného režimu. Vykonať ihneď?"
 
 #, python-format
@@ -1606,26 +1606,26 @@ msgid ""
 "A finished record timer wants to shut down\n"
 "your %s %s. Shutdown now?"
 msgstr ""
-"Časovač nahrávania skončil a chce vypnúť\n"
-"%s %s. Vypnúť ihneď?"
+"Časovač nahrávania sa skončil a chce vypnúť\n"
+"zariadenie %s %s. Chcete ho vypnúť hneď?"
 
 #, python-format
 msgid "A finished scheduled timer wants to reboot your %s %s. Do that now?"
-msgstr "Časovač napájania skončil a chce reštartovať %s %s. Vykonať ihneď?"
+msgstr "Časovač napájania sa skončil a chce reštartovať %s %s. Vykonať ihneď?"
 
 msgid "A finished scheduled timer wants to restart the user interface. Do that now?"
-msgstr "Časovač napájania skončil a chce reštartovať používateľské rozhranie. Vykonať ihneď?"
+msgstr "Časovač napájania sa skončil a chce reštartovať používateľské rozhranie. Vykonať ihneď?"
 
 #, python-format
 msgid "A finished scheduled timer wants to set your %s %s to standby. Do that now?"
-msgstr "Časovač napájania skončil a chce prepnúť %s %s do pohotovostného režimu. Vykonať ihneď?"
+msgstr "Časovač napájania sa skončil a chce prepnúť zariadenie %s %s do pohotovostného režimu. Vykonať ihneď?"
 
 #, python-format
 msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
-msgstr "Časovač napájania skončil a chce vypnúť zariadenie %s %s. Vykonať ihneď?"
+msgstr "Časovač napájania sa skončil a chce vypnúť zariadenie %s %s. Vykonať ihneď?"
 
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
-msgstr "Zvýraznenie na obrázku diaľkového ovládača ukazuje, ku ktorému tlačidlu sa pomoc vzťahuje. Ak uvedenú funkciu vykonáva viac tlačidiel, zobrazí sa viac ako jedno zvýraznenie. V texte pod zoznamom sú uvedené aktívne tlačidlá a informácia o tom, či si funkcia vyžaduje dlhé stlačenie tlačidla (tlačidiel) alebo SHIFT."
+msgstr "Na obrázku diaľkového ovládača je zvýraznené, ku ktorému tlačidlu sa pomoc vzťahuje. Ak uvedenú funkciu vykonáva viac tlačidiel, zobrazí sa viac ako jedno zvýraznenie. V texte pod zoznamom sú uvedené aktívne tlačidlá a informácia o tom, či si funkcia vyžaduje dlhé stlačenie tlačidla (tlačidiel) alebo SHIFT."
 
 msgid "A new storage device has been connected:"
 msgstr "Bolo pripojené nové úložné zariadenie:"
@@ -1642,17 +1642,17 @@ msgid ""
 "A recording is currently running.\n"
 "What do you want to do?"
 msgstr ""
-"Práve sa nahráva.\n"
+"Práve prebieha nahrávanie.\n"
 "Čo chcete urobiť?"
 
 msgid "A recording is currently running. Please stop the recording before trying to configure the positioner."
-msgstr "Práve sa nahráva. Pred nastavovaním pozicionéra nahrávanie zastavte."
+msgstr "Práve prebieha nahrávanie. Pred nastavovaním pozicionéra nahrávanie zastavte."
 
 msgid "A recording is currently running. Please stop the recording before trying to scan."
-msgstr "Práve sa nahráva. Pred začatím vyhľadávania musíte nahrávanie zastaviť."
+msgstr "Práve prebieha nahrávanie. Pred vyhľadávaním zastavte nahrávanie."
 
 msgid "A recording is currently running. Please stop the recording before trying to start the satellite finder."
-msgstr "Práve sa nahráva. Pred spustením vyhľadávača družíc nahrávanie zastavte."
+msgstr "Práve prebieha nahrávanie. Pred spustením vyhľadávača družíc zastavte nahrávanie."
 
 #, python-format
 msgid ""
@@ -1660,9 +1660,9 @@ msgid ""
 "\n"
 "Go to Deep Standby now?"
 msgstr ""
-"Je aktívne nahrávanie, časovač nahrávania alebo časovač napájania, alebo sa aktivuje v priebehu 15 minút. %s bolo predĺžené na 30 minút. Po nahratí alebo skončení časovača napájania sa zariadenie %s %s vypne.\n"
+"Je aktívne nahrávanie, časovač nahrávania alebo naplánovaná úloha, prípadne sa aktivujú v priebehu 15 minút. %s sa predĺžilo na 30 minút. Po nahrávaní alebo dokončení naplánovanej úlohy sa zariadenie %s %s vypne.\n"
 "\n"
-"Má sa vypnúť ihneď?"
+"Chcete ho vypnúť ihneď?"
 
 #, python-format
 msgid "A required tool (%s) was not found."
@@ -1730,19 +1730,19 @@ msgid "AI Translation color"
 msgstr "Farba prekladu vytvoreného umelou inteligenciou"
 
 msgid "AI Translation enabled"
-msgstr "Prekladanie pomocou umelej inteligencie povolené"
+msgstr "Prekladanie s využitím umelej inteligencie povolené"
 
 msgid "AI Translation language"
-msgstr "Jazyk prekladu vytvoreného umelou inteligenciou "
+msgstr "Jazyk prekladu vytvoreného umelou inteligenciou"
 
 msgid "AI Translation mode"
-msgstr "Režim prekladania pomocou umelej inteligencie"
+msgstr "Režim prekladania umelou inteligenciou"
 
 msgid "AI Translation optimization"
-msgstr "Optimalizácia prekladu pomocou umelej inteligencie"
+msgstr "Optimalizácia prekladania s využitím umelej inteligencie"
 
 msgid "AI Translation subscription code"
-msgstr "Kód predplatného pre preklad pomocou umelej inteligencie"
+msgstr "Kód predplatného pre prekladanie pomocou umelej inteligencie"
 
 msgid "ARM"
 msgstr "ARM"
@@ -1829,7 +1829,7 @@ msgid "Activate HbbTV (RED button)"
 msgstr "Aktivovať HbbTV (ČERVENÉ tlačidlo)"
 
 msgid "Activate MAC address configuration"
-msgstr "Aktivovať konfiguráciu adresy MAC"
+msgstr "Aktivovať konfiguráciu MAC adresy"
 
 msgid "Activate Picture in Picture"
 msgstr "Aktivovať obraz v obraze"
@@ -1871,13 +1871,13 @@ msgid "Active only"
 msgstr "Len aktívne"
 
 msgid "AdGuard DNS (Ads/Trackers)"
-msgstr ""
+msgstr "AdGuard DNS (reklamy/sledovače)"
 
 msgid "AdGuard DNS (Family)"
-msgstr ""
+msgstr "AdGuard DNS (rodina)"
 
 msgid "AdGuard DNS (Unfiltered)"
-msgstr ""
+msgstr "AdGuard DNS (bez filtrovania)"
 
 msgid "Adapter Settings"
 msgstr "Nastavenia adaptéra"
@@ -1919,7 +1919,7 @@ msgid "Add HDMI-IN To Bouquet"
 msgstr "Pridať HDMI vstup do prehľadu"
 
 msgid "Add Marker To Bouquet"
-msgstr "Pridať značku"
+msgstr "Pridať značku k prehľadu"
 
 msgid "Add New Quad Channel Entry"
 msgstr "Pridať nový záznam pre Quad kanál"
@@ -1967,16 +1967,16 @@ msgid "Add a ZapTimer for current event"
 msgstr "Pridať časovač prepnutia pre aktuálnu udalosť"
 
 msgid "Add a ZapTimer for next event"
-msgstr "Pridať časovač prepnutia pre ďalšiu udalosť"
+msgstr "Pridať časovač prepnutia pre nasledujúcu udalosť"
 
 msgid "Add a mark"
 msgstr "Pridať značku"
 
 msgid "Add a new bouquet"
-msgstr "Pridať prehľad"
+msgstr "Pridať nový prehľad"
 
 msgid "Add a new marker before the current service"
-msgstr "Pridať značku"
+msgstr "Pridať značku pred aktuálnu stanicu/službu"
 
 msgid "Add a new tag"
 msgstr "Pridať nový tag"
@@ -2009,7 +2009,7 @@ msgid "Add files to play list"
 msgstr "Pridať súbory do playlistu"
 
 msgid "Add highlighted directory to bookmarks"
-msgstr "Pridať vybraný priečinok do záložiek"
+msgstr "Pridať zvýraznený priečinok do záložiek"
 
 msgid "Add legacy LEFT/RIGHT actions"
 msgstr "Pridať staršie akcie pre DOĽAVA/DOPRAVA"
@@ -2036,7 +2036,7 @@ msgid "Add recording (Enter recording end time)"
 msgstr "Pridať nahrávanie (zadať čas ukončenia)"
 
 msgid "Add recording (Indefinitely - 24 hours)"
-msgstr "Pridať nahrávanie (bez obmedzenia)"
+msgstr "Pridať nahrávanie (bez obmedzenia - 24 h)"
 
 msgid "Add recording (Stop after current event)"
 msgstr "Pridať nahrávanie (ukončiť po tejto udalosti)"
@@ -2045,7 +2045,7 @@ msgid "Add service"
 msgstr "Pridať stanicu"
 
 msgid "Add service names"
-msgstr "Pridať názvy staníc alebo služieb"
+msgstr "Pridať názvy staníc/služieb"
 
 msgid "Add service names to each #SERVICE entry."
 msgstr "Pridať názvy staníc/služieb ku každej položke #SERVICE."
@@ -2075,16 +2075,16 @@ msgid "Add/Remove a timer for the current event"
 msgstr "Pridať/odstrániť časovač pre aktuálnu udalosť"
 
 msgid "Add/Remove highlighted plugin to/from install list"
-msgstr "Pridanie alebo odstránenie vybraného pluginu v zozname inštalácií"
+msgstr "Pridať/odstrániť zvýraznený plugin do/zo zoznamu na inštaláciu"
 
 msgid "Add/Remove highlighted plugin to/from remove list"
-msgstr "Pridať/odstránť zvýraznený plugin do alebo zo zoznamu na odstránenie"
+msgstr "Pridať/odstrániť zvýraznený plugin do/zo zoznamu na odstránenie"
 
 msgid "Add/Remove highlighted plugin to/from update list"
-msgstr "Pridať/odstránť zvýraznený plugin do alebo zo zoznamu na aktualizáciu"
+msgstr "Pridať/odstrániť zvýraznený plugin do/zo zoznamu na aktualizáciu"
 
 msgid "Add/Remove the current service to/from the Volume Offset list"
-msgstr "Pridať/odstrániť aktuálnu stanicu do/zo zoznamu pre posun hlasitosti"
+msgstr "Pridať/odstrániť aktuálnu stanicu/službu do/zo zoznamu pre posun hlasitosti"
 
 msgid "Adding schedule..."
 msgstr "Pridáva sa plán..."
@@ -2093,10 +2093,10 @@ msgid "Additional files/folders to backup"
 msgstr "Ďalšie súbory/priečinky na zálohovanie"
 
 msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move the dish from one satellite to another."
-msgstr "Doplnkové parametre motora umožňujú zadať podrobnosti zo zoznamu špecifikácií vášho motora, takže Enigma dokáže zistiť, koľko času zaberie presun paraboly z jednej družice na druhú."
+msgstr "Doplnkové parametre motora umožňujú zadať podrobnosti zo špecifikácií vášho motora, takže Enigma dokáže zistiť, ako dlho potrvá presun paraboly z jednej družice na druhú."
 
 msgid "Additional motor options allow you to enter details from your motor's specifications so Enigma can work out how long it will take to move to another satellite."
-msgstr "Doplnkové parametre motora umožňujú zadať podrobnosti zo zoznamu špecifikácií vášho motora, takže Enigma dokáže zistiť, koľko času zaberie presun paraboly na inú družicu."
+msgstr "Doplnkové parametre motora umožňujú zadať podrobnosti zo špecifikácií vášho motora, takže Enigma dokáže zistiť, ako dlho potrvá presun paraboly na inú družicu."
 
 msgid "Adjust the color settings so that all the color shades are distinguishable, but appear as saturated as possible. If you are happy with the result, press OK to close the video fine-tuning, or use the number keys to select other test screens."
 msgstr "Upravte farby tak, aby sa dali jednotlivé odtiene dobre rozlíšiť, ale súčasne boli čo najsýtejšie. Ak ste s výsledkom spokojní, tlačidlom OK ukončite nastavovanie obrazu alebo číslicovými tlačidlami zvoľte iný testovací obrazec."
@@ -2132,7 +2132,7 @@ msgid "Advanced options and settings."
 msgstr "Pokročilé voľby a nastavenia."
 
 msgid "Advanced video enhancement setup"
-msgstr "Nastavenie pokročilých rozšírení videa"
+msgstr "Pokročilé rozširujúce nastavenia videa"
 
 msgid "Adventure"
 msgstr "Dobrodružné"
@@ -3472,13 +3472,13 @@ msgid "CI+ Helper*"
 msgstr "Pomocník CI+*"
 
 msgid "CIRA Canadian Shield (Family)"
-msgstr ""
+msgstr "CIRA Canadian Shield (rodina)"
 
 msgid "CIRA Canadian Shield (Private)"
-msgstr ""
+msgstr "CIRA Canadian Shield (súkromný)"
 
 msgid "CIRA Canadian Shield (Protected)"
-msgstr ""
+msgstr "CIRA Canadian Shield (chránený)"
 
 msgid "CPU"
 msgstr "CPU"
@@ -4258,13 +4258,13 @@ msgid "Clean up and remove all completed timers?"
 msgstr "Vyčistiť a odstrániť všetky dokončené časovače?"
 
 msgid "CleanBrowsing (Adult Filter)"
-msgstr ""
+msgstr "CleanBrowsing (filter obsahu pre dospelých)"
 
 msgid "CleanBrowsing (Family Filter)"
-msgstr ""
+msgstr "CleanBrowsing (rodinný filter)"
 
 msgid "CleanBrowsing (Security Filter)"
-msgstr ""
+msgstr "CleanBrowsing (bezpečnostný filter)"
 
 msgid "Cleaning Trashcan"
 msgstr "Čistenie koša"
@@ -5077,19 +5077,19 @@ msgid "Contrast Video & OSD"
 msgstr "Kontrast videa a OSD"
 
 msgid "Control D (Ads + Tracking)"
-msgstr ""
+msgstr "Control D (reklamy + sledovanie)"
 
 msgid "Control D (Family Friendly)"
-msgstr ""
+msgstr "Control D (pre rodiny)"
 
 msgid "Control D (Malware)"
-msgstr ""
+msgstr "Control D (malvér)"
 
 msgid "Control D (Uncensored)"
-msgstr ""
+msgstr "Control D (bez cenzúry)"
 
 msgid "Control D (Unfiltered)"
-msgstr ""
+msgstr "Control D (bez filtrovania)"
 
 msgid "Control LED can be turned on or off here."
 msgstr "Tu je možné zapnúť alebo vypnúť kontrolku LED."
@@ -5547,16 +5547,16 @@ msgid "DNS data source"
 msgstr "Zdroj údajov DNS"
 
 msgid "DNS protocol mode"
-msgstr "Režim DNS"
+msgstr "Režim DNS protokolu"
 
 msgid "Use DNS rotation"
-msgstr ""
+msgstr "Používať rotáciu DNS"
 
 msgid "DNS suffix"
 msgstr "Prípona DNS"
 
 msgid "DNS.WATCH (Uncensored)"
-msgstr ""
+msgstr "DNS.WATCH (bez cenzúry)"
 
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
@@ -7121,7 +7121,7 @@ msgid "Education/Information"
 msgstr "Vzdelávanie/informácie"
 
 msgid "Education/Science/Factual"
-msgstr ""
+msgstr "Vzdelávanie/Veda/Fakty"
 
 msgid "Education/Science/Factual topics"
 msgstr "Vzdelávanie/veda/fakty"
@@ -7690,7 +7690,7 @@ msgstr "Chyba %d: nie je možné vytvoriť priečinok '%s'! (%s)"
 
 #, python-format
 msgid "Error %d: Unable to create package directory '%s'!  (%s)"
-msgstr "Chyba %d: nie je možné vytvoriť priečinok balíka '%s'!  (%s)"
+msgstr "Chyba %d: nie je možné vytvoriť priečinok balíčka '%s'!  (%s)"
 
 #, python-format
 msgid "Error %d: Unable to delete downloaded image '%s'!  (%s)"
@@ -9063,7 +9063,7 @@ msgid "Golf"
 msgstr "Golf"
 
 msgid "Google Public DNS"
-msgstr ""
+msgstr "Verejné DNS Google"
 
 msgid "Goto"
 msgstr "Prejsť na"
@@ -10646,7 +10646,7 @@ msgid "LED brightness during normal operations."
 msgstr "Jas LED v normálnom pracovnom režime."
 
 msgid "LED color during Deep Standby."
-msgstr ""
+msgstr "Farba LED počas vypnutia."
 
 msgid "LIRC remote"
 msgstr "Diaľkové ovládanie LIRC"
@@ -13194,7 +13194,7 @@ msgid "OpenDNS Home"
 msgstr "OpenDNS – domovská stránka"
 
 msgid "OpenDNS Sandbox"
-msgstr ""
+msgstr "OpenDNS Sandbox"
 
 msgid "OpenPLi Packages"
 msgstr "OpenPLI balíčky"
@@ -14627,13 +14627,13 @@ msgid "Quad PiP is not available."
 msgstr "Quad PiP nie je dostupné."
 
 msgid "Quad9 (Malware blocking + DNSSEC)"
-msgstr ""
+msgstr "Quad9 (blokovanie malvéru + DNSSEC)"
 
 msgid "Quad9 (Malware blocking + ECS)"
-msgstr ""
+msgstr "Quad9 (blokovanie malvéru + ECS)"
 
 msgid "Quad9 (Unsecured / no blocking)"
-msgstr ""
+msgstr "Quad9 (bez zabezpečenia/bez blokovania)"
 
 msgid "Quechua"
 msgstr "kečuánčina"
@@ -16433,7 +16433,7 @@ msgid "Select 'Yes' to show source 'src' packages in the Download Plugins screen
 msgstr "Ak sa majú na obrazovke Stiahnuť pluginy zobrazovať aj balíčky so zdrojmi, vyberte možnosť 'Áno'."
 
 msgid "Select 'Yes' to show subscription packages in the Download Plugins screen."
-msgstr "Ak chcete na obrazovke Stiahnuť pluginy zobrazovať aj predplatené balíky, vyberte možnosť 'Áno'."
+msgstr "Ak chcete na obrazovke Stiahnuť pluginy zobrazovať aj balíčky predplatného, vyberte možnosť 'Áno'."
 
 msgid "Select 'Yes' to show system plugin packages in the Download Plugins screen."
 msgstr "Ak sa majú na obrazovke Stiahnuť pluginy zobrazovať aj balíčky so systémovými pluginmi, vyberte možnosť 'Áno'."
@@ -17253,7 +17253,7 @@ msgid "Select where the recording should be saved."
 msgstr "Vyberte, kam sa má nahrávka uložiť."
 
 msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
-msgstr "Vyberte režim DNS."
+msgstr "Vyberte či sa použije IPv4, IPv6, alebo obidva protokoly. Ak sú aktivované obidva, tak vyberte, ktorý bude preferovaný."
 
 msgid "Select wireless network"
 msgstr "Vyberte bezdrôtovú sieť"
@@ -18081,7 +18081,7 @@ msgid "Show InfoBar"
 msgstr "Zobraziť infolištu"
 
 msgid "Show InfoBar lite *"
-msgstr "Zobraziť odľahčenú (lite) infolištu *"
+msgstr "Zobraziť odľahčenú infolištu *"
 
 msgid "Show InfoBar on channel change"
 msgstr "Zobraziť infolištu pri zmene kanála"
@@ -18135,7 +18135,7 @@ msgid "Show OSCam Information"
 msgstr "Zobraziť informácie OSCamu"
 
 msgid "Show OScam/CCcam in Extension Menu"
-msgstr "Zobraziť OScam/CCcam v menu roszšírení"
+msgstr "Zobraziť OScam/CCcam v menu rozšírení"
 
 msgid "Show OpenPLi packages"
 msgstr "Zobraziť balíčky OpenPLi"
@@ -19338,7 +19338,7 @@ msgid "Specify the directory to use when starting Media Player."
 msgstr "Zadajte priečinok, ktorý sa použije pri spustení prehrávača médií."
 
 msgid "Specify the network DNS suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
-msgstr "Definujte príponu DNS."
+msgstr "Definujte príponu DNS, ktorá sa použije vtedy, keď bol poskytnutý iba názov hostiteľa. Pomôžete tak rozlišovaču DNS nájsť požadovaného hostiteľa."
 
 msgid "Speed"
 msgstr "Rýchlosť"
@@ -20970,7 +20970,7 @@ msgid "This plugin can determine whether a programme begins earlier or lasts lon
 msgstr "Tento plugin dokáže určiť, či sa programy začínajú skôr alebo trvajú dlhšie. Kanál však musí poskytovať príslušné potrebné údaje."
 
 msgid "Select 'Yes' to enable DNS entry rotation. This rotation changes the order in which the list of DNS servers is used and can avoid issues if a DNS server in the list becomes unavailable."
-msgstr ""
+msgstr "Voľba možnosti 'Áno' povolí rotáciu záznamov DNS. Táto rotácia mení poradie, v ktorom sa používa zoznam DNS serverov a môže zabrániť problémom, ak sa niektorý z DNS serverov v zozname stane nedostupným."
 
 msgid "This service is protected by a parental control PIN!"
 msgstr "Táto stanica/služba je chránená PIN rodičovskej kontroly!"
@@ -21516,7 +21516,7 @@ msgid "Tree size"
 msgstr "Veľkosť stromu"
 
 msgid "Tried to disable PiP, but found no InfoBar instance!\n"
-msgstr "Pri pokuse o vypnutie PiP sa nenašiel žiadny parameter InfoBar.instance.\n"
+msgstr "Pri pokuse o vypnutie PiP sa nenašla žiadna inštancia pre infolištu!\n"
 
 msgid "Tries left:"
 msgstr "Zostávajúce pokusy:"
@@ -21785,13 +21785,13 @@ msgid "Ukrainian"
 msgstr "ukrajinčina"
 
 msgid "UltraDNS Public (Family Secure)"
-msgstr ""
+msgstr "UltraDNS Public (rodinná bezpečnosť)"
 
 msgid "UltraDNS Public (Threat Protection)"
-msgstr ""
+msgstr "UltraDNS Public (ochrana pred hrozbami)"
 
 msgid "UltraDNS Public (Unfiltered)"
-msgstr ""
+msgstr "UltraDNS Public (bez filtrovania)"
 
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Nie je možné inicializovať Kexec MultiBoot!"
@@ -23178,7 +23178,7 @@ msgid "Width / Height"
 msgstr "Šírka/výška"
 
 msgid "Winter sport"
-msgstr ""
+msgstr "Zimný šport"
 
 msgid "Winter sports"
 msgstr "Zimné športy"
