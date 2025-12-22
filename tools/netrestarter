@@ -1,0 +1,211 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          netrestarter
+# Required-Start:
+# Required-Stop:
+# Default-Start:
+# Default-Stop:
+# Short-Description: Restart networking for active ethX/wlanX interfaces
+### END INIT INFO
+
+# BusyBox /bin/sh compatible init script.
+# Implements only: restart
+# Only manages interfaces named ethX or wlanX (e.g., eth0, eth1, wlan0, wlan1).
+
+set -eu
+
+PATH="/sbin:/bin:/usr/sbin:/usr/bin"
+LOGFILE="/tmp/restart.log"
+
+log() {
+  echo "[net-restart] $*" >> "$LOGFILE"
+}
+
+on_remote_rootfs() {
+  if [ -r /proc/cmdline ]; then
+    if grep -q 'root=/dev/nfs' /proc/cmdline 2>/dev/null; then
+      return 0
+    fi
+    if grep -q 'nfsroot=' /proc/cmdline 2>/dev/null; then
+      return 0
+    fi
+  fi
+
+  if [ -r /proc/mounts ]; then
+    fstype="$(awk '$2=="/" {print $3; exit}' /proc/mounts 2>/dev/null || true)"
+    case "$fstype" in
+      nfs|nfs4|cifs|smbfs|sshfs|9p|fuse.sshfs)
+        return 0
+        ;;
+    esac
+  fi
+
+  return 1
+}
+
+list_target_ifaces() {
+  if command -v ip >/dev/null 2>&1; then
+    ip -o link show 2>/dev/null \
+      | awk -F': ' '{print $2}' \
+      | cut -d'@' -f1 \
+      | grep -E '^(eth[0-9]+|wlan[0-9]+)$' \
+      || true
+  else
+    if [ -d /sys/class/net ]; then
+      ls -1 /sys/class/net 2>/dev/null \
+        | grep -E '^(eth[0-9]+|wlan[0-9]+)$' \
+        || true
+    fi
+  fi
+}
+
+is_iface_up() {
+  iface="$1"
+  if command -v ip >/dev/null 2>&1; then
+    ip link show dev "$iface" 2>/dev/null | grep -q 'state UP'
+  else
+    if [ -r "/sys/class/net/$iface/operstate" ]; then
+      st="$(cat "/sys/class/net/$iface/operstate" 2>/dev/null || true)"
+      [ "$st" = "up" ]
+    else
+      return 1
+    fi
+  fi
+}
+
+do_ifdown() {
+  iface="$1"
+  if [ -x /sbin/ifdown ]; then
+    /sbin/ifdown "$iface" 2>/dev/null || true
+  elif command -v ifdown >/dev/null 2>&1; then
+    ifdown "$iface" 2>/dev/null || true
+  elif command -v ip >/dev/null 2>&1; then
+    ip link set dev "$iface" down 2>/dev/null || true
+  fi
+}
+
+do_ifup() {
+  iface="$1"
+  if [ -x /sbin/ifup ]; then
+    /sbin/ifup "$iface" 2>/dev/null || true
+  elif command -v ifup >/dev/null 2>&1; then
+    ifup "$iface" 2>/dev/null || true
+  elif command -v ip >/dev/null 2>&1; then
+    ip link set dev "$iface" up 2>/dev/null || true
+  fi
+}
+
+flush_global_addrs() {
+  iface="$1"
+  if command -v ip >/dev/null 2>&1; then
+    ip addr flush dev "$iface" scope global 2>/dev/null || true
+  fi
+}
+
+stop_service() {
+  svc="$1"
+  if [ -x "$svc" ]; then
+    "$svc" stop 2>/dev/null || true
+  fi
+}
+
+start_service() {
+  svc="$1"
+  if [ -x "$svc" ]; then
+    "$svc" start 2>/dev/null || true
+  fi
+}
+
+kill_udhcpc() {
+  if command -v killall >/dev/null 2>&1; then
+    killall -9 udhcpc 2>/dev/null || true
+  elif command -v pkill >/dev/null 2>&1; then
+    pkill -9 udhcpc 2>/dev/null || true
+  else
+    for f in /var/run/udhcpc*.pid /var/run/udhcpc*.pidfile; do
+      [ -r "$f" ] || continue
+      pid="$(cat "$f" 2>/dev/null || true)"
+      case "$pid" in
+        ''|*[!0-9]*)
+          ;;
+        *)
+          kill -9 "$pid" 2>/dev/null || true
+          ;;
+      esac
+    done
+  fi
+}
+
+restart_dnscrypt_if_present() {
+  if [ -x /usr/bin/dnscrypt-proxy ] && [ -x /etc/init.d/dnscrypt-proxy ]; then
+    log "Restarting dnscrypt-proxy"
+    /etc/init.d/dnscrypt-proxy restart 2>/dev/null || true
+  fi
+}
+
+do_restart() {
+  REMOTE_ROOT=0
+  if on_remote_rootfs; then
+    REMOTE_ROOT=1
+    log "Remote rootfs detected. eth0 will not be brought down."
+  fi
+
+  ACTIVE_IFACES=""
+  for iface in $(list_target_ifaces); do
+    if is_iface_up "$iface"; then
+      ACTIVE_IFACES="$ACTIVE_IFACES $iface"
+    fi
+  done
+
+  if [ -z "$ACTIVE_IFACES" ]; then
+    log "No active ethX/wlanX interfaces found. Proceeding with service restart only."
+  else
+    log "Active target interfaces:$ACTIVE_IFACES"
+  fi
+
+  stop_service /etc/init.d/avahi-daemon
+
+  for iface in $ACTIVE_IFACES; do
+    if [ "$iface" = "eth0" ] && [ "$REMOTE_ROOT" -eq 1 ]; then
+      log "Skipping ifdown/flush for eth0 (remote rootfs)."
+      continue
+    fi
+
+    log "ifdown $iface"
+    do_ifdown "$iface"
+
+    log "ip addr flush (scope global) on $iface"
+    flush_global_addrs "$iface"
+  done
+
+  stop_service /etc/init.d/networking
+
+  log "Killing udhcpc and removing pidfiles"
+  kill_udhcpc
+  rm -f /var/run/udhcpc* 2>/dev/null || true
+
+  start_service /etc/init.d/networking
+  
+  for iface in $ACTIVE_IFACES; do
+    if [ "$iface" = "eth0" ] && [ "$REMOTE_ROOT" -eq 1 ]; then
+      continue
+    fi
+    do_ifup "$iface"
+  done
+
+  start_service /etc/init.d/avahi-daemon
+  restart_dnscrypt_if_present
+  log "Done."
+}
+
+case "${1:-}" in
+  restart)
+    do_restart
+    ;;
+  *)
+    echo "Usage: $0 restart" >&2
+    exit 2
+    ;;
+esac
+
+exit 0

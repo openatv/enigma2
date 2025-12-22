@@ -553,6 +553,9 @@ class Network:
 			for name in list(self.restartConsole.appContainers.keys()):
 				self.restartConsole.kill(name)
 
+	def stopGetInterfacesConsole(self):  # Used in NetworkBrowser Plugin
+		pass
+
 	def stopDeactivateInterfaceConsole(self):
 		if self.deactivateInterfaceConsole is not None:
 			self.deactivateInterfaceConsole.killAll()
