@@ -68,6 +68,9 @@ class VFDSymbolsUpdater:
 		elif exists("/proc/stb/lcd/symbol_recording") and exists("/proc/stb/lcd/symbol_record_1") and exists("/proc/stb/lcd/symbol_record_2"):
 			mode = 7
 			path = ""
+		elif MODEL in ("h7", "h17") and exists("/proc/stb/power/vfd"):
+			mode = 8
+			path = "/proc/stb/power/vfd"
 		else:
 			mode = 0
 			path = ""
@@ -171,7 +174,7 @@ class VFDSymbolsUpdater:
 						value = "0"
 					if value:
 						fileWriteLine(self.recPath, value, source=MODULE_NAME)
-				case 4:
+				case 4 | 8:
 					self.blink = not self.blink
 					value = ""
 					if recordings:
