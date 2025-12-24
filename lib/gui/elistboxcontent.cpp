@@ -1180,7 +1180,26 @@ void eListboxPythonConfigContent::paint(gPainter &painter, eWindowStyle &style, 
 
 int eListboxPythonConfigContent::currentCursorSelectable()
 {
-	return eListboxPythonStringContent::currentCursorSelectable();
+	if (m_list && cursorValid()) {
+		ePyObject item = PyList_GET_ITEM(m_list, m_cursor);
+		if (!PyTuple_Check(item))
+			return 1;
+		if (PyTuple_Size(item) >= 2)
+		{
+			ePyObject text = PyTuple_GET_ITEM(item, 0);
+			if (PyTuple_Check(text) && (PyTuple_Size(text) > 1))
+			{
+				ePyObject poption = PyTuple_GET_ITEM(text, 1);
+				if (poption && PyLong_Check(poption))
+				{
+					if(PyLong_AsLong(poption) == 0)
+						return 0;
+				}
+			}
+			return 1;
+		}
+	}
+	return 0;
 }
 
 eSize eListboxPythonConfigContent::calculateEntryTextSize(const std::string &string, bool headerFont)
