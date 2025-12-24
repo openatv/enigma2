@@ -27,28 +27,25 @@ class ScreenSaver(Screen):
 	def showScreenSaver(self):
 		if config.usage.screenSaverMode.value > 0:  # Show logo or picon
 			self.moveTiming = config.usage.screenSaverMoveTimer.value
-
-		if config.usage.screenSaverMode.value == 2:  # Show picon
-			pictureSize = ()
-			try:
-				service = self.session.screen["CurrentService"].service
-				sref = None
-				if isinstance(service, eServiceReference):
-					sref = service.toString()
-				elif isinstance(service, iPlayableServicePtr):
-					info = service and service.info()
-					sref = info.getInfoString(iServiceInformation.sServiceref)
-				if sref:
-					picon = getPiconName(sref)
-					if exists(picon):
-						self["picture"].instance.setPixmapFromFile(picon)
-						pictureSize = (220, 132)
-			except Exception:
-				pass
-			pictureSize = pictureSize or self["picture"].getSize()
-			scaleFactor = 1.5 if self.instance.size().width() > 1300 else 1.0
-			self.maxX = int(self.instance.size().width() - pictureSize[0] * scaleFactor)
-			self.maxY = int(self.instance.size().height() - pictureSize[1] * scaleFactor)
+			if config.usage.screenSaverMode.value == 2:  # Show picon
+				pictureSize = ()
+				try:
+					sref = None
+					service = self.session.screen["CurrentService"].service
+					if isinstance(service, eServiceReference):
+						sref = service.toString()
+					elif isinstance(service, iPlayableServicePtr):
+						info = service and service.info()
+						sref = info.getInfoString(iServiceInformation.sServiceref)
+					if sref:
+						picon = getPiconName(sref)
+						if exists(picon):
+							self["picture"].instance.setPixmapFromFile(picon)
+				except Exception:
+					pass
+			pictureSize = (self["picture"].instance.getPixmapSize().width(), self["picture"].instance.getPixmapSize().height())
+			self.maxX = int(self.instance.size().width() - pictureSize[0])
+			self.maxY = int(self.instance.size().height() - pictureSize[1])
 			self.movePicture()
 		else:
 			self["picture"].hide()
@@ -57,7 +54,8 @@ class ScreenSaver(Screen):
 		self.moveTimer.stop()
 
 	def movePicture(self):
-		self["picture"].instance.move(ePoint(randrange(self.maxX), randrange(self.maxY)))
+		posX, posY = 20 + randrange(self.maxX - 40), 20 + randrange(self.maxY - 40)  # Leave space 20 pixels around the edges
+		self["picture"].instance.move(ePoint(posX, posY))
 		self.moveTimer.startLongTimer(self.moveTiming)
 
 	def serviceStarted(self):
