@@ -186,8 +186,9 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 			<!-- Menu / Setup / Network -->
 			<menu key="network" level="0" text="Network" weight="60">
 				<item key="device_setup" level="0" text="Device Settings" weight="0"><screen module="NetworkSetup" screen="NetworkAdapterSelection" /></item>
-				<item key="password_setup" level="2" text="Password Settings" weight="8"><screen module="NetworkSetup" screen="NetworkPassword" /></item>
-				<item key="networkservices_setup" level="2" text="Network Services" weight="9"><screen module="NetworkSetup" screen="NetworkServicesSetup" /></item>
+				<item key="dns_setup" level="1" text="DNS Settings" weight="10"><screen module="NetworkSetup" screen="DNSSettings" /></item>
+				<item key="password_setup" level="2" text="Password Settings" weight="15"><screen module="NetworkSetup" screen="NetworkPassword" /></item>
+				<item key="networkservices_setup" level="2" text="Network Services" weight="20"><screen module="NetworkSetup" screen="NetworkServicesSetup" /></item>
 				<item key="Inadyn_setup" level="2" text="Inadyn Settings" weight="25" requires="inadyn"><screen module="NetworkSetup" screen="NetworkInadynSetup" /></item>
 				<item key="minidlna_setup" level="2" text="MiniDLNA Settings" weight="30" requires="minidlna"><screen module="NetworkSetup" screen="NetworkMiniDLNASetup" /></item>
 				<item key="netushare_setup" level="2" text="uShare Settings" weight="55" requires="ushare"><screen module="NetworkSetup" screen="NetworkuShareSetup" /></item>
