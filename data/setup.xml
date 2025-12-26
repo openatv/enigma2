@@ -975,7 +975,7 @@
 			<item level="2" text="AI Translation enabled" description="Select 'Yes' to enable AI-Powered Translation for all teletext and DVB subtitles.">config.subtitles.ai_enabled</item>
 			<item level="2" text="AI Translation language" description="Select the AI-Powered Translation target language.">config.subtitles.ai_translate_to</item>
 			<item level="2" text="AI Translation color" description="Select the color to be used for the AI-Powered Translation text.">config.subtitles.ai_subtitle_colors</item>
-			<item level="2" text="AI Translation optimization" description="The AI-Powered Translation service will be optimized to provide the best performance based on the the Internet connection upload speed selected.">config.subtitles.ai_connection_speed</item>
+			<item level="2" text="AI Translation optimization" description="The AI-Powered Translation service will be optimized to provide the best performance based on the Internet connection upload speed selected.">config.subtitles.ai_connection_speed</item>
 			<item level="2" text="AI Translation subscription code" description="Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15.">config.subtitles.ai_subscription_code</item>
 			<item level="2" text="AI Translation mode" description="The AI mode used for translating languages. You can choose the one that gives the most accurate translation for your target language.">config.subtitles.ai_mode</item>
 		</if>
@@ -1154,7 +1154,7 @@
 	<setup key="VolumeAdjust" title="Volume Adjust Settings">
 		<item level="0" text="Volume adjustment mode" description="Select 'Disabled' to disable all automated volume adjustments. Select 'Defined volume offsets' to assign a specified offset to the service's volume level. Select 'Last used/set volume' to remember the volume level last used for each service.">config.volumeAdjust.adjustMode</item>
 		<if conditional="config.volumeAdjust.adjustMode.value == 1">
-			<item level="0" text="Default volume offset" description="This is the initial / default volume offset applied to any services added the the volume adjust list.">config.volumeAdjust.defaultOffset</item>
+			<item level="0" text="Default volume offset" description="This is the initial / default volume offset applied to any services added to the volume adjust list.">config.volumeAdjust.defaultOffset</item>
 			<item level="0" text="Default Dolby Digital / Dolby AC-3 offset" description="This offset will only be used if the channel does not have its own volume offset.">config.volumeAdjust.dolbyOffset</item>
 		</if>
 		<if conditional="config.volumeAdjust.adjustMode.value != 0">

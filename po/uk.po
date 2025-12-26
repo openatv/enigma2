@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-22 20:56+0000\n"
+"POT-Creation-Date: 2025-12-26 15:56+0000\n"
 "PO-Revision-Date: 2025-11-11 20:51+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
@@ -1939,9 +1939,6 @@ msgstr "Додати Таймер Переключення+Запис"
 msgid "Add ZapTimer"
 msgstr "Додати Таймер Переключення"
 
-msgid "Add a DNS entry"
-msgstr "Добавити запис DNS"
-
 msgid "Add a RADIO service to the Volume Offset list"
 msgstr "Додати Радіо-канал до списку зміщення гучності"
 
@@ -2157,6 +2154,9 @@ msgstr "Після запису"
 
 msgid "After zap"
 msgstr "Після zap"
+
+msgid "Aggregate data only"
+msgstr ""
 
 msgid "Akan"
 msgstr "Акан"
@@ -2416,6 +2416,9 @@ msgstr "Швидкість анімації"
 
 msgid "Animations"
 msgstr "Анімації"
+
+msgid "Anonymize client IPs"
+msgstr ""
 
 msgid "Antarctica"
 msgstr "Антарктика"
@@ -5489,9 +5492,6 @@ msgstr "DMM розширено"
 msgid "DMM normal"
 msgstr "DMM нормально"
 
-msgid "DNS (Dynamic Name Server) Actions"
-msgstr "Дії кнопок у DNS (сервер динамічних імен)"
-
 msgid "DNS Settings"
 msgstr "Налаштування DNS"
 
@@ -5503,6 +5503,12 @@ msgstr "Режим DNS"
 
 msgid "DNS suffix"
 msgstr "DNS суфікс"
+
+msgid "DNSCrypt"
+msgstr ""
+
+msgid "DNSCrypt Resolver"
+msgstr ""
 
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
@@ -5788,9 +5794,6 @@ msgstr "Декодування і батьківський контроль"
 
 msgid "Deep Standby"
 msgstr "Вимкнути приймач"
-
-msgid "Deep standby"
-msgstr "Повне виключення"
 
 msgid "Default"
 msgstr "За замовчуванням"
@@ -7271,6 +7274,9 @@ msgstr "Увімкнути таймер імпорту із резервного
 
 msgid "Enable intro screen"
 msgstr "Включити екран введення"
+
+msgid "Enable monitoring UI"
+msgstr ""
 
 msgid "Enable multiple bouquets"
 msgstr "Відображати фаворитні списки"
@@ -11540,6 +11546,15 @@ msgstr "Монголія"
 msgid "Mongolian"
 msgstr "Монгольська"
 
+msgid "Monitoring UI password"
+msgstr ""
+
+msgid "Monitoring UI port"
+msgstr ""
+
+msgid "Monitoring UI username"
+msgstr ""
+
 msgid "Montenegro"
 msgstr "Чорногорія"
 
@@ -11689,12 +11704,6 @@ msgstr "Перемістити завдання в чергу."
 
 msgid "Move only highlighted file"
 msgstr "Перемістити лише виділений файл"
-
-msgid "Move the current DNS entry down one line"
-msgstr "Перемістити поточний запис DNS на один рядок вниз"
-
-msgid "Move the current DNS entry up one line"
-msgstr "Перемістити поточний запис DNS на один рядок вгору"
 
 msgid "Move the current bookmark down"
 msgstr "Перемістити поточну закладку вниз"
@@ -12943,6 +12952,15 @@ msgstr "Швидко переміщувати антену до цього ча�
 
 msgid "Only on startup"
 msgstr "Тільки при включенні"
+
+msgid "Only use DNS servers implementing the DNS-over-HTTPS protocol. This causes DNS lookups to be made via the encrypted HTTPS protocol."
+msgstr ""
+
+msgid "Only use DNS servers implementing the DNSCrypt protocol."
+msgstr ""
+
+msgid "Only use DNS servers implementing the Oblivious DNS-over-HTTPS protocol. This adds another layer of privacy by adding a proxy layer to the DNS-over-HTTPS request."
+msgstr ""
 
 msgid "Open"
 msgstr "Відкрити"
@@ -14352,6 +14370,9 @@ msgstr "Прайм-тайм хвилина"
 msgid "Priority"
 msgstr "Пріоритет"
 
+msgid "Privacy level"
+msgstr ""
+
 msgid "Problem starting scan"
 msgstr "помилка при запуску сканування"
 
@@ -15098,9 +15119,6 @@ msgstr "Видалити канал"
 
 msgid "Remove Terrestrial Services"
 msgstr "Видалити наземні канали"
-
-msgid "Remove a DNS entry"
-msgstr "Видаліть запис DNS"
 
 msgid "Remove a mark"
 msgstr "Видалити закладку"
@@ -16240,6 +16258,9 @@ msgstr "Якщо вибрано 'так', у списку каналів буд�
 msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages."
 msgstr "Якщо включено, то будуть завантажуватися невибрані фаворити користувача. Це означає, фаворити існують, але не були включені у файли bouquets.tv або bouquets.radio. Це дозволить Вам тримати свій власний фаворит в існуючому списку фаворитів."
 
+msgid "Select 'Yes' to enable the monitoring UI web interface for the DNSCrypt subsystem."
+msgstr ""
+
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr "Виберіть 'Так', щоб увімкнути використання кнопок ВЛІВО/ВПРАВО для переміщення PageUp/PageDown, коли кнопки ВЛІВО/ВПРАВО не визначено. Це забезпечує попередню навігацію для користувачів, які віддають перевагу цьому."
 
@@ -17294,6 +17315,15 @@ msgstr "серйозний/класичний/релігійний/істори�
 msgid "Server down"
 msgstr "Сервер вимкнений"
 
+msgid "Server must not enforce its own blocklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
+msgstr ""
+
+msgid "Server must not log user queries (declarative). This can improve the privacy of DNS lookups by not not logging the request on the server providing the data."
+msgstr ""
+
+msgid "Server must support DNS Security Extensions (DNSSEC). This is a data signing option that protects the integrity of the DNS data against compromises like cache poisoning."
+msgstr ""
+
 msgid "Servers"
 msgstr "Сервери"
 
@@ -17569,14 +17599,23 @@ msgstr "Встановити крок переходу для Seekbar."
 msgid "Set the number of lines to be saved for 'stout' and 'sterr' output in scripts."
 msgstr "Встановіть кількість рядків, які будуть збережені для виводу 'stout' і 'stderr' у скриптах."
 
+msgid "Set the password for the monitoring UI web interface."
+msgstr ""
+
 msgid "Set the password of the OpenWebif from your fallback tuner."
 msgstr "Встановіть пароль OpenWebif від резервного тюнера"
+
+msgid "Set the port address (8080-9999) for the monitoring UI web interface."
+msgstr ""
 
 msgid "Set the port of the OpenWebif from your fallback tuner."
 msgstr "Встановіть порт OpenWebif із резервного тюнера"
 
 msgid "Set the position of the recording icons."
 msgstr "Встановіть положення значка запису."
+
+msgid "Set the privacy level for the monitoring UI web interface."
+msgstr ""
 
 msgid "Set the screen type you see on pressing 'OK' when the InfoBar shows the second InfoBar Lite or event info."
 msgstr "Вкажіть тип вікна, який буде відображатися при натисканні на кнопку ОК (другий інфобар або інфо події)."
@@ -17616,6 +17655,9 @@ msgstr "Встановіть верхнє ліве розташування сп
 
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Встановіть тип відображення прогресу в меню вибору каналів."
+
+msgid "Set the username for the monitoring UI web interface."
+msgstr ""
 
 #, python-format
 msgid "Set the volume level for the '%s' service."
@@ -20237,7 +20279,7 @@ msgstr "Не вдається отримати файл '%s', спробуйте
 msgid "The AI mode used for translating languages. You can choose the one that gives the most accurate translation for your target language."
 msgstr "Режим ШІ, який використовується для перекладу мов. Ви можете вибрати той, який дає найточніший переклад для вашої цільової мови."
 
-msgid "The AI-Powered Translation service will be optimized to provide the best performance based on the the Internet connection upload speed selected."
+msgid "The AI-Powered Translation service will be optimized to provide the best performance based on the Internet connection upload speed selected."
 msgstr "Службу перекладу на основі штучного інтелекту буде оптимізовано для забезпечення найкращої продуктивності на основі вибраної швидкості завантаження з Інтернету."
 
 msgid ""
@@ -20663,7 +20705,7 @@ msgstr "Це поточна вибрана мова. [%s]"
 msgid "This is the currently selected locale.  [%s]"
 msgstr "Це вибраний зараз регіон.  [%s]"
 
-msgid "This is the initial / default volume offset applied to any services added the the volume adjust list."
+msgid "This is the initial / default volume offset applied to any services added to the volume adjust list."
 msgstr "Це початкове/за замовчуванням зміщення гучності, застосоване до будь-яких каналів, доданих до списку налаштування гучності."
 
 msgid "This is the order in which DiSEqC commands are sent to the aerial system. The order must correspond exactly with the order the physical devices are arranged along the signal cable (starting from the receiver end)."
@@ -21974,11 +22016,20 @@ msgstr "Використати AutoCam"
 msgid "Use DHCP"
 msgstr "Використовувати DHCP"
 
+msgid "Use DNS cache"
+msgstr ""
+
 msgid "Use DNS rotation"
+msgstr ""
+
+msgid "Use DNSCrypt servers"
 msgstr ""
 
 msgid "Use Deinterlacing for 1080i Videosignal?"
 msgstr "Використовувати деінтерлейсінг для відеосигналу 1080i?"
+
+msgid "Use DoH servers"
+msgstr ""
 
 msgid "Use EIT EPG information when it is available."
 msgstr "Використовувати інформацію EIT ЕПГ, коли вона існує."
@@ -22004,6 +22055,9 @@ msgstr "Використовувати інформацію MHW ЕПГ, коли
 msgid "Use Netmed EPG information when it is available."
 msgstr "Використовувати інформацію Netmed ЕПГ, коли вона доступна."
 
+msgid "Use ODoH servers"
+msgstr ""
+
 msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
 msgstr "Використовуйте OpenTV EPG. Потрібне налаштування на певний транспондер для показу EPG."
 
@@ -22027,6 +22081,9 @@ msgstr "Використовувати інформацію Virgin ЕПГ, ко�
 
 msgid "Use Zap timer end times"
 msgstr "Використовуйте час закінчення таймера Zap"
+
+msgid "Use a DNS cache to locally store recent DNS lookups to improve performance, reduce latency and outgoing traffic."
+msgstr ""
 
 msgid "Use a gateway"
 msgstr "Використовувати шлюз"
@@ -22097,8 +22154,17 @@ msgstr "Використовувати застарілу навігацію"
 msgid "Use official channel numbering"
 msgstr "Використовувати звичайну нумерацію каналів"
 
+msgid "Use only DNSSEC servers"
+msgstr ""
+
 msgid "Use only for Wake on WLan (WoW)"
 msgstr "Використовувати тільки для пробудження по WLan (WoW)"
+
+msgid "Use only no-filter servers"
+msgstr ""
+
+msgid "Use only no-log servers"
+msgstr ""
 
 msgid "Use original DVB subtitle position"
 msgstr "Використовувати оригінальну позицію DVB субтитрів"
@@ -24326,6 +24392,24 @@ msgstr "так (зберігати фіди)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Add a DNS entry"
+#~ msgstr "Добавити запис DNS"
+
+#~ msgid "DNS (Dynamic Name Server) Actions"
+#~ msgstr "Дії кнопок у DNS (сервер динамічних імен)"
+
+#~ msgid "Deep standby"
+#~ msgstr "Повне виключення"
+
+#~ msgid "Move the current DNS entry down one line"
+#~ msgstr "Перемістити поточний запис DNS на один рядок вниз"
+
+#~ msgid "Move the current DNS entry up one line"
+#~ msgstr "Перемістити поточний запис DNS на один рядок вгору"
+
+#~ msgid "Remove a DNS entry"
+#~ msgstr "Видаліть запис DNS"
 
 #~ msgid "Cloudflare DNS"
 #~ msgstr "DNS у хмарі"

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-22 20:56+0000\n"
+"POT-Creation-Date: 2025-12-26 15:56+0000\n"
 "PO-Revision-Date: 2025-12-22 10:07+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
@@ -1939,9 +1939,6 @@ msgstr "Pridať časovač prepnutia + nahrávania"
 msgid "Add ZapTimer"
 msgstr "Pridať časovač prepnutia"
 
-msgid "Add a DNS entry"
-msgstr "Pridať záznam DNS"
-
 msgid "Add a RADIO service to the Volume Offset list"
 msgstr "Pridať RÁDIOVÚ stanicu/službu do zoznamu pre úpravu hlasitosti"
 
@@ -2157,6 +2154,9 @@ msgstr "Po nahrávaní"
 
 msgid "After zap"
 msgstr "Po prepnutí"
+
+msgid "Aggregate data only"
+msgstr ""
 
 msgid "Akan"
 msgstr "akančina"
@@ -2416,6 +2416,9 @@ msgstr "Rýchlosť animácie"
 
 msgid "Animations"
 msgstr "Animácie"
+
+msgid "Anonymize client IPs"
+msgstr ""
 
 msgid "Antarctica"
 msgstr "Antarktída"
@@ -5489,9 +5492,6 @@ msgstr "DMM pokročilé"
 msgid "DMM normal"
 msgstr "DMM normálne"
 
-msgid "DNS (Dynamic Name Server) Actions"
-msgstr "Akcie DNS (Dynamic Name Server)"
-
 msgid "DNS Settings"
 msgstr "Nastavenia DNS"
 
@@ -5503,6 +5503,12 @@ msgstr "Režim DNS protokolu"
 
 msgid "DNS suffix"
 msgstr "Prípona DNS"
+
+msgid "DNSCrypt"
+msgstr ""
+
+msgid "DNSCrypt Resolver"
+msgstr ""
 
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
@@ -5788,9 +5794,6 @@ msgstr "Dekódovanie a rodičovská kontrola"
 
 msgid "Deep Standby"
 msgstr "Vypnúť"
-
-msgid "Deep standby"
-msgstr "Vypnutie"
 
 msgid "Default"
 msgstr "Predvolené"
@@ -7271,6 +7274,9 @@ msgstr "Povoliť import časovača zo záložného tuneru"
 
 msgid "Enable intro screen"
 msgstr "Povoliť úvodnú obrazovku"
+
+msgid "Enable monitoring UI"
+msgstr ""
 
 msgid "Enable multiple bouquets"
 msgstr "Povoliť viacnásobné prehľady"
@@ -11540,6 +11546,15 @@ msgstr "Mongolsko"
 msgid "Mongolian"
 msgstr "Mongolčina"
 
+msgid "Monitoring UI password"
+msgstr ""
+
+msgid "Monitoring UI port"
+msgstr ""
+
+msgid "Monitoring UI username"
+msgstr ""
+
 msgid "Montenegro"
 msgstr "Čierna Hora"
 
@@ -11689,12 +11704,6 @@ msgstr "Úloha presúvania bola zaradená do fronty."
 
 msgid "Move only highlighted file"
 msgstr "Presunúť len zvýraznený súbor"
-
-msgid "Move the current DNS entry down one line"
-msgstr "Presunúť aktuálny záznam DNS o jeden riadok nižšie"
-
-msgid "Move the current DNS entry up one line"
-msgstr "Presunúť aktuálny záznam DNS o jeden riadok vyššie"
 
 msgid "Move the current bookmark down"
 msgstr "Presunúť aktuálnu záložku nadol"
@@ -12943,6 +12952,15 @@ msgstr "Len rýchle otáčanie paraboly pred touto hodinou."
 
 msgid "Only on startup"
 msgstr "Len pri spustení"
+
+msgid "Only use DNS servers implementing the DNS-over-HTTPS protocol. This causes DNS lookups to be made via the encrypted HTTPS protocol."
+msgstr ""
+
+msgid "Only use DNS servers implementing the DNSCrypt protocol."
+msgstr ""
+
+msgid "Only use DNS servers implementing the Oblivious DNS-over-HTTPS protocol. This adds another layer of privacy by adding a proxy layer to the DNS-over-HTTPS request."
+msgstr ""
 
 msgid "Open"
 msgstr "Otvoriť"
@@ -14352,6 +14370,9 @@ msgstr "Primetime – minúta"
 msgid "Priority"
 msgstr "Priorita"
 
+msgid "Privacy level"
+msgstr ""
+
 msgid "Problem starting scan"
 msgstr "Chyba pri spúšťaní prehľadávania"
 
@@ -15098,9 +15119,6 @@ msgstr "Odstrániť stanicu/službu"
 
 msgid "Remove Terrestrial Services"
 msgstr "Odstrániť terestriálne stanice"
-
-msgid "Remove a DNS entry"
-msgstr "Odstrániť záznam DNS"
 
 msgid "Remove a mark"
 msgstr "Odstrániť značku"
@@ -16240,6 +16258,9 @@ msgstr "Výberom možnosti 'Áno' povolíte náhľad kanálov v zozname EPG. Stl
 msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages."
 msgstr "Ak je povolené, systém enigma2 načíta aj neprepojené používateľské prehľady kanálov. To znamená, že používateľské prehľady, ktoré sú k dispozícii, ale nie sú obsiahnuté v súbore bouquets.tv alebo bouquets.radio, sa aj napriek tomu načítajú. To vám umožní napríklad zachovať si vlastný používateľský prehľad kanálov aj vtedy, keď sa aktualizujú nastavenia prijímača."
 
+msgid "Select 'Yes' to enable the monitoring UI web interface for the DNSCrypt subsystem."
+msgstr ""
+
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr "Vyberte 'áno', ak sa majú tlačidlá DOĽAVA/DOPRAVA používať na presun o stránku hore/dolu a ak nie sú tlačidlá DOĽAVA/DOPRAVA definované inak."
 
@@ -17294,6 +17315,15 @@ msgstr "závažný/klasický/náboženský/historický film/dráma"
 msgid "Server down"
 msgstr "Server mimo prevádzky"
 
+msgid "Server must not enforce its own blocklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
+msgstr ""
+
+msgid "Server must not log user queries (declarative). This can improve the privacy of DNS lookups by not not logging the request on the server providing the data."
+msgstr ""
+
+msgid "Server must support DNS Security Extensions (DNSSEC). This is a data signing option that protects the integrity of the DNS data against compromises like cache poisoning."
+msgstr ""
+
 msgid "Servers"
 msgstr "Servery"
 
@@ -17569,14 +17599,23 @@ msgstr "Nastavenie veľkosti skoku vo vyhľadávacom paneli."
 msgid "Set the number of lines to be saved for 'stout' and 'sterr' output in scripts."
 msgstr "Nastavenie počtu riadkov, ktoré sa majú uložiť pre výstup 'stout' a 'sterr' v skriptoch."
 
+msgid "Set the password for the monitoring UI web interface."
+msgstr ""
+
 msgid "Set the password of the OpenWebif from your fallback tuner."
 msgstr "Nastavenie hesla OpenWebif zo záložného tunera."
+
+msgid "Set the port address (8080-9999) for the monitoring UI web interface."
+msgstr ""
 
 msgid "Set the port of the OpenWebif from your fallback tuner."
 msgstr "Nastavte port OpenWebif z vášho záložného tunera."
 
 msgid "Set the position of the recording icons."
 msgstr "Nastavenie pozície ikon nahrávania."
+
+msgid "Set the privacy level for the monitoring UI web interface."
+msgstr ""
 
 msgid "Set the screen type you see on pressing 'OK' when the InfoBar shows the second InfoBar Lite or event info."
 msgstr "Nastavenie typu obrazovky, ktorá sa zobrazí po stlačení tlačidla 'OK' pri zobrazení infolišty: 2. infolišta Lite alebo informácie o udalosti."
@@ -17616,6 +17655,9 @@ msgstr "Nastavte pozíciu indikátora zaneprázdnenosti hore vľavo. Mierka súr
 
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Nastavenie typu zobrazenia indikátora priebehu na obrazovke výberu kanála."
+
+msgid "Set the username for the monitoring UI web interface."
+msgstr ""
 
 #, python-format
 msgid "Set the volume level for the '%s' service."
@@ -20237,7 +20279,7 @@ msgstr "Súbor '%s' nie je možné získať, skúste to znovu neskôr, prosím."
 msgid "The AI mode used for translating languages. You can choose the one that gives the most accurate translation for your target language."
 msgstr "Režim umelej inteligencie použitý na prekladanie jazykov. Môžete si vybrať systém, ktorý poskytuje najpresnejší preklad pre váš cieľový jazyk."
 
-msgid "The AI-Powered Translation service will be optimized to provide the best performance based on the the Internet connection upload speed selected."
+msgid "The AI-Powered Translation service will be optimized to provide the best performance based on the Internet connection upload speed selected."
 msgstr "Služba prekladania umelou inteligenciou bude výkonnostne optimalizovaná podľa vybranej rýchlosti odosielania údajov cez internet."
 
 msgid ""
@@ -20663,7 +20705,7 @@ msgstr "Toto je aktuálne vybraný jazyk:  [%s]"
 msgid "This is the currently selected locale.  [%s]"
 msgstr "Toto sú aktuálne vybrané miestne nastavenia:  [%s]"
 
-msgid "This is the initial / default volume offset applied to any services added the the volume adjust list."
+msgid "This is the initial / default volume offset applied to any services added to the volume adjust list."
 msgstr "Toto je počiatočný/predvolený posun hlasitosti použitý na všetky stanice pridané do zoznamu na úpravu hlasitosti."
 
 msgid "This is the order in which DiSEqC commands are sent to the aerial system. The order must correspond exactly with the order the physical devices are arranged along the signal cable (starting from the receiver end)."
@@ -21974,11 +22016,20 @@ msgstr "Použiť AutoCam"
 msgid "Use DHCP"
 msgstr "Použiť DHCP"
 
+msgid "Use DNS cache"
+msgstr ""
+
 msgid "Use DNS rotation"
 msgstr "Používať rotáciu DNS"
 
+msgid "Use DNSCrypt servers"
+msgstr ""
+
 msgid "Use Deinterlacing for 1080i Videosignal?"
 msgstr "Odstrániť prekladanie snímok pre signál 1080i?"
+
+msgid "Use DoH servers"
+msgstr ""
 
 msgid "Use EIT EPG information when it is available."
 msgstr "Používať EIT EPG informácie, ak sú dostupné."
@@ -22004,6 +22055,9 @@ msgstr "Používať MHW EPG informácie, ak sú dostupné."
 msgid "Use Netmed EPG information when it is available."
 msgstr "Používať Netmed EPG informácie, ak sú dostupné."
 
+msgid "Use ODoH servers"
+msgstr ""
+
 msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
 msgstr "Použiť OpenTV EPG: načítanie EPG si vyžaduje naladenie na konkrétny transpondér."
 
@@ -22027,6 +22081,9 @@ msgstr "Používať Virgin EPG informácie, ak sú dostupné."
 
 msgid "Use Zap timer end times"
 msgstr "Používať čas ukončenia časovača prepnutia"
+
+msgid "Use a DNS cache to locally store recent DNS lookups to improve performance, reduce latency and outgoing traffic."
+msgstr ""
 
 msgid "Use a gateway"
 msgstr "Použiť bránu"
@@ -22097,8 +22154,17 @@ msgstr "Použiť starší spôsob navigovania"
 msgid "Use official channel numbering"
 msgstr "Použiť oficiálne číslovanie kanálov"
 
+msgid "Use only DNSSEC servers"
+msgstr ""
+
 msgid "Use only for Wake on WLan (WoW)"
 msgstr "Použiť len pre Wake on WLan (WoW)"
+
+msgid "Use only no-filter servers"
+msgstr ""
+
+msgid "Use only no-log servers"
+msgstr ""
 
 msgid "Use original DVB subtitle position"
 msgstr "Použiť pôvodnú pozíciu DVB titulkov"
@@ -24326,6 +24392,24 @@ msgstr "áno (zachovať zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Add a DNS entry"
+#~ msgstr "Pridať záznam DNS"
+
+#~ msgid "DNS (Dynamic Name Server) Actions"
+#~ msgstr "Akcie DNS (Dynamic Name Server)"
+
+#~ msgid "Deep standby"
+#~ msgstr "Vypnutie"
+
+#~ msgid "Move the current DNS entry down one line"
+#~ msgstr "Presunúť aktuálny záznam DNS o jeden riadok nižšie"
+
+#~ msgid "Move the current DNS entry up one line"
+#~ msgstr "Presunúť aktuálny záznam DNS o jeden riadok vyššie"
+
+#~ msgid "Remove a DNS entry"
+#~ msgstr "Odstrániť záznam DNS"
 
 #~ msgid "AdGuard DNS (Ads/Trackers)"
 #~ msgstr "AdGuard DNS (reklamy/sledovače)"

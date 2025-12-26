@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-22 20:56+0000\n"
+"POT-Creation-Date: 2025-12-26 15:56+0000\n"
 "PO-Revision-Date: 2025-12-10 05:52+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
@@ -1905,9 +1905,6 @@ msgstr "Lisää vaihda ja tallenna ajastus"
 msgid "Add ZapTimer"
 msgstr "Lisää kanavanvaihto ajastus"
 
-msgid "Add a DNS entry"
-msgstr "Lisää DNS merkintä"
-
 msgid "Add a RADIO service to the Volume Offset list"
 msgstr "Lisää RADIO kanavan äänenvoimakkuuden siirtymälistaan"
 
@@ -2127,6 +2124,9 @@ msgstr "Tallennuksen Jälkeen"
 
 msgid "After zap"
 msgstr "Vaihdoin jälkeen"
+
+msgid "Aggregate data only"
+msgstr ""
 
 msgid "Akan"
 msgstr "Akan"
@@ -2386,6 +2386,9 @@ msgstr "Animaatioiden nopeus"
 
 msgid "Animations"
 msgstr "Animaatiot"
+
+msgid "Anonymize client IPs"
+msgstr ""
 
 msgid "Antarctica"
 msgstr "Antarctica"
@@ -5458,9 +5461,6 @@ msgstr "DMM laaja"
 msgid "DMM normal"
 msgstr "DMM normaali"
 
-msgid "DNS (Dynamic Name Server) Actions"
-msgstr "DNS (dynaaminen nimipalvelin) Toiminnot"
-
 msgid "DNS Settings"
 msgstr "DNS Asetukset"
 
@@ -5472,6 +5472,12 @@ msgstr "DNS tila"
 
 msgid "DNS suffix"
 msgstr "DNS pääte"
+
+msgid "DNSCrypt"
+msgstr ""
+
+msgid "DNSCrypt Resolver"
+msgstr ""
 
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
@@ -5756,9 +5762,6 @@ msgid "Decryption & Parental Control"
 msgstr "Salauksen purku & Lapsilukko"
 
 msgid "Deep Standby"
-msgstr "Virransäästötila"
-
-msgid "Deep standby"
 msgstr "Virransäästötila"
 
 msgid "Default"
@@ -7239,6 +7242,9 @@ msgstr "Tuo ajastimet etävastaanottimelta"
 
 msgid "Enable intro screen"
 msgstr "Aktivoi aloitusnäyttö"
+
+msgid "Enable monitoring UI"
+msgstr ""
 
 msgid "Enable multiple bouquets"
 msgstr "Salli useiden suosikkilistojen luonti ja käyttö"
@@ -11509,6 +11515,15 @@ msgstr "Mongolia"
 msgid "Mongolian"
 msgstr "Mongolia"
 
+msgid "Monitoring UI password"
+msgstr ""
+
+msgid "Monitoring UI port"
+msgstr ""
+
+msgid "Monitoring UI username"
+msgstr ""
+
 msgid "Montenegro"
 msgstr "Montenegro"
 
@@ -11660,12 +11675,6 @@ msgstr "Siirrä työ jonoon."
 
 msgid "Move only highlighted file"
 msgstr "Kopioi vain korostettu tiedosto"
-
-msgid "Move the current DNS entry down one line"
-msgstr "Siirrä nykyistä DNS merkintää yhden rivin alaspäin"
-
-msgid "Move the current DNS entry up one line"
-msgstr "Siirrä nykyistä DNS merkintää yhdellä rivillä ylöspäin"
 
 msgid "Move the current bookmark down"
 msgstr "Siirrä nykyinen kirjanmerkki alaspäin"
@@ -12920,6 +12929,15 @@ msgstr "Siirrä satelliittiantennia vain nopeasti ennen tätä tuntia."
 
 msgid "Only on startup"
 msgstr "Vain käynnistettäessä"
+
+msgid "Only use DNS servers implementing the DNS-over-HTTPS protocol. This causes DNS lookups to be made via the encrypted HTTPS protocol."
+msgstr ""
+
+msgid "Only use DNS servers implementing the DNSCrypt protocol."
+msgstr ""
+
+msgid "Only use DNS servers implementing the Oblivious DNS-over-HTTPS protocol. This adds another layer of privacy by adding a proxy layer to the DNS-over-HTTPS request."
+msgstr ""
 
 msgid "Open"
 msgstr "Avaa"
@@ -14327,6 +14345,9 @@ msgstr "Paras katseluaika minuutit"
 msgid "Priority"
 msgstr "Prioriteetti"
 
+msgid "Privacy level"
+msgstr ""
+
 msgid "Problem starting scan"
 msgstr "virhe käynnistettäessä skannausta"
 
@@ -15073,9 +15094,6 @@ msgstr "Poista kanava"
 
 msgid "Remove Terrestrial Services"
 msgstr "poista antennikanavat"
-
-msgid "Remove a DNS entry"
-msgstr "Poista DNS merkintä"
 
 msgid "Remove a mark"
 msgstr "Poista merkki"
@@ -16220,6 +16238,9 @@ msgstr "'Kyllä' valinnalla voit esikatsella kanavia kanavalistassa. Esikatsele 
 msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages."
 msgstr "Kun päällä, piilotetut suosikkilistat näytetään. Suosikkilistat jotka ovat saatavilla mutta eivät ole bouquets.tv tai bouquets.radio tiedostoissa, ladataan silti. Tämä antaa sinun pitää omat suosikkilistasi samalla kun asennettuja päivitetään."
 
+msgid "Select 'Yes' to enable the monitoring UI web interface for the DNSCrypt subsystem."
+msgstr ""
+
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr "Valitse 'Kyllä', jos haluat sallia VASEN/OIKEA painikkeiden käytön Sivu Ylös /Sivua Alas siirtymiseen, kun VASEN/OIKEA painikkeet ovat muuten määrittelemättömiä. Tämä tarjoaa perinteisen navigoinnin käyttäjille, jotka haluavat sitä."
 
@@ -17278,6 +17299,15 @@ msgstr "vakava/klassinen/uskonnollinen/historiallinen elokuva/draama"
 msgid "Server down"
 msgstr "Palvelin kaatunut"
 
+msgid "Server must not enforce its own blocklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
+msgstr ""
+
+msgid "Server must not log user queries (declarative). This can improve the privacy of DNS lookups by not not logging the request on the server providing the data."
+msgstr ""
+
+msgid "Server must support DNS Security Extensions (DNSSEC). This is a data signing option that protects the integrity of the DNS data against compromises like cache poisoning."
+msgstr ""
+
 msgid "Servers"
 msgstr "Palvelimet"
 
@@ -17555,14 +17585,23 @@ msgstr "Aseta hakupalkin hypyn pituus."
 msgid "Set the number of lines to be saved for 'stout' and 'sterr' output in scripts."
 msgstr "Asettaa skriptien 'stout'- ja 'sterr' tallennettavien rivien määrän."
 
+msgid "Set the password for the monitoring UI web interface."
+msgstr ""
+
 msgid "Set the password of the OpenWebif from your fallback tuner."
 msgstr "Aseta etävastaanottimen OpenWebIf salasana"
+
+msgid "Set the port address (8080-9999) for the monitoring UI web interface."
+msgstr ""
 
 msgid "Set the port of the OpenWebif from your fallback tuner."
 msgstr "Aseta etävastaanottimen OpenWebIf portti"
 
 msgid "Set the position of the recording icons."
 msgstr "Aseta tallennuskuvakkeiden sijainti."
+
+msgid "Set the privacy level for the monitoring UI web interface."
+msgstr ""
 
 msgid "Set the screen type you see on pressing 'OK' when the InfoBar shows the second InfoBar Lite or event info."
 msgstr "Määritä näyttötyyppi, saat painamalla 'OK' kun tietopalkissa näkyy 2. tietopalkki pieni tai tapahtuman tiedot."
@@ -17602,6 +17641,9 @@ msgstr "Säädä spinnerin vasenta yläkulmaa (ruutu). Ylävasen on 0,0, alhaall
 
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Määritä ohjelman pituuden osoittamisen tyyppi kanavien valintalistassa."
+
+msgid "Set the username for the monitoring UI web interface."
+msgstr ""
 
 #, python-format
 msgid "Set the volume level for the '%s' service."
@@ -20221,7 +20263,7 @@ msgstr "Tiedostoa '%s' ei voi hakea, yritä myöhemmin uudelleen."
 msgid "The AI mode used for translating languages. You can choose the one that gives the most accurate translation for your target language."
 msgstr "Käytössä oleva tekoälytila kielten kääntämiseen. Voit valita sen, joka tuottaa tarkimman käännöksen kohdekielellesi."
 
-msgid "The AI-Powered Translation service will be optimized to provide the best performance based on the the Internet connection upload speed selected."
+msgid "The AI-Powered Translation service will be optimized to provide the best performance based on the Internet connection upload speed selected."
 msgstr "Tekoäly käännöksen palvelu on optimoitu tarjoamaan parhaan suorituskyvyn valitun Internet yhteyden latausnopeuden perusteella."
 
 msgid ""
@@ -20648,7 +20690,7 @@ msgstr "Tämä on nykyinen valittu kieli. [%s]"
 msgid "This is the currently selected locale.  [%s]"
 msgstr "Tämä on nykyinen valittu alue.  [%s]"
 
-msgid "This is the initial / default volume offset applied to any services added the the volume adjust list."
+msgid "This is the initial / default volume offset applied to any services added to the volume adjust list."
 msgstr "Tämä on alkuperäinen / oletusarvoinen äänenvoimakkuuden, jota sovelletaan kaikkiin listaan lisättyihin kanaviin."
 
 msgid "This is the order in which DiSEqC commands are sent to the aerial system. The order must correspond exactly with the order the physical devices are arranged along the signal cable (starting from the receiver end)."
@@ -21962,11 +22004,20 @@ msgstr "Käytä CI+"
 msgid "Use DHCP"
 msgstr "Käytä DHCP:tä"
 
+msgid "Use DNS cache"
+msgstr ""
+
 msgid "Use DNS rotation"
+msgstr ""
+
+msgid "Use DNSCrypt servers"
 msgstr ""
 
 msgid "Use Deinterlacing for 1080i Videosignal?"
 msgstr "Pitäisikö lomituksen poisto käyttää 1080i-videosignaalille?"
+
+msgid "Use DoH servers"
+msgstr ""
 
 msgid "Use EIT EPG information when it is available."
 msgstr "Käytä EIT EPG tietoja, jos saatavilla."
@@ -21992,6 +22043,9 @@ msgstr "Käytä MHW-ohjelmaoppaan tietoja, jos saatavilla."
 msgid "Use Netmed EPG information when it is available."
 msgstr "Käytä Netmed-ohjelmaoppaan tietoja, jos saatavilla."
 
+msgid "Use ODoH servers"
+msgstr ""
+
 msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
 msgstr "Käytä OpenTV EPG:tä. Vaatii tietyn transponderin EPG:tä."
 
@@ -22015,6 +22069,9 @@ msgstr "Käytä Virgin-ohjelmaoppaan tietoja, jos saatavilla."
 
 msgid "Use Zap timer end times"
 msgstr "Käytä kanavan vaihto ajastimen lopetusaikoja"
+
+msgid "Use a DNS cache to locally store recent DNS lookups to improve performance, reduce latency and outgoing traffic."
+msgstr ""
 
 msgid "Use a gateway"
 msgstr "Käytä yhdyskäytävää"
@@ -22085,8 +22142,17 @@ msgstr "Käytä vanhaa navigointia"
 msgid "Use official channel numbering"
 msgstr "Käytä virallista kanavanumerointia"
 
+msgid "Use only DNSSEC servers"
+msgstr ""
+
 msgid "Use only for Wake on WLan (WoW)"
 msgstr "Aktivoi vain Wake on WLAN"
+
+msgid "Use only no-filter servers"
+msgstr ""
+
+msgid "Use only no-log servers"
+msgstr ""
 
 msgid "Use original DVB subtitle position"
 msgstr "Käytä alkuperäisen DVB tekstityksen paikkaa"
@@ -24319,6 +24385,24 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Add a DNS entry"
+#~ msgstr "Lisää DNS merkintä"
+
+#~ msgid "DNS (Dynamic Name Server) Actions"
+#~ msgstr "DNS (dynaaminen nimipalvelin) Toiminnot"
+
+#~ msgid "Deep standby"
+#~ msgstr "Virransäästötila"
+
+#~ msgid "Move the current DNS entry down one line"
+#~ msgstr "Siirrä nykyistä DNS merkintää yhden rivin alaspäin"
+
+#~ msgid "Move the current DNS entry up one line"
+#~ msgstr "Siirrä nykyistä DNS merkintää yhdellä rivillä ylöspäin"
+
+#~ msgid "Remove a DNS entry"
+#~ msgstr "Poista DNS merkintä"
 
 #~ msgid "Cloudflare DNS"
 #~ msgstr "Cloudflare DNS"
