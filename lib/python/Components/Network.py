@@ -260,7 +260,7 @@ class Network:
 
 	def writeNameserverConfig(self):
 		useDHCPforDNS = False
-		for iface in sorted(list(self.ifaces.keys())):
+		for iface in sorted(self.ifaces.keys()):
 			if self.ifaces[iface]["up"] and self.ifaces[iface]["dhcp"]:
 				useDHCPforDNS = True
 
@@ -375,7 +375,7 @@ class Network:
 				del self.ifaces[iface][attribute]
 
 	def useDHCP(self):
-		ifaces = sorted(list(self.ifaces.keys()))
+		ifaces = sorted(self.ifaces.keys())
 		for iface in ifaces:
 			if self.getAdapterAttribute(iface, "up"):
 				if self.getAdapterAttribute(iface, "dhcp"):

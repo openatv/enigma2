@@ -236,7 +236,7 @@ class DNSSettings(Setup):
 				self.dnsOptions[key] = addresses
 		dnsSource = config.usage.dns.value
 		if dnsSource not in self.dnsOptions:
-			dnsSource = "custom"
+			config.usage.dns.value = "custom"
 
 		self.dnsServerItems = []
 		self.dnsOptions["custom"] = [self.defaultGW(), [0, 0, 0, 0], "", ""]
@@ -248,16 +248,15 @@ class DNSSettings(Setup):
 				self.dnsOptions["custom"][v4pos] = addr
 				self.dnsOptions["dhcp-router"][v4pos] = addr
 				v4pos += 1
-			if isinstance(addr, str):
-				if ip_address(addr).version == 6:
-					self.dnsOptions["custom"][v6pos] = addr
-					self.dnsOptions["dhcp-router"][v6pos] = addr
-					v6pos += 1
+			if isinstance(addr, str) and ip_address(addr).version == 6:
+				self.dnsOptions["custom"][v6pos] = addr
+				self.dnsOptions["dhcp-router"][v6pos] = addr
+				v6pos += 1
 
 		Setup.__init__(self, session=session, setup="DNS")
 
 	def defaultGW(self):
-		ifaces = sorted(list(iNetwork.ifaces.keys()))
+		ifaces = sorted(iNetwork.ifaces.keys())
 		for iface in ifaces:
 			if iNetwork.getAdapterAttribute(iface, "up"):
 				return iNetwork.getAdapterAttribute(iface, "gateway")
@@ -302,7 +301,6 @@ class DNSSettings(Setup):
 				if config.usage.dnsMode.value == 3:  # IPV6 only
 					idx += 2
 				value = current[1].value
-				# TODO: validate IPv6
 				self.dnsServers[idx] = value
 		return Setup.changedEntry(self)
 
@@ -326,10 +324,9 @@ class DNSSettings(Setup):
 		for notifier in self.onSave:
 			notifier()
 		for item in self["config"].list:
-			if len(item) > 1:
-				if item[1].isChanged():
-					hasChanges = True
-					break
+			if len(item) > 1 and item[1].isChanged():
+				hasChanges = True
+				break
 
 		if hasChanges:
 			self.saveAll()
