@@ -2325,6 +2325,18 @@ def InitUsageConfig():
 	config.oscaminfo.autoUpdateLog = ConfigSelection(default=0, choices=choiceList)
 	BoxInfo.setItem("OScamInstalled", False)
 
+	config.softcsa = ConfigSubsection()
+	config.softcsa.SyncMode = ConfigSelection(default=0, choices=[
+			(0, _("Synchronous")),
+			(1, _("Asynchronous"))
+	])
+	config.softcsa.DecoderRelease = ConfigSelection(default=0, choices=[
+			(0, _("Quick")),
+			(1, _("Normal"))
+	])
+	config.softcsa.WaitForDataTimeout = ConfigSelectionNumber(min=100, max=2000, stepwidth=100, default=800, wraparound=True)
+	config.softcsa.StartupBufferSize = ConfigSelectionNumber(min=0, max=8, stepwidth=1, default=2, wraparound=True)
+
 	config.misc.softcam_streamrelay_url = ConfigIP(default=[127, 0, 0, 1], auto_jump=True)
 	config.misc.softcam_streamrelay_port = ConfigInteger(default=17999, limits=(0, 65535))
 	config.misc.softcam_streamrelay_delay = ConfigSelectionNumber(min=0, max=2000, stepwidth=50, default=0, wraparound=True)
