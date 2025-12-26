@@ -235,12 +235,12 @@ class DNSSettings(Setup):
 					addresses.extend([x.strip() for x in ipv6s.split(",")])
 				self.dnsOptions[key] = addresses
 		dnsSource = config.usage.dns.value
+		self.dnsOptions["custom"] = [self.defaultGW(), [0, 0, 0, 0], "", ""]
+		self.dnsOptions["dhcp-router"] = [self.defaultGW(), [0, 0, 0, 0], "", ""]
 		if dnsSource not in self.dnsOptions:
 			config.usage.dns.value = "custom"
 
 		self.dnsServerItems = []
-		self.dnsOptions["custom"] = [self.defaultGW(), [0, 0, 0, 0], "", ""]
-		self.dnsOptions["dhcp-router"] = [self.defaultGW(), [0, 0, 0, 0], "", ""]
 		v4pos = 0
 		v6pos = 2
 		for addr in self.dnsInitial:
