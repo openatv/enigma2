@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-20 12:54+0000\n"
+"POT-Creation-Date: 2025-12-22 20:56+0000\n"
 "PO-Revision-Date: 2024-10-02 07:35+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/es/>\n"
@@ -1913,15 +1913,6 @@ msgstr "Clientes activos"
 msgid "Active only"
 msgstr "Activar solo"
 
-msgid "AdGuard DNS (Ads/Trackers)"
-msgstr ""
-
-msgid "AdGuard DNS (Family)"
-msgstr ""
-
-msgid "AdGuard DNS (Unfiltered)"
-msgstr ""
-
 #
 msgid "Adapter Settings"
 msgstr "Configuración del adaptador"
@@ -3606,15 +3597,6 @@ msgstr "Ranura CI: "
 msgid "CI+ Helper*"
 msgstr ""
 
-msgid "CIRA Canadian Shield (Family)"
-msgstr ""
-
-msgid "CIRA Canadian Shield (Private)"
-msgstr ""
-
-msgid "CIRA Canadian Shield (Protected)"
-msgstr ""
-
 msgid "CPU"
 msgstr "CPU"
 
@@ -4412,15 +4394,6 @@ msgstr "Limpiar y borrar todos los temporizadores completados"
 msgid "Clean up and remove all completed timers?"
 msgstr "Limpiar y borrar todos los temporizadores completados?"
 
-msgid "CleanBrowsing (Adult Filter)"
-msgstr ""
-
-msgid "CleanBrowsing (Family Filter)"
-msgstr ""
-
-msgid "CleanBrowsing (Security Filter)"
-msgstr ""
-
 msgid "Cleaning Trashcan"
 msgstr ""
 
@@ -4551,9 +4524,6 @@ msgstr ""
 msgid "Close title selection"
 msgstr "Cerrar selección de título"
 
-msgid "Cloudflare DNS"
-msgstr "DNS de Cloudflare"
-
 msgid "Club/Dance"
 msgstr ""
 
@@ -4667,9 +4637,6 @@ msgstr ""
 # boot-up action
 msgid "Common Setup Actions"
 msgstr "Acciones comunes de ajustes"
-
-msgid "Comodo Secure DNS"
-msgstr ""
 
 msgid "Comoros"
 msgstr "Comoras"
@@ -5261,21 +5228,6 @@ msgstr ""
 msgid "Contrast Video & OSD"
 msgstr ""
 
-msgid "Control D (Ads + Tracking)"
-msgstr ""
-
-msgid "Control D (Family Friendly)"
-msgstr ""
-
-msgid "Control D (Malware)"
-msgstr ""
-
-msgid "Control D (Uncensored)"
-msgstr ""
-
-msgid "Control D (Unfiltered)"
-msgstr ""
-
 msgid "Control LED can be turned on or off here."
 msgstr "El LED de control se puede encender o apagar aquí."
 
@@ -5749,13 +5701,7 @@ msgstr "Fuente de datos DNS"
 msgid "DNS protocol mode"
 msgstr ""
 
-msgid "Use DNS rotation"
-msgstr ""
-
 msgid "DNS suffix"
-msgstr ""
-
-msgid "DNS.WATCH (Uncensored)"
 msgstr ""
 
 msgid ""
@@ -9439,9 +9385,6 @@ msgstr "Oro"
 
 msgid "Golf"
 msgstr "Golf"
-
-msgid "Google Public DNS"
-msgstr ""
 
 msgid "Goto"
 msgstr "Ir a"
@@ -13290,12 +13233,6 @@ msgstr "No parpadea"
 msgid "None"
 msgstr "Ninguno"
 
-msgid "NordVPN Secure DNS"
-msgstr ""
-
-msgid "NordVPN Smart DNS"
-msgstr ""
-
 msgid "Norfolk Island"
 msgstr "Isla de Norfolk"
 
@@ -13832,15 +13769,6 @@ msgstr "Abrir la vista EPG de servicio único"
 
 msgid "Open with File Commander"
 msgstr "Abrir con el Comandante de Archivos"
-
-msgid "OpenDNS FamilyShield"
-msgstr "OpenDNS FamilyShield"
-
-msgid "OpenDNS Home"
-msgstr "Inicio de OpenDNS"
-
-msgid "OpenDNS Sandbox"
-msgstr ""
 
 msgid "OpenPLi Packages"
 msgstr ""
@@ -15379,15 +15307,6 @@ msgstr "Canal PiP cuádruple "
 
 msgid "Quad PiP is not available."
 msgstr "No está disponible la función Quad PiP."
-
-msgid "Quad9 (Malware blocking + DNSSEC)"
-msgstr ""
-
-msgid "Quad9 (Malware blocking + ECS)"
-msgstr ""
-
-msgid "Quad9 (Unsecured / no blocking)"
-msgstr ""
 
 msgid "Quechua"
 msgstr "Quechua"
@@ -17180,6 +17099,9 @@ msgstr ""
 msgid "Select 'Yes' to enable AI-Powered Translation for all teletext and DVB subtitles."
 msgstr ""
 
+msgid "Select 'Yes' to enable DNS entry rotation. This rotation changes the order in which the list of DNS servers is used and can avoid issues if a DNS server in the list becomes unavailable."
+msgstr ""
+
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr "Seleccione \"Sí\" para permitir la edición de los ajustes de este dispositivo. Si se selecciona \"No\", se restablecen los valores predeterminados de los dispositivos."
 
@@ -17706,6 +17628,9 @@ msgstr ""
 msgid "Select the AI-Powered Translation target language."
 msgstr ""
 
+msgid "Select the DNS server(s) that will be used to lookup the host name to resolve the IP address."
+msgstr ""
+
 msgid "Select the No / False response"
 msgstr "Seleccione la respuesta \"No\" / \"Falso\""
 
@@ -18025,9 +17950,6 @@ msgid "Select the starting/initial column to be activated on File Commander star
 msgstr ""
 
 msgid "Select the tags that should be used for this recording."
-msgstr ""
-
-msgid "Select the DNS server(s) that will be used to lookup the host name to resolve the IP address."
 msgstr ""
 
 msgid "Select the time after which this timer can start."
@@ -22095,9 +22017,6 @@ msgstr "Esta opción configura la nitidez de la imagen cuando se está ampliando
 msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
 msgstr ""
 
-msgid "Select 'Yes' to enable DNS entry rotation. This rotation changes the order in which the list of DNS servers is used and can avoid issues if a DNS server in the list becomes unavailable."
-msgstr ""
-
 #
 msgid "This service is protected by a parental control PIN!"
 msgstr "Este canal está protegido por el pin de control paterno"
@@ -23000,15 +22919,6 @@ msgstr "Ucraniano"
 msgid "Ukrainian"
 msgstr "Ucraniano"
 
-msgid "UltraDNS Public (Family Secure)"
-msgstr ""
-
-msgid "UltraDNS Public (Threat Protection)"
-msgstr ""
-
-msgid "UltraDNS Public (Unfiltered)"
-msgstr ""
-
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr ""
 
@@ -23303,6 +23213,9 @@ msgstr ""
 #
 msgid "Use DHCP"
 msgstr "Usar DHCP"
+
+msgid "Use DNS rotation"
+msgstr ""
 
 msgid "Use Deinterlacing for 1080i Videosignal?"
 msgstr ""
@@ -25855,6 +25768,15 @@ msgstr "Sí (conservar fuentes)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Cloudflare DNS"
+#~ msgstr "DNS de Cloudflare"
+
+#~ msgid "OpenDNS FamilyShield"
+#~ msgstr "OpenDNS FamilyShield"
+
+#~ msgid "OpenDNS Home"
+#~ msgstr "Inicio de OpenDNS"
 
 #~ msgid "Google DNS"
 #~ msgstr "DNS de Google"

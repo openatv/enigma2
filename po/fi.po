@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-20 12:54+0000\n"
+"POT-Creation-Date: 2025-12-22 20:56+0000\n"
 "PO-Revision-Date: 2025-12-10 05:52+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
@@ -1836,15 +1836,6 @@ msgstr "Aktiiviset asiakkaat"
 msgid "Active only"
 msgstr "Vain aktiivinen"
 
-msgid "AdGuard DNS (Ads/Trackers)"
-msgstr ""
-
-msgid "AdGuard DNS (Family)"
-msgstr ""
-
-msgid "AdGuard DNS (Unfiltered)"
-msgstr ""
-
 msgid "Adapter Settings"
 msgstr "Sovittimen asetukset"
 
@@ -3441,15 +3432,6 @@ msgstr "CI paikka: "
 msgid "CI+ Helper*"
 msgstr "CI+ Avustaja"
 
-msgid "CIRA Canadian Shield (Family)"
-msgstr ""
-
-msgid "CIRA Canadian Shield (Private)"
-msgstr ""
-
-msgid "CIRA Canadian Shield (Protected)"
-msgstr ""
-
 msgid "CPU"
 msgstr "Prosessori"
 
@@ -4228,15 +4210,6 @@ msgstr "Puhdista ja poista kaikki valmiit ajastukset"
 msgid "Clean up and remove all completed timers?"
 msgstr "Puhdista ja poista kaikki valmiit ajastukset?"
 
-msgid "CleanBrowsing (Adult Filter)"
-msgstr ""
-
-msgid "CleanBrowsing (Family Filter)"
-msgstr ""
-
-msgid "CleanBrowsing (Security Filter)"
-msgstr ""
-
 msgid "Cleaning Trashcan"
 msgstr "Roskakorin tyhjennys"
 
@@ -4362,9 +4335,6 @@ msgstr "Sulje ikkuna"
 msgid "Close title selection"
 msgstr "Sulje otsikon valinta"
 
-msgid "Cloudflare DNS"
-msgstr "Cloudflare DNS"
-
 msgid "Club/Dance"
 msgstr "Klubi/tanssi"
 
@@ -4472,9 +4442,6 @@ msgstr "Yleiset Asetukset"
 
 msgid "Common Setup Actions"
 msgstr "Yleiset asetukset"
-
-msgid "Comodo Secure DNS"
-msgstr "Comodo Secure DNS"
 
 msgid "Comoros"
 msgstr "Comoros"
@@ -5045,21 +5012,6 @@ msgstr "Kontrasti Video"
 msgid "Contrast Video & OSD"
 msgstr "Kontrasti Video & kuvaruutu"
 
-msgid "Control D (Ads + Tracking)"
-msgstr ""
-
-msgid "Control D (Family Friendly)"
-msgstr ""
-
-msgid "Control D (Malware)"
-msgstr ""
-
-msgid "Control D (Uncensored)"
-msgstr ""
-
-msgid "Control D (Unfiltered)"
-msgstr ""
-
 msgid "Control LED can be turned on or off here."
 msgstr "LED voidaan kytkeä päälle tai pois täältä."
 
@@ -5518,14 +5470,8 @@ msgstr "DNS data lähde"
 msgid "DNS protocol mode"
 msgstr "DNS tila"
 
-msgid "Use DNS rotation"
-msgstr ""
-
 msgid "DNS suffix"
 msgstr "DNS pääte"
-
-msgid "DNS.WATCH (Uncensored)"
-msgstr ""
 
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
@@ -9027,9 +8973,6 @@ msgstr "Kulta"
 
 msgid "Golf"
 msgstr "Golf"
-
-msgid "Google Public DNS"
-msgstr ""
 
 msgid "Goto"
 msgstr "Mene"
@@ -12656,12 +12599,6 @@ msgstr "Kiinteä"
 msgid "None"
 msgstr "Ei mitään"
 
-msgid "NordVPN Secure DNS"
-msgstr "NordVPN DNS"
-
-msgid "NordVPN Smart DNS"
-msgstr "NordVPN Smart DNS"
-
 msgid "Norfolk Island"
 msgstr "Norfolkinsaari"
 
@@ -13163,15 +13100,6 @@ msgstr "Avaa yhden kanavan EPG näkymä"
 
 msgid "Open with File Commander"
 msgstr "Avaa File Commanderissa"
-
-msgid "OpenDNS FamilyShield"
-msgstr "OpenDNS Perhesuojaus"
-
-msgid "OpenDNS Home"
-msgstr "OpenDNS Koti"
-
-msgid "OpenDNS Sandbox"
-msgstr ""
 
 msgid "OpenPLi Packages"
 msgstr "OpenPLi Paketit"
@@ -14600,15 +14528,6 @@ msgstr "Neljä PIP Kanava "
 
 msgid "Quad PiP is not available."
 msgstr "Neljä PIP ei saatavilla."
-
-msgid "Quad9 (Malware blocking + DNSSEC)"
-msgstr ""
-
-msgid "Quad9 (Malware blocking + ECS)"
-msgstr ""
-
-msgid "Quad9 (Unsecured / no blocking)"
-msgstr ""
 
 msgid "Quechua"
 msgstr "Quechua"
@@ -16283,6 +16202,9 @@ msgstr "Valitse 'Kyllä', jos haluat näyttää tuntemattomat tiedostot Tiedosto
 msgid "Select 'Yes' to enable AI-Powered Translation for all teletext and DVB subtitles."
 msgstr "Ota tekoälyn käännös käyttöön teksti-tv:lle ja DVB-tekstityksille."
 
+msgid "Select 'Yes' to enable DNS entry rotation. This rotation changes the order in which the list of DNS servers is used and can avoid issues if a DNS server in the list becomes unavailable."
+msgstr ""
+
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr "Valitse Kyllä, jos haluat ottaa tämän laitteen asetusten muokkaamisen käyttöön. Jos valitset Ei, laiteasetukset palautetaan oletusarvoihinsa."
 
@@ -16797,6 +16719,9 @@ msgstr "Valitse %s merkintä"
 msgid "Select the AI-Powered Translation target language."
 msgstr "Valitse tekoälyn tekstityksen käännöksen kieli."
 
+msgid "Select the DNS server(s) that will be used to lookup the host name to resolve the IP address."
+msgstr "Valitse lähde oletus DNS asetuksille."
+
 msgid "Select the No / False response"
 msgstr "Valitse Ei / Väärä vastaus"
 
@@ -17118,9 +17043,6 @@ msgstr "Valitse käynnistys-/alkusarake, joka aktivoidaan File Commanderin käyn
 
 msgid "Select the tags that should be used for this recording."
 msgstr "Valitse tässä tallenteessa käytettävät tunnisteet."
-
-msgid "Select the DNS server(s) that will be used to lookup the host name to resolve the IP address."
-msgstr "Valitse lähde oletus DNS asetuksille."
 
 msgid "Select the time after which this timer can start."
 msgstr "Valitse aika, jonka jälkeen ajastus voi käynnistyä."
@@ -20956,9 +20878,6 @@ msgstr "Tämä asetus määrittää kuvan terävyyden, käytetään kun kuva ska
 msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
 msgstr "Tämä lisäosa voi määrittää, alkaako ohjelma aikaisemmin vai kestääkö se pidempään. Kanavan on toimitettava luotettavat tiedot."
 
-msgid "Select 'Yes' to enable DNS entry rotation. This rotation changes the order in which the list of DNS servers is used and can avoid issues if a DNS server in the list becomes unavailable."
-msgstr ""
-
 msgid "This service is protected by a parental control PIN!"
 msgstr "Tämä kanava on suojattu lapsilukolla!"
 
@@ -21772,15 +21691,6 @@ msgstr "Ukraina"
 msgid "Ukrainian"
 msgstr "Ukraina"
 
-msgid "UltraDNS Public (Family Secure)"
-msgstr ""
-
-msgid "UltraDNS Public (Threat Protection)"
-msgstr ""
-
-msgid "UltraDNS Public (Unfiltered)"
-msgstr ""
-
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Kexec MultiBootin alustaminen ei onnistu!"
 
@@ -22051,6 +21961,9 @@ msgstr "Käytä CI+"
 
 msgid "Use DHCP"
 msgstr "Käytä DHCP:tä"
+
+msgid "Use DNS rotation"
+msgstr ""
 
 msgid "Use Deinterlacing for 1080i Videosignal?"
 msgstr "Pitäisikö lomituksen poisto käyttää 1080i-videosignaalille?"
@@ -24406,6 +24319,24 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Cloudflare DNS"
+#~ msgstr "Cloudflare DNS"
+
+#~ msgid "Comodo Secure DNS"
+#~ msgstr "Comodo Secure DNS"
+
+#~ msgid "NordVPN Secure DNS"
+#~ msgstr "NordVPN DNS"
+
+#~ msgid "NordVPN Smart DNS"
+#~ msgstr "NordVPN Smart DNS"
+
+#~ msgid "OpenDNS FamilyShield"
+#~ msgstr "OpenDNS Perhesuojaus"
+
+#~ msgid "OpenDNS Home"
+#~ msgstr "OpenDNS Koti"
 
 #~ msgid "Google DNS"
 #~ msgstr "Google DNS"

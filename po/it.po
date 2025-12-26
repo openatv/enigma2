@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-20 12:54+0000\n"
+"POT-Creation-Date: 2025-12-22 20:56+0000\n"
 "PO-Revision-Date: 2025-12-21 09:04+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
@@ -1832,15 +1832,6 @@ msgstr "Clienti attivi"
 msgid "Active only"
 msgstr "Solo attivo"
 
-msgid "AdGuard DNS (Ads/Trackers)"
-msgstr "DNS AdGuard (Annunci/Tracker)"
-
-msgid "AdGuard DNS (Family)"
-msgstr "DNS AdGuard (famiglia)"
-
-msgid "AdGuard DNS (Unfiltered)"
-msgstr "DNS AdGuard (non filtrato)"
-
 msgid "Adapter Settings"
 msgstr "Impostazioni adattatore"
 
@@ -3433,15 +3424,6 @@ msgstr "Slot CI: "
 msgid "CI+ Helper*"
 msgstr "CI+ Helper*"
 
-msgid "CIRA Canadian Shield (Family)"
-msgstr "Canadian Shield CIRA (famiglia)"
-
-msgid "CIRA Canadian Shield (Private)"
-msgstr "Canadian Shield CIRA (privato)"
-
-msgid "CIRA Canadian Shield (Protected)"
-msgstr "Canadian Shield CIRA (protetto)"
-
 msgid "CPU"
 msgstr "CPU"
 
@@ -4219,15 +4201,6 @@ msgstr "Pulisci e rimuovi tutti i timer completati"
 msgid "Clean up and remove all completed timers?"
 msgstr "Pulire e rimuovere tutti i timer completati?"
 
-msgid "CleanBrowsing (Adult Filter)"
-msgstr "CleanBrowsing (filtro per adulti)"
-
-msgid "CleanBrowsing (Family Filter)"
-msgstr "CleanBrowsing (filtro per famiglia)"
-
-msgid "CleanBrowsing (Security Filter)"
-msgstr "CleanBrowsing (filtro di sicurezza)"
-
 msgid "Cleaning Trashcan"
 msgstr "Pulizia cestino"
 
@@ -4353,9 +4326,6 @@ msgstr "Chiudi questa schermata"
 msgid "Close title selection"
 msgstr "Chiudi selezione del titolo"
 
-msgid "Cloudflare DNS"
-msgstr "DNS Cloudflare"
-
 msgid "Club/Dance"
 msgstr "Club/Danza"
 
@@ -4463,9 +4433,6 @@ msgstr "Impostazioni comuni"
 
 msgid "Common Setup Actions"
 msgstr "Azioni di configurazione comuni"
-
-msgid "Comodo Secure DNS"
-msgstr "DNS Comodo Secure"
 
 msgid "Comoros"
 msgstr "Comore"
@@ -5036,21 +5003,6 @@ msgstr "Contrasto video"
 msgid "Contrast Video & OSD"
 msgstr "Contrasto video & OSD"
 
-msgid "Control D (Ads + Tracking)"
-msgstr "Control D (Annunci + Tracking)"
-
-msgid "Control D (Family Friendly)"
-msgstr "Control D (adatto alle famiglie)"
-
-msgid "Control D (Malware)"
-msgstr "Control D (Malware)"
-
-msgid "Control D (Uncensored)"
-msgstr "Control D (senza censure)"
-
-msgid "Control D (Unfiltered)"
-msgstr "Control D (non filtrato)"
-
 msgid "Control LED can be turned on or off here."
 msgstr "Il LED di controllo può essere attivato o disattivato qui."
 
@@ -5509,14 +5461,8 @@ msgstr "Sorgente dati DNS"
 msgid "DNS protocol mode"
 msgstr "Modalità DNS"
 
-msgid "Use DNS rotation"
-msgstr "Rotazione DNS"
-
 msgid "DNS suffix"
 msgstr "Suffisso DNS"
-
-msgid "DNS.WATCH (Uncensored)"
-msgstr "DNS.WATCH (non censurato)"
 
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
@@ -9018,9 +8964,6 @@ msgstr "Oro"
 
 msgid "Golf"
 msgstr "Golf"
-
-msgid "Google Public DNS"
-msgstr "DNS pubblico di Google"
 
 msgid "Goto"
 msgstr "Vai a"
@@ -12634,12 +12577,6 @@ msgstr "No flashing"
 msgid "None"
 msgstr "Nessuno"
 
-msgid "NordVPN Secure DNS"
-msgstr "DNS NordVPN Secure"
-
-msgid "NordVPN Smart DNS"
-msgstr "DNS NordVPN Smart"
-
 msgid "Norfolk Island"
 msgstr "Isola Norfolk"
 
@@ -13141,15 +13078,6 @@ msgstr "Apri vista EPG a servizio singolo"
 
 msgid "Open with File Commander"
 msgstr "Apri con File Commander"
-
-msgid "OpenDNS FamilyShield"
-msgstr "OpenDNS FamilyShield"
-
-msgid "OpenDNS Home"
-msgstr "Home di OpenDNS"
-
-msgid "OpenDNS Sandbox"
-msgstr "Sandbox OpenDNS"
 
 msgid "OpenPLi Packages"
 msgstr "Pacchetti OpenPLi"
@@ -14578,15 +14506,6 @@ msgstr "Canale PiP quad"
 
 msgid "Quad PiP is not available."
 msgstr "Il PiP quadruplo non è disponibile."
-
-msgid "Quad9 (Malware blocking + DNSSEC)"
-msgstr "Quad9 (Blocco malware + DNSSEC)"
-
-msgid "Quad9 (Malware blocking + ECS)"
-msgstr "Quad9 (Blocco malware + ECS)"
-
-msgid "Quad9 (Unsecured / no blocking)"
-msgstr "Quad9 (non protetto/nessun blocco)"
 
 msgid "Quechua"
 msgstr "Quechua"
@@ -16253,6 +16172,9 @@ msgstr "Seleziona 'Sì' per visualizzare i file sconosciuti nel visualizzatore d
 msgid "Select 'Yes' to enable AI-Powered Translation for all teletext and DVB subtitles."
 msgstr "Abilita la traduzione basata sull'intelligenza artificiale per tutti i sottotitoli del televideo e DVB."
 
+msgid "Select 'Yes' to enable DNS entry rotation. This rotation changes the order in which the list of DNS servers is used and can avoid issues if a DNS server in the list becomes unavailable."
+msgstr "Questa rotazione modifica l'ordine in cui viene utilizzato l'elenco dei server DNS e può evitare problemi se un server DNS nell'elenco diventa non disponibile."
+
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr "Seleziona 'Sì' per abilitare la modifica delle impostazioni di questo dispositivo. Selezionando 'No' si ripristinano le impostazioni dei dispositivi ai valori predefiniti."
 
@@ -16763,6 +16685,9 @@ msgstr "Seleziona voce %s"
 msgid "Select the AI-Powered Translation target language."
 msgstr "Configura la lingua di traduzione basata sull'intelligenza artificiale."
 
+msgid "Select the DNS server(s) that will be used to lookup the host name to resolve the IP address."
+msgstr "Seleziona origine delle impostazioni DNS predefinite."
+
 msgid "Select the No / False response"
 msgstr "Seleziona risposta No/Falso"
 
@@ -17084,9 +17009,6 @@ msgstr "Seleziona colonna iniziale/di partenza da attivare all'avvio di File Com
 
 msgid "Select the tags that should be used for this recording."
 msgstr "Seleziona tag da usare per questa registrazione."
-
-msgid "Select the DNS server(s) that will be used to lookup the host name to resolve the IP address."
-msgstr "Seleziona origine delle impostazioni DNS predefinite."
 
 msgid "Select the time after which this timer can start."
 msgstr "Seleziona ora dopo la quale questo timer può iniziare."
@@ -20914,9 +20836,6 @@ msgstr "Questa opzione imposta la nitidezza dell'immagine, usato quando l'immagi
 msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
 msgstr "Questo plugin è in grado di determinare se un programma inizierà in anticipo o durerà di più. Affinché sia efficace, però, il canale deve fornire informazioni attendibili."
 
-msgid "Select 'Yes' to enable DNS entry rotation. This rotation changes the order in which the list of DNS servers is used and can avoid issues if a DNS server in the list becomes unavailable."
-msgstr "Questa rotazione modifica l'ordine in cui viene utilizzato l'elenco dei server DNS e può evitare problemi se un server DNS nell'elenco diventa non disponibile."
-
 msgid "This service is protected by a parental control PIN!"
 msgstr "Questo servizio è protetto dal PIN del controllo genitori!"
 
@@ -21729,15 +21648,6 @@ msgstr "Ucraina"
 msgid "Ukrainian"
 msgstr "Ucraino"
 
-msgid "UltraDNS Public (Family Secure)"
-msgstr "UltraDNS pubblico (sicuro per la famiglia)"
-
-msgid "UltraDNS Public (Threat Protection)"
-msgstr "UltraDNS pubblico (protezione dalle minacce)"
-
-msgid "UltraDNS Public (Unfiltered)"
-msgstr "UltraDNS pubblico (non filtrato)"
-
 msgid "Unable to initialize Kexec MultiBoot!"
 msgstr "Impossibile inizializzare Kexec MultiBoot!"
 
@@ -22008,6 +21918,9 @@ msgstr "Usa AutoCam"
 
 msgid "Use DHCP"
 msgstr "Usa DHCP"
+
+msgid "Use DNS rotation"
+msgstr "Rotazione DNS"
 
 msgid "Use Deinterlacing for 1080i Videosignal?"
 msgstr "Usa deinterlacciamento per il segnale video 1080i?"
@@ -24357,6 +24270,93 @@ msgstr "sì (mantieni feed)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "AdGuard DNS (Ads/Trackers)"
+#~ msgstr "DNS AdGuard (Annunci/Tracker)"
+
+#~ msgid "AdGuard DNS (Family)"
+#~ msgstr "DNS AdGuard (famiglia)"
+
+#~ msgid "AdGuard DNS (Unfiltered)"
+#~ msgstr "DNS AdGuard (non filtrato)"
+
+#~ msgid "CIRA Canadian Shield (Family)"
+#~ msgstr "Canadian Shield CIRA (famiglia)"
+
+#~ msgid "CIRA Canadian Shield (Private)"
+#~ msgstr "Canadian Shield CIRA (privato)"
+
+#~ msgid "CIRA Canadian Shield (Protected)"
+#~ msgstr "Canadian Shield CIRA (protetto)"
+
+#~ msgid "CleanBrowsing (Adult Filter)"
+#~ msgstr "CleanBrowsing (filtro per adulti)"
+
+#~ msgid "CleanBrowsing (Family Filter)"
+#~ msgstr "CleanBrowsing (filtro per famiglia)"
+
+#~ msgid "CleanBrowsing (Security Filter)"
+#~ msgstr "CleanBrowsing (filtro di sicurezza)"
+
+#~ msgid "Cloudflare DNS"
+#~ msgstr "DNS Cloudflare"
+
+#~ msgid "Comodo Secure DNS"
+#~ msgstr "DNS Comodo Secure"
+
+#~ msgid "Control D (Ads + Tracking)"
+#~ msgstr "Control D (Annunci + Tracking)"
+
+#~ msgid "Control D (Family Friendly)"
+#~ msgstr "Control D (adatto alle famiglie)"
+
+#~ msgid "Control D (Malware)"
+#~ msgstr "Control D (Malware)"
+
+#~ msgid "Control D (Uncensored)"
+#~ msgstr "Control D (senza censure)"
+
+#~ msgid "Control D (Unfiltered)"
+#~ msgstr "Control D (non filtrato)"
+
+#~ msgid "DNS.WATCH (Uncensored)"
+#~ msgstr "DNS.WATCH (non censurato)"
+
+#~ msgid "Google Public DNS"
+#~ msgstr "DNS pubblico di Google"
+
+#~ msgid "NordVPN Secure DNS"
+#~ msgstr "DNS NordVPN Secure"
+
+#~ msgid "NordVPN Smart DNS"
+#~ msgstr "DNS NordVPN Smart"
+
+#~ msgid "OpenDNS FamilyShield"
+#~ msgstr "OpenDNS FamilyShield"
+
+#~ msgid "OpenDNS Home"
+#~ msgstr "Home di OpenDNS"
+
+#~ msgid "OpenDNS Sandbox"
+#~ msgstr "Sandbox OpenDNS"
+
+#~ msgid "Quad9 (Malware blocking + DNSSEC)"
+#~ msgstr "Quad9 (Blocco malware + DNSSEC)"
+
+#~ msgid "Quad9 (Malware blocking + ECS)"
+#~ msgstr "Quad9 (Blocco malware + ECS)"
+
+#~ msgid "Quad9 (Unsecured / no blocking)"
+#~ msgstr "Quad9 (non protetto/nessun blocco)"
+
+#~ msgid "UltraDNS Public (Family Secure)"
+#~ msgstr "UltraDNS pubblico (sicuro per la famiglia)"
+
+#~ msgid "UltraDNS Public (Threat Protection)"
+#~ msgstr "UltraDNS pubblico (protezione dalle minacce)"
+
+#~ msgid "UltraDNS Public (Unfiltered)"
+#~ msgstr "UltraDNS pubblico (non filtrato)"
 
 #~ msgid "Google DNS"
 #~ msgstr "DNS di Google"
