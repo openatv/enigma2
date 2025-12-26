@@ -1,66 +1,63 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
 <!--
-  <dnsserver
-    key="<primary key>"          mandatory
-    title="<display name>"       mandatory
-    ipv4="<ip1,ip2>"             mandatory
-    ipv6="<ip1,ip2>"             optional
-    doh="<https url>"            optional (DNS-over-HTTPS endpoint)
-  />
+	<dnsserver
+		key="<primary key>"     Mandatory.
+		title="<display name>"  Mandatory.
+		ipv4="<ip1,ip2>"        Mandatory.
+		ipv6="<ip1,ip2>"        Optional.
+	/>
 -->
 
 <dnsserversxml>
-  <!-- Google Public DNS -->
-  <dnsserver key="google" title="Google Public DNS" ipv4="8.8.8.8,8.8.4.4" ipv6="2001:4860:4860::8888,2001:4860:4860::8844" doh="https://dns.google/dns-query"/>
+	<!-- Google Public DNS -->
+	<dnsserver key="google" title="Google Public DNS" ipv4="8.8.8.8,8.8.4.4" ipv6="2001:4860:4860::8888,2001:4860:4860::8844" />
 
-  <!-- Cloudflare (1.1.1.1) -->
-  <dnsserver key="cloudflare" title="Cloudflare DNS" ipv4="1.1.1.1,1.0.0.1" ipv6="2606:4700:4700::1111,2606:4700:4700::1001" doh="https://cloudflare-dns.com/dns-query"/>
+	<!-- Cloudflare (1.1.1.1) -->
+	<dnsserver key="cloudflare" title="Cloudflare DNS" ipv4="1.1.1.1,1.0.0.1" ipv6="2606:4700:4700::1111,2606:4700:4700::1001" />
 
-  <!-- Quad9 -->
-  <dnsserver key="quad9" title="Quad9 (Malware blocking + DNSSEC)" ipv4="9.9.9.9,149.112.112.112" ipv6="2620:fe::fe,2620:fe::9" doh="https://dns.quad9.net/dns-query"/>
-  <dnsserver key="quad9ecs" title="Quad9 (Malware blocking + ECS)" ipv4="9.9.9.11,149.112.112.11" ipv6="2620:fe::11,2620:fe::fe:11" doh="https://dns11.quad9.net/dns-query"/>
-  <dnsserver key="quad9unsecured" title="Quad9 (Unsecured / no blocking)" ipv4="9.9.9.10,149.112.112.10" ipv6="2620:fe::10,2620:fe::fe:10" doh="https://dns10.quad9.net/dns-query"/>
+	<!-- Quad9 -->
+	<dnsserver key="quad9" title="Quad9 (Malware blocking + DNSSEC)" ipv4="9.9.9.9,149.112.112.112" ipv6="2620:FE::FE,2620:FE::9" />
+	<dnsserver key="quad9ecs" title="Quad9 (Malware blocking + ECS)" ipv4="9.9.9.11,149.112.112.11" ipv6="2620:FE::11,2620:FE::FE:11" />
+	<dnsserver key="quad9unsecured" title="Quad9 (Unsecured / no blocking)" ipv4="9.9.9.10,149.112.112.10" ipv6="2620:FE::10,2620:FE::FE:10" />
 
-  <!-- Cisco OpenDNS / Umbrella -->
-  <dnsserver key="opendns-home" title="OpenDNS Home" ipv4="208.67.222.222,208.67.220.220" ipv6="2620:119:35::35,2620:119:53::53" doh="https://doh.opendns.com/dns-query"/>
-  <dnsserver key="opendns-familyshield" title="OpenDNS FamilyShield" ipv4="208.67.222.123,208.67.220.123" ipv6="2620:119:35::123,2620:119:53::123" doh="https://doh.familyshield.opendns.com/dns-query"/>
-  <dnsserver key="opendns-sandbox" title="OpenDNS Sandbox" ipv4="208.67.222.2,208.67.220.2" ipv6="2620:119:35::2,2620:119:53::2" doh="https://doh.sandbox.opendns.com/dns-query"/>
+	<!-- Cisco OpenDNS / Umbrella -->
+	<dnsserver key="opendns-home" title="OpenDNS Home" ipv4="208.67.222.222,208.67.220.220" ipv6="2620:119:35::35,2620:119:53::53" />
+	<dnsserver key="opendns-familyshield" title="OpenDNS FamilyShield" ipv4="208.67.222.123,208.67.220.123" ipv6="2620:119:35::123,2620:119:53::123" />
+	<dnsserver key="opendns-sandbox" title="OpenDNS Sandbox" ipv4="208.67.222.2,208.67.220.2" ipv6="2620:119:35::2,2620:119:53::2" />
 
-  <!-- AdGuard DNS -->
-  <dnsserver key="adguard-default" title="AdGuard DNS (Ads/Trackers)" ipv4="94.140.14.14,94.140.15.15" ipv6="2a10:50c0::ad1:ff,2a10:50c0::ad2:ff" doh="https://dns.adguard-dns.com/dns-query"/>
-  <dnsserver key="adguard-unfiltered" title="AdGuard DNS (Unfiltered)" ipv4="94.140.14.140,94.140.14.141" ipv6="2a10:50c0::1:ff,2a10:50c0::2:ff" doh="https://unfiltered.adguard-dns.com/dns-query"/>
-  <dnsserver key="adguard-family" title="AdGuard DNS (Family)" ipv4="94.140.14.15,94.140.15.16" ipv6="2a10:50c0::bad1:ff,2a10:50c0::bad2:ff" doh="https://family.adguard-dns.com/dns-query"/>
+	<!-- AdGuard DNS -->
+	<dnsserver key="adguard-default" title="AdGuard DNS (Ads/Trackers)" ipv4="94.140.14.14,94.140.15.15" ipv6="2A10:50C0::AD1:FF,2A10:50C0::AD2:FF" />
+	<dnsserver key="adguard-unfiltered" title="AdGuard DNS (Unfiltered)" ipv4="94.140.14.140,94.140.14.141" ipv6="2A10:50C0::1:FF,2A10:50C0::2:FF" />
+	<dnsserver key="adguard-family" title="AdGuard DNS (Family)" ipv4="94.140.14.15,94.140.15.16" ipv6="2A10:50C0::BAD1:FF,2A10:50C0::BAD2:FF" />
 
-  <!-- CleanBrowsing -->
-  <dnsserver key="cleanbrowsing-family" title="CleanBrowsing (Family Filter)" ipv4="185.228.168.168,185.228.169.168" ipv6="2a0d:2a00:1::,2a0d:2a00:2::" doh="https://doh.cleanbrowsing.org/doh/family-filter/"/>
-  <dnsserver key="cleanbrowsing-adult" title="CleanBrowsing (Adult Filter)" ipv4="185.228.168.10,185.228.169.11" ipv6="2a0d:2a00:1::1,2a0d:2a00:2::1" doh="https://doh.cleanbrowsing.org/doh/adult-filter/"/>
-  <dnsserver key="cleanbrowsing-security" title="CleanBrowsing (Security Filter)" ipv4="185.228.168.9,185.228.169.9" ipv6="2a0d:2a00:1::2,2a0d:2a00:2::2" doh="https://doh.cleanbrowsing.org/doh/security-filter/"/>
+	<!-- CleanBrowsing -->
+	<dnsserver key="cleanbrowsing-family" title="CleanBrowsing (Family Filter)" ipv4="185.228.168.168,185.228.169.168" ipv6="2A0D:2A00:1::,2A0D:2A00:2::" />
+	<dnsserver key="cleanbrowsing-adult" title="CleanBrowsing (Adult Filter)" ipv4="185.228.168.10,185.228.169.11" ipv6="2A0D:2A00:1::1,2A0D:2A00:2::1" />
+	<dnsserver key="cleanbrowsing-security" title="CleanBrowsing (Security Filter)" ipv4="185.228.168.9,185.228.169.9" ipv6="2A0D:2A00:1::2,2A0D:2A00:2::2" />
 
-  <!-- CIRA Canadian Shield -->
-  <dnsserver key="cira-private" title="CIRA Canadian Shield (Private)" ipv4="149.112.121.10,149.112.122.10" ipv6="2620:10A:80BB::10,2620:10A:80BC::10" doh="https://private.canadianshield.cira.ca/dns-query"/>
-  <dnsserver key="cira-protected" title="CIRA Canadian Shield (Protected)" ipv4="149.112.121.20,149.112.122.20" ipv6="2620:10A:80BB::20,2620:10A:80BC::20" doh="https://protected.canadianshield.cira.ca/dns-query"/>
-  <dnsserver key="cira-family" title="CIRA Canadian Shield (Family)" ipv4="149.112.121.30,149.112.122.30" ipv6="2620:10A:80BB::30,2620:10A:80BC::30" doh="https://family.canadianshield.cira.ca/dns-query"/>
+	<!-- CIRA Canadian Shield -->
+	<dnsserver key="cira-private" title="CIRA Canadian Shield (Private)" ipv4="149.112.121.10,149.112.122.10" ipv6="2620:10A:80BB::10,2620:10A:80BC::10" />
+	<dnsserver key="cira-protected" title="CIRA Canadian Shield (Protected)" ipv4="149.112.121.20,149.112.122.20" ipv6="2620:10A:80BB::20,2620:10A:80BC::20" />
+	<dnsserver key="cira-family" title="CIRA Canadian Shield (Family)" ipv4="149.112.121.30,149.112.122.30" ipv6="2620:10A:80BB::30,2620:10A:80BC::30" />
 
-  <!-- Control D (Free DNS Resolvers) -->
-  <dnsserver key="controld-unfiltered" title="Control D (Unfiltered)" ipv4="76.76.2.0,76.76.10.0" ipv6="2606:1a40::0,2606:1a40:1::0" doh="https://freedns.controld.com/p0"/>
-  <dnsserver key="controld-malware" title="Control D (Malware)" ipv4="76.76.2.1,76.76.10.1" ipv6="2606:1a40::1,2606:1a40:1::1" doh="https://freedns.controld.com/p1"/>
-  <dnsserver key="controld-ads" title="Control D (Ads + Tracking)" ipv4="76.76.2.2,76.76.10.2" ipv6="2606:1a40::2,2606:1a40:1::2" doh="https://freedns.controld.com/p2"/>
-  <dnsserver key="controld-family" title="Control D (Family Friendly)" ipv4="76.76.2.4,76.76.10.4" ipv6="2606:1a40::4,2606:1a40:1::4" doh="https://freedns.controld.com/family"/>
-  <dnsserver key="controld-uncensored" title="Control D (Uncensored)" ipv4="76.76.2.5,76.76.10.5" ipv6="2606:1a40::5,2606:1a40:1::5" doh="https://freedns.controld.com/uncensored"/>
+	<!-- Control D (Free DNS Resolvers) -->
+	<dnsserver key="controld-unfiltered" title="Control D (Unfiltered)" ipv4="76.76.2.0,76.76.10.0" ipv6="2606:1A40::0,2606:1A40:1::0" />
+	<dnsserver key="controld-malware" title="Control D (Malware)" ipv4="76.76.2.1,76.76.10.1" ipv6="2606:1A40::1,2606:1A40:1::1" />
+	<dnsserver key="controld-ads" title="Control D (Ads + Tracking)" ipv4="76.76.2.2,76.76.10.2" ipv6="2606:1A40::2,2606:1A40:1::2" />
+	<dnsserver key="controld-family" title="Control D (Family Friendly)" ipv4="76.76.2.4,76.76.10.4" ipv6="2606:1A40::4,2606:1A40:1::4" />
+	<dnsserver key="controld-uncensored" title="Control D (Uncensored)" ipv4="76.76.2.5,76.76.10.5" ipv6="2606:1A40::5,2606:1A40:1::5" />
 
-  <!-- DNS.WATCH -->
-  <dnsserver key="dnswatch" title="DNS.WATCH (Uncensored)" ipv4="84.200.69.80,84.200.70.40" ipv6="2001:1608:10:25::1c04:b12f,2001:1608:10:25::9249:d69b"/>
+	<!-- DNS.WATCH -->
+	<dnsserver key="dnswatch" title="DNS.WATCH (Uncensored)" ipv4="84.200.69.80,84.200.70.40" ipv6="2001:1608:10:25::1C04:B12F,2001:1608:10:25::9249:D69B" />
 
-  <!-- NordVPN -->
-  <dnsserver key="nordvpn" title="NordVPN Secure DNS" ipv4="103.86.96.100,103.86.99.100" />
-  <dnsserver key="nordvpnsmart" title="NordVPN Smart DNS" ipv4="103.86.96.103,103.86.99.103"/>
+	<!-- NordVPN -->
+	<dnsserver key="nordvpn" title="NordVPN Secure DNS" ipv4="103.86.96.100,103.86.99.100" />
+	<dnsserver key="nordvpnsmart" title="NordVPN Smart DNS" ipv4="103.86.96.103,103.86.99.103" />
 
-  <!-- Comodo Secure DNS -->
-  <dnsserver key="comodo" title="Comodo Secure DNS" ipv4="8.26.56.26,8.20.247.20"/>
+	<!-- Comodo Secure DNS -->
+	<dnsserver key="comodo" title="Comodo Secure DNS" ipv4="8.26.56.26,8.20.247.20" />
 
-  <!-- UltraDNS Public (Vercara) -->
-  <dnsserver key="ultradns-unfiltered" title="UltraDNS Public (Unfiltered)" ipv4="64.6.64.6,64.6.65.6" ipv6="2620:74:1b::1:1,2620:74:1c::2:2"/>
-  <dnsserver key="ultradns-threat" title="UltraDNS Public (Threat Protection)" ipv4="156.154.70.2,156.154.71.2" ipv6="2610:a1:1018::2,2610:a1:1019::2"/>
-  <dnsserver key="ultradns-family" title="UltraDNS Public (Family Secure)" ipv4="156.154.70.3,156.154.71.3" ipv6="2610:a1:1018::3,2610:a1:1019::3"/>
+	<!-- UltraDNS Public (Vercara) -->
+	<dnsserver key="ultradns-unfiltered" title="UltraDNS Public (Unfiltered)" ipv4="64.6.64.6,64.6.65.6" ipv6="2620:74:1B::1:1,2620:74:1C::2:2" />
+	<dnsserver key="ultradns-threat" title="UltraDNS Public (Threat Protection)" ipv4="156.154.70.2,156.154.71.2" ipv6="2610:A1:1018::2,2610:A1:1019::2" />
+	<dnsserver key="ultradns-family" title="UltraDNS Public (Family Secure)" ipv4="156.154.70.3,156.154.71.3" ipv6="2610:A1:1018::3,2610:A1:1019::3" />
 </dnsserversxml>

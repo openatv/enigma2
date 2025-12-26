@@ -34,7 +34,7 @@ class ServiceHelper:
 
 	def _waitSocket(self):
 		self.callbackTimer.timeout.get().append(self._closeSocket)
-		self.callbackTimer.start(self.timeout, False)
+		self.callbackTimer.start(self.timeout, True)
 		callInThread(self._listenSocket)
 
 	def _listenSocket(self):
@@ -48,5 +48,5 @@ class ServiceHelper:
 		if self.deamonSocket:
 			self.deamonSocket.close()
 			self.deamonSocket = None
-		if self.callback:
-			self.callback()
+			if self.callback:
+				self.callback()

@@ -163,6 +163,8 @@ def InitUsageConfig():
 		("dhcp-router", _("Router / Gateway")),
 		("custom", _("Static IP / Custom"))
 	]
+	if BoxInfo.getItem("DNSCrypt"):
+		choices.append(("dnscrypt", _("DNSCrypt Resolver")))
 	fileDom = fileReadXML(resolveFilename(SCOPE_SKINS, "dnsservers.xml"), source=MODULE_NAME)
 	for dns in fileDom.findall("dnsserver"):
 		if dns.get("key", ""):
@@ -177,6 +179,23 @@ def InitUsageConfig():
 	])
 	config.usage.dnsSuffix = ConfigText(default="", fixed_size=False)
 	config.usage.dnsRotate = ConfigYesNo(default=False)
+
+	config.usage.DNSCryptProtocol = ConfigYesNo(default=True)
+	config.usage.DNSCryptDoH = ConfigYesNo(default=True)
+	config.usage.DNSCryptODoH = ConfigYesNo(default=False)
+	config.usage.DNSCryptDNSSEC = ConfigYesNo(default=False)
+	config.usage.DNSCryptNoLog = ConfigYesNo(default=True)
+	config.usage.DNSCryptNoFilter = ConfigYesNo(default=True)
+	config.usage.DNSCryptCache = ConfigYesNo(default=True)
+	config.usage.DNSCryptUI = ConfigYesNo(default=False)
+	config.usage.DNSCryptUsername = ConfigText(default="root", fixed_size=False, visible_width=12)
+	config.usage.DNSCryptPassword = ConfigPassword(default="enigma2", fixed_size=False)
+	config.usage.DNSCryptPort = ConfigInteger(default=9012, limits=(8080, 9999))
+	config.usage.DNSCryptPrivacy = ConfigSelection(default=1, choices=[
+		(0, _("Show all details")),
+		(1, _("Anonymize client IPs")),
+		(2, _("Aggregate data only"))
+	])
 	config.usage.subnetwork = ConfigYesNo(default=True)
 	config.usage.subnetwork_cable = ConfigYesNo(default=True)
 	config.usage.subnetwork_terrestrial = ConfigYesNo(default=True)

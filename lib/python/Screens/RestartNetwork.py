@@ -14,12 +14,11 @@ class RestartNetworkNew:
 		Processing.instance.showProgress(endless=True)
 
 		def restartCallback():
-			def getInterfacesCallback(data):
-				Processing.instance.hideProgress()
-				if callback and callable(callback):
-					callback()
-			iNetwork.getInterfaces(getInterfacesCallback)
-		helper.restart(callback=restartCallback)
+			iNetwork.getInterfaces()
+			Processing.instance.hideProgress()
+			if callback and callable(callback):
+				callback()
+		helper.restart(callback=restartCallback, timeout=10000)
 
 
 class RestartNetwork(Screen):
