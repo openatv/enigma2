@@ -10,7 +10,7 @@ from enigma import eConsoleAppContainer, eTimer
 
 from Components.About import about
 from Components.ActionMap import HelpableActionMap, HelpableNumberActionMap
-from Components.config import ConfigIP, ConfigMacText, ConfigNumber, ConfigPassword, ConfigSelection, ConfigText, ConfigYesNo, NoSave, config, getConfigListEntry
+from Components.config import ConfigIP, ConfigMacText, ConfigNumber, ConfigPassword, ConfigSelection, ConfigText, ConfigYesNo, NoSave, ReadOnly, config, getConfigListEntry
 from Components.ConfigList import ConfigListScreen
 from Components.Console import Console
 from Components.Label import Label, MultiColorLabel
@@ -217,13 +217,9 @@ class NetworkAdapterSelection(Screen):
 
 class DNSSettings(Setup):
 	def __init__(self, session):
-		iNetwork.loadNameserverConfig()
-		self.dnsInitial = iNetwork.getNameserverList()
+		self.dnsInitial = iNetwork.loadResolveConfig()
 		print(f"[NetworkSetup] DNSSettings: Initial DNS list: {self.dnsInitial}.")
-		self.dnsOptions = {
-			"custom": [[0, 0, 0, 0]],
-			"dhcp-router": iNetwork.getNameserverList(),
-		}
+		self.dnsOptions = {}
 		if BoxInfo.getItem("DNSCrypt"):
 			self.dnsOptions["dnscrypt"] = [[127, 0, 0, 1]]
 		fileDom = fileReadXML(resolveFilename(SCOPE_SKINS, "dnsservers.xml"), source=MODULE_NAME)
@@ -233,142 +229,91 @@ class DNSSettings(Setup):
 				ipv4s = dns.get("ipv4", "")
 				if ipv4s:
 					for ipv4 in [x.strip() for x in ipv4s.split(",")]:
-						addresses.append([int(x) for x in ipv4.split(".")])  # IanSav: This can crash if the IPv4 data is invalid!
+						addresses.append([int(x) for x in ipv4.split(".")])
 				ipv6s = dns.get("ipv6", "")
 				if ipv6s:
-					# for ipv6 in [x.strip() for x in ipv6s.split(",")]:  # IanSav: The IPv6 data should be validated as valid hex.
-					# 	addresses.append([int(x, 16) for x in ipv6.split(":")])
 					addresses.extend([x.strip() for x in ipv6s.split(",")])
 				self.dnsOptions[key] = addresses
 		dnsSource = config.usage.dns.value
 		if dnsSource not in self.dnsOptions:
 			dnsSource = "custom"
-			self.dnsOptions["custom"] = self.dnsInitial[:]
-			self.dnsServers = self.dnsInitial[:]
-		else:
-			self.dnsServers = self.dnsOptions[dnsSource][:]
-		self.detectedOption = self.dnsCheck(self.dnsInitial, refresh=False, writeback=False)
-		self.dnsStart = None
-		self.dnsLength = 0
-		self.entryAdded = False
+
+		self.dnsServerItems = []
+		self.dnsOptions["custom"] = [self.defaultGW(), [0, 0, 0, 0], "", ""]
+		self.dnsOptions["dhcp-router"] = [self.defaultGW(), [0, 0, 0, 0], "", ""]
+		v4pos = 0
+		v6pos = 2
+		for addr in self.dnsInitial:
+			if isinstance(addr, list) and len(addr) == 4:
+				self.dnsOptions["custom"][v4pos] = addr
+				self.dnsOptions["dhcp-router"][v4pos] = addr
+				v4pos += 1
+			if isinstance(addr, str):
+				if ip_address(addr).version == 6:
+					self.dnsOptions["custom"][v6pos] = addr
+					self.dnsOptions["dhcp-router"][v6pos] = addr
+					v6pos += 1
+
 		Setup.__init__(self, session=session, setup="DNS")
-		self["key_yellow"] = StaticText(_("Add"))
-		self["key_blue"] = StaticText("")
-		dnsDescription = _("DNS (Dynamic Name Server) Actions")
-		self["addAction"] = HelpableActionMap(self, ["DNSSettingsActions"], {
-			"dnsAdd": (self.addDNSServer, _("Add a DNS entry"))
-		}, prio=0, description=dnsDescription)
-		self["removeAction"] = HelpableActionMap(self, ["DNSSettingsActions"], {
-			"dnsRemove": (self.removeDNSServer, _("Remove a DNS entry"))
-		}, prio=0, description=dnsDescription)
-		self["removeAction"].setEnabled(False)
-		self["moveUpAction"] = HelpableActionMap(self, ["DNSSettingsActions"], {
-			"moveUp": (self.moveEntryUp, _("Move the current DNS entry up one line"))
-		}, prio=0, description=dnsDescription)
-		self["moveUpAction"].setEnabled(False)
-		self["moveDownAction"] = HelpableActionMap(self, ["DNSSettingsActions"], {
-			"moveDown": (self.moveEntryDown, _("Move the current DNS entry down one line"))
-		}, prio=0, description=dnsDescription)
-		self["moveDownAction"].setEnabled(False)
 
-	def dnsCheck(self, dnsServers, refresh=True, writeback=True):
-		def dnsRefresh(refresh):
-			if refresh:
-				for item in self["config"].getList():
-					if item[1] == config.usage.dns:
-						self["config"].invalidate(item)
-						break
-
-		dnsSource = config.usage.dns.value
-
-		if dnsSource in ("dhcp-router", "dnscrypt"):
-			dnsRefresh(refresh)
-		else:
-			dnsMode = config.usage.dnsMode.value
-			for dnsSource, dnsList in self.dnsOptions.items():
-				if dnsSource in ("dhcp-router", "dnscrypt"):
-					continue
-				if writeback:
-					if dnsSource != "custom":
-						self.dnsOptions["custom"] = [[0, 0, 0, 0]]
-					config.usage.dns.value = dnsSource
-					dnsRefresh(refresh)
-				return dnsSource
-			dnsSource = "custom"
-			if writeback:
-				self.dnsOptions[dnsSource] = dnsServers[:]
-				config.usage.dns.value = dnsSource
-				dnsRefresh(refresh)
-		return dnsSource
+	def defaultGW(self):
+		ifaces = sorted(list(iNetwork.ifaces.keys()))
+		for iface in ifaces:
+			if iNetwork.getAdapterAttribute(iface, "up"):
+				return iNetwork.getAdapterAttribute(iface, "gateway")
+		return [0, 0, 0, 0]
 
 	def createSetup(self):  # NOSONAR silence S2638
-		Setup.createSetup(self)
 		if config.usage.dns.value != "dnscrypt":
-			dnsList = self["config"].getList()
-			if self.dnsStart is not None and 0 <= self.dnsStart <= len(dnsList):
-				del dnsList[self.dnsStart:]
-			self.dnsStart = len(dnsList)
-			items = [NoSave(ConfigIP(default=x)) for x in self.dnsServers if isinstance(x, list)] + [NoSave(ConfigText(default=x, fixed_size=False)) for x in self.dnsServers if isinstance(x, str)]
+			self.dnsServers = self.dnsOptions[config.usage.dns.value][:]
+			v4 = config.usage.dnsMode.value != 3
+			v6 = config.usage.dnsMode.value != 2
+			self.dnsServerItems = []
+			if config.usage.dns.value == "custom":
+				items = []
+				if v4:
+					items.append(NoSave(ConfigIP(self.dnsServers[0])))
+					items.append(NoSave(ConfigIP(self.dnsServers[1])))
+				if v6:
+					items.append(NoSave(ConfigText(default=self.dnsServers[2], fixed_size=False)))
+					items.append(NoSave(ConfigText(default=self.dnsServers[3], fixed_size=False)))
+			else:
+				items = []
+				for addr in self.dnsServers:
+					if v4 and isinstance(addr, list) and len(addr) == 4:
+						items.append(ReadOnly(NoSave(ConfigIP(default=addr))))
+					elif v6 and isinstance(addr, str):
+						items.append(ReadOnly(NoSave(ConfigText(default=addr, fixed_size=False))))
 			entry = None
 			for item, entry in enumerate(items, start=1):
-				dnsList.append(getConfigListEntry(_("Name server %d") % item, entry, _("Enter DNS (Dynamic Name Server) %d's IP address.") % item))
-			self.dnsLength = item if items else 0
-			if self.entryAdded and entry:
-				entry.default = [256, 256, 256, 256]  # This triggers a cancel confirmation for unedited new entries.
-				self.entryAdded = False
-			self["config"].setList(dnsList)
+				name = _("Name server %d") % item
+				if config.usage.dns.value != "custom":
+					name = (name, 0)
+				self.dnsServerItems.append(getConfigListEntry(name, entry, _("Enter DNS (Dynamic Name Server) %d's IP address.") % item))
 		else:
-			self.dnsStart = None
-			self.dnsLength = 0
+			self.dnsServerItems = []
+		Setup.createSetup(self, appendItems=self.dnsServerItems)
 
 	def changedEntry(self):
-		current = self["config"].getCurrent()[1]
-		index = self["config"].getCurrentIndex()
-		if current == config.usage.dns:
-			if config.usage.dns.value == "custom":
-				self.dnsServers = self.dnsOptions["custom"][:]
-			else:
-				self.dnsServers = self.dnsOptions[config.usage.dns.value][:]
-			self.createSetup()
 		if config.usage.dns.value == "custom":
-			if current == config.usage.dns:
-				self.dnsServers = self.dnsOptions[config.usage.dns.value][:]
-			elif current not in (config.usage.dnsMode, config.usage.dnsSuffix, config.usage.DNSCryptPrivacy) and self.dnsStart <= index < self.dnsStart + self.dnsLength:
-				self.dnsServers[index - self.dnsStart] = current.value[:]
-				option = self.dnsCheck(self.dnsServers, refresh=True, writeback=True)  # noqa F841
-		Setup.changedEntry(self)
-		self.updateControls()
-
-	def selectionChanged(self):
-		Setup.selectionChanged(self)
-		self.updateControls()
-
-	def updateControls(self):
-		if config.usage.dns.value == "custom":
-			if self.dnsStart is None:
-				self["key_blue"].setText("")
-				self["removeAction"].setEnabled(False)
-				self["moveUpAction"].setEnabled(False)
-				self["moveDownAction"].setEnabled(False)
-				return
-			index = self["config"].getCurrentIndex() - self.dnsStart
-			if 0 <= index < self.dnsLength:
-				self["key_blue"].setText(_("Delete") if self.dnsLength > 1 or self.dnsServers[0] != [0, 0, 0, 0] else "")
-				self["removeAction"].setEnabled(self.dnsLength > 1 or self.dnsServers[0] != [0, 0, 0, 0])
-				self["moveUpAction"].setEnabled(index > 0)
-				self["moveDownAction"].setEnabled(index < self.dnsLength - 1)
-				return
-		self["key_blue"].setText("")
-		self["removeAction"].setEnabled(False)
-		self["moveUpAction"].setEnabled(False)
-		self["moveDownAction"].setEnabled(False)
+			current = self["config"].getCurrent()
+			if current in self.dnsServerItems:
+				idx = self.dnsServerItems.index(current)
+				if config.usage.dnsMode.value == 3:  # IPV6 only
+					idx += 2
+				value = current[1].value
+				# TODO: validate IPv6
+				self.dnsServers[idx] = value
+		return Setup.changedEntry(self)
 
 	def keySave(self):
 		iNetwork.clearNameservers()
-		for dnsServer in self.dnsServers:
-			iNetwork.addNameserver(dnsServer)
+		if config.usage.dns.value != "custom":
+			for item in self.dnsServerItems:
+				value = item[1].value
+				if value:
+					iNetwork.addNameserver(value)
 		print(f"[NetworkSetup] DNSSettings: Saved DNS list: {str(iNetwork.getNameserverList())}.")
-		# iNetwork.saveNameserverConfig()
 		iNetwork.writeNameserverConfig()
 		if BoxInfo.getItem("DNSCrypt"):
 			self.writeDNSCryptToml()
@@ -382,58 +327,10 @@ class DNSSettings(Setup):
 					break
 
 		if hasChanges:
-			quitData = self.saveAll()
+			self.saveAll()
 			self.session.openWithCallback(self.close, RestartNetwork)
 		else:
 			self.close()
-
-	def addDNSServer(self):
-		self.entryAdded = True
-		self.dnsServers = self.dnsServers + [[0, 0, 0, 0]]
-		self.dnsCheck(self.dnsServers, refresh=False)
-		self.createSetup()
-		self["config"].setCurrentIndex(self.dnsStart + self.dnsLength - 1)
-
-	def removeDNSServer(self):
-		index = self["config"].getCurrentIndex() - self.dnsStart
-		if self.dnsLength == 1:
-			self.dnsServers = [[0, 0, 0, 0]]
-		else:
-			del self.dnsServers[index]
-		self.dnsCheck(self.dnsServers, refresh=False)
-		self.createSetup()
-		if index == self.dnsLength:
-			index -= 1
-		self["config"].setCurrentIndex(self.dnsStart + index)
-
-	def moveEntryUp(self):
-		index = self["config"].getCurrentIndex() - self.dnsStart - 1
-		self.dnsServers.insert(index, self.dnsServers.pop(index + 1))
-		self.dnsCheck(self.dnsServers, refresh=False)
-		self.createSetup()
-		self["config"].setCurrentIndex(self.dnsStart + index)
-
-	def moveEntryDown(self):
-		index = self["config"].getCurrentIndex() - self.dnsStart + 1
-		self.dnsServers.insert(index, self.dnsServers.pop(index - 1))
-		self.dnsCheck(self.dnsServers, refresh=False)
-		self.createSetup()
-		self["config"].setCurrentIndex(self.dnsStart + index)
-
-	def getNetworkRoutes(self):
-		# # cat /proc/net/route
-		# Iface   Destination     Gateway         Flags   RefCnt  Use     Metric  Mask            MTU     Window  IRTT
-		# eth0    00000000        FE08A8C0        0003    0       0       0       00000000        0       0       0
-		# eth0    0008A8C0        00000000        0001    0       0       0       00FFFFFF        0       0       0
-		gateways = []
-		lines = []
-		lines = fileReadLines("/proc/net/route", lines, source=MODULE_NAME)
-		headings = lines.pop(0)  # noqa F841
-		for line in lines:
-			data = line.split()
-			if data[1] == "00000000" and int(data[3]) & 0x03 and data[7] == "00000000":  # If int(flags) & 0x03 is True this is a gateway (0x02) and it is up (0x01).
-				gateways.append((data[0], tuple(reversed([int(data[2][x:x + 2], 16) for x in range(0, len(data[2]), 2)]))))
-		return gateways
 
 	def tomlBool(self, val):
 		return "true" if bool(val) else "false"
@@ -983,14 +880,6 @@ class AdapterSetup(ConfigListScreen, Screen):
 	def runAsync(self, finished_cb):
 		self.finished_cb = finished_cb
 		self.keySave()
-
-	def NameserverSetupClosed(self, *ret):
-		iNetwork.loadNameserverConfig()
-		nameserver = (iNetwork.getNameserverList() + [[0, 0, 0, 0]] * 2)[0:2]
-		self.primaryDNS = NoSave(ConfigIP(default=nameserver[0]))
-		self.secondaryDNS = NoSave(ConfigIP(default=nameserver[1]))
-		self.createSetup()
-		self.layoutFinished()
 
 	def cleanup(self):
 		iNetwork.stopLinkStateConsole()
