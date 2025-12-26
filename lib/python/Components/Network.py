@@ -264,8 +264,8 @@ class Network:
 			if self.ifaces[iface]["up"] and self.ifaces[iface]["dhcp"]:
 				useDHCPforDNS = True
 
-		linesV4 = ["nameserver %d.%d.%d.%d" % tuple(nameserver) for nameserver in self.nameservers if isinstance(nameserver, list)]
-		linesV6 = [f"nameserver {nameserver}" for nameserver in self.nameservers if isinstance(nameserver, str)]
+		linesV4 = ["nameserver %d.%d.%d.%d" % tuple(nameserver) for nameserver in self.nameservers if isinstance(nameserver, list) and nameserver != [0, 0, 0, 0]]
+		linesV6 = [f"nameserver {nameserver}" for nameserver in self.nameservers if isinstance(nameserver, str) and nameserver]
 		match config.usage.dnsMode.value:
 			case 0:
 				lines = linesV4 + linesV6
@@ -275,14 +275,11 @@ class Network:
 				lines = linesV4
 			case 3:
 				lines = linesV6
+		suffix = [f"domain {config.usage.dnsSuffix.value}"] if config.usage.dnsSuffix.value else []
+		rotate = ["options rotate"] if config.usage.dnsRotate.value else []
 		if not useDHCPforDNS:
-			suffix = [f"domain {config.usage.dnsSuffix.value}"] if config.usage.dnsSuffix.value else []
-			rotate = ["options rotate"] if config.usage.dnsRotate.value else []
 			fileWriteLines(self.resolvFile, rotate + suffix + lines, source=MODULE_NAME)
-		if config.usage.dns.value != "dhcp-router":
-			fileWriteLines(self.nameserverFile, lines, source=MODULE_NAME)
-		elif exists(self.nameserverFile):
-			remove(self.nameserverFile)
+		fileWriteLines(self.nameserverFile, rotate + suffix + lines, source=MODULE_NAME)
 
 	def loadNameserverConfig(self, fileName=None):
 		if not fileName:
