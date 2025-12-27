@@ -630,7 +630,7 @@ def InitAVSwitch():
 				fileWriteLine("/sys/class/audiodsp/digital_raw", configElement.value, source=MODULE_NAME)
 			else:
 				value = configElement.value and "downmix" or "passthrough"
-				if MACHINEBUILD in ("dm900", "dm920", "dm7080", "dm800"):
+				if MACHINEBUILD in ("dm900", "dm920", "dm7080", "dm820", "dm520"):
 					value = configElement.value
 				fileWriteLine("/proc/stb/audio/ac3", value, source=MODULE_NAME)
 
@@ -641,7 +641,7 @@ def InitAVSwitch():
 				if multiChannel:
 					config.av.pcm_multichannel.setValue(False)
 
-		if MACHINEBUILD in ("dm900", "dm920", "dm7080", "dm800"):
+		if MACHINEBUILD in ("dm900", "dm920", "dm7080", "dm820", "dm520"):
 			config.av.downmix_ac3 = ConfigSelection(default="downmix", choices=[
 				("downmix", _("Downmix")),
 				("passthrough", _("Pass-through")),
@@ -666,7 +666,7 @@ def InitAVSwitch():
 		def setAC3plusTranscode(configElement):
 			fileWriteLine("/proc/stb/audio/ac3plus", configElement.value, source=MODULE_NAME)
 
-		if MACHINEBUILD in ("dm900", "dm920", "dm7080", "dm800"):
+		if MACHINEBUILD in ("dm900", "dm920", "dm7080", "dm820", "dm520"):
 			choiceList = [
 					("use_hdmi_caps", _("Controlled by HDMI")),
 					("force_ac3", _("Convert to AC3")),
@@ -741,10 +741,10 @@ def InitAVSwitch():
 	BoxInfo.setItem("CanDownmixAAC", aacDownmix)
 	if aacDownmix:
 		def setAACDownmix(configElement):
-			value = configElement.value if MACHINEBUILD in ("dm900", "dm920", "dm7080", "dm800", "gbquad4k", "gbquad4kpro", "gbue4k", "gbx34k") else configElement.value and "downmix" or "passthrough"
+			value = configElement.value if MACHINEBUILD in ("dm900", "dm920", "dm7080", "dm820", "dm520", "gbquad4k", "gbquad4kpro", "gbue4k", "gbx34k") else configElement.value and "downmix" or "passthrough"
 			fileWriteLine("/proc/stb/audio/aac", value, source=MODULE_NAME)
 
-		if MACHINEBUILD in ("dm900", "dm920", "dm7080", "dm800"):
+		if MACHINEBUILD in ("dm900", "dm920", "dm7080", "dm820", "dm520"):
 			config.av.downmix_aac = ConfigSelection(default="downmix", choices=[
 				("downmix", _("Downmix")),
 				("passthrough", _("Pass-through")),
