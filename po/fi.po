@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-12-26 15:56+0000\n"
-"PO-Revision-Date: 2025-12-10 05:52+0000\n"
+"PO-Revision-Date: 2025-12-27 17:57+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15-dev\n"
+"X-Generator: Weblate 5.15.1\n"
 
 msgid ""
 "\n"
@@ -2126,7 +2126,7 @@ msgid "After zap"
 msgstr "Vaihdoin jälkeen"
 
 msgid "Aggregate data only"
-msgstr ""
+msgstr "Aggregoituja tietoja vain"
 
 msgid "Akan"
 msgstr "Akan"
@@ -2388,7 +2388,7 @@ msgid "Animations"
 msgstr "Animaatiot"
 
 msgid "Anonymize client IPs"
-msgstr ""
+msgstr "Anonyymi asiakas IP"
 
 msgid "Antarctica"
 msgstr "Antarctica"
@@ -5474,10 +5474,10 @@ msgid "DNS suffix"
 msgstr "DNS pääte"
 
 msgid "DNSCrypt"
-msgstr ""
+msgstr "DNSCrypt salaus"
 
 msgid "DNSCrypt Resolver"
-msgstr ""
+msgstr "DNSCrypt nimipalvelin"
 
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
@@ -7038,7 +7038,7 @@ msgid "Education/Information"
 msgstr "Koulutus / tiedoitus"
 
 msgid "Education/Science/Factual"
-msgstr ""
+msgstr "Koulutus/Tiede/Faktapohjainen"
 
 msgid "Education/Science/Factual topics"
 msgstr "Koulutus/tiede/tosiasiat (yleinen)"
@@ -7244,7 +7244,7 @@ msgid "Enable intro screen"
 msgstr "Aktivoi aloitusnäyttö"
 
 msgid "Enable monitoring UI"
-msgstr ""
+msgstr "Ota käyttöliittymä valvonta käyttöön"
 
 msgid "Enable multiple bouquets"
 msgstr "Salli useiden suosikkilistojen luonti ja käyttö"
@@ -10565,7 +10565,7 @@ msgid "LED brightness during normal operations."
 msgstr "LED:in kirkkaus normaalitilassa."
 
 msgid "LED color during Deep Standby."
-msgstr ""
+msgstr "LEDin väri Virransäästötilassa."
 
 msgid "LIRC remote"
 msgstr "LIRC kaukosäädin"
@@ -11516,13 +11516,13 @@ msgid "Mongolian"
 msgstr "Mongolia"
 
 msgid "Monitoring UI password"
-msgstr ""
+msgstr "Valvonta käyttöliittymän salasana"
 
 msgid "Monitoring UI port"
-msgstr ""
+msgstr "Valvontakäyttöliittymän portti"
 
 msgid "Monitoring UI username"
-msgstr ""
+msgstr "Valvontakäyttöliittymän käyttäjänimi"
 
 msgid "Montenegro"
 msgstr "Montenegro"
@@ -12931,13 +12931,13 @@ msgid "Only on startup"
 msgstr "Vain käynnistettäessä"
 
 msgid "Only use DNS servers implementing the DNS-over-HTTPS protocol. This causes DNS lookups to be made via the encrypted HTTPS protocol."
-msgstr ""
+msgstr "Käytä vain DNS palvelimia, jotka tukevat DNS-over-HTTPS -protokollaa. Tämä tarkoittaa, että DNS kyselyt tehdään salatun HTTPS protokollan kautta."
 
 msgid "Only use DNS servers implementing the DNSCrypt protocol."
-msgstr ""
+msgstr "Käytä vain DNS palvelimia, jotka tukevat DNSCrypt protokollaa."
 
 msgid "Only use DNS servers implementing the Oblivious DNS-over-HTTPS protocol. This adds another layer of privacy by adding a proxy layer to the DNS-over-HTTPS request."
-msgstr ""
+msgstr "Käytä vain DNS palvelimia, jotka tukevat Oblivious DNS-over-HTTPS -protokollaa. Tämä lisää yksityisyyttä lisäämällä välityskerroksen DNS-over-HTTPS -pyyntöön."
 
 msgid "Open"
 msgstr "Avaa"
@@ -14346,7 +14346,7 @@ msgid "Priority"
 msgstr "Prioriteetti"
 
 msgid "Privacy level"
-msgstr ""
+msgstr "Yksityisyyden taso"
 
 msgid "Problem starting scan"
 msgstr "virhe käynnistettäessä skannausta"
@@ -15171,7 +15171,7 @@ msgid "Removing"
 msgstr "Poistetaan"
 
 msgid "Removing Service"
-msgstr "Poistetaan kanavia"
+msgstr "Poistetaan palvelua"
 
 msgid "Removing partition table"
 msgstr "Poistetaan levyosioita"
@@ -16221,7 +16221,7 @@ msgid "Select 'Yes' to enable AI-Powered Translation for all teletext and DVB su
 msgstr "Ota tekoälyn käännös käyttöön teksti-tv:lle ja DVB-tekstityksille."
 
 msgid "Select 'Yes' to enable DNS entry rotation. This rotation changes the order in which the list of DNS servers is used and can avoid issues if a DNS server in the list becomes unavailable."
-msgstr ""
+msgstr "Valitse 'Kyllä' ottaaksesi DNS-tietueiden kierron käyttöön. Tämä kierto muuttaa DNS-palvelimien käytön järjestystä listalla ja voi estää ongelmia, jos jokin listan palvelimista ei ole käytettävissä."
 
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr "Valitse Kyllä, jos haluat ottaa tämän laitteen asetusten muokkaamisen käyttöön. Jos valitset Ei, laiteasetukset palautetaan oletusarvoihinsa."
@@ -17302,7 +17302,7 @@ msgstr "Palvelin kaatunut"
 msgid "Server must not enforce its own blocklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
 msgstr ""
 
-msgid "Server must not log user queries (declarative). This can improve the privacy of DNS lookups by not not logging the request on the server providing the data."
+msgid "Server must not log user queries (declarative). This can improve the privacy of DNS lookups by not logging the request on the server providing the data."
 msgstr ""
 
 msgid "Server must support DNS Security Extensions (DNSSEC). This is a data signing option that protects the integrity of the DNS data against compromises like cache poisoning."
@@ -23767,7 +23767,7 @@ msgstr "Käänteinen aakkosjärjestys, uusin ensin"
 msgid "am"
 msgstr "aamu"
 
-msgid "aqua"
+msgid "Aqua"
 msgstr "meren sininen"
 
 #, python-format
@@ -23784,7 +23784,7 @@ msgstr "ääniraidat"
 msgid "automatic"
 msgstr "automaattinen"
 
-msgid "azure"
+msgid "Azure"
 msgstr "taivaansininen"
 
 msgid "back"
@@ -24036,8 +24036,8 @@ msgstr "vasen"
 msgid "length"
 msgstr "pituus"
 
-msgid "lime"
-msgstr "lime"
+msgid "Lime"
+msgstr "Lime"
 
 msgid "locked"
 msgstr "lukittu"
@@ -24117,13 +24117,13 @@ msgstr "Pois tai WPA2 päällä"
 msgid "offset is"
 msgstr "offsetin määrä"
 
-msgid "olympic blue"
+msgid "Olympic blue"
 msgstr "olympian sininen"
 
 msgid "on READ ONLY medium."
 msgstr "vain-luku levystä."
 
-msgid "orange"
+msgid "Orange"
 msgstr "oranssi"
 
 msgid "package"
@@ -24135,7 +24135,7 @@ msgstr "paketit"
 msgid "pid:"
 msgstr "pid:"
 
-msgid "pink"
+msgid "Pink"
 msgstr "vaaleanpunainen"
 
 msgid "please wait, loading picture..."
@@ -24156,7 +24156,7 @@ msgstr "p.tarj:"
 msgid "provider:"
 msgstr "palveluntarjoaja:"
 
-msgid "purple"
+msgid "Purple"
 msgstr "violetti"
 
 msgid "red"
@@ -24189,7 +24189,7 @@ msgstr "kelaa edelliseen kappaleeseen"
 msgid "right"
 msgstr "oikea"
 
-msgid "rose"
+msgid "Rose"
 msgstr "ruusun punainen"
 
 msgid ""

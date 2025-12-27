@@ -19,8 +19,8 @@ msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-12-26 15:56+0000\n"
-"PO-Revision-Date: 2025-12-26 18:15+0000\n"
-"Last-Translator: Masowick <Demian@gmx.co.uk>\n"
+"PO-Revision-Date: 2025-12-27 17:57+0000\n"
+"Last-Translator: VfBFan <drop0815@posteo.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -1593,11 +1593,15 @@ msgstr "Eine durch Kommas getrennte Liste von Erweiterungen, die für die Einste
 
 #, python-format
 msgid "A completed task wants to set your %s %s to standby. Do that now?"
-msgstr "Eine abgeschlossene Aufgabe möchte %s %s in Standby versetzen. Dies jetzt tun?"
+msgstr ""
+"Eine abgeschlossene Aufgabe möchte %s %s in Standby versetzen.\n"
+"Dies jetzt ausführen?"
 
 #, python-format
 msgid "A completed task wants to shut down your %s %s. Shutdown now?"
-msgstr "Eine abgeschlossene Aufgabe möchte %s %s herunterfahren. Jetzt herunterfahren?"
+msgstr ""
+"Eine abgeschlossene Aufgabe möchte %s %s herunterfahren.\n"
+"Dies jetzt ausführen?"
 
 #, python-format
 msgid "A crash log was %s created in '%s'"
@@ -1649,7 +1653,7 @@ msgstr ""
 msgid "A finished scheduled timer wants to shut down your %s %s. Do that now?"
 msgstr ""
 "Eine Zeitplaneraufgabe möchte %s %s herunterfahren.\n"
-"Jetzt herunterfahren?"
+"Dies jetzt ausführen?"
 
 msgid "A highlight on the remote control image shows which button the help refers to. If more than one button performs the indicated function, more than one highlight will be shown. Text below the list lists the active buttons and whether the function requires a long press or SHIFT of the button(s)."
 msgstr "Die Hervorhebung auf dem Fernbedienungsbild zeigt an, auf welche Tasten sich die Hilfe bezieht. Wenn mehr als eine Taste die angegebene Funktion ausführt, werden mehrere Markierungen angezeigt. Der Text unterhalb der Liste listet die aktiven Tasten auf und gibt an, ob die Funktion ein langes Drücken oder SHIFT der Taste(n) erfordert."
@@ -2849,7 +2853,7 @@ msgid "Auto chapter split every ? minutes (0=never)"
 msgstr "Automatischer Kapitelwechsel alle x Minuten (0=nie)"
 
 msgid "Auto deep standby"
-msgstr "Automatisch in Deep-Standby"
+msgstr "Automatisch herunterfahren"
 
 msgid "Auto detect"
 msgstr "Automatische Erkennung"
@@ -2933,7 +2937,7 @@ msgid "Automatic shares access"
 msgstr "Auto-Share-Zugriff"
 
 msgid "Automatically put the TV in Standby whenever the receiver goes into Standby or Deep Standby."
-msgstr "Den Fernseher automatisch zusammen mit dem Receiver in Standby oder Deep-Standby versetzen."
+msgstr "Den Fernseher automatisch zusammen mit dem Receiver in Standby versetzen oder herunterfahren."
 
 msgid "Automatically start time shift after"
 msgstr "Automatisch Timeshift starten nach"
@@ -6046,7 +6050,7 @@ msgstr "Entschlüsselung / Jugendschutz"
 
 #
 msgid "Deep Standby"
-msgstr "Deep-Standby"
+msgstr "Herunterfahren"
 
 msgid "Default"
 msgstr "Standard"
@@ -7612,7 +7616,7 @@ msgid "Enable intro screen"
 msgstr "Begrüßungsbildschirm aktivieren"
 
 msgid "Enable monitoring UI"
-msgstr ""
+msgstr "Überwachungs-UI aktivieren"
 
 msgid "Enable multiple bouquets"
 msgstr "Mehrere Favoritenlisten erlauben"
@@ -12097,13 +12101,13 @@ msgid "Mongolian"
 msgstr "Mongolisch"
 
 msgid "Monitoring UI password"
-msgstr ""
+msgstr "Überwachungs-UI-Passwort"
 
 msgid "Monitoring UI port"
-msgstr ""
+msgstr "Überwachungs-UI-Port"
 
 msgid "Monitoring UI username"
-msgstr ""
+msgstr "Überwachungs-UI-Benutzername"
 
 msgid "Montenegro"
 msgstr "Montenegro"
@@ -12119,7 +12123,7 @@ msgstr "Marokko"
 
 #
 msgid "Mosquito noise reduction"
-msgstr "Mosquito-Rauschen-Reduzierung"
+msgstr "Mosquito-Rauschreduzierung"
 
 msgid "Most recent first"
 msgstr "Der neueste oben"
@@ -13625,13 +13629,13 @@ msgid "Only on startup"
 msgstr "Nur beim Start"
 
 msgid "Only use DNS servers implementing the DNS-over-HTTPS protocol. This causes DNS lookups to be made via the encrypted HTTPS protocol."
-msgstr ""
+msgstr "Nur DNS-Server verwenden, die das DNS-over-HTTPS-Protokoll implementieren. Dadurch werden DNS-Lookups über das verschlüsselte HTTPS-Protokoll durchgeführt."
 
 msgid "Only use DNS servers implementing the DNSCrypt protocol."
-msgstr ""
+msgstr "Nur DNS-Server verwenden, die das DNSCrypt-Protokoll implementieren."
 
 msgid "Only use DNS servers implementing the Oblivious DNS-over-HTTPS protocol. This adds another layer of privacy by adding a proxy layer to the DNS-over-HTTPS request."
-msgstr ""
+msgstr "Nur DNS-Server verwenden, die das Oblivious-DNS-over-HTTPS-Protokoll implementieren. Dies sorgt für zusätzliche Privatsphäre, indem eine Proxy-Ebene zur DNS-over-HTTPS-Anfrage hinzugefügt wird."
 
 msgid "Open"
 msgstr "Öffnen"
@@ -15165,7 +15169,7 @@ msgid "Priority"
 msgstr "Priorität"
 
 msgid "Privacy level"
-msgstr ""
+msgstr "Datenschutzstufe"
 
 msgid "Problem starting scan"
 msgstr "Fehler beim Start der Suche!"
@@ -16246,7 +16250,9 @@ msgid "Restart enigma"
 msgstr "Enigma2 neu starten"
 
 msgid "Restart necessary, restart GUI now?"
-msgstr "Neustart der Bedienoberfläche erforderlich! Diese jetzt neu starten?"
+msgstr ""
+"Neustart der Bedienoberfläche erforderlich!\n"
+"Diese jetzt neu starten?"
 
 msgid "Restart needed, press OK to restart"
 msgstr "Neustart erforderlich! Dazu jetzt OK drücken."
@@ -17182,7 +17188,7 @@ msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, us
 msgstr "Bei 'Ja' werden alle vorhandenen Favoritenlisten geladen, auch wenn sie nicht in 'bouquets.tv' oder 'bouquets.radio' enthalten sind. Dies ermöglicht zum Beispiel die eigenen Favoritenlisten zu erhalten, während die Einstellungen aktualisiert werden."
 
 msgid "Select 'Yes' to enable the monitoring UI web interface for the DNSCrypt subsystem."
-msgstr ""
+msgstr "'Ja' auswählen, um die Überwachungs-UI-Webschnittstelle für das DNSCrypt-Subsystem zu aktivieren."
 
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr "'Ja' auswählen, um mit LINKS/RECHTS eine Seite Auf/Ab zu blättern, allerdings nur, solange die Tasten LINKS/RECHTS nicht anderweitig belegt sind. Das ermöglicht herkömmliche Navigation, falls diese bevorzugt wird."
@@ -17343,7 +17349,9 @@ msgid "Select 'Yes' to use legacy navigation where CH+/- swaps the active column
 msgstr "'Ja', um die alte Navigation zu verwenden, bei der CH+/- die aktive Spalte wechselt. 'Nein', um die neue einheitliche Navigation mit anderen Bildschirmen zu verwenden, bei der LINKS/RECHTS die aktive Spalte wechselt und CH+/- seitenweise durchblättert."
 
 msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older API V3. This API version has now been superseded."
-msgstr "Bei 'Ja' werden die Signalwerte (SNR usw.) aus API V3 berechnet. Dies ist eine alte API-Version, die jetzt ersetzt wurde."
+msgstr ""
+"Bei 'Ja' werden die Signalwerte (SNR usw.) aus API V3 berechnet.\n"
+"Dies ist eine alte API-Version, die jetzt ersetzt wurde."
 
 msgid "Select 'Yes' to use the number keys for quick selection of files / directories, select 'No' to use the number keys for MENU option shortcuts."
 msgstr "'Ja' auswählen, um die Zahlentasten zur schnellen Anwahl von Dateien/Verzeichnissen zu verwenden. 'Nein', um sie für die Auswahl von MENU-Optionen zu verwenden."
@@ -18278,13 +18286,13 @@ msgid "Server down"
 msgstr "Server ist Offline!"
 
 msgid "Server must not enforce its own blocklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
-msgstr ""
+msgstr "Der Server darf keine eigene Sperrliste durchsetzen. Einige Server implementieren sie aber möglicherweise, um Websites aus Gründen der Kindersicherung, der Werbeblockierung usw. zu sperren."
 
-msgid "Server must not log user queries (declarative). This can improve the privacy of DNS lookups by not not logging the request on the server providing the data."
-msgstr ""
+msgid "Server must not log user queries (declarative). This can improve the privacy of DNS lookups by not logging the request on the server providing the data."
+msgstr "Der Server darf keine Benutzeranfragen protokollieren (deklarativ). Dies kann die Privatsphäre bei DNS-Lookups verbessern, da die Anfrage nicht auf dem Server protokolliert wird, der die Daten bereitstellt."
 
 msgid "Server must support DNS Security Extensions (DNSSEC). This is a data signing option that protects the integrity of the DNS data against compromises like cache poisoning."
-msgstr ""
+msgstr "Der Server muss DNS Security Extensions (DNSSEC) unterstützen. Hierbei handelt es sich um eine Option zur Datensignierung, die die Integrität der DNS-Daten vor Kompromittierungen wie Cache-Poisoning schützt."
 
 msgid "Servers"
 msgstr "Server"
@@ -18593,16 +18601,16 @@ msgid "Set the jump-size of the SeekBar."
 msgstr "Die Sprungweite für die Suchleiste einstellen."
 
 msgid "Set the number of lines to be saved for 'stout' and 'sterr' output in scripts."
-msgstr "Anzahl der Zeilen für 'stout' und 'sterr' in Skript Ausgaben festlegen."
+msgstr "Die Anzahl der Zeilen für die Ausgaben 'stout' und 'sterr' in Skripten festlegen."
 
 msgid "Set the password for the monitoring UI web interface."
-msgstr ""
+msgstr "Das Passwort für die Webschnittstelle der Überwachungs-UI festlegen."
 
 msgid "Set the password of the OpenWebif from your fallback tuner."
 msgstr "Das Passwort vom OpenWebif des Reservetuners eintragen."
 
 msgid "Set the port address (8080-9999) for the monitoring UI web interface."
-msgstr ""
+msgstr "Die Portadresse (8080–9999) für die Webschnittstelle der Überwachungs-UI festlegen."
 
 msgid "Set the port of the OpenWebif from your fallback tuner."
 msgstr "Den Port vom OpenWebif des Reservetuners eintragen."
@@ -18611,7 +18619,7 @@ msgid "Set the position of the recording icons."
 msgstr "Die Position der Aufnahmesymbole einstellen."
 
 msgid "Set the privacy level for the monitoring UI web interface."
-msgstr ""
+msgstr "Die Datenschutzstufe für die Webschnittstelle der Überwachungs-UI festlegen."
 
 # Menue Anpassungen OSD
 msgid "Set the screen type you see on pressing 'OK' when the InfoBar shows the second InfoBar Lite or event info."
@@ -18624,10 +18632,10 @@ msgid "Set the scrolling speed of text on the front display."
 msgstr "Die Scrollgeschwindigkeit für Text im Display einstellen."
 
 msgid "Set the skip time interval for the '%s' button."
-msgstr "Sprungzeit für die Taste '%s' festlegen."
+msgstr "Die Sprungzeit für die Taste '%s' festlegen."
 
 msgid "Set the skip time interval for the '%s'/'%s' buttons."
-msgstr "Sprungzeit für die Tasten '%s'/'%s' festlegen."
+msgstr "Die Sprungzeit für die Tasten '%s'/'%s' festlegen."
 
 msgid "Set the time before checking video source for resolution information."
 msgstr "Die Verzögerungszeit einstellen, bevor die automatische Auflösung die Videoquelle prüft."
@@ -18648,17 +18656,17 @@ msgid "Set the time to wait for execute the default action in shutdown, standby 
 msgstr "Die Wartezeit für das Ausführen der Standardaktion in den Meldungen 'Ausschalten', 'Standby' oder 'Neustart' einstellen (wird zum Beispiel in Aufnahmetimer, Ausschalttimer, Zeitplaneraufgaben usw. verwendet)."
 
 msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at 0,0 and the bottom right is at 1260,700. Note that the position is the top left of the spinner and not the centre of the spinner."
-msgstr "Obere linke Position des Spinners (Beschäftigungsanzeige) einstellen. Oben links ist 0,0, unten rechts 1260,700. Die Position ist die obere linke Ecke des Spinners, nicht dessen Mitte."
+msgstr "Die obere linke Position des Spinners (Beschäftigungsanzeige) einstellen. Oben links ist 0,0, unten rechts 1260,700. Die Position ist die obere linke Ecke des Spinners, nicht dessen Mitte."
 
 msgid "Set the type of the progress indication in the channel selection screen."
-msgstr "Anzeige der Fortschrittsanzeige in der Senderliste einstellen."
+msgstr "Die Anzeige der Fortschrittsanzeige in der Senderliste einstellen."
 
 msgid "Set the username for the monitoring UI web interface."
-msgstr ""
+msgstr "Den Benutzernamen für die Webschnittstelle der Überwachungs-UI festlegen."
 
 #, python-format
 msgid "Set the volume level for the '%s' service."
-msgstr "Lautstärkepegel für den Sender '%s' festlegen."
+msgstr "Den Lautstärkepegel für den Sender '%s' festlegen."
 
 #, python-format
 msgid "Set the volume offset for the '%s' service."
@@ -18723,7 +18731,7 @@ msgstr ""
 "Bei Hybridtunermodellen wird der Tunertyp mit den Tasten LINKS und RECHTS umgeschaltet."
 
 msgid "Set voltage and 22KHz"
-msgstr "Setze Spannung und 22kHz"
+msgstr "Spannung und 22 kHz setzen"
 
 msgid "Sets the root directory of media list. This removes the '..' entry from being shown in that directory."
 msgstr "Das Rootverzeichnis der Aufnahmeliste auswählen, um '..' in der Ansicht zu unterdrücken."
@@ -23259,19 +23267,19 @@ msgid "Use DHCP"
 msgstr "Adresse automatisch beziehen (DHCP)"
 
 msgid "Use DNS cache"
-msgstr ""
+msgstr "DNS-Cache verwenden"
 
 msgid "Use DNS rotation"
 msgstr "DNS-Rotation verwenden"
 
 msgid "Use DNSCrypt servers"
-msgstr ""
+msgstr "DNSCrypt-Server verwenden"
 
 msgid "Use Deinterlacing for 1080i Videosignal?"
 msgstr "Deinterlacing für 1080i-Videosignal verwenden?"
 
 msgid "Use DoH servers"
-msgstr ""
+msgstr "DoH-Server verwenden"
 
 msgid "Use EIT EPG information when it is available."
 msgstr "Bei 'Ja' werden EIT-EPG-Informationen verwendet, wenn sie verfügbar sind."
@@ -23298,7 +23306,7 @@ msgid "Use Netmed EPG information when it is available."
 msgstr "Bei 'Ja' werden Netmed-EPG-Informationen verwendet, wenn sie verfügbar sind."
 
 msgid "Use ODoH servers"
-msgstr ""
+msgstr "ODoH-Server verwenden"
 
 msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
 msgstr ""
@@ -23328,7 +23336,7 @@ msgid "Use Zap timer end times"
 msgstr "Endzeiten der Umschalttimer verwenden"
 
 msgid "Use a DNS cache to locally store recent DNS lookups to improve performance, reduce latency and outgoing traffic."
-msgstr ""
+msgstr "Einen DNS-Cache verwenden, um die letzten DNS-Lookups lokal zu speichern, die Leistung zu verbessern, die Latenz zu reduzieren und den ausgehenden Datenverkehr zu verringern."
 
 #
 msgid "Use a gateway"
@@ -23404,16 +23412,16 @@ msgid "Use official channel numbering"
 msgstr "Offizielle Sendernummerierung verwenden"
 
 msgid "Use only DNSSEC servers"
-msgstr ""
+msgstr "Nur DNSSEC-Server verwenden"
 
 msgid "Use only for Wake on WLan (WoW)"
 msgstr "Nur für Wake on WLAN (WoW) aktivieren"
 
 msgid "Use only no-filter servers"
-msgstr ""
+msgstr "Nur Server ohne Filter verwenden"
 
 msgid "Use only no-log servers"
-msgstr ""
+msgstr "Nur No-Log-Server verwenden"
 
 msgid "Use original DVB subtitle position"
 msgstr "Position der DVB-Untertitel"
@@ -25128,7 +25136,7 @@ msgstr "Umgekehrt alphabetisch, dann neueste"
 msgid "am"
 msgstr "am"
 
-msgid "aqua"
+msgid "Aqua"
 msgstr "Aqua"
 
 #
@@ -25149,7 +25157,7 @@ msgstr "Tonspuren"
 msgid "automatic"
 msgstr "Automatisch"
 
-msgid "azure"
+msgid "Azure"
 msgstr "Azurblau"
 
 #
@@ -25437,7 +25445,7 @@ msgstr "Links"
 msgid "length"
 msgstr "Länge"
 
-msgid "lime"
+msgid "Lime"
 msgstr "Limette"
 
 #
@@ -25530,14 +25538,14 @@ msgstr "aus oder WPA2 an"
 msgid "offset is"
 msgstr "Versatz ist"
 
-msgid "olympic blue"
+msgid "Olympic blue"
 msgstr "Olympisches Blau"
 
 #
 msgid "on READ ONLY medium."
 msgstr "Auf dem nicht beschreibbaren Medium."
 
-msgid "orange"
+msgid "Orange"
 msgstr "Orange"
 
 msgid "package"
@@ -25549,7 +25557,7 @@ msgstr "Pakete"
 msgid "pid:"
 msgstr "PID:"
 
-msgid "pink"
+msgid "Pink"
 msgstr "Rosa"
 
 #
@@ -25571,7 +25579,7 @@ msgstr "Bereitstellen:"
 msgid "provider:"
 msgstr "Anbieter:"
 
-msgid "purple"
+msgid "Purple"
 msgstr "Lila"
 
 #
@@ -25610,7 +25618,7 @@ msgstr "Zum vorherigen Kapitel zurück"
 msgid "right"
 msgstr "Rechts"
 
-msgid "rose"
+msgid "Rose"
 msgstr "Rosé"
 
 msgid ""
