@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-26 15:56+0000\n"
+"POT-Creation-Date: 2025-12-27 18:13+0000\n"
 "PO-Revision-Date: 2025-12-27 17:57+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
@@ -2444,6 +2444,9 @@ msgstr "Aplikovať všetky zmeny do aktívneho miestneho nastavenia/jazyka a uko
 msgid "Apply the currently highlighted locale/language and exit"
 msgstr "Použiť aktuálne zvýraznené miestne nastavenie/jazyk a ukončiť"
 
+msgid "Aqua"
+msgstr "modrá (aqua)"
+
 msgid "Arabic"
 msgstr "arabčina"
 
@@ -2859,6 +2862,9 @@ msgstr "Azerbajdžan"
 
 msgid "Azerbaijani"
 msgstr "azerbajdžančina"
+
+msgid "Azure"
+msgstr "azúrová"
 
 msgid "B"
 msgstr "B"
@@ -5862,7 +5868,7 @@ msgstr "Predvolený režim videa vybraný pre TV."
 msgid "Default volume offset"
 msgstr "Predvolený posun hlasitosti"
 
-msgid "Default wake-up is 5 minutes before Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
+msgid "Default wake-up is 5 minutes prior to timer start to wake up from Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
 msgstr "Predvolené nastavenie je 5 minút pred prebudením z režimu vypnutia. Upravte hodnotu v prípade, že je to príliš skoro alebo neskoro, napríklad pri používaní sieťových zariadení."
 
 #, python-format
@@ -6402,7 +6408,7 @@ msgstr "Vypnutý PiP.\n"
 msgid "Disabled or WPA/WPA2"
 msgstr "Deaktivované alebo WPA/WPA2"
 
-msgid "Disables timeshift during recording (advisable for USB sticks)."
+msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
 msgstr "Zablokuje timeshift počas nahrávania (odporúča sa pre USB kľúče)."
 
 msgid "Disabling Chkroot failed!"
@@ -6849,7 +6855,7 @@ msgstr "Duplex"
 msgid "Duplicate the current line"
 msgstr "Duplikovať aktuálny riadok"
 
-msgid "During this time, the transmitter and recording destination are checked. If the destination (e.g., NAS) isn’t ready in time, this time can be increased."
+msgid "During this time, the transmitter and recording destination are checked. If the destination (e.g., NAS) isn't ready in time, this time can be increased."
 msgstr "V tomto čase sa kontroluje zdroj a cieľ nahrávania. Ak nie je cieľ (napr. NAS) včas pripravený na nahrávanie, je možné tento limit predĺžiť."
 
 msgid "Dutch"
@@ -7386,7 +7392,7 @@ msgstr "Povolené"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Povolí prijímaču dekódovať streamy (ak sú v streame zahrnuté ECM dáta a je k dispozícii platná karta)."
 
-msgid "Enables sending the same TV commands for Deep Standby as for regular Standby."
+msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "Aktivuje sa odosielanie rovnakých príkazov do TV pre vypnutie, ako aj pre normálny pohotovostný režim."
 
 msgid "Encrypted: "
@@ -8304,7 +8310,7 @@ msgstr "Záložný vzdialený prijímač pre DVB-C"
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Záložný vzdialený prijímač pre DVB-T"
 
-msgid "Fallback tuner setup"
+msgid "Fallback Tuner Setup"
 msgstr "Nastavenie záložného tuneru"
 
 msgid "False"
@@ -10763,6 +10769,9 @@ msgstr "Zdroj svetla"
 msgid "Limburgan / Limburger / Limburgish"
 msgstr "limburčina"
 
+msgid "Lime"
+msgstr "limetková"
+
 msgid "Limit character set for recording filenames"
 msgstr "Obmedzená znaková sada pre názvy súborov s nahrávkami"
 
@@ -11545,15 +11554,6 @@ msgstr "Mongolsko"
 
 msgid "Mongolian"
 msgstr "Mongolčina"
-
-msgid "Monitoring UI password"
-msgstr "Heslo pre monitorovanie použív. rozhranie"
-
-msgid "Monitoring UI port"
-msgstr "Port monitorovacieho použív. rozhrania"
-
-msgid "Monitoring UI username"
-msgstr "Meno používateľa pre monitorovacie použív. rozhranie"
 
 msgid "Montenegro"
 msgstr "Čierna Hora"
@@ -12896,6 +12896,9 @@ msgstr "odžibwa"
 msgid "Older files in the time shift directory are removed on every event change."
 msgstr "Staršie súbory v priečinku pre timeshift sa odstraňujú pri každej zmene udalostí."
 
+msgid "Olympic blue"
+msgstr "olympijská modrá"
+
 msgid "Olympics"
 msgstr "Olympiáda"
 
@@ -13183,6 +13186,9 @@ msgstr "Voliteľný parameter"
 
 msgid "Options"
 msgstr "Možnosti"
+
+msgid "Orange"
+msgstr "oranžová"
 
 msgid "Orbital position"
 msgstr "Orbitálna pozícia"
@@ -13622,6 +13628,9 @@ msgstr "Pillarbox"
 
 msgid "Pilot"
 msgstr "Pilot"
+
+msgid "Pink"
+msgstr "ružová"
 
 msgid "Pitcairn"
 msgstr "Pitcairnove ostrovy"
@@ -14541,6 +14550,9 @@ msgstr "Vyčistiť všetko okrem aktuálnyvh a trvalých miestnych nastavení/ja
 
 msgid "Purging all unused locales/languages..."
 msgstr "Čistenie všetkých nepoužívaných miestnych nastavení alebo jazykov…"
+
+msgid "Purple"
+msgstr "purpurová"
 
 msgid "Pushto / Pashto"
 msgstr "paštčina"
@@ -15579,6 +15591,9 @@ msgstr "Koreňový priečinok"
 
 msgid "Root file"
 msgstr "Koreňový súbor"
+
+msgid "Rose"
+msgstr "ružová"
 
 msgid "Rotor turning speed"
 msgstr "Rýchlosť otáčania motora"
@@ -22771,7 +22786,7 @@ msgstr "Prebudiť TV z pohotovostného režimu"
 msgid "Wake up from Deep-Standby is allowed"
 msgstr "Prebudenie zo stavu vypnutia je povolené"
 
-msgid "Wake up time before a timer begins [mins]"
+msgid "Wake up time before a timer begins"
 msgstr "Čas prebudenia pred začiatkom časovača (min.)"
 
 msgid "Wake up to standby"
@@ -23126,7 +23141,7 @@ msgstr "Po prebudení prijímača z pohotovostného režimu sa televízor prepne
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
 msgstr "Keď bude viditeľný červený rámik, uložte nastavenia ZELENÝM tlačidlom a dokončite proces."
 
-msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you’re doing."
+msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you're doing."
 msgstr "Po naladení na stanicu/službu systém zvyčajne vyhľadá na transpondéri všetky zmeny a uloží ich. Zapínajte len vtedy, keď viete, čo to spôsobí."
 
 msgid "When yes, VPS will be enabled on instant records (stop after current event), if the channel supports VPS."
@@ -23773,9 +23788,6 @@ msgstr "podľa abecedy obrátene, potom najnovšie"
 msgid "am"
 msgstr "am"
 
-msgid "Aqua"
-msgstr "modrá (aqua)"
-
 #, python-format
 msgid "audio track (%s) format"
 msgstr "formát zvukovej stopy (%s)"
@@ -23789,9 +23801,6 @@ msgstr "zvukové stopy"
 
 msgid "automatic"
 msgstr "automaticky"
-
-msgid "Azure"
-msgstr "azúrová"
 
 msgid "back"
 msgstr "späť"
@@ -24042,9 +24051,6 @@ msgstr "ľavý"
 msgid "length"
 msgstr "dĺžka"
 
-msgid "Lime"
-msgstr "limetková"
-
 msgid "locked"
 msgstr "zamknuté"
 
@@ -24123,14 +24129,8 @@ msgstr "vypnuté alebo zapnuté WPA2"
 msgid "offset is"
 msgstr "posun je"
 
-msgid "Olympic blue"
-msgstr "olympijská modrá"
-
 msgid "on READ ONLY medium."
 msgstr "na READ ONLY médium."
-
-msgid "Orange"
-msgstr "oranžová"
 
 msgid "package"
 msgstr "balíček"
@@ -24140,9 +24140,6 @@ msgstr "balíčky"
 
 msgid "pid:"
 msgstr "pid:"
-
-msgid "Pink"
-msgstr "ružová"
 
 msgid "please wait, loading picture..."
 msgstr "Načítava sa obrázok. Čakajte, prosím…"
@@ -24161,9 +24158,6 @@ msgstr "poskyt.:"
 
 msgid "provider:"
 msgstr "poskytovateľ:"
-
-msgid "Purple"
-msgstr "purpurová"
 
 msgid "red"
 msgstr "červené"
@@ -24194,9 +24188,6 @@ msgstr "pretočiť na predchádzajúcu kapitolu"
 
 msgid "right"
 msgstr "pravý"
-
-msgid "Rose"
-msgstr "ružová"
 
 msgid ""
 "satellites.xml not found or corrupted!\n"
@@ -24362,9 +24353,6 @@ msgstr "čaká sa na mmi…"
 msgid "west"
 msgstr "západ"
 
-msgid "white"
-msgstr "biele"
-
 msgid "width"
 msgstr "šírka"
 
@@ -24392,6 +24380,18 @@ msgstr "áno (zachovať zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Monitoring UI password"
+#~ msgstr "Heslo pre monitorovanie použív. rozhranie"
+
+#~ msgid "Monitoring UI port"
+#~ msgstr "Port monitorovacieho použív. rozhrania"
+
+#~ msgid "Monitoring UI username"
+#~ msgstr "Meno používateľa pre monitorovacie použív. rozhranie"
+
+#~ msgid "white"
+#~ msgstr "biele"
 
 #~ msgid "Add a DNS entry"
 #~ msgstr "Pridať záznam DNS"

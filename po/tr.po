@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-26 15:56+0000\n"
+"POT-Creation-Date: 2025-12-27 18:13+0000\n"
 "PO-Revision-Date: 2025-04-14 12:33+0000\n"
 "Last-Translator: tanerkaderli <taner.kaderli@live.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -2476,6 +2476,9 @@ msgstr "Etkin yerel ayara/dile tüm değişiklikleri uygulayın ve çıkın"
 msgid "Apply the currently highlighted locale/language and exit"
 msgstr "Şu anda vurgulanan yerel ayarı/dili uygulayın ve çıkın"
 
+msgid "Aqua"
+msgstr "su"
+
 #
 msgid "Arabic"
 msgstr "Arapça"
@@ -2912,6 +2915,9 @@ msgstr "Azerbeycan"
 
 msgid "Azerbaijani"
 msgstr "Azerbeycanca"
+
+msgid "Azure"
+msgstr "masmavi"
 
 #
 msgid "B"
@@ -6031,7 +6037,7 @@ msgstr "TV için seçilen varsayılan video modu."
 msgid "Default volume offset"
 msgstr "Varsayılan birim ofseti"
 
-msgid "Default wake-up is 5 minutes before Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
+msgid "Default wake-up is 5 minutes prior to timer start to wake up from Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
 msgstr "Varsayılan ayarlar derin bekleme modundan uyanmak için 5 dakika öncedir. Bunu değiştirmek muhtemelen gerekli olabilir. (örneğin: gerçek uyanma süresi yanlış veya geç, bir ağ sürücüsünü bekliyor vb.)"
 
 #, python-format
@@ -6595,7 +6601,7 @@ msgstr "Engelli PIP.\n"
 msgid "Disabled or WPA/WPA2"
 msgstr "Devre dışı veya WPA/WPA2"
 
-msgid "Disables timeshift during recording (advisable for USB sticks)."
+msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
 msgstr "Bir kaydın devam etmesi durumunda durdurmanın zaman kayması kullanılır. (USB çubukları için tavsiye edilir)"
 
 msgid "Disabling Chkroot failed!"
@@ -7064,7 +7070,7 @@ msgstr "Dubleks"
 msgid "Duplicate the current line"
 msgstr "Geçerli satırı çoğalt"
 
-msgid "During this time, the transmitter and recording destination are checked. If the destination (e.g., NAS) isn’t ready in time, this time can be increased."
+msgid "During this time, the transmitter and recording destination are checked. If the destination (e.g., NAS) isn't ready in time, this time can be increased."
 msgstr "Bu süre zarfında verici ve kayıt hedefi kontrol edilir. Kayıt hedefi (örn. NAS) kayıt için zamanında hazır olmazsa, bu süre arttırılabilir."
 
 #
@@ -7622,7 +7628,7 @@ msgstr "Etkin"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Bir alıcının akışları çözebileceği bir özelliği etkinleştirir (akışa ECM verisi eklenmişse ve geçerli bir kart varsa)."
 
-msgid "Enables sending the same TV commands for Deep Standby as for regular Standby."
+msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "'evet' olarak ayarlanırsa, normal bekleme olayları sırasında gönderildiği gibi, derin bekleme olayları için aynı komutlar TV'ye gönderilir."
 
 #
@@ -8582,7 +8588,7 @@ msgstr "Yedek cihaz URL"
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Yedek cihaz URL"
 
-msgid "Fallback tuner setup"
+msgid "Fallback Tuner Setup"
 msgstr "Yedek cihaz URL"
 
 msgid "False"
@@ -11158,6 +11164,9 @@ msgstr "Işık kaynağı"
 msgid "Limburgan / Limburger / Limburgish"
 msgstr "Limburgan / Limburger / Limburgish"
 
+msgid "Lime"
+msgstr "kireç rengi"
+
 msgid "Limit character set for recording filenames"
 msgstr "Kayıt dosya isimleri için karakter sayısını sınırla"
 
@@ -11985,15 +11994,6 @@ msgstr "Moğolistan"
 
 msgid "Mongolian"
 msgstr "Moğolca"
-
-msgid "Monitoring UI password"
-msgstr ""
-
-msgid "Monitoring UI port"
-msgstr ""
-
-msgid "Monitoring UI username"
-msgstr ""
 
 msgid "Montenegro"
 msgstr "Karadağ"
@@ -13427,6 +13427,9 @@ msgstr "Ojibwa Dili"
 msgid "Older files in the time shift directory are removed on every event change."
 msgstr "Zaman kayması dizinindeki eski dosyalar her olay değişikliğinde kaldırılır."
 
+msgid "Olympic blue"
+msgstr "oli̇mpi̇k mavi̇"
+
 msgid "Olympics"
 msgstr "Olimpiyatlar"
 
@@ -13725,6 +13728,9 @@ msgstr "Komut dosyasını isteğe bağlı parametre ile çalıştır"
 
 msgid "Options"
 msgstr ""
+
+msgid "Orange"
+msgstr "turuncu"
 
 msgid "Orbital position"
 msgstr "Yörüngesel konum"
@@ -14179,6 +14185,9 @@ msgstr "Pillarbox"
 #
 msgid "Pilot"
 msgstr "Pilot"
+
+msgid "Pink"
+msgstr "pembe"
 
 msgid "Pitcairn"
 msgstr "Pitcairn"
@@ -15164,6 +15173,9 @@ msgstr "Geçerli ve kalıcı yerel ayarlar/diller hariç tümünü temizleyin. K
 
 msgid "Purging all unused locales/languages..."
 msgstr "Kullanılmayan tüm yerel ayarlar/diller temizleniyor..."
+
+msgid "Purple"
+msgstr "eflatun"
 
 msgid "Pushto / Pashto"
 msgstr "Pushto / Peştuca"
@@ -16274,6 +16286,9 @@ msgstr "Kök klasör"
 
 msgid "Root file"
 msgstr "Kök dosya"
+
+msgid "Rose"
+msgstr "gül"
 
 #
 msgid "Rotor turning speed"
@@ -23746,7 +23761,7 @@ msgstr "TV'yi uyandır"
 msgid "Wake up from Deep-Standby is allowed"
 msgstr "Deep-Standby'dan uyanmaya izin verilir"
 
-msgid "Wake up time before a timer begins [mins]"
+msgid "Wake up time before a timer begins"
 msgstr "Bir zamanlayıcı başlamadan önce uyanma süresi [dk]"
 
 msgid "Wake up to standby"
@@ -24108,7 +24123,7 @@ msgstr "Alıcı bekleme modundan çıktığında TV'ye alıcının bağlı oldu�
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
 msgstr "Kırmızı kutu doğru şekilde göründüğünde, ayarları kaydetmek ve çıkmak için YEŞİL düğmeye basın."
 
-msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you’re doing."
+msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you're doing."
 msgstr "Bir servise ayarlandığında, sistem normal olarak herhangi bir değişiklik için transponder tarar ve bunları kaydeder. Ne yaptığınızdan kesinlikle eminseniz sadece “evet” e ayarlayınız."
 
 msgid "When yes, VPS will be enabled on instant records (stop after current event), if the channel supports VPS."
@@ -24787,9 +24802,6 @@ msgstr "alpharev sonra yeni"
 msgid "am"
 msgstr "am"
 
-msgid "Aqua"
-msgstr "su"
-
 #, python-format
 msgid "audio track (%s) format"
 msgstr "ses kaydı (%s) formatı"
@@ -24804,9 +24816,6 @@ msgstr "ses izleri"
 
 msgid "automatic"
 msgstr "otomatik"
-
-msgid "Azure"
-msgstr "masmavi"
 
 #
 msgid "back"
@@ -25089,9 +25098,6 @@ msgstr "sol"
 msgid "length"
 msgstr "uzunluk"
 
-msgid "Lime"
-msgstr "kireç rengi"
-
 #
 msgid "locked"
 msgstr "kilitli"
@@ -25186,15 +25192,9 @@ msgstr "kapalı veya wpa2 açık"
 msgid "offset is"
 msgstr "ofset"
 
-msgid "Olympic blue"
-msgstr "oli̇mpi̇k mavi̇"
-
 #
 msgid "on READ ONLY medium."
 msgstr "sadece okuyun."
-
-msgid "Orange"
-msgstr "turuncu"
 
 msgid "package"
 msgstr "paket"
@@ -25204,9 +25204,6 @@ msgstr "paketler"
 
 msgid "pid:"
 msgstr "pid:"
-
-msgid "Pink"
-msgstr "pembe"
 
 #
 msgid "please wait, loading picture..."
@@ -25226,9 +25223,6 @@ msgstr "provid:"
 
 msgid "provider:"
 msgstr "sağlayıcı:"
-
-msgid "Purple"
-msgstr "eflatun"
 
 #
 msgid "red"
@@ -25266,9 +25260,6 @@ msgstr "önceki bölüme geri sar"
 #
 msgid "right"
 msgstr "sağ"
-
-msgid "Rose"
-msgstr "gül"
 
 msgid ""
 "satellites.xml not found or corrupted!\n"
@@ -25456,9 +25447,6 @@ msgstr "mmi bekle..."
 msgid "west"
 msgstr "batı"
 
-msgid "white"
-msgstr "beyaz"
-
 msgid "width"
 msgstr "genişlik"
 
@@ -25487,6 +25475,9 @@ msgstr "evet (beslemeleri tut)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "white"
+#~ msgstr "beyaz"
 
 #~ msgid "Add a DNS entry"
 #~ msgstr "DNS girişi ekleyin"

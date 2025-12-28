@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-26 15:56+0000\n"
+"POT-Creation-Date: 2025-12-27 18:13+0000\n"
 "PO-Revision-Date: 2024-10-02 07:35+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/es/>\n"
@@ -2522,6 +2522,9 @@ msgstr "Aplicar cualquier cambio del idioma regional activo y salir"
 msgid "Apply the currently highlighted locale/language and exit"
 msgstr "Aplicar el idioma regional actualmente resaltado y salir"
 
+msgid "Aqua"
+msgstr ""
+
 msgid "Arabic"
 msgstr "Árabe"
 
@@ -2963,6 +2966,9 @@ msgstr "Azerbaiyán"
 
 msgid "Azerbaijani"
 msgstr "Azerbaiyano"
+
+msgid "Azure"
+msgstr ""
 
 #
 msgid "B"
@@ -6077,7 +6083,7 @@ msgstr ""
 msgid "Default volume offset"
 msgstr "Desplazamiento de volumen predeterminado"
 
-msgid "Default wake-up is 5 minutes before Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
+msgid "Default wake-up is 5 minutes prior to timer start to wake up from Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
 msgstr ""
 
 #, python-format
@@ -6642,7 +6648,7 @@ msgstr "PIP deshabilitado.\n"
 msgid "Disabled or WPA/WPA2"
 msgstr "Desactivado o WPA/WPA2"
 
-msgid "Disables timeshift during recording (advisable for USB sticks)."
+msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
 msgstr "Detener timeshift si se ejecuta a la par que se está grabando (aconsejable para memoria USB)"
 
 msgid "Disabling Chkroot failed!"
@@ -7113,7 +7119,7 @@ msgstr "Dúplex"
 msgid "Duplicate the current line"
 msgstr ""
 
-msgid "During this time, the transmitter and recording destination are checked. If the destination (e.g., NAS) isn’t ready in time, this time can be increased."
+msgid "During this time, the transmitter and recording destination are checked. If the destination (e.g., NAS) isn't ready in time, this time can be increased."
 msgstr "Durante este tiempo, se verifica el transmisor y el destino de la grabación. Si el destino de la grabación (por ejemplo, el NAS) no está preparado para la grabación, este tiempo puede aumentar."
 
 # Language
@@ -7678,7 +7684,7 @@ msgstr "Habilitado"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Habilita una función para que el receptor pueda descodificar retransmisiones (si los datos ECM se incluyen en la retransmisión y hay una tarjeta válida)."
 
-msgid "Enables sending the same TV commands for Deep Standby as for regular Standby."
+msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "Si se ajusta a \"Sí\", se enviarán al televisor los mismos comandos para los eventos de espera profunda que se envían durante los eventos de espera normales."
 
 msgid "Encrypted: "
@@ -8635,7 +8641,7 @@ msgstr "Puerto del receptor remoto para DVB-C"
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Puerto del receptor remoto para DVB-T"
 
-msgid "Fallback tuner setup"
+msgid "Fallback Tuner Setup"
 msgstr "Configuración del sintonizador de respaldo"
 
 msgid "False"
@@ -11236,6 +11242,9 @@ msgstr ""
 msgid "Limburgan / Limburger / Limburgish"
 msgstr "Limburgan / Limburger / Limburgish"
 
+msgid "Lime"
+msgstr ""
+
 msgid "Limit character set for recording filenames"
 msgstr "Limitar caracteres en los nombres de los archivos de las grabaciones"
 
@@ -12081,15 +12090,6 @@ msgstr "Mongolia"
 
 msgid "Mongolian"
 msgstr "Mongol"
-
-msgid "Monitoring UI password"
-msgstr ""
-
-msgid "Monitoring UI port"
-msgstr ""
-
-msgid "Monitoring UI username"
-msgstr ""
 
 msgid "Montenegro"
 msgstr "Montenegro"
@@ -13523,6 +13523,9 @@ msgstr "Ojibwa"
 msgid "Older files in the time shift directory are removed on every event change."
 msgstr "Los archivos más antiguos en el directorio de timeshift serán eliminados en cada cambio de evento."
 
+msgid "Olympic blue"
+msgstr ""
+
 msgid "Olympics"
 msgstr "Juegos Olímpicos"
 
@@ -13830,6 +13833,9 @@ msgid "Optional parameter"
 msgstr ""
 
 msgid "Options"
+msgstr ""
+
+msgid "Orange"
 msgstr ""
 
 msgid "Orbital position"
@@ -14299,6 +14305,9 @@ msgstr "Columnas"
 #
 msgid "Pilot"
 msgstr "Piloto"
+
+msgid "Pink"
+msgstr ""
 
 msgid "Pitcairn"
 msgstr "Pitcairn"
@@ -15293,6 +15302,9 @@ msgstr "Purgar todos excepto los actuales y permanentes idiomas regionales.  Añ
 
 msgid "Purging all unused locales/languages..."
 msgstr "Purgar todos las localizaciones/idiomas no utilizados..."
+
+msgid "Purple"
+msgstr ""
 
 msgid "Pushto / Pashto"
 msgstr "Pushto / Pashto"
@@ -16416,6 +16428,9 @@ msgstr "Directorio de root"
 
 msgid "Root file"
 msgstr "Archivo raíz"
+
+msgid "Rose"
+msgstr ""
 
 #
 msgid "Rotor turning speed"
@@ -24050,7 +24065,7 @@ msgstr "Reactivar TV de modo de espera"
 msgid "Wake up from Deep-Standby is allowed"
 msgstr ""
 
-msgid "Wake up time before a timer begins [mins]"
+msgid "Wake up time before a timer begins"
 msgstr ""
 
 msgid "Wake up to standby"
@@ -24419,7 +24434,7 @@ msgstr ""
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
 msgstr ""
 
-msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you’re doing."
+msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you're doing."
 msgstr "Cuando esté sintonizado en un canal, el sistema normalmente buscará en el transpondedor los cambios y los guardará. Marca ‘Sí’ sólo si estás completamente seguro de lo que haces."
 
 msgid "When yes, VPS will be enabled on instant records (stop after current event), if the channel supports VPS."
@@ -25112,9 +25127,6 @@ msgstr "Alpharev entonces más nuevo"
 msgid "am"
 msgstr "am"
 
-msgid "Aqua"
-msgstr ""
-
 #
 #, python-format
 msgid "audio track (%s) format"
@@ -25132,9 +25144,6 @@ msgstr "Pistas de audio"
 #
 msgid "automatic"
 msgstr "automático"
-
-msgid "Azure"
-msgstr ""
 
 #
 msgid "back"
@@ -25423,9 +25432,6 @@ msgstr "Izquierda"
 msgid "length"
 msgstr "Longitud"
 
-msgid "Lime"
-msgstr ""
-
 #
 msgid "locked"
 msgstr "Bloqueado"
@@ -25523,15 +25529,9 @@ msgstr "Apagado o wpa2 encendido"
 msgid "offset is"
 msgstr "Está con variación"
 
-msgid "Olympic blue"
-msgstr ""
-
 #
 msgid "on READ ONLY medium."
 msgstr "En disco de sólo lectura."
-
-msgid "Orange"
-msgstr ""
 
 msgid "package"
 msgstr ""
@@ -25541,9 +25541,6 @@ msgstr ""
 
 msgid "pid:"
 msgstr "pid:"
-
-msgid "Pink"
-msgstr ""
 
 #
 msgid "please wait, loading picture..."
@@ -25563,9 +25560,6 @@ msgstr "provid:"
 
 msgid "provider:"
 msgstr "Proveedor:"
-
-msgid "Purple"
-msgstr ""
 
 #
 msgid "red"
@@ -25604,9 +25598,6 @@ msgstr "Rebobinar al capítulo anterior"
 #
 msgid "right"
 msgstr "derecha"
-
-msgid "Rose"
-msgstr ""
 
 msgid ""
 "satellites.xml not found or corrupted!\n"
@@ -25800,9 +25791,6 @@ msgstr "esperar a MMI…"
 msgid "west"
 msgstr "oeste"
 
-msgid "white"
-msgstr "Blanco"
-
 msgid "width"
 msgstr "Ancho"
 
@@ -25834,6 +25822,9 @@ msgstr "Sí (conservar fuentes)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "white"
+#~ msgstr "Blanco"
 
 #~ msgid "Add a DNS entry"
 #~ msgstr "Añadir una entrada DNS"

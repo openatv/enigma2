@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-26 15:56+0000\n"
+"POT-Creation-Date: 2025-12-27 18:13+0000\n"
 "PO-Revision-Date: 2025-08-18 16:27+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
@@ -2443,6 +2443,9 @@ msgstr "Примените все изменения к активной лок�
 msgid "Apply the currently highlighted locale/language and exit"
 msgstr "Применить текущую выделенную локаль/язык и выйти"
 
+msgid "Aqua"
+msgstr "цвет морской волны"
+
 msgid "Arabic"
 msgstr "Арабский"
 
@@ -2858,6 +2861,9 @@ msgstr "Азербайджан"
 
 msgid "Azerbaijani"
 msgstr "Азербайджанский"
+
+msgid "Azure"
+msgstr "цвет лазури"
 
 msgid "B"
 msgstr "B"
@@ -5861,7 +5867,7 @@ msgstr "Для телевизора выбран видеорежим по ум�
 msgid "Default volume offset"
 msgstr "Стандартная компенсация громкости"
 
-msgid "Default wake-up is 5 minutes before Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
+msgid "Default wake-up is 5 minutes prior to timer start to wake up from Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
 msgstr "Настройки по умолчанию - на 5 минут раньше, чтобы выйти из глубокого режима ожидания. Возможно, это необходимо изменить. (например: фактическое время пробуждения неточное или слишком позднее, ожидание сетевого диска и т. д.)"
 
 #, python-format
@@ -6401,7 +6407,7 @@ msgstr "Отключение PiP\n"
 msgid "Disabled or WPA/WPA2"
 msgstr "Выключено или WPA/WPA2"
 
-msgid "Disables timeshift during recording (advisable for USB sticks)."
+msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
 msgstr "Останавливает таймшифт, если идёт запись (Рекомендуется при использовании USB-накопителей)"
 
 msgid "Disabling Chkroot failed!"
@@ -6848,7 +6854,7 @@ msgstr "Двойной"
 msgid "Duplicate the current line"
 msgstr "Дублировать текущую строку"
 
-msgid "During this time, the transmitter and recording destination are checked. If the destination (e.g., NAS) isn’t ready in time, this time can be increased."
+msgid "During this time, the transmitter and recording destination are checked. If the destination (e.g., NAS) isn't ready in time, this time can be increased."
 msgstr "В течение этого времени проверяется передатчик и место назначения записи. Если место назначения записи (например, NAS) не готово вовремя к записи, это время может быть увеличено."
 
 msgid "Dutch"
@@ -7385,7 +7391,7 @@ msgstr "Включить"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Включает декодирование потока (Если данные ECM содержатся в потоке и карта доступна)."
 
-msgid "Enables sending the same TV commands for Deep Standby as for regular Standby."
+msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "Если установлено 'Да', для событий глубокого ожидания на телевизор будут отправляться те же команды, что и во время обычных событий ожидания."
 
 msgid "Encrypted: "
@@ -8303,7 +8309,7 @@ msgstr "Резервный удалённый ресивер для DVB-C"
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Резервный удалённый ресивер для DVB-T"
 
-msgid "Fallback tuner setup"
+msgid "Fallback Tuner Setup"
 msgstr "Настройки резервного ресивера"
 
 msgid "False"
@@ -10762,6 +10768,9 @@ msgstr "Источник освещения"
 msgid "Limburgan / Limburger / Limburgish"
 msgstr "Лимбурган / Лимбургер / Лимбургский"
 
+msgid "Lime"
+msgstr "цвет лайма"
+
 msgid "Limit character set for recording filenames"
 msgstr "Ограничить набор символов в именах записей"
 
@@ -11544,15 +11553,6 @@ msgstr "Монголия"
 
 msgid "Mongolian"
 msgstr "Монголия"
-
-msgid "Monitoring UI password"
-msgstr ""
-
-msgid "Monitoring UI port"
-msgstr ""
-
-msgid "Monitoring UI username"
-msgstr ""
 
 msgid "Montenegro"
 msgstr "Черногория"
@@ -12895,6 +12895,9 @@ msgstr "Оджибва"
 msgid "Older files in the time shift directory are removed on every event change."
 msgstr "Старые файлы в каталоге timeshift удаляются при каждом изменении передачи."
 
+msgid "Olympic blue"
+msgstr "цвет олимпийский синий"
+
 msgid "Olympics"
 msgstr "Олимпиада"
 
@@ -13182,6 +13185,9 @@ msgstr "Необязательный параметр"
 
 msgid "Options"
 msgstr "Параметры"
+
+msgid "Orange"
+msgstr "цвет оранжевый"
 
 msgid "Orbital position"
 msgstr "Позиция на орбите"
@@ -13621,6 +13627,9 @@ msgstr "Чёрные полосы слева и справа"
 
 msgid "Pilot"
 msgstr "Пилот"
+
+msgid "Pink"
+msgstr "цвет розовый"
 
 msgid "Pitcairn"
 msgstr "Питкэрн"
@@ -14540,6 +14549,9 @@ msgstr "Удалите всё, кроме текущих и постоянных
 
 msgid "Purging all unused locales/languages..."
 msgstr "Очистка всех неиспользуемых локалей/языков..."
+
+msgid "Purple"
+msgstr "цвет фиолетовый"
 
 msgid "Pushto / Pashto"
 msgstr "Пушту / пушту"
@@ -15578,6 +15590,9 @@ msgstr "Каталог суперпользователя"
 
 msgid "Root file"
 msgstr "Корневой файл"
+
+msgid "Rose"
+msgstr "цвет розовый"
 
 msgid "Rotor turning speed"
 msgstr "Скорость вращения мотора"
@@ -22770,7 +22785,7 @@ msgstr "Пробудить ТВ из режима ожидания"
 msgid "Wake up from Deep-Standby is allowed"
 msgstr "Пробуждение из режима глубокого ожидания разрешено"
 
-msgid "Wake up time before a timer begins [mins]"
+msgid "Wake up time before a timer begins"
 msgstr "Включить до начала таймера за [мин]"
 
 msgid "Wake up to standby"
@@ -23125,7 +23140,7 @@ msgstr "Когда ресивер выходит из режима ожидан�
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
 msgstr "Когда красная рамка будет надлежащим образом видна, нажмите ЗЕЛЁНУЮ кнопку, чтобы сохранить настройки и выйти."
 
-msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you’re doing."
+msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you're doing."
 msgstr "Обычно во время приема канала система в фоновом режиме сканирует текущий транспондер на предмет изменений и сохраняет их. Выберите 'Да' только если абсолютно уверены в том, что делаете."
 
 msgid "When yes, VPS will be enabled on instant records (stop after current event), if the channel supports VPS."
@@ -23772,9 +23787,6 @@ msgstr "Алфавит в обратном порядке"
 msgid "am"
 msgstr "До полудня"
 
-msgid "Aqua"
-msgstr "цвет морской волны"
-
 #, python-format
 msgid "audio track (%s) format"
 msgstr "Звуковая дорожка (%s) формат"
@@ -23788,9 +23800,6 @@ msgstr "Звуковые дорожки"
 
 msgid "automatic"
 msgstr "Автоматически"
-
-msgid "Azure"
-msgstr "цвет лазури"
 
 msgid "back"
 msgstr "Назад"
@@ -24041,9 +24050,6 @@ msgstr "Левый"
 msgid "length"
 msgstr "Длина"
 
-msgid "Lime"
-msgstr "цвет лайма"
-
 msgid "locked"
 msgstr "Захвачено"
 
@@ -24122,14 +24128,8 @@ msgstr "Отключен или включен wpa2"
 msgid "offset is"
 msgstr "смещение"
 
-msgid "Olympic blue"
-msgstr "цвет олимпийский синий"
-
 msgid "on READ ONLY medium."
 msgstr "На диск только для чтения."
-
-msgid "Orange"
-msgstr "цвет оранжевый"
 
 msgid "package"
 msgstr "пакет"
@@ -24139,9 +24139,6 @@ msgstr "пакеты"
 
 msgid "pid:"
 msgstr "PID:"
-
-msgid "Pink"
-msgstr "цвет розовый"
 
 msgid "please wait, loading picture..."
 msgstr "Идет загрузка изображения..."
@@ -24160,9 +24157,6 @@ msgstr "ID оператора:"
 
 msgid "provider:"
 msgstr "оператор:"
-
-msgid "Purple"
-msgstr "цвет фиолетовый"
 
 msgid "red"
 msgstr "Красный"
@@ -24193,9 +24187,6 @@ msgstr "Переключить к предыдущей главе"
 
 msgid "right"
 msgstr "Правый"
-
-msgid "Rose"
-msgstr "цвет розовый"
 
 msgid ""
 "satellites.xml not found or corrupted!\n"
@@ -24361,9 +24352,6 @@ msgstr "Ожидание mmi..."
 msgid "west"
 msgstr "Запад"
 
-msgid "white"
-msgstr "Белый"
-
 msgid "width"
 msgstr "Ширина"
 
@@ -24391,6 +24379,9 @@ msgstr "Да (оставить фиды)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "white"
+#~ msgstr "Белый"
 
 #~ msgid "Add a DNS entry"
 #~ msgstr "Добавить запись DNS"

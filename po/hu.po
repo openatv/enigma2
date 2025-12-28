@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-26 15:56+0000\n"
+"POT-Creation-Date: 2025-12-27 18:13+0000\n"
 "PO-Revision-Date: 2025-05-05 05:50+0000\n"
 "Last-Translator: Balázs Sólyom <balazs@solyom.online>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -2450,6 +2450,9 @@ msgstr "Alkalmazza a változtatásokat az aktív területi beállításon/nyelve
 msgid "Apply the currently highlighted locale/language and exit"
 msgstr "Alkalmazza az aktuálisan kiemelt terület/nyelvet, és lépjen ki"
 
+msgid "Aqua"
+msgstr ""
+
 msgid "Arabic"
 msgstr "Arab"
 
@@ -2869,6 +2872,9 @@ msgstr "Azerbajdzsán"
 #, fuzzy
 msgid "Azerbaijani"
 msgstr "Azerbajdzsán"
+
+msgid "Azure"
+msgstr ""
 
 msgid "B"
 msgstr "B"
@@ -5873,7 +5879,7 @@ msgstr ""
 msgid "Default volume offset"
 msgstr ""
 
-msgid "Default wake-up is 5 minutes before Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
+msgid "Default wake-up is 5 minutes prior to timer start to wake up from Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
 msgstr "Az alapértelmezett érték 5 perc (a kikapcsolt állapotból történő felébresztéshez). Talán szükség lehet ennek megváltoztatására (például: Ha tényleges ébresztési idő pontatlan vagy késői, Míg vár a hálózati meghajtóra, stb...)."
 
 #, python-format
@@ -6417,7 +6423,7 @@ msgstr "Kép-a-Képben letiltva\n"
 msgid "Disabled or WPA/WPA2"
 msgstr ""
 
-msgid "Disables timeshift during recording (advisable for USB sticks)."
+msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
 msgstr "Ha a felvétel készítése folyamatban van vagy indulni készül, akkor a Timeshift felvétel álljon meg"
 
 msgid "Disabling Chkroot failed!"
@@ -6851,7 +6857,7 @@ msgstr ""
 msgid "Duplicate the current line"
 msgstr ""
 
-msgid "During this time, the transmitter and recording destination are checked. If the destination (e.g., NAS) isn’t ready in time, this time can be increased."
+msgid "During this time, the transmitter and recording destination are checked. If the destination (e.g., NAS) isn't ready in time, this time can be increased."
 msgstr "Ez alatt az idő alatt a jeladó és a felvételi cél ellenőrzése. Ha a felvételi cél (pl. NAS) nem áll készen időben a felvételhez, ez az idő növelhető."
 
 msgid "Dutch"
@@ -7389,7 +7395,7 @@ msgstr "Engedélyezve"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Ha engedélyezi ezt a funkciót, akkor a vevőegység dekódolni tudja az adatfolyamot (Ha az adatfolyam tartalmazza az ECM-t és ha érvényes kártya is elérhető)."
 
-msgid "Enables sending the same TV commands for Deep Standby as for regular Standby."
+msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr ""
 
 msgid "Encrypted: "
@@ -8302,7 +8308,7 @@ msgstr "Tartalék távoli vevő DVB-C vételhez"
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Tartalék távoli vevő DVB-T vételhez"
 
-msgid "Fallback tuner setup"
+msgid "Fallback Tuner Setup"
 msgstr "Tartalék távoli vevő beállítása"
 
 msgid "False"
@@ -10791,6 +10797,9 @@ msgstr ""
 msgid "Limburgan / Limburger / Limburgish"
 msgstr ""
 
+msgid "Lime"
+msgstr ""
+
 msgid "Limit character set for recording filenames"
 msgstr "Korlátozott betűkészlet a felvételek fájlneveiben"
 
@@ -11591,15 +11600,6 @@ msgstr "Mongólia"
 #, fuzzy
 msgid "Mongolian"
 msgstr "Mongólia"
-
-msgid "Monitoring UI password"
-msgstr ""
-
-msgid "Monitoring UI port"
-msgstr ""
-
-msgid "Monitoring UI username"
-msgstr ""
 
 msgid "Montenegro"
 msgstr "Montenegró"
@@ -12964,6 +12964,9 @@ msgstr ""
 msgid "Older files in the time shift directory are removed on every event change."
 msgstr "A Timeshift könyvtárban lévő régebbi fájlok a megadott időhatárt túllépve eltávolításra kerülnek."
 
+msgid "Olympic blue"
+msgstr ""
+
 msgid "Olympics"
 msgstr "Olimpia"
 
@@ -13266,6 +13269,9 @@ msgid "Optional parameter"
 msgstr ""
 
 msgid "Options"
+msgstr ""
+
+msgid "Orange"
 msgstr ""
 
 msgid "Orbital position"
@@ -13711,6 +13717,9 @@ msgstr "Pillarbox (fekete csíkok oldalakon)"
 
 msgid "Pilot"
 msgstr "Pilot"
+
+msgid "Pink"
+msgstr ""
 
 msgid "Pitcairn"
 msgstr "Pitcairn"
@@ -14626,6 +14635,9 @@ msgid "Purge all but the current and permanent locales/languages. Add the curren
 msgstr ""
 
 msgid "Purging all unused locales/languages..."
+msgstr ""
+
+msgid "Purple"
 msgstr ""
 
 msgid "Pushto / Pashto"
@@ -15665,6 +15677,9 @@ msgid "Root directory"
 msgstr "Gyökérmappa"
 
 msgid "Root file"
+msgstr ""
+
+msgid "Rose"
 msgstr ""
 
 msgid "Rotor turning speed"
@@ -22823,7 +22838,7 @@ msgstr "A TV felébresztése készenléti módból"
 msgid "Wake up from Deep-Standby is allowed"
 msgstr ""
 
-msgid "Wake up time before a timer begins [mins]"
+msgid "Wake up time before a timer begins"
 msgstr "Ébresztési idő mielőtt a Felvétel időzítő elindul [perc]"
 
 msgid "Wake up to standby"
@@ -23176,7 +23191,7 @@ msgstr ""
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
 msgstr ""
 
-msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you’re doing."
+msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you're doing."
 msgstr "Ha letiltja a csatornakeresést a háttérben, akkor a keresés során megtalált csatorna nem lesz elmentve."
 
 msgid "When yes, VPS will be enabled on instant records (stop after current event), if the channel supports VPS."
@@ -23822,9 +23837,6 @@ msgstr "utána a legújabb"
 msgid "am"
 msgstr "de"
 
-msgid "Aqua"
-msgstr ""
-
 #, python-format
 msgid "audio track (%s) format"
 msgstr "hangsáv (%s) formátuma"
@@ -23838,9 +23850,6 @@ msgstr "hangsávok"
 
 msgid "automatic"
 msgstr "automatikus"
-
-msgid "Azure"
-msgstr ""
 
 msgid "back"
 msgstr "vissza"
@@ -24092,9 +24101,6 @@ msgstr "bal"
 msgid "length"
 msgstr "hossz"
 
-msgid "Lime"
-msgstr ""
-
 msgid "locked"
 msgstr "hangolva"
 
@@ -24173,14 +24179,8 @@ msgstr "ki vagy wpa2 be"
 msgid "offset is"
 msgstr "offszet"
 
-msgid "Olympic blue"
-msgstr ""
-
 msgid "on READ ONLY medium."
 msgstr "a csak olvasható hordozón."
-
-msgid "Orange"
-msgstr ""
 
 msgid "package"
 msgstr ""
@@ -24190,9 +24190,6 @@ msgstr ""
 
 msgid "pid:"
 msgstr "pid:"
-
-msgid "Pink"
-msgstr ""
 
 msgid "please wait, loading picture..."
 msgstr "kérem vérjon, kép betöltése..."
@@ -24211,9 +24208,6 @@ msgstr "szolgáltató Id:"
 
 msgid "provider:"
 msgstr "szolgáltató:"
-
-msgid "Purple"
-msgstr ""
 
 msgid "red"
 msgstr "piros"
@@ -24244,9 +24238,6 @@ msgstr "visszatekerés az előző chapterhez"
 
 msgid "right"
 msgstr "jobb"
-
-msgid "Rose"
-msgstr ""
 
 msgid ""
 "satellites.xml not found or corrupted!\n"
@@ -24413,9 +24404,6 @@ msgstr "várakozás mmi-re..."
 msgid "west"
 msgstr "nyugat"
 
-msgid "white"
-msgstr "fehér"
-
 msgid "width"
 msgstr "szélesség"
 
@@ -24442,6 +24430,9 @@ msgstr "igen (állapotok megtartása)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "white"
+#~ msgstr "fehér"
 
 #, fuzzy
 #~ msgid "OpenDNS Home"

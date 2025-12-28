@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-26 15:56+0000\n"
+"POT-Creation-Date: 2025-12-27 18:13+0000\n"
 "PO-Revision-Date: 2021-11-04 23:53+0000\n"
 "Last-Translator: T. Rylle <dk-translation@pm.me>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/da/>\n"
@@ -2407,6 +2407,9 @@ msgstr "Aktiver alle ændringer af det nuværende område/sprog og afslut"
 msgid "Apply the currently highlighted locale/language and exit"
 msgstr "Aktiver alle ændringer af det fremhævede område/sprog og afslut"
 
+msgid "Aqua"
+msgstr ""
+
 msgid "Arabic"
 msgstr "Arabisk"
 
@@ -2824,6 +2827,9 @@ msgstr "Aserbajdsjan"
 
 msgid "Azerbaijani"
 msgstr "Aserbajdsjan"
+
+msgid "Azure"
+msgstr ""
 
 msgid "B"
 msgstr "B"
@@ -5824,7 +5830,7 @@ msgstr ""
 msgid "Default volume offset"
 msgstr ""
 
-msgid "Default wake-up is 5 minutes before Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
+msgid "Default wake-up is 5 minutes prior to timer start to wake up from Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
 msgstr "Standardindstillingerne er 5 minutter tidligere for at vågne op fra Dyb Standby. Det kan muligvis være nødvendigt at ændre dette. (f.eks. bliver den faktiske opvågningstid unøjagtig eller forsinket, hvis der ventes på et netværksdrev osv.)"
 
 #, python-format
@@ -6364,7 +6370,7 @@ msgstr "Deaktiver PiP.\n"
 msgid "Disabled or WPA/WPA2"
 msgstr ""
 
-msgid "Disables timeshift during recording (advisable for USB sticks)."
+msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
 msgstr "Forhindre at Timeshift bliver brugt hvis en optagekse er igang (anbefales for USB nøgler)."
 
 msgid "Disabling Chkroot failed!"
@@ -6798,7 +6804,7 @@ msgstr ""
 msgid "Duplicate the current line"
 msgstr ""
 
-msgid "During this time, the transmitter and recording destination are checked. If the destination (e.g., NAS) isn’t ready in time, this time can be increased."
+msgid "During this time, the transmitter and recording destination are checked. If the destination (e.g., NAS) isn't ready in time, this time can be increased."
 msgstr "I løbet af denne tid kontrolleres senderen og optagelsesdestinationen. Hvis optagelsesdestinationen (f.eks. NAS) ikke er klar til optagelse til tiden, kan denne tid forøges."
 
 msgid "Dutch"
@@ -7336,7 +7342,7 @@ msgstr "Aktiveret"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Aktiver denne funktion så modtageren kan dekryptere streams (hvis ECM data er inkluderet i streamen og en gyldig kort er tilgængelig)."
 
-msgid "Enables sending the same TV commands for Deep Standby as for regular Standby."
+msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr ""
 
 msgid "Encrypted: "
@@ -8251,7 +8257,7 @@ msgstr "Fallback remote receiver URL"
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Fallback remote receiver URL"
 
-msgid "Fallback tuner setup"
+msgid "Fallback Tuner Setup"
 msgstr "Fallback remote receiver URL"
 
 msgid "False"
@@ -10740,6 +10746,9 @@ msgstr ""
 msgid "Limburgan / Limburger / Limburgish"
 msgstr ""
 
+msgid "Lime"
+msgstr ""
+
 msgid "Limit character set for recording filenames"
 msgstr "Begræns tegnsæt i filnavne for optagelser"
 
@@ -11544,15 +11553,6 @@ msgstr "Mongoliet"
 #, fuzzy
 msgid "Mongolian"
 msgstr "Mongoliet"
-
-msgid "Monitoring UI password"
-msgstr ""
-
-msgid "Monitoring UI port"
-msgstr ""
-
-msgid "Monitoring UI username"
-msgstr ""
 
 msgid "Montenegro"
 msgstr "Montenegro"
@@ -12909,6 +12909,9 @@ msgstr ""
 msgid "Older files in the time shift directory are removed on every event change."
 msgstr "Ældre filer i Timeshift mappen bliver fjernet ved hver begivenhedsændring."
 
+msgid "Olympic blue"
+msgstr ""
+
 msgid "Olympics"
 msgstr "Olympiske Lege"
 
@@ -13213,6 +13216,9 @@ msgid "Optional parameter"
 msgstr ""
 
 msgid "Options"
+msgstr ""
+
+msgid "Orange"
 msgstr ""
 
 msgid "Orbital position"
@@ -13658,6 +13664,9 @@ msgstr "Sort stribe i sider (Pillar)"
 
 msgid "Pilot"
 msgstr "Pilot"
+
+msgid "Pink"
+msgstr ""
 
 msgid "Pitcairn"
 msgstr "Pitcairn"
@@ -14575,6 +14584,9 @@ msgid "Purge all but the current and permanent locales/languages. Add the curren
 msgstr ""
 
 msgid "Purging all unused locales/languages..."
+msgstr ""
+
+msgid "Purple"
 msgstr ""
 
 msgid "Pushto / Pashto"
@@ -15614,6 +15626,9 @@ msgid "Root directory"
 msgstr "Rodmappe"
 
 msgid "Root file"
+msgstr ""
+
+msgid "Rose"
 msgstr ""
 
 msgid "Rotor turning speed"
@@ -22769,7 +22784,7 @@ msgstr "Væk TV fra Standby"
 msgid "Wake up from Deep-Standby is allowed"
 msgstr ""
 
-msgid "Wake up time before a timer begins [mins]"
+msgid "Wake up time before a timer begins"
 msgstr "Vågn op før en Timer starter [minutter]"
 
 msgid "Wake up to standby"
@@ -23122,7 +23137,7 @@ msgstr ""
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
 msgstr ""
 
-msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you’re doing."
+msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you're doing."
 msgstr "Når en kanal er valgt, vil systemet normalt søge efter ændringer på transponderen og gemme dem. Sæt kun til 'Ja' hvis du er helt sikker på hvad du gør."
 
 msgid "When yes, VPS will be enabled on instant records (stop after current event), if the channel supports VPS."
@@ -23765,9 +23780,6 @@ msgstr "Alfabaglæns så nyeste"
 msgid "am"
 msgstr "Am"
 
-msgid "Aqua"
-msgstr ""
-
 #, python-format
 msgid "audio track (%s) format"
 msgstr "lydspor (%s) format"
@@ -23781,9 +23793,6 @@ msgstr "lyd spor"
 
 msgid "automatic"
 msgstr "automatisk"
-
-msgid "Azure"
-msgstr ""
 
 msgid "back"
 msgstr "Tilbage"
@@ -24038,9 +24047,6 @@ msgstr "Venstre"
 msgid "length"
 msgstr "længde"
 
-msgid "Lime"
-msgstr ""
-
 msgid "locked"
 msgstr "låst"
 
@@ -24119,14 +24125,8 @@ msgstr "slukket eller WPA2 tændt"
 msgid "offset is"
 msgstr "forskydning er"
 
-msgid "Olympic blue"
-msgstr ""
-
 msgid "on READ ONLY medium."
 msgstr "på LÆS KUN medie."
-
-msgid "Orange"
-msgstr ""
 
 msgid "package"
 msgstr ""
@@ -24136,9 +24136,6 @@ msgstr ""
 
 msgid "pid:"
 msgstr "PID:"
-
-msgid "Pink"
-msgstr ""
 
 msgid "please wait, loading picture..."
 msgstr "vent venligst, henter billede..."
@@ -24157,9 +24154,6 @@ msgstr "Giver:"
 
 msgid "provider:"
 msgstr "Udbyder:"
-
-msgid "Purple"
-msgstr ""
 
 msgid "red"
 msgstr "Rød"
@@ -24190,9 +24184,6 @@ msgstr "spol tilbage til forrige kapitel"
 
 msgid "right"
 msgstr "Højre"
-
-msgid "Rose"
-msgstr ""
 
 msgid ""
 "satellites.xml not found or corrupted!\n"
@@ -24358,9 +24349,6 @@ msgstr "vent på mmi..."
 msgid "west"
 msgstr "Vest"
 
-msgid "white"
-msgstr "Hvid"
-
 msgid "width"
 msgstr "bredde"
 
@@ -24387,6 +24375,9 @@ msgstr "ja (behold feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "white"
+#~ msgstr "Hvid"
 
 #~ msgid "OpenDNS FamilyShield"
 #~ msgstr "OpenDNS FamilyShield"

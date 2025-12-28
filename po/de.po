@@ -18,9 +18,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-26 15:56+0000\n"
-"PO-Revision-Date: 2025-12-27 17:57+0000\n"
-"Last-Translator: VfBFan <drop0815@posteo.de>\n"
+"POT-Creation-Date: 2025-12-27 18:13+0000\n"
+"PO-Revision-Date: 2025-12-28 11:50+0000\n"
+"Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -2541,6 +2541,9 @@ msgstr "Änderungen anwenden, um die aktive Sprache zu aktivieren und zu beenden
 msgid "Apply the currently highlighted locale/language and exit"
 msgstr "Die aktuell markierte Sprache anwenden und beenden."
 
+msgid "Aqua"
+msgstr "Aqua"
+
 msgid "Arabic"
 msgstr "Arabisch"
 
@@ -2853,7 +2856,7 @@ msgid "Auto chapter split every ? minutes (0=never)"
 msgstr "Automatischer Kapitelwechsel alle x Minuten (0=nie)"
 
 msgid "Auto deep standby"
-msgstr "Automatisch herunterfahren"
+msgstr "Automatisches Herunterfahren"
 
 msgid "Auto detect"
 msgstr "Automatische Erkennung"
@@ -2982,6 +2985,9 @@ msgstr "Aserbaidschan"
 
 msgid "Azerbaijani"
 msgstr "Aserbaidschanisch"
+
+msgid "Azure"
+msgstr "Azurblau"
 
 #
 msgid "B"
@@ -6120,7 +6126,7 @@ msgstr "Standardvideomodus für das Fernsehgerät ausgewählt."
 msgid "Default volume offset"
 msgstr "Standardlautstärkeoffset"
 
-msgid "Default wake-up is 5 minutes before Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
+msgid "Default wake-up is 5 minutes prior to timer start to wake up from Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
 msgstr "Die Standardeinstellung ist 5 Minuten früher aus dem Deep-Standby aufzuwachen. Es kann erforderlich sein, dies zu ändern (z. B.: Die tatsächliche Aufwachzeit ist ungenau oder zu spät, warten auf ein Netzlaufwerk usw.)."
 
 #, python-format
@@ -6690,7 +6696,7 @@ msgstr "Bild-im-Bild wurde deaktiviert.\n"
 msgid "Disabled or WPA/WPA2"
 msgstr "Deaktiviert oder WPA/WPA2"
 
-msgid "Disables timeshift during recording (advisable for USB sticks)."
+msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
 msgstr "Bei 'Ja' wird Timeshift beendet, wenn eine Aufnahme läuft. Ratsam beim Verwenden eines USB-Sticks."
 
 msgid "Disabling Chkroot failed!"
@@ -7165,7 +7171,7 @@ msgstr "Duplex"
 msgid "Duplicate the current line"
 msgstr "Aktuelle Zeile duplizieren"
 
-msgid "During this time, the transmitter and recording destination are checked. If the destination (e.g., NAS) isn’t ready in time, this time can be increased."
+msgid "During this time, the transmitter and recording destination are checked. If the destination (e.g., NAS) isn't ready in time, this time can be increased."
 msgstr "Während dieser Zeit werden der Sender und das Aufnahmeziel überprüft. Ist das Aufnahmeziel (z. B. NAS) nicht rechtzeitig bereit, kann diese Zeit verlängert werden."
 
 msgid "Dutch"
@@ -7728,7 +7734,7 @@ msgstr "Aktiviert"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Bei 'Ja' wird das Entschlüsseln eines Streams aktiviert (wenn ECM-Daten im Stream enthalten sind und eine Karte vorhanden ist)."
 
-msgid "Enables sending the same TV commands for Deep Standby as for regular Standby."
+msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "Bei 'Ja' werden bei Deep-Standby-Ereignissen dieselben Befehle an das Fernsehgerät gesendet wie bei normalen Standby-Ereignissen."
 
 msgid "Encrypted: "
@@ -8687,7 +8693,7 @@ msgstr "Reservereceiver für DVB-C"
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Reservereceiver für DVB-T"
 
-msgid "Fallback tuner setup"
+msgid "Fallback Tuner Setup"
 msgstr "Reservetunereinstellungen"
 
 msgid "False"
@@ -11258,6 +11264,9 @@ msgstr "Lichtquelle"
 msgid "Limburgan / Limburger / Limburgish"
 msgstr "Limburgisch"
 
+msgid "Lime"
+msgstr "Limette"
+
 msgid "Limit character set for recording filenames"
 msgstr "Zeichensatz für Dateinamen der Aufnahmen begrenzen"
 
@@ -12099,15 +12108,6 @@ msgstr "Mongolei"
 
 msgid "Mongolian"
 msgstr "Mongolisch"
-
-msgid "Monitoring UI password"
-msgstr "Überwachungs-UI-Passwort"
-
-msgid "Monitoring UI port"
-msgstr "Überwachungs-UI-Port"
-
-msgid "Monitoring UI username"
-msgstr "Überwachungs-UI-Benutzername"
 
 msgid "Montenegro"
 msgstr "Montenegro"
@@ -13565,6 +13565,9 @@ msgstr "Ojibwa"
 msgid "Older files in the time shift directory are removed on every event change."
 msgstr "Ältere Dateien im Timeshiftverzeichnis nach eingestellter Zeit automatisch löschen."
 
+msgid "Olympic blue"
+msgstr "Olympisches Blau"
+
 msgid "Olympics"
 msgstr "Olympia"
 
@@ -13875,6 +13878,9 @@ msgstr "Optionaler Parameter"
 
 msgid "Options"
 msgstr "Optionen"
+
+msgid "Orange"
+msgstr "Orange"
 
 msgid "Orbital position"
 msgstr "Orbitalposition"
@@ -14345,6 +14351,9 @@ msgstr "Pillarbox"
 #
 msgid "Pilot"
 msgstr "Pilot"
+
+msgid "Pink"
+msgstr "Rosa"
 
 msgid "Pitcairn"
 msgstr "Pitcairn"
@@ -15345,6 +15354,9 @@ msgstr "Alle Sprachen mit Ausnahme der aktuellen und permanenten Sprachregionen 
 
 msgid "Purging all unused locales/languages..."
 msgstr "Löschen aller nicht verwendeten Sprachregionen …"
+
+msgid "Purple"
+msgstr "Lila"
 
 msgid "Pushto / Pashto"
 msgstr "Pushto / Paschtu"
@@ -16466,6 +16478,9 @@ msgstr "Rootverzeichnis"
 
 msgid "Root file"
 msgstr "Rootdatei"
+
+msgid "Rose"
+msgstr "Rosé"
 
 #
 msgid "Rotor turning speed"
@@ -21706,7 +21721,7 @@ msgid ""
 "Maybe recursive connection of tuners."
 msgstr ""
 "Die Einstellung der Unicable-Verbindung ist falsch!\n"
-"Möglicherweise rekursive Verbindung der Tuner."
+"Möglicherweise durch rekursive Verbindung der Tuner."
 
 #, python-format
 msgid "The user interface of your %s %s is restarting"
@@ -24064,7 +24079,7 @@ msgstr "TV aus Standby aufwecken"
 msgid "Wake up from Deep-Standby is allowed"
 msgstr "Starten aus dem Deep-Standby erlauben"
 
-msgid "Wake up time before a timer begins [mins]"
+msgid "Wake up time before a timer begins"
 msgstr "Aufwachzeit bevor ein Timer beginnt (Min)"
 
 msgid "Wake up to standby"
@@ -24444,7 +24459,7 @@ msgstr "Wenn der Receiver aus Standby erwacht, schaltet er den Fernseher auf den
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
 msgstr "Wird der rote Rahmen korrekt angezeigt, die Einstellungen mit GRÜN speichern und beenden."
 
-msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you’re doing."
+msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you're doing."
 msgstr "Wenn ein Sender eingestellt ist, durchsucht das System den Transponder nach Änderungen und speichert diese. 'Ja' nur auswählen, wenn die Auswirkungen bekannt sind."
 
 msgid "When yes, VPS will be enabled on instant records (stop after current event), if the channel supports VPS."
@@ -25136,9 +25151,6 @@ msgstr "Umgekehrt alphabetisch, dann neueste"
 msgid "am"
 msgstr "am"
 
-msgid "Aqua"
-msgstr "Aqua"
-
 #
 #, python-format
 msgid "audio track (%s) format"
@@ -25156,9 +25168,6 @@ msgstr "Tonspuren"
 #
 msgid "automatic"
 msgstr "Automatisch"
-
-msgid "Azure"
-msgstr "Azurblau"
 
 #
 msgid "back"
@@ -25445,9 +25454,6 @@ msgstr "Links"
 msgid "length"
 msgstr "Länge"
 
-msgid "Lime"
-msgstr "Limette"
-
 #
 msgid "locked"
 msgstr "Signal"
@@ -25538,15 +25544,9 @@ msgstr "aus oder WPA2 an"
 msgid "offset is"
 msgstr "Versatz ist"
 
-msgid "Olympic blue"
-msgstr "Olympisches Blau"
-
 #
 msgid "on READ ONLY medium."
 msgstr "Auf dem nicht beschreibbaren Medium."
-
-msgid "Orange"
-msgstr "Orange"
 
 msgid "package"
 msgstr "Paket"
@@ -25556,9 +25556,6 @@ msgstr "Pakete"
 
 msgid "pid:"
 msgstr "PID:"
-
-msgid "Pink"
-msgstr "Rosa"
 
 #
 msgid "please wait, loading picture..."
@@ -25578,9 +25575,6 @@ msgstr "Bereitstellen:"
 
 msgid "provider:"
 msgstr "Anbieter:"
-
-msgid "Purple"
-msgstr "Lila"
 
 #
 msgid "red"
@@ -25617,9 +25611,6 @@ msgstr "Zum vorherigen Kapitel zurück"
 #
 msgid "right"
 msgstr "Rechts"
-
-msgid "Rose"
-msgstr "Rosé"
 
 msgid ""
 "satellites.xml not found or corrupted!\n"
@@ -25802,9 +25793,6 @@ msgstr "Auf MMI warten …"
 msgid "west"
 msgstr "West"
 
-msgid "white"
-msgstr "Weiß"
-
 msgid "width"
 msgstr "Breite"
 
@@ -25835,6 +25823,18 @@ msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Monitoring UI password"
+#~ msgstr "Überwachungs-UI-Passwort"
+
+#~ msgid "Monitoring UI port"
+#~ msgstr "Überwachungs-UI-Port"
+
+#~ msgid "Monitoring UI username"
+#~ msgstr "Überwachungs-UI-Benutzername"
+
+#~ msgid "white"
+#~ msgstr "Weiß"
 
 #~ msgid "Add a DNS entry"
 #~ msgstr "DNS-Eintrag hinzufügen"

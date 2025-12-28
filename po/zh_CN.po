@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-26 15:56+0000\n"
-"PO-Revision-Date: 2025-12-25 11:00+0000\n"
+"POT-Creation-Date: 2025-12-27 18:13+0000\n"
+"PO-Revision-Date: 2025-12-28 11:50+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -2118,7 +2118,7 @@ msgid "After zap"
 msgstr "换台后"
 
 msgid "Aggregate data only"
-msgstr ""
+msgstr "仅限汇总数据"
 
 msgid "Akan"
 msgstr "库阿语"
@@ -2380,7 +2380,7 @@ msgid "Animations"
 msgstr "动画"
 
 msgid "Anonymize client IPs"
-msgstr ""
+msgstr "匿名化客户端 IP"
 
 msgid "Antarctica"
 msgstr "南极洲"
@@ -2405,6 +2405,9 @@ msgstr "对活动区域设置/语言应用任何更改并退出"
 
 msgid "Apply the currently highlighted locale/language and exit"
 msgstr "应用当前突出显示的区域设置/语言并退出"
+
+msgid "Aqua"
+msgstr "湖绿色"
 
 msgid "Arabic"
 msgstr "阿拉伯语"
@@ -2821,6 +2824,9 @@ msgstr "阿塞拜疆"
 
 msgid "Azerbaijani"
 msgstr "阿塞拜疆语"
+
+msgid "Azure"
+msgstr "天蓝色"
 
 msgid "B"
 msgstr "B"
@@ -5465,10 +5471,10 @@ msgid "DNS suffix"
 msgstr "DNS 后缀"
 
 msgid "DNSCrypt"
-msgstr ""
+msgstr "DNSCrypt"
 
 msgid "DNSCrypt Resolver"
-msgstr ""
+msgstr "DNSCrypt 解析器"
 
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
@@ -5822,7 +5828,7 @@ msgstr "为电视选择默认视频模式。"
 msgid "Default volume offset"
 msgstr "默认音量偏移"
 
-msgid "Default wake-up is 5 minutes before Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
+msgid "Default wake-up is 5 minutes prior to timer start to wake up from Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
 msgstr "默认唤醒时间设置在深度待机前 5 分钟。如果唤醒过早或过晚（例如针对网络驱动器），请进行相应调整。"
 
 #, python-format
@@ -6362,7 +6368,7 @@ msgstr "已禁用画中画。\n"
 msgid "Disabled or WPA/WPA2"
 msgstr "禁用或 WPA/WPA2"
 
-msgid "Disables timeshift during recording (advisable for USB sticks)."
+msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
 msgstr "录制期间禁用时光移功能（建议用于 U 盘设备）。"
 
 msgid "Disabling Chkroot failed!"
@@ -6808,7 +6814,7 @@ msgstr "双工模式"
 msgid "Duplicate the current line"
 msgstr "复制当前行"
 
-msgid "During this time, the transmitter and recording destination are checked. If the destination (e.g., NAS) isn’t ready in time, this time can be increased."
+msgid "During this time, the transmitter and recording destination are checked. If the destination (e.g., NAS) isn't ready in time, this time can be increased."
 msgstr "在此期间，将检查发送器和录制目标。如果录制目标(如 NAS)没有及时准备好进行录制，则可以增加此时间。"
 
 msgid "Dutch"
@@ -7235,7 +7241,7 @@ msgid "Enable intro screen"
 msgstr "启用屏幕介绍"
 
 msgid "Enable monitoring UI"
-msgstr ""
+msgstr "启用监控界面"
 
 msgid "Enable multiple bouquets"
 msgstr "启用多个频道分组"
@@ -7345,7 +7351,7 @@ msgstr "已启用"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "启用功能，以便接收机可以解密流（如果 ECM（授权控制信息） 数据包含在流中，并且有效的卡可用）。"
 
-msgid "Enables sending the same TV commands for Deep Standby as for regular Standby."
+msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "如果设置为“是”，那么对于深度待机事件，将向电视发送相同的命令，就像在常规待机事件期间发送的一样。"
 
 msgid "Encrypted: "
@@ -8261,7 +8267,7 @@ msgstr "备用远程 DVB-C 接收机"
 msgid "Fallback remote receiver for DVB-T"
 msgstr "备用远程 DVB-T 接收机"
 
-msgid "Fallback tuner setup"
+msgid "Fallback Tuner Setup"
 msgstr "备用调谐器设置"
 
 msgid "False"
@@ -10719,6 +10725,9 @@ msgstr "光源"
 msgid "Limburgan / Limburger / Limburgish"
 msgstr "林堡"
 
+msgid "Lime"
+msgstr "石灰"
+
 msgid "Limit character set for recording filenames"
 msgstr "限制录制文件名称的字符集"
 
@@ -11500,15 +11509,6 @@ msgstr "蒙古"
 
 msgid "Mongolian"
 msgstr "蒙古语"
-
-msgid "Monitoring UI password"
-msgstr ""
-
-msgid "Monitoring UI port"
-msgstr ""
-
-msgid "Monitoring UI username"
-msgstr ""
 
 msgid "Montenegro"
 msgstr "黑山共和国"
@@ -12851,6 +12851,9 @@ msgstr "奥吉布瓦"
 msgid "Older files in the time shift directory are removed on every event change."
 msgstr "每次事件更改时，都会删除时移目录中较旧的文件。"
 
+msgid "Olympic blue"
+msgstr "奥运蓝"
+
 msgid "Olympics"
 msgstr "奥运会"
 
@@ -12909,13 +12912,13 @@ msgid "Only on startup"
 msgstr "仅在启动时"
 
 msgid "Only use DNS servers implementing the DNS-over-HTTPS protocol. This causes DNS lookups to be made via the encrypted HTTPS protocol."
-msgstr ""
+msgstr "仅使用实施 DNS-over-HTTPS 协议的DNS服务器。这将使 DNS 查询通过加密的 HTTPS 协议进行。"
 
 msgid "Only use DNS servers implementing the DNSCrypt protocol."
-msgstr ""
+msgstr "仅使用实施 DNSCrypt 协议的 DNS 服务器。"
 
 msgid "Only use DNS servers implementing the Oblivious DNS-over-HTTPS protocol. This adds another layer of privacy by adding a proxy layer to the DNS-over-HTTPS request."
-msgstr ""
+msgstr "仅使用实施 Oblivious DNS-over-HTTPS 协议的 DNS 服务器。该协议通过在 DNS-over-HTTPS 请求中增加代理层，进一步提升了隐私保护层级。"
 
 msgid "Open"
 msgstr "打开"
@@ -13138,6 +13141,9 @@ msgstr "可选参数"
 
 msgid "Options"
 msgstr "选项"
+
+msgid "Orange"
+msgstr "橙色"
 
 msgid "Orbital position"
 msgstr "轨道位置"
@@ -13577,6 +13583,9 @@ msgstr "邮筒/左右黑边"
 
 msgid "Pilot"
 msgstr "导频"
+
+msgid "Pink"
+msgstr "粉色"
 
 msgid "Pitcairn"
 msgstr "皮特凯恩群岛"
@@ -14324,7 +14333,7 @@ msgid "Priority"
 msgstr "优先级"
 
 msgid "Privacy level"
-msgstr ""
+msgstr "隐私级别"
 
 msgid "Problem starting scan"
 msgstr "开始扫描时出现问题"
@@ -14494,6 +14503,9 @@ msgstr "清除除当前和永久区域设置/语言之外的所有区域设置/�
 
 msgid "Purging all unused locales/languages..."
 msgstr "正在清除所有未使用的区域设置/语言..."
+
+msgid "Purple"
+msgstr "紫色"
 
 msgid "Pushto / Pashto"
 msgstr "普什图语"
@@ -15533,6 +15545,9 @@ msgstr "根目录"
 msgid "Root file"
 msgstr "根文件"
 
+msgid "Rose"
+msgstr "粉红色"
+
 msgid "Rotor turning speed"
 msgstr "极轴转速"
 
@@ -16209,7 +16224,7 @@ msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, us
 msgstr "选择“是”以启用加载未链接的用户频道分组。也就是说，将加载未包含在 bouquets.tv 或 bouquets.radio 文件中的用户频道分组。例如，这允许您创建与设置包中的频道分组不冲突或不被其替换的频道分组。"
 
 msgid "Select 'Yes' to enable the monitoring UI web interface for the DNSCrypt subsystem."
-msgstr ""
+msgstr "选择“是”以启用 DNSCrypt 子系统的监控界面网页界面。"
 
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr "选择“是”以启用左/右按钮作为上页/下页功能（当左/右按钮未定义其他功能时）。此功能为偏好传统导航方式的用户提供支持。"
@@ -17266,13 +17281,13 @@ msgid "Server down"
 msgstr "频道 向下"
 
 msgid "Server must not enforce its own blocklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
-msgstr ""
+msgstr "服务器不得强制执行其自身的阻止列表。某些服务器可能会实现自己的黑名单，以出于家长控制、广告拦截等原因阻止访问某些网站。"
 
 msgid "Server must not log user queries (declarative). This can improve the privacy of DNS lookups by not logging the request on the server providing the data."
-msgstr ""
+msgstr "服务器不得记录用户查询（声明性要求）。这可以通过不在提供数据的服务器上记录请求来提升 DNS 查询的隐私性。"
 
 msgid "Server must support DNS Security Extensions (DNSSEC). This is a data signing option that protects the integrity of the DNS data against compromises like cache poisoning."
-msgstr ""
+msgstr "服务器必须支持DNS安全扩展（DNSSEC）。这是一项数据签名功能，可保护 DNS 数据的完整性，防止缓存中毒等威胁。"
 
 msgid "Servers"
 msgstr "频道"
@@ -17550,13 +17565,13 @@ msgid "Set the number of lines to be saved for 'stout' and 'sterr' output in scr
 msgstr "设置要为脚本中的“stout”和“sterr”输出保存的行数。"
 
 msgid "Set the password for the monitoring UI web interface."
-msgstr ""
+msgstr "设置监控界面网页的密码。"
 
 msgid "Set the password of the OpenWebif from your fallback tuner."
 msgstr "设置备用调谐器的 OpenWebif 密码。"
 
 msgid "Set the port address (8080-9999) for the monitoring UI web interface."
-msgstr ""
+msgstr "设置监控界面网页的端口地址（范围8080-9999）。"
 
 msgid "Set the port of the OpenWebif from your fallback tuner."
 msgstr "设置备用调谐器的 OpenWebif 端口。"
@@ -17565,7 +17580,7 @@ msgid "Set the position of the recording icons."
 msgstr "设置录制图标的位置。"
 
 msgid "Set the privacy level for the monitoring UI web interface."
-msgstr ""
+msgstr "设置监控界面网页的隐私级别。"
 
 msgid "Set the screen type you see on pressing 'OK' when the InfoBar shows the second InfoBar Lite or event info."
 msgstr "当信息栏显示为第二个信息栏精简或事件信息时，设置按下“确定”时的屏幕类型。"
@@ -17607,7 +17622,7 @@ msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "在频道选择屏幕中设置进度指示的类型。"
 
 msgid "Set the username for the monitoring UI web interface."
-msgstr ""
+msgstr "设置监控界面网页的用户名。"
 
 #, python-format
 msgid "Set the volume level for the '%s' service."
@@ -21962,19 +21977,19 @@ msgid "Use DHCP"
 msgstr "使用 DHCP"
 
 msgid "Use DNS cache"
-msgstr ""
+msgstr "使用 DNS 缓存"
 
 msgid "Use DNS rotation"
 msgstr "使用 DNS 轮换"
 
 msgid "Use DNSCrypt servers"
-msgstr ""
+msgstr "使用 DNSCrypt 服务器"
 
 msgid "Use Deinterlacing for 1080i Videosignal?"
 msgstr "1080i视频信号使用逐行扫描？"
 
 msgid "Use DoH servers"
-msgstr ""
+msgstr "使用 DoH 服务器"
 
 msgid "Use EIT EPG information when it is available."
 msgstr "EIT（事件信息表） EPG信息可用时使用。"
@@ -22001,7 +22016,7 @@ msgid "Use Netmed EPG information when it is available."
 msgstr "Netmed EPG 信息可用时使用。"
 
 msgid "Use ODoH servers"
-msgstr ""
+msgstr "使用 ODoH 服务器"
 
 msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
 msgstr "使用 OpenTV EPG。 需要调谐到特定的转发器才能接收 EPG。"
@@ -22028,7 +22043,7 @@ msgid "Use Zap timer end times"
 msgstr "使用换台定时器结束时间"
 
 msgid "Use a DNS cache to locally store recent DNS lookups to improve performance, reduce latency and outgoing traffic."
-msgstr ""
+msgstr "启用 DNS 缓存以本地存储最近的 DNS 查询，从而提升性能、降低延迟并减少外发流量。"
 
 msgid "Use a gateway"
 msgstr "使用网关"
@@ -22100,16 +22115,16 @@ msgid "Use official channel numbering"
 msgstr "使用官方频道编号"
 
 msgid "Use only DNSSEC servers"
-msgstr ""
+msgstr "仅使用 DNSSEC 服务器"
 
 msgid "Use only for Wake on WLan (WoW)"
 msgstr "仅用于WLan唤醒（WoW）"
 
 msgid "Use only no-filter servers"
-msgstr ""
+msgstr "仅使用无过滤服务器"
 
 msgid "Use only no-log servers"
-msgstr ""
+msgstr "仅使用无日志服务器"
 
 msgid "Use original DVB subtitle position"
 msgstr "使用原始字幕位置"
@@ -22716,7 +22731,7 @@ msgstr "从待机状态唤醒电视"
 msgid "Wake up from Deep-Standby is allowed"
 msgstr "允许从深度待机唤醒"
 
-msgid "Wake up time before a timer begins [mins]"
+msgid "Wake up time before a timer begins"
 msgstr "定时器开始前的唤醒时间 [分钟]"
 
 msgid "Wake up to standby"
@@ -23071,7 +23086,7 @@ msgstr "当接收机从待机状态唤醒时，它将命令电视切换到接收
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
 msgstr "当红色框正确可见时，按绿色按钮保存设置并退出。"
 
-msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you’re doing."
+msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you're doing."
 msgstr "当调谐到频道时，系统通常会扫描转发器的任何改动并保存它们。 仅当你在完全确定自己在做什么时设为“是”。"
 
 msgid "When yes, VPS will be enabled on instant records (stop after current event), if the channel supports VPS."
@@ -23718,9 +23733,6 @@ msgstr "按 字母倒序/由新到旧 排序"
 msgid "am"
 msgstr "am"
 
-msgid "Aqua"
-msgstr "湖绿色"
-
 #, python-format
 msgid "audio track (%s) format"
 msgstr "音轨（%s）格式"
@@ -23734,9 +23746,6 @@ msgstr "音轨"
 
 msgid "automatic"
 msgstr "自动"
-
-msgid "Azure"
-msgstr "天蓝色"
 
 msgid "back"
 msgstr "返回"
@@ -23987,9 +23996,6 @@ msgstr "左"
 msgid "length"
 msgstr "长度"
 
-msgid "Lime"
-msgstr "石灰"
-
 msgid "locked"
 msgstr "已锁定"
 
@@ -24068,14 +24074,8 @@ msgstr "关闭或 WPA2 开"
 msgid "offset is"
 msgstr "偏移为"
 
-msgid "Olympic blue"
-msgstr "奥运蓝"
-
 msgid "on READ ONLY medium."
 msgstr "在只读介质上。"
-
-msgid "Orange"
-msgstr "橙色"
 
 msgid "package"
 msgstr "软件包"
@@ -24085,9 +24085,6 @@ msgstr "软件包"
 
 msgid "pid:"
 msgstr "pid："
-
-msgid "Pink"
-msgstr "粉色"
 
 msgid "please wait, loading picture..."
 msgstr "请稍等，正在载入图片..."
@@ -24106,9 +24103,6 @@ msgstr "提供："
 
 msgid "provider:"
 msgstr "供应商："
-
-msgid "Purple"
-msgstr "紫色"
 
 msgid "red"
 msgstr "红键"
@@ -24139,9 +24133,6 @@ msgstr "退回上一个章节"
 
 msgid "right"
 msgstr "右"
-
-msgid "Rose"
-msgstr "粉红色"
 
 msgid ""
 "satellites.xml not found or corrupted!\n"
@@ -24307,9 +24298,6 @@ msgstr "等待 mmi..."
 msgid "west"
 msgstr "西"
 
-msgid "white"
-msgstr "白色"
-
 msgid "width"
 msgstr "宽度"
 
@@ -24336,6 +24324,9 @@ msgstr "是（保留订阅源）"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "white"
+#~ msgstr "白色"
 
 #~ msgid "Add a DNS entry"
 #~ msgstr "添加 DNS 条目"

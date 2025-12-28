@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-26 15:56+0000\n"
+"POT-Creation-Date: 2025-12-27 18:13+0000\n"
 "PO-Revision-Date: 2025-11-16 05:28+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -2407,6 +2407,9 @@ msgstr "Εφαρμογή αλλαγών στην ενεργή γλώσσα/δι�
 msgid "Apply the currently highlighted locale/language and exit"
 msgstr "Εφαρμογή της τρέχουσας επιλεγμένης γλώσσας/διαλέκτου και έξοδος"
 
+msgid "Aqua"
+msgstr "άκουα"
+
 msgid "Arabic"
 msgstr "Αραβικά"
 
@@ -2822,6 +2825,9 @@ msgstr "Αζερμπαϊτζάν"
 
 msgid "Azerbaijani"
 msgstr "Αζερμπαϊτζανικά"
+
+msgid "Azure"
+msgstr "γαλανό"
 
 msgid "B"
 msgstr "B"
@@ -5823,7 +5829,7 @@ msgstr "Επιλέχθηκε η αυτόματη λειτουργία βίντε
 msgid "Default volume offset"
 msgstr "Προεπιλεγμένη ολίσθηση έντασης ήχου"
 
-msgid "Default wake-up is 5 minutes before Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
+msgid "Default wake-up is 5 minutes prior to timer start to wake up from Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
 msgstr "Η προεπιλεγμένη ρύθμιση είναι 5 λεπτά νωρίτερα για αφύπνιση από βαθιά αναμονή. Πιθανώς να είναι απαραίτητο να αλλάξει αυτό. (π.χ: ο πραγματικός χρόνος αφύπνισης είναι μη ακριβής ή παρωχημένος, αναμονή για δίσκο δικτύου, κλπ.)"
 
 #, python-format
@@ -6363,7 +6369,7 @@ msgstr "Το PIP απενεργοποιήθηκε.\n"
 msgid "Disabled or WPA/WPA2"
 msgstr "Ανενεργό ή WPA/WPA2"
 
-msgid "Disables timeshift during recording (advisable for USB sticks)."
+msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
 msgstr "Διακοπή της χρήσης του χρονοδιακόπτη αν εκτελείται εγγραφή. (Συνίσταται για τα USB στικ.)"
 
 msgid "Disabling Chkroot failed!"
@@ -6809,7 +6815,7 @@ msgstr "Διπλότυπο"
 msgid "Duplicate the current line"
 msgstr "Αντιγραφή της τρέχουσας γραμμής"
 
-msgid "During this time, the transmitter and recording destination are checked. If the destination (e.g., NAS) isn’t ready in time, this time can be increased."
+msgid "During this time, the transmitter and recording destination are checked. If the destination (e.g., NAS) isn't ready in time, this time can be increased."
 msgstr "Κατά το χρονικό αυτό διάστημα, θα γίνεται έλεγχος του αναμεταδότη και της διαδρομής εγγραφής. Αν η διαδρομή (π.χ. NAS) δεν είναι έτοιμη για εγγραφή, αυτό το χρονικό διάστημα μπορεί να αυξηθεί."
 
 msgid "Dutch"
@@ -7346,7 +7352,7 @@ msgstr "Ενεργό"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Ενεργοποιεί μια λειτουργία ώστε ο δέκτης να αποκωδικοποιεί τις ροές (αν τα δεδομένα ECM συμπεριλαμβάνονται στη ροή και υπάρχει ενεργή κάρτα διαθέσιμη)."
 
-msgid "Enables sending the same TV commands for Deep Standby as for regular Standby."
+msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr "Αν επιλεγεί το 'ναι', οι ίδιες εντολές που στέλνονται στην TV για την κοινή αναμονή, θα αποστέλλονται και για τη βαθιά αναμονή."
 
 msgid "Encrypted: "
@@ -8262,7 +8268,7 @@ msgstr "Εφεδρικός απομακρυσμένος δέκτης για DVB-
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Εφεδρικός απομακρυσμένος δέκτης για DVB-T"
 
-msgid "Fallback tuner setup"
+msgid "Fallback Tuner Setup"
 msgstr "Ρυθμίσεις εφεδρικού tuner"
 
 msgid "False"
@@ -10720,6 +10726,9 @@ msgstr "Πηγή φωτός"
 msgid "Limburgan / Limburger / Limburgish"
 msgstr "Λιμβουργιανά"
 
+msgid "Lime"
+msgstr "λεμονί"
+
 msgid "Limit character set for recording filenames"
 msgstr "Περιορισμένο πλήθος χαρακτήρων για ονόματα εγγραφών"
 
@@ -11501,15 +11510,6 @@ msgstr "Μογγολία"
 
 msgid "Mongolian"
 msgstr "Μογγολικά"
-
-msgid "Monitoring UI password"
-msgstr ""
-
-msgid "Monitoring UI port"
-msgstr ""
-
-msgid "Monitoring UI username"
-msgstr ""
 
 msgid "Montenegro"
 msgstr "Μαυροβούνιο"
@@ -12852,6 +12852,9 @@ msgstr "Οτζίμπουα"
 msgid "Older files in the time shift directory are removed on every event change."
 msgstr "Τα παλαιότερα αρχεία στον φάκελο χρονομετατόπισης αφαιρούνται σε κάθε αλλαγή εκπομπής."
 
+msgid "Olympic blue"
+msgstr "ολυμπιακό μπλε"
+
 msgid "Olympics"
 msgstr "Ολυμπιακοί αγώνες"
 
@@ -13139,6 +13142,9 @@ msgstr "Προαιρετική παράμετρος"
 
 msgid "Options"
 msgstr "Επιλογές"
+
+msgid "Orange"
+msgstr "πορτοκαλί"
 
 msgid "Orbital position"
 msgstr "Τροχιακή θέση"
@@ -13578,6 +13584,9 @@ msgstr "Μπάρες εκατέρωθεν"
 
 msgid "Pilot"
 msgstr "Πιλότος"
+
+msgid "Pink"
+msgstr "ροζ"
 
 msgid "Pitcairn"
 msgstr "Πίτκαιρν"
@@ -14495,6 +14504,9 @@ msgstr "Εκκαθάριση όλων εκτός της τρέχουσας κα�
 
 msgid "Purging all unused locales/languages..."
 msgstr "Εκκαθάριση όλων των μη χρησιμοποιούμενων γλωσσών/διαλέκτων..."
+
+msgid "Purple"
+msgstr "μωβ"
 
 msgid "Pushto / Pashto"
 msgstr "Πάστο"
@@ -15533,6 +15545,9 @@ msgstr "Αρχικός φάκελος"
 
 msgid "Root file"
 msgstr "Αρχείο ρίζας"
+
+msgid "Rose"
+msgstr "τριανταφυλλί"
 
 msgid "Rotor turning speed"
 msgstr "Ταχύτητα περιστροφής του μοτέρ"
@@ -22717,7 +22732,7 @@ msgstr "Αφύπνιση της TV από αναμονή"
 msgid "Wake up from Deep-Standby is allowed"
 msgstr "Επιτρέπεται η αφύπνιση από τη βαθιά αναμονή"
 
-msgid "Wake up time before a timer begins [mins]"
+msgid "Wake up time before a timer begins"
 msgstr "Χρόνος αφύπνισης πριν την εκκίνηση ενός χρονοδιακόπτη [λεπτά]"
 
 msgid "Wake up to standby"
@@ -23072,7 +23087,7 @@ msgstr "Όταν ο δέκτης επανέρχεται από την αναμο
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
 msgstr "Όταν το κόκκινο πλαίσιο είναι σωστά ορατό, πιέστε το ΠΡΑΣΙΝΟ πλήκτρο για αποθήκευση των αλλαγών και έξοδο."
 
-msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you’re doing."
+msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you're doing."
 msgstr "Όταν το σύστημα συντονίζεται σε μία υπηρεσία, γίνεται αυτόματη ανίχνευση του αναμεταδότη και αποθηκεύονται οι όποιες αλλαγές. Θέστε αυτή την επιλογή σε 'ναι' μόνο αν είστε απολύτως σίγουροι για το τι κάνετε."
 
 msgid "When yes, VPS will be enabled on instant records (stop after current event), if the channel supports VPS."
@@ -23719,9 +23734,6 @@ msgstr "αλφαβητικά μετά το νεότερο"
 msgid "am"
 msgstr "πμ"
 
-msgid "Aqua"
-msgstr "άκουα"
-
 #, python-format
 msgid "audio track (%s) format"
 msgstr "φορμά καναλιού ήχου (%s)"
@@ -23735,9 +23747,6 @@ msgstr "ροές ήχου"
 
 msgid "automatic"
 msgstr "αυτόματο"
-
-msgid "Azure"
-msgstr "γαλανό"
 
 msgid "back"
 msgstr "πίσω"
@@ -23988,9 +23997,6 @@ msgstr "αριστερά"
 msgid "length"
 msgstr "διάρκεια"
 
-msgid "Lime"
-msgstr "λεμονί"
-
 msgid "locked"
 msgstr "κλειδωμένο"
 
@@ -24069,14 +24075,8 @@ msgstr "κλειστό ή wpa2 ανοικτό"
 msgid "offset is"
 msgstr "το offset είναι"
 
-msgid "Olympic blue"
-msgstr "ολυμπιακό μπλε"
-
 msgid "on READ ONLY medium."
 msgstr "σε μέσο ΜΟΝΟ ΓΙΑ ΑΝΑΓΝΩΣΗ."
-
-msgid "Orange"
-msgstr "πορτοκαλί"
 
 msgid "package"
 msgstr "πακέτο"
@@ -24086,9 +24086,6 @@ msgstr "πακέτα"
 
 msgid "pid:"
 msgstr "pid:"
-
-msgid "Pink"
-msgstr "ροζ"
 
 msgid "please wait, loading picture..."
 msgstr "περίμενετε, φορτώνεται η εικόνα..."
@@ -24107,9 +24104,6 @@ msgstr "provid:"
 
 msgid "provider:"
 msgstr "πάροχος:"
-
-msgid "Purple"
-msgstr "μωβ"
 
 msgid "red"
 msgstr "κόκκινο"
@@ -24140,9 +24134,6 @@ msgstr "μετάβαση στο προηγούμενο κεφάλαιο"
 
 msgid "right"
 msgstr "δεξιά"
-
-msgid "Rose"
-msgstr "τριανταφυλλί"
 
 msgid ""
 "satellites.xml not found or corrupted!\n"
@@ -24308,9 +24299,6 @@ msgstr "αναμονή για mmi..."
 msgid "west"
 msgstr "δυτικά"
 
-msgid "white"
-msgstr "λευκό"
-
 msgid "width"
 msgstr "πλάτος"
 
@@ -24337,6 +24325,9 @@ msgstr "ναι (διατήρηση των feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "white"
+#~ msgstr "λευκό"
 
 #~ msgid "Add a DNS entry"
 #~ msgstr "Προσθήκη ενός DNS"
