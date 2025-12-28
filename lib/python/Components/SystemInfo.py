@@ -5,7 +5,7 @@ from os import listdir, readlink
 from os.path import basename, exists, isfile, join, islink
 from subprocess import PIPE, Popen
 
-from enigma import Misc_Options, eDVBResourceManager, eGetEnigmaDebugLvl, eDBoxLCD, eDVBCIInterfaces, getE2Rev, eDVBCSAEngine
+from enigma import Misc_Options, eDVBResourceManager, eGetEnigmaDebugLvl, eDBoxLCD, eDVBCIInterfaces, getE2Rev  # , eDVBCSAEngine
 
 from Tools.Directories import SCOPE_LIBDIR, SCOPE_SKINS, isPluginInstalled, fileCheck, fileReadLine, fileReadLines, resolveFilename, fileExists, fileHas, pathExists
 from Tools.MultiBoot import MultiBoot
@@ -363,7 +363,7 @@ BoxInfo.setItem("InformationCommitLogs", commitLogs)
 # ]
 # BoxInfo.setItem("InformationDistributionWelcome", welcome)
 
-BoxInfo.setItem("12V_Output", Misc_Options.getInstance().detected_12V_output())  #FIXME : Do we need this?
+BoxInfo.setItem("12V_Output", Misc_Options.getInstance().detected_12V_output())  # FIXME : Do we need this?
 BoxInfo.setItem("3DMode", fileCheck("/proc/stb/fb/3dmode") or fileCheck("/proc/stb/fb/primary/3d"))
 BoxInfo.setItem("3DZNorm", fileCheck("/proc/stb/fb/znorm") or fileCheck("/proc/stb/fb/primary/zoffset"))
 BoxInfo.setItem("7segment", DISPLAYTYPE in ("7segment",))
@@ -407,7 +407,7 @@ BoxInfo.setItem("HaveCISSL", fileCheck("/etc/ssl/certs/customer.pem") and fileCh
 BoxInfo.setItem("HaveID", fileCheck("/etc/.id"))
 BoxInfo.setItem("HAVEINITCAM", hasInitCam())
 BoxInfo.setItem("HAVEINITCARDSERVER", hasInitCardServer())
-BoxInfo.setItem("HasSoftCSA", eDVBCSAEngine.isAvailable())
+# BoxInfo.setItem("HasSoftCSA", eDVBCSAEngine.isAvailable())
 BoxInfo.setItem("HaveTouchSensor", MACHINEBUILD in ("dm520", "dm525", "dm900", "dm920"))
 BoxInfo.setItem("HDMICEC", fileExists("/dev/hdmi_cec") or fileExists("/dev/misc/hdmi_cec0"))
 BoxInfo.setItem("HDMIin", BoxInfo.getItem("hdmifhdin") or BoxInfo.getItem("hdmihdin"))
