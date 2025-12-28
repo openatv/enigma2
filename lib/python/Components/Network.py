@@ -395,6 +395,16 @@ class Network:
 		if nameserver not in self.nameservers:
 			self.nameservers.append(nameserver)
 
+	def removeNameserver(self, nameserver):
+		if nameserver in self.nameservers:
+			self.nameservers.remove(nameserver)
+
+	def changeNameserver(self, oldNameserver, newNameserver):
+		if oldNameserver in self.nameservers:
+			for pos, nameserver in enumerate(self.nameservers):
+				if self.nameservers[pos] == oldNameserver:
+					self.nameservers[pos] = newNameserver
+
 	def resetNetworkConfig(self, mode="lan", callback=None):
 		self.resetNetworkConsole = Console()
 		self.commands = []
