@@ -1,5 +1,5 @@
 import netifaces as ni
-from os import listdir, system as os_system
+from os import listdir, remove, system as os_system
 from os.path import basename, exists, isdir, realpath
 from re import compile
 from socket import inet_ntoa, gethostbyname, gethostname
@@ -279,7 +279,10 @@ class Network:
 		rotate = ["options rotate"] if config.usage.dnsRotate.value else []
 		if not useDHCPforDNS:
 			fileWriteLines(self.resolvFile, rotate + suffix + lines, source=MODULE_NAME)
-		fileWriteLines(self.nameserverFile, rotate + suffix + lines, source=MODULE_NAME)
+		if config.usage.dns.value != "dhcp-router":
+			fileWriteLines(self.nameserverFile, rotate + suffix + lines, source=MODULE_NAME)
+		elif exists(self.nameserverFile):
+			remove(self.nameserverFile)
 
 	def loadNameserverConfig(self, fileName=None):
 		if not fileName:
