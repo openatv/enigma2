@@ -59,7 +59,7 @@ def InitUsageConfig():
 		(1, _("Extensions/QuickMenu"))
 	])
 	config.workaround.deeprecord = ConfigYesNo(default=False)
-	config.workaround.wakeuptime = ConfigSelection(default=5, choices=[(x, ngettext("%d Minute", "%d Minutes", x) for x in range(31))])
+	config.workaround.wakeuptime = ConfigSelection(default=5, choices=[(x, ngettext("%d Minute", "%d Minutes", x) % x) for x in range(31)])
 	config.workaround.wakeupwindow = ConfigSelectionNumber(default=5, stepwidth=5, min=5, max=60, wraparound=True)
 
 	config.usage = ConfigSubsection()
