@@ -965,6 +965,12 @@
 	<setup key="SpecialFeatures" title="Special Features Settings">
 		<!-- This is just a placeholder, the 'specialfeatures' menu is currently disabled. -->
 	</setup>
+	<setup key="SoftCSA" title="SoftCSA Settings">
+		<item level="0" text="Hardware decoder release strategy" description="How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes).">config.softcsa.DecoderRelease</item>
+		<item level="0" text="DVR sync mode" description="Write mode for descrambled data stream to DVR loopback device. 'Synchronous' waits for each write to complete (stable). 'Asynchronous' uses non-blocking writes (lower CPU, requires kernel AIO support - not available on all boxes).">config.softcsa.SyncMode</item>
+		<item level="1" text="DVR data ready timeout" description="Maximum time to wait for first DVR data before starting decoder. Usually data arrives much faster and this is only a fallback timeout.">config.softcsa.WaitForDataTimeout</item>
+		<item level="1" text="Startup buffer size" description="Buffer size for Live-TV to collect packets before control words arrive, this reduces artifacts on channel start.">config.softcsa.StartupBufferSize</item>
+	</setup>
 	<setup key="StreamRelay" title="Stream Relay Settings">
 		<item level="2" text="Stream Relay URL" description="IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay.">config.misc.softcam_streamrelay_url</item>
 		<item level="2" text="Stream Relay port" description="Port number for the Stream Relay server used to descramble services that can only be decrypted via Stream Relay.">config.misc.softcam_streamrelay_port</item>
