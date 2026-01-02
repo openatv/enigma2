@@ -1,10 +1,12 @@
 from errno import ETIMEDOUT
 from ipaddress import ip_address
+from json import dumps, loads
 from glob import glob
 from os import rename, strerror, system, unlink
 from os.path import exists
 from process import ProcessList
 from random import Random
+from urllib.request import Request, urlopen
 
 from enigma import eConsoleAppContainer, eTimer
 
@@ -2328,3 +2330,167 @@ class NetworkLogScreen(Screen):
 		elif self.logPath and exists(self.logPath):
 			lines = fileReadLines(self.logPath, [], source=MODULE_NAME)
 		self["infotext"].setText("\n".join(lines))
+
+
+class NetworkZerotierSetup(Setup):
+	ZEROTIERCLI = "/usr/sbin/zerotier-cli"
+	ZEROTIERSECRET = "/var/lib/zerotier-one/authtoken.secret"
+	ZEROTIERAPI = "http://127.0.0.1:9993"
+
+	def __init__(self, session):
+		self.cachedToken = None
+		self.lastInfo = None
+		self.joined = False
+		Setup.__init__(self, session=session, setup="NetworkZerotier")
+		self["key_yellow"] = StaticText("")
+		self["key_blue"] = StaticText(_("Refresh"))
+		self["zerotierActions"] = HelpableActionMap(self, ["ColorActions"], {
+			"yellow": (self.toggleJoinLeave, _("Join or leave the configured ZeroTier network")),
+			"blue": (self.refreshInfo, _("Refresh ZeroTier status information"))
+		}, prio=0, description=_("ZeroTier Actions"))
+		self.setJoinLeaveButton()
+
+	def changedEntry(self):
+		current = self["config"].getCurrent()
+		if current and len(current) > 1 and current[1] is config.network.zerotierNetworkId:
+			self.createSetup()
+			self.setJoinLeaveButton()
+		return Setup.changedEntry(self)
+
+	def refreshInfo(self):
+		self.createSetup()
+		self["config"].invalidateCurrent()
+		self.setJoinLeaveButton()
+
+	def readAuthToken(self):
+		if self.cachedToken:
+			return self.cachedToken
+		with open(self.ZEROTIERSECRET, encoding="utf-8", errors="ignore") as fd:
+			token = fd.read().strip()
+			self.cachedToken = token if token else None
+			return self.cachedToken
+
+	def apiRequest(self, method, path, payload=None, timeout=2):
+		token = self.readAuthToken()
+		url = f"{self.ZEROTIERAPI}{path}"
+		headers = {"X-ZT1-Auth": token}
+
+		data = None
+		if payload is not None:
+			data = dumps(payload).encode("utf-8")
+			headers["Content-Type"] = "application/json"
+
+		req = Request(url, data=data, headers=headers, method=method)
+		try:
+			with urlopen(req, timeout=timeout) as resp:
+				body = resp.read().decode("utf-8", "ignore").strip()
+				return loads(body) if body else None
+		except Exception:
+			pass
+
+	def getserviceStatus(self):
+		data = self.apiRequest("GET", "/status")
+		return {
+			"online": bool(data.get("online", False)) if isinstance(data, dict) else False,
+			"version": str(data.get("version", "")) if isinstance(data, dict) else "",
+			"address": str(data.get("address", "")) if isinstance(data, dict) else ""
+		}
+
+	def getMemberships(self):
+		data = self.apiRequest("GET", "/network")
+		return data if isinstance(data, list) else []
+
+	def isJoined(self, nwid, memberships=None):
+		memberships = memberships if memberships is not None else self.getMemberships()
+		for m in memberships:
+			if isinstance(m, dict) and str(m.get("id", "")).lower() == nwid.lower():
+				return True
+		return False
+
+	def setJoinLeaveButton(self):
+		nwid = str(config.network.zerotierNetworkId.value or "").strip()
+		if not nwid:
+			self["key_yellow"].setText("")
+			self["zerotierActions"].setEnabled(False)
+			return
+
+		self["zerotierActions"].setEnabled(True)
+		self["key_yellow"].setText(_("Leave") if self.joined else _("Join"))
+
+	def toggleJoinLeave(self):
+		nwid = str(config.network.zerotierNetworkId.value or "").strip()
+		if not nwid:
+			return
+
+		memberships = self.getMemberships()
+		self.joined = self.isJoined(nwid, memberships)
+
+		if self.joined:
+			self.zerotierCli(nwid, "leave")
+		else:
+			self.zerotierCli(nwid, "join")
+		self.refreshInfo()
+
+	def createSetup(self):  # NOSONAR silence S2638
+		nwid = str(config.network.zerotierNetworkId.value or "").strip()
+		if not nwid:
+			self.lastInfo = None
+			Setup.createSetup(self, appendItems=[])
+
+		items = []
+		serviceOnline = False
+		serviceVersion = ""
+		membership = None
+		name = ""
+		status = ""
+		ipv4 = ""
+		ipv6 = ""
+		serviceStatus = self.getserviceStatus()
+		serviceOnline = serviceStatus.get("online", False)
+		serviceVersion = serviceStatus.get("version", "")
+		memberships = self.getMemberships()
+		entry = next((n for n in memberships if str(n.get("nwid") or n.get("id") or "").lower() == nwid.lower()), None)
+		self.joined = entry is not None
+
+		if self.joined:
+			name = str(entry.get("name", "") or "")
+			status = str(entry.get("status", "") or "")
+			ips = entry.get("assignedAddresses", []) or []
+			ipv4 = next((ip.split("/", 1)[0] for ip in ips if "." in ip), "")
+			ipv6 = next((ip.split("/", 1)[0] for ip in ips if ":" in ip), "")
+		self.lastInfo = {
+			"serviceOnline": serviceOnline,
+			"serviceVersion": serviceVersion,
+			"joined": self.joined,
+			"name": name,
+			"status": status,
+			"ipv4": ipv4,
+			"ipv6": ipv6
+		}
+
+		items.append(getConfigListEntry((_("Joined"), 0), ReadOnly(NoSave(ConfigText(default=_("Yes") if self.joined else _("No"), fixed_size=False)))))
+		items.append(getConfigListEntry((_("Service online"), 0), ReadOnly(NoSave(ConfigText(default=_("Yes") if serviceOnline else _("No"), fixed_size=False)))))
+		if serviceVersion:
+			items.append(getConfigListEntry((_("ZeroTier version"), 0), ReadOnly(NoSave(ConfigText(default=serviceVersion, fixed_size=False)))))
+
+		if self.joined:
+			if name:
+				items.append(getConfigListEntry((_("Network name"), 0), ReadOnly(NoSave(ConfigText(default=name, fixed_size=False)))))
+			if status:
+				items.append(getConfigListEntry((_("Network status"), 0), ReadOnly(NoSave(ConfigText(default=status, fixed_size=False)))))
+			items.append(getConfigListEntry((_("Tunnel IPv4"), 0), ReadOnly(NoSave(ConfigText(default=ipv4 or _("N/A"), fixed_size=False)))))
+			items.append(getConfigListEntry((_("Tunnel IPv6"), 0), ReadOnly(NoSave(ConfigText(default=ipv6 or _("N/A"), fixed_size=False)))))
+		else:
+			items.append(getConfigListEntry((_("Info"), 0), ReadOnly(NoSave(ConfigText(default=_("Not joined. Press Yellow to join."), fixed_size=False)))))
+		Setup.createSetup(self, appendItems=items)
+
+	def zerotierCli(self, nwid, option):
+		if not nwid:
+			return False
+		background = " "
+		if option == "leave":
+			background = "&"
+			ztIface = next((a for a in iNetwork.getAdapterList() if a.startswith("zt")), "")
+			if ztIface:
+				Console().ePopen(f"ip link del dev {ztIface}")
+		Console().ePopen([self.ZEROTIERCLI, self.ZEROTIERCLI, option, nwid, background])

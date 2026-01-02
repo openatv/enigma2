@@ -31,4 +31,5 @@
 	<daemon key="ssh" title="SSH" autostart="/etc/rc2.d/S10dropbear" autostartservice="dropbear" autostartprio="10" running="dropbear" startservice="dropbear" />
 	<daemon key="telnet" title="Telnet" autostart="/etc/rc2.d/S20telnetd.busybox" autostartservice="telnetd.busybox" running="telnetd" startservice="telnetd" />
 	<daemon key="ushare" title="uShare" installcheck="/etc/init.d/ushare" package="ushare" autostart="/etc/rc2.d/S20ushare" autostartservice="ushare" running="ushare" startservice="ushare" />
+	<daemon key="zerotier" title="ZeroTier-One" installcheck="/etc/init.d/zerotier" package="zerotier" autostart="/etc/rc2.d/S20zerotier" autostartservice="zerotier" running="zerotier-one" startservice="zerotier" />
 </daemonsxml>
