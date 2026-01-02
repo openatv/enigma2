@@ -2,7 +2,7 @@ from errno import ETIMEDOUT
 from ipaddress import ip_address
 from json import dumps, loads
 from glob import glob
-from os import rename, strerror, system, unlink
+from os import rename, strerror, system
 from os.path import exists
 from process import ProcessList
 from random import Random
@@ -33,7 +33,7 @@ from Screens.RestartNetwork import RestartNetworkNew
 from Screens.Processing import Processing
 from Screens.Screen import Screen
 from Screens.Setup import Setup
-from Tools.Directories import SCOPE_SKINS, SCOPE_GUISKIN, SCOPE_PLUGINS, fileReadLines, fileReadXML, fileWriteLines, resolveFilename
+from Tools.Directories import SCOPE_SKINS, SCOPE_GUISKIN, SCOPE_PLUGINS, fileReadLines, fileReadXML, fileWriteLine, fileWriteLines, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 
 MODULE_NAME = __name__.split(".")[-1]
@@ -48,22 +48,17 @@ class NetworkAdapterSelection(Screen):
 		self.lan_errortext = _("No working local network adapter found.\nPlease verify that you have attached a network cable and your network is configured correctly.")
 		self.oktext = _("Press OK on your remote control to continue.")
 		self.edittext = _("Press OK to edit the settings.")
-		self.defaulttext = _("Press yellow to set this interface as the default interface.")
-		self.restartLanRef = None
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Select"))
 		self["key_yellow"] = StaticText("")
-		self["key_blue"] = StaticText("")
+		self["key_blue"] = StaticText(_("Network Restart"))
 		self["introduction"] = StaticText(self.edittext)
 		self["OkCancelActions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions"], {
 			"cancel": (self.close, _("Exit network interface list")),
 			"ok": (self.okbuttonClick, _("Select interface")),
 			"red": (self.close, _("Exit network interface list")),
 			"green": (self.okbuttonClick, _("Select interface")),
-			"blue": (self.openNetworkWizard, _("Use the network wizard to configure selected network adapter"))
-		}, prio=0, description=_("Network Adapter Actions"))
-		self["DefaultInterfaceAction"] = HelpableActionMap(self, ["ColorActions"], {
-			"yellow": (self.setDefaultInterface, [_("Set interface as the default Interface"), _("* Only available if more than one interface is active.")])
+			"blue": (self.restartLan, _("Restart network to with current setup"))
 		}, prio=0, description=_("Network Adapter Actions"))
 		self.adapters = [(iNetwork.getFriendlyAdapterName(x), x) for x in iNetwork.getAdapterList()]
 		if not self.adapters:
@@ -76,8 +71,6 @@ class NetworkAdapterSelection(Screen):
 		self.updateList()
 		if self.selectionChanged not in self["list"].onSelectionChanged:
 			self["list"].onSelectionChanged.append(self.selectionChanged)
-		if len(self.adapters) == 1:
-			self.onFirstExecBegin.append(self.okbuttonClick)
 		self.onClose.append(self.cleanup)
 
 	def createSummary(self):
@@ -108,19 +101,13 @@ class NetworkAdapterSelection(Screen):
 				interfacepng = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/network_wired-inactive.png"))
 			else:
 				interfacepng = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/network_wired.png"))
-		elif iNetwork.isWirelessInterface(iface):
+		else:
 			if active is True:
 				interfacepng = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/network_wireless-active.png"))
 			elif active is False:
 				interfacepng = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/network_wireless-inactive.png"))
 			else:
 				interfacepng = LoadPixmap(resolveFilename(SCOPE_GUISKIN, "icons/network_wireless.png"))
-		num_configured_if = len(iNetwork.getConfiguredAdapters())
-		if num_configured_if >= 2:
-			if default is True:
-				defaultpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "buttons/button_green.png"))
-			elif default is False:
-				defaultpng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "buttons/button_green_off.png"))
 		if active is True:
 			activepng = LoadPixmap(cached=True, path=resolveFilename(SCOPE_GUISKIN, "icons/lock_on.png"))
 		elif active is False:
@@ -130,48 +117,10 @@ class NetworkAdapterSelection(Screen):
 
 	def updateList(self):
 		self.list = []
-		default_gw = None
-		num_configured_if = len(iNetwork.getConfiguredAdapters())
-		if num_configured_if >= 2:
-			self["key_yellow"].setText(_("Default"))
-			self["introduction"].setText(self.defaulttext)
-			self["DefaultInterfaceAction"].setEnabled(True)
-		else:
-			self["key_yellow"].setText("")
-			self["introduction"].setText(self.edittext)
-			self["DefaultInterfaceAction"].setEnabled(False)
-		if num_configured_if < 2 and exists("/etc/default_gw"):
-			unlink("/etc/default_gw")
-		if exists("/etc/default_gw"):
-			fp = open("/etc/default_gw")
-			result = fp.read()
-			fp.close()
-			default_gw = result
 		for adapter in self.adapters:
-			default_int = adapter[1] == default_gw
 			active_int = iNetwork.getAdapterAttribute(adapter[1], "up")
-			self.list.append(self.buildInterfaceList(adapter[1], _(adapter[0]), default_int, active_int))
-		if exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
-			self["key_blue"].setText(_("Network Wizard"))
+			self.list.append(self.buildInterfaceList(adapter[1], _(adapter[0]), 0, active_int))
 		self["list"].setList(self.list)
-
-	def setDefaultInterface(self):
-		selection = self["list"].getCurrent()
-		# num_if = len(self.list)
-		old_default_gw = None
-		num_configured_if = len(iNetwork.getConfiguredAdapters())
-		if exists("/etc/default_gw"):
-			fp = open("/etc/default_gw")
-			old_default_gw = fp.read()
-			fp.close()
-		if num_configured_if > 1 and (not old_default_gw or old_default_gw != selection[0]):
-			fp = open("/etc/default_gw", "w+")
-			fp.write(selection[0])
-			fp.close()
-			self.restartLan()
-		elif old_default_gw and num_configured_if < 2:
-			unlink("/etc/default_gw")
-			self.restartLan()
 
 	def okbuttonClick(self):
 		selection = self["list"].getCurrent()
@@ -189,32 +138,10 @@ class NetworkAdapterSelection(Screen):
 		iNetwork.stopRestartConsole()
 
 	def restartLan(self):
-		iNetwork.restartNetwork(self.restartLanDataAvail)
-		self.restartLanRef = self.session.openWithCallback(self.restartfinishedCB, MessageBox, _("Please wait while we configure your network..."), type=MessageBox.TYPE_INFO, enable_input=False)
-
-	def restartLanDataAvail(self, data):
-		if data is True:
-			iNetwork.getInterfaces(self.getInterfacesDataAvail)
-
-	def getInterfacesDataAvail(self, data):
-		if data is True:
-			self.restartLanRef.close(True)
-
-	def restartfinishedCB(self, data):
-		if data is True:
+		def restartfinishedCB():
 			self.updateList()
 			self.session.open(MessageBox, _("Finished configuring your network"), type=MessageBox.TYPE_INFO, timeout=10, default=False)
-
-	def openNetworkWizard(self):
-		if exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
-			try:
-				from Plugins.SystemPlugins.NetworkWizard.NetworkWizard import NetworkWizard
-			except ImportError:
-				self.session.open(MessageBox, _("The network wizard extension is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
-			else:
-				selection = self["list"].getCurrent()
-				if selection is not None:
-					self.session.openWithCallback(self.AdapterSetupClosed, NetworkWizard, selection[0])
+		RestartNetworkNew.start(callback=restartfinishedCB)
 
 
 class DNSSettings(Setup):
@@ -485,64 +412,6 @@ class NameserverSetup(DNSSettings):
 		DNSSettings.__init__(self, session=session)
 
 
-class NetworkMacSetup(ConfigListScreen, Screen):
-	def __init__(self, session):
-		Screen.__init__(self, session, enableHelp=True)
-		self.setTitle(_("MAC Address Settings"))
-		self.curMac = self.getmac("eth0")
-		self.getConfigMac = NoSave(ConfigMacText(default=self.curMac))
-		self["key_red"] = StaticText(_("Cancel"))
-		self["key_green"] = StaticText(_("Save"))
-		self["introduction"] = StaticText(_("Press OK to set the MAC address."))
-		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions"], {
-			"cancel": (self.cancel, _("Exit MAC address configuration")),
-			"ok": (self.ok, _("Activate MAC address configuration")),
-			"red": (self.cancel, _("Exit MAC address configuration")),
-			"green": (self.ok, _("Activate MAC address configuration"))
-		}, prio=0, description=_("MAC Address Actions"))
-		self.list = []
-		ConfigListScreen.__init__(self, self.list)
-		self.createSetup()
-
-	def getmac(self, iface):
-		eth = about.getIfConfig(iface)
-		return eth["hwaddr"]
-
-	def createSetup(self):
-		self.list = []
-		self.list.append(getConfigListEntry(_("MAC-address"), self.getConfigMac))
-		self["config"].list = self.list
-
-	def ok(self):
-		MAC = self.getConfigMac.value
-		f = open("/etc/enigma2/hwmac", "w")
-		f.write(MAC)
-		f.close()
-		self.restartLan()
-
-	def run(self):
-		self.ok()
-
-	def cancel(self):
-		self.close()
-
-	def restartLan(self):
-		iNetwork.restartNetwork(self.restartLanDataAvail)
-		self.restartLanRef = self.session.openWithCallback(self.restartfinishedCB, MessageBox, _("Please wait while we configure your network..."), type=MessageBox.TYPE_INFO, enable_input=False)
-
-	def restartLanDataAvail(self, data):
-		if data is True:
-			iNetwork.getInterfaces(self.getInterfacesDataAvail)
-
-	def getInterfacesDataAvail(self, data):
-		if data is True:
-			self.restartLanRef.close(True)
-
-	def restartfinishedCB(self, data):
-		if data is True:
-			self.session.openWithCallback(self.close, MessageBox, _("Finished configuring your network"), type=MessageBox.TYPE_INFO, timeout=10, default=False)
-
-
 class AdapterSetup(ConfigListScreen, Screen):
 	def __init__(self, session, networkinfo, essid=None):
 		Screen.__init__(self, session, enableHelp=True)
@@ -553,6 +422,8 @@ class AdapterSetup(ConfigListScreen, Screen):
 		else:
 			self.iface = networkinfo
 			self.essid = essid
+		macAddr = about.getIfConfig(self.iface).get("hwaddr", "") if self.iface == "eth0" else ""
+		self.getConfigMac = NoSave(ConfigMacText(default=macAddr)) if macAddr else None
 		self.extended = None
 		self.applyConfigRef = None
 		self.finished_cb = None
@@ -711,6 +582,8 @@ class AdapterSetup(ConfigListScreen, Screen):
 				self.list.append(self.gatewayEntry)
 				if self.hasGatewayConfigEntry.value:
 					self.list.append(getConfigListEntry(_("Gateway"), self.gatewayConfigEntry))
+			if self.getConfigMac:
+				self.list.append(getConfigListEntry(_("MAC-address"), self.getConfigMac))
 			havewol = False
 			if BoxInfo.getItem("WakeOnLAN") and BoxInfo.getItem("machinebuild") not in ("et10000", "gb800seplus", "gb800ueplus", "gbultrase", "gbultraue", "gbultraueh", "gbipbox", "gbquad", "gbx1", "gbx2", "gbx3", "gbx3h"):
 				havewol = True
@@ -805,6 +678,9 @@ class AdapterSetup(ConfigListScreen, Screen):
 
 	def applyConfig(self, ret=False):
 		if ret is True:
+			if self.getConfigMac and self.getConfigMac.isChanged():
+				fileWriteLine("/etc/enigma2/hwmac", self.getConfigMac.value, source=MODULE_NAME)
+
 			self.applyConfigRef = None
 			iNetwork.setAdapterAttribute(self.iface, "ipv6", self.ipTypeConfigEntry.value)
 			iNetwork.setAdapterAttribute(self.iface, "up", self.activateInterfaceEntry.value)
@@ -909,7 +785,6 @@ class AdapterSetupConfiguration(Screen):
 		Screen.__init__(self, session, enableHelp=True)
 		self.setTitle(_("Network Settings"))
 		self.iface = iface
-		self.restartLanRef = None
 		self.LinkState = None
 		self.onChangedEntry = []
 		self.mainmenu = ""
@@ -987,8 +862,6 @@ class AdapterSetupConfiguration(Screen):
 			self.session.open(NetworkAdapterTest, self.iface)
 		if self["menulist"].getCurrent()[1] == "dns":
 			self.session.open(NameserverSetup)
-		if self["menulist"].getCurrent()[1] == "mac":
-			self.session.open(NetworkMacSetup)
 		if self["menulist"].getCurrent()[1] == "scanwlan":
 			try:
 				from Plugins.SystemPlugins.WirelessLan.plugin import WlanScan
@@ -1035,12 +908,8 @@ class AdapterSetupConfiguration(Screen):
 			self["description"].setText("%s\n\n%s" % (_("Shows the state of your wireless LAN connection."), self.oktext))
 		if self["menulist"].getCurrent()[1] == "lanrestart":
 			self["description"].setText("%s\n\n%s" % (_("Restart your network connection and interfaces."), self.oktext))
-		if self["menulist"].getCurrent()[1] == "openwizard":
-			self["description"].setText("%s\n\n%s" % (_("Use the network wizard to configure your Network."), self.oktext))
 		if self["menulist"].getCurrent()[1][0] == "extendedSetup":
 			self["description"].setText("%s\n\n%s" % (_(self["menulist"].getCurrent()[1][1]), self.oktext))
-		if self["menulist"].getCurrent()[1] == "mac":
-			self["description"].setText("%s\n\n%s" % (_("Set the MAC address of your %s %s.") % getBoxDisplayName(), self.oktext))
 		item = self["menulist"].getCurrent()
 		if item:
 			name = str(self["menulist"].getCurrent()[0])
@@ -1138,21 +1007,10 @@ class AdapterSetupConfiguration(Screen):
 
 	def restartLan(self, ret=False):
 		if ret is True:
-			iNetwork.restartNetwork(self.restartLanDataAvail)
-			self.restartLanRef = self.session.openWithCallback(self.restartfinishedCB, MessageBox, _("Please wait while your network is restarting..."), type=MessageBox.TYPE_INFO, enable_input=False)
-
-	def restartLanDataAvail(self, data):
-		if data is True:
-			iNetwork.getInterfaces(self.getInterfacesDataAvail)
-
-	def getInterfacesDataAvail(self, data):
-		if data is True:
-			self.restartLanRef.close(True)
-
-	def restartfinishedCB(self, data):
-		if data is True:
-			self.updateStatusbar()
-			self.session.open(MessageBox, _("Finished restarting your network"), type=MessageBox.TYPE_INFO, timeout=10, default=False)
+			def restartfinishedCB():
+				self.updateStatusbar()
+				self.session.open(MessageBox, _("Finished configuring your network"), type=MessageBox.TYPE_INFO, timeout=10, default=False)
+			RestartNetworkNew.start(callback=restartfinishedCB)
 
 	def dataAvail(self, data):
 		self.LinkState = None
