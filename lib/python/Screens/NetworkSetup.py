@@ -1471,70 +1471,7 @@ class NetworkAdapterTest(Screen):
 			iStatus.stopWlanConsole()
 
 
-class NetworkMountsMenu(Screen):
-	def __init__(self, session):
-		Screen.__init__(self, session, enableHelp=True)
-		self.setTitle(_("Mount Settings"))
-		self.onChangedEntry = []
-		self.mainmenu = self.genMainMenu()
-		self["menulist"] = MenuList(self.mainmenu)
-		self["key_red"] = StaticText(_("Close"))
-		self["introduction"] = StaticText()
-		self["actions"] = HelpableActionMap(self, ["NavigationActions", "ColorActions", "OkCancelActions"], {
-			"ok": (self.keyOk, _("Select menu entry")),
-			"close": (self.close, _("Exit network adapter setup menu")),
-			"red": (self.close, _("Exit network adapter setup menu")),
-			"top": (self["menulist"].goTop, _("Move to first line / screen")),
-			"pageUp": (self["menulist"].goPageUp, _("Move up a screen")),
-			"up": (self["menulist"].goLineUp, _("Move up a line")),
-			# "left": (self.left, _("Move up to first entry")),
-			# "right": (self.right, _("Move down to last entry")),
-			"down": (self["menulist"].goLineDown, _("Move down a line")),
-			"pageDown": (self["menulist"].goPageDown, _("Move down a screen")),
-			"bottom": (self["menulist"].goBottom, _("Move to last line / screen"))
-		}, prio=0, description=_("Mount Menu Actions"))
-		if self.selectionChanged not in self["menulist"].onSelectionChanged:
-			self["menulist"].onSelectionChanged.append(self.selectionChanged)
-		self.selectionChanged()
-
-	def createSummary(self):
-		from Screens.PluginBrowser import PluginBrowserSummary
-		return PluginBrowserSummary
-
-	def selectionChanged(self):
-		item = self["menulist"].getCurrent()
-		if item:
-			if item[1][0] == "extendedSetup":
-				self["introduction"].setText(_(item[1][1]))
-			name = str(self["menulist"].getCurrent()[0])
-			desc = self["introduction"].text
-		else:
-			name = ""
-			desc = ""
-		for cb in self.onChangedEntry:
-			cb(name, desc)
-
-	def keyOk(self):
-		if self["menulist"].getCurrent()[1][0] == "extendedSetup":
-			self.extended = self["menulist"].getCurrent()[1][2]
-			self.extended(self.session)
-
-	def genMainMenu(self):
-		menu = []
-		self.extended = None
-		self.extendedSetup = None
-		for plugin in plugins.getPlugins(PluginDescriptor.WHERE_NETWORKMOUNTS):
-			callFnc = plugin.__call__["ifaceSupported"](self)
-			if callFnc is not None:
-				self.extended = callFnc
-				menuEntryName = plugin.__call__["menuEntryName"](self) if "menuEntryName" in plugin.__call__ else _("Extended Setup...")
-				menuEntryDescription = plugin.__call__["menuEntryDescription"](self) if "menuEntryDescription" in plugin.__call__ else _("Extended Networksetup Plugin...")
-				self.extendedSetup = ("extendedSetup", menuEntryDescription, self.extended)
-				menu.append((menuEntryName, self.extendedSetup))
-		return menu
-
-
-class NetworkDaemons():
+class NetworkDaemons:
 	def __init__(self):
 		fileDom = fileReadXML(resolveFilename(SCOPE_SKINS, "networkdaemons.xml"), source=MODULE_NAME)
 		self.__daemons = []
