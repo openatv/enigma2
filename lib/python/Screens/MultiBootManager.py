@@ -541,6 +541,7 @@ class GPTSlotManager(Setup):
 			}.get(self.green, _("Help text uninitialized"))
 
 		self.GPTSlotManagerLocation = ConfigSelection(default=None, choices=[(None, _("<Select a device>"))])
+		self.GPTSlotManagerSlots = ConfigInteger(default=4, limits=(4, 4))
 		self.GPTSlotManagerDevice = None
 		Setup.__init__(self, session=session, setup="GPTSlotManager")
 		self.setTitle(_("Slot Manager"))
@@ -555,9 +556,28 @@ class GPTSlotManager(Setup):
 		self.deviceData = {}
 		self.green = ACTION_SELECT
 
+	def partitionSizeGB(self, dev):
+		try:
+			base = dev.replace("/dev/", "")
+			path = f"/sys/class/block/{base}/size"
+			path = path if exists(path) else f"/sys/block/{base}/size"
+			with open(path) as fd:
+				blocks = int(fd.read().strip())
+				return ceil((blocks * 512) / (1024 * 1024 * 1024))
+		except Exception:
+			return 0
+
 	def layoutFinished(self):
 		Setup.layoutFinished(self)
 		self.readDevices()
+
+	def createSetup(self):
+		self.list = []
+		self.list.append((_("Device"), self.GPTSlotManagerLocation))
+		if self.GPTSlotManagerDevice:
+			self.list.append((_("Number of Slots"), self.GPTSlotManagerSlots))
+		self["config"].list = self.list
+		self["config"].setList(self.list)
 
 	def selectionChanged(self):
 		Setup.selectionChanged(self)
@@ -586,44 +606,60 @@ class GPTSlotManager(Setup):
 			formatDevice()
 
 		def createStartupFiles():
-			files = {
-				"STARTUP_5": "root=/dev/mmcblk1p2 rootfstype=ext4 kernel=/kernel2.img",
-				"STARTUP_6": "root=/dev/mmcblk1p3 rootfstype=ext4 kernel=/kernel3.img",
-				"STARTUP_7": "root=/dev/mmcblk1p4 rootfstype=ext4 kernel=/kernel4.img",
-				"STARTUP_8": "root=/dev/mmcblk1p5 rootfstype=ext4 kernel=/kernel5.img"
-			}
-			for filename, content in files.items():
-				path = join("/data", filename)
+			numSlots = self.GPTSlotManagerSlots.value
+			for i in range(numSlots):
+				slot = 5 + i
+				part = 2 + i
+				kernel = 2 + i
+				content = f"root=/dev/mmcblk1p{part} rootfstype=ext4 kernel=/kernel{kernel}.img"
+				path = join("/data", f"STARTUP_{slot}")
 				if not exists(path):
 					with open(path, "w") as fd:
 						fd.write(f"{content}\n")
 
 		def update_bootconfig():
-			bootInfo = """
-[SDcard Slot 5]
-cmd=fatload mmc 0:1 1080000 /kernel2.img;bootm;
-arg=${bootargs} logo=osd0,loaded,0x7f800000 vout=1080p50hz,enable hdmimode=1080p50hz fb_width=1280 fb_height=720 panel_type=lcd_4
-[SDcard Slot 6]
-cmd=fatload mmc 0:1 1080000 /kernel3.img;bootm;
-arg=${bootargs} logo=osd0,loaded,0x7f800000 vout=1080p50hz,enable hdmimode=1080p50hz fb_width=1280 fb_height=720 panel_type=lcd_4
-[SDcard Slot 7]
-cmd=fatload mmc 0:1 1080000 /kernel4.img;bootm;
-arg=${bootargs} logo=osd0,loaded,0x7f800000 vout=1080p50hz,enable hdmimode=1080p50hz fb_width=1280 fb_height=720 panel_type=lcd_4
-[SDcard Slot 8]
-cmd=fatload mmc 0:1 1080000 /kernel5.img;bootm;
-arg=${bootargs} logo=osd0,loaded,0x7f800000 vout=1080p50hz,enable hdmimode=1080p50hz fb_width=1280 fb_height=720 panel_type=lcd_4
-"""
+			numSlots = self.GPTSlotManagerSlots.value
+			bootInfo = ""
+			for i in range(numSlots):
+				slot = 5 + i
+				kernel = 2 + i
+				bootInfo += f"""
+[SDcard Slot {slot}]
+cmd=fatload mmc 0:1 1080000 /kernel{kernel}.img;bootm;
+arg=${{bootargs}} logo=osd0,loaded,0x7f800000 vout=1080p50hz,enable hdmimode=1080p50hz fb_width=1280 fb_height=720 panel_type=lcd_4"""
+
 			bootConfig = "/data/bootconfig.txt"
 			with open(bootConfig, 'r') as file:
 				lines = file.readlines()
-			mmc_0_present = any("mmc 0" in line for line in lines)
-			if not mmc_0_present:
-				for i in range(len(lines) - 1, -1, -1):
-					if lines[i].strip().startswith("["):
-						lines.insert(i, bootInfo.strip() + '\n')
-						break
-				with open(bootConfig, 'w') as file:
-					file.writelines(lines)
+
+			newlines = []
+			skipblock = False
+			for line in lines:
+				if line.strip().startswith("[SDcard Slot"):
+					skipblock = True
+				elif skipblock and line.strip().startswith("["):
+					skipblock = False
+
+				if not skipblock:
+					newlines.append(line)
+			lines = newlines
+
+			for i in range(len(lines) - 1, -1, -1):
+				if lines[i].strip().startswith("["):
+					lines.insert(i, bootInfo.strip() + '\n')
+					break
+
+			if numSlots > 4:
+				for idx, line in enumerate(lines):
+					if line.startswith("fb_pos="):
+						lines[idx] = "fb_pos=100,450\n"
+					elif line.startswith("fb_size="):
+						lines[idx] = "fb_size=1080,300\n"
+					elif line.startswith("font_size="):
+						lines[idx] = "font_size=2\n"
+
+			with open(bootConfig, 'w') as file:
+				file.writelines(lines)
 			with open(bootConfig, 'r') as file:
 				lines = file.readlines()
 			recovery_index = None
@@ -640,25 +676,29 @@ arg=${bootargs} logo=osd0,loaded,0x7f800000 vout=1080p50hz,enable hdmimode=1080p
 			TARGET = "mmcblk1"
 			TARGET_DEVICE = f"/dev/{TARGET}"
 			DEVICE_LABEL = "dreambox-rootfs"
+			numSlots = self.GPTSlotManagerSlots.value
 
 			if exists(TARGET_DEVICE):
 				cmdlist = []
 				cmdlist.append(f"for n in {TARGET_DEVICE}* ; do umount -lf $n > /dev/null 2>&1 ; done")
+				cmdlist.append(f"/bin/touch /dev/nomount.{TARGET} > /dev/null 2>&1")
+				for i in range(1, numSlots + 2):
+					cmdlist.append(f"/bin/touch /dev/nomount.{TARGET}p{i} > /dev/null 2>&1")
+
 				cmdlist.append(f"/usr/sbin/sgdisk -z {TARGET_DEVICE}")
 				cmdlist.append(f"/usr/sbin/parted --script {TARGET_DEVICE} mklabel gpt")
-				for i in range(1, 5):
-					cmdlist.append(f"/bin/touch /dev/nomount.{TARGET}p{i} > /dev/null 2>&1")
 				cmdlist.append(f"/usr/sbin/partprobe {TARGET_DEVICE}")
 				cmdlist.append(f"/usr/sbin/parted --script {TARGET_DEVICE} mkpart DREAMCARD fat16 8192s 100MB")
-				cmdlist.append(f"/usr/sbin/parted --script {TARGET_DEVICE} mkpart {DEVICE_LABEL} ext4 100MB 25%")
-				cmdlist.append(f"/usr/sbin/parted --script {TARGET_DEVICE} mkpart {DEVICE_LABEL} ext4 25% 50%")
-				cmdlist.append(f"/usr/sbin/parted --script {TARGET_DEVICE} mkpart {DEVICE_LABEL} ext4 50% 75%")
-				cmdlist.append(f"/usr/sbin/parted --script {TARGET_DEVICE} mkpart {DEVICE_LABEL} ext4 75% 100%")
+
+				for i in range(numSlots):
+					start = "100MB" if i == 0 else f"{int(i * 100 // numSlots)}%"
+					end = f"{int((i + 1) * 100 // numSlots)}%"
+					cmdlist.append(f"/usr/sbin/parted --script {TARGET_DEVICE} mkpart dreambox-rootfs ext4 {start} {end}")
+
 				cmdlist.append(f"/usr/sbin/partprobe {TARGET_DEVICE}")
-				cmdlist.append(f"/bin/umount -lf {TARGET_DEVICE}p1 > /dev/null 2>&1")
+				cmdlist.append("sleep 2")
 				cmdlist.append(f"/usr/sbin/mkfs.fat -F 16 -S 512 -v -n DREAMCARD {TARGET_DEVICE}p1")
-				for i in range(2, 5):
-					cmdlist.append(f"/bin/umount -lf {TARGET_DEVICE}p{i} > /dev/null 2>&1")
+				for i in range(2, 2 + numSlots):
 					cmdlist.append(f"/sbin/mkfs.ext4 -F {TARGET_DEVICE}p{i}")
 				self.session.openWithCallback(formatDeviceCallback, ConsoleScreen, title=self.getTitle(), cmdlist=cmdlist, closeOnSuccess=True)
 
@@ -694,22 +734,44 @@ arg=${bootargs} logo=osd0,loaded,0x7f800000 vout=1080p50hz,enable hdmimode=1080p
 				self.GPTSlotManagerLocation.value = path
 			self.GPTSlotManagerDevice = selection
 			self.updateStatus("Found SDCARD: %s" % name)
+			devicePath = self.deviceData[selection][0]
+			diskSize = self.partitionSizeGB(devicePath)
+			print(f"[GPTSlotManager] devicePath={devicePath}, diskSize={diskSize}GB")
+
+			if diskSize > 16:
+				maxSlots = int(diskSize // 4)
+				print(f"[GPTSlotManager] Setting maxSlots={maxSlots} for {diskSize}GB disk")
+				self.GPTSlotManagerSlots.limits = [(4, maxSlots)]
+			else:
+				print(f"[GPTSlotManager] Disk size {diskSize}GB <= 16GB, limiting to 4 slots")
+				self.GPTSlotManagerSlots.limits = [(4, 4)]
+				self.GPTSlotManagerSlots.value = 4
+			self.createSetup()
 
 	def readDevices(self, callback=None):
-		def readDevicesCallback(output=None, retVal=None, extraArgs=None):
-			print("[GPTSlotManager] readDevicesCallback DEBUG: retVal=%s, output='%s'." % (retVal, output))
-			lines = [line for line in output.splitlines() if "/dev/mmcblk1p1" in line]
+		def readDevicesCallback():
+			base = "mmcblk1"
+			devbase = "/dev/" + base
+			sysbase = "/sys/block/" + base
 			self.deviceData = {}
+			if not isdir(sysbase) or not exists(devbase):
+				self.updateStatus()
+				if callback and callable(callback):
+					callback()
+				return
+
+			displayname = base
 			for (name, hdd) in harddiskmanager.HDDList():
-				for line in lines:
-					data = split(line.strip())
-					if data and data[0][:-1].startswith(hdd.dev_path):
-						self.deviceData[1] = (data[0][:-1], name)
+				if hdd.dev_path == devbase:
+					displayname = name
+					break
+
+			self.deviceData[1] = (devbase, displayname)
 			self.updateStatus()
 			if callback and callable(callback):
 				callback()
 
-		self.console.ePopen(["/sbin/blkid", "/sbin/blkid"], callback=readDevicesCallback)
+		readDevicesCallback()
 
 	def updateStatus(self, footnote=None):
 		self.green = ACTION_CREATE if self.GPTSlotManagerDevice else ACTION_SELECT
