@@ -33,7 +33,7 @@ from Screens.RestartNetwork import RestartNetworkNew
 from Screens.Processing import Processing
 from Screens.Screen import Screen
 from Screens.Setup import Setup
-from Tools.Directories import SCOPE_SKINS, SCOPE_GUISKIN, SCOPE_PLUGINS, fileReadLines, fileReadXML, fileWriteLine, fileWriteLines, resolveFilename
+from Tools.Directories import SCOPE_SKINS, SCOPE_GUISKIN, fileReadLines, fileReadXML, fileWriteLine, fileWriteLines, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 
 MODULE_NAME = __name__.split(".")[-1]
@@ -2219,7 +2219,6 @@ class NetworkZerotierSetup(Setup):
 		items = []
 		serviceOnline = False
 		serviceVersion = ""
-		membership = None
 		name = ""
 		status = ""
 		ipv4 = ""
