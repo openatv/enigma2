@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-12-27 18:13+0000\n"
-"PO-Revision-Date: 2025-12-27 17:57+0000\n"
+"PO-Revision-Date: 2025-12-30 03:55+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
@@ -966,8 +966,8 @@ msgstr[2] "Nainštalovalo sa %d balíčkov."
 #, python-format
 msgid "%d package marked for install."
 msgid_plural "%d packages marked for install."
-msgstr[0] "Na inštaláciu je vybratý %d balíček."
-msgstr[1] "Na inštaláciu sú vybraté %d balíčky."
+msgstr[0] "Na inštaláciu je vybraný %d balíček."
+msgstr[1] "Na inštaláciu sú vybrané %d balíčky."
 msgstr[2] "Na inštaláciu je vybraných %d balíčkov."
 
 #, python-format
@@ -4889,7 +4889,7 @@ msgid "Configure which tuner type will be preferred, when the same service is av
 msgstr "Nastavte, ktorý tuner sa uprednostní, ak je rovnaká stanica dostupná na rôznych typoch tunerov."
 
 msgid "Configure which tuner will be preferred for recordings, when more than one tuner is available. 'Disabled' would select a tuner based on preferred tuner in customize screen. 'Auto' would choose based on E2's default rules, ignoring preferred tuner in customize screen."
-msgstr "Nastavte, ktorý tuner sa uprednostní pre nahrávanie, ak je k dispozícii viac ako jeden tuner. Voľba 'Vypnuté' spôsobí vybratie preferovaného tunera podľa obrazovky pre prispôsobenie. Voľba 'Auto' vyberie tuner podľa pravidiel E2, nebude sa brať do úvahy preferovaný tuner uvedený na obrazovke pre prispôsobenie."
+msgstr "Nastavte, ktorý tuner sa uprednostní pre nahrávky, ak je k dispozícii viac ako jeden tuner. Voľba 'Vypnuté' znamená výber preferovaného tunera nastaveného na obrazovke pre prispôsobenie. Voľbou 'Auto' vyberiete tuner podľa predvolených pravidiel systému E2, nebude sa brať do úvahy preferovaný tuner nastavený na obrazovke pre prispôsobenie."
 
 msgid "Configure which tuner will be preferred, when more than one tuner is available. If set to 'auto' the system will give priority to the tuner having the lowest number of channels/satellites."
 msgstr "Nastavte, ktorý tuner sa uprednostní, ak je k dispozícii viac ako jeden tuner. V prípade nastavenia na 'automaticky' sa uprednostní tuner s najnižším počtom kanálov/družíc."
@@ -5869,7 +5869,7 @@ msgid "Default volume offset"
 msgstr "Predvolený posun hlasitosti"
 
 msgid "Default wake-up is 5 minutes prior to timer start to wake up from Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
-msgstr "Predvolené nastavenie je 5 minút pred prebudením z režimu vypnutia. Upravte hodnotu v prípade, že je to príliš skoro alebo neskoro, napríklad pri používaní sieťových zariadení."
+msgstr "Predvolené prebudenie je 5 minút pred spustením časovača na prebudenie z vypnutia. Upravte hodnotu, ak je to príliš skoro alebo neskoro, napríklad pri používaní sieťových zariadení."
 
 #, python-format
 msgid "Default: '%s'."
@@ -6856,7 +6856,7 @@ msgid "Duplicate the current line"
 msgstr "Duplikovať aktuálny riadok"
 
 msgid "During this time, the transmitter and recording destination are checked. If the destination (e.g., NAS) isn't ready in time, this time can be increased."
-msgstr "V tomto čase sa kontroluje zdroj a cieľ nahrávania. Ak nie je cieľ (napr. NAS) včas pripravený na nahrávanie, je možné tento limit predĺžiť."
+msgstr "V tomto čase sa kontroluje zdroj a cieľ nahrávania. Ak nie je cieľ (napr. NAS) včas pripravený, je možné tento limit predĺžiť."
 
 msgid "Dutch"
 msgstr "holandčina"
@@ -7393,7 +7393,7 @@ msgid "Enables a feature so that the receiver can decrypt streams (if the ECM da
 msgstr "Povolí prijímaču dekódovať streamy (ak sú v streame zahrnuté ECM dáta a je k dispozícii platná karta)."
 
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
-msgstr "Aktivuje sa odosielanie rovnakých príkazov do TV pre vypnutie, ako aj pre normálny pohotovostný režim."
+msgstr "Ak je aktivovaná možnosť 'Áno', zapne sa odosielanie rovnakých príkazov do TV pre vypnutie, ako aj pre normálny pohotovostný režim."
 
 msgid "Encrypted: "
 msgstr "Zakódované: "
@@ -8311,7 +8311,7 @@ msgid "Fallback remote receiver for DVB-T"
 msgstr "Záložný vzdialený prijímač pre DVB-T"
 
 msgid "Fallback Tuner Setup"
-msgstr "Nastavenie záložného tuneru"
+msgstr "Nastavenie záložného tunera"
 
 msgid "False"
 msgstr "False (Nepravda)"
@@ -22787,7 +22787,7 @@ msgid "Wake up from Deep-Standby is allowed"
 msgstr "Prebudenie zo stavu vypnutia je povolené"
 
 msgid "Wake up time before a timer begins"
-msgstr "Čas prebudenia pred začiatkom časovača (min.)"
+msgstr "Čas prebudenia pred začiatkom časovača"
 
 msgid "Wake up to standby"
 msgstr "Prebudiť do pohotovostného režimu"

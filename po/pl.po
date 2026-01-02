@@ -1,6 +1,6 @@
 # Poland translations for Enigma2.
 #
-# pololoko111 <peciek83@gmail.com>, 2021, 2022, 2023, 2024, 2025.
+# pololoko111 <peciek83@gmail.com>, 2021, 2022, 2023, 2024, 2025, 2026.
 # openATV <openatv@gmail.com>, 2021.
 # Grzegorz <grzegorz914@icloud.com>, 2021, 2022.
 # drakulis <drakulis@interia.pl>, 2022, 2023, 2024, 2025.
@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-12-27 18:13+0000\n"
-"PO-Revision-Date: 2025-12-20 14:51+0000\n"
+"PO-Revision-Date: 2026-01-01 07:24+0000\n"
 "Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -2163,7 +2163,7 @@ msgid "After zap"
 msgstr "Po przełączeniu"
 
 msgid "Aggregate data only"
-msgstr ""
+msgstr "Tylko dane zbiorcze"
 
 msgid "Akan"
 msgstr "Akan"
@@ -2425,7 +2425,7 @@ msgid "Animations"
 msgstr "Animacje"
 
 msgid "Anonymize client IPs"
-msgstr ""
+msgstr "Anonimizuj adresy IP klientów"
 
 msgid "Antarctica"
 msgstr "Antarktyka"
@@ -5519,10 +5519,10 @@ msgid "DNS suffix"
 msgstr "DNS suffix"
 
 msgid "DNSCrypt"
-msgstr ""
+msgstr "Krypt DNS"
 
 msgid "DNSCrypt Resolver"
-msgstr ""
+msgstr "Rozwiązywacz kryptu DNS"
 
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
@@ -7290,7 +7290,7 @@ msgid "Enable intro screen"
 msgstr "Włącz ekran intro"
 
 msgid "Enable monitoring UI"
-msgstr ""
+msgstr "Włącz interfejs monitorowania"
 
 msgid "Enable multiple bouquets"
 msgstr "Włącz tryb wielu list kanałów"
@@ -12966,13 +12966,13 @@ msgid "Only on startup"
 msgstr "Tylko przy starcie"
 
 msgid "Only use DNS servers implementing the DNS-over-HTTPS protocol. This causes DNS lookups to be made via the encrypted HTTPS protocol."
-msgstr ""
+msgstr "Używaj wyłącznie serwerów DNS obsługujących protokół DNS-over-HTTPS. Dzięki temu wyszukiwania DNS będą wykonywane za pomocą szyfrowanego protokołu HTTPS."
 
 msgid "Only use DNS servers implementing the DNSCrypt protocol."
-msgstr ""
+msgstr "Używaj wyłącznie serwerów DNS obsługujących protokół DNS Krypt."
 
 msgid "Only use DNS servers implementing the Oblivious DNS-over-HTTPS protocol. This adds another layer of privacy by adding a proxy layer to the DNS-over-HTTPS request."
-msgstr ""
+msgstr "Używaj wyłącznie serwerów DNS obsługujących protokół Oblivious DNS-over-HTTPS. Zapewnia to dodatkową warstwę prywatności poprzez dodanie warstwy proxy do żądania DNS-over-HTTPS."
 
 msgid "Open"
 msgstr "Otwórz"
@@ -14389,7 +14389,7 @@ msgid "Priority"
 msgstr "Priorytet konwertera"
 
 msgid "Privacy level"
-msgstr ""
+msgstr "Poziom prywatności"
 
 msgid "Problem starting scan"
 msgstr "Problem z uruchomieniem skanowania"
@@ -16283,7 +16283,7 @@ msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, us
 msgstr "Wybierz 'Tak', aby włączyć wczytywanie niepowiązanych list kanałów. Oznacza to, że wczytane zostaną listy kanałów, które nie znajdują się w plikach bouquets.tv lub bouquets.radio. Pozwala to na przykład na tworzenie list, które nie kolidują z listami kanałów pochodzącymi z pakietów ustawień ani nie są przez nie zastępowane."
 
 msgid "Select 'Yes' to enable the monitoring UI web interface for the DNSCrypt subsystem."
-msgstr ""
+msgstr "Wybierz 'Tak', aby włączyć interfejs internetowy interfejsu użytkownika monitorującego dla podsystemu DNS Krypt."
 
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr "Wybierz 'Tak', aby umożliwić użycie przycisków LEWO/PRAWO do poruszania się W górę/W dół, gdy przyciski LEWO/PRAWO są w innym przypadku niezdefiniowane. Zapewnia to (starą) nawigację dla użytkowników, którzy ją preferują."
@@ -17340,13 +17340,13 @@ msgid "Server down"
 msgstr "Serwer nie działa"
 
 msgid "Server must not enforce its own blocklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
-msgstr ""
+msgstr "Serwer nie może wymuszać własnej listy blokowanych. Niektóre serwery mogą implementować własne czarne listy, aby blokować witryny z powodu kontroli rodzicielskiej, blokowania reklam itp."
 
 msgid "Server must not log user queries (declarative). This can improve the privacy of DNS lookups by not logging the request on the server providing the data."
-msgstr ""
+msgstr "Serwer nie może rejestrować zapytań użytkownika (deklaratywnie). Może to poprawić prywatność wyszukiwań DNS poprzez brak rejestrowania żądania na serwerze dostarczającym dane."
 
 msgid "Server must support DNS Security Extensions (DNSSEC). This is a data signing option that protects the integrity of the DNS data against compromises like cache poisoning."
-msgstr ""
+msgstr "Serwer musi obsługiwać rozszerzenia zabezpieczeń DNS (DNSSEC). Jest to opcja podpisywania danych, która chroni integralność danych DNS przed naruszeniami, takimi jak zatrucie pamięci podręcznej."
 
 msgid "Servers"
 msgstr "Serwery"
@@ -17624,13 +17624,13 @@ msgid "Set the number of lines to be saved for 'stout' and 'sterr' output in scr
 msgstr "Ustawia liczbę linii, które mają być zapisane dla wyjścia 'stout' i 'sterr' w skryptach."
 
 msgid "Set the password for the monitoring UI web interface."
-msgstr ""
+msgstr "Ustaw hasło dla interfejsu internetowego interfejsu użytkownika monitorującego."
 
 msgid "Set the password of the OpenWebif from your fallback tuner."
 msgstr "Ustaw hasło OpenWebif z tunera zapasowego."
 
 msgid "Set the port address (8080-9999) for the monitoring UI web interface."
-msgstr ""
+msgstr "Ustaw adres portu (8080-9999) dla interfejsu internetowego interfejsu użytkownika monitorowania."
 
 msgid "Set the port of the OpenWebif from your fallback tuner."
 msgstr "Wpisz port OpenWebif tunera zapasowego."
@@ -17639,7 +17639,7 @@ msgid "Set the position of the recording icons."
 msgstr "Ustaw położenie ikon nagrywania."
 
 msgid "Set the privacy level for the monitoring UI web interface."
-msgstr ""
+msgstr "Ustaw poziom prywatności dla interfejsu internetowego interfejsu użytkownika monitorującego."
 
 msgid "Set the screen type you see on pressing 'OK' when the InfoBar shows the second InfoBar Lite or event info."
 msgstr "Ustaw rodzaj wyświetlanych informacji po naciśnięciu przycisku 'OK', gdy infobar pokazuje 2-gi infobar lub infoormacje o wydarzeniu."
@@ -17681,7 +17681,7 @@ msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Ustaw typ postępu na ekranie wyboru kanału."
 
 msgid "Set the username for the monitoring UI web interface."
-msgstr ""
+msgstr "Ustaw nazwę użytkownika dla interfejsu internetowego interfejsu użytkownika monitorowania."
 
 #, python-format
 msgid "Set the volume level for the '%s' service."
@@ -22042,19 +22042,19 @@ msgid "Use DHCP"
 msgstr "Użyj DHCP"
 
 msgid "Use DNS cache"
-msgstr ""
+msgstr "Użyj pamięci podręcznej DNS"
 
 msgid "Use DNS rotation"
 msgstr "Rotacja DNS"
 
 msgid "Use DNSCrypt servers"
-msgstr ""
+msgstr "Użyj serwerów DNS Krypt"
 
 msgid "Use Deinterlacing for 1080i Videosignal?"
 msgstr "Używać usuwania przeplotu w przypadku sygnału wideo 1080i?"
 
 msgid "Use DoH servers"
-msgstr ""
+msgstr "Użyj serwerów DoH"
 
 msgid "Use EIT EPG information when it is available."
 msgstr "Użyj informacji EIT EPG gdy dostępne."
@@ -22081,7 +22081,7 @@ msgid "Use Netmed EPG information when it is available."
 msgstr "Użyj informacji EPG Netmed gdy dostępne."
 
 msgid "Use ODoH servers"
-msgstr ""
+msgstr "Użyj serwerów ODoH"
 
 msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
 msgstr "Użyj OpenTV EPG. Wymaga dostrojenia do określonego transpondera w celu pobrania EPG."
@@ -22108,7 +22108,7 @@ msgid "Use Zap timer end times"
 msgstr "Użyj czasów zakończenia timera Zap"
 
 msgid "Use a DNS cache to locally store recent DNS lookups to improve performance, reduce latency and outgoing traffic."
-msgstr ""
+msgstr "Użyj pamięci podręcznej DNS do lokalnego przechowywania ostatnich wyszukiwań DNS, aby zwiększyć wydajność, zmniejszyć opóźnienia i ruch wychodzący."
 
 msgid "Use a gateway"
 msgstr "Użyj bramy"
@@ -22180,16 +22180,16 @@ msgid "Use official channel numbering"
 msgstr "Użyj oficjalnej numeracji kanałów"
 
 msgid "Use only DNSSEC servers"
-msgstr ""
+msgstr "Używaj tylko serwerów DNSSEC"
 
 msgid "Use only for Wake on WLan (WoW)"
 msgstr "Używaj tylko do Wake on WLan (WoW)"
 
 msgid "Use only no-filter servers"
-msgstr ""
+msgstr "Używaj tylko serwerów bez filtrów"
 
 msgid "Use only no-log servers"
-msgstr ""
+msgstr "Używaj tylko serwerów bez logów"
 
 msgid "Use original DVB subtitle position"
 msgstr "Użyj oryginalnej pozycji napisów DVB"
