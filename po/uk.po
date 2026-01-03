@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-27 18:13+0000\n"
+"POT-Creation-Date: 2026-01-02 18:38+0000\n"
 "PO-Revision-Date: 2025-11-11 20:51+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
@@ -1337,9 +1337,6 @@ msgstr "(показати додаткове DVD аудіо меню)"
 msgid "* = Restart required if this item is changed."
 msgstr "* = Потрібне перезавантаження."
 
-msgid "* Only available if more than one interface is active."
-msgstr "* Доступно, якщо більше ніж один інтерфейс активний."
-
 msgid "* current animation"
 msgstr "* поточна анімація"
 
@@ -1827,9 +1824,6 @@ msgstr "Активувати Розширювач"
 
 msgid "Activate HbbTV (RED button)"
 msgstr "Запуск HbbTV (червона кнопка)"
-
-msgid "Activate MAC address configuration"
-msgstr "Активувати налаштування МАС-адреси"
 
 msgid "Activate Picture in Picture"
 msgstr "Ввімкнути Картинка в Картинці"
@@ -6408,9 +6402,6 @@ msgstr "Відключення ПІП.\n"
 msgid "Disabled or WPA/WPA2"
 msgstr "Вимкнено, або WPA/WPA2"
 
-msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
-msgstr "Зупинити запущений таймшифт, якщо триває запис (бажано, якщо використовується USB)"
-
 msgid "Disabling Chkroot failed!"
 msgstr "Не вдалося вимкнути Chkroot!"
 
@@ -6628,6 +6619,9 @@ msgstr ""
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
 msgstr "Ви дійсно хочете зупинити та видалити таймер '%s'?"
+
+msgid "Do you really want to trim the file system?"
+msgstr ""
 
 #, python-format
 msgid "Do you want change '%s' access mode?"
@@ -7392,9 +7386,6 @@ msgstr "Ввімкнено"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Включає функцію, за допомогою якої, приймач може розкодувати потік (якщо дані ECM додані у потік і вставлена робоча картка)."
 
-msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
-msgstr "Якщо встановлено значення 'Так', для подій глибокого очікування на телевізор надсилатимуться ті самі команди, що й під час звичайних подій очікування."
-
 msgid "Encrypted: "
 msgstr "Кодовано: "
 
@@ -7535,6 +7526,9 @@ msgstr "Введіть пін-код"
 
 msgid "Enter text via an attached keyboard"
 msgstr "Введіть текст за допомогою підключеної клавіатури"
+
+msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
+msgstr ""
 
 msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
 msgstr "Введіть тривалість, яку потрібно додати до буфера потокового передавання після помилки потокового передавання. Цей додатковий буфер може допомогти уникнути подальших проблем із потоковим передаванням через брак місця в буфері."
@@ -8033,9 +8027,6 @@ msgstr "Вихід з EPG"
 msgid "Exit File Commander"
 msgstr "Вийти з File Commander"
 
-msgid "Exit MAC address configuration"
-msgstr "Вийти з налаштувань МАС-адреси"
-
 msgid "Exit Movie Selection"
 msgstr "Закрити список фільмів"
 
@@ -8289,6 +8280,9 @@ msgstr "Налаштування дистанційного приймача"
 msgid "Fallback Timer"
 msgstr "Резервний таймер"
 
+msgid "Fallback Tuner Setup"
+msgstr "Налаштування резервного тюнера"
+
 msgid "Fallback remote receiver"
 msgstr "Запасний віддалений приймач"
 
@@ -8309,9 +8303,6 @@ msgstr "Запасний віддалений приймач для DVB-C"
 
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Запасний віддалений приймач для DVB-T"
-
-msgid "Fallback Tuner Setup"
-msgstr "Налаштування резервного тюнера"
 
 msgid "False"
 msgstr "Помилковий"
@@ -8580,9 +8571,6 @@ msgstr "Завершено"
 
 msgid "Finished configuring your network"
 msgstr "Конфігурацію Вашої мережі завершено"
-
-msgid "Finished restarting your network"
-msgstr "Перезавантаження Вашої мережі завершено"
 
 msgid "Finland"
 msgstr "Фінляндія"
@@ -10326,6 +10314,15 @@ msgstr "Джерсі"
 msgid "Job overview"
 msgstr "Огляд завдань"
 
+msgid "Join"
+msgstr ""
+
+msgid "Join or leave the configured ZeroTier network"
+msgstr ""
+
+msgid "Joined"
+msgstr ""
+
 msgid "Jordan"
 msgstr "Йорданія"
 
@@ -10686,6 +10683,9 @@ msgstr "Латвія"
 
 msgid "Latvian"
 msgstr "Латвійська"
+
+msgid "Leave"
+msgstr ""
 
 msgid "Leave DVD player?"
 msgstr "Вийти з DVD плеєра?"
@@ -11071,12 +11071,6 @@ msgstr "Люксембурська"
 
 msgid "M2k Packages"
 msgstr "Пакети M2k"
-
-msgid "MAC Address Actions"
-msgstr "Дії з MAC-адресою"
-
-msgid "MAC Address Settings"
-msgstr "Налаштування MAC-адреси"
 
 msgid "MAC address"
 msgstr "MAC-адреса"
@@ -11597,14 +11591,8 @@ msgstr "Підключення"
 msgid "Mount Manager"
 msgstr "Помічник монтування"
 
-msgid "Mount Menu Actions"
-msgstr "Дії Меню монтування"
-
 msgid "Mount Point"
 msgstr "Точка монтування"
-
-msgid "Mount Settings"
-msgstr "Налаштування монтування"
 
 msgid "Mount Setup"
 msgstr "Налаштування монтування"
@@ -12156,9 +12144,6 @@ msgstr "Лог Мережі"
 msgid "Network Log Actions"
 msgstr "Дії мережевого журналу"
 
-msgid "Network MAC settings"
-msgstr "Налаштування мережевого MAC"
-
 msgid "Network Neighbourhood"
 msgstr "Мережеве оточення"
 
@@ -12208,11 +12193,17 @@ msgstr "Меню мережі"
 msgid "Network mounts"
 msgstr "Мережеві підключення"
 
+msgid "Network name"
+msgstr ""
+
 msgid "Network name (SSID)"
 msgstr "Назва мережі (SSID)"
 
 msgid "Network scan"
 msgstr "Мережевий пошук"
+
+msgid "Network status"
+msgstr ""
 
 msgid "Network storage on"
 msgstr "Мережевий накопичувач увімкнено"
@@ -12231,6 +12222,9 @@ msgstr ""
 "Майстер мережі завершено.\n"
 "\n"
 "Натисніть OK, щоб продовжити."
+
+msgid "Network-ID"
+msgstr ""
 
 msgid "Network:"
 msgstr "Мережа:"
@@ -12714,6 +12708,9 @@ msgstr ""
 "Розмір файлу: %sMБ\n"
 "Вільне місце: %sMБ\n"
 "Шлях: %s"
+
+msgid "Not joined. Press Yellow to join."
+msgstr ""
 
 msgid "Not required"
 msgstr "Не потрібно"
@@ -13960,9 +13957,6 @@ msgstr "Зачекайте, поки плагін оновиться."
 msgid "Please wait while we check your installed plugins..."
 msgstr "Будь ласка, почекайте, йде перевірка встановлених плагінів ..."
 
-msgid "Please wait while we configure your network..."
-msgstr "Будь ласка, почекайте поки ми налаштуємо Вашу мережу..."
-
 msgid "Please wait while we prepare your network interfaces..."
 msgstr "Будь ласка почекайте поки ми підготуємо Ваш мережевий інтерфейс..."
 
@@ -14293,9 +14287,6 @@ msgstr "Натисніть OK для вибору супутників"
 msgid "Press OK to select/deselect a CAId."
 msgstr "Натисніть ОК щоб вибрати/зняти CAId."
 
-msgid "Press OK to set the MAC address."
-msgstr "Натисніть OK, щоб встановити MAC-адресу."
-
 msgid "Press OK to start the backup now"
 msgstr "Натисніть OK, щоб почати резервне копіювання зараз"
 
@@ -14327,9 +14318,6 @@ msgstr "Кнопки ВГОРУ/ВНИЗ вибрають слот, потім �
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Натисніть цю кнопку, щоб емулювати тривале натискання на кнопку натиснутою після (це також скасовує будь-які інші дії, призначені для кнопки емуляції)."
-
-msgid "Press yellow to set this interface as the default interface."
-msgstr "Натисніть жовту для встановлення даного інтерфейсу за замовчуванням."
 
 msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
 msgstr "При натисканні тривожної кнопки відбудеться переключення на цей номер каналу першого фавориту."
@@ -14969,6 +14957,9 @@ msgstr ""
 msgid "Refresh"
 msgstr "Оновити"
 
+msgid "Refresh ZeroTier status information"
+msgstr ""
+
 msgid "Refresh every x hours"
 msgstr "Інтервал оновлення (в годинах)"
 
@@ -15410,9 +15401,6 @@ msgstr "Перезавантажити мережу з поточними нал
 
 msgid "Restart test"
 msgstr "Повторити тест"
-
-msgid "Restart your network connection and interfaces."
-msgstr "Перезавантаження мережевого з'єднання."
 
 msgid "Restarting..."
 msgstr "Перезавантаження..."
@@ -17429,6 +17417,9 @@ msgstr "Номер каналу, Пікон і Назва каналу"
 msgid "Service off-air"
 msgstr "Канал поза ефіром"
 
+msgid "Service online"
+msgstr ""
+
 msgid "Service picons aspect ratio"
 msgstr "Пропорції пікона каналу"
 
@@ -17544,9 +17535,6 @@ msgstr "Вибір fps для зовнішніх субтитрів"
 msgid "Set how long the second InfoBar stays visible. The second InfoBar also disappears when you press 'OK'."
 msgstr "Встановіть час показу другого інфобара. Він також зникне при натисненні 'OK'."
 
-msgid "Set interface as the default Interface"
-msgstr "Встановити інтерфейс як Інтерфейс за замовчуванням"
-
 msgid "Set limits"
 msgstr "Встановити обмеження"
 
@@ -17567,10 +17555,6 @@ msgstr "Встановіть часовий інтервал пропуску р
 
 msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
 msgstr "Установити відсоток пропуску кнопки ВЛІВО/ВПРАВО для панелі пошуку."
-
-#, python-format
-msgid "Set the MAC address of your %s %s."
-msgstr "Встановити MAC-адресу Вашого %s %s."
 
 msgid "Set the UP/DOWN button skip percentage for the SeekBar."
 msgstr "Установити відсоток пропуску кнопки ВГОРУ/ВНИЗ для панелі пошуку."
@@ -17711,6 +17695,9 @@ msgstr "Встановіть 'Увімкнено', щоб дешифрувати
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
 msgstr "Встановіть значення 'Увімкнено', щоб дешифрувати зашифровані записи з черги в режимі очікування."
+
+msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
+msgstr "Якщо встановлено значення 'Так', для подій глибокого очікування на телевізор надсилатимуться ті самі команди, що й під час звичайних подій очікування."
 
 msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
 msgstr "Якщо вибрано 'Так', буде включено автоматичний запис таймшифта у фоновому режимі."
@@ -19593,6 +19580,9 @@ msgstr "Зупинено"
 msgid "Stopping Softcam"
 msgstr "Зупинка Softcam"
 
+msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
+msgstr "Зупинити запущений таймшифт, якщо триває запис (бажано, якщо використовується USB)"
+
 msgid "Storage / Disk Information"
 msgstr "Інформація про сховище/диск"
 
@@ -20516,13 +20506,6 @@ msgstr "Висота зображення. Вхід буде змінено, щ�
 
 msgid "The loopthrough setting is wrong."
 msgstr "Налаштування петлі неправильне."
-
-msgid ""
-"The network wizard extension is not installed!\n"
-"Please install it."
-msgstr ""
-"Майстер налаштування мережі не встановлено!\n"
-"Будь-ласка встановіть його."
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr "Каталог піконів уже існує і його потрібно видалити. Ви бажаєте продовжити?"
@@ -21497,6 +21480,12 @@ msgstr "Спроба відключити ПІП, не виявлено Інфо
 msgid "Tries left:"
 msgstr "Намагатися зліва:"
 
+msgid "Trim File System"
+msgstr ""
+
+msgid "Trim File System..."
+msgstr ""
+
 msgid "Trinidad and Tobago"
 msgstr "Тринідад і Тобаго"
 
@@ -21618,6 +21607,12 @@ msgstr "Алгоритм налаштування"
 
 msgid "Tunisia"
 msgstr "Туніс"
+
+msgid "Tunnel IPv4"
+msgstr ""
+
+msgid "Tunnel IPv6"
+msgstr ""
 
 msgid "Turbo"
 msgstr "турбо"
@@ -22246,12 +22241,6 @@ msgstr "Використайте поточний вибір і вийдіть"
 
 msgid "Use the extended List"
 msgstr "Використання розширеного списку"
-
-msgid "Use the network wizard to configure selected network adapter"
-msgstr "Використати Майстер мережі для налаштування вибраного мережевого адаптера"
-
-msgid "Use the network wizard to configure your Network."
-msgstr "Використовуйте мережевий майстер, щоб налаштувати мережу."
 
 msgid "Use the wizard to set up basic features"
 msgstr "Використати Майстра для налаштування основних параметрів"
@@ -23725,6 +23714,18 @@ msgstr "Переключити вгору"
 msgid "Zap+Record next"
 msgstr "Переключити+Записати наступне"
 
+msgid "ZeroTier Actions"
+msgstr ""
+
+msgid "ZeroTier version"
+msgstr ""
+
+msgid "ZeroTier-One"
+msgstr ""
+
+msgid "ZeroTier Settings"
+msgstr ""
+
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7 стара модель"
 
@@ -24380,6 +24381,65 @@ msgstr "так (зберігати фіди)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "* Only available if more than one interface is active."
+#~ msgstr "* Доступно, якщо більше ніж один інтерфейс активний."
+
+#~ msgid "Activate MAC address configuration"
+#~ msgstr "Активувати налаштування МАС-адреси"
+
+#~ msgid "Exit MAC address configuration"
+#~ msgstr "Вийти з налаштувань МАС-адреси"
+
+#~ msgid "Finished restarting your network"
+#~ msgstr "Перезавантаження Вашої мережі завершено"
+
+#~ msgid "MAC Address Actions"
+#~ msgstr "Дії з MAC-адресою"
+
+#~ msgid "MAC Address Settings"
+#~ msgstr "Налаштування MAC-адреси"
+
+#~ msgid "Mount Menu Actions"
+#~ msgstr "Дії Меню монтування"
+
+#~ msgid "Mount Settings"
+#~ msgstr "Налаштування монтування"
+
+#~ msgid "Network MAC settings"
+#~ msgstr "Налаштування мережевого MAC"
+
+#~ msgid "Please wait while we configure your network..."
+#~ msgstr "Будь ласка, почекайте поки ми налаштуємо Вашу мережу..."
+
+#~ msgid "Press OK to set the MAC address."
+#~ msgstr "Натисніть OK, щоб встановити MAC-адресу."
+
+#~ msgid "Press yellow to set this interface as the default interface."
+#~ msgstr "Натисніть жовту для встановлення даного інтерфейсу за замовчуванням."
+
+#~ msgid "Restart your network connection and interfaces."
+#~ msgstr "Перезавантаження мережевого з'єднання."
+
+#~ msgid "Set interface as the default Interface"
+#~ msgstr "Встановити інтерфейс як Інтерфейс за замовчуванням"
+
+#, python-format
+#~ msgid "Set the MAC address of your %s %s."
+#~ msgstr "Встановити MAC-адресу Вашого %s %s."
+
+#~ msgid ""
+#~ "The network wizard extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Майстер налаштування мережі не встановлено!\n"
+#~ "Будь-ласка встановіть його."
+
+#~ msgid "Use the network wizard to configure selected network adapter"
+#~ msgstr "Використати Майстер мережі для налаштування вибраного мережевого адаптера"
+
+#~ msgid "Use the network wizard to configure your Network."
+#~ msgstr "Використовуйте мережевий майстер, щоб налаштувати мережу."
 
 #~ msgid "white"
 #~ msgstr "білий"

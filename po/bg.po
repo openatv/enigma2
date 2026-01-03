@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-27 18:13+0000\n"
+"POT-Creation-Date: 2026-01-02 18:38+0000\n"
 "PO-Revision-Date: 2023-08-06 06:22+0000\n"
 "Last-Translator: Salif Mehmed <mail@salif.eu>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/bg/>\n"
@@ -1295,9 +1295,6 @@ msgstr "(показване на допълнително аудио-меню DV
 msgid "* = Restart required if this item is changed."
 msgstr "* = Изисква се рестартиране"
 
-msgid "* Only available if more than one interface is active."
-msgstr "* Предлага се, ако има повече от един активен интерфейс."
-
 msgid "* current animation"
 msgstr "* текуща анимация"
 
@@ -1790,9 +1787,6 @@ msgstr ""
 
 msgid "Activate HbbTV (RED button)"
 msgstr "Активиране на HbbTV (Червен бутон)"
-
-msgid "Activate MAC address configuration"
-msgstr "Активиране на MAC-aдрес конфигурация"
 
 msgid "Activate Picture in Picture"
 msgstr "Активиране на Картина в Картина"
@@ -6359,9 +6353,6 @@ msgstr "Забранен PIP.\n"
 msgid "Disabled or WPA/WPA2"
 msgstr "Забранено или WPA/WPA2"
 
-msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
-msgstr "Стоп на използване на timeshift, ако записа е в ход. (Препоръчително за USB стикове)"
-
 msgid "Disabling Chkroot failed!"
 msgstr ""
 
@@ -6570,6 +6561,9 @@ msgstr ""
 
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
+msgstr ""
+
+msgid "Do you really want to trim the file system?"
 msgstr ""
 
 #, python-format
@@ -7334,9 +7328,6 @@ msgstr "Разрешен"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Разрешаване на функцията, така че приемникът да може да декриптира потоци (ако данните на ECM са включени в потока и има налична валидна карта)."
 
-msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
-msgstr "Ако е зададено на „Да“, същите команди ще бъдат изпращани към телевизора за събития в режим на дълбока готовност, както се изпращат по време на редовни събития в режим на готовност."
-
 msgid "Encrypted: "
 msgstr "Криптирано: "
 
@@ -7474,6 +7465,9 @@ msgid "Enter pin code"
 msgstr "Въведете пин код"
 
 msgid "Enter text via an attached keyboard"
+msgstr ""
+
+msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
 msgstr ""
 
 msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
@@ -7971,9 +7965,6 @@ msgstr "Изход от EPG"
 msgid "Exit File Commander"
 msgstr ""
 
-msgid "Exit MAC address configuration"
-msgstr "Изход от MAC- адрес конфигурация"
-
 msgid "Exit Movie Selection"
 msgstr "Изход от филмовия списък"
 
@@ -8227,6 +8218,9 @@ msgstr ""
 msgid "Fallback Timer"
 msgstr "Резервен Таймер"
 
+msgid "Fallback Tuner Setup"
+msgstr "Настройки на резервен тунер"
+
 msgid "Fallback remote receiver"
 msgstr "Резервен отдалечен приемник"
 
@@ -8247,9 +8241,6 @@ msgstr "Резервен отдалечен приемник за DVB-C"
 
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Резервен отдалечен приемник за DVB-T"
-
-msgid "Fallback Tuner Setup"
-msgstr "Настройки на резервен тунер"
 
 msgid "False"
 msgstr "Невярно"
@@ -8518,9 +8509,6 @@ msgstr "Завършено"
 
 msgid "Finished configuring your network"
 msgstr "Завършена е конфигурацията на мрежата"
-
-msgid "Finished restarting your network"
-msgstr "Завършено е рестартирането на мрежата"
 
 msgid "Finland"
 msgstr ""
@@ -10261,6 +10249,15 @@ msgstr ""
 msgid "Job overview"
 msgstr "Общ преглед на работата"
 
+msgid "Join"
+msgstr ""
+
+msgid "Join or leave the configured ZeroTier network"
+msgstr ""
+
+msgid "Joined"
+msgstr ""
+
 msgid "Jordan"
 msgstr ""
 
@@ -10619,6 +10616,9 @@ msgid "Latvia"
 msgstr ""
 
 msgid "Latvian"
+msgstr ""
+
+msgid "Leave"
 msgstr ""
 
 msgid "Leave DVD player?"
@@ -11004,12 +11004,6 @@ msgstr ""
 
 msgid "M2k Packages"
 msgstr ""
-
-msgid "MAC Address Actions"
-msgstr ""
-
-msgid "MAC Address Settings"
-msgstr "Настройки за MAС-адрес"
 
 msgid "MAC address"
 msgstr ""
@@ -11530,13 +11524,7 @@ msgstr "Монтиране"
 msgid "Mount Manager"
 msgstr "Мениджър за монтиране"
 
-msgid "Mount Menu Actions"
-msgstr ""
-
 msgid "Mount Point"
-msgstr ""
-
-msgid "Mount Settings"
 msgstr ""
 
 msgid "Mount Setup"
@@ -12089,9 +12077,6 @@ msgstr ""
 msgid "Network Log Actions"
 msgstr ""
 
-msgid "Network MAC settings"
-msgstr "Мрежови MAC настройки"
-
 msgid "Network Neighbourhood"
 msgstr "Мрежов квартал"
 
@@ -12141,11 +12126,17 @@ msgstr "Мрежово меню"
 msgid "Network mounts"
 msgstr "Монтирани мрежи"
 
+msgid "Network name"
+msgstr ""
+
 msgid "Network name (SSID)"
 msgstr "Име на мрежата (SSID)"
 
 msgid "Network scan"
 msgstr "Мрежово сканиране"
+
+msgid "Network status"
+msgstr ""
 
 msgid "Network storage on"
 msgstr ""
@@ -12160,6 +12151,9 @@ msgid ""
 "Network wizard completed.\n"
 "\n"
 "Press OK to continue."
+msgstr ""
+
+msgid "Network-ID"
 msgstr ""
 
 msgid "Network:"
@@ -12644,6 +12638,9 @@ msgstr ""
 "Размер на файла: %sMB\n"
 "Свободно пространство: %sMB\n"
 "Път: %s"
+
+msgid "Not joined. Press Yellow to join."
+msgstr ""
 
 msgid "Not required"
 msgstr ""
@@ -13885,9 +13882,6 @@ msgstr ""
 msgid "Please wait while we check your installed plugins..."
 msgstr "Моля, изчакайте докато проверявам инсталираните ви плъгини ...."
 
-msgid "Please wait while we configure your network..."
-msgstr "Моля, изчакайте докато конфигурирам мрежата ..."
-
 msgid "Please wait while we prepare your network interfaces..."
 msgstr "Моля, изчакайте докато подготвям вашите мрежови интерфейси ..."
 
@@ -14218,9 +14212,6 @@ msgstr "Натиснете OK, за да изберете сателити"
 msgid "Press OK to select/deselect a CAId."
 msgstr "Натиснете OK, за да изберете/изключите дадено CAID."
 
-msgid "Press OK to set the MAC address."
-msgstr "Натиснете OK, за да зададете MAC-адрес."
-
 msgid "Press OK to start the backup now"
 msgstr ""
 
@@ -14252,9 +14243,6 @@ msgstr ""
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Натиснете този бутон, за да емулира дълго натискане на натиснат след това бутон (това също отменя всички други действия, присвоени на бутона за емулиране)."
-
-msgid "Press yellow to set this interface as the default interface."
-msgstr "Натиснете жълтия за да зададете този интерфейс като по подразбиране."
 
 msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
 msgstr "Натискането на паник бутона ще ви отведе до zap на този канален номер в първия ви букет."
@@ -14894,6 +14882,9 @@ msgstr ""
 msgid "Refresh"
 msgstr "Опресняване"
 
+msgid "Refresh ZeroTier status information"
+msgstr ""
+
 msgid "Refresh every x hours"
 msgstr "Опресняване на всеки (в часове)"
 
@@ -15335,9 +15326,6 @@ msgstr "Рестарт на мрежата за текущата настрой�
 
 msgid "Restart test"
 msgstr "Рестарт тест"
-
-msgid "Restart your network connection and interfaces."
-msgstr "Рестартиране на мрежовата ви връзка и интерфейси."
 
 msgid "Restarting..."
 msgstr ""
@@ -17346,6 +17334,9 @@ msgstr "Номер, иконка и име на сервиза"
 msgid "Service off-air"
 msgstr "Сервиз извън ефир"
 
+msgid "Service online"
+msgstr ""
+
 msgid "Service picons aspect ratio"
 msgstr "Съотношение нана сервизните пикони"
 
@@ -17461,9 +17452,6 @@ msgstr "Задайте fps за външни субтитри"
 msgid "Set how long the second InfoBar stays visible. The second InfoBar also disappears when you press 'OK'."
 msgstr "Задайте време за скриване на втория инфобар. Барът също изчезва при натискане на 'OK'."
 
-msgid "Set interface as the default Interface"
-msgstr "Задайте интерфейса като интерфейс по подразбиране"
-
 msgid "Set limits"
 msgstr "Задайте лимити"
 
@@ -17484,10 +17472,6 @@ msgstr ""
 
 msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
 msgstr ""
-
-#, python-format
-msgid "Set the MAC address of your %s %s."
-msgstr "Задайте MAC-адреса на вашия %s %s."
 
 msgid "Set the UP/DOWN button skip percentage for the SeekBar."
 msgstr ""
@@ -17625,6 +17609,9 @@ msgstr ""
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
 msgstr ""
+
+msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
+msgstr "Ако е зададено на „Да“, същите команди ще бъдат изпращани към телевизора за събития в режим на дълбока готовност, както се изпращат по време на редовни събития в режим на готовност."
 
 msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
 msgstr "Ако е зададено 'да', активирайте автоматичното записване за автоматичен timeshift"
@@ -19500,6 +19487,9 @@ msgstr "Спряно"
 msgid "Stopping Softcam"
 msgstr "Спиране Softcam"
 
+msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
+msgstr "Стоп на използване на timeshift, ако записа е в ход. (Препоръчително за USB стикове)"
+
 msgid "Storage / Disk Information"
 msgstr ""
 
@@ -20400,13 +20390,6 @@ msgstr "Височината на картината. Входът ще бъде
 
 msgid "The loopthrough setting is wrong."
 msgstr "Loopthrough настройката не е наред."
-
-msgid ""
-"The network wizard extension is not installed!\n"
-"Please install it."
-msgstr ""
-"Разширението на съветника за мрежа не е инсталиран!\n"
-"Моля, инсталирайте го."
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr ""
@@ -21368,6 +21351,12 @@ msgstr "Опитах се да деактивирам PIP, изведнъж не
 msgid "Tries left:"
 msgstr "Оставащи опити:"
 
+msgid "Trim File System"
+msgstr ""
+
+msgid "Trim File System..."
+msgstr ""
+
 msgid "Trinidad and Tobago"
 msgstr ""
 
@@ -21488,6 +21477,12 @@ msgid "Tuning algorithm"
 msgstr "Настройване алгоритъм"
 
 msgid "Tunisia"
+msgstr ""
+
+msgid "Tunnel IPv4"
+msgstr ""
+
+msgid "Tunnel IPv6"
 msgstr ""
 
 msgid "Turbo"
@@ -22114,12 +22109,6 @@ msgstr ""
 
 msgid "Use the extended List"
 msgstr "Използване на разширения списък"
-
-msgid "Use the network wizard to configure selected network adapter"
-msgstr "Използване на съветника за мрежа, за да конфигурирате избрания мрежов адаптер"
-
-msgid "Use the network wizard to configure your Network."
-msgstr ""
 
 msgid "Use the wizard to set up basic features"
 msgstr "Използване на съветника, за да настроите основни функции"
@@ -23554,6 +23543,18 @@ msgstr "Превключване нагоре"
 msgid "Zap+Record next"
 msgstr "Превключване+Запис следващия"
 
+msgid "ZeroTier Actions"
+msgstr ""
+
+msgid "ZeroTier version"
+msgstr ""
+
+msgid "ZeroTier-One"
+msgstr ""
+
+msgid "ZeroTier Settings"
+msgstr ""
+
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr ""
 
@@ -24208,6 +24209,53 @@ msgstr "да (запази фийдове)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "* Only available if more than one interface is active."
+#~ msgstr "* Предлага се, ако има повече от един активен интерфейс."
+
+#~ msgid "Activate MAC address configuration"
+#~ msgstr "Активиране на MAC-aдрес конфигурация"
+
+#~ msgid "Exit MAC address configuration"
+#~ msgstr "Изход от MAC- адрес конфигурация"
+
+#~ msgid "Finished restarting your network"
+#~ msgstr "Завършено е рестартирането на мрежата"
+
+#~ msgid "MAC Address Settings"
+#~ msgstr "Настройки за MAС-адрес"
+
+#~ msgid "Network MAC settings"
+#~ msgstr "Мрежови MAC настройки"
+
+#~ msgid "Please wait while we configure your network..."
+#~ msgstr "Моля, изчакайте докато конфигурирам мрежата ..."
+
+#~ msgid "Press OK to set the MAC address."
+#~ msgstr "Натиснете OK, за да зададете MAC-адрес."
+
+#~ msgid "Press yellow to set this interface as the default interface."
+#~ msgstr "Натиснете жълтия за да зададете този интерфейс като по подразбиране."
+
+#~ msgid "Restart your network connection and interfaces."
+#~ msgstr "Рестартиране на мрежовата ви връзка и интерфейси."
+
+#~ msgid "Set interface as the default Interface"
+#~ msgstr "Задайте интерфейса като интерфейс по подразбиране"
+
+#, python-format
+#~ msgid "Set the MAC address of your %s %s."
+#~ msgstr "Задайте MAC-адреса на вашия %s %s."
+
+#~ msgid ""
+#~ "The network wizard extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Разширението на съветника за мрежа не е инсталиран!\n"
+#~ "Моля, инсталирайте го."
+
+#~ msgid "Use the network wizard to configure selected network adapter"
+#~ msgstr "Използване на съветника за мрежа, за да конфигурирате избрания мрежов адаптер"
 
 #~ msgid "Add a DNS entry"
 #~ msgstr "Добавяне на запис в DNS"

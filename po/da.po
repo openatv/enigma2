@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-27 18:13+0000\n"
+"POT-Creation-Date: 2026-01-02 18:38+0000\n"
 "PO-Revision-Date: 2021-11-04 23:53+0000\n"
 "Last-Translator: T. Rylle <dk-translation@pm.me>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/da/>\n"
@@ -1295,9 +1295,6 @@ msgstr "(Vis valgfri DVD lydmenu)"
 msgid "* = Restart required if this item is changed."
 msgstr "* = Genstart påkrævet"
 
-msgid "* Only available if more than one interface is active."
-msgstr "* Kun tilgængelig hvis mere end en grænseflade er aktiv."
-
 msgid "* current animation"
 msgstr "* nuværende animation"
 
@@ -1790,9 +1787,6 @@ msgstr ""
 
 msgid "Activate HbbTV (RED button)"
 msgstr "Aktiver HbbTV (Rød knap)"
-
-msgid "Activate MAC address configuration"
-msgstr "AKtiver MAC-adresse konfiguration"
 
 msgid "Activate Picture in Picture"
 msgstr "Aktiver Billede i Billede (PiP)"
@@ -6370,9 +6364,6 @@ msgstr "Deaktiver PiP.\n"
 msgid "Disabled or WPA/WPA2"
 msgstr ""
 
-msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
-msgstr "Forhindre at Timeshift bliver brugt hvis en optagekse er igang (anbefales for USB nøgler)."
-
 msgid "Disabling Chkroot failed!"
 msgstr ""
 
@@ -6577,6 +6568,9 @@ msgstr ""
 
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
+msgstr ""
+
+msgid "Do you really want to trim the file system?"
 msgstr ""
 
 #, python-format
@@ -7342,9 +7336,6 @@ msgstr "Aktiveret"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Aktiver denne funktion så modtageren kan dekryptere streams (hvis ECM data er inkluderet i streamen og en gyldig kort er tilgængelig)."
 
-msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
-msgstr ""
-
 msgid "Encrypted: "
 msgstr "Krypteret: "
 
@@ -7482,6 +7473,9 @@ msgid "Enter pin code"
 msgstr "Indtast PIN kode"
 
 msgid "Enter text via an attached keyboard"
+msgstr ""
+
+msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
 msgstr ""
 
 msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
@@ -7978,9 +7972,6 @@ msgstr "Forlad EPG"
 msgid "Exit File Commander"
 msgstr ""
 
-msgid "Exit MAC address configuration"
-msgstr "Afslut MAC-adresse konfiguration"
-
 msgid "Exit Movie Selection"
 msgstr "Afslut filmliste"
 
@@ -8236,6 +8227,9 @@ msgstr ""
 msgid "Fallback Timer"
 msgstr ""
 
+msgid "Fallback Tuner Setup"
+msgstr "Fallback remote receiver URL"
+
 msgid "Fallback remote receiver"
 msgstr "Fallback remote receiver URL"
 
@@ -8255,9 +8249,6 @@ msgid "Fallback remote receiver for DVB-C"
 msgstr "Fallback remote receiver URL"
 
 msgid "Fallback remote receiver for DVB-T"
-msgstr "Fallback remote receiver URL"
-
-msgid "Fallback Tuner Setup"
 msgstr "Fallback remote receiver URL"
 
 msgid "False"
@@ -8530,9 +8521,6 @@ msgstr "Gennemført"
 
 msgid "Finished configuring your network"
 msgstr "Opsætning af dit netværk gennemført"
-
-msgid "Finished restarting your network"
-msgstr "Genstart af dit netværk gennemført"
 
 msgid "Finland"
 msgstr "Finland"
@@ -10296,6 +10284,15 @@ msgstr "Jersey"
 msgid "Job overview"
 msgstr "Opgave overblik"
 
+msgid "Join"
+msgstr ""
+
+msgid "Join or leave the configured ZeroTier network"
+msgstr ""
+
+msgid "Joined"
+msgstr ""
+
 msgid "Jordan"
 msgstr "Jordan"
 
@@ -10663,6 +10660,9 @@ msgstr "Letland"
 
 msgid "Latvian"
 msgstr "Lettisk"
+
+msgid "Leave"
+msgstr ""
 
 msgid "Leave DVD player?"
 msgstr "Forlad DVD afspiller ?"
@@ -11052,12 +11052,6 @@ msgstr "Luxembourgsk"
 
 msgid "M2k Packages"
 msgstr ""
-
-msgid "MAC Address Actions"
-msgstr ""
-
-msgid "MAC Address Settings"
-msgstr "MAC-adresse indstillinger"
 
 msgid "MAC address"
 msgstr ""
@@ -11596,13 +11590,7 @@ msgstr "Mount"
 msgid "Mount Manager"
 msgstr "Mount-håndtering"
 
-msgid "Mount Menu Actions"
-msgstr ""
-
 msgid "Mount Point"
-msgstr ""
-
-msgid "Mount Settings"
 msgstr ""
 
 msgid "Mount Setup"
@@ -12167,9 +12155,6 @@ msgstr ""
 msgid "Network Log Actions"
 msgstr ""
 
-msgid "Network MAC settings"
-msgstr "Netværk MAC indstillinger"
-
 msgid "Network Neighbourhood"
 msgstr "Netværksnabolag"
 
@@ -12219,11 +12204,17 @@ msgstr "Netværksmenu"
 msgid "Network mounts"
 msgstr "Netværks-monunts"
 
+msgid "Network name"
+msgstr ""
+
 msgid "Network name (SSID)"
 msgstr "Netværksnavn (SSID)"
 
 msgid "Network scan"
 msgstr "Netværkssøgning"
+
+msgid "Network status"
+msgstr ""
 
 msgid "Network storage on"
 msgstr ""
@@ -12238,6 +12229,9 @@ msgid ""
 "Network wizard completed.\n"
 "\n"
 "Press OK to continue."
+msgstr ""
+
+msgid "Network-ID"
 msgstr ""
 
 msgid "Network:"
@@ -12727,6 +12721,9 @@ msgstr ""
 "Filstørrelse: %sMB\n"
 "Fri plads: %sMB\n"
 "Sti: %s"
+
+msgid "Not joined. Press Yellow to join."
+msgstr ""
 
 msgid "Not required"
 msgstr ""
@@ -13992,9 +13989,6 @@ msgstr ""
 msgid "Please wait while we check your installed plugins..."
 msgstr "Vent venligst men vi kontrollere installerede Plugins..."
 
-msgid "Please wait while we configure your network..."
-msgstr "Vent venligst, mens vi opsætter dit netværk..."
-
 msgid "Please wait while we prepare your network interfaces..."
 msgstr "Vent venligst mens vi klargører dine netværk interfaces..."
 
@@ -14327,9 +14321,6 @@ msgstr "Tryk OK for at vælge satellitter"
 msgid "Press OK to select/deselect a CAId."
 msgstr "Tryk på OK for at vælge/fravælge et CAId."
 
-msgid "Press OK to set the MAC address."
-msgstr "Tryk OK for at sætte MAC-adressen."
-
 msgid "Press OK to start the backup now"
 msgstr ""
 
@@ -14361,9 +14352,6 @@ msgstr ""
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Tryk på denne knap for at efterligne et langt tryk på den efterfølgende knap (dette tilsidesætter alle andre handlinger tildelt til emuleringsknappen)."
-
-msgid "Press yellow to set this interface as the default interface."
-msgstr "Tryk på gul for at vælge denne grænseflade som standardgrænseflade."
 
 msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
 msgstr "Tryk på panikknappen vil Zappe dig til dette kanalnummer i din første buket."
@@ -15005,6 +14993,9 @@ msgstr ""
 msgid "Refresh"
 msgstr ""
 
+msgid "Refresh ZeroTier status information"
+msgstr ""
+
 msgid "Refresh every x hours"
 msgstr "Opfrisk hver (i timer)"
 
@@ -15445,9 +15436,6 @@ msgstr "Genstart også netværk med nuværende opsætning"
 
 msgid "Restart test"
 msgstr "Genstart Test"
-
-msgid "Restart your network connection and interfaces."
-msgstr "Genstart din netværksopkobling og grænseflade."
 
 msgid "Restarting..."
 msgstr ""
@@ -17468,6 +17456,9 @@ msgstr "Kanal Nummer, Pikon og Kanalnavn"
 msgid "Service off-air"
 msgstr "Service off-air"
 
+msgid "Service online"
+msgstr ""
+
 msgid "Service picons aspect ratio"
 msgstr "Kanal Pikoner størrelsesforhold"
 
@@ -17583,9 +17574,6 @@ msgstr "Sæt FPS for eksterne undertekster"
 msgid "Set how long the second InfoBar stays visible. The second InfoBar also disappears when you press 'OK'."
 msgstr "Sæt tiden indtil den sekundære infobjælke skjules. Bjælken forsvinder også ved tryk på 'OK'."
 
-msgid "Set interface as the default Interface"
-msgstr "Sæt grænseflade som standard grænseflade"
-
 msgid "Set limits"
 msgstr "Sæt grænser"
 
@@ -17607,10 +17595,6 @@ msgstr ""
 
 msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
 msgstr ""
-
-#, python-format
-msgid "Set the MAC address of your %s %s."
-msgstr "Sæt MAC-adressen for din %s %s."
 
 msgid "Set the UP/DOWN button skip percentage for the SeekBar."
 msgstr ""
@@ -17747,6 +17731,9 @@ msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby bef
 msgstr ""
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
+msgstr ""
+
+msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr ""
 
 msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
@@ -19634,6 +19621,9 @@ msgstr "Stoppet"
 msgid "Stopping Softcam"
 msgstr "Stopper Softcam"
 
+msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
+msgstr "Forhindre at Timeshift bliver brugt hvis en optagekse er igang (anbefales for USB nøgler)."
+
 msgid "Storage / Disk Information"
 msgstr ""
 
@@ -20547,13 +20537,6 @@ msgstr "Højden af billedet. Inddata bliver skaleret til passe til denne værdi.
 
 msgid "The loopthrough setting is wrong."
 msgstr "Loopthrough indstillingen er forkert."
-
-msgid ""
-"The network wizard extension is not installed!\n"
-"Please install it."
-msgstr ""
-"Netværksassistent udvidelsen er ikke installeret!\n"
-"Installer den venligst."
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr ""
@@ -21518,6 +21501,12 @@ msgstr "Forsøgte at deaktiver PiP, fandt pludselig ingen InfoBar.instance\n"
 msgid "Tries left:"
 msgstr "Forsøg tilbage:"
 
+msgid "Trim File System"
+msgstr ""
+
+msgid "Trim File System..."
+msgstr ""
+
 msgid "Trinidad and Tobago"
 msgstr "Trinidad og Tobago"
 
@@ -21641,6 +21630,12 @@ msgstr "Dreje-algoritme"
 
 msgid "Tunisia"
 msgstr "Tunesien"
+
+msgid "Tunnel IPv4"
+msgstr ""
+
+msgid "Tunnel IPv6"
+msgstr ""
 
 msgid "Turbo"
 msgstr "Turbo"
@@ -22271,12 +22266,6 @@ msgstr ""
 
 msgid "Use the extended List"
 msgstr "Brug den udvidede liste."
-
-msgid "Use the network wizard to configure selected network adapter"
-msgstr "Brug Netværksassistenten til at konfigurere valgte netværksadapter"
-
-msgid "Use the network wizard to configure your Network."
-msgstr ""
 
 msgid "Use the wizard to set up basic features"
 msgstr "Brug denne assistent til at sætte grundfunktioner op"
@@ -23717,6 +23706,18 @@ msgstr "Zap op"
 msgid "Zap+Record next"
 msgstr "Zap+Optag næste"
 
+msgid "ZeroTier Actions"
+msgstr ""
+
+msgid "ZeroTier version"
+msgstr ""
+
+msgid "ZeroTier-One"
+msgstr ""
+
+msgid "ZeroTier Settings"
+msgstr ""
+
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7 gammel model"
 
@@ -24375,6 +24376,53 @@ msgstr "ja (behold feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "* Only available if more than one interface is active."
+#~ msgstr "* Kun tilgængelig hvis mere end en grænseflade er aktiv."
+
+#~ msgid "Activate MAC address configuration"
+#~ msgstr "AKtiver MAC-adresse konfiguration"
+
+#~ msgid "Exit MAC address configuration"
+#~ msgstr "Afslut MAC-adresse konfiguration"
+
+#~ msgid "Finished restarting your network"
+#~ msgstr "Genstart af dit netværk gennemført"
+
+#~ msgid "MAC Address Settings"
+#~ msgstr "MAC-adresse indstillinger"
+
+#~ msgid "Network MAC settings"
+#~ msgstr "Netværk MAC indstillinger"
+
+#~ msgid "Please wait while we configure your network..."
+#~ msgstr "Vent venligst, mens vi opsætter dit netværk..."
+
+#~ msgid "Press OK to set the MAC address."
+#~ msgstr "Tryk OK for at sætte MAC-adressen."
+
+#~ msgid "Press yellow to set this interface as the default interface."
+#~ msgstr "Tryk på gul for at vælge denne grænseflade som standardgrænseflade."
+
+#~ msgid "Restart your network connection and interfaces."
+#~ msgstr "Genstart din netværksopkobling og grænseflade."
+
+#~ msgid "Set interface as the default Interface"
+#~ msgstr "Sæt grænseflade som standard grænseflade"
+
+#, python-format
+#~ msgid "Set the MAC address of your %s %s."
+#~ msgstr "Sæt MAC-adressen for din %s %s."
+
+#~ msgid ""
+#~ "The network wizard extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Netværksassistent udvidelsen er ikke installeret!\n"
+#~ "Installer den venligst."
+
+#~ msgid "Use the network wizard to configure selected network adapter"
+#~ msgstr "Brug Netværksassistenten til at konfigurere valgte netværksadapter"
 
 #~ msgid "white"
 #~ msgstr "Hvid"

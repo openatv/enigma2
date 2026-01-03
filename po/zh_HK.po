@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-27 18:13+0000\n"
+"POT-Creation-Date: 2026-01-02 18:38+0000\n"
 "PO-Revision-Date: 2024-07-23 13:09+0000\n"
 "Last-Translator: Ricky From Hong Kong <lamricky11@hotmail.com>\n"
 "Language-Team: Chinese (Traditional, Hong Kong) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hant_HK/>\n"
@@ -1307,9 +1307,6 @@ msgstr "(顯示可選的DVD音頻功能表)"
 msgid "* = Restart required if this item is changed."
 msgstr ""
 
-msgid "* Only available if more than one interface is active."
-msgstr "* 僅在一個或多個網卡啟動才有效."
-
 #, fuzzy
 msgid "* current animation"
 msgstr "啟動當前配置"
@@ -1830,10 +1827,6 @@ msgstr ""
 
 msgid "Activate HbbTV (RED button)"
 msgstr ""
-
-#, fuzzy
-msgid "Activate MAC address configuration"
-msgstr "啟動當前配置"
 
 msgid "Activate Picture in Picture"
 msgstr "啟用畫中畫"
@@ -6604,9 +6597,6 @@ msgstr "已禁用畫中畫。\n"
 msgid "Disabled or WPA/WPA2"
 msgstr ""
 
-msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
-msgstr ""
-
 msgid "Disabling Chkroot failed!"
 msgstr ""
 
@@ -6812,6 +6802,9 @@ msgstr ""
 
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
+msgstr ""
+
+msgid "Do you really want to trim the file system?"
 msgstr ""
 
 #, python-format
@@ -7597,9 +7590,6 @@ msgstr "啟用的"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr ""
 
-msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
-msgstr ""
-
 msgid "Encrypted: "
 msgstr "加密系統: "
 
@@ -7739,6 +7729,9 @@ msgid "Enter pin code"
 msgstr ""
 
 msgid "Enter text via an attached keyboard"
+msgstr ""
+
+msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
 msgstr ""
 
 msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
@@ -8229,10 +8222,6 @@ msgstr ""
 msgid "Exit File Commander"
 msgstr ""
 
-#, fuzzy
-msgid "Exit MAC address configuration"
-msgstr "退出 DNS 配置"
-
 msgid "Exit Movie Selection"
 msgstr ""
 
@@ -8505,6 +8494,9 @@ msgstr ""
 msgid "Fallback Timer"
 msgstr ""
 
+msgid "Fallback Tuner Setup"
+msgstr ""
+
 msgid "Fallback remote receiver"
 msgstr ""
 
@@ -8524,9 +8516,6 @@ msgid "Fallback remote receiver for DVB-C"
 msgstr ""
 
 msgid "Fallback remote receiver for DVB-T"
-msgstr ""
-
-msgid "Fallback Tuner Setup"
 msgstr ""
 
 msgid "False"
@@ -8804,9 +8793,6 @@ msgstr "完成"
 
 msgid "Finished configuring your network"
 msgstr "網路設定完成"
-
-msgid "Finished restarting your network"
-msgstr "重啟網路完成"
 
 #, fuzzy
 msgid "Finland"
@@ -10663,6 +10649,15 @@ msgstr ""
 msgid "Job overview"
 msgstr ""
 
+msgid "Join"
+msgstr ""
+
+msgid "Join or leave the configured ZeroTier network"
+msgstr ""
+
+msgid "Joined"
+msgstr ""
+
 msgid "Jordan"
 msgstr ""
 
@@ -11042,6 +11037,9 @@ msgstr "拉脫維亞"
 
 msgid "Latvian"
 msgstr "拉脫維亞"
+
+msgid "Leave"
+msgstr ""
 
 msgid "Leave DVD player?"
 msgstr ""
@@ -11448,13 +11446,6 @@ msgstr ""
 
 msgid "M2k Packages"
 msgstr ""
-
-msgid "MAC Address Actions"
-msgstr ""
-
-#, fuzzy
-msgid "MAC Address Settings"
-msgstr "網卡設定"
 
 msgid "MAC address"
 msgstr ""
@@ -12002,13 +11993,7 @@ msgstr "安裝(Mount)"
 msgid "Mount Manager"
 msgstr "安裝(Mount)管理"
 
-msgid "Mount Menu Actions"
-msgstr ""
-
 msgid "Mount Point"
-msgstr ""
-
-msgid "Mount Settings"
 msgstr ""
 
 #, fuzzy
@@ -12603,10 +12588,6 @@ msgid "Network Log Actions"
 msgstr ""
 
 #, fuzzy
-msgid "Network MAC settings"
-msgstr "啟用網路設定"
-
-#, fuzzy
 msgid "Network Neighbourhood"
 msgstr "流覽網上鄰居"
 
@@ -12661,11 +12642,17 @@ msgstr "網路設定"
 msgid "Network mounts"
 msgstr "網路安裝"
 
+msgid "Network name"
+msgstr ""
+
 msgid "Network name (SSID)"
 msgstr ""
 
 msgid "Network scan"
 msgstr "網路掃描"
+
+msgid "Network status"
+msgstr ""
 
 msgid "Network storage on"
 msgstr ""
@@ -12680,6 +12667,9 @@ msgid ""
 "Network wizard completed.\n"
 "\n"
 "Press OK to continue."
+msgstr ""
+
+msgid "Network-ID"
 msgstr ""
 
 msgid "Network:"
@@ -13185,6 +13175,9 @@ msgid ""
 "Filesize: %sMB\n"
 "Free Space: %sMB\n"
 "Path: %s"
+msgstr ""
+
+msgid "Not joined. Press Yellow to join."
 msgstr ""
 
 msgid "Not required"
@@ -14504,9 +14497,6 @@ msgstr ""
 msgid "Please wait while we check your installed plugins..."
 msgstr "請稍候,我們正在測驗您的網路..."
 
-msgid "Please wait while we configure your network..."
-msgstr "正在配置網路...請稍候..."
-
 msgid "Please wait while we prepare your network interfaces..."
 msgstr "請稍候,我們正在準備您的網路介面..."
 
@@ -14855,10 +14845,6 @@ msgstr "按OK鍵選擇."
 msgid "Press OK to select/deselect a CAId."
 msgstr "按 OK 選擇/取消 CAId."
 
-#, fuzzy
-msgid "Press OK to set the MAC address."
-msgstr "按OK鍵修改設定"
-
 msgid "Press OK to start the backup now"
 msgstr ""
 
@@ -14891,10 +14877,6 @@ msgstr ""
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr ""
-
-#, fuzzy
-msgid "Press yellow to set this interface as the default interface."
-msgstr "按黃鍵來設定此介面為預設."
 
 msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
 msgstr ""
@@ -15591,6 +15573,9 @@ msgstr ""
 msgid "Refresh"
 msgstr ""
 
+msgid "Refresh ZeroTier status information"
+msgstr ""
+
 msgid "Refresh every x hours"
 msgstr ""
 
@@ -16061,9 +16046,6 @@ msgstr ""
 
 msgid "Restart test"
 msgstr "重新測驗"
-
-msgid "Restart your network connection and interfaces."
-msgstr "重啟 Dreambox網路連接."
 
 msgid "Restarting..."
 msgstr ""
@@ -18143,6 +18125,9 @@ msgstr ""
 msgid "Service off-air"
 msgstr "頻道掃描"
 
+msgid "Service online"
+msgstr ""
+
 msgid "Service picons aspect ratio"
 msgstr ""
 
@@ -18266,10 +18251,6 @@ msgstr ""
 msgid "Set how long the second InfoBar stays visible. The second InfoBar also disappears when you press 'OK'."
 msgstr ""
 
-#, fuzzy
-msgid "Set interface as the default Interface"
-msgstr "將網卡設為預設"
-
 msgid "Set limits"
 msgstr "設定極限"
 
@@ -18291,10 +18272,6 @@ msgid "Set the CutList Editor skip time interval for the '%s'/'%s' buttons."
 msgstr ""
 
 msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
-msgstr ""
-
-#, python-format
-msgid "Set the MAC address of your %s %s."
 msgstr ""
 
 msgid "Set the UP/DOWN button skip percentage for the SeekBar."
@@ -18436,6 +18413,9 @@ msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby bef
 msgstr ""
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
+msgstr ""
+
+msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr ""
 
 msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
@@ -20446,6 +20426,9 @@ msgstr "停止"
 msgid "Stopping Softcam"
 msgstr ""
 
+msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
+msgstr ""
+
 msgid "Storage / Disk Information"
 msgstr ""
 
@@ -21386,11 +21369,6 @@ msgid "The height of the picture. The input will be scaled to match this value."
 msgstr ""
 
 msgid "The loopthrough setting is wrong."
-msgstr ""
-
-msgid ""
-"The network wizard extension is not installed!\n"
-"Please install it."
 msgstr ""
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
@@ -22359,6 +22337,12 @@ msgstr ""
 msgid "Tries left:"
 msgstr "嘗試:"
 
+msgid "Trim File System"
+msgstr ""
+
+msgid "Trim File System..."
+msgstr ""
+
 msgid "Trinidad and Tobago"
 msgstr ""
 
@@ -22492,6 +22476,12 @@ msgid "Tuning algorithm"
 msgstr ""
 
 msgid "Tunisia"
+msgstr ""
+
+msgid "Tunnel IPv4"
+msgstr ""
+
+msgid "Tunnel IPv6"
 msgstr ""
 
 msgid "Turbo"
@@ -23140,12 +23130,6 @@ msgstr ""
 #, fuzzy
 msgid "Use the extended List"
 msgstr "隱藏說明"
-
-msgid "Use the network wizard to configure selected network adapter"
-msgstr ""
-
-msgid "Use the network wizard to configure your Network."
-msgstr ""
 
 msgid "Use the wizard to set up basic features"
 msgstr ""
@@ -24622,6 +24606,18 @@ msgstr ""
 msgid "Zap+Record next"
 msgstr "錄製"
 
+msgid "ZeroTier Actions"
+msgstr ""
+
+msgid "ZeroTier version"
+msgstr ""
+
+msgid "ZeroTier-One"
+msgstr ""
+
+msgid "ZeroTier Settings"
+msgstr ""
+
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr ""
 
@@ -25302,6 +25298,46 @@ msgstr "是 (保留)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "* Only available if more than one interface is active."
+#~ msgstr "* 僅在一個或多個網卡啟動才有效."
+
+#, fuzzy
+#~ msgid "Activate MAC address configuration"
+#~ msgstr "啟動當前配置"
+
+#, fuzzy
+#~ msgid "Exit MAC address configuration"
+#~ msgstr "退出 DNS 配置"
+
+#~ msgid "Finished restarting your network"
+#~ msgstr "重啟網路完成"
+
+#, fuzzy
+#~ msgid "MAC Address Settings"
+#~ msgstr "網卡設定"
+
+#, fuzzy
+#~ msgid "Network MAC settings"
+#~ msgstr "啟用網路設定"
+
+#~ msgid "Please wait while we configure your network..."
+#~ msgstr "正在配置網路...請稍候..."
+
+#, fuzzy
+#~ msgid "Press OK to set the MAC address."
+#~ msgstr "按OK鍵修改設定"
+
+#, fuzzy
+#~ msgid "Press yellow to set this interface as the default interface."
+#~ msgstr "按黃鍵來設定此介面為預設."
+
+#~ msgid "Restart your network connection and interfaces."
+#~ msgstr "重啟 Dreambox網路連接."
+
+#, fuzzy
+#~ msgid "Set interface as the default Interface"
+#~ msgstr "將網卡設為預設"
 
 #, fuzzy
 #~ msgid "OpenDNS Home"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-27 18:13+0000\n"
+"POT-Creation-Date: 2026-01-02 18:38+0000\n"
 "PO-Revision-Date: 2025-06-11 19:04+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -1336,9 +1336,6 @@ msgstr "(rodyti pasirinktinį DVD garso meniu)"
 msgid "* = Restart required if this item is changed."
 msgstr "* = Būtina paleisti iš naujo"
 
-msgid "* Only available if more than one interface is active."
-msgstr "* Galima, jei tik daugiau kaip viena sąsaja yra aktyvi."
-
 msgid "* current animation"
 msgstr "* dabartinė animacija"
 
@@ -1834,9 +1831,6 @@ msgstr ""
 
 msgid "Activate HbbTV (RED button)"
 msgstr "Aktyvuokite HbbTV (raudonas mygtukas)"
-
-msgid "Activate MAC address configuration"
-msgstr "Aktyvinti MAC adreso konfigūraciją"
 
 msgid "Activate Picture in Picture"
 msgstr "Įjungti vaizdą vaizde"
@@ -6418,9 +6412,6 @@ msgstr "PiP išjungtas.\n"
 msgid "Disabled or WPA/WPA2"
 msgstr "Išjungta arba WPA/WPA2"
 
-msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
-msgstr "Sustabdo laiko poslinkio naudojimą, jei vyksta įrašymas. (Patartina USB atmintinėms.)"
-
 msgid "Disabling Chkroot failed!"
 msgstr ""
 
@@ -6630,6 +6621,9 @@ msgstr ""
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
 msgstr "Ar tikrai norite sustabdyti ir ištrinti laikmatį \"%s\"?"
+
+msgid "Do you really want to trim the file system?"
+msgstr ""
 
 #, python-format
 msgid "Do you want change '%s' access mode?"
@@ -7394,9 +7388,6 @@ msgstr "Įjungta"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Įjungia funkciją, kad imtuvas gali iškoduoti srautus (jei ECM duomenys įtraukti į srautą ir yra galiojanti kortelė)."
 
-msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
-msgstr "Jei nustatyta į 'taip', į televizorių bus siunčiamos tos pačios komandos gilaus budėjimo režimo įvykiams, kaip ir įprastų laukimo režimo įvykių metu."
-
 msgid "Encrypted: "
 msgstr "Koduota: "
 
@@ -7536,6 +7527,9 @@ msgid "Enter pin code"
 msgstr "Įrašykite pin kodą"
 
 msgid "Enter text via an attached keyboard"
+msgstr ""
+
+msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
 msgstr ""
 
 msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
@@ -8037,9 +8031,6 @@ msgstr "Užverti EPG"
 msgid "Exit File Commander"
 msgstr "Išeikite iš failų vadovo"
 
-msgid "Exit MAC address configuration"
-msgstr "Išeiti iš MAC adreso konfigūracijos"
-
 msgid "Exit Movie Selection"
 msgstr "Užverti filmų sąrašą"
 
@@ -8293,6 +8284,9 @@ msgstr ""
 msgid "Fallback Timer"
 msgstr "Atsarginis laikmatis"
 
+msgid "Fallback Tuner Setup"
+msgstr "Atsarginio imtuvo nustatymas"
+
 msgid "Fallback remote receiver"
 msgstr "Atsarginis nuotolinis imtuvas"
 
@@ -8313,9 +8307,6 @@ msgstr "DVB-C nuotolinis atsarginis imtuvas"
 
 msgid "Fallback remote receiver for DVB-T"
 msgstr "DVB-T nuotolinis atsarginis imtuvas"
-
-msgid "Fallback Tuner Setup"
-msgstr "Atsarginio imtuvo nustatymas"
 
 msgid "False"
 msgstr "Klaidingas"
@@ -8584,9 +8575,6 @@ msgstr "Baigta"
 
 msgid "Finished configuring your network"
 msgstr "Jūsų tinklo konfigūravimas baigtas"
-
-msgid "Finished restarting your network"
-msgstr "Tinklas paleistas iš naujo"
 
 msgid "Finland"
 msgstr "Suomija"
@@ -10330,6 +10318,15 @@ msgstr "Džersis"
 msgid "Job overview"
 msgstr "Užduoties apžvalga"
 
+msgid "Join"
+msgstr ""
+
+msgid "Join or leave the configured ZeroTier network"
+msgstr ""
+
+msgid "Joined"
+msgstr ""
+
 msgid "Jordan"
 msgstr "Jordanija"
 
@@ -10690,6 +10687,9 @@ msgstr "Latvija"
 
 msgid "Latvian"
 msgstr "Latvių"
+
+msgid "Leave"
+msgstr ""
 
 msgid "Leave DVD player?"
 msgstr "Užverti DVD grotuvą?"
@@ -11075,12 +11075,6 @@ msgstr "Liuksemburgiečių"
 
 msgid "M2k Packages"
 msgstr ""
-
-msgid "MAC Address Actions"
-msgstr "MAC adreso veiksmai"
-
-msgid "MAC Address Settings"
-msgstr "MAC adreso parametrai"
 
 msgid "MAC address"
 msgstr "MAC adresas"
@@ -11601,14 +11595,8 @@ msgstr "Pajungti"
 msgid "Mount Manager"
 msgstr "Pajungimo tvarkyklė"
 
-msgid "Mount Menu Actions"
-msgstr ""
-
 msgid "Mount Point"
 msgstr ""
-
-msgid "Mount Settings"
-msgstr "Montavimo parametrai"
 
 msgid "Mount Setup"
 msgstr "Pajungimo valdymas"
@@ -12160,9 +12148,6 @@ msgstr ""
 msgid "Network Log Actions"
 msgstr "Tinklo žurnalo veiksmai"
 
-msgid "Network MAC settings"
-msgstr "Tinklo MAC nustatymai"
-
 msgid "Network Neighbourhood"
 msgstr "Tinklo apsuptis"
 
@@ -12212,11 +12197,17 @@ msgstr "Tinklo meniu"
 msgid "Network mounts"
 msgstr "Tinklo pajungimai"
 
+msgid "Network name"
+msgstr ""
+
 msgid "Network name (SSID)"
 msgstr "Tinklo pavadinimas (SSID)"
 
 msgid "Network scan"
 msgstr "Tinklo paieška"
+
+msgid "Network status"
+msgstr ""
 
 msgid "Network storage on"
 msgstr "Tinklo saugykla įjungta"
@@ -12231,6 +12222,9 @@ msgid ""
 "Network wizard completed.\n"
 "\n"
 "Press OK to continue."
+msgstr ""
+
+msgid "Network-ID"
 msgstr ""
 
 msgid "Network:"
@@ -12715,6 +12709,9 @@ msgstr ""
 "Failo dydis: %sMB\n"
 "Laisvos vietos: %sMB\n"
 "Kelias: %s"
+
+msgid "Not joined. Press Yellow to join."
+msgstr ""
 
 msgid "Not required"
 msgstr "Nereikia"
@@ -13961,9 +13958,6 @@ msgstr ""
 msgid "Please wait while we check your installed plugins..."
 msgstr "Palaukite, kol tikrinami jūsų įdiegti priedai..."
 
-msgid "Please wait while we configure your network..."
-msgstr "Palaukite, kol konfigūruojame jūsų tinklą..."
-
 msgid "Please wait while we prepare your network interfaces..."
 msgstr "Palaukite, kol ruošiamos jūsų tinklo sąsajos..."
 
@@ -14294,9 +14288,6 @@ msgstr "Palydovams pasirinkti, spauskite OK"
 msgid "Press OK to select/deselect a CAId."
 msgstr "Paspauskite OK, kad pasirinkti/nepasirinkti CAId."
 
-msgid "Press OK to set the MAC address."
-msgstr "Paspauskite OK, kad nustatytumėte MAC adresą."
-
 msgid "Press OK to start the backup now"
 msgstr ""
 
@@ -14328,9 +14319,6 @@ msgstr ""
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Paspauskite šį mygtuką, kad emuliuoti ilgą mygtuko paspaudimą vėliau (tai yra viršiau už visas kitas, jam pavestus mygtuko emuliacijos veiksmus)."
-
-msgid "Press yellow to set this interface as the default interface."
-msgstr "Kad nustatyti šią sąsają numatytąja, spauskite 'GELTONĄ' mygtuką."
 
 msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
 msgstr "Panikos mygtuko paspaudimas perjungs į šį kanalą jūsų pirmajame pakete."
@@ -14970,6 +14958,9 @@ msgstr ""
 msgid "Refresh"
 msgstr "Atnaujinti"
 
+msgid "Refresh ZeroTier status information"
+msgstr ""
+
 msgid "Refresh every x hours"
 msgstr "Atnaujinama kas (valandomis)"
 
@@ -15411,9 +15402,6 @@ msgstr "Paleisti tinklą iš naujo su dabartiniais nustatymais"
 
 msgid "Restart test"
 msgstr "Kartoti testą"
-
-msgid "Restart your network connection and interfaces."
-msgstr "Iš naujo paleiskite tinklo ryšį ir sąsajas."
 
 msgid "Restarting..."
 msgstr ""
@@ -17424,6 +17412,9 @@ msgstr "Kanalo numeris, logotipas ir kanalo pavadinimas"
 msgid "Service off-air"
 msgstr "Netransliuojamas"
 
+msgid "Service online"
+msgstr ""
+
 msgid "Service picons aspect ratio"
 msgstr "Kanalų logotipų formato santykis"
 
@@ -17539,9 +17530,6 @@ msgstr "Nustatykite fps išoriniams subtitrams"
 msgid "Set how long the second InfoBar stays visible. The second InfoBar also disappears when you press 'OK'."
 msgstr "Nustatyti laiką, kad paslėpti antrą info juostą. Info juosta taip pat dingsta ir paspaudus 'OK'."
 
-msgid "Set interface as the default Interface"
-msgstr "Nustatyti sąsają, kaip numatytąją"
-
 msgid "Set limits"
 msgstr "Nustatykite ribas"
 
@@ -17562,10 +17550,6 @@ msgstr ""
 
 msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
 msgstr ""
-
-#, python-format
-msgid "Set the MAC address of your %s %s."
-msgstr "Nustatykite savo %s %s MAC adresą."
 
 msgid "Set the UP/DOWN button skip percentage for the SeekBar."
 msgstr ""
@@ -17703,6 +17687,9 @@ msgstr ""
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
 msgstr ""
+
+msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
+msgstr "Jei nustatyta į 'taip', į televizorių bus siunčiamos tos pačios komandos gilaus budėjimo režimo įvykiams, kaip ir įprastų laukimo režimo įvykių metu."
 
 msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
 msgstr "Jei nustatyta 'taip', įjungiamas auto įrašymas, naudojamas automatiniam fono laiko poslinkiui"
@@ -19582,6 +19569,9 @@ msgstr "Sustabdyta"
 msgid "Stopping Softcam"
 msgstr "Stabdomas emuliatorius"
 
+msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
+msgstr "Sustabdo laiko poslinkio naudojimą, jei vyksta įrašymas. (Patartina USB atmintinėms.)"
+
 msgid "Storage / Disk Information"
 msgstr ""
 
@@ -20489,13 +20479,6 @@ msgstr "Vaizdo aukštis. Įvestis bus mažinama, kad atitiktų šią reikšmę."
 
 msgid "The loopthrough setting is wrong."
 msgstr "Ciklo parametras neteisingas."
-
-msgid ""
-"The network wizard extension is not installed!\n"
-"Please install it."
-msgstr ""
-"Tinklo vedlio plėtinys neįdiegtas!\n"
-"Prašome įdiegti."
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr ""
@@ -21463,6 +21446,12 @@ msgstr "Bandant išjungti PiP, netikėtai dingo InfoBar.instance.\n"
 msgid "Tries left:"
 msgstr "Liko bandymų:"
 
+msgid "Trim File System"
+msgstr ""
+
+msgid "Trim File System..."
+msgstr ""
+
 msgid "Trinidad and Tobago"
 msgstr "Trinidadas and Tobagas"
 
@@ -21584,6 +21573,12 @@ msgstr "Derinimo algoritmas"
 
 msgid "Tunisia"
 msgstr "Tunisas"
+
+msgid "Tunnel IPv4"
+msgstr ""
+
+msgid "Tunnel IPv6"
+msgstr ""
 
 msgid "Turbo"
 msgstr "Turbo"
@@ -22209,12 +22204,6 @@ msgstr ""
 
 msgid "Use the extended List"
 msgstr "Naudoti išplėstinį sąrašą"
-
-msgid "Use the network wizard to configure selected network adapter"
-msgstr "Naudokite tinklo vedlį, kad konfigūruoti pasirinkto tinklo adapterį"
-
-msgid "Use the network wizard to configure your Network."
-msgstr "Norėdami konfigūruoti tinklą, naudokite tinklo vedlį."
 
 msgid "Use the wizard to set up basic features"
 msgstr "Naudoti vedlį pagrindiniams nustatymams"
@@ -23675,6 +23664,18 @@ msgstr "Perjungti aukštyn"
 msgid "Zap+Record next"
 msgstr "Jungti ir įrašyti toliau"
 
+msgid "ZeroTier Actions"
+msgstr ""
+
+msgid "ZeroTier version"
+msgstr ""
+
+msgid "ZeroTier-One"
+msgstr ""
+
+msgid "ZeroTier Settings"
+msgstr ""
+
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7 senas modelis"
 
@@ -24330,6 +24331,62 @@ msgstr "taip (išsaugoti šaltinius)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "* Only available if more than one interface is active."
+#~ msgstr "* Galima, jei tik daugiau kaip viena sąsaja yra aktyvi."
+
+#~ msgid "Activate MAC address configuration"
+#~ msgstr "Aktyvinti MAC adreso konfigūraciją"
+
+#~ msgid "Exit MAC address configuration"
+#~ msgstr "Išeiti iš MAC adreso konfigūracijos"
+
+#~ msgid "Finished restarting your network"
+#~ msgstr "Tinklas paleistas iš naujo"
+
+#~ msgid "MAC Address Actions"
+#~ msgstr "MAC adreso veiksmai"
+
+#~ msgid "MAC Address Settings"
+#~ msgstr "MAC adreso parametrai"
+
+#~ msgid "Mount Settings"
+#~ msgstr "Montavimo parametrai"
+
+#~ msgid "Network MAC settings"
+#~ msgstr "Tinklo MAC nustatymai"
+
+#~ msgid "Please wait while we configure your network..."
+#~ msgstr "Palaukite, kol konfigūruojame jūsų tinklą..."
+
+#~ msgid "Press OK to set the MAC address."
+#~ msgstr "Paspauskite OK, kad nustatytumėte MAC adresą."
+
+#~ msgid "Press yellow to set this interface as the default interface."
+#~ msgstr "Kad nustatyti šią sąsają numatytąja, spauskite 'GELTONĄ' mygtuką."
+
+#~ msgid "Restart your network connection and interfaces."
+#~ msgstr "Iš naujo paleiskite tinklo ryšį ir sąsajas."
+
+#~ msgid "Set interface as the default Interface"
+#~ msgstr "Nustatyti sąsają, kaip numatytąją"
+
+#, python-format
+#~ msgid "Set the MAC address of your %s %s."
+#~ msgstr "Nustatykite savo %s %s MAC adresą."
+
+#~ msgid ""
+#~ "The network wizard extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Tinklo vedlio plėtinys neįdiegtas!\n"
+#~ "Prašome įdiegti."
+
+#~ msgid "Use the network wizard to configure selected network adapter"
+#~ msgstr "Naudokite tinklo vedlį, kad konfigūruoti pasirinkto tinklo adapterį"
+
+#~ msgid "Use the network wizard to configure your Network."
+#~ msgstr "Norėdami konfigūruoti tinklą, naudokite tinklo vedlį."
 
 #~ msgid "white"
 #~ msgstr "baltas"

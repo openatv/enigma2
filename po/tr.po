@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-27 18:13+0000\n"
+"POT-Creation-Date: 2026-01-02 18:38+0000\n"
 "PO-Revision-Date: 2026-01-02 18:35+0000\n"
 "Last-Translator: Ali Canay <mcilo357104@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
@@ -1291,10 +1291,6 @@ msgstr "(seçimli DVD ses menüsünü göster)"
 msgid "* = Restart required if this item is changed."
 msgstr "# = Bu öğe değiştirilirse yeniden başlatma gerekir."
 
-#
-msgid "* Only available if more than one interface is active."
-msgstr "* Yalnızca birden fazla arayüz olduğunda kullanılabilir."
-
 msgid "* current animation"
 msgstr "* geçerli animasyon"
 
@@ -1821,9 +1817,6 @@ msgstr "Genişleticiyi Etkinleştir"
 
 msgid "Activate HbbTV (RED button)"
 msgstr "HbbTV etkin (Kırmızı tuş)"
-
-msgid "Activate MAC address configuration"
-msgstr "MAC adresi yapılandırmasını etkinleştir"
 
 #
 msgid "Activate Picture in Picture"
@@ -6602,9 +6595,6 @@ msgstr "Engelli PIP.\n"
 msgid "Disabled or WPA/WPA2"
 msgstr "Devre dışı veya WPA/WPA2"
 
-msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
-msgstr "Kayıt devam ederken zaman kaydırma özelliğinin kullanılmasını durdurur. Bu, USB bellekler için tavsiye edilir."
-
 msgid "Disabling Chkroot failed!"
 msgstr ""
 
@@ -6833,6 +6823,9 @@ msgstr ""
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
 msgstr "Gerçekten '%s' zamanlayıcısını durdurmak ve silmek istiyor musunuz?"
+
+msgid "Do you really want to trim the file system?"
+msgstr ""
 
 #, python-format
 msgid "Do you want change '%s' access mode?"
@@ -7629,9 +7622,6 @@ msgstr "Etkin"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Bir alıcının akışları çözebileceği bir özelliği etkinleştirir (akışa ECM verisi eklenmişse ve geçerli bir kart varsa)."
 
-msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
-msgstr "'evet' olarak ayarlanırsa, normal bekleme olayları sırasında gönderildiği gibi, derin bekleme olayları için aynı komutlar TV'ye gönderilir."
-
 #
 msgid "Encrypted: "
 msgstr "Şifrelenmiş: "
@@ -7778,6 +7768,9 @@ msgstr "PIN girin"
 
 msgid "Enter text via an attached keyboard"
 msgstr "Ekli bir klavye aracılığıyla metin girin"
+
+msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
+msgstr ""
 
 msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
 msgstr ""
@@ -8294,9 +8287,6 @@ msgstr "EPG'den çık"
 msgid "Exit File Commander"
 msgstr "Dosya Komutanı'ndan Çık"
 
-msgid "Exit MAC address configuration"
-msgstr "MAC adres yapılandırmasından çık"
-
 #
 msgid "Exit Movie Selection"
 msgstr "Film listesinden çık"
@@ -8568,6 +8558,9 @@ msgstr ""
 msgid "Fallback Timer"
 msgstr ""
 
+msgid "Fallback Tuner Setup"
+msgstr "Yedek cihaz URL"
+
 msgid "Fallback remote receiver"
 msgstr "Yedek cihaz URL"
 
@@ -8587,9 +8580,6 @@ msgid "Fallback remote receiver for DVB-C"
 msgstr "Yedek cihaz URL"
 
 msgid "Fallback remote receiver for DVB-T"
-msgstr "Yedek cihaz URL"
-
-msgid "Fallback Tuner Setup"
 msgstr "Yedek cihaz URL"
 
 msgid "False"
@@ -8869,10 +8859,6 @@ msgstr "Bitti"
 #
 msgid "Finished configuring your network"
 msgstr "Ağınızı yapılandırma tamamlandı"
-
-#
-msgid "Finished restarting your network"
-msgstr "Ağ yeniden başlatıldı"
 
 msgid "Finland"
 msgstr "Finlandiya"
@@ -10704,6 +10690,15 @@ msgstr "Jersey"
 msgid "Job overview"
 msgstr "İş özeti"
 
+msgid "Join"
+msgstr ""
+
+msgid "Join or leave the configured ZeroTier network"
+msgstr ""
+
+msgid "Joined"
+msgstr ""
+
 msgid "Jordan"
 msgstr "Ürdün"
 
@@ -11078,6 +11073,9 @@ msgstr "Letonya"
 #
 msgid "Latvian"
 msgstr "Letonca"
+
+msgid "Leave"
+msgstr ""
 
 #
 msgid "Leave DVD player?"
@@ -11486,12 +11484,6 @@ msgstr "Lüksemburgca / Letzeburgesch"
 
 msgid "M2k Packages"
 msgstr "M2k Paketleri"
-
-msgid "MAC Address Actions"
-msgstr "MAC Adresi Eylemleri"
-
-msgid "MAC Address Settings"
-msgstr "MAC Adresi ayarları"
 
 msgid "MAC address"
 msgstr "MAC Adresi"
@@ -12040,14 +12032,8 @@ msgstr "Mount etmek"
 msgid "Mount Manager"
 msgstr "Mount Manager"
 
-msgid "Mount Menu Actions"
-msgstr "Montaj Menüsü Eylemleri"
-
 msgid "Mount Point"
 msgstr ""
-
-msgid "Mount Settings"
-msgstr "Montaj Ayarları"
 
 msgid "Mount Setup"
 msgstr "Mount kurulum"
@@ -12633,9 +12619,6 @@ msgstr "Ağ Log"
 msgid "Network Log Actions"
 msgstr "Ağ Günlüğü Eylemleri"
 
-msgid "Network MAC settings"
-msgstr "Ağ MAC ayarları"
-
 msgid "Network Neighbourhood"
 msgstr "Ağ Komşuluğu"
 
@@ -12686,12 +12669,18 @@ msgstr "Ağ menüsü"
 msgid "Network mounts"
 msgstr "Ağ bağlantıları"
 
+msgid "Network name"
+msgstr ""
+
 msgid "Network name (SSID)"
 msgstr "Ağ adı (SSID)"
 
 #
 msgid "Network scan"
 msgstr "Ağ Tarama"
+
+msgid "Network status"
+msgstr ""
 
 msgid "Network storage on"
 msgstr "Ağ depolama alanı"
@@ -12711,6 +12700,9 @@ msgstr ""
 "Ağ sihirbazı tamamlandı.\n"
 "\n"
 "Devam etmek için OK tuşuna basın."
+
+msgid "Network-ID"
+msgstr ""
 
 #
 msgid "Network:"
@@ -13241,6 +13233,9 @@ msgstr ""
 "Dosya boyutu: %sMB\n"
 "Boş alan: %sMB\n"
 "Konum: %s"
+
+msgid "Not joined. Press Yellow to join."
+msgstr ""
 
 msgid "Not required"
 msgstr "Gerekli değil"
@@ -14545,10 +14540,6 @@ msgid "Please wait while we check your installed plugins..."
 msgstr "Yüklü eklentilerinizi kontrol ederken lütfen bekleyin ..."
 
 #
-msgid "Please wait while we configure your network..."
-msgstr "Lütfen ağınız yapılandırılırken bekleyin..."
-
-#
 msgid "Please wait while we prepare your network interfaces..."
 msgstr "Lütfen biz ağ arayüzlerinizi hazırlarken bekleyin..."
 
@@ -14907,9 +14898,6 @@ msgstr "Uyduları seçmek için OK tuşuna basın"
 msgid "Press OK to select/deselect a CAId."
 msgstr "CAId seçmek/bırakmak için OK tuşuna basın."
 
-msgid "Press OK to set the MAC address."
-msgstr "MAC adresini düzenlemek için OK tuşuna basın."
-
 msgid "Press OK to start the backup now"
 msgstr "Yedeklemeyi şimdi başlatmak için Tamam'a basın"
 
@@ -14943,9 +14931,6 @@ msgstr ""
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Daha sonra basılan bir düğmeye uzun süre basmak için bu düğmeye basın (bu, öykünme düğmesine atanan diğer eylemleri geçersiz kılar)."
-
-msgid "Press yellow to set this interface as the default interface."
-msgstr "Bu arayüzü varsayılan arayüz olarak ayarlamak için sarı tuşa basın."
 
 msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
 msgstr "Panik düğmesine basmak sizi ilk buketinizde bu kanal numarasına yönlendirecektir."
@@ -15617,6 +15602,9 @@ msgstr ""
 msgid "Refresh"
 msgstr "Tazele"
 
+msgid "Refresh ZeroTier status information"
+msgstr ""
+
 msgid "Refresh every x hours"
 msgstr "Her (saat) yenile"
 
@@ -16094,9 +16082,6 @@ msgstr "Şebekeyi mevcut kurulumla yeniden başlat"
 #
 msgid "Restart test"
 msgstr "Testi yeniden başlat"
-
-msgid "Restart your network connection and interfaces."
-msgstr "Ağ bağlantısını ve ağ arayüzlerini yeniden başlatın."
 
 msgid "Restarting..."
 msgstr "Başlatılıyor..."
@@ -18183,6 +18168,9 @@ msgstr "Servis Numarası, Picon ve Servis Adı"
 msgid "Service off-air"
 msgstr "Hizmet dışı"
 
+msgid "Service online"
+msgstr ""
+
 msgid "Service picons aspect ratio"
 msgstr "Servis picons en boy oranı"
 
@@ -18302,9 +18290,6 @@ msgstr "Harici altyazılar için fps ayarla"
 msgid "Set how long the second InfoBar stays visible. The second InfoBar also disappears when you press 'OK'."
 msgstr "İkinci bilgi çubuğunu gizlemek için zamanı ayarlayın. Çubuk ayrıca 'OK' düğmesine basıldığında da kaybolur."
 
-msgid "Set interface as the default Interface"
-msgstr "Arabirimi varsayılan Arabirim olarak ayarla"
-
 msgid "Set limits"
 msgstr "Limitleri ayarla"
 
@@ -18325,10 +18310,6 @@ msgstr ""
 
 msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
 msgstr ""
-
-#, python-format
-msgid "Set the MAC address of your %s %s."
-msgstr "MAC adresinizi ayarlayın %s %s."
 
 msgid "Set the UP/DOWN button skip percentage for the SeekBar."
 msgstr ""
@@ -18469,6 +18450,9 @@ msgstr ""
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
 msgstr ""
+
+msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
+msgstr "'evet' olarak ayarlanırsa, normal bekleme olayları sırasında gönderildiği gibi, derin bekleme olayları için aynı komutlar TV'ye gönderilir."
 
 msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
 msgstr "Arka plan zaman kaydırma arabelleğinin otomatik olarak kaydedilmesini etkinleştirmek için ‘Evet’ olarak ayarlayın."
@@ -20430,6 +20414,9 @@ msgstr "Durduruldu"
 msgid "Stopping Softcam"
 msgstr "Softcam'ı durdurma"
 
+msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
+msgstr "Kayıt devam ederken zaman kaydırma özelliğinin kullanılmasını durdurur. Bu, USB bellekler için tavsiye edilir."
+
 msgid "Storage / Disk Information"
 msgstr "Depolama / Disk Bilgileri"
 
@@ -21387,13 +21374,6 @@ msgstr "Resmin yüksekliği. Girdi, bu değere uyacak şekilde ölçeklendirilec
 
 msgid "The loopthrough setting is wrong."
 msgstr "Döngü ayarı yanlış."
-
-msgid ""
-"The network wizard extension is not installed!\n"
-"Please install it."
-msgstr ""
-"The network wizard extension yüklü değil!\n"
-"Lütfen yükleyin."
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr "Picon dizini zaten mevcut ve kaldırılması gerekiyor. Devam etmek istiyor musunuz?"
@@ -22402,6 +22382,12 @@ msgstr "PIP'i devre dışı bırakmaya çalıştı, aniden bir InfoBar.instance 
 msgid "Tries left:"
 msgstr "Kalan deneme:"
 
+msgid "Trim File System"
+msgstr ""
+
+msgid "Trim File System..."
+msgstr ""
+
 msgid "Trinidad and Tobago"
 msgstr "Trinidad ve Tobago"
 
@@ -22538,6 +22524,12 @@ msgstr "Tuning algoritması"
 
 msgid "Tunisia"
 msgstr "Tunus"
+
+msgid "Tunnel IPv4"
+msgstr ""
+
+msgid "Tunnel IPv6"
+msgstr ""
 
 msgid "Turbo"
 msgstr "Turbo"
@@ -23193,12 +23185,6 @@ msgstr "Geçerli seçimi kullan ve çık"
 
 msgid "Use the extended List"
 msgstr "Genişletilmiş Listeyi kullan"
-
-msgid "Use the network wizard to configure selected network adapter"
-msgstr "Seçili ağ aygıtını yapılandırmak için ağ sihirbazını kullan"
-
-msgid "Use the network wizard to configure your Network."
-msgstr "Ağ yapılandırmak için ağ sihirbazını kullan."
 
 msgid "Use the wizard to set up basic features"
 msgstr "Temel özellikleri düzenlemek için sihirbazı kullan"
@@ -24737,6 +24723,18 @@ msgstr "Zap yukarı"
 msgid "Zap+Record next"
 msgstr "Zap + Sonraki kayıt"
 
+msgid "ZeroTier Actions"
+msgstr ""
+
+msgid "ZeroTier version"
+msgstr ""
+
+msgid "ZeroTier-One"
+msgstr ""
+
+msgid "ZeroTier Settings"
+msgstr ""
+
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7 eski Model"
 
@@ -25476,6 +25474,68 @@ msgstr "evet (beslemeleri tut)"
 
 msgid "®"
 msgstr "®"
+
+#
+#~ msgid "* Only available if more than one interface is active."
+#~ msgstr "* Yalnızca birden fazla arayüz olduğunda kullanılabilir."
+
+#~ msgid "Activate MAC address configuration"
+#~ msgstr "MAC adresi yapılandırmasını etkinleştir"
+
+#~ msgid "Exit MAC address configuration"
+#~ msgstr "MAC adres yapılandırmasından çık"
+
+#
+#~ msgid "Finished restarting your network"
+#~ msgstr "Ağ yeniden başlatıldı"
+
+#~ msgid "MAC Address Actions"
+#~ msgstr "MAC Adresi Eylemleri"
+
+#~ msgid "MAC Address Settings"
+#~ msgstr "MAC Adresi ayarları"
+
+#~ msgid "Mount Menu Actions"
+#~ msgstr "Montaj Menüsü Eylemleri"
+
+#~ msgid "Mount Settings"
+#~ msgstr "Montaj Ayarları"
+
+#~ msgid "Network MAC settings"
+#~ msgstr "Ağ MAC ayarları"
+
+#
+#~ msgid "Please wait while we configure your network..."
+#~ msgstr "Lütfen ağınız yapılandırılırken bekleyin..."
+
+#~ msgid "Press OK to set the MAC address."
+#~ msgstr "MAC adresini düzenlemek için OK tuşuna basın."
+
+#~ msgid "Press yellow to set this interface as the default interface."
+#~ msgstr "Bu arayüzü varsayılan arayüz olarak ayarlamak için sarı tuşa basın."
+
+#~ msgid "Restart your network connection and interfaces."
+#~ msgstr "Ağ bağlantısını ve ağ arayüzlerini yeniden başlatın."
+
+#~ msgid "Set interface as the default Interface"
+#~ msgstr "Arabirimi varsayılan Arabirim olarak ayarla"
+
+#, python-format
+#~ msgid "Set the MAC address of your %s %s."
+#~ msgstr "MAC adresinizi ayarlayın %s %s."
+
+#~ msgid ""
+#~ "The network wizard extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "The network wizard extension yüklü değil!\n"
+#~ "Lütfen yükleyin."
+
+#~ msgid "Use the network wizard to configure selected network adapter"
+#~ msgstr "Seçili ağ aygıtını yapılandırmak için ağ sihirbazını kullan"
+
+#~ msgid "Use the network wizard to configure your Network."
+#~ msgstr "Ağ yapılandırmak için ağ sihirbazını kullan."
 
 #~ msgid "white"
 #~ msgstr "beyaz"

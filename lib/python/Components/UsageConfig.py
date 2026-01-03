@@ -1454,7 +1454,7 @@ def InitUsageConfig():
 	config.network.Inadyn_autostart = ConfigYesNo(default=False)
 	config.network.uShare_autostart = ConfigYesNo(default=False)
 
-	config.network.zerotierNetworkId = ConfigText(default=" " * 16, fixed_size=True)
+	config.network.ZeroTierNetworkId = ConfigText(default=" " * 16, fixed_size=True)
 
 	config.samba = ConfigSubsection()
 	config.samba.enableAutoShare = ConfigYesNo(default=True)

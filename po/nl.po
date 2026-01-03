@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-27 18:13+0000\n"
+"POT-Creation-Date: 2026-01-02 18:38+0000\n"
 "PO-Revision-Date: 2025-05-09 04:42+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -1300,9 +1300,6 @@ msgstr "(optioneel DVD audio menu weergeven)"
 msgid "* = Restart required if this item is changed."
 msgstr "* = Herstart noodzakelijk"
 
-msgid "* Only available if more than one interface is active."
-msgstr "* Alleen beschikbaar indien meer dan één interface is geactiveerd."
-
 msgid "* current animation"
 msgstr "* huidige animatie"
 
@@ -1798,9 +1795,6 @@ msgstr "Expander inschakelen"
 
 msgid "Activate HbbTV (RED button)"
 msgstr "Activeer HbbTV (RODE-knop)"
-
-msgid "Activate MAC address configuration"
-msgstr "Activeer MAC-adres configuratie"
 
 msgid "Activate Picture in Picture"
 msgstr "Activeer Picture in Picture"
@@ -6494,9 +6488,6 @@ msgstr "PiP uitgeschakeld.\n"
 msgid "Disabled or WPA/WPA2"
 msgstr "Uitgeschakeld of WPA/WPA2"
 
-msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
-msgstr "Stopt Timeshift tijdens een opname. Aan te raden bij gebruik van een USB-stick."
-
 msgid "Disabling Chkroot failed!"
 msgstr ""
 
@@ -6714,6 +6705,9 @@ msgstr ""
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
 msgstr "Wilt u de timer '%s' stoppen en verwijderen?"
+
+msgid "Do you really want to trim the file system?"
+msgstr ""
 
 #, python-format
 msgid "Do you want change '%s' access mode?"
@@ -7487,9 +7481,6 @@ msgstr "Ingeschakeld"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Maakt het mogelijk dat de ontvanger opnames kan decoderen. Als ECM-data in de opname beschikbaar is en een geldige smartcard aanwezig is."
 
-msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
-msgstr "Wanneer u kiest voor 'Ja' worden dezelfde commando's naar de TV gestuurd voor deep standby als voor de normale standby functies."
-
 msgid "Encrypted: "
 msgstr "Gecodeerd: "
 
@@ -7634,6 +7625,9 @@ msgstr "Voer pincode in"
 
 msgid "Enter text via an attached keyboard"
 msgstr "Tekst invoeren via een aangesloten toetsenbord"
+
+msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
+msgstr ""
 
 msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
 msgstr ""
@@ -8135,9 +8129,6 @@ msgstr "EPG afsluiten"
 msgid "Exit File Commander"
 msgstr "File Commander afsluiten"
 
-msgid "Exit MAC address configuration"
-msgstr "Verlaat MAC-adres instellingen"
-
 msgid "Exit Movie Selection"
 msgstr "Opnamelijst afsluiten"
 
@@ -8391,6 +8382,9 @@ msgstr "Fallback tuner instellingen"
 msgid "Fallback Timer"
 msgstr "Fallback Timer"
 
+msgid "Fallback Tuner Setup"
+msgstr "Fallback tuner instellingen"
+
 msgid "Fallback remote receiver"
 msgstr "Fallback tuner"
 
@@ -8411,9 +8405,6 @@ msgstr "Fallback tuner voor DVB-C"
 
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Fallback tuner voor DVB-T"
-
-msgid "Fallback Tuner Setup"
-msgstr "Fallback tuner instellingen"
 
 msgid "False"
 msgstr "Niet correct"
@@ -8682,9 +8673,6 @@ msgstr "Voltooid"
 
 msgid "Finished configuring your network"
 msgstr "Klaar met het configureren van uw netwerk"
-
-msgid "Finished restarting your network"
-msgstr "Herstarten van uw netwerk is voltooid"
 
 msgid "Finland"
 msgstr "Finland"
@@ -10435,6 +10423,15 @@ msgstr "Jersey"
 msgid "Job overview"
 msgstr "Taak overzicht"
 
+msgid "Join"
+msgstr ""
+
+msgid "Join or leave the configured ZeroTier network"
+msgstr ""
+
+msgid "Joined"
+msgstr ""
+
 msgid "Jordan"
 msgstr "Jordanië"
 
@@ -10794,6 +10791,9 @@ msgstr "Letland"
 
 msgid "Latvian"
 msgstr "Lets"
+
+msgid "Leave"
+msgstr ""
 
 msgid "Leave DVD player?"
 msgstr "DVD-speler afsluiten?"
@@ -11178,12 +11178,6 @@ msgstr "Luxumburgs"
 
 msgid "M2k Packages"
 msgstr "M2K"
-
-msgid "MAC Address Actions"
-msgstr "MAC Adres Acties"
-
-msgid "MAC Address Settings"
-msgstr "MAC-adres instellingen"
 
 msgid "MAC address"
 msgstr "MAC adres"
@@ -11704,14 +11698,8 @@ msgstr "Mount"
 msgid "Mount Manager"
 msgstr "Mount Manager"
 
-msgid "Mount Menu Actions"
-msgstr "Mount menu Acties"
-
 msgid "Mount Point"
 msgstr "Mount Punt"
-
-msgid "Mount Settings"
-msgstr "Mount instellingen"
 
 msgid "Mount Setup"
 msgstr "Mount instellingen"
@@ -12263,9 +12251,6 @@ msgstr "Netwerk Log"
 msgid "Network Log Actions"
 msgstr "Netwerk log Acties"
 
-msgid "Network MAC settings"
-msgstr "Netwerk MAC instellingen"
-
 msgid "Network Neighbourhood"
 msgstr "Netwerk omgeving"
 
@@ -12315,11 +12300,17 @@ msgstr "Netwerkmenu"
 msgid "Network mounts"
 msgstr "Netwerkmounts"
 
+msgid "Network name"
+msgstr ""
+
 msgid "Network name (SSID)"
 msgstr "Netwerknaam (SSID)"
 
 msgid "Network scan"
 msgstr "Netwerk zoeken"
+
+msgid "Network status"
+msgstr ""
 
 msgid "Network storage on"
 msgstr "Netwerk opslag op"
@@ -12338,6 +12329,9 @@ msgstr ""
 "Netwerk-wizard voltooid.\n"
 "\n"
 "Druk op OK om door te gaan."
+
+msgid "Network-ID"
+msgstr ""
 
 msgid "Network:"
 msgstr "Netwerk:"
@@ -12821,6 +12815,9 @@ msgstr ""
 "Bestandgrtootte: %sMB\n"
 "Vrije ruimte: %sMB\n"
 "Pad: %s"
+
+msgid "Not joined. Press Yellow to join."
+msgstr ""
 
 msgid "Not required"
 msgstr "Niet nodig"
@@ -14069,9 +14066,6 @@ msgstr "Plugin wordt geactualiseerd. Even geduld..."
 msgid "Please wait while we check your installed plugins..."
 msgstr "Een ogenblik geduld, geïnstalleerde plugins worden gecontroleerd..."
 
-msgid "Please wait while we configure your network..."
-msgstr "Een ogenblik geduld, uw netwerk wordt geconfigureerd..."
-
 msgid "Please wait while we prepare your network interfaces..."
 msgstr "Een ogenblik geduld, uw netwerkinterface wordt voorbereid..."
 
@@ -14404,9 +14398,6 @@ msgstr "Druk op OK om de satellieten te selecteren"
 msgid "Press OK to select/deselect a CAId."
 msgstr "Druk op OK om de CAId aan/uit te zetten."
 
-msgid "Press OK to set the MAC address."
-msgstr "Druk op OK om het MAC-adres in te stellen."
-
 msgid "Press OK to start the backup now"
 msgstr "Druk op OK om de back-up nu te starten"
 
@@ -14440,9 +14431,6 @@ msgstr ""
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Druk deze knop om een lange knop druk te emuleren op de eerst volgende knop (dit overschrijft alle andere acties toegewezen aan de emulatie knop)."
-
-msgid "Press yellow to set this interface as the default interface."
-msgstr "Druk op GELE-knop om deze interface als de standaardinterface in te stellen."
 
 msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
 msgstr "Bij het drukken van de Paniek-knop schakelt u over naar deze zender in uw eerste favorietenlijst."
@@ -15082,6 +15070,9 @@ msgstr ""
 msgid "Refresh"
 msgstr "Overzicht vernieuwen"
 
+msgid "Refresh ZeroTier status information"
+msgstr ""
+
 msgid "Refresh every x hours"
 msgstr "Actualiseer elke X uur"
 
@@ -15523,9 +15514,6 @@ msgstr "Netwerk herstarten met huidige instelling"
 
 msgid "Restart test"
 msgstr "Herstart test"
-
-msgid "Restart your network connection and interfaces."
-msgstr "Herstart het netwerk en alle adapters."
 
 msgid "Restarting..."
 msgstr "Herstarten..."
@@ -17557,6 +17545,9 @@ msgstr "Zendernummer, Picon en zendernaam"
 msgid "Service off-air"
 msgstr "Zender 'uit de lucht'"
 
+msgid "Service online"
+msgstr ""
+
 msgid "Service picons aspect ratio"
 msgstr "Picons beeldverhouding"
 
@@ -17672,9 +17663,6 @@ msgstr "Frames per seconde wijzigen voor externe ondertitels"
 msgid "Set how long the second InfoBar stays visible. The second InfoBar also disappears when you press 'OK'."
 msgstr "Stel de tijd in waarna de tweede informatiebalk verdwijnt. Door op OK te drukken verdwijnt de informatiebalk."
 
-msgid "Set interface as the default Interface"
-msgstr "Stel in als standaard interface"
-
 msgid "Set limits"
 msgstr "Limieten instellen"
 
@@ -17695,12 +17683,6 @@ msgstr "CutList-Editor-tijdsprong voor de knoppen '%s'/'%s' definiëren."
 
 msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
 msgstr "Het percentage van de tijdsprong op de zoekbalk instellen voor de knoppen LINKS/RECHTS."
-
-#, python-format
-msgid "Set the MAC address of your %s %s."
-msgstr ""
-"Stel het MAC-adres in\n"
-"van uw %s %s."
 
 msgid "Set the UP/DOWN button skip percentage for the SeekBar."
 msgstr "Het percentage van de tijdsprong op de zoekbalk instellen voor de knoppen OMHOOG/OMLAAG."
@@ -17847,6 +17829,9 @@ msgstr "Activeren om gecodeerde opnames te decoderen tijdens het afsluiten naar 
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
 msgstr "Activeren om gecodeerde opnames te decoderen in Stand-by."
+
+msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
+msgstr "Wanneer u kiest voor 'Ja' worden dezelfde commando's naar de TV gestuurd voor deep standby als voor de normale standby functies."
 
 msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
 msgstr "Kies 'Ja' wanneer u automatisch een Timeshift opname wilt starten."
@@ -19742,6 +19727,9 @@ msgstr "Gestopt"
 msgid "Stopping Softcam"
 msgstr "Stoppen Softcam"
 
+msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
+msgstr "Stopt Timeshift tijdens een opname. Aan te raden bij gebruik van een USB-stick."
+
 msgid "Storage / Disk Information"
 msgstr "Disk en opslag informatie"
 
@@ -20669,13 +20657,6 @@ msgstr "De hoogte van het beeld. De invoer wordt aangepast aan deze waarde."
 
 msgid "The loopthrough setting is wrong."
 msgstr "De loopthrough instelling is verkeerd."
-
-msgid ""
-"The network wizard extension is not installed!\n"
-"Please install it."
-msgstr ""
-"De Netwerk Wizard plugin is niet geïnstalleerd!\n"
-"Installeer deze a.u.b. eerst."
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr "De map voor de Picons bestaat al en moet verwijderd worden. Dit nu uitvoeren?"
@@ -21691,6 +21672,12 @@ msgstr "Geprobeerd PiP uit te schakelen, maar plotseling geen InfoBar.instance g
 msgid "Tries left:"
 msgstr "Aantal resterende pogingen:"
 
+msgid "Trim File System"
+msgstr ""
+
+msgid "Trim File System..."
+msgstr ""
+
 msgid "Trinidad and Tobago"
 msgstr "Trinidad en Tobago"
 
@@ -21812,6 +21799,12 @@ msgstr "Afstemalgoritme"
 
 msgid "Tunisia"
 msgstr "Tunesië"
+
+msgid "Tunnel IPv4"
+msgstr ""
+
+msgid "Tunnel IPv6"
+msgstr ""
 
 msgid "Turbo"
 msgstr "Turbo"
@@ -22442,12 +22435,6 @@ msgstr "De huidige selectie gebruiken en afsluiten"
 
 msgid "Use the extended List"
 msgstr "Gebruik de uitgebreide lijst"
-
-msgid "Use the network wizard to configure selected network adapter"
-msgstr "Gebruik de Netwerk Wizard om de geselecteerde netwerkadapter te configureren"
-
-msgid "Use the network wizard to configure your Network."
-msgstr "De Netwerk Wizard gebruiken voor het configureren van uw netwerk."
 
 msgid "Use the wizard to set up basic features"
 msgstr "Start de wizard voor de basisinstellingen"
@@ -23943,6 +23930,18 @@ msgstr "Zap omhoog"
 msgid "Zap+Record next"
 msgstr "Naar de volgende uitzending Zappen en Opnemen"
 
+msgid "ZeroTier Actions"
+msgstr ""
+
+msgid "ZeroTier version"
+msgstr ""
+
+msgid "ZeroTier-One"
+msgstr ""
+
+msgid "ZeroTier Settings"
+msgstr ""
+
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7 oud model"
 
@@ -24595,6 +24594,67 @@ msgstr "ja (bewaar feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "* Only available if more than one interface is active."
+#~ msgstr "* Alleen beschikbaar indien meer dan één interface is geactiveerd."
+
+#~ msgid "Activate MAC address configuration"
+#~ msgstr "Activeer MAC-adres configuratie"
+
+#~ msgid "Exit MAC address configuration"
+#~ msgstr "Verlaat MAC-adres instellingen"
+
+#~ msgid "Finished restarting your network"
+#~ msgstr "Herstarten van uw netwerk is voltooid"
+
+#~ msgid "MAC Address Actions"
+#~ msgstr "MAC Adres Acties"
+
+#~ msgid "MAC Address Settings"
+#~ msgstr "MAC-adres instellingen"
+
+#~ msgid "Mount Menu Actions"
+#~ msgstr "Mount menu Acties"
+
+#~ msgid "Mount Settings"
+#~ msgstr "Mount instellingen"
+
+#~ msgid "Network MAC settings"
+#~ msgstr "Netwerk MAC instellingen"
+
+#~ msgid "Please wait while we configure your network..."
+#~ msgstr "Een ogenblik geduld, uw netwerk wordt geconfigureerd..."
+
+#~ msgid "Press OK to set the MAC address."
+#~ msgstr "Druk op OK om het MAC-adres in te stellen."
+
+#~ msgid "Press yellow to set this interface as the default interface."
+#~ msgstr "Druk op GELE-knop om deze interface als de standaardinterface in te stellen."
+
+#~ msgid "Restart your network connection and interfaces."
+#~ msgstr "Herstart het netwerk en alle adapters."
+
+#~ msgid "Set interface as the default Interface"
+#~ msgstr "Stel in als standaard interface"
+
+#, python-format
+#~ msgid "Set the MAC address of your %s %s."
+#~ msgstr ""
+#~ "Stel het MAC-adres in\n"
+#~ "van uw %s %s."
+
+#~ msgid ""
+#~ "The network wizard extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "De Netwerk Wizard plugin is niet geïnstalleerd!\n"
+#~ "Installeer deze a.u.b. eerst."
+
+#~ msgid "Use the network wizard to configure selected network adapter"
+#~ msgstr "Gebruik de Netwerk Wizard om de geselecteerde netwerkadapter te configureren"
+
+#~ msgid "Use the network wizard to configure your Network."
+#~ msgstr "De Netwerk Wizard gebruiken voor het configureren van uw netwerk."
 
 #~ msgid "white"
 #~ msgstr "Wit"

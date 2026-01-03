@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV 7.6.1 Devel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-27 18:13+0000\n"
+"POT-Creation-Date: 2026-01-02 18:38+0000\n"
 "PO-Revision-Date: 2025-12-28 02:56+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sr/>\n"
@@ -1332,9 +1332,6 @@ msgstr "(prikaži dodatni audio meni DVD)"
 msgid "* = Restart required if this item is changed."
 msgstr ""
 
-msgid "* Only available if more than one interface is active."
-msgstr "* Dostupno ako je aktivno više interfejsa."
-
 msgid "* current animation"
 msgstr "* trenutna animacija"
 
@@ -1822,9 +1819,6 @@ msgstr "Aktiviraj Proširenje"
 
 msgid "Activate HbbTV (RED button)"
 msgstr "Aktiviraj HbbTV (CRVENO dugme)"
-
-msgid "Activate MAC address configuration"
-msgstr "Aktiviraj MAC adresu"
 
 msgid "Activate Picture in Picture"
 msgstr "Aktiviraj Slika u Slici"
@@ -6403,9 +6397,6 @@ msgstr "Isključi PiP.\n"
 msgid "Disabled or WPA/WPA2"
 msgstr "Isključi ili WPA/WPA2"
 
-msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
-msgstr ""
-
 msgid "Disabling Chkroot failed!"
 msgstr ""
 
@@ -6623,6 +6614,9 @@ msgstr ""
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
 msgstr "Želite li zaista da zaustavite i izbrišete tajmer '%s'?"
+
+msgid "Do you really want to trim the file system?"
+msgstr ""
 
 #, python-format
 msgid "Do you want change '%s' access mode?"
@@ -7387,9 +7381,6 @@ msgstr "Omogućeno"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Omogućava funkciju da resiver može dešifrovati strim (ako su ECM podaci uključeni i dostupna važeća kartica)."
 
-msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
-msgstr ""
-
 msgid "Encrypted: "
 msgstr "Šifrovano: "
 
@@ -7530,6 +7521,9 @@ msgstr "Unesite pin kod"
 
 msgid "Enter text via an attached keyboard"
 msgstr "Unesite tekst preko priložene tastature"
+
+msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
+msgstr ""
 
 msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
 msgstr ""
@@ -8028,9 +8022,6 @@ msgstr "Izlaz iz EPG"
 msgid "Exit File Commander"
 msgstr "Izlaz iz Fajl Menadžera"
 
-msgid "Exit MAC address configuration"
-msgstr "Izlaz iz konfiguracije MAC adrese"
-
 msgid "Exit Movie Selection"
 msgstr "Izlaz iz selekcije filmova"
 
@@ -8284,6 +8275,9 @@ msgstr "Rezervni daljinski prijemnik Podešavanja"
 msgid "Fallback Timer"
 msgstr "Rezervni tajmer"
 
+msgid "Fallback Tuner Setup"
+msgstr "Rezervni tjuner postavke"
+
 msgid "Fallback remote receiver"
 msgstr "URL rezervni udaljeni resiver"
 
@@ -8304,9 +8298,6 @@ msgstr "URL rezervni udaljeni resiver za DVB-C"
 
 msgid "Fallback remote receiver for DVB-T"
 msgstr "URL rezervni udaljeni resiver za DVB-T2"
-
-msgid "Fallback Tuner Setup"
-msgstr "Rezervni tjuner postavke"
 
 msgid "False"
 msgstr "Netačno"
@@ -8575,9 +8566,6 @@ msgstr "Završeno"
 
 msgid "Finished configuring your network"
 msgstr "Završeno je podešavanje mreže"
-
-msgid "Finished restarting your network"
-msgstr "Završeno je ponovno pokretanje mreže"
 
 msgid "Finland"
 msgstr "Finland"
@@ -10321,6 +10309,15 @@ msgstr "Jersey"
 msgid "Job overview"
 msgstr "Pregled posla"
 
+msgid "Join"
+msgstr ""
+
+msgid "Join or leave the configured ZeroTier network"
+msgstr ""
+
+msgid "Joined"
+msgstr ""
+
 msgid "Jordan"
 msgstr "Jordan"
 
@@ -10681,6 +10678,9 @@ msgstr "Latvia"
 
 msgid "Latvian"
 msgstr "Latvian"
+
+msgid "Leave"
+msgstr ""
 
 msgid "Leave DVD player?"
 msgstr "Napuštate DVD plejer?"
@@ -11066,12 +11066,6 @@ msgstr "Luxembourgish / Letzeburgesch"
 
 msgid "M2k Packages"
 msgstr "M2k Paket"
-
-msgid "MAC Address Actions"
-msgstr "Radnje MAC Adrese"
-
-msgid "MAC Address Settings"
-msgstr "Postavke MAC Adrese"
 
 msgid "MAC address"
 msgstr "MAC adresa"
@@ -11592,14 +11586,8 @@ msgstr "Montaža"
 msgid "Mount Manager"
 msgstr "Montažni Menadžer"
 
-msgid "Mount Menu Actions"
-msgstr "Montažni Menadžer Radnja"
-
 msgid "Mount Point"
 msgstr "Montažna Tačka"
-
-msgid "Mount Settings"
-msgstr "Montaža Podešavanje"
 
 msgid "Mount Setup"
 msgstr "Montaža Postavke"
@@ -12151,9 +12139,6 @@ msgstr "Log Mreže"
 msgid "Network Log Actions"
 msgstr "Radnja Log Mreže"
 
-msgid "Network MAC settings"
-msgstr "Mrežne MAC postavke"
-
 msgid "Network Neighbourhood"
 msgstr "Mrežni Resursi"
 
@@ -12203,11 +12188,17 @@ msgstr "Meni mreže"
 msgid "Network mounts"
 msgstr "Montaža mreže"
 
+msgid "Network name"
+msgstr ""
+
 msgid "Network name (SSID)"
 msgstr "Naziv mreže (SSID)"
 
 msgid "Network scan"
 msgstr "Skeniranje mreže"
+
+msgid "Network status"
+msgstr ""
 
 msgid "Network storage on"
 msgstr "Mrežno skladište uključeno"
@@ -12226,6 +12217,9 @@ msgstr ""
 "Mrežni čarobnjak je završio.\n"
 "\n"
 "Pritisni OK za nastavak."
+
+msgid "Network-ID"
+msgstr ""
 
 msgid "Network:"
 msgstr "Mreža:"
@@ -12709,6 +12703,9 @@ msgstr ""
 "Veličina fajla: %sMB\n"
 "Slobodan prostor: %sMB\n"
 "Putanja: %s"
+
+msgid "Not joined. Press Yellow to join."
+msgstr ""
 
 msgid "Not required"
 msgstr "Nije obavezno"
@@ -13955,9 +13952,6 @@ msgstr "Molimo vas da sačekate dok se dodatak ažurira."
 msgid "Please wait while we check your installed plugins..."
 msgstr "Sačekajte dok proverimo vaše instalirane plugin-ove..."
 
-msgid "Please wait while we configure your network..."
-msgstr "Sačekajte dok konfigurišemo vašu mrežu..."
-
 msgid "Please wait while we prepare your network interfaces..."
 msgstr "Sačekajte dok pripremimo vaše mrežne interfejse..."
 
@@ -14288,9 +14282,6 @@ msgstr "Pritisni ОК da bi izabrali satelit"
 msgid "Press OK to select/deselect a CAId."
 msgstr "Pritisni ОК da izabereš/poništiš CAID."
 
-msgid "Press OK to set the MAC address."
-msgstr "Pritisni OK da podesite MAC adresu."
-
 msgid "Press OK to start the backup now"
 msgstr "Pritisnite OK da započnete pravljenje rezervne kopije sada"
 
@@ -14322,9 +14313,6 @@ msgstr ""
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Pritisni ovaj taster da bi oponašali dugačko pritiskanje tastera pritisnutog posle toga (ovo također zamenjuje sve druge radnje dodeljene tasteru za emulaciju)."
-
-msgid "Press yellow to set this interface as the default interface."
-msgstr "Pritisni ŽUTU boju da bi postavili ovaj interfejs kao default."
 
 msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
 msgstr "Pritiskanjem tastera za paniku biće zap na ovaj broj kanala u vašem prvom buketu."
@@ -14964,6 +14952,9 @@ msgstr ""
 msgid "Refresh"
 msgstr "Osveži"
 
+msgid "Refresh ZeroTier status information"
+msgstr ""
+
 msgid "Refresh every x hours"
 msgstr ""
 
@@ -15405,9 +15396,6 @@ msgstr "Ponovo pokreni mrežu sa trenutnim podešavanjem"
 
 msgid "Restart test"
 msgstr "Ponovo pokreni test"
-
-msgid "Restart your network connection and interfaces."
-msgstr "Ponovo pokreni mrežnu vezu i interfejs."
 
 msgid "Restarting..."
 msgstr "Ponovno pokretanje..."
@@ -17424,6 +17412,9 @@ msgstr ""
 msgid "Service off-air"
 msgstr "Kanala nema u eteru"
 
+msgid "Service online"
+msgstr ""
+
 msgid "Service picons aspect ratio"
 msgstr "Odnos širina/visina pikona kanala"
 
@@ -17539,9 +17530,6 @@ msgstr "Postavi fps za spoljne titlove"
 msgid "Set how long the second InfoBar stays visible. The second InfoBar also disappears when you press 'OK'."
 msgstr ""
 
-msgid "Set interface as the default Interface"
-msgstr "Postavi interfejs kao default interfejsa"
-
 msgid "Set limits"
 msgstr "Postavi limit"
 
@@ -17562,10 +17550,6 @@ msgstr "Postavite interval preskakanja vremena za '%s'/'%s' dugmiće u CutList E
 
 msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
 msgstr "Podesite procenat preskakanja za LEVO/DEŠNO dugme na traci za pretraživanje."
-
-#, python-format
-msgid "Set the MAC address of your %s %s."
-msgstr "Podešavanje MAC adrese za vaš %s %s."
 
 msgid "Set the UP/DOWN button skip percentage for the SeekBar."
 msgstr "Podesite procentualni preskok za dugmad GORE/DOLE na traci za pretraživanje."
@@ -17706,6 +17690,9 @@ msgstr ""
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
 msgstr "Postavite na 'Omogućeno' da dešifrujete redom zakazane snimke u stanju pripravnosti."
+
+msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
+msgstr ""
 
 msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
 msgstr ""
@@ -19585,6 +19572,9 @@ msgstr "Zaustavljeno"
 msgid "Stopping Softcam"
 msgstr "Zaustavi Softcam"
 
+msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
+msgstr ""
+
 msgid "Storage / Disk Information"
 msgstr "Skladište / Disk Info"
 
@@ -20508,13 +20498,6 @@ msgstr "Visina slike. Veličina unosa će se podudarati sa ovom vrednošću."
 
 msgid "The loopthrough setting is wrong."
 msgstr "Postavka petlje je pogrešna."
-
-msgid ""
-"The network wizard extension is not installed!\n"
-"Please install it."
-msgstr ""
-"Proširenje mrežnog čarobnjaka nije instalirano!\n"
-"Molimo instalirajte ga."
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr "Direktorijum pikon već postoji i mora biti uklonjen. Da li želite da nastavite?"
@@ -21489,6 +21472,12 @@ msgstr "Pokušao onesposobiti PiP, ali nije nađena instanca Info Trake!\n"
 msgid "Tries left:"
 msgstr "Pokušava levo:"
 
+msgid "Trim File System"
+msgstr ""
+
+msgid "Trim File System..."
+msgstr ""
+
 msgid "Trinidad and Tobago"
 msgstr "Trinidad and Tobago"
 
@@ -21610,6 +21599,12 @@ msgstr "Algoritam podešavanja"
 
 msgid "Tunisia"
 msgstr "Tunisia"
+
+msgid "Tunnel IPv4"
+msgstr ""
+
+msgid "Tunnel IPv6"
+msgstr ""
 
 msgid "Turbo"
 msgstr ""
@@ -22241,12 +22236,6 @@ msgstr "Koristi trenutnu selekciju i izađi"
 
 msgid "Use the extended List"
 msgstr "Koristi proširene liste"
-
-msgid "Use the network wizard to configure selected network adapter"
-msgstr "Koristi Čarobnjaka za mrežu za konfigurisanje izabranog mrežnog adaptera"
-
-msgid "Use the network wizard to configure your Network."
-msgstr "Koristi Čarobnjaka za mrežu da bi konfigurisali mrežu."
 
 msgid "Use the wizard to set up basic features"
 msgstr "Koristi Čarobnjaka za podešavanje osnovnih funkcija"
@@ -23720,6 +23709,18 @@ msgstr "Vrati nagore"
 msgid "Zap+Record next"
 msgstr "Vrati+Snimanje sledeće"
 
+msgid "ZeroTier Actions"
+msgstr ""
+
+msgid "ZeroTier version"
+msgstr ""
+
+msgid "ZeroTier-One"
+msgstr ""
+
+msgid "ZeroTier Settings"
+msgstr ""
+
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7 stari model"
 
@@ -24375,6 +24376,65 @@ msgstr "da (zadrži fidove)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "* Only available if more than one interface is active."
+#~ msgstr "* Dostupno ako je aktivno više interfejsa."
+
+#~ msgid "Activate MAC address configuration"
+#~ msgstr "Aktiviraj MAC adresu"
+
+#~ msgid "Exit MAC address configuration"
+#~ msgstr "Izlaz iz konfiguracije MAC adrese"
+
+#~ msgid "Finished restarting your network"
+#~ msgstr "Završeno je ponovno pokretanje mreže"
+
+#~ msgid "MAC Address Actions"
+#~ msgstr "Radnje MAC Adrese"
+
+#~ msgid "MAC Address Settings"
+#~ msgstr "Postavke MAC Adrese"
+
+#~ msgid "Mount Menu Actions"
+#~ msgstr "Montažni Menadžer Radnja"
+
+#~ msgid "Mount Settings"
+#~ msgstr "Montaža Podešavanje"
+
+#~ msgid "Network MAC settings"
+#~ msgstr "Mrežne MAC postavke"
+
+#~ msgid "Please wait while we configure your network..."
+#~ msgstr "Sačekajte dok konfigurišemo vašu mrežu..."
+
+#~ msgid "Press OK to set the MAC address."
+#~ msgstr "Pritisni OK da podesite MAC adresu."
+
+#~ msgid "Press yellow to set this interface as the default interface."
+#~ msgstr "Pritisni ŽUTU boju da bi postavili ovaj interfejs kao default."
+
+#~ msgid "Restart your network connection and interfaces."
+#~ msgstr "Ponovo pokreni mrežnu vezu i interfejs."
+
+#~ msgid "Set interface as the default Interface"
+#~ msgstr "Postavi interfejs kao default interfejsa"
+
+#, python-format
+#~ msgid "Set the MAC address of your %s %s."
+#~ msgstr "Podešavanje MAC adrese za vaš %s %s."
+
+#~ msgid ""
+#~ "The network wizard extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Proširenje mrežnog čarobnjaka nije instalirano!\n"
+#~ "Molimo instalirajte ga."
+
+#~ msgid "Use the network wizard to configure selected network adapter"
+#~ msgstr "Koristi Čarobnjaka za mrežu za konfigurisanje izabranog mrežnog adaptera"
+
+#~ msgid "Use the network wizard to configure your Network."
+#~ msgstr "Koristi Čarobnjaka za mrežu da bi konfigurisali mrežu."
 
 #~ msgid "white"
 #~ msgstr "bela"
