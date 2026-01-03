@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-27 18:13+0000\n"
+"POT-Creation-Date: 2026-01-02 18:38+0000\n"
 "PO-Revision-Date: 2025-12-28 02:56+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
@@ -1295,9 +1295,6 @@ msgstr "(näytä DVD äänen lisävalikko)"
 msgid "* = Restart required if this item is changed."
 msgstr "* = Vaatii uudelleenkäynnistyksen"
 
-msgid "* Only available if more than one interface is active."
-msgstr "* Käytettävissä vain kun useampi kuin yksi sovitin on aktiivinen."
-
 msgid "* current animation"
 msgstr "* nykyinen animaatio"
 
@@ -1793,9 +1790,6 @@ msgstr "Aktivoi laajennus"
 
 msgid "Activate HbbTV (RED button)"
 msgstr "Aktivoi HbbTV (punainen nappi)"
-
-msgid "Activate MAC address configuration"
-msgstr "Aktivoi MAC-osoitteen määritys"
 
 msgid "Activate Picture in Picture"
 msgstr "Avaa PiP-kuva"
@@ -6377,9 +6371,6 @@ msgstr "Poista PiP Käytöstä.\n"
 msgid "Disabled or WPA/WPA2"
 msgstr "Poistettu tai WPA/WPA2"
 
-msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
-msgstr "Keskeytä ajansiirto, jos tallennus on käynnissä (suositellaan USB-muistitikuille)"
-
 msgid "Disabling Chkroot failed!"
 msgstr "Pysäyttäminen Chkroot epäonnistu!"
 
@@ -6597,6 +6588,9 @@ msgstr ""
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
 msgstr "Haluatko todella pysäyttää ja poistaa ajastuksen '%s'?"
+
+msgid "Do you really want to trim the file system?"
+msgstr ""
 
 #, python-format
 msgid "Do you want change '%s' access mode?"
@@ -7360,9 +7354,6 @@ msgstr "Käytössä"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Ottaa käyttöön toiminnon, jotta vastaanotin voi purkaa striimejä (jos ECM-tiedot on mukana striimissä ja sopiva katselukortti on saatavilla)."
 
-msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
-msgstr "Jos arvo on Kyllä, televisioon lähetetään samat komennot virransäästö tilassa kuin säännöllisten valmiustilatapahtumien aikana."
-
 msgid "Encrypted: "
 msgstr "Salattu: "
 
@@ -7501,6 +7492,9 @@ msgstr "Syötä PIN koodi"
 
 msgid "Enter text via an attached keyboard"
 msgstr "Kirjoita teksti liitetyn näppäimistön kautta"
+
+msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
+msgstr ""
 
 msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
 msgstr "Anna aikapuskuri, joka lisätään suoratoistopuskuriin suoratoistovirheen jälkeen. Tämä lisäpuskuri voi auttaa välttämään uusia suoratoisto ongelmia puskuritilan puutteen vuoksi."
@@ -7999,9 +7993,6 @@ msgstr "Sulje ohjelmaopas"
 msgid "Exit File Commander"
 msgstr "Poistu tiedosto hallinnasta"
 
-msgid "Exit MAC address configuration"
-msgstr "Lopeta MAC osoitteen määritys"
-
 msgid "Exit Movie Selection"
 msgstr "Poistu tallenneluettelosta"
 
@@ -8255,6 +8246,9 @@ msgstr "Etävastaanottimen asetukset"
 msgid "Fallback Timer"
 msgstr "Vara ajastin"
 
+msgid "Fallback Tuner Setup"
+msgstr "Etävastaanotin asetukset"
+
 msgid "Fallback remote receiver"
 msgstr "Etävastaanotin"
 
@@ -8275,9 +8269,6 @@ msgstr "Varaviritin DVB-C"
 
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Varaviritin DVB-T"
-
-msgid "Fallback Tuner Setup"
-msgstr "Etävastaanotin asetukset"
 
 msgid "False"
 msgstr "Epätosi"
@@ -8546,9 +8537,6 @@ msgstr "Valmis"
 
 msgid "Finished configuring your network"
 msgstr "Verkon määritys suoritettu"
-
-msgid "Finished restarting your network"
-msgstr "Verkkoyhteydet käynnistetty uudelleen"
 
 msgid "Finland"
 msgstr "Suomi"
@@ -10297,6 +10285,15 @@ msgstr "Jersey"
 msgid "Job overview"
 msgstr "Työn yleiskatsaus"
 
+msgid "Join"
+msgstr ""
+
+msgid "Join or leave the configured ZeroTier network"
+msgstr ""
+
+msgid "Joined"
+msgstr ""
+
 msgid "Jordan"
 msgstr "Jordan"
 
@@ -10656,6 +10653,9 @@ msgstr "Latvia"
 
 msgid "Latvian"
 msgstr "Latvia"
+
+msgid "Leave"
+msgstr ""
 
 msgid "Leave DVD player?"
 msgstr "Poistutaanko DVD-soittimesta?"
@@ -11040,12 +11040,6 @@ msgstr "Luxemburg"
 
 msgid "M2k Packages"
 msgstr "M2K Paketit"
-
-msgid "MAC Address Actions"
-msgstr "MAC osoite toiminnot"
-
-msgid "MAC Address Settings"
-msgstr "MAC-osoitteen asetukset"
 
 msgid "MAC address"
 msgstr "Mac osoite"
@@ -11566,14 +11560,8 @@ msgstr "Liitä"
 msgid "Mount Manager"
 msgstr "Liitosten hallinta"
 
-msgid "Mount Menu Actions"
-msgstr "Liitosten Valikko asetukset"
-
 msgid "Mount Point"
 msgstr "Liitäntä"
-
-msgid "Mount Settings"
-msgstr "Liitokset Asetukset"
 
 msgid "Mount Setup"
 msgstr "Määritä verkko ja laiteliitokset"
@@ -12127,9 +12115,6 @@ msgstr "Verkko loki"
 msgid "Network Log Actions"
 msgstr "Verkko loki toiminnot"
 
-msgid "Network MAC settings"
-msgstr "Verkon MAC asetukset"
-
 msgid "Network Neighbourhood"
 msgstr "Verkkoympäristö"
 
@@ -12179,11 +12164,17 @@ msgstr "Lähiverkon asetukset"
 msgid "Network mounts"
 msgstr "Verkkoliitokset"
 
+msgid "Network name"
+msgstr ""
+
 msgid "Network name (SSID)"
 msgstr "Verkkonimi (SSID)"
 
 msgid "Network scan"
 msgstr "Verkkohaku"
+
+msgid "Network status"
+msgstr ""
 
 msgid "Network storage on"
 msgstr "Verkkotallennus päällä"
@@ -12202,6 +12193,9 @@ msgstr ""
 "Ohjattu verkkoasennus valmis.\n"
 "\n"
 "Jatka painamalla OK."
+
+msgid "Network-ID"
+msgstr ""
 
 msgid "Network:"
 msgstr "Sovitin:"
@@ -12691,6 +12685,9 @@ msgstr ""
 "Tiedostokoko: %sMB\n"
 "Vapaa levytila: %sMB\n"
 "Hakemisto: %s"
+
+msgid "Not joined. Press Yellow to join."
+msgstr ""
 
 msgid "Not required"
 msgstr "Ei tarvita"
@@ -13935,9 +13932,6 @@ msgstr "Odota, kunnes lisäosa on päivitetty."
 msgid "Please wait while we check your installed plugins..."
 msgstr "Odota hetki, kun tarkistamme asennetut lisäosia..."
 
-msgid "Please wait while we configure your network..."
-msgstr "Odota, verkkoa määritetään..."
-
 msgid "Please wait while we prepare your network interfaces..."
 msgstr "Odota, verkkosovittimia määritetään..."
 
@@ -14268,9 +14262,6 @@ msgstr "Valitse palveluntarjoaja painamalla OK"
 msgid "Press OK to select/deselect a CAId."
 msgstr "Valitse/poista CAId:t OK näppäimellä."
 
-msgid "Press OK to set the MAC address."
-msgstr "Aseta MAC osoite painamalla OK."
-
 msgid "Press OK to start the backup now"
 msgstr "Aloita varmuuskopiointi painamalla OK"
 
@@ -14302,9 +14293,6 @@ msgstr "Paina Ylös/Alas painikkeita valitsemaan paikka, paina sitten OK tai Vih
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Painamalla tätä painiketta voit jäljitellä pitkään painettua painiketta myöhemmin (tämä myös ohitetaan kaikki muut emulointipainikkeelle määritetyt toiminnot)."
-
-msgid "Press yellow to set this interface as the default interface."
-msgstr "Määritä tämä oletukseksi keltaisella näppäimellä."
 
 msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
 msgstr "Paniikkinäppäimen painallus vaihtaa tälle kanavalle (ensimmäisessä suosikkilistassasi)."
@@ -14944,6 +14932,9 @@ msgstr ""
 msgid "Refresh"
 msgstr "Virkistä"
 
+msgid "Refresh ZeroTier status information"
+msgstr ""
+
 msgid "Refresh every x hours"
 msgstr "Päivitä joka (tunti)"
 
@@ -15385,9 +15376,6 @@ msgstr "Käynnistä verkkoyhteydet uudelleen"
 
 msgid "Restart test"
 msgstr "Testaa uudelleen"
-
-msgid "Restart your network connection and interfaces."
-msgstr "Käynnistä verkkoyhteydet uudelleen."
 
 msgid "Restarting..."
 msgstr "Uudelleenkäynnistys..."
@@ -17415,6 +17403,9 @@ msgstr "Kanavan Numero. Logo ja Palvelu Nimi"
 msgid "Service off-air"
 msgstr "Kanavan pois päältä"
 
+msgid "Service online"
+msgstr ""
+
 msgid "Service picons aspect ratio"
 msgstr "Kanavalogojen kuvasuhde"
 
@@ -17530,9 +17521,6 @@ msgstr "Aseta ulkoisen tekstityksen nopeus (fps)"
 msgid "Set how long the second InfoBar stays visible. The second InfoBar also disappears when you press 'OK'."
 msgstr "Määrittää, kuinka kauan 2. tietopalkki näytetään kuvaruudulla. Sen voi piilottaa samantien painamalla 'OK'."
 
-msgid "Set interface as the default Interface"
-msgstr "Määritä sovitin oletussovittimeksi"
-
 msgid "Set limits"
 msgstr "Aseta rajat"
 
@@ -17553,10 +17541,6 @@ msgstr "Aseta Leikkauskohtien ohitusaikaväli '%s'/'%s' näppäimille."
 
 msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
 msgstr "Aseta VASEN/OIKEA näppäiten ohitus prosentti hakupalkille."
-
-#, python-format
-msgid "Set the MAC address of your %s %s."
-msgstr "Määritä %s %s:n MAC-osoite."
 
 msgid "Set the UP/DOWN button skip percentage for the SeekBar."
 msgstr "Aseta YLÖS/ALAS painikkeen ohitus prosentti hakupalkille."
@@ -17697,6 +17681,9 @@ msgstr "Aseta 'Käytössä' purkaaksesi jonossa olevat salatut tallenteet valmiu
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
 msgstr "Aseta 'Käytössä' purkaaksesi jonossa olevat salatut tallenteet valmiustilassa."
+
+msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
+msgstr "Jos arvo on Kyllä, televisioon lähetetään samat komennot virransäästö tilassa kuin säännöllisten valmiustilatapahtumien aikana."
 
 msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
 msgstr "Jos asetuksena on 'kyllä` valinnalla tallennus käynnistyy automaattisesti, kun vaihdat jollekin kanavalle. Näitä tallennuksia ei tarvitse erikseen muuntaa tallenteiksi vaan niistä tulee pysyviä tallenteita suoraan."
@@ -19575,6 +19562,9 @@ msgstr "Pysäytetty"
 msgid "Stopping Softcam"
 msgstr "Pysäytä Softcam"
 
+msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
+msgstr "Keskeytä ajansiirto, jos tallennus on käynnissä (suositellaan USB-muistitikuille)"
+
 msgid "Storage / Disk Information"
 msgstr "Tallennuslaitteet"
 
@@ -20500,13 +20490,6 @@ msgstr "Kuvan korkeus. Tulo skaalataan vastaamaan tätä arvoa."
 
 msgid "The loopthrough setting is wrong."
 msgstr "Läpisyötön asetus on väärä."
-
-msgid ""
-"The network wizard extension is not installed!\n"
-"Please install it."
-msgstr ""
-"Verkkoavustajaa ei ole asennettu!\n"
-"Asenna se."
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr "Kanavalogo hakemisto on jos olemassa ja pitää poistaa ensin. Haluatko jatkaa?"
@@ -21484,6 +21467,12 @@ msgstr "InfoBar.instance ohjelmaa ei löytynyt, kun yritettiin poistaa PIP käyt
 msgid "Tries left:"
 msgstr "Yrityksiä jäljellä:"
 
+msgid "Trim File System"
+msgstr ""
+
+msgid "Trim File System..."
+msgstr ""
+
 msgid "Trinidad and Tobago"
 msgstr "Trinidad and Tobago"
 
@@ -21605,6 +21594,12 @@ msgstr "Viritys alkometria"
 
 msgid "Tunisia"
 msgstr "Tunisia"
+
+msgid "Tunnel IPv4"
+msgstr ""
+
+msgid "Tunnel IPv6"
+msgstr ""
 
 msgid "Turbo"
 msgstr "Turbo"
@@ -22234,12 +22229,6 @@ msgstr "Käytä nykyistä valintaa ja poistu"
 
 msgid "Use the extended List"
 msgstr "Käytä laajennettua listaa"
-
-msgid "Use the network wizard to configure selected network adapter"
-msgstr "Muokkaa valitun verkkosovittimen asetuksia verkkoavustajan opastamana"
-
-msgid "Use the network wizard to configure your Network."
-msgstr "Määritä lähiverkon asetukset verkkoavustajan opastamana."
 
 msgid "Use the wizard to set up basic features"
 msgstr "Käytä avustajaa perusasetusten määrittämiseen"
@@ -23719,6 +23708,18 @@ msgstr "Kanava ylös"
 msgid "Zap+Record next"
 msgstr "Vaihda kanavaa ja tallenna"
 
+msgid "ZeroTier Actions"
+msgstr ""
+
+msgid "ZeroTier version"
+msgstr ""
+
+msgid "ZeroTier-One"
+msgstr ""
+
+msgid "ZeroTier Settings"
+msgstr ""
+
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7 vanha malli"
 
@@ -24373,6 +24374,65 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "* Only available if more than one interface is active."
+#~ msgstr "* Käytettävissä vain kun useampi kuin yksi sovitin on aktiivinen."
+
+#~ msgid "Activate MAC address configuration"
+#~ msgstr "Aktivoi MAC-osoitteen määritys"
+
+#~ msgid "Exit MAC address configuration"
+#~ msgstr "Lopeta MAC osoitteen määritys"
+
+#~ msgid "Finished restarting your network"
+#~ msgstr "Verkkoyhteydet käynnistetty uudelleen"
+
+#~ msgid "MAC Address Actions"
+#~ msgstr "MAC osoite toiminnot"
+
+#~ msgid "MAC Address Settings"
+#~ msgstr "MAC-osoitteen asetukset"
+
+#~ msgid "Mount Menu Actions"
+#~ msgstr "Liitosten Valikko asetukset"
+
+#~ msgid "Mount Settings"
+#~ msgstr "Liitokset Asetukset"
+
+#~ msgid "Network MAC settings"
+#~ msgstr "Verkon MAC asetukset"
+
+#~ msgid "Please wait while we configure your network..."
+#~ msgstr "Odota, verkkoa määritetään..."
+
+#~ msgid "Press OK to set the MAC address."
+#~ msgstr "Aseta MAC osoite painamalla OK."
+
+#~ msgid "Press yellow to set this interface as the default interface."
+#~ msgstr "Määritä tämä oletukseksi keltaisella näppäimellä."
+
+#~ msgid "Restart your network connection and interfaces."
+#~ msgstr "Käynnistä verkkoyhteydet uudelleen."
+
+#~ msgid "Set interface as the default Interface"
+#~ msgstr "Määritä sovitin oletussovittimeksi"
+
+#, python-format
+#~ msgid "Set the MAC address of your %s %s."
+#~ msgstr "Määritä %s %s:n MAC-osoite."
+
+#~ msgid ""
+#~ "The network wizard extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Verkkoavustajaa ei ole asennettu!\n"
+#~ "Asenna se."
+
+#~ msgid "Use the network wizard to configure selected network adapter"
+#~ msgstr "Muokkaa valitun verkkosovittimen asetuksia verkkoavustajan opastamana"
+
+#~ msgid "Use the network wizard to configure your Network."
+#~ msgstr "Määritä lähiverkon asetukset verkkoavustajan opastamana."
 
 #~ msgid "Monitoring UI password"
 #~ msgstr "Valvonta käyttöliittymän salasana"

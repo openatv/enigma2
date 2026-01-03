@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-27 18:13+0000\n"
+"POT-Creation-Date: 2026-01-02 18:38+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -1299,9 +1299,6 @@ msgstr "(hiển thị menu âm thanh DVD tùy chọn)"
 msgid "* = Restart required if this item is changed."
 msgstr "* = Yêu cầu khởi động lại"
 
-msgid "* Only available if more than one interface is active."
-msgstr "* Chỉ khả dụng nếu có nhiều giao diện được kích hoạt."
-
 msgid "* current animation"
 msgstr "* hoạt hình hiện tại"
 
@@ -1798,9 +1795,6 @@ msgstr ""
 
 msgid "Activate HbbTV (RED button)"
 msgstr "Kích hoạt HbbTV (Nút màu đỏ)"
-
-msgid "Activate MAC address configuration"
-msgstr "Kích hoạt cấu hình địa chỉ MAC"
 
 msgid "Activate Picture in Picture"
 msgstr "Kích hoạt hình ảnh trong hình ảnh"
@@ -6416,10 +6410,6 @@ msgstr "PIP bị vô hiệu hóa.\n"
 msgid "Disabled or WPA/WPA2"
 msgstr ""
 
-#, fuzzy
-msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
-msgstr "Mốc timeshift trong khi ghi âm?"
-
 msgid "Disabling Chkroot failed!"
 msgstr ""
 
@@ -6627,6 +6617,9 @@ msgstr ""
 
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
+msgstr ""
+
+msgid "Do you really want to trim the file system?"
 msgstr ""
 
 #, python-format
@@ -7404,9 +7397,6 @@ msgstr "Đã bật"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Bật một tính năng để người nhận có thể giải mã các luồng (nếu dữ liệu ECM được bao gồm trong luồng và có thẻ hợp lệ)."
 
-msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
-msgstr ""
-
 msgid "Encrypted: "
 msgstr "Được mã hóa: "
 
@@ -7543,6 +7533,9 @@ msgid "Enter pin code"
 msgstr "Nhập mã PIN"
 
 msgid "Enter text via an attached keyboard"
+msgstr ""
+
+msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
 msgstr ""
 
 msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
@@ -8040,9 +8033,6 @@ msgstr "Thoát EPG"
 msgid "Exit File Commander"
 msgstr ""
 
-msgid "Exit MAC address configuration"
-msgstr "Thoát cấu hình địa chỉ MAC"
-
 msgid "Exit Movie Selection"
 msgstr "Thoát khỏi danh sách phim"
 
@@ -8299,6 +8289,9 @@ msgstr ""
 msgid "Fallback Timer"
 msgstr "Hẹn giờ dự phòng"
 
+msgid "Fallback Tuner Setup"
+msgstr "Thiết lập điều chỉnh dự phòng"
+
 msgid "Fallback remote receiver"
 msgstr "Dự phòng thu từ xa"
 
@@ -8319,9 +8312,6 @@ msgstr "Dự phòng thu từ xa cho DVB-C"
 
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Dự phòng thu từ xa cho DVB-T"
-
-msgid "Fallback Tuner Setup"
-msgstr "Thiết lập điều chỉnh dự phòng"
 
 msgid "False"
 msgstr "Sai"
@@ -8595,9 +8585,6 @@ msgstr "Đã kết thúc"
 
 msgid "Finished configuring your network"
 msgstr "Hoàn tất cấu hình mạng của bạn"
-
-msgid "Finished restarting your network"
-msgstr "Hoàn tất khởi động lại mạng của bạn"
 
 msgid "Finland"
 msgstr "Phần Lan"
@@ -10371,6 +10358,15 @@ msgstr "Áo"
 msgid "Job overview"
 msgstr "Tổng quan về công việc"
 
+msgid "Join"
+msgstr ""
+
+msgid "Join or leave the configured ZeroTier network"
+msgstr ""
+
+msgid "Joined"
+msgstr ""
+
 msgid "Jordan"
 msgstr "Jordan"
 
@@ -10737,6 +10733,9 @@ msgstr "Latvia"
 
 msgid "Latvian"
 msgstr "Tiếng Latvia"
+
+msgid "Leave"
+msgstr ""
 
 msgid "Leave DVD player?"
 msgstr "Rời khỏi đầu DVD?"
@@ -11128,12 +11127,6 @@ msgstr "Tiếng Luxembourg"
 
 msgid "M2k Packages"
 msgstr ""
-
-msgid "MAC Address Actions"
-msgstr ""
-
-msgid "MAC Address Settings"
-msgstr "Cài đặt địa chỉ MAC"
 
 msgid "MAC address"
 msgstr ""
@@ -11672,13 +11665,7 @@ msgstr "Núi"
 msgid "Mount Manager"
 msgstr "Quản lý"
 
-msgid "Mount Menu Actions"
-msgstr ""
-
 msgid "Mount Point"
-msgstr ""
-
-msgid "Mount Settings"
 msgstr ""
 
 msgid "Mount Setup"
@@ -12257,9 +12244,6 @@ msgstr ""
 msgid "Network Log Actions"
 msgstr ""
 
-msgid "Network MAC settings"
-msgstr "Cài đặt MAC mạng"
-
 msgid "Network Neighbourhood"
 msgstr "Mạng lưới khu phố"
 
@@ -12309,11 +12293,17 @@ msgstr "Menu mạng"
 msgid "Network mounts"
 msgstr "Gắn kết mạng"
 
+msgid "Network name"
+msgstr ""
+
 msgid "Network name (SSID)"
 msgstr "Tên Mạng (SSID)"
 
 msgid "Network scan"
 msgstr "Quét mạng"
+
+msgid "Network status"
+msgstr ""
 
 msgid "Network storage on"
 msgstr ""
@@ -12328,6 +12318,9 @@ msgid ""
 "Network wizard completed.\n"
 "\n"
 "Press OK to continue."
+msgstr ""
+
+msgid "Network-ID"
 msgstr ""
 
 msgid "Network:"
@@ -12825,6 +12818,9 @@ msgstr ""
 "Kích thước tệp:%sMB\n"
 "Tự do:%sMB\n"
 "Đường dẫn:%s"
+
+msgid "Not joined. Press Yellow to join."
+msgstr ""
 
 msgid "Not required"
 msgstr ""
@@ -14089,9 +14085,6 @@ msgstr ""
 msgid "Please wait while we check your installed plugins..."
 msgstr "Vui lòng đợi trong khi chúng tôi kiểm tra các plugin đã cài đặt của bạn ..."
 
-msgid "Please wait while we configure your network..."
-msgstr "Vui lòng đợi trong khi chúng tôi định cấu hình mạng của bạn ..."
-
 msgid "Please wait while we prepare your network interfaces..."
 msgstr "Xin vui lòng chờ trong khi chúng tôi chuẩn bị giao diện mạng của bạn ..."
 
@@ -14423,9 +14416,6 @@ msgstr "Nhấn OK để chọn vệ tinh"
 msgid "Press OK to select/deselect a CAId."
 msgstr "Nhấn OK để chọn / bỏ chọn CAId."
 
-msgid "Press OK to set the MAC address."
-msgstr "Nhấn OK để đặt địa chỉ MAC."
-
 msgid "Press OK to start the backup now"
 msgstr ""
 
@@ -14457,9 +14447,6 @@ msgstr ""
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Nhấn nút này để mô phỏng nhấn lâu vào nút được nhấn sau đó (thao tác này cũng ghi đè mọi hành động khác được gán cho nút mô phỏng)."
-
-msgid "Press yellow to set this interface as the default interface."
-msgstr "Nhấn màu vàng để đặt giao diện này làm giao diện mặc định."
 
 msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
 msgstr "Nhấn nút will zap  sẽ đưa bạn đến kênh này trong gói kênh đầu tiên của bạn."
@@ -15116,6 +15103,9 @@ msgstr ""
 msgid "Refresh"
 msgstr ""
 
+msgid "Refresh ZeroTier status information"
+msgstr ""
+
 msgid "Refresh every x hours"
 msgstr "Làm mới mỗi (tính theo giờ)"
 
@@ -15560,9 +15550,6 @@ msgstr "Khởi động lại mạng với thiết lập hiện tại"
 
 msgid "Restart test"
 msgstr "Khởi động lại bài kiểm tra"
-
-msgid "Restart your network connection and interfaces."
-msgstr "Khởi động lại kết nối và giao diện mạng của bạn."
 
 msgid "Restarting..."
 msgstr ""
@@ -17584,6 +17571,9 @@ msgstr "Số dịch vụ, Picon và Tên dịch vụ"
 msgid "Service off-air"
 msgstr "Tên dịch vụ"
 
+msgid "Service online"
+msgstr ""
+
 msgid "Service picons aspect ratio"
 msgstr "Tỷ lệ khung hình dịch vụ picons"
 
@@ -17699,9 +17689,6 @@ msgstr "Đặt khung hình / giây cho phụ đề bên ngoài"
 msgid "Set how long the second InfoBar stays visible. The second InfoBar also disappears when you press 'OK'."
 msgstr "Đặt thời gian để ẩn infobar thứ hai. Thanh cũng biến mất khi nhấn 'OK'."
 
-msgid "Set interface as the default Interface"
-msgstr "Đặt giao diện làm Giao diện mặc định"
-
 msgid "Set limits"
 msgstr "Đặt giới hạn"
 
@@ -17722,10 +17709,6 @@ msgstr ""
 
 msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
 msgstr ""
-
-#, python-format
-msgid "Set the MAC address of your %s %s."
-msgstr "Đặt địa chỉ MAC của % s% s của bạn."
 
 msgid "Set the UP/DOWN button skip percentage for the SeekBar."
 msgstr ""
@@ -17862,6 +17845,9 @@ msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby bef
 msgstr ""
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
+msgstr ""
+
+msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr ""
 
 msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
@@ -19751,6 +19737,10 @@ msgstr "Ngừng"
 msgid "Stopping Softcam"
 msgstr "Dừng Softcam"
 
+#, fuzzy
+msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
+msgstr "Mốc timeshift trong khi ghi âm?"
+
 msgid "Storage / Disk Information"
 msgstr ""
 
@@ -20665,13 +20655,6 @@ msgstr "Chiều cao của hình ảnh. Đầu vào sẽ được thu nhỏ để
 
 msgid "The loopthrough setting is wrong."
 msgstr "Cài đặt vòng lặp là sai."
-
-msgid ""
-"The network wizard extension is not installed!\n"
-"Please install it."
-msgstr ""
-"Phần mở rộng thuật sĩ mạng không được cài đặt!\n"
-"Vui lòng cài đặt nó."
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr ""
@@ -21645,6 +21628,12 @@ msgstr "Đã thử vô hiệu hóa PIP, đột nhiên không tìm thấy InfoBar
 msgid "Tries left:"
 msgstr "Cố gắng còn lại:"
 
+msgid "Trim File System"
+msgstr ""
+
+msgid "Trim File System..."
+msgstr ""
+
 msgid "Trinidad and Tobago"
 msgstr "Trinidad và Tobago"
 
@@ -21769,6 +21758,12 @@ msgstr "Thuật toán điều chỉnh"
 
 msgid "Tunisia"
 msgstr "Tunisia"
+
+msgid "Tunnel IPv4"
+msgstr ""
+
+msgid "Tunnel IPv6"
+msgstr ""
 
 msgid "Turbo"
 msgstr "Turbo"
@@ -22401,12 +22396,6 @@ msgstr ""
 
 msgid "Use the extended List"
 msgstr "Sử dụng Danh sách mở rộng"
-
-msgid "Use the network wizard to configure selected network adapter"
-msgstr "Sử dụng trình hướng dẫn mạng để định cấu hình bộ điều hợp mạng đã chọn"
-
-msgid "Use the network wizard to configure your Network."
-msgstr ""
 
 msgid "Use the wizard to set up basic features"
 msgstr "Sử dụng trình hướng dẫn để thiết lập các tính năng cơ bản"
@@ -23857,6 +23846,18 @@ msgstr "Chuyển lên"
 msgid "Zap+Record next"
 msgstr "Ghi lại + Ghi tiếp"
 
+msgid "ZeroTier Actions"
+msgstr ""
+
+msgid "ZeroTier version"
+msgstr ""
+
+msgid "ZeroTier-One"
+msgstr ""
+
+msgid "ZeroTier Settings"
+msgstr ""
+
 #, fuzzy
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7"
@@ -24517,6 +24518,53 @@ msgstr "có (giữ thức ăn)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "* Only available if more than one interface is active."
+#~ msgstr "* Chỉ khả dụng nếu có nhiều giao diện được kích hoạt."
+
+#~ msgid "Activate MAC address configuration"
+#~ msgstr "Kích hoạt cấu hình địa chỉ MAC"
+
+#~ msgid "Exit MAC address configuration"
+#~ msgstr "Thoát cấu hình địa chỉ MAC"
+
+#~ msgid "Finished restarting your network"
+#~ msgstr "Hoàn tất khởi động lại mạng của bạn"
+
+#~ msgid "MAC Address Settings"
+#~ msgstr "Cài đặt địa chỉ MAC"
+
+#~ msgid "Network MAC settings"
+#~ msgstr "Cài đặt MAC mạng"
+
+#~ msgid "Please wait while we configure your network..."
+#~ msgstr "Vui lòng đợi trong khi chúng tôi định cấu hình mạng của bạn ..."
+
+#~ msgid "Press OK to set the MAC address."
+#~ msgstr "Nhấn OK để đặt địa chỉ MAC."
+
+#~ msgid "Press yellow to set this interface as the default interface."
+#~ msgstr "Nhấn màu vàng để đặt giao diện này làm giao diện mặc định."
+
+#~ msgid "Restart your network connection and interfaces."
+#~ msgstr "Khởi động lại kết nối và giao diện mạng của bạn."
+
+#~ msgid "Set interface as the default Interface"
+#~ msgstr "Đặt giao diện làm Giao diện mặc định"
+
+#, python-format
+#~ msgid "Set the MAC address of your %s %s."
+#~ msgstr "Đặt địa chỉ MAC của % s% s của bạn."
+
+#~ msgid ""
+#~ "The network wizard extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Phần mở rộng thuật sĩ mạng không được cài đặt!\n"
+#~ "Vui lòng cài đặt nó."
+
+#~ msgid "Use the network wizard to configure selected network adapter"
+#~ msgstr "Sử dụng trình hướng dẫn mạng để định cấu hình bộ điều hợp mạng đã chọn"
 
 #, fuzzy
 #~ msgid "OpenDNS Home"

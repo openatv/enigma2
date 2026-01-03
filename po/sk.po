@@ -1,6 +1,6 @@
 # NickerSK <nickersk@gmail.com>, 2021, 2022.
 # Marian-SK <podnety@mojepreklady.net>, 2021.
-# Marián Hikaník <podnety@mojepreklady.net>, 2021, 2022, 2023, 2024, 2025.
+# Marián Hikaník <podnety@mojepreklady.net>, 2021, 2022, 2023, 2024, 2025, 2026.
 # Atec <dr.atec@gmail.com>, 2023, 2024, 2025.
 # Milan Šalka <salka.milan@googlemail.com>, 2023, 2024.
 # HS <enosat@yahoo.com>, 2024.
@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-27 18:13+0000\n"
-"PO-Revision-Date: 2025-12-30 03:55+0000\n"
+"POT-Creation-Date: 2026-01-02 18:38+0000\n"
+"PO-Revision-Date: 2026-01-03 07:28+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
@@ -1337,9 +1337,6 @@ msgstr "(zobraziť doplnkové menu zvuku DVD)"
 msgid "* = Restart required if this item is changed."
 msgstr "* = po zmene tejto položky je potrebný reštart."
 
-msgid "* Only available if more than one interface is active."
-msgstr "* Dostupné len ak je aktívnych viac rozhraní."
-
 msgid "* current animation"
 msgstr "* aktuálna animácia"
 
@@ -1827,9 +1824,6 @@ msgstr "Aktivovať expandér"
 
 msgid "Activate HbbTV (RED button)"
 msgstr "Aktivovať HbbTV (ČERVENÉ tlačidlo)"
-
-msgid "Activate MAC address configuration"
-msgstr "Aktivovať konfiguráciu MAC adresy"
 
 msgid "Activate Picture in Picture"
 msgstr "Aktivovať obraz v obraze"
@@ -6408,9 +6402,6 @@ msgstr "Vypnutý PiP.\n"
 msgid "Disabled or WPA/WPA2"
 msgstr "Deaktivované alebo WPA/WPA2"
 
-msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
-msgstr "Zablokuje timeshift počas nahrávania (odporúča sa pre USB kľúče)."
-
 msgid "Disabling Chkroot failed!"
 msgstr "Nepodarilo sa deaktivovať Chkroot!"
 
@@ -6628,6 +6619,9 @@ msgstr ""
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
 msgstr "Naozaj chcete zastaviť a vymazať časovač '%s'?"
+
+msgid "Do you really want to trim the file system?"
+msgstr "Naozaj chcete aktivovať TRIM pre systém súborov?"
 
 #, python-format
 msgid "Do you want change '%s' access mode?"
@@ -7392,9 +7386,6 @@ msgstr "Povolené"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Povolí prijímaču dekódovať streamy (ak sú v streame zahrnuté ECM dáta a je k dispozícii platná karta)."
 
-msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
-msgstr "Ak je aktivovaná možnosť 'Áno', zapne sa odosielanie rovnakých príkazov do TV pre vypnutie, ako aj pre normálny pohotovostný režim."
-
 msgid "Encrypted: "
 msgstr "Zakódované: "
 
@@ -7535,6 +7526,9 @@ msgstr "Zadajte PIN kód"
 
 msgid "Enter text via an attached keyboard"
 msgstr "Zadajte text pomocou pripojenej klávesnice"
+
+msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
+msgstr "Zadajte ID siete ZeroTier (16 znakov)."
 
 msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
 msgstr "Zadajte dobu, ktorá sa pridá do vyrov. pamäte pre streamovanie po chybe v streamovaní. Predíde sa tak ďalším chybám kvôli nedostatočnej vyrovnávacej pamäti."
@@ -8033,9 +8027,6 @@ msgstr "Ukončiť EPG"
 msgid "Exit File Commander"
 msgstr "Ukončiť Správcu súborov"
 
-msgid "Exit MAC address configuration"
-msgstr "Ukončiť konfiguráciu MAC adresy"
-
 msgid "Exit Movie Selection"
 msgstr "Zatvoriť zoznam filmov"
 
@@ -8289,6 +8280,9 @@ msgstr "Nastavenie záložného vzdialeného prijímača"
 msgid "Fallback Timer"
 msgstr "Záložný časovač"
 
+msgid "Fallback Tuner Setup"
+msgstr "Nastavenie záložného tunera"
+
 msgid "Fallback remote receiver"
 msgstr "Záložný vzdialený prijímač"
 
@@ -8309,9 +8303,6 @@ msgstr "Záložný vzdialený prijímač pre DVB-C"
 
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Záložný vzdialený prijímač pre DVB-T"
-
-msgid "Fallback Tuner Setup"
-msgstr "Nastavenie záložného tunera"
 
 msgid "False"
 msgstr "False (Nepravda)"
@@ -8580,9 +8571,6 @@ msgstr "Dokončené"
 
 msgid "Finished configuring your network"
 msgstr "Nastavenie siete je dokončené"
-
-msgid "Finished restarting your network"
-msgstr "Reštartovanie siete je dokončené"
 
 msgid "Finland"
 msgstr "Fínsko"
@@ -10326,6 +10314,15 @@ msgstr "Jersey"
 msgid "Job overview"
 msgstr "Prehľad úlohy"
 
+msgid "Join"
+msgstr "Zapojiť sa"
+
+msgid "Join or leave the configured ZeroTier network"
+msgstr "Zapojiť sa alebo opustiť nakonfigurovanú sieť ZeroTier"
+
+msgid "Joined"
+msgstr "Zapojené"
+
 msgid "Jordan"
 msgstr "Jordánsko"
 
@@ -10686,6 +10683,9 @@ msgstr "Lotyšsko"
 
 msgid "Latvian"
 msgstr "lotyština"
+
+msgid "Leave"
+msgstr "Opustiť"
 
 msgid "Leave DVD player?"
 msgstr "Zatvoriť prehrávač DVD?"
@@ -11071,12 +11071,6 @@ msgstr "luxemburčina"
 
 msgid "M2k Packages"
 msgstr "Balíčky M2k"
-
-msgid "MAC Address Actions"
-msgstr "Akcie pre MAC adresu"
-
-msgid "MAC Address Settings"
-msgstr "Nastavenia MAC adresy"
 
 msgid "MAC address"
 msgstr "MAC adresa"
@@ -11597,14 +11591,8 @@ msgstr "Pripojiť"
 msgid "Mount Manager"
 msgstr "Správca pripojení"
 
-msgid "Mount Menu Actions"
-msgstr "Akcie pre menu pripájania (mount)"
-
 msgid "Mount Point"
 msgstr "Bod pripojenia"
-
-msgid "Mount Settings"
-msgstr "Nastavenia pripojení"
 
 msgid "Mount Setup"
 msgstr "Nastavenie pripojení"
@@ -12156,9 +12144,6 @@ msgstr "Denník pre sieť"
 msgid "Network Log Actions"
 msgstr "Akcie denníka siete"
 
-msgid "Network MAC settings"
-msgstr "Nastavenie MAC adresy"
-
 msgid "Network Neighbourhood"
 msgstr "Domáca skupina"
 
@@ -12208,11 +12193,17 @@ msgstr "Menu siete"
 msgid "Network mounts"
 msgstr "Sieťové pripojenia"
 
+msgid "Network name"
+msgstr "Názov siete"
+
 msgid "Network name (SSID)"
 msgstr "Názov siete (SSID)"
 
 msgid "Network scan"
 msgstr "Vyhľadanie sietí"
+
+msgid "Network status"
+msgstr "Stav siete"
 
 msgid "Network storage on"
 msgstr "Sieťové úložisko na"
@@ -12231,6 +12222,9 @@ msgstr ""
 "Sprievodca sieťou bol úspešné dokončený.\n"
 "\n"
 "Pokračujte stlačením OK."
+
+msgid "Network-ID"
+msgstr "ID siete"
 
 msgid "Network:"
 msgstr "Sieť:"
@@ -12714,6 +12708,9 @@ msgstr ""
 "Veľkosť súb.: %sMB\n"
 "Voľné: %sMB\n"
 "Cesta: %s"
+
+msgid "Not joined. Press Yellow to join."
+msgstr "Nezapojené. Pre zapojenie stlačte žlté tlačidlo."
 
 msgid "Not required"
 msgstr "Nevyžaduje sa"
@@ -13960,9 +13957,6 @@ msgstr "Prosím, počkajte na aktualizáciu pluginu."
 msgid "Please wait while we check your installed plugins..."
 msgstr "Počkajte, prosím, kým sa skontrolujú nainštalované pluginy…"
 
-msgid "Please wait while we configure your network..."
-msgstr "Počkajte, prosím, na nastavenie siete…"
-
 msgid "Please wait while we prepare your network interfaces..."
 msgstr "Pripravujú sa sieťové rozhrania. Čakajte, prosím…"
 
@@ -14293,9 +14287,6 @@ msgstr "Družice vyberiete stlačením OK"
 msgid "Press OK to select/deselect a CAId."
 msgstr "Stlačením OK vyberiete/zrušíte výber CAID."
 
-msgid "Press OK to set the MAC address."
-msgstr "Stačením OK nastavíte adresu MAC."
-
 msgid "Press OK to start the backup now"
 msgstr "Na spustenie zálohovania stlačte OK"
 
@@ -14327,9 +14318,6 @@ msgstr "Stlačením tlačidiel HORE/DOLU vyberte slot, potom stlačte OK alebo Z
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Stlačte toto tlačidlo na emuláciu dlhého stlačenia nasledujúceho tlačidla (táto funkcia ignoruje akékoľvek iné akcie priradené emulovaciemu tlačidlu)."
-
-msgid "Press yellow to set this interface as the default interface."
-msgstr "Stlačením žltého tlačidla sa toto rozhranie nastaví ako predvolené."
 
 msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
 msgstr "Stlačením tlačidla PANIKA sa prepne na toto číslo kanála v prvom prehľade."
@@ -14969,6 +14957,9 @@ msgstr ""
 msgid "Refresh"
 msgstr "Obnoviť"
 
+msgid "Refresh ZeroTier status information"
+msgstr "Obnoviť informáciu o stave ZeroTier"
+
 msgid "Refresh every x hours"
 msgstr "Obnoviť každých x hodín"
 
@@ -15410,9 +15401,6 @@ msgstr "Reštartovať sieť s aktuálnym nastavením"
 
 msgid "Restart test"
 msgstr "Reštartovať test"
-
-msgid "Restart your network connection and interfaces."
-msgstr "Reštartujte sieťové pripojenie a rozhrania."
 
 msgid "Restarting..."
 msgstr "Reštartuje sa…"
@@ -17429,6 +17417,9 @@ msgstr "Číslo stanice, pikona a názov stanice"
 msgid "Service off-air"
 msgstr "Služba off-air"
 
+msgid "Service online"
+msgstr "služba online"
+
 msgid "Service picons aspect ratio"
 msgstr "Pomer strán pikon"
 
@@ -17544,9 +17535,6 @@ msgstr "Nastavenie fps pre externé titulky"
 msgid "Set how long the second InfoBar stays visible. The second InfoBar also disappears when you press 'OK'."
 msgstr "Nastavte čas trvania zobrazenia druhej infolišty. Druhá infolišta zmizne aj po stlačení 'OK'."
 
-msgid "Set interface as the default Interface"
-msgstr "Nastaviť rozhranie ako predvolené"
-
 msgid "Set limits"
 msgstr "Nastaviť limity"
 
@@ -17567,10 +17555,6 @@ msgstr "Nastavte časový interval preskočenia pre tlačidlá '%s'/'%s' v edito
 
 msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
 msgstr "Nastavte percento preskočenia tlačidlami DOĽAVA/DOPRAVA pre panel vyhľadávania."
-
-#, python-format
-msgid "Set the MAC address of your %s %s."
-msgstr "Nastavte MAC adresu pre %s %s."
 
 msgid "Set the UP/DOWN button skip percentage for the SeekBar."
 msgstr "Nastavte percento preskočenia tlačidlami HORE/DOLU pre panel vyhľadávania."
@@ -17711,6 +17695,9 @@ msgstr "Ak chcete pred vypnutím najskôr v pohotovostnom režime dekódovať na
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
 msgstr "Ak chcete v pohotovostnom režime dekódovať nahrávky čakajúce vo fronte, nastavte túto voľbu na 'Zapnuté'."
+
+msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
+msgstr "Ak je aktivovaná možnosť 'Áno', zapne sa odosielanie rovnakých príkazov do TV pre vypnutie, ako aj pre normálny pohotovostný režim."
 
 msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
 msgstr "Nastavte na 'Áno', pre zapnutie automatického nahrávania timeshiftu na pozadí."
@@ -19593,6 +19580,9 @@ msgstr "Zastavené"
 msgid "Stopping Softcam"
 msgstr "Zastavuje sa softcam"
 
+msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
+msgstr "Zablokuje timeshift počas nahrávania (odporúča sa pre USB kľúče)."
+
 msgid "Storage / Disk Information"
 msgstr "Informácie o úložisku/disku"
 
@@ -20516,13 +20506,6 @@ msgstr "Výška obrazu. Mierka vstupu sa prispôsobí, aby zodpovedala tejto hod
 
 msgid "The loopthrough setting is wrong."
 msgstr "Nastavenie slučky (loopthrough) je nesprávne."
-
-msgid ""
-"The network wizard extension is not installed!\n"
-"Please install it."
-msgstr ""
-"Rozšírenie NetworkWizard nie je nainštalované!\n"
-"Prosím, nainštalujte ho."
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr "Priečiok pre picony už existuje a musí sa odstrániť. Má sa pokračovať?"
@@ -21497,6 +21480,12 @@ msgstr "Pri pokuse o vypnutie PiP sa nenašla žiadna inštancia pre infolištu!
 msgid "Tries left:"
 msgstr "Zostávajúce pokusy:"
 
+msgid "Trim File System"
+msgstr "TRIM systému súborov"
+
+msgid "Trim File System..."
+msgstr "TRIM systému súborov..."
+
 msgid "Trinidad and Tobago"
 msgstr "Trinidad a Tobago"
 
@@ -21618,6 +21607,12 @@ msgstr "Algoritmus ladenia"
 
 msgid "Tunisia"
 msgstr "Tunisko"
+
+msgid "Tunnel IPv4"
+msgstr "IPv4 tunel"
+
+msgid "Tunnel IPv6"
+msgstr "IPv6 tunel"
 
 msgid "Turbo"
 msgstr "Turbo"
@@ -22246,12 +22241,6 @@ msgstr "Použiť aktuálny výber a ukončiť"
 
 msgid "Use the extended List"
 msgstr "Použiť rozšírený zoznam"
-
-msgid "Use the network wizard to configure selected network adapter"
-msgstr "Na konfiguráciu vybraného sieťového adaptéra použite sprievodcu sieťou"
-
-msgid "Use the network wizard to configure your Network."
-msgstr "Na konfiguráciu vašej siete použite Sprievodcu sieťou."
 
 msgid "Use the wizard to set up basic features"
 msgstr "Použite sprievodcu pre nastavenie základných funkcií"
@@ -23725,6 +23714,18 @@ msgstr "Prepnúť nahor"
 msgid "Zap+Record next"
 msgstr "Prepnúť + nahrávať ďalej"
 
+msgid "ZeroTier Actions"
+msgstr "Akcie ZeroTier"
+
+msgid "ZeroTier version"
+msgstr "Verzia ZeroTier"
+
+msgid "ZeroTier-One"
+msgstr "ZeroTier-One"
+
+msgid "ZeroTier Settings"
+msgstr "Nastavenia ZeroTier"
+
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7 starý model"
 
@@ -24380,6 +24381,65 @@ msgstr "áno (zachovať zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "* Only available if more than one interface is active."
+#~ msgstr "* Dostupné len ak je aktívnych viac rozhraní."
+
+#~ msgid "Activate MAC address configuration"
+#~ msgstr "Aktivovať konfiguráciu MAC adresy"
+
+#~ msgid "Exit MAC address configuration"
+#~ msgstr "Ukončiť konfiguráciu MAC adresy"
+
+#~ msgid "Finished restarting your network"
+#~ msgstr "Reštartovanie siete je dokončené"
+
+#~ msgid "MAC Address Actions"
+#~ msgstr "Akcie pre MAC adresu"
+
+#~ msgid "MAC Address Settings"
+#~ msgstr "Nastavenia MAC adresy"
+
+#~ msgid "Mount Menu Actions"
+#~ msgstr "Akcie pre menu pripájania (mount)"
+
+#~ msgid "Mount Settings"
+#~ msgstr "Nastavenia pripojení"
+
+#~ msgid "Network MAC settings"
+#~ msgstr "Nastavenie MAC adresy"
+
+#~ msgid "Please wait while we configure your network..."
+#~ msgstr "Počkajte, prosím, na nastavenie siete…"
+
+#~ msgid "Press OK to set the MAC address."
+#~ msgstr "Stačením OK nastavíte adresu MAC."
+
+#~ msgid "Press yellow to set this interface as the default interface."
+#~ msgstr "Stlačením žltého tlačidla sa toto rozhranie nastaví ako predvolené."
+
+#~ msgid "Restart your network connection and interfaces."
+#~ msgstr "Reštartujte sieťové pripojenie a rozhrania."
+
+#~ msgid "Set interface as the default Interface"
+#~ msgstr "Nastaviť rozhranie ako predvolené"
+
+#, python-format
+#~ msgid "Set the MAC address of your %s %s."
+#~ msgstr "Nastavte MAC adresu pre %s %s."
+
+#~ msgid ""
+#~ "The network wizard extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Rozšírenie NetworkWizard nie je nainštalované!\n"
+#~ "Prosím, nainštalujte ho."
+
+#~ msgid "Use the network wizard to configure selected network adapter"
+#~ msgstr "Na konfiguráciu vybraného sieťového adaptéra použite sprievodcu sieťou"
+
+#~ msgid "Use the network wizard to configure your Network."
+#~ msgstr "Na konfiguráciu vašej siete použite Sprievodcu sieťou."
 
 #~ msgid "Monitoring UI password"
 #~ msgstr "Heslo pre monitorovanie použív. rozhranie"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-27 18:13+0000\n"
+"POT-Creation-Date: 2026-01-02 18:38+0000\n"
 "PO-Revision-Date: 2025-05-05 05:50+0000\n"
 "Last-Translator: Balázs Sólyom <balazs@solyom.online>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -1331,9 +1331,6 @@ msgstr "(DVD audió menü megjelenítése, ha van)"
 msgid "* = Restart required if this item is changed."
 msgstr "* = Újraindítás szükséges"
 
-msgid "* Only available if more than one interface is active."
-msgstr "* Csak akkor érvényes, ha egynél több interfész aktív."
-
 msgid "* current animation"
 msgstr "* Aktuális konfiguráció aktiválása"
 
@@ -1831,9 +1828,6 @@ msgstr ""
 
 msgid "Activate HbbTV (RED button)"
 msgstr "HbbTV Aktiválása (Piros gomb)"
-
-msgid "Activate MAC address configuration"
-msgstr "Aktiválja a MAC-cím beállításokat"
 
 msgid "Activate Picture in Picture"
 msgstr "Kép-a-Képben bekapcsolása"
@@ -6423,9 +6417,6 @@ msgstr "Kép-a-Képben letiltva\n"
 msgid "Disabled or WPA/WPA2"
 msgstr ""
 
-msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
-msgstr "Ha a felvétel készítése folyamatban van vagy indulni készül, akkor a Timeshift felvétel álljon meg"
-
 msgid "Disabling Chkroot failed!"
 msgstr ""
 
@@ -6630,6 +6621,9 @@ msgstr ""
 
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
+msgstr ""
+
+msgid "Do you really want to trim the file system?"
 msgstr ""
 
 #, python-format
@@ -7395,9 +7389,6 @@ msgstr "Engedélyezve"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Ha engedélyezi ezt a funkciót, akkor a vevőegység dekódolni tudja az adatfolyamot (Ha az adatfolyam tartalmazza az ECM-t és ha érvényes kártya is elérhető)."
 
-msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
-msgstr ""
-
 msgid "Encrypted: "
 msgstr "Kódolva: "
 
@@ -7536,6 +7527,9 @@ msgid "Enter pin code"
 msgstr "Adja meg a PIN-kódot"
 
 msgid "Enter text via an attached keyboard"
+msgstr ""
+
+msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
 msgstr ""
 
 msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
@@ -8028,9 +8022,6 @@ msgstr "Kilépés az EPG-ből"
 msgid "Exit File Commander"
 msgstr ""
 
-msgid "Exit MAC address configuration"
-msgstr "Kilépés a MAC-cím konfigurációból"
-
 msgid "Exit Movie Selection"
 msgstr "Kilépés a Felvételek listájából"
 
@@ -8287,6 +8278,9 @@ msgstr ""
 msgid "Fallback Timer"
 msgstr "Tartalék távoli időzítő"
 
+msgid "Fallback Tuner Setup"
+msgstr "Tartalék távoli vevő beállítása"
+
 msgid "Fallback remote receiver"
 msgstr "Tartalék távoli vevő"
 
@@ -8307,9 +8301,6 @@ msgstr "Tartalék távoli vevő DVB-C vételhez"
 
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Tartalék távoli vevő DVB-T vételhez"
-
-msgid "Fallback Tuner Setup"
-msgstr "Tartalék távoli vevő beállítása"
 
 msgid "False"
 msgstr "Hamis"
@@ -8582,9 +8573,6 @@ msgstr "Kész"
 
 msgid "Finished configuring your network"
 msgstr "A hálózati beállítás befejeződött"
-
-msgid "Finished restarting your network"
-msgstr "A hálózati kapcsolat újraindítása befejeződött"
 
 msgid "Finland"
 msgstr "Finnország"
@@ -10346,6 +10334,15 @@ msgstr "Jersey"
 msgid "Job overview"
 msgstr "Folyamat nézet"
 
+msgid "Join"
+msgstr ""
+
+msgid "Join or leave the configured ZeroTier network"
+msgstr ""
+
+msgid "Joined"
+msgstr ""
+
 msgid "Jordan"
 msgstr "Jordánia"
 
@@ -10713,6 +10710,9 @@ msgstr "Lettország"
 
 msgid "Latvian"
 msgstr "Lett"
+
+msgid "Leave"
+msgstr ""
 
 msgid "Leave DVD player?"
 msgstr "Kilépés a DVD lejátszóból?"
@@ -11103,12 +11103,6 @@ msgstr "Luxemburgi"
 
 msgid "M2k Packages"
 msgstr ""
-
-msgid "MAC Address Actions"
-msgstr ""
-
-msgid "MAC Address Settings"
-msgstr "MAC-cím beállítások"
 
 msgid "MAC address"
 msgstr ""
@@ -11643,13 +11637,7 @@ msgstr "Csatlakozás"
 msgid "Mount Manager"
 msgstr "Csatlakozás kezelő"
 
-msgid "Mount Menu Actions"
-msgstr ""
-
 msgid "Mount Point"
-msgstr ""
-
-msgid "Mount Settings"
 msgstr ""
 
 msgid "Mount Setup"
@@ -12222,9 +12210,6 @@ msgstr ""
 msgid "Network Log Actions"
 msgstr ""
 
-msgid "Network MAC settings"
-msgstr "Hálózati MAC beállítások"
-
 msgid "Network Neighbourhood"
 msgstr "Hálózat"
 
@@ -12274,11 +12259,17 @@ msgstr "Hálózat menü"
 msgid "Network mounts"
 msgstr "Hálózati csatolások"
 
+msgid "Network name"
+msgstr ""
+
 msgid "Network name (SSID)"
 msgstr "Hálózatnév (SSID)"
 
 msgid "Network scan"
 msgstr "Hálózat keresése"
+
+msgid "Network status"
+msgstr ""
 
 msgid "Network storage on"
 msgstr ""
@@ -12293,6 +12284,9 @@ msgid ""
 "Network wizard completed.\n"
 "\n"
 "Press OK to continue."
+msgstr ""
+
+msgid "Network-ID"
 msgstr ""
 
 msgid "Network:"
@@ -12782,6 +12776,9 @@ msgstr ""
 "Fájlméret: %s MB\n"
 "Szabad terület: %s MB\n"
 "Útvonal: %s"
+
+msgid "Not joined. Press Yellow to join."
+msgstr ""
 
 msgid "Not required"
 msgstr ""
@@ -14044,9 +14041,6 @@ msgstr ""
 msgid "Please wait while we check your installed plugins..."
 msgstr "Kérjük, várjon, amíg ellenőrizzük a telepített bővítményeket..."
 
-msgid "Please wait while we configure your network..."
-msgstr "Kérem várjon, ameddig a hálózati konfiguráció elkészül..."
-
 msgid "Please wait while we prepare your network interfaces..."
 msgstr "Kérem várjon, ameddig a hálózati interfészek elkészülnek..."
 
@@ -14379,9 +14373,6 @@ msgstr "Nyomja le az OK gombot a műholdak kiválasztásához"
 msgid "Press OK to select/deselect a CAId."
 msgstr "Nyomja le az OK gombot a CAId ki/bejelöléséhez."
 
-msgid "Press OK to set the MAC address."
-msgstr "Nyomja le az OK gombot a MAC-cím beállításához."
-
 msgid "Press OK to start the backup now"
 msgstr ""
 
@@ -14413,9 +14404,6 @@ msgstr ""
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Nyomja meg ezt a gombot, hogy kipróbálja a nyomógomb hosszú nyomását a gomb lenyomása után (ez felülbírálja az emuláció gombhoz rendelt bármely más műveletet is)."
-
-msgid "Press yellow to set this interface as the default interface."
-msgstr "Nyomja le a sárga gombot, hogy ezt az interfészt jelölje meg alapértelmezettnek."
 
 msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
 msgstr "A pánik gomb megnyomásával erre a csatorna számra fog ugrani a csatornacsomagban."
@@ -15057,6 +15045,9 @@ msgstr ""
 msgid "Refresh"
 msgstr ""
 
+msgid "Refresh ZeroTier status information"
+msgstr ""
+
 msgid "Refresh every x hours"
 msgstr "Ennyi óránként frissít mindent"
 
@@ -15496,9 +15487,6 @@ msgstr "Hálózat újraindítása az aktuális beállításokkal"
 
 msgid "Restart test"
 msgstr "Teszt újraindítása"
-
-msgid "Restart your network connection and interfaces."
-msgstr "Hálózati kapcsolatok és interfészek újraindítása."
 
 msgid "Restarting..."
 msgstr ""
@@ -17518,6 +17506,9 @@ msgstr "Csatorna száma, Picon és Csatorna neve"
 msgid "Service off-air"
 msgstr "Szolgáltatás kívülről"
 
+msgid "Service online"
+msgstr ""
+
 msgid "Service picons aspect ratio"
 msgstr "Csatorna képek méretaránya"
 
@@ -17633,9 +17624,6 @@ msgstr "Külső feliratokhoz FPS"
 msgid "Set how long the second InfoBar stays visible. The second InfoBar also disappears when you press 'OK'."
 msgstr "Állítsa be az időt a második Információs sáv elrejtéséhez. A sáv is eltűnik az \"OK\" megnyomásával."
 
-msgid "Set interface as the default Interface"
-msgstr "Jelölje meg mint alapértelmezett interfészt"
-
 msgid "Set limits"
 msgstr "Limitek beállítása"
 
@@ -17656,10 +17644,6 @@ msgstr ""
 
 msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
 msgstr ""
-
-#, python-format
-msgid "Set the MAC address of your %s %s."
-msgstr "Állítsa be a MAC-címét a(z) %s %s eszköznek."
 
 msgid "Set the UP/DOWN button skip percentage for the SeekBar."
 msgstr ""
@@ -17796,6 +17780,9 @@ msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby bef
 msgstr ""
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
+msgstr ""
+
+msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr ""
 
 msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
@@ -19680,6 +19667,9 @@ msgstr "Leállítva"
 msgid "Stopping Softcam"
 msgstr "Softcam leállítása"
 
+msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
+msgstr "Ha a felvétel készítése folyamatban van vagy indulni készül, akkor a Timeshift felvétel álljon meg"
+
 msgid "Storage / Disk Information"
 msgstr ""
 
@@ -20597,13 +20587,6 @@ msgstr "A kép magassága. A bemenetet a fenti értékhez igazítva skálázzák
 
 msgid "The loopthrough setting is wrong."
 msgstr "Az átfűzés beállítása hibás."
-
-msgid ""
-"The network wizard extension is not installed!\n"
-"Please install it."
-msgstr ""
-"A NetworkWizard bővítmémy nincs feltelepítve!\n"
-"Kérem, telepítse fel."
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr ""
@@ -21570,6 +21553,12 @@ msgstr "Megpróbálta letiltani a Kép-a-Képben-t, de hirtelen nem találta az 
 msgid "Tries left:"
 msgstr "Hátralevő próbálkozások száma:"
 
+msgid "Trim File System"
+msgstr ""
+
+msgid "Trim File System..."
+msgstr ""
+
 msgid "Trinidad and Tobago"
 msgstr "Trinidad és Tobago"
 
@@ -21693,6 +21682,12 @@ msgstr "Tuningolási algoritmus"
 
 msgid "Tunisia"
 msgstr "Tunézia"
+
+msgid "Tunnel IPv4"
+msgstr ""
+
+msgid "Tunnel IPv6"
+msgstr ""
 
 msgid "Turbo"
 msgstr "Turbo"
@@ -22321,12 +22316,6 @@ msgstr ""
 
 msgid "Use the extended List"
 msgstr "Használja a kiterjesztett listát"
-
-msgid "Use the network wizard to configure selected network adapter"
-msgstr "Használja a Hálózat Varázslót a hálózat konfigurálásához"
-
-msgid "Use the network wizard to configure your Network."
-msgstr ""
 
 msgid "Use the wizard to set up basic features"
 msgstr "Használja a varázslót az alapbeállításokhoz"
@@ -23771,6 +23760,18 @@ msgstr "Ugrás felfelé"
 msgid "Zap+Record next"
 msgstr "Következőre Ugrás+Felvétel"
 
+msgid "ZeroTier Actions"
+msgstr ""
+
+msgid "ZeroTier version"
+msgstr ""
+
+msgid "ZeroTier-One"
+msgstr ""
+
+msgid "ZeroTier Settings"
+msgstr ""
+
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7 régi modell"
 
@@ -24430,6 +24431,53 @@ msgstr "igen (állapotok megtartása)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "* Only available if more than one interface is active."
+#~ msgstr "* Csak akkor érvényes, ha egynél több interfész aktív."
+
+#~ msgid "Activate MAC address configuration"
+#~ msgstr "Aktiválja a MAC-cím beállításokat"
+
+#~ msgid "Exit MAC address configuration"
+#~ msgstr "Kilépés a MAC-cím konfigurációból"
+
+#~ msgid "Finished restarting your network"
+#~ msgstr "A hálózati kapcsolat újraindítása befejeződött"
+
+#~ msgid "MAC Address Settings"
+#~ msgstr "MAC-cím beállítások"
+
+#~ msgid "Network MAC settings"
+#~ msgstr "Hálózati MAC beállítások"
+
+#~ msgid "Please wait while we configure your network..."
+#~ msgstr "Kérem várjon, ameddig a hálózati konfiguráció elkészül..."
+
+#~ msgid "Press OK to set the MAC address."
+#~ msgstr "Nyomja le az OK gombot a MAC-cím beállításához."
+
+#~ msgid "Press yellow to set this interface as the default interface."
+#~ msgstr "Nyomja le a sárga gombot, hogy ezt az interfészt jelölje meg alapértelmezettnek."
+
+#~ msgid "Restart your network connection and interfaces."
+#~ msgstr "Hálózati kapcsolatok és interfészek újraindítása."
+
+#~ msgid "Set interface as the default Interface"
+#~ msgstr "Jelölje meg mint alapértelmezett interfészt"
+
+#, python-format
+#~ msgid "Set the MAC address of your %s %s."
+#~ msgstr "Állítsa be a MAC-címét a(z) %s %s eszköznek."
+
+#~ msgid ""
+#~ "The network wizard extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "A NetworkWizard bővítmémy nincs feltelepítve!\n"
+#~ "Kérem, telepítse fel."
+
+#~ msgid "Use the network wizard to configure selected network adapter"
+#~ msgstr "Használja a Hálózat Varázslót a hálózat konfigurálásához"
 
 #~ msgid "white"
 #~ msgstr "fehér"

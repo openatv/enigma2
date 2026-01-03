@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-27 18:13+0000\n"
+"POT-Creation-Date: 2026-01-02 18:38+0000\n"
 "PO-Revision-Date: 2025-10-20 17:11+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: English (Australia) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/en_AU/>\n"
@@ -1291,9 +1291,6 @@ msgstr ""
 msgid "* = Restart required if this item is changed."
 msgstr ""
 
-msgid "* Only available if more than one interface is active."
-msgstr ""
-
 msgid "* current animation"
 msgstr ""
 
@@ -1758,9 +1755,6 @@ msgid "Activate Expander"
 msgstr ""
 
 msgid "Activate HbbTV (RED button)"
-msgstr ""
-
-msgid "Activate MAC address configuration"
 msgstr ""
 
 msgid "Activate Picture in Picture"
@@ -6304,9 +6298,6 @@ msgstr ""
 msgid "Disabled or WPA/WPA2"
 msgstr ""
 
-msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
-msgstr ""
-
 msgid "Disabling Chkroot failed!"
 msgstr ""
 
@@ -6507,6 +6498,9 @@ msgstr ""
 
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
+msgstr ""
+
+msgid "Do you really want to trim the file system?"
 msgstr ""
 
 #, python-format
@@ -7259,9 +7253,6 @@ msgstr ""
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr ""
 
-msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
-msgstr ""
-
 msgid "Encrypted: "
 msgstr ""
 
@@ -7399,6 +7390,9 @@ msgid "Enter pin code"
 msgstr ""
 
 msgid "Enter text via an attached keyboard"
+msgstr ""
+
+msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
 msgstr ""
 
 msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
@@ -7875,9 +7869,6 @@ msgstr ""
 msgid "Exit File Commander"
 msgstr ""
 
-msgid "Exit MAC address configuration"
-msgstr ""
-
 msgid "Exit Movie Selection"
 msgstr ""
 
@@ -8131,6 +8122,9 @@ msgstr ""
 msgid "Fallback Timer"
 msgstr ""
 
+msgid "Fallback Tuner Setup"
+msgstr ""
+
 msgid "Fallback remote receiver"
 msgstr ""
 
@@ -8150,9 +8144,6 @@ msgid "Fallback remote receiver for DVB-C"
 msgstr ""
 
 msgid "Fallback remote receiver for DVB-T"
-msgstr ""
-
-msgid "Fallback Tuner Setup"
 msgstr ""
 
 msgid "False"
@@ -8419,9 +8410,6 @@ msgid "Finished"
 msgstr ""
 
 msgid "Finished configuring your network"
-msgstr ""
-
-msgid "Finished restarting your network"
 msgstr ""
 
 msgid "Finland"
@@ -10156,6 +10144,15 @@ msgstr ""
 msgid "Job overview"
 msgstr ""
 
+msgid "Join"
+msgstr ""
+
+msgid "Join or leave the configured ZeroTier network"
+msgstr ""
+
+msgid "Joined"
+msgstr ""
+
 msgid "Jordan"
 msgstr ""
 
@@ -10514,6 +10511,9 @@ msgid "Latvia"
 msgstr ""
 
 msgid "Latvian"
+msgstr ""
+
+msgid "Leave"
 msgstr ""
 
 msgid "Leave DVD player?"
@@ -10898,12 +10898,6 @@ msgid "Luxembourgish / Letzeburgesch"
 msgstr ""
 
 msgid "M2k Packages"
-msgstr ""
-
-msgid "MAC Address Actions"
-msgstr ""
-
-msgid "MAC Address Settings"
 msgstr ""
 
 msgid "MAC address"
@@ -11423,13 +11417,7 @@ msgstr ""
 msgid "Mount Manager"
 msgstr ""
 
-msgid "Mount Menu Actions"
-msgstr ""
-
 msgid "Mount Point"
-msgstr ""
-
-msgid "Mount Settings"
 msgstr ""
 
 msgid "Mount Setup"
@@ -11982,9 +11970,6 @@ msgstr ""
 msgid "Network Log Actions"
 msgstr ""
 
-msgid "Network MAC settings"
-msgstr ""
-
 msgid "Network Neighbourhood"
 msgstr ""
 
@@ -12034,10 +12019,16 @@ msgstr ""
 msgid "Network mounts"
 msgstr ""
 
+msgid "Network name"
+msgstr ""
+
 msgid "Network name (SSID)"
 msgstr ""
 
 msgid "Network scan"
+msgstr ""
+
+msgid "Network status"
 msgstr ""
 
 msgid "Network storage on"
@@ -12053,6 +12044,9 @@ msgid ""
 "Network wizard completed.\n"
 "\n"
 "Press OK to continue."
+msgstr ""
+
+msgid "Network-ID"
 msgstr ""
 
 msgid "Network:"
@@ -12530,6 +12524,9 @@ msgstr ""
 "Filesize: %sMB\n"
 "Free Space: %sMB\n"
 "Path: %s"
+
+msgid "Not joined. Press Yellow to join."
+msgstr ""
 
 msgid "Not required"
 msgstr ""
@@ -13766,9 +13763,6 @@ msgstr ""
 msgid "Please wait while we check your installed plugins..."
 msgstr ""
 
-msgid "Please wait while we configure your network..."
-msgstr ""
-
 msgid "Please wait while we prepare your network interfaces..."
 msgstr ""
 
@@ -14099,9 +14093,6 @@ msgstr ""
 msgid "Press OK to select/deselect a CAId."
 msgstr ""
 
-msgid "Press OK to set the MAC address."
-msgstr ""
-
 msgid "Press OK to start the backup now"
 msgstr ""
 
@@ -14132,9 +14123,6 @@ msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reb
 msgstr ""
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
-msgstr ""
-
-msgid "Press yellow to set this interface as the default interface."
 msgstr ""
 
 msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
@@ -14773,6 +14761,9 @@ msgstr ""
 msgid "Refresh"
 msgstr ""
 
+msgid "Refresh ZeroTier status information"
+msgstr ""
+
 msgid "Refresh every x hours"
 msgstr ""
 
@@ -15211,9 +15202,6 @@ msgid "Restart network to with current setup"
 msgstr ""
 
 msgid "Restart test"
-msgstr ""
-
-msgid "Restart your network connection and interfaces."
 msgstr ""
 
 msgid "Restarting..."
@@ -17207,6 +17195,9 @@ msgstr ""
 msgid "Service off-air"
 msgstr ""
 
+msgid "Service online"
+msgstr ""
+
 msgid "Service picons aspect ratio"
 msgstr ""
 
@@ -17322,9 +17313,6 @@ msgstr ""
 msgid "Set how long the second InfoBar stays visible. The second InfoBar also disappears when you press 'OK'."
 msgstr ""
 
-msgid "Set interface as the default Interface"
-msgstr ""
-
 msgid "Set limits"
 msgstr ""
 
@@ -17344,10 +17332,6 @@ msgid "Set the CutList Editor skip time interval for the '%s'/'%s' buttons."
 msgstr ""
 
 msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
-msgstr ""
-
-#, python-format
-msgid "Set the MAC address of your %s %s."
 msgstr ""
 
 msgid "Set the UP/DOWN button skip percentage for the SeekBar."
@@ -17485,6 +17469,9 @@ msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby bef
 msgstr ""
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
+msgstr ""
+
+msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr ""
 
 msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
@@ -19359,6 +19346,9 @@ msgstr ""
 msgid "Stopping Softcam"
 msgstr ""
 
+msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
+msgstr ""
+
 msgid "Storage / Disk Information"
 msgstr ""
 
@@ -20243,13 +20233,6 @@ msgstr ""
 
 msgid "The loopthrough setting is wrong."
 msgstr ""
-
-msgid ""
-"The network wizard extension is not installed!\n"
-"Please install it."
-msgstr ""
-"The network wizard extension is not installed!\n"
-"Please install it."
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr ""
@@ -21193,6 +21176,12 @@ msgstr ""
 msgid "Tries left:"
 msgstr ""
 
+msgid "Trim File System"
+msgstr ""
+
+msgid "Trim File System..."
+msgstr ""
+
 msgid "Trinidad and Tobago"
 msgstr ""
 
@@ -21313,6 +21302,12 @@ msgid "Tuning algorithm"
 msgstr ""
 
 msgid "Tunisia"
+msgstr ""
+
+msgid "Tunnel IPv4"
+msgstr ""
+
+msgid "Tunnel IPv6"
 msgstr ""
 
 msgid "Turbo"
@@ -21934,12 +21929,6 @@ msgid "Use the current selection and exit"
 msgstr ""
 
 msgid "Use the extended List"
-msgstr ""
-
-msgid "Use the network wizard to configure selected network adapter"
-msgstr ""
-
-msgid "Use the network wizard to configure your Network."
 msgstr ""
 
 msgid "Use the wizard to set up basic features"
@@ -23361,6 +23350,18 @@ msgstr ""
 msgid "Zap+Record next"
 msgstr ""
 
+msgid "ZeroTier Actions"
+msgstr ""
+
+msgid "ZeroTier version"
+msgstr ""
+
+msgid "ZeroTier-One"
+msgstr ""
+
+msgid "ZeroTier Settings"
+msgstr ""
+
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr ""
 
@@ -24011,6 +24012,13 @@ msgstr ""
 
 msgid "®"
 msgstr ""
+
+#~ msgid ""
+#~ "The network wizard extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "The network wizard extension is not installed!\n"
+#~ "Please install it."
 
 #~ msgid ""
 #~ "The DreamPlex plugin is not installed!\n"

@@ -1,14 +1,14 @@
 # Italian translations for OpenATV.
 # mapi68 <mapi68@gmail.com>, 2022.
-# Massimo Pissarello <mapi68@gmail.com>, 2022, 2023, 2024, 2025.
+# Massimo Pissarello <mapi68@gmail.com>, 2022, 2023, 2024, 2025, 2026.
 # Ivan Montemurro <anonm4d@gmail.com>, 2022.
 # formiano <formianodicastellone@hotmail.it>, 2025.
 msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-27 18:13+0000\n"
-"PO-Revision-Date: 2025-12-27 04:34+0000\n"
+"POT-Creation-Date: 2026-01-02 18:38+0000\n"
+"PO-Revision-Date: 2026-01-03 07:28+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -1299,9 +1299,6 @@ msgstr "(Mostra il menu opzionale DVD audio)"
 msgid "* = Restart required if this item is changed."
 msgstr "* = Riavvio se questo elemento viene modificato."
 
-msgid "* Only available if more than one interface is active."
-msgstr "* Disponibile solo se più di un'interfaccia è attiva."
-
 msgid "* current animation"
 msgstr "* animazione attuale"
 
@@ -1789,9 +1786,6 @@ msgstr "Attiva espansore"
 
 msgid "Activate HbbTV (RED button)"
 msgstr "Attiva HbbTV (tasto ROSSO)"
-
-msgid "Activate MAC address configuration"
-msgstr "Attiva configurazione dell'indirizzo MAC"
 
 msgid "Activate Picture in Picture"
 msgstr "Attiva Picture in Picture"
@@ -6368,9 +6362,6 @@ msgstr "PIP disabilitato.\n"
 msgid "Disabled or WPA/WPA2"
 msgstr "Disabilitato o WPA/WPA2"
 
-msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
-msgstr "Disabilita timeshift durante la registrazione (consigliato per le chiavette USB)."
-
 msgid "Disabling Chkroot failed!"
 msgstr "Disabilitazione di Chkroot non riuscita!"
 
@@ -6588,6 +6579,9 @@ msgstr ""
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
 msgstr "Vuoi davvero fermare ed eliminare il timer '%s'?"
+
+msgid "Do you really want to trim the file system?"
+msgstr "Vuoi davvero ottimizzare il file system?"
 
 #, python-format
 msgid "Do you want change '%s' access mode?"
@@ -7351,9 +7345,6 @@ msgstr "Abilitato"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Abilita funzione in modo che il destinatario possa decrittografare i flussi (se i dati ECM sono inclusi nel flusso ed è disponibile una scheda valida)."
 
-msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
-msgstr "Se impostato su 'Sì', gli stessi comandi verranno inviati alla TV per gli eventi di spegnimento che vengono inviati durante i normali eventi di standby."
-
 msgid "Encrypted: "
 msgstr "Crittografato:"
 
@@ -7492,6 +7483,9 @@ msgstr "Inserisci codice PIN"
 
 msgid "Enter text via an attached keyboard"
 msgstr "Inserisci testo tramite una tastiera collegata"
+
+msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
+msgstr "Inserisci ID di rete ZeroTier (16 caratteri)."
 
 msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
 msgstr "Inserisci la durata da aggiungere al buffer di streaming dopo un errore di streaming. Questo buffer aggiuntivo può aiutare a evitare ulteriori problemi di streaming dovuti alla mancanza di spazio nel buffer."
@@ -7990,9 +7984,6 @@ msgstr "Esci da EPG"
 msgid "Exit File Commander"
 msgstr "Esci da File Commander"
 
-msgid "Exit MAC address configuration"
-msgstr "Esci dalla configurazione del MAC-address"
-
 msgid "Exit Movie Selection"
 msgstr "Esci da Selezione registrazione"
 
@@ -8246,6 +8237,9 @@ msgstr "Configurazione ricevitore remoto fallback"
 msgid "Fallback Timer"
 msgstr "Timer ricevitore remoto fallback"
 
+msgid "Fallback Tuner Setup"
+msgstr "Impostazioni tuner di fallback"
+
 msgid "Fallback remote receiver"
 msgstr "Ricevitore remoto Fallback"
 
@@ -8266,9 +8260,6 @@ msgstr "Ricevitore remoto di fallback per DVB-C"
 
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Ricevitore remoto di fallback per DVB-T"
-
-msgid "Fallback Tuner Setup"
-msgstr "Impostazioni tuner di fallback"
 
 msgid "False"
 msgstr "Falso"
@@ -8537,9 +8528,6 @@ msgstr "Terminato"
 
 msgid "Finished configuring your network"
 msgstr "Configurazione di rete terminata"
-
-msgid "Finished restarting your network"
-msgstr "Riavvio della rete terminato"
 
 msgid "Finland"
 msgstr "Finlandia"
@@ -10283,6 +10271,15 @@ msgstr "Jersey"
 msgid "Job overview"
 msgstr "Vista attività"
 
+msgid "Join"
+msgstr "Unisciti"
+
+msgid "Join or leave the configured ZeroTier network"
+msgstr "Unisciti o esci dalla rete ZeroTier configurata"
+
+msgid "Joined"
+msgstr "Unito"
+
 msgid "Jordan"
 msgstr "Giordania"
 
@@ -10642,6 +10639,9 @@ msgstr "Lettonia"
 
 msgid "Latvian"
 msgstr "Lituano"
+
+msgid "Leave"
+msgstr "Lascia"
 
 msgid "Leave DVD player?"
 msgstr "Uscire dal Player DVD?"
@@ -11026,12 +11026,6 @@ msgstr "Lussemburghese / Letzburghese"
 
 msgid "M2k Packages"
 msgstr "Pacchetti M2k"
-
-msgid "MAC Address Actions"
-msgstr "Azioni indirizzo MAC"
-
-msgid "MAC Address Settings"
-msgstr "Impostazioni indirizzo MAC"
 
 msgid "MAC address"
 msgstr "Indirizzo MAC"
@@ -11552,14 +11546,8 @@ msgstr "Monta"
 msgid "Mount Manager"
 msgstr "Gestore montaggio"
 
-msgid "Mount Menu Actions"
-msgstr "Azioni menu montaggio"
-
 msgid "Mount Point"
 msgstr "Punto di montaggio"
-
-msgid "Mount Settings"
-msgstr "Impostazioni montaggio"
 
 msgid "Mount Setup"
 msgstr "Impostazioni montaggio"
@@ -12111,9 +12099,6 @@ msgstr "Registro di rete"
 msgid "Network Log Actions"
 msgstr "Azioni del registro di rete"
 
-msgid "Network MAC settings"
-msgstr "Configurazioni MAC di rete"
-
 msgid "Network Neighbourhood"
 msgstr "Cerca in risorse di rete vicine"
 
@@ -12163,11 +12148,17 @@ msgstr "Menu di rete"
 msgid "Network mounts"
 msgstr "Montaggi di rete"
 
+msgid "Network name"
+msgstr "Nome della rete"
+
 msgid "Network name (SSID)"
 msgstr "Nome rete (SSID)"
 
 msgid "Network scan"
 msgstr "Scansione rete"
+
+msgid "Network status"
+msgstr "Stato della rete"
 
 msgid "Network storage on"
 msgstr "Memoria di rete attivata"
@@ -12186,6 +12177,9 @@ msgstr ""
 "Procedura guidata di rete completata.\n"
 "\n"
 "Premi OK per continuare."
+
+msgid "Network-ID"
+msgstr "ID di rete"
 
 msgid "Network:"
 msgstr "Rete:"
@@ -12669,6 +12663,9 @@ msgstr ""
 "Dimensione file: %s MB\n"
 "Spazio libero: %s MB\n"
 "Percorso: %s"
+
+msgid "Not joined. Press Yellow to join."
+msgstr "Non sei unito. Premi Giallo per unirti."
 
 msgid "Not required"
 msgstr "Non richiesto"
@@ -13913,9 +13910,6 @@ msgstr "Attendi mentre il plugin viene aggiornato."
 msgid "Please wait while we check your installed plugins..."
 msgstr "Attendi mentre controllo i plugin installati..."
 
-msgid "Please wait while we configure your network..."
-msgstr "Attendi mentre configuriamo la rete..."
-
 msgid "Please wait while we prepare your network interfaces..."
 msgstr "Attendi mentre prepariamo le interfacce di rete..."
 
@@ -14246,9 +14240,6 @@ msgstr "Premi OK per selezionare i satelliti"
 msgid "Press OK to select/deselect a CAId."
 msgstr "Premi OK per selezionare/deselezionare un CAId."
 
-msgid "Press OK to set the MAC address."
-msgstr "Premi OK per impostare l'indirizzo MAC."
-
 msgid "Press OK to start the backup now"
 msgstr "Premi OK per avviare subito il backup"
 
@@ -14280,9 +14271,6 @@ msgstr "Premi i pulsanti SU/GIÙ per selezionare uno slot, quindi premi OK o VER
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Premendo questo tasto si simula una pressione lunga del tasto premuto successivamente (questo sovrascrive ogni altra azione assegnata al tasto)."
-
-msgid "Press yellow to set this interface as the default interface."
-msgstr "GIALLO -> per impostare l'interfaccia come predefinita."
 
 msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
 msgstr "Premendo il tasto antipanico si passerà a questo numero di canale nel primo bouquet."
@@ -14922,6 +14910,9 @@ msgstr ""
 msgid "Refresh"
 msgstr "Aggiorna"
 
+msgid "Refresh ZeroTier status information"
+msgstr "Aggiorna informazioni sullo stato di ZeroTier"
+
 msgid "Refresh every x hours"
 msgstr "Aggiorna ogni (in ore)"
 
@@ -15363,9 +15354,6 @@ msgstr "Riavvia la rete con l'attuale configurazione"
 
 msgid "Restart test"
 msgstr "Ripetere il test"
-
-msgid "Restart your network connection and interfaces."
-msgstr "Riavvia le connessioni di rete e le interfacce."
 
 msgid "Restarting..."
 msgstr "Riavvio..."
@@ -17379,6 +17367,9 @@ msgstr "Numero del servizio, Picon e Nome del servizio"
 msgid "Service off-air"
 msgstr "Servizio off-air"
 
+msgid "Service online"
+msgstr "Servizio online"
+
 msgid "Service picons aspect ratio"
 msgstr "Proporzioni delle icone di servizio"
 
@@ -17494,9 +17485,6 @@ msgstr "Imposta fps per sottotitoli esterni"
 msgid "Set how long the second InfoBar stays visible. The second InfoBar also disappears when you press 'OK'."
 msgstr "Imposta orario per nascondere la seconda barra informazioni. La barra scompare alla pressione del tasto OK."
 
-msgid "Set interface as the default Interface"
-msgstr "Imposta interfaccia come predefinita"
-
 msgid "Set limits"
 msgstr "Imposta limiti"
 
@@ -17517,10 +17505,6 @@ msgstr "Imposta intervallo tempo di salto dell'editor CutList per i tasti '%s'/'
 
 msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
 msgstr "Imposta percentuale di salto del tasto SINISTRA/DESTRA per la Barra di ricerca."
-
-#, python-format
-msgid "Set the MAC address of your %s %s."
-msgstr "Imposta MAC-address del %s %s."
 
 msgid "Set the UP/DOWN button skip percentage for the SeekBar."
 msgstr "Imposta percentuale di salto del tasto SU/GIÙ per la Barra di ricerca."
@@ -17661,6 +17645,9 @@ msgstr "Imposta su 'Abilitato' per decodificare le registrazioni criptate in cod
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
 msgstr "Imposta su 'Abilitato' per decodificare le registrazioni criptate in coda in Standby."
+
+msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
+msgstr "Se impostato su 'Sì', gli stessi comandi verranno inviati alla TV per gli eventi di spegnimento che vengono inviati durante i normali eventi di standby."
 
 msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
 msgstr "Imposta su 'Sì' per abilitare la registrazione automatica del buffer timeshift in background."
@@ -19539,6 +19526,9 @@ msgstr "Fermato"
 msgid "Stopping Softcam"
 msgstr "Ferma softcam"
 
+msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
+msgstr "Disabilita timeshift durante la registrazione (consigliato per le chiavette USB)."
+
 msgid "Storage / Disk Information"
 msgstr "Informazioni su archiviazione e disco"
 
@@ -20462,13 +20452,6 @@ msgstr "L'altezza dell'immagine. Quella di input sarà ridimensionata per raggiu
 
 msgid "The loopthrough setting is wrong."
 msgstr "Configurazione 'in cascata da' errata."
-
-msgid ""
-"The network wizard extension is not installed!\n"
-"Please install it."
-msgstr ""
-"L'estensione NetworkWizard non è installata!\n"
-"Provvedi a installarla."
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr "La cartella dei picon esiste già e deve essere rimossa. Vuoi procedere?"
@@ -21442,6 +21425,12 @@ msgstr "Ho provato a disabilitare PiP, improvvisamente non ho trovato barra info
 msgid "Tries left:"
 msgstr "Tentativi rimasti:"
 
+msgid "Trim File System"
+msgstr "Ottimizza file system"
+
+msgid "Trim File System..."
+msgstr "Ottimizzazione file system in corso..."
+
 msgid "Trinidad and Tobago"
 msgstr "Trinidad e Tobago"
 
@@ -21563,6 +21552,12 @@ msgstr "Algoritmo di sintonizzazione"
 
 msgid "Tunisia"
 msgstr "Tunisia"
+
+msgid "Tunnel IPv4"
+msgstr "Tunnel IPv4"
+
+msgid "Tunnel IPv6"
+msgstr "Tunnel IPv6"
 
 msgid "Turbo"
 msgstr "Turbo"
@@ -22191,12 +22186,6 @@ msgstr "Usa la selezione attuale ed esci"
 
 msgid "Use the extended List"
 msgstr "Usa l'elenco esteso"
-
-msgid "Use the network wizard to configure selected network adapter"
-msgstr "Usa NetworkWizard per configurare l'adattatore di rete selezionato"
-
-msgid "Use the network wizard to configure your Network."
-msgstr "Usa la procedura guidata di rete per configurare la rete."
 
 msgid "Use the wizard to set up basic features"
 msgstr "Usa la procedura guidata per impostare le funzioni di base"
@@ -23670,6 +23659,18 @@ msgstr "Zap su"
 msgid "Zap+Record next"
 msgstr "Zap+Registra successivo"
 
+msgid "ZeroTier Actions"
+msgstr "Azioni ZeroTier"
+
+msgid "ZeroTier version"
+msgstr "Versione ZeroTier"
+
+msgid "ZeroTier-One"
+msgstr "ZeroTier-One"
+
+msgid "ZeroTier Settings"
+msgstr "Impostazioni ZeroTier"
+
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7 vecchio modello"
 
@@ -24324,6 +24325,65 @@ msgstr "sì (mantieni feed)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "* Only available if more than one interface is active."
+#~ msgstr "* Disponibile solo se più di un'interfaccia è attiva."
+
+#~ msgid "Activate MAC address configuration"
+#~ msgstr "Attiva configurazione dell'indirizzo MAC"
+
+#~ msgid "Exit MAC address configuration"
+#~ msgstr "Esci dalla configurazione del MAC-address"
+
+#~ msgid "Finished restarting your network"
+#~ msgstr "Riavvio della rete terminato"
+
+#~ msgid "MAC Address Actions"
+#~ msgstr "Azioni indirizzo MAC"
+
+#~ msgid "MAC Address Settings"
+#~ msgstr "Impostazioni indirizzo MAC"
+
+#~ msgid "Mount Menu Actions"
+#~ msgstr "Azioni menu montaggio"
+
+#~ msgid "Mount Settings"
+#~ msgstr "Impostazioni montaggio"
+
+#~ msgid "Network MAC settings"
+#~ msgstr "Configurazioni MAC di rete"
+
+#~ msgid "Please wait while we configure your network..."
+#~ msgstr "Attendi mentre configuriamo la rete..."
+
+#~ msgid "Press OK to set the MAC address."
+#~ msgstr "Premi OK per impostare l'indirizzo MAC."
+
+#~ msgid "Press yellow to set this interface as the default interface."
+#~ msgstr "GIALLO -> per impostare l'interfaccia come predefinita."
+
+#~ msgid "Restart your network connection and interfaces."
+#~ msgstr "Riavvia le connessioni di rete e le interfacce."
+
+#~ msgid "Set interface as the default Interface"
+#~ msgstr "Imposta interfaccia come predefinita"
+
+#, python-format
+#~ msgid "Set the MAC address of your %s %s."
+#~ msgstr "Imposta MAC-address del %s %s."
+
+#~ msgid ""
+#~ "The network wizard extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "L'estensione NetworkWizard non è installata!\n"
+#~ "Provvedi a installarla."
+
+#~ msgid "Use the network wizard to configure selected network adapter"
+#~ msgstr "Usa NetworkWizard per configurare l'adattatore di rete selezionato"
+
+#~ msgid "Use the network wizard to configure your Network."
+#~ msgstr "Usa la procedura guidata di rete per configurare la rete."
 
 #~ msgid "Monitoring UI password"
 #~ msgstr "Password interfaccia utente di monitoraggio"

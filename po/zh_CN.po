@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-27 18:13+0000\n"
+"POT-Creation-Date: 2026-01-02 18:38+0000\n"
 "PO-Revision-Date: 2025-12-28 11:50+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -1299,9 +1299,6 @@ msgstr "（显示可选 DVD 音频菜单）"
 msgid "* = Restart required if this item is changed."
 msgstr "* = 如果更改此项，则需要重新启动。"
 
-msgid "* Only available if more than one interface is active."
-msgstr "* 仅当有多个网卡处于活动状态时可用。"
-
 msgid "* current animation"
 msgstr "*当前动画"
 
@@ -1789,9 +1786,6 @@ msgstr "激活扩展器"
 
 msgid "Activate HbbTV (RED button)"
 msgstr "激活HbbTV（红键）"
-
-msgid "Activate MAC address configuration"
-msgstr "激活 MAC 地址配置"
 
 msgid "Activate Picture in Picture"
 msgstr "激活画中画"
@@ -6368,9 +6362,6 @@ msgstr "已禁用画中画。\n"
 msgid "Disabled or WPA/WPA2"
 msgstr "禁用或 WPA/WPA2"
 
-msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
-msgstr "录制期间禁用时光移功能（建议用于 U 盘设备）。"
-
 msgid "Disabling Chkroot failed!"
 msgstr "禁用 Chkroot 失败！"
 
@@ -6588,6 +6579,9 @@ msgstr ""
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
 msgstr "真的要停止并删除定时器“%s”吗？"
+
+msgid "Do you really want to trim the file system?"
+msgstr ""
 
 #, python-format
 msgid "Do you want change '%s' access mode?"
@@ -7351,9 +7345,6 @@ msgstr "已启用"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "启用功能，以便接收机可以解密流（如果 ECM（授权控制信息） 数据包含在流中，并且有效的卡可用）。"
 
-msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
-msgstr "如果设置为“是”，那么对于深度待机事件，将向电视发送相同的命令，就像在常规待机事件期间发送的一样。"
-
 msgid "Encrypted: "
 msgstr "加密方式："
 
@@ -7492,6 +7483,9 @@ msgstr "输入 PIN 码"
 
 msgid "Enter text via an attached keyboard"
 msgstr "通过连接的键盘输入文本"
+
+msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
+msgstr ""
 
 msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
 msgstr "输入流媒体错误后要添加到流媒体缓冲区的持续时间。这个额外的缓冲区有助于避免因缓冲区空间不足而导致的进一步流媒体问题。"
@@ -7990,9 +7984,6 @@ msgstr "退出 EPG"
 msgid "Exit File Commander"
 msgstr "退出文件指挥官"
 
-msgid "Exit MAC address configuration"
-msgstr "退出 MAC 地址配置"
-
 msgid "Exit Movie Selection"
 msgstr "退出影片列表"
 
@@ -8246,6 +8237,9 @@ msgstr "备用远程接收机设置"
 msgid "Fallback Timer"
 msgstr "备用定时器"
 
+msgid "Fallback Tuner Setup"
+msgstr "备用调谐器设置"
+
 msgid "Fallback remote receiver"
 msgstr "备用远程接收机"
 
@@ -8266,9 +8260,6 @@ msgstr "备用远程 DVB-C 接收机"
 
 msgid "Fallback remote receiver for DVB-T"
 msgstr "备用远程 DVB-T 接收机"
-
-msgid "Fallback Tuner Setup"
-msgstr "备用调谐器设置"
 
 msgid "False"
 msgstr "错"
@@ -8537,9 +8528,6 @@ msgstr "已完成"
 
 msgid "Finished configuring your network"
 msgstr "配置网络完成"
-
-msgid "Finished restarting your network"
-msgstr "重启网络完成"
 
 msgid "Finland"
 msgstr "芬兰"
@@ -10283,6 +10271,15 @@ msgstr "泽西岛"
 msgid "Job overview"
 msgstr "作业概述"
 
+msgid "Join"
+msgstr ""
+
+msgid "Join or leave the configured ZeroTier network"
+msgstr ""
+
+msgid "Joined"
+msgstr ""
+
 msgid "Jordan"
 msgstr "约旦"
 
@@ -10642,6 +10639,9 @@ msgstr "拉脱维亚"
 
 msgid "Latvian"
 msgstr "拉脱维亚语"
+
+msgid "Leave"
+msgstr ""
 
 msgid "Leave DVD player?"
 msgstr "退出 DVD 播放器？"
@@ -11026,12 +11026,6 @@ msgstr "卢森堡语/勒兹伯格语"
 
 msgid "M2k Packages"
 msgstr "M2k 软件包"
-
-msgid "MAC Address Actions"
-msgstr "MAC 地址操作"
-
-msgid "MAC Address Settings"
-msgstr "MAC 地址设置"
 
 msgid "MAC address"
 msgstr "MAC 地址"
@@ -11552,14 +11546,8 @@ msgstr "挂载"
 msgid "Mount Manager"
 msgstr "挂载管理器"
 
-msgid "Mount Menu Actions"
-msgstr "挂载菜单操作"
-
 msgid "Mount Point"
 msgstr "挂载点"
-
-msgid "Mount Settings"
-msgstr "挂载设置"
 
 msgid "Mount Setup"
 msgstr "挂载设置"
@@ -12111,9 +12099,6 @@ msgstr "网络日志"
 msgid "Network Log Actions"
 msgstr "网络日志操作"
 
-msgid "Network MAC settings"
-msgstr "网络 MAC 设置"
-
 msgid "Network Neighbourhood"
 msgstr "网络邻居"
 
@@ -12163,11 +12148,17 @@ msgstr "网络菜单"
 msgid "Network mounts"
 msgstr "网络挂载"
 
+msgid "Network name"
+msgstr ""
+
 msgid "Network name (SSID)"
 msgstr "网络名称 （SSID）"
 
 msgid "Network scan"
 msgstr "网络扫描"
+
+msgid "Network status"
+msgstr ""
 
 msgid "Network storage on"
 msgstr "网络存储 -"
@@ -12186,6 +12177,9 @@ msgstr ""
 "网络向导完成。\n"
 "\n"
 "按“确定”继续。"
+
+msgid "Network-ID"
+msgstr ""
 
 msgid "Network:"
 msgstr "网络："
@@ -12669,6 +12663,9 @@ msgstr ""
 "文件大小： %sMB\n"
 "剩余空间：%sMB\n"
 "路径： %s"
+
+msgid "Not joined. Press Yellow to join."
+msgstr ""
 
 msgid "Not required"
 msgstr "不需要"
@@ -13913,9 +13910,6 @@ msgstr "正在更新插件，请稍候。"
 msgid "Please wait while we check your installed plugins..."
 msgstr "正在检测已安装的插件，请稍等..."
 
-msgid "Please wait while we configure your network..."
-msgstr "配置网络时请稍等..."
-
 msgid "Please wait while we prepare your network interfaces..."
 msgstr "正在准备网络接口，请稍等..."
 
@@ -14246,9 +14240,6 @@ msgstr "请按 OK 键来选择卫星"
 msgid "Press OK to select/deselect a CAId."
 msgstr "请按 OK 键来选择/反选 CAId。"
 
-msgid "Press OK to set the MAC address."
-msgstr "请按 OK 键来设置 MAC 地址。"
-
 msgid "Press OK to start the backup now"
 msgstr "按“确定”立即开始备份"
 
@@ -14280,9 +14271,6 @@ msgstr "使用 上/下 键选择槽位，按 OK 或绿键重启进入对应系�
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "按下此按钮以模拟之后按下的按钮的长按操作（此操作还会覆盖分配给模拟按钮的任何其他功能）。"
-
-msgid "Press yellow to set this interface as the default interface."
-msgstr "请按黄键来设置这个界面为默认界面。"
 
 msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
 msgstr "按下紧急键，可将频道号切换为首个频道分组中的频道号。"
@@ -14922,6 +14910,9 @@ msgstr ""
 msgid "Refresh"
 msgstr "刷新"
 
+msgid "Refresh ZeroTier status information"
+msgstr ""
+
 msgid "Refresh every x hours"
 msgstr "刷新每（小时）"
 
@@ -15363,9 +15354,6 @@ msgstr "用当前设置重启网络"
 
 msgid "Restart test"
 msgstr "重启测试"
-
-msgid "Restart your network connection and interfaces."
-msgstr "重新启动网络连接和接口。"
 
 msgid "Restarting..."
 msgstr "正在重启..."
@@ -17379,6 +17367,9 @@ msgstr "频道编号，频道图标和频道名称"
 msgid "Service off-air"
 msgstr "频道停播"
 
+msgid "Service online"
+msgstr ""
+
 msgid "Service picons aspect ratio"
 msgstr "频道图标宽高比"
 
@@ -17494,9 +17485,6 @@ msgstr "设置外挂字幕的帧数"
 msgid "Set how long the second InfoBar stays visible. The second InfoBar also disappears when you press 'OK'."
 msgstr "设置隐藏第二个信息栏的时间。 按下“确定”后，该栏也会消失。"
 
-msgid "Set interface as the default Interface"
-msgstr "设置界面为默认界面"
-
 msgid "Set limits"
 msgstr "设置限制"
 
@@ -17517,10 +17505,6 @@ msgstr "设置‘%s’/‘%s’按钮的剪辑列表跳过时间间隔。"
 
 msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
 msgstr "设置进度条的左/右按键跳过百分比。"
-
-#, python-format
-msgid "Set the MAC address of your %s %s."
-msgstr "设置 %s %s 的 MAC 地址。"
 
 msgid "Set the UP/DOWN button skip percentage for the SeekBar."
 msgstr "设置进度条的上/下按键跳过百分比。"
@@ -17661,6 +17645,9 @@ msgstr "设为‘启用’可在关机前对待机模式下已排队的加扰录
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
 msgstr "设为'启用'，可在待机模式下对已排队的加扰内容执行解扰。"
+
+msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
+msgstr "如果设置为“是”，那么对于深度待机事件，将向电视发送相同的命令，就像在常规待机事件期间发送的一样。"
 
 msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
 msgstr "设置为“是”，以启用后台分时缓冲区的自动录制。"
@@ -19539,6 +19526,9 @@ msgstr "已停止"
 msgid "Stopping Softcam"
 msgstr "正在停止 Softcam"
 
+msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
+msgstr "录制期间禁用时光移功能（建议用于 U 盘设备）。"
+
 msgid "Storage / Disk Information"
 msgstr "存储 / 磁盘信息"
 
@@ -20462,13 +20452,6 @@ msgstr "图片的高度。 输入将被缩放以匹配此值。"
 
 msgid "The loopthrough setting is wrong."
 msgstr "环通设置错误。"
-
-msgid ""
-"The network wizard extension is not installed!\n"
-"Please install it."
-msgstr ""
-"网络向导扩展没有安装！\n"
-"请安装。"
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr "频道图标目录已存在，必须删除。是否要继续？"
@@ -21442,6 +21425,12 @@ msgstr "尝试禁用画中画，但没有找到信息栏实例！\n"
 msgid "Tries left:"
 msgstr "剩余尝试次数："
 
+msgid "Trim File System"
+msgstr ""
+
+msgid "Trim File System..."
+msgstr ""
+
 msgid "Trinidad and Tobago"
 msgstr "特立尼达和多巴哥"
 
@@ -21563,6 +21552,12 @@ msgstr "调整算法"
 
 msgid "Tunisia"
 msgstr "突尼斯"
+
+msgid "Tunnel IPv4"
+msgstr ""
+
+msgid "Tunnel IPv6"
+msgstr ""
 
 msgid "Turbo"
 msgstr "Turbo"
@@ -22191,12 +22186,6 @@ msgstr "使用当前选择并退出"
 
 msgid "Use the extended List"
 msgstr "使用扩展列表"
-
-msgid "Use the network wizard to configure selected network adapter"
-msgstr "使用网络向导配置选择的网络适配器"
-
-msgid "Use the network wizard to configure your Network."
-msgstr "使用网络向导配置网络。"
 
 msgid "Use the wizard to set up basic features"
 msgstr "使用向导设置基本功能"
@@ -23670,6 +23659,18 @@ msgstr "向上切换"
 msgid "Zap+Record next"
 msgstr "换台 + 录制下一个"
 
+msgid "ZeroTier Actions"
+msgstr ""
+
+msgid "ZeroTier version"
+msgstr ""
+
+msgid "ZeroTier-One"
+msgstr ""
+
+msgid "ZeroTier Settings"
+msgstr ""
+
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7旧型号"
 
@@ -24324,6 +24325,65 @@ msgstr "是（保留订阅源）"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "* Only available if more than one interface is active."
+#~ msgstr "* 仅当有多个网卡处于活动状态时可用。"
+
+#~ msgid "Activate MAC address configuration"
+#~ msgstr "激活 MAC 地址配置"
+
+#~ msgid "Exit MAC address configuration"
+#~ msgstr "退出 MAC 地址配置"
+
+#~ msgid "Finished restarting your network"
+#~ msgstr "重启网络完成"
+
+#~ msgid "MAC Address Actions"
+#~ msgstr "MAC 地址操作"
+
+#~ msgid "MAC Address Settings"
+#~ msgstr "MAC 地址设置"
+
+#~ msgid "Mount Menu Actions"
+#~ msgstr "挂载菜单操作"
+
+#~ msgid "Mount Settings"
+#~ msgstr "挂载设置"
+
+#~ msgid "Network MAC settings"
+#~ msgstr "网络 MAC 设置"
+
+#~ msgid "Please wait while we configure your network..."
+#~ msgstr "配置网络时请稍等..."
+
+#~ msgid "Press OK to set the MAC address."
+#~ msgstr "请按 OK 键来设置 MAC 地址。"
+
+#~ msgid "Press yellow to set this interface as the default interface."
+#~ msgstr "请按黄键来设置这个界面为默认界面。"
+
+#~ msgid "Restart your network connection and interfaces."
+#~ msgstr "重新启动网络连接和接口。"
+
+#~ msgid "Set interface as the default Interface"
+#~ msgstr "设置界面为默认界面"
+
+#, python-format
+#~ msgid "Set the MAC address of your %s %s."
+#~ msgstr "设置 %s %s 的 MAC 地址。"
+
+#~ msgid ""
+#~ "The network wizard extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "网络向导扩展没有安装！\n"
+#~ "请安装。"
+
+#~ msgid "Use the network wizard to configure selected network adapter"
+#~ msgstr "使用网络向导配置选择的网络适配器"
+
+#~ msgid "Use the network wizard to configure your Network."
+#~ msgstr "使用网络向导配置网络。"
 
 #~ msgid "white"
 #~ msgstr "白色"

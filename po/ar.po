@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-27 18:13+0000\n"
+"POT-Creation-Date: 2026-01-02 18:38+0000\n"
 "PO-Revision-Date: 2025-12-04 11:00+0000\n"
 "Last-Translator: Abdulelah Aqeil <dr.aqeil@gmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ar/>\n"
@@ -1460,9 +1460,6 @@ msgstr "(عرض قائمة صوت ديفيدي إختياريه)"
 msgid "* = Restart required if this item is changed."
 msgstr ""
 
-msgid "* Only available if more than one interface is active."
-msgstr "* متوفر فقط إذا أكثر من واجهة نشطة."
-
 msgid "* current animation"
 msgstr ""
 
@@ -1977,10 +1974,6 @@ msgstr ""
 
 msgid "Activate HbbTV (RED button)"
 msgstr ""
-
-#, fuzzy
-msgid "Activate MAC address configuration"
-msgstr "تنشيط التكوين الحالى"
 
 #
 msgid "Activate Picture in Picture"
@@ -6731,9 +6724,6 @@ msgstr ""
 msgid "Disabled or WPA/WPA2"
 msgstr ""
 
-msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
-msgstr ""
-
 msgid "Disabling Chkroot failed!"
 msgstr ""
 
@@ -6939,6 +6929,9 @@ msgstr ""
 
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
+msgstr ""
+
+msgid "Do you really want to trim the file system?"
 msgstr ""
 
 #, python-format
@@ -7733,9 +7726,6 @@ msgstr "تمكين"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr ""
 
-msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
-msgstr ""
-
 #
 msgid "Encrypted: "
 msgstr "مشفر: "
@@ -7889,6 +7879,9 @@ msgid "Enter pin code"
 msgstr "أدخل الرقم السري"
 
 msgid "Enter text via an attached keyboard"
+msgstr ""
+
+msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
 msgstr ""
 
 msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
@@ -8373,10 +8366,6 @@ msgstr "خروج من دليل البرامج الإلكترونية"
 msgid "Exit File Commander"
 msgstr ""
 
-#, fuzzy
-msgid "Exit MAC address configuration"
-msgstr "الخروج من تكوين أسم الخادم"
-
 msgid "Exit Movie Selection"
 msgstr "الخروج من قائمة الأفلام"
 
@@ -8636,6 +8625,9 @@ msgstr ""
 msgid "Fallback Timer"
 msgstr "ضبط مؤالف التراجع"
 
+msgid "Fallback Tuner Setup"
+msgstr "ضبط مؤالف التراجع"
+
 #, fuzzy
 msgid "Fallback remote receiver"
 msgstr "الريموت الإحتياطي من خلال الرابط على الرسيفر"
@@ -8663,9 +8655,6 @@ msgstr "الريموت الإحتياطي من خلال الرابط على ال
 #, fuzzy
 msgid "Fallback remote receiver for DVB-T"
 msgstr "الريموت الإحتياطي من خلال الرابط على الرسيفر"
-
-msgid "Fallback Tuner Setup"
-msgstr "ضبط مؤالف التراجع"
 
 msgid "False"
 msgstr ""
@@ -8940,9 +8929,6 @@ msgstr "تم الإنتهاء"
 
 msgid "Finished configuring your network"
 msgstr "تم الإنتهاء من تكوين الشبكة الخاصة بك"
-
-msgid "Finished restarting your network"
-msgstr "تم النتهاء من إعادة تشغيل الشبكه"
 
 msgid "Finland"
 msgstr "فنلندا"
@@ -10769,6 +10755,15 @@ msgstr "جيرسي"
 msgid "Job overview"
 msgstr ""
 
+msgid "Join"
+msgstr ""
+
+msgid "Join or leave the configured ZeroTier network"
+msgstr ""
+
+msgid "Joined"
+msgstr ""
+
 msgid "Jordan"
 msgstr "الأردن"
 
@@ -11144,6 +11139,9 @@ msgstr "لاتفيا"
 #
 msgid "Latvian"
 msgstr "لاتفية"
+
+msgid "Leave"
+msgstr ""
 
 #
 msgid "Leave DVD player?"
@@ -11559,14 +11557,6 @@ msgstr ""
 
 msgid "M2k Packages"
 msgstr ""
-
-msgid "MAC Address Actions"
-msgstr ""
-
-#
-#, fuzzy
-msgid "MAC Address Settings"
-msgstr "إعدادات المحول"
 
 msgid "MAC address"
 msgstr ""
@@ -12111,13 +12101,7 @@ msgstr "إرتباط"
 msgid "Mount Manager"
 msgstr ""
 
-msgid "Mount Menu Actions"
-msgstr ""
-
 msgid "Mount Point"
-msgstr ""
-
-msgid "Mount Settings"
 msgstr ""
 
 msgid "Mount Setup"
@@ -12700,11 +12684,6 @@ msgstr ""
 msgid "Network Log Actions"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Network MAC settings"
-msgstr "تفعيل إعدادات الشبكه"
-
 msgid "Network Neighbourhood"
 msgstr ""
 
@@ -12755,11 +12734,17 @@ msgstr ""
 msgid "Network mounts"
 msgstr "أختبار الشبكه"
 
+msgid "Network name"
+msgstr ""
+
 msgid "Network name (SSID)"
 msgstr "أسم الشبكة (معرِّف ضبط الخدمة)"
 
 msgid "Network scan"
 msgstr "بحث عن الشبكة"
+
+msgid "Network status"
+msgstr ""
 
 msgid "Network storage on"
 msgstr ""
@@ -12774,6 +12759,9 @@ msgid ""
 "Network wizard completed.\n"
 "\n"
 "Press OK to continue."
+msgstr ""
+
+msgid "Network-ID"
 msgstr ""
 
 msgid "Network:"
@@ -13293,6 +13281,9 @@ msgid ""
 "Filesize: %sMB\n"
 "Free Space: %sMB\n"
 "Path: %s"
+msgstr ""
+
+msgid "Not joined. Press Yellow to join."
 msgstr ""
 
 msgid "Not required"
@@ -14612,9 +14603,6 @@ msgstr ""
 msgid "Please wait while we check your installed plugins..."
 msgstr ""
 
-msgid "Please wait while we configure your network..."
-msgstr "من فضلك أنتظر جاري تكوين إتصال الشبكة الخاصة بك..."
-
 msgid "Please wait while we prepare your network interfaces..."
 msgstr "من فضلك أنتظر جاري تخضير واجهة الشبكة..."
 
@@ -14968,10 +14956,6 @@ msgstr "أضغط على مفتاح موافق لتحديد الاقمار الص
 msgid "Press OK to select/deselect a CAId."
 msgstr "إضغط موافق تحديد/إلغاء الكايد."
 
-#, fuzzy
-msgid "Press OK to set the MAC address."
-msgstr "أضغط موافق لتحرير الاعدادات"
-
 msgid "Press OK to start the backup now"
 msgstr ""
 
@@ -15003,9 +14987,6 @@ msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reb
 msgstr ""
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
-msgstr ""
-
-msgid "Press yellow to set this interface as the default interface."
 msgstr ""
 
 msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
@@ -15680,6 +15661,9 @@ msgstr ""
 msgid "Refresh"
 msgstr ""
 
+msgid "Refresh ZeroTier status information"
+msgstr ""
+
 msgid "Refresh every x hours"
 msgstr ""
 
@@ -16138,9 +16122,6 @@ msgstr ""
 
 msgid "Restart test"
 msgstr "إعادة الاختبار"
-
-msgid "Restart your network connection and interfaces."
-msgstr "إعادة تشغيل إتصال الشبكة والواجهة."
 
 msgid "Restarting..."
 msgstr ""
@@ -18200,6 +18181,9 @@ msgstr ""
 msgid "Service off-air"
 msgstr "القناة خارج البث"
 
+msgid "Service online"
+msgstr ""
+
 msgid "Service picons aspect ratio"
 msgstr ""
 
@@ -18321,9 +18305,6 @@ msgstr "ضبط معدل الإطارات في الثانية لترجمة الو
 msgid "Set how long the second InfoBar stays visible. The second InfoBar also disappears when you press 'OK'."
 msgstr ""
 
-msgid "Set interface as the default Interface"
-msgstr ""
-
 #
 msgid "Set limits"
 msgstr "ضبط الحدود"
@@ -18345,11 +18326,6 @@ msgstr ""
 
 msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
 msgstr ""
-
-#
-#, fuzzy, python-format
-msgid "Set the MAC address of your %s %s."
-msgstr "تحرير تهيئة اسم الخادم للدريم بوكس. "
 
 msgid "Set the UP/DOWN button skip percentage for the SeekBar."
 msgstr ""
@@ -18486,6 +18462,9 @@ msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby bef
 msgstr ""
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
+msgstr ""
+
+msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr ""
 
 msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
@@ -20472,6 +20451,9 @@ msgstr "توقفت"
 msgid "Stopping Softcam"
 msgstr ""
 
+msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
+msgstr ""
+
 msgid "Storage / Disk Information"
 msgstr "معلومات وحدة التخزين / القرص"
 
@@ -21388,13 +21370,6 @@ msgstr ""
 
 msgid "The loopthrough setting is wrong."
 msgstr ""
-
-msgid ""
-"The network wizard extension is not installed!\n"
-"Please install it."
-msgstr ""
-"لم يتم تثبيت ملحقات معالج الشبكة!\n"
-"الرجاء منك تثبيتها."
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr ""
@@ -22407,6 +22382,12 @@ msgstr ""
 msgid "Tries left:"
 msgstr "يحاول المتبقية:"
 
+msgid "Trim File System"
+msgstr ""
+
+msgid "Trim File System..."
+msgstr ""
+
 msgid "Trinidad and Tobago"
 msgstr "ترينداد وتوباغو"
 
@@ -22540,6 +22521,12 @@ msgstr ""
 
 msgid "Tunisia"
 msgstr "تونس"
+
+msgid "Tunnel IPv4"
+msgstr ""
+
+msgid "Tunnel IPv6"
+msgstr ""
 
 msgid "Turbo"
 msgstr ""
@@ -23181,12 +23168,6 @@ msgid "Use the current selection and exit"
 msgstr ""
 
 msgid "Use the extended List"
-msgstr ""
-
-msgid "Use the network wizard to configure selected network adapter"
-msgstr "استخدام معالج شبكه الاتصال لتكوين محول شبكه الاتصال المحدد"
-
-msgid "Use the network wizard to configure your Network."
 msgstr ""
 
 msgid "Use the wizard to set up basic features"
@@ -24661,6 +24642,18 @@ msgstr "إنتقل للأعلى"
 msgid "Zap+Record next"
 msgstr "تسجيل"
 
+msgid "ZeroTier Actions"
+msgstr ""
+
+msgid "ZeroTier version"
+msgstr ""
+
+msgid "ZeroTier-One"
+msgstr ""
+
+msgid "ZeroTier Settings"
+msgstr ""
+
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr ""
 
@@ -25356,6 +25349,55 @@ msgstr "نعم (الاحتفاظ بها)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "* Only available if more than one interface is active."
+#~ msgstr "* متوفر فقط إذا أكثر من واجهة نشطة."
+
+#, fuzzy
+#~ msgid "Activate MAC address configuration"
+#~ msgstr "تنشيط التكوين الحالى"
+
+#, fuzzy
+#~ msgid "Exit MAC address configuration"
+#~ msgstr "الخروج من تكوين أسم الخادم"
+
+#~ msgid "Finished restarting your network"
+#~ msgstr "تم النتهاء من إعادة تشغيل الشبكه"
+
+#
+#, fuzzy
+#~ msgid "MAC Address Settings"
+#~ msgstr "إعدادات المحول"
+
+#
+#, fuzzy
+#~ msgid "Network MAC settings"
+#~ msgstr "تفعيل إعدادات الشبكه"
+
+#~ msgid "Please wait while we configure your network..."
+#~ msgstr "من فضلك أنتظر جاري تكوين إتصال الشبكة الخاصة بك..."
+
+#, fuzzy
+#~ msgid "Press OK to set the MAC address."
+#~ msgstr "أضغط موافق لتحرير الاعدادات"
+
+#~ msgid "Restart your network connection and interfaces."
+#~ msgstr "إعادة تشغيل إتصال الشبكة والواجهة."
+
+#
+#, fuzzy, python-format
+#~ msgid "Set the MAC address of your %s %s."
+#~ msgstr "تحرير تهيئة اسم الخادم للدريم بوكس. "
+
+#~ msgid ""
+#~ "The network wizard extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "لم يتم تثبيت ملحقات معالج الشبكة!\n"
+#~ "الرجاء منك تثبيتها."
+
+#~ msgid "Use the network wizard to configure selected network adapter"
+#~ msgstr "استخدام معالج شبكه الاتصال لتكوين محول شبكه الاتصال المحدد"
 
 #~ msgid "movie/drama (general)"
 #~ msgstr "فيلم/دراما (عام)"

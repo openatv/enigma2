@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-27 18:13+0000\n"
+"POT-Creation-Date: 2026-01-02 18:38+0000\n"
 "PO-Revision-Date: 2025-11-11 20:51+0000\n"
 "Last-Translator: Daniel Nylander <daniel@danielnylander.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sv/>\n"
@@ -1316,10 +1316,6 @@ msgstr "(visar valfri DVD ljudmeny)"
 msgid "* = Restart required if this item is changed."
 msgstr "* = Omstart krävs om denna punkt ändras."
 
-#
-msgid "* Only available if more than one interface is active."
-msgstr "* Endast tillgängligt om mer än ett gränssnitt är aktivt."
-
 msgid "* current animation"
 msgstr "* nuvarande animation"
 
@@ -1847,10 +1843,6 @@ msgstr "Aktivera Expander"
 
 msgid "Activate HbbTV (RED button)"
 msgstr "Aktivera HbbTV (RÖD knapp)"
-
-#
-msgid "Activate MAC address configuration"
-msgstr "Aktivera konfiguration av MAC-adress"
 
 #
 msgid "Activate Picture in Picture"
@@ -6666,9 +6658,6 @@ msgstr "Inaktiverad PiP.\n"
 msgid "Disabled or WPA/WPA2"
 msgstr "Avaktiverad eller WPA/WPA2"
 
-msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
-msgstr "Stoppar användningen av tidsförskjutning om en inspelning pågår. (Rekommenderas för USB-minnen.)"
-
 msgid "Disabling Chkroot failed!"
 msgstr "Inaktivering av Chkroot misslyckades!"
 
@@ -6899,6 +6888,9 @@ msgstr ""
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
 msgstr "Vill du verkligen stoppa och ta bort timern '%s'?"
+
+msgid "Do you really want to trim the file system?"
+msgstr ""
 
 #, python-format
 msgid "Do you want change '%s' access mode?"
@@ -7709,9 +7701,6 @@ msgstr "Aktiverad"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Aktiverar en funktion så att mottagaren kan dekryptera flöden (om ECM-data ingår i flödet och ett giltigt kort finns tillgängligt)."
 
-msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
-msgstr "Om inställningen är \"Yes\" kommer samma kommandon att skickas till TV:n vid djup standby som vid vanlig standby."
-
 #
 msgid "Encrypted: "
 msgstr "Krypterad: "
@@ -7861,6 +7850,9 @@ msgstr "Ange pinkod"
 
 msgid "Enter text via an attached keyboard"
 msgstr "Skriv in text via ett anslutet tangentbord"
+
+msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
+msgstr ""
 
 msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
 msgstr "Ange den tid som ska läggas till i streamingbufferten efter ett streamingfel. Denna extra buffert kan bidra till att undvika ytterligare streamingproblem på grund av brist på buffertutrymme."
@@ -8377,10 +8369,6 @@ msgid "Exit File Commander"
 msgstr "Avsluta File Commander"
 
 #
-msgid "Exit MAC address configuration"
-msgstr "Avsluta konfigurering av MAC-adress"
-
-#
 msgid "Exit Movie Selection"
 msgstr "Avsluta filmval"
 
@@ -8652,6 +8640,9 @@ msgstr "Inställningar för reservfjärrmottagare"
 msgid "Fallback Timer"
 msgstr "Timer för återgång"
 
+msgid "Fallback Tuner Setup"
+msgstr "Inställning av reservtuner"
+
 msgid "Fallback remote receiver"
 msgstr "Reservfjärrmottagare"
 
@@ -8672,9 +8663,6 @@ msgstr "Reservfjärrmottagare för DVB-C"
 
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Reservfjärrmottagare för DVB-T"
-
-msgid "Fallback Tuner Setup"
-msgstr "Inställning av reservtuner"
 
 msgid "False"
 msgstr "Falskt"
@@ -8954,10 +8942,6 @@ msgstr "Avslutade"
 #
 msgid "Finished configuring your network"
 msgstr "Färdig med att konfigurera ditt nätverk"
-
-#
-msgid "Finished restarting your network"
-msgstr "Slutförd omstart av ditt nätverk"
 
 msgid "Finland"
 msgstr "Finland"
@@ -10801,6 +10785,15 @@ msgstr "Jersey"
 msgid "Job overview"
 msgstr "Översikt över jobbet"
 
+msgid "Join"
+msgstr ""
+
+msgid "Join or leave the configured ZeroTier network"
+msgstr ""
+
+msgid "Joined"
+msgstr ""
+
 msgid "Jordan"
 msgstr "Jordanien"
 
@@ -11177,6 +11170,9 @@ msgstr "Lettland"
 #
 msgid "Latvian"
 msgstr "Lettiska"
+
+msgid "Leave"
+msgstr ""
 
 #
 msgid "Leave DVD player?"
@@ -11593,13 +11589,6 @@ msgstr "Luxemburgska / Letzeburgesch"
 
 msgid "M2k Packages"
 msgstr "M2k Förpackningar"
-
-msgid "MAC Address Actions"
-msgstr "MAC-adress Åtgärder"
-
-#
-msgid "MAC Address Settings"
-msgstr "Inställningar för MAC-adress"
 
 msgid "MAC address"
 msgstr "MAC-adress"
@@ -12152,14 +12141,8 @@ msgstr "Montera"
 msgid "Mount Manager"
 msgstr "Mount Manager"
 
-msgid "Mount Menu Actions"
-msgstr "Åtgärder i monteringsmenyn"
-
 msgid "Mount Point"
 msgstr "Monteringspunkt"
-
-msgid "Mount Settings"
-msgstr "Inställningar för montering"
 
 msgid "Mount Setup"
 msgstr "Montering av fäste"
@@ -12746,10 +12729,6 @@ msgstr "Nätverkslogg"
 msgid "Network Log Actions"
 msgstr "Åtgärder för nätverkslogg"
 
-#
-msgid "Network MAC settings"
-msgstr "MAC-inställningar för nätverk"
-
 msgid "Network Neighbourhood"
 msgstr "Nätverk Grannskap"
 
@@ -12802,12 +12781,18 @@ msgstr "Meny för nätverk"
 msgid "Network mounts"
 msgstr "Fästen för nätverk"
 
+msgid "Network name"
+msgstr ""
+
 msgid "Network name (SSID)"
 msgstr "Nätverksnamn (SSID)"
 
 #
 msgid "Network scan"
 msgstr "Nätverksskanning"
+
+msgid "Network status"
+msgstr ""
 
 msgid "Network storage on"
 msgstr "Nätverkslagring på"
@@ -12827,6 +12812,9 @@ msgstr ""
 "Nätverksguiden slutförd.\n"
 "\n"
 "Tryck på OK för att fortsätta."
+
+msgid "Network-ID"
+msgstr ""
 
 #
 msgid "Network:"
@@ -13358,6 +13346,9 @@ msgstr ""
 "Filstorlek: %sMB\n"
 "Fritt utrymme: %s MB\n"
 "Sökväg: %s"
+
+msgid "Not joined. Press Yellow to join."
+msgstr ""
 
 msgid "Not required"
 msgstr "Krävs inte"
@@ -14676,10 +14667,6 @@ msgid "Please wait while we check your installed plugins..."
 msgstr "Vänligen vänta medan vi kontrollerar dina installerade plugins..."
 
 #
-msgid "Please wait while we configure your network..."
-msgstr "Vänligen vänta medan vi konfigurerar ditt nätverk..."
-
-#
 msgid "Please wait while we prepare your network interfaces..."
 msgstr "Vänligen vänta medan vi förbereder dina nätverksgränssnitt..."
 
@@ -15043,10 +15030,6 @@ msgstr "Tryck på OK för att välja satelliter"
 msgid "Press OK to select/deselect a CAId."
 msgstr "Tryck på OK för att markera/avmarkera en CAId."
 
-#
-msgid "Press OK to set the MAC address."
-msgstr "Tryck på OK för att ställa in MAC-adressen."
-
 msgid "Press OK to start the backup now"
 msgstr "Tryck på OK för att starta säkerhetskopieringen nu"
 
@@ -15081,10 +15064,6 @@ msgstr "Tryck på knapparna UP/DOWN för att välja en slot och tryck sedan på 
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Tryck på denna knapp för att emulera en lång tryckning på en knapp som trycks in efteråt (detta åsidosätter även alla andra åtgärder som tilldelats emuleringsknappen)."
-
-#
-msgid "Press yellow to set this interface as the default interface."
-msgstr "Tryck på yellow för att ställa in detta gränssnitt som standardgränssnitt."
 
 msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
 msgstr "Om du trycker på panikknappen kommer du att zappa till detta kanalnummer i din första bukett."
@@ -15762,6 +15741,9 @@ msgstr ""
 msgid "Refresh"
 msgstr "Uppdatera"
 
+msgid "Refresh ZeroTier status information"
+msgstr ""
+
 msgid "Refresh every x hours"
 msgstr "Uppdatera varje (i timmar)"
 
@@ -16243,10 +16225,6 @@ msgstr "Starta om nätverket med aktuell inställning"
 #
 msgid "Restart test"
 msgstr "Starta om testet"
-
-#
-msgid "Restart your network connection and interfaces."
-msgstr "Starta om din nätverksanslutning och dina gränssnitt."
 
 msgid "Restarting..."
 msgstr "Startar om..."
@@ -18353,6 +18331,9 @@ msgstr "Servicenummer, picon och servicenamn"
 msgid "Service off-air"
 msgstr "Service utanför sändning"
 
+msgid "Service online"
+msgstr ""
+
 msgid "Service picons aspect ratio"
 msgstr "Service picons bildförhållande"
 
@@ -18474,10 +18455,6 @@ msgid "Set how long the second InfoBar stays visible. The second InfoBar also di
 msgstr "Ställ in tiden för att dölja den andra infobaren. Fältet försvinner också när du trycker på \"OK\"."
 
 #
-msgid "Set interface as the default Interface"
-msgstr "Ange gränssnitt som standardgränssnitt"
-
-#
 msgid "Set limits"
 msgstr "Sätt gränser"
 
@@ -18498,11 +18475,6 @@ msgstr "Ställ in tidsintervallet för skipning i CutList Editor för knapparna 
 
 msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
 msgstr "Ställ in procentandelen för hopp över vänster/högerknapp för SeekBar."
-
-#
-#, python-format
-msgid "Set the MAC address of your %s %s."
-msgstr "Ställ in MAC-adressen för din %s %s."
 
 msgid "Set the UP/DOWN button skip percentage for the SeekBar."
 msgstr "Ställ in procentsatsen för hopp över UP/DOWN-knappen för SeekBar."
@@ -18643,6 +18615,9 @@ msgstr "Ställ in på 'Aktiverad' för att avkoda köade krypterade inspelningar
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
 msgstr "Ställ in på 'Aktiverad' för att avkoda köade krypterade inspelningar i Standby."
+
+msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
+msgstr "Om inställningen är \"Yes\" kommer samma kommandon att skickas till TV:n vid djup standby som vid vanlig standby."
 
 msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
 msgstr "Ställ in på \"Ja\" för att aktivera automatisk registrering av tidsförskjutningsbufferten i bakgrunden."
@@ -20632,6 +20607,9 @@ msgstr "Stoppat"
 msgid "Stopping Softcam"
 msgstr "Stoppa Softcam"
 
+msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
+msgstr "Stoppar användningen av tidsförskjutning om en inspelning pågår. (Rekommenderas för USB-minnen.)"
+
 msgid "Storage / Disk Information"
 msgstr "Lagring / Diskinformation"
 
@@ -21594,14 +21572,6 @@ msgstr "Bildens höjd. Inmatningen kommer att skalas för att matcha detta värd
 
 msgid "The loopthrough setting is wrong."
 msgstr "Inställningen för loopthrough är fel."
-
-#
-msgid ""
-"The network wizard extension is not installed!\n"
-"Please install it."
-msgstr ""
-"Tillägget för nätverksguiden är inte installerat!\n"
-"Vänligen installera det."
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr "Katalogen picon finns redan och måste tas bort. Vill du fortsätta?"
@@ -22621,6 +22591,12 @@ msgstr "Försökte inaktivera PiP, men hittade ingen InfoBar-instans!\n"
 msgid "Tries left:"
 msgstr "Försök vänster:"
 
+msgid "Trim File System"
+msgstr ""
+
+msgid "Trim File System..."
+msgstr ""
+
 msgid "Trinidad and Tobago"
 msgstr "Trinidad och Tobago"
 
@@ -22758,6 +22734,12 @@ msgstr "Avstämningsalgoritm"
 
 msgid "Tunisia"
 msgstr "Tunisien"
+
+msgid "Tunnel IPv4"
+msgstr ""
+
+msgid "Tunnel IPv6"
+msgstr ""
 
 msgid "Turbo"
 msgstr "Turbo"
@@ -23415,13 +23397,6 @@ msgstr "Använd det aktuella valet och avsluta"
 
 msgid "Use the extended List"
 msgstr "Använd den utökade listan"
-
-#
-msgid "Use the network wizard to configure selected network adapter"
-msgstr "Använd nätverksguiden för att konfigurera det valda nätverksadaptern"
-
-msgid "Use the network wizard to configure your Network."
-msgstr "Använd nätverksguiden för att konfigurera ditt nätverk."
 
 msgid "Use the wizard to set up basic features"
 msgstr "Använd guiden för att konfigurera grundläggande funktioner"
@@ -24966,6 +24941,18 @@ msgstr "Zappa upp"
 msgid "Zap+Record next"
 msgstr "Zappa+Registrera nästa"
 
+msgid "ZeroTier Actions"
+msgstr ""
+
+msgid "ZeroTier version"
+msgstr ""
+
+msgid "ZeroTier-One"
+msgstr ""
+
+msgid "ZeroTier Settings"
+msgstr ""
+
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7 gammal modell"
 
@@ -25712,6 +25699,79 @@ msgstr "ja (behåller flöden)"
 
 msgid "®"
 msgstr "®"
+
+#
+#~ msgid "* Only available if more than one interface is active."
+#~ msgstr "* Endast tillgängligt om mer än ett gränssnitt är aktivt."
+
+#
+#~ msgid "Activate MAC address configuration"
+#~ msgstr "Aktivera konfiguration av MAC-adress"
+
+#
+#~ msgid "Exit MAC address configuration"
+#~ msgstr "Avsluta konfigurering av MAC-adress"
+
+#
+#~ msgid "Finished restarting your network"
+#~ msgstr "Slutförd omstart av ditt nätverk"
+
+#~ msgid "MAC Address Actions"
+#~ msgstr "MAC-adress Åtgärder"
+
+#
+#~ msgid "MAC Address Settings"
+#~ msgstr "Inställningar för MAC-adress"
+
+#~ msgid "Mount Menu Actions"
+#~ msgstr "Åtgärder i monteringsmenyn"
+
+#~ msgid "Mount Settings"
+#~ msgstr "Inställningar för montering"
+
+#
+#~ msgid "Network MAC settings"
+#~ msgstr "MAC-inställningar för nätverk"
+
+#
+#~ msgid "Please wait while we configure your network..."
+#~ msgstr "Vänligen vänta medan vi konfigurerar ditt nätverk..."
+
+#
+#~ msgid "Press OK to set the MAC address."
+#~ msgstr "Tryck på OK för att ställa in MAC-adressen."
+
+#
+#~ msgid "Press yellow to set this interface as the default interface."
+#~ msgstr "Tryck på yellow för att ställa in detta gränssnitt som standardgränssnitt."
+
+#
+#~ msgid "Restart your network connection and interfaces."
+#~ msgstr "Starta om din nätverksanslutning och dina gränssnitt."
+
+#
+#~ msgid "Set interface as the default Interface"
+#~ msgstr "Ange gränssnitt som standardgränssnitt"
+
+#
+#, python-format
+#~ msgid "Set the MAC address of your %s %s."
+#~ msgstr "Ställ in MAC-adressen för din %s %s."
+
+#
+#~ msgid ""
+#~ "The network wizard extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Tillägget för nätverksguiden är inte installerat!\n"
+#~ "Vänligen installera det."
+
+#
+#~ msgid "Use the network wizard to configure selected network adapter"
+#~ msgstr "Använd nätverksguiden för att konfigurera det valda nätverksadaptern"
+
+#~ msgid "Use the network wizard to configure your Network."
+#~ msgstr "Använd nätverksguiden för att konfigurera ditt nätverk."
 
 #~ msgid "white"
 #~ msgstr "vit"

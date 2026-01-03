@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-27 18:13+0000\n"
+"POT-Creation-Date: 2026-01-02 18:38+0000\n"
 "PO-Revision-Date: 2025-11-16 05:28+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -1300,9 +1300,6 @@ msgstr "(εμφάνιση προαιρετικού μενού ήχου DVD)"
 msgid "* = Restart required if this item is changed."
 msgstr "* = Απαιτείται επανεκκίνηση αν αυτό το στοιχείο αλλάξει."
 
-msgid "* Only available if more than one interface is active."
-msgstr "* Διαθέσιμο μόνο αν είναι ενεργές περισσότερες από μία διεπαφές."
-
 msgid "* current animation"
 msgstr "* τρέχον κινούμενο γραφικό"
 
@@ -1790,9 +1787,6 @@ msgstr "Ενεργοποίηση επέκτασης"
 
 msgid "Activate HbbTV (RED button)"
 msgstr "Ενεργοποίηση HbbTV (κόκκινο πλήκτρο)"
-
-msgid "Activate MAC address configuration"
-msgstr "Ενεργοποίηση ρυθμίσεων της διεύθυνσης MAC"
 
 msgid "Activate Picture in Picture"
 msgstr "Ενεργοποίηση Picture in Picture"
@@ -6369,9 +6363,6 @@ msgstr "Το PIP απενεργοποιήθηκε.\n"
 msgid "Disabled or WPA/WPA2"
 msgstr "Ανενεργό ή WPA/WPA2"
 
-msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
-msgstr "Διακοπή της χρήσης του χρονοδιακόπτη αν εκτελείται εγγραφή. (Συνίσταται για τα USB στικ.)"
-
 msgid "Disabling Chkroot failed!"
 msgstr "Η απενεργοποίηση του Chkroot απέτυχε!"
 
@@ -6589,6 +6580,9 @@ msgstr ""
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
 msgstr "Θέλετε σίγουρα να γίνει διακοπή και διαγραφή του χρονοδιακόπτη '%s';"
+
+msgid "Do you really want to trim the file system?"
+msgstr ""
 
 #, python-format
 msgid "Do you want change '%s' access mode?"
@@ -7352,9 +7346,6 @@ msgstr "Ενεργό"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Ενεργοποιεί μια λειτουργία ώστε ο δέκτης να αποκωδικοποιεί τις ροές (αν τα δεδομένα ECM συμπεριλαμβάνονται στη ροή και υπάρχει ενεργή κάρτα διαθέσιμη)."
 
-msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
-msgstr "Αν επιλεγεί το 'ναι', οι ίδιες εντολές που στέλνονται στην TV για την κοινή αναμονή, θα αποστέλλονται και για τη βαθιά αναμονή."
-
 msgid "Encrypted: "
 msgstr "Ασφάλεια: "
 
@@ -7493,6 +7484,9 @@ msgstr "Εισαγωγή κωδικού pin"
 
 msgid "Enter text via an attached keyboard"
 msgstr "Εισάγετε κείμενο μέσω ενός συνδεδεμένου πληκτρολογίου"
+
+msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
+msgstr ""
 
 msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
 msgstr "Εισάγετε τη διάρκεια που θα προστεθεί στην προσωρινή αποθήκευση της ροής μετά από σφάλμα της. Αυτή η πρόσθετη αποθήκευση μπορεί να βοηθήσει στην αποφυγή περαιτέρω λαθών ροής λόγω έλλειψης αποθηκευτικού χώρου."
@@ -7991,9 +7985,6 @@ msgstr "Έξοδος από EPG"
 msgid "Exit File Commander"
 msgstr "Έξοδος από το File Commander"
 
-msgid "Exit MAC address configuration"
-msgstr "Έξοδος από τη ρύθμιση της διεύθυνσης MAC"
-
 msgid "Exit Movie Selection"
 msgstr "Έξοδος από τη λίστα ταινιών"
 
@@ -8247,6 +8238,9 @@ msgstr "Ρυθμίσεις απομακρυσμένου εφεδρικού δέ�
 msgid "Fallback Timer"
 msgstr "Εφεδρικός χρονοδιακόπτης"
 
+msgid "Fallback Tuner Setup"
+msgstr "Ρυθμίσεις εφεδρικού tuner"
+
 msgid "Fallback remote receiver"
 msgstr "Εφεδρικός απομακρυσμένος δέκτης"
 
@@ -8267,9 +8261,6 @@ msgstr "Εφεδρικός απομακρυσμένος δέκτης για DVB-
 
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Εφεδρικός απομακρυσμένος δέκτης για DVB-T"
-
-msgid "Fallback Tuner Setup"
-msgstr "Ρυθμίσεις εφεδρικού tuner"
 
 msgid "False"
 msgstr "Ψευδές"
@@ -8538,9 +8529,6 @@ msgstr "Ολοκληρώθηκε"
 
 msgid "Finished configuring your network"
 msgstr "Ολοκλήρωση ρύθμισης δικτύου"
-
-msgid "Finished restarting your network"
-msgstr "Ολοκλήρωση επανεκκίνησης δικτύου"
 
 msgid "Finland"
 msgstr "Φινλανδία"
@@ -10284,6 +10272,15 @@ msgstr "Τζέρσεϊ"
 msgid "Job overview"
 msgstr "Επισκόπηση εργασιών"
 
+msgid "Join"
+msgstr ""
+
+msgid "Join or leave the configured ZeroTier network"
+msgstr ""
+
+msgid "Joined"
+msgstr ""
+
 msgid "Jordan"
 msgstr "Ιορδανία"
 
@@ -10643,6 +10640,9 @@ msgstr "Λεττονία"
 
 msgid "Latvian"
 msgstr "Λεττονικά"
+
+msgid "Leave"
+msgstr ""
 
 msgid "Leave DVD player?"
 msgstr "Έξοδος από την αναπαραγωγή DVD;"
@@ -11027,12 +11027,6 @@ msgstr "Λουξεμβουργιανά"
 
 msgid "M2k Packages"
 msgstr "Πακέτα M2k"
-
-msgid "MAC Address Actions"
-msgstr "Ενέργειες διεύθυνσης MAC"
-
-msgid "MAC Address Settings"
-msgstr "Ρυθμίσεις διεύθυνσης MAC"
 
 msgid "MAC address"
 msgstr "Διεύθυνση MAC"
@@ -11553,14 +11547,8 @@ msgstr "Προσάρτηση"
 msgid "Mount Manager"
 msgstr "Διαχείριση προσαρτήσεων"
 
-msgid "Mount Menu Actions"
-msgstr "Ενέργειες μενού προσαρτήσεων"
-
 msgid "Mount Point"
 msgstr "Σημείο προσάρτησης"
-
-msgid "Mount Settings"
-msgstr "Ρυθμίσεις προσαρτήσεων"
 
 msgid "Mount Setup"
 msgstr "Ρυθμίσεις προσάρτησης"
@@ -12112,9 +12100,6 @@ msgstr "Καταγραφή δικτύου"
 msgid "Network Log Actions"
 msgstr "Ενέργειες καταγραφής δικτύου"
 
-msgid "Network MAC settings"
-msgstr "Ρυθμίσεις MAC δικτύου"
-
 msgid "Network Neighbourhood"
 msgstr "Οικείο δίκτυο"
 
@@ -12164,11 +12149,17 @@ msgstr "Μενού δικτύου"
 msgid "Network mounts"
 msgstr "Προσαρτήσεις δικτύου"
 
+msgid "Network name"
+msgstr ""
+
 msgid "Network name (SSID)"
 msgstr "Όνομα δικτύου (SSID)"
 
 msgid "Network scan"
 msgstr "Ανίχνευση δικτύου"
+
+msgid "Network status"
+msgstr ""
 
 msgid "Network storage on"
 msgstr "Αποθήκευση δικτύου ενεργή"
@@ -12187,6 +12178,9 @@ msgstr ""
 "Ο οδηγός δικτύου ολοκληρώθηκε.\n"
 "\n"
 "Πιέστε OK για να συνεχίσετε."
+
+msgid "Network-ID"
+msgstr ""
 
 msgid "Network:"
 msgstr "Δίκτυο:"
@@ -12670,6 +12664,9 @@ msgstr ""
 "Μέγεθος αρχείου: %sMB\n"
 "Ελεύθερος χώρος: %sMB\n"
 "Διαδρομή: %s"
+
+msgid "Not joined. Press Yellow to join."
+msgstr ""
 
 msgid "Not required"
 msgstr "Δεν απαιτείται"
@@ -13914,9 +13911,6 @@ msgstr "Περιμένετε μέχρι να ενημερωθεί το πρόσ�
 msgid "Please wait while we check your installed plugins..."
 msgstr "Παρακαλώ περιμένετε όσο εκτελείται ο έλεγχος των εγκατεστημένων προσθέτων..."
 
-msgid "Please wait while we configure your network..."
-msgstr "Παρακαλώ περιμένετε καθώς το δίκτυο ρυθμίζεται..."
-
 msgid "Please wait while we prepare your network interfaces..."
 msgstr "Παρακαλώ περιμένετε, προετοιμασία διεπαφών δικτύου..."
 
@@ -14247,9 +14241,6 @@ msgstr "Πιέστε ΟΚ για επιλογή δορυφόρων"
 msgid "Press OK to select/deselect a CAId."
 msgstr "Πιέστε ΟΚ για επιλογή/αποεπιλογή CAId."
 
-msgid "Press OK to set the MAC address."
-msgstr "Πιέστε ΟΚ για ορισμό της διεύθυνσης MAC."
-
 msgid "Press OK to start the backup now"
 msgstr "Πιέστε ΟΚ για να ξεκινήσει η εφεδρεία τώρα"
 
@@ -14281,9 +14272,6 @@ msgstr "Πιέστε τα πλήκτρα ΕΠΑΝΩ/ΚΑΤΩ για επιλογ
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Πιέστε αυτό το πλήκτρο για να γίνει προσομοίωση της παρατεταμένης πίεσης σε ένα πλήκτρο που θα πιεστεί μετέπειτα (αυτό επίσης παρακάμπτει οποιαδήποτε άλλη ενέργεια έχει ανατεθεί το πλήκτρο προσομοίωσης)."
-
-msgid "Press yellow to set this interface as the default interface."
-msgstr "Πιέστε το κίτρινο για ορισμό αυτής της διεπαφής ως προεπιλεγμένη."
 
 msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
 msgstr "Πιέζοντας το πλήκτρο πανικού θα γίνει μετάβαση σε αυτό το νούμερο καναλιού στο πρώτο σας μπουκέτο."
@@ -14923,6 +14911,9 @@ msgstr ""
 msgid "Refresh"
 msgstr "Ανανέωση"
 
+msgid "Refresh ZeroTier status information"
+msgstr ""
+
 msgid "Refresh every x hours"
 msgstr "Ανανέωση κάθε (σε ώρες)"
 
@@ -15364,9 +15355,6 @@ msgstr "Επανεκκίνηση δικτύου με τις τρέχουσες �
 
 msgid "Restart test"
 msgstr "Eπανεκκίνηση ελέγχου"
-
-msgid "Restart your network connection and interfaces."
-msgstr "Επανεκκίνηση σύνδεσης δικτύου και διεπαφών."
 
 msgid "Restarting..."
 msgstr "Επανεκκίνηση..."
@@ -17380,6 +17368,9 @@ msgstr "Αριθμός, λογότυπο και όνομα υπηρεσίας"
 msgid "Service off-air"
 msgstr "Υπηρεσία εκτός λειτουργίας"
 
+msgid "Service online"
+msgstr ""
+
 msgid "Service picons aspect ratio"
 msgstr "Λόγος πλευρών λογότυπων υπηρεσίας"
 
@@ -17495,9 +17486,6 @@ msgstr "Ορισμός fps για τους εξωτερικούς υπότιτλ
 msgid "Set how long the second InfoBar stays visible. The second InfoBar also disappears when you press 'OK'."
 msgstr "Ορισμός του χρόνου απόκρυψης της δεύτερης μπάρας πληροφοριών. Η μπάρα αποκρύπτεται πιέζοντας και το 'OK'."
 
-msgid "Set interface as the default Interface"
-msgstr "Ορισμός διεπαφής ως προεπιλεγμένη"
-
 msgid "Set limits"
 msgstr "Ορισμός ορίων"
 
@@ -17518,10 +17506,6 @@ msgstr "Ορισμός του ενδιάμεσου χρόνου παράκαμψ
 
 msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
 msgstr "Ορισμός ποσοστού παράκαμψης για τα πλήκτρα ΑΡΙΣΤΕΡΑ/ΔΕΞΙΑ στη μπάρα αναζήτησης."
-
-#, python-format
-msgid "Set the MAC address of your %s %s."
-msgstr "Ορισμός της διεύθυνσης MAC του %s %s σας."
 
 msgid "Set the UP/DOWN button skip percentage for the SeekBar."
 msgstr "Ορισμός ποσοστού παράκαμψης για τα πλήκτρα ΕΠΑΝΩ/ΚΑΤΩ στη μπάρα αναζήτησης."
@@ -17662,6 +17646,9 @@ msgstr "Επιλέξτε 'Ενεργό' για να γίνει η αποκωδι
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
 msgstr "Επιλέξτε 'Ενεργό' για να γίνει η αποκωδικοποίηση των κωδικοποιημένων εγγραφών σε σειρά κατά την αναμονή."
+
+msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
+msgstr "Αν επιλεγεί το 'ναι', οι ίδιες εντολές που στέλνονται στην TV για την κοινή αναμονή, θα αποστέλλονται και για τη βαθιά αναμονή."
 
 msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
 msgstr "Αν επιλεγεί το 'ναι', θα ενεργοποιηθεί η αυτόματη εγγραφή της χρονομετατόπισης στο παρασκήνιο."
@@ -19540,6 +19527,9 @@ msgstr "Σταματημένο"
 msgid "Stopping Softcam"
 msgstr "Σταμάτημα softcam"
 
+msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
+msgstr "Διακοπή της χρήσης του χρονοδιακόπτη αν εκτελείται εγγραφή. (Συνίσταται για τα USB στικ.)"
+
 msgid "Storage / Disk Information"
 msgstr "Χώρος αποθήκευσης / πληροφορίες δίσκου"
 
@@ -20463,13 +20453,6 @@ msgstr "Το ύψος της εικόνας. Η είσοδος θα κλιμακ
 
 msgid "The loopthrough setting is wrong."
 msgstr "Λανθασμένη ρύθμιση loopthrough."
-
-msgid ""
-"The network wizard extension is not installed!\n"
-"Please install it."
-msgstr ""
-"Το πρόσθετο οδηγού δικτύου δεν είναι εγκατεστημένο!\n"
-"Παρακαλώ εγκαταστήστε το."
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr "Ο φάκελος λογότυπων υπάρχει ήδη και πρέπει να αφαιρεθεί. Θέλετε να συνεχίσετε;"
@@ -21443,6 +21426,12 @@ msgstr "Έγινε προσπάθεια απενεργοποίησης του Pi
 msgid "Tries left:"
 msgstr "Προσπάθειες που απομένουν:"
 
+msgid "Trim File System"
+msgstr ""
+
+msgid "Trim File System..."
+msgstr ""
+
 msgid "Trinidad and Tobago"
 msgstr "Τρινιντάντ και Τομπάγκο"
 
@@ -21564,6 +21553,12 @@ msgstr "Αλγόριθμος συντονισμού"
 
 msgid "Tunisia"
 msgstr "Τυνησία"
+
+msgid "Tunnel IPv4"
+msgstr ""
+
+msgid "Tunnel IPv6"
+msgstr ""
 
 msgid "Turbo"
 msgstr "τούρμπο"
@@ -22192,12 +22187,6 @@ msgstr "Χρήση της τρέχουσας επιλογής και έξοδο�
 
 msgid "Use the extended List"
 msgstr "Χρήση της εκτεταμένης λίστας"
-
-msgid "Use the network wizard to configure selected network adapter"
-msgstr "Χρήση του οδηγού δικτύου για τη ρύθμιση του επιλεγμένου προσαρμογέα δικτύου"
-
-msgid "Use the network wizard to configure your Network."
-msgstr "Χρήση του οδηγού για ρύθμιση του δικτύου σας."
 
 msgid "Use the wizard to set up basic features"
 msgstr "Χρήση οδηγού για τις απλές ρυθμίσεις"
@@ -23671,6 +23660,18 @@ msgstr "Ζάπινγκ προς τα επάνω"
 msgid "Zap+Record next"
 msgstr "Μετάβαση+Εγγραφή επόμενου"
 
+msgid "ZeroTier Actions"
+msgstr ""
+
+msgid "ZeroTier version"
+msgstr ""
+
+msgid "ZeroTier-One"
+msgstr ""
+
+msgid "ZeroTier Settings"
+msgstr ""
+
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7 παλαιό μοντέλο"
 
@@ -24325,6 +24326,65 @@ msgstr "ναι (διατήρηση των feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "* Only available if more than one interface is active."
+#~ msgstr "* Διαθέσιμο μόνο αν είναι ενεργές περισσότερες από μία διεπαφές."
+
+#~ msgid "Activate MAC address configuration"
+#~ msgstr "Ενεργοποίηση ρυθμίσεων της διεύθυνσης MAC"
+
+#~ msgid "Exit MAC address configuration"
+#~ msgstr "Έξοδος από τη ρύθμιση της διεύθυνσης MAC"
+
+#~ msgid "Finished restarting your network"
+#~ msgstr "Ολοκλήρωση επανεκκίνησης δικτύου"
+
+#~ msgid "MAC Address Actions"
+#~ msgstr "Ενέργειες διεύθυνσης MAC"
+
+#~ msgid "MAC Address Settings"
+#~ msgstr "Ρυθμίσεις διεύθυνσης MAC"
+
+#~ msgid "Mount Menu Actions"
+#~ msgstr "Ενέργειες μενού προσαρτήσεων"
+
+#~ msgid "Mount Settings"
+#~ msgstr "Ρυθμίσεις προσαρτήσεων"
+
+#~ msgid "Network MAC settings"
+#~ msgstr "Ρυθμίσεις MAC δικτύου"
+
+#~ msgid "Please wait while we configure your network..."
+#~ msgstr "Παρακαλώ περιμένετε καθώς το δίκτυο ρυθμίζεται..."
+
+#~ msgid "Press OK to set the MAC address."
+#~ msgstr "Πιέστε ΟΚ για ορισμό της διεύθυνσης MAC."
+
+#~ msgid "Press yellow to set this interface as the default interface."
+#~ msgstr "Πιέστε το κίτρινο για ορισμό αυτής της διεπαφής ως προεπιλεγμένη."
+
+#~ msgid "Restart your network connection and interfaces."
+#~ msgstr "Επανεκκίνηση σύνδεσης δικτύου και διεπαφών."
+
+#~ msgid "Set interface as the default Interface"
+#~ msgstr "Ορισμός διεπαφής ως προεπιλεγμένη"
+
+#, python-format
+#~ msgid "Set the MAC address of your %s %s."
+#~ msgstr "Ορισμός της διεύθυνσης MAC του %s %s σας."
+
+#~ msgid ""
+#~ "The network wizard extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Το πρόσθετο οδηγού δικτύου δεν είναι εγκατεστημένο!\n"
+#~ "Παρακαλώ εγκαταστήστε το."
+
+#~ msgid "Use the network wizard to configure selected network adapter"
+#~ msgstr "Χρήση του οδηγού δικτύου για τη ρύθμιση του επιλεγμένου προσαρμογέα δικτύου"
+
+#~ msgid "Use the network wizard to configure your Network."
+#~ msgstr "Χρήση του οδηγού για ρύθμιση του δικτύου σας."
 
 #~ msgid "white"
 #~ msgstr "λευκό"

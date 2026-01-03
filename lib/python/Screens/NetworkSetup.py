@@ -33,11 +33,36 @@ from Screens.RestartNetwork import RestartNetworkNew
 from Screens.Processing import Processing
 from Screens.Screen import Screen
 from Screens.Setup import Setup
-from Tools.Directories import SCOPE_SKINS, SCOPE_GUISKIN, fileReadLines, fileReadXML, fileWriteLine, fileWriteLines, resolveFilename
+from Tools.Directories import SCOPE_SKINS, SCOPE_GUISKIN, SCOPE_PLUGINS, fileReadLines, fileReadXML, fileWriteLine, fileWriteLines, resolveFilename
 from Tools.LoadPixmap import LoadPixmap
 
 MODULE_NAME = __name__.split(".")[-1]
 BASE_GROUP = "packagegroup-base"
+
+
+def queryWirelessDevice(iface):
+	try:
+		from wifi.scan import Cell
+		import errno
+	except ImportError:
+		return False
+	else:
+		from wifi.exceptions import InterfaceError
+		try:
+			system(f"ifconfig {iface} up")
+			wlanresponse = list(Cell.all(iface))  # noqa F841
+		except InterfaceError as ie:
+			print(f"[NetworkSetup] queryWirelessDevice InterfaceError: {str(ie)}")
+			return False
+		except OSError as xxx_todo_changeme:
+			(error_no, error_str) = xxx_todo_changeme.args
+			if error_no in (errno.EOPNOTSUPP, errno.ENODEV, errno.EPERM):
+				return False
+			else:
+				print(f"[NetworkSetup] queryWirelessDevice OSError: {error_no} '{error_str}'")
+				return True
+		else:
+			return True
 
 
 class NetworkAdapterSelection(Screen):
@@ -53,12 +78,13 @@ class NetworkAdapterSelection(Screen):
 		self["key_yellow"] = StaticText("")
 		self["key_blue"] = StaticText(_("Network Restart"))
 		self["introduction"] = StaticText(self.edittext)
-		self["OkCancelActions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions"], {
+		self["OkCancelActions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "MenuActions"], {
 			"cancel": (self.close, _("Exit network interface list")),
 			"ok": (self.okbuttonClick, _("Select interface")),
 			"red": (self.close, _("Exit network interface list")),
 			"green": (self.okbuttonClick, _("Select interface")),
-			"blue": (self.restartLanAsk, _("Restart network to with current setup"))
+			"blue": (self.restartLanAsk, _("Restart network to with current setup")),
+			"menu": (self.menubuttonClick, _("Select interface"))
 		}, prio=0, description=_("Network Adapter Actions"))
 		self.adapters = [(iNetwork.getFriendlyAdapterName(x), x) for x in iNetwork.getAdapterList()]
 		if not self.adapters:
@@ -122,10 +148,23 @@ class NetworkAdapterSelection(Screen):
 			self.list.append(self.buildInterfaceList(adapter[1], _(adapter[0]), 0, active_int))
 		self["list"].setList(self.list)
 
+	def menubuttonClick(self):
+		selection = self["list"].getCurrent()
+		if selection:
+			self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetupConfiguration, selection[0])
+
 	def okbuttonClick(self):
 		selection = self["list"].getCurrent()
-		if selection is not None:
-			self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetupConfiguration, selection[0])
+		if selection:
+			if iNetwork.isWirelessInterface(selection[0]):
+				try:
+					from Plugins.SystemPlugins.WirelessLan.plugin import WlanScan  # noqa F401
+					if queryWirelessDevice(selection[0]):
+						self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup, selection[0])
+				except ImportError:
+					self.session.open(MessageBox, _("No working wireless network interface found.\n Please verify that you have attached a compatible WLAN device or enable your local network interface."), type=MessageBox.TYPE_INFO, timeout=10)
+			else:
+				self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup, selection[0])
 
 	def AdapterSetupClosed(self, *ret):
 		if len(self.adapters) == 1:
@@ -823,40 +862,16 @@ class AdapterSetupConfiguration(Screen):
 			self["menulist"].onSelectionChanged.append(self.selectionChanged)
 		self.selectionChanged()
 
-	def queryWirelessDevice(self, iface):
-		try:
-			from wifi.scan import Cell
-			import errno
-		except ImportError:
-			return False
-		else:
-			from wifi.exceptions import InterfaceError
-			try:
-				system(f"ifconfig {self.iface} up")
-				wlanresponse = list(Cell.all(iface))  # noqa F841
-			except InterfaceError as ie:
-				print(f"[NetworkSetup] queryWirelessDevice InterfaceError: {str(ie)}")
-				return False
-			except OSError as xxx_todo_changeme:
-				(error_no, error_str) = xxx_todo_changeme.args
-				if error_no in (errno.EOPNOTSUPP, errno.ENODEV, errno.EPERM):
-					return False
-				else:
-					print(f"[NetworkSetup] queryWirelessDevice OSError: {error_no} '{error_str}'")
-					return True
-			else:
-				return True
-
 	def ok(self):
 		self.cleanup()
 		if self["menulist"].getCurrent()[1] == "edit":
 			if iNetwork.isWirelessInterface(self.iface):
 				try:
-					from Plugins.SystemPlugins.WirelessLan.plugin import WlanScan
+					from Plugins.SystemPlugins.WirelessLan.plugin import WlanScan  # noqa F401
 				except ImportError:
 					self.session.open(MessageBox, self.missingwlanplugintxt, type=MessageBox.TYPE_INFO, timeout=10)
 				else:
-					if self.queryWirelessDevice(self.iface):
+					if queryWirelessDevice(self.iface):
 						self.session.openWithCallback(self.AdapterSetupClosed, AdapterSetup, self.iface)
 					else:
 						self.showErrorMessage()	 # Display Wlan not available message.
@@ -872,7 +887,7 @@ class AdapterSetupConfiguration(Screen):
 			except ImportError:
 				self.session.open(MessageBox, self.missingwlanplugintxt, type=MessageBox.TYPE_INFO, timeout=10)
 			else:
-				if self.queryWirelessDevice(self.iface):
+				if queryWirelessDevice(self.iface):
 					self.session.openWithCallback(self.WlanScanClosed, WlanScan, self.iface)
 				else:
 					self.showErrorMessage()	 # Display Wlan not available message.
@@ -882,10 +897,15 @@ class AdapterSetupConfiguration(Screen):
 			except ImportError:
 				self.session.open(MessageBox, self.missingwlanplugintxt, type=MessageBox.TYPE_INFO, timeout=10)
 			else:
-				if self.queryWirelessDevice(self.iface):
+				if queryWirelessDevice(self.iface):
 					self.session.openWithCallback(self.WlanStatusClosed, WlanStatus, self.iface)
 				else:
 					self.showErrorMessage()	 # Display Wlan not available message.
+		if self["menulist"].getCurrent()[1] == "lanrestart":
+			self.session.openWithCallback(self.restartLan, MessageBox, "%s\n\n%s" % (_("Are you sure you want to restart your network interfaces?"), self.oktext))
+		if self["menulist"].getCurrent()[1] == "openwizard":
+			from Plugins.SystemPlugins.NetworkWizard.NetworkWizard import NetworkWizard
+			self.session.openWithCallback(self.AdapterSetupClosed, NetworkWizard, self.iface)
 		if self["menulist"].getCurrent()[1][0] == "extendedSetup":
 			self.extended = self["menulist"].getCurrent()[1][2]
 			self.extended(self.session, self.iface)
@@ -905,6 +925,10 @@ class AdapterSetupConfiguration(Screen):
 			self["description"].setText("%s\n\n%s" % (_("Scan your network for wireless access points and connect to them using your selected wireless device."), self.oktext))
 		if self["menulist"].getCurrent()[1] == "wlanstatus":
 			self["description"].setText("%s\n\n%s" % (_("Shows the state of your wireless LAN connection."), self.oktext))
+		if self["menulist"].getCurrent()[1] == "lanrestart":
+			self["description"].setText("%s\n\n%s" % (_("Restart your network connection and interfaces."), self.oktext))
+		if self["menulist"].getCurrent()[1] == "openwizard":
+			self["description"].setText("%s\n\n%s" % (_("Use the network wizard to configure your Network."), self.oktext))
 		if self["menulist"].getCurrent()[1][0] == "extendedSetup":
 			self["description"].setText("%s\n\n%s" % (_(self["menulist"].getCurrent()[1][1]), self.oktext))
 		item = self["menulist"].getCurrent()
@@ -942,6 +966,7 @@ class AdapterSetupConfiguration(Screen):
 			(_("Adapter Settings"), "edit"),
 			(_("Nameserver settings"), "dns"),
 			(_("Network test"), "test"),
+			(_("Restart Network"), "lanrestart")
 		]
 		self.extended = None
 		self.extendedSetup = None
@@ -958,6 +983,8 @@ class AdapterSetupConfiguration(Screen):
 					menuEntryDescription = p.__call__["menuEntryDescription"](self.iface) if "menuEntryDescription" in p.__call__ else _("Extended Networksetup Plugin...")
 					self.extendedSetup = ("extendedSetup", menuEntryDescription, self.extended)
 					menu.append((menuEntryName, self.extendedSetup))
+		if exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
+			menu.append((_("Network Wizard"), "openwizard"))
 		return menu
 
 	def AdapterSetupClosed(self, *ret):
@@ -968,7 +995,7 @@ class AdapterSetupConfiguration(Screen):
 				except ImportError:
 					self.session.open(MessageBox, self.missingwlanplugintxt, type=MessageBox.TYPE_INFO, timeout=10)
 				else:
-					if self.queryWirelessDevice(self.iface):
+					if queryWirelessDevice(self.iface):
 						self.session.openWithCallback(self.WlanStatusClosed, WlanStatus, self.iface)
 					else:
 						self.showErrorMessage()  # Display Wlan not available message.
@@ -995,6 +1022,13 @@ class AdapterSetupConfiguration(Screen):
 			from Plugins.SystemPlugins.WirelessLan.Wlan import iStatus
 			iStatus.stopWlanConsole()
 			self.updateStatusbar()
+
+	def restartLan(self, ret=False):
+		if ret is True:
+			def restartfinishedCB():
+				self.updateStatusbar()
+				self.session.open(MessageBox, _("Finished configuring your network"), type=MessageBox.TYPE_INFO, timeout=10, default=False)
+			RestartNetworkNew.start(callback=restartfinishedCB)
 
 	def dataAvail(self, data):
 		self.LinkState = None
@@ -2111,7 +2145,7 @@ class NetworkLogScreen(Screen):
 		self["infotext"].setText("\n".join(lines))
 
 
-class NetworkZerotierSetup(Setup):
+class NetworkZeroTierSetup(Setup):
 	ZEROTIERCLI = "/usr/sbin/zerotier-cli"
 	ZEROTIERSECRET = "/var/lib/zerotier-one/authtoken.secret"
 	ZEROTIERAPI = "http://127.0.0.1:9993"
@@ -2120,7 +2154,7 @@ class NetworkZerotierSetup(Setup):
 		self.cachedToken = None
 		self.lastInfo = None
 		self.joined = False
-		Setup.__init__(self, session=session, setup="NetworkZerotier")
+		Setup.__init__(self, session=session, setup="NetworkZeroTier")
 		self["key_yellow"] = StaticText("")
 		self["key_blue"] = StaticText(_("Refresh"))
 		self["zerotierActions"] = HelpableActionMap(self, ["ColorActions"], {
@@ -2131,7 +2165,7 @@ class NetworkZerotierSetup(Setup):
 
 	def changedEntry(self):
 		current = self["config"].getCurrent()
-		if current and len(current) > 1 and current[1] is config.network.zerotierNetworkId:
+		if current and len(current) > 1 and current[1] is config.network.ZeroTierNetworkId:
 			self.createSetup()
 			self.setJoinLeaveButton()
 		return Setup.changedEntry(self)
@@ -2187,7 +2221,7 @@ class NetworkZerotierSetup(Setup):
 		return False
 
 	def setJoinLeaveButton(self):
-		nwid = str(config.network.zerotierNetworkId.value or "").strip()
+		nwid = str(config.network.ZeroTierNetworkId.value or "").strip()
 		if not nwid:
 			self["key_yellow"].setText("")
 			self["zerotierActions"].setEnabled(False)
@@ -2197,7 +2231,7 @@ class NetworkZerotierSetup(Setup):
 		self["key_yellow"].setText(_("Leave") if self.joined else _("Join"))
 
 	def toggleJoinLeave(self):
-		nwid = str(config.network.zerotierNetworkId.value or "").strip()
+		nwid = str(config.network.ZeroTierNetworkId.value or "").strip()
 		if not nwid:
 			return
 
@@ -2211,7 +2245,7 @@ class NetworkZerotierSetup(Setup):
 		self.refreshInfo()
 
 	def createSetup(self):  # NOSONAR silence S2638
-		nwid = str(config.network.zerotierNetworkId.value or "").strip()
+		nwid = str(config.network.ZeroTierNetworkId.value or "").strip()
 		if not nwid:
 			self.lastInfo = None
 			Setup.createSetup(self, appendItems=[])
@@ -2249,13 +2283,13 @@ class NetworkZerotierSetup(Setup):
 		items.append(getConfigListEntry((_("Joined"), 0), ReadOnly(NoSave(ConfigText(default=_("Yes") if self.joined else _("No"), fixed_size=False)))))
 		items.append(getConfigListEntry((_("Service online"), 0), ReadOnly(NoSave(ConfigText(default=_("Yes") if serviceOnline else _("No"), fixed_size=False)))))
 		if serviceVersion:
-			items.append(getConfigListEntry((_("ZeroTier version"), 0), ReadOnly(NoSave(ConfigText(default=serviceVersion, fixed_size=False)))))
+			items.append(getConfigListEntry((_("Version"), 0), ReadOnly(NoSave(ConfigText(default=serviceVersion, fixed_size=False)))))
 
 		if self.joined:
 			if name:
-				items.append(getConfigListEntry((_("Network name"), 0), ReadOnly(NoSave(ConfigText(default=name, fixed_size=False)))))
+				items.append(getConfigListEntry((_("Name"), 0), ReadOnly(NoSave(ConfigText(default=name, fixed_size=False)))))
 			if status:
-				items.append(getConfigListEntry((_("Network status"), 0), ReadOnly(NoSave(ConfigText(default=status, fixed_size=False)))))
+				items.append(getConfigListEntry((_("Status"), 0), ReadOnly(NoSave(ConfigText(default=status, fixed_size=False)))))
 			items.append(getConfigListEntry((_("Tunnel IPv4"), 0), ReadOnly(NoSave(ConfigText(default=ipv4 or _("N/A"), fixed_size=False)))))
 			items.append(getConfigListEntry((_("Tunnel IPv6"), 0), ReadOnly(NoSave(ConfigText(default=ipv6 or _("N/A"), fixed_size=False)))))
 		else:

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-27 18:13+0000\n"
+"POT-Creation-Date: 2026-01-02 18:38+0000\n"
 "PO-Revision-Date: 2021-09-13 18:30+0000\n"
 "Last-Translator: Josep Belda <josepmaulet1707@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ca/>\n"
@@ -1407,10 +1407,6 @@ msgstr "(mostrar un menú d'àudio opcional de DVD)"
 msgid "* = Restart required if this item is changed."
 msgstr ""
 
-#
-msgid "* Only available if more than one interface is active."
-msgstr "* Només disponible si hi ha més d'una interfície activa."
-
 msgid "* current animation"
 msgstr ""
 
@@ -1945,11 +1941,6 @@ msgstr ""
 
 msgid "Activate HbbTV (RED button)"
 msgstr "Activa HbbTV (botó vermell)"
-
-#
-#, fuzzy
-msgid "Activate MAC address configuration"
-msgstr "Configuració del sintonitzador"
 
 #
 msgid "Activate Picture in Picture"
@@ -6815,9 +6806,6 @@ msgstr ""
 msgid "Disabled or WPA/WPA2"
 msgstr ""
 
-msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
-msgstr ""
-
 msgid "Disabling Chkroot failed!"
 msgstr ""
 
@@ -7033,6 +7021,9 @@ msgstr ""
 
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
+msgstr ""
+
+msgid "Do you really want to trim the file system?"
 msgstr ""
 
 #, python-format
@@ -7837,9 +7828,6 @@ msgstr "Activat"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr ""
 
-msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
-msgstr ""
-
 #
 msgid "Encrypted: "
 msgstr "Xifrat: "
@@ -7986,6 +7974,9 @@ msgid "Enter pin code"
 msgstr "Introduïu codi PIN"
 
 msgid "Enter text via an attached keyboard"
+msgstr ""
+
+msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
 msgstr ""
 
 msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
@@ -8486,11 +8477,6 @@ msgid "Exit File Commander"
 msgstr ""
 
 #
-#, fuzzy
-msgid "Exit MAC address configuration"
-msgstr "Configuració del sintonitzador"
-
-#
 msgid "Exit Movie Selection"
 msgstr "Llista de pel·lícules"
 
@@ -8766,6 +8752,9 @@ msgstr ""
 msgid "Fallback Timer"
 msgstr "Programador de reserva"
 
+msgid "Fallback Tuner Setup"
+msgstr "Configuració del sintonitzador de reserva"
+
 msgid "Fallback remote receiver"
 msgstr "Receptor remot de reserva"
 
@@ -8786,9 +8775,6 @@ msgstr "Receptor remot de reserva per DVB-C"
 
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Receptor remot de reserva per DVB-T"
-
-msgid "Fallback Tuner Setup"
-msgstr "Configuració del sintonitzador de reserva"
 
 msgid "False"
 msgstr "Fals"
@@ -9070,10 +9056,6 @@ msgstr "Acabat"
 #
 msgid "Finished configuring your network"
 msgstr "Ha acabat la configuració de la xarxa"
-
-#
-msgid "Finished restarting your network"
-msgstr "S’ha acabat de reiniciar la xarxa"
 
 msgid "Finland"
 msgstr "Finlàndia"
@@ -10941,6 +10923,15 @@ msgstr "Jersey"
 msgid "Job overview"
 msgstr "Visió general de la feina"
 
+msgid "Join"
+msgstr ""
+
+msgid "Join or leave the configured ZeroTier network"
+msgstr ""
+
+msgid "Joined"
+msgstr ""
+
 msgid "Jordan"
 msgstr "Jordània"
 
@@ -11318,6 +11309,9 @@ msgstr "Latvia"
 #
 msgid "Latvian"
 msgstr "Latvian"
+
+msgid "Leave"
+msgstr ""
 
 #
 msgid "Leave DVD player?"
@@ -11738,14 +11732,6 @@ msgstr ""
 
 msgid "M2k Packages"
 msgstr ""
-
-msgid "MAC Address Actions"
-msgstr ""
-
-#
-#, fuzzy
-msgid "MAC Address Settings"
-msgstr "Selecció de canal"
 
 msgid "MAC address"
 msgstr ""
@@ -12305,13 +12291,7 @@ msgstr "Montar"
 msgid "Mount Manager"
 msgstr ""
 
-msgid "Mount Menu Actions"
-msgstr ""
-
 msgid "Mount Point"
-msgstr ""
-
-msgid "Mount Settings"
 msgstr ""
 
 msgid "Mount Setup"
@@ -12918,11 +12898,6 @@ msgstr ""
 msgid "Network Log Actions"
 msgstr ""
 
-#
-#, fuzzy
-msgid "Network MAC settings"
-msgstr "Activar la configuració de la xarxa"
-
 msgid "Network Neighbourhood"
 msgstr ""
 
@@ -12975,12 +12950,18 @@ msgstr ""
 msgid "Network mounts"
 msgstr "Escanejar xarxa"
 
+msgid "Network name"
+msgstr ""
+
 msgid "Network name (SSID)"
 msgstr "Nom de la xarxa (SSID)"
 
 #
 msgid "Network scan"
 msgstr "Escanejar xarxa"
+
+msgid "Network status"
+msgstr ""
 
 msgid "Network storage on"
 msgstr ""
@@ -12996,6 +12977,9 @@ msgid ""
 "Network wizard completed.\n"
 "\n"
 "Press OK to continue."
+msgstr ""
+
+msgid "Network-ID"
 msgstr ""
 
 #
@@ -13531,6 +13515,9 @@ msgid ""
 "Filesize: %sMB\n"
 "Free Space: %sMB\n"
 "Path: %s"
+msgstr ""
+
+msgid "Not joined. Press Yellow to join."
 msgstr ""
 
 msgid "Not required"
@@ -14880,10 +14867,6 @@ msgid "Please wait while we check your installed plugins..."
 msgstr ""
 
 #
-msgid "Please wait while we configure your network..."
-msgstr "Espereu mentre configurem la vostra xarxa …"
-
-#
 msgid "Please wait while we prepare your network interfaces..."
 msgstr "Espereu mentre preparem les vostres interfícies de xarxa …"
 
@@ -15250,11 +15233,6 @@ msgstr "Premeu OK per seleccionar satèl·lits"
 msgid "Press OK to select/deselect a CAId."
 msgstr "Premeu OK per seleccionar / deseleccionar un CAId."
 
-#
-#, fuzzy
-msgid "Press OK to set the MAC address."
-msgstr "Prem OK per a començar la recerca"
-
 msgid "Press OK to start the backup now"
 msgstr ""
 
@@ -15287,9 +15265,6 @@ msgid "Press the UP/DOWN buttons to select a slot, then press OK or GREEN to reb
 msgstr ""
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
-msgstr ""
-
-msgid "Press yellow to set this interface as the default interface."
 msgstr ""
 
 msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
@@ -15985,6 +15960,9 @@ msgstr ""
 msgid "Refresh"
 msgstr ""
 
+msgid "Refresh ZeroTier status information"
+msgstr ""
+
 msgid "Refresh every x hours"
 msgstr ""
 
@@ -16468,10 +16446,6 @@ msgstr ""
 #
 msgid "Restart test"
 msgstr "Reinicia la prova"
-
-#
-msgid "Restart your network connection and interfaces."
-msgstr "Reinicieu la connexió de xarxa i les interfícies."
 
 msgid "Restarting..."
 msgstr ""
@@ -18566,6 +18540,9 @@ msgstr ""
 msgid "Service off-air"
 msgstr "Buscar canals"
 
+msgid "Service online"
+msgstr ""
+
 msgid "Service picons aspect ratio"
 msgstr ""
 
@@ -18689,9 +18666,6 @@ msgstr "Estableix fps per a subtítols externs"
 msgid "Set how long the second InfoBar stays visible. The second InfoBar also disappears when you press 'OK'."
 msgstr ""
 
-msgid "Set interface as the default Interface"
-msgstr ""
-
 msgid "Set limits"
 msgstr "Estableix límits"
 
@@ -18712,11 +18686,6 @@ msgstr ""
 
 msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
 msgstr ""
-
-#
-#, fuzzy, python-format
-msgid "Set the MAC address of your %s %s."
-msgstr "Configuració del sintonitzador"
 
 msgid "Set the UP/DOWN button skip percentage for the SeekBar."
 msgstr ""
@@ -18853,6 +18822,9 @@ msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby bef
 msgstr ""
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
+msgstr ""
+
+msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr ""
 
 msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
@@ -20843,6 +20815,9 @@ msgstr "Aturat"
 msgid "Stopping Softcam"
 msgstr ""
 
+msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
+msgstr ""
+
 msgid "Storage / Disk Information"
 msgstr ""
 
@@ -21766,13 +21741,6 @@ msgstr ""
 
 msgid "The loopthrough setting is wrong."
 msgstr ""
-
-msgid ""
-"The network wizard extension is not installed!\n"
-"Please install it."
-msgstr ""
-"L’extensió de l’assistent de xarxa no està instal·lada.\n"
-"Instal·leu-lo."
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr ""
@@ -22772,6 +22740,12 @@ msgstr ""
 msgid "Tries left:"
 msgstr "Intents:"
 
+msgid "Trim File System"
+msgstr ""
+
+msgid "Trim File System..."
+msgstr ""
+
 msgid "Trinidad and Tobago"
 msgstr "Trinitat i Tobago"
 
@@ -22918,6 +22892,12 @@ msgstr ""
 
 msgid "Tunisia"
 msgstr "Tunisia"
+
+msgid "Tunnel IPv4"
+msgstr ""
+
+msgid "Tunnel IPv6"
+msgstr ""
 
 msgid "Turbo"
 msgstr ""
@@ -23571,12 +23551,6 @@ msgid "Use the current selection and exit"
 msgstr ""
 
 msgid "Use the extended List"
-msgstr ""
-
-msgid "Use the network wizard to configure selected network adapter"
-msgstr "Utilitzeu l’assistent de xarxa per configurar l’adaptador de xarxa seleccionat"
-
-msgid "Use the network wizard to configure your Network."
 msgstr ""
 
 msgid "Use the wizard to set up basic features"
@@ -25074,6 +25048,18 @@ msgstr "Zap up"
 msgid "Zap+Record next"
 msgstr "Gravar"
 
+msgid "ZeroTier Actions"
+msgstr ""
+
+msgid "ZeroTier version"
+msgstr ""
+
+msgid "ZeroTier-One"
+msgstr ""
+
+msgid "ZeroTier Settings"
+msgstr ""
+
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr ""
 
@@ -25817,6 +25803,62 @@ msgstr "si (mantenir feeds)"
 
 msgid "®"
 msgstr ""
+
+#
+#~ msgid "* Only available if more than one interface is active."
+#~ msgstr "* Només disponible si hi ha més d'una interfície activa."
+
+#
+#, fuzzy
+#~ msgid "Activate MAC address configuration"
+#~ msgstr "Configuració del sintonitzador"
+
+#
+#, fuzzy
+#~ msgid "Exit MAC address configuration"
+#~ msgstr "Configuració del sintonitzador"
+
+#
+#~ msgid "Finished restarting your network"
+#~ msgstr "S’ha acabat de reiniciar la xarxa"
+
+#
+#, fuzzy
+#~ msgid "MAC Address Settings"
+#~ msgstr "Selecció de canal"
+
+#
+#, fuzzy
+#~ msgid "Network MAC settings"
+#~ msgstr "Activar la configuració de la xarxa"
+
+#
+#~ msgid "Please wait while we configure your network..."
+#~ msgstr "Espereu mentre configurem la vostra xarxa …"
+
+#
+#, fuzzy
+#~ msgid "Press OK to set the MAC address."
+#~ msgstr "Prem OK per a començar la recerca"
+
+#
+#~ msgid "Restart your network connection and interfaces."
+#~ msgstr "Reinicieu la connexió de xarxa i les interfícies."
+
+#
+#, fuzzy, python-format
+#~ msgid "Set the MAC address of your %s %s."
+#~ msgstr "Configuració del sintonitzador"
+
+#~ msgid ""
+#~ "The network wizard extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "L’extensió de l’assistent de xarxa no està instal·lada.\n"
+#~ "Instal·leu-lo."
+
+#~ msgid "Use the network wizard to configure selected network adapter"
+#~ msgstr "Utilitzeu l’assistent de xarxa per configurar l’adaptador de xarxa seleccionat"
 
 #~ msgid "movie/drama (general)"
 #~ msgstr "pel·lícula / drama (general)"

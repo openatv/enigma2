@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-27 18:13+0000\n"
+"POT-Creation-Date: 2026-01-02 18:38+0000\n"
 "PO-Revision-Date: 2022-12-04 20:43+0000\n"
 "Last-Translator: rimasx <riks_12@hot.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -1295,9 +1295,6 @@ msgstr "(näita DVD valikulist helimenüüd)"
 msgid "* = Restart required if this item is changed."
 msgstr "* = Vajalik taaskäivitus"
 
-msgid "* Only available if more than one interface is active."
-msgstr "* Võimalik vaid enam kui ühe aktiivse liidese puhul."
-
 msgid "* current animation"
 msgstr "* kasutatav animatsioon"
 
@@ -1806,9 +1803,6 @@ msgstr ""
 
 msgid "Activate HbbTV (RED button)"
 msgstr "Käivita HbbTV (punane nupp)"
-
-msgid "Activate MAC address configuration"
-msgstr "Jõusta MAC-aadressi seadistused"
 
 msgid "Activate Picture in Picture"
 msgstr "Ava PiP"
@@ -6465,9 +6459,6 @@ msgstr "PIP lülitati välja.\n"
 msgid "Disabled or WPA/WPA2"
 msgstr ""
 
-msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
-msgstr "Peatab ajanihke salvestamise ajaks. (Soovitatav, kui kasutatakse usb pulka)."
-
 msgid "Disabling Chkroot failed!"
 msgstr ""
 
@@ -6675,6 +6666,9 @@ msgstr ""
 
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
+msgstr ""
+
+msgid "Do you really want to trim the file system?"
 msgstr ""
 
 #, python-format
@@ -7460,9 +7454,6 @@ msgstr "Kasutusel"
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "Nii saab vastuvõtja voo dekodeerida (kui ECM andmed on kaasatud ja olemas on kehtiv kaart)."
 
-msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
-msgstr ""
-
 msgid "Encrypted: "
 msgstr "Kodeeritud: "
 
@@ -7601,6 +7592,9 @@ msgid "Enter pin code"
 msgstr "Sisesta PIN"
 
 msgid "Enter text via an attached keyboard"
+msgstr ""
+
+msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
 msgstr ""
 
 msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
@@ -8098,9 +8092,6 @@ msgstr "Sulge saatekava"
 msgid "Exit File Commander"
 msgstr ""
 
-msgid "Exit MAC address configuration"
-msgstr "Lõpeta MAC-aadressi seadistamine"
-
 msgid "Exit Movie Selection"
 msgstr "Sulge filmilist"
 
@@ -8362,6 +8353,9 @@ msgstr ""
 msgid "Fallback Timer"
 msgstr ""
 
+msgid "Fallback Tuner Setup"
+msgstr "Kaugvastuvõtja tuuneri seaded"
+
 msgid "Fallback remote receiver"
 msgstr "Kaugvastuvõtja"
 
@@ -8382,9 +8376,6 @@ msgstr "Kaugvastuvõtja Port"
 
 msgid "Fallback remote receiver for DVB-T"
 msgstr "Kaugvastuvõtja Port"
-
-msgid "Fallback Tuner Setup"
-msgstr "Kaugvastuvõtja tuuneri seaded"
 
 msgid "False"
 msgstr "Ei"
@@ -8659,9 +8650,6 @@ msgstr "Lõppenud"
 
 msgid "Finished configuring your network"
 msgstr "Võrgu seadistamine lõpetatud"
-
-msgid "Finished restarting your network"
-msgstr "Võrk on taaskäivitatud"
 
 msgid "Finland"
 msgstr "Soome"
@@ -10455,6 +10443,15 @@ msgstr "Jersey"
 msgid "Job overview"
 msgstr "Töövaade"
 
+msgid "Join"
+msgstr ""
+
+msgid "Join or leave the configured ZeroTier network"
+msgstr ""
+
+msgid "Joined"
+msgstr ""
+
 msgid "Jordan"
 msgstr "Jordaania"
 
@@ -10825,6 +10822,9 @@ msgstr "Läti"
 
 msgid "Latvian"
 msgstr "Läti"
+
+msgid "Leave"
+msgstr ""
 
 msgid "Leave DVD player?"
 msgstr "Kas väljuda DVD mängijast?"
@@ -11226,13 +11226,6 @@ msgstr "Luksemburgi"
 
 msgid "M2k Packages"
 msgstr ""
-
-msgid "MAC Address Actions"
-msgstr ""
-
-# NetworkSetup.py
-msgid "MAC Address Settings"
-msgstr "MAC-aadressi seaded"
 
 msgid "MAC address"
 msgstr ""
@@ -11781,13 +11774,7 @@ msgstr "Haagi"
 msgid "Mount Manager"
 msgstr "Haakepunktid"
 
-msgid "Mount Menu Actions"
-msgstr ""
-
 msgid "Mount Point"
-msgstr ""
-
-msgid "Mount Settings"
 msgstr ""
 
 msgid "Mount Setup"
@@ -12373,9 +12360,6 @@ msgstr ""
 msgid "Network Log Actions"
 msgstr ""
 
-msgid "Network MAC settings"
-msgstr "Võrgu MAC seaded"
-
 #
 msgid "Network Neighbourhood"
 msgstr "Võrgunaabrus"
@@ -12429,11 +12413,17 @@ msgstr "Võrgumenüü"
 msgid "Network mounts"
 msgstr "Võrgu haakepunktid"
 
+msgid "Network name"
+msgstr ""
+
 msgid "Network name (SSID)"
 msgstr "Võrgu nimi (SSID)"
 
 msgid "Network scan"
 msgstr "Võrguotsing"
+
+msgid "Network status"
+msgstr ""
 
 msgid "Network storage on"
 msgstr ""
@@ -12449,6 +12439,9 @@ msgid ""
 "Network wizard completed.\n"
 "\n"
 "Press OK to continue."
+msgstr ""
+
+msgid "Network-ID"
 msgstr ""
 
 msgid "Network:"
@@ -12955,6 +12948,9 @@ msgstr ""
 "Faili suurus: %sMB\n"
 "Vaba ruumi: %sMB\n"
 "Asukoht: %s"
+
+msgid "Not joined. Press Yellow to join."
+msgstr ""
 
 msgid "Not required"
 msgstr ""
@@ -14255,9 +14251,6 @@ msgstr ""
 msgid "Please wait while we check your installed plugins..."
 msgstr "Paigaldatud pluginate uurimine."
 
-msgid "Please wait while we configure your network..."
-msgstr "Toimub võrgu seadistamine."
-
 msgid "Please wait while we prepare your network interfaces..."
 msgstr "Toimub võrguliideste seadistamine."
 
@@ -14592,10 +14585,6 @@ msgstr "Satelliitide valimiseks vajuta OK"
 msgid "Press OK to select/deselect a CAId."
 msgstr "CAId valiku muutmiseks vajuta 'OK'."
 
-# NetworkSetup.py
-msgid "Press OK to set the MAC address."
-msgstr "MAC-aadressi määramiseks vajuta OK."
-
 msgid "Press OK to start the backup now"
 msgstr ""
 
@@ -14627,9 +14616,6 @@ msgstr ""
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "Pärast selle nupu vajutamist emuleeritakse järgmise nupu vajutus pika nupuvajutusena. See kaalub üle kõik muud nupule määratud toimingud."
-
-msgid "Press yellow to set this interface as the default interface."
-msgstr "Selle liidese vaikimisi võrguliideseks määramiseks vajuta kollast nuppu."
 
 msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
 msgstr "Paanikanupu vajutamisel lülitub vastuvõtja esimese lemmiknimekirja esimesele kanalile."
@@ -15292,6 +15278,9 @@ msgstr ""
 msgid "Refresh"
 msgstr ""
 
+msgid "Refresh ZeroTier status information"
+msgstr ""
+
 msgid "Refresh every x hours"
 msgstr "Värskenda iga (tund)"
 
@@ -15741,9 +15730,6 @@ msgstr "Taaskäivita võrk kasutades aktiivseid seadeid"
 
 msgid "Restart test"
 msgstr "Taaskäivita test"
-
-msgid "Restart your network connection and interfaces."
-msgstr "Võrguühenduse ja võrgukaartide taaskäivitus."
 
 msgid "Restarting..."
 msgstr ""
@@ -17790,6 +17776,9 @@ msgstr "Kanali number, pikon ja kanali nimi"
 msgid "Service off-air"
 msgstr "Kanali nimi"
 
+msgid "Service online"
+msgstr ""
+
 msgid "Service picons aspect ratio"
 msgstr "Pikonite kuvasuhe"
 
@@ -17906,10 +17895,6 @@ msgstr "Väliste subtiitrite kaadrisagedus"
 msgid "Set how long the second InfoBar stays visible. The second InfoBar also disappears when you press 'OK'."
 msgstr "Määra teise inforiba kestus. Riba kaob ka vajutades 'OK'."
 
-# HelpMenu
-msgid "Set interface as the default Interface"
-msgstr "Määra vaikimisi võrguliideseks"
-
 msgid "Set limits"
 msgstr "Määra piirid"
 
@@ -17931,10 +17916,6 @@ msgstr ""
 
 msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
 msgstr ""
-
-#, python-format
-msgid "Set the MAC address of your %s %s."
-msgstr "Määra %s %s MAC-aadress."
 
 msgid "Set the UP/DOWN button skip percentage for the SeekBar."
 msgstr ""
@@ -18072,6 +18053,9 @@ msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby bef
 msgstr ""
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
+msgstr ""
+
+msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr ""
 
 msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
@@ -19992,6 +19976,9 @@ msgstr "Peatatud"
 msgid "Stopping Softcam"
 msgstr "EMU peatamine"
 
+msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
+msgstr "Peatab ajanihke salvestamise ajaks. (Soovitatav, kui kasutatakse usb pulka)."
+
 msgid "Storage / Disk Information"
 msgstr ""
 
@@ -20918,13 +20905,6 @@ msgstr "Pildi kõrgus. Sisend skaleeritakse selle väärtuse järgi."
 
 msgid "The loopthrough setting is wrong."
 msgstr "Läbiviigu seadistus on vale."
-
-msgid ""
-"The network wizard extension is not installed!\n"
-"Please install it."
-msgstr ""
-"Võrguabiline ei ole paigaldatud! \n"
-"Paigalda see."
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr ""
@@ -21925,6 +21905,12 @@ msgstr "Üritades PiP keelamist, ei leitud inforiba.\n"
 msgid "Tries left:"
 msgstr "Katseid järel:"
 
+msgid "Trim File System"
+msgstr ""
+
+msgid "Trim File System..."
+msgstr ""
+
 msgid "Trinidad and Tobago"
 msgstr "Trinidad ja Tobago"
 
@@ -22051,6 +22037,12 @@ msgstr "Häälestumise algorütm"
 
 msgid "Tunisia"
 msgstr "Tuneesia"
+
+msgid "Tunnel IPv4"
+msgstr ""
+
+msgid "Tunnel IPv6"
+msgstr ""
 
 msgid "Turbo"
 msgstr "Turbo"
@@ -22693,13 +22685,6 @@ msgstr ""
 
 msgid "Use the extended List"
 msgstr "Kasuta laiendatud nimekirja"
-
-# HelpMenu
-msgid "Use the network wizard to configure selected network adapter"
-msgstr "Kasuta võrguabilist valitud võrguliidese seadistamiseks"
-
-msgid "Use the network wizard to configure your Network."
-msgstr ""
 
 msgid "Use the wizard to set up basic features"
 msgstr "Kasuta abilist põhiomaduste seadmiseks"
@@ -24177,6 +24162,18 @@ msgstr "Eelmine kanal"
 msgid "Zap+Record next"
 msgstr "Kanalivahetus ja salvestus 'järgmine'"
 
+msgid "ZeroTier Actions"
+msgstr ""
+
+msgid "ZeroTier version"
+msgstr ""
+
+msgid "ZeroTier-One"
+msgstr ""
+
+msgid "ZeroTier Settings"
+msgstr ""
+
 #, fuzzy
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7"
@@ -24845,6 +24842,57 @@ msgstr "Jah (säilita fiidid)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "* Only available if more than one interface is active."
+#~ msgstr "* Võimalik vaid enam kui ühe aktiivse liidese puhul."
+
+#~ msgid "Activate MAC address configuration"
+#~ msgstr "Jõusta MAC-aadressi seadistused"
+
+#~ msgid "Exit MAC address configuration"
+#~ msgstr "Lõpeta MAC-aadressi seadistamine"
+
+#~ msgid "Finished restarting your network"
+#~ msgstr "Võrk on taaskäivitatud"
+
+# NetworkSetup.py
+#~ msgid "MAC Address Settings"
+#~ msgstr "MAC-aadressi seaded"
+
+#~ msgid "Network MAC settings"
+#~ msgstr "Võrgu MAC seaded"
+
+#~ msgid "Please wait while we configure your network..."
+#~ msgstr "Toimub võrgu seadistamine."
+
+# NetworkSetup.py
+#~ msgid "Press OK to set the MAC address."
+#~ msgstr "MAC-aadressi määramiseks vajuta OK."
+
+#~ msgid "Press yellow to set this interface as the default interface."
+#~ msgstr "Selle liidese vaikimisi võrguliideseks määramiseks vajuta kollast nuppu."
+
+#~ msgid "Restart your network connection and interfaces."
+#~ msgstr "Võrguühenduse ja võrgukaartide taaskäivitus."
+
+# HelpMenu
+#~ msgid "Set interface as the default Interface"
+#~ msgstr "Määra vaikimisi võrguliideseks"
+
+#, python-format
+#~ msgid "Set the MAC address of your %s %s."
+#~ msgstr "Määra %s %s MAC-aadress."
+
+#~ msgid ""
+#~ "The network wizard extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "Võrguabiline ei ole paigaldatud! \n"
+#~ "Paigalda see."
+
+# HelpMenu
+#~ msgid "Use the network wizard to configure selected network adapter"
+#~ msgstr "Kasuta võrguabilist valitud võrguliidese seadistamiseks"
 
 #, fuzzy
 #~ msgid "OpenDNS Home"

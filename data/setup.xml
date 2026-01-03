@@ -601,8 +601,8 @@
 		<item text="Enable automatic shares" description="Select 'Yes' to allow each storage device detected to be automatically exported as samba share.">config.samba.enableAutoShare</item>
 		<item text="Automatic shares access" description="Select the access mode for the automatically exported samba shares." conditional="config.samba.enableAutoShare.value">config.samba.autoShareAccess</item>
 	</setup>
-	<setup key="NetworkZerotier" title="Zerotier Settings">
-		<item text="Network-ID" description="Enter the ZeroTier Network ID (16 chars).">config.network.zerotierNetworkId</item>
+	<setup key="NetworkZeroTier" title="ZeroTier Settings">
+		<item text="Network-ID" description="Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length.">config.network.ZeroTierNetworkId</item>
 	</setup>
 	<setup key="OSCamInfoSetup" title="OSCam Information Settings">
 		<item level="0" text="Read Userdata from 'oscam.conf'" description="Read Userdata from 'oscam.conf'">config.oscaminfo.userDataFromConf</item>
