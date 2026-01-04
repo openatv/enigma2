@@ -8,10 +8,6 @@
 # Short-Description: Restart networking for active ethX/wlanX interfaces
 ### END INIT INFO
 
-# BusyBox /bin/sh compatible init script.
-# Implements only: restart
-# Only manages interfaces named ethX or wlanX (e.g., eth0, eth1, wlan0, wlan1).
-
 set -eu
 
 PATH="/sbin:/bin:/usr/sbin:/usr/bin"
@@ -56,6 +52,15 @@ list_target_ifaces() {
         | grep -E '^(eth[0-9]+|wlan[0-9]+)$' \
         || true
     fi
+  fi
+}
+
+iface_exists() {
+  iface="$1"
+  if command -v ip >/dev/null 2>&1; then
+    ip link show dev "$iface" >/dev/null 2>&1
+  else
+    [ -d "/sys/class/net/$iface" ]
   fi
 }
 
@@ -143,24 +148,62 @@ restart_dnscrypt_if_present() {
   fi
 }
 
+# Determine which interfaces to act on:
+# - no arg: all active ethX/wlanX
+# - "all": all active ethX/wlanX
+# - "eth1"/"wlan0": that interface only (must match pattern)
+select_ifaces() {
+  want="${1:-}"
+
+  if [ -z "$want" ] || [ "$want" = "all" ]; then
+    ACTIVE_IFACES=""
+    for iface in $(list_target_ifaces); do
+      if is_iface_up "$iface"; then
+        ACTIVE_IFACES="$ACTIVE_IFACES $iface"
+      fi
+    done
+    echo "$ACTIVE_IFACES"
+    return 0
+  fi
+
+  # Only allow ethX/wlanX by design
+  case "$want" in
+    eth[0-9]*|wlan[0-9]*)
+      ;;
+    *)
+      echo "Invalid interface '$want' (allowed: ethX or wlanX) or use 'all'." >&2
+      exit 2
+      ;;
+  esac
+
+  if ! iface_exists "$want"; then
+    echo "Interface '$want' does not exist." >&2
+    exit 1
+  fi
+
+  if is_iface_up "$want"; then
+    echo " $want"
+  else
+    log "Requested interface '$want' is not UP; proceeding with service restart only."
+    echo ""
+  fi
+}
+
 do_restart() {
+  TARGET_IFACE="${1:-}"
+
   REMOTE_ROOT=0
   if on_remote_rootfs; then
     REMOTE_ROOT=1
     log "Remote rootfs detected. eth0 will not be brought down."
   fi
 
-  ACTIVE_IFACES=""
-  for iface in $(list_target_ifaces); do
-    if is_iface_up "$iface"; then
-      ACTIVE_IFACES="$ACTIVE_IFACES $iface"
-    fi
-  done
+  ACTIVE_IFACES="$(select_ifaces "$TARGET_IFACE")"
 
   if [ -z "$ACTIVE_IFACES" ]; then
-    log "No active ethX/wlanX interfaces found. Proceeding with service restart only."
+    log "No active target interfaces selected. Proceeding with service restart only."
   else
-    log "Active target interfaces:$ACTIVE_IFACES"
+    log "Selected active interfaces:$ACTIVE_IFACES"
   fi
 
   stop_service /etc/init.d/avahi-daemon
@@ -185,7 +228,7 @@ do_restart() {
   rm -f /var/run/udhcpc* 2>/dev/null || true
 
   start_service /etc/init.d/networking
-  
+
   for iface in $ACTIVE_IFACES; do
     if [ "$iface" = "eth0" ] && [ "$REMOTE_ROOT" -eq 1 ]; then
       continue
@@ -200,10 +243,10 @@ do_restart() {
 
 case "${1:-}" in
   restart)
-    do_restart
+    do_restart "${2:-}"
     ;;
   *)
-    echo "Usage: $0 restart" >&2
+    echo "Usage: $0 restart [all|ethX|wlanX]" >&2
     exit 2
     ;;
 esac
