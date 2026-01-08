@@ -1,13 +1,13 @@
 # lexlong2007 <lexlong2007@163.com>, 2022.
 # tzyy1970 <haotzyy1970@yahoo.com>, 2022.
-# Mark Stone <grystyle@gmail.com>, 2023, 2024, 2025.
+# Mark Stone <grystyle@gmail.com>, 2023, 2024, 2025, 2026.
 # Johnspp93 <Johnspp93@users.noreply.hosted.weblate.org>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-02 18:38+0000\n"
-"PO-Revision-Date: 2025-12-28 11:50+0000\n"
+"POT-Creation-Date: 2026-01-03 09:58+0000\n"
+"PO-Revision-Date: 2026-01-04 15:06+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -4501,7 +4501,7 @@ msgid "Configure front panel LEDs"
 msgstr "配置前面板指示灯"
 
 msgid "Configure how recording filenames are constructed. Standard: Date Time - Channel - Title Very very short: Title Very short: Title - Date Time Short with time: Date Time - Title Short: Date - Title Long: Date Time - Channel - Title - Info."
-msgstr "配置录像文件名的生成规则。标准：日期时间 - 频道 - 标题  极简格式：仅标题  短格式（带时间）：标题 - 日期 时间  带时间的短格式：日期 时间 - 标题  短格式：日期 - 标题  完整格式：日期 时间 - 频道 - 标题 - 附加信息。"
+msgstr "配置录像文件的命名规则。--标准：日期 时间 - 频道 - 标题 --极简：仅标题 --简略：标题 - 日期 时间 --带时间的短格式：日期 时间 - 标题 --短格式：日期 - 标题 --长格式：日期 时间 - 频道 - 标题 - 附加信息。"
 
 msgid "Configure if 'epg.dat' should be saved at all."
 msgstr "配置是否应该保存 epg.dat。"
@@ -6581,7 +6581,7 @@ msgid "Do you really want to stop and delete the timer '%s'?"
 msgstr "真的要停止并删除定时器“%s”吗？"
 
 msgid "Do you really want to trim the file system?"
-msgstr ""
+msgstr "真的要修剪文件系统吗？"
 
 #, python-format
 msgid "Do you want change '%s' access mode?"
@@ -7485,7 +7485,7 @@ msgid "Enter text via an attached keyboard"
 msgstr "通过连接的键盘输入文本"
 
 msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
-msgstr ""
+msgstr "请输入 ZeroTier 网络 ID。该 ID 的长度必须正好为 16 个字符。"
 
 msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
 msgstr "输入流媒体错误后要添加到流媒体缓冲区的持续时间。这个额外的缓冲区有助于避免因缓冲区空间不足而导致的进一步流媒体问题。"
@@ -10272,13 +10272,13 @@ msgid "Job overview"
 msgstr "作业概述"
 
 msgid "Join"
-msgstr ""
+msgstr "加入"
 
 msgid "Join or leave the configured ZeroTier network"
-msgstr ""
+msgstr "加入或离开已配置的 ZeroTier 网络"
 
 msgid "Joined"
-msgstr ""
+msgstr "已加入"
 
 msgid "Jordan"
 msgstr "约旦"
@@ -10641,7 +10641,7 @@ msgid "Latvian"
 msgstr "拉脱维亚语"
 
 msgid "Leave"
-msgstr ""
+msgstr "离开"
 
 msgid "Leave DVD player?"
 msgstr "退出 DVD 播放器？"
@@ -12148,17 +12148,11 @@ msgstr "网络菜单"
 msgid "Network mounts"
 msgstr "网络挂载"
 
-msgid "Network name"
-msgstr ""
-
 msgid "Network name (SSID)"
 msgstr "网络名称 （SSID）"
 
 msgid "Network scan"
 msgstr "网络扫描"
-
-msgid "Network status"
-msgstr ""
 
 msgid "Network storage on"
 msgstr "网络存储 -"
@@ -12179,7 +12173,7 @@ msgstr ""
 "按“确定”继续。"
 
 msgid "Network-ID"
-msgstr ""
+msgstr "网络 ID"
 
 msgid "Network:"
 msgstr "网络："
@@ -12665,7 +12659,7 @@ msgstr ""
 "路径： %s"
 
 msgid "Not joined. Press Yellow to join."
-msgstr ""
+msgstr "未加入。按黄色键加入。"
 
 msgid "Not required"
 msgstr "不需要"
@@ -14911,7 +14905,7 @@ msgid "Refresh"
 msgstr "刷新"
 
 msgid "Refresh ZeroTier status information"
-msgstr ""
+msgstr "刷新 ZeroTier 状态信息"
 
 msgid "Refresh every x hours"
 msgstr "刷新每（小时）"
@@ -15354,6 +15348,9 @@ msgstr "用当前设置重启网络"
 
 msgid "Restart test"
 msgstr "重启测试"
+
+msgid "Restart your network connection and interfaces."
+msgstr "重新启动网络连接和接口。"
 
 msgid "Restarting..."
 msgstr "正在重启..."
@@ -17368,7 +17365,7 @@ msgid "Service off-air"
 msgstr "频道停播"
 
 msgid "Service online"
-msgstr ""
+msgstr "在线服务"
 
 msgid "Service picons aspect ratio"
 msgstr "频道图标宽高比"
@@ -21426,10 +21423,10 @@ msgid "Tries left:"
 msgstr "剩余尝试次数："
 
 msgid "Trim File System"
-msgstr ""
+msgstr "修剪文件系统"
 
 msgid "Trim File System..."
-msgstr ""
+msgstr "修剪文件系统..."
 
 msgid "Trinidad and Tobago"
 msgstr "特立尼达和多巴哥"
@@ -21554,10 +21551,10 @@ msgid "Tunisia"
 msgstr "突尼斯"
 
 msgid "Tunnel IPv4"
-msgstr ""
+msgstr "IPv4 隧道"
 
 msgid "Tunnel IPv6"
-msgstr ""
+msgstr "IPv6 隧道"
 
 msgid "Turbo"
 msgstr "Turbo"
@@ -22186,6 +22183,9 @@ msgstr "使用当前选择并退出"
 
 msgid "Use the extended List"
 msgstr "使用扩展列表"
+
+msgid "Use the network wizard to configure your Network."
+msgstr "使用网络向导配置网络。"
 
 msgid "Use the wizard to set up basic features"
 msgstr "使用向导设置基本功能"
@@ -23660,16 +23660,13 @@ msgid "Zap+Record next"
 msgstr "换台 + 录制下一个"
 
 msgid "ZeroTier Actions"
-msgstr ""
-
-msgid "ZeroTier version"
-msgstr ""
-
-msgid "ZeroTier-One"
-msgstr ""
+msgstr "ZeroTier 操作"
 
 msgid "ZeroTier Settings"
-msgstr ""
+msgstr "ZeroTier 设置"
+
+msgid "ZeroTier-One"
+msgstr "ZeroTier-One"
 
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7旧型号"
@@ -24362,9 +24359,6 @@ msgstr "®"
 #~ msgid "Press yellow to set this interface as the default interface."
 #~ msgstr "请按黄键来设置这个界面为默认界面。"
 
-#~ msgid "Restart your network connection and interfaces."
-#~ msgstr "重新启动网络连接和接口。"
-
 #~ msgid "Set interface as the default Interface"
 #~ msgstr "设置界面为默认界面"
 
@@ -24381,9 +24375,6 @@ msgstr "®"
 
 #~ msgid "Use the network wizard to configure selected network adapter"
 #~ msgstr "使用网络向导配置选择的网络适配器"
-
-#~ msgid "Use the network wizard to configure your Network."
-#~ msgstr "使用网络向导配置网络。"
 
 #~ msgid "white"
 #~ msgstr "白色"

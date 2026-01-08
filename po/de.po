@@ -18,9 +18,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-02 18:38+0000\n"
-"PO-Revision-Date: 2026-01-03 09:45+0000\n"
-"Last-Translator: VfBFan <drop0815@posteo.de>\n"
+"POT-Creation-Date: 2026-01-03 09:58+0000\n"
+"PO-Revision-Date: 2026-01-05 09:22+0000\n"
+"Last-Translator: Masowick <Demian@gmx.co.uk>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -7875,7 +7875,7 @@ msgid "Enter text via an attached keyboard"
 msgstr "Texteingabe über eine angeschlossene Tastatur"
 
 msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
-msgstr "Die ZeroTier-Netzwerk-ID eingeben (16 Zeichen)."
+msgstr "Die ZeroTier-Netzwerk-ID mit genau 16 Zeichen eingeben."
 
 msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
 msgstr "Die Dauer eingeben, die nach einem Streamingfehler zum Streamingpuffer hinzugefügt werden soll. Dieser zusätzliche Puffer kann dazu beitragen, weitere Streamingprobleme aufgrund von unzureichendem Pufferspeicherplatz zu vermeiden."
@@ -12795,18 +12795,12 @@ msgstr "Netzwerkeinstellungen"
 msgid "Network mounts"
 msgstr "Netzlaufwerke"
 
-msgid "Network name"
-msgstr "Netzwerkname"
-
 msgid "Network name (SSID)"
 msgstr "Netzwerkname (SSID)"
 
 #
 msgid "Network scan"
 msgstr "Netzwerksuchlauf"
-
-msgid "Network status"
-msgstr "Netzwerkstatus"
 
 msgid "Network storage on"
 msgstr "Netzwerkspeicher auf"
@@ -13360,7 +13354,7 @@ msgstr ""
 "Pfad: %s"
 
 msgid "Not joined. Press Yellow to join."
-msgstr "Nicht verbunden, Taste GELB zum Verbinden."
+msgstr "Nicht verbunden, Taste GELB zum Verbinden drücken."
 
 msgid "Not required"
 msgstr "Nicht erforderlich"
@@ -16264,6 +16258,10 @@ msgstr "Netzwerk neu starten"
 #
 msgid "Restart test"
 msgstr "Test wiederholen"
+
+#
+msgid "Restart your network connection and interfaces."
+msgstr "Netzwerkverbindung und Schnittstellen neu starten."
 
 msgid "Restarting..."
 msgstr "Neustart …"
@@ -23496,6 +23494,9 @@ msgstr "Die aktuelle Auswahl verwenden und beenden"
 msgid "Use the extended List"
 msgstr "Die erweiterte Liste verwenden."
 
+msgid "Use the network wizard to configure your Network."
+msgstr "Den Netzwerkassistenten verwenden, um das Netzwerk zu konfigurieren."
+
 # Erstassi
 msgid "Use the wizard to set up basic features"
 msgstr "Assistenten für die Grundeinstellung benutzen"
@@ -25069,14 +25070,11 @@ msgstr "Bei nächster Sendung umschalten und aufnehmen"
 msgid "ZeroTier Actions"
 msgstr "ZeroTier-Aktionen"
 
-msgid "ZeroTier version"
-msgstr "ZeroTier-Version"
+msgid "ZeroTier Settings"
+msgstr "ZeroTier-Einstellungen"
 
 msgid "ZeroTier-One"
 msgstr "ZeroTier-One"
-
-msgid "ZeroTier Settings"
-msgstr "ZeroTier-Einstellungen"
 
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7 altes Modell"
@@ -25816,6 +25814,15 @@ msgstr "Ja (Feeds beibehalten)"
 msgid "®"
 msgstr "®"
 
+#~ msgid "Network name"
+#~ msgstr "Netzwerkname"
+
+#~ msgid "Network status"
+#~ msgstr "Netzwerkstatus"
+
+#~ msgid "ZeroTier version"
+#~ msgstr "ZeroTier-Version"
+
 #
 #~ msgid "* Only available if more than one interface is active."
 #~ msgstr "* Nur verfügbar, wenn mehr als ein Netzwerkadapter aktiv ist."
@@ -25857,10 +25864,6 @@ msgstr "®"
 #~ msgid "Press yellow to set this interface as the default interface."
 #~ msgstr "GELB drücken, um diese Schnittstelle als Standardschnittstelle festzulegen."
 
-#
-#~ msgid "Restart your network connection and interfaces."
-#~ msgstr "Netzwerkverbindung und Schnittstellen neu starten."
-
 # HelpMenu
 #~ msgid "Set interface as the default Interface"
 #~ msgstr "Setze Netzwerkadapter als Standard"
@@ -25880,9 +25883,6 @@ msgstr "®"
 # HelpMenu
 #~ msgid "Use the network wizard to configure selected network adapter"
 #~ msgstr "Den Netzwerkassistenten zur Konfiguration des ausgewählten Netzwerkadapters verwenden"
-
-#~ msgid "Use the network wizard to configure your Network."
-#~ msgstr "Den Netzwerkassistenten verwenden, um das Netzwerk zu konfigurieren."
 
 #~ msgid "Monitoring UI password"
 #~ msgstr "Überwachungs-UI-Passwort"

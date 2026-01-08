@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-02 18:38+0000\n"
-"PO-Revision-Date: 2026-01-03 07:28+0000\n"
+"POT-Creation-Date: 2026-01-03 09:58+0000\n"
+"PO-Revision-Date: 2026-01-08 00:03+0000\n"
 "Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -5871,7 +5871,7 @@ msgid "Default volume offset"
 msgstr "Domyślne przesunięcie głośności"
 
 msgid "Default wake-up is 5 minutes prior to timer start to wake up from Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
-msgstr "Domyślnie wybudzanie następuje 5 minut przed przejściem w tryb wyłączenia. Dostosuj, jeśli wybudzanie jest zbyt wczesne lub zbyt późne, np. w przypadku dysków sieciowych."
+msgstr "Domyślnie wybudzanie następuje 5 minut przed rozpoczęciem wybudzania z trybu wyłączenia. Dostosuj czas wybudzania, jeśli jest on zbyt wczesny lub zbyt późny, np. w przypadku dysków sieciowych."
 
 #, python-format
 msgid "Default: '%s'."
@@ -7536,7 +7536,7 @@ msgid "Enter text via an attached keyboard"
 msgstr "Wpisz tekst za pomocą dołączonej klawiatury"
 
 msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
-msgstr "Wprowadź ID sieci ZeroTier (16 znaków)."
+msgstr "Wprowadź ID sieci ZeroTier. Identyfikator powinien mieć dokładnie 16 znaków."
 
 msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
 msgstr "Wprowadź czas, jaki ma zostać dodany do bufora strumieniowego po wystąpieniu błędu strumieniowania. Ten dodatkowy bufor może pomóc uniknąć dalszych problemów ze strumieniowaniem spowodowanych brakiem miejsca w buforze."
@@ -12202,17 +12202,11 @@ msgstr "Menu sieciowe"
 msgid "Network mounts"
 msgstr "Montowanie Sieci"
 
-msgid "Network name"
-msgstr "Nazwa sieci"
-
 msgid "Network name (SSID)"
 msgstr "Nazwa sieci (SSID)"
 
 msgid "Network scan"
 msgstr "Skanowanie sieci"
-
-msgid "Network status"
-msgstr "Status sieci"
 
 msgid "Network storage on"
 msgstr "Pamięć sieciowa na"
@@ -12638,16 +12632,16 @@ msgid "Norfolk Island"
 msgstr "Norfolk"
 
 msgid "Normal"
-msgstr "normalny"
+msgstr "Normalny"
 
 msgid "Normal - Standard image"
-msgstr "Normalny - system standardowy"
+msgstr "Normalny - System standardowy"
 
 msgid "Normal No ScaleUp"
 msgstr "Normalny bez skalowania"
 
 msgid "Normal: No boot modes required."
-msgstr "Normalny: nie są wymagane żadne tryby rozruchu."
+msgstr "Normalny: Nie są wymagane żadne tryby rozruchu."
 
 msgid "North"
 msgstr "Północ"
@@ -15411,6 +15405,9 @@ msgstr "Uruchom ponownie sieć z obecną konfiguracją"
 msgid "Restart test"
 msgstr "Uruchom ponownie test"
 
+msgid "Restart your network connection and interfaces."
+msgstr "Uruchom ponownie połączenie z siecią i interfejsy."
+
 msgid "Restarting..."
 msgstr "Restartuje..."
 
@@ -15587,7 +15584,7 @@ msgid "Root directory"
 msgstr "Katalog root"
 
 msgid "Root file"
-msgstr "Plik Root"
+msgstr "Plik root"
 
 msgid "Rose"
 msgstr "róża"
@@ -17706,7 +17703,7 @@ msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
 msgstr "Ustaw na „Włączone”, aby odszyfrować zakodowane nagrania w kolejce w trybie czuwania."
 
 msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
-msgstr "Jeżeli zostanie wybrana opcja „Tak”, do telewizora w przypadku przejścia w tryb wyłączenia będą wysyłane te same polecenia, co w przypadku zwykłego trybu czuwania."
+msgstr "Ustaw na 'Tak', aby umożliwić wysyłanie tych samych poleceń telewizora dla trybu wyłączenia, co dla zwykłego trybu czuwania."
 
 msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
 msgstr "Jeżeli ustawione na 'tak', włączy nagrywanie automatycznie w tle z timeshiftem."
@@ -19591,7 +19588,7 @@ msgid "Stopping Softcam"
 msgstr "Zatrzymywanie softcam"
 
 msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
-msgstr "Zatrzymaj timeshift jeśli nagrywanie jest w toku. (Zalecane dla pamięci USB)."
+msgstr "Zatrzymuje użycie funkcji timeshift podczas nagrywania. Jest to zalecane w przypadku pamięci USB."
 
 msgid "Storage / Disk Information"
 msgstr "Informacje o pamięci masowej / dyskach"
@@ -20714,7 +20711,7 @@ msgid "This is the currently selected locale.  [%s]"
 msgstr "To jest obecnie wybrany region. [%s]"
 
 msgid "This is the initial / default volume offset applied to any services added to the volume adjust list."
-msgstr "Jest to początkowe / domyślne przesunięcie woluminu zastosowane do wszystkich usług dodanych do listy regulacji głośności."
+msgstr "Jest to początkowe/domyślne przesunięcie głośności stosowane do wszystkich kanałów dodanych do listy regulacji głośności."
 
 msgid "This is the order in which DiSEqC commands are sent to the aerial system. The order must correspond exactly with the order the physical devices are arranged along the signal cable (starting from the receiver end)."
 msgstr "Jest to kolejność wysyłania poleceń DiSEqC do systemu antenowego. Kolejność musi dokładnie odpowiadać kolejności, w jakiej urządzenia fizyczne są ułożone wzdłuż kabla sygnałowego (zaczynając od końca odbiornika)."
@@ -22252,6 +22249,9 @@ msgstr "Użyj bieżącego wyboru i wyjdź"
 msgid "Use the extended List"
 msgstr "Użyj rozszerzonej listy"
 
+msgid "Use the network wizard to configure your Network."
+msgstr "Użyj kreatora sieci, aby skonfigurować swoją Sieć."
+
 msgid "Use the wizard to set up basic features"
 msgstr "Użyj kreatora aby ustawić podstawowe funkcje"
 
@@ -23727,14 +23727,11 @@ msgstr "Przełącz+Następne nagranie"
 msgid "ZeroTier Actions"
 msgstr "Akcje ZeroTier"
 
-msgid "ZeroTier version"
-msgstr "Wersja ZeroTier"
+msgid "ZeroTier Settings"
+msgstr "Ustawienia ZeroTier"
 
 msgid "ZeroTier-One"
 msgstr "ZeroTier-One"
-
-msgid "ZeroTier Settings"
-msgstr "Ustawienia Zerotier"
 
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7 stary Model"
@@ -24392,6 +24389,15 @@ msgstr "tak (zachować feed'y)"
 msgid "®"
 msgstr "®"
 
+#~ msgid "Network name"
+#~ msgstr "Nazwa sieci"
+
+#~ msgid "Network status"
+#~ msgstr "Status sieci"
+
+#~ msgid "ZeroTier version"
+#~ msgstr "Wersja ZeroTier"
+
 #~ msgid "* Only available if more than one interface is active."
 #~ msgstr "* Dostępne tylko wtedy gdy więcej niż jeden interfejs jest aktywny."
 
@@ -24428,9 +24434,6 @@ msgstr "®"
 #~ msgid "Press yellow to set this interface as the default interface."
 #~ msgstr "Naciśnij żółty, aby ustawić ten interfejs jako domyślny."
 
-#~ msgid "Restart your network connection and interfaces."
-#~ msgstr "Uruchom ponownie połączenie z siecią i interfejsy."
-
 #~ msgid "Set interface as the default Interface"
 #~ msgstr "Ustaw interfejs jako domyślny"
 
@@ -24447,9 +24450,6 @@ msgstr "®"
 
 #~ msgid "Use the network wizard to configure selected network adapter"
 #~ msgstr "Użyj kreatora sieci do skonfigurowania wybranego interfejsu"
-
-#~ msgid "Use the network wizard to configure your Network."
-#~ msgstr "Użyj kreatora sieci, aby skonfigurować swoją Sieć."
 
 #~ msgid "white"
 #~ msgstr "Biały"
