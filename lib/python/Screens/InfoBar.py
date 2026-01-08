@@ -142,10 +142,10 @@ class InfoBar(InfoBarBase, InfoBarShowHide,
 					self.doShow()
 
 	def __checkServiceStarted(self):
-		self.__serviceStarted(True)
+		self.__serviceStarted()
 		self.onExecBegin.remove(self.__checkServiceStarted)
 
-	def serviceStarted(self):  #override from InfoBarShowHide
+	def serviceStarted(self):  # override from InfoBarShowHide
 		new = self.servicelist.newServicePlayed()
 		if self.execing:
 			InfoBarShowHide.serviceStarted(self)
