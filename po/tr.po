@@ -4266,34 +4266,34 @@ msgstr "PiP etkin olduğunda '0' tuşunun ne yapmasını istediğinizi seçin."
 msgid "Choose where to mount your devices to:"
 msgstr "Cihazlarınızı nereye monte edeceğinizi seçin:"
 
-msgid "Choose whether AAC sound tracks should be transcoded."
+msgid "Select whether AAC audio tracks should be transcoded."
 msgstr "AAC ses parçalarının dönüştürülüp dönüştürülmeyeceğini seçin."
 
-msgid "Choose whether AC3 Plus sound tracks should be transcoded to AC3."
+msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
 msgstr "AC3 Plus ses parçalarının AC3'e dönüştürülüp dönüştürülmeyeceğini seçin."
 
-msgid "Choose whether AC3 sound tracks should be downmixed to stereo."
+msgid "Select whether AC3 audio tracks should be downmixed to stereo."
 msgstr "AC3 ses parçalarının stereo'ya dönüştürülüp dönüştürülmeyeceğine karar verin."
 
-msgid "Choose whether DTS channel sound tracks should be downmixed or transcoded."
+msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
 msgstr "DTS kanal ses parçalarının downmix mi yoksa transkodlama mı yapılacağına karar verin."
 
-msgid "Choose whether DTS channel sound tracks should be downmixed to stereo."
+msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
 msgstr "DTS kanal ses parçalarının stereoya indirgenip karıştırılmayacağını seçin."
 
-msgid "Choose whether WMA Pro channel sound tracks should be downmixed or transcoded."
+msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
 msgstr "WMA Pro kanal ses parçalarının downmix mi yoksa transkodlama mı yapılacağına karar verin."
 
-msgid "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
+msgid "Select whether multichannel audio tracks should be converted to PCM or SPDIF."
 msgstr "Çok kanallı ses parçalarının PCM'ye mi yoksa SPDIF'e mi dönüştürüleceğini seçin."
 
-msgid "Choose whether multi channel sound tracks should be downmixed to stereo."
+msgid "Select whether multichannel audio tracks should be downmixed to stereo."
 msgstr "Çok kanallı ses parçalarının stereo'ya dönüştürülüp dönüştürülmeyeceğine karar verin."
 
-msgid "Choose whether multi channel sound tracks should be output as PCM."
+msgid "Select whether multichannel audio tracks should be output as PCM."
 msgstr "Çok kanallı ses parçalarının PCM olarak mı çıkış verileceğini seçin."
 
-msgid "Choose whether or not to show an icon when a motorized dish is moving."
+msgid "Select whether or not to show an icon when a motorized dish is moving."
 msgstr "Motorlu anten hareket halindeyken bir simge gösterilip gösterilmeyeceğini seçin."
 
 msgid "Choose which level of menu/setting's to display. 'Expert'-level shows all items."
@@ -4990,7 +4990,7 @@ msgstr "Teletext için sabit yazı tipi mi yoksa ölçeklenebilir TrueType yazı
 msgid "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel."
 msgstr "Aynı canlı TV kanalını alan ve halihazırda aktif olan bir Tuner'i paylaşmak yerine, tercih edilen listeden başka bir Tuner'in kayıtlar için tahsis edilip edilmeyeceğini yapılandırın."
 
-msgid "Configure whether multi channel sound tracks should be downmixed to stereo."
+msgid "Configure whether multichannel audio tracks should be downmixed to stereo."
 msgstr "Çok kanallı ses parçalarının stereoya karıştırılıp karıştırılmayacağını ayarlayın."
 
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (like in EPGrefresh)."
@@ -7351,7 +7351,7 @@ msgid "Enable Autorecord"
 msgstr "Otomatik kaydı etkinleştir"
 
 #
-msgid "Enable BT Audio"
+msgid "Enable BT audio"
 msgstr "BT Sesini Etkinleştir"
 
 #
@@ -9213,7 +9213,7 @@ msgstr "Genel"
 msgid "General AC3 delay"
 msgstr "Genel AC3 gecikmesi"
 
-msgid "General BT Audio delay"
+msgid "General BT audio delay"
 msgstr "Genel BT ses gecikmesi"
 
 msgid "General PCM delay"
@@ -9562,7 +9562,7 @@ msgstr "Python çökmelerini yönet"
 msgid "Handle Standby from TV"
 msgstr "TV'den Bekleme Modunu Yönet"
 
-msgid "Handle input from TV"
+msgid "Process action from TV"
 msgstr "TV'den gelen girişi işle"
 
 msgid "Handle wake up from TV"
@@ -15599,7 +15599,7 @@ msgstr "Tazele"
 msgid "Refresh ZeroTier status information"
 msgstr "ZeroTier durum bilgilerini yenile"
 
-msgid "Refresh every x hours"
+msgid "Refresh every"
 msgstr "Her (saat) yenile"
 
 msgid "Refresh rate"
@@ -16563,7 +16563,7 @@ msgstr "Sakla ve durdur"
 msgid "Save directory on EXIT"
 msgstr "EXIT'te dizini kaydet"
 
-msgid "Save every x hours"
+msgid "Save every"
 msgstr "Her (saatte) sakla"
 
 #, python-format
@@ -18401,7 +18401,7 @@ msgstr "Bilgi çubuğunu gizlemek için zamanı ayarlayın."
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
 msgstr "Kapatma, bekleme veya yeniden başlatma mesajlarında varsayılan eylemin yürütülmesi için beklenecek süreyi ayarlayın; örneğin RecordTimer, Scheduler, SleepTimer vb.'de kullanılır."
 
-msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at 0,0 and the bottom right is at 1260,700. Note that the position is the top left of the spinner and not the centre of the spinner."
+msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
 msgstr "Meşgul döndürücünün sol üst konumunu ayarlayın. Koordinatlar, sol üst kısım (0,0) ve sağ alt kısım (1260,700) olacak şekilde ölçeklendirilir. Konumun, döndürücünün merkezi değil, sol üst kısmı olduğunu unutmayın."
 
 msgid "Set the type of the progress indication in the channel selection screen."
@@ -18439,7 +18439,7 @@ msgstr "Çalma listelerini alfabetik olarak sıralamak için bunu 'Evet' olarak 
 msgid "Set time options"
 msgstr "Zaman seçeneklerini ayarlama"
 
-msgid "Set to 'Disabled' to replace underscore characters '_' in file and directory names with spaces."
+msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
 msgstr "Devre dışı bırakılırsa, dosya ve dizin adlarındaki altı çizili karakterler gösterilmez ve boşluklarla değiştirilir."
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby before shutting down."
@@ -18805,7 +18805,7 @@ msgstr "HDMI Çıkışını Göster Res"
 msgid "Show InfoBar"
 msgstr "Bilgi Çubuğunu göster"
 
-msgid "Show InfoBar lite *"
+msgid "Show InfoBar lite"
 msgstr "Bilgi çubuğunu göster *"
 
 #
@@ -21118,10 +21118,10 @@ msgstr "Sınırlı %s %s bir hafıza kapasitesine sahiptir. Kullanılabilir bell
 msgid "The %s %s is shutting down. Please wait..."
 msgstr "Kapanıyor %s %s . Lütfen bekle..."
 
-msgid "The %s %s reads the stored EPG data every x hours."
+msgid "The %s %s reads the stored EPG data every selected number of hours."
 msgstr "%s %s saklanmış EPG bilgisini her (saat) okur."
 
-msgid "The %s %s stores the EPG data every x hours."
+msgid "The %s %s stores the EPG data every selected number of hours."
 msgstr "%s %s EPG bilgisini her (saat) saklar."
 
 #, python-format
@@ -21539,7 +21539,7 @@ msgstr "Bu %s %s, %s akışlarını çözemez!"
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "DVD-RW ortamı zaten biçimlendirilmiş - yeniden biçimlendirme tüm disk içeriğini silecektir."
 
-msgid "This Option allows you to switch Audio to BT Speakers."
+msgid "This option allows you to switch Audio to Bluetooth speakers."
 msgstr "Bu Seçenek, Sesi BT Hoparlörler'e ayarlamanıza izin verir."
 
 msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
@@ -21719,13 +21719,13 @@ msgstr "Bu seçenek tüm HDMI Modlarını kullanmanızı sağlar"
 msgid "This option allows you to view the old and new settings side by side."
 msgstr "Bu seçenek eski ve yeni ayarları yan yana görmenizi sağlar."
 
-msgid "This option configures the general audio delay for BT Speakers."
+msgid "This option configures the audio delay value for Bluetooth speakers."
 msgstr "Bu seçenek BT Hoparlörler için genel ses gecikmesini yapılandırır."
 
-msgid "This option configures the general audio delay of Dolby Digital sound tracks."
+msgid "This option selects the general audio delay of Dolby Digital sound tracks."
 msgstr "Bu seçenek Dolby Digital ses izlerinin genel ses gecikmesini yapılandırır."
 
-msgid "This option configures the general audio delay of stereo sound tracks."
+msgid "This option selects the general audio delay of stereo sound tracks."
 msgstr "Bu seçenek stereo ses izlerinin genel ses gecikmesini yapılandırır."
 
 msgid "This option configures the picture sharpness."
@@ -21737,7 +21737,7 @@ msgstr "Bu seçenek PC çıkış modundaki ekran çözünürlüğünü yapıland
 msgid "This option configures the video output mode (or resolution)."
 msgstr "Bu seçenek video çıkış modunu (veya çözünürlük) yapılandırır."
 
-msgid "This option configures you can set Auto Volume Level."
+msgid "This option allows you to set the Auto Volume Level output."
 msgstr "Bu seçenek, Otomatik Ses Seviyesini ayarlarını yapılandırır."
 
 msgid "This option lets you adjust the 3D depth of the OSD."

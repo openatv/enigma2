@@ -4135,34 +4135,34 @@ msgstr "Zgjidhni atë që dëshironi të bëjë butoni '0' kur PIP është aktiv
 msgid "Choose where to mount your devices to:"
 msgstr "Zgjidhni ku t'i montoni pajisjet tuaja në:"
 
-msgid "Choose whether AAC sound tracks should be transcoded."
+msgid "Select whether AAC audio tracks should be transcoded."
 msgstr "Zgjidhni nëse pjesët zanore AAC duhet të transkodohen."
 
-msgid "Choose whether AC3 Plus sound tracks should be transcoded to AC3."
+msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
 msgstr "Zgjidh nëse gjurmët e zërit AC3 Plus duhet të transkodohen në AC3."
 
-msgid "Choose whether AC3 sound tracks should be downmixed to stereo."
+msgid "Select whether AC3 audio tracks should be downmixed to stereo."
 msgstr "Zgjidhni nëse pjesët zanore AC3 duhet të përzihen në stereo."
 
-msgid "Choose whether DTS channel sound tracks should be downmixed or transcoded."
+msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
 msgstr "Zgjidhni nëse pjesët zanore të kanalit DTS duhet të përzihen ose të transkodohen."
 
-msgid "Choose whether DTS channel sound tracks should be downmixed to stereo."
+msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
 msgstr "Zgjidhni nëse pjesët zanore të kanalit DTS duhet të përzihen në stereo."
 
-msgid "Choose whether WMA Pro channel sound tracks should be downmixed or transcoded."
+msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
 msgstr "Zgjidhni nëse pjesët zanore të kanalit WMA Pro duhet të përzihen ose të transkodohen."
 
-msgid "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
+msgid "Select whether multichannel audio tracks should be converted to PCM or SPDIF."
 msgstr "Zgjidhni nëse pjesët zanore me shumë kanale duhet të konvertohen në PCM ose SPDIF."
 
-msgid "Choose whether multi channel sound tracks should be downmixed to stereo."
+msgid "Select whether multichannel audio tracks should be downmixed to stereo."
 msgstr "Zgjidh nëse binarët e zërit të shumë kanaleve duhet të jenë të pakasuara me stereo."
 
-msgid "Choose whether multi channel sound tracks should be output as PCM."
+msgid "Select whether multichannel audio tracks should be output as PCM."
 msgstr "Zgjidhni nëse pjesët zanore me shumë kanale duhet të dalin si PCM."
 
-msgid "Choose whether or not to show an icon when a motorized dish is moving."
+msgid "Select whether or not to show an icon when a motorized dish is moving."
 msgstr "Zgjidhni nëse do të shfaqet ose jo një ikonë kur një pjatë e motorizuar është në lëvizje."
 
 msgid "Choose which level of menu/setting's to display. 'Expert'-level shows all items."
@@ -4830,7 +4830,7 @@ msgstr "Konfiguro nëse një font fiks ose një font TrueType i shkallëzueshëm
 msgid "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel."
 msgstr "Konfiguro nëse një sintonizues tjetër nga lista e preferuar do të ndahet për regjistrime në vend që të ndash një sintonizues që është tashmë aktiv duke marrë të njëjtin kanal televiziv drejtpërdrejt."
 
-msgid "Configure whether multi channel sound tracks should be downmixed to stereo."
+msgid "Configure whether multichannel audio tracks should be downmixed to stereo."
 msgstr "Konfiguro nëse binarët e zërit të shumë kanaleve duhet të jenë të pakasuara me stereo."
 
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (like in EPGrefresh)."
@@ -7073,7 +7073,7 @@ msgstr "Aktivizo 5V për antenë aktive"
 msgid "Enable Autorecord"
 msgstr ""
 
-msgid "Enable BT Audio"
+msgid "Enable BT audio"
 msgstr "Aktivo BT Audio"
 
 msgid "Enable Bouquet Edit"
@@ -8853,7 +8853,7 @@ msgstr "Gjeneral"
 msgid "General AC3 delay"
 msgstr "Vonesa e përgjithshme AC3"
 
-msgid "General BT Audio delay"
+msgid "General BT audio delay"
 msgstr "Vonesë e përgjithshme BT Audio"
 
 msgid "General PCM delay"
@@ -9187,7 +9187,7 @@ msgstr "Trajto përplasjet e Python"
 msgid "Handle Standby from TV"
 msgstr "Trajtoni gatishmërinë nga televizori"
 
-msgid "Handle input from TV"
+msgid "Process action from TV"
 msgstr "Trajtoni hyrjen nga televizori"
 
 msgid "Handle wake up from TV"
@@ -14861,7 +14861,7 @@ msgstr "Rifresko"
 msgid "Refresh ZeroTier status information"
 msgstr ""
 
-msgid "Refresh every x hours"
+msgid "Refresh every"
 msgstr "Rifresko çdo (në orë)"
 
 msgid "Refresh rate"
@@ -15758,7 +15758,7 @@ msgstr ""
 msgid "Save directory on EXIT"
 msgstr ""
 
-msgid "Save every x hours"
+msgid "Save every"
 msgstr ""
 
 #, python-format
@@ -17518,7 +17518,7 @@ msgstr ""
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
 msgstr ""
 
-msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at 0,0 and the bottom right is at 1260,700. Note that the position is the top left of the spinner and not the centre of the spinner."
+msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
 msgstr ""
 
 msgid "Set the type of the progress indication in the channel selection screen."
@@ -17556,7 +17556,7 @@ msgstr ""
 msgid "Set time options"
 msgstr ""
 
-msgid "Set to 'Disabled' to replace underscore characters '_' in file and directory names with spaces."
+msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
 msgstr ""
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby before shutting down."
@@ -17912,7 +17912,7 @@ msgstr ""
 msgid "Show InfoBar"
 msgstr ""
 
-msgid "Show InfoBar lite *"
+msgid "Show InfoBar lite"
 msgstr ""
 
 msgid "Show InfoBar on channel change"
@@ -20107,10 +20107,10 @@ msgstr ""
 msgid "The %s %s is shutting down. Please wait..."
 msgstr ""
 
-msgid "The %s %s reads the stored EPG data every x hours."
+msgid "The %s %s reads the stored EPG data every selected number of hours."
 msgstr "%s %s lexon të dhënat e ruajtura EPG çdo (orë)."
 
-msgid "The %s %s stores the EPG data every x hours."
+msgid "The %s %s stores the EPG data every selected number of hours."
 msgstr "%s %s ruan të dhënat EPG çdo (orë)."
 
 #, python-format
@@ -20500,8 +20500,8 @@ msgstr "Kjo %s %s nuk mund të dekodoj %s streams!"
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Ky medium DVD RW është tashmë i formatuar - riformatimi do të fshijë të gjithë përmbajtjen në disk."
 
-msgid "This Option allows you to switch Audio to BT Speakers."
-msgstr "Ky opsion ju lejon të kaloni Audio në BT Speakers."
+msgid "This option allows you to switch Audio to Bluetooth speakers."
+msgstr "Ky opsion ju lejon të kaloni Audio në Bluetooth speakers."
 
 msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
 msgstr "Kjo ju lejon të ndryshoni madhësinë e shkronjave në lidhje me madhësinë e lëkurës, kështu që 1 rritet me madhësi 1 pikë dhe -1 zvogëlohet me madhësi 1 pikë"
@@ -20680,13 +20680,13 @@ msgstr ""
 msgid "This option allows you to view the old and new settings side by side."
 msgstr ""
 
-msgid "This option configures the general audio delay for BT Speakers."
+msgid "This option configures the audio delay value for Bluetooth speakers."
 msgstr ""
 
-msgid "This option configures the general audio delay of Dolby Digital sound tracks."
+msgid "This option selects the general audio delay of Dolby Digital sound tracks."
 msgstr ""
 
-msgid "This option configures the general audio delay of stereo sound tracks."
+msgid "This option selects the general audio delay of stereo sound tracks."
 msgstr ""
 
 msgid "This option configures the picture sharpness."
@@ -20698,7 +20698,7 @@ msgstr ""
 msgid "This option configures the video output mode (or resolution)."
 msgstr ""
 
-msgid "This option configures you can set Auto Volume Level."
+msgid "This option allows you to set the Auto Volume Level output."
 msgstr ""
 
 msgid "This option lets you adjust the 3D depth of the OSD."

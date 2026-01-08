@@ -4132,34 +4132,34 @@ msgstr "Vælg hvad du vil have '0' knappen til at gøre når PiP er aktiv."
 msgid "Choose where to mount your devices to:"
 msgstr "Vælg hvor dine enheder mountes til:"
 
-msgid "Choose whether AAC sound tracks should be transcoded."
+msgid "Select whether AAC audio tracks should be transcoded."
 msgstr "Vælg om AAC lydspor skal omkodes eller ikke."
 
-msgid "Choose whether AC3 Plus sound tracks should be transcoded to AC3."
+msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
 msgstr "Vælg om AC3 Plus lydspor skal omkodes til AC3 eller ikke."
 
-msgid "Choose whether AC3 sound tracks should be downmixed to stereo."
+msgid "Select whether AC3 audio tracks should be downmixed to stereo."
 msgstr "Vælg om AC3 lydspor skal downmixes til stereo eller ikke."
 
-msgid "Choose whether DTS channel sound tracks should be downmixed or transcoded."
+msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
 msgstr "Væg om DTS kanal lydspor skal downmixes eller det skal omkodes."
 
-msgid "Choose whether DTS channel sound tracks should be downmixed to stereo."
+msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
 msgstr "Vælg om DTS kanal lydspor skal downmixes til stereo eller ikke."
 
-msgid "Choose whether WMA Pro channel sound tracks should be downmixed or transcoded."
+msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
 msgstr "Vælg om WMA Pro kanal lydspor skal downmixes eller om det skal omkodes."
 
-msgid "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
+msgid "Select whether multichannel audio tracks should be converted to PCM or SPDIF."
 msgstr "Vælg om flerkanals lydspor skal konverteres til PCM eller SPDIF."
 
-msgid "Choose whether multi channel sound tracks should be downmixed to stereo."
+msgid "Select whether multichannel audio tracks should be downmixed to stereo."
 msgstr "Vælg om flerkanals lydspor skal downmixes til stereo."
 
-msgid "Choose whether multi channel sound tracks should be output as PCM."
+msgid "Select whether multichannel audio tracks should be output as PCM."
 msgstr "Vælg om flerkanals lydspor skal sendes ud som PCM."
 
-msgid "Choose whether or not to show an icon when a motorized dish is moving."
+msgid "Select whether or not to show an icon when a motorized dish is moving."
 msgstr "Vælg om der sakl vises et ikon når en motoriseret skål bevæger sig."
 
 msgid "Choose which level of menu/setting's to display. 'Expert'-level shows all items."
@@ -4830,7 +4830,7 @@ msgstr "Konfigurer om der skal bruges fast eller skalerbar TrueType skrifttype i
 msgid "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel."
 msgstr "Konfigurer om en anden Tuner fra listen af foretrukne tildeles til optagelser i stedet for at dele en Tuner, der allerede aktiv modtagere den samme Live TV kanal."
 
-msgid "Configure whether multi channel sound tracks should be downmixed to stereo."
+msgid "Configure whether multichannel audio tracks should be downmixed to stereo."
 msgstr "Konfigurer om flerkanals lydspor skal downmixes til stereo."
 
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (like in EPGrefresh)."
@@ -7071,7 +7071,7 @@ msgstr "Aktiver 5V til aktiv antenne"
 msgid "Enable Autorecord"
 msgstr "Aktiver Autooptag"
 
-msgid "Enable BT Audio"
+msgid "Enable BT audio"
 msgstr "Aktiver BT Lyd"
 
 msgid "Enable Bouquet Edit"
@@ -8861,7 +8861,7 @@ msgstr "Generel"
 msgid "General AC3 delay"
 msgstr "Generel AC3 forsinkelse"
 
-msgid "General BT Audio delay"
+msgid "General BT audio delay"
 msgstr "Generel BT lydforsinkelse"
 
 msgid "General PCM delay"
@@ -9195,7 +9195,7 @@ msgstr "Håndter Python nedbrud"
 msgid "Handle Standby from TV"
 msgstr "Håndter Standby fra TV"
 
-msgid "Handle input from TV"
+msgid "Process action from TV"
 msgstr "Håndter inddata fra TV"
 
 msgid "Handle wake up from TV"
@@ -14990,7 +14990,7 @@ msgstr ""
 msgid "Refresh ZeroTier status information"
 msgstr ""
 
-msgid "Refresh every x hours"
+msgid "Refresh every"
 msgstr "Opfrisk hver (i timer)"
 
 msgid "Refresh rate"
@@ -15895,7 +15895,7 @@ msgstr "Gem og Stop"
 msgid "Save directory on EXIT"
 msgstr "Gem sidste mappe ved afslutning"
 
-msgid "Save every x hours"
+msgid "Save every"
 msgstr "Gem hver (i timer)"
 
 #, python-format
@@ -17683,7 +17683,7 @@ msgstr "Sæt tiden indtil infobjælken skjules."
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
 msgstr "Sæt tiden der ventes før udførelse af standardhandling i nedluknings-, Standby- eller genstartsbeskeder (bruges f.eks i Timer, StrømTimer, DvaleTimer, ...)"
 
-msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at 0,0 and the bottom right is at 1260,700. Note that the position is the top left of the spinner and not the centre of the spinner."
+msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
 msgstr ""
 
 msgid "Set the type of the progress indication in the channel selection screen."
@@ -17721,7 +17721,7 @@ msgstr ""
 msgid "Set time options"
 msgstr ""
 
-msgid "Set to 'Disabled' to replace underscore characters '_' in file and directory names with spaces."
+msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
 msgstr ""
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby before shutting down."
@@ -18077,7 +18077,7 @@ msgstr "Vis HDMI udgangsopløsning"
 msgid "Show InfoBar"
 msgstr "Vis Infobjælke"
 
-msgid "Show InfoBar lite *"
+msgid "Show InfoBar lite"
 msgstr "Vis enkel Infobjælke *"
 
 msgid "Show InfoBar on channel change"
@@ -20300,10 +20300,10 @@ msgstr ""
 msgid "The %s %s is shutting down. Please wait..."
 msgstr ""
 
-msgid "The %s %s reads the stored EPG data every x hours."
+msgid "The %s %s reads the stored EPG data every selected number of hours."
 msgstr "%s %s læser gemte EPG data hver (timer)."
 
-msgid "The %s %s stores the EPG data every x hours."
+msgid "The %s %s stores the EPG data every selected number of hours."
 msgstr "%s %s gemmer EPG dataene hver (timer)."
 
 #, python-format
@@ -20687,7 +20687,7 @@ msgstr "%s %s kan ikke afkode %s Streams!"
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Denne DVD RW er allerede formatteret - reformattering vil slette alt indhold på disken."
 
-msgid "This Option allows you to switch Audio to BT Speakers."
+msgid "This option allows you to switch Audio to Bluetooth speakers."
 msgstr "Denne mulighed tillader dig at skifte lyd til BT højtalere."
 
 msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
@@ -20867,13 +20867,13 @@ msgstr "Denne mulighed tillader dig at bruge alle HDMI tilstande"
 msgid "This option allows you to view the old and new settings side by side."
 msgstr "Denne mulighed tillader dig at vise gamle og nye indstillinger side om side."
 
-msgid "This option configures the general audio delay for BT Speakers."
+msgid "This option configures the audio delay value for Bluetooth speakers."
 msgstr "Denne mulighed konfigurere den generelle lydforsinkelse for BT højtalere."
 
-msgid "This option configures the general audio delay of Dolby Digital sound tracks."
+msgid "This option selects the general audio delay of Dolby Digital sound tracks."
 msgstr "Denne mulighed konfigurere den generelle lydforsinkelse af Dolby Digital lydspor."
 
-msgid "This option configures the general audio delay of stereo sound tracks."
+msgid "This option selects the general audio delay of stereo sound tracks."
 msgstr "Denne mulighed konfigurere den generelle lydforsinkelse af stereo lydspor."
 
 msgid "This option configures the picture sharpness."
@@ -20885,7 +20885,7 @@ msgstr "Denne mulighed konfigurer skærmopløsning i PC udgangstilstand."
 msgid "This option configures the video output mode (or resolution)."
 msgstr "Denne mulighed konfigurere videoudgangstilstand (eller opløsning)"
 
-msgid "This option configures you can set Auto Volume Level."
+msgid "This option allows you to set the Auto Volume Level output."
 msgstr "Denne mulighed konfigurere auto-lydstyrke niveau."
 
 msgid "This option lets you adjust the 3D depth of the OSD."

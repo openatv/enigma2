@@ -4126,34 +4126,34 @@ msgstr "选择画中画激活时按钮“0”要执行的操作。"
 msgid "Choose where to mount your devices to:"
 msgstr "选择挂载设备到："
 
-msgid "Choose whether AAC sound tracks should be transcoded."
+msgid "Select whether AAC audio tracks should be transcoded."
 msgstr "选择是否对 AAC 音轨进行转码。"
 
-msgid "Choose whether AC3 Plus sound tracks should be transcoded to AC3."
+msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
 msgstr "选择是否将 AC3+ 音轨转码为AC3。"
 
-msgid "Choose whether AC3 sound tracks should be downmixed to stereo."
+msgid "Select whether AC3 audio tracks should be downmixed to stereo."
 msgstr "选择是否将 AC3 音轨缩混为立体声。"
 
-msgid "Choose whether DTS channel sound tracks should be downmixed or transcoded."
+msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
 msgstr "选择 DTS 音轨是应缩混还是转码。"
 
-msgid "Choose whether DTS channel sound tracks should be downmixed to stereo."
+msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
 msgstr "选择 DTS 音轨是否缩混为立体声。"
 
-msgid "Choose whether WMA Pro channel sound tracks should be downmixed or transcoded."
+msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
 msgstr "选择 WMA Pro 音轨是缩混还是转码。"
 
-msgid "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
+msgid "Select whether multichannel audio tracks should be converted to PCM or SPDIF."
 msgstr "选择是将多声道音轨转换为 PCM 还是 SPDIF。"
 
-msgid "Choose whether multi channel sound tracks should be downmixed to stereo."
+msgid "Select whether multichannel audio tracks should be downmixed to stereo."
 msgstr "选择多声道音轨是否应缩混为立体声。"
 
-msgid "Choose whether multi channel sound tracks should be output as PCM."
+msgid "Select whether multichannel audio tracks should be output as PCM."
 msgstr "选择是否应将多声道音轨作为 PCM 输出。"
 
-msgid "Choose whether or not to show an icon when a motorized dish is moving."
+msgid "Select whether or not to show an icon when a motorized dish is moving."
 msgstr "极轴移动时选择是否显示图标。"
 
 msgid "Choose which level of menu/setting's to display. 'Expert'-level shows all items."
@@ -4827,7 +4827,7 @@ msgstr "配置等宽字体或可扩展 TrueType 字体是否用于图文电视�
 msgid "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel."
 msgstr "配置是否将首选列表中的另一个调谐器分配给录制内容，而不是共享正在接收相同直播电视频道的调谐器。"
 
-msgid "Configure whether multi channel sound tracks should be downmixed to stereo."
+msgid "Configure whether multichannel audio tracks should be downmixed to stereo."
 msgstr "配置多声道音轨是否要缩混为立体声。"
 
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (like in EPGrefresh)."
@@ -7080,7 +7080,7 @@ msgstr "为有源天线启用 5V"
 msgid "Enable Autorecord"
 msgstr "启用自动录制"
 
-msgid "Enable BT Audio"
+msgid "Enable BT audio"
 msgstr "启用蓝牙音频"
 
 msgid "Enable Bouquet Edit"
@@ -8862,7 +8862,7 @@ msgstr "一般"
 msgid "General AC3 delay"
 msgstr "常规 AC3 延迟"
 
-msgid "General BT Audio delay"
+msgid "General BT audio delay"
 msgstr "常规 AC3 延迟"
 
 msgid "General PCM delay"
@@ -9196,7 +9196,7 @@ msgstr "处理 Python 崩溃"
 msgid "Handle Standby from TV"
 msgstr "处理来自电视的待机"
 
-msgid "Handle input from TV"
+msgid "Process action from TV"
 msgstr "处理来自电视的输入"
 
 msgid "Handle wake up from TV"
@@ -14907,7 +14907,7 @@ msgstr "刷新"
 msgid "Refresh ZeroTier status information"
 msgstr "刷新 ZeroTier 状态信息"
 
-msgid "Refresh every x hours"
+msgid "Refresh every"
 msgstr "刷新每（小时）"
 
 msgid "Refresh rate"
@@ -15806,7 +15806,7 @@ msgstr "保存并停止"
 msgid "Save directory on EXIT"
 msgstr "退出时保存目录"
 
-msgid "Save every x hours"
+msgid "Save every"
 msgstr "保存每（单位：小时）"
 
 #, python-format
@@ -17596,7 +17596,7 @@ msgstr "设置隐藏信息栏的时间。"
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
 msgstr "设置等待执行关机、待机或重启消息中默认操作的时间，例如用于录制定时器、电源定时器、睡眠定时器等。"
 
-msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at 0,0 and the bottom right is at 1260,700. Note that the position is the top left of the spinner and not the centre of the spinner."
+msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
 msgstr "设置繁忙旋转器的左上角位置。坐标经过缩放，使得左上角位于 (0,0)，右下角位于 (1260,700)。请注意，该位置是旋转器的左上角，而不是旋转器的中心。"
 
 msgid "Set the type of the progress indication in the channel selection screen."
@@ -17634,7 +17634,7 @@ msgstr "将此设置为“是”以按字母顺序对播放列表进行排序。
 msgid "Set time options"
 msgstr "设置时间选项"
 
-msgid "Set to 'Disabled' to replace underscore characters '_' in file and directory names with spaces."
+msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
 msgstr "设置为“禁用”以用空格替换文件和目录名称中的下划线字符“_”。"
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby before shutting down."
@@ -17993,7 +17993,7 @@ msgstr "显示 HDMI 输出分辨率"
 msgid "Show InfoBar"
 msgstr "显示信息栏"
 
-msgid "Show InfoBar lite *"
+msgid "Show InfoBar lite"
 msgstr "显示精简信息栏 *"
 
 msgid "Show InfoBar on channel change"
@@ -20198,10 +20198,10 @@ msgstr "%s %s 的内存容量有限。 需要交换文件来增加可用内存�
 msgid "The %s %s is shutting down. Please wait..."
 msgstr "%s %s 正在关闭。 请稍等..."
 
-msgid "The %s %s reads the stored EPG data every x hours."
+msgid "The %s %s reads the stored EPG data every selected number of hours."
 msgstr "%s %s 读取存储的 EPG 数据每（小时）。"
 
-msgid "The %s %s stores the EPG data every x hours."
+msgid "The %s %s stores the EPG data every selected number of hours."
 msgstr "%s %s 存储 EPG 数据 每（小时）。"
 
 #, python-format
@@ -20612,7 +20612,7 @@ msgstr "此 %s %s 不能解码 %s 流！"
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "此 DVD RW 介质已经格式化－重新格式化将擦除光盘上的所有内容。"
 
-msgid "This Option allows you to switch Audio to BT Speakers."
+msgid "This option allows you to switch Audio to Bluetooth speakers."
 msgstr "此选项允许您显示菜单路径。"
 
 msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
@@ -20792,13 +20792,13 @@ msgstr "此选项允许您使用所有HDMI模式"
 msgid "This option allows you to view the old and new settings side by side."
 msgstr "此选项允许您并排浏览旧的和新的设置。"
 
-msgid "This option configures the general audio delay for BT Speakers."
+msgid "This option configures the audio delay value for Bluetooth speakers."
 msgstr "此选项配置立体声音轨的常规音频延迟。"
 
-msgid "This option configures the general audio delay of Dolby Digital sound tracks."
+msgid "This option selects the general audio delay of Dolby Digital sound tracks."
 msgstr "此选项配置杜比数码声轨的常规音频延迟。"
 
-msgid "This option configures the general audio delay of stereo sound tracks."
+msgid "This option selects the general audio delay of stereo sound tracks."
 msgstr "此选项配置立体声音轨的常规音频延迟。"
 
 msgid "This option configures the picture sharpness."
@@ -20810,7 +20810,7 @@ msgstr "此选项配置电脑输出模式的屏幕分辨率。"
 msgid "This option configures the video output mode (or resolution)."
 msgstr "此选项配置视频输出模式（或分辨率）。"
 
-msgid "This option configures you can set Auto Volume Level."
+msgid "This option allows you to set the Auto Volume Level output."
 msgstr "此选项配置 让您设置自动音量级别。"
 
 msgid "This option lets you adjust the 3D depth of the OSD."

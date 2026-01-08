@@ -3,29 +3,29 @@
 		<item level="1" text="Volume steps" description="Select the size of the volume step when the VOLUME buttons are pressed.">config.volumeControl.pressStep</item>
 		<item level="1" text="Long press volume steps" description="Select the size of the volume steps when the VOLUME buttons are held down.">config.volumeControl.longStep</item>
 		<item level="1" text="Volume/Mute display timer" description="Select how long, in seconds, that the volume and mute displays are shown before they automatically hide.">config.volumeControl.hideTimer</item>
-		<item level="1" text="PCM Multichannel" description="Choose whether multi channel sound tracks should be output as PCM." requires="CanPcmMultichannel">config.av.pcm_multichannel</item>
+		<item level="1" text="PCM Multichannel" description="Select whether multichannel audio tracks should be output as PCM." requires="CanPcmMultichannel">config.av.pcm_multichannel</item>
 		<if requires="CanDownmixAC3">
-			<item level="1" text="AC3 downmix" description="Choose whether AC3 sound tracks should be downmixed to stereo.">config.av.downmix_ac3</item>
+			<item level="1" text="AC3 downmix" description="Select whether AC3 audio tracks should be downmixed to stereo.">config.av.downmix_ac3</item>
 			<if requires="VuEAC3Fix" conditional="not config.av.downmix_ac3.value">
 				<item level="1" text="Passthrough audio handling delay AC3" description="Used to specify delay when switching between services and AC3 passthrough is enabled.">config.av.passthrough_fix_short</item>
 				<item level="1" text="Passthrough audio handling delay AC3+" description="Used to specify delay when switching between services and AC3+/Atmos passthrough is enabled.">config.av.passthrough_fix_long</item>
 			</if>
 		</if>
-		<item level="1" text="AC3 plus transcoding" description="Choose whether AC3 Plus sound tracks should be transcoded to AC3." requires="CanAC3plusTranscode">config.av.transcodeac3plus</item>
-		<item level="1" text="DTS downmix" description="Choose whether DTS channel sound tracks should be downmixed to stereo." requires="CanDownmixDTS">config.av.downmix_dts</item>
-		<item level="1" text="DTS/DTS-HD HR/DTS-HD MA/DTS:X" description="Choose whether DTS channel sound tracks should be downmixed or transcoded." requires="CanDTSHD">config.av.dtshd</item>
-		<item level="1" text="WMA Pro" description="Choose whether WMA Pro channel sound tracks should be downmixed or transcoded." requires="CanWMAPRO">config.av.wmapro</item>
-		<item level="1" text="AAC downmix" description="Choose whether multi channel sound tracks should be downmixed to stereo." requires="CanDownmixAAC">config.av.downmix_aac</item>
-		<item level="1" text="AAC plus downmix" description="Configure whether multi channel sound tracks should be downmixed to stereo." requires="CanDownmixAACPlus">config.av.downmix_aacplus</item>
-		<item level="1" text="AAC transcoding" description="Choose whether AAC sound tracks should be transcoded." requires="CanAACTranscode">config.av.transcodeaac</item>
-		<item level="1" text="Audio Source" description="Choose whether multi channel sound tracks should be convert to PCM or SPDIF." requires="Canaudiosource">config.av.audio_source</item>
-		<item level="1" text="General AC3 delay" description="This option configures the general audio delay of Dolby Digital sound tracks.">config.av.generalAC3delay</item>
-		<item level="1" text="General PCM delay" description="This option configures the general audio delay of stereo sound tracks.">config.av.generalPCMdelay</item>
+		<item level="1" text="AC3 plus transcoding" description="Select whether AC3 Plus audio tracks should be transcoded to AC3." requires="CanAC3plusTranscode">config.av.transcodeac3plus</item>
+		<item level="1" text="DTS downmix" description="Select whether DTS channel audio tracks should be downmixed to stereo." requires="CanDownmixDTS">config.av.downmix_dts</item>
+		<item level="1" text="DTS/DTS-HD HR/DTS-HD MA/DTS:X" description="Select whether DTS channel audio tracks should be downmixed or transcoded." requires="CanDTSHD">config.av.dtshd</item>
+		<item level="1" text="WMA Pro" description="Select whether WMA Pro channel audio tracks should be downmixed or transcoded." requires="CanWMAPRO">config.av.wmapro</item>
+		<item level="1" text="AAC downmix" description="Select whether multichannel audio tracks should be downmixed to stereo." requires="CanDownmixAAC">config.av.downmix_aac</item>
+		<item level="1" text="AAC plus downmix" description="Select whether multichannel audio tracks should be downmixed to stereo." requires="CanDownmixAACPlus">config.av.downmix_aacplus</item>
+		<item level="1" text="AAC transcoding" description="Select whether AAC audio tracks should be transcoded." requires="CanAACTranscode">config.av.transcodeaac</item>
+		<item level="1" text="Audio Source" description="Select whether multichannel audio tracks should be converted to PCM or SPDIF." requires="Canaudiosource">config.av.audio_source</item>
+		<item level="1" text="General AC3 delay" description="This option selects the general audio delay of Dolby Digital sound tracks.">config.av.generalAC3delay</item>
+		<item level="1" text="General PCM delay" description="This option selects the general audio delay of stereo sound tracks.">config.av.generalPCMdelay</item>
 		<item level="1" text="3D Surround" description="This option allows you to enable 3D Surround Sound." requires="Can3DSurround">config.av.surround_3d</item>
 		<item level="1" text="3D Surround Speaker Position" description="This option allows you to change the virtual loudspeaker position." requires="Can3DSpeaker" conditional="config.av.surround_3d.value != 'none'">config.av.surround_3d_speaker</item>
-		<item level="1" text="Audio Auto Volume Level" description="This option configures you can set Auto Volume Level." requires="CanAutoVolume">config.av.autovolume</item>
-		<item level="1" text="Enable BT Audio" description="This Option allows you to switch Audio to BT Speakers." requires="CanBTAudio">config.av.btaudio</item>
-		<item level="1" text="General BT Audio delay" description="This option configures the general audio delay for BT Speakers." requires="CanBTAudioDelay">config.av.btaudiodelay</item>
+		<item level="1" text="Audio Auto Volume Level" description="This option allows you to set the Auto Volume Level output." requires="CanAutoVolume">config.av.autovolume</item>
+		<item level="1" text="Enable BT audio" description="This option allows you to switch Audio to Bluetooth speakers." requires="CanBTAudio">config.av.btaudio</item>
+		<item level="1" text="General BT audio delay" description="This option configures the audio delay value for Bluetooth speakers." requires="CanBTAudioDelay">config.av.btaudiodelay</item>
 	</setup>
 	<setup key="audio_setup" title="Audio Settings">
 		<!-- This is just a placeholder, the Videomode plugin implements this sub menu. -->
@@ -222,10 +222,10 @@
 		<item level="2" text="EPG location" description="Choose the location where the EPG data will be stored when the %s %s is shut down. The location must be available at boot time.">config.misc.epgcachepath</item>
 		<item level="2" text="EPG filename" description="Choose the name of the file that holds the EPG data when the %s %s is shut down. This can be handy to differentiate between several receivers.">config.misc.epgcachefilename</item>
 		<item level="2" text="Scheduled load of 'epg.dat'" description="Allows the %s %s to read the stored EPG data regularly.">config.epg.cacheloadsched</item>
-		<item level="2" text="Refresh every x hours" description="The %s %s reads the stored EPG data every x hours." requires="config.epg.cacheloadsched">config.epg.cacheloadtimer</item>
+		<item level="2" text="Refresh every" description="The %s %s reads the stored EPG data every selected number of hours." requires="config.epg.cacheloadsched">config.epg.cacheloadtimer</item>
 		<item level="2" text="Save EPG data" description="Configure if 'epg.dat' should be saved at all.">config.epg.saveepg</item>
 		<item level="2" text="Scheduled save of 'epg.dat'" description="Allows the %s %s to store the EPG data regularly.">config.epg.cachesavesched</item>
-		<item level="2" text="Save every x hours" description="The %s %s stores the EPG data every x hours." requires="config.epg.cachesavesched">config.epg.cachesavetimer</item>
+		<item level="2" text="Save every" description="The %s %s stores the EPG data every selected number of hours." requires="config.epg.cachesavesched">config.epg.cachesavetimer</item>
 		<item level="2" text="Show EIT Now/Next event data in the InfoBar" description="Display the EIT Now/Next event data in the InfoBar.">config.usage.show_eit_nownext</item>
 		<item level="2" text="Enable EIT EPG" description="Use EIT EPG information when it is available.">config.epg.eit</item>
 		<item level="2" text="Enable MHW EPG" description="Use MHW EPG information when it is available.">config.epg.mhw</item>
@@ -463,7 +463,7 @@
 			<item level="0" text="Handle wake up from TV" description="When enabled, the receiver will automatically wake from Standby when the TV is turned on.">config.hdmicec.handle_tv_wakeup</item>
 			<item level="0" text="Handle Standby from TV" description="When enabled, the receiver will automatically return to Standby when the TV is turned off.">config.hdmicec.handle_tv_standby</item>
 			<if conditional="config.hdmicec.advanced_settings.value">
-				<item level="0" text="Handle input from TV" description="Allows the TV remote to be used to control the receiver.">config.hdmicec.handle_tv_input</item>
+				<item level="0" text="Process action from TV" description="Select the receiver action when the TV switches away from the receiver input.">config.hdmicec.handle_tv_input</item>
 				<item level="0" text="Time delay until Standby or Deep Standby" description="'Handle Standby from TV' has a higher priority than 'Handle input from TV'." conditional="config.hdmicec.handle_tv_standby.value != 'disabled' or config.hdmicec.handle_tv_input.value != 'disabled'">config.hdmicec.handle_tv_delaytime</item>
 			</if>
 			<item level="0" text="Forward volume keys" description="Volume keys on the receiver remote will control the TV volume. If this feature is not supported the volume keys have no function!">config.hdmicec.volume_forwarding</item>
@@ -572,7 +572,7 @@
 		<item level="0" text="Play audio in background" description="Keeps MovieList open whilst playing audio files.">config.movielist.play_audio_internal</item>
 		<item level="0" text="Root directory" description="Sets the root directory of media list. This removes the '..' entry from being shown in that directory.">config.movielist.root</item>
 		<item level="0" text="Hide known extensions" description="Allows you to hide the extensions of known file types.">config.movielist.hide_extensions</item>
-		<item level="0" text="Show underscore characters" description="Set to 'Disabled' to replace underscore characters '_' in file and directory names with spaces.">config.movielist.show_underscores</item>
+		<item level="0" text="Show underscore characters" description="Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces.">config.movielist.show_underscores</item>
 		<item level="0" text="Show live TV when movie stopped" description="When set the PIG will return to live after a movie has stopped playing.">config.movielist.show_live_tv_in_movielist</item>
 		<item level="0" text="RED button" description="Select the function to be assigned to this button.">config.movielist.btn_red</item>
 		<item level="0" text="GREEN button" description="Select the function to be assigned to this button.">config.movielist.btn_green</item>
@@ -1113,7 +1113,7 @@
 		<item level="0" text="2nd InfoBar" description="Enable and set the duration of the second InfoBar (press 'OK' twice) that may include additional information.">config.usage.show_second_infobar</item>
 		<item level="0" text="2nd InfoBar timeout" description="Set how long the second InfoBar stays visible. The second InfoBar also disappears when you press 'OK'.">config.usage.second_infobar_timeout</item>
 		<item level="0" text="Show InfoBar picons" description="Option to disable picons on the InfoBar.">config.usage.showpicon</item>
-		<item level="0" text="Show InfoBar lite *" description="Set the screen type you see on pressing 'OK' when the InfoBar shows the second InfoBar Lite or event info.">config.usage.show_infobar_lite</item>
+		<item level="0" text="Show InfoBar lite" description="Set the screen type you see on pressing 'OK' when the InfoBar shows the second InfoBar Lite or event info." restart="gui">config.usage.show_infobar_lite</item>
 		<if requires="CanChangeOsdAlpha">
 			<item level="0" text="Enable InfoBar fade-out" description="Fade the InfoBar on hide.">config.usage.show_infobar_do_dimming</item>
 			<item level="0" text="InfoBar fade-out speed" description="Control the InfoBar fading speed." conditional="config.usage.show_infobar_do_dimming.value">config.usage.show_infobar_dimming_speed</item>
@@ -1121,7 +1121,7 @@
 		<item level="0" text="InfoBar EPG mode" description="Select how to activate the Quick EPG mode." requires="InfoBarEpg">config.plisettings.InfoBarEpg_mode</item>
 		<item level="0" text="Time delay of the shutdown messages" description="Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc.">config.usage.shutdown_msgbox_timeout</item>
 		<item level="1" text="Show job tasks in Extension Menu" description="With this option you can hide Job Tasks from the Extension Menu screen (BLUE button press).">config.usage.jobtaksextensions</item>
-		<item level="1" text="Show positioner movement" description="Choose whether or not to show an icon when a motorized dish is moving.">config.usage.showdish</item>
+		<item level="1" text="Show positioner movement" description="Select whether or not to show an icon when a motorized dish is moving.">config.usage.showdish</item>
 		<item level="1" text="Alternative radio mode" description="Use the alternative or the conventional radio mode.">config.usage.e1like_radio_mode</item>
 		<item level="1" text="Position of finished Timers in Timerlist" description="Control of the position how finished timer are shown in the Timer List.">config.usage.timerlist_finished_timer_position</item>
 		<item level="2" text="Show InfoBar on channel change" description="Select 'Yes' to display the InfoBar when changing channels.">config.usage.show_infobar_on_zap</item>
@@ -1135,7 +1135,7 @@
 		<item level="0" text="Show time remaining/elapsed" description="This option allows you to choose how to display the remaining time, the elapsed time, or both.">config.usage.swap_time_remaining_on_osd</item>
 		<item level="0" text="Show time elapsed as positive" description="This option allows you to choose how to display elapsed time, as + or -.">config.usage.elapsed_time_positive_osd</item>
 		<item level="0" text="Show transponder remaining/elapsed as" description="This option allows you to choose how to display the remaining/elapsed time for live TV.">config.usage.swap_time_display_on_osd</item>
-		<item level="0" text="Show subservices *" description="This option allows you to choose the option for Subservice indicator or selection.">config.usage.showInfoBarSubservices</item>
+		<item level="0" text="Show subservices" description="This option allows you to choose the option for Subservice indicator or selection." restart="gui">config.usage.showInfoBarSubservices</item>
 		<item level="0" text="Media playback Remaining/Elapsed as" description="This option allows you to choose how to display the remaining/elapsed time for media playback.">config.usage.swap_media_time_display_on_osd</item>
 		<item level="0" text="Zap history sequence" description="Select the display sequence of previously visited services.">config.usage.zapHistorySort</item>
 		<item level="2" text="Hide zap errors" description="Hide any zap error messages.">config.usage.hide_zap_errors</item>
@@ -1149,7 +1149,7 @@
 		<item level="2" text="Close PiP on exit" description="When enabled, the PiP can be closed by pressing the EXIT button." requires="PIPAvailable">config.usage.pip_hideOnExit</item>
 		<item level="2" text="Remember last service in PiP" description="Configure if and how long the latest service in the PiP will be remembered." requires="PIPAvailable">config.usage.pip_last_service_timeout</item>
 		<item level="2" text="Show VCR SCART on main menu" description="When enabled, the VCR SCART option will be shown on the main menu." requires="ScartSwitch">config.usage.show_vcr_scart</item>
-		<item level="2" text="Spinner Position" description="Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at 0,0 and the bottom right is at 1260,700. Note that the position is the top left of the spinner and not the centre of the spinner.">config.misc.spinnerPosition</item>
+		<item level="2" text="Spinner Position" description="Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner.">config.misc.spinnerPosition</item>
 	</setup>
 	<setup key="video_setup" title="Video Settings">
 		<!-- This is just a placeholder, the Videomode plugin implements this sub menu. -->
