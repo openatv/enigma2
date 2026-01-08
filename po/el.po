@@ -3971,7 +3971,7 @@ msgstr "Τσετσενικά"
 msgid "Check for PDC"
 msgstr "Έλεγχος για PDC"
 
-msgid "Check for PDC availability on each service"
+msgid "Check for PDC availability on each service."
 msgstr "Έλεγχος για διαθεσιμότητα PDC σε κάθε υπηρεσία"
 
 msgid "Check power and input state from TV"
@@ -7120,10 +7120,10 @@ msgstr "Ενεργοποίηση Swap στην εκκίνηση"
 msgid "Enable VPS"
 msgstr "Ενεργοποίηση VPS"
 
-msgid "Enable VPS by default (new timers)"
+msgid "Select 'Yes' to set the VPS flag on all new timers by default."
 msgstr "Ενεργοποίηση VPS από προεπιλογή (νέοι χρονοδιακόπτες)"
 
-msgid "Enable VPS on instant records"
+msgid "VPS on instant recordings"
 msgstr "Ενεργοποίηση VPS στις άμεσες εγγραφές"
 
 msgid "Enable VPS-Plugin"
@@ -9631,13 +9631,13 @@ msgstr "Το 'ποτέ' θα εγγράψει το αρχείο καταγραφ
 msgid "If EPG available"
 msgstr "Αν διατίθεται EPG"
 
-msgid "If a programme is interrupted and divided into separate events, the plugin will search for the connected events."
+msgid "If an event is interrupted and divided into separate recordings, this feature will search for alternate broadcasts of the same event."
 msgstr "Αν ένα πρόγραμμα διακοπεί και χωριστεί σε ξεχωριστά συμβάντα, το πρόσθετο θα αναζητήσει τα συνδεδεμένα συμβάντα."
 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "Αν μια ενέργεια είναι παραμετροποιήσιμη από τον χρήστη, το στοιχείο της στη βοήθεια θα επισημαίνεται με το επίθημα '(C)'."
 
-msgid "If enabled and necessary, the plugin will wake up the receiver from deep standby for the defined starting time to control whether the programme begins earlier."
+msgid "Select 'Yes' to wake the receiver from Shutdown prior to the recording start time to allow the PDC data to make last minute timer adjustments."
 msgstr "Αν είναι ενεργοποιημένο και απαραίτητο, το πρόσθετο θα αφυπνίσει τον δέκτη από τη βαθιά αναμονή για την καθορισμένη ώρα έναρξης, ώστε να ελέγξει αν το πρόγραμμα ξεκινά νωρίτερα."
 
 msgid "If enabled the output resolution of the receiver will try to match the resolution of the video contents resolution."
@@ -9661,7 +9661,7 @@ msgstr "Αν ενεργοποιηθεί, θα χρησιμοποιηθεί ο ν
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Αν οι καταγραφές χρησιμοποιούν το μέγιστο ορισμένο χώρο χρήσης, θα διαγράφονται οι παλαιότερες."
 
-msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
+msgid "Set a time offset before a timer is due to start to allow VPS to scan for the latest event timing. Select '0' to disable this feature."
 msgstr "Αν είναι δυνατόν, x λεπτά πριν την έναρξη ενός χρονοδιακόπτη, το VPS-Plugin θα ελέγχει αν το πρόγραμμα θα ξεκινήσει νωρίτερα. (0 απενεργοποιεί τη λειτουργία)"
 
 msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
@@ -16056,7 +16056,7 @@ msgstr "Ενεργοποίηση μπάρας αναζήτησης"
 msgid "SeekBar sensibility"
 msgstr "Ακρίβεια μπάρας αναζήτησης"
 
-msgid "Seeking connected events"
+msgid "Find connected events"
 msgstr "Αναζήτηση συνδεδεμένων προγραμμάτων"
 
 msgid "Select"
@@ -20871,7 +20871,7 @@ msgstr "Αυτή η επιλογή ρυθμίζει την αντίθεση ει
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Αυτή η επιλογή ρυθμίζει την οξύτητα της εικόνας, όταν γίνεται upscale."
 
-msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
+msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr "Αυτό το πρόγραμμα καθορίζει αν ένα πρόγραμμα ξεκινά νωρίτερα ή διαρκεί περισσότερο. Το κανάλι πρέπει να παρέχει έγκυρα δεδομένα."
 
 msgid "This service is protected by a parental control PIN!"
@@ -22718,7 +22718,7 @@ msgstr "Αφύπνιση"
 msgid "Wake up TV from Standby"
 msgstr "Αφύπνιση της TV από αναμονή"
 
-msgid "Wake up from Deep-Standby is allowed"
+msgid "Wake from Shutdown allowed"
 msgstr "Επιτρέπεται η αφύπνιση από τη βαθιά αναμονή"
 
 msgid "Wake up time before a timer begins"
@@ -23079,7 +23079,7 @@ msgstr "Όταν το κόκκινο πλαίσιο είναι σωστά ορα
 msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you're doing."
 msgstr "Όταν το σύστημα συντονίζεται σε μία υπηρεσία, γίνεται αυτόματη ανίχνευση του αναμεταδότη και αποθηκεύονται οι όποιες αλλαγές. Θέστε αυτή την επιλογή σε 'ναι' μόνο αν είστε απολύτως σίγουροι για το τι κάνετε."
 
-msgid "When yes, VPS will be enabled on instant records (stop after current event), if the channel supports VPS."
+msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
 msgstr "Αν επιλεγεί το 'ναι', θα γίνει ενεργοποίηση του VPS στις άμεσες εγγραφές (σταμάτημα μετά από το τρέχον πρόγραμμα), αν το κανάλι υποστηρίζει VPS."
 
 msgid "Where do you want to backup your settings?"

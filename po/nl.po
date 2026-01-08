@@ -3980,7 +3980,7 @@ msgstr "Tsjetsjenië"
 msgid "Check for PDC"
 msgstr "Controleer op PDC"
 
-msgid "Check for PDC availability on each service"
+msgid "Check for PDC availability on each service."
 msgstr "Controleer op beschikbaarheid PDC bij elke zender"
 
 msgid "Check power and input state from TV"
@@ -7251,10 +7251,10 @@ msgstr "Activeer Swap tijdens opstarten"
 msgid "Enable VPS"
 msgstr "VPS inschakelen"
 
-msgid "Enable VPS by default (new timers)"
+msgid "Select 'Yes' to set the VPS flag on all new timers by default."
 msgstr "VPS standaard ingeschakeld (nieuwe timers)"
 
-msgid "Enable VPS on instant records"
+msgid "VPS on instant recordings"
 msgstr "VPS activeren bij direct opnames"
 
 msgid "Enable VPS-Plugin"
@@ -9778,13 +9778,13 @@ msgstr "Bij 'nooit' zal toch een crash log worden opgeslagen bij de eerste crash
 msgid "If EPG available"
 msgstr "Wanneer een EPG beschikbaar is"
 
-msgid "If a programme is interrupted and divided into separate events, the plugin will search for the connected events."
+msgid "If an event is interrupted and divided into separate recordings, this feature will search for alternate broadcasts of the same event."
 msgstr "Als een programma wordt onderbroken en in aparte events is verdeeld, zal de plugin zoeken naar de verbonden gebeurtenissen."
 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "Wanneer een actie instelbaar is, wordt de bijbehorende help functie gemarkeerd met een '(C)'."
 
-msgid "If enabled and necessary, the plugin will wake up the receiver from deep standby for the defined starting time to control whether the programme begins earlier."
+msgid "Select 'Yes' to wake the receiver from Shutdown prior to the recording start time to allow the PDC data to make last minute timer adjustments."
 msgstr "Wanneer geactiveerd, zal de plugin uw ontvanger eerder dan de opgegeven starttijd inschakelen om te controleren of het programma eventueel eerder begint."
 
 msgid "If enabled the output resolution of the receiver will try to match the resolution of the video contents resolution."
@@ -9808,7 +9808,7 @@ msgstr "Indien ingeschakeld, wordt de nieuwe GStreamer playback engine gebruikt.
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Maximale ruimte die de logs in beslag mogen nemen. Als dat overschreden wordt, worden de oudste het eerste verwijderd."
 
-msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
+msgid "Set a time offset before a timer is due to start to allow VPS to scan for the latest event timing. Select '0' to disable this feature."
 msgstr "Indien mogelijk zal de plugin x minuten voor de ingestelde starttijd controleren of een programma eerder begint. (0 schakelt deze optie uit)"
 
 msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
@@ -16219,7 +16219,7 @@ msgstr "Zoekbalk activeren"
 msgid "SeekBar sensibility"
 msgstr "Grootte tijdsprong op de Zoekbalk"
 
-msgid "Seeking connected events"
+msgid "Find connected events"
 msgstr "Zoekt verbonden events"
 
 msgid "Select"
@@ -21117,7 +21117,7 @@ msgstr ""
 "Hiermee stelt u de beeldscherpte in als het beeld moet worden opgeschaald.\n"
 "(Default: 0)"
 
-msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
+msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr "De VPS plugin kan bepalen of een programma eerder begint of langer duurt dan in de Timer ingesteld. De zender moet dan wel betrouwbare gegevens leveren!"
 
 msgid "This service is protected by a parental control PIN!"
@@ -22966,7 +22966,7 @@ msgstr "Inschakelen"
 msgid "Wake up TV from Standby"
 msgstr "Activeer de TV vanuit stand-by"
 
-msgid "Wake up from Deep-Standby is allowed"
+msgid "Wake from Shutdown allowed"
 msgstr "Opstarten vanuit Deep-Standby toegestaan"
 
 msgid "Wake up time before a timer begins"
@@ -23344,7 +23344,7 @@ msgstr ""
 "Bij het overschakelen naar een andere zender wordt normaal gesproken de transponder gecontroleerd op wijzigingen.\n"
 "A.u.b. alleen activeren, wanneer u weet wat u doet!"
 
-msgid "When yes, VPS will be enabled on instant records (stop after current event), if the channel supports VPS."
+msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
 msgstr "Wanneer 'Ja' zal VPS worden ingeschakeld bij directe opnamen (en stoppen na het actuele programma), wanneer de zender VPS ondersteund."
 
 msgid "Where do you want to backup your settings?"

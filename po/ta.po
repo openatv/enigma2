@@ -3969,7 +3969,7 @@ msgstr "செச்சென்"
 msgid "Check for PDC"
 msgstr "பி.டி.சி."
 
-msgid "Check for PDC availability on each service"
+msgid "Check for PDC availability on each service."
 msgstr "ஒவ்வொரு சேவையிலும் பி.டி.சி கிடைப்பதை சரிபார்க்கவும்"
 
 msgid "Check power and input state from TV"
@@ -7118,10 +7118,10 @@ msgstr "தொடக்கத்தில் இடமாற்றத்தை �
 msgid "Enable VPS"
 msgstr "VPS ஐ இயக்கவும்"
 
-msgid "Enable VPS by default (new timers)"
+msgid "Select 'Yes' to set the VPS flag on all new timers by default."
 msgstr "இயல்பாக VP களை இயக்கவும் (புதிய டைமர்கள்)"
 
-msgid "Enable VPS on instant records"
+msgid "VPS on instant recordings"
 msgstr "உடனடி பதிவுகளில் VP களை இயக்கவும்"
 
 msgid "Enable VPS-Plugin"
@@ -9629,13 +9629,13 @@ msgstr "'ஒருபோதும்' என்றால், முதல் வ
 msgid "If EPG available"
 msgstr "ஈபிசி கிடைத்தால்"
 
-msgid "If a programme is interrupted and divided into separate events, the plugin will search for the connected events."
+msgid "If an event is interrupted and divided into separate recordings, this feature will search for alternate broadcasts of the same event."
 msgstr "ஒரு நிரல் குறுக்கிடப்பட்டு தனி நிகழ்வுகளாகப் பிரிக்கப்பட்டால், சொருகி இணைக்கப்பட்ட நிகழ்வுகளைத் தேடும்."
 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "ஒரு செயல் பயனர்-கட்டமைக்கக்கூடியதாக இருந்தால், அதன் உதவி நுழைவு ஒரு '(சி)' பின்னொட்டுடன் கொடியிடப்படும்."
 
-msgid "If enabled and necessary, the plugin will wake up the receiver from deep standby for the defined starting time to control whether the programme begins earlier."
+msgid "Select 'Yes' to wake the receiver from Shutdown prior to the recording start time to allow the PDC data to make last minute timer adjustments."
 msgstr "இயக்கப்பட்ட மற்றும் அவசியமானால், சொருகி, நிரல் முன்பே தொடங்குகிறதா என்பதைக் கட்டுப்படுத்த வரையறுக்கப்பட்ட தொடக்க நேரத்திற்கு ஆழ்ந்த நிலைப்பாட்டிலிருந்து ரிசீவரை எழுப்பும்."
 
 msgid "If enabled the output resolution of the receiver will try to match the resolution of the video contents resolution."
@@ -9659,7 +9659,7 @@ msgstr "இயக்கப்பட்டால், புதிய சிச்
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "பதிவுகள் செட் அதிகபட்ச இடத்தைப் பயன்படுத்தினால், மூத்தவர் நீக்கப்படும்."
 
-msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
+msgid "Set a time offset before a timer is due to start to allow VPS to scan for the latest event timing. Select '0' to disable this feature."
 msgstr "முடிந்தால், ஒரு நேரங்குறிகருவி தொடங்குவதற்கு ஃச் நிமிடங்களுக்கு முன் வி.பி.எச்-ப்ளூசின் நிரல் முன்பே தொடங்குகிறதா என்பதைக் கட்டுப்படுத்தும். (0 அம்சத்தை முடக்குகிறது)"
 
 msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
@@ -16054,7 +16054,7 @@ msgstr "சீக்பார் செயல்படுத்தல்"
 msgid "SeekBar sensibility"
 msgstr "சீக்பார் உணர்திறன்"
 
-msgid "Seeking connected events"
+msgid "Find connected events"
 msgstr "இணைக்கப்பட்ட நிகழ்வுகளைத் தேடுகிறது"
 
 msgid "Select"
@@ -20869,7 +20869,7 @@ msgstr "இந்த விருப்பம் வீடியோ பட ம�
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "இந்த விருப்பம் படக் கூர்மையை அமைக்கிறது, இது படம் உயர்த்தப்படும்போது பயன்படுத்தப்படுகிறது."
 
-msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
+msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr "இந்த சொருகி ஒரு நிரல் முன்பே தொடங்குகிறது அல்லது நீண்ட காலம் நீடிக்கும் என்பதை தீர்மானிக்க முடியும். சேனல் நம்பகமான தரவை வழங்க வேண்டும்."
 
 msgid "This service is protected by a parental control PIN!"
@@ -22716,7 +22716,7 @@ msgstr "எழுந்திரு"
 msgid "Wake up TV from Standby"
 msgstr "காத்திருப்பிலிருந்து டிவியை எழுப்புங்கள்"
 
-msgid "Wake up from Deep-Standby is allowed"
+msgid "Wake from Shutdown allowed"
 msgstr "ஆழமாக இருந்து எழுந்திருக்க அனுமதிக்கப்படுகிறது"
 
 msgid "Wake up time before a timer begins"
@@ -23077,7 +23077,7 @@ msgstr "சிவப்பு பெட்டி சரியாகத் தெ
 msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you're doing."
 msgstr "ஒரு சேவையுடன் இணைக்கப்படும்போது, கணினி பொதுவாக ஏதேனும் மாற்றங்களுக்காக டிரான்ச்பாண்டரை ச்கேன் செய்து அவற்றை சேமிக்கும். நீங்கள் என்ன செய்கிறீர்கள் என்பது உங்களுக்கு உறுதியாக இருந்தால் மட்டுமே 'ஆம்' என்று அமைக்கவும்."
 
-msgid "When yes, VPS will be enabled on instant records (stop after current event), if the channel supports VPS."
+msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
 msgstr "ஆம் போது, வி.பி."
 
 msgid "Where do you want to backup your settings?"

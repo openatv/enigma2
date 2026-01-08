@@ -4006,7 +4006,7 @@ msgstr "Čečenský"
 msgid "Check for PDC"
 msgstr "Zkontrolovat PDC"
 
-msgid "Check for PDC availability on each service"
+msgid "Check for PDC availability on each service."
 msgstr "Zkontrolovat dostupnost PDC u každé služby"
 
 msgid "Check power and input state from TV"
@@ -7158,10 +7158,10 @@ msgstr "Zapnout odkládání při startu"
 msgid "Enable VPS"
 msgstr "Povolit VPS"
 
-msgid "Enable VPS by default (new timers)"
+msgid "Select 'Yes' to set the VPS flag on all new timers by default."
 msgstr "Povolí VPS jako standardní (pro nové časovače)"
 
-msgid "Enable VPS on instant records"
+msgid "VPS on instant recordings"
 msgstr "Povolit VPS pro okamžité nahrávání"
 
 msgid "Enable VPS-Plugin"
@@ -9671,13 +9671,13 @@ msgstr "Pokud 'nikdy', zapíše protokol o havárii navzdory tomu pro první hav
 msgid "If EPG available"
 msgstr "Je-li EPG k dispozici"
 
-msgid "If a programme is interrupted and divided into separate events, the plugin will search for the connected events."
+msgid "If an event is interrupted and divided into separate recordings, this feature will search for alternate broadcasts of the same event."
 msgstr "Pokud je program přerušen a rozdělen na jednotlivé události, plugin bude hledat spojené události."
 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "Pokud je akce konfigurovatelná uživatelem, její položka nápovědy bude označena příponou '(C)'."
 
-msgid "If enabled and necessary, the plugin will wake up the receiver from deep standby for the defined starting time to control whether the programme begins earlier."
+msgid "Select 'Yes' to wake the receiver from Shutdown prior to the recording start time to allow the PDC data to make last minute timer adjustments."
 msgstr "Je-li povoleno a je-li to nutné, plugin probudí přijímač z hlubokého spánku na definovanou dobu spuštění, aby mohl kontrolovat, zda program začne dříve."
 
 msgid "If enabled the output resolution of the receiver will try to match the resolution of the video contents resolution."
@@ -9701,7 +9701,7 @@ msgstr "Pokud je povoleno, použije se nový engine pro přehrávání GStreamer
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Pokud používáte zprávy a je nastaven max. využitý prostor,budou nejstarší smazány."
 
-msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
+msgid "Set a time offset before a timer is due to start to allow VPS to scan for the latest event timing. Select '0' to disable this feature."
 msgstr "Pokud je to možné, kontroluje se x minut před skutečným začátkem, zda program nezačíná dříve. (0 deaktivuje tuto možnost)"
 
 msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
@@ -16103,7 +16103,7 @@ msgstr "Aktivace hledání"
 msgid "SeekBar sensibility"
 msgstr "Citlivost hledání"
 
-msgid "Seeking connected events"
+msgid "Find connected events"
 msgstr "Hledání spojených událostí"
 
 msgid "Select"
@@ -20923,7 +20923,7 @@ msgstr "Tato možnost nastavuje kontrast obrazu videa."
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Tato volba nastavuje ostrost obrazu,při použití upscalinku obrazu."
 
-msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
+msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr "Tento plugin může určit, zda program začíná dříve nebo bude delší. Vysílání musí poskytovat spolehlivé údaje."
 
 msgid "This service is protected by a parental control PIN!"
@@ -22770,7 +22770,7 @@ msgstr "Při probuzení"
 msgid "Wake up TV from Standby"
 msgstr "Probudit TV z pohotovostního režimu"
 
-msgid "Wake up from Deep-Standby is allowed"
+msgid "Wake from Shutdown allowed"
 msgstr "Probuzení z hlubokého spánku je povoleno"
 
 msgid "Wake up time before a timer begins"
@@ -23131,7 +23131,7 @@ msgstr "Když je červený rámeček správně zobrazen, stiskněte ZELENÉ tla�
 msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you're doing."
 msgstr "Při ladění programů bude systém normálně hledat transpondéry a a uloží je. Nastavte na 'ano' jen pokud jste si absolutně jisti, co děláte."
 
-msgid "When yes, VPS will be enabled on instant records (stop after current event), if the channel supports VPS."
+msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
 msgstr "Jestliže ano, pak v případě, že kanál podporuje VPS bude VPS povolen v okamžitém nahrávání (zastavit po aktuální události)."
 
 msgid "Where do you want to backup your settings?"

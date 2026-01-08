@@ -4003,7 +4003,7 @@ msgstr "Chechen"
 msgid "Check for PDC"
 msgstr "Proveri za PDC"
 
-msgid "Check for PDC availability on each service"
+msgid "Check for PDC availability on each service."
 msgstr "Proveri PDC raspoloživost za svaki kanal"
 
 msgid "Check power and input state from TV"
@@ -7155,10 +7155,10 @@ msgstr "Omogući zamenu pri pokretanju"
 msgid "Enable VPS"
 msgstr "Omogući VPS"
 
-msgid "Enable VPS by default (new timers)"
+msgid "Select 'Yes' to set the VPS flag on all new timers by default."
 msgstr "Omogući VPS po defaultu (novi tajmeri)"
 
-msgid "Enable VPS on instant records"
+msgid "VPS on instant recordings"
 msgstr "Omogući VPS za trenutne zapise"
 
 msgid "Enable VPS-Plugin"
@@ -9668,13 +9668,13 @@ msgstr "Ako 'nikad', pisaće evidenciju pada za prvi red."
 msgid "If EPG available"
 msgstr "Ako je EPG dostupan"
 
-msgid "If a programme is interrupted and divided into separate events, the plugin will search for the connected events."
+msgid "If an event is interrupted and divided into separate recordings, this feature will search for alternate broadcasts of the same event."
 msgstr "Ako je program prekinut i podeljen na zasebne događaje, plugin će potražiti povezane događaje."
 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "Ako je radnja korisnički konfigurisana, stavka pomoći će biti označena sufiksom '(C)'."
 
-msgid "If enabled and necessary, the plugin will wake up the receiver from deep standby for the defined starting time to control whether the programme begins earlier."
+msgid "Select 'Yes' to wake the receiver from Shutdown prior to the recording start time to allow the PDC data to make last minute timer adjustments."
 msgstr ""
 
 msgid "If enabled the output resolution of the receiver will try to match the resolution of the video contents resolution."
@@ -9698,7 +9698,7 @@ msgstr "Ako je omogućen, koristi će se nova GStreamer mašina za reprodukciju.
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Ako evidencije koriste postavljeni maksimalni prostor koji je najstariji bi će izbrisani."
 
-msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
+msgid "Set a time offset before a timer is due to start to allow VPS to scan for the latest event timing. Select '0' to disable this feature."
 msgstr "Ako je moguće, x minuta pre nego što tajmer pokrene VPS-Plugin kontročisati će da li program počinje ranije. (0 onemogućeno)"
 
 msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
@@ -16100,7 +16100,7 @@ msgstr "Aktivacija trake za traženja"
 msgid "SeekBar sensibility"
 msgstr ""
 
-msgid "Seeking connected events"
+msgid "Find connected events"
 msgstr "Traženje povezanih događaja"
 
 msgid "Select"
@@ -20917,7 +20917,7 @@ msgstr "Ova opcija postavlja video kontrast slike."
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Оva opcija podešava oštrinu slike koja se koristi prilikom upscaled slike."
 
-msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
+msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr "Ovaj plugin može da utvrdi da li program počinje ranije ili duže traje. Kanal mora da obezbedi pouzdane podatke."
 
 msgid "This service is protected by a parental control PIN!"
@@ -22767,7 +22767,7 @@ msgstr "Probudi se"
 msgid "Wake up TV from Standby"
 msgstr ""
 
-msgid "Wake up from Deep-Standby is allowed"
+msgid "Wake from Shutdown allowed"
 msgstr "Buđenje iz duboke pripravnosti je dozvoljeno"
 
 msgid "Wake up time before a timer begins"
@@ -23128,7 +23128,7 @@ msgstr "Kada je crven box pravilno vidljiv, pritisnite ZELENU dugmad da sačuvat
 msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you're doing."
 msgstr ""
 
-msgid "When yes, VPS will be enabled on instant records (stop after current event), if the channel supports VPS."
+msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
 msgstr "Kada je da, VPS će biti omogućen u trenutnim zapisima (zaustavi se posle aktuelnog događaja), ako kanal podržava VPS."
 
 msgid "Where do you want to backup your settings?"

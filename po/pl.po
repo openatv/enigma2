@@ -4015,7 +4015,7 @@ msgstr "Czeczeński"
 msgid "Check for PDC"
 msgstr "Sprawdź PDC"
 
-msgid "Check for PDC availability on each service"
+msgid "Check for PDC availability on each service."
 msgstr "Sprawdź dostępność PDC w każdej usłudze"
 
 msgid "Check power and input state from TV"
@@ -7168,10 +7168,10 @@ msgstr "Uruchom plik swap przy starcie"
 msgid "Enable VPS"
 msgstr "Włącz VPS"
 
-msgid "Enable VPS by default (new timers)"
+msgid "Select 'Yes' to set the VPS flag on all new timers by default."
 msgstr "Włącz VPS domyślnie (nowe timery)"
 
-msgid "Enable VPS on instant records"
+msgid "VPS on instant recordings"
 msgstr "Włącz VPS na natychmiastowych nagraniach"
 
 msgid "Enable VPS-Plugin"
@@ -9681,13 +9681,13 @@ msgstr "Jeśli 'nigdy', mimo to zapisze dziennik awarii dla pierwszej awarii."
 msgid "If EPG available"
 msgstr "Jeśli EPG jest dostępne"
 
-msgid "If a programme is interrupted and divided into separate events, the plugin will search for the connected events."
+msgid "If an event is interrupted and divided into separate recordings, this feature will search for alternate broadcasts of the same event."
 msgstr "Jeżeli program zostanie przerwany i podzielony na osobne zdarzenia, wtyczka wyszuka powiązane zdarzenia."
 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "Jeśli akcja jest konfigurowalna przez użytkownika, jej wpis pomocy zostanie oznaczony sufiksem „(C)”."
 
-msgid "If enabled and necessary, the plugin will wake up the receiver from deep standby for the defined starting time to control whether the programme begins earlier."
+msgid "Select 'Yes' to wake the receiver from Shutdown prior to the recording start time to allow the PDC data to make last minute timer adjustments."
 msgstr "Jeżeli jest włączona i zachodzi taka potrzeba, wtyczka wybudzi odbiornik z trybu wyłączenia na określony czas rozpoczęcia, aby kontrolować, czy program rozpocznie się wcześniej."
 
 msgid "If enabled the output resolution of the receiver will try to match the resolution of the video contents resolution."
@@ -9711,7 +9711,7 @@ msgstr "Jeśli włączone, nowy silnik odtwarzania GStreamer zostanie wykorzysta
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Jeśli zostanie przekroczona przestrzeń maksymalna,najstarsze zostaną usunięte."
 
-msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
+msgid "Set a time offset before a timer is due to start to allow VPS to scan for the latest event timing. Select '0' to disable this feature."
 msgstr "Jeśli to możliwe, x minut przed uruchomieniem timera Wtyczka VPS będzie kontrolować, czy program rozpocznie się wcześniej. (0 wyłącza funkcję)"
 
 msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
@@ -16114,7 +16114,7 @@ msgstr "Aktywacja paska postępu"
 msgid "SeekBar sensibility"
 msgstr "Czułość paska postępu"
 
-msgid "Seeking connected events"
+msgid "Find connected events"
 msgstr "Wyszukiwanie powiązanych wydarzeń"
 
 msgid "Select"
@@ -20935,7 +20935,7 @@ msgstr "Opcja ustawia kontrast wideo."
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Ta opcja ustawia ostrość obrazu, używana gdy obraz jest powiększony."
 
-msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
+msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr "Ta wtyczka może określić, czy program zaczyna się wcześniej lub trwa dłużej. Kanał musi dostarczyć wiarygodne dane."
 
 msgid "This service is protected by a parental control PIN!"
@@ -22782,7 +22782,7 @@ msgstr "Wybudzenie"
 msgid "Wake up TV from Standby"
 msgstr "Wybudzaj TV ze stanu czuwania"
 
-msgid "Wake up from Deep-Standby is allowed"
+msgid "Wake from Shutdown allowed"
 msgstr "Wybudzenie z trybu wyłączenia jest dozwolone"
 
 msgid "Wake up time before a timer begins"
@@ -23143,7 +23143,7 @@ msgstr "Gdy czerwone pole będzie już prawidłowo widoczne, naciśnij ZIELONY p
 msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you're doing."
 msgstr "Gdy nastawiony na kanał będzie normalnie skanować zmiany na transponderze i zapisze je. Tylko ustawiony na 'tak', jeśli jesteś absolutnie pewien, co robisz."
 
-msgid "When yes, VPS will be enabled on instant records (stop after current event), if the channel supports VPS."
+msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
 msgstr "Jeśli tak, VPS będzie włączony na nagraniach natychmiastowych (zatrzymanie po bieżącym zdarzeniu), jeśli kanał obsługuje VPS."
 
 msgid "Where do you want to backup your settings?"

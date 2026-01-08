@@ -3970,7 +3970,7 @@ msgstr "车臣语"
 msgid "Check for PDC"
 msgstr "检查 PDC"
 
-msgid "Check for PDC availability on each service"
+msgid "Check for PDC availability on each service."
 msgstr "检查每个服务的 PDC 可用性"
 
 msgid "Check power and input state from TV"
@@ -7119,10 +7119,10 @@ msgstr "启动时启用交换空间"
 msgid "Enable VPS"
 msgstr "启用 VPS"
 
-msgid "Enable VPS by default (new timers)"
+msgid "Select 'Yes' to set the VPS flag on all new timers by default."
 msgstr "默认启用 VPS（新定时器）"
 
-msgid "Enable VPS on instant records"
+msgid "VPS on instant recordings"
 msgstr "即时录制启用 VPS"
 
 msgid "Enable VPS-Plugin"
@@ -9630,13 +9630,13 @@ msgstr "如为 '从不'，将写入崩溃日志，尽管是第一次崩溃。"
 msgid "If EPG available"
 msgstr "如果 EPG 可用"
 
-msgid "If a programme is interrupted and divided into separate events, the plugin will search for the connected events."
+msgid "If an event is interrupted and divided into separate recordings, this feature will search for alternate broadcasts of the same event."
 msgstr "如果程序被中断并被划分为单独的事件，插件将搜索连接的事件。"
 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "如果某个操作是用户可配置的，则其帮助条目将标记为“(C)”后缀。"
 
-msgid "If enabled and necessary, the plugin will wake up the receiver from deep standby for the defined starting time to control whether the programme begins earlier."
+msgid "Select 'Yes' to wake the receiver from Shutdown prior to the recording start time to allow the PDC data to make last minute timer adjustments."
 msgstr "如果启用且有必要，插件将在定义的启动时间内从深度待机中唤醒接收机，以控制程序是否更早开始。"
 
 msgid "If enabled the output resolution of the receiver will try to match the resolution of the video contents resolution."
@@ -9660,7 +9660,7 @@ msgstr "如果启用，将使用新的 GStreamer 播放引擎。"
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "当所有日志达到最大空间时，最旧的将被删除。"
 
-msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
+msgid "Set a time offset before a timer is due to start to allow VPS to scan for the latest event timing. Select '0' to disable this feature."
 msgstr "如果可能，在定时器启动前 x 分钟，VPS 插件将控制程序是否提前开始。 （0 禁用功能）"
 
 msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
@@ -16055,7 +16055,7 @@ msgstr "激活进度条"
 msgid "SeekBar sensibility"
 msgstr "进度条灵敏度"
 
-msgid "Seeking connected events"
+msgid "Find connected events"
 msgstr "寻找关联事件"
 
 msgid "Select"
@@ -20870,7 +20870,7 @@ msgstr "此选项设置视频图片对比度。"
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "此选项设置图片清晰度，当图片放大时使用。"
 
-msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
+msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr "这个插件可以确定一个节目是更早开始还是持续更长时间。 频道必须提供可靠的数据。"
 
 msgid "This service is protected by a parental control PIN!"
@@ -22717,7 +22717,7 @@ msgstr "唤醒"
 msgid "Wake up TV from Standby"
 msgstr "从待机状态唤醒电视"
 
-msgid "Wake up from Deep-Standby is allowed"
+msgid "Wake from Shutdown allowed"
 msgstr "允许从深度待机唤醒"
 
 msgid "Wake up time before a timer begins"
@@ -23078,7 +23078,7 @@ msgstr "当红色框正确可见时，按绿色按钮保存设置并退出。"
 msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you're doing."
 msgstr "当调谐到频道时，系统通常会扫描转发器的任何改动并保存它们。 仅当你在完全确定自己在做什么时设为“是”。"
 
-msgid "When yes, VPS will be enabled on instant records (stop after current event), if the channel supports VPS."
+msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
 msgstr "选 是 时，即时录制中 VPS 将被启用（在当前事件后停止），如果频道支持 VPS。"
 
 msgid "Where do you want to backup your settings?"

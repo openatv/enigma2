@@ -39,8 +39,8 @@ def timerCreateHook(self):
 		else:
 			self.timerentry_vpsplugin_time_date = ConfigDateTime(default=self.timer.begin, formatstring=_("%d.%B %Y"), increment=86400)
 			self.timerentry_vpsplugin_time_clock = ConfigClock(default=self.timer.begin)
-	except Exception as exc:
-		print("[VPS] timerCreateHook : %s" % exc)
+	except Exception as ex:
+		print(f"[VPS] timerCreateHook : {ex}")
 		pass
 
 
@@ -82,8 +82,8 @@ def timerSetupHook(self):
 						config.plugins.vps.infotext.value = 2
 						config.plugins.vps.infotext.save()
 						self.session.open(VPS_Screen_Info)
-	except Exception as exc:
-		print("[VPS] timerSetupHook : %s" % exc)
+	except Exception as ex:
+		print(f"[VPS] timerSetupHook : {ex}")
 		pass
 	self["config"].list = self.list
 	self["config"].setCurrentIndex(currentIndex)
@@ -109,8 +109,8 @@ def timerSaveHook(self):
 					if (timerbegin - 60) < time() and (self.timer.vpsplugin_time - time()) > 1800:
 						self.timerentry_date.value = self.timerentry_vpsplugin_time_date.value
 						self.timerentry_starttime.value = self.timerentry_vpsplugin_time_clock.value
-	except Exception as exc:
-		print("[VPS] timerSaveHook : %s" % exc)
+	except Exception as ex:
+		print(f"[VPS] timerSaveHook : {ex}")
 		pass
 
 
@@ -119,8 +119,8 @@ def timerChannelChangeHook(self):
 		if self.timerentry_vpsplugin_enabled.value != "no":
 			self.timerentry_vpsplugin_dontcheck_pdc = False
 			self.createSetup()
-	except Exception as exc:
-		print("[VPS] timerChannelChangeHook : %s" % exc)
+	except Exception as ex:
+		print(f"[VPS] timerChannelChangeHook : {ex}")
 		pass
 
 
@@ -148,8 +148,8 @@ def new_InfoBarInstantRecord_recordQuestionCallback(self, answer, *args, **kwarg
 					rec_ref = getBestPlayableServiceReference(rec_ref, eServiceReference())
 				self.session.open(VPS_check_on_instanttimer, rec_ref, self.recording[entry])
 
-	except Exception as exc:
-		print("[VPS] new_InfoBarInstantRecord_recordQuestionCallback : %s" % exc)
+	except Exception as ex:
+		print(f"[VPS] new_InfoBarInstantRecord_recordQuestionCallback : {ex}")
 		pass
 
 

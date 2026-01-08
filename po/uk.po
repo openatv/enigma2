@@ -4008,7 +4008,7 @@ msgstr "Чеченська"
 msgid "Check for PDC"
 msgstr "Перевірте наявність PDC"
 
-msgid "Check for PDC availability on each service"
+msgid "Check for PDC availability on each service."
 msgstr "Перевірте доступність PDC для кожного каналу"
 
 msgid "Check power and input state from TV"
@@ -7160,10 +7160,10 @@ msgstr "Вкл. Swap при старті"
 msgid "Enable VPS"
 msgstr "Увімкнути VPS"
 
-msgid "Enable VPS by default (new timers)"
+msgid "Select 'Yes' to set the VPS flag on all new timers by default."
 msgstr "Увімкнути VPS за замовчуванням (нові таймери)"
 
-msgid "Enable VPS on instant records"
+msgid "VPS on instant recordings"
 msgstr "Увімкнути VPS для миттєвих записів"
 
 msgid "Enable VPS-Plugin"
@@ -9673,13 +9673,13 @@ msgstr "Якщо встановлено 'ніколи', буде написан�
 msgid "If EPG available"
 msgstr "Якщо ЕПГ доступний"
 
-msgid "If a programme is interrupted and divided into separate events, the plugin will search for the connected events."
+msgid "If an event is interrupted and divided into separate recordings, this feature will search for alternate broadcasts of the same event."
 msgstr "Якщо програма переривається та розділяється на окремі передачі, плагін шукатиме пов’язані передачі."
 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "Якщо дію можна налаштувати користувачем, запис про неї буде позначено символом '(C)'."
 
-msgid "If enabled and necessary, the plugin will wake up the receiver from deep standby for the defined starting time to control whether the programme begins earlier."
+msgid "Select 'Yes' to wake the receiver from Shutdown prior to the recording start time to allow the PDC data to make last minute timer adjustments."
 msgstr "Якщо ввімкнено та необхідно, плагін виведе приймач із режиму глибокого очікування на визначений час запуску, щоб контролювати, чи розпочинається програма раніше."
 
 msgid "If enabled the output resolution of the receiver will try to match the resolution of the video contents resolution."
@@ -9703,7 +9703,7 @@ msgstr "Якщо ввімкнено, використовуватиметься 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Якщо логи займають занадто багато пам'яті, будуть видалятися найстаріші файли."
 
-msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
+msgid "Set a time offset before a timer is due to start to allow VPS to scan for the latest event timing. Select '0' to disable this feature."
 msgstr "Якщо можливо, за x хвилин до запуску таймера VPS-плагін контролюватиме, чи програма починається раніше. (0 вимикає функцію)"
 
 msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
@@ -16105,7 +16105,7 @@ msgstr "Активація Seekbar"
 msgid "SeekBar sensibility"
 msgstr "Крок Seekbar"
 
-msgid "Seeking connected events"
+msgid "Find connected events"
 msgstr "Пошук пов'язаних подій"
 
 msgid "Select"
@@ -20925,7 +20925,7 @@ msgstr "Ця опція встановлює контраст відеозобр
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Ця опція налаштовує різкість зображення, має значення, якщо зображення має бути збільшено."
 
-msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
+msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr "Цей плагін може визначити, чи програма починається раніше чи триває довше. Канал має надавати надійні дані."
 
 msgid "This service is protected by a parental control PIN!"
@@ -22772,7 +22772,7 @@ msgstr "Включення"
 msgid "Wake up TV from Standby"
 msgstr "Пробудити ТВ з режиму очікування"
 
-msgid "Wake up from Deep-Standby is allowed"
+msgid "Wake from Shutdown allowed"
 msgstr "Вихід із режиму глибокого очікування дозволено"
 
 msgid "Wake up time before a timer begins"
@@ -23133,7 +23133,7 @@ msgstr "Коли червоне поле буде видно, натисніть
 msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you're doing."
 msgstr "При від'ємному значенні, система буде сканувати транспондер у фоновому режимі на предмет змін і зберігати їх. Виберіть 'так', якщо тільки абсолютно впевнені, що робите."
 
-msgid "When yes, VPS will be enabled on instant records (stop after current event), if the channel supports VPS."
+msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
 msgstr "Якщо так, VPS буде ввімкнено для миттєвих записів (зупиняється після поточної події), якщо канал підтримує VPS."
 
 msgid "Where do you want to backup your settings?"

@@ -4349,7 +4349,7 @@ msgstr "Undersøk"
 msgid "Check for PDC"
 msgstr ""
 
-msgid "Check for PDC availability on each service"
+msgid "Check for PDC availability on each service."
 msgstr ""
 
 msgid "Check power and input state from TV"
@@ -7703,10 +7703,10 @@ msgstr ""
 msgid "Enable VPS"
 msgstr ""
 
-msgid "Enable VPS by default (new timers)"
+msgid "Select 'Yes' to set the VPS flag on all new timers by default."
 msgstr ""
 
-msgid "Enable VPS on instant records"
+msgid "VPS on instant recordings"
 msgstr ""
 
 msgid "Enable VPS-Plugin"
@@ -10398,13 +10398,13 @@ msgstr ""
 msgid "If EPG available"
 msgstr ""
 
-msgid "If a programme is interrupted and divided into separate events, the plugin will search for the connected events."
+msgid "If an event is interrupted and divided into separate recordings, this feature will search for alternate broadcasts of the same event."
 msgstr ""
 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr ""
 
-msgid "If enabled and necessary, the plugin will wake up the receiver from deep standby for the defined starting time to control whether the programme begins earlier."
+msgid "Select 'Yes' to wake the receiver from Shutdown prior to the recording start time to allow the PDC data to make last minute timer adjustments."
 msgstr ""
 
 msgid "If enabled the output resolution of the receiver will try to match the resolution of the video contents resolution."
@@ -10428,7 +10428,7 @@ msgstr ""
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr ""
 
-msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
+msgid "Set a time offset before a timer is due to start to allow VPS to scan for the latest event timing. Select '0' to disable this feature."
 msgstr ""
 
 msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
@@ -17429,7 +17429,7 @@ msgstr "Søkbar aktivering"
 msgid "SeekBar sensibility"
 msgstr "Søkbar sensibilitet"
 
-msgid "Seeking connected events"
+msgid "Find connected events"
 msgstr ""
 
 #
@@ -22469,7 +22469,7 @@ msgstr ""
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Dette alternativet setter opp bildets skarphet, brukes når bildet blir oppskalert."
 
-msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
+msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr ""
 
 #
@@ -24440,7 +24440,7 @@ msgstr "Oppvåkning"
 msgid "Wake up TV from Standby"
 msgstr "Vekke opp Tv fra dvalemodus"
 
-msgid "Wake up from Deep-Standby is allowed"
+msgid "Wake from Shutdown allowed"
 msgstr ""
 
 msgid "Wake up time before a timer begins"
@@ -24807,7 +24807,7 @@ msgstr ""
 msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you're doing."
 msgstr ""
 
-msgid "When yes, VPS will be enabled on instant records (stop after current event), if the channel supports VPS."
+msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
 msgstr ""
 
 #

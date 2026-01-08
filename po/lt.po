@@ -4017,7 +4017,7 @@ msgstr "Čečėnijos"
 msgid "Check for PDC"
 msgstr "Patikrinkite, ar nėra PDC"
 
-msgid "Check for PDC availability on each service"
+msgid "Check for PDC availability on each service."
 msgstr "Patikrinkite, ar kiekvienoje paslaugoje nėra PDC prieinamumo"
 
 msgid "Check power and input state from TV"
@@ -7162,10 +7162,10 @@ msgstr "Įjungti startuojant"
 msgid "Enable VPS"
 msgstr "Įjungti VPS"
 
-msgid "Enable VPS by default (new timers)"
+msgid "Select 'Yes' to set the VPS flag on all new timers by default."
 msgstr "VPS įjungta - numatytasis (naujiems laikmačiams)"
 
-msgid "Enable VPS on instant records"
+msgid "VPS on instant recordings"
 msgstr "Įjungti VPS neplaniniams įrašams"
 
 msgid "Enable VPS-Plugin"
@@ -9677,13 +9677,13 @@ msgstr "Jei \"niekada\", įrašys pranešimą apie gedimą, nepaisant to, kad į
 msgid "If EPG available"
 msgstr ""
 
-msgid "If a programme is interrupted and divided into separate events, the plugin will search for the connected events."
+msgid "If an event is interrupted and divided into separate recordings, this feature will search for alternate broadcasts of the same event."
 msgstr "Jeigu įvykis nutraukiamas ir padalinamas į atskirus įvykius, įskiepis ieškos susijusių įvykių."
 
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "Jei veiksmą galima konfigūruoti vartotojui, jo žinyno įrašas bus pažymėtas priesaga '(C)'."
 
-msgid "If enabled and necessary, the plugin will wake up the receiver from deep standby for the defined starting time to control whether the programme begins earlier."
+msgid "Select 'Yes' to wake the receiver from Shutdown prior to the recording start time to allow the PDC data to make last minute timer adjustments."
 msgstr "Jei įjungta ir būtina, papildinys pažadins imtuvą iš gilaus budėjimo režimo nustatytam paleidimo laikui, kad būtų galima valdyti, ar programa paleidžiama anksčiau."
 
 msgid "If enabled the output resolution of the receiver will try to match the resolution of the video contents resolution."
@@ -9707,7 +9707,7 @@ msgstr "Jei įjungta, bus naudojamas naujas GStreamer atkūrimo variklis."
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Jei žurnalai jau išnaudoja maksimalią jiems skirtą erdvę, įkeliant naują, seniausias bus ištrintas."
 
-msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
+msgid "Set a time offset before a timer is due to start to allow VPS to scan for the latest event timing. Select '0' to disable this feature."
 msgstr "Jeigu galima, X minučių prieš laikmačio pradžią, VPS įskiepis patikrins, ar programa neprasideda anksčiau (0 - funkcija išjungta)"
 
 msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
@@ -16106,7 +16106,7 @@ msgstr "Paieškos juostos aktyvavimas"
 msgid "SeekBar sensibility"
 msgstr "Paieškos juostos jautrumas"
 
-msgid "Seeking connected events"
+msgid "Find connected events"
 msgstr "Ieškoma susijusių įvykių"
 
 msgid "Select"
@@ -20893,7 +20893,7 @@ msgstr ""
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Nustato paveikslėlių vaizdo ryškumą keičiantis masteliui."
 
-msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
+msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr "Šis įskiepis gali nustatyti, jei įvykis prasideda anksčiau, arba ilgiau užtrunka. Kanalas tam turi pateikti patikimus duomenis."
 
 msgid "This service is protected by a parental control PIN!"
@@ -22730,7 +22730,7 @@ msgstr "Pabusti"
 msgid "Wake up TV from Standby"
 msgstr "Pažadinti TV iš budėjimo"
 
-msgid "Wake up from Deep-Standby is allowed"
+msgid "Wake from Shutdown allowed"
 msgstr "Leidžiama prižadinti iš gilaus budėjimo"
 
 msgid "Wake up time before a timer begins"
@@ -23088,7 +23088,7 @@ msgstr ""
 msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you're doing."
 msgstr "Įjungus kanalą, sistema paprastai patikrina visus pasikeitimus transponderyje ir juos išsaugo. Nustatykite čia 'taip' tik tada, kai tiksliai žinote, kam tą darote."
 
-msgid "When yes, VPS will be enabled on instant records (stop after current event), if the channel supports VPS."
+msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
 msgstr "Jeigu \"Taip\" ir kanalas palaiko VPS, VPS bus įjungtas neplaniniams įrašams (išjungiant po šio įvykio)."
 
 msgid "Where do you want to backup your settings?"
