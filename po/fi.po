@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-02 18:38+0000\n"
+"POT-Creation-Date: 2026-01-03 09:58+0000\n"
 "PO-Revision-Date: 2025-12-28 02:56+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
@@ -4135,31 +4135,31 @@ msgstr "Määrittää, mitä 0-näppäin tekee, kun PiP-kuva on aktivoitu."
 msgid "Choose where to mount your devices to:"
 msgstr "Valitse, mihin laitteet asennetaan:"
 
-msgid "Choose whether AAC sound tracks should be transcoded."
+msgid "Select whether AAC audio tracks should be transcoded."
 msgstr "Määrittää, tehdäänkö AAC-ääniraidoille uudelleenpakkaus (transcoding)."
 
-msgid "Choose whether AC3 Plus sound tracks should be transcoded to AC3."
+msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
 msgstr "Valitse tehdäänkö AC3+ ääniraidoille uudelleenpakkaus."
 
-msgid "Choose whether AC3 sound tracks should be downmixed to stereo."
+msgid "Select whether AC3 sound tracks should be downmixed to stereo."
 msgstr "Valitse muunnetaanko monikanavaiset AC3 ääniraidat stereoksi."
 
-msgid "Choose whether DTS channel sound tracks should be downmixed or transcoded."
+msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
 msgstr "Valitse muunnetaanko monikanavaiset DTS ääniraidat stereoksi."
 
-msgid "Choose whether DTS channel sound tracks should be downmixed to stereo."
+msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
 msgstr "Valitse muunnetaanko monikanavaiset DTS ääniraidat stereoksi."
 
-msgid "Choose whether WMA Pro channel sound tracks should be downmixed or transcoded."
+msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
 msgstr "Valitse muunnetaanko monikanavaiset DTS ääniraidat stereoksi."
 
-msgid "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
+msgid "Select whether multi channel audio tracks should be converted to PCM or SPDIF."
 msgstr "Määrittää, lähetetäänkö monikanavaiset ääniraidat ulos PCM muodossa."
 
-msgid "Choose whether multi channel sound tracks should be downmixed to stereo."
+msgid "Select whether multichannel audio tracks should be downmixed to stereo."
 msgstr "Määrittää, muunnetaanko monikanavaiset ääniraidat stereoksi."
 
-msgid "Choose whether multi channel sound tracks should be output as PCM."
+msgid "Select whether multichannel sound tracks should be output as PCM."
 msgstr "Määrittää, lähetetäänkö monikanavaiset ääniraidat ulos PCM-muodossa."
 
 msgid "Choose whether or not to show an icon when a motorized dish is moving."
@@ -4836,7 +4836,7 @@ msgstr "Määritä käytetäänkö teksti-tv:ssä kiinteää kirjasinta vai skaa
 msgid "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel."
 msgstr "Määritä, käytetäänkö toista viritintä tallennuksiin , vaikka voitaisiin käyttää samaa viritintä, joka vastaanottaa samaa kanavaa suorana."
 
-msgid "Configure whether multi channel sound tracks should be downmixed to stereo."
+msgid "Select whether multichannel audio tracks should be downmixed to stereo."
 msgstr "Määrittää, muunnetaanko monikanavaiset ääniraidat stereoksi."
 
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (like in EPGrefresh)."
@@ -7089,7 +7089,7 @@ msgstr "Syötä 5 voltin käyttöjännite aktiiviantennille"
 msgid "Enable Autorecord"
 msgstr "Ota käyttöön automaattinen tallennus"
 
-msgid "Enable BT Audio"
+msgid "Enable BT audio"
 msgstr "Aktivoi Bluetooth Ääni"
 
 msgid "Enable Bouquet Edit"
@@ -8871,7 +8871,7 @@ msgstr "Yleinen"
 msgid "General AC3 delay"
 msgstr "Yleinen AC3 viive"
 
-msgid "General BT Audio delay"
+msgid "General BT audio delay"
 msgstr "Yleinen Bluetooth ääni viive"
 
 msgid "General PCM delay"
@@ -9205,7 +9205,7 @@ msgstr "Yritä estää järjestelmän kaatuminen"
 msgid "Handle Standby from TV"
 msgstr "Tottele sammutuskäskyä TV:ltä"
 
-msgid "Handle input from TV"
+msgid "Process action from TV"
 msgstr "Tottele TV:en tuloa"
 
 msgid "Handle wake up from TV"
@@ -12164,17 +12164,11 @@ msgstr "Lähiverkon asetukset"
 msgid "Network mounts"
 msgstr "Verkkoliitokset"
 
-msgid "Network name"
-msgstr ""
-
 msgid "Network name (SSID)"
 msgstr "Verkkonimi (SSID)"
 
 msgid "Network scan"
 msgstr "Verkkohaku"
-
-msgid "Network status"
-msgstr ""
 
 msgid "Network storage on"
 msgstr "Verkkotallennus päällä"
@@ -14935,7 +14929,7 @@ msgstr "Virkistä"
 msgid "Refresh ZeroTier status information"
 msgstr ""
 
-msgid "Refresh every x hours"
+msgid "Refresh every"
 msgstr "Päivitä joka (tunti)"
 
 msgid "Refresh rate"
@@ -15376,6 +15370,9 @@ msgstr "Käynnistä verkkoyhteydet uudelleen"
 
 msgid "Restart test"
 msgstr "Testaa uudelleen"
+
+msgid "Restart your network connection and interfaces."
+msgstr "Käynnistä verkkoyhteydet uudelleen."
 
 msgid "Restarting..."
 msgstr "Uudelleenkäynnistys..."
@@ -15831,7 +15828,7 @@ msgstr "Tallenna ja pysäytä"
 msgid "Save directory on EXIT"
 msgstr "tallenna viimeisin hakemisto suljettaessa"
 
-msgid "Save every x hours"
+msgid "Save every"
 msgstr "Tallenna joka (tunti)"
 
 #, python-format
@@ -17635,7 +17632,7 @@ msgstr "Määrittää, kuinka kauan tietopalkki näytetään kuvaruudulla."
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
 msgstr "Aseta aika joka odotettaan ennen kuin suoritettaan oletustoiminto sammutuksessa, valmiustilassa tai uudelleenkäynnistyksessä. (esim .uniajastin, ...)"
 
-msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at 0,0 and the bottom right is at 1260,700. Note that the position is the top left of the spinner and not the centre of the spinner."
+msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
 msgstr "Säädä spinnerin vasenta yläkulmaa (ruutu). Ylävasen on 0,0, alhaalla oikea on 1260,700. Sijainti on spinnerin vasen yläkulma, ei sen keskusta."
 
 msgid "Set the type of the progress indication in the channel selection screen."
@@ -17673,7 +17670,7 @@ msgstr "Aseta tämän arvoksi 'Kyllä' lajitellaksesi toistolistat aakkosjärjes
 msgid "Set time options"
 msgstr "Aika asetusten määrittäminen"
 
-msgid "Set to 'Disabled' to replace underscore characters '_' in file and directory names with spaces."
+msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
 msgstr "Jos asetus ei ole käytössä, tiedosto- ja kansionimien alaviivoja ei näytetä, ja ne korvataan välilyönneillä."
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby before shutting down."
@@ -18032,7 +18029,7 @@ msgstr "Näytä HDMI Ulostulo resoluutio"
 msgid "Show InfoBar"
 msgstr "Näytä Tietopalkki"
 
-msgid "Show InfoBar lite *"
+msgid "Show InfoBar lite"
 msgstr "Näytä tietopalkki pieni"
 
 msgid "Show InfoBar on channel change"
@@ -20239,10 +20236,10 @@ msgstr "%s %s on rajoitettu muistikapasiteetti. swap tiedosto tarvitaan digiboks
 msgid "The %s %s is shutting down. Please wait..."
 msgstr "%s %s sammuu. Ole hyvä ja odota..."
 
-msgid "The %s %s reads the stored EPG data every x hours."
+msgid "The %s %s reads the stored EPG data every selected number of hours."
 msgstr "%s %s lukee tallennetun EPG-tiedon joka (tuntia)."
 
-msgid "The %s %s stores the EPG data every x hours."
+msgid "The %s %s stores the EPG data every selected number of hours."
 msgstr "%s %s tallentaa EPG-tiedon joka (tuntia)."
 
 #, python-format
@@ -20655,7 +20652,7 @@ msgstr "Tämä %s %s ei pysty purkamaan %s lähteitä!"
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Tämä DVD-RW levy on jo alustettu - uudelleenalustus tuhoaa levyn kaiken sisällön."
 
-msgid "This Option allows you to switch Audio to BT Speakers."
+msgid "This option allows you to switch Audio to Bluetooth speakers."
 msgstr "Tämän vaihtoehdon avulla voit vaihtaa äänen Bluetooth kaiuttimelle."
 
 msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
@@ -20837,13 +20834,13 @@ msgstr "Tämä asetus sallii käyttää kaikkia HDMI tiloja"
 msgid "This option allows you to view the old and new settings side by side."
 msgstr "Määrittää, näytetäänkö vanhat ja uudet asetukset rinnakkain."
 
-msgid "This option configures the general audio delay for BT Speakers."
+msgid "This option configures the audio delay value for Bluetooth speakers."
 msgstr "Tämä asetus määrittää yleisen äänen viiveen Bluetooth kaiuttimessa."
 
-msgid "This option configures the general audio delay of Dolby Digital sound tracks."
+msgid "This option selects the general audio delay of Dolby Digital sound tracks."
 msgstr "Tämä asetus määrittää Dolby Digital -ääniraitojen äänen perusviiveen."
 
-msgid "This option configures the general audio delay of stereo sound tracks."
+msgid "This option selects the general audio delay of stereo sound tracks."
 msgstr "Tämä asetus määrittää stereo ääniraitojen äänen perusviiveen."
 
 msgid "This option configures the picture sharpness."
@@ -20855,7 +20852,7 @@ msgstr "Määrittää näytön resoluution PC-ulostulotilassa."
 msgid "This option configures the video output mode (or resolution)."
 msgstr "Tämä asetus määrittää videoulostulon (tai resoluution)."
 
-msgid "This option configures you can set Auto Volume Level."
+msgid "This option allows you to set the Auto Volume Level output."
 msgstr "Tämä asetus määrittää automaattisen äänenvoimakkuuden tason."
 
 msgid "This option lets you adjust the 3D depth of the OSD."
@@ -22229,6 +22226,9 @@ msgstr "Käytä nykyistä valintaa ja poistu"
 
 msgid "Use the extended List"
 msgstr "Käytä laajennettua listaa"
+
+msgid "Use the network wizard to configure your Network."
+msgstr "Määritä lähiverkon asetukset verkkoavustajan opastamana."
 
 msgid "Use the wizard to set up basic features"
 msgstr "Käytä avustajaa perusasetusten määrittämiseen"
@@ -23711,13 +23711,10 @@ msgstr "Vaihda kanavaa ja tallenna"
 msgid "ZeroTier Actions"
 msgstr ""
 
-msgid "ZeroTier version"
+msgid "ZeroTier Settings"
 msgstr ""
 
 msgid "ZeroTier-One"
-msgstr ""
-
-msgid "ZeroTier Settings"
 msgstr ""
 
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
@@ -24411,9 +24408,6 @@ msgstr "®"
 #~ msgid "Press yellow to set this interface as the default interface."
 #~ msgstr "Määritä tämä oletukseksi keltaisella näppäimellä."
 
-#~ msgid "Restart your network connection and interfaces."
-#~ msgstr "Käynnistä verkkoyhteydet uudelleen."
-
 #~ msgid "Set interface as the default Interface"
 #~ msgstr "Määritä sovitin oletussovittimeksi"
 
@@ -24430,9 +24424,6 @@ msgstr "®"
 
 #~ msgid "Use the network wizard to configure selected network adapter"
 #~ msgstr "Muokkaa valitun verkkosovittimen asetuksia verkkoavustajan opastamana"
-
-#~ msgid "Use the network wizard to configure your Network."
-#~ msgstr "Määritä lähiverkon asetukset verkkoavustajan opastamana."
 
 #~ msgid "Monitoring UI password"
 #~ msgstr "Valvonta käyttöliittymän salasana"

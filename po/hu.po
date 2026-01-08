@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-02 18:38+0000\n"
+"POT-Creation-Date: 2026-01-03 09:58+0000\n"
 "PO-Revision-Date: 2025-05-05 05:50+0000\n"
 "Last-Translator: Balázs Sólyom <balazs@solyom.online>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -4171,31 +4171,31 @@ msgstr "Válassza ki, hogy a '0' gomb miként működjön az aktív Kép-a-Képb
 msgid "Choose where to mount your devices to:"
 msgstr "Válassza ki, hova kell csatlakoztatni eszközeit:"
 
-msgid "Choose whether AAC sound tracks should be transcoded."
+msgid "Select whether AAC audio tracks should be transcoded."
 msgstr "Válassza ki, hogy az AAC hangsávokat átkódolják-e."
 
-msgid "Choose whether AC3 Plus sound tracks should be transcoded to AC3."
+msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
 msgstr "Válassza ki, hogy az AC3 Plus hangsávokat át kell-e kódolni az AC3-ra."
 
-msgid "Choose whether AC3 sound tracks should be downmixed to stereo."
+msgid "Select whether AC3 sound tracks should be downmixed to stereo."
 msgstr "Ha kiválasztja, akkor az AC3 hangsávjait lekeveri sztereóra."
 
-msgid "Choose whether DTS channel sound tracks should be downmixed or transcoded."
+msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
 msgstr "Válassza ki, hogy a DTS csatorna hangsávjait le kell-e keverni vagy átkódolni."
 
-msgid "Choose whether DTS channel sound tracks should be downmixed to stereo."
+msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
 msgstr "Ha kiválasztja, akkor az DTS csatorna hangsávjait lekeveri sztereóra."
 
-msgid "Choose whether WMA Pro channel sound tracks should be downmixed or transcoded."
+msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
 msgstr "Válassza ki, hogy a WMA Pro csatorna hangzásait le kell-e keverni vagy átkódolni."
 
-msgid "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
+msgid "Select whether multi channel audio tracks should be converted to PCM or SPDIF."
 msgstr "Válassza ki, hogy a többcsatornás hangsávnak PCM vagy SPDIF formátumúra legyen konvertálva."
 
-msgid "Choose whether multi channel sound tracks should be downmixed to stereo."
+msgid "Select whether multichannel audio tracks should be downmixed to stereo."
 msgstr "Válassza ki, hogy a többcsatornás hangsávokat a sztereóhoz le kell-e keverni."
 
-msgid "Choose whether multi channel sound tracks should be output as PCM."
+msgid "Select whether multichannel sound tracks should be output as PCM."
 msgstr "Válassza ki, hogy a többcsatornás hangsávot PCM-ként kell kiadni."
 
 msgid "Choose whether or not to show an icon when a motorized dish is moving."
@@ -4868,7 +4868,7 @@ msgstr "Állítsa be, hogy a teletexthez rögzített betűtípus vagy skálázha
 msgid "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel."
 msgstr "Állítsa be, hogy a preferált listából egy másik tuner van-e rögzítésre a tuner megosztása helyett, amely ugyanazt az élő TV-csatornát használja."
 
-msgid "Configure whether multi channel sound tracks should be downmixed to stereo."
+msgid "Select whether multichannel audio tracks should be downmixed to stereo."
 msgstr "Állítsa be, hogy a többcsatornás hangsávokat a sztereóhoz le kell-e keverni."
 
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (like in EPGrefresh)."
@@ -7124,7 +7124,7 @@ msgstr "5V kimenet az akítv antennához engedélyezve"
 msgid "Enable Autorecord"
 msgstr "Automatikus Timeshift felvétel engedélyezése"
 
-msgid "Enable BT Audio"
+msgid "Enable BT audio"
 msgstr "BT Audió engedélyezve"
 
 msgid "Enable Bouquet Edit"
@@ -8912,7 +8912,7 @@ msgstr "Általános"
 msgid "General AC3 delay"
 msgstr "Általános AC3 késleltetés"
 
-msgid "General BT Audio delay"
+msgid "General BT audio delay"
 msgstr "Általános BT Audio késleltetés"
 
 msgid "General PCM delay"
@@ -9249,7 +9249,7 @@ msgstr "Python összeomlások kezelése"
 msgid "Handle Standby from TV"
 msgstr "Készenlét fogadása a TV-től"
 
-msgid "Handle input from TV"
+msgid "Process action from TV"
 msgstr "Kezelje a bemenetet a TV-ből"
 
 msgid "Handle wake up from TV"
@@ -12259,17 +12259,11 @@ msgstr "Hálózat menü"
 msgid "Network mounts"
 msgstr "Hálózati csatolások"
 
-msgid "Network name"
-msgstr ""
-
 msgid "Network name (SSID)"
 msgstr "Hálózatnév (SSID)"
 
 msgid "Network scan"
 msgstr "Hálózat keresése"
-
-msgid "Network status"
-msgstr ""
 
 msgid "Network storage on"
 msgstr ""
@@ -15048,7 +15042,7 @@ msgstr ""
 msgid "Refresh ZeroTier status information"
 msgstr ""
 
-msgid "Refresh every x hours"
+msgid "Refresh every"
 msgstr "Ennyi óránként frissít mindent"
 
 msgid "Refresh rate"
@@ -15487,6 +15481,9 @@ msgstr "Hálózat újraindítása az aktuális beállításokkal"
 
 msgid "Restart test"
 msgstr "Teszt újraindítása"
+
+msgid "Restart your network connection and interfaces."
+msgstr "Hálózati kapcsolatok és interfészek újraindítása."
 
 msgid "Restarting..."
 msgstr ""
@@ -15949,7 +15946,7 @@ msgstr "Mentés és leállítás"
 msgid "Save directory on EXIT"
 msgstr "az utolsó mappa mentése kilépéskor"
 
-msgid "Save every x hours"
+msgid "Save every"
 msgstr "Mentés ideje (órában)"
 
 #, python-format
@@ -17735,7 +17732,7 @@ msgstr "Állítsa be az Információs sáv elrejtéséhez szükséges időt."
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
 msgstr "Állítsa be az alapértelmezett művelet végrehajtásának várakozási idejét a leállítási, készenléti vagy újraindítási üzenetekben. (pl. használva a Timer, PowerTimer, Sleeptimer, ...)"
 
-msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at 0,0 and the bottom right is at 1260,700. Note that the position is the top left of the spinner and not the centre of the spinner."
+msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
 msgstr ""
 
 msgid "Set the type of the progress indication in the channel selection screen."
@@ -17773,7 +17770,7 @@ msgstr ""
 msgid "Set time options"
 msgstr ""
 
-msgid "Set to 'Disabled' to replace underscore characters '_' in file and directory names with spaces."
+msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
 msgstr ""
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby before shutting down."
@@ -18129,7 +18126,7 @@ msgstr "A HDMI kimenet felbontásának megjelenítése"
 msgid "Show InfoBar"
 msgstr "Információs sáv megjelenítése"
 
-msgid "Show InfoBar lite *"
+msgid "Show InfoBar lite"
 msgstr "Információs sáv lite megjelenítése *"
 
 msgid "Show InfoBar on channel change"
@@ -20353,10 +20350,10 @@ msgstr ""
 msgid "The %s %s is shutting down. Please wait..."
 msgstr ""
 
-msgid "The %s %s reads the stored EPG data every x hours."
+msgid "The %s %s reads the stored EPG data every selected number of hours."
 msgstr "A(z) %s %s készülék ennyi óránként frissíti a tárolt EPG adatokat."
 
-msgid "The %s %s stores the EPG data every x hours."
+msgid "The %s %s stores the EPG data every selected number of hours."
 msgstr "A(z) %s %s tárolja az EPG adatokat minden órában."
 
 #, python-format
@@ -20740,7 +20737,7 @@ msgstr "Ez a(z) %s %s készülék nem képes %s adatfolyamokat dekódolni!"
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Ez a DVD RW medium már meg van formázva - a lemez újraformázásával minden adat el fog veszni."
 
-msgid "This Option allows you to switch Audio to BT Speakers."
+msgid "This option allows you to switch Audio to Bluetooth speakers."
 msgstr "Ez az opció lehetővé teszi a Hang BT hangszórókra való váltását."
 
 msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
@@ -20920,13 +20917,13 @@ msgstr "Ez az opció lehetővé teszi az összes HDMI mód használatát"
 msgid "This option allows you to view the old and new settings side by side."
 msgstr "Ez az opció lehetővé teszi a régi és az új beállítások egymás melletti megtekintését."
 
-msgid "This option configures the general audio delay for BT Speakers."
+msgid "This option configures the audio delay value for Bluetooth speakers."
 msgstr "Ez az opció konfigurálja a BT hangszórók általános audio késleltetését."
 
-msgid "This option configures the general audio delay of Dolby Digital sound tracks."
+msgid "This option selects the general audio delay of Dolby Digital sound tracks."
 msgstr "A Dolby Digital hangsávjainak késleltetését tudja itt beállítani."
 
-msgid "This option configures the general audio delay of stereo sound tracks."
+msgid "This option selects the general audio delay of stereo sound tracks."
 msgstr "A sztereó hangsávjainak késleltetését tudja itt beállítani."
 
 msgid "This option configures the picture sharpness."
@@ -20938,7 +20935,7 @@ msgstr "Ez az opció konfigurálja a képernyő felbontását PC kimenet üzemm�
 msgid "This option configures the video output mode (or resolution)."
 msgstr "Beállíthatja a videó kimenet módját."
 
-msgid "This option configures you can set Auto Volume Level."
+msgid "This option allows you to set the Auto Volume Level output."
 msgstr "Ezzel az opcióval beállíthatja az Auto Volume Level (Automatikus hangerőszint) beállítást."
 
 msgid "This option lets you adjust the 3D depth of the OSD."
@@ -22316,6 +22313,9 @@ msgstr ""
 
 msgid "Use the extended List"
 msgstr "Használja a kiterjesztett listát"
+
+msgid "Use the network wizard to configure your Network."
+msgstr ""
 
 msgid "Use the wizard to set up basic features"
 msgstr "Használja a varázslót az alapbeállításokhoz"
@@ -23763,13 +23763,10 @@ msgstr "Következőre Ugrás+Felvétel"
 msgid "ZeroTier Actions"
 msgstr ""
 
-msgid "ZeroTier version"
+msgid "ZeroTier Settings"
 msgstr ""
 
 msgid "ZeroTier-One"
-msgstr ""
-
-msgid "ZeroTier Settings"
 msgstr ""
 
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
@@ -24458,9 +24455,6 @@ msgstr "®"
 
 #~ msgid "Press yellow to set this interface as the default interface."
 #~ msgstr "Nyomja le a sárga gombot, hogy ezt az interfészt jelölje meg alapértelmezettnek."
-
-#~ msgid "Restart your network connection and interfaces."
-#~ msgstr "Hálózati kapcsolatok és interfészek újraindítása."
 
 #~ msgid "Set interface as the default Interface"
 #~ msgstr "Jelölje meg mint alapértelmezett interfészt"

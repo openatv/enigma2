@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-02 18:38+0000\n"
+"POT-Creation-Date: 2026-01-03 09:58+0000\n"
 "PO-Revision-Date: 2025-06-11 19:04+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -4173,31 +4173,31 @@ msgstr "Pasirinkite, kas vyks paspaudus '0' mygtuką, kai aktyvuotas PiP."
 msgid "Choose where to mount your devices to:"
 msgstr "Pasirinkite, kur pajungti įrenginius:"
 
-msgid "Choose whether AAC sound tracks should be transcoded."
+msgid "Select whether AAC audio tracks should be transcoded."
 msgstr "Pasirinkite, ar AAC garso takeliai bus perkoduoti."
 
-msgid "Choose whether AC3 Plus sound tracks should be transcoded to AC3."
+msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
 msgstr "Ši parinktis leidžia nustatyti, ar AC3 plus garso takeliai bus perkoduoti į AC3."
 
-msgid "Choose whether AC3 sound tracks should be downmixed to stereo."
+msgid "Select whether AC3 sound tracks should be downmixed to stereo."
 msgstr "Ši parinktis leidžia nustatyti, ar AC3 garso takeliai bus sulieti į stereo garsą."
 
-msgid "Choose whether DTS channel sound tracks should be downmixed or transcoded."
+msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
 msgstr "Pasirinkite, ar DTS kanalo garso takeliai turėtų būti sulieti ar perkoduoti."
 
-msgid "Choose whether DTS channel sound tracks should be downmixed to stereo."
+msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
 msgstr "Ši parinktis leidžia nustatyti, ar DTS kanalo garso takeliai bus perkoduoti į stereo garsą."
 
-msgid "Choose whether WMA Pro channel sound tracks should be downmixed or transcoded."
+msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
 msgstr "Pasirinkite, ar WMA Pro kanalo garso takeliai turėtų būti sulieti arba perkoduoti."
 
-msgid "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
+msgid "Select whether multi channel audio tracks should be converted to PCM or SPDIF."
 msgstr "Pasirinkite, ar kelių kanalų garso takeliai bus konvertuoti į PCM, arba SPDIF."
 
-msgid "Choose whether multi channel sound tracks should be downmixed to stereo."
+msgid "Select whether multichannel audio tracks should be downmixed to stereo."
 msgstr "Ši parinktis leidžia nustatyti, ar daugiakanalio garso takeliai bus sulieti į stereo garsą."
 
-msgid "Choose whether multi channel sound tracks should be output as PCM."
+msgid "Select whether multichannel sound tracks should be output as PCM."
 msgstr "Pasirinkite, ar daugiakanaliai garso takeliai bus išvesti, kaip PCM."
 
 msgid "Choose whether or not to show an icon when a motorized dish is moving."
@@ -4877,7 +4877,7 @@ msgstr "Konfigūruokite ar naudoti fiksuotą šriftą ar keičiamo dydžio TrueT
 msgid "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel."
 msgstr "Konfigūruokite ar kitas imtuvas, iš pageidaujamo sąrašo, yra skirtas įrašymui vietoj bendrinamo imtuvo, kuris jau aktyviai gauna vieną ir tą pačią transliaciją televizijos kanalu."
 
-msgid "Configure whether multi channel sound tracks should be downmixed to stereo."
+msgid "Select whether multichannel audio tracks should be downmixed to stereo."
 msgstr "Pasirinkite, ar sulieti daugiakanalio garso takelius į stereo garsą."
 
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (like in EPGrefresh)."
@@ -7123,7 +7123,7 @@ msgstr "Įjungti 5V aktyviai antenai"
 msgid "Enable Autorecord"
 msgstr "Įjungti auto įrašymą"
 
-msgid "Enable BT Audio"
+msgid "Enable BT audio"
 msgstr "Įjungti BT garsą"
 
 msgid "Enable Bouquet Edit"
@@ -8909,7 +8909,7 @@ msgstr "Bendrieji"
 msgid "General AC3 delay"
 msgstr "Bendra AC3 delsa"
 
-msgid "General BT Audio delay"
+msgid "General BT audio delay"
 msgstr "Bendra BT garso delsa"
 
 msgid "General PCM delay"
@@ -9243,7 +9243,7 @@ msgstr "Tvarkyti Python gedimus"
 msgid "Handle Standby from TV"
 msgstr "Išjungti imtuvą, išjungiant TV"
 
-msgid "Handle input from TV"
+msgid "Process action from TV"
 msgstr "Valdyti televizoriaus įvestį"
 
 msgid "Handle wake up from TV"
@@ -12197,17 +12197,11 @@ msgstr "Tinklo meniu"
 msgid "Network mounts"
 msgstr "Tinklo pajungimai"
 
-msgid "Network name"
-msgstr ""
-
 msgid "Network name (SSID)"
 msgstr "Tinklo pavadinimas (SSID)"
 
 msgid "Network scan"
 msgstr "Tinklo paieška"
-
-msgid "Network status"
-msgstr ""
 
 msgid "Network storage on"
 msgstr "Tinklo saugykla įjungta"
@@ -14961,7 +14955,7 @@ msgstr "Atnaujinti"
 msgid "Refresh ZeroTier status information"
 msgstr ""
 
-msgid "Refresh every x hours"
+msgid "Refresh every"
 msgstr "Atnaujinama kas (valandomis)"
 
 msgid "Refresh rate"
@@ -15402,6 +15396,9 @@ msgstr "Paleisti tinklą iš naujo su dabartiniais nustatymais"
 
 msgid "Restart test"
 msgstr "Kartoti testą"
+
+msgid "Restart your network connection and interfaces."
+msgstr "Iš naujo paleiskite tinklo ryšį ir sąsajas."
 
 msgid "Restarting..."
 msgstr ""
@@ -15857,7 +15854,7 @@ msgstr "Išsaugoti ir sustabdyti"
 msgid "Save directory on EXIT"
 msgstr "Įrašyti katalogą išeinant"
 
-msgid "Save every x hours"
+msgid "Save every"
 msgstr "Išsaugoti kiekvieną (valandomis)"
 
 #, python-format
@@ -17641,7 +17638,7 @@ msgstr "Nustatykite laiką, kad paslėpti info juostą."
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
 msgstr "Nustatykite laiką, per kurį laukiama numatytojo veiksmo vykdant išjungimo, budėjimo režimą ar iš naujo paleidžiant pranešimus. (pvz., naudojami laikmatį, įtampos laikmatį, miego laikmatį ir kt.)"
 
-msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at 0,0 and the bottom right is at 1260,700. Note that the position is the top left of the spinner and not the centre of the spinner."
+msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
 msgstr ""
 
 msgid "Set the type of the progress indication in the channel selection screen."
@@ -17679,7 +17676,7 @@ msgstr "Nustatykite tai kaip 'Taip', kad surūšiuotumėte grojaraščius abėc�
 msgid "Set time options"
 msgstr ""
 
-msgid "Set to 'Disabled' to replace underscore characters '_' in file and directory names with spaces."
+msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
 msgstr "Nustatykite į 'Išjungta', kad failų ir katalogų pavadinimuose pabraukimo simbolius \"_\" pakeistumėte tarpais."
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby before shutting down."
@@ -18035,7 +18032,7 @@ msgstr "Rodyti HDMI išvesties rezoliuciją"
 msgid "Show InfoBar"
 msgstr "Rodyti infojuostą"
 
-msgid "Show InfoBar lite *"
+msgid "Show InfoBar lite"
 msgstr "Rodyti supaprastintą info juostą *"
 
 msgid "Show InfoBar on channel change"
@@ -20238,10 +20235,10 @@ msgstr ""
 msgid "The %s %s is shutting down. Please wait..."
 msgstr ""
 
-msgid "The %s %s reads the stored EPG data every x hours."
+msgid "The %s %s reads the stored EPG data every selected number of hours."
 msgstr "%s %s skaito saugomus EPG duomenis kas (valandos)."
 
-msgid "The %s %s stores the EPG data every x hours."
+msgid "The %s %s stores the EPG data every selected number of hours."
 msgstr "%s %s išsaugo EPG duomenis kas (val.)."
 
 #, python-format
@@ -20638,7 +20635,7 @@ msgstr "Šis %s %s negali iškoduoti %s srautų!"
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Šis DVD RW diskas jau formatuotas - performatavimas ištrins visą šio disko turinį."
 
-msgid "This Option allows you to switch Audio to BT Speakers."
+msgid "This option allows you to switch Audio to Bluetooth speakers."
 msgstr "Ši parinktis leidžia perjungti garsą į BT garsiakalbius."
 
 msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
@@ -20818,13 +20815,13 @@ msgstr "Ši parinktis leidžia naudoti visus HDMI režimus"
 msgid "This option allows you to view the old and new settings side by side."
 msgstr "Ši parinktis leidžia jums peržiūrėti senus ir naujus nustatymus vienu metu."
 
-msgid "This option configures the general audio delay for BT Speakers."
+msgid "This option configures the audio delay value for Bluetooth speakers."
 msgstr "Ši parinktis sukonfigūruoja bendrą BT garsiakalbių garso delsą."
 
-msgid "This option configures the general audio delay of Dolby Digital sound tracks."
+msgid "This option selects the general audio delay of Dolby Digital sound tracks."
 msgstr "Ši parinktis pritaiko bendro garso \"Dolby Digital\" garso takelių delsą."
 
-msgid "This option configures the general audio delay of stereo sound tracks."
+msgid "This option selects the general audio delay of stereo sound tracks."
 msgstr "Ši parinktis leidžia nustatyti bendrą garso delsą 'stereo' garso takeliuose."
 
 msgid "This option configures the picture sharpness."
@@ -20836,7 +20833,7 @@ msgstr "Ši parinktis leidžia nustatyti ekrano rezoliuciją PC išvesties reži
 msgid "This option configures the video output mode (or resolution)."
 msgstr "Ši parinktis leidžia nustatyti vaizdo išvesties režimą (arba rezoliuciją)."
 
-msgid "This option configures you can set Auto Volume Level."
+msgid "This option allows you to set the Auto Volume Level output."
 msgstr "Ši parinktis leidžia nustatyti galimą automatinį garsumo lygį."
 
 msgid "This option lets you adjust the 3D depth of the OSD."
@@ -22204,6 +22201,9 @@ msgstr ""
 
 msgid "Use the extended List"
 msgstr "Naudoti išplėstinį sąrašą"
+
+msgid "Use the network wizard to configure your Network."
+msgstr "Norėdami konfigūruoti tinklą, naudokite tinklo vedlį."
 
 msgid "Use the wizard to set up basic features"
 msgstr "Naudoti vedlį pagrindiniams nustatymams"
@@ -23667,13 +23667,10 @@ msgstr "Jungti ir įrašyti toliau"
 msgid "ZeroTier Actions"
 msgstr ""
 
-msgid "ZeroTier version"
+msgid "ZeroTier Settings"
 msgstr ""
 
 msgid "ZeroTier-One"
-msgstr ""
-
-msgid "ZeroTier Settings"
 msgstr ""
 
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
@@ -24365,9 +24362,6 @@ msgstr "®"
 #~ msgid "Press yellow to set this interface as the default interface."
 #~ msgstr "Kad nustatyti šią sąsają numatytąja, spauskite 'GELTONĄ' mygtuką."
 
-#~ msgid "Restart your network connection and interfaces."
-#~ msgstr "Iš naujo paleiskite tinklo ryšį ir sąsajas."
-
 #~ msgid "Set interface as the default Interface"
 #~ msgstr "Nustatyti sąsają, kaip numatytąją"
 
@@ -24384,9 +24378,6 @@ msgstr "®"
 
 #~ msgid "Use the network wizard to configure selected network adapter"
 #~ msgstr "Naudokite tinklo vedlį, kad konfigūruoti pasirinkto tinklo adapterį"
-
-#~ msgid "Use the network wizard to configure your Network."
-#~ msgstr "Norėdami konfigūruoti tinklą, naudokite tinklo vedlį."
 
 #~ msgid "white"
 #~ msgstr "baltas"

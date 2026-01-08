@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-02 18:38+0000\n"
+"POT-Creation-Date: 2026-01-03 09:58+0000\n"
 "PO-Revision-Date: 2025-11-11 20:51+0000\n"
 "Last-Translator: Daniel Nylander <daniel@danielnylander.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sv/>\n"
@@ -4311,31 +4311,31 @@ msgstr "Välj vad du vill att knappen \"0\" ska göra när PiP är aktiv."
 msgid "Choose where to mount your devices to:"
 msgstr "Välj var du vill montera dina enheter:"
 
-msgid "Choose whether AAC sound tracks should be transcoded."
+msgid "Select whether AAC audio tracks should be transcoded."
 msgstr "Välj om AAC-ljudspår ska kodas om."
 
-msgid "Choose whether AC3 Plus sound tracks should be transcoded to AC3."
+msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
 msgstr "Välj om AC3 Plus-ljudspår ska omkodas till AC3."
 
-msgid "Choose whether AC3 sound tracks should be downmixed to stereo."
+msgid "Select whether AC3 sound tracks should be downmixed to stereo."
 msgstr "Välj om AC3-ljudspår ska nedmixas till stereo."
 
-msgid "Choose whether DTS channel sound tracks should be downmixed or transcoded."
+msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
 msgstr "Välj om ljudspår från DTS-kanaler ska nedmixas eller omkodas."
 
-msgid "Choose whether DTS channel sound tracks should be downmixed to stereo."
+msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
 msgstr "Välj om ljudspår från DTS-kanaler ska nedmixas till stereo."
 
-msgid "Choose whether WMA Pro channel sound tracks should be downmixed or transcoded."
+msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
 msgstr "Välj om WMA Pro channel-ljudspår ska nedmixas eller omkodas."
 
-msgid "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
+msgid "Select whether multi channel audio tracks should be converted to PCM or SPDIF."
 msgstr "Välj om flerkanaliga ljudspår ska konverteras till PCM eller SPDIF."
 
-msgid "Choose whether multi channel sound tracks should be downmixed to stereo."
+msgid "Select whether multichannel audio tracks should be downmixed to stereo."
 msgstr "Välj om flerkanaliga ljudspår ska nedmixas till stereo."
 
-msgid "Choose whether multi channel sound tracks should be output as PCM."
+msgid "Select whether multichannel sound tracks should be output as PCM."
 msgstr "Välj om flerkanaliga ljudspår ska matas ut som PCM."
 
 msgid "Choose whether or not to show an icon when a motorized dish is moving."
@@ -5040,7 +5040,7 @@ msgstr "Konfigurera om ett fast typsnitt eller ett skalbart TrueType-typsnitt sk
 msgid "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel."
 msgstr "Ställ in om en annan tuner från listan över föredragna tuners ska tilldelas för inspelningar i stället för att dela en tuner som redan är aktiv och tar emot samma live-TV-kanal."
 
-msgid "Configure whether multi channel sound tracks should be downmixed to stereo."
+msgid "Select whether multichannel audio tracks should be downmixed to stereo."
 msgstr "Ställ in om flerkanaliga ljudspår ska nedmixas till stereo."
 
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (like in EPGrefresh)."
@@ -7429,7 +7429,7 @@ msgid "Enable Autorecord"
 msgstr "Aktivera Autorecord"
 
 #
-msgid "Enable BT Audio"
+msgid "Enable BT audio"
 msgstr "Aktivera BT Audio"
 
 #
@@ -9297,7 +9297,7 @@ msgstr "Allmänt"
 msgid "General AC3 delay"
 msgstr "Allmän AC3-fördröjning"
 
-msgid "General BT Audio delay"
+msgid "General BT audio delay"
 msgstr "Allmänt BT Ljudfördröjning"
 
 msgid "General PCM delay"
@@ -9648,7 +9648,7 @@ msgstr "Hantera kraschar i Python"
 msgid "Handle Standby from TV"
 msgstr "Hantera standby från TV"
 
-msgid "Handle input from TV"
+msgid "Process action from TV"
 msgstr "Hantera ingång från TV"
 
 msgid "Handle wake up from TV"
@@ -12781,18 +12781,12 @@ msgstr "Meny för nätverk"
 msgid "Network mounts"
 msgstr "Fästen för nätverk"
 
-msgid "Network name"
-msgstr ""
-
 msgid "Network name (SSID)"
 msgstr "Nätverksnamn (SSID)"
 
 #
 msgid "Network scan"
 msgstr "Nätverksskanning"
-
-msgid "Network status"
-msgstr ""
 
 msgid "Network storage on"
 msgstr "Nätverkslagring på"
@@ -15744,7 +15738,7 @@ msgstr "Uppdatera"
 msgid "Refresh ZeroTier status information"
 msgstr ""
 
-msgid "Refresh every x hours"
+msgid "Refresh every"
 msgstr "Uppdatera varje (i timmar)"
 
 msgid "Refresh rate"
@@ -16225,6 +16219,10 @@ msgstr "Starta om nätverket med aktuell inställning"
 #
 msgid "Restart test"
 msgstr "Starta om testet"
+
+#
+msgid "Restart your network connection and interfaces."
+msgstr "Starta om din nätverksanslutning och dina gränssnitt."
 
 msgid "Restarting..."
 msgstr "Startar om..."
@@ -16715,7 +16713,7 @@ msgstr "Spara och stoppa"
 msgid "Save directory on EXIT"
 msgstr "Spara katalog vid EXIT"
 
-msgid "Save every x hours"
+msgid "Save every"
 msgstr "Spara varje (i timmar)"
 
 #, python-format
@@ -18569,7 +18567,7 @@ msgstr "Ställ in tiden för att dölja infobaren."
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
 msgstr "Ställ in tiden för att vänta på att utföra standardåtgärden i meddelanden om avstängning, standby eller omstart, t.ex. används i RecordTimer, Scheduler, SleepTimer etc."
 
-msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at 0,0 and the bottom right is at 1260,700. Note that the position is the top left of the spinner and not the centre of the spinner."
+msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
 msgstr "Ställ in den övre vänstra positionen för den upptagna spinnern. Koordinaterna är skalade så att den övre vänstra delen är (0,0) och den nedre högra delen är (1260,700). Observera att positionen är längst upp till vänster på spinnern och inte i mitten av spinnern."
 
 msgid "Set the type of the progress indication in the channel selection screen."
@@ -18607,7 +18605,7 @@ msgstr "Ställ in detta på \"Yes\" för att sortera spellistorna i alfabetisk o
 msgid "Set time options"
 msgstr "Ställ in tidsalternativ"
 
-msgid "Set to 'Disabled' to replace underscore characters '_' in file and directory names with spaces."
+msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
 msgstr "Ställ in till \"Inaktiverad\" för att ersätta understreck, \"_\", i fil- och katalognamn med mellanslag."
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby before shutting down."
@@ -18976,7 +18974,7 @@ msgstr "Visa HDMI-utgång Res"
 msgid "Show InfoBar"
 msgstr "Visa InfoBar"
 
-msgid "Show InfoBar lite *"
+msgid "Show InfoBar lite"
 msgstr "Visa Infobaren lite * *"
 
 #
@@ -21320,10 +21318,10 @@ msgstr "%s %s har en begränsad minneskapacitet. En swap-fil krävs för att ök
 msgid "The %s %s is shutting down. Please wait..."
 msgstr "%s %s håller på att stängas ner. Vänligen vänta..."
 
-msgid "The %s %s reads the stored EPG data every x hours."
+msgid "The %s %s reads the stored EPG data every selected number of hours."
 msgstr "Med %s %s läses de lagrade EPG-data varje (timmar)."
 
-msgid "The %s %s stores the EPG data every x hours."
+msgid "The %s %s stores the EPG data every selected number of hours."
 msgstr "Med %s %s lagras EPG-data varje (timmar)."
 
 #, python-format
@@ -21742,7 +21740,7 @@ msgstr "Denna %s %s kan inte avkoda %s-strömmar!"
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Detta DVD RW-medium är redan formaterat - omformatering kommer att radera allt innehåll på skivan."
 
-msgid "This Option allows you to switch Audio to BT Speakers."
+msgid "This option allows you to switch Audio to Bluetooth speakers."
 msgstr "Med detta alternativ kan du växla ljud till BT-högtalare."
 
 msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
@@ -21923,13 +21921,13 @@ msgstr "Med detta alternativ kan du använda alla HDMI-lägen"
 msgid "This option allows you to view the old and new settings side by side."
 msgstr "Med det här alternativet kan du visa de gamla och nya inställningarna sida vid sida."
 
-msgid "This option configures the general audio delay for BT Speakers."
+msgid "This option configures the audio delay value for Bluetooth speakers."
 msgstr "Det här alternativet konfigurerar den allmänna ljudfördröjningen för BT-högtalare."
 
-msgid "This option configures the general audio delay of Dolby Digital sound tracks."
+msgid "This option selects the general audio delay of Dolby Digital sound tracks."
 msgstr "Detta alternativ konfigurerar den allmänna ljudfördröjningen för Dolby Digital-ljudspår."
 
-msgid "This option configures the general audio delay of stereo sound tracks."
+msgid "This option selects the general audio delay of stereo sound tracks."
 msgstr "Detta alternativ konfigurerar den allmänna ljudfördröjningen för stereoljudspår."
 
 msgid "This option configures the picture sharpness."
@@ -21941,7 +21939,7 @@ msgstr "Detta alternativ konfigurerar skärmupplösningen i PC-utmatningsläge."
 msgid "This option configures the video output mode (or resolution)."
 msgstr "Detta alternativ konfigurerar videoutgångsläget (eller upplösningen)."
 
-msgid "This option configures you can set Auto Volume Level."
+msgid "This option allows you to set the Auto Volume Level output."
 msgstr "Med det här alternativet kan du ställa in Auto Volume Level."
 
 msgid "This option lets you adjust the 3D depth of the OSD."
@@ -23397,6 +23395,9 @@ msgstr "Använd det aktuella valet och avsluta"
 
 msgid "Use the extended List"
 msgstr "Använd den utökade listan"
+
+msgid "Use the network wizard to configure your Network."
+msgstr "Använd nätverksguiden för att konfigurera ditt nätverk."
 
 msgid "Use the wizard to set up basic features"
 msgstr "Använd guiden för att konfigurera grundläggande funktioner"
@@ -24944,13 +24945,10 @@ msgstr "Zappa+Registrera nästa"
 msgid "ZeroTier Actions"
 msgstr ""
 
-msgid "ZeroTier version"
+msgid "ZeroTier Settings"
 msgstr ""
 
 msgid "ZeroTier-One"
-msgstr ""
-
-msgid "ZeroTier Settings"
 msgstr ""
 
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
@@ -25746,10 +25744,6 @@ msgstr "®"
 #~ msgstr "Tryck på yellow för att ställa in detta gränssnitt som standardgränssnitt."
 
 #
-#~ msgid "Restart your network connection and interfaces."
-#~ msgstr "Starta om din nätverksanslutning och dina gränssnitt."
-
-#
 #~ msgid "Set interface as the default Interface"
 #~ msgstr "Ange gränssnitt som standardgränssnitt"
 
@@ -25769,9 +25763,6 @@ msgstr "®"
 #
 #~ msgid "Use the network wizard to configure selected network adapter"
 #~ msgstr "Använd nätverksguiden för att konfigurera det valda nätverksadaptern"
-
-#~ msgid "Use the network wizard to configure your Network."
-#~ msgstr "Använd nätverksguiden för att konfigurera ditt nätverk."
 
 #~ msgid "white"
 #~ msgstr "vit"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-02 18:38+0000\n"
+"POT-Creation-Date: 2026-01-03 09:58+0000\n"
 "PO-Revision-Date: 2025-05-09 04:42+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -4141,31 +4141,31 @@ msgstr "Stel hier in wat de '0'-knop moet doen wanneer PiP actief is."
 msgid "Choose where to mount your devices to:"
 msgstr "Selecteer waar uw apparaten aan te koppelen:"
 
-msgid "Choose whether AAC sound tracks should be transcoded."
+msgid "Select whether AAC audio tracks should be transcoded."
 msgstr "Selecteer of AAC geluid moet worden getranscodeerd."
 
-msgid "Choose whether AC3 Plus sound tracks should be transcoded to AC3."
+msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
 msgstr "Selecteer of AC3 Plus geluidssporen omgezet moeten worden naar AC3."
 
-msgid "Choose whether AC3 sound tracks should be downmixed to stereo."
+msgid "Select whether AC3 sound tracks should be downmixed to stereo."
 msgstr "Selecteer of een AC3 geluidsspoor (Dolby Digital) moet worden teruggebracht naar stereo."
 
-msgid "Choose whether DTS channel sound tracks should be downmixed or transcoded."
+msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
 msgstr "Selecteer of DTS-geluid moeten worden gedownmixed of getranscodeerd."
 
-msgid "Choose whether DTS channel sound tracks should be downmixed to stereo."
+msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
 msgstr "Selecteer of DTS geluidsspoor moet worden teruggebracht naar stereo."
 
-msgid "Choose whether WMA Pro channel sound tracks should be downmixed or transcoded."
+msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
 msgstr "Selecteer of WMA Pro-geluid moeten worden gedownmixed of getranscodeerd."
 
-msgid "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
+msgid "Select whether multi channel audio tracks should be converted to PCM or SPDIF."
 msgstr "Selecteer of meerkanaals geluid moet worden geconverteerd naar PCM or SPDIF."
 
-msgid "Choose whether multi channel sound tracks should be downmixed to stereo."
+msgid "Select whether multichannel audio tracks should be downmixed to stereo."
 msgstr "Selecteer of meerkanaals geluid moet worden geconverteerd naar stereo."
 
-msgid "Choose whether multi channel sound tracks should be output as PCM."
+msgid "Select whether multichannel sound tracks should be output as PCM."
 msgstr "Selecteer of meerkanaals geluid moet worden weergegeven als PCM."
 
 msgid "Choose whether or not to show an icon when a motorized dish is moving."
@@ -4938,7 +4938,7 @@ msgstr "Configureren of een vast lettertype of een schaalbare TrueType-lettertyp
 msgid "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel."
 msgstr "Configureren of een andere tuner uit de voorkeurslijst wordt toegewezen voor opnames in plaats van het delen van een tuner die reeds actief is met ontvangt van dezelfde live TV-zender."
 
-msgid "Configure whether multi channel sound tracks should be downmixed to stereo."
+msgid "Select whether multichannel audio tracks should be downmixed to stereo."
 msgstr "Kiezen of zenders met meerdere audiokanalen omgezet moeten worden naar stereo."
 
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (like in EPGrefresh)."
@@ -7212,7 +7212,7 @@ msgstr "5V voor actieve antenne inschakelen"
 msgid "Enable Autorecord"
 msgstr "Aktiveer automatische opname"
 
-msgid "Enable BT Audio"
+msgid "Enable BT audio"
 msgstr "BT audio inschakelen"
 
 msgid "Enable Bouquet Edit"
@@ -9007,7 +9007,7 @@ msgstr "Algemeen"
 msgid "General AC3 delay"
 msgstr "Algemene AC3 vertraging"
 
-msgid "General BT Audio delay"
+msgid "General BT audio delay"
 msgstr "Algemene BT audio vertraging"
 
 msgid "General PCM delay"
@@ -9341,7 +9341,7 @@ msgstr "Python crashes afhandelen"
 msgid "Handle Standby from TV"
 msgstr "Stand-by van TV gebruiken"
 
-msgid "Handle input from TV"
+msgid "Process action from TV"
 msgstr "TV-ingangen gebruiken"
 
 msgid "Handle wake up from TV"
@@ -12300,17 +12300,11 @@ msgstr "Netwerkmenu"
 msgid "Network mounts"
 msgstr "Netwerkmounts"
 
-msgid "Network name"
-msgstr ""
-
 msgid "Network name (SSID)"
 msgstr "Netwerknaam (SSID)"
 
 msgid "Network scan"
 msgstr "Netwerk zoeken"
-
-msgid "Network status"
-msgstr ""
 
 msgid "Network storage on"
 msgstr "Netwerk opslag op"
@@ -15073,7 +15067,7 @@ msgstr "Overzicht vernieuwen"
 msgid "Refresh ZeroTier status information"
 msgstr ""
 
-msgid "Refresh every x hours"
+msgid "Refresh every"
 msgstr "Actualiseer elke X uur"
 
 msgid "Refresh rate"
@@ -15514,6 +15508,9 @@ msgstr "Netwerk herstarten met huidige instelling"
 
 msgid "Restart test"
 msgstr "Herstart test"
+
+msgid "Restart your network connection and interfaces."
+msgstr "Herstart het netwerk en alle adapters."
 
 msgid "Restarting..."
 msgstr "Herstarten..."
@@ -15969,7 +15966,7 @@ msgstr "Opslaan en stop"
 msgid "Save directory on EXIT"
 msgstr "Bewaar laatste map bij het beëindigen"
 
-msgid "Save every x hours"
+msgid "Save every"
 msgstr "Bewaar elke (in uren)"
 
 #, python-format
@@ -17780,7 +17777,7 @@ msgstr "Stel de tijd in waarna de informatiebalk verdwijnt."
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
 msgstr "Stel de tijdsduur in voor het uitschakelen, inschakelen van Stand-by, of het herstarten van uw ontvanger. (Deze tijdsduur wordt o.a. gebruikt voor een Timer, PowerTimer, SlaapTimer enz.)."
 
-msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at 0,0 and the bottom right is at 1260,700. Note that the position is the top left of the spinner and not the centre of the spinner."
+msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
 msgstr "De links boven positie van de Spinner (ontvanger is bezig) instellen. Links boven is 0,0, rechts onder is 1260,700. Deze positie is de hoek links boven van de Spinner, niet het midden."
 
 msgid "Set the type of the progress indication in the channel selection screen."
@@ -17821,7 +17818,7 @@ msgstr "Kies hier 'Ja' om de afspeellijsten alfabetisch te sorteren."
 msgid "Set time options"
 msgstr "Tijdopties instellen"
 
-msgid "Set to 'Disabled' to replace underscore characters '_' in file and directory names with spaces."
+msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
 msgstr "Wanneer uitgeschakeld, worden underscore tekens in bestands- en map namen niet weergegeven en vervangen door spaties."
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby before shutting down."
@@ -18189,7 +18186,7 @@ msgstr "Toon HDMI-uitgang res"
 msgid "Show InfoBar"
 msgstr "Toon informatiebalk"
 
-msgid "Show InfoBar lite *"
+msgid "Show InfoBar lite"
 msgstr "Toon de eenvoudige informatiebalk *"
 
 msgid "Show InfoBar on channel change"
@@ -20406,10 +20403,10 @@ msgstr "Uw %s %s heeft een beperkte geheugencapaciteit. Een swap-file (wisselbes
 msgid "The %s %s is shutting down. Please wait..."
 msgstr "Uw %s %s wordt afgesloten. Even geduld alstublieft..."
 
-msgid "The %s %s reads the stored EPG data every x hours."
+msgid "The %s %s reads the stored EPG data every selected number of hours."
 msgstr "Uw %s %s leest de opgelsagen EPG-data elke (uur)."
 
-msgid "The %s %s stores the EPG data every x hours."
+msgid "The %s %s stores the EPG data every selected number of hours."
 msgstr "Uw %s %s slaat de EPG-data elke (uur) op."
 
 #, python-format
@@ -20824,7 +20821,7 @@ msgstr "Deze %s %s kan %s streams niet decoderen!"
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Dit DVD-RW medium is reeds geformatteerd - herformatteren zal alles wissen op deze disk."
 
-msgid "This Option allows you to switch Audio to BT Speakers."
+msgid "This option allows you to switch Audio to Bluetooth speakers."
 msgstr "Met deze optie kunt u Audio switchen naar BT speakers."
 
 msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
@@ -21021,13 +21018,13 @@ msgstr ""
 "Met deze optie kunt u de oude en de nieuwe instelling in een half beeld naast elkaar zien. Dit vergemakkelijkt het maken van de juiste instelling.\n"
 "(Default: Uit)"
 
-msgid "This option configures the general audio delay for BT Speakers."
+msgid "This option configures the audio delay value for Bluetooth speakers."
 msgstr "Deze instelling bepaalt de algemene audiovertraging voor BT speakers."
 
-msgid "This option configures the general audio delay of Dolby Digital sound tracks."
+msgid "This option selects the general audio delay of Dolby Digital sound tracks."
 msgstr "Deze instelling bepaalt de algemene audiovertraging van Dolby Digital geluidstracks."
 
-msgid "This option configures the general audio delay of stereo sound tracks."
+msgid "This option selects the general audio delay of stereo sound tracks."
 msgstr "Deze instelling bepaalt de algemene audiovertraging van stereo geluidstracks."
 
 msgid "This option configures the picture sharpness."
@@ -21039,7 +21036,7 @@ msgstr "Deze optie stelt de schermresolutie in de PC-modus in."
 msgid "This option configures the video output mode (or resolution)."
 msgstr "Hier stelt u de resolutie of video output in."
 
-msgid "This option configures you can set Auto Volume Level."
+msgid "This option allows you to set the Auto Volume Level output."
 msgstr "Met deze optie kunt u het automatische volumeniveau configureren."
 
 msgid "This option lets you adjust the 3D depth of the OSD."
@@ -22435,6 +22432,9 @@ msgstr "De huidige selectie gebruiken en afsluiten"
 
 msgid "Use the extended List"
 msgstr "Gebruik de uitgebreide lijst"
+
+msgid "Use the network wizard to configure your Network."
+msgstr "De Netwerk Wizard gebruiken voor het configureren van uw netwerk."
 
 msgid "Use the wizard to set up basic features"
 msgstr "Start de wizard voor de basisinstellingen"
@@ -23933,13 +23933,10 @@ msgstr "Naar de volgende uitzending Zappen en Opnemen"
 msgid "ZeroTier Actions"
 msgstr ""
 
-msgid "ZeroTier version"
+msgid "ZeroTier Settings"
 msgstr ""
 
 msgid "ZeroTier-One"
-msgstr ""
-
-msgid "ZeroTier Settings"
 msgstr ""
 
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
@@ -24631,9 +24628,6 @@ msgstr "®"
 #~ msgid "Press yellow to set this interface as the default interface."
 #~ msgstr "Druk op GELE-knop om deze interface als de standaardinterface in te stellen."
 
-#~ msgid "Restart your network connection and interfaces."
-#~ msgstr "Herstart het netwerk en alle adapters."
-
 #~ msgid "Set interface as the default Interface"
 #~ msgstr "Stel in als standaard interface"
 
@@ -24652,9 +24646,6 @@ msgstr "®"
 
 #~ msgid "Use the network wizard to configure selected network adapter"
 #~ msgstr "Gebruik de Netwerk Wizard om de geselecteerde netwerkadapter te configureren"
-
-#~ msgid "Use the network wizard to configure your Network."
-#~ msgstr "De Netwerk Wizard gebruiken voor het configureren van uw netwerk."
 
 #~ msgid "white"
 #~ msgstr "Wit"
