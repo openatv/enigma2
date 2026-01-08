@@ -477,6 +477,7 @@ class RecordTimer(Timer):
 		timeMatch = 0
 		isAutoTimer = 0
 		isDisabled = 0
+		isExtenal = 0
 		beginTime = None
 		checkOffsetTimeRecord = not config.recording.margin_before.value and not config.recording.margin_after.value
 		checkOffsetTimeZap = not config.recording.zap_margin_before.value and not config.recording.zap_margin_after.value
@@ -485,6 +486,7 @@ class RecordTimer(Timer):
 			checkOffsetTime = checkOffsetTimeZap if timer.justplay else checkOffsetTimeRecord
 			isAutoTimer = 0
 			isDisabled = timer.disabled
+			isExtenal = timer.external
 			if timer.isAutoTimer == 1:
 				isAutoTimer |= 1
 			if timer.ice_timer_id:
@@ -590,10 +592,13 @@ class RecordTimer(Timer):
 						timeMatch = end - begin
 						timerType = typeOffset + 2
 			if timeMatch:
-				if isDisabled and timerType in (2, 7, 12):
-					timerType = 15
+				if timerType in (2, 7, 12):
+					if isExtenal:
+						timerType = 16
+					if isDisabled:
+						timerType = 15
 				returnValue = (timeMatch, timerType, isAutoTimer, timer) if getTimer else (timeMatch, timerType, isAutoTimer)
-				if timerType in (2, 7, 12, 15):  # When full recording do not look further.
+				if timerType in (2, 7, 12, 15, 16):  # When full recording do not look further.
 					break
 		return returnValue
 
