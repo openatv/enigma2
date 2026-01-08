@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV 7.6.1 Devel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-03 09:58+0000\n"
+"POT-Creation-Date: 2026-01-08 09:08+0000\n"
 "PO-Revision-Date: 2025-12-28 02:56+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sr/>\n"
@@ -4159,36 +4159,6 @@ msgstr "Izaberi šta da dugme '0' uradi kada je PiP aktivan."
 msgid "Choose where to mount your devices to:"
 msgstr "Izaberi gde želite da postavite uređaje:"
 
-msgid "Select whether AAC audio tracks should be transcoded."
-msgstr "Izaberi da li AAC zvuk treba da bude transkodiran."
-
-msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
-msgstr "Odaberite da li AC3 Plus zvučne numere treba da budu kodirane na AC3."
-
-msgid "Select whether AC3 audio tracks should be downmixed to stereo."
-msgstr "Izaberi da li AC3 zvuk treba da bude downmixed u stereo."
-
-msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
-msgstr "Izaberi da li DTS kanal treba da bude downmixed ili transkodiran."
-
-msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
-msgstr "Izaberi da li DTS kanal treba da bude downmixed u stereo."
-
-msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
-msgstr "Izaberi da li WMA Pro kanal treba da bude downmixed ili transkodiran."
-
-msgid "Select whether multichannel audio tracks should be converted to PCM or SPDIF."
-msgstr "Izaberi da li zvuk sa više kanala treba konvertovati u PCM ili SPDIF."
-
-msgid "Select whether multichannel audio tracks should be downmixed to stereo."
-msgstr "Izaberi da li zvuk sa više kanala treba da bude downmixed na stereo."
-
-msgid "Select whether multichannel audio tracks should be output as PCM."
-msgstr "Izaberi da li zvuk sa više kanala treba da bude izlazni PCM."
-
-msgid "Select whether or not to show an icon when a motorized dish is moving."
-msgstr "Izaberi ikonu za pokazivanje kretanja rotora."
-
 msgid "Choose which level of menu/setting's to display. 'Expert'-level shows all items."
 msgstr "Izaberi nivo meni/postavke na displeju. 'Ekspert' - nivo pokazuje sve stavke."
 
@@ -4861,9 +4831,6 @@ msgstr "Podesite fiksno slovo ili skalabilni TrueType za teletekst."
 
 msgid "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel."
 msgstr "Podesite snimke dodeljene drugom tjuneru koji već aktivno prima isti TV kanal uživo."
-
-msgid "Configure whether multichannel audio tracks should be downmixed to stereo."
-msgstr "Podesite zvuk sa više kanala da bude downmixed u stereo."
 
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (like in EPGrefresh)."
 msgstr ""
@@ -9234,9 +9201,6 @@ msgstr "Rukovanje padovima Python"
 msgid "Handle Standby from TV"
 msgstr ""
 
-msgid "Process action from TV"
-msgstr "Rukovanje ulaza sa TV"
-
 msgid "Handle wake up from TV"
 msgstr "Rukovanje pri buđenju TV"
 
@@ -12748,6 +12712,9 @@ msgstr "Broj i pikon"
 msgid "Number of IP Addresses"
 msgstr "Broj IP Adrese"
 
+msgid "Number of Slots"
+msgstr ""
+
 msgid "Number of digits in service number"
 msgstr "Broj cifara u servis broju"
 
@@ -14385,6 +14352,9 @@ msgstr "Obraditi akciju CRVENE dugmadi"
 
 msgid "Process YELLOW button action"
 msgstr "Obradi akciju ŽUTOG dugmeta"
+
+msgid "Process action from TV"
+msgstr "Rukovanje ulaza sa TV"
 
 msgid "Processing"
 msgstr "Obrada"
@@ -17013,6 +16983,9 @@ msgstr "Izaberite prethodnu uslugu, zatvorite skener i izađite iz svih menija"
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "Izaberi protokol koji koristi SCR uređaj. Izbori su 'SCR Unicable' (Unicable) ili 'SCR JESS' (JESS, poznat i kao Unicable II)."
 
+msgid "Select the receiver action when the TV switches away from the receiver input."
+msgstr ""
+
 msgid "Select the refresh rate to be used on the TV."
 msgstr "Izaberite frekvenciju osvežavanja koja će se koristiti na televizoru."
 
@@ -17190,8 +17163,38 @@ msgstr ""
 msgid "Select where the recording should be saved."
 msgstr "Izaberi gde bi snimak trebalo da bude sačuvan."
 
+msgid "Select whether AAC audio tracks should be transcoded."
+msgstr "Izaberi da li AAC zvuk treba da bude transkodiran."
+
+msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
+msgstr "Odaberite da li AC3 Plus zvučne numere treba da budu kodirane na AC3."
+
+msgid "Select whether AC3 audio tracks should be downmixed to stereo."
+msgstr "Izaberi da li AC3 zvuk treba da bude downmixed u stereo."
+
+msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
+msgstr "Izaberi da li DTS kanal treba da bude downmixed ili transkodiran."
+
+msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
+msgstr "Izaberi da li DTS kanal treba da bude downmixed u stereo."
+
 msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
 msgstr ""
+
+msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
+msgstr "Izaberi da li WMA Pro kanal treba da bude downmixed ili transkodiran."
+
+msgid "Select whether multichannel audio tracks should be converted to PCM or SPDIF."
+msgstr "Izaberi da li zvuk sa više kanala treba konvertovati u PCM ili SPDIF."
+
+msgid "Select whether multichannel audio tracks should be downmixed to stereo."
+msgstr "Izaberi da li zvuk sa više kanala treba da bude downmixed na stereo."
+
+msgid "Select whether multichannel audio tracks should be output as PCM."
+msgstr "Izaberi da li zvuk sa više kanala treba da bude izlazni PCM."
+
+msgid "Select whether or not to show an icon when a motorized dish is moving."
+msgstr "Izaberi ikonu za pokazivanje kretanja rotora."
 
 msgid "Select wireless network"
 msgstr "Izaberi bežičnu mrežu"
@@ -18543,9 +18546,6 @@ msgstr "Pokaži izbor podservisa"
 
 msgid "Show subservices"
 msgstr "Pokaži podservise"
-
-msgid "Show subservices *"
-msgstr "Pokaži podservise *"
 
 msgid "Show subservices of the active service"
 msgstr "Prikaži podservise aktivnog servisa"
@@ -20659,9 +20659,6 @@ msgstr "Ovaj %s %s nemože da dešifruje %s! strimove!"
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Ovaj DVD RW medij je formatiran - ponovno formatiranje će izbrisati sav sadržaj na disku."
 
-msgid "This option allows you to switch Audio to Bluetooth speakers."
-msgstr "Ova opcija vam omogućava da prebacite zvuk na BT zvučnike."
-
 msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
 msgstr ""
 
@@ -20827,8 +20824,14 @@ msgstr "Оva opcija omogućava da omogućite 3D Surround Zvuk."
 msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr "Ova opcija vam omogućava da postavite pomak vrednosti razlike Letterbox rezolucije."
 
+msgid "This option allows you to set the Auto Volume Level output."
+msgstr "Оva opcija konfiguriše da možete podesiti nivo Auto Jačine Zvuka."
+
 msgid "This option allows you to set the layout view (Text or Graphics)."
 msgstr ""
+
+msgid "This option allows you to switch Audio to Bluetooth speakers."
+msgstr "Ova opcija vam omogućava da prebacite zvuk na BT zvučnike."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "Оva opcija omogućava SNR u procentima (to ne podržavaju svi resiveri)."
@@ -20842,12 +20845,6 @@ msgstr "Оva opcija omogućava da stare i nove postavke prikažete jednu do drug
 msgid "This option configures the audio delay value for Bluetooth speakers."
 msgstr "Оva opcija konfiguriše opšte odlaganje zvuka za BT zvučnike."
 
-msgid "This option selects the general audio delay of Dolby Digital sound tracks."
-msgstr "Оva opcija konfiguriše opšte audio odlaganje Dolby Digital zvučnih numera."
-
-msgid "This option selects the general audio delay of stereo sound tracks."
-msgstr "Оva opcija konfiguriše opšte audio odlaganje stereo zvučnih numera."
-
 msgid "This option configures the picture sharpness."
 msgstr "Оva opcija konfiguriše oštrinu slike."
 
@@ -20856,9 +20853,6 @@ msgstr "Оva opcija konfiguriše rezoluciju ekrana u izlaznom režimu računara.
 
 msgid "This option configures the video output mode (or resolution)."
 msgstr "Оva opcija konfiguriše režim video izlaza (ili rezoluciju)."
-
-msgid "This option allows you to set the Auto Volume Level output."
-msgstr "Оva opcija konfiguriše da možete podesiti nivo Auto Jačine Zvuka."
 
 msgid "This option lets you adjust the 3D depth of the OSD."
 msgstr "Ova opcija vam omogućava da prilagodite 3D dubinu OSD."
@@ -20874,6 +20868,12 @@ msgstr "Ova opcija vam omogućava da prikažete 3D OSD meni u ekranu proširenog
 
 msgid "This option moves the PVR status display from a separate window into the MoviePlayer InfoBar."
 msgstr "Оva opcija premešta prikaz PVR statusa iz posebnog prozora na Info Traci FilmskiPlejer."
+
+msgid "This option selects the general audio delay of Dolby Digital sound tracks."
+msgstr "Оva opcija konfiguriše opšte audio odlaganje Dolby Digital zvučnih numera."
+
+msgid "This option selects the general audio delay of stereo sound tracks."
+msgstr "Оva opcija konfiguriše opšte audio odlaganje stereo zvučnih numera."
 
 msgid "This option set the level of suppression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
 msgstr "Оva opcija postavlja nivo suzbijanje buke komaraca (Buke komaraca su nasumični pseudonim kao rezultat jake kompresije). Očigledno da ovo ide na štetu detalja slike."
@@ -24373,6 +24373,12 @@ msgstr "da (zadrži fidove)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Configure whether multichannel audio tracks should be downmixed to stereo."
+#~ msgstr "Podesite zvuk sa više kanala da bude downmixed u stereo."
+
+#~ msgid "Show subservices *"
+#~ msgstr "Pokaži podservise *"
 
 #~ msgid "* Only available if more than one interface is active."
 #~ msgstr "* Dostupno ako je aktivno više interfejsa."

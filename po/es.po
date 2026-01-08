@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-03 09:58+0000\n"
+"POT-Creation-Date: 2026-01-08 09:08+0000\n"
 "PO-Revision-Date: 2024-10-02 07:35+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/es/>\n"
@@ -4316,36 +4316,6 @@ msgstr "Elige qué quieres que haga la tecla '0' cuando PIP esté activo."
 msgid "Choose where to mount your devices to:"
 msgstr "Elige donde montar tus dispositivos:"
 
-msgid "Select whether AAC audio tracks should be transcoded."
-msgstr "Elige si las pistas de audio AAC deben transcodificarse."
-
-msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
-msgstr "Elegir si las pistas de sonido AC3 Plus deben ser transcodificadas a AC3."
-
-msgid "Select whether AC3 audio tracks should be downmixed to stereo."
-msgstr "Elegir si las pistas de sonido AC3 deben ser mezcladas en estéreo."
-
-msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
-msgstr "Elegir si las pistas de sonido del canal DTS deben ser mezcladas o transcodificadas."
-
-msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
-msgstr "Elegir si las pistas de sonido del canal DTS deben ser mezcladas en estéreo."
-
-msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
-msgstr "Elegir si las pistas de sonido del canal WMA Pro deben ser remezcladas o transcodificadas."
-
-msgid "Select whether multichannel audio tracks should be converted to PCM or SPDIF."
-msgstr "Elija si las pistas de sonido multicanal deben convertirse a PCM o SPDIF."
-
-msgid "Select whether multichannel audio tracks should be downmixed to stereo."
-msgstr "Elige si las pistas de audio multicanal deben mezclarse a estéreo."
-
-msgid "Select whether multichannel audio tracks should be output as PCM."
-msgstr "Elija si las pistas de sonido multicanal deben ser emitidas como PCM."
-
-msgid "Select whether or not to show an icon when a motorized dish is moving."
-msgstr "Elige si se muestra o no un icono cuando se mueve una antena motorizada."
-
 msgid "Choose which level of menu/setting's to display. 'Expert'-level shows all items."
 msgstr "Elige qué nivel de menú y ajustes mostrar. El nivel ‘experto’ muestra todos los ajustes."
 
@@ -5041,9 +5011,6 @@ msgstr "Configurar si se utiliza una fuente fija o una fuente TrueType escalable
 
 msgid "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel."
 msgstr "Configurar si otro sintonizador de la lista preferida se asigna para las grabaciones en lugar de compartir un sintonizador que ya está activo recibiendo el mismo canal de televisión en directo."
-
-msgid "Configure whether multichannel audio tracks should be downmixed to stereo."
-msgstr "Configurar si las pistas de sonido multicanal deben ser mezcladas a estéreo."
 
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (like in EPGrefresh)."
 msgstr "Configurar si el símbolo de grabación (tanto de la pantalla como del LCD) es visible solo durante grabaciones reales o también para retransmisiones y pseudo grabaciones (por ejemplo el refresco de la EPG)."
@@ -9626,9 +9593,6 @@ msgstr "Gestionar los cuelgues de Python"
 msgid "Handle Standby from TV"
 msgstr "Gestionar el modo de espera desde la TV"
 
-msgid "Process action from TV"
-msgstr "Manejar la entrada de la televisión"
-
 msgid "Handle wake up from TV"
 msgstr "Gestionar la reactivación desde la TV"
 
@@ -13370,6 +13334,9 @@ msgstr ""
 msgid "Number of IP Addresses"
 msgstr "Número de direcciones IP"
 
+msgid "Number of Slots"
+msgstr ""
+
 msgid "Number of digits in service number"
 msgstr "Número de dígitos para el número del canal"
 
@@ -15132,6 +15099,9 @@ msgstr ""
 
 msgid "Process YELLOW button action"
 msgstr ""
+
+msgid "Process action from TV"
+msgstr "Manejar la entrada de la televisión"
 
 msgid "Processing"
 msgstr ""
@@ -17905,6 +17875,9 @@ msgstr ""
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr ""
 
+msgid "Select the receiver action when the TV switches away from the receiver input."
+msgstr ""
+
 msgid "Select the refresh rate to be used on the TV."
 msgstr ""
 
@@ -18082,8 +18055,38 @@ msgstr "Seleccione qué quieres que activen las teclas Arriba/Abajo."
 msgid "Select where the recording should be saved."
 msgstr ""
 
+msgid "Select whether AAC audio tracks should be transcoded."
+msgstr "Elige si las pistas de audio AAC deben transcodificarse."
+
+msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
+msgstr "Elegir si las pistas de sonido AC3 Plus deben ser transcodificadas a AC3."
+
+msgid "Select whether AC3 audio tracks should be downmixed to stereo."
+msgstr "Elegir si las pistas de sonido AC3 deben ser mezcladas en estéreo."
+
+msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
+msgstr "Elegir si las pistas de sonido del canal DTS deben ser mezcladas o transcodificadas."
+
+msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
+msgstr "Elegir si las pistas de sonido del canal DTS deben ser mezcladas en estéreo."
+
 msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
 msgstr ""
+
+msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
+msgstr "Elegir si las pistas de sonido del canal WMA Pro deben ser remezcladas o transcodificadas."
+
+msgid "Select whether multichannel audio tracks should be converted to PCM or SPDIF."
+msgstr "Elija si las pistas de sonido multicanal deben convertirse a PCM o SPDIF."
+
+msgid "Select whether multichannel audio tracks should be downmixed to stereo."
+msgstr "Elige si las pistas de audio multicanal deben mezclarse a estéreo."
+
+msgid "Select whether multichannel audio tracks should be output as PCM."
+msgstr "Elija si las pistas de sonido multicanal deben ser emitidas como PCM."
+
+msgid "Select whether or not to show an icon when a motorized dish is moving."
+msgstr "Elige si se muestra o no un icono cuando se mueve una antena motorizada."
 
 msgid "Select wireless network"
 msgstr "Seleccione la red inalámbrica"
@@ -19531,9 +19534,6 @@ msgid "Show subservice selection"
 msgstr "Mostrar selección de subcanal"
 
 msgid "Show subservices"
-msgstr ""
-
-msgid "Show subservices *"
 msgstr ""
 
 msgid "Show subservices of the active service"
@@ -21770,11 +21770,6 @@ msgstr "¡Este %s %s no puede descodificar flujos %s!"
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "El disco DVD-RW ya está formateado. Si lo reformateas, se borrarán todos los contenidos del disco."
 
-# Box Display
-#, fuzzy
-msgid "This option allows you to switch Audio to Bluetooth speakers."
-msgstr "Esta opción te permite apagar el LCD."
-
 msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
 msgstr "Esto le permite cambiar el tamaño de la fuente en relación con el tamaño del tema, por lo que 1 aumenta en 1 punto de tamaño, y -1 disminuye en 1 punto de tamaño"
 
@@ -21951,8 +21946,17 @@ msgstr "Esta opción te permite habilitar el audio 3D Surround."
 msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr ""
 
+# A/V Settings
+msgid "This option allows you to set the Auto Volume Level output."
+msgstr "Esta opción te permite configurar el nivel del volumen automático."
+
 msgid "This option allows you to set the layout view (Text or Graphics)."
 msgstr "Esta opción te permite elegir configurar la vista de composición (texto o gráfico)."
+
+# Box Display
+#, fuzzy
+msgid "This option allows you to switch Audio to Bluetooth speakers."
+msgstr "Esta opción te permite apagar el LCD."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "Esta opción permite visualizar SNR como porcentaje (no todos los receptores lo soportan)."
@@ -21968,12 +21972,6 @@ msgstr "Esta opción te permite ver los ajustes nuevos y antiguos, unos al lado 
 msgid "This option configures the audio delay value for Bluetooth speakers."
 msgstr "Esta opción configura el retraso general de audio de las pistas estéreo."
 
-msgid "This option selects the general audio delay of Dolby Digital sound tracks."
-msgstr "Esta opción configura el retraso general de audio de las pistas Dolby Digital."
-
-msgid "This option selects the general audio delay of stereo sound tracks."
-msgstr "Esta opción configura el retraso general de audio de las pistas estéreo."
-
 #, fuzzy
 msgid "This option configures the picture sharpness."
 msgstr "Esta opción configura la nitidez de la imagen."
@@ -21983,10 +21981,6 @@ msgstr "Esta opción configura la resolución de pantalla en modo salida PC."
 
 msgid "This option configures the video output mode (or resolution)."
 msgstr "Esta opción configura el modo de salida de vídeo (o resolución)."
-
-# A/V Settings
-msgid "This option allows you to set the Auto Volume Level output."
-msgstr "Esta opción te permite configurar el nivel del volumen automático."
 
 msgid "This option lets you adjust the 3D depth of the OSD."
 msgstr "Esta opción te permite ajustar la profundidad 3D"
@@ -22002,6 +21996,12 @@ msgstr "Esta opción te permite visualizar la opción en la pantalla de extensio
 
 msgid "This option moves the PVR status display from a separate window into the MoviePlayer InfoBar."
 msgstr "Esta opción traslada el estado PVR de una ventana aparte a la barra de información del reproductor de películas."
+
+msgid "This option selects the general audio delay of Dolby Digital sound tracks."
+msgstr "Esta opción configura el retraso general de audio de las pistas Dolby Digital."
+
+msgid "This option selects the general audio delay of stereo sound tracks."
+msgstr "Esta opción configura el retraso general de audio de las pistas estéreo."
 
 msgid "This option set the level of suppression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
 msgstr "Esta opción configura el nivel de supresión de ruido de mosquito (muestreo aleatorio, resultado de una fuerte compresión). Obviamente, se reduce el detalle en la imagen."
@@ -25814,6 +25814,9 @@ msgstr "Sí (conservar fuentes)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Configure whether multichannel audio tracks should be downmixed to stereo."
+#~ msgstr "Configurar si las pistas de sonido multicanal deben ser mezcladas a estéreo."
 
 #
 #~ msgid "* Only available if more than one interface is active."

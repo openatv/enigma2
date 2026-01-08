@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-03 09:58+0000\n"
+"POT-Creation-Date: 2026-01-08 09:08+0000\n"
 "PO-Revision-Date: 2023-08-06 06:22+0000\n"
 "Last-Translator: Salif Mehmed <mail@salif.eu>\n"
 "Language-Team: Bulgarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/bg/>\n"
@@ -4123,36 +4123,6 @@ msgstr "Избиране какво искате да направи бутон�
 msgid "Choose where to mount your devices to:"
 msgstr "Избиране къде да монтирате вашите устройства:"
 
-msgid "Select whether AAC audio tracks should be transcoded."
-msgstr "Избиране дали AAC audio tracks трябва да се прекодирани."
-
-msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
-msgstr "Избиране дали AC3 Plus audio tracks трябва да се прекодират за AC3."
-
-msgid "Select whether AC3 audio tracks should be downmixed to stereo."
-msgstr "Избиране дали AC3 audio tracks трябва да бъдат смесвани до стерео."
-
-msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
-msgstr "Изберете дали звуковите записи на DTS канала трябва да се миксират или транскодират."
-
-msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
-msgstr "Избиране дали DTS channel sound track трябва да бъдат смесвани до стерео."
-
-msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
-msgstr "Изберете дали звуковите записи на канала на WMA Pro да се смесват или транскодират."
-
-msgid "Select whether multichannel audio tracks should be converted to PCM or SPDIF."
-msgstr "Избиране дали multichannel audio tracks трябва да се преобразуват в PCM или SPDIF."
-
-msgid "Select whether multichannel audio tracks should be downmixed to stereo."
-msgstr "Избиране дали multichannel audio tracks трябва да бъдат смесвани до стерео."
-
-msgid "Select whether multichannel audio tracks should be output as PCM."
-msgstr "Избиране дали multichannel audio tracks трябва бъдат изходни като PCM."
-
-msgid "Select whether or not to show an icon when a motorized dish is moving."
-msgstr "Избиране дали да се показва икона, когато се движи моторизирана антена."
-
 msgid "Choose which level of menu/setting's to display. 'Expert'-level shows all items."
 msgstr "Избиране кое ниво на меню/настройки се показва. 'Expert' показва всички елементи."
 
@@ -4819,9 +4789,6 @@ msgstr "Конфигурирайте дали фиксиран шрифт или
 
 msgid "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel."
 msgstr "Конфигурирайте дали друг тунер от предпочитания списък да бъде назначен за записи, вместо да споделяте тунер, който вече е активен и получава същия телевизионен канал на живо."
-
-msgid "Configure whether multichannel audio tracks should be downmixed to stereo."
-msgstr "Конфигурирайте дали многоканалните звукови записи трябва да се миксират до стерео."
 
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (like in EPGrefresh)."
 msgstr "Конфигурирайте дали символът \"запис\" (на кожата на дисплея и LCD екрана) да се вижда само за реални записи или също за поточни и псевдозаписи (например EPGrefresh)."
@@ -9177,9 +9144,6 @@ msgstr "Отстраняване на сривове на Python"
 msgid "Handle Standby from TV"
 msgstr "Работете в режим на готовност от телевизора"
 
-msgid "Process action from TV"
-msgstr "Управлявайте входа от телевизора"
-
 msgid "Handle wake up from TV"
 msgstr "Работи със събуждане от TВ"
 
@@ -12683,6 +12647,9 @@ msgstr ""
 msgid "Number of IP Addresses"
 msgstr ""
 
+msgid "Number of Slots"
+msgstr ""
+
 msgid "Number of digits in service number"
 msgstr "Брой цифри в номера на канала"
 
@@ -14315,6 +14282,9 @@ msgstr ""
 
 msgid "Process YELLOW button action"
 msgstr ""
+
+msgid "Process action from TV"
+msgstr "Управлявайте входа от телевизора"
 
 msgid "Processing"
 msgstr ""
@@ -16938,6 +16908,9 @@ msgstr ""
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "Изберете протокола, използван от вашето SCR устройство. Възможностите за избор са „SCR Unicable“ (Unicable) или „SCR JESS“ (JESS, известен също като Unicable II)."
 
+msgid "Select the receiver action when the TV switches away from the receiver input."
+msgstr ""
+
 msgid "Select the refresh rate to be used on the TV."
 msgstr ""
 
@@ -17112,8 +17085,38 @@ msgstr "Изберете какво искате да активирате с б
 msgid "Select where the recording should be saved."
 msgstr ""
 
+msgid "Select whether AAC audio tracks should be transcoded."
+msgstr "Избиране дали AAC audio tracks трябва да се прекодирани."
+
+msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
+msgstr "Избиране дали AC3 Plus audio tracks трябва да се прекодират за AC3."
+
+msgid "Select whether AC3 audio tracks should be downmixed to stereo."
+msgstr "Избиране дали AC3 audio tracks трябва да бъдат смесвани до стерео."
+
+msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
+msgstr "Изберете дали звуковите записи на DTS канала трябва да се миксират или транскодират."
+
+msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
+msgstr "Избиране дали DTS channel sound track трябва да бъдат смесвани до стерео."
+
 msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
 msgstr ""
+
+msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
+msgstr "Изберете дали звуковите записи на канала на WMA Pro да се смесват или транскодират."
+
+msgid "Select whether multichannel audio tracks should be converted to PCM or SPDIF."
+msgstr "Избиране дали multichannel audio tracks трябва да се преобразуват в PCM или SPDIF."
+
+msgid "Select whether multichannel audio tracks should be downmixed to stereo."
+msgstr "Избиране дали multichannel audio tracks трябва да бъдат смесвани до стерео."
+
+msgid "Select whether multichannel audio tracks should be output as PCM."
+msgstr "Избиране дали multichannel audio tracks трябва бъдат изходни като PCM."
+
+msgid "Select whether or not to show an icon when a motorized dish is moving."
+msgstr "Избиране дали да се показва икона, когато се движи моторизирана антена."
 
 msgid "Select wireless network"
 msgstr "Изберете безжична мрежа"
@@ -18461,9 +18464,6 @@ msgid "Show subservice selection"
 msgstr "Показване на избора на subservice"
 
 msgid "Show subservices"
-msgstr ""
-
-msgid "Show subservices *"
 msgstr ""
 
 msgid "Show subservices of the active service"
@@ -20540,9 +20540,6 @@ msgstr "Този %s %s не може да декодира %s потоци!"
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Този DVD RW носител вече е форматиран - преформатирането ще изтрие цялото съдържание на диска."
 
-msgid "This option allows you to switch Audio to Bluetooth speakers."
-msgstr "Тази опция ви позволява да превключите аудио към BT високоговорители."
-
 msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
 msgstr "Това ви позволява да промените размера на шрифта спрямо размера на кожата така че 1 увеличава размера с 1 точка, и -1 намалява размера с 1 точка"
 
@@ -20708,8 +20705,14 @@ msgstr "Тази опция ви позволява да разрешите 3D �
 msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr ""
 
+msgid "This option allows you to set the Auto Volume Level output."
+msgstr "Тази опция конфигурира задаване на Auto Volume Level."
+
 msgid "This option allows you to set the layout view (Text or Graphics)."
 msgstr "Тази опция ви позволява да зададете оформление изглед (текст или графика)."
+
+msgid "This option allows you to switch Audio to Bluetooth speakers."
+msgstr "Тази опция ви позволява да превключите аудио към BT високоговорители."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "Тази опция ви позволява да използвате SNR като процент (не всички приемници поддържат това)."
@@ -20723,12 +20726,6 @@ msgstr "Тази опция позволява да видите стари и �
 msgid "This option configures the audio delay value for Bluetooth speakers."
 msgstr "Тази опция конфигурира общото забавяне на звука за BT високоговорители."
 
-msgid "This option selects the general audio delay of Dolby Digital sound tracks."
-msgstr "Тази опция конфигурира общото аудио закъснение на Dolby Digital sound tracks."
-
-msgid "This option selects the general audio delay of stereo sound tracks."
-msgstr "Тази опция конфигурира общото аудио закъснение на stereo sound tracks."
-
 msgid "This option configures the picture sharpness."
 msgstr "Тази опция конфигурира остротата на картината."
 
@@ -20737,9 +20734,6 @@ msgstr "Тази опция конфигира разделителната сп
 
 msgid "This option configures the video output mode (or resolution)."
 msgstr "Тази опция конфигурира режима на видео изхода (или резолюция)."
-
-msgid "This option allows you to set the Auto Volume Level output."
-msgstr "Тази опция конфигурира задаване на Auto Volume Level."
 
 msgid "This option lets you adjust the 3D depth of the OSD."
 msgstr "Тази опция ви позволява да настроите 3D дълбочината"
@@ -20755,6 +20749,12 @@ msgstr "Тази опция ви позволява да покажете опц
 
 msgid "This option moves the PVR status display from a separate window into the MoviePlayer InfoBar."
 msgstr "Тази опция премества PVR статуса на отделен прозорец в Movie Player infobar."
+
+msgid "This option selects the general audio delay of Dolby Digital sound tracks."
+msgstr "Тази опция конфигурира общото аудио закъснение на Dolby Digital sound tracks."
+
+msgid "This option selects the general audio delay of stereo sound tracks."
+msgstr "Тази опция конфигурира общото аудио закъснение на stereo sound tracks."
 
 msgid "This option set the level of suppression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
 msgstr "Тази опция определя нивото на подтискане на шума от комари (Musquito Noise е произволен псевдоним в резултат на силна компресия). Очевидно това отива за сметка на детайлите на картината."
@@ -24206,6 +24206,9 @@ msgstr "да (запази фийдове)"
 
 msgid "®"
 msgstr ""
+
+#~ msgid "Configure whether multichannel audio tracks should be downmixed to stereo."
+#~ msgstr "Конфигурирайте дали многоканалните звукови записи трябва да се миксират до стерео."
 
 #~ msgid "* Only available if more than one interface is active."
 #~ msgstr "* Предлага се, ако има повече от един активен интерфейс."

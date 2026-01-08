@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-03 09:58+0000\n"
+"POT-Creation-Date: 2026-01-08 09:08+0000\n"
 "PO-Revision-Date: 2025-11-11 20:51+0000\n"
 "Last-Translator: Daniel Nylander <daniel@danielnylander.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sv/>\n"
@@ -4311,36 +4311,6 @@ msgstr "Välj vad du vill att knappen \"0\" ska göra när PiP är aktiv."
 msgid "Choose where to mount your devices to:"
 msgstr "Välj var du vill montera dina enheter:"
 
-msgid "Select whether AAC audio tracks should be transcoded."
-msgstr "Välj om AAC-ljudspår ska kodas om."
-
-msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
-msgstr "Välj om AC3 Plus-ljudspår ska omkodas till AC3."
-
-msgid "Select whether AC3 audio tracks should be downmixed to stereo."
-msgstr "Välj om AC3-ljudspår ska nedmixas till stereo."
-
-msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
-msgstr "Välj om ljudspår från DTS-kanaler ska nedmixas eller omkodas."
-
-msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
-msgstr "Välj om ljudspår från DTS-kanaler ska nedmixas till stereo."
-
-msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
-msgstr "Välj om WMA Pro channel-ljudspår ska nedmixas eller omkodas."
-
-msgid "Select whether multichannel audio tracks should be converted to PCM or SPDIF."
-msgstr "Välj om flerkanaliga ljudspår ska konverteras till PCM eller SPDIF."
-
-msgid "Select whether multichannel audio tracks should be downmixed to stereo."
-msgstr "Välj om flerkanaliga ljudspår ska nedmixas till stereo."
-
-msgid "Select whether multichannel audio tracks should be output as PCM."
-msgstr "Välj om flerkanaliga ljudspår ska matas ut som PCM."
-
-msgid "Select whether or not to show an icon when a motorized dish is moving."
-msgstr "Välj om en ikon ska visas när en motoriserad parabol rör sig eller inte."
-
 msgid "Choose which level of menu/setting's to display. 'Expert'-level shows all items."
 msgstr "Välj vilken nivå av meny/inställningar som ska visas. 'Expert'-nivån visar alla objekt."
 
@@ -5039,9 +5009,6 @@ msgstr "Konfigurera om ett fast typsnitt eller ett skalbart TrueType-typsnitt sk
 
 msgid "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel."
 msgstr "Ställ in om en annan tuner från listan över föredragna tuners ska tilldelas för inspelningar i stället för att dela en tuner som redan är aktiv och tar emot samma live-TV-kanal."
-
-msgid "Configure whether multichannel audio tracks should be downmixed to stereo."
-msgstr "Ställ in om flerkanaliga ljudspår ska nedmixas till stereo."
 
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (like in EPGrefresh)."
 msgstr "Ställ in om symbolen \"inspelning\" (i display- och LCD-skärmen) ska visas endast för riktiga inspelningar eller även för streaming och pseudoinspelningar (t.ex. EPGrefresh)."
@@ -9648,9 +9615,6 @@ msgstr "Hantera kraschar i Python"
 msgid "Handle Standby from TV"
 msgstr "Hantera standby från TV"
 
-msgid "Process action from TV"
-msgstr "Hantera ingång från TV"
-
 msgid "Handle wake up from TV"
 msgstr "Handtag vaknar från TV"
 
@@ -13394,6 +13358,9 @@ msgstr "Nummer och picon"
 msgid "Number of IP Addresses"
 msgstr "Antal IP-adresser"
 
+msgid "Number of Slots"
+msgstr ""
+
 msgid "Number of digits in service number"
 msgstr "Antal siffror i servicenumret"
 
@@ -15140,6 +15107,9 @@ msgstr "Bearbeta åtgärd med RÖD knapp"
 
 msgid "Process YELLOW button action"
 msgstr "Bearbeta åtgärd med GUL knapp"
+
+msgid "Process action from TV"
+msgstr "Hantera ingång från TV"
 
 msgid "Processing"
 msgstr "Bearbetas"
@@ -17914,6 +17884,9 @@ msgstr "Välj föregående tjänst och stäng scannern och avsluta alla menyer"
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "Välj det protokoll som används av din SCR-enhet. Alternativen är \"SCR Unicable\" (Unicable) eller \"SCR JESS\" (JESS, även känt som Unicable II)."
 
+msgid "Select the receiver action when the TV switches away from the receiver input."
+msgstr ""
+
 msgid "Select the refresh rate to be used on the TV."
 msgstr "Välj den uppdateringsfrekvens som ska användas på TV:n."
 
@@ -18093,8 +18066,38 @@ msgstr "Välj vad du vill att upp-/nedknappen ska aktivera."
 msgid "Select where the recording should be saved."
 msgstr "Välj var inspelningen ska sparas."
 
+msgid "Select whether AAC audio tracks should be transcoded."
+msgstr "Välj om AAC-ljudspår ska kodas om."
+
+msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
+msgstr "Välj om AC3 Plus-ljudspår ska omkodas till AC3."
+
+msgid "Select whether AC3 audio tracks should be downmixed to stereo."
+msgstr "Välj om AC3-ljudspår ska nedmixas till stereo."
+
+msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
+msgstr "Välj om ljudspår från DTS-kanaler ska nedmixas eller omkodas."
+
+msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
+msgstr "Välj om ljudspår från DTS-kanaler ska nedmixas till stereo."
+
 msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
 msgstr "Välj läge för DNS."
+
+msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
+msgstr "Välj om WMA Pro channel-ljudspår ska nedmixas eller omkodas."
+
+msgid "Select whether multichannel audio tracks should be converted to PCM or SPDIF."
+msgstr "Välj om flerkanaliga ljudspår ska konverteras till PCM eller SPDIF."
+
+msgid "Select whether multichannel audio tracks should be downmixed to stereo."
+msgstr "Välj om flerkanaliga ljudspår ska nedmixas till stereo."
+
+msgid "Select whether multichannel audio tracks should be output as PCM."
+msgstr "Välj om flerkanaliga ljudspår ska matas ut som PCM."
+
+msgid "Select whether or not to show an icon when a motorized dish is moving."
+msgstr "Välj om en ikon ska visas när en motoriserad parabol rör sig eller inte."
 
 #
 msgid "Select wireless network"
@@ -19514,9 +19517,6 @@ msgstr "Visa val av underservice"
 
 msgid "Show subservices"
 msgstr "Visa undertjänster"
-
-msgid "Show subservices *"
-msgstr "Visa undertjänster *"
 
 msgid "Show subservices of the active service"
 msgstr "Visa underavdelningar till den aktiva tjänstgöringen"
@@ -21740,9 +21740,6 @@ msgstr "Denna %s %s kan inte avkoda %s-strömmar!"
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Detta DVD RW-medium är redan formaterat - omformatering kommer att radera allt innehåll på skivan."
 
-msgid "This option allows you to switch Audio to Bluetooth speakers."
-msgstr "Med detta alternativ kan du växla ljud till BT-högtalare."
-
 msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
 msgstr "Detta gör att du kan ändra teckenstorleken i förhållande till hudstorleken, så att 1 ökar med 1 punktstorlek och -1 minskar med 1 punktstorlek."
 
@@ -21909,8 +21906,14 @@ msgstr "Med det här alternativet kan du aktivera 3D Surround Sound."
 msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr "Med det här alternativet kan du ställa in offsetvärden för olika Letterbox-upplösningar."
 
+msgid "This option allows you to set the Auto Volume Level output."
+msgstr "Med det här alternativet kan du ställa in Auto Volume Level."
+
 msgid "This option allows you to set the layout view (Text or Graphics)."
 msgstr "Med det här alternativet kan du ställa in layoutvyn (Text eller Grafik)."
+
+msgid "This option allows you to switch Audio to Bluetooth speakers."
+msgstr "Med detta alternativ kan du växla ljud till BT-högtalare."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "Med detta alternativ kan du ange SNR i procent (detta stöds inte av alla mottagare)."
@@ -21924,12 +21927,6 @@ msgstr "Med det här alternativet kan du visa de gamla och nya inställningarna 
 msgid "This option configures the audio delay value for Bluetooth speakers."
 msgstr "Det här alternativet konfigurerar den allmänna ljudfördröjningen för BT-högtalare."
 
-msgid "This option selects the general audio delay of Dolby Digital sound tracks."
-msgstr "Detta alternativ konfigurerar den allmänna ljudfördröjningen för Dolby Digital-ljudspår."
-
-msgid "This option selects the general audio delay of stereo sound tracks."
-msgstr "Detta alternativ konfigurerar den allmänna ljudfördröjningen för stereoljudspår."
-
 msgid "This option configures the picture sharpness."
 msgstr "Detta alternativ konfigurerar bildens skärpa."
 
@@ -21938,9 +21935,6 @@ msgstr "Detta alternativ konfigurerar skärmupplösningen i PC-utmatningsläge."
 
 msgid "This option configures the video output mode (or resolution)."
 msgstr "Detta alternativ konfigurerar videoutgångsläget (eller upplösningen)."
-
-msgid "This option allows you to set the Auto Volume Level output."
-msgstr "Med det här alternativet kan du ställa in Auto Volume Level."
 
 msgid "This option lets you adjust the 3D depth of the OSD."
 msgstr "Med det här alternativet kan du justera 3D-djupet på OSD."
@@ -21956,6 +21950,12 @@ msgstr "Med det här alternativet kan du visa 3D OSD-menyalternativet på skärm
 
 msgid "This option moves the PVR status display from a separate window into the MoviePlayer InfoBar."
 msgstr "Det här alternativet flyttar PVR-statusdisplayen från ett separat fönster till MoviePlayer InfoBar."
+
+msgid "This option selects the general audio delay of Dolby Digital sound tracks."
+msgstr "Detta alternativ konfigurerar den allmänna ljudfördröjningen för Dolby Digital-ljudspår."
+
+msgid "This option selects the general audio delay of stereo sound tracks."
+msgstr "Detta alternativ konfigurerar den allmänna ljudfördröjningen för stereoljudspår."
 
 msgid "This option set the level of suppression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
 msgstr "Detta alternativ ställer in nivån för undertryckning av myggbrus (myggbrus är slumpmässig aliasing till följd av stark komprimering). Detta sker naturligtvis på bekostnad av bilddetaljerna."
@@ -25697,6 +25697,12 @@ msgstr "ja (behåller flöden)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Configure whether multichannel audio tracks should be downmixed to stereo."
+#~ msgstr "Ställ in om flerkanaliga ljudspår ska nedmixas till stereo."
+
+#~ msgid "Show subservices *"
+#~ msgstr "Visa undertjänster *"
 
 #
 #~ msgid "* Only available if more than one interface is active."

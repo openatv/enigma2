@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-03 09:58+0000\n"
+"POT-Creation-Date: 2026-01-08 09:08+0000\n"
 "PO-Revision-Date: 2025-06-11 19:04+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -4173,36 +4173,6 @@ msgstr "Pasirinkite, kas vyks paspaudus '0' mygtuką, kai aktyvuotas PiP."
 msgid "Choose where to mount your devices to:"
 msgstr "Pasirinkite, kur pajungti įrenginius:"
 
-msgid "Select whether AAC audio tracks should be transcoded."
-msgstr "Pasirinkite, ar AAC garso takeliai bus perkoduoti."
-
-msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
-msgstr "Ši parinktis leidžia nustatyti, ar AC3 plus garso takeliai bus perkoduoti į AC3."
-
-msgid "Select whether AC3 audio tracks should be downmixed to stereo."
-msgstr "Ši parinktis leidžia nustatyti, ar AC3 garso takeliai bus sulieti į stereo garsą."
-
-msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
-msgstr "Pasirinkite, ar DTS kanalo garso takeliai turėtų būti sulieti ar perkoduoti."
-
-msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
-msgstr "Ši parinktis leidžia nustatyti, ar DTS kanalo garso takeliai bus perkoduoti į stereo garsą."
-
-msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
-msgstr "Pasirinkite, ar WMA Pro kanalo garso takeliai turėtų būti sulieti arba perkoduoti."
-
-msgid "Select whether multichannel audio tracks should be converted to PCM or SPDIF."
-msgstr "Pasirinkite, ar kelių kanalų garso takeliai bus konvertuoti į PCM, arba SPDIF."
-
-msgid "Select whether multichannel audio tracks should be downmixed to stereo."
-msgstr "Ši parinktis leidžia nustatyti, ar daugiakanalio garso takeliai bus sulieti į stereo garsą."
-
-msgid "Select whether multichannel audio tracks should be output as PCM."
-msgstr "Pasirinkite, ar daugiakanaliai garso takeliai bus išvesti, kaip PCM."
-
-msgid "Select whether or not to show an icon when a motorized dish is moving."
-msgstr "Pasirinkti, ar rodyti logotipą judant motorizuotai lėkštei."
-
 msgid "Choose which level of menu/setting's to display. 'Expert'-level shows all items."
 msgstr "Pasirinkite, kokiu prieigos lygiu bus pateikta meniu ir nuostatos. 'Eksperto lygis' leidžia prieigą prie visų nuostatų."
 
@@ -4876,9 +4846,6 @@ msgstr "Konfigūruokite ar naudoti fiksuotą šriftą ar keičiamo dydžio TrueT
 
 msgid "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel."
 msgstr "Konfigūruokite ar kitas imtuvas, iš pageidaujamo sąrašo, yra skirtas įrašymui vietoj bendrinamo imtuvo, kuris jau aktyviai gauna vieną ir tą pačią transliaciją televizijos kanalu."
-
-msgid "Configure whether multichannel audio tracks should be downmixed to stereo."
-msgstr "Pasirinkite, ar sulieti daugiakanalio garso takelius į stereo garsą."
 
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (like in EPGrefresh)."
 msgstr "Konfigūruokite, ar \"įrašymo\" simbolis (monitoriaus temoje ir LCD temoje) matomi tik realiai įrašant ar taip pat transliacijoms ir pseudo įrašams (pvz EPGrefresh)."
@@ -9243,9 +9210,6 @@ msgstr "Tvarkyti Python gedimus"
 msgid "Handle Standby from TV"
 msgstr "Išjungti imtuvą, išjungiant TV"
 
-msgid "Process action from TV"
-msgstr "Valdyti televizoriaus įvestį"
-
 msgid "Handle wake up from TV"
 msgstr "Įjungti imtuvą, įjungiant TV"
 
@@ -12754,6 +12718,9 @@ msgstr ""
 msgid "Number of IP Addresses"
 msgstr "IP adresų skaičius"
 
+msgid "Number of Slots"
+msgstr ""
+
 msgid "Number of digits in service number"
 msgstr "Kanalo numerio skaitmenų skaičius"
 
@@ -14391,6 +14358,9 @@ msgstr ""
 
 msgid "Process YELLOW button action"
 msgstr ""
+
+msgid "Process action from TV"
+msgstr "Valdyti televizoriaus įvestį"
 
 msgid "Processing"
 msgstr ""
@@ -17016,6 +16986,9 @@ msgstr ""
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "Pasirinkite protokolą, kurį naudoja jūsų SCR įrenginys. Pasirinkimai yra 'SCR Unicable' (Unicable) arba 'SCR JESS' (JESS, taip pat žinomas kaip Unicable II)."
 
+msgid "Select the receiver action when the TV switches away from the receiver input."
+msgstr ""
+
 msgid "Select the refresh rate to be used on the TV."
 msgstr ""
 
@@ -17190,8 +17163,38 @@ msgstr "Pasirinkite, ką norite, aktyvuoti UP/DOWN mygtukų paspaudimu"
 msgid "Select where the recording should be saved."
 msgstr ""
 
+msgid "Select whether AAC audio tracks should be transcoded."
+msgstr "Pasirinkite, ar AAC garso takeliai bus perkoduoti."
+
+msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
+msgstr "Ši parinktis leidžia nustatyti, ar AC3 plus garso takeliai bus perkoduoti į AC3."
+
+msgid "Select whether AC3 audio tracks should be downmixed to stereo."
+msgstr "Ši parinktis leidžia nustatyti, ar AC3 garso takeliai bus sulieti į stereo garsą."
+
+msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
+msgstr "Pasirinkite, ar DTS kanalo garso takeliai turėtų būti sulieti ar perkoduoti."
+
+msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
+msgstr "Ši parinktis leidžia nustatyti, ar DTS kanalo garso takeliai bus perkoduoti į stereo garsą."
+
 msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
 msgstr ""
+
+msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
+msgstr "Pasirinkite, ar WMA Pro kanalo garso takeliai turėtų būti sulieti arba perkoduoti."
+
+msgid "Select whether multichannel audio tracks should be converted to PCM or SPDIF."
+msgstr "Pasirinkite, ar kelių kanalų garso takeliai bus konvertuoti į PCM, arba SPDIF."
+
+msgid "Select whether multichannel audio tracks should be downmixed to stereo."
+msgstr "Ši parinktis leidžia nustatyti, ar daugiakanalio garso takeliai bus sulieti į stereo garsą."
+
+msgid "Select whether multichannel audio tracks should be output as PCM."
+msgstr "Pasirinkite, ar daugiakanaliai garso takeliai bus išvesti, kaip PCM."
+
+msgid "Select whether or not to show an icon when a motorized dish is moving."
+msgstr "Pasirinkti, ar rodyti logotipą judant motorizuotai lėkštei."
 
 msgid "Select wireless network"
 msgstr "Pasirinkite belaidį tinklą"
@@ -18539,9 +18542,6 @@ msgid "Show subservice selection"
 msgstr "Rodyti subkanalų pasirinkimą"
 
 msgid "Show subservices"
-msgstr ""
-
-msgid "Show subservices *"
 msgstr ""
 
 msgid "Show subservices of the active service"
@@ -20635,9 +20635,6 @@ msgstr "Šis %s %s negali iškoduoti %s srautų!"
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Šis DVD RW diskas jau formatuotas - performatavimas ištrins visą šio disko turinį."
 
-msgid "This option allows you to switch Audio to Bluetooth speakers."
-msgstr "Ši parinktis leidžia perjungti garsą į BT garsiakalbius."
-
 msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
 msgstr "Ši parinktis leidžia nustatyti šrifto dydį lyginant su temos dydžiu, todėl 1 padidina 1 dydžio tašku, ir -1 sumažina 1 dydžio tašku"
 
@@ -20803,8 +20800,14 @@ msgstr "Ši parinktis leidžia įjungti 3D erdvinį garsą."
 msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr ""
 
+msgid "This option allows you to set the Auto Volume Level output."
+msgstr "Ši parinktis leidžia nustatyti galimą automatinį garsumo lygį."
+
 msgid "This option allows you to set the layout view (Text or Graphics)."
 msgstr "Ši parinktis leidžia nustatyti vaizdo išdėstymą (tekstinio ir grafinio)."
+
+msgid "This option allows you to switch Audio to Bluetooth speakers."
+msgstr "Ši parinktis leidžia perjungti garsą į BT garsiakalbius."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "Ši parinktis leidžia jums rodyti SNR procentais (ne visi imtuvai tai palaiko)."
@@ -20818,12 +20821,6 @@ msgstr "Ši parinktis leidžia jums peržiūrėti senus ir naujus nustatymus vie
 msgid "This option configures the audio delay value for Bluetooth speakers."
 msgstr "Ši parinktis sukonfigūruoja bendrą BT garsiakalbių garso delsą."
 
-msgid "This option selects the general audio delay of Dolby Digital sound tracks."
-msgstr "Ši parinktis pritaiko bendro garso \"Dolby Digital\" garso takelių delsą."
-
-msgid "This option selects the general audio delay of stereo sound tracks."
-msgstr "Ši parinktis leidžia nustatyti bendrą garso delsą 'stereo' garso takeliuose."
-
 msgid "This option configures the picture sharpness."
 msgstr "Ši parinktis nustato vaizdo ryškumą."
 
@@ -20832,9 +20829,6 @@ msgstr "Ši parinktis leidžia nustatyti ekrano rezoliuciją PC išvesties reži
 
 msgid "This option configures the video output mode (or resolution)."
 msgstr "Ši parinktis leidžia nustatyti vaizdo išvesties režimą (arba rezoliuciją)."
-
-msgid "This option allows you to set the Auto Volume Level output."
-msgstr "Ši parinktis leidžia nustatyti galimą automatinį garsumo lygį."
 
 msgid "This option lets you adjust the 3D depth of the OSD."
 msgstr "Ši parinktis leidžia nustatyti 3D gylį"
@@ -20850,6 +20844,12 @@ msgstr "Ši parinktis leidžia rodyti parinktį plėtinio ekrane."
 
 msgid "This option moves the PVR status display from a separate window into the MoviePlayer InfoBar."
 msgstr "Ši parinktis perkelia PVR būseną iš atskiro lango į filmų grotuvo info juostą."
+
+msgid "This option selects the general audio delay of Dolby Digital sound tracks."
+msgstr "Ši parinktis pritaiko bendro garso \"Dolby Digital\" garso takelių delsą."
+
+msgid "This option selects the general audio delay of stereo sound tracks."
+msgstr "Ši parinktis leidžia nustatyti bendrą garso delsą 'stereo' garso takeliuose."
 
 msgid "This option set the level of suppression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
 msgstr "Ši parinktis nustato \"moskitų\" triukšmų šalinimą (lyg uodų spiečiai apie kontūrus - suspaudimo metu atsiradę atsitiktinės nereikalingos detalės). Žinoma, tai pasiekiama bendro vaizdo ryškumo sumažėjimo kaina."
@@ -24328,6 +24328,9 @@ msgstr "taip (išsaugoti šaltinius)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Configure whether multichannel audio tracks should be downmixed to stereo."
+#~ msgstr "Pasirinkite, ar sulieti daugiakanalio garso takelius į stereo garsą."
 
 #~ msgid "* Only available if more than one interface is active."
 #~ msgstr "* Galima, jei tik daugiau kaip viena sąsaja yra aktyvi."

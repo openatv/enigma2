@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-03 09:58+0000\n"
+"POT-Creation-Date: 2026-01-08 09:08+0000\n"
 "PO-Revision-Date: 2025-12-28 02:56+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
@@ -4135,36 +4135,6 @@ msgstr "Määrittää, mitä 0-näppäin tekee, kun PiP-kuva on aktivoitu."
 msgid "Choose where to mount your devices to:"
 msgstr "Valitse, mihin laitteet asennetaan:"
 
-msgid "Select whether AAC audio tracks should be transcoded."
-msgstr "Määrittää, tehdäänkö AAC-ääniraidoille uudelleenpakkaus (transcoding)."
-
-msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
-msgstr "Valitse tehdäänkö AC3+ ääniraidoille uudelleenpakkaus."
-
-msgid "Select whether AC3 audio tracks should be downmixed to stereo."
-msgstr "Valitse muunnetaanko monikanavaiset AC3 ääniraidat stereoksi."
-
-msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
-msgstr "Valitse muunnetaanko monikanavaiset DTS ääniraidat stereoksi."
-
-msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
-msgstr "Valitse muunnetaanko monikanavaiset DTS ääniraidat stereoksi."
-
-msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
-msgstr "Valitse muunnetaanko monikanavaiset DTS ääniraidat stereoksi."
-
-msgid "Select whether multichannel audio tracks should be converted to PCM or SPDIF."
-msgstr "Määrittää, lähetetäänkö monikanavaiset ääniraidat ulos PCM muodossa."
-
-msgid "Select whether multichannel audio tracks should be downmixed to stereo."
-msgstr "Määrittää, muunnetaanko monikanavaiset ääniraidat stereoksi."
-
-msgid "Select whether multichannel audio tracks should be output as PCM."
-msgstr "Määrittää, lähetetäänkö monikanavaiset ääniraidat ulos PCM-muodossa."
-
-msgid "Select whether or not to show an icon when a motorized dish is moving."
-msgstr "Valitse, näytetäänkö kuvake, kun moottoroitu lautanen liikkuu."
-
 msgid "Choose which level of menu/setting's to display. 'Expert'-level shows all items."
 msgstr "Määrittää, näytetäänkö suppeat vai laajat asetukset. Laajat asetukset näyttävät kaikki vaihtoehdot."
 
@@ -4835,9 +4805,6 @@ msgstr "Määritä käytetäänkö teksti-tv:ssä kiinteää kirjasinta vai skaa
 
 msgid "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel."
 msgstr "Määritä, käytetäänkö toista viritintä tallennuksiin , vaikka voitaisiin käyttää samaa viritintä, joka vastaanottaa samaa kanavaa suorana."
-
-msgid "Configure whether multichannel audio tracks should be downmixed to stereo."
-msgstr "Määrittää, muunnetaanko monikanavaiset ääniraidat stereoksi."
 
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (like in EPGrefresh)."
 msgstr "Määrittää, näytetäänkö REC-symboli vain todellisille tallennuksille vai myös suoratoistolle ja näennäistallennuksille (esim. EPGrefresh)."
@@ -9205,9 +9172,6 @@ msgstr "Yritä estää järjestelmän kaatuminen"
 msgid "Handle Standby from TV"
 msgstr "Tottele sammutuskäskyä TV:ltä"
 
-msgid "Process action from TV"
-msgstr "Tottele TV:en tuloa"
-
 msgid "Handle wake up from TV"
 msgstr "Tottele käynnistyskäskyä TV:ltä"
 
@@ -12730,6 +12694,9 @@ msgstr "Numero ja kanavalogo"
 msgid "Number of IP Addresses"
 msgstr "IP Osoitteiden määrä"
 
+msgid "Number of Slots"
+msgstr ""
+
 msgid "Number of digits in service number"
 msgstr "Kanavanumerossa maksimissaan numeroita"
 
@@ -14365,6 +14332,9 @@ msgstr "Määritä PUNAISEN näppäimen toiminta"
 
 msgid "Process YELLOW button action"
 msgstr "Määritä KELTAISEN näppäimen toiminta"
+
+msgid "Process action from TV"
+msgstr "Tottele TV:en tuloa"
 
 msgid "Processing"
 msgstr "Käsitellään"
@@ -17002,6 +16972,9 @@ msgstr "Valitse aiempi kanava ja sulje kanavahaku ja poistu valikoista"
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "Valitse SCR:n käyttämä protokolla. Vaihtoehdot ovat 'SCR Unicable' (Unicable) tai 'SCR JESS' (JESS, tunnetaan myös Unicable II:na)."
 
+msgid "Select the receiver action when the TV switches away from the receiver input."
+msgstr ""
+
 msgid "Select the refresh rate to be used on the TV."
 msgstr "Valitse televisiossa käytettävä virkistystaajuus."
 
@@ -17179,8 +17152,38 @@ msgstr "Määrittää, mitä ylös/alas -näppäimien painallus tekee."
 msgid "Select where the recording should be saved."
 msgstr "Valitse, mihin tallennus tallennetaan."
 
+msgid "Select whether AAC audio tracks should be transcoded."
+msgstr "Määrittää, tehdäänkö AAC-ääniraidoille uudelleenpakkaus (transcoding)."
+
+msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
+msgstr "Valitse tehdäänkö AC3+ ääniraidoille uudelleenpakkaus."
+
+msgid "Select whether AC3 audio tracks should be downmixed to stereo."
+msgstr "Valitse muunnetaanko monikanavaiset AC3 ääniraidat stereoksi."
+
+msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
+msgstr "Valitse muunnetaanko monikanavaiset DTS ääniraidat stereoksi."
+
+msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
+msgstr "Valitse muunnetaanko monikanavaiset DTS ääniraidat stereoksi."
+
 msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
 msgstr "Valitse DNS tila."
+
+msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
+msgstr "Valitse muunnetaanko monikanavaiset DTS ääniraidat stereoksi."
+
+msgid "Select whether multichannel audio tracks should be converted to PCM or SPDIF."
+msgstr "Määrittää, lähetetäänkö monikanavaiset ääniraidat ulos PCM muodossa."
+
+msgid "Select whether multichannel audio tracks should be downmixed to stereo."
+msgstr "Määrittää, muunnetaanko monikanavaiset ääniraidat stereoksi."
+
+msgid "Select whether multichannel audio tracks should be output as PCM."
+msgstr "Määrittää, lähetetäänkö monikanavaiset ääniraidat ulos PCM-muodossa."
+
+msgid "Select whether or not to show an icon when a motorized dish is moving."
+msgstr "Valitse, näytetäänkö kuvake, kun moottoroitu lautanen liikkuu."
 
 msgid "Select wireless network"
 msgstr "Valitse Langaton verkko"
@@ -18537,9 +18540,6 @@ msgstr "Näytä kanavatyypin kuvakkeet"
 
 msgid "Show subservices"
 msgstr "Näytä alipalvelu"
-
-msgid "Show subservices *"
-msgstr "Näytä tekstitys palvelu *"
 
 msgid "Show subservices of the active service"
 msgstr "Näytä aktiivinen kanava"
@@ -20652,9 +20652,6 @@ msgstr "Tämä %s %s ei pysty purkamaan %s lähteitä!"
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Tämä DVD-RW levy on jo alustettu - uudelleenalustus tuhoaa levyn kaiken sisällön."
 
-msgid "This option allows you to switch Audio to Bluetooth speakers."
-msgstr "Tämän vaihtoehdon avulla voit vaihtaa äänen Bluetooth kaiuttimelle."
-
 msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
 msgstr "Määrittää tekstikoon suhteessa teeman määritykseen. Arvo 1 suurentaa tekstikokoa yhdellä ja arvo -1 vastaavasti pienentää yhdellä."
 
@@ -20822,8 +20819,14 @@ msgstr "Tämä asetus määrittää käyttöön 3D Surround Sound äänet."
 msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr "Tämän vaihtoehdon avulla voit asettaa offset arvoja eri Letterbox resoluutioihin."
 
+msgid "This option allows you to set the Auto Volume Level output."
+msgstr "Tämä asetus määrittää automaattisen äänenvoimakkuuden tason."
+
 msgid "This option allows you to set the layout view (Text or Graphics)."
 msgstr "Määrittää näkymän asettelun (teksti tai graafinen)."
+
+msgid "This option allows you to switch Audio to Bluetooth speakers."
+msgstr "Tämän vaihtoehdon avulla voit vaihtaa äänen Bluetooth kaiuttimelle."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "Määrittää, näytetäänkö SNR (signaalikohinasuhde) desibeleinä vai prosentteina (kaikki laitteet eivät tue tätä)."
@@ -20837,12 +20840,6 @@ msgstr "Määrittää, näytetäänkö vanhat ja uudet asetukset rinnakkain."
 msgid "This option configures the audio delay value for Bluetooth speakers."
 msgstr "Tämä asetus määrittää yleisen äänen viiveen Bluetooth kaiuttimessa."
 
-msgid "This option selects the general audio delay of Dolby Digital sound tracks."
-msgstr "Tämä asetus määrittää Dolby Digital -ääniraitojen äänen perusviiveen."
-
-msgid "This option selects the general audio delay of stereo sound tracks."
-msgstr "Tämä asetus määrittää stereo ääniraitojen äänen perusviiveen."
-
 msgid "This option configures the picture sharpness."
 msgstr "Tämä asetus määrittää kuvan terävyyden."
 
@@ -20851,9 +20848,6 @@ msgstr "Määrittää näytön resoluution PC-ulostulotilassa."
 
 msgid "This option configures the video output mode (or resolution)."
 msgstr "Tämä asetus määrittää videoulostulon (tai resoluution)."
-
-msgid "This option allows you to set the Auto Volume Level output."
-msgstr "Tämä asetus määrittää automaattisen äänenvoimakkuuden tason."
 
 msgid "This option lets you adjust the 3D depth of the OSD."
 msgstr "Määrittää 3D syvyyden"
@@ -20869,6 +20863,12 @@ msgstr "Tämä asetus määrittää näytetäänkö valinta laajennusvalikko."
 
 msgid "This option moves the PVR status display from a separate window into the MoviePlayer InfoBar."
 msgstr "Tämä asetus määrittää näytetäänkö katseluohjelman toistotilan symbolit erillisessä ikkunassa vai tilapalkissa."
+
+msgid "This option selects the general audio delay of Dolby Digital sound tracks."
+msgstr "Tämä asetus määrittää Dolby Digital -ääniraitojen äänen perusviiveen."
+
+msgid "This option selects the general audio delay of stereo sound tracks."
+msgstr "Tämä asetus määrittää stereo ääniraitojen äänen perusviiveen."
 
 msgid "This option set the level of suppression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
 msgstr "Tämä asetus määrittää mosquito kohinan vaimennuksen määrän (mosquito kohina on suuren pakkauksen aiheuttama kuvavirhe). Tämä säätö pehmentää kuvan yksityiskohtia."
@@ -24371,6 +24371,12 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Configure whether multichannel audio tracks should be downmixed to stereo."
+#~ msgstr "Määrittää, muunnetaanko monikanavaiset ääniraidat stereoksi."
+
+#~ msgid "Show subservices *"
+#~ msgstr "Näytä tekstitys palvelu *"
 
 #~ msgid "* Only available if more than one interface is active."
 #~ msgstr "* Käytettävissä vain kun useampi kuin yksi sovitin on aktiivinen."

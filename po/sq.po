@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-03 09:58+0000\n"
+"POT-Creation-Date: 2026-01-08 09:08+0000\n"
 "PO-Revision-Date: 2023-12-11 00:50+0000\n"
 "Last-Translator: W L <wl@mailhole.de>\n"
 "Language-Team: Albanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sq/>\n"
@@ -4135,36 +4135,6 @@ msgstr "Zgjidhni atë që dëshironi të bëjë butoni '0' kur PIP është aktiv
 msgid "Choose where to mount your devices to:"
 msgstr "Zgjidhni ku t'i montoni pajisjet tuaja në:"
 
-msgid "Select whether AAC audio tracks should be transcoded."
-msgstr "Zgjidhni nëse pjesët zanore AAC duhet të transkodohen."
-
-msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
-msgstr "Zgjidh nëse gjurmët e zërit AC3 Plus duhet të transkodohen në AC3."
-
-msgid "Select whether AC3 audio tracks should be downmixed to stereo."
-msgstr "Zgjidhni nëse pjesët zanore AC3 duhet të përzihen në stereo."
-
-msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
-msgstr "Zgjidhni nëse pjesët zanore të kanalit DTS duhet të përzihen ose të transkodohen."
-
-msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
-msgstr "Zgjidhni nëse pjesët zanore të kanalit DTS duhet të përzihen në stereo."
-
-msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
-msgstr "Zgjidhni nëse pjesët zanore të kanalit WMA Pro duhet të përzihen ose të transkodohen."
-
-msgid "Select whether multichannel audio tracks should be converted to PCM or SPDIF."
-msgstr "Zgjidhni nëse pjesët zanore me shumë kanale duhet të konvertohen në PCM ose SPDIF."
-
-msgid "Select whether multichannel audio tracks should be downmixed to stereo."
-msgstr "Zgjidh nëse binarët e zërit të shumë kanaleve duhet të jenë të pakasuara me stereo."
-
-msgid "Select whether multichannel audio tracks should be output as PCM."
-msgstr "Zgjidhni nëse pjesët zanore me shumë kanale duhet të dalin si PCM."
-
-msgid "Select whether or not to show an icon when a motorized dish is moving."
-msgstr "Zgjidhni nëse do të shfaqet ose jo një ikonë kur një pjatë e motorizuar është në lëvizje."
-
 msgid "Choose which level of menu/setting's to display. 'Expert'-level shows all items."
 msgstr "Zgjidhni nivelin e menysë/cilësimeve për të shfaqur. Niveli 'Ekspert' tregon të gjithë artikujt."
 
@@ -4829,9 +4799,6 @@ msgstr "Konfiguro nëse një font fiks ose një font TrueType i shkallëzueshëm
 
 msgid "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel."
 msgstr "Konfiguro nëse një sintonizues tjetër nga lista e preferuar do të ndahet për regjistrime në vend që të ndash një sintonizues që është tashmë aktiv duke marrë të njëjtin kanal televiziv drejtpërdrejt."
-
-msgid "Configure whether multichannel audio tracks should be downmixed to stereo."
-msgstr "Konfiguro nëse binarët e zërit të shumë kanaleve duhet të jenë të pakasuara me stereo."
 
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (like in EPGrefresh)."
 msgstr "Konfiguro nëse simboli 'regjistrimi' (në lëkurën e ekranit dhe në lëkurën LCD) është i dukshëm vetëm për regjistrime reale ose gjithashtu për regjistrime transmetimi dhe pseuzo (p.sh. EPGrefresh)."
@@ -9187,9 +9154,6 @@ msgstr "Trajto përplasjet e Python"
 msgid "Handle Standby from TV"
 msgstr "Trajtoni gatishmërinë nga televizori"
 
-msgid "Process action from TV"
-msgstr "Trajtoni hyrjen nga televizori"
-
 msgid "Handle wake up from TV"
 msgstr "Trajtoni zgjimin nga televizori"
 
@@ -12670,6 +12634,9 @@ msgstr ""
 msgid "Number of IP Addresses"
 msgstr ""
 
+msgid "Number of Slots"
+msgstr ""
+
 msgid "Number of digits in service number"
 msgstr ""
 
@@ -14297,6 +14264,9 @@ msgstr ""
 
 msgid "Process YELLOW button action"
 msgstr ""
+
+msgid "Process action from TV"
+msgstr "Trajtoni hyrjen nga televizori"
 
 msgid "Processing"
 msgstr ""
@@ -16917,6 +16887,9 @@ msgstr ""
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr ""
 
+msgid "Select the receiver action when the TV switches away from the receiver input."
+msgstr ""
+
 msgid "Select the refresh rate to be used on the TV."
 msgstr ""
 
@@ -17091,8 +17064,38 @@ msgstr ""
 msgid "Select where the recording should be saved."
 msgstr ""
 
+msgid "Select whether AAC audio tracks should be transcoded."
+msgstr "Zgjidhni nëse pjesët zanore AAC duhet të transkodohen."
+
+msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
+msgstr "Zgjidh nëse gjurmët e zërit AC3 Plus duhet të transkodohen në AC3."
+
+msgid "Select whether AC3 audio tracks should be downmixed to stereo."
+msgstr "Zgjidhni nëse pjesët zanore AC3 duhet të përzihen në stereo."
+
+msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
+msgstr "Zgjidhni nëse pjesët zanore të kanalit DTS duhet të përzihen ose të transkodohen."
+
+msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
+msgstr "Zgjidhni nëse pjesët zanore të kanalit DTS duhet të përzihen në stereo."
+
 msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
 msgstr ""
+
+msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
+msgstr "Zgjidhni nëse pjesët zanore të kanalit WMA Pro duhet të përzihen ose të transkodohen."
+
+msgid "Select whether multichannel audio tracks should be converted to PCM or SPDIF."
+msgstr "Zgjidhni nëse pjesët zanore me shumë kanale duhet të konvertohen në PCM ose SPDIF."
+
+msgid "Select whether multichannel audio tracks should be downmixed to stereo."
+msgstr "Zgjidh nëse binarët e zërit të shumë kanaleve duhet të jenë të pakasuara me stereo."
+
+msgid "Select whether multichannel audio tracks should be output as PCM."
+msgstr "Zgjidhni nëse pjesët zanore me shumë kanale duhet të dalin si PCM."
+
+msgid "Select whether or not to show an icon when a motorized dish is moving."
+msgstr "Zgjidhni nëse do të shfaqet ose jo një ikonë kur një pjatë e motorizuar është në lëvizje."
 
 msgid "Select wireless network"
 msgstr ""
@@ -18419,9 +18422,6 @@ msgid "Show subservice selection"
 msgstr ""
 
 msgid "Show subservices"
-msgstr ""
-
-msgid "Show subservices *"
 msgstr ""
 
 msgid "Show subservices of the active service"
@@ -20500,9 +20500,6 @@ msgstr "Kjo %s %s nuk mund të dekodoj %s streams!"
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Ky medium DVD RW është tashmë i formatuar - riformatimi do të fshijë të gjithë përmbajtjen në disk."
 
-msgid "This option allows you to switch Audio to Bluetooth speakers."
-msgstr "Ky opsion ju lejon të kaloni Audio në Bluetooth speakers."
-
 msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
 msgstr "Kjo ju lejon të ndryshoni madhësinë e shkronjave në lidhje me madhësinë e lëkurës, kështu që 1 rritet me madhësi 1 pikë dhe -1 zvogëlohet me madhësi 1 pikë"
 
@@ -20668,8 +20665,14 @@ msgstr ""
 msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr ""
 
+msgid "This option allows you to set the Auto Volume Level output."
+msgstr ""
+
 msgid "This option allows you to set the layout view (Text or Graphics)."
 msgstr ""
+
+msgid "This option allows you to switch Audio to Bluetooth speakers."
+msgstr "Ky opsion ju lejon të kaloni Audio në Bluetooth speakers."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr ""
@@ -20683,12 +20686,6 @@ msgstr ""
 msgid "This option configures the audio delay value for Bluetooth speakers."
 msgstr ""
 
-msgid "This option selects the general audio delay of Dolby Digital sound tracks."
-msgstr ""
-
-msgid "This option selects the general audio delay of stereo sound tracks."
-msgstr ""
-
 msgid "This option configures the picture sharpness."
 msgstr ""
 
@@ -20696,9 +20693,6 @@ msgid "This option configures the screen resolution in PC output mode."
 msgstr ""
 
 msgid "This option configures the video output mode (or resolution)."
-msgstr ""
-
-msgid "This option allows you to set the Auto Volume Level output."
 msgstr ""
 
 msgid "This option lets you adjust the 3D depth of the OSD."
@@ -20714,6 +20708,12 @@ msgid "This option lets you show the 3D OSD menu option in the Extension Menu sc
 msgstr ""
 
 msgid "This option moves the PVR status display from a separate window into the MoviePlayer InfoBar."
+msgstr ""
+
+msgid "This option selects the general audio delay of Dolby Digital sound tracks."
+msgstr ""
+
+msgid "This option selects the general audio delay of stereo sound tracks."
 msgstr ""
 
 msgid "This option set the level of suppression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
@@ -24135,6 +24135,9 @@ msgstr "Po (mbani ushqim)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Configure whether multichannel audio tracks should be downmixed to stereo."
+#~ msgstr "Konfiguro nëse binarët e zërit të shumë kanaleve duhet të jenë të pakasuara me stereo."
 
 #~ msgid "* Only available if more than one interface is active."
 #~ msgstr "* Disponohet vetëm nëse është aktive më shumë se një ndërfaqe."

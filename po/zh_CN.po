@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-03 09:58+0000\n"
+"POT-Creation-Date: 2026-01-08 09:08+0000\n"
 "PO-Revision-Date: 2026-01-04 15:06+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
@@ -4126,36 +4126,6 @@ msgstr "选择画中画激活时按钮“0”要执行的操作。"
 msgid "Choose where to mount your devices to:"
 msgstr "选择挂载设备到："
 
-msgid "Select whether AAC audio tracks should be transcoded."
-msgstr "选择是否对 AAC 音轨进行转码。"
-
-msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
-msgstr "选择是否将 AC3+ 音轨转码为AC3。"
-
-msgid "Select whether AC3 audio tracks should be downmixed to stereo."
-msgstr "选择是否将 AC3 音轨缩混为立体声。"
-
-msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
-msgstr "选择 DTS 音轨是应缩混还是转码。"
-
-msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
-msgstr "选择 DTS 音轨是否缩混为立体声。"
-
-msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
-msgstr "选择 WMA Pro 音轨是缩混还是转码。"
-
-msgid "Select whether multichannel audio tracks should be converted to PCM or SPDIF."
-msgstr "选择是将多声道音轨转换为 PCM 还是 SPDIF。"
-
-msgid "Select whether multichannel audio tracks should be downmixed to stereo."
-msgstr "选择多声道音轨是否应缩混为立体声。"
-
-msgid "Select whether multichannel audio tracks should be output as PCM."
-msgstr "选择是否应将多声道音轨作为 PCM 输出。"
-
-msgid "Select whether or not to show an icon when a motorized dish is moving."
-msgstr "极轴移动时选择是否显示图标。"
-
 msgid "Choose which level of menu/setting's to display. 'Expert'-level shows all items."
 msgstr "选择要显示的 菜单/设置 级别。'专家'级别显示所有项目。"
 
@@ -4826,9 +4796,6 @@ msgstr "配置等宽字体或可扩展 TrueType 字体是否用于图文电视�
 
 msgid "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel."
 msgstr "配置是否将首选列表中的另一个调谐器分配给录制内容，而不是共享正在接收相同直播电视频道的调谐器。"
-
-msgid "Configure whether multichannel audio tracks should be downmixed to stereo."
-msgstr "配置多声道音轨是否要缩混为立体声。"
 
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (like in EPGrefresh)."
 msgstr "配置“录制”符号（在显示皮肤和 LCD 皮肤中）是仅对真正录制可见，还是对流媒体和伪录制可见（例如，EPGrefresh）。"
@@ -9196,9 +9163,6 @@ msgstr "处理 Python 崩溃"
 msgid "Handle Standby from TV"
 msgstr "处理来自电视的待机"
 
-msgid "Process action from TV"
-msgstr "处理来自电视的输入"
-
 msgid "Handle wake up from TV"
 msgstr "处理来自电视的唤醒"
 
@@ -12708,6 +12672,9 @@ msgstr "编号和频道图标"
 msgid "Number of IP Addresses"
 msgstr "IP 地址数"
 
+msgid "Number of Slots"
+msgstr ""
+
 msgid "Number of digits in service number"
 msgstr "频道编号位数"
 
@@ -14343,6 +14310,9 @@ msgstr "处理红色按钮动作"
 
 msgid "Process YELLOW button action"
 msgstr "处理黄色按钮动作"
+
+msgid "Process action from TV"
+msgstr "处理来自电视的输入"
 
 msgid "Processing"
 msgstr "处理中"
@@ -16968,6 +16938,9 @@ msgstr "选择上一个频道同时关闭扫描器并退出所有菜单"
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "选择您的 SCR 设备使用的协议。 选项有'SCR Unicable'（Unicable）或'SCR JESS'（JESS，也称为Unicable II）。"
 
+msgid "Select the receiver action when the TV switches away from the receiver input."
+msgstr ""
+
 msgid "Select the refresh rate to be used on the TV."
 msgstr "选择要在电视上使用的刷新率。"
 
@@ -17145,8 +17118,38 @@ msgstr "选择希望 上/下 按钮激活的功能。"
 msgid "Select where the recording should be saved."
 msgstr "选择录制保存的位置。"
 
+msgid "Select whether AAC audio tracks should be transcoded."
+msgstr "选择是否对 AAC 音轨进行转码。"
+
+msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
+msgstr "选择是否将 AC3+ 音轨转码为AC3。"
+
+msgid "Select whether AC3 audio tracks should be downmixed to stereo."
+msgstr "选择是否将 AC3 音轨缩混为立体声。"
+
+msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
+msgstr "选择 DTS 音轨是应缩混还是转码。"
+
+msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
+msgstr "选择 DTS 音轨是否缩混为立体声。"
+
 msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
 msgstr "选择DNS的模式。"
+
+msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
+msgstr "选择 WMA Pro 音轨是缩混还是转码。"
+
+msgid "Select whether multichannel audio tracks should be converted to PCM or SPDIF."
+msgstr "选择是将多声道音轨转换为 PCM 还是 SPDIF。"
+
+msgid "Select whether multichannel audio tracks should be downmixed to stereo."
+msgstr "选择多声道音轨是否应缩混为立体声。"
+
+msgid "Select whether multichannel audio tracks should be output as PCM."
+msgstr "选择是否应将多声道音轨作为 PCM 输出。"
+
+msgid "Select whether or not to show an icon when a motorized dish is moving."
+msgstr "极轴移动时选择是否显示图标。"
 
 msgid "Select wireless network"
 msgstr "选择无线网络"
@@ -18501,9 +18504,6 @@ msgstr "显示子频道选择"
 
 msgid "Show subservices"
 msgstr "显示子频道"
-
-msgid "Show subservices *"
-msgstr "显示子频道*"
 
 msgid "Show subservices of the active service"
 msgstr "显示活动频道的子频道"
@@ -20612,9 +20612,6 @@ msgstr "此 %s %s 不能解码 %s 流！"
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "此 DVD RW 介质已经格式化－重新格式化将擦除光盘上的所有内容。"
 
-msgid "This option allows you to switch Audio to Bluetooth speakers."
-msgstr "此选项允许您显示菜单路径。"
-
 msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
 msgstr "这允许您更改相对于皮肤大小的字体大小，即 1 增加 1 磅大小，-1 减少 1 磅大小。"
 
@@ -20780,8 +20777,14 @@ msgstr "此选项允许您启用 3D 环绕声。"
 msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr "此选项允许您为不同的信箱模式分辨率设置偏移值。"
 
+msgid "This option allows you to set the Auto Volume Level output."
+msgstr "此选项配置 让您设置自动音量级别。"
+
 msgid "This option allows you to set the layout view (Text or Graphics)."
 msgstr "此选项允许您设置布局视图（文本或图形）。"
+
+msgid "This option allows you to switch Audio to Bluetooth speakers."
+msgstr "此选项允许您显示菜单路径。"
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "此选项允许您将SNR作为百分比（并非所有接收机都支持此功能）。"
@@ -20795,12 +20798,6 @@ msgstr "此选项允许您并排浏览旧的和新的设置。"
 msgid "This option configures the audio delay value for Bluetooth speakers."
 msgstr "此选项配置立体声音轨的常规音频延迟。"
 
-msgid "This option selects the general audio delay of Dolby Digital sound tracks."
-msgstr "此选项配置杜比数码声轨的常规音频延迟。"
-
-msgid "This option selects the general audio delay of stereo sound tracks."
-msgstr "此选项配置立体声音轨的常规音频延迟。"
-
 msgid "This option configures the picture sharpness."
 msgstr "此选项配置图像锐度。"
 
@@ -20809,9 +20806,6 @@ msgstr "此选项配置电脑输出模式的屏幕分辨率。"
 
 msgid "This option configures the video output mode (or resolution)."
 msgstr "此选项配置视频输出模式（或分辨率）。"
-
-msgid "This option allows you to set the Auto Volume Level output."
-msgstr "此选项配置 让您设置自动音量级别。"
 
 msgid "This option lets you adjust the 3D depth of the OSD."
 msgstr "此选项可让您调整 OSD 的 3D 深度。"
@@ -20827,6 +20821,12 @@ msgstr "此选项可让您在扩展菜单屏幕中显示 3D OSD 菜单选项。"
 
 msgid "This option moves the PVR status display from a separate window into the MoviePlayer InfoBar."
 msgstr "此选项将 PVR 状态显示从单独的窗口移动到 MoviePlayer 信息栏中。"
+
+msgid "This option selects the general audio delay of Dolby Digital sound tracks."
+msgstr "此选项配置杜比数码声轨的常规音频延迟。"
+
+msgid "This option selects the general audio delay of stereo sound tracks."
+msgstr "此选项配置立体声音轨的常规音频延迟。"
 
 msgid "This option set the level of suppression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
 msgstr "此选项设置蚊式噪声的抑制级别（蚊式噪声是强压缩导致的随机混叠）。 显然，这是以牺牲图片细节为代价的。"
@@ -24322,6 +24322,12 @@ msgstr "是（保留订阅源）"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Configure whether multichannel audio tracks should be downmixed to stereo."
+#~ msgstr "配置多声道音轨是否要缩混为立体声。"
+
+#~ msgid "Show subservices *"
+#~ msgstr "显示子频道*"
 
 #~ msgid "* Only available if more than one interface is active."
 #~ msgstr "* 仅当有多个网卡处于活动状态时可用。"

@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-03 09:58+0000\n"
-"PO-Revision-Date: 2026-01-08 00:03+0000\n"
+"POT-Creation-Date: 2026-01-08 09:08+0000\n"
+"PO-Revision-Date: 2026-01-08 13:53+0000\n"
 "Last-Translator: pololoko111 <peciek83@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -4171,36 +4171,6 @@ msgstr "Wybierz przycisk '0 ', kiedy PIP jest aktywny."
 msgid "Choose where to mount your devices to:"
 msgstr "Wybierz miejsce montażu urządzeń:"
 
-msgid "Select whether AAC audio tracks should be transcoded."
-msgstr "Wybierz, czy transkodować ścieżkę dźwiękową AAC."
-
-msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
-msgstr "Wybierz, czy ścieżki dźwiękowe AC3 Plus mają zostać przekodowane do AC3."
-
-msgid "Select whether AC3 audio tracks should be downmixed to stereo."
-msgstr "Wybierz, czy ścieżki dźwiękowe AC3 mają zostać zmiksowane do wersji stereo."
-
-msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
-msgstr "Wybierz, czy ścieżki dźwiękowe kanału DTS mają być miksowane w dół lub transkodowane."
-
-msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
-msgstr "Wybierz, czy ścieżki dźwiękowe kanału DTS mają być miksowane do wersji stereo."
-
-msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
-msgstr "Wybierz, czy ścieżki dźwiękowe kanałów WMA Pro mają być miksowane w dół lub transkodowane."
-
-msgid "Select whether multichannel audio tracks should be converted to PCM or SPDIF."
-msgstr "Wybierz, czy wielokanałowe ścieżki dźwiękowe mają być konwertowane na PCM czy SPDIF."
-
-msgid "Select whether multichannel audio tracks should be downmixed to stereo."
-msgstr "Wybierz, czy ścieżki dźwiękowe wielokanałowe mają zostać zmiksowane do wersji stereo."
-
-msgid "Select whether multichannel audio tracks should be output as PCM."
-msgstr "Wybierz, czy ścieżki dźwiękowe wielokanałowe mają być odtwarzane jako PCM."
-
-msgid "Select whether or not to show an icon when a motorized dish is moving."
-msgstr "Wybierz, czy pokazywać ikonę w czasie ruchu obrotnicy."
-
 msgid "Choose which level of menu/setting's to display. 'Expert'-level shows all items."
 msgstr "Wybierz poziom dostępu do menu konfiguracyjnego. Poziom 'Expert' daje dostęp do wszystkich opcji."
 
@@ -4874,9 +4844,6 @@ msgstr "Skonfiguruj, czy do telegazety używana jest stała czcionka lub skalowa
 
 msgid "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel."
 msgstr "Skonfiguruj, czy do nagrań ma zostać przydzielony inny tuner z listy preferowanych, zamiast udostępniać tuner, który jest już aktywny i odbiera ten sam kanał telewizyjny na żywo."
-
-msgid "Configure whether multichannel audio tracks should be downmixed to stereo."
-msgstr "Skonfiguruj, czy ścieżki dźwiękowe wielokanałowe mają być miksowane do wersji stereo."
 
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (like in EPGrefresh)."
 msgstr "Skonfiguruj, czy symbol „nagrywania” (w skórce wyświetlacza i skórce wyświetlacza LCD) ma być widoczny tylko dla rzeczywistych nagrań, czy także dla nagrań strumieniowych i pseudo (np. EPGrefresh)."
@@ -9247,9 +9214,6 @@ msgstr "Awaria obsługi Pythona"
 msgid "Handle Standby from TV"
 msgstr "Obsługa trybu czuwania z telewizora"
 
-msgid "Process action from TV"
-msgstr "Obsługa danych wejściowych z telewizora"
-
 msgid "Handle wake up from TV"
 msgstr "Obsługuje komendę 'budzenia' z TV"
 
@@ -10685,7 +10649,7 @@ msgid "Latin"
 msgstr "Łacina"
 
 msgid "Latitude"
-msgstr "Szerokość"
+msgstr "Szerokość geograficzna"
 
 msgid "Latvia"
 msgstr "Łotwa"
@@ -12762,6 +12726,9 @@ msgstr "Numer i pikon"
 msgid "Number of IP Addresses"
 msgstr "Liczba adresów IP"
 
+msgid "Number of Slots"
+msgstr "Liczba slotów"
+
 msgid "Number of digits in service number"
 msgstr "Liczba cyfr w numerze kanału"
 
@@ -14400,6 +14367,9 @@ msgstr "Przetwórz akcję CZERWONEGO przycisku"
 msgid "Process YELLOW button action"
 msgstr "Przetwórz akcję ŻÓŁTEGO przycisku"
 
+msgid "Process action from TV"
+msgstr "Akcja procesu z TV"
+
 msgid "Processing"
 msgstr "Przetwarzanie"
 
@@ -14964,7 +14934,7 @@ msgid "Refresh ZeroTier status information"
 msgstr "Odśwież informacje o statusie ZeroTier"
 
 msgid "Refresh every"
-msgstr "Odśwież co (w godz.)"
+msgstr "Odśwież co"
 
 msgid "Refresh rate"
 msgstr "Częstotliwość odświeżania"
@@ -15863,7 +15833,7 @@ msgid "Save directory on EXIT"
 msgstr "zapisz ostatni katalog przy wyjściu"
 
 msgid "Save every"
-msgstr "Zapisz co (w godzinach)"
+msgstr "Zapisz co"
 
 #, python-format
 msgid "Save image as '%s'"
@@ -17027,6 +16997,9 @@ msgstr "Wybierz poprzednią usługę, zamknij skaner i wyjdź ze wszystkich menu
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "Wybierz protokół używany przez urządzenie SCR. Dostępne opcje to „SCR Unicable” (Unicable) lub „SCR JESS” (JESS, znany również jako Unicable II)."
 
+msgid "Select the receiver action when the TV switches away from the receiver input."
+msgstr "Wybierz akcję odbiornika, która ma zostać wykonana, gdy telewizor przełączy się z wejścia odbiornika."
+
 msgid "Select the refresh rate to be used on the TV."
 msgstr "Wybierz częstotliwość odświeżania dla TV."
 
@@ -17204,8 +17177,38 @@ msgstr "Wybierz, co chcesz aktywować przyciskiem W górę/W dół."
 msgid "Select where the recording should be saved."
 msgstr "Wybierz miejsce, w którym ma być zapisane nagranie."
 
+msgid "Select whether AAC audio tracks should be transcoded."
+msgstr "Wybierz, czy ścieżki dźwiękowe AAC mają być transkodowane."
+
+msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
+msgstr "Wybierz, czy ścieżki dźwiękowe AC3 Plus mają zostać przekodowane do AC3."
+
+msgid "Select whether AC3 audio tracks should be downmixed to stereo."
+msgstr "Wybierz, czy ścieżki dźwiękowe AC3 mają zostać zmiksowane do wersji stereo."
+
+msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
+msgstr "Wybierz, czy ścieżki dźwiękowe kanału DTS mają być miksowane w dół lub transkodowane."
+
+msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
+msgstr "Wybierz, czy ścieżki dźwiękowe kanału DTS mają być miksowane do wersji stereo."
+
 msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
 msgstr "Wybierz, czy chcesz używać protokołu IPv4, IPv6, czy obu. Jeśli oba są włączone, wybierz, który protokół ma być preferowany."
+
+msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
+msgstr "Wybierz, czy ścieżki dźwiękowe kanałów WMA Pro mają być miksowane w dół lub transkodowane."
+
+msgid "Select whether multichannel audio tracks should be converted to PCM or SPDIF."
+msgstr "Wybierz, czy wielokanałowe ścieżki dźwiękowe mają być konwertowane na PCM czy SPDIF."
+
+msgid "Select whether multichannel audio tracks should be downmixed to stereo."
+msgstr "Wybierz, czy ścieżki dźwiękowe wielokanałowe mają zostać zmiksowane do wersji stereo."
+
+msgid "Select whether multichannel audio tracks should be output as PCM."
+msgstr "Wybierz, czy ścieżki dźwiękowe wielokanałowe mają być odtwarzane jako PCM."
+
+msgid "Select whether or not to show an icon when a motorized dish is moving."
+msgstr "Wybierz, czy ikona ma być wyświetlana, gdy antena satelitarna jest w ruchu."
 
 msgid "Select wireless network"
 msgstr "Wybierz sieć bezprzewodową"
@@ -17694,7 +17697,7 @@ msgid "Set time options"
 msgstr "Ustaw opcje czasu"
 
 msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
-msgstr "Jeśli ta opcja jest wyłączona, znaki podkreślenia w nazwach plików i katalogów nie są wyświetlane i są zastępowane spacjami."
+msgstr "Ustaw na 'Wyłączone', aby zastąpić znaki podkreślenia '_' w nazwach plików i katalogów spacjami."
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby before shutting down."
 msgstr "Ustaw na „Włączone”, aby odszyfrować zakodowane nagrania w kolejce w trybie czuwania przed wyłączeniem."
@@ -18053,7 +18056,7 @@ msgid "Show InfoBar"
 msgstr "Pokaż pasek informacyjny"
 
 msgid "Show InfoBar lite"
-msgstr "Pokaż okrojony pasek informacyjny *"
+msgstr "Pokaż okrojony pasek informacyjny "
 
 msgid "Show InfoBar on channel change"
 msgstr "Pokaż pasek informacyjny podczas zmiany kanału"
@@ -18561,9 +18564,6 @@ msgstr "Pokaż wybór subserwisów"
 msgid "Show subservices"
 msgstr "Pokaż subserwisy"
 
-msgid "Show subservices *"
-msgstr "Pokaż subserwisy *"
-
 msgid "Show subservices of the active service"
 msgstr "Pokaż subserwisy aktywnej usługi"
 
@@ -18619,7 +18619,7 @@ msgid "Show two lines per entry"
 msgstr "Pokaż dwie linie na liście kanałów"
 
 msgid "Show underscore characters"
-msgstr "Pokaż znaki podkreślenia w nazwach plików"
+msgstr "Pokaż znaki podkreślenia"
 
 msgid "Show unknown Videoresolution as next higher or as highest screen resolution."
 msgstr "Pokaż nieznaną rozdzielczość wideo jako następną wyższą lub najwyższą rozdzielczość ekranu."
@@ -20263,10 +20263,10 @@ msgid "The %s %s is shutting down. Please wait..."
 msgstr "%s %s jest wyłączany. Proszę czekać..."
 
 msgid "The %s %s reads the stored EPG data every selected number of hours."
-msgstr "%s %s odczytuje zapisane dane EPG co (godz.)."
+msgstr "%s %s odczytuje zapisane dane EPG co wybraną liczbę godzin."
 
 msgid "The %s %s stores the EPG data every selected number of hours."
-msgstr "%s %s przechowuje dane EPG co (godz.)."
+msgstr "%s %s zapisuje dane EPG co wybraną liczbę godzin."
 
 #, python-format
 msgid "The %s %s will reboot within 1 seconds."
@@ -20677,9 +20677,6 @@ msgstr "Ten %s %s nie może zdekodować %s strumienia!"
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Nosnik DVD RW zawiera dane- jego sformatowanie spowoduje utrate danych na nosniku."
 
-msgid "This option allows you to switch Audio to Bluetooth speakers."
-msgstr "Ta opcja umożliwia przełączenie dźwięku na głośniki Bluetooth."
-
 msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
 msgstr "Pozwala to zmienić rozmiar czcionki w zależności od rozmiaru skóry, więc 1 zwiększa rozmiar o 1 punkt, a -1 zmniejsza rozmiar o 1 punkt."
 
@@ -20845,8 +20842,14 @@ msgstr "Ta opcja umożliwia włączenie dźwięku przestrzennego 3D."
 msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr "Ta opcja umożliwia ustawienie wartości przesunięcia dla różnych rozdzielczości Letterbox."
 
+msgid "This option allows you to set the Auto Volume Level output."
+msgstr "Opcja ta umożliwia ustawienie automatycznego poziomu głośności."
+
 msgid "This option allows you to set the layout view (Text or Graphics)."
 msgstr "Ta opcja pozwala ustawić widok układu (tekst lub grafika)."
+
+msgid "This option allows you to switch Audio to Bluetooth speakers."
+msgstr "Ta opcja umożliwia przełączenie dźwięku na głośniki Bluetooth."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "Ta opcja pozwala SNR pokazać jako procentowe (nie wszystkie odbiorniki mają wsparcie )."
@@ -20860,12 +20863,6 @@ msgstr "Ta opcja pozwala Ci zobaczyć stare i nowe ustawienia obok siebie."
 msgid "This option configures the audio delay value for Bluetooth speakers."
 msgstr "Ta opcja konfiguruje ogólne opóźnienie dźwięku dla głośników Bluetooth."
 
-msgid "This option selects the general audio delay of Dolby Digital sound tracks."
-msgstr "Opcja ta konfiguruje ogólne opóźnienie dźwięku w ścieżkach dźwiękowych Dolby Digital."
-
-msgid "This option selects the general audio delay of stereo sound tracks."
-msgstr "Opcja ta konfiguruje ogólne opóźnienie dźwięku w ścieżkach dźwiękowych stereo."
-
 msgid "This option configures the picture sharpness."
 msgstr "Ta opcja ustawia ostrość obrazu."
 
@@ -20874,9 +20871,6 @@ msgstr "Ta opcja konfiguruje rozdzielczość ekranu w trybie wyjścia PC."
 
 msgid "This option configures the video output mode (or resolution)."
 msgstr "Ta opcja konfiguruje tryb wyjścia wideo (lub rozdzielczości)."
-
-msgid "This option allows you to set the Auto Volume Level output."
-msgstr "Ta opcja konfiguruje poziom głośności w trybie auto."
 
 msgid "This option lets you adjust the 3D depth of the OSD."
 msgstr "Ta opcja umożliwia dostosowanie głębi 3D menu OSD."
@@ -20892,6 +20886,12 @@ msgstr "Ta opcja umożliwia wyświetlenie opcji menu OSD 3D na ekranie Menu rozs
 
 msgid "This option moves the PVR status display from a separate window into the MoviePlayer InfoBar."
 msgstr "Opcja przesuwa stan PVR z oddzielnego okna na pasek informacyjny Odtwarzacza filmów."
+
+msgid "This option selects the general audio delay of Dolby Digital sound tracks."
+msgstr "Opcja ta konfiguruje ogólne opóźnienie dźwięku w ścieżkach dźwiękowych Dolby Digital."
+
+msgid "This option selects the general audio delay of stereo sound tracks."
+msgstr "Opcja ta konfiguruje ogólne opóźnienie dźwięku w ścieżkach dźwiękowych stereo."
 
 msgid "This option set the level of suppression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
 msgstr "Ta opcja ustawia poziom tłumienia szumów (Szumy są losowo wygładzane w wyniku silnej kompresji). Oczywiście odbywa się to kosztem szczegółów obrazu."
@@ -24388,6 +24388,12 @@ msgstr "tak (zachować feed'y)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Configure whether multichannel audio tracks should be downmixed to stereo."
+#~ msgstr "Skonfiguruj, czy ścieżki dźwiękowe wielokanałowe mają być miksowane do wersji stereo."
+
+#~ msgid "Show subservices *"
+#~ msgstr "Pokaż subserwisy *"
 
 #~ msgid "Network name"
 #~ msgstr "Nazwa sieci"

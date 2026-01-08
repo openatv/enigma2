@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-03 09:58+0000\n"
+"POT-Creation-Date: 2026-01-08 09:08+0000\n"
 "PO-Revision-Date: 2024-01-13 10:34+0000\n"
 "Last-Translator: Reza Almanda <rezaalmanda27@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/id/>\n"
@@ -4320,36 +4320,6 @@ msgstr "Choose what you want the button '0' to do when PiP is active."
 msgid "Choose where to mount your devices to:"
 msgstr "Choose where to mount your devices to:"
 
-msgid "Select whether AAC audio tracks should be transcoded."
-msgstr "Select whether AAC audio tracks should be transcoded."
-
-msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
-msgstr "Select whether AC3 Plus audio tracks should be transcoded to AC3."
-
-msgid "Select whether AC3 audio tracks should be downmixed to stereo."
-msgstr "Select whether AC3 audio tracks should be downmixed to stereo."
-
-msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
-msgstr "Select whether DTS channel audio tracks should be downmixed or transcoded."
-
-msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
-msgstr "Select whether DTS channel audio tracks should be downmixed to stereo."
-
-msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
-msgstr "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
-
-msgid "Select whether multichannel audio tracks should be converted to PCM or SPDIF."
-msgstr "Select whether multichannel audio tracks should be converted to PCM or SPDIF."
-
-msgid "Select whether multichannel audio tracks should be downmixed to stereo."
-msgstr "Select whether multichannel audio tracks should be downmixed to stereo."
-
-msgid "Select whether multichannel audio tracks should be output as PCM."
-msgstr "Select whether multichannel audio tracks should be output as PCM."
-
-msgid "Select whether or not to show an icon when a motorized dish is moving."
-msgstr "Select whether or not to show an icon when a motorized dish is moving."
-
 msgid "Choose which level of menu/setting's to display. 'Expert'-level shows all items."
 msgstr "Choose which level of menu/setting's to display. 'Expert'-level shows all items."
 
@@ -5025,10 +4995,6 @@ msgstr "Configure whether a fixed font or a scalable TrueType font is used for t
 
 msgid "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel."
 msgstr "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel."
-
-#, fuzzy
-msgid "Configure whether multichannel audio tracks should be downmixed to stereo."
-msgstr "Select whether multichannel audio tracks should be downmixed to stereo."
 
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (like in EPGrefresh)."
 msgstr "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (like in EPGrefresh)."
@@ -9465,10 +9431,6 @@ msgstr ""
 msgid "Handle Standby from TV"
 msgstr "Handle Standby from TV"
 
-#, fuzzy
-msgid "Process action from TV"
-msgstr "Handle wake up from TV"
-
 msgid "Handle wake up from TV"
 msgstr "Handle wake up from TV"
 
@@ -13082,6 +13044,9 @@ msgstr ""
 msgid "Number of IP Addresses"
 msgstr ""
 
+msgid "Number of Slots"
+msgstr ""
+
 msgid "Number of digits in service number"
 msgstr "Number of digits in service number"
 
@@ -14764,6 +14729,10 @@ msgstr ""
 
 msgid "Process YELLOW button action"
 msgstr ""
+
+#, fuzzy
+msgid "Process action from TV"
+msgstr "Handle wake up from TV"
 
 msgid "Processing"
 msgstr ""
@@ -17428,6 +17397,9 @@ msgstr ""
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr ""
 
+msgid "Select the receiver action when the TV switches away from the receiver input."
+msgstr ""
+
 msgid "Select the refresh rate to be used on the TV."
 msgstr ""
 
@@ -17604,8 +17576,38 @@ msgstr "Select what you want the UP/DOWN button to activate."
 msgid "Select where the recording should be saved."
 msgstr ""
 
+msgid "Select whether AAC audio tracks should be transcoded."
+msgstr "Select whether AAC audio tracks should be transcoded."
+
+msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
+msgstr "Select whether AC3 Plus audio tracks should be transcoded to AC3."
+
+msgid "Select whether AC3 audio tracks should be downmixed to stereo."
+msgstr "Select whether AC3 audio tracks should be downmixed to stereo."
+
+msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
+msgstr "Select whether DTS channel audio tracks should be downmixed or transcoded."
+
+msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
+msgstr "Select whether DTS channel audio tracks should be downmixed to stereo."
+
 msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
 msgstr ""
+
+msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
+msgstr "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
+
+msgid "Select whether multichannel audio tracks should be converted to PCM or SPDIF."
+msgstr "Select whether multichannel audio tracks should be converted to PCM or SPDIF."
+
+msgid "Select whether multichannel audio tracks should be downmixed to stereo."
+msgstr "Select whether multichannel audio tracks should be downmixed to stereo."
+
+msgid "Select whether multichannel audio tracks should be output as PCM."
+msgstr "Select whether multichannel audio tracks should be output as PCM."
+
+msgid "Select whether or not to show an icon when a motorized dish is moving."
+msgstr "Select whether or not to show an icon when a motorized dish is moving."
 
 msgid "Select wireless network"
 msgstr "Select wireless network"
@@ -18982,9 +18984,6 @@ msgid "Show subservice selection"
 msgstr "Show subservice selection"
 
 msgid "Show subservices"
-msgstr ""
-
-msgid "Show subservices *"
 msgstr ""
 
 msgid "Show subservices of the active service"
@@ -21103,10 +21102,6 @@ msgstr "This %s %s cannot decode %s streams!"
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 
-#, fuzzy
-msgid "This option allows you to switch Audio to Bluetooth speakers."
-msgstr "This option allows you to Power Off the display."
-
 msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
 msgstr "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
 
@@ -21282,8 +21277,15 @@ msgstr "This option allows you to enable 3D Surround Sound."
 msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr ""
 
+msgid "This option allows you to set the Auto Volume Level output."
+msgstr "This option allows you to set the Auto Volume Level output."
+
 msgid "This option allows you to set the layout view (Text or Graphics)."
 msgstr "This option allows you to set the layout view (Text or Graphics)."
+
+#, fuzzy
+msgid "This option allows you to switch Audio to Bluetooth speakers."
+msgstr "This option allows you to Power Off the display."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "This option allows you to the SNR as a percentage (not all receivers support this)."
@@ -21299,12 +21301,6 @@ msgstr "This option allows you to view the old and new settings side by side."
 msgid "This option configures the audio delay value for Bluetooth speakers."
 msgstr "This option selects the general audio delay of stereo sound tracks."
 
-msgid "This option selects the general audio delay of Dolby Digital sound tracks."
-msgstr "This option selects the general audio delay of Dolby Digital sound tracks."
-
-msgid "This option selects the general audio delay of stereo sound tracks."
-msgstr "This option selects the general audio delay of stereo sound tracks."
-
 msgid "This option configures the picture sharpness."
 msgstr "This option configures the picture sharpness."
 
@@ -21313,9 +21309,6 @@ msgstr "This option configures the screen resolution in PC output mode."
 
 msgid "This option configures the video output mode (or resolution)."
 msgstr "This option configures the video output mode (or resolution)."
-
-msgid "This option allows you to set the Auto Volume Level output."
-msgstr "This option allows you to set the Auto Volume Level output."
 
 msgid "This option lets you adjust the 3D depth of the OSD."
 msgstr "This option lets you adjust the 3D depth of the OSD."
@@ -21331,6 +21324,12 @@ msgstr "This option lets you show the 3D OSD menu option in the Extension Menu s
 
 msgid "This option moves the PVR status display from a separate window into the MoviePlayer InfoBar."
 msgstr "This option moves the PVR status display from a separate window into the MoviePlayer InfoBar."
+
+msgid "This option selects the general audio delay of Dolby Digital sound tracks."
+msgstr "This option selects the general audio delay of Dolby Digital sound tracks."
+
+msgid "This option selects the general audio delay of stereo sound tracks."
+msgstr "This option selects the general audio delay of stereo sound tracks."
 
 msgid "This option set the level of suppression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
 msgstr "This option set the level of suppression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
@@ -24848,6 +24847,10 @@ msgstr "yes (keep feeds)"
 
 msgid "®"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Configure whether multichannel audio tracks should be downmixed to stereo."
+#~ msgstr "Select whether multichannel audio tracks should be downmixed to stereo."
 
 #~ msgid "* Only available if more than one interface is active."
 #~ msgstr "* Hanya tersedia jika lebih dari satu antarmuka aktif."
