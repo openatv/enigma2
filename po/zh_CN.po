@@ -1,13 +1,13 @@
 # lexlong2007 <lexlong2007@163.com>, 2022.
 # tzyy1970 <haotzyy1970@yahoo.com>, 2022.
-# Mark Stone <grystyle@gmail.com>, 2023, 2024, 2025, 2026.
+# Mark Stone <grystyle@gmail.com>, 2023, 2024, 2025.
 # Johnspp93 <Johnspp93@users.noreply.hosted.weblate.org>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-03 09:58+0000\n"
-"PO-Revision-Date: 2026-01-04 15:06+0000\n"
+"POT-Creation-Date: 2026-01-02 18:38+0000\n"
+"PO-Revision-Date: 2025-12-28 11:50+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -4126,31 +4126,31 @@ msgstr "选择画中画激活时按钮“0”要执行的操作。"
 msgid "Choose where to mount your devices to:"
 msgstr "选择挂载设备到："
 
-msgid "Select whether AAC audio tracks should be transcoded."
+msgid "Choose whether AAC sound tracks should be transcoded."
 msgstr "选择是否对 AAC 音轨进行转码。"
 
-msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
+msgid "Choose whether AC3 Plus sound tracks should be transcoded to AC3."
 msgstr "选择是否将 AC3+ 音轨转码为AC3。"
 
-msgid "Select whether AC3 sound tracks should be downmixed to stereo."
+msgid "Choose whether AC3 sound tracks should be downmixed to stereo."
 msgstr "选择是否将 AC3 音轨缩混为立体声。"
 
-msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
+msgid "Choose whether DTS channel sound tracks should be downmixed or transcoded."
 msgstr "选择 DTS 音轨是应缩混还是转码。"
 
-msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
+msgid "Choose whether DTS channel sound tracks should be downmixed to stereo."
 msgstr "选择 DTS 音轨是否缩混为立体声。"
 
-msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
+msgid "Choose whether WMA Pro channel sound tracks should be downmixed or transcoded."
 msgstr "选择 WMA Pro 音轨是缩混还是转码。"
 
-msgid "Select whether multi channel audio tracks should be converted to PCM or SPDIF."
+msgid "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
 msgstr "选择是将多声道音轨转换为 PCM 还是 SPDIF。"
 
-msgid "Select whether multichannel audio tracks should be downmixed to stereo."
+msgid "Choose whether multi channel sound tracks should be downmixed to stereo."
 msgstr "选择多声道音轨是否应缩混为立体声。"
 
-msgid "Select whether multichannel sound tracks should be output as PCM."
+msgid "Choose whether multi channel sound tracks should be output as PCM."
 msgstr "选择是否应将多声道音轨作为 PCM 输出。"
 
 msgid "Choose whether or not to show an icon when a motorized dish is moving."
@@ -4501,7 +4501,7 @@ msgid "Configure front panel LEDs"
 msgstr "配置前面板指示灯"
 
 msgid "Configure how recording filenames are constructed. Standard: Date Time - Channel - Title Very very short: Title Very short: Title - Date Time Short with time: Date Time - Title Short: Date - Title Long: Date Time - Channel - Title - Info."
-msgstr "配置录像文件的命名规则。--标准：日期 时间 - 频道 - 标题 --极简：仅标题 --简略：标题 - 日期 时间 --带时间的短格式：日期 时间 - 标题 --短格式：日期 - 标题 --长格式：日期 时间 - 频道 - 标题 - 附加信息。"
+msgstr "配置录像文件名的生成规则。标准：日期时间 - 频道 - 标题  极简格式：仅标题  短格式（带时间）：标题 - 日期 时间  带时间的短格式：日期 时间 - 标题  短格式：日期 - 标题  完整格式：日期 时间 - 频道 - 标题 - 附加信息。"
 
 msgid "Configure if 'epg.dat' should be saved at all."
 msgstr "配置是否应该保存 epg.dat。"
@@ -4827,7 +4827,7 @@ msgstr "配置等宽字体或可扩展 TrueType 字体是否用于图文电视�
 msgid "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel."
 msgstr "配置是否将首选列表中的另一个调谐器分配给录制内容，而不是共享正在接收相同直播电视频道的调谐器。"
 
-msgid "Select whether multichannel audio tracks should be downmixed to stereo."
+msgid "Configure whether multi channel sound tracks should be downmixed to stereo."
 msgstr "配置多声道音轨是否要缩混为立体声。"
 
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (like in EPGrefresh)."
@@ -6581,7 +6581,7 @@ msgid "Do you really want to stop and delete the timer '%s'?"
 msgstr "真的要停止并删除定时器“%s”吗？"
 
 msgid "Do you really want to trim the file system?"
-msgstr "真的要修剪文件系统吗？"
+msgstr ""
 
 #, python-format
 msgid "Do you want change '%s' access mode?"
@@ -7080,7 +7080,7 @@ msgstr "为有源天线启用 5V"
 msgid "Enable Autorecord"
 msgstr "启用自动录制"
 
-msgid "Enable BT audio"
+msgid "Enable BT Audio"
 msgstr "启用蓝牙音频"
 
 msgid "Enable Bouquet Edit"
@@ -7485,7 +7485,7 @@ msgid "Enter text via an attached keyboard"
 msgstr "通过连接的键盘输入文本"
 
 msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
-msgstr "请输入 ZeroTier 网络 ID。该 ID 的长度必须正好为 16 个字符。"
+msgstr ""
 
 msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
 msgstr "输入流媒体错误后要添加到流媒体缓冲区的持续时间。这个额外的缓冲区有助于避免因缓冲区空间不足而导致的进一步流媒体问题。"
@@ -8862,7 +8862,7 @@ msgstr "一般"
 msgid "General AC3 delay"
 msgstr "常规 AC3 延迟"
 
-msgid "General BT audio delay"
+msgid "General BT Audio delay"
 msgstr "常规 AC3 延迟"
 
 msgid "General PCM delay"
@@ -9196,7 +9196,7 @@ msgstr "处理 Python 崩溃"
 msgid "Handle Standby from TV"
 msgstr "处理来自电视的待机"
 
-msgid "Process action from TV"
+msgid "Handle input from TV"
 msgstr "处理来自电视的输入"
 
 msgid "Handle wake up from TV"
@@ -10272,13 +10272,13 @@ msgid "Job overview"
 msgstr "作业概述"
 
 msgid "Join"
-msgstr "加入"
+msgstr ""
 
 msgid "Join or leave the configured ZeroTier network"
-msgstr "加入或离开已配置的 ZeroTier 网络"
+msgstr ""
 
 msgid "Joined"
-msgstr "已加入"
+msgstr ""
 
 msgid "Jordan"
 msgstr "约旦"
@@ -10641,7 +10641,7 @@ msgid "Latvian"
 msgstr "拉脱维亚语"
 
 msgid "Leave"
-msgstr "离开"
+msgstr ""
 
 msgid "Leave DVD player?"
 msgstr "退出 DVD 播放器？"
@@ -12148,11 +12148,17 @@ msgstr "网络菜单"
 msgid "Network mounts"
 msgstr "网络挂载"
 
+msgid "Network name"
+msgstr ""
+
 msgid "Network name (SSID)"
 msgstr "网络名称 （SSID）"
 
 msgid "Network scan"
 msgstr "网络扫描"
+
+msgid "Network status"
+msgstr ""
 
 msgid "Network storage on"
 msgstr "网络存储 -"
@@ -12173,7 +12179,7 @@ msgstr ""
 "按“确定”继续。"
 
 msgid "Network-ID"
-msgstr "网络 ID"
+msgstr ""
 
 msgid "Network:"
 msgstr "网络："
@@ -12659,7 +12665,7 @@ msgstr ""
 "路径： %s"
 
 msgid "Not joined. Press Yellow to join."
-msgstr "未加入。按黄色键加入。"
+msgstr ""
 
 msgid "Not required"
 msgstr "不需要"
@@ -14905,9 +14911,9 @@ msgid "Refresh"
 msgstr "刷新"
 
 msgid "Refresh ZeroTier status information"
-msgstr "刷新 ZeroTier 状态信息"
+msgstr ""
 
-msgid "Refresh every"
+msgid "Refresh every x hours"
 msgstr "刷新每（小时）"
 
 msgid "Refresh rate"
@@ -15348,9 +15354,6 @@ msgstr "用当前设置重启网络"
 
 msgid "Restart test"
 msgstr "重启测试"
-
-msgid "Restart your network connection and interfaces."
-msgstr "重新启动网络连接和接口。"
 
 msgid "Restarting..."
 msgstr "正在重启..."
@@ -15806,7 +15809,7 @@ msgstr "保存并停止"
 msgid "Save directory on EXIT"
 msgstr "退出时保存目录"
 
-msgid "Save every"
+msgid "Save every x hours"
 msgstr "保存每（单位：小时）"
 
 #, python-format
@@ -17365,7 +17368,7 @@ msgid "Service off-air"
 msgstr "频道停播"
 
 msgid "Service online"
-msgstr "在线服务"
+msgstr ""
 
 msgid "Service picons aspect ratio"
 msgstr "频道图标宽高比"
@@ -17596,7 +17599,7 @@ msgstr "设置隐藏信息栏的时间。"
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
 msgstr "设置等待执行关机、待机或重启消息中默认操作的时间，例如用于录制定时器、电源定时器、睡眠定时器等。"
 
-msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
+msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at 0,0 and the bottom right is at 1260,700. Note that the position is the top left of the spinner and not the centre of the spinner."
 msgstr "设置繁忙旋转器的左上角位置。坐标经过缩放，使得左上角位于 (0,0)，右下角位于 (1260,700)。请注意，该位置是旋转器的左上角，而不是旋转器的中心。"
 
 msgid "Set the type of the progress indication in the channel selection screen."
@@ -17634,7 +17637,7 @@ msgstr "将此设置为“是”以按字母顺序对播放列表进行排序。
 msgid "Set time options"
 msgstr "设置时间选项"
 
-msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
+msgid "Set to 'Disabled' to replace underscore characters '_' in file and directory names with spaces."
 msgstr "设置为“禁用”以用空格替换文件和目录名称中的下划线字符“_”。"
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby before shutting down."
@@ -17993,7 +17996,7 @@ msgstr "显示 HDMI 输出分辨率"
 msgid "Show InfoBar"
 msgstr "显示信息栏"
 
-msgid "Show InfoBar lite"
+msgid "Show InfoBar lite *"
 msgstr "显示精简信息栏 *"
 
 msgid "Show InfoBar on channel change"
@@ -20198,10 +20201,10 @@ msgstr "%s %s 的内存容量有限。 需要交换文件来增加可用内存�
 msgid "The %s %s is shutting down. Please wait..."
 msgstr "%s %s 正在关闭。 请稍等..."
 
-msgid "The %s %s reads the stored EPG data every selected number of hours."
+msgid "The %s %s reads the stored EPG data every x hours."
 msgstr "%s %s 读取存储的 EPG 数据每（小时）。"
 
-msgid "The %s %s stores the EPG data every selected number of hours."
+msgid "The %s %s stores the EPG data every x hours."
 msgstr "%s %s 存储 EPG 数据 每（小时）。"
 
 #, python-format
@@ -20612,7 +20615,7 @@ msgstr "此 %s %s 不能解码 %s 流！"
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "此 DVD RW 介质已经格式化－重新格式化将擦除光盘上的所有内容。"
 
-msgid "This option allows you to switch Audio to Bluetooth speakers."
+msgid "This Option allows you to switch Audio to BT Speakers."
 msgstr "此选项允许您显示菜单路径。"
 
 msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
@@ -20792,13 +20795,13 @@ msgstr "此选项允许您使用所有HDMI模式"
 msgid "This option allows you to view the old and new settings side by side."
 msgstr "此选项允许您并排浏览旧的和新的设置。"
 
-msgid "This option configures the audio delay value for Bluetooth speakers."
+msgid "This option configures the general audio delay for BT Speakers."
 msgstr "此选项配置立体声音轨的常规音频延迟。"
 
-msgid "This option selects the general audio delay of Dolby Digital sound tracks."
+msgid "This option configures the general audio delay of Dolby Digital sound tracks."
 msgstr "此选项配置杜比数码声轨的常规音频延迟。"
 
-msgid "This option selects the general audio delay of stereo sound tracks."
+msgid "This option configures the general audio delay of stereo sound tracks."
 msgstr "此选项配置立体声音轨的常规音频延迟。"
 
 msgid "This option configures the picture sharpness."
@@ -20810,7 +20813,7 @@ msgstr "此选项配置电脑输出模式的屏幕分辨率。"
 msgid "This option configures the video output mode (or resolution)."
 msgstr "此选项配置视频输出模式（或分辨率）。"
 
-msgid "This option allows you to set the Auto Volume Level output."
+msgid "This option configures you can set Auto Volume Level."
 msgstr "此选项配置 让您设置自动音量级别。"
 
 msgid "This option lets you adjust the 3D depth of the OSD."
@@ -21423,10 +21426,10 @@ msgid "Tries left:"
 msgstr "剩余尝试次数："
 
 msgid "Trim File System"
-msgstr "修剪文件系统"
+msgstr ""
 
 msgid "Trim File System..."
-msgstr "修剪文件系统..."
+msgstr ""
 
 msgid "Trinidad and Tobago"
 msgstr "特立尼达和多巴哥"
@@ -21551,10 +21554,10 @@ msgid "Tunisia"
 msgstr "突尼斯"
 
 msgid "Tunnel IPv4"
-msgstr "IPv4 隧道"
+msgstr ""
 
 msgid "Tunnel IPv6"
-msgstr "IPv6 隧道"
+msgstr ""
 
 msgid "Turbo"
 msgstr "Turbo"
@@ -22183,9 +22186,6 @@ msgstr "使用当前选择并退出"
 
 msgid "Use the extended List"
 msgstr "使用扩展列表"
-
-msgid "Use the network wizard to configure your Network."
-msgstr "使用网络向导配置网络。"
 
 msgid "Use the wizard to set up basic features"
 msgstr "使用向导设置基本功能"
@@ -23660,13 +23660,16 @@ msgid "Zap+Record next"
 msgstr "换台 + 录制下一个"
 
 msgid "ZeroTier Actions"
-msgstr "ZeroTier 操作"
+msgstr ""
 
-msgid "ZeroTier Settings"
-msgstr "ZeroTier 设置"
+msgid "ZeroTier version"
+msgstr ""
 
 msgid "ZeroTier-One"
-msgstr "ZeroTier-One"
+msgstr ""
+
+msgid "ZeroTier Settings"
+msgstr ""
 
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7旧型号"
@@ -24359,6 +24362,9 @@ msgstr "®"
 #~ msgid "Press yellow to set this interface as the default interface."
 #~ msgstr "请按黄键来设置这个界面为默认界面。"
 
+#~ msgid "Restart your network connection and interfaces."
+#~ msgstr "重新启动网络连接和接口。"
+
 #~ msgid "Set interface as the default Interface"
 #~ msgstr "设置界面为默认界面"
 
@@ -24375,6 +24381,9 @@ msgstr "®"
 
 #~ msgid "Use the network wizard to configure selected network adapter"
 #~ msgstr "使用网络向导配置选择的网络适配器"
+
+#~ msgid "Use the network wizard to configure your Network."
+#~ msgstr "使用网络向导配置网络。"
 
 #~ msgid "white"
 #~ msgstr "白色"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-03 09:58+0000\n"
+"POT-Creation-Date: 2026-01-02 18:38+0000\n"
 "PO-Revision-Date: 2025-08-18 16:27+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
@@ -4163,31 +4163,31 @@ msgstr "Укажите действие для кнопки '0', когда PiP 
 msgid "Choose where to mount your devices to:"
 msgstr "Выберите точку подключения для устройства"
 
-msgid "Select whether AAC audio tracks should be transcoded."
+msgid "Choose whether AAC sound tracks should be transcoded."
 msgstr "Укажите нужно ли перекодировать звук AAC."
 
-msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
+msgid "Choose whether AC3 Plus sound tracks should be transcoded to AC3."
 msgstr "Транскодировать звуковые дорожки AC3-Plus в AC3."
 
-msgid "Select whether AC3 sound tracks should be downmixed to stereo."
+msgid "Choose whether AC3 sound tracks should be downmixed to stereo."
 msgstr "Cледует ли преобразовывать звуковые дорожки AC3 в формат стерео."
 
-msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
+msgid "Choose whether DTS channel sound tracks should be downmixed or transcoded."
 msgstr "Следует ли преобразовывать в стерео или транскодировать многоканальные звуковые дорожки DTS."
 
-msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
+msgid "Choose whether DTS channel sound tracks should be downmixed to stereo."
 msgstr "Следует ли преобразовывать в стерео многоканальные звуковые дорожки DTS."
 
-msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
+msgid "Choose whether WMA Pro channel sound tracks should be downmixed or transcoded."
 msgstr "Следует ли преобразовывать в стерео или транскодировать многоканальные звуковые дорожки WMA Pro."
 
-msgid "Select whether multi channel audio tracks should be converted to PCM or SPDIF."
+msgid "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
 msgstr "Следует ли перекодировать многоканальные звуковые дорожки в PCM или SPDIF."
 
-msgid "Select whether multichannel audio tracks should be downmixed to stereo."
+msgid "Choose whether multi channel sound tracks should be downmixed to stereo."
 msgstr "Следует ли многоканальные звуковые дорожки преобразовывать в стерео."
 
-msgid "Select whether multichannel sound tracks should be output as PCM."
+msgid "Choose whether multi channel sound tracks should be output as PCM."
 msgstr "Следует ли многоканальные звуковые дорожки выводить как PCM."
 
 msgid "Choose whether or not to show an icon when a motorized dish is moving."
@@ -4866,7 +4866,7 @@ msgstr "Выберите шрифт телетекста: масштабируе
 msgid "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel."
 msgstr "Для записи выделить свободный тюнер из списка предпочитаемых или совместно использовать активный."
 
-msgid "Select whether multichannel audio tracks should be downmixed to stereo."
+msgid "Configure whether multi channel sound tracks should be downmixed to stereo."
 msgstr "Преобразовывать ли многоканальные звуковые дорожки в стереозвук."
 
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (like in EPGrefresh)."
@@ -7120,7 +7120,7 @@ msgstr "Включить 5В для антенны"
 msgid "Enable Autorecord"
 msgstr "Включить автозапись"
 
-msgid "Enable BT audio"
+msgid "Enable BT Audio"
 msgstr "Включить BT Аудио"
 
 msgid "Enable Bouquet Edit"
@@ -8904,7 +8904,7 @@ msgstr "Общий"
 msgid "General AC3 delay"
 msgstr "Общая задержка AC3"
 
-msgid "General BT audio delay"
+msgid "General BT Audio delay"
 msgstr "Общая задержка аудио BT"
 
 msgid "General PCM delay"
@@ -9238,7 +9238,7 @@ msgstr "Обрабатывать сбои Python"
 msgid "Handle Standby from TV"
 msgstr "Уйти в режим ожидания с ТВ"
 
-msgid "Process action from TV"
+msgid "Handle input from TV"
 msgstr "Обработка ввода с телевизора"
 
 msgid "Handle wake up from TV"
@@ -12192,11 +12192,17 @@ msgstr "Меню сети"
 msgid "Network mounts"
 msgstr "Сетевые подключения"
 
+msgid "Network name"
+msgstr ""
+
 msgid "Network name (SSID)"
 msgstr "Сетевое имя (SSID)"
 
 msgid "Network scan"
 msgstr "Поиск сети"
+
+msgid "Network status"
+msgstr ""
 
 msgid "Network storage on"
 msgstr "Сетевое хранилище включено"
@@ -14953,7 +14959,7 @@ msgstr "Перезагрузить"
 msgid "Refresh ZeroTier status information"
 msgstr ""
 
-msgid "Refresh every"
+msgid "Refresh every x hours"
 msgstr "Интервал обновления (час)"
 
 msgid "Refresh rate"
@@ -15394,9 +15400,6 @@ msgstr "Перезапуск сети с текущими настройками
 
 msgid "Restart test"
 msgstr "Перезапустить тест"
-
-msgid "Restart your network connection and interfaces."
-msgstr "Перезапуск сетевых подключений и интерфейсов."
 
 msgid "Restarting..."
 msgstr "Перезапуск..."
@@ -15852,7 +15855,7 @@ msgstr "Сохранить и остановить"
 msgid "Save directory on EXIT"
 msgstr "Запомнить каталог при выходе"
 
-msgid "Save every"
+msgid "Save every x hours"
 msgstr "Сохранять каждые (В часах)"
 
 #, python-format
@@ -17645,7 +17648,7 @@ msgstr "Время показа инфопанели."
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
 msgstr "Установите время ожидания для выполнения действия по умолчанию в сообщениях о выключении, режиме ожидания или перезагрузке, например, используемого в RecordTimer, Scheduler, SleepTimer и т. д."
 
-msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
+msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at 0,0 and the bottom right is at 1260,700. Note that the position is the top left of the spinner and not the centre of the spinner."
 msgstr "Установите верхнее левое местоположение занятого счётчика. Координаты масштабируются таким образом, что верхний левый угол равен (0,0), а нижний правый — (1260,700). Обратите внимание, что это положение находится в левом верхнем углу счётчика, а не в центре счетчика."
 
 msgid "Set the type of the progress indication in the channel selection screen."
@@ -17683,7 +17686,7 @@ msgstr "Установите значение 'Да', чтобы отсорти�
 msgid "Set time options"
 msgstr "Установить параметры времени"
 
-msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
+msgid "Set to 'Disabled' to replace underscore characters '_' in file and directory names with spaces."
 msgstr "Если отключено, символы подчеркивания в именах файлов и каталогов не отображаются и заменяются пробелами."
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby before shutting down."
@@ -18042,7 +18045,7 @@ msgstr "Показать разрешение выхода HDMI"
 msgid "Show InfoBar"
 msgstr "Показывать инфопанель"
 
-msgid "Show InfoBar lite"
+msgid "Show InfoBar lite *"
 msgstr "Показывать инфопанель-лайт *"
 
 msgid "Show InfoBar on channel change"
@@ -20251,10 +20254,10 @@ msgstr "%s %s имеет ограниченный объём памяти. Фа�
 msgid "The %s %s is shutting down. Please wait..."
 msgstr "%s %s завершает работу. Пожалуйста, подождите..."
 
-msgid "The %s %s reads the stored EPG data every selected number of hours."
+msgid "The %s %s reads the stored EPG data every x hours."
 msgstr "Ваш %s %s считывает данные ТВ-гида каждые (часов)."
 
-msgid "The %s %s stores the EPG data every selected number of hours."
+msgid "The %s %s stores the EPG data every x hours."
 msgstr "Ваш %s %s сохраняет данные ТВ-гида каждые (часов)."
 
 #, python-format
@@ -20666,7 +20669,7 @@ msgstr "Данный %s %s не может декодировать потоки
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Этот DVD RW уже отформатирован - переформатирование может удалить всё содержимое диска."
 
-msgid "This option allows you to switch Audio to Bluetooth speakers."
+msgid "This Option allows you to switch Audio to BT Speakers."
 msgstr "Эта опция позволяет переключать звук на BlueTooth-динамики."
 
 msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
@@ -20846,13 +20849,13 @@ msgstr "Эта опция позволяет использовать все р�
 msgid "This option allows you to view the old and new settings side by side."
 msgstr "Эта опция позволяет видеть старые и новые настройки бок о бок."
 
-msgid "This option configures the audio delay value for Bluetooth speakers."
+msgid "This option configures the general audio delay for BT Speakers."
 msgstr "Этот параметр настраивает общую задержку звука для BlueTooth динамиков."
 
-msgid "This option selects the general audio delay of Dolby Digital sound tracks."
+msgid "This option configures the general audio delay of Dolby Digital sound tracks."
 msgstr "Этот параметр настраивает общую задержку звука для звуковых дорожек Dolby Digital."
 
-msgid "This option selects the general audio delay of stereo sound tracks."
+msgid "This option configures the general audio delay of stereo sound tracks."
 msgstr "Этот параметр настраивает общую задержку звука для звуковых дорожек стерео."
 
 msgid "This option configures the picture sharpness."
@@ -20864,7 +20867,7 @@ msgstr "Эта опция настраивает разрешение экран
 msgid "This option configures the video output mode (or resolution)."
 msgstr "Настройка режима видеовыхода (или разрешения)."
 
-msgid "This option allows you to set the Auto Volume Level output."
+msgid "This option configures you can set Auto Volume Level."
 msgstr "Этот параметр позволяет настроить автоматический уровень громкости."
 
 msgid "This option lets you adjust the 3D depth of the OSD."
@@ -22237,9 +22240,6 @@ msgstr "Использовать текущий выбор и выйти"
 
 msgid "Use the extended List"
 msgstr "Использовать расширенный список"
-
-msgid "Use the network wizard to configure your Network."
-msgstr "Используйте мастер сети для настройки сети."
 
 msgid "Use the wizard to set up basic features"
 msgstr "Пользуйтесь мастером для настройки основных параметров"
@@ -23716,10 +23716,13 @@ msgstr "Переключение + запись далее"
 msgid "ZeroTier Actions"
 msgstr ""
 
-msgid "ZeroTier Settings"
+msgid "ZeroTier version"
 msgstr ""
 
 msgid "ZeroTier-One"
+msgstr ""
+
+msgid "ZeroTier Settings"
 msgstr ""
 
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
@@ -24414,6 +24417,9 @@ msgstr "®"
 #~ msgid "Press yellow to set this interface as the default interface."
 #~ msgstr "Нажмите ЖЁЛТУЮ кнопку, чтобы назначить данный интерфейс по умолчанию."
 
+#~ msgid "Restart your network connection and interfaces."
+#~ msgstr "Перезапуск сетевых подключений и интерфейсов."
+
 #~ msgid "Set interface as the default Interface"
 #~ msgstr "Назначить данный интерфейс по умолчанию"
 
@@ -24430,6 +24436,9 @@ msgstr "®"
 
 #~ msgid "Use the network wizard to configure selected network adapter"
 #~ msgstr "Использовать мастер для настройки выбранного сетевого адаптера"
+
+#~ msgid "Use the network wizard to configure your Network."
+#~ msgstr "Используйте мастер сети для настройки сети."
 
 #~ msgid "white"
 #~ msgstr "Белый"

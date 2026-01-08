@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-03 09:58+0000\n"
+"POT-Creation-Date: 2026-01-02 18:38+0000\n"
 "PO-Revision-Date: 2024-10-02 07:35+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/es/>\n"
@@ -4316,31 +4316,31 @@ msgstr "Elige qué quieres que haga la tecla '0' cuando PIP esté activo."
 msgid "Choose where to mount your devices to:"
 msgstr "Elige donde montar tus dispositivos:"
 
-msgid "Select whether AAC audio tracks should be transcoded."
+msgid "Choose whether AAC sound tracks should be transcoded."
 msgstr "Elige si las pistas de audio AAC deben transcodificarse."
 
-msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
+msgid "Choose whether AC3 Plus sound tracks should be transcoded to AC3."
 msgstr "Elegir si las pistas de sonido AC3 Plus deben ser transcodificadas a AC3."
 
-msgid "Select whether AC3 sound tracks should be downmixed to stereo."
+msgid "Choose whether AC3 sound tracks should be downmixed to stereo."
 msgstr "Elegir si las pistas de sonido AC3 deben ser mezcladas en estéreo."
 
-msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
+msgid "Choose whether DTS channel sound tracks should be downmixed or transcoded."
 msgstr "Elegir si las pistas de sonido del canal DTS deben ser mezcladas o transcodificadas."
 
-msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
+msgid "Choose whether DTS channel sound tracks should be downmixed to stereo."
 msgstr "Elegir si las pistas de sonido del canal DTS deben ser mezcladas en estéreo."
 
-msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
+msgid "Choose whether WMA Pro channel sound tracks should be downmixed or transcoded."
 msgstr "Elegir si las pistas de sonido del canal WMA Pro deben ser remezcladas o transcodificadas."
 
-msgid "Select whether multi channel audio tracks should be converted to PCM or SPDIF."
+msgid "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
 msgstr "Elija si las pistas de sonido multicanal deben convertirse a PCM o SPDIF."
 
-msgid "Select whether multichannel audio tracks should be downmixed to stereo."
+msgid "Choose whether multi channel sound tracks should be downmixed to stereo."
 msgstr "Elige si las pistas de audio multicanal deben mezclarse a estéreo."
 
-msgid "Select whether multichannel sound tracks should be output as PCM."
+msgid "Choose whether multi channel sound tracks should be output as PCM."
 msgstr "Elija si las pistas de sonido multicanal deben ser emitidas como PCM."
 
 msgid "Choose whether or not to show an icon when a motorized dish is moving."
@@ -5042,7 +5042,7 @@ msgstr "Configurar si se utiliza una fuente fija o una fuente TrueType escalable
 msgid "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel."
 msgstr "Configurar si otro sintonizador de la lista preferida se asigna para las grabaciones en lugar de compartir un sintonizador que ya está activo recibiendo el mismo canal de televisión en directo."
 
-msgid "Select whether multichannel audio tracks should be downmixed to stereo."
+msgid "Configure whether multi channel sound tracks should be downmixed to stereo."
 msgstr "Configurar si las pistas de sonido multicanal deben ser mezcladas a estéreo."
 
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (like in EPGrefresh)."
@@ -7403,7 +7403,7 @@ msgstr "Habilitar 5V para la antena activa"
 msgid "Enable Autorecord"
 msgstr "Habilitar grabación automática"
 
-msgid "Enable BT audio"
+msgid "Enable BT Audio"
 msgstr "Habilitar audio BT"
 
 #
@@ -9275,7 +9275,7 @@ msgid "General AC3 delay"
 msgstr "Retraso general de AC3"
 
 #
-msgid "General BT audio delay"
+msgid "General BT Audio delay"
 msgstr "Retraso general de BT Audio"
 
 #
@@ -9626,7 +9626,7 @@ msgstr "Gestionar los cuelgues de Python"
 msgid "Handle Standby from TV"
 msgstr "Gestionar el modo de espera desde la TV"
 
-msgid "Process action from TV"
+msgid "Handle input from TV"
 msgstr "Manejar la entrada de la televisión"
 
 msgid "Handle wake up from TV"
@@ -12760,12 +12760,18 @@ msgstr "Menú de red"
 msgid "Network mounts"
 msgstr "Montajes de red"
 
+msgid "Network name"
+msgstr ""
+
 msgid "Network name (SSID)"
 msgstr "Nombre de red (SSID)"
 
 #
 msgid "Network scan"
 msgstr "Escanear red"
+
+msgid "Network status"
+msgstr ""
 
 msgid "Network storage on"
 msgstr "Almacenamiento en red en"
@@ -15727,7 +15733,7 @@ msgstr "Actualizar"
 msgid "Refresh ZeroTier status information"
 msgstr ""
 
-msgid "Refresh every"
+msgid "Refresh every x hours"
 msgstr "Actualizar cada (horas)"
 
 #
@@ -16209,10 +16215,6 @@ msgstr "Reiniciar red con la configuración actual"
 #
 msgid "Restart test"
 msgstr "Reiniciar prueba"
-
-#
-msgid "Restart your network connection and interfaces."
-msgstr "Reiniciar la conexión e interfaces de red."
 
 msgid "Restarting..."
 msgstr ""
@@ -16706,7 +16708,7 @@ msgstr "Guardar y parar"
 msgid "Save directory on EXIT"
 msgstr "Guardar el último directorio al salir"
 
-msgid "Save every"
+msgid "Save every x hours"
 msgstr "Guardar cada (horas)"
 
 #, python-format
@@ -18561,7 +18563,7 @@ msgstr "Configura el tiempo antes de ocultar la barra de información."
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
 msgstr ""
 
-msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
+msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at 0,0 and the bottom right is at 1260,700. Note that the position is the top left of the spinner and not the centre of the spinner."
 msgstr ""
 
 msgid "Set the type of the progress indication in the channel selection screen."
@@ -18599,7 +18601,7 @@ msgstr ""
 msgid "Set time options"
 msgstr ""
 
-msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
+msgid "Set to 'Disabled' to replace underscore characters '_' in file and directory names with spaces."
 msgstr ""
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby before shutting down."
@@ -18982,7 +18984,7 @@ msgstr "Mostrar resolución de salida HDMI"
 msgid "Show InfoBar"
 msgstr "Mostrar barra de información"
 
-msgid "Show InfoBar lite"
+msgid "Show InfoBar lite *"
 msgstr "Mostrar barra de información pequeña *"
 
 #
@@ -21375,10 +21377,10 @@ msgstr ""
 msgid "The %s %s is shutting down. Please wait..."
 msgstr ""
 
-msgid "The %s %s reads the stored EPG data every selected number of hours."
+msgid "The %s %s reads the stored EPG data every x hours."
 msgstr "Tu %s %s lee los datos guardados en EPG cada (horas)."
 
-msgid "The %s %s stores the EPG data every selected number of hours."
+msgid "The %s %s stores the EPG data every x hours."
 msgstr "Tu %s %s almacena los datos de EPG cada (horas)."
 
 #, python-format
@@ -21772,7 +21774,7 @@ msgstr "El disco DVD-RW ya está formateado. Si lo reformateas, se borrarán tod
 
 # Box Display
 #, fuzzy
-msgid "This option allows you to switch Audio to Bluetooth speakers."
+msgid "This Option allows you to switch Audio to BT Speakers."
 msgstr "Esta opción te permite apagar el LCD."
 
 msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
@@ -21965,13 +21967,13 @@ msgid "This option allows you to view the old and new settings side by side."
 msgstr "Esta opción te permite ver los ajustes nuevos y antiguos, unos al lado de los otros."
 
 #, fuzzy
-msgid "This option configures the audio delay value for Bluetooth speakers."
+msgid "This option configures the general audio delay for BT Speakers."
 msgstr "Esta opción configura el retraso general de audio de las pistas estéreo."
 
-msgid "This option selects the general audio delay of Dolby Digital sound tracks."
+msgid "This option configures the general audio delay of Dolby Digital sound tracks."
 msgstr "Esta opción configura el retraso general de audio de las pistas Dolby Digital."
 
-msgid "This option selects the general audio delay of stereo sound tracks."
+msgid "This option configures the general audio delay of stereo sound tracks."
 msgstr "Esta opción configura el retraso general de audio de las pistas estéreo."
 
 #, fuzzy
@@ -21985,7 +21987,7 @@ msgid "This option configures the video output mode (or resolution)."
 msgstr "Esta opción configura el modo de salida de vídeo (o resolución)."
 
 # A/V Settings
-msgid "This option allows you to set the Auto Volume Level output."
+msgid "This option configures you can set Auto Volume Level."
 msgstr "Esta opción te permite configurar el nivel del volumen automático."
 
 msgid "This option lets you adjust the 3D depth of the OSD."
@@ -23476,9 +23478,6 @@ msgstr ""
 
 msgid "Use the extended List"
 msgstr "Utilice la lista ampliada"
-
-msgid "Use the network wizard to configure your Network."
-msgstr ""
 
 # Erstassi
 msgid "Use the wizard to set up basic features"
@@ -25047,10 +25046,13 @@ msgstr "Grabar próximo"
 msgid "ZeroTier Actions"
 msgstr ""
 
-msgid "ZeroTier Settings"
+msgid "ZeroTier version"
 msgstr ""
 
 msgid "ZeroTier-One"
+msgstr ""
+
+msgid "ZeroTier Settings"
 msgstr ""
 
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
@@ -25852,6 +25854,10 @@ msgstr "®"
 
 #~ msgid "Press yellow to set this interface as the default interface."
 #~ msgstr "Pulsa la tecla amarilla para establecer esta interfaz como predeterminada."
+
+#
+#~ msgid "Restart your network connection and interfaces."
+#~ msgstr "Reiniciar la conexión e interfaces de red."
 
 #~ msgid "Set interface as the default Interface"
 #~ msgstr "Establecer interfaz como la interfaz predeterminada"

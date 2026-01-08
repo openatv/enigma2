@@ -1,7 +1,7 @@
 # NickerSK <nickersk@gmail.com>, 2021, 2022.
 # Marian-SK <podnety@mojepreklady.net>, 2021.
 # Marián Hikaník <podnety@mojepreklady.net>, 2021, 2022, 2023, 2024, 2025, 2026.
-# Atec <dr.atec@gmail.com>, 2023, 2024, 2025, 2026.
+# Atec <dr.atec@gmail.com>, 2023, 2024, 2025.
 # Milan Šalka <salka.milan@googlemail.com>, 2023, 2024.
 # HS <enosat@yahoo.com>, 2024.
 # Marian Turba <puki247@gmail.com>, 2024.
@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-03 09:58+0000\n"
-"PO-Revision-Date: 2026-01-05 09:22+0000\n"
+"POT-Creation-Date: 2026-01-02 18:38+0000\n"
+"PO-Revision-Date: 2026-01-03 07:28+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
@@ -2955,10 +2955,10 @@ msgid "Backup Settings"
 msgstr "Záloha nastavení"
 
 msgid "Backup System Settings"
-msgstr "Zálohovať nastavenia systému"
+msgstr "Zálohovanie nastavení systému"
 
 msgid "Backup images"
-msgstr "Zálohovať image"
+msgstr "Zálohovanie image"
 
 msgid "Backup is running..."
 msgstr "Zálohovanie prebieha..."
@@ -4164,31 +4164,31 @@ msgstr "Vyberte akciu tlačidla '0' pri aktívnom PiP."
 msgid "Choose where to mount your devices to:"
 msgstr "Vyberte prípojný bod zariadení:"
 
-msgid "Select whether AAC audio tracks should be transcoded."
+msgid "Choose whether AAC sound tracks should be transcoded."
 msgstr "Vyberte, či sa majú transkódovať zvukové stopy AAC."
 
-msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
+msgid "Choose whether AC3 Plus sound tracks should be transcoded to AC3."
 msgstr "Vyberte, či sa majú transkódovať zvukové stopy AC3 Plus na AC3."
 
-msgid "Select whether AC3 sound tracks should be downmixed to stereo."
+msgid "Choose whether AC3 sound tracks should be downmixed to stereo."
 msgstr "Vyberte, či sa majú zvukové stopy AC3 zlúčiť do režimu stereo."
 
-msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
+msgid "Choose whether DTS channel sound tracks should be downmixed or transcoded."
 msgstr "Vyberte, či sa majú zvukové stopy kanála DTS zlúčiť alebo transkódovať."
 
-msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
+msgid "Choose whether DTS channel sound tracks should be downmixed to stereo."
 msgstr "Vyberte, či sa majú zvukové stopy kanála DTS zlúčiť do režimu stereo."
 
-msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
+msgid "Choose whether WMA Pro channel sound tracks should be downmixed or transcoded."
 msgstr "Vyberte, či sa majú zvukové stopy kanála WMA Pro zlúčiť alebo transkódovať."
 
-msgid "Select whether multi channel audio tracks should be converted to PCM or SPDIF."
+msgid "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
 msgstr "Vyberte, či sa majú viackanálové zvukové stopy konvertovať do PCM alebo SPDIF."
 
-msgid "Select whether multichannel audio tracks should be downmixed to stereo."
+msgid "Choose whether multi channel sound tracks should be downmixed to stereo."
 msgstr "Vyberte, či sa majú viackanálové zvukové stopy zlúčiť do režimu stereo."
 
-msgid "Select whether multichannel sound tracks should be output as PCM."
+msgid "Choose whether multi channel sound tracks should be output as PCM."
 msgstr "Vyberte, či majú byť viackanálové zvukové stopy na výstupe ako PCM."
 
 msgid "Choose whether or not to show an icon when a motorized dish is moving."
@@ -4867,7 +4867,7 @@ msgstr "Nastavte, či sa pre teletext použije písmo s fixnou šírkou alebo š
 msgid "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel."
 msgstr "Nastavte, či sa pre nahrávanie pridelí ďalší tuner zo zoznamu preferovaných tunerov, alebo sa bude zdieľať rovnaký tuner, ktorý je už aktívny pri prijímaní rovnakého TV kanála."
 
-msgid "Select whether multichannel audio tracks should be downmixed to stereo."
+msgid "Configure whether multi channel sound tracks should be downmixed to stereo."
 msgstr "Nastavte, či sa majú viackanálové zvukové stopy zlúčiť (downmix) do režimu stereo."
 
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (like in EPGrefresh)."
@@ -6478,14 +6478,14 @@ msgid "Distance"
 msgstr "Vzdialenosť"
 
 msgid "Distribution"
-msgstr "Distribúcia"
+msgstr "Distribúcie"
 
 #, python-format
 msgid "Distribution '%s' information for %s %s"
 msgstr "Distribučné '%s' informácie pre %s %s"
 
 msgid "Distribution architecture"
-msgstr "Architektúra distribúcie"
+msgstr "Distribučná architektúra"
 
 msgid "Distribution build"
 msgstr "Zostavenie distribúcie"
@@ -7121,7 +7121,7 @@ msgstr "Zapnúť 5 V pre aktívnu anténu"
 msgid "Enable Autorecord"
 msgstr "Zapnúť automatické nahrávanie"
 
-msgid "Enable BT audio"
+msgid "Enable BT Audio"
 msgstr "Zapnúť BT audio"
 
 msgid "Enable Bouquet Edit"
@@ -7528,7 +7528,7 @@ msgid "Enter text via an attached keyboard"
 msgstr "Zadajte text pomocou pripojenej klávesnice"
 
 msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
-msgstr "Zadajte ID siete ZeroTier. ID by malo mať dĺžku presne 16 znakov."
+msgstr "Zadajte ID siete ZeroTier (16 znakov)."
 
 msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
 msgstr "Zadajte dobu, ktorá sa pridá do vyrov. pamäte pre streamovanie po chybe v streamovaní. Predíde sa tak ďalším chybám kvôli nedostatočnej vyrovnávacej pamäti."
@@ -8905,7 +8905,7 @@ msgstr "Hlavné"
 msgid "General AC3 delay"
 msgstr "Základné oneskorenie AC3"
 
-msgid "General BT audio delay"
+msgid "General BT Audio delay"
 msgstr "Základné oneskorenie pre BT audio"
 
 msgid "General PCM delay"
@@ -9239,7 +9239,7 @@ msgstr "Ošetriť pády Python"
 msgid "Handle Standby from TV"
 msgstr "Preberať pohotovostný režim z TV"
 
-msgid "Process action from TV"
+msgid "Handle input from TV"
 msgstr "Preberať vstup z TV"
 
 msgid "Handle wake up from TV"
@@ -12193,11 +12193,17 @@ msgstr "Menu siete"
 msgid "Network mounts"
 msgstr "Sieťové pripojenia"
 
+msgid "Network name"
+msgstr "Názov siete"
+
 msgid "Network name (SSID)"
 msgstr "Názov siete (SSID)"
 
 msgid "Network scan"
 msgstr "Vyhľadanie sietí"
+
+msgid "Network status"
+msgstr "Stav siete"
 
 msgid "Network storage on"
 msgstr "Sieťové úložisko na"
@@ -14021,7 +14027,7 @@ msgid "Plugin Browser Select Actions"
 msgstr "Akcie Prehliadača pluginov pre výber"
 
 msgid "Plugin Browser Settings"
-msgstr "Nastavenia prehliadača pluginov"
+msgstr "Nastavenia Prehliadača pluginov"
 
 msgid "Plugin Browser Update Actions"
 msgstr "Akcie Prehliadača pluginov pre aktualizácie"
@@ -14954,7 +14960,7 @@ msgstr "Obnoviť"
 msgid "Refresh ZeroTier status information"
 msgstr "Obnoviť informáciu o stave ZeroTier"
 
-msgid "Refresh every"
+msgid "Refresh every x hours"
 msgstr "Obnoviť každých x hodín"
 
 msgid "Refresh rate"
@@ -15395,9 +15401,6 @@ msgstr "Reštartovať sieť s aktuálnym nastavením"
 
 msgid "Restart test"
 msgstr "Reštartovať test"
-
-msgid "Restart your network connection and interfaces."
-msgstr "Reštartujte sieťové pripojenie a rozhrania."
 
 msgid "Restarting..."
 msgstr "Reštartuje sa…"
@@ -15853,7 +15856,7 @@ msgstr "Uložiť a stop"
 msgid "Save directory on EXIT"
 msgstr "Pri ukončení uložiť priečinok"
 
-msgid "Save every"
+msgid "Save every x hours"
 msgstr "Uložiť každých x hodín"
 
 #, python-format
@@ -16067,7 +16070,7 @@ msgid "Search east"
 msgstr "Hľadať východne"
 
 msgid "Search for network shares"
-msgstr "Vyhľadať sieťové zdieľania"
+msgstr "Vyľadanie sieťových zdieľaní"
 
 msgid "Search for similar events"
 msgstr "Hľadať podobné udalosti"
@@ -17646,7 +17649,7 @@ msgstr "Nastavte trvanie zobrazenia infolišty."
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
 msgstr "Nastavenie času čakania na vykonanie predvolenej akcie v správach o vypnutí, pohotovostnom režime alebo reštarte. Používa sa napr. v časovačoch nahrávania, napájania, uspania atď."
 
-msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
+msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at 0,0 and the bottom right is at 1260,700. Note that the position is the top left of the spinner and not the centre of the spinner."
 msgstr "Nastavte pozíciu indikátora zaneprázdnenosti hore vľavo. Mierka súradníc je nastavená tak, že vľavo hore sú súradnice (0,0) a vpravo dole sú súradnice (1260,700). Pamätajte na to, že ide o pozíciu rohu indikátora, nie stredu indikátora."
 
 msgid "Set the type of the progress indication in the channel selection screen."
@@ -17684,7 +17687,7 @@ msgstr "Ak sa majú playlisty zoraďovať abecedne, nastavte túto voľbu na 'Á
 msgid "Set time options"
 msgstr "Nastaviť možnosti pre čas"
 
-msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
+msgid "Set to 'Disabled' to replace underscore characters '_' in file and directory names with spaces."
 msgstr "Ak sa majú v názvoch priečinkov súborov nahradiť znaky popdčiarknutia '_' medzerami, nastavte túto voľbu na 'Zakázané'."
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby before shutting down."
@@ -18043,7 +18046,7 @@ msgstr "Zobraziť výst. rozlíšenie HDMI"
 msgid "Show InfoBar"
 msgstr "Zobraziť infolištu"
 
-msgid "Show InfoBar lite"
+msgid "Show InfoBar lite *"
 msgstr "Zobraziť odľahčenú infolištu *"
 
 msgid "Show InfoBar on channel change"
@@ -18757,7 +18760,7 @@ msgid "Single step (GOP)"
 msgstr "Jeden krok (GOP)"
 
 msgid "SingleEPG Settings"
-msgstr "Nastavenia SingleEPG"
+msgstr "Nastavenia Single EPG"
 
 msgid "Sinhala / Sinhalese"
 msgstr "sinhálčina"
@@ -19110,7 +19113,7 @@ msgid "Software MultiBoot"
 msgstr "Softvérový MultiBoot"
 
 msgid "Software Restore"
-msgstr "Obnovenie softvéru"
+msgstr "Obnoviť softvér"
 
 msgid "Software Update"
 msgstr "Aktualizácia softvéru"
@@ -20252,10 +20255,10 @@ msgstr "Zariadenie %s %s má obmedzenú kapacitu pamäte. Na zvýšenie množstv
 msgid "The %s %s is shutting down. Please wait..."
 msgstr "%s %s sa vypína. Čakajte, prosím…"
 
-msgid "The %s %s reads the stored EPG data every selected number of hours."
+msgid "The %s %s reads the stored EPG data every x hours."
 msgstr "%s %s načíta uložené dáta EPG každých (hodín)."
 
-msgid "The %s %s stores the EPG data every selected number of hours."
+msgid "The %s %s stores the EPG data every x hours."
 msgstr "%s %s uloží EPG údaje každých x hodín."
 
 #, python-format
@@ -20667,7 +20670,7 @@ msgstr "%s %s nedokáže dekódovať %s streamov!"
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "DVD RW médium je už naformátované – nové formátovanie vymaže celý obsah na tomto DVD."
 
-msgid "This option allows you to switch Audio to Bluetooth speakers."
+msgid "This Option allows you to switch Audio to BT Speakers."
 msgstr "Prepnutie zvuku na BT reproduktory."
 
 msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
@@ -20847,13 +20850,13 @@ msgstr "Táto voľba umožňuje používať všetky režimy HDMI"
 msgid "This option allows you to view the old and new settings side by side."
 msgstr "Zobrazenie starých a nových nastavení vedľa seba."
 
-msgid "This option configures the audio delay value for Bluetooth speakers."
+msgid "This option configures the general audio delay for BT Speakers."
 msgstr "Konfigurácia oneskorenia zvuku pre BT reproduktory."
 
-msgid "This option selects the general audio delay of Dolby Digital sound tracks."
+msgid "This option configures the general audio delay of Dolby Digital sound tracks."
 msgstr "Konfigurácia oneskorenia zvukových stôp Dolby Digital."
 
-msgid "This option selects the general audio delay of stereo sound tracks."
+msgid "This option configures the general audio delay of stereo sound tracks."
 msgstr "Konfigurácia oneskorenia stereofónnych zvukových stôp."
 
 msgid "This option configures the picture sharpness."
@@ -20865,7 +20868,7 @@ msgstr "Nastavenie rozlíšenia obrazovky v režime výstupu pre PC."
 msgid "This option configures the video output mode (or resolution)."
 msgstr "Nastavenie režimu video výstupu (alebo rozlíšenia)."
 
-msgid "This option allows you to set the Auto Volume Level output."
+msgid "This option configures you can set Auto Volume Level."
 msgstr "Nastavenie automatickej úrovne hlasitosti."
 
 msgid "This option lets you adjust the 3D depth of the OSD."
@@ -22238,9 +22241,6 @@ msgstr "Použiť aktuálny výber a ukončiť"
 
 msgid "Use the extended List"
 msgstr "Použiť rozšírený zoznam"
-
-msgid "Use the network wizard to configure your Network."
-msgstr "Na konfiguráciu vašej siete použite sprievodcu sieťou."
 
 msgid "Use the wizard to set up basic features"
 msgstr "Použite sprievodcu pre nastavenie základných funkcií"
@@ -23717,11 +23717,14 @@ msgstr "Prepnúť + nahrávať ďalej"
 msgid "ZeroTier Actions"
 msgstr "Akcie ZeroTier"
 
-msgid "ZeroTier Settings"
-msgstr "Nastavenia ZeroTier"
+msgid "ZeroTier version"
+msgstr "Verzia ZeroTier"
 
 msgid "ZeroTier-One"
 msgstr "ZeroTier-One"
+
+msgid "ZeroTier Settings"
+msgstr "Nastavenia ZeroTier"
 
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7 starý model"
@@ -24379,15 +24382,6 @@ msgstr "áno (zachovať zdroje)"
 msgid "®"
 msgstr "®"
 
-#~ msgid "Network name"
-#~ msgstr "Názov siete"
-
-#~ msgid "Network status"
-#~ msgstr "Stav siete"
-
-#~ msgid "ZeroTier version"
-#~ msgstr "Verzia ZeroTier"
-
 #~ msgid "* Only available if more than one interface is active."
 #~ msgstr "* Dostupné len ak je aktívnych viac rozhraní."
 
@@ -24424,6 +24418,9 @@ msgstr "®"
 #~ msgid "Press yellow to set this interface as the default interface."
 #~ msgstr "Stlačením žltého tlačidla sa toto rozhranie nastaví ako predvolené."
 
+#~ msgid "Restart your network connection and interfaces."
+#~ msgstr "Reštartujte sieťové pripojenie a rozhrania."
+
 #~ msgid "Set interface as the default Interface"
 #~ msgstr "Nastaviť rozhranie ako predvolené"
 
@@ -24440,6 +24437,9 @@ msgstr "®"
 
 #~ msgid "Use the network wizard to configure selected network adapter"
 #~ msgstr "Na konfiguráciu vybraného sieťového adaptéra použite sprievodcu sieťou"
+
+#~ msgid "Use the network wizard to configure your Network."
+#~ msgstr "Na konfiguráciu vašej siete použite Sprievodcu sieťou."
 
 #~ msgid "Monitoring UI password"
 #~ msgstr "Heslo pre monitorovanie použív. rozhranie"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV 7.6.1 Devel\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-03 09:58+0000\n"
+"POT-Creation-Date: 2026-01-02 18:38+0000\n"
 "PO-Revision-Date: 2025-12-28 02:56+0000\n"
 "Last-Translator: jbleyel <jbleyel@gmx.net>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sr/>\n"
@@ -4159,31 +4159,31 @@ msgstr "Izaberi šta da dugme '0' uradi kada je PiP aktivan."
 msgid "Choose where to mount your devices to:"
 msgstr "Izaberi gde želite da postavite uređaje:"
 
-msgid "Select whether AAC audio tracks should be transcoded."
+msgid "Choose whether AAC sound tracks should be transcoded."
 msgstr "Izaberi da li AAC zvuk treba da bude transkodiran."
 
-msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
+msgid "Choose whether AC3 Plus sound tracks should be transcoded to AC3."
 msgstr "Odaberite da li AC3 Plus zvučne numere treba da budu kodirane na AC3."
 
-msgid "Select whether AC3 sound tracks should be downmixed to stereo."
+msgid "Choose whether AC3 sound tracks should be downmixed to stereo."
 msgstr "Izaberi da li AC3 zvuk treba da bude downmixed u stereo."
 
-msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
+msgid "Choose whether DTS channel sound tracks should be downmixed or transcoded."
 msgstr "Izaberi da li DTS kanal treba da bude downmixed ili transkodiran."
 
-msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
+msgid "Choose whether DTS channel sound tracks should be downmixed to stereo."
 msgstr "Izaberi da li DTS kanal treba da bude downmixed u stereo."
 
-msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
+msgid "Choose whether WMA Pro channel sound tracks should be downmixed or transcoded."
 msgstr "Izaberi da li WMA Pro kanal treba da bude downmixed ili transkodiran."
 
-msgid "Select whether multi channel audio tracks should be converted to PCM or SPDIF."
+msgid "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
 msgstr "Izaberi da li zvuk sa više kanala treba konvertovati u PCM ili SPDIF."
 
-msgid "Select whether multichannel audio tracks should be downmixed to stereo."
+msgid "Choose whether multi channel sound tracks should be downmixed to stereo."
 msgstr "Izaberi da li zvuk sa više kanala treba da bude downmixed na stereo."
 
-msgid "Select whether multichannel sound tracks should be output as PCM."
+msgid "Choose whether multi channel sound tracks should be output as PCM."
 msgstr "Izaberi da li zvuk sa više kanala treba da bude izlazni PCM."
 
 msgid "Choose whether or not to show an icon when a motorized dish is moving."
@@ -4862,7 +4862,7 @@ msgstr "Podesite fiksno slovo ili skalabilni TrueType za teletekst."
 msgid "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel."
 msgstr "Podesite snimke dodeljene drugom tjuneru koji već aktivno prima isti TV kanal uživo."
 
-msgid "Select whether multichannel audio tracks should be downmixed to stereo."
+msgid "Configure whether multi channel sound tracks should be downmixed to stereo."
 msgstr "Podesite zvuk sa više kanala da bude downmixed u stereo."
 
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (like in EPGrefresh)."
@@ -7116,7 +7116,7 @@ msgstr "Uključi 5V za zemaljsku antenu"
 msgid "Enable Autorecord"
 msgstr "Omogući Auto snimanje"
 
-msgid "Enable BT audio"
+msgid "Enable BT Audio"
 msgstr "Omogući BT Audio"
 
 msgid "Enable Bouquet Edit"
@@ -8900,7 +8900,7 @@ msgstr "Opšte"
 msgid "General AC3 delay"
 msgstr "Kašnjenje AC3"
 
-msgid "General BT audio delay"
+msgid "General BT Audio delay"
 msgstr "Kašnjenje BT Audio"
 
 msgid "General PCM delay"
@@ -9234,7 +9234,7 @@ msgstr "Rukovanje padovima Python"
 msgid "Handle Standby from TV"
 msgstr ""
 
-msgid "Process action from TV"
+msgid "Handle input from TV"
 msgstr "Rukovanje ulaza sa TV"
 
 msgid "Handle wake up from TV"
@@ -12188,11 +12188,17 @@ msgstr "Meni mreže"
 msgid "Network mounts"
 msgstr "Montaža mreže"
 
+msgid "Network name"
+msgstr ""
+
 msgid "Network name (SSID)"
 msgstr "Naziv mreže (SSID)"
 
 msgid "Network scan"
 msgstr "Skeniranje mreže"
+
+msgid "Network status"
+msgstr ""
 
 msgid "Network storage on"
 msgstr "Mrežno skladište uključeno"
@@ -14949,7 +14955,7 @@ msgstr "Osveži"
 msgid "Refresh ZeroTier status information"
 msgstr ""
 
-msgid "Refresh every"
+msgid "Refresh every x hours"
 msgstr ""
 
 msgid "Refresh rate"
@@ -15390,9 +15396,6 @@ msgstr "Ponovo pokreni mrežu sa trenutnim podešavanjem"
 
 msgid "Restart test"
 msgstr "Ponovo pokreni test"
-
-msgid "Restart your network connection and interfaces."
-msgstr "Ponovo pokreni mrežnu vezu i interfejs."
 
 msgid "Restarting..."
 msgstr "Ponovno pokretanje..."
@@ -15848,7 +15851,7 @@ msgstr "Sačuvaj i stani"
 msgid "Save directory on EXIT"
 msgstr "Sačuvaj direktorij na izlasku"
 
-msgid "Save every"
+msgid "Save every x hours"
 msgstr ""
 
 #, python-format
@@ -17641,7 +17644,7 @@ msgstr ""
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
 msgstr "Postavite vreme čekanja za izvršenje podrazumevane akcije u porukama za gašenje, uspavljivanje ili ponovno pokretanje, npr. korišćeno u RecordTimer-u, Scheduler-u, SleepTimer-u itd."
 
-msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
+msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at 0,0 and the bottom right is at 1260,700. Note that the position is the top left of the spinner and not the centre of the spinner."
 msgstr ""
 
 msgid "Set the type of the progress indication in the channel selection screen."
@@ -17679,7 +17682,7 @@ msgstr "Postavite ovo na 'Da' da bi sortirali liste numera po abecednom redu."
 msgid "Set time options"
 msgstr "Podesite opcije vremena"
 
-msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
+msgid "Set to 'Disabled' to replace underscore characters '_' in file and directory names with spaces."
 msgstr ""
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby before shutting down."
@@ -18035,7 +18038,7 @@ msgstr "Pokaži HDMI Izlaznu Rez"
 msgid "Show InfoBar"
 msgstr "Pokaži Info Traku"
 
-msgid "Show InfoBar lite"
+msgid "Show InfoBar lite *"
 msgstr "Pokaži malu Info Traku *"
 
 msgid "Show InfoBar on channel change"
@@ -20244,10 +20247,10 @@ msgstr "Sistem %s %s ima ograničen kapacitet memorije. Swap fajl je potreban za
 msgid "The %s %s is shutting down. Please wait..."
 msgstr "Vaš %s %s se isključuje. Molimo sačekajte..."
 
-msgid "The %s %s reads the stored EPG data every selected number of hours."
+msgid "The %s %s reads the stored EPG data every x hours."
 msgstr ""
 
-msgid "The %s %s stores the EPG data every selected number of hours."
+msgid "The %s %s stores the EPG data every x hours."
 msgstr ""
 
 #, python-format
@@ -20659,7 +20662,7 @@ msgstr "Ovaj %s %s nemože da dešifruje %s! strimove!"
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Ovaj DVD RW medij je formatiran - ponovno formatiranje će izbrisati sav sadržaj na disku."
 
-msgid "This option allows you to switch Audio to Bluetooth speakers."
+msgid "This Option allows you to switch Audio to BT Speakers."
 msgstr "Ova opcija vam omogućava da prebacite zvuk na BT zvučnike."
 
 msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
@@ -20839,13 +20842,13 @@ msgstr "Оva opcija omogućava da koristite sve HDMI režime"
 msgid "This option allows you to view the old and new settings side by side."
 msgstr "Оva opcija omogućava da stare i nove postavke prikažete jednu do druge."
 
-msgid "This option configures the audio delay value for Bluetooth speakers."
+msgid "This option configures the general audio delay for BT Speakers."
 msgstr "Оva opcija konfiguriše opšte odlaganje zvuka za BT zvučnike."
 
-msgid "This option selects the general audio delay of Dolby Digital sound tracks."
+msgid "This option configures the general audio delay of Dolby Digital sound tracks."
 msgstr "Оva opcija konfiguriše opšte audio odlaganje Dolby Digital zvučnih numera."
 
-msgid "This option selects the general audio delay of stereo sound tracks."
+msgid "This option configures the general audio delay of stereo sound tracks."
 msgstr "Оva opcija konfiguriše opšte audio odlaganje stereo zvučnih numera."
 
 msgid "This option configures the picture sharpness."
@@ -20857,7 +20860,7 @@ msgstr "Оva opcija konfiguriše rezoluciju ekrana u izlaznom režimu računara.
 msgid "This option configures the video output mode (or resolution)."
 msgstr "Оva opcija konfiguriše režim video izlaza (ili rezoluciju)."
 
-msgid "This option allows you to set the Auto Volume Level output."
+msgid "This option configures you can set Auto Volume Level."
 msgstr "Оva opcija konfiguriše da možete podesiti nivo Auto Jačine Zvuka."
 
 msgid "This option lets you adjust the 3D depth of the OSD."
@@ -22233,9 +22236,6 @@ msgstr "Koristi trenutnu selekciju i izađi"
 
 msgid "Use the extended List"
 msgstr "Koristi proširene liste"
-
-msgid "Use the network wizard to configure your Network."
-msgstr "Koristi Čarobnjaka za mrežu da bi konfigurisali mrežu."
 
 msgid "Use the wizard to set up basic features"
 msgstr "Koristi Čarobnjaka za podešavanje osnovnih funkcija"
@@ -23712,10 +23712,13 @@ msgstr "Vrati+Snimanje sledeće"
 msgid "ZeroTier Actions"
 msgstr ""
 
-msgid "ZeroTier Settings"
+msgid "ZeroTier version"
 msgstr ""
 
 msgid "ZeroTier-One"
+msgstr ""
+
+msgid "ZeroTier Settings"
 msgstr ""
 
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
@@ -24410,6 +24413,9 @@ msgstr "®"
 #~ msgid "Press yellow to set this interface as the default interface."
 #~ msgstr "Pritisni ŽUTU boju da bi postavili ovaj interfejs kao default."
 
+#~ msgid "Restart your network connection and interfaces."
+#~ msgstr "Ponovo pokreni mrežnu vezu i interfejs."
+
 #~ msgid "Set interface as the default Interface"
 #~ msgstr "Postavi interfejs kao default interfejsa"
 
@@ -24426,6 +24432,9 @@ msgstr "®"
 
 #~ msgid "Use the network wizard to configure selected network adapter"
 #~ msgstr "Koristi Čarobnjaka za mrežu za konfigurisanje izabranog mrežnog adaptera"
+
+#~ msgid "Use the network wizard to configure your Network."
+#~ msgstr "Koristi Čarobnjaka za mrežu da bi konfigurisali mrežu."
 
 #~ msgid "white"
 #~ msgstr "bela"

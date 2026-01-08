@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-03 09:58+0000\n"
+"POT-Creation-Date: 2026-01-02 18:38+0000\n"
 "PO-Revision-Date: 2021-09-13 18:30+0000\n"
 "Last-Translator: Josep Belda <josepmaulet1707@gmail.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ca/>\n"
@@ -4452,31 +4452,31 @@ msgstr ""
 msgid "Choose where to mount your devices to:"
 msgstr ""
 
-msgid "Select whether AAC audio tracks should be transcoded."
+msgid "Choose whether AAC sound tracks should be transcoded."
 msgstr ""
 
-msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
+msgid "Choose whether AC3 Plus sound tracks should be transcoded to AC3."
 msgstr ""
 
-msgid "Select whether AC3 sound tracks should be downmixed to stereo."
+msgid "Choose whether AC3 sound tracks should be downmixed to stereo."
 msgstr ""
 
-msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
+msgid "Choose whether DTS channel sound tracks should be downmixed or transcoded."
 msgstr ""
 
-msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
+msgid "Choose whether DTS channel sound tracks should be downmixed to stereo."
 msgstr ""
 
-msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
+msgid "Choose whether WMA Pro channel sound tracks should be downmixed or transcoded."
 msgstr ""
 
-msgid "Select whether multi channel audio tracks should be converted to PCM or SPDIF."
+msgid "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
 msgstr ""
 
-msgid "Select whether multichannel audio tracks should be downmixed to stereo."
+msgid "Choose whether multi channel sound tracks should be downmixed to stereo."
 msgstr ""
 
-msgid "Select whether multichannel sound tracks should be output as PCM."
+msgid "Choose whether multi channel sound tracks should be output as PCM."
 msgstr ""
 
 msgid "Choose whether or not to show an icon when a motorized dish is moving."
@@ -5183,7 +5183,7 @@ msgstr ""
 msgid "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel."
 msgstr ""
 
-msgid "Select whether multichannel audio tracks should be downmixed to stereo."
+msgid "Configure whether multi channel sound tracks should be downmixed to stereo."
 msgstr "Configureu si les pistes de so multicanal s’han de barrejar en estèreo."
 
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (like in EPGrefresh)."
@@ -7552,7 +7552,7 @@ msgstr ""
 
 #
 #, fuzzy
-msgid "Enable BT audio"
+msgid "Enable BT Audio"
 msgstr "Activat"
 
 #
@@ -9422,7 +9422,7 @@ msgstr ""
 msgid "General AC3 delay"
 msgstr "Retard general AC3"
 
-msgid "General BT audio delay"
+msgid "General BT Audio delay"
 msgstr ""
 
 msgid "General PCM delay"
@@ -9775,7 +9775,7 @@ msgstr ""
 msgid "Handle Standby from TV"
 msgstr "Manejar l’espera del televisor"
 
-msgid "Process action from TV"
+msgid "Handle input from TV"
 msgstr ""
 
 msgid "Handle wake up from TV"
@@ -12950,12 +12950,18 @@ msgstr ""
 msgid "Network mounts"
 msgstr "Escanejar xarxa"
 
+msgid "Network name"
+msgstr ""
+
 msgid "Network name (SSID)"
 msgstr "Nom de la xarxa (SSID)"
 
 #
 msgid "Network scan"
 msgstr "Escanejar xarxa"
+
+msgid "Network status"
+msgstr ""
 
 msgid "Network storage on"
 msgstr ""
@@ -15957,7 +15963,7 @@ msgstr ""
 msgid "Refresh ZeroTier status information"
 msgstr ""
 
-msgid "Refresh every"
+msgid "Refresh every x hours"
 msgstr ""
 
 msgid "Refresh rate"
@@ -16440,10 +16446,6 @@ msgstr ""
 #
 msgid "Restart test"
 msgstr "Reinicia la prova"
-
-#
-msgid "Restart your network connection and interfaces."
-msgstr "Reinicieu la connexió de xarxa i les interfícies."
 
 msgid "Restarting..."
 msgstr ""
@@ -16938,7 +16940,7 @@ msgstr ""
 msgid "Save directory on EXIT"
 msgstr ""
 
-msgid "Save every"
+msgid "Save every x hours"
 msgstr ""
 
 #, python-format
@@ -18775,7 +18777,7 @@ msgstr ""
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
 msgstr ""
 
-msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
+msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at 0,0 and the bottom right is at 1260,700. Note that the position is the top left of the spinner and not the centre of the spinner."
 msgstr ""
 
 msgid "Set the type of the progress indication in the channel selection screen."
@@ -18813,7 +18815,7 @@ msgstr ""
 msgid "Set time options"
 msgstr ""
 
-msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
+msgid "Set to 'Disabled' to replace underscore characters '_' in file and directory names with spaces."
 msgstr ""
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby before shutting down."
@@ -19181,7 +19183,7 @@ msgstr ""
 msgid "Show InfoBar"
 msgstr ""
 
-msgid "Show InfoBar lite"
+msgid "Show InfoBar lite *"
 msgstr ""
 
 #
@@ -21527,10 +21529,10 @@ msgstr ""
 msgid "The %s %s is shutting down. Please wait..."
 msgstr ""
 
-msgid "The %s %s reads the stored EPG data every selected number of hours."
+msgid "The %s %s reads the stored EPG data every x hours."
 msgstr ""
 
-msgid "The %s %s stores the EPG data every selected number of hours."
+msgid "The %s %s stores the EPG data every x hours."
 msgstr ""
 
 #, python-format
@@ -21889,7 +21891,7 @@ msgstr ""
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Aquest suport DVD RW ja està formatat: la reforma del format esborrarà tot el contingut del disc."
 
-msgid "This option allows you to switch Audio to Bluetooth speakers."
+msgid "This Option allows you to switch Audio to BT Speakers."
 msgstr ""
 
 msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
@@ -22069,13 +22071,13 @@ msgstr ""
 msgid "This option allows you to view the old and new settings side by side."
 msgstr "Aquesta opció us permet visualitzar la configuració antiga i la nova de costat."
 
-msgid "This option configures the audio delay value for Bluetooth speakers."
+msgid "This option configures the general audio delay for BT Speakers."
 msgstr ""
 
-msgid "This option selects the general audio delay of Dolby Digital sound tracks."
+msgid "This option configures the general audio delay of Dolby Digital sound tracks."
 msgstr ""
 
-msgid "This option selects the general audio delay of stereo sound tracks."
+msgid "This option configures the general audio delay of stereo sound tracks."
 msgstr ""
 
 msgid "This option configures the picture sharpness."
@@ -22087,7 +22089,7 @@ msgstr ""
 msgid "This option configures the video output mode (or resolution)."
 msgstr ""
 
-msgid "This option allows you to set the Auto Volume Level output."
+msgid "This option configures you can set Auto Volume Level."
 msgstr ""
 
 msgid "This option lets you adjust the 3D depth of the OSD."
@@ -23549,9 +23551,6 @@ msgid "Use the current selection and exit"
 msgstr ""
 
 msgid "Use the extended List"
-msgstr ""
-
-msgid "Use the network wizard to configure your Network."
 msgstr ""
 
 msgid "Use the wizard to set up basic features"
@@ -25052,10 +25051,13 @@ msgstr "Gravar"
 msgid "ZeroTier Actions"
 msgstr ""
 
-msgid "ZeroTier Settings"
+msgid "ZeroTier version"
 msgstr ""
 
 msgid "ZeroTier-One"
+msgstr ""
+
+msgid "ZeroTier Settings"
 msgstr ""
 
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
@@ -25838,6 +25840,10 @@ msgstr ""
 #, fuzzy
 #~ msgid "Press OK to set the MAC address."
 #~ msgstr "Prem OK per a començar la recerca"
+
+#
+#~ msgid "Restart your network connection and interfaces."
+#~ msgstr "Reinicieu la connexió de xarxa i les interfícies."
 
 #
 #, fuzzy, python-format

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-03 09:58+0000\n"
+"POT-Creation-Date: 2026-01-02 18:38+0000\n"
 "PO-Revision-Date: 2022-12-04 20:43+0000\n"
 "Last-Translator: rimasx <riks_12@hot.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -4180,31 +4180,31 @@ msgstr "Vali, mida '0' nupp PiP-režiimis teeb."
 msgid "Choose where to mount your devices to:"
 msgstr "Määra, kuhu andmekandjad haakida:"
 
-msgid "Select whether AAC audio tracks should be transcoded."
+msgid "Choose whether AAC sound tracks should be transcoded."
 msgstr "Määra, kas AAC heli transkodeerida."
 
-msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
+msgid "Choose whether AC3 Plus sound tracks should be transcoded to AC3."
 msgstr "Määra, kas AC3+ heli taandada stereoks."
 
-msgid "Select whether AC3 sound tracks should be downmixed to stereo."
+msgid "Choose whether AC3 sound tracks should be downmixed to stereo."
 msgstr "Määra, kas AC3 heli taandada stereoks."
 
-msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
+msgid "Choose whether DTS channel sound tracks should be downmixed or transcoded."
 msgstr "Määra, kas DTS heli taandada stereoks või transkodeerida."
 
-msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
+msgid "Choose whether DTS channel sound tracks should be downmixed to stereo."
 msgstr "Määra, kas DTS heli taandada stereoks."
 
-msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
+msgid "Choose whether WMA Pro channel sound tracks should be downmixed or transcoded."
 msgstr "Määra, kas WMA Pro heli taandada stereoks või transkodeerida."
 
-msgid "Select whether multi channel audio tracks should be converted to PCM or SPDIF."
+msgid "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
 msgstr "Määra, kas mitmekanaline heli väljastada PCM helina."
 
-msgid "Select whether multichannel audio tracks should be downmixed to stereo."
+msgid "Choose whether multi channel sound tracks should be downmixed to stereo."
 msgstr "Määra, kas mitmekanaline heli taandada stereoks."
 
-msgid "Select whether multichannel sound tracks should be output as PCM."
+msgid "Choose whether multi channel sound tracks should be output as PCM."
 msgstr "Määra, kas mitmekanaline heli väljastada PCM helina."
 
 msgid "Choose whether or not to show an icon when a motorized dish is moving."
@@ -4888,7 +4888,7 @@ msgstr "Määra, kas teletekstis määratud suurusega või skaleeritavat TrueTyp
 msgid "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel."
 msgstr "Määra, kas kasutada salvestusteks määratud tuunerit või juba sama saate vastuvõtuga hõivatud tuunerit."
 
-msgid "Select whether multichannel audio tracks should be downmixed to stereo."
+msgid "Configure whether multi channel sound tracks should be downmixed to stereo."
 msgstr "Määra, kas mitmekanaline heli taandada stereoks."
 
 # data/setup.xml
@@ -7182,7 +7182,7 @@ msgstr "Luba 5 V toide aktiivantennile"
 msgid "Enable Autorecord"
 msgstr "Autosalvestus lubatud"
 
-msgid "Enable BT audio"
+msgid "Enable BT Audio"
 msgstr "Luba BT heli"
 
 msgid "Enable Bouquet Edit"
@@ -8997,7 +8997,7 @@ msgstr "Üldine"
 msgid "General AC3 delay"
 msgstr "Üldine AC3 viiteaeg"
 
-msgid "General BT audio delay"
+msgid "General BT Audio delay"
 msgstr "Üldine BT heli viiteaeg"
 
 msgid "General PCM delay"
@@ -9338,7 +9338,7 @@ msgstr "Halda python krahhe"
 msgid "Handle Standby from TV"
 msgstr "Ooteseisundisse teleri kaudu"
 
-msgid "Process action from TV"
+msgid "Handle input from TV"
 msgstr "Halda teleri sisendit"
 
 msgid "Handle wake up from TV"
@@ -12413,11 +12413,17 @@ msgstr "Võrgumenüü"
 msgid "Network mounts"
 msgstr "Võrgu haakepunktid"
 
+msgid "Network name"
+msgstr ""
+
 msgid "Network name (SSID)"
 msgstr "Võrgu nimi (SSID)"
 
 msgid "Network scan"
 msgstr "Võrguotsing"
+
+msgid "Network status"
+msgstr ""
 
 msgid "Network storage on"
 msgstr ""
@@ -15275,7 +15281,7 @@ msgstr ""
 msgid "Refresh ZeroTier status information"
 msgstr ""
 
-msgid "Refresh every"
+msgid "Refresh every x hours"
 msgstr "Värskenda iga (tund)"
 
 msgid "Refresh rate"
@@ -15724,9 +15730,6 @@ msgstr "Taaskäivita võrk kasutades aktiivseid seadeid"
 
 msgid "Restart test"
 msgstr "Taaskäivita test"
-
-msgid "Restart your network connection and interfaces."
-msgstr "Võrguühenduse ja võrgukaartide taaskäivitus."
 
 msgid "Restarting..."
 msgstr ""
@@ -16200,7 +16203,7 @@ msgstr "Talleta ja peata"
 msgid "Save directory on EXIT"
 msgstr "Pea väljumisel asukoht meeles"
 
-msgid "Save every"
+msgid "Save every x hours"
 msgstr "Talleta iga (tundides)"
 
 #, python-format
@@ -18005,7 +18008,7 @@ msgstr "Määra aeg inforiba peitmiseks."
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
 msgstr ""
 
-msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
+msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at 0,0 and the bottom right is at 1260,700. Note that the position is the top left of the spinner and not the centre of the spinner."
 msgstr ""
 
 msgid "Set the type of the progress indication in the channel selection screen."
@@ -18043,7 +18046,7 @@ msgstr ""
 msgid "Set time options"
 msgstr ""
 
-msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
+msgid "Set to 'Disabled' to replace underscore characters '_' in file and directory names with spaces."
 msgstr ""
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby before shutting down."
@@ -18412,7 +18415,7 @@ msgstr "Kuva HDMI väljundi lahutus"
 msgid "Show InfoBar"
 msgstr "Kuva inforiba"
 
-msgid "Show InfoBar lite"
+msgid "Show InfoBar lite *"
 msgstr "Kasuta lihtsat inforiba *"
 
 msgid "Show InfoBar on channel change"
@@ -20669,10 +20672,10 @@ msgstr ""
 msgid "The %s %s is shutting down. Please wait..."
 msgstr ""
 
-msgid "The %s %s reads the stored EPG data every selected number of hours."
+msgid "The %s %s reads the stored EPG data every x hours."
 msgstr "%s %s loeb salvestatud EPG andmeid iga (tund)."
 
-msgid "The %s %s stores the EPG data every selected number of hours."
+msgid "The %s %s stores the EPG data every x hours."
 msgstr "%s %s salvestab EPG andmed iga (tund)."
 
 #, python-format
@@ -21062,7 +21065,7 @@ msgstr "%s %s ei suuda dekodeerida %s voogesitust!"
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "DVD RW ketas on juba vormindatud. Uuesti vormindamisel kustutatakse kõik, mis plaadile kirjutatud."
 
-msgid "This option allows you to switch Audio to Bluetooth speakers."
+msgid "This Option allows you to switch Audio to BT Speakers."
 msgstr "See valik võimaldab lülitada heli BT kõlaritele."
 
 msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
@@ -21249,13 +21252,13 @@ msgstr "See valik võimaldab kasutada kõiki HDMI režiime"
 msgid "This option allows you to view the old and new settings side by side."
 msgstr "See valik võimaldab vaadelda uusi ja vanu seadistusi kõrvuti."
 
-msgid "This option configures the audio delay value for Bluetooth speakers."
+msgid "This option configures the general audio delay for BT Speakers."
 msgstr "See valik määrab üldise viiteaja BT kõlaritele."
 
-msgid "This option selects the general audio delay of Dolby Digital sound tracks."
+msgid "This option configures the general audio delay of Dolby Digital sound tracks."
 msgstr "See valik määrab üldise viiteaja Dolby Digital heliga heliribadele."
 
-msgid "This option selects the general audio delay of stereo sound tracks."
+msgid "This option configures the general audio delay of stereo sound tracks."
 msgstr "See valik määrab üldise viiteaja stereo heliga heliribadele."
 
 msgid "This option configures the picture sharpness."
@@ -21268,7 +21271,7 @@ msgid "This option configures the video output mode (or resolution)."
 msgstr "See valik määrab videoväljundi oleku (või lahutuse)."
 
 # A/V Settings
-msgid "This option allows you to set the Auto Volume Level output."
+msgid "This option configures you can set Auto Volume Level."
 msgstr "Selles valikus saad määrata automaatse helitugevuse."
 
 msgid "This option lets you adjust the 3D depth of the OSD."
@@ -22682,9 +22685,6 @@ msgstr ""
 
 msgid "Use the extended List"
 msgstr "Kasuta laiendatud nimekirja"
-
-msgid "Use the network wizard to configure your Network."
-msgstr ""
 
 msgid "Use the wizard to set up basic features"
 msgstr "Kasuta abilist põhiomaduste seadmiseks"
@@ -24165,10 +24165,13 @@ msgstr "Kanalivahetus ja salvestus 'järgmine'"
 msgid "ZeroTier Actions"
 msgstr ""
 
-msgid "ZeroTier Settings"
+msgid "ZeroTier version"
 msgstr ""
 
 msgid "ZeroTier-One"
+msgstr ""
+
+msgid "ZeroTier Settings"
 msgstr ""
 
 #, fuzzy
@@ -24868,6 +24871,9 @@ msgstr ""
 
 #~ msgid "Press yellow to set this interface as the default interface."
 #~ msgstr "Selle liidese vaikimisi võrguliideseks määramiseks vajuta kollast nuppu."
+
+#~ msgid "Restart your network connection and interfaces."
+#~ msgstr "Võrguühenduse ja võrgukaartide taaskäivitus."
 
 # HelpMenu
 #~ msgid "Set interface as the default Interface"
