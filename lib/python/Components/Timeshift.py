@@ -156,15 +156,13 @@ class InfoBarTimeshift:
 		self.pts_curevent_station = ""
 		self.pts_curevent_eventid = None
 
-	def getCurrentEventName(self):
+	@property
+	def ptsCurrentEventName(self):
 		return self.pts_curevent_name.replace("\n", " ") if self.pts_curevent_name else ""
 
-	currentEventName = property(getCurrentEventName)
-
-	def getCurrentEventDescription(self):
+	@property
+	def ptsCurrentEventDescription(self):
 		return self.pts_curevent_description.replace("\n", " ") if self.pts_curevent_description else ""
-
-	currentEventDescription = property(getCurrentEventDescription)
 
 	def __seekableStatusChanged(self):
 		# print(f"[Timeshift] PTS_currplaying {self.pts_currplaying}, pts_nextplaying {self.pts_nextplaying}, pts_eventcount {self.pts_eventcount}, pts_firstplayable {self.pts_firstplayable}.")
@@ -460,6 +458,18 @@ class InfoBarTimeshift:
 		self.activateTimeshiftEnd(False)
 
 	def checkTimeshiftRunning(self, returnFunction):
+		def checkTimeshiftRunningCallback(returnFunction, answer):
+			match answer:
+				case "savetimeshift" | "savetimeshiftandrecord":
+					self.save_current_timeshift = True
+				case "noSave":
+					self.save_current_timeshift = False
+				case "no":  # This is not really needed because the default is "no".
+					pass
+				case _:  # The user pressed cancel so assume they meant "no". That's probably not always correct, but it seems reasonable.
+					answer = "no"
+			InfoBarTimeshift.saveTimeshiftActions(self, answer, returnFunction)
+
 		if self.ptsStop:
 			returnFunction(True)
 		elif (self.isSeekable() or (self.timeshiftEnabled() and not config.timeshift.startDelay.value) or self.save_current_timeshift) and config.timeshift.check.value:
@@ -472,7 +482,7 @@ class InfoBarTimeshift:
 						(_("Cancel save time shift as movie"), "noSave"),
 						(_("Nothing, just leave this menu"), "no")
 					]
-					self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple=True, list=choice, timeout=30)
+					self.session.openWithCallback(boundFunction(checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple=True, list=choice, timeout=30)
 				else:
 					message = _("You seem to be in time shift, do you want to leave time shift?")
 					choice = [
@@ -481,14 +491,14 @@ class InfoBarTimeshift:
 						(_("Yes, but save time shift as movie and stop recording"), "savetimeshift"),
 						(_("No"), "no")
 					]
-					self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple=True, list=choice, timeout=30)
+					self.session.openWithCallback(boundFunction(checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple=True, list=choice, timeout=30)
 			else:
 				if self.save_current_timeshift:
 					# The user has previously activated "Time shift save recording" of current event - so must be necessarily saved of the timeshift!
-					# workaround - without the message box can the box no longer be operated when goes in standby(no freezing - no longer can use - unhandled key screen comes when key press -)
+					# Workaround - without the message box can the box no longer be operated when goes in standby (no freezing - no longer can use - unhandled key screen comes when key press).
 					message = _("You have chosen to save the current time shift buffer")
 					choice = [(_("Save time shift buffer now and continue recording"), "savetimeshiftandrecord")]
-					self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple=True, list=choice, timeout=1)
+					self.session.openWithCallback(boundFunction(checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple=True, list=choice, timeout=1)
 					# InfoBarTimeshift.saveTimeshiftActions(self, "savetimeshiftandrecord", returnFunction)
 				else:
 					message = _("You seem to be in time shift, do you want to leave time shift?")
@@ -496,30 +506,18 @@ class InfoBarTimeshift:
 						(_("Yes"), config.timeshift.favoriteSaveAction.value),
 						(_("No"), "no")
 					]
-					self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple=True, list=choice, timeout=30)
+					self.session.openWithCallback(boundFunction(checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple=True, list=choice, timeout=30)
 		elif self.save_current_timeshift:
 			# The user has chosen "no warning" when time shift is stopped (config.timeshift.check=False)
 			# but the user has previously activated "Time shift save recording" of current event
-			# so we silently do "savetimeshiftandrecord" when switching channel independent of config.timeshift.favoriteSaveAction
-			# workaround - without the message box can the box no longer be operated when goes in standby(no freezing - no longer can use - unhandled key screen comes when key press -)
+			# so we silently do "savetimeshiftandrecord" when switching channel independent of config.timeshift.favoriteSaveAction.
+			# Workaround - without the message box can the box no longer be operated when goes in standby (no freezing - no longer can use - unhandled key screen comes when key press)
 			message = _("You have chosen to save the current time shift buffer")
 			choice = [(_("Save time shift buffer now and continue recording"), "savetimeshiftandrecord")]
-			self.session.openWithCallback(boundFunction(self.checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple=True, list=choice, timeout=1)
+			self.session.openWithCallback(boundFunction(checkTimeshiftRunningCallback, returnFunction), MessageBox, message, simple=True, list=choice, timeout=1)
 			# InfoBarTimeshift.saveTimeshiftActions(self, "savetimeshiftandrecord", returnFunction)
 		else:
 			returnFunction(True)
-
-	def checkTimeshiftRunningCallback(self, returnFunction, answer):
-		match answer:
-			case "savetimeshift" | "savetimeshiftandrecord":
-				self.save_current_timeshift = True
-			case "noSave":
-				self.save_current_timeshift = False
-			case "no":  # This is not really needed because the default os "no".
-				pass
-			case _:  # The user pressed cancel so assume they meant "no". That's probably not always correct, but it seems reasonable.
-				answer = "no"
-		InfoBarTimeshift.saveTimeshiftActions(self, answer, returnFunction)
 
 	def eraseTimeshiftFile(self):
 		for filename in listdir(config.timeshift.path.value):
@@ -581,7 +579,7 @@ class InfoBarTimeshift:
 			self.ptsGetEventInfo()
 			try:
 				with open(join(config.timeshift.path.value, f"pts_livebuffer_{self.pts_eventcount}.meta", "w")) as metafile:  # Rewrite META and EIT files.
-					metafile.write(f"{self.pts_curevent_servicerefname}\n{self.currentEventName}\n{self.currentEventDescription}\n{int(self.pts_starttime)}\n")
+					metafile.write(f"{self.pts_curevent_servicerefname}\n{self.ptsCurrentEventName}\n{self.ptsCurrentEventDescription}\n{int(self.pts_starttime)}\n")
 				self.ptsCreateEITFile(join(config.timeshift.path.value, f"pts_livebuffer_{self.pts_eventcount}"))
 			except OSError as err:
 				print(f"[Timeshift] Error {err.errno}: Failed to rewrite META and/or EIT file!  ({err.strerror})")
@@ -684,17 +682,17 @@ class InfoBarTimeshift:
 					if self.pts_starttime >= (time() - 60):  # Save current event by creating hard link to its ts file.
 						self.pts_starttime -= 60
 					eventstarttime = strftime("%Y%m%d %H%M", localtime(self.pts_starttime))
-					ptsfilename = f"{eventstarttime} - {self.pts_curevent_station} - {self.currentEventName}"
+					ptsfilename = f"{eventstarttime} - {self.pts_curevent_station} - {self.ptsCurrentEventName}"
 					try:
 						if config.usage.setup_level.index >= 2:
-							if config.recording.filename_composition.value == "long" and self.currentEventName != self.currentEventDescription:
-								ptsfilename = f"{eventstarttime} - {self.pts_curevent_station} - {self.currentEventName} - {self.currentEventDescription}"
+							if config.recording.filename_composition.value == "long" and self.ptsCurrentEventName != self.ptsCurrentEventDescription:
+								ptsfilename = f"{eventstarttime} - {self.pts_curevent_station} - {self.ptsCurrentEventName} - {self.ptsCurrentEventDescription}"
 							elif config.recording.filename_composition.value == "short":
-								ptsfilename = f"{eventstarttime} - {self.currentEventName}"
+								ptsfilename = f"{eventstarttime} - {self.ptsCurrentEventName}"
 							elif config.recording.filename_composition.value == "veryshort":
-								ptsfilename = f"{self.currentEventName} - {eventstarttime}"
+								ptsfilename = f"{self.ptsCurrentEventName} - {eventstarttime}"
 							elif config.recording.filename_composition.value == "veryveryshort":
-								ptsfilename = f"{self.currentEventName} - {eventstarttime}"
+								ptsfilename = f"{self.ptsCurrentEventName} - {eventstarttime}"
 					except Exception:
 						print("[Timeshift] Using default filename.")
 					if config.recording.ascii_filenames.value:
@@ -702,7 +700,7 @@ class InfoBarTimeshift:
 					fullname = getRecordingFilename(ptsfilename, recordingPath)
 					link(join(config.timeshift.path.value, savefilename), f"{fullname}.ts")
 					with open(f"{fullname}.ts.meta", "w") as metafile:
-						metafile.write(f"{self.pts_curevent_servicerefname}\n{self.getCurrentEventName}\n{self.currentEventDescription}\n{int(self.pts_starttime)}\n{metamergestring}")
+						metafile.write(f"{self.pts_curevent_servicerefname}\n{self.ptsCurrentEventName}\n{self.ptsCurrentEventDescription}\n{int(self.pts_starttime)}\n{metamergestring}")
 					self.ptsCreateEITFile(fullname)
 				elif timeshiftfile.startswith("pts_livebuffer"):
 					with open(join(config.timeshift.path.value, f"{timeshiftfile}.meta")) as readmetafile:  # Save stored time shift buffer by creating hard link to ts file.
@@ -756,7 +754,7 @@ class InfoBarTimeshift:
 							link(join(config.timeshift.path.value, savefilename), join(config.timeshift.path.value, f"{savefilename}.{randomint}.copy"))
 							copy_file = savefilename
 							with open(f"{fullname}.ts.meta", "w") as metafile:
-								metafile.write(f"{self.pts_curevent_servicerefname}\n{self.currentEventName}\n{self.currentEventDescription}\n{int(self.pts_starttime)}\n{metamergestring}")
+								metafile.write(f"{self.pts_curevent_servicerefname}\n{self.ptsCurrentEventName}\n{self.ptsCurrentEventDescription}\n{int(self.pts_starttime)}\n{metamergestring}")
 							self.ptsCreateEITFile(fullname)
 					elif timeshiftfile.startswith("pts_livebuffer"):
 						filesize = int(getsize(f"{config.timeshift.path.value}{timeshiftfile}") / (1024 * 1024))  # Get file size for free space check.
@@ -795,73 +793,74 @@ class InfoBarTimeshift:
 				AddNotification(MessageBox, f"{_("Time shift save failed!")}\n\n{errormessage}", MessageBox.TYPE_ERROR, timeout=30)
 
 	def ptsAskUser(self, what):
-		if self.ptsAskUser_wait:
-			return
-		message_time = _("The time shift buffer exceeds the limit specified in the settings.\nWhat do you want to do?")
-		message_space = _("The available disk space for time shift buffer is less than specified in the settings.\nWhat do you want to do?")
-		message_livetv = _("Can't go to live TV!\nSwitch to live TV and restart time shift?")
-		message_nextfile = _("Can't play the next time shift buffer file!\nSwitch to live TV and restart time shift?")
-		choice_restart = [
-			(_("Delete the current time shift buffer and restart time shift"), "restarttimeshift"),
-			(_("Nothing, just leave this menu"), "no")
-		]
-		choice_save = [
-			(_("Stop time shift and save time shift buffer as a movie and start recording of current event"), "savetimeshiftandrecord"),
-			(_("Stop time shift and save time shift buffer as a movie"), "savetimeshift"),
-			(_("Stop time shift"), "noSave"),
-			(_("Nothing, just leave this menu"), "no")
-		]
-		choice_livetv = [
-			(_("No"), "nolivetv"),
-			(_("Yes"), "golivetv")
-		]
-		if what == "time":
-			message = message_time
-			choice = choice_restart
-		elif what == "space":
-			message = message_space
-			choice = choice_restart
-		elif what == "time_and_save":
-			message = message_time
-			choice = choice_save
-		elif what == "space_and_save":
-			message = message_space
-			choice = choice_save
-		elif what == "livetv":
-			message = message_livetv
-			choice = choice_livetv
-		elif what == "nextfile":
-			message = message_nextfile
-			choice = choice_livetv
-		else:
-			return
-		self.ptsAskUser_wait = True
-		self.session.openWithCallback(self.ptsAskUserCallback, MessageBox, message, simple=True, list=choice, timeout=30)
+		def ptsAskUserCallback(answer):
+			self.ptsAskUser_wait = False
+			match answer:
+				case "restarttimeshift":
+					self.ptsEventCleanTimerSTOP()
+					self.save_current_timeshift = False
+					self.stopTimeshiftAskUserCallback(True)
+					self.restartTimeshift()
+				case "noSave":
+					self.ptsEventCleanTimerSTOP()
+					self.save_current_timeshift = False
+					self.stopTimeshiftAskUserCallback(True)
+				case "savetimeshift" | "savetimeshiftandrecord":
+					self.ptsEventCleanTimerSTOP()
+					self.save_current_timeshift = True
+					InfoBarTimeshift.saveTimeshiftActions(self, answer, self.stopTimeshiftAskUserCallback)
+				case "golivetv":
+					self.ptsEventCleanTimerSTOP(True)
+					self.stopTimeshiftAskUserCallback(True)
+					self.restartTimeshift()
+				case "nolivetv":
+					if self.pts_lastposition:
+						self.setSeekState(self.SEEK_STATE_PLAY)
+						self.doSeek(self.pts_lastposition)
 
-	def ptsAskUserCallback(self, answer):
-		self.ptsAskUser_wait = False
-		if answer:
-			if answer == "restarttimeshift":
-				self.ptsEventCleanTimerSTOP()
-				self.save_current_timeshift = False
-				self.stopTimeshiftAskUserCallback(True)
-				self.restartTimeshift()
-			elif answer == "noSave":
-				self.ptsEventCleanTimerSTOP()
-				self.save_current_timeshift = False
-				self.stopTimeshiftAskUserCallback(True)
-			elif answer == "savetimeshift" or answer == "savetimeshiftandrecord":
-				self.ptsEventCleanTimerSTOP()
-				self.save_current_timeshift = True
-				InfoBarTimeshift.saveTimeshiftActions(self, answer, self.stopTimeshiftAskUserCallback)
-			elif answer == "golivetv":
-				self.ptsEventCleanTimerSTOP(True)
-				self.stopTimeshiftAskUserCallback(True)
-				self.restartTimeshift()
-			elif answer == "nolivetv":
-				if self.pts_lastposition:
-					self.setSeekState(self.SEEK_STATE_PLAY)
-					self.doSeek(self.pts_lastposition)
+		if not self.ptsAskUser_wait:
+			message_time = _("The time shift buffer exceeds the limit specified in the settings.\nWhat do you want to do?")
+			message_space = _("The available disk space for time shift buffer is less than specified in the settings.\nWhat do you want to do?")
+			message_livetv = _("Can't go to live TV!\nSwitch to live TV and restart time shift?")
+			message_nextfile = _("Can't play the next time shift buffer file!\nSwitch to live TV and restart time shift?")
+			choice_restart = [
+				(_("Delete the current time shift buffer and restart time shift"), "restarttimeshift"),
+				(_("Nothing, just leave this menu"), "no")
+			]
+			choice_save = [
+				(_("Stop time shift and save time shift buffer as a movie and start recording of current event"), "savetimeshiftandrecord"),
+				(_("Stop time shift and save time shift buffer as a movie"), "savetimeshift"),
+				(_("Stop time shift"), "noSave"),
+				(_("Nothing, just leave this menu"), "no")
+			]
+			choice_livetv = [
+				(_("No"), "nolivetv"),
+				(_("Yes"), "golivetv")
+			]
+			match what:
+				case "time":
+					message = message_time
+					choice = choice_restart
+				case "space":
+					message = message_space
+					choice = choice_restart
+				case "time_and_save":
+					message = message_time
+					choice = choice_save
+				case "space_and_save":
+					message = message_space
+					choice = choice_save
+				case "livetv":
+					message = message_livetv
+					choice = choice_livetv
+				case "nextfile":
+					message = message_nextfile
+					choice = choice_livetv
+				case _:
+					message = ""
+			if message:
+				self.ptsAskUser_wait = True
+				self.session.openWithCallback(ptsAskUserCallback, MessageBox, message, simple=True, list=choice, timeout=30)
 
 	def stopTimeshiftAskUserCallback(self, answer):
 		ts = self.getTimeshift()
@@ -1049,7 +1048,7 @@ class InfoBarTimeshift:
 					link(join(config.timeshift.path.value, filename), join(config.timeshift.path.value, f"pts_livebuffer_{self.pts_eventcount}"))  # Create link to pts_livebuffer file.
 					link(join(config.timeshift.path.value, f"{filename}.sc"), join(config.timeshift.path.value, f"pts_livebuffer_{self.pts_eventcount}.sc"))
 					with open(f"{config.timeshift.path.value}pts_livebuffer_{self.pts_eventcount}.meta", "w") as metafile:  # Create a META file.
-						metafile.write(f"{self.pts_curevent_servicerefname}\n{self.currentEventName}\n{self.currentEventDescription}\n{int(self.pts_starttime)}\n")
+						metafile.write(f"{self.pts_curevent_servicerefname}\n{self.ptsCurrentEventName}\n{self.ptsCurrentEventDescription}\n{int(self.pts_starttime)}\n")
 				except Exception as errormsg:
 					AddNotification(MessageBox, _("Creating hard link to time shift file failed!") + "\n" + _("The file system on your time shift device does not support hard links.\nMake sure it is formatted in EXT2, EXT3 or EXT4!") + f"\n\n{errormsg}", MessageBox.TYPE_ERROR, timeout=30)
 				self.ptsCreateEITFile(f"{config.timeshift.path.value}pts_livebuffer_{self.pts_eventcount}")  # Create EIT file.
@@ -1059,7 +1058,7 @@ class InfoBarTimeshift:
 						fullname = getRecordingFilename(f"{strftime('%Y%m%d %H%M', localtime(self.pts_starttime))} - {self.pts_curevent_station} - {self.pts_curevent_name}", preferredTimeShiftRecordingPath())
 						link(join(config.timeshift.path.value, filename), f"{fullname}.ts")
 						with open(f"{fullname}.ts.meta", "w") as metafile:  # Create a META file.
-							metafile.write(f"{self.pts_curevent_servicerefname}\n{self.currentEventName}\n{self.currentEventDescription}\n{int(self.pts_starttime)}\nautosaved\n")
+							metafile.write(f"{self.pts_curevent_servicerefname}\n{self.ptsCurrentEventName}\n{self.ptsCurrentEventDescription}\n{int(self.pts_starttime)}\nautosaved\n")
 					except Exception as errormsg:
 						print(f"[Timeshift] autorecord Error: '{errormsg}'")
 

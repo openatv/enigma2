@@ -4292,34 +4292,34 @@ msgstr ""
 msgid "Choose where to mount your devices to:"
 msgstr ""
 
-msgid "Choose whether AAC sound tracks should be transcoded."
+msgid "Select whether AAC audio tracks should be transcoded."
 msgstr ""
 
-msgid "Choose whether AC3 Plus sound tracks should be transcoded to AC3."
+msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
 msgstr ""
 
-msgid "Choose whether AC3 sound tracks should be downmixed to stereo."
+msgid "Select whether AC3 audio tracks should be downmixed to stereo."
 msgstr ""
 
-msgid "Choose whether DTS channel sound tracks should be downmixed or transcoded."
+msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
 msgstr ""
 
-msgid "Choose whether DTS channel sound tracks should be downmixed to stereo."
+msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
 msgstr ""
 
-msgid "Choose whether WMA Pro channel sound tracks should be downmixed or transcoded."
+msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
 msgstr ""
 
-msgid "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
+msgid "Select whether multichannel audio tracks should be converted to PCM or SPDIF."
 msgstr ""
 
-msgid "Choose whether multi channel sound tracks should be downmixed to stereo."
+msgid "Select whether multichannel audio tracks should be downmixed to stereo."
 msgstr ""
 
-msgid "Choose whether multi channel sound tracks should be output as PCM."
+msgid "Select whether multichannel audio tracks should be output as PCM."
 msgstr ""
 
-msgid "Choose whether or not to show an icon when a motorized dish is moving."
+msgid "Select whether or not to show an icon when a motorized dish is moving."
 msgstr ""
 
 msgid "Choose which level of menu/setting's to display. 'Expert'-level shows all items."
@@ -4899,7 +4899,7 @@ msgstr ""
 msgid "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel."
 msgstr ""
 
-msgid "Configure whether multi channel sound tracks should be downmixed to stereo."
+msgid "Configure whether multichannel audio tracks should be downmixed to stereo."
 msgstr ""
 
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (like in EPGrefresh)."
@@ -6535,7 +6535,7 @@ msgstr ""
 msgid "Duplex"
 msgstr ""
 
-msgid "During this time, the transmitter and recording destination are checked. If the destination (e.g., NAS) isn’t ready in time, this time can be increased."
+msgid "During this time, the transmitter and recording destination are checked. If the destination (e.g., NAS) isn't ready in time, this time can be increased."
 msgstr ""
 
 msgid "Dutch"
@@ -6775,7 +6775,7 @@ msgstr ""
 msgid "Enable 5V for active antenna"
 msgstr ""
 
-msgid "Enable BT Audio"
+msgid "Enable BT audio"
 msgstr ""
 
 msgid "Enable CIHelper for SLOT CI0"
@@ -8157,7 +8157,7 @@ msgstr ""
 msgid "General AC3 delay"
 msgstr ""
 
-msgid "General BT Audio delay"
+msgid "General BT audio delay"
 msgstr ""
 
 msgid "General PCM delay"
@@ -8481,7 +8481,7 @@ msgstr ""
 msgid "Handle Python crashes"
 msgstr ""
 
-msgid "Handle input from TV"
+msgid "Process action from TV"
 msgstr ""
 
 msgid "Handle Standby from TV"
@@ -8876,7 +8876,7 @@ msgstr ""
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr ""
 
-msgid "Set to 'Disabled' to replace underscore characters '_' in file and directory names with spaces."
+msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
 msgstr ""
 
 msgid "If editing a file, can you set the cursor start position at end or begin of the line."
@@ -8903,7 +8903,7 @@ msgstr ""
 msgid "If muted, hide mute icon or mute information after few seconds."
 msgstr ""
 
-msgid "Enables sending the same TV commands for Deep Standby as for regular Standby."
+msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
 msgstr ""
 
 msgid "Select 'No' to save older events even after zapping or interrupting time shifting."
@@ -13637,7 +13637,7 @@ msgstr ""
 msgid "Refresh"
 msgstr ""
 
-msgid "Refresh every x hours"
+msgid "Refresh every"
 msgstr ""
 
 msgid "Refresh rate"
@@ -14412,7 +14412,7 @@ msgstr ""
 msgid "Save and stop"
 msgstr ""
 
-msgid "Save every x hours"
+msgid "Save every"
 msgstr ""
 
 msgid "Save left folder on exit"
@@ -15002,7 +15002,7 @@ msgstr ""
 msgid "Select the shifted character set for the next character only"
 msgstr ""
 
-msgid "Select the source of the default DNS settings."
+msgid "Select the DNS server(s) that will be used to lookup the host name to resolve the IP address."
 msgstr ""
 
 msgid "Select the time delay before the button starts repeating."
@@ -16067,7 +16067,7 @@ msgstr ""
 msgid "Show info line"
 msgstr ""
 
-msgid "Show InfoBar lite *"
+msgid "Show InfoBar lite"
 msgstr ""
 
 msgid "Show InfoBar on channel change"
@@ -17123,7 +17123,7 @@ msgstr ""
 msgid "Stopping Softcam"
 msgstr ""
 
-msgid "Disables timeshift during recording (advisable for USB sticks)."
+msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
 msgstr ""
 
 msgid "Storage / Disks"
@@ -17699,10 +17699,10 @@ msgid ""
 "Please press OK to start using your %s %s."
 msgstr ""
 
-msgid "The %s %s reads the stored EPG data every x hours."
+msgid "The %s %s reads the stored EPG data every selected number of hours."
 msgstr ""
 
-msgid "The %s %s stores the EPG data every x hours."
+msgid "The %s %s stores the EPG data every selected number of hours."
 msgstr ""
 
 #, python-format
@@ -17830,7 +17830,7 @@ msgid ""
 "Please use the 'additional' and 'excluded' backup selection."
 msgstr ""
 
-msgid "Default wake-up is 5 minutes before Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
+msgid "Default wake-up is 5 minutes prior to timer start to wake up from Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
 msgstr ""
 
 msgid "The default settings are wake up time - 5 minutes and timer begin time + 5 minutes. This setting changed the time window before the wake up time. So can be detected a wake up by a timer even at very early starting receivers."
@@ -18003,7 +18003,7 @@ msgstr ""
 msgid "This Device is already mounted as HDD."
 msgstr ""
 
-msgid "This Option allows you to switch Audio to BT Speakers."
+msgid "This option allows you to switch Audio to Bluetooth speakers."
 msgstr ""
 
 msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
@@ -18075,7 +18075,7 @@ msgstr ""
 msgid "This is the currently selected locale.  [%s]"
 msgstr ""
 
-msgid "This is the initial / default volume offset applied to any services added the the volume adjust list."
+msgid "This is the initial / default volume offset applied to any services added to the volume adjust list."
 msgstr ""
 
 msgid "This is the order in which DiSEqC commands are sent to the aerial system. The order must correspond exactly with the order the physical devices are arranged along the signal cable (starting from the receiver end)."
@@ -18240,13 +18240,13 @@ msgstr ""
 msgid "This option allows you to view the old and new settings side by side."
 msgstr ""
 
-msgid "This option configures the general audio delay for BT Speakers."
+msgid "This option configures the audio delay value for Bluetooth speakers."
 msgstr ""
 
-msgid "This option configures the general audio delay of Dolby Digital sound tracks."
+msgid "This option selects the general audio delay of Dolby Digital sound tracks."
 msgstr ""
 
-msgid "This option configures the general audio delay of stereo sound tracks."
+msgid "This option selects the general audio delay of stereo sound tracks."
 msgstr ""
 
 msgid "This option configures the picture sharpness."
@@ -18258,7 +18258,7 @@ msgstr ""
 msgid "This option configures the video output mode (or resolution)."
 msgstr ""
 
-msgid "This option configures you can set Auto Volume Level."
+msgid "This option allows you to set the Auto Volume Level output."
 msgstr ""
 
 msgid "This option lets you adjust the 3D depth of the OSD."
@@ -19899,7 +19899,7 @@ msgstr ""
 msgid "Wake up TV from Standby"
 msgstr ""
 
-msgid "Wake up time before a timer begins [mins]"
+msgid "Wake up time before a timer begins"
 msgstr ""
 
 msgid "Wake up your AV Receiver from Standby"
@@ -20222,7 +20222,7 @@ msgstr ""
 msgid "When the receiver wakes from Standby or Deep Standby it will send a command to the TV to bring it out of Standby."
 msgstr ""
 
-msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you’re doing."
+msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you're doing."
 msgstr ""
 
 msgid "Where do you want to backup your settings?"

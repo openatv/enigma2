@@ -25,19 +25,19 @@ class FrontPanelLed:
 			self.ledColorPath = ledColorPath if exists(ledColorPath) else None
 			self.ledFadePath = ledFadePath if exists(ledFadePath) else None
 			ledColors = [
-				(0x00FF99, _("aqua")),
-				(0x6666FF, _("azure")),
-				(0x0000FF, _("blue")),
-				(0x00FF00, _("green")),
-				(0x99DD00, _("lime")),
-				(0x00BBFF, _("olympic blue")),
-				(0xFF5500, _("orange")),
-				(0xFF0066, _("pink")),
-				(0x9900FF, _("purple")),
-				(0xFF0000, _("red")),
-				(0xFF3333, _("rose")),
-				(0xFFFFFF, _("white")),
-				(0xDD9900, _("yellow"))
+				(0x00FF99, _("Aqua")),
+				(0x6666FF, _("Azure")),
+				(0x0000FF, _("Blue")),
+				(0x00FF00, _("Green")),
+				(0x99DD00, _("Lime")),
+				(0x00BBFF, _("Olympic blue")),
+				(0xFF5500, _("Orange")),
+				(0xFF0066, _("Pink")),
+				(0x9900FF, _("Purple")),
+				(0xFF0000, _("Red")),
+				(0xFF3333, _("Rose")),
+				(0xFFFFFF, _("White")),
+				(0xDD9900, _("Yellow"))
 			]
 			config.fp = ConfigSubsection()
 			config.fp.led = ConfigSubsection()

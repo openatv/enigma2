@@ -280,6 +280,18 @@ class StorageDevice():
 		task.weighting = 3
 		return job
 
+	def createTrimJob(self, options=None):
+		options = options or {}
+		debug = options.get("debug")
+		job = Job(_("Trim File System..."))
+		task = LoggingTask(job, "fstrim")
+		task.setTool("fstrim")
+		task.args += ["-v"]
+		task.args.append(self.devicePoint)
+		task = MountTask(job, self, debug=debug)
+		task.weighting = 3
+		return job
+
 
 class UUIDTask(ConditionTask):
 	def __init__(self, job, uuids, debug):

@@ -132,7 +132,7 @@ SCHEDULER_VALUES = dict([(SCHEDULER_TYPES[x], x) for x in SCHEDULER_TYPES.keys()
 SCHEDULER_TYPE_NAMES = {
 	SCHEDULER_TYPE.AUTODEEPSTANDBY: _("Auto deep standby") if DEEPSTANDBY_SUPPORT else _("Auto shut down"),
 	SCHEDULER_TYPE.AUTOSTANDBY: _("Auto standby"),
-	SCHEDULER_TYPE.DEEPSTANDBY: _("Deep standby") if DEEPSTANDBY_SUPPORT else _("Shut down"),
+	SCHEDULER_TYPE.DEEPSTANDBY: _("Deep Standby") if DEEPSTANDBY_SUPPORT else _("Shut down"),
 	SCHEDULER_TYPE.NONE: _("Do nothing"),
 	SCHEDULER_TYPE.REBOOT: _("Reboot"),
 	SCHEDULER_TYPE.RESTART: _("Restart GUI"),

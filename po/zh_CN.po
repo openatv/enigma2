@@ -1,13 +1,13 @@
 # lexlong2007 <lexlong2007@163.com>, 2022.
 # tzyy1970 <haotzyy1970@yahoo.com>, 2022.
-# Mark Stone <grystyle@gmail.com>, 2023, 2024, 2025.
+# Mark Stone <grystyle@gmail.com>, 2023, 2024, 2025, 2026.
 # Johnspp93 <Johnspp93@users.noreply.hosted.weblate.org>, 2024.
 msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-12-06 12:58+0000\n"
-"PO-Revision-Date: 2025-12-09 11:14+0000\n"
+"POT-Creation-Date: 2026-01-03 09:58+0000\n"
+"PO-Revision-Date: 2026-01-04 15:06+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Weblate 5.15-dev\n"
+"X-Generator: Weblate 5.15.1\n"
 "X-SourceCharset: UTF-8\n"
 "X-Generated: TM2TURK by thawtes\n"
 
@@ -1299,9 +1299,6 @@ msgstr "（显示可选 DVD 音频菜单）"
 msgid "* = Restart required if this item is changed."
 msgstr "* = 如果更改此项，则需要重新启动。"
 
-msgid "* Only available if more than one interface is active."
-msgstr "* 仅当有多个网卡处于活动状态时可用。"
-
 msgid "* current animation"
 msgstr "*当前动画"
 
@@ -1790,9 +1787,6 @@ msgstr "激活扩展器"
 msgid "Activate HbbTV (RED button)"
 msgstr "激活HbbTV（红键）"
 
-msgid "Activate MAC address configuration"
-msgstr "激活 MAC 地址配置"
-
 msgid "Activate Picture in Picture"
 msgstr "激活画中画"
 
@@ -1900,9 +1894,6 @@ msgstr "添加换台+录制定时器"
 
 msgid "Add ZapTimer"
 msgstr "添加换台定时器"
-
-msgid "Add a DNS entry"
-msgstr "添加 DNS 条目"
 
 msgid "Add a RADIO service to the Volume Offset list"
 msgstr "将广播频道添加到音量偏移列表"
@@ -2119,6 +2110,9 @@ msgstr "录制后"
 
 msgid "After zap"
 msgstr "换台后"
+
+msgid "Aggregate data only"
+msgstr "仅限汇总数据"
 
 msgid "Akan"
 msgstr "库阿语"
@@ -2379,6 +2373,9 @@ msgstr "动画速度"
 msgid "Animations"
 msgstr "动画"
 
+msgid "Anonymize client IPs"
+msgstr "匿名化客户端 IP"
+
 msgid "Antarctica"
 msgstr "南极洲"
 
@@ -2402,6 +2399,9 @@ msgstr "对活动区域设置/语言应用任何更改并退出"
 
 msgid "Apply the currently highlighted locale/language and exit"
 msgstr "应用当前突出显示的区域设置/语言并退出"
+
+msgid "Aqua"
+msgstr "湖绿色"
 
 msgid "Arabic"
 msgstr "阿拉伯语"
@@ -2819,6 +2819,9 @@ msgstr "阿塞拜疆"
 msgid "Azerbaijani"
 msgstr "阿塞拜疆语"
 
+msgid "Azure"
+msgstr "天蓝色"
+
 msgid "B"
 msgstr "B"
 
@@ -3068,9 +3071,6 @@ msgstr "比斯拉马"
 
 msgid "Bitrate"
 msgstr "比特率"
-
-msgid "Set the bitrate of the video encoder. Larger values improve the quality and also increases the file size."
-msgstr "视频编码器的比特率。 较大的值可提高质量并增加文件大小。"
 
 msgid "Black"
 msgstr "黑色"
@@ -4126,34 +4126,34 @@ msgstr "选择画中画激活时按钮“0”要执行的操作。"
 msgid "Choose where to mount your devices to:"
 msgstr "选择挂载设备到："
 
-msgid "Choose whether AAC sound tracks should be transcoded."
+msgid "Select whether AAC audio tracks should be transcoded."
 msgstr "选择是否对 AAC 音轨进行转码。"
 
-msgid "Choose whether AC3 Plus sound tracks should be transcoded to AC3."
+msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
 msgstr "选择是否将 AC3+ 音轨转码为AC3。"
 
-msgid "Choose whether AC3 sound tracks should be downmixed to stereo."
+msgid "Select whether AC3 audio tracks should be downmixed to stereo."
 msgstr "选择是否将 AC3 音轨缩混为立体声。"
 
-msgid "Choose whether DTS channel sound tracks should be downmixed or transcoded."
+msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
 msgstr "选择 DTS 音轨是应缩混还是转码。"
 
-msgid "Choose whether DTS channel sound tracks should be downmixed to stereo."
+msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
 msgstr "选择 DTS 音轨是否缩混为立体声。"
 
-msgid "Choose whether WMA Pro channel sound tracks should be downmixed or transcoded."
+msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
 msgstr "选择 WMA Pro 音轨是缩混还是转码。"
 
-msgid "Choose whether multi channel sound tracks should be convert to PCM or SPDIF."
+msgid "Select whether multichannel audio tracks should be converted to PCM or SPDIF."
 msgstr "选择是将多声道音轨转换为 PCM 还是 SPDIF。"
 
-msgid "Choose whether multi channel sound tracks should be downmixed to stereo."
+msgid "Select whether multichannel audio tracks should be downmixed to stereo."
 msgstr "选择多声道音轨是否应缩混为立体声。"
 
-msgid "Choose whether multi channel sound tracks should be output as PCM."
+msgid "Select whether multichannel audio tracks should be output as PCM."
 msgstr "选择是否应将多声道音轨作为 PCM 输出。"
 
-msgid "Choose whether or not to show an icon when a motorized dish is moving."
+msgid "Select whether or not to show an icon when a motorized dish is moving."
 msgstr "极轴移动时选择是否显示图标。"
 
 msgid "Choose which level of menu/setting's to display. 'Expert'-level shows all items."
@@ -4329,9 +4329,6 @@ msgstr "关闭此屏幕"
 msgid "Close title selection"
 msgstr "关闭标题选择"
 
-msgid "Cloudflare DNS"
-msgstr "Cloudflare DNS"
-
 msgid "Club/Dance"
 msgstr "俱乐部/舞蹈"
 
@@ -4440,9 +4437,6 @@ msgstr "通用设置"
 msgid "Common Setup Actions"
 msgstr "通用设置操作"
 
-msgid "Comodo Secure DNS"
-msgstr "Comodo 安全 DNS"
-
 msgid "Comoros"
 msgstr "科摩罗"
 
@@ -4507,7 +4501,10 @@ msgid "Configure front panel LEDs"
 msgstr "配置前面板指示灯"
 
 msgid "Configure how recording filenames are constructed. Standard: Date Time - Channel - Title Very very short: Title Very short: Title - Date Time Short with time: Date Time - Title Short: Date - Title Long: Date Time - Channel - Title - Info."
-msgstr "配置录像文件名的生成规则。标准：日期时间 - 频道 - 标题  极简格式：仅标题  短格式（带时间）：标题 - 日期 时间  带时间的短格式：日期 时间 - 标题  短格式：日期 - 标题  完整格式：日期 时间 - 频道 - 标题 - 附加信息。"
+msgstr "配置录像文件的命名规则。--标准：日期 时间 - 频道 - 标题 --极简：仅标题 --简略：标题 - 日期 时间 --带时间的短格式：日期 时间 - 标题 --短格式：日期 - 标题 --长格式：日期 时间 - 频道 - 标题 - 附加信息。"
+
+msgid "Configure if 'epg.dat' should be saved at all."
+msgstr "配置是否应该保存 epg.dat。"
 
 msgid "Configure if and how crypto icons will be shown in the channel selection list."
 msgstr "配置在频道选择列表中是否及如何显示加密方式图标。"
@@ -4526,9 +4523,6 @@ msgstr "配置频道选择列表中是否显示频道名称列以及显示的宽
 
 msgid "Configure if crypto icons will be shown in the channel selection list."
 msgstr "配置加密图标是否显示在频道选择列表中。"
-
-msgid "Configure if 'epg.dat' should be saved at all."
-msgstr "配置是否应该保存 epg.dat。"
 
 msgid "Configure if service picons will be shown in quickzap."
 msgstr "如需频道图标要在快速换台中显示，则配置。"
@@ -4611,14 +4605,14 @@ msgstr "配置影片播放期间，当到达影片末尾时的行为。"
 msgid "Configure the border width of the subtitles. The dark border makes the subtitles easier to read on a light background."
 msgstr "配置字幕的边框宽度。 黑色边框使字幕在浅色背景上更容易阅读。"
 
+msgid "Configure the brightness level of the front panel display for Standby."
+msgstr "设置待机时前置面板的亮度级别。"
+
 msgid "Configure the brightness level of the front panel display for dimmed operation."
 msgstr "配置前面板显示屏的亮度级别以进行调光操作。"
 
 msgid "Configure the brightness level of the front panel display for normal operation."
 msgstr "配置前面板显示屏的亮度级别以进行正常操作。"
-
-msgid "Configure the brightness level of the front panel display for Standby."
-msgstr "设置待机时前置面板的亮度级别。"
 
 msgid "Configure the color of the external subtitles, alternative (normal in white, italic in yellow, bold in cyan, underscore in green), white or yellow."
 msgstr "配置外挂字幕的颜色，备选方案（正常为白色，斜体为黄色，粗体为青色，下划线为绿色），白色或黄色。"
@@ -4833,7 +4827,7 @@ msgstr "配置等宽字体或可扩展 TrueType 字体是否用于图文电视�
 msgid "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel."
 msgstr "配置是否将首选列表中的另一个调谐器分配给录制内容，而不是共享正在接收相同直播电视频道的调谐器。"
 
-msgid "Configure whether multi channel sound tracks should be downmixed to stereo."
+msgid "Configure whether multichannel audio tracks should be downmixed to stereo."
 msgstr "配置多声道音轨是否要缩混为立体声。"
 
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (like in EPGrefresh)."
@@ -5458,20 +5452,23 @@ msgstr "DMM 高级"
 msgid "DMM normal"
 msgstr "DMM 普通"
 
-msgid "DNS (Dynamic Name Server) Actions"
-msgstr "DNS（动态名称服务器）操作"
-
 msgid "DNS Settings"
 msgstr "DNS 设置"
 
 msgid "DNS data source"
 msgstr "DNS 数据源"
 
-msgid "DNS mode"
+msgid "DNS protocol mode"
 msgstr "DNS 模式"
 
 msgid "DNS suffix"
 msgstr "DNS 后缀"
+
+msgid "DNSCrypt"
+msgstr "DNSCrypt"
+
+msgid "DNSCrypt Resolver"
+msgstr "DNSCrypt 解析器"
 
 msgid ""
 "DO NOT POWER OFF YOUR DEVICE WHILE UPDATING!\n"
@@ -5758,9 +5755,6 @@ msgstr "解密 / 家长控制"
 msgid "Deep Standby"
 msgstr "深度待机"
 
-msgid "Deep standby"
-msgstr "深度待机"
-
 msgid "Default"
 msgstr "默认"
 
@@ -5828,7 +5822,7 @@ msgstr "为电视选择默认视频模式。"
 msgid "Default volume offset"
 msgstr "默认音量偏移"
 
-msgid "Default wake-up is 5 minutes before Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
+msgid "Default wake-up is 5 minutes prior to timer start to wake up from Deep Standby. Adjust if the wake-up is too early or late, e.g., for network drives."
 msgstr "默认唤醒时间设置在深度待机前 5 分钟。如果唤醒过早或过晚（例如针对网络驱动器），请进行相应调整。"
 
 #, python-format
@@ -5843,9 +5837,6 @@ msgstr "为该频道定义 Softcam"
 
 msgid "Define additional delay in milliseconds before start of http(s) streams."
 msgstr "定义http(s)串流启动前的附加延迟（以毫秒为单位）。"
-
-msgid "Define the DNS suffix."
-msgstr "定义 DNS 后缀。"
 
 msgid "Define the custom mountpoint for the device."
 msgstr "定义设备的自定义挂载点。"
@@ -6371,9 +6362,6 @@ msgstr "已禁用画中画。\n"
 msgid "Disabled or WPA/WPA2"
 msgstr "禁用或 WPA/WPA2"
 
-msgid "Disables timeshift during recording (advisable for USB sticks)."
-msgstr "录制期间禁用时光移功能（建议用于 U 盘设备）。"
-
 msgid "Disabling Chkroot failed!"
 msgstr "禁用 Chkroot 失败！"
 
@@ -6591,6 +6579,9 @@ msgstr ""
 #, python-format
 msgid "Do you really want to stop and delete the timer '%s'?"
 msgstr "真的要停止并删除定时器“%s”吗？"
+
+msgid "Do you really want to trim the file system?"
+msgstr "真的要修剪文件系统吗？"
 
 #, python-format
 msgid "Do you want change '%s' access mode?"
@@ -6817,7 +6808,7 @@ msgstr "双工模式"
 msgid "Duplicate the current line"
 msgstr "复制当前行"
 
-msgid "During this time, the transmitter and recording destination are checked. If the destination (e.g., NAS) isn’t ready in time, this time can be increased."
+msgid "During this time, the transmitter and recording destination are checked. If the destination (e.g., NAS) isn't ready in time, this time can be increased."
 msgstr "在此期间，将检查发送器和录制目标。如果录制目标(如 NAS)没有及时准备好进行录制，则可以增加此时间。"
 
 msgid "Dutch"
@@ -7037,6 +7028,9 @@ msgstr "教育"
 msgid "Education/Information"
 msgstr "教育/信息"
 
+msgid "Education/Science/Factual"
+msgstr "教育/科学/纪实类"
+
 msgid "Education/Science/Factual topics"
 msgstr "教育/科学/事实"
 
@@ -7086,7 +7080,7 @@ msgstr "为有源天线启用 5V"
 msgid "Enable Autorecord"
 msgstr "启用自动录制"
 
-msgid "Enable BT Audio"
+msgid "Enable BT audio"
 msgstr "启用蓝牙音频"
 
 msgid "Enable Bouquet Edit"
@@ -7240,6 +7234,9 @@ msgstr "启用从备用调谐器导入定时器"
 msgid "Enable intro screen"
 msgstr "启用屏幕介绍"
 
+msgid "Enable monitoring UI"
+msgstr "启用监控界面"
+
 msgid "Enable multiple bouquets"
 msgstr "启用多个频道分组"
 
@@ -7347,12 +7344,6 @@ msgstr "已启用"
 
 msgid "Enables a feature so that the receiver can decrypt streams (if the ECM data is included in the stream and a valid card is available)."
 msgstr "启用功能，以便接收机可以解密流（如果 ECM（授权控制信息） 数据包含在流中，并且有效的卡可用）。"
-
-msgid "Enables sending the same TV commands for Deep Standby as for regular Standby."
-msgstr "如果设置为“是”，那么对于深度待机事件，将向电视发送相同的命令，就像在常规待机事件期间发送的一样。"
-
-msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
-msgstr "如果设置为“是”，则允许您将时移与备用音频插件一起使用。"
 
 msgid "Encrypted: "
 msgstr "加密方式："
@@ -7492,6 +7483,9 @@ msgstr "输入 PIN 码"
 
 msgid "Enter text via an attached keyboard"
 msgstr "通过连接的键盘输入文本"
+
+msgid "Enter the ZeroTier Network ID. The ID should be exactly 16 characters in length."
+msgstr "请输入 ZeroTier 网络 ID。该 ID 的长度必须正好为 16 个字符。"
 
 msgid "Enter the duration to be added to the streaming buffer after a streaming error. This extra buffer can help to avoid further streaming issues due to a lack of buffer space."
 msgstr "输入流媒体错误后要添加到流媒体缓冲区的持续时间。这个额外的缓冲区有助于避免因缓冲区空间不足而导致的进一步流媒体问题。"
@@ -7990,9 +7984,6 @@ msgstr "退出 EPG"
 msgid "Exit File Commander"
 msgstr "退出文件指挥官"
 
-msgid "Exit MAC address configuration"
-msgstr "退出 MAC 地址配置"
-
 msgid "Exit Movie Selection"
 msgstr "退出影片列表"
 
@@ -8246,6 +8237,9 @@ msgstr "备用远程接收机设置"
 msgid "Fallback Timer"
 msgstr "备用定时器"
 
+msgid "Fallback Tuner Setup"
+msgstr "备用调谐器设置"
+
 msgid "Fallback remote receiver"
 msgstr "备用远程接收机"
 
@@ -8266,9 +8260,6 @@ msgstr "备用远程 DVB-C 接收机"
 
 msgid "Fallback remote receiver for DVB-T"
 msgstr "备用远程 DVB-T 接收机"
-
-msgid "Fallback tuner setup"
-msgstr "备用调谐器设置"
 
 msgid "False"
 msgstr "错"
@@ -8538,9 +8529,6 @@ msgstr "已完成"
 msgid "Finished configuring your network"
 msgstr "配置网络完成"
 
-msgid "Finished restarting your network"
-msgstr "重启网络完成"
-
 msgid "Finland"
 msgstr "芬兰"
 
@@ -8601,9 +8589,6 @@ msgstr "刷机并还原设置及选择的插件（询问用户）"
 msgid "Flash directory '%s' not allowed!"
 msgstr "不允许使用刷机目录 “%s”！"
 
-msgid "Flash your receiver software on the fly."
-msgstr "直接刷写接收机软件。"
-
 msgid "Flash type"
 msgstr "闪存类型"
 
@@ -8613,6 +8598,9 @@ msgstr "闪存已使用"
 #, python-format
 msgid "Flash your %s %s and reboot now?"
 msgstr "是否立即刷写你的 %s %s 并重新启动？"
+
+msgid "Flash your receiver software on the fly."
+msgstr "直接刷写接收机软件。"
 
 #, python-format
 msgid "FlashExpander on boot is '%s'.  FlashExpander status is '%s'."
@@ -8874,7 +8862,7 @@ msgstr "一般"
 msgid "General AC3 delay"
 msgstr "常规 AC3 延迟"
 
-msgid "General BT Audio delay"
+msgid "General BT audio delay"
 msgstr "常规 AC3 延迟"
 
 msgid "General PCM delay"
@@ -8976,9 +8964,6 @@ msgstr "金"
 
 msgid "Golf"
 msgstr "高尔夫球"
-
-msgid "Google DNS"
-msgstr "Google DNS"
 
 msgid "Goto"
 msgstr "转到"
@@ -9208,11 +9193,11 @@ msgstr "手工艺品"
 msgid "Handle Python crashes"
 msgstr "处理 Python 崩溃"
 
-msgid "Handle input from TV"
-msgstr "处理来自电视的输入"
-
 msgid "Handle Standby from TV"
 msgstr "处理来自电视的待机"
+
+msgid "Process action from TV"
+msgstr "处理来自电视的输入"
 
 msgid "Handle wake up from TV"
 msgstr "处理来自电视的唤醒"
@@ -9713,6 +9698,9 @@ msgstr "当所有日志达到最大空间时，最旧的将被删除。"
 
 msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
 msgstr "如果可能，在定时器启动前 x 分钟，VPS 插件将控制程序是否提前开始。 （0 禁用功能）"
+
+msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
+msgstr "如果设置为“是”，则允许您将时移与备用音频插件一起使用。"
 
 msgid "If the Deep Standby workaround is enabled wait until the system time is synchronized. Depending on the requirement the device wake up will continuing after a maximum of 2 minutes."
 msgstr "如果启用了深度待机解决方案，请等待系统时间同步。根据需要，设备将在最多2分钟后继续唤醒。"
@@ -10283,6 +10271,15 @@ msgstr "泽西岛"
 msgid "Job overview"
 msgstr "作业概述"
 
+msgid "Join"
+msgstr "加入"
+
+msgid "Join or leave the configured ZeroTier network"
+msgstr "加入或离开已配置的 ZeroTier 网络"
+
+msgid "Joined"
+msgstr "已加入"
+
 msgid "Jordan"
 msgstr "约旦"
 
@@ -10550,11 +10547,14 @@ msgstr "LED 待机"
 msgid "LED brightness during Deep Standby."
 msgstr "深度待机期间 LED 的亮度。"
 
+msgid "LED brightness during Standby."
+msgstr "待机期间 LED 的亮度。"
+
 msgid "LED brightness during normal operations."
 msgstr "正常操作期间 LED 的亮度。"
 
-msgid "LED brightness during Standby."
-msgstr "待机期间 LED 的亮度。"
+msgid "LED color during Deep Standby."
+msgstr "深度待机期间 LED 指示灯颜色。"
 
 msgid "LIRC remote"
 msgstr "LIRC 遥控器"
@@ -10640,6 +10640,9 @@ msgstr "拉脱维亚"
 msgid "Latvian"
 msgstr "拉脱维亚语"
 
+msgid "Leave"
+msgstr "离开"
+
 msgid "Leave DVD player?"
 msgstr "退出 DVD 播放器？"
 
@@ -10721,6 +10724,9 @@ msgstr "光源"
 
 msgid "Limburgan / Limburger / Limburgish"
 msgstr "林堡"
+
+msgid "Lime"
+msgstr "石灰"
 
 msgid "Limit character set for recording filenames"
 msgstr "限制录制文件名称的字符集"
@@ -10843,9 +10849,6 @@ msgstr "正在加载信息，请稍候..."
 msgid "Loading slot information, please wait..."
 msgstr "正在加载插槽信息，请稍候..."
 
-msgid "Local receiver"
-msgstr "本地机顶盒"
-
 msgid "Local date/time"
 msgstr "本地日期/时间"
 
@@ -10857,6 +10860,9 @@ msgstr "本地网络"
 
 msgid "Local or Regional"
 msgstr "地方或区域"
+
+msgid "Local receiver"
+msgstr "本地机顶盒"
 
 msgid "Local time"
 msgstr "当地时间"
@@ -11020,12 +11026,6 @@ msgstr "卢森堡语/勒兹伯格语"
 
 msgid "M2k Packages"
 msgstr "M2k 软件包"
-
-msgid "MAC Address Actions"
-msgstr "MAC 地址操作"
-
-msgid "MAC Address Settings"
-msgstr "MAC 地址设置"
 
 msgid "MAC address"
 msgstr "MAC 地址"
@@ -11546,14 +11546,8 @@ msgstr "挂载"
 msgid "Mount Manager"
 msgstr "挂载管理器"
 
-msgid "Mount Menu Actions"
-msgstr "挂载菜单操作"
-
 msgid "Mount Point"
 msgstr "挂载点"
-
-msgid "Mount Settings"
-msgstr "挂载设置"
 
 msgid "Mount Setup"
 msgstr "挂载设置"
@@ -11653,12 +11647,6 @@ msgstr "移动排队的作业。"
 
 msgid "Move only highlighted file"
 msgstr "仅移动突出显示的文件"
-
-msgid "Move the current DNS entry down one line"
-msgstr "将当前 DNS 条目下移一行"
-
-msgid "Move the current DNS entry up one line"
-msgstr "将当前 DNS 条目上移一行"
 
 msgid "Move the current bookmark down"
 msgstr "向下移动当前书签"
@@ -12111,9 +12099,6 @@ msgstr "网络日志"
 msgid "Network Log Actions"
 msgstr "网络日志操作"
 
-msgid "Network MAC settings"
-msgstr "网络 MAC 设置"
-
 msgid "Network Neighbourhood"
 msgstr "网络邻居"
 
@@ -12186,6 +12171,9 @@ msgstr ""
 "网络向导完成。\n"
 "\n"
 "按“确定”继续。"
+
+msgid "Network-ID"
+msgstr "网络 ID"
 
 msgid "Network:"
 msgstr "网络："
@@ -12586,12 +12574,6 @@ msgstr "不闪烁"
 msgid "None"
 msgstr "无"
 
-msgid "NordVPN Secure DNS"
-msgstr "NordVPN 安全 DNS"
-
-msgid "NordVPN Smart DNS"
-msgstr "NordVPN 智能 DNS"
-
 msgid "Norfolk Island"
 msgstr "诺福克岛"
 
@@ -12675,6 +12657,9 @@ msgstr ""
 "文件大小： %sMB\n"
 "剩余空间：%sMB\n"
 "路径： %s"
+
+msgid "Not joined. Press Yellow to join."
+msgstr "未加入。按黄色键加入。"
 
 msgid "Not required"
 msgstr "不需要"
@@ -12857,6 +12842,9 @@ msgstr "奥吉布瓦"
 msgid "Older files in the time shift directory are removed on every event change."
 msgstr "每次事件更改时，都会删除时移目录中较旧的文件。"
 
+msgid "Olympic blue"
+msgstr "奥运蓝"
+
 msgid "Olympics"
 msgstr "奥运会"
 
@@ -12913,6 +12901,15 @@ msgstr "在这小时之前仅快速移动天线。"
 
 msgid "Only on startup"
 msgstr "仅在启动时"
+
+msgid "Only use DNS servers implementing the DNS-over-HTTPS protocol. This causes DNS lookups to be made via the encrypted HTTPS protocol."
+msgstr "仅使用实施 DNS-over-HTTPS 协议的DNS服务器。这将使 DNS 查询通过加密的 HTTPS 协议进行。"
+
+msgid "Only use DNS servers implementing the DNSCrypt protocol."
+msgstr "仅使用实施 DNSCrypt 协议的 DNS 服务器。"
+
+msgid "Only use DNS servers implementing the Oblivious DNS-over-HTTPS protocol. This adds another layer of privacy by adding a proxy layer to the DNS-over-HTTPS request."
+msgstr "仅使用实施 Oblivious DNS-over-HTTPS 协议的 DNS 服务器。该协议通过在 DNS-over-HTTPS 请求中增加代理层，进一步提升了隐私保护层级。"
 
 msgid "Open"
 msgstr "打开"
@@ -13094,12 +13091,6 @@ msgstr "打开单频道 EPG 视图"
 msgid "Open with File Commander"
 msgstr "用 File Commander 打开"
 
-msgid "OpenDNS FamilyShield"
-msgstr "OpenDNS FamilyShield"
-
-msgid "OpenDNS Home"
-msgstr "OpenDNS 主页"
-
 msgid "OpenPLi Packages"
 msgstr "OpenPLi 软件包"
 
@@ -13141,6 +13132,9 @@ msgstr "可选参数"
 
 msgid "Options"
 msgstr "选项"
+
+msgid "Orange"
+msgstr "橙色"
 
 msgid "Orbital position"
 msgstr "轨道位置"
@@ -13581,6 +13575,9 @@ msgstr "邮筒/左右黑边"
 msgid "Pilot"
 msgstr "导频"
 
+msgid "Pink"
+msgstr "粉色"
+
 msgid "Pitcairn"
 msgstr "皮特凯恩群岛"
 
@@ -13906,9 +13903,6 @@ msgstr "正在更新插件，请稍候。"
 
 msgid "Please wait while we check your installed plugins..."
 msgstr "正在检测已安装的插件，请稍等..."
-
-msgid "Please wait while we configure your network..."
-msgstr "配置网络时请稍等..."
 
 msgid "Please wait while we prepare your network interfaces..."
 msgstr "正在准备网络接口，请稍等..."
@@ -14240,9 +14234,6 @@ msgstr "请按 OK 键来选择卫星"
 msgid "Press OK to select/deselect a CAId."
 msgstr "请按 OK 键来选择/反选 CAId。"
 
-msgid "Press OK to set the MAC address."
-msgstr "请按 OK 键来设置 MAC 地址。"
-
 msgid "Press OK to start the backup now"
 msgstr "按“确定”立即开始备份"
 
@@ -14274,9 +14265,6 @@ msgstr "使用 上/下 键选择槽位，按 OK 或绿键重启进入对应系�
 
 msgid "Press this button to emulate a long press on a button pressed afterwards (this also overrides any other actions assigned to emulation button)."
 msgstr "按下此按钮以模拟之后按下的按钮的长按操作（此操作还会覆盖分配给模拟按钮的任何其他功能）。"
-
-msgid "Press yellow to set this interface as the default interface."
-msgstr "请按黄键来设置这个界面为默认界面。"
 
 msgid "Pressing the panic button will zap you to this channel number in your first bouquet."
 msgstr "按下紧急键，可将频道号切换为首个频道分组中的频道号。"
@@ -14325,6 +14313,9 @@ msgstr "黄金时段 分钟"
 
 msgid "Priority"
 msgstr "优先级"
+
+msgid "Privacy level"
+msgstr "隐私级别"
 
 msgid "Problem starting scan"
 msgstr "开始扫描时出现问题"
@@ -14495,6 +14486,9 @@ msgstr "清除除当前和永久区域设置/语言之外的所有区域设置/�
 msgid "Purging all unused locales/languages..."
 msgstr "正在清除所有未使用的区域设置/语言..."
 
+msgid "Purple"
+msgstr "紫色"
+
 msgid "Pushto / Pashto"
 msgstr "普什图语"
 
@@ -14527,15 +14521,6 @@ msgstr "四路画中画频道"
 
 msgid "Quad PiP is not available."
 msgstr "四路画中画不可用。"
-
-msgid "Quad9 DNS"
-msgstr "Quad9 DNS"
-
-msgid "Quad9 ECS DNS"
-msgstr "Quad9 ECS DNS"
-
-msgid "Quad9 Unsecured DNS"
-msgstr "Quad9 不安全 DNS"
 
 msgid "Quechua"
 msgstr "克丘亚语"
@@ -14919,7 +14904,10 @@ msgstr ""
 msgid "Refresh"
 msgstr "刷新"
 
-msgid "Refresh every x hours"
+msgid "Refresh ZeroTier status information"
+msgstr "刷新 ZeroTier 状态信息"
+
+msgid "Refresh every"
 msgstr "刷新每（小时）"
 
 msgid "Refresh rate"
@@ -15018,14 +15006,14 @@ msgstr "遥控器按键设置"
 msgid "Remote Control Code Settings"
 msgstr "遥控器代码设置"
 
-msgid "Remote receiver"
-msgstr "远程机顶盒"
-
 msgid "Remote control information"
 msgstr "遥控器信息"
 
 msgid "Remote control type"
 msgstr "遥控器类型"
+
+msgid "Remote receiver"
+msgstr "远程机顶盒"
 
 msgid "Remove"
 msgstr "移除"
@@ -15081,9 +15069,6 @@ msgstr "移除服务"
 
 msgid "Remove Terrestrial Services"
 msgstr "删除地面波频道"
-
-msgid "Remove a DNS entry"
-msgstr "删除 DNS 条目"
 
 msgid "Remove a mark"
 msgstr "移除标记"
@@ -15258,9 +15243,6 @@ msgstr "所需介质类型："
 
 msgid "Rereading partition table"
 msgstr "正在重新读取分区表"
-
-msgid "Select 'Yes' to reschedule the task to run when the receiver enters or exits Standby. The state change must occur within the task's scheduled window or the task will not be run."
-msgstr "选择“是”可将任务重新安排到接收机进入/退出待机模式时执行。状态变化必须发生在计划任务时间窗口内，否则该任务将不会运行。"
 
 msgid "Reserved"
 msgstr "保留的"
@@ -15548,6 +15530,9 @@ msgstr "根目录"
 msgid "Root file"
 msgstr "根文件"
 
+msgid "Rose"
+msgstr "粉红色"
+
 msgid "Rotor turning speed"
 msgstr "极轴转速"
 
@@ -15821,7 +15806,7 @@ msgstr "保存并停止"
 msgid "Save directory on EXIT"
 msgstr "退出时保存目录"
 
-msgid "Save every x hours"
+msgid "Save every"
 msgstr "保存每（单位：小时）"
 
 #, python-format
@@ -16205,6 +16190,9 @@ msgstr "选择“是”可在文件指挥官文件查看器中显示未知文件
 msgid "Select 'Yes' to enable AI-Powered Translation for all teletext and DVB subtitles."
 msgstr "选择“是”为所有图文电视和 DVB 字幕启用人工智能翻译。"
 
+msgid "Select 'Yes' to enable DNS entry rotation. This rotation changes the order in which the list of DNS servers is used and can avoid issues if a DNS server in the list becomes unavailable."
+msgstr "选择\"是\"以启用 DNS 条目轮换。此轮换会改变 DNS 服务器列表的使用顺序，如果列表中的某个 DNS 服务器不可用，可以避免出现问题。"
+
 msgid "Select 'Yes' to enable editing of this device's settings. Selecting 'No' resets the devices settings to their default values."
 msgstr "选择“是”以启用对此设备设置的编辑。 选择“否”会将设备设置重置为其默认值。"
 
@@ -16219,6 +16207,9 @@ msgstr "选择“是”可在 EPG 列表中启用频道预览。按“确定”�
 
 msgid "Select 'Yes' to enable the loading of unlinked user bouquets. That is, user bouquets that are not included in the bouquets.tv or bouquets.radio files will be loaded. This allows you to, for example, create bouquets that do not conflict with, or get replaced by, bouquets that came from settings packages."
 msgstr "选择“是”以启用加载未链接的用户频道分组。也就是说，将加载未包含在 bouquets.tv 或 bouquets.radio 文件中的用户频道分组。例如，这允许您创建与设置包中的频道分组不冲突或不被其替换的频道分组。"
+
+msgid "Select 'Yes' to enable the monitoring UI web interface for the DNSCrypt subsystem."
+msgstr "选择“是”以启用 DNSCrypt 子系统的监控界面网页界面。"
 
 msgid "Select 'Yes' to enable use of the LEFT/RIGHT buttons to move PageUp/PageDown when the LEFT/RIGHT buttons are otherwise undefined. This provides legacy navigation for users who prefer it."
 msgstr "选择“是”以启用左/右按钮作为上页/下页功能（当左/右按钮未定义其他功能时）。此功能为偏好传统导航方式的用户提供支持。"
@@ -16273,6 +16264,9 @@ msgstr "选择“是”以删除皮肤数据的所有用户自定义设置。选
 
 msgid "Select 'Yes' to remove all user interface data. Selecting this option will remove all key map, menu and setup override data and restore the default definitions."
 msgstr "选择“是”删除所有用户界面数据。选择此选项将删除所有按键映射、菜单和设置覆盖数据，并恢复默认定义。"
+
+msgid "Select 'Yes' to reschedule the task to run when the receiver enters or exits Standby. The state change must occur within the task's scheduled window or the task will not be run."
+msgstr "选择“是”可将任务重新安排到接收机进入/退出待机模式时执行。状态变化必须发生在计划任务时间窗口内，否则该任务将不会运行。"
 
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr "选择“是”将网络配置重置为默认值。这将启用以太网端口（如果存在），并将接收机设置为使用 DHCP。 所有其他网络接口都将被删除。"
@@ -16712,6 +16706,9 @@ msgstr "选择 %s 条目"
 msgid "Select the AI-Powered Translation target language."
 msgstr "选择人工智能翻译目标语言。"
 
+msgid "Select the DNS server(s) that will be used to lookup the host name to resolve the IP address."
+msgstr "选择默认 DNS 设置的来源。"
+
 msgid "Select the No / False response"
 msgstr "选择 否/错误 响应"
 
@@ -16916,9 +16913,6 @@ msgstr "选择 SCR 设备的制造商。 如果制造商未列出，请将“SCR
 msgid "Select the method of restoring screen resolution and framebuffer when leaving teletext."
 msgstr "选择退出图文电视时恢复屏幕分辨率和帧缓冲的处理方法。"
 
-msgid "Select the mode of the DNS."
-msgstr "选择DNS的模式。"
-
 msgid "Select the model number of your Unicable device. If the model number is not listed, set 'SCR' to 'User defined' and enter the device parameters manually according to its specifications."
 msgstr "选择Unicable 设备的型号。 如果未列出型号，请将“SCR”设置为“用户定义”，然后根据其规格手动输入设备参数。"
 
@@ -17027,9 +17021,6 @@ msgstr "选择菜单项的排序顺序。用户定义还允许隐藏菜单项。
 
 msgid "Select the source location from where to obtain the upgrade files."
 msgstr "选择获取升级文件的源位置。"
-
-msgid "Select the source of the default DNS settings."
-msgstr "选择默认 DNS 设置的来源。"
 
 msgid "Select the start time after which this timer can be activated. Before this time the timer won't be activated even if other conditions are met."
 msgstr "选择此定时器可被激活的最早起始时间。早于此时限，即使满足其他所有条件，定时器也不会启动。"
@@ -17154,6 +17145,9 @@ msgstr "选择希望 上/下 按钮激活的功能。"
 msgid "Select where the recording should be saved."
 msgstr "选择录制保存的位置。"
 
+msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
+msgstr "选择DNS的模式。"
+
 msgid "Select wireless network"
 msgstr "选择无线网络"
 
@@ -17271,6 +17265,15 @@ msgstr "严肃/经典/宗教/历史影片/戏剧"
 msgid "Server down"
 msgstr "频道 向下"
 
+msgid "Server must not enforce its own blocklist. Some servers may implement their own blacklists to block sites for parental control, ad blocking, etc. reasons."
+msgstr "服务器不得强制执行其自身的阻止列表。某些服务器可能会实现自己的黑名单，以出于家长控制、广告拦截等原因阻止访问某些网站。"
+
+msgid "Server must not log user queries (declarative). This can improve the privacy of DNS lookups by not logging the request on the server providing the data."
+msgstr "服务器不得记录用户查询（声明性要求）。这可以通过不在提供数据的服务器上记录请求来提升 DNS 查询的隐私性。"
+
+msgid "Server must support DNS Security Extensions (DNSSEC). This is a data signing option that protects the integrity of the DNS data against compromises like cache poisoning."
+msgstr "服务器必须支持DNS安全扩展（DNSSEC）。这是一项数据签名功能，可保护 DNS 数据的完整性，防止缓存中毒等威胁。"
+
 msgid "Servers"
 msgstr "频道"
 
@@ -17360,6 +17363,9 @@ msgstr "频道编号，频道图标和频道名称"
 
 msgid "Service off-air"
 msgstr "频道停播"
+
+msgid "Service online"
+msgstr "在线服务"
 
 msgid "Service picons aspect ratio"
 msgstr "频道图标宽高比"
@@ -17476,9 +17482,6 @@ msgstr "设置外挂字幕的帧数"
 msgid "Set how long the second InfoBar stays visible. The second InfoBar also disappears when you press 'OK'."
 msgstr "设置隐藏第二个信息栏的时间。 按下“确定”后，该栏也会消失。"
 
-msgid "Set interface as the default Interface"
-msgstr "设置界面为默认界面"
-
 msgid "Set limits"
 msgstr "设置限制"
 
@@ -17500,10 +17503,6 @@ msgstr "设置‘%s’/‘%s’按钮的剪辑列表跳过时间间隔。"
 msgid "Set the LEFT/RIGHT button skip percentage for the SeekBar."
 msgstr "设置进度条的左/右按键跳过百分比。"
 
-#, python-format
-msgid "Set the MAC address of your %s %s."
-msgstr "设置 %s %s 的 MAC 地址。"
-
 msgid "Set the UP/DOWN button skip percentage for the SeekBar."
 msgstr "设置进度条的上/下按键跳过百分比。"
 
@@ -17512,6 +17511,9 @@ msgstr "设置备用调谐器的 OpenWebif 用户 ID。"
 
 msgid "Set the aspect ratio of the service picons."
 msgstr "设置频道图标的宽高比。"
+
+msgid "Set the bitrate of the video encoder. Larger values improve the quality and also increases the file size."
+msgstr "视频编码器的比特率。 较大的值可提高质量并增加文件大小。"
 
 msgid "Set the default location for your instant recordings. Press 'OK' to add new locations, press 'LEFT'/'RIGHT' to select from previously defined locations."
 msgstr "设置即时录制的默认位置。按 “OK” 添加新位置，按“左”/“右”从先前定义的位置中选择。"
@@ -17543,14 +17545,23 @@ msgstr "设置进度条的跳跃大小。"
 msgid "Set the number of lines to be saved for 'stout' and 'sterr' output in scripts."
 msgstr "设置要为脚本中的“stout”和“sterr”输出保存的行数。"
 
+msgid "Set the password for the monitoring UI web interface."
+msgstr "设置监控界面网页的密码。"
+
 msgid "Set the password of the OpenWebif from your fallback tuner."
 msgstr "设置备用调谐器的 OpenWebif 密码。"
+
+msgid "Set the port address (8080-9999) for the monitoring UI web interface."
+msgstr "设置监控界面网页的端口地址（范围8080-9999）。"
 
 msgid "Set the port of the OpenWebif from your fallback tuner."
 msgstr "设置备用调谐器的 OpenWebif 端口。"
 
 msgid "Set the position of the recording icons."
 msgstr "设置录制图标的位置。"
+
+msgid "Set the privacy level for the monitoring UI web interface."
+msgstr "设置监控界面网页的隐私级别。"
 
 msgid "Set the screen type you see on pressing 'OK' when the InfoBar shows the second InfoBar Lite or event info."
 msgstr "当信息栏显示为第二个信息栏精简或事件信息时，设置按下“确定”时的屏幕类型。"
@@ -17585,11 +17596,14 @@ msgstr "设置隐藏信息栏的时间。"
 msgid "Set the time to wait for execute the default action in shutdown, standby or restart messages, e.g. used in RecordTimer, Scheduler, SleepTimer etc."
 msgstr "设置等待执行关机、待机或重启消息中默认操作的时间，例如用于录制定时器、电源定时器、睡眠定时器等。"
 
-msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at 0,0 and the bottom right is at 1260,700. Note that the position is the top left of the spinner and not the centre of the spinner."
+msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
 msgstr "设置繁忙旋转器的左上角位置。坐标经过缩放，使得左上角位于 (0,0)，右下角位于 (1260,700)。请注意，该位置是旋转器的左上角，而不是旋转器的中心。"
 
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "在频道选择屏幕中设置进度指示的类型。"
+
+msgid "Set the username for the monitoring UI web interface."
+msgstr "设置监控界面网页的用户名。"
 
 #, python-format
 msgid "Set the volume level for the '%s' service."
@@ -17620,7 +17634,7 @@ msgstr "将此设置为“是”以按字母顺序对播放列表进行排序。
 msgid "Set time options"
 msgstr "设置时间选项"
 
-msgid "Set to 'Disabled' to replace underscore characters '_' in file and directory names with spaces."
+msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
 msgstr "设置为“禁用”以用空格替换文件和目录名称中的下划线字符“_”。"
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby before shutting down."
@@ -17628,6 +17642,9 @@ msgstr "设为‘启用’可在关机前对待机模式下已排队的加扰录
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby."
 msgstr "设为'启用'，可在待机模式下对已排队的加扰内容执行解扰。"
+
+msgid "Set to 'Yes' to enable sending the same TV commands for Deep Standby as for regular Standby."
+msgstr "如果设置为“是”，那么对于深度待机事件，将向电视发送相同的命令，就像在常规待机事件期间发送的一样。"
 
 msgid "Set to 'Yes', to enable automatic recording of the background time shift buffer."
 msgstr "设置为“是”，以启用后台分时缓冲区的自动录制。"
@@ -17976,7 +17993,7 @@ msgstr "显示 HDMI 输出分辨率"
 msgid "Show InfoBar"
 msgstr "显示信息栏"
 
-msgid "Show InfoBar lite *"
+msgid "Show InfoBar lite"
 msgstr "显示精简信息栏 *"
 
 msgid "Show InfoBar on channel change"
@@ -19229,6 +19246,9 @@ msgstr "特殊事件"
 msgid "Specify the directory to use when starting Media Player."
 msgstr "指定启动媒体播放器时要使用的目录。"
 
+msgid "Specify the network DNS suffix to be applied when only the host name is provided. This helps the DNS resolver find the requested host."
+msgstr "定义 DNS 后缀。"
+
 msgid "Speed"
 msgstr "速度"
 
@@ -19502,6 +19522,9 @@ msgstr "已停止"
 
 msgid "Stopping Softcam"
 msgstr "正在停止 Softcam"
+
+msgid "Stops time shift being used if a recording is in progress. This is advisable for USB sticks."
+msgstr "录制期间禁用时光移功能（建议用于 U 盘设备）。"
 
 msgid "Storage / Disk Information"
 msgstr "存储 / 磁盘信息"
@@ -20175,10 +20198,10 @@ msgstr "%s %s 的内存容量有限。 需要交换文件来增加可用内存�
 msgid "The %s %s is shutting down. Please wait..."
 msgstr "%s %s 正在关闭。 请稍等..."
 
-msgid "The %s %s reads the stored EPG data every x hours."
+msgid "The %s %s reads the stored EPG data every selected number of hours."
 msgstr "%s %s 读取存储的 EPG 数据每（小时）。"
 
-msgid "The %s %s stores the EPG data every x hours."
+msgid "The %s %s stores the EPG data every selected number of hours."
 msgstr "%s %s 存储 EPG 数据 每（小时）。"
 
 #, python-format
@@ -20204,7 +20227,7 @@ msgstr "无法检索“%s”文件，请稍后再试。"
 msgid "The AI mode used for translating languages. You can choose the one that gives the most accurate translation for your target language."
 msgstr "用于翻译语言的 AI 模式。您可以选择为目标语言提供最准确翻译的模式。"
 
-msgid "The AI-Powered Translation service will be optimized to provide the best performance based on the the Internet connection upload speed selected."
+msgid "The AI-Powered Translation service will be optimized to provide the best performance based on the Internet connection upload speed selected."
 msgstr "人工智能驱动的翻译服务将根据所选的互联网连接上传速度进行优化，以提供最佳性能。"
 
 msgid ""
@@ -20427,13 +20450,6 @@ msgstr "图片的高度。 输入将被缩放以匹配此值。"
 msgid "The loopthrough setting is wrong."
 msgstr "环通设置错误。"
 
-msgid ""
-"The network wizard extension is not installed!\n"
-"Please install it."
-msgstr ""
-"网络向导扩展没有安装！\n"
-"请安装。"
-
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr "频道图标目录已存在，必须删除。是否要继续？"
 
@@ -20596,7 +20612,7 @@ msgstr "此 %s %s 不能解码 %s 流！"
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "此 DVD RW 介质已经格式化－重新格式化将擦除光盘上的所有内容。"
 
-msgid "This Option allows you to switch Audio to BT Speakers."
+msgid "This option allows you to switch Audio to Bluetooth speakers."
 msgstr "此选项允许您显示菜单路径。"
 
 msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
@@ -20629,7 +20645,7 @@ msgstr "这是当前选定的语言。[%s]"
 msgid "This is the currently selected locale.  [%s]"
 msgstr "这是当前选定的区域设置。[%s]"
 
-msgid "This is the initial / default volume offset applied to any services added the the volume adjust list."
+msgid "This is the initial / default volume offset applied to any services added to the volume adjust list."
 msgstr "这是应用于添加音量调整列表的任何频道的初始/默认音量偏移。"
 
 msgid "This is the order in which DiSEqC commands are sent to the aerial system. The order must correspond exactly with the order the physical devices are arranged along the signal cable (starting from the receiver end)."
@@ -20728,11 +20744,11 @@ msgstr "此选项允许您选择您的电视如何显示渐进式标清 24Hz。�
 msgid "This option allows you to choose how to display elapsed time, as + or -."
 msgstr "此选项允许您选择如何显示已用时间，如 + 或 -。"
 
-msgid "This option allows you to choose how to display the remaining time, the elapsed time, or both."
-msgstr "此选项允许您选择如何显示剩余时间或已用时间，或两者。"
-
 msgid "This option allows you to choose how to display standard definition video on your TV."
 msgstr "此选项允许您选择如何在电视上显示标清视频。"
+
+msgid "This option allows you to choose how to display the remaining time, the elapsed time, or both."
+msgstr "此选项允许您选择如何显示剩余时间或已用时间，或两者。"
 
 msgid "This option allows you to choose how to display the remaining/elapsed time for live TV."
 msgstr "此选项允许您选择如何显示直播电视的剩余/已用时间。"
@@ -20776,13 +20792,13 @@ msgstr "此选项允许您使用所有HDMI模式"
 msgid "This option allows you to view the old and new settings side by side."
 msgstr "此选项允许您并排浏览旧的和新的设置。"
 
-msgid "This option configures the general audio delay for BT Speakers."
+msgid "This option configures the audio delay value for Bluetooth speakers."
 msgstr "此选项配置立体声音轨的常规音频延迟。"
 
-msgid "This option configures the general audio delay of Dolby Digital sound tracks."
+msgid "This option selects the general audio delay of Dolby Digital sound tracks."
 msgstr "此选项配置杜比数码声轨的常规音频延迟。"
 
-msgid "This option configures the general audio delay of stereo sound tracks."
+msgid "This option selects the general audio delay of stereo sound tracks."
 msgstr "此选项配置立体声音轨的常规音频延迟。"
 
 msgid "This option configures the picture sharpness."
@@ -20794,7 +20810,7 @@ msgstr "此选项配置电脑输出模式的屏幕分辨率。"
 msgid "This option configures the video output mode (or resolution)."
 msgstr "此选项配置视频输出模式（或分辨率）。"
 
-msgid "This option configures you can set Auto Volume Level."
+msgid "This option allows you to set the Auto Volume Level output."
 msgstr "此选项配置 让您设置自动音量级别。"
 
 msgid "This option lets you adjust the 3D depth of the OSD."
@@ -21406,6 +21422,12 @@ msgstr "尝试禁用画中画，但没有找到信息栏实例！\n"
 msgid "Tries left:"
 msgstr "剩余尝试次数："
 
+msgid "Trim File System"
+msgstr "修剪文件系统"
+
+msgid "Trim File System..."
+msgstr "修剪文件系统..."
+
 msgid "Trinidad and Tobago"
 msgstr "特立尼达和多巴哥"
 
@@ -21527,6 +21549,12 @@ msgstr "调整算法"
 
 msgid "Tunisia"
 msgstr "突尼斯"
+
+msgid "Tunnel IPv4"
+msgstr "IPv4 隧道"
+
+msgid "Tunnel IPv6"
+msgstr "IPv6 隧道"
 
 msgid "Turbo"
 msgstr "Turbo"
@@ -21940,8 +21968,20 @@ msgstr "使用 自动 CAM"
 msgid "Use DHCP"
 msgstr "使用 DHCP"
 
+msgid "Use DNS cache"
+msgstr "使用 DNS 缓存"
+
+msgid "Use DNS rotation"
+msgstr "使用 DNS 轮换"
+
+msgid "Use DNSCrypt servers"
+msgstr "使用 DNSCrypt 服务器"
+
 msgid "Use Deinterlacing for 1080i Videosignal?"
 msgstr "1080i视频信号使用逐行扫描？"
+
+msgid "Use DoH servers"
+msgstr "使用 DoH 服务器"
 
 msgid "Use EIT EPG information when it is available."
 msgstr "EIT（事件信息表） EPG信息可用时使用。"
@@ -21967,6 +22007,9 @@ msgstr "MHW EPG 信息可用时使用。"
 msgid "Use Netmed EPG information when it is available."
 msgstr "Netmed EPG 信息可用时使用。"
 
+msgid "Use ODoH servers"
+msgstr "使用 ODoH 服务器"
+
 msgid "Use OpenTV EPG. Requires tuning to specific transponder to absorb EPG."
 msgstr "使用 OpenTV EPG。 需要调谐到特定的转发器才能接收 EPG。"
 
@@ -21990,6 +22033,9 @@ msgstr "Virgin EPG 信息可用时使用。"
 
 msgid "Use Zap timer end times"
 msgstr "使用换台定时器结束时间"
+
+msgid "Use a DNS cache to locally store recent DNS lookups to improve performance, reduce latency and outgoing traffic."
+msgstr "启用 DNS 缓存以本地存储最近的 DNS 查询，从而提升性能、降低延迟并减少外发流量。"
 
 msgid "Use a gateway"
 msgstr "使用网关"
@@ -22060,8 +22106,17 @@ msgstr "使用旧版导航"
 msgid "Use official channel numbering"
 msgstr "使用官方频道编号"
 
+msgid "Use only DNSSEC servers"
+msgstr "仅使用 DNSSEC 服务器"
+
 msgid "Use only for Wake on WLan (WoW)"
 msgstr "仅用于WLan唤醒（WoW）"
+
+msgid "Use only no-filter servers"
+msgstr "仅使用无过滤服务器"
+
+msgid "Use only no-log servers"
+msgstr "仅使用无日志服务器"
 
 msgid "Use original DVB subtitle position"
 msgstr "使用原始字幕位置"
@@ -22128,9 +22183,6 @@ msgstr "使用当前选择并退出"
 
 msgid "Use the extended List"
 msgstr "使用扩展列表"
-
-msgid "Use the network wizard to configure selected network adapter"
-msgstr "使用网络向导配置选择的网络适配器"
 
 msgid "Use the network wizard to configure your Network."
 msgstr "使用网络向导配置网络。"
@@ -22668,7 +22720,7 @@ msgstr "从待机状态唤醒电视"
 msgid "Wake up from Deep-Standby is allowed"
 msgstr "允许从深度待机唤醒"
 
-msgid "Wake up time before a timer begins [mins]"
+msgid "Wake up time before a timer begins"
 msgstr "定时器开始前的唤醒时间 [分钟]"
 
 msgid "Wake up to standby"
@@ -22867,9 +22919,6 @@ msgstr "启用时，当没有空闲调谐器，允许录制中止串流。"
 msgid "When enabled, a recording is allowed to interrupt live TV, when there are no free tuners."
 msgstr "启用时，当没有空闲的调谐器，允许录制中断直播电视。"
 
-msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
-msgstr "当设置为“是”时，可以为每个加密频道分配一个特定的Softcam。"
-
 msgid "When enabled, a warning will be displayed and the user will get an option to stop or to continue the time shift."
 msgstr "启用后，将显示警告，用户将获得停止或继续时移的选项。"
 
@@ -23005,6 +23054,9 @@ msgstr "当设置时每个文件夹时将显示之前使用的状态，当关闭
 msgid "When set the PIG will return to live after a movie has stopped playing."
 msgstr "当设置时，PIG 将在停止播放影片后返回到直播。"
 
+msgid "When set to 'Yes' a specific Softcam can be assigned to each encrypted service."
+msgstr "当设置为“是”时，可以为每个加密频道分配一个特定的Softcam。"
+
 msgid "When the content has an aspect ratio of 16:9, choose whether to scale/stretch the picture."
 msgstr "当内容画面比例为 16:9 时，选择是否缩放/拉伸图片。"
 
@@ -23023,7 +23075,7 @@ msgstr "当接收机从待机状态唤醒时，它将命令电视切换到接收
 msgid "When the red box is correctly visible press the GREEN button to save the settings and exit."
 msgstr "当红色框正确可见时，按绿色按钮保存设置并退出。"
 
-msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you’re doing."
+msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you're doing."
 msgstr "当调谐到频道时，系统通常会扫描转发器的任何改动并保存它们。 仅当你在完全确定自己在做什么时设为“是”。"
 
 msgid "When yes, VPS will be enabled on instant records (stop after current event), if the channel supports VPS."
@@ -23052,6 +23104,9 @@ msgstr "宽度"
 
 msgid "Width / Height"
 msgstr "宽度/高度"
+
+msgid "Winter sport"
+msgstr "冬季运动"
 
 msgid "Winter sports"
 msgstr "冬季运动"
@@ -23604,6 +23659,15 @@ msgstr "向上切换"
 msgid "Zap+Record next"
 msgstr "换台 + 录制下一个"
 
+msgid "ZeroTier Actions"
+msgstr "ZeroTier 操作"
+
+msgid "ZeroTier Settings"
+msgstr "ZeroTier 设置"
+
+msgid "ZeroTier-One"
+msgstr "ZeroTier-One"
+
 msgid "Zgemma H.S/H.2S/H.2H/H5/H7 old Model"
 msgstr "Zgemma H.S/H.2S/H.2H/H5/H7旧型号"
 
@@ -23667,9 +23731,6 @@ msgstr "按 字母倒序/由新到旧 排序"
 msgid "am"
 msgstr "am"
 
-msgid "aqua"
-msgstr "湖绿色"
-
 #, python-format
 msgid "audio track (%s) format"
 msgstr "音轨（%s）格式"
@@ -23683,9 +23744,6 @@ msgstr "音轨"
 
 msgid "automatic"
 msgstr "自动"
-
-msgid "azure"
-msgstr "天蓝色"
 
 msgid "back"
 msgstr "返回"
@@ -23936,9 +23994,6 @@ msgstr "左"
 msgid "length"
 msgstr "长度"
 
-msgid "lime"
-msgstr "石灰"
-
 msgid "locked"
 msgstr "已锁定"
 
@@ -24017,14 +24072,8 @@ msgstr "关闭或 WPA2 开"
 msgid "offset is"
 msgstr "偏移为"
 
-msgid "olympic blue"
-msgstr "奥运蓝"
-
 msgid "on READ ONLY medium."
 msgstr "在只读介质上。"
-
-msgid "orange"
-msgstr "橙色"
 
 msgid "package"
 msgstr "软件包"
@@ -24034,9 +24083,6 @@ msgstr "软件包"
 
 msgid "pid:"
 msgstr "pid："
-
-msgid "pink"
-msgstr "粉色"
 
 msgid "please wait, loading picture..."
 msgstr "请稍等，正在载入图片..."
@@ -24055,9 +24101,6 @@ msgstr "提供："
 
 msgid "provider:"
 msgstr "供应商："
-
-msgid "purple"
-msgstr "紫色"
 
 msgid "red"
 msgstr "红键"
@@ -24088,9 +24131,6 @@ msgstr "退回上一个章节"
 
 msgid "right"
 msgstr "右"
-
-msgid "rose"
-msgstr "粉红色"
 
 msgid ""
 "satellites.xml not found or corrupted!\n"
@@ -24256,9 +24296,6 @@ msgstr "等待 mmi..."
 msgid "west"
 msgstr "西"
 
-msgid "white"
-msgstr "白色"
-
 msgid "width"
 msgstr "宽度"
 
@@ -24285,6 +24322,110 @@ msgstr "是（保留订阅源）"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "* Only available if more than one interface is active."
+#~ msgstr "* 仅当有多个网卡处于活动状态时可用。"
+
+#~ msgid "Activate MAC address configuration"
+#~ msgstr "激活 MAC 地址配置"
+
+#~ msgid "Exit MAC address configuration"
+#~ msgstr "退出 MAC 地址配置"
+
+#~ msgid "Finished restarting your network"
+#~ msgstr "重启网络完成"
+
+#~ msgid "MAC Address Actions"
+#~ msgstr "MAC 地址操作"
+
+#~ msgid "MAC Address Settings"
+#~ msgstr "MAC 地址设置"
+
+#~ msgid "Mount Menu Actions"
+#~ msgstr "挂载菜单操作"
+
+#~ msgid "Mount Settings"
+#~ msgstr "挂载设置"
+
+#~ msgid "Network MAC settings"
+#~ msgstr "网络 MAC 设置"
+
+#~ msgid "Please wait while we configure your network..."
+#~ msgstr "配置网络时请稍等..."
+
+#~ msgid "Press OK to set the MAC address."
+#~ msgstr "请按 OK 键来设置 MAC 地址。"
+
+#~ msgid "Press yellow to set this interface as the default interface."
+#~ msgstr "请按黄键来设置这个界面为默认界面。"
+
+#~ msgid "Set interface as the default Interface"
+#~ msgstr "设置界面为默认界面"
+
+#, python-format
+#~ msgid "Set the MAC address of your %s %s."
+#~ msgstr "设置 %s %s 的 MAC 地址。"
+
+#~ msgid ""
+#~ "The network wizard extension is not installed!\n"
+#~ "Please install it."
+#~ msgstr ""
+#~ "网络向导扩展没有安装！\n"
+#~ "请安装。"
+
+#~ msgid "Use the network wizard to configure selected network adapter"
+#~ msgstr "使用网络向导配置选择的网络适配器"
+
+#~ msgid "white"
+#~ msgstr "白色"
+
+#~ msgid "Add a DNS entry"
+#~ msgstr "添加 DNS 条目"
+
+#~ msgid "DNS (Dynamic Name Server) Actions"
+#~ msgstr "DNS（动态名称服务器）操作"
+
+#~ msgid "Deep standby"
+#~ msgstr "深度待机"
+
+#~ msgid "Move the current DNS entry down one line"
+#~ msgstr "将当前 DNS 条目下移一行"
+
+#~ msgid "Move the current DNS entry up one line"
+#~ msgstr "将当前 DNS 条目上移一行"
+
+#~ msgid "Remove a DNS entry"
+#~ msgstr "删除 DNS 条目"
+
+#~ msgid "Cloudflare DNS"
+#~ msgstr "Cloudflare DNS"
+
+#~ msgid "Comodo Secure DNS"
+#~ msgstr "Comodo 安全 DNS"
+
+#~ msgid "NordVPN Secure DNS"
+#~ msgstr "NordVPN 安全 DNS"
+
+#~ msgid "NordVPN Smart DNS"
+#~ msgstr "NordVPN 智能 DNS"
+
+#~ msgid "OpenDNS FamilyShield"
+#~ msgstr "OpenDNS FamilyShield"
+
+#~ msgid "OpenDNS Home"
+#~ msgstr "OpenDNS 主页"
+
+#~ msgid "Google DNS"
+#~ msgstr "Google DNS"
+
+#~ msgid "Quad9 DNS"
+#~ msgstr "Quad9 DNS"
+
+#~ msgid "Quad9 ECS DNS"
+#~ msgstr "Quad9 ECS DNS"
+
+#~ msgid "Quad9 Unsecured DNS"
+#~ msgstr "Quad9 不安全 DNS"
 
 #, python-format
 #~ msgid "%d Seconds"

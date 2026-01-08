@@ -14,7 +14,7 @@ from Components.Label import Label
 from Components.MenuList import MenuList
 from Components.Pixmap import Pixmap
 from Components.config import getConfigListEntry, ConfigText
-from Components.Converter.genre import getGenreStringSub
+from Components.Genres import genres
 from Components.SystemInfo import getBoxDisplayName
 from Plugins.Plugin import PluginDescriptor
 from Screens.ChoiceBox import ChoiceBox
@@ -697,6 +697,8 @@ class EPGFetcher:
 
     def convertChanShows(self, shows, mapping_errors):
         country_code = config.plugins.icetv.member.country.value
+        if config.plugins.icetv.enable_epg.value:
+            country_code = "IT1"
         res = []
         category_cache = {}
         for show in shows:
@@ -715,24 +717,24 @@ class EPGFetcher:
             title = ensure_str(show.get("title", ""))
             short = ensure_str(show.get("subtitle", ""))
             extended = ensure_str(show.get("desc", ""))
-            genres = []
+            genresList = []
             for g in show.get("category", []):
                 name = ensure_str(g['name'])
                 if name in category_cache:
                     eit_remap = category_cache[name]
-                    genres.append(eit_remap)
+                    genresList.append(eit_remap)
                 else:
                     eit = int(g.get("eit", "0"), 0) or 0x01
                     eit_remap = genre_remaps.get(country_code, {}).get(name, eit)
-                    mapped_name = getGenreStringSub((eit_remap >> 4) & 0xf, eit_remap & 0xf, country=country_code)
+                    mapped_name = genres.getGenreLevelTwoText((eit_remap >> 4) & 0xf, eit_remap & 0xf, country=country_code)
                     if mapped_name == name:
-                        genres.append(eit_remap)
+                        genresList.append(eit_remap)
                         category_cache[name] = eit_remap
                     elif name not in mapping_errors:
                         print('[EPGFetcher] ERROR: lookup of 0x%02x%s "%s" returned \"%s"' % (eit, (" (remapped to 0x%02x)" % eit_remap) if eit != eit_remap else "", name, mapped_name))
                         mapping_errors.add(name)
             p_rating = ((country_code, parental_ratings.get(ensure_str(show.get("rating", "")), 0x00)),)
-            res.append((start, duration, title, short, extended, genres, event_id, p_rating))
+            res.append((start, duration, title, short, extended, genresList, event_id, p_rating))
         return res
 
     def updateDescriptions(self, showMap):

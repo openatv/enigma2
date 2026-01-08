@@ -327,6 +327,13 @@ void fbClass::getMode(int &xres, int &yres, int &bpp)
 int fbClass::setOffset(int off)
 {
 	if (fbFd < 0) return -1;
+#ifdef CONFIG_ION
+    // When locked (e.g. Kodi running), do not pan the framebuffer.
+    // With double/triple buffering, FBIOPAN_DISPLAY would otherwise make
+    // Enigma2's OSD page visible again sporadically.
+    if (locked)
+        return 0;
+#endif
 	screeninfo.xoffset = 0;
 	screeninfo.yoffset = off;
 	return ioctl(fbFd, FBIOPAN_DISPLAY, &screeninfo);

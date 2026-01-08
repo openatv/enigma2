@@ -23,6 +23,7 @@ public:
 	void setAniPixmapFromFile(const char* filename, bool autostart = false);
 	void startAnimation(bool once = false);
 	void stopAnimation() { m_animTimer->stop(); }
+	eSize getPixmapSize() const { return (m_pixmap) ? m_pixmap->size() : eSize(0, 0); }
 
 protected:
 	ePtr<gPixmap> m_pixmap;

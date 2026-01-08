@@ -459,13 +459,14 @@ class Status:
 						"authentication_suites": scanResults[i].authentication_suites,
 					}
 				# data["bitrate"] = aps[ssid]["maxrate"]
-				data["encryption"] = aps[ssid]["encrypted"]
-				data["quality"] = aps[ssid]["quality"]
-				data["signal"] = aps[ssid]["signal"]
-				data["channel"] = aps[ssid]["channel"]
-				data["encryption_type"] = aps[ssid]["encryption_type"]
-				# data["frequency"] = aps[ssid]["frequency"]
-				data["frequency_norm"] = aps[ssid]["frequency_norm"]
+				if ssid in aps:
+					data["encryption"] = aps[ssid]["encrypted"]
+					data["quality"] = aps[ssid]["quality"]
+					data["signal"] = aps[ssid]["signal"]
+					data["channel"] = aps[ssid]["channel"]
+					data["encryption_type"] = aps[ssid]["encryption_type"]
+					# data["frequency"] = aps[ssid]["frequency"]
+					data["frequency_norm"] = aps[ssid]["frequency_norm"]
 		self.wlanIface[iface] = data
 		self.backupWlanIface = self.wlanIface
 		if self.wlanConsole is not None:
