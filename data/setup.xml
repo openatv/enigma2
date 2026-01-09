@@ -1105,7 +1105,10 @@
 		<item level="0" text="Button error timeout" description="Select how long to display the button error pop up. Button input is still permitted while the pop up is displayed.">config.usage.unhandledKeyTimeout</item>
 		<item level="0" text="Show animation while busy" description="Show a spinning logo when the system is busy.">config.usage.show_spinner</item>
 		<item level="2" text="Show screen saver" description="Select the duration of inactivity before the screen saver will be displayed.">config.usage.screenSaverStartTimer</item>
-		<item level="2" text="Screen saver movement" description="Select how long the screen saver image will stay in the same location on the screen before it will be moved." conditional="config.usage.screenSaverStartTimer.value">config.usage.screenSaverMoveTimer</item>
+		<if conditional="config.usage.screenSaverStartTimer.value">
+			<item level="2" text="Screen saver mode" description="Choose what appears when the screen saver is active.">config.usage.screenSaverMode</item>		
+			<item level="2" text="Screen saver movement" description="Select how long the screen saver image will stay in the same location on the screen before it will be moved.">config.usage.screenSaverMoveTimer</item>
+		</if>
 		<item level="2" text="Show all Information screens" description="Enable this option to show all the available Information screens in the Information menu item list.">config.usage.informationShowAllMenuScreens</item>
 		<item level="2" text="Show extra spacing in Information" description="Enable to add some extra spacing to the Information screens. This can improve readability.">config.usage.informationExtraSpacing</item>
 		<item level="0" text="Show Movie Selection in Main Menu" description="Select 'Yes' to show the 'Movie Selection' entry in the Main Menu. This can provide access to the Movie Selection screen when there is no assigned button on the remote control." restart="gui">config.usage.movieSelectionInMenu</item>
