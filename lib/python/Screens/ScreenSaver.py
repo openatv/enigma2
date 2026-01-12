@@ -1,7 +1,7 @@
-from os.path import exists, splitext
+from os.path import isfile, splitext
 from random import randrange
 
-from enigma import ePoint, eServiceReference, eTimer, iPlayableService, iPlayableServicePtr, iServiceInformation
+from enigma import ePoint, eServiceReference, eSize, eTimer, iPlayableService, iPlayableServicePtr, iServiceInformation
 
 from Components.config import config
 from Components.MovieList import AUDIO_EXTENSIONS
@@ -16,53 +16,93 @@ class ScreenSaver(Screen):
 		Screen.__init__(self, session)
 		self.skinName = ["ScreenSaver", "Screensaver"]
 		self["picture"] = Pixmap()
-		self.moveTimer = eTimer()
-		self.moveTimer.callback.append(self.movePicture)
-		self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
+		self.eventTracker = ServiceEventTracker(screen=self, eventmap={
 			iPlayableService.evStart: self.serviceStarted
 		})
+		self.padding = 20  # Allow 20 pixels of edge padding to allow for screen over-scan.
+		self.picturePath = None
+		self.movePictureTimer = eTimer()
+		self.movePictureTimer.callback.append(self.movePicture)
+		self.onLayoutFinish.append(self.layoutFinished)
 		self.onShow.append(self.showScreenSaver)
 		self.onHide.append(self.hideScreenSaver)
 
-	def showScreenSaver(self):
-		if config.usage.screenSaverMode.value > 0:  # Show logo or picon
-			self.moveTiming = config.usage.screenSaverMoveTimer.value
-			if config.usage.screenSaverMode.value == 2:  # Show picon
-				pictureSize = ()
-				try:
-					sref = None
-					service = self.session.screen["CurrentService"].service
-					if isinstance(service, eServiceReference):
-						sref = service.toString()
-					elif isinstance(service, iPlayableServicePtr):
-						info = service and service.info()
-						sref = info.getInfoString(iServiceInformation.sServiceref)
-					if sref:
-						picon = getPiconName(sref)
-						if exists(picon):
-							self["picture"].instance.setPixmapFromFile(picon)
-				except Exception:
-					pass
-			pictureSize = (self["picture"].instance.getPixmapSize().width(), self["picture"].instance.getPixmapSize().height())
-			self.maxX = int(self.instance.size().width() - pictureSize[0])
-			self.maxY = int(self.instance.size().height() - pictureSize[1])
-			self.movePicture()
-		else:
-			self["picture"].hide()
-
-	def hideScreenSaver(self):
-		self.moveTimer.stop()
-
-	def movePicture(self):
-		posX, posY = 20 + randrange(self.maxX - 40), 20 + randrange(self.maxY - 40)  # Leave space 20 pixels around the edges
-		self["picture"].instance.move(ePoint(posX, posY))
-		self.moveTimer.startLongTimer(self.moveTiming)
-
 	def serviceStarted(self):
 		if self.shown:
-			ref = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-			if ref:
-				ref = ref.toString().split(":")
-				flag = ref[2] == "2" or ref[2] == "A" or splitext(ref[10])[1].lower() in AUDIO_EXTENSIONS
-				if not flag:
+			serviceReference = self.session.nav.getCurrentlyPlayingServiceOrGroup()
+			if serviceReference:
+				serviceReference = serviceReference.toString().split(":")
+				if serviceReference[2] != "2" and serviceReference[2] != "A" and splitext(serviceReference[10])[1].lower() not in AUDIO_EXTENSIONS:
 					self.hide()
+
+	def movePicture(self, timerActive=True):
+		self["picture"].instance.move(ePoint(self.padding + randrange(self.maxX), self.padding + randrange(self.maxY)))
+		if timerActive:
+			self.movePictureTimer.startLongTimer(config.usage.screenSaverMoveTimer.value)
+
+	def layoutFinished(self):
+		self.screenW = self.instance.size().width()
+		self.screenH = self.instance.size().height()
+		self.logoPath = [x[1] for x in self["picture"].skinAttributes if x[0] == "pixmap"]
+		self.logoPath = self.logoPath[0] if self.logoPath and isfile(self.logoPath[0]) else None
+		self.picturePath = self.logoPath
+		self.logoW = self["picture"].instance.size().width()
+		self.logoH = self["picture"].instance.size().height()
+		self.logoMaxX = self.screenW - self.logoW - (self.padding * 2)
+		self.logoMaxY = self.screenH - self.logoH - (self.padding * 2)
+		self.maxX = self.logoMaxX
+		self.maxY = self.logoMaxY
+		self.movePicture(timerActive=False)
+
+	def showScreenSaver(self):
+		def showLogo():
+			if self.logoPath and isfile(self.logoPath):
+				if self.logoPath != self.picturePath:
+					self["picture"].instance.setPixmapFromFile(self.logoPath)
+					self.picturePath = self.logoPath
+					self["picture"].instance.resize(eSize(self.logoW, self.logoH))
+					self.maxX = self.logoMaxX
+					self.maxY = self.logoMaxY
+				move = True
+			else:
+				move = False
+			return move
+			
+		match config.usage.screenSaverMode.value:
+			case 0:  # Show blank screen saver.
+				self["picture"].instance.resize(eSize(0, 0))
+				move = False
+			case 1:  # Show logo screen saver.
+				move = showLogo()
+			case 2:  # Show picon screen saver.
+				try:
+					service = self.session.screen["CurrentService"].service
+					if isinstance(service, eServiceReference):
+						serviceReference = service.toString()
+					elif isinstance(service, iPlayableServicePtr):
+						info = service and service.info()
+						serviceReference = info.getInfoString(iServiceInformation.sServiceref)
+					else:
+						serviceReference = None
+					if serviceReference:
+						piconPath = getPiconName(serviceReference)
+						if isfile(piconPath):
+							if piconPath != self.picturePath:
+								self["picture"].instance.setPixmapFromFile(piconPath)
+								self.picturePath = piconPath
+								piconW = self["picture"].instance.getPixmapSize().width()
+								piconH = self["picture"].instance.getPixmapSize().height()
+								self["picture"].instance.resize(eSize(piconW, piconH))
+								self.maxX = self.screenW - piconW - (self.padding * 2)
+								self.maxY = self.screenH - piconH - (self.padding * 2)
+							move = True
+						else:
+							raise NameError("Picon not found")
+				except Exception as err:  # Picon is not available so show the logo.
+					print(f"[ScreenSaver] Error: Unable to display picon!  ({err})")
+					move = showLogo()
+		if move:
+			self.movePicture(timerActive=True)
+
+	def hideScreenSaver(self):
+		self.movePictureTimer.stop()
