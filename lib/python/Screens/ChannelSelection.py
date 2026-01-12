@@ -1559,7 +1559,11 @@ class ChannelContextMenu(Screen):
 
 	def toggleStreamrelay(self):
 		from Screens.InfoBarGenerics import streamrelay
+		from enigma import eTimer
 		streamrelay.toggle(self.session.nav, self.csel.getCurrentSelection())
+		self.csel.refreshServiceListTimer = eTimer()
+		self.csel.refreshServiceListTimer.callback.append(self.csel.servicelist.resetRoot)
+		self.csel.refreshServiceListTimer.start(100, True)
 		self.close()
 
 	def selectCamProvider(self):
