@@ -67,7 +67,7 @@ class ScreenSaver(Screen):
 			else:
 				move = False
 			return move
-			
+
 		match config.usage.screenSaverMode.value:
 			case 0:  # Show blank screen saver.
 				self["picture"].instance.resize(eSize(0, 0))
