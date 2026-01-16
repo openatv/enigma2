@@ -1,12 +1,10 @@
-from os.path import isfile, splitext
+from os.path import isfile
 from random import randrange
 
-from enigma import ePoint, eServiceReference, eSize, eTimer, iPlayableService, iPlayableServicePtr, iServiceInformation
+from enigma import ePoint, eServiceReference, eSize, eTimer, iPlayableServicePtr, iServiceInformation
 
 from Components.config import config
-from Components.MovieList import AUDIO_EXTENSIONS
 from Components.Pixmap import Pixmap
-from Components.ServiceEventTracker import ServiceEventTracker
 from Components.Renderer.Picon import getPiconName
 from Screens.Screen import Screen
 
@@ -16,9 +14,6 @@ class ScreenSaver(Screen):
 		Screen.__init__(self, session)
 		self.skinName = ["ScreenSaver", "Screensaver"]
 		self["picture"] = Pixmap()
-		self.eventTracker = ServiceEventTracker(screen=self, eventmap={
-			iPlayableService.evStart: self.serviceStarted
-		})
 		self.padding = 20  # Allow 20 pixels of edge padding to allow for screen over-scan.
 		self.picturePath = None
 		self.movePictureTimer = eTimer()
@@ -26,14 +21,6 @@ class ScreenSaver(Screen):
 		self.onLayoutFinish.append(self.layoutFinished)
 		self.onShow.append(self.showScreenSaver)
 		self.onHide.append(self.hideScreenSaver)
-
-	def serviceStarted(self):
-		if self.shown:
-			serviceReference = self.session.nav.getCurrentlyPlayingServiceOrGroup()
-			if serviceReference:
-				serviceReference = serviceReference.toString().split(":")
-				if serviceReference[2] != "2" and serviceReference[2] != "A" and splitext(serviceReference[10])[1].lower() not in AUDIO_EXTENSIONS:
-					self.hide()
 
 	def movePicture(self, timerActive=True):
 		self["picture"].instance.move(ePoint(self.padding + randrange(self.maxX), self.padding + randrange(self.maxY)))
