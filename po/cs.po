@@ -1,4 +1,4 @@
-# Petr Turek <turekdesign99@gmail.com>, 2022, 2023, 2024, 2025.
+# Petr Turek <turekdesign99@gmail.com>, 2022, 2023, 2024, 2025, 2026.
 # jbleyel <jbleyel@gmx.net>, 2023.
 # Jiří Engelthaler <engycz@gmail.com>, 2023, 2024, 2025.
 # vlkan “vlkanboy” vlkan1 <vlkanboy@gmail.com>, 2024.
@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-08 09:08+0000\n"
-"PO-Revision-Date: 2026-01-07 06:11+0000\n"
-"Last-Translator: Libor Rejč <lir@mail.cz>\n"
+"POT-Creation-Date: 2026-01-08 16:51+0000\n"
+"PO-Revision-Date: 2026-01-09 14:25+0000\n"
+"Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -4007,7 +4007,7 @@ msgid "Check for PDC"
 msgstr "Zkontrolovat PDC"
 
 msgid "Check for PDC availability on each service."
-msgstr "Zkontrolovat dostupnost PDC u každé služby"
+msgstr "Zkontrolovat dostupnost PDC u každé služby."
 
 msgid "Check power and input state from TV"
 msgstr "Zkontrolujte napájení a stav vstupu z TV"
@@ -7158,15 +7158,6 @@ msgstr "Zapnout odkládání při startu"
 msgid "Enable VPS"
 msgstr "Povolit VPS"
 
-msgid "Select 'Yes' to set the VPS flag on all new timers by default."
-msgstr "Povolí VPS jako standardní (pro nové časovače)"
-
-msgid "VPS on instant recordings"
-msgstr "Povolit VPS pro okamžité nahrávání"
-
-msgid "Enable VPS-Plugin"
-msgstr "Povolit VPS-plugin"
-
 msgid "Enable ViaSat EPG"
 msgstr "Povolit ViaSat EPG"
 
@@ -8509,6 +8500,9 @@ msgstr "Finance"
 msgid "Find Currently Playing Service"
 msgstr "Najít aktuálně přehrávaný kanál"
 
+msgid "Find connected events"
+msgstr "Hledání spojených událostí"
+
 #, python-format
 msgid "Find out more at %s"
 msgstr "Více informací najdete na %s"
@@ -9671,14 +9665,11 @@ msgstr "Pokud 'nikdy', zapíše protokol o havárii navzdory tomu pro první hav
 msgid "If EPG available"
 msgstr "Je-li EPG k dispozici"
 
-msgid "If an event is interrupted and divided into separate recordings, this feature will search for alternate broadcasts of the same event."
-msgstr "Pokud je program přerušen a rozdělen na jednotlivé události, plugin bude hledat spojené události."
-
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "Pokud je akce konfigurovatelná uživatelem, její položka nápovědy bude označena příponou '(C)'."
 
-msgid "Select 'Yes' to wake the receiver from Shutdown prior to the recording start time to allow the PDC data to make last minute timer adjustments."
-msgstr "Je-li povoleno a je-li to nutné, plugin probudí přijímač z hlubokého spánku na definovanou dobu spuštění, aby mohl kontrolovat, zda program začne dříve."
+msgid "If an event is interrupted and divided into separate recordings, this feature will search for alternate broadcasts of the same event."
+msgstr "Pokud je program přerušen a rozdělen na jednotlivé události, plugin bude hledat spojené události."
 
 msgid "If enabled the output resolution of the receiver will try to match the resolution of the video contents resolution."
 msgstr "Pokud je tato možnost povolena, výstupní rozlišení přijímače se pokusí přizpůsobit rozlišení video obsahu."
@@ -9700,9 +9691,6 @@ msgstr "Pokud je povoleno, použije se nový engine pro přehrávání GStreamer
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Pokud používáte zprávy a je nastaven max. využitý prostor,budou nejstarší smazány."
-
-msgid "Set a time offset before a timer is due to start to allow VPS to scan for the latest event timing. Select '0' to disable this feature."
-msgstr "Pokud je to možné, kontroluje se x minut před skutečným začátkem, zda program nezačíná dříve. (0 deaktivuje tuto možnost)"
 
 msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
 msgstr "Pokud je nastaveno na „ano“, umožňuje vám používat časový posun s alternativními audio pluginy."
@@ -12716,7 +12704,7 @@ msgid "Number of IP Addresses"
 msgstr "Počet IP adres"
 
 msgid "Number of Slots"
-msgstr ""
+msgstr "Počet slotů"
 
 msgid "Number of digits in service number"
 msgstr "Počet číslic při volbě kanálu"
@@ -16103,9 +16091,6 @@ msgstr "Aktivace hledání"
 msgid "SeekBar sensibility"
 msgstr "Citlivost hledání"
 
-msgid "Find connected events"
-msgstr "Hledání spojených událostí"
-
 msgid "Select"
 msgstr "Zvolit"
 
@@ -16171,6 +16156,9 @@ msgstr "Vyberte 'Ano', aby byl informační panel zobrazen bez časového limitu
 
 msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
 msgstr "Chcete-li, aby každé zjištěné úložné zařízení bylo automaticky exportováno jako sdílení samba, vyberte možnost „Ano“."
+
+msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
+msgstr "Tento plugin může určit, zda program začíná dříve nebo bude delší. Vysílání musí poskytovat spolehlivé údaje."
 
 msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
 msgstr "Pokud nastavíte na 'ano' můžete použít seekbar a skočit na místo v rámci události."
@@ -16289,6 +16277,9 @@ msgstr "Vyberte „Ano“ pro přesunutí úlohy na čas, kdy přijímač přejd
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr "Výběrem možnosti „Ano“ resetujete konfiguraci sítě na výchozí. Tím povolíte ethernetový port, pokud existuje, a nastavíte přijímač na použití DHCP. Všechna ostatní síťová rozhraní budou odstraněna."
 
+msgid "Select 'Yes' to set the VPS flag on all new timers by default."
+msgstr "Vyberte „Ano“ pro nastavení příznaku VPS na všech nových časovačích ve výchozím nastavení."
+
 msgid "Select 'Yes' to set the cursor position to the end of the line when editing a text file.  Select 'No' to set the cursor to the start of the line."
 msgstr "Vyberte 'Ano' pro nastavení pozice kurzoru na konec řádku při úpravě textového souboru. Vyberte 'Ne' pro nastavení kurzoru na začátek řádku."
 
@@ -16379,6 +16370,9 @@ msgstr "Vyberte „Ano“ pro okamžité vypnutí namísto spuštění dekódov�
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr "Chcete-li úkoly rozdělit do samostatných akcí, vyberte možnost „Ano“."
 
+msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
+msgstr "Jestliže ano, pak v případě, že kanál podporuje VPS bude VPS povolen v okamžitém nahrávání (zastavit po aktuální události)."
+
 msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
 msgstr "Chcete-li použít alternativní adresy IP zdroje GitHub, vyberte možnost „Ano“. To může být užitečné, pokud používáte VPN a k normálním zdrojům nelze přistupovat prostřednictvím zveřejněných názvů DNS."
 
@@ -16390,6 +16384,9 @@ msgstr "Chcete-li použít hodnoty signálu (SNR atd.) vypočítané ze starší
 
 msgid "Select 'Yes' to use the number keys for quick selection of files / directories, select 'No' to use the number keys for MENU option shortcuts."
 msgstr "Vyberte „Ano“ pro použití číselných tlačítek pro rychlý výběr souborů/adresářů, vyberte „Ne“ pro použití číselných tlačítek pro zkratky možností MENU."
+
+msgid "Select 'Yes' to wake the receiver from Shutdown prior to the recording start time to allow the PDC data to make last minute timer adjustments."
+msgstr "Je-li povoleno a je-li to nutné, plugin probudí přijímač z hlubokého spánku na definovanou dobu spuštění, aby mohl kontrolovat, zda program začne dříve."
 
 msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback."
 msgstr "Jestliže nastavíte na ' Ano'; při rychlé přetáčení nebo přetáčení během přehrávání médií se zobrazí informační panel."
@@ -16987,7 +16984,7 @@ msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (
 msgstr "Vyberte protokol používaný vaším zařízením SCR. Možnosti jsou „SCR Unicable“ (Unicable) nebo „SCR JESS“ (JESS, také známý jako Unicable II)."
 
 msgid "Select the receiver action when the TV switches away from the receiver input."
-msgstr ""
+msgstr "Vyberte akci přijímače, která se má provést, když se televizor přepne ze vstupu přijímače."
 
 msgid "Select the refresh rate to be used on the TV."
 msgstr "Vyberte obnovovací frekvenci, která se má použít na televizoru."
@@ -17508,6 +17505,9 @@ msgstr "Nastavit regulátor škálování"
 
 msgid "Set Time"
 msgstr "Nastavení času"
+
+msgid "Set a time offset before a timer is due to start to allow VPS to scan for the latest event timing. Select '0' to disable this feature."
+msgstr "Nastavte časový posun před spuštěním časovače, aby VPS mohl prohledat nejnovější časování událostí. Výběrem možnosti „0“ tuto funkci deaktivujete."
 
 msgid "Set action for 'Info' key"
 msgstr "Nastavit akci pro klávesu „Info“"
@@ -20923,9 +20923,6 @@ msgstr "Tato možnost nastavuje kontrast obrazu videa."
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Tato volba nastavuje ostrost obrazu,při použití upscalinku obrazu."
 
-msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
-msgstr "Tento plugin může určit, zda program začíná dříve nebo bude delší. Vysílání musí poskytovat spolehlivé údaje."
-
 msgid "This service is protected by a parental control PIN!"
 msgstr "Tento program je chráněný rodičovským zámkem!"
 
@@ -22361,6 +22358,9 @@ msgstr "Nastavení VPS"
 msgid "VPS enabled by default"
 msgstr "VPS povoleno standardně"
 
+msgid "VPS on instant recordings"
+msgstr "Povolit VPS pro okamžité nahrávání"
+
 msgid "VPS-Plugin Information"
 msgstr "Informace VPS-Pluginu"
 
@@ -22764,14 +22764,14 @@ msgstr "Připraveno"
 msgid "Waiting for partition"
 msgstr "Čeká se na oddíl"
 
+msgid "Wake from Shutdown allowed"
+msgstr "Probuzení z hlubokého spánku je povoleno"
+
 msgid "Wake up"
 msgstr "Při probuzení"
 
 msgid "Wake up TV from Standby"
 msgstr "Probudit TV z pohotovostního režimu"
-
-msgid "Wake from Shutdown allowed"
-msgstr "Probuzení z hlubokého spánku je povoleno"
 
 msgid "Wake up time before a timer begins"
 msgstr "Čas probuzení před spuštěním časovače [min]"
@@ -23130,9 +23130,6 @@ msgstr "Když je červený rámeček správně zobrazen, stiskněte ZELENÉ tla�
 
 msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you're doing."
 msgstr "Při ladění programů bude systém normálně hledat transpondéry a a uloží je. Nastavte na 'ano' jen pokud jste si absolutně jisti, co děláte."
-
-msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
-msgstr "Jestliže ano, pak v případě, že kanál podporuje VPS bude VPS povolen v okamžitém nahrávání (zastavit po aktuální události)."
 
 msgid "Where do you want to backup your settings?"
 msgstr "Kam chcete zazálohovat Vaše nastavení?"
@@ -24376,6 +24373,9 @@ msgstr "ano (uchovat zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enable VPS-Plugin"
+#~ msgstr "Povolit VPS-plugin"
 
 #~ msgid "Configure whether multichannel audio tracks should be downmixed to stereo."
 #~ msgstr "Nastavuje, zda bude vícekanálový zvuk převeden do stereo zvuku."

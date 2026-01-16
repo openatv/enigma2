@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-08 09:08+0000\n"
+"POT-Creation-Date: 2026-01-08 16:51+0000\n"
 "PO-Revision-Date: 2025-06-11 19:04+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -7162,15 +7162,6 @@ msgstr "Įjungti startuojant"
 msgid "Enable VPS"
 msgstr "Įjungti VPS"
 
-msgid "Select 'Yes' to set the VPS flag on all new timers by default."
-msgstr "VPS įjungta - numatytasis (naujiems laikmačiams)"
-
-msgid "VPS on instant recordings"
-msgstr "Įjungti VPS neplaniniams įrašams"
-
-msgid "Enable VPS-Plugin"
-msgstr "Įjungti VPS įskiepį"
-
 msgid "Enable ViaSat EPG"
 msgstr "Įjungti ViaSat EPG"
 
@@ -8515,6 +8506,9 @@ msgstr "Finansai"
 msgid "Find Currently Playing Service"
 msgstr "surasti dabar žiūrėtą kanalą"
 
+msgid "Find connected events"
+msgstr "Ieškoma susijusių įvykių"
+
 #, python-format
 msgid "Find out more at %s"
 msgstr "Sužinokite daugiau %s"
@@ -9677,14 +9671,11 @@ msgstr "Jei \"niekada\", įrašys pranešimą apie gedimą, nepaisant to, kad į
 msgid "If EPG available"
 msgstr ""
 
-msgid "If an event is interrupted and divided into separate recordings, this feature will search for alternate broadcasts of the same event."
-msgstr "Jeigu įvykis nutraukiamas ir padalinamas į atskirus įvykius, įskiepis ieškos susijusių įvykių."
-
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "Jei veiksmą galima konfigūruoti vartotojui, jo žinyno įrašas bus pažymėtas priesaga '(C)'."
 
-msgid "Select 'Yes' to wake the receiver from Shutdown prior to the recording start time to allow the PDC data to make last minute timer adjustments."
-msgstr "Jei įjungta ir būtina, papildinys pažadins imtuvą iš gilaus budėjimo režimo nustatytam paleidimo laikui, kad būtų galima valdyti, ar programa paleidžiama anksčiau."
+msgid "If an event is interrupted and divided into separate recordings, this feature will search for alternate broadcasts of the same event."
+msgstr "Jeigu įvykis nutraukiamas ir padalinamas į atskirus įvykius, įskiepis ieškos susijusių įvykių."
 
 msgid "If enabled the output resolution of the receiver will try to match the resolution of the video contents resolution."
 msgstr "Kai čia įjungta, aparato išėjimo rezoliuciją bus bandoma automatiškai suderinti su rodomo vaizdo rezoliucija"
@@ -9706,9 +9697,6 @@ msgstr "Jei įjungta, bus naudojamas naujas GStreamer atkūrimo variklis."
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Jei žurnalai jau išnaudoja maksimalią jiems skirtą erdvę, įkeliant naują, seniausias bus ištrintas."
-
-msgid "Set a time offset before a timer is due to start to allow VPS to scan for the latest event timing. Select '0' to disable this feature."
-msgstr "Jeigu galima, X minučių prieš laikmačio pradžią, VPS įskiepis patikrins, ar programa neprasideda anksčiau (0 - funkcija išjungta)"
 
 msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
 msgstr "Jei nustatyta \"taip\", leidžia naudoti laiko keitimą su alternatyviais garso papildiniais."
@@ -16106,9 +16094,6 @@ msgstr "Paieškos juostos aktyvavimas"
 msgid "SeekBar sensibility"
 msgstr "Paieškos juostos jautrumas"
 
-msgid "Find connected events"
-msgstr "Ieškoma susijusių įvykių"
-
 msgid "Select"
 msgstr "Pasirinkite"
 
@@ -16174,6 +16159,9 @@ msgstr "Jeigu nustatyta 'taip; info juosta bus rodoma visą laiką \"pauzės\" b
 
 msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
 msgstr ""
+
+msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
+msgstr "Šis įskiepis gali nustatyti, jei įvykis prasideda anksčiau, arba ilgiau užtrunka. Kanalas tam turi pateikti patikimus duomenis."
 
 msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
 msgstr "Jei nustatyta 'taip', leidžia jums paieškos lange naudotis paieška ir dabartinio įvykio viduje."
@@ -16292,6 +16280,9 @@ msgstr ""
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr "Pasirinkite 'Taip', kad iš naujo nustatytumėte numatytąją tinklo konfigūraciją. Tai leis Ethernet prievadui, jei jis yra, ir nustatys imtuvą naudoti DHCP. Visos kitos tinklo sąsajos bus panaikintos."
 
+msgid "Select 'Yes' to set the VPS flag on all new timers by default."
+msgstr "VPS įjungta - numatytasis (naujiems laikmačiams)"
+
 msgid "Select 'Yes' to set the cursor position to the end of the line when editing a text file.  Select 'No' to set the cursor to the start of the line."
 msgstr "Pasirinkite \"Taip\", kad redaguodami tekstinį failą nustatytumėte žymeklio padėtį eilutės pabaigoje.  Pasirinkite \"Ne\", kad nustatytumėte žymeklį į eilutės pradžią."
 
@@ -16382,6 +16373,9 @@ msgstr ""
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr ""
 
+msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
+msgstr "Jeigu \"Taip\" ir kanalas palaiko VPS, VPS bus įjungtas neplaniniams įrašams (išjungiant po šio įvykio)."
+
 msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
 msgstr ""
 
@@ -16393,6 +16387,9 @@ msgstr "Jei nustatyta \"taip\", signalo reikšmės (SNR ir t.t.) bus apskaičiuo
 
 msgid "Select 'Yes' to use the number keys for quick selection of files / directories, select 'No' to use the number keys for MENU option shortcuts."
 msgstr "Pasirinkite \"Taip\", jei norite naudoti skaičių klavišus greitam failų / katalogų pasirinkimui, pasirinkite \"Ne\", jei norite naudoti skaičių klavišus MENU parinkčių spartiesiems klavišams."
+
+msgid "Select 'Yes' to wake the receiver from Shutdown prior to the recording start time to allow the PDC data to make last minute timer adjustments."
+msgstr "Jei įjungta ir būtina, papildinys pažadins imtuvą iš gilaus budėjimo režimo nustatytam paleidimo laikui, kad būtų galima valdyti, ar programa paleidžiama anksčiau."
 
 msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback."
 msgstr "Jei nustatyta 'taip', jungiant greitą persukimą, arba atsukimą medijos failų atkūrimo metu, bus rodoma info juosta."
@@ -17505,6 +17502,9 @@ msgstr ""
 
 msgid "Set Time"
 msgstr "Nustatykite laiką"
+
+msgid "Set a time offset before a timer is due to start to allow VPS to scan for the latest event timing. Select '0' to disable this feature."
+msgstr "Jeigu galima, X minučių prieš laikmačio pradžią, VPS įskiepis patikrins, ar programa neprasideda anksčiau (0 - funkcija išjungta)"
 
 msgid "Set action for 'Info' key"
 msgstr "Pasirinkite veiksmą 'info' mygtukui"
@@ -20893,9 +20893,6 @@ msgstr ""
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Nustato paveikslėlių vaizdo ryškumą keičiantis masteliui."
 
-msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
-msgstr "Šis įskiepis gali nustatyti, jei įvykis prasideda anksčiau, arba ilgiau užtrunka. Kanalas tam turi pateikti patikimus duomenis."
-
 msgid "This service is protected by a parental control PIN!"
 msgstr "šis kanalas apsaugotas tėvų kontrolės pin kodu"
 
@@ -22326,6 +22323,9 @@ msgstr "VPS nuostatos"
 msgid "VPS enabled by default"
 msgstr "VPS įjungta - numatytasis"
 
+msgid "VPS on instant recordings"
+msgstr "Įjungti VPS neplaniniams įrašams"
+
 msgid "VPS-Plugin Information"
 msgstr "VPS įskiepio informacija"
 
@@ -22724,14 +22724,14 @@ msgstr "Laukiama"
 msgid "Waiting for partition"
 msgstr "Laukiama skaidinio"
 
+msgid "Wake from Shutdown allowed"
+msgstr "Leidžiama prižadinti iš gilaus budėjimo"
+
 msgid "Wake up"
 msgstr "Pabusti"
 
 msgid "Wake up TV from Standby"
 msgstr "Pažadinti TV iš budėjimo"
-
-msgid "Wake from Shutdown allowed"
-msgstr "Leidžiama prižadinti iš gilaus budėjimo"
 
 msgid "Wake up time before a timer begins"
 msgstr "Žadinimo laikas prieš laikmatį prasideda [min]"
@@ -23087,9 +23087,6 @@ msgstr ""
 
 msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you're doing."
 msgstr "Įjungus kanalą, sistema paprastai patikrina visus pasikeitimus transponderyje ir juos išsaugo. Nustatykite čia 'taip' tik tada, kai tiksliai žinote, kam tą darote."
-
-msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
-msgstr "Jeigu \"Taip\" ir kanalas palaiko VPS, VPS bus įjungtas neplaniniams įrašams (išjungiant po šio įvykio)."
 
 msgid "Where do you want to backup your settings?"
 msgstr "Kur išsaugoti nustatymų atsarginę kopiją?"
@@ -24328,6 +24325,9 @@ msgstr "taip (išsaugoti šaltinius)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enable VPS-Plugin"
+#~ msgstr "Įjungti VPS įskiepį"
 
 #~ msgid "Configure whether multichannel audio tracks should be downmixed to stereo."
 #~ msgstr "Pasirinkite, ar sulieti daugiakanalio garso takelius į stereo garsą."

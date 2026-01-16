@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-08 09:08+0000\n"
+"POT-Creation-Date: 2026-01-08 16:51+0000\n"
 "PO-Revision-Date: 2025-11-11 20:51+0000\n"
 "Last-Translator: Daniel Nylander <daniel@danielnylander.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sv/>\n"
@@ -7472,15 +7472,6 @@ msgstr "Aktivera swap vid start"
 msgid "Enable VPS"
 msgstr "Aktivera VPS"
 
-msgid "Select 'Yes' to set the VPS flag on all new timers by default."
-msgstr "Aktivera VPS som standard (nya timers)"
-
-msgid "VPS on instant recordings"
-msgstr "Aktivera VPS på omedelbara poster"
-
-msgid "Enable VPS-Plugin"
-msgstr "Aktivera VPS-plugin"
-
 msgid "Enable ViaSat EPG"
 msgstr "Aktivera ViaSat EPG"
 
@@ -8879,6 +8870,9 @@ msgstr "Finans"
 msgid "Find Currently Playing Service"
 msgstr "Hitta tjänst som spelas för närvarande"
 
+msgid "Find connected events"
+msgstr "Söker anslutna evenemang"
+
 #, python-format
 msgid "Find out more at %s"
 msgstr "Läs mer på %s"
@@ -10105,14 +10099,11 @@ msgstr "Om \"aldrig\", kommer att skriva kraschlogg trots att det är första kr
 msgid "If EPG available"
 msgstr "Om EPG finns tillgänglig"
 
-msgid "If an event is interrupted and divided into separate recordings, this feature will search for alternate broadcasts of the same event."
-msgstr "Om ett program avbryts och delas in i separata händelser söker plugin-programmet efter de anslutna händelserna."
-
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "Om en åtgärd kan konfigureras av användaren kommer dess hjälptext att flaggas med suffixet \"(C)\"."
 
-msgid "Select 'Yes' to wake the receiver from Shutdown prior to the recording start time to allow the PDC data to make last minute timer adjustments."
-msgstr "Om det är aktiverat och nödvändigt kommer plugin-programmet att väcka mottagaren från Deep-Standby för den definierade starttiden för att kontrollera om programmet börjar tidigare."
+msgid "If an event is interrupted and divided into separate recordings, this feature will search for alternate broadcasts of the same event."
+msgstr "Om ett program avbryts och delas in i separata händelser söker plugin-programmet efter de anslutna händelserna."
 
 msgid "If enabled the output resolution of the receiver will try to match the resolution of the video contents resolution."
 msgstr "Om den är aktiverad kommer boxens utmatningsupplösning att försöka matcha upplösningen för videoinnehållets upplösning"
@@ -10134,9 +10125,6 @@ msgstr "Om den är aktiverad kommer den nya GStreamer-uppspelningsmotorn att anv
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Om loggarna använder det inställda maximala utrymmet raderas den äldsta loggen."
-
-msgid "Set a time offset before a timer is due to start to allow VPS to scan for the latest event timing. Select '0' to disable this feature."
-msgstr "Om möjligt, x minuter innan en timer startar kommer VPS-Plugin att styra om programmet startar tidigare. (0 avaktiverar funktionen)"
 
 msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
 msgstr "Om inställningen är \"yes\" kan du använda timeshift med alternativa ljudplugins."
@@ -16982,9 +16970,6 @@ msgstr "Aktivering av SeekBar"
 msgid "SeekBar sensibility"
 msgstr "SeekBar känslighet"
 
-msgid "Find connected events"
-msgstr "Söker anslutna evenemang"
-
 #
 msgid "Select"
 msgstr "Välj"
@@ -17051,6 +17036,9 @@ msgstr "Välj \"Ja\" om InfoBar ska fortsätta att visas, utan tidsgräns, när 
 
 msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
 msgstr "Välj \"Yes\" om du vill att varje identifierad lagringsenhet automatiskt ska exporteras som samba-delning."
+
+msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
+msgstr "Denna plugin kan avgöra om ett program börjar tidigare eller varar längre. Kanalen måste tillhandahålla tillförlitliga data."
 
 msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
 msgstr "Välj \"Yes\" för att tillåta användning av SeekBar för att hoppa till en vald punkt i evenemanget."
@@ -17169,6 +17157,9 @@ msgstr ""
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr "Välj \"Yes\" för att återställa nätverkskonfigurationen till standardinställningarna. Detta aktiverar Ethernet-porten om den finns och ställer in mottagaren så att den använder DHCP. Alla andra nätverksgränssnitt kommer att raderas."
 
+msgid "Select 'Yes' to set the VPS flag on all new timers by default."
+msgstr "Aktivera VPS som standard (nya timers)"
+
 msgid "Select 'Yes' to set the cursor position to the end of the line when editing a text file.  Select 'No' to set the cursor to the start of the line."
 msgstr "Välj \"Ja\" för att ställa in markörens position till slutet av raden när du redigerar en textfil.  Välj \"Nej\" för att ställa in markören till början av raden."
 
@@ -17259,6 +17250,9 @@ msgstr "Välj \"Yes\" för att stänga av omedelbart istället för att starta a
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr "Välj \"Ja\" för att dela upp uppgifter i separata åtgärder."
 
+msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
+msgstr "När ja, kommer VPS att aktiveras på omedelbara poster (stopp efter aktuell händelse), om kanalen stöder VPS."
+
 msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
 msgstr "Välj \"Ja\" för att använda alternativa IP-adresser för GitHub-flöden. Detta kan vara till hjälp om du använder ett VPN och de normala flödena inte kan nås via de publicerade DNS-namnen."
 
@@ -17270,6 +17264,9 @@ msgstr "Välj \"Yes\" för att använda signalvärden (SNR, etc) som beräknats 
 
 msgid "Select 'Yes' to use the number keys for quick selection of files / directories, select 'No' to use the number keys for MENU option shortcuts."
 msgstr "Välj \"Yes\" för att använda siffertangenterna för snabbval av filer/kataloger, välj \"No\" för att använda siffertangenterna för genvägar till MENU-alternativet."
+
+msgid "Select 'Yes' to wake the receiver from Shutdown prior to the recording start time to allow the PDC data to make last minute timer adjustments."
+msgstr "Om det är aktiverat och nödvändigt kommer plugin-programmet att väcka mottagaren från Deep-Standby för den definierade starttiden för att kontrollera om programmet börjar tidigare."
 
 msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback."
 msgstr "Välj \"Yes\" för att visa InfoBar vid snabbspolning framåt eller bakåt under mediauppspelning."
@@ -18429,6 +18426,9 @@ msgstr "Ställ in skalning av guvernör"
 
 msgid "Set Time"
 msgstr "Ställ in tid"
+
+msgid "Set a time offset before a timer is due to start to allow VPS to scan for the latest event timing. Select '0' to disable this feature."
+msgstr "Om möjligt, x minuter innan en timer startar kommer VPS-Plugin att styra om programmet startar tidigare. (0 avaktiverar funktionen)"
 
 msgid "Set action for 'Info' key"
 msgstr "Ställ in åtgärd för \"Info\"-knappen"
@@ -21999,9 +21999,6 @@ msgstr "Detta alternativ ställer in kontrasten för videobilden."
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Detta alternativ ställer in bildskärpan, som används när bilden skalas upp."
 
-msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
-msgstr "Denna plugin kan avgöra om ett program börjar tidigare eller varar längre. Kanalen måste tillhandahålla tillförlitliga data."
-
 #
 msgid "This service is protected by a parental control PIN!"
 msgstr "Denna tjänst är skyddad av en PIN-kod för föräldrakontroll!"
@@ -23528,6 +23525,9 @@ msgstr "VPS-inställningar"
 msgid "VPS enabled by default"
 msgstr "VPS aktiverat som standard"
 
+msgid "VPS on instant recordings"
+msgstr "Aktivera VPS på omedelbara poster"
+
 msgid "VPS-Plugin Information"
 msgstr "Information om VPS-plugin"
 
@@ -23951,14 +23951,14 @@ msgstr "Väntar"
 msgid "Waiting for partition"
 msgstr "Väntar på partition"
 
+msgid "Wake from Shutdown allowed"
+msgstr "Uppvaknande från Deep-Standby är tillåtet"
+
 msgid "Wake up"
 msgstr "Vakna upp"
 
 msgid "Wake up TV from Standby"
 msgstr "Väck TV:n från standby"
-
-msgid "Wake from Shutdown allowed"
-msgstr "Uppvaknande från Deep-Standby är tillåtet"
 
 msgid "Wake up time before a timer begins"
 msgstr "Uppvakningstid innan en timer startar [min]"
@@ -24327,9 +24327,6 @@ msgstr "När den röda rutan är korrekt synlig trycker du på den GRÖNA knappe
 
 msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you're doing."
 msgstr "När systemet är inställt på en service skannar det normalt transpondern efter eventuella ändringar och sparar dem. Ställ endast in på \"yes\" om du är helt säker på vad du gör."
-
-msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
-msgstr "När ja, kommer VPS att aktiveras på omedelbara poster (stopp efter aktuell händelse), om kanalen stöder VPS."
 
 #
 msgid "Where do you want to backup your settings?"
@@ -25697,6 +25694,9 @@ msgstr "ja (behåller flöden)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enable VPS-Plugin"
+#~ msgstr "Aktivera VPS-plugin"
 
 #~ msgid "Configure whether multichannel audio tracks should be downmixed to stereo."
 #~ msgstr "Ställ in om flerkanaliga ljudspår ska nedmixas till stereo."

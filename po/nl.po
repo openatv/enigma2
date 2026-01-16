@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-08 09:08+0000\n"
+"POT-Creation-Date: 2026-01-08 16:51+0000\n"
 "PO-Revision-Date: 2025-05-09 04:42+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -7251,15 +7251,6 @@ msgstr "Activeer Swap tijdens opstarten"
 msgid "Enable VPS"
 msgstr "VPS inschakelen"
 
-msgid "Select 'Yes' to set the VPS flag on all new timers by default."
-msgstr "VPS standaard ingeschakeld (nieuwe timers)"
-
-msgid "VPS on instant recordings"
-msgstr "VPS activeren bij direct opnames"
-
-msgid "Enable VPS-Plugin"
-msgstr "VPS-Plugin inschakelen"
-
 msgid "Enable ViaSat EPG"
 msgstr "Viasat EPG inschakelen"
 
@@ -8613,6 +8604,9 @@ msgstr "Financiën"
 msgid "Find Currently Playing Service"
 msgstr "Toon de huidige zender in de lijst"
 
+msgid "Find connected events"
+msgstr "Zoekt verbonden events"
+
 #, python-format
 msgid "Find out more at %s"
 msgstr "Lees meer op %s"
@@ -9778,14 +9772,11 @@ msgstr "Bij 'nooit' zal toch een crash log worden opgeslagen bij de eerste crash
 msgid "If EPG available"
 msgstr "Wanneer een EPG beschikbaar is"
 
-msgid "If an event is interrupted and divided into separate recordings, this feature will search for alternate broadcasts of the same event."
-msgstr "Als een programma wordt onderbroken en in aparte events is verdeeld, zal de plugin zoeken naar de verbonden gebeurtenissen."
-
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "Wanneer een actie instelbaar is, wordt de bijbehorende help functie gemarkeerd met een '(C)'."
 
-msgid "Select 'Yes' to wake the receiver from Shutdown prior to the recording start time to allow the PDC data to make last minute timer adjustments."
-msgstr "Wanneer geactiveerd, zal de plugin uw ontvanger eerder dan de opgegeven starttijd inschakelen om te controleren of het programma eventueel eerder begint."
+msgid "If an event is interrupted and divided into separate recordings, this feature will search for alternate broadcasts of the same event."
+msgstr "Als een programma wordt onderbroken en in aparte events is verdeeld, zal de plugin zoeken naar de verbonden gebeurtenissen."
 
 msgid "If enabled the output resolution of the receiver will try to match the resolution of the video contents resolution."
 msgstr "Instellen, of en hoe de video-resolutie van uw ontvanger aan de resolutie van de video inhoud moet worden aangepast."
@@ -9807,9 +9798,6 @@ msgstr "Indien ingeschakeld, wordt de nieuwe GStreamer playback engine gebruikt.
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Maximale ruimte die de logs in beslag mogen nemen. Als dat overschreden wordt, worden de oudste het eerste verwijderd."
-
-msgid "Set a time offset before a timer is due to start to allow VPS to scan for the latest event timing. Select '0' to disable this feature."
-msgstr "Indien mogelijk zal de plugin x minuten voor de ingestelde starttijd controleren of een programma eerder begint. (0 schakelt deze optie uit)"
 
 msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
 msgstr "Indien ingesteld op \"ja\", kunt u Timeshift gebruiken met alternatieve audio-plugins."
@@ -16219,9 +16207,6 @@ msgstr "Zoekbalk activeren"
 msgid "SeekBar sensibility"
 msgstr "Grootte tijdsprong op de Zoekbalk"
 
-msgid "Find connected events"
-msgstr "Zoekt verbonden events"
-
 msgid "Select"
 msgstr "Selecteer"
 
@@ -16287,6 +16272,9 @@ msgstr "Bij 'ja' zal de informatiebalk continu worden getoond wanneer het afspel
 
 msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
 msgstr "Selecteer 'Ja' om alle opslagmedia die wordt gevonden automatisch als Samba share in te stellen."
+
+msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
+msgstr "De VPS plugin kan bepalen of een programma eerder begint of langer duurt dan in de Timer ingesteld. De zender moet dan wel betrouwbare gegevens leveren!"
 
 msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
 msgstr "Kies 'Ja' om tijdens een Timeshift-opname m.b.v. de zoekbalk naar elk gewenst tijdstip, vooruit- of terug te spoelen."
@@ -16407,6 +16395,9 @@ msgstr ""
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr "Kies 'Ja' om de netwerkconfiguratie te herstellen naar default. Hierdoor zal de Ethernet poort worden geactiveerd (wanneer beschikbaar) en zal de ontvanger DHCP gebruiken. Alle andere netwerk interfaces worden verwijderd."
 
+msgid "Select 'Yes' to set the VPS flag on all new timers by default."
+msgstr "VPS standaard ingeschakeld (nieuwe timers)"
+
 msgid "Select 'Yes' to set the cursor position to the end of the line when editing a text file.  Select 'No' to set the cursor to the start of the line."
 msgstr "Selecteer 'Ja' om de cursor op het einde van de regel te plaatsen bij het bewerken van een tekstbestand.  Selecteer 'Nee' om de cursor aan het begin van de regel te zetten."
 
@@ -16501,6 +16492,9 @@ msgstr "Selecteer 'Ja' om de ontvanger direct uit te schakelen in plaats van te 
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr "Kies 'Ja' om opdrachten in meerdere acties op te delen."
 
+msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
+msgstr "Wanneer 'Ja' zal VPS worden ingeschakeld bij directe opnamen (en stoppen na het actuele programma), wanneer de zender VPS ondersteund."
+
 msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
 msgstr "Kies 'Ja' om alternatief GitHub-DNS feed IP-adres in te stellen. Dit kan handig zijn wanneer u een VPN gebruikt en de normale feeds niet bereikbaar zijn via de gebruikelijke DNS namen."
 
@@ -16512,6 +16506,9 @@ msgstr "Indien 'ja' wordt gekozen, worden de signaalwaardes (SNR etc.) berekend 
 
 msgid "Select 'Yes' to use the number keys for quick selection of files / directories, select 'No' to use the number keys for MENU option shortcuts."
 msgstr "Selecteer 'Ja' om de nummertoetsen te gebruiken voor snelle selectie van bestanden / mappen, selecteer 'Nee' om de nummertoetsen te gebruiken voor sneltoetsen in het MENU."
+
+msgid "Select 'Yes' to wake the receiver from Shutdown prior to the recording start time to allow the PDC data to make last minute timer adjustments."
+msgstr "Wanneer geactiveerd, zal de plugin uw ontvanger eerder dan de opgegeven starttijd inschakelen om te controleren of het programma eventueel eerder begint."
 
 msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback."
 msgstr "Kies 'ja' wanneer u de informatiebalk wilt laten zien bij het en vooruit- en terug spoelen."
@@ -17638,6 +17635,9 @@ msgstr "Scaling governor instellen"
 
 msgid "Set Time"
 msgstr "Tijd instellen"
+
+msgid "Set a time offset before a timer is due to start to allow VPS to scan for the latest event timing. Select '0' to disable this feature."
+msgstr "Indien mogelijk zal de plugin x minuten voor de ingestelde starttijd controleren of een programma eerder begint. (0 schakelt deze optie uit)"
 
 msgid "Set action for 'Info' key"
 msgstr "Selecteer actie voor INFO-knop"
@@ -21117,9 +21117,6 @@ msgstr ""
 "Hiermee stelt u de beeldscherpte in als het beeld moet worden opgeschaald.\n"
 "(Default: 0)"
 
-msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
-msgstr "De VPS plugin kan bepalen of een programma eerder begint of langer duurt dan in de Timer ingesteld. De zender moet dan wel betrouwbare gegevens leveren!"
-
 msgid "This service is protected by a parental control PIN!"
 msgstr "Deze zender is beveiligd met een PIN-code (kinderslot)!"
 
@@ -22557,6 +22554,9 @@ msgstr "VPS instellingen"
 msgid "VPS enabled by default"
 msgstr "VPS standaard ingeschakeld"
 
+msgid "VPS on instant recordings"
+msgstr "VPS activeren bij direct opnames"
+
 msgid "VPS-Plugin Information"
 msgstr "VPS plugin informatie"
 
@@ -22960,14 +22960,14 @@ msgstr "Wachten"
 msgid "Waiting for partition"
 msgstr "Wacht op een verdeelpunt"
 
+msgid "Wake from Shutdown allowed"
+msgstr "Opstarten vanuit Deep-Standby toegestaan"
+
 msgid "Wake up"
 msgstr "Inschakelen"
 
 msgid "Wake up TV from Standby"
 msgstr "Activeer de TV vanuit stand-by"
-
-msgid "Wake from Shutdown allowed"
-msgstr "Opstarten vanuit Deep-Standby toegestaan"
 
 msgid "Wake up time before a timer begins"
 msgstr "Ontwaaktijd voordat een Timer-opname begint (in minuten)"
@@ -23343,9 +23343,6 @@ msgid "When tuned to a service, the system normally scans the transponder for ch
 msgstr ""
 "Bij het overschakelen naar een andere zender wordt normaal gesproken de transponder gecontroleerd op wijzigingen.\n"
 "A.u.b. alleen activeren, wanneer u weet wat u doet!"
-
-msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
-msgstr "Wanneer 'Ja' zal VPS worden ingeschakeld bij directe opnamen (en stoppen na het actuele programma), wanneer de zender VPS ondersteund."
 
 msgid "Where do you want to backup your settings?"
 msgstr "Waar wilt u een back-up maken van de instellingen?"
@@ -24591,6 +24588,9 @@ msgstr "ja (bewaar feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enable VPS-Plugin"
+#~ msgstr "VPS-Plugin inschakelen"
 
 #~ msgid "Configure whether multichannel audio tracks should be downmixed to stereo."
 #~ msgstr "Kiezen of zenders met meerdere audiokanalen omgezet moeten worden naar stereo."

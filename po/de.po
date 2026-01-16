@@ -18,9 +18,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-08 09:08+0000\n"
-"PO-Revision-Date: 2026-01-08 11:14+0000\n"
-"Last-Translator: jbleyel <jbleyel@gmx.net>\n"
+"POT-Creation-Date: 2026-01-08 16:51+0000\n"
+"PO-Revision-Date: 2026-01-09 14:26+0000\n"
+"Last-Translator: VfBFan <drop0815@posteo.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -7498,15 +7498,6 @@ msgstr "Swap beim Hochfahren aktivieren"
 msgid "Enable VPS"
 msgstr "VPS aktivieren"
 
-msgid "Select 'Yes' to set the VPS flag on all new timers by default."
-msgstr "VPS bei neuen Timern standardmäßig aktivieren."
-
-msgid "VPS on instant recordings"
-msgstr "VPS bei Sofortaufnahmen aktivieren"
-
-msgid "Enable VPS-Plugin"
-msgstr "VPS-Plugin eingeschaltet"
-
 msgid "Enable ViaSat EPG"
 msgstr "ViaSat-EPG aktivieren"
 
@@ -8902,6 +8893,9 @@ msgstr "Finanzen"
 msgid "Find Currently Playing Service"
 msgstr "Zum aktuellen Sender springen"
 
+msgid "Find connected events"
+msgstr "Nach zusammenhängenden EPG-Einträgen suchen"
+
 #
 #, python-format
 msgid "Find out more at %s"
@@ -10111,14 +10105,11 @@ msgstr "Bei 'niemals' wird beim ersten Absturz trotzdem ein Crash-Log geschriebe
 msgid "If EPG available"
 msgstr "Wenn EPG verfügbar"
 
-msgid "If an event is interrupted and divided into separate recordings, this feature will search for alternate broadcasts of the same event."
-msgstr "Im EPG wird nach weiteren Einträgen gesucht, die zur aufzunehmenden Sendung gehören. Wenn eine Sendung beispielsweise durch Nachrichten unterbrochen wird, versucht das Plugin trotzdem die komplette Sendung aufzunehmen."
-
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "Wenn eine Aktion vom Benutzer konfigurierbar ist, wird der Hilfeeintrag mit einem '(C)'-Suffix gekennzeichnet."
 
-msgid "Select 'Yes' to wake the receiver from Shutdown prior to the recording start time to allow the PDC data to make last minute timer adjustments."
-msgstr "Wenn aktiviert und notwendig, weckt das Plugin den Receiver zur festgelegten Startzeit aus dem Deep-Standby, um zu überprüfen, ob die Sendung früher beginnt."
+msgid "If an event is interrupted and divided into separate recordings, this feature will search for alternate broadcasts of the same event."
+msgstr "Im EPG wird nach weiteren Einträgen gesucht, die zur aufzunehmenden Sendung gehören. Wenn eine Sendung beispielsweise durch Nachrichten unterbrochen wird, versucht das Plugin trotzdem die komplette Sendung aufzunehmen."
 
 msgid "If enabled the output resolution of the receiver will try to match the resolution of the video contents resolution."
 msgstr "Wenn die Ausgabeauflösung aktiviert ist, versucht der Receiver, der Auflösung des Videoinhalts zu entsprechen."
@@ -10143,9 +10134,6 @@ msgstr "Wenn aktiviert, wird die neue GStreamer-Wiedergabe verwendet."
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Wenn die Logdateien zu viel Speicher belegen, werden die ältesten Dateien gelöscht."
-
-msgid "Set a time offset before a timer is due to start to allow VPS to scan for the latest event timing. Select '0' to disable this feature."
-msgstr "Wenn möglich, wird die angegebene Anzahl von Minuten vor eigentlichem Beginn der Aufnahme überprüft, ob die Sendung früher anfängt. 0 deaktiviert diese Funktion."
 
 msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
 msgstr "Bei 'Ja' kann Timeshift mit alternativen Audio-Plugins verwendet werden."
@@ -13374,7 +13362,7 @@ msgid "Number of IP Addresses"
 msgstr "Anzahl der IP-Adressen"
 
 msgid "Number of Slots"
-msgstr "Anzahl der Slots "
+msgstr "Anzahl der Slots"
 
 msgid "Number of digits in service number"
 msgstr "Anzahl der Stellen in der Sendernummer"
@@ -17026,9 +17014,6 @@ msgstr "Aktivierung der Suchleiste"
 msgid "SeekBar sensibility"
 msgstr "Sprungweite der Suchleiste"
 
-msgid "Find connected events"
-msgstr "Nach zusammenhängenden EPG-Einträgen suchen"
-
 #
 msgid "Select"
 msgstr "Auswählen"
@@ -17096,6 +17081,9 @@ msgstr "Bei 'Ja' wird die Infoleiste im pausierten Zustand nicht ausgeblendet, s
 
 msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
 msgstr "Bei 'Ja' wird jeder Datenträger automatisch als Samba-Freigabe erstellt."
+
+msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
+msgstr "'Ja' lässt das VPS-Plugin feststellen, ob eine Sendung früher beginnt oder länger dauert als im Timer programmiert wurde. Der Sender muss allerdings verlässliche Daten liefern!"
 
 msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
 msgstr "Bei 'Ja' kann innerhalb der Suchleiste zu jedem beliebigen Zeitpunkt vor- oder zurückgesprungen werden."
@@ -17215,6 +17203,9 @@ msgstr "'Ja' auswählen, um die Aufgabe auf den Zeitpunkt zu verschieben, zu dem
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr "Mit 'Ja' die Netzwerkkonfiguration auf die Standardwerte zurücksetzen. Der Ethernet-Anschluss wird aktiviert, sofern er vorhanden ist, und der Empfänger auf die Verwendung von DHCP eingestellt. Alle anderen Netzwerkschnittstellen werden gelöscht!"
 
+msgid "Select 'Yes' to set the VPS flag on all new timers by default."
+msgstr "Mit 'Ja' wird VPS bei neuen Timern standardmäßig aktiviert."
+
 msgid "Select 'Yes' to set the cursor position to the end of the line when editing a text file.  Select 'No' to set the cursor to the start of the line."
 msgstr "'Ja' setzt den Cursor an das Ende einer Textzeile, 'Nein' an den Anfang."
 
@@ -17307,6 +17298,9 @@ msgstr "'Ja' auswählen, um sofort herunterzufahren statt die Entschlüsselung z
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr "Bei 'Ja' werden die Aufgaben in separate Aktionen aufgeteilt."
 
+msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
+msgstr "Bei 'Ja' wird VPS automatisch bei Sofortaufnahmen (aktuelle Sendung) aktiviert, soweit es vom Sender unterstützt wird."
+
 msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
 msgstr "'Ja' auswählen, um eine alternative IP-Adresse für den GitHub-Feed zu verwenden. Dies kann hilfreich sein, wenn ein VPN verwendet wird, jedoch über den angegebenen DNS-Namen nicht auf die normalen Feeds zugegriffen werden kann."
 
@@ -17320,6 +17314,9 @@ msgstr ""
 
 msgid "Select 'Yes' to use the number keys for quick selection of files / directories, select 'No' to use the number keys for MENU option shortcuts."
 msgstr "'Ja' auswählen, um die Zahlentasten zur schnellen Anwahl von Dateien/Verzeichnissen zu verwenden. 'Nein', um sie für die Auswahl von MENU-Optionen zu verwenden."
+
+msgid "Select 'Yes' to wake the receiver from Shutdown prior to the recording start time to allow the PDC data to make last minute timer adjustments."
+msgstr "Wenn aktiviert und notwendig, weckt das Plugin den Receiver zur festgelegten Startzeit aus dem Deep-Standby, um zu überprüfen, ob die Sendung früher beginnt."
 
 msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback."
 msgstr "Bei 'Ja' wird die Infoleiste bei schnellem Vor- und Rücklauf bei Medienwiedergabe angezeigt."
@@ -18490,6 +18487,9 @@ msgstr "Scaling Governor auswählen"
 
 msgid "Set Time"
 msgstr "Zeit eingeben"
+
+msgid "Set a time offset before a timer is due to start to allow VPS to scan for the latest event timing. Select '0' to disable this feature."
+msgstr "Wenn möglich, wird die angegebene Anzahl von Minuten vor eigentlichem Beginn der Aufnahme überprüft, ob die Sendung früher beginnt. 0 deaktiviert diese Funktion."
 
 msgid "Set action for 'Info' key"
 msgstr "Aktion der Taste INFO einstellen"
@@ -22079,9 +22079,6 @@ msgstr "Den Kontrast des Bildes einstellen."
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Die Skalierschärfe einstellen. Dieser Punkt wirkt sich aus, wenn ein Bild vergrößert werden muss."
 
-msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
-msgstr "Das VPS-Plugin kann feststellen, ob eine Sendung früher beginnt oder länger dauert als im Timer programmiert wurde. Der Sender muss allerdings verlässliche Daten liefern!"
-
 #
 msgid "This service is protected by a parental control PIN!"
 msgstr "Dieser Sender ist durch eine Jugendschutz-PIN geschützt!"
@@ -23631,6 +23628,9 @@ msgstr "VPS-Einstellungen"
 msgid "VPS enabled by default"
 msgstr "VPS standardmäßig aktivieren"
 
+msgid "VPS on instant recordings"
+msgstr "VPS bei Sofortaufnahmen aktivieren"
+
 msgid "VPS-Plugin Information"
 msgstr "VPS-Plugin-Information"
 
@@ -24051,14 +24051,14 @@ msgstr "Wartet"
 msgid "Waiting for partition"
 msgstr "Auf Partition warten"
 
+msgid "Wake from Shutdown allowed"
+msgstr "Starten aus dem Deep-Standby erlauben"
+
 msgid "Wake up"
 msgstr "Aufwachen"
 
 msgid "Wake up TV from Standby"
 msgstr "TV aus Standby aufwecken"
-
-msgid "Wake from Shutdown allowed"
-msgstr "Starten aus dem Deep-Standby erlauben"
 
 msgid "Wake up time before a timer begins"
 msgstr "Aufwachzeit bevor ein Timer beginnt"
@@ -24442,9 +24442,6 @@ msgstr "Wird der rote Rahmen korrekt angezeigt, die Einstellungen mit GRÜN spei
 
 msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you're doing."
 msgstr "Wenn ein Sender eingestellt ist, durchsucht das System den Transponder nach Änderungen und speichert diese. 'Ja' nur auswählen, wenn die Auswirkungen bekannt sind."
-
-msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
-msgstr "Bei 'Ja' wird VPS automatisch bei Sofortaufnahmen (aktuelle Sendung) aktiviert, soweit es vom Sender unterstützt wird."
 
 #
 msgid "Where do you want to backup your settings?"
@@ -25813,6 +25810,9 @@ msgstr "Ja (Feeds beibehalten)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enable VPS-Plugin"
+#~ msgstr "VPS-Plugin eingeschaltet"
 
 #~ msgid "Configure whether multichannel audio tracks should be downmixed to stereo."
 #~ msgstr "Das Herunterrechnen von Mehrkanalton zu Stereo konfigurieren."

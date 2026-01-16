@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-08 09:08+0000\n"
-"PO-Revision-Date: 2026-01-04 15:06+0000\n"
+"POT-Creation-Date: 2026-01-08 16:51+0000\n"
+"PO-Revision-Date: 2026-01-09 14:26+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -3971,7 +3971,7 @@ msgid "Check for PDC"
 msgstr "检查 PDC"
 
 msgid "Check for PDC availability on each service."
-msgstr "检查每个服务的 PDC 可用性"
+msgstr "检查每个服务的 PDC 可用性。"
 
 msgid "Check power and input state from TV"
 msgstr "检查电视的电源和输入状态"
@@ -7119,15 +7119,6 @@ msgstr "启动时启用交换空间"
 msgid "Enable VPS"
 msgstr "启用 VPS"
 
-msgid "Select 'Yes' to set the VPS flag on all new timers by default."
-msgstr "默认启用 VPS（新定时器）"
-
-msgid "VPS on instant recordings"
-msgstr "即时录制启用 VPS"
-
-msgid "Enable VPS-Plugin"
-msgstr "启用 VPS 插件"
-
 msgid "Enable ViaSat EPG"
 msgstr "启用 ViaSat EPG"
 
@@ -8468,6 +8459,9 @@ msgstr "金融"
 msgid "Find Currently Playing Service"
 msgstr "查找当前正在播放的频道"
 
+msgid "Find connected events"
+msgstr "寻找关联事件"
+
 #, python-format
 msgid "Find out more at %s"
 msgstr "更多信息请访问 %s"
@@ -9630,14 +9624,11 @@ msgstr "如为 '从不'，将写入崩溃日志，尽管是第一次崩溃。"
 msgid "If EPG available"
 msgstr "如果 EPG 可用"
 
-msgid "If an event is interrupted and divided into separate recordings, this feature will search for alternate broadcasts of the same event."
-msgstr "如果程序被中断并被划分为单独的事件，插件将搜索连接的事件。"
-
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "如果某个操作是用户可配置的，则其帮助条目将标记为“(C)”后缀。"
 
-msgid "Select 'Yes' to wake the receiver from Shutdown prior to the recording start time to allow the PDC data to make last minute timer adjustments."
-msgstr "如果启用且有必要，插件将在定义的启动时间内从深度待机中唤醒接收机，以控制程序是否更早开始。"
+msgid "If an event is interrupted and divided into separate recordings, this feature will search for alternate broadcasts of the same event."
+msgstr "如果程序被中断并被划分为单独的事件，插件将搜索连接的事件。"
 
 msgid "If enabled the output resolution of the receiver will try to match the resolution of the video contents resolution."
 msgstr "若启用此选项，接收机的输出分辨率将尝试与视频内容的分辨率保持一致。"
@@ -9659,9 +9650,6 @@ msgstr "如果启用，将使用新的 GStreamer 播放引擎。"
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "当所有日志达到最大空间时，最旧的将被删除。"
-
-msgid "Set a time offset before a timer is due to start to allow VPS to scan for the latest event timing. Select '0' to disable this feature."
-msgstr "如果可能，在定时器启动前 x 分钟，VPS 插件将控制程序是否提前开始。 （0 禁用功能）"
 
 msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
 msgstr "如果设置为“是”，则允许您将时移与备用音频插件一起使用。"
@@ -12673,7 +12661,7 @@ msgid "Number of IP Addresses"
 msgstr "IP 地址数"
 
 msgid "Number of Slots"
-msgstr ""
+msgstr "插槽数量"
 
 msgid "Number of digits in service number"
 msgstr "频道编号位数"
@@ -16055,9 +16043,6 @@ msgstr "激活进度条"
 msgid "SeekBar sensibility"
 msgstr "进度条灵敏度"
 
-msgid "Find connected events"
-msgstr "寻找关联事件"
-
 msgid "Select"
 msgstr "选择"
 
@@ -16123,6 +16108,9 @@ msgstr "选择“是”，在暂停媒体播放时，信息栏保持显示，不
 
 msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
 msgstr "选择“是”以允许检测到的每个存储设备自动导出为 samba 共享。"
+
+msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
+msgstr "这个插件可以确定一个节目是更早开始还是持续更长时间。 频道必须提供可靠的数据。"
 
 msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
 msgstr "选择“是”以允许使用进度条跳转到事件中的选定点。"
@@ -16241,6 +16229,9 @@ msgstr "选择“是”可将任务重新安排到接收机进入/退出待机�
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr "选择“是”将网络配置重置为默认值。这将启用以太网端口（如果存在），并将接收机设置为使用 DHCP。 所有其他网络接口都将被删除。"
 
+msgid "Select 'Yes' to set the VPS flag on all new timers by default."
+msgstr "选择 “是”，即可将所有新建定时器默认设置为启用 VPS 标记。"
+
 msgid "Select 'Yes' to set the cursor position to the end of the line when editing a text file.  Select 'No' to set the cursor to the start of the line."
 msgstr "选择“是”可在编辑文本文件时将光标位置设置为行尾。 选择“否”将光标设置到行的开头。"
 
@@ -16331,6 +16322,9 @@ msgstr "选择“是”将立即关机而不执行解扰操作。"
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr "选择“是”将任务拆分为单独的操作。"
 
+msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
+msgstr "选 是 时，即时录制中 VPS 将被启用（在当前事件后停止），如果频道支持 VPS。"
+
 msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
 msgstr "选择“是”以使用备用 GitHub 订阅源 IP 地址。如果您使用 VPN 并且无法通过发布的 DNS 名称访问正常的订阅源，这会很有帮助。"
 
@@ -16342,6 +16336,9 @@ msgstr "选择“是”使用从旧 API V3 计算的信号值（SNR 等）。 �
 
 msgid "Select 'Yes' to use the number keys for quick selection of files / directories, select 'No' to use the number keys for MENU option shortcuts."
 msgstr "选择“是”以使用数字键快速选择文件/目录，选择“否”以使用数字键作为菜单选项快捷方式。"
+
+msgid "Select 'Yes' to wake the receiver from Shutdown prior to the recording start time to allow the PDC data to make last minute timer adjustments."
+msgstr "如果启用且有必要，插件将在定义的启动时间内从深度待机中唤醒接收机，以控制程序是否更早开始。"
 
 msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback."
 msgstr "选择“是”，在媒体播放过程中快进或快退时显示信息栏。"
@@ -16939,7 +16936,7 @@ msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (
 msgstr "选择您的 SCR 设备使用的协议。 选项有'SCR Unicable'（Unicable）或'SCR JESS'（JESS，也称为Unicable II）。"
 
 msgid "Select the receiver action when the TV switches away from the receiver input."
-msgstr ""
+msgstr "当电视切换离开接收机输入源时，请选择接收机执行的操作。"
 
 msgid "Select the refresh rate to be used on the TV."
 msgstr "选择要在电视上使用的刷新率。"
@@ -17460,6 +17457,9 @@ msgstr "设置调速器"
 
 msgid "Set Time"
 msgstr "设置时间"
+
+msgid "Set a time offset before a timer is due to start to allow VPS to scan for the latest event timing. Select '0' to disable this feature."
+msgstr "设置定时器启动前的时间偏移量，以便 VPS 扫描获取最新的节目播出时间。选择 “0” 则禁用此功能。"
 
 msgid "Set action for 'Info' key"
 msgstr "设置“信息”键的操作"
@@ -20870,9 +20870,6 @@ msgstr "此选项设置视频图片对比度。"
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "此选项设置图片清晰度，当图片放大时使用。"
 
-msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
-msgstr "这个插件可以确定一个节目是更早开始还是持续更长时间。 频道必须提供可靠的数据。"
-
 msgid "This service is protected by a parental control PIN!"
 msgstr "此频道由家长控制密码保护！"
 
@@ -22308,6 +22305,9 @@ msgstr "VPS 设置"
 msgid "VPS enabled by default"
 msgstr "VPS 默认启用"
 
+msgid "VPS on instant recordings"
+msgstr "即时录制启用 VPS"
+
 msgid "VPS-Plugin Information"
 msgstr "VPS 插件信息"
 
@@ -22711,14 +22711,14 @@ msgstr "正在等待"
 msgid "Waiting for partition"
 msgstr "正在等待分区"
 
+msgid "Wake from Shutdown allowed"
+msgstr "允许从深度待机唤醒"
+
 msgid "Wake up"
 msgstr "唤醒"
 
 msgid "Wake up TV from Standby"
 msgstr "从待机状态唤醒电视"
-
-msgid "Wake from Shutdown allowed"
-msgstr "允许从深度待机唤醒"
 
 msgid "Wake up time before a timer begins"
 msgstr "定时器开始前的唤醒时间 [分钟]"
@@ -23077,9 +23077,6 @@ msgstr "当红色框正确可见时，按绿色按钮保存设置并退出。"
 
 msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you're doing."
 msgstr "当调谐到频道时，系统通常会扫描转发器的任何改动并保存它们。 仅当你在完全确定自己在做什么时设为“是”。"
-
-msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
-msgstr "选 是 时，即时录制中 VPS 将被启用（在当前事件后停止），如果频道支持 VPS。"
 
 msgid "Where do you want to backup your settings?"
 msgstr "要备份你的设置到哪里？"
@@ -24322,6 +24319,9 @@ msgstr "是（保留订阅源）"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Enable VPS-Plugin"
+#~ msgstr "启用 VPS 插件"
 
 #~ msgid "Configure whether multichannel audio tracks should be downmixed to stereo."
 #~ msgstr "配置多声道音轨是否要缩混为立体声。"
