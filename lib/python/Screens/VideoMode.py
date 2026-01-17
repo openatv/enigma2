@@ -69,8 +69,6 @@ class VideoSetup(ConfigListScreen, Screen):
 		self["VKeyIcon"] = Boolean(False)
 		self["footnote"] = Label()
 
-		self.onChangedEntry = []
-
 		# handle hotplug by re-creating setup
 		self.onShow.append(self.startHotplug)
 		self.onHide.append(self.stopHotplug)
