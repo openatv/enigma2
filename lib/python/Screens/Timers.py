@@ -823,13 +823,15 @@ class SchedulerOverview(TimerOverviewBase):
 			self.session.nav.Scheduler.cleanup()
 			self.reloadTimerList()
 
-	# def refill(self):
-	#	length = len(self.timerList)
-	#	self.fillTimerList()
-	#	if length and length != len(self.timerList):
-	#		self["timerlist"].entryRemoved(self["timerlist"].getCurrentIndex())
-	#	else:
-	#		self["timerlist"].invalidate()
+	"""
+	def refill(self):
+		length = len(self.timerList)
+		self.fillTimerList()
+		if length and length != len(self.timerList):
+			self["timerlist"].entryRemoved(self["timerlist"].getCurrentIndex())
+		else:
+			self["timerlist"].invalidate()
+	"""
 
 
 class RecordTimerOverview(TimerOverviewBase):
@@ -1490,8 +1492,8 @@ class RecordTimerEdit(Setup):
 		self.timerDescription = ConfigText(default=self.timer.description.replace("\x8a", " ").replace("\n", " "), visible_width=50, fixed_size=False)
 		self.timerType = ConfigSelection(default=RECORDTIMER_TYPES.get(self.timer.justplay + 2 * self.timer.always_zap, "record"), choices=[
 			(RECORDTIMER_TYPES.get(RECORD_TIMERTYPE.RECORD), RECORDTIMER_TYPE_NAMES.get(RECORD_TIMERTYPE.RECORD)),
-			(RECORDTIMER_TYPES.get(RECORD_TIMERTYPE.ZAP), RECORDTIMER_TYPE_NAMES.get(RECORD_TIMERTYPE.ZAP)),
-			(RECORDTIMER_TYPES.get(RECORD_TIMERTYPE.ZAP_RECORD), RECORDTIMER_TYPE_NAMES.get(RECORD_TIMERTYPE.ZAP_RECORD))
+			(RECORDTIMER_TYPES.get(RECORD_TIMERTYPE.ZAP_RECORD), RECORDTIMER_TYPE_NAMES.get(RECORD_TIMERTYPE.ZAP_RECORD)),
+			(RECORDTIMER_TYPES.get(RECORD_TIMERTYPE.ZAP), RECORDTIMER_TYPE_NAMES.get(RECORD_TIMERTYPE.ZAP))
 		])
 		self.timerRepeat = ConfigSelection(default=type, choices=REPEAT_CHOICES)
 		self.timerRepeatPeriod = ConfigSelection(default=repeated, choices=REPEAT_OPTIONS)
