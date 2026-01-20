@@ -1814,6 +1814,8 @@ class InstantRecordTimerEdit(RecordTimerEdit):
 
 	def keySave(self, result=None):
 		if self.timer.justplay:
+			# self.timer.begin += config.recording.zap_margin_before.value * 60
+			# self.timer.marginBefore = 0
 			self.timer.hasEndTime = config.recording.zap_has_endtime.value
 			if not self.timer.hasEndTime:
 				self.timer.end = self.timer.begin + 1
