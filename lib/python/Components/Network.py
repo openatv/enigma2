@@ -256,7 +256,7 @@ class Network:
 			lines.append("")
 		fileWriteLines(self.networkInterfaceFile, lines, source=MODULE_NAME)
 		self.configuredNetworkAdapters = self.configuredInterfaces
-		self.writeNameserverConfig(dhcpAdapter != [])
+		self.writeNameserverConfig()
 
 	def writeNameserverConfig(self):
 		useDHCPforDNS = False
