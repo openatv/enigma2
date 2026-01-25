@@ -73,8 +73,8 @@ static std::unordered_map<std::string, std::string> HardwareDB{
 	{"/devices/platform/ohci-brcm.0/usb2/2-1/", "Back, inner USB"}
 #elif HWDM900 // CHECKED
 	{"/devices/platform/brcmstb-ahci.0/ata1/", "SATA"},
-	{"/devices/rdb.4/f03e0000.sdhci/mmc_host/mmc0/", "eMMC"},
-	{"/devices/rdb.4/f03e0200.sdhci/mmc_host/mmc1/", "SD"},
+	{"/devices/rdb.4/f03e0000.sdhci/mmc_host/mmc0/", "SD"},
+	{"/devices/rdb.4/f03e0200.sdhci/mmc_host/mmc1/", "eMMC"},
 	{"/devices/rdb.4/f0470600.ohci_v2/usb6/6-0:1.0", "Front USB"},
 	{"/devices/rdb.4/f0470300.ehci_v2/usb3/3-0:1.0", "Front USB"},
 	{"/devices/rdb.4/f0471000.xhci_v2/usb2/2-0:1.0", "Front USB"},
@@ -85,8 +85,8 @@ static std::unordered_map<std::string, std::string> HardwareDB{
 	{"/devices/rdb.4/f0471000.xhci_v2/usb2/2-0:1.0", "Back USB"}
 #elif HWDM920 // CHECKED
 	{"/devices/platform/brcmstb-ahci.0/ata1/", "SATA"},
-	{"/devices/rdb.4/f03e0000.sdhci/mmc_host/mmc0/", "eMMC"},
-	{"/devices/rdb.4/f03e0200.sdhci/mmc_host/mmc1/", "SD"},
+	{"/devices/rdb.4/f03e0000.sdhci/mmc_host/mmc0/", "SD"},
+	{"/devices/rdb.4/f03e0200.sdhci/mmc_host/mmc1/", "eMMC"},
 	{"/devices/rdb.4/f0470600.ohci_v2/usb6/6-0:1.0/port1/", "Front USB"},
 	{"/devices/rdb.4/f0470300.ehci_v2/usb3/3-0:1.0/port1/", "Front USB"},
 	{"/devices/rdb.4/f0471000.xhci_v2/usb2/2-0:1.0/port1/", "Front USB"},

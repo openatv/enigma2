@@ -192,9 +192,9 @@ class VPS_check(Screen):
 		sid = self.service.getData(1)
 		tsid = self.service.getData(2)
 		onid = self.service.getData(3)
-		demux = "/dev/dvb/adapter0/demux" + str(self.demux)
+		demux = f"/dev/dvb/adapter0/demux{self.demux}"
 
-		cmd = vps_exe + " " + demux + " 10 " + str(onid) + " " + str(tsid) + " " + str(sid) + " 0"
+		cmd = f"{vps_exe} {demux} 10 {onid} {tsid} {sid} 0"
 		self.program.execute(cmd)
 
 	def program_closed(self, retval):
@@ -249,7 +249,7 @@ class VPS_check_PDC_Screen(VPS_check):
 			if self.has_pdc == 1:  # PDC vorhanden
 				self.close()
 			elif self.has_pdc == 0:  # kein PDC
-				#nachfragen
+				# nachfragen
 				self.session.openWithCallback(self.finish_callback, MessageBox, _("The selected channel doesn't support VPS for manually programmed timers!\n Do you really want to enable VPS?"), default=False)
 			else:  # konnte nicht ermitteln
 				self.session.openWithCallback(self.finish_callback, MessageBox, _("The VPS-Plugin couldn't check if the selected channel supports VPS for manually programmed timers!\n Do you really want to enable VPS?"), default=False)

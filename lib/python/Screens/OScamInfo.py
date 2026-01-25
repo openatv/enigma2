@@ -6,7 +6,8 @@ from re import compile
 from twisted.internet.reactor import callInThread
 from ssl import create_default_context, _create_unverified_context as SkipCertificateVerification
 from urllib.parse import unquote
-from urllib.request import build_opener, HTTPDigestAuthHandler, HTTPHandler, HTTPSHandler, HTTPPasswordMgrWithDefaultRealm
+from urllib.request import build_opener, HTTPDigestAuthHandler, HTTPHandler, HTTPSHandler, HTTPPasswordMgrWithDefaultRealm, Request
+from time import time
 from pathlib import Path
 from xml.etree.ElementTree import XML, ParseError
 from ipaddress import ip_address
@@ -153,7 +154,13 @@ class OSCamGlobals():
 			opener = build_opener(webhandler, authhandler)
 		try:
 			#print("[%s] DEBUG in module 'callApi': API call: %s" % (MODULE_NAME, url))
-			data = opener.open(url, timeout=5).read()
+			# Add cache-busting parameter and no-cache headers to prevent stale data
+			cache_buster = f"&_t={int(time() * 1000)}" if "?" in url else f"?_t={int(time() * 1000)}"
+			request = Request(url + cache_buster)
+			request.add_header("Cache-Control", "no-cache, no-store, must-revalidate")
+			request.add_header("Pragma", "no-cache")
+			request.add_header("Expires", "0")
+			data = opener.open(request, timeout=5).read()
 			return True, url, data
 		except (OSError, UnicodeError) as error:
 			if hasattr(error, "reason"):
@@ -296,24 +303,46 @@ class OSCamInfo(Screen, OSCamGlobals):
 			"blue": (self.keyBlue, _("Open Log"))
 			}, prio=1, description=_("OSCamInfo Actions"))
 		self.loop = eTimer()
-		self.loop.callback.append(self.updateOScamData)
+		self.loop.callback.append(self._triggerDataUpdate)
 		self.onLayoutFinish.append(self.onLayoutFinished)
 		self.bgColors = parameters.get("OSCamInfoBGcolors", (0x10fcfce1, 0x10f1f6e6, 0x10e2e0ef))
 
 	def onLayoutFinished(self):
 		self.showHideKeyOk()
 		self["outlist"].onSelectionChanged.append(self.showHideKeyOk)
-		if config.oscaminfo.userDataFromConf.value and self.confPath()[0] is None:
-			config.oscaminfo.userDataFromConf.value = False
-			config.oscaminfo.userDataFromConf.save()
-			self["extrainfos"].setText(_("File oscam.conf not found.\nPlease enter username/password manually."))
+		# Check config in background to avoid blocking
+		if config.oscaminfo.userDataFromConf.value:
+			callInThread(self._checkConfPath)
 		else:
-			callInThread(self.updateOScamData)
+			self._triggerDataUpdate()
 			if config.oscaminfo.autoUpdate.value:
 				self.loop.start(config.oscaminfo.autoUpdate.value * 1000, False)
 
-	def updateOScamData(self):
+	def _checkConfPath(self):
+		"""Check confPath in background thread"""
+		confPathResult = self.confPath()[0]
+		self._onConfPathChecked(confPathResult)
+
+	def _onConfPathChecked(self, confPathResult):
+		"""Handle confPath result"""
+		if confPathResult is None:
+			config.oscaminfo.userDataFromConf.value = False
+			config.oscaminfo.userDataFromConf.save()
+		self._triggerDataUpdate()
+		if config.oscaminfo.autoUpdate.value:
+			self.loop.start(config.oscaminfo.autoUpdate.value * 1000, False)
+
+	def _triggerDataUpdate(self):
+		"""Trigger data fetch in background thread"""
+		callInThread(self._fetchOScamData)
+
+	def _fetchOScamData(self):
+		"""Fetch data in background thread, then update UI"""
 		webifok, api, url, signstatus, result = self.openWebIF()
+		self._updateMainUI(webifok, api, url, signstatus, result)
+
+	def _updateMainUI(self, webifok, api, url, signstatus, result):
+		"""Update main UI"""
 		ctime = datetime.fromisoformat(datetime.now(timezone.utc).astimezone().isoformat())
 		currtime = "Protocol Time: %s - %s" % (ctime.strftime("%x"), ctime.strftime("%X"))
 		na = _("n/a")
@@ -403,7 +432,12 @@ class OSCamInfo(Screen, OSCamGlobals):
 		return f"{h}:{m}:{s}"
 
 	def displayLog(self):
-		logok, result = self.updateLog()
+		def fetchLog():
+			logok, result = self.updateLog()
+			self._updateLogUI(logok, result)
+		callInThread(fetchLog)
+
+	def _updateLogUI(self, logok, result):
 		if logok:
 			self["logtext"].setText(result)
 			self["logtext"].moveBottom()
@@ -421,7 +455,7 @@ class OSCamInfo(Screen, OSCamGlobals):
 			self["key_entitlements"].setText("")
 
 	def menuCallback(self):
-		callInThread(self.updateOScamData)
+		self._triggerDataUpdate()
 		self.keyCallback()
 
 	def keyCallback(self):
@@ -454,10 +488,17 @@ class OSCamInfo(Screen, OSCamGlobals):
 	def msgboxCB(self, action, answer):
 		if answer:
 			self.loop.stop()
-			webifok, api, url, signstatus, result = self.openWebIF(part=action)
-			if not webifok:
-				print("[%s] ERROR in module 'msgboxCB': %s" % (MODULE_NAME, "Unexpected error accessing WebIF: %s" % result))
-				self.session.open(MessageBox, _("Unexpected error accessing WebIF: %s" % result), MessageBox.TYPE_ERROR, timeout=3, close_on_any_key=True)
+			# Execute shutdown/restart in background to avoid blocking
+			def doAction():
+				webifok, api, url, signstatus, result = self.openWebIF(part=action)
+				if not webifok:
+					self._showActionError(result)
+			callInThread(doAction)
+
+	def _showActionError(self, result):
+		"""Show action error"""
+		print("[%s] ERROR in module 'msgboxCB': %s" % (MODULE_NAME, "Unexpected error accessing WebIF: %s" % result))
+		self.session.open(MessageBox, _("Unexpected error accessing WebIF: %s" % result), MessageBox.TYPE_ERROR, timeout=3, close_on_any_key=True)
 
 	def exit(self):
 		self.loop.stop()
@@ -587,7 +628,7 @@ class OSCamEntitlements(Screen, OSCamGlobals):
 		self.onLayoutFinish.append(self.onLayoutFinished)
 		self.bgColors = parameters.get("OSCamInfoBGcolors", (0x10fcfce1, 0x10f1f6e6, 0x10e2e0ef))
 		self.loop = eTimer()
-		self.loop.callback.append(self.updateEntitlements)
+		self.loop.callback.append(self._triggerEntitlementsUpdate)
 		if config.oscaminfo.autoUpdate.value:
 			self.loop.start(config.oscaminfo.autoUpdate.value * 1000, False)
 
@@ -600,22 +641,31 @@ class OSCamEntitlements(Screen, OSCamGlobals):
 			self["dheader%s" % idx].setText("")
 		for idx in range(len(self.cheaders)):
 			self["cheader%s" % idx].setText("")
-		callInThread(self.updateEntitlements)
+		self._triggerEntitlementsUpdate()
 
-	def updateEntitlements(self):
+	def _triggerEntitlementsUpdate(self):
+		"""Trigger entitlements fetch in background thread"""
+		callInThread(self._fetchEntitlements)
+
+	def _fetchEntitlements(self):
+		"""Fetch entitlements in background thread"""
 		entitleslist = self.getJSONentitlements()
-		if entitleslist:
-			self["entitleslist"].style = "default"
-			self.show_dheaders()
-		else:
+		if not entitleslist:
 			entitleslist = self.getJSONstats()
-			if entitleslist:
-				if entitleslist[0][1] == "key":
-					self["entitleslist"].style = "default"
-					self.show_dheaders()
-				else:
-					self["entitleslist"].style = "entitlements"
-					self.show_cheaders()
+		self._updateEntitlementsUI(entitleslist)
+
+	def _updateEntitlementsUI(self, entitleslist):
+		"""Update entitlements UI"""
+		if entitleslist:
+			if entitleslist[0][1] == "key":
+				self["entitleslist"].style = "default"
+				self.show_dheaders()
+			elif len(entitleslist[0]) > 10:  # entitlements style has more columns
+				self["entitleslist"].style = "entitlements"
+				self.show_cheaders()
+			else:
+				self["entitleslist"].style = "default"
+				self.show_dheaders()
 		self["entitleslist"].updateList(entitleslist)
 		self.setTitle(_("OSCamInfo: %s Entitlements for '%s'") % (len(entitleslist), self.readeruser))
 		self.entitleslist = entitleslist
@@ -743,7 +793,7 @@ class OSCamEntitlements(Screen, OSCamGlobals):
 		else:
 			self["key_exit"].setText(_("Show all"))
 		self.showall = not self.showall
-		self.updateEntitlements()
+		self._triggerEntitlementsUpdate()
 
 	def keyCallback(self):
 		if config.oscaminfo.autoUpdate.value:
@@ -894,16 +944,23 @@ class OSCamInfoLog(Screen, OSCamGlobals):
 			"pageDown": (self.keyPageDown, _("Move down a page"))
 			}, prio=1, description=_("OSCamInfo Log Actions"))
 		self.loop = eTimer()
-		self.loop.callback.append(self.displayLog)
+		self.loop.callback.append(self._triggerLogUpdate)
 		self.onLayoutFinish.append(self.onLayoutFinished)
 
 	def onLayoutFinished(self):
 		if config.oscaminfo.autoUpdateLog.value:
 			self.loop.start(config.oscaminfo.autoUpdateLog.value * 1000, False)
-		callInThread(self.displayLog)
+		self._triggerLogUpdate()
 
-	def displayLog(self):
-		logok, result = self.updateLog()
+	def _triggerLogUpdate(self):
+		"""Trigger log fetch in background thread"""
+		def fetchLog():
+			logok, result = self.updateLog()
+			self._updateLogUI(logok, result)
+		callInThread(fetchLog)
+
+	def _updateLogUI(self, logok, result):
+		"""Update log UI"""
 		if logok:
 			self["logtext"].setText(result)
 			self["logtext"].moveBottom()

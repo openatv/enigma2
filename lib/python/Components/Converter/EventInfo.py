@@ -5,7 +5,7 @@ from enigma import eEPGCache, eServiceEventEnums, eServiceReference, iServiceInf
 from ServiceReference import ServiceReference
 from Components.config import config
 from Components.Element import cached
-from Components.Converter.genre import getGenreStringSub
+from Components.Genres import genres
 from Components.Converter.Converter import Converter
 from Components.Converter.Poll import Poll
 from Tools.Conversions import UnitScaler
@@ -372,19 +372,19 @@ class EventInfo(Converter, Poll):
 					result = formatDescription(event.getShortDescription(), event.getExtendedDescription())
 				case self.GENRE | self.GENRE_LIST:
 					if config.usage.show_genre_info.value:
-						genres = event.getGenreDataList()
-						if genres:
+						genreList = event.getGenreDataList()
+						if genreList:
 							if self.token == self.GENRE:
-								genres = genres[0:1]
+								genreList = genreList[0:1]
 							rating = event.getParentalData()
 							country = rating.getCountryCode().upper() if rating else "ETSI"
 							if country in OPENTV_COUNTRIES:
 								country = f"{OPENTV_COUNTRIES[country]}OpenTV"
-								result = self.separator.join((genreText for genreText in (trimText(getGenreStringSub(genre[0], genre[1], country=country)) for genre in genres) if genreText))
+								result = self.separator.join((genreText for genreText in (trimText(genres.getGenreLevelTwoText(genre[0], genre[1], country=country)) for genre in genreList) if genreText))
 							else:
 								if config.misc.epggenrecountry.value:
 									country = config.misc.epggenrecountry.value
-								result = self.separator.join((genreText for genreText in (trimText(getGenreStringSub(genre[0], genre[1], country=country)) for genre in genres) if genreText))
+								result = self.separator.join((genreText for genreText in (trimText(genres.getGenreLevelTwoText(genre[0], genre[1], country=country)) for genre in genreList) if genreText))
 				case self.ID:
 					result = trimText(event.getEventId())
 				case self.MEDIA_PATH:

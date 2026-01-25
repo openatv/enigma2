@@ -44,6 +44,7 @@ class StorageDeviceAction(Setup):
 	ACTION_LABEL = 6
 	ACTION_IGNORE = 7
 	ACTION_ACTIVATE = 8
+	ACTION_TRIM = 9
 
 	def __init__(self, session, storageDevice, action, actionText):
 		self.storageDevice = storageDevice
@@ -736,6 +737,7 @@ class DeviceManager(Screen):
 		return {
 			StorageDeviceAction.ACTION_INITIALIZE: storageDevice.createInitializeJob,
 			StorageDeviceAction.ACTION_CHECK: storageDevice.createCheckJob,
+			StorageDeviceAction.ACTION_TRIM: storageDevice.createTrimJob,
 			StorageDeviceAction.ACTION_EXT4CONVERSION: storageDevice.createExt4ConversionJob,
 			StorageDeviceAction.ACTION_WIPE: storageDevice.createWipeJob,
 			StorageDeviceAction.ACTION_FORMAT: storageDevice.createFormatJob
@@ -776,6 +778,7 @@ class DeviceManager(Screen):
 				self.currentOptions = options
 				actionQuestion = {
 					StorageDeviceAction.ACTION_CHECK: _("Do you really want to check the file system?\nThis could take a long time!"),
+					StorageDeviceAction.ACTION_TRIM: _("Do you really want to trim the file system?"),
 					StorageDeviceAction.ACTION_EXT4CONVERSION: _("Do you really want to convert the file system?\nYou cannot go back!")
 				}
 				question = actionQuestion.get(self.currentAction) or _("Do you really want to format the device in the Linux file system?\nAll data on the device will be lost!")
@@ -851,6 +854,7 @@ class DeviceManager(Screen):
 				]
 				if storageDevice.fsType in fileSystems:
 					choiceList.append((_("File System Check"), StorageDeviceAction.ACTION_CHECK))
+					choiceList.append((_("Trim File System"), StorageDeviceAction.ACTION_TRIM))
 				if storageDevice.fsType == "ext3":
 					choiceList.append((_("Convert file system ext3 to ext4"), StorageDeviceAction.ACTION_EXT4CONVERSION))
 				if "ntfs" not in storageDevice.fsType and storageDevice.fsType in fileSystems:  # NTFS not supported yet because you need to unmount.

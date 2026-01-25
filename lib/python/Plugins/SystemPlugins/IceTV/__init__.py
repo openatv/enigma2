@@ -58,7 +58,7 @@ config.plugins.icetv.merge_eit_epg = ConfigYesNo(default=True)
 minute = 60
 hour = minute * 60
 
-checktimes = [(str(minute * t), _("%d Minutes") % t) for t in (2, 5, 10, 15, 30, 60)] + [(str(hour * t), _("%d Hours") % t) for t in (2, 3, 4, 5, 6, 7, 8, 12, 24)]
+checktimes = [(str(minute * t), ngettext("%d Minute", "%d Minutes", t) % t) for t in (2, 5, 10, 15, 30, 60)] + [(str(hour * t), ngettext("%d Hour", "%d Hours", t) % t) for t in (2, 3, 4, 5, 6, 7, 8, 12, 24)]
 
 config.plugins.icetv.refresh_interval = ConfigSelection(default="%d" % int(minute * 15), choices=checktimes)
 

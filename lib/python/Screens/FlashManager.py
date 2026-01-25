@@ -392,7 +392,8 @@ class FlashImage(Screen):
 
 	def checkMedia(self, choice):
 		if choice:
-			self.recordCheck = not MultiBoot.canMultiBoot() or MultiBoot.getCurrentSlotCode() == choice[0]  # Ignore recordCheck if not the current slot
+			self.recordCheck = not MultiBoot.canMultiBoot() or (MultiBoot.getCurrentSlotCode() == choice[0] if isinstance(choice, (tuple, list)) else True)  # Ignore recordCheck if not the current slot
+
 			def findMedia(paths):
 				def availableSpace(path):
 					if isdir(path) and access(path, W_OK):

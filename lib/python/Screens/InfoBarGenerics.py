@@ -1765,13 +1765,14 @@ class InfoBarStreamRelay:
 			service = service or nav.getCurrentlyPlayingServiceReference()
 			if service:
 				servicestring = service.toCompareString()
+				currentlyPlaying = nav.getCurrentlyPlayingServiceReference()
 				if servicestring in self.__services:
 					self.__services.remove(servicestring)
 				else:
 					self.__services.append(servicestring)
-					if nav.getCurrentlyPlayingServiceReference() and nav.getCurrentlyPlayingServiceReference() == service:
-						nav.restartService()
 				self.write()
+				if currentlyPlaying and currentlyPlaying == service:
+					nav.restartService()
 
 	def __getData(self):
 		return self.__services

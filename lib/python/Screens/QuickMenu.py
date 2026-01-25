@@ -201,7 +201,7 @@ class QuickMenu(Screen, ProtectedScreen):
 
 		self.menu = 0
 		self.mainList = []
-		self.mainList.append(quickMenuEntryComponent(0, "Software_Manager", _("Software Manager"), _("Update/Backup/Restore your box"), _("Update/Backup your firmware, Backup/Restore settings")))
+		self.mainList.append(quickMenuEntryComponent(0, "Software_Manager", _("Software Manager"), _("Update/Backup/Restore your receiver"), _("Update/Backup your firmware, Backup/Restore settings")))
 		if BoxInfo.getItem("SoftCam"):
 			self.mainList.append(quickMenuEntryComponent(1, "Softcam", _("Softcam"), _("Start/stop/select cam"), _("Start/stop/select your cam, You need to install first a softcam")))
 		self.mainList.append(quickMenuEntryComponent(2, "System", _("System"), _("System Setup"), _("Setup your System")))
@@ -279,10 +279,10 @@ class QuickMenu(Screen, ProtectedScreen):
 
 		self.subList = []
 		self.subList.append(self.quickSubMenuEntryComponent(_("Software Update"), _("Online software update"), _("Check/Install online updates (you must have a working Internet connection)"), screen="SoftwareUpdate"))
-		self.subList.append(self.quickSubMenuEntryComponent(_("Flash Online"), _("Flash Online a new image"), _("Flash on the fly your your Receiver software."), screen="FlashManager"))
-		self.subList.append(self.quickSubMenuEntryComponent(_("Complete Backup"), _("Backup your current image"), _("Backup your current image to HDD or USB. This will make a 1:1 copy of your box"), callback=completeBackupCallback))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Flash Online"), _("Flash Online a new image"), _("Flash your receiver software on the fly."), screen="FlashManager"))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Complete Backup"), _("Backup your current image"), _("Backup your current image to HDD or USB. This will make a 1:1 copy of your receiver."), callback=completeBackupCallback))
 		self.subList.append(self.quickSubMenuEntryComponent(_("Backup Settings"), _("Backup your current settings"), _("Backup your current settings. This includes E2-setup, channels, network and all selected files"), callback=backupSettingsCallback))
-		self.subList.append(self.quickSubMenuEntryComponent(_("Restore Settings"), _("Restore settings from a backup"), _("Restore your settings back from a backup. After restore the box will restart to activated the new settings"), callback=restoreSettingsCallback))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Restore Settings"), _("Restore settings from a backup"), _("Restore your settings back from a backup. After restore the receiver will restart to activated the new settings."), callback=restoreSettingsCallback))
 		self.subList.append(self.quickSubMenuEntryComponent(_("Show Default Backup Files"), _("Show files backed up by default"), _("Here you can browse (but not modify) the files that are added to the backupfile by default (E2-setup, channels, network)."), callback=defaultBackupFilesCallback))
 		self.subList.append(self.quickSubMenuEntryComponent(_("Select Additional Backup Files"), _("Select additional files to backup"), _("Here you can specify additional files that should be added to the backup file."), callback=additionalBackupFilesCallback))
 		self.subList.append(self.quickSubMenuEntryComponent(_("Select Excluded Backup Files"), _("Select files to exclude from backup"), _("Here you can select which files should be excluded from the backup."), callback=excludedBackupFilesCallback))
@@ -428,8 +428,8 @@ class QuickMenu(Screen, ProtectedScreen):
 		self.subList = []
 		self.subList.append(self.quickSubMenuEntryComponent(_("Plugin Browser"), _("Open the Plugin Browser"), _("Shows Plugins Browser. Here you can setup installed Plugin"), screen="PluginBrowser"))
 		self.subList.append(self.quickSubMenuEntryComponent(_("Download Plugins"), _("Download and install Plugins"), _("Shows available plugins. Here you can download and install them"), callback=downloadPlugins))
-		self.subList.append(self.quickSubMenuEntryComponent(_("Remove Plugins"), _("Delete Plugins"), _("Delete and uninstall Plugins. This will remove the Plugin from your box"), callback=removePlugins))
-		self.subList.append(self.quickSubMenuEntryComponent(_("Manage Plugins"), _("Manage Plugins"), _("Manage Plugins. This will remove/install Plugins on your box"), callback=managePlugins))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Remove Plugins"), _("Delete Plugins"), _("Delete and uninstall Plugins. This will remove the Plugin from your receiver."), callback=removePlugins))
+		self.subList.append(self.quickSubMenuEntryComponent(_("Manage Plugins"), _("Manage Plugins"), _("Manage Plugins. This will remove/install Plugins on your receiver."), callback=managePlugins))
 		self.subList.append(self.quickSubMenuEntryComponent(_("Plugin Browser Settings"), _("Setup Plugin Browser"), _("Setup PluginBrowser. Here you can select which Plugins are showed in the PluginBrowser"), setup="PluginBrowser"))
 		self.subList.append(self.quickSubMenuEntryComponent(_("IPK Installer"), _("Install Local Extension"), _("Scan for local extensions and install them"), callback=ipkInstaller))
 		self.setSubList()

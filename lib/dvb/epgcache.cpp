@@ -1947,12 +1947,12 @@ void eEPGCache::submitEventData(const std::vector<eServiceReferenceDVB>& service
 			service->m_flags |= eDVBService::dxNoEIT;
 		}
 	}
-	submitEventData(sids, chids, start, duration, title, short_summary, long_description, event_types, parental_ratings, EPG_IMPORT, event_id);
+	submitEventData(sids, chids, start, duration, title, short_summary, long_description, event_types, parental_ratings, event_id, EPG_IMPORT);
 }
 
 void eEPGCache::submitEventData(const std::vector<int>& sids, const std::vector<eDVBChannelID>& chids, long start,
 	long duration, const char* title, const char* short_summary,
-	const char* long_description, char event_type, int source, uint16_t event_id)
+	const char* long_description, char event_type, uint16_t event_id, int source)
 {
 	std::vector<uint8_t> event_types;
 	std::vector<eit_parental_rating> parental_ratings;
@@ -1960,12 +1960,12 @@ void eEPGCache::submitEventData(const std::vector<int>& sids, const std::vector<
 	{
 		event_types.push_back(event_type);
 	}
-	submitEventData(sids, chids, start, duration, title, short_summary, long_description, event_types, parental_ratings, source, event_id);
+	submitEventData(sids, chids, start, duration, title, short_summary, long_description, event_types, parental_ratings, event_id, source);
 }
 
 void eEPGCache::submitEventData(const std::vector<int>& sids, const std::vector<eDVBChannelID>& chids, long start,
 	long duration, const char* title, const char* short_summary,
-	const char* long_description, std::vector<uint8_t> event_types, std::vector<eit_parental_rating> parental_ratings, int source, uint16_t event_id)
+	const char* long_description, std::vector<uint8_t> event_types, std::vector<eit_parental_rating> parental_ratings, uint16_t event_id, int source)
 {
 	if (!title)
 		return;

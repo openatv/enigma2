@@ -159,10 +159,12 @@ class Navigation:
 		else:
 			self.wakeupCheck(False)
 		# TODO
-		# if config.usage.remote_fallback_import_restart.value:
-		#	ImportChannels()
-		# if config.usage.remote_fallback_import.value and not config.usage.remote_fallback_import_restart.value:
-		#	ImportChannels()
+		"""
+		if config.usage.remote_fallback_import_restart.value:
+			ImportChannels()
+		if config.usage.remote_fallback_import.value and not config.usage.remote_fallback_import_restart.value:
+			ImportChannels()
+		"""
 
 	def wakeupCheck(self, runCheck=True):
 		now = time()
@@ -427,8 +429,7 @@ class Navigation:
 						self.retryServicePlayTimer.callback.append(boundFunction(self.playService, ref, checkParentalControl, forceRestart, adjust))
 						self.retryServicePlayTimer.start(500, True)
 				self.skipServiceReferenceReset = False
-				if isStreamRelay and not self.isCurrentServiceStreamRelay:
-					self.isCurrentServiceStreamRelay = True
+				self.isCurrentServiceStreamRelay = isStreamRelay
 				if InfoBarInstance and "%3a//" in playref.toString():
 					self.originalPlayingServiceReference = None
 					InfoBarInstance.serviceStarted()
@@ -493,8 +494,10 @@ class Navigation:
 				ref, isStreamRelay = streamrelay.streamrelayChecker(ref)
 				for f in Navigation.recordServiceExtensions:
 					ref = f(self, ref)
-				#if not isStreamRelay:
-				#	ref, wrappererror = self.serviceHook(ref)
+				"""
+				if not isStreamRelay:
+					ref, wrappererror = self.serviceHook(ref)
+				"""
 			service = ref and self.pnav and self.pnav.recordService(ref, simulate, type)
 			if service is None:
 				print("[Navigation] Record returned non-zero.")

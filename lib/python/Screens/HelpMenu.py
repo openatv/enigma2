@@ -5,14 +5,16 @@ from sys import maxsize
 from enigma import eActionMap, eTimer
 
 from keyids import KEYIDNAMES, KEYIDS
-from Components.ActionMap import ActionMap, queryKeyBinding
+from Components.ActionMap import ActionMap, HelpableActionMap, queryKeyBinding
 from Components.config import config
 from Components.InputDevice import remoteControl
 from Components.Label import Label
 from Components.Pixmap import MovingPixmap, Pixmap
+from Components.ScrollLabel import ScrollLabel
 from Components.Sources.List import List
 from Components.Sources.StaticText import StaticText
 from Screens.Screen import Screen
+from Tools.Directories import fileReadXML
 from Tools.LoadPixmap import LoadPixmap
 
 
@@ -464,3 +466,128 @@ class HelpableScreen:  # Stub for deprecated manual help definitions used by old
 				"displayHelp": self.showHelp
 			}, prio=0)
 			self["key_help"] = StaticText(_("HELP"))
+
+
+class XMLHelp(Screen):
+	skin = """
+	<screen name="XMLHelp" title="XML Help" position="center,center" size="900,600" resolution="1280,720">
+		<widget name="heading" position="0,0" size="e,25" font="Regular;20" transparent="1" verticalAlignment="center" />
+		<widget name="detailtext" position="0,35" size="e,e-85" font="Regular;20" transparent="1" verticalAlignment="top" />
+		<widget source="key_red" render="Label" position="0,e-40" size="180,40" backgroundColor="key_red" conditional="key_red" font="Regular;20" foregroundColor="key_text" horizontalAlignment="center" verticalAlignment="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_yellow" render="Label" position="380,e-40" size="180,40" backgroundColor="key_yellow" conditional="key_yellow" font="Regular;20" foregroundColor="key_text" horizontalAlignment="center" verticalAlignment="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_blue" render="Label" position="570,e-40" size="180,40" backgroundColor="key_blue" conditional="key_blue" font="Regular;20" foregroundColor="key_text" horizontalAlignment="center" verticalAlignment="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+		<widget source="key_help" render="Label" position="e-80,e-40" size="80,40" backgroundColor="key_back" conditional="key_help" font="Regular;20" foregroundColor="key_text" horizontalAlignment="center" verticalAlignment="center">
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>"""
+
+	def __init__(self, session, pages, title="", additionalSkin=""):
+		Screen.__init__(self, session, enableHelp=True)
+		self.pages = pages
+		self.setTitle(title)
+		self.skinName = ["XMLHelp", "MPHelp", "AutoTimerHelp"]
+		if additionalSkin:
+			self.skinName.insert(0, additionalSkin)
+		self["key_red"] = StaticText(_("Close"))
+		self["key_yellow"] = StaticText("")
+		self["key_blue"] = StaticText(">>" if pages else "")
+		self["heading"] = Label()
+		self["detailtext"] = ScrollLabel()
+		self["actions"] = HelpableActionMap(self, ["CancelActions", "ColorActions", "NavigationActions"], {
+			"cancel": (self.close, _("Close the documentation screen")),
+			"top": (self["detailtext"].goTop, _("Move to first line / screen")),
+			"pageUp": (self["detailtext"].goPageUp, _("Move up a screen")),
+			"up": (self["detailtext"].goLineUp, _("Move up a line")),
+			"first": (self.firstPage, _("Go to the first page of documentation")),
+			"last": (self.lastPage, _("Go to the last page of documentation")),
+			"down": (self["detailtext"].goLineDown, _("Move down a line")),
+			"pageDown": (self["detailtext"].goPageDown, _("Move down a screen")),
+			"bottom": (self["detailtext"].goBottom, _("Move to last line / screen")),
+			"yellow": (self.prevPage, _("Go to the previous page of documentation")),
+			"left": (self.prevPage, _("Go to the previous page of documentation")),
+			"blue": (self.nextPage, _("Go to the next page of documentation")),
+			"right": (self.nextPage, _("Go to the next page of documentation"))
+		}, prio=0, description=_("XML Help Actions"))
+		self.curPage = 0
+		self.numPages = len(pages) - 1
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	def layoutFinished(self):
+		self.setPage(0)
+
+	def setPage(self, newPage):
+		if 0 <= newPage <= self.numPages:
+			page = self.pages[newPage]
+			self.curPage = newPage
+			self["heading"].setText(page.getHeading())
+			self["detailtext"].setText(page.getText())
+		else:
+			self["heading"].setText(_("Invalid Help Page"))
+			self["detailtext"].setText(_("You managed to jump to an invalid page. Stop it :-)"))
+		yellowText = "<<"
+		blueText = ">>"
+		if self.curPage <= 0:
+			yellowText = ""
+			if self.curPage >= self.numPages:
+				blueText = ""
+		elif self.curPage >= self.numPages:
+			if not self.curPage:
+				yellowText = ""
+			blueText = ""
+		self["key_yellow"].setText(yellowText)
+		self["actions"].setEnabledAction("yellow", yellowText != "")
+		self["actions"].setEnabledAction("left", yellowText != "")
+		self["key_blue"].setText(blueText)
+		self["actions"].setEnabledAction("blue", blueText != "")
+		self["actions"].setEnabledAction("right", blueText != "")
+
+	def firstPage(self):
+		self.setPage(0)
+
+	def prevPage(self):
+		self.setPage(self.curPage - 1)
+
+	def nextPage(self):
+		self.setPage(self.curPage + 1)
+
+	def lastPage(self):
+		self.setPage(self.numPages)
+
+
+def showDocumentation(session, filename, translateFunc, callback=None):
+	dom = fileReadXML(filename)
+	if dom is not None and translateFunc and callable(translateFunc):
+		title = dom.get("caption", "")
+		additionalSkin = dom.get("skin", "")
+		title = translateFunc(title) if title else ""
+		pages = [XMLHelpPage(x, translateFunc) for x in dom.findall("page")]
+		if callback and callable(callback):
+			session.openWithCallback(callback, XMLHelp, pages, title=title, additionalSkin=additionalSkin)
+		else:
+			session.open(XMLHelp, pages, title=title, additionalSkin=additionalSkin)
+
+
+class XMLHelpPage:
+	def __init__(self, node, translateFunc):
+		heading = node.get("heading", node.get("title", ""))
+		self.heading = translateFunc(heading) if heading else ""
+		textNode = node.find("text")
+		if textNode is not None:
+			text = textNode.get("value", "")
+			text = translateFunc(text) if text else ""
+			self.text = text.replace("/n", "\n")
+		else:
+			self.heading = ""
+			self.text = ""
+
+	def getHeading(self):
+		return self.heading
+
+	def getText(self):
+		return self.text

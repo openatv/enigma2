@@ -208,6 +208,7 @@ if [ "$(grep -i config.crash.coredump=true /etc/enigma2/settings)" != "" ]; then
 	ulimit -c ${COREDUMPSIZE}
 fi
 
+ulimit -n 16384 2>/dev/null || ulimit -n 8192
 # Start enigma2 with or without debug
 if [ -n "$ENIGMA_DEBUG" ]; then
 	(LD_PRELOAD=$LIBS ENIGMA_DEBUG_LVL=$DEBUG_LVL ENIGMA_DEBUG_TIME="${DEBUG_TIME}" @bindir@/enigma2 &> ${LOGFOLDER}$(date +%Y%m%d-%H%M%S)-enigma2-debug.log) &
@@ -290,8 +291,18 @@ case $ret in
 	15)
 		rm -fR /home/root/.cache/gstreamer-1.0
 		rm -f /tmp/.listen.camd.socket.ignore
-                dd if=/dev/zero of=/dev/fb0
-		/usr/bin/kodi
+		dd if=/dev/zero of=/dev/fb0 bs=1M count=16 2>/dev/null
+		env -i \
+		HOME=/home/root \
+		USER=root \
+		PATH=/usr/sbin:/usr/bin:/sbin:/bin \
+		MESA_EXTENSION_OVERRIDE='-GL_EXT_discard_framebuffer' \
+		sync
+		ulimit -n 16384 2>/dev/null || ulimit -n 8192
+		echo 3 > /proc/sys/vm/drop_caches
+		/usr/bin/kodi --standalone  >/tmp/kodi-standalone.log 2>&1
+		ret=$?
+		echo "kodi exit code: $ret" >>/tmp/kodi-standalone.log
 		;;
 	16)
 		if [ -e /proc/stb/info/model ]; then

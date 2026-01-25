@@ -70,7 +70,7 @@ def InitRecordingConfig():
 	config.recording.ask_to_abort_pseudo_rec = ConfigSelection(default="abort_msg", choices=choices)
 	config.recording.ask_to_abort_streaming = ConfigSelection(default="abort_msg", choices=choices)
 	config.recording.ask_to_abort_pip = ConfigSelection(default="abort_msg", choices=choices)
-	config.recording.prepare_time = ConfigSelection(default=20, choices=[(x, _("%d Seconds") % x) for x in range(20, 121, 10)])
+	config.recording.prepare_time = ConfigSelection(default=20, choices=[(x, ngettext("%d Second", "%d Seconds", x) % x) for x in range(20, 121, 10)])
 	config.recording.timerviewshowfreespace = ConfigYesNo(default=True)
 
 	if BoxInfo.getItem("CanDescrambleInStandby"):

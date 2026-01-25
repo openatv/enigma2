@@ -1,4 +1,5 @@
 name: SonarCloud
+
 on:
   push:
     branches: [ master ]
@@ -7,13 +8,14 @@ on:
 
 jobs:
   build:
-    name: Build
+    name: Build and Analyze
     runs-on: ubuntu-24.04
     container:
       image: ghcr.io/openatv/enigma2-buildenv/enigma2-buildenv:latest
       options: --user root
     env:
       BUILD_WRAPPER_OUT_DIR: build_wrapper_output_directory
+
     steps:
       - uses: actions/checkout@v4
         with:
@@ -23,10 +25,10 @@ jobs:
         with:
           python-version: '3.13'
 
-      - name: Install sonar-scanner and build-wrapper
-        uses: SonarSource/sonarcloud-github-c-cpp@v2
+      - name: Install Build Wrapper
+        uses: SonarSource/sonarqube-scan-action/install-build-wrapper@v6
 
-      - name: Run build-wrapper
+      - name: Run Build Wrapper
         env:
           CC: "gcc-14"
           CXX: "g++-14"
@@ -36,13 +38,16 @@ jobs:
           export LIBS="-L/usr/lib/x86_64-linux-gnu -lpython3.13"
           export CPPFLAGS="-I/usr/include/python3.13"
           ./configure PYTHON=python3.13 --with-libsdl=no --with-boxtype=nobox --enable-dependency-tracking ac_cv_prog_c_openmp=-fopenmp --with-gstversion=1.0 --with-textlcd
-          build-wrapper-linux-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} make
 
-      - name: Run sonar-scanner
+          # Clean build mit Build Wrapper
+          build-wrapper-linux-x86-64 --out-dir "${BUILD_WRAPPER_OUT_DIR}" make
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarqube-scan-action@v6
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: |
-          sonar-scanner \
-            -Dsonar.cfamily.compile-commands="${{ env.BUILD_WRAPPER_OUT_DIR }}/compile_commands.json" \
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          args: >
+            --define "sonar.cfamily.compile-commands=${{ env.BUILD_WRAPPER_OUT_DIR }}/compile_commands.json"
             -Dsonar.verbose=true

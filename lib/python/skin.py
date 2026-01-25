@@ -358,7 +358,7 @@ def parseColor(value, default=0x00FFFFFF):
 # Convert a coordinate string into a number.  Used to convert object position and
 # size attributes into a number.
 #    s is the input string.
-#    e is the the parent object size to do relative calculations on parent
+#    e is the parent object size to do relative calculations on parent
 #    size is the size of the object size (e.g. width or height)
 #    font is a font object to calculate relative to font sizes
 # Note some constructs for speeding up simple cases that are very common.

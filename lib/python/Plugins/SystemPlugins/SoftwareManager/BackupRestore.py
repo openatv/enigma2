@@ -5,7 +5,6 @@ from os.path import exists, isdir, join
 
 from enigma import eTimer, eEnv, eConsoleAppContainer, eEPGCache
 from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
-from Components.Button import Button
 from Components.config import NoSave, configfile, ConfigSubsection, ConfigText, ConfigLocations
 from Components.config import config
 from Components.ConfigList import ConfigListScreen
@@ -62,6 +61,8 @@ def InitConfig():
 		"/etc/rc3.d/S99tuner.sh",
 		"/usr/bin/enigma2_pre_start.sh",
 		"/var/lib/bluetooth/",
+		"/etc/enigma2/AutoBouquetsMaker/custom/",
+		"/etc/enigma2/AutoBouquetsMaker/providers/",
 		eEnv.resolve("${datadir}/enigma2/keymap.usr"),
 		eEnv.resolve("${datadir}/enigma2/keymap_usermod.xml")]\
 		+ eEnv_resolve_multi("${sysconfdir}/opkg/*-secret-feed.conf")\

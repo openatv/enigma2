@@ -66,14 +66,11 @@ class vps_timer:
 			if len(data) == 0:
 				continue
 
-			self.timer.log(0, "[VPS] " + line)
+			self.timer.log(0, f"[VPS] {line}")
 
 			if data[0] == "RUNNING_STATUS":
 				if data[1] == "0":  # undefined
-					if data[2] == "FOLLOWING":
-						data[1] = "1"
-					else:
-						data[1] = "4"
+					data[1] = "1" if data[2] == "FOLLOWING" else "4"
 
 				if data[1] == "1":  # not running
 					# Wenn der Eintrag im Following (Section_Number = 1) ist,
@@ -216,7 +213,7 @@ class vps_timer:
 			self.timer.eit = neweventid
 			self.dont_restart_program = False
 			self.program_abort()
-			self.timer.log(0, "[VPS] record now event_id " + str(neweventid))
+			self.timer.log(0, f"[VPS] record now event_id {neweventid}")
 			vps_timers.checksoon(3000)
 			return True
 		else:
@@ -224,7 +221,7 @@ class vps_timer:
 
 	def program_abort(self):
 		if self.program_running or self.program_try_search_running:
-			#self.program.sendCtrlC()
+			# self.program.sendCtrlC()
 			self.program.kill()
 			self.program_running = False
 			self.program_try_search_running = False
@@ -283,11 +280,11 @@ class vps_timer:
 						return
 					else:
 						self.next_events.remove((start, neweventid))
-						self.timer.log(0, "[VPS] delete event_id " + str(neweventid) + " because of delay " + str(evt_begin - start))
+						self.timer.log(0, f"[VPS] delete event_id {neweventid} because of delay {evt_begin - start}")
 
 				self.next_events.append((evt_begin, neweventid))
 				self.next_events = sorted(self.next_events)
-				self.timer.log(0, "[VPS] add event_id " + str(neweventid))
+				self.timer.log(0, f"[VPS] add event_id {neweventid}")
 
 			else:
 				newevent_data = parseEvent(evt)
@@ -299,7 +296,7 @@ class vps_timer:
 
 				# Wenn kein Timer-Konflikt auftritt, wird der Timer angelegt.
 				res = NavigationInstance.instance.RecordTimer.record(newEntry)
-				self.timer.log(0, "[VPS] added another timer, res " + str(res))
+				self.timer.log(0, f"[VPS] added another timer, res {res}")
 
 	def copyTimer(self, start, duration):
 		starttime = start - config.recording.margin_before.getValue() * 60
@@ -339,7 +336,7 @@ class vps_timer:
 		sid = self.rec_ref.getData(1)
 		tsid = self.rec_ref.getData(2)
 		onid = self.rec_ref.getData(3)
-		demux = "/dev/dvb/adapter0/demux" + str(self.demux)
+		demux = f"/dev/dvb/adapter0/demux{self.demux}"
 
 		# PDC-Zeit?
 		if (self.timer.name == "" or self.timer.eit is None) and self.timer.vpsplugin_time is not None and not self.found_pdc:
@@ -348,12 +345,12 @@ class vps_timer:
 			month = strftime("%m", localtime(self.timer.vpsplugin_time))
 			hour = strftime("%H", localtime(self.timer.vpsplugin_time))
 			minute = strftime("%M", localtime(self.timer.vpsplugin_time))
-			cmd = vps_exe + " " + demux + " " + str(mode_program) + " " + str(onid) + " " + str(tsid) + " " + str(sid) + " 0 " + day + " " + month + " " + hour + " " + minute
+			cmd = f"{vps_exe} {demux} {mode_program} {onid} {tsid} {sid} 0 {day} {month} {hour} {minute}"
 			self.timer.log(0, "[VPS] seek PDC-Time")
 			self.program.execute(cmd)
 			return
 
-		cmd = vps_exe + " " + demux + " " + str(mode_program) + " " + str(onid) + " " + str(tsid) + " " + str(sid) + " " + str(self.timer.eit)
+		cmd = f"{vps_exe} {demux} {mode_program} {onid} {tsid} {sid} {self.timer.eit}"
 		self.timer.log(0, "[VPS] start monitoring running-status")
 		self.program.execute(cmd)
 
@@ -374,7 +371,7 @@ class vps_timer:
 					self.simulate_recordService = NavigationInstance.instance.recordService(self.rec_ref, True)
 					if self.simulate_recordService:
 						res = self.simulate_recordService.start()
-						self.timer.log(0, "[VPS] start recordService (simulation) " + str(res))
+						self.timer.log(0, f"[VPS] start recordService (simulation) {res}")
 						if res != 0 and res != -1:
 							# Fehler aufgetreten (kein Tuner frei?)
 							NavigationInstance.instance.stopRecordService(self.simulate_recordService)
@@ -562,7 +559,7 @@ class vps:
 			nextExecution = 1
 
 		self.timer.startLongTimer(nextExecution)
-		print("[VPS-Plugin] next execution in " + str(nextExecution) + " sec")
+		print(f"[VPS-Plugin] next execution in {nextExecution} sec")
 
 	def addTimerToList(self, timer):
 		self.vpstimers.append(vps_timer(timer, self.session))
