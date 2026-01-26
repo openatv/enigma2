@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: OpenATV 7.6.1 Devel\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-17 09:22+0000\n"
-"PO-Revision-Date: 2026-01-16 21:57+0000\n"
+"PO-Revision-Date: 2026-01-25 07:25+0000\n"
 "Last-Translator: Milan Koljanin <lane58@gmail.com>\n"
 "Language-Team: Serbian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sr/>\n"
 "Language: sr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.15.2\n"
+"X-Generator: Weblate 5.16-dev\n"
 
 msgid ""
 "\n"
@@ -918,7 +918,7 @@ msgstr "%d poslovi rade u pozadini!"
 
 #, python-format
 msgid "%d kB"
-msgstr "%d KB"
+msgstr "%d kB"
 
 #, python-format
 msgid "%d min"
@@ -1314,7 +1314,7 @@ msgid "(Attention: There will be a restart after %d crashes.)"
 msgstr "(Pažnja: Doći će do ponovnog pokretanja nakon %d pada.)"
 
 msgid "(PiP)"
-msgstr "(PIP)"
+msgstr "(PiP)"
 
 msgid "(Radio)"
 msgstr "(Radio)"
@@ -1781,7 +1781,7 @@ msgid "About"
 msgstr "O programu"
 
 msgid "About OpenATV"
-msgstr "O OpenATV 7.6.1.4 Devel"
+msgstr "O OpenATV 7.6.0"
 
 msgid "About to start"
 msgstr "Sledeće na redu"
@@ -4249,7 +4249,7 @@ msgstr[1] "Obriši upozorenja"
 msgstr[2] "Obriši upozorenja"
 
 msgid "Click the button on your remote you want to change."
-msgstr "Pritisni DU koje želite da promenite."
+msgstr "Kliknite na dugme na daljinskom koje želite da promenite."
 
 msgid "Client"
 msgstr "Klijent"
@@ -4276,7 +4276,7 @@ msgid "Close CA device at programm end"
 msgstr "Zatvorite CA uređaj na kraju programa"
 
 msgid "Close PiP on exit"
-msgstr "Zatvori PiP na EXIT"
+msgstr "Zatvori PiP na izlaz"
 
 msgid "Close Task List"
 msgstr "Zatvori Listu Zadataka"
@@ -4436,13 +4436,13 @@ msgid "Common Information Actions"
 msgstr "Radnja Izvršenja Info"
 
 msgid "Common Interface"
-msgstr "CI"
+msgstr "Zajednički interfejs"
 
 msgid "Common Interface Assignment"
-msgstr "Zajednički CI modul"
+msgstr "Zajednički interfejs zadatak"
 
 msgid "Common Interface Settings"
-msgstr "CI Podešavanje"
+msgstr "Opšta podešavanja interfejsa"
 
 msgid "Common Settings"
 msgstr "Modul Podešavanja"
@@ -4565,7 +4565,7 @@ msgstr ""
 "Kada su podešavanja ispravna, pritisnite OK da nastavite."
 
 msgid "Configure remote control type"
-msgstr "Podesite tip DU"
+msgstr "Konfiguriši tip daljinskog upravljača"
 
 msgid "Configure the DiSEqC mode for this LNB."
 msgstr "Podesite režim DiSEqC za dani LNB."
@@ -4640,7 +4640,7 @@ msgid "Configure the current key map file."
 msgstr "Podesi trenutni key map fajl."
 
 msgid "Configure the cursor behavior in the channel selection list. When opening the channel selection list you can remain on the current service or already select up/down and you are able to revert the B+/B- buttons."
-msgstr "Podesite ponašanje kursora na listi kanala. Prilikom otvaranja liste kanala možete ostati na trenutnom kanalu ili izabrati gore/dole KANAL +/- ili se možete vratiti B+/B- tasterom."
+msgstr "Podesite ponašanje kursora u listi za izbor kanala. Kada otvorite listu za izbor kanala, možete ostati na trenutnoj usluzi ili već izabrati gore/dole i možete vratiti dugmad B+/B-."
 
 msgid "Configure the display resolution and the font used for teletext."
 msgstr "Podesite rezoluciju ekrana i font koji će se koristiti za teletekst."
@@ -4778,7 +4778,7 @@ msgid "Configure the source of the frontend data as shown on the InfoBars. 'Sett
 msgstr "Konfigurišite izvor prednjeg kraja podataka kao što je prikazano na Info Traci. 'Podešavanja' su onako kako su sačuvana u podešavanjima. 'Tjuner' je onako kako ga izveštava tjuner."
 
 msgid "Configure the speed of the background deletion process. Lower speed will consume less hard disk drive performance."
-msgstr "Podesite brzinu procesa brisanja u pozadini. Manja brzina troši manje performansi HD."
+msgstr "Podesite brzinu procesa brisanja u pozadini. Niža brzina će trošiti manje performansi tvrdog diska."
 
 msgid "Configure the start coordinate in x of the teletext display area."
 msgstr "Podesite početnu koordinatu u X oblasti prikaza teleteksta."
@@ -4947,7 +4947,7 @@ msgid "Console Utility Packages"
 msgstr "Paketi Uslužnih Programa Konzole"
 
 msgid "Constcw"
-msgstr "CCW"
+msgstr "Ccw"
 
 msgid "Constellation"
 msgstr "Sazveždže"
@@ -5760,7 +5760,7 @@ msgid "Debug log time format *"
 msgstr "Format vremena otklanjanja grešaka *"
 
 msgid "Decryption & Parental Control"
-msgstr "EMU & Roditeljska Kontrola"
+msgstr "Emu & Roditeljska Kontrola"
 
 msgid "Deep Standby"
 msgstr "Duboka Pripravnost"
@@ -6297,7 +6297,7 @@ msgstr "Direktorij '%s' ne postoji!"
 
 #, python-format
 msgid "Directory '%s' not writable!"
-msgstr "Direktorij '%s' nije upisiv DVD!"
+msgstr "Direktorij '%s' nije upisiv !"
 
 msgid "Directory browser"
 msgstr "Pregledač direktorijuma"
@@ -6731,8 +6731,8 @@ msgid ""
 "Don't worry your device is still ok! There are several safety mechanisms in place!\n"
 "Your device is still as fine as it was before this procedure!"
 msgstr ""
-"Ne brinite vaš uređaj je ОК! Postoji nekoliko sigurnosnih mehanizama!\n"
-"Vaš resiver radi dobro kao što je radio i pre ovoga postupka!"
+"Ne brinite, vaš uređaj je i dalje u redu! Postoji nekoliko sigurnosnih mehanizama!\n"
+"Vaš uređaj je i dalje isti kao što je bio pre ovog zahvata!"
 
 msgid "Done"
 msgstr "Urađeno"
@@ -7076,7 +7076,7 @@ msgid "Empty file"
 msgstr "Prazan fajl"
 
 msgid "Emulator"
-msgstr "EMU"
+msgstr "Emu"
 
 msgid "Enable"
 msgstr "Omogući"
@@ -7270,7 +7270,7 @@ msgid "Enable this option to add MultiBoot information detected during system bo
 msgstr "Omogući opciju dodavanja MultiBoot info otkrivene tokom pokretanja sistema u fajl evidencije otklanjanja greške."
 
 msgid "Enable this option to add action map / remote control mapping data to the debug log file."
-msgstr "Omogući opciju dodavanja radnje map / mapiranje DU u fajl evidencije otklanjanja greške."
+msgstr "Omogući ovu opciju da bi se podaci o mapiranju akcija / daljinskog upravljača dodali u fajl dnevnika za otklanjanje grešaka."
 
 msgid "Enable this option to add bouquet database information to the debug log file."
 msgstr "Omogući ovu opciju da dodaš informacije iz baze podataka buketa u fajl dnevnika grešaka."
@@ -7300,7 +7300,7 @@ msgid "Enable this option to add opkg output data to the debug log file."
 msgstr "Omogući opciju dodavanja opkg izlaznih podataka u fajl evidencije otklanjanja greške."
 
 msgid "Enable this option to add remote control data to the debug log file."
-msgstr "Omogući opciju dodavanja DU kontrole podataka u fajl evidencije otklanjanja greške."
+msgstr "Omogući ovu opciju da dodaš podatke daljinskog upravljanja u datoteku dnevnika otklanjanja grešaka."
 
 msgid "Enable this option to add screen names and resolution data to the debug log file."
 msgstr "Omogući opciju dodavanja imena ekrana i podatke rezolucije u fajl evidencije otklanjanja greške."
@@ -7553,7 +7553,7 @@ msgid "Entry text only"
 msgstr "Unesite samo tekst"
 
 msgid "Epg/Guide"
-msgstr "EPG/Vodič"
+msgstr "Epg/Vodič"
 
 msgid "Equal to"
 msgstr "Jednako sa"
@@ -7974,7 +7974,7 @@ msgid "Execution condition"
 msgstr "Uslov izvršenja"
 
 msgid "Exif"
-msgstr "EXIF-Verzija"
+msgstr "Exif"
 
 msgid "Existing or trial customer"
 msgstr "Postojeći ili probni klijent"
@@ -8245,13 +8245,13 @@ msgid "Fallback Tuner Setup"
 msgstr "Rezervni tjuner postavke"
 
 msgid "Fallback remote receiver"
-msgstr "URL rezervni udaljeni resiver"
+msgstr "Rezervni daljinski prijemnik"
 
 msgid "Fallback remote receiver IP"
 msgstr "URL rezervni udaljeni resiver IP"
 
 msgid "Fallback remote receiver Port"
-msgstr "URL rezervni udaljeni resiver Port"
+msgstr "Port rezervnog daljinskog prijemnika"
 
 msgid "Fallback remote receiver URL"
 msgstr "URL rezervni udaljeni resiver URL"
@@ -8623,10 +8623,10 @@ msgid "Flat alphabetical"
 msgstr "Ravan abecedni red"
 
 msgid "Flat by key group on remote"
-msgstr "Po grupi tastera DU"
+msgstr "Ravan po grupi tipki na daljinskom"
 
 msgid "Flat by position on remote"
-msgstr "Po položaju DU"
+msgstr "Po lokaciji na daljinu"
 
 msgid "Folk and Country"
 msgstr "Folk i Kantri"
@@ -9317,7 +9317,7 @@ msgid "Hide any zap error messages."
 msgstr "Sakrij sve poruke o grešci zap."
 
 msgid "Hide error messages from the Common Interface module."
-msgstr "Sakrij poruke o greškama iz modula CI."
+msgstr "Sakrij poruke o greškama iz modula Zajednički Interfejs."
 
 msgid "Hide known extensions"
 msgstr "Sakrij poznata proširenja"
@@ -9894,7 +9894,7 @@ msgid "Include opkg output data"
 msgstr "Uključiti opkg izlazne podatke"
 
 msgid "Include remote control data"
-msgstr "Uključiti DU podatke"
+msgstr "Uključi podatke daljinskog upravljača"
 
 msgid "Include screen load data"
 msgstr "Uključiti podatke za učitavanje ekrana"
@@ -10215,10 +10215,10 @@ msgid "Is the keyboard working?"
 msgstr "Da li tastatura radi?"
 
 msgid "Is this setting ok?"
-msgstr "Da li je ova postavka ОК?"
+msgstr "Da li je ova postavka ok?"
 
 msgid "Is this video mode ok?"
-msgstr "Da li je ovaj video režim ОК?"
+msgstr "Da li je ovaj video režim ok?"
 
 msgid "Isle of Man"
 msgstr "Isle of Man"
@@ -10939,7 +10939,7 @@ msgid "Log python stack trace on spinner"
 msgstr "Evidentiraj python stack trag na potenciometru"
 
 msgid "Log results to harddisk"
-msgstr "Evidentiraj rezultat na HDD"
+msgstr "Evidentiraj rezultat na harddisk"
 
 msgid "LogManager"
 msgstr "Menadžer Evidencijom"
@@ -11997,10 +11997,10 @@ msgid "Nameserver"
 msgstr "Ime servera"
 
 msgid "Nameserver settings"
-msgstr "Podešavanje DNS"
+msgstr "Podešavanje imena servera"
 
 msgid "Nameserver setup"
-msgstr "Postavke DNS"
+msgstr "Postavke imena servera"
 
 msgid "Namespace & Orbital position"
 msgstr "Ime & Orbitalna pozicija"
@@ -13160,7 +13160,7 @@ msgid "Oromo"
 msgstr "Oromo"
 
 msgid "Oscam Information"
-msgstr "OScam Informacija"
+msgstr "Oscam Informacija"
 
 msgid "Ossetian / Ossetic"
 msgstr "Ossetian / Ossetic"
@@ -13200,7 +13200,7 @@ msgid "Overwrite Driver Files?"
 msgstr "Zameniti Drajver Fajl?"
 
 msgid "Overwrite Emu Files?"
-msgstr "Zameniti ЕМУ Fajl?"
+msgstr "Zameniti Emu Datoteku?"
 
 msgid "Overwrite Picon Files?"
 msgstr "Zameniti Pikon Fajl?"
@@ -14428,7 +14428,7 @@ msgid "Protect movie list"
 msgstr "Zaštita liste filmova"
 
 msgid "Protect on epg age"
-msgstr "Zaštita od starog EPG"
+msgstr "Zaštita od starog epg"
 
 msgid "Protect plugin browser"
 msgstr "Zaštita plugin pregledača"
@@ -14903,7 +14903,7 @@ msgid ""
 msgstr ""
 "Osvežavanje je u toku\n"
 "Sačekajte da se vaš %s %s ponovo pokrene\n"
-"ОOvo može potrajati nekoliko minuta"
+"Ovo može potrajati nekoliko minuta"
 
 msgid "Refresh"
 msgstr "Osveži"
@@ -15005,10 +15005,10 @@ msgid "Remote Control"
 msgstr "Daljinski upravljač"
 
 msgid "Remote Control Button Settings"
-msgstr "Postavke tastera DU"
+msgstr "Podešavanja dugmeta daljinskog upravljača"
 
 msgid "Remote Control Code Settings"
-msgstr "Postavke Koda DU"
+msgstr "Podešavanja koda daljinskog upravljača"
 
 msgid "Remote control information"
 msgstr "Informacije o daljinskom upravljaču"
@@ -15460,7 +15460,7 @@ msgid "Return to previous service"
 msgstr "Povratak na predhodni kanal"
 
 msgid "Reverse bouquet buttons"
-msgstr "Obrnuti tasteri buketa CH+/-"
+msgstr "Dugmad u obrnutom buketu"
 
 msgid "Reverse list"
 msgstr "Obrnuta lista"
@@ -17895,7 +17895,7 @@ msgid "Setup your recording config"
 msgstr "Podešavanje vašeg konfig za snimanje"
 
 msgid "Setup your remote buttons"
-msgstr "Podešavanje vašeg DU"
+msgstr "Postavite vaše dugme na daljinskom"
 
 msgid "Setup your satellite equipment"
 msgstr "Podešavanje vaše satelitske opreme"
@@ -18636,7 +18636,7 @@ msgid "Show watch status"
 msgstr "Pokaži status za praćenje"
 
 msgid "Show/Game show"
-msgstr "Šou/TV kviz"
+msgstr "Šou/Igre u emisiji"
 
 msgid "Show/Hide Actions"
 msgstr "Radnja Info Trake Pokaži/Sakrij"
@@ -19638,7 +19638,7 @@ msgid "Stream request"
 msgstr "Zahtev za strim"
 
 msgid "Stream-tv"
-msgstr "Strim-TV"
+msgstr "Strim-tv"
 
 msgid "Streaming"
 msgstr "Strimovanje"
@@ -20003,7 +20003,7 @@ msgid "TMDB Search"
 msgstr "TMDB Traži"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Lično preveo milan58 15.01.2026 milan58 27.05.2025"
+msgstr "Lično preveo milan58 15.01.2026"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS fajl je prevelik za ISO9660 nivo 1!"
@@ -20848,7 +20848,7 @@ msgid "This option allows you to set the layout view (Text or Graphics)."
 msgstr "Ova opcija vam omogućava da postavite izgled prikaza (Tekst ili Grafika)."
 
 msgid "This option allows you to switch Audio to Bluetooth speakers."
-msgstr "Ova opcija vam omogućava da prebacite zvuk na BT zvučnike."
+msgstr "Ova opcija vam omogućava da prebacite zvuk na Bluetooth zvučnike."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "Оva opcija omogućava SNR u procentima (to ne podržavaju svi resiveri)."
@@ -20860,7 +20860,7 @@ msgid "This option allows you to view the old and new settings side by side."
 msgstr "Оva opcija omogućava da stare i nove postavke prikažete jednu do druge."
 
 msgid "This option configures the audio delay value for Bluetooth speakers."
-msgstr "Оva opcija konfiguriše opšte odlaganje zvuka za BT zvučnike."
+msgstr "Ova opcija podešava vrednost kašnjenja zvuka za Bluetooth zvučnike."
 
 msgid "This option configures the picture sharpness."
 msgstr "Оva opcija konfiguriše oštrinu slike."
@@ -20947,7 +20947,7 @@ msgid "This setting can help improve signal quality or prevent issues with longe
 msgstr "Ova opcija može pomoći u poboljšanju kvaliteta signala ili sprečiti probleme sa dužim HDMI kablovima."
 
 msgid "This setting depends on your cable provider and location. If you don't know the correct setting refer to the menu in the official cable receiver, or get it from your cable provider, or seek help via Internet forum."
-msgstr "Ova postavka zavisi od dobavljača kablovske TV i lokacije. Ako neznate tačnu postavku pogledajte meni u zvaničnom kabelskom resiveru ili ga nabavite od dobavljača ili potražite pomoć pute Internet foruma."
+msgstr "Ova postavka zavisi od vašeg kablovskog provajdera i lokacije. Ako ne znate tačnu postavku, pogledajte u meniju na zvaničnom kablovskom prijemniku, zatražite je od vašeg kablovskog provajdera, ili potražite pomoć na Internet forumu."
 
 msgid "This setting is for special setups only. It gives this LNB higher priority over other LNBs with lower values. The free LNB with the highest priority will be the first LNB selected for tuning services."
 msgstr "Ova postavka je samo za posebna podešavanja. To ovom LNB daje veći prioritet u odnosu na drugi LNB sa nižim vrednostima. Slobodan LNB sa največim prioritetom biće prvi LNB izabran za servis podešavanja."
@@ -21392,10 +21392,10 @@ msgid "Total flash"
 msgstr "Ukupno fleš"
 
 msgid "Total handled client ecm's"
-msgstr "Ukupno obrađenih klijentskih ЕСМ"
+msgstr "Ukupno obrađenih klijentskih ecm's"
 
 msgid "Total handled client emm's"
-msgstr "Ukupno obrađenih klijentskih EMM"
+msgstr "Ukupno obrađenih klijentskih emm's"
 
 msgid "Total memory"
 msgstr "Ukupno memorija"
@@ -21883,7 +21883,7 @@ msgid "Unscramble http streams"
 msgstr "Dešifrovanje http strima"
 
 msgid "Unscramble receiving http streams"
-msgstr "Dešifrovanje prijema HTTP strima"
+msgstr "Dešifrovanje prijema http strima"
 
 msgid "Unset As Startup Service"
 msgstr "Ukloni kao servis pri pokretanju"
@@ -22885,7 +22885,7 @@ msgid ""
 "\n"
 "Use the UP/DOWN buttons on your remote control to select an option. Use the LEFT/RIGHT buttons to change the values of a configurable option. After that, press OK to proceed to the next screen."
 msgstr ""
-"Dobrodošli u OpenATV 7.6.1.4 Devel.\n"
+"Dobrodošli u OpenATV 7.6.0\n"
 "\n"
 "Koristite dugmad GORE/DOLE na vašem daljinskom upravljaču da izaberete opciju. Koristite dugmad LEVO/DESNO da promenite vrednosti konfigurabilne opcije. Nakon toga, pritisnite OK da pređete na sledeći ekran."
 
@@ -23766,10 +23766,10 @@ msgid "[Timeshift] Restarting time shift!"
 msgstr "[Tajmšift] Ponovno pokretanje tajmšifta!"
 
 msgid "a gui to assign services/providers to common interface modules"
-msgstr "za GUI odeljivanje kanala/provajdera uobičajenim interfejs modulima"
+msgstr "gui za dodeljivanje servisa/provajdera modulima zajedničkog interfejsa"
 
 msgid "a gui to assign services/providers/caids to common interface modules"
-msgstr "za GUI za dodeljivanje kanala/provajdera/caids uobičajenim interfejs modulima"
+msgstr "gui za dodeljivanje kanala/provajdera/caids uobičajenim interfejs modulima"
 
 msgid "activatePiP"
 msgstr "aktivni PiP"

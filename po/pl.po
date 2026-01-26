@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-17 09:22+0000\n"
-"PO-Revision-Date: 2026-01-17 09:23+0000\n"
+"PO-Revision-Date: 2026-01-24 22:37+0000\n"
 "Last-Translator: pololoko111 <pololoko111@o2.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/pl/>\n"
 "Language: pl\n"
@@ -24,7 +24,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.15.2\n"
+"X-Generator: Weblate 5.16-dev\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid ""
@@ -2770,7 +2770,7 @@ msgid "Auto standby"
 msgstr "Automatyczne czuwanie"
 
 msgid "Auto video mode selected"
-msgstr "Wybrano tryb Automatycznego wideo"
+msgstr "Wybrano tryb automatycznego wideo"
 
 msgid "Auto video mode selected for the TV."
 msgstr "Tryb automatycznego wideo wybrany dla TV."
@@ -3822,10 +3822,10 @@ msgid "Center DVB Subs On This Service"
 msgstr "Wyśrodkuj napisy DVB dla tego kanału"
 
 msgid "Centered"
-msgstr "wyśrodkowany"
+msgstr "Wyśrodkowany"
 
 msgid "Centered, wrapped"
-msgstr "wyśrodkowany, wewnątrz"
+msgstr "Wyśrodkowany, owinięty"
 
 msgid "Central African Republic"
 msgstr "Republika Środkowoafrykańska"
@@ -4550,7 +4550,7 @@ msgid "Configure if crypto icons will be shown in the channel selection list."
 msgstr "Skonfiguruj, czy ikony kryptograficzne będą wyświetlane na liście wyboru kanałów."
 
 msgid "Configure if service picons will be shown in quickzap."
-msgstr "Skonfiguruj jeśli pikony mają być wyświetlane w quickzap."
+msgstr "Skonfiguruj, czy pikony będą wyświetlane w szybkim przełączaniu kanałów."
 
 msgid "Configure if service picons will be shown in the service list."
 msgstr "Skonfiguruj, czy pikony mają być wyświetlane na liście kanałów."
@@ -5757,7 +5757,7 @@ msgid "Debug %d/%d"
 msgstr "Debug %d/%d"
 
 msgid "Debug Information"
-msgstr "Informacje debugowania"
+msgstr "Debugowanie"
 
 msgid "Debug Log Information"
 msgstr "Informacje o dzienniku debugowania"
@@ -5787,7 +5787,7 @@ msgid "Default 'After event' *"
 msgstr "Domyślny 'Po wydarzeniu' *"
 
 msgid "Default 'Timer type' *"
-msgstr "Domyślny 'tryb timera' *"
+msgstr "Domyślny 'Typ timera' *"
 
 msgid "Default Astra (13e-19e)"
 msgstr "Domyślnie Astra (13e-19e)"
@@ -10685,7 +10685,7 @@ msgid "Left, front USB"
 msgstr "Lewy, przedni port USB"
 
 msgid "Left, wrapped"
-msgstr "lewo, owinięty"
+msgstr "Lewo, owinięty"
 
 msgid "Legacy mode"
 msgstr "Tryb legacy"
@@ -11040,7 +11040,7 @@ msgid "MAC address"
 msgstr "Adres MAC"
 
 msgid "MAC-address"
-msgstr "MAC-adres"
+msgstr "Adres MAC"
 
 msgid "MENU"
 msgstr "MENU"
@@ -12351,7 +12351,7 @@ msgid "No active channel found."
 msgstr "Nie znaleziono aktywnego kanału."
 
 msgid "No age block"
-msgstr "Bez ograniczeń wiekowych"
+msgstr "Brak blokady wiekowej"
 
 msgid "No backup needed"
 msgstr "Kopia zapasowa nie potrzebna"
@@ -13298,7 +13298,7 @@ msgid "PPanel"
 msgstr "PPanel"
 
 msgid "PRIMETIME"
-msgstr "GODZINY NAJWIĘKSZEJ OGLĄDALNOŚCI"
+msgstr "PRIMETIME"
 
 msgid "PVR"
 msgstr "PVR"
@@ -14317,7 +14317,7 @@ msgid "Primary DNS"
 msgstr "Pierwszy DNS"
 
 msgid "Prime time"
-msgstr "Godziny największej oglądalności"
+msgstr "Primetime"
 
 msgid "Primetime hour"
 msgstr "Podstawowa godzina czasu"
@@ -18463,7 +18463,7 @@ msgid "Show picon background color"
 msgstr "Pokaż kolor tła pikon"
 
 msgid "Show picons in quickzap"
-msgstr "Pokaż pikony w quickzap"
+msgstr "Pokaż pikony przy przełączaniu kanałów"
 
 msgid "Show picons in service list"
 msgstr "Pokaż pikony na liście kanałów"
@@ -19972,7 +19972,7 @@ msgid "System Info"
 msgstr "Info o urządzeniu"
 
 msgid "System Information"
-msgstr "Informacje o systemie"
+msgstr "O systemie"
 
 msgid "System Information Actions"
 msgstr "Działania dotyczące informacji o systemie"
@@ -19987,7 +19987,7 @@ msgid "System Setup"
 msgstr "Ustawienia systemu"
 
 msgid "System information"
-msgstr "Informacje o systemie"
+msgstr "O systemie"
 
 msgid "System temperature"
 msgstr "Temperatura układu"
@@ -20014,7 +20014,7 @@ msgid "TEXT"
 msgstr "TEKST"
 
 msgid "TMDB Search"
-msgstr "Wyszukiwanie TMDB"
+msgstr "Szukaj w TMDB"
 
 msgid "TRANSLATOR_INFO"
 msgstr "@pololoko111"
@@ -20524,8 +20524,8 @@ msgid ""
 "The network wizard extension is not installed!\n"
 "Please install it."
 msgstr ""
-"Kreator sieci nie jest zainstalowany!\n"
-"Zainstaluj go najpierw."
+"Wtyczka NetworkWizard nie jest zainstalowana!\n"
+"Proszę ją zainstalować."
 
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr "Katalog pikon już istnieje i musi zostać usunięty. Czy chcesz kontynuować?"
@@ -21959,7 +21959,7 @@ msgid "Update the selected plugin / list of plugins"
 msgstr "Zaktualizuj wybraną wtyczkę / listę wtyczek"
 
 msgid "Update/Backup your firmware, Backup/Restore settings"
-msgstr "Aktualizuj/Utwórz kopię zapasową oprogramowania, Utwórz kopię zapasową/Przywróć ustawienia"
+msgstr "Aktualizuj / Utwórz kopię zapasową systemu. Utwórz kopię ustawień / Przywróć ustawienia"
 
 msgid "Update/Backup/Restore your receiver"
 msgstr "Aktualizuj / Utwórz kopię zapasową / Przywróć ustawienia"
@@ -22260,7 +22260,7 @@ msgid "Use the extended List"
 msgstr "Użyj rozszerzonej listy"
 
 msgid "Use the network wizard to configure selected network adapter"
-msgstr "Użyj kreatora sieci do skonfigurowania wybranego interfejsu"
+msgstr "Użyj kreatora sieci, aby skonfigurować wybraną kartę sieciową"
 
 msgid "Use the network wizard to configure your Network."
 msgstr "Użyj kreatora sieci, aby skonfigurować swoją Sieć."
