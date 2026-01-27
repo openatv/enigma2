@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-03 09:58+0000\n"
-"PO-Revision-Date: 2026-01-05 09:22+0000\n"
+"POT-Creation-Date: 2026-01-17 09:22+0000\n"
+"PO-Revision-Date: 2026-01-25 11:18+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=((n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2);\n"
-"X-Generator: Weblate 5.15.1\n"
+"X-Generator: Weblate 5.16-dev\n"
 
 msgid ""
 "\n"
@@ -1405,7 +1405,7 @@ msgid "12bit"
 msgstr "12 bitov"
 
 msgid "12bit 4:2:0/4:2:2 no PiP"
-msgstr "12 bitov 4:2:0/4:2:2 bez PIP"
+msgstr "12 bitov 4:2:0/4:2:2 bez PiP"
 
 msgid "13 V"
 msgstr "13 V"
@@ -1693,7 +1693,7 @@ msgid ""
 "Disable PiP and try again?\n"
 msgstr ""
 "Časovač nespustil nahrávanie!\n"
-"Vypnúť PIP a skúsiť znovu?\n"
+"Vypnúť PiP a skúsiť znovu?\n"
 
 msgid ""
 "A timer failed to record!\n"
@@ -2616,7 +2616,7 @@ msgstr "Pomer strán"
 
 #, python-format
 msgid "Aspect ratio set to '%s'."
-msgstr "AV pomer strán je %s."
+msgstr "Pomer strán nastaviť na '%s'."
 
 msgid "Aspect switch"
 msgstr "Prepnutie pomeru strán"
@@ -3124,6 +3124,9 @@ msgstr "Čierna obrazovka do zamknutia"
 
 msgid "Blacklist"
 msgstr "Čierna listina"
+
+msgid "Blank screen"
+msgstr "Prázdna obrazovka"
 
 msgid "Blinking REC"
 msgstr "Blikajúce REC"
@@ -4008,8 +4011,8 @@ msgstr "Čečenčina"
 msgid "Check for PDC"
 msgstr "Skontrolovať PDC"
 
-msgid "Check for PDC availability on each service"
-msgstr "Skontrolovať dostupnosť PDC na každej stanici"
+msgid "Check for PDC availability on each service."
+msgstr "Skontrolovať dostupnosť PDC pri každej stanici/službe."
 
 msgid "Check power and input state from TV"
 msgstr "Skontrolovať napájanie a stav vstupu z TV"
@@ -4158,41 +4161,14 @@ msgstr "Vyberte cieľové umiestnenie pre sloty."
 msgid "Choose time interval to which the graphics will be rounded off."
 msgstr "Vyberte časový interval, po ktorom sa bude opakovať grafika."
 
+msgid "Choose what appears when the screen saver is active."
+msgstr "Vyberte, čo sa zobrazuje pri aktívnom šetriči obrazovky."
+
 msgid "Choose what you want the button '0' to do when PiP is active."
 msgstr "Vyberte akciu tlačidla '0' pri aktívnom PiP."
 
 msgid "Choose where to mount your devices to:"
 msgstr "Vyberte prípojný bod zariadení:"
-
-msgid "Select whether AAC audio tracks should be transcoded."
-msgstr "Vyberte, či sa majú transkódovať zvukové stopy AAC."
-
-msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
-msgstr "Vyberte, či sa majú transkódovať zvukové stopy AC3 Plus na AC3."
-
-msgid "Select whether AC3 audio tracks should be downmixed to stereo."
-msgstr "Vyberte, či sa majú zvukové stopy AC3 zlúčiť do režimu stereo."
-
-msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
-msgstr "Vyberte, či sa majú zvukové stopy kanála DTS zlúčiť alebo transkódovať."
-
-msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
-msgstr "Vyberte, či sa majú zvukové stopy kanála DTS zlúčiť do režimu stereo."
-
-msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
-msgstr "Vyberte, či sa majú zvukové stopy kanála WMA Pro zlúčiť alebo transkódovať."
-
-msgid "Select whether multichannel audio tracks should be converted to PCM or SPDIF."
-msgstr "Vyberte, či sa majú viackanálové zvukové stopy konvertovať do PCM alebo SPDIF."
-
-msgid "Select whether multichannel audio tracks should be downmixed to stereo."
-msgstr "Vyberte, či sa majú viackanálové zvukové stopy zlúčiť do režimu stereo."
-
-msgid "Select whether multichannel audio tracks should be output as PCM."
-msgstr "Vyberte, či majú byť viackanálové zvukové stopy na výstupe ako PCM."
-
-msgid "Select whether or not to show an icon when a motorized dish is moving."
-msgstr "Vyberte, či sa má pri pohybe motora zobrazovať ikona."
 
 msgid "Choose which level of menu/setting's to display. 'Expert'-level shows all items."
 msgstr "Vyberte, ktoré úrovne menu/nastavení sa zobrazia. Úroveň 'Expert' zobrazí všetky položky."
@@ -4866,9 +4842,6 @@ msgstr "Nastavte, či sa pre teletext použije písmo s fixnou šírkou alebo š
 
 msgid "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel."
 msgstr "Nastavte, či sa pre nahrávanie pridelí ďalší tuner zo zoznamu preferovaných tunerov, alebo sa bude zdieľať rovnaký tuner, ktorý je už aktívny pri prijímaní rovnakého TV kanála."
-
-msgid "Configure whether multichannel audio tracks should be downmixed to stereo."
-msgstr "Nastavte, či sa majú viackanálové zvukové stopy zlúčiť (downmix) do režimu stereo."
 
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (like in EPGrefresh)."
 msgstr "Nastavte, či bude symbol 'nahrávania' (v súbore so vzhľadom displeja a vzhľadom LCD) viditeľný iba pre skutočné nahrávanie, alebo bude aktívny aj pri streamovaní a pseudo-nahrávaní (napríklad pri obnove EPG)."
@@ -6355,7 +6328,7 @@ msgid "Disable FCC during recordings"
 msgstr "Vypnúť FCC počas nahrávok"
 
 msgid "Disable Fast Channel Change"
-msgstr "Vypnúť rýchle prepínanie kanálov (FCC)"
+msgstr "Vypnúť rýchlu zmenu kanála"
 
 msgid "Disable IceTV"
 msgstr "Vypnúť IceTV"
@@ -7134,7 +7107,7 @@ msgid "Enable EIT EPG"
 msgstr "Povoliť EIT EPG"
 
 msgid "Enable Fast Channel Change"
-msgstr "Povoliť rýchle prepínanie kanálov (FCC)"
+msgstr "Povoliť rýchlu zmenu kanála"
 
 msgid "Enable Favorite Edit"
 msgstr "Povoliť úpravu obľúbených"
@@ -7185,22 +7158,13 @@ msgid "Enable PiP no HDR"
 msgstr "Zapnúť PIP, žiadne HDR"
 
 msgid "Enable Quad PiP"
-msgstr "Zapnúť Quad PIP"
+msgstr "Zapnúť Quad PiP"
 
 msgid "Enable Swap at startup"
 msgstr "Povoliť Swap pri spúšťaní"
 
 msgid "Enable VPS"
 msgstr "Povoliť VPS"
-
-msgid "Enable VPS by default (new timers)"
-msgstr "Predvolene povoliť VPS (v nových časovačoch)"
-
-msgid "Enable VPS on instant records"
-msgstr "Povoliť VPS v okamžitých nahrávkach"
-
-msgid "Enable VPS-Plugin"
-msgstr "Povoliť VPS-Plugin"
 
 msgid "Enable ViaSat EPG"
 msgstr "Povoliť ViaSat EPG"
@@ -7461,7 +7425,7 @@ msgid "English name (Descending)"
 msgstr "Anglický názov (zostupne)"
 
 msgid "Enhanced Movie Center"
-msgstr "Centrum filmov (EMC)"
+msgstr "Rozšírené centrum filmov"
 
 msgid "Enigma2 (re)starts"
 msgstr "Spustenia/reštarty Enigma2"
@@ -8007,7 +7971,7 @@ msgid "Exceeds Blu-ray disc medium!"
 msgstr "Presahuje kapacitu Blu-ray média!"
 
 msgid "Exceeds dual layer medium!"
-msgstr "Presahuje kapacitu dvojvrstvového DVD!"
+msgstr "Presahuje kapacitu dvojvrstvového média!"
 
 msgid "Execution condition"
 msgstr "Podmienka spustenia"
@@ -8492,13 +8456,6 @@ msgstr "Súbor sa zdá byť zaneprázdnený.\n"
 msgid "File compression"
 msgstr "Kompresia súboru"
 
-msgid ""
-"File oscam.conf not found.\n"
-"Please enter username/password manually."
-msgstr ""
-"Súbor oscam.conf sa nanašiel.\n"
-"Prosím, zadajte meno používateľa/heslo ručne."
-
 msgid "File system"
 msgstr "Systém súborov"
 
@@ -8543,6 +8500,9 @@ msgstr "Financie"
 
 msgid "Find Currently Playing Service"
 msgstr "Nájsť aktuálne spustenú stanicu"
+
+msgid "Find connected events"
+msgstr "Vyhľadanie prepojených udalostí"
 
 #, python-format
 msgid "Find out more at %s"
@@ -8906,7 +8866,7 @@ msgid "General AC3 delay"
 msgstr "Základné oneskorenie AC3"
 
 msgid "General BT audio delay"
-msgstr "Základné oneskorenie pre BT audio"
+msgstr "Všeobecné oneskorenie pre BT audio"
 
 msgid "General PCM delay"
 msgstr "Základné oneskorenie PCM"
@@ -9239,9 +9199,6 @@ msgstr "Ošetriť pády Python"
 msgid "Handle Standby from TV"
 msgstr "Preberať pohotovostný režim z TV"
 
-msgid "Process action from TV"
-msgstr "Preberať vstup z TV"
-
 msgid "Handle wake up from TV"
 msgstr "Preberať prebudenie z TV"
 
@@ -9258,7 +9215,7 @@ msgid "Harddisk"
 msgstr "Pevný disk"
 
 msgid "Harddisk Setup"
-msgstr "Nastavenie HDD"
+msgstr "Nastavenie pevného disku"
 
 msgid "Hardware MultiBoot device"
 msgstr "MultiBoot zariadenie"
@@ -9709,14 +9666,11 @@ msgstr "Aj pri nastavení na 'nikdy' sa pri prvom páde zapíše denník o páde
 msgid "If EPG available"
 msgstr "Ak je EPG dostupný"
 
-msgid "If a programme is interrupted and divided into separate events, the plugin will search for the connected events."
-msgstr "V EPG sa vyhľadajú ďalšie záznamy, ktoré patria k nahrávanému programu. Ak je program prerušený napríklad správami, zásuvný modul sa stále pokúša nahrať celý program."
-
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "Ak je akcia konfigurovateľná používateľom, položka pomocníka je označená príponou '(C)'."
 
-msgid "If enabled and necessary, the plugin will wake up the receiver from deep standby for the defined starting time to control whether the programme begins earlier."
-msgstr "Ak je to povolené a potrebné, plugin prebudí prijímač na definovanú dobu a skontroluje, či sa program začína skôr."
+msgid "If an event is interrupted and divided into separate recordings, this feature will search for alternate broadcasts of the same event."
+msgstr "Ak je udalosť prerušená a rozdelená na separátne nahrávky, tak táto funkcia vyhľadá alternatívne vysielanie rovnakej udalosti."
 
 msgid "If enabled the output resolution of the receiver will try to match the resolution of the video contents resolution."
 msgstr "Ak je povolené, prijímač sa pokúsi prispôsobiť svoje rozlíšenie rozlíšeniu video-obsahu."
@@ -9738,9 +9692,6 @@ msgstr "Ak je táto možnosť povolená, na prehrávanie sa bude používať nov
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Ak súbory denníkov dosiahnu maximum prideleného miesta, najstaršie súbory sa odstránia."
-
-msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
-msgstr "Ak je to možné, zadaný počet minút pred spustením časovača VPS-plugin skontroluje, či sa program nezačne skôr (0 = vypnutie funkcie)"
 
 msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
 msgstr "Ak je táto možnosť nastavená na 'Áno', môže sa timeshift používať s alternatívnymi audio pluginmi."
@@ -11005,6 +10956,9 @@ msgstr "Prihlásenie neúspešné"
 msgid "Login to IceTV server"
 msgstr "Prihlásenie na server IceTV"
 
+msgid "Logo"
+msgstr "Logo"
+
 msgid "Logs Settings"
 msgstr "Nastavenia denníkov"
 
@@ -11625,10 +11579,10 @@ msgid "Move Mode On"
 msgstr "Zapnúť režim presunu"
 
 msgid "Move PiP"
-msgstr "Presunúť PIP"
+msgstr "Presunúť PiP"
 
 msgid "Move PiP to main picture"
-msgstr "Presunúť PIP do hlavného obrazu"
+msgstr "Presunúť PiP do hlavného obrazu"
 
 msgid "Move Up/Down"
 msgstr "Posun hore/dolu"
@@ -12330,7 +12284,7 @@ msgid "Next higher resolution"
 msgstr "Ďalšie vyššie rozlíšenie"
 
 msgid "Next quad PiP channel"
-msgstr "Ďalší kanál Quad PIP"
+msgstr "Ďalší kanál quad PiP"
 
 msgid "Nextsong"
 msgstr "Ďalšia skladba"
@@ -12753,6 +12707,9 @@ msgstr "Číslo a pikona"
 msgid "Number of IP Addresses"
 msgstr "Počet IP adries"
 
+msgid "Number of Slots"
+msgstr "Počet slotov"
+
 msgid "Number of digits in service number"
 msgstr "Počet číslic v čísle kanála"
 
@@ -13143,7 +13100,7 @@ msgid "OpenVPN"
 msgstr "OpenVPN"
 
 msgid "OpenViX Packages"
-msgstr "OpenVIX balíčky"
+msgstr "OpenViX balíčky"
 
 msgid "Opera"
 msgstr "Opera"
@@ -13206,7 +13163,7 @@ msgid "Oromo"
 msgstr "oromčina"
 
 msgid "Oscam Information"
-msgstr "Informácie OSCamu"
+msgstr "Informácia Oscam"
 
 msgid "Ossetian / Ossetic"
 msgstr "osetčina"
@@ -13270,7 +13227,7 @@ msgid "Overwrite driver files during software upgrade?"
 msgstr "Prepísať súbory ovládačov pri aktualizácii softvéru?"
 
 msgid "Overwrite picon files during software upgrade?"
-msgstr "Prepísať súbory pikon pri aktualizácii SW?"
+msgstr "Prepísať súbory pikon počas aktualizácie softvéru?"
 
 msgid "Overwrite setting files (channellist) during software upgrade?"
 msgstr "Prepísať súbory settingu (zoznamu kanálov) pri aktualizácii softvéru?"
@@ -13405,7 +13362,7 @@ msgid "Panic channel"
 msgstr "Kanál pre tlačidlo Panika"
 
 msgid "Panic to"
-msgstr "PANIKA = prepnutie na"
+msgstr "Panika na"
 
 msgid "Panjabi / Punjabi"
 msgstr "pandžábčina"
@@ -14391,6 +14348,9 @@ msgstr "Spracovať akciu ČERVENÉHO tlačidla"
 msgid "Process YELLOW button action"
 msgstr "Spracovať akciu ŽLTÉHO tlačidla"
 
+msgid "Process action from TV"
+msgstr "Spracovať akciu z TV"
+
 msgid "Processing"
 msgstr "Spracováva sa"
 
@@ -14471,7 +14431,7 @@ msgid "Protect movie list"
 msgstr "Ochrana zoznamu filmov"
 
 msgid "Protect on epg age"
-msgstr "Ochrana podľa veku v EPG"
+msgstr "Ochrana v EPG podľa veku"
 
 msgid "Protect plugin browser"
 msgstr "Ochrana Prehliadača pluginov"
@@ -14955,7 +14915,7 @@ msgid "Refresh ZeroTier status information"
 msgstr "Obnoviť informáciu o stave ZeroTier"
 
 msgid "Refresh every"
-msgstr "Obnoviť každých x hodín"
+msgstr "Obnoviť každých"
 
 msgid "Refresh rate"
 msgstr "Obnovovacia frekvencia"
@@ -15854,7 +15814,7 @@ msgid "Save directory on EXIT"
 msgstr "Pri ukončení uložiť priečinok"
 
 msgid "Save every"
-msgstr "Uložiť každých x hodín"
+msgstr "Uložiť každých"
 
 #, python-format
 msgid "Save image as '%s'"
@@ -16036,6 +15996,9 @@ msgstr "sci-fi/fantasy/horor"
 msgid "Scope"
 msgstr "Rozsah"
 
+msgid "Screen saver mode"
+msgstr "Režim šetriča obrazovky"
+
 msgid "Screen saver movement"
 msgstr "Pohyb šetriča obrazovky"
 
@@ -16135,9 +16098,6 @@ msgstr "Aktivácia vyhľadávacieho panela"
 msgid "SeekBar sensibility"
 msgstr "Citlivosť vyhľadávacieho panela"
 
-msgid "Seeking connected events"
-msgstr "Vyhľadávanie prepojených udalostí"
-
 msgid "Select"
 msgstr "Vybrať"
 
@@ -16203,6 +16163,9 @@ msgstr "Ak je nastavené na 'Áno', pri pozastavení prehrávania médií zostan
 
 msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
 msgstr "Vyberte 'Áno', ak chcete povoliť automatické exportovanie každého zisteného úložného zariadenia ako zdieľania Samba."
+
+msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
+msgstr "Vyberte voľbu 'Áno', ak chcete povoliť systému VPS úpravu časovačov nahrávania na základe údajov PDC. Stanica/služba však musí poskytovať spoľahlivé PDC údaje pre jednotlivé udalosti."
 
 msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
 msgstr "Ak je nastavené 'Áno', bude možné použitie vyhľadávacieho panela na skok na vybraný bod v rámci udalosti."
@@ -16321,6 +16284,9 @@ msgstr "Ak chcete znovu naplánovať úlohu na čas, keď prijímač prejde do/z
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr "Ak chcete vykonať reset konfigurácie siete na predvolené hodnoty, vyberte možnosť 'Áno'. Tým sa povolí ethernetový port, ak existuje, a prijímač sa nastaví na používanie DHCP. Všetky ostatné sieťové rozhrania budú odstránené."
 
+msgid "Select 'Yes' to set the VPS flag on all new timers by default."
+msgstr "Ak chcete nastaviť príznak VPS predvolene pri všetkých nových časovačoch, nastavte túto voľbu na 'Áno'."
+
 msgid "Select 'Yes' to set the cursor position to the end of the line when editing a text file.  Select 'No' to set the cursor to the start of the line."
 msgstr "Ak sa má pri úprave textového súboru nastaviť pozícia kurzora na koniec riadku, vyberte možnosť 'Áno'. Výberom možnosti 'Nie' sa kurzor nastaví na začiatok riadku."
 
@@ -16334,7 +16300,7 @@ msgid "Select 'Yes' to show OpenPLi packages in the Download Plugins screen."
 msgstr "Ak sa majú na obrazovke Stiahnuť pluginy zobraziť aj balíčky pre OpenPLi, vyberte možnosť 'Áno'."
 
 msgid "Select 'Yes' to show OpenViX packages in the Download Plugins screen."
-msgstr "Ak sa majú na obrazovke Stiahnuť pluginy zobrazovať aj balíčky pre OpenVIX, vyberte možnosť 'Áno'."
+msgstr "Ak sa majú na obrazovke Stiahnuť pluginy zobrazovať aj balíčky pre OpenViX, vyberte možnosť 'Áno'."
 
 msgid "Select 'Yes' to show Softcam packages in the Download Plugins screen."
 msgstr "Ak sa majú na obrazovke Stiahnuť pluginy zobrazovať aj balíčky softcamov, vyberte možnosť 'Áno'."
@@ -16411,6 +16377,9 @@ msgstr "Pre okamžité vypnutie (namiesto spustenia dekódovania), vyberte možn
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr "Pre rozdelenie úloh na osobitné akcie, vyberte možnosť 'Áno'."
 
+msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
+msgstr "Ak je nastavené na 'Áno', použijú sa údaje PDC (ak sú dostupné pri aktuálnej stanici), na presné zastavenie okamžitého nahrávania na konci udalosti."
+
 msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
 msgstr "Ak chcete použiť alternatívne IP adresy zdroja na portáli GitHub, vyberte možnosť 'Áno'. Môže to pomôcť, ak používate VPN a nie je možný prístup k bežným zdrojom prostredníctvom zverejnených DNS mien."
 
@@ -16422,6 +16391,9 @@ msgstr "Ak je nastavené na 'áno', hodnoty signálu (SNR atď.) sa budú vypoč
 
 msgid "Select 'Yes' to use the number keys for quick selection of files / directories, select 'No' to use the number keys for MENU option shortcuts."
 msgstr "Ak sa má na rýchly výber súborov/priečinkov použiť numerická klávesnica, vyberte možnosť 'Áno'. Ak vyberiete možnosť 'Nie', číselné tlačidlá sa použijú pre skratky možností v MENU."
+
+msgid "Select 'Yes' to wake the receiver from Shutdown prior to the recording start time to allow the PDC data to make last minute timer adjustments."
+msgstr "Nastavte voľbu na 'Áno', na prebudenie prijímača pred začatím nahrávania zo stavu vypnutia. PDC tak bude môcť upraviť poslednú minútu časovača."
 
 msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback."
 msgstr "Ak je nastavené na 'áno', bude sa počas rýchleho pretáčania médií dopredu alebo dozadu zobrazovať infolišta."
@@ -17018,6 +16990,9 @@ msgstr "Vybrať predchádzajúcu stanicu alebo službu, zatvoriť skener a opust
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "Vyberte protokol používaný SCR zariadením. Možnosti sú 'SCR Unicable' (Unicable), alebo 'SCR JESS' (JESS, známe aj ako Unicable II)."
 
+msgid "Select the receiver action when the TV switches away from the receiver input."
+msgstr "Vyberte akciu prijímača v prípade, že sa TV odpojí od vstupu prijímača."
+
 msgid "Select the refresh rate to be used on the TV."
 msgstr "Vyberte obnovovaciu frekvenciu, ktorá sa má použiť na TV."
 
@@ -17195,8 +17170,38 @@ msgstr "Vyberte, čo sa má aktivovať tlačidlami HORE/DOLU."
 msgid "Select where the recording should be saved."
 msgstr "Vyberte, kam sa má nahrávka uložiť."
 
+msgid "Select whether AAC audio tracks should be transcoded."
+msgstr "Vyberte, či sa majú zvukové stopy AAC prekódovať."
+
+msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
+msgstr "Vyberte, či sa majú zvukové stopy AC3 Plus prekódovať na AC3."
+
+msgid "Select whether AC3 audio tracks should be downmixed to stereo."
+msgstr "Vyberte, či sa majú zvukové stopy AC3 zlúčiť do režimu stereo."
+
+msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
+msgstr "Vyberte, či sa majú zvukové stopy kanála DTS zlúčiť alebo transkódovať."
+
+msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
+msgstr "Vyberte, či sa majú zvukové stopy kanála DTS zlúčiť do režimu stereo."
+
 msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
 msgstr "Vyberte či sa použije IPv4, IPv6, alebo obidva protokoly. Ak sú aktivované obidva, tak vyberte, ktorý bude preferovaný."
+
+msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
+msgstr "Vyberte, či sa majú zvukové stopy kanála WMA Pro zlúčiť alebo prekódovať."
+
+msgid "Select whether multichannel audio tracks should be converted to PCM or SPDIF."
+msgstr "Vyberte, či sa majú viackanálové zvukové stopy konvertovať do PCM alebo SPDIF."
+
+msgid "Select whether multichannel audio tracks should be downmixed to stereo."
+msgstr "Vyberte, či sa majú viackanálové zvukové stopy zlúčiť do režimu stereo."
+
+msgid "Select whether multichannel audio tracks should be output as PCM."
+msgstr "Vyberte, či majú byť viackanálové zvukové stopy na výstupe ako PCM."
+
+msgid "Select whether or not to show an icon when a motorized dish is moving."
+msgstr "Vyberte, či sa má pri pohybe motora zobrazovať ikona."
 
 msgid "Select wireless network"
 msgstr "Vyberte bezdrôtovú sieť"
@@ -17508,6 +17513,9 @@ msgstr "Nastaviť regulátor škálovania"
 msgid "Set Time"
 msgstr "Nastavte čas"
 
+msgid "Set a time offset before a timer is due to start to allow VPS to scan for the latest event timing. Select '0' to disable this feature."
+msgstr "Nastavte časový posun pred spustením časovača, aby systém VPS mohol vyhľadať najnovšie časovanie udalosti. Zadaní voľby '0' túto funkciu vypnete."
+
 msgid "Set action for 'Info' key"
 msgstr "Nastavte akciu pre tlačidlo 'Info'"
 
@@ -17647,7 +17655,7 @@ msgid "Set the time to wait for execute the default action in shutdown, standby 
 msgstr "Nastavenie času čakania na vykonanie predvolenej akcie v správach o vypnutí, pohotovostnom režime alebo reštarte. Používa sa napr. v časovačoch nahrávania, napájania, uspania atď."
 
 msgid "Set the top left location of the busy spinner. The coordinates are scaled such that the top left is at (0,0) and the bottom right is at (1260,700). Note that the position is the top left of the spinner and not the centre of the spinner."
-msgstr "Nastavte pozíciu indikátora zaneprázdnenosti hore vľavo. Mierka súradníc je nastavená tak, že vľavo hore sú súradnice (0,0) a vpravo dole sú súradnice (1260,700). Pamätajte na to, že ide o pozíciu rohu indikátora, nie stredu indikátora."
+msgstr "Nastavte pozíciu indikátora zaneprázdnenosti hore vľavo. Mierka súradníc je nastavená tak, že vľavo hore sú súradnice (0,0) a vpravo dole sú súradnice (1260,700). Pamätajte na to, že ide o pozíciu ľavého horného rohu, nie stredu indikátora."
 
 msgid "Set the type of the progress indication in the channel selection screen."
 msgstr "Nastavenie typu zobrazenia indikátora priebehu na obrazovke výberu kanála."
@@ -17685,7 +17693,7 @@ msgid "Set time options"
 msgstr "Nastaviť možnosti pre čas"
 
 msgid "Set to 'Disabled' to replace underscore characters, '_', in file and directory names with spaces."
-msgstr "Ak sa majú v názvoch priečinkov súborov nahradiť znaky popdčiarknutia '_' medzerami, nastavte túto voľbu na 'Zakázané'."
+msgstr "Ak sa majú v názvoch priečinkov a súborov nahradiť znaky podčiarknutia '_' medzerami, nastavte túto voľbu na 'Vypnuté'."
 
 msgid "Set to 'Enabled' to descramble queued scrambled recordings in Standby before shutting down."
 msgstr "Ak chcete pred vypnutím najskôr v pohotovostnom režime dekódovať nahrávky čakajúce vo fronte, nastavte túto voľbu na 'Zapnuté'."
@@ -17863,7 +17871,7 @@ msgid "Setup your Video Mode, Video Output and other Video Settings"
 msgstr "Nastavenie video režimu, video výstupu a ostatných parametrov videa"
 
 msgid "Setup your display"
-msgstr "Nastavenie LCD displeja"
+msgstr "Nastavenie vášho displeja"
 
 msgid "Setup your local network"
 msgstr "Nastavenie siete"
@@ -17875,7 +17883,7 @@ msgid "Setup your mounts for network"
 msgstr "Nastavenie pripojenia sieťových a interných diskov"
 
 msgid "Setup your network interface. If no Wlan stick is used, you only can select Lan"
-msgstr "Nastavenie sieťového rozhrania. Bez pripojenia WLAN-USB je dostupná len voľba LAN"
+msgstr "Nastavenie sieťového rozhrania. Bez pripojenia WLAN kľúča je dostupná len voľba LAN"
 
 msgid "Setup your network mounts"
 msgstr "Nastavenie pripojenia sieťových bodov"
@@ -18044,7 +18052,7 @@ msgid "Show InfoBar"
 msgstr "Zobraziť infolištu"
 
 msgid "Show InfoBar lite"
-msgstr "Zobraziť odľahčenú infolištu *"
+msgstr "Zobraziť odľahčenú infolištu"
 
 msgid "Show InfoBar on channel change"
 msgstr "Zobraziť infolištu pri zmene kanála"
@@ -18116,7 +18124,7 @@ msgid "Show PiP in MiniTV"
 msgstr "Zobraziť PIP v MiniTV"
 
 msgid "Show PiP in the Front Display"
-msgstr "Zobraz PIP na prednom displeji"
+msgstr "Zobraziť PiP na prednom displeji"
 
 msgid "Show Picon packages"
 msgstr "Zobraziť balíčky s pikonami"
@@ -18552,9 +18560,6 @@ msgstr "Zobraziť výber podradenej stanice/služby"
 msgid "Show subservices"
 msgstr "Zobraziť podradené služby/stanice"
 
-msgid "Show subservices *"
-msgstr "Ukázať podradené stanice *"
-
 msgid "Show subservices of the active service"
 msgstr "Zobraziť podradené služby aktívnej služby/stanice"
 
@@ -18655,7 +18660,7 @@ msgid "Shows available plugins. Here you can download and install them"
 msgstr "Zobrazenie dostupných pluginov. Tu ich môžete stiahnuť a nainštalovať"
 
 msgid "Shows available softcams. Here you can download and install them"
-msgstr "Zobrazenie dostupných softvérových emulátorov CAM. Tu ich môžete stiahnuť a nainštalovať"
+msgstr "Zobrazí dostupné soft. emulátory CAM. Tu si ich môžete stiahnuť a nainštalovať"
 
 msgid "Shows live TV or informations on LCD."
 msgstr "Zobrazenie Live TV alebo informácií na LCD."
@@ -19506,7 +19511,7 @@ msgid "Stop Auto Refresh"
 msgstr "Zastaviť automatické obnovenie"
 
 msgid "Stop PiP"
-msgstr "Ukončiť PIP"
+msgstr "Ukončiť PiP"
 
 msgid "Stop Streams"
 msgstr "Zastaviť streamy"
@@ -19794,7 +19799,7 @@ msgid "Swap PiP"
 msgstr "Vymeniť PiP"
 
 msgid "Swap PiP and main picture"
-msgstr "Vymeniť PIP a hlavný obraz"
+msgstr "Zameniť PiP a hlavný obraz"
 
 msgid "Swap Place:"
 msgstr "Swap umiestenie:"
@@ -20256,7 +20261,7 @@ msgid "The %s %s reads the stored EPG data every selected number of hours."
 msgstr "%s %s načíta uložené dáta EPG každých (hodín)."
 
 msgid "The %s %s stores the EPG data every selected number of hours."
-msgstr "%s %s uloží EPG údaje každých x hodín."
+msgstr "%s %s uloží EPG údaje vždy po tomto počte hodín."
 
 #, python-format
 msgid "The %s %s will reboot within 1 seconds."
@@ -20504,6 +20509,13 @@ msgstr "Výška obrazu. Mierka vstupu sa prispôsobí, aby zodpovedala tejto hod
 msgid "The loopthrough setting is wrong."
 msgstr "Nastavenie slučky (loopthrough) je nesprávne."
 
+msgid ""
+"The network wizard extension is not installed!\n"
+"Please install it."
+msgstr ""
+"Nie je nainštalované rozšírenie Sprievodca sieťou!\n"
+"Prosím, nainštalujte ho."
+
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr "Priečiok pre picony už existuje a musí sa odstrániť. Má sa pokračovať?"
 
@@ -20666,9 +20678,6 @@ msgstr "%s %s nedokáže dekódovať %s streamov!"
 
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "DVD RW médium je už naformátované – nové formátovanie vymaže celý obsah na tomto DVD."
-
-msgid "This option allows you to switch Audio to Bluetooth speakers."
-msgstr "Prepnutie zvuku na BT reproduktory."
 
 msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
 msgstr "Umožňuje zmeniť relatívnu veľkosť písma vzhľadom na veľkosť vzhľadu, takže 1 zväčší veľkosť o 1 bod a -1 zmenší veľkosť o 1 bod."
@@ -20835,8 +20844,14 @@ msgstr "Zapnutie zvuku 3D Surround."
 msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr "Nastavenie hodnoty odsadenia pre rôzne rozlíšenia letterboxu."
 
+msgid "This option allows you to set the Auto Volume Level output."
+msgstr "Táto voľba umožňuje nastavenie automatickej úrovne hlasitosti výstupu."
+
 msgid "This option allows you to set the layout view (Text or Graphics)."
 msgstr "Nastavenie zobrazenia rozloženia(textové/grafické)."
+
+msgid "This option allows you to switch Audio to Bluetooth speakers."
+msgstr "Táto voľba umožňuje prepnutie zvuku na Bluetooth reproduktory."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "Zobrazenie SNR v percentách namiesto dB (nepodporujú všetky prijímače)."
@@ -20848,13 +20863,7 @@ msgid "This option allows you to view the old and new settings side by side."
 msgstr "Zobrazenie starých a nových nastavení vedľa seba."
 
 msgid "This option configures the audio delay value for Bluetooth speakers."
-msgstr "Konfigurácia oneskorenia zvuku pre BT reproduktory."
-
-msgid "This option selects the general audio delay of Dolby Digital sound tracks."
-msgstr "Konfigurácia oneskorenia zvukových stôp Dolby Digital."
-
-msgid "This option selects the general audio delay of stereo sound tracks."
-msgstr "Konfigurácia oneskorenia stereofónnych zvukových stôp."
+msgstr "Táto voľba nakonfiguruje hodnotu oneskorenia zvuku pre Bluetooth reproduktory."
 
 msgid "This option configures the picture sharpness."
 msgstr "Nastavenie ostrosti obrazu."
@@ -20864,9 +20873,6 @@ msgstr "Nastavenie rozlíšenia obrazovky v režime výstupu pre PC."
 
 msgid "This option configures the video output mode (or resolution)."
 msgstr "Nastavenie režimu video výstupu (alebo rozlíšenia)."
-
-msgid "This option allows you to set the Auto Volume Level output."
-msgstr "Nastavenie automatickej úrovne hlasitosti."
 
 msgid "This option lets you adjust the 3D depth of the OSD."
 msgstr "Úprava hĺbky 3D."
@@ -20882,6 +20888,12 @@ msgstr "Zobrazenie možností pre 3D OSD menu v zozname rozšírení."
 
 msgid "This option moves the PVR status display from a separate window into the MoviePlayer InfoBar."
 msgstr "Presunutie stavu PVR zo samostatného okna do infolišty prehrávača médií."
+
+msgid "This option selects the general audio delay of Dolby Digital sound tracks."
+msgstr "Konfigurácia oneskorenia zvukových stôp Dolby Digital."
+
+msgid "This option selects the general audio delay of stereo sound tracks."
+msgstr "Táto voľba vyberie všeobecné oneskorenie stereofónnych zvukových stôp."
 
 msgid "This option set the level of suppression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
 msgstr "Nastavenie úrovne potlačenia šumu 'Mosquito Noise' (ide o náhodne generovaný aliasing vznikajúci v dôsledku veľkej kompresie). Toto nastavenie obvykle negatívne ovplyvní detaily v obraze."
@@ -20911,10 +20923,10 @@ msgid "This option sets the suppression of false digital contours, that are the 
 msgstr "Nastavenie potlačenia falošných digitálnych obrysov, ktoré vznikajú v dôsledku príliš malých diskrétnych hodnôt."
 
 msgid "This option sets the video & osd picture brightness."
-msgstr "Nastavenie jasu obrazu videa a OSD."
+msgstr "Nastavenie jasu videa a obrazovky s OSD."
 
 msgid "This option sets the video & osd picture contrast."
-msgstr "Nastavenie kontrastu obrazu videa a OSD."
+msgstr "Nastavenie kontrastu videa a obrazovky s OSD."
 
 msgid "This option sets the video picture brightness."
 msgstr "Nastavenie jasu obrazu videa."
@@ -20924,9 +20936,6 @@ msgstr "Nastavenie kontrastu obrazu videa."
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Nastavenie ostrosti obrazu pri použití upscalingu."
-
-msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
-msgstr "Tento plugin dokáže určiť, či sa programy začínajú skôr alebo trvajú dlhšie. Kanál však musí poskytovať príslušné potrebné údaje."
 
 msgid "This service is protected by a parental control PIN!"
 msgstr "Táto stanica/služba je chránená PIN rodičovskej kontroly!"
@@ -21277,7 +21286,7 @@ msgid "Toggle Log and Status"
 msgstr "Prepnúť denník a stav"
 
 msgid "Toggle PiPzap"
-msgstr "Prepnúť PIPzap"
+msgstr "Prepnúť PiPzap"
 
 msgid "Toggle Picture in Graphics"
 msgstr "Prepnúť obraz v grafike"
@@ -21386,10 +21395,10 @@ msgid "Total flash"
 msgstr "Celkový flash"
 
 msgid "Total handled client ecm's"
-msgstr "Celkový počet spracovaných klientskych ECM"
+msgstr "Celkový počet spracovaných klientských ECM"
 
 msgid "Total handled client emm's"
-msgstr "Celkový počet spracovaných klientskych EMM"
+msgstr "Celkový počet spracovaných klientských EMM"
 
 msgid "Total memory"
 msgstr "Celková pamäť"
@@ -22222,7 +22231,7 @@ msgid "Use the Networkwizard to configure your Network. The wizard will help you
 msgstr "Sprievodca sieťou na pomoc s konfiguráciou sieťových nastavení"
 
 msgid "Use the Softcam Panel to control your Cam. This let you start/stop/select a cam"
-msgstr "Panel Softcamu slúži na ovládanie CAMu. Umožňuje jeho spustenie/zastavenie/výber"
+msgstr "Panel Softcam slúži na ovládanie CAMu. Umožňuje spustenie/zastavenie/výber CAMu"
 
 msgid "Use the UP and DOWN buttons to select your locale/language then press the OK button to continue."
 msgstr "Tlačidlami HORE a DOLU vyberte svoje miestne nastavenia/jazyk a potom pokračujte stlačením tlačidla OK."
@@ -22238,6 +22247,9 @@ msgstr "Použiť aktuálny výber a ukončiť"
 
 msgid "Use the extended List"
 msgstr "Použiť rozšírený zoznam"
+
+msgid "Use the network wizard to configure selected network adapter"
+msgstr "Na konfiguráciu vybraného sieťového adaptéra použite sprievodcu sieťou"
 
 msgid "Use the network wizard to configure your Network."
 msgstr "Na konfiguráciu vašej siete použite sprievodcu sieťou."
@@ -22362,6 +22374,9 @@ msgstr "Nastavenia VPS"
 
 msgid "VPS enabled by default"
 msgstr "VPS predvolene zapnuté"
+
+msgid "VPS on instant recordings"
+msgstr "Povoliť VPS pri okamžitých nahrávkach"
 
 msgid "VPS-Plugin Information"
 msgstr "Informácie o VPS plugine"
@@ -22766,14 +22781,14 @@ msgstr "Čaká sa"
 msgid "Waiting for partition"
 msgstr "Čaká sa na partíciu"
 
+msgid "Wake from Shutdown allowed"
+msgstr "Prebudenie zo stavu vypnutia je povolené"
+
 msgid "Wake up"
 msgstr "Prebudiť"
 
 msgid "Wake up TV from Standby"
 msgstr "Prebudiť TV z pohotovostného režimu"
-
-msgid "Wake up from Deep-Standby is allowed"
-msgstr "Prebudenie zo stavu vypnutia je povolené"
 
 msgid "Wake up time before a timer begins"
 msgstr "Čas prebudenia pred začiatkom časovača"
@@ -22999,7 +23014,7 @@ msgid "When enabled, graphical DVB subtitles will be displayed at their original
 msgstr "Ak je povolené, grafické DVB titulky sa zobrazia na ich pôvodnej pozícii."
 
 msgid "When enabled, it is possible to leave the movie player with exit."
-msgstr "Ak je povolené, prehrávač médií bude možné ukončiť tlačidlom EXIT."
+msgstr "Ak je povolené, prehrávač médií sa dá ukončiť tlačidlom EXIT."
 
 msgid "When enabled, measure power consumption to detect when the rotor stops turning (when supported by the tuner)."
 msgstr "Ak je povolené, prijímač sa bude meraním spotreby energie snažiť rozpoznať, kedy sa zastaví otáčanie motora (ak je podporované tunerom)."
@@ -23132,9 +23147,6 @@ msgstr "Keď bude viditeľný červený rámik, uložte nastavenia ZELENÝM tla�
 
 msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you're doing."
 msgstr "Po naladení na stanicu/službu systém zvyčajne vyhľadá na transpondéri všetky zmeny a uloží ich. Zapínajte len vtedy, keď viete, čo to spôsobí."
-
-msgid "When yes, VPS will be enabled on instant records (stop after current event), if the channel supports VPS."
-msgstr "Ak je nastavené na 'áno', VPS sa zapne pri okamžitých nahrávkach (so zastavením po aktuálnej udalosti), ak kanál podporuje VPS."
 
 msgid "Where do you want to backup your settings?"
 msgstr "Kam sa majú zálohovať vaše nastavenia?"
@@ -23757,7 +23769,7 @@ msgid "[Timeshift] Restarting time shift!"
 msgstr "[TimeShift] Reštart funkcie timeshift!"
 
 msgid "a gui to assign services/providers to common interface modules"
-msgstr "rozhranie GUI na priradenie staníc a poskytovateľov k modulom CI"
+msgstr "rozhranie GUI na priradenie staníc, služieb a poskytovateľov k modulom CI"
 
 msgid "a gui to assign services/providers/caids to common interface modules"
 msgstr "rozhranie GUI na priradenie staníc, poskytovateľov, CAID k modulom CI"
@@ -24379,6 +24391,22 @@ msgstr "áno (zachovať zdroje)"
 msgid "®"
 msgstr "®"
 
+#~ msgid ""
+#~ "File oscam.conf not found.\n"
+#~ "Please enter username/password manually."
+#~ msgstr ""
+#~ "Súbor oscam.conf sa nanašiel.\n"
+#~ "Prosím, zadajte meno používateľa/heslo ručne."
+
+#~ msgid "Enable VPS-Plugin"
+#~ msgstr "Povoliť VPS-Plugin"
+
+#~ msgid "Configure whether multichannel audio tracks should be downmixed to stereo."
+#~ msgstr "Nastavte, či sa majú viackanálové zvukové stopy zlúčiť (downmix) do režimu stereo."
+
+#~ msgid "Show subservices *"
+#~ msgstr "Ukázať podradené stanice *"
+
 #~ msgid "Network name"
 #~ msgstr "Názov siete"
 
@@ -24430,16 +24458,6 @@ msgstr "®"
 #, python-format
 #~ msgid "Set the MAC address of your %s %s."
 #~ msgstr "Nastavte MAC adresu pre %s %s."
-
-#~ msgid ""
-#~ "The network wizard extension is not installed!\n"
-#~ "Please install it."
-#~ msgstr ""
-#~ "Rozšírenie NetworkWizard nie je nainštalované!\n"
-#~ "Prosím, nainštalujte ho."
-
-#~ msgid "Use the network wizard to configure selected network adapter"
-#~ msgstr "Na konfiguráciu vybraného sieťového adaptéra použite sprievodcu sieťou"
 
 #~ msgid "Monitoring UI password"
 #~ msgstr "Heslo pre monitorovanie použív. rozhranie"

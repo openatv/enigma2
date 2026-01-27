@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-03 09:58+0000\n"
+"POT-Creation-Date: 2026-01-17 09:22+0000\n"
 "PO-Revision-Date: 2025-06-11 19:04+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -3134,6 +3134,9 @@ msgstr "Juodas ekranas iki užrakinimo"
 msgid "Blacklist"
 msgstr ""
 
+msgid "Blank screen"
+msgstr ""
+
 msgid "Blinking REC"
 msgstr "Mirksintis REC simbolis"
 
@@ -4017,7 +4020,7 @@ msgstr "Čečėnijos"
 msgid "Check for PDC"
 msgstr "Patikrinkite, ar nėra PDC"
 
-msgid "Check for PDC availability on each service"
+msgid "Check for PDC availability on each service."
 msgstr "Patikrinkite, ar kiekvienoje paslaugoje nėra PDC prieinamumo"
 
 msgid "Check power and input state from TV"
@@ -4167,41 +4170,14 @@ msgstr ""
 msgid "Choose time interval to which the graphics will be rounded off."
 msgstr "Pasirinkite laiko intervalą, per kurį bus apvalinama grafika."
 
+msgid "Choose what appears when the screen saver is active."
+msgstr ""
+
 msgid "Choose what you want the button '0' to do when PiP is active."
 msgstr "Pasirinkite, kas vyks paspaudus '0' mygtuką, kai aktyvuotas PiP."
 
 msgid "Choose where to mount your devices to:"
 msgstr "Pasirinkite, kur pajungti įrenginius:"
-
-msgid "Select whether AAC audio tracks should be transcoded."
-msgstr "Pasirinkite, ar AAC garso takeliai bus perkoduoti."
-
-msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
-msgstr "Ši parinktis leidžia nustatyti, ar AC3 plus garso takeliai bus perkoduoti į AC3."
-
-msgid "Select whether AC3 audio tracks should be downmixed to stereo."
-msgstr "Ši parinktis leidžia nustatyti, ar AC3 garso takeliai bus sulieti į stereo garsą."
-
-msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
-msgstr "Pasirinkite, ar DTS kanalo garso takeliai turėtų būti sulieti ar perkoduoti."
-
-msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
-msgstr "Ši parinktis leidžia nustatyti, ar DTS kanalo garso takeliai bus perkoduoti į stereo garsą."
-
-msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
-msgstr "Pasirinkite, ar WMA Pro kanalo garso takeliai turėtų būti sulieti arba perkoduoti."
-
-msgid "Select whether multichannel audio tracks should be converted to PCM or SPDIF."
-msgstr "Pasirinkite, ar kelių kanalų garso takeliai bus konvertuoti į PCM, arba SPDIF."
-
-msgid "Select whether multichannel audio tracks should be downmixed to stereo."
-msgstr "Ši parinktis leidžia nustatyti, ar daugiakanalio garso takeliai bus sulieti į stereo garsą."
-
-msgid "Select whether multichannel audio tracks should be output as PCM."
-msgstr "Pasirinkite, ar daugiakanaliai garso takeliai bus išvesti, kaip PCM."
-
-msgid "Select whether or not to show an icon when a motorized dish is moving."
-msgstr "Pasirinkti, ar rodyti logotipą judant motorizuotai lėkštei."
 
 msgid "Choose which level of menu/setting's to display. 'Expert'-level shows all items."
 msgstr "Pasirinkite, kokiu prieigos lygiu bus pateikta meniu ir nuostatos. 'Eksperto lygis' leidžia prieigą prie visų nuostatų."
@@ -4876,9 +4852,6 @@ msgstr "Konfigūruokite ar naudoti fiksuotą šriftą ar keičiamo dydžio TrueT
 
 msgid "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel."
 msgstr "Konfigūruokite ar kitas imtuvas, iš pageidaujamo sąrašo, yra skirtas įrašymui vietoj bendrinamo imtuvo, kuris jau aktyviai gauna vieną ir tą pačią transliaciją televizijos kanalu."
-
-msgid "Configure whether multichannel audio tracks should be downmixed to stereo."
-msgstr "Pasirinkite, ar sulieti daugiakanalio garso takelius į stereo garsą."
 
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (like in EPGrefresh)."
 msgstr "Konfigūruokite, ar \"įrašymo\" simbolis (monitoriaus temoje ir LCD temoje) matomi tik realiai įrašant ar taip pat transliacijoms ir pseudo įrašams (pvz EPGrefresh)."
@@ -7195,15 +7168,6 @@ msgstr "Įjungti startuojant"
 msgid "Enable VPS"
 msgstr "Įjungti VPS"
 
-msgid "Enable VPS by default (new timers)"
-msgstr "VPS įjungta - numatytasis (naujiems laikmačiams)"
-
-msgid "Enable VPS on instant records"
-msgstr "Įjungti VPS neplaniniams įrašams"
-
-msgid "Enable VPS-Plugin"
-msgstr "Įjungti VPS įskiepį"
-
 msgid "Enable ViaSat EPG"
 msgstr "Įjungti ViaSat EPG"
 
@@ -8496,13 +8460,6 @@ msgstr "Failas tikriausiai užimtas.\n"
 msgid "File compression"
 msgstr ""
 
-msgid ""
-"File oscam.conf not found.\n"
-"Please enter username/password manually."
-msgstr ""
-"Failas oscam.conf nerastas.\n"
-"Įrašykite vartotojo vardą ir slaptažodį rankiniu būdu."
-
 msgid "File system"
 msgstr ""
 
@@ -8547,6 +8504,9 @@ msgstr "Finansai"
 
 msgid "Find Currently Playing Service"
 msgstr "surasti dabar žiūrėtą kanalą"
+
+msgid "Find connected events"
+msgstr "Ieškoma susijusių įvykių"
 
 #, python-format
 msgid "Find out more at %s"
@@ -9243,9 +9203,6 @@ msgstr "Tvarkyti Python gedimus"
 msgid "Handle Standby from TV"
 msgstr "Išjungti imtuvą, išjungiant TV"
 
-msgid "Process action from TV"
-msgstr "Valdyti televizoriaus įvestį"
-
 msgid "Handle wake up from TV"
 msgstr "Įjungti imtuvą, įjungiant TV"
 
@@ -9713,14 +9670,11 @@ msgstr "Jei \"niekada\", įrašys pranešimą apie gedimą, nepaisant to, kad į
 msgid "If EPG available"
 msgstr ""
 
-msgid "If a programme is interrupted and divided into separate events, the plugin will search for the connected events."
-msgstr "Jeigu įvykis nutraukiamas ir padalinamas į atskirus įvykius, įskiepis ieškos susijusių įvykių."
-
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "Jei veiksmą galima konfigūruoti vartotojui, jo žinyno įrašas bus pažymėtas priesaga '(C)'."
 
-msgid "If enabled and necessary, the plugin will wake up the receiver from deep standby for the defined starting time to control whether the programme begins earlier."
-msgstr "Jei įjungta ir būtina, papildinys pažadins imtuvą iš gilaus budėjimo režimo nustatytam paleidimo laikui, kad būtų galima valdyti, ar programa paleidžiama anksčiau."
+msgid "If an event is interrupted and divided into separate recordings, this feature will search for alternate broadcasts of the same event."
+msgstr "Jeigu įvykis nutraukiamas ir padalinamas į atskirus įvykius, įskiepis ieškos susijusių įvykių."
 
 msgid "If enabled the output resolution of the receiver will try to match the resolution of the video contents resolution."
 msgstr "Kai čia įjungta, aparato išėjimo rezoliuciją bus bandoma automatiškai suderinti su rodomo vaizdo rezoliucija"
@@ -9742,9 +9696,6 @@ msgstr "Jei įjungta, bus naudojamas naujas GStreamer atkūrimo variklis."
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Jei žurnalai jau išnaudoja maksimalią jiems skirtą erdvę, įkeliant naują, seniausias bus ištrintas."
-
-msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
-msgstr "Jeigu galima, X minučių prieš laikmačio pradžią, VPS įskiepis patikrins, ar programa neprasideda anksčiau (0 - funkcija išjungta)"
 
 msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
 msgstr "Jei nustatyta \"taip\", leidžia naudoti laiko keitimą su alternatyviais garso papildiniais."
@@ -11008,6 +10959,9 @@ msgstr "Nepavyko prisijungti"
 
 msgid "Login to IceTV server"
 msgstr "Prisijungimas prie IceTV serverio"
+
+msgid "Logo"
+msgstr ""
 
 msgid "Logs Settings"
 msgstr "Žurnalų nustatymai"
@@ -12754,6 +12708,9 @@ msgstr ""
 msgid "Number of IP Addresses"
 msgstr "IP adresų skaičius"
 
+msgid "Number of Slots"
+msgstr ""
+
 msgid "Number of digits in service number"
 msgstr "Kanalo numerio skaitmenų skaičius"
 
@@ -14391,6 +14348,9 @@ msgstr ""
 
 msgid "Process YELLOW button action"
 msgstr ""
+
+msgid "Process action from TV"
+msgstr "Valdyti televizoriaus įvestį"
 
 msgid "Processing"
 msgstr ""
@@ -16037,6 +15997,9 @@ msgstr "mokslinė fantastika/fantastika/siaubo"
 msgid "Scope"
 msgstr "Apimtis"
 
+msgid "Screen saver mode"
+msgstr ""
+
 msgid "Screen saver movement"
 msgstr ""
 
@@ -16136,9 +16099,6 @@ msgstr "Paieškos juostos aktyvavimas"
 msgid "SeekBar sensibility"
 msgstr "Paieškos juostos jautrumas"
 
-msgid "Seeking connected events"
-msgstr "Ieškoma susijusių įvykių"
-
 msgid "Select"
 msgstr "Pasirinkite"
 
@@ -16204,6 +16164,9 @@ msgstr "Jeigu nustatyta 'taip; info juosta bus rodoma visą laiką \"pauzės\" b
 
 msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
 msgstr ""
+
+msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
+msgstr "Šis įskiepis gali nustatyti, jei įvykis prasideda anksčiau, arba ilgiau užtrunka. Kanalas tam turi pateikti patikimus duomenis."
 
 msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
 msgstr "Jei nustatyta 'taip', leidžia jums paieškos lange naudotis paieška ir dabartinio įvykio viduje."
@@ -16322,6 +16285,9 @@ msgstr ""
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr "Pasirinkite 'Taip', kad iš naujo nustatytumėte numatytąją tinklo konfigūraciją. Tai leis Ethernet prievadui, jei jis yra, ir nustatys imtuvą naudoti DHCP. Visos kitos tinklo sąsajos bus panaikintos."
 
+msgid "Select 'Yes' to set the VPS flag on all new timers by default."
+msgstr "VPS įjungta - numatytasis (naujiems laikmačiams)"
+
 msgid "Select 'Yes' to set the cursor position to the end of the line when editing a text file.  Select 'No' to set the cursor to the start of the line."
 msgstr "Pasirinkite \"Taip\", kad redaguodami tekstinį failą nustatytumėte žymeklio padėtį eilutės pabaigoje.  Pasirinkite \"Ne\", kad nustatytumėte žymeklį į eilutės pradžią."
 
@@ -16412,6 +16378,9 @@ msgstr ""
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr ""
 
+msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
+msgstr "Jeigu \"Taip\" ir kanalas palaiko VPS, VPS bus įjungtas neplaniniams įrašams (išjungiant po šio įvykio)."
+
 msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
 msgstr ""
 
@@ -16423,6 +16392,9 @@ msgstr "Jei nustatyta \"taip\", signalo reikšmės (SNR ir t.t.) bus apskaičiuo
 
 msgid "Select 'Yes' to use the number keys for quick selection of files / directories, select 'No' to use the number keys for MENU option shortcuts."
 msgstr "Pasirinkite \"Taip\", jei norite naudoti skaičių klavišus greitam failų / katalogų pasirinkimui, pasirinkite \"Ne\", jei norite naudoti skaičių klavišus MENU parinkčių spartiesiems klavišams."
+
+msgid "Select 'Yes' to wake the receiver from Shutdown prior to the recording start time to allow the PDC data to make last minute timer adjustments."
+msgstr "Jei įjungta ir būtina, papildinys pažadins imtuvą iš gilaus budėjimo režimo nustatytam paleidimo laikui, kad būtų galima valdyti, ar programa paleidžiama anksčiau."
 
 msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback."
 msgstr "Jei nustatyta 'taip', jungiant greitą persukimą, arba atsukimą medijos failų atkūrimo metu, bus rodoma info juosta."
@@ -17016,6 +16988,9 @@ msgstr ""
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "Pasirinkite protokolą, kurį naudoja jūsų SCR įrenginys. Pasirinkimai yra 'SCR Unicable' (Unicable) arba 'SCR JESS' (JESS, taip pat žinomas kaip Unicable II)."
 
+msgid "Select the receiver action when the TV switches away from the receiver input."
+msgstr ""
+
 msgid "Select the refresh rate to be used on the TV."
 msgstr ""
 
@@ -17190,8 +17165,38 @@ msgstr "Pasirinkite, ką norite, aktyvuoti UP/DOWN mygtukų paspaudimu"
 msgid "Select where the recording should be saved."
 msgstr ""
 
+msgid "Select whether AAC audio tracks should be transcoded."
+msgstr "Pasirinkite, ar AAC garso takeliai bus perkoduoti."
+
+msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
+msgstr "Ši parinktis leidžia nustatyti, ar AC3 plus garso takeliai bus perkoduoti į AC3."
+
+msgid "Select whether AC3 audio tracks should be downmixed to stereo."
+msgstr "Ši parinktis leidžia nustatyti, ar AC3 garso takeliai bus sulieti į stereo garsą."
+
+msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
+msgstr "Pasirinkite, ar DTS kanalo garso takeliai turėtų būti sulieti ar perkoduoti."
+
+msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
+msgstr "Ši parinktis leidžia nustatyti, ar DTS kanalo garso takeliai bus perkoduoti į stereo garsą."
+
 msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
 msgstr ""
+
+msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
+msgstr "Pasirinkite, ar WMA Pro kanalo garso takeliai turėtų būti sulieti arba perkoduoti."
+
+msgid "Select whether multichannel audio tracks should be converted to PCM or SPDIF."
+msgstr "Pasirinkite, ar kelių kanalų garso takeliai bus konvertuoti į PCM, arba SPDIF."
+
+msgid "Select whether multichannel audio tracks should be downmixed to stereo."
+msgstr "Ši parinktis leidžia nustatyti, ar daugiakanalio garso takeliai bus sulieti į stereo garsą."
+
+msgid "Select whether multichannel audio tracks should be output as PCM."
+msgstr "Pasirinkite, ar daugiakanaliai garso takeliai bus išvesti, kaip PCM."
+
+msgid "Select whether or not to show an icon when a motorized dish is moving."
+msgstr "Pasirinkti, ar rodyti logotipą judant motorizuotai lėkštei."
 
 msgid "Select wireless network"
 msgstr "Pasirinkite belaidį tinklą"
@@ -17502,6 +17507,9 @@ msgstr ""
 
 msgid "Set Time"
 msgstr "Nustatykite laiką"
+
+msgid "Set a time offset before a timer is due to start to allow VPS to scan for the latest event timing. Select '0' to disable this feature."
+msgstr "Jeigu galima, X minučių prieš laikmačio pradžią, VPS įskiepis patikrins, ar programa neprasideda anksčiau (0 - funkcija išjungta)"
 
 msgid "Set action for 'Info' key"
 msgstr "Pasirinkite veiksmą 'info' mygtukui"
@@ -18539,9 +18547,6 @@ msgid "Show subservice selection"
 msgstr "Rodyti subkanalų pasirinkimą"
 
 msgid "Show subservices"
-msgstr ""
-
-msgid "Show subservices *"
 msgstr ""
 
 msgid "Show subservices of the active service"
@@ -20477,6 +20482,13 @@ msgstr "Vaizdo aukštis. Įvestis bus mažinama, kad atitiktų šią reikšmę."
 msgid "The loopthrough setting is wrong."
 msgstr "Ciklo parametras neteisingas."
 
+msgid ""
+"The network wizard extension is not installed!\n"
+"Please install it."
+msgstr ""
+"Tinklo vedlio plėtinys neįdiegtas!\n"
+"Prašome įdiegti."
+
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr ""
 
@@ -20634,9 +20646,6 @@ msgstr "Šis %s %s negali iškoduoti %s srautų!"
 
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Šis DVD RW diskas jau formatuotas - performatavimas ištrins visą šio disko turinį."
-
-msgid "This option allows you to switch Audio to Bluetooth speakers."
-msgstr "Ši parinktis leidžia perjungti garsą į BT garsiakalbius."
 
 msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
 msgstr "Ši parinktis leidžia nustatyti šrifto dydį lyginant su temos dydžiu, todėl 1 padidina 1 dydžio tašku, ir -1 sumažina 1 dydžio tašku"
@@ -20803,8 +20812,14 @@ msgstr "Ši parinktis leidžia įjungti 3D erdvinį garsą."
 msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr ""
 
+msgid "This option allows you to set the Auto Volume Level output."
+msgstr "Ši parinktis leidžia nustatyti galimą automatinį garsumo lygį."
+
 msgid "This option allows you to set the layout view (Text or Graphics)."
 msgstr "Ši parinktis leidžia nustatyti vaizdo išdėstymą (tekstinio ir grafinio)."
+
+msgid "This option allows you to switch Audio to Bluetooth speakers."
+msgstr "Ši parinktis leidžia perjungti garsą į BT garsiakalbius."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "Ši parinktis leidžia jums rodyti SNR procentais (ne visi imtuvai tai palaiko)."
@@ -20818,12 +20833,6 @@ msgstr "Ši parinktis leidžia jums peržiūrėti senus ir naujus nustatymus vie
 msgid "This option configures the audio delay value for Bluetooth speakers."
 msgstr "Ši parinktis sukonfigūruoja bendrą BT garsiakalbių garso delsą."
 
-msgid "This option selects the general audio delay of Dolby Digital sound tracks."
-msgstr "Ši parinktis pritaiko bendro garso \"Dolby Digital\" garso takelių delsą."
-
-msgid "This option selects the general audio delay of stereo sound tracks."
-msgstr "Ši parinktis leidžia nustatyti bendrą garso delsą 'stereo' garso takeliuose."
-
 msgid "This option configures the picture sharpness."
 msgstr "Ši parinktis nustato vaizdo ryškumą."
 
@@ -20832,9 +20841,6 @@ msgstr "Ši parinktis leidžia nustatyti ekrano rezoliuciją PC išvesties reži
 
 msgid "This option configures the video output mode (or resolution)."
 msgstr "Ši parinktis leidžia nustatyti vaizdo išvesties režimą (arba rezoliuciją)."
-
-msgid "This option allows you to set the Auto Volume Level output."
-msgstr "Ši parinktis leidžia nustatyti galimą automatinį garsumo lygį."
 
 msgid "This option lets you adjust the 3D depth of the OSD."
 msgstr "Ši parinktis leidžia nustatyti 3D gylį"
@@ -20850,6 +20856,12 @@ msgstr "Ši parinktis leidžia rodyti parinktį plėtinio ekrane."
 
 msgid "This option moves the PVR status display from a separate window into the MoviePlayer InfoBar."
 msgstr "Ši parinktis perkelia PVR būseną iš atskiro lango į filmų grotuvo info juostą."
+
+msgid "This option selects the general audio delay of Dolby Digital sound tracks."
+msgstr "Ši parinktis pritaiko bendro garso \"Dolby Digital\" garso takelių delsą."
+
+msgid "This option selects the general audio delay of stereo sound tracks."
+msgstr "Ši parinktis leidžia nustatyti bendrą garso delsą 'stereo' garso takeliuose."
 
 msgid "This option set the level of suppression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
 msgstr "Ši parinktis nustato \"moskitų\" triukšmų šalinimą (lyg uodų spiečiai apie kontūrus - suspaudimo metu atsiradę atsitiktinės nereikalingos detalės). Žinoma, tai pasiekiama bendro vaizdo ryškumo sumažėjimo kaina."
@@ -20892,9 +20904,6 @@ msgstr ""
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Nustato paveikslėlių vaizdo ryškumą keičiantis masteliui."
-
-msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
-msgstr "Šis įskiepis gali nustatyti, jei įvykis prasideda anksčiau, arba ilgiau užtrunka. Kanalas tam turi pateikti patikimus duomenis."
 
 msgid "This service is protected by a parental control PIN!"
 msgstr "šis kanalas apsaugotas tėvų kontrolės pin kodu"
@@ -22202,6 +22211,9 @@ msgstr ""
 msgid "Use the extended List"
 msgstr "Naudoti išplėstinį sąrašą"
 
+msgid "Use the network wizard to configure selected network adapter"
+msgstr "Naudokite tinklo vedlį, kad konfigūruoti pasirinkto tinklo adapterį"
+
 msgid "Use the network wizard to configure your Network."
 msgstr "Norėdami konfigūruoti tinklą, naudokite tinklo vedlį."
 
@@ -22325,6 +22337,9 @@ msgstr "VPS nuostatos"
 
 msgid "VPS enabled by default"
 msgstr "VPS įjungta - numatytasis"
+
+msgid "VPS on instant recordings"
+msgstr "Įjungti VPS neplaniniams įrašams"
 
 msgid "VPS-Plugin Information"
 msgstr "VPS įskiepio informacija"
@@ -22724,14 +22739,14 @@ msgstr "Laukiama"
 msgid "Waiting for partition"
 msgstr "Laukiama skaidinio"
 
+msgid "Wake from Shutdown allowed"
+msgstr "Leidžiama prižadinti iš gilaus budėjimo"
+
 msgid "Wake up"
 msgstr "Pabusti"
 
 msgid "Wake up TV from Standby"
 msgstr "Pažadinti TV iš budėjimo"
-
-msgid "Wake up from Deep-Standby is allowed"
-msgstr "Leidžiama prižadinti iš gilaus budėjimo"
 
 msgid "Wake up time before a timer begins"
 msgstr "Žadinimo laikas prieš laikmatį prasideda [min]"
@@ -23087,9 +23102,6 @@ msgstr ""
 
 msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you're doing."
 msgstr "Įjungus kanalą, sistema paprastai patikrina visus pasikeitimus transponderyje ir juos išsaugo. Nustatykite čia 'taip' tik tada, kai tiksliai žinote, kam tą darote."
-
-msgid "When yes, VPS will be enabled on instant records (stop after current event), if the channel supports VPS."
-msgstr "Jeigu \"Taip\" ir kanalas palaiko VPS, VPS bus įjungtas neplaniniams įrašams (išjungiant po šio įvykio)."
 
 msgid "Where do you want to backup your settings?"
 msgstr "Kur išsaugoti nustatymų atsarginę kopiją?"
@@ -24329,6 +24341,19 @@ msgstr "taip (išsaugoti šaltinius)"
 msgid "®"
 msgstr "®"
 
+#~ msgid ""
+#~ "File oscam.conf not found.\n"
+#~ "Please enter username/password manually."
+#~ msgstr ""
+#~ "Failas oscam.conf nerastas.\n"
+#~ "Įrašykite vartotojo vardą ir slaptažodį rankiniu būdu."
+
+#~ msgid "Enable VPS-Plugin"
+#~ msgstr "Įjungti VPS įskiepį"
+
+#~ msgid "Configure whether multichannel audio tracks should be downmixed to stereo."
+#~ msgstr "Pasirinkite, ar sulieti daugiakanalio garso takelius į stereo garsą."
+
 #~ msgid "* Only available if more than one interface is active."
 #~ msgstr "* Galima, jei tik daugiau kaip viena sąsaja yra aktyvi."
 
@@ -24368,16 +24393,6 @@ msgstr "®"
 #, python-format
 #~ msgid "Set the MAC address of your %s %s."
 #~ msgstr "Nustatykite savo %s %s MAC adresą."
-
-#~ msgid ""
-#~ "The network wizard extension is not installed!\n"
-#~ "Please install it."
-#~ msgstr ""
-#~ "Tinklo vedlio plėtinys neįdiegtas!\n"
-#~ "Prašome įdiegti."
-
-#~ msgid "Use the network wizard to configure selected network adapter"
-#~ msgstr "Naudokite tinklo vedlį, kad konfigūruoti pasirinkto tinklo adapterį"
 
 #~ msgid "white"
 #~ msgstr "baltas"

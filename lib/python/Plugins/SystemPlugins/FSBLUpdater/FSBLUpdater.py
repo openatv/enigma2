@@ -1,9 +1,8 @@
-from Screens.Console import Console
-
-from Screens.MessageBox import MessageBox
-
 import hashlib
 from shutil import which
+
+from Screens.Console import Console
+from Screens.MessageBox import MessageBox
 
 
 class FSBLCheckerBase:
@@ -22,7 +21,7 @@ class FSBLCheckerBase:
 
 	def isUpdateRequired(self):
 		blhash = str(self.getCurrentHash())
-		print("Current FSBL checksum is: %s" % (blhash,))
+		print(f"Current FSBL checksum is: {blhash}")
 		if not blhash:
 			print("COULD NOT READ BL HASH!")
 			return False
@@ -60,11 +59,11 @@ class FSBLUpdater(Console):
 		self._boxtype = boxtype
 
 	def log(self, data):
-		print("# %s" % (data,))
+		print(f"# {data}")
 
-	def startRun(self):
+	def startRun(self, cmd):
 		if self.isUpdateRequired(self._boxtype):
-			Console.startRun(self)
+			Console.startRun(self, cmd)
 		else:
 			txt = self["text"].getText()
 			txt += _("No update required!")

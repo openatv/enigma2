@@ -75,17 +75,24 @@ class NetworkAdapterSelection(Screen):
 		self.edittext = _("Press OK to edit the settings.")
 		self["key_red"] = StaticText(_("Close"))
 		self["key_green"] = StaticText(_("Select"))
-		self["key_yellow"] = StaticText("")
-		self["key_blue"] = StaticText(_("Network Restart"))
+		self["key_yellow"] = StaticText(_("Network Restart"))
+		self["key_blue"] = StaticText(_(""))
 		self["introduction"] = StaticText(self.edittext)
 		self["OkCancelActions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "MenuActions"], {
 			"cancel": (self.close, _("Exit network interface list")),
 			"ok": (self.okbuttonClick, _("Select interface")),
 			"red": (self.close, _("Exit network interface list")),
 			"green": (self.okbuttonClick, _("Select interface")),
-			"blue": (self.restartLanAsk, _("Restart network to with current setup")),
+			"yellow": (self.restartLanAsk, _("Restart network to with current setup")),
 			"menu": (self.menubuttonClick, _("Select interface"))
 		}, prio=0, description=_("Network Adapter Actions"))
+
+		if exists(resolveFilename(SCOPE_PLUGINS, "SystemPlugins/NetworkWizard/networkwizard.xml")):
+			self["wizardActions"] = HelpableActionMap(self, ["ColorActions"], {
+				"blue": (self.openNetworkWizard, _("Use the network wizard to configure selected network adapter"))
+			}, prio=0, description=_("Network Adapter Actions"))
+			self["key_blue"].setText(_("Network Wizard"))
+
 		self.adapters = [(iNetwork.getFriendlyAdapterName(x), x) for x in iNetwork.getAdapterList()]
 		if not self.adapters:
 			self.adapters = [(iNetwork.getFriendlyAdapterName(x), x) for x in iNetwork.getConfiguredAdapters()]
@@ -185,6 +192,16 @@ class NetworkAdapterSelection(Screen):
 				self.updateList()
 				self.session.open(MessageBox, _("Finished configuring your network"), type=MessageBox.TYPE_INFO, timeout=10, default=False)
 			RestartNetworkNew.start(callback=restartfinishedCB)
+
+	def openNetworkWizard(self):
+		try:
+			from Plugins.SystemPlugins.NetworkWizard.NetworkWizard import NetworkWizard
+		except ImportError:
+			self.session.open(MessageBox, _("The network wizard extension is not installed!\nPlease install it."), type=MessageBox.TYPE_INFO, timeout=10)
+		else:
+			selection = self["list"].getCurrent()
+			if selection is not None:
+				self.session.openWithCallback(self.AdapterSetupClosed, NetworkWizard, selection[0])
 
 
 class DNSSettings(Setup):

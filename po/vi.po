@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-03 09:58+0000\n"
+"POT-Creation-Date: 2026-01-17 09:22+0000\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -3111,6 +3111,9 @@ msgstr "Màn hình đen cho đến khi bị khóa"
 msgid "Blacklist"
 msgstr ""
 
+msgid "Blank screen"
+msgstr ""
+
 msgid "Blinking REC"
 msgstr "Nhấp nháy khi ghi"
 
@@ -3995,7 +3998,7 @@ msgstr "Kiểm tra"
 msgid "Check for PDC"
 msgstr ""
 
-msgid "Check for PDC availability on each service"
+msgid "Check for PDC availability on each service."
 msgstr ""
 
 msgid "Check power and input state from TV"
@@ -4148,41 +4151,14 @@ msgstr ""
 msgid "Choose time interval to which the graphics will be rounded off."
 msgstr "Chọn khoảng thời gian mà đồ họa sẽ được làm tròn."
 
+msgid "Choose what appears when the screen saver is active."
+msgstr ""
+
 msgid "Choose what you want the button '0' to do when PiP is active."
 msgstr "Chọn những gì bạn muốn nút '0' để làm khi PIP hoạt động."
 
 msgid "Choose where to mount your devices to:"
 msgstr "Chọn nơi gắn thiết bị của bạn vào:"
-
-msgid "Select whether AAC audio tracks should be transcoded."
-msgstr "Chọn xem các bản nhạc âm thanh AAC có được chuyển mã hay không."
-
-msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
-msgstr "Chọn xem các bản âm thanh AC3 Plus có nên được chuyển mã sang AC3 hay không."
-
-msgid "Select whether AC3 audio tracks should be downmixed to stereo."
-msgstr "Chọn xem các bản âm thanh AC3 có nên được trộn lẫn thành âm thanh nổi hay không."
-
-msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
-msgstr "Chọn xem các bản âm thanh kênh DTS nên được trộn lẫn hoặc chuyển mã."
-
-msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
-msgstr "Chọn xem các bản âm thanh kênh DTS có nên được trộn lẫn thành âm thanh nổi hay không."
-
-msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
-msgstr "Chọn xem các bản âm thanh kênh WMA Pro nên được trộn lẫn hoặc chuyển mã."
-
-msgid "Select whether multichannel audio tracks should be converted to PCM or SPDIF."
-msgstr "Chọn xem có nên chuyển đổi các bản âm thanh đa kênh sang PCM hoặc SPDIF không."
-
-msgid "Select whether multichannel audio tracks should be downmixed to stereo."
-msgstr "Chọn xem các bản âm thanh đa kênh có nên được trộn lẫn thành âm thanh nổi hay không."
-
-msgid "Select whether multichannel audio tracks should be output as PCM."
-msgstr "Chọn xem các bản âm thanh đa kênh có được xuất ra dưới dạng PCM hay không."
-
-msgid "Select whether or not to show an icon when a motorized dish is moving."
-msgstr "Chọn có hay không hiển thị biểu tượng khi một đĩa cơ giới đang di chuyển."
 
 msgid "Choose which level of menu/setting's to display. 'Expert'-level shows all items."
 msgstr "Chọn mức độ của menu / cài đặt để hiển thị. 'Cấp chuyên gia' hiển thị tất cả các mục."
@@ -4852,9 +4828,6 @@ msgstr "Định cấu hình xem phông chữ cố định hoặc phông chữ Tr
 
 msgid "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel."
 msgstr "Định cấu hình xem một bộ chỉnh khác từ danh sách ưa thích có được phân bổ cho các bản ghi thay vì chia sẻ bộ chỉnh đã hoạt động khi nhận cùng một kênh truyền hình trực tiếp hay không."
-
-msgid "Configure whether multichannel audio tracks should be downmixed to stereo."
-msgstr "Định cấu hình xem các bản âm thanh đa kênh có được trộn lẫn thành âm thanh nổi hay không."
 
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (like in EPGrefresh)."
 msgstr "Định cấu hình xem biểu tượng 'ghi âm (trong giao diện hiển thị và giao diện LCD) chỉ hiển thị cho các bản ghi thực hay còn cho các bản ghi phát trực tuyến và pseuso (ví dụ: EPGrefresh)."
@@ -7203,15 +7176,6 @@ msgstr "Bật hoán đổi khi khởi động"
 msgid "Enable VPS"
 msgstr ""
 
-msgid "Enable VPS by default (new timers)"
-msgstr ""
-
-msgid "Enable VPS on instant records"
-msgstr ""
-
-msgid "Enable VPS-Plugin"
-msgstr ""
-
 msgid "Enable ViaSat EPG"
 msgstr "Kích hoạt ViaSat EPG"
 
@@ -8504,13 +8468,6 @@ msgstr "Tập tin có vẻ bận rộn.\n"
 msgid "File compression"
 msgstr ""
 
-msgid ""
-"File oscam.conf not found.\n"
-"Please enter username/password manually."
-msgstr ""
-"Không tìm thấy tệp oscam.conf.\n"
-"Vui lòng nhập tên người dùng / mật khẩu bằng tay."
-
 msgid "File system"
 msgstr ""
 
@@ -8557,6 +8514,9 @@ msgstr "Pháp"
 
 msgid "Find Currently Playing Service"
 msgstr "tìm dịch vụ hiện đang chơi"
+
+msgid "Find connected events"
+msgstr ""
 
 #, python-format
 msgid "Find out more at %s"
@@ -9267,9 +9227,6 @@ msgstr "Xử lý sự cố Python"
 msgid "Handle Standby from TV"
 msgstr "Xử lý chế độ chờ từ TV"
 
-msgid "Process action from TV"
-msgstr "Xử lý đầu vào từ TV"
-
 msgid "Handle wake up from TV"
 msgstr "Xử lý thức dậy từ TV"
 
@@ -9751,13 +9708,10 @@ msgstr "Nếu 'không bao giờ', sẽ viết nhật ký sự cố mặc dù đ�
 msgid "If EPG available"
 msgstr ""
 
-msgid "If a programme is interrupted and divided into separate events, the plugin will search for the connected events."
-msgstr ""
-
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr ""
 
-msgid "If enabled and necessary, the plugin will wake up the receiver from deep standby for the defined starting time to control whether the programme begins earlier."
+msgid "If an event is interrupted and divided into separate recordings, this feature will search for alternate broadcasts of the same event."
 msgstr ""
 
 msgid "If enabled the output resolution of the receiver will try to match the resolution of the video contents resolution."
@@ -9780,9 +9734,6 @@ msgstr ""
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Nếu các bản ghi đang sử dụng không gian tối đa đã đặt, phần lớn nhất sẽ bị xóa."
-
-msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
-msgstr ""
 
 msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
 msgstr ""
@@ -11058,6 +11009,9 @@ msgid "Login failure"
 msgstr "Núi thất bại"
 
 msgid "Login to IceTV server"
+msgstr ""
+
+msgid "Logo"
 msgstr ""
 
 msgid "Logs Settings"
@@ -12864,6 +12818,9 @@ msgstr ""
 msgid "Number of IP Addresses"
 msgstr ""
 
+msgid "Number of Slots"
+msgstr ""
+
 msgid "Number of digits in service number"
 msgstr "Số chữ số trong số kênh"
 
@@ -14522,6 +14479,9 @@ msgstr ""
 
 msgid "Process YELLOW button action"
 msgstr ""
+
+msgid "Process action from TV"
+msgstr "Xử lý đầu vào từ TV"
 
 msgid "Processing"
 msgstr ""
@@ -16188,6 +16148,9 @@ msgstr "khoa học viễn tưởng / giả tưởng / kinh dị"
 msgid "Scope"
 msgstr ""
 
+msgid "Screen saver mode"
+msgstr ""
+
 msgid "Screen saver movement"
 msgstr ""
 
@@ -16288,9 +16251,6 @@ msgstr "Tìm kiếm kích hoạt"
 msgid "SeekBar sensibility"
 msgstr "Tìm kiếm sự nhạy cảm"
 
-msgid "Seeking connected events"
-msgstr ""
-
 msgid "Select"
 msgstr "Lựa chọn"
 
@@ -16355,6 +16315,9 @@ msgid "Select 'Yes' the keep the InfoBar displayed, with no timeout, while media
 msgstr "Nếu được đặt thành 'có; infobar sẽ vẫn hiển thị vĩnh viễn ở trạng thái 'tạm dừng' (không có thời gian chờ)."
 
 msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
+msgstr ""
+
+msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
 msgstr ""
 
 msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
@@ -16474,6 +16437,9 @@ msgstr ""
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr ""
 
+msgid "Select 'Yes' to set the VPS flag on all new timers by default."
+msgstr ""
+
 msgid "Select 'Yes' to set the cursor position to the end of the line when editing a text file.  Select 'No' to set the cursor to the start of the line."
 msgstr ""
 
@@ -16564,6 +16530,9 @@ msgstr ""
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr ""
 
+msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
+msgstr ""
+
 msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
 msgstr ""
 
@@ -16574,6 +16543,9 @@ msgid "Select 'Yes' to use signal values (SNR, etc) calculated from the older AP
 msgstr "Nếu được đặt thành giá trị tín hiệu 'có' (SNR, v.v.) sẽ được tính từ API V3. Đây là một phiên bản API cũ đã được thay thế."
 
 msgid "Select 'Yes' to use the number keys for quick selection of files / directories, select 'No' to use the number keys for MENU option shortcuts."
+msgstr ""
+
+msgid "Select 'Yes' to wake the receiver from Shutdown prior to the recording start time to allow the PDC data to make last minute timer adjustments."
 msgstr ""
 
 msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback."
@@ -17170,6 +17142,9 @@ msgstr ""
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "Chọn giao thức được sử dụng bởi thiết bị SCR của bạn. Các lựa chọn là 'SCR Unicable' (Unicable) hoặc 'SCR JESS' (JESS, còn được gọi là Unicable II)."
 
+msgid "Select the receiver action when the TV switches away from the receiver input."
+msgstr ""
+
 msgid "Select the refresh rate to be used on the TV."
 msgstr ""
 
@@ -17347,8 +17322,38 @@ msgstr "Chọn những gì bạn muốn nút Lên / Xuống để kích hoạt:"
 msgid "Select where the recording should be saved."
 msgstr ""
 
+msgid "Select whether AAC audio tracks should be transcoded."
+msgstr "Chọn xem các bản nhạc âm thanh AAC có được chuyển mã hay không."
+
+msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
+msgstr "Chọn xem các bản âm thanh AC3 Plus có nên được chuyển mã sang AC3 hay không."
+
+msgid "Select whether AC3 audio tracks should be downmixed to stereo."
+msgstr "Chọn xem các bản âm thanh AC3 có nên được trộn lẫn thành âm thanh nổi hay không."
+
+msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
+msgstr "Chọn xem các bản âm thanh kênh DTS nên được trộn lẫn hoặc chuyển mã."
+
+msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
+msgstr "Chọn xem các bản âm thanh kênh DTS có nên được trộn lẫn thành âm thanh nổi hay không."
+
 msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
 msgstr ""
+
+msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
+msgstr "Chọn xem các bản âm thanh kênh WMA Pro nên được trộn lẫn hoặc chuyển mã."
+
+msgid "Select whether multichannel audio tracks should be converted to PCM or SPDIF."
+msgstr "Chọn xem có nên chuyển đổi các bản âm thanh đa kênh sang PCM hoặc SPDIF không."
+
+msgid "Select whether multichannel audio tracks should be downmixed to stereo."
+msgstr "Chọn xem các bản âm thanh đa kênh có nên được trộn lẫn thành âm thanh nổi hay không."
+
+msgid "Select whether multichannel audio tracks should be output as PCM."
+msgstr "Chọn xem các bản âm thanh đa kênh có được xuất ra dưới dạng PCM hay không."
+
+msgid "Select whether or not to show an icon when a motorized dish is moving."
+msgstr "Chọn có hay không hiển thị biểu tượng khi một đĩa cơ giới đang di chuyển."
 
 msgid "Select wireless network"
 msgstr "Chọn mạng không dây"
@@ -17660,6 +17665,9 @@ msgid "Set Scaling governor"
 msgstr ""
 
 msgid "Set Time"
+msgstr ""
+
+msgid "Set a time offset before a timer is due to start to allow VPS to scan for the latest event timing. Select '0' to disable this feature."
 msgstr ""
 
 msgid "Set action for 'Info' key"
@@ -18705,9 +18713,6 @@ msgid "Show subservice selection"
 msgstr "Hiển thị lựa chọn dịch vụ phụ"
 
 msgid "Show subservices"
-msgstr ""
-
-msgid "Show subservices *"
 msgstr ""
 
 msgid "Show subservices of the active service"
@@ -20653,6 +20658,13 @@ msgstr "Chiều cao của hình ảnh. Đầu vào sẽ được thu nhỏ để
 msgid "The loopthrough setting is wrong."
 msgstr "Cài đặt vòng lặp là sai."
 
+msgid ""
+"The network wizard extension is not installed!\n"
+"Please install it."
+msgstr ""
+"Phần mở rộng thuật sĩ mạng không được cài đặt!\n"
+"Vui lòng cài đặt nó."
+
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr ""
 
@@ -20806,9 +20818,6 @@ msgstr "Đây % s% s là gói không thể giải mã các luồng% s!"
 
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Phương tiện DVD RW này đã được định dạng - định dạng lại sẽ xóa tất cả nội dung trên đĩa."
-
-msgid "This option allows you to switch Audio to Bluetooth speakers."
-msgstr "Tùy chọn này cho phép bạn chuyển Âm thanh sang Loa BT."
 
 msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
 msgstr "Điều này cho phép bạn thay đổi kích thước phông chữ tương ứng với kích thước da, vì vậy 1 tăng kích thước 1 điểm và -1 giảm kích thước 1 điểm"
@@ -20976,8 +20985,14 @@ msgstr "Tùy chọn này cho phép bạn bật Âm thanh vòm 3D."
 msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr ""
 
+msgid "This option allows you to set the Auto Volume Level output."
+msgstr "Tùy chọn này cấu hình bạn có thể đặt Mức âm lượng tự động."
+
 msgid "This option allows you to set the layout view (Text or Graphics)."
 msgstr "Tùy chọn này cho phép bạn đặt chế độ xem bố cục (Văn bản hoặc Đồ họa)."
+
+msgid "This option allows you to switch Audio to Bluetooth speakers."
+msgstr "Tùy chọn này cho phép bạn chuyển Âm thanh sang Loa BT."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "Tùy chọn này cho phép bạn SNR theo tỷ lệ phần trăm (không phải tất cả các máy thu đều hỗ trợ điều này)."
@@ -20991,12 +21006,6 @@ msgstr "Tùy chọn này cho phép bạn xem các cài đặt cũ và mới cạ
 msgid "This option configures the audio delay value for Bluetooth speakers."
 msgstr "Tùy chọn này cấu hình độ trễ âm thanh chung cho Loa BT."
 
-msgid "This option selects the general audio delay of Dolby Digital sound tracks."
-msgstr "Tùy chọn này cấu hình độ trễ âm thanh chung của các bản âm thanh Dolby Digital."
-
-msgid "This option selects the general audio delay of stereo sound tracks."
-msgstr "Tùy chọn này cấu hình độ trễ âm thanh chung của các rãnh âm thanh nổi."
-
 msgid "This option configures the picture sharpness."
 msgstr "Tùy chọn này cấu hình độ sắc nét của hình ảnh."
 
@@ -21005,9 +21014,6 @@ msgstr "Tùy chọn này cấu hình độ phân giải màn hình ở chế đ�
 
 msgid "This option configures the video output mode (or resolution)."
 msgstr "Tùy chọn này cấu hình chế độ đầu ra video (hoặc độ phân giải)."
-
-msgid "This option allows you to set the Auto Volume Level output."
-msgstr "Tùy chọn này cấu hình bạn có thể đặt Mức âm lượng tự động."
 
 msgid "This option lets you adjust the 3D depth of the OSD."
 msgstr "Tùy chọn này cho phép bạn điều chỉnh độ sâu 3D"
@@ -21023,6 +21029,12 @@ msgstr "Tùy chọn này cho phép bạn hiển thị tùy chọn trong màn hì
 
 msgid "This option moves the PVR status display from a separate window into the MoviePlayer InfoBar."
 msgstr "Tùy chọn này di chuyển trạng thái PVR từ cửa sổ tách biệt sang infobar MoviePlayer."
+
+msgid "This option selects the general audio delay of Dolby Digital sound tracks."
+msgstr "Tùy chọn này cấu hình độ trễ âm thanh chung của các bản âm thanh Dolby Digital."
+
+msgid "This option selects the general audio delay of stereo sound tracks."
+msgstr "Tùy chọn này cấu hình độ trễ âm thanh chung của các rãnh âm thanh nổi."
 
 #, fuzzy
 msgid "This option set the level of suppression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
@@ -21066,9 +21078,6 @@ msgstr ""
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Tùy chọn này thiết lập độ sắc nét của hình ảnh, được sử dụng khi hình ảnh được nâng cấp."
-
-msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
-msgstr ""
 
 msgid "This service is protected by a parental control PIN!"
 msgstr "dịch vụ này được bảo vệ bởi pin kiểm soát của phụ huynh"
@@ -22394,6 +22403,9 @@ msgstr ""
 msgid "Use the extended List"
 msgstr "Sử dụng Danh sách mở rộng"
 
+msgid "Use the network wizard to configure selected network adapter"
+msgstr "Sử dụng trình hướng dẫn mạng để định cấu hình bộ điều hợp mạng đã chọn"
+
 msgid "Use the network wizard to configure your Network."
 msgstr ""
 
@@ -22518,6 +22530,9 @@ msgid "VPS Settings"
 msgstr ""
 
 msgid "VPS enabled by default"
+msgstr ""
+
+msgid "VPS on instant recordings"
 msgstr ""
 
 msgid "VPS-Plugin Information"
@@ -22900,14 +22915,14 @@ msgstr "Đang chờ đợi"
 msgid "Waiting for partition"
 msgstr "Chờ phân vùng"
 
+msgid "Wake from Shutdown allowed"
+msgstr ""
+
 msgid "Wake up"
 msgstr "Thức dậy"
 
 msgid "Wake up TV from Standby"
 msgstr "Wake Up TV từ chế độ chờ"
-
-msgid "Wake up from Deep-Standby is allowed"
-msgstr ""
 
 msgid "Wake up time before a timer begins"
 msgstr "Thời gian thức dậy trước khi hẹn giờ bắt đầu [phút]"
@@ -23267,9 +23282,6 @@ msgstr ""
 
 msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you're doing."
 msgstr "Khi được điều chỉnh đến một dịch vụ, hệ thống thường sẽ quét bộ phát đáp xem có bất kỳ thay đổi nào không và lưu chúng. Chỉ đặt thành 'có' nếu bạn hoàn toàn chắc chắn những gì bạn đang làm."
-
-msgid "When yes, VPS will be enabled on instant records (stop after current event), if the channel supports VPS."
-msgstr ""
 
 msgid "Where do you want to backup your settings?"
 msgstr "Bạn có muốn khôi phục cài đặt của bạn?"
@@ -24516,6 +24528,16 @@ msgstr "có (giữ thức ăn)"
 msgid "®"
 msgstr ""
 
+#~ msgid ""
+#~ "File oscam.conf not found.\n"
+#~ "Please enter username/password manually."
+#~ msgstr ""
+#~ "Không tìm thấy tệp oscam.conf.\n"
+#~ "Vui lòng nhập tên người dùng / mật khẩu bằng tay."
+
+#~ msgid "Configure whether multichannel audio tracks should be downmixed to stereo."
+#~ msgstr "Định cấu hình xem các bản âm thanh đa kênh có được trộn lẫn thành âm thanh nổi hay không."
+
 #~ msgid "* Only available if more than one interface is active."
 #~ msgstr "* Chỉ khả dụng nếu có nhiều giao diện được kích hoạt."
 
@@ -24549,16 +24571,6 @@ msgstr ""
 #, python-format
 #~ msgid "Set the MAC address of your %s %s."
 #~ msgstr "Đặt địa chỉ MAC của % s% s của bạn."
-
-#~ msgid ""
-#~ "The network wizard extension is not installed!\n"
-#~ "Please install it."
-#~ msgstr ""
-#~ "Phần mở rộng thuật sĩ mạng không được cài đặt!\n"
-#~ "Vui lòng cài đặt nó."
-
-#~ msgid "Use the network wizard to configure selected network adapter"
-#~ msgstr "Sử dụng trình hướng dẫn mạng để định cấu hình bộ điều hợp mạng đã chọn"
 
 #, fuzzy
 #~ msgid "OpenDNS Home"

@@ -174,7 +174,7 @@ class ParentalControl:
 		if result is not None and result:
 			self.setSessionPinCached()
 			self.hideBlacklist()
-			self.callback(ref=service)
+			self.callback(ref=service, forceRestart=True)
 		else:  # This is the new function of caching canceling of service PIN.
 			if result is not None:
 				messageText = _("The PIN code entered is incorrect!")

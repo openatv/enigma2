@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2 OpenXXX\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-03 09:58+0000\n"
+"POT-Creation-Date: 2026-01-17 09:22+0000\n"
 "PO-Revision-Date: 2025-08-18 16:27+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ru/>\n"
@@ -3124,6 +3124,9 @@ msgstr "Чёрный экран заблокирован"
 msgid "Blacklist"
 msgstr "Чёрный список"
 
+msgid "Blank screen"
+msgstr ""
+
 msgid "Blinking REC"
 msgstr "Мигающий значок записи REC"
 
@@ -4007,7 +4010,7 @@ msgstr "Чеченский"
 msgid "Check for PDC"
 msgstr "Проверить наличие PDC"
 
-msgid "Check for PDC availability on each service"
+msgid "Check for PDC availability on each service."
 msgstr "Проверка доступности PDC для каждого канала"
 
 msgid "Check power and input state from TV"
@@ -4157,41 +4160,14 @@ msgstr "Выберите целевое расположение слотов."
 msgid "Choose time interval to which the graphics will be rounded off."
 msgstr "Укажите временной интервал, в котором графика будет отключена."
 
+msgid "Choose what appears when the screen saver is active."
+msgstr ""
+
 msgid "Choose what you want the button '0' to do when PiP is active."
 msgstr "Укажите действие для кнопки '0', когда PiP окно активно."
 
 msgid "Choose where to mount your devices to:"
 msgstr "Выберите точку подключения для устройства"
-
-msgid "Select whether AAC audio tracks should be transcoded."
-msgstr "Укажите нужно ли перекодировать звук AAC."
-
-msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
-msgstr "Транскодировать звуковые дорожки AC3-Plus в AC3."
-
-msgid "Select whether AC3 audio tracks should be downmixed to stereo."
-msgstr "Cледует ли преобразовывать звуковые дорожки AC3 в формат стерео."
-
-msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
-msgstr "Следует ли преобразовывать в стерео или транскодировать многоканальные звуковые дорожки DTS."
-
-msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
-msgstr "Следует ли преобразовывать в стерео многоканальные звуковые дорожки DTS."
-
-msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
-msgstr "Следует ли преобразовывать в стерео или транскодировать многоканальные звуковые дорожки WMA Pro."
-
-msgid "Select whether multichannel audio tracks should be converted to PCM or SPDIF."
-msgstr "Следует ли перекодировать многоканальные звуковые дорожки в PCM или SPDIF."
-
-msgid "Select whether multichannel audio tracks should be downmixed to stereo."
-msgstr "Следует ли многоканальные звуковые дорожки преобразовывать в стерео."
-
-msgid "Select whether multichannel audio tracks should be output as PCM."
-msgstr "Следует ли многоканальные звуковые дорожки выводить как PCM."
-
-msgid "Select whether or not to show an icon when a motorized dish is moving."
-msgstr "Нужно ли показывать значок во время движении антенны с мотоподвесом."
 
 msgid "Choose which level of menu/setting's to display. 'Expert'-level shows all items."
 msgstr "Выберите уровень отображения для настроек меню. 'Эксперт' - отображаются все элементы."
@@ -4865,9 +4841,6 @@ msgstr "Выберите шрифт телетекста: масштабируе
 
 msgid "Configure whether another tuner from the preferred list is allocated for recordings instead of sharing a tuner that is already active receiving the same live TV channel."
 msgstr "Для записи выделить свободный тюнер из списка предпочитаемых или совместно использовать активный."
-
-msgid "Configure whether multichannel audio tracks should be downmixed to stereo."
-msgstr "Преобразовывать ли многоканальные звуковые дорожки в стереозвук."
 
 msgid "Configure whether the 'recording' symbol (in the display skin and LCD skin) is visible for real recordings only or also for streaming and pseudo recordings (like in EPGrefresh)."
 msgstr "Укажите, когда выводить значок записи на дисплей ресивера, только при записи передач или при потоковом вещании и псевдозаписях тоже (например при обновлении ТВ-гида)."
@@ -7192,15 +7165,6 @@ msgstr "Включить swap при запуске"
 msgid "Enable VPS"
 msgstr "Включить VPS"
 
-msgid "Enable VPS by default (new timers)"
-msgstr "Включить VPS по умолчанию (новые таймеры)"
-
-msgid "Enable VPS on instant records"
-msgstr "Включить VPS для мгновенных записей"
-
-msgid "Enable VPS-Plugin"
-msgstr "Включить VPS-плагин"
-
 msgid "Enable ViaSat EPG"
 msgstr "Включить ТВ-гид ViaSat"
 
@@ -8491,13 +8455,6 @@ msgstr "Файл занят\n"
 msgid "File compression"
 msgstr "Сжатие файлов"
 
-msgid ""
-"File oscam.conf not found.\n"
-"Please enter username/password manually."
-msgstr ""
-"Файл oscam.conf не найден\n"
-"Пожалуйста введите username/password вручную."
-
 msgid "File system"
 msgstr "Файловая система"
 
@@ -8542,6 +8499,9 @@ msgstr "Финансы"
 
 msgid "Find Currently Playing Service"
 msgstr "Вернуться к текущему каналу"
+
+msgid "Find connected events"
+msgstr "Поиск связанных событий"
 
 #, python-format
 msgid "Find out more at %s"
@@ -9238,9 +9198,6 @@ msgstr "Обрабатывать сбои Python"
 msgid "Handle Standby from TV"
 msgstr "Уйти в режим ожидания с ТВ"
 
-msgid "Process action from TV"
-msgstr "Обработка ввода с телевизора"
-
 msgid "Handle wake up from TV"
 msgstr "Реакция на включение ТВ"
 
@@ -9708,14 +9665,11 @@ msgstr "Если 'никогда', несмотря на это, будет за
 msgid "If EPG available"
 msgstr "Если доступен EPG"
 
-msgid "If a programme is interrupted and divided into separate events, the plugin will search for the connected events."
-msgstr "Если программа прерывается и делится на отдельные события, плагин будет искать связанные события."
-
 msgid "If an action is user-configurable, its help entry will be flagged with a '(C)' suffix."
 msgstr "Если действие может настраиваться пользователем, то в справке оно будет отмечено суффиксом '(C)'."
 
-msgid "If enabled and necessary, the plugin will wake up the receiver from deep standby for the defined starting time to control whether the programme begins earlier."
-msgstr "Если включено, плагин по необходимости будет пробуждать ресивер из глубокого сна на определённое для его запуска время, чтобы проверить, не начнётся ли передача раньше."
+msgid "If an event is interrupted and divided into separate recordings, this feature will search for alternate broadcasts of the same event."
+msgstr "Если программа прерывается и делится на отдельные события, плагин будет искать связанные события."
 
 msgid "If enabled the output resolution of the receiver will try to match the resolution of the video contents resolution."
 msgstr "Если включено, выходное разрешение ресивера будет адаптировано к разрешению видеоконтента"
@@ -9737,9 +9691,6 @@ msgstr "Если этот параметр включён, будет испол
 
 msgid "If logs are using the set maximum space used the eldest will be deleted."
 msgstr "Если логи занимают слишком много памяти, будут удаляться самые старые файлы."
-
-msgid "If possible, x minutes before a timer starts VPS-Plugin will control whether the programme begins earlier. (0 disables feature)"
-msgstr "Если возможно, за Х минут до запуска таймера VPS-плагин будет контролировать, начнётся ли программа раньше. (0 отключает функцию)"
 
 msgid "If set to 'Yes', allows the use of time shift with alternative audio plugins."
 msgstr "Если установлено значение 'да', позволяет использовать таймшифт с альтернативными аудио-плагинами."
@@ -11003,6 +10954,9 @@ msgstr "Ошибка входа"
 
 msgid "Login to IceTV server"
 msgstr "Вход на сервер IceTV"
+
+msgid "Logo"
+msgstr ""
 
 msgid "Logs Settings"
 msgstr "Настройки логов"
@@ -12752,6 +12706,9 @@ msgstr "Номер и пиктограмма"
 msgid "Number of IP Addresses"
 msgstr "Количество IP-адресов"
 
+msgid "Number of Slots"
+msgstr ""
+
 msgid "Number of digits in service number"
 msgstr "Количество цифр в номере канала"
 
@@ -14389,6 +14346,9 @@ msgstr "Обработать действие КРАСНОЙ кнопки"
 
 msgid "Process YELLOW button action"
 msgstr "Обработать действие ЖЁЛТОЙ кнопки"
+
+msgid "Process action from TV"
+msgstr "Обработка ввода с телевизора"
 
 msgid "Processing"
 msgstr "Обработка данных"
@@ -16035,6 +15995,9 @@ msgstr "Научная фантастика/Фентези/Ужасы"
 msgid "Scope"
 msgstr "Сфера"
 
+msgid "Screen saver mode"
+msgstr ""
+
 msgid "Screen saver movement"
 msgstr "Перемещение картинки хранителя экрана"
 
@@ -16134,9 +16097,6 @@ msgstr "Вызов панели перемотки"
 msgid "SeekBar sensibility"
 msgstr "Точность перемотки"
 
-msgid "Seeking connected events"
-msgstr "Поиск связанных событий"
-
 msgid "Select"
 msgstr "Выбрать"
 
@@ -16202,6 +16162,9 @@ msgstr "Если выберете 'Да', то во время паузы инф
 
 msgid "Select 'Yes' to allow each storage device detected to be automatically exported as samba share."
 msgstr "Выберите 'Да', чтобы разрешить автоматически экспортировать каждое обнаруженное устройство хранения данных как общий ресурс Samba."
+
+msgid "Select 'Yes' to allow the VPS to adjust recording timers based on broadcast Program Delivery Control (PDC) data. For this to work the service must provide reliable event PDC data."
+msgstr "Этот плагин может определить, начинается ли программа раньше или длится дольше. Канал должен предоставлять надёжные данные."
 
 msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point within the event."
 msgstr "Выбор 'Да' позволяет использовать панель перемотки для перехода к нужному моменту внутри передачи."
@@ -16320,6 +16283,9 @@ msgstr ""
 msgid "Select 'Yes' to reset network configuration to the default. This will enable the Ethernet port if it exists and set the receiver to use DHCP. All other network interfaces will be deleted."
 msgstr "Выберите 'Да', чтобы восстановить настройки сети по умолчанию. Это активирует порт Ethernet, если он существует, и настроит ресивер на использование DHCP. Все остальные сетевые интерфейсы будут удалены."
 
+msgid "Select 'Yes' to set the VPS flag on all new timers by default."
+msgstr "Включить VPS по умолчанию (новые таймеры)"
+
 msgid "Select 'Yes' to set the cursor position to the end of the line when editing a text file.  Select 'No' to set the cursor to the start of the line."
 msgstr "Выберите 'Да', чтобы задать положение курсора в конце строки при редактировании текстового файла. Выберите 'Нет', чтобы поместить курсор в начало строки."
 
@@ -16410,6 +16376,9 @@ msgstr "Выберите 'Да', чтобы немедленно заверши�
 msgid "Select 'Yes' to split tasks into separate actions."
 msgstr "Выберите 'Да', чтобы разделить задачи на отдельные действия."
 
+msgid "Select 'Yes' to use PDC data, if available on the current service, to accurately stop the instant recording at the end of the event."
+msgstr "Если да, VPS будет включён для мгновенных записей (остановка после текущего события), если канал поддерживает VPS."
+
 msgid "Select 'Yes' to use alternate GitHub feed IP addresses. This can be helpful if you use a VPN and the normal feeds can't be accessed via the published DNS names."
 msgstr "Выберите 'Да', чтобы использовать альтернативные IP-адреса канала GitHub. Это может быть полезно, если вы используете VPN и к обычным каналам нет доступа через публичные DNS-имена."
 
@@ -16421,6 +16390,9 @@ msgstr "Выберите 'Да', чтобы использовать значе�
 
 msgid "Select 'Yes' to use the number keys for quick selection of files / directories, select 'No' to use the number keys for MENU option shortcuts."
 msgstr "Выберите 'Да' чтобы использовать цифровые клавиши для быстрого выбора файлов/каталогов, выберите 'Нет', чтобы использовать цифровые клавиши для быстрого выбора параметров МЕНЮ."
+
+msgid "Select 'Yes' to wake the receiver from Shutdown prior to the recording start time to allow the PDC data to make last minute timer adjustments."
+msgstr "Если включено, плагин по необходимости будет пробуждать ресивер из глубокого сна на определённое для его запуска время, чтобы проверить, не начнётся ли передача раньше."
 
 msgid "Select 'Yes, to display the InfoBar when fast forwarding or rewinding during media playback."
 msgstr "Выберите 'Да' чтобы показывать инфопанель при перемотке во время воспроизведения записей."
@@ -17017,6 +16989,9 @@ msgstr "Выбрать прежний канал, выйти из поиска �
 msgid "Select the protocol used by your SCR device. Choices are 'SCR Unicable' (Unicable), or 'SCR JESS' (JESS, also known as Unicable II)."
 msgstr "Выберите протокол, используемый вашим устройством SCR. На выбор предлагаются следующие варианты: 'SCR Unicable' (Unicable) или 'SCR JESS' (JESS, также известный как Unicable II)."
 
+msgid "Select the receiver action when the TV switches away from the receiver input."
+msgstr ""
+
 msgid "Select the refresh rate to be used on the TV."
 msgstr "Выберите частоту обновления, которая будет использоваться на телевизоре."
 
@@ -17194,8 +17169,38 @@ msgstr "Выбор действия для красной кнопок Ввер�
 msgid "Select where the recording should be saved."
 msgstr "Выберите, где запись должна быть сохранена."
 
+msgid "Select whether AAC audio tracks should be transcoded."
+msgstr "Укажите нужно ли перекодировать звук AAC."
+
+msgid "Select whether AC3 Plus audio tracks should be transcoded to AC3."
+msgstr "Транскодировать звуковые дорожки AC3-Plus в AC3."
+
+msgid "Select whether AC3 audio tracks should be downmixed to stereo."
+msgstr "Cледует ли преобразовывать звуковые дорожки AC3 в формат стерео."
+
+msgid "Select whether DTS channel audio tracks should be downmixed or transcoded."
+msgstr "Следует ли преобразовывать в стерео или транскодировать многоканальные звуковые дорожки DTS."
+
+msgid "Select whether DTS channel audio tracks should be downmixed to stereo."
+msgstr "Следует ли преобразовывать в стерео многоканальные звуковые дорожки DTS."
+
 msgid "Select whether IPv4, IPv6, or both protocols should be used. If both are enabled then which should be preferred."
 msgstr "Выберите режим DNS."
+
+msgid "Select whether WMA Pro channel audio tracks should be downmixed or transcoded."
+msgstr "Следует ли преобразовывать в стерео или транскодировать многоканальные звуковые дорожки WMA Pro."
+
+msgid "Select whether multichannel audio tracks should be converted to PCM or SPDIF."
+msgstr "Следует ли перекодировать многоканальные звуковые дорожки в PCM или SPDIF."
+
+msgid "Select whether multichannel audio tracks should be downmixed to stereo."
+msgstr "Следует ли многоканальные звуковые дорожки преобразовывать в стерео."
+
+msgid "Select whether multichannel audio tracks should be output as PCM."
+msgstr "Следует ли многоканальные звуковые дорожки выводить как PCM."
+
+msgid "Select whether or not to show an icon when a motorized dish is moving."
+msgstr "Нужно ли показывать значок во время движении антенны с мотоподвесом."
 
 msgid "Select wireless network"
 msgstr "Выберите беспроводную сеть"
@@ -17506,6 +17511,9 @@ msgstr "Установите регулятор масштабирования"
 
 msgid "Set Time"
 msgstr "Установить время"
+
+msgid "Set a time offset before a timer is due to start to allow VPS to scan for the latest event timing. Select '0' to disable this feature."
+msgstr "Если возможно, за Х минут до запуска таймера VPS-плагин будет контролировать, начнётся ли программа раньше. (0 отключает функцию)"
 
 msgid "Set action for 'Info' key"
 msgstr "Функция кнопки 'Info'"
@@ -18550,9 +18558,6 @@ msgstr "Показать список подканалов"
 
 msgid "Show subservices"
 msgstr "Показать подуслуги"
-
-msgid "Show subservices *"
-msgstr "Показывать подканалы *"
 
 msgid "Show subservices of the active service"
 msgstr "Показать подканалы активного канала"
@@ -20503,6 +20508,13 @@ msgstr "Высота рисунка. Вход будет масштабиров�
 msgid "The loopthrough setting is wrong."
 msgstr "Настройки петли неверны."
 
+msgid ""
+"The network wizard extension is not installed!\n"
+"Please install it."
+msgstr ""
+"Мастер сети не установлен!\n"
+"Пожалуйста, сначала установите его."
+
 msgid "The picon directory already exists and must be removed. Do you want to proceed?"
 msgstr "Каталог пиконов уже существует и должен быть удалён. Продолжить?"
 
@@ -20665,9 +20677,6 @@ msgstr "Данный %s %s не может декодировать потоки
 
 msgid "This DVD RW medium is already formatted - reformatting will erase all content on the disc."
 msgstr "Этот DVD RW уже отформатирован - переформатирование может удалить всё содержимое диска."
-
-msgid "This option allows you to switch Audio to Bluetooth speakers."
-msgstr "Эта опция позволяет переключать звук на BlueTooth-динамики."
 
 msgid "This allows you to change the font size relative to skin size, so 1 increases by 1 point size, and -1 decreases by 1 point size."
 msgstr "Можете изменить размер шрифта по отношению к скину. Цифра 1 увеличивает размер на 1 пункт и -1 уменьшает размер на 1 пункт."
@@ -20834,8 +20843,14 @@ msgstr "Позволяет включить поддержку объемног�
 msgid "This option allows you to set offset values for different Letterbox resolutions."
 msgstr "Этот параметр позволяет задать значения компенсации масштаба для различных разрешений в режиме ящика."
 
+msgid "This option allows you to set the Auto Volume Level output."
+msgstr "Этот параметр позволяет настроить автоматический уровень громкости."
+
 msgid "This option allows you to set the layout view (Text or Graphics)."
 msgstr "Эта опция позволяет выбрать тип просмотра (текст или графика)."
+
+msgid "This option allows you to switch Audio to Bluetooth speakers."
+msgstr "Эта опция позволяет переключать звук на BlueTooth-динамики."
 
 msgid "This option allows you to the SNR as a percentage (not all receivers support this)."
 msgstr "Эта опция позволяет показать SNR в dB (поддерживается не всеми ресиверами)."
@@ -20849,12 +20864,6 @@ msgstr "Эта опция позволяет видеть старые и нов
 msgid "This option configures the audio delay value for Bluetooth speakers."
 msgstr "Этот параметр настраивает общую задержку звука для BlueTooth динамиков."
 
-msgid "This option selects the general audio delay of Dolby Digital sound tracks."
-msgstr "Этот параметр настраивает общую задержку звука для звуковых дорожек Dolby Digital."
-
-msgid "This option selects the general audio delay of stereo sound tracks."
-msgstr "Этот параметр настраивает общую задержку звука для звуковых дорожек стерео."
-
 msgid "This option configures the picture sharpness."
 msgstr "Этот параметр настраивает резкость изображения."
 
@@ -20863,9 +20872,6 @@ msgstr "Эта опция настраивает разрешение экран
 
 msgid "This option configures the video output mode (or resolution)."
 msgstr "Настройка режима видеовыхода (или разрешения)."
-
-msgid "This option allows you to set the Auto Volume Level output."
-msgstr "Этот параметр позволяет настроить автоматический уровень громкости."
 
 msgid "This option lets you adjust the 3D depth of the OSD."
 msgstr "Здесь можете настроить 3D глубину меню."
@@ -20881,6 +20887,12 @@ msgstr "Эта опция позволяет добавить параметр �
 
 msgid "This option moves the PVR status display from a separate window into the MoviePlayer InfoBar."
 msgstr "Эта опция перемещает индикатор статуса записи из отдельного окна в инфопанель видеопроигрывателя."
+
+msgid "This option selects the general audio delay of Dolby Digital sound tracks."
+msgstr "Этот параметр настраивает общую задержку звука для звуковых дорожек Dolby Digital."
+
+msgid "This option selects the general audio delay of stereo sound tracks."
+msgstr "Этот параметр настраивает общую задержку звука для звуковых дорожек стерео."
 
 msgid "This option set the level of suppression of mosquito noise (Mosquito Noise is random aliasing as a result of strong compression). Obviously this goes at the cost of picture details."
 msgstr "Эта опция устанавливает уровень подавления москитного шума (Москитный шум - это случайные искажения в результате сильного сжатия). Конечно, это происходит за счет детальности изображения."
@@ -20923,9 +20935,6 @@ msgstr "Этот параметр устанавливает контрастн�
 
 msgid "This option sets up the picture sharpness, used when the picture is being upscaled."
 msgstr "Этот параметр влияет на резкость изображения при увеличении картинки."
-
-msgid "This plugin can determine whether a programme begins earlier or lasts longer. The channel has to provide reliable data."
-msgstr "Этот плагин может определить, начинается ли программа раньше или длится дольше. Канал должен предоставлять надёжные данные."
 
 msgid "This service is protected by a parental control PIN!"
 msgstr "Этот канал защищён пин-кодом!"
@@ -22238,6 +22247,9 @@ msgstr "Использовать текущий выбор и выйти"
 msgid "Use the extended List"
 msgstr "Использовать расширенный список"
 
+msgid "Use the network wizard to configure selected network adapter"
+msgstr "Использовать мастер для настройки выбранного сетевого адаптера"
+
 msgid "Use the network wizard to configure your Network."
 msgstr "Используйте мастер сети для настройки сети."
 
@@ -22361,6 +22373,9 @@ msgstr "Настройки VPS"
 
 msgid "VPS enabled by default"
 msgstr "VPS включён по умолчанию"
+
+msgid "VPS on instant recordings"
+msgstr "Включить VPS для мгновенных записей"
 
 msgid "VPS-Plugin Information"
 msgstr "Информация о VPS-плагине"
@@ -22765,14 +22780,14 @@ msgstr "Ожидание"
 msgid "Waiting for partition"
 msgstr "Ожидание раздела"
 
+msgid "Wake from Shutdown allowed"
+msgstr "Пробуждение из режима глубокого ожидания разрешено"
+
 msgid "Wake up"
 msgstr "Пробуждение"
 
 msgid "Wake up TV from Standby"
 msgstr "Пробудить ТВ из режима ожидания"
-
-msgid "Wake up from Deep-Standby is allowed"
-msgstr "Пробуждение из режима глубокого ожидания разрешено"
 
 msgid "Wake up time before a timer begins"
 msgstr "Включить до начала таймера за [мин]"
@@ -23131,9 +23146,6 @@ msgstr "Когда красная рамка будет надлежащим о�
 
 msgid "When tuned to a service, the system normally scans the transponder for changes and saves them. Enable only if you know what you're doing."
 msgstr "Обычно во время приема канала система в фоновом режиме сканирует текущий транспондер на предмет изменений и сохраняет их. Выберите 'Да' только если абсолютно уверены в том, что делаете."
-
-msgid "When yes, VPS will be enabled on instant records (stop after current event), if the channel supports VPS."
-msgstr "Если да, VPS будет включён для мгновенных записей (остановка после текущего события), если канал поддерживает VPS."
 
 msgid "Where do you want to backup your settings?"
 msgstr "Где вы хотите сохранить резервную копию своих настроек?"
@@ -24378,6 +24390,22 @@ msgstr "Да (оставить фиды)"
 msgid "®"
 msgstr "®"
 
+#~ msgid ""
+#~ "File oscam.conf not found.\n"
+#~ "Please enter username/password manually."
+#~ msgstr ""
+#~ "Файл oscam.conf не найден\n"
+#~ "Пожалуйста введите username/password вручную."
+
+#~ msgid "Enable VPS-Plugin"
+#~ msgstr "Включить VPS-плагин"
+
+#~ msgid "Configure whether multichannel audio tracks should be downmixed to stereo."
+#~ msgstr "Преобразовывать ли многоканальные звуковые дорожки в стереозвук."
+
+#~ msgid "Show subservices *"
+#~ msgstr "Показывать подканалы *"
+
 #~ msgid "* Only available if more than one interface is active."
 #~ msgstr "* Доступно, если активно более одного интерфейса."
 
@@ -24420,16 +24448,6 @@ msgstr "®"
 #, python-format
 #~ msgid "Set the MAC address of your %s %s."
 #~ msgstr "Задайте MAC-адрес своего %s %s."
-
-#~ msgid ""
-#~ "The network wizard extension is not installed!\n"
-#~ "Please install it."
-#~ msgstr ""
-#~ "Мастер сети не установлен!\n"
-#~ "Пожалуйста, сначала установите его."
-
-#~ msgid "Use the network wizard to configure selected network adapter"
-#~ msgstr "Использовать мастер для настройки выбранного сетевого адаптера"
 
 #~ msgid "white"
 #~ msgstr "Белый"
