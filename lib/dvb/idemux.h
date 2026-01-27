@@ -2,6 +2,7 @@
 #define __dvb_idemux_h
 
 #include <lib/dvb/idvb.h>
+#include <lib/service/iservicescrambled.h>
 
 class iDVBSectionReader: public iObject
 {
@@ -46,6 +47,11 @@ public:
 
 	virtual RESULT getCurrentPCR(pts_t &pcr) = 0;
 	virtual RESULT getFirstPTS(pts_t &pts) = 0;
+
+	virtual RESULT setDescrambler(ePtr<iServiceScrambled>) = 0;
+
+	// Wait for first data to be written (for SoftDecoder sync)
+	virtual bool waitForFirstData(int timeout_ms) = 0;
 
 	enum {
 		eventWriteError,

@@ -14,6 +14,10 @@
 #include <linux/dvb/ca.h>
 #include <map>
 
+// Cache serviceId per DVB service reference to ensure OSCam always sees the same ID
+// This prevents CW delivery issues when switching between StreamRelay and Live-TV
+static std::map<eServiceReferenceDVB, uint32_t> s_serviceId_cache;
+
 ePMTClient::ePMTClient(eDVBCAHandler *handler, int socket) : eUnixDomainSocket(socket, 1, eApp), parent(handler)
 {
 	receivedTag[0] = 0;
@@ -157,7 +161,12 @@ bool ePMTClient::processCaSetDescrPacket()
 			for (int i = 0; i < 8; i++)
 				eTraceNoNewLine(" %02X", descr.cw[i]);
 			eTraceNoNewLine("\n");
-			parent->receivedCw(service, descr.parity, (const char*)descr.cw);
+			// Get CAID from ECM_INFO (if available)
+			uint16_t caid = 0;
+			auto it = parent->m_service_caid.find(serviceId);
+			if (it != parent->m_service_caid.end())
+				caid = it->second;
+			parent->receivedCw(service, descr.parity, (const char*)descr.cw, caid);
 		}
 		return true;
 	}
@@ -295,6 +304,8 @@ bool ePMTClient::processEcmInfoPacket()
 					{
 						eDebug("[ePMTClient] ECM Info %s", service.toString().c_str());
 					}
+					// Store CAID for this service (will be sent with next CW)
+					parent->m_service_caid[serviceId] = caid;
 					eTrace("[ePMTClient] ECM Info serviceId %u, caid %04X, ecmTime %u, cardsystem %s, reader %s, from %s, protocol %s, hops %d", serviceId, caid, ecmTime, cardsystem, reader, from, protocol, hops);
 
 					return true;
@@ -387,15 +398,33 @@ int eDVBCAHandler::getNumberOfCAServices()
 int eDVBCAHandler::registerService(const eServiceReferenceDVB &ref, int adapter, int demux_nums[2], int servicetype, eDVBCAService *&caservice)
 {
 	CAServiceMap::iterator it = services.find(ref);
+	bool had_streamserver = false;
 	if (it != services.end())
 	{
 		caservice = it->second;
+		// Check if streamserver was already active before adding new type
+		// servicetype 7 = streamserver, 8 = scrambled_streamserver
+		uint32_t mask = caservice->getServiceTypeMask();
+		had_streamserver = (mask & ((1 << 7) | (1 << 8))) != 0;
 	}
 	else
 	{
-		caservice = (services[ref] = new eDVBCAService(ref, serviceIdCounter++));
+		// Check if we have a cached serviceId for this DVB service
+		uint32_t id;
+		std::map<eServiceReferenceDVB, uint32_t>::iterator cache_it = s_serviceId_cache.find(ref);
+		if (cache_it != s_serviceId_cache.end())
+		{
+			id = cache_it->second;
+			eDebug("[eDVBCAService] reusing cached serviceId %u for %s", id, ref.toString().c_str());
+		}
+		else
+		{
+			id = serviceIdCounter++;
+			s_serviceId_cache[ref] = id;
+		}
+		caservice = (services[ref] = new eDVBCAService(ref, id));
 		caservice->setAdapter(adapter);
-		eDebug("[eDVBCAService] new service %s, serviceId %u", ref.toString().c_str(), serviceIdCounter);
+		eDebug("[eDVBCAService] new service %s, serviceId %u", ref.toString().c_str(), id);
 	}
 	caservice->addServiceType(servicetype);
 
@@ -434,7 +463,27 @@ int eDVBCAHandler::registerService(const eServiceReferenceDVB &ref, int adapter,
 	std::map<eServiceReferenceDVB, ePtr<eTable<ProgramMapSection> > >::const_iterator cacheit = pmtCache.find(ref);
 	if (cacheit != pmtCache.end() && cacheit->second)
 	{
-		processPMTForService(caservice, cacheit->second);
+		// If streamserver was active and we're adding a different type (e.g. Live-TV),
+		// send CA PMT update immediately so OSCam knows about the new demux config
+		if (had_streamserver && servicetype != 7 && servicetype != 8)
+		{
+			caservice->resetBuildHash();
+			if (caservice->buildCAPMT(cacheit->second) >= 0)
+			{
+				for (ePtrList<ePMTClient>::iterator client_it = clients.begin(); client_it != clients.end(); ++client_it)
+				{
+					if (client_it->state() == eSocket::Connection)
+					{
+						caservice->writeCAPMTObject(*client_it, LIST_UPDATE);
+					}
+				}
+				eDebug("[eDVBCAService] sent early CA PMT update (streamserver active, new type %d registering)", servicetype);
+			}
+		}
+		else
+		{
+			processPMTForService(caservice, cacheit->second);
+		}
 	}
 	return 0;
 }
@@ -494,16 +543,24 @@ int eDVBCAHandler::unregisterService(const eServiceReferenceDVB &ref, int adapte
 				}
 				else
 				{
-					if (ptr)
+					// Only send CA PMT update when streamserver stops but other types remain
+					// (e.g. StreamRelay stopped while Live-TV still active)
+					// servicetype 7 = streamserver, 8 = scrambled_streamserver
+					if (ptr && (servicetype == 7 || servicetype == 8))
 					{
-						if (it->second->buildCAPMT(ptr) >= 0)
+						caservice->resetBuildHash();
+						if (caservice->buildCAPMT(ptr) >= 0)
 						{
-							it->second->sendCAPMT();
+							// Send to all connected clients (PMT mode 6, Protocol 3)
+							for (ePtrList<ePMTClient>::iterator client_it = clients.begin(); client_it != clients.end(); ++client_it)
+							{
+								if (client_it->state() == eSocket::Connection)
+								{
+									caservice->writeCAPMTObject(*client_it, LIST_UPDATE);
+								}
+							}
+							eDebug("[eDVBCAService] sent CA PMT update after streamserver unregister");
 						}
-					}
-					else
-					{
-						eDebug("[eDVBCAService] can not send updated demux info");
 					}
 				}
 			}
@@ -703,6 +760,11 @@ void eDVBCAService::addServiceType(int type)
 void eDVBCAService::removeServiceType(int type)
 {
 	m_service_type_mask ^= (1 << type);
+}
+
+uint32_t eDVBCAService::getServiceTypeMask() const
+{
+	return m_service_type_mask;
 }
 
 void eDVBCAService::connectionLost()

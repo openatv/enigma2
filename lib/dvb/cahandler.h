@@ -133,6 +133,8 @@ public:
 	void setAdapter(uint8_t value);
 	void addServiceType(int type);
 	void removeServiceType(int type);
+	uint32_t getServiceTypeMask() const;
+	void resetBuildHash() { m_prev_build_hash = 0; m_crc32 = 0; }
 	void sendCAPMT();
 	int writeCAPMTObject(eSocket *socket, int list_management = -1);
 	int writeCAPMTObject(ePMTClient *client, int list_management = -1);
@@ -153,7 +155,7 @@ public:
 	iCryptoInfo();
 	~iCryptoInfo();
 #endif
-	sigc::signal<void(eServiceReferenceDVB, int, const char*)> receivedCw;
+	sigc::signal<void(eServiceReferenceDVB, int, const char*, uint16_t)> receivedCw;  // service, parity, cw, caid
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<iCryptoInfo>, iCryptoInfoPtr);
 
@@ -163,12 +165,14 @@ class eDVBCAHandler: public eServerSocket, public iCryptoInfo
 class eDVBCAHandler : public iCryptoInfo
 #endif
 {
+	friend class ePMTClient;  // Allow ePMTClient to access m_service_caid
 DECLARE_REF(eDVBCAHandler);
 #ifndef SWIG
 	CAServiceMap services;
 	ePtrList<ePMTClient> clients;
 	ePtr<eTimer> serviceLeft;
 	std::map<eServiceReferenceDVB, ePtr<eTable<ProgramMapSection> > > pmtCache;
+	std::map<uint32_t, uint16_t> m_service_caid;  // serviceId -> CAID (from OSCam ECM_INFO)
 	uint32_t serviceIdCounter;
 
 	void newConnection(int socket);

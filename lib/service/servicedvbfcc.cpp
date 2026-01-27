@@ -1,6 +1,8 @@
 #include <lib/service/servicedvbfcc.h>
 #include <lib/components/file_eraser.h>
 #include <lib/dvb/decoder.h>
+#include <lib/dvb/csasession.h>
+#include <lib/service/servicedvbsoftdecoder.h>
 #include <lib/base/nconfig.h>
 #include <lib/base/esimpleconfig.h>
 
@@ -13,6 +15,7 @@ eDVBServiceFCCPlay::eDVBServiceFCCPlay(const eServiceReference &ref, eDVBService
 
 eDVBServiceFCCPlay::~eDVBServiceFCCPlay()
 {
+	// Base class destructor handles m_csa_session and m_soft_decoder cleanup
 }
 
 void eDVBServiceFCCPlay::serviceEvent(int event)
@@ -29,6 +32,8 @@ void eDVBServiceFCCPlay::serviceEvent(int event)
 	{
 		case eDVBServicePMTHandler::eventTuned:
 		{
+			// Base class will call setupSpeculativeDescrambling() which is overridden
+			// by FCC to use onFCCSessionActivated callback instead of onSessionActivated
 			eDVBServicePlay::serviceEvent(event);
 			pushbackFCCEvents(evTunedIn);
 			break;
@@ -86,6 +91,24 @@ void eDVBServiceFCCPlay::serviceEvent(int event)
 				{
 					m_event((iPlayableService*)this, evUpdatedInfo);
 					pushbackFCCEvents(evUpdatedInfo);
+				}
+
+				// If session exists but ECM monitor not started yet, start it
+				// (Session was created by setupSpeculativeDescrambling() in eventTuned)
+				if (m_csa_session && !m_csa_session->isEcmAnalyzed())
+				{
+					eDVBServicePMTHandler::program program;
+					if (m_service_handler.getProgramInfo(program) == 0 && !program.caids.empty())
+					{
+						uint16_t ecm_pid = program.caids.front().capid;
+						uint16_t caid = program.caids.front().caid;
+						ePtr<iDVBDemux> demux;
+						if (m_service_handler.getDataDemux(demux) == 0 && demux)
+						{
+							eDebug("[eDVBServiceFCCPlay] Starting ECM monitor: PID=%d, CAID=0x%04X", ecm_pid, caid);
+							m_csa_session->startECMMonitor(demux, ecm_pid, caid);
+						}
+					}
 				}
 			}
 			break;
@@ -154,6 +177,10 @@ void eDVBServiceFCCPlay::popFCCEvents()
 	/* add CaHandler */
 	m_service_handler.addCaHandler();
 
+	// Activate SoftCSA session when switching to decoding mode
+	// This enables software descrambling for CSA-ALT channels
+	activateFCCCSASession();
+
 	/* send events */
 	for (std::list<int>::iterator it = m_fcc_events.begin(); it != m_fcc_events.end(); ++it)
 	{
@@ -174,6 +201,9 @@ void eDVBServiceFCCPlay::changeFCCMode()
 
 		/* remove CaHandler */
 		m_service_handler.removeCaHandler();
+
+		// Deactivate SoftCSA when going back to prepare mode
+		deactivateFCCCSASession();
 
 		if (m_fcc_flag & fcc_tune_failed)
 			m_event((iPlayableService*)this, evTuneFailed);
@@ -335,6 +365,38 @@ void eDVBServiceFCCPlay::updateFCCDecoder(bool sendSeekableStateChanged)
 
 	m_timeshift_changed = 0;
 
+	// Check if SoftCSA should take over (CSA-ALT detected and session is active)
+	if (m_csa_session && m_csa_session->isActive() && m_soft_decoder)
+	{
+		eDebug("[eDVBServiceFCCPlay] CSA-ALT active, SoftDecoder takes over from HW decoder");
+
+		// Stop HW decoder, SoftDecoder will handle decoding
+		if (m_decoder)
+		{
+			m_decoder->setVideoPID(-1, -1);
+			m_decoder->setAudioPID(-1, -1);
+			m_decoder->setSyncPCR(-1);
+			m_decoder->setTextPID(-1);
+			m_decoder->set();
+			// Don't release m_decoder - FCC needs it for fccDecoderStop
+		}
+
+		// Start SoftDecoder if not already running
+		if (!m_soft_decoder->isRunning())
+		{
+			eDebug("[eDVBServiceFCCPlay] Starting SoftDecoder for CSA-ALT");
+			m_soft_decoder->start();
+		}
+
+		m_have_video_pid = (vpid > 0 && vpid < 0x2000);
+
+		if (sendSeekableStateChanged)
+			m_event((iPlayableService*)this, evSeekableStatusChanged);
+
+		return;  // Skip normal HW decoder setup
+	}
+
+	// Normal HW decoder path (non-CSA-ALT or CSA-ALT not yet detected)
 	if (m_decoder)
 	{
 		bool wasSeekable = m_decoder->getVideoProgressive() != -1;
@@ -495,6 +557,138 @@ void eDVBServiceFCCPlay::setNormalDecoding()
 {
 	eFCCServiceManager *fcc_service_mgr = eFCCServiceManager::getInstance();
 	return fcc_service_mgr->setNormalDecoding((iPlayableService*)this);
+}
+
+// ==================== SoftCSA Support for FCC ====================
+
+void eDVBServiceFCCPlay::setupSpeculativeDescrambling()
+{
+	// Override base class to use FCC-specific callback (onFCCSessionActivated)
+	// instead of base class callback (onSessionActivated)
+
+	// Only for Live-TV, not for PVR, streams
+	if (m_is_pvr || m_is_stream)
+		return;
+
+	eDebug("[eDVBServiceFCCPlay] Encrypted channel, creating CSA session for FCC");
+
+	// Use base class members (m_csa_session, m_soft_decoder) for proper integration
+	// Create session (starts INACTIVE, will activate when CSA-ALT detected from ECM)
+	eServiceReferenceDVB ref = eServiceReferenceDVB(m_reference.toString());
+	m_csa_session = new eDVBCSASession(ref);
+	if (!m_csa_session->init())
+	{
+		eWarning("[eDVBServiceFCCPlay] Failed to initialize CSA session");
+		m_csa_session = nullptr;
+		return;
+	}
+
+	// Create SoftDecoder using base class member
+	m_soft_decoder = new eDVBSoftDecoder(m_service_handler, m_dvb_service, m_decoder_index);
+	m_soft_decoder->setSession(m_csa_session);
+
+	// Connect to SoftDecoder's audio PID selection signal
+	// Note: Use a lambda to call the protected base class method
+	m_soft_decoder->m_audio_pid_selected.connect(
+		[this](int pid) { this->onSoftDecoderAudioPidSelected(pid); });
+
+	// Connect to session's activated signal - use FCC-specific callback!
+	// This is the key difference from base class: we use onFCCSessionActivated
+	// which handles FCC decoder stop/start properly
+	m_csa_session->activated.connect(
+		sigc::mem_fun(*this, &eDVBServiceFCCPlay::onFCCSessionActivated));
+
+	eDebug("[eDVBServiceFCCPlay] CSA session created for FCC, waiting for ECM analysis");
+}
+
+void eDVBServiceFCCPlay::activateFCCCSASession()
+{
+	if (!m_csa_session)
+		return;
+
+	// Check if CSA-ALT was detected during prepare phase
+	// isCsaAlt() returns true only if CSA-ALT was actually detected (not just analyzed)
+	if (m_csa_session->isCsaAlt())
+	{
+		eDebug("[eDVBServiceFCCPlay] CSA-ALT was detected, activating session for decoding");
+
+		// Force activate the session now that we're in decoding mode
+		// CWs should start arriving now that CA handler is active
+		m_csa_session->forceActivate();
+
+		// SoftDecoder will be started in updateFCCDecoder() when it sees the active session
+	}
+	else if (m_csa_session->isEcmAnalyzed())
+	{
+		eDebug("[eDVBServiceFCCPlay] ECM analyzed but no CSA-ALT, using HW descrambling");
+	}
+	else
+	{
+		eDebug("[eDVBServiceFCCPlay] No ECM analyzed yet, using HW descrambling");
+	}
+}
+
+void eDVBServiceFCCPlay::deactivateFCCCSASession()
+{
+	// Stop SoftDecoder when going back to prepare mode
+	if (m_soft_decoder && m_soft_decoder->isRunning())
+	{
+		eDebug("[eDVBServiceFCCPlay] Stopping SoftDecoder for FCC prepare mode");
+		m_soft_decoder->stop();
+	}
+
+	// Deactivate session but keep it around for next switch
+	if (m_csa_session && m_csa_session->isActive())
+	{
+		eDebug("[eDVBServiceFCCPlay] Deactivating CSA session for FCC prepare mode");
+		m_csa_session->forceDeactivate();
+	}
+}
+
+void eDVBServiceFCCPlay::onFCCSessionActivated(bool active)
+{
+	eDebug("[eDVBServiceFCCPlay] Session activated callback: active=%d, fcc_mode=%d", active, m_fcc_mode);
+
+	if (active && m_soft_decoder)
+	{
+		// CSA-ALT activated - handle decoder handover
+		eDebug("[eDVBServiceFCCPlay] CSA-ALT activated, handling decoder handover");
+
+		// Disconnect old video event connection
+		m_video_event_connection = nullptr;
+
+		// Release HW decoder resources if we're in decoding mode
+		if (m_fcc_mode == fcc_mode_decoding && m_decoder)
+		{
+			eDebug("[eDVBServiceFCCPlay] Releasing HW decoder for SoftDecoder");
+
+			// Stop FCC decoder first
+			if (m_fcc_flag & fcc_decoding)
+			{
+				m_decoder->fccDecoderStop();
+				m_fcc_flag &= ~fcc_decoding;
+			}
+
+			m_decoder->setVideoPID(-1, -1);
+			m_decoder->setAudioPID(-1, -1);
+			m_decoder->setSyncPCR(-1);
+			m_decoder->setTextPID(-1);
+			m_decoder->set();
+
+			// Start SoftDecoder now
+			if (!m_soft_decoder->isRunning())
+			{
+				eDebug("[eDVBServiceFCCPlay] Starting SoftDecoder (late activation)");
+				m_soft_decoder->start();
+			}
+		}
+	}
+	else if (!active && m_soft_decoder && m_soft_decoder->isRunning())
+	{
+		// Session deactivated - stop SoftDecoder
+		eDebug("[eDVBServiceFCCPlay] Session deactivated, stopping SoftDecoder");
+		m_soft_decoder->stop();
+	}
 }
 
 DEFINE_REF(eDVBServiceFCCPlay)

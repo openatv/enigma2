@@ -179,6 +179,7 @@ void eStreamClient::notifier(int what)
 				if (pos != std::string::npos) {
 					serviceref.erase(pos, std::string::npos);
 				}
+
 				pos = serviceref.find('?');
 				if (pos == std::string::npos)
 				{
@@ -454,7 +455,7 @@ PyObject *eStreamServer::getConnectedClientDetails(int index)
 					break;
 				}
 			}
-					
+				
 		}
 
 	}

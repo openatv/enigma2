@@ -1,27 +1,27 @@
 /*
   NOTE: you have two options when adding classes so that
   they are callable *from* python.
-  
+
    - either you %include the header file
    - or you re-declare it
-   
+
   In both cases, you must #include the required
   header file (i.e. the header file itself), otherwise
   enigma_python_wrap.cxx won't build.
-  
+
 	In case you import the whole header file,
 	please make sure that no unimportant stuff
 	is wrapped, as this makes the wrapper stuff
-	much more complex and it can probably break 
+	much more complex and it can probably break
 	very easily because of missing typemaps etc.
-	
+
 	you could make use of dizzy macros to ensure
 	that some stuff is left out when parsed as SWIG
-	definitions, but be sure to not modify the binary 
+	definitions, but be sure to not modify the binary
 	representation. DON'T USE #ifdef SWIG_COMPILE
 	for leaving out stuff (unless you *really* know
 	what you are doing,of course!). you WILL break it.
-		
+
 	The better way (with more work) is to re-declare
 	the class. It won't be compiled, so you can
 	leave out stuff as you like.
@@ -29,7 +29,7 @@
 
 
 Oh, things like "operator= is private in this context" etc.
-is usually caused by not marking PSignals as immutable. 
+is usually caused by not marking PSignals as immutable.
 */
 
 %module enigma
@@ -97,6 +97,8 @@ is usually caused by not marking PSignals as immutable.
 #include <lib/dvb/epgcache.h>
 #include <lib/dvb/dvbtime.h>
 #include <lib/dvb/pmt.h>
+#include <lib/dvb/cahandler.h>
+#include <lib/dvb/csaengine.h>
 #include <lib/dvb/fastscan.h>
 #include <lib/dvb/cablescan.h>
 #include <lib/dvb/encoder.h>
@@ -251,6 +253,8 @@ typedef long time_t;
 %include <lib/dvb/dvb.h>
 %include <lib/dvb/frontend.h>
 %include <lib/dvb/pmt.h>
+%include <lib/dvb/cahandler.h>
+%include <lib/dvb/csaengine.h>
 %include <lib/dvb/fastscan.h>
 %include <lib/dvb/cablescan.h>
 %include <lib/components/scan.h>
@@ -348,7 +352,7 @@ public:
 
 %{
 RESULT SwigFromPython(ePtr<gPixmap> &result, PyObject *obj)
-{	
+{
 	ePtr<gPixmap> *res;
 
 	res = 0;
