@@ -3061,12 +3061,28 @@ RESULT eDVBServicePlay::startTimeshift()
 	m_record->enableAccessPoints(false); // no need for AP information during shift
 	m_record->connectEvent(sigc::mem_fun(*this, &eDVBServicePlay::recordEvent), m_con_record_event);
 
-	// If software descrambling is active, attach the CSA session to the timeshift recorder
-	// Both SoftDecoder's recorder and this recorder read from the same data demux
+	// If software descrambling is active, create a SEPARATE CSA session for timeshift
 	if (m_csa_session && m_csa_session->isActive())
 	{
-		eDebug("[eDVBServicePlay] Attaching CSA descrambler to timeshift recorder");
-		m_record->setDescrambler(static_cast<iServiceScrambled*>(m_csa_session.operator->()));
+		eDebug("[eDVBServicePlay] Creating CSA session for timeshift");
+
+		// Create independent session for timeshift
+		eServiceReferenceDVB ref = (eServiceReferenceDVB&)m_reference;
+		m_timeshift_csa_session = new eDVBCSASession(ref);
+		if (m_timeshift_csa_session && m_timeshift_csa_session->init())
+		{
+			// Copy ecm_mode from live session and activate immediately
+			// No need for ECM monitor - live session already did the analysis
+			m_timeshift_csa_session->forceActivate();
+
+			eDebug("[eDVBServicePlay] Attaching timeshift CSA session to recorder");
+			m_record->setDescrambler(static_cast<iServiceScrambled*>(m_timeshift_csa_session.operator->()));
+		}
+		else
+		{
+			eWarning("[eDVBServicePlay] Failed to create timeshift CSA session");
+			m_timeshift_csa_session = nullptr;
+		}
 	}
 
 	m_timeshift_enabled = 1;
@@ -3111,11 +3127,12 @@ RESULT eDVBServicePlay::stopTimeshift(bool swToLive)
 	// recorder stop() removes PID filters from the same demux, killing the new thread.
 	if (m_record)
 	{
-		// Detach CSA session from recorder before stopping
-		if (m_csa_session)
+		// Detach and cleanup timeshift's own CSA session
+		if (m_timeshift_csa_session)
 		{
-			eDebug("[eDVBServicePlay] Detaching CSA descrambler from timeshift recorder");
+			eDebug("[eDVBServicePlay] Detaching and destroying timeshift CSA session");
 			m_record->setDescrambler(nullptr);
+			m_timeshift_csa_session = nullptr;  // Release the separate timeshift session
 		}
 		m_record->stop();
 		m_record = 0;
@@ -4491,6 +4508,12 @@ void eDVBServicePlay::cleanupSoftwareDescrambling()
 	{
 		eDebug("[eDVBServicePlay] Cleaning up CSA session");
 		m_csa_session = nullptr;
+	}
+
+	if (m_timeshift_csa_session)
+	{
+		eDebug("[eDVBServicePlay] Cleaning up timeshift CSA session");
+		m_timeshift_csa_session = nullptr;
 	}
 
 	m_csa_activated_conn = nullptr;

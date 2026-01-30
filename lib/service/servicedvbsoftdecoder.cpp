@@ -21,6 +21,7 @@ eDVBSoftDecoder::eDVBSoftDecoder(eDVBServicePMTHandler& source_handler,
 	, m_last_pts(0)
 	, m_stall_count(0)
 	, m_stream_stalled(false)
+	, m_paused(false)
 {
 	eDebug("[SoftDecoder] Created for decoder %d", decoder_index);
 }
@@ -137,6 +138,7 @@ void eDVBSoftDecoder::startDecoderWithDvrWait()
 	m_last_pts = 0;
 	m_stall_count = 0;
 	m_stream_stalled = false;
+	m_paused = false;
 	m_health_timer->start(500, false);
 }
 
@@ -236,6 +238,7 @@ void eDVBSoftDecoder::stop()
 	m_last_pts = 0;
 	m_stall_count = 0;
 	m_stream_stalled = false;
+	m_paused = false;
 	eDebug("[SoftDecoder] Stop complete");
 }
 
@@ -381,6 +384,10 @@ void eDVBSoftDecoder::recordEvent(int event)
 void eDVBSoftDecoder::streamHealthCheck()
 {
 	if (!m_decoder || !m_running || m_stopping || !m_decoder_started)
+		return;
+
+	// Don't check for stalls while paused - PTS naturally stops
+	if (m_paused)
 		return;
 
 	pts_t current_pts = 0;
@@ -673,6 +680,7 @@ void eDVBSoftDecoder::videoEvent(struct iTSMPEGDecoder::videoEvent event)
 
 int eDVBSoftDecoder::play()
 {
+	m_paused = false;
 	if (m_decoder)
 		return m_decoder->play();
 	return -1;
@@ -680,6 +688,7 @@ int eDVBSoftDecoder::play()
 
 int eDVBSoftDecoder::pause()
 {
+	m_paused = true;
 	if (m_decoder)
 		return m_decoder->pause();
 	return -1;
