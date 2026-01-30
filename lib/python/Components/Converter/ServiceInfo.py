@@ -58,6 +58,7 @@ class ServiceInfo(Converter):
 	VPID = 44
 	XRES = 45
 	YRES = 46
+	IS_SOFTCSA = 47
 
 	VIDEO_INFO_WIDTH = 0
 	VIDEO_INFO_HEIGHT = 1
@@ -90,6 +91,7 @@ class ServiceInfo(Converter):
 			"Is576": (self.IS_576, (iPlayableService.evVideoSizeChanged,)),
 			"Is720": (self.IS_720, (iPlayableService.evVideoSizeChanged,)),
 			"IsCrypted": (self.IS_CRYPTED, (iPlayableService.evUpdatedInfo,)),
+			"IsSoftCSA": (self.IS_SOFTCSA, (iPlayableService.evUpdatedInfo,)),
 			"IsHD": (self.IS_HD, (iPlayableService.evVideoSizeChanged, iPlayableService.evVideoGammaChanged)),
 			"IsHDHDR": (self.IS_HDHDR, (iPlayableService.evVideoSizeChanged, iPlayableService.evVideoGammaChanged)),
 			"IsHDR": (self.IS_HDR, (iPlayableService.evVideoSizeChanged, iPlayableService.evVideoGammaChanged)),
@@ -176,7 +178,9 @@ class ServiceInfo(Converter):
 				case self.IS_720:
 					result = videoHeight > 700 and videoHeight <= 720
 				case self.IS_CRYPTED:
-					result = info.getInfo(iServiceInformation.sIsCrypted) == 1
+					result = info.getInfo(iServiceInformation.sIsCrypted) == 1 and info.getInfo(iServiceInformation.sIsSoftCSA) != 1
+				case self.IS_SOFTCSA:
+					result = info.getInfo(iServiceInformation.sIsSoftCSA) == 1
 				case self.IS_HD:
 					result = videoHeight > 700 and videoHeight <= 1080 and videoGamma < 1
 				case self.IS_HDHDR:

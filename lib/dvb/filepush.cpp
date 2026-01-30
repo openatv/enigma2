@@ -1,5 +1,6 @@
 #include "filepush.h"
 #include <lib/base/eerror.h>
+#include <lib/base/esimpleconfig.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <sys/ioctl.h>
@@ -46,7 +47,7 @@ static void ignore_but_report_signals()
 	sigaddset(&sigmask, SIGUSR1);
 	pthread_sigmask(SIG_UNBLOCK, &sigmask, NULL);
 #endif
-	
+
 	/* we set the signal to not restart syscalls, so we can detect our signal. */
 	struct sigaction act = {};
 	act.sa_handler = signal_handler; // no, SIG_IGN doesn't do it. we want to receive the -EINTR
@@ -139,7 +140,13 @@ void eFilePushThread::thread()
 					struct pollfd pfd = {};
 					pfd.fd = m_fd_dest;
 					pfd.events = POLLIN;
+#ifdef DREAMNEXTGEN
+					// Shorter poll timeout for timeshift to reduce blocking
+					int poll_timeout = (m_flags == 1) ? 100 : 250;
+					switch (poll(&pfd, 1, poll_timeout))
+#else
 					switch (poll(&pfd, 1, 250)) // wait for 250ms
+#endif
 					{
 					case 0:
 						if ((++poll_timeout_count % 20) == 0)
@@ -177,7 +184,11 @@ void eFilePushThread::thread()
 					continue;
 				}
 				else if (m_flags == 1) { // timeshift
+#ifdef DREAMNEXTGEN
+					usleep(15000);  // 15 milliseconds - balance between responsiveness and CPU
+#else
 					usleep(200000);  // 200 milliseconds
+#endif
 					continue;
 				}
 				else if (++eofcount < 10)
@@ -214,6 +225,9 @@ void eFilePushThread::thread()
 #endif
 #if HAVE_HISILICON
 							usleep(100000); // 100 milliseconds
+#endif
+#ifdef DREAMNEXTGEN
+							usleep(2000); // 2ms, fast retry to keep audio fed
 #endif
 							continue;
 						}
@@ -344,10 +358,20 @@ eFilePushThreadRecorder::eFilePushThreadRecorder(unsigned char *buffer, size_t b
 																							 m_buffer(buffer),
 																							 m_overflow_count(0),
 																							 m_stop(1),
+																							 m_buffer_fill(0),
+																							 m_buffer_min_write(0),
 																							 m_messagepump(eApp, 0, "eFilePushThreadRecorder")
 {
 	m_protocol = m_stream_id = m_session_id = m_packet_no = 0;
 	CONNECT(m_messagepump.recv_msg, eFilePushThreadRecorder::recvEvent);
+
+	/* Read accumulation threshold: 32 KB fixed */
+	/* This reduces syscall overhead on boxes with small DVR read sizes (e.g. SF8008: 564 bytes) */
+	m_buffer_min_write = 32 * 1024;
+
+	/* Ensure min_write doesn't exceed buffer size */
+	if (m_buffer_min_write > m_buffersize)
+		m_buffer_min_write = m_buffersize;
 }
 
 #define copy16(a, i, v)           \
@@ -501,7 +525,7 @@ void eFilePushThreadRecorder::thread()
 	hasStarted(); /* "start()" blocks until we get here */
 #endif
 	setIoPrio(IOPRIO_CLASS_RT, 7);
-	eDebug("[eFilePushThreadRecorder] THREAD START");
+	eDebug("[eFilePushThreadRecorder] THREAD START (min_write=%zu KB, buffersize=%zu KB)", m_buffer_min_write >> 10, m_buffersize >> 10);
 
 #ifdef HAVE_HISILICON
 	/* we set the signal to not restart syscalls, so we can detect our signal. */
@@ -518,51 +542,84 @@ void eFilePushThreadRecorder::thread()
 		int flags = fcntl(m_fd_source, F_GETFL, 0);
 		flags |= O_NONBLOCK;
 		if (fcntl(m_fd_source, F_SETFL, flags) == -1)
-			eDebug("failed setting DMX handle %d in non-blocking mode, error %d: %s", m_fd_source, errno, strerror(errno));
+			eDebug("[eFilePushThreadRecorder] failed setting DMX handle %d in non-blocking mode, error %d: %s", m_fd_source, errno, strerror(errno));
 	}
+
+	m_buffer_fill = 0;
+
 	/* m_stop must be evaluated after each syscall */
 	/* if it isn't, there's a chance of the thread becoming deadlocked when recordings are finishing */
 	while (!m_stop)
 	{
 		ssize_t bytes;
 		if (m_protocol == _PROTO_RTSP_TCP)
-			bytes = read_dmx(m_fd_source, m_buffer, m_buffersize);
+		{
+			bytes = read_dmx(m_fd_source, m_buffer + m_buffer_fill, m_buffersize - m_buffer_fill);
+		}
 		else
 		{
-#ifndef HAVE_HISILICON
 		/* this works around the buggy Broadcom encoder that always returns even if there is no data */
 		/* (works like O_NONBLOCK even when not opened as such), prevent idle waiting for the data */
 		/* this won't ever hurt, because it will return immediately when there is data or an error condition */
+		/* All platforms now use poll() - this replaces the HiSilicon-specific usleep(100000) */
 
 		struct pollfd pfd = { m_fd_source, POLLIN, 0 };
-		poll(&pfd, 1, 100);
+		int poll_ret = poll(&pfd, 1, 100);
 		/* Reminder: m_stop *must* be evaluated after each syscall. */
 		if (m_stop)
 			break;
 
-		bytes = ::read(m_fd_source, m_buffer, m_buffersize);
+		if (poll_ret == 0)
+		{
+			/* Timeout - flush accumulated data if any */
+			if (m_buffer_fill > 0)
+			{
+				int w = writeData(m_buffer_fill);
+				if (w < 0)
+				{
+					eDebug("[eFilePushThreadRecorder] WRITE ERROR on timeout flush: %m");
+					sendEvent(evtWriteError);
+					break;
+				}
+				m_buffer_fill = 0;
+			}
+			continue;
+		}
+
+		if (poll_ret < 0)
+		{
+			if (errno == EINTR)
+				continue;
+			eDebug("[eFilePushThreadRecorder] poll error: %m");
+			break;
+		}
+
+		/* Read into buffer at current fill position */
+		bytes = ::read(m_fd_source, m_buffer + m_buffer_fill, m_buffersize - m_buffer_fill);
 		/* And again: Check m_stop regardless of read success. */
 		if (m_stop)
 			break;
-#else
-		bytes = ::read(m_fd_source, m_buffer, m_buffersize);
-#endif
 		}
+
 		if (bytes < 0)
 		{
 			bytes = 0;
-#if HAVE_HISILICON
-			/* Check m_stop after interrupted syscall. */
 			if (m_stop)
-			{
 				break;
-			}
-#endif
 			if (errno == EINTR || errno == EBUSY || errno == EAGAIN)
 			{
-#if HAVE_HISILICON
-				usleep(100000);
-#endif
+				/* No data available - flush what we have if any */
+				if (m_buffer_fill > 0)
+				{
+					int w = writeData(m_buffer_fill);
+					if (w < 0)
+					{
+						eDebug("[eFilePushThreadRecorder] WRITE ERROR on EAGAIN flush: %m");
+						sendEvent(evtWriteError);
+						break;
+					}
+					m_buffer_fill = 0;
+				}
 				continue;
 			}
 			if (errno == EOVERFLOW)
@@ -576,24 +633,50 @@ void eFilePushThreadRecorder::thread()
 			break;
 		}
 
-#ifdef SHOW_WRITE_TIME
-		struct timeval starttime = {};
-		struct timeval now = {};
-		gettimeofday(&starttime, NULL);
-#endif
-		int w = writeData(bytes);
-#ifdef SHOW_WRITE_TIME
-		gettimeofday(&now, NULL);
-		suseconds_t diff = (1000000 * (now.tv_sec - starttime.tv_sec)) + now.tv_usec - starttime.tv_usec;
-		eDebug("[eFilePushThreadRecorder] write %d bytes time: %9u us", bytes, (unsigned int)diff);
-#endif
-		if (w < 0)
+		/* Accumulate data */
+		m_buffer_fill += bytes;
+
+		/* Check if we have enough data to write */
+		if (m_buffer_fill >= m_buffer_min_write || m_buffer_fill >= m_buffersize)
 		{
-			eDebug("[eFilePushThreadRecorder] WRITE ERROR, aborting thread: %m");
-			sendEvent(evtWriteError);
-			break;
+#ifdef SHOW_WRITE_TIME
+			struct timeval starttime = {};
+			struct timeval now = {};
+			gettimeofday(&starttime, NULL);
+#endif
+			int w = writeData(m_buffer_fill);
+#ifdef SHOW_WRITE_TIME
+			gettimeofday(&now, NULL);
+			suseconds_t diff = (1000000 * (now.tv_sec - starttime.tv_sec)) + now.tv_usec - starttime.tv_usec;
+			eDebug("[eFilePushThreadRecorder] write %zu bytes time: %9u us", m_buffer_fill, (unsigned int)diff);
+#endif
+			if (w < 0)
+			{
+				eDebug("[eFilePushThreadRecorder] WRITE ERROR, aborting thread: %m");
+				sendEvent(evtWriteError);
+				break;
+			}
+			if (w == 0)
+			{
+				/* writeData returned 0 (destination not ready / poll timeout) */
+				/* Keep data in buffer and retry on next iteration */
+				usleep(1000);
+			}
+			else
+			{
+				/* Write successful, clear buffer */
+				m_buffer_fill = 0;
+			}
 		}
 	}
+
+	/* Flush remaining data */
+	if (m_buffer_fill > 0)
+	{
+		writeData(m_buffer_fill);
+		m_buffer_fill = 0;
+	}
+
 	flush();
 	sendEvent(evtStopped);
 	eDebug("[eFilePushThreadRecorder] THREAD STOP");
