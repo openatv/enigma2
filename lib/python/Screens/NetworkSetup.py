@@ -80,7 +80,7 @@ class NetworkAdapterSelection(Screen):
 		self["introduction"] = StaticText(self.edittext)
 		self["OkCancelActions"] = HelpableActionMap(self, ["OkCancelActions", "ColorActions", "MenuActions"], {
 			"cancel": (self.close, _("Exit network interface list")),
-			"ok": (self.okbuttonClick, _("Select interface")),
+			"ok": (self.menubuttonClick, _("Select interface")),
 			"red": (self.close, _("Exit network interface list")),
 			"green": (self.okbuttonClick, _("Select interface")),
 			"yellow": (self.restartLanAsk, _("Restart network to with current setup")),
