@@ -75,6 +75,13 @@ void eStreamClient::notifier(int what)
 	{
 		rsn->stop();
 		stop();
+		// Free encoder on disconnect
+		if (encoderFd >= 0)
+		{
+			eDebug("[eStreamClient] connection lost: freeing encoder fd=%d", encoderFd);
+			if (eEncoder::getInstance()) eEncoder::getInstance()->freeEncoder(encoderFd);
+			encoderFd = -1;
+		}
 		parent->connectionLost(this);
 		return;
 	}
@@ -172,6 +179,7 @@ void eStreamClient::notifier(int what)
 				if (pos != std::string::npos) {
 					serviceref.erase(pos, std::string::npos);
 				}
+
 				pos = serviceref.find('?');
 				if (pos == std::string::npos)
 				{
@@ -303,8 +311,16 @@ void eStreamClient::notifier(int what)
 
 void eStreamClient::stopStream()
 {
-	ePtr<eStreamClient> ref = this;
 	rsn->stop();
+	// Free encoder BEFORE connectionLost removes us from the list
+	// This ensures the encoder is released even if the destructor is delayed
+	if (encoderFd >= 0)
+	{
+		eDebug("[eStreamClient] stopStream: freeing encoder fd=%d", encoderFd);
+		if (eEncoder::getInstance()) eEncoder::getInstance()->freeEncoder(encoderFd);
+		encoderFd = -1;
+	}
+	ePtr<eStreamClient> ref = this;
 	parent->connectionLost(this);
 }
 
@@ -439,7 +455,7 @@ PyObject *eStreamServer::getConnectedClientDetails(int index)
 					break;
 				}
 			}
-					
+				
 		}
 
 	}

@@ -23,7 +23,7 @@ from Screens.Screen import Screen
 from Screens.Setup import Setup
 from Screens.TimerEdit import TimerSanityConflict
 from Screens.TimerEntry import InstantRecordTimerEntry, TimerEntry
-
+from Tools.FallbackTimer import FallbackTimerList
 
 try:  # PiPServiceRelation installed?
 	from Plugins.SystemPlugins.PiPServiceRelation.plugin import getRelationDict
@@ -1391,28 +1391,52 @@ class EPGSelection(Screen):
 		self.RecordTimerQuestion(True)
 
 	def editTimer(self, timer):
+		prevExternal = timer.external
 		self.session.open(TimerEntry, timer)
+		if prevExternal and not timer.external:
+			def fallbackInitDone():
+				fallbackTimer.removeTimer(timer, self.refreshlist)
+			fallbackTimer = FallbackTimerList(self, fallbackInitDone)
+		elif timer.external:
+			def fallbackInitDone():
+				fallbackTimer.editTimer(timer, self.refreshlist)
+			fallbackTimer = FallbackTimerList(self, fallbackInitDone)
 
 	def removeTimer(self, timer):
 		self.closeChoiceBoxDialog()
 		timer.afterEvent = AFTEREVENT.NONE
-		self.session.nav.RecordTimer.removeEntry(timer)
+		if timer.external:
+			def fallbackInitDone():
+				fallbackTimer.removeTimer(timer, self.refreshlist)
+			fallbackTimer = FallbackTimerList(self, fallbackInitDone)
+		else:
+			self.session.nav.RecordTimer.removeEntry(timer)
 		self.setTimerButtonText(_("Add Timer"))
 		self.key_green_choice = self.ADD_TIMER
 		self.refreshlist()
 
 	def disableTimer(self, timer):
 		self.closeChoiceBoxDialog()
-		timer.disable()
-		self.session.nav.RecordTimer.timeChanged(timer)
+		if timer.external:
+			def fallbackInitDone():
+				fallbackTimer.toggleTimer(timer, self.refreshlist)
+			fallbackTimer = FallbackTimerList(self, fallbackInitDone)
+		else:
+			timer.disable()
+			self.session.nav.RecordTimer.timeChanged(timer)
 		self.setTimerButtonText(_("Add Timer"))
 		self.key_green_choice = self.ADD_TIMER
 		self.refreshlist()
 
 	def enableTimer(self, timer):
 		self.closeChoiceBoxDialog()
-		timer.enable()
-		self.session.nav.RecordTimer.timeChanged(timer)
+		if timer.external:
+			def fallbackInitDone():
+				fallbackTimer.toggleTimer(timer, self.refreshlist)
+			fallbackTimer = FallbackTimerList(self, fallbackInitDone)
+		else:
+			timer.enable()
+			self.session.nav.RecordTimer.timeChanged(timer)
 		self.setTimerButtonText(_("Add Timer"))
 		self.key_green_choice = self.ADD_TIMER
 		self.refreshlist()
@@ -1566,27 +1590,32 @@ class EPGSelection(Screen):
 			return
 		if answer[0]:
 			entry = answer[1]
-			simulTimerList = self.session.nav.RecordTimer.record(entry)
-			if simulTimerList is not None:
-				for x in simulTimerList:
-					if x.setAutoincreaseEnd(entry):
-						self.session.nav.RecordTimer.timeChanged(x)
+			if entry.external:
+				def fallbackInitDone():
+					fallbackTimer.addTimer(entry, self.refreshlist)
+				fallbackTimer = FallbackTimerList(self, fallbackInitDone)
+			else:
 				simulTimerList = self.session.nav.RecordTimer.record(entry)
 				if simulTimerList is not None:
-					if not entry.repeated and not config.recording.margin_before.value and not config.recording.margin_after.value and len(simulTimerList) > 1:
-						change_time = False
-						conflict_begin = simulTimerList[1].begin
-						conflict_end = simulTimerList[1].end
-						if conflict_begin == entry.end:
-							entry.end -= 30
-							change_time = True
-						elif entry.begin == conflict_end:
-							entry.begin += 30
-							change_time = True
-						if change_time:
-							simulTimerList = self.session.nav.RecordTimer.record(entry)
+					for x in simulTimerList:
+						if x.setAutoincreaseEnd(entry):
+							self.session.nav.RecordTimer.timeChanged(x)
+					simulTimerList = self.session.nav.RecordTimer.record(entry)
 					if simulTimerList is not None:
-						self.session.openWithCallback(self.finishSanityCorrection, TimerSanityConflict, simulTimerList)
+						if not entry.repeated and not config.recording.margin_before.value and not config.recording.margin_after.value and len(simulTimerList) > 1:
+							change_time = False
+							conflict_begin = simulTimerList[1].begin
+							conflict_end = simulTimerList[1].end
+							if conflict_begin == entry.end:
+								entry.end -= 30
+								change_time = True
+							elif entry.begin == conflict_end:
+								entry.begin += 30
+								change_time = True
+							if change_time:
+								simulTimerList = self.session.nav.RecordTimer.record(entry)
+						if simulTimerList is not None:
+							self.session.openWithCallback(self.finishSanityCorrection, TimerSanityConflict, simulTimerList)
 			self.setTimerButtonText(_("Change Timer"))
 			self.key_green_choice = self.REMOVE_TIMER
 		else:

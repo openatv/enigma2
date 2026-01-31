@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-17 09:22+0000\n"
+"POT-Creation-Date: 2026-01-30 19:51+0100\n"
 "PO-Revision-Date: 2025-12-04 11:00+0000\n"
 "Last-Translator: Abdulelah Aqeil <dr.aqeil@gmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ar/>\n"
@@ -6058,6 +6058,12 @@ msgstr ""
 msgid "Debug log time format *"
 msgstr ""
 
+msgid "Decoder release strategy"
+msgstr ""
+
+msgid "Decoder start timeout"
+msgstr ""
+
 #
 #, fuzzy
 msgid "Decryption & Parental Control"
@@ -8069,9 +8075,6 @@ msgstr ""
 msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr ""
 
-msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
-msgstr ""
-
 msgid "Error text:"
 msgstr ""
 
@@ -8353,9 +8356,6 @@ msgstr ""
 msgid "Exit editor and save any changes"
 msgstr ""
 
-msgid "Exit image viewer"
-msgstr ""
-
 msgid "Exit input device selection."
 msgstr "إختيار خروج وإدخال الجهاز."
 
@@ -8382,6 +8382,9 @@ msgstr "الخروج من قائمة واجهة الشبكة"
 
 msgid "Exit network wizard"
 msgstr "خروج من نافذة إعدادات الشبكة"
+
+msgid "Exit picture viewer"
+msgstr ""
 
 msgid "Exit quad PiP"
 msgstr ""
@@ -8765,12 +8768,6 @@ msgstr ""
 msgid "File Commander Hashes / Checksums"
 msgstr ""
 
-msgid "File Commander Image Viewer"
-msgstr ""
-
-msgid "File Commander Image Viewer Actions"
-msgstr ""
-
 msgid "File Commander Information Actions"
 msgstr ""
 
@@ -8784,6 +8781,12 @@ msgid "File Commander Move"
 msgstr ""
 
 msgid "File Commander Navigation Actions"
+msgstr ""
+
+msgid "File Commander Picture Viewer"
+msgstr ""
+
+msgid "File Commander Picture Viewer Actions"
 msgstr ""
 
 msgid "File Commander Selection Actions"
@@ -9891,6 +9894,9 @@ msgid "Hours Minutes"
 msgstr ""
 
 msgid "Hours Minutes Seconds"
+msgstr ""
+
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
 msgstr ""
 
 msgid "Http(s) stream start delay"
@@ -11771,6 +11777,9 @@ msgid "Maximum number of days in EPG"
 msgstr ""
 
 msgid "Maximum space used (MB)"
+msgstr ""
+
+msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
 msgstr ""
 
 msgid "Mayotte"
@@ -14577,7 +14586,7 @@ msgstr ""
 msgid "Please wait, flash memory is being copied to this flash expander. This could take a number of minutes to complete."
 msgstr ""
 
-msgid "Please wait, loading image..."
+msgid "Please wait, loading picture..."
 msgstr ""
 
 msgid "Please wait, swap is is being created. This could take a few minutes to complete."
@@ -17384,6 +17393,9 @@ msgstr "حدد السرعة التي يجب ان يتحرك بها الطبق ب
 msgid "Select how the arrow buttons 'UP', 'DOWN', 'LEFT' or 'RIGHT' will act during seek actions."
 msgstr ""
 
+msgid "Select how the descrambled data stream is processed. 'Automatic' uses asynchronous writes (lower CPU usage) with automatic fallback to synchronous if kernel AIO is not supported. 'Synchronous' forces blocking writes (stable, most compatible)."
+msgstr ""
+
 msgid "Select how the number buttons will act during seek actions."
 msgstr ""
 
@@ -17649,8 +17661,9 @@ msgstr ""
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr ""
 
+#. TRANSLATORS: "Select the file sort order for the %s:" / the placeholder is "left column" or "right column".
 #, python-format
-msgid "Select the file sort order for the %s column:"
+msgid "Select the file sort order for the %s:"
 msgstr ""
 
 msgid "Select the file system for the device."
@@ -19115,7 +19128,7 @@ msgstr "عرض قائمة المفضلات"
 msgid "Show files backed up by default"
 msgstr ""
 
-msgid "Show first image"
+msgid "Show first picture"
 msgstr ""
 
 msgid "Show free space in timer view"
@@ -19157,7 +19170,7 @@ msgstr "عرض سطر المعلومات"
 msgid "Show job tasks in Extension Menu"
 msgstr ""
 
-msgid "Show last image"
+msgid "Show last picture"
 msgstr ""
 
 msgid "Show list of bouquets"
@@ -19203,9 +19216,6 @@ msgid "Show next debug log file"
 msgstr ""
 
 msgid "Show next event"
-msgstr ""
-
-msgid "Show next image"
 msgstr ""
 
 msgid "Show next page"
@@ -19276,9 +19286,6 @@ msgid "Show previous debug log file"
 msgstr ""
 
 msgid "Show previous event"
-msgstr ""
-
-msgid "Show previous image"
 msgstr ""
 
 msgid "Show previous page"
@@ -19927,6 +19934,9 @@ msgstr ""
 msgid "Socket"
 msgstr "مغلق"
 
+msgid "SoftCSA Settings"
+msgstr ""
+
 msgid "Softcam"
 msgstr ""
 
@@ -19967,6 +19977,9 @@ msgid "Software Update"
 msgstr ""
 
 msgid "Software Update Actions"
+msgstr ""
+
+msgid "Software descrambling"
 msgstr ""
 
 msgid "Software information"
@@ -20845,6 +20858,9 @@ msgid "Sync time using"
 msgstr ""
 
 msgid "Synchronize system time using transponder or Internet."
+msgstr ""
+
+msgid "Synchronous"
 msgstr ""
 
 msgid "Syrian Arab Republic"
@@ -22197,10 +22213,10 @@ msgstr ""
 msgid "Toggle between the available TV and RADIO services"
 msgstr ""
 
-msgid "Toggle display of image information"
+msgid "Toggle display of picture information"
 msgstr ""
 
-msgid "Toggle display of the image status overlay"
+msgid "Toggle display of the picture status overlay"
 msgstr ""
 
 msgid "Toggle enable/disable of the currently selected timer"
@@ -24746,6 +24762,9 @@ msgstr "مسارات الصوت"
 msgid "automatic"
 msgstr "تلقائي"
 
+msgid "Available"
+msgstr ""
+
 #
 msgid "back"
 msgstr "للخلف"
@@ -25003,6 +25022,9 @@ msgstr ""
 msgid "left"
 msgstr "يسار"
 
+msgid "left column"
+msgstr ""
+
 msgid "length"
 msgstr "طول"
 
@@ -25155,6 +25177,9 @@ msgstr "عوده للفصل السابق"
 
 msgid "right"
 msgstr "يمين"
+
+msgid "right column"
+msgstr ""
 
 msgid ""
 "satellites.xml not found or corrupted!\n"

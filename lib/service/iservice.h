@@ -206,7 +206,7 @@ public:
 	bool operator<(const eServiceReference &c) const
 	{
 		if (!c) return 0;
-		
+
 		if (type < c.type)
 			return 1;
 
@@ -426,6 +426,7 @@ public:
 		sVideoInfo,
 		sExtendedDescription,
 		sIsRecoveringStream,
+		sIsSoftCSA,			/* 1 if current service uses software descrambling */
 
 		sUser = 0x100
 	};

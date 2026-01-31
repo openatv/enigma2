@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-17 09:22+0000\n"
+"POT-Creation-Date: 2026-01-30 19:51+0100\n"
 "PO-Revision-Date: 2025-11-11 20:51+0000\n"
 "Last-Translator: Daniel Nylander <daniel@danielnylander.se>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sv/>\n"
@@ -5980,6 +5980,12 @@ msgstr "Felsökningsloggar"
 msgid "Debug log time format *"
 msgstr "Tidsformat för debugglogg *"
 
+msgid "Decoder release strategy"
+msgstr ""
+
+msgid "Decoder start timeout"
+msgstr ""
+
 #
 msgid "Decryption & Parental Control"
 msgstr "Dekryptering och föräldrakontroll"
@@ -8054,9 +8060,6 @@ msgstr "Fel vid läsning av webbsida!"
 msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr "Fel vid hämtning av 'epg.dat' från fjärrmottagaren!"
 
-msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
-msgstr "Fel vid hämtning av platsen för 'epg.dat' på fjärrmottagaren!"
-
 msgid "Error text:"
 msgstr "Felaktig text:"
 
@@ -8356,9 +8359,6 @@ msgstr "Avsluta editorn och kassera eventuella ändringar"
 msgid "Exit editor and save any changes"
 msgstr "Avsluta editorn och spara eventuella ändringar"
 
-msgid "Exit image viewer"
-msgstr "Avsluta bildvisaren"
-
 msgid "Exit input device selection."
 msgstr "Avsluta valet av inmatningsenhet."
 
@@ -8391,6 +8391,9 @@ msgstr "Avsluta lista över nätverksgränssnitt"
 #
 msgid "Exit network wizard"
 msgstr "Avsluta nätverksguiden"
+
+msgid "Exit picture viewer"
+msgstr "Avsluta bildvisaren"
 
 msgid "Exit quad PiP"
 msgstr "Utgång Quad PiP"
@@ -8774,12 +8777,6 @@ msgstr "File Commander Hash / Checksum Åtgärder"
 msgid "File Commander Hashes / Checksums"
 msgstr "File Commander Hashes / Checksummor"
 
-msgid "File Commander Image Viewer"
-msgstr "File Commander Bildvisare"
-
-msgid "File Commander Image Viewer Actions"
-msgstr "File Commander Bildvisare Åtgärder"
-
 msgid "File Commander Information Actions"
 msgstr "File Commander Information Åtgärder"
 
@@ -8794,6 +8791,12 @@ msgstr "File Commander Flytta"
 
 msgid "File Commander Navigation Actions"
 msgstr "Åtgärder för navigering i File Commander"
+
+msgid "File Commander Picture Viewer"
+msgstr "File Commander Bildvisare"
+
+msgid "File Commander Picture Viewer Actions"
+msgstr "File Commander Bildvisare Åtgärder"
 
 msgid "File Commander Selection Actions"
 msgstr "Val av åtgärder i File Commander"
@@ -9905,6 +9908,9 @@ msgstr "Timmar Minuter"
 
 msgid "Hours Minutes Seconds"
 msgstr "Timmar Minuter Sekunder"
+
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
+msgstr ""
 
 msgid "Http(s) stream start delay"
 msgstr "Fördröjning av start av Http(s)-ström"
@@ -11805,6 +11811,9 @@ msgstr "Maximalt antal dagar i EPG"
 
 msgid "Maximum space used (MB)"
 msgstr "Maximalt använt utrymme (MB)"
+
+msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
+msgstr ""
 
 msgid "Mayotte"
 msgstr "Mayotte"
@@ -14641,7 +14650,7 @@ msgstr "Vänligen vänta, kopian av flashminnet håller på att raderas. Detta k
 msgid "Please wait, flash memory is being copied to this flash expander. This could take a number of minutes to complete."
 msgstr "Vänta lite, flashminnet kopieras till denna flashexpander. Detta kan ta ett antal minuter att slutföra."
 
-msgid "Please wait, loading image..."
+msgid "Please wait, loading picture..."
 msgstr "Vänligen vänta, laddar bilden..."
 
 msgid "Please wait, swap is is being created. This could take a few minutes to complete."
@@ -17501,6 +17510,9 @@ msgstr "Välj hur snabbt parabolen ska förflytta sig mellan satelliterna."
 msgid "Select how the arrow buttons 'UP', 'DOWN', 'LEFT' or 'RIGHT' will act during seek actions."
 msgstr "Välj hur pilknapparna ('UP', 'DOWN', 'LEFT' och 'RIGHT') ska fungera under sökningen."
 
+msgid "Select how the descrambled data stream is processed. 'Automatic' uses asynchronous writes (lower CPU usage) with automatic fallback to synchronous if kernel AIO is not supported. 'Synchronous' forces blocking writes (stable, most compatible)."
+msgstr ""
+
 msgid "Select how the number buttons will act during seek actions."
 msgstr "Välj hur sifferknapparna ska fungera under sökningar."
 
@@ -17771,9 +17783,10 @@ msgstr "Välj hur lång tid inaktiviteten ska vara innan skärmsläckaren visas.
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr ""
 
+#. TRANSLATORS: "Select the file sort order for the %s:" / the placeholder is "left column" or "right column".
 #, python-format
-msgid "Select the file sort order for the %s column:"
-msgstr "Välj sorteringsordning för filen i kolumnen %s:"
+msgid "Select the file sort order for the %s:"
+msgstr ""
 
 msgid "Select the file system for the device."
 msgstr "Välj filsystem för enheten."
@@ -19275,7 +19288,7 @@ msgstr "Visa favoritlista"
 msgid "Show files backed up by default"
 msgstr "Visa filer som säkerhetskopieras som standard"
 
-msgid "Show first image"
+msgid "Show first picture"
 msgstr "Visa första bilden"
 
 msgid "Show free space in timer view"
@@ -19318,7 +19331,7 @@ msgstr "Visa informationslinje"
 msgid "Show job tasks in Extension Menu"
 msgstr "Visa arbetsuppgifter i tilläggsmenyn"
 
-msgid "Show last image"
+msgid "Show last picture"
 msgstr "Visa sista bilden"
 
 msgid "Show list of bouquets"
@@ -19364,9 +19377,6 @@ msgstr "Visa nästa felsökningsloggfil"
 
 msgid "Show next event"
 msgstr "Visa nästa händelse"
-
-msgid "Show next image"
-msgstr "Visa nästa bild"
 
 msgid "Show next page"
 msgstr "Visa nästa sida"
@@ -19434,9 +19444,6 @@ msgstr "Visa föregående felsökningsloggfil"
 
 msgid "Show previous event"
 msgstr "Visa tidigare händelse"
-
-msgid "Show previous image"
-msgstr "Visa föregående bild"
 
 msgid "Show previous page"
 msgstr "Visa föregående sida"
@@ -20073,6 +20080,9 @@ msgstr "Samhälle & kultur"
 msgid "Socket"
 msgstr "Uttag"
 
+msgid "SoftCSA Settings"
+msgstr ""
+
 msgid "Softcam"
 msgstr "Softcam"
 
@@ -20116,6 +20126,9 @@ msgstr "Uppdatering av programvara"
 
 msgid "Software Update Actions"
 msgstr "Åtgärder för uppdatering av programvara"
+
+msgid "Software descrambling"
+msgstr ""
 
 msgid "Software information"
 msgstr "Programinformation"
@@ -21002,6 +21015,9 @@ msgstr "Synkronisera tid med hjälp av"
 
 msgid "Synchronize system time using transponder or Internet."
 msgstr "Synkronisera systemtiden med hjälp av transponder eller Internet."
+
+msgid "Synchronous"
+msgstr ""
 
 msgid "Syrian Arab Republic"
 msgstr "Syrien"
@@ -22412,10 +22428,10 @@ msgstr "Växla mellan bukett/EPG-listor"
 msgid "Toggle between the available TV and RADIO services"
 msgstr "Växla mellan tillgängliga TV- och RADIO-tjänster"
 
-msgid "Toggle display of image information"
+msgid "Toggle display of picture information"
 msgstr "Växla visning av bildinformation"
 
-msgid "Toggle display of the image status overlay"
+msgid "Toggle display of the picture status overlay"
 msgstr "Växla visning av bildstatusöverlägget"
 
 msgid "Toggle enable/disable of the currently selected timer"
@@ -25048,6 +25064,9 @@ msgstr "ljudspår"
 msgid "automatic"
 msgstr "automatisk"
 
+msgid "Available"
+msgstr ""
+
 #
 msgid "back"
 msgstr "tillbaka"
@@ -25328,6 +25347,9 @@ msgstr "hoppa till kapitel efter nummer"
 msgid "left"
 msgstr "vänster"
 
+msgid "left column"
+msgstr ""
+
 #
 msgid "length"
 msgstr "längd"
@@ -25494,6 +25516,9 @@ msgstr "spola tillbaka till föregående kapitel"
 #
 msgid "right"
 msgstr "höger"
+
+msgid "right column"
+msgstr ""
 
 msgid ""
 "satellites.xml not found or corrupted!\n"
@@ -25711,6 +25736,13 @@ msgstr "ja (behåller flöden)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
+#~ msgstr "Fel vid hämtning av platsen för 'epg.dat' på fjärrmottagaren!"
+
+#, python-format
+#~ msgid "Select the file sort order for the %s column:"
+#~ msgstr "Välj sorteringsordning för filen i kolumnen %s:"
 
 #~ msgid ""
 #~ "File oscam.conf not found.\n"

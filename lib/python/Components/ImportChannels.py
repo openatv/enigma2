@@ -1,5 +1,5 @@
 from json import loads
-from os.path import basename, dirname, join
+from os.path import join
 from requests import get, exceptions
 from shutil import move, rmtree
 from tarfile import TarError, TarFile
@@ -70,48 +70,29 @@ class ImportChannels:
 		url = config.usage.remote_fallback_dvb_t.value
 		url = url[:url.rfind(":")] if url else self.url
 		response = getAPI(f"{url}/api/settings")
-		if response:
-			response = loads(response.decode("UTF-8"))
-			if response.get("result"):
-				settings = {response["settings"][x][0]: response["settings"][x][1] for x in range(len(response["settings"]))}
-		#
+		respDict = loads(response) if response else {}
+		settings = {key: value for key, value in respDict.get("settings", [])}
 		fallbackSetting = getFallbackSettingsValue(settings, ".terrestrial")
 		if "Australia" in fallbackSetting:
 			config.usage.remote_fallback_dvbt_region.value = "Fallback DVB-T/T2 Australia"
 		elif "Europe" in fallbackSetting:
 			config.usage.remote_fallback_dvbt_region.value = "Fallback DVB-T/T2 Europe"
-		#
 		tmpDir = mkdtemp(prefix="FallbackReceiver_")
+		epgLocation = ""
 		if "epg" in remoteFallbackImport:
 			print("[ImportChannels] Writing 'epg.dat' file on server.")
 			try:
-				response = getAPI(f"{self.url}/api/saveepg", timeout=30)
-				if response:
-					success = loads(response)
-					if success and not success.get("result", False):
-						importChannelsDone(False, _("Error writing 'epg.dat' on the remote receiver!"))
+				response = getAPI(f"{self.url}/api/saveepg")
+				respDict = loads(response) if response else {}
+				if not respDict.get("result", False):
+					importChannelsDone(False, _("Error writing 'epg.dat' on the remote receiver!"))
+					return
+				epgLocation = respDict.get("path", "/etc/enigma2/epg.dat")
 			except Exception as err:
 				print(f"[ImportChannels] Error: Unable to save server 'epg.dat'!  ({err})")
 				importChannelsDone(False, _("Error writing '/etc/enigma2/epg.dat' on the remote receiver!"))
 				return
 			print("[ImportChannels] Fetching EPG location.")
-			epgLocation = None
-			try:
-				epgDataFile = getFallbackSettingsValue(settings, "config.misc.epgcache_filename") or "/etc/enigma2/epg.dat"
-				files = []
-				try:
-					response = getAPI(f"{self.url}/file?dir={dirname(epgDataFile)}")
-					if response:
-						files = [file for file in loads(response)["files"] if basename(file).startswith(basename(epgDataFile))]
-				except Exception:
-					response = getAPI(f"{self.url}/file?dir=/")
-					if response:
-						files = [file for file in loads(response)["files"] if basename(file).startswith("epg.dat")]
-				epgLocation = files[0] if files else None
-			except Exception as err:
-				print(f"[ImportChannels] Error: Unable to fetch remote directory list!  ({err})")
-				importChannelsDone(False, _("Error retrieving location of 'epg.dat' on the remote receiver!"))
-				return
 			if epgLocation:
 				print("[ImportChannels] Copy EPG file.")
 				try:

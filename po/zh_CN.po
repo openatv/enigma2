@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-17 09:22+0000\n"
-"PO-Revision-Date: 2026-01-17 07:30+0000\n"
+"POT-Creation-Date: 2026-01-30 19:51+0100\n"
+"PO-Revision-Date: 2026-01-28 10:57+0000\n"
 "Last-Translator: Mark Stone <grystyle@gmail.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Weblate 5.15.2\n"
+"X-Generator: Weblate 5.16-dev\n"
 "X-SourceCharset: UTF-8\n"
 "X-Generated: TM2TURK by thawtes\n"
 
@@ -4765,7 +4765,7 @@ msgid "Configure the transparency of the black background of graphical DVB subti
 msgstr "配置图形DVB字幕的黑色背景的透明度。"
 
 msgid "Configure the transparency of the black background of subtitles."
-msgstr "配置图形DVB字幕的黑色背景的透明度。"
+msgstr "配置字幕黑色背景的透明度。"
 
 msgid "Configure the tuner mode."
 msgstr "配置调谐器模式。"
@@ -5722,6 +5722,12 @@ msgstr "调试日志"
 msgid "Debug log time format *"
 msgstr "调试日志时间格式 *"
 
+msgid "Decoder release strategy"
+msgstr ""
+
+msgid "Decoder start timeout"
+msgstr ""
+
 msgid "Decryption & Parental Control"
 msgstr "解密 / 家长控制"
 
@@ -5881,7 +5887,7 @@ msgid "Delay after voltage change before motor command"
 msgstr "电压变化之后电机指令之前延迟"
 
 msgid "Delay before key repeat starts:"
-msgstr "KEY重复启动前延迟："
+msgstr "按键重复开始前的延迟："
 
 msgid "Delay before sequence repeat"
 msgstr "序列重复前延迟"
@@ -6694,8 +6700,8 @@ msgid ""
 "Don't worry your device is still ok! There are several safety mechanisms in place!\n"
 "Your device is still as fine as it was before this procedure!"
 msgstr ""
-"不要担心您的设备仍然OK！ 有几个安全机制到位！\n"
-"您的设备仍然像以前一样好！"
+"别担心，您的设备一切正常！我们已设置多重安全机制确保安全！\n"
+"您的设备在操作后状态依旧完好如初！"
 
 msgid "Done"
 msgstr "完成"
@@ -7513,7 +7519,7 @@ msgid "Entry text only"
 msgstr "仅条目文字"
 
 msgid "Epg/Guide"
-msgstr "EPG /指南"
+msgstr "EPG / 指南"
 
 msgid "Equal to"
 msgstr "等于"
@@ -7681,9 +7687,6 @@ msgstr "读取网页时出错！"
 
 msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr "从远程接收机检索“epg.dat”时出错！"
-
-msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
-msgstr "检索远程接收机上“epg.dat”的位置时出错！"
 
 msgid "Error text:"
 msgstr "错误文本："
@@ -7969,9 +7972,6 @@ msgstr "退出编辑器并放弃所有更改"
 msgid "Exit editor and save any changes"
 msgstr "退出编辑器并保存所有更改"
 
-msgid "Exit image viewer"
-msgstr "退出镜像查看器"
-
 msgid "Exit input device selection."
 msgstr "退出输入设备选择。"
 
@@ -7998,6 +7998,9 @@ msgstr "退出网络接口列表"
 
 msgid "Exit network wizard"
 msgstr "退出网络向导"
+
+msgid "Exit picture viewer"
+msgstr "退出镜像查看器"
 
 msgid "Exit quad PiP"
 msgstr "退出四路画中画"
@@ -8365,12 +8368,6 @@ msgstr "文件指挥官哈希/校验和操作"
 msgid "File Commander Hashes / Checksums"
 msgstr "文件指挥官哈希/校验和"
 
-msgid "File Commander Image Viewer"
-msgstr "文件指挥官镜像查看器"
-
-msgid "File Commander Image Viewer Actions"
-msgstr "文件指挥官镜像查看器操作"
-
 msgid "File Commander Information Actions"
 msgstr "文件指挥官信息操作"
 
@@ -8385,6 +8382,12 @@ msgstr "文件指挥官移动"
 
 msgid "File Commander Navigation Actions"
 msgstr "文件指挥官导航操作"
+
+msgid "File Commander Picture Viewer"
+msgstr "文件指挥官镜像查看器"
+
+msgid "File Commander Picture Viewer Actions"
+msgstr "文件指挥官镜像查看器操作"
 
 msgid "File Commander Selection Actions"
 msgstr "文件指挥官选择操作"
@@ -9443,6 +9446,9 @@ msgstr "小时 分钟"
 
 msgid "Hours Minutes Seconds"
 msgstr "小时 分钟 秒"
+
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
+msgstr ""
 
 msgid "Http(s) stream start delay"
 msgstr "Http(s)串流启动延迟"
@@ -11169,7 +11175,7 @@ msgid "Mark As Dedicated 3D Service"
 msgstr "标记为专用 3D 频道"
 
 msgid "Mark/Portal/Playlist"
-msgstr "标记/PORTAL/播放列表"
+msgstr "标记/Portal/播放列表"
 
 msgid "Marker Actions"
 msgstr "标签操作"
@@ -11228,6 +11234,9 @@ msgstr "EPG 最大天数"
 
 msgid "Maximum space used (MB)"
 msgstr "使用的最大空间（MB）"
+
+msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
+msgstr ""
 
 msgid "Mayotte"
 msgstr "马约特岛"
@@ -13882,7 +13891,7 @@ msgstr "请稍候，正在删除闪存的副本。 这可能需要几分钟才�
 msgid "Please wait, flash memory is being copied to this flash expander. This could take a number of minutes to complete."
 msgstr "请稍候，正在将闪存复制到此闪存扩展器。这可能需要几分钟才能完成。"
 
-msgid "Please wait, loading image..."
+msgid "Please wait, loading picture..."
 msgstr "请稍候，正在加载镜像..."
 
 msgid "Please wait, swap is is being created. This could take a few minutes to complete."
@@ -16563,6 +16572,9 @@ msgstr "选择天线在卫星之间移动的速度。"
 msgid "Select how the arrow buttons 'UP', 'DOWN', 'LEFT' or 'RIGHT' will act during seek actions."
 msgstr "设置方向键（‘上’、‘下’、‘左’、‘右’）在跳转操作时的行为。"
 
+msgid "Select how the descrambled data stream is processed. 'Automatic' uses asynchronous writes (lower CPU usage) with automatic fallback to synchronous if kernel AIO is not supported. 'Synchronous' forces blocking writes (stable, most compatible)."
+msgstr ""
+
 msgid "Select how the number buttons will act during seek actions."
 msgstr "设置数字键在跳转操作时的行为。"
 
@@ -16827,9 +16839,10 @@ msgstr "配置屏幕保护程序显示前的持续时间（分钟）。"
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr "选择此定时器可被激活的最晚截止时间。超过此时限后，即使满足其他所有条件，定时器也不再启动。"
 
+#. TRANSLATORS: "Select the file sort order for the %s:" / the placeholder is "left column" or "right column".
 #, python-format
-msgid "Select the file sort order for the %s column:"
-msgstr "选择第 %s 列的文件排序顺序："
+msgid "Select the file sort order for the %s:"
+msgstr "译注：“为 %s 选择文件排序方式：” / 占位符应为“左侧栏”或“右侧栏”。"
 
 msgid "Select the file system for the device."
 msgstr "选择设备的文件系统。"
@@ -18275,7 +18288,7 @@ msgstr "显示收藏夹列表"
 msgid "Show files backed up by default"
 msgstr "按默认显示备份文件"
 
-msgid "Show first image"
+msgid "Show first picture"
 msgstr "显示第一个镜像"
 
 msgid "Show free space in timer view"
@@ -18315,7 +18328,7 @@ msgstr "显示信息行"
 msgid "Show job tasks in Extension Menu"
 msgstr "在扩展菜单中显示作业任务"
 
-msgid "Show last image"
+msgid "Show last picture"
 msgstr "显示最后一个镜像"
 
 msgid "Show list of bouquets"
@@ -18360,14 +18373,11 @@ msgstr "显示下一个调试日志文件"
 msgid "Show next event"
 msgstr "显示下一事件"
 
-msgid "Show next image"
-msgstr "显示下一图片"
-
 msgid "Show next page"
 msgstr "显示下一页"
 
 msgid "Show next picture"
-msgstr "显示画中画"
+msgstr "显示下一图片"
 
 msgid "Show next service information screen"
 msgstr "显示下一个频道信息屏幕"
@@ -18425,9 +18435,6 @@ msgstr "显示以前的调试日志文件"
 
 msgid "Show previous event"
 msgstr "显示上一事件"
-
-msgid "Show previous image"
-msgstr "显示以前的镜像"
 
 msgid "Show previous page"
 msgstr "显示上一页"
@@ -19027,6 +19034,9 @@ msgstr "社会与文化"
 msgid "Socket"
 msgstr "插口"
 
+msgid "SoftCSA Settings"
+msgstr ""
+
 msgid "Softcam"
 msgstr "Softcam"
 
@@ -19068,6 +19078,9 @@ msgstr "软件更新"
 
 msgid "Software Update Actions"
 msgstr "软件更新操作"
+
+msgid "Software descrambling"
+msgstr ""
 
 msgid "Software information"
 msgstr "软件信息"
@@ -19661,7 +19674,7 @@ msgid "Subtitle alignment"
 msgstr "字幕对齐"
 
 msgid "Subtitle black transparency"
-msgstr "DVB字幕透明度"
+msgstr "字幕黑色背景透明度"
 
 msgid "Subtitle border width"
 msgstr "字幕边框宽度"
@@ -19877,7 +19890,7 @@ msgid "Symbol rate"
 msgstr "符号率"
 
 msgid "Symbolic link"
-msgstr "REC 符号正在使用"
+msgstr "符号链接"
 
 msgid "Symmetrical skips"
 msgstr "对称跳过"
@@ -19896,6 +19909,9 @@ msgstr "时间同步方式"
 
 msgid "Synchronize system time using transponder or Internet."
 msgstr "使用转发器或互联网同步系统时间。"
+
+msgid "Synchronous"
+msgstr ""
 
 msgid "Syrian Arab Republic"
 msgstr "阿拉伯叙利亚共和国"
@@ -20868,10 +20884,10 @@ msgid "This option sets the suppression of false digital contours, that are the 
 msgstr "此选项设置抑制虚假数字轮廓，这是有限数量的离散值的结果。"
 
 msgid "This option sets the video & osd picture brightness."
-msgstr "此选项设置视频和 OSD 图片亮度。"
+msgstr "此选项设置视频/OSD 图片亮度。"
 
 msgid "This option sets the video & osd picture contrast."
-msgstr "此选项设置视频和 OSD 图片对比度。"
+msgstr "此选项设置视频/OSD 图片对比度。"
 
 msgid "This option sets the video picture brightness."
 msgstr "此选项设置视频图片亮度。"
@@ -21254,10 +21270,10 @@ msgstr "在频道分组/EPG 列表之间切换"
 msgid "Toggle between the available TV and RADIO services"
 msgstr "在可用电视与广播频道之间切换"
 
-msgid "Toggle display of image information"
+msgid "Toggle display of picture information"
 msgstr "切换镜像信息的显示"
 
-msgid "Toggle display of the image status overlay"
+msgid "Toggle display of the picture status overlay"
 msgstr "切换图像状态叠加层的显示"
 
 msgid "Toggle enable/disable of the currently selected timer"
@@ -23717,7 +23733,7 @@ msgid "a gui to assign services/providers to common interface modules"
 msgstr "用于为通用接口模块分配频道/供应商的图形用户界面"
 
 msgid "a gui to assign services/providers/caids to common interface modules"
-msgstr "用于为通用接口模块分配频道/供应商/CAID的图形用户界面"
+msgstr "一个用于将频道/提供商/CAID分配至公共接口模块的图形用户界面"
 
 msgid "activatePiP"
 msgstr "激活画中画"
@@ -23757,6 +23773,9 @@ msgstr "音轨"
 msgid "automatic"
 msgstr "自动"
 
+msgid "Available"
+msgstr ""
+
 msgid "back"
 msgstr "返回"
 
@@ -23787,7 +23806,7 @@ msgid "by hmmmdada"
 msgstr "按 hmmmdada"
 
 msgid "caid:"
-msgstr "CaID："
+msgstr "CAID："
 
 msgid "card"
 msgstr "卡片"
@@ -24003,6 +24022,9 @@ msgstr "通过数字跳到章节"
 msgid "left"
 msgstr "左"
 
+msgid "left column"
+msgstr "左列"
+
 msgid "length"
 msgstr "长度"
 
@@ -24143,6 +24165,9 @@ msgstr "退回上一个章节"
 
 msgid "right"
 msgstr "右"
+
+msgid "right column"
+msgstr "右列"
 
 msgid ""
 "satellites.xml not found or corrupted!\n"
@@ -24334,6 +24359,13 @@ msgstr "是（保留订阅源）"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
+#~ msgstr "检索远程接收机上“epg.dat”的位置时出错！"
+
+#, python-format
+#~ msgid "Select the file sort order for the %s column:"
+#~ msgstr "选择第 %s 列的文件排序顺序："
 
 #~ msgid ""
 #~ "File oscam.conf not found.\n"

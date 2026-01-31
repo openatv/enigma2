@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-17 09:22+0000\n"
+"POT-Creation-Date: 2026-01-30 19:51+0100\n"
 "PO-Revision-Date: 2024-10-02 07:35+0000\n"
 "Last-Translator: gallegonovato <fran-carro@hotmail.es>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/es/>\n"
@@ -5971,6 +5971,12 @@ msgstr "Historiales de depuración"
 msgid "Debug log time format *"
 msgstr "Formato de tiempo de registro de depuración *"
 
+msgid "Decoder release strategy"
+msgstr ""
+
+msgid "Decoder start timeout"
+msgstr ""
+
 #
 msgid "Decryption & Parental Control"
 msgstr "Descifrado y control parental"
@@ -8029,9 +8035,6 @@ msgstr "¡Error leyendo la página web!"
 msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr ""
 
-msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
-msgstr ""
-
 msgid "Error text:"
 msgstr ""
 
@@ -8330,9 +8333,6 @@ msgstr ""
 msgid "Exit editor and save any changes"
 msgstr ""
 
-msgid "Exit image viewer"
-msgstr ""
-
 msgid "Exit input device selection."
 msgstr "Salir de la selección de dispositivo de entrada."
 
@@ -8362,6 +8362,9 @@ msgstr "Salir de la lista de interfaces de red"
 #
 msgid "Exit network wizard"
 msgstr "Salir del asistente de red"
+
+msgid "Exit picture viewer"
+msgstr ""
 
 msgid "Exit quad PiP"
 msgstr "Salir de PiP cuádruple"
@@ -8744,12 +8747,6 @@ msgstr ""
 msgid "File Commander Hashes / Checksums"
 msgstr ""
 
-msgid "File Commander Image Viewer"
-msgstr ""
-
-msgid "File Commander Image Viewer Actions"
-msgstr ""
-
 msgid "File Commander Information Actions"
 msgstr ""
 
@@ -8763,6 +8760,12 @@ msgid "File Commander Move"
 msgstr ""
 
 msgid "File Commander Navigation Actions"
+msgstr ""
+
+msgid "File Commander Picture Viewer"
+msgstr ""
+
+msgid "File Commander Picture Viewer Actions"
 msgstr ""
 
 msgid "File Commander Selection Actions"
@@ -9890,6 +9893,9 @@ msgstr "Horas Minutos"
 
 msgid "Hours Minutes Seconds"
 msgstr "Horas Minutos Segundos"
+
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
+msgstr ""
 
 msgid "Http(s) stream start delay"
 msgstr "Retraso en el inicio del flujo http(s)"
@@ -11789,6 +11795,9 @@ msgstr "Número máximo de días en EPG"
 
 msgid "Maximum space used (MB)"
 msgstr "Espacio máximo utilizado (MB):"
+
+msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
+msgstr ""
 
 msgid "Mayotte"
 msgstr "Mayotte"
@@ -14635,7 +14644,7 @@ msgstr ""
 msgid "Please wait, flash memory is being copied to this flash expander. This could take a number of minutes to complete."
 msgstr ""
 
-msgid "Please wait, loading image..."
+msgid "Please wait, loading picture..."
 msgstr ""
 
 msgid "Please wait, swap is is being created. This could take a few minutes to complete."
@@ -17495,6 +17504,9 @@ msgstr "Seleccione la velocidad con la que la antena parabólica debe moverse en
 msgid "Select how the arrow buttons 'UP', 'DOWN', 'LEFT' or 'RIGHT' will act during seek actions."
 msgstr ""
 
+msgid "Select how the descrambled data stream is processed. 'Automatic' uses asynchronous writes (lower CPU usage) with automatic fallback to synchronous if kernel AIO is not supported. 'Synchronous' forces blocking writes (stable, most compatible)."
+msgstr ""
+
 msgid "Select how the number buttons will act during seek actions."
 msgstr ""
 
@@ -17766,8 +17778,9 @@ msgstr "Configura la duración en minutos para el salvapantallas."
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr ""
 
+#. TRANSLATORS: "Select the file sort order for the %s:" / the placeholder is "left column" or "right column".
 #, python-format
-msgid "Select the file sort order for the %s column:"
+msgid "Select the file sort order for the %s:"
 msgstr ""
 
 msgid "Select the file system for the device."
@@ -19291,7 +19304,7 @@ msgstr "Mostrar lista favoritos"
 msgid "Show files backed up by default"
 msgstr "Mostrar archivos predeterminados para copiar"
 
-msgid "Show first image"
+msgid "Show first picture"
 msgstr ""
 
 msgid "Show free space in timer view"
@@ -19332,7 +19345,7 @@ msgstr "Mostrar línea de información"
 msgid "Show job tasks in Extension Menu"
 msgstr "Mostrar tareas en extensiones"
 
-msgid "Show last image"
+msgid "Show last picture"
 msgstr ""
 
 msgid "Show list of bouquets"
@@ -19379,9 +19392,6 @@ msgid "Show next debug log file"
 msgstr ""
 
 msgid "Show next event"
-msgstr ""
-
-msgid "Show next image"
 msgstr ""
 
 msgid "Show next page"
@@ -19451,9 +19461,6 @@ msgid "Show previous debug log file"
 msgstr ""
 
 msgid "Show previous event"
-msgstr ""
-
-msgid "Show previous image"
 msgstr ""
 
 msgid "Show previous page"
@@ -20100,6 +20107,9 @@ msgstr ""
 msgid "Socket"
 msgstr "Bloqueado"
 
+msgid "SoftCSA Settings"
+msgstr ""
+
 msgid "Softcam"
 msgstr "Softcam"
 
@@ -20143,6 +20153,9 @@ msgid "Software Update"
 msgstr "Actualización de software"
 
 msgid "Software Update Actions"
+msgstr ""
+
+msgid "Software descrambling"
 msgstr ""
 
 msgid "Software information"
@@ -21051,6 +21064,9 @@ msgstr "Sincronizar hora usando"
 # Zeitenstellung
 msgid "Synchronize system time using transponder or Internet."
 msgstr "Sincronizar hora de sistema mediante transpondedor o internet."
+
+msgid "Synchronous"
+msgstr ""
 
 msgid "Syrian Arab Republic"
 msgstr ""
@@ -22463,10 +22479,10 @@ msgstr "Alternar entre listas grupos/epg"
 msgid "Toggle between the available TV and RADIO services"
 msgstr ""
 
-msgid "Toggle display of image information"
+msgid "Toggle display of picture information"
 msgstr ""
 
-msgid "Toggle display of the image status overlay"
+msgid "Toggle display of the picture status overlay"
 msgstr ""
 
 msgid "Toggle enable/disable of the currently selected timer"
@@ -25149,6 +25165,9 @@ msgstr "Pistas de audio"
 msgid "automatic"
 msgstr "automático"
 
+msgid "Available"
+msgstr ""
+
 #
 msgid "back"
 msgstr "Atrás"
@@ -25432,6 +25451,9 @@ msgstr ""
 msgid "left"
 msgstr "Izquierda"
 
+msgid "left column"
+msgstr ""
+
 #
 msgid "length"
 msgstr "Longitud"
@@ -25602,6 +25624,9 @@ msgstr "Rebobinar al capítulo anterior"
 #
 msgid "right"
 msgstr "derecha"
+
+msgid "right column"
+msgstr ""
 
 msgid ""
 "satellites.xml not found or corrupted!\n"

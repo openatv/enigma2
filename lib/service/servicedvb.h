@@ -13,6 +13,10 @@
 class eStaticServiceDVBInformation;
 class eStaticServiceDVBBouquetInformation;
 
+// Forward declarations for software descrambling
+class eDVBCSASession;
+class eDVBSoftDecoder;
+
 class eServiceFactoryDVB : public iServiceHandler {
 	DECLARE_REF(eServiceFactoryDVB);
 	ePtr<eStaticServiceDVBInformation> m_StaticServiceDVBInfo;
@@ -224,6 +228,13 @@ protected:
 	ePtr<eDVBService> m_dvb_service;
 
 	ePtr<iTSMPEGDecoder> m_decoder;
+
+	// Software descrambling
+	ePtr<eDVBCSASession> m_csa_session;
+	ePtr<eConnection> m_csa_activated_conn;
+	ePtr<eDVBSoftDecoder> m_soft_decoder;
+	bool m_soft_decoder_video_info_valid;  // Track if video info is available from SoftDecoder
+
 	int m_is_primary;
 	int m_decoder_index;
 	int m_have_video_pid;
@@ -263,6 +274,7 @@ protected:
 
 	/* time shift */
 	ePtr<iDVBTSRecorder> m_record;
+	ePtr<eDVBCSASession> m_timeshift_csa_session;
 	std::set<int> m_pids_active;
 
 	void updateTimeshiftPids();
@@ -339,6 +351,15 @@ protected:
 
 	ePtr<eConnection> m_con_record_event;
 	void recordEvent(int event);
+
+	// Software descrambling
+	virtual void setupSpeculativeDescrambling();
+	void onSessionActivated(bool active);
+	void onSoftDecoderAudioPidSelected(int pid);
+	void cleanupSoftwareDescrambling();
+
+	// Audio cache helper
+	void updateAudioCache(int apid, int apidtype);
 
 private:
 	// -- START: Precise Recovery System --

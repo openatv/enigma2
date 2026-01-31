@@ -1,4 +1,5 @@
 #include <lib/service/servicedvbstream.h>
+#include <lib/dvb/csasession.h>
 #include <lib/base/eerror.h>
 #include <lib/dvb/db.h>
 #include <lib/dvb/epgcache.h>
@@ -20,6 +21,32 @@ eDVBServiceStream::eDVBServiceStream()
 	m_stream_sdtbat = false;
 	m_tuned = 0;
 	m_target_fd = -1;
+}
+
+eDVBServiceStream::~eDVBServiceStream()
+{
+	eDebug("[eDVBServiceStream] Destructor called, state=%d", m_state);
+	// Ensure clean shutdown of CSA session
+	cleanupCSASession();
+}
+
+void eDVBServiceStream::cleanupCSASession()
+{
+	if (m_csa_session)
+	{
+		eDebug("[eDVBServiceStream] Cleaning up CSA session");
+		m_csa_session->stopECMMonitor();
+		// Detach descrambler and stop recorder BEFORE destroying session
+		// This ensures the descrambling thread is not using the session anymore
+		if (m_record)
+		{
+			m_record->setDescrambler(nullptr);
+			m_record->stop();
+		}
+		// Now destroy session
+		m_csa_session = nullptr;
+		eDebug("[eDVBServiceStream] CSA session destroyed");
+	}
 }
 
 void eDVBServiceStream::serviceEvent(int event)
@@ -59,6 +86,28 @@ void eDVBServiceStream::serviceEvent(int event)
 			doPrepare();
 		else if (m_want_record) /* doRecord can be called from Prepared and Recording state */
 			doRecord();
+
+		// Retry ECM monitor start if session exists but CSA-ALT not yet detected
+		if (m_csa_session && !m_csa_session->isEcmAnalyzed())
+		{
+			eDVBServicePMTHandler::program program;
+			if (m_service_handler.getProgramInfo(program) == 0)
+			{
+				for (const auto& ca : program.caids)
+				{
+					if (ca.capid > 0 && ca.capid < 0x1FFF)
+					{
+						ePtr<iDVBDemux> demux;
+						if (m_service_handler.getDataDemux(demux) == 0 && demux)
+						{
+							m_csa_session->startECMMonitor(demux, ca.capid, ca.caid);
+							eDebug("[eDVBServiceStream] ECM Monitor started on PID %d, CAID 0x%04X", ca.capid, ca.caid);
+						}
+						break;
+					}
+				}
+			}
+		}
 		break;
 	}
 	case eDVBServicePMTHandler::eventMisconfiguration:
@@ -75,6 +124,7 @@ void eDVBServiceStream::serviceEvent(int event)
 int eDVBServiceStream::start(const char *serviceref, int fd)
 {
 	if (m_state != stateIdle) return -1;
+
 	m_ref = eServiceReferenceDVB(serviceref);
 	if (doPrepare() < 0) return -1;
 	m_target_fd = fd;
@@ -85,6 +135,10 @@ int eDVBServiceStream::start(const char *serviceref, int fd)
 RESULT eDVBServiceStream::stop()
 {
 	eDebug("[eDVBServiceStream] stop streaming m_state %d", m_state);
+
+	// FIRST: Clean up CSA session BEFORE stopping recorder
+	// This ensures descrambling thread stops using the session
+	cleanupCSASession();
 
 	if (m_state == stateRecording)
 	{
@@ -99,6 +153,8 @@ RESULT eDVBServiceStream::stop()
 		m_record = 0;
 		m_state = stateIdle;
 	}
+
+	eDebug("[eDVBServiceStream] stop complete");
 	return 0;
 }
 
@@ -113,8 +169,15 @@ int eDVBServiceStream::doPrepare()
 		m_stream_sdtbat = eConfigManager::getConfigBoolValue("config.streaming.stream_sdtbat");
 		m_pids_active.clear();
 		m_state = statePrepared;
-		eDVBServicePMTHandler::serviceType servicetype = m_stream_ecm ? eDVBServicePMTHandler::scrambled_streamserver : eDVBServicePMTHandler::streamserver;
 		bool descramble = eConfigManager::getConfigBoolValue("config.streaming.descramble", true);
+		// Use scrambled_streamserver when descrambling is enabled (default)
+		// This ensures CA descriptors are parsed for SoftCSA ECM analysis
+		// When stream_ecm is true, ECM PIDs are also included in the stream
+		eDVBServicePMTHandler::serviceType servicetype;
+		if (descramble || m_stream_ecm)
+			servicetype = eDVBServicePMTHandler::scrambled_streamserver;
+		else
+			servicetype = eDVBServicePMTHandler::streamserver;
 		return m_service_handler.tune(m_ref, 0, 0, 0, NULL, servicetype, descramble);
 	}
 	return 0;
@@ -143,8 +206,30 @@ int eDVBServiceStream::doRecord()
 			eDebug("[eDVBServiceStream] NO DEMUX available");
 			return -1;
 		}
+
+		// Check if channel is encrypted - need scrambled recorder for software descrambling
+		eDVBServicePMTHandler::program program;
+		bool is_encrypted = false;
+		if (!m_service_handler.getProgramInfo(program))
+		{
+			is_encrypted = program.isCrypted();
+		}
+
 		if (m_ref.path.empty())
-			demux->createTSRecorder(m_record, /*packetsize*/ 188, /*streaming*/ true);
+		{
+			// For encrypted channels, we need streaming=false to use eDVBRecordScrambledThread
+			// which supports setDescrambler(). eDVBRecordStreamThread does NOT support descrambling!
+			if (is_encrypted)
+			{
+				eDebug("[eDVBServiceStream] Encrypted channel - using ScrambledThread (async mode)");
+				demux->createTSRecorder(m_record, /*packetsize*/ 188, /*streaming*/ false, /*sync_mode*/ false, /*is_streaming_output*/ true);
+			}
+			else
+			{
+				// FTA channel - can use streaming thread
+				demux->createTSRecorder(m_record, /*packetsize*/ 188, /*streaming*/ true);
+			}
+		}
 		else
 			demux->createTSRecorder(m_record, /*packetsize*/ 188, /*streaming*/ false);
 		if (!m_record)
@@ -154,6 +239,15 @@ int eDVBServiceStream::doRecord()
 		}
 		m_record->setTargetFD(m_target_fd);
 		m_record->connectEvent(sigc::mem_fun(*this, &eDVBServiceStream::recordEvent), m_con_record_event);
+
+		// Attach speculative software descrambler for encrypted channels
+		setupSpeculativeDescrambler();
+	}
+
+	// Try to attach descrambler if not yet done (PMT might not have been available earlier)
+	if (m_record && !m_csa_session)
+	{
+		setupSpeculativeDescrambler();
 	}
 
 	eDebug("[eDVBServiceStream] start streaming...");
@@ -437,4 +531,63 @@ RESULT eDVBServiceStream::frontendInfo(ePtr<iFrontendInformation> &ptr)
 {
 	ptr = this;
 	return 0;
+}
+
+void eDVBServiceStream::setupSpeculativeDescrambler()
+{
+	// Check if channel is encrypted
+	eDVBServicePMTHandler::program program;
+	if (m_service_handler.getProgramInfo(program))
+	{
+		eDebug("[eDVBServiceStream] setupSpeculativeDescrambler: getProgramInfo failed");
+		return;
+	}
+
+	if (!program.isCrypted())
+	{
+		eDebug("[eDVBServiceStream] FTA channel, no descrambler needed");
+		return;
+	}
+
+	eDebug("[eDVBServiceStream] Encrypted channel, creating CSA session");
+
+	// Create session (starts INACTIVE, activates when CSA-ALT detected from ECM)
+	eServiceReferenceDVB ref(m_ref);
+	m_csa_session = new eDVBCSASession(ref);
+	if (!m_csa_session)
+	{
+		eDebug("[eDVBServiceStream] Failed to create eDVBCSASession");
+		return;
+	}
+
+	// Initialize session (connects to eDVBCAHandler signals)
+	if (!m_csa_session->init())
+	{
+		eDebug("[eDVBServiceStream] Failed to init CSA session");
+		m_csa_session = nullptr;
+		return;
+	}
+
+	// Attach session to our recorder
+	if (m_record)
+	{
+		m_record->setDescrambler(static_cast<iServiceScrambled*>(m_csa_session.operator->()));
+		eDebug("[eDVBServiceStream] CSA session attached to recorder");
+	}
+
+	// Start ECM Monitor for CSA-ALT detection
+	// Find first valid ECM PID (capid > 0 and < 0x1FFF)
+	for (const auto& ca : program.caids)
+	{
+		if (ca.capid > 0 && ca.capid < 0x1FFF)
+		{
+			ePtr<iDVBDemux> demux;
+			if (m_service_handler.getDataDemux(demux) == 0 && demux)
+			{
+				m_csa_session->startECMMonitor(demux, ca.capid, ca.caid);
+				eDebug("[eDVBServiceStream] ECM Monitor started on PID %d, CAID 0x%04X", ca.capid, ca.caid);
+			}
+			break;
+		}
+	}
 }

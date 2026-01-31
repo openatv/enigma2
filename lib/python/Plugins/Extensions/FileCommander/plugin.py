@@ -1274,27 +1274,27 @@ class FileCommander(Screen, NumericalTextInput, StatInfo):
 				mediaPlayer.switchToPlayList()
 
 		def mviCallback(answer=None):
-			def processImage(data, retVal, extraArgs):
+			def processPicture(data, retVal, extraArgs):
 				def cleanUp(index):
 					if not filePreExists:
-						remove(imagePath)
+						remove(picturePath)
 
-				# print(f"[FileCommander] processImage DEBUG: Return value is {retVal}\n{data}.")
-				answer, path, imagePath, filePreExists = extraArgs
+				# print(f"[FileCommander] processPicture DEBUG: Return value is {retVal}\n{data}.")
+				answer, path, picturePath, filePreExists = extraArgs
 				if retVal == 0:
 					if not filePreExists:
-						chmod(imagePath, 0o644)
+						chmod(picturePath, 0o644)
 					if "SHOW" in answer:
 						if "SAVE" in answer or "TARGET" in answer:
-							self.session.open(FileCommanderImageViewer, imagePath, 0, None, basename(imagePath))
+							self.session.open(FileCommanderPictureViewer, picturePath, 0, None, basename(picturePath))
 						else:
-							self.session.openWithCallback(cleanUp, FileCommanderImageViewer, imagePath, 0, None, basename(imagePath))
+							self.session.openWithCallback(cleanUp, FileCommanderPictureViewer, picturePath, 0, None, basename(picturePath))
 
 			if answer:
 				path = self.sourceColumn.getPath()
-				imagePath = join(self.targetColumn.getCurrentDirectory() if "TARGET" in answer else gettempdir(), f"{splitext(basename(path))[0]}.jpg")
-				filePreExists = exists(imagePath)
-				console().ePopen(["/usr/bin/ffmpeg", "/usr/bin/ffmpeg", "-y", "-hide_banner", "-f", "mpegvideo", "-i", path, "-frames:v", "1", "-r", "1/1", imagePath], processImage, (answer, path, imagePath, filePreExists))
+				picturePath = join(self.targetColumn.getCurrentDirectory() if "TARGET" in answer else gettempdir(), f"{splitext(basename(path))[0]}.jpg")
+				filePreExists = exists(picturePath)
+				console().ePopen(["/usr/bin/ffmpeg", "/usr/bin/ffmpeg", "-y", "-hide_banner", "-f", "mpegvideo", "-i", path, "-frames:v", "1", "-r", "1/1", picturePath], processPicture, (answer, path, picturePath, filePreExists))
 
 		def scriptCallback(answer):
 			def successCallback(job):
@@ -1487,7 +1487,7 @@ class FileCommander(Screen, NumericalTextInput, StatInfo):
 						]
 						self.session.openWithCallback(musicCallback, MessageBox, text=f"{_("What would you like to do with the audio file:")}\n\n{path}", list=choiceList, windowTitle=self.baseTitle)
 					elif fileType in IMAGE_EXTENSIONS:
-						self.session.openWithCallback(imageCallback, FileCommanderImageViewer, self.sourceColumn.getFileList(), self.sourceColumn.getCurrentIndex(), self.sourceColumn.getCurrentDirectory(), basename(path))  # DEBUG: path is not needed!
+						self.session.openWithCallback(imageCallback, FileCommanderPictureViewer, self.sourceColumn.getFileList(), self.sourceColumn.getCurrentIndex(), self.sourceColumn.getCurrentDirectory(), basename(path))  # DEBUG: path is not needed!
 					elif fileType in (".sh", ".py", ".pyc"):
 						choiceList = [
 							(_("Cancel"), ""),
@@ -1654,7 +1654,7 @@ class FileCommander(Screen, NumericalTextInput, StatInfo):
 				self.updateHeading(self.sourceColumn)
 				self.updateSort()
 
-		column = "left" if self.leftActive else "right"
+		column = _("left column") if self.leftActive else _("right column")
 		choiceList = [
 			(_("Cancel"), ""),
 			(_("Name ascending"), "0.0"),
@@ -1664,7 +1664,8 @@ class FileCommander(Screen, NumericalTextInput, StatInfo):
 			(_("Size ascending"), "2.0"),
 			(_("Size descending"), "2.1")
 		]
-		self.session.openWithCallback(sortFilesCallback, MessageBox, text=(_("Select the file sort order for the %s column:") % column), list=choiceList, windowTitle=self.baseTitle)
+		# TRANSLATORS: "Select the file sort order for the %s:" / the placeholder is "left column" or "right column".
+		self.session.openWithCallback(sortFilesCallback, MessageBox, text=(_("Select the file sort order for the %s:") % column), list=choiceList, windowTitle=self.baseTitle)
 
 	def keyTaskList(self):
 		self.taskList = []
@@ -2291,9 +2292,9 @@ class FileCommanderFileViewer(Screen):
 			self["textAction"].setEnabled(False)
 
 
-class FileCommanderImageViewer(Screen):
+class FileCommanderPictureViewer(Screen):
 	skin = """
-	<screen name="FileCommanderImageViewer" title="File Commander Image Viewer" position="fill" flags="wfNoBorder" resolution="1280,720">
+	<screen name="FileCommanderPictureViewer" title="File Commander Picture Viewer" position="fill" flags="wfNoBorder" resolution="1280,720">
 		<eLabel position="fill" backgroundColor="#00000000" />
 		<widget name="image" position="0,0" size="1280,720" alphatest="on" zPosition="+1" />
 		<widget source="message" render="Label" position="10,685" size="1210,25" borderColor="#00000000" borderWidth="2" font="Regular;20" foregroundColor="#0038FF48" noWrap="1" transparent="1" valign="bottom" zPosition="+2" />
@@ -2330,29 +2331,29 @@ class FileCommanderImageViewer(Screen):
 
 	def __init__(self, session, fileList, index, path, filename):  # DEBUG: path is not needed!
 		Screen.__init__(self, session, mandatoryWidgets=["infolabels"], enableHelp=True)
-		self.skinName = ["FileCommanderImageViewer"]
+		self.skinName = ["FileCommanderImageViewer", "FileCommanderPictureViewer"]
 		if not self.getTitle():
-			self.setTitle(_("File Commander Image Viewer"))
+			self.setTitle(_("File Commander Picture Viewer"))
 		self.startIndex = index
 		self.lastIndex = index
 		self["actions"] = HelpableActionMap(self, ["OkCancelActions", "InfoActions", "ColorActions", "NavigationActions"], {
-			"cancel": (self.keyCancel, _("Exit image viewer")),
-			"ok": (self.keyToggleOverlay, _("Toggle display of the image status overlay")),
-			"info": (self.keyToggleInformation, _("Toggle display of image information")),
-			"red": (self.keyCancel, _("Exit image viewer")),
-			"green": (self.keyToggleInformation, _("Toggle display of image information")),
+			"cancel": (self.keyCancel, _("Exit picture viewer")),
+			"ok": (self.keyToggleOverlay, _("Toggle display of the picture status overlay")),
+			"info": (self.keyToggleInformation, _("Toggle display of picture information")),
+			"red": (self.keyCancel, _("Exit picture viewer")),
+			"green": (self.keyToggleInformation, _("Toggle display of picture information")),
 			"yellow": (self.keySlideshow, _("Start/stop slide show")),
-			"up": (self.keyFirstImage, _("Show first image")),
-			"first": (self.keyFirstImage, _("Show first image")),
-			"left": (self.keyPreviousImage, _("Show previous image")),
-			"right": (self.keyNextImage, _("Show next image")),
-			"last": (self.keyLastImage, _("Show last image")),
-			"down": (self.keyLastImage, _("Show last image"))
-		}, prio=0, description=_("File Commander Image Viewer Actions"))
+			"up": (self.keyFirstPicture, _("Show first picture")),
+			"first": (self.keyFirstPicture, _("Show first picture")),
+			"left": (self.keyPreviousPicture, _("Show previous picture")),
+			"right": (self.keyNextPicture, _("Show next picture")),
+			"last": (self.keyLastPicture, _("Show last picture")),
+			"down": (self.keyLastPicture, _("Show last picture"))
+		}, prio=0, description=_("File Commander Picture Viewer Actions"))
 		self["image"] = Pixmap()
 		self["icon"] = Pixmap()
 		self["status"] = Pixmap()
-		self["message"] = StaticText(_("Please wait, loading image..."))
+		self["message"] = StaticText(_("Please wait, loading picture..."))
 		self["infolabels"] = Label()
 		text = ":\n".join(self.exifDesc)
 		self.infoLabelsText = f"{text}:"
@@ -2360,8 +2361,8 @@ class FileCommanderImageViewer(Screen):
 		self.currentIndex = 0
 		self.fileList = [fileList] if isinstance(fileList, str) else self.makeFileList(fileList, filename)
 		self.fileListLen = len(self.fileList) - 1
-		self.displayedImage = ()
-		self.currentImage = ()
+		self.displayedPicture = ()
+		self.currentPicture = ()
 		self.displayNow = True
 		self.displayOverlay = True
 		self.displayInformation = False
@@ -2421,19 +2422,19 @@ class FileCommanderImageViewer(Screen):
 			information = []
 			for index in range(len(exifList)):
 				information.append(f"{exifList[index]}")
-			self.currentImage = (text, self.currentIndex, data, "\n".join(information))
+			self.currentPicture = (text, self.currentIndex, data, "\n".join(information))
 			self.showPicture()
 
 	def showPicture(self):
-		if self.displayNow and self.currentImage:
+		if self.displayNow and self.currentPicture:
 			self.displayNow = False
-			self["message"].setText(self.currentImage[0] if self.displayOverlay else "")
-			self.lastIndex = self.currentImage[1]
-			self["image"].instance.setPixmap(self.currentImage[2].__deref__())
+			self["message"].setText(self.currentPicture[0] if self.displayOverlay else "")
+			self.lastIndex = self.currentPicture[1]
+			self["image"].instance.setPixmap(self.currentPicture[2].__deref__())
 			self["infolabels"].setText(self.infoLabelsText if self.displayInformation else "")
-			self["infodata"].setText(self.currentImage[3] if self.displayInformation else "")
-			self.displayedImage = self.currentImage[:]
-			self.currentImage = ()
+			self["infodata"].setText(self.currentPicture[3] if self.displayInformation else "")
+			self.displayedPicture = self.currentPicture[:]
+			self.currentPicture = ()
 			self.currentIndex += 1
 			if self.currentIndex > self.fileListLen:
 				self.currentIndex = 0
@@ -2447,7 +2448,7 @@ class FileCommanderImageViewer(Screen):
 	def keyToggleOverlay(self):
 		self.displayOverlay = not self.displayOverlay
 		if self.displayOverlay:
-			self["message"].setText(self.displayedImage[0])
+			self["message"].setText(self.displayedPicture[0])
 			if self.slideshowTimer.isActive():
 				self["icon"].show()
 		else:
@@ -2458,7 +2459,7 @@ class FileCommanderImageViewer(Screen):
 		self.displayInformation = not self.displayInformation
 		if self.displayInformation:
 			self["infolabels"].setText(self.infoLabelsText)
-			self["infodata"].setText(self.displayedImage[3])
+			self["infodata"].setText(self.displayedPicture[3])
 		else:
 			self["infolabels"].setText("")
 			self["infodata"].setText("")
@@ -2472,16 +2473,16 @@ class FileCommanderImageViewer(Screen):
 			self.slideshowTimer.start(config.plugins.FileCommander.slideshowDelay.value * 1000)
 			if self.displayOverlay:
 				self["icon"].show()
-			self.keyNextImage()
+			self.keyNextPicture()
 
-	def keyFirstImage(self):
-		self.currentImage = ()
+	def keyFirstPicture(self):
+		self.currentPicture = ()
 		self.currentIndex = 0
 		self.startDecode()
 		self.displayNow = True
 
-	def keyPreviousImage(self):
-		self.currentImage = ()
+	def keyPreviousPicture(self):
+		self.currentPicture = ()
 		self.currentIndex = self.lastIndex
 		self.currentIndex -= 1
 		if self.currentIndex < 0:
@@ -2489,12 +2490,12 @@ class FileCommanderImageViewer(Screen):
 		self.startDecode()
 		self.displayNow = True
 
-	def keyNextImage(self):
+	def keyNextPicture(self):
 		self.displayNow = True
 		self.showPicture()
 
-	def keyLastImage(self):
-		self.currentImage = ()
+	def keyLastPicture(self):
+		self.currentPicture = ()
 		self.currentIndex = self.fileListLen
 		self.startDecode()
 		self.displayNow = True

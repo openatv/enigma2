@@ -968,6 +968,11 @@
 	<setup key="SpecialFeatures" title="Special Features Settings">
 		<!-- This is just a placeholder, the 'specialfeatures' menu is currently disabled. -->
 	</setup>
+	<setup key="SoftCSA" title="SoftCSA Settings">
+		<item level="0" text="Decoder release strategy" description="How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)." restart="gui">config.softcsa.decoderRelease</item>
+		<item level="0" text="Sync mode" description="Select how the descrambled data stream is processed. 'Automatic' uses asynchronous writes (lower CPU usage) with automatic fallback to synchronous if kernel AIO is not supported. 'Synchronous' forces blocking writes (stable, most compatible)." restart="gui">config.softcsa.syncMode</item>
+		<item level="1" text="Decoder start timeout" description="Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases." restart="gui">config.softcsa.waitForDataTimeout</item>
+	</setup>
 	<setup key="StreamRelay" title="Stream Relay Settings">
 		<item level="2" text="Stream Relay URL" description="IP address of the Stream Relay server used to descramble services that can only be decrypted via Stream Relay.">config.misc.softcam_streamrelay_url</item>
 		<item level="2" text="Stream Relay port" description="Port number for the Stream Relay server used to descramble services that can only be decrypted via Stream Relay.">config.misc.softcam_streamrelay_port</item>

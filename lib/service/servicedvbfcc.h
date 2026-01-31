@@ -48,6 +48,12 @@ protected:
 	std::list<int> m_fcc_events;
 	int m_pmtVersion;
 	bool m_normal_decoding;
+
+	// SoftCSA support for FCC - uses base class m_csa_session and m_soft_decoder
+	void setupSpeculativeDescrambling() override;  // Override to use FCC-specific callback
+	void activateFCCCSASession();
+	void deactivateFCCCSASession();
+	void onFCCSessionActivated(bool active);
 };
 
 #endif /* __servicedvbfcc_h */

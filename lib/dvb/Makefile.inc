@@ -4,6 +4,8 @@ dvb_libenigma_dvb_a_SOURCES = \
 	dvb/cablescan.cpp \
 	dvb/cahandler.cpp \
 	dvb/crc32.cpp \
+	dvb/csaengine.cpp \
+	dvb/csasession.cpp \
 	dvb/db.cpp \
 	dvb/decoder.cpp \
 	dvb/demux.cpp \
@@ -45,6 +47,8 @@ dvbinclude_HEADERS = \
 	dvb/cablescan.h \
 	dvb/cahandler.h \
 	dvb/crc32.h \
+	dvb/csaengine.h \
+	dvb/csasession.h \
 	dvb/db.h \
 	dvb/decoder.h \
 	dvb/demux.h \

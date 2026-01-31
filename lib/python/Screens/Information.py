@@ -7,7 +7,7 @@ from os.path import basename, getmtime, isdir, isfile, join
 from subprocess import PIPE, Popen
 from urllib.request import urlopen
 
-from enigma import eAVControl, eDVBFrontendParametersSatellite, eDVBResourceManager, eGetEnigmaDebugLvl, eRTSPStreamServer, eServiceCenter, eStreamServer, eTimer, getDesktop, getE2Rev, getGStreamerVersionString, iPlayableService, iServiceInformation
+from enigma import eAVControl, eDVBFrontendParametersSatellite, eDVBResourceManager, eGetEnigmaDebugLvl, eRTSPStreamServer, eServiceCenter, eStreamServer, eTimer, getDesktop, getE2Rev, getGStreamerVersionString, iPlayableService, iServiceInformation, eDVBCSAEngine
 
 from ServiceReference import ServiceReference
 from skin import parameters
@@ -676,6 +676,8 @@ class DistributionInformation(InformationBase):
 		mediaService = BoxInfo.getItem("mediaservice")
 		if mediaService:
 			info.append(formatLine("P1", _("Media service"), mediaService.replace("enigma2-plugin-systemplugins-", "")))
+		if eDVBCSAEngine.isAvailable():
+			info.append(formatLine("P1", _("Software descrambling"), _("Available")))
 		info.append("")
 		info.append(formatLine("S", _("Build information")))
 		if self.extraSpacing:
@@ -706,6 +708,11 @@ class DistributionInformation(InformationBase):
 			("GStreamer", getGStreamerVersionString().replace("GStreamer ", "")),
 			("FFmpeg", about.getVersionFromOpkg("ffmpeg"))
 		]
+		if eDVBCSAEngine.isAvailable():
+			libName = eDVBCSAEngine.getLibraryName()
+			libVersion = eDVBCSAEngine.getLibraryVersion()
+			if libName and libVersion:
+				versions.append((libName, libVersion))
 		for version in versions:
 			info.append(formatLine("P1", _("%s version") % version[0], version[1]))
 		bootId = fileReadLine("/proc/sys/kernel/random/boot_id", source=MODULE_NAME)
