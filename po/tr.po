@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Apachi70 (OpenATV),(Teamblue)\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-17 09:22+0000\n"
-"PO-Revision-Date: 2026-01-25 09:44+0000\n"
+"POT-Creation-Date: 2026-01-30 19:51+0100\n"
+"PO-Revision-Date: 2026-01-28 12:38+0000\n"
 "Last-Translator: Mcilo <mcilo357104@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/tr/>\n"
 "Language: tr\n"
@@ -5926,6 +5926,12 @@ msgstr "Hata Ayıklama Günlükleri"
 msgid "Debug log time format *"
 msgstr "Hata ayıklama günlüğü zaman formatı *"
 
+msgid "Decoder release strategy"
+msgstr ""
+
+msgid "Decoder start timeout"
+msgstr ""
+
 #
 msgid "Decryption & Parental Control"
 msgstr "Şifre Çözme & Ebeveyn Kontrolü"
@@ -7973,9 +7979,6 @@ msgstr "Web sayfası okuma hatası!"
 msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr "Uzak alıcıdan ‘epg.dat’ dosyasını alırken hata oluştu!"
 
-msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
-msgstr "Uzak alıcıdaki 'epg.dat' dosyasının konumunu alma hatası!"
-
 msgid "Error text:"
 msgstr "Hata metni:"
 
@@ -8276,9 +8279,6 @@ msgstr "Düzenleyiciden çık ve değişiklikleri iptal et"
 msgid "Exit editor and save any changes"
 msgstr "Düzenleyiciden çık ve değişiklikleri kaydet"
 
-msgid "Exit picture viewer"
-msgstr "Resim görüntüleyiciden çık"
-
 msgid "Exit input device selection."
 msgstr "Giriş cihazı seçiminden çık."
 
@@ -8310,6 +8310,9 @@ msgstr "Ağ arayüzü listesinden çık"
 #
 msgid "Exit network wizard"
 msgstr "Ağ sihirbazından çık"
+
+msgid "Exit picture viewer"
+msgstr "Resim görüntüleyiciden çık"
 
 msgid "Exit quad PiP"
 msgstr "Quad PiP'den çık"
@@ -8693,12 +8696,6 @@ msgstr "Dosya Yöneticisi Hash / Checksum İşlemleri"
 msgid "File Commander Hashes / Checksums"
 msgstr "Dosya Yöneticisi Hashes / Checksums"
 
-msgid "File Commander Picture Viewer"
-msgstr "Dosya Yöneticisi Resim Görüntüleyici"
-
-msgid "File Commander Picture Viewer Actions"
-msgstr "Dosya Yöneticisi Resim Görüntüleyici İşlemleri"
-
 msgid "File Commander Information Actions"
 msgstr "Dosya Yöneticisi Bilgi İşlemleri"
 
@@ -8713,6 +8710,12 @@ msgstr "Dosya Yöneticisi Taşıma"
 
 msgid "File Commander Navigation Actions"
 msgstr "Dosya Yöneticisi Gezinme İşlemleri"
+
+msgid "File Commander Picture Viewer"
+msgstr "Dosya Yöneticisi Resim Görüntüleyici"
+
+msgid "File Commander Picture Viewer Actions"
+msgstr "Dosya Yöneticisi Resim Görüntüleyici İşlemleri"
 
 msgid "File Commander Selection Actions"
 msgstr "Dosya Yöneticisi Seçim İşlemleri"
@@ -9822,6 +9825,9 @@ msgstr "Saatler Dakikalar"
 
 msgid "Hours Minutes Seconds"
 msgstr "Saatler Dakikalar Saniyeler"
+
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
+msgstr ""
 
 msgid "Http(s) stream start delay"
 msgstr "Http(s) akışı başlatma gecikmesi"
@@ -11700,6 +11706,9 @@ msgstr "EPG'de maksimum gün sayısı"
 
 msgid "Maximum space used (MB)"
 msgstr "Kullanılan maksimum alan (MB)"
+
+msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
+msgstr ""
 
 msgid "Mayotte"
 msgstr "Mayotte"
@@ -17345,6 +17354,9 @@ msgstr "Antenin uydular arasında ne kadar hızlı hareket etmesi gerektiğini s
 msgid "Select how the arrow buttons 'UP', 'DOWN', 'LEFT' or 'RIGHT' will act during seek actions."
 msgstr "Arama işlemleri sırasında ‘YUKARI’, ‘AŞAĞI’, ‘SOL’ veya ‘SAĞ’ tuşlarının nasıl çalışacağını seçin."
 
+msgid "Select how the descrambled data stream is processed. 'Automatic' uses asynchronous writes (lower CPU usage) with automatic fallback to synchronous if kernel AIO is not supported. 'Synchronous' forces blocking writes (stable, most compatible)."
+msgstr ""
+
 msgid "Select how the number buttons will act during seek actions."
 msgstr "Arama işlemleri sırasında sayı tuşlarının nasıl çalışacağını seçin."
 
@@ -17614,9 +17626,10 @@ msgstr "Ekran koruyucunun görüntülenmesinden önce ne kadar süreyle işlem y
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr "Bu zamanlayıcının etkinleştirilebileceği bitiş zamanını seçin. Bu zamandan sonra, diğer koşullar sağlansa bile zamanlayıcı etkinleştirilmeyecektir."
 
+#. TRANSLATORS: "Select the file sort order for the %s:" / the placeholder is "left column" or "right column".
 #, python-format
-msgid "Select the file sort order for the %s column:"
-msgstr "%s sütunu için dosya sıralama düzenini seçin:"
+msgid "Select the file sort order for the %s:"
+msgstr "%s için dosya sıralama düzenini seçin:"
 
 msgid "Select the file system for the device."
 msgstr "Cihaz için dosya sistemini seçin."
@@ -19188,11 +19201,11 @@ msgstr "Sonraki hata ayıklama günlük dosyasını göster"
 msgid "Show next event"
 msgstr "Sonraki etkinliği göster"
 
-msgid "Show next picture"
-msgstr "Sonraki resmi göster"
-
 msgid "Show next page"
 msgstr "Sonraki sayfayı göster"
+
+msgid "Show next picture"
+msgstr "Sonraki resmi göster"
 
 msgid "Show next service information screen"
 msgstr "Sonraki kanal bilgisi ekranını göster"
@@ -19880,6 +19893,9 @@ msgstr "Toplum & Kültür"
 msgid "Socket"
 msgstr "Soket"
 
+msgid "SoftCSA Settings"
+msgstr ""
+
 msgid "Softcam"
 msgstr "Softcam"
 
@@ -19923,6 +19939,9 @@ msgstr "Yazılım Güncellemesi"
 
 msgid "Software Update Actions"
 msgstr "Yazılım Güncelleme İşlemleri"
+
+msgid "Software descrambling"
+msgstr ""
 
 msgid "Software information"
 msgstr "Yazılım bilgileri"
@@ -20800,6 +20819,9 @@ msgstr "Saat senkronizasyon yöntemi"
 
 msgid "Synchronize system time using transponder or Internet."
 msgstr "Sistem saatini aktarıcı veya internet kullanarak senkronize edin."
+
+msgid "Synchronous"
+msgstr ""
 
 msgid "Syrian Arab Republic"
 msgstr "Suriye Arap Cumhuriyeti"
@@ -24820,6 +24842,9 @@ msgstr "ses izleri"
 msgid "automatic"
 msgstr "otomatik"
 
+msgid "available"
+msgstr ""
+
 #
 msgid "back"
 msgstr "geri"
@@ -25097,6 +25122,9 @@ msgstr "numaraya göre bölüme atla"
 msgid "left"
 msgstr "sol"
 
+msgid "left column"
+msgstr "sol sütun"
+
 #
 msgid "length"
 msgstr "uzunluk"
@@ -25263,6 +25291,9 @@ msgstr "önceki bölüme geri sar"
 #
 msgid "right"
 msgstr "sağ"
+
+msgid "right column"
+msgstr "sağ sütun"
 
 msgid ""
 "satellites.xml not found or corrupted!\n"
@@ -25478,6 +25509,13 @@ msgstr "evet (beslemeleri tut)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
+#~ msgstr "Uzak alıcıdaki 'epg.dat' dosyasının konumunu alma hatası!"
+
+#, python-format
+#~ msgid "Select the file sort order for the %s column:"
+#~ msgstr "%s sütunu için dosya sıralama düzenini seçin:"
 
 #~ msgid ""
 #~ "File oscam.conf not found.\n"

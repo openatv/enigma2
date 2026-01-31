@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV 7.6.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-17 09:22+0000\n"
-"PO-Revision-Date: 2026-01-22 06:56+0000\n"
+"POT-Creation-Date: 2026-01-30 19:51+0100\n"
+"PO-Revision-Date: 2026-01-31 05:56+0000\n"
 "Last-Translator: Milan Koljanin <lane58@gmail.com>\n"
 "Language-Team: Croatian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hr/>\n"
 "Language: hr\n"
@@ -5759,6 +5759,12 @@ msgstr "Evidencija otklanjanja grešaka"
 msgid "Debug log time format *"
 msgstr "Format vremena otklanjanja grešaka *"
 
+msgid "Decoder release strategy"
+msgstr "Strategija izlaska dekodera"
+
+msgid "Decoder start timeout"
+msgstr "Isteklo vrijeme pokretanja dekodera"
+
 msgid "Decryption & Parental Control"
 msgstr "Emu & Roditeljska Kontrola"
 
@@ -7722,9 +7728,6 @@ msgstr "Pogreška pri čitanju web stranice!"
 msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr "Pogreška pri dohvaćanju 'epg.dat' s udaljenog tunera!"
 
-msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
-msgstr "Pogreška pri dohvaćanju lokacije 'epg.dat' na udaljenom tuneru!"
-
 msgid "Error text:"
 msgstr "Tekst pogreške:"
 
@@ -8009,9 +8012,6 @@ msgstr "Izađite iz uređivača i odbacite sve promjene"
 msgid "Exit editor and save any changes"
 msgstr "Izađite iz uređivača i spremite sve promjene"
 
-msgid "Exit picture viewer"
-msgstr "Izađite iz preglednika slika"
-
 msgid "Exit input device selection."
 msgstr "Izađite iz odabira ulaznog uređaja."
 
@@ -8038,6 +8038,9 @@ msgstr "Izlaz iz popisa mrežnog sučelja"
 
 msgid "Exit network wizard"
 msgstr "Izlaz iz mrežnog čarobnjaka"
+
+msgid "Exit picture viewer"
+msgstr "Izađite iz preglednika slika"
 
 msgid "Exit quad PiP"
 msgstr "Izlaz iz 4X PiP"
@@ -8405,12 +8408,6 @@ msgstr "Zapovjednik Datoteke Radnje Hash / kontrolnog zbroja"
 msgid "File Commander Hashes / Checksums"
 msgstr "Zapovjednik Datoteke Hash / kontrolnog zbroja"
 
-msgid "File Commander Picture Viewer"
-msgstr "Zapovjednik Datoteke Preglednika Slika"
-
-msgid "File Commander Picture Viewer Actions"
-msgstr "Zapovjednik Datoteke Radnja Preglednika slika"
-
 msgid "File Commander Information Actions"
 msgstr "Zapovjednik Datoteke Informacije radnja"
 
@@ -8425,6 +8422,12 @@ msgstr "Zapovjednik Datoteke Premjesti"
 
 msgid "File Commander Navigation Actions"
 msgstr "Zapovjednik Datoteke Navigacijske radnje"
+
+msgid "File Commander Picture Viewer"
+msgstr "Zapovjednik Datoteke Preglednika Slika"
+
+msgid "File Commander Picture Viewer Actions"
+msgstr "Zapovjednik Datoteke Radnja Preglednika slika"
 
 msgid "File Commander Selection Actions"
 msgstr "Zapovjednik Datoteke Radnje odabira"
@@ -9483,6 +9486,9 @@ msgstr "Sat Minute"
 
 msgid "Hours Minutes Seconds"
 msgstr "Sat Minute Sekunde"
+
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
+msgstr "Kako osloboditi hardverski dekoder prilikom prelaska na softversko dešifriranje. 'Brzo' oslobađa odmah (brže uključivanje kanala). 'Normalno' prvo obavlja uredno gašenje (stabilnije na nekim uređajima)."
 
 msgid "Http(s) stream start delay"
 msgstr "Kašnjenje početka http strima"
@@ -11270,6 +11276,9 @@ msgstr "Maksimalni broj dana u EPG"
 
 msgid "Maximum space used (MB)"
 msgstr "Maksimalno iskorišćen prostor (MB)"
+
+msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
+msgstr "Maksimalno vrijeme čekanja na dolazne podatke i ključeve za dešifriranje (CW) prije pokretanja dekodera. Obično oboje stigne puno brže i ovo je samo za posebne slučajeve."
 
 msgid "Mayotte"
 msgstr "Mayotte"
@@ -16610,6 +16619,9 @@ msgstr "Odaberi koliko brzo bi antena trebala da se kreće između satelita."
 msgid "Select how the arrow buttons 'UP', 'DOWN', 'LEFT' or 'RIGHT' will act during seek actions."
 msgstr "Odaberite kako će tipke sa strelicama 'GORE', 'DOLJE', 'LIJEVO' ili 'DESNO' djelovati tijekom traženja."
 
+msgid "Select how the descrambled data stream is processed. 'Automatic' uses asynchronous writes (lower CPU usage) with automatic fallback to synchronous if kernel AIO is not supported. 'Synchronous' forces blocking writes (stable, most compatible)."
+msgstr "Odaberite kako se procesira dešifrirani podatkovni stream. 'Automatski' koristi asinhrone zapise (manja upotreba CPU-a) s automatskim prelaskom na sinhrone ako kernel AIO nije podržan. 'Sinhroni' prisiljava blokirajuće zapise (stabilno, najkompatibilnije)."
+
 msgid "Select how the number buttons will act during seek actions."
 msgstr "Odaberi kako će se numerička dugmad ponašati tokom pretraživanja."
 
@@ -16874,9 +16886,10 @@ msgstr "Odaberi trajanje neaktivnosti prije nego što će se prikazati čuvar za
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr "Odaberite krajnje vrijeme prije kojeg se ovaj tajmer može aktivirati. Nakon tog vremena tajmer se neće aktivirati, čak ni ako su ispunjeni ostali uvjeti."
 
+#. TRANSLATORS: "Select the file sort order for the %s:" / the placeholder is "left column" or "right column".
 #, python-format
-msgid "Select the file sort order for the %s column:"
-msgstr "Odaberi redosljed sortiranja datoteka za kolonu %s:"
+msgid "Select the file sort order for the %s:"
+msgstr "Odaberite redoslijed sortiranja datoteka za %s:"
 
 msgid "Select the file system for the device."
 msgstr "Odaberi datoteku sustava za uređaj."
@@ -19072,6 +19085,9 @@ msgstr "Society & Culture"
 msgid "Socket"
 msgstr "Priključak"
 
+msgid "SoftCSA Settings"
+msgstr "Postavke SoftCSA"
+
 msgid "Softcam"
 msgstr "Softcam"
 
@@ -19113,6 +19129,9 @@ msgstr "Ažuriranje Softvera"
 
 msgid "Software Update Actions"
 msgstr "Radnje Ažuriranja Softvera"
+
+msgid "Software descrambling"
+msgstr "Softversko dešifriranje"
 
 msgid "Software information"
 msgstr "Softver info"
@@ -19941,6 +19960,9 @@ msgstr "Vreme sinhronizacije koristi se"
 
 msgid "Synchronize system time using transponder or Internet."
 msgstr "Sinhronizujte sistemsko vrijeme koristeći transponder ili Internet."
+
+msgid "Synchronous"
+msgstr "Istovremeno"
 
 msgid "Syrian Arab Republic"
 msgstr "Syrian Arab Republic"
@@ -23803,6 +23825,9 @@ msgstr "audio numera"
 msgid "automatic"
 msgstr "automatski"
 
+msgid "available"
+msgstr "dostupno"
+
 msgid "back"
 msgstr "natrag"
 
@@ -24049,6 +24074,9 @@ msgstr "prelazak na poglavlje po broju"
 msgid "left"
 msgstr "lijevo"
 
+msgid "left column"
+msgstr "lijevi stupac"
+
 msgid "length"
 msgstr "dužina"
 
@@ -24189,6 +24217,9 @@ msgstr "premotavanje unazad na predhodno poglavlje"
 
 msgid "right"
 msgstr "desno"
+
+msgid "right column"
+msgstr "desni stupac"
 
 msgid ""
 "satellites.xml not found or corrupted!\n"
@@ -24381,6 +24412,13 @@ msgstr "da (zadrži fidove)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
+#~ msgstr "Pogreška pri dohvaćanju lokacije 'epg.dat' na udaljenom tuneru!"
+
+#, python-format
+#~ msgid "Select the file sort order for the %s column:"
+#~ msgstr "Odaberi redosljed sortiranja datoteka za kolonu %s:"
 
 #~ msgid ""
 #~ "File oscam.conf not found.\n"

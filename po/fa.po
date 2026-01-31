@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-17 09:22+0000\n"
+"POT-Creation-Date: 2026-01-30 19:51+0100\n"
 "PO-Revision-Date: 2021-09-15 14:20+0000\n"
 "Last-Translator: Hamed Beyrami <h.beyrami@outlook.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fa/>\n"
@@ -5898,6 +5898,12 @@ msgstr ""
 msgid "Debug log time format *"
 msgstr ""
 
+msgid "Decoder release strategy"
+msgstr ""
+
+msgid "Decoder start timeout"
+msgstr ""
+
 #, fuzzy
 msgid "Decryption & Parental Control"
 msgstr "کنترل والدین"
@@ -7857,9 +7863,6 @@ msgstr ""
 msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr ""
 
-msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
-msgstr ""
-
 msgid "Error text:"
 msgstr ""
 
@@ -8140,9 +8143,6 @@ msgstr ""
 msgid "Exit editor and save any changes"
 msgstr ""
 
-msgid "Exit picture viewer"
-msgstr ""
-
 msgid "Exit input device selection."
 msgstr "خروج از انتخاب وسیله ورودی"
 
@@ -8174,6 +8174,9 @@ msgstr "خروج از لیست رابط شبکه "
 
 msgid "Exit network wizard"
 msgstr "خروج از هدایتگر شبکه"
+
+msgid "Exit picture viewer"
+msgstr ""
 
 msgid "Exit quad PiP"
 msgstr ""
@@ -8549,12 +8552,6 @@ msgstr ""
 msgid "File Commander Hashes / Checksums"
 msgstr ""
 
-msgid "File Commander Picture Viewer"
-msgstr ""
-
-msgid "File Commander Picture Viewer Actions"
-msgstr ""
-
 msgid "File Commander Information Actions"
 msgstr ""
 
@@ -8568,6 +8565,12 @@ msgid "File Commander Move"
 msgstr ""
 
 msgid "File Commander Navigation Actions"
+msgstr ""
+
+msgid "File Commander Picture Viewer"
+msgstr ""
+
+msgid "File Commander Picture Viewer Actions"
 msgstr ""
 
 msgid "File Commander Selection Actions"
@@ -9664,6 +9667,9 @@ msgid "Hours Minutes"
 msgstr ""
 
 msgid "Hours Minutes Seconds"
+msgstr ""
+
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
 msgstr ""
 
 msgid "Http(s) stream start delay"
@@ -11498,6 +11504,9 @@ msgid "Maximum number of days in EPG"
 msgstr ""
 
 msgid "Maximum space used (MB)"
+msgstr ""
+
+msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
 msgstr ""
 
 msgid "Mayotte"
@@ -17021,6 +17030,9 @@ msgstr ""
 msgid "Select how the arrow buttons 'UP', 'DOWN', 'LEFT' or 'RIGHT' will act during seek actions."
 msgstr ""
 
+msgid "Select how the descrambled data stream is processed. 'Automatic' uses asynchronous writes (lower CPU usage) with automatic fallback to synchronous if kernel AIO is not supported. 'Synchronous' forces blocking writes (stable, most compatible)."
+msgstr ""
+
 msgid "Select how the number buttons will act during seek actions."
 msgstr ""
 
@@ -17286,8 +17298,9 @@ msgstr ""
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr ""
 
+#. TRANSLATORS: "Select the file sort order for the %s:" / the placeholder is "left column" or "right column".
 #, python-format
-msgid "Select the file sort order for the %s column:"
+msgid "Select the file sort order for the %s:"
 msgstr ""
 
 msgid "Select the file system for the device."
@@ -19521,6 +19534,9 @@ msgstr ""
 msgid "Socket"
 msgstr "قفل شده"
 
+msgid "SoftCSA Settings"
+msgstr ""
+
 msgid "Softcam"
 msgstr ""
 
@@ -19561,6 +19577,9 @@ msgid "Software Update"
 msgstr ""
 
 msgid "Software Update Actions"
+msgstr ""
+
+msgid "Software descrambling"
 msgstr ""
 
 msgid "Software information"
@@ -20415,6 +20434,9 @@ msgid "Sync time using"
 msgstr ""
 
 msgid "Synchronize system time using transponder or Internet."
+msgstr ""
+
+msgid "Synchronous"
 msgstr ""
 
 msgid "Syrian Arab Republic"
@@ -24217,6 +24239,9 @@ msgstr "آهنگ های صوتی"
 msgid "automatic"
 msgstr "خودکار"
 
+msgid "available"
+msgstr ""
+
 msgid "back"
 msgstr "عقب"
 
@@ -24467,6 +24492,9 @@ msgstr ""
 msgid "left"
 msgstr "چپ"
 
+msgid "left column"
+msgstr ""
+
 msgid "length"
 msgstr "طول"
 
@@ -24613,6 +24641,9 @@ msgstr "بازگشت به فصل قبلی"
 
 msgid "right"
 msgstr "راست"
+
+msgid "right column"
+msgstr ""
 
 msgid ""
 "satellites.xml not found or corrupted!\n"

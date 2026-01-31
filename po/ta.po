@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-17 09:22+0000\n"
+"POT-Creation-Date: 2026-01-30 19:51+0100\n"
 "PO-Revision-Date: 2025-06-17 15:01+0000\n"
 "Last-Translator: தமிழ்நேரம் <anishprabu.t@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/ta/>\n"
@@ -5721,6 +5721,12 @@ msgstr "பிழைத்திருத்த பதிவுகள்"
 msgid "Debug log time format *"
 msgstr "பிழை பதிவு நேர வடிவமைப்பை பிழைத்திருத்தல் *"
 
+msgid "Decoder release strategy"
+msgstr ""
+
+msgid "Decoder start timeout"
+msgstr ""
+
 msgid "Decryption & Parental Control"
 msgstr "மறைகுறியாக்கம் மற்றும் பெற்றோர் கட்டுப்பாடு"
 
@@ -7681,9 +7687,6 @@ msgstr "வலைப்பக்கத்தைப் படிப்பதி�
 msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr "தொலைநிலை பெறுநரிடமிருந்து 'epg.dat' ஐ மீட்டெடுப்பதில் பிழை!"
 
-msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
-msgstr "தொலைநிலை ரிசீவரில் 'epg.dat' இருப்பிடத்தை மீட்டெடுப்பதில் பிழை!"
-
 msgid "Error text:"
 msgstr "பிழை உரை:"
 
@@ -7968,9 +7971,6 @@ msgstr "எடிட்டரை விட்டு வெளியேறி எ
 msgid "Exit editor and save any changes"
 msgstr "எடிட்டரை விட்டு வெளியேறி எந்த மாற்றங்களையும் சேமிக்கவும்"
 
-msgid "Exit picture viewer"
-msgstr "பட பார்வையாளரை விட்டு வெளியேறவும்"
-
 msgid "Exit input device selection."
 msgstr "உள்ளீட்டு சாதனத் தேர்விலிருந்து வெளியேறவும்."
 
@@ -7997,6 +7997,9 @@ msgstr "பிணைய இடைமுக பட்டியலிலிரு�
 
 msgid "Exit network wizard"
 msgstr "பிணையம் வழிகாட்டி வெளியேறவும்"
+
+msgid "Exit picture viewer"
+msgstr "பட பார்வையாளரை விட்டு வெளியேறவும்"
 
 msgid "Exit quad PiP"
 msgstr "வெளியேறும் குவாட் பிப்"
@@ -8364,12 +8367,6 @@ msgstr "கோப்பு தளபதி ஆச் / செக்சம் ச
 msgid "File Commander Hashes / Checksums"
 msgstr "கோப்பு தளபதி ஆச்கள் / செக்சம்ச்"
 
-msgid "File Commander Picture Viewer"
-msgstr "கோப்பு தளபதி பட பார்வையாளர்"
-
-msgid "File Commander Picture Viewer Actions"
-msgstr "கோப்பு தளபதி பட பார்வையாளர் செயல்கள்"
-
 msgid "File Commander Information Actions"
 msgstr "கோப்பு தளபதி செய்தி செயல்கள்"
 
@@ -8384,6 +8381,12 @@ msgstr "கோப்பு தளபதி நகர்வு"
 
 msgid "File Commander Navigation Actions"
 msgstr "கோப்பு தளபதி வழிசெலுத்தல் செயல்கள்"
+
+msgid "File Commander Picture Viewer"
+msgstr "கோப்பு தளபதி பட பார்வையாளர்"
+
+msgid "File Commander Picture Viewer Actions"
+msgstr "கோப்பு தளபதி பட பார்வையாளர் செயல்கள்"
 
 msgid "File Commander Selection Actions"
 msgstr "கோப்பு தளபதி தேர்வு செயல்கள்"
@@ -9442,6 +9445,9 @@ msgstr "மணிநேர நிமிடங்கள்"
 
 msgid "Hours Minutes Seconds"
 msgstr "மணிநேர நிமிடங்கள் விநாடிகள்"
+
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
+msgstr ""
 
 msgid "Http(s) stream start delay"
 msgstr "Http (கள்) ச்ட்ரீம் தொடக்க நேரந்தவறுகை"
@@ -11227,6 +11233,9 @@ msgstr "ஈபிசியில் அதிகபட்ச நாட்கள�
 
 msgid "Maximum space used (MB)"
 msgstr "பயன்படுத்தப்படும் அதிகபட்ச இடம் (எம்பி)"
+
+msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
+msgstr ""
 
 msgid "Mayotte"
 msgstr "மயோதி"
@@ -16562,6 +16571,9 @@ msgstr "செயற்கைக்கோள்களுக்கு இடை�
 msgid "Select how the arrow buttons 'UP', 'DOWN', 'LEFT' or 'RIGHT' will act during seek actions."
 msgstr "அம்பு ('அப்', 'பேரூர்', 'இடது', மற்றும் 'வலது') பொத்தான்கள் எவ்வாறு தேடும் செயல்களின் போது செயல்படும் என்பதைத் தேர்ந்தெடுக்கவும்."
 
+msgid "Select how the descrambled data stream is processed. 'Automatic' uses asynchronous writes (lower CPU usage) with automatic fallback to synchronous if kernel AIO is not supported. 'Synchronous' forces blocking writes (stable, most compatible)."
+msgstr ""
+
 msgid "Select how the number buttons will act during seek actions."
 msgstr "தேடல் செயல்களின் போது எண் பொத்தான்கள் எவ்வாறு செயல்படும் என்பதைத் தேர்ந்தெடுக்கவும்."
 
@@ -16826,9 +16838,10 @@ msgstr "திரை சேவர் காண்பிக்கப்படு�
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr ""
 
+#. TRANSLATORS: "Select the file sort order for the %s:" / the placeholder is "left column" or "right column".
 #, python-format
-msgid "Select the file sort order for the %s column:"
-msgstr "%s நெடுவரிசைக்கு கோப்பு வரிசை வரிசையைத் தேர்ந்தெடுக்கவும்:"
+msgid "Select the file sort order for the %s:"
+msgstr ""
 
 msgid "Select the file system for the device."
 msgstr "சாதனத்திற்கான கோப்பு முறைமையைத் தேர்ந்தெடுக்கவும்."
@@ -18359,11 +18372,11 @@ msgstr "அடுத்த பிழைத்திருத்த பதிவ�
 msgid "Show next event"
 msgstr "அடுத்த நிகழ்வைக் காட்டு"
 
-msgid "Show next picture"
-msgstr "அடுத்த படத்தைக் காட்டு"
-
 msgid "Show next page"
 msgstr "அடுத்த பக்கத்தைக் காட்டு"
+
+msgid "Show next picture"
+msgstr "அடுத்த படத்தைக் காட்டு"
 
 msgid "Show next service information screen"
 msgstr "அடுத்த பணி செய்தி திரையைக் காட்டு"
@@ -19020,6 +19033,9 @@ msgstr "சமூகம் & பண்பாடு"
 msgid "Socket"
 msgstr "மாட்டி"
 
+msgid "SoftCSA Settings"
+msgstr ""
+
 msgid "Softcam"
 msgstr "சோஃப்சாம்"
 
@@ -19061,6 +19077,9 @@ msgstr "மென்பொருள் புதுப்பிப்பு"
 
 msgid "Software Update Actions"
 msgstr "மென்பொருள் புதுப்பிப்பு செயல்கள்"
+
+msgid "Software descrambling"
+msgstr ""
 
 msgid "Software information"
 msgstr "மென்பொருள் செய்தி"
@@ -19889,6 +19908,9 @@ msgstr "பயன்படுத்தி நேரத்தை ஒத்தி�
 
 msgid "Synchronize system time using transponder or Internet."
 msgstr "டிரான்ச்பாண்டர் அல்லது இணையத்தைப் பயன்படுத்தி கணினி நேரத்தை ஒத்திசைக்கவும்."
+
+msgid "Synchronous"
+msgstr ""
 
 msgid "Syrian Arab Republic"
 msgstr "சிரியன் அரபு குடியரசு"
@@ -23750,6 +23772,9 @@ msgstr "ஆடியோ தடங்கள்"
 msgid "automatic"
 msgstr "தானியங்கி"
 
+msgid "available"
+msgstr ""
+
 msgid "back"
 msgstr "பின்"
 
@@ -23996,6 +24021,9 @@ msgstr "எண் மூலம் அத்தியாயத்திற்க�
 msgid "left"
 msgstr "இடது"
 
+msgid "left column"
+msgstr ""
+
 msgid "length"
 msgstr "நீளம்"
 
@@ -24136,6 +24164,9 @@ msgstr "முந்தைய அத்தியாயத்திற்கு �
 
 msgid "right"
 msgstr "வலது"
+
+msgid "right column"
+msgstr ""
 
 msgid ""
 "satellites.xml not found or corrupted!\n"
@@ -24327,6 +24358,13 @@ msgstr "ஆம் (ஊட்டங்களை வைத்திருங்க
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
+#~ msgstr "தொலைநிலை ரிசீவரில் 'epg.dat' இருப்பிடத்தை மீட்டெடுப்பதில் பிழை!"
+
+#, python-format
+#~ msgid "Select the file sort order for the %s column:"
+#~ msgstr "%s நெடுவரிசைக்கு கோப்பு வரிசை வரிசையைத் தேர்ந்தெடுக்கவும்:"
 
 #~ msgid ""
 #~ "File oscam.conf not found.\n"

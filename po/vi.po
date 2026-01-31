@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-17 09:22+0000\n"
+"POT-Creation-Date: 2026-01-30 19:51+0100\n"
 "PO-Revision-Date: 2019-07-27 12:19+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -5765,6 +5765,12 @@ msgstr "Gỡ lỗi để tập tin"
 msgid "Debug log time format *"
 msgstr ""
 
+msgid "Decoder release strategy"
+msgstr ""
+
+msgid "Decoder start timeout"
+msgstr ""
+
 msgid "Decryption & Parental Control"
 msgstr "Giải mã & Kiểm soát của cha mẹ"
 
@@ -7737,9 +7743,6 @@ msgstr "Lỗi đọc trang web!"
 msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr ""
 
-msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
-msgstr ""
-
 msgid "Error text:"
 msgstr ""
 
@@ -8018,9 +8021,6 @@ msgstr ""
 msgid "Exit editor and save any changes"
 msgstr ""
 
-msgid "Exit picture viewer"
-msgstr ""
-
 msgid "Exit input device selection."
 msgstr "Thoát lựa chọn thiết bị đầu vào."
 
@@ -8047,6 +8047,9 @@ msgstr "Thoát khỏi danh sách giao diện mạng"
 
 msgid "Exit network wizard"
 msgstr "Thoát khỏi thuật sĩ mạng"
+
+msgid "Exit picture viewer"
+msgstr ""
 
 msgid "Exit quad PiP"
 msgstr "Thoát khỏi PiP"
@@ -8420,12 +8423,6 @@ msgstr ""
 msgid "File Commander Hashes / Checksums"
 msgstr ""
 
-msgid "File Commander Picture Viewer"
-msgstr ""
-
-msgid "File Commander Picture Viewer Actions"
-msgstr ""
-
 msgid "File Commander Information Actions"
 msgstr ""
 
@@ -8439,6 +8436,12 @@ msgid "File Commander Move"
 msgstr ""
 
 msgid "File Commander Navigation Actions"
+msgstr ""
+
+msgid "File Commander Picture Viewer"
+msgstr ""
+
+msgid "File Commander Picture Viewer Actions"
 msgstr ""
 
 msgid "File Commander Selection Actions"
@@ -9522,6 +9525,9 @@ msgstr "Giờ tối thiểu"
 
 msgid "Hours Minutes Seconds"
 msgstr "Giờ phút giây"
+
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
+msgstr ""
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -11339,6 +11345,9 @@ msgstr "Đa số không có ngày EPG"
 
 msgid "Maximum space used (MB)"
 msgstr "Dung lượng tối đa được sử dụng (MB):"
+
+msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
+msgstr ""
 
 msgid "Mayotte"
 msgstr "Mayotte"
@@ -16766,6 +16775,9 @@ msgstr "Chọn cách nhanh chóng các chảo nên di chuyển giữa các vệ 
 msgid "Select how the arrow buttons 'UP', 'DOWN', 'LEFT' or 'RIGHT' will act during seek actions."
 msgstr ""
 
+msgid "Select how the descrambled data stream is processed. 'Automatic' uses asynchronous writes (lower CPU usage) with automatic fallback to synchronous if kernel AIO is not supported. 'Synchronous' forces blocking writes (stable, most compatible)."
+msgstr ""
+
 msgid "Select how the number buttons will act during seek actions."
 msgstr ""
 
@@ -17031,8 +17043,9 @@ msgstr "Định cấu hình thời lượng tính bằng phút cho trình bảo 
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr ""
 
+#. TRANSLATORS: "Select the file sort order for the %s:" / the placeholder is "left column" or "right column".
 #, python-format
-msgid "Select the file sort order for the %s column:"
+msgid "Select the file sort order for the %s:"
 msgstr ""
 
 msgid "Select the file system for the device."
@@ -19226,6 +19239,9 @@ msgstr ""
 msgid "Socket"
 msgstr "Ổ cắm"
 
+msgid "SoftCSA Settings"
+msgstr ""
+
 msgid "Softcam"
 msgstr "Softcam"
 
@@ -19266,6 +19282,9 @@ msgid "Software Update"
 msgstr "Cập nhật phần mềm"
 
 msgid "Software Update Actions"
+msgstr ""
+
+msgid "Software descrambling"
 msgstr ""
 
 msgid "Software information"
@@ -20111,6 +20130,9 @@ msgstr "Đồng bộ hóa thời gian sử dụng"
 
 msgid "Synchronize system time using transponder or Internet."
 msgstr "Đồng bộ hóa thời gian hệ thống bằng cách sử dụng transponder hoặc internet."
+
+msgid "Synchronous"
+msgstr ""
 
 msgid "Syrian Arab Republic"
 msgstr "Cộng Hòa Arab Syrian"
@@ -23942,6 +23964,9 @@ msgstr "bản nhạc"
 msgid "automatic"
 msgstr "tự động"
 
+msgid "available"
+msgstr ""
+
 msgid "back"
 msgstr "trở lại"
 
@@ -24189,6 +24214,9 @@ msgstr "nhảy đến chương theo số"
 msgid "left"
 msgstr "trái"
 
+msgid "left column"
+msgstr ""
+
 msgid "length"
 msgstr "chiều dài"
 
@@ -24330,6 +24358,9 @@ msgstr "tua lại chương trước"
 
 msgid "right"
 msgstr "phải"
+
+msgid "right column"
+msgstr ""
 
 msgid ""
 "satellites.xml not found or corrupted!\n"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openATV / enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-17 09:22+0000\n"
+"POT-Creation-Date: 2026-01-30 19:51+0100\n"
 "PO-Revision-Date: 2024-01-13 10:34+0000\n"
 "Last-Translator: Reza Almanda <rezaalmanda27@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/id/>\n"
@@ -5933,6 +5933,12 @@ msgstr "Debug Logs"
 msgid "Debug log time format *"
 msgstr ""
 
+msgid "Decoder release strategy"
+msgstr ""
+
+msgid "Decoder start timeout"
+msgstr ""
+
 #, fuzzy
 msgid "Decryption & Parental Control"
 msgstr "Pengawasan Orangtua"
@@ -7911,9 +7917,6 @@ msgstr "Error reading webpage!"
 msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr ""
 
-msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
-msgstr ""
-
 msgid "Error text:"
 msgstr ""
 
@@ -8194,9 +8197,6 @@ msgstr ""
 msgid "Exit editor and save any changes"
 msgstr ""
 
-msgid "Exit picture viewer"
-msgstr ""
-
 msgid "Exit input device selection."
 msgstr "Exit input device selection."
 
@@ -8223,6 +8223,9 @@ msgstr "Exit network interface list"
 
 msgid "Exit network wizard"
 msgstr "Exit network wizard"
+
+msgid "Exit picture viewer"
+msgstr ""
 
 msgid "Exit quad PiP"
 msgstr "Exit quad PiP"
@@ -8599,12 +8602,6 @@ msgstr ""
 msgid "File Commander Hashes / Checksums"
 msgstr ""
 
-msgid "File Commander Picture Viewer"
-msgstr ""
-
-msgid "File Commander Picture Viewer Actions"
-msgstr ""
-
 msgid "File Commander Information Actions"
 msgstr ""
 
@@ -8618,6 +8615,12 @@ msgid "File Commander Move"
 msgstr ""
 
 msgid "File Commander Navigation Actions"
+msgstr ""
+
+msgid "File Commander Picture Viewer"
+msgstr ""
+
+msgid "File Commander Picture Viewer Actions"
 msgstr ""
 
 msgid "File Commander Selection Actions"
@@ -9720,6 +9723,9 @@ msgstr "Hours Minutes"
 
 msgid "Hours Minutes Seconds"
 msgstr "Hours Minutes Seconds"
+
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
+msgstr ""
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -11552,6 +11558,9 @@ msgstr "Maximum number of days in EPG"
 
 msgid "Maximum space used (MB)"
 msgstr "Maximum space used (MB)"
+
+msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
+msgstr ""
 
 msgid "Mayotte"
 msgstr "Mayotte"
@@ -17024,6 +17033,9 @@ msgstr ""
 msgid "Select how the arrow buttons 'UP', 'DOWN', 'LEFT' or 'RIGHT' will act during seek actions."
 msgstr ""
 
+msgid "Select how the descrambled data stream is processed. 'Automatic' uses asynchronous writes (lower CPU usage) with automatic fallback to synchronous if kernel AIO is not supported. 'Synchronous' forces blocking writes (stable, most compatible)."
+msgstr ""
+
 msgid "Select how the number buttons will act during seek actions."
 msgstr ""
 
@@ -17288,8 +17300,9 @@ msgstr "Select the duration of inactivity before the screen saver will be displa
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr ""
 
+#. TRANSLATORS: "Select the file sort order for the %s:" / the placeholder is "left column" or "right column".
 #, python-format
-msgid "Select the file sort order for the %s column:"
+msgid "Select the file sort order for the %s:"
 msgstr ""
 
 msgid "Select the file system for the device."
@@ -19510,6 +19523,9 @@ msgstr ""
 msgid "Socket"
 msgstr "locked"
 
+msgid "SoftCSA Settings"
+msgstr ""
+
 msgid "Softcam"
 msgstr "Softcam"
 
@@ -19550,6 +19566,9 @@ msgid "Software Update"
 msgstr "Pembaruan Perangkat Lunak"
 
 msgid "Software Update Actions"
+msgstr ""
+
+msgid "Software descrambling"
 msgstr ""
 
 msgid "Software information"
@@ -20401,6 +20420,9 @@ msgstr "Sync time using"
 
 msgid "Synchronize system time using transponder or Internet."
 msgstr "Synchronize system time using transponder or Internet."
+
+msgid "Synchronous"
+msgstr ""
 
 msgid "Syrian Arab Republic"
 msgstr "Syrian Arab Republic"
@@ -24267,6 +24289,9 @@ msgstr "audio tracks"
 msgid "automatic"
 msgstr "automatic"
 
+msgid "available"
+msgstr ""
+
 msgid "back"
 msgstr "back"
 
@@ -24514,6 +24539,9 @@ msgstr "jump to chapter by number"
 msgid "left"
 msgstr "left"
 
+msgid "left column"
+msgstr ""
+
 msgid "length"
 msgstr "length"
 
@@ -24658,6 +24686,9 @@ msgstr "rewind to the previous chapter"
 
 msgid "right"
 msgstr "right"
+
+msgid "right column"
+msgstr ""
 
 msgid ""
 "satellites.xml not found or corrupted!\n"

@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Italian translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-17 09:22+0000\n"
-"PO-Revision-Date: 2026-01-18 14:48+0000\n"
+"POT-Creation-Date: 2026-01-30 19:51+0100\n"
+"PO-Revision-Date: 2026-01-31 05:02+0000\n"
 "Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/it/>\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.15.2\n"
+"X-Generator: Weblate 5.16-dev\n"
 "X-Poedit-SourceCharset: iso-8859-1\n"
 
 msgid ""
@@ -5723,6 +5723,12 @@ msgstr "Registro di debug"
 msgid "Debug log time format *"
 msgstr "Formato dell'ora del registro debug *"
 
+msgid "Decoder release strategy"
+msgstr "Strategia di rilascio del decoder"
+
+msgid "Decoder start timeout"
+msgstr "Timeout di avvio del decoder"
+
 msgid "Decryption & Parental Control"
 msgstr "Decrittografia e controllo genitori"
 
@@ -7683,9 +7689,6 @@ msgstr "Errore di lettura pagina web!"
 msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr "Errore nel recupero di 'epg.dat' dal ricevitore remoto!"
 
-msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
-msgstr "Errore nel recupero della posizione di 'epg.dat' sul ricevitore remoto!"
-
 msgid "Error text:"
 msgstr "Testo dell'errore:"
 
@@ -7970,9 +7973,6 @@ msgstr "Esci dall'editor e scarta tutte le modifiche"
 msgid "Exit editor and save any changes"
 msgstr "Esci dall'editor e salva le modifiche"
 
-msgid "Exit picture viewer"
-msgstr "Esci dal visualizzatore di immagini"
-
 msgid "Exit input device selection."
 msgstr "Esci dalla selezione del dispositivo di input."
 
@@ -7999,6 +7999,9 @@ msgstr "Esci dall'elenco interfacce di rete"
 
 msgid "Exit network wizard"
 msgstr "Esci dalla procedura guidata di rete"
+
+msgid "Exit picture viewer"
+msgstr "Esci dal visualizzatore di immagini"
 
 msgid "Exit quad PiP"
 msgstr "Esci dal PiP quad"
@@ -8366,12 +8369,6 @@ msgstr "File Commander Azioni Hash/checksum"
 msgid "File Commander Hashes / Checksums"
 msgstr "File Commander Hash/checksum"
 
-msgid "File Commander Picture Viewer"
-msgstr "File Commander Visualizzatore di immagini"
-
-msgid "File Commander Picture Viewer Actions"
-msgstr "File Commander Azioni del Visualizzatore di immagini"
-
 msgid "File Commander Information Actions"
 msgstr "File Commander Informazioni azioni"
 
@@ -8386,6 +8383,12 @@ msgstr "File Commander Sposta"
 
 msgid "File Commander Navigation Actions"
 msgstr "File Commander Azioni di Navigazione"
+
+msgid "File Commander Picture Viewer"
+msgstr "File Commander Visualizzatore di immagini"
+
+msgid "File Commander Picture Viewer Actions"
+msgstr "File Commander Azioni del Visualizzatore di immagini"
 
 msgid "File Commander Selection Actions"
 msgstr "File Commander Azioni di Selezione"
@@ -9444,6 +9447,9 @@ msgstr "Ore Minuti"
 
 msgid "Hours Minutes Seconds"
 msgstr "Ore Minuti Secondi"
+
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
+msgstr "Come sbloccare il decoder hardware quando si passa alla decriptazione software. L'opzione 'Veloce' sblocca immediatamente (zapping più rapido). L'opzione 'Normale' esegue prima uno spegnimento pulito (più stabile su alcuni box)."
 
 msgid "Http(s) stream start delay"
 msgstr "Ritardo di avvio del flusso HTTP(s)"
@@ -11229,6 +11235,9 @@ msgstr "Numero massimo di giorni in EPG"
 
 msgid "Maximum space used (MB)"
 msgstr "Spazio massimo usato (MB)"
+
+msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
+msgstr "Tempo massimo di attesa per i dati in arrivo e le chiavi di decriptazione (CW) prima di avviare il decoder. Di solito entrambi arrivano molto più velocemente e questo vale solo per casi speciali."
 
 msgid "Mayotte"
 msgstr "Mayotte"
@@ -16564,6 +16573,9 @@ msgstr "Seleziona velocità con cui la parabola deve spostarsi tra i satelliti."
 msgid "Select how the arrow buttons 'UP', 'DOWN', 'LEFT' or 'RIGHT' will act during seek actions."
 msgstr "Seleziona comportamento dei tasti freccia ('SU', 'GIÙ', 'SINISTRA' e 'DESTRA') durante le azioni di ricerca."
 
+msgid "Select how the descrambled data stream is processed. 'Automatic' uses asynchronous writes (lower CPU usage) with automatic fallback to synchronous if kernel AIO is not supported. 'Synchronous' forces blocking writes (stable, most compatible)."
+msgstr "Seleziona modalità di elaborazione del flusso di dati decodificato. 'Automatico' usa scritture asincrone (minore utilizzo della CPU) con fallback automatico alla scrittura sincrona se l'AIO del kernel non è supportato. 'Sincrono' forza scritture bloccanti (stabile, massima compatibilità)."
+
 msgid "Select how the number buttons will act during seek actions."
 msgstr "Seleziona comportamento dei pulsanti numerici durante le azioni di ricerca."
 
@@ -16828,9 +16840,10 @@ msgstr "Configura durata in minuti prima che venga visualizzato lo screen saver.
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr "Seleziona l'ora di fine prima della quale il timer può essere attivato. Dopo tale ora il timer non verrà attivato, anche se vengono soddisfatte altre condizioni."
 
+#. TRANSLATORS: "Select the file sort order for the %s:" / the placeholder is "left column" or "right column".
 #, python-format
-msgid "Select the file sort order for the %s column:"
-msgstr "Seleziona ordinamento dei file per la colonna %s:"
+msgid "Select the file sort order for the %s:"
+msgstr "Seleziona ordinamento dei file per %s:"
 
 msgid "Select the file system for the device."
 msgstr "Seleziona file system per il dispositivo."
@@ -19022,6 +19035,9 @@ msgstr "Società e cultura"
 msgid "Socket"
 msgstr "Socket"
 
+msgid "SoftCSA Settings"
+msgstr "Impostazioni SoftCSA"
+
 msgid "Softcam"
 msgstr "Softcam"
 
@@ -19063,6 +19079,9 @@ msgstr "Aggiornamento software"
 
 msgid "Software Update Actions"
 msgstr "Azioni di aggiornamento software"
+
+msgid "Software descrambling"
+msgstr "Decrittografia software"
 
 msgid "Software information"
 msgstr "Informazioni sul software"
@@ -19891,6 +19910,9 @@ msgstr "Sincronizzazione orario"
 
 msgid "Synchronize system time using transponder or Internet."
 msgstr "Sincronizza ora di sistema usando il transponder o Internet."
+
+msgid "Synchronous"
+msgstr "Sincrono"
 
 msgid "Syrian Arab Republic"
 msgstr "Siria (Repubblica Araba)"
@@ -23752,6 +23774,9 @@ msgstr "tracce audio"
 msgid "automatic"
 msgstr "automatico"
 
+msgid "available"
+msgstr "disponibile"
+
 msgid "back"
 msgstr "indietro"
 
@@ -23998,6 +24023,9 @@ msgstr "vai al capitolo per numerazione"
 msgid "left"
 msgstr "sinistro"
 
+msgid "left column"
+msgstr "colonna sinistra"
+
 msgid "length"
 msgstr "durata"
 
@@ -24138,6 +24166,9 @@ msgstr "torna al capitolo precedente"
 
 msgid "right"
 msgstr "destro"
+
+msgid "right column"
+msgstr "colonna destra"
 
 msgid ""
 "satellites.xml not found or corrupted!\n"
@@ -24329,6 +24360,13 @@ msgstr "sì (mantieni feed)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
+#~ msgstr "Errore nel recupero della posizione di 'epg.dat' sul ricevitore remoto!"
+
+#, python-format
+#~ msgid "Select the file sort order for the %s column:"
+#~ msgstr "Seleziona ordinamento dei file per la colonna %s:"
 
 #~ msgid ""
 #~ "File oscam.conf not found.\n"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-17 09:22+0000\n"
+"POT-Creation-Date: 2026-01-30 19:51+0100\n"
 "PO-Revision-Date: 2026-01-24 00:25+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
@@ -5731,6 +5731,12 @@ msgstr "Vianselvityslokit"
 msgid "Debug log time format *"
 msgstr "Vianmäärityslokin aikamuoto *"
 
+msgid "Decoder release strategy"
+msgstr ""
+
+msgid "Decoder start timeout"
+msgstr ""
+
 msgid "Decryption & Parental Control"
 msgstr "Salauksen purku & Lapsilukko"
 
@@ -7691,9 +7697,6 @@ msgstr "Virhe luettaessa web-sivua!"
 msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr "Virhe haettaessa epg.dat tiedostoa etävastaanottimelta!"
 
-msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
-msgstr "Virhe haettaessa epg.dat tiedoston sijaintia etävastaanottimelta!"
-
 msgid "Error text:"
 msgstr "Virheteksti:"
 
@@ -7978,9 +7981,6 @@ msgstr "Poistu editorista ja hylkää kaikki muutokset"
 msgid "Exit editor and save any changes"
 msgstr "Poistu editorista ja tallenna muutokset"
 
-msgid "Exit picture viewer"
-msgstr "Poistu kuvankatseluohjelmasta"
-
 msgid "Exit input device selection."
 msgstr "Poistu syöttölaitteen valinnasta."
 
@@ -8007,6 +8007,9 @@ msgstr "Poistu verkkosovitinluettelosta"
 
 msgid "Exit network wizard"
 msgstr "Poistu verkkoasennuksesta"
+
+msgid "Exit picture viewer"
+msgstr "Poistu kuvankatseluohjelmasta"
 
 msgid "Exit quad PiP"
 msgstr "Poistu quad PiP"
@@ -8374,12 +8377,6 @@ msgstr "Tiedostojenhallinta Hash / Tarkistussummat"
 msgid "File Commander Hashes / Checksums"
 msgstr "Tiedostonhallinnan hash / Tarkistussummat"
 
-msgid "File Commander Picture Viewer"
-msgstr "Tiedostonhallinnan kuvien katseluohjelma"
-
-msgid "File Commander Picture Viewer Actions"
-msgstr "Tiedostonhallinnan kuvien katselu toiminnot"
-
 msgid "File Commander Information Actions"
 msgstr "Tiedostonhallinnan tietotoiminnot"
 
@@ -8394,6 +8391,12 @@ msgstr "Tiedostonhallinta siirrä"
 
 msgid "File Commander Navigation Actions"
 msgstr "Tiedoston hallinta toiminnot"
+
+msgid "File Commander Picture Viewer"
+msgstr "Tiedostonhallinnan kuvien katseluohjelma"
+
+msgid "File Commander Picture Viewer Actions"
+msgstr "Tiedostonhallinnan kuvien katselu toiminnot"
 
 msgid "File Commander Selection Actions"
 msgstr "Tiedoston hallinta toiminnot"
@@ -9452,6 +9455,9 @@ msgstr "Tunnit Minuutit"
 
 msgid "Hours Minutes Seconds"
 msgstr "Tunnit Minuutit Sekunnit"
+
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
+msgstr ""
 
 msgid "Http(s) stream start delay"
 msgstr "Http/https streamin käynnistysviive"
@@ -11242,6 +11248,9 @@ msgstr "Ohjelmaoppaassa päiviä enintään"
 
 msgid "Maximum space used (MB)"
 msgstr "Käytä levytilaa lokeille enintään (MB):"
+
+msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
+msgstr ""
 
 msgid "Mayotte"
 msgstr "Mayotte"
@@ -16595,6 +16604,9 @@ msgstr "Valitse kuinka nopeasti antennin pitäisi liikkua satelliittien välill�
 msgid "Select how the arrow buttons 'UP', 'DOWN', 'LEFT' or 'RIGHT' will act during seek actions."
 msgstr "Valitse, miten nuolipainikkeet ('YLÖS', 'ALAS', 'VASEN' ja 'OIKEA') toimivat haun aikana."
 
+msgid "Select how the descrambled data stream is processed. 'Automatic' uses asynchronous writes (lower CPU usage) with automatic fallback to synchronous if kernel AIO is not supported. 'Synchronous' forces blocking writes (stable, most compatible)."
+msgstr ""
+
 msgid "Select how the number buttons will act during seek actions."
 msgstr "Valitse, miten numero näppäimet toimivat haun aikana."
 
@@ -16861,9 +16873,10 @@ msgstr "Määrittää, käytetäänkö näytönsäästäjää ja jos, niin kuink
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr "Valitse päättymisaika, ennen jota tämä ajastin voidaan aktivoida. Tämän ajan jälkeen ajastinta ei aktivoida, vaikka muut ehdot täyttyisivät."
 
+#. TRANSLATORS: "Select the file sort order for the %s:" / the placeholder is "left column" or "right column".
 #, python-format
-msgid "Select the file sort order for the %s column:"
-msgstr "Valitse tiedostojen lajittelujärjestys sarakkeelle %s:"
+msgid "Select the file sort order for the %s:"
+msgstr ""
 
 msgid "Select the file system for the device."
 msgstr "Valitse laitteen tiedostojärjestelmä."
@@ -18396,11 +18409,11 @@ msgstr "Näytä seuraava virheenkorjausloki tiedosto"
 msgid "Show next event"
 msgstr "Näytä seuraava ohjelma"
 
-msgid "Show next picture"
-msgstr "Näytä seuraava kuva"
-
 msgid "Show next page"
 msgstr "Näytä seuraava sivu"
+
+msgid "Show next picture"
+msgstr "Näytä seuraava kuva"
 
 msgid "Show next service information screen"
 msgstr "Näytä seuraavat kanavan tiedot ruudulla"
@@ -19057,6 +19070,9 @@ msgstr "Taide/Kulttuuri"
 msgid "Socket"
 msgstr "Socket"
 
+msgid "SoftCSA Settings"
+msgstr ""
+
 msgid "Softcam"
 msgstr "Softcam"
 
@@ -19098,6 +19114,9 @@ msgstr "Ohjelmistopäivitykset"
 
 msgid "Software Update Actions"
 msgstr "Ohjelmiston päivitys Toiminnot"
+
+msgid "Software descrambling"
+msgstr ""
 
 msgid "Software information"
 msgstr "Ohjelmisto tiedot"
@@ -19926,6 +19945,9 @@ msgstr "Synkronoi aika käyttäen"
 
 msgid "Synchronize system time using transponder or Internet."
 msgstr "Synkronoi laitteen kello käyttäen lähettimen aikaa tai NTP-palvelinta."
+
+msgid "Synchronous"
+msgstr ""
 
 msgid "Syrian Arab Republic"
 msgstr "Syrian Arab Republic"
@@ -23800,6 +23822,9 @@ msgstr "ääniraidat"
 msgid "automatic"
 msgstr "automaattinen"
 
+msgid "available"
+msgstr ""
+
 msgid "back"
 msgstr "Takaisin"
 
@@ -24046,6 +24071,9 @@ msgstr "Hyppää luku numeron mukaan"
 msgid "left"
 msgstr "vasen"
 
+msgid "left column"
+msgstr ""
+
 msgid "length"
 msgstr "pituus"
 
@@ -24186,6 +24214,9 @@ msgstr "kelaa edelliseen kappaleeseen"
 
 msgid "right"
 msgstr "oikea"
+
+msgid "right column"
+msgstr ""
 
 msgid ""
 "satellites.xml not found or corrupted!\n"
@@ -24377,6 +24408,13 @@ msgstr "kyllä (pidä syötteet)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
+#~ msgstr "Virhe haettaessa epg.dat tiedoston sijaintia etävastaanottimelta!"
+
+#, python-format
+#~ msgid "Select the file sort order for the %s column:"
+#~ msgstr "Valitse tiedostojen lajittelujärjestys sarakkeelle %s:"
 
 #~ msgid ""
 #~ "File oscam.conf not found.\n"

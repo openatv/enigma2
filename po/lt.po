@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: tuxbox-enigma 0.0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-17 09:22+0000\n"
+"POT-Creation-Date: 2026-01-30 19:51+0100\n"
 "PO-Revision-Date: 2025-06-11 19:04+0000\n"
 "Last-Translator: Adga56 <adga45@gmail.com>\n"
 "Language-Team: Lithuanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/lt/>\n"
@@ -5772,6 +5772,12 @@ msgstr "Derinimo žurnalai"
 msgid "Debug log time format *"
 msgstr "Derinti žurnalo laiko formatą *"
 
+msgid "Decoder release strategy"
+msgstr ""
+
+msgid "Decoder start timeout"
+msgstr ""
+
 msgid "Decryption & Parental Control"
 msgstr "Dekodavimas ir tėvų kontrolė"
 
@@ -7727,9 +7733,6 @@ msgstr "Įvyko klaida nuskaitant svetainę!"
 msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr ""
 
-msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
-msgstr ""
-
 msgid "Error text:"
 msgstr "Klaidos tekstas:"
 
@@ -8016,9 +8019,6 @@ msgstr "Išeikite iš redaktoriaus ir atmeskite bet kokius pakeitimus"
 msgid "Exit editor and save any changes"
 msgstr "Išeikite iš redaktoriaus ir išsaugokite visus pakeitimus"
 
-msgid "Exit picture viewer"
-msgstr "Išeikite iš vaizdų peržiūros priemonės"
-
 msgid "Exit input device selection."
 msgstr "Užverti įvesties prietaiso pasirinkimą."
 
@@ -8045,6 +8045,9 @@ msgstr "Užverti tinklo sąsajų sąrašą"
 
 msgid "Exit network wizard"
 msgstr "Užverti tinklo vedlį"
+
+msgid "Exit picture viewer"
+msgstr "Išeikite iš vaizdų peržiūros priemonės"
 
 msgid "Exit quad PiP"
 msgstr "Užverti 4 PiP"
@@ -8412,12 +8415,6 @@ msgstr "Failų valdytojo maišos / kontrolinės sumos veiksmai"
 msgid "File Commander Hashes / Checksums"
 msgstr "Failų valdytojo maišos / kontrolinės sumos"
 
-msgid "File Commander Picture Viewer"
-msgstr "Failų valdytojo vaizdų peržiūros programa"
-
-msgid "File Commander Picture Viewer Actions"
-msgstr "Failų valdytojo vaizdo peržiūros priemonės veiksmai"
-
 msgid "File Commander Information Actions"
 msgstr "Failų valdytojo informacijos veiksmai"
 
@@ -8432,6 +8429,12 @@ msgstr "Failo valdytojo judėjimas"
 
 msgid "File Commander Navigation Actions"
 msgstr ""
+
+msgid "File Commander Picture Viewer"
+msgstr "Failų valdytojo vaizdų peržiūros programa"
+
+msgid "File Commander Picture Viewer Actions"
+msgstr "Failų valdytojo vaizdo peržiūros priemonės veiksmai"
 
 msgid "File Commander Selection Actions"
 msgstr ""
@@ -9490,6 +9493,9 @@ msgstr "Valandos minutės"
 
 msgid "Hours Minutes Seconds"
 msgstr "Val min sek"
+
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
+msgstr ""
 
 msgid "Http(s) stream start delay"
 msgstr "Http(-ų) srauto pradžios delsa"
@@ -11277,6 +11283,9 @@ msgstr "Maksimalus EPG dienų skaičius"
 
 msgid "Maximum space used (MB)"
 msgstr "Maksimali naudojama apimtis (MB):"
+
+msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
+msgstr ""
 
 msgid "Mayotte"
 msgstr "Majotas"
@@ -16614,6 +16623,9 @@ msgstr "Pasirinkite, kaip greitai lėkštė turėtų judėti tarp palydovų."
 msgid "Select how the arrow buttons 'UP', 'DOWN', 'LEFT' or 'RIGHT' will act during seek actions."
 msgstr ""
 
+msgid "Select how the descrambled data stream is processed. 'Automatic' uses asynchronous writes (lower CPU usage) with automatic fallback to synchronous if kernel AIO is not supported. 'Synchronous' forces blocking writes (stable, most compatible)."
+msgstr ""
+
 msgid "Select how the number buttons will act during seek actions."
 msgstr ""
 
@@ -16878,8 +16890,9 @@ msgstr "Konfigūruokite trukmę minutėmis prieš rodydami ekrano užsklandą."
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr ""
 
+#. TRANSLATORS: "Select the file sort order for the %s:" / the placeholder is "left column" or "right column".
 #, python-format
-msgid "Select the file sort order for the %s column:"
+msgid "Select the file sort order for the %s:"
 msgstr ""
 
 msgid "Select the file system for the device."
@@ -19064,6 +19077,9 @@ msgstr "Visuomenė ir kultūra"
 msgid "Socket"
 msgstr "Lizdas"
 
+msgid "SoftCSA Settings"
+msgstr ""
+
 msgid "Softcam"
 msgstr "Emuliatorius"
 
@@ -19105,6 +19121,9 @@ msgstr "Programinės įrangos atnaujinimas"
 
 msgid "Software Update Actions"
 msgstr "Programinės įrangos naujinimo veiksmai"
+
+msgid "Software descrambling"
+msgstr ""
 
 msgid "Software information"
 msgstr "Programinės įrangos informacija"
@@ -19933,6 +19952,9 @@ msgstr "Sinchronizavimui naudoti"
 
 msgid "Synchronize system time using transponder or Internet."
 msgstr "Sinchronizuokite sistemos laiką, naudodami transponderį arba internetą."
+
+msgid "Synchronous"
+msgstr ""
 
 msgid "Syrian Arab Republic"
 msgstr "Sirijos Arabų Respublika"
@@ -23756,6 +23778,9 @@ msgstr "garso takeliai"
 msgid "automatic"
 msgstr "automatinis"
 
+msgid "available"
+msgstr ""
+
 msgid "back"
 msgstr "atgal"
 
@@ -24002,6 +24027,9 @@ msgstr "peršokti į skyrių pagal numerį"
 msgid "left"
 msgstr "kairys"
 
+msgid "left column"
+msgstr ""
+
 msgid "length"
 msgstr "ilgis"
 
@@ -24142,6 +24170,9 @@ msgstr "atsukti į ankstesnį skyrių"
 
 msgid "right"
 msgstr "dešinys"
+
+msgid "right column"
+msgstr ""
 
 msgid ""
 "satellites.xml not found or corrupted!\n"

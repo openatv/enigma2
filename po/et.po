@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV-Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-17 09:22+0000\n"
+"POT-Creation-Date: 2026-01-30 19:51+0100\n"
 "PO-Revision-Date: 2022-12-04 20:43+0000\n"
 "Last-Translator: rimasx <riks_12@hot.ee>\n"
 "Language-Team: Estonian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/et/>\n"
@@ -5806,6 +5806,12 @@ msgstr "Silumislogid"
 msgid "Debug log time format *"
 msgstr ""
 
+msgid "Decoder release strategy"
+msgstr ""
+
+msgid "Decoder start timeout"
+msgstr ""
+
 msgid "Decryption & Parental Control"
 msgstr "Dekrüptimine ja lapselukk"
 
@@ -7797,9 +7803,6 @@ msgstr "Viga veebilehe lugemisel!"
 msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr ""
 
-msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
-msgstr ""
-
 msgid "Error text:"
 msgstr ""
 
@@ -8077,9 +8080,6 @@ msgstr ""
 msgid "Exit editor and save any changes"
 msgstr ""
 
-msgid "Exit picture viewer"
-msgstr ""
-
 msgid "Exit input device selection."
 msgstr "Välju sisendseadmete valikust."
 
@@ -8107,6 +8107,9 @@ msgstr "Välju võrguliideste nimekirjast"
 
 msgid "Exit network wizard"
 msgstr "Välju võrgu häälestusest"
+
+msgid "Exit picture viewer"
+msgstr ""
 
 msgid "Exit quad PiP"
 msgstr "Sulge Quad PiP"
@@ -8484,12 +8487,6 @@ msgstr ""
 msgid "File Commander Hashes / Checksums"
 msgstr ""
 
-msgid "File Commander Picture Viewer"
-msgstr ""
-
-msgid "File Commander Picture Viewer Actions"
-msgstr ""
-
 msgid "File Commander Information Actions"
 msgstr ""
 
@@ -8503,6 +8500,12 @@ msgid "File Commander Move"
 msgstr ""
 
 msgid "File Commander Navigation Actions"
+msgstr ""
+
+msgid "File Commander Picture Viewer"
+msgstr ""
+
+msgid "File Commander Picture Viewer Actions"
 msgstr ""
 
 msgid "File Commander Selection Actions"
@@ -9596,6 +9599,9 @@ msgstr "Tundi minutit"
 
 msgid "Hours Minutes Seconds"
 msgstr "Tundi minutit sekundit"
+
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
+msgstr ""
 
 msgid "Http(s) stream start delay"
 msgstr ""
@@ -11443,6 +11449,9 @@ msgstr "Suurim EPG kuvatav päevade arv"
 
 msgid "Maximum space used (MB)"
 msgstr "Suurim lubatud kettaruum (MB)"
+
+msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
+msgstr ""
 
 msgid "Mayotte"
 msgstr "Mayotte"
@@ -16968,6 +16977,9 @@ msgstr "Vali antenni satelliitide vahel liikumise kiirus."
 msgid "Select how the arrow buttons 'UP', 'DOWN', 'LEFT' or 'RIGHT' will act during seek actions."
 msgstr ""
 
+msgid "Select how the descrambled data stream is processed. 'Automatic' uses asynchronous writes (lower CPU usage) with automatic fallback to synchronous if kernel AIO is not supported. 'Synchronous' forces blocking writes (stable, most compatible)."
+msgstr ""
+
 msgid "Select how the number buttons will act during seek actions."
 msgstr ""
 
@@ -17235,8 +17247,9 @@ msgstr "Määra aeg ekraanisäästja käivitamiseni (min)."
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr ""
 
+#. TRANSLATORS: "Select the file sort order for the %s:" / the placeholder is "left column" or "right column".
 #, python-format
-msgid "Select the file sort order for the %s column:"
+msgid "Select the file sort order for the %s:"
 msgstr ""
 
 msgid "Select the file system for the device."
@@ -19460,6 +19473,9 @@ msgstr ""
 msgid "Socket"
 msgstr "Pesa"
 
+msgid "SoftCSA Settings"
+msgstr ""
+
 msgid "Softcam"
 msgstr "Emulaator"
 
@@ -19500,6 +19516,9 @@ msgid "Software Update"
 msgstr "Tarkvara uuendamine"
 
 msgid "Software Update Actions"
+msgstr ""
+
+msgid "Software descrambling"
 msgstr ""
 
 msgid "Software information"
@@ -20354,6 +20373,9 @@ msgstr "Aja sünkroonimiseks"
 # Zeitenstellung
 msgid "Synchronize system time using transponder or Internet."
 msgstr "Sünkrooni süsteemi aeg kasutades transponderit või internetti."
+
+msgid "Synchronous"
+msgstr ""
 
 msgid "Syrian Arab Republic"
 msgstr "Süüria"
@@ -24261,6 +24283,9 @@ msgstr "Heliribad"
 msgid "automatic"
 msgstr "Automaatne"
 
+msgid "available"
+msgstr ""
+
 msgid "back"
 msgstr "tagasi"
 
@@ -24513,6 +24538,9 @@ msgstr "Hüpe peatükile  numbri järgi"
 msgid "left"
 msgstr "Vasak"
 
+msgid "left column"
+msgstr ""
+
 msgid "length"
 msgstr "Pikkus"
 
@@ -24654,6 +24682,9 @@ msgstr "Tagasi eelmisele peatükile"
 
 msgid "right"
 msgstr "Parem"
+
+msgid "right column"
+msgstr ""
 
 msgid ""
 "satellites.xml not found or corrupted!\n"

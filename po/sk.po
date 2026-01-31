@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-17 09:22+0000\n"
-"PO-Revision-Date: 2026-01-25 11:18+0000\n"
+"POT-Creation-Date: 2026-01-30 19:51+0100\n"
+"PO-Revision-Date: 2026-01-29 02:46+0000\n"
 "Last-Translator: Marián Hikaník <podnety@mojepreklady.net>\n"
 "Language-Team: Slovak <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sk/>\n"
 "Language: sk\n"
@@ -5762,6 +5762,12 @@ msgstr "Denníky o ladení"
 msgid "Debug log time format *"
 msgstr "Formát času v denníku pre ladenie *"
 
+msgid "Decoder release strategy"
+msgstr ""
+
+msgid "Decoder start timeout"
+msgstr ""
+
 msgid "Decryption & Parental Control"
 msgstr "Dekódovanie a rodičovská kontrola"
 
@@ -7725,9 +7731,6 @@ msgstr "Chyba pri načítaní webovej stránky!"
 msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr "Chyba pri získavaní 'epg.dat' zo vzdialeného prijímača!"
 
-msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
-msgstr "Chyba pri získavaní umiestnenia 'epg.dat' na vzdialenom prijímači!"
-
 msgid "Error text:"
 msgstr "Text chyby:"
 
@@ -8012,9 +8015,6 @@ msgstr "Ukončiť editor a zahodiť všetky vykonané zmeny"
 msgid "Exit editor and save any changes"
 msgstr "Ukončiť editor a uložiť vykonané zmeny"
 
-msgid "Exit picture viewer"
-msgstr "Ukončiť prehliadač obrázkov"
-
 msgid "Exit input device selection."
 msgstr "Ukončiť výber vstupného zariadenia."
 
@@ -8041,6 +8041,9 @@ msgstr "Zatvoriť zoznam sieťových rozhraní"
 
 msgid "Exit network wizard"
 msgstr "Ukončiť sprievodcu sieťou"
+
+msgid "Exit picture viewer"
+msgstr "Ukončiť prehliadač obrázkov"
 
 msgid "Exit quad PiP"
 msgstr "Ukončiť Quad PiP"
@@ -8408,12 +8411,6 @@ msgstr "Správca súborov: akcie pre hash/kontrolný súčet"
 msgid "File Commander Hashes / Checksums"
 msgstr "Správca súborov: hash/kontrolné súčty"
 
-msgid "File Commander Picture Viewer"
-msgstr "Správca súborov: prehliadač obrázkov"
-
-msgid "File Commander Picture Viewer Actions"
-msgstr "Správca súborov: akcie pre prehliadač obrázkov"
-
 msgid "File Commander Information Actions"
 msgstr "Správca súborov: akcie pre informácie"
 
@@ -8428,6 +8425,12 @@ msgstr "Správca súborov: presunutie"
 
 msgid "File Commander Navigation Actions"
 msgstr "Akcie navigácie vo File Commander"
+
+msgid "File Commander Picture Viewer"
+msgstr "Správca súborov: prehliadač obrázkov"
+
+msgid "File Commander Picture Viewer Actions"
+msgstr "Správca súborov: akcie pre prehliadač obrázkov"
 
 msgid "File Commander Selection Actions"
 msgstr "Akcie výberu vo File Commander"
@@ -9486,6 +9489,9 @@ msgstr "Hodiny Minúty"
 
 msgid "Hours Minutes Seconds"
 msgstr "Hodiny Minúty Sekundy"
+
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
+msgstr ""
 
 msgid "Http(s) stream start delay"
 msgstr "Oneskorenie spustenia http(s) streamu"
@@ -11273,6 +11279,9 @@ msgstr "Maximálny počet dní v EPG"
 
 msgid "Maximum space used (MB)"
 msgstr "Maximálna použitá veľkosť (MB):"
+
+msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
+msgstr ""
 
 msgid "Mayotte"
 msgstr "Mayotte"
@@ -13930,7 +13939,7 @@ msgid "Please wait, flash memory is being copied to this flash expander. This co
 msgstr "Pamäť flash sa kopíruje do tohto flash expandéra. Môže to trvať niekoľko minút. Čakajte, prosím."
 
 msgid "Please wait, loading picture..."
-msgstr "Načítava sa image. Čakajte, prosím…"
+msgstr "Prosím čakajte, načítava sa obrázok…"
 
 msgid "Please wait, swap is is being created. This could take a few minutes to complete."
 msgstr "Vytvára sa priestor pre swap. Môže to trvať niekoľko minút. Čakajte, prosím."
@@ -16613,6 +16622,9 @@ msgstr "Vyberte, ako rýchlo sa má parabola presúvať medzi družicami."
 msgid "Select how the arrow buttons 'UP', 'DOWN', 'LEFT' or 'RIGHT' will act during seek actions."
 msgstr "Vyberte, ako sa budú tlačidlá so šípkami („NAHOR“, „NADOL“, „DOĽAVA“ a „DOPRAVA“) správať počas vyhľadávania."
 
+msgid "Select how the descrambled data stream is processed. 'Automatic' uses asynchronous writes (lower CPU usage) with automatic fallback to synchronous if kernel AIO is not supported. 'Synchronous' forces blocking writes (stable, most compatible)."
+msgstr ""
+
 msgid "Select how the number buttons will act during seek actions."
 msgstr "Vyberte, ako sa budú počas vyhľadávania správať číselné tlačidlá."
 
@@ -16877,9 +16889,10 @@ msgstr "Nastavte dobu neaktivity pred tým, než sa zobrazí šetrič obrazovky.
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr "Vyberte čas ukončenia, pred ktorým sa môže časovač aktivovať. Po tomto čase sa časovač neaktivuje ani v prípade, že by boli splnené ostatné podmienky."
 
+#. TRANSLATORS: "Select the file sort order for the %s:" / the placeholder is "left column" or "right column".
 #, python-format
-msgid "Select the file sort order for the %s column:"
-msgstr "Vyberte poradie zoraďovania súborov pre stĺpec %s:"
+msgid "Select the file sort order for the %s:"
+msgstr "Vyberte zoraďovanie súborov pre %s:"
 
 msgid "Select the file system for the device."
 msgstr "Vyberte systém súborov pre toto zariadenie."
@@ -18326,7 +18339,7 @@ msgid "Show files backed up by default"
 msgstr "Zobraziť predvolene zálohované súbory"
 
 msgid "Show first picture"
-msgstr "Zobraziť prvý obrázok/image"
+msgstr "Zobraziť prvý obrázok"
 
 msgid "Show free space in timer view"
 msgstr "Zobraziť voľné miesto v zobrazení časovača"
@@ -18366,7 +18379,7 @@ msgid "Show job tasks in Extension Menu"
 msgstr "Zobraziť úlohy v rozšíreniach"
 
 msgid "Show last picture"
-msgstr "Zobraziť posledný obrázok/image"
+msgstr "Zobraziť posledný obrázok"
 
 msgid "Show list of bouquets"
 msgstr "Zobraziť zoznam prehľadov"
@@ -19075,6 +19088,9 @@ msgstr "Spoločnosť a kultúra"
 msgid "Socket"
 msgstr "Socket"
 
+msgid "SoftCSA Settings"
+msgstr ""
+
 msgid "Softcam"
 msgstr "Softcam"
 
@@ -19116,6 +19132,9 @@ msgstr "Aktualizácia softvéru"
 
 msgid "Software Update Actions"
 msgstr "Akcie pre aktualizáciu softvéru"
+
+msgid "Software descrambling"
+msgstr ""
 
 msgid "Software information"
 msgstr "Informácie o softvéri"
@@ -19944,6 +19963,9 @@ msgstr "Synchronizovať čas pomocou"
 
 msgid "Synchronize system time using transponder or Internet."
 msgstr "Synchronizácia systémového času pomocou transpondéra alebo internetu."
+
+msgid "Synchronous"
+msgstr ""
 
 msgid "Syrian Arab Republic"
 msgstr "Sýrska arabská republika"
@@ -21304,10 +21326,10 @@ msgid "Toggle between the available TV and RADIO services"
 msgstr "Prepnúť medzi dostupný TV a RÁDIO stanicami/službami"
 
 msgid "Toggle display of picture information"
-msgstr "Prepnúť zobrazenie informácií o image"
+msgstr "Prepnúť zobrazenie informácií o obrázku"
 
 msgid "Toggle display of the picture status overlay"
-msgstr "Prepnúť zobrazenie prekrývania stavu obrázka/image"
+msgstr "Prepnúť zobrazenie prekrytia stavu obrázka"
 
 msgid "Toggle enable/disable of the currently selected timer"
 msgstr "Prepnúť zapnutie/vypnutie aktuálne vybraného časovača"
@@ -23806,6 +23828,9 @@ msgstr "zvukové stopy"
 msgid "automatic"
 msgstr "automaticky"
 
+msgid "available"
+msgstr ""
+
 msgid "back"
 msgstr "späť"
 
@@ -24052,6 +24077,9 @@ msgstr "preskočiť na kapitolu podľa čísla"
 msgid "left"
 msgstr "ľavý"
 
+msgid "left column"
+msgstr "ľavý stĺpec"
+
 msgid "length"
 msgstr "dĺžka"
 
@@ -24192,6 +24220,9 @@ msgstr "pretočiť na predchádzajúcu kapitolu"
 
 msgid "right"
 msgstr "pravý"
+
+msgid "right column"
+msgstr "pravý stĺpec"
 
 msgid ""
 "satellites.xml not found or corrupted!\n"
@@ -24384,6 +24415,13 @@ msgstr "áno (zachovať zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
+#~ msgstr "Chyba pri získavaní umiestnenia 'epg.dat' na vzdialenom prijímači!"
+
+#, python-format
+#~ msgid "Select the file sort order for the %s column:"
+#~ msgstr "Vyberte poradie zoraďovania súborov pre stĺpec %s:"
 
 #~ msgid ""
 #~ "File oscam.conf not found.\n"

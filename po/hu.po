@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hu_po v3.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-17 09:22+0000\n"
+"POT-Creation-Date: 2026-01-30 19:51+0100\n"
 "PO-Revision-Date: 2025-05-05 05:50+0000\n"
 "Last-Translator: Balázs Sólyom <balazs@solyom.online>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/hu/>\n"
@@ -5773,6 +5773,12 @@ msgstr "Hibakeresési naplók"
 msgid "Debug log time format *"
 msgstr ""
 
+msgid "Decoder release strategy"
+msgstr ""
+
+msgid "Decoder start timeout"
+msgstr ""
+
 msgid "Decryption & Parental Control"
 msgstr "Dekódolás és szülői felügyelet"
 
@@ -7725,9 +7731,6 @@ msgstr "Hiba történt a weboldal olvasásakor!"
 msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr ""
 
-msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
-msgstr ""
-
 msgid "Error text:"
 msgstr ""
 
@@ -8007,9 +8010,6 @@ msgstr ""
 msgid "Exit editor and save any changes"
 msgstr ""
 
-msgid "Exit picture viewer"
-msgstr ""
-
 msgid "Exit input device selection."
 msgstr "Kilépés a bemeneti eszközválasztásból."
 
@@ -8036,6 +8036,9 @@ msgstr "Kilépés a hálózati interfészek listájából"
 
 msgid "Exit network wizard"
 msgstr "Kilépés a Hálózati Varázslóból"
+
+msgid "Exit picture viewer"
+msgstr ""
 
 msgid "Exit quad PiP"
 msgstr "Kilépés a Quad Kép-a-Képben funkcióból"
@@ -8409,12 +8412,6 @@ msgstr ""
 msgid "File Commander Hashes / Checksums"
 msgstr ""
 
-msgid "File Commander Picture Viewer"
-msgstr ""
-
-msgid "File Commander Picture Viewer Actions"
-msgstr ""
-
 msgid "File Commander Information Actions"
 msgstr ""
 
@@ -8428,6 +8425,12 @@ msgid "File Commander Move"
 msgstr ""
 
 msgid "File Commander Navigation Actions"
+msgstr ""
+
+msgid "File Commander Picture Viewer"
+msgstr ""
+
+msgid "File Commander Picture Viewer Actions"
 msgstr ""
 
 msgid "File Commander Selection Actions"
@@ -9498,6 +9501,9 @@ msgstr "Óra Perc"
 
 msgid "Hours Minutes Seconds"
 msgstr "Óra Perc Másodperc"
+
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
+msgstr ""
 
 msgid "Http(s) stream start delay"
 msgstr "Http(s) stream indítás késleltetése"
@@ -11314,6 +11320,9 @@ msgstr "Maximális napok száma az EPG-ben"
 
 msgid "Maximum space used (MB)"
 msgstr "Maximális hely használata (MB):"
+
+msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
+msgstr ""
 
 msgid "Mayotte"
 msgstr "Mayotte"
@@ -16704,6 +16713,9 @@ msgstr "Válassza ki, hogy milyen gyorsan mozogjon az 'dish' a műholdak közöt
 msgid "Select how the arrow buttons 'UP', 'DOWN', 'LEFT' or 'RIGHT' will act during seek actions."
 msgstr ""
 
+msgid "Select how the descrambled data stream is processed. 'Automatic' uses asynchronous writes (lower CPU usage) with automatic fallback to synchronous if kernel AIO is not supported. 'Synchronous' forces blocking writes (stable, most compatible)."
+msgstr ""
+
 msgid "Select how the number buttons will act during seek actions."
 msgstr ""
 
@@ -16969,8 +16981,9 @@ msgstr "Állítsa be a képernyővédő időtartamát percekben."
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr ""
 
+#. TRANSLATORS: "Select the file sort order for the %s:" / the placeholder is "left column" or "right column".
 #, python-format
-msgid "Select the file sort order for the %s column:"
+msgid "Select the file sort order for the %s:"
 msgstr ""
 
 msgid "Select the file system for the device."
@@ -19159,6 +19172,9 @@ msgstr "Társadalom és Kultúra"
 msgid "Socket"
 msgstr "Aljzat"
 
+msgid "SoftCSA Settings"
+msgstr ""
+
 msgid "Softcam"
 msgstr "Softcam"
 
@@ -19199,6 +19215,9 @@ msgid "Software Update"
 msgstr "Szoftverfrissítés"
 
 msgid "Software Update Actions"
+msgstr ""
+
+msgid "Software descrambling"
 msgstr ""
 
 msgid "Software information"
@@ -20036,6 +20055,9 @@ msgstr "Az idő szinkronizálás módja"
 
 msgid "Synchronize system time using transponder or Internet."
 msgstr "A rendszer idő szinkronizálása a Transzponder ideje alapján vagy az internetről (NTP szerver) történjen."
+
+msgid "Synchronous"
+msgstr ""
 
 msgid "Syrian Arab Republic"
 msgstr "Szíriai Arab Köztársaság"
@@ -23855,6 +23877,9 @@ msgstr "hangsávok"
 msgid "automatic"
 msgstr "automatikus"
 
+msgid "available"
+msgstr ""
+
 msgid "back"
 msgstr "vissza"
 
@@ -24102,6 +24127,9 @@ msgstr "ugrás fejezethez szám alapján"
 msgid "left"
 msgstr "bal"
 
+msgid "left column"
+msgstr ""
+
 msgid "length"
 msgstr "hossz"
 
@@ -24242,6 +24270,9 @@ msgstr "visszatekerés az előző chapterhez"
 
 msgid "right"
 msgstr "jobb"
+
+msgid "right column"
+msgstr ""
 
 msgid ""
 "satellites.xml not found or corrupted!\n"

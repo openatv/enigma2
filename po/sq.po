@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-17 09:22+0000\n"
+"POT-Creation-Date: 2026-01-30 19:51+0100\n"
 "PO-Revision-Date: 2023-12-11 00:50+0000\n"
 "Last-Translator: W L <wl@mailhole.de>\n"
 "Language-Team: Albanian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/sq/>\n"
@@ -5723,6 +5723,12 @@ msgstr "Logët e çbug"
 msgid "Debug log time format *"
 msgstr "Formati i kohës së regjistrit të korrigjimit *"
 
+msgid "Decoder release strategy"
+msgstr ""
+
+msgid "Decoder start timeout"
+msgstr ""
+
 msgid "Decryption & Parental Control"
 msgstr "Deshifrimi dhe kontrolli prindëror"
 
@@ -7675,9 +7681,6 @@ msgstr "Gabim gjatë leximit të faqes së internetit!"
 msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr ""
 
-msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
-msgstr ""
-
 msgid "Error text:"
 msgstr ""
 
@@ -7960,9 +7963,6 @@ msgstr ""
 msgid "Exit editor and save any changes"
 msgstr ""
 
-msgid "Exit picture viewer"
-msgstr ""
-
 msgid "Exit input device selection."
 msgstr "Dilni nga përzgjedhja e pajisjes hyrëse."
 
@@ -7989,6 +7989,9 @@ msgstr "Dilni nga lista e ndërfaqes së rrjetit"
 
 msgid "Exit network wizard"
 msgstr "Dilni nga magjistari i rrjetit"
+
+msgid "Exit picture viewer"
+msgstr ""
 
 msgid "Exit quad PiP"
 msgstr "Dilni nga Quad PiP"
@@ -8356,12 +8359,6 @@ msgstr ""
 msgid "File Commander Hashes / Checksums"
 msgstr ""
 
-msgid "File Commander Picture Viewer"
-msgstr ""
-
-msgid "File Commander Picture Viewer Actions"
-msgstr ""
-
 msgid "File Commander Information Actions"
 msgstr ""
 
@@ -8375,6 +8372,12 @@ msgid "File Commander Move"
 msgstr ""
 
 msgid "File Commander Navigation Actions"
+msgstr ""
+
+msgid "File Commander Picture Viewer"
+msgstr ""
+
+msgid "File Commander Picture Viewer Actions"
 msgstr ""
 
 msgid "File Commander Selection Actions"
@@ -9434,6 +9437,9 @@ msgstr "Orë Min"
 
 msgid "Hours Minutes Seconds"
 msgstr "Orë Min. Sec"
+
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
+msgstr ""
 
 msgid "Http(s) stream start delay"
 msgstr "Http(s) vonesa e nisjes së rrjedhës"
@@ -11218,6 +11224,9 @@ msgid "Maximum number of days in EPG"
 msgstr ""
 
 msgid "Maximum space used (MB)"
+msgstr ""
+
+msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
 msgstr ""
 
 msgid "Mayotte"
@@ -16515,6 +16524,9 @@ msgstr ""
 msgid "Select how the arrow buttons 'UP', 'DOWN', 'LEFT' or 'RIGHT' will act during seek actions."
 msgstr ""
 
+msgid "Select how the descrambled data stream is processed. 'Automatic' uses asynchronous writes (lower CPU usage) with automatic fallback to synchronous if kernel AIO is not supported. 'Synchronous' forces blocking writes (stable, most compatible)."
+msgstr ""
+
 msgid "Select how the number buttons will act during seek actions."
 msgstr ""
 
@@ -16779,8 +16791,9 @@ msgstr "Konfiguro kohëzgjatjen në minuta për mbrojtësin e ekranit."
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr ""
 
+#. TRANSLATORS: "Select the file sort order for the %s:" / the placeholder is "left column" or "right column".
 #, python-format
-msgid "Select the file sort order for the %s column:"
+msgid "Select the file sort order for the %s:"
 msgstr ""
 
 msgid "Select the file system for the device."
@@ -18345,6 +18358,9 @@ msgstr ""
 msgid "Show previous page"
 msgstr ""
 
+msgid "Show previous picture"
+msgstr ""
+
 msgid "Show previous service information screen"
 msgstr ""
 
@@ -18937,6 +18953,9 @@ msgstr ""
 msgid "Socket"
 msgstr ""
 
+msgid "SoftCSA Settings"
+msgstr ""
+
 msgid "Softcam"
 msgstr ""
 
@@ -18977,6 +18996,9 @@ msgid "Software Update"
 msgstr ""
 
 msgid "Software Update Actions"
+msgstr ""
+
+msgid "Software descrambling"
 msgstr ""
 
 msgid "Software information"
@@ -19802,6 +19824,9 @@ msgstr "Sinkronizo kohën duke përdorur"
 
 msgid "Synchronize system time using transponder or Internet."
 msgstr "Sinkronizoni kohën e sistemit duke përdorur transponder ose internet."
+
+msgid "Synchronous"
+msgstr ""
 
 msgid "Syrian Arab Republic"
 msgstr "Republika Arabe Siriane"
@@ -23565,6 +23590,9 @@ msgstr ""
 msgid "automatic"
 msgstr ""
 
+msgid "available"
+msgstr ""
+
 msgid "back"
 msgstr ""
 
@@ -23811,6 +23839,9 @@ msgstr ""
 msgid "left"
 msgstr ""
 
+msgid "left column"
+msgstr ""
+
 msgid "length"
 msgstr ""
 
@@ -23950,6 +23981,9 @@ msgid "rewind to the previous chapter"
 msgstr ""
 
 msgid "right"
+msgstr ""
+
+msgid "right column"
 msgstr ""
 
 msgid ""

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-17 09:22+0000\n"
+"POT-Creation-Date: 2026-01-30 19:51+0100\n"
 "PO-Revision-Date: 2025-05-09 04:42+0000\n"
 "Last-Translator: Snoete <snoete@hotmail.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/nl/>\n"
@@ -5840,6 +5840,12 @@ msgstr "Debug logs"
 msgid "Debug log time format *"
 msgstr "Debug log tijd format *"
 
+msgid "Decoder release strategy"
+msgstr ""
+
+msgid "Decoder start timeout"
+msgstr ""
+
 msgid "Decryption & Parental Control"
 msgstr "Decryptie & Kinderslot"
 
@@ -7824,9 +7830,6 @@ msgstr "Fout bij lezen webpagina!"
 msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr "Fout bij het lezen van epg.dat vanaf de Fallback tuner!"
 
-msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
-msgstr "Fout bij het lezen van de epg.dat locatie op de Fallback tuner!"
-
 msgid "Error text:"
 msgstr "Fouttekst:"
 
@@ -8114,9 +8117,6 @@ msgstr "Sluit de editor af en alle wijzigingen annuleren"
 msgid "Exit editor and save any changes"
 msgstr "Sluit de editor af en alle wijzigingen opslaan"
 
-msgid "Exit picture viewer"
-msgstr "De fotoviewer afsluiten"
-
 msgid "Exit input device selection."
 msgstr "Beëindig invoerapparaatselectie."
 
@@ -8143,6 +8143,9 @@ msgstr "Verlaat het netwerkinterfaceoverzicht"
 
 msgid "Exit network wizard"
 msgstr "Verlaat de Netwerk Wizard"
+
+msgid "Exit picture viewer"
+msgstr "De fotoviewer afsluiten"
 
 msgid "Exit quad PiP"
 msgstr "Verlaat Quad PiP"
@@ -8510,12 +8513,6 @@ msgstr "File Commander Hash / Checksum Acties"
 msgid "File Commander Hashes / Checksums"
 msgstr "File Commander Hashes / Checksums"
 
-msgid "File Commander Picture Viewer"
-msgstr "File Commander Foto Viewer"
-
-msgid "File Commander Picture Viewer Actions"
-msgstr "File Commander Foto Viewer Acties"
-
 msgid "File Commander Information Actions"
 msgstr "File Commander Informatie Acties"
 
@@ -8530,6 +8527,12 @@ msgstr "File Commander Verplaatsen"
 
 msgid "File Commander Navigation Actions"
 msgstr "File Commander Navigatie Acties"
+
+msgid "File Commander Picture Viewer"
+msgstr "File Commander Foto Viewer"
+
+msgid "File Commander Picture Viewer Actions"
+msgstr "File Commander Foto Viewer Acties"
 
 msgid "File Commander Selection Actions"
 msgstr "File Commander Selectie Acties"
@@ -9591,6 +9594,9 @@ msgstr "Uren minuten"
 
 msgid "Hours Minutes Seconds"
 msgstr "Uren minuten seconden"
+
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
+msgstr ""
 
 msgid "Http(s) stream start delay"
 msgstr "Http(s) stream start vertraging"
@@ -11380,6 +11386,9 @@ msgstr "Maximum aantal dagen in EPG"
 
 msgid "Maximum space used (MB)"
 msgstr "Maximale grootte (MB):"
+
+msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
+msgstr ""
 
 msgid "Mayotte"
 msgstr "Mayotte"
@@ -16733,6 +16742,9 @@ msgstr "Selecteer hoe snel de schotel beweegt tussen satellieten."
 msgid "Select how the arrow buttons 'UP', 'DOWN', 'LEFT' or 'RIGHT' will act during seek actions."
 msgstr "Selecteer de functie van de knoppen OMHOOG, OMLAAG, LINKS en RECHTS tijdens Zoek Acties."
 
+msgid "Select how the descrambled data stream is processed. 'Automatic' uses asynchronous writes (lower CPU usage) with automatic fallback to synchronous if kernel AIO is not supported. 'Synchronous' forces blocking writes (stable, most compatible)."
+msgstr ""
+
 msgid "Select how the number buttons will act during seek actions."
 msgstr "Selecteer de functie van de nummer-knoppen tijdens Zoek Acties."
 
@@ -16999,9 +17011,10 @@ msgstr "Hier kunt u een screensaver activeren en instellen na hoeveel minuten de
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr ""
 
+#. TRANSLATORS: "Select the file sort order for the %s:" / the placeholder is "left column" or "right column".
 #, python-format
-msgid "Select the file sort order for the %s column:"
-msgstr "Kies de sorteervolgorde voor het bestanden in de %s kolom:"
+msgid "Select the file sort order for the %s:"
+msgstr ""
 
 msgid "Select the file system for the device."
 msgstr "Een bestandssysteem voor het apparaat selecteren."
@@ -19222,6 +19235,9 @@ msgstr "Maatschappij & Cultuur"
 msgid "Socket"
 msgstr "Socket"
 
+msgid "SoftCSA Settings"
+msgstr ""
+
 msgid "Softcam"
 msgstr "Softcam"
 
@@ -19263,6 +19279,9 @@ msgstr "Software update"
 
 msgid "Software Update Actions"
 msgstr "Software Update Acties"
+
+msgid "Software descrambling"
+msgstr ""
 
 msgid "Software information"
 msgstr "Software informatie"
@@ -20091,6 +20110,9 @@ msgstr "Synchroniseer de systeemtijd met"
 
 msgid "Synchronize system time using transponder or Internet."
 msgstr "Synchroniseer de systeemtijd met de transponder of met internet."
+
+msgid "Synchronous"
+msgstr ""
 
 msgid "Syrian Arab Republic"
 msgstr "Syrië"
@@ -24022,6 +24044,9 @@ msgstr "audiosporen"
 msgid "automatic"
 msgstr "automatisch"
 
+msgid "available"
+msgstr ""
+
 msgid "back"
 msgstr "terug"
 
@@ -24268,6 +24293,9 @@ msgstr "Spring via nummer naar hoofdstuk"
 msgid "left"
 msgstr "Links"
 
+msgid "left column"
+msgstr ""
+
 msgid "length"
 msgstr "lengte"
 
@@ -24408,6 +24436,9 @@ msgstr "terugspoelen naar vorig hoofdstuk"
 
 msgid "right"
 msgstr "Rechts"
+
+msgid "right column"
+msgstr ""
 
 msgid ""
 "satellites.xml not found or corrupted!\n"
@@ -24597,6 +24628,13 @@ msgstr "ja (bewaar feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
+#~ msgstr "Fout bij het lezen van de epg.dat locatie op de Fallback tuner!"
+
+#, python-format
+#~ msgid "Select the file sort order for the %s column:"
+#~ msgstr "Kies de sorteervolgorde voor het bestanden in de %s kolom:"
 
 #~ msgid ""
 #~ "File oscam.conf not found.\n"

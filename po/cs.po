@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Enigma2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-17 09:22+0000\n"
-"PO-Revision-Date: 2026-01-19 21:10+0000\n"
-"Last-Translator: Libor Rejč <lir@mail.cz>\n"
+"POT-Creation-Date: 2026-01-30 19:51+0100\n"
+"PO-Revision-Date: 2026-01-30 19:31+0000\n"
+"Last-Translator: Petr Turek <turekdesign99@gmail.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/cs/>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -2322,7 +2322,7 @@ msgid "Alternative 2"
 msgstr "Alternativní 2"
 
 msgid "Alternative Edit"
-msgstr "[ÚPRAVA ALTERNATIV]"
+msgstr "Alternativní úprava"
 
 msgid "Alternative URLs for DVB-T/C or ATSC"
 msgstr "Alternativní záložní přijímače pro DVB-T/C nebo ATSC"
@@ -2976,7 +2976,7 @@ msgid "Backup your %s %s settings."
 msgstr "Záloha nastavení vašeho %s %s."
 
 msgid "Backup your current image"
-msgstr "Zálohovat Image na HDD / USB"
+msgstr "Zálohujte si aktuální obraz"
 
 msgid "Backup your current image to HDD or USB. This will make a 1:1 copy of your receiver."
 msgstr "Zálohujte si aktuální obraz na pevný disk nebo USB. Vytvoříte tak kopii vašeho přijímače v měřítku 1:1."
@@ -3854,7 +3854,7 @@ msgid "Change next timer"
 msgstr "Změnit příští časovač"
 
 msgid "Change pin code"
-msgstr "Změnit PIN kód"
+msgstr "Změna pin kódu"
 
 msgid "Change recording (Duration)"
 msgstr "Změnit záznam (Délku trvání)"
@@ -4163,7 +4163,7 @@ msgid "Choose what appears when the screen saver is active."
 msgstr "Vybrat, co se bude zobrazovat při aktivaci spořiče obrazovky."
 
 msgid "Choose what you want the button '0' to do when PiP is active."
-msgstr "Vyberte,co má dělat tlačítko '0', když je aktivní PIP."
+msgstr "Vyberte, co má tlačítko „0“ dělat, když je aktivní režim PiP."
 
 msgid "Choose where to mount your devices to:"
 msgstr "Vyberte, kam chcete svá zařízení připojit:"
@@ -4437,10 +4437,10 @@ msgid "Common Information Actions"
 msgstr "Běžné informační akce"
 
 msgid "Common Interface"
-msgstr "CI rozhraní"
+msgstr "Společné rozhraní"
 
 msgid "Common Interface Assignment"
-msgstr "Konfigurace CI slotů"
+msgstr "Přiřazení společného rozhraní"
 
 msgid "Common Interface Settings"
 msgstr "Nastavení společného rozhraní"
@@ -4518,7 +4518,7 @@ msgid "Configure how recording filenames are constructed. Standard: Date Time - 
 msgstr "Konfigurace způsobu tvorby názvů souborů nahrávek. Standardní: Datum Čas - Kanál - Název Velmi velmi krátké: Název Velmi krátké: Název - Datum Čas Krátké s časem: Datum Čas - Název Krátké: Datum - Název Dlouhé: Datum Čas - Kanál - Název - Informace."
 
 msgid "Configure if 'epg.dat' should be saved at all."
-msgstr "Konfigurace údajů EPG, které mají být uloženy."
+msgstr "Nastavte, zda se má soubor 'epg.dat' ukládat."
 
 msgid "Configure if and how crypto icons will be shown in the channel selection list."
 msgstr "Nastavte, zda a jak budou zobrazovány ikony šifrování ve výběru seznamu kanálů."
@@ -4680,10 +4680,10 @@ msgid "Configure the fourth subtitle language."
 msgstr "Nastavuje čtvrtý jazyk titulků."
 
 msgid "Configure the function of a long press on the power button."
-msgstr "Nastavuje funkci pro dlouhý stisk tlačítka 'VYPNOUT'."
+msgstr "Nakonfiguruje funkci dlouhého stisknutí tlačítka napájení."
 
 msgid "Configure the function of a short press on the power button."
-msgstr "Nastavuje funkci pro krátký stisk tlačítka 'VYPNOUT'."
+msgstr "Nakonfiguruje funkci krátkého stisknutí tlačítka napájení."
 
 msgid "Configure the function of the < and > buttons."
 msgstr "Nakonfigurujte funkci tlačítek < a >."
@@ -5242,7 +5242,7 @@ msgid "Create working directories."
 msgstr "Vytvořit pracovní adresáře."
 
 msgid "Creating .ap and .sc files"
-msgstr "Vytvořit soubory AP a SC"
+msgstr "Vytváření souborů .ap a .sc"
 
 msgid "Creating file system"
 msgstr "Vytváření souborového systému"
@@ -5759,6 +5759,12 @@ msgstr "Zprávy chyb"
 
 msgid "Debug log time format *"
 msgstr "Formát času protokolu ladění *"
+
+msgid "Decoder release strategy"
+msgstr ""
+
+msgid "Decoder start timeout"
+msgstr ""
 
 msgid "Decryption & Parental Control"
 msgstr "Dekódování a rodičovská ochrana"
@@ -6398,7 +6404,7 @@ msgid "Display >16:9 content as"
 msgstr "Zobrazit obraz > než 16:9 jako"
 
 msgid "Display Settings"
-msgstr "Nastavení VFD displeje"
+msgstr "Nastavení displeje"
 
 msgid "Display Skin Packages"
 msgstr "Zobrazit balíčky vzhledů"
@@ -6592,7 +6598,7 @@ msgid "Do you really want to stop and delete the timer '%s'?"
 msgstr "Opravdu chcete zastavit a smazat časovač '%s'?"
 
 msgid "Do you really want to trim the file system?"
-msgstr "Opravdu chceš optimalizovat souborový systém (TRIM)?"
+msgstr "Opravdu chcete upravit souborový systém?"
 
 #, python-format
 msgid "Do you want change '%s' access mode?"
@@ -6767,7 +6773,7 @@ msgid "Download and install Plugins"
 msgstr "Stáhnout a instalovat pluginy"
 
 msgid "Download and install cam"
-msgstr "Stáhnout a instalovat CAMy"
+msgstr "Stáhnout a nainstalovat CAM"
 
 msgid "Download error"
 msgstr "Chyba stahování"
@@ -7062,7 +7068,7 @@ msgid "Elapsed & Remaining"
 msgstr "Uplynulý a zbývající"
 
 msgid "Electronic Program Guide"
-msgstr "EPG"
+msgstr "Elektronický programový průvodce"
 
 msgid "Email"
 msgstr "Email"
@@ -7423,7 +7429,7 @@ msgid "English name (Descending)"
 msgstr "Anglický název (sestupně)"
 
 msgid "Enhanced Movie Center"
-msgstr "Multimediální přehrávač (EMC)"
+msgstr "Enhanced Movie Center"
 
 msgid "Enigma2 (re)starts"
 msgstr "Enigma2 (znovu)startuje"
@@ -7505,7 +7511,7 @@ msgid "Enter the number stored in the positioner that corresponds to this satell
 msgstr "Zadejte číslo uložené v pozicionéru, které odpovídá tomuto satelitu."
 
 msgid "Enter the service pin"
-msgstr "Zadejte programový PIN"
+msgstr "Zadejte programový PIN kód"
 
 msgid "Enter the subscription code to fully enable the AI-Powered Translation plugin, the unified code for trial is 15."
 msgstr "Zadejte svůj předplatitelský kód, jednotný zkušební kód je 15."
@@ -7722,9 +7728,6 @@ msgstr "Chyba načtení webu!"
 
 msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr "Chyba při načítání 'epg.dat' ze vzdáleného přijímače!"
-
-msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
-msgstr "Chyba při načítání umístění 'epg.dat' na vzdáleném přijímači!"
 
 msgid "Error text:"
 msgstr "Text chyby:"
@@ -8010,9 +8013,6 @@ msgstr "Ukončit editor a zrušit všechny změny"
 msgid "Exit editor and save any changes"
 msgstr "Ukončit editor a uložit všechny změny"
 
-msgid "Exit picture viewer"
-msgstr "Ukončit prohlížeč obrázků"
-
 msgid "Exit input device selection."
 msgstr "Zavřít výběr vstupních zařízení."
 
@@ -8039,6 +8039,9 @@ msgstr "Zavřít seznam síťových rozhraní"
 
 msgid "Exit network wizard"
 msgstr "Zavřít síťového průvodce"
+
+msgid "Exit picture viewer"
+msgstr "Ukončit prohlížeč obrázků"
 
 msgid "Exit quad PiP"
 msgstr "Ukončit quad PiP"
@@ -8406,12 +8409,6 @@ msgstr "File Commander akce hash / kontrolní součet"
 msgid "File Commander Hashes / Checksums"
 msgstr "File Commander hashe / kontrolní součty"
 
-msgid "File Commander Picture Viewer"
-msgstr "File Commander Prohlížeč obrázků"
-
-msgid "File Commander Picture Viewer Actions"
-msgstr "File Commander Akce prohlížeče obrázků"
-
 msgid "File Commander Information Actions"
 msgstr "File Commander akce s informacemi"
 
@@ -8426,6 +8423,12 @@ msgstr "File Commander přesunout"
 
 msgid "File Commander Navigation Actions"
 msgstr "Akce navigace File Commander"
+
+msgid "File Commander Picture Viewer"
+msgstr "File Commander Prohlížeč obrázků"
+
+msgid "File Commander Picture Viewer Actions"
+msgstr "File Commander Akce prohlížeče obrázků"
 
 msgid "File Commander Selection Actions"
 msgstr "Akce výběru File Commander"
@@ -8575,7 +8578,7 @@ msgid "Flash Manager Actions"
 msgstr "Akce správce flash"
 
 msgid "Flash Online"
-msgstr "Změna Image ONLINE / DISK"
+msgstr "Změna Image online"
 
 msgid "Flash Online a new image"
 msgstr "Flešnutí nové image Online"
@@ -9213,7 +9216,7 @@ msgid "Harddisk"
 msgstr "Pevný disk"
 
 msgid "Harddisk Setup"
-msgstr "Nastavit HDD"
+msgstr "Nastavení pevného disku"
 
 msgid "Hardware MultiBoot device"
 msgstr "Hardwarové zařízení MultiBoot"
@@ -9471,7 +9474,7 @@ msgid "Hotbird 13.0e"
 msgstr "Hotbird 13.0e"
 
 msgid "Hotkey"
-msgstr "Tlačítka DO"
+msgstr "Klávesová zkratka"
 
 msgid "Hotkey Settings"
 msgstr "Nastavení klávesových zkratek"
@@ -9485,8 +9488,11 @@ msgstr "Hod Min"
 msgid "Hours Minutes Seconds"
 msgstr "Hod Min Sek"
 
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
+msgstr ""
+
 msgid "Http(s) stream start delay"
-msgstr "Zpoždění startu HTTP(s) streamu"
+msgstr "Zpoždění spuštění streamu HTTP(s)"
 
 msgid "Hue"
 msgstr "Odstín"
@@ -10219,7 +10225,7 @@ msgid "Is this setting ok?"
 msgstr "Je toto nastavení správné?"
 
 msgid "Is this video mode ok?"
-msgstr "Je tento videomód OK?"
+msgstr "Je tento video režim v pořádku?"
 
 msgid "Isle of Man"
 msgstr "Ostrov Man"
@@ -11272,6 +11278,9 @@ msgstr "Maximální počet dní EPG"
 msgid "Maximum space used (MB)"
 msgstr "Maximální použitá velikost (MB):"
 
+msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
+msgstr ""
+
 msgid "Mayotte"
 msgstr "Mayotte"
 
@@ -11568,7 +11577,7 @@ msgid "Move Left/Right"
 msgstr "Přesun Vlevo/Vpravo"
 
 msgid "Move Mode"
-msgstr "[PŘESUN]"
+msgstr "Režim přesunu"
 
 msgid "Move Mode Off"
 msgstr "Ukončit režim přesouvání"
@@ -11577,7 +11586,7 @@ msgid "Move Mode On"
 msgstr "Zapnout režim přesunu"
 
 msgid "Move PiP"
-msgstr "Umístit PIP"
+msgstr "Přesunout PiP"
 
 msgid "Move PiP to main picture"
 msgstr "Přesunout PiP do hlavního okna"
@@ -13201,7 +13210,7 @@ msgid "Overwrite Driver Files?"
 msgstr "Přepsat soubory ovladačů?"
 
 msgid "Overwrite Emu Files?"
-msgstr "Přepsat soubory EMU?"
+msgstr "Přepsat soubory Emu?"
 
 msgid "Overwrite Picon Files?"
 msgstr "Přepsat soubory pikonů?"
@@ -13735,7 +13744,7 @@ msgid "Please enter search string for your location"
 msgstr "Zadejte prosím vyhledávací řetězec pro vaši polohu"
 
 msgid "Please enter the correct pin code"
-msgstr "Zadejte správný PIN"
+msgstr "Zadejte prosím správný PIN kód"
 
 msgid "Please enter the new directory name:"
 msgstr "Zadejte prosím název nového adresáře:"
@@ -14429,7 +14438,7 @@ msgid "Protect movie list"
 msgstr "Chránit Seznam filmů"
 
 msgid "Protect on epg age"
-msgstr "Zabezpečit ochranu EPG dle věku"
+msgstr "Ochrana EPG podle věku"
 
 msgid "Protect plugin browser"
 msgstr "Chránit Prohlížeč pluginů"
@@ -15241,7 +15250,7 @@ msgstr ""
 "(POZNÁMKA: 'Zrušit' nelze vrátit zpět!)"
 
 msgid "Require authentication for http streams"
-msgstr "Vyžadovat ověření HTTP streamů"
+msgstr "Vyžadovat ověřování pro http streamy"
 
 msgid "Required medium type:"
 msgstr "Požadovaný typ média:"
@@ -15337,7 +15346,7 @@ msgid "Restart OSCam"
 msgstr "Restartovat OSCam"
 
 msgid "Restart enigma"
-msgstr "Restartovat (GUI)"
+msgstr "Restartovat Enigmu"
 
 msgid "Restart necessary, restart GUI now?"
 msgstr "Je nutný restart, restartovat GUI nyní?"
@@ -15767,7 +15776,7 @@ msgid "Satellites"
 msgstr "Satelity"
 
 msgid "Satfinder"
-msgstr "Hledání družic (SAT Finder)"
+msgstr "Vyhledání družic (SAT Finder)"
 
 msgid "Sats"
 msgstr "Sat"
@@ -16019,7 +16028,7 @@ msgid "Search"
 msgstr "Hledat"
 
 msgid "Search Sats"
-msgstr "Hledání družic (SAT Finder)"
+msgstr "Vyhledávání družic"
 
 msgid "Search Sats, check signal and lock"
 msgstr "Hledání družic, kontrola signálu a uzamčení"
@@ -16169,7 +16178,7 @@ msgid "Select 'Yes' to allow use of the SeekBar to jump to a selected point with
 msgstr "Pokud nastavíte na 'ano' můžete použít seekbar a skočit na místo v rámci události."
 
 msgid "Select 'Yes' to always show the bouquet screen first when opening the channel list. Select 'No' to open the channel list using the current bouquet."
-msgstr "Pokud je tato možnost nastavena na 'ANO' zobrazí se vždy výběr přehledů jako první. Pokud je nastaven na 'NE' zobrazí se aktuální přehled."
+msgstr "Vyberte „Ano“, chcete-li, aby se při otevírání seznamu kanálů vždy nejprve zobrazovala obrazovka s výběrem kanálů. Vyberte „Ne“, chcete-li otevřít seznam kanálů s aktuálním výběrem kanálů."
 
 msgid "Select 'Yes' to check if network connections are coming from nominated IP Addresses at the activation time of the timer. If so, the timer will be deactivated."
 msgstr "Chcete-li zkontrolovat, zda síťová připojení přicházejí z určených IP adres v době aktivace časovače, vyberte možnost „Ano“. Pokud ano, časovač bude deaktivován."
@@ -16611,6 +16620,9 @@ msgstr "Vyberte, jak rychle se má parabola pohybovat mezi satelity."
 msgid "Select how the arrow buttons 'UP', 'DOWN', 'LEFT' or 'RIGHT' will act during seek actions."
 msgstr "Vyberte, jak se budou tlačítka se šipkami („NAHORU“, „DOLŮ“, „VLEVO“ a „VPRAVO“) chovat během vyhledávání."
 
+msgid "Select how the descrambled data stream is processed. 'Automatic' uses asynchronous writes (lower CPU usage) with automatic fallback to synchronous if kernel AIO is not supported. 'Synchronous' forces blocking writes (stable, most compatible)."
+msgstr ""
+
 msgid "Select how the number buttons will act during seek actions."
 msgstr "Vyberte, jak se budou číselná tlačítka chovat během vyhledávání."
 
@@ -16875,9 +16887,10 @@ msgstr "Nastavení doby v minutách pro spořič obrazovky."
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr "Vyberte čas ukončení, před kterým lze tento časovač aktivovat. Po uplynutí této doby se časovač neaktivuje, i když jsou splněny ostatní podmínky."
 
+#. TRANSLATORS: "Select the file sort order for the %s:" / the placeholder is "left column" or "right column".
 #, python-format
-msgid "Select the file sort order for the %s column:"
-msgstr "Vyberte pořadí řazení souborů pro sloupec %s:"
+msgid "Select the file sort order for the %s:"
+msgstr "Vyberte pořadí řazení souborů pro %s:"
 
 msgid "Select the file system for the device."
 msgstr "Vyberte systém souborů pro zařízení."
@@ -19073,6 +19086,9 @@ msgstr "Společnost a kultura"
 msgid "Socket"
 msgstr "Zásuvka"
 
+msgid "SoftCSA Settings"
+msgstr ""
+
 msgid "Softcam"
 msgstr "Softcam"
 
@@ -19114,6 +19130,9 @@ msgstr "Aktualizace software"
 
 msgid "Software Update Actions"
 msgstr "Akce pro aktualizaci softwaru"
+
+msgid "Software descrambling"
+msgstr ""
 
 msgid "Software information"
 msgstr "Informace o softwaru"
@@ -19942,6 +19961,9 @@ msgstr "Čas synchronizovat s"
 
 msgid "Synchronize system time using transponder or Internet."
 msgstr "Synchronizovat systémový čas pomocí transpondéru nebo internetu."
+
+msgid "Synchronous"
+msgstr ""
 
 msgid "Syrian Arab Republic"
 msgstr "Syrská Arabská republika"
@@ -23804,6 +23826,9 @@ msgstr "audio stopy"
 msgid "automatic"
 msgstr "automatické"
 
+msgid "available"
+msgstr ""
+
 msgid "back"
 msgstr "zpět"
 
@@ -24050,6 +24075,9 @@ msgstr "skok na kapitolu podle čísla"
 msgid "left"
 msgstr "vlevo"
 
+msgid "left column"
+msgstr "levý sloupec"
+
 msgid "length"
 msgstr "délka"
 
@@ -24190,6 +24218,9 @@ msgstr "vrátit na předchozí kapitolu"
 
 msgid "right"
 msgstr "vpravo"
+
+msgid "right column"
+msgstr "pravý sloupec"
 
 msgid ""
 "satellites.xml not found or corrupted!\n"
@@ -24382,6 +24413,13 @@ msgstr "ano (uchovat zdroje)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
+#~ msgstr "Chyba při načítání umístění 'epg.dat' na vzdáleném přijímači!"
+
+#, python-format
+#~ msgid "Select the file sort order for the %s column:"
+#~ msgstr "Vyberte pořadí řazení souborů pro sloupec %s:"
 
 #~ msgid ""
 #~ "File oscam.conf not found.\n"

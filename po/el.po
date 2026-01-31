@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV Enigma2 Official Greek Translation\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-17 09:22+0000\n"
+"POT-Creation-Date: 2026-01-30 19:51+0100\n"
 "PO-Revision-Date: 2025-11-16 05:28+0000\n"
 "Last-Translator: MCelliotG <mcelliotg@gmail.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/el/>\n"
@@ -5723,6 +5723,12 @@ msgstr "Καταγραφές αποσφαλμάτωσης"
 msgid "Debug log time format *"
 msgstr "Μορφή ώρας καταγραφής αποσφαλμάτωσης *"
 
+msgid "Decoder release strategy"
+msgstr ""
+
+msgid "Decoder start timeout"
+msgstr ""
+
 msgid "Decryption & Parental Control"
 msgstr "Αποκωδικοποίηση & γονικός έλεγχος"
 
@@ -7683,9 +7689,6 @@ msgstr "Σφάλμα ανάγνωσης ιστοσελίδας!"
 msgid "Error retrieving 'epg.dat' from the remote receiver!"
 msgstr "Σφάλμα κατά την ανάκτηση του epg.dat από τον εφεδρικό δέκτη!"
 
-msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
-msgstr "Σφάλμα κατά την ανάκτηση της θέσης του epg.dat στον εφεδρικό δέκτη!"
-
 msgid "Error text:"
 msgstr "Κείμενο σφάλματος:"
 
@@ -7970,9 +7973,6 @@ msgstr "Έξοδος από την επεξεργασία και ακύρωση 
 msgid "Exit editor and save any changes"
 msgstr "Έξοδος από την επεξεργασία και αποθήκευση όλων των αλλαγών"
 
-msgid "Exit picture viewer"
-msgstr "Έξοδος από την προβολή εικόνων"
-
 msgid "Exit input device selection."
 msgstr "Έξοδος από επιλογή συσκευής εισαγωγής."
 
@@ -7999,6 +7999,9 @@ msgstr "Έξοδος από τη λίστα διεπαφών δικτύου"
 
 msgid "Exit network wizard"
 msgstr "Έξοδος από τον οδηγό δικτύου"
+
+msgid "Exit picture viewer"
+msgstr "Έξοδος από την προβολή εικόνων"
 
 msgid "Exit quad PiP"
 msgstr "Έξοδος από το τετραπλό PiP"
@@ -8366,12 +8369,6 @@ msgstr "File Commander Ενέργειες κατακερματισμού/αθρ�
 msgid "File Commander Hashes / Checksums"
 msgstr "File Commander Κατακερματισμοί/αθροίσματα ελέγχου"
 
-msgid "File Commander Picture Viewer"
-msgstr "File Commander Προβολή εικόνων"
-
-msgid "File Commander Picture Viewer Actions"
-msgstr "File Commander Ενέργειες προβολής εικόνων"
-
 msgid "File Commander Information Actions"
 msgstr "File Commander Ενέργειες πληροφοριών"
 
@@ -8386,6 +8383,12 @@ msgstr "File Commander Μετακίνηση"
 
 msgid "File Commander Navigation Actions"
 msgstr "Ενέργειες πλοήγησης File Commander"
+
+msgid "File Commander Picture Viewer"
+msgstr "File Commander Προβολή εικόνων"
+
+msgid "File Commander Picture Viewer Actions"
+msgstr "File Commander Ενέργειες προβολής εικόνων"
 
 msgid "File Commander Selection Actions"
 msgstr "Ενέργειες επιλογής File Commander"
@@ -9444,6 +9447,9 @@ msgstr "Ώρες Λεπτά"
 
 msgid "Hours Minutes Seconds"
 msgstr "Ώρες Λεπτά Δευτερόλεπτα"
+
+msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
+msgstr ""
 
 msgid "Http(s) stream start delay"
 msgstr "Έναρξη καθυστέρησης ροής http(s)"
@@ -11229,6 +11235,9 @@ msgstr "Μέγιστος αριθμός ημερών στο EPG"
 
 msgid "Maximum space used (MB)"
 msgstr "Μέγιστος χώρος σε χρήση (MB)"
+
+msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
+msgstr ""
 
 msgid "Mayotte"
 msgstr "Μαγιότ"
@@ -16564,6 +16573,9 @@ msgstr "Επιλέξτε το πόσο γρήγορα θα κινείται το
 msgid "Select how the arrow buttons 'UP', 'DOWN', 'LEFT' or 'RIGHT' will act during seek actions."
 msgstr "Επιλέξτε πώς τα βέλη ('ΕΠΑΝΩ', 'ΚΑΤΩ', 'ΑΡΙΣΤΕΡΑ', και 'ΔΕΞΙΑ') θα συμπεριφέρονται κατά τη διάρκεια της αναζήτησης."
 
+msgid "Select how the descrambled data stream is processed. 'Automatic' uses asynchronous writes (lower CPU usage) with automatic fallback to synchronous if kernel AIO is not supported. 'Synchronous' forces blocking writes (stable, most compatible)."
+msgstr ""
+
 msgid "Select how the number buttons will act during seek actions."
 msgstr "Επιλέξτε πώς θα συμπεριφέρονται τα αριθμητικά πλήκτρα κατά την αναζήτηση."
 
@@ -16828,9 +16840,10 @@ msgstr "Ρύθμιση της διάρκειας σε λεπτά πριν την
 msgid "Select the end time before which this timer can be activated. After this time the timer won't be activated even if other conditions are met."
 msgstr "Επιλογή του χρόνου λήξης πριν από τον οποίο θα ενεργοποιείται αυτός ο χρονοδιακόπτης.  Μετά το πέρας αυτού του χρόνου, ο χρονοδιακόπτης δεν θα ενεργοποιείται, ακόμα και αν συντρέχουν διαφορετικές συνθήκες."
 
+#. TRANSLATORS: "Select the file sort order for the %s:" / the placeholder is "left column" or "right column".
 #, python-format
-msgid "Select the file sort order for the %s column:"
-msgstr "Επιλέξτε τη σειρά ταξινόμησης των αρχείων για τη στήλη %s:"
+msgid "Select the file sort order for the %s:"
+msgstr ""
 
 msgid "Select the file system for the device."
 msgstr "Επιλογή συστήματος αρχείων για αυτή τη συσκευή."
@@ -19022,6 +19035,9 @@ msgstr "Κοινωνία & πολιτισμός"
 msgid "Socket"
 msgstr "Υποδοχή"
 
+msgid "SoftCSA Settings"
+msgstr ""
+
 msgid "Softcam"
 msgstr "Softcam"
 
@@ -19063,6 +19079,9 @@ msgstr "Ενημέρωση λογισμικού"
 
 msgid "Software Update Actions"
 msgstr "Ενέργειες ενημέρωσης λογισμικού"
+
+msgid "Software descrambling"
+msgstr ""
 
 msgid "Software information"
 msgstr "Πληροφορίες λογισμικού"
@@ -19891,6 +19910,9 @@ msgstr "Συγχρονισμός ώρας με χρήση"
 
 msgid "Synchronize system time using transponder or Internet."
 msgstr "Συγχρονισμός ώρας συστήματος με χρήση του αναμεταδότη ή του διαδικτύου."
+
+msgid "Synchronous"
+msgstr ""
 
 msgid "Syrian Arab Republic"
 msgstr "Συριακή Αραβική Δημοκρατία"
@@ -23752,6 +23774,9 @@ msgstr "ροές ήχου"
 msgid "automatic"
 msgstr "αυτόματο"
 
+msgid "available"
+msgstr ""
+
 msgid "back"
 msgstr "πίσω"
 
@@ -23998,6 +24023,9 @@ msgstr "μετάβαση στο κεφάλαιο με αριθμό"
 msgid "left"
 msgstr "αριστερά"
 
+msgid "left column"
+msgstr ""
+
 msgid "length"
 msgstr "διάρκεια"
 
@@ -24138,6 +24166,9 @@ msgstr "μετάβαση στο προηγούμενο κεφάλαιο"
 
 msgid "right"
 msgstr "δεξιά"
+
+msgid "right column"
+msgstr ""
 
 msgid ""
 "satellites.xml not found or corrupted!\n"
@@ -24329,6 +24360,13 @@ msgstr "ναι (διατήρηση των feeds)"
 
 msgid "®"
 msgstr "®"
+
+#~ msgid "Error retrieving location of 'epg.dat' on the remote receiver!"
+#~ msgstr "Σφάλμα κατά την ανάκτηση της θέσης του epg.dat στον εφεδρικό δέκτη!"
+
+#, python-format
+#~ msgid "Select the file sort order for the %s column:"
+#~ msgstr "Επιλέξτε τη σειρά ταξινόμησης των αρχείων για τη στήλη %s:"
 
 #~ msgid ""
 #~ "File oscam.conf not found.\n"
