@@ -156,6 +156,7 @@ self.session.openWithCallback(msgClosed, EpgDeleteMsg)
 				<item key="oscam_info" level="0" text="OSCam Information" weight="80" requires="ShowOscamInfo"><screen module="OScamInfo" screen="OSCamInfo" /></item>
 				<item key="cccam_info" level="0" text="CCcam Information" weight="90" requires="ShowCCCamInfo"><screen module="CCcamInfo" screen="CCcamInfoMain" /></item>
 				<item key="ci_selection" level="1" text="Common Interface Settings" weight="100" requires="CommonInterface"><screen module="Ci" screen="CiSelection" /></item>
+				<item key="softcsa_settings" level="0" text="SoftCSA Settings" weight="105" requires="HasSoftCSA"><setup setupKey="SoftCSA" /></item>
 				<item key="streamrelay_settings" level="2" text="Stream Relay Settings" weight="110" requires="HAVEINITCAM"><screen module="SoftcamSetup" screen="StreamRelaySetup" /></item>
 				<item key="parental_setup" level="0" text="Parental Control Settings" weight="200"><screen module="ParentalControlSetup" screen="ParentalControlSetup" /></item>
 			</menu>

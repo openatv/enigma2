@@ -76,10 +76,10 @@
 #define CMD_OK_MMI					0x02
 #define CMD_QUERY						0x03
 #define CMD_NOT_SELECTED		0x04
-												/* CA application should stop descrambling this service
-												 * (used when the last service in a list has left, note
-												 * that there is no CI definition to send an empty list)
-												 */
+/* CA application should stop descrambling this service
+* (used when the last service in a list has left, note
+* that there is no CI definition to send an empty list)
+*/
 
 class eDVBCAHandler;
 
@@ -87,16 +87,24 @@ class ePMTClient : public eUnixDomainSocket
 {
 	unsigned char receivedTag[4];
 	int receivedLength;
-	unsigned char *receivedValue;
-	char *displayText;
+	unsigned char *receivedData;
+	unsigned char receivedHeader[5];
+	int m_protocolVersion;
+	bool m_serverInfoReceived;
+	char m_capmt_buffer[2048];
+	int m_capmt_buffer_len;
 protected:
 	eDVBCAHandler *parent;
 	void connectionLost();
 	void dataAvailable();
-	void clientTLVReceived(unsigned char *tag, int length, unsigned char *value);
-	void parseTLVObjects(unsigned char *data, int size);
+	// OSCam Protocol 3 handlers
+	void sendClientInfo();
+	bool processCaSetDescrPacket();
+	bool processServerInfoPacket();
+	bool processEcmInfoPacket();
 public:
 	ePMTClient(eDVBCAHandler *handler, int socket);
+	int writeCAPMTObject(const char* capmt, int len);
 };
 
 class eDVBCAService: public eUnixDomainSocket
@@ -107,11 +115,12 @@ class eDVBCAService: public eUnixDomainSocket
 	uint32_t m_service_type_mask;
 	uint64_t m_prev_build_hash;
 	uint32_t m_crc32;
+	uint32_t m_id;
 	int m_version;
 	unsigned char m_capmt[2048];
 	ePtr<eTimer> m_retryTimer;
 public:
-	eDVBCAService(const eServiceReferenceDVB &service);
+	eDVBCAService(const eServiceReferenceDVB &service, uint32_t id);
 	~eDVBCAService();
 
 	std::string toString();
@@ -120,11 +129,15 @@ public:
 	uint8_t getUsedDemux(int index);
 	void setUsedDemux(int index, uint8_t value);
 	uint8_t getAdapter();
+	uint32_t getId() { return m_id; };
 	void setAdapter(uint8_t value);
 	void addServiceType(int type);
 	void removeServiceType(int type);
+	uint32_t getServiceTypeMask() const;
+	void resetBuildHash() { m_prev_build_hash = 0; m_crc32 = 0; }
 	void sendCAPMT();
 	int writeCAPMTObject(eSocket *socket, int list_management = -1);
+	int writeCAPMTObject(ePMTClient *client, int list_management = -1);
 	int buildCAPMT(eTable<ProgramMapSection> *ptr);
 	int buildCAPMT(ePtr<eDVBService> &dvbservice);
 	void connectionLost();
@@ -142,12 +155,7 @@ public:
 	iCryptoInfo();
 	~iCryptoInfo();
 #endif
-	PSignal1<void, const char*> clientname;
-	PSignal1<void, const char*> clientinfo;
-	PSignal1<void, const char*> verboseinfo;
-	PSignal1<void, int> usedcaid;
-	PSignal1<void, int> decodetime;
-	PSignal1<void, const char*> usedcardid;
+	sigc::signal<void(eServiceReferenceDVB, int, const char*, uint16_t)> receivedCw;  // service, parity, cw, caid
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<iCryptoInfo>, iCryptoInfoPtr);
 
@@ -157,12 +165,15 @@ class eDVBCAHandler: public eServerSocket, public iCryptoInfo
 class eDVBCAHandler : public iCryptoInfo
 #endif
 {
+	friend class ePMTClient;  // Allow ePMTClient to access m_service_caid
 DECLARE_REF(eDVBCAHandler);
 #ifndef SWIG
 	CAServiceMap services;
 	ePtrList<ePMTClient> clients;
 	ePtr<eTimer> serviceLeft;
 	std::map<eServiceReferenceDVB, ePtr<eTable<ProgramMapSection> > > pmtCache;
+	std::map<uint32_t, uint16_t> m_service_caid;  // serviceId -> CAID (from OSCam ECM_INFO)
+	uint32_t serviceIdCounter;
 
 	void newConnection(int socket);
 	void processPMTForService(eDVBCAService *service, eTable<ProgramMapSection> *ptr);
@@ -181,6 +192,7 @@ public:
 	void handlePMT(const eServiceReferenceDVB &service, ePtr<eTable<ProgramMapSection> > &ptr);
 	void handlePMT(const eServiceReferenceDVB &service, ePtr<eDVBService> &dvbservice);
 	void connectionLost(ePMTClient *client);
+	int getServiceReference(eServiceReferenceDVB &service, uint32_t serviceId);
 
 	static eDVBCAHandler *getInstance() { return instance; }
 #endif
