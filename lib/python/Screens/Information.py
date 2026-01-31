@@ -677,7 +677,7 @@ class DistributionInformation(InformationBase):
 		if mediaService:
 			info.append(formatLine("P1", _("Media service"), mediaService.replace("enigma2-plugin-systemplugins-", "")))
 		if eDVBCSAEngine.isAvailable():
-			info.append(formatLine("P1", _("Software descrambling"), _("available")))
+			info.append(formatLine("P1", _("Software descrambling"), _("Available")))
 		info.append("")
 		info.append(formatLine("S", _("Build information")))
 		if self.extraSpacing:
