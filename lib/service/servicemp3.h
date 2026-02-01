@@ -98,6 +98,13 @@ public:
 	void setBuffer(GstBuffer* buffer);
 };
 
+/* Message container types for gstPoll dispatch */
+enum GstMessageContainerType {
+	GST_MSG_CONTAINER_GST_MESSAGE = 1,
+	GST_MSG_CONTAINER_GST_BUFFER = 2,
+	GST_MSG_CONTAINER_GST_PAD = 3
+};
+
 class GstMessageContainer : public iObject {
 	DECLARE_REF(GstMessageContainer);
 	GstMessage* messagePointer;
@@ -406,6 +413,15 @@ private:
 	audiotype_t gstCheckAudioPad(GstStructure* structure);
 	void gstBusCall(GstMessage* msg);
 	void handleMessage(GstMessage* msg);
+
+	/* GstBusCall handlers - extracted for readability */
+	void handleStateChange(GstMessage* msg);
+	void handleAsyncDone(GstMessage* msg);
+	void handleTagMessage(GstMessage* msg);
+	void handleElementMessage(GstMessage* msg);
+
+	/* Helper to clear subtitle state - used by enable/disableSubtitles */
+	void clearSubtitleState();
 	static GstBusSyncReply gstBusSyncHandler(GstBus* bus, GstMessage* message, gpointer user_data);
 	static void gstTextpadHasCAPS(GstPad* pad, GParamSpec* unused, gpointer user_data);
 	void gstTextpadHasCAPS_synced(GstPad* pad);
