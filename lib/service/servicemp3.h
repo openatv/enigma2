@@ -472,6 +472,18 @@ private:
 
 	void pushDVBSubtitles();
 	void pushSubtitles();
+
+	/* Subtitle processing result for handler methods */
+	enum SubtitleResult {
+		SubtitleContinue,  // Continue to next subtitle
+		SubtitleSchedule,  // Schedule timer and exit loop
+		SubtitleShown      // Subtitle was displayed, continue
+	};
+
+	/* Individual subtitle type handlers - return next_timer_ms or 0 to continue */
+	SubtitleResult handleWebVTTLiveSubtitle(const subtitle_page_t& page, int32_t& next_timer);
+	SubtitleResult handleWebVTTSubtitle(const subtitle_page_t& page, int32_t decoder_ms, int32_t& next_timer);
+	SubtitleResult handleTextSubtitle(const subtitle_page_t& page, int32_t decoder_ms, double convert_fps, int32_t delay_ms, int32_t& next_timer);
 	void pullSubtitle(GstBuffer* buffer);
 	void sourceTimeout();
 	void clearBuffers(bool force = false);
