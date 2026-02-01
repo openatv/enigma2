@@ -28,6 +28,7 @@ Licensed under GPLv2.
 #include <lib/service/service.h>
 #include <lib/service/servicemp3.h>
 #include <lib/service/servicemp3record.h>
+#include <lib/service/servicewebvtt.h>
 
 #include <lib/base/cfile.h>
 
@@ -202,181 +203,8 @@ std::vector<audioMeta> parse_hls_audio_meta(const std::string& filename) {
 	return tracks;
 }
 
-/**
- * @struct SubtitleEntry
- * @brief Represents a single subtitle entry with timing and text information.
- *
- * This structure holds the timing information (start and end times in milliseconds),
- * a base timestamp for MPEG-TS to WebVTT conversion, and the subtitle text itself.
- *
- * Members:
- * - start_time_ms:      Start time of the subtitle in milliseconds.
- * - end_time_ms:        End time of the subtitle in milliseconds.
- * - vtt_mpegts_base:    Base timestamp used for MPEG-TS to WebVTT conversion.
- * - text:               The subtitle text to be displayed.
- */
-struct SubtitleEntry {
-	uint64_t start_time_ms;
-	uint64_t end_time_ms;
-	uint64_t vtt_mpegts_base;
-	uint64_t local_offset_ms;
-	std::string text;
-};
-
-/**
- * @brief Parses a timecode string in the format "HH:MM:SS.mmm" into milliseconds.
- *
- * This function attempts to parse a timecode string (e.g., "01:23:45.678") and convert it
- * into the total number of milliseconds. The expected format is hours, minutes, seconds,
- * and milliseconds separated by colons and a dot.
- *
- * @param[in]  s      The input timecode string to parse.
- * @param[out] ms_out The output variable that will contain the parsed time in milliseconds if parsing succeeds.
- * @return     true if the string was successfully parsed and ms_out is set; false otherwise.
- *
- * @note The function expects the input string to strictly match the "HH:MM:SS.mmm" format.
- */
-static bool parse_timecode(const std::string& s, uint64_t& ms_out) {
-	unsigned h = 0, m = 0, sec = 0, ms = 0;
-	if (sscanf(s.c_str(), "%u:%u:%u.%u", &h, &m, &sec, &ms) == 4) {
-		ms_out = ((h * 3600 + m * 60 + sec) * 1000 + ms);
-		return true;
-	}
-	return false;
-}
-
-/**
- * @brief Parses WebVTT subtitle data and extracts subtitle entries.
- *
- * This function processes a string containing WebVTT subtitle data, extracting
- * individual subtitle entries with their timing and text. It supports parsing
- * the X-TIMESTAMP-MAP header for MPEGTS to LOCAL time mapping, and handles
- * multi-line subtitle text blocks. The parsed subtitle entries are appended to
- * the provided output vector.
- *
- * @param vtt_data      The input string containing the WebVTT subtitle data.
- * @param subs_out      Output vector to which parsed SubtitleEntry objects will be appended.
- * @return true if at least one subtitle entry was successfully parsed, false otherwise.
- *
- * @note The function expects the existence of a parse_timecode helper function and
- *       a SubtitleEntry struct/class with at least the following members:
- *       - uint64_t start_time_ms
- *       - uint64_t end_time_ms
- *       - uint64_t vtt_mpegts_base
- *       - std::string text
- *
- * @details
- * - Ignores empty lines and lines containing only numbers (cue identifiers).
- * - Handles carriage return at the end of lines.
- * - Parses and applies X-TIMESTAMP-MAP if present, but the adjustment is currently commented out.
- * - Supports multi-line subtitle text.
- */
-bool parseWebVTT(const std::string& vtt_data, std::vector<SubtitleEntry>& subs_out) {
-	std::istringstream stream(vtt_data);
-	std::string line;
-
-	std::string current_text;
-	uint64_t start_ms = 0, end_ms = 0, vtt_mpegts_base = 0, local_offset_ms = 0;
-	bool expecting_text = false;
-
-	// Persistent across calls to detect MPEGTS jumps between segments
-	static uint64_t s_last_mpegts_ms = 0;
-	static bool s_has_last_mpegts = false;
-
-	while (std::getline(stream, line)) {
-		if (!line.empty() && line.back() == '\r')
-			line.pop_back();
-		if (line.empty())
-			continue;
-
-		if (line.rfind("X-TIMESTAMP-MAP=", 0) == 0) {
-			size_t mpegts_pos = line.find("MPEGTS:");
-			size_t local_pos = line.find("LOCAL:");
-
-			if (mpegts_pos != std::string::npos && local_pos != std::string::npos) {
-				mpegts_pos += 7;
-				local_pos += 6;
-
-				size_t comma_pos = line.find(',', mpegts_pos);
-				std::string mpegts_str = line.substr(mpegts_pos, comma_pos - mpegts_pos);
-				std::string local_str = line.substr(local_pos);
-
-				vtt_mpegts_base = std::stoull(mpegts_str);
-				if (vtt_mpegts_base < 1000000) // Ignore less than 1000000
-					vtt_mpegts_base = 0;
-				parse_timecode(local_str, local_offset_ms);
-				// Detect backward jumps in MPEGTS (advertisement -> content switch)
-				if (vtt_mpegts_base > 0) {
-					const uint64_t local_mpegts_ms = pts90kToMs(vtt_mpegts_base);
-					if (s_has_last_mpegts && local_mpegts_ms < s_last_mpegts_ms) {
-						// If MPEGTS jump back -> deactivate this segment.
-						eDebug("[parseWebVTT] MPEGTS backward jump detected: %llu -> %llu, disabling mapping for this segment", (unsigned long long)s_last_mpegts_ms,
-							   (unsigned long long)local_mpegts_ms);
-						vtt_mpegts_base = 0; // reset offsets
-					}
-					s_last_mpegts_ms = local_mpegts_ms;
-					s_has_last_mpegts = true;
-				}
-			}
-			continue;
-		}
-
-		if (line.find("-->") != std::string::npos) {
-			if (!current_text.empty()) {
-				SubtitleEntry entry;
-				entry.start_time_ms = start_ms;
-				entry.end_time_ms = end_ms;
-				entry.vtt_mpegts_base = vtt_mpegts_base;
-				entry.local_offset_ms = local_offset_ms;
-				entry.text = current_text;
-				subs_out.push_back(entry);
-				current_text.clear();
-			}
-
-			size_t arrow = line.find("-->");
-			std::string start_str = line.substr(0, arrow);
-			std::string end_str = line.substr(arrow + 3);
-			if (!parse_timecode(start_str, start_ms))
-				continue;
-			if (!parse_timecode(end_str, end_ms))
-				continue;
-
-			// Apply timestamp mapping adjustment
-			// ignore for now
-			/*
-			if (vtt_mpegts_base > 0) {
-				const uint64_t local_mpegts_ms = vtt_mpegts_base / 90; // MPEGTS-Ticks (90 kHz) → ms
-				const int64_t delta = static_cast<int64_t>(local_mpegts_ms) - static_cast<int64_t>(local_offset_ms);
-				start_ms += delta;
-				end_ms += delta;
-			}
-			*/
-			expecting_text = true;
-			continue;
-		}
-
-		if (!expecting_text || line.find_first_not_of("0123456789") == std::string::npos)
-			continue;
-
-		if (expecting_text) {
-			if (!current_text.empty())
-				current_text += "\n";
-			current_text += line;
-		}
-	}
-
-	if (!current_text.empty()) {
-		SubtitleEntry entry;
-		entry.start_time_ms = start_ms;
-		entry.end_time_ms = end_ms;
-		entry.vtt_mpegts_base = vtt_mpegts_base;
-		entry.local_offset_ms = local_offset_ms;
-		entry.text = current_text;
-		subs_out.push_back(entry);
-	}
-
-	return !subs_out.empty();
-}
+// WebVTT parser instance (non-static to allow proper state management per stream)
+static WebVTTParser s_webvtt_parser;
 
 // eServiceFactoryMP3
 
@@ -3819,12 +3647,9 @@ void eServiceMP3::pullSubtitle(GstBuffer* buffer) {
 		int subType = m_subtitleStreams[m_currentSubtitleStream].type;
 		if (subType == stWebVTT) {
 			std::string vtt_string(reinterpret_cast<char*>(map.data), map.size);
-			std::vector<SubtitleEntry> parsed_subs;
+			std::vector<WebVTTSubtitleEntry> parsed_subs;
 
-			// eDebug("SUB DEBUG line");
-			// eDebug(">>>\n%s\n<<<", vtt_string.c_str());
-
-			if (parseWebVTT(vtt_string, parsed_subs)) {
+			if (s_webvtt_parser.parse(vtt_string, parsed_subs)) {
 				for (const auto& sub : parsed_subs) {
 					if (sub.vtt_mpegts_base) {
 						if (!m_vtt_live)
