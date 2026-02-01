@@ -712,6 +712,7 @@ class DistributionInformation(InformationBase):
 			libName = eDVBCSAEngine.getLibraryName()
 			libVersion = eDVBCSAEngine.getLibraryVersion()
 			if libName and libVersion:
+				libName = libName.capitalize()
 				versions.append((libName, libVersion))
 		for version in versions:
 			info.append(formatLine("P1", _("%s version") % version[0], version[1]))
