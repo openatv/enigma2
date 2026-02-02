@@ -1399,7 +1399,7 @@ class ReceiverInformation(InformationBase):
 		if procModel != MODEL:
 			info.append(formatLine("P1", _("Proc model"), procModel))
 		procModelType = getBoxProcTypeName()
-		if procModelType and procModelType != "unknown":
+		if procModelType and procModelType != _("Unknown"):
 			info.append(formatLine("P1", _("Hardware type"), procModelType))
 		hwSerial = getHWSerial()
 		if hwSerial:
