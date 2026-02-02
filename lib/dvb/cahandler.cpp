@@ -938,12 +938,34 @@ int eDVBCAService::buildCAPMT(eTable<ProgramMapSection> *ptr)
 			pmtpid = dvbservice->getCacheEntry(eDVBService::cPMTPID);
 			if (pmtpid > 0)
 			{
-				m_capmt[total++] = 0x0d; // Datastream (DSM CC)
-				m_capmt[total++] = pmtpid>>8;
-				m_capmt[total++] = pmtpid&0xFF;
-				m_capmt[total++] = 0x00;
-				m_capmt[total++] = 0x00;
-				m_capmt[8] = (int)m_capmt[8] + 5;
+				// total is length returned by writeToBuffer, add 5 for header offset
+				size_t pos = 5 + total;
+				m_capmt[pos++] = 0x0d; // Datastream (DSM CC)
+				m_capmt[pos++] = pmtpid>>8;
+				m_capmt[pos++] = pmtpid&0xFF;
+				m_capmt[pos++] = 0x00;
+				m_capmt[pos++] = 0x00;
+				// update length field - handle both short and long form
+				// byte 8 is length byte: if bit 7 is set, it indicates number of following length bytes
+				if (m_capmt[8] & 0x80)
+				{
+					// long form: m_capmt[8] = 0x81 or 0x82, actual length in following bytes
+					int lenbytes = m_capmt[8] & 0x7f;
+					if (lenbytes == 1)
+						m_capmt[9] += 5;
+					else if (lenbytes == 2)
+					{
+						int len = (m_capmt[9] << 8) | m_capmt[10];
+						len += 5;
+						m_capmt[9] = len >> 8;
+						m_capmt[10] = len & 0xff;
+					}
+				}
+				else
+				{
+					// short form: length directly in byte 8
+					m_capmt[8] += 5;
+				}
 			}
 		}
 	}

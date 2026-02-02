@@ -1,4 +1,5 @@
 #include <fcntl.h>
+#include <algorithm>
 #include <lib/dvb/idvb.h>
 #include <dvbsi++/descriptor_tag.h>
 #include <dvbsi++/service_descriptor.h>
@@ -9,6 +10,7 @@
 #include <dvbsi++/logical_channel_descriptor.h>
 #include <dvbsi++/cable_delivery_system_descriptor.h>
 #include <dvbsi++/ca_identifier_descriptor.h>
+#include <dvbsi++/ca_descriptor.h>
 #include <dvbsi++/registration_descriptor.h>
 #include <dvbsi++/extension_descriptor.h>
 #include <dvbsi++/frequency_list_descriptor.h>
@@ -472,6 +474,11 @@ void eDVBScan::PMTready(int err)
 		bool have_audio = false;
 		bool have_video = false;
 		unsigned short pcrpid = 0xFFFF;
+		unsigned short videopid = 0xFFFF;
+		unsigned short audiopid = 0xFFFF;
+		eDVBService::cacheID audioCacheId = eDVBService::cMPEGAPID;
+		int videotype = -1;  // -1 = MPEG2 (default)
+		CAID_LIST caids;
 		std::vector<ProgramMapSection*>::const_iterator i;
 
 		for (i = m_PMT->getSections().begin(); i != m_PMT->getSections().end(); ++i)
@@ -485,28 +492,61 @@ void eDVBScan::PMTready(int err)
 			for (es = pmt.getEsInfo()->begin(); es != pmt.getEsInfo()->end(); ++es)
 			{
 				int isaudio = 0, isvideo = 0, is_scrambled = 0, forced_audio = 0, forced_video = 0;
+				eDVBService::cacheID currentAudioCacheId = eDVBService::cMPEGAPID;
+				int currentVideoType = -1;  // -1 = MPEG2 (default)
 				switch ((*es)->getType())
 				{
 				case 0x1b: // AVC Video Stream (MPEG4 H264)
+					isvideo = 1;
+					forced_video = 1;
+					currentVideoType = 1;  // MPEG4_H264
+					break;
 				case 0x24: // H265 HEVC
+					isvideo = 1;
+					forced_video = 1;
+					currentVideoType = 7;  // H265_HEVC
+					break;
 				case 0x10: // MPEG 4 Part 2
+					isvideo = 1;
+					forced_video = 1;
+					currentVideoType = 4;  // MPEG4_Part2
+					break;
 				case 0x01: // MPEG 1 video
+					isvideo = 1;
+					forced_video = 1;
+					currentVideoType = 5;  // MPEG1
+					break;
 				case 0x02: // MPEG 2 video
 					isvideo = 1;
 					forced_video = 1;
-					[[fallthrough]];
+					currentVideoType = -1;  // MPEG2 (default, stored as -1)
+					break;
 				case 0x03: // MPEG 1 audio
 				case 0x04: // MPEG 2 audio
-				case 0x0f: // MPEG 2 AAC
-				case 0x11: // MPEG 4 AAC
 					if (!isvideo)
 					{
 						forced_audio = 1;
 						isaudio = 1;
+						currentAudioCacheId = eDVBService::cMPEGAPID;
+					}
+					[[fallthrough]];
+				case 0x0f: // MPEG 2 AAC
+				case 0x11: // MPEG 4 AAC
+					if (!isvideo && !forced_audio)
+					{
+						forced_audio = 1;
+						isaudio = 1;
+						currentAudioCacheId = eDVBService::cAACAPID;
 					}
 					[[fallthrough]];
 				case 0x06: // PES Private
-				case 0x81: // user private
+				case 0x81: // user private - often AC3
+					if ((*es)->getType() == 0x81 && !forced_audio)
+					{
+						isaudio = 1;
+						currentAudioCacheId = eDVBService::cAC3PID;
+					}
+					[[fallthrough]];
 				case 0xEA: // TS_PSI_ST_SMPTE_VC1
 					for (DescriptorConstIterator desc = (*es)->getDescriptors()->begin();
 							desc != (*es)->getDescriptors()->end(); ++desc)
@@ -521,10 +561,24 @@ void eDVBScan::PMTready(int err)
 							case 0x1C: // TS_PSI_DT_MPEG4_Audio
 							case 0x2B: // TS_PSI_DT_MPEG2_AAC
 							case AAC_DESCRIPTOR:
+								isaudio = 1;
+								currentAudioCacheId = eDVBService::cAACAPID;
+								break;
 							case AC3_DESCRIPTOR:
+								isaudio = 1;
+								currentAudioCacheId = eDVBService::cAC3PID;
+								break;
+							case ENHANCED_AC3_DESCRIPTOR:
+								isaudio = 1;
+								currentAudioCacheId = eDVBService::cDDPPID;
+								break;
 							case DTS_DESCRIPTOR:
+								isaudio = 1;
+								currentAudioCacheId = eDVBService::cDTSPID;
+								break;
 							case AUDIO_STREAM_DESCRIPTOR:
 								isaudio = 1;
+								currentAudioCacheId = eDVBService::cMPEGAPID;
 								break;
 							case 0x28: // TS_PSI_DT_AVC
 							case 0x1B: // TS_PSI_DT_MPEG4_Video
@@ -537,9 +591,16 @@ void eDVBScan::PMTready(int err)
 									switch (d->getFormatIdentifier())
 									{
 									case 0x44545331 ... 0x44545333: // DTS1/DTS2/DTS3
+										isaudio = 1;
+										currentAudioCacheId = eDVBService::cDTSPID;
+										break;
 									case 0x41432d33: // == 'AC-3'
+										isaudio = 1;
+										currentAudioCacheId = eDVBService::cAC3PID;
+										break;
 									case 0x42535344: // == 'BSSD' (LPCM)
 										isaudio = 1;
+										currentAudioCacheId = eDVBService::cLPCMPID;
 										break;
 									case 0x56432d31: // == 'VC-1'
 										isvideo = 1;
@@ -554,16 +615,36 @@ void eDVBScan::PMTready(int err)
 							}
 						}
 						if (tag == CA_DESCRIPTOR)
+						{
 							is_scrambled = 1;
+							CaDescriptor *ca = (CaDescriptor*)(*desc);
+							uint16_t caid = ca->getCaSystemId();
+							if (caid != 0 && std::find(caids.begin(), caids.end(), caid) == caids.end())
+								caids.push_back(caid);
+						}
 					}
 					[[fallthrough]];
 				default:
 					break;
 				}
 				if (isvideo)
+				{
 					have_video = true;
+					if (videopid == 0xFFFF)
+					{
+						videopid = (*es)->getPid();
+						videotype = currentVideoType;
+					}
+				}
 				else if (isaudio)
+				{
 					have_audio = true;
+					if (audiopid == 0xFFFF)
+					{
+						audiopid = (*es)->getPid();
+						audioCacheId = currentAudioCacheId;
+					}
+				}
 				else
 					continue;
 				if (is_scrambled)
@@ -573,16 +654,30 @@ void eDVBScan::PMTready(int err)
 				desc != pmt.getDescriptors()->end(); ++desc)
 			{
 				if ((*desc)->getTag() == CA_DESCRIPTOR)
+				{
 					scrambled = true;
+					CaDescriptor *ca = (CaDescriptor*)(*desc);
+					uint16_t caid = ca->getCaSystemId();
+					if (caid != 0 && std::find(caids.begin(), caids.end(), caid) == caids.end())
+						caids.push_back(caid);
+				}
 			}
 		}
 		m_pmt_in_progress->second.scrambled = scrambled;
+		m_pmt_in_progress->second.pcrPid = pcrpid;
+		m_pmt_in_progress->second.videoPid = videopid;
+		m_pmt_in_progress->second.audioPid = audiopid;
+		m_pmt_in_progress->second.audioCacheId = audioCacheId;
+		m_pmt_in_progress->second.videoType = videotype;
+		m_pmt_in_progress->second.caids = caids;
 		if ( have_video )
 			m_pmt_in_progress->second.serviceType = 1;
 		else if ( have_audio )
 			m_pmt_in_progress->second.serviceType = 2;
 		else
 			m_pmt_in_progress->second.serviceType = 100;
+		SCAN_eDebug("[eDVBScan] SID %04x: vpid=%04x (vtype=%d) apid=%04x (cacheId=%d) pcrpid=%04x caids=%d",
+			m_pmt_in_progress->first, videopid, videotype, audiopid, audioCacheId, pcrpid, (int)caids.size());
 	}
 	if (err == -1) // timeout or removed by sdt
 		m_pmts_to_read.erase(m_pmt_in_progress++);
@@ -1242,6 +1337,20 @@ void eDVBScan::channelDone()
 				m_last_service = i.first;
 				m_event(evtNewService);
 			}
+
+			/* store cached PIDs from PMT - use service from m_new_services (may exist from SDT) */
+			ePtr<eDVBService> target = i.first->second;
+			if (m_pmt_in_progress->second.videoPid != 0xFFFF)
+				target->setCacheEntry(eDVBService::cVPID, m_pmt_in_progress->second.videoPid);
+			if (m_pmt_in_progress->second.audioPid != 0xFFFF)
+				target->setCacheEntry(m_pmt_in_progress->second.audioCacheId, m_pmt_in_progress->second.audioPid);
+			if (m_pmt_in_progress->second.pcrPid != 0xFFFF)
+				target->setCacheEntry(eDVBService::cPCRPID, m_pmt_in_progress->second.pcrPid);
+			target->setCacheEntry(eDVBService::cPMTPID, m_pmt_in_progress->second.pmtPid);
+
+			/* store CAIDs from PMT */
+			if (!m_pmt_in_progress->second.caids.empty())
+				target->m_ca = m_pmt_in_progress->second.caids;
 		}
 		else
 			SCAN_eDebug("[eDVBScan] dont add... is scrambled!");
@@ -1554,6 +1663,31 @@ void eDVBScan::insertInto(iDVBChannelList *db, bool backgroundscanresult)
 			}
 			if (service->second->m_ca.size())
 				dvb_service->m_ca = service->second->m_ca;
+
+			/* update cached PIDs from scan if the new service has them */
+			int vpid = service->second->getCacheEntry(eDVBService::cVPID);
+			if (vpid != -1)
+				dvb_service->setCacheEntry(eDVBService::cVPID, vpid);
+			int vtype = service->second->getCacheEntry(eDVBService::cVTYPE);
+			if (vtype != -1)
+				dvb_service->setCacheEntry(eDVBService::cVTYPE, vtype);
+			/* copy audio PID with correct audio type */
+			for (int j = 0; j < eDVBService::nAudioCacheTags; ++j)
+			{
+				int apid = service->second->getCacheEntry(eDVBService::audioCacheTags[j]);
+				if (apid != -1)
+				{
+					dvb_service->setCacheEntry(eDVBService::audioCacheTags[j], apid);
+					break;
+				}
+			}
+			int pcrpid = service->second->getCacheEntry(eDVBService::cPCRPID);
+			if (pcrpid != -1)
+				dvb_service->setCacheEntry(eDVBService::cPCRPID, pcrpid);
+			int pmtpid = service->second->getCacheEntry(eDVBService::cPMTPID);
+			if (pmtpid != -1)
+				dvb_service->setCacheEntry(eDVBService::cPMTPID, pmtpid);
+
 			if (!backgroundscanresult) // do not remove new found flags when this is the result of a 'background scan'
 				dvb_service->m_flags &= ~eDVBService::dxNewFound;
 		}
@@ -1655,6 +1789,21 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 			ref.set(chid);
 			ref.setServiceID(service_id);
 
+			/* copy cached PIDs and CAIDs from PMT if available (only if PMT was already processed) */
+			if (it != m_pmts_to_read.end() && it->second.videoPid != 0xFFFF)
+			{
+				service->setCacheEntry(eDVBService::cVPID, it->second.videoPid);
+				if (it->second.videoType != -1)  // only set if not MPEG2 (default)
+					service->setCacheEntry(eDVBService::cVTYPE, it->second.videoType);
+				if (it->second.audioPid != 0xFFFF)
+					service->setCacheEntry(it->second.audioCacheId, it->second.audioPid);
+				if (it->second.pcrPid != 0xFFFF)
+					service->setCacheEntry(eDVBService::cPCRPID, it->second.pcrPid);
+				service->setCacheEntry(eDVBService::cPMTPID, it->second.pmtPid);
+				if (!it->second.caids.empty())
+					service->m_ca = it->second.caids;
+			}
+
 			for (DescriptorConstIterator desc = (*s)->getDescriptors()->begin();
 					desc != (*s)->getDescriptors()->end(); ++desc)
 			{
@@ -1704,7 +1853,9 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 					for (CaSystemIdList::const_iterator i(caids.begin()); i != caids.end(); ++i)
 					{
 						SCAN_eDebugNoNewLine(" %04x", *i);
-						service->m_ca.push_front(*i);
+						/* avoid duplicates - CAIDs may already be set from PMT */
+						if (std::find(service->m_ca.begin(), service->m_ca.end(), *i) == service->m_ca.end())
+							service->m_ca.push_front(*i);
 					}
 					SCAN_eDebugNoNewLine("\n");
 					break;
@@ -1738,7 +1889,8 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 		}
 		if (m_pmt_running && m_pmt_in_progress->first == service_id)
 			m_abort_current_pmt = true;
-		else
+		else if (it != m_pmts_to_read.end() && (it->second.videoPid != 0xFFFF || it->second.audioPid != 0xFFFF))
+			/* only erase if PMT was already processed (has video or audio), otherwise channelDone() needs it */
 			m_pmts_to_read.erase(service_id);
 	}
 
@@ -1769,6 +1921,8 @@ RESULT eDVBScan::processVCT(eDVBNamespace dvbnamespace, const VirtualChannelTabl
 			SCAN_eDebugNoNewLine("is free");
 		}
 		SCAN_eDebugNoNewLine("\n");
+
+		std::map<unsigned short, struct service>::iterator it = m_pmts_to_read.find(service_id);
 
 		if (!(m_flags & scanOnlyFree) || !is_crypted)
 		{
@@ -1803,6 +1957,22 @@ RESULT eDVBScan::processVCT(eDVBNamespace dvbnamespace, const VirtualChannelTabl
 			ref.setServiceID(service_id);
 			ref.setServiceType(servicetype);
 			ref.setSourceID(source_id);
+
+			/* copy cached PIDs and CAIDs from PMT if available (only if PMT was already processed) */
+			if (it != m_pmts_to_read.end() && it->second.videoPid != 0xFFFF)
+			{
+				service->setCacheEntry(eDVBService::cVPID, it->second.videoPid);
+				if (it->second.videoType != -1)  // only set if not MPEG2 (default)
+					service->setCacheEntry(eDVBService::cVTYPE, it->second.videoType);
+				if (it->second.audioPid != 0xFFFF)
+					service->setCacheEntry(it->second.audioCacheId, it->second.audioPid);
+				if (it->second.pcrPid != 0xFFFF)
+					service->setCacheEntry(eDVBService::cPCRPID, it->second.pcrPid);
+				service->setCacheEntry(eDVBService::cPMTPID, it->second.pmtPid);
+				if (!it->second.caids.empty())
+					service->m_ca = it->second.caids;
+			}
+
 			service->m_service_name = (*s)->getName();
 			/* strip trailing spaces */
 			service->m_service_name = service->m_service_name.erase(service->m_service_name.find_last_not_of(" ") + 1);
@@ -1845,7 +2015,8 @@ RESULT eDVBScan::processVCT(eDVBNamespace dvbnamespace, const VirtualChannelTabl
 		}
 		if (m_pmt_running && m_pmt_in_progress->first == service_id)
 			m_abort_current_pmt = true;
-		else
+		else if (it != m_pmts_to_read.end() && (it->second.videoPid != 0xFFFF || it->second.audioPid != 0xFFFF))
+			/* only erase if PMT was already processed (has video or audio), otherwise channelDone() needs it */
 			m_pmts_to_read.erase(service_id);
 	}
 
