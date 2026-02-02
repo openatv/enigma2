@@ -198,21 +198,25 @@ int eDVBServiceStream::doRecord()
 		return 0; /* try it again when we are tuned in */
 	}
 
+	// Check if PMT is available - we need it to determine if channel is encrypted
+	eDVBServicePMTHandler::program program;
+	bool have_program_info = (m_service_handler.getProgramInfo(program) == 0);
+	bool is_encrypted = have_program_info && program.isCrypted();
+
 	if (!m_record && m_tuned)
 	{
+		// Must wait for PMT before creating recorder to choose correct thread type
+		if (!have_program_info)
+		{
+			eDebug("[eDVBServiceStream] waiting for PMT before creating recorder...");
+			return 0; /* wait for eventNewProgramInfo */
+		}
+
 		ePtr<iDVBDemux> demux;
 		if (m_service_handler.getDataDemux(demux))
 		{
 			eDebug("[eDVBServiceStream] NO DEMUX available");
 			return -1;
-		}
-
-		// Check if channel is encrypted - need scrambled recorder for software descrambling
-		eDVBServicePMTHandler::program program;
-		bool is_encrypted = false;
-		if (!m_service_handler.getProgramInfo(program))
-		{
-			is_encrypted = program.isCrypted();
 		}
 
 		if (m_ref.path.empty())
@@ -227,6 +231,7 @@ int eDVBServiceStream::doRecord()
 			else
 			{
 				// FTA channel - can use streaming thread
+				eDebug("[eDVBServiceStream] FTA channel - using StreamThread");
 				demux->createTSRecorder(m_record, /*packetsize*/ 188, /*streaming*/ true);
 			}
 		}
@@ -258,12 +263,14 @@ int eDVBServiceStream::doRecord()
 		return 0;
 	}
 
-	eDVBServicePMTHandler::program program;
-	if (m_service_handler.getProgramInfo(program))
+	// PMT should be available at this point (we wait for it above)
+	if (!have_program_info)
 	{
-		eDebug("[eDVBServiceStream] getting program info failed.");
+		eDebug("[eDVBServiceStream] no program info available yet");
+		return 0;
 	}
-	else if(m_record_no_pids == 0)
+
+	if(m_record_no_pids == 0)
 	{
 		std::set<int> pids_to_record;
 
