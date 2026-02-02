@@ -15,12 +15,20 @@
 struct service
 {
 	service(unsigned short pmtPid)
-		:pmtPid(pmtPid), serviceType(0xFF), scrambled(false)
+		:pmtPid(pmtPid), serviceType(0xFF), scrambled(false),
+		 pcrPid(0xFFFF), videoPid(0xFFFF), audioPid(0xFFFF),
+		 audioCacheId(eDVBService::cMPEGAPID), videoType(-1)
 	{
 	}
 	unsigned short pmtPid;
 	unsigned char serviceType;
 	bool scrambled;
+	unsigned short pcrPid;
+	unsigned short videoPid;
+	unsigned short audioPid;
+	eDVBService::cacheID audioCacheId;
+	int videoType;  // -1 = MPEG2 (default), 1 = H.264, 4 = MPEG4 Part2, 7 = H.265/HEVC
+	CAID_LIST caids;
 };
 
 class eDVBScan: public sigc::trackable, public iObject
