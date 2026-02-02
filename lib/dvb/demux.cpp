@@ -763,6 +763,8 @@ int eDVBRecordFileThread::writeData(int len)
 		len = asyncWrite(len);
 		if (len < 0)
 		{
+			if (m_stop)
+				return len;
 			// Check for ENOSYS (AIO not supported by kernel) - automatic fallback to sync
 			if (errno == ENOSYS)
 			{
@@ -779,6 +781,8 @@ int eDVBRecordFileThread::writeData(int len)
 		int r = m_current_buffer->wait(&m_stop);
 		if (r < 0)
 		{
+			if (m_stop)
+				return len;
 			// Check for ENOSYS in wait (aio_return) - automatic fallback to sync
 			if (errno == ENOSYS)
 			{
