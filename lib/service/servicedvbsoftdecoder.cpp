@@ -201,12 +201,13 @@ void eDVBSoftDecoder::stop()
 		m_dvr_fd = -1;
 	}
 
-	// Stop the recorder thread - poll() should have been unblocked by closing DVR fd
+	// Stop the recorder thread FIRST - poll() should have been unblocked by closing DVR fd
+	// Must stop before setDescrambler(nullptr) to prevent race condition
 	if (m_record)
 	{
 		eDebug("[SoftDecoder] Stopping recorder thread");
-		m_record->setDescrambler(nullptr);
 		m_record->stop();
+		m_record->setDescrambler(nullptr);
 		m_record = nullptr;
 	}
 
