@@ -11,7 +11,6 @@
  */
 class iServiceScrambled: public iObject
 {
-	DECLARE_REF(iServiceScrambled);
 public:
 	/**
 	 * Descramble packets in-place
