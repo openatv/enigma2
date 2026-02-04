@@ -3127,14 +3127,18 @@ RESULT eDVBServicePlay::stopTimeshift(bool swToLive)
 	// recorder stop() removes PID filters from the same demux, killing the new thread.
 	if (m_record)
 	{
-		// Detach and cleanup timeshift's own CSA session
+		// Stop the recorder thread FIRST to prevent race condition:
+		// The thread accesses m_serviceDescrambler without synchronization,
+		// so we must ensure it's not running before we release the CSA session.
+		m_record->stop();
+
+		// Now safe to detach and cleanup timeshift's CSA session
 		if (m_timeshift_csa_session)
 		{
 			eDebug("[eDVBServicePlay] Detaching and destroying timeshift CSA session");
 			m_record->setDescrambler(nullptr);
-			m_timeshift_csa_session = nullptr;  // Release the separate timeshift session
+			m_timeshift_csa_session = nullptr;
 		}
-		m_record->stop();
 		m_record = 0;
 	}
 
@@ -3283,9 +3287,9 @@ void eDVBServicePlay::stopTapToFD()
 {
 	if(m_tap_recorder != nullptr)
 	{
-		// Detach descrambler before stopping
-		m_tap_recorder->setDescrambler(nullptr);
+		// Stop thread FIRST to prevent race condition with m_serviceDescrambler access
 		m_tap_recorder->stop();
+		m_tap_recorder->setDescrambler(nullptr);
 		m_tap_recorder = nullptr;
 	}
 }
