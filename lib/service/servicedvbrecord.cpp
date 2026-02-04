@@ -218,8 +218,15 @@ RESULT eDVBServiceRecord::stop()
 	if (!m_simulate)
 		eDebug("[eDVBServiceRecord] stop recording!");
 
-	// Remove descrambler from recorder BEFORE stopping session
-	// This prevents the recorder thread from calling descramble() on deleted object
+	// Stop the recorder thread FIRST to prevent race condition:
+	// The thread accesses m_serviceDescrambler without synchronization,
+	// so we must ensure it's not running before we release the CSA session.
+	if (m_state == stateRecording && m_record)
+	{
+		m_record->stop();
+	}
+
+	// Now safe to remove descrambler and release session
 	if (m_csa_session && m_record)
 	{
 		eDebug("[eDVBServiceRecord] Removing CSA session from recorder");
@@ -234,11 +241,9 @@ RESULT eDVBServiceRecord::stop()
 		m_use_software_descramble = false;
 	}
 
-	// Normal recording stop
+	// Recording already stopped above
 	if (m_state == stateRecording)
 	{
-		if (m_record)
-			m_record->stop();
 		if (m_target_fd >= 0)
 		{
 			::close(m_target_fd);

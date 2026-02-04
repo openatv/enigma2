@@ -36,12 +36,12 @@ void eDVBServiceStream::cleanupCSASession()
 	{
 		eDebug("[eDVBServiceStream] Cleaning up CSA session");
 		m_csa_session->stopECMMonitor();
-		// Detach descrambler and stop recorder BEFORE destroying session
-		// This ensures the descrambling thread is not using the session anymore
+		// Stop recorder thread FIRST to prevent race condition with m_serviceDescrambler access
+		// Then detach descrambler before destroying session
 		if (m_record)
 		{
-			m_record->setDescrambler(nullptr);
 			m_record->stop();
+			m_record->setDescrambler(nullptr);
 		}
 		// Now destroy session
 		m_csa_session = nullptr;
