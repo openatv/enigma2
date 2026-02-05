@@ -1009,13 +1009,12 @@ int eDVBRecordScrambledThread::writeData(int len)
 	// For SoftCSA: descrambles in-place when CW available,
 	// passes through encrypted when no CW (may cause artifacts at channel start)
 	if (m_serviceDescrambler)
+	{
 		m_serviceDescrambler->descramble(m_buffer, len);
 
-	// Parse AFTER descrambling for correct Access Points (.ap files)
-	// This is needed because asyncWrite/writeData skip parseData when m_serviceDescrambler is set
-	if (!getProtocol())
-	{
-		m_ts_parser.parseData(m_current_offset, m_buffer, len);
+		// Parse AFTER descrambling for correct Access Points (.ap files)
+		if (!getProtocol())
+			m_ts_parser.parseData(m_current_offset, m_buffer, len);
 	}
 
 	// Call the appropriate parent writeData based on target type:
