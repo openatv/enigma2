@@ -671,11 +671,11 @@ void eDVBScan::PMTready(int err)
 		m_pmt_in_progress->second.videoType = videotype;
 		m_pmt_in_progress->second.caids = caids;
 		if ( have_video )
-			m_pmt_in_progress->second.serviceType = 1;
+			m_pmt_in_progress->second.serviceType = 1;  // digital television service
 		else if ( have_audio )
-			m_pmt_in_progress->second.serviceType = 2;
+			m_pmt_in_progress->second.serviceType = 2;  // digital radio sound service
 		else
-			m_pmt_in_progress->second.serviceType = 100;
+			m_pmt_in_progress->second.serviceType = 12; // data broadcast service (valid DVB type)
 		SCAN_eDebug("[eDVBScan] SID %04x: vpid=%04x (vtype=%d) apid=%04x (cacheId=%d) pcrpid=%04x caids=%d",
 			m_pmt_in_progress->first, videopid, videotype, audiopid, audioCacheId, pcrpid, (int)caids.size());
 	}
@@ -1259,7 +1259,31 @@ void eDVBScan::channelDone()
 
 		ref.set(m_chid_current);
 		ref.setServiceID(m_pmt_in_progress->first);
-		ref.setServiceType(m_pmt_in_progress->second.serviceType);
+
+		/* Check if service already exists in m_new_services (from SDT) with a valid serviceType.
+		 * If so, use that serviceType instead of the one from PMT analysis.
+		 * This prevents creating duplicate services when PMT sets serviceType=100 (DATA)
+		 * for services that SDT already identified with a proper type. */
+		bool found_existing = false;
+		for (std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator it = m_new_services.begin();
+			it != m_new_services.end(); ++it)
+		{
+			if (it->first.getServiceID() == ref.getServiceID() &&
+				it->first.getDVBNamespace() == ref.getDVBNamespace() &&
+				it->first.getTransportStreamID() == ref.getTransportStreamID() &&
+				it->first.getOriginalNetworkID() == ref.getOriginalNetworkID())
+			{
+				/* Found existing service - use its serviceType */
+				ref.setServiceType(it->first.getServiceType());
+				found_existing = true;
+				SCAN_eDebug("[eDVBScan] SID %04x: using existing serviceType %d from SDT",
+					m_pmt_in_progress->first, it->first.getServiceType());
+				break;
+			}
+		}
+
+		if (!found_existing)
+			ref.setServiceType(m_pmt_in_progress->second.serviceType);
 
 		if (type != -1)
 		{
@@ -1881,10 +1905,46 @@ RESULT eDVBScan::processSDT(eDVBNamespace dvbnamespace, const ServiceDescription
 			if (is_crypted and !service->m_ca.size())
 				service->m_ca.push_front(0);
 
+			/* Check if service already exists with a different serviceType (e.g., from PMT).
+			 * SDT has the authoritative serviceType, so we should use it.
+			 * If found, remove the old entry and re-insert with the correct SDT serviceType. */
+			bool found_existing = false;
+			for (std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator sit = m_new_services.begin();
+				sit != m_new_services.end(); ++sit)
+			{
+				if (sit->first.getServiceID() == ref.getServiceID() &&
+					sit->first.getDVBNamespace() == ref.getDVBNamespace() &&
+					sit->first.getTransportStreamID() == ref.getTransportStreamID() &&
+					sit->first.getOriginalNetworkID() == ref.getOriginalNetworkID())
+				{
+					/* Found existing service from PMT - merge data and use SDT serviceType */
+					ePtr<eDVBService> existing = sit->second;
+
+					/* Copy cached PIDs from PMT entry to our new service */
+					for (int x = 0; x < eDVBService::cacheMax; ++x)
+					{
+						int entry = existing->getCacheEntry((eDVBService::cacheID)x);
+						if (entry != -1)
+							service->setCacheEntry((eDVBService::cacheID)x, entry);
+					}
+					/* Copy CAIDs if not already set from SDT */
+					if (service->m_ca.empty() && !existing->m_ca.empty())
+						service->m_ca = existing->m_ca;
+
+					/* Remove old entry with wrong serviceType */
+					m_new_services.erase(sit);
+					found_existing = true;
+					SCAN_eDebug("[eDVBScan] SID %04x: replacing PMT entry (type %d) with SDT entry (type %d)",
+						ref.getServiceID().get(), sit->first.getServiceType(), ref.getServiceType());
+					break;
+				}
+			}
+
+			/* Insert with correct SDT serviceType (either new or replacing old PMT entry) */
 			std::pair<std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator, bool> i =
 				m_new_services.insert(std::pair<eServiceReferenceDVB, ePtr<eDVBService> >(ref, service));
 
-			if (i.second)
+			if (i.second && !found_existing)
 			{
 				m_last_service = i.first;
 				m_event(evtNewService);
@@ -2006,10 +2066,45 @@ RESULT eDVBScan::processVCT(eDVBNamespace dvbnamespace, const VirtualChannelTabl
 			if (is_crypted and !service->m_ca.size())
 				service->m_ca.push_front(0);
 
+			/* Check if service already exists with a different serviceType (e.g., from PMT).
+			 * If so, update the existing service instead of creating a duplicate. */
+			bool found_existing = false;
+			for (std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator sit = m_new_services.begin();
+				sit != m_new_services.end(); ++sit)
+			{
+				if (sit->first.getServiceID() == ref.getServiceID() &&
+					sit->first.getDVBNamespace() == ref.getDVBNamespace() &&
+					sit->first.getTransportStreamID() == ref.getTransportStreamID() &&
+					sit->first.getOriginalNetworkID() == ref.getOriginalNetworkID())
+				{
+					/* Found existing service from PMT - merge data and use VCT serviceType */
+					ePtr<eDVBService> existing = sit->second;
+
+					/* Copy cached PIDs from PMT entry to our new service */
+					for (int x = 0; x < eDVBService::cacheMax; ++x)
+					{
+						int entry = existing->getCacheEntry((eDVBService::cacheID)x);
+						if (entry != -1)
+							service->setCacheEntry((eDVBService::cacheID)x, entry);
+					}
+					/* Copy CAIDs if not already set from VCT */
+					if (service->m_ca.empty() && !existing->m_ca.empty())
+						service->m_ca = existing->m_ca;
+
+					/* Remove old entry with wrong serviceType */
+					m_new_services.erase(sit);
+					found_existing = true;
+					SCAN_eDebug("[eDVBScan] SID %04x: replacing PMT entry (type %d) with VCT entry (type %d)",
+						ref.getServiceID().get(), sit->first.getServiceType(), ref.getServiceType());
+					break;
+				}
+			}
+
+			/* Insert with correct VCT serviceType (either new or replacing old PMT entry) */
 			std::pair<std::map<eServiceReferenceDVB, ePtr<eDVBService> >::iterator, bool> i =
 				m_new_services.insert(std::pair<eServiceReferenceDVB, ePtr<eDVBService> >(ref, service));
 
-			if (i.second)
+			if (i.second && !found_existing)
 			{
 				m_last_service = i.first;
 				m_event(evtNewService);
