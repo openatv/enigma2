@@ -233,6 +233,7 @@ void eDVBCSASession::ecmDataReceived(const uint8_t *data)
 		else
 		{
 			eDebug("[CSASession] ECM analyzed: Not CSA-ALT, hardware descrambling will be used");
+			stopECMMonitor();
 		}
 	}
 }
