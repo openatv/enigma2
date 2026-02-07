@@ -98,12 +98,12 @@ protected:
 	void connectionLost();
 	void dataAvailable();
 	// OSCam Protocol 3 handlers
-	void sendClientInfo();
 	bool processCaSetDescrPacket();
 	bool processServerInfoPacket();
 	bool processEcmInfoPacket();
 public:
 	ePMTClient(eDVBCAHandler *handler, int socket);
+	void sendClientInfo();
 	int writeCAPMTObject(const char* capmt, int len);
 };
 
