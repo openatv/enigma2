@@ -29,8 +29,6 @@ ePMTClient::ePMTClient(eDVBCAHandler *handler, int socket) : eUnixDomainSocket(s
 	m_capmt_buffer_len = 0;
 	CONNECT(connectionClosed_, ePMTClient::connectionLost);
 	CONNECT(readyRead_, ePMTClient::dataAvailable);
-
-	sendClientInfo();
 }
 
 void ePMTClient::connectionLost()
@@ -215,6 +213,7 @@ bool ePMTClient::processServerInfoPacket()
 				writeCAPMTObject(m_capmt_buffer, m_capmt_buffer_len);
 				m_capmt_buffer_len = 0;
 			}
+			if (parent) parent->distributeCAPMT();
 			return true;
 		}
 	}
@@ -324,22 +323,15 @@ bool ePMTClient::processEcmInfoPacket()
 
 int ePMTClient::writeCAPMTObject(const char* capmt, int len)
 {
-	if (m_serverInfoReceived)
+	if (m_protocolVersion == 3)
 	{
-		if (m_protocolVersion < 3)
-		{
-			return writeBlock((capmt + 5), len); // skip extra header
-		}
-		else
-		{
-			len += 5;
-			return writeBlock(capmt, len);
-		}
+		len += 5;
+		return writeBlock(capmt, len);
 	}
-	// store packet until server info was received
-	memcpy(m_capmt_buffer, capmt, len);
-	m_capmt_buffer_len = len;
-	return 0;
+	else
+	{
+		return writeBlock((capmt + 5), len); // skip extra header
+	}
 }
 
 
@@ -376,8 +368,14 @@ void eDVBCAHandler::newConnection(int socket)
 	ePMTClient *client = new ePMTClient(this, socket);
 	clients.push_back(client);
 
-	/* inform the new client about our current services, if we have any */
+	/* First distribute current CAPMTs in legacy format (works for all clients),
+	 * then send CLIENT_INFO to initiate Protocol-3 handshake.
+	 * - OSCam: receives legacy CAPMTs, then CLIENT_INFO, responds with
+	 *   SERVER_INFO -> Protocol 3 for all subsequent CAPMTs.
+	 * - CCcam: receives legacy CAPMTs (works!), then CLIENT_INFO causes
+	 *   disconnect, but CAPMTs were already delivered. */
 	distributeCAPMT();
+	client->sendClientInfo();
 }
 
 void eDVBCAHandler::connectionLost(ePMTClient *client)
@@ -543,14 +541,13 @@ int eDVBCAHandler::unregisterService(const eServiceReferenceDVB &ref, int adapte
 				}
 				else
 				{
-					// Only send CA PMT update when streamserver stops but other types remain
-					// (e.g. StreamRelay stopped while Live-TV still active)
-					// servicetype 7 = streamserver, 8 = scrambled_streamserver
-					if (ptr && (servicetype == 7 || servicetype == 8))
+					if (ptr)
 					{
 						caservice->resetBuildHash();
 						if (caservice->buildCAPMT(ptr) >= 0)
 						{
+							// Send update via camd.socket (legacy path)
+							caservice->sendCAPMT();
 							// Send to all connected clients (PMT mode 6, Protocol 3)
 							for (ePtrList<ePMTClient>::iterator client_it = clients.begin(); client_it != clients.end(); ++client_it)
 							{
@@ -559,8 +556,11 @@ int eDVBCAHandler::unregisterService(const eServiceReferenceDVB &ref, int adapte
 									caservice->writeCAPMTObject(*client_it, LIST_UPDATE);
 								}
 							}
-							eDebug("[eDVBCAService] sent CA PMT update after streamserver unregister");
 						}
+					}
+					else
+					{
+						eDebug("[eDVBCAService] can not send updated demux info");
 					}
 				}
 			}
