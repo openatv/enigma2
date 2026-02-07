@@ -12,6 +12,15 @@
 #include <lib/gui/esubtitle.h>
 #include <mutex>
 
+/* Timing conversion utilities for GStreamer/PTS handling
+ * GStreamer uses nanoseconds, PTS uses 90kHz clock (90000 ticks/sec)
+ * Factor 11111 = 1000000000 / 90000 (ns per 90kHz tick)
+ */
+inline int64_t nsToMs(int64_t ns) { return ns / 1000000LL; }
+inline int64_t nsTo90kPts(int64_t ns) { return ns / 11111LL; }
+inline int64_t pts90kToMs(int64_t pts) { return pts / 90; }
+inline int64_t msTo90kPts(int64_t ms) { return ms * 90; }
+
 class eStaticServiceMP3Info;
 
 class eServiceFactoryMP3 : public iServiceHandler {
@@ -87,6 +96,13 @@ public:
 	unsigned char* getBuffer(unsigned int& size) const;
 	void setDouble(double value);
 	void setBuffer(GstBuffer* buffer);
+};
+
+/* Message container types for gstPoll dispatch */
+enum GstMessageContainerType {
+	GST_MSG_CONTAINER_GST_MESSAGE = 1,
+	GST_MSG_CONTAINER_GST_BUFFER = 2,
+	GST_MSG_CONTAINER_GST_PAD = 3
 };
 
 class GstMessageContainer : public iObject {
@@ -397,6 +413,15 @@ private:
 	audiotype_t gstCheckAudioPad(GstStructure* structure);
 	void gstBusCall(GstMessage* msg);
 	void handleMessage(GstMessage* msg);
+
+	/* GstBusCall handlers - extracted for readability */
+	void handleStateChange(GstMessage* msg);
+	void handleAsyncDone(GstMessage* msg);
+	void handleTagMessage(GstMessage* msg);
+	void handleElementMessage(GstMessage* msg);
+
+	/* Helper to clear subtitle state - used by enable/disableSubtitles */
+	void clearSubtitleState();
 	static GstBusSyncReply gstBusSyncHandler(GstBus* bus, GstMessage* message, gpointer user_data);
 	static void gstTextpadHasCAPS(GstPad* pad, GParamSpec* unused, gpointer user_data);
 	void gstTextpadHasCAPS_synced(GstPad* pad);
@@ -438,9 +463,43 @@ private:
 	bool m_vtt_live = false;
 	int64_t m_base_mpegts = -1;
 
+	/* Helper methods for cleaner code */
+	inline bool isWebVTT() const {
+		return m_currentSubtitleStream >= 0 &&
+			   m_currentSubtitleStream < (int)m_subtitleStreams.size() &&
+			   m_subtitleStreams[m_currentSubtitleStream].type == stWebVTT;
+	}
+	inline bool isWebVTTLive() const {
+		return isWebVTT() && m_vtt_live;
+	}
+	inline bool isTextSubtitle() const {
+		return m_currentSubtitleStream >= 0 &&
+			   m_currentSubtitleStream < (int)m_subtitleStreams.size() &&
+			   m_subtitleStreams[m_currentSubtitleStream].type &&
+			   m_subtitleStreams[m_currentSubtitleStream].type < stVOB;
+	}
+	void resetWebVTTState() {
+		m_initial_vtt_mpegts = 0;
+		m_vtt_live_base_time = -1;
+		m_vtt_live = false;
+		m_base_mpegts = -1;
+	}
+	int64_t getDecoderTimeNs();
 
 	void pushDVBSubtitles();
 	void pushSubtitles();
+
+	/* Subtitle processing result for handler methods */
+	enum SubtitleResult {
+		SubtitleContinue,  // Continue to next subtitle
+		SubtitleSchedule,  // Schedule timer and exit loop
+		SubtitleShown      // Subtitle was displayed, continue
+	};
+
+	/* Individual subtitle type handlers - return next_timer_ms or 0 to continue */
+	SubtitleResult handleWebVTTLiveSubtitle(const subtitle_page_t& page, int32_t& next_timer);
+	SubtitleResult handleWebVTTSubtitle(const subtitle_page_t& page, int32_t decoder_ms, int32_t& next_timer);
+	SubtitleResult handleTextSubtitle(const subtitle_page_t& page, int32_t decoder_ms, double convert_fps, int32_t delay_ms, int32_t& next_timer);
 	void pullSubtitle(GstBuffer* buffer);
 	void sourceTimeout();
 	void clearBuffers(bool force = false);

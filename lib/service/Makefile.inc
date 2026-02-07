@@ -20,6 +20,7 @@ service_libenigma_service_a_SOURCES = \
 	service/servicepeer.cpp \
 	service/servicets.cpp \
 	service/servicewebts.cpp \
+	service/servicewebvtt.cpp \
 	service/servicedvbsoftdecoder.cpp
 
 serviceincludedir = $(pkgincludedir)/lib/service
@@ -42,6 +43,7 @@ serviceinclude_HEADERS = \
 	service/servicepeer.h \
 	service/servicets.h \
 	service/servicewebts.h \
+	service/servicewebvtt.h \
 	service/servicedvbsoftdecoder.h
 
 if HAVE_LIBXINE
