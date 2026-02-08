@@ -124,6 +124,19 @@ private:
 	uint32_t m_cw_service_id;       // Softcam's serviceId (set on first CW)
 	bool m_cw_handler_registered;   // true once registered with eDVBCWHandler
 	bool m_first_cw_signaled;       // true once firstCwReceived signal was emitted
+
+	// CW buffer for CWs arriving before activation
+	// When a CW arrives while m_active is false, we store it here.
+	// On setActive(true), the buffered CW is replayed immediately,
+	// avoiding a multi-second wait for the next CW cycle.
+	struct PendingCw {
+		int parity;
+		char cw[8];
+		uint16_t caid;
+		uint32_t serviceId;
+		bool valid;
+	};
+	PendingCw m_pending_cw;
 };
 
 #endif // __dvbcsasession_h

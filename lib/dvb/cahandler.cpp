@@ -379,10 +379,10 @@ void eDVBCAHandler::newConnection(int socket)
 
 	/* First distribute current CAPMTs in legacy format (works for all clients),
 	 * then send CLIENT_INFO to initiate Protocol-3 handshake.
-	 * - Softcam: receives legacy CAPMTs, then CLIENT_INFO, responds with
-	 *   SERVER_INFO -> Protocol 3 for all subsequent CAPMTs.
-	 * - CCcam: receives legacy CAPMTs (works!), then CLIENT_INFO causes
-	 *   disconnect, but CAPMTs were already delivered. */
+	 * - Protocol-3 softcams: receive legacy CAPMTs, then CLIENT_INFO,
+	 *   respond with SERVER_INFO -> Protocol 3 for all subsequent CAPMTs.
+	 * - Legacy softcams: receive legacy CAPMTs (works!), then CLIENT_INFO
+	 *   causes disconnect, but CAPMTs were already delivered. */
 	distributeCAPMT();
 	client->sendClientInfo();
 }

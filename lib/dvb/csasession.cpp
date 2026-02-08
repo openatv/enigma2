@@ -69,6 +69,7 @@ eDVBCSASession::eDVBCSASession(const eServiceReferenceDVB& ref)
 	, m_cw_service_id(0)
 	, m_cw_handler_registered(false)
 	, m_first_cw_signaled(false)
+	, m_pending_cw{}
 {
 	eDebug("[eDVBCSASession] Created for service %s", ref.toString().c_str());
 }
@@ -265,6 +266,14 @@ void eDVBCSASession::setActive(bool active)
 #ifdef DREAMNEXTGEN
 		eAlsaOutput::setSoftDecoderActive(1);
 #endif
+		// Replay buffered CW that arrived before activation
+		if (m_pending_cw.valid)
+		{
+			eDebug("[eDVBCSASession] Replaying buffered CW: parity=%d", m_pending_cw.parity);
+			onCwReceived(m_service_ref, m_pending_cw.parity, m_pending_cw.cw,
+				m_pending_cw.caid, m_pending_cw.serviceId);
+			m_pending_cw.valid = false;
+		}
 	}
 	else
 	{
@@ -278,6 +287,7 @@ void eDVBCSASession::setActive(bool active)
 			m_cw_handler_registered = false;
 		}
 		m_first_cw_signaled = false;
+		m_pending_cw.valid = false;
 		if (m_engine)
 			m_engine->clearKeys();
 		// Reset ECM analysis state
@@ -300,9 +310,20 @@ void eDVBCSASession::onCwReceived(eServiceReferenceDVB ref, int parity, const ch
 	if (!m_cw_handler_registered)
 		eDebug("[eDVBCSASession] onCwReceived: parity=%d for service %s", parity, ref.toString().c_str());
 
-	// Only process CWs when active
+	// Buffer CW if session not yet active (activation pending on ECM analysis)
 	if (!m_active)
+	{
+		if (cw)
+		{
+			m_pending_cw.parity = parity;
+			memcpy(m_pending_cw.cw, cw, 8);
+			m_pending_cw.caid = caid;
+			m_pending_cw.serviceId = serviceId;
+			m_pending_cw.valid = true;
+			eDebug("[eDVBCSASession] CW buffered (session not yet active): parity=%d", parity);
+		}
 		return;
+	}
 
 	if (!cw || !m_engine)
 		return;
@@ -339,7 +360,7 @@ void eDVBCSASession::onCwReceived(eServiceReferenceDVB ref, int parity, const ch
 		m_cw_handler_registered = true;
 		// The first CW packet was already intercepted by eDVBCWHandler BEFORE this
 		// registration, so the engine missed it. Apply it now to avoid waiting
-		// for the next CW cycle (~7 seconds).
+		// for the next CW cycle.
 		m_engine->setKey(parity, ecm_mode, (const uint8_t*)cw);
 		const uint8_t* cw_bytes = (const uint8_t*)cw;
 		eDebug("[eDVBCSASession] CW set: caid=0x%04X, parity=%d, hasEven=%d, hasOdd=%d, CW=%02X",
