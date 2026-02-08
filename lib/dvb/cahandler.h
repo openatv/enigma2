@@ -109,6 +109,7 @@ public:
 
 class eDVBCAService: public eUnixDomainSocket
 {
+	friend class eDVBCAHandler;
 	eServiceReferenceDVB m_service;
 	uint8_t m_used_demux[32];
 	uint8_t m_adapter;
@@ -119,6 +120,7 @@ class eDVBCAService: public eUnixDomainSocket
 	int m_version;
 	unsigned char m_capmt[2048];
 	ePtr<eTimer> m_retryTimer;
+	bool m_force_cw_send; // force softcam CW resend on next handlePMT (SR→Live)
 public:
 	eDVBCAService(const eServiceReferenceDVB &service, uint32_t id);
 	~eDVBCAService();
@@ -136,8 +138,8 @@ public:
 	uint32_t getServiceTypeMask() const;
 	void resetBuildHash() { m_prev_build_hash = 0; m_crc32 = 0; }
 	void sendCAPMT();
-	int writeCAPMTObject(eSocket *socket, int list_management = -1);
-	int writeCAPMTObject(ePMTClient *client, int list_management = -1);
+	int writeCAPMTObject(eSocket *socket, int list_management = -1, int cmd_id = -1);
+	int writeCAPMTObject(ePMTClient *client, int list_management = -1, int cmd_id = -1);
 	int buildCAPMT(eTable<ProgramMapSection> *ptr);
 	int buildCAPMT(ePtr<eDVBService> &dvbservice);
 	void connectionLost();

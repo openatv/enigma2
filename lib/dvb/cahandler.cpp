@@ -471,21 +471,15 @@ int eDVBCAHandler::registerService(const eServiceReferenceDVB &ref, int adapter,
 	if (cacheit != pmtCache.end() && cacheit->second)
 	{
 		// If streamserver was active and we're adding a different type (e.g. Live-TV),
-		// send CA PMT update immediately so softcam knows about the new demux config
+		// we need to force the softcam to restart descrambling so it resends the CW.
+		// A simple LIST_UPDATE is not enough because the softcam's demux is already
+		// running and would just "continue processing" without resending the CW.
+		// We DEFER the restart to handlePMT() so the new CSA session is already
+		// activated and its engine registered with CWHandler when the CW arrives.
 		if (had_streamserver && servicetype != 7 && servicetype != 8)
 		{
-			caservice->resetBuildHash();
-			if (caservice->buildCAPMT(cacheit->second) >= 0)
-			{
-				for (ePtrList<ePMTClient>::iterator client_it = clients.begin(); client_it != clients.end(); ++client_it)
-				{
-					if (client_it->state() == eSocket::Connection)
-					{
-						caservice->writeCAPMTObject(*client_it, LIST_UPDATE);
-					}
-				}
-				eDebug("[eDVBCAService] sent early CA PMT update (streamserver active, new type %d registering)", servicetype);
-			}
+			caservice->m_force_cw_send = true;
+			eDebug("[eDVBCAService] deferred softcam restart (streamserver->live, type %d)", servicetype);
 		}
 		else
 		{
@@ -627,7 +621,28 @@ void eDVBCAHandler::processPMTForService(eDVBCAService *service, eTable<ProgramM
 	/* send the data to the listening client */
 	service->sendCAPMT();
 
-	if (isUpdate)
+	if (service->m_force_cw_send)
+	{
+		/*
+		 * SR→Live transition: force the softcam to restart descrambling.
+		 * Send CMD_NOT_SELECTED to stop the running demux, then LIST_ADD
+		 * with CMD_OK_DESCRAMBLING to re-add. This makes the softcam treat
+		 * it as a new service and immediately resend the CW from cache.
+		 * At this point the new CSA session is already activated and its
+		 * engine registered with CWHandler, so the CW won't be lost.
+		 */
+		service->m_force_cw_send = false;
+		for (ePtrList<ePMTClient>::iterator client_it = clients.begin(); client_it != clients.end(); ++client_it)
+		{
+			if (client_it->state() == eSocket::Connection)
+			{
+				service->writeCAPMTObject(*client_it, LIST_UPDATE, CMD_NOT_SELECTED);
+				service->writeCAPMTObject(*client_it, LIST_ADD, CMD_OK_DESCRAMBLING);
+			}
+		}
+		eDebug("[eDVBCAService] forced softcam restart for SR->Live transition");
+	}
+	else if (isUpdate)
 	{
 		/*
 		 * this is a PMT update for an existing service, so we should
@@ -707,7 +722,7 @@ int eDVBCAHandler::getServiceReference(eServiceReferenceDVB &service, uint32_t s
 }
 
 eDVBCAService::eDVBCAService(const eServiceReferenceDVB &service, uint32_t id)
-	: eUnixDomainSocket(eApp), m_service(service), m_adapter(0), m_service_type_mask(0), m_prev_build_hash(0), m_crc32(0), m_id(id), m_version(-1), m_retryTimer(eTimer::create(eApp))
+	: eUnixDomainSocket(eApp), m_service(service), m_adapter(0), m_service_type_mask(0), m_prev_build_hash(0), m_crc32(0), m_id(id), m_version(-1), m_retryTimer(eTimer::create(eApp)), m_force_cw_send(false)
 {
 	memset(m_used_demux, 0xFF, sizeof(m_used_demux));
 	CONNECT(connectionClosed_, eDVBCAService::connectionLost);
@@ -851,7 +866,7 @@ int eDVBCAService::buildCAPMT(eTable<ProgramMapSection> *ptr)
 	if ( i != ptr->getSections().end() )
 	{
 		crc = (*i)->getCrc32();
-		if (build_hash == m_prev_build_hash && crc == m_crc32)
+		if (build_hash == m_prev_build_hash && crc == m_crc32 && !m_force_cw_send)
 		{
 			eDebug("[eDVBCAService] don't build/send the same CA PMT twice");
 			return -1;
@@ -1152,13 +1167,14 @@ void eDVBCAService::sendCAPMT()
 	}
 }
 
-int eDVBCAService::writeCAPMTObject(eSocket *socket, int list_management)
+int eDVBCAService::writeCAPMTObject(eSocket *socket, int list_management, int cmd_id)
 {
 	int wp = 0;
+	int lenbytes = 0;
 	if (m_capmt[8] & 0x80)
 	{
 		int i=0;
-		int lenbytes = m_capmt[8] & ~0x80;
+		lenbytes = m_capmt[8] & ~0x80;
 		while(i < lenbytes)
 			wp = (wp << 8) | m_capmt[9 + i++];
 		wp += 4;
@@ -1171,17 +1187,20 @@ int eDVBCAService::writeCAPMTObject(eSocket *socket, int list_management)
 		wp += 4;
 		if (list_management >= 0) m_capmt[9] = (unsigned char)list_management;
 	}
+	// cmd_id is 6 bytes after list_management: list_mgmt(1) + program_number(2) + version(1) + prog_info_len(2)
+	if (cmd_id >= 0) m_capmt[9 + lenbytes + 6] = (unsigned char)cmd_id;
 
 	return socket->writeBlock((const char*)(m_capmt + 5), wp); // skip extra header
 }
 
-int eDVBCAService::writeCAPMTObject(ePMTClient *client, int list_management)
+int eDVBCAService::writeCAPMTObject(ePMTClient *client, int list_management, int cmd_id)
 {
 	int wp = 0;
+	int lenbytes = 0;
 	if (m_capmt[8] & 0x80)
 	{
 		int i=0;
-		int lenbytes = m_capmt[8] & ~0x80;
+		lenbytes = m_capmt[8] & ~0x80;
 		while(i < lenbytes)
 			wp = (wp << 8) | m_capmt[9 + i++];
 		wp += 4;
@@ -1194,6 +1213,8 @@ int eDVBCAService::writeCAPMTObject(ePMTClient *client, int list_management)
 		wp += 4;
 		if (list_management >= 0) m_capmt[9] = (unsigned char)list_management;
 	}
+	// cmd_id is 6 bytes after list_management: list_mgmt(1) + program_number(2) + version(1) + prog_info_len(2)
+	if (cmd_id >= 0) m_capmt[9 + lenbytes + 6] = (unsigned char)cmd_id;
 
 	return client->writeCAPMTObject((const char*)m_capmt, wp);
 }
