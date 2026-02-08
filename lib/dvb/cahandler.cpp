@@ -14,6 +14,7 @@
 #include <linux/dvb/ca.h>
 #include <lib/dvb/cwhandler.h>
 #include <map>
+#include <vector>
 
 // Cache serviceId per DVB service reference to ensure softcam always sees the same ID
 // This prevents CW delivery issues when switching between StreamRelay and Live-TV
@@ -598,14 +599,28 @@ void eDVBCAHandler::distributeCAPMT()
 	{
 		if (client_it->state() == eSocket::Connection)
 		{
-			unsigned char list_management = LIST_FIRST;
-			for (CAServiceMap::iterator it = services.begin(); it != services.end(); )
+			/*
+			 * Collect services that have a valid CAPMT (buildCAPMT was called).
+			 * Services with m_version == -1 have never had their PMT processed,
+			 * so their m_capmt buffer contains uninitialized heap data.
+			 * Sending that would corrupt the protocol stream.
+			 */
+			std::vector<eDVBCAService*> ready_services;
+			for (CAServiceMap::iterator it = services.begin(); it != services.end(); ++it)
 			{
-				eDVBCAService *current = it->second;
-				++it;
-				if (it == services.end()) list_management |= LIST_LAST;
-				current->writeCAPMTObject(*client_it, list_management);
-				list_management = LIST_MORE;
+				if (it->second->getCAPMTVersion() >= 0)
+				{
+					ready_services.push_back(it->second);
+				}
+			}
+
+			if (ready_services.empty()) continue;
+
+			for (size_t idx = 0; idx < ready_services.size(); ++idx)
+			{
+				unsigned char list_management = (idx == 0) ? LIST_FIRST : LIST_MORE;
+				if (idx == ready_services.size() - 1) list_management |= LIST_LAST;
+				ready_services[idx]->writeCAPMTObject(*client_it, list_management);
 			}
 		}
 	}
@@ -725,6 +740,7 @@ eDVBCAService::eDVBCAService(const eServiceReferenceDVB &service, uint32_t id)
 	: eUnixDomainSocket(eApp), m_service(service), m_adapter(0), m_service_type_mask(0), m_prev_build_hash(0), m_crc32(0), m_id(id), m_version(-1), m_retryTimer(eTimer::create(eApp)), m_force_cw_send(false)
 {
 	memset(m_used_demux, 0xFF, sizeof(m_used_demux));
+	memset(m_capmt, 0, sizeof(m_capmt));
 	CONNECT(connectionClosed_, eDVBCAService::connectionLost);
 	CONNECT(m_retryTimer->timeout, eDVBCAService::sendCAPMT);
 }
