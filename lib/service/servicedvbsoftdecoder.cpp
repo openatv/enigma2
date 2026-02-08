@@ -22,6 +22,7 @@ eDVBSoftDecoder::eDVBSoftDecoder(eDVBServicePMTHandler& source_handler,
 	, m_stall_count(0)
 	, m_stream_stalled(false)
 	, m_paused(false)
+	, m_last_health_check(0)
 {
 	eDebug("[SoftDecoder] Created for decoder %d", decoder_index);
 }
@@ -139,6 +140,7 @@ void eDVBSoftDecoder::startDecoderWithDvrWait()
 	m_stall_count = 0;
 	m_stream_stalled = false;
 	m_paused = false;
+	m_last_health_check = 0;
 	m_health_timer->start(500, false);
 }
 
@@ -240,6 +242,7 @@ void eDVBSoftDecoder::stop()
 	m_stall_count = 0;
 	m_stream_stalled = false;
 	m_paused = false;
+	m_last_health_check = 0;
 	eDebug("[SoftDecoder] Stop complete");
 }
 
@@ -390,6 +393,30 @@ void eDVBSoftDecoder::streamHealthCheck()
 	// Don't check for stalls while paused - PTS naturally stops
 	if (m_paused)
 		return;
+
+	// Detect MainLoop hangs: if this timer callback comes much later than
+	// expected (>2s instead of 500ms), the MainLoop was blocked.
+	// In that case, skip the stall check - the stream kept running fine
+	// via eDVBCWHandler thread, only our monitoring was paused.
+	struct timespec ts;
+	clock_gettime(CLOCK_MONOTONIC, &ts);
+	int64_t now = (int64_t)ts.tv_sec * 1000 + ts.tv_nsec / 1000000;
+	if (m_last_health_check > 0)
+	{
+		int64_t elapsed = now - m_last_health_check;
+		if (elapsed > 2000)
+		{
+			eDebug("[SoftDecoder] MainLoop was blocked for %lldms, skipping stall check", elapsed);
+			m_stall_count = 0;
+			m_stream_stalled = false;
+			m_last_pts = 0;
+			m_last_health_check = now;
+			// Restart timer to discard all queued callbacks from the freeze
+			m_health_timer->start(500, false);
+			return;
+		}
+	}
+	m_last_health_check = now;
 
 	pts_t current_pts = 0;
 	if (m_decoder->getPTS(0, current_pts) != 0)

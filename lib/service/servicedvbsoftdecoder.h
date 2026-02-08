@@ -119,6 +119,7 @@ private:
 	int m_stall_count;
 	bool m_stream_stalled;
 	bool m_paused;
+	int64_t m_last_health_check;
 	void streamHealthCheck();
 
 	// Event Handlers

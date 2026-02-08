@@ -97,7 +97,7 @@ protected:
 	eDVBCAHandler *parent;
 	void connectionLost();
 	void dataAvailable();
-	// OSCam Protocol 3 handlers
+	// Softcam Protocol 3 handlers
 	bool processCaSetDescrPacket();
 	bool processServerInfoPacket();
 	bool processEcmInfoPacket();
@@ -155,7 +155,7 @@ public:
 	iCryptoInfo();
 	~iCryptoInfo();
 #endif
-	sigc::signal<void(eServiceReferenceDVB, int, const char*, uint16_t)> receivedCw;  // service, parity, cw, caid
+	sigc::signal<void(eServiceReferenceDVB, int, const char*, uint16_t, uint32_t)> receivedCw;  // service, parity, cw, caid, serviceId
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<iCryptoInfo>, iCryptoInfoPtr);
 
@@ -172,7 +172,7 @@ DECLARE_REF(eDVBCAHandler);
 	ePtrList<ePMTClient> clients;
 	ePtr<eTimer> serviceLeft;
 	std::map<eServiceReferenceDVB, ePtr<eTable<ProgramMapSection> > > pmtCache;
-	std::map<uint32_t, uint16_t> m_service_caid;  // serviceId -> CAID (from OSCam ECM_INFO)
+	std::map<uint32_t, uint16_t> m_service_caid;  // serviceId -> CAID (from softcam ECM_INFO)
 	uint32_t serviceIdCounter;
 
 	void newConnection(int socket);

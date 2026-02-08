@@ -1,6 +1,7 @@
 #include <lib/dvb/csasession.h>
 #include <lib/dvb/csaengine.h>
 #include <lib/dvb/cahandler.h>
+#include <lib/dvb/cwhandler.h>
 #include <lib/base/eerror.h>
 
 #ifdef DREAMNEXTGEN
@@ -65,6 +66,9 @@ eDVBCSASession::eDVBCSASession(const eServiceReferenceDVB& ref)
 	, m_ecm_mode_detected(false)
 	, m_ecm_analyzed(false)
 	, m_csa_alt(false)
+	, m_cw_service_id(0)
+	, m_cw_handler_registered(false)
+	, m_first_cw_signaled(false)
 {
 	eDebug("[CSASession] Created for service %s", ref.toString().c_str());
 }
@@ -72,6 +76,9 @@ eDVBCSASession::eDVBCSASession(const eServiceReferenceDVB& ref)
 eDVBCSASession::~eDVBCSASession()
 {
 	eDebug("[CSASession] Destroyed for service %s", m_service_ref.toString().c_str());
+
+	if (m_cw_handler_registered)
+		eDVBCWHandler::getInstance()->unregisterEngine(m_cw_service_id, m_engine);
 
 	stopECMMonitor();
 
@@ -265,6 +272,12 @@ void eDVBCSASession::setActive(bool active)
 #ifdef DREAMNEXTGEN
 		eAlsaOutput::setSoftDecoderActive(0);
 #endif
+		if (m_cw_handler_registered)
+		{
+			eDVBCWHandler::getInstance()->unregisterEngine(m_cw_service_id, m_engine);
+			m_cw_handler_registered = false;
+		}
+		m_first_cw_signaled = false;
 		if (m_engine)
 			m_engine->clearKeys();
 		// Reset ECM analysis state
@@ -278,13 +291,14 @@ void eDVBCSASession::setActive(bool active)
 	activated(m_active);
 }
 
-void eDVBCSASession::onCwReceived(eServiceReferenceDVB ref, int parity, const char* cw, uint16_t caid)
+void eDVBCSASession::onCwReceived(eServiceReferenceDVB ref, int parity, const char* cw, uint16_t caid, uint32_t serviceId)
 {
 	// Only for our service
 	if (!matchesService(ref))
 		return;
 
-	eDebug("[CSASession] onCwReceived: parity=%d for service %s", parity, ref.toString().c_str());
+	if (!m_cw_handler_registered)
+		eDebug("[CSASession] onCwReceived: parity=%d for service %s", parity, ref.toString().c_str());
 
 	// Only process CWs when active
 	if (!m_active)
@@ -292,9 +306,6 @@ void eDVBCSASession::onCwReceived(eServiceReferenceDVB ref, int parity, const ch
 
 	if (!cw || !m_engine)
 		return;
-
-	// Check if this is the first CW (for signaling)
-	bool had_any_key = m_engine->hasAnyKey();
 
 	// Get ecm_mode: prefer detected, then cached, then default
 	uint8_t ecm_mode;
@@ -319,20 +330,35 @@ void eDVBCSASession::onCwReceived(eServiceReferenceDVB ref, int parity, const ch
 			ecm_mode = DEFAULT_ECM_MODE;
 		}
 	}
-	eDebug("[CSASession] ECM Mode 0x%02X (%s, tail: %02X %02X %02X %02X)",
-		ecm_mode, source, m_ecm_tail[0], m_ecm_tail[1], m_ecm_tail[2], m_ecm_tail[3]);
-	const uint8_t* cw_bytes = (const uint8_t*)cw;
-	m_engine->setKey(parity, ecm_mode, cw_bytes);
-	char caid_str[20] = "";
-	if (caid != 0)
-		snprintf(caid_str, sizeof(caid_str), "caid=0x%04X, ", caid);
-	eDebug("[CSASession] CW set: %sparity=%d, hasEven=%d, hasOdd=%d, CW=%02X",
-		caid_str, parity, m_engine->hasEvenKey(), m_engine->hasOddKey(), cw_bytes[0]);
 
-	// If this is the first CW, signal to listeners
-	if (!had_any_key && m_engine->hasAnyKey())
+	// Register/update eDVBCWHandler - it handles setKey() directly from its thread
+	if (!m_cw_handler_registered)
+	{
+		m_cw_service_id = serviceId;
+		eDVBCWHandler::getInstance()->registerEngine(serviceId, m_engine, ecm_mode);
+		m_cw_handler_registered = true;
+		// The first CW packet was already intercepted by eDVBCWHandler BEFORE this
+		// registration, so the engine missed it. Apply it now to avoid waiting
+		// for the next CW cycle (~7 seconds).
+		m_engine->setKey(parity, ecm_mode, (const uint8_t*)cw);
+		const uint8_t* cw_bytes = (const uint8_t*)cw;
+		eDebug("[CSASession] CW set: caid=0x%04X, parity=%d, hasEven=%d, hasOdd=%d, CW=%02X",
+			caid, parity, m_engine->hasEvenKey(), m_engine->hasOddKey(), cw_bytes[0]);
+	}
+	else
+	{
+		eDVBCWHandler::getInstance()->updateEcmMode(m_cw_service_id, m_engine, ecm_mode);
+	}
+
+	if (m_ecm_mode != ecm_mode)
+		eDebug("[CSASession] ECM Mode 0x%02X (%s, tail: %02X %02X %02X %02X)",
+			ecm_mode, source, m_ecm_tail[0], m_ecm_tail[1], m_ecm_tail[2], m_ecm_tail[3]);
+
+	// Signal firstCwReceived once (for SoftDecoder start)
+	if (!m_first_cw_signaled && m_engine->hasAnyKey())
 	{
 		eDebug("[CSASession] First CW received - signaling");
+		m_first_cw_signaled = true;
 		firstCwReceived();
 	}
 }

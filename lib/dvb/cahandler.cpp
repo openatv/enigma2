@@ -12,9 +12,10 @@
 #include <lib/base/init_num.h>
 
 #include <linux/dvb/ca.h>
+#include <lib/dvb/cwhandler.h>
 #include <map>
 
-// Cache serviceId per DVB service reference to ensure OSCam always sees the same ID
+// Cache serviceId per DVB service reference to ensure softcam always sees the same ID
 // This prevents CW delivery issues when switching between StreamRelay and Live-TV
 static std::map<eServiceReferenceDVB, uint32_t> s_serviceId_cache;
 
@@ -46,10 +47,10 @@ void ePMTClient::dataAvailable()
 		{
 			if (bytesAvailable() < 6) return;
 			receivedLength = readBlock((char*)receivedHeader, 1);
-			// check OSCam protocol version -> version 3 starts with 0xA5
+			// check softcam protocol version -> version 3 starts with 0xA5
 			if ((m_protocolVersion == 3 || m_protocolVersion == -1) && receivedHeader[0] == 0xA5)
 			{
-				// OSCam protocol 3: read 4 byte msgid + first byte of tag
+				// Softcam protocol 3: read 4 byte msgid + first byte of tag
 				readBlock((char*)receivedHeader, 5);
 				receivedTag[0] = receivedHeader[4];
 			}
@@ -164,7 +165,7 @@ bool ePMTClient::processCaSetDescrPacket()
 			auto it = parent->m_service_caid.find(serviceId);
 			if (it != parent->m_service_caid.end())
 				caid = it->second;
-			parent->receivedCw(service, descr.parity, (const char*)descr.cw, caid);
+			parent->receivedCw(service, descr.parity, (const char*)descr.cw, caid, serviceId);
 		}
 		return true;
 	}
@@ -365,12 +366,20 @@ eDVBCAHandler::~eDVBCAHandler()
 
 void eDVBCAHandler::newConnection(int socket)
 {
-	ePMTClient *client = new ePMTClient(this, socket);
+	// Route through eDVBCWHandler proxy for MainLoop-independent CW delivery
+	int client_fd = eDVBCWHandler::getInstance()->addConnection(socket);
+	if (client_fd < 0)
+	{
+		eWarning("[eDVBCAHandler] eDVBCWHandler proxy failed, rejecting connection");
+		::close(socket);
+		return;
+	}
+	ePMTClient *client = new ePMTClient(this, client_fd);
 	clients.push_back(client);
 
 	/* First distribute current CAPMTs in legacy format (works for all clients),
 	 * then send CLIENT_INFO to initiate Protocol-3 handshake.
-	 * - OSCam: receives legacy CAPMTs, then CLIENT_INFO, responds with
+	 * - Softcam: receives legacy CAPMTs, then CLIENT_INFO, responds with
 	 *   SERVER_INFO -> Protocol 3 for all subsequent CAPMTs.
 	 * - CCcam: receives legacy CAPMTs (works!), then CLIENT_INFO causes
 	 *   disconnect, but CAPMTs were already delivered. */
@@ -462,7 +471,7 @@ int eDVBCAHandler::registerService(const eServiceReferenceDVB &ref, int adapter,
 	if (cacheit != pmtCache.end() && cacheit->second)
 	{
 		// If streamserver was active and we're adding a different type (e.g. Live-TV),
-		// send CA PMT update immediately so OSCam knows about the new demux config
+		// send CA PMT update immediately so softcam knows about the new demux config
 		if (had_streamserver && servicetype != 7 && servicetype != 8)
 		{
 			caservice->resetBuildHash();
@@ -576,12 +585,7 @@ void eDVBCAHandler::serviceGone()
 {
 	if (!services.size())
 	{
-		eDebug("[DVBCAHandler] no more services");
-		for (ePtrList<ePMTClient>::iterator it = clients.begin(); it != clients.end(); )
-		{
-			delete *it;
-			it = clients.erase(it);
-		}
+		eDebug("[DVBCAHandler] no more services (keeping %zu client connections)", clients.size());
 		if (pmtCache.size() > 500)
 		{
 			pmtCache.clear();

@@ -12,7 +12,7 @@ class eDVBCAHandler;
 /**
  * eDVBCSASession - CW-Management per Service with ECM-based CSA-ALT Detection
  *
- * - Receives CWs from OSCam via eDVBCAHandler signals
+ * - Receives CWs from softcam via eDVBCAHandler signals
  * - Filters by service reference
  * - Monitors ECM to detect CSA-ALT and ecm_mode
  * - ACTIVATES ITSELF when CSA-ALT is detected from ECM
@@ -58,7 +58,7 @@ public:
 	 * @param caid CA System ID for CSA-ALT detection
 	 *
 	 * Reads ecm[len-1] and extracts lower nibble for ecm_mode.
-	 * Also detects CSA-ALT from ECM using OSCam's select_csa_alt() logic:
+	 * Also detects CSA-ALT from ECM using softcam's select_csa_alt() logic:
 	 * - CAID is VideoGuard (0x09xx)
 	 * - ecm[4] != 0
 	 * - (ecm[2] - ecm[4]) == 4
@@ -114,11 +114,16 @@ private:
 	ePtr<eConnection> m_cw_connection;
 
 	// CW Handler (called from eDVBCAHandler signal)
-	void onCwReceived(eServiceReferenceDVB ref, int parity, const char* cw, uint16_t caid);
+	void onCwReceived(eServiceReferenceDVB ref, int parity, const char* cw, uint16_t caid, uint32_t serviceId);
 
 	// Helper
 	bool matchesService(const eServiceReferenceDVB& ref) const;
 	void setActive(bool active);
+
+	// eDVBCWHandler registration
+	uint32_t m_cw_service_id;       // Softcam's serviceId (set on first CW)
+	bool m_cw_handler_registered;   // true once registered with eDVBCWHandler
+	bool m_first_cw_signaled;       // true once firstCwReceived signal was emitted
 };
 
 #endif // __dvbcsasession_h
