@@ -97,7 +97,7 @@ protected:
 	eDVBCAHandler *parent;
 	void connectionLost();
 	void dataAvailable();
-	// OSCam Protocol 3 handlers
+	// Softcam Protocol 3 handlers
 	bool processCaSetDescrPacket();
 	bool processServerInfoPacket();
 	bool processEcmInfoPacket();
@@ -109,6 +109,7 @@ public:
 
 class eDVBCAService: public eUnixDomainSocket
 {
+	friend class eDVBCAHandler;
 	eServiceReferenceDVB m_service;
 	uint8_t m_used_demux[32];
 	uint8_t m_adapter;
@@ -119,6 +120,7 @@ class eDVBCAService: public eUnixDomainSocket
 	int m_version;
 	unsigned char m_capmt[2048];
 	ePtr<eTimer> m_retryTimer;
+	bool m_force_cw_send; // force softcam CW resend on next handlePMT (SR→Live)
 public:
 	eDVBCAService(const eServiceReferenceDVB &service, uint32_t id);
 	~eDVBCAService();
@@ -136,8 +138,8 @@ public:
 	uint32_t getServiceTypeMask() const;
 	void resetBuildHash() { m_prev_build_hash = 0; m_crc32 = 0; }
 	void sendCAPMT();
-	int writeCAPMTObject(eSocket *socket, int list_management = -1);
-	int writeCAPMTObject(ePMTClient *client, int list_management = -1);
+	int writeCAPMTObject(eSocket *socket, int list_management = -1, int cmd_id = -1);
+	int writeCAPMTObject(ePMTClient *client, int list_management = -1, int cmd_id = -1);
 	int buildCAPMT(eTable<ProgramMapSection> *ptr);
 	int buildCAPMT(ePtr<eDVBService> &dvbservice);
 	void connectionLost();
@@ -155,7 +157,7 @@ public:
 	iCryptoInfo();
 	~iCryptoInfo();
 #endif
-	sigc::signal<void(eServiceReferenceDVB, int, const char*, uint16_t)> receivedCw;  // service, parity, cw, caid
+	sigc::signal<void(eServiceReferenceDVB, int, const char*, uint16_t, uint32_t)> receivedCw;  // service, parity, cw, caid, serviceId
 };
 SWIG_TEMPLATE_TYPEDEF(ePtr<iCryptoInfo>, iCryptoInfoPtr);
 
@@ -172,7 +174,7 @@ DECLARE_REF(eDVBCAHandler);
 	ePtrList<ePMTClient> clients;
 	ePtr<eTimer> serviceLeft;
 	std::map<eServiceReferenceDVB, ePtr<eTable<ProgramMapSection> > > pmtCache;
-	std::map<uint32_t, uint16_t> m_service_caid;  // serviceId -> CAID (from OSCam ECM_INFO)
+	std::map<uint32_t, uint16_t> m_service_caid;  // serviceId -> CAID (from softcam ECM_INFO)
 	uint32_t serviceIdCounter;
 
 	void newConnection(int socket);
