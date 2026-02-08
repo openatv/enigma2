@@ -1384,6 +1384,14 @@ void eDVBServicePlay::serviceEvent(int event)
 	case eDVBServicePMTHandler::eventHBBTVInfo:
 		m_event((iPlayableService*)this, evHBBTVInfo);
 		break;
+	case eDVBServicePMTHandler::eventCIConnected:
+		if (m_csa_session && m_csa_session->isActive())
+		{
+			eDebug("[eDVBServicePlay] CI module connected - deactivating SoftCSA to save resources");
+			m_csa_session->stopECMMonitor();
+			m_csa_session->forceDeactivate();
+		}
+		break;
 	}
 }
 
@@ -4440,12 +4448,13 @@ void eDVBServicePlay::onSessionActivated(bool active)
 
 		eDebug("[eDVBServicePlay] SoftDecoder takeover complete");
 
-		// Notify listeners (skin converters) that service info has changed (IsSoftCSA icon display)
-		m_event((iPlayableService*)this, evUpdatedInfo);
+		// Connect decoder-ready signal: SoftDecoder fires this after decoder PLAY,
+		// when video info is actually queryable. We defer evUpdatedInfo until then
+		// to avoid the skin querying -1 values before the decoder exists.
+		m_soft_decoder->m_decoder_ready.connect(
+			sigc::mem_fun(*this, &eDVBServicePlay::onSoftDecoderReady));
 
-		// Reset video info flag - a second evUpdatedInfo will be sent when first video event arrives
-		// This is needed because some skins query video resolution only on evUpdatedInfo
-		// and the decoder hasn't analyzed any frames yet at this point
+		// Reset video info flag - will be set on first video size event from decoder
 		m_soft_decoder_video_info_valid = false;
 	}
 	else if (!active && m_soft_decoder)
@@ -4458,6 +4467,12 @@ void eDVBServicePlay::onSessionActivated(bool active)
 		// Re-setup hardware decoder
 		updateDecoder();
 	}
+}
+
+void eDVBServicePlay::onSoftDecoderReady()
+{
+	eDebug("[eDVBServicePlay] SoftDecoder decoder ready - notifying skin");
+	m_event((iPlayableService*)this, evUpdatedInfo);
 }
 
 void eDVBServicePlay::onSoftDecoderAudioPidSelected(int pid)
