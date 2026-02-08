@@ -6,6 +6,7 @@ dvb_libenigma_dvb_a_SOURCES = \
 	dvb/crc32.cpp \
 	dvb/csaengine.cpp \
 	dvb/csasession.cpp \
+	dvb/cwhandler.cpp \
 	dvb/db.cpp \
 	dvb/decoder.cpp \
 	dvb/demux.cpp \
@@ -49,6 +50,7 @@ dvbinclude_HEADERS = \
 	dvb/crc32.h \
 	dvb/csaengine.h \
 	dvb/csasession.h \
+	dvb/cwhandler.h \
 	dvb/db.h \
 	dvb/decoder.h \
 	dvb/demux.h \

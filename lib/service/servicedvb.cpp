@@ -1384,6 +1384,14 @@ void eDVBServicePlay::serviceEvent(int event)
 	case eDVBServicePMTHandler::eventHBBTVInfo:
 		m_event((iPlayableService*)this, evHBBTVInfo);
 		break;
+	case eDVBServicePMTHandler::eventCIConnected:
+		if (m_csa_session && m_csa_session->isActive())
+		{
+			eDebug("[eDVBServicePlay] CI module connected - deactivating SoftCSA to save resources");
+			m_csa_session->stopECMMonitor();
+			m_csa_session->forceDeactivate();
+		}
+		break;
 	}
 }
 
