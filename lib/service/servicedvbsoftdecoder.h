@@ -89,6 +89,9 @@ public:
 	// Audio track selection signal (notifies parent when SoftDecoder selects audio)
 	sigc::signal<void(int)> m_audio_pid_selected;
 
+	// Decoder ready signal (fired after decoder PLAY, video info now queryable)
+	sigc::signal<void()> m_decoder_ready;
+
 private:
 	eDVBServicePMTHandler& m_source_handler;
 	eDVBServicePMTHandler m_pvr_handler;  // Separate PVR handler for decode demux

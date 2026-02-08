@@ -355,6 +355,7 @@ protected:
 	// Software descrambling
 	virtual void setupSpeculativeDescrambling();
 	void onSessionActivated(bool active);
+	void onSoftDecoderReady();
 	void onSoftDecoderAudioPidSelected(int pid);
 	void cleanupSoftwareDescrambling();
 
