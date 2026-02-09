@@ -210,6 +210,7 @@ bool ePMTClient::processServerInfoPacket()
 			eDebug("[ePMTClient] ServerInfo: Protocol %u, Info: %s", serverProtocolVersion, receivedData + fixDataLength);
 
 			m_serverInfoReceived = true;
+			if (parent) parent->m_protocol3_established = true;
 			if (m_capmt_buffer_len > 0)
 			{
 				writeCAPMTObject(m_capmt_buffer, m_capmt_buffer_len);
@@ -345,6 +346,8 @@ eDVBCAHandler::eDVBCAHandler()
  : eServerSocket(PMT_SERVER_SOCKET, eApp), serviceLeft(eTimer::create(eApp))
 {
 	serviceIdCounter = 1;
+	m_protocol3_established = false;
+	m_handshake_attempted = false;
 	if (instance == NULL)
 	{
 		instance = this;
@@ -378,14 +381,23 @@ void eDVBCAHandler::newConnection(int socket)
 	ePMTClient *client = new ePMTClient(this, client_fd);
 	clients.push_back(client);
 
-	/* First distribute current CAPMTs in legacy format (works for all clients),
-	 * then send CLIENT_INFO to initiate Protocol-3 handshake.
-	 * - Protocol-3 softcams: receive legacy CAPMTs, then CLIENT_INFO,
-	 *   respond with SERVER_INFO -> Protocol 3 for all subsequent CAPMTs.
-	 * - Legacy softcams: receive legacy CAPMTs (works!), then CLIENT_INFO
-	 *   causes disconnect, but CAPMTs were already delivered. */
+	/* Always distribute current CAPMTs first (legacy format, works for all clients) */
 	distributeCAPMT();
-	client->sendClientInfo();
+
+	/* Send CLIENT_INFO only when appropriate:
+	 * - Protocol-3 already established (OSCam reconnect): always send
+	 * - First connection ever: send to probe for Protocol-3 support
+	 * - Legacy client detected (no SERVER_INFO after first attempt): skip
+	 *   to avoid unnecessary errors in legacy softcam logs */
+	if (m_protocol3_established)
+	{
+		client->sendClientInfo();
+	}
+	else if (!m_handshake_attempted)
+	{
+		client->sendClientInfo();
+		m_handshake_attempted = true;
+	}
 }
 
 void eDVBCAHandler::connectionLost(ePMTClient *client)
