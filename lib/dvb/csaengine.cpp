@@ -86,8 +86,8 @@ bool csa_load_library()
 }
 
 eDVBCSAEngine::eDVBCSAEngine()
-	: m_key_even(nullptr)
-	, m_key_odd(nullptr)
+	: m_key_even{nullptr, nullptr}
+	, m_key_odd{nullptr, nullptr}
 	, m_batch_size(0)
 {
 }
@@ -96,15 +96,18 @@ eDVBCSAEngine::~eDVBCSAEngine()
 {
 	if (g_csa_api.available && g_csa_api.key_free)
 	{
-		if (m_key_even)
+		for (int i = 0; i < 2; ++i)
 		{
-			g_csa_api.key_free(m_key_even);
-			m_key_even = nullptr;
-		}
-		if (m_key_odd)
-		{
-			g_csa_api.key_free(m_key_odd);
-			m_key_odd = nullptr;
+			if (m_key_even[i])
+			{
+				g_csa_api.key_free(m_key_even[i]);
+				m_key_even[i] = nullptr;
+			}
+			if (m_key_odd[i])
+			{
+				g_csa_api.key_free(m_key_odd[i]);
+				m_key_odd[i] = nullptr;
+			}
 		}
 	}
 }
@@ -118,13 +121,16 @@ bool eDVBCSAEngine::init()
 	}
 
 	m_batch_size = g_csa_api.batch_size();
-	m_key_even = g_csa_api.key_alloc();
-	m_key_odd = g_csa_api.key_alloc();
 
-	if (!m_key_even || !m_key_odd)
+	for (int i = 0; i < 2; ++i)
 	{
-		eWarning("[eDVBCSAEngine] init: key_alloc failed");
-		return false;
+		m_key_even[i] = g_csa_api.key_alloc();
+		m_key_odd[i] = g_csa_api.key_alloc();
+		if (!m_key_even[i] || !m_key_odd[i])
+		{
+			eWarning("[eDVBCSAEngine] init: key_alloc failed");
+			return false;
+		}
 	}
 
 	// Pre-allocate batch arrays
@@ -201,7 +207,7 @@ void eDVBCSAEngine::setKey(int parity, uint8_t ecm_mode, const uint8_t* cw)
 {
 	if (!cw)
 		return;
-	if (!m_key_even || !m_key_odd)
+	if (!m_key_even[0] || !m_key_even[1] || !m_key_odd[0] || !m_key_odd[1])
 		return;
 	if (!g_csa_api.available || !g_csa_api.key_set_ecm)
 		return;
@@ -211,16 +217,24 @@ void eDVBCSAEngine::setKey(int parity, uint8_t ecm_mode, const uint8_t* cw)
 			BYTE_HEX(cw[0]), BYTE_HEX(cw[1]), BYTE_HEX(cw[2]), BYTE_HEX(cw[3]),
 			BYTE_HEX(cw[4]), BYTE_HEX(cw[5]), BYTE_HEX(cw[6]), BYTE_HEX(cw[7]));
 
-	// Lock-free key update
+	// Double-buffered key update: write to inactive slot, then swap index.
+	// descramble() on the recorder thread reads the active slot via atomic index,
+	// so it never sees a partially-written key schedule.
 	if (parity == 0) // even
 	{
-		g_csa_api.key_set_ecm(ecm_mode, cw, m_key_even);
-		m_key_even_set = true;
+		int active = m_key_even_idx.load(std::memory_order_relaxed);
+		int inactive = 1 - active;
+		g_csa_api.key_set_ecm(ecm_mode, cw, m_key_even[inactive]);
+		m_key_even_idx.store(inactive, std::memory_order_release);
+		m_key_even_set.store(true, std::memory_order_release);
 	}
 	else // odd
 	{
-		g_csa_api.key_set_ecm(ecm_mode, cw, m_key_odd);
-		m_key_odd_set = true;
+		int active = m_key_odd_idx.load(std::memory_order_relaxed);
+		int inactive = 1 - active;
+		g_csa_api.key_set_ecm(ecm_mode, cw, m_key_odd[inactive]);
+		m_key_odd_idx.store(inactive, std::memory_order_release);
+		m_key_odd_set.store(true, std::memory_order_release);
 	}
 
 	if (g_csa_api.get_ecm_table)
@@ -273,12 +287,20 @@ void eDVBCSAEngine::descramble(unsigned char* packets, int len)
 {
 	if (!packets || len <= 0)
 		return;
-	if (!m_key_even || !m_key_odd || m_batch_size <= 0)
+	if (m_batch_size <= 0)
 		return;
 	if (!g_csa_api.available || !g_csa_api.decrypt)
 		return;
 	if (m_batch_even.empty() || m_batch_odd.empty())
 		return;
+
+	// Snapshot active key state and indices once for this entire buffer.
+	// setKey() on the CWHandler thread may swap the index at any time,
+	// but we consistently use the snapshot throughout this call.
+	const bool even_set = m_key_even_set.load(std::memory_order_acquire);
+	const bool odd_set = m_key_odd_set.load(std::memory_order_acquire);
+	dvbcsa_bs_key_t* key_even = even_set ? m_key_even[m_key_even_idx.load(std::memory_order_acquire)] : nullptr;
+	dvbcsa_bs_key_t* key_odd = odd_set ? m_key_odd[m_key_odd_idx.load(std::memory_order_acquire)] : nullptr;
 
 	int i        = 0;
 	int even_cnt = 0;
@@ -289,9 +311,6 @@ void eDVBCSAEngine::descramble(unsigned char* packets, int len)
 	dvbcsa_bs_batch_s* pcks_odd = m_batch_odd.data();
 
 	CSA_LOG("[eDVBCSAEngine] descramble: len=%d batch_size=%d", len, m_batch_size);
-
-	const bool even_set = m_key_even_set;
-	const bool odd_set = m_key_odd_set;
 
 	while (i < len)
 	{
@@ -308,7 +327,7 @@ void eDVBCSAEngine::descramble(unsigned char* packets, int len)
 
 		if (scrambled == 2) // even
 		{
-			if (even_set)
+			if (key_even)
 			{
 				// Key available: descramble and clear TSC
 				clearTSC(pkt);
@@ -326,7 +345,7 @@ void eDVBCSAEngine::descramble(unsigned char* packets, int len)
 		}
 		else if (scrambled == 3) // odd
 		{
-			if (odd_set)
+			if (key_odd)
 			{
 				// Key available: descramble and clear TSC
 				clearTSC(pkt);
@@ -347,8 +366,7 @@ void eDVBCSAEngine::descramble(unsigned char* packets, int len)
 		if (even_cnt == m_batch_size)
 		{
 			pcks_even[even_cnt].data = NULL;
-			if (even_set)
-				g_csa_api.decrypt(m_key_even, pcks_even, 184);
+			g_csa_api.decrypt(key_even, pcks_even, 184);
 			CSA_LOG("[eDVBCSAEngine] decrypt even batch (%d)", m_batch_size);
 			even_cnt = 0;
 		}
@@ -357,8 +375,7 @@ void eDVBCSAEngine::descramble(unsigned char* packets, int len)
 		if (odd_cnt == m_batch_size)
 		{
 			pcks_odd[odd_cnt].data = NULL;
-			if (odd_set)
-				g_csa_api.decrypt(m_key_odd, pcks_odd, 184);
+			g_csa_api.decrypt(key_odd, pcks_odd, 184);
 			CSA_LOG("[eDVBCSAEngine] decrypt odd batch (%d)", m_batch_size);
 			odd_cnt = 0;
 		}
@@ -370,8 +387,7 @@ void eDVBCSAEngine::descramble(unsigned char* packets, int len)
 	if (even_cnt > 0)
 	{
 		pcks_even[even_cnt].data = NULL;
-		if (even_set)
-			g_csa_api.decrypt(m_key_even, pcks_even, 184);
+		g_csa_api.decrypt(key_even, pcks_even, 184);
 		CSA_LOG("[eDVBCSAEngine] decrypt remaining even packets=%d", even_cnt);
 	}
 
@@ -379,8 +395,7 @@ void eDVBCSAEngine::descramble(unsigned char* packets, int len)
 	if (odd_cnt > 0)
 	{
 		pcks_odd[odd_cnt].data = NULL;
-		if (odd_set)
-			g_csa_api.decrypt(m_key_odd, pcks_odd, 184);
+		g_csa_api.decrypt(key_odd, pcks_odd, 184);
 		CSA_LOG("[eDVBCSAEngine] decrypt remaining odd packets=%d", odd_cnt);
 	}
 

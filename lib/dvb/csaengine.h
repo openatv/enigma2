@@ -47,9 +47,13 @@ bool csa_load_library();
 /**
  * eDVBCSAEngine - Low-Level CSA Descrambler
  *
- * Stateless wrapper around libdvbcsa.
- * Performs only the actual descrambling.
- * Knows nothing about services, algos - only keys and data.
+ * Thread-safe wrapper around libdvbcsa using double-buffered keys.
+ * setKey() from CWHandler thread and descramble() from recorder thread
+ * can run concurrently without locks.
+ *
+ * Each parity (even/odd) has two key slots. setKey() writes into the
+ * inactive slot, then atomically swaps the active index. descramble()
+ * snapshots the active index once per call and uses it throughout.
  */
 class eDVBCSAEngine
 {
@@ -69,11 +73,11 @@ public:
 	static std::string getLibraryPath();
 	static std::string getLibraryVersion();
 
-	// Key Management
+	// Key Management (thread-safe, called from CWHandler thread)
 	void setKey(int parity, uint8_t ecm_mode, const uint8_t* cw);
 	void clearKeys();
 
-	// Descrambling
+	// Descrambling (called from recorder thread)
 	void descramble(unsigned char* packets, int len);
 
 	// Status
@@ -83,8 +87,13 @@ public:
 	int getBatchSizeInstance() const { return m_batch_size; }
 
 private:
-	dvbcsa_bs_key_t* m_key_even;
-	dvbcsa_bs_key_t* m_key_odd;
+	// Double-buffered keys: two slots per parity, atomic index selects active one.
+	// setKey() writes to inactive slot, then swaps index.
+	// descramble() reads active slot via snapshot of index.
+	dvbcsa_bs_key_t* m_key_even[2];
+	dvbcsa_bs_key_t* m_key_odd[2];
+	std::atomic<int> m_key_even_idx{0};    // active index for even key (0 or 1)
+	std::atomic<int> m_key_odd_idx{0};     // active index for odd key (0 or 1)
 	std::atomic<bool> m_key_even_set{false};
 	std::atomic<bool> m_key_odd_set{false};
 	int m_batch_size;
