@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-30 19:51+0100\n"
-"PO-Revision-Date: 2026-01-30 11:01+0000\n"
+"POT-Creation-Date: 2026-01-31 09:59+0000\n"
+"PO-Revision-Date: 2026-02-08 04:09+0000\n"
 "Last-Translator: igorrrrr <igorzhugan66@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/uk/>\n"
 "Language: uk\n"
@@ -1161,7 +1161,7 @@ msgstr "%s %02d. %02d."
 
 #, python-format
 msgid "%s %s advanced remote control (native)"
-msgstr "%s %s розширений пульт ДУ (рідний)"
+msgstr "%s %s розширений пульт дистанційного керування (рідний)"
 
 #, python-format
 msgid "%s %s front panel"
@@ -1177,7 +1177,7 @@ msgstr "%s %s іч миша"
 
 #, python-format
 msgid "%s %s remote control (native)"
-msgstr "%s %s пульт ДУ (рідний)"
+msgstr "%s %s пульт дистанційного керування (рідний)"
 
 #, python-format
 msgid "%s %sB"
@@ -1693,7 +1693,7 @@ msgid ""
 "Disable PiP and try again?\n"
 msgstr ""
 "Таймер запису не запущений!\n"
-"Відключити PIP і спробувати ще раз?\n"
+"Відключити PiP і спробувати ще раз?\n"
 
 msgid ""
 "A timer failed to record!\n"
@@ -3056,7 +3056,7 @@ msgid "Behavior of 'pause' when paused"
 msgstr "Дія при натисканні на кнопку 'пауза'"
 
 msgid "Behavior of 0 key in PiP-mode"
-msgstr "Дія при натискання на кнопку 0 в ПІП-режимі"
+msgstr "Поведінка клавіші 0 у режимі PiP"
 
 msgid "Behavior when a movie is started"
 msgstr "Дія, коли запис розпочався"
@@ -3096,7 +3096,7 @@ msgid "Bhutan"
 msgstr "Бутан"
 
 msgid "Big PiP"
-msgstr "Великий ПІП"
+msgstr "Великий PiP"
 
 msgid "Bihari languages"
 msgstr "Біхарські мови"
@@ -3506,7 +3506,7 @@ msgid "Cable"
 msgstr "Кабельне"
 
 msgid "Cable Scan"
-msgstr "Сканування Кабельного ТВ"
+msgstr "Сканування кабельного ТВ"
 
 msgid "Cache thumbnails"
 msgstr "Кешування ескізів"
@@ -3655,7 +3655,7 @@ msgid "Cancel"
 msgstr "Скасувати"
 
 msgid "Cancel / Close the software update screen"
-msgstr "Скасувати/Закрити вікно оновлення ПЗ"
+msgstr "Скасувати / Закрити екран оновлення програмного забезпечення"
 
 msgid "Cancel Task"
 msgstr "Скасувати завдання"
@@ -3790,7 +3790,7 @@ msgid "Cartoons/Puppets"
 msgstr "мультфільм/ляльки"
 
 msgid "Cascade PiP"
-msgstr "ПІП каскадом"
+msgstr "Каскадний PiP"
 
 msgid "Catalan / Valencian"
 msgstr "Каталонська / Валенсійська"
@@ -5763,10 +5763,10 @@ msgid "Debug log time format *"
 msgstr "Формат часу журналу логу *"
 
 msgid "Decoder release strategy"
-msgstr ""
+msgstr "Стратегія випуску декодера"
 
 msgid "Decoder start timeout"
-msgstr ""
+msgstr "Тайм-аут запуску декодера"
 
 msgid "Decryption & Parental Control"
 msgstr "Декодування і батьківський контроль"
@@ -9491,7 +9491,7 @@ msgid "Hours Minutes Seconds"
 msgstr "Години Хвилини Секунди"
 
 msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
-msgstr ""
+msgstr "Як відключити апаратний декодер під час перемикання на програмне дескремблювання. 'Швидке' відключається негайно (швидше перемикання). 'Звичайне' спочатку виконує чисте вимкнення (стабільніше на деяких приставках)."
 
 msgid "Http(s) stream start delay"
 msgstr "Затримка початку Http потоку"
@@ -11281,7 +11281,7 @@ msgid "Maximum space used (MB)"
 msgstr "Максимальне використання простору диска (MБ):"
 
 msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
-msgstr ""
+msgstr "Максимальний час очікування вхідних даних та ключів дескремблування (CW) перед запуском декодера. Зазвичай обидва надходять набагато швидше, і це лише для особливих випадків."
 
 msgid "Mayotte"
 msgstr "Майотта"
@@ -16623,7 +16623,7 @@ msgid "Select how the arrow buttons 'UP', 'DOWN', 'LEFT' or 'RIGHT' will act dur
 msgstr "Виберіть, як кнопки зі стрілками ('ВГОРУ', 'ВНИЗ', 'ЛІВОРУЧ' та 'ПРАВОРУЧ') працюватимуть під час пошуку."
 
 msgid "Select how the descrambled data stream is processed. 'Automatic' uses asynchronous writes (lower CPU usage) with automatic fallback to synchronous if kernel AIO is not supported. 'Synchronous' forces blocking writes (stable, most compatible)."
-msgstr ""
+msgstr "Виберіть спосіб обробки потоку дешифрованих даних. 'Автоматично' використовує асинхронний запис (нижче використання процесора) з автоматичним поверненням до синхронного режиму, якщо ядро AIO не підтримується. 'Синхронно' примусово блокує запис (стабільний, найбільш сумісний)."
 
 msgid "Select how the number buttons will act during seek actions."
 msgstr "Виберіть, як цифрові кнопки працюватимуть під час пошуку."
@@ -19089,7 +19089,7 @@ msgid "Socket"
 msgstr "Сокет"
 
 msgid "SoftCSA Settings"
-msgstr ""
+msgstr "Налаштування SoftCSA"
 
 msgid "Softcam"
 msgstr "Емулятор"
@@ -19134,7 +19134,7 @@ msgid "Software Update Actions"
 msgstr "Дії при обновленні ПЗ"
 
 msgid "Software descrambling"
-msgstr ""
+msgstr "Програмне дешифрування"
 
 msgid "Software information"
 msgstr "Інформація про ПЗ"
@@ -19965,7 +19965,7 @@ msgid "Synchronize system time using transponder or Internet."
 msgstr "Синхронізація часу з транспондера або з інтернету."
 
 msgid "Synchronous"
-msgstr ""
+msgstr "Синхронний"
 
 msgid "Syrian Arab Republic"
 msgstr "Сирія, Арабська Республіка"
@@ -20022,7 +20022,7 @@ msgid "TMDB Search"
 msgstr "TMDB Пошук"
 
 msgid "TRANSLATOR_INFO"
-msgstr "Переклад: kvinto - Monja 13.01.2026"
+msgstr "Переклад: kvinto - Monja 07.02.2026"
 
 msgid "TS file is too large for ISO9660 level 1!"
 msgstr "TS файл занадто великий для ISO9660 рівень 1!"
@@ -23829,7 +23829,7 @@ msgid "automatic"
 msgstr "автоматичний"
 
 msgid "Available"
-msgstr ""
+msgstr "Доступно"
 
 msgid "back"
 msgstr "назад"
