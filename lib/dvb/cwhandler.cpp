@@ -51,7 +51,7 @@ eDVBCWHandler::~eDVBCWHandler()
 	if (m_wake_pipe[1] >= 0)
 	{
 		char c = 'q';
-		::write(m_wake_pipe[1], &c, 1);
+		ssize_t ret __attribute__((unused)) = ::write(m_wake_pipe[1], &c, 1);
 	}
 
 	if (m_thread)
@@ -160,7 +160,7 @@ int eDVBCWHandler::addConnection(int softcam_fd)
 
 	// Wake up poll loop to pick up new connection
 	char c = 'w';
-	::write(m_wake_pipe[1], &c, 1);
+	ssize_t ret __attribute__((unused)) = ::write(m_wake_pipe[1], &c, 1);
 
 	eDebug("[eDVBCWHandler] Added connection: softcam_fd=%d, proxy_fd=%d, client_fd=%d", softcam_fd, pair[0], pair[1]);
 	return pair[1]; // return the fd for ePMTClient
@@ -180,7 +180,7 @@ void eDVBCWHandler::removeConnection(int client_fd)
 
 			// Wake up poll loop
 			char c = 'w';
-			::write(m_wake_pipe[1], &c, 1);
+			ssize_t ret __attribute__((unused)) = ::write(m_wake_pipe[1], &c, 1);
 			return;
 		}
 	}
@@ -271,7 +271,7 @@ void eDVBCWHandler::threadLoop()
 						ssize_t w = ::write(conn.proxy_fd, buf + written, n - written);
 						if (w < 0)
 						{
-							if (errno == EAGAIN || errno == EWOULDBLOCK)
+							if (errno == EAGAIN || errno == EINTR)
 							{
 								// Socketpair buffer full (MainLoop not reading) - drop this chunk
 								// CWs were already intercepted and setKey() called
@@ -319,7 +319,7 @@ void eDVBCWHandler::threadLoop()
 						ssize_t w = ::write(conn.softcam_fd, buf + written, n - written);
 						if (w < 0)
 						{
-							if (errno == EAGAIN || errno == EWOULDBLOCK)
+							if (errno == EAGAIN || errno == EINTR)
 							{
 								// Brief spin-wait for softcam to catch up (small CAPMT packets)
 								usleep(1000);
