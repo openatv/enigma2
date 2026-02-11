@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: OpenATV\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-31 09:59+0000\n"
-"PO-Revision-Date: 2026-01-24 00:25+0000\n"
+"PO-Revision-Date: 2026-02-10 22:48+0000\n"
 "Last-Translator: tomppaa <tomzza@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Finnish <https://hosted.weblate.org/projects/openatv/enigma2-7-0-po/fi/>\n"
 "Language: fi\n"
@@ -5732,10 +5732,10 @@ msgid "Debug log time format *"
 msgstr "Vianmäärityslokin aikamuoto *"
 
 msgid "Decoder release strategy"
-msgstr ""
+msgstr "Dekooderin julkaisu strategia"
 
 msgid "Decoder start timeout"
-msgstr ""
+msgstr "Dekooderin käynnistysaikakatkaisu"
 
 msgid "Decryption & Parental Control"
 msgstr "Salauksen purku & Lapsilukko"
@@ -9457,7 +9457,7 @@ msgid "Hours Minutes Seconds"
 msgstr "Tunnit Minuutit Sekunnit"
 
 msgid "How to release the hardware decoder when switching to software descrambling. 'Quick' releases immediately (faster zapping). 'Normal' performs clean shutdown first (more stable on some boxes)."
-msgstr ""
+msgstr "Kuinka vapauttaa laitteistodekooderi siirryttäessä ohjelmistopurkuun: \"Nopea\" vapauttaa dekooderin heti (nopeampi kanavanvaihto). \"Normaali\" suorittaa ensin siistin sammutuksen (vakaa joillakin bokseilla)."
 
 msgid "Http(s) stream start delay"
 msgstr "Http/https streamin käynnistysviive"
@@ -11250,7 +11250,7 @@ msgid "Maximum space used (MB)"
 msgstr "Käytä levytilaa lokeille enintään (MB):"
 
 msgid "Maximum time to wait for the incoming data and descrambling keys (CW) before starting decoder. Usually both arrive much faster and this is only for special cases."
-msgstr ""
+msgstr "Maksimiodotusaika saapuville tiedoille ja purkuavaimille (CW) ennen dekooderin käynnistämistä. Tavallisesti molemmat saapuvat paljon nopeammin, ja tämä asetus on tarkoitettu vain erityistapauksia varten."
 
 msgid "Mayotte"
 msgstr "Mayotte"
@@ -16605,7 +16605,7 @@ msgid "Select how the arrow buttons 'UP', 'DOWN', 'LEFT' or 'RIGHT' will act dur
 msgstr "Valitse, miten nuolipainikkeet ('YLÖS', 'ALAS', 'VASEN' ja 'OIKEA') toimivat haun aikana."
 
 msgid "Select how the descrambled data stream is processed. 'Automatic' uses asynchronous writes (lower CPU usage) with automatic fallback to synchronous if kernel AIO is not supported. 'Synchronous' forces blocking writes (stable, most compatible)."
-msgstr ""
+msgstr "Valitse, miten purettu tietovirta käsitellään. Automaattinen käyttää asynkronisia kirjoituksia (pienempi prosessorikuorma) ja vaihtaa automaattisesti synkronisiin, jos kernelin AIO ei ole tuettu. Synkroninen pakottaa estävät kirjoitukset (vakaa, yhteensopivin useimmilla laitteilla)."
 
 msgid "Select how the number buttons will act during seek actions."
 msgstr "Valitse, miten numero näppäimet toimivat haun aikana."
@@ -16876,7 +16876,7 @@ msgstr "Valitse päättymisaika, ennen jota tämä ajastin voidaan aktivoida. T�
 #. TRANSLATORS: "Select the file sort order for the %s:" / the placeholder is "left column" or "right column".
 #, python-format
 msgid "Select the file sort order for the %s:"
-msgstr ""
+msgstr "Valitse tiedostojen lajittelujärjestys kohdalle %s:"
 
 msgid "Select the file system for the device."
 msgstr "Valitse laitteen tiedostojärjestelmä."
@@ -19071,7 +19071,7 @@ msgid "Socket"
 msgstr "Socket"
 
 msgid "SoftCSA Settings"
-msgstr ""
+msgstr "SoftCSA Asetukset"
 
 msgid "Softcam"
 msgstr "Softcam"
@@ -19116,7 +19116,7 @@ msgid "Software Update Actions"
 msgstr "Ohjelmiston päivitys Toiminnot"
 
 msgid "Software descrambling"
-msgstr ""
+msgstr "Ohjelmiston purkaminen"
 
 msgid "Software information"
 msgstr "Ohjelmisto tiedot"
@@ -19947,7 +19947,7 @@ msgid "Synchronize system time using transponder or Internet."
 msgstr "Synkronoi laitteen kello käyttäen lähettimen aikaa tai NTP-palvelinta."
 
 msgid "Synchronous"
-msgstr ""
+msgstr "Synkroninen"
 
 msgid "Syrian Arab Republic"
 msgstr "Syrian Arab Republic"
@@ -20005,7 +20005,7 @@ msgstr "TMDB Haku"
 
 msgid "TRANSLATOR_INFO"
 msgstr ""
-"Suomenkielinen käännös: 27.12.2025\n"
+"Suomenkielinen käännös: 10.2.2026\n"
 "tomppaa"
 
 msgid "TS file is too large for ISO9660 level 1!"
@@ -23823,7 +23823,7 @@ msgid "automatic"
 msgstr "automaattinen"
 
 msgid "Available"
-msgstr ""
+msgstr "Saatavilla"
 
 msgid "back"
 msgstr "Takaisin"
@@ -24072,7 +24072,7 @@ msgid "left"
 msgstr "vasen"
 
 msgid "left column"
-msgstr ""
+msgstr "Vasen sarake"
 
 msgid "length"
 msgstr "pituus"
@@ -24216,7 +24216,7 @@ msgid "right"
 msgstr "oikea"
 
 msgid "right column"
-msgstr ""
+msgstr "Oikea sarake"
 
 msgid ""
 "satellites.xml not found or corrupted!\n"
