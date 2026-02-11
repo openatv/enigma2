@@ -4371,6 +4371,11 @@ void eDVBServicePlay::setupSpeculativeDescrambling()
 	m_soft_decoder->m_audio_pid_selected.connect(
 		sigc::mem_fun(*this, &eDVBServicePlay::onSoftDecoderAudioPidSelected));
 
+	// Suppress SoftCSA activation when CI module handles decryption
+	m_csa_session->shouldSuppressActivation = [this]() {
+		return m_service_handler.isCiConnected();
+	};
+
 	// Connect to session's activated signal for decoder handover
 	m_csa_session->activated.connect(
 		sigc::mem_fun(*this, &eDVBServicePlay::onSessionActivated));
