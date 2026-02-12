@@ -250,8 +250,7 @@ class Swap(Screen):
 				if self.swapPlace:
 					self.Console.ePopen(f"swapon {self.swapPlace}", self.updateSwap)
 				else:
-					mybox = self.session.open(MessageBox, _("Swap File not found. You have to create the file before to activate."), MessageBox.TYPE_INFO)
-					mybox.setTitle(_("Info"))
+					self.session.open(MessageBox, _("Swap File not found. You have to create the file before to activate."), MessageBox.TYPE_INFO, windowTitle=_("Info"))
 			else:
 				self.Console.ePopen("swapon " + self.swapPlace, self.updateSwap)
 
@@ -311,6 +310,5 @@ class Swap(Screen):
 			config.usage.swapautostart.save()
 			configfile.save()
 		else:
-			mybox = self.session.open(MessageBox, _("You have to create a Swap File before to activate the autostart."), MessageBox.TYPE_INFO)
-			mybox.setTitle(_("Info"))
+			self.session.open(MessageBox, _("You have to create a Swap File before to activate the autostart."), MessageBox.TYPE_INFO, windowTitle=_("Info"))
 		self.updateSwap()

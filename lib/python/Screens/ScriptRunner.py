@@ -56,8 +56,7 @@ class ScriptRunner(Screen):
 		self.sel = self['list'].getCurrent()
 		if self.sel:
 			message = _("Are you ready to run the script?")
-			ybox = self.session.openWithCallback(self.Run, MessageBox, message, MessageBox.TYPE_YESNO)
-			ybox.setTitle(_("Run Confirmation"))
+			self.session.openWithCallback(self.Run, MessageBox, message, MessageBox.TYPE_YESNO, windowTitle=_("Run Confirmation"))
 		else:
 			self.session.open(MessageBox, _("You have no script to run."), MessageBox.TYPE_INFO, timeout=10)
 

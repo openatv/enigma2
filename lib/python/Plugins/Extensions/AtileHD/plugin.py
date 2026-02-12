@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 
-#This plugin is free software, you are allowed to
-#modify it (if you keep the license),
-#but you are not allowed to distribute/publish
-#it without source code (this version and your modifications).
-#This means you also have to distribute
-#source code of your modifications.
+# This plugin is free software, you are allowed to
+# modify it (if you keep the license),
+# but you are not allowed to distribute/publish
+# it without source code (this version and your modifications).
+# This means you also have to distribute
+# source code of your modifications.
 from os import listdir, readlink, remove, rename, symlink, chdir, makedirs, mkdir
 from os.path import basename, exists, isdir, islink, realpath
 from shutil import rmtree
@@ -543,8 +543,7 @@ class AtileHD_Config(ConfigListScreen, Screen):
 		self["config"].setCurrentIndex(0)
 
 	def restartGUI(self):
-		restartbox = self.session.openWithCallback(self.restartGUIcb, MessageBox, _("Restart necessary, restart GUI now?"), MessageBox.TYPE_YESNO)
-		restartbox.setTitle(_("Message"))
+		self.session.openWithCallback(self.restartGUIcb, MessageBox, _("Restart necessary, restart GUI now?"), MessageBox.TYPE_YESNO, windowTitle=_("Message"))
 
 	def about(self):
 		self.session.open(AtileHD_About)

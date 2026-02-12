@@ -141,10 +141,18 @@ void eDVBCSASession::startECMMonitor(iDVBDemux *demux, uint16_t ecm_pid, uint16_
 
 		if (info.is_csa_alt && !m_active)
 		{
-			eDebug("[eDVBCSASession] ECM Monitor: Activating from cache (CSA-ALT)");
 			m_ecm_analyzed = true;
 			m_csa_alt = true;
-			setActive(true);
+			if (shouldSuppressActivation && shouldSuppressActivation())
+			{
+				eDebug("[eDVBCSASession] ECM Monitor: CSA-ALT cached but activation suppressed (CI module)");
+				stopECMMonitor();
+			}
+			else
+			{
+				eDebug("[eDVBCSASession] ECM Monitor: Activating from cache (CSA-ALT)");
+				setActive(true);
+			}
 		}
 	}
 
@@ -235,7 +243,15 @@ void eDVBCSASession::ecmDataReceived(const uint8_t *data)
 			eDebug("[eDVBCSASession] CSA-ALT detected from ECM! Activating software descrambling");
 			if (!m_active)
 			{
-				setActive(true);
+				if (shouldSuppressActivation && shouldSuppressActivation())
+				{
+					eDebug("[eDVBCSASession] Activation suppressed (CI module handles decryption)");
+					stopECMMonitor();
+				}
+				else
+				{
+					setActive(true);
+				}
 			}
 		}
 		else

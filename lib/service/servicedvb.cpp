@@ -1285,7 +1285,7 @@ void eDVBServicePlay::serviceEvent(int event)
 	case eDVBServicePMTHandler::eventNoPAT:
 	case eDVBServicePMTHandler::eventNoPMT:
 	{
-		bool recovery_enabled = false; // Disable precise recovery for now
+		bool recovery_enabled = true;
 		// Check if timeshift is active and we are not already in a recovery state
 		if (recovery_enabled && m_timeshift_enabled && !m_stream_corruption_detected)
 		{
@@ -1384,14 +1384,6 @@ void eDVBServicePlay::serviceEvent(int event)
 	case eDVBServicePMTHandler::eventHBBTVInfo:
 		m_event((iPlayableService*)this, evHBBTVInfo);
 		break;
-	case eDVBServicePMTHandler::eventCIConnected:
-		if (m_csa_session && m_csa_session->isActive())
-		{
-			eDebug("[eDVBServicePlay] CI module connected - deactivating SoftCSA to save resources");
-			m_csa_session->stopECMMonitor();
-			m_csa_session->forceDeactivate();
-		}
-		break;
 	}
 }
 
@@ -1456,12 +1448,17 @@ void eDVBServicePlay::startPreciseRecoveryCheck() {
 	pts_t final_target_delay = m_original_timeshift_delay + safety_buffer_pts;
 
 #ifdef ENABLE_TIMESHIFT_HW_LATENCY_FIX
-	const pts_t latency_correction = 2000 * 90;
+	int hw_latency_ms = eSimpleConfig::getInt("config.timeshift.hwLatencyCorrection", 2000);
+
+	if (hw_latency_ms < 0) hw_latency_ms = 0;
+	if (hw_latency_ms > 5000) hw_latency_ms = 5000;
+
+	const pts_t latency_correction = hw_latency_ms * 90;
 
 	if (final_target_delay > latency_correction)
 		final_target_delay -= latency_correction;
 	else
-		final_target_delay = 9000;
+		final_target_delay = 9000; 
 #endif
 
 	if (current_delay >= final_target_delay) {
@@ -2014,24 +2011,32 @@ RESULT eDVBServicePlay::getPlayPosition(pts_t &pos)
 
 	int r = 0;
 
-		/* if there is a decoder, use audio or video PTS */
-	// Check SoftDecoder only if session is active AND not in timeshift playback
-	if (m_soft_decoder && m_csa_session && m_csa_session->isActive() && !m_timeshift_active)
-	{
-		r = m_soft_decoder->getPTS(0, pos);
+	/* if there is a decoder, use audio or video PTS */
+
+	// Case 1: SoftDecoder active (for live descrambling, NOT during timeshift playback)
+	if (m_soft_decoder && m_csa_session && m_csa_session->isActive() && !m_timeshift_active) {
+		if (m_noaudio && m_have_video_pid)
+			r = m_soft_decoder->getPTS(1, pos); // Video PTS
+		else
+			r = m_soft_decoder->getPTS(0, pos); // Auto
+
 		if (r)
 			return r;
 	}
-	else if (m_decoder)
-	{
-		r = m_decoder->getPTS(0, pos);
+	// Case 2: Normal hardware decoder
+	else if (m_decoder) {
+		if (m_noaudio && m_have_video_pid)
+			r = m_decoder->getPTS(1, pos); // Video PTS
+		else
+			r = m_decoder->getPTS(0, pos); // Auto (original behavior)
+
 		if (r)
 			return r;
 	}
 
-		/* fixup */
-	ePtr<iTSMPEGDecoder> decoder = (m_soft_decoder && m_csa_session && m_csa_session->isActive() && !m_timeshift_active)
-		? m_soft_decoder->getDecoder() : m_decoder;
+	/* fixup */
+	ePtr<iTSMPEGDecoder> decoder = (m_soft_decoder && m_csa_session && m_csa_session->isActive() && !m_timeshift_active) ? m_soft_decoder->getDecoder() : m_decoder;
+
 	return pvr_channel->getCurrentPosition(m_decode_demux, pos, decoder);
 }
 
@@ -3107,7 +3112,6 @@ void eDVBServicePlay::recordEvent(int event) {
 			eWarning("[eDVBServicePlay] recordEvent write error");
 			return;
 		case iDVBTSRecorder::eventStreamCorrupt: {
-			return; // Disabled for now.
 			// Do not re-trigger if a recovery is already in progress.
 			if (m_stream_corruption_detected)
 				return;
@@ -4366,6 +4370,11 @@ void eDVBServicePlay::setupSpeculativeDescrambling()
 	// Connect to SoftDecoder's audio PID selection signal
 	m_soft_decoder->m_audio_pid_selected.connect(
 		sigc::mem_fun(*this, &eDVBServicePlay::onSoftDecoderAudioPidSelected));
+
+	// Suppress SoftCSA activation when CI module handles decryption
+	m_csa_session->shouldSuppressActivation = [this]() {
+		return m_service_handler.isCiConnected();
+	};
 
 	// Connect to session's activated signal for decoder handover
 	m_csa_session->activated.connect(
