@@ -44,6 +44,9 @@ public:
 	int start();
 	void stop();
 
+	// Suppress audio output (PIP mode)
+	void setNoAudio(bool noaudio) { m_noaudio = noaudio; }
+
 	// Status
 	bool isRunning() const { return m_running; }
 
@@ -110,6 +113,7 @@ private:
 	int m_dvr_fd;
 	bool m_running;
 	bool m_stopping;
+	bool m_noaudio;  // When true, suppress audio (PIP mode)
 	std::set<int> m_pids_active;
 
 	// CW waiting: Timer-based decoder start
