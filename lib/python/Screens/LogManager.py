@@ -120,7 +120,7 @@ class LogManagerPoller:
 		print("[LogManager] probing folders")
 
 		if (datetime.now().hour == 3) or (time() - config.crash.lastfulljobtrashtime.value > 3600 * 24):
-			#full JobTrash (in all potential log file dirs) between 03:00 and 04:00 AM / every 24h
+			# full JobTrash (in all potential log file dirs) between 03:00 and 04:00 AM / every 24h
 			config.crash.lastfulljobtrashtime.setValue(int(time()))
 			config.crash.lastfulljobtrashtime.save()
 			configfile.save()
@@ -129,7 +129,7 @@ class LogManagerPoller:
 					matches.append(join(mount, 'logs'))
 			matches.append('/home/root/logs')
 		else:
-			#small JobTrash (in selected log file dir only) twice a day
+			# small JobTrash (in selected log file dir only) twice a day
 			matches.append(config.crash.debug_path.value)
 
 		print("[LogManager] found following log's: %s" % matches)
@@ -145,9 +145,9 @@ class LogManagerPoller:
 						try:
 							fn = join(root, name)
 							st = stat(fn)
-							#print "Logname: %s" % fn
-							#print "Last created: %s" % ctime(st.st_ctime)
-							#print "Last modified: %s" % ctime(st.st_mtime)
+							# print "Logname: %s" % fn
+							# print "Last created: %s" % ctime(st.st_ctime)
+							# print "Last modified: %s" % ctime(st.st_mtime)
 							if st.st_mtime < ctimeLimit:
 								print("[LogManager] %s: Too old: %s" % (str(fn), ctime(st.st_mtime)))
 								eBackgroundFileEraser.getInstance().erase(fn)
@@ -292,12 +292,10 @@ class LogManager(Screen):
 		self.selectedFiles = self["list"].getSelectedList()
 		if self.selectedFiles:
 			message = _("Do you want to delete all selected files:\n(choose 'No' to only delete the currently selected file.)")
-			ybox = self.session.openWithCallback(self.doDelete1, MessageBox, message, MessageBox.TYPE_YESNO)
-			ybox.setTitle(_("Delete Confirmation"))
+			self.session.openWithCallback(self.doDelete1, MessageBox, message, MessageBox.TYPE_YESNO, windowTitle=_("Delete Confirmation"))
 		elif self.sel:
 			message = _("Are you sure you want to delete this log:\n") + str(self.sel[0])
-			ybox = self.session.openWithCallback(self.doDelete3, MessageBox, message, MessageBox.TYPE_YESNO)
-			ybox.setTitle(_("Delete Confirmation"))
+			self.session.openWithCallback(self.doDelete3, MessageBox, message, MessageBox.TYPE_YESNO, windowTitle=_("Delete Confirmation"))
 		else:
 			self.session.open(MessageBox, _("You have selected no logs to delete."), MessageBox.TYPE_INFO, timeout=10)
 
@@ -308,12 +306,10 @@ class LogManager(Screen):
 		if self.sel is not None:
 			if answer is True:
 				message = _("Are you sure you want to delete all selected logs:\n") + self.selectedFiles
-				ybox = self.session.openWithCallback(self.doDelete2, MessageBox, message, MessageBox.TYPE_YESNO)
-				ybox.setTitle(_("Delete Confirmation"))
+				self.session.openWithCallback(self.doDelete2, MessageBox, message, MessageBox.TYPE_YESNO, windowTitle=_("Delete Confirmation"))
 			else:
 				message = _("Are you sure you want to delete this log:\n") + str(self.sel[0])
-				ybox = self.session.openWithCallback(self.doDelete3, MessageBox, message, MessageBox.TYPE_YESNO)
-				ybox.setTitle(_("Delete Confirmation"))
+				self.session.openWithCallback(self.doDelete3, MessageBox, message, MessageBox.TYPE_YESNO, windowTitle=_("Delete Confirmation"))
 
 	def doDelete2(self, answer):
 		if answer is True:

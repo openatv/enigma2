@@ -59,8 +59,7 @@ class SABnzbdSetupScreen(Screen):
 		if isinstance(str, bytes):
 			str = str.decode(encoding='utf-8', errors='strict')
 		if not str:
-			restartbox = self.session.openWithCallback(self.InstallPackage, MessageBox, _('Your %s %s will be restarted after the installation of service.\n\nDo you want to install now ?') % getBoxDisplayName(), MessageBox.TYPE_YESNO)
-			restartbox.setTitle(_('Ready to install "%s"?') % self.service_name)
+			self.session.openWithCallback(self.InstallPackage, MessageBox, _('Your %s %s will be restarted after the installation of service.\n\nDo you want to install now ?') % getBoxDisplayName(), MessageBox.TYPE_YESNO, windowTitle=_('Ready to install "%s"?') % self.service_name)
 		else:
 			self.updateService()
 
@@ -72,8 +71,7 @@ class SABnzbdSetupScreen(Screen):
 
 	def doInstall(self, callback, pkgname):
 		self["actions"].setEnabled(False)
-		self.message = self.session.open(MessageBox, _("Please wait..."), MessageBox.TYPE_INFO)
-		self.message.setTitle(_('Installing Service'))
+		self.message = self.session.open(MessageBox, _("Please wait..."), MessageBox.TYPE_INFO, windowTitle=_("Installing Service"))
 		self.Console.ePopen('/usr/bin/opkg install ' + pkgname + ' sync', callback)
 
 	def installComplete(self, result=None, retval=None, extra_args=None):
@@ -88,8 +86,7 @@ class SABnzbdSetupScreen(Screen):
 		if isinstance(str, bytes):
 			str = str.decode(encoding='utf-8', errors='strict')
 		if str:
-			restartbox = self.session.openWithCallback(self.RemovePackage, MessageBox, _("Your %s %s will be restarted after the removal of service\nDo you want to remove now?") % getBoxDisplayName(), MessageBox.TYPE_YESNO)
-			restartbox.setTitle(_("Ready to remove \"%s\"?") % self.service_name)
+			self.session.openWithCallback(self.RemovePackage, MessageBox, _("Your %s %s will be restarted after the removal of service\nDo you want to remove now?") % getBoxDisplayName(), MessageBox.TYPE_YESNO, windowTitle=_("Ready to remove \"%s\"?") % self.service_name)
 		else:
 			self.updateService()
 
@@ -99,8 +96,7 @@ class SABnzbdSetupScreen(Screen):
 
 	def doRemove(self, callback, pkgname):
 		self["actions"].setEnabled(False)
-		self.message = self.session.open(MessageBox, _("Please wait..."), MessageBox.TYPE_INFO)
-		self.message.setTitle(_('Removing Service'))
+		self.message = self.session.open(MessageBox, _("Please wait..."), MessageBox.TYPE_INFO, windowTitle=_("Removing Service"))
 		self.Console.ePopen('/usr/bin/opkg remove ' + pkgname + ' --force-remove --autoremove sync', callback)
 
 	def removeComplete(self, result=None, retval=None, extra_args=None):
