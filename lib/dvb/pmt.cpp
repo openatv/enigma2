@@ -203,8 +203,6 @@ void eDVBServicePMTHandler::PMTready(int error)
 			{
 				eDVBCIInterfaces::getInstance()->recheckPMTHandlers();
 				eDVBCIInterfaces::getInstance()->gotPMT(this);
-				if (isCiConnected())
-					serviceEvent(eventCIConnected);
 			}
 		}
 		if (m_ca_servicePtr)

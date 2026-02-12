@@ -546,6 +546,25 @@ int eDVBCAHandler::unregisterService(const eServiceReferenceDVB &ref, int adapte
 			{
 				if (!used_demux_slots)  // no more used.. so we remove it
 				{
+					/*
+					 * Send CMD_NOT_SELECTED to tell the softcam to stop
+					 * descrambling this service before we delete it.
+					 * Without this, switching from an encrypted channel
+					 * to FTA/IPTV would leave the softcam in descrambling
+					 * state (e.g. ecm.info not removed).
+					 */
+					if (m_protocol3_established && caservice->getCAPMTVersion() >= 0)
+					{
+						for (ePtrList<ePMTClient>::iterator client_it = clients.begin(); client_it != clients.end(); ++client_it)
+						{
+							if (client_it->state() == eSocket::Connection)
+							{
+								eDebug("[eDVBCAHandler] sending CMD_NOT_SELECTED for service %s", caservice->toString().c_str());
+								caservice->writeCAPMTObject(*client_it, LIST_UPDATE, CMD_NOT_SELECTED);
+							}
+						}
+					}
+
 					delete it->second;
 					services.erase(it);
 

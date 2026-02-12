@@ -5,6 +5,7 @@
 #include <lib/dvb/idvb.h>
 #include <lib/base/ebase.h>
 #include <sigc++/sigc++.h>
+#include <functional>
 
 class eDVBCSAEngine;
 class eDVBCAHandler;
@@ -90,6 +91,10 @@ public:
 
 	// Signal when first CW is received (for decoder start timing)
 	sigc::signal<void()> firstCwReceived;
+
+	// Optional callback to check if activation should be suppressed
+	// (e.g. CI module handles decryption). Return true to suppress.
+	std::function<bool()> shouldSuppressActivation;
 
 private:
 	eServiceReferenceDVB m_service_ref;
