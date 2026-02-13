@@ -2667,9 +2667,6 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 		return ret
 
 	def addToHistory(self, ref):
-		if self.history and self.servicePath and self.isSubservices(self.history[self.history_pos][0]) and self.isSubservices(self.servicePath[0]):  # Only replace subservice
-			self.history[self.history_pos] = self.servicePath[:] + [ref]
-			return
 		if self.delhistpoint is not None:
 			x = self.delhistpoint
 			while x <= len(self.history) - 1:
