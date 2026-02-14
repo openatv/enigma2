@@ -2551,7 +2551,7 @@ class ChannelSelection(ChannelSelectionBase, ChannelSelectionEdit, ChannelSelect
 					self["key_green"].setText(_("Reception Lists"))
 					self.close(ref)
 
-	def bouquetParentalControlCallback(self, ref):
+	def bouquetParentalControlCallback(self, ref, forceRestart=False):  # 'forceRestart' is used in ParentalControl
 		self.enterPath(ref)
 		self.gotoCurrentServiceOrProvider(ref)
 
