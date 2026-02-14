@@ -4365,6 +4365,7 @@ void eDVBServicePlay::setupSpeculativeDescrambling()
 
 	// Create SoftDecoder (will start when session activates)
 	m_soft_decoder = new eDVBSoftDecoder(m_service_handler, m_dvb_service, m_decoder_index);
+	m_soft_decoder->setNoAudio(m_noaudio);
 	m_soft_decoder->setSession(m_csa_session);
 
 	// Connect to SoftDecoder's audio PID selection signal

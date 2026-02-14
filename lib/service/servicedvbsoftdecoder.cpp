@@ -17,6 +17,7 @@ eDVBSoftDecoder::eDVBSoftDecoder(eDVBServicePMTHandler& source_handler,
 	, m_dvr_fd(-1)
 	, m_running(false)
 	, m_stopping(false)
+	, m_noaudio(false)
 	, m_decoder_started(false)
 	, m_last_pts(0)
 	, m_stall_count(0)
@@ -675,10 +676,13 @@ void eDVBSoftDecoder::updateDecoder(int vpid, int vpidtype, int pcrpid)
 				       apid, atype, audio_index, program.audioStreams.size());
 			}
 
-			m_decoder->setAudioPID(apid, atype);
+			if (!m_noaudio)
+			{
+				m_decoder->setAudioPID(apid, atype);
 
-			// Notify parent about selected audio PID
-			m_audio_pid_selected(apid);
+				// Notify parent about selected audio PID
+				m_audio_pid_selected(apid);
+			}
 		}
 
 		// Using explicit pcrpid breaks video on some HiSilicon devices (e.g. sf8008) in PVR loopback mode
@@ -750,6 +754,8 @@ int eDVBSoftDecoder::setTrickmode()
 
 int eDVBSoftDecoder::setAudioPID(int pid, int type)
 {
+	if (m_noaudio)
+		return 0;
 	if (m_decoder)
 		return m_decoder->setAudioPID(pid, type);
 	return -1;
