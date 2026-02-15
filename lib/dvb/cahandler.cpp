@@ -381,22 +381,23 @@ void eDVBCAHandler::newConnection(int socket)
 	ePMTClient *client = new ePMTClient(this, client_fd);
 	clients.push_back(client);
 
-	/* Always distribute current CAPMTs first (legacy format, works for all clients) */
-	distributeCAPMT();
-
-	/* Send CLIENT_INFO only when appropriate:
-	 * - Protocol-3 already established (OSCam reconnect): always send
-	 * - First connection ever: send to probe for Protocol-3 support
-	 * - Legacy client detected (no SERVER_INFO after first attempt): skip
-	 *   to avoid unnecessary errors in legacy softcam logs */
 	if (m_protocol3_established)
 	{
+		/* Protocol-3 reconnect: complete handshake first, distributeCAPMT()
+		 * will be called from processServerInfoPacket() */
 		client->sendClientInfo();
 	}
 	else if (!m_handshake_attempted)
 	{
+		/* First connection: send legacy CAPMTs, then probe for Protocol-3 */
+		distributeCAPMT();
 		client->sendClientInfo();
 		m_handshake_attempted = true;
+	}
+	else
+	{
+		/* Legacy softcam - send CAPMTs immediately */
+		distributeCAPMT();
 	}
 }
 
