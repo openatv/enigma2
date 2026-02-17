@@ -12,12 +12,14 @@ DEFINE_REF(eDVBCSASession);
 
 static const uint8_t DEFAULT_ECM_MODE = 0x04;
 
-// Static cache: Service -> CSA-ALT + ecm_mode; survives session changes for faster channel switching
-// Key: (namespace << 48) | (onid << 32) | (tsid << 16) | sid
+// Static cache: Service -> CSA-ALT + ecm_mode + serviceId; survives session changes for faster channel switching
+// Key: (onid << 32) | (tsid << 16) | sid
 struct ServiceCsaInfo {
 	bool is_csa_alt;      // true if CSA-ALT detected
 	uint8_t ecm_mode;     // Lower nibble of ECM[len-1]
 	bool valid;           // true if info has been detected
+	uint32_t serviceId;   // Softcam's internal service ID (for CWHandler pre-registration)
+	bool serviceId_valid; // true if serviceId has been seen
 };
 static std::map<uint64_t, ServiceCsaInfo> s_csa_cache;
 
@@ -231,9 +233,12 @@ void eDVBCSASession::ecmDataReceived(const uint8_t *data)
 		eDebug("[eDVBCSASession] ECM received (PMT): caid=0x%04X, ecm[2]=0x%02X, ecm[4]=0x%02X, ecm_mode=0x%02X, CSA-ALT=%d",
 			m_caid, data[2], data[4], new_ecm_mode, is_csa_alt);
 
-		// Update unified cache
+		// Update unified cache (preserve serviceId if already known)
 		uint64_t svc_key = makeServiceKey(m_service_ref);
-		s_csa_cache[svc_key] = {is_csa_alt, new_ecm_mode, true};
+		auto& cached = s_csa_cache[svc_key];
+		cached.is_csa_alt = is_csa_alt;
+		cached.ecm_mode = new_ecm_mode;
+		cached.valid = true;
 
 		m_ecm_analyzed = true;
 		m_csa_alt = is_csa_alt;
@@ -282,6 +287,23 @@ void eDVBCSASession::setActive(bool active)
 #ifdef DREAMNEXTGEN
 		eAlsaOutput::setSoftDecoderActive(1);
 #endif
+		// Pre-register engine at CWHandler using cached serviceId.
+		// This closes the CW gap during PiP swap: when the old session is
+		// destroyed (unregistering its engine), the new session's engine is
+		// already registered and receives CWs without interruption.
+		if (!m_cw_handler_registered && m_engine)
+		{
+			uint64_t svc_key = makeServiceKey(m_service_ref);
+			auto cache_it = s_csa_cache.find(svc_key);
+			if (cache_it != s_csa_cache.end() && cache_it->second.serviceId_valid)
+			{
+				m_cw_service_id = cache_it->second.serviceId;
+				eDVBCWHandler::getInstance()->registerEngine(m_cw_service_id, m_engine, m_ecm_mode);
+				m_cw_handler_registered = true;
+				eDebug("[eDVBCSASession] Pre-registered engine at CWHandler (cached serviceId=%u)", m_cw_service_id);
+			}
+		}
+
 		// Replay buffered CW that arrived before activation
 		if (m_pending_cw.valid)
 		{
@@ -381,6 +403,11 @@ void eDVBCSASession::onCwReceived(eServiceReferenceDVB ref, int parity, const ch
 		const uint8_t* cw_bytes = (const uint8_t*)cw;
 		eDebug("[eDVBCSASession] CW set: caid=0x%04X, parity=%d, hasEven=%d, hasOdd=%d, CW=%02X",
 			caid, parity, m_engine->hasEvenKey(), m_engine->hasOddKey(), cw_bytes[0]);
+
+		// Cache serviceId for future sessions (enables pre-registration on PiP swap)
+		auto& cached = s_csa_cache[svc_key];
+		cached.serviceId = serviceId;
+		cached.serviceId_valid = true;
 	}
 	else
 	{
