@@ -120,7 +120,7 @@ class eDVBCAService: public eUnixDomainSocket
 	int m_version;
 	unsigned char m_capmt[2048];
 	ePtr<eTimer> m_retryTimer;
-	bool m_force_cw_send; // force softcam CW resend on next handlePMT (SR→Live)
+	bool m_force_cw_send; // force softcam CW resend on next processPMTForService()
 public:
 	eDVBCAService(const eServiceReferenceDVB &service, uint32_t id);
 	~eDVBCAService();
