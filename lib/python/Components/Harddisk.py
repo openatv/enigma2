@@ -15,6 +15,23 @@ MODEL = BoxInfo.getItem("model")
 MODULE_NAME = __name__.split(".")[-1]
 
 
+def checkFstabReservesMediaHDD(lines):
+	for line in lines:
+		line = (line or "").strip()
+		if not line or line.startswith("#"):
+			continue
+		parts = line.split()
+		if len(parts) < 3:
+			continue
+		spec, mnt, fstype = parts[0], parts[1], parts[2].lower()
+		if mnt != "/media/hdd":
+			continue
+		if fstype in ("cifs", "nfs", "nfs4", "sshfs", "fuse.sshfs"):
+			return True
+		if spec.startswith("//") or (":/" in spec):
+			return True
+	return False
+
 def readFile(filename):
 	with open(filename) as fd:
 		data = fd.read().strip()
@@ -549,14 +566,15 @@ class HarddiskManager:
 			mounts = getProcMountsNew()
 			devmounts = [x[0] for x in mounts]
 			mounts = [x[1] for x in mounts if x[1].startswith("/media/")]
-			possibleMountPoints = [f"/media/{x}" for x in ("usb8", "usb7", "usb6", "usb5", "usb4", "usb3", "usb2", "usb", "hdd") if f"/media/{x}" not in mounts]
+			newFstab = fileReadLines("/etc/fstab", default=[], source=MODULE_NAME)
+			fstabReservesMediaHDD = checkFstabReservesMediaHDD(newFstab)
+			possibleMountPoints = [f"/media/{x}" for x in ("usb8","usb7","usb6","usb5","usb4","usb3","usb2","usb","hdd") if f"/media/{x}" not in mounts and not (x == "hdd" and fstabReservesMediaHDD)]
 
 			for device in devices:
 				if device["DEVNAME"] not in devmounts or "/media/hdd" in possibleMountPoints:
 					device["MOUNT"] = possibleMountPoints.pop()
 
 			knownDevices = fileReadLines("/etc/udev/known_devices", default=[], source=MODULE_NAME)
-			newFstab = fileReadLines("/etc/fstab", default=[], source=MODULE_NAME)
 			commands = []
 			for device in devices:
 				ID_FS_UUID = device.get("ID_FS_UUID")
@@ -568,6 +586,9 @@ class HarddiskManager:
 					print(f"[Harddisk] Add hotplug device: {DEVNAME} ignored because uuid is already in fstab")
 					continue
 				mountPoint = device.get("MOUNT")
+				if mountPoint == "/media/hdd" and fstabReservesMediaHDD:
+					print(f"[Harddisk] Skip auto fstab entry for {DEVNAME}: /media/hdd reserved in fstab")
+					continue
 				if mountPoint:
 					commands.append(["/bin/umount", "/bin/umount", "-lf", DEVNAME.replace("/dev/", "/media/")])
 					ID_FS_TYPE = "auto"  # eventData.get("ID_FS_TYPE")
