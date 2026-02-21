@@ -37,11 +37,11 @@ def readFile(filename):
 		data = fd.read().strip()
 	return data
 
-## Unused
-#def getextdevices(ext):
-#	cmd = f"blkid -t TYPE={ext} -o device"
-#	extdevices = popen(cmd).read().replace("\n", ",").rstrip(",")
-#	return None if extdevices == "" else [x.strip() for x in extdevices.split(",")]
+# Unused!
+# def getextdevices(ext):
+# 	cmd = f"blkid -t TYPE={ext} -o device"
+# 	extdevices = popen(cmd).read().replace("\n", ",").rstrip(",")
+# 	return None if extdevices == "" else [x.strip() for x in extdevices.split(",")]
 
 
 def getProcMountsNew():
@@ -488,7 +488,7 @@ class HarddiskManager:
 		partitions = []
 		try:
 			if exists(join(devpath, "removable")):
-				removable = bool(int(readFile(join(devpath, "removable"))))  #TODO: This needs to be improved because some internal disks have removable = 1
+				removable = bool(int(readFile(join(devpath, "removable"))))  # TODO: This needs to be improved because some internal disks have removable = 1
 			if exists(join(devpath, "dev")):
 				dev = int(readFile(join(devpath, "dev")).split(":")[0])
 			else:
@@ -556,7 +556,7 @@ class HarddiskManager:
 							if eventData["DEVPATH"].startswith(physdevprefix) and "SATA" in pdescription:
 								removable = "0"  # Force removable to 0 if SATA
 						if removable == "1":
-							print("[Harddisk] Warning! internal and removable = 1")
+							print("[Harddisk] Warning: internal and removable = 1!")
 					eventData["SORT"] = 0 if internal or removable == "0" else 1
 					devices.append(eventData)
 				remove(fileName)
@@ -568,7 +568,7 @@ class HarddiskManager:
 			mounts = [x[1] for x in mounts if x[1].startswith("/media/")]
 			newFstab = fileReadLines("/etc/fstab", default=[], source=MODULE_NAME)
 			fstabReservesMediaHDD = checkFstabReservesMediaHDD(newFstab)
-			possibleMountPoints = [f"/media/{x}" for x in ("usb8","usb7","usb6","usb5","usb4","usb3","usb2","usb","hdd") if f"/media/{x}" not in mounts and not (x == "hdd" and fstabReservesMediaHDD)]
+			possibleMountPoints = [f"/media/{x}" for x in ("usb8", "usb7", "usb6", "usb5", "usb4", "usb3", "usb2", "usb", "hdd") if f"/media/{x}" not in mounts and not (x == "hdd" and fstabReservesMediaHDD)]
 
 			for device in devices:
 				if device["DEVNAME"] not in devmounts or "/media/hdd" in possibleMountPoints:
@@ -580,14 +580,14 @@ class HarddiskManager:
 				ID_FS_UUID = device.get("ID_FS_UUID")
 				DEVNAME = device.get("DEVNAME")
 				if [x for x in newFstab if DEVNAME in x]:
-					print(f"[Harddisk] Add hotplug device: {DEVNAME} ignored because device is already in fstab")
+					print(f"[Harddisk] Hotplug device '{DEVNAME}' ignored because device is already in '/etc/fstab'.")
 					continue
 				if [x for x in newFstab if ID_FS_UUID in x]:
-					print(f"[Harddisk] Add hotplug device: {DEVNAME} ignored because uuid is already in fstab")
+					print(f"[Harddisk] Hotplug device '{DEVNAME}' ignored because UUID is already in '/etc/fstab'.")
 					continue
 				mountPoint = device.get("MOUNT")
 				if mountPoint == "/media/hdd" and fstabReservesMediaHDD:
-					print(f"[Harddisk] Skip auto fstab entry for {DEVNAME}: /media/hdd reserved in fstab")
+					print(f"[Harddisk] Skip auto fstab entry for '{DEVNAME}' as '/media/hdd' is reserved in '/etc/fstab'.")
 					continue
 				if mountPoint:
 					commands.append(["/bin/umount", "/bin/umount", "-lf", DEVNAME.replace("/dev/", "/media/")])
@@ -596,17 +596,17 @@ class HarddiskManager:
 					newFstab.append(f"UUID={ID_FS_UUID} {mountPoint} {ID_FS_TYPE} defaults 0 0")
 					if not exists(mountPoint):
 						mkdir(mountPoint, 0o755)
-					print(f"[Harddisk] Add hotplug device: {DEVNAME} mount: {mountPoint} to fstab")
+					print(f"[Harddisk] Add hotplug device '{DEVNAME}' mounted as '{mountPoint}' to '/etc/fstab'.")
 				else:
-					print(f"[Harddisk] Warning! hotplug device: {DEVNAME} has no mountPoint")
+					print(f"[Harddisk] Warning: Hotplug device '{DEVNAME}' has no mount point!")
 
 			if commands:
-				#def enumerateHotPlugDevicesCallback(*args, **kwargs):
-				#	callback()
+				# def enumerateHotPlugDevicesCallback(*args, **kwargs):
+				# 	callback()
 				fileWriteLines("/etc/fstab", newFstab, source=MODULE_NAME)
 				commands.append(["/bin/mount", "/bin/mount", "-a"])
-				#self.console.eBatch(cmds=commands, callback=enumerateHotPlugDevicesCallback) # eBatch is not working correctly here this needs to be fixed
-				#return
+				# self.console.eBatch(cmds=commands, callback=enumerateHotPlugDevicesCallback) # eBatch is not working correctly here this needs to be fixed
+				# return
 				for command in commands:
 					self.console.ePopen(command)
 		callback()
