@@ -199,7 +199,7 @@ int eRTSPStreamClient::getOrbitalPosition(int fe, int src)
 			current_src++;
 			op = op1;
 		}
-		eDebug("[eRTSPStreamServer] %d: orbital position %d, m_slot_mask %d, lnNum %lu, old OP %d", i, op1, lnb_param.m_slot_mask, lnb_param.m_satellites.size(), lnb_param.SatCR_idx); //lnb_param.LNBNum, lnb_param.old_orbital_position);
+		eDebug("[eRTSPStreamServer] %d: orbital position %d, m_slot_mask %d, lnNum %zu, old OP %d", i, op1, lnb_param.m_slot_mask, lnb_param.m_satellites.size(), lnb_param.SatCR_idx); //lnb_param.LNBNum, lnb_param.old_orbital_position);
 		if (current_src >= src)
 		{
 			eDebug("[eRTSPStreamServer] orbital position matched to %d", op1);
@@ -304,7 +304,7 @@ std::string eRTSPStreamClient::searchServiceRef(int sys, int freq, int pol, int 
 
 void eRTSPStreamClient::process_pids(int op, const std::string &pid_str)
 {
-	eDebug("[eRTSPStreamServer] %s: operation %d, pid_str %s (len pids: %lu)", __FUNCTION__, op, pid_str.c_str(), pids.size());
+	eDebug("[eRTSPStreamServer] %s: operation %d, pid_str %s (len pids: %zu)", __FUNCTION__, op, pid_str.c_str(), pids.size());
 
 	if (op == _PIDS)
 	{
@@ -667,7 +667,7 @@ void eRTSPStreamClient::add_pid(int p)
 
 void eRTSPStreamClient::update_pids()
 {
-	eDebug("[eRTSPStreamServer] update pids called: %lu pids in the queue", pids.size());
+	eDebug("[eRTSPStreamServer] update pids called: %zu pids in the queue", pids.size());
 	std::set<int>::iterator it = pids.find(0);
 	if (pids.size() > 0 && it == pids.end())
 		pids.insert(0);

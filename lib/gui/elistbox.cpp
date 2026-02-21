@@ -1431,13 +1431,11 @@ void eListbox::moveSelection(int dir)
 			{
 
 				int wrap = 0;
-				int newRow = oldRow;
 				int current = oldSel;
 				do
 				{
 					m_content->cursorMove(-m_max_columns);
 					newSel = m_content->cursorGet();
-					newRow = (m_max_columns != 0) ? newSel / m_max_columns : 0;
 					if (current < m_max_columns)
 					{
 						if (m_enabled_wrap_around)

@@ -380,7 +380,7 @@ void eDVBLocalTimeHandler::updateTime(time_t tp_time, eDVBChannel *chan, int upd
 {
 
 	if (m_time_debug)
-		eDebug("[eDVBLocalTimerHandler] updateTime : %ld", tp_time);
+		eDebug("[eDVBLocalTimerHandler] updateTime : %lld", (long long)tp_time);
 
 	if (m_SyncTimeUsing == 2)
 	{
@@ -470,7 +470,7 @@ void eDVBLocalTimeHandler::updateTime(time_t tp_time, eDVBChannel *chan, int upd
 						   now.tm_sec);
 				time_difference = rtc_time - linuxTime;
 				if (m_time_debug)
-					eDebug("[eDVBLocalTimerHandler] RTC to receiver time difference is %ld seconds.", linuxTime - rtc_time);
+					eDebug("[eDVBLocalTimerHandler] RTC to receiver time difference is %lld seconds.", (long long)(linuxTime - rtc_time));
 				if (time_difference)
 				{
 					if (m_time_debug)
@@ -553,7 +553,7 @@ void eDVBLocalTimeHandler::updateTime(time_t tp_time, eDVBChannel *chan, int upd
 					m_timeOffsetMap[chan->getChannelID()] = rtc - tp_time;
 					new_diff = rtc - linuxTime; // Set enigma time to RTC.
 					if (m_time_debug)
-						eDebug("[eDVBLocalTimerHandler] Update stored correction to %ld.  (Calculated against RTC time.)", rtc - tp_time);
+						eDebug("[eDVBLocalTimerHandler] Update stored correction to %lld.  (Calculated against RTC time.)", (long long)(rtc - tp_time));
 				}
 				else if (abs(ddiff) <= 120)
 				{

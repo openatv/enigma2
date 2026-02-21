@@ -1344,9 +1344,6 @@ void eDVBScan::channelDone()
 				}
 			}
 			SCAN_eDebug("[eDVBScan] name '%s', provider_name '%s'", sname, pname);
-			int tsonid = 0;
-			if (m_chid_current)
-				tsonid = (m_chid_current.transport_stream_id.get() << 16) | m_chid_current.original_network_id.get();
 			service->m_service_name = sname;
 			service->genSortName();
 			service->m_provider_name = pname;

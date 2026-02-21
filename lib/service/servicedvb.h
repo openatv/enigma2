@@ -233,7 +233,7 @@ protected:
 	ePtr<eDVBCSASession> m_csa_session;
 	ePtr<eConnection> m_csa_activated_conn;
 	ePtr<eDVBSoftDecoder> m_soft_decoder;
-	bool m_soft_decoder_video_info_valid;  // Track if video info is available from SoftDecoder
+	bool m_soft_decoder_video_info_valid = false;  // Track if video info is available from SoftDecoder
 
 	int m_is_primary;
 	int m_decoder_index;
@@ -368,7 +368,7 @@ private:
 	ePtr<eTimer> m_precise_recovery_timer;
 	bool m_stream_corruption_detected;
 	pts_t m_original_timeshift_delay; // Stores the target timeshift delay.
-	bool m_delay_calculated; // Flag to ensure delay is calculated only once.
+	bool m_delay_calculated = false; // Flag to ensure delay is calculated only once.
 
 	void handleEofRecovery();
 	void startPreciseRecoveryCheck();

@@ -25,7 +25,7 @@ ePMTClient::ePMTClient(eDVBCAHandler *handler, int socket) : eUnixDomainSocket(s
 {
 	receivedTag[0] = 0;
 	receivedLength = 0;
-	receivedData = NULL;
+	receivedData = nullptr;
 	m_protocolVersion = -1;
 	m_serverInfoReceived = false;
 	memset(m_capmt_buffer, 0, sizeof(m_capmt_buffer));
@@ -109,7 +109,7 @@ void ePMTClient::dataAvailable()
 		}
 
 		delete[] receivedData;
-		receivedData = NULL;
+		receivedData = nullptr;
 		receivedLength = 0;
 		memset(receivedHeader, 0, 5);
 	}
@@ -139,7 +139,7 @@ bool ePMTClient::processCaSetDescrPacket()
 	int read;
 	uint32_t serviceId;
 
-	if (receivedData == NULL)
+	if (receivedData == nullptr)
 		receivedData = new unsigned char[fixDataLength];
 	if (bytesAvailable() < fixDataLength - readDataLength) return false;
 	read = readBlock((char*)receivedData + readDataLength, fixDataLength - readDataLength);
@@ -180,7 +180,7 @@ bool ePMTClient::processServerInfoPacket()
 	int fixDataLength = 3; // fix part: 2 byte protocol version + 1 byte info len
 	int read;
 
-	if (receivedData == NULL)
+	if (receivedData == nullptr)
 		receivedData = new unsigned char[260]; // max 256 byte info + 2 bytes protocol version + 1 byte info len + 1 NULL byte
 
 	if (readDataLength < fixDataLength)
@@ -228,7 +228,7 @@ bool ePMTClient::processEcmInfoPacket()
 {
 	int readDataLength = receivedLength - 4;
 	int fixDataLength = 15; // fix part: 2 byte program number + 2 byte caid + 2 byte pid + 4 byte prov + 4 byte ecmtime + 1 hops
-	int read, pos = 0, i = 0, old_pos;
+	int read, pos = 0, i = 0, old_pos = 0;
 	uint32_t serviceId, providerId, ecmTime;
 	uint16_t program, caid, pid;
 	int hops = -1;
@@ -236,9 +236,9 @@ bool ePMTClient::processEcmInfoPacket()
 	unsigned char reader[257];
 	unsigned char from[257];
 	unsigned char protocol[257];
-	unsigned char* dest;
+	unsigned char* dest = nullptr;
 
-	if (receivedData == NULL)
+	if (receivedData == nullptr)
 	{
 		receivedData = new unsigned char[1041]; // fix part 15 byte + 4 strings * a max 256 byte + 1 byte hop
 		memset(receivedData, 0 , 1041);
@@ -389,7 +389,7 @@ static bool isProtocol3CapableClient(int socket_fd)
 	return true;
 }
 
-eDVBCAHandler *eDVBCAHandler::instance = NULL;
+eDVBCAHandler *eDVBCAHandler::instance = nullptr;
 
 DEFINE_REF(eDVBCAHandler);
 
@@ -398,7 +398,7 @@ eDVBCAHandler::eDVBCAHandler()
 {
 	serviceIdCounter = 1;
 	m_protocol3_established = false;
-	if (instance == NULL)
+	if (instance == nullptr)
 	{
 		instance = this;
 	}
@@ -409,7 +409,7 @@ eDVBCAHandler::~eDVBCAHandler()
 {
 	if (instance == this)
 	{
-		instance = NULL;
+		instance = nullptr;
 	}
 	for (ePtrList<ePMTClient>::iterator it = clients.begin(); it != clients.end(); )
 	{

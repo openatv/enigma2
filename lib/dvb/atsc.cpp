@@ -378,7 +378,7 @@ MasterGuideTable::MasterGuideTable(const uint8_t * const buffer)
 	numberBytes = UINT32(&buffer[5]);
 	descriptorsLoopLength = UINT16(&buffer[9]) & 0xfff;
 
-	for (uint32_t i = 11; i < descriptorsLoopLength + 11; i += buffer[i + 1] + 2)
+	for (uint32_t i = 11; i < descriptorsLoopLength + 11u; i += buffer[i + 1] + 2)
 	{
 		descriptor(&buffer[i], SCOPE_SI);
 	}
@@ -446,7 +446,7 @@ ATSCEvent::ATSCEvent(const uint8_t * const buffer)
 
 	descriptorsLoopLength = DVB_LENGTH(&buffer[10 + titleLength]) & 0xfff;
 
-	for (i = 12 + titleLength; i < 12 + titleLength + descriptorsLoopLength; i += buffer[i + 1] + 2)
+	for (i = 12 + titleLength; i < 12u + titleLength + descriptorsLoopLength; i += buffer[i + 1] + 2)
 		descriptor(&buffer[i], SCOPE_SI);
 }
 

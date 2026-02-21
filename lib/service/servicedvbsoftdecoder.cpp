@@ -429,7 +429,7 @@ void eDVBSoftDecoder::streamHealthCheck()
 		int64_t elapsed = now - m_last_health_check;
 		if (elapsed > 2000)
 		{
-			eDebug("[eDVBSoftDecoder] MainLoop was blocked for %lldms, skipping stall check", elapsed);
+			eDebug("[eDVBSoftDecoder] MainLoop was blocked for %lldms, skipping stall check", (long long)elapsed);
 			m_stall_count = 0;
 			m_stream_stalled = false;
 			m_last_pts = 0;
@@ -516,7 +516,7 @@ void eDVBSoftDecoder::updatePids(bool withDecoder)
 {
 	int timing_pid = -1;
 	int timing_stream_type = -1;
-	int vpid = -1, vpidtype = -1, pcrpid = -1, tpid = -1;
+	int vpid = -1, vpidtype = -1, pcrpid = -1;
 
 	eDVBServicePMTHandler::program program;
 	if (m_source_handler.getProgramInfo(program))
@@ -599,7 +599,6 @@ void eDVBSoftDecoder::updatePids(bool withDecoder)
 	eDebugNoNewLine(", and the text pid is %04x\n", program.textPid);
 	if (program.textPid != -1)
 		pids_to_record.insert(program.textPid); // Videotext
-	tpid = program.textPid;
 
 	if (program.aitPid >= 0) pids_to_record.insert(program.aitPid);
 

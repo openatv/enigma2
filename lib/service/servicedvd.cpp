@@ -1053,7 +1053,7 @@ void eServiceDVD::loadCuesheet()
 			if (stat(m_ref.path.c_str(), &st) == 0)
 			{
 				char buf[128];
-				snprintf(buf, 128, "%lx", st.st_mtime);
+				snprintf(buf, 128, "%llx", (long long)st.st_mtime);
 				filename += buf;
 			}
 			else
@@ -1153,7 +1153,7 @@ void eServiceDVD::saveCuesheet()
 			if (stat(m_ref.path.c_str(), &st) == 0)
 			{
 				char buf[128];
-				snprintf(buf, 128, "%lx", st.st_mtime);
+				snprintf(buf, 128, "%llx", (long long)st.st_mtime);
 				filename += buf;
 			}
 			else

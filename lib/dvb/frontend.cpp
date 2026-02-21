@@ -2133,7 +2133,7 @@ int eDVBFrontend::tuneLoopInt()  // called by m_tuneTimer
 					gettimeofday(&start, NULL);
 					sec_fe->sendToneburst(m_sec_sequence.current()->toneburst);
 					gettimeofday(&end, NULL);
-					eDebugNoSimulateNoNewLineStart("[SEC] toneburst ioctl duration: %ld ms",(end.tv_usec - start.tv_usec)/1000);
+					eDebugNoSimulateNoNewLineStart("[SEC] toneburst ioctl duration: %lld ms",(long long)(end.tv_usec - start.tv_usec)/1000);
 					duration = (((end.tv_usec - start.tv_usec)/1000) + 1000 ) % 1000;
 					duration_est = 24;
 					if (duration < duration_est)
@@ -4103,10 +4103,12 @@ std::string eDVBFrontend::getCapabilities()
 			case SYS_DVBC_ANNEX_C:	ss << "DVBC_ANNEX_C"; break;
 			case SYS_TURBO:		ss << "TURBO"; break;
 			case SYS_DTMB:		ss << "DTMB"; break;
+			case SYS_DVBC2:		ss << "DVBC2"; break;
 	#else
 			case SYS_DMBTH:		ss << "DMBTH"; break;
 	#endif
 			case SYS_DVBT2:		ss << "DVBT2"; break;
+			default: ss << "SYS_" << (int)it->first; break;
 		}
 		ss << ",";
 	}

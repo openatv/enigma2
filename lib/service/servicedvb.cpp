@@ -1100,9 +1100,7 @@ eDVBServicePlay::eDVBServicePlay(const eServiceReference &ref, eDVBService *serv
 	m_nownext_timer(eTimer::create(eApp)),
 	m_precise_recovery_timer(eTimer::create(eApp)),
 	m_stream_corruption_detected(false),
-	m_original_timeshift_delay(0),
-	m_delay_calculated(false),
-	m_soft_decoder_video_info_valid(false)
+	m_original_timeshift_delay(0)
 {
 #ifdef PASSTHROUGH_FIX
 	m_passthrough_fix_timer = eTimer::create(eApp);
