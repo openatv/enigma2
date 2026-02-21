@@ -6,7 +6,9 @@
 
 #include <string>
 #include <lib/base/object.h>
+#ifndef PY_SSIZE_T_CLEAN
 #define PY_SSIZE_T_CLEAN 1
+#endif
 #include "Python.h"
 
 #if !defined(SKIP_PART1) && !defined(SWIG)
@@ -393,8 +395,10 @@ inline void Impl_DECREF(PyObject *ob)
 #define PyList_New(args...) Impl_PyList_New(args)
 #define PyTuple_New(args...) Impl_PyTuple_New(args)
 #define PyDict_New(...) Impl_PyDict_New()
+#undef PyString_FromString
 #define PyString_FromString(str) Impl_PyString_FromString(str)
 #define PyString_FromFormat(str, args...) Impl_PyString_FromFormat(str, args)
+#undef PyInt_FromLong
 #define PyInt_FromLong(val) Impl_PyLong_FromLong(val)
 #define PyLong_FromLong(val) Impl_PyLong_FromLong(val)
 #define PyLong_FromUnsignedLong(val) Impl_PyLong_FromUnsignedLong(val)

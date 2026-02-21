@@ -15,7 +15,9 @@ class iObject
 {
 private:
 		/* we don't allow the default operator here, as it would break the refcount. */
+#ifndef SWIG
 	void operator=(const iObject &);
+#endif
 protected:
 	virtual ~iObject() { }
 #ifdef SWIG
@@ -23,7 +25,9 @@ protected:
 	virtual void Release()=0;
 #endif
 public:
+#ifndef SWIG
 	void operator delete(void *p) { ::operator delete(p); }
+#endif
 #ifndef SWIG
 	virtual void AddRef()=0;
 	virtual void Release()=0;

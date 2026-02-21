@@ -3,12 +3,10 @@
 
 #include <memory>
 #include <openssl/x509.h>
+#include <openssl/evp.h>
+#include <openssl/param_build.h>
+#include <openssl/core_names.h>
 #include <lib/dvb_ci/dvbci_session.h>
-
-#include <openssl/dh.h>
-void DH_get0_key(const DH *dh, const BIGNUM **pub_key, const BIGNUM **priv_key);
-int DH_set0_pqg(DH *dh, BIGNUM *p, BIGNUM *q, BIGNUM *g);
-void DH_set_flags(DH *dh, int flags);
 
 class eDVBCICcSessionImpl;
 
@@ -229,10 +227,10 @@ class eDVBCICcSession : public eDVBCISession
 	X509 *m_ci_device_cert;
 
 	/* private key of device-cert */
-	RSA *m_rsa_device_key;
+	EVP_PKEY *m_rsa_device_key;
 
 	/* DH parameters */
-	DH *m_dh;
+	EVP_PKEY *m_dh;
 	uint8_t m_dh_p[256];
 	uint8_t m_dh_g[256];
 	uint8_t m_dh_q[32];

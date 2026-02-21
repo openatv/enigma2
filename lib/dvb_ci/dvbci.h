@@ -258,6 +258,7 @@ public:
 	PyObject *getDescrambleRules(int slotid);
 	RESULT setDescrambleRules(int slotid, SWIG_PYOBJECT(ePyObject));
 	PyObject *readCICaIds(int slotid);
+#ifndef SWIG
 	struct Message
 	{
 		enum
@@ -284,6 +285,7 @@ public:
 			memcpy(m_data, data, len);
 		};
 	};
+#endif
 };
 
 #endif

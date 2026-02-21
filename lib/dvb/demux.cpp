@@ -596,7 +596,7 @@ int eDVBRecordFileThread::AsyncIO::poll()
 
 	if (r >= 0 && (size_t)r != aio.aio_nbytes)
 	{ // short write
-		eDebug("[eDVBRecordFileThread] short write: %d of bytes %d written -> retry", r, aio.aio_nbytes);
+		eDebug("[eDVBRecordFileThread] short write: %d of bytes %zu written -> retry", r, aio.aio_nbytes);
 		aio.aio_nbytes -= r;
 		aio.aio_offset += r;
 		aio.aio_buf = (volatile void*)((const char*)aio.aio_buf + r);
@@ -822,7 +822,7 @@ void eDVBRecordFileThread::flush()
 		}
 	}
 	int bufferCount = m_aio.size();
-	eDebug("[eDVBRecordFileThread] buffer usage histogram (%d buffers of %lu kB)", bufferCount, m_buffersize>>10);
+	eDebug("[eDVBRecordFileThread] buffer usage histogram (%d buffers of %zu kB)", bufferCount, m_buffersize>>10);
 	for (int i=0; i <= bufferCount; ++i)
 	{
 		if (m_buffer_use_histogram[i] != 0)

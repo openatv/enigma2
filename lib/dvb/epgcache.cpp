@@ -570,12 +570,12 @@ void eEPGCache::sectionRead(const uint8_t *data, int source, eEPGChannelData *ch
 				}
 
 				if(m_debug)
-					eDebug("[eEPGCache] Removing event %04X at %ld.", ev_it->second->getEventID(), ev_it->second->getStartTime());
+					eDebug("[eEPGCache] Removing event %04X at %lld.", ev_it->second->getEventID(), (long long)ev_it->second->getStartTime());
 
 				// Remove existing event
 				if (timemap.erase(ev_it->second->getStartTime()) == 0)
 				{
-					eDebug("[eEPGCache] Event %04X not found in time map at %ld.", event_id, ev_it->second->getStartTime());
+					eDebug("[eEPGCache] Event %04X not found in time map at %lld.", event_id, (long long)ev_it->second->getStartTime());
 				}
 				eventData *data = ev_it->second;
 				eventmap.erase(ev_it);
@@ -607,14 +607,14 @@ void eEPGCache::sectionRead(const uint8_t *data, int source, eEPGChannelData *ch
 
 					if(m_debug) {
 						eDebug("[eEPGCache] Removing old overlapping event %04X:\n"
-								"       old %ld ~ %ld\n"
-								"       new %ld ~ %ld",
-								it->second->getEventID(), old_start, old_end, new_start, new_end);
+								"       old %lld ~ %lld\n"
+								"       new %lld ~ %lld",
+								it->second->getEventID(), (long long)old_start, (long long)old_end, (long long)new_start, (long long)new_end);
 					}
 
 					if (eventmap.erase(it->second->getEventID()) == 0)
 					{
-						eDebug("[eEPGCache] Event %04X not found in event map at %ld.", it->second->getEventID(), it->second->getStartTime());
+						eDebug("[eEPGCache] Event %04X not found in event map at %lld.", it->second->getEventID(), (long long)it->second->getStartTime());
 					}
 					delete it->second;
 					timemap.erase(it++);
@@ -628,7 +628,7 @@ void eEPGCache::sectionRead(const uint8_t *data, int source, eEPGChannelData *ch
 			}
 
 			if(m_debug)
-				eDebug("[eEPGCache] Inserting event %04X at %ld.", event_id, new_start);
+				eDebug("[eEPGCache] Inserting event %04X at %lld.", event_id, (long long)new_start);
 
 			eventmap[event_id] = new_evt;
 			timemap[new_start] = new_evt;
@@ -765,7 +765,7 @@ void eEPGCache::cleanLoop()
 
 					if (eventmap.erase(It->second->getEventID()) == 0)
 					{
-						eDebug("[eEPGCache] Event %04X not found in time map at %ld.", It->second->getEventID(), start_time);
+						eDebug("[eEPGCache] Event %04X not found in time map at %lld.", It->second->getEventID(), (long long)start_time);
 					}
 					delete It->second;
 					timemap.erase(It++);
@@ -1024,7 +1024,7 @@ void eEPGCache::load()
 						}
 						if (eventmap.erase(It->second->getEventID()) == 0)
 						{
-							eDebug("[eEPGCache] Event %04X not found in time map at %ld.", It->second->getEventID(), start_time);
+							eDebug("[eEPGCache] Event %04X not found in time map at %lld.", It->second->getEventID(), (long long)start_time);
 						}
 						delete It->second;
 						timemap.erase(It++);

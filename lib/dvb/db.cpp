@@ -868,7 +868,7 @@ void eDVBDB::loadServicelist(const char *file)
 
 		}
 		if(m_debug)
-			eDebug("[eDVBDB] Reading lcn db version %d done. %lu services found.", lcnversion, m_lcnmap.size());
+			eDebug("[eDVBDB] Reading lcn db version %d done. %zu services found.", lcnversion, m_lcnmap.size());
 	}
 
 	if(lcnversion == 1)

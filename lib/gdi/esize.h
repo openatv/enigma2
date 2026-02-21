@@ -1,8 +1,12 @@
 #ifndef ESIZE_H
 #define ESIZE_H
 
+#ifndef MIN
 #define MIN(a,b) (a < b ? a : b)
+#endif
+#ifndef MAX
 #define MAX(a,b) (a > b ? a : b)
+#endif
 
 class eSize
 {
@@ -33,6 +37,7 @@ public:
 	eSize &operator/=( int c );
 	eSize &operator/=( double c );
 
+#ifndef SWIG
 	friend inline bool	operator==( const eSize &, const eSize & );
 	friend inline bool	operator!=( const eSize &, const eSize & );
 	friend inline eSize operator+( const eSize &, const eSize & );
@@ -43,6 +48,7 @@ public:
 	friend inline eSize operator*( double, const eSize & );
 	friend inline eSize operator/( const eSize &, int );
 	friend inline eSize operator/( const eSize &, double );
+#endif
 
 private:
     int wd;
@@ -99,6 +105,7 @@ inline eSize &eSize::operator*=( int c )
 inline eSize &eSize::operator*=( double c )
 { wd=(int)(wd*c); ht=(int)(ht*c); return *this; }
 
+#ifndef SWIG
 inline bool operator==( const eSize &s1, const eSize &s2 )
 { return s1.wd == s2.wd && s1.ht == s2.ht; }
 
@@ -122,6 +129,7 @@ inline eSize operator*( const eSize &s, double c )
 
 inline eSize operator*( double c, const eSize &s )
 { return eSize((int)(s.wd*c), (int)(s.ht*c)); }
+#endif
 
 inline eSize &eSize::operator/=( int c )
 {
@@ -135,6 +143,7 @@ inline eSize &eSize::operator/=( double c )
 	return *this;
 }
 
+#ifndef SWIG
 inline eSize operator/( const eSize &s, int c )
 {
 	return eSize(s.wd/c, s.ht/c);
@@ -144,6 +153,7 @@ inline eSize operator/( const eSize &s, double c )
 {
 	return eSize((int)(s.wd/c), (int)(s.ht/c));
 }
+#endif
 
 inline eSize eSize::expandedTo( const eSize & otherSize ) const
 {

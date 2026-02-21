@@ -33,6 +33,9 @@ is usually caused by not marking PSignals as immutable.
 */
 
 %module enigma
+%begin %{
+#pragma GCC diagnostic ignored "-Wsign-compare"
+%}
 %{
 
 #define SWIG_COMPILE
@@ -160,6 +163,22 @@ typedef long time_t;
 %include "std_string.i"
 %include "stdint.i"
 %include <lib/python/swig.h>
+
+/* Stub declarations for base classes not directly wrapped by SWIG */
+namespace sigc { class trackable { public: trackable(); ~trackable(); }; }
+class eThread { eThread(); ~eThread(); };
+class eMessagePumpMT { eMessagePumpMT(); ~eMessagePumpMT(); };
+class eServerSocket { eServerSocket(); ~eServerSocket(); };
+class eRCDriver { eRCDriver(); ~eRCDriver(); };
+class eConfigManager { eConfigManager(); ~eConfigManager(); };
+class LongCrcSection { LongCrcSection(); ~LongCrcSection(); };
+class eDVBPMTParser { eDVBPMTParser(); ~eDVBPMTParser(); };
+class iDVBSatelliteEquipmentControl { iDVBSatelliteEquipmentControl(); ~iDVBSatelliteEquipmentControl(); };
+class iDVBChannelList { iDVBChannelList(); ~iDVBChannelList(); };
+
+%immutable eApp;
+%rename(_raise) eWidget::raise;
+
 %include <lib/base/object.h>
 %include <lib/base/eenv.h>
 %include <lib/base/eerror.h>
