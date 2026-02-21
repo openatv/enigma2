@@ -166,6 +166,7 @@ class eDVBResourceManager: public iObject, public sigc::trackable
 	void setUsbTuner();
 
 public:
+#ifndef SWIG
 	struct active_channel
 	{
 		eDVBChannelID m_channel_id;
@@ -174,6 +175,7 @@ public:
 
 		active_channel(const eDVBChannelID &chid, eDVBChannel *ch) : m_channel_id(chid), m_channel(ch) { }
 	};
+#endif
 	void feStateChanged();
 
 private:
