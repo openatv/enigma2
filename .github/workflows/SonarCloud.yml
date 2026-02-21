@@ -7,7 +7,7 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
-  build:
+  build-and-analyze:
     name: Build and Analyze
     runs-on: ubuntu-24.04
     container:
@@ -17,11 +17,14 @@ jobs:
       BUILD_WRAPPER_OUT_DIR: build_wrapper_output_directory
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha || github.ref }}
 
-      - uses: actions/setup-python@v5
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
           python-version: '3.13'
 
@@ -39,7 +42,6 @@ jobs:
           export CPPFLAGS="-I/usr/include/python3.13"
           ./configure PYTHON=python3.13 --with-libsdl=no --with-boxtype=nobox --enable-dependency-tracking ac_cv_prog_c_openmp=-fopenmp --with-gstversion=1.0 --with-textlcd
 
-          # Clean build mit Build Wrapper
           build-wrapper-linux-x86-64 --out-dir "${BUILD_WRAPPER_OUT_DIR}" make
 
       - name: SonarCloud Scan
@@ -51,3 +53,4 @@ jobs:
           args: >
             --define "sonar.cfamily.compile-commands=${{ env.BUILD_WRAPPER_OUT_DIR }}/compile_commands.json"
             -Dsonar.verbose=true
+            ${{ github.event_name == 'pull_request_target' && format('-Dsonar.pullrequest.key={0} -Dsonar.pullrequest.branch={1} -Dsonar.pullrequest.base={2}', github.event.pull_request.number, github.event.pull_request.head.ref, github.event.pull_request.base.ref) || '' }}
